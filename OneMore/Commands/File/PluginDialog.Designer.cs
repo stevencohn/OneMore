@@ -51,6 +51,8 @@
 			this.toolTip = new System.Windows.Forms.ToolTip(this.components);
 			this.timeoutBox = new System.Windows.Forms.NumericUpDown();
 			this.timeoutLabel = new System.Windows.Forms.Label();
+			this.targetBox = new System.Windows.Forms.ComboBox();
+			this.targetLabel = new System.Windows.Forms.Label();
 			((System.ComponentModel.ISupportInitialize)(this.errorBox)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.timeoutBox)).BeginInit();
 			this.SuspendLayout();
@@ -59,7 +61,7 @@
 			// 
 			this.cancelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-			this.cancelButton.Location = new System.Drawing.Point(640, 383);
+			this.cancelButton.Location = new System.Drawing.Point(640, 448);
 			this.cancelButton.Name = "cancelButton";
 			this.cancelButton.Size = new System.Drawing.Size(120, 35);
 			this.cancelButton.TabIndex = 12;
@@ -71,7 +73,7 @@
 			this.okButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.okButton.DialogResult = System.Windows.Forms.DialogResult.OK;
 			this.okButton.Enabled = false;
-			this.okButton.Location = new System.Drawing.Point(514, 383);
+			this.okButton.Location = new System.Drawing.Point(514, 448);
 			this.okButton.Name = "okButton";
 			this.okButton.Size = new System.Drawing.Size(120, 35);
 			this.okButton.TabIndex = 11;
@@ -110,7 +112,7 @@
 			// 
 			this.updateRadio.AutoSize = true;
 			this.updateRadio.Checked = true;
-			this.updateRadio.Location = new System.Drawing.Point(22, 262);
+			this.updateRadio.Location = new System.Drawing.Point(140, 302);
 			this.updateRadio.Name = "updateRadio";
 			this.updateRadio.Size = new System.Drawing.Size(181, 24);
 			this.updateRadio.TabIndex = 6;
@@ -122,7 +124,7 @@
 			// createRadio
 			// 
 			this.createRadio.AutoSize = true;
-			this.createRadio.Location = new System.Drawing.Point(22, 304);
+			this.createRadio.Location = new System.Drawing.Point(140, 332);
 			this.createRadio.Name = "createRadio";
 			this.createRadio.Size = new System.Drawing.Size(221, 24);
 			this.createRadio.TabIndex = 7;
@@ -132,7 +134,7 @@
 			// pageNameBox
 			// 
 			this.pageNameBox.Enabled = false;
-			this.pageNameBox.Location = new System.Drawing.Point(249, 302);
+			this.pageNameBox.Location = new System.Drawing.Point(165, 362);
 			this.pageNameBox.Name = "pageNameBox";
 			this.pageNameBox.Size = new System.Drawing.Size(469, 26);
 			this.pageNameBox.TabIndex = 8;
@@ -142,7 +144,7 @@
 			// 
 			this.childBox.AutoSize = true;
 			this.childBox.Enabled = false;
-			this.childBox.Location = new System.Drawing.Point(249, 336);
+			this.childBox.Location = new System.Drawing.Point(165, 394);
 			this.childBox.Name = "childBox";
 			this.childBox.Size = new System.Drawing.Size(200, 24);
 			this.childBox.TabIndex = 9;
@@ -181,7 +183,7 @@
 			// 
 			this.saveButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.saveButton.Enabled = false;
-			this.saveButton.Location = new System.Drawing.Point(388, 383);
+			this.saveButton.Location = new System.Drawing.Point(388, 448);
 			this.saveButton.Name = "saveButton";
 			this.saveButton.Size = new System.Drawing.Size(120, 35);
 			this.saveButton.TabIndex = 10;
@@ -265,13 +267,37 @@
 			this.timeoutLabel.TabIndex = 21;
 			this.timeoutLabel.Text = "Timeout";
 			// 
+			// targetBox
+			// 
+			this.targetBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.targetBox.FormattingEnabled = true;
+			this.targetBox.Items.AddRange(new object[] {
+            "Current page",
+            "Current notebook"});
+			this.targetBox.Location = new System.Drawing.Point(140, 256);
+			this.targetBox.Name = "targetBox";
+			this.targetBox.Size = new System.Drawing.Size(314, 28);
+			this.targetBox.TabIndex = 22;
+			this.targetBox.SelectedIndexChanged += new System.EventHandler(this.ChangeTarget);
+			// 
+			// targetLabel
+			// 
+			this.targetLabel.AutoSize = true;
+			this.targetLabel.Location = new System.Drawing.Point(18, 259);
+			this.targetLabel.Name = "targetLabel";
+			this.targetLabel.Size = new System.Drawing.Size(55, 20);
+			this.targetLabel.TabIndex = 23;
+			this.targetLabel.Text = "Target";
+			// 
 			// PluginDialog
 			// 
 			this.AcceptButton = this.okButton;
 			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.CancelButton = this.cancelButton;
-			this.ClientSize = new System.Drawing.Size(778, 439);
+			this.ClientSize = new System.Drawing.Size(778, 504);
+			this.Controls.Add(this.targetLabel);
+			this.Controls.Add(this.targetBox);
 			this.Controls.Add(this.timeoutLabel);
 			this.Controls.Add(this.timeoutBox);
 			this.Controls.Add(this.errorBox);
@@ -331,5 +357,7 @@
 		private System.Windows.Forms.ToolTip toolTip;
 		private System.Windows.Forms.NumericUpDown timeoutBox;
 		private System.Windows.Forms.Label timeoutLabel;
+		private System.Windows.Forms.ComboBox targetBox;
+		private System.Windows.Forms.Label targetLabel;
 	}
 }

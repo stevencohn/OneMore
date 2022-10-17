@@ -103,19 +103,25 @@ namespace River.OneMoreAddIn.Commands
 
 			try
 			{
-				using (var stream = new FileStream(path, FileMode.Open, FileAccess.Read))
-				using (var reader = new StreamReader(stream, System.Text.Encoding.UTF8))
+				using var stream = new FileStream(path, FileMode.Open, FileAccess.Read);
+				using var reader = new StreamReader(stream, System.Text.Encoding.UTF8);
+
+				var json = await reader.ReadToEndAsync();
+
+				var serializer = new JavaScriptSerializer();
+				var plugin = serializer.Deserialize<Plugin>(json);
+
+				plugin.OriginalName = plugin.Name;
+				plugin.Path = path;
+
+				// reader-makes-right
+				if (plugin.Version < 2)
 				{
-					var json = await reader.ReadToEndAsync();
-
-					var serializer = new JavaScriptSerializer();
-					var plugin = serializer.Deserialize<Plugin>(json);
-
-					plugin.OriginalName = plugin.Name;
-					plugin.Path = path;
-
-					return plugin;
+					plugin.Version = Plugin.SchemaVersion;
+					plugin.TargetPage = true;
 				}
+
+				return plugin;
 			}
 			catch (Exception exc)
 			{

@@ -4107,4 +4107,12 @@ Vergrößern Sie kleinere Bilder nicht</value>
     <value>Abschlag kopiert</value>
     <comment>message box</comment>
   </data>
+  <data name="PluginDialog_targetBox.Text" xml:space="preserve">
+    <value>Aktuelle Seite
+Aktuelles Notizbuch</value>
+    <comment>combobox</comment>
+  </data>
+  <data name="word_Target" xml:space="preserve">
+    <value>Ziel</value>
+  </data>
 </root>

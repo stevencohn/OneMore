@@ -12,7 +12,7 @@ namespace River.OneMoreAddIn.Commands
 	/// </summary>
 	internal class Plugin
 	{
-		public const int SchemaVersion = 1;
+		public const int SchemaVersion = 2;
 		public const int DefaultTimeout = 15;
 		public const int MaxTimeout = 3600;
 
@@ -60,6 +60,12 @@ namespace River.OneMoreAddIn.Commands
 		/// Gets or sets the command-line arguments to pass to the Command.
 		/// </summary>
 		public string Arguments { get; set; }
+
+
+		/// <summary>
+		/// Gets or sets whether this plugin target a page or a hierarchy.
+		/// </summary>
+		public bool TargetPage { get; set; } = true;
 
 
 		/// <summary>

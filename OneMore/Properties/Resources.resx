@@ -4181,4 +4181,12 @@ Do no enlarge smaller images</value>
     <value>Copied markdown</value>
     <comment>message box</comment>
   </data>
+  <data name="PluginDialog_targetBox.Text" xml:space="preserve">
+    <value>Current page
+Current notebook</value>
+    <comment>combobox</comment>
+  </data>
+  <data name="word_Target" xml:space="preserve">
+    <value>Target</value>
+  </data>
 </root>

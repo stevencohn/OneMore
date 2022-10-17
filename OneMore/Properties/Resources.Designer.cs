@@ -4173,6 +4173,16 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Current page
+        ///Current notebook.
+        /// </summary>
+        internal static string PluginDialog_targetBox_Text {
+            get {
+                return ResourceManager.GetString("PluginDialog_targetBox.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Run Plugin.
         /// </summary>
         internal static string PluginDialog_Text {
@@ -9409,6 +9419,15 @@ namespace River.OneMoreAddIn.Properties {
         internal static string word_Suggestions {
             get {
                 return ResourceManager.GetString("word_Suggestions", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Target.
+        /// </summary>
+        internal static string word_Target {
+            get {
+                return ResourceManager.GetString("word_Target", resourceCulture);
             }
         }
         

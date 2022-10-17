@@ -4115,4 +4115,12 @@ ISO-code then comma then language name</comment>
     <value>تخفيض السعر المنسوخ</value>
     <comment>message box</comment>
   </data>
+  <data name="PluginDialog_targetBox.Text" xml:space="preserve">
+    <value>الصفحه الحاليه
+دفتر الملاحظات الحالي</value>
+    <comment>combobox</comment>
+  </data>
+  <data name="word_Target" xml:space="preserve">
+    <value>استهداف</value>
+  </data>
 </root>
