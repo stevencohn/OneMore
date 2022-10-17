@@ -22,8 +22,9 @@ namespace River.OneMoreAddIn.Commands
 	internal class RunPluginCommand : Command
 	{
 		private Plugin plugin;
-
-		private UI.ProgressDialog progress = null;
+		private ProgressDialog progress = null;
+		private Page page;
+		private string workpath;
 
 
 		public RunPluginCommand()
@@ -33,139 +34,163 @@ namespace River.OneMoreAddIn.Commands
 
 		public override async Task Execute(params object[] args)
 		{
-			using (var one = new OneNote(out var page, out _, OneNote.PageDetail.All))
+			if (!await LoadPlugin(args))
 			{
-				if (args != null && args.Length > 0)
+				return;
+			}
+
+			var content = plugin.TargetPage ? PreparePageCache() : await PrepareHierarchyCache();
+			if (content == null)
+			{
+				return;
+			}
+
+			try
+			{
+				if (Execute())
 				{
-					// check for replay
-					var element = args.FirstOrDefault(a => a is XElement e && e.Name.LocalName == "path") as XElement;
-					if (!string.IsNullOrEmpty(element?.Value))
+					var root = LoadUpdates(content);
+					if (root != null)
 					{
-						plugin = await new PluginsProvider().Load(element.Value);
-					}
-					else if ((args[0] is string arg) && !string.IsNullOrEmpty(arg))
-					{
-						plugin = await new PluginsProvider().Load(arg);
-					}
-				}
-
-				if (plugin == null)
-				{
-					if (!PromptForPlugin(page.Title) || string.IsNullOrEmpty(plugin.Command))
-					{
-						IsCancelled = true;
-						return;
+						if (plugin.TargetPage)
+						{
+							await SavePage(root);
+						}
+						else
+						{
+							SaveHierarchy(root);
+						}
 					}
 				}
-
-				var workPath = MakeWorkingFilePath(page.PageId);
-
-				// copy contents for comparison later
-				string original = page.Root.ToString(SaveOptions.DisableFormatting);
-
-				try
-				{
-					// write the page XML to the working path
-					page.Root.Save(workPath, SaveOptions.DisableFormatting);
-				}
-				catch (Exception exc)
-				{
-					UIHelper.ShowError(Resx.Plugin_WritingTemp);
-					logger.WriteLine("error writing to temp file", exc);
-					return;
-				}
-
-				// execute the plugin in an STA thread
-				if (!Execute(workPath))
+				else
 				{
 					UIHelper.ShowError(Resx.Plugin_Unsuccessful);
-					Cleanup(workPath);
-					return;
 				}
-
-				try
-				{
-					var root = XElement.Load(workPath);
-					var updated = root.ToString(SaveOptions.DisableFormatting);
-
-					if (updated == original && !plugin.CreateNewPage)
-					{
-						UIHelper.ShowInfo(Resx.Plugin_NoChanges);
-						return;
-					}
-
-					if (!Validated(root, one.GetNamespace(root)))
-					{
-						UIHelper.ShowInfo(Resx.Plugin_InvalidSchema);
-						return;
-					}
-
-					if (plugin.CreateNewPage)
-					{
-						await CreatePage(one, root, page);
-					}
-					else
-					{
-						await one.Update(root);
-					}
-				}
-				catch (Exception exc)
-				{
-					logger.WriteLine("error updating page", exc);
-					UIHelper.ShowError(Resx.Plugin_NoUpdate);
-				}
-				finally
-				{
-					Cleanup(workPath);
-				}
+			}
+			finally
+			{
+				Cleanup(workpath);
 			}
 		}
 
 
-		private bool PromptForPlugin(string name)
+		private async Task<bool> LoadPlugin(params object[] args)
 		{
-			using (var dialog = new PluginDialog())
+			// check for replay
+			if (args != null && args.Length > 0)
 			{
-				dialog.PageName = "$name (2)";
-
-				if (dialog.ShowDialog(owner) == DialogResult.Cancel)
+				var element = args.FirstOrDefault(a => a is XElement e && e.Name.LocalName == "path") as XElement;
+				if (!string.IsNullOrEmpty(element?.Value))
 				{
-					plugin = null;
+					plugin = await new PluginsProvider().Load(element.Value);
+				}
+				else if ((args[0] is string arg) && !string.IsNullOrEmpty(arg))
+				{
+					plugin = await new PluginsProvider().Load(arg);
+				}
+			}
+
+			if (plugin == null)
+			{
+				if (!PromptForPlugin() || string.IsNullOrEmpty(plugin.Command))
+				{
+					IsCancelled = true;
 					return false;
 				}
-
-				plugin = dialog.Plugin;
 			}
 
 			return true;
 		}
 
 
-		private string MakeWorkingFilePath(string pageId)
+		private bool PromptForPlugin()
 		{
-			// Page.ID is of the form {sectionID}{}{pageId} so grab just the pageId part
-			// which should be a Guid spanning the last 32 digits
+			using var dialog = new PluginDialog
+			{
+				PageName = "$name (2)"
+			};
 
-			var name = pageId.Replace("{", string.Empty).Replace("}", string.Empty);
-			name = name.Substring(Math.Max(0, name.Length - 32));
+			if (dialog.ShowDialog(owner) == DialogResult.Cancel)
+			{
+				plugin = null;
+				return false;
+			}
 
-			var path = Path.Combine(Path.GetTempPath(), $"{name}.xml");
-			logger.WriteLine($"plugin working file is {path}");
-
-			return path;
+			plugin = dialog.Plugin;
+			return true;
 		}
 
 
-		private bool Execute(string workPath)
+		private string PreparePageCache()
+		{
+			using var one = new OneNote(out page, out _, OneNote.PageDetail.All);
+
+			// derive a temp file name from PageId which is of the form {sectionID}{}{pageId}
+			// so grab just the pageId part which should be a Guid spanning the last 32 digits
+			var name = page.PageId.Substring(page.PageId.LastIndexOf('{') + 1, 32);
+			workpath = Path.Combine(Path.GetTempPath(), $"{name}.xml");
+			logger.WriteLine($"plugin working file is {workpath}");
+
+			var content = page.Root.ToString(SaveOptions.DisableFormatting);
+
+			try
+			{
+				// write the page XML to the working path
+				page.Root.Save(workpath, SaveOptions.DisableFormatting);
+			}
+			catch (Exception exc)
+			{
+				UIHelper.ShowError(Resx.Plugin_WritingTemp);
+				logger.WriteLine("error writing to temp file", exc);
+				return null;
+			}
+
+			return content;
+		}
+
+
+		private async Task<string> PrepareHierarchyCache()
+		{
+			using var one = new OneNote();
+			var notebook = await one.GetNotebook(OneNote.Scope.Sections);
+
+			// derive a temp file name from the notebook ID which is of the form {ID}{}{}
+			// so grab just the ID part which should be a hyphenated Guid value
+			var name = notebook.Attribute("ID").Value;
+			name = name.Substring(1, name.IndexOf('}') - 1).Replace("-", string.Empty);
+			workpath = Path.Combine(Path.GetTempPath(), $"{name}.xml");
+
+			var content = notebook.ToString(SaveOptions.DisableFormatting);
+
+			try
+			{
+				// write the hierarchy XML to the working path
+				notebook.Save(workpath, SaveOptions.DisableFormatting);
+			}
+			catch (Exception exc)
+			{
+				UIHelper.ShowError(Resx.Plugin_WritingTemp);
+				logger.WriteLine("error writing to temp file", exc);
+				return null;
+			}
+
+			return content;
+		}
+
+
+
+		private bool Execute()
 		{
 			var timeout = plugin.Timeout == 0 ? Plugin.MaxTimeout : plugin.Timeout;
 			DialogResult result;
 
+			// plugin will be executed in an STA thread...
+
 			using (progress = new ProgressDialog(timeout))
 			{
-				progress.Tag = workPath;
+				progress.Tag = workpath;
 				progress.SetMessage(string.Format(
-					Resx.Plugin_Running, plugin.Command, plugin.Arguments, workPath));
+					Resx.Plugin_Running, plugin.Command, plugin.Arguments, workpath));
 
 				result = progress.ShowTimedDialog(owner, ExecuteWorker);
 			}
@@ -251,9 +276,40 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private bool Validated(XElement root, XNamespace ns)
+		private XElement LoadUpdates(string content)
+		{
+			try
+			{
+				var root = XElement.Load(workpath);
+				var updated = root.ToString(SaveOptions.DisableFormatting);
+
+				if (updated == content && !plugin.CreateNewPage)
+				{
+					UIHelper.ShowInfo(Resx.Plugin_NoChanges);
+					return null;
+				}
+
+				if (plugin.TargetPage && !ValidPageSchema(root))
+				{
+					UIHelper.ShowInfo(Resx.Plugin_InvalidSchema);
+					return null;
+				}
+
+				return root;
+			}
+			catch (Exception exc)
+			{
+				logger.WriteLine("error updating page", exc);
+				UIHelper.ShowError(Resx.Plugin_NoUpdate);
+				return null;
+			}
+		}
+
+
+		private bool ValidPageSchema(XElement root)
 		{
 			var schemas = new XmlSchemaSet();
+			var ns = root.GetNamespaceOfPrefix(OneNote.Prefix);
 			schemas.Add(ns.ToString(), XmlReader.Create(new StringReader(Resx._0336_OneNoteApplication_2013)));
 
 			var document = new XDocument(root);
@@ -269,7 +325,30 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private async Task CreatePage(OneNote one, XElement page, Page parent)
+		private async Task SavePage(XElement root)
+		{
+			try
+			{
+				using var one = new OneNote();
+
+				if (plugin.CreateNewPage)
+				{
+					await CreatePage(one, root);
+				}
+				else
+				{
+					await one.Update(root);
+				}
+			}
+			catch (Exception exc)
+			{
+				logger.WriteLine("error updating page", exc);
+				UIHelper.ShowError(Resx.Plugin_NoUpdate);
+			}
+		}
+
+
+		private async Task CreatePage(OneNote one, XElement childRoot)
 		{
 			var section = one.GetSection();
 			var sectionId = section.Attribute("ID").Value;
@@ -277,11 +356,11 @@ namespace River.OneMoreAddIn.Commands
 			one.CreatePage(sectionId, out var pageId);
 
 			// set the page ID to the new page's ID
-			page.Attribute("ID").Value = pageId;
-			var child = new Page(page);
+			childRoot.Attribute("ID").Value = pageId;
+			var child = new Page(childRoot);
 
 			var childTitle = child.Title.Trim();
-			var parentTitle = parent.Title.Trim();
+			var parentTitle = page.Title.Trim();
 
 			// if plugin has modified the page title then accept that
 			// otherwise apply the name template defined by this plugin...
@@ -315,10 +394,10 @@ namespace River.OneMoreAddIn.Commands
 				// get current section again after new page is created
 				section = one.GetSection();
 
-				var parentElement = section.Elements(parent.Namespace + "Page")
-					.FirstOrDefault(e => e.Attribute("ID").Value == parent.PageId);
+				var parentElement = section.Elements(page.Namespace + "Page")
+					.FirstOrDefault(e => e.Attribute("ID").Value == page.PageId);
 
-				var childElement = section.Elements(parent.Namespace + "Page")
+				var childElement = section.Elements(page.Namespace + "Page")
 					.FirstOrDefault(e => e.Attribute("ID").Value == pageId);
 
 				if (childElement != parentElement.NextNode)
@@ -338,13 +417,28 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
+		private void SaveHierarchy(XElement root)
+		{
+			try
+			{
+				using var one = new OneNote();
+				one.UpdateHierarchy(root);
+			}
+			catch (Exception exc)
+			{
+				logger.WriteLine("error updating hierarchy", exc);
+				UIHelper.ShowError(Resx.Plugin_NoUpdate);
+			}
+		}
+
+
 		private void Cleanup(string workPath)
 		{
 			if (File.Exists(workPath))
 			{
 				try
 				{
-					File.Delete(workPath);
+					//File.Delete(workPath);
 				}
 				catch (Exception exc)
 				{

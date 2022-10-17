@@ -33,7 +33,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Themes", "Themes", "{B33891
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Plugins", "Plugins", "{9D56ACB1-3CDF-48EB-B786-4F924E899CE2}"
 	ProjectSection(SolutionItems) = preProject
+		Plugins\Get-MeetingDate-readme.txt = Plugins\Get-MeetingDate-readme.txt
 		Plugins\Get-MeetingDate.ps1 = Plugins\Get-MeetingDate.ps1
+		Plugins\Set-RainbowSections.ps1 = Plugins\Set-RainbowSections.ps1
+		Plugins\Set-RainbowSections-readme.txt = Plugins\Set-RainbowSections-readme.txt
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Templates", "Templates", "{31896922-72FF-4823-80C0-8EC46936AC71}"

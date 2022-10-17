@@ -497,7 +497,7 @@ namespace River.OneMoreAddIn
 			=> await factory.Run<ExpandoCommand>(Expando.Restore);
 
 		public async Task RunPluginCmd(IRibbonControl control)
-			=> await factory.Run<RunPluginCommand>(control.Tag); // tag=plugin
+			=> await factory.Run<RunPluginCommand>(control?.Tag); // tag=plugin
 
 		public async Task SaveCollapsedCmd(IRibbonControl control)
 			=> await factory.Run<ExpandoCommand>(Expando.Save);

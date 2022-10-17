@@ -46,6 +46,8 @@ namespace River.OneMoreAddIn.Commands
 					"cmdLabel=word_Command",
 					"argsLabel",
 					"timeoutLabel",
+					"targetLabel=word_Target",
+					"targetBox",
 					"updateRadio",
 					"createRadio",
 					"childBox",
@@ -68,6 +70,7 @@ namespace River.OneMoreAddIn.Commands
 				OriginalName = plugin.OriginalName,
 				Command = plugin.Command,
 				Arguments = plugin.Arguments,
+				TargetPage = plugin.TargetPage,
 				CreateNewPage = plugin.CreateNewPage,
 				PageName = plugin.PageName,
 				AsChildPage = plugin.AsChildPage,
@@ -77,6 +80,8 @@ namespace River.OneMoreAddIn.Commands
 			single = true;
 
 			Text = Resx.PluginDialog_editText;
+
+			targetBox.SelectedIndex = plugin.TargetPage ? 0 : 1;
 
 			saveButton.Location = okButton.Location;
 			saveButton.DialogResult = DialogResult.OK;
@@ -94,6 +99,7 @@ namespace River.OneMoreAddIn.Commands
 			OriginalName = nameBox.Text,
 			Command = cmdBox.Text,
 			Arguments = argsBox.Text,
+			TargetPage = (targetBox.SelectedIndex == 0),
 			CreateNewPage = createRadio.Checked,
 			AsChildPage = childBox.Checked,
 			PageName = pageNameBox.Text,
@@ -116,6 +122,7 @@ namespace River.OneMoreAddIn.Commands
 				nameBox.Text = plugin.Name;
 				cmdBox.Text = plugin.Command;
 				argsBox.Text = plugin.Arguments;
+				targetBox.SelectedIndex = plugin.TargetPage ? 0 : 1;
 
 				if (plugin.CreateNewPage)
 					createRadio.Checked = true;
@@ -170,6 +177,7 @@ namespace River.OneMoreAddIn.Commands
 			cmdBox.Text = plugin.Command;
 			argsBox.Text = plugin.Arguments;
 			timeoutBox.Value = plugin.Timeout;
+			targetBox.SelectedIndex = plugin.TargetPage ? 0 : 1;
 
 			if (plugin.CreateNewPage)
 				createRadio.Checked = true;
@@ -347,9 +355,20 @@ namespace River.OneMoreAddIn.Commands
 			return Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
 		}
 
+
 		private void ChangeAsChild(object sender, EventArgs e)
 		{
 			plugin.AsChildPage = childBox.Checked;
+		}
+
+
+		private void ChangeTarget(object sender, EventArgs e)
+		{
+			plugin.TargetPage = targetBox.SelectedIndex == 0;
+			updateRadio.Enabled = plugin.TargetPage;
+			createRadio.Enabled = plugin.TargetPage;
+			pageNameBox.Enabled = plugin.TargetPage;
+			childBox.Enabled = plugin.TargetPage;
 		}
 
 
@@ -357,6 +376,13 @@ namespace River.OneMoreAddIn.Commands
 
 		private async void SavePlugin(object sender, EventArgs e)
 		{
+			if (!plugin.TargetPage)
+			{
+				plugin.PageName = String.Empty;
+				plugin.CreateNewPage = false;
+				plugin.AsChildPage = false;
+			}
+
 			try
 			{
 				var provider = new PluginsProvider();

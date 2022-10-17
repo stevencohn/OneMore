@@ -4115,4 +4115,12 @@ No ampliar imágenes más pequeñas</value>
     <value>descuento copiado</value>
     <comment>message box</comment>
   </data>
+  <data name="PluginDialog_targetBox.Text" xml:space="preserve">
+    <value>Página actual
+Cuaderno actual</value>
+    <comment>combobox</comment>
+  </data>
+  <data name="word_Target" xml:space="preserve">
+    <value>Objetivo</value>
+  </data>
 </root>

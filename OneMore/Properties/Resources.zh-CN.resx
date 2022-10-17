@@ -4105,4 +4105,12 @@ OneNote 文件 (*.one)</value>
     <value>复制降价</value>
     <comment>message box</comment>
   </data>
+  <data name="PluginDialog_targetBox.Text" xml:space="preserve">
+    <value>当前页面
+当前笔记本</value>
+    <comment>combobox</comment>
+  </data>
+  <data name="word_Target" xml:space="preserve">
+    <value>目标</value>
+  </data>
 </root>
