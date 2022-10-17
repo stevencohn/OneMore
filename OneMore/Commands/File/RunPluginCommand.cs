@@ -47,26 +47,24 @@ namespace River.OneMoreAddIn.Commands
 
 			try
 			{
-				if (!Execute())
+				if (Execute())
 				{
-					UIHelper.ShowError(Resx.Plugin_Unsuccessful);
-					Cleanup(workpath);
-					return;
-				}
-
-				var root = LoadUpdates(content);
-				if (root == null)
-				{
-					return;
-				}
-
-				if (plugin.TargetPage)
-				{
-					await SavePage(root);
+					var root = LoadUpdates(content);
+					if (root != null)
+					{
+						if (plugin.TargetPage)
+						{
+							await SavePage(root);
+						}
+						else
+						{
+							SaveHierarchy(root);
+						}
+					}
 				}
 				else
 				{
-					SaveHierarchy(root);
+					UIHelper.ShowError(Resx.Plugin_Unsuccessful);
 				}
 			}
 			finally

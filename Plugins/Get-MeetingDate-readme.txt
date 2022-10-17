@@ -8,6 +8,7 @@ Copy the date from Meeting Notes content into the page title
 2. Enter a name if you want to save this as a favorite such as "Get-MeetingDate"
 3. Enter the command: powershell
 4. Enter arguments: -file <path>\Get-MeetingDate.ps1
-5. Choose other options such as Update current page or Create a new page
-6. Click Save to save on the OneMore Favorites menu
-7. Click Run to run now or activate from the Favorites menu
+5. Set the Target field to 'Current page'
+6. Set other options such as  Update current page or Create a new page
+7. Click Save to save on the OneMore File/Plugins menu
+8. Click Run to run now or activate from the File/Plugins menu
