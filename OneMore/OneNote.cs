@@ -84,6 +84,7 @@ namespace River.OneMoreAddIn
 			public string Name;
 			public string Path;
 			public string Link;
+			public int Size;
 		}
 
 		public class HierarchyNode
@@ -748,12 +749,12 @@ namespace River.OneMoreAddIn
 		/// used to build up Favorites
 		/// </summary>
 		/// <returns></returns>
-		public HierarchyInfo GetPageInfo(string pageId = null)
+		public HierarchyInfo GetPageInfo(string pageId = null, bool sized = false)
 		{
 			if (pageId == null)
 				pageId = CurrentPageId;
 
-			var page = GetPage(pageId, PageDetail.Basic);
+			var page = GetPage(pageId, sized ? PageDetail.BinaryData : PageDetail.Basic);
 			if (page == null)
 			{
 				return null;
@@ -765,6 +766,11 @@ namespace River.OneMoreAddIn
 				Name = page.Root.Attribute("name")?.Value,
 				Link = GetHyperlink(page.PageId, string.Empty)
 			};
+
+			if (sized)
+			{
+				info.Size = page.Root.ToString(SaveOptions.DisableFormatting).Length;
+			}
 
 
 			// path

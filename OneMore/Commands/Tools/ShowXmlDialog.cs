@@ -101,8 +101,8 @@ namespace River.OneMoreAddIn.Commands
 			// populate page info...
 			using (var one = new OneNote())
 			{
-				var info = one.GetPageInfo();
-				pageName.Text = info.Name;
+				var info = one.GetPageInfo(sized: true);
+				pageName.Text = $"{info.Name} ({info.Size.ToBytes()})";
 				pagePath.Text = info.Path;
 				pageLink.Text = info.Link;
 			}
