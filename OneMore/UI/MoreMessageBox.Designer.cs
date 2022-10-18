@@ -31,7 +31,7 @@
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MoreMessageBox));
 			this.topPanel = new System.Windows.Forms.Panel();
 			this.logLink = new River.OneMoreAddIn.UI.MoreLinkLabel();
-			this.textBox = new System.Windows.Forms.RichTextBox();
+			this.messageBox = new River.OneMoreAddIn.UI.MoreRichLabel();
 			this.iconBox = new System.Windows.Forms.PictureBox();
 			this.okButton = new System.Windows.Forms.Button();
 			this.cancelButton = new System.Windows.Forms.Button();
@@ -45,7 +45,7 @@
 			// 
 			this.topPanel.BackColor = System.Drawing.SystemColors.ControlLightLight;
 			this.topPanel.Controls.Add(this.logLink);
-			this.topPanel.Controls.Add(this.textBox);
+			this.topPanel.Controls.Add(this.messageBox);
 			this.topPanel.Controls.Add(this.iconBox);
 			this.topPanel.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.topPanel.Location = new System.Drawing.Point(0, 0);
@@ -73,21 +73,21 @@
 			// 
 			// textBox
 			// 
-			this.textBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+			this.messageBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
 			| System.Windows.Forms.AnchorStyles.Right)));
-			this.textBox.BackColor = System.Drawing.SystemColors.ControlLightLight;
-			this.textBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-			this.textBox.Cursor = System.Windows.Forms.Cursors.Default;
-			this.textBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.textBox.Location = new System.Drawing.Point(94, 23);
-			this.textBox.Name = "textBox";
-			this.textBox.ReadOnly = true;
-			this.textBox.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.Vertical;
-			this.textBox.Size = new System.Drawing.Size(539, 91);
-			this.textBox.TabIndex = 1;
-			this.textBox.TabStop = false;
-			this.textBox.Text = "This is the message";
-			this.textBox.SelectionChanged += new System.EventHandler(this.HideSelection);
+			this.messageBox.BackColor = System.Drawing.SystemColors.ControlLightLight;
+			this.messageBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+			this.messageBox.Cursor = System.Windows.Forms.Cursors.Default;
+			this.messageBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.messageBox.Location = new System.Drawing.Point(94, 23);
+			this.messageBox.Name = "textBox";
+			this.messageBox.ReadOnly = true;
+			this.messageBox.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.Vertical;
+			this.messageBox.Size = new System.Drawing.Size(539, 91);
+			this.messageBox.TabIndex = 1;
+			this.messageBox.TabStop = false;
+			this.messageBox.Text = "This is the message";
+			this.messageBox.SelectionChanged += new System.EventHandler(this.HideSelection);
 			// 
 			// iconBox
 			// 
@@ -163,7 +163,7 @@
 		private System.Windows.Forms.Button cancelButton;
 		private System.Windows.Forms.Panel panel1;
 		private System.Windows.Forms.PictureBox iconBox;
-		private System.Windows.Forms.RichTextBox textBox;
-		private MoreLinkLabel logLink;
+		private River.OneMoreAddIn.UI.MoreRichLabel messageBox;
+		private River.OneMoreAddIn.UI.MoreLinkLabel logLink;
 	}
 }

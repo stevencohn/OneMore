@@ -4123,4 +4123,12 @@ ISO-code then comma then language name</comment>
   <data name="word_Target" xml:space="preserve">
     <value>استهداف</value>
   </data>
+  <data name="PluginDialog_failLockRadio.Text" xml:space="preserve">
+    <value>تفشل إذا تم تأمين أي قسم</value>
+    <comment>radio</comment>
+  </data>
+  <data name="PluginDialog_skipLockRadio.Text" xml:space="preserve">
+    <value>تخطي الأقسام المقفلة</value>
+    <comment>radio</comment>
+  </data>
 </root>

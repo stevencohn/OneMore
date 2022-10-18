@@ -8,6 +8,7 @@ namespace River.OneMoreAddIn.Commands
 	using River.OneMoreAddIn.UI;
 	using System;
 	using System.Diagnostics;
+	using System.Drawing;
 	using System.IO;
 	using System.Linq;
 	using System.Threading;
@@ -154,6 +155,27 @@ namespace River.OneMoreAddIn.Commands
 			using var one = new OneNote();
 			var notebook = await one.GetNotebook(OneNote.Scope.Sections);
 
+			// look for locked sections and warn user...
+			var ns = one.GetNamespace(notebook);
+			if (notebook.Descendants(ns + "Section").Any(e => e.Attribute("locked") != null))
+			{
+				using var box = new MoreMessageBox();
+				box.SetIcon(MessageBoxIcon.Warning);
+				box.SetButtons(MessageBoxButtons.YesNo);
+				box.AppendMessage("This notebook contains locked sections.", Color.Firebrick);
+
+				box.AppendMessage(plugin.SkipLocked
+					? " These sections may be skipped by the plugin."
+					: " These sections may cause the plugin to fail.");
+
+				box.AppendMessage(" Do you wish to continue?");
+
+				if (box.ShowDialog(Owner) == DialogResult.No)
+				{
+					return null;
+				}
+			}
+
 			// derive a temp file name from the notebook ID which is of the form {ID}{}{}
 			// so grab just the ID part which should be a hyphenated Guid value
 			var name = notebook.Attribute("ID").Value;
@@ -176,7 +198,6 @@ namespace River.OneMoreAddIn.Commands
 
 			return content;
 		}
-
 
 
 		private bool Execute()
@@ -210,18 +231,24 @@ namespace River.OneMoreAddIn.Commands
 			{
 				logger.WriteLine($"running {plugin.Command} {plugin.Arguments} \"{path}\"");
 
+				var info = new ProcessStartInfo
+				{
+					FileName = plugin.Command,
+					Arguments = $"{plugin.Arguments} \"{path}\"",
+					CreateNoWindow = true,
+					UseShellExecute = false,
+					RedirectStandardOutput = true,
+					RedirectStandardError = true
+				};
+
+				info.Environment["PLUGIN_SKIPLOCK"] = plugin.SkipLocked.ToString();
+				info.Environment["PLUGIN_CREATE"] = plugin.CreateNewPage.ToString();
+				info.Environment["PLUGIN_PAGENAME"] = plugin.PageName;
+				info.Environment["PLUGIN_ASCHILD"] = plugin.AsChildPage.ToString();
+
 				process = new Process
 				{
-					StartInfo = new ProcessStartInfo
-					{
-						FileName = plugin.Command,
-						Arguments = $"{plugin.Arguments} \"{path}\"",
-						CreateNoWindow = true,
-						UseShellExecute = false,
-						RedirectStandardOutput = true,
-						RedirectStandardError = true
-					},
-
+					StartInfo = info,
 					EnableRaisingEvents = true
 				};
 

@@ -53,15 +53,21 @@
 			this.timeoutLabel = new System.Windows.Forms.Label();
 			this.targetBox = new System.Windows.Forms.ComboBox();
 			this.targetLabel = new System.Windows.Forms.Label();
+			this.skipLockRadio = new System.Windows.Forms.RadioButton();
+			this.failLockRadio = new System.Windows.Forms.RadioButton();
+			this.pageGroup = new System.Windows.Forms.GroupBox();
+			this.sectionGroup = new System.Windows.Forms.GroupBox();
 			((System.ComponentModel.ISupportInitialize)(this.errorBox)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.timeoutBox)).BeginInit();
+			this.pageGroup.SuspendLayout();
+			this.sectionGroup.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// cancelButton
 			// 
 			this.cancelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-			this.cancelButton.Location = new System.Drawing.Point(640, 448);
+			this.cancelButton.Location = new System.Drawing.Point(640, 473);
 			this.cancelButton.Name = "cancelButton";
 			this.cancelButton.Size = new System.Drawing.Size(120, 35);
 			this.cancelButton.TabIndex = 12;
@@ -73,7 +79,7 @@
 			this.okButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.okButton.DialogResult = System.Windows.Forms.DialogResult.OK;
 			this.okButton.Enabled = false;
-			this.okButton.Location = new System.Drawing.Point(514, 448);
+			this.okButton.Location = new System.Drawing.Point(514, 473);
 			this.okButton.Name = "okButton";
 			this.okButton.Size = new System.Drawing.Size(120, 35);
 			this.okButton.TabIndex = 11;
@@ -112,7 +118,7 @@
 			// 
 			this.updateRadio.AutoSize = true;
 			this.updateRadio.Checked = true;
-			this.updateRadio.Location = new System.Drawing.Point(140, 302);
+			this.updateRadio.Location = new System.Drawing.Point(6, 25);
 			this.updateRadio.Name = "updateRadio";
 			this.updateRadio.Size = new System.Drawing.Size(181, 24);
 			this.updateRadio.TabIndex = 6;
@@ -124,7 +130,7 @@
 			// createRadio
 			// 
 			this.createRadio.AutoSize = true;
-			this.createRadio.Location = new System.Drawing.Point(140, 332);
+			this.createRadio.Location = new System.Drawing.Point(6, 55);
 			this.createRadio.Name = "createRadio";
 			this.createRadio.Size = new System.Drawing.Size(221, 24);
 			this.createRadio.TabIndex = 7;
@@ -134,7 +140,7 @@
 			// pageNameBox
 			// 
 			this.pageNameBox.Enabled = false;
-			this.pageNameBox.Location = new System.Drawing.Point(165, 362);
+			this.pageNameBox.Location = new System.Drawing.Point(31, 85);
 			this.pageNameBox.Name = "pageNameBox";
 			this.pageNameBox.Size = new System.Drawing.Size(469, 26);
 			this.pageNameBox.TabIndex = 8;
@@ -144,7 +150,7 @@
 			// 
 			this.childBox.AutoSize = true;
 			this.childBox.Enabled = false;
-			this.childBox.Location = new System.Drawing.Point(165, 394);
+			this.childBox.Location = new System.Drawing.Point(31, 117);
 			this.childBox.Name = "childBox";
 			this.childBox.Size = new System.Drawing.Size(200, 24);
 			this.childBox.TabIndex = 9;
@@ -183,7 +189,7 @@
 			// 
 			this.saveButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.saveButton.Enabled = false;
-			this.saveButton.Location = new System.Drawing.Point(388, 448);
+			this.saveButton.Location = new System.Drawing.Point(388, 473);
 			this.saveButton.Name = "saveButton";
 			this.saveButton.Size = new System.Drawing.Size(120, 35);
 			this.saveButton.TabIndex = 10;
@@ -289,13 +295,62 @@
 			this.targetLabel.TabIndex = 23;
 			this.targetLabel.Text = "Target";
 			// 
+			// skipLockRadio
+			// 
+			this.skipLockRadio.AutoSize = true;
+			this.skipLockRadio.Checked = true;
+			this.skipLockRadio.Location = new System.Drawing.Point(9, 28);
+			this.skipLockRadio.Name = "skipLockRadio";
+			this.skipLockRadio.Size = new System.Drawing.Size(178, 24);
+			this.skipLockRadio.TabIndex = 24;
+			this.skipLockRadio.TabStop = true;
+			this.skipLockRadio.Text = "Skip locked sections";
+			this.skipLockRadio.UseVisualStyleBackColor = true;
+			// 
+			// failLockButton
+			// 
+			this.failLockRadio.AutoSize = true;
+			this.failLockRadio.Location = new System.Drawing.Point(9, 58);
+			this.failLockRadio.Name = "failLockButton";
+			this.failLockRadio.Size = new System.Drawing.Size(220, 24);
+			this.failLockRadio.TabIndex = 25;
+			this.failLockRadio.Text = "Fail if any section is locked";
+			this.failLockRadio.UseVisualStyleBackColor = true;
+			// 
+			// pageGroup
+			// 
+			this.pageGroup.Controls.Add(this.updateRadio);
+			this.pageGroup.Controls.Add(this.createRadio);
+			this.pageGroup.Controls.Add(this.pageNameBox);
+			this.pageGroup.Controls.Add(this.childBox);
+			this.pageGroup.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+			this.pageGroup.Location = new System.Drawing.Point(140, 290);
+			this.pageGroup.Name = "pageGroup";
+			this.pageGroup.Size = new System.Drawing.Size(620, 159);
+			this.pageGroup.TabIndex = 26;
+			this.pageGroup.TabStop = false;
+			// 
+			// sectionGroup
+			// 
+			this.sectionGroup.Controls.Add(this.skipLockRadio);
+			this.sectionGroup.Controls.Add(this.failLockRadio);
+			this.sectionGroup.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+			this.sectionGroup.Location = new System.Drawing.Point(496, 201);
+			this.sectionGroup.Name = "sectionGroup";
+			this.sectionGroup.Size = new System.Drawing.Size(264, 98);
+			this.sectionGroup.TabIndex = 27;
+			this.sectionGroup.TabStop = false;
+			this.sectionGroup.Visible = false;
+			// 
 			// PluginDialog
 			// 
 			this.AcceptButton = this.okButton;
 			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.CancelButton = this.cancelButton;
-			this.ClientSize = new System.Drawing.Size(778, 504);
+			this.ClientSize = new System.Drawing.Size(778, 529);
+			this.Controls.Add(this.sectionGroup);
+			this.Controls.Add(this.pageGroup);
 			this.Controls.Add(this.targetLabel);
 			this.Controls.Add(this.targetBox);
 			this.Controls.Add(this.timeoutLabel);
@@ -309,10 +364,6 @@
 			this.Controls.Add(this.browseArgsButton);
 			this.Controls.Add(this.argsLabel);
 			this.Controls.Add(this.argsBox);
-			this.Controls.Add(this.childBox);
-			this.Controls.Add(this.pageNameBox);
-			this.Controls.Add(this.createRadio);
-			this.Controls.Add(this.updateRadio);
 			this.Controls.Add(this.browseButton);
 			this.Controls.Add(this.cmdBox);
 			this.Controls.Add(this.cmdLabel);
@@ -329,6 +380,10 @@
 			this.Text = "Run Plugin";
 			((System.ComponentModel.ISupportInitialize)(this.errorBox)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.timeoutBox)).EndInit();
+			this.pageGroup.ResumeLayout(false);
+			this.pageGroup.PerformLayout();
+			this.sectionGroup.ResumeLayout(false);
+			this.sectionGroup.PerformLayout();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -359,5 +414,9 @@
 		private System.Windows.Forms.Label timeoutLabel;
 		private System.Windows.Forms.ComboBox targetBox;
 		private System.Windows.Forms.Label targetLabel;
+		private System.Windows.Forms.RadioButton skipLockRadio;
+		private System.Windows.Forms.RadioButton failLockRadio;
+		private System.Windows.Forms.GroupBox pageGroup;
+		private System.Windows.Forms.GroupBox sectionGroup;
 	}
 }

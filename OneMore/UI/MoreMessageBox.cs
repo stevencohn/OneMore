@@ -20,22 +20,36 @@ namespace River.OneMoreAddIn.UI
 			{
 				Text = Resx.ProgramName;
 			}
+
+			messageBox.Clear();
 		}
 
 
-		private void ShowLogLink()
+		public void ShowLogLink()
 		{
 			logLink.Visible = true;
 		}
 
 
-		private void SetMessage(string message)
+		public void AppendMessage(string message)
 		{
-			textBox.Text = message;
+			AppendMessage(message, ForeColor);
 		}
 
 
-		private void SetButtons(MessageBoxButtons buttons)
+		public void AppendMessage(string message, Color color)
+		{
+			messageBox.AppendFormattedText(message, color);
+		}
+
+
+		public void SetMessage(string message)
+		{
+			messageBox.Text = message;
+		}
+
+
+		public void SetButtons(MessageBoxButtons buttons)
 		{
 			if (buttons == MessageBoxButtons.OK)
 			{
@@ -62,7 +76,7 @@ namespace River.OneMoreAddIn.UI
 		}
 
 
-		private void SetIcon(MessageBoxIcon mbicon)
+		public void SetIcon(MessageBoxIcon mbicon)
 		{
 			Icon icon;
 			switch (mbicon)
@@ -112,10 +126,17 @@ namespace River.OneMoreAddIn.UI
 
 		private void DoKeyDown(object sender, KeyEventArgs e)
 		{
-			if (e.KeyCode == Keys.Escape)
+			if (e.Modifiers != Keys.None)
+			{
+				return;
+			}
+
+			if (e.KeyCode == Keys.Escape ||
+				e.KeyCode == Keys.N ||
+				e.KeyCode == Keys.C)
 			{
 				e.Handled = true;
-				DialogResult = DialogResult.Cancel;
+				DialogResult = cancelButton.DialogResult;
 				Close();
 			}
 		}
@@ -123,9 +144,9 @@ namespace River.OneMoreAddIn.UI
 		private void HideSelection(object sender, System.EventArgs e)
 		{
 			// Move the cursor to the end
-			if (textBox.SelectionStart != textBox.TextLength)
+			if (messageBox.SelectionStart != messageBox.TextLength)
 			{
-				textBox.SelectionStart = textBox.TextLength;
+				messageBox.SelectionStart = messageBox.TextLength;
 				okButton.Focus();
 			}
 		}
