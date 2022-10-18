@@ -29,20 +29,13 @@ namespace River.OneMoreAddIn.UI
 		public bool Selectable { get; set; } = false;
 
 
-		public void AppendFormattedText(string text, Color textColour)
+		public void AppendFormattedText(string text, Color color)
 		{
-			var start = TextLength;
-			AppendText(text);
-			Select(start, TextLength - start);
-			SelectionColor = textColour;
-
-			//SelectionAlignment = alignment;
-			//SelectionFont = new Font(
-			//	 box.SelectionFont.FontFamily,
-			//	 box.SelectionFont.Size,
-			//	 (isBold ? FontStyle.Bold : FontStyle.Regular));
-
 			SelectionLength = 0;
+			SelectionColor = color;
+			AppendText(text);
+			SelectionLength = 0;
+			SelectionColor = ForeColor;
 		}
 
 
