@@ -229,13 +229,14 @@ namespace River.OneMoreAddIn.Commands
 
 			try
 			{
+				var abscmd = Environment.ExpandEnvironmentVariables(plugin.Command);
 				var absargs = Environment.ExpandEnvironmentVariables(plugin.Arguments);
 
-				logger.WriteLine($"running {plugin.Command} {absargs} \"{path}\"");
+				logger.WriteLine($"running {abscmd} {absargs} \"{path}\"");
 
 				var info = new ProcessStartInfo
 				{
-					FileName = plugin.Command,
+					FileName = abscmd,
 					Arguments = $"{absargs} \"{path}\"",
 					CreateNoWindow = true,
 					UseShellExecute = false,
