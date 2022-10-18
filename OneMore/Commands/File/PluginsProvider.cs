@@ -36,11 +36,12 @@ namespace River.OneMoreAddIn.Commands
 		/// <param name="path"></param>
 		public bool Delete(string path)
 		{
-			if (File.Exists(path))
+			var abspath = Environment.ExpandEnvironmentVariables(path);
+			if (File.Exists(abspath))
 			{
 				try
 				{
-					File.Delete(path);
+					File.Delete(abspath);
 					return true;
 				}
 				catch (Exception exc)
@@ -96,14 +97,15 @@ namespace River.OneMoreAddIn.Commands
 		/// <returns></returns>
 		public async Task<Plugin> Load(string path)
 		{
-			if (!File.Exists(path))
+			var abspath = Environment.ExpandEnvironmentVariables(path);
+			if (!File.Exists(abspath))
 			{
 				return null;
 			}
 
 			try
 			{
-				using var stream = new FileStream(path, FileMode.Open, FileAccess.Read);
+				using var stream = new FileStream(abspath, FileMode.Open, FileAccess.Read);
 				using var reader = new StreamReader(stream, System.Text.Encoding.UTF8);
 
 				var json = await reader.ReadToEndAsync();
@@ -139,9 +141,10 @@ namespace River.OneMoreAddIn.Commands
 
 		public async Task<bool> Rename(Plugin plugin, string name)
 		{
-			if (File.Exists(plugin.Path))
+			var abspath = Environment.ExpandEnvironmentVariables(plugin.Path);
+			if (File.Exists(abspath))
 			{
-				var path = Path.Combine(Path.GetDirectoryName(plugin.Path), $"{name}{Extension}");
+				var path = Path.Combine(Path.GetDirectoryName(abspath), $"{name}{Extension}");
 				name = name.Trim();
 
 				try

@@ -229,12 +229,14 @@ namespace River.OneMoreAddIn.Commands
 
 			try
 			{
-				logger.WriteLine($"running {plugin.Command} {plugin.Arguments} \"{path}\"");
+				var absargs = Environment.ExpandEnvironmentVariables(plugin.Arguments);
+
+				logger.WriteLine($"running {plugin.Command} {absargs} \"{path}\"");
 
 				var info = new ProcessStartInfo
 				{
 					FileName = plugin.Command,
-					Arguments = $"{plugin.Arguments} \"{path}\"",
+					Arguments = $"{absargs} \"{path}\"",
 					CreateNoWindow = true,
 					UseShellExecute = false,
 					RedirectStandardOutput = true,
