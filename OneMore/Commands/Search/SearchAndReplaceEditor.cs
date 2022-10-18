@@ -102,18 +102,39 @@ namespace River.OneMoreAddIn.Commands
 
 			var wrapper = cdata.GetWrapper();
 
-			// find all distinct occurances of search string across all text of the run
+			// find all distinct occurrences of search string across all text of the run
 			// regardless of internal SPANs; we'll compensate for those below...
 
 			var matches = Regex.Matches(wrapper.Value, search, options);
 			if (matches?.Count > 0)
 			{
 				// iterate backwards to avoid cumulative offets if Match length differs
-				// from length of replacement text
+				// from length of replacement text...
+
 				for (var i = matches.Count - 1; i >= 0; i--)
 				{
 					var match = matches[i];
-					Replace(wrapper, match.Index, match.Length);
+
+					// if there is exactly one group then the regex has neither capturing nor
+					// non-capturing groups; otherwise there must be at least one group in the
+					// regex so iterate the captures
+
+					if (match.Groups.Count == 1)
+					{
+						// regex does not contain any capture or non-capture groups
+						// for example "abc"
+						Replace(wrapper, match.Index, match.Length);
+					}
+					else if (match.Groups.Count > 1)
+					{
+						// regex contains at least one capture or non-capture group
+						// for example "(abc)" or "(?:abc)"
+						// skip 0th item which is always the full match
+						for (var j = match.Groups.Count - 1; j > 0; j--)
+						{
+							Replace(wrapper, match.Groups[j].Index, match.Groups[j].Length);
+						}
+					}
 				}
 
 				cdata.Value = wrapper.GetInnerXml();

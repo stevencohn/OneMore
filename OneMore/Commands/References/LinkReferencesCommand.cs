@@ -55,17 +55,15 @@ namespace River.OneMoreAddIn.Commands
 
 			if (!refreshing)
 			{
-				using (var dialog = new LinkDialog())
+				using var dialog = new LinkDialog();
+				if (dialog.ShowDialog(owner) != System.Windows.Forms.DialogResult.OK)
 				{
-					if (dialog.ShowDialog(owner) != System.Windows.Forms.DialogResult.OK)
-					{
-						return;
-					}
-
-					scope = dialog.Scope;
-					synopses = dialog.Synopsis;
-					unindexed = dialog.Unindexed;
+					return;
 				}
+
+				scope = dialog.Scope;
+				synopses = dialog.Synopsis;
+				unindexed = dialog.Unindexed;
 			}
 
 			var progressDialog = new UI.ProgressDialog(Execute);
@@ -161,7 +159,7 @@ namespace River.OneMoreAddIn.Commands
 
 				// initialize search-and-replace editor...
 
-				var whatText = $@"\b{SearchAndReplaceEditor.EscapeEscapes(title)}\b";
+				var whatText = $@"(?:^|\b|\s)({SearchAndReplaceEditor.EscapeEscapes(title)})(?:$|\b|\s)";
 				var pageLink = one.GetHyperlink(page.PageId, string.Empty);
 
 				var withElement = new XElement("A",
@@ -187,7 +185,7 @@ namespace River.OneMoreAddIn.Commands
 
 					var refpage = one.GetPage(referal.Attribute("ID").Value, OneNote.PageDetail.Basic);
 
-					logger.WriteLine($"searching for '{whatText}' on '{refpage.Title}'");
+					logger.WriteLine($"searching for matches on '{refpage.Title}'");
 
 					var count = editor.SearchAndReplace(refpage);
 					if (count > 0)
