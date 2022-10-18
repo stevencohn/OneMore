@@ -4123,4 +4123,12 @@ Cuaderno actual</value>
   <data name="word_Target" xml:space="preserve">
     <value>Objetivo</value>
   </data>
+  <data name="PluginDialog_failLockRadio.Text" xml:space="preserve">
+    <value>Fallo si alguna sección está bloqueada</value>
+    <comment>radio</comment>
+  </data>
+  <data name="PluginDialog_skipLockRadio.Text" xml:space="preserve">
+    <value>Saltar secciones bloqueadas</value>
+    <comment>radio</comment>
+  </data>
 </root>

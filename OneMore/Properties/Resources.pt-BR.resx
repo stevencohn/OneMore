@@ -4123,4 +4123,12 @@ Caderno atual</value>
   <data name="word_Target" xml:space="preserve">
     <value>Alvo</value>
   </data>
+  <data name="PluginDialog_failLockRadio.Text" xml:space="preserve">
+    <value>Falha se alguma seção estiver bloqueada</value>
+    <comment>radio</comment>
+  </data>
+  <data name="PluginDialog_skipLockRadio.Text" xml:space="preserve">
+    <value>Pular seções bloqueadas</value>
+    <comment>radio</comment>
+  </data>
 </root>

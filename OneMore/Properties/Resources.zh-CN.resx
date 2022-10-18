@@ -4113,4 +4113,12 @@ OneNote 文件 (*.one)</value>
   <data name="word_Target" xml:space="preserve">
     <value>目标</value>
   </data>
+  <data name="PluginDialog_failLockRadio.Text" xml:space="preserve">
+    <value>如果任何部分被锁定，则失败</value>
+    <comment>radio</comment>
+  </data>
+  <data name="PluginDialog_skipLockRadio.Text" xml:space="preserve">
+    <value>跳过锁定部分</value>
+    <comment>radio</comment>
+  </data>
 </root>

@@ -4115,4 +4115,12 @@ Aktuelles Notizbuch</value>
   <data name="word_Target" xml:space="preserve">
     <value>Ziel</value>
   </data>
+  <data name="PluginDialog_failLockRadio.Text" xml:space="preserve">
+    <value>Fehlschlagen, wenn ein Abschnitt gesperrt ist</value>
+    <comment>radio</comment>
+  </data>
+  <data name="PluginDialog_skipLockRadio.Text" xml:space="preserve">
+    <value>Gesperrte Abschnitte überspringen</value>
+    <comment>radio</comment>
+  </data>
 </root>

@@ -4117,4 +4117,12 @@ Carnet actuel</value>
   <data name="word_Target" xml:space="preserve">
     <value>Cible</value>
   </data>
+  <data name="PluginDialog_failLockRadio.Text" xml:space="preserve">
+    <value>Échec si une section est verrouillée</value>
+    <comment>radio</comment>
+  </data>
+  <data name="PluginDialog_skipLockRadio.Text" xml:space="preserve">
+    <value>Ignorer les sections verrouillées</value>
+    <comment>radio</comment>
+  </data>
 </root>

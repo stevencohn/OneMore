@@ -4123,4 +4123,12 @@ Huidig ​​notitieboek</value>
   <data name="word_Target" xml:space="preserve">
     <value>Doelwit</value>
   </data>
+  <data name="PluginDialog_failLockRadio.Text" xml:space="preserve">
+    <value>Mislukt als een sectie is vergrendeld</value>
+    <comment>radio</comment>
+  </data>
+  <data name="PluginDialog_skipLockRadio.Text" xml:space="preserve">
+    <value>Vergrendelde secties overslaan</value>
+    <comment>radio</comment>
+  </data>
 </root>

@@ -4176,4 +4176,12 @@ Bieżący notatnik</value>
   <data name="word_Target" xml:space="preserve">
     <value>Cel</value>
   </data>
+  <data name="PluginDialog_failLockRadio.Text" xml:space="preserve">
+    <value>Niepowodzenie, jeśli jakakolwiek sekcja jest zablokowana</value>
+    <comment>radio</comment>
+  </data>
+  <data name="PluginDialog_skipLockRadio.Text" xml:space="preserve">
+    <value>Pomiń zablokowane sekcje</value>
+    <comment>radio</comment>
+  </data>
 </root>
