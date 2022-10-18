@@ -4137,6 +4137,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Fail if any section is locked.
+        /// </summary>
+        internal static string PluginDialog_failLockRadio_Text {
+            get {
+                return ResourceManager.GetString("PluginDialog_failLockRadio.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The keyword $name will be replaced automatically with the page name when running this plugin.
         /// </summary>
         internal static string PluginDialog_nameTip {
@@ -4169,6 +4178,15 @@ namespace River.OneMoreAddIn.Properties {
         internal static string PluginDialog_pluginsLabel_Text {
             get {
                 return ResourceManager.GetString("PluginDialog_pluginsLabel.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Skip locked sections.
+        /// </summary>
+        internal static string PluginDialog_skipLockRadio_Text {
+            get {
+                return ResourceManager.GetString("PluginDialog_skipLockRadio.Text", resourceCulture);
             }
         }
         

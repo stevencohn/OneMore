@@ -27,8 +27,16 @@ namespace Plugins
 			"#9595AA"
 		};
 
+		private static bool skipLocked;
+
 		public static void Colorize(string path)
 		{
+			skipLocked = true;
+			envSkip = Environment.GetEnvironmentVariable("PLUGIN_SKIPLOCK");
+			if (!string.IsNullOrEmpty(envSkip))
+			{
+				skipLocked = bool.Parse(envSkip);
+			}
 			var root = XElement.Load(path);
 			var ns = root.GetNamespaceOfPrefix("one");
 			Colorize(root, ns, root.Attribute("name").Value);			
@@ -41,6 +49,15 @@ namespace Plugins
 			foreach (var section in node.Elements(ns + "Section")
 				.Where(n => n.Attribute("isInRecycleBin") == null))
 			{
+				if (section.Attribute("isLocked") != null)
+				{
+					if (skipLocked)
+					{
+						continue;
+					}
+					throw new Exception("Failed on locked section " + name);
+				}
+
 				var name = section.Attribute("name").Value;
 				var color = colors[c++];
 				section.Attribute("color").Value = color;

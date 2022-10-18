@@ -28,6 +28,11 @@ namespace River.OneMoreAddIn.Commands
 		{
 			InitializeComponent();
 
+			// sectionGroup is not visible by default but sits in same location as pageGroup
+			sectionGroup.Size = pageGroup.Size;
+			sectionGroup.Location = pageGroup.Location;
+
+			// minor position refinements
 			browseButton.Top = cmdBox.Top;
 			browseButton.Height = cmdBox.Height;
 
@@ -51,6 +56,8 @@ namespace River.OneMoreAddIn.Commands
 					"updateRadio",
 					"createRadio",
 					"childBox",
+					"skipLockRadio",
+					"failLockRadio",
 					"saveButton",
 					"okButton", // Run
 					"cancelButton=word_Cancel"
@@ -74,6 +81,7 @@ namespace River.OneMoreAddIn.Commands
 				CreateNewPage = plugin.CreateNewPage,
 				PageName = plugin.PageName,
 				AsChildPage = plugin.AsChildPage,
+				SkipLocked = plugin.SkipLocked,
 				Timeout = plugin.Timeout
 			};
 
@@ -81,7 +89,7 @@ namespace River.OneMoreAddIn.Commands
 
 			Text = Resx.PluginDialog_editText;
 
-			targetBox.SelectedIndex = plugin.TargetPage ? 0 : 1;
+			ChangeTarget(null, EventArgs.Empty);
 
 			saveButton.Location = okButton.Location;
 			saveButton.DialogResult = DialogResult.OK;
@@ -104,6 +112,7 @@ namespace River.OneMoreAddIn.Commands
 			AsChildPage = childBox.Checked,
 			PageName = pageNameBox.Text,
 			Timeout = (int)timeoutBox.Value,
+			SkipLocked = skipLockRadio.Checked,
 			// set path for replay functionality
 			Path = plugin.Path
 		};
@@ -122,15 +131,9 @@ namespace River.OneMoreAddIn.Commands
 				nameBox.Text = plugin.Name;
 				cmdBox.Text = plugin.Command;
 				argsBox.Text = plugin.Arguments;
-				targetBox.SelectedIndex = plugin.TargetPage ? 0 : 1;
 
-				if (plugin.CreateNewPage)
-					createRadio.Checked = true;
-				else
-					updateRadio.Checked = true;
+				ChangeTarget(null, EventArgs.Empty);
 
-				pageNameBox.Text = plugin.PageName;
-				childBox.Checked = plugin.AsChildPage;
 				timeoutBox.Value = plugin.Timeout;
 				return;
 			}
@@ -167,7 +170,49 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		// = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
+		private void ChangeTarget(object sender, EventArgs e)
+		{
+			if (sender == null)
+			{
+				targetBox.SelectedIndex = plugin.TargetPage ? 0 : 1;
+			}
+			else
+			{
+				plugin.TargetPage = targetBox.SelectedIndex == 0;
+			}
+
+			if (plugin.TargetPage)
+			{
+				pageGroup.Visible = true;
+				sectionGroup.Visible = false;
+
+				if (plugin.CreateNewPage)
+					createRadio.Checked = true;
+				else
+					updateRadio.Checked = true;
+
+				pageNameBox.Text = plugin.PageName;
+				childBox.Checked = plugin.AsChildPage;
+				skipLockRadio.Checked = true;
+			}
+			else
+			{
+				sectionGroup.Visible = true;
+				pageGroup.Visible = false;
+
+				if (plugin.SkipLocked)
+					skipLockRadio.Checked = true;
+				else
+					failLockRadio.Checked = true;
+
+				updateRadio.Checked = true;
+				pageNameBox.Text = String.Empty;
+				childBox.Checked = false;
+			}
+		}
+
+
+		// = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
 
 		private void ViewPredefined(object sender, EventArgs e)
 		{
@@ -177,15 +222,8 @@ namespace River.OneMoreAddIn.Commands
 			cmdBox.Text = plugin.Command;
 			argsBox.Text = plugin.Arguments;
 			timeoutBox.Value = plugin.Timeout;
-			targetBox.SelectedIndex = plugin.TargetPage ? 0 : 1;
 
-			if (plugin.CreateNewPage)
-				createRadio.Checked = true;
-			else
-				updateRadio.Checked = true;
-
-			pageNameBox.Text = plugin.PageName;
-			childBox.Checked = plugin.AsChildPage;
+			ChangeTarget(null, EventArgs.Empty);
 
 			var read = pluginsBox.SelectedIndex > 0;
 			nameBox.ReadOnly = read;
@@ -359,16 +397,6 @@ namespace River.OneMoreAddIn.Commands
 		private void ChangeAsChild(object sender, EventArgs e)
 		{
 			plugin.AsChildPage = childBox.Checked;
-		}
-
-
-		private void ChangeTarget(object sender, EventArgs e)
-		{
-			plugin.TargetPage = targetBox.SelectedIndex == 0;
-			updateRadio.Enabled = plugin.TargetPage;
-			createRadio.Enabled = plugin.TargetPage;
-			pageNameBox.Enabled = plugin.TargetPage;
-			childBox.Enabled = plugin.TargetPage;
 		}
 
 

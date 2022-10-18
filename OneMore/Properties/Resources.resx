@@ -4189,4 +4189,12 @@ Current notebook</value>
   <data name="word_Target" xml:space="preserve">
     <value>Target</value>
   </data>
+  <data name="PluginDialog_failLockRadio.Text" xml:space="preserve">
+    <value>Fail if any section is locked</value>
+    <comment>radio</comment>
+  </data>
+  <data name="PluginDialog_skipLockRadio.Text" xml:space="preserve">
+    <value>Skip locked sections</value>
+    <comment>radio</comment>
+  </data>
 </root>

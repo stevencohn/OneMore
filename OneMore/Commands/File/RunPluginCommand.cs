@@ -210,18 +210,24 @@ namespace River.OneMoreAddIn.Commands
 			{
 				logger.WriteLine($"running {plugin.Command} {plugin.Arguments} \"{path}\"");
 
+				var info = new ProcessStartInfo
+				{
+					FileName = plugin.Command,
+					Arguments = $"{plugin.Arguments} \"{path}\"",
+					CreateNoWindow = true,
+					UseShellExecute = false,
+					RedirectStandardOutput = true,
+					RedirectStandardError = true
+				};
+
+				info.Environment["PLUGIN_SKIPLOCK"] = plugin.SkipLocked.ToString();
+				info.Environment["PLUGIN_CREATE"] = plugin.CreateNewPage.ToString();
+				info.Environment["PLUGIN_PAGENAME"] = plugin.PageName;
+				info.Environment["PLUGIN_ASCHILD"] = plugin.AsChildPage.ToString();
+
 				process = new Process
 				{
-					StartInfo = new ProcessStartInfo
-					{
-						FileName = plugin.Command,
-						Arguments = $"{plugin.Arguments} \"{path}\"",
-						CreateNoWindow = true,
-						UseShellExecute = false,
-						RedirectStandardOutput = true,
-						RedirectStandardError = true
-					},
-
+					StartInfo = info,
 					EnableRaisingEvents = true
 				};
 

@@ -89,6 +89,12 @@ namespace River.OneMoreAddIn.Commands
 
 
 		/// <summary>
+		/// Gets or sets a value indicating whether to skip or fail locked sections.
+		/// </summary>
+		public bool SkipLocked { get; set; }
+
+
+		/// <summary>
 		/// Gets or sets the timeout of the plugin.
 		/// Can be set to 0 for no timeout or from 1 to 300 seconds (5 mins)
 		/// </summary>
