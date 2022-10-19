@@ -8566,6 +8566,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to OneMore Table Theme {0}.
+        /// </summary>
+        internal static string TableTheme_Screentip {
+            get {
+                return ResourceManager.GetString("TableTheme_Screentip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Check all pages.
         /// </summary>
         internal static string TaggedDialog_checkAllLabel_Text {

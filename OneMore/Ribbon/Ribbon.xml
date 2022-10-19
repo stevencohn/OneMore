@@ -43,6 +43,17 @@
               onAction="ChangePageColorCmd"/>
           </gallery>
 
+          <gallery
+            id="ribTableThemesButton" columns="7" showItemLabel="false" size="large" imageMso="TableStylesGallery"
+            label="Table Styles"
+            getItemCount="GetTableGalleryItemCount"
+            getItemID="GetTableGalleryItemID"
+            getItemImage="GetTableGalleryItemImage"
+            getItemScreentip="GetTableGalleryItemScreentip"
+            onAction="ApplyTableThemeCmd"
+            keytip="SH">
+          </gallery>
+
           <dynamicMenu
             id="ribFavoritesMenu"
             getLabel="GetRibbonLabel"

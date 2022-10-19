@@ -4197,4 +4197,8 @@ Current notebook</value>
   <data name="Ribbon" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\ribbon\ribbon.xml;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
   </data>
+  <data name="TableTheme_Screentip" xml:space="preserve">
+    <value>OneMore Table Theme {0}</value>
+    <comment>Screentip for table theme gallery tiles</comment>
+  </data>
 </root>

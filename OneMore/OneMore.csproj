@@ -140,10 +140,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AddInCommands.cs" />
-    <Compile Include="Ribbon\AddInEnablers.cs" />
+    <Compile Include="Ribbon\AddInRibbonEnablers.cs" />
     <Compile Include="AddInHotkeys.cs" />
     <Compile Include="Ribbon\AddInRibbon.cs" />
-    <Compile Include="Ribbon\AddInStyleGallery.cs" />
+    <Compile Include="Ribbon\AddInRibbonStyleGallery.cs" />
     <Compile Include="Colorizer\Colorizer.cs" />
     <Compile Include="Colorizer\Compiler.cs" />
     <Compile Include="Colorizer\Language.cs" />
@@ -506,6 +506,9 @@
     <Compile Include="Models\Tag.cs" />
     <Compile Include="Models\TagDef.cs" />
     <Compile Include="Models\TagDefMapping.cs" />
+    <Compile Include="Ribbon\AddInRibbonTableGallery.cs" />
+    <Compile Include="Ribbon\TableTheme.cs" />
+    <Compile Include="Ribbon\TableThemeProvider.cs" />
     <Compile Include="Styles\StyleProperties.cs" />
     <Compile Include="Styles\Theme.cs" />
     <Compile Include="Styles\ThemeProvider.cs" />
