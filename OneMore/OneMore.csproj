@@ -140,10 +140,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AddInCommands.cs" />
-    <Compile Include="AddInEnablers.cs" />
+    <Compile Include="Ribbon\AddInEnablers.cs" />
     <Compile Include="AddInHotkeys.cs" />
-    <Compile Include="AddInRibbon.cs" />
-    <Compile Include="AddInStyleGallery.cs" />
+    <Compile Include="Ribbon\AddInRibbon.cs" />
+    <Compile Include="Ribbon\AddInStyleGallery.cs" />
     <Compile Include="Colorizer\Colorizer.cs" />
     <Compile Include="Colorizer\Compiler.cs" />
     <Compile Include="Colorizer\Language.cs" />
@@ -692,7 +692,7 @@
     <Compile Include="UI\HierarchyView.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="UI\TileFactory.cs" />
+    <Compile Include="Ribbon\TileFactory.cs" />
     <Compile Include="Commands\Snippets\InsertCodeBlockCommand.cs" />
     <Compile Include="Commands\Snippets\InsertExpandCommand.cs" />
     <Compile Include="Commands\Snippets\InsertInfoBlockCommand.cs" />
@@ -1074,7 +1074,7 @@
     <Content Include="Properties\Images\NoSpellCheck.png" />
     <Content Include="Properties\DefaultStyles.xml" />
     <Content Include="Properties\Images\WrapText.png" />
-    <Content Include="Properties\Ribbon.xml">
+    <Content Include="Ribbon\Ribbon.xml">
       <SubType>Designer</SubType>
     </Content>
     <None Include="Properties\0336.OneNoteApplication_2013.xsd">

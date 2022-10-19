@@ -266,7 +266,7 @@ Odroczony</value>
     <comment>message box</comment>
   </data>
   <data name="Ribbon" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>ribbon.xml;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+    <value>..\ribbon\ribbon.xml;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
   </data>
   <data name="PluginsSheet.Text" xml:space="preserve">
     <value>Zarządzaj moimi wtyczkami</value>

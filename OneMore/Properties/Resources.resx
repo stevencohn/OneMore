@@ -273,9 +273,6 @@ Deferred</value>
     <value>Search and Replace</value>
     <comment>Ribbon OneMore menu item, search and replace NODUP</comment>
   </data>
-  <data name="Ribbon" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>ribbon.xml;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
-  </data>
   <data name="PluginsSheet.Text" xml:space="preserve">
     <value>Manage My Plugins</value>
     <comment>sheet title</comment>
@@ -4196,5 +4193,8 @@ Current notebook</value>
   <data name="PluginDialog_skipLockRadio.Text" xml:space="preserve">
     <value>Skip locked sections</value>
     <comment>radio</comment>
+  </data>
+  <data name="Ribbon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ribbon\ribbon.xml;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
   </data>
 </root>
