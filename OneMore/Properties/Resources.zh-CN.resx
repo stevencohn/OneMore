@@ -4121,4 +4121,16 @@ OneNote 文件 (*.one)</value>
     <value>跳过锁定部分</value>
     <comment>radio</comment>
   </data>
+  <data name="TableTheme_Screentip" xml:space="preserve">
+    <value>OneMore 表格主题{0}</value>
+    <comment>Screentip for table theme gallery tiles</comment>
+  </data>
+  <data name="ribEditTableThemesButton_Label" xml:space="preserve">
+    <value>编辑自定义表格样式</value>
+    <comment>table styles ribbon gallery button</comment>
+  </data>
+  <data name="ribTableThemesButton_Label" xml:space="preserve">
+    <value>表格样式</value>
+    <comment>ribbon</comment>
+  </data>
 </root>

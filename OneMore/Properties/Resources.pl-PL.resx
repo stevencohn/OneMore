@@ -4184,4 +4184,16 @@ Bieżący notatnik</value>
     <value>Pomiń zablokowane sekcje</value>
     <comment>radio</comment>
   </data>
+  <data name="TableTheme_Screentip" xml:space="preserve">
+    <value>Motyw tabeli OneMore {0}</value>
+    <comment>Screentip for table theme gallery tiles</comment>
+  </data>
+  <data name="ribEditTableThemesButton_Label" xml:space="preserve">
+    <value>Edytuj niestandardowe style tabel</value>
+    <comment>table styles ribbon gallery button</comment>
+  </data>
+  <data name="ribTableThemesButton_Label" xml:space="preserve">
+    <value>Style stołu</value>
+    <comment>ribbon</comment>
+  </data>
 </root>

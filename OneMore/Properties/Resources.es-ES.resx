@@ -4131,4 +4131,16 @@ Cuaderno actual</value>
     <value>Saltar secciones bloqueadas</value>
     <comment>radio</comment>
   </data>
+  <data name="TableTheme_Screentip" xml:space="preserve">
+    <value>Tema de mesa OneMore {0}</value>
+    <comment>Screentip for table theme gallery tiles</comment>
+  </data>
+  <data name="ribEditTableThemesButton_Label" xml:space="preserve">
+    <value>Editar estilos de tabla personalizados</value>
+    <comment>table styles ribbon gallery button</comment>
+  </data>
+  <data name="ribTableThemesButton_Label" xml:space="preserve">
+    <value>Estilos de tabla</value>
+    <comment>ribbon</comment>
+  </data>
 </root>
