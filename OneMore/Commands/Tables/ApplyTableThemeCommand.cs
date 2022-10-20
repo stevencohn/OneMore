@@ -138,7 +138,8 @@ namespace River.OneMoreAddIn.Commands
 			{
 				for (int r = 0; r < table.RowCount; r++)
 				{
-					table[r][0].ShadingColor = TableTheme.MediumColorNames[r % TableTheme.MediumColorNames.Length];
+					table[r][0].ShadingColor = 
+						TableTheme.MediumColorNames[r % TableTheme.MediumColorNames.Length];
 				}
 			}
 			else if (theme.FirstColumn != Color.Empty)
@@ -163,7 +164,8 @@ namespace River.OneMoreAddIn.Commands
 			{
 				for (int c = 0; c < table.ColumnCount; c++)
 				{
-					table[0][c].ShadingColor = TableTheme.MediumColorNames[c % TableTheme.MediumColorNames.Length];
+					table[0][c].ShadingColor = 
+						TableTheme.MediumColorNames[c % TableTheme.MediumColorNames.Length];
 				}
 			}
 			else if (theme.HeaderRow != Color.Empty)
@@ -201,7 +203,8 @@ namespace River.OneMoreAddIn.Commands
 
 			if (theme.TotalLastCell != Color.Empty)
 			{
-				table[table.RowCount - 1][table.ColumnCount - 1].ShadingColor = theme.TotalLastCell.ToRGBHtml();
+				table[table.RowCount - 1][table.ColumnCount - 1].ShadingColor = 
+					theme.TotalLastCell.ToRGBHtml();
 			}
 		}
 	}

@@ -130,9 +130,6 @@ namespace River.OneMoreAddIn
 		/// <returns></returns>
 		public static IStream MakeTableTile(TableTheme theme, Color pageColor)
 		{
-			var bow0 = new string[] { "#B2A1C7", "#9CC3E5", "#A8D08D", "#FFD965", "#F4B183", "#F1937A" };
-			var bow1 = new string[] { "#E5E0EC", "#DEEBF6", "#E2EFD9", "#FFF2CC", "#FBE5D5", "#FADBD2" };
-
 			var scale = 1.0f;
 
 #if Unecessary // Used in LinqPad but OneNote does its own scaling so we don't need this...
@@ -164,7 +161,8 @@ namespace River.OneMoreAddIn
 			{
 				for (int r = 0; r < 5; r++)
 				{
-					using var b = new SolidBrush(ColorTranslator.FromHtml(bow0[r % bow0.Length]));
+					using var b = new SolidBrush(ColorTranslator.FromHtml(
+						TableTheme.MediumColorNames[r % TableTheme.MediumColorNames.Length]));
 					FillCell(0, r, b);
 				}
 			}
@@ -190,7 +188,8 @@ namespace River.OneMoreAddIn
 			{
 				for (int c = 0; c < 5; c++)
 				{
-					using var b = new SolidBrush(ColorTranslator.FromHtml(bow0[c % 6]));
+					using var b = new SolidBrush(
+						ColorTranslator.FromHtml(TableTheme.MediumColorNames[c % 6]));
 					FillCell(c, 0, b);
 				}
 			}
@@ -267,7 +266,8 @@ namespace River.OneMoreAddIn
 						{
 							for (var c = 0; c < 5; c++)
 							{
-								using var brush = new SolidBrush(ColorTranslator.FromHtml(bow1[r % bow1.Length]));
+								using var brush = new SolidBrush(ColorTranslator.FromHtml(
+									TableTheme.LightColorNames[r % TableTheme.LightColorNames.Length]));
 								FillCell(c, r, brush);
 							}
 						}
@@ -281,7 +281,8 @@ namespace River.OneMoreAddIn
 						{
 							for (var r = 0; r < 5; r++)
 							{
-								using var brush = new SolidBrush(ColorTranslator.FromHtml(bow1[c % bow1.Length]));
+								using var brush = new SolidBrush(ColorTranslator.FromHtml(
+									TableTheme.LightColorNames[c % TableTheme.LightColorNames.Length]));
 								FillCell(c, r, brush);
 							}
 						}
