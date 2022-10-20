@@ -100,6 +100,9 @@ namespace River.OneMoreAddIn
 		public async Task ApplyStylesCmd(IRibbonControl control)
 			=> await factory.Run<ApplyStylesCommand>();
 
+		public async Task ApplyTableThemeCmd(IRibbonControl control, string selectedId, int selectedIndex)
+			=> await factory.Run<ApplyTableThemeCommand>(selectedIndex);
+
 		public async Task ArchiveCmd(IRibbonControl control)
 			=> await factory.Run<ArchiveCommand>(control.Tag); // tag=scope
 

@@ -1758,6 +1758,38 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to [
+        ///  {
+        ///    &quot;FirstRowStripe&quot;: &quot;Transparent&quot;,
+        ///    &quot;SecondRowStripe&quot;: &quot;229, 224, 236&quot;
+        ///  },
+        ///  {
+        ///    &quot;FirstRowStripe&quot;: &quot;Transparent&quot;,
+        ///    &quot;SecondRowStripe&quot;: &quot;222, 235, 246&quot;
+        ///  },
+        ///  {
+        ///    &quot;FirstRowStripe&quot;: &quot;Transparent&quot;,
+        ///    &quot;SecondRowStripe&quot;: &quot;226, 239, 217&quot;
+        ///  },
+        ///  {
+        ///    &quot;FirstRowStripe&quot;: &quot;Transparent&quot;,
+        ///    &quot;SecondRowStripe&quot;: &quot;255, 242, 204&quot;
+        ///  },
+        ///  {
+        ///    &quot;FirstRowStripe&quot;: &quot;Transparent&quot;,
+        ///    &quot;SecondRowStripe&quot;: &quot;251, 229, 213&quot;
+        ///  },
+        ///  {
+        ///    &quot;FirstRowStripe&quot;: &quot;Transparent&quot;,
+        ///    &quot;SecondRowStripe&quot; [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string DefaultTableThemes {
+            get {
+                return ResourceManager.GetString("DefaultTableThemes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap Delete {
@@ -5371,10 +5403,10 @@ namespace River.OneMoreAddIn.Properties {
         ///      &lt;tab idMso=&quot;TabHome&quot;&gt;
         ///        &lt;group id=&quot;ribOneMoreGroup&quot; getLabel=&quot;GetRibbonLabel&quot;&gt;
         ///          &lt;gallery
-        ///            id=&quot;ribCustomStylesButton&quot; columns=&quot;4&quot; showItemLabel=&quot;false&quot; size=&quot;large&quot; imageMso=&quot;StylesPane&quot;
+        ///            id=&quot;ribCustomStylesButton&quot; columns=&quot;4&quot; showItemLabel=&quot;false&quot; size=&quot;normal&quot; imageMso=&quot;StylesPane&quot;
         ///            getLabel=&quot;GetRibbonLabel&quot;
         ///            getItemCount=&quot;GetStyleGalleryItemCount&quot;
-        ///     [rest of string was truncated]&quot;;.
+        ///    [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string Ribbon {
             get {

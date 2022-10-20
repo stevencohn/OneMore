@@ -9,6 +9,7 @@
 namespace River.OneMoreAddIn
 {
 	using Microsoft.Office.Core;
+	using River.OneMoreAddIn.Commands;
 	using System.Drawing;
 	using System.Runtime.InteropServices.ComTypes;
 

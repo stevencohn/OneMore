@@ -140,6 +140,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AddInCommands.cs" />
+    <Compile Include="Commands\Tables\ApplyTableThemeCommand.cs" />
     <Compile Include="Ribbon\AddInRibbonEnablers.cs" />
     <Compile Include="AddInHotkeys.cs" />
     <Compile Include="Ribbon\AddInRibbon.cs" />
@@ -507,8 +508,8 @@
     <Compile Include="Models\TagDef.cs" />
     <Compile Include="Models\TagDefMapping.cs" />
     <Compile Include="Ribbon\AddInRibbonTableGallery.cs" />
-    <Compile Include="Ribbon\TableTheme.cs" />
-    <Compile Include="Ribbon\TableThemeProvider.cs" />
+    <Compile Include="Commands\Tables\TableTheme.cs" />
+    <Compile Include="Commands\Tables\TableThemeProvider.cs" />
     <Compile Include="Styles\StyleProperties.cs" />
     <Compile Include="Styles\Theme.cs" />
     <Compile Include="Styles\ThemeProvider.cs" />
@@ -1069,6 +1070,7 @@
     <Content Include="Properties\Images\Task.png" />
     <Content Include="Properties\Images\Unlocked.png" />
     <Content Include="Properties\Resources-zh-CN-hints.xml" />
+    <None Include="Ribbon\DefaultTableThemes.json" />
     <Content Include="UI\TagMap.png" />
     <Content Include="Properties\Images\TextHighlightColorPicker.png" />
     <Content Include="Properties\Images\Underline.png" />

@@ -11,13 +11,11 @@ namespace River.OneMoreAddIn.Commands
 	using System.Linq;
 	using System.Text;
 	using System.Threading.Tasks;
-	using System.Xml;
 	using System.Xml.Linq;
 
 
 	internal class ApplyStyleCommand : Command
 	{
-
 		private Page page;
 		private XNamespace ns;
 		private Stylizer stylizer;

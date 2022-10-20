@@ -54,8 +54,8 @@
             keytip="SH">
             <button
               id="ribTableThemeOptionsButton"
-              label="Options"
-              onAction="ChangeTableThemesCmd"/>
+              label="Custom Table Styles..."
+              onAction="EditTableThemesCmd"/>
           </gallery>
 
           <dynamicMenu
