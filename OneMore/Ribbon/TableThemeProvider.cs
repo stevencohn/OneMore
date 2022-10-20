@@ -17,13 +17,6 @@ namespace River.OneMoreAddIn
 		{
 			themes = new List<TableTheme>
 			{
-				/*
-				Purple	Blue	Green	Yellow	Orange	Red	    Gray
-				#E5E0EC	#DEEBF6	#E2EFD9	#FFF2CC	#FBE5D5	#FADBD2	#F2F2F2
-				#B2A1C7	#9CC3E5	#A8D08D	#FFD965	#F4B183	#F1937A	#BFBFBF
-				#8064A2	#5B9BD5	#70AD47	#FFC000	#ED7D31	#E84C22	#A5A5A5
-				 */
-
 				// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 				// white-purple rows
 				new TableTheme
@@ -64,6 +57,63 @@ namespace River.OneMoreAddIn
 				// white-gray rows
 				new TableTheme
 				{
+					FirstRowStripe = Color.Transparent,
+					SecondRowStripe = ColorTranslator.FromHtml("#F2F2F2")
+				},
+
+				/*
+				Purple	Blue	Green	Yellow	Orange	Red	    Gray
+				#E5E0EC	#DEEBF6	#E2EFD9	#FFF2CC	#FBE5D5	#FADBD2	#F2F2F2
+				#B2A1C7	#9CC3E5	#A8D08D	#FFD965	#F4B183	#F1937A	#BFBFBF
+				#8064A2	#5B9BD5	#70AD47	#FFC000	#ED7D31	#E84C22	#A5A5A5
+				 */
+				// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+				// white-purple-header rows
+				new TableTheme
+				{
+					HeaderRow = ColorTranslator.FromHtml("#8064A2"),
+					FirstRowStripe = Color.Transparent,
+					SecondRowStripe = ColorTranslator.FromHtml("#E5E0EC")
+				},
+				// white-blue-header rows
+				new TableTheme
+				{
+					HeaderRow = ColorTranslator.FromHtml("#5B9BD5"),
+					FirstRowStripe = Color.Transparent,
+					SecondRowStripe = ColorTranslator.FromHtml("#DEEBF6")
+				},
+				// white-green-header rows
+				new TableTheme
+				{
+					HeaderRow = ColorTranslator.FromHtml("#70AD47"),
+					FirstRowStripe = Color.Transparent,
+					SecondRowStripe = ColorTranslator.FromHtml("#E2EFD9")
+				},
+				// white-yellow-header rows
+				new TableTheme
+				{
+					HeaderRow = ColorTranslator.FromHtml("#FFC000"),
+					FirstRowStripe = Color.Transparent,
+					SecondRowStripe = ColorTranslator.FromHtml("#FFF2CC")
+				},
+				// white-orange-header rows
+				new TableTheme
+				{
+					HeaderRow = ColorTranslator.FromHtml("#ED7D31"),
+					FirstRowStripe = Color.Transparent,
+					SecondRowStripe = ColorTranslator.FromHtml("#FBE5D5")
+				},
+				// white-red-header rows
+				new TableTheme
+				{
+					HeaderRow = ColorTranslator.FromHtml("#E84C22"),
+					FirstRowStripe = Color.Transparent,
+					SecondRowStripe = ColorTranslator.FromHtml("#FADBD2")
+				},
+				// white-gray-header rows
+				new TableTheme
+				{
+					HeaderRow = ColorTranslator.FromHtml("#A5A5A5"),
 					FirstRowStripe = Color.Transparent,
 					SecondRowStripe = ColorTranslator.FromHtml("#F2F2F2")
 				},
@@ -145,7 +195,6 @@ namespace River.OneMoreAddIn
 				new TableTheme
 				{
 					HeaderRow = ColorTranslator.FromHtml("#ED7D31"),
-					FirstColumn = ColorTranslator.FromHtml("#ED7D31"),
 					SecondRowStripe = ColorTranslator.FromHtml("#FBE5D5"),
 					FirstRowStripe = ColorTranslator.FromHtml("#F4B183")
 				},
@@ -153,7 +202,6 @@ namespace River.OneMoreAddIn
 				new TableTheme
 				{
 					HeaderRow = ColorTranslator.FromHtml("#E84C22"),
-					FirstColumn = ColorTranslator.FromHtml("#E84C22"),
 					FirstRowStripe = ColorTranslator.FromHtml("#F1937A"),
 					SecondRowStripe = ColorTranslator.FromHtml("#FADBD2")
 				},
@@ -161,7 +209,6 @@ namespace River.OneMoreAddIn
 				new TableTheme
 				{
 					HeaderRow = ColorTranslator.FromHtml("#A5A5A5"),
-					FirstColumn = ColorTranslator.FromHtml("#A5A5A5"),
 					FirstRowStripe = ColorTranslator.FromHtml("#BFBFBF"),
 					SecondRowStripe = ColorTranslator.FromHtml("#F2F2F2")
 				},
@@ -222,6 +269,27 @@ namespace River.OneMoreAddIn
 					FirstColumn = ColorTranslator.FromHtml("#A5A5A5"),
 					SecondRowStripe = ColorTranslator.FromHtml("#F2F2F2"),
 					FirstRowStripe = ColorTranslator.FromHtml("#BFBFBF")
+				},
+
+				// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+				// rainbows
+				new TableTheme
+				{
+					FirstColumn = TableTheme.Rainbow
+				},
+				new TableTheme
+				{
+					HeaderRow = TableTheme.Rainbow
+				},
+				new TableTheme
+				{
+					WholeTable = TableTheme.Rainbow,
+					FirstColumn = TableTheme.Rainbow
+				},
+				new TableTheme
+				{
+					WholeTable = TableTheme.Rainbow,
+					HeaderRow = TableTheme.Rainbow
 				}
 			};
 		}

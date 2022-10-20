@@ -8,7 +8,7 @@
       <tab idMso="TabHome">
         <group id="ribOneMoreGroup" getLabel="GetRibbonLabel">
           <gallery
-            id="ribCustomStylesButton" columns="4" showItemLabel="false" size="large" imageMso="StylesPane"
+            id="ribCustomStylesButton" columns="4" showItemLabel="false" size="normal" imageMso="StylesPane"
             getLabel="GetRibbonLabel"
             getItemCount="GetStyleGalleryItemCount"
             getItemID="GetStyleGalleryItemId"
@@ -44,7 +44,7 @@
           </gallery>
 
           <gallery
-            id="ribTableThemesButton" columns="7" showItemLabel="false" size="large" imageMso="TableStylesGallery"
+            id="ribTableThemesButton" columns="7" showItemLabel="false" size="normal" imageMso="TableStylesGallery"
             label="Table Styles"
             getItemCount="GetTableGalleryItemCount"
             getItemID="GetTableGalleryItemID"
@@ -52,12 +52,16 @@
             getItemScreentip="GetTableGalleryItemScreentip"
             onAction="ApplyTableThemeCmd"
             keytip="SH">
+            <button
+              id="ribTableThemeOptionsButton"
+              label="Options"
+              onAction="ChangeTableThemesCmd"/>
           </gallery>
 
           <dynamicMenu
             id="ribFavoritesMenu"
             getLabel="GetRibbonLabel"
-            size="large"
+            size="normal"
             imageMso="EditLinks"
             getContent="GetFavoritesContent"
             keytip="SF"/>

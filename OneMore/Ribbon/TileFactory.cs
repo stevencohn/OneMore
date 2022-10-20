@@ -129,6 +129,9 @@ namespace River.OneMoreAddIn
 		/// <returns></returns>
 		public static IStream MakeTableTile(TableTheme theme, Color pageColor)
 		{
+			var bow0 = new string[] { "#B2A1C7", "#9CC3E5", "#A8D08D", "#FFD965", "#F4B183", "#F1937A" };
+			var bow1 = new string[] { "#E5E0EC", "#DEEBF6", "#E2EFD9", "#FFF2CC", "#FBE5D5", "#FADBD2" };
+
 			var scale = 1.0f;
 
 #if Unecessary // Used in LinqPad but OneNote does its own scaling so we don't need this...
@@ -156,38 +159,54 @@ namespace River.OneMoreAddIn
 			DrawGrid();
 			FillTable();
 
-			if (theme.FirstColumn != Color.Empty)
+			if (theme.FirstColumn == TableTheme.Rainbow)
 			{
 				for (int r = 0; r < 5; r++)
 				{
-					using var b = new SolidBrush(theme.FirstColumn);
+					using var b = new SolidBrush(ColorTranslator.FromHtml(bow0[r % bow0.Length]));
+					FillCell(0, r, b);
+				}
+			}
+			else if (theme.FirstColumn != Color.Empty)
+			{
+				using var b = new SolidBrush(theme.FirstColumn);
+				for (int r = 0; r < 5; r++)
+				{
 					FillCell(0, r, b);
 				}
 			}
 
 			if (theme.LastColumn != Color.Empty)
 			{
+				using var b = new SolidBrush(theme.LastColumn);
 				for (int r = 0; r < 5; r++)
 				{
-					using var b = new SolidBrush(theme.LastColumn);
 					FillCell(4, r, b);
 				}
 			}
 
-			if (theme.HeaderRow != Color.Empty)
+			if (theme.HeaderRow == TableTheme.Rainbow)
 			{
 				for (int c = 0; c < 5; c++)
 				{
-					using var b = new SolidBrush(theme.HeaderRow);
+					using var b = new SolidBrush(ColorTranslator.FromHtml(bow0[c % 6]));
+					FillCell(c, 0, b);
+				}
+			}
+			else if (theme.HeaderRow != Color.Empty)
+			{
+				using var b = new SolidBrush(theme.HeaderRow);
+				for (int c = 0; c < 5; c++)
+				{
 					FillCell(c, 0, b);
 				}
 			}
 
 			if (theme.TotalRow != Color.Empty)
 			{
+				using var b = new SolidBrush(theme.TotalRow);
 				for (int c = 0; c < 5; c++)
 				{
-					using var b = new SolidBrush(theme.TotalRow);
 					FillCell(c, 4, b);
 				}
 			}
@@ -223,7 +242,7 @@ namespace River.OneMoreAddIn
 
 			void DrawGrid()
 			{
-				var pen = pageColor.GetBrightness() <= 0.5 ? Pens.WhiteSmoke : Pens.Silver;
+				var pen = pageColor.GetBrightness() <= 0.5 ? Pens.WhiteSmoke : Pens.Gray;
 				g.DrawRectangle(pen, bounds);
 
 				for (int x = bounds.X + columnWidth; x < bounds.Right - 5; x += columnWidth)
@@ -239,6 +258,37 @@ namespace River.OneMoreAddIn
 
 			void FillTable()
 			{
+				if (theme.WholeTable == TableTheme.Rainbow)
+				{
+					if (theme.FirstColumn == TableTheme.Rainbow)
+					{
+						for (var r = 0; r < 5; r++)
+						{
+							for (var c = 0; c < 5; c++)
+							{
+								using var brush = new SolidBrush(ColorTranslator.FromHtml(bow1[r % bow1.Length]));
+								FillCell(c, r, brush);
+							}
+						}
+
+						return;
+					}
+
+					if (theme.HeaderRow == TableTheme.Rainbow)
+					{
+						for (var c = 0; c < 5; c++)
+						{
+							for (var r = 0; r < 5; r++)
+							{
+								using var brush = new SolidBrush(ColorTranslator.FromHtml(bow1[c % bow1.Length]));
+								FillCell(c, r, brush);
+							}
+						}
+
+						return;
+					}
+				}
+
 				Color c0 = Color.Empty; // even
 				Color c1 = Color.Empty; // odd
 				bool rows = true;

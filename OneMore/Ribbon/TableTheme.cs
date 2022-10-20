@@ -9,6 +9,9 @@ namespace River.OneMoreAddIn
 
 	public class TableTheme
 	{
+		public static Color Rainbow => ColorTranslator.FromHtml("#12345678");
+
+
 		// styles are applied in this order of the properties below
 		// where lower styles override upper styles
 
