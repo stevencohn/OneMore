@@ -214,10 +214,9 @@ namespace River.OneMoreAddIn.Commands
 
 			g.FillRectangle(brush, x, y, columnWidth - 1, rowHeight - 1);
 
-			var offset = (int)(columnWidth * 0.30);
-			x += offset;
+			x += (int)(columnWidth * 0.30);
 			y += (rowHeight - 1) / 2;
-			g.DrawLine(Pens.Black, x, y, x + (columnWidth - (offset * 2)), y);
+			g.DrawLine(Pens.Black, x, y, x + (int)(columnWidth * 0.40), y);
 		}
 	}
 }
