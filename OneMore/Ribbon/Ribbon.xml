@@ -45,7 +45,7 @@
 
           <gallery
             id="ribTableThemesButton" columns="7" showItemLabel="false" size="normal" imageMso="TableStylesGallery"
-            label="Table Styles"
+            getLabel="GetRibbonLabel"
             getItemCount="GetTableGalleryItemCount"
             getItemID="GetTableGalleryItemID"
             getItemImage="GetTableGalleryItemImage"
@@ -53,8 +53,8 @@
             onAction="ApplyTableThemeCmd"
             keytip="SH">
             <button
-              id="ribTableThemeOptionsButton"
-              label="Custom Table Styles..."
+              id="ribEditTableThemesButton"
+              getLabel="GetRibbonLabel"
               onAction="EditTableThemesCmd"/>
           </gallery>
 

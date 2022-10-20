@@ -1760,28 +1760,27 @@ namespace River.OneMoreAddIn.Properties {
         /// <summary>
         ///   Looks up a localized string similar to [
         ///  {
+        ///    &quot;Name&quot;: &quot;White-Purple Rows&quot;,
         ///    &quot;FirstRowStripe&quot;: &quot;Transparent&quot;,
         ///    &quot;SecondRowStripe&quot;: &quot;229, 224, 236&quot;
         ///  },
         ///  {
+        ///    &quot;Name&quot;: &quot;White-Blue Rows&quot;,
         ///    &quot;FirstRowStripe&quot;: &quot;Transparent&quot;,
         ///    &quot;SecondRowStripe&quot;: &quot;222, 235, 246&quot;
         ///  },
         ///  {
+        ///    &quot;Name&quot;: &quot;White-Green Rows&quot;,
         ///    &quot;FirstRowStripe&quot;: &quot;Transparent&quot;,
         ///    &quot;SecondRowStripe&quot;: &quot;226, 239, 217&quot;
         ///  },
         ///  {
+        ///    &quot;Name&quot;: &quot;White-Yellow Rows&quot;,
         ///    &quot;FirstRowStripe&quot;: &quot;Transparent&quot;,
         ///    &quot;SecondRowStripe&quot;: &quot;255, 242, 204&quot;
         ///  },
         ///  {
-        ///    &quot;FirstRowStripe&quot;: &quot;Transparent&quot;,
-        ///    &quot;SecondRowStripe&quot;: &quot;251, 229, 213&quot;
-        ///  },
-        ///  {
-        ///    &quot;FirstRowStripe&quot;: &quot;Transparent&quot;,
-        ///    &quot;SecondRowStripe&quot; [rest of string was truncated]&quot;;.
+        ///    &quot;Name&quot;: &quot;Wh [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string DefaultTableThemes {
             get {
@@ -5784,6 +5783,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Edit Custom Table Styles.
+        /// </summary>
+        internal static string ribEditTableThemesButton_Label {
+            get {
+                return ResourceManager.GetString("ribEditTableThemesButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Embed Page.
         /// </summary>
         internal static string ribEmbedSubpageButton_Label {
@@ -7094,6 +7102,15 @@ namespace River.OneMoreAddIn.Properties {
         internal static string ribTableMenu_Label {
             get {
                 return ResourceManager.GetString("ribTableMenu_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Table Styles.
+        /// </summary>
+        internal static string ribTableThemesButton_Label {
+            get {
+                return ResourceManager.GetString("ribTableThemesButton_Label", resourceCulture);
             }
         }
         

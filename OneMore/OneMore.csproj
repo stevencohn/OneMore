@@ -141,6 +141,14 @@
   <ItemGroup>
     <Compile Include="AddInCommands.cs" />
     <Compile Include="Commands\Tables\ApplyTableThemeCommand.cs" />
+    <Compile Include="Commands\Tables\EditTableThemesCommand.cs" />
+    <Compile Include="Commands\Tables\EditTableThemesDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Commands\Tables\EditTableThemesDialog.Designer.cs">
+      <DependentUpon>EditTableThemesDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Commands\Tables\TableThemePainter.cs" />
     <Compile Include="Ribbon\AddInRibbonEnablers.cs" />
     <Compile Include="AddInHotkeys.cs" />
     <Compile Include="Ribbon\AddInRibbon.cs" />
@@ -1150,6 +1158,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Commands\Styles\NameStyleDialog.resx">
       <DependentUpon>NameStyleDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Commands\Tables\EditTableThemesDialog.resx">
+      <DependentUpon>EditTableThemesDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Commands\Tables\InsertCellsDialog.resx">
       <DependentUpon>InsertCellsDialog.cs</DependentUpon>

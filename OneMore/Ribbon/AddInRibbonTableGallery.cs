@@ -89,10 +89,7 @@ namespace River.OneMoreAddIn
 		/// <returns></returns>
 		public string GetTableGalleryItemScreentip(IRibbonControl control, int itemIndex)
 		{
-			var tip = string.Format(
-				Properties.Resources.TableTheme_Screentip,
-				tableThemeProvider.GetName(itemIndex));
-
+			var tip = tableThemeProvider.GetName(itemIndex);
 			//logger.WriteLine($"GetTableGalleryItemScreentip({control.Id}, {itemIndex}) = \"{tip}\"");
 			return tip;
 		}

@@ -32,7 +32,18 @@ namespace River.OneMoreAddIn.Commands
 
 		public string GetName(int index)
 		{
-			return index.ToString();
+			if (index < 0 || index >= themes.Count)
+			{
+				return string.Format(Resx.TableTheme_Screentip, index);
+			}
+
+			var theme = themes[index];
+			if (string.IsNullOrEmpty(theme.Name))
+			{
+				return string.Format(Resx.TableTheme_Screentip, index);
+			}
+
+			return theme.Name;
 		}
 	}
 }

@@ -29,6 +29,8 @@ namespace River.OneMoreAddIn.Commands
 		};
 
 
+		public string Name { get; set; }
+
 		// styles are applied in this order of the properties below
 		// where lower styles override upper styles
 

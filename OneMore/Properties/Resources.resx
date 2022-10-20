@@ -4204,4 +4204,12 @@ Current notebook</value>
   <data name="DefaultTableThemes" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\ribbon\defaulttablethemes.json;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
   </data>
+  <data name="ribEditTableThemesButton_Label" xml:space="preserve">
+    <value>Edit Custom Table Styles</value>
+    <comment>table styles ribbon gallery button</comment>
+  </data>
+  <data name="ribTableThemesButton_Label" xml:space="preserve">
+    <value>Table Styles</value>
+    <comment>ribbon</comment>
+  </data>
 </root>

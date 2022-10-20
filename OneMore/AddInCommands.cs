@@ -217,6 +217,12 @@ namespace River.OneMoreAddIn
 		public async Task EditStylesCmd(IRibbonControl control)
 			=> await factory.Run<EditStylesCommand>();
 
+
+		[Command("ribEditTableThemesButton_Label", Keys.None, "Tools")]
+		public async Task EditTableThemesCmd(IRibbonControl control)
+			=> await factory.Run<EditTableThemesCommand>();
+
+
 		public async Task EmbedSubpageCmd(IRibbonControl control)
 			=> await factory.Run<EmbedSubpageCommand>(false);
 
