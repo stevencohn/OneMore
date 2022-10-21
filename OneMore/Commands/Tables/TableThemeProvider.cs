@@ -100,7 +100,9 @@ namespace River.OneMoreAddIn.Commands
 		/// <returns>A List of themes</returns>
 		public List<TableTheme> GetUserThemes()
 		{
-			return themes.Skip(syscount).ToList();
+			return themes.Skip(syscount)
+				.OrderBy(t => t.Name)
+				.ToList();
 		}
 
 

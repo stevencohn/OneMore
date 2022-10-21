@@ -24,7 +24,10 @@ namespace River.OneMoreAddIn.Commands
 			using var dialog = new EditTableThemesDialog(themes);
 			if (dialog.ShowDialog(owner) == DialogResult.OK)
 			{
-
+				if (dialog.Modified)
+				{
+					ribbon.Invalidate();
+				}
 			}
 
 			await Task.Yield();

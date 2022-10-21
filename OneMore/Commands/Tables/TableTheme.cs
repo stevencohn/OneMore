@@ -4,11 +4,14 @@
 
 namespace River.OneMoreAddIn.Commands
 {
+	using System.ComponentModel;
 	using System.Drawing;
 
 
-	public class TableTheme
+	public class TableTheme : INotifyPropertyChanged
 	{
+		public event PropertyChangedEventHandler PropertyChanged;
+
 		public static Color Rainbow => ColorTranslator.FromHtml("#12345678");
 
 		/*
@@ -29,7 +32,17 @@ namespace River.OneMoreAddIn.Commands
 		};
 
 
-		public string Name { get; set; }
+		private string name;
+		public string Name
+		{
+			get => name;
+			set
+			{
+				name = value;
+				PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Name)));
+			}
+		}
+
 
 		// styles are applied in this order of the properties below
 		// where lower styles override upper styles
@@ -107,5 +120,10 @@ namespace River.OneMoreAddIn.Commands
 
 			return false;
 		}
+
+
+		public override int GetHashCode() => Name.GetHashCode();
+
+		public override string ToString() => Name;
 	}
 }

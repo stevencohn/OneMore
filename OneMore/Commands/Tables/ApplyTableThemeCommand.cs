@@ -118,6 +118,10 @@ namespace River.OneMoreAddIn.Commands
 			{
 				c0 = c1 = theme.WholeTable.ToRGBHtml();
 			}
+			else
+			{
+				c0 = c1 = "automatic";
+			}
 
 			if (!string.IsNullOrEmpty(c0))
 			{

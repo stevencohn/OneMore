@@ -30,7 +30,7 @@
 		{
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(EditTableThemesDialog));
 			this.cancelButton = new System.Windows.Forms.Button();
-			this.namesBox = new System.Windows.Forms.ComboBox();
+			this.combo = new System.Windows.Forms.ComboBox();
 			this.nameLabel = new System.Windows.Forms.Label();
 			this.elementsGroup = new System.Windows.Forms.GroupBox();
 			this.resetButton = new System.Windows.Forms.Button();
@@ -38,7 +38,9 @@
 			this.previewGroup = new System.Windows.Forms.GroupBox();
 			this.previewBox = new System.Windows.Forms.PictureBox();
 			this.toolstrip = new System.Windows.Forms.ToolStrip();
+			this.newButton = new System.Windows.Forms.ToolStripButton();
 			this.saveButton = new System.Windows.Forms.ToolStripButton();
+			this.renameButton = new System.Windows.Forms.ToolStripButton();
 			this.deleteButton = new System.Windows.Forms.ToolStripButton();
 			this.elementsGroup.SuspendLayout();
 			this.previewGroup.SuspendLayout();
@@ -59,12 +61,13 @@
 			// 
 			// namesBox
 			// 
-			this.namesBox.FormattingEnabled = true;
-			this.namesBox.Location = new System.Drawing.Point(113, 23);
-			this.namesBox.Name = "namesBox";
-			this.namesBox.Size = new System.Drawing.Size(406, 28);
-			this.namesBox.TabIndex = 0;
-			this.namesBox.SelectedIndexChanged += new System.EventHandler(this.ChooseTheme);
+			this.combo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.combo.FormattingEnabled = true;
+			this.combo.Location = new System.Drawing.Point(113, 23);
+			this.combo.Name = "namesBox";
+			this.combo.Size = new System.Drawing.Size(406, 28);
+			this.combo.TabIndex = 0;
+			this.combo.SelectedIndexChanged += new System.EventHandler(this.ChooseTheme);
 			// 
 			// nameLabel
 			// 
@@ -138,13 +141,25 @@
 			this.toolstrip.Dock = System.Windows.Forms.DockStyle.None;
 			this.toolstrip.ImageScalingSize = new System.Drawing.Size(24, 24);
 			this.toolstrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.newButton,
             this.saveButton,
+            this.renameButton,
             this.deleteButton});
 			this.toolstrip.Location = new System.Drawing.Point(525, 18);
 			this.toolstrip.Name = "toolstrip";
-			this.toolstrip.Size = new System.Drawing.Size(86, 33);
+			this.toolstrip.Size = new System.Drawing.Size(200, 33);
 			this.toolstrip.TabIndex = 10;
 			this.toolstrip.Text = "toolStrip1";
+			// 
+			// newButton
+			// 
+			this.newButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+			this.newButton.Image = global::River.OneMoreAddIn.Properties.Resources.NewStyle;
+			this.newButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+			this.newButton.Name = "newButton";
+			this.newButton.Size = new System.Drawing.Size(34, 28);
+			this.newButton.Text = "New Style";
+			this.newButton.Click += new System.EventHandler(this.CreateNewTheme);
 			// 
 			// saveButton
 			// 
@@ -154,13 +169,22 @@
 			this.saveButton.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.saveButton.Name = "saveButton";
 			this.saveButton.Size = new System.Drawing.Size(34, 28);
-			this.saveButton.Text = "toolStripButton1";
+			this.saveButton.Text = "Save";
 			this.saveButton.Click += new System.EventHandler(this.SaveTheme);
+			// 
+			// renameButton
+			// 
+			this.renameButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+			this.renameButton.Image = global::River.OneMoreAddIn.Properties.Resources.Rename;
+			this.renameButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+			this.renameButton.Name = "renameButton";
+			this.renameButton.Size = new System.Drawing.Size(34, 28);
+			this.renameButton.Text = "Rename";
+			this.renameButton.Click += new System.EventHandler(this.RenameTheme);
 			// 
 			// deleteButton
 			// 
 			this.deleteButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-			this.deleteButton.Enabled = false;
 			this.deleteButton.Image = global::River.OneMoreAddIn.Properties.Resources.Delete;
 			this.deleteButton.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.deleteButton.Name = "deleteButton";
@@ -178,7 +202,7 @@
 			this.Controls.Add(this.previewGroup);
 			this.Controls.Add(this.elementsGroup);
 			this.Controls.Add(this.nameLabel);
-			this.Controls.Add(this.namesBox);
+			this.Controls.Add(this.combo);
 			this.Controls.Add(this.cancelButton);
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -189,7 +213,6 @@
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
 			this.Text = "Custom Table Styles";
 			this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ConfirmClosing);
-			this.Load += new System.EventHandler(this.InitializeForm);
 			this.elementsGroup.ResumeLayout(false);
 			this.previewGroup.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.previewBox)).EndInit();
@@ -202,7 +225,7 @@
 
 		#endregion
 		private System.Windows.Forms.Button cancelButton;
-		private System.Windows.Forms.ComboBox namesBox;
+		private System.Windows.Forms.ComboBox combo;
 		private System.Windows.Forms.Label nameLabel;
 		private System.Windows.Forms.GroupBox elementsGroup;
 		private River.OneMoreAddIn.UI.MoreListView elementsBox;
@@ -212,5 +235,7 @@
 		private System.Windows.Forms.Button resetButton;
 		private System.Windows.Forms.PictureBox previewBox;
 		private System.Windows.Forms.ToolStripButton saveButton;
+		private System.Windows.Forms.ToolStripButton newButton;
+		private System.Windows.Forms.ToolStripButton renameButton;
 	}
 }

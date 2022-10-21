@@ -7,8 +7,8 @@ namespace River.OneMoreAddIn.Commands
 	using River.OneMoreAddIn.UI;
 	using System;
 	using System.Collections.Generic;
-	using System.ComponentModel;
 	using System.Drawing;
+	using System.Linq;
 	using System.Text.RegularExpressions;
 	using System.Windows.Forms;
 	using Resx = Properties.Resources;
@@ -16,13 +16,12 @@ namespace River.OneMoreAddIn.Commands
 
 	internal partial class EditTableThemesDialog : UI.LocalizableForm
 	{
-		private const int margin = 15;
+		private const int PreviewMargin = 15;
 
-		private readonly Rectangle bounds;
 		private readonly TableThemePainter painter;
-		private readonly List<TableTheme> themes;
+		private List<TableTheme> themes;
 		private TableTheme snapshot;
-		private bool dirty;
+		private bool reorganizing;
 
 		#region Swatch
 		private sealed class SwatchClickedEventArgs : EventArgs
@@ -99,9 +98,10 @@ namespace River.OneMoreAddIn.Commands
 
 			previewBox.Image = new Bitmap(previewBox.Width, previewBox.Height);
 
-			bounds = new Rectangle(
-				margin, margin,
-				previewBox.Width - (margin * 2), previewBox.Height - (margin * 2));
+			var bounds = new Rectangle(
+				PreviewMargin, PreviewMargin,
+				previewBox.Width - (PreviewMargin * 2),
+				previewBox.Height - (PreviewMargin * 2));
 
 			painter = new TableThemePainter(previewBox.Image, bounds, SystemColors.Window);
 		}
@@ -111,30 +111,28 @@ namespace River.OneMoreAddIn.Commands
 			: this()
 		{
 			// snapshot should always be a copy of the currently selected theme,
-			// not a reference, so here we instantiate two new instances
-			snapshot = new TableTheme { Name = "New" };
-			themes.Insert(0, new TableTheme { Name = "New" });
+			// not a reference, so instantiate the snapshot and copy into it
+			snapshot = new TableTheme();
+
+			if (themes.Count == 0)
+			{
+				themes.Insert(0, new TableTheme { Name = "New Style" });
+			}
+			else
+			{
+				themes[0].CopyTo(snapshot);
+			}
 
 			this.themes = themes;
 
-			var binding = new BindingList<TableTheme>();
-			namesBox.DataSource = binding;
-			namesBox.DisplayMember = "Name";
-
-			themes.ForEach(t => binding.Add(t));
+			themes.ForEach(t => { combo.Items.Add(t); });
+			combo.SelectedIndex = 0;
 
 			painter.Paint(snapshot);
-			dirty = false;
 		}
 
 
-		private void InitializeForm(object sender, EventArgs e)
-		{
-			if (namesBox.Items.Count > 0)
-			{
-				namesBox.SelectedIndex = 0;
-			}
-		}
+		public bool Modified { get; private set; }
 
 
 		private void InitializeElementsBox()
@@ -147,7 +145,6 @@ namespace River.OneMoreAddIn.Commands
 			foreach (var name in names)
 			{
 				var item = elementsBox.AddHostedItem(name);
-
 				var swatch = new Swatch(elementsBox);
 				swatch.Clicked += ChangeElementColor;
 				var subitem = item.AddHostedSubItem($"{name}Sub", swatch);
@@ -156,14 +153,45 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
+		private void SetToolbarState()
+		{
+			var theme = themes[combo.SelectedIndex];
+			var dirty = !theme.Equals(snapshot);
+			saveButton.Enabled = dirty;
+			resetButton.Enabled = dirty;
+		}
+
+
+		private void SortThemes()
+		{
+			var name = themes[combo.SelectedIndex].Name;
+			themes = themes.OrderBy(t => t.Name).ToList();
+
+			combo.Items.Clear();
+			themes.ForEach(t => combo.Items.Add(t));
+			combo.SelectedIndex = 0;
+
+			combo.SelectedIndex = themes.FindIndex(t => t.Name == name);
+		}
+
+
 		private void ChooseTheme(object sender, EventArgs e)
 		{
-			if (dirty)
+			if (combo.SelectedIndex < 0)
 			{
-
+				// TODO: is there a lifecycle event that causes this?
+				logger.WriteLine($"ChooseTheme -1");
+				return;
 			}
 
-			themes[namesBox.SelectedIndex].CopyTo(snapshot);
+			if (reorganizing)
+			{
+				logger.WriteLine($"ChooseTheme reorg");
+				return;
+			}
+
+			logger.WriteLine($"ChooseTheme SNAPSHOT");
+			themes[combo.SelectedIndex].CopyTo(snapshot);
 
 			SetSwatch(0, snapshot.WholeTable);
 			SetSwatch(1, snapshot.FirstColumnStripe);
@@ -205,13 +233,13 @@ namespace River.OneMoreAddIn.Commands
 		{
 			var swatch = GetSwatch(e.ItemIndex);
 
-			MessageBox.Show($"items[{e.ItemIndex}] color:{swatch.Color} selectedIndex:{namesBox.SelectedIndex}");
-			if (namesBox.SelectedIndex < 0 || namesBox.SelectedIndex >= namesBox.Items.Count)
+			MessageBox.Show($"items[{e.ItemIndex}] color:{swatch.Color} selectedIndex:{combo.SelectedIndex}");
+			if (combo.SelectedIndex < 0 || combo.SelectedIndex >= combo.Items.Count)
 			{
 				return;
 			}
 
-			var theme = themes[namesBox.SelectedIndex];
+			var theme = themes[combo.SelectedIndex];
 
 			switch (e.ItemIndex)
 			{
@@ -235,47 +263,118 @@ namespace River.OneMoreAddIn.Commands
 			painter.Paint(theme);
 			previewBox.Invalidate();
 
-			dirty = !theme.Equals(snapshot);
-			saveButton.Enabled = dirty;
-			resetButton.Enabled = dirty;
+			SetToolbarState();
 		}
 
 
 		private void ResetTheme(object sender, EventArgs e)
 		{
-			var theme = themes[namesBox.SelectedIndex];
+			reorganizing = true;
+			var theme = themes[combo.SelectedIndex];
 			snapshot.CopyTo(theme);
-			ChooseTheme(sender, e);
-			dirty = false;
-			saveButton.Enabled = false;
-			resetButton.Enabled = false;
+			SortThemes();
+			SetToolbarState();
+			reorganizing = false;
 		}
 
-		private void SaveTheme(object sender, EventArgs e)
+
+		private void CreateNewTheme(object sender, EventArgs e)
 		{
-			if (string.IsNullOrWhiteSpace(namesBox.Text))
+			if (!themes[combo.SelectedIndex].Equals(snapshot))
 			{
-				MoreMessageBox.ShowError(Owner, "Enter a name");
+				if (MoreMessageBox.Show(Owner, "Discard unsaved changes?",
+					MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
+				{
+					return;
+				}
+
+				snapshot.CopyTo(themes[combo.SelectedIndex]);
+			}
+
+			snapshot = new TableTheme();
+			themes.Add(new TableTheme { Name = "New Style" });
+			combo.Items.Add("New Style");
+			combo.SelectedIndex = combo.Items.Count - 1;
+
+			newButton.Enabled = false;
+		}
+
+
+		private void RenameTheme(object sender, EventArgs e)
+		{
+			var names = themes.Select(t => t.Name).ToList();
+
+			using var dialog = new RenameDialog(names, combo.Text) { Rename = true };
+			if (dialog.ShowDialog(this) != DialogResult.OK)
+			{
 				return;
 			}
 
-			if (namesBox.SelectedIndex == 0)
-			{
+			themes[combo.SelectedIndex].Name = dialog.StyleName;
 
-			}
+			reorganizing = true;
+			SortThemes();
+			SetToolbarState();
+			reorganizing = false;
+		}
 
+
+		private void SaveTheme(object sender, EventArgs e)
+		{
 			new TableThemeProvider().SaveUserThemes(themes);
+			Modified = true;
+
+			themes[combo.SelectedIndex].CopyTo(snapshot);
+			SetToolbarState();
+			newButton.Enabled = true;
 		}
 
 
 		private void DeleteTheme(object sender, EventArgs e)
 		{
+			if (MoreMessageBox.Show(Owner, "Delete this style?",
+				MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+			{
+				reorganizing = true;
+				var index = combo.SelectedIndex;
+				themes.RemoveAt(index);
+				combo.Items.RemoveAt(index);
 
+				if (themes.Count == 0)
+				{
+					themes.Add(new TableTheme { Name = "New Style" });
+					snapshot = new TableTheme();
+					combo.SelectedIndex = 0;
+				}
+				else
+				{
+					if (index >= themes.Count)
+					{
+						index = themes.Count - 1;
+					}
+
+					themes[index].CopyTo(snapshot);
+					combo.SelectedIndex = index;
+				}
+
+				new TableThemeProvider().SaveUserThemes(themes);
+				Modified = true;
+
+				SetToolbarState();
+				reorganizing = false;
+			}
 		}
 
 		private void ConfirmClosing(object sender, FormClosingEventArgs e)
 		{
-
+			if (!themes[combo.SelectedIndex].Equals(snapshot))
+			{
+				if (MoreMessageBox.Show(Owner, "Discard unsaved changes?",
+					MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
+				{
+					e.Cancel = true;
+				}
+			}
 		}
 	}
 }
