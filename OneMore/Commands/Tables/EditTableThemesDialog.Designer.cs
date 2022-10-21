@@ -31,11 +31,11 @@
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(EditTableThemesDialog));
 			this.okButton = new System.Windows.Forms.Button();
 			this.cancelButton = new System.Windows.Forms.Button();
-			this.comboBox1 = new System.Windows.Forms.ComboBox();
+			this.namesBox = new System.Windows.Forms.ComboBox();
 			this.nameLabel = new System.Windows.Forms.Label();
 			this.elementsGroup = new System.Windows.Forms.GroupBox();
 			this.resetButton = new System.Windows.Forms.Button();
-			this.elementsBox = new System.Windows.Forms.ListBox();
+			this.elementsBox = new River.OneMoreAddIn.UI.MoreListView();
 			this.previewGroup = new System.Windows.Forms.GroupBox();
 			this.previewBox = new System.Windows.Forms.PictureBox();
 			this.toolstrip = new System.Windows.Forms.ToolStrip();
@@ -51,10 +51,10 @@
 			// 
 			this.okButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.okButton.DialogResult = System.Windows.Forms.DialogResult.OK;
-			this.okButton.Location = new System.Drawing.Point(515, 455);
+			this.okButton.Location = new System.Drawing.Point(515, 534);
 			this.okButton.Name = "okButton";
 			this.okButton.Size = new System.Drawing.Size(110, 34);
-			this.okButton.TabIndex = 5;
+			this.okButton.TabIndex = 1;
 			this.okButton.Text = "OK";
 			this.okButton.UseVisualStyleBackColor = true;
 			// 
@@ -62,20 +62,21 @@
 			// 
 			this.cancelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-			this.cancelButton.Location = new System.Drawing.Point(641, 455);
+			this.cancelButton.Location = new System.Drawing.Point(641, 534);
 			this.cancelButton.Name = "cancelButton";
 			this.cancelButton.Size = new System.Drawing.Size(110, 34);
-			this.cancelButton.TabIndex = 4;
+			this.cancelButton.TabIndex = 2;
 			this.cancelButton.Text = "Cancel";
 			this.cancelButton.UseVisualStyleBackColor = true;
 			// 
-			// comboBox1
+			// namesBox
 			// 
-			this.comboBox1.FormattingEnabled = true;
-			this.comboBox1.Location = new System.Drawing.Point(113, 23);
-			this.comboBox1.Name = "comboBox1";
-			this.comboBox1.Size = new System.Drawing.Size(406, 28);
-			this.comboBox1.TabIndex = 6;
+			this.namesBox.FormattingEnabled = true;
+			this.namesBox.Location = new System.Drawing.Point(113, 23);
+			this.namesBox.Name = "namesBox";
+			this.namesBox.Size = new System.Drawing.Size(406, 28);
+			this.namesBox.TabIndex = 0;
+			this.namesBox.SelectedIndexChanged += new System.EventHandler(this.ChooseTheme);
 			// 
 			// nameLabel
 			// 
@@ -93,7 +94,7 @@
 			this.elementsGroup.Location = new System.Drawing.Point(27, 73);
 			this.elementsGroup.Name = "elementsGroup";
 			this.elementsGroup.Padding = new System.Windows.Forms.Padding(10, 3, 3, 3);
-			this.elementsGroup.Size = new System.Drawing.Size(492, 356);
+			this.elementsGroup.Size = new System.Drawing.Size(492, 441);
 			this.elementsGroup.TabIndex = 8;
 			this.elementsGroup.TabStop = false;
 			this.elementsGroup.Text = "Table Elements";
@@ -101,35 +102,27 @@
 			// resetButton
 			// 
 			this.resetButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-			this.resetButton.Location = new System.Drawing.Point(13, 316);
+			this.resetButton.Location = new System.Drawing.Point(13, 401);
 			this.resetButton.Name = "resetButton";
 			this.resetButton.Size = new System.Drawing.Size(110, 34);
-			this.resetButton.TabIndex = 6;
+			this.resetButton.TabIndex = 1;
 			this.resetButton.Text = "Reset";
 			this.resetButton.UseVisualStyleBackColor = true;
+			this.resetButton.Click += new System.EventHandler(this.ResetTheme);
 			// 
 			// elementsBox
 			// 
-			this.elementsBox.FormattingEnabled = true;
-			this.elementsBox.ItemHeight = 20;
-			this.elementsBox.Items.AddRange(new object[] {
-            "Whole Table",
-            "First Column Stripe",
-            "Second Column Stripe",
-            "First Row Stripe",
-            "Second Row Stripe",
-            "First Column",
-            "Last Column",
-            "Header Row",
-            "Total Row",
-            "Header First Cell",
-            "Header Last Cell",
-            "Total Row First Cell",
-            "Total Row Last Cell"});
+			this.elementsBox.ControlPadding = 2;
+			this.elementsBox.FullRowSelect = true;
+			this.elementsBox.HideSelection = false;
+			this.elementsBox.HighlightBackground = System.Drawing.Color.FromArgb(((int)(((byte)(215)))), ((int)(((byte)(193)))), ((int)(((byte)(255)))));
 			this.elementsBox.Location = new System.Drawing.Point(13, 25);
 			this.elementsBox.Name = "elementsBox";
-			this.elementsBox.Size = new System.Drawing.Size(473, 284);
+			this.elementsBox.OwnerDraw = true;
+			this.elementsBox.Size = new System.Drawing.Size(473, 370);
 			this.elementsBox.TabIndex = 0;
+			this.elementsBox.UseCompatibleStateImageBehavior = false;
+			this.elementsBox.View = System.Windows.Forms.View.Details;
 			// 
 			// previewGroup
 			// 
@@ -172,6 +165,7 @@
 			this.renameButton.Name = "renameButton";
 			this.renameButton.Size = new System.Drawing.Size(34, 28);
 			this.renameButton.Text = "Rename";
+			this.renameButton.Click += new System.EventHandler(this.RenameTheme);
 			// 
 			// deleteButton
 			// 
@@ -181,6 +175,7 @@
 			this.deleteButton.Name = "deleteButton";
 			this.deleteButton.Size = new System.Drawing.Size(34, 28);
 			this.deleteButton.Text = "Delete";
+			this.deleteButton.Click += new System.EventHandler(this.DeleteTheme);
 			// 
 			// EditTableThemesDialog
 			// 
@@ -188,12 +183,12 @@
 			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.CancelButton = this.cancelButton;
-			this.ClientSize = new System.Drawing.Size(763, 501);
+			this.ClientSize = new System.Drawing.Size(763, 580);
 			this.Controls.Add(this.toolstrip);
 			this.Controls.Add(this.previewGroup);
 			this.Controls.Add(this.elementsGroup);
 			this.Controls.Add(this.nameLabel);
-			this.Controls.Add(this.comboBox1);
+			this.Controls.Add(this.namesBox);
 			this.Controls.Add(this.okButton);
 			this.Controls.Add(this.cancelButton);
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
@@ -218,10 +213,10 @@
 
 		private System.Windows.Forms.Button okButton;
 		private System.Windows.Forms.Button cancelButton;
-		private System.Windows.Forms.ComboBox comboBox1;
+		private System.Windows.Forms.ComboBox namesBox;
 		private System.Windows.Forms.Label nameLabel;
 		private System.Windows.Forms.GroupBox elementsGroup;
-		private System.Windows.Forms.ListBox elementsBox;
+		private River.OneMoreAddIn.UI.MoreListView elementsBox;
 		private System.Windows.Forms.GroupBox previewGroup;
 		private System.Windows.Forms.ToolStrip toolstrip;
 		private System.Windows.Forms.ToolStripButton renameButton;

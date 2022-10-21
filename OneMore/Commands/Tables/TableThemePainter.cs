@@ -14,12 +14,14 @@ namespace River.OneMoreAddIn.Commands
 
 		private readonly Image image;
 		private readonly Rectangle bounds;
+		private readonly Color background;
 
 
-		public TableThemePainter(Image image, Rectangle bounds)
+		public TableThemePainter(Image image, Rectangle bounds, Color background)
 		{
 			this.image = image;
 			this.bounds = bounds;
+			this.background = background;
 		}
 
 
@@ -33,7 +35,7 @@ namespace River.OneMoreAddIn.Commands
 
 		private void DrawGrid(Graphics g)
 		{
-			g.Clear(SystemColors.Window);
+			g.Clear(background);
 			g.DrawRectangle(Pens.Gray, bounds);
 
 			var fudge = 5;

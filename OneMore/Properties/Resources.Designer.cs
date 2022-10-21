@@ -1873,6 +1873,27 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Whole Table
+        ///First Column Stripe
+        ///Second Column Stripe
+        ///First Row Stripe
+        ///Second Row Stripe
+        ///First Column
+        ///Last Column
+        ///Header Row
+        ///Total Row
+        ///Header First Cell
+        ///Header Last Cell
+        ///Total Row First Cell
+        ///Total Row Last Cell.
+        /// </summary>
+        internal static string EditTableThemesDialog_elements {
+            get {
+                return ResourceManager.GetString("EditTableThemesDialog_elements", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Source page contains no content.
         /// </summary>
         internal static string EmbedSubpageCommand_NoContent {
@@ -5402,10 +5423,10 @@ namespace River.OneMoreAddIn.Properties {
         ///      &lt;tab idMso=&quot;TabHome&quot;&gt;
         ///        &lt;group id=&quot;ribOneMoreGroup&quot; getLabel=&quot;GetRibbonLabel&quot;&gt;
         ///          &lt;gallery
-        ///            id=&quot;ribCustomStylesButton&quot; columns=&quot;4&quot; showItemLabel=&quot;false&quot; size=&quot;normal&quot; imageMso=&quot;StylesPane&quot;
+        ///            id=&quot;ribCustomStylesButton&quot; columns=&quot;4&quot; showItemLabel=&quot;false&quot; size=&quot;normal&quot;
+        ///            imageMso=&quot;StylesPane&quot;
         ///            getLabel=&quot;GetRibbonLabel&quot;
-        ///            getItemCount=&quot;GetStyleGalleryItemCount&quot;
-        ///    [rest of string was truncated]&quot;;.
+        ///            getItemCount=&quot;GetStyleGalleryIt [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string Ribbon {
             get {

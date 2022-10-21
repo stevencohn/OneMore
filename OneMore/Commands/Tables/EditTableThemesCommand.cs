@@ -1,13 +1,11 @@
 ﻿//************************************************************************************************
-// Copyright © 2022 Steven M Cohn.  All rights reserved.
+// Copyright © 2022 Steven M Cohn. All rights reserved.
 //************************************************************************************************
 
 namespace River.OneMoreAddIn.Commands
 {
-	using System.Linq;
 	using System.Threading.Tasks;
-	using System.Xml.Linq;
-	using Resx = River.OneMoreAddIn.Properties.Resources;
+	using System.Windows.Forms;
 
 
 	internal class EditTableThemesCommand : Command
@@ -20,8 +18,14 @@ namespace River.OneMoreAddIn.Commands
 
 		public override async Task Execute(params object[] args)
 		{
-			using var dialog = new EditTableThemesDialog();
-			dialog.ShowDialog(owner);
+			var provider = new TableThemeProvider();
+			var themes = provider.GetUserThemes();
+
+			using var dialog = new EditTableThemesDialog(themes);
+			if (dialog.ShowDialog(owner) == DialogResult.OK)
+			{
+
+			}
 
 			await Task.Yield();
 		}

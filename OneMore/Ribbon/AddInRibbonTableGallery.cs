@@ -16,7 +16,8 @@ namespace River.OneMoreAddIn
 
 	public partial class AddIn
 	{
-		private static TableThemeProvider tableThemeProvider;
+		private TableThemeProvider tableThemeProvider;
+		private Color tableGalleryBackground = Color.Empty;
 
 
 		/*
@@ -29,7 +30,6 @@ namespace River.OneMoreAddIn
 		 *     GetTableGalleryItemId(tableGallery, 0)
 		 */
 
-
 		/// <summary>
 		/// Called by ribbon getItemCount, once when the ribbon is shown after it is invalidated
 		/// </summary>
@@ -37,14 +37,19 @@ namespace River.OneMoreAddIn
 		/// <returns></returns>
 		public int GetTableGalleryItemCount(IRibbonControl control)
 		{
-			using (var one = new OneNote(out var page, out _))
+			using var one = new OneNote(out var page, out _, OneNote.PageDetail.Basic);
+			var background = page.GetPageColor(out _, out var black);
+			if (black)
 			{
-				galleryBack = page.GetPageColor(out _, out var black);
-				if (black)
-				{
-					// translate Black into a custom black smoke
-					galleryBack = ColorTranslator.FromHtml("#201F1E");
-				}
+				// translate Black into a custom black smoke
+				background = ColorTranslator.FromHtml("#201F1E");
+			}
+
+			if (tableGalleryBackground != background)
+			{
+				tableGalleryBackground = background;
+				//logger.WriteLine($"GetTableGalleryItemCount({control.Id}) background:{tableGalleryBackground}");
+				ribbon.Invalidate();
 			}
 
 			// load/reload cached theme
@@ -77,7 +82,8 @@ namespace River.OneMoreAddIn
 		public IStream GetTableGalleryItemImage(IRibbonControl control, int itemIndex)
 		{
 			//logger.WriteLine($"GetTableGalleryItemImage({control.Id}, {itemIndex})");
-			return TileFactory.MakeTableTile(tableThemeProvider.GetTheme(itemIndex), galleryBack);
+			return TileFactory.MakeTableTile(
+				tableThemeProvider.GetTheme(itemIndex), tableGalleryBackground);
 		}
 
 

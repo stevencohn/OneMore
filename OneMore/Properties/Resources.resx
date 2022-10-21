@@ -4212,4 +4212,20 @@ Current notebook</value>
     <value>Table Styles</value>
     <comment>ribbon</comment>
   </data>
+  <data name="EditTableThemesDialog_elements" xml:space="preserve">
+    <value>Whole Table
+First Column Stripe
+Second Column Stripe
+First Row Stripe
+Second Row Stripe
+First Column
+Last Column
+Header Row
+Total Row
+Header First Cell
+Header Last Cell
+Total Row First Cell
+Total Row Last Cell</value>
+    <comment>MoreListView</comment>
+  </data>
 </root>

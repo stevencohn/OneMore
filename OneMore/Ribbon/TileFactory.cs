@@ -20,9 +20,9 @@ namespace River.OneMoreAddIn
 		/// Create a new image of a font style sample for use in the Custom Styles ribbon gallery
 		/// </summary>
 		/// <param name="themeStyle">The Style of the font sample to render</param>
-		/// <param name="pageColor">The background color of the given page</param>
+		/// <param name="background">The background color of the given page</param>
 		/// <returns>A new Image instance</returns>
-		public static IStream MakeStyleTile(Style themeStyle, Color pageColor)
+		public static IStream MakeStyleTile(Style themeStyle, Color background)
 		{
 			var scale = 1.0f;
 
@@ -34,7 +34,7 @@ namespace River.OneMoreAddIn
 
 			using var image = new Bitmap(tileWidth, tileHeight);
 			using var g = Graphics.FromImage(image);
-			g.Clear(pageColor);
+			g.Clear(background);
 			g.InterpolationMode = InterpolationMode.NearestNeighbor;
 			g.TextRenderingHint = TextRenderingHint.AntiAlias;
 
@@ -45,7 +45,7 @@ namespace River.OneMoreAddIn
 
 			using var font = new Font("Tahoma", 6f * scale, FontStyle.Regular);
 			var name = FitText(style.Name, tileWidth, g, font, out var nameSize);
-			var backbrush = pageColor.GetBrightness() <= 0.5 ? Brushes.White : Brushes.Black;
+			var backbrush = background.GetBrightness() <= 0.5 ? Brushes.White : Brushes.Black;
 
 			// centered horizontally at top of tile
 			g.DrawString(name, font, backbrush, (tileWidth - nameSize.Width) / 2f, 3f);
@@ -54,7 +54,7 @@ namespace River.OneMoreAddIn
 
 			var fore = style.ApplyColors
 				? style.Foreground
-				: pageColor.GetBrightness() <= 0.5 ? Color.White : Color.Black;
+				: background.GetBrightness() <= 0.5 ? Color.White : Color.Black;
 
 			using var brush = new SolidBrush(fore);
 			// either centered or left justified
@@ -126,16 +126,16 @@ namespace River.OneMoreAddIn
 		/// 
 		/// </summary>
 		/// <param name="theme"></param>
-		/// <param name="pageColor"></param>
+		/// <param name="background"></param>
 		/// <returns></returns>
-		public static IStream MakeTableTile(TableTheme theme, Color pageColor)
+		public static IStream MakeTableTile(TableTheme theme, Color background)
 		{
 			var image = new Bitmap(70, 60);
 
 			// inset table so there's a margin
 			var bounds = new Rectangle(7, 7, 55, 45);
 
-			var painter = new TableThemePainter(image, bounds);
+			var painter = new TableThemePainter(image, bounds, background);
 			painter.Paint(theme);
 
 			return image.GetReadOnlyStream();
