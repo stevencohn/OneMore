@@ -111,6 +111,18 @@ namespace River.OneMoreAddIn.UI
 		}
 
 
+		public static DialogResult ShowError(IWin32Window owner, string text)
+		{
+			using (var box = new MoreMessageBox())
+			{
+				box.SetMessage(text);
+				box.SetIcon(MessageBoxIcon.Error);
+				box.SetButtons(MessageBoxButtons.OK);
+				return box.ShowDialog(owner);
+			}
+		}
+
+
 		public static DialogResult ShowErrorWithLogLink(IWin32Window owner, string text)
 		{
 			using (var box = new MoreMessageBox())

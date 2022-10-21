@@ -5,13 +5,17 @@
 namespace River.OneMoreAddIn.Commands
 {
 	using Newtonsoft.Json;
+	using System;
 	using System.Collections.Generic;
+	using System.IO;
 	using System.Linq;
-	using Resx = River.OneMoreAddIn.Properties.Resources;
+	using Resx = Properties.Resources;
 
 
 	internal class TableThemeProvider
 	{
+		private const string UserFileName = "TableStyles.json";
+
 		private readonly List<TableTheme> themes;
 		private readonly int syscount;
 
@@ -25,6 +29,29 @@ namespace River.OneMoreAddIn.Commands
 
 			// first 'syscount' entires are system-defined default themes
 			syscount = themes.Count;
+
+			themes.AddRange(LoadUserThemes());
+		}
+
+
+		private IEnumerable<TableTheme> LoadUserThemes()
+		{
+			var path = Path.Combine(PathHelper.GetAppDataPath(), UserFileName);
+
+			try
+			{
+				if (File.Exists(path))
+				{
+					return JsonConvert
+						.DeserializeObject<List<TableTheme>>(File.ReadAllText(path));
+				}
+			}
+			catch (Exception exc)
+			{
+				Logger.Current.WriteLine($"error loading {path}", exc);
+			}
+
+			return new List<TableTheme>();
 		}
 
 
@@ -68,12 +95,38 @@ namespace River.OneMoreAddIn.Commands
 
 
 		/// <summary>
-		/// 
+		/// Returns only the user-defined themes.
 		/// </summary>
-		/// <returns></returns>
+		/// <returns>A List of themes</returns>
 		public List<TableTheme> GetUserThemes()
 		{
 			return themes.Skip(syscount).ToList();
+		}
+
+
+		/// <summary>
+		/// Saves user defines themes to the user's appdata folder
+		/// </summary>
+		/// <param name="themes">A list of themes</param>
+		public void SaveUserThemes(IEnumerable<TableTheme> themes)
+		{
+			var json = JsonConvert.SerializeObject(themes,
+				Formatting.Indented,
+				new JsonSerializerSettings
+				{
+					DefaultValueHandling = DefaultValueHandling.Ignore
+				});
+
+			var path = Path.Combine(PathHelper.GetAppDataPath(), UserFileName);
+
+			try
+			{
+				File.WriteAllText(path, json);
+			}
+			catch (Exception exc)
+			{
+				Logger.Current.WriteLine($"error saving {path}", exc);
+			}
 		}
 	}
 }

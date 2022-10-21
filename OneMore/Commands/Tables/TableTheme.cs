@@ -61,5 +61,51 @@ namespace River.OneMoreAddIn.Commands
 		public Color TotalFirstCell { get; set; }
 
 		public Color TotalLastCell { get; set; }
+
+
+		public void CopyTo(TableTheme other)
+		{
+			other.Name = Name;
+			other.WholeTable = WholeTable;
+			other.FirstColumnStripe = FirstColumnStripe;
+			other.SecondColumnStripe = SecondColumnStripe;
+			other.FirstRowStripe = FirstRowStripe;
+			other.SecondRowStripe = SecondRowStripe;
+			other.FirstColumn = FirstColumn;
+			other.LastColumn = LastColumn;
+			other.HeaderRow = HeaderRow;
+			other.TotalRow = TotalRow;
+			other.HeaderFirstCell = HeaderFirstCell;
+			other.HeaderLastCell = HeaderLastCell;
+			other.TotalFirstCell = TotalFirstCell;
+			other.TotalLastCell = TotalLastCell;
+		}
+
+
+		public override bool Equals(object obj)
+		{
+			if (obj is TableTheme other)
+			{
+				if (other.Name == Name &&
+					other.WholeTable.Equals(WholeTable) &&
+					other.FirstColumnStripe.Equals(FirstColumnStripe) &&
+					other.SecondColumnStripe.Equals(SecondColumnStripe) &&
+					other.FirstRowStripe.Equals(FirstRowStripe) &&
+					other.SecondRowStripe.Equals(SecondRowStripe) &&
+					other.FirstColumn.Equals(FirstColumn) &&
+					other.LastColumn.Equals(LastColumn) &&
+					other.HeaderRow.Equals(HeaderRow) &&
+					other.TotalRow.Equals(TotalRow) &&
+					other.HeaderFirstCell.Equals(HeaderFirstCell) &&
+					other.HeaderLastCell.Equals(HeaderLastCell) &&
+					other.TotalFirstCell.Equals(TotalFirstCell) &&
+					other.TotalLastCell.Equals(TotalLastCell))
+				{
+					return true;
+				}
+			}
+
+			return false;
+		}
 	}
 }

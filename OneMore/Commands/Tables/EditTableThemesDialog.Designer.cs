@@ -29,7 +29,6 @@
 		private void InitializeComponent()
 		{
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(EditTableThemesDialog));
-			this.okButton = new System.Windows.Forms.Button();
 			this.cancelButton = new System.Windows.Forms.Button();
 			this.namesBox = new System.Windows.Forms.ComboBox();
 			this.nameLabel = new System.Windows.Forms.Label();
@@ -39,24 +38,13 @@
 			this.previewGroup = new System.Windows.Forms.GroupBox();
 			this.previewBox = new System.Windows.Forms.PictureBox();
 			this.toolstrip = new System.Windows.Forms.ToolStrip();
-			this.renameButton = new System.Windows.Forms.ToolStripButton();
+			this.saveButton = new System.Windows.Forms.ToolStripButton();
 			this.deleteButton = new System.Windows.Forms.ToolStripButton();
 			this.elementsGroup.SuspendLayout();
 			this.previewGroup.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.previewBox)).BeginInit();
 			this.toolstrip.SuspendLayout();
 			this.SuspendLayout();
-			// 
-			// okButton
-			// 
-			this.okButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-			this.okButton.DialogResult = System.Windows.Forms.DialogResult.OK;
-			this.okButton.Location = new System.Drawing.Point(515, 534);
-			this.okButton.Name = "okButton";
-			this.okButton.Size = new System.Drawing.Size(110, 34);
-			this.okButton.TabIndex = 1;
-			this.okButton.Text = "OK";
-			this.okButton.UseVisualStyleBackColor = true;
 			// 
 			// cancelButton
 			// 
@@ -102,6 +90,7 @@
 			// resetButton
 			// 
 			this.resetButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.resetButton.Enabled = false;
 			this.resetButton.Location = new System.Drawing.Point(13, 401);
 			this.resetButton.Name = "resetButton";
 			this.resetButton.Size = new System.Drawing.Size(110, 34);
@@ -149,7 +138,7 @@
 			this.toolstrip.Dock = System.Windows.Forms.DockStyle.None;
 			this.toolstrip.ImageScalingSize = new System.Drawing.Size(24, 24);
 			this.toolstrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.renameButton,
+            this.saveButton,
             this.deleteButton});
 			this.toolstrip.Location = new System.Drawing.Point(525, 18);
 			this.toolstrip.Name = "toolstrip";
@@ -157,19 +146,21 @@
 			this.toolstrip.TabIndex = 10;
 			this.toolstrip.Text = "toolStrip1";
 			// 
-			// renameButton
+			// saveButton
 			// 
-			this.renameButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-			this.renameButton.Image = global::River.OneMoreAddIn.Properties.Resources.Rename;
-			this.renameButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-			this.renameButton.Name = "renameButton";
-			this.renameButton.Size = new System.Drawing.Size(34, 28);
-			this.renameButton.Text = "Rename";
-			this.renameButton.Click += new System.EventHandler(this.RenameTheme);
+			this.saveButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+			this.saveButton.Enabled = false;
+			this.saveButton.Image = global::River.OneMoreAddIn.Properties.Resources.SaveAs;
+			this.saveButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+			this.saveButton.Name = "saveButton";
+			this.saveButton.Size = new System.Drawing.Size(34, 28);
+			this.saveButton.Text = "toolStripButton1";
+			this.saveButton.Click += new System.EventHandler(this.SaveTheme);
 			// 
 			// deleteButton
 			// 
 			this.deleteButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+			this.deleteButton.Enabled = false;
 			this.deleteButton.Image = global::River.OneMoreAddIn.Properties.Resources.Delete;
 			this.deleteButton.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.deleteButton.Name = "deleteButton";
@@ -179,7 +170,6 @@
 			// 
 			// EditTableThemesDialog
 			// 
-			this.AcceptButton = this.okButton;
 			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.CancelButton = this.cancelButton;
@@ -189,7 +179,6 @@
 			this.Controls.Add(this.elementsGroup);
 			this.Controls.Add(this.nameLabel);
 			this.Controls.Add(this.namesBox);
-			this.Controls.Add(this.okButton);
 			this.Controls.Add(this.cancelButton);
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -199,6 +188,8 @@
 			this.Padding = new System.Windows.Forms.Padding(20, 20, 0, 0);
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
 			this.Text = "Custom Table Styles";
+			this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ConfirmClosing);
+			this.Load += new System.EventHandler(this.InitializeForm);
 			this.elementsGroup.ResumeLayout(false);
 			this.previewGroup.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.previewBox)).EndInit();
@@ -210,8 +201,6 @@
 		}
 
 		#endregion
-
-		private System.Windows.Forms.Button okButton;
 		private System.Windows.Forms.Button cancelButton;
 		private System.Windows.Forms.ComboBox namesBox;
 		private System.Windows.Forms.Label nameLabel;
@@ -219,9 +208,9 @@
 		private River.OneMoreAddIn.UI.MoreListView elementsBox;
 		private System.Windows.Forms.GroupBox previewGroup;
 		private System.Windows.Forms.ToolStrip toolstrip;
-		private System.Windows.Forms.ToolStripButton renameButton;
 		private System.Windows.Forms.ToolStripButton deleteButton;
 		private System.Windows.Forms.Button resetButton;
 		private System.Windows.Forms.PictureBox previewBox;
+		private System.Windows.Forms.ToolStripButton saveButton;
 	}
 }
