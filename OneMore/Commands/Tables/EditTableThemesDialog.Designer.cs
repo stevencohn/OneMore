@@ -42,6 +42,7 @@
 			this.saveButton = new System.Windows.Forms.ToolStripButton();
 			this.renameButton = new System.Windows.Forms.ToolStripButton();
 			this.deleteButton = new System.Windows.Forms.ToolStripButton();
+			this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
 			this.elementsGroup.SuspendLayout();
 			this.previewGroup.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.previewBox)).BeginInit();
@@ -59,12 +60,12 @@
 			this.cancelButton.Text = "Cancel";
 			this.cancelButton.UseVisualStyleBackColor = true;
 			// 
-			// namesBox
+			// combo
 			// 
 			this.combo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this.combo.FormattingEnabled = true;
 			this.combo.Location = new System.Drawing.Point(113, 23);
-			this.combo.Name = "namesBox";
+			this.combo.Name = "combo";
 			this.combo.Size = new System.Drawing.Size(406, 28);
 			this.combo.TabIndex = 0;
 			this.combo.SelectedIndexChanged += new System.EventHandler(this.ChooseTheme);
@@ -142,12 +143,13 @@
 			this.toolstrip.ImageScalingSize = new System.Drawing.Size(24, 24);
 			this.toolstrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.newButton,
-            this.saveButton,
             this.renameButton,
+            this.saveButton,
+            this.toolStripSeparator1,
             this.deleteButton});
 			this.toolstrip.Location = new System.Drawing.Point(525, 18);
 			this.toolstrip.Name = "toolstrip";
-			this.toolstrip.Size = new System.Drawing.Size(200, 33);
+			this.toolstrip.Size = new System.Drawing.Size(206, 33);
 			this.toolstrip.TabIndex = 10;
 			this.toolstrip.Text = "toolStrip1";
 			// 
@@ -191,6 +193,11 @@
 			this.deleteButton.Size = new System.Drawing.Size(34, 28);
 			this.deleteButton.Text = "Delete";
 			this.deleteButton.Click += new System.EventHandler(this.DeleteTheme);
+			// 
+			// toolStripSeparator1
+			// 
+			this.toolStripSeparator1.Name = "toolStripSeparator1";
+			this.toolStripSeparator1.Size = new System.Drawing.Size(6, 33);
 			// 
 			// EditTableThemesDialog
 			// 
@@ -237,5 +244,6 @@
 		private System.Windows.Forms.ToolStripButton saveButton;
 		private System.Windows.Forms.ToolStripButton newButton;
 		private System.Windows.Forms.ToolStripButton renameButton;
+		private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
 	}
 }
