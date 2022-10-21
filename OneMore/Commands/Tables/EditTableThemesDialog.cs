@@ -95,12 +95,12 @@ namespace River.OneMoreAddIn.Commands
 				Margin = new Padding(4, 2, 0, 2),
 				FlatStyle = FlatStyle.Flat,
 				Width = 60,
-				Height = 30
+				Height = 28
 			};
 
 			button.MouseClick += new MouseEventHandler((s, e) =>
 			{
-				if (((Control)s).Tag is ListViewItem host)
+				if (((Control)s).Parent.Tag is ListViewItem host)
 				{
 					//view.SelectIf(host);
 					var index = view.Items.IndexOf(host);
