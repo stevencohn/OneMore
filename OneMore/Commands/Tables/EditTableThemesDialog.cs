@@ -28,6 +28,7 @@ namespace River.OneMoreAddIn.Commands
 		{
 			public SwatchClickedEventArgs(int index) { ItemIndex = index; }
 			public int ItemIndex { get; set; }
+			public bool Reset { get; set; }
 		}
 
 		delegate void SwatchClickedHandler(object sender, SwatchClickedEventArgs e);
@@ -44,22 +45,26 @@ namespace River.OneMoreAddIn.Commands
 				picture = new PictureBox
 				{
 					Image = image,
+					Dock = DockStyle.Left,
 					Width = image.Width,
-					Height = image.Height,
-					Location = new Point(0, 2)
+					Height = image.Height
 				};
 
 				SetColor(Color.WhiteSmoke);
 
-				var button = new MoreLinkLabel
+				var edit = new MoreLinkLabel
 				{
 					Text = "Edit",
-					Font = new Font("Segoe UI", 7, FontStyle.Regular),
+					Font = new Font("Segoe UI", 8, FontStyle.Regular),
 					Margin = new Padding(5, 2, 0, 2),
-					Location = new Point(picture.Width, 2)
+					Dock = DockStyle.Left
 				};
 
-				button.LinkClicked += new LinkLabelLinkClickedEventHandler((s, e) =>
+				using var g = Graphics.FromImage(image);
+				var size = g.MeasureString(edit.Text, edit.Font);
+				edit.Width = (int)(size.Width + 8);
+
+				edit.LinkClicked += new LinkLabelLinkClickedEventHandler((s, e) =>
 				{
 					if (((Control)s).Parent.Tag is ListViewItem host)
 					{
@@ -68,12 +73,31 @@ namespace River.OneMoreAddIn.Commands
 					}
 				});
 
-				Width = 100;
+				var reset = new MoreLinkLabel
+				{
+					Text = "Reset",
+					Font = new Font("Segoe UI", 8, FontStyle.Regular),
+					Margin = new Padding(7, 2, 0, 2),
+					Dock = DockStyle.Fill
+				};
+
+				reset.LinkClicked += new LinkLabelLinkClickedEventHandler((s, e) =>
+				{
+					if (((Control)s).Parent.Tag is ListViewItem host)
+					{
+						var index = view.Items.IndexOf(host);
+						Clicked?.Invoke(host,
+							new SwatchClickedEventArgs(index) { Reset = true });
+					}
+				});
+
+				Width = 160;
 				Height = 28;
 				Margin = new Padding(0, 2, 0, 2);
 				Padding = new Padding(0, 2, 0, 2);
 
-				Controls.Add(button);
+				Controls.Add(reset);
+				Controls.Add(edit);
 				Controls.Add(picture);
 			}
 
@@ -138,8 +162,8 @@ namespace River.OneMoreAddIn.Commands
 		private void InitializeElementsBox()
 		{
 			elementsBox.HighlightBackground = Color.Transparent;
-			elementsBox.Columns.Add(new MoreColumnHeader("Element", 280) { AutoSizeItems = true });
-			elementsBox.Columns.Add(new MoreColumnHeader("Color", 120));
+			elementsBox.Columns.Add(new MoreColumnHeader("Element", 250) { AutoSizeItems = true });
+			elementsBox.Columns.Add(new MoreColumnHeader("Color", 150));
 
 			var names = Regex.Split(Resx.EditTableThemesDialog_elements, @"\r\n|\r|\n");
 			foreach (var name in names)
@@ -186,11 +210,9 @@ namespace River.OneMoreAddIn.Commands
 
 			if (reorganizing)
 			{
-				logger.WriteLine($"ChooseTheme reorg");
 				return;
 			}
 
-			logger.WriteLine($"ChooseTheme SNAPSHOT");
 			themes[combo.SelectedIndex].CopyTo(snapshot);
 
 			SetSwatch(0, snapshot.WholeTable);
@@ -212,7 +234,7 @@ namespace River.OneMoreAddIn.Commands
 
 			void SetSwatch(int index, Color color)
 			{
-				if (color == Color.Empty)
+				if (color.IsEmpty)
 				{
 					color = Color.WhiteSmoke;
 				}
@@ -232,33 +254,45 @@ namespace River.OneMoreAddIn.Commands
 		private void ChangeElementColor(object sender, SwatchClickedEventArgs e)
 		{
 			var swatch = GetSwatch(e.ItemIndex);
+			Color color;
 
-			MessageBox.Show($"items[{e.ItemIndex}] color:{swatch.Color} selectedIndex:{combo.SelectedIndex}");
-			if (combo.SelectedIndex < 0 || combo.SelectedIndex >= combo.Items.Count)
+			if (e.Reset)
 			{
-				return;
+				color = Color.Empty;
+			}
+			else
+			{
+				var location = PointToScreen(swatch.Location);
+				using var dialog = new MoreColorDialog("Element Color", location.X + 75, location.Y + 60);
+				var result = dialog.ShowDialog();
+				if (result == DialogResult.Cancel)
+				{
+					return;
+				}
+
+				color = dialog.Color;
 			}
 
 			var theme = themes[combo.SelectedIndex];
 
 			switch (e.ItemIndex)
 			{
-				case 0: theme.WholeTable = Color.Blue; break;
-				case 1: theme.FirstColumnStripe = Color.Red; break;
-				case 2: theme.SecondColumnStripe = Color.White; break;
-				case 3: theme.FirstRowStripe = Color.Orange; break;
-				case 4: theme.SecondRowStripe = Color.White; break;
-				case 5: theme.FirstColumn = Color.Green; break;
-				case 6: theme.LastColumn = Color.LightGreen; break;
-				case 7: theme.HeaderRow = Color.Gray; break;
-				case 8: theme.TotalRow = Color.LightGray; break;
-				case 9: theme.HeaderFirstCell = Color.Black; break;
-				case 10: theme.HeaderLastCell = Color.Black; break;
-				case 11: theme.TotalFirstCell = Color.Pink; break;
-				case 12: theme.TotalLastCell = Color.Pink; break;
+				case 0: theme.WholeTable = color; break;
+				case 1: theme.FirstColumnStripe = color; break;
+				case 2: theme.SecondColumnStripe = color; break;
+				case 3: theme.FirstRowStripe = color; break;
+				case 4: theme.SecondRowStripe = color; break;
+				case 5: theme.FirstColumn = color; break;
+				case 6: theme.LastColumn = color; break;
+				case 7: theme.HeaderRow = color; break;
+				case 8: theme.TotalRow = color; break;
+				case 9: theme.HeaderFirstCell = color; break;
+				case 10: theme.HeaderLastCell = color; break;
+				case 11: theme.TotalFirstCell = color; break;
+				case 12: theme.TotalLastCell = color; break;
 			}
 
-			swatch.SetColor(Color.Red);
+			swatch.SetColor(color.IsEmpty ? Color.WhiteSmoke : color);
 
 			painter.Paint(theme);
 			previewBox.Invalidate();

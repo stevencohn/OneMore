@@ -93,23 +93,23 @@ namespace River.OneMoreAddIn.Commands
 			Color c1 = Color.Empty; // odd
 			bool rows = true;
 
-			if (theme.FirstRowStripe != Color.Empty && theme.SecondRowStripe != Color.Empty)
+			if (!theme.FirstRowStripe.IsEmpty && !theme.SecondRowStripe.IsEmpty)
 			{
 				c0 = theme.FirstRowStripe;
 				c1 = theme.SecondRowStripe;
 			}
-			else if (theme.FirstColumnStripe != Color.Empty && theme.SecondColumnStripe != Color.Empty)
+			else if (!theme.FirstColumnStripe.IsEmpty && !theme.SecondColumnStripe.IsEmpty)
 			{
 				c0 = theme.FirstColumnStripe;
 				c1 = theme.SecondColumnStripe;
 				rows = false;
 			}
-			else if (theme.WholeTable != Color.Empty)
+			else if (!theme.WholeTable.IsEmpty)
 			{
 				c0 = c1 = theme.WholeTable;
 			}
 
-			if (c0 != Color.Empty)
+			if (!c0.IsEmpty)
 			{
 				using var b0 = new SolidBrush(c0);
 				using var b1 = new SolidBrush(c1);
@@ -135,7 +135,7 @@ namespace River.OneMoreAddIn.Commands
 					FillCell(g, 0, r, b);
 				}
 			}
-			else if (theme.FirstColumn != Color.Empty)
+			else if (!theme.FirstColumn.IsEmpty)
 			{
 				using var b = new SolidBrush(theme.FirstColumn);
 				for (int r = 0; r < MaxRows; r++)
@@ -144,7 +144,7 @@ namespace River.OneMoreAddIn.Commands
 				}
 			}
 
-			if (theme.LastColumn != Color.Empty)
+			if (!theme.LastColumn.IsEmpty)
 			{
 				using var b = new SolidBrush(theme.LastColumn);
 				for (int r = 0; r < MaxRows; r++)
@@ -162,7 +162,7 @@ namespace River.OneMoreAddIn.Commands
 					FillCell(g, c, 0, b);
 				}
 			}
-			else if (theme.HeaderRow != Color.Empty)
+			else if (!theme.HeaderRow.IsEmpty)
 			{
 				using var b = new SolidBrush(theme.HeaderRow);
 				for (int c = 0; c < MaxCols; c++)
@@ -171,7 +171,7 @@ namespace River.OneMoreAddIn.Commands
 				}
 			}
 
-			if (theme.TotalRow != Color.Empty)
+			if (!theme.TotalRow.IsEmpty)
 			{
 				using var b = new SolidBrush(theme.TotalRow);
 				for (int c = 0; c < MaxCols; c++)
@@ -180,25 +180,25 @@ namespace River.OneMoreAddIn.Commands
 				}
 			}
 
-			if (theme.HeaderFirstCell != Color.Empty)
+			if (!theme.HeaderFirstCell.IsEmpty)
 			{
 				using var b = new SolidBrush(theme.HeaderFirstCell);
 				FillCell(g, 0, 0, b);
 			}
 
-			if (theme.HeaderLastCell != Color.Empty)
+			if (!theme.HeaderLastCell.IsEmpty)
 			{
 				using var b = new SolidBrush(theme.HeaderLastCell);
 				FillCell(g, MaxCols - 1, 0, b);
 			}
 
-			if (theme.TotalFirstCell != Color.Empty)
+			if (!theme.TotalFirstCell.IsEmpty)
 			{
 				using var b = new SolidBrush(theme.TotalFirstCell);
 				FillCell(g, 0, MaxRows - 1, b);
 			}
 
-			if (theme.TotalLastCell != Color.Empty)
+			if (!theme.TotalLastCell.IsEmpty)
 			{
 				using var b = new SolidBrush(theme.TotalLastCell);
 				FillCell(g, MaxCols - 1, MaxRows - 1, b);

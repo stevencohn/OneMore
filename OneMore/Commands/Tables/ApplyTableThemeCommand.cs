@@ -103,18 +103,18 @@ namespace River.OneMoreAddIn.Commands
 			string c1 = null; // odd
 			bool rows = true;
 
-			if (theme.FirstRowStripe != Color.Empty && theme.SecondRowStripe != Color.Empty)
+			if (!theme.FirstRowStripe.IsEmpty && !theme.SecondRowStripe.IsEmpty)
 			{
 				c0 = theme.FirstRowStripe.ToRGBHtml();
 				c1 = theme.SecondRowStripe.ToRGBHtml();
 			}
-			else if (theme.FirstColumnStripe != Color.Empty && theme.SecondColumnStripe != Color.Empty)
+			else if (!theme.FirstColumnStripe.IsEmpty && !theme.SecondColumnStripe.IsEmpty)
 			{
 				c0 = theme.FirstColumnStripe.ToRGBHtml();
 				c1 = theme.SecondColumnStripe.ToRGBHtml();
 				rows = false;
 			}
-			else if (theme.WholeTable != Color.Empty)
+			else if (!theme.WholeTable.IsEmpty)
 			{
 				c0 = c1 = theme.WholeTable.ToRGBHtml();
 			}
@@ -146,7 +146,7 @@ namespace River.OneMoreAddIn.Commands
 						TableTheme.MediumColorNames[r % TableTheme.MediumColorNames.Length];
 				}
 			}
-			else if (theme.FirstColumn != Color.Empty)
+			else if (!theme.FirstColumn.IsEmpty)
 			{
 				var color = theme.FirstColumn.ToRGBHtml();
 				for (int r = 0; r < table.RowCount; r++)
@@ -155,7 +155,7 @@ namespace River.OneMoreAddIn.Commands
 				}
 			}
 
-			if (theme.LastColumn != Color.Empty)
+			if (!theme.LastColumn.IsEmpty)
 			{
 				var color = theme.LastColumn.ToRGBHtml();
 				for (int r = 0; r < table.RowCount; r++)
@@ -172,7 +172,7 @@ namespace River.OneMoreAddIn.Commands
 						TableTheme.MediumColorNames[c % TableTheme.MediumColorNames.Length];
 				}
 			}
-			else if (theme.HeaderRow != Color.Empty)
+			else if (!theme.HeaderRow.IsEmpty)
 			{
 				var color = theme.HeaderRow.ToRGBHtml();
 				for (int c = 0; c < table.ColumnCount; c++)
@@ -181,7 +181,7 @@ namespace River.OneMoreAddIn.Commands
 				}
 			}
 
-			if (theme.TotalRow != Color.Empty)
+			if (!theme.TotalRow.IsEmpty)
 			{
 				var color = theme.TotalRow.ToRGBHtml();
 				for (int c = 0; c < table.ColumnCount; c++)
@@ -190,22 +190,22 @@ namespace River.OneMoreAddIn.Commands
 				}
 			}
 
-			if (theme.HeaderFirstCell != Color.Empty)
+			if (!theme.HeaderFirstCell.IsEmpty)
 			{
 				table[0][0].ShadingColor = theme.HeaderFirstCell.ToRGBHtml();
 			}
 
-			if (theme.HeaderLastCell != Color.Empty)
+			if (!theme.HeaderLastCell.IsEmpty)
 			{
 				table[0][table.ColumnCount - 1].ShadingColor = theme.HeaderLastCell.ToRGBHtml();
 			}
 
-			if (theme.TotalFirstCell != Color.Empty)
+			if (!theme.TotalFirstCell.IsEmpty)
 			{
 				table[table.RowCount - 1][0].ShadingColor = theme.TotalFirstCell.ToRGBHtml();
 			}
 
-			if (theme.TotalLastCell != Color.Empty)
+			if (!theme.TotalLastCell.IsEmpty)
 			{
 				table[table.RowCount - 1][table.ColumnCount - 1].ShadingColor = 
 					theme.TotalLastCell.ToRGBHtml();
