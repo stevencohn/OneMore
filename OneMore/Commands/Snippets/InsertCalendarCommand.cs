@@ -49,7 +49,7 @@ namespace River.OneMoreAddIn.Commands
 
 				using (var dialog = new InsertCalendarDialog())
 				{
-					if (dialog.ShowDialog(owner) != DialogResult.OK)
+					if (dialog.ShowDialog() != DialogResult.OK)
 					{
 						return;
 					}

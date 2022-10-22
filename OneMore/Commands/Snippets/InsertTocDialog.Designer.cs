@@ -177,7 +177,7 @@
 			this.Name = "InsertTocDialog";
 			this.Padding = new System.Windows.Forms.Padding(15, 25, 0, 0);
 			this.ShowInTaskbar = false;
-			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+			this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
 			this.Text = "Table of Contents";
 			this.ResumeLayout(false);
 			this.PerformLayout();
