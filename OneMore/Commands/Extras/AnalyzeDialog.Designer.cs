@@ -170,7 +170,7 @@ namespace River.OneMoreAddIn.Commands
 			this.MinimizeBox = false;
 			this.Name = "AnalyzeDialog";
 			this.Padding = new System.Windows.Forms.Padding(15);
-			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+			this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
 			this.Text = "Storage Analysis Report Options";
 			this.ResumeLayout(false);
 			this.PerformLayout();

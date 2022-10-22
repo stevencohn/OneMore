@@ -221,7 +221,7 @@
 			this.MinimizeBox = false;
 			this.Name = "SortDialog";
 			this.ShowInTaskbar = false;
-			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+			this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
 			this.Text = "Sort";
 			this.sortPanel.ResumeLayout(false);
 			this.sortPanel.PerformLayout();
