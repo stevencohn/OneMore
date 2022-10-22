@@ -104,7 +104,7 @@ namespace River.OneMoreAddIn.Commands
 			this.MinimizeBox = false;
 			this.Name = "MoreBubbleWindow";
 			this.Padding = new System.Windows.Forms.Padding(20);
-			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+			this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
 			this.Text = "OneNote";
 			((System.ComponentModel.ISupportInitialize)(this.iconBox)).EndInit();
 			this.ResumeLayout(false);

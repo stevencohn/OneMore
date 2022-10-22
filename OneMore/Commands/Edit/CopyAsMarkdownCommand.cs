@@ -39,7 +39,7 @@ namespace River.OneMoreAddIn.Commands
 				await writer.Copy(content);
 			}
 
-			MoreBubbleWindow.Show(owner, Resx.CopyAsMarkdownCommand_copied);
+			MoreBubbleWindow.Show(Resx.CopyAsMarkdownCommand_copied);
 		}
 	}
 }

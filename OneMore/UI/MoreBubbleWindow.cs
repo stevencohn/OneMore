@@ -46,11 +46,11 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		public static DialogResult Show(IWin32Window owner, string text)
+		public static DialogResult Show(string text)
 		{
 			using var box = new MoreBubbleWindow();
 			box.SetMessage(text);
-			return box.ShowDialog(owner);
+			return box.ShowDialog();
 		}
 
 
