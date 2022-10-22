@@ -115,11 +115,10 @@ namespace River.OneMoreAddIn.UI
 		/// <summary>
 		/// 
 		/// </summary>
-		/// <param name="owner"></param>
 		/// <param name="action"></param>
 		/// <returns></returns>
 		public DialogResult ShowDialogWithCancel(
-			IWin32Window owner, Func<ProgressDialog, CancellationToken, Task<bool>> action)
+			Func<ProgressDialog, CancellationToken, Task<bool>> action)
 		{
 			cancelButton.Visible = true;
 			(_, float factorY) = UIHelper.GetScalingFactors();
@@ -158,7 +157,7 @@ namespace River.OneMoreAddIn.UI
 				thread.IsBackground = true;
 				thread.Start();
 
-				result = ShowDialog(owner);
+				result = ShowDialog();
 
 				if (result == DialogResult.Cancel)
 				{
@@ -181,16 +180,15 @@ namespace River.OneMoreAddIn.UI
 		/// Shows the progress dialog with a timed progression and a callback action to
 		/// invoke on a secondary thread.
 		/// </summary>
-		/// <param name="owner">The owner window used to center this dialog</param>
 		/// <param name="action">The callback method to invoke</param>
 		/// <returns></returns>
 		public DialogResult ShowTimedDialog(
-			IWin32Window owner, Func<ProgressDialog, CancellationToken, Task<bool>> action)
+			Func<ProgressDialog, CancellationToken, Task<bool>> action)
 		{
 			timer.Tick += Tick;
 			StartTimer();
 
-			return ShowDialogWithCancel(owner, action);
+			return ShowDialogWithCancel(action);
 		}
 
 

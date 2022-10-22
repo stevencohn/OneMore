@@ -213,7 +213,7 @@ namespace River.OneMoreAddIn.Commands
 				progress.SetMessage(string.Format(
 					Resx.Plugin_Running, plugin.Command, plugin.Arguments, workpath));
 
-				result = progress.ShowTimedDialog(owner, ExecuteWorker);
+				result = progress.ShowTimedDialog(ExecuteWorker);
 			}
 
 			return result == DialogResult.OK;

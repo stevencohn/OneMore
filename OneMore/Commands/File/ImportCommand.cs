@@ -79,7 +79,7 @@ namespace River.OneMoreAddIn.Commands
 			{
 				progress.SetMessage($"Importing {path}...");
 
-				var result = progress.ShowTimedDialog(Owner,
+				var result = progress.ShowTimedDialog(
 					async (ProgressDialog progDialog, CancellationToken token) =>
 					{
 						try

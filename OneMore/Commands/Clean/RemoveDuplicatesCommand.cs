@@ -80,7 +80,7 @@ namespace River.OneMoreAddIn.Commands
 
 			using (progress = new UI.ProgressDialog())
 			{
-				result = progress.ShowDialogWithCancel(Owner,
+				result = progress.ShowDialogWithCancel(
 					async (dialog, token) => await Scan(dialog, token));
 
 				if (result != DialogResult.OK)

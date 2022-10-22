@@ -256,7 +256,7 @@ namespace River.OneMoreAddIn.Commands
 			using (progress = new ProgressDialog(8))
 			{
 				progress.SetMessage($"Importing {address}...");
-				progress.ShowTimedDialog(owner, ImportHtml);
+				progress.ShowTimedDialog(ImportHtml);
 			}
 		}
 
