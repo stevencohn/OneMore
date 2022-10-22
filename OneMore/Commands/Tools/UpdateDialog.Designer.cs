@@ -34,7 +34,7 @@ namespace River.OneMoreAddIn.Commands
 			this.currentLabel = new System.Windows.Forms.Label();
 			this.versionLabel = new System.Windows.Forms.Label();
 			this.lastUpdatedLabel = new System.Windows.Forms.Label();
-			this.releaseNotesLink = new UI.MoreLinkLabel();
+			this.releaseNotesLink = new River.OneMoreAddIn.UI.MoreLinkLabel();
 			this.okButton = new System.Windows.Forms.Button();
 			this.cancelButton = new System.Windows.Forms.Button();
 			this.versionBox = new System.Windows.Forms.Label();
@@ -52,7 +52,7 @@ namespace River.OneMoreAddIn.Commands
 			this.upVersionLabel = new System.Windows.Forms.Label();
 			this.upVersionBox = new System.Windows.Forms.Label();
 			this.upDescriptionLabel = new System.Windows.Forms.Label();
-			this.upReleaseNotesLink = new UI.MoreLinkLabel();
+			this.upReleaseNotesLink = new River.OneMoreAddIn.UI.MoreLinkLabel();
 			this.upIntroLabel = new System.Windows.Forms.Label();
 			this.upOKButton = new System.Windows.Forms.Button();
 			this.timer = new System.Windows.Forms.Timer(this.components);
@@ -93,6 +93,8 @@ namespace River.OneMoreAddIn.Commands
 			// releaseNotesLink
 			// 
 			this.releaseNotesLink.AutoSize = true;
+			this.releaseNotesLink.Cursor = System.Windows.Forms.Cursors.Hand;
+			this.releaseNotesLink.HoverColor = System.Drawing.Color.MediumOrchid;
 			this.releaseNotesLink.Location = new System.Drawing.Point(31, 104);
 			this.releaseNotesLink.Name = "releaseNotesLink";
 			this.releaseNotesLink.Size = new System.Drawing.Size(112, 20);
@@ -288,6 +290,8 @@ namespace River.OneMoreAddIn.Commands
 			// upReleaseNotesLink
 			// 
 			this.upReleaseNotesLink.AutoSize = true;
+			this.upReleaseNotesLink.Cursor = System.Windows.Forms.Cursors.Hand;
+			this.upReleaseNotesLink.HoverColor = System.Drawing.Color.MediumOrchid;
 			this.upReleaseNotesLink.Location = new System.Drawing.Point(31, 132);
 			this.upReleaseNotesLink.Name = "upReleaseNotesLink";
 			this.upReleaseNotesLink.Size = new System.Drawing.Size(112, 20);
@@ -336,7 +340,7 @@ namespace River.OneMoreAddIn.Commands
 			this.MinimizeBox = false;
 			this.Name = "UpdateDialog";
 			this.Padding = new System.Windows.Forms.Padding(20);
-			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+			this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
 			this.Text = "Check for OneMore Updates";
 			this.readyPanel.ResumeLayout(false);
 			this.readyPanel.PerformLayout();

@@ -89,7 +89,7 @@ namespace River.OneMoreAddIn.Commands
 
 				using (var dialog = new DiagnosticsDialog(logger.LogPath))
 				{
-					dialog.ShowDialog(owner);
+					dialog.ShowDialog();
 				}
 			}
 

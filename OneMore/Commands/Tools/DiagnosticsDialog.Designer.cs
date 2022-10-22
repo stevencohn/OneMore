@@ -58,6 +58,7 @@
 			// 
 			this.linkLabel.AutoSize = true;
 			this.linkLabel.Cursor = System.Windows.Forms.Cursors.Hand;
+			this.linkLabel.HoverColor = System.Drawing.Color.MediumOrchid;
 			this.linkLabel.Location = new System.Drawing.Point(28, 57);
 			this.linkLabel.Name = "linkLabel";
 			this.linkLabel.Size = new System.Drawing.Size(80, 20);
@@ -83,7 +84,7 @@
 			this.Name = "DiagnosticsDialog";
 			this.Padding = new System.Windows.Forms.Padding(25, 25, 10, 10);
 			this.ShowInTaskbar = false;
-			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+			this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
 			this.Text = "OneMore Diagnostics";
 			this.ResumeLayout(false);
 			this.PerformLayout();

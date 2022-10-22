@@ -7,9 +7,9 @@
 namespace River.OneMoreAddIn.UI
 {
 	using System;
+	using System.Drawing;
 	using System.Threading.Tasks;
 	using System.Windows.Forms;
-
 
 
 	internal class LocalizableForm : Form, IOneMoreWindow
@@ -113,15 +113,29 @@ namespace River.OneMoreAddIn.UI
 			// RunModeless has already set location so don't repeat that here and only set
 			// location if inheritor hasn't declined by setting it to zero. Also, we're doing
 			// this in OnLoad so it doesn't visually "jump" as it would if done in OnShown
-			if (!DesignMode)
+			if (DesignMode || modeless)
 			{
-				if (!modeless && VerticalOffset > 0)
-				{
-					var x = Location.X < 0 ? 0 : Location.X;
-					var y = Location.Y - (Height / VerticalOffset);
+				return;
+			}
 
-					Location = new System.Drawing.Point(x, y < 0 ? 0 : y);
-				}
+			if (StartPosition == FormStartPosition.Manual)
+			{
+				// find the center point of the active OneNote window
+				using var one = new OneNote();
+				var bounds = one.GetCurrentMainWindowBounds();
+				var center = new Point(
+					bounds.Left + (bounds.Right - bounds.Left) / 2,
+					bounds.Top + (bounds.Bottom - bounds.Top) / 2);
+
+				Location = new Point(center.X - (Width / 2), center.Y);
+			}
+
+			if (VerticalOffset > 0)
+			{
+				var x = Location.X < 0 ? 0 : Location.X;
+				var y = Location.Y - (Height / VerticalOffset);
+
+				Location = new Point(x, y < 0 ? 0 : y);
 			}
 		}
 
