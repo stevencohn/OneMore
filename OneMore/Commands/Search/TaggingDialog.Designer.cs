@@ -205,6 +205,7 @@ namespace River.OneMoreAddIn.Commands
 			this.clearLabel.AutoSize = true;
 			this.clearLabel.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.clearLabel.Enabled = false;
+			this.clearLabel.HoverColor = System.Drawing.Color.MediumOrchid;
 			this.clearLabel.LinkColor = System.Drawing.Color.DodgerBlue;
 			this.clearLabel.Location = new System.Drawing.Point(822, 7);
 			this.clearLabel.Margin = new System.Windows.Forms.Padding(3, 8, 8, 8);
@@ -324,7 +325,7 @@ namespace River.OneMoreAddIn.Commands
 			this.MinimumSize = new System.Drawing.Size(700, 700);
 			this.Name = "TaggingDialog";
 			this.ShowInTaskbar = false;
-			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+			this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
 			this.Text = "Page Tags";
 			this.Load += new System.EventHandler(this.DialogLoad);
 			this.buttonPanel.ResumeLayout(false);

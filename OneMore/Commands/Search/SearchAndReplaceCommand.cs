@@ -38,7 +38,7 @@ namespace River.OneMoreAddIn.Commands
 						dialog.WhatText = text;
 					}
 
-					if (dialog.ShowDialog(owner) != DialogResult.OK)
+					if (dialog.ShowDialog() != DialogResult.OK)
 					{
 						return;
 					}
