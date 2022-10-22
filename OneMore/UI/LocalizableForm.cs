@@ -26,6 +26,13 @@ namespace River.OneMoreAddIn.UI
 		}
 
 
+		/// <summary>
+		/// Gets or sets whether the location has been set by the caller and should NOT be
+		/// overriden by the OnLoad method below...
+		/// </summary>
+		public bool ManualLocation { get; set; } = false;
+
+
 		public int VerticalOffset
 		{
 			private get;
@@ -118,7 +125,7 @@ namespace River.OneMoreAddIn.UI
 				return;
 			}
 
-			if (StartPosition == FormStartPosition.Manual)
+			if (!ManualLocation && StartPosition == FormStartPosition.Manual)
 			{
 				// find the center point of the active OneNote window
 				using var one = new OneNote();

@@ -92,6 +92,7 @@
 			// 
 			this.customLink.AutoSize = true;
 			this.customLink.Cursor = System.Windows.Forms.Cursors.Hand;
+			this.customLink.HoverColor = System.Drawing.Color.MediumOrchid;
 			this.customLink.Location = new System.Drawing.Point(35, 109);
 			this.customLink.Name = "customLink";
 			this.customLink.Size = new System.Drawing.Size(171, 20);
@@ -142,6 +143,7 @@
 			// 
 			this.loadLink.AutoSize = true;
 			this.loadLink.Cursor = System.Windows.Forms.Cursors.Hand;
+			this.loadLink.HoverColor = System.Drawing.Color.MediumOrchid;
 			this.loadLink.Location = new System.Drawing.Point(18, 124);
 			this.loadLink.Name = "loadLink";
 			this.loadLink.Size = new System.Drawing.Size(143, 20);
@@ -200,7 +202,7 @@
 			this.Padding = new System.Windows.Forms.Padding(10);
 			this.ShowInTaskbar = false;
 			this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
-			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+			this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
 			this.Text = "Change Page Theme";
 			this.themeGroup.ResumeLayout(false);
 			this.themeGroup.PerformLayout();

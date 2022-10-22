@@ -557,7 +557,7 @@
 			this.Name = "StyleDialog";
 			this.Padding = new System.Windows.Forms.Padding(4, 5, 0, 5);
 			this.ShowInTaskbar = false;
-			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+			this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
 			this.Text = "Custom Styles";
 			((System.ComponentModel.ISupportInitialize)(this.spaceBeforeSpinner)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.spaceAfterSpinner)).EndInit();

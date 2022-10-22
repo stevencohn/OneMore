@@ -734,7 +734,11 @@ namespace River.OneMoreAddIn.Commands
 		{
 			using (var dialog = new ReorderDialog(namesBox.Items))
 			{
-				var result = dialog.ShowDialog(this);
+				dialog.ManualLocation = true;
+				var point = PointToScreen(mainTools.Location);
+				dialog.Location = new Point(point.X + dialog.Width, point.Y + (dialog.Height / 2));
+
+				var result = dialog.ShowDialog();
 				if (result == DialogResult.OK)
 				{
 					string name = null;
