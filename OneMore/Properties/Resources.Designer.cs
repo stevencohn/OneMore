@@ -178,7 +178,7 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Version {0}.
+        ///   Looks up a localized string similar to Version {0} with OneNote {1}.
         /// </summary>
         internal static string AboutDialog_versionLabel_Text {
             get {
@@ -5519,10 +5519,10 @@ namespace River.OneMoreAddIn.Properties {
         ///      &lt;tab idMso=&quot;TabHome&quot;&gt;
         ///        &lt;group id=&quot;ribOneMoreGroup&quot; getLabel=&quot;GetRibbonLabel&quot;&gt;
         ///          &lt;gallery
-        ///            id=&quot;ribCustomStylesButton&quot; columns=&quot;4&quot; showItemLabel=&quot;false&quot; size=&quot;large&quot;
+        ///            id=&quot;ribCustomStylesButton&quot; columns=&quot;4&quot; showItemLabel=&quot;false&quot; size=&quot;normal&quot;
         ///            image=&quot;CustomStyles&quot;
         ///            getLabel=&quot;GetRibbonLabel&quot;
-        ///            getItemCount=&quot;GetStyleGalleryItem [rest of string was truncated]&quot;;.
+        ///            getItemCount=&quot;GetStyleGalleryIte [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string Ribbon {
             get {

@@ -508,7 +508,7 @@ OneNote 将自动关闭</value>
     <comment>check online for available updates to add-in</comment>
   </data>
   <data name="AboutDialog_versionLabel.Text" xml:space="preserve">
-    <value>版本 {0}</value>
+    <value>带有 OneNote {1} 的版本 {0}</value>
     <comment>the version of the add-in</comment>
   </data>
   <data name="ChangePageColorDialog_introLabel.Text" xml:space="preserve">

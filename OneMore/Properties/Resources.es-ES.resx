@@ -506,7 +506,7 @@ OneNote se cerrará automáticamente</value>
     <comment>check online for available updates to add-in</comment>
   </data>
   <data name="AboutDialog_versionLabel.Text" xml:space="preserve">
-    <value>Versión {0}</value>
+    <value>Versión {0} con OneNote {1}</value>
     <comment>the version of the add-in</comment>
   </data>
   <data name="ChangePageColorDialog_introLabel.Text" xml:space="preserve">
