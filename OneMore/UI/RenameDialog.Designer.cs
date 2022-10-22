@@ -1,6 +1,6 @@
-﻿namespace River.OneMoreAddIn.Commands
+﻿namespace River.OneMoreAddIn.UI
 {
-	partial class NameStyleDialog
+	partial class RenameDialog
 	{
 		/// <summary>
 		/// Required designer variable.
@@ -28,7 +28,7 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
-			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(NameStyleDialog));
+			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(RenameDialog));
 			this.okButton = new System.Windows.Forms.Button();
 			this.cancelButton = new System.Windows.Forms.Button();
 			this.nameLabel = new System.Windows.Forms.Label();

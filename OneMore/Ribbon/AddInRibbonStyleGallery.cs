@@ -16,8 +16,10 @@ namespace River.OneMoreAddIn
 
 	public partial class AddIn
 	{
-		private static Color pageColor;
-		private static Theme theme;
+		// background color, shared with RibbonTableGallery functions
+		private static Color galleryBack;
+
+		private static Theme styleGalleryTheme;
 
 
 		/*
@@ -40,18 +42,18 @@ namespace River.OneMoreAddIn
 		{
 			using (var one = new OneNote(out var page, out _))
 			{
-				pageColor = page.GetPageColor(out _, out var black);
+				galleryBack = page.GetPageColor(out _, out var black);
 				if (black)
 				{
 					// translate Black into a custom black smoke
-					pageColor = ColorTranslator.FromHtml("#201F1E");
+					galleryBack = ColorTranslator.FromHtml("#201F1E");
 				}
 			}
 
 			// load/reload cached theme
-			theme = new ThemeProvider().Theme;
+			styleGalleryTheme = new ThemeProvider().Theme;
 
-			var count = theme.GetCount();
+			var count = styleGalleryTheme.GetCount();
 			//logger.WriteLine($"GetStyleGalleryItemCount() count:{count}");
 			return count;
 		}
@@ -79,7 +81,7 @@ namespace River.OneMoreAddIn
 		public IStream GetStyleGalleryItemImage(IRibbonControl control, int itemIndex)
 		{
 			//logger.WriteLine($"GetStyleGalleryItemImage({control.Id}, {itemIndex})");
-			return new TileFactory().MakeTile(theme.GetStyle(itemIndex), pageColor);
+			return TileFactory.MakeStyleTile(styleGalleryTheme.GetStyle(itemIndex), galleryBack);
 		}
 
 
@@ -91,7 +93,7 @@ namespace River.OneMoreAddIn
 		/// <returns></returns>
 		public string GetStyleGalleryItemScreentip(IRibbonControl control, int itemIndex)
 		{
-			var tip = theme.GetName(itemIndex);
+			var tip = styleGalleryTheme.GetName(itemIndex);
 
 			if (itemIndex < 9)
 			{

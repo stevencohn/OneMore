@@ -189,44 +189,45 @@ namespace River.OneMoreAddIn
 					settings.Add(SettingsName, commands);
 				}
 
+				// is this command alraedy in the MRU?
 				var element = commands.Elements()
 					.FirstOrDefault(e => e.Attribute("cmd").Value == runner);
 
+				// remove old instance so we can move it to the bottom and update args/context
 				if (element != null)
 				{
 					element.Remove();
-					commands.Add(element);
 				}
-				else
+
+				// build new entry...
+
+				var arguments = new XElement("arguments");
+				args.Where(a => a != null).ForEach(a =>
 				{
-					var arguments = new XElement("arguments");
-					args.Where(a => a != null).ForEach(a =>
-					{
-						arguments.Add(new XElement("arg",
-							new XAttribute("type", a.GetType().FullName),
-							new XAttribute("value", a.ToString())
-							));
-					});
+					arguments.Add(new XElement("arg",
+						new XAttribute("type", a.GetType().FullName),
+						new XAttribute("value", a.ToString())
+						));
+				});
 
-					// "type" records the :Command inheritor class whereas
-					// "cmd" records the AddInCommands xxxCmd method name
-					var setting = new XElement(SettingName,
-						new XAttribute("type", command.GetType().FullName),
-						new XAttribute("cmd", runner),
-						arguments
-						);
+				// "type" records the :Command inheritor class whereas
+				// "cmd" records the AddInCommands xxxCmd method name
+				var setting = new XElement(SettingName,
+					new XAttribute("type", command.GetType().FullName),
+					new XAttribute("cmd", runner),
+					arguments
+					);
 
-					var replay = command.GetReplayArguments();
-					if (replay != null)
-					{
-						setting.Add(new XElement("context", replay));
-					}
+				var replay = command.GetReplayArguments();
+				if (replay != null)
+				{
+					setting.Add(new XElement("context", replay));
+				}
 
-					commands.Add(setting);
-					while (commands.Elements().Count() > 5)
-					{
-						commands.Elements().First().Remove();
-					}
+				commands.Add(setting);
+				while (commands.Elements().Count() > 5)
+				{
+					commands.Elements().First().Remove();
 				}
 
 				provider.SetCollection(settings);

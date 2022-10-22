@@ -5,6 +5,7 @@
 namespace River.OneMoreAddIn.Commands
 {
 	using River.OneMoreAddIn.Styles;
+	using River.OneMoreAddIn.UI;
 	using System;
 	using System.Collections.Generic;
 	using System.Drawing;
@@ -625,7 +626,7 @@ namespace River.OneMoreAddIn.Commands
 
 			var name = "Style-" + new Random().Next(1000, 9999).ToString();
 
-			using (var dialog = new NameStyleDialog(names, name))
+			using (var dialog = new RenameDialog(names, name))
 			{
 				if (dialog.ShowDialog(this) != DialogResult.OK)
 				{
@@ -673,7 +674,7 @@ namespace River.OneMoreAddIn.Commands
 			var style = (GraphicStyle)namesBox.Items[namesBox.SelectedIndex];
 			var name = style.Name;
 
-			using (var dialog = new NameStyleDialog(names, name) { Rename = true })
+			using (var dialog = new RenameDialog(names, name) { Rename = true })
 			{
 				if (dialog.ShowDialog(this) != DialogResult.OK)
 				{

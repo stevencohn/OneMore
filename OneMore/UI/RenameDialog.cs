@@ -2,7 +2,7 @@
 // Copyright © 2022 Steven M Cohn.  All rights reserved.
 //************************************************************************************************
 
-namespace River.OneMoreAddIn.Commands
+namespace River.OneMoreAddIn.UI
 {
 	using System;
 	using System.Collections.Generic;
@@ -10,12 +10,12 @@ namespace River.OneMoreAddIn.Commands
 	using Resx = River.OneMoreAddIn.Properties.Resources;
 
 
-	internal partial class NameStyleDialog : UI.LocalizableForm
+	internal partial class RenameDialog : UI.LocalizableForm
 	{
 		private IEnumerable<string> names;
 
 
-		public NameStyleDialog()
+		public RenameDialog()
 		{
 			InitializeComponent();
 
@@ -34,7 +34,7 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		public NameStyleDialog(IEnumerable<string> names, string name)
+		public RenameDialog(IEnumerable<string> names, string name)
 			: this()
 		{
 			this.names = names;

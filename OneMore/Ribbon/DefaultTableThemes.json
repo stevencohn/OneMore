@@ -1,0 +1,225 @@
+﻿[
+  {
+    "Name": "White-Purple Rows",
+    "FirstRowStripe": "Transparent",
+    "SecondRowStripe": "229, 224, 236"
+  },
+  {
+    "Name": "White-Blue Rows",
+    "FirstRowStripe": "Transparent",
+    "SecondRowStripe": "222, 235, 246"
+  },
+  {
+    "Name": "White-Green Rows",
+    "FirstRowStripe": "Transparent",
+    "SecondRowStripe": "226, 239, 217"
+  },
+  {
+    "Name": "White-Yellow Rows",
+    "FirstRowStripe": "Transparent",
+    "SecondRowStripe": "255, 242, 204"
+  },
+  {
+    "Name": "White-Orange Rows",
+    "FirstRowStripe": "Transparent",
+    "SecondRowStripe": "251, 229, 213"
+  },
+  {
+    "Name": "White-Red Rows",
+    "FirstRowStripe": "Transparent",
+    "SecondRowStripe": "250, 219, 210"
+  },
+  {
+    "Name": "White-Gray Rows",
+    "FirstRowStripe": "Transparent",
+    "SecondRowStripe": "242, 242, 242"
+  },
+  {
+    "Name": "White-Purple Rows with Header",
+    "FirstRowStripe": "Transparent",
+    "SecondRowStripe": "229, 224, 236",
+    "HeaderRow": "128, 100, 162"
+  },
+  {
+    "Name": "White-Blue Rows with Header",
+    "FirstRowStripe": "Transparent",
+    "SecondRowStripe": "222, 235, 246",
+    "HeaderRow": "91, 155, 213"
+  },
+  {
+    "Name": "White-Green Rows with Header",
+    "FirstRowStripe": "Transparent",
+    "SecondRowStripe": "226, 239, 217",
+    "HeaderRow": "112, 173, 71"
+  },
+  {
+    "Name": "White-Yellow Rows with Header",
+    "FirstRowStripe": "Transparent",
+    "SecondRowStripe": "255, 242, 204",
+    "HeaderRow": "255, 192, 0"
+  },
+  {
+    "Name": "White-Orange Rows with Header",
+    "FirstRowStripe": "Transparent",
+    "SecondRowStripe": "251, 229, 213",
+    "HeaderRow": "237, 125, 49"
+  },
+  {
+    "Name": "White-Red Rows with Header",
+    "FirstRowStripe": "Transparent",
+    "SecondRowStripe": "250, 219, 210",
+    "HeaderRow": "232, 76, 34"
+  },
+  {
+    "Name": "White-Gray Rows with Header",
+    "FirstRowStripe": "Transparent",
+    "SecondRowStripe": "242, 242, 242",
+    "HeaderRow": "165, 165, 165"
+  },
+  {
+    "Name": "Purple-Purple Rows",
+    "FirstRowStripe": "229, 224, 236",
+    "SecondRowStripe": "178, 161, 199"
+  },
+  {
+    "Name": "Blue-Blue Rows",
+    "FirstRowStripe": "222, 235, 246",
+    "SecondRowStripe": "156, 195, 229"
+  },
+  {
+    "Name": "Green-Green Rows",
+    "FirstRowStripe": "226, 239, 217",
+    "SecondRowStripe": "168, 208, 141"
+  },
+  {
+    "Name": "Yellow-Yellow Rows",
+    "FirstRowStripe": "255, 242, 204",
+    "SecondRowStripe": "255, 217, 101"
+  },
+  {
+    "Name": "Orange-Orange Rows",
+    "FirstRowStripe": "251, 229, 213",
+    "SecondRowStripe": "244, 177, 131"
+  },
+  {
+    "Name": "Red-Red Rows",
+    "FirstRowStripe": "250, 219, 210",
+    "SecondRowStripe": "241, 147, 122"
+  },
+  {
+    "Name": "Gray-Gray Rows",
+    "FirstRowStripe": "242, 242, 242",
+    "SecondRowStripe": "191, 191, 191"
+  },
+  {
+    "Name": "Purple-Purple Rows with Header",
+    "FirstRowStripe": "178, 161, 199",
+    "SecondRowStripe": "229, 224, 236",
+    "HeaderRow": "128, 100, 162"
+  },
+  {
+    "Name": "Blue-Blue Rows with Header",
+    "FirstRowStripe": "156, 195, 229",
+    "SecondRowStripe": "222, 235, 246",
+    "HeaderRow": "91, 155, 213"
+  },
+  {
+    "Name": "Green-Green Rows with Header",
+    "FirstRowStripe": "168, 208, 141",
+    "SecondRowStripe": "226, 239, 217",
+    "HeaderRow": "112, 173, 71"
+  },
+  {
+    "Name": "Yellow-Yellow Rows with Header",
+    "FirstRowStripe": "255, 217, 101",
+    "SecondRowStripe": "255, 242, 204",
+    "HeaderRow": "255, 192, 0"
+  },
+  {
+    "Name": "Orange-Orange Rows with Header",
+    "FirstRowStripe": "244, 177, 131",
+    "SecondRowStripe": "251, 229, 213",
+    "HeaderRow": "237, 125, 49"
+  },
+  {
+    "Name": "Red-Red Rows with Header",
+    "FirstRowStripe": "241, 147, 122",
+    "SecondRowStripe": "250, 219, 210",
+    "HeaderRow": "232, 76, 34"
+  },
+  {
+    "Name": "Gray-Gray Rows with Header",
+    "FirstRowStripe": "191, 191, 191",
+    "SecondRowStripe": "242, 242, 242",
+    "HeaderRow": "165, 165, 165"
+  },
+  {
+    "Name": "Purple-Purple Both Headers",
+    "FirstRowStripe": "178, 161, 199",
+    "SecondRowStripe": "229, 224, 236",
+    "FirstColumn": "128, 100, 162",
+    "HeaderRow": "128, 100, 162"
+  },
+  {
+    "Name": "Blue-Blue Both Headers",
+    "FirstRowStripe": "156, 195, 229",
+    "SecondRowStripe": "222, 235, 246",
+    "FirstColumn": "91, 155, 213",
+    "HeaderRow": "91, 155, 213"
+  },
+  {
+    "Name": "Green-Green Both Headers",
+    "FirstRowStripe": "168, 208, 141",
+    "SecondRowStripe": "226, 239, 217",
+    "FirstColumn": "112, 173, 71",
+    "HeaderRow": "112, 173, 71"
+  },
+  {
+    "Name": "Yellow-Yellow Both Headers",
+    "FirstRowStripe": "255, 217, 101",
+    "SecondRowStripe": "255, 242, 204",
+    "FirstColumn": "255, 192, 0",
+    "HeaderRow": "255, 192, 0"
+  },
+  {
+    "Name": "Orange-Orange Both Headers",
+    "FirstRowStripe": "244, 177, 131",
+    "SecondRowStripe": "251, 229, 213",
+    "FirstColumn": "237, 125, 49",
+    "HeaderRow": "237, 125, 49"
+  },
+  {
+    "Name": "Red-Red Both Headers",
+    "FirstRowStripe": "241, 147, 122",
+    "SecondRowStripe": "250, 219, 210",
+    "FirstColumn": "232, 76, 34",
+    "HeaderRow": "232, 76, 34"
+  },
+  {
+    "Name": "Gray-Gray Both Headers",
+    "FirstRowStripe": "191, 191, 191",
+    "SecondRowStripe": "242, 242, 242",
+    "FirstColumn": "165, 165, 165",
+    "HeaderRow": "165, 165, 165"
+  },
+  {
+    "Name": "Multi-Color First Column",
+    "WholeTable": "Transparent",
+    "FirstColumn": "18, 52, 86, 120"
+  },
+  {
+    "Name": "Multi-Color Header Row",
+    "WholeTable": "Transparent",
+    "HeaderRow": "18, 52, 86, 120"
+  },
+  {
+    "Name": "Multi-Color Table",
+    "WholeTable": "18, 52, 86, 120",
+    "FirstColumn": "18, 52, 86, 120"
+  },
+  {
+    "Name": "Multi-Color Table with Header",
+    "WholeTable": "18, 52, 86, 120",
+    "HeaderRow": "18, 52, 86, 120"
+  }
+]

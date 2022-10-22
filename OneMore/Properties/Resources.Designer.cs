@@ -1758,6 +1758,37 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to [
+        ///  {
+        ///    &quot;Name&quot;: &quot;White-Purple Rows&quot;,
+        ///    &quot;FirstRowStripe&quot;: &quot;Transparent&quot;,
+        ///    &quot;SecondRowStripe&quot;: &quot;229, 224, 236&quot;
+        ///  },
+        ///  {
+        ///    &quot;Name&quot;: &quot;White-Blue Rows&quot;,
+        ///    &quot;FirstRowStripe&quot;: &quot;Transparent&quot;,
+        ///    &quot;SecondRowStripe&quot;: &quot;222, 235, 246&quot;
+        ///  },
+        ///  {
+        ///    &quot;Name&quot;: &quot;White-Green Rows&quot;,
+        ///    &quot;FirstRowStripe&quot;: &quot;Transparent&quot;,
+        ///    &quot;SecondRowStripe&quot;: &quot;226, 239, 217&quot;
+        ///  },
+        ///  {
+        ///    &quot;Name&quot;: &quot;White-Yellow Rows&quot;,
+        ///    &quot;FirstRowStripe&quot;: &quot;Transparent&quot;,
+        ///    &quot;SecondRowStripe&quot;: &quot;255, 242, 204&quot;
+        ///  },
+        ///  {
+        ///    &quot;Name&quot;: &quot;Wh [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string DefaultTableThemes {
+            get {
+                return ResourceManager.GetString("DefaultTableThemes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap Delete {
@@ -1838,6 +1869,63 @@ namespace River.OneMoreAddIn.Properties {
             get {
                 object obj = ResourceManager.GetObject("DownArrow", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Whole Table
+        ///First Column Stripe
+        ///Second Column Stripe
+        ///First Row Stripe
+        ///Second Row Stripe
+        ///First Column
+        ///Last Column
+        ///Header Row
+        ///Total Row
+        ///Header First Cell
+        ///Header Last Cell
+        ///Total Row First Cell
+        ///Total Row Last Cell.
+        /// </summary>
+        internal static string EditTableThemesDialog_elements {
+            get {
+                return ResourceManager.GetString("EditTableThemesDialog_elements", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Table Elements.
+        /// </summary>
+        internal static string EditTableThemesDialog_elementsGroups_Text {
+            get {
+                return ResourceManager.GetString("EditTableThemesDialog_elementsGroups.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to New Style.
+        /// </summary>
+        internal static string EditTableThemesDialog_newButton_Text {
+            get {
+                return ResourceManager.GetString("EditTableThemesDialog_newButton.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to New Style.
+        /// </summary>
+        internal static string EditTableThemesDialog_NewStyle {
+            get {
+                return ResourceManager.GetString("EditTableThemesDialog_NewStyle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Custom Table Styles.
+        /// </summary>
+        internal static string EditTableThemesDialog_Text {
+            get {
+                return ResourceManager.GetString("EditTableThemesDialog_Text", resourceCulture);
             }
         }
         
@@ -5371,10 +5459,10 @@ namespace River.OneMoreAddIn.Properties {
         ///      &lt;tab idMso=&quot;TabHome&quot;&gt;
         ///        &lt;group id=&quot;ribOneMoreGroup&quot; getLabel=&quot;GetRibbonLabel&quot;&gt;
         ///          &lt;gallery
-        ///            id=&quot;ribCustomStylesButton&quot; columns=&quot;4&quot; showItemLabel=&quot;false&quot; size=&quot;large&quot; imageMso=&quot;StylesPane&quot;
+        ///            id=&quot;ribCustomStylesButton&quot; columns=&quot;4&quot; showItemLabel=&quot;false&quot; size=&quot;normal&quot;
+        ///            imageMso=&quot;StylesPane&quot;
         ///            getLabel=&quot;GetRibbonLabel&quot;
-        ///            getItemCount=&quot;GetStyleGalleryItemCount&quot;
-        ///     [rest of string was truncated]&quot;;.
+        ///            getItemCount=&quot;GetStyleGalleryIt [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string Ribbon {
             get {
@@ -5748,6 +5836,15 @@ namespace River.OneMoreAddIn.Properties {
         internal static string ribEditStylesButton_Label {
             get {
                 return ResourceManager.GetString("ribEditStylesButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Edit Custom Table Styles.
+        /// </summary>
+        internal static string ribEditTableThemesButton_Label {
+            get {
+                return ResourceManager.GetString("ribEditTableThemesButton_Label", resourceCulture);
             }
         }
         
@@ -7062,6 +7159,15 @@ namespace River.OneMoreAddIn.Properties {
         internal static string ribTableMenu_Label {
             get {
                 return ResourceManager.GetString("ribTableMenu_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Table Styles.
+        /// </summary>
+        internal static string ribTableThemesButton_Label {
+            get {
+                return ResourceManager.GetString("ribTableThemesButton_Label", resourceCulture);
             }
         }
         
@@ -8566,6 +8672,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to OneMore Table Theme {0}.
+        /// </summary>
+        internal static string TableTheme_Screentip {
+            get {
+                return ResourceManager.GetString("TableTheme_Screentip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Check all pages.
         /// </summary>
         internal static string TaggedDialog_checkAllLabel_Text {
@@ -9207,6 +9322,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Edit.
+        /// </summary>
+        internal static string word_Edit {
+            get {
+                return ResourceManager.GetString("word_Edit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Favorites.
         /// </summary>
         internal static string word_Favorites {
@@ -9360,11 +9484,29 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Reset.
+        /// </summary>
+        internal static string word_Reset {
+            get {
+                return ResourceManager.GetString("word_Reset", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Saturation.
         /// </summary>
         internal static string word_Saturation {
             get {
                 return ResourceManager.GetString("word_Saturation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Save.
+        /// </summary>
+        internal static string word_Save {
+            get {
+                return ResourceManager.GetString("word_Save", resourceCulture);
             }
         }
         

@@ -100,6 +100,9 @@ namespace River.OneMoreAddIn
 		public async Task ApplyStylesCmd(IRibbonControl control)
 			=> await factory.Run<ApplyStylesCommand>();
 
+		public async Task ApplyTableThemeCmd(IRibbonControl control, string selectedId, int selectedIndex)
+			=> await factory.Run<ApplyTableThemeCommand>(selectedIndex);
+
 		public async Task ArchiveCmd(IRibbonControl control)
 			=> await factory.Run<ArchiveCommand>(control.Tag); // tag=scope
 
@@ -213,6 +216,12 @@ namespace River.OneMoreAddIn
 
 		public async Task EditStylesCmd(IRibbonControl control)
 			=> await factory.Run<EditStylesCommand>();
+
+
+		[Command("ribEditTableThemesButton_Label", Keys.None, "Tools")]
+		public async Task EditTableThemesCmd(IRibbonControl control)
+			=> await factory.Run<EditTableThemesCommand>();
+
 
 		public async Task EmbedSubpageCmd(IRibbonControl control)
 			=> await factory.Run<EmbedSubpageCommand>(false);
