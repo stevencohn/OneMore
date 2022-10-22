@@ -92,7 +92,7 @@ namespace River.OneMoreAddIn.Commands
 						}
 					}
 
-					if (dialog.ShowDialog(owner) != DialogResult.OK)
+					if (dialog.ShowDialog() != DialogResult.OK)
 					{
 						return;
 					}

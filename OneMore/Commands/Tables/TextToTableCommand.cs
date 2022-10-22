@@ -98,7 +98,7 @@ namespace River.OneMoreAddIn.Commands
 
 				dialog.Rows = selections.Count;
 
-				if (dialog.ShowDialog(owner) == System.Windows.Forms.DialogResult.Cancel)
+				if (dialog.ShowDialog() == System.Windows.Forms.DialogResult.Cancel)
 				{
 					return null;
 				}

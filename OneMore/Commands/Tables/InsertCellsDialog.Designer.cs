@@ -130,7 +130,7 @@
 			this.MinimizeBox = false;
 			this.Name = "InsertCellsDialog";
 			this.Padding = new System.Windows.Forms.Padding(25, 25, 15, 15);
-			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+			this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
 			this.Text = "Insert Cells";
 			((System.ComponentModel.ISupportInitialize)(this.numCellsBox)).EndInit();
 			this.ResumeLayout(false);

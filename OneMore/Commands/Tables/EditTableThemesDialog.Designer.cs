@@ -149,7 +149,7 @@
             this.deleteButton});
 			this.toolstrip.Location = new System.Drawing.Point(525, 18);
 			this.toolstrip.Name = "toolstrip";
-			this.toolstrip.Size = new System.Drawing.Size(206, 33);
+			this.toolstrip.Size = new System.Drawing.Size(160, 33);
 			this.toolstrip.TabIndex = 10;
 			this.toolstrip.Text = "toolStrip1";
 			// 
@@ -217,7 +217,7 @@
 			this.MinimizeBox = false;
 			this.Name = "EditTableThemesDialog";
 			this.Padding = new System.Windows.Forms.Padding(20, 20, 0, 0);
-			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+			this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
 			this.Text = "Custom Table Styles";
 			this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ConfirmClosing);
 			this.elementsGroup.ResumeLayout(false);
