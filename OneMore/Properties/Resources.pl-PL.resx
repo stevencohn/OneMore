@@ -4196,4 +4196,44 @@ Bieżący notatnik</value>
     <value>Style stołu</value>
     <comment>ribbon</comment>
   </data>
+  <data name="EditTableThemesDialog_elements" xml:space="preserve">
+    <value>Cały stół
+Pasek pierwszej kolumny
+Pasek drugiej kolumny
+Pasek pierwszego rzędu
+Pasek w drugim rzędzie
+Pierwsza kolumna
+Ostatnia kolumna
+Wiersz nagłówka
+Razem wiersz
+Pierwsza komórka nagłówka
+Ostatnia komórka nagłówka
+Pierwsza komórka wiersza razem
+Łączna ostatnia komórka wiersza</value>
+    <comment>MoreListView</comment>
+  </data>
+  <data name="EditTableThemesDialog_elementsGroups.Text" xml:space="preserve">
+    <value>Elementy stołu</value>
+    <comment>groupbox</comment>
+  </data>
+  <data name="EditTableThemesDialog_newButton.Text" xml:space="preserve">
+    <value>Nowy styl</value>
+    <comment>toolbutton</comment>
+  </data>
+  <data name="word_Reset" xml:space="preserve">
+    <value>Resetowanie</value>
+  </data>
+  <data name="word_Save" xml:space="preserve">
+    <value>Ratować</value>
+  </data>
+  <data name="EditTableThemesDialog_Text" xml:space="preserve">
+    <value>Niestandardowe style tabel</value>
+    <comment>dialog</comment>
+  </data>
+  <data name="word_Edit" xml:space="preserve">
+    <value>Edytować</value>
+  </data>
+  <data name="EditTableThemesDialog_NewStyle" xml:space="preserve">
+    <value>Nowy styl</value>
+  </data>
 </root>

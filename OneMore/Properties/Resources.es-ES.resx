@@ -4143,4 +4143,44 @@ Cuaderno actual</value>
     <value>Estilos de tabla</value>
     <comment>ribbon</comment>
   </data>
+  <data name="EditTableThemesDialog_elements" xml:space="preserve">
+    <value>Mesa completa
+Franja de la primera columna
+Raya de la segunda columna
+Franja de la primera fila
+Franja de la segunda fila
+Primera columna
+Última columna
+Fila de encabezado
+fila total
+Encabezado primera celda
+Encabezado Última celda
+Total fila primera celda
+Total fila última celda</value>
+    <comment>MoreListView</comment>
+  </data>
+  <data name="EditTableThemesDialog_elementsGroups.Text" xml:space="preserve">
+    <value>Elementos de la tabla</value>
+    <comment>groupbox</comment>
+  </data>
+  <data name="EditTableThemesDialog_newButton.Text" xml:space="preserve">
+    <value>Nuevo estilo</value>
+    <comment>toolbutton</comment>
+  </data>
+  <data name="word_Reset" xml:space="preserve">
+    <value>Reiniciar</value>
+  </data>
+  <data name="word_Save" xml:space="preserve">
+    <value>Ahorrar</value>
+  </data>
+  <data name="EditTableThemesDialog_Text" xml:space="preserve">
+    <value>Estilos de tabla personalizados</value>
+    <comment>dialog</comment>
+  </data>
+  <data name="word_Edit" xml:space="preserve">
+    <value>Editar</value>
+  </data>
+  <data name="EditTableThemesDialog_NewStyle" xml:space="preserve">
+    <value>Nuevo estilo</value>
+  </data>
 </root>

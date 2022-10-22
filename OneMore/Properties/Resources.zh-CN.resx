@@ -4133,4 +4133,44 @@ OneNote 文件 (*.one)</value>
     <value>表格样式</value>
     <comment>ribbon</comment>
   </data>
+  <data name="EditTableThemesDialog_elements" xml:space="preserve">
+    <value>整桌
+第一列条纹
+第二列条纹
+第一行条纹
+第二行条纹
+第一栏
+最后一栏
+标题行
+总行
+标题第一个单元格
+标题最后一个单元格
+总行第一个单元格
+总行最后一个单元格</value>
+    <comment>MoreListView</comment>
+  </data>
+  <data name="EditTableThemesDialog_elementsGroups.Text" xml:space="preserve">
+    <value>表格元素</value>
+    <comment>groupbox</comment>
+  </data>
+  <data name="EditTableThemesDialog_newButton.Text" xml:space="preserve">
+    <value>新风格</value>
+    <comment>toolbutton</comment>
+  </data>
+  <data name="word_Reset" xml:space="preserve">
+    <value>重置</value>
+  </data>
+  <data name="word_Save" xml:space="preserve">
+    <value>节省</value>
+  </data>
+  <data name="EditTableThemesDialog_Text" xml:space="preserve">
+    <value>自定义表格样式</value>
+    <comment>dialog</comment>
+  </data>
+  <data name="word_Edit" xml:space="preserve">
+    <value>编辑</value>
+  </data>
+  <data name="EditTableThemesDialog_NewStyle" xml:space="preserve">
+    <value>新风格</value>
+  </data>
 </root>

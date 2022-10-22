@@ -4143,4 +4143,44 @@ ISO-code then comma then language name</comment>
     <value>أنماط الجدول</value>
     <comment>ribbon</comment>
   </data>
+  <data name="EditTableThemesDialog_elements" xml:space="preserve">
+    <value>طاولة كاملة
+العمود الأول شريط
+شريط العمود الثاني
+شريط الصف الأول
+شريط الصف الثاني
+العمود الأول
+العمود الأخير
+مقدمة الصف
+إجمالي الصف
+رأس الخلية الأولى
+رأس الخلية الأخيرة
+إجمالي الخلية الأولى في الصف
+إجمالي الصف الخلية الأخيرة</value>
+    <comment>MoreListView</comment>
+  </data>
+  <data name="EditTableThemesDialog_elementsGroups.Text" xml:space="preserve">
+    <value>عناصر الجدول</value>
+    <comment>groupbox</comment>
+  </data>
+  <data name="EditTableThemesDialog_newButton.Text" xml:space="preserve">
+    <value>أسلوب جديد</value>
+    <comment>toolbutton</comment>
+  </data>
+  <data name="word_Reset" xml:space="preserve">
+    <value>إعادة ضبط</value>
+  </data>
+  <data name="word_Save" xml:space="preserve">
+    <value>يحفظ</value>
+  </data>
+  <data name="EditTableThemesDialog_Text" xml:space="preserve">
+    <value>أنماط الجدول المخصصة</value>
+    <comment>dialog</comment>
+  </data>
+  <data name="word_Edit" xml:space="preserve">
+    <value>يحرر</value>
+  </data>
+  <data name="EditTableThemesDialog_NewStyle" xml:space="preserve">
+    <value>أسلوب جديد</value>
+  </data>
 </root>

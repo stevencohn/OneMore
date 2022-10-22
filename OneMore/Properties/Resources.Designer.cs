@@ -1894,6 +1894,42 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Table Elements.
+        /// </summary>
+        internal static string EditTableThemesDialog_elementsGroups_Text {
+            get {
+                return ResourceManager.GetString("EditTableThemesDialog_elementsGroups.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to New Style.
+        /// </summary>
+        internal static string EditTableThemesDialog_newButton_Text {
+            get {
+                return ResourceManager.GetString("EditTableThemesDialog_newButton.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to New Style.
+        /// </summary>
+        internal static string EditTableThemesDialog_NewStyle {
+            get {
+                return ResourceManager.GetString("EditTableThemesDialog_NewStyle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Custom Table Styles.
+        /// </summary>
+        internal static string EditTableThemesDialog_Text {
+            get {
+                return ResourceManager.GetString("EditTableThemesDialog_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Source page contains no content.
         /// </summary>
         internal static string EmbedSubpageCommand_NoContent {
@@ -9286,6 +9322,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Edit.
+        /// </summary>
+        internal static string word_Edit {
+            get {
+                return ResourceManager.GetString("word_Edit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Favorites.
         /// </summary>
         internal static string word_Favorites {
@@ -9439,11 +9484,29 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Reset.
+        /// </summary>
+        internal static string word_Reset {
+            get {
+                return ResourceManager.GetString("word_Reset", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Saturation.
         /// </summary>
         internal static string word_Saturation {
             get {
                 return ResourceManager.GetString("word_Saturation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Save.
+        /// </summary>
+        internal static string word_Save {
+            get {
+                return ResourceManager.GetString("word_Save", resourceCulture);
             }
         }
         

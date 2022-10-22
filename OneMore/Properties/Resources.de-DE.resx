@@ -4135,4 +4135,44 @@ Aktuelles Notizbuch</value>
     <value>Tabellenstile</value>
     <comment>ribbon</comment>
   </data>
+  <data name="EditTableThemesDialog_elements" xml:space="preserve">
+    <value>Ganze Tabelle
+Erster Spaltenstreifen
+Zweiter Spaltenstreifen
+Streifen der ersten Reihe
+Streifen der zweiten Reihe
+Erste Spalte
+Letzte Spalte
+Kopfzeile
+Gesamtreihe
+Kopfzeile erste Zelle
+Kopfzeile letzte Zelle
+Gesamtzeile erste Zelle
+Gesamtzeile Letzte Zelle</value>
+    <comment>MoreListView</comment>
+  </data>
+  <data name="EditTableThemesDialog_elementsGroups.Text" xml:space="preserve">
+    <value>Tabellenelemente</value>
+    <comment>groupbox</comment>
+  </data>
+  <data name="EditTableThemesDialog_newButton.Text" xml:space="preserve">
+    <value>Neuer Stil</value>
+    <comment>toolbutton</comment>
+  </data>
+  <data name="word_Reset" xml:space="preserve">
+    <value>Zurücksetzen</value>
+  </data>
+  <data name="word_Save" xml:space="preserve">
+    <value>Speichern</value>
+  </data>
+  <data name="EditTableThemesDialog_Text" xml:space="preserve">
+    <value>Benutzerdefinierte Tabellenstile</value>
+    <comment>dialog</comment>
+  </data>
+  <data name="word_Edit" xml:space="preserve">
+    <value>Bearbeiten</value>
+  </data>
+  <data name="EditTableThemesDialog_NewStyle" xml:space="preserve">
+    <value>Neuer Stil</value>
+  </data>
 </root>

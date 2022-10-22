@@ -39,10 +39,10 @@
 			this.previewBox = new System.Windows.Forms.PictureBox();
 			this.toolstrip = new System.Windows.Forms.ToolStrip();
 			this.newButton = new System.Windows.Forms.ToolStripButton();
-			this.saveButton = new System.Windows.Forms.ToolStripButton();
 			this.renameButton = new System.Windows.Forms.ToolStripButton();
+			this.saveButton = new System.Windows.Forms.ToolStripButton();
+			this.toolsep1 = new System.Windows.Forms.ToolStripSeparator();
 			this.deleteButton = new System.Windows.Forms.ToolStripButton();
-			this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
 			this.elementsGroup.SuspendLayout();
 			this.previewGroup.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.previewBox)).BeginInit();
@@ -145,7 +145,7 @@
             this.newButton,
             this.renameButton,
             this.saveButton,
-            this.toolStripSeparator1,
+            this.toolsep1,
             this.deleteButton});
 			this.toolstrip.Location = new System.Drawing.Point(525, 18);
 			this.toolstrip.Name = "toolstrip";
@@ -163,6 +163,16 @@
 			this.newButton.Text = "New Style";
 			this.newButton.Click += new System.EventHandler(this.CreateNewTheme);
 			// 
+			// renameButton
+			// 
+			this.renameButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+			this.renameButton.Image = global::River.OneMoreAddIn.Properties.Resources.Rename;
+			this.renameButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+			this.renameButton.Name = "renameButton";
+			this.renameButton.Size = new System.Drawing.Size(34, 28);
+			this.renameButton.Text = "Rename";
+			this.renameButton.Click += new System.EventHandler(this.RenameTheme);
+			// 
 			// saveButton
 			// 
 			this.saveButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
@@ -174,15 +184,10 @@
 			this.saveButton.Text = "Save";
 			this.saveButton.Click += new System.EventHandler(this.SaveTheme);
 			// 
-			// renameButton
+			// toolsep1
 			// 
-			this.renameButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-			this.renameButton.Image = global::River.OneMoreAddIn.Properties.Resources.Rename;
-			this.renameButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-			this.renameButton.Name = "renameButton";
-			this.renameButton.Size = new System.Drawing.Size(34, 28);
-			this.renameButton.Text = "Rename";
-			this.renameButton.Click += new System.EventHandler(this.RenameTheme);
+			this.toolsep1.Name = "toolsep1";
+			this.toolsep1.Size = new System.Drawing.Size(6, 33);
 			// 
 			// deleteButton
 			// 
@@ -193,11 +198,6 @@
 			this.deleteButton.Size = new System.Drawing.Size(34, 28);
 			this.deleteButton.Text = "Delete";
 			this.deleteButton.Click += new System.EventHandler(this.DeleteTheme);
-			// 
-			// toolStripSeparator1
-			// 
-			this.toolStripSeparator1.Name = "toolStripSeparator1";
-			this.toolStripSeparator1.Size = new System.Drawing.Size(6, 33);
 			// 
 			// EditTableThemesDialog
 			// 
@@ -244,6 +244,6 @@
 		private System.Windows.Forms.ToolStripButton saveButton;
 		private System.Windows.Forms.ToolStripButton newButton;
 		private System.Windows.Forms.ToolStripButton renameButton;
-		private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+		private System.Windows.Forms.ToolStripSeparator toolsep1;
 	}
 }

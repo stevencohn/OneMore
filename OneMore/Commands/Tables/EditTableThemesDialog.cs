@@ -54,7 +54,7 @@ namespace River.OneMoreAddIn.Commands
 
 				var edit = new MoreLinkLabel
 				{
-					Text = "Edit",
+					Text = Resx.word_Edit,
 					Font = new Font("Segoe UI", 8, FontStyle.Regular),
 					Margin = new Padding(5, 2, 0, 2),
 					Dock = DockStyle.Left
@@ -75,7 +75,7 @@ namespace River.OneMoreAddIn.Commands
 
 				var reset = new MoreLinkLabel
 				{
-					Text = "Reset",
+					Text = Resx.word_Reset,
 					Font = new Font("Segoe UI", 8, FontStyle.Regular),
 					Margin = new Padding(7, 2, 0, 2),
 					Dock = DockStyle.Fill
@@ -120,6 +120,25 @@ namespace River.OneMoreAddIn.Commands
 			InitializeComponent();
 			InitializeElementsBox();
 
+			if (NeedsLocalizing())
+			{
+				Text = Resx.EditTableThemesDialog_Text;
+
+				Localize(new string[]
+				{
+					"nameLabel=word_Name",
+					"newButton",
+					"renameButton=word_Rename",
+					"saveButton=word_Save",
+					"deleteButton=word_Delete",
+					"elementsGroup",
+					"elementsBox",
+					"previewGroup=word_Preview",
+					"resetButton=word_Reset",
+					"cancelButton=word_Cancel"
+				});
+			}
+
 			previewBox.Image = new Bitmap(previewBox.Width, previewBox.Height);
 
 			var bounds = new Rectangle(
@@ -140,7 +159,8 @@ namespace River.OneMoreAddIn.Commands
 
 			if (themes.Count == 0)
 			{
-				themes.Insert(0, new TableTheme { Name = "New Style" });
+				themes.Insert(0, new TableTheme { Name = Resx.EditTableThemesDialog_NewStyle });
+				newButton.Enabled = false;
 			}
 			else
 			{
@@ -309,6 +329,8 @@ namespace River.OneMoreAddIn.Commands
 			SortThemes();
 			SetToolbarState();
 			reorganizing = false;
+
+			ChooseTheme(sender, e);
 		}
 
 
@@ -326,8 +348,8 @@ namespace River.OneMoreAddIn.Commands
 			}
 
 			snapshot = new TableTheme();
-			themes.Add(new TableTheme { Name = "New Style" });
-			combo.Items.Add("New Style");
+			themes.Add(new TableTheme { Name = Resx.EditTableThemesDialog_NewStyle });
+			combo.Items.Add(Resx.EditTableThemesDialog_NewStyle);
 			combo.SelectedIndex = combo.Items.Count - 1;
 
 			newButton.Enabled = false;
@@ -374,11 +396,16 @@ namespace River.OneMoreAddIn.Commands
 				themes.RemoveAt(index);
 				combo.Items.RemoveAt(index);
 
+				new TableThemeProvider().SaveUserThemes(themes);
+				Modified = true;
+
 				if (themes.Count == 0)
 				{
-					themes.Add(new TableTheme { Name = "New Style" });
+					themes.Add(new TableTheme { Name = Resx.EditTableThemesDialog_NewStyle });
 					snapshot = new TableTheme();
+					combo.Items.Add(themes[0]);
 					combo.SelectedIndex = 0;
+					newButton.Enabled = false;
 				}
 				else
 				{
@@ -391,11 +418,10 @@ namespace River.OneMoreAddIn.Commands
 					combo.SelectedIndex = index;
 				}
 
-				new TableThemeProvider().SaveUserThemes(themes);
-				Modified = true;
-
 				SetToolbarState();
 				reorganizing = false;
+
+				ChooseTheme(sender, e);
 			}
 		}
 

@@ -4228,4 +4228,28 @@ Total Row First Cell
 Total Row Last Cell</value>
     <comment>MoreListView</comment>
   </data>
+  <data name="EditTableThemesDialog_elementsGroups.Text" xml:space="preserve">
+    <value>Table Elements</value>
+    <comment>groupbox</comment>
+  </data>
+  <data name="EditTableThemesDialog_newButton.Text" xml:space="preserve">
+    <value>New Style</value>
+    <comment>toolbutton</comment>
+  </data>
+  <data name="word_Reset" xml:space="preserve">
+    <value>Reset</value>
+  </data>
+  <data name="word_Save" xml:space="preserve">
+    <value>Save</value>
+  </data>
+  <data name="EditTableThemesDialog_Text" xml:space="preserve">
+    <value>Custom Table Styles</value>
+    <comment>dialog</comment>
+  </data>
+  <data name="word_Edit" xml:space="preserve">
+    <value>Edit</value>
+  </data>
+  <data name="EditTableThemesDialog_NewStyle" xml:space="preserve">
+    <value>New Style</value>
+  </data>
 </root>

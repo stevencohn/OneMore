@@ -4143,4 +4143,44 @@ Huidig ​​notitieboek</value>
     <value>Tabelstijlen</value>
     <comment>ribbon</comment>
   </data>
+  <data name="EditTableThemesDialog_elements" xml:space="preserve">
+    <value>Hele Tafel
+Streep eerste kolom
+Tweede kolomstreep
+Streep eerste rij
+Streep op de tweede rij
+Eerste kolom
+Laatste kolom
+Koptekstrij
+Totale rij
+Koptekst Eerste cel
+Koptekst laatste cel
+Totaal rij eerste cel
+Totaal rij laatste cel</value>
+    <comment>MoreListView</comment>
+  </data>
+  <data name="EditTableThemesDialog_elementsGroups.Text" xml:space="preserve">
+    <value>Tafelelementen</value>
+    <comment>groupbox</comment>
+  </data>
+  <data name="EditTableThemesDialog_newButton.Text" xml:space="preserve">
+    <value>Nieuwe stijl</value>
+    <comment>toolbutton</comment>
+  </data>
+  <data name="word_Reset" xml:space="preserve">
+    <value>Resetten</value>
+  </data>
+  <data name="word_Save" xml:space="preserve">
+    <value>Opslaan</value>
+  </data>
+  <data name="EditTableThemesDialog_Text" xml:space="preserve">
+    <value>Aangepaste tabelstijlen</value>
+    <comment>dialog</comment>
+  </data>
+  <data name="word_Edit" xml:space="preserve">
+    <value>Bewerk</value>
+  </data>
+  <data name="EditTableThemesDialog_NewStyle" xml:space="preserve">
+    <value>Nieuwe stijl</value>
+  </data>
 </root>

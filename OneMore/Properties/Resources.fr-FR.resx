@@ -4137,4 +4137,44 @@ Carnet actuel</value>
     <value>Styles de tableau</value>
     <comment>ribbon</comment>
   </data>
+  <data name="EditTableThemesDialog_elements" xml:space="preserve">
+    <value>Tableau entier
+Première bande de colonne
+Bande de la deuxième colonne
+Bande de première rangée
+Bande de deuxième rangée
+Première colonne
+Dernière colonne
+Ligne d'en-tête
+Ligne totale
+En-tête première cellule
+En-tête dernière cellule
+Total ligne première cellule
+Total de la dernière cellule de la ligne</value>
+    <comment>MoreListView</comment>
+  </data>
+  <data name="EditTableThemesDialog_elementsGroups.Text" xml:space="preserve">
+    <value>Éléments du tableau</value>
+    <comment>groupbox</comment>
+  </data>
+  <data name="EditTableThemesDialog_newButton.Text" xml:space="preserve">
+    <value>Nouveau style</value>
+    <comment>toolbutton</comment>
+  </data>
+  <data name="word_Reset" xml:space="preserve">
+    <value>Réinitialiser</value>
+  </data>
+  <data name="word_Save" xml:space="preserve">
+    <value>sauvegarder</value>
+  </data>
+  <data name="EditTableThemesDialog_Text" xml:space="preserve">
+    <value>Styles de tableau personnalisés</value>
+    <comment>dialog</comment>
+  </data>
+  <data name="word_Edit" xml:space="preserve">
+    <value>Éditer</value>
+  </data>
+  <data name="EditTableThemesDialog_NewStyle" xml:space="preserve">
+    <value>Nouveau style</value>
+  </data>
 </root>
