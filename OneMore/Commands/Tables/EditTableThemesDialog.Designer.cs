@@ -37,7 +37,7 @@
 			this.elementsBox = new River.OneMoreAddIn.UI.MoreListView();
 			this.previewGroup = new System.Windows.Forms.GroupBox();
 			this.previewBox = new System.Windows.Forms.PictureBox();
-			this.toolstrip = new System.Windows.Forms.ToolStrip();
+			this.toolstrip = new River.OneMoreAddIn.UI.ScaledToolStrip();
 			this.newButton = new System.Windows.Forms.ToolStripButton();
 			this.renameButton = new System.Windows.Forms.ToolStripButton();
 			this.saveButton = new System.Windows.Forms.ToolStripButton();
@@ -237,7 +237,7 @@
 		private System.Windows.Forms.GroupBox elementsGroup;
 		private River.OneMoreAddIn.UI.MoreListView elementsBox;
 		private System.Windows.Forms.GroupBox previewGroup;
-		private System.Windows.Forms.ToolStrip toolstrip;
+		private River.OneMoreAddIn.UI.ScaledToolStrip toolstrip;
 		private System.Windows.Forms.ToolStripButton deleteButton;
 		private System.Windows.Forms.Button resetButton;
 		private System.Windows.Forms.PictureBox previewBox;
