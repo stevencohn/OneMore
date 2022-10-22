@@ -3199,7 +3199,7 @@ Wysoki</value>
     <comment>radio</comment>
   </data>
   <data name="AboutDialog_versionLabel.Text" xml:space="preserve">
-    <value>Wersja {0}</value>
+    <value>Wersja {0} z OneNote {1}</value>
     <comment>the version of the add-in</comment>
   </data>
   <data name="Emoji_Images" xml:space="preserve">

@@ -503,7 +503,7 @@
     <comment>check online for available updates to add-in</comment>
   </data>
   <data name="AboutDialog_versionLabel.Text" xml:space="preserve">
-    <value>Version {0}</value>
+    <value>Version {0} avec OneNote {1}</value>
     <comment>the version of the add-in</comment>
   </data>
   <data name="ChangePageColorDialog_introLabel.Text" xml:space="preserve">

@@ -3430,7 +3430,7 @@ High</value>
     <comment>Ribbon OneMore menu item, no spell check on this page</comment>
   </data>
   <data name="AboutDialog_versionLabel.Text" xml:space="preserve">
-    <value>Version {0}</value>
+    <value>Version {0} with OneNote {1}</value>
     <comment>the version of the add-in</comment>
   </data>
   <data name="Emoji_Images" xml:space="preserve">

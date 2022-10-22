@@ -5,6 +5,7 @@
 namespace River.OneMoreAddIn.Commands
 {
 	using System;
+	using System.Diagnostics;
 	using System.IO;
 	using System.Windows.Forms;
 	using Resx = River.OneMoreAddIn.Properties.Resources;
@@ -29,7 +30,9 @@ namespace River.OneMoreAddIn.Commands
 		{
 			this.factory = factory;
 
-			versionLabel.Text = string.Format(Resx.AboutDialog_versionLabel_Text, AssemblyInfo.Version);
+			versionLabel.Text = string.Format(Resx.AboutDialog_versionLabel_Text,
+				AssemblyInfo.Version, GetOneNoteVersion());
+
 			copyLabel.Text = string.Format(Resx.AboutDialog_copyLabel_Text, DateTime.Now.Year);
 
 			var logpath = Logger.Current.LogPath;
@@ -49,6 +52,18 @@ namespace River.OneMoreAddIn.Commands
 					"updateLink"
 				});
 			}
+		}
+
+
+		public string GetOneNoteVersion()
+		{
+			var processes = Process.GetProcessesByName("ONENOTE");
+			if (processes.Length > 0)
+			{
+				return processes[0].MainModule.FileVersionInfo.ProductVersion;
+			}
+
+			return "unknown";
 		}
 
 
