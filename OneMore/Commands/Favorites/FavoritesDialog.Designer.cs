@@ -125,7 +125,7 @@
 			this.MinimizeBox = false;
 			this.MinimumSize = new System.Drawing.Size(600, 400);
 			this.Name = "FavoritesDialog";
-			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+			this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
 			this.Text = "Favorites";
 			((System.ComponentModel.ISupportInitialize)(this.gridView)).EndInit();
 			this.buttonPanel.ResumeLayout(false);
