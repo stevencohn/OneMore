@@ -25,7 +25,7 @@ namespace River.OneMoreAddIn.Commands
 		{
 			using (var dialog = new SettingsDialog(args[0] as IRibbonUI))
 			{
-				dialog.ShowDialog(owner);
+				dialog.ShowDialog();
 
 				if (!dialog.RestartNeeded)
 				{
