@@ -147,7 +147,7 @@ namespace River.OneMoreAddIn.Commands
 			this.Padding = new System.Windows.Forms.Padding(20);
 			this.ShowIcon = false;
 			this.ShowInTaskbar = false;
-			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+			this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
 			this.Text = "Sort Lists";
 			this.Load += new System.EventHandler(this.LoadForm);
 			this.optionsBox.ResumeLayout(false);
