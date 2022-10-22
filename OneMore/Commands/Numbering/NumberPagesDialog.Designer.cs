@@ -151,7 +151,7 @@
 			this.numRadio.Text = "Numeric";
 			this.numRadio.UseVisualStyleBackColor = true;
 			// 
-			// PageNumberingDialog
+			// NumberPagesDialog
 			// 
 			this.AcceptButton = this.okButton;
 			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -165,9 +165,9 @@
 			this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.MaximizeBox = false;
 			this.MinimizeBox = false;
-			this.Name = "PageNumberingDialog";
+			this.Name = "NumberPagesDialog";
 			this.ShowInTaskbar = false;
-			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+			this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
 			this.Text = "Page Numbering";
 			this.numberingGroup.ResumeLayout(false);
 			this.numberingGroup.PerformLayout();

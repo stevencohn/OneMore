@@ -235,7 +235,7 @@
 			this.MinimumSize = new System.Drawing.Size(900, 600);
 			this.Name = "CropImageDialog";
 			this.ShowInTaskbar = false;
-			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+			this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
 			this.Text = "Crop and Rotate";
 			this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.CropImageDialog_FormClosed);
 			this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CropImageDialog_KeyDown);

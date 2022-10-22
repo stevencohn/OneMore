@@ -28,7 +28,7 @@ namespace River.OneMoreAddIn.Commands
 		{
 			using (var dialog = new OutlineDialog())
 			{
-				if (dialog.ShowDialog(owner) == DialogResult.OK)
+				if (dialog.ShowDialog() == DialogResult.OK)
 				{
 					using (var one = new OneNote(out var page, out ns))
 					{

@@ -81,7 +81,7 @@ namespace River.OneMoreAddIn.Commands
 
 				using (var dialog = new ResizeImagesDialog(image, viewWidth, viewHeight))
 				{
-					var result = dialog.ShowDialog(owner);
+					var result = dialog.ShowDialog();
 					if (result != DialogResult.OK)
 					{
 						return;
@@ -114,7 +114,7 @@ namespace River.OneMoreAddIn.Commands
 		{
 			using (var dialog = new ResizeImagesDialog())
 			{
-				var result = dialog.ShowDialog(owner);
+				var result = dialog.ShowDialog();
 				if (result != DialogResult.OK)
 				{
 					return;

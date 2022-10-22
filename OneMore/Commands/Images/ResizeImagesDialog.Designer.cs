@@ -676,7 +676,7 @@ namespace River.OneMoreAddIn.Commands
 			this.Name = "ResizeImagesDialog";
 			this.Padding = new System.Windows.Forms.Padding(22, 23, 22, 8);
 			this.ShowInTaskbar = false;
-			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+			this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
 			this.Text = "Resize and Adjust Image";
 			((System.ComponentModel.ISupportInitialize)(this.percentBox)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.widthBox)).EndInit();

@@ -72,7 +72,7 @@ namespace River.OneMoreAddIn.Commands
 
 					using (var dialog = new CropImageDialog(image))
 					{
-						var result = dialog.ShowDialog(owner);
+						var result = dialog.ShowDialog();
 						if (result == DialogResult.OK)
 						{
 							var bytes = (byte[])new ImageConverter()

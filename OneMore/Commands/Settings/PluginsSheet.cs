@@ -124,8 +124,6 @@ namespace River.OneMoreAddIn.Settings
 
 			using (var dialog = new PluginDialog(plugin))
 			{
-				dialog.VerticalOffset = 0;
-
 				if (dialog.ShowDialog(this) == DialogResult.OK)
 				{
 					var edited = dialog.Plugin;

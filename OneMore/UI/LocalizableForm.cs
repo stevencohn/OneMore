@@ -33,11 +33,7 @@ namespace River.OneMoreAddIn.UI
 		public bool ManualLocation { get; set; } = false;
 
 
-		public int VerticalOffset
-		{
-			private get;
-			set;
-		} = 2;
+		public int VerticalOffset { private get; set; }
 
 
 		/// <summary>
