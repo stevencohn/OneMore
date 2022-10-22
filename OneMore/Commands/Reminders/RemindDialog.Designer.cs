@@ -394,7 +394,7 @@ namespace River.OneMoreAddIn.Commands
 			this.MinimizeBox = false;
 			this.Name = "RemindDialog";
 			this.Padding = new System.Windows.Forms.Padding(20, 25, 20, 20);
-			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+			this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
 			this.Text = "Reminder";
 			((System.ComponentModel.ISupportInitialize)(this.percentBox)).EndInit();
 			this.optionsBox.ResumeLayout(false);

@@ -55,7 +55,7 @@ namespace River.OneMoreAddIn.Commands
 
 				using (var dialog = new RemindDialog(reminder, false))
 				{
-					if (dialog.ShowDialog(owner) == DialogResult.OK)
+					if (dialog.ShowDialog() == DialogResult.OK)
 					{
 						if (SetReminder(paragraph, dialog.Reminder))
 						{
@@ -93,7 +93,7 @@ namespace River.OneMoreAddIn.Commands
 
 				using (var dialog = new RemindDialog(reminder, true))
 				{
-					if (dialog.ShowDialog(owner) == DialogResult.OK)
+					if (dialog.ShowDialog() == DialogResult.OK)
 					{
 						if (SetReminder(paragraph, dialog.Reminder))
 						{
