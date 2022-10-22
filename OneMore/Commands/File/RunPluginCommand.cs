@@ -111,7 +111,7 @@ namespace River.OneMoreAddIn.Commands
 				PageName = "$name (2)"
 			};
 
-			if (dialog.ShowDialog(owner) == DialogResult.Cancel)
+			if (dialog.ShowDialog() == DialogResult.Cancel)
 			{
 				plugin = null;
 				return false;

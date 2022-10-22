@@ -145,7 +145,7 @@ namespace River.OneMoreAddIn.Commands
 			this.Name = "ImportWebDialog";
 			this.Padding = new System.Windows.Forms.Padding(15);
 			this.ShowInTaskbar = false;
-			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+			this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
 			this.Text = "Import Web Page";
 			this.Load += new System.EventHandler(this.ImportWebDialog_Load);
 			this.ResumeLayout(false);

@@ -50,7 +50,7 @@ namespace River.OneMoreAddIn.Commands
 
 			using (var dialog = new ImportWebDialog())
 			{
-				if (dialog.ShowDialog(owner) != DialogResult.OK)
+				if (dialog.ShowDialog() != DialogResult.OK)
 				{
 					return;
 				}
