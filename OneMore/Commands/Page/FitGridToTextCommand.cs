@@ -78,7 +78,7 @@ namespace River.OneMoreAddIn.Commands
 
 					using (var dialog = new FitGridToTextDialog(style.FontSize, height))
 					{
-						if (dialog.ShowDialog(owner) == System.Windows.Forms.DialogResult.OK)
+						if (dialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
 						{
 							rule.Attribute("spacing").Value = dialog.Spacing.ToString();
 
