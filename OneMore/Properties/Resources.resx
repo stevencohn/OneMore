@@ -4252,4 +4252,28 @@ Total Row Last Cell</value>
   <data name="EditTableThemesDialog_NewStyle" xml:space="preserve">
     <value>New Style</value>
   </data>
+  <data name="CustomStyles" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>images\customstyles.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="DarkCustomStyles" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>images\darkcustomstyles.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="DarkFavorites" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>images\darkfavorites.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="DarkSnippets" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>images\darksnippets.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="DarkTableStyles" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>images\darktablestyles.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Favorites" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>images\favorites.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Snippets" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>images\snippets.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="TableStyles" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>images\tablestyles.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
 </root>

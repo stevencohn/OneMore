@@ -1726,6 +1726,16 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap CustomStyles {
+            get {
+                object obj = ResourceManager.GetObject("CustomStyles", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to CustomStyles.xml.
         /// </summary>
         internal static string CustomStylesFilename {
@@ -1740,6 +1750,46 @@ namespace River.OneMoreAddIn.Properties {
         internal static System.Drawing.Bitmap Cyclist {
             get {
                 object obj = ResourceManager.GetObject("Cyclist", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap DarkCustomStyles {
+            get {
+                object obj = ResourceManager.GetObject("DarkCustomStyles", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap DarkFavorites {
+            get {
+                object obj = ResourceManager.GetObject("DarkFavorites", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap DarkSnippets {
+            get {
+                object obj = ResourceManager.GetObject("DarkSnippets", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap DarkTableStyles {
+            get {
+                object obj = ResourceManager.GetObject("DarkTableStyles", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -2384,6 +2434,16 @@ namespace River.OneMoreAddIn.Properties {
         internal static System.Drawing.Bitmap Family {
             get {
                 object obj = ResourceManager.GetObject("Family", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Favorites {
+            get {
+                object obj = ResourceManager.GetObject("Favorites", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -5459,10 +5519,10 @@ namespace River.OneMoreAddIn.Properties {
         ///      &lt;tab idMso=&quot;TabHome&quot;&gt;
         ///        &lt;group id=&quot;ribOneMoreGroup&quot; getLabel=&quot;GetRibbonLabel&quot;&gt;
         ///          &lt;gallery
-        ///            id=&quot;ribCustomStylesButton&quot; columns=&quot;4&quot; showItemLabel=&quot;false&quot; size=&quot;normal&quot;
-        ///            imageMso=&quot;StylesPane&quot;
+        ///            id=&quot;ribCustomStylesButton&quot; columns=&quot;4&quot; showItemLabel=&quot;false&quot; size=&quot;large&quot;
+        ///            image=&quot;CustomStyles&quot;
         ///            getLabel=&quot;GetRibbonLabel&quot;
-        ///            getItemCount=&quot;GetStyleGalleryIt [rest of string was truncated]&quot;;.
+        ///            getItemCount=&quot;GetStyleGalleryItem [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string Ribbon {
             get {
@@ -8027,6 +8087,16 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Snippets {
+            get {
+                object obj = ResourceManager.GetObject("Snippets", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Delete snippet &quot;{0}&quot;.
         /// </summary>
         internal static string SnippetsSheet_ConfirmDelete {
@@ -8667,6 +8737,16 @@ namespace River.OneMoreAddIn.Properties {
         internal static System.Drawing.Bitmap Superscript {
             get {
                 object obj = ResourceManager.GetObject("Superscript", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap TableStyles {
+            get {
+                object obj = ResourceManager.GetObject("TableStyles", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

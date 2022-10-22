@@ -519,19 +519,41 @@ namespace River.OneMoreAddIn
 		/// <returns>A Bitmap image</returns>
 		public IStream GetRibbonImage(string imageName)
 		{
-			//logger.WriteLine($"GetRibbonImage({imageName})");
-			IStream stream = null;
+			if (Office.IsBlackThemeEnabled(true))
+			{
+				var darkName = $"Dark{imageName}";
+				//logger.WriteLine($"GetRibbonImage({imageName})");
+				try
+				{
+					if (Resx.ResourceManager.GetObject(darkName) is Bitmap res)
+					{
+						var stream = res.GetReadOnlyStream();
+						trash.Add((IDisposable)stream);
+						return stream;
+					}
+				}
+				catch
+				{
+					logger.WriteLine($"{darkName} resource not found, trying light mode");
+				}
+			}
+
 			try
 			{
-				stream = ((Bitmap)Resx.ResourceManager.GetObject(imageName)).GetReadOnlyStream();
-				trash.Add((IDisposable)stream);
+				//logger.WriteLine($"GetRibbonImage({imageName})");
+				if (Resx.ResourceManager.GetObject(imageName) is Bitmap res)
+				{
+					var stream = res.GetReadOnlyStream();
+					trash.Add((IDisposable)stream);
+					return stream;
+				}
 			}
 			catch (Exception exc)
 			{
 				logger.WriteLine(exc);
 			}
 
-			return stream;
+			return null;
 		}
 
 

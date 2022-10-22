@@ -106,7 +106,7 @@ namespace River.OneMoreAddIn.Helpers.Office
 		/// using the "Switch background" button
 		/// </summary>
 		/// <returns>True if Black theme is set; otherwise false</returns>
-		public static bool IsBlackThemeEnabled()
+		public static bool IsBlackThemeEnabled(bool ignorePage = false)
 		{
 			var version = GetOfficeVersion();
 
@@ -133,7 +133,7 @@ namespace River.OneMoreAddIn.Helpers.Office
 					}
 				}
 
-				if (theme == 4 && !DarkModeLightsOn())
+				if (theme == 4 && (ignorePage || !DarkModeLightsOn()))
 				{
 					return true;
 				}
@@ -141,7 +141,7 @@ namespace River.OneMoreAddIn.Helpers.Office
 
 			// if office theme is 6 then use the system default...
 
-			if (theme == 6 && SystemDefaultDarkMode() && !DarkModeLightsOn())
+			if (theme == 6 && SystemDefaultDarkMode() && (ignorePage || !DarkModeLightsOn()))
 			{
 				return true;
 			}
