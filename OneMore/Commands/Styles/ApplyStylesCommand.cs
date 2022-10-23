@@ -189,7 +189,10 @@ namespace River.OneMoreAddIn.Commands
 		private void SetSpacing(string index, string spaceBefore, string spaceAfter)
 		{
 			var paragraphs = page.Root.Descendants(ns + "OE")
-				.Where(e => e.Attribute("quickStyleIndex")?.Value == index);
+				.Where(e => e.Attribute("quickStyleIndex")?.Value == index &&
+					!e.Elements(ns + "Meta")
+						.Any(a => a.Attribute("name").Value.StartsWith("omfootnote"))
+					);
 
 			foreach (var paragraph in paragraphs)
 			{
@@ -206,7 +209,10 @@ namespace River.OneMoreAddIn.Commands
 		private void ClearInlineStyles(string index, bool paragraph)
 		{
 			var elements = page.Root.Descendants()
-				.Where(e => e.Attribute("quickStyleIndex")?.Value == index);
+				.Where(e => e.Attribute("quickStyleIndex")?.Value == index &&
+					!e.Elements(ns + "Meta")
+						.Any(a => a.Attribute("name").Value.StartsWith("omfootnote"))
+					);
 
 			if (elements != null)
 			{
@@ -280,6 +286,11 @@ namespace River.OneMoreAddIn.Commands
 			{
 				foreach (var element in elements)
 				{
+					if (element.Parent.Elements(ns + "Meta").Any(m => m.Attribute("name").Value.StartsWith("omfootnote")))
+					{
+						continue;
+					}
+
 					var cdata = element.GetCData();
 
 					if (cdata.Value.EndsWith("</a>"))
