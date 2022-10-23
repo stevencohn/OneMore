@@ -4,12 +4,14 @@
 
 namespace River.OneMoreAddIn.Settings
 {
+	using System;
 	using System.Collections.Generic;
 	using System.Globalization;
 	using System.IO;
 	using System.Linq;
 	using System.Reflection;
 	using System.Text.RegularExpressions;
+	using System.Windows.Forms;
 	using Resx = River.OneMoreAddIn.Properties.Resources;
 
 
@@ -96,25 +98,102 @@ namespace River.OneMoreAddIn.Settings
 		}
 
 
+		private void BrowseImageViewer(object sender, System.EventArgs e)
+		{
+			// both cmdBox and argsBox use this handler
+			using var dialog = new OpenFileDialog();
+			dialog.Filter = "All files (*.*)|*.*";
+			dialog.CheckFileExists = true;
+			dialog.Multiselect = false;
+			dialog.Title = "Image Viewer";
+			dialog.ShowHelp = true; // stupid, but this is needed to avoid hang
+			dialog.InitialDirectory = GetValidPath(imageViewerBox.Text);
+
+			var result = dialog.ShowDialog();
+			if (result == DialogResult.OK)
+			{
+				imageViewerBox.Text = dialog.FileName;
+			}
+		}
+
+
+		private string GetValidPath(string path)
+		{
+			path = path.Trim();
+			if (path == string.Empty)
+			{
+				return Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles);
+			}
+
+			if (File.Exists(path))
+			{
+				return Path.GetDirectoryName(path);
+			}
+			else if (Directory.Exists(path))
+			{
+				return path;
+			}
+
+			path = Path.GetDirectoryName(path);
+			if (Directory.Exists(path))
+			{
+				return path;
+			}
+
+			return Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles);
+		}
+
+
+		private void ValidateImageViewer(object sender, EventArgs e)
+		{
+			var path = imageViewerBox.Text.Trim();
+			if (!string.IsNullOrEmpty(path) && !File.Exists(path))
+			{
+				errorProvider1.SetError(imageViewerButton, "Path not found");
+			}
+			else
+			{
+				errorProvider1.SetError(imageViewerButton, String.Empty);
+			}
+		}
+
+
 		public override bool CollectSettings()
 		{
+
+			// general...
+
+			var genup = false;
 			var settings = provider.GetCollection(Name);
 
-			var updated = false;
-			if (settings.Add("enablers", enablersBox.Checked)) updated = true;
-			if (settings.Add("checkUpdates", checkUpdatesBox.Checked)) updated = true;
+			if (settings.Add("enablers", enablersBox.Checked)) genup = true;
+			if (settings.Add("checkUpdates", checkUpdatesBox.Checked)) genup = true;
 
 			var lang = ((CultureInfo)(langBox.SelectedItem)).Name;
-			if (settings.Add("language", lang)) updated = true;
+			if (settings.Add("language", lang)) genup = true;
 
-			if (updated)
+			if (genup)
 			{
 				provider.SetCollection(settings);
 				AddIn.EnablersEnabled = enablersBox.Checked;
-				return true;
 			}
 
-			return false;
+			// image viewer...
+
+			var imgup = false;
+			settings = provider.GetCollection("images");
+			var viewer = imageViewerBox.Text.Trim();
+			if (string.IsNullOrEmpty(viewer))
+			{
+				viewer = "mspaint";
+			}
+			if (settings.Add("viewer", viewer)) imgup = true;
+			if (imgup)
+			{
+				provider.SetCollection(settings);
+			}
+
+			return genup || imgup;
 		}
 	}
 }

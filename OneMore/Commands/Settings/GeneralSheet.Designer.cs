@@ -29,13 +29,19 @@ namespace River.OneMoreAddIn.Settings
 		/// </summary>
 		private void InitializeComponent()
 		{
+			this.components = new System.ComponentModel.Container();
 			this.introBox = new System.Windows.Forms.TextBox();
 			this.layoutPanel = new System.Windows.Forms.Panel();
+			this.imageViewerLabel = new System.Windows.Forms.Label();
+			this.imageViewerButton = new System.Windows.Forms.Button();
+			this.imageViewerBox = new System.Windows.Forms.TextBox();
+			this.langBox = new System.Windows.Forms.ComboBox();
+			this.langLabel = new System.Windows.Forms.Label();
 			this.checkUpdatesBox = new System.Windows.Forms.CheckBox();
 			this.enablersBox = new System.Windows.Forms.CheckBox();
-			this.langLabel = new System.Windows.Forms.Label();
-			this.langBox = new System.Windows.Forms.ComboBox();
+			this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
 			this.layoutPanel.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// introBox
@@ -53,6 +59,9 @@ namespace River.OneMoreAddIn.Settings
 			// 
 			// layoutPanel
 			// 
+			this.layoutPanel.Controls.Add(this.imageViewerLabel);
+			this.layoutPanel.Controls.Add(this.imageViewerButton);
+			this.layoutPanel.Controls.Add(this.imageViewerBox);
 			this.layoutPanel.Controls.Add(this.langBox);
 			this.layoutPanel.Controls.Add(this.langLabel);
 			this.layoutPanel.Controls.Add(this.checkUpdatesBox);
@@ -63,6 +72,54 @@ namespace River.OneMoreAddIn.Settings
 			this.layoutPanel.Name = "layoutPanel";
 			this.layoutPanel.Size = new System.Drawing.Size(772, 416);
 			this.layoutPanel.TabIndex = 4;
+			// 
+			// imageViewerLabel
+			// 
+			this.imageViewerLabel.AutoSize = true;
+			this.imageViewerLabel.Location = new System.Drawing.Point(3, 218);
+			this.imageViewerLabel.Margin = new System.Windows.Forms.Padding(3, 10, 3, 0);
+			this.imageViewerLabel.Name = "imageViewerLabel";
+			this.imageViewerLabel.Size = new System.Drawing.Size(359, 20);
+			this.imageViewerLabel.TabIndex = 6;
+			this.imageViewerLabel.Text = "External image viewer (default if empty is mspaint)";
+			// 
+			// imageViewerButton
+			// 
+			this.errorProvider1.SetError(this.imageViewerButton, "Path not found");
+			this.imageViewerButton.Location = new System.Drawing.Point(591, 240);
+			this.imageViewerButton.Name = "imageViewerButton";
+			this.imageViewerButton.Size = new System.Drawing.Size(36, 31);
+			this.imageViewerButton.TabIndex = 5;
+			this.imageViewerButton.Text = "...";
+			this.imageViewerButton.UseVisualStyleBackColor = true;
+			this.imageViewerButton.Click += new System.EventHandler(this.BrowseImageViewer);
+			// 
+			// imageViewerBox
+			// 
+			this.imageViewerBox.Location = new System.Drawing.Point(7, 241);
+			this.imageViewerBox.Name = "imageViewerBox";
+			this.imageViewerBox.Size = new System.Drawing.Size(578, 26);
+			this.imageViewerBox.TabIndex = 4;
+			this.imageViewerBox.Text = "mspaint";
+			this.imageViewerBox.TextChanged += new System.EventHandler(this.ValidateImageViewer);
+			// 
+			// langBox
+			// 
+			this.langBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.langBox.FormattingEnabled = true;
+			this.langBox.Location = new System.Drawing.Point(7, 154);
+			this.langBox.Name = "langBox";
+			this.langBox.Size = new System.Drawing.Size(345, 28);
+			this.langBox.TabIndex = 3;
+			// 
+			// langLabel
+			// 
+			this.langLabel.AutoSize = true;
+			this.langLabel.Location = new System.Drawing.Point(3, 131);
+			this.langLabel.Name = "langLabel";
+			this.langLabel.Size = new System.Drawing.Size(297, 20);
+			this.langLabel.TabIndex = 2;
+			this.langLabel.Text = "Display language (must restart OneNote)";
 			// 
 			// checkUpdatesBox
 			// 
@@ -89,23 +146,9 @@ namespace River.OneMoreAddIn.Settings
     " the Quick Access toolbar";
 			this.enablersBox.UseVisualStyleBackColor = true;
 			// 
-			// langLabel
+			// errorProvider1
 			// 
-			this.langLabel.AutoSize = true;
-			this.langLabel.Location = new System.Drawing.Point(3, 131);
-			this.langLabel.Name = "langLabel";
-			this.langLabel.Size = new System.Drawing.Size(297, 20);
-			this.langLabel.TabIndex = 2;
-			this.langLabel.Text = "Display language (must restart OneNote)";
-			// 
-			// langBox
-			// 
-			this.langBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-			this.langBox.FormattingEnabled = true;
-			this.langBox.Location = new System.Drawing.Point(7, 154);
-			this.langBox.Name = "langBox";
-			this.langBox.Size = new System.Drawing.Size(345, 28);
-			this.langBox.TabIndex = 3;
+			this.errorProvider1.ContainerControl = this;
 			// 
 			// GeneralSheet
 			// 
@@ -119,6 +162,7 @@ namespace River.OneMoreAddIn.Settings
 			this.Size = new System.Drawing.Size(800, 500);
 			this.layoutPanel.ResumeLayout(false);
 			this.layoutPanel.PerformLayout();
+			((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -132,5 +176,9 @@ namespace River.OneMoreAddIn.Settings
 		private System.Windows.Forms.CheckBox checkUpdatesBox;
 		private System.Windows.Forms.ComboBox langBox;
 		private System.Windows.Forms.Label langLabel;
+		private System.Windows.Forms.Label imageViewerLabel;
+		private System.Windows.Forms.Button imageViewerButton;
+		private System.Windows.Forms.TextBox imageViewerBox;
+		private System.Windows.Forms.ErrorProvider errorProvider1;
 	}
 }

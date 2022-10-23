@@ -405,6 +405,11 @@
                 getEnabled="GetImageSelected"
                 onAction="CropImageCmd"/>
               <button
+                id="ribOpenImageWithButton"
+                imageMso="PictureInsertFromFile"
+                getLabel="GetRibbonLabel"
+                onAction="OpenImageWithCmd"/>
+              <button
                 id="ribResizeImagesButton"
                 imageMso="GroupPictureCompress"
                 getLabel="GetRibbonLabel"
@@ -911,6 +916,12 @@
         imageMso="PictureCrop"
         getLabel="GetRibbonLabel"
         onAction="CropImageCmd"
+        insertBeforeMso="Cut"/>
+      <button
+        id="ctxOpenImageWithButton"
+        imageMso="PictureInsertFromFile"
+        getLabel="GetRibbonLabel"
+        onAction="OpenImageWithCmd"
         insertBeforeMso="Cut"/>
       <button
         id="ctxResizeImagesButton"

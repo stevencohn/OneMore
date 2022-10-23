@@ -593,6 +593,7 @@ namespace River.OneMoreAddIn.Commands
 		{
 			if (presetRadio.Checked)
 			{
+				// settings is shared with OpenImageWithCmd so preserve its integrity
 				var collection = settings.GetCollection("images");
 				collection.Add("mruWidth", (int)presetBox.Value);
 				settings.SetCollection(collection);
