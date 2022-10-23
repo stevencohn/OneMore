@@ -4180,4 +4180,8 @@ Total de la dernière cellule de la ligne</value>
   <data name="ribClearTableShadingButton_Label" xml:space="preserve">
     <value>Effacer tout l'ombrage des cellules</value>
   </data>
+  <data name="ribCheckForUpdatesButton_Label" xml:space="preserve">
+    <value>Vérifier les mises à jour</value>
+    <comment>command</comment>
+  </data>
 </root>

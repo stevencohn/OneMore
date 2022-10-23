@@ -4178,4 +4178,8 @@ Gesamtzeile Letzte Zelle</value>
   <data name="ribClearTableShadingButton_Label" xml:space="preserve">
     <value>Löschen Sie alle Zellschattierungen</value>
   </data>
+  <data name="ribCheckForUpdatesButton_Label" xml:space="preserve">
+    <value>Auf Updates prüfen</value>
+    <comment>command</comment>
+  </data>
 </root>

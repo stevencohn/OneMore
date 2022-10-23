@@ -5621,6 +5621,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Check for Updates.
+        /// </summary>
+        internal static string ribCheckForUpdatesButton_Label {
+            get {
+                return ResourceManager.GetString("ribCheckForUpdatesButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Choose Favorite.
         /// </summary>
         internal static string ribChooseFavoriteButton_Label {

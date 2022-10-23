@@ -4176,4 +4176,8 @@ OneNote 文件 (*.one)</value>
   <data name="ribClearTableShadingButton_Label" xml:space="preserve">
     <value>清除所有单元格阴影</value>
   </data>
+  <data name="ribCheckForUpdatesButton_Label" xml:space="preserve">
+    <value>检查更新</value>
+    <comment>command</comment>
+  </data>
 </root>

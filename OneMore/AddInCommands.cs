@@ -124,9 +124,16 @@ namespace River.OneMoreAddIn
 		public async Task ChangePageColorCmd(IRibbonControl control)
 			=> await factory.Run<ChangePageColorCommand>();
 
+
+		[Command("ribCheckForUpdatesButton_Label", Keys.None, "Tools")]
+		public async Task CheckForUpdatesCmd(IRibbonControl control)
+			=> await factory.Run<UpdateCommand>(true);
+
+
 		[Command("ribChooseFavoriteButton_Label", Keys.Alt | Keys.F, "Tools")]
 		public async Task ChooseFavoriteCmd(IRibbonControl control)
 			=> await factory.Run<GotoFavoriteCommand>(null);
+
 
 		public async Task ClearBackgroundCmd(IRibbonControl control)
 			=> await factory.Run<ClearBackgroundCommand>();
@@ -624,6 +631,7 @@ namespace River.OneMoreAddIn
 
 		public async Task TrimLeadingCmd(IRibbonControl control)
 			=> await factory.Run<TrimCommand>(true);
+
 
 		public async Task UpdateSubpageCmd(IRibbonControl control)
 			=> await factory.Run<EmbedSubpageCommand>(true);

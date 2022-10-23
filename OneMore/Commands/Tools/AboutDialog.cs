@@ -88,7 +88,7 @@ namespace River.OneMoreAddIn.Commands
 		// async event handlers should be be declared 'async void'
 		private async void CheckForUpdates(object sender, LinkLabelLinkClickedEventArgs e)
 		{
-			var command = await factory.Run<UpdateCommand>(true, this) as UpdateCommand;
+			var command = await factory.Run<UpdateCommand>(true) as UpdateCommand;
 			if (command.Updated)
 			{
 				Close();

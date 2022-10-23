@@ -4186,4 +4186,8 @@ ISO-code then comma then language name</comment>
   <data name="ribClearTableShadingButton_Label" xml:space="preserve">
     <value>امسح كافة تظليل الخلايا</value>
   </data>
+  <data name="ribCheckForUpdatesButton_Label" xml:space="preserve">
+    <value>تحقق من وجود تحديثات</value>
+    <comment>command</comment>
+  </data>
 </root>
