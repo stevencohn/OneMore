@@ -101,7 +101,7 @@ namespace River.OneMoreAddIn.Commands
 				using (progress = new UI.ProgressDialog())
 				{
 					progress.SetMaximum(5);
-					progress.Show(owner);
+					progress.Show();
 
 					var container = page.EnsureContentContainer();
 					var notebooks = await one.GetNotebooks();

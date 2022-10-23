@@ -33,7 +33,7 @@ namespace River.OneMoreAddIn.Commands
 			using (var progress = new UI.ProgressDialog())
 			{
 				progress.SetMaximum(pageIds.Count);
-				progress.Show(owner);
+				progress.Show();
 
 				foreach (var pageId in pageIds)
 				{
@@ -76,7 +76,7 @@ namespace River.OneMoreAddIn.Commands
 			using (var progress = new UI.ProgressDialog())
 			{
 				progress.SetMaximum(pageIds.Count);
-				progress.Show(owner);
+				progress.Show();
 
 				// create a new page to get a new ID
 				one.CreatePage(sectionId, out indexId);
@@ -125,7 +125,7 @@ namespace River.OneMoreAddIn.Commands
 			using (var progress = new UI.ProgressDialog())
 			{
 				progress.SetMaximum(pageIds.Count);
-				progress.Show(owner);
+				progress.Show();
 
 				foreach (var pageId in pageIds)
 				{

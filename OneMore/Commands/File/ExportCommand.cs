@@ -95,7 +95,7 @@ namespace River.OneMoreAddIn.Commands
 			using (var progress = new UI.ProgressDialog())
 			{
 				progress.SetMaximum(pageIDs.Count);
-				progress.Show(owner);
+				progress.Show();
 
 				var archivist = new Archivist(one);
 

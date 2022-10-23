@@ -54,7 +54,7 @@ namespace River.OneMoreAddIn.Commands
 						using (var progress = new UI.ProgressDialog())
 						{
 							progress.SetMaximum(pageIds.Count);
-							progress.Show(owner);
+							progress.Show();
 
 							foreach (var pageId in pageIds)
 							{
