@@ -4173,4 +4173,7 @@ OneNote 文件 (*.one)</value>
   <data name="EditTableThemesDialog_NewStyle" xml:space="preserve">
     <value>新风格</value>
   </data>
+  <data name="ribClearTableShadingButton_Label" xml:space="preserve">
+    <value>清除所有单元格阴影</value>
+  </data>
 </root>

@@ -5520,9 +5520,9 @@ namespace River.OneMoreAddIn.Properties {
         ///        &lt;group id=&quot;ribOneMoreGroup&quot; getLabel=&quot;GetRibbonLabel&quot;&gt;
         ///          &lt;gallery
         ///            id=&quot;ribCustomStylesButton&quot; columns=&quot;4&quot; showItemLabel=&quot;false&quot; size=&quot;normal&quot;
-        ///            image=&quot;CustomStyles&quot;
+        ///            imageMso=&quot;StylesPane&quot;
         ///            getLabel=&quot;GetRibbonLabel&quot;
-        ///            getItemCount=&quot;GetStyleGalleryIte [rest of string was truncated]&quot;;.
+        ///            getItemCount=&quot;GetStyleGalleryIt [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string Ribbon {
             get {
@@ -5653,6 +5653,15 @@ namespace River.OneMoreAddIn.Properties {
         internal static string ribClearLogButton_Label {
             get {
                 return ResourceManager.GetString("ribClearLogButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Clear All Cell Shading.
+        /// </summary>
+        internal static string ribClearTableShadingButton_Label {
+            get {
+                return ResourceManager.GetString("ribClearTableShadingButton_Label", resourceCulture);
             }
         }
         

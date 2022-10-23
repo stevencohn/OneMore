@@ -58,6 +58,10 @@
               id="ribEditTableThemesButton"
               getLabel="GetRibbonLabel"
               onAction="EditTableThemesCmd"/>
+            <button
+              id="ribClearTableShadingButton"
+              getLabel="GetRibbonLabel"
+              onAction="ClearTableShadingCmd"/>
           </gallery>
 
           <dynamicMenu

@@ -736,7 +736,7 @@ namespace River.OneMoreAddIn.Commands
 			{
 				dialog.ManualLocation = true;
 				var point = PointToScreen(mainTools.Location);
-				dialog.Location = new Point(point.X + dialog.Width, point.Y + (dialog.Height / 2));
+				dialog.Location = new Point(point.X + dialog.Width, point.Y);
 
 				var result = dialog.ShowDialog();
 				if (result == DialogResult.OK)

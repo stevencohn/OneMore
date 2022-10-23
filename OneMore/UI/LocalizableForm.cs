@@ -130,7 +130,7 @@ namespace River.OneMoreAddIn.UI
 					bounds.Left + (bounds.Right - bounds.Left) / 2,
 					bounds.Top + (bounds.Bottom - bounds.Top) / 2);
 
-				Location = new Point(center.X - (Width / 2), center.Y);
+				Location = new Point(center.X - (Width / 2), center.Y - (Height / 2));
 			}
 
 			if (VerticalOffset > 0)
