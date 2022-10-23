@@ -8,7 +8,7 @@ The version string to apply. Must be of the form major.minor or major.minor.patc
 
 param (
     [Parameter(Mandatory = $true)]
-    [ValidatePattern({^\d+\.\d+(?:\.\d+)?(?:\-Beta|\-Experimental)$})]
+    [ValidatePattern({^\d+\.\d+(?:\.\d+)?(?:\-Beta|\-Experimental)?$})]
     [string] $version
     )
 
