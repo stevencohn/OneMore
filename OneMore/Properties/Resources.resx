@@ -4283,4 +4283,8 @@ Total Row Last Cell</value>
     <value>Check for Updates</value>
     <comment>command</comment>
   </data>
+  <data name="ribOpenImageWithButton_Label" xml:space="preserve">
+    <value>Open Image With</value>
+    <comment>Ribbon OneMore menu item</comment>
+  </data>
 </root>

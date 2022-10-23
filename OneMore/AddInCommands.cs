@@ -420,6 +420,11 @@ namespace River.OneMoreAddIn
 			=> await factory.Run<NumberSectionsCommand>();
 
 
+		[Command("ribOpenImageWithButton_Label", Keys.None, "Images")]
+		public async Task OpenImageWithCmd(IRibbonControl control)
+			=> await factory.Run<OpenImageWithCommand>();
+
+
 		[Command("ribOpenLogButton_Label", Keys.None, "Tools")]
 		public async Task OpenLogCmd(IRibbonControl control)
 			=> await factory.Run<OpenLogCommand>();
