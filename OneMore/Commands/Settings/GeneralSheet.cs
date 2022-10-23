@@ -34,7 +34,7 @@ namespace River.OneMoreAddIn.Settings
 					"enablersBox",
 					"checkUpdatesBox",
 					"langLabel",
-					"imageViewrLabel"
+					"imageViewerLabel"
 				});
 			}
 
