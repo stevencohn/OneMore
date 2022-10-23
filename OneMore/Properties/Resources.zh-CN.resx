@@ -4180,4 +4180,21 @@ OneNote 文件 (*.one)</value>
     <value>检查更新</value>
     <comment>command</comment>
   </data>
+  <data name="ribOpenImageWithButton_Label" xml:space="preserve">
+    <value>打开图像</value>
+    <comment>Ribbon OneMore menu item</comment>
+  </data>
+  <data name="GeneralSheet_imageViewerLabel.Text" xml:space="preserve">
+    <value>外部图像查看器（如果为空则默认为 mspaint）</value>
+    <comment>label</comment>
+  </data>
+  <data name="OpenImageWithCommand_selectOne" xml:space="preserve">
+    <value>选择一张图片打开</value>
+  </data>
+  <data name="GeneralSheet_pathNotFound" xml:space="preserve">
+    <value>找不到路径</value>
+  </data>
+  <data name="GeneralSheet_imageBrowser" xml:space="preserve">
+    <value>图像查看器</value>
+  </data>
 </root>

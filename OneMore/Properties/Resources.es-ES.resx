@@ -4190,4 +4190,21 @@ Total fila última celda</value>
     <value>Buscar actualizaciones</value>
     <comment>command</comment>
   </data>
+  <data name="ribOpenImageWithButton_Label" xml:space="preserve">
+    <value>Abrir imagen con</value>
+    <comment>Ribbon OneMore menu item</comment>
+  </data>
+  <data name="GeneralSheet_imageViewerLabel.Text" xml:space="preserve">
+    <value>Visor de imágenes externo (predeterminado si está vacío es mspaint)</value>
+    <comment>label</comment>
+  </data>
+  <data name="OpenImageWithCommand_selectOne" xml:space="preserve">
+    <value>Seleccione una imagen para abrir</value>
+  </data>
+  <data name="GeneralSheet_pathNotFound" xml:space="preserve">
+    <value>Camino no encontrado</value>
+  </data>
+  <data name="GeneralSheet_imageBrowser" xml:space="preserve">
+    <value>Visor de imágenes</value>
+  </data>
 </root>

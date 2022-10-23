@@ -4190,4 +4190,21 @@ ISO-code then comma then language name</comment>
     <value>تحقق من وجود تحديثات</value>
     <comment>command</comment>
   </data>
+  <data name="ribOpenImageWithButton_Label" xml:space="preserve">
+    <value>فتح الصورة باستخدام</value>
+    <comment>Ribbon OneMore menu item</comment>
+  </data>
+  <data name="GeneralSheet_imageViewerLabel.Text" xml:space="preserve">
+    <value>عارض الصور الخارجي (الافتراضي إذا كان فارغًا هو mspaint)</value>
+    <comment>label</comment>
+  </data>
+  <data name="OpenImageWithCommand_selectOne" xml:space="preserve">
+    <value>حدد صورة واحدة لفتحها</value>
+  </data>
+  <data name="GeneralSheet_pathNotFound" xml:space="preserve">
+    <value>المسار مفقود</value>
+  </data>
+  <data name="GeneralSheet_imageBrowser" xml:space="preserve">
+    <value>عارض الصور</value>
+  </data>
 </root>

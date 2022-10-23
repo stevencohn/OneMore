@@ -4243,4 +4243,21 @@ Pierwsza komórka wiersza razem
     <value>Sprawdź aktualizacje</value>
     <comment>command</comment>
   </data>
+  <data name="ribOpenImageWithButton_Label" xml:space="preserve">
+    <value>Otwórz obraz za pomocą</value>
+    <comment>Ribbon OneMore menu item</comment>
+  </data>
+  <data name="GeneralSheet_imageViewerLabel.Text" xml:space="preserve">
+    <value>Zewnętrzna przeglądarka obrazów (domyślnie, jeśli pusty to mspaint)</value>
+    <comment>label</comment>
+  </data>
+  <data name="OpenImageWithCommand_selectOne" xml:space="preserve">
+    <value>Wybierz jeden obraz do otwarcia</value>
+  </data>
+  <data name="GeneralSheet_pathNotFound" xml:space="preserve">
+    <value>Droga nie znaleziona</value>
+  </data>
+  <data name="GeneralSheet_imageBrowser" xml:space="preserve">
+    <value>Przeglądarka zdjęć</value>
+  </data>
 </root>

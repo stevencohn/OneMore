@@ -4287,4 +4287,17 @@ Total Row Last Cell</value>
     <value>Open Image With</value>
     <comment>Ribbon OneMore menu item</comment>
   </data>
+  <data name="GeneralSheet_imageViewerLabel.Text" xml:space="preserve">
+    <value>External image viewer (default if empty is mspaint)</value>
+    <comment>label</comment>
+  </data>
+  <data name="OpenImageWithCommand_selectOne" xml:space="preserve">
+    <value>Select one image to open</value>
+  </data>
+  <data name="GeneralSheet_pathNotFound" xml:space="preserve">
+    <value>Path not found</value>
+  </data>
+  <data name="GeneralSheet_imageBrowser" xml:space="preserve">
+    <value>Image Viewer</value>
+  </data>
 </root>

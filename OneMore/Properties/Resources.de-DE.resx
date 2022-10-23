@@ -4182,4 +4182,21 @@ Gesamtzeile Letzte Zelle</value>
     <value>Auf Updates prüfen</value>
     <comment>command</comment>
   </data>
+  <data name="ribOpenImageWithButton_Label" xml:space="preserve">
+    <value>Bild öffnen mit</value>
+    <comment>Ribbon OneMore menu item</comment>
+  </data>
+  <data name="GeneralSheet_imageViewerLabel.Text" xml:space="preserve">
+    <value>Externer Bildbetrachter (Standard, wenn leer, ist mspaint)</value>
+    <comment>label</comment>
+  </data>
+  <data name="OpenImageWithCommand_selectOne" xml:space="preserve">
+    <value>Wählen Sie ein Bild zum Öffnen aus</value>
+  </data>
+  <data name="GeneralSheet_pathNotFound" xml:space="preserve">
+    <value>Pfad nicht gefunden</value>
+  </data>
+  <data name="GeneralSheet_imageBrowser" xml:space="preserve">
+    <value>Bildbetrachter</value>
+  </data>
 </root>

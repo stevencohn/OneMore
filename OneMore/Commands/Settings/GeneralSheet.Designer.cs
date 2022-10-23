@@ -85,7 +85,6 @@ namespace River.OneMoreAddIn.Settings
 			// 
 			// imageViewerButton
 			// 
-			this.errorProvider1.SetError(this.imageViewerButton, "Path not found");
 			this.imageViewerButton.Location = new System.Drawing.Point(591, 240);
 			this.imageViewerButton.Name = "imageViewerButton";
 			this.imageViewerButton.Size = new System.Drawing.Size(36, 31);

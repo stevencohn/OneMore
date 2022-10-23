@@ -33,7 +33,8 @@ namespace River.OneMoreAddIn.Settings
 					"introBox",
 					"enablersBox",
 					"checkUpdatesBox",
-					"langLabel"
+					"langLabel",
+					"imageViewrLabel"
 				});
 			}
 
@@ -105,7 +106,7 @@ namespace River.OneMoreAddIn.Settings
 			dialog.Filter = "All files (*.*)|*.*";
 			dialog.CheckFileExists = true;
 			dialog.Multiselect = false;
-			dialog.Title = "Image Viewer";
+			dialog.Title = Resx.GeneralSheet_imageBrowser;
 			dialog.ShowHelp = true; // stupid, but this is needed to avoid hang
 			dialog.InitialDirectory = GetValidPath(imageViewerBox.Text);
 
@@ -147,9 +148,9 @@ namespace River.OneMoreAddIn.Settings
 		private void ValidateImageViewer(object sender, EventArgs e)
 		{
 			var path = imageViewerBox.Text.Trim();
-			if (!string.IsNullOrEmpty(path) && !File.Exists(path))
+			if (!string.IsNullOrEmpty(path) && (path != "mspaint") && !File.Exists(path))
 			{
-				errorProvider1.SetError(imageViewerButton, "Path not found");
+				errorProvider1.SetError(imageViewerButton, Resx.GeneralSheet_pathNotFound);
 			}
 			else
 			{
@@ -160,19 +161,20 @@ namespace River.OneMoreAddIn.Settings
 
 		public override bool CollectSettings()
 		{
+			// set to true to recommend OneNote restart
+			var updated = false;
 
 			// general...
 
-			var genup = false;
 			var settings = provider.GetCollection(Name);
 
-			if (settings.Add("enablers", enablersBox.Checked)) genup = true;
-			if (settings.Add("checkUpdates", checkUpdatesBox.Checked)) genup = true;
+			if (settings.Add("enablers", enablersBox.Checked)) updated = true;
+			if (settings.Add("checkUpdates", checkUpdatesBox.Checked)) updated = true;
 
 			var lang = ((CultureInfo)(langBox.SelectedItem)).Name;
-			if (settings.Add("language", lang)) genup = true;
+			if (settings.Add("language", lang)) updated = true;
 
-			if (genup)
+			if (updated)
 			{
 				provider.SetCollection(settings);
 				AddIn.EnablersEnabled = enablersBox.Checked;
@@ -180,20 +182,18 @@ namespace River.OneMoreAddIn.Settings
 
 			// image viewer...
 
-			var imgup = false;
 			settings = provider.GetCollection("images");
 			var viewer = imageViewerBox.Text.Trim();
 			if (string.IsNullOrEmpty(viewer))
 			{
 				viewer = "mspaint";
 			}
-			if (settings.Add("viewer", viewer)) imgup = true;
-			if (imgup)
+			if (settings.Add("viewer", viewer))
 			{
 				provider.SetCollection(settings);
 			}
 
-			return genup || imgup;
+			return updated;
 		}
 	}
 }

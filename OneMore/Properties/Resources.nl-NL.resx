@@ -4190,4 +4190,21 @@ Totaal rij laatste cel</value>
     <value>Controleren op updates</value>
     <comment>command</comment>
   </data>
+  <data name="ribOpenImageWithButton_Label" xml:space="preserve">
+    <value>Afbeelding openen met</value>
+    <comment>Ribbon OneMore menu item</comment>
+  </data>
+  <data name="GeneralSheet_imageViewerLabel.Text" xml:space="preserve">
+    <value>Externe afbeeldingsviewer (standaard als leeg mspaint is)</value>
+    <comment>label</comment>
+  </data>
+  <data name="OpenImageWithCommand_selectOne" xml:space="preserve">
+    <value>Selecteer een afbeelding om te openen</value>
+  </data>
+  <data name="GeneralSheet_pathNotFound" xml:space="preserve">
+    <value>Pad niet gevonden</value>
+  </data>
+  <data name="GeneralSheet_imageBrowser" xml:space="preserve">
+    <value>Afbeeldingsviewer</value>
+  </data>
 </root>

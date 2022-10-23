@@ -2760,6 +2760,24 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Image Viewer.
+        /// </summary>
+        internal static string GeneralSheet_imageBrowser {
+            get {
+                return ResourceManager.GetString("GeneralSheet_imageBrowser", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to External image viewer (default if empty is mspaint).
+        /// </summary>
+        internal static string GeneralSheet_imageViewerLabel_Text {
+            get {
+                return ResourceManager.GetString("GeneralSheet_imageViewerLabel.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Customize the overall behavior of OneMore.
         /// </summary>
         internal static string GeneralSheet_introBox_Text {
@@ -2774,6 +2792,15 @@ namespace River.OneMoreAddIn.Properties {
         internal static string GeneralSheet_langLabel_Text {
             get {
                 return ResourceManager.GetString("GeneralSheet_langLabel.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Path not found.
+        /// </summary>
+        internal static string GeneralSheet_pathNotFound {
+            get {
+                return ResourceManager.GetString("GeneralSheet_pathNotFound", resourceCulture);
             }
         }
         
@@ -3922,6 +3949,15 @@ namespace River.OneMoreAddIn.Properties {
             get {
                 object obj = ResourceManager.GetObject("Open", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select one image to open.
+        /// </summary>
+        internal static string OpenImageWithCommand_selectOne {
+            get {
+                return ResourceManager.GetString("OpenImageWithCommand_selectOne", resourceCulture);
             }
         }
         

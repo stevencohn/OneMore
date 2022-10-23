@@ -4184,4 +4184,21 @@ Total de la dernière cellule de la ligne</value>
     <value>Vérifier les mises à jour</value>
     <comment>command</comment>
   </data>
+  <data name="ribOpenImageWithButton_Label" xml:space="preserve">
+    <value>Ouvrir l'image avec</value>
+    <comment>Ribbon OneMore menu item</comment>
+  </data>
+  <data name="GeneralSheet_imageViewerLabel.Text" xml:space="preserve">
+    <value>Visionneuse d'images externe (par défaut si vide est mspaint)</value>
+    <comment>label</comment>
+  </data>
+  <data name="OpenImageWithCommand_selectOne" xml:space="preserve">
+    <value>Sélectionnez une image à ouvrir</value>
+  </data>
+  <data name="GeneralSheet_pathNotFound" xml:space="preserve">
+    <value>Chemin non trouvé</value>
+  </data>
+  <data name="GeneralSheet_imageBrowser" xml:space="preserve">
+    <value>Visionneuse d'images</value>
+  </data>
 </root>

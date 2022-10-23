@@ -14,6 +14,7 @@ namespace River.OneMoreAddIn.Commands
 	using System.IO;
 	using System.Linq;
 	using System.Threading.Tasks;
+	using Resx = River.OneMoreAddIn.Properties.Resources;
 
 
 	internal class OpenImageWithCommand : Command
@@ -33,7 +34,7 @@ namespace River.OneMoreAddIn.Commands
 
 			if ((elements == null) || (elements.Count() > 1))
 			{
-				UIHelper.ShowMessage("Select the one image to edit");
+				UIHelper.ShowMessage(Resx.OpenImageWithCommand_selectOne);
 				return;
 			}
 
