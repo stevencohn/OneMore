@@ -285,7 +285,11 @@ namespace River.OneMoreAddIn.Commands
 			else
 			{
 				var location = PointToScreen(swatch.Location);
-				using var dialog = new MoreColorDialog("Element Color", location.X + 75, location.Y + 60);
+				using var dialog = new MoreColorDialog("Element Color", location.X + 75, location.Y + 60)
+				{
+					Color = swatch.Color
+				};
+
 				var result = dialog.ShowDialog();
 				if (result == DialogResult.Cancel)
 				{
