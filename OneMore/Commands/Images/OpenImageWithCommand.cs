@@ -32,7 +32,7 @@ namespace River.OneMoreAddIn.Commands
 			var elements = page.Root.Descendants(ns + "Image")?
 				.Where(e => e.Attribute("selected")?.Value == "all");
 
-			if ((elements == null) || (elements.Count() > 1))
+			if (elements.IsNullOrEmpty() || (elements.Count() > 1))
 			{
 				UIHelper.ShowMessage(Resx.OpenImageWithCommand_selectOne);
 				return;
