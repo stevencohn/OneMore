@@ -141,7 +141,7 @@
 			this.MinimizeBox = false;
 			this.Name = "SearchAndReplaceDialog";
 			this.ShowInTaskbar = false;
-			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+			this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
 			this.Text = "Search and Replace";
 			this.Activated += new System.EventHandler(this.SearchAndReplaceDialog_Shown);
 			this.ResumeLayout(false);

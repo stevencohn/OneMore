@@ -120,7 +120,7 @@
 			this.MinimizeBox = false;
 			this.Name = "CommandPaletteDialog";
 			this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
-			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+			this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
 			this.Text = "OneMore Command Palette";
 			this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.DoKeyDown);
 			this.bodyPanel.ResumeLayout(false);

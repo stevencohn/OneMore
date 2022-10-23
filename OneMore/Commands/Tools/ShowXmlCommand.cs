@@ -18,7 +18,7 @@ namespace River.OneMoreAddIn.Commands
 		{
 			using (var dialog = new ShowXmlDialog())
 			{
-				dialog.ShowDialog(owner);
+				dialog.ShowDialog();
 			}
 
 			await Task.Yield();

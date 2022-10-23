@@ -34,10 +34,10 @@
 			this.okButton = new System.Windows.Forms.Button();
 			this.cancelButton = new System.Windows.Forms.Button();
 			this.depthBox = new System.Windows.Forms.GroupBox();
+			this.includeTitlesBox = new System.Windows.Forms.CheckBox();
 			this.deepRadio = new System.Windows.Forms.RadioButton();
 			this.basicRadio = new System.Windows.Forms.RadioButton();
 			this.simpleRadio = new System.Windows.Forms.RadioButton();
-			this.includeTitlesBox = new System.Windows.Forms.CheckBox();
 			this.scopeGroupBox.SuspendLayout();
 			this.depthBox.SuspendLayout();
 			this.SuspendLayout();
@@ -103,6 +103,17 @@
 			this.depthBox.TabStop = false;
 			this.depthBox.Text = "Scanning Depth";
 			// 
+			// includeTitlesBox
+			// 
+			this.includeTitlesBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.includeTitlesBox.AutoSize = true;
+			this.includeTitlesBox.Location = new System.Drawing.Point(20, 131);
+			this.includeTitlesBox.Name = "includeTitlesBox";
+			this.includeTitlesBox.Size = new System.Drawing.Size(284, 24);
+			this.includeTitlesBox.TabIndex = 9;
+			this.includeTitlesBox.Text = "Include page titles when comparing";
+			this.includeTitlesBox.UseVisualStyleBackColor = true;
+			// 
 			// deepRadio
 			// 
 			this.deepRadio.AutoSize = true;
@@ -135,17 +146,6 @@
 			this.simpleRadio.Text = "Simple text (quick)";
 			this.simpleRadio.UseVisualStyleBackColor = true;
 			// 
-			// includeTitlesBox
-			// 
-			this.includeTitlesBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-			this.includeTitlesBox.AutoSize = true;
-			this.includeTitlesBox.Location = new System.Drawing.Point(20, 131);
-			this.includeTitlesBox.Name = "includeTitlesBox";
-			this.includeTitlesBox.Size = new System.Drawing.Size(284, 24);
-			this.includeTitlesBox.TabIndex = 9;
-			this.includeTitlesBox.Text = "Include page titles when comparing";
-			this.includeTitlesBox.UseVisualStyleBackColor = true;
-			// 
 			// RemoveDuplicatesDialog
 			// 
 			this.AcceptButton = this.okButton;
@@ -162,7 +162,7 @@
 			this.MinimizeBox = false;
 			this.MinimumSize = new System.Drawing.Size(500, 500);
 			this.Name = "RemoveDuplicatesDialog";
-			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+			this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
 			this.Text = "Remove Duplicate Pages";
 			this.scopeGroupBox.ResumeLayout(false);
 			this.depthBox.ResumeLayout(false);

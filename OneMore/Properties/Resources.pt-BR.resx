@@ -4183,4 +4183,7 @@ Total da última célula da linha</value>
   <data name="EditTableThemesDialog_NewStyle" xml:space="preserve">
     <value>Novo estilo</value>
   </data>
+  <data name="ribClearTableShadingButton_Label" xml:space="preserve">
+    <value>Limpar todo o sombreamento de células</value>
+  </data>
 </root>

@@ -23,7 +23,7 @@ namespace River.OneMoreAddIn.Commands
 		{
 			using (var dialog = new ToggleDttmDialog())
 			{
-				if (dialog.ShowDialog(owner) == DialogResult.OK)
+				if (dialog.ShowDialog() == DialogResult.OK)
 				{
 					await Toggle(dialog.PageOnly, dialog.ShowTimestamps);
 				}
@@ -54,7 +54,7 @@ namespace River.OneMoreAddIn.Commands
 						using (var progress = new UI.ProgressDialog())
 						{
 							progress.SetMaximum(pageIds.Count);
-							progress.Show(owner);
+							progress.Show();
 
 							foreach (var pageId in pageIds)
 							{

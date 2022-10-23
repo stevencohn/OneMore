@@ -103,7 +103,7 @@
 			this.label.Size = new System.Drawing.Size(376, 52);
 			this.label.TabIndex = 5;
 			this.label.Text = "Reorder how styles appear in the gallery. Also changes the order of headings in a" +
-	" TOC";
+    " TOC";
 			// 
 			// ReorderDialog
 			// 
@@ -119,10 +119,10 @@
 			this.Controls.Add(this.cancelButton);
 			this.Controls.Add(this.okButton);
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
-			this.ShowInTaskbar = false;
 			this.Name = "ReorderDialog";
 			this.Padding = new System.Windows.Forms.Padding(20, 20, 10, 20);
-			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+			this.ShowInTaskbar = false;
+			this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
 			this.Text = "Reorder Custom Styles";
 			this.ResumeLayout(false);
 			this.PerformLayout();

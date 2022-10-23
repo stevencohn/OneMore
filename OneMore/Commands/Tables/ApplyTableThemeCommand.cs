@@ -49,14 +49,23 @@ namespace River.OneMoreAddIn.Commands
 				return;
 			}
 
-			var provider = new TableThemeProvider();
-			if (selectedIndex < 0 || selectedIndex >= provider.Count)
+			TableTheme theme;
+			if (selectedIndex == int.MaxValue)
 			{
-				UIHelper.ShowInfo(one.Window, "Invalid theme index"); // Resx.ApplyTableTheme_SelectTable);
-				return;
+				theme = new TableTheme();
+			}
+			else
+			{
+				var provider = new TableThemeProvider();
+				if (selectedIndex < 0 || selectedIndex >= provider.Count)
+				{
+					UIHelper.ShowInfo(one.Window, "Invalid theme index"); // Resx.ApplyTableTheme_SelectTable);
+					return;
+				}
+
+				theme = provider.GetTheme(selectedIndex);
 			}
 
-			var theme = provider.GetTheme(selectedIndex);
 			var table = new Table(anchor.FirstAncestor(ns + "Table"));
 
 			FillTable(table, theme);

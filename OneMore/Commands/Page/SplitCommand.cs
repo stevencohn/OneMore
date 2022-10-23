@@ -42,7 +42,7 @@ namespace River.OneMoreAddIn.Commands
 		{
 			using (var dialog = new SplitDialog())
 			{
-				if (dialog.ShowDialog(owner) == DialogResult.OK)
+				if (dialog.ShowDialog() == DialogResult.OK)
 				{
 					using (one = new OneNote(out page, out ns, OneNote.PageDetail.All))
 					{

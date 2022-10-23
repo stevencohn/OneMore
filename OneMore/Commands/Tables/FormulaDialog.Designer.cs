@@ -254,7 +254,7 @@
 			this.Name = "FormulaDialog";
 			this.Padding = new System.Windows.Forms.Padding(10, 20, 10, 10);
 			this.ShowInTaskbar = false;
-			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+			this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
 			this.Text = "Formula";
 			this.helpPanel.ResumeLayout(false);
 			this.helpPanel.PerformLayout();

@@ -7,9 +7,9 @@
 namespace River.OneMoreAddIn.UI
 {
 	using System;
+	using System.Drawing;
 	using System.Threading.Tasks;
 	using System.Windows.Forms;
-
 
 
 	internal class LocalizableForm : Form, IOneMoreWindow
@@ -26,11 +26,14 @@ namespace River.OneMoreAddIn.UI
 		}
 
 
-		public int VerticalOffset
-		{
-			private get;
-			set;
-		} = 2;
+		/// <summary>
+		/// Gets or sets whether the location has been set by the caller and should NOT be
+		/// overriden by the OnLoad method below...
+		/// </summary>
+		public bool ManualLocation { get; set; } = false;
+
+
+		public int VerticalOffset { private get; set; }
 
 
 		/// <summary>
@@ -113,15 +116,29 @@ namespace River.OneMoreAddIn.UI
 			// RunModeless has already set location so don't repeat that here and only set
 			// location if inheritor hasn't declined by setting it to zero. Also, we're doing
 			// this in OnLoad so it doesn't visually "jump" as it would if done in OnShown
-			if (!DesignMode)
+			if (DesignMode || modeless)
 			{
-				if (!modeless && VerticalOffset > 0)
-				{
-					var x = Location.X < 0 ? 0 : Location.X;
-					var y = Location.Y - (Height / VerticalOffset);
+				return;
+			}
 
-					Location = new System.Drawing.Point(x, y < 0 ? 0 : y);
-				}
+			if (!ManualLocation && StartPosition == FormStartPosition.Manual)
+			{
+				// find the center point of the active OneNote window
+				using var one = new OneNote();
+				var bounds = one.GetCurrentMainWindowBounds();
+				var center = new Point(
+					bounds.Left + (bounds.Right - bounds.Left) / 2,
+					bounds.Top + (bounds.Bottom - bounds.Top) / 2);
+
+				Location = new Point(center.X - (Width / 2), center.Y - (Height / 2));
+			}
+
+			if (VerticalOffset > 0)
+			{
+				var x = Location.X < 0 ? 0 : Location.X;
+				var y = Location.Y - (Height / VerticalOffset);
+
+				Location = new Point(x, y < 0 ? 0 : y);
 			}
 		}
 

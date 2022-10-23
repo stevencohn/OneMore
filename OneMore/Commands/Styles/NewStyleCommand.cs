@@ -38,7 +38,7 @@ namespace River.OneMoreAddIn.Commands
 
 			using (var dialog = new StyleDialog(style, pageColor))
 			{
-				if (dialog.ShowDialog(owner) == DialogResult.OK)
+				if (dialog.ShowDialog() == DialogResult.OK)
 				{
 					if (dialog.Style != null)
 					{

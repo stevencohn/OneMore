@@ -32,7 +32,7 @@ namespace River.OneMoreAddIn.Commands
 		{
 			using (var dialog = new RemoveSpacingDialog())
 			{
-				if (dialog.ShowDialog(owner) == DialogResult.OK)
+				if (dialog.ShowDialog() == DialogResult.OK)
 				{
 					spaceBefore = dialog.SpaceBefore;
 					spaceAfter = dialog.SpaceAfter;

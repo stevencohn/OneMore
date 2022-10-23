@@ -4183,4 +4183,7 @@ Totaal rij laatste cel</value>
   <data name="EditTableThemesDialog_NewStyle" xml:space="preserve">
     <value>Nieuwe stijl</value>
   </data>
+  <data name="ribClearTableShadingButton_Label" xml:space="preserve">
+    <value>Alle celarcering wissen</value>
+  </data>
 </root>

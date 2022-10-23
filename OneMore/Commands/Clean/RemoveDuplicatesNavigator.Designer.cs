@@ -74,7 +74,7 @@
 			this.MaximizeBox = false;
 			this.MinimizeBox = false;
 			this.Name = "RemoveDuplicatesNavigator";
-			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+			this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
 			this.Text = "Remove Duplicate Pages";
 			this.ResumeLayout(false);
 

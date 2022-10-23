@@ -127,7 +127,7 @@ namespace River.OneMoreAddIn.Commands
 			this.MinimizeBox = false;
 			this.Name = "RefreshPageLinksDialog";
 			this.Padding = new System.Windows.Forms.Padding(20, 20, 20, 10);
-			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+			this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
 			this.Text = "Refresh Page References";
 			this.groupBox.ResumeLayout(false);
 			this.groupBox.PerformLayout();

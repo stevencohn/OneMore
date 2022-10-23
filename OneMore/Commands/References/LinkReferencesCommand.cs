@@ -56,7 +56,7 @@ namespace River.OneMoreAddIn.Commands
 			if (!refreshing)
 			{
 				using var dialog = new LinkDialog();
-				if (dialog.ShowDialog(owner) != System.Windows.Forms.DialogResult.OK)
+				if (dialog.ShowDialog() != System.Windows.Forms.DialogResult.OK)
 				{
 					return;
 				}

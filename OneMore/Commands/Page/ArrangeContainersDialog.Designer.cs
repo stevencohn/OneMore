@@ -177,7 +177,7 @@ namespace River.OneMoreAddIn.Commands
 			this.MinimizeBox = false;
 			this.Name = "ArrangeContainersDialog";
 			this.Padding = new System.Windows.Forms.Padding(20, 20, 15, 15);
-			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+			this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
 			this.Text = "Arrange Containers";
 			((System.ComponentModel.ISupportInitialize)(this.columnsBox)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.widthBox)).EndInit();

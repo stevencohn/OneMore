@@ -148,7 +148,7 @@
 			this.MinimizeBox = false;
 			this.Name = "FitGridToTextDialog";
 			this.Padding = new System.Windows.Forms.Padding(20, 20, 8, 8);
-			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+			this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
 			this.Text = "Fit Grid to Text";
 			((System.ComponentModel.ISupportInitialize)(this.sizeBox)).EndInit();
 			this.ResumeLayout(false);

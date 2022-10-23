@@ -46,7 +46,7 @@ namespace River.OneMoreAddIn.Commands
 						dialog.Tags = parts;
 					}
 
-					if (dialog.ShowDialog(owner) != DialogResult.OK)
+					if (dialog.ShowDialog() != DialogResult.OK)
 					{
 						return;
 					}

@@ -42,7 +42,7 @@ namespace River.OneMoreAddIn.Commands
 
 			using (var dialog = new SaveSnippetDialog())
 			{
-				if (dialog.ShowDialog(Owner) != DialogResult.OK)
+				if (dialog.ShowDialog() != DialogResult.OK)
 				{
 					return;
 				}

@@ -65,7 +65,7 @@ namespace River.OneMoreAddIn.Commands
 
 			using (var dialog = new ExportDialog(pageIDs.Count))
 			{
-				if (dialog.ShowDialog(owner) != DialogResult.OK)
+				if (dialog.ShowDialog() != DialogResult.OK)
 				{
 					return;
 				}
@@ -95,7 +95,7 @@ namespace River.OneMoreAddIn.Commands
 			using (var progress = new UI.ProgressDialog())
 			{
 				progress.SetMaximum(pageIDs.Count);
-				progress.Show(owner);
+				progress.Show();
 
 				var archivist = new Archivist(one);
 

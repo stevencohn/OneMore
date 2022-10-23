@@ -117,7 +117,7 @@ namespace River.OneMoreAddIn.Commands
 					using (progress = new UI.ProgressDialog())
 					{
 						progress.SetMaximum(folder.Descendants(ns + "Page").Count());
-						progress.Show(owner);
+						progress.Show();
 
 						// now with a new SectionGroup with a valid ID, copy all pages into it
 						await CopyPages(folder, clone, one, ns);

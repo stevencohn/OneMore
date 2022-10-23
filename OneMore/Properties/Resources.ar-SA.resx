@@ -4183,4 +4183,7 @@ ISO-code then comma then language name</comment>
   <data name="EditTableThemesDialog_NewStyle" xml:space="preserve">
     <value>أسلوب جديد</value>
   </data>
+  <data name="ribClearTableShadingButton_Label" xml:space="preserve">
+    <value>امسح كافة تظليل الخلايا</value>
+  </data>
 </root>

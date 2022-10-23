@@ -40,8 +40,6 @@ namespace River.OneMoreAddIn.Commands
 					"clearLink"
 				});
 			}
-
-			VerticalOffset = 1;
 		}
 
 

@@ -137,6 +137,11 @@ namespace River.OneMoreAddIn
 			=> await factory.Run<ClearLogCommand>();
 
 
+		[Command("ribClearTableShadingButton_Label", Keys.None, "Tables")]
+		public async Task ClearTableShadingCmd(IRibbonControl control)
+			=> await factory.Run<ApplyTableThemeCommand>(int.MaxValue);
+
+
 		public async Task CollapsePagesCmd(IRibbonControl control)
 			=> await factory.Run<CollapsePagesCommand>();
 

@@ -108,7 +108,7 @@ namespace River.OneMoreAddIn.Commands
 			this.MinimizeBox = false;
 			this.Name = "SaveSnippetDialog";
 			this.Padding = new System.Windows.Forms.Padding(20, 25, 20, 20);
-			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+			this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
 			this.Text = "Save Snippet";
 			this.ResumeLayout(false);
 			this.PerformLayout();

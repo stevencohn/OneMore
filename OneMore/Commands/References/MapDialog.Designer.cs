@@ -142,7 +142,7 @@ namespace River.OneMoreAddIn.Commands
 			this.MinimizeBox = false;
 			this.Name = "MapDialog";
 			this.Padding = new System.Windows.Forms.Padding(20, 20, 20, 10);
-			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+			this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
 			this.Text = "Create Page Map";
 			this.groupBox.ResumeLayout(false);
 			this.groupBox.PerformLayout();

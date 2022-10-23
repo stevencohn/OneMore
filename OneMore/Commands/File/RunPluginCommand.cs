@@ -111,7 +111,7 @@ namespace River.OneMoreAddIn.Commands
 				PageName = "$name (2)"
 			};
 
-			if (dialog.ShowDialog(owner) == DialogResult.Cancel)
+			if (dialog.ShowDialog() == DialogResult.Cancel)
 			{
 				plugin = null;
 				return false;
@@ -213,7 +213,7 @@ namespace River.OneMoreAddIn.Commands
 				progress.SetMessage(string.Format(
 					Resx.Plugin_Running, plugin.Command, plugin.Arguments, workpath));
 
-				result = progress.ShowTimedDialog(owner, ExecuteWorker);
+				result = progress.ShowTimedDialog(ExecuteWorker);
 			}
 
 			return result == DialogResult.OK;

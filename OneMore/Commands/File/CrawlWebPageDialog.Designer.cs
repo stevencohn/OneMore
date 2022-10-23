@@ -32,6 +32,7 @@
 			this.okButton = new System.Windows.Forms.Button();
 			this.cancelButton = new System.Windows.Forms.Button();
 			this.buttonPanel = new System.Windows.Forms.Panel();
+			this.useTextBox = new System.Windows.Forms.CheckBox();
 			this.unselectLabel = new System.Windows.Forms.LinkLabel();
 			this.selectLabel = new System.Windows.Forms.LinkLabel();
 			this.introBox = new System.Windows.Forms.TextBox();
@@ -40,7 +41,6 @@
 			this.addressColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.textColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.orderColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.useTextBox = new System.Windows.Forms.CheckBox();
 			this.buttonPanel.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.gridView)).BeginInit();
 			this.SuspendLayout();
@@ -80,6 +80,18 @@
 			this.buttonPanel.Name = "buttonPanel";
 			this.buttonPanel.Size = new System.Drawing.Size(1153, 90);
 			this.buttonPanel.TabIndex = 13;
+			// 
+			// useTextBox
+			// 
+			this.useTextBox.AutoSize = true;
+			this.useTextBox.Checked = true;
+			this.useTextBox.CheckState = System.Windows.Forms.CheckState.Checked;
+			this.useTextBox.Location = new System.Drawing.Point(944, 16);
+			this.useTextBox.Name = "useTextBox";
+			this.useTextBox.Size = new System.Drawing.Size(139, 24);
+			this.useTextBox.TabIndex = 14;
+			this.useTextBox.Text = "Use Text Titles";
+			this.useTextBox.UseVisualStyleBackColor = true;
 			// 
 			// unselectLabel
 			// 
@@ -183,18 +195,6 @@
 			this.orderColumn.ReadOnly = true;
 			this.orderColumn.Width = 90;
 			// 
-			// useTextBox
-			// 
-			this.useTextBox.AutoSize = true;
-			this.useTextBox.Checked = true;
-			this.useTextBox.CheckState = System.Windows.Forms.CheckState.Checked;
-			this.useTextBox.Location = new System.Drawing.Point(944, 16);
-			this.useTextBox.Name = "useTextBox";
-			this.useTextBox.Size = new System.Drawing.Size(139, 24);
-			this.useTextBox.TabIndex = 14;
-			this.useTextBox.Text = "Use Text Titles";
-			this.useTextBox.UseVisualStyleBackColor = true;
-			// 
 			// CrawlWebPageDialog
 			// 
 			this.AcceptButton = this.okButton;
@@ -211,7 +211,7 @@
 			this.Name = "CrawlWebPageDialog";
 			this.Padding = new System.Windows.Forms.Padding(20, 20, 15, 15);
 			this.ShowInTaskbar = false;
-			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+			this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
 			this.Text = "Import Web Sub-pages";
 			this.buttonPanel.ResumeLayout(false);
 			this.buttonPanel.PerformLayout();

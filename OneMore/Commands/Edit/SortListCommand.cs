@@ -57,7 +57,7 @@ namespace River.OneMoreAddIn.Commands
 
 				using (var dialog = new SortListDialog())
 				{
-					var result = dialog.ShowDialog(owner);
+					var result = dialog.ShowDialog();
 					if (result == DialogResult.Cancel)
 					{
 						return;

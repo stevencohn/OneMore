@@ -181,8 +181,8 @@
 			this.MinimumSize = new System.Drawing.Size(722, 400);
 			this.Name = "SearchDialog";
 			this.Padding = new System.Windows.Forms.Padding(22, 23, 22, 15);
+			this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
 			this.Text = "Search and Move or Copy";
-			this.TopMost = true;
 			this.ResumeLayout(false);
 			this.PerformLayout();
 

@@ -40,8 +40,6 @@ namespace River.OneMoreAddIn.Settings
 		{
 			InitializeComponent();
 
-			VerticalOffset = 4;
-
 			if (NeedsLocalizing())
 			{
 				Text = Resx.SettingsDialog_Text;

@@ -50,7 +50,7 @@ namespace River.OneMoreAddIn.Commands
 					using (progress = new UI.ProgressDialog())
 					{
 						progress.SetMaximum(infos.Count);
-						progress.Show(owner);
+						progress.Show();
 
 						foreach (var info in infos)
 						{

@@ -36,7 +36,7 @@ namespace River.OneMoreAddIn.Commands
 			{
 				using (var dialog = new AddTitleIconDialog())
 				{
-					if (dialog.ShowDialog(owner) == DialogResult.Cancel)
+					if (dialog.ShowDialog() == DialogResult.Cancel)
 					{
 						IsCancelled = true;
 						return;

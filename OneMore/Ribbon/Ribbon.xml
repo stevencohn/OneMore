@@ -9,7 +9,7 @@
         <group id="ribOneMoreGroup" getLabel="GetRibbonLabel">
           <gallery
             id="ribCustomStylesButton" columns="4" showItemLabel="false" size="normal"
-            image="CustomStyles"
+            imageMso="StylesPane"
             getLabel="GetRibbonLabel"
             getItemCount="GetStyleGalleryItemCount"
             getItemID="GetStyleGalleryItemId"
@@ -46,7 +46,7 @@
 
           <gallery
             id="ribTableThemesButton" columns="7" showItemLabel="false" size="normal"
-            image="TableStyles"
+            imageMso="TableStylesGallery"
             getLabel="GetRibbonLabel"
             getItemCount="GetTableGalleryItemCount"
             getItemID="GetTableGalleryItemID"
@@ -58,13 +58,17 @@
               id="ribEditTableThemesButton"
               getLabel="GetRibbonLabel"
               onAction="EditTableThemesCmd"/>
+            <button
+              id="ribClearTableShadingButton"
+              getLabel="GetRibbonLabel"
+              onAction="ClearTableShadingCmd"/>
           </gallery>
 
           <dynamicMenu
             id="ribFavoritesMenu"
             getLabel="GetRibbonLabel"
             size="normal"
-            image="Favorites"
+            imageMso="EditLinks"
             getContent="GetFavoritesContent"
             keytip="SF"/>
 

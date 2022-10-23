@@ -260,7 +260,7 @@
 			this.Name = "OutlineDialog";
 			this.Padding = new System.Windows.Forms.Padding(10, 15, 10, 9);
 			this.ShowInTaskbar = false;
-			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+			this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
 			this.Text = "Outline Formatting";
 			this.numberingGroup.ResumeLayout(false);
 			this.numberingGroup.PerformLayout();

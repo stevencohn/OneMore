@@ -535,6 +535,29 @@ namespace River.OneMoreAddIn
 		// Get...
 
 		/// <summary>
+		/// Get the screen coord bounds of the active OneNote window as a Drawing Rectangle.
+		/// </summary>
+		/// <returns>The bounds expressed as a Rectangle</returns>
+		public System.Drawing.Rectangle GetCurrentMainWindowBounds()
+		{
+			var handle = (IntPtr)onenote.Windows.CurrentWindow.WindowHandle;
+			var parent = handle;
+			while (parent != IntPtr.Zero)
+			{
+				parent = Native.GetParent(handle);
+				if (parent != IntPtr.Zero)
+				{
+					handle = parent;
+				}
+			}
+
+			var r = new Native.Rectangle();
+			Native.GetWindowRect(handle, ref r);
+			return new System.Drawing.Rectangle(r.Left, r.Top, r.Right - r.Left, r.Bottom - r.Top);
+		}
+
+
+		/// <summary>
 		/// Get the known paths used by OneNote; this is for diagnostic logging
 		/// </summary>
 		/// <returns></returns>
@@ -1310,6 +1333,11 @@ namespace River.OneMoreAddIn
 			logger.WriteLine($"DockedLocation...: {win.DockedLocation}");
 			logger.WriteLine($"IsFullPageView...: {win.FullPageView}");
 			logger.WriteLine($"IsSideNote.......: {win.SideNote}");
+
+			var bounds = new Native.Rectangle();
+			Native.GetWindowRect((IntPtr)win.WindowHandle, ref bounds);
+			logger.WriteLine($"bounds...........: {bounds.Left},{bounds.Top},{bounds.Right},{bounds.Bottom}");
+
 			logger.WriteLine();
 
 			logger.WriteLine($"Windows ({onenote.Windows.Count})");
@@ -1320,16 +1348,14 @@ namespace River.OneMoreAddIn
 				var window = e.Current as Window;
 
 				var threadId = Native.GetWindowThreadProcessId(
-					(IntPtr)window.WindowHandle,
-					out var processId);
+					(IntPtr)window.WindowHandle, out var processId);
 
-				logger.Write($"- window [pid:{processId}, tid:{threadId}]");
-				logger.Write($" handle:{window.WindowHandle:x} active:{window.Active}");
+				logger.Write(window.Active ? "*" : "-");
+				logger.Write($" window PID:{processId}, TID:{threadId}");
+				logger.Write($" handle:{window.WindowHandle:x}");
 
-				logger.WriteLine(
-					window.WindowHandle == onenote.Windows.CurrentWindow.WindowHandle
-					? " (current)"
-					: string.Empty);
+				Native.GetWindowRect((IntPtr)win.WindowHandle, ref bounds);
+				logger.WriteLine($" bounds:{bounds.Left},{bounds.Top},{bounds.Right},{bounds.Bottom}");
 			}
 		}
 	}

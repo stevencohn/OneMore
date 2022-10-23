@@ -6,7 +6,6 @@ namespace River.OneMoreAddIn
 {
 	using River.OneMoreAddIn.Commands;
 	using River.OneMoreAddIn.Models;
-	using River.OneMoreAddIn.UI;
 	using System.Linq;
 	using System.Text;
 	using System.Threading.Tasks;
@@ -107,7 +106,7 @@ namespace River.OneMoreAddIn
 					// copy hyperlink to clipboard
 					await new ClipboardProvider().SetHtml(html);
 
-					MoreBubbleWindow.Show(owner, specific
+					MoreBubbleWindow.Show(specific
 						? Resx.CopyLinkCommand_LinkToParagraph
 						: Resx.CopyLinkCommand_LinkToPage);
 				}

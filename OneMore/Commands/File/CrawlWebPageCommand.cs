@@ -44,7 +44,7 @@ namespace River.OneMoreAddIn.Commands
 
 				using (var dialog = new CrawlWebPageDialog(candidates))
 				{
-					if (dialog.ShowDialog(owner) != DialogResult.OK)
+					if (dialog.ShowDialog() != DialogResult.OK)
 					{
 						return;
 					}

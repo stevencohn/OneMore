@@ -217,7 +217,7 @@
 			this.MinimizeBox = false;
 			this.Name = "ImportOutlookTasksDialog";
 			this.Padding = new System.Windows.Forms.Padding(20);
-			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+			this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
 			this.Text = "Import Tasks from Outlook";
 			this.buttonPanel.ResumeLayout(false);
 			this.buttonPanel.PerformLayout();

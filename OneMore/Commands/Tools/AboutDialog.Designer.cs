@@ -28,6 +28,7 @@
 		/// </summary>
 		private void InitializeComponent ()
 		{
+			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AboutDialog));
 			this.pictureBox1 = new System.Windows.Forms.PictureBox();
 			this.titleLabel = new System.Windows.Forms.Label();
 			this.versionLabel = new System.Windows.Forms.Label();
@@ -178,7 +179,7 @@
 			this.sponsorButton.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.sponsorButton.FlatAppearance.BorderSize = 0;
 			this.sponsorButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-			this.sponsorButton.Image = global::River.OneMoreAddIn.Properties.Resources.Sponsor;
+			this.sponsorButton.Image = ((System.Drawing.Image)(resources.GetObject("sponsorButton.Image")));
 			this.sponsorButton.ImageOver = global::River.OneMoreAddIn.Properties.Resources.SponsorOver;
 			this.sponsorButton.Location = new System.Drawing.Point(160, 251);
 			this.sponsorButton.Name = "sponsorButton";
@@ -213,7 +214,7 @@
 			this.Name = "AboutDialog";
 			this.ShowIcon = false;
 			this.ShowInTaskbar = false;
-			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+			this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
 			this.Text = "OneMore Add-in";
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
 			this.ResumeLayout(false);

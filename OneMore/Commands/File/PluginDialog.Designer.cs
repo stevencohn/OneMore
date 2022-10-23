@@ -307,11 +307,11 @@
 			this.skipLockRadio.Text = "Skip locked sections";
 			this.skipLockRadio.UseVisualStyleBackColor = true;
 			// 
-			// failLockButton
+			// failLockRadio
 			// 
 			this.failLockRadio.AutoSize = true;
 			this.failLockRadio.Location = new System.Drawing.Point(9, 58);
-			this.failLockRadio.Name = "failLockButton";
+			this.failLockRadio.Name = "failLockRadio";
 			this.failLockRadio.Size = new System.Drawing.Size(220, 24);
 			this.failLockRadio.TabIndex = 25;
 			this.failLockRadio.Text = "Fail if any section is locked";
@@ -376,7 +376,7 @@
 			this.Name = "PluginDialog";
 			this.Padding = new System.Windows.Forms.Padding(15);
 			this.ShowInTaskbar = false;
-			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+			this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
 			this.Text = "Run Plugin";
 			((System.ComponentModel.ISupportInitialize)(this.errorBox)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.timeoutBox)).EndInit();

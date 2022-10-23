@@ -277,7 +277,7 @@
 			this.MinimizeBox = false;
 			this.Name = "TextToTableDialog";
 			this.ShowInTaskbar = false;
-			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+			this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
 			this.Text = "Text to Table";
 			this.group1.ResumeLayout(false);
 			this.group1.PerformLayout();

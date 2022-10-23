@@ -53,11 +53,11 @@ namespace River.OneMoreAddIn.Commands
 			this.splitByGroup.Controls.Add(this.byHeading1Label);
 			this.splitByGroup.Controls.Add(this.byLinksBox);
 			this.splitByGroup.Controls.Add(this.byHeading1Box);
-			this.splitByGroup.Location = new System.Drawing.Point(13, 13);
-			this.splitByGroup.Margin = new System.Windows.Forms.Padding(3, 3, 3, 5);
+			this.splitByGroup.Location = new System.Drawing.Point(20, 20);
+			this.splitByGroup.Margin = new System.Windows.Forms.Padding(4, 5, 4, 8);
 			this.splitByGroup.Name = "splitByGroup";
-			this.splitByGroup.Padding = new System.Windows.Forms.Padding(10);
-			this.splitByGroup.Size = new System.Drawing.Size(348, 116);
+			this.splitByGroup.Padding = new System.Windows.Forms.Padding(15, 15, 15, 15);
+			this.splitByGroup.Size = new System.Drawing.Size(522, 178);
 			this.splitByGroup.TabIndex = 0;
 			this.splitByGroup.TabStop = false;
 			this.splitByGroup.Text = "Split by";
@@ -65,28 +65,30 @@ namespace River.OneMoreAddIn.Commands
 			// byLinksLabel
 			// 
 			this.byLinksLabel.AutoSize = true;
-			this.byLinksLabel.Location = new System.Drawing.Point(32, 92);
+			this.byLinksLabel.Location = new System.Drawing.Point(48, 142);
+			this.byLinksLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
 			this.byLinksLabel.Name = "byLinksLabel";
-			this.byLinksLabel.Size = new System.Drawing.Size(170, 13);
+			this.byLinksLabel.Size = new System.Drawing.Size(247, 20);
 			this.byLinksLabel.TabIndex = 3;
 			this.byLinksLabel.Text = "Move content to each linked page";
 			// 
 			// byHeading1Label
 			// 
 			this.byHeading1Label.AutoSize = true;
-			this.byHeading1Label.Location = new System.Drawing.Point(32, 46);
-			this.byHeading1Label.Margin = new System.Windows.Forms.Padding(3, 0, 3, 10);
+			this.byHeading1Label.Location = new System.Drawing.Point(48, 71);
+			this.byHeading1Label.Margin = new System.Windows.Forms.Padding(4, 0, 4, 15);
 			this.byHeading1Label.Name = "byHeading1Label";
-			this.byHeading1Label.Size = new System.Drawing.Size(295, 13);
+			this.byHeading1Label.Size = new System.Drawing.Size(434, 20);
 			this.byHeading1Label.TabIndex = 2;
 			this.byHeading1Label.Text = "Link headings to new pages and move content to each page";
 			// 
 			// byLinksBox
 			// 
 			this.byLinksBox.AutoSize = true;
-			this.byLinksBox.Location = new System.Drawing.Point(13, 72);
+			this.byLinksBox.Location = new System.Drawing.Point(20, 111);
+			this.byLinksBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.byLinksBox.Name = "byLinksBox";
-			this.byLinksBox.Size = new System.Drawing.Size(101, 17);
+			this.byLinksBox.Size = new System.Drawing.Size(145, 24);
 			this.byLinksBox.TabIndex = 1;
 			this.byLinksBox.Text = "Page (wiki) links";
 			this.byLinksBox.UseVisualStyleBackColor = true;
@@ -95,9 +97,10 @@ namespace River.OneMoreAddIn.Commands
 			// 
 			this.byHeading1Box.AutoSize = true;
 			this.byHeading1Box.Checked = true;
-			this.byHeading1Box.Location = new System.Drawing.Point(13, 26);
+			this.byHeading1Box.Location = new System.Drawing.Point(20, 40);
+			this.byHeading1Box.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.byHeading1Box.Name = "byHeading1Box";
-			this.byHeading1Box.Size = new System.Drawing.Size(74, 17);
+			this.byHeading1Box.Size = new System.Drawing.Size(107, 24);
 			this.byHeading1Box.TabIndex = 0;
 			this.byHeading1Box.TabStop = true;
 			this.byHeading1Box.Text = "Heading 1";
@@ -107,9 +110,10 @@ namespace River.OneMoreAddIn.Commands
 			// 
 			this.cancelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-			this.cancelButton.Location = new System.Drawing.Point(286, 242);
+			this.cancelButton.Location = new System.Drawing.Point(429, 372);
+			this.cancelButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.cancelButton.Name = "cancelButton";
-			this.cancelButton.Size = new System.Drawing.Size(75, 23);
+			this.cancelButton.Size = new System.Drawing.Size(112, 35);
 			this.cancelButton.TabIndex = 1;
 			this.cancelButton.Text = "Cancel";
 			this.cancelButton.UseVisualStyleBackColor = true;
@@ -118,9 +122,10 @@ namespace River.OneMoreAddIn.Commands
 			// 
 			this.okButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.okButton.DialogResult = System.Windows.Forms.DialogResult.OK;
-			this.okButton.Location = new System.Drawing.Point(205, 242);
+			this.okButton.Location = new System.Drawing.Point(308, 372);
+			this.okButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.okButton.Name = "okButton";
-			this.okButton.Size = new System.Drawing.Size(75, 23);
+			this.okButton.Size = new System.Drawing.Size(112, 35);
 			this.okButton.TabIndex = 2;
 			this.okButton.Text = "OK";
 			this.okButton.UseVisualStyleBackColor = true;
@@ -128,9 +133,10 @@ namespace River.OneMoreAddIn.Commands
 			// taggedBox
 			// 
 			this.taggedBox.AutoSize = true;
-			this.taggedBox.Location = new System.Drawing.Point(13, 26);
+			this.taggedBox.Location = new System.Drawing.Point(20, 40);
+			this.taggedBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.taggedBox.Name = "taggedBox";
-			this.taggedBox.Size = new System.Drawing.Size(211, 17);
+			this.taggedBox.Size = new System.Drawing.Size(310, 24);
 			this.taggedBox.TabIndex = 4;
 			this.taggedBox.Text = "Apply only to tagged headings and lnks";
 			this.taggedBox.UseVisualStyleBackColor = true;
@@ -143,10 +149,11 @@ namespace River.OneMoreAddIn.Commands
 			this.filterGroup.Controls.Add(this.tagLabel);
 			this.filterGroup.Controls.Add(this.tagButton);
 			this.filterGroup.Controls.Add(this.taggedBox);
-			this.filterGroup.Location = new System.Drawing.Point(13, 137);
+			this.filterGroup.Location = new System.Drawing.Point(20, 211);
+			this.filterGroup.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.filterGroup.Name = "filterGroup";
-			this.filterGroup.Padding = new System.Windows.Forms.Padding(10);
-			this.filterGroup.Size = new System.Drawing.Size(348, 91);
+			this.filterGroup.Padding = new System.Windows.Forms.Padding(15, 15, 15, 15);
+			this.filterGroup.Size = new System.Drawing.Size(522, 140);
 			this.filterGroup.TabIndex = 5;
 			this.filterGroup.TabStop = false;
 			this.filterGroup.Text = "Filter";
@@ -154,9 +161,10 @@ namespace River.OneMoreAddIn.Commands
 			// tagLabel
 			// 
 			this.tagLabel.AutoSize = true;
-			this.tagLabel.Location = new System.Drawing.Point(32, 55);
+			this.tagLabel.Location = new System.Drawing.Point(48, 85);
+			this.tagLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
 			this.tagLabel.Name = "tagLabel";
-			this.tagLabel.Size = new System.Drawing.Size(29, 13);
+			this.tagLabel.Size = new System.Drawing.Size(40, 20);
 			this.tagLabel.TabIndex = 20;
 			this.tagLabel.Text = "Tag:";
 			// 
@@ -164,9 +172,10 @@ namespace River.OneMoreAddIn.Commands
 			// 
 			this.tagButton.BackColor = System.Drawing.SystemColors.Window;
 			this.tagButton.Enabled = false;
-			this.tagButton.Location = new System.Drawing.Point(67, 49);
+			this.tagButton.Location = new System.Drawing.Point(100, 75);
+			this.tagButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.tagButton.Name = "tagButton";
-			this.tagButton.Size = new System.Drawing.Size(40, 25);
+			this.tagButton.Size = new System.Drawing.Size(60, 38);
 			this.tagButton.TabIndex = 19;
 			this.tagButton.Text = "?";
 			this.tagButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -176,23 +185,23 @@ namespace River.OneMoreAddIn.Commands
 			// SplitDialog
 			// 
 			this.AcceptButton = this.okButton;
-			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.CancelButton = this.cancelButton;
-			this.ClientSize = new System.Drawing.Size(374, 278);
+			this.ClientSize = new System.Drawing.Size(561, 428);
 			this.Controls.Add(this.filterGroup);
 			this.Controls.Add(this.okButton);
 			this.Controls.Add(this.cancelButton);
 			this.Controls.Add(this.splitByGroup);
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+			this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.MaximizeBox = false;
 			this.MinimizeBox = false;
 			this.Name = "SplitDialog";
-			this.Padding = new System.Windows.Forms.Padding(10);
-			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+			this.Padding = new System.Windows.Forms.Padding(15, 15, 15, 15);
+			this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
 			this.Text = "Split Page";
-			this.TopMost = true;
 			this.splitByGroup.ResumeLayout(false);
 			this.splitByGroup.PerformLayout();
 			this.filterGroup.ResumeLayout(false);

@@ -380,7 +380,6 @@ namespace River.OneMoreAddIn.Commands
 		{
 			InitializeComponent();
 
-			VerticalOffset = 5;
 			tagBox.PressedEnter += AcceptInput;
 
 			if (NeedsLocalizing())

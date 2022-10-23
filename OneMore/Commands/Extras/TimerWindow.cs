@@ -38,6 +38,8 @@ namespace River.OneMoreAddIn.Commands
 				});
 			}
 
+			ManualLocation = true;
+
 			// create mask with rounded corners to overlay form
 			Region = Region.FromHrgn(Native.CreateRoundRectRgn(0, 0, Width, Height, 20, 20));
 			TopMost = true;

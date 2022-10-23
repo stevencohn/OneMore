@@ -128,7 +128,7 @@
 			this.Controls.Add(this.groupBox);
 			this.Name = "ReportRemindersDialog";
 			this.Padding = new System.Windows.Forms.Padding(15, 20, 10, 10);
-			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+			this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
 			this.Text = "Report Scope";
 			this.groupBox.ResumeLayout(false);
 			this.groupBox.PerformLayout();

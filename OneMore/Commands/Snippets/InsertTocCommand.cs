@@ -58,7 +58,7 @@ namespace River.OneMoreAddIn.Commands
 
 			using (var dialog = new InsertTocDialog())
 			{
-				if (dialog.ShowDialog(owner) == DialogResult.Cancel)
+				if (dialog.ShowDialog() == DialogResult.Cancel)
 				{
 					return;
 				}

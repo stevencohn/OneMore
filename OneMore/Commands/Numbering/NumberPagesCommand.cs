@@ -36,7 +36,7 @@ namespace River.OneMoreAddIn.Commands
 		{
 			using (var dialog = new NumberPagesDialog())
 			{
-				if (dialog.ShowDialog(owner) == DialogResult.OK)
+				if (dialog.ShowDialog() == DialogResult.OK)
 				{
 					using (one = new OneNote())
 					{
@@ -66,7 +66,7 @@ namespace River.OneMoreAddIn.Commands
 							using (progress = new UI.ProgressDialog())
 							{
 								progress.SetMaximum(pages.Count);
-								progress.Show(owner);
+								progress.Show();
 
 								await ApplyNumbering(
 									pages, index, pages[0].Level,

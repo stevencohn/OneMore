@@ -279,7 +279,7 @@
 			this.Name = "InsertCalendarDialog";
 			this.Padding = new System.Windows.Forms.Padding(15, 31, 15, 15);
 			this.ShowInTaskbar = false;
-			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+			this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
 			this.Text = "Insert Calendar";
 			((System.ComponentModel.ISupportInitialize)(this.yearBox)).EndInit();
 			this.firstPanel.ResumeLayout(false);

@@ -50,7 +50,7 @@ namespace River.OneMoreAddIn.Commands
 
 			using (var dialog = new ImportWebDialog())
 			{
-				if (dialog.ShowDialog(owner) != DialogResult.OK)
+				if (dialog.ShowDialog() != DialogResult.OK)
 				{
 					return;
 				}
@@ -256,7 +256,7 @@ namespace River.OneMoreAddIn.Commands
 			using (progress = new ProgressDialog(8))
 			{
 				progress.SetMessage($"Importing {address}...");
-				progress.ShowTimedDialog(owner, ImportHtml);
+				progress.ShowTimedDialog(ImportHtml);
 			}
 		}
 

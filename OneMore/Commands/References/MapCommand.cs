@@ -38,7 +38,7 @@ namespace River.OneMoreAddIn.Commands
 		{
 			using (var dialog = new MapDialog())
 			{
-				if (dialog.ShowDialog(owner) != System.Windows.Forms.DialogResult.OK)
+				if (dialog.ShowDialog() != System.Windows.Forms.DialogResult.OK)
 				{
 					return;
 				}

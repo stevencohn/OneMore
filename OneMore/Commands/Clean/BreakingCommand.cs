@@ -36,7 +36,7 @@ namespace River.OneMoreAddIn.Commands
 			bool singleSpace = true;
 			using (var dialog = new BreakingDialog())
 			{
-				if (dialog.ShowDialog(owner) != DialogResult.OK)
+				if (dialog.ShowDialog() != DialogResult.OK)
 				{
 					return;
 				}

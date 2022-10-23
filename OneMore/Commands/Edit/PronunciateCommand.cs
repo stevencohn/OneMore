@@ -92,7 +92,7 @@ namespace River.OneMoreAddIn.Commands
 					{
 						dialog.Word = word;
 
-						if (dialog.ShowDialog(owner) != DialogResult.OK)
+						if (dialog.ShowDialog() != DialogResult.OK)
 						{
 							IsCancelled = true;
 							return;

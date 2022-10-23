@@ -4177,4 +4177,7 @@ Total de la dernière cellule de la ligne</value>
   <data name="EditTableThemesDialog_NewStyle" xml:space="preserve">
     <value>Nouveau style</value>
   </data>
+  <data name="ribClearTableShadingButton_Label" xml:space="preserve">
+    <value>Effacer tout l'ombrage des cellules</value>
+  </data>
 </root>
