@@ -283,9 +283,8 @@ namespace River.OneMoreAddIn.Styles
 				}
 			}
 
-			// if the elements being edited is the child of a hyperlink anchor ("A" element)
-			// then it is 'hyperlinked' and we want to preserve super/subscripting because
-			// that likely means this is a footnote or cross-ref that we don't want to loose
+			// preserve superscript/subscript for hyperlinked text, presuming this is a 
+			// footnote or other reference that shouldn't be changed
 			if (hyperlinked)
 			{
 				if (style.IsSubscript)
