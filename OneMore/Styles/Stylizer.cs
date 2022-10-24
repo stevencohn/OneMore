@@ -6,7 +6,6 @@ namespace River.OneMoreAddIn.Styles
 {
 	using System.Drawing;
 	using System.Linq;
-	using System.Text;
 	using System.Xml;
 	using System.Xml.Linq;
 
@@ -162,19 +161,34 @@ namespace River.OneMoreAddIn.Styles
 		/// <param name="clearing">Exactly which color stylings to remove</param>
 		public bool Clear(XElement element, Clearing clearing)
 		{
+			// if the elements being edited is the child of a hyperlink anchor ("A" element)
+			// then it is 'hyperlinked' and we want to preserve super/subscripting because
+			// that likely means this is a footnote or cross-ref that we don't want to loose
+			var hyperlinked = element.Parent?.Name.LocalName == "a";
+
 			var cleared = false;
 			var attr = element.Attribute("style");
 			if (attr != null)
 			{
 				if (clearing == Clearing.All)
 				{
-					// discard all styling
-					attr.Remove();
+					var value = ClearAll(new Style(attr.Value), hyperlinked);
+					if (value != null)
+					{
+						// discard everything except super/sub
+						attr.Value = value;
+					}
+					else
+					{
+						// discard all styling
+						attr.Remove();
+					}
+
 					cleared = true;
 				}
 				else if (clearing == Clearing.Gray)
 				{
-					var colorfulCss = ClearGrays(new Style(attr.Value));
+					var colorfulCss = ClearGrays(new Style(attr.Value), hyperlinked);
 					if (!string.IsNullOrEmpty(colorfulCss))
 					{
 						// found explicit colors
@@ -182,8 +196,17 @@ namespace River.OneMoreAddIn.Styles
 					}
 					else
 					{
-						// no explicit colors so discard everything else
-						attr.Remove();
+						var value = ClearAll(new Style(attr.Value), hyperlinked);
+						if (value != null)
+						{
+							// no explicit colors, discard everything except super/sub
+							attr.Value = value;
+						}
+						else
+						{
+							// no explicit colors so discard everything else
+							attr.Remove();
+						}
 					}
 
 					cleared = true;
@@ -222,15 +245,33 @@ namespace River.OneMoreAddIn.Styles
 		}
 
 
-		private static string ClearGrays(Style style)
+		private static string ClearAll(Style style, bool hyperlinked)
 		{
-			var builder = new StringBuilder();
+			if (hyperlinked)
+			{
+				if (style.IsSubscript)
+				{
+					return "vertical-align:sub;";
+				}
+				else if (style.IsSuperscript)
+				{
+					return "vertical-align:super;";
+				}
+			}
+
+			return null;
+		}
+
+
+		private static string ClearGrays(Style style, bool hyperlinked)
+		{
+			var value = string.Empty;
 
 			if (!string.IsNullOrEmpty(style.Color) && !style.Color.Equals("automatic"))
 			{
 				if (!ColorTranslator.FromHtml(style.Color).IsGray())
 				{
-					builder.Append("color:" + style.Color + ";");
+					value = $"color:{style.Color};";
 				}
 			}
 
@@ -238,11 +279,25 @@ namespace River.OneMoreAddIn.Styles
 			{
 				if (!ColorTranslator.FromHtml(style.Highlight).IsGray())
 				{
-					builder.Append("background:" + style.Highlight + ";");
+					value = $"{value}background:{style.Highlight};";
 				}
 			}
 
-			return builder.ToString();
+			// preserve superscript/subscript for hyperlinked text, presuming this is a 
+			// footnote or other reference that shouldn't be changed
+			if (hyperlinked)
+			{
+				if (style.IsSubscript)
+				{
+					value = $"{value}vertical-align:sub;";
+				}
+				else if (style.IsSuperscript)
+				{
+					value = $"{value}vertical-align:super;";
+				}
+			}
+
+			return value;
 		}
 	}
 }

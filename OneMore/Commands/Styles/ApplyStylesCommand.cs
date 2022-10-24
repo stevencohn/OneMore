@@ -41,12 +41,10 @@ namespace River.OneMoreAddIn.Commands
 		/// <returns></returns>
 		public override async Task Execute(params object[] args)
 		{
-			using (var one = new OneNote(out page, out ns))
+			using var one = new OneNote(out page, out ns);
+			if (ApplyCurrentTheme())
 			{
-				if (ApplyCurrentTheme())
-				{
-					await one.Update(page);
-				}
+				await one.Update(page);
 			}
 		}
 
