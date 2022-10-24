@@ -14,12 +14,13 @@ namespace River.OneMoreAddIn
 		/// <summary>
 		/// Determines if the color describes any shade of gray in where
 		/// all of R, G, and B values are equivalent which includes both white and black.
+		/// Equivalence means within +2/-2
 		/// </summary>
 		/// <param name="color">The Color to test</param>
 		/// <returns>True if the color is a shade of gray; false otherwise</returns>
 		public static bool IsGray(this Color color)
 		{
-			return (color.R == color.G) && (color.R == color.B);
+			return (Math.Abs(color.R - color.G) < 3) && (Math.Abs(color.R - color.B) < 3);
 		}
 
 
