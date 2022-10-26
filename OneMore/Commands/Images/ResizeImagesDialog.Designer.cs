@@ -103,7 +103,7 @@ namespace River.OneMoreAddIn.Commands
 			this.cancelButton.Location = new System.Drawing.Point(900, 594);
 			this.cancelButton.Name = "cancelButton";
 			this.cancelButton.Size = new System.Drawing.Size(100, 38);
-			this.cancelButton.TabIndex = 11;
+			this.cancelButton.TabIndex = 24;
 			this.cancelButton.Text = "Cancel";
 			this.cancelButton.UseVisualStyleBackColor = true;
 			this.cancelButton.Click += new System.EventHandler(this.Cancel);
@@ -114,7 +114,7 @@ namespace River.OneMoreAddIn.Commands
 			this.okButton.Location = new System.Drawing.Point(794, 594);
 			this.okButton.Name = "okButton";
 			this.okButton.Size = new System.Drawing.Size(100, 38);
-			this.okButton.TabIndex = 10;
+			this.okButton.TabIndex = 23;
 			this.okButton.Text = "OK";
 			this.okButton.UseVisualStyleBackColor = true;
 			this.okButton.Click += new System.EventHandler(this.OK);
@@ -126,7 +126,7 @@ namespace River.OneMoreAddIn.Commands
 			this.pctRadio.Location = new System.Drawing.Point(24, 119);
 			this.pctRadio.Name = "pctRadio";
 			this.pctRadio.Size = new System.Drawing.Size(116, 24);
-			this.pctRadio.TabIndex = 2;
+			this.pctRadio.TabIndex = 1;
 			this.pctRadio.TabStop = true;
 			this.pctRadio.Text = "Percentage";
 			this.pctRadio.UseVisualStyleBackColor = true;
@@ -139,7 +139,7 @@ namespace River.OneMoreAddIn.Commands
 			this.absRadio.Location = new System.Drawing.Point(24, 159);
 			this.absRadio.Name = "absRadio";
 			this.absRadio.Size = new System.Drawing.Size(97, 24);
-			this.absRadio.TabIndex = 4;
+			this.absRadio.TabIndex = 3;
 			this.absRadio.Text = "Absolute";
 			this.absRadio.UseVisualStyleBackColor = true;
 			this.absRadio.Click += new System.EventHandler(this.RadioClick);
@@ -160,7 +160,7 @@ namespace River.OneMoreAddIn.Commands
             0});
 			this.percentBox.Name = "percentBox";
 			this.percentBox.Size = new System.Drawing.Size(94, 26);
-			this.percentBox.TabIndex = 3;
+			this.percentBox.TabIndex = 2;
 			this.percentBox.Value = new decimal(new int[] {
             100,
             0,
@@ -188,7 +188,7 @@ namespace River.OneMoreAddIn.Commands
             0});
 			this.widthBox.Name = "widthBox";
 			this.widthBox.Size = new System.Drawing.Size(123, 26);
-			this.widthBox.TabIndex = 6;
+			this.widthBox.TabIndex = 4;
 			this.widthBox.ValueChanged += new System.EventHandler(this.WidthValueChanged);
 			// 
 			// heightBox
@@ -202,7 +202,7 @@ namespace River.OneMoreAddIn.Commands
             0});
 			this.heightBox.Name = "heightBox";
 			this.heightBox.Size = new System.Drawing.Size(123, 26);
-			this.heightBox.TabIndex = 7;
+			this.heightBox.TabIndex = 5;
 			this.heightBox.ValueChanged += new System.EventHandler(this.HeightValueChanged);
 			// 
 			// widthLabel
@@ -238,7 +238,7 @@ namespace River.OneMoreAddIn.Commands
 			this.presetRadio.Location = new System.Drawing.Point(24, 235);
 			this.presetRadio.Name = "presetRadio";
 			this.presetRadio.Size = new System.Drawing.Size(80, 24);
-			this.presetRadio.TabIndex = 8;
+			this.presetRadio.TabIndex = 7;
 			this.presetRadio.Text = "Preset";
 			this.presetRadio.UseVisualStyleBackColor = true;
 			this.presetRadio.Click += new System.EventHandler(this.RadioClick);
@@ -255,7 +255,7 @@ namespace River.OneMoreAddIn.Commands
             0});
 			this.presetBox.Name = "presetBox";
 			this.presetBox.Size = new System.Drawing.Size(123, 26);
-			this.presetBox.TabIndex = 9;
+			this.presetBox.TabIndex = 8;
 			this.presetBox.Value = new decimal(new int[] {
             500,
             0,
@@ -289,7 +289,7 @@ namespace River.OneMoreAddIn.Commands
 			this.viewSizeLink.Location = new System.Drawing.Point(195, 23);
 			this.viewSizeLink.Name = "viewSizeLink";
 			this.viewSizeLink.Size = new System.Drawing.Size(78, 20);
-			this.viewSizeLink.TabIndex = 0;
+			this.viewSizeLink.TabIndex = 21;
 			this.viewSizeLink.TabStop = true;
 			this.viewSizeLink.Text = "100 x 100";
 			this.viewSizeLink.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.ViewSizeClicked);
@@ -302,7 +302,7 @@ namespace River.OneMoreAddIn.Commands
 			this.imageSizeLink.Location = new System.Drawing.Point(195, 44);
 			this.imageSizeLink.Name = "imageSizeLink";
 			this.imageSizeLink.Size = new System.Drawing.Size(78, 20);
-			this.imageSizeLink.TabIndex = 1;
+			this.imageSizeLink.TabIndex = 22;
 			this.imageSizeLink.TabStop = true;
 			this.imageSizeLink.Text = "100 x 100";
 			this.imageSizeLink.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.OriginalSizeClicked);
@@ -325,7 +325,7 @@ namespace River.OneMoreAddIn.Commands
 			this.preserveBox.Location = new System.Drawing.Point(53, 548);
 			this.preserveBox.Name = "preserveBox";
 			this.preserveBox.Size = new System.Drawing.Size(187, 24);
-			this.preserveBox.TabIndex = 0;
+			this.preserveBox.TabIndex = 20;
 			this.preserveBox.Text = "Preserve storage size";
 			this.preserveBox.UseVisualStyleBackColor = true;
 			this.preserveBox.CheckedChanged += new System.EventHandler(this.EstimateStorage);
@@ -349,7 +349,7 @@ namespace River.OneMoreAddIn.Commands
 			this.qualBar.Name = "qualBar";
 			this.qualBar.Size = new System.Drawing.Size(190, 25);
 			this.qualBar.SmallChange = 5;
-			this.qualBar.TabIndex = 1;
+			this.qualBar.TabIndex = 19;
 			this.qualBar.TickFrequency = 5;
 			this.qualBar.TickStyle = System.Windows.Forms.TickStyle.None;
 			this.qualBar.Value = 100;
@@ -365,7 +365,7 @@ namespace River.OneMoreAddIn.Commands
             0});
 			this.opacityBox.Name = "opacityBox";
 			this.opacityBox.Size = new System.Drawing.Size(94, 26);
-			this.opacityBox.TabIndex = 22;
+			this.opacityBox.TabIndex = 9;
 			this.opacityBox.Value = new decimal(new int[] {
             100,
             0,
@@ -433,7 +433,7 @@ namespace River.OneMoreAddIn.Commands
             -2147483648});
 			this.brightnessBox.Name = "brightnessBox";
 			this.brightnessBox.Size = new System.Drawing.Size(94, 26);
-			this.brightnessBox.TabIndex = 26;
+			this.brightnessBox.TabIndex = 11;
 			this.brightnessBox.ValueChanged += new System.EventHandler(this.SlideValueChanged);
 			// 
 			// contrastLabel
@@ -456,7 +456,7 @@ namespace River.OneMoreAddIn.Commands
             -2147483648});
 			this.contrastBox.Name = "contrastBox";
 			this.contrastBox.Size = new System.Drawing.Size(94, 26);
-			this.contrastBox.TabIndex = 29;
+			this.contrastBox.TabIndex = 13;
 			this.contrastBox.ValueChanged += new System.EventHandler(this.SlideValueChanged);
 			// 
 			// brightnessBar
@@ -468,7 +468,7 @@ namespace River.OneMoreAddIn.Commands
 			this.brightnessBar.Minimum = -100;
 			this.brightnessBar.Name = "brightnessBar";
 			this.brightnessBar.Size = new System.Drawing.Size(190, 25);
-			this.brightnessBar.TabIndex = 32;
+			this.brightnessBar.TabIndex = 12;
 			this.brightnessBar.TickFrequency = 5;
 			this.brightnessBar.TickStyle = System.Windows.Forms.TickStyle.None;
 			this.brightnessBar.Scroll += new System.EventHandler(this.SlideValueChanged);
@@ -482,7 +482,7 @@ namespace River.OneMoreAddIn.Commands
 			this.contrastBar.Minimum = -100;
 			this.contrastBar.Name = "contrastBar";
 			this.contrastBar.Size = new System.Drawing.Size(190, 25);
-			this.contrastBar.TabIndex = 33;
+			this.contrastBar.TabIndex = 14;
 			this.contrastBar.TickFrequency = 5;
 			this.contrastBar.TickStyle = System.Windows.Forms.TickStyle.None;
 			this.contrastBar.Scroll += new System.EventHandler(this.SlideValueChanged);
@@ -496,7 +496,7 @@ namespace River.OneMoreAddIn.Commands
 			this.opacityBar.Minimum = 1;
 			this.opacityBar.Name = "opacityBar";
 			this.opacityBar.Size = new System.Drawing.Size(190, 25);
-			this.opacityBar.TabIndex = 34;
+			this.opacityBar.TabIndex = 10;
 			this.opacityBar.TickFrequency = 5;
 			this.opacityBar.TickStyle = System.Windows.Forms.TickStyle.None;
 			this.opacityBar.Value = 100;
@@ -525,7 +525,7 @@ namespace River.OneMoreAddIn.Commands
 			this.qualBox.Location = new System.Drawing.Point(199, 493);
 			this.qualBox.Name = "qualBox";
 			this.qualBox.Size = new System.Drawing.Size(94, 26);
-			this.qualBox.TabIndex = 39;
+			this.qualBox.TabIndex = 18;
 			this.qualBox.Value = new decimal(new int[] {
             100,
             0,
@@ -545,7 +545,7 @@ namespace River.OneMoreAddIn.Commands
 			this.styleBox.Location = new System.Drawing.Point(199, 437);
 			this.styleBox.Name = "styleBox";
 			this.styleBox.Size = new System.Drawing.Size(295, 28);
-			this.styleBox.TabIndex = 42;
+			this.styleBox.TabIndex = 17;
 			this.styleBox.SelectedIndexChanged += new System.EventHandler(this.StylizeSelectedIndexChanged);
 			// 
 			// styleLabel
@@ -568,7 +568,7 @@ namespace River.OneMoreAddIn.Commands
 			this.lockButton.Location = new System.Drawing.Point(415, 168);
 			this.lockButton.Name = "lockButton";
 			this.lockButton.Size = new System.Drawing.Size(33, 33);
-			this.lockButton.TabIndex = 45;
+			this.lockButton.TabIndex = 6;
 			this.lockButton.UseVisualStyleBackColor = true;
 			this.lockButton.CheckedChanged += new System.EventHandler(this.LockAspectCheckedChanged);
 			// 
@@ -581,7 +581,7 @@ namespace River.OneMoreAddIn.Commands
 			this.saturationBar.Minimum = -100;
 			this.saturationBar.Name = "saturationBar";
 			this.saturationBar.Size = new System.Drawing.Size(190, 25);
-			this.saturationBar.TabIndex = 48;
+			this.saturationBar.TabIndex = 16;
 			this.saturationBar.TickFrequency = 5;
 			this.saturationBar.TickStyle = System.Windows.Forms.TickStyle.None;
 			this.saturationBar.Scroll += new System.EventHandler(this.SlideValueChanged);
@@ -606,7 +606,7 @@ namespace River.OneMoreAddIn.Commands
             -2147483648});
 			this.saturationBox.Name = "saturationBox";
 			this.saturationBox.Size = new System.Drawing.Size(94, 26);
-			this.saturationBox.TabIndex = 46;
+			this.saturationBox.TabIndex = 15;
 			this.saturationBox.ValueChanged += new System.EventHandler(this.SlideValueChanged);
 			// 
 			// limitsBox
@@ -620,7 +620,7 @@ namespace River.OneMoreAddIn.Commands
 			this.limitsBox.Location = new System.Drawing.Point(200, 594);
 			this.limitsBox.Name = "limitsBox";
 			this.limitsBox.Size = new System.Drawing.Size(295, 28);
-			this.limitsBox.TabIndex = 49;
+			this.limitsBox.TabIndex = 0;
 			this.limitsBox.Visible = false;
 			// 
 			// ResizeImagesDialog
