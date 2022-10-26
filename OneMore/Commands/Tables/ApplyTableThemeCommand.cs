@@ -5,11 +5,9 @@
 namespace River.OneMoreAddIn.Commands
 {
 	using River.OneMoreAddIn.Models;
-	using System.Drawing;
 	using System.Linq;
 	using System.Threading.Tasks;
 	using System.Xml.Linq;
-	using Resx = River.OneMoreAddIn.Properties.Resources;
 
 
 	internal class ApplyTableThemeCommand : Command
@@ -108,8 +106,8 @@ namespace River.OneMoreAddIn.Commands
 				}
 			}
 
-			string c0 = null; // even
-			string c1 = null; // odd
+			string c0; // even
+			string c1; // odd
 			bool rows = true;
 
 			if (!theme.FirstRowStripe.IsEmpty && !theme.SecondRowStripe.IsEmpty)
