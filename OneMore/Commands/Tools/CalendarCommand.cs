@@ -23,14 +23,15 @@ namespace River.OneMoreAddIn.Commands
 			// presume same location as executing addin assembly
 
 			var location = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
-
-			// special override for my own debugging
-			if (location.StartsWith(@"C:\Github\OneMore"))
-			{
-				location = @"C:\Github\OneMore\OneMoreCalendar\bin\Debug";
-			}
-
 			var path = Path.Combine(location, "OneMoreCalendar.exe");
+
+			// special override for development and debugging
+			if (!File.Exists(path))
+			{
+				path = Path.Combine(
+					location.Substring(0, location.LastIndexOf("OneMore")),
+					@"OneMoreCalendar\bin\Debug\OneMoreCalendar.exe");
+			}
 
 			try
 			{
