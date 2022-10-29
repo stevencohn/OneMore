@@ -4300,4 +4300,12 @@ Total Row Last Cell</value>
   <data name="GeneralSheet_imageBrowser" xml:space="preserve">
     <value>Image Viewer</value>
   </data>
+  <data name="EditTableThemesDialog_fontElements" xml:space="preserve">
+    <value>Default Font
+Header Row Font
+Total Row Font
+First Column Font
+Last Column Font</value>
+    <comment>MoreListView</comment>
+  </data>
 </root>

@@ -80,6 +80,7 @@ namespace River.OneMoreAddIn.UI
 
 			hostedControls = new List<HostedControl>();
 			highlightBrush = new SolidBrush(ColorTranslator.FromHtml("#D7C1FF"));
+			sortedBrush = new SolidBrush(BackColor);
 
 			// TODO: ?
 			FullRowSelect = true;

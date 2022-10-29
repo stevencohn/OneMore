@@ -1953,6 +1953,19 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Default Font
+        ///Header Row Font
+        ///Total Row Font
+        ///First Column Font
+        ///Last Column Font.
+        /// </summary>
+        internal static string EditTableThemesDialog_fontElements {
+            get {
+                return ResourceManager.GetString("EditTableThemesDialog_fontElements", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to New Style.
         /// </summary>
         internal static string EditTableThemesDialog_newButton_Text {

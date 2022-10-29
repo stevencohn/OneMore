@@ -119,6 +119,7 @@ namespace River.OneMoreAddIn.Commands
 		{
 			InitializeComponent();
 			InitializeElementsBox();
+			InitializeFontElementsBox();
 
 			if (NeedsLocalizing())
 			{
@@ -198,6 +199,31 @@ namespace River.OneMoreAddIn.Commands
 			}
 		}
 
+
+		private void InitializeFontElementsBox()
+		{
+			fontElementsBox.HighlightBackground = Color.Transparent;
+			fontElementsBox.Columns.Add(new MoreColumnHeader("Element", 250) { AutoSizeItems = true });
+			fontElementsBox.Columns.Add(new MoreColumnHeader("Font", 350));
+
+			var names = Regex.Split(Resx.EditTableThemesDialog_fontElements, @"\r\n|\r|\n");
+			foreach (var name in names)
+			{
+				var item = fontElementsBox.AddHostedItem(name);
+				var link = new MoreLinkLabel
+				{
+					Text = "Default"
+				};
+				link.LinkClicked += ChangeElementFont;
+				item.AddHostedSubItem($"{name}Sub", link);
+			}
+		}
+
+		private void ChangeElementFont(object sender, LinkLabelLinkClickedEventArgs e)
+		{
+			fontElementsBox.Enabled = false;
+			fontsGroup.Enabled = true;
+		}
 
 		private void SetToolbarState()
 		{

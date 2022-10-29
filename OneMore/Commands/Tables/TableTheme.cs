@@ -76,6 +76,17 @@ namespace River.OneMoreAddIn.Commands
 		public Color TotalLastCell { get; set; }
 
 
+		public Font DefaultFont { get; set; }
+
+		public Font HeaderFont { get; set; }
+
+		public Font TotalFont { get; set; }
+
+		public Font FirstColumnFont { get; set; }
+
+		public Font LastColumnFont { get; set; }
+
+
 		public void CopyTo(TableTheme other)
 		{
 			other.Name = Name;
@@ -92,6 +103,11 @@ namespace River.OneMoreAddIn.Commands
 			other.HeaderLastCell = HeaderLastCell;
 			other.TotalFirstCell = TotalFirstCell;
 			other.TotalLastCell = TotalLastCell;
+			other.DefaultFont = DefaultFont;
+			other.HeaderFont = HeaderFont;
+			other.TotalFont = TotalFont;
+			other.FirstColumnFont = FirstColumnFont;
+			other.LastColumnFont = LastColumnFont;
 		}
 
 
@@ -112,7 +128,12 @@ namespace River.OneMoreAddIn.Commands
 					other.HeaderFirstCell.Equals(HeaderFirstCell) &&
 					other.HeaderLastCell.Equals(HeaderLastCell) &&
 					other.TotalFirstCell.Equals(TotalFirstCell) &&
-					other.TotalLastCell.Equals(TotalLastCell))
+					other.TotalLastCell.Equals(TotalLastCell) &&
+					other.DefaultFont == DefaultFont &&
+					other.HeaderFont == HeaderFont &&
+					other.TotalFont == TotalFont &&
+					other.FirstColumnFont == FirstColumnFont &&
+					other.LastColumnFont == LastColumnFont)
 				{
 					return true;
 				}
