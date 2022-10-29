@@ -160,7 +160,7 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to OneMore Add-in for OneNote 2016.
+        ///   Looks up a localized string similar to OneMore Add-in for OneNote.
         /// </summary>
         internal static string AboutDialog_titleLabel_Text {
             get {

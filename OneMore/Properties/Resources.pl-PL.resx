@@ -1494,7 +1494,7 @@ W tej sekcji</value>
     <value>images\sectionmask.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="AboutDialog_titleLabel.Text" xml:space="preserve">
-    <value>Add-in onemore dla OneNote 2016</value>
+    <value>Dodatek OneMore do programu OneNote</value>
     <comment>Add-in full name</comment>
   </data>
   <data name="InsertCodeBlockCommand_Text" xml:space="preserve">

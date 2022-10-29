@@ -48,7 +48,7 @@
 			this.titleLabel.Name = "titleLabel";
 			this.titleLabel.Size = new System.Drawing.Size(329, 25);
 			this.titleLabel.TabIndex = 1;
-			this.titleLabel.Text = "OneMore Calendar for OneNote 2016";
+			this.titleLabel.Text = "OneMore Calendar for OneNote";
 			// 
 			// versionLabel
 			// 

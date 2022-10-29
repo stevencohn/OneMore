@@ -495,7 +495,7 @@
     <comment>message box title</comment>
   </data>
   <data name="AboutDialog_titleLabel.Text" xml:space="preserve">
-    <value>OneMore Add-In für OneNote 2016</value>
+    <value>OneMore-Add-In für OneNote</value>
     <comment>Add-in full name</comment>
   </data>
   <data name="AboutDialog_updateLink.Text" xml:space="preserve">

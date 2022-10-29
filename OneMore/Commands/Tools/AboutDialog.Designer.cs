@@ -61,7 +61,7 @@
 			this.titleLabel.Name = "titleLabel";
 			this.titleLabel.Size = new System.Drawing.Size(312, 25);
 			this.titleLabel.TabIndex = 1;
-			this.titleLabel.Text = "OneMore Add-in for OneNote 2016";
+			this.titleLabel.Text = "OneMore Add-in for OneNote";
 			// 
 			// versionLabel
 			// 

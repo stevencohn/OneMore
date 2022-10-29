@@ -500,7 +500,7 @@ OneNote 将自动关闭</value>
     <comment>message box title</comment>
   </data>
   <data name="AboutDialog_titleLabel.Text" xml:space="preserve">
-    <value>OneMore Add-in for OneNote 2016</value>
+    <value>OneNote 的 OneMore 加载项</value>
     <comment>Add-in full name</comment>
   </data>
   <data name="AboutDialog_updateLink.Text" xml:space="preserve">

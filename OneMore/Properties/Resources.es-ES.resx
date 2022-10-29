@@ -498,7 +498,7 @@ OneNote se cerrará automáticamente</value>
     <comment>message box title</comment>
   </data>
   <data name="AboutDialog_titleLabel.Text" xml:space="preserve">
-    <value>Complemento OneMore para OneNote 2016</value>
+    <value>Complemento OneMore para OneNote</value>
     <comment>Add-in full name</comment>
   </data>
   <data name="AboutDialog_updateLink.Text" xml:space="preserve">
