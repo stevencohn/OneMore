@@ -4,10 +4,12 @@
 
 namespace River.OneMoreAddIn.Commands
 {
+	using River.OneMoreAddIn.Styles;
 	using River.OneMoreAddIn.UI;
 	using System;
 	using System.Collections.Generic;
 	using System.Drawing;
+	using System.Globalization;
 	using System.Linq;
 	using System.Text.RegularExpressions;
 	using System.Windows.Forms;
@@ -21,6 +23,7 @@ namespace River.OneMoreAddIn.Commands
 		private readonly TableThemePainter painter;
 		private List<TableTheme> themes;
 		private TableTheme snapshot;
+		private TableTheme.ColorFont font;
 		private bool reorganizing;
 
 		#region Swatch
@@ -176,6 +179,13 @@ namespace River.OneMoreAddIn.Commands
 			combo.SelectedIndex = 0;
 
 			painter.Paint(snapshot);
+
+			reorganizing = true;
+			familyBox.SelectedIndex = familyBox.Items.IndexOf(StyleBase.DefaultFontFamily);
+			sizeBox.SelectedIndex = sizeBox.Items.IndexOf(StyleBase.DefaultFontSize.ToString());
+			colorFontsBox.Items[0].Selected = true;
+			font = themes[0].DefaultFont;
+			reorganizing = false;
 		}
 
 
@@ -202,14 +212,13 @@ namespace River.OneMoreAddIn.Commands
 
 		private void InitializeFontElementsBox()
 		{
-			fontElementsBox.HighlightBackground = Color.Transparent;
-			fontElementsBox.Columns.Add(new MoreColumnHeader("Element", 250) { AutoSizeItems = true });
-			fontElementsBox.Columns.Add(new MoreColumnHeader("Font", 350));
+			colorFontsBox.Columns.Add(new MoreColumnHeader("Element", 250) { AutoSizeItems = true });
+			colorFontsBox.Columns.Add(new MoreColumnHeader("Font", 430));
 
 			var names = Regex.Split(Resx.EditTableThemesDialog_fontElements, @"\r\n|\r|\n");
 			foreach (var name in names)
 			{
-				var item = fontElementsBox.AddHostedItem(name);
+				var item = colorFontsBox.AddHostedItem(name);
 				var link = new MoreLinkLabel
 				{
 					Text = "Default"
@@ -219,11 +228,6 @@ namespace River.OneMoreAddIn.Commands
 			}
 		}
 
-		private void ChangeElementFont(object sender, LinkLabelLinkClickedEventArgs e)
-		{
-			fontElementsBox.Enabled = false;
-			fontsGroup.Enabled = true;
-		}
 
 		private void SetToolbarState()
 		{
@@ -299,6 +303,8 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
+		// Colors - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
 		private void ChangeElementColor(object sender, SwatchClickedEventArgs e)
 		{
 			var swatch = GetSwatch(e.ItemIndex);
@@ -365,6 +371,126 @@ namespace River.OneMoreAddIn.Commands
 			ChooseTheme(sender, e);
 		}
 
+
+		// Fonts - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+
+		private void SelectFontElement(object sender, ListViewItemSelectionChangedEventArgs e)
+		{
+			var theme = themes[combo.SelectedIndex];
+			switch (e.ItemIndex)
+			{
+				case 0: font = theme.DefaultFont; break;
+				case 1: font = theme.HeaderFont; break;
+				case 2: font = theme.TotalFont; break;
+				case 3: font = theme.FirstColumnFont; break;
+				case 4: font = theme.LastColumnFont; break;
+			}
+
+			font ??= new TableTheme.ColorFont();
+		}
+
+
+		private void ChangeElementFont(object sender, LinkLabelLinkClickedEventArgs e)
+		{
+			if (((Control)sender).Tag is ListViewItem host)
+			{
+				colorFontsBox.SelectIf(host);
+				SelectFontElement(sender, new ListViewItemSelectionChangedEventArgs(host, host.Index, true));
+			}
+
+			colorFontsBox.Enabled = false;
+			fontsGroup.Enabled = true;
+		}
+
+
+		private void ChangeFontFont(object sender, EventArgs e)
+		{
+			if (!reorganizing)
+			{
+				var save = font.Font;
+				font.Font = MakeFont();
+				save?.Dispose();
+			}
+		}
+
+
+		private void ChangeFontColor(object sender, EventArgs e)
+		{
+			var location = PointToScreen(fontToolstrip.Location);
+
+			using var dialog = new MoreColorDialog("Text Color",
+				location.X + colorButton.Bounds.Location.X,
+				location.Y + colorButton.Bounds.Height + 4);
+
+			dialog.Color = font.Foreground;
+
+			if (dialog.ShowDialog() == DialogResult.OK)
+			{
+				font.Foreground = dialog.Color;
+			}
+		}
+
+
+		private void SetFontColorDefault(object sender, EventArgs e)
+		{
+			font.Foreground = Color.Black;
+		}
+
+
+		private Font MakeFont()
+		{
+			if (!float.TryParse(sizeBox.Text, NumberStyles.Any, AddIn.Culture, out var size))
+			{
+				size = (float)StyleBase.DefaultFontSize;
+			}
+
+			FontStyle style = 0;
+			if (boldButton.Checked) style |= FontStyle.Bold;
+			if (italicButton.Checked) style |= FontStyle.Italic;
+			if (underlineButton.Checked) style |= FontStyle.Underline;
+
+			return new Font(familyBox.Text, size, style);
+		}
+
+
+		private void ApplyFont(object sender, EventArgs e)
+		{
+			var theme = themes[combo.SelectedIndex];
+			switch (colorFontsBox.SelectedIndices[0])
+			{
+				case 0:
+					theme.DefaultFont?.Dispose();
+					theme.DefaultFont = font;
+					break;
+
+				case 1:
+					theme.HeaderFont?.Dispose();
+					theme.HeaderFont = font;
+					break;
+
+				case 2:
+					theme.TotalFont?.Dispose();
+					theme.TotalFont = font;
+					break;
+
+				case 3:
+					theme.FirstColumnFont?.Dispose();
+					theme.FirstColumnFont = font;
+					break;
+
+				case 4:
+					theme.LastColumnFont?.Dispose();
+					theme.LastColumnFont = font;
+					break;
+			}
+
+			colorFontsBox.Enabled = true;
+			fontsGroup.Enabled = false;
+		}
+
+
+		// Theme - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 		private void CreateNewTheme(object sender, EventArgs e)
 		{

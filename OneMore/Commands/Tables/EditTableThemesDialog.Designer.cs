@@ -61,7 +61,7 @@ namespace River.OneMoreAddIn.Commands
 			this.defaultBlackToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.fontElementsGroup = new System.Windows.Forms.GroupBox();
 			this.resetFontButton = new System.Windows.Forms.Button();
-			this.fontElementsBox = new River.OneMoreAddIn.UI.MoreListView();
+			this.colorFontsBox = new River.OneMoreAddIn.UI.MoreListView();
 			this.bottomPanel = new System.Windows.Forms.Panel();
 			this.button1 = new System.Windows.Forms.Button();
 			this.elementsGroup.SuspendLayout();
@@ -286,19 +286,20 @@ namespace River.OneMoreAddIn.Commands
 			this.fontsGroup.Location = new System.Drawing.Point(6, 268);
 			this.fontsGroup.Name = "fontsGroup";
 			this.fontsGroup.Padding = new System.Windows.Forms.Padding(10, 3, 10, 3);
-			this.fontsGroup.Size = new System.Drawing.Size(519, 115);
+			this.fontsGroup.Size = new System.Drawing.Size(640, 115);
 			this.fontsGroup.TabIndex = 16;
 			this.fontsGroup.TabStop = false;
 			this.fontsGroup.Text = "Font";
 			// 
 			// applyFontButton
 			// 
-			this.applyFontButton.Location = new System.Drawing.Point(396, 63);
+			this.applyFontButton.Location = new System.Drawing.Point(512, 25);
 			this.applyFontButton.Name = "applyFontButton";
 			this.applyFontButton.Size = new System.Drawing.Size(110, 34);
 			this.applyFontButton.TabIndex = 15;
 			this.applyFontButton.Text = "Apply";
 			this.applyFontButton.UseVisualStyleBackColor = true;
+			this.applyFontButton.Click += new System.EventHandler(this.ApplyFont);
 			// 
 			// familyBox
 			// 
@@ -311,6 +312,7 @@ namespace River.OneMoreAddIn.Commands
 			this.familyBox.Name = "familyBox";
 			this.familyBox.Size = new System.Drawing.Size(377, 32);
 			this.familyBox.TabIndex = 11;
+			this.familyBox.SelectedIndexChanged += new System.EventHandler(this.ChangeFontFont);
 			// 
 			// sizeBox
 			// 
@@ -336,6 +338,7 @@ namespace River.OneMoreAddIn.Commands
 			this.sizeBox.Name = "sizeBox";
 			this.sizeBox.Size = new System.Drawing.Size(110, 33);
 			this.sizeBox.TabIndex = 12;
+			this.sizeBox.SelectedIndexChanged += new System.EventHandler(this.ChangeFontFont);
 			// 
 			// fontToolstrip
 			// 
@@ -364,6 +367,7 @@ namespace River.OneMoreAddIn.Commands
 			this.boldButton.Name = "boldButton";
 			this.boldButton.Size = new System.Drawing.Size(34, 28);
 			this.boldButton.Text = "Bold";
+			this.boldButton.CheckStateChanged += new System.EventHandler(this.ChangeFontFont);
 			// 
 			// italicButton
 			// 
@@ -375,6 +379,7 @@ namespace River.OneMoreAddIn.Commands
 			this.italicButton.Name = "italicButton";
 			this.italicButton.Size = new System.Drawing.Size(34, 28);
 			this.italicButton.Text = "Italic";
+			this.italicButton.CheckStateChanged += new System.EventHandler(this.ChangeFontFont);
 			// 
 			// underlineButton
 			// 
@@ -386,6 +391,7 @@ namespace River.OneMoreAddIn.Commands
 			this.underlineButton.Name = "underlineButton";
 			this.underlineButton.Size = new System.Drawing.Size(34, 28);
 			this.underlineButton.Text = "Underline";
+			this.underlineButton.CheckStateChanged += new System.EventHandler(this.ChangeFontFont);
 			// 
 			// colorButton
 			// 
@@ -398,17 +404,19 @@ namespace River.OneMoreAddIn.Commands
 			this.colorButton.Name = "colorButton";
 			this.colorButton.Size = new System.Drawing.Size(45, 28);
 			this.colorButton.ToolTipText = "Text Color";
+			this.colorButton.Click += new System.EventHandler(this.ChangeFontColor);
 			// 
 			// defaultBlackToolStripMenuItem
 			// 
 			this.defaultBlackToolStripMenuItem.Name = "defaultBlackToolStripMenuItem";
 			this.defaultBlackToolStripMenuItem.Size = new System.Drawing.Size(226, 34);
 			this.defaultBlackToolStripMenuItem.Text = "Default (Black)";
+			this.defaultBlackToolStripMenuItem.Click += new System.EventHandler(this.SetFontColorDefault);
 			// 
 			// fontElementsGroup
 			// 
 			this.fontElementsGroup.Controls.Add(this.resetFontButton);
-			this.fontElementsGroup.Controls.Add(this.fontElementsBox);
+			this.fontElementsGroup.Controls.Add(this.colorFontsBox);
 			this.fontElementsGroup.Location = new System.Drawing.Point(6, 6);
 			this.fontElementsGroup.Margin = new System.Windows.Forms.Padding(3, 3, 3, 10);
 			this.fontElementsGroup.Name = "fontElementsGroup";
@@ -428,22 +436,23 @@ namespace River.OneMoreAddIn.Commands
 			this.resetFontButton.Text = "Reset";
 			this.resetFontButton.UseVisualStyleBackColor = true;
 			// 
-			// fontElementsBox
+			// colorFontsBox
 			// 
-			this.fontElementsBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+			this.colorFontsBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-			this.fontElementsBox.ControlPadding = 2;
-			this.fontElementsBox.FullRowSelect = true;
-			this.fontElementsBox.HideSelection = false;
-			this.fontElementsBox.HighlightBackground = System.Drawing.Color.FromArgb(((int)(((byte)(215)))), ((int)(((byte)(193)))), ((int)(((byte)(255)))));
-			this.fontElementsBox.Location = new System.Drawing.Point(13, 25);
-			this.fontElementsBox.Name = "fontElementsBox";
-			this.fontElementsBox.OwnerDraw = true;
-			this.fontElementsBox.Size = new System.Drawing.Size(692, 177);
-			this.fontElementsBox.SortedBackground = System.Drawing.Color.Transparent;
-			this.fontElementsBox.TabIndex = 0;
-			this.fontElementsBox.UseCompatibleStateImageBehavior = false;
-			this.fontElementsBox.View = System.Windows.Forms.View.Details;
+			this.colorFontsBox.ControlPadding = 2;
+			this.colorFontsBox.FullRowSelect = true;
+			this.colorFontsBox.HideSelection = false;
+			this.colorFontsBox.HighlightBackground = System.Drawing.Color.FromArgb(((int)(((byte)(215)))), ((int)(((byte)(193)))), ((int)(((byte)(255)))));
+			this.colorFontsBox.Location = new System.Drawing.Point(13, 25);
+			this.colorFontsBox.Name = "colorFontsBox";
+			this.colorFontsBox.OwnerDraw = true;
+			this.colorFontsBox.Size = new System.Drawing.Size(692, 177);
+			this.colorFontsBox.SortedBackground = System.Drawing.Color.Transparent;
+			this.colorFontsBox.TabIndex = 0;
+			this.colorFontsBox.UseCompatibleStateImageBehavior = false;
+			this.colorFontsBox.View = System.Windows.Forms.View.Details;
+			this.colorFontsBox.ItemSelectionChanged += new System.Windows.Forms.ListViewItemSelectionChangedEventHandler(this.SelectFontElement);
 			// 
 			// bottomPanel
 			// 
@@ -533,7 +542,7 @@ namespace River.OneMoreAddIn.Commands
 		private System.Windows.Forms.ToolStripSplitButton colorButton;
 		private System.Windows.Forms.ToolStripMenuItem defaultBlackToolStripMenuItem;
 		private System.Windows.Forms.Button resetFontButton;
-		private UI.MoreListView fontElementsBox;
+		private UI.MoreListView colorFontsBox;
 		private System.Windows.Forms.GroupBox fontsGroup;
 		private System.Windows.Forms.Button button1;
 		private System.Windows.Forms.GroupBox fontElementsGroup;

@@ -4,12 +4,38 @@
 
 namespace River.OneMoreAddIn.Commands
 {
+	using System;
 	using System.ComponentModel;
 	using System.Drawing;
 
 
 	public class TableTheme : INotifyPropertyChanged
 	{
+		public sealed class ColorFont : IDisposable
+		{
+			public Font Font { get; set; }
+			public Color Foreground { get; set; }
+
+			public void Dispose()
+			{
+				Font.Dispose();
+			}
+
+			public override bool Equals(object obj)
+			{
+				if (obj is ColorFont other)
+				{
+					return other.Font == Font && other.Foreground == Foreground;
+				}
+				return false;
+			}
+			public override int GetHashCode()
+			{
+				return Font.GetHashCode() ^ Foreground.GetHashCode();
+			}
+		}
+
+
 		public event PropertyChangedEventHandler PropertyChanged;
 
 		public static Color Rainbow => ColorTranslator.FromHtml("#12345678");
@@ -76,15 +102,15 @@ namespace River.OneMoreAddIn.Commands
 		public Color TotalLastCell { get; set; }
 
 
-		public Font DefaultFont { get; set; }
+		public ColorFont DefaultFont { get; set; }
 
-		public Font HeaderFont { get; set; }
+		public ColorFont HeaderFont { get; set; }
 
-		public Font TotalFont { get; set; }
+		public ColorFont TotalFont { get; set; }
 
-		public Font FirstColumnFont { get; set; }
+		public ColorFont FirstColumnFont { get; set; }
 
-		public Font LastColumnFont { get; set; }
+		public ColorFont LastColumnFont { get; set; }
 
 
 		public void CopyTo(TableTheme other)
