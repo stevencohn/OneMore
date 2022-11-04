@@ -272,7 +272,7 @@
     <comment>Ribbon OneMore menu item, trim</comment>
   </data>
   <data name="ribTrimButton_Screentip" xml:space="preserve">
-    <value>Trimmen Sie nachgestellte Leerzeichen aus dem ausgewählten Text</value>
+    <value>Trimmen nachgestellter Leerzeichen aus dem ausgewählten Text</value>
     <comment>Ribbon OneMore menu item, trim</comment>
   </data>
   <data name="FavoritesFilename" xml:space="preserve">
@@ -543,7 +543,7 @@
     <comment>dialog title</comment>
   </data>
   <data name="ReorderDialog_label.Text" xml:space="preserve">
-    <value>Ordnen Sie neu, wie Stile in der Galerie angezeigt werden. </value>
+    <value>Auswählen, wie Stile in der Galerie angezeigt werden. </value>
     <comment>instructions</comment>
   </data>
   <data name="ResizeImagesDialog.Text" xml:space="preserve">
@@ -634,7 +634,7 @@ Notizbücher</value>
     <comment>label</comment>
   </data>
   <data name="Emoji_Architecture" xml:space="preserve">
-    <value>Die Architektur</value>
+    <value>Architektur</value>
     <comment>emoji</comment>
   </data>
   <data name="Emoji_Automobile" xml:space="preserve">
@@ -1038,7 +1038,7 @@ Notizbücher</value>
     <comment>radio button</comment>
   </data>
   <data name="PluginDialog_okButton.Text" xml:space="preserve">
-    <value>Lauf</value>
+    <value>Áusführen</value>
     <comment>ok button</comment>
   </data>
   <data name="PluginDialog_updateRadio.Text" xml:space="preserve">
@@ -1240,7 +1240,7 @@ Operatoren: + - / * ^
 Zellreferenz: A1, A2, ... ZZZ999
 Zellbereich: A1:A22
 Symbole: PI, E</value>
-  <comment></comment></data>
+  </data>
   <data name="FormulaDialog_selectedLabel.Text" xml:space="preserve">
     <value>Ausgewählte Zellen:</value>
     <comment>label</comment>
@@ -1452,7 +1452,7 @@ Symbole: PI, E</value>
   </data>
   <data name="ContextMenuSheet_introBox.Text" xml:space="preserve">
     <value>Wählen Sie Befehle aus, die im Kontextmenü Seite angezeigt werden sollen. </value>
-    <comment>intro</comment>
+    <comment>intro label</comment>
   </data>
   <data name="ContextMenuSheet_ribPasteRtfButton" xml:space="preserve">
     <value>Rich Text einfügen</value>
@@ -1781,7 +1781,7 @@ In diesem Abschnitt</value>
     <comment>drop down</comment>
   </data>
   <data name="TaggedDialog_checkAllLabel.Text" xml:space="preserve">
-    <value>Überprüfen Sie alle Seiten</value>
+    <value>Überprüfung aller Seiten</value>
     <comment>check all nodes link label</comment>
   </data>
   <data name="TaggedDialog_clearAllLabel.Text" xml:space="preserve">
@@ -1807,7 +1807,7 @@ In diesem Abschnitt</value>
     <comment>label</comment>
   </data>
   <data name="TaggedDialog_Title" xml:space="preserve">
-    <value>Suchen Sie nach markierten Seiten</value>
+    <value>Suchen nach markierten Seiten</value>
     <comment>dialog title</comment>
   </data>
   <data name="ribSearchMenu_Label" xml:space="preserve">
@@ -1815,7 +1815,7 @@ In diesem Abschnitt</value>
     <comment>ribbon menu item</comment>
   </data>
   <data name="ribTaggedButton_Label" xml:space="preserve">
-    <value>Suchen Sie nach markierten Seiten</value>
+    <value>Suchen nach markierten Seiten</value>
     <comment>menu item</comment>
   </data>
   <data name="ribTaggingButton_Label" xml:space="preserve">
@@ -1964,7 +1964,7 @@ ISO-code then comma then language name</comment>
     <comment>ribbon item</comment>
   </data>
   <data name="ribTrimLeadingButton_Label" xml:space="preserve">
-    <value>Trimmen Sie führende Leerzeichen</value>
+    <value>Trimmen führender Leerzeichen</value>
     <comment>ribbon item</comment>
   </data>
   <data name="ribTrimLeadingButton_Screentip" xml:space="preserve">
@@ -2080,7 +2080,7 @@ ISO-code then comma then language name</comment>
     <comment>tree node</comment>
   </data>
   <data name="SnippetsSheet_Text" xml:space="preserve">
-    <value>Verwalten Sie meine benutzerdefinierten Snippets</value>
+    <value>Verwalte Snippets</value>
     <comment>SnippetsSheet</comment>
   </data>
   <data name="ribInsertDateButton_Screentip" xml:space="preserve">
@@ -2128,7 +2128,7 @@ ISO-code then comma then language name</comment>
     <comment>tree node</comment>
   </data>
   <data name="PluginsSheet_introLabel.Text" xml:space="preserve">
-    <value>Verwalte meine Plugins</value>
+    <value>Verwalte Plugins</value>
     <comment>label</comment>
   </data>
   <data name="PluginDialog_newItem" xml:space="preserve">
@@ -2216,7 +2216,7 @@ ISO-code then comma then language name</comment>
     <comment>ribbon button</comment>
   </data>
   <data name="ribSettingsButton_Label" xml:space="preserve">
-    <value>die Einstellungen</value>
+    <value>Einstellungen</value>
     <comment>ribbon button</comment>
   </data>
   <data name="InsertCalendarDialog_indentBox.Text" xml:space="preserve">
@@ -2632,8 +2632,9 @@ OneNote-Datei (*.one)</value>
     <comment>ribbon item</comment>
   </data>
   <data name="ribLinkReferencesButton_Label" xml:space="preserve">
-    Verweise auf diese Seite zuordnen
-  <comment>ribbon button</comment></data>
+    <value>Verweise auf diese Seite zuordnen</value>
+    <comment>ribbon button</comment>
+  </data>
   <data name="BiLinkCommand_Marked" xml:space="preserve">
     <value>Als Anker markiert "{0}". </value>
     <comment>message box</comment>
@@ -3328,7 +3329,7 @@ Aufgeschoben</value>
     <comment>ribbon/context menu</comment>
   </data>
   <data name="KeyboardSheet_introLabel.Text" xml:space="preserve">
-    <value>Verwalten Sie meine benutzerdefinierten Tastenkombinationen. Wählen Sie einen Befehl aus und drücken Sie eine Tastenfolge.</value>
+    <value>Verwalten Sie Ihre benutzerdefinierten Tastenkombinationen. Wählen Sie einen Befehl aus und drücken Sie eine Tastenfolge.</value>
     <comment>label</comment>
   </data>
   <data name="KeyboardSheet_keyColumn.HeaderText" xml:space="preserve">
@@ -3348,11 +3349,11 @@ Aufgeschoben</value>
     <comment>toolstrip button</comment>
   </data>
   <data name="SettingsDialog_keyboardNode.Text" xml:space="preserve">
-    <value>Klaviatur</value>
+    <value>Tastatur</value>
     <comment>treenode</comment>
   </data>
   <data name="KeyboardSheet.Text" xml:space="preserve">
-    <value>Klaviatur</value>
+    <value>Tastatur</value>
     <comment>sheet</comment>
   </data>
   <data name="ResizeImagesDialog_preserveBox.Text" xml:space="preserve">
@@ -3590,7 +3591,7 @@ Wählen Sie Nein, um eine leere Zeile zwischen den Absätzen zu halten</value>
     <comment>ribbon item</comment>
   </data>
   <data name="ribPasteTextButton_Label" xml:space="preserve">
-    <value>Einfügen und nur Text halten</value>
+    <value>Einfügen und nur Text behalten</value>
     <comment>ribbon item</comment>
   </data>
   <data name="ribPasteTextButton_Screentip" xml:space="preserve">
@@ -4198,5 +4199,9 @@ Gesamtzeile Letzte Zelle</value>
   </data>
   <data name="GeneralSheet_imageBrowser" xml:space="preserve">
     <value>Bildbetrachter</value>
+  </data>
+  <data name="SnippetsSheet_introLabel.Text" xml:space="preserve">
+    <value>Verwaltung der benutzerdefinierten Snippets</value>
+    <comment>intro label</comment>
   </data>
 </root>
