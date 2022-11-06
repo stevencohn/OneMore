@@ -35,76 +35,64 @@ namespace River.OneMoreAddIn.Commands
 
 		public override async Task Execute(params object[] args)
 		{
-			using (var one = new OneNote(out var page, out ns))
+			using var one = new OneNote(out var page, out ns);
+			var cursor = page.GetTextCursor();
+			if (cursor == null)
 			{
-				var cursor = page.GetTextCursor();
-				if (cursor == null)
-				{
-					UIHelper.ShowMessage(Resx.SortListCommand_BadContext);
-					return;
-				}
-
-				if (!(cursor.Parent.FirstNode is XElement first) ||
-					first.Name.LocalName != "List")
-				{
-					UIHelper.ShowMessage(Resx.SortListCommand_BadContext);
-					return;
-				}
-
-				bool includeAllLists;
-				bool includeChildLists;
-				bool includeNumberedLists;
-
-				using (var dialog = new SortListDialog())
-				{
-					var result = dialog.ShowDialog();
-					if (result == DialogResult.Cancel)
-					{
-						return;
-					}
-
-					includeAllLists = dialog.IncludeAllLists;
-					includeChildLists = dialog.IncludeChildLists;
-					includeNumberedLists = dialog.IncludeNumberedLists;
-				}
-
-				if (includeAllLists)
-				{
-					var lists = page.Root.Descendants(ns + "OEChildren")
-						.Elements(ns + "OE")
-						.Elements(ns + "List")
-						.Select(e => e.Parent.Parent)
-						.Distinct();
-
-					if (!includeChildLists)
-					{
-						// whittle it down to only top level lists
-						lists = lists.Where(
-							e => e.Parent.Elements().First().Name.LocalName != "List");
-					}
-
-					if (!includeNumberedLists)
-					{
-						// whittle it down to only bulleted lists
-						lists = lists.Where(
-							e => !e.Elements(ns + "OE")
-								.Elements(ns + "List").Elements(ns + "Number").Any());
-					}
-
-					foreach (var list in lists)
-					{
-						OrderList(list, false);
-					}
-				}
-				else
-				{
-					// root is the list's containing OEChildren
-					var root = cursor.Parent.Parent;
-					OrderList(root, includeChildLists);
-				}
-
-				await one.Update(page);
+				UIHelper.ShowMessage(Resx.SortListCommand_BadContext);
+				return;
 			}
+
+			if (!(cursor.Parent.FirstNode is XElement first) ||
+				first.Name.LocalName != "List")
+			{
+				UIHelper.ShowMessage(Resx.SortListCommand_BadContext);
+				return;
+			}
+
+			using var dialog = new SortListDialog();
+			var result = dialog.ShowDialog();
+			if (result == DialogResult.Cancel)
+			{
+				return;
+			}
+
+			if (dialog.IncludeAllLists)
+			{
+				var lists = page.Root.Descendants(ns + "OEChildren")
+					.Elements(ns + "OE")
+					.Elements(ns + "List")
+					.Select(e => e.Parent.Parent)
+					.Distinct();
+
+				if (!dialog.IncludeChildLists)
+				{
+					// whittle it down to only top level lists
+					lists = lists.Where(
+						e => e.Parent.Elements().First().Name.LocalName != "List");
+				}
+
+				if (!dialog.IncludeNumberedLists)
+				{
+					// whittle it down to only bulleted lists
+					lists = lists.Where(
+						e => !e.Elements(ns + "OE")
+							.Elements(ns + "List").Elements(ns + "Number").Any());
+				}
+
+				foreach (var list in lists)
+				{
+					OrderList(list, false);
+				}
+			}
+			else
+			{
+				// root is the list's containing OEChildren
+				var root = cursor.Parent.Parent;
+				OrderList(root, dialog.IncludeChildLists);
+			}
+
+			await one.Update(page);
 		}
 
 
@@ -135,9 +123,17 @@ namespace River.OneMoreAddIn.Commands
 				return;
 			}
 
-			// for each item, drag along any immediately following empty items
+			// for each item, unwrap hyperlinks to get to the display text
+			// and drag along any immediately following empty items
 			foreach (var item in items)
 			{
+				// unwrap hyperlinks
+				if (item.Text.Contains("<a"))
+				{
+					item.Text = item.Text.ToXmlWrapper().Value;
+				}
+
+				// drag along empty followers
 				var element = item.Item;
 				while (element.NextNode is XElement next &&
 					next.Element(ns + "T")?.GetCData().Value.Length == 0)
