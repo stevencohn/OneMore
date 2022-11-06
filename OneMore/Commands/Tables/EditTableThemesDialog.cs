@@ -187,6 +187,7 @@ namespace River.OneMoreAddIn.Commands
 			painter.Paint(snapshot);
 
 			reorganizing = true;
+			familyBox.LoadFontFamilies();
 			familyBox.SelectedIndex = familyBox.Items.IndexOf(StyleBase.DefaultFontFamily);
 			sizeBox.SelectedIndex = sizeBox.Items.IndexOf(StyleBase.DefaultFontSize.ToString("0.#", AddIn.Culture));
 			colorFontsBox.Items[0].Selected = true;
@@ -441,18 +442,21 @@ namespace River.OneMoreAddIn.Commands
 
 			if (familyBox.Items.Count > 0)
 			{
-				index = familyBox.Items.IndexOf(font.Font?.FontFamily.Name ?? StyleBase.DefaultFontFamily);
-				if (index == -1) index = 0;
+				var name = font.Font?.FontFamily.Name ?? StyleBase.DefaultFontFamily;
+				index = familyBox.Items.IndexOf(name);
+				logger.WriteLine($"indexof size [{name}] == [{index}]");
+
+				if (index < 0) index = 0;
 				familyBox.SelectedIndex = index;
 			}
 
 			if (sizeBox.Items.Count > 0)
 			{
-				index = sizeBox.Items.IndexOf(
-					font.Font?.Size.ToString("0.#", AddIn.Culture) ?? 
-					StyleBase.DefaultFontSize.ToString("0.#", AddIn.Culture));
+				var size = font.Font?.Size ?? StyleBase.DefaultFontSize;
+				index = sizeBox.Items.IndexOf(size.ToString("0.#", AddIn.Culture));
+				logger.WriteLine($"indexof size [{size.ToString("0.#", AddIn.Culture)}] == [{index}]");
 
-				if (index == -1) index = 0;
+				if (index < 0) index = 0;
 				sizeBox.SelectedIndex = index;
 			}
 
@@ -461,6 +465,12 @@ namespace River.OneMoreAddIn.Commands
 				boldButton.Checked = font.Font.Bold;
 				italicButton.Checked = font.Font.Italic;
 				underlineButton.Checked = font.Font.Underline;
+			}
+			else
+			{
+				boldButton.Checked = false;
+				italicButton.Checked = false;
+				underlineButton.Checked = false;
 			}
 		}
 
@@ -536,27 +546,27 @@ namespace River.OneMoreAddIn.Commands
 			{
 				case 0:
 					theme.DefaultFont?.Dispose();
-					theme.DefaultFont = font;
+					theme.DefaultFont = new TableTheme.ColorFont(font);
 					break;
 
 				case 1:
 					theme.HeaderFont?.Dispose();
-					theme.HeaderFont = font;
+					theme.HeaderFont = new TableTheme.ColorFont(font);
 					break;
 
 				case 2:
 					theme.TotalFont?.Dispose();
-					theme.TotalFont = font;
+					theme.TotalFont = new TableTheme.ColorFont(font);
 					break;
 
 				case 3:
 					theme.FirstColumnFont?.Dispose();
-					theme.FirstColumnFont = font;
+					theme.FirstColumnFont = new TableTheme.ColorFont(font);
 					break;
 
 				case 4:
 					theme.LastColumnFont?.Dispose();
-					theme.LastColumnFont = font;
+					theme.LastColumnFont = new TableTheme.ColorFont(font);
 					break;
 			}
 

@@ -346,13 +346,13 @@ namespace River.OneMoreAddIn.UI
 				using var g = Graphics.FromHdc(draw.hDC);
 
 				var backColor = item.BackColor;
-				if (!Enabled)
-				{
-					backColor = SystemColors.Control;
-				}
-				else if (item.Selected)
+				if (item.Selected)
 				{
 					backColor = highBackBrush.Color;
+				}
+				else if (!Enabled)
+				{
+					backColor = SystemColors.Control;
 				}
 
 				// erase the background of the entire row

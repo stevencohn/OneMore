@@ -17,6 +17,16 @@ namespace River.OneMoreAddIn.Commands
 			public Font Font { get; set; }
 			public Color Foreground { get; set; }
 
+			public ColorFont()
+			{
+			}
+
+			public ColorFont(ColorFont other)
+			{
+				Font = new Font(other.Font, other.Font.Style);
+				Foreground = other.Foreground;
+			}
+
 			public void Dispose()
 			{
 				Font.Dispose();
