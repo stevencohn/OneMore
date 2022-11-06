@@ -19,14 +19,20 @@ namespace River.OneMoreAddIn
 		public const UInt32 LVM_FIRST = 0x1000;
 		public const UInt32 LVM_SCROLL = (LVM_FIRST + 20);
 
+		public const int LVS_OWNERDRAWFIXED = 0x0400;
+
 		public const int HT_CAPTION = 0x2;
 
+		public const int WM_DRAWITEM = 0x002B;
 		public const int WM_HOTKEY = 0x312;
 		public const int WM_HSCROLL = 0x114;
 		public const int WM_VSCROLL = 0x115;
+		public const int WM_MEASUREITEM = 0x002C;
 		public const int WM_MOUSEWHEEL = 0x020A;
 		public const int WM_NCLBUTTONDOWN = 0xA1;
 		public const int WM_PAINT = 0x000F;
+		public const int WM_REFLECT = 0x2000;
+		public const int WM_SHOWWINDOW = 0x0018;
 		public const int WM_SETCURSOR = 0x0020;
 		public const int WM_SETREDRAW = 11;
 		public const int WM_SYSCOMMAND = 0x112;
@@ -54,6 +60,11 @@ namespace River.OneMoreAddIn
 		public const int TVM_SETITEMW = 0x113f;
 
 		public const int TVM_GETITEM = 0x110C;
+
+
+		// LVS_OWNERDRAWFIXED: The owner window can paint ListView items in report view. 
+		// The ListView control sends a WM_DRAWITEM message to paint each item. It does
+		// not send separate messages for each subitem. 
 
 
 		[Flags]
@@ -117,6 +128,24 @@ namespace River.OneMoreAddIn
 			int nWidthEllipse, // width of ellipse
 			int nHeightEllipse // height of ellipse
 		);
+
+
+		[StructLayout(LayoutKind.Sequential)]
+		public struct DrawItemStruct
+		{
+			public int ctlType;
+			public int ctlID;
+			public int itemID;
+			public int itemAction;
+			public int itemState;
+			public IntPtr hWndItem;
+			public IntPtr hDC;
+			public int rcLeft;
+			public int rcTop;
+			public int rcRight;
+			public int rcBottom;
+			public IntPtr itemData;
+		}
 
 
 		[StructLayout(LayoutKind.Sequential)]

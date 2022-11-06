@@ -7,7 +7,10 @@ namespace River.OneMoreAddIn.UI
 	using System;
 	using System.Collections;
 	using System.Collections.Generic;
+	using System.ComponentModel;
+	using System.Diagnostics;
 	using System.Drawing;
+	using System.Runtime.InteropServices;
 	using System.Windows.Forms;
 
 
@@ -65,8 +68,10 @@ namespace River.OneMoreAddIn.UI
 		private const string UpGlyph = "△"; // ▲
 		private const string DnGlyph = "▽"; // ▼
 
+		private int rowHeight;
 		private SolidBrush sortedBrush;
-		private SolidBrush highlightBrush;
+		private SolidBrush highBackBrush;
+		private SolidBrush highForeBrush;
 		private readonly List<HostedControl> hostedControls;
 
 
@@ -75,11 +80,11 @@ namespace River.OneMoreAddIn.UI
 		/// </summary>
 		public MoreListView()
 		{
-			OwnerDraw = true;
 			View = View.Details;
 
 			hostedControls = new List<HostedControl>();
-			highlightBrush = new SolidBrush(ColorTranslator.FromHtml("#D7C1FF"));
+			highBackBrush = new SolidBrush(ColorTranslator.FromHtml("#D7C1FF"));
+			highForeBrush = new SolidBrush(SystemColors.HighlightText);
 			sortedBrush = new SolidBrush(BackColor);
 
 			// TODO: ?
@@ -90,6 +95,8 @@ namespace River.OneMoreAddIn.UI
 				ControlStyles.DoubleBuffer |
 				ControlStyles.OptimizedDoubleBuffer |
 				ControlStyles.AllPaintingInWmPaint, true);
+
+			rowHeight = 28;
 		}
 
 
@@ -104,8 +111,34 @@ namespace River.OneMoreAddIn.UI
 		/// </summary>
 		public Color HighlightBackground
 		{
-			get => highlightBrush.Color;
-			set => highlightBrush = new SolidBrush(value);
+			get => highBackBrush.Color;
+			set => highBackBrush = new SolidBrush(value);
+		}
+
+
+		/// <summary>
+		/// Gets or sets the foreground color of selected rows
+		/// </summary>
+		public Color HighlightForeground
+		{
+			get => highForeBrush.Color;
+			set => highForeBrush = new SolidBrush(value);
+		}
+
+
+		/// <summary>
+		/// Sets the row height in Details view
+		/// This property appears in the Visual Studio Form Designer
+		/// </summary>
+		[Category("Appearance")]
+		[Description("Sets height of rows in Details view, in pixels")]
+		public int RowHeight
+		{
+			get { return rowHeight; }
+			set
+			{
+				rowHeight = value;
+			}
 		}
 
 
@@ -151,6 +184,7 @@ namespace River.OneMoreAddIn.UI
 			return item;
 		}
 
+
 		private void RegisterHostedControl(IMoreHostItem subitem, RegistrationEventArgs e)
 		{
 			hostedControls.Add(new HostedControl(subitem, e.Item, e.Control, e.ColumnIndex));
@@ -179,6 +213,17 @@ namespace River.OneMoreAddIn.UI
 
 
 		#region Overrides
+
+		protected override CreateParams CreateParams
+		{
+			get
+			{
+				var p = base.CreateParams;
+				p.Style |= Native.LVS_OWNERDRAWFIXED;
+				return p;
+			}
+		}
+
 
 		protected override void OnColumnClick(ColumnClickEventArgs e)
 		{
@@ -234,6 +279,7 @@ namespace River.OneMoreAddIn.UI
 			}
 		}
 
+
 		protected override void OnColumnWidthChanging(ColumnWidthChangingEventArgs e)
 		{
 			if (e.NewWidth < 50)
@@ -245,34 +291,6 @@ namespace River.OneMoreAddIn.UI
 			base.OnColumnWidthChanging(e);
 		}
 
-		protected override void OnDrawSubItem(DrawListViewSubItemEventArgs e)
-		{
-			base.OnDrawSubItem(e);
-
-			if (e.Item.Selected)
-			{
-				e.Graphics.FillRectangle(highlightBrush, e.Bounds);
-			}
-			else if (Columns[e.ColumnIndex] is MoreColumnHeader header && header.SortOrder != SortOrder.None)
-			{
-				e.Graphics.FillRectangle(sortedBrush, e.Bounds);
-			}
-			else
-			{
-				e.DrawBackground();
-			}
-
-			if (e.SubItem is IMoreHostItem host && host.Control != null)
-			{
-				// presume hosted control overlays text, is prioritized over text
-				return;
-			}
-
-			e.Graphics.DrawString(
-				e.SubItem.Text, e.SubItem.Font, new SolidBrush(e.SubItem.ForeColor),
-				e.Bounds.X + 2,
-				e.Bounds.Y + (e.Bounds.Height / 2) - (e.SubItem.Font.Height / 2));
-		}
 
 		protected override void OnDrawColumnHeader(DrawListViewColumnHeaderEventArgs e)
 		{
@@ -283,6 +301,7 @@ namespace River.OneMoreAddIn.UI
 			//base.OnDrawColumnHeader(e);
 			e.DrawDefault = true;
 		}
+
 
 		protected override void OnMouseDown(MouseEventArgs e)
 		{
@@ -297,9 +316,93 @@ namespace River.OneMoreAddIn.UI
 			}
 		}
 
+
 		protected override void WndProc(ref Message m)
 		{
-			if (m.Msg == Native.WM_PAINT)
+			// WM_MEASUREITEM and WM_DRAWITEM are sent to the parent control rather than to the
+			// ListView itself. They come here as WM_REFLECT + WM_MEASUREITEM and
+			// WM_REFLECT + WM_DRAWITEM. They are sent from Control.WmOwnerDraw() to
+			// Control.ReflectMessageInternal()
+
+			// called when the ListView becomes visible
+			if (m.Msg == Native.WM_SHOWWINDOW)
+			{
+				Debug.Assert(View == View.Details, "MoreListView supports only Details view");
+				Debug.Assert(!OwnerDraw, "Do not set OwnerDraw=true in MoreListView");
+			}
+			// called once when the ListView is created, but only in Details view
+			else if (m.Msg == Native.WM_REFLECT + Native.WM_MEASUREITEM)
+			{
+				// overwrite itemHeight, the fifth integer in MeasureItemStruct
+				Marshal.WriteInt32(m.LParam + 4 * sizeof(int), rowHeight);
+				m.Result = (IntPtr)1;
+			}
+			// called for each ListViewItem to be drawn
+			else if (m.Msg == Native.WM_REFLECT + Native.WM_DRAWITEM)
+			{
+				var draw = (Native.DrawItemStruct)m.GetLParam(typeof(Native.DrawItemStruct));
+				var item = Items[draw.itemID];
+
+				using var g = Graphics.FromHdc(draw.hDC);
+
+				var backColor = item.BackColor;
+				if (!Enabled)
+				{
+					backColor = SystemColors.Control;
+				}
+				else if (item.Selected)
+				{
+					backColor = highBackBrush.Color;
+				}
+
+				// erase the background of the entire row
+				using var backBrush = new SolidBrush(backColor);
+				g.FillRectangle(backBrush, item.Bounds);
+
+				for (int i = 0; i < item.SubItems.Count; i++)
+				{
+					var subitem = item.SubItems[i];
+
+					if (string.IsNullOrWhiteSpace(subitem.Text))
+					{
+						// nothing to see here
+						continue;
+					}
+
+					if (subitem is IMoreHostItem host && host.Control != null)
+					{
+						// presume hosted control overlays text, is prioritized over text
+						continue;
+					}
+
+					// SubItems[0].Bounds contains the entire row, rather than the first column only
+					var bounds = (i > 0) ? subitem.Bounds : item.GetBounds(ItemBoundsPortion.Label);
+
+					// can use item.ForeColor instead of subitem.ForeColor to
+					// get the same behaviour as without OwnerDraw
+					var foreColor = subitem.ForeColor;
+					if (!Enabled)
+					{
+						foreColor = SystemColors.ControlText;
+					}
+					else if (item.Selected)
+					{
+						foreColor = HighlightForeground;
+					}
+
+					var flags = TextFormatFlags.NoPrefix | TextFormatFlags.EndEllipsis |
+						TextFormatFlags.VerticalCenter | TextFormatFlags.SingleLine;
+
+					switch (Columns[i].TextAlign)
+					{
+						case HorizontalAlignment.Center: flags |= TextFormatFlags.HorizontalCenter; break;
+						case HorizontalAlignment.Right: flags |= TextFormatFlags.Right; break;
+					}
+
+					TextRenderer.DrawText(g, subitem.Text, subitem.Font, bounds, foreColor, flags);
+				}
+			}
+			else if (m.Msg == Native.WM_PAINT)
 			{
 				foreach (var hosted in hostedControls)
 				{
@@ -605,7 +708,7 @@ namespace River.OneMoreAddIn.UI
 			var subitem = new MoreHostedListViewSubItem(this, text, control);
 			if (control != null && Registering != null)
 			{
-				Registering(subitem, 
+				Registering(subitem,
 					new MoreListView.RegistrationEventArgs(this, control, SubItems.Count));
 			}
 			SubItems.Add(subitem);

@@ -22,6 +22,8 @@ namespace River.OneMoreAddIn.Commands
 	internal class ApplyStylesCommand : Command
 	{
 
+		private const string MediumBlue = "#5B9BD5";
+
 		private Page page;
 		private XNamespace ns;
 		private readonly Stylizer stylizer;
@@ -229,13 +231,10 @@ namespace River.OneMoreAddIn.Commands
 				s.Name.ToLower() == "body" ||
 				s.Name.ToLower() == "p");
 
-			if (style == null)
+			style ??= new Style
 			{
-				style = new Style
-				{
-					Color = page.GetPageColor(out _, out _).GetBrightness() < 0.5 ? "#FFFFFF" : "#000000"
-				};
-			}
+				Color = page.GetPageColor(out _, out _).GetBrightness() < 0.5 ? "#FFFFFF" : "#000000"
+			};
 
 			var elements = page.Root.Descendants(ns + "Bullet");
 			if (elements?.Any() == true)
@@ -284,18 +283,18 @@ namespace River.OneMoreAddIn.Commands
 			{
 				foreach (var element in elements)
 				{
-					if (element.Parent.Elements(ns + "Meta").Any(m => m.Attribute("name").Value.StartsWith("omfootnote")))
-					{
-						continue;
-					}
-
 					var cdata = element.GetCData();
 
 					if (cdata.Value.EndsWith("</a>"))
 					{
+						var color = (element.Parent.Elements(ns + "Meta")
+							.Any(m => m.Attribute("name").Value.StartsWith("omfootnote")))
+							? null
+							: MediumBlue;
+
 						// OneNote applies styles at the OE level for link-only content
 						// so apply color to CDATA's one:OE
-						ColorizeElement(element.Parent, "#5B9BD5");
+						ColorizeElement(element.Parent, color);
 					}
 					else
 					{
@@ -305,7 +304,7 @@ namespace River.OneMoreAddIn.Commands
 						var a = wrapper.Element("a");
 						if (a != null)
 						{
-							ColorizeElement(a, "#5B9BD5");
+							ColorizeElement(a, MediumBlue);
 						}
 
 						cdata.ReplaceWith(wrapper.GetInnerXml());
@@ -321,14 +320,14 @@ namespace River.OneMoreAddIn.Commands
 			{
 				var style = new Style(attr.Value)
 				{
-					Color = color
+					Color = color ?? StyleBase.Automatic
 				};
 
 				attr.Value = style.ToCss();
 			}
-			else
+			else if (color != null)
 			{
-				element.Add(new XAttribute("style", "color:#5B9BD5"));
+				element.Add(new XAttribute("style", $"color:{MediumBlue}"));
 			}
 		}
 	}

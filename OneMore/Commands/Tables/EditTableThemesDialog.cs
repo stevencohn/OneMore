@@ -110,8 +110,14 @@ namespace River.OneMoreAddIn.Commands
 			public void SetColor(Color color)
 			{
 				Color = color;
+
 				using var g = Graphics.FromImage(image);
-				g.Clear(color);
+				g.Clear(SystemColors.Window);
+				var bounds = new Rectangle(0, 0, image.Size.Width - 1, image.Size.Height - 1);
+				using var brush = new SolidBrush(color);
+				g.FillRectangle(brush, bounds);
+				g.DrawRectangle(Pens.DarkGray, new Rectangle(0, 0, bounds.Width, bounds.Height));
+
 				picture.Invalidate();
 			}
 		}
@@ -182,7 +188,7 @@ namespace River.OneMoreAddIn.Commands
 
 			reorganizing = true;
 			familyBox.SelectedIndex = familyBox.Items.IndexOf(StyleBase.DefaultFontFamily);
-			sizeBox.SelectedIndex = sizeBox.Items.IndexOf(StyleBase.DefaultFontSize.ToString());
+			sizeBox.SelectedIndex = sizeBox.Items.IndexOf(StyleBase.DefaultFontSize.ToString("0.#", AddIn.Culture));
 			colorFontsBox.Items[0].Selected = true;
 			font = themes[0].DefaultFont;
 			reorganizing = false;
@@ -194,7 +200,13 @@ namespace River.OneMoreAddIn.Commands
 
 		private void InitializeElementsBox()
 		{
+			elementsBox.StateImageList = new ImageList
+			{
+				ImageSize = new Size(1, (int)(18 * 1.44))
+			};
+
 			elementsBox.HighlightBackground = Color.Transparent;
+			elementsBox.HighlightForeground = SystemColors.ControlText;
 			elementsBox.Columns.Add(new MoreColumnHeader("Element", 250) { AutoSizeItems = true });
 			elementsBox.Columns.Add(new MoreColumnHeader("Color", 150));
 
@@ -212,6 +224,11 @@ namespace River.OneMoreAddIn.Commands
 
 		private void InitializeFontElementsBox()
 		{
+			colorFontsBox.StateImageList = new ImageList
+			{
+				ImageSize = new Size(1, (int)(18 * 1.44))
+			};
+
 			colorFontsBox.Columns.Add(new MoreColumnHeader("Element", 250) { AutoSizeItems = true });
 			colorFontsBox.Columns.Add(new MoreColumnHeader("Font", 430));
 
@@ -283,6 +300,12 @@ namespace River.OneMoreAddIn.Commands
 
 			painter.Paint(snapshot);
 			previewBox.Invalidate();
+
+			SetColorFont(0, snapshot.DefaultFont);
+			SetColorFont(1, snapshot.HeaderFont);
+			SetColorFont(2, snapshot.TotalFont);
+			SetColorFont(3, snapshot.FirstColumnFont);
+			SetColorFont(4, snapshot.LastColumnFont);
 
 			void SetSwatch(int index, Color color)
 			{
@@ -374,9 +397,32 @@ namespace River.OneMoreAddIn.Commands
 
 		// Fonts - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
+		private void SetColorFont(int index, TableTheme.ColorFont font)
+		{
+			if (colorFontsBox.Items[index].SubItems[1] is MoreHostedListViewSubItem subitem)
+			{
+				if (subitem.Control is MoreLinkLabel label)
+				{
+					var text = font?.ToString() ?? "Default";
+
+					using var g = label.CreateGraphics();
+					var size = g.MeasureString(text, label.Font);
+					if (font != null) label.Font = Font;
+					label.Width = (int)size.Width + label.Padding.Left + label.Padding.Right;
+					label.Text = text;
+				}
+			}
+		}
+
 
 		private void SelectFontElement(object sender, ListViewItemSelectionChangedEventArgs e)
 		{
+			if (!e.IsSelected)
+			{
+				// only handle the selected state
+				return;
+			}
+
 			var theme = themes[combo.SelectedIndex];
 			switch (e.ItemIndex)
 			{
@@ -388,6 +434,34 @@ namespace River.OneMoreAddIn.Commands
 			}
 
 			font ??= new TableTheme.ColorFont();
+
+			int index;
+
+			logger.WriteLine($"index={e.ItemIndex} font={font} theme={theme.Name}");
+
+			if (familyBox.Items.Count > 0)
+			{
+				index = familyBox.Items.IndexOf(font.Font?.FontFamily.Name ?? StyleBase.DefaultFontFamily);
+				if (index == -1) index = 0;
+				familyBox.SelectedIndex = index;
+			}
+
+			if (sizeBox.Items.Count > 0)
+			{
+				index = sizeBox.Items.IndexOf(
+					font.Font?.Size.ToString("0.#", AddIn.Culture) ?? 
+					StyleBase.DefaultFontSize.ToString("0.#", AddIn.Culture));
+
+				if (index == -1) index = 0;
+				sizeBox.SelectedIndex = index;
+			}
+
+			if (font.Font != null)
+			{
+				boldButton.Checked = font.Font.Bold;
+				italicButton.Checked = font.Font.Italic;
+				underlineButton.Checked = font.Font.Underline;
+			}
 		}
 
 
@@ -457,7 +531,8 @@ namespace River.OneMoreAddIn.Commands
 		private void ApplyFont(object sender, EventArgs e)
 		{
 			var theme = themes[combo.SelectedIndex];
-			switch (colorFontsBox.SelectedIndices[0])
+			var index = colorFontsBox.SelectedIndices[0];
+			switch (index)
 			{
 				case 0:
 					theme.DefaultFont?.Dispose();
@@ -484,6 +559,8 @@ namespace River.OneMoreAddIn.Commands
 					theme.LastColumnFont = font;
 					break;
 			}
+
+			SetColorFont(index, font);
 
 			colorFontsBox.Enabled = true;
 			fontsGroup.Enabled = false;

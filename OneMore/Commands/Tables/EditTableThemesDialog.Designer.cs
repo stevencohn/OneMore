@@ -115,7 +115,7 @@ namespace River.OneMoreAddIn.Commands
 			this.elementsGroup.Location = new System.Drawing.Point(9, 6);
 			this.elementsGroup.Name = "elementsGroup";
 			this.elementsGroup.Padding = new System.Windows.Forms.Padding(10, 3, 3, 3);
-			this.elementsGroup.Size = new System.Drawing.Size(492, 441);
+			this.elementsGroup.Size = new System.Drawing.Size(492, 449);
 			this.elementsGroup.TabIndex = 8;
 			this.elementsGroup.TabStop = false;
 			this.elementsGroup.Text = "Table Elements";
@@ -124,7 +124,7 @@ namespace River.OneMoreAddIn.Commands
 			// 
 			this.resetButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
 			this.resetButton.Enabled = false;
-			this.resetButton.Location = new System.Drawing.Point(13, 401);
+			this.resetButton.Location = new System.Drawing.Point(13, 409);
 			this.resetButton.Name = "resetButton";
 			this.resetButton.Size = new System.Drawing.Size(110, 34);
 			this.resetButton.TabIndex = 1;
@@ -140,8 +140,8 @@ namespace River.OneMoreAddIn.Commands
 			this.elementsBox.HighlightBackground = System.Drawing.Color.FromArgb(((int)(((byte)(215)))), ((int)(((byte)(193)))), ((int)(((byte)(255)))));
 			this.elementsBox.Location = new System.Drawing.Point(13, 25);
 			this.elementsBox.Name = "elementsBox";
-			this.elementsBox.OwnerDraw = true;
-			this.elementsBox.Size = new System.Drawing.Size(473, 370);
+			this.elementsBox.RowHeight = 28;
+			this.elementsBox.Size = new System.Drawing.Size(473, 378);
 			this.elementsBox.SortedBackground = System.Drawing.SystemColors.Window;
 			this.elementsBox.TabIndex = 0;
 			this.elementsBox.UseCompatibleStateImageBehavior = false;
@@ -249,7 +249,7 @@ namespace River.OneMoreAddIn.Commands
 			this.tabs.Location = new System.Drawing.Point(20, 86);
 			this.tabs.Name = "tabs";
 			this.tabs.SelectedIndex = 0;
-			this.tabs.Size = new System.Drawing.Size(829, 482);
+			this.tabs.Size = new System.Drawing.Size(829, 494);
 			this.tabs.TabIndex = 12;
 			// 
 			// colorsTab
@@ -259,7 +259,7 @@ namespace River.OneMoreAddIn.Commands
 			this.colorsTab.Location = new System.Drawing.Point(4, 29);
 			this.colorsTab.Name = "colorsTab";
 			this.colorsTab.Padding = new System.Windows.Forms.Padding(3);
-			this.colorsTab.Size = new System.Drawing.Size(821, 449);
+			this.colorsTab.Size = new System.Drawing.Size(821, 461);
 			this.colorsTab.TabIndex = 0;
 			this.colorsTab.Text = "Colors";
 			this.colorsTab.UseVisualStyleBackColor = true;
@@ -446,7 +446,7 @@ namespace River.OneMoreAddIn.Commands
 			this.colorFontsBox.HighlightBackground = System.Drawing.Color.FromArgb(((int)(((byte)(215)))), ((int)(((byte)(193)))), ((int)(((byte)(255)))));
 			this.colorFontsBox.Location = new System.Drawing.Point(13, 25);
 			this.colorFontsBox.Name = "colorFontsBox";
-			this.colorFontsBox.OwnerDraw = true;
+			this.colorFontsBox.RowHeight = 28;
 			this.colorFontsBox.Size = new System.Drawing.Size(692, 177);
 			this.colorFontsBox.SortedBackground = System.Drawing.Color.Transparent;
 			this.colorFontsBox.TabIndex = 0;
@@ -458,7 +458,7 @@ namespace River.OneMoreAddIn.Commands
 			// 
 			this.bottomPanel.Controls.Add(this.cancelButton);
 			this.bottomPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
-			this.bottomPanel.Location = new System.Drawing.Point(20, 568);
+			this.bottomPanel.Location = new System.Drawing.Point(20, 580);
 			this.bottomPanel.Name = "bottomPanel";
 			this.bottomPanel.Padding = new System.Windows.Forms.Padding(6);
 			this.bottomPanel.Size = new System.Drawing.Size(829, 53);
@@ -480,7 +480,7 @@ namespace River.OneMoreAddIn.Commands
 			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.CancelButton = this.cancelButton;
-			this.ClientSize = new System.Drawing.Size(859, 631);
+			this.ClientSize = new System.Drawing.Size(859, 643);
 			this.Controls.Add(this.tabs);
 			this.Controls.Add(this.topPanel);
 			this.Controls.Add(this.bottomPanel);
@@ -512,6 +512,7 @@ namespace River.OneMoreAddIn.Commands
 			this.ResumeLayout(false);
 
 		}
+
 
 		#endregion
 		private System.Windows.Forms.Button cancelButton;

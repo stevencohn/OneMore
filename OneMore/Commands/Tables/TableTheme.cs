@@ -4,6 +4,7 @@
 
 namespace River.OneMoreAddIn.Commands
 {
+	using River.OneMoreAddIn.Styles;
 	using System;
 	using System.ComponentModel;
 	using System.Drawing;
@@ -32,6 +33,13 @@ namespace River.OneMoreAddIn.Commands
 			public override int GetHashCode()
 			{
 				return Font.GetHashCode() ^ Foreground.GetHashCode();
+			}
+			public override string ToString()
+			{
+				var color = Foreground == Color.Empty ? SystemColors.ControlText : Foreground;
+				var name = Font?.FontFamily.Name ?? StyleBase.DefaultFontFamily;
+				var size = Font?.SizeInPoints ?? StyleBase.DefaultFontSize;
+				return $"{name}, {size.ToString("0.#", AddIn.Culture)}pt, {color.ToNamedString()}";
 			}
 		}
 
