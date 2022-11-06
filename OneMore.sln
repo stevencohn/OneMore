@@ -35,8 +35,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Plugins", "Plugins", "{9D56
 	ProjectSection(SolutionItems) = preProject
 		Plugins\Get-MeetingDate-readme.txt = Plugins\Get-MeetingDate-readme.txt
 		Plugins\Get-MeetingDate.ps1 = Plugins\Get-MeetingDate.ps1
-		Plugins\Set-RainbowSections.ps1 = Plugins\Set-RainbowSections.ps1
 		Plugins\Set-RainbowSections-readme.txt = Plugins\Set-RainbowSections-readme.txt
+		Plugins\Set-RainbowSections.ps1 = Plugins\Set-RainbowSections.ps1
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Templates", "Templates", "{31896922-72FF-4823-80C0-8EC46936AC71}"
@@ -53,6 +53,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".github", ".github", "{AD3F5496-C83B-4C86-B78D-EE7C6CCABB8A}"
 	ProjectSection(SolutionItems) = preProject
 		.github\FUNDING.yml = .github\FUNDING.yml
+		.github\pull_request_template.md = .github\pull_request_template.md
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "workflows", "workflows", "{5771E974-F302-4CB6-86B8-B57C74C07709}"
