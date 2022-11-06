@@ -454,7 +454,7 @@ namespace River.OneMoreAddIn.Commands
 			this.colorFontsBox.TabIndex = 0;
 			this.colorFontsBox.UseCompatibleStateImageBehavior = false;
 			this.colorFontsBox.View = System.Windows.Forms.View.Details;
-			this.colorFontsBox.ItemSelectionChanged += new System.Windows.Forms.ListViewItemSelectionChangedEventHandler(this.SelectFontElement);
+			this.colorFontsBox.SelectedIndexChanged += new System.EventHandler(this.ShowFontProperties2);
 			// 
 			// bottomPanel
 			// 

@@ -23,7 +23,7 @@ namespace River.OneMoreAddIn.Commands
 		private readonly TableThemePainter painter;
 		private List<TableTheme> themes;
 		private TableTheme snapshot;
-		private TableTheme.ColorFont font;
+		private TableTheme.ColorFont colorfont;
 		private bool reorganizing;
 
 		#region Swatch
@@ -191,7 +191,6 @@ namespace River.OneMoreAddIn.Commands
 			familyBox.SelectedIndex = familyBox.Items.IndexOf(StyleBase.DefaultFontFamily);
 			sizeBox.SelectedIndex = sizeBox.Items.IndexOf(StyleBase.DefaultFontSize.ToString("0.#", AddIn.Culture));
 			colorFontsBox.Items[0].Selected = true;
-			font = themes[0].DefaultFont;
 			reorganizing = false;
 		}
 
@@ -416,16 +415,19 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private void SelectFontElement(object sender, ListViewItemSelectionChangedEventArgs e)
+		private void ShowFontProperties2(object sender, EventArgs e)
 		{
-			if (!e.IsSelected)
+			var theme = themes[combo.SelectedIndex];
+			TableTheme.ColorFont font = null;
+
+			if (colorFontsBox.SelectedIndices.Count == 0)
 			{
-				// only handle the selected state
 				return;
 			}
 
-			var theme = themes[combo.SelectedIndex];
-			switch (e.ItemIndex)
+			var itemIndex = colorFontsBox.SelectedIndices[0];
+
+			switch (itemIndex)
 			{
 				case 0: font = theme.DefaultFont; break;
 				case 1: font = theme.HeaderFont; break;
@@ -438,7 +440,7 @@ namespace River.OneMoreAddIn.Commands
 
 			int index;
 
-			logger.WriteLine($"index={e.ItemIndex} font={font} theme={theme.Name}");
+			logger.WriteLine($"index={itemIndex} font={font} theme={theme.Name}");
 
 			if (familyBox.Items.Count > 0)
 			{
@@ -475,12 +477,27 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
+		private void ShowFontProperties(object sender, ListViewItemSelectionChangedEventArgs e)
+		{
+		}
+
+
 		private void ChangeElementFont(object sender, LinkLabelLinkClickedEventArgs e)
 		{
 			if (((Control)sender).Tag is ListViewItem host)
 			{
 				colorFontsBox.SelectIf(host);
-				SelectFontElement(sender, new ListViewItemSelectionChangedEventArgs(host, host.Index, true));
+				ShowFontProperties2(sender, new EventArgs());
+
+				var theme = themes[combo.SelectedIndex];
+				switch (host.Index)
+				{
+					case 0: colorfont = theme.DefaultFont; break;
+					case 1: colorfont = theme.HeaderFont; break;
+					case 2: colorfont = theme.TotalFont; break;
+					case 3: colorfont = theme.FirstColumnFont; break;
+					case 4: colorfont = theme.LastColumnFont; break;
+				}
 			}
 
 			colorFontsBox.Enabled = false;
@@ -490,10 +507,10 @@ namespace River.OneMoreAddIn.Commands
 
 		private void ChangeFontFont(object sender, EventArgs e)
 		{
-			if (!reorganizing)
+			if (!reorganizing && colorfont != null)
 			{
-				var save = font.Font;
-				font.Font = MakeFont();
+				var save = colorfont.Font;
+				colorfont.Font = MakeFont();
 				save?.Dispose();
 			}
 		}
@@ -507,18 +524,18 @@ namespace River.OneMoreAddIn.Commands
 				location.X + colorButton.Bounds.Location.X,
 				location.Y + colorButton.Bounds.Height + 4);
 
-			dialog.Color = font.Foreground;
+			dialog.Color = colorfont.Foreground;
 
 			if (dialog.ShowDialog() == DialogResult.OK)
 			{
-				font.Foreground = dialog.Color;
+				colorfont.Foreground = dialog.Color;
 			}
 		}
 
 
 		private void SetFontColorDefault(object sender, EventArgs e)
 		{
-			font.Foreground = Color.Black;
+			colorfont.Foreground = Color.Black;
 		}
 
 
@@ -544,38 +561,46 @@ namespace River.OneMoreAddIn.Commands
 		{
 			var theme = themes[combo.SelectedIndex];
 			var index = colorFontsBox.SelectedIndices[0];
+
+			logger.WriteLine($"applying index {index} for theme {theme.Name}");
 			switch (index)
 			{
 				case 0:
 					theme.DefaultFont?.Dispose();
-					theme.DefaultFont = new TableTheme.ColorFont(font);
+					theme.DefaultFont = colorfont;
 					break;
 
 				case 1:
 					theme.HeaderFont?.Dispose();
-					theme.HeaderFont = new TableTheme.ColorFont(font);
+					theme.HeaderFont = colorfont;
 					break;
 
 				case 2:
 					theme.TotalFont?.Dispose();
-					theme.TotalFont = new TableTheme.ColorFont(font);
+					theme.TotalFont = colorfont;
 					break;
 
 				case 3:
 					theme.FirstColumnFont?.Dispose();
-					theme.FirstColumnFont = new TableTheme.ColorFont(font);
+					theme.FirstColumnFont = colorfont;
 					break;
 
 				case 4:
 					theme.LastColumnFont?.Dispose();
-					theme.LastColumnFont = new TableTheme.ColorFont(font);
+					theme.LastColumnFont = colorfont;
 					break;
 			}
 
-			SetColorFont(index, font);
+			SetColorFont(index, colorfont);
+
+			colorfont = null;
 
 			colorFontsBox.Enabled = true;
 			fontsGroup.Enabled = false;
+
+			var dirty = !theme.Equals(snapshot);
+			saveButton.Enabled = dirty;
+			resetButton.Enabled = dirty;
 		}
 
 
