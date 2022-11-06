@@ -138,6 +138,7 @@ namespace River.OneMoreAddIn.Commands
 			this.elementsBox.FullRowSelect = true;
 			this.elementsBox.HideSelection = false;
 			this.elementsBox.HighlightBackground = System.Drawing.Color.FromArgb(((int)(((byte)(215)))), ((int)(((byte)(193)))), ((int)(((byte)(255)))));
+			this.elementsBox.HighlightForeground = System.Drawing.SystemColors.HighlightText;
 			this.elementsBox.Location = new System.Drawing.Point(13, 25);
 			this.elementsBox.Name = "elementsBox";
 			this.elementsBox.RowHeight = 28;
@@ -271,7 +272,7 @@ namespace River.OneMoreAddIn.Commands
 			this.fontsTab.Location = new System.Drawing.Point(4, 29);
 			this.fontsTab.Name = "fontsTab";
 			this.fontsTab.Padding = new System.Windows.Forms.Padding(3);
-			this.fontsTab.Size = new System.Drawing.Size(821, 449);
+			this.fontsTab.Size = new System.Drawing.Size(821, 461);
 			this.fontsTab.TabIndex = 1;
 			this.fontsTab.Text = "Fonts";
 			this.fontsTab.UseVisualStyleBackColor = true;
@@ -444,6 +445,7 @@ namespace River.OneMoreAddIn.Commands
 			this.colorFontsBox.FullRowSelect = true;
 			this.colorFontsBox.HideSelection = false;
 			this.colorFontsBox.HighlightBackground = System.Drawing.Color.FromArgb(((int)(((byte)(215)))), ((int)(((byte)(193)))), ((int)(((byte)(255)))));
+			this.colorFontsBox.HighlightForeground = System.Drawing.SystemColors.HighlightText;
 			this.colorFontsBox.Location = new System.Drawing.Point(13, 25);
 			this.colorFontsBox.Name = "colorFontsBox";
 			this.colorFontsBox.RowHeight = 28;

@@ -524,12 +524,14 @@ namespace River.OneMoreAddIn.Commands
 
 		private Font MakeFont()
 		{
-			if (!float.TryParse(sizeBox.Text, NumberStyles.Any, AddIn.Culture, out var size))
+			var text = sizeBox.Text.Trim();
+			if (!float.TryParse(text, NumberStyles.Integer | NumberStyles.AllowDecimalPoint,
+				AddIn.Culture, out var size))
 			{
 				size = (float)StyleBase.DefaultFontSize;
 			}
 
-			FontStyle style = 0;
+			var style = FontStyle.Regular;
 			if (boldButton.Checked) style |= FontStyle.Bold;
 			if (italicButton.Checked) style |= FontStyle.Italic;
 			if (underlineButton.Checked) style |= FontStyle.Underline;
@@ -672,7 +674,13 @@ namespace River.OneMoreAddIn.Commands
 
 		private void ConfirmClosing(object sender, FormClosingEventArgs e)
 		{
-			if (!themes[combo.SelectedIndex].Equals(snapshot))
+			if (fontsGroup.Enabled)
+			{
+				colorFontsBox.Enabled = true;
+				fontsGroup.Enabled = false;
+				e.Cancel = true;
+			}
+			else if (!themes[combo.SelectedIndex].Equals(snapshot))
 			{
 				if (MoreMessageBox.Show(Owner, "Discard unsaved changes?",
 					MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
