@@ -549,6 +549,8 @@ namespace River.OneMoreAddIn.Commands
 			colorfont ??= new TableTheme.ColorFont();
 
 			colorFontsBox.Enabled = false;
+			resetFontButton.Enabled = false;
+			defaultFontButton.Enabled = false;
 			fontsGroup.Enabled = true;
 		}
 
@@ -643,6 +645,8 @@ namespace River.OneMoreAddIn.Commands
 			colorfont = null;
 
 			colorFontsBox.Enabled = true;
+			resetFontButton.Enabled = true;
+			defaultFontButton.Enabled = true;
 			fontsGroup.Enabled = false;
 
 			var dirty = !theme.Equals(snapshot);
@@ -750,6 +754,8 @@ namespace River.OneMoreAddIn.Commands
 			if (fontsGroup.Enabled)
 			{
 				colorFontsBox.Enabled = true;
+				resetFontButton.Enabled = true;
+				defaultFontButton.Enabled = true;
 				fontsGroup.Enabled = false;
 				e.Cancel = true;
 			}

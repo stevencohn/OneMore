@@ -60,12 +60,12 @@ namespace River.OneMoreAddIn.Commands
 			this.colorButton = new System.Windows.Forms.ToolStripSplitButton();
 			this.defaultBlackToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.fontElementsGroup = new System.Windows.Forms.GroupBox();
+			this.defaultFontButton = new System.Windows.Forms.Button();
+			this.selectedFontLabel = new System.Windows.Forms.Label();
 			this.resetFontButton = new System.Windows.Forms.Button();
 			this.colorFontsBox = new River.OneMoreAddIn.UI.MoreListView();
 			this.bottomPanel = new System.Windows.Forms.Panel();
 			this.button1 = new System.Windows.Forms.Button();
-			this.selectedFontLabel = new System.Windows.Forms.Label();
-			this.defaultFontButton = new System.Windows.Forms.Button();
 			this.elementsGroup.SuspendLayout();
 			this.previewGroup.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.previewBox)).BeginInit();
@@ -130,7 +130,7 @@ namespace River.OneMoreAddIn.Commands
 			this.resetButton.Name = "resetButton";
 			this.resetButton.Size = new System.Drawing.Size(110, 34);
 			this.resetButton.TabIndex = 1;
-			this.resetButton.Text = "Reset";
+			this.resetButton.Text = "Reset all";
 			this.resetButton.UseVisualStyleBackColor = true;
 			this.resetButton.Click += new System.EventHandler(this.ResetTheme);
 			// 
@@ -431,6 +431,25 @@ namespace River.OneMoreAddIn.Commands
 			this.fontElementsGroup.TabStop = false;
 			this.fontElementsGroup.Text = "Table Elements";
 			// 
+			// defaultFontButton
+			// 
+			this.defaultFontButton.Location = new System.Drawing.Point(231, 209);
+			this.defaultFontButton.Name = "defaultFontButton";
+			this.defaultFontButton.Size = new System.Drawing.Size(110, 34);
+			this.defaultFontButton.TabIndex = 3;
+			this.defaultFontButton.Text = "Default";
+			this.defaultFontButton.UseVisualStyleBackColor = true;
+			this.defaultFontButton.Click += new System.EventHandler(this.DefaultSelectedFont);
+			// 
+			// selectedFontLabel
+			// 
+			this.selectedFontLabel.AutoSize = true;
+			this.selectedFontLabel.Location = new System.Drawing.Point(13, 215);
+			this.selectedFontLabel.Name = "selectedFontLabel";
+			this.selectedFontLabel.Size = new System.Drawing.Size(76, 20);
+			this.selectedFontLabel.TabIndex = 2;
+			this.selectedFontLabel.Text = "Selected:";
+			// 
 			// resetFontButton
 			// 
 			this.resetFontButton.Location = new System.Drawing.Point(115, 208);
@@ -480,25 +499,6 @@ namespace River.OneMoreAddIn.Commands
 			this.button1.TabIndex = 1;
 			this.button1.Text = "Reset";
 			this.button1.UseVisualStyleBackColor = true;
-			// 
-			// selectedFontLabel
-			// 
-			this.selectedFontLabel.AutoSize = true;
-			this.selectedFontLabel.Location = new System.Drawing.Point(13, 215);
-			this.selectedFontLabel.Name = "selectedFontLabel";
-			this.selectedFontLabel.Size = new System.Drawing.Size(76, 20);
-			this.selectedFontLabel.TabIndex = 2;
-			this.selectedFontLabel.Text = "Selected:";
-			// 
-			// defaultFontButton
-			// 
-			this.defaultFontButton.Location = new System.Drawing.Point(231, 209);
-			this.defaultFontButton.Name = "defaultFontButton";
-			this.defaultFontButton.Size = new System.Drawing.Size(110, 34);
-			this.defaultFontButton.TabIndex = 3;
-			this.defaultFontButton.Text = "Default";
-			this.defaultFontButton.UseVisualStyleBackColor = true;
-			this.defaultFontButton.Click += new System.EventHandler(this.DefaultSelectedFont);
 			// 
 			// EditTableThemesDialog
 			// 
