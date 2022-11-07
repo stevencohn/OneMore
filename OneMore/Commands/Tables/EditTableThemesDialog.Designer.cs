@@ -64,6 +64,8 @@ namespace River.OneMoreAddIn.Commands
 			this.colorFontsBox = new River.OneMoreAddIn.UI.MoreListView();
 			this.bottomPanel = new System.Windows.Forms.Panel();
 			this.button1 = new System.Windows.Forms.Button();
+			this.selectedFontLabel = new System.Windows.Forms.Label();
+			this.defaultFontButton = new System.Windows.Forms.Button();
 			this.elementsGroup.SuspendLayout();
 			this.previewGroup.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.previewBox)).BeginInit();
@@ -405,7 +407,7 @@ namespace River.OneMoreAddIn.Commands
 			this.colorButton.Name = "colorButton";
 			this.colorButton.Size = new System.Drawing.Size(45, 28);
 			this.colorButton.ToolTipText = "Text Color";
-			this.colorButton.Click += new System.EventHandler(this.ChangeFontColor);
+			this.colorButton.ButtonClick += new System.EventHandler(this.ChangeFontColor);
 			// 
 			// defaultBlackToolStripMenuItem
 			// 
@@ -416,6 +418,8 @@ namespace River.OneMoreAddIn.Commands
 			// 
 			// fontElementsGroup
 			// 
+			this.fontElementsGroup.Controls.Add(this.defaultFontButton);
+			this.fontElementsGroup.Controls.Add(this.selectedFontLabel);
 			this.fontElementsGroup.Controls.Add(this.resetFontButton);
 			this.fontElementsGroup.Controls.Add(this.colorFontsBox);
 			this.fontElementsGroup.Location = new System.Drawing.Point(6, 6);
@@ -429,13 +433,13 @@ namespace River.OneMoreAddIn.Commands
 			// 
 			// resetFontButton
 			// 
-			this.resetFontButton.Enabled = false;
-			this.resetFontButton.Location = new System.Drawing.Point(13, 209);
+			this.resetFontButton.Location = new System.Drawing.Point(115, 208);
 			this.resetFontButton.Name = "resetFontButton";
 			this.resetFontButton.Size = new System.Drawing.Size(110, 34);
 			this.resetFontButton.TabIndex = 1;
 			this.resetFontButton.Text = "Reset";
 			this.resetFontButton.UseVisualStyleBackColor = true;
+			this.resetFontButton.Click += new System.EventHandler(this.ResetSelectedFont);
 			// 
 			// colorFontsBox
 			// 
@@ -477,6 +481,25 @@ namespace River.OneMoreAddIn.Commands
 			this.button1.Text = "Reset";
 			this.button1.UseVisualStyleBackColor = true;
 			// 
+			// selectedFontLabel
+			// 
+			this.selectedFontLabel.AutoSize = true;
+			this.selectedFontLabel.Location = new System.Drawing.Point(13, 215);
+			this.selectedFontLabel.Name = "selectedFontLabel";
+			this.selectedFontLabel.Size = new System.Drawing.Size(76, 20);
+			this.selectedFontLabel.TabIndex = 2;
+			this.selectedFontLabel.Text = "Selected:";
+			// 
+			// defaultFontButton
+			// 
+			this.defaultFontButton.Location = new System.Drawing.Point(231, 209);
+			this.defaultFontButton.Name = "defaultFontButton";
+			this.defaultFontButton.Size = new System.Drawing.Size(110, 34);
+			this.defaultFontButton.TabIndex = 3;
+			this.defaultFontButton.Text = "Default";
+			this.defaultFontButton.UseVisualStyleBackColor = true;
+			this.defaultFontButton.Click += new System.EventHandler(this.DefaultSelectedFont);
+			// 
 			// EditTableThemesDialog
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -510,6 +533,7 @@ namespace River.OneMoreAddIn.Commands
 			this.fontToolstrip.ResumeLayout(false);
 			this.fontToolstrip.PerformLayout();
 			this.fontElementsGroup.ResumeLayout(false);
+			this.fontElementsGroup.PerformLayout();
 			this.bottomPanel.ResumeLayout(false);
 			this.ResumeLayout(false);
 
@@ -550,5 +574,7 @@ namespace River.OneMoreAddIn.Commands
 		private System.Windows.Forms.Button button1;
 		private System.Windows.Forms.GroupBox fontElementsGroup;
 		private System.Windows.Forms.Button applyFontButton;
+		private System.Windows.Forms.Button defaultFontButton;
+		private System.Windows.Forms.Label selectedFontLabel;
 	}
 }

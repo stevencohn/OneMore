@@ -61,14 +61,14 @@ namespace River.OneMoreAddIn
 		/// <returns>A string specifying either the name or #RRGGBB</returns>
 		public static string ToNamedString(this Color color)
 		{
+			if (color.IsEmpty)
+			{
+				return "auto";
+			}
+
 			if (color.IsKnownColor || color.IsNamedColor || color.IsSystemColor)
 			{
 				return color.Name;
-			}
-
-			if (color.IsEmpty)
-			{
-				return "Empty";
 			}
 
 			return color.ToRGBHtml();

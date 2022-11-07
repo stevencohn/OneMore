@@ -48,10 +48,9 @@ namespace River.OneMoreAddIn.Commands
 			}
 			public override string ToString()
 			{
-				var color = Foreground == Color.Empty ? SystemColors.ControlText : Foreground;
 				var name = Font?.FontFamily.Name ?? StyleBase.DefaultFontFamily;
 				var size = Font?.SizeInPoints ?? StyleBase.DefaultFontSize;
-				return $"{name}, {size.ToString("0.#", AddIn.Culture)}pt, {color.ToNamedString()}";
+				return $"{name}, {size.ToString("0.#", AddIn.Culture)}pt, {Foreground.ToNamedString()}";
 			}
 		}
 

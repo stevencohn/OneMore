@@ -417,14 +417,13 @@ namespace River.OneMoreAddIn.Commands
 
 		private void ShowFontProperties(object sender, EventArgs e)
 		{
-			var theme = themes[combo.SelectedIndex];
-			TableTheme.ColorFont font = null;
-
 			if (colorFontsBox.SelectedIndices.Count == 0)
 			{
 				return;
 			}
 
+			TableTheme.ColorFont font = null;
+			var theme = themes[combo.SelectedIndex];
 			var itemIndex = colorFontsBox.SelectedIndices[0];
 
 			switch (itemIndex)
@@ -470,6 +469,62 @@ namespace River.OneMoreAddIn.Commands
 				italicButton.Checked = false;
 				underlineButton.Checked = false;
 			}
+		}
+
+
+		private void ResetSelectedFont(object sender, EventArgs e)
+		{
+			if (colorFontsBox.SelectedIndices.Count == 0)
+			{
+				return;
+			}
+
+			var theme = themes[combo.SelectedIndex];
+			var itemIndex = colorFontsBox.SelectedIndices[0];
+			TableTheme.ColorFont font = null;
+
+			switch (itemIndex)
+			{
+				case 0: font = theme.DefaultFont = new TableTheme.ColorFont(snapshot.DefaultFont); break;
+				case 1: font = theme.HeaderFont = new TableTheme.ColorFont(snapshot.HeaderFont); break;
+				case 2: font = theme.TotalFont = new TableTheme.ColorFont(snapshot.TotalFont); break;
+				case 3: font = theme.FirstColumnFont = new TableTheme.ColorFont(snapshot.FirstColumnFont); break;
+				case 4: font = theme.LastColumnFont = new TableTheme.ColorFont(snapshot.LastColumnFont); break;
+			}
+
+			ShowFontLinkLabel(itemIndex, font);
+			ShowFontProperties(sender, e);
+
+			var dirty = !theme.Equals(snapshot);
+			saveButton.Enabled = dirty;
+			resetButton.Enabled = dirty;
+		}
+
+		private void DefaultSelectedFont(object sender, EventArgs e)
+		{
+			if (colorFontsBox.SelectedIndices.Count == 0)
+			{
+				return;
+			}
+
+			var theme = themes[combo.SelectedIndex];
+			var itemIndex = colorFontsBox.SelectedIndices[0];
+
+			switch (itemIndex)
+			{
+				case 0: { theme.DefaultFont?.Dispose(); theme.DefaultFont = null; break; }
+				case 1: { theme.HeaderFont?.Dispose(); theme.HeaderFont = null; break; }
+				case 2: { theme.TotalFont?.Dispose(); theme.TotalFont = null; break; }
+				case 3: { theme.FirstColumnFont?.Dispose(); theme.FirstColumnFont = null; break; }
+				case 4: { theme.LastColumnFont?.Dispose(); theme.LastColumnFont = null; break; }
+			}
+
+			ShowFontLinkLabel(itemIndex, null);
+			ShowFontProperties(sender, e);
+
+			var dirty = !theme.Equals(snapshot);
+			saveButton.Enabled = dirty;
+			resetButton.Enabled = dirty;
 		}
 
 
@@ -528,7 +583,7 @@ namespace River.OneMoreAddIn.Commands
 
 		private void SetFontColorDefault(object sender, EventArgs e)
 		{
-			colorfont.Foreground = Color.Black;
+			colorfont.Foreground = Color.Empty;
 		}
 
 

@@ -289,7 +289,7 @@ namespace River.OneMoreAddIn.Commands
 				IsBold = font.Font.Bold,
 				IsItalic = font.Font.Italic,
 				IsUnderline = font.Font.Underline,
-				Color = font.Foreground.ToRGBHtml()
+				Color = font.Foreground.IsEmpty ? StyleBase.Automatic : font.Foreground.ToRGBHtml()
 			});
 		}
 	}
