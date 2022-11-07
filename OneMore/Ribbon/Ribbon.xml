@@ -57,10 +57,12 @@
             <button
               id="ribEditTableThemesButton"
               getLabel="GetRibbonLabel"
+              getEnabled="SetBodyContext"
               onAction="EditTableThemesCmd"/>
             <button
               id="ribClearTableShadingButton"
               getLabel="GetRibbonLabel"
+              getEnabled="GetBodyContext"
               onAction="ClearTableShadingCmd"/>
           </gallery>
 
