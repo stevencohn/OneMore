@@ -4212,10 +4212,6 @@ Pierwsza komórka wiersza razem
 Łączna ostatnia komórka wiersza</value>
     <comment>MoreListView</comment>
   </data>
-  <data name="EditTableThemesDialog_elementsGroups.Text" xml:space="preserve">
-    <value>Elementy stołu</value>
-    <comment>groupbox</comment>
-  </data>
   <data name="EditTableThemesDialog_newButton.Text" xml:space="preserve">
     <value>Nowy styl</value>
     <comment>toolbutton</comment>
@@ -4259,5 +4255,56 @@ Pierwsza komórka wiersza razem
   </data>
   <data name="GeneralSheet_imageBrowser" xml:space="preserve">
     <value>Przeglądarka zdjęć</value>
+  </data>
+  <data name="EditTableThemesDialog_fontElements" xml:space="preserve">
+    <value>Domyślna czcionka
+Czcionka wiersza nagłówka
+Całkowita czcionka wiersza
+Czcionka pierwszej kolumny
+Czcionka ostatniej kolumny</value>
+    <comment>MoreListView</comment>
+  </data>
+  <data name="EditTableThemesDialog_elementsGroup.Text" xml:space="preserve">
+    <value>Elementy stołu</value>
+    <comment>groupbox</comment>
+  </data>
+  <data name="EditTableThemesDialog_colorsTab.Text" xml:space="preserve">
+    <value>Zabarwienie</value>
+    <comment>tab</comment>
+  </data>
+  <data name="EditTableThemesDialog_fontElementsGroup.Text" xml:space="preserve">
+    <value>Elementy stołu</value>
+    <comment>group</comment>
+  </data>
+  <data name="EditTableThemesDialog_fontsTab.Text" xml:space="preserve">
+    <value>Czcionki</value>
+    <comment>tab</comment>
+  </data>
+  <data name="EditTableThemesDialog_resetButton.Text" xml:space="preserve">
+    <value>Zresetować wszystko</value>
+    <comment>button</comment>
+  </data>
+  <data name="word_Apply" xml:space="preserve">
+    <value>Stosować</value>
+  </data>
+  <data name="word_Default" xml:space="preserve">
+    <value>Domyślna</value>
+  </data>
+  <data name="word_Font" xml:space="preserve">
+    <value>Czcionka</value>
+  </data>
+  <data name="word_Color" xml:space="preserve">
+    <value>Kolor</value>
+  </data>
+  <data name="word_Element" xml:space="preserve">
+    <value>Element</value>
+  </data>
+  <data name="EditTableThemesDialog_deleteStyle" xml:space="preserve">
+    <value>Usuń ten styl?</value>
+    <comment>message box</comment>
+  </data>
+  <data name="EditTableThemesDialog_discard" xml:space="preserve">
+    <value>Odrzucić niezbawione zmiany?</value>
+    <comment>message box</comment>
   </data>
 </root>

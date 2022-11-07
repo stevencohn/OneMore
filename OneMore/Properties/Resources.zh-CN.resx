@@ -4149,10 +4149,6 @@ OneNote 文件 (*.one)</value>
 总行最后一个单元格</value>
     <comment>MoreListView</comment>
   </data>
-  <data name="EditTableThemesDialog_elementsGroups.Text" xml:space="preserve">
-    <value>表格元素</value>
-    <comment>groupbox</comment>
-  </data>
   <data name="EditTableThemesDialog_newButton.Text" xml:space="preserve">
     <value>新风格</value>
     <comment>toolbutton</comment>
@@ -4196,5 +4192,56 @@ OneNote 文件 (*.one)</value>
   </data>
   <data name="GeneralSheet_imageBrowser" xml:space="preserve">
     <value>图像查看器</value>
+  </data>
+  <data name="EditTableThemesDialog_fontElements" xml:space="preserve">
+    <value>默认字体
+标题行字体
+总行字体
+第一列字体
+最后一列字体</value>
+    <comment>MoreListView</comment>
+  </data>
+  <data name="EditTableThemesDialog_elementsGroup.Text" xml:space="preserve">
+    <value>表格元素</value>
+    <comment>groupbox</comment>
+  </data>
+  <data name="EditTableThemesDialog_colorsTab.Text" xml:space="preserve">
+    <value>颜色</value>
+    <comment>tab</comment>
+  </data>
+  <data name="EditTableThemesDialog_fontElementsGroup.Text" xml:space="preserve">
+    <value>表格元素</value>
+    <comment>group</comment>
+  </data>
+  <data name="EditTableThemesDialog_fontsTab.Text" xml:space="preserve">
+    <value>字体</value>
+    <comment>tab</comment>
+  </data>
+  <data name="EditTableThemesDialog_resetButton.Text" xml:space="preserve">
+    <value>重置全部</value>
+    <comment>button</comment>
+  </data>
+  <data name="word_Apply" xml:space="preserve">
+    <value>申请</value>
+  </data>
+  <data name="word_Default" xml:space="preserve">
+    <value>默认</value>
+  </data>
+  <data name="word_Font" xml:space="preserve">
+    <value>字体</value>
+  </data>
+  <data name="word_Color" xml:space="preserve">
+    <value>颜色</value>
+  </data>
+  <data name="word_Element" xml:space="preserve">
+    <value>元素</value>
+  </data>
+  <data name="EditTableThemesDialog_deleteStyle" xml:space="preserve">
+    <value>删除这种样式？</value>
+    <comment>message box</comment>
+  </data>
+  <data name="EditTableThemesDialog_discard" xml:space="preserve">
+    <value>丢弃未保存的更改？</value>
+    <comment>message box</comment>
   </data>
 </root>

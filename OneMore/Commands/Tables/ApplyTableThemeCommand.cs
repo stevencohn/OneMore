@@ -5,6 +5,8 @@
 namespace River.OneMoreAddIn.Commands
 {
 	using River.OneMoreAddIn.Models;
+	using River.OneMoreAddIn.Styles;
+	using System.Drawing;
 	using System.Linq;
 	using System.Threading.Tasks;
 	using System.Xml.Linq;
@@ -20,7 +22,6 @@ namespace River.OneMoreAddIn.Commands
 		public override async Task Execute(params object[] args)
 		{
 			var selectedIndex = (int)args[0];
-			logger.WriteLine($"apply table theme ({selectedIndex})...");
 
 			using var one = new OneNote(out var page, out var ns);
 			if (!page.ConfirmBodyContext())
@@ -50,6 +51,7 @@ namespace River.OneMoreAddIn.Commands
 			TableTheme theme;
 			if (selectedIndex == int.MaxValue)
 			{
+				// this will clear formatting in the table
 				theme = new TableTheme();
 			}
 			else
@@ -68,6 +70,8 @@ namespace River.OneMoreAddIn.Commands
 
 			FillTable(table, theme);
 			HighlightTable(table, theme);
+
+			ApplyFonts(table, theme);
 
 			await one.Update(page);
 		}
@@ -127,7 +131,7 @@ namespace River.OneMoreAddIn.Commands
 			}
 			else
 			{
-				c0 = c1 = "automatic";
+				c0 = c1 = StyleBase.Automatic;
 			}
 
 			if (!string.IsNullOrEmpty(c0))
@@ -217,6 +221,76 @@ namespace River.OneMoreAddIn.Commands
 				table[table.RowCount - 1][table.ColumnCount - 1].ShadingColor = 
 					theme.TotalLastCell.ToRGBHtml();
 			}
+		}
+
+		private void ApplyFonts(Table table, TableTheme theme)
+		{
+			var minrow = theme.HeaderFont == null ? 0 : 1;
+			var maxrow = table.RowCount - (theme.TotalFont == null ? 0 : 1);
+			var mincol = theme.FirstColumnFont == null ? 0 : 1;
+			var maxcol = table.ColumnCount - (theme.LastColumnFont == null ? 0 : 1);
+
+			if (theme.HeaderFont != null)
+			{
+				var stylizer = MakeStylizer(theme.HeaderFont);
+				for (int c = mincol; c < maxcol; c++)
+				{
+					stylizer.ApplyStyle(table[0][c].Root);
+				}
+			}
+
+			if (theme.TotalFont != null)
+			{
+				var stylizer = MakeStylizer(theme.TotalFont);
+				for (int c = mincol; c < maxcol; c++)
+				{
+					stylizer.ApplyStyle(table[table.RowCount - 1][c].Root);
+				}
+			}
+
+			if (theme.FirstColumnFont != null)
+			{
+				var stylizer = MakeStylizer(theme.FirstColumnFont);
+				for (int r = minrow; r < maxrow; r++)
+				{
+					stylizer.ApplyStyle(table[r][0].Root);
+				}
+			}
+
+			if (theme.LastColumnFont != null)
+			{
+				var stylizer = MakeStylizer(theme.LastColumnFont);
+				for (int r = minrow; r < maxrow; r++)
+				{
+					stylizer.ApplyStyle(table[r][table.ColumnCount - 1].Root);
+				}
+			}
+
+			if (theme.DefaultFont != null)
+			{
+				var stylizer = MakeStylizer(theme.DefaultFont);
+				for (int r = minrow; r < maxrow; r++)
+				{
+					for (int c = mincol; c < maxcol; c++)
+					{
+						stylizer.ApplyStyle(table[r][c].Root);
+					}
+				}
+			}
+		}
+
+
+		private Stylizer MakeStylizer(TableTheme.ColorFont font)
+		{
+			return new Stylizer(new Style
+			{
+				FontFamily = font.Font.FontFamily.Name,
+				FontSize = font.Font.Size.ToString("0.#"),
+				IsBold = font.Font.Bold,
+				IsItalic = font.Font.Italic,
+				IsUnderline = font.Font.Underline,
+				Color = font.Foreground.IsEmpty ? StyleBase.Automatic : font.Foreground.ToRGBHtml()
+			});
 		}
 	}
 }

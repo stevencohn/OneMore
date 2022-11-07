@@ -2,14 +2,59 @@
 // Copyright © 2022 Steven M Cohn.  All rights reserved.
 //************************************************************************************************
 
+#pragma warning disable S3881 // "IDisposable" should be implemented correctly
+
 namespace River.OneMoreAddIn.Commands
 {
+	using River.OneMoreAddIn.Styles;
+	using System;
 	using System.ComponentModel;
 	using System.Drawing;
 
 
-	public class TableTheme : INotifyPropertyChanged
+	public class TableTheme : INotifyPropertyChanged, IDisposable
 	{
+		public sealed class ColorFont : IDisposable
+		{
+			public Font Font { get; set; }
+			public Color Foreground { get; set; }
+
+			public ColorFont()
+			{
+			}
+
+			public ColorFont(ColorFont other)
+			{
+				Font = new Font(other.Font, other.Font.Style);
+				Foreground = other.Foreground;
+			}
+
+			public void Dispose()
+			{
+				Font.Dispose();
+			}
+
+			public override bool Equals(object obj)
+			{
+				if (obj is ColorFont other)
+				{
+					return other.Font.Equals(Font) && other.Foreground == Foreground;
+				}
+				return false;
+			}
+			public override int GetHashCode()
+			{
+				return Font.GetHashCode() ^ Foreground.GetHashCode();
+			}
+			public override string ToString()
+			{
+				var name = Font?.FontFamily.Name ?? StyleBase.DefaultFontFamily;
+				var size = Font?.SizeInPoints ?? StyleBase.DefaultFontSize;
+				return $"{name}, {size.ToString("0.#", AddIn.Culture)}pt, {Foreground.ToNamedString()}";
+			}
+		}
+
+
 		public event PropertyChangedEventHandler PropertyChanged;
 
 		public static Color Rainbow => ColorTranslator.FromHtml("#12345678");
@@ -33,6 +78,7 @@ namespace River.OneMoreAddIn.Commands
 
 
 		private string name;
+
 		public string Name
 		{
 			get => name;
@@ -76,6 +122,17 @@ namespace River.OneMoreAddIn.Commands
 		public Color TotalLastCell { get; set; }
 
 
+		public ColorFont DefaultFont { get; set; }
+
+		public ColorFont HeaderFont { get; set; }
+
+		public ColorFont TotalFont { get; set; }
+
+		public ColorFont FirstColumnFont { get; set; }
+
+		public ColorFont LastColumnFont { get; set; }
+
+
 		public void CopyTo(TableTheme other)
 		{
 			other.Name = Name;
@@ -92,6 +149,31 @@ namespace River.OneMoreAddIn.Commands
 			other.HeaderLastCell = HeaderLastCell;
 			other.TotalFirstCell = TotalFirstCell;
 			other.TotalLastCell = TotalLastCell;
+
+			other.DefaultFont?.Dispose();
+			other.DefaultFont = DefaultFont == null ? null : new ColorFont(DefaultFont);
+
+			other.HeaderFont?.Dispose();
+			other.HeaderFont = HeaderFont == null ? null : new ColorFont(HeaderFont);
+
+			other.TotalFont?.Dispose();
+			other.TotalFont = TotalFont == null ? null : new ColorFont(TotalFont);
+
+			other.FirstColumnFont?.Dispose();
+			other.FirstColumnFont = FirstColumnFont == null ? null : new ColorFont(FirstColumnFont);
+
+			other.LastColumnFont?.Dispose();
+			other.LastColumnFont = LastColumnFont == null ? null : new ColorFont(LastColumnFont);
+		}
+
+
+		public void Dispose()
+		{
+			DefaultFont?.Dispose();
+			HeaderFont?.Dispose();
+			TotalFont?.Dispose();
+			FirstColumnFont?.Dispose();
+			LastColumnFont?.Dispose();
 		}
 
 
@@ -99,7 +181,8 @@ namespace River.OneMoreAddIn.Commands
 		{
 			if (obj is TableTheme other)
 			{
-				if (other.Name == Name &&
+				var same =
+					other.Name == Name &&
 					other.WholeTable.Equals(WholeTable) &&
 					other.FirstColumnStripe.Equals(FirstColumnStripe) &&
 					other.SecondColumnStripe.Equals(SecondColumnStripe) &&
@@ -112,10 +195,43 @@ namespace River.OneMoreAddIn.Commands
 					other.HeaderFirstCell.Equals(HeaderFirstCell) &&
 					other.HeaderLastCell.Equals(HeaderLastCell) &&
 					other.TotalFirstCell.Equals(TotalFirstCell) &&
-					other.TotalLastCell.Equals(TotalLastCell))
+					other.TotalLastCell.Equals(TotalLastCell);
+
+				if (same)
 				{
-					return true;
+					same =
+						(other.DefaultFont == null && DefaultFont == null) ||
+						(other.DefaultFont is ColorFont cf && cf.Equals(DefaultFont));
 				}
+
+				if (same)
+				{
+					same =
+						(other.HeaderFont == null && HeaderFont == null) ||
+						(other.HeaderFont is ColorFont cf && cf.Equals(HeaderFont));
+				}
+
+				if (same)
+				{
+					same =
+						(other.TotalFont == null && TotalFont == null) ||
+						(other.TotalFont is ColorFont cf && cf.Equals(TotalFont));
+				}
+
+				if (same)
+				{
+					same =
+						(other.FirstColumnFont == null && FirstColumnFont == null) ||
+						(other.FirstColumnFont is ColorFont cf && cf.Equals(FirstColumnFont));
+				}
+				if (same)
+				{
+					same =
+						(other.LastColumnFont == null && LastColumnFont == null) ||
+						(other.LastColumnFont is ColorFont cf && cf.Equals(LastColumnFont));
+				}
+
+				return same;
 			}
 
 			return false;

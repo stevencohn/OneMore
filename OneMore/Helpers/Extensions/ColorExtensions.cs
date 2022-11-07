@@ -51,5 +51,27 @@ namespace River.OneMoreAddIn
 		{
 			return $"#{color.R:X2}{color.G:X2}{color.B:X2}";
 		}
+
+
+		/// <summary>
+		/// Gets either the known name of the color or its RGBHtml string value if it is
+		/// not a known color.
+		/// </summary>
+		/// <param name="color">The Color value</param>
+		/// <returns>A string specifying either the name or #RRGGBB</returns>
+		public static string ToNamedString(this Color color)
+		{
+			if (color.IsEmpty)
+			{
+				return "auto";
+			}
+
+			if (color.IsKnownColor || color.IsNamedColor || color.IsSystemColor)
+			{
+				return color.Name;
+			}
+
+			return color.ToRGBHtml();
+		}
 	}
 }

@@ -4159,10 +4159,6 @@ Total da primeira célula da linha
 Total da última célula da linha</value>
     <comment>MoreListView</comment>
   </data>
-  <data name="EditTableThemesDialog_elementsGroups.Text" xml:space="preserve">
-    <value>Elementos da Tabela</value>
-    <comment>groupbox</comment>
-  </data>
   <data name="EditTableThemesDialog_newButton.Text" xml:space="preserve">
     <value>Novo estilo</value>
     <comment>toolbutton</comment>
@@ -4206,5 +4202,56 @@ Total da última célula da linha</value>
   </data>
   <data name="GeneralSheet_imageBrowser" xml:space="preserve">
     <value>Visualizador de imagens</value>
+  </data>
+  <data name="EditTableThemesDialog_fontElements" xml:space="preserve">
+    <value>Fonte padrão
+Fonte da linha do cabeçalho
+Fonte da linha total
+Fonte da primeira coluna
+Fonte da última coluna</value>
+    <comment>MoreListView</comment>
+  </data>
+  <data name="EditTableThemesDialog_elementsGroup.Text" xml:space="preserve">
+    <value>Elementos da Tabela</value>
+    <comment>groupbox</comment>
+  </data>
+  <data name="EditTableThemesDialog_colorsTab.Text" xml:space="preserve">
+    <value>Cores</value>
+    <comment>tab</comment>
+  </data>
+  <data name="EditTableThemesDialog_fontElementsGroup.Text" xml:space="preserve">
+    <value>Elementos da Tabela</value>
+    <comment>group</comment>
+  </data>
+  <data name="EditTableThemesDialog_fontsTab.Text" xml:space="preserve">
+    <value>Fontes</value>
+    <comment>tab</comment>
+  </data>
+  <data name="EditTableThemesDialog_resetButton.Text" xml:space="preserve">
+    <value>Reiniciar tudo</value>
+    <comment>button</comment>
+  </data>
+  <data name="word_Apply" xml:space="preserve">
+    <value>Aplicar</value>
+  </data>
+  <data name="word_Default" xml:space="preserve">
+    <value>Predefinição</value>
+  </data>
+  <data name="word_Font" xml:space="preserve">
+    <value>Fonte</value>
+  </data>
+  <data name="word_Color" xml:space="preserve">
+    <value>Cor</value>
+  </data>
+  <data name="word_Element" xml:space="preserve">
+    <value>Elemento</value>
+  </data>
+  <data name="EditTableThemesDialog_deleteStyle" xml:space="preserve">
+    <value>Excluir este estilo?</value>
+    <comment>message box</comment>
+  </data>
+  <data name="EditTableThemesDialog_discard" xml:space="preserve">
+    <value>Descartar mudanças não salvas?</value>
+    <comment>message box</comment>
   </data>
 </root>

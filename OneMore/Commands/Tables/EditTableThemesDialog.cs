@@ -4,10 +4,12 @@
 
 namespace River.OneMoreAddIn.Commands
 {
+	using River.OneMoreAddIn.Styles;
 	using River.OneMoreAddIn.UI;
 	using System;
 	using System.Collections.Generic;
 	using System.Drawing;
+	using System.Globalization;
 	using System.Linq;
 	using System.Text.RegularExpressions;
 	using System.Windows.Forms;
@@ -21,6 +23,7 @@ namespace River.OneMoreAddIn.Commands
 		private readonly TableThemePainter painter;
 		private List<TableTheme> themes;
 		private TableTheme snapshot;
+		private TableTheme.ColorFont colorfont;
 		private bool reorganizing;
 
 		#region Swatch
@@ -107,8 +110,14 @@ namespace River.OneMoreAddIn.Commands
 			public void SetColor(Color color)
 			{
 				Color = color;
+
 				using var g = Graphics.FromImage(image);
-				g.Clear(color);
+				g.Clear(SystemColors.Window);
+				var bounds = new Rectangle(0, 0, image.Size.Width - 1, image.Size.Height - 1);
+				using var brush = new SolidBrush(color);
+				g.FillRectangle(brush, bounds);
+				g.DrawRectangle(Pens.DarkGray, new Rectangle(0, 0, bounds.Width, bounds.Height));
+
 				picture.Invalidate();
 			}
 		}
@@ -119,6 +128,7 @@ namespace River.OneMoreAddIn.Commands
 		{
 			InitializeComponent();
 			InitializeElementsBox();
+			InitializeFontElementsBox();
 
 			if (NeedsLocalizing())
 			{
@@ -131,10 +141,17 @@ namespace River.OneMoreAddIn.Commands
 					"renameButton=word_Rename",
 					"saveButton=word_Save",
 					"deleteButton=word_Delete",
+					"colorsTab",
 					"elementsGroup",
 					"elementsBox",
 					"previewGroup=word_Preview",
-					"resetButton=word_Reset",
+					"resetButton",
+					"fontsTab",
+					"fontElementsGroup",
+					"fontsGroup=word_Font",
+					"applyFontButton=word_Apply",
+					"resetFontButton=word_Reset",
+					"defaultFontButton=word_Default",
 					"cancelButton=word_Cancel"
 				});
 			}
@@ -175,6 +192,13 @@ namespace River.OneMoreAddIn.Commands
 			combo.SelectedIndex = 0;
 
 			painter.Paint(snapshot);
+
+			reorganizing = true;
+			familyBox.LoadFontFamilies();
+			familyBox.SelectedIndex = familyBox.Items.IndexOf(StyleBase.DefaultFontFamily);
+			sizeBox.SelectedIndex = sizeBox.Items.IndexOf(StyleBase.DefaultFontSize.ToString("0.#", AddIn.Culture));
+			colorFontsBox.Items[0].Selected = true;
+			reorganizing = false;
 		}
 
 
@@ -183,9 +207,15 @@ namespace River.OneMoreAddIn.Commands
 
 		private void InitializeElementsBox()
 		{
+			elementsBox.StateImageList = new ImageList
+			{
+				ImageSize = new Size(1, (int)(18 * 1.44))
+			};
+
 			elementsBox.HighlightBackground = Color.Transparent;
-			elementsBox.Columns.Add(new MoreColumnHeader("Element", 250) { AutoSizeItems = true });
-			elementsBox.Columns.Add(new MoreColumnHeader("Color", 150));
+			elementsBox.HighlightForeground = SystemColors.ControlText;
+			elementsBox.Columns.Add(new MoreColumnHeader(Resx.word_Element, 250) { AutoSizeItems = true });
+			elementsBox.Columns.Add(new MoreColumnHeader(Resx.word_Color, 150));
 
 			var names = Regex.Split(Resx.EditTableThemesDialog_elements, @"\r\n|\r|\n");
 			foreach (var name in names)
@@ -193,8 +223,32 @@ namespace River.OneMoreAddIn.Commands
 				var item = elementsBox.AddHostedItem(name);
 				var swatch = new Swatch(elementsBox);
 				swatch.Clicked += ChangeElementColor;
-				var subitem = item.AddHostedSubItem($"{name}Sub", swatch);
+				var subitem = item.AddHostedSubItem(swatch);
 				subitem.Alignment = ContentAlignment.MiddleCenter;
+			}
+		}
+
+
+		private void InitializeFontElementsBox()
+		{
+			colorFontsBox.StateImageList = new ImageList
+			{
+				ImageSize = new Size(1, (int)(18 * 1.44))
+			};
+
+			colorFontsBox.Columns.Add(new MoreColumnHeader(Resx.word_Element, 250) { AutoSizeItems = true });
+			colorFontsBox.Columns.Add(new MoreColumnHeader(Resx.word_Font, 430));
+
+			var names = Regex.Split(Resx.EditTableThemesDialog_fontElements, @"\r\n|\r|\n");
+			foreach (var name in names)
+			{
+				var item = colorFontsBox.AddHostedItem(name);
+				var link = new MoreLinkLabel
+				{
+					Text = Resx.word_Default
+				};
+				link.LinkClicked += ChangeElementFont;
+				item.AddHostedSubItem(link);
 			}
 		}
 
@@ -254,6 +308,12 @@ namespace River.OneMoreAddIn.Commands
 			painter.Paint(snapshot);
 			previewBox.Invalidate();
 
+			ShowFontLinkLabel(0, snapshot.DefaultFont);
+			ShowFontLinkLabel(1, snapshot.HeaderFont);
+			ShowFontLinkLabel(2, snapshot.TotalFont);
+			ShowFontLinkLabel(3, snapshot.FirstColumnFont);
+			ShowFontLinkLabel(4, snapshot.LastColumnFont);
+
 			void SetSwatch(int index, Color color)
 			{
 				if (color.IsEmpty)
@@ -272,6 +332,8 @@ namespace River.OneMoreAddIn.Commands
 				.Items[index].SubItems[1]).Control;
 		}
 
+
+		// Colors - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 		private void ChangeElementColor(object sender, SwatchClickedEventArgs e)
 		{
@@ -340,11 +402,273 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
+		// Fonts - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+		private void ShowFontLinkLabel(int index, TableTheme.ColorFont font)
+		{
+			if (colorFontsBox.Items[index].SubItems[1] is MoreHostedListViewSubItem subitem)
+			{
+				if (subitem.Control is MoreLinkLabel label)
+				{
+					var text = font?.ToString() ?? Resx.word_Default;
+
+					using var g = label.CreateGraphics();
+					var size = g.MeasureString(text, label.Font);
+					if (font != null) label.Font = Font;
+					label.Width = (int)size.Width + label.Padding.Left + label.Padding.Right;
+					label.Text = text;
+				}
+			}
+		}
+
+
+		private void ShowFontProperties(object sender, EventArgs e)
+		{
+			if (colorFontsBox.SelectedIndices.Count == 0)
+			{
+				return;
+			}
+
+			TableTheme.ColorFont font = null;
+			var theme = themes[combo.SelectedIndex];
+			var itemIndex = colorFontsBox.SelectedIndices[0];
+
+			switch (itemIndex)
+			{
+				case 0: font = theme.DefaultFont; break;
+				case 1: font = theme.HeaderFont; break;
+				case 2: font = theme.TotalFont; break;
+				case 3: font = theme.FirstColumnFont; break;
+				case 4: font = theme.LastColumnFont; break;
+			}
+
+			font ??= new TableTheme.ColorFont();
+
+			int index;
+
+			if (familyBox.Items.Count > 0)
+			{
+				var name = font.Font?.FontFamily.Name ?? StyleBase.DefaultFontFamily;
+				index = familyBox.Items.IndexOf(name);
+
+				if (index < 0) index = 0;
+				familyBox.SelectedIndex = index;
+			}
+
+			if (sizeBox.Items.Count > 0)
+			{
+				var size = font.Font?.Size ?? StyleBase.DefaultFontSize;
+				index = sizeBox.Items.IndexOf(size.ToString("0.#", AddIn.Culture));
+
+				if (index < 0) index = 0;
+				sizeBox.SelectedIndex = index;
+			}
+
+			if (font.Font != null)
+			{
+				boldButton.Checked = font.Font.Bold;
+				italicButton.Checked = font.Font.Italic;
+				underlineButton.Checked = font.Font.Underline;
+			}
+			else
+			{
+				boldButton.Checked = false;
+				italicButton.Checked = false;
+				underlineButton.Checked = false;
+			}
+		}
+
+
+		private void ResetSelectedFont(object sender, EventArgs e)
+		{
+			if (colorFontsBox.SelectedIndices.Count == 0)
+			{
+				return;
+			}
+
+			var theme = themes[combo.SelectedIndex];
+			var itemIndex = colorFontsBox.SelectedIndices[0];
+			TableTheme.ColorFont font = null;
+
+			switch (itemIndex)
+			{
+				case 0: font = theme.DefaultFont = new TableTheme.ColorFont(snapshot.DefaultFont); break;
+				case 1: font = theme.HeaderFont = new TableTheme.ColorFont(snapshot.HeaderFont); break;
+				case 2: font = theme.TotalFont = new TableTheme.ColorFont(snapshot.TotalFont); break;
+				case 3: font = theme.FirstColumnFont = new TableTheme.ColorFont(snapshot.FirstColumnFont); break;
+				case 4: font = theme.LastColumnFont = new TableTheme.ColorFont(snapshot.LastColumnFont); break;
+			}
+
+			ShowFontLinkLabel(itemIndex, font);
+			ShowFontProperties(sender, e);
+
+			var dirty = !theme.Equals(snapshot);
+			saveButton.Enabled = dirty;
+			resetButton.Enabled = dirty;
+		}
+
+		private void DefaultSelectedFont(object sender, EventArgs e)
+		{
+			if (colorFontsBox.SelectedIndices.Count == 0)
+			{
+				return;
+			}
+
+			var theme = themes[combo.SelectedIndex];
+			var itemIndex = colorFontsBox.SelectedIndices[0];
+
+			switch (itemIndex)
+			{
+				case 0: { theme.DefaultFont?.Dispose(); theme.DefaultFont = null; break; }
+				case 1: { theme.HeaderFont?.Dispose(); theme.HeaderFont = null; break; }
+				case 2: { theme.TotalFont?.Dispose(); theme.TotalFont = null; break; }
+				case 3: { theme.FirstColumnFont?.Dispose(); theme.FirstColumnFont = null; break; }
+				case 4: { theme.LastColumnFont?.Dispose(); theme.LastColumnFont = null; break; }
+			}
+
+			ShowFontLinkLabel(itemIndex, null);
+			ShowFontProperties(sender, e);
+
+			var dirty = !theme.Equals(snapshot);
+			saveButton.Enabled = dirty;
+			resetButton.Enabled = dirty;
+		}
+
+
+		private void ChangeElementFont(object sender, LinkLabelLinkClickedEventArgs e)
+		{
+			if (((Control)sender).Tag is ListViewItem host)
+			{
+				colorFontsBox.SelectIf(host);
+				ShowFontProperties(sender, new EventArgs());
+
+				var theme = themes[combo.SelectedIndex];
+				switch (host.Index)
+				{
+					case 0: colorfont = theme.DefaultFont; break;
+					case 1: colorfont = theme.HeaderFont; break;
+					case 2: colorfont = theme.TotalFont; break;
+					case 3: colorfont = theme.FirstColumnFont; break;
+					case 4: colorfont = theme.LastColumnFont; break;
+				}
+			}
+
+			colorfont ??= new TableTheme.ColorFont();
+
+			colorFontsBox.Enabled = false;
+			resetFontButton.Enabled = false;
+			defaultFontButton.Enabled = false;
+			fontsGroup.Enabled = true;
+		}
+
+
+		private void ChangeFontFont(object sender, EventArgs e)
+		{
+			if (!reorganizing && colorfont != null)
+			{
+				var save = colorfont.Font;
+				colorfont.Font = MakeFont();
+				save?.Dispose();
+			}
+		}
+
+
+		private void ChangeFontColor(object sender, EventArgs e)
+		{
+			var location = PointToScreen(fontToolstrip.Location);
+
+			using var dialog = new MoreColorDialog("Text Color",
+				location.X + colorButton.Bounds.Location.X,
+				location.Y + colorButton.Bounds.Height + 4);
+
+			dialog.Color = colorfont.Foreground;
+
+			if (dialog.ShowDialog() == DialogResult.OK)
+			{
+				colorfont.Foreground = dialog.Color;
+			}
+		}
+
+
+		private void SetFontColorDefault(object sender, EventArgs e)
+		{
+			colorfont.Foreground = Color.Empty;
+		}
+
+
+		private Font MakeFont()
+		{
+			var text = sizeBox.Text.Trim();
+			if (!float.TryParse(text, NumberStyles.Integer | NumberStyles.AllowDecimalPoint,
+				AddIn.Culture, out var size))
+			{
+				size = (float)StyleBase.DefaultFontSize;
+			}
+
+			var style = FontStyle.Regular;
+			if (boldButton.Checked) style |= FontStyle.Bold;
+			if (italicButton.Checked) style |= FontStyle.Italic;
+			if (underlineButton.Checked) style |= FontStyle.Underline;
+
+			return new Font(familyBox.Text, size, style);
+		}
+
+
+		private void ApplyFont(object sender, EventArgs e)
+		{
+			var theme = themes[combo.SelectedIndex];
+			var index = colorFontsBox.SelectedIndices[0];
+
+			switch (index)
+			{
+				case 0:
+					theme.DefaultFont?.Dispose();
+					theme.DefaultFont = colorfont;
+					break;
+
+				case 1:
+					theme.HeaderFont?.Dispose();
+					theme.HeaderFont = colorfont;
+					break;
+
+				case 2:
+					theme.TotalFont?.Dispose();
+					theme.TotalFont = colorfont;
+					break;
+
+				case 3:
+					theme.FirstColumnFont?.Dispose();
+					theme.FirstColumnFont = colorfont;
+					break;
+
+				case 4:
+					theme.LastColumnFont?.Dispose();
+					theme.LastColumnFont = colorfont;
+					break;
+			}
+
+			ShowFontLinkLabel(index, colorfont);
+
+			colorfont = null;
+
+			colorFontsBox.Enabled = true;
+			resetFontButton.Enabled = true;
+			defaultFontButton.Enabled = true;
+			fontsGroup.Enabled = false;
+
+			var dirty = !theme.Equals(snapshot);
+			saveButton.Enabled = dirty;
+			resetButton.Enabled = dirty;
+		}
+
+
+		// Theme - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
 		private void CreateNewTheme(object sender, EventArgs e)
 		{
 			if (!themes[combo.SelectedIndex].Equals(snapshot))
 			{
-				if (MoreMessageBox.Show(Owner, "Discard unsaved changes?",
+				if (MoreMessageBox.Show(Owner, Resx.EditTableThemesDialog_discard,
 					MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
 				{
 					return;
@@ -387,6 +711,7 @@ namespace River.OneMoreAddIn.Commands
 			Modified = true;
 
 			themes[combo.SelectedIndex].CopyTo(snapshot);
+
 			SetToolbarState();
 			newButton.Enabled = true;
 		}
@@ -394,7 +719,7 @@ namespace River.OneMoreAddIn.Commands
 
 		private void DeleteTheme(object sender, EventArgs e)
 		{
-			if (MoreMessageBox.Show(Owner, "Delete this style?",
+			if (MoreMessageBox.Show(Owner, Resx.EditTableThemesDialog_deleteStyle,
 				MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
 			{
 				reorganizing = true;
@@ -433,9 +758,17 @@ namespace River.OneMoreAddIn.Commands
 
 		private void ConfirmClosing(object sender, FormClosingEventArgs e)
 		{
-			if (!themes[combo.SelectedIndex].Equals(snapshot))
+			if (fontsGroup.Enabled)
 			{
-				if (MoreMessageBox.Show(Owner, "Discard unsaved changes?",
+				colorFontsBox.Enabled = true;
+				resetFontButton.Enabled = true;
+				defaultFontButton.Enabled = true;
+				fontsGroup.Enabled = false;
+				e.Cancel = true;
+			}
+			else if (!themes[combo.SelectedIndex].Equals(snapshot))
+			{
+				if (MoreMessageBox.Show(Owner, Resx.EditTableThemesDialog_discard,
 					MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
 				{
 					e.Cancel = true;
