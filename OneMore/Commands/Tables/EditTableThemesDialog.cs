@@ -589,7 +589,6 @@ namespace River.OneMoreAddIn.Commands
 
 			colorFontsBox.Enabled = true;
 			fontsGroup.Enabled = false;
-			colorButton.Invalidate();
 
 			var dirty = !theme.Equals(snapshot);
 			saveButton.Enabled = dirty;
