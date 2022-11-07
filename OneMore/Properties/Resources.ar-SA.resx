@@ -4159,10 +4159,6 @@ ISO-code then comma then language name</comment>
 إجمالي الصف الخلية الأخيرة</value>
     <comment>MoreListView</comment>
   </data>
-  <data name="EditTableThemesDialog_elementsGroups.Text" xml:space="preserve">
-    <value>عناصر الجدول</value>
-    <comment>groupbox</comment>
-  </data>
   <data name="EditTableThemesDialog_newButton.Text" xml:space="preserve">
     <value>أسلوب جديد</value>
     <comment>toolbutton</comment>
@@ -4214,5 +4210,48 @@ ISO-code then comma then language name</comment>
 خط العمود الأول
 خط العمود الأخير</value>
     <comment>MoreListView</comment>
+  </data>
+  <data name="EditTableThemesDialog_elementsGroup.Text" xml:space="preserve">
+    <value>عناصر الجدول</value>
+    <comment>groupbox</comment>
+  </data>
+  <data name="EditTableThemesDialog_colorsTab.Text" xml:space="preserve">
+    <value>الألوان</value>
+    <comment>tab</comment>
+  </data>
+  <data name="EditTableThemesDialog_fontElementsGroup.Text" xml:space="preserve">
+    <value>عناصر الجدول</value>
+    <comment>group</comment>
+  </data>
+  <data name="EditTableThemesDialog_fontsTab.Text" xml:space="preserve">
+    <value>الخطوط</value>
+    <comment>tab</comment>
+  </data>
+  <data name="EditTableThemesDialog_resetButton.Text" xml:space="preserve">
+    <value>إعادة ضبط الجميع</value>
+    <comment>button</comment>
+  </data>
+  <data name="word_Apply" xml:space="preserve">
+    <value>يتقدم</value>
+  </data>
+  <data name="word_Default" xml:space="preserve">
+    <value>تقصير</value>
+  </data>
+  <data name="word_Font" xml:space="preserve">
+    <value>الخط</value>
+  </data>
+  <data name="word_Color" xml:space="preserve">
+    <value>اللون</value>
+  </data>
+  <data name="word_Element" xml:space="preserve">
+    <value>عنصر</value>
+  </data>
+  <data name="EditTableThemesDialog_deleteStyle" xml:space="preserve">
+    <value>حذف هذا النمط؟</value>
+    <comment>message box</comment>
+  </data>
+  <data name="EditTableThemesDialog_discard" xml:space="preserve">
+    <value>تجاهل التغييرات غير المحفوظة؟</value>
+    <comment>message box</comment>
   </data>
 </root>

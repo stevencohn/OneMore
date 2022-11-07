@@ -4159,10 +4159,6 @@ Totaal rij eerste cel
 Totaal rij laatste cel</value>
     <comment>MoreListView</comment>
   </data>
-  <data name="EditTableThemesDialog_elementsGroups.Text" xml:space="preserve">
-    <value>Tafelelementen</value>
-    <comment>groupbox</comment>
-  </data>
   <data name="EditTableThemesDialog_newButton.Text" xml:space="preserve">
     <value>Nieuwe stijl</value>
     <comment>toolbutton</comment>
@@ -4214,5 +4210,48 @@ Lettertype totaal rij
 Lettertype eerste kolom
 Lettertype laatste kolom</value>
     <comment>MoreListView</comment>
+  </data>
+  <data name="EditTableThemesDialog_elementsGroup.Text" xml:space="preserve">
+    <value>Tafelelementen</value>
+    <comment>groupbox</comment>
+  </data>
+  <data name="EditTableThemesDialog_colorsTab.Text" xml:space="preserve">
+    <value>Kleuren</value>
+    <comment>tab</comment>
+  </data>
+  <data name="EditTableThemesDialog_fontElementsGroup.Text" xml:space="preserve">
+    <value>Tafelelementen</value>
+    <comment>group</comment>
+  </data>
+  <data name="EditTableThemesDialog_fontsTab.Text" xml:space="preserve">
+    <value>Lettertypen</value>
+    <comment>tab</comment>
+  </data>
+  <data name="EditTableThemesDialog_resetButton.Text" xml:space="preserve">
+    <value>Alles resetten</value>
+    <comment>button</comment>
+  </data>
+  <data name="word_Apply" xml:space="preserve">
+    <value>Van toepassing zijn</value>
+  </data>
+  <data name="word_Default" xml:space="preserve">
+    <value>Standaard</value>
+  </data>
+  <data name="word_Font" xml:space="preserve">
+    <value>Lettertype</value>
+  </data>
+  <data name="word_Color" xml:space="preserve">
+    <value>Kleur</value>
+  </data>
+  <data name="word_Element" xml:space="preserve">
+    <value>Element</value>
+  </data>
+  <data name="EditTableThemesDialog_deleteStyle" xml:space="preserve">
+    <value>Deze stijl verwijderen?</value>
+    <comment>message box</comment>
+  </data>
+  <data name="EditTableThemesDialog_discard" xml:space="preserve">
+    <value>Niet -geredde veranderingen weggooien?</value>
+    <comment>message box</comment>
   </data>
 </root>

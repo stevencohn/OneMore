@@ -141,10 +141,17 @@ namespace River.OneMoreAddIn.Commands
 					"renameButton=word_Rename",
 					"saveButton=word_Save",
 					"deleteButton=word_Delete",
+					"colorsTab",
 					"elementsGroup",
 					"elementsBox",
 					"previewGroup=word_Preview",
-					"resetButton=word_Reset",
+					"resetButton",
+					"fontsTab",
+					"fontElementsGroup",
+					"fontsGroup=word_Font",
+					"applyFontButton=word_Apply",
+					"resetFontButton=word_Reset",
+					"defaultFontButton=word_Default",
 					"cancelButton=word_Cancel"
 				});
 			}
@@ -207,8 +214,8 @@ namespace River.OneMoreAddIn.Commands
 
 			elementsBox.HighlightBackground = Color.Transparent;
 			elementsBox.HighlightForeground = SystemColors.ControlText;
-			elementsBox.Columns.Add(new MoreColumnHeader("Element", 250) { AutoSizeItems = true });
-			elementsBox.Columns.Add(new MoreColumnHeader("Color", 150));
+			elementsBox.Columns.Add(new MoreColumnHeader(Resx.word_Element, 250) { AutoSizeItems = true });
+			elementsBox.Columns.Add(new MoreColumnHeader(Resx.word_Color, 150));
 
 			var names = Regex.Split(Resx.EditTableThemesDialog_elements, @"\r\n|\r|\n");
 			foreach (var name in names)
@@ -229,8 +236,8 @@ namespace River.OneMoreAddIn.Commands
 				ImageSize = new Size(1, (int)(18 * 1.44))
 			};
 
-			colorFontsBox.Columns.Add(new MoreColumnHeader("Element", 250) { AutoSizeItems = true });
-			colorFontsBox.Columns.Add(new MoreColumnHeader("Font", 430));
+			colorFontsBox.Columns.Add(new MoreColumnHeader(Resx.word_Element, 250) { AutoSizeItems = true });
+			colorFontsBox.Columns.Add(new MoreColumnHeader(Resx.word_Font, 430));
 
 			var names = Regex.Split(Resx.EditTableThemesDialog_fontElements, @"\r\n|\r|\n");
 			foreach (var name in names)
@@ -238,7 +245,7 @@ namespace River.OneMoreAddIn.Commands
 				var item = colorFontsBox.AddHostedItem(name);
 				var link = new MoreLinkLabel
 				{
-					Text = "Default"
+					Text = Resx.word_Default
 				};
 				link.LinkClicked += ChangeElementFont;
 				item.AddHostedSubItem(link);
@@ -403,7 +410,7 @@ namespace River.OneMoreAddIn.Commands
 			{
 				if (subitem.Control is MoreLinkLabel label)
 				{
-					var text = font?.ToString() ?? "Default";
+					var text = font?.ToString() ?? Resx.word_Default;
 
 					using var g = label.CreateGraphics();
 					var size = g.MeasureString(text, label.Font);
@@ -661,7 +668,7 @@ namespace River.OneMoreAddIn.Commands
 		{
 			if (!themes[combo.SelectedIndex].Equals(snapshot))
 			{
-				if (MoreMessageBox.Show(Owner, "Discard unsaved changes?",
+				if (MoreMessageBox.Show(Owner, Resx.EditTableThemesDialog_discard,
 					MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
 				{
 					return;
@@ -712,7 +719,7 @@ namespace River.OneMoreAddIn.Commands
 
 		private void DeleteTheme(object sender, EventArgs e)
 		{
-			if (MoreMessageBox.Show(Owner, "Delete this style?",
+			if (MoreMessageBox.Show(Owner, Resx.EditTableThemesDialog_deleteStyle,
 				MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
 			{
 				reorganizing = true;
@@ -761,7 +768,7 @@ namespace River.OneMoreAddIn.Commands
 			}
 			else if (!themes[combo.SelectedIndex].Equals(snapshot))
 			{
-				if (MoreMessageBox.Show(Owner, "Discard unsaved changes?",
+				if (MoreMessageBox.Show(Owner, Resx.EditTableThemesDialog_discard,
 					MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
 				{
 					e.Cancel = true;

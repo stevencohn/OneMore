@@ -4228,7 +4228,7 @@ Total Row First Cell
 Total Row Last Cell</value>
     <comment>MoreListView</comment>
   </data>
-  <data name="EditTableThemesDialog_elementsGroups.Text" xml:space="preserve">
+  <data name="EditTableThemesDialog_elementsGroup.Text" xml:space="preserve">
     <value>Table Elements</value>
     <comment>groupbox</comment>
   </data>
@@ -4307,5 +4307,44 @@ Total Row Font
 First Column Font
 Last Column Font</value>
     <comment>MoreListView</comment>
+  </data>
+  <data name="EditTableThemesDialog_colorsTab.Text" xml:space="preserve">
+    <value>Colors</value>
+    <comment>tab</comment>
+  </data>
+  <data name="EditTableThemesDialog_fontElementsGroup.Text" xml:space="preserve">
+    <value>Table Elements</value>
+    <comment>group</comment>
+  </data>
+  <data name="EditTableThemesDialog_fontsTab.Text" xml:space="preserve">
+    <value>Fonts</value>
+    <comment>tab</comment>
+  </data>
+  <data name="EditTableThemesDialog_resetButton.Text" xml:space="preserve">
+    <value>Reset All</value>
+    <comment>button</comment>
+  </data>
+  <data name="word_Apply" xml:space="preserve">
+    <value>Apply</value>
+  </data>
+  <data name="word_Color" xml:space="preserve">
+    <value>Color</value>
+  </data>
+  <data name="word_Default" xml:space="preserve">
+    <value>Default</value>
+  </data>
+  <data name="word_Element" xml:space="preserve">
+    <value>Element</value>
+  </data>
+  <data name="word_Font" xml:space="preserve">
+    <value>Font</value>
+  </data>
+  <data name="EditTableThemesDialog_deleteStyle" xml:space="preserve">
+    <value>Delete this style?</value>
+    <comment>message box</comment>
+  </data>
+  <data name="EditTableThemesDialog_discard" xml:space="preserve">
+    <value>Discard unsaved changes?</value>
+    <comment>message box</comment>
   </data>
 </root>

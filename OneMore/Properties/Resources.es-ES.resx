@@ -4159,10 +4159,6 @@ Total fila primera celda
 Total fila última celda</value>
     <comment>MoreListView</comment>
   </data>
-  <data name="EditTableThemesDialog_elementsGroups.Text" xml:space="preserve">
-    <value>Elementos de la tabla</value>
-    <comment>groupbox</comment>
-  </data>
   <data name="EditTableThemesDialog_newButton.Text" xml:space="preserve">
     <value>Nuevo estilo</value>
     <comment>toolbutton</comment>
@@ -4214,5 +4210,48 @@ Fuente de fila total
 Fuente de la primera columna
 Fuente de la última columna</value>
     <comment>MoreListView</comment>
+  </data>
+  <data name="EditTableThemesDialog_elementsGroup.Text" xml:space="preserve">
+    <value>Elementos de la tabla</value>
+    <comment>groupbox</comment>
+  </data>
+  <data name="EditTableThemesDialog_colorsTab.Text" xml:space="preserve">
+    <value>Colores</value>
+    <comment>tab</comment>
+  </data>
+  <data name="EditTableThemesDialog_fontElementsGroup.Text" xml:space="preserve">
+    <value>Elementos de la tabla</value>
+    <comment>group</comment>
+  </data>
+  <data name="EditTableThemesDialog_fontsTab.Text" xml:space="preserve">
+    <value>fuentes</value>
+    <comment>tab</comment>
+  </data>
+  <data name="EditTableThemesDialog_resetButton.Text" xml:space="preserve">
+    <value>Resetear todo</value>
+    <comment>button</comment>
+  </data>
+  <data name="word_Apply" xml:space="preserve">
+    <value>Aplicar</value>
+  </data>
+  <data name="word_Default" xml:space="preserve">
+    <value>Defecto</value>
+  </data>
+  <data name="word_Font" xml:space="preserve">
+    <value>Fuente</value>
+  </data>
+  <data name="word_Color" xml:space="preserve">
+    <value>Color</value>
+  </data>
+  <data name="word_Element" xml:space="preserve">
+    <value>Elemento</value>
+  </data>
+  <data name="EditTableThemesDialog_deleteStyle" xml:space="preserve">
+    <value>¿Eliminar este estilo?</value>
+    <comment>message box</comment>
+  </data>
+  <data name="EditTableThemesDialog_discard" xml:space="preserve">
+    <value>¿Descartar los cambios no salvos?</value>
+    <comment>message box</comment>
   </data>
 </root>
