@@ -6,7 +6,6 @@ namespace River.OneMoreAddIn.Commands
 {
 	using River.OneMoreAddIn.Models;
 	using River.OneMoreAddIn.Styles;
-	using System.Drawing;
 	using System.Linq;
 	using System.Threading.Tasks;
 	using System.Xml.Linq;

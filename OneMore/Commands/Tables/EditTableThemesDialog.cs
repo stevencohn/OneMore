@@ -245,7 +245,8 @@ namespace River.OneMoreAddIn.Commands
 				var item = colorFontsBox.AddHostedItem(name);
 				var link = new MoreLinkLabel
 				{
-					Text = Resx.word_Default
+					Text = Resx.word_Default,
+					AutoSize = true
 				};
 				link.LinkClicked += ChangeElementFont;
 				item.AddHostedSubItem(link);
@@ -410,13 +411,12 @@ namespace River.OneMoreAddIn.Commands
 			{
 				if (subitem.Control is MoreLinkLabel label)
 				{
-					var text = font?.ToString() ?? Resx.word_Default;
+					if (font != null)
+					{
+						label.Font = Font;
+					}
 
-					using var g = label.CreateGraphics();
-					var size = g.MeasureString(text, label.Font);
-					if (font != null) label.Font = Font;
-					label.Width = (int)size.Width + label.Padding.Left + label.Padding.Right;
-					label.Text = text;
+					label.Text = font?.ToString() ?? Resx.word_Default;
 				}
 			}
 		}
