@@ -4307,4 +4307,7 @@ Czcionka ostatniej kolumny</value>
     <value>Odrzucić niezbawione zmiany?</value>
     <comment>message box</comment>
   </data>
+  <data name="word_Close" xml:space="preserve">
+    <value>Blisko</value>
+  </data>
 </root>

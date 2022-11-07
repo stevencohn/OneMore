@@ -88,7 +88,7 @@ namespace River.OneMoreAddIn.Commands
 			this.cancelButton.Name = "cancelButton";
 			this.cancelButton.Size = new System.Drawing.Size(110, 34);
 			this.cancelButton.TabIndex = 2;
-			this.cancelButton.Text = "Cancel";
+			this.cancelButton.Text = "Close";
 			this.cancelButton.UseVisualStyleBackColor = true;
 			// 
 			// combo

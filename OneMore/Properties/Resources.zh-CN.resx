@@ -4244,4 +4244,7 @@ OneNote 文件 (*.one)</value>
     <value>丢弃未保存的更改？</value>
     <comment>message box</comment>
   </data>
+  <data name="word_Close" xml:space="preserve">
+    <value>关</value>
+  </data>
 </root>

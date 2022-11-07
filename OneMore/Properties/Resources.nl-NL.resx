@@ -4254,4 +4254,7 @@ Lettertype laatste kolom</value>
     <value>Niet -geredde veranderingen weggooien?</value>
     <comment>message box</comment>
   </data>
+  <data name="word_Close" xml:space="preserve">
+    <value>Dichtbij</value>
+  </data>
 </root>

@@ -4248,4 +4248,7 @@ Police de la dernière colonne</value>
     <value>Jeter les changements non sauvés?</value>
     <comment>message box</comment>
   </data>
+  <data name="word_Close" xml:space="preserve">
+    <value>proche</value>
+  </data>
 </root>

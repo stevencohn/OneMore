@@ -152,7 +152,7 @@ namespace River.OneMoreAddIn.Commands
 					"applyFontButton=word_Apply",
 					"resetFontButton=word_Reset",
 					"defaultFontButton=word_Default",
-					"cancelButton=word_Cancel"
+					"cancelButton=word_Close"
 				});
 			}
 

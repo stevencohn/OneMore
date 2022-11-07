@@ -4347,4 +4347,7 @@ Last Column Font</value>
     <value>Discard unsaved changes?</value>
     <comment>message box</comment>
   </data>
+  <data name="word_Close" xml:space="preserve">
+    <value>Close</value>
+  </data>
 </root>

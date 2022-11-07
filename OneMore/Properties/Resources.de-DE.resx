@@ -4246,4 +4246,7 @@ Schriftart der letzten Spalte</value>
     <value>Verringerte Änderungen abwerfen?</value>
     <comment>message box</comment>
   </data>
+  <data name="word_Close" xml:space="preserve">
+    <value>Nah dran</value>
+  </data>
 </root>

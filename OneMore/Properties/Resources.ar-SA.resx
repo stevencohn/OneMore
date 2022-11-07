@@ -4254,4 +4254,7 @@ ISO-code then comma then language name</comment>
     <value>تجاهل التغييرات غير المحفوظة؟</value>
     <comment>message box</comment>
   </data>
+  <data name="word_Close" xml:space="preserve">
+    <value>قريب</value>
+  </data>
 </root>

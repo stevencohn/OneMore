@@ -4254,4 +4254,7 @@ Fonte da última coluna</value>
     <value>Descartar mudanças não salvas?</value>
     <comment>message box</comment>
   </data>
+  <data name="word_Close" xml:space="preserve">
+    <value>Perto</value>
+  </data>
 </root>
