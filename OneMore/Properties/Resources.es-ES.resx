@@ -4207,4 +4207,12 @@ Total fila última celda</value>
   <data name="GeneralSheet_imageBrowser" xml:space="preserve">
     <value>Visor de imágenes</value>
   </data>
+  <data name="EditTableThemesDialog_fontElements" xml:space="preserve">
+    <value>Fuente predeterminada
+Fuente de fila de encabezado
+Fuente de fila total
+Fuente de la primera columna
+Fuente de la última columna</value>
+    <comment>MoreListView</comment>
+  </data>
 </root>

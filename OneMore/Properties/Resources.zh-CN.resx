@@ -4197,4 +4197,12 @@ OneNote 文件 (*.one)</value>
   <data name="GeneralSheet_imageBrowser" xml:space="preserve">
     <value>图像查看器</value>
   </data>
+  <data name="EditTableThemesDialog_fontElements" xml:space="preserve">
+    <value>默认字体
+标题行字体
+总行字体
+第一列字体
+最后一列字体</value>
+    <comment>MoreListView</comment>
+  </data>
 </root>

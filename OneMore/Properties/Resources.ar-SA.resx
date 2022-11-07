@@ -4207,4 +4207,12 @@ ISO-code then comma then language name</comment>
   <data name="GeneralSheet_imageBrowser" xml:space="preserve">
     <value>عارض الصور</value>
   </data>
+  <data name="EditTableThemesDialog_fontElements" xml:space="preserve">
+    <value>الخط الافتراضي
+خط صف الرأس
+خط الصف الإجمالي
+خط العمود الأول
+خط العمود الأخير</value>
+    <comment>MoreListView</comment>
+  </data>
 </root>

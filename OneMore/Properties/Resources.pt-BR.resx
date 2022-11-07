@@ -4207,4 +4207,12 @@ Total da última célula da linha</value>
   <data name="GeneralSheet_imageBrowser" xml:space="preserve">
     <value>Visualizador de imagens</value>
   </data>
+  <data name="EditTableThemesDialog_fontElements" xml:space="preserve">
+    <value>Fonte padrão
+Fonte da linha do cabeçalho
+Fonte da linha total
+Fonte da primeira coluna
+Fonte da última coluna</value>
+    <comment>MoreListView</comment>
+  </data>
 </root>

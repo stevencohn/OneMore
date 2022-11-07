@@ -4260,4 +4260,12 @@ Pierwsza komórka wiersza razem
   <data name="GeneralSheet_imageBrowser" xml:space="preserve">
     <value>Przeglądarka zdjęć</value>
   </data>
+  <data name="EditTableThemesDialog_fontElements" xml:space="preserve">
+    <value>Domyślna czcionka
+Czcionka wiersza nagłówka
+Całkowita czcionka wiersza
+Czcionka pierwszej kolumny
+Czcionka ostatniej kolumny</value>
+    <comment>MoreListView</comment>
+  </data>
 </root>

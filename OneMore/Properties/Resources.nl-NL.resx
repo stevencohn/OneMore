@@ -4207,4 +4207,12 @@ Totaal rij laatste cel</value>
   <data name="GeneralSheet_imageBrowser" xml:space="preserve">
     <value>Afbeeldingsviewer</value>
   </data>
+  <data name="EditTableThemesDialog_fontElements" xml:space="preserve">
+    <value>Standaardlettertype
+Lettertype koprij
+Lettertype totaal rij
+Lettertype eerste kolom
+Lettertype laatste kolom</value>
+    <comment>MoreListView</comment>
+  </data>
 </root>

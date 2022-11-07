@@ -4201,4 +4201,12 @@ Total de la dernière cellule de la ligne</value>
   <data name="GeneralSheet_imageBrowser" xml:space="preserve">
     <value>Visionneuse d'images</value>
   </data>
+  <data name="EditTableThemesDialog_fontElements" xml:space="preserve">
+    <value>Police par défaut
+Police de la ligne d'en-tête
+Police de ligne totale
+Police de la première colonne
+Police de la dernière colonne</value>
+    <comment>MoreListView</comment>
+  </data>
 </root>

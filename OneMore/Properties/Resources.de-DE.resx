@@ -4199,4 +4199,12 @@ Gesamtzeile Letzte Zelle</value>
   <data name="GeneralSheet_imageBrowser" xml:space="preserve">
     <value>Bildbetrachter</value>
   </data>
+  <data name="EditTableThemesDialog_fontElements" xml:space="preserve">
+    <value>Standardschriftart
+Schriftart der Kopfzeile
+Gesamtzeilenschrift
+Schriftart der ersten Spalte
+Schriftart der letzten Spalte</value>
+    <comment>MoreListView</comment>
+  </data>
 </root>
