@@ -216,7 +216,7 @@ namespace River.OneMoreAddIn.Commands
 				var item = elementsBox.AddHostedItem(name);
 				var swatch = new Swatch(elementsBox);
 				swatch.Clicked += ChangeElementColor;
-				var subitem = item.AddHostedSubItem($"{name}Sub", swatch);
+				var subitem = item.AddHostedSubItem(swatch);
 				subitem.Alignment = ContentAlignment.MiddleCenter;
 			}
 		}
@@ -241,7 +241,7 @@ namespace River.OneMoreAddIn.Commands
 					Text = "Default"
 				};
 				link.LinkClicked += ChangeElementFont;
-				item.AddHostedSubItem($"{name}Sub", link);
+				item.AddHostedSubItem(link);
 			}
 		}
 
@@ -301,11 +301,11 @@ namespace River.OneMoreAddIn.Commands
 			painter.Paint(snapshot);
 			previewBox.Invalidate();
 
-			SetColorFont(0, snapshot.DefaultFont);
-			SetColorFont(1, snapshot.HeaderFont);
-			SetColorFont(2, snapshot.TotalFont);
-			SetColorFont(3, snapshot.FirstColumnFont);
-			SetColorFont(4, snapshot.LastColumnFont);
+			ShowFontLinkLabel(0, snapshot.DefaultFont);
+			ShowFontLinkLabel(1, snapshot.HeaderFont);
+			ShowFontLinkLabel(2, snapshot.TotalFont);
+			ShowFontLinkLabel(3, snapshot.FirstColumnFont);
+			ShowFontLinkLabel(4, snapshot.LastColumnFont);
 
 			void SetSwatch(int index, Color color)
 			{
@@ -397,7 +397,7 @@ namespace River.OneMoreAddIn.Commands
 
 		// Fonts - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-		private void SetColorFont(int index, TableTheme.ColorFont font)
+		private void ShowFontLinkLabel(int index, TableTheme.ColorFont font)
 		{
 			if (colorFontsBox.Items[index].SubItems[1] is MoreHostedListViewSubItem subitem)
 			{
@@ -415,7 +415,7 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private void ShowFontProperties2(object sender, EventArgs e)
+		private void ShowFontProperties(object sender, EventArgs e)
 		{
 			var theme = themes[combo.SelectedIndex];
 			TableTheme.ColorFont font = null;
@@ -440,13 +440,10 @@ namespace River.OneMoreAddIn.Commands
 
 			int index;
 
-			logger.WriteLine($"index={itemIndex} font={font} theme={theme.Name}");
-
 			if (familyBox.Items.Count > 0)
 			{
 				var name = font.Font?.FontFamily.Name ?? StyleBase.DefaultFontFamily;
 				index = familyBox.Items.IndexOf(name);
-				logger.WriteLine($"indexof size [{name}] == [{index}]");
 
 				if (index < 0) index = 0;
 				familyBox.SelectedIndex = index;
@@ -456,7 +453,6 @@ namespace River.OneMoreAddIn.Commands
 			{
 				var size = font.Font?.Size ?? StyleBase.DefaultFontSize;
 				index = sizeBox.Items.IndexOf(size.ToString("0.#", AddIn.Culture));
-				logger.WriteLine($"indexof size [{size.ToString("0.#", AddIn.Culture)}] == [{index}]");
 
 				if (index < 0) index = 0;
 				sizeBox.SelectedIndex = index;
@@ -477,17 +473,12 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private void ShowFontProperties(object sender, ListViewItemSelectionChangedEventArgs e)
-		{
-		}
-
-
 		private void ChangeElementFont(object sender, LinkLabelLinkClickedEventArgs e)
 		{
 			if (((Control)sender).Tag is ListViewItem host)
 			{
 				colorFontsBox.SelectIf(host);
-				ShowFontProperties2(sender, new EventArgs());
+				ShowFontProperties(sender, new EventArgs());
 
 				var theme = themes[combo.SelectedIndex];
 				switch (host.Index)
@@ -499,6 +490,8 @@ namespace River.OneMoreAddIn.Commands
 					case 4: colorfont = theme.LastColumnFont; break;
 				}
 			}
+
+			colorfont ??= new TableTheme.ColorFont();
 
 			colorFontsBox.Enabled = false;
 			fontsGroup.Enabled = true;
@@ -562,7 +555,6 @@ namespace River.OneMoreAddIn.Commands
 			var theme = themes[combo.SelectedIndex];
 			var index = colorFontsBox.SelectedIndices[0];
 
-			logger.WriteLine($"applying index {index} for theme {theme.Name}");
 			switch (index)
 			{
 				case 0:
@@ -591,7 +583,7 @@ namespace River.OneMoreAddIn.Commands
 					break;
 			}
 
-			SetColorFont(index, colorfont);
+			ShowFontLinkLabel(index, colorfont);
 
 			colorfont = null;
 
@@ -653,6 +645,7 @@ namespace River.OneMoreAddIn.Commands
 			Modified = true;
 
 			themes[combo.SelectedIndex].CopyTo(snapshot);
+
 			SetToolbarState();
 			newButton.Enabled = true;
 		}
