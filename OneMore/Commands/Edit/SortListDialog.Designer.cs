@@ -37,6 +37,7 @@ namespace River.OneMoreAddIn.Commands
 			this.cancelButton = new System.Windows.Forms.Button();
 			this.optionsBox = new System.Windows.Forms.GroupBox();
 			this.introLabel = new System.Windows.Forms.Label();
+			this.duplicatesBox = new System.Windows.Forms.CheckBox();
 			this.optionsBox.SuspendLayout();
 			this.SuspendLayout();
 			// 
@@ -86,7 +87,7 @@ namespace River.OneMoreAddIn.Commands
 			// 
 			this.okButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.okButton.DialogResult = System.Windows.Forms.DialogResult.OK;
-			this.okButton.Location = new System.Drawing.Point(391, 300);
+			this.okButton.Location = new System.Drawing.Point(391, 312);
 			this.okButton.Name = "okButton";
 			this.okButton.Size = new System.Drawing.Size(100, 38);
 			this.okButton.TabIndex = 7;
@@ -97,7 +98,7 @@ namespace River.OneMoreAddIn.Commands
 			// 
 			this.cancelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-			this.cancelButton.Location = new System.Drawing.Point(497, 300);
+			this.cancelButton.Location = new System.Drawing.Point(497, 312);
 			this.cancelButton.Name = "cancelButton";
 			this.cancelButton.Size = new System.Drawing.Size(100, 38);
 			this.cancelButton.TabIndex = 6;
@@ -108,6 +109,7 @@ namespace River.OneMoreAddIn.Commands
 			// 
 			this.optionsBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+			this.optionsBox.Controls.Add(this.duplicatesBox);
 			this.optionsBox.Controls.Add(this.thisListButton);
 			this.optionsBox.Controls.Add(this.allListsButton);
 			this.optionsBox.Controls.Add(this.typeBox);
@@ -115,7 +117,7 @@ namespace River.OneMoreAddIn.Commands
 			this.optionsBox.Location = new System.Drawing.Point(23, 67);
 			this.optionsBox.Name = "optionsBox";
 			this.optionsBox.Padding = new System.Windows.Forms.Padding(20);
-			this.optionsBox.Size = new System.Drawing.Size(574, 209);
+			this.optionsBox.Size = new System.Drawing.Size(574, 224);
 			this.optionsBox.TabIndex = 8;
 			this.optionsBox.TabStop = false;
 			this.optionsBox.Text = "Options";
@@ -129,13 +131,23 @@ namespace River.OneMoreAddIn.Commands
 			this.introLabel.TabIndex = 9;
 			this.introLabel.Text = "Default is to sort the current list or only top level bullet lists";
 			// 
+			// duplicatesBox
+			// 
+			this.duplicatesBox.AutoSize = true;
+			this.duplicatesBox.Location = new System.Drawing.Point(23, 178);
+			this.duplicatesBox.Name = "duplicatesBox";
+			this.duplicatesBox.Size = new System.Drawing.Size(170, 24);
+			this.duplicatesBox.TabIndex = 4;
+			this.duplicatesBox.Text = "Remove duplicates";
+			this.duplicatesBox.UseVisualStyleBackColor = true;
+			// 
 			// SortListDialog
 			// 
 			this.AcceptButton = this.okButton;
 			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.CancelButton = this.cancelButton;
-			this.ClientSize = new System.Drawing.Size(620, 361);
+			this.ClientSize = new System.Drawing.Size(620, 373);
 			this.Controls.Add(this.introLabel);
 			this.Controls.Add(this.optionsBox);
 			this.Controls.Add(this.okButton);
@@ -167,5 +179,6 @@ namespace River.OneMoreAddIn.Commands
 		private System.Windows.Forms.Button cancelButton;
 		private System.Windows.Forms.GroupBox optionsBox;
 		private System.Windows.Forms.Label introLabel;
+		private System.Windows.Forms.CheckBox duplicatesBox;
 	}
 }

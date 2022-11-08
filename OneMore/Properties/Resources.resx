@@ -4321,4 +4321,8 @@ Last Column Font</value>
   <data name="word_Reminder" xml:space="preserve">
     <value>Reminder</value>
   </data>
+  <data name="SortListDialog_duplicatesBox.Text" xml:space="preserve">
+    <value>Remove duplicates</value>
+    <comment>checkbox</comment>
+  </data>
 </root>

@@ -82,21 +82,21 @@ namespace River.OneMoreAddIn.Commands
 
 				foreach (var list in lists)
 				{
-					OrderList(list, false);
+					OrderList(list, false, dialog.RemoveDuplicates);
 				}
 			}
 			else
 			{
 				// root is the list's containing OEChildren
 				var root = cursor.Parent.Parent;
-				OrderList(root, dialog.IncludeChildLists);
+				OrderList(root, dialog.IncludeChildLists, dialog.RemoveDuplicates);
 			}
 
 			await one.Update(page);
 		}
 
 
-		private void OrderList(XElement root, bool includeChildLists)
+		private void OrderList(XElement root, bool includeChildLists, bool removeDuplicates)
 		{
 			// keep empty items with their preceding item, e.g. if an item with content is
 			// followed by two empty items then those two empty items are kept with the first
@@ -145,6 +145,12 @@ namespace River.OneMoreAddIn.Commands
 
 			// sort and repopulate
 			root.RemoveAll();
+
+			if (removeDuplicates)
+			{
+				items = items.GroupBy(i => i.Text).Select(g => g.First()).ToList();
+			}
+
 			foreach (var item in items.OrderBy(i => i.Text))
 			{
 				root.Add(item.Item);
@@ -159,7 +165,7 @@ namespace River.OneMoreAddIn.Commands
 					if (item.Item.LastNode is XElement last &&
 						last.Name.LocalName == "OEChildren")
 					{
-						OrderList(last, includeChildLists);
+						OrderList(last, includeChildLists, removeDuplicates);
 					}
 				}
 			}

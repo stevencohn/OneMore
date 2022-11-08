@@ -4219,4 +4219,8 @@ Schriftart der letzten Spalte</value>
   <data name="word_Reminder" xml:space="preserve">
     <value>Erinnerung</value>
   </data>
+  <data name="SortListDialog_duplicatesBox.Text" xml:space="preserve">
+    <value>Duplikate entfernen</value>
+    <comment>checkbox</comment>
+  </data>
 </root>

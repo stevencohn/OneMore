@@ -25,6 +25,7 @@ namespace River.OneMoreAddIn.Commands
 					"allListsButton",
 					"deepBox",
 					"typeBox",
+					"duplicatesBox",
 					"okButton=word_OK",
 					"cancelButton=word_Cancel"
 				});
@@ -39,6 +40,9 @@ namespace River.OneMoreAddIn.Commands
 
 
 		public bool IncludeNumberedLists => typeBox.Checked;
+
+
+		public bool RemoveDuplicates => duplicatesBox.Checked;
 
 
 		private void LoadForm(object sender, System.EventArgs e)

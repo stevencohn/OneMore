@@ -4221,4 +4221,8 @@ Police de la dernière colonne</value>
   <data name="word_Reminder" xml:space="preserve">
     <value>Rappel</value>
   </data>
+  <data name="SortListDialog_duplicatesBox.Text" xml:space="preserve">
+    <value>Supprimer les doublons</value>
+    <comment>checkbox</comment>
+  </data>
 </root>

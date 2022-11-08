@@ -8313,6 +8313,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Remove duplicates.
+        /// </summary>
+        internal static string SortListDialog_duplicatesBox_Text {
+            get {
+                return ResourceManager.GetString("SortListDialog_duplicatesBox.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Default is to sort the current list or only top level bullet lists.
         /// </summary>
         internal static string SortListDialog_introLabel_Text {

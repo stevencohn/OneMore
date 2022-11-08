@@ -4227,4 +4227,8 @@ ISO-code then comma then language name</comment>
   <data name="word_Reminder" xml:space="preserve">
     <value>تذكير</value>
   </data>
+  <data name="SortListDialog_duplicatesBox.Text" xml:space="preserve">
+    <value>إزالة التكرارات</value>
+    <comment>checkbox</comment>
+  </data>
 </root>

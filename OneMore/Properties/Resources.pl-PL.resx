@@ -4280,4 +4280,8 @@ Czcionka ostatniej kolumny</value>
   <data name="word_Reminder" xml:space="preserve">
     <value>Przypomnienie</value>
   </data>
+  <data name="SortListDialog_duplicatesBox.Text" xml:space="preserve">
+    <value>Usuń duplikaty</value>
+    <comment>checkbox</comment>
+  </data>
 </root>

@@ -4227,4 +4227,8 @@ Lettertype laatste kolom</value>
   <data name="word_Reminder" xml:space="preserve">
     <value>Herinnering</value>
   </data>
+  <data name="SortListDialog_duplicatesBox.Text" xml:space="preserve">
+    <value>Duplicaten verwijderen</value>
+    <comment>checkbox</comment>
+  </data>
 </root>

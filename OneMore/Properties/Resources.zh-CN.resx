@@ -4217,4 +4217,8 @@ OneNote 文件 (*.one)</value>
   <data name="word_Reminder" xml:space="preserve">
     <value>提醒</value>
   </data>
+  <data name="SortListDialog_duplicatesBox.Text" xml:space="preserve">
+    <value>删除重复项</value>
+    <comment>checkbox</comment>
+  </data>
 </root>

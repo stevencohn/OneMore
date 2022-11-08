@@ -4227,4 +4227,8 @@ Fonte da última coluna</value>
   <data name="word_Reminder" xml:space="preserve">
     <value>Lembrete</value>
   </data>
+  <data name="SortListDialog_duplicatesBox.Text" xml:space="preserve">
+    <value>Remover duplicatas</value>
+    <comment>checkbox</comment>
+  </data>
 </root>
