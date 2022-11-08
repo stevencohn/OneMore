@@ -6,6 +6,7 @@ A OneNote add-in with powerful yet simple and effective features. See the [**pro
 * [Customize the Text context menu](../../wiki/Settings) to add OneMore commands or a a custom search engine
 * Apply [colorized syntax highlighting](../../wiki/Edit-Commands) to snippets of source code
 * Create/edit/apply [custom styles](../../wiki/Custom-Styles-and-Favorites) with advanced options
+* Apply or clear [styles in tables](../../wiki/Table-Commands#table-styles) or create your own table styles
 * Manage menu of [Favorites](../../wiki/Custom-Styles-and-Favorites#Favorites) for one-click link to your most referenced pages
 * Save and reuse [custom snippets](../../wiki/Custom-Styles-and-Favorites#Favorites) of content anywhere on any page
 * Add [formulas](../../wiki/Table-Commands) to table cell using Excel-like expressions
