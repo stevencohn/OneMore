@@ -1878,10 +1878,6 @@ ISO-code then comma then language name</comment>
     <value>إخفاء التاريخ والوقت</value>
     <comment>radio button</comment>
   </data>
-  <data name="ToggleDttmDialog_scopeGroup.Text" xml:space="preserve">
-    <value>نطاق</value>
-    <comment>group box</comment>
-  </data>
   <data name="ToggleDttmDialog_showRadio.Text" xml:space="preserve">
     <value>عرض التاريخ والوقت</value>
     <comment>radio button</comment>
@@ -2020,10 +2016,6 @@ ISO-code then comma then language name</comment>
   </data>
   <data name="FavoritesSheet_Text" xml:space="preserve">
     <value>إدارة المفضلة</value>
-    <comment>settings</comment>
-  </data>
-  <data name="SettingsDialog_favoritesNode.Text" xml:space="preserve">
-    <value>المفضلة</value>
     <comment>settings</comment>
   </data>
   <data name="FavoritesSheet_shortcutsBox.Text" xml:space="preserve">
@@ -3639,10 +3631,6 @@ ISO-code then comma then language name</comment>
   </data>
   <data name="ReportRemindersDialog.Text" xml:space="preserve">
     <value>نطاق التقرير</value>
-  </data>
-  <data name="ReportRemindersDialog_groupBox.Text" xml:space="preserve">
-    <value>نِطَاق</value>
-    <comment>groupbox</comment>
   </data>
   <data name="ReportRemindersDialog_introLabel.Text" xml:space="preserve">
     <value>توليد تقرير للتذكير في هذا النطاق</value>

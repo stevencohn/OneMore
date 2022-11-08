@@ -1739,10 +1739,6 @@ Trzy dni
     <value>Sprawdź wszystkie strony.</value>
     <comment>check all nodes link label</comment>
   </data>
-  <data name="ToggleDttmDialog_scopeGroup.Text" xml:space="preserve">
-    <value>Zakres</value>
-    <comment>group box</comment>
-  </data>
   <data name="Error_SelectImage" xml:space="preserve">
     <value>Wybierz obraz przed wywołaniem tego polecenia</value>
     <comment>error message box</comment>
@@ -2179,10 +2175,6 @@ Notebooki</value>
   <data name="LinkedReferencesCommand_Title" xml:space="preserve">
     <value>Połączone referencje.</value>
     <comment>title text</comment>
-  </data>
-  <data name="SettingsDialog_favoritesNode.Text" xml:space="preserve">
-    <value>Ulubione</value>
-    <comment>settings</comment>
   </data>
   <data name="SortDialog_pinNotesBox.Text" xml:space="preserve">
     <value>Pin notatki na górę i
@@ -3692,10 +3684,6 @@ Wybierz Nie, aby zachować jedną pustą linię między akapitami</value>
   </data>
   <data name="ReportRemindersDialog.Text" xml:space="preserve">
     <value>Zakres raportu</value>
-  </data>
-  <data name="ReportRemindersDialog_groupBox.Text" xml:space="preserve">
-    <value>Zakres</value>
-    <comment>groupbox</comment>
   </data>
   <data name="ReportRemindersDialog_introLabel.Text" xml:space="preserve">
     <value>Wygeneruj raport dla przypomnień w tym zakresie</value>

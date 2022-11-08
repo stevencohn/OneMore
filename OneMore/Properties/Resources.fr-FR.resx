@@ -1877,10 +1877,6 @@ ISO-code then comma then language name</comment>
     <value>Masquer la date et l'heure</value>
     <comment>radio button</comment>
   </data>
-  <data name="ToggleDttmDialog_scopeGroup.Text" xml:space="preserve">
-    <value>Portée</value>
-    <comment>group box</comment>
-  </data>
   <data name="ToggleDttmDialog_showRadio.Text" xml:space="preserve">
     <value>Afficher la date et l'heure</value>
     <comment>radio button</comment>
@@ -2019,10 +2015,6 @@ ISO-code then comma then language name</comment>
   </data>
   <data name="FavoritesSheet_Text" xml:space="preserve">
     <value>Gérer les favoris</value>
-    <comment>settings</comment>
-  </data>
-  <data name="SettingsDialog_favoritesNode.Text" xml:space="preserve">
-    <value>Favoris</value>
     <comment>settings</comment>
   </data>
   <data name="FavoritesSheet_shortcutsBox.Text" xml:space="preserve">
@@ -3633,10 +3625,6 @@ Sélectionnez Non pour conserver une ligne vide entre les paragraphes</value>
   </data>
   <data name="ReportRemindersDialog.Text" xml:space="preserve">
     <value>SPODE SPORT</value>
-  </data>
-  <data name="ReportRemindersDialog_groupBox.Text" xml:space="preserve">
-    <value>Portée</value>
-    <comment>groupbox</comment>
   </data>
   <data name="ReportRemindersDialog_introLabel.Text" xml:space="preserve">
     <value>Générer un rapport pour les rappels dans cette portée</value>

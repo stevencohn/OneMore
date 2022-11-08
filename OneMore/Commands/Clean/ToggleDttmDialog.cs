@@ -25,7 +25,7 @@ namespace River.OneMoreAddIn.Commands
 					"toggleGroup",
 					"hideRadio",
 					"showRadio",
-					"scopeGroup",
+					"scopeGroup=word_Scope",
 					"okButton=word_OK",
 					"cancelButton=word_Cancel"
 				});

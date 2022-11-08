@@ -1883,10 +1883,6 @@ ISO-code then comma then language name</comment>
     <value>Verberg datum en tijd</value>
     <comment>radio button</comment>
   </data>
-  <data name="ToggleDttmDialog_scopeGroup.Text" xml:space="preserve">
-    <value>Reikwijdte</value>
-    <comment>group box</comment>
-  </data>
   <data name="ToggleDttmDialog_showRadio.Text" xml:space="preserve">
     <value>Toon datum en tijd</value>
     <comment>radio button</comment>
@@ -2025,10 +2021,6 @@ ISO-code then comma then language name</comment>
   </data>
   <data name="FavoritesSheet_Text" xml:space="preserve">
     <value>Beheer favorieten</value>
-    <comment>settings</comment>
-  </data>
-  <data name="SettingsDialog_favoritesNode.Text" xml:space="preserve">
-    <value>Favorieten</value>
     <comment>settings</comment>
   </data>
   <data name="FavoritesSheet_shortcutsBox.Text" xml:space="preserve">
@@ -3639,10 +3631,6 @@ Selecteer NO om één lege regel tussen paragrafen te behouden</value>
   </data>
   <data name="ReportRemindersDialog.Text" xml:space="preserve">
     <value>Rapporteerder</value>
-  </data>
-  <data name="ReportRemindersDialog_groupBox.Text" xml:space="preserve">
-    <value>Domein</value>
-    <comment>groupbox</comment>
   </data>
   <data name="ReportRemindersDialog_introLabel.Text" xml:space="preserve">
     <value>Genereer rapport voor herinneringen in deze scope</value>

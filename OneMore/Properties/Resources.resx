@@ -1842,10 +1842,6 @@ In this section</value>
     <value>Check all pages</value>
     <comment>check all nodes link label</comment>
   </data>
-  <data name="ToggleDttmDialog_scopeGroup.Text" xml:space="preserve">
-    <value>Scope</value>
-    <comment>group box</comment>
-  </data>
   <data name="Error_SelectImage" xml:space="preserve">
     <value>Select an image before invoking this command</value>
     <comment>error message box</comment>
@@ -3919,10 +3915,6 @@ Select No to keep one empty line between paragraphs</value>
   </data>
   <data name="ReportRemindersDialog.Text" xml:space="preserve">
     <value>Report Scope</value>
-  </data>
-  <data name="ReportRemindersDialog_groupBox.Text" xml:space="preserve">
-    <value>Scope</value>
-    <comment>groupbox</comment>
   </data>
   <data name="ReportRemindersDialog_introLabel.Text" xml:space="preserve">
     <value>Generate report for reminders in this scope</value>

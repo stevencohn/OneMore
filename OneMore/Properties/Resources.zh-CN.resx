@@ -1872,10 +1872,6 @@ ISO-code then comma then language name</comment>
     <value>隐藏日期和时间</value>
     <comment>radio button</comment>
   </data>
-  <data name="ToggleDttmDialog_scopeGroup.Text" xml:space="preserve">
-    <value>范围</value>
-    <comment>group box</comment>
-  </data>
   <data name="ToggleDttmDialog_showRadio.Text" xml:space="preserve">
     <value>显示日期和时间</value>
     <comment>radio button</comment>
@@ -2014,10 +2010,6 @@ ISO-code then comma then language name</comment>
   </data>
   <data name="FavoritesSheet_Text" xml:space="preserve">
     <value>管理收藏夹</value>
-    <comment>settings</comment>
-  </data>
-  <data name="SettingsDialog_favoritesNode.Text" xml:space="preserve">
-    <value>收藏夹</value>
     <comment>settings</comment>
   </data>
   <data name="FavoritesSheet_shortcutsBox.Text" xml:space="preserve">
@@ -3629,10 +3621,6 @@ OneNote 文件 (*.one)</value>
   </data>
   <data name="ReportRemindersDialog.Text" xml:space="preserve">
     <value>报告范围</value>
-  </data>
-  <data name="ReportRemindersDialog_groupBox.Text" xml:space="preserve">
-    <value>范围</value>
-    <comment>groupbox</comment>
   </data>
   <data name="ReportRemindersDialog_introLabel.Text" xml:space="preserve">
     <value>在此范围中生成提醒的报告</value>

@@ -5165,15 +5165,6 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Scope.
-        /// </summary>
-        internal static string ReportRemindersDialog_groupBox_Text {
-            get {
-                return ResourceManager.GetString("ReportRemindersDialog_groupBox.Text", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Generate report for reminders in this scope.
         /// </summary>
         internal static string ReportRemindersDialog_introLabel_Text {
@@ -9217,15 +9208,6 @@ namespace River.OneMoreAddIn.Properties {
         internal static string ToggleDttmDialog_hideRadio_Text {
             get {
                 return ResourceManager.GetString("ToggleDttmDialog_hideRadio.Text", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Scope.
-        /// </summary>
-        internal static string ToggleDttmDialog_scopeGroup_Text {
-            get {
-                return ResourceManager.GetString("ToggleDttmDialog_scopeGroup.Text", resourceCulture);
             }
         }
         

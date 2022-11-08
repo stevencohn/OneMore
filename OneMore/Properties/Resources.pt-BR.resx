@@ -1883,10 +1883,6 @@ ISO-code then comma then language name</comment>
     <value>Ocultar data e hora</value>
     <comment>radio button</comment>
   </data>
-  <data name="ToggleDttmDialog_scopeGroup.Text" xml:space="preserve">
-    <value>Escopo</value>
-    <comment>group box</comment>
-  </data>
   <data name="ToggleDttmDialog_showRadio.Text" xml:space="preserve">
     <value>Mostrar data e hora</value>
     <comment>radio button</comment>
@@ -2025,10 +2021,6 @@ ISO-code then comma then language name</comment>
   </data>
   <data name="FavoritesSheet_Text" xml:space="preserve">
     <value>Gerenciar favoritos</value>
-    <comment>settings</comment>
-  </data>
-  <data name="SettingsDialog_favoritesNode.Text" xml:space="preserve">
-    <value>Favoritos</value>
     <comment>settings</comment>
   </data>
   <data name="FavoritesSheet_shortcutsBox.Text" xml:space="preserve">
@@ -3639,10 +3631,6 @@ Selecione Não para manter uma linha vazia entre os parágrafos</value>
   </data>
   <data name="ReportRemindersDialog.Text" xml:space="preserve">
     <value>Escopo de relatório</value>
-  </data>
-  <data name="ReportRemindersDialog_groupBox.Text" xml:space="preserve">
-    <value>Alcance</value>
-    <comment>groupbox</comment>
   </data>
   <data name="ReportRemindersDialog_introLabel.Text" xml:space="preserve">
     <value>Gerar relatório para lembretes neste escopo</value>

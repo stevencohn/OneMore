@@ -1875,10 +1875,6 @@ ISO-code then comma then language name</comment>
     <value>Datum und Uhrzeit ausblenden</value>
     <comment>radio button</comment>
   </data>
-  <data name="ToggleDttmDialog_scopeGroup.Text" xml:space="preserve">
-    <value>Umfang</value>
-    <comment>group box</comment>
-  </data>
   <data name="ToggleDttmDialog_showRadio.Text" xml:space="preserve">
     <value>Datum und Uhrzeit anzeigen</value>
     <comment>radio button</comment>
@@ -2017,10 +2013,6 @@ ISO-code then comma then language name</comment>
   </data>
   <data name="FavoritesSheet_Text" xml:space="preserve">
     <value>Favoriten verwalten</value>
-    <comment>settings</comment>
-  </data>
-  <data name="SettingsDialog_favoritesNode.Text" xml:space="preserve">
-    <value>Favoriten</value>
     <comment>settings</comment>
   </data>
   <data name="FavoritesSheet_shortcutsBox.Text" xml:space="preserve">
@@ -3631,10 +3623,6 @@ Wählen Sie Nein, um eine leere Zeile zwischen den Absätzen zu halten</value>
   </data>
   <data name="ReportRemindersDialog.Text" xml:space="preserve">
     <value>Berichterstattung</value>
-  </data>
-  <data name="ReportRemindersDialog_groupBox.Text" xml:space="preserve">
-    <value>Zielfernrohr</value>
-    <comment>groupbox</comment>
   </data>
   <data name="ReportRemindersDialog_introLabel.Text" xml:space="preserve">
     <value>Erstellen Sie Bericht für Erinnerungen in diesem Bereich</value>

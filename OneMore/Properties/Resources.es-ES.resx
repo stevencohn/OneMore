@@ -1882,10 +1882,6 @@ ISO-code then comma then language name</comment>
     <value>Ocultar fecha y hora</value>
     <comment>radio button</comment>
   </data>
-  <data name="ToggleDttmDialog_scopeGroup.Text" xml:space="preserve">
-    <value>Alcance</value>
-    <comment>group box</comment>
-  </data>
   <data name="ToggleDttmDialog_showRadio.Text" xml:space="preserve">
     <value>Mostrar fecha y hora</value>
     <comment>radio button</comment>
@@ -2024,10 +2020,6 @@ ISO-code then comma then language name</comment>
   </data>
   <data name="FavoritesSheet_Text" xml:space="preserve">
     <value>Administrar favoritos</value>
-    <comment>settings</comment>
-  </data>
-  <data name="SettingsDialog_favoritesNode.Text" xml:space="preserve">
-    <value>Favoritos</value>
     <comment>settings</comment>
   </data>
   <data name="FavoritesSheet_shortcutsBox.Text" xml:space="preserve">
@@ -3639,10 +3631,6 @@ Seleccione No para mantener una línea vacía entre los párrafos</value>
   </data>
   <data name="ReportRemindersDialog.Text" xml:space="preserve">
     <value>Alcance de informes</value>
-  </data>
-  <data name="ReportRemindersDialog_groupBox.Text" xml:space="preserve">
-    <value>Alcance</value>
-    <comment>groupbox</comment>
   </data>
   <data name="ReportRemindersDialog_introLabel.Text" xml:space="preserve">
     <value>Genere un informe para recordatorios en este alcance</value>
