@@ -3410,10 +3410,6 @@ Polaroid</value>
     <value>Umbenennen Stil</value>
     <comment>dialog title</comment>
   </data>
-  <data name="StyleDialog_renameButton.Text" xml:space="preserve">
-    <value>Umbenennen</value>
-    <comment>toolstrip button</comment>
-  </data>
   <data name="Error_NoAttachments" xml:space="preserve">
     <value>Keine Anhänge auf der Seite gefunden</value>
   </data>

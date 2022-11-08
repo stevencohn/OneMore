@@ -8678,15 +8678,6 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Rename.
-        /// </summary>
-        internal static string StyleDialog_renameButton_Text {
-            get {
-                return ResourceManager.GetString("StyleDialog_renameButton.Text", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Reorder.
         /// </summary>
         internal static string StyleDialog_reorderButton_Text {

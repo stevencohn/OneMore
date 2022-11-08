@@ -3746,10 +3746,6 @@ Polaroid</value>
     <value>Rename Style</value>
     <comment>dialog title</comment>
   </data>
-  <data name="StyleDialog_renameButton.Text" xml:space="preserve">
-    <value>Rename</value>
-    <comment>toolstrip button</comment>
-  </data>
   <data name="Error_NoAttachments" xml:space="preserve">
     <value>No attachments found on page</value>
   </data>

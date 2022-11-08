@@ -3418,10 +3418,6 @@ Polaroid</value>
     <value>Hernoemstijl</value>
     <comment>dialog title</comment>
   </data>
-  <data name="StyleDialog_renameButton.Text" xml:space="preserve">
-    <value>Hernoemen</value>
-    <comment>toolstrip button</comment>
-  </data>
   <data name="Error_NoAttachments" xml:space="preserve">
     <value>Geen bijlagen gevonden op pagina</value>
   </data>

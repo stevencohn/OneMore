@@ -3418,10 +3418,6 @@ polaroid</value>
     <value>Estilo de cambio de nombre</value>
     <comment>dialog title</comment>
   </data>
-  <data name="StyleDialog_renameButton.Text" xml:space="preserve">
-    <value>Rebautizar</value>
-    <comment>toolstrip button</comment>
-  </data>
   <data name="Error_NoAttachments" xml:space="preserve">
     <value>No se encontraron archivos adjuntos en la página</value>
   </data>

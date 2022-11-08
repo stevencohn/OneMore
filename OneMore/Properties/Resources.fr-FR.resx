@@ -3412,10 +3412,6 @@ Polaroïd</value>
     <value>Renommer Style</value>
     <comment>dialog title</comment>
   </data>
-  <data name="StyleDialog_renameButton.Text" xml:space="preserve">
-    <value>Renommer</value>
-    <comment>toolstrip button</comment>
-  </data>
   <data name="Error_NoAttachments" xml:space="preserve">
     <value>Aucun attachement trouvé à la page</value>
   </data>

@@ -3418,10 +3418,6 @@ ISO-code then comma then language name</comment>
     <value>إعادة تسمية نمط</value>
     <comment>dialog title</comment>
   </data>
-  <data name="StyleDialog_renameButton.Text" xml:space="preserve">
-    <value>إعادة تسمية</value>
-    <comment>toolstrip button</comment>
-  </data>
   <data name="Error_NoAttachments" xml:space="preserve">
     <value>لم يتم العثور على المرفقات في الصفحة</value>
   </data>

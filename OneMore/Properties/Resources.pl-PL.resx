@@ -3487,10 +3487,6 @@ Polaroid</value>
     <value>Zmień nazwę stylu.</value>
     <comment>dialog title</comment>
   </data>
-  <data name="StyleDialog_renameButton.Text" xml:space="preserve">
-    <value>Przemianować</value>
-    <comment>toolstrip button</comment>
-  </data>
   <data name="Error_NoAttachments" xml:space="preserve">
     <value>Nie znaleziono załączników na stronie</value>
   </data>

@@ -3418,10 +3418,6 @@ Polaroid.</value>
     <value>Renomeie o estilo</value>
     <comment>dialog title</comment>
   </data>
-  <data name="StyleDialog_renameButton.Text" xml:space="preserve">
-    <value>Renomear</value>
-    <comment>toolstrip button</comment>
-  </data>
   <data name="Error_NoAttachments" xml:space="preserve">
     <value>Nenhum anexos encontrados na página</value>
   </data>

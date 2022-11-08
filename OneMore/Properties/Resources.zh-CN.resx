@@ -3408,10 +3408,6 @@ OneNote 文件 (*.one)</value>
     <value>重命名风格</value>
     <comment>dialog title</comment>
   </data>
-  <data name="StyleDialog_renameButton.Text" xml:space="preserve">
-    <value>改名</value>
-    <comment>toolstrip button</comment>
-  </data>
   <data name="Error_NoAttachments" xml:space="preserve">
     <value>页面上没有找到附件</value>
   </data>
