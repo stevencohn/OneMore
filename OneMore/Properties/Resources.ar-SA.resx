@@ -4180,8 +4180,8 @@ ISO-code then comma then language name</comment>
     <value>أسلوب جديد</value>
   </data>
   <data name="ribClearTableShadingButton_Label" xml:space="preserve">
-    <value>امسح كافة تظليل الخلايا</value>
-  </data>
+    <value>مسح كافة أنماط الجدول</value>
+  <comment>ribbon item</comment></data>
   <data name="ribCheckForUpdatesButton_Label" xml:space="preserve">
     <value>تحقق من وجود تحديثات</value>
     <comment>command</comment>

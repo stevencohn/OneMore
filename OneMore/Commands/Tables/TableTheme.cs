@@ -25,13 +25,20 @@ namespace River.OneMoreAddIn.Commands
 
 			public ColorFont(ColorFont other)
 			{
-				Font = new Font(other.Font, other.Font.Style);
-				Foreground = other.Foreground;
+				if (other != null)
+				{
+					if (other.Font != null)
+					{
+						Font = new Font(other.Font, other.Font.Style);
+					}
+
+					Foreground = other.Foreground;
+				}
 			}
 
 			public void Dispose()
 			{
-				Font.Dispose();
+				Font?.Dispose();
 			}
 
 			public override bool Equals(object obj)
@@ -66,7 +73,7 @@ namespace River.OneMoreAddIn.Commands
 		#8064A2	#5B9BD5	#70AD47	#FFC000	#ED7D31	#E84C22	#A5A5A5
 		*/
 
-		public static readonly string[] LightColorNames = new string[] 
+		public static readonly string[] LightColorNames = new string[]
 		{
 			"#E5E0EC", "#DEEBF6", "#E2EFD9", "#FFF2CC", "#FBE5D5", "#FADBD2"
 		};

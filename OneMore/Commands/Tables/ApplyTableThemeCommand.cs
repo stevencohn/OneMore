@@ -6,7 +6,6 @@ namespace River.OneMoreAddIn.Commands
 {
 	using River.OneMoreAddIn.Models;
 	using River.OneMoreAddIn.Styles;
-	using System.Drawing;
 	using System.Linq;
 	using System.Threading.Tasks;
 	using System.Xml.Linq;
@@ -49,7 +48,8 @@ namespace River.OneMoreAddIn.Commands
 			}
 
 			TableTheme theme;
-			if (selectedIndex == int.MaxValue)
+			var clear = selectedIndex == int.MaxValue;
+			if (clear)
 			{
 				// this will clear formatting in the table
 				theme = new TableTheme();
@@ -71,7 +71,14 @@ namespace River.OneMoreAddIn.Commands
 			FillTable(table, theme);
 			HighlightTable(table, theme);
 
-			ApplyFonts(table, theme);
+			if (clear)
+			{
+				ClearFonts(table);
+			}
+			else
+			{
+				ApplyFonts(table, theme);
+			}
 
 			await one.Update(page);
 		}
@@ -87,7 +94,7 @@ namespace River.OneMoreAddIn.Commands
 					{
 						for (var c = 0; c < table.ColumnCount; c++)
 						{
-							table[r][c].ShadingColor = 
+							table[r][c].ShadingColor =
 								TableTheme.LightColorNames[r % TableTheme.LightColorNames.Length];
 						}
 					}
@@ -153,7 +160,7 @@ namespace River.OneMoreAddIn.Commands
 			{
 				for (int r = 0; r < table.RowCount; r++)
 				{
-					table[r][0].ShadingColor = 
+					table[r][0].ShadingColor =
 						TableTheme.MediumColorNames[r % TableTheme.MediumColorNames.Length];
 				}
 			}
@@ -179,7 +186,7 @@ namespace River.OneMoreAddIn.Commands
 			{
 				for (int c = 0; c < table.ColumnCount; c++)
 				{
-					table[0][c].ShadingColor = 
+					table[0][c].ShadingColor =
 						TableTheme.MediumColorNames[c % TableTheme.MediumColorNames.Length];
 				}
 			}
@@ -218,10 +225,24 @@ namespace River.OneMoreAddIn.Commands
 
 			if (!theme.TotalLastCell.IsEmpty)
 			{
-				table[table.RowCount - 1][table.ColumnCount - 1].ShadingColor = 
+				table[table.RowCount - 1][table.ColumnCount - 1].ShadingColor =
 					theme.TotalLastCell.ToRGBHtml();
 			}
 		}
+
+
+		private void ClearFonts(Table table)
+		{
+			var stylizer = new Stylizer(new Style());
+			for (int r = 0; r < table.RowCount; r++)
+			{
+				for (int c = 0; c < table.ColumnCount; c++)
+				{
+					stylizer.Clear(table[r][c].Root, Stylizer.Clearing.All);
+				}
+			}
+		}
+
 
 		private void ApplyFonts(Table table, TableTheme theme)
 		{

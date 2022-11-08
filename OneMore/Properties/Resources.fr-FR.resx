@@ -4174,8 +4174,8 @@ Total de la dernière cellule de la ligne</value>
     <value>Nouveau style</value>
   </data>
   <data name="ribClearTableShadingButton_Label" xml:space="preserve">
-    <value>Effacer tout l'ombrage des cellules</value>
-  </data>
+    <value>Effacer tous les styles de tableau</value>
+  <comment>ribbon item</comment></data>
   <data name="ribCheckForUpdatesButton_Label" xml:space="preserve">
     <value>Vérifier les mises à jour</value>
     <comment>command</comment>

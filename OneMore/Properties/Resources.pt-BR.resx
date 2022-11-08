@@ -4180,8 +4180,8 @@ Total da última célula da linha</value>
     <value>Novo estilo</value>
   </data>
   <data name="ribClearTableShadingButton_Label" xml:space="preserve">
-    <value>Limpar todo o sombreamento de células</value>
-  </data>
+    <value>Limpar todos os estilos de mesa</value>
+  <comment>ribbon item</comment></data>
   <data name="ribCheckForUpdatesButton_Label" xml:space="preserve">
     <value>Verificar atualizações</value>
     <comment>command</comment>

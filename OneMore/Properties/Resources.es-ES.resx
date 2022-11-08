@@ -4180,8 +4180,8 @@ Total fila última celda</value>
     <value>Nuevo estilo</value>
   </data>
   <data name="ribClearTableShadingButton_Label" xml:space="preserve">
-    <value>Borrar todo el sombreado de celdas</value>
-  </data>
+    <value>Borrar todo el estilo de la tabla</value>
+  <comment>ribbon item</comment></data>
   <data name="ribCheckForUpdatesButton_Label" xml:space="preserve">
     <value>Buscar actualizaciones</value>
     <comment>command</comment>
