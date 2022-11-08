@@ -20,7 +20,7 @@ There are [full instructions here](#install).
 | ![screenshot](../../wiki/images/Screenshot.png) | ![Calendar](../../wiki/images/Calendar.png) |
 _Click an image to enlarge_
 
-## 💁 Features (157)
+## 💁 Features (160)
 *Want more from OneMore? OneMore has more...*
 
 [Clean commands](../../wiki/Clean-Commands) (13)
@@ -154,6 +154,8 @@ _Click an image to enlarge_
 [Table commands](../../wiki/Table-Commands) (12)
 
 * Calculate Excel-like formulas in tables (F5)
+* Apply or clear styling in tables, including cell shading and fonts
+* Create your own custom table styles
 * Delete formula from selected table cells
 * Highlight all cells on the page with custom formulas
 * Recalculate all formulas in selected tables on the page (Shift + F5)
