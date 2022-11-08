@@ -56,7 +56,7 @@ namespace River.OneMoreAddIn.Settings
 			InitializeComponent();
 
 			Name = "KeyboardSheet";
-			Title = Resx.KeyboardSheet_Text;
+			Title = Resx.word_Keyboard;
 
 			if (NeedsLocalizing())
 			{

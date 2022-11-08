@@ -3339,14 +3339,6 @@ Verschoven</value>
     <value>Alles resetten</value>
     <comment>toolstrip button</comment>
   </data>
-  <data name="SettingsDialog_keyboardNode.Text" xml:space="preserve">
-    <value>Toetsenbord</value>
-    <comment>treenode</comment>
-  </data>
-  <data name="KeyboardSheet.Text" xml:space="preserve">
-    <value>Toetsenbord</value>
-    <comment>sheet</comment>
-  </data>
   <data name="ResizeImagesDialog_preserveBox.Text" xml:space="preserve">
     <value>Opslaggrootte behouden</value>
     <comment>checkbox</comment>
@@ -4240,5 +4232,8 @@ Lettertype laatste kolom</value>
   <data name="SnippetsSheet_introLabel.Text" xml:space="preserve">
     <value>Mijn aangepaste fragmenten beheren</value>
     <comment>label</comment>
+  </data>
+  <data name="word_Keyboard" xml:space="preserve">
+    <value>Toetsenbord</value>
   </data>
 </root>

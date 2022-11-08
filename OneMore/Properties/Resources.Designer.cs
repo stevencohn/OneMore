@@ -3578,15 +3578,6 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Keyboard.
-        /// </summary>
-        internal static string KeyboardSheet_Text {
-            get {
-                return ResourceManager.GetString("KeyboardSheet.Text", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap Label {
@@ -7936,15 +7927,6 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Keyboard.
-        /// </summary>
-        internal static string SettingsDialog_keyboardNode_Text {
-            get {
-                return ResourceManager.GetString("SettingsDialog_keyboardNode.Text", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Horizontal Lines.
         /// </summary>
         internal static string SettingsDialog_linesNode_Text {
@@ -9582,6 +9564,15 @@ namespace River.OneMoreAddIn.Properties {
         internal static string word_Grayscale {
             get {
                 return ResourceManager.GetString("word_Grayscale", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Keyboard.
+        /// </summary>
+        internal static string word_Keyboard {
+            get {
+                return ResourceManager.GetString("word_Keyboard", resourceCulture);
             }
         }
         

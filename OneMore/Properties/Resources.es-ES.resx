@@ -3339,14 +3339,6 @@ Diferido</value>
     <value>Resetear todo</value>
     <comment>toolstrip button</comment>
   </data>
-  <data name="SettingsDialog_keyboardNode.Text" xml:space="preserve">
-    <value>Teclado</value>
-    <comment>treenode</comment>
-  </data>
-  <data name="KeyboardSheet.Text" xml:space="preserve">
-    <value>Teclado</value>
-    <comment>sheet</comment>
-  </data>
   <data name="ResizeImagesDialog_preserveBox.Text" xml:space="preserve">
     <value>Conservar el tamaño de almacenamiento</value>
     <comment>checkbox</comment>
@@ -4240,5 +4232,8 @@ Fuente de la última columna</value>
   <data name="SnippetsSheet_introLabel.Text" xml:space="preserve">
     <value>Administrar mis fragmentos personalizados</value>
     <comment>label</comment>
+  </data>
+  <data name="word_Keyboard" xml:space="preserve">
+    <value>Teclado</value>
   </data>
 </root>

@@ -1,27 +1,19 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <hints>
-  <hint name="ribTrimButton_Screentip">
-    <source>
-      Trim trailing whitespace from selected text
-    </source>
-    <preferred>
-      Trimmen nachgestellter Leerzeichen aus dem ausgewählten Text
-    </preferred>
-  </hint>
-  <hint name="ReorderDialog_label.Text">
-    <source>
-      Reorder how styles appear in the gallery. Also changes the order of headings in a TOC
-    </source>
-    <preferred>
-      Auswählen, wie Stile in der Galerie angezeigt werden
-    </preferred>
-  </hint>
   <hint name="Emoji_Architecture">
     <source>
       Architecture
     </source>
     <preferred>
       Architektur
+    </preferred>
+  </hint>
+  <hint name="KeyboardSheet_introLabel.Text">
+    <source>
+      Manage my custom keyboard shortcuts. Select a command and press a key sequence.
+    </source>
+    <preferred>
+      Verwalten Sie Ihre benutzerdefinierten Tastenkombinationen. Wählen Sie einen Befehl aus und drücken Sie eine Tastenfolge.
     </preferred>
   </hint>
   <hint name="PluginDialog_okButton.Text">
@@ -32,20 +24,44 @@
       Áusführen
     </preferred>
   </hint>
-  <hint name="TaggedDialog_checkAllLabel.Text">
+  <hint name="PluginsSheet_introLabel.Text">
     <source>
-      Check all pages
+      Manage my plugins
     </source>
     <preferred>
-      Überprüfung aller Seiten
+      Verwalte Plugins
     </preferred>
   </hint>
-  <hint name="TaggedDialog_Title">
+  <hint name="ReorderDialog_label.Text">
     <source>
-      Find Tagged Pages
+      Reorder how styles appear in the gallery. Also changes the order of headings in a TOC
     </source>
     <preferred>
-      Suchen nach markierten Seiten
+      Auswählen, wie Stile in der Galerie angezeigt werden
+    </preferred>
+  </hint>
+  <hint name="ribLinkReferencesButton_Label">
+    <source>
+      Link References to this Page
+    </source>
+    <preferred>
+      Verweise auf diese Seite zuordnen
+    </preferred>
+  </hint>
+  <hint name="ribPasteTextButton_Label">
+    <source>
+      Paste and Keep Text Only
+    </source>
+    <preferred>
+      Einfügen und nur Text behalten
+    </preferred>
+  </hint>
+  <hint name="ribSettingsButton_Label">
+    <source>
+      Settings
+    </source>
+    <preferred>
+      Einstellungen
     </preferred>
   </hint>
   <hint name="ribTaggedButton_Label">
@@ -54,6 +70,14 @@
     </source>
     <preferred>
       Suchen nach markierten Seiten
+    </preferred>
+  </hint>
+  <hint name="ribTrimButton_Screentip">
+    <source>
+      Trim trailing whitespace from selected text
+    </source>
+    <preferred>
+      Trimmen nachgestellter Leerzeichen aus dem ausgewählten Text
     </preferred>
   </hint>
   <hint name="ribTrimLeadingButton_Label">
@@ -72,60 +96,28 @@
       Verwalte Snippets
     </preferred>
   </hint>
-  <hint name="PluginsSheet_introLabel.Text">
+  <hint name="TaggedDialog_checkAllLabel.Text">
     <source>
-      Manage my plugins
+      Check all pages
     </source>
     <preferred>
-      Verwalte Plugins
+      Überprüfung aller Seiten
     </preferred>
   </hint>
-  <hint name="ribSettingsButton_Label">
+  <hint name="TaggedDialog_Title">
     <source>
-      Settings
+      Find Tagged Pages
     </source>
     <preferred>
-      Einstellungen
+      Suchen nach markierten Seiten
     </preferred>
   </hint>
-  <hint name="ribLinkReferencesButton_Label">
-    <source>
-      Link References to this Page
-    </source>
-    <preferred>
-      Verweise auf diese Seite zuordnen
-    </preferred>
-  </hint>
-  <hint name="KeyboardSheet_introLabel.Text">
-    <source>
-      Manage my custom keyboard shortcuts. Select a command and press a key sequence.
-    </source>
-    <preferred>
-      Verwalten Sie Ihre benutzerdefinierten Tastenkombinationen. Wählen Sie einen Befehl aus und drücken Sie eine Tastenfolge.
-    </preferred>
-  </hint>
-  <hint name="SettingsDialog_keyboardNode.Text">
+  <hint name="word_keyboard">
     <source>
       Keyboard
     </source>
     <preferred>
       Tastatur
-    </preferred>
-  </hint>
-  <hint name="KeyboardSheet.Text">
-    <source>
-      Keyboard
-    </source>
-    <preferred>
-      Tastatur
-    </preferred>
-  </hint>
-  <hint name="ribPasteTextButton_Label">
-    <source>
-      Paste and Keep Text Only
-    </source>
-    <preferred>
-      Einfügen und nur Text behalten
     </preferred>
   </hint>
 </hints>

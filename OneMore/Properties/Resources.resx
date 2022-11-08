@@ -2067,10 +2067,6 @@ High</value>
     <value>Commas</value>
     <comment>radio</comment>
   </data>
-  <data name="KeyboardSheet.Text" xml:space="preserve">
-    <value>Keyboard</value>
-    <comment>sheet</comment>
-  </data>
   <data name="KeyboardSheet_resetAllButton.Text" xml:space="preserve">
     <value>Reset all</value>
     <comment>toolstrip button</comment>
@@ -3148,10 +3144,6 @@ High</value>
   <data name="FavoritesSheet_shortcutsBox.Text" xml:space="preserve">
     <value>Include reference to keyboard shortcuts page</value>
     <comment>settings</comment>
-  </data>
-  <data name="SettingsDialog_keyboardNode.Text" xml:space="preserve">
-    <value>Keyboard</value>
-    <comment>treenode</comment>
   </data>
   <data name="UpArrow" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>images\uparrow.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -4334,5 +4326,8 @@ Last Column Font</value>
   <data name="SnippetsSheet_introLabel.Text" xml:space="preserve">
     <value>Manage my custom snippets</value>
     <comment>label</comment>
+  </data>
+  <data name="word_Keyboard" xml:space="preserve">
+    <value>Keyboard</value>
   </data>
 </root>

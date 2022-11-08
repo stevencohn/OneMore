@@ -3331,14 +3331,6 @@ Aufgeschoben</value>
     <value>Alles zurücksetzen</value>
     <comment>toolstrip button</comment>
   </data>
-  <data name="SettingsDialog_keyboardNode.Text" xml:space="preserve">
-    <value>Klaviatur</value>
-    <comment>treenode</comment>
-  </data>
-  <data name="KeyboardSheet.Text" xml:space="preserve">
-    <value>Klaviatur</value>
-    <comment>sheet</comment>
-  </data>
   <data name="ResizeImagesDialog_preserveBox.Text" xml:space="preserve">
     <value>Speichergröße beibehalten</value>
     <comment>checkbox</comment>
@@ -4232,5 +4224,8 @@ Schriftart der letzten Spalte</value>
   <data name="SnippetsSheet_introLabel.Text" xml:space="preserve">
     <value>Meine benutzerdefinierten Snippets verwalten</value>
     <comment>label</comment>
+  </data>
+  <data name="word_Keyboard" xml:space="preserve">
+    <value>Klaviatur</value>
   </data>
 </root>

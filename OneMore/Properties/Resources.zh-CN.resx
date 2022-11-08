@@ -3329,14 +3329,6 @@ OneNote 文件 (*.one)</value>
     <value>重置所有</value>
     <comment>toolstrip button</comment>
   </data>
-  <data name="SettingsDialog_keyboardNode.Text" xml:space="preserve">
-    <value>键盘</value>
-    <comment>treenode</comment>
-  </data>
-  <data name="KeyboardSheet.Text" xml:space="preserve">
-    <value>键盘</value>
-    <comment>sheet</comment>
-  </data>
   <data name="ResizeImagesDialog_preserveBox.Text" xml:space="preserve">
     <value>保留存储大小</value>
     <comment>checkbox</comment>
@@ -4230,5 +4222,8 @@ OneNote 文件 (*.one)</value>
   <data name="SnippetsSheet_introLabel.Text" xml:space="preserve">
     <value>管理我的自定义片段</value>
     <comment>label</comment>
+  </data>
+  <data name="word_Keyboard" xml:space="preserve">
+    <value>键盘</value>
   </data>
 </root>

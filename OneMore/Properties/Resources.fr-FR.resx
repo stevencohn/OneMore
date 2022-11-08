@@ -3333,14 +3333,6 @@ Différé</value>
     <value>Effacer tout</value>
     <comment>toolstrip button</comment>
   </data>
-  <data name="SettingsDialog_keyboardNode.Text" xml:space="preserve">
-    <value>Clavier</value>
-    <comment>treenode</comment>
-  </data>
-  <data name="KeyboardSheet.Text" xml:space="preserve">
-    <value>Clavier</value>
-    <comment>sheet</comment>
-  </data>
   <data name="ResizeImagesDialog_preserveBox.Text" xml:space="preserve">
     <value>Préserver la taille de stockage</value>
     <comment>checkbox</comment>
@@ -4234,5 +4226,8 @@ Police de la dernière colonne</value>
   <data name="SnippetsSheet_introLabel.Text" xml:space="preserve">
     <value>Gérer mes extraits personnalisés</value>
     <comment>label</comment>
+  </data>
+  <data name="word_Keyboard" xml:space="preserve">
+    <value>Clavier</value>
   </data>
 </root>
