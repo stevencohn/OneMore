@@ -2910,10 +2910,6 @@ ISO-code then comma then language name</comment>
     <value>يجب وضع المؤشر على فقرة</value>
     <comment>warning message</comment>
   </data>
-  <data name="RemindDialog.Text" xml:space="preserve">
-    <value>تذكير</value>
-    <comment>dialog title</comment>
-  </data>
   <data name="RemindDialog_dueDateLabel.Text" xml:space="preserve">
     <value>تاريخ الاستحقاق</value>
     <comment>label</comment>
@@ -3015,10 +3011,6 @@ ISO-code then comma then language name</comment>
   <data name="ReminderReport_noReminders" xml:space="preserve">
     <value>لا تذكير للإبلاغ</value>
     <comment>message box</comment>
-  </data>
-  <data name="ReminderReport_ReminderColumn" xml:space="preserve">
-    <value>تذكير</value>
-    <comment>column</comment>
   </data>
   <data name="ReminderReport_Title" xml:space="preserve">
     <value>تقرير ملخص التذكير</value>
@@ -4231,5 +4223,8 @@ ISO-code then comma then language name</comment>
   </data>
   <data name="word_Keyboard" xml:space="preserve">
     <value>لوحة المفاتيح</value>
+  </data>
+  <data name="word_Reminder" xml:space="preserve">
+    <value>تذكير</value>
   </data>
 </root>

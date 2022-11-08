@@ -326,10 +326,6 @@ Odroczony</value>
   <data name="Strikethrough" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>images\strikethrough.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="ReminderReport_ReminderColumn" xml:space="preserve">
-    <value>Przypomnienie</value>
-    <comment>column</comment>
-  </data>
   <data name="ribLowercaseButton_Screentip" xml:space="preserve">
     <value>Konwertuj tekst na małe litery (Ctrl + Shift + U)</value>
     <comment>Ribbon OneMore menu item</comment>
@@ -1323,10 +1319,6 @@ Odsetek</value>
   <data name="SortListCommand_BadContext" xml:space="preserve">
     <value>Przesuń kursor tekstowy do elementu listy</value>
     <comment>message box</comment>
-  </data>
-  <data name="RemindDialog.Text" xml:space="preserve">
-    <value>Przypomnienie</value>
-    <comment>dialog title</comment>
   </data>
   <data name="KeyboardSheet_introLabel.Text" xml:space="preserve">
     <value>Zarządzaj moją niestandardową skrótów klawiaturowych. Wybierz polecenie i naciśnij sekwencję klawiszy.</value>
@@ -4284,5 +4276,8 @@ Czcionka ostatniej kolumny</value>
   </data>
   <data name="word_Keyboard" xml:space="preserve">
     <value>Klawiatura</value>
+  </data>
+  <data name="word_Reminder" xml:space="preserve">
+    <value>Przypomnienie</value>
   </data>
 </root>

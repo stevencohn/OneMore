@@ -2910,10 +2910,6 @@ OneNote-bestand (*.one)</value>
     <value>Cursor moet op een alinea worden geplaatst</value>
     <comment>warning message</comment>
   </data>
-  <data name="RemindDialog.Text" xml:space="preserve">
-    <value>Herinnering</value>
-    <comment>dialog title</comment>
-  </data>
   <data name="RemindDialog_dueDateLabel.Text" xml:space="preserve">
     <value>Opleveringsdatum</value>
     <comment>label</comment>
@@ -3015,10 +3011,6 @@ Verschoven</value>
   <data name="ReminderReport_noReminders" xml:space="preserve">
     <value>Geen herinneringen om te melden</value>
     <comment>message box</comment>
-  </data>
-  <data name="ReminderReport_ReminderColumn" xml:space="preserve">
-    <value>Herinnering</value>
-    <comment>column</comment>
   </data>
   <data name="ReminderReport_Title" xml:space="preserve">
     <value>Samenvatting herinneringsrapport</value>
@@ -4231,5 +4223,8 @@ Lettertype laatste kolom</value>
   </data>
   <data name="word_Keyboard" xml:space="preserve">
     <value>Toetsenbord</value>
+  </data>
+  <data name="word_Reminder" xml:space="preserve">
+    <value>Herinnering</value>
   </data>
 </root>

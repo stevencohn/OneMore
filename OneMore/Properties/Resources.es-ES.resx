@@ -2910,10 +2910,6 @@ Archivo de OneNote (* .one)</value>
     <value>El cursor debe colocarse en un párrafo</value>
     <comment>warning message</comment>
   </data>
-  <data name="RemindDialog.Text" xml:space="preserve">
-    <value>Recordatorio</value>
-    <comment>dialog title</comment>
-  </data>
   <data name="RemindDialog_dueDateLabel.Text" xml:space="preserve">
     <value>Fecha de vencimiento</value>
     <comment>label</comment>
@@ -3015,10 +3011,6 @@ Diferido</value>
   <data name="ReminderReport_noReminders" xml:space="preserve">
     <value>No hay recordatorios para informar</value>
     <comment>message box</comment>
-  </data>
-  <data name="ReminderReport_ReminderColumn" xml:space="preserve">
-    <value>Recordatorio</value>
-    <comment>column</comment>
   </data>
   <data name="ReminderReport_Title" xml:space="preserve">
     <value>Informe de resumen de recordatorio</value>
@@ -4231,5 +4223,8 @@ Fuente de la última columna</value>
   </data>
   <data name="word_Keyboard" xml:space="preserve">
     <value>Teclado</value>
+  </data>
+  <data name="word_Reminder" xml:space="preserve">
+    <value>Recordatorio</value>
   </data>
 </root>

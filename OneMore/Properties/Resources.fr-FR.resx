@@ -2904,10 +2904,6 @@ Fichier OneNote (*.one)</value>
     <value>Le curseur doit être positionné sur un paragraphe</value>
     <comment>warning message</comment>
   </data>
-  <data name="RemindDialog.Text" xml:space="preserve">
-    <value>Rappel</value>
-    <comment>dialog title</comment>
-  </data>
   <data name="RemindDialog_dueDateLabel.Text" xml:space="preserve">
     <value>Date d'échéance</value>
     <comment>label</comment>
@@ -3009,10 +3005,6 @@ Différé</value>
   <data name="ReminderReport_noReminders" xml:space="preserve">
     <value>Aucun rappel à signaler</value>
     <comment>message box</comment>
-  </data>
-  <data name="ReminderReport_ReminderColumn" xml:space="preserve">
-    <value>Rappel</value>
-    <comment>column</comment>
   </data>
   <data name="ReminderReport_Title" xml:space="preserve">
     <value>Rapport récapitulatif de rappel</value>
@@ -4225,5 +4217,8 @@ Police de la dernière colonne</value>
   </data>
   <data name="word_Keyboard" xml:space="preserve">
     <value>Clavier</value>
+  </data>
+  <data name="word_Reminder" xml:space="preserve">
+    <value>Rappel</value>
   </data>
 </root>

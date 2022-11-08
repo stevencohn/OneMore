@@ -331,10 +331,6 @@ Deferred</value>
   <data name="Strikethrough" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>images\strikethrough.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="ReminderReport_ReminderColumn" xml:space="preserve">
-    <value>Reminder</value>
-    <comment>column</comment>
-  </data>
   <data name="ribLowercaseButton_Screentip" xml:space="preserve">
     <value>Convert text to lowercase (Ctrl + Shift + U)</value>
     <comment>Ribbon OneMore menu item</comment>
@@ -1394,10 +1390,6 @@ Percentage</value>
   <data name="SortListCommand_BadContext" xml:space="preserve">
     <value>Move the text cursor to an item of a list</value>
     <comment>message box</comment>
-  </data>
-  <data name="RemindDialog.Text" xml:space="preserve">
-    <value>Reminder</value>
-    <comment>dialog title</comment>
   </data>
   <data name="ribApplyStyle6Button_Label" xml:space="preserve">
     <value>Apply Style 6</value>
@@ -4325,5 +4317,8 @@ Last Column Font</value>
   </data>
   <data name="word_Keyboard" xml:space="preserve">
     <value>Keyboard</value>
+  </data>
+  <data name="word_Reminder" xml:space="preserve">
+    <value>Reminder</value>
   </data>
 </root>

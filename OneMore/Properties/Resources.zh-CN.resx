@@ -2900,10 +2900,6 @@ OneNote 文件 (*.one)</value>
     <value>光标必须位于段落上</value>
     <comment>warning message</comment>
   </data>
-  <data name="RemindDialog.Text" xml:space="preserve">
-    <value>提醒</value>
-    <comment>dialog title</comment>
-  </data>
   <data name="RemindDialog_dueDateLabel.Text" xml:space="preserve">
     <value>到期日</value>
     <comment>label</comment>
@@ -3005,10 +3001,6 @@ OneNote 文件 (*.one)</value>
   <data name="ReminderReport_noReminders" xml:space="preserve">
     <value>没有提醒报告</value>
     <comment>message box</comment>
-  </data>
-  <data name="ReminderReport_ReminderColumn" xml:space="preserve">
-    <value>提醒</value>
-    <comment>column</comment>
   </data>
   <data name="ReminderReport_Title" xml:space="preserve">
     <value>提醒汇总报告</value>
@@ -4221,5 +4213,8 @@ OneNote 文件 (*.one)</value>
   </data>
   <data name="word_Keyboard" xml:space="preserve">
     <value>键盘</value>
+  </data>
+  <data name="word_Reminder" xml:space="preserve">
+    <value>提醒</value>
   </data>
 </root>

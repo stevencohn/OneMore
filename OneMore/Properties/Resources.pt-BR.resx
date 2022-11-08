@@ -2910,10 +2910,6 @@ Arquivo OneNote (* .one)</value>
     <value>O cursor deve ser posicionado em um parágrafo</value>
     <comment>warning message</comment>
   </data>
-  <data name="RemindDialog.Text" xml:space="preserve">
-    <value>Lembrete</value>
-    <comment>dialog title</comment>
-  </data>
   <data name="RemindDialog_dueDateLabel.Text" xml:space="preserve">
     <value>Data de Vencimento</value>
     <comment>label</comment>
@@ -3015,10 +3011,6 @@ Diferido</value>
   <data name="ReminderReport_noReminders" xml:space="preserve">
     <value>Sem lembretes para relatar</value>
     <comment>message box</comment>
-  </data>
-  <data name="ReminderReport_ReminderColumn" xml:space="preserve">
-    <value>Lembrete</value>
-    <comment>column</comment>
   </data>
   <data name="ReminderReport_Title" xml:space="preserve">
     <value>Relatório de Resumo de Lembrete</value>
@@ -4231,5 +4223,8 @@ Fonte da última coluna</value>
   </data>
   <data name="word_Keyboard" xml:space="preserve">
     <value>Teclado</value>
+  </data>
+  <data name="word_Reminder" xml:space="preserve">
+    <value>Lembrete</value>
   </data>
 </root>

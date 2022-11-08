@@ -2902,10 +2902,6 @@ OneNote-Datei (*.one)</value>
     <value>Cursor muss auf einem Absatz positioniert sein</value>
     <comment>warning message</comment>
   </data>
-  <data name="RemindDialog.Text" xml:space="preserve">
-    <value>Erinnerung</value>
-    <comment>dialog title</comment>
-  </data>
   <data name="RemindDialog_dueDateLabel.Text" xml:space="preserve">
     <value>Geburtstermin</value>
     <comment>label</comment>
@@ -3007,10 +3003,6 @@ Aufgeschoben</value>
   <data name="ReminderReport_noReminders" xml:space="preserve">
     <value>Keine Erinnerungen zum Melden</value>
     <comment>message box</comment>
-  </data>
-  <data name="ReminderReport_ReminderColumn" xml:space="preserve">
-    <value>Erinnerung</value>
-    <comment>column</comment>
   </data>
   <data name="ReminderReport_Title" xml:space="preserve">
     <value>Zusammenfassungsbericht zur Erinnerung</value>
@@ -4223,5 +4215,8 @@ Schriftart der letzten Spalte</value>
   </data>
   <data name="word_Keyboard" xml:space="preserve">
     <value>Klaviatur</value>
+  </data>
+  <data name="word_Reminder" xml:space="preserve">
+    <value>Erinnerung</value>
   </data>
 </root>

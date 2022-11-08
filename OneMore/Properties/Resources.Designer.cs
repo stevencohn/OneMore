@@ -4818,15 +4818,6 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Reminder.
-        /// </summary>
-        internal static string RemindDialog_Text {
-            get {
-                return ResourceManager.GetString("RemindDialog.Text", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Task is past its due date of {0}, &quot;{1}&quot;. Click here to navigate to this task.
         /// </summary>
         internal static string Reminder_PastDue {
@@ -4904,15 +4895,6 @@ namespace River.OneMoreAddIn.Properties {
         internal static string ReminderReport_noReminders {
             get {
                 return ResourceManager.GetString("ReminderReport_noReminders", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Reminder.
-        /// </summary>
-        internal static string ReminderReport_ReminderColumn {
-            get {
-                return ResourceManager.GetString("ReminderReport_ReminderColumn", resourceCulture);
             }
         }
         
@@ -9681,6 +9663,15 @@ namespace River.OneMoreAddIn.Properties {
         internal static string word_Refresh {
             get {
                 return ResourceManager.GetString("word_Refresh", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Reminder.
+        /// </summary>
+        internal static string word_Reminder {
+            get {
+                return ResourceManager.GetString("word_Reminder", resourceCulture);
             }
         }
         
