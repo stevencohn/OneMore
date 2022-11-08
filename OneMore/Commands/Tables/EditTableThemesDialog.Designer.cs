@@ -112,6 +112,9 @@ namespace River.OneMoreAddIn.Commands
 			// 
 			// elementsGroup
 			// 
+			this.elementsGroup.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
 			this.elementsGroup.Controls.Add(this.resetButton);
 			this.elementsGroup.Controls.Add(this.elementsBox);
 			this.elementsGroup.Location = new System.Drawing.Point(9, 6);
@@ -136,6 +139,9 @@ namespace River.OneMoreAddIn.Commands
 			// 
 			// elementsBox
 			// 
+			this.elementsBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
 			this.elementsBox.ControlPadding = 2;
 			this.elementsBox.FullRowSelect = true;
 			this.elementsBox.HideSelection = false;
@@ -152,6 +158,7 @@ namespace River.OneMoreAddIn.Commands
 			// 
 			// previewGroup
 			// 
+			this.previewGroup.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.previewGroup.Controls.Add(this.previewBox);
 			this.previewGroup.Location = new System.Drawing.Point(507, 6);
 			this.previewGroup.Name = "previewGroup";
@@ -281,6 +288,7 @@ namespace River.OneMoreAddIn.Commands
 			// 
 			// fontsGroup
 			// 
+			this.fontsGroup.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
 			this.fontsGroup.Controls.Add(this.applyFontButton);
 			this.fontsGroup.Controls.Add(this.familyBox);
 			this.fontsGroup.Controls.Add(this.sizeBox);
@@ -418,6 +426,9 @@ namespace River.OneMoreAddIn.Commands
 			// 
 			// fontElementsGroup
 			// 
+			this.fontElementsGroup.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
 			this.fontElementsGroup.Controls.Add(this.defaultFontButton);
 			this.fontElementsGroup.Controls.Add(this.selectedFontLabel);
 			this.fontElementsGroup.Controls.Add(this.resetFontButton);
@@ -433,6 +444,7 @@ namespace River.OneMoreAddIn.Commands
 			// 
 			// defaultFontButton
 			// 
+			this.defaultFontButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
 			this.defaultFontButton.Location = new System.Drawing.Point(231, 209);
 			this.defaultFontButton.Name = "defaultFontButton";
 			this.defaultFontButton.Size = new System.Drawing.Size(110, 34);
@@ -443,6 +455,7 @@ namespace River.OneMoreAddIn.Commands
 			// 
 			// selectedFontLabel
 			// 
+			this.selectedFontLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
 			this.selectedFontLabel.AutoSize = true;
 			this.selectedFontLabel.Location = new System.Drawing.Point(13, 215);
 			this.selectedFontLabel.Name = "selectedFontLabel";
@@ -452,6 +465,7 @@ namespace River.OneMoreAddIn.Commands
 			// 
 			// resetFontButton
 			// 
+			this.resetFontButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
 			this.resetFontButton.Location = new System.Drawing.Point(115, 208);
 			this.resetFontButton.Name = "resetFontButton";
 			this.resetFontButton.Size = new System.Drawing.Size(110, 34);
@@ -462,7 +476,8 @@ namespace River.OneMoreAddIn.Commands
 			// 
 			// colorFontsBox
 			// 
-			this.colorFontsBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+			this.colorFontsBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.colorFontsBox.ControlPadding = 2;
 			this.colorFontsBox.FullRowSelect = true;
@@ -509,10 +524,9 @@ namespace River.OneMoreAddIn.Commands
 			this.Controls.Add(this.tabs);
 			this.Controls.Add(this.topPanel);
 			this.Controls.Add(this.bottomPanel);
-			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-			this.MaximizeBox = false;
 			this.MinimizeBox = false;
+			this.MinimumSize = new System.Drawing.Size(859, 643);
 			this.Name = "EditTableThemesDialog";
 			this.Padding = new System.Windows.Forms.Padding(20, 20, 10, 10);
 			this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
