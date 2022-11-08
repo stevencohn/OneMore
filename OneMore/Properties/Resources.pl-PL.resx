@@ -209,10 +209,6 @@
     <value>Dostosuj ogólne zachowanie OneMore</value>
     <comment>textbox</comment>
   </data>
-  <data name="ShowXmlDialog_pageTab.Text" xml:space="preserve">
-    <value>Strona</value>
-    <comment>tab</comment>
-  </data>
   <data name="OutlookTaskReport_statuses" xml:space="preserve">
     <value>Nie rozpoczął
 W trakcie
@@ -329,10 +325,6 @@ Odroczony</value>
   </data>
   <data name="Strikethrough" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>images\strikethrough.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="ReminderReport_ReminderColumn" xml:space="preserve">
-    <value>Przypomnienie</value>
-    <comment>column</comment>
   </data>
   <data name="ribLowercaseButton_Screentip" xml:space="preserve">
     <value>Konwertuj tekst na małe litery (Ctrl + Shift + U)</value>
@@ -1328,10 +1320,6 @@ Odsetek</value>
     <value>Przesuń kursor tekstowy do elementu listy</value>
     <comment>message box</comment>
   </data>
-  <data name="RemindDialog.Text" xml:space="preserve">
-    <value>Przypomnienie</value>
-    <comment>dialog title</comment>
-  </data>
   <data name="KeyboardSheet_introLabel.Text" xml:space="preserve">
     <value>Zarządzaj moją niestandardową skrótów klawiaturowych. Wybierz polecenie i naciśnij sekwencję klawiszy.</value>
     <comment>label</comment>
@@ -1739,10 +1727,6 @@ Trzy dni
     <value>Sprawdź wszystkie strony.</value>
     <comment>check all nodes link label</comment>
   </data>
-  <data name="ToggleDttmDialog_scopeGroup.Text" xml:space="preserve">
-    <value>Zakres</value>
-    <comment>group box</comment>
-  </data>
   <data name="Error_SelectImage" xml:space="preserve">
     <value>Wybierz obraz przed wywołaniem tego polecenia</value>
     <comment>error message box</comment>
@@ -1947,10 +1931,6 @@ Wysoki</value>
   <data name="TextToTableDialog_commasRadio.Text" xml:space="preserve">
     <value>Przecinek</value>
     <comment>radio</comment>
-  </data>
-  <data name="KeyboardSheet.Text" xml:space="preserve">
-    <value>Klawiatura</value>
-    <comment>sheet</comment>
   </data>
   <data name="KeyboardSheet_resetAllButton.Text" xml:space="preserve">
     <value>Zresetować wszystko</value>
@@ -2179,10 +2159,6 @@ Notebooki</value>
   <data name="LinkedReferencesCommand_Title" xml:space="preserve">
     <value>Połączone referencje.</value>
     <comment>title text</comment>
-  </data>
-  <data name="SettingsDialog_favoritesNode.Text" xml:space="preserve">
-    <value>Ulubione</value>
-    <comment>settings</comment>
   </data>
   <data name="SortDialog_pinNotesBox.Text" xml:space="preserve">
     <value>Pin notatki na górę i
@@ -2950,16 +2926,8 @@ Wysoki</value>
     <value>Dołącz odwołanie do skrótów klawiaturowych</value>
     <comment>settings</comment>
   </data>
-  <data name="SettingsDialog_keyboardNode.Text" xml:space="preserve">
-    <value>Klawiatura</value>
-    <comment>treenode</comment>
-  </data>
   <data name="UpArrow" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>images\uparrow.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="KeyboardSheet_resetButton.Text" xml:space="preserve">
-    <value>Resetowanie</value>
-    <comment>toolstrip button</comment>
   </data>
   <data name="SearchEngineDialog_urlColumn.HeaderText" xml:space="preserve">
     <value>Wzór adresu URL.</value>
@@ -3511,10 +3479,6 @@ Polaroid</value>
     <value>Zmień nazwę stylu.</value>
     <comment>dialog title</comment>
   </data>
-  <data name="StyleDialog_renameButton.Text" xml:space="preserve">
-    <value>Przemianować</value>
-    <comment>toolstrip button</comment>
-  </data>
   <data name="Error_NoAttachments" xml:space="preserve">
     <value>Nie znaleziono załączników na stronie</value>
   </data>
@@ -3692,10 +3656,6 @@ Wybierz Nie, aby zachować jedną pustą linię między akapitami</value>
   </data>
   <data name="ReportRemindersDialog.Text" xml:space="preserve">
     <value>Zakres raportu</value>
-  </data>
-  <data name="ReportRemindersDialog_groupBox.Text" xml:space="preserve">
-    <value>Zakres</value>
-    <comment>groupbox</comment>
   </data>
   <data name="ReportRemindersDialog_introLabel.Text" xml:space="preserve">
     <value>Wygeneruj raport dla przypomnień w tym zakresie</value>
@@ -4309,5 +4269,15 @@ Czcionka ostatniej kolumny</value>
   </data>
   <data name="word_Close" xml:space="preserve">
     <value>Blisko</value>
+  </data>
+  <data name="SnippetsSheet_introLabel.Text" xml:space="preserve">
+    <value>Zarządzaj moimi niestandardowymi fragmentami</value>
+    <comment>label</comment>
+  </data>
+  <data name="word_Keyboard" xml:space="preserve">
+    <value>Klawiatura</value>
+  </data>
+  <data name="word_Reminder" xml:space="preserve">
+    <value>Przypomnienie</value>
   </data>
 </root>

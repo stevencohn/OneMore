@@ -1875,10 +1875,6 @@ ISO-code then comma then language name</comment>
     <value>Datum und Uhrzeit ausblenden</value>
     <comment>radio button</comment>
   </data>
-  <data name="ToggleDttmDialog_scopeGroup.Text" xml:space="preserve">
-    <value>Umfang</value>
-    <comment>group box</comment>
-  </data>
   <data name="ToggleDttmDialog_showRadio.Text" xml:space="preserve">
     <value>Datum und Uhrzeit anzeigen</value>
     <comment>radio button</comment>
@@ -1938,10 +1934,6 @@ ISO-code then comma then language name</comment>
   <data name="ShowXmlDialog_pagePathLabel.Text" xml:space="preserve">
     <value>Pfad:</value>
     <comment>label</comment>
-  </data>
-  <data name="ShowXmlDialog_pageTab.Text" xml:space="preserve">
-    <value>Seite</value>
-    <comment>tab</comment>
   </data>
   <data name="ShowXmlDialog_selectButton.Text" xml:space="preserve">
     <value>Wählen Sie Alle</value>
@@ -2017,10 +2009,6 @@ ISO-code then comma then language name</comment>
   </data>
   <data name="FavoritesSheet_Text" xml:space="preserve">
     <value>Favoriten verwalten</value>
-    <comment>settings</comment>
-  </data>
-  <data name="SettingsDialog_favoritesNode.Text" xml:space="preserve">
-    <value>Favoriten</value>
     <comment>settings</comment>
   </data>
   <data name="FavoritesSheet_shortcutsBox.Text" xml:space="preserve">
@@ -2914,10 +2902,6 @@ OneNote-Datei (*.one)</value>
     <value>Cursor muss auf einem Absatz positioniert sein</value>
     <comment>warning message</comment>
   </data>
-  <data name="RemindDialog.Text" xml:space="preserve">
-    <value>Erinnerung</value>
-    <comment>dialog title</comment>
-  </data>
   <data name="RemindDialog_dueDateLabel.Text" xml:space="preserve">
     <value>Geburtstermin</value>
     <comment>label</comment>
@@ -3019,10 +3003,6 @@ Aufgeschoben</value>
   <data name="ReminderReport_noReminders" xml:space="preserve">
     <value>Keine Erinnerungen zum Melden</value>
     <comment>message box</comment>
-  </data>
-  <data name="ReminderReport_ReminderColumn" xml:space="preserve">
-    <value>Erinnerung</value>
-    <comment>column</comment>
   </data>
   <data name="ReminderReport_Title" xml:space="preserve">
     <value>Zusammenfassungsbericht zur Erinnerung</value>
@@ -3343,18 +3323,6 @@ Aufgeschoben</value>
     <value>Alles zurücksetzen</value>
     <comment>toolstrip button</comment>
   </data>
-  <data name="KeyboardSheet_resetButton.Text" xml:space="preserve">
-    <value>Zurücksetzen</value>
-    <comment>toolstrip button</comment>
-  </data>
-  <data name="SettingsDialog_keyboardNode.Text" xml:space="preserve">
-    <value>Klaviatur</value>
-    <comment>treenode</comment>
-  </data>
-  <data name="KeyboardSheet.Text" xml:space="preserve">
-    <value>Klaviatur</value>
-    <comment>sheet</comment>
-  </data>
   <data name="ResizeImagesDialog_preserveBox.Text" xml:space="preserve">
     <value>Speichergröße beibehalten</value>
     <comment>checkbox</comment>
@@ -3433,10 +3401,6 @@ Polaroid</value>
   <data name="NameStyleDialog_RenameStyle" xml:space="preserve">
     <value>Umbenennen Stil</value>
     <comment>dialog title</comment>
-  </data>
-  <data name="StyleDialog_renameButton.Text" xml:space="preserve">
-    <value>Umbenennen</value>
-    <comment>toolstrip button</comment>
   </data>
   <data name="Error_NoAttachments" xml:space="preserve">
     <value>Keine Anhänge auf der Seite gefunden</value>
@@ -3631,10 +3595,6 @@ Wählen Sie Nein, um eine leere Zeile zwischen den Absätzen zu halten</value>
   </data>
   <data name="ReportRemindersDialog.Text" xml:space="preserve">
     <value>Berichterstattung</value>
-  </data>
-  <data name="ReportRemindersDialog_groupBox.Text" xml:space="preserve">
-    <value>Zielfernrohr</value>
-    <comment>groupbox</comment>
   </data>
   <data name="ReportRemindersDialog_introLabel.Text" xml:space="preserve">
     <value>Erstellen Sie Bericht für Erinnerungen in diesem Bereich</value>
@@ -4248,5 +4208,15 @@ Schriftart der letzten Spalte</value>
   </data>
   <data name="word_Close" xml:space="preserve">
     <value>Nah dran</value>
+  </data>
+  <data name="SnippetsSheet_introLabel.Text" xml:space="preserve">
+    <value>Meine benutzerdefinierten Snippets verwalten</value>
+    <comment>label</comment>
+  </data>
+  <data name="word_Keyboard" xml:space="preserve">
+    <value>Klaviatur</value>
+  </data>
+  <data name="word_Reminder" xml:space="preserve">
+    <value>Erinnerung</value>
   </data>
 </root>

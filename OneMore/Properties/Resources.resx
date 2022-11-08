@@ -209,10 +209,6 @@
     <value>Customize the overall behavior of OneMore</value>
     <comment>textbox</comment>
   </data>
-  <data name="ShowXmlDialog_pageTab.Text" xml:space="preserve">
-    <value>Page</value>
-    <comment>tab</comment>
-  </data>
   <data name="OutlookTaskReport_statuses" xml:space="preserve">
     <value>Not Started
 In Progress
@@ -334,10 +330,6 @@ Deferred</value>
   </data>
   <data name="Strikethrough" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>images\strikethrough.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="ReminderReport_ReminderColumn" xml:space="preserve">
-    <value>Reminder</value>
-    <comment>column</comment>
   </data>
   <data name="ribLowercaseButton_Screentip" xml:space="preserve">
     <value>Convert text to lowercase (Ctrl + Shift + U)</value>
@@ -1399,10 +1391,6 @@ Percentage</value>
     <value>Move the text cursor to an item of a list</value>
     <comment>message box</comment>
   </data>
-  <data name="RemindDialog.Text" xml:space="preserve">
-    <value>Reminder</value>
-    <comment>dialog title</comment>
-  </data>
   <data name="ribApplyStyle6Button_Label" xml:space="preserve">
     <value>Apply Style 6</value>
     <comment>not a menu, hotkey only</comment>
@@ -1842,10 +1830,6 @@ In this section</value>
     <value>Check all pages</value>
     <comment>check all nodes link label</comment>
   </data>
-  <data name="ToggleDttmDialog_scopeGroup.Text" xml:space="preserve">
-    <value>Scope</value>
-    <comment>group box</comment>
-  </data>
   <data name="Error_SelectImage" xml:space="preserve">
     <value>Select an image before invoking this command</value>
     <comment>error message box</comment>
@@ -2074,10 +2058,6 @@ High</value>
   <data name="TextToTableDialog_commasRadio.Text" xml:space="preserve">
     <value>Commas</value>
     <comment>radio</comment>
-  </data>
-  <data name="KeyboardSheet.Text" xml:space="preserve">
-    <value>Keyboard</value>
-    <comment>sheet</comment>
   </data>
   <data name="KeyboardSheet_resetAllButton.Text" xml:space="preserve">
     <value>Reset all</value>
@@ -2322,10 +2302,6 @@ Notebooks</value>
   <data name="LinkedReferencesCommand_Title" xml:space="preserve">
     <value>Linked References</value>
     <comment>title text</comment>
-  </data>
-  <data name="SettingsDialog_favoritesNode.Text" xml:space="preserve">
-    <value>Favorites</value>
-    <comment>settings</comment>
   </data>
   <data name="SortDialog_pinNotesBox.Text" xml:space="preserve">
     <value>Pin Notes to top and
@@ -3161,16 +3137,8 @@ High</value>
     <value>Include reference to keyboard shortcuts page</value>
     <comment>settings</comment>
   </data>
-  <data name="SettingsDialog_keyboardNode.Text" xml:space="preserve">
-    <value>Keyboard</value>
-    <comment>treenode</comment>
-  </data>
   <data name="UpArrow" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>images\uparrow.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="KeyboardSheet_resetButton.Text" xml:space="preserve">
-    <value>Reset</value>
-    <comment>toolstrip button</comment>
   </data>
   <data name="SearchEngineDialog_urlColumn.HeaderText" xml:space="preserve">
     <value>URL Pattern</value>
@@ -3770,10 +3738,6 @@ Polaroid</value>
     <value>Rename Style</value>
     <comment>dialog title</comment>
   </data>
-  <data name="StyleDialog_renameButton.Text" xml:space="preserve">
-    <value>Rename</value>
-    <comment>toolstrip button</comment>
-  </data>
   <data name="Error_NoAttachments" xml:space="preserve">
     <value>No attachments found on page</value>
   </data>
@@ -3923,10 +3887,6 @@ Select No to keep one empty line between paragraphs</value>
   </data>
   <data name="ReportRemindersDialog.Text" xml:space="preserve">
     <value>Report Scope</value>
-  </data>
-  <data name="ReportRemindersDialog_groupBox.Text" xml:space="preserve">
-    <value>Scope</value>
-    <comment>groupbox</comment>
   </data>
   <data name="ReportRemindersDialog_introLabel.Text" xml:space="preserve">
     <value>Generate report for reminders in this scope</value>
@@ -4350,5 +4310,15 @@ Last Column Font</value>
   </data>
   <data name="word_Close" xml:space="preserve">
     <value>Close</value>
+  </data>
+  <data name="SnippetsSheet_introLabel.Text" xml:space="preserve">
+    <value>Manage my custom snippets</value>
+    <comment>label</comment>
+  </data>
+  <data name="word_Keyboard" xml:space="preserve">
+    <value>Keyboard</value>
+  </data>
+  <data name="word_Reminder" xml:space="preserve">
+    <value>Reminder</value>
   </data>
 </root>

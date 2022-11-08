@@ -1877,10 +1877,6 @@ ISO-code then comma then language name</comment>
     <value>Masquer la date et l'heure</value>
     <comment>radio button</comment>
   </data>
-  <data name="ToggleDttmDialog_scopeGroup.Text" xml:space="preserve">
-    <value>Portée</value>
-    <comment>group box</comment>
-  </data>
   <data name="ToggleDttmDialog_showRadio.Text" xml:space="preserve">
     <value>Afficher la date et l'heure</value>
     <comment>radio button</comment>
@@ -1940,10 +1936,6 @@ ISO-code then comma then language name</comment>
   <data name="ShowXmlDialog_pagePathLabel.Text" xml:space="preserve">
     <value>Chemin:</value>
     <comment>label</comment>
-  </data>
-  <data name="ShowXmlDialog_pageTab.Text" xml:space="preserve">
-    <value>Page</value>
-    <comment>tab</comment>
   </data>
   <data name="ShowXmlDialog_selectButton.Text" xml:space="preserve">
     <value>Tout sélectionner</value>
@@ -2019,10 +2011,6 @@ ISO-code then comma then language name</comment>
   </data>
   <data name="FavoritesSheet_Text" xml:space="preserve">
     <value>Gérer les favoris</value>
-    <comment>settings</comment>
-  </data>
-  <data name="SettingsDialog_favoritesNode.Text" xml:space="preserve">
-    <value>Favoris</value>
     <comment>settings</comment>
   </data>
   <data name="FavoritesSheet_shortcutsBox.Text" xml:space="preserve">
@@ -2916,10 +2904,6 @@ Fichier OneNote (*.one)</value>
     <value>Le curseur doit être positionné sur un paragraphe</value>
     <comment>warning message</comment>
   </data>
-  <data name="RemindDialog.Text" xml:space="preserve">
-    <value>Rappel</value>
-    <comment>dialog title</comment>
-  </data>
   <data name="RemindDialog_dueDateLabel.Text" xml:space="preserve">
     <value>Date d'échéance</value>
     <comment>label</comment>
@@ -3021,10 +3005,6 @@ Différé</value>
   <data name="ReminderReport_noReminders" xml:space="preserve">
     <value>Aucun rappel à signaler</value>
     <comment>message box</comment>
-  </data>
-  <data name="ReminderReport_ReminderColumn" xml:space="preserve">
-    <value>Rappel</value>
-    <comment>column</comment>
   </data>
   <data name="ReminderReport_Title" xml:space="preserve">
     <value>Rapport récapitulatif de rappel</value>
@@ -3345,18 +3325,6 @@ Différé</value>
     <value>Effacer tout</value>
     <comment>toolstrip button</comment>
   </data>
-  <data name="KeyboardSheet_resetButton.Text" xml:space="preserve">
-    <value>Réinitialiser</value>
-    <comment>toolstrip button</comment>
-  </data>
-  <data name="SettingsDialog_keyboardNode.Text" xml:space="preserve">
-    <value>Clavier</value>
-    <comment>treenode</comment>
-  </data>
-  <data name="KeyboardSheet.Text" xml:space="preserve">
-    <value>Clavier</value>
-    <comment>sheet</comment>
-  </data>
   <data name="ResizeImagesDialog_preserveBox.Text" xml:space="preserve">
     <value>Préserver la taille de stockage</value>
     <comment>checkbox</comment>
@@ -3435,10 +3403,6 @@ Polaroïd</value>
   <data name="NameStyleDialog_RenameStyle" xml:space="preserve">
     <value>Renommer Style</value>
     <comment>dialog title</comment>
-  </data>
-  <data name="StyleDialog_renameButton.Text" xml:space="preserve">
-    <value>Renommer</value>
-    <comment>toolstrip button</comment>
   </data>
   <data name="Error_NoAttachments" xml:space="preserve">
     <value>Aucun attachement trouvé à la page</value>
@@ -3633,10 +3597,6 @@ Sélectionnez Non pour conserver une ligne vide entre les paragraphes</value>
   </data>
   <data name="ReportRemindersDialog.Text" xml:space="preserve">
     <value>SPODE SPORT</value>
-  </data>
-  <data name="ReportRemindersDialog_groupBox.Text" xml:space="preserve">
-    <value>Portée</value>
-    <comment>groupbox</comment>
   </data>
   <data name="ReportRemindersDialog_introLabel.Text" xml:space="preserve">
     <value>Générer un rapport pour les rappels dans cette portée</value>
@@ -4250,5 +4210,15 @@ Police de la dernière colonne</value>
   </data>
   <data name="word_Close" xml:space="preserve">
     <value>proche</value>
+  </data>
+  <data name="SnippetsSheet_introLabel.Text" xml:space="preserve">
+    <value>Gérer mes extraits personnalisés</value>
+    <comment>label</comment>
+  </data>
+  <data name="word_Keyboard" xml:space="preserve">
+    <value>Clavier</value>
+  </data>
+  <data name="word_Reminder" xml:space="preserve">
+    <value>Rappel</value>
   </data>
 </root>

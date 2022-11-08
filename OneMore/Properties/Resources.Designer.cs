@@ -3578,24 +3578,6 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Reset.
-        /// </summary>
-        internal static string KeyboardSheet_resetButton_Text {
-            get {
-                return ResourceManager.GetString("KeyboardSheet_resetButton.Text", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Keyboard.
-        /// </summary>
-        internal static string KeyboardSheet_Text {
-            get {
-                return ResourceManager.GetString("KeyboardSheet.Text", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap Label {
@@ -4836,15 +4818,6 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Reminder.
-        /// </summary>
-        internal static string RemindDialog_Text {
-            get {
-                return ResourceManager.GetString("RemindDialog.Text", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Task is past its due date of {0}, &quot;{1}&quot;. Click here to navigate to this task.
         /// </summary>
         internal static string Reminder_PastDue {
@@ -4922,15 +4895,6 @@ namespace River.OneMoreAddIn.Properties {
         internal static string ReminderReport_noReminders {
             get {
                 return ResourceManager.GetString("ReminderReport_noReminders", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Reminder.
-        /// </summary>
-        internal static string ReminderReport_ReminderColumn {
-            get {
-                return ResourceManager.GetString("ReminderReport_ReminderColumn", resourceCulture);
             }
         }
         
@@ -5161,15 +5125,6 @@ namespace River.OneMoreAddIn.Properties {
         internal static string ReorderDialog_Text {
             get {
                 return ResourceManager.GetString("ReorderDialog.Text", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Scope.
-        /// </summary>
-        internal static string ReportRemindersDialog_groupBox_Text {
-            get {
-                return ResourceManager.GetString("ReportRemindersDialog_groupBox.Text", resourceCulture);
             }
         }
         
@@ -7936,15 +7891,6 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Favorites.
-        /// </summary>
-        internal static string SettingsDialog_favoritesNode_Text {
-            get {
-                return ResourceManager.GetString("SettingsDialog_favoritesNode.Text", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to General Options.
         /// </summary>
         internal static string SettingsDialog_generalNode_Text {
@@ -7959,15 +7905,6 @@ namespace River.OneMoreAddIn.Properties {
         internal static string SettingsDialog_highlightNode_Text {
             get {
                 return ResourceManager.GetString("SettingsDialog_highlightNode.Text", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Keyboard.
-        /// </summary>
-        internal static string SettingsDialog_keyboardNode_Text {
-            get {
-                return ResourceManager.GetString("SettingsDialog_keyboardNode.Text", resourceCulture);
             }
         }
         
@@ -8162,15 +8099,6 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Page.
-        /// </summary>
-        internal static string ShowXmlDialog_pageTab_Text {
-            get {
-                return ResourceManager.GetString("ShowXmlDialog_pageTab.Text", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Section.
         /// </summary>
         internal static string ShowXmlDialog_sectionTab_Text {
@@ -8232,6 +8160,15 @@ namespace River.OneMoreAddIn.Properties {
         internal static string SnippetsSheet_ConfirmDelete {
             get {
                 return ResourceManager.GetString("SnippetsSheet_ConfirmDelete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Manage my custom snippets.
+        /// </summary>
+        internal static string SnippetsSheet_introLabel_Text {
+            get {
+                return ResourceManager.GetString("SnippetsSheet_introLabel.Text", resourceCulture);
             }
         }
         
@@ -8719,15 +8656,6 @@ namespace River.OneMoreAddIn.Properties {
         internal static string StyleDialog_okButton_Text {
             get {
                 return ResourceManager.GetString("StyleDialog_okButton.Text", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Rename.
-        /// </summary>
-        internal static string StyleDialog_renameButton_Text {
-            get {
-                return ResourceManager.GetString("StyleDialog_renameButton.Text", resourceCulture);
             }
         }
         
@@ -9221,15 +9149,6 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Scope.
-        /// </summary>
-        internal static string ToggleDttmDialog_scopeGroup_Text {
-            get {
-                return ResourceManager.GetString("ToggleDttmDialog_scopeGroup.Text", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Show date and time.
         /// </summary>
         internal static string ToggleDttmDialog_showRadio_Text {
@@ -9622,6 +9541,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Keyboard.
+        /// </summary>
+        internal static string word_Keyboard {
+            get {
+                return ResourceManager.GetString("word_Keyboard", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Language.
         /// </summary>
         internal static string word_Language {
@@ -9735,6 +9663,15 @@ namespace River.OneMoreAddIn.Properties {
         internal static string word_Refresh {
             get {
                 return ResourceManager.GetString("word_Refresh", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Reminder.
+        /// </summary>
+        internal static string word_Reminder {
+            get {
+                return ResourceManager.GetString("word_Reminder", resourceCulture);
             }
         }
         

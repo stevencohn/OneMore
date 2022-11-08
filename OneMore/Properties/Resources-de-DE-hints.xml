@@ -1,0 +1,123 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<hints>
+  <hint name="Emoji_Architecture">
+    <source>
+      Architecture
+    </source>
+    <preferred>
+      Architektur
+    </preferred>
+  </hint>
+  <hint name="KeyboardSheet_introLabel.Text">
+    <source>
+      Manage my custom keyboard shortcuts. Select a command and press a key sequence.
+    </source>
+    <preferred>
+      Verwalten Sie Ihre benutzerdefinierten Tastenkombinationen. Wählen Sie einen Befehl aus und drücken Sie eine Tastenfolge.
+    </preferred>
+  </hint>
+  <hint name="PluginDialog_okButton.Text">
+    <source>
+      Run
+    </source>
+    <preferred>
+      Áusführen
+    </preferred>
+  </hint>
+  <hint name="PluginsSheet_introLabel.Text">
+    <source>
+      Manage my plugins
+    </source>
+    <preferred>
+      Verwalte Plugins
+    </preferred>
+  </hint>
+  <hint name="ReorderDialog_label.Text">
+    <source>
+      Reorder how styles appear in the gallery. Also changes the order of headings in a TOC
+    </source>
+    <preferred>
+      Auswählen, wie Stile in der Galerie angezeigt werden
+    </preferred>
+  </hint>
+  <hint name="ribLinkReferencesButton_Label">
+    <source>
+      Link References to this Page
+    </source>
+    <preferred>
+      Verweise auf diese Seite zuordnen
+    </preferred>
+  </hint>
+  <hint name="ribPasteTextButton_Label">
+    <source>
+      Paste and Keep Text Only
+    </source>
+    <preferred>
+      Einfügen und nur Text behalten
+    </preferred>
+  </hint>
+  <hint name="ribSettingsButton_Label">
+    <source>
+      Settings
+    </source>
+    <preferred>
+      Einstellungen
+    </preferred>
+  </hint>
+  <hint name="ribTaggedButton_Label">
+    <source>
+      Find Tagged Pages
+    </source>
+    <preferred>
+      Suchen nach markierten Seiten
+    </preferred>
+  </hint>
+  <hint name="ribTrimButton_Screentip">
+    <source>
+      Trim trailing whitespace from selected text
+    </source>
+    <preferred>
+      Trimmen nachgestellter Leerzeichen aus dem ausgewählten Text
+    </preferred>
+  </hint>
+  <hint name="ribTrimLeadingButton_Label">
+    <source>
+      Trim Leading Whitespace
+    </source>
+    <preferred>
+      Trimmen führender Leerzeichen
+    </preferred>
+  </hint>
+  <hint name="SnippetsSheet_Text">
+    <source>
+      Manage My Custom Snippets
+    </source>
+    <preferred>
+      Verwalte Snippets
+    </preferred>
+  </hint>
+  <hint name="TaggedDialog_checkAllLabel.Text">
+    <source>
+      Check all pages
+    </source>
+    <preferred>
+      Überprüfung aller Seiten
+    </preferred>
+  </hint>
+  <hint name="TaggedDialog_Title">
+    <source>
+      Find Tagged Pages
+    </source>
+    <preferred>
+      Suchen nach markierten Seiten
+    </preferred>
+  </hint>
+  <hint name="word_keyboard">
+    <source>
+      Keyboard
+    </source>
+    <preferred>
+      Tastatur
+    </preferred>
+  </hint>
+</hints>

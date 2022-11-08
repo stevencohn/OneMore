@@ -20,7 +20,7 @@ namespace River.OneMoreAddIn.Commands
 				Localize(new string[]
 				{
 					"introLabel",
-					"groupBox",
+					"groupBox=word_Scope",
 					"notebooksRadio",
 					"notebookRadio",
 					"sectionRadio",

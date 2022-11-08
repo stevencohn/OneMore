@@ -21,7 +21,7 @@ namespace River.OneMoreAddIn.Commands
 
 			if (NeedsLocalizing())
 			{
-				Text = Resx.RemindDialog_Text;
+				Text = Resx.word_Reminder;
 
 				Localize(new string[]
 				{

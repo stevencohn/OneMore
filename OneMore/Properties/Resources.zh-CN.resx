@@ -1872,10 +1872,6 @@ ISO-code then comma then language name</comment>
     <value>隐藏日期和时间</value>
     <comment>radio button</comment>
   </data>
-  <data name="ToggleDttmDialog_scopeGroup.Text" xml:space="preserve">
-    <value>范围</value>
-    <comment>group box</comment>
-  </data>
   <data name="ToggleDttmDialog_showRadio.Text" xml:space="preserve">
     <value>显示日期和时间</value>
     <comment>radio button</comment>
@@ -1935,10 +1931,6 @@ ISO-code then comma then language name</comment>
   <data name="ShowXmlDialog_pagePathLabel.Text" xml:space="preserve">
     <value>路径：</value>
     <comment>label</comment>
-  </data>
-  <data name="ShowXmlDialog_pageTab.Text" xml:space="preserve">
-    <value>页</value>
-    <comment>tab</comment>
   </data>
   <data name="ShowXmlDialog_selectButton.Text" xml:space="preserve">
     <value>全选</value>
@@ -2014,10 +2006,6 @@ ISO-code then comma then language name</comment>
   </data>
   <data name="FavoritesSheet_Text" xml:space="preserve">
     <value>管理收藏夹</value>
-    <comment>settings</comment>
-  </data>
-  <data name="SettingsDialog_favoritesNode.Text" xml:space="preserve">
-    <value>收藏夹</value>
     <comment>settings</comment>
   </data>
   <data name="FavoritesSheet_shortcutsBox.Text" xml:space="preserve">
@@ -2912,10 +2900,6 @@ OneNote 文件 (*.one)</value>
     <value>光标必须位于段落上</value>
     <comment>warning message</comment>
   </data>
-  <data name="RemindDialog.Text" xml:space="preserve">
-    <value>提醒</value>
-    <comment>dialog title</comment>
-  </data>
   <data name="RemindDialog_dueDateLabel.Text" xml:space="preserve">
     <value>到期日</value>
     <comment>label</comment>
@@ -3017,10 +3001,6 @@ OneNote 文件 (*.one)</value>
   <data name="ReminderReport_noReminders" xml:space="preserve">
     <value>没有提醒报告</value>
     <comment>message box</comment>
-  </data>
-  <data name="ReminderReport_ReminderColumn" xml:space="preserve">
-    <value>提醒</value>
-    <comment>column</comment>
   </data>
   <data name="ReminderReport_Title" xml:space="preserve">
     <value>提醒汇总报告</value>
@@ -3341,18 +3321,6 @@ OneNote 文件 (*.one)</value>
     <value>重置所有</value>
     <comment>toolstrip button</comment>
   </data>
-  <data name="KeyboardSheet_resetButton.Text" xml:space="preserve">
-    <value>重启</value>
-    <comment>toolstrip button</comment>
-  </data>
-  <data name="SettingsDialog_keyboardNode.Text" xml:space="preserve">
-    <value>键盘</value>
-    <comment>treenode</comment>
-  </data>
-  <data name="KeyboardSheet.Text" xml:space="preserve">
-    <value>键盘</value>
-    <comment>sheet</comment>
-  </data>
   <data name="ResizeImagesDialog_preserveBox.Text" xml:space="preserve">
     <value>保留存储大小</value>
     <comment>checkbox</comment>
@@ -3431,10 +3399,6 @@ OneNote 文件 (*.one)</value>
   <data name="NameStyleDialog_RenameStyle" xml:space="preserve">
     <value>重命名风格</value>
     <comment>dialog title</comment>
-  </data>
-  <data name="StyleDialog_renameButton.Text" xml:space="preserve">
-    <value>改名</value>
-    <comment>toolstrip button</comment>
   </data>
   <data name="Error_NoAttachments" xml:space="preserve">
     <value>页面上没有找到附件</value>
@@ -3629,10 +3593,6 @@ OneNote 文件 (*.one)</value>
   </data>
   <data name="ReportRemindersDialog.Text" xml:space="preserve">
     <value>报告范围</value>
-  </data>
-  <data name="ReportRemindersDialog_groupBox.Text" xml:space="preserve">
-    <value>范围</value>
-    <comment>groupbox</comment>
   </data>
   <data name="ReportRemindersDialog_introLabel.Text" xml:space="preserve">
     <value>在此范围中生成提醒的报告</value>
@@ -4246,5 +4206,15 @@ OneNote 文件 (*.one)</value>
   </data>
   <data name="word_Close" xml:space="preserve">
     <value>关</value>
+  </data>
+  <data name="SnippetsSheet_introLabel.Text" xml:space="preserve">
+    <value>管理我的自定义片段</value>
+    <comment>label</comment>
+  </data>
+  <data name="word_Keyboard" xml:space="preserve">
+    <value>键盘</value>
+  </data>
+  <data name="word_Reminder" xml:space="preserve">
+    <value>提醒</value>
   </data>
 </root>
