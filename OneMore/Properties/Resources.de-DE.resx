@@ -1935,10 +1935,6 @@ ISO-code then comma then language name</comment>
     <value>Pfad:</value>
     <comment>label</comment>
   </data>
-  <data name="ShowXmlDialog_pageTab.Text" xml:space="preserve">
-    <value>Seite</value>
-    <comment>tab</comment>
-  </data>
   <data name="ShowXmlDialog_selectButton.Text" xml:space="preserve">
     <value>Wählen Sie Alle</value>
     <comment>button</comment>

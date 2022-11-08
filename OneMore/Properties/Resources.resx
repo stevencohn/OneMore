@@ -209,10 +209,6 @@
     <value>Customize the overall behavior of OneMore</value>
     <comment>textbox</comment>
   </data>
-  <data name="ShowXmlDialog_pageTab.Text" xml:space="preserve">
-    <value>Page</value>
-    <comment>tab</comment>
-  </data>
   <data name="OutlookTaskReport_statuses" xml:space="preserve">
     <value>Not Started
 In Progress

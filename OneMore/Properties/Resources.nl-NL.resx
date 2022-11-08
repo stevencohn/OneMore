@@ -1943,10 +1943,6 @@ ISO-code then comma then language name</comment>
     <value>Pad:</value>
     <comment>label</comment>
   </data>
-  <data name="ShowXmlDialog_pageTab.Text" xml:space="preserve">
-    <value>Bladzijde</value>
-    <comment>tab</comment>
-  </data>
   <data name="ShowXmlDialog_selectButton.Text" xml:space="preserve">
     <value>Selecteer alles</value>
     <comment>button</comment>

@@ -8135,15 +8135,6 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Page.
-        /// </summary>
-        internal static string ShowXmlDialog_pageTab_Text {
-            get {
-                return ResourceManager.GetString("ShowXmlDialog_pageTab.Text", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Section.
         /// </summary>
         internal static string ShowXmlDialog_sectionTab_Text {

@@ -1938,10 +1938,6 @@ ISO-code then comma then language name</comment>
     <value>مسار:</value>
     <comment>label</comment>
   </data>
-  <data name="ShowXmlDialog_pageTab.Text" xml:space="preserve">
-    <value>الصفحة</value>
-    <comment>tab</comment>
-  </data>
   <data name="ShowXmlDialog_selectButton.Text" xml:space="preserve">
     <value>اختر الكل</value>
     <comment>button</comment>

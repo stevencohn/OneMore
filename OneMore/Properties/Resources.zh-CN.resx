@@ -1932,10 +1932,6 @@ ISO-code then comma then language name</comment>
     <value>路径：</value>
     <comment>label</comment>
   </data>
-  <data name="ShowXmlDialog_pageTab.Text" xml:space="preserve">
-    <value>页</value>
-    <comment>tab</comment>
-  </data>
   <data name="ShowXmlDialog_selectButton.Text" xml:space="preserve">
     <value>全选</value>
     <comment>button</comment>

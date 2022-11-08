@@ -54,7 +54,7 @@ namespace River.OneMoreAddIn.Commands
 					"manualLabel",
 					"hidePidBox",
 					// tabs
-					"pageTab",
+					"pageTab=word_Page",
 					"sectionTab",
 					"notebooksTab",
 					"nbSectionsTab",

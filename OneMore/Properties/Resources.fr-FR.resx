@@ -1937,10 +1937,6 @@ ISO-code then comma then language name</comment>
     <value>Chemin:</value>
     <comment>label</comment>
   </data>
-  <data name="ShowXmlDialog_pageTab.Text" xml:space="preserve">
-    <value>Page</value>
-    <comment>tab</comment>
-  </data>
   <data name="ShowXmlDialog_selectButton.Text" xml:space="preserve">
     <value>Tout sélectionner</value>
     <comment>button</comment>
