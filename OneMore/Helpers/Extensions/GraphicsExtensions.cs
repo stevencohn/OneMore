@@ -1,7 +1,7 @@
 ﻿//************************************************************************************************
 // Copyright © 2022 Waters Corporation. All rights reserved.
 //************************************************************************************************
-
+/*
 namespace River.OneMoreAddIn.Helpers.Extensions
 {
 	using System.Drawing;
@@ -75,3 +75,4 @@ namespace River.OneMoreAddIn.Helpers.Extensions
 		}
 	}
 }
+*/
