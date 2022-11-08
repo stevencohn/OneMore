@@ -7936,15 +7936,6 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Favorites.
-        /// </summary>
-        internal static string SettingsDialog_favoritesNode_Text {
-            get {
-                return ResourceManager.GetString("SettingsDialog_favoritesNode.Text", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to General Options.
         /// </summary>
         internal static string SettingsDialog_generalNode_Text {

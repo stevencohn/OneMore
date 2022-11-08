@@ -2323,10 +2323,6 @@ Notebooks</value>
     <value>Linked References</value>
     <comment>title text</comment>
   </data>
-  <data name="SettingsDialog_favoritesNode.Text" xml:space="preserve">
-    <value>Favorites</value>
-    <comment>settings</comment>
-  </data>
   <data name="SortDialog_pinNotesBox.Text" xml:space="preserve">
     <value>Pin Notes to top and
 Quick Notes to bottom</value>
