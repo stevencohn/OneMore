@@ -4180,8 +4180,8 @@ Totaal rij laatste cel</value>
     <value>Nieuwe stijl</value>
   </data>
   <data name="ribClearTableShadingButton_Label" xml:space="preserve">
-    <value>Alle celarcering wissen</value>
-  </data>
+    <value>Wis alle tafelstyling</value>
+  <comment>ribbon item</comment></data>
   <data name="ribCheckForUpdatesButton_Label" xml:space="preserve">
     <value>Controleren op updates</value>
     <comment>command</comment>

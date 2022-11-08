@@ -5769,7 +5769,7 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Clear All Cell Shading.
+        ///   Looks up a localized string similar to Clear All Table Styling.
         /// </summary>
         internal static string ribClearTableShadingButton_Label {
             get {

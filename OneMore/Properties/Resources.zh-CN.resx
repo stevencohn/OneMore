@@ -4170,8 +4170,8 @@ OneNote 文件 (*.one)</value>
     <value>新风格</value>
   </data>
   <data name="ribClearTableShadingButton_Label" xml:space="preserve">
-    <value>清除所有单元格阴影</value>
-  </data>
+    <value>清除所有表格样式</value>
+  <comment>ribbon item</comment></data>
   <data name="ribCheckForUpdatesButton_Label" xml:space="preserve">
     <value>检查更新</value>
     <comment>command</comment>

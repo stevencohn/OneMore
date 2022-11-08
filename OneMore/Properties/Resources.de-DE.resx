@@ -4172,8 +4172,8 @@ Gesamtzeile Letzte Zelle</value>
     <value>Neuer Stil</value>
   </data>
   <data name="ribClearTableShadingButton_Label" xml:space="preserve">
-    <value>Löschen Sie alle Zellschattierungen</value>
-  </data>
+    <value>Alles löschen Tischgestaltung</value>
+  <comment>ribbon item</comment></data>
   <data name="ribCheckForUpdatesButton_Label" xml:space="preserve">
     <value>Auf Updates prüfen</value>
     <comment>command</comment>

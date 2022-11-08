@@ -4233,8 +4233,8 @@ Pierwsza komórka wiersza razem
     <value>Nowy styl</value>
   </data>
   <data name="ribClearTableShadingButton_Label" xml:space="preserve">
-    <value>Wyczyść wszystkie cieniowanie komórek</value>
-  </data>
+    <value>Wyczyść wszystkie stylizacje stołu</value>
+  <comment>ribbon item</comment></data>
   <data name="ribCheckForUpdatesButton_Label" xml:space="preserve">
     <value>Sprawdź aktualizacje</value>
     <comment>command</comment>
