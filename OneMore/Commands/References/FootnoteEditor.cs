@@ -257,7 +257,7 @@ namespace River.OneMoreAddIn
 				cdata = new XElement("wrapper",
 					new XElement("span",
 						new XAttribute("style", "font-family:'Calibri Light';font-size:11.0pt"),
-						"new footnote "),
+						"< "),
 					cdatalink
 					);
 			}
@@ -266,7 +266,7 @@ namespace River.OneMoreAddIn
 				cdata = new XElement("wrapper", cdatalink,
 					new XElement("span",
 						new XAttribute("style", "font-family:'Calibri Light';font-size:11.0pt"),
-						" new footnote")
+						" >")
 					);
 			}
 
