@@ -4257,4 +4257,8 @@ Lettertype laatste kolom</value>
   <data name="word_Close" xml:space="preserve">
     <value>Dichtbij</value>
   </data>
+  <data name="SnippetsSheet_introLabel.Text" xml:space="preserve">
+    <value>Mijn aangepaste fragmenten beheren</value>
+    <comment>label</comment>
+  </data>
 </root>

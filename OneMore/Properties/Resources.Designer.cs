@@ -8236,6 +8236,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Manage my custom snippets.
+        /// </summary>
+        internal static string SnippetsSheet_introLabel_Text {
+            get {
+                return ResourceManager.GetString("SnippetsSheet_introLabel.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Manage My Custom Snippets.
         /// </summary>
         internal static string SnippetsSheet_Text {

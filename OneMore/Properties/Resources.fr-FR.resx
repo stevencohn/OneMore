@@ -4251,4 +4251,8 @@ Police de la dernière colonne</value>
   <data name="word_Close" xml:space="preserve">
     <value>proche</value>
   </data>
+  <data name="SnippetsSheet_introLabel.Text" xml:space="preserve">
+    <value>Gérer mes extraits personnalisés</value>
+    <comment>label</comment>
+  </data>
 </root>

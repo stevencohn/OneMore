@@ -4249,4 +4249,8 @@ Schriftart der letzten Spalte</value>
   <data name="word_Close" xml:space="preserve">
     <value>Nah dran</value>
   </data>
+  <data name="SnippetsSheet_introLabel.Text" xml:space="preserve">
+    <value>Meine benutzerdefinierten Snippets verwalten</value>
+    <comment>label</comment>
+  </data>
 </root>

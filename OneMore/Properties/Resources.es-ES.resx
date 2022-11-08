@@ -4257,4 +4257,8 @@ Fuente de la última columna</value>
   <data name="word_Close" xml:space="preserve">
     <value>Cerca</value>
   </data>
+  <data name="SnippetsSheet_introLabel.Text" xml:space="preserve">
+    <value>Administrar mis fragmentos personalizados</value>
+    <comment>label</comment>
+  </data>
 </root>

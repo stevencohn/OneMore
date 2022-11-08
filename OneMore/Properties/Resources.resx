@@ -4351,4 +4351,8 @@ Last Column Font</value>
   <data name="word_Close" xml:space="preserve">
     <value>Close</value>
   </data>
+  <data name="SnippetsSheet_introLabel.Text" xml:space="preserve">
+    <value>Manage my custom snippets</value>
+    <comment>label</comment>
+  </data>
 </root>

@@ -4247,4 +4247,8 @@ OneNote 文件 (*.one)</value>
   <data name="word_Close" xml:space="preserve">
     <value>关</value>
   </data>
+  <data name="SnippetsSheet_introLabel.Text" xml:space="preserve">
+    <value>管理我的自定义片段</value>
+    <comment>label</comment>
+  </data>
 </root>

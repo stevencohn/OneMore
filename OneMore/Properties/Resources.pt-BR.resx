@@ -4257,4 +4257,8 @@ Fonte da última coluna</value>
   <data name="word_Close" xml:space="preserve">
     <value>Perto</value>
   </data>
+  <data name="SnippetsSheet_introLabel.Text" xml:space="preserve">
+    <value>Gerenciar meus snippets personalizados</value>
+    <comment>label</comment>
+  </data>
 </root>

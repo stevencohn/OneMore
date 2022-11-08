@@ -4310,4 +4310,8 @@ Czcionka ostatniej kolumny</value>
   <data name="word_Close" xml:space="preserve">
     <value>Blisko</value>
   </data>
+  <data name="SnippetsSheet_introLabel.Text" xml:space="preserve">
+    <value>Zarządzaj moimi niestandardowymi fragmentami</value>
+    <comment>label</comment>
+  </data>
 </root>
