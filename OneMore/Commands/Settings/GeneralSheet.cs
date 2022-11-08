@@ -52,6 +52,9 @@ namespace River.OneMoreAddIn.Settings
 					break;
 				}
 			}
+
+			settings = provider.GetCollection("images");
+			imageViewerBox.Text = settings.Get("viewer", "mspaint");
 		}
 
 
