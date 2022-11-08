@@ -2949,10 +2949,6 @@ Wysoki</value>
   <data name="UpArrow" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>images\uparrow.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="KeyboardSheet_resetButton.Text" xml:space="preserve">
-    <value>Resetowanie</value>
-    <comment>toolstrip button</comment>
-  </data>
   <data name="SearchEngineDialog_urlColumn.HeaderText" xml:space="preserve">
     <value>Wzór adresu URL.</value>
     <comment>url col</comment>

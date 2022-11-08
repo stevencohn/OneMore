@@ -3343,10 +3343,6 @@ Verschoven</value>
     <value>Alles resetten</value>
     <comment>toolstrip button</comment>
   </data>
-  <data name="KeyboardSheet_resetButton.Text" xml:space="preserve">
-    <value>Resetten</value>
-    <comment>toolstrip button</comment>
-  </data>
   <data name="SettingsDialog_keyboardNode.Text" xml:space="preserve">
     <value>Toetsenbord</value>
     <comment>treenode</comment>

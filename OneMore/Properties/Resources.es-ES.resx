@@ -3343,10 +3343,6 @@ Diferido</value>
     <value>Resetear todo</value>
     <comment>toolstrip button</comment>
   </data>
-  <data name="KeyboardSheet_resetButton.Text" xml:space="preserve">
-    <value>Reiniciar</value>
-    <comment>toolstrip button</comment>
-  </data>
   <data name="SettingsDialog_keyboardNode.Text" xml:space="preserve">
     <value>Teclado</value>
     <comment>treenode</comment>

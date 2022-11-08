@@ -3578,15 +3578,6 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Reset.
-        /// </summary>
-        internal static string KeyboardSheet_resetButton_Text {
-            get {
-                return ResourceManager.GetString("KeyboardSheet_resetButton.Text", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Keyboard.
         /// </summary>
         internal static string KeyboardSheet_Text {

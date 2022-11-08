@@ -3337,10 +3337,6 @@ Différé</value>
     <value>Effacer tout</value>
     <comment>toolstrip button</comment>
   </data>
-  <data name="KeyboardSheet_resetButton.Text" xml:space="preserve">
-    <value>Réinitialiser</value>
-    <comment>toolstrip button</comment>
-  </data>
   <data name="SettingsDialog_keyboardNode.Text" xml:space="preserve">
     <value>Clavier</value>
     <comment>treenode</comment>

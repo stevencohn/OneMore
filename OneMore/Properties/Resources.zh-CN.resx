@@ -3333,10 +3333,6 @@ OneNote 文件 (*.one)</value>
     <value>重置所有</value>
     <comment>toolstrip button</comment>
   </data>
-  <data name="KeyboardSheet_resetButton.Text" xml:space="preserve">
-    <value>重启</value>
-    <comment>toolstrip button</comment>
-  </data>
   <data name="SettingsDialog_keyboardNode.Text" xml:space="preserve">
     <value>键盘</value>
     <comment>treenode</comment>

@@ -64,7 +64,7 @@ namespace River.OneMoreAddIn.Settings
 				{
 					"introLabel",
 					"clearButton",
-					"resetButton",
+					"resetButton=word_Reset",
 					"resetAllButton"
 				});
 

@@ -3343,10 +3343,6 @@ ISO-code then comma then language name</comment>
     <value>إعادة ضبط الجميع</value>
     <comment>toolstrip button</comment>
   </data>
-  <data name="KeyboardSheet_resetButton.Text" xml:space="preserve">
-    <value>إعادة ضبط</value>
-    <comment>toolstrip button</comment>
-  </data>
   <data name="SettingsDialog_keyboardNode.Text" xml:space="preserve">
     <value>لوحة المفاتيح</value>
     <comment>treenode</comment>

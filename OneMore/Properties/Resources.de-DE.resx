@@ -3335,10 +3335,6 @@ Aufgeschoben</value>
     <value>Alles zurücksetzen</value>
     <comment>toolstrip button</comment>
   </data>
-  <data name="KeyboardSheet_resetButton.Text" xml:space="preserve">
-    <value>Zurücksetzen</value>
-    <comment>toolstrip button</comment>
-  </data>
   <data name="SettingsDialog_keyboardNode.Text" xml:space="preserve">
     <value>Klaviatur</value>
     <comment>treenode</comment>
