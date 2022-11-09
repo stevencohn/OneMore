@@ -184,7 +184,6 @@ namespace River.OneMoreAddIn.Settings
 				{ "ribBoxButton", "ribInsertBoxButton" },
 				{ "ribCodeBlockButton", "ribInsertCodeBlockButton" },
 				{ "ribInfoBlockButton", "ribInsertInfoBlockButton" },
-				{ "ribInsertInfoBlockButton", "ribInsertWarnBlockButton" },
 				{ "ribExpandButton", "ribInsertExpandButton" },
 				{ "ribGrayStatusButton", "ribInsertGrayStatusButton" },
 				{ "ribRedStatusButton", "ribInsertRedStatusButton" },
