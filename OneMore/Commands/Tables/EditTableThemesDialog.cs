@@ -42,13 +42,14 @@ namespace River.OneMoreAddIn.Commands
 
 		private sealed class Swatch : UserControl
 		{
+			private readonly PictureBox picture;
 			private readonly Image image;
 
 			public Swatch(MoreListView view)
 			{
 				image = new Bitmap((int)(24 * xScaling), (int)(16 * yScaling));
 
-				var picture = new PictureBox
+				picture = new PictureBox
 				{
 					Image = image,
 					Dock = DockStyle.Left,
@@ -120,6 +121,8 @@ namespace River.OneMoreAddIn.Commands
 				using var brush = new SolidBrush(color);
 				g.FillRectangle(brush, bounds);
 				g.DrawRectangle(Pens.DarkGray, new Rectangle(0, 0, bounds.Width, bounds.Height));
+
+				picture.Invalidate();
 			}
 		}
 		#endregion Swatch
