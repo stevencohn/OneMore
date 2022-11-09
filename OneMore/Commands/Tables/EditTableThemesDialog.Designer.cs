@@ -35,8 +35,9 @@ namespace River.OneMoreAddIn.Commands
 			this.combo = new System.Windows.Forms.ComboBox();
 			this.nameLabel = new System.Windows.Forms.Label();
 			this.elementsGroup = new System.Windows.Forms.GroupBox();
-			this.resetButton = new System.Windows.Forms.Button();
 			this.elementsBox = new River.OneMoreAddIn.UI.MoreListView();
+			this.resetButtonPanel = new System.Windows.Forms.Panel();
+			this.resetButton = new System.Windows.Forms.Button();
 			this.previewGroup = new System.Windows.Forms.GroupBox();
 			this.previewBox = new System.Windows.Forms.PictureBox();
 			this.toolstrip = new River.OneMoreAddIn.UI.ScaledToolStrip();
@@ -48,6 +49,7 @@ namespace River.OneMoreAddIn.Commands
 			this.topPanel = new System.Windows.Forms.Panel();
 			this.tabs = new System.Windows.Forms.TabControl();
 			this.colorsTab = new System.Windows.Forms.TabPage();
+			this.previewDockPanel = new System.Windows.Forms.Panel();
 			this.fontsTab = new System.Windows.Forms.TabPage();
 			this.fontsGroup = new System.Windows.Forms.GroupBox();
 			this.applyFontButton = new System.Windows.Forms.Button();
@@ -67,12 +69,14 @@ namespace River.OneMoreAddIn.Commands
 			this.bottomPanel = new System.Windows.Forms.Panel();
 			this.button1 = new System.Windows.Forms.Button();
 			this.elementsGroup.SuspendLayout();
+			this.resetButtonPanel.SuspendLayout();
 			this.previewGroup.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.previewBox)).BeginInit();
 			this.toolstrip.SuspendLayout();
 			this.topPanel.SuspendLayout();
 			this.tabs.SuspendLayout();
 			this.colorsTab.SuspendLayout();
+			this.previewDockPanel.SuspendLayout();
 			this.fontsTab.SuspendLayout();
 			this.fontsGroup.SuspendLayout();
 			this.fontToolstrip.SuspendLayout();
@@ -112,24 +116,48 @@ namespace River.OneMoreAddIn.Commands
 			// 
 			// elementsGroup
 			// 
-			this.elementsGroup.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-			this.elementsGroup.Controls.Add(this.resetButton);
 			this.elementsGroup.Controls.Add(this.elementsBox);
-			this.elementsGroup.Location = new System.Drawing.Point(9, 6);
+			this.elementsGroup.Controls.Add(this.resetButtonPanel);
+			this.elementsGroup.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.elementsGroup.Location = new System.Drawing.Point(3, 3);
 			this.elementsGroup.Name = "elementsGroup";
-			this.elementsGroup.Padding = new System.Windows.Forms.Padding(10, 3, 3, 3);
-			this.elementsGroup.Size = new System.Drawing.Size(492, 449);
+			this.elementsGroup.Padding = new System.Windows.Forms.Padding(10, 7, 7, 7);
+			this.elementsGroup.Size = new System.Drawing.Size(507, 513);
 			this.elementsGroup.TabIndex = 8;
 			this.elementsGroup.TabStop = false;
 			this.elementsGroup.Text = "Table Elements";
+			// 
+			// elementsBox
+			// 
+			this.elementsBox.ControlPadding = 2;
+			this.elementsBox.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.elementsBox.FullRowSelect = true;
+			this.elementsBox.HideSelection = false;
+			this.elementsBox.HighlightBackground = System.Drawing.Color.FromArgb(((int)(((byte)(215)))), ((int)(((byte)(193)))), ((int)(((byte)(255)))));
+			this.elementsBox.HighlightForeground = System.Drawing.SystemColors.HighlightText;
+			this.elementsBox.Location = new System.Drawing.Point(10, 26);
+			this.elementsBox.Name = "elementsBox";
+			this.elementsBox.RowHeight = 28;
+			this.elementsBox.Size = new System.Drawing.Size(490, 431);
+			this.elementsBox.SortedBackground = System.Drawing.SystemColors.Window;
+			this.elementsBox.TabIndex = 0;
+			this.elementsBox.UseCompatibleStateImageBehavior = false;
+			this.elementsBox.View = System.Windows.Forms.View.Details;
+			// 
+			// resetButtonPanel
+			// 
+			this.resetButtonPanel.Controls.Add(this.resetButton);
+			this.resetButtonPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
+			this.resetButtonPanel.Location = new System.Drawing.Point(10, 457);
+			this.resetButtonPanel.Name = "resetButtonPanel";
+			this.resetButtonPanel.Size = new System.Drawing.Size(490, 49);
+			this.resetButtonPanel.TabIndex = 2;
 			// 
 			// resetButton
 			// 
 			this.resetButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
 			this.resetButton.Enabled = false;
-			this.resetButton.Location = new System.Drawing.Point(13, 409);
+			this.resetButton.Location = new System.Drawing.Point(3, 12);
 			this.resetButton.Name = "resetButton";
 			this.resetButton.Size = new System.Drawing.Size(110, 34);
 			this.resetButton.TabIndex = 1;
@@ -137,30 +165,10 @@ namespace River.OneMoreAddIn.Commands
 			this.resetButton.UseVisualStyleBackColor = true;
 			this.resetButton.Click += new System.EventHandler(this.ResetTheme);
 			// 
-			// elementsBox
-			// 
-			this.elementsBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-			this.elementsBox.ControlPadding = 2;
-			this.elementsBox.FullRowSelect = true;
-			this.elementsBox.HideSelection = false;
-			this.elementsBox.HighlightBackground = System.Drawing.Color.FromArgb(((int)(((byte)(215)))), ((int)(((byte)(193)))), ((int)(((byte)(255)))));
-			this.elementsBox.HighlightForeground = System.Drawing.SystemColors.HighlightText;
-			this.elementsBox.Location = new System.Drawing.Point(13, 25);
-			this.elementsBox.Name = "elementsBox";
-			this.elementsBox.RowHeight = 28;
-			this.elementsBox.Size = new System.Drawing.Size(473, 378);
-			this.elementsBox.SortedBackground = System.Drawing.SystemColors.Window;
-			this.elementsBox.TabIndex = 0;
-			this.elementsBox.UseCompatibleStateImageBehavior = false;
-			this.elementsBox.View = System.Windows.Forms.View.Details;
-			// 
 			// previewGroup
 			// 
-			this.previewGroup.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.previewGroup.Controls.Add(this.previewBox);
-			this.previewGroup.Location = new System.Drawing.Point(507, 6);
+			this.previewGroup.Location = new System.Drawing.Point(6, 3);
 			this.previewGroup.Name = "previewGroup";
 			this.previewGroup.Padding = new System.Windows.Forms.Padding(10);
 			this.previewGroup.Size = new System.Drawing.Size(217, 199);
@@ -259,20 +267,29 @@ namespace River.OneMoreAddIn.Commands
 			this.tabs.Location = new System.Drawing.Point(20, 86);
 			this.tabs.Name = "tabs";
 			this.tabs.SelectedIndex = 0;
-			this.tabs.Size = new System.Drawing.Size(829, 494);
+			this.tabs.Size = new System.Drawing.Size(829, 552);
 			this.tabs.TabIndex = 12;
 			// 
 			// colorsTab
 			// 
 			this.colorsTab.Controls.Add(this.elementsGroup);
-			this.colorsTab.Controls.Add(this.previewGroup);
+			this.colorsTab.Controls.Add(this.previewDockPanel);
 			this.colorsTab.Location = new System.Drawing.Point(4, 29);
 			this.colorsTab.Name = "colorsTab";
 			this.colorsTab.Padding = new System.Windows.Forms.Padding(3);
-			this.colorsTab.Size = new System.Drawing.Size(821, 461);
+			this.colorsTab.Size = new System.Drawing.Size(821, 519);
 			this.colorsTab.TabIndex = 0;
 			this.colorsTab.Text = "Colors";
 			this.colorsTab.UseVisualStyleBackColor = true;
+			// 
+			// previewDockPanel
+			// 
+			this.previewDockPanel.Controls.Add(this.previewGroup);
+			this.previewDockPanel.Dock = System.Windows.Forms.DockStyle.Right;
+			this.previewDockPanel.Location = new System.Drawing.Point(510, 3);
+			this.previewDockPanel.Name = "previewDockPanel";
+			this.previewDockPanel.Size = new System.Drawing.Size(308, 513);
+			this.previewDockPanel.TabIndex = 10;
 			// 
 			// fontsTab
 			// 
@@ -281,7 +298,7 @@ namespace River.OneMoreAddIn.Commands
 			this.fontsTab.Location = new System.Drawing.Point(4, 29);
 			this.fontsTab.Name = "fontsTab";
 			this.fontsTab.Padding = new System.Windows.Forms.Padding(3);
-			this.fontsTab.Size = new System.Drawing.Size(821, 461);
+			this.fontsTab.Size = new System.Drawing.Size(821, 519);
 			this.fontsTab.TabIndex = 1;
 			this.fontsTab.Text = "Fonts";
 			this.fontsTab.UseVisualStyleBackColor = true;
@@ -498,7 +515,7 @@ namespace River.OneMoreAddIn.Commands
 			// 
 			this.bottomPanel.Controls.Add(this.cancelButton);
 			this.bottomPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
-			this.bottomPanel.Location = new System.Drawing.Point(20, 580);
+			this.bottomPanel.Location = new System.Drawing.Point(20, 638);
 			this.bottomPanel.Name = "bottomPanel";
 			this.bottomPanel.Padding = new System.Windows.Forms.Padding(6);
 			this.bottomPanel.Size = new System.Drawing.Size(829, 53);
@@ -520,7 +537,7 @@ namespace River.OneMoreAddIn.Commands
 			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.CancelButton = this.cancelButton;
-			this.ClientSize = new System.Drawing.Size(859, 643);
+			this.ClientSize = new System.Drawing.Size(859, 701);
 			this.Controls.Add(this.tabs);
 			this.Controls.Add(this.topPanel);
 			this.Controls.Add(this.bottomPanel);
@@ -533,6 +550,7 @@ namespace River.OneMoreAddIn.Commands
 			this.Text = "Custom Table Styles";
 			this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ConfirmClosing);
 			this.elementsGroup.ResumeLayout(false);
+			this.resetButtonPanel.ResumeLayout(false);
 			this.previewGroup.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.previewBox)).EndInit();
 			this.toolstrip.ResumeLayout(false);
@@ -541,6 +559,7 @@ namespace River.OneMoreAddIn.Commands
 			this.topPanel.PerformLayout();
 			this.tabs.ResumeLayout(false);
 			this.colorsTab.ResumeLayout(false);
+			this.previewDockPanel.ResumeLayout(false);
 			this.fontsTab.ResumeLayout(false);
 			this.fontsGroup.ResumeLayout(false);
 			this.fontsGroup.PerformLayout();
@@ -590,5 +609,7 @@ namespace River.OneMoreAddIn.Commands
 		private System.Windows.Forms.Button applyFontButton;
 		private System.Windows.Forms.Button defaultFontButton;
 		private System.Windows.Forms.Label selectedFontLabel;
+		private System.Windows.Forms.Panel previewDockPanel;
+		private System.Windows.Forms.Panel resetButtonPanel;
 	}
 }
