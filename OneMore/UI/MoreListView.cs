@@ -68,7 +68,6 @@ namespace River.OneMoreAddIn.UI
 		private const string UpGlyph = "△"; // ▲
 		private const string DnGlyph = "▽"; // ▼
 
-		private int rowHeight;
 		private SolidBrush sortedBrush;
 		private SolidBrush highBackBrush;
 		private SolidBrush highForeBrush;
@@ -96,7 +95,8 @@ namespace River.OneMoreAddIn.UI
 				ControlStyles.OptimizedDoubleBuffer |
 				ControlStyles.AllPaintingInWmPaint, true);
 
-			rowHeight = 28;
+			var (_, yScaling) = UIHelper.GetScalingFactors();
+			RowHeight = (int)(Font.Height * yScaling);
 		}
 
 
@@ -132,14 +132,7 @@ namespace River.OneMoreAddIn.UI
 		/// </summary>
 		[Category("Appearance")]
 		[Description("Sets height of rows in Details view, in pixels")]
-		public int RowHeight
-		{
-			get { return rowHeight; }
-			set
-			{
-				rowHeight = value;
-			}
-		}
+		public int RowHeight { get; set; }
 
 
 		/// <summary>
@@ -334,7 +327,7 @@ namespace River.OneMoreAddIn.UI
 			else if (m.Msg == Native.WM_REFLECT + Native.WM_MEASUREITEM)
 			{
 				// overwrite itemHeight, the fifth integer in MeasureItemStruct
-				Marshal.WriteInt32(m.LParam + 4 * sizeof(int), rowHeight);
+				Marshal.WriteInt32(m.LParam + 4 * sizeof(int), RowHeight);
 				m.Result = (IntPtr)1;
 			}
 			// called for each ListViewItem to be drawn

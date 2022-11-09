@@ -20,11 +20,15 @@ namespace River.OneMoreAddIn.Commands
 	{
 		private const int PreviewMargin = 15;
 
+		private static readonly float xScaling;
+		private static readonly float yScaling;
+
 		private readonly TableThemePainter painter;
 		private List<TableTheme> themes;
 		private TableTheme snapshot;
 		private TableTheme.ColorFont colorfont;
 		private bool reorganizing;
+
 
 		#region Swatch
 		private sealed class SwatchClickedEventArgs : EventArgs
@@ -43,7 +47,7 @@ namespace River.OneMoreAddIn.Commands
 
 			public Swatch(MoreListView view)
 			{
-				image = new Bitmap(34, 24);
+				image = new Bitmap((int)(24 * xScaling), (int)(16 * yScaling));
 
 				picture = new PictureBox
 				{
@@ -124,9 +128,16 @@ namespace River.OneMoreAddIn.Commands
 		#endregion Swatch
 
 
+		static EditTableThemesDialog()
+		{
+			(xScaling, yScaling) = UIHelper.GetScalingFactors();
+		}
+
+
 		public EditTableThemesDialog()
 		{
 			InitializeComponent();
+
 			InitializeElementsBox();
 			InitializeFontElementsBox();
 
@@ -166,6 +177,12 @@ namespace River.OneMoreAddIn.Commands
 				previewBox.Height - (PreviewMargin * 2));
 
 			painter = new TableThemePainter(previewBox.Image, bounds, SystemColors.Window);
+
+			// hack to force MoreListView items to layout and repaint
+			colorsTab.Paint += AdjustSizeOnce;
+			colorsTab.Tag = new object();
+			fontsTab.Paint += AdjustSizeOnce;
+			fontsTab.Tag = new object();
 		}
 
 
@@ -209,13 +226,17 @@ namespace River.OneMoreAddIn.Commands
 		{
 			elementsBox.StateImageList = new ImageList
 			{
-				ImageSize = new Size(1, (int)(18 * 1.44))
+				ImageSize = new Size(1, (int)(16 * yScaling))
 			};
 
 			elementsBox.HighlightBackground = Color.Transparent;
 			elementsBox.HighlightForeground = SystemColors.ControlText;
-			elementsBox.Columns.Add(new MoreColumnHeader(Resx.word_Element, 250) { AutoSizeItems = true });
-			elementsBox.Columns.Add(new MoreColumnHeader(Resx.word_Color, 150));
+
+			var width = (int)(elementsBox.Width * 0.6);
+			elementsBox.Columns.Add(new MoreColumnHeader(Resx.word_Element, width) { AutoSizeItems = true });
+
+			width = (int)(elementsBox.Width * 0.35);
+			elementsBox.Columns.Add(new MoreColumnHeader(Resx.word_Color, width));
 
 			var names = Regex.Split(Resx.EditTableThemesDialog_elements, @"\r\n|\r|\n");
 			foreach (var name in names)
@@ -233,11 +254,14 @@ namespace River.OneMoreAddIn.Commands
 		{
 			colorFontsBox.StateImageList = new ImageList
 			{
-				ImageSize = new Size(1, (int)(18 * 1.44))
+				ImageSize = new Size(1, (int)(16 * yScaling))
 			};
 
-			colorFontsBox.Columns.Add(new MoreColumnHeader(Resx.word_Element, 250) { AutoSizeItems = true });
-			colorFontsBox.Columns.Add(new MoreColumnHeader(Resx.word_Font, 430));
+			var width = (int)(colorFontsBox.Width * 0.35);
+			colorFontsBox.Columns.Add(new MoreColumnHeader(Resx.word_Element, width) { AutoSizeItems = true });
+
+			width = (int)(colorFontsBox.Width * 0.55);
+			colorFontsBox.Columns.Add(new MoreColumnHeader(Resx.word_Font, width));
 
 			var names = Regex.Split(Resx.EditTableThemesDialog_fontElements, @"\r\n|\r|\n");
 			foreach (var name in names)
@@ -250,6 +274,21 @@ namespace River.OneMoreAddIn.Commands
 				};
 				link.LinkClicked += ChangeElementFont;
 				item.AddHostedSubItem(link);
+			}
+		}
+
+
+		private void AdjustSizeOnce(object sender, PaintEventArgs e)
+		{
+			// playing tricks here with the Tag property, using it as a flag that something
+			// needs to be done and done exactly once for each of the two tab pages...
+
+			if (sender is TabPage page && page.Tag != null)
+			{
+				// by forcing the dialog to resize just one pixel, it will force the incoming
+				// MoreListView to recalculate its layout and redraw itself
+				Size = new Size(Size.Width + 1, Size.Height + 1);
+				page.Tag = null;
 			}
 		}
 
