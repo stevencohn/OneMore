@@ -353,20 +353,18 @@ namespace River.OneMoreAddIn.Commands
 		{
 			var data = element.Element(ns + "Data");
 			var binhex = Convert.FromBase64String(data.Value);
-			using (var stream = new MemoryStream(binhex, 0, binhex.Length))
-			{
-				using (var image = Image.FromStream(stream))
-				{
-					var prefix = page.Title.Replace(" ", string.Empty);
-					var name = $"{prefix}_{++imageCounter}.png";
-					var filename = Path.Combine(path, name);
+
+			using var stream = new MemoryStream(binhex, 0, binhex.Length);
+			using var image = Image.FromStream(stream);
+
+			var prefix = page.Title.Replace(" ", string.Empty);
+			var name = $"{prefix}_{++imageCounter}.png";
+			var filename = Path.Combine(path, name);
 #if !LOG
-					image.Save(filename, ImageFormat.Png);
+			image.Save(filename, ImageFormat.Png);
 #endif
 
-					writer.Write($"![Image-{imageCounter}]({name})");
-				}
-			}
+			writer.Write($"![Image-{imageCounter}]({name})");
 		}
 
 

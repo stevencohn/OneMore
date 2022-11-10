@@ -155,36 +155,32 @@ namespace River.OneMoreAddIn.Commands
 		{
 			progress.SetMessage($"Importing {filepath}...");
 
-			using (var word = new Word())
+			using var word = new Word();
+			var html = word.ConvertFileToHtml(filepath);
+
+			if (token.IsCancellationRequested)
 			{
-				var html = word.ConvertFileToHtml(filepath);
+				logger.WriteLine("WordImporter cancelled");
+				return;
+			}
 
-				if (token.IsCancellationRequested)
+			if (append)
+			{
+				using var one = new OneNote(out var page, out _);
+				page.AddHtmlContent(html);
+				await one.Update(page);
+			}
+			else
+			{
+				using (var one = new OneNote())
 				{
-					logger.WriteLine("WordImporter cancelled");
-					return;
-				}
+					one.CreatePage(one.CurrentSectionId, out var pageId);
+					var page = one.GetPage(pageId);
 
-				if (append)
-				{
-					using (var one = new OneNote(out var page, out _))
-					{
-						page.AddHtmlContent(html);
-						await one.Update(page);
-					}
-				}
-				else
-				{
-					using (var one = new OneNote())
-					{
-						one.CreatePage(one.CurrentSectionId, out var pageId);
-						var page = one.GetPage(pageId);
-
-						page.Title = Path.GetFileName(filepath);
-						page.AddHtmlContent(html);
-						await one.Update(page);
-						await one.NavigateTo(page.PageId);
-					}
+					page.Title = Path.GetFileName(filepath);
+					page.AddHtmlContent(html);
+					await one.Update(page);
+					await one.NavigateTo(page.PageId);
 				}
 			}
 		}
