@@ -17,7 +17,7 @@ namespace River.OneMoreAddIn.Commands
 
 	internal partial class RemoveDuplicatesNavigator : UI.LocalizableForm
 	{
-		private OneNote one;
+		private readonly OneNote one;
 
 		public RemoveDuplicatesNavigator()
 			: base()

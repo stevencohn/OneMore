@@ -21,52 +21,46 @@ namespace River.OneMoreAddIn.Commands
 
 		public override async Task Execute(params object[] args)
 		{
-			using (var dialog = new ToggleDttmDialog())
+			using var dialog = new ToggleDttmDialog();
+			if (dialog.ShowDialog() == DialogResult.OK)
 			{
-				if (dialog.ShowDialog() == DialogResult.OK)
-				{
-					await Toggle(dialog.PageOnly, dialog.ShowTimestamps);
-				}
+				await Toggle(dialog.PageOnly, dialog.ShowTimestamps);
 			}
 		}
 
 
 		private async Task Toggle(bool pageOnly, bool showTimestamps)
 		{
-			using (var one = new OneNote())
+			using var one = new OneNote();
+			if (pageOnly)
 			{
-				if (pageOnly)
+				var page = one.GetPage();
+				await SetTimestampVisibility(one, page, showTimestamps);
+			}
+			else
+			{
+				var section = one.GetSection();
+				if (section != null)
 				{
-					var page = one.GetPage();
-					await SetTimestampVisibility(one, page, showTimestamps);
-				}
-				else
-				{
-					var section = one.GetSection();
-					if (section != null)
+					var ns = one.GetNamespace(section);
+
+					var pageIds = section.Elements(ns + "Page")
+						.Select(e => e.Attribute("ID").Value)
+						.ToList();
+
+					using var progress = new UI.ProgressDialog();
+					progress.SetMaximum(pageIds.Count);
+					progress.Show();
+
+					foreach (var pageId in pageIds)
 					{
-						var ns = one.GetNamespace(section);
+						var page = one.GetPage(pageId, OneNote.PageDetail.Basic);
+						var name = page.Root.Attribute("name").Value;
 
-						var pageIds = section.Elements(ns + "Page")
-							.Select(e => e.Attribute("ID").Value)
-							.ToList();
+						progress.SetMessage(name);
+						progress.Increment();
 
-						using (var progress = new UI.ProgressDialog())
-						{
-							progress.SetMaximum(pageIds.Count);
-							progress.Show();
-
-							foreach (var pageId in pageIds)
-							{
-								var page = one.GetPage(pageId, OneNote.PageDetail.Basic);
-								var name = page.Root.Attribute("name").Value;
-
-								progress.SetMessage(name);
-								progress.Increment();
-
-								await SetTimestampVisibility(one, page, showTimestamps);
-							}
-						}
+						await SetTimestampVisibility(one, page, showTimestamps);
 					}
 				}
 			}
