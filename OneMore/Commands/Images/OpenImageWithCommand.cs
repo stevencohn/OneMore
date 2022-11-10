@@ -2,9 +2,6 @@
 // Copyright © 2022 Steven M Cohn.  All rights reserved.
 //************************************************************************************************
 
-using System.Drawing;
-using System.Drawing.Text;
-
 namespace River.OneMoreAddIn.Commands
 {
 	using River.OneMoreAddIn.Settings;
@@ -89,13 +86,13 @@ namespace River.OneMoreAddIn.Commands
 
 			var detector = new ImageDetector();
 			var signature = detector.GetSignature(stream);
-			switch (signature)
-			{
-				case ImageSignature.JPG: return ImageFormat.Jpeg;
-				case ImageSignature.PNG: return ImageFormat.Png;
-			}
 
-			return ImageFormat.Bmp;
+			return signature switch
+			{
+				ImageSignature.JPG => ImageFormat.Jpeg,
+				ImageSignature.PNG => ImageFormat.Png,
+				_ => ImageFormat.Bmp,
+			};
 		}
-}
+	}
 }

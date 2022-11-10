@@ -220,45 +220,45 @@ namespace River.OneMoreAddIn.Commands
 
 			if (qualBar.Value < 100)
 			{
-				using (var p = adjusted)
-					adjusted = p.SetQuality(qualBar.Value);
+				using var p = adjusted;
+				adjusted = p.SetQuality(qualBar.Value);
 			}
 
 			if (brightnessBox.Value != 0 || contrastBox.Value != 0)
 			{
-				using (var p = adjusted)
-					adjusted = p.SetBrightnessContrast(
-						(float)brightnessBox.Value / 100f,
-						(float)contrastBox.Value / 100f);
+				using var p = adjusted;
+				adjusted = p.SetBrightnessContrast(
+					(float)brightnessBox.Value / 100f,
+					(float)contrastBox.Value / 100f);
 			}
 
 			if (saturationBox.Value != 0)
 			{
-				using (var p = adjusted)
-					adjusted = p.SetSaturation((float)saturationBox.Value / 100f);
+				using var p = adjusted;
+				adjusted = p.SetSaturation((float)saturationBox.Value / 100f);
 			}
 
 			if (styleBox.SelectedIndex == 1)
 			{
-				using (var p = adjusted)
-					adjusted = p.ToGrayscale();
+				using var p = adjusted;
+				adjusted = p.ToGrayscale();
 			}
 			else if (styleBox.SelectedIndex == 2)
 			{
-				using (var p = adjusted)
-					adjusted = p.ToSepia();
+				using var p = adjusted;
+				adjusted = p.ToSepia();
 			}
 			else if (styleBox.SelectedIndex == 3)
 			{
-				using (var p = adjusted)
-					adjusted = p.ToPolaroid();
+				using var p = adjusted;
+				adjusted = p.ToPolaroid();
 			}
 
 			// opacity must be set last
 			if (opacityBox.Value < 100)
 			{
-				using (var p = adjusted)
-					adjusted = p.SetOpacity((float)(opacityBox.Value / 100));
+				using var p = adjusted;
+				adjusted = p.SetOpacity((float)(opacityBox.Value / 100));
 			}
 
 			return adjusted;

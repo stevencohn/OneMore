@@ -70,18 +70,16 @@ namespace River.OneMoreAddIn.Commands
 				return;
 			}
 
-			using (var one = new OneNote(out var page, out _))
+			using var one = new OneNote(out var page, out _);
+			if (result == DialogResult.Yes)
 			{
-				if (result == DialogResult.Yes)
-				{
-					// ensure page contains the definition of the Citation style
-					citation = page.GetQuickStyle(Styles.StandardStyles.Citation);
-				}
+				// ensure page contains the definition of the Citation style
+				citation = page.GetQuickStyle(Styles.StandardStyles.Citation);
+			}
 
-				if (GetImages(page))
-				{
-					await one.Update(page);
-				}
+			if (GetImages(page))
+			{
+				await one.Update(page);
 			}
 		}
 
@@ -262,29 +260,23 @@ namespace River.OneMoreAddIn.Commands
 
 			try
 			{
-				using (var source = new CancellationTokenSource(TimeSpan.FromSeconds(10)))
+				using var source = new CancellationTokenSource(TimeSpan.FromSeconds(10));
+				using var response = await client.GetAsync(new Uri(url, UriKind.Absolute), source.Token);
+				if (response.IsSuccessStatusCode)
 				{
-					using (var response = await client.GetAsync(new Uri(url, UriKind.Absolute), source.Token))
-					{
-						if (response.IsSuccessStatusCode)
-						{
-							using (var stream = new MemoryStream())
-							{
-								await response.Content.CopyToAsync(stream);
+					using var stream = new MemoryStream();
+					await response.Content.CopyToAsync(stream);
 
-								var detector = new ImageDetector();
-								if (detector.GetSignature(stream) != ImageSignature.Unknown)
-								{
-									try
-									{
-										return new Bitmap(Image.FromStream(stream));
-									}
-									catch
-									{
-										logger.WriteLine($"{url} does not appear to be an image");
-									}
-								}
-							}
+					var detector = new ImageDetector();
+					if (detector.GetSignature(stream) != ImageSignature.Unknown)
+					{
+						try
+						{
+							return new Bitmap(Image.FromStream(stream));
+						}
+						catch
+						{
+							logger.WriteLine($"{url} does not appear to be an image");
 						}
 					}
 				}

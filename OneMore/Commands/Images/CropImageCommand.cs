@@ -60,28 +60,27 @@ namespace River.OneMoreAddIn.Commands
 		{
 			var data = element.Element(ns + "Data");
 			var binhex = Convert.FromBase64String(data.Value);
-			using (var stream = new MemoryStream(binhex, 0, binhex.Length))
+
+			using var stream = new MemoryStream(binhex, 0, binhex.Length);
+			using var image = Image.FromStream(stream);
+	
+			var size = element.Element(ns + "Size");
+			size.GetAttributeValue("width", out float width, image.Width);
+			size.GetAttributeValue("height", out float height, image.Height);
+
+			var scales = new SizeF(width / image.Width, height / image.Height);
+
+			using var dialog = new CropImageDialog(image);
+			var result = dialog.ShowDialog();
+			if (result == DialogResult.OK)
 			{
-				using (var image = Image.FromStream(stream))
-				{
-					var size = element.Element(ns + "Size");
-					size.GetAttributeValue("width", out float width, image.Width);
-					size.GetAttributeValue("height", out float height, image.Height);
+				var bytes = (byte[])new ImageConverter()
+					.ConvertTo(dialog.Image, typeof(byte[]));
 
-					var scales = new SizeF(width / image.Width, height / image.Height);
+				data.Value = Convert.ToBase64String(bytes);
 
-					using (var dialog = new CropImageDialog(image))
-					{
-						var result = dialog.ShowDialog();
-						if (result == DialogResult.OK)
-						{
-							var bytes = (byte[])new ImageConverter()
-								.ConvertTo(dialog.Image, typeof(byte[]));
-
-							data.Value = Convert.ToBase64String(bytes);
-
-							var setWidth = (int)Math.Round(dialog.Image.Width * scales.Width);
-							var setHeight = (int)Math.Round(dialog.Image.Height * scales.Height);
+				var setWidth = (int)Math.Round(dialog.Image.Width * scales.Width);
+				var setHeight = (int)Math.Round(dialog.Image.Height * scales.Height);
 #if Logging
 							logger.WriteLine(
 								$"DONE crop:{dialog.Image.Width}x{dialog.Image.Height} " +
@@ -89,23 +88,20 @@ namespace River.OneMoreAddIn.Commands
 								$"oldsize:{width}x{height} setsiz:{setWidth}x{setHeight}"
 								);
 #endif
-							size.SetAttributeValue("width", $"{setWidth:0.0}");
-							size.SetAttributeValue("height", $"{setHeight:0.0}");
-							size.SetAttributeValue("isSetByUser", "true");
+				size.SetAttributeValue("width", $"{setWidth:0.0}");
+				size.SetAttributeValue("height", $"{setHeight:0.0}");
+				size.SetAttributeValue("isSetByUser", "true");
 
-							// when a document is printed to OneNote as a series of page images,
-							// such as a PDF, then each image is added a top-level elements and
-							// marked with XPS attributes. These attributes must be removed or
-							// OneNote will prevent proper cropping
+				// when a document is printed to OneNote as a series of page images,
+				// such as a PDF, then each image is added a top-level elements and
+				// marked with XPS attributes. These attributes must be removed or
+				// OneNote will prevent proper cropping
 
-							element.Attributes("xpsFileIndex").Remove();
-							element.Attributes("originalPageNumber").Remove();
-							element.Attributes("isPrintOut").Remove();
+				element.Attributes("xpsFileIndex").Remove();
+				element.Attributes("originalPageNumber").Remove();
+				element.Attributes("isPrintOut").Remove();
 
-							await one.Update(page);
-						}
-					}
-				}
+				await one.Update(page);
 			}
 		}
 	}
