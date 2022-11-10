@@ -56,13 +56,13 @@ namespace River.OneMoreAddIn.Commands
 		{
 			get
 			{
-				switch (scopeBox.SelectedIndex)
+				return scopeBox.SelectedIndex switch
 				{
-					case 0: return OneNote.Scope.Children;
-					case 1: return OneNote.Scope.Pages;
-					case 2: return OneNote.Scope.Sections;
-					default: return OneNote.Scope.Notebooks;
-				}
+					0 => OneNote.Scope.Children,
+					1 => OneNote.Scope.Pages,
+					2 => OneNote.Scope.Sections,
+					_ => OneNote.Scope.Notebooks,
+				};
 			}
 		}
 

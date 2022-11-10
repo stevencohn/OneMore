@@ -31,63 +31,61 @@ namespace River.OneMoreAddIn.Commands
 				95  // Discuss with manager
 			};
 
-			using (var one = new OneNote(out var page, out var ns))
+			using var one = new OneNote(out var page, out var ns);
+			var indexes =
+				page.Root.Elements(ns + "TagDef")
+				.Where(e => symbols.Contains(int.Parse(e.Attribute("symbol").Value)))
+				.Select(e => e.Attribute("index").Value)
+				.ToList();
+
+			if (indexes.Count == 0)
 			{
-				var indexes =
-					page.Root.Elements(ns + "TagDef")
-					.Where(e => symbols.Contains(int.Parse(e.Attribute("symbol").Value)))
-					.Select(e => e.Attribute("index").Value)
-					.ToList();
+				return;
+			}
 
-				if (indexes.Count == 0)
+			var elements = page.Root.Descendants(ns + "Tag")
+				.Where(e => indexes.Contains(e.Attribute("index").Value));
+
+			if (elements == null || !elements.Any())
+			{
+				return;
+			}
+
+			var modified = false;
+
+			foreach (var element in elements)
+			{
+				var completed = element.Attribute("completed")?.Value == "true";
+
+				var cdatas =
+					from e in element.NodesAfterSelf().OfType<XElement>()
+					where e.Name.LocalName == "T"
+					let c = e.Nodes().OfType<XCData>().FirstOrDefault()
+					where c != null
+					select c;
+
+				foreach (var cdata in cdatas)
 				{
-					return;
-				}
-
-				var elements = page.Root.Descendants(ns + "Tag")
-					.Where(e => indexes.Contains(e.Attribute("index").Value));
-
-				if (elements == null || !elements.Any())
-				{
-					return;
-				}
-
-				var modified = false;
-
-				foreach (var element in elements)
-				{
-					var completed = element.Attribute("completed")?.Value == "true";
-
-					var cdatas =
-						from e in element.NodesAfterSelf().OfType<XElement>()
-						where e.Name.LocalName == "T"
-						let c = e.Nodes().OfType<XCData>().FirstOrDefault()
-						where c != null
-						select c;
-
-					foreach (var cdata in cdatas)
+					if (!string.IsNullOrEmpty(cdata.Value))
 					{
-						if (!string.IsNullOrEmpty(cdata.Value))
-						{
-							modified |= RestyleText(cdata, completed);
-						}
+						modified |= RestyleText(cdata, completed);
 					}
-
-					//var disabled = element.Attribute("disabled");
-					//if (completed && (disabled == null || disabled.Value != "true"))
-					//{
-					//	element.SetAttributeValue("disabled", "true");
-					//}
-					//else if (!completed && (disabled != null || disabled.Value == "true"))
-					//{
-					//	disabled.Remove();
-					//}
 				}
 
-				if (modified)
-				{
-					await one.Update(page);
-				}
+				//var disabled = element.Attribute("disabled");
+				//if (completed && (disabled == null || disabled.Value != "true"))
+				//{
+				//	element.SetAttributeValue("disabled", "true");
+				//}
+				//else if (!completed && (disabled != null || disabled.Value == "true"))
+				//{
+				//	disabled.Remove();
+				//}
+			}
+
+			if (modified)
+			{
+				await one.Update(page);
 			}
 		}
 
