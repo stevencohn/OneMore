@@ -43,7 +43,7 @@ namespace River.OneMoreAddIn.Commands
 				return;
 			}
 
-			if (!(cursor.Parent.FirstNode is XElement first) ||
+			if (cursor.Parent.FirstNode is not XElement first ||
 				first.Name.LocalName != "List")
 			{
 				UIHelper.ShowMessage(Resx.SortListCommand_BadContext);

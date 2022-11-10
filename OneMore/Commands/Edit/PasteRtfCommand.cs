@@ -199,16 +199,12 @@ namespace River.OneMoreAddIn.Commands
 			}
 
 			// read Xaml from rich text box
-			using (var stream = new MemoryStream())
-			{
-				range = new TextRange(box.Document.ContentStart, box.Document.ContentEnd);
-				range.Save(stream, DataFormats.Xaml);
-				stream.Seek(0, SeekOrigin.Begin);
-				using (var reader = new StreamReader(stream))
-				{
-					return reader.ReadToEnd();
-				}
-			}
+			using var stream = new MemoryStream();
+			range = new TextRange(box.Document.ContentStart, box.Document.ContentEnd);
+			range.Save(stream, DataFormats.Xaml);
+			stream.Seek(0, SeekOrigin.Begin);
+			using var reader = new StreamReader(stream);
+			return reader.ReadToEnd();
 		}
 
 
@@ -231,19 +227,17 @@ namespace River.OneMoreAddIn.Commands
 				while (outer.Read() && outer.NodeType != XmlNodeType.Element) { /**/ }
 				if (!outer.EOF)
 				{
-					using (var writer = new XmlTextWriter(new StringWriter(builder)))
+					using var writer = new XmlTextWriter(new StringWriter(builder));
+					// prepare proper HTML clipboard skeleton
+
+					writer.WriteComment("StartFragment");
+
+					using (var reader = outer.ReadSubtree())
 					{
-						// prepare proper HTML clipboard skeleton
-
-						writer.WriteComment("StartFragment");
-
-						using (var reader = outer.ReadSubtree())
-						{
-							ConvertXaml(reader, writer);
-						}
-
-						writer.WriteComment("EndFragment");
+						ConvertXaml(reader, writer);
 					}
+
+					writer.WriteComment("EndFragment");
 				}
 			}
 			builder.AppendLine();

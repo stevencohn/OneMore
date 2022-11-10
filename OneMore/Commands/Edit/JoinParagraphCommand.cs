@@ -27,24 +27,22 @@ namespace River.OneMoreAddIn.Commands
 
 		public override async Task Execute(params object[] args)
 		{
-			using (var one = new OneNote(out var page, out ns))
+			using var one = new OneNote(out var page, out ns);
+			var content = CollectContent(page, out var firstParent);
+			if (content != null)
 			{
-				var content = CollectContent(page, out var firstParent);
-				if (content != null)
+				if (firstParent.HasElements)
 				{
-					if (firstParent.HasElements)
-					{
-						// selected text was a subset of runs under an OE
-						firstParent.AddAfterSelf(content);
-					}
-					else
-					{
-						// selected text was all of an OE
-						firstParent.Add(content.Elements());
-					}
-
-					await one.Update(page);
+					// selected text was a subset of runs under an OE
+					firstParent.AddAfterSelf(content);
 				}
+				else
+				{
+					// selected text was all of an OE
+					firstParent.Add(content.Elements());
+				}
+
+				await one.Update(page);
 			}
 		}
 

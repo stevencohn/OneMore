@@ -52,73 +52,69 @@ namespace River.OneMoreAddIn.Commands
 				return;
 			}
 
-			using (var one = new OneNote(out var page, out var ns))
+			using var one = new OneNote(out var page, out var ns);
+			var element = page.Root.Descendants(ns + "T")
+				.FirstOrDefault(e =>
+					e.Attributes("selected").Any(a => a.Value.Equals("all")) &&
+					e.FirstNode.NodeType == XmlNodeType.CDATA &&
+					((XCData)e.FirstNode).Value.Length > 0);
+
+			if (element == null)
 			{
-				var element = page.Root.Descendants(ns + "T")
-					.FirstOrDefault(e =>
-						e.Attributes("selected").Any(a => a.Value.Equals("all")) &&
-						e.FirstNode.NodeType == XmlNodeType.CDATA &&
-						((XCData)e.FirstNode).Value.Length > 0);
+				UIHelper.ShowError(Resx.Pronunciate_FullWord);
+				return;
+			}
 
-				if (element == null)
+			var cdata = element.GetCData();
+			var wrapper = cdata.GetWrapper();
+
+			var word = wrapper.Value;
+			var spaced = char.IsWhiteSpace(word[word.Length - 1]);
+			word = word.Trim();
+
+			if (string.IsNullOrEmpty(word))
+			{
+				UIHelper.ShowError(Resx.Pronunciate_EmptyWord);
+				return;
+			}
+
+			// check for replay
+			var isoElement = args?.FirstOrDefault(a => a is XElement e && e.Name.LocalName == "isoCode") as XElement;
+			if (!string.IsNullOrEmpty(isoElement?.Value))
+			{
+				isoCode = isoElement.Value;
+			}
+
+			if (isoCode == null)
+			{
+				using var dialog = new PronunciateDialog();
+				dialog.Word = word;
+
+				if (dialog.ShowDialog() != DialogResult.OK)
 				{
-					UIHelper.ShowError(Resx.Pronunciate_FullWord);
+					IsCancelled = true;
 					return;
 				}
 
-				var cdata = element.GetCData();
-				var wrapper = cdata.GetWrapper();
+				isoCode = dialog.Language;
+			}
 
-				var word = wrapper.Value;
-				var spaced = char.IsWhiteSpace(word[word.Length - 1]);
-				word = word.Trim();
-
-				if (string.IsNullOrEmpty(word))
+			var ruby = await LookupPhonetics(word, isoCode);
+			if (!string.IsNullOrEmpty(ruby))
+			{
+				if (ruby[0] != '/' || ruby[ruby.Length - 1] != '/')
 				{
-					UIHelper.ShowError(Resx.Pronunciate_EmptyWord);
-					return;
+					ruby = $"/{ruby}/";
 				}
 
-				// check for replay
-				var isoElement = args?.FirstOrDefault(a => a is XElement e && e.Name.LocalName == "isoCode") as XElement;
-				if (!string.IsNullOrEmpty(isoElement?.Value))
-				{
-					isoCode = isoElement.Value;
-				}
+				ruby = spaced ? ruby + ' ' : $" {ruby} ";
 
-				if (isoCode == null)
-				{
-					using (var dialog = new PronunciateDialog())
-					{
-						dialog.Word = word;
+				element.AddAfterSelf(
+					new XElement(ns + "T",
+						new XCData($"<span style='color:#8496B0'>{ruby}</span>"))
+					);
 
-						if (dialog.ShowDialog() != DialogResult.OK)
-						{
-							IsCancelled = true;
-							return;
-						}
-
-						isoCode = dialog.Language;
-					}
-				}
-
-				var ruby = await LookupPhonetics(word, isoCode);
-				if (!string.IsNullOrEmpty(ruby))
-				{
-					if (ruby[0] != '/' || ruby[ruby.Length - 1] != '/')
-					{
-						ruby = $"/{ruby}/";
-					}
-
-					ruby = spaced ? ruby + ' ' : $" {ruby} ";
-
-					element.AddAfterSelf(
-						new XElement(ns + "T",
-							new XCData($"<span style='color:#8496B0'>{ruby}</span>"))
-						);
-
-					await one.Update(page);
-				}
+				await one.Update(page);
 			}
 		}
 
@@ -137,12 +133,10 @@ namespace River.OneMoreAddIn.Commands
 
 				try
 				{
-					using (var source = new CancellationTokenSource(TimeSpan.FromSeconds(10)))
-					{
-						var response = await client.GetAsync(url, source.Token);
-						response.EnsureSuccessStatusCode();
-						json = await response.Content.ReadAsStringAsync();
-					}
+					using var source = new CancellationTokenSource(TimeSpan.FromSeconds(10));
+					var response = await client.GetAsync(url, source.Token);
+					response.EnsureSuccessStatusCode();
+					json = await response.Content.ReadAsStringAsync();
 
 					//logger.WriteLine(json);
 				}

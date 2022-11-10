@@ -29,25 +29,23 @@ namespace River.OneMoreAddIn.Commands
 		{
 			var casing = (int)args[0];
 
-			using (var one = new OneNote(out var page, out var ns))
+			using var one = new OneNote(out var page, out var ns);
+			var updated = page.EditSelected((s) =>
 			{
-				var updated = page.EditSelected((s) =>
+				if (s is XText text)
 				{
-					if (s is XText text)
-					{
-						text.Value = Recase(text.Value, casing);
-						return text;
-					}
-
-					var element = (XElement)s;
-					element.Value = Recase(element.Value, casing);
-					return element;
-				});
-
-				if (updated)
-				{
-					await one.Update(page);
+					text.Value = Recase(text.Value, casing);
+					return text;
 				}
+
+				var element = (XElement)s;
+				element.Value = Recase(element.Value, casing);
+				return element;
+			});
+
+			if (updated)
+			{
+				await one.Update(page);
 			}
 		}
 
