@@ -90,10 +90,8 @@ namespace River.OneMoreAddIn.Commands
 
 				logger.WriteLine(new string('-', 80));
 
-				using (var dialog = new DiagnosticsDialog(logger.LogPath))
-				{
-					dialog.ShowDialog();
-				}
+				using var dialog = new DiagnosticsDialog(logger.LogPath);
+				dialog.ShowDialog();
 			}
 
 			// turn headers back on
