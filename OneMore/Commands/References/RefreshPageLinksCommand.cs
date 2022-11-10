@@ -142,17 +142,12 @@ namespace River.OneMoreAddIn.Commands
 
 		private async Task<XElement> GetHierarchy(OneNote one)
 		{
-			switch (scope)
+			return scope switch
 			{
-				case OneNote.Scope.Notebooks:
-					return await one.GetNotebooks(OneNote.Scope.Pages);
-
-				case OneNote.Scope.Sections:
-					return await one.GetNotebook(OneNote.Scope.Pages);
-
-				default:
-					return one.GetSection();
-			}
+				OneNote.Scope.Notebooks => await one.GetNotebooks(OneNote.Scope.Pages),
+				OneNote.Scope.Sections => await one.GetNotebook(OneNote.Scope.Pages),
+				_ => one.GetSection(),
+			};
 		}
 
 

@@ -179,21 +179,15 @@ namespace River.OneMoreAddIn.Commands
 
 		private async Task<XElement> GetHierarchy()
 		{
-			XElement hierarchy;
-			switch (scope)
+			XElement hierarchy = scope switch
 			{
-				case OneNote.Scope.Notebooks: // all notebooks
-					hierarchy = await one.GetNotebooks(OneNote.Scope.Pages);
-					break;
-
-				case OneNote.Scope.Sections: // all sectios in current notebook
-					hierarchy = await one.GetNotebook(OneNote.Scope.Pages);
-					break;
-
-				default: // current section
-					hierarchy = one.GetSection();
-					break;
-			}
+				// all notebooks
+				OneNote.Scope.Notebooks => await one.GetNotebooks(OneNote.Scope.Pages),
+				// all sectios in current notebook
+				OneNote.Scope.Sections => await one.GetNotebook(OneNote.Scope.Pages),
+				// current section
+				_ => one.GetSection(),
+			};
 
 			ns = one.GetNamespace(hierarchy);
 
@@ -276,12 +270,12 @@ namespace River.OneMoreAddIn.Commands
 			var page = one.GetPage(pageId);
 			page.SetMeta(MetaNames.PageMap, "true");
 
-			switch (scope)
+			page.Title = scope switch
 			{
-				case OneNote.Scope.Notebooks: page.Title = "Page Map of All Notebooks"; break;
-				case OneNote.Scope.Sections: page.Title = "Page Map of This Notebook"; break;
-				default: page.Title = "Page Map of This Section"; break;
-			}
+				OneNote.Scope.Notebooks => "Page Map of All Notebooks",
+				OneNote.Scope.Sections => "Page Map of This Notebook",
+				_ => "Page Map of This Section",
+			};
 
 			var container = page.EnsureContentContainer();
 
