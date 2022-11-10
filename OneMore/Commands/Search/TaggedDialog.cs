@@ -221,12 +221,10 @@ namespace River.OneMoreAddIn.Commands
 			{
 				var pageId = node.Root.Attribute("ID").Value;
 
-				using (var one = new OneNote())
+				using var one = new OneNote();
+				if (!pageId.Equals(one.CurrentPageId))
 				{
-					if (!pageId.Equals(one.CurrentPageId))
-					{
-						await one.NavigateTo(pageId);
-					}
+					await one.NavigateTo(pageId);
 				}
 			}
 		}

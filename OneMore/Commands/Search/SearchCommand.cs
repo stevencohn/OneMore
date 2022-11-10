@@ -40,10 +40,8 @@ namespace River.OneMoreAddIn.Commands
 						? Resx.SearchQF_DescriptionCopy
 						: Resx.SearchQF_DescriptionMove;
 
-					using (var one = new OneNote())
-					{
-						one.SelectLocation(Resx.SearchQF_Title, desc, OneNote.Scope.Sections, Callback);
-					}
+					using var one = new OneNote();
+					one.SelectLocation(Resx.SearchQF_Title, desc, OneNote.Scope.Sections, Callback);
 				}
 			},
 			20);
@@ -65,18 +63,16 @@ namespace River.OneMoreAddIn.Commands
 
 			try
 			{
-				using (var one = new OneNote())
-				{
-					var service = new SearchServices(owner, one, sectionId);
+				using var one = new OneNote();
+				var service = new SearchServices(owner, one, sectionId);
 
-					if (copying)
-					{
-						await service.CopyPages(pageIds);
-					}
-					else
-					{
-						await service.MovePages(pageIds);
-					}
+				if (copying)
+				{
+					await service.CopyPages(pageIds);
+				}
+				else
+				{
+					await service.MovePages(pageIds);
 				}
 			}
 			catch (Exception exc)
