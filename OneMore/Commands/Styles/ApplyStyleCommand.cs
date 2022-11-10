@@ -40,20 +40,18 @@ namespace River.OneMoreAddIn.Commands
 				return;
 			}
 
-			using (var one = new OneNote(out page, out ns))
+			using var one = new OneNote(out page, out ns);
+			if (page != null)
 			{
-				if (page != null)
+				stylizer = new Stylizer(style);
+
+				bool success = style.StyleType == StyleType.Character
+					? StylizeWords()
+					: StylizeParagraphs();
+
+				if (success)
 				{
-					stylizer = new Stylizer(style);
-
-					bool success = style.StyleType == StyleType.Character
-						? StylizeWords()
-						: StylizeParagraphs();
-
-					if (success)
-					{
-						await one.Update(page);
-					}
+					await one.Update(page);
 				}
 			}
 		}

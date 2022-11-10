@@ -109,10 +109,8 @@ namespace River.OneMoreAddIn.Commands
 			{
 				if (item.StyleType == StyleType.Heading)
 				{
-					using (var hfont = new Font(DefaultFont.FontFamily, DefaultFont.Size - 2.0f, FontStyle.Bold | FontStyle.Italic))
-					{
-						e.Graphics.DrawString("H", hfont, brush, e.Bounds.Location.X + 2, e.Bounds.Location.Y + 1);
-					}
+					using var hfont = new Font(DefaultFont.FontFamily, DefaultFont.Size - 2.0f, FontStyle.Bold | FontStyle.Italic);
+					e.Graphics.DrawString("H", hfont, brush, e.Bounds.Location.X + 2, e.Bounds.Location.Y + 1);
 				}
 
 				e.Graphics.DrawString(item.Name, DefaultFont, brush, e.Bounds.Location.X + 18, e.Bounds.Location.Y);

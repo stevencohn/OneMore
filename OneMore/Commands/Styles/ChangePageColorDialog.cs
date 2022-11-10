@@ -96,22 +96,21 @@ namespace River.OneMoreAddIn.Commands
 		{
 			var location = PointToScreen(customLink.Location);
 
-			using (var dialog = new UI.MoreColorDialog(Resx.PageColorDialog_Text,
+			using var dialog = new UI.MoreColorDialog(Resx.PageColorDialog_Text,
 				location.X + customLink.Bounds.Location.X + customLink.Width,
-				location.Y - 50))
+				location.Y - 50);
+
+			dialog.Color = colorsBox.CustomColor;
+
+			if (dialog.ShowDialog() == DialogResult.OK)
 			{
-				dialog.Color = colorsBox.CustomColor;
+				colorsBox.SetCustomColor(dialog.Color);
 
-				if (dialog.ShowDialog() == DialogResult.OK)
-				{
-					colorsBox.SetCustomColor(dialog.Color);
-
-					var provider = new SettingsProvider();
-					var settings = provider.GetCollection("pageTheme");
-					settings.Add("customColor", dialog.Color.ToRGBHtml());
-					provider.SetCollection(settings);
-					provider.Save();
-				}
+				var provider = new SettingsProvider();
+				var settings = provider.GetCollection("pageTheme");
+				settings.Add("customColor", dialog.Color.ToRGBHtml());
+				provider.SetCollection(settings);
+				provider.Save();
 			}
 		}
 
