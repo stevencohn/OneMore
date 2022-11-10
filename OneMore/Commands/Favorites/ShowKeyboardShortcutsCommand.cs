@@ -100,21 +100,19 @@ namespace River.OneMoreAddIn.Commands
 
 			try
 			{
-				using (var response = await client.GetAsync(TemplateUrl).ConfigureAwait(false))
+				using var response = await client.GetAsync(TemplateUrl).ConfigureAwait(false);
+				if (response.IsSuccessStatusCode)
 				{
-					if (response.IsSuccessStatusCode)
+					path = Path.Combine(Path.GetTempPath(), Path.GetRandomFileName());
+					using (var output = File.Create(path))
 					{
-						path = Path.Combine(Path.GetTempPath(), Path.GetRandomFileName());
-						using (var output = File.Create(path))
-						{
-							await response.Content.CopyToAsync(output).ConfigureAwait(false);
-						}
-
-						return path;
+						await response.Content.CopyToAsync(output).ConfigureAwait(false);
 					}
 
-					logger.WriteLine($"error download shortcuts template ({response.StatusCode}): {response.ReasonPhrase}, {TemplateUrl}");
+					return path;
 				}
+
+				logger.WriteLine($"error download shortcuts template ({response.StatusCode}): {response.ReasonPhrase}, {TemplateUrl}");
 			}
 			catch (Exception exc)
 			{
@@ -132,16 +130,12 @@ namespace River.OneMoreAddIn.Commands
 
 			try
 			{
-				using (var stream = new FileStream(path, FileMode.Open))
-				using (var archive = new ZipArchive(stream))
-				{
-					var entry = archive.Entries.First();
+				using var stream = new FileStream(path, FileMode.Open);
+				using var archive = new ZipArchive(stream);
+				var entry = archive.Entries.First();
 
-					using (var reader = new StreamReader(entry.Open()))
-					{
-						return new Page(XElement.Parse(reader.ReadToEnd()));
-					}
-				}
+				using var reader = new StreamReader(entry.Open());
+				return new Page(XElement.Parse(reader.ReadToEnd()));
 			}
 			catch (Exception exc)
 			{

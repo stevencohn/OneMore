@@ -25,23 +25,19 @@ namespace River.OneMoreAddIn.Commands
 
 			if (uri == null)
 			{
-				using (var dialog = new FavoritesDialog())
+				using var dialog = new FavoritesDialog();
+				if (dialog.ShowDialog() == DialogResult.Cancel)
 				{
-					if (dialog.ShowDialog() == DialogResult.Cancel)
-					{
-						return;
-					}
-
-					uri = dialog.Uri;
+					return;
 				}
+
+				uri = dialog.Uri;
 			}
 
 			try
 			{
-				using (var one = new OneNote())
-				{
-					await one.NavigateTo(uri);
-				}
+				using var one = new OneNote();
+				await one.NavigateTo(uri);
 			}
 			catch (Exception exc)
 			{
