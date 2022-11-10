@@ -80,15 +80,13 @@ namespace River.OneMoreAddIn.Settings
 				foreach (var element in settings.Elements("engine"))
 				{
 					var bytes = Convert.FromBase64String(element.Element("image").Value);
-					using (var stream = new MemoryStream(bytes, 0, bytes.Length))
+					using var stream = new MemoryStream(bytes, 0, bytes.Length);
+					list.Add(new SearchEngine
 					{
-						list.Add(new SearchEngine
-						{
-							Image = Image.FromStream(stream),
-							Name = element.Element("name").Value,
-							Uri = element.Element("uri").Value
-						});
-					}
+						Image = Image.FromStream(stream),
+						Name = element.Element("name").Value,
+						Uri = element.Element("uri").Value
+					});
 				}
 			}
 
@@ -118,13 +116,9 @@ namespace River.OneMoreAddIn.Settings
 				var url = string.Format("https://{0}/favicon.ico", uri.Host);
 
 				var request = WebRequest.Create(url);
-				using (var response = request.GetResponse())
-				{
-					using (var stream = response.GetResponseStream())
-					{
-						engine.Image = new Bitmap(Image.FromStream(stream), 16, 16);
-					}
-				}
+				using var response = request.GetResponse();
+				using var stream = response.GetResponseStream();
+				engine.Image = new Bitmap(Image.FromStream(stream), 16, 16);
 			}
 			catch (Exception exc)
 			{

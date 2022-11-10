@@ -41,16 +41,15 @@ namespace River.OneMoreAddIn.Settings
 		{
 			var location = PointToScreen(colorBox.Location);
 
-			using (var dialog = new UI.MoreColorDialog(Resx.PageColorDialog_Text,
+			using var dialog = new UI.MoreColorDialog(Resx.PageColorDialog_Text,
 				location.X + colorBox.Bounds.Location.X + (colorBox.Width / 2),
-				location.Y - 50))
-			{
-				dialog.Color = colorBox.BackColor;
+				location.Y - 50);
 
-				if (dialog.ShowDialog() == DialogResult.OK)
-				{
-					colorBox.BackColor = dialog.Color;
-				}
+			dialog.Color = colorBox.BackColor;
+
+			if (dialog.ShowDialog() == DialogResult.OK)
+			{
+				colorBox.BackColor = dialog.Color;
 			}
 		}
 
