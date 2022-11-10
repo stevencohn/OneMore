@@ -10,7 +10,7 @@ namespace River.OneMoreAddIn.Commands
 
 	internal partial class FitGridToTextDialog : UI.LocalizableForm
 	{
-		private double spacing;
+		private readonly double spacing;
 
 
 		public FitGridToTextDialog()

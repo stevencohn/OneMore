@@ -40,14 +40,12 @@ namespace River.OneMoreAddIn.Commands
 
 		public override async Task Execute(params object[] args)
 		{
-			using (var dialog = new SplitDialog())
+			using var dialog = new SplitDialog();
+			if (dialog.ShowDialog() == DialogResult.OK)
 			{
-				if (dialog.ShowDialog() == DialogResult.OK)
+				using (one = new OneNote(out page, out ns, OneNote.PageDetail.All))
 				{
-					using (one = new OneNote(out page, out ns, OneNote.PageDetail.All))
-					{
-						await SplitPage(dialog.SplitByHeading, dialog.Tagged ? dialog.TagSymbol : -1);
-					}
+					await SplitPage(dialog.SplitByHeading, dialog.Tagged ? dialog.TagSymbol : -1);
 				}
 			}
 		}

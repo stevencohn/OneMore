@@ -115,10 +115,7 @@ namespace River.OneMoreAddIn.Commands
 			foreach (var container in containers)
 			{
 				var collapsed = container.Attribute("collapsed");
-				if (collapsed != null)
-				{
-					collapsed.Remove();
-				}
+				collapsed?.Remove();
 			}
 
 			return true;
@@ -186,11 +183,8 @@ namespace River.OneMoreAddIn.Commands
 					var meta = container.Elements(ns + "Meta")
 						.FirstOrDefault(e => e.Attribute("name").Value == MetaName);
 
-					if (meta != null)
-					{
-						// meta.Remove() doesn't work
-						meta.SetAttributeValue("content", "0");
-					}
+					// meta.Remove() doesn't work
+					meta?.SetAttributeValue("content", "0");
 				}
 			}
 

@@ -59,25 +59,24 @@ namespace River.OneMoreAddIn.Commands
 		{
 			var location = PointToScreen(tagButton.Location);
 
-			using (var dialog = new UI.TagPickerDialog(
+			using var dialog = new UI.TagPickerDialog(
 				location.X + tagButton.Bounds.Location.X - tagButton.Width,
-				location.Y + tagButton.Bounds.Location.Y))
-			{
-				if (dialog.ShowDialog(this) == DialogResult.OK)
-				{
-					var glyph = dialog.GetGlyph();
-					if (glyph != null)
-					{
-						tagButton.Text = null;
-						tagButton.Image = glyph;
-					}
-					else
-					{
-						tagButton.Text = "?";
-					}
+				location.Y + tagButton.Bounds.Location.Y);
 
-					TagSymbol = dialog.Symbol;
+			if (dialog.ShowDialog(this) == DialogResult.OK)
+			{
+				var glyph = dialog.GetGlyph();
+				if (glyph != null)
+				{
+					tagButton.Text = null;
+					tagButton.Image = glyph;
 				}
+				else
+				{
+					tagButton.Text = "?";
+				}
+
+				TagSymbol = dialog.Symbol;
 			}
 		}
 	}

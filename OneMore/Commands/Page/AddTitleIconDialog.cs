@@ -30,29 +30,29 @@ namespace River.OneMoreAddIn.Commands
 			("📐", "&#128208;", Resx.Emoji_Architecture, Resx.Architecture),	// 📐 1F4D0 Triangular Ruler
 			("🚗", "&#1F697;", Resx.Emoji_Automobile, Resx.Automobile),			// 🚗 1F697 Automobile
 			("●", "&#9679;", Resx.Emoji_Bullet, Resx.Bullet),					// ● 25CF Black Circle
-			("📆", "&#‭128198‬;", Resx.Emoji_Calendar, Resx.Calendar),			// 📆 1F4C6 Tear-Off Calendar
+			("📆", "&#‭128198‬;", Resx.Emoji_Calendar, Resx.Calendar),	// 📆 1F4C6 Tear-Off Calendar
 			("⭕", "&#2B55;", Resx.Emoji_Circle, Resx.Circle),					// ⭕ 2B55 Heavy Large Circle
-			("❌", "&#‭11093‬;", Resx.Emoji_CrossMark, Resx.Cross),				// ❌ 274C Cross Mark
-			("🚴", "&#‭128644‬;", Resx.Emoji_Cycling, Resx.Cyclist),				// 🚴 1F684 Bicyclist
-			("✉", "&#‭9993‬;", Resx.Emoji_Email, Resx.Envelope),					// ✉ 2709 Envelope
+			("❌", "&#‭11093‬;", Resx.Emoji_CrossMark, Resx.Cross),	// ❌ 274C Cross Mark
+			("🚴", "&#‭128644‬;", Resx.Emoji_Cycling, Resx.Cyclist),	// 🚴 1F684 Bicyclist
+			("✉", "&#‭9993‬;", Resx.Emoji_Email, Resx.Envelope),		// ✉ 2709 Envelope
 			("👪", "&#1F46A;", Resx.Emoji_Family, Resx.Family),					// 👪 1F46A Family
 			("💲", "&#1F4B2;", Resx.Emoji_Financial, Resx.Financial),			// 💲 1F4B2 Heavy Dollar Sign
-			("🔨", "&#‭128296‬;", Resx.Emoji_Hammer, Resx.Hammer),				// 🔨 1F528 Hammer
-			("📷", "&#‭128247‬;", Resx.Emoji_Images, Resx.Camera),				// 📷 1F4F7 Camera
+			("🔨", "&#‭128296‬;", Resx.Emoji_Hammer, Resx.Hammer),		// 🔨 1F528 Hammer
+			("📷", "&#‭128247‬;", Resx.Emoji_Images, Resx.Camera),		// 📷 1F4F7 Camera
 			("📓", "&#128211;", Resx.Emoji_Journal, Resx.Journal),				// 📓 1F4D3 Notebook
 			("📝", "&#1F4DD;", Resx.Emoji_Memo, Resx.Memo),						// 📝 1F4DD Memo
 			("🔑", "&#1F511;", Resx.Emoji_Passwords, Resx.Passwords),			// 🔑 1F511 Key
-			("✏", "&#‭9999‬;", Resx.Emoji_Pencil, Resx.Pencil),					// ✏ 270F Pencil
-			("📌", "&#‭128204‬;", Resx.Emoji_Pushpin, Resx.Pushpin),				// 📌 1F4CC Pushpin
+			("✏", "&#‭9999‬;", Resx.Emoji_Pencil, Resx.Pencil),		// ✏ 270F Pencil
+			("📌", "&#‭128204‬;", Resx.Emoji_Pushpin, Resx.Pushpin),	// 📌 1F4CC Pushpin
 			("⚡", "&#26A1;", Resx.Emoji_Shazam, Resx.Shazam),					// ⚡ 26A1 Lightning
-			("🙂", "&#‭128578‬;", Resx.Emoji_Smiley, Resx.Smiley),				// 🙂 1F642 Smiley
+			("🙂", "&#‭128578‬;", Resx.Emoji_Smiley, Resx.Smiley),		// 🙂 1F642 Smiley
 			("💾", "&#1F4BE;", Resx.Emoji_Software, Resx.Software),				// 💾 1F4BE Floppy Disk
 			("⚾", "&#26BE;", Resx.Emoji_Sports, Resx.Sports),					// ⚾ 26BE Baseball
-			("⭐", "&#‭11088‬;", Resx.Emoji_Star, Resx.Star),						// ⭐ 2B50 White Medium Star
-			("∑", "&#‭8721‬;", Resx.Emoji_Summary, Resx.Summary),					// ∑ 2211 N-Ary Summation
+			("⭐", "&#‭11088‬;", Resx.Emoji_Star, Resx.Star),			// ⭐ 2B50 White Medium Star
+			("∑", "&#‭8721‬;", Resx.Emoji_Summary, Resx.Summary),		// ∑ 2211 N-Ary Summation
 			("☑", "&#2611;", Resx.Emoji_Tasks, Resx.Tasks),						// ☑ 2611 Ballot Box
 			("🛩", "&#1F6E9;", Resx.Emoji_Travel, Resx.Travel),					// Airplane
-			("⌚", "&#‭8986‬;", Resx.Emoji_Watch, Resx.Watch)						// ⌚ 231A Watch
+			("⌚", "&#‭8986‬;", Resx.Emoji_Watch, Resx.Watch)			// ⌚ 231A Watch
 		};
 
 

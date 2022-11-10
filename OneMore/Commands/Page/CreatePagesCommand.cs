@@ -201,12 +201,10 @@ namespace River.OneMoreAddIn.Commands
 		private void ReadExcel(string source)
 		{
 			logger.WriteLine("excel");
-			using (var excel = new Excel())
-			{
-				var list = excel.ExtractSimpleList(source);
-				list.ForEach(l => logger.WriteLine($"item: {l}"));
-				names.AddRange(list);
-			}
+			using var excel = new Excel();
+			var list = excel.ExtractSimpleList(source);
+			list.ForEach(l => logger.WriteLine($"item: {l}"));
+			names.AddRange(list);
 		}
 
 
