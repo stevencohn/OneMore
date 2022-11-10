@@ -623,10 +623,7 @@ namespace River.OneMoreAddIn
 						.Select(e => e.Parent)
 						.FirstOrDefault();
 
-					if (note != null)
-					{
-						note.Remove();
-					}
+					note?.Remove();
 				}
 			}
 

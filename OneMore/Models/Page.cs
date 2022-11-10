@@ -123,10 +123,7 @@ namespace River.OneMoreAddIn.Models
 				var title = Root.Elements(Namespace + "Title")
 					.Elements(Namespace + "OE").FirstOrDefault();
 
-				if (title != null)
-				{
-					title.ReplaceNodes(new XElement(Namespace + "T", new XCData(value)));
-				}
+				title?.ReplaceNodes(new XElement(Namespace + "T", new XCData(value)));
 			}
 		}
 
@@ -636,13 +633,10 @@ namespace River.OneMoreAddIn.Models
 				.Elements(Namespace + "Size")
 				.FirstOrDefault();
 
-			if (element == null)
-			{
-				element = Root.Elements(Namespace + "Outline")
-					.LastOrDefault()
-					.Elements(Namespace + "Size")
-					.FirstOrDefault();
-			}
+			element ??= Root.Elements(Namespace + "Outline")
+				.LastOrDefault()
+				.Elements(Namespace + "Size")
+				.FirstOrDefault();
 
 			if (element == null)
 			{
@@ -656,23 +650,19 @@ namespace River.OneMoreAddIn.Models
 
 				// measure line to ensure page width is sufficient
 
-				using (var g = Graphics.FromHwnd(handle))
+				using var g = Graphics.FromHwnd(handle);
+				using var font = new Font(fontFamily, fontSize);
+				var stringSize = g.MeasureString(line, font);
+				var stringPoints = stringSize.Width * 72 / g.DpiX;
+
+				if (stringPoints > outlinePoints)
 				{
-					using (var font = new Font(fontFamily, fontSize))
+					attr.Value = stringPoints.ToString("#0.00", CultureInfo.InvariantCulture);
+
+					// must include isSetByUser or width doesn't take effect!
+					if (element.Attribute("isSetByUser") == null)
 					{
-						var stringSize = g.MeasureString(line, font);
-						var stringPoints = stringSize.Width * 72 / g.DpiX;
-
-						if (stringPoints > outlinePoints)
-						{
-							attr.Value = stringPoints.ToString("#0.00", CultureInfo.InvariantCulture);
-
-							// must include isSetByUser or width doesn't take effect!
-							if (element.Attribute("isSetByUser") == null)
-							{
-								element.Add(new XAttribute("isSetByUser", "true"));
-							}
-						}
+						element.Add(new XAttribute("isSetByUser", "true"));
 					}
 				}
 			}
@@ -833,7 +823,7 @@ namespace River.OneMoreAddIn.Models
 					else
 						builder.Append(text.Value);
 				}
-				else if (!(s is XComment))
+				else if (s is not XComment)
 				{
 					if (ReverseScanning)
 						builder.Insert(0, ((XElement)s).Value);
@@ -1259,10 +1249,7 @@ namespace River.OneMoreAddIn.Models
 				if (after == null)
 				{
 					after = Root.Elements(Namespace + "QuickStyleDef").LastOrDefault();
-					if (after == null)
-					{
-						after = Root.Elements(Namespace + "TagDef").LastOrDefault();
-					}
+					after ??= Root.Elements(Namespace + "TagDef").LastOrDefault();
 				}
 
 				if (after == null)

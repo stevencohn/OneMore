@@ -22,79 +22,78 @@ namespace River.OneMoreAddIn.Commands
 		{
 			var leading = (bool)args[0];
 
-			using (var one = new OneNote(out var page, out var ns))
+			using var one = new OneNote(out var page, out var ns);
+
+			var selections =
+				from e in page.Root.Elements(ns + "Outline").Descendants(ns + "T")
+				where e.Attributes("selected").Any(a => a.Value.Equals("all"))
+				select e;
+
+			if (selections != null)
 			{
-				var selections =
-					from e in page.Root.Elements(ns + "Outline").Descendants(ns + "T")
-					where e.Attributes("selected").Any(a => a.Value.Equals("all"))
-					select e;
-
-				if (selections != null)
+				if (selections.Count() == 1 &&
+					selections.First().GetCData().Value.Length == 0)
 				{
-					if (selections.Count() == 1 && 
-						selections.First().GetCData().Value.Length == 0)
-					{
-						// if zero-length selection then select all content
-						selections = page.Root.Elements(ns + "Outline").Descendants(ns + "T");
-					}
+					// if zero-length selection then select all content
+					selections = page.Root.Elements(ns + "Outline").Descendants(ns + "T");
+				}
 
-					int count = 0;
+				int count = 0;
 
-					foreach (var selection in selections)
+				foreach (var selection in selections)
+				{
+					if ((selection == selection.Parent.LastNode) &&
+						(selection.LastNode?.NodeType == XmlNodeType.CDATA))
 					{
-						if ((selection == selection.Parent.LastNode) &&
-							(selection.LastNode?.NodeType == XmlNodeType.CDATA))
+						var cdata = selection.GetCData();
+						if (cdata.Value.Length > 0)
 						{
-							var cdata = selection.GetCData();
-							if (cdata.Value.Length > 0)
+							var wrapper = cdata.GetWrapper();
+
+							if (leading)
 							{
-								var wrapper = cdata.GetWrapper();
-
-								if (leading)
+								var text = wrapper.DescendantNodes().OfType<XText>().FirstOrDefault();
+								if (text?.Value.Length > 0)
 								{
-									var text = wrapper.DescendantNodes().OfType<XText>().FirstOrDefault();
-									if (text?.Value.Length > 0)
+									var match = Regex.Match(text.Value, @"^([\s]|&#160;|&nbsp;)+");
+									if (match.Success)
 									{
-										var match = Regex.Match(text.Value, @"^([\s]|&#160;|&nbsp;)+");
-										if (match.Success)
-										{
-											text.ReplaceWith(text.Value.Substring(match.Length));
+										text.ReplaceWith(text.Value.Substring(match.Length));
 
-											selection.FirstNode.ReplaceWith(
-												new XCData(wrapper.GetInnerXml()));
+										selection.FirstNode.ReplaceWith(
+											new XCData(wrapper.GetInnerXml()));
 
-											count++;
-										}
+										count++;
 									}
 								}
-								else
+							}
+							else
+							{
+								var text = wrapper.DescendantNodes().OfType<XText>().LastOrDefault();
+								if (text?.Value.Length > 0)
 								{
-									var text = wrapper.DescendantNodes().OfType<XText>().LastOrDefault();
-									if (text?.Value.Length > 0)
+									var match = Regex.Match(text.Value, @"([\s]|&#160;|&nbsp;)+$");
+									if (match.Success)
 									{
-										var match = Regex.Match(text.Value, @"([\s]|&#160;|&nbsp;)+$");
-										if (match.Success)
-										{
-											text.ReplaceWith(text.Value.Substring(0, match.Index));
+										text.ReplaceWith(text.Value.Substring(0, match.Index));
 
-											selection.FirstNode.ReplaceWith(
-												new XCData(wrapper.GetInnerXml()));
+										selection.FirstNode.ReplaceWith(
+											new XCData(wrapper.GetInnerXml()));
 
-											count++;
-										}
+										count++;
 									}
 								}
 							}
 						}
 					}
-
-					if (count > 0)
-					{
-						await one.Update(page);
-					}
-
-					logger.WriteLine($"trimmed {count} lines");
 				}
+
+				if (count > 0)
+				{
+					await one.Update(page);
+				}
+
+				logger.WriteLine($"trimmed {count} lines");
 			}
 		}
 	}

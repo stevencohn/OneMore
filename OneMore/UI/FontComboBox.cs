@@ -40,10 +40,7 @@ namespace River.OneMoreAddIn.UI
 		protected override void Dispose(bool disposing)
 		{
 			ClearFontCache();
-
-			if (stringFormat != null)
-				stringFormat.Dispose();
-
+			stringFormat?.Dispose();
 			base.Dispose(disposing);
 		}
 
@@ -89,14 +86,12 @@ namespace River.OneMoreAddIn.UI
 				if ((e.State & DrawItemState.Focus) == DrawItemState.Focus)
 					e.DrawFocusRectangle();
 
-				using (SolidBrush textBrush = new SolidBrush(e.ForeColor))
-				{
-					string fontFamilyName;
+				using SolidBrush textBrush = new(e.ForeColor);
+				string fontFamilyName;
 
-					fontFamilyName = Items[e.Index].ToString();
-					e.Graphics.DrawString(fontFamilyName, GetFont(fontFamilyName),
-					textBrush, e.Bounds, stringFormat);
-				}
+				fontFamilyName = Items[e.Index].ToString();
+				e.Graphics.DrawString(fontFamilyName, GetFont(fontFamilyName),
+				textBrush, e.Bounds, stringFormat);
 			}
 		}
 
@@ -196,13 +191,11 @@ namespace River.OneMoreAddIn.UI
 		{
 			ClearFontCache();
 
-			using (Font font = new Font(Font.FontFamily, PreviewFontSize))
-			{
-				Size textSize;
+			using var font = new Font(Font.FontFamily, PreviewFontSize);
+			Size textSize;
 
-				textSize = TextRenderer.MeasureText("yY", font);
-				itemHeight = textSize.Height + 2;
-			}
+			textSize = TextRenderer.MeasureText("yY", font);
+			itemHeight = textSize.Height + 2;
 		}
 
 		private bool IsUsingRTL(Control control)
@@ -231,8 +224,7 @@ namespace River.OneMoreAddIn.UI
 
 		private void CreateStringFormat()
 		{
-			if (stringFormat != null)
-				stringFormat.Dispose();
+			stringFormat?.Dispose();
 
 			stringFormat = new StringFormat(StringFormatFlags.NoWrap)
 			{
@@ -255,14 +247,10 @@ namespace River.OneMoreAddIn.UI
 					Font font;
 
 					font = GetFont(fontFamilyName, FontStyle.Regular);
-					if (font == null)
-						font = GetFont(fontFamilyName, FontStyle.Bold);
-					if (font == null)
-						font = GetFont(fontFamilyName, FontStyle.Italic);
-					if (font == null)
-						font = GetFont(fontFamilyName, FontStyle.Bold | FontStyle.Italic);
-					if (font == null)
-						font = (Font)Font.Clone();
+					font ??= GetFont(fontFamilyName, FontStyle.Bold);
+					font ??= GetFont(fontFamilyName, FontStyle.Italic);
+					font ??= GetFont(fontFamilyName, FontStyle.Bold | FontStyle.Italic);
+					font ??= (Font)Font.Clone();
 
 					cache.Add(fontFamilyName, font);
 				}

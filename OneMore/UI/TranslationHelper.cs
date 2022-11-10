@@ -60,11 +60,8 @@ namespace River.OneMoreAddIn.UI
 					controlName = controlName.Substring(0, marker);
 				}
 
-				if (resid == null)
-				{
-					// default resid form if not explicitly overriden
-					resid = $"{owner.Name}_{controlName}.{propName}";
-				}
+				// default resid form if not explicitly overriden
+				resid ??= $"{owner.Name}_{controlName}.{propName}";
 
 				string text;
 				try

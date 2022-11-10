@@ -49,11 +49,8 @@ namespace River.OneMoreAddIn.Styles
 				theme = Load(key);
 			}
 
-			if (theme == null)
-			{
-				// last ditch, load something!
-				theme = new Theme(XElement.Parse(Resx.DefaultStyles), "Default");
-			}
+			// last ditch, load something!
+			theme ??= new Theme(XElement.Parse(Resx.DefaultStyles), "Default");
 		}
 
 
@@ -80,18 +77,12 @@ namespace River.OneMoreAddIn.Styles
 			var root = LoadFromFile(Path.Combine(
 				PathHelper.GetAppDataPath(), Resx.ThemesFolder, $"{key}.xml"));
 
-			if (root == null)
-			{
-				// appdata\Roaming\OneMore\CustomStyles.xml -- backwards compatibility
-				root = LoadFromFile(Path.Combine(
-					PathHelper.GetAppDataPath(), Resx.CustomStylesFilename));
-			}
+			// appdata\Roaming\OneMore\CustomStyles.xml -- backwards compatibility
+			root ??= LoadFromFile(Path.Combine(
+				PathHelper.GetAppDataPath(), Resx.CustomStylesFilename));
 
-			if (root == null)
-			{
-				// key not found, custom not found, so load default theme
-				root = XElement.Parse(Resx.DefaultStyles);
-			}
+			// key not found, custom not found, so load default theme
+			root ??= XElement.Parse(Resx.DefaultStyles);
 
 			return new Theme(root, key);
 		}

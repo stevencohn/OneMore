@@ -90,11 +90,9 @@ namespace River.OneMoreAddIn.Commands
 				{
 					if (withAttachments && format == OneNote.ExportFormat.Word)
 					{
-						using (var word = new Helpers.Office.Word())
-						{
-							var page = one.GetPage(pageId);
-							word.ResolveAttachmentRefs(filename, page.Root, embedded);
-						}
+						using var word = new Helpers.Office.Word();
+						var page = one.GetPage(pageId);
+						word.ResolveAttachmentRefs(filename, page.Root, embedded);
 					}
 
 					return true;

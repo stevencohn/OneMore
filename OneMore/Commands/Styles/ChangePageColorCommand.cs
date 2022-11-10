@@ -24,28 +24,26 @@ namespace River.OneMoreAddIn.Commands
 
 		public override async Task Execute(params object[] args)
 		{
-			using (var one = new OneNote(out var page, out _))
+			using var one = new OneNote(out var page, out _);
+			var color = page.GetPageColor(out _, out _);
+
+			using (var dialog = new ChangePageColorDialog(color))
 			{
-				var color = page.GetPageColor(out _, out _);
-
-				using (var dialog = new ChangePageColorDialog(color))
+				if (dialog.ShowDialog() != DialogResult.OK)
 				{
-					if (dialog.ShowDialog() != DialogResult.OK)
-					{
-						return;
-					}
-
-					UpdatePageColor(page, dialog.PageColor);
-					ThemeProvider.RecordTheme(dialog.ThemeKey);
-
-					if (dialog.ApplyStyle)
-					{
-						new ApplyStylesCommand().Apply(page);
-					}
+					return;
 				}
 
-				await one.Update(page);
+				UpdatePageColor(page, dialog.PageColor);
+				ThemeProvider.RecordTheme(dialog.ThemeKey);
+
+				if (dialog.ApplyStyle)
+				{
+					new ApplyStylesCommand().Apply(page);
+				}
 			}
+
+			await one.Update(page);
 		}
 
 

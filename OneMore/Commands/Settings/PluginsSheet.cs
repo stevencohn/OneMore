@@ -122,21 +122,20 @@ namespace River.OneMoreAddIn.Settings
 		{
 			var plugin = plugins[rowIndex];
 
-			using (var dialog = new PluginDialog(plugin))
-			{
-				if (dialog.ShowDialog(this) == DialogResult.OK)
-				{
-					var edited = dialog.Plugin;
-					plugin.Name = edited.Name;
-					plugin.OriginalName = edited.OriginalName;
-					plugin.Command = edited.Command;
-					plugin.Arguments = edited.Arguments;
-					plugin.CreateNewPage = edited.CreateNewPage;
-					plugin.AsChildPage = edited.AsChildPage;
-					plugin.PageName = edited.PageName;
+			using var dialog = new PluginDialog(plugin);
 
-					plugins.ResetItem(rowIndex);
-				}
+			if (dialog.ShowDialog(this) == DialogResult.OK)
+			{
+				var edited = dialog.Plugin;
+				plugin.Name = edited.Name;
+				plugin.OriginalName = edited.OriginalName;
+				plugin.Command = edited.Command;
+				plugin.Arguments = edited.Arguments;
+				plugin.CreateNewPage = edited.CreateNewPage;
+				plugin.AsChildPage = edited.AsChildPage;
+				plugin.PageName = edited.PageName;
+
+				plugins.ResetItem(rowIndex);
 			}
 		}
 

@@ -9,7 +9,6 @@ namespace River.OneMoreAddIn.Commands
 	using Aga.Controls.Tree;
 	using Aga.Controls.Tree.NodeControls;
 	using River.OneMoreAddIn.Helpers.Office;
-	using River.OneMoreAddIn.UI;
 	using System.Collections.Generic;
 	using System.Drawing;
 	using System.Linq;
@@ -21,7 +20,7 @@ namespace River.OneMoreAddIn.Commands
 
 	internal partial class ImportOutlookTasksDialog : UI.LocalizableForm
 	{
-		private TreeModel model;
+		private readonly TreeModel model;
 		private OneNote one;
 		private Outlook outlook;
 
@@ -140,8 +139,10 @@ namespace River.OneMoreAddIn.Commands
 
 				foreach (var task in folder.Tasks)
 				{
-					var leaf = new Node(task.Subject);
-					leaf.Tag = task;
+					var leaf = new Node(task.Subject)
+					{
+						Tag = task
+					};
 
 					if (!string.IsNullOrEmpty(task.OneNoteTaskID))
 					{

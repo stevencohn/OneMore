@@ -100,7 +100,7 @@ namespace River.OneMoreAddIn.Commands
 			await SingleThreaded.Invoke(() =>
 			{
 				// WebView2 needs a message pump so host in its own invisible worker dialog
-				using (var form = new WebViewWorkerDialog(
+				using var form = new WebViewWorkerDialog(
 					new WebViewWorker(async (webview) =>
 					{
 						webview.Source = new Uri(address);
@@ -115,10 +115,9 @@ namespace River.OneMoreAddIn.Commands
 						await webview.CoreWebView2.PrintToPdfAsync(pdfFile);
 						progress.Increment();
 						return true;
-					})))
-				{
-					form.ShowDialog(progress);
-				}
+					}));
+
+				form.ShowDialog(progress);
 			});
 
 			if (token.IsCancellationRequested)
@@ -164,28 +163,25 @@ namespace River.OneMoreAddIn.Commands
 					//logger.WriteLine($"rasterizing page {i}");
 					var pdfpage = doc.GetPage((uint)i);
 
-					using (var stream = new InMemoryRandomAccessStream())
-					{
-						await pdfpage.RenderToStreamAsync(stream);
+					using var stream = new InMemoryRandomAccessStream();
+					await pdfpage.RenderToStreamAsync(stream);
 
-						using (var image = new Bitmap(stream.AsStream()))
-						{
-							var data = Convert.ToBase64String(
-								(byte[])new ImageConverter().ConvertTo(image, typeof(byte[]))
-								);
+					using var image = new Bitmap(stream.AsStream());
 
-							container.Add(new XElement(ns + "OE",
-								new XElement(ns + "Image",
-									new XAttribute("format", "png"),
-									new XElement(ns + "Size",
-										new XAttribute("width", $"{image.Width}.0"),
-										new XAttribute("height", $"{image.Height}.0")),
-									new XElement(ns + "Data", data)
-								)),
-								new Paragraph(ns, " ")
-							);
-						}
-					}
+					var data = Convert.ToBase64String(
+						(byte[])new ImageConverter().ConvertTo(image, typeof(byte[]))
+						);
+
+					container.Add(new XElement(ns + "OE",
+						new XElement(ns + "Image",
+							new XAttribute("format", "png"),
+							new XElement(ns + "Size",
+								new XAttribute("width", $"{image.Width}.0"),
+								new XAttribute("height", $"{image.Height}.0")),
+							new XElement(ns + "Data", data)
+						)),
+						new Paragraph(ns, " ")
+					);
 				}
 
 				progress.SetMessage($"Updating page");
@@ -475,7 +471,7 @@ namespace River.OneMoreAddIn.Commands
 			await SingleThreaded.Invoke(() =>
 			{
 				// WebView2 needs a message pump so host in its own invisible worker dialog
-				using (var form = new WebViewWorkerDialog(
+				using var form = new WebViewWorkerDialog(
 					startup:
 					new WebViewWorker(async (webview) =>
 					{
@@ -495,10 +491,9 @@ namespace River.OneMoreAddIn.Commands
 
 						await Task.Yield();
 						return true;
-					})))
-				{
-					form.ShowDialog();
-				}
+					}));
+
+				form.ShowDialog();
 			});
 
 			if (!string.IsNullOrWhiteSpace(title) &&

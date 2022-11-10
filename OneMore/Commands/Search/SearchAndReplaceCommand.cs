@@ -27,49 +27,47 @@ namespace River.OneMoreAddIn.Commands
 			bool matchCase;
 			bool useRegex;
 
-			using (var one = new OneNote(out var page, out _))
+			using var one = new OneNote(out var page, out _);
+			var text = page.GetSelectedText();
+
+			using (var dialog = new SearchAndReplaceDialog())
 			{
-				var text = page.GetSelectedText();
-
-				using (var dialog = new SearchAndReplaceDialog())
+				if (text.Length > 0)
 				{
-					if (text.Length > 0)
-					{
-						dialog.WhatText = text;
-					}
-
-					if (dialog.ShowDialog() != DialogResult.OK)
-					{
-						return;
-					}
-
-					whatText = dialog.WhatText;
-					withText = dialog.WithText;
-					matchCase = dialog.MatchCase;
-					useRegex = dialog.UseRegex;
+					dialog.WhatText = text;
 				}
 
-				// let user insert a newline char
-				withText = withText.Replace("\\n", "\n");
-
-				var editor = new SearchAndReplaceEditor(whatText, withText,
-					useRegex: useRegex,
-					caseSensitive: matchCase
-					);
-
-				var count = editor.SearchAndReplace(page);
-
-				if (count > 0)
+				if (dialog.ShowDialog() != DialogResult.OK)
 				{
-					logger.WriteLine($"found {count} matches");
-					await one.Update(page);
+					return;
+				}
 
-					SaveSettings(whatText, withText, matchCase, useRegex);
-				}
-				else
-				{
-					logger.WriteLine("no matches found");
-				}
+				whatText = dialog.WhatText;
+				withText = dialog.WithText;
+				matchCase = dialog.MatchCase;
+				useRegex = dialog.UseRegex;
+			}
+
+			// let user insert a newline char
+			withText = withText.Replace("\\n", "\n");
+
+			var editor = new SearchAndReplaceEditor(whatText, withText,
+				useRegex: useRegex,
+				caseSensitive: matchCase
+				);
+
+			var count = editor.SearchAndReplace(page);
+
+			if (count > 0)
+			{
+				logger.WriteLine($"found {count} matches");
+				await one.Update(page);
+
+				SaveSettings(whatText, withText, matchCase, useRegex);
+			}
+			else
+			{
+				logger.WriteLine("no matches found");
 			}
 		}
 

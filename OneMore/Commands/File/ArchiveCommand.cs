@@ -237,19 +237,16 @@ namespace River.OneMoreAddIn.Commands
 
 			foreach (FileInfo file in info.GetFiles())
 			{
-				using (var reader = new FileStream(
-					file.FullName, FileMode.Open, FileAccess.Read, FileShare.Read))
-				{
-					var name = path == null
-						? file.Name
-						: Path.Combine(path, file.Name);
+				using var reader = new FileStream(
+					file.FullName, FileMode.Open, FileAccess.Read, FileShare.Read);
 
-					var entry = archive.CreateEntry(name, CompressionLevel.Optimal);
-					using (var writer = new StreamWriter(entry.Open()))
-					{
-						await reader.CopyToAsync(writer.BaseStream);
-					}
-				}
+				var name = path == null
+					? file.Name
+					: Path.Combine(path, file.Name);
+
+				var entry = archive.CreateEntry(name, CompressionLevel.Optimal);
+				using var writer = new StreamWriter(entry.Open());
+				await reader.CopyToAsync(writer.BaseStream);
 			}
 
 			foreach (DirectoryInfo dir in info.GetDirectories())

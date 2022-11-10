@@ -39,25 +39,23 @@ namespace River.OneMoreAddIn.Commands
 				return;
 			}
 
-			using (var one = new OneNote(out var page, out var ns))
+			using var one = new OneNote(out var page, out var ns);
+			var run = page.Root.Descendants(ns + "T")
+				.FirstOrDefault(e => e.Attribute("selected")?.Value == "all");
+
+			if (run != null)
 			{
-				var run = page.Root.Descendants(ns + "T")
-					.FirstOrDefault(e => e.Attribute("selected")?.Value == "all");
+				var stamp = TimeSpan.FromSeconds(window.Seconds).ToString("c");
+				run.GetCData().Value = stamp;
+				run.Attribute("selected").Remove();
 
-				if (run != null)
-				{
-					var stamp = TimeSpan.FromSeconds(window.Seconds).ToString("c");
-					run.GetCData().Value = stamp;
-					run.Attribute("selected").Remove();
+				run.AddAfterSelf(new XElement(ns + "T",
+					run.Attributes(),
+					new XAttribute("selected", "all"),
+					new XCData(string.Empty))
+					);
 
-					run.AddAfterSelf(new XElement(ns + "T",
-						run.Attributes(),
-						new XAttribute("selected", "all"),
-						new XCData(string.Empty))
-						);
-
-					await one.Update(page);
-				}
+				await one.Update(page);
 			}
 		}
 

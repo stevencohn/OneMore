@@ -41,7 +41,7 @@ namespace River.OneMoreAddIn
 		private static void FormatDetails(
 			Exception exc, StringBuilder builder, int depth)
 		{
-			string h = new string(' ', depth * 2);
+			string h = new(' ', depth * 2);
 			if (depth > 0)
 			{
 				builder.AppendLine($"{h}-- inner exception at depth {depth} ---------------");

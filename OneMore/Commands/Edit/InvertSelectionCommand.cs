@@ -21,39 +21,37 @@ namespace River.OneMoreAddIn.Commands
 
 		public override async Task Execute(params object[] args)
 		{
-			using (var one = new OneNote(out var page, out var ns))
+			using var one = new OneNote(out var page, out var ns);
+			var hidden = page.Root.Elements(ns + "Outline")
+				.Descendants(ns + "OE")
+				.Where(e => e.Attribute("collapsed")?.Value == "1")
+				.Elements(ns + "OEChildren")
+				.Descendants(ns + "T");
+
+			var pos = page.Root.Elements(ns + "Outline")
+				.Descendants(ns + "T")
+				.Where(e => e.Attribute("selected")?.Value == "all")
+				.ToList();
+
+			var neg = page.Root.Elements(ns + "Outline")
+				.Descendants(ns + "T")
+				.Except(hidden)
+				.Except(pos)
+				.ToList();
+
+			pos.ForEach((e) =>
 			{
-				var hidden = page.Root.Elements(ns + "Outline")
-					.Descendants(ns + "OE")
-					.Where(e => e.Attribute("collapsed")?.Value == "1")
-					.Elements(ns + "OEChildren")
-					.Descendants(ns + "T");
+				e.Attributes("selected").Remove();
+			});
 
-				var pos = page.Root.Elements(ns + "Outline")
-					.Descendants(ns + "T")
-					.Where(e => e.Attribute("selected")?.Value == "all")
-					.ToList();
+			neg.ForEach((e) =>
+			{
+				e.SetAttributeValue("selected", "all");
+			});
 
-				var neg = page.Root.Elements(ns + "Outline")
-					.Descendants(ns + "T")
-					.Except(hidden)
-					.Except(pos)
-					.ToList();
-
-				pos.ForEach((e) =>
-				{
-					e.Attributes("selected").Remove();
-				});
-
-				neg.ForEach((e) =>
-				{
-					e.SetAttributeValue("selected", "all");
-				});
-
-				if (pos.Count > 0 || neg.Count > 0)
-				{
-					await one.Update(page);
-				}
+			if (pos.Count > 0 || neg.Count > 0)
+			{
+				await one.Update(page);
 			}
 		}
 	}

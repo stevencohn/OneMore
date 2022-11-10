@@ -99,13 +99,11 @@ namespace River.OneMoreAddIn.Commands
 			scopeBox.SelectedIndex = names.IndexOf("Selection");
 
 			// populate page info...
-			using (var one = new OneNote())
-			{
-				var info = one.GetPageInfo(sized: true);
-				pageName.Text = $"{info.Name} ({info.Size.ToBytes()})";
-				pagePath.Text = info.Path;
-				pageLink.Text = info.Link;
-			}
+			using var one = new OneNote();
+			var info = one.GetPageInfo(sized: true);
+			pageName.Text = $"{info.Name} ({info.Size.ToBytes()})";
+			pagePath.Text = info.Path;
+			pageLink.Text = info.Link;
 		}
 
 
@@ -229,19 +227,17 @@ namespace River.OneMoreAddIn.Commands
 		{
 			if (Enum.TryParse<OneNote.PageDetail>(scopeBox.Text, out var info))
 			{
-				using (var one = new OneNote())
+				using var one = new OneNote();
+				var page = one.GetPage(info);
+				if (page != null)
 				{
-					var page = one.GetPage(info);
-					if (page != null)
-					{
-						var xml = page.Root.ToString(SaveOptions.None);
-						pageBox.WordWrap = wrapBox.Checked;
-						pageBox.Text = xml;
+					var xml = page.Root.ToString(SaveOptions.None);
+					pageBox.WordWrap = wrapBox.Checked;
+					pageBox.Text = xml;
 
-						ApplyHideOptions();
+					ApplyHideOptions();
 
-						logger.WriteLine($"XmlDialog loaded page, scope {info}, {xml.Length} chars");
-					}
+					logger.WriteLine($"XmlDialog loaded page, scope {info}, {xml.Length} chars");
 				}
 			}
 		}
@@ -434,28 +430,26 @@ namespace River.OneMoreAddIn.Commands
 		{
 			if (box.TextLength == 0)
 			{
-				using (var one = new OneNote())
+				using var one = new OneNote();
+				var root = await action(one);
+
+				if (root != null)
 				{
-					var root = await action(one);
-
-					if (root != null)
+					if (hidePidBox.Checked)
 					{
-						if (hidePidBox.Checked)
-						{
-							Sanitize(root);
-						}
+						Sanitize(root);
+					}
 
-						box.Clear();
-						box.WordWrap = wrapBox.Checked;
-						box.SelectionColor = Color.Black;
-						box.Text = $"<!-- {comment} -->\n{root.ToString(SaveOptions.None)}";
-						box.Select(0, comment.Length + 9);
-						box.SelectionColor = Color.Green;
-					}
-					else
-					{
-						box.Text = "no hierarchy";
-					}
+					box.Clear();
+					box.WordWrap = wrapBox.Checked;
+					box.SelectionColor = Color.Black;
+					box.Text = $"<!-- {comment} -->\n{root.ToString(SaveOptions.None)}";
+					box.Select(0, comment.Length + 9);
+					box.SelectionColor = Color.Green;
+				}
+				else
+				{
+					box.Text = "no hierarchy";
 				}
 			}
 

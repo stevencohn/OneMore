@@ -17,13 +17,11 @@ namespace River.OneMoreAddIn
 
 		public override async Task Execute(params object[] args)
 		{
-			using (var one = new OneNote())
+			using var one = new OneNote();
+			var editor = new FootnoteEditor(one);
+			if (editor.ValidContext())
 			{
-				var editor = new FootnoteEditor(one);
-				if (editor.ValidContext())
-				{
-					await editor.AddFootnote();
-				}
+				await editor.AddFootnote();
 			}
 		}
 	}

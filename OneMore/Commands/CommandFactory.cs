@@ -167,7 +167,7 @@ namespace River.OneMoreAddIn
 				return;
 			}
 
-			if (!(Activator.CreateInstance(type) is Command command))
+			if (Activator.CreateInstance(type) is not Command command)
 			{
 				logger.WriteLine($"factory failed to create instance of '{name}'");
 				return;

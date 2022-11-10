@@ -27,44 +27,42 @@ namespace River.OneMoreAddIn.Commands
 		{
 			var c = (char)args[0];
 
-			using (var one = new OneNote(out var page, out var ns))
+			using var one = new OneNote(out var page, out var ns);
+			if (!page.ConfirmBodyContext())
 			{
-				if (!page.ConfirmBodyContext())
-				{
-					UIHelper.ShowError(Resx.Error_BodyContext);
-					return;
-				}
-
-				var dark = page.GetPageColor(out _, out _).GetBrightness() < 0.5;
-				var color = dark ? "#D0D0D0" : "#202020";
-				var length = LineCharCount;
-
-				var settings = new SettingsProvider().GetCollection("LinesSheet");
-				if (settings != null)
-				{
-					color = settings.Get<Color>("color", ColorTranslator.FromHtml(color)).ToRGBHtml();
-					length = (int)settings.Get<decimal>("length", length);
-				}
-
-				var current =
-					(from e in page.Root.Descendants(ns + "OE")
-					 where e.Elements(ns + "T").Attributes("selected").Any(a => a.Value.Equals("all"))
-					 select e).FirstOrDefault();
-
-				string line = string.Empty.PadRight(length, c);
-
-				page.EnsurePageWidth(line, "Courier New", 10f, one.WindowHandle);
-
-				current.AddAfterSelf(
-					new XElement(ns + "OE",
-						new XElement(ns + "T",
-							new XAttribute("style", $"font-family:'Courier New';font-size:10.0pt;color:{color}"),
-							new XCData(line + "<br/>")
-						)
-					));
-
-				await one.Update(page);
+				UIHelper.ShowError(Resx.Error_BodyContext);
+				return;
 			}
+
+			var dark = page.GetPageColor(out _, out _).GetBrightness() < 0.5;
+			var color = dark ? "#D0D0D0" : "#202020";
+			var length = LineCharCount;
+
+			var settings = new SettingsProvider().GetCollection("LinesSheet");
+			if (settings != null)
+			{
+				color = settings.Get<Color>("color", ColorTranslator.FromHtml(color)).ToRGBHtml();
+				length = (int)settings.Get<decimal>("length", length);
+			}
+
+			var current =
+				(from e in page.Root.Descendants(ns + "OE")
+				 where e.Elements(ns + "T").Attributes("selected").Any(a => a.Value.Equals("all"))
+				 select e).FirstOrDefault();
+
+			string line = string.Empty.PadRight(length, c);
+
+			page.EnsurePageWidth(line, "Courier New", 10f, one.WindowHandle);
+
+			current.AddAfterSelf(
+				new XElement(ns + "OE",
+					new XElement(ns + "T",
+						new XAttribute("style", $"font-family:'Courier New';font-size:10.0pt;color:{color}"),
+						new XCData(line + "<br/>")
+					)
+				));
+
+			await one.Update(page);
 		}
 
 

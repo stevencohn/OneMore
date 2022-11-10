@@ -41,23 +41,19 @@ namespace River.OneMoreAddIn.Commands
 					sectionColor = "#F0F0F0";
 				}
 
-				using (var dialog = new UI.MoreColorDialog(
-					Resx.SectionColor_Title, location.X, location.Y))
-				{
-					dialog.Color = ColorTranslator.FromHtml(sectionColor);
-					dialog.FullOpen = true;
+				using var dialog = new UI.MoreColorDialog(
+					Resx.SectionColor_Title, location.X, location.Y);
+				dialog.Color = ColorTranslator.FromHtml(sectionColor);
+				dialog.FullOpen = true;
 
-					// use the elevator to force ColorDialog to top-most first time used
-					// otherwise, it will be hidden by the OneMore window
-					using (var elevator = new UI.WindowElevator(dialog))
-					{
-						var result = elevator.ShowDialog();
-						if (result == DialogResult.OK)
-						{
-							section.SetAttributeValue("color", dialog.Color.ToRGBHtml());
-							one.UpdateHierarchy(section);
-						}
-					}
+				// use the elevator to force ColorDialog to top-most first time used
+				// otherwise, it will be hidden by the OneMore window
+				using var elevator = new UI.WindowElevator(dialog);
+				var result = elevator.ShowDialog();
+				if (result == DialogResult.OK)
+				{
+					section.SetAttributeValue("color", dialog.Color.ToRGBHtml());
+					one.UpdateHierarchy(section);
 				}
 			}
 

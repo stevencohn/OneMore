@@ -36,32 +36,28 @@ namespace River.OneMoreAddIn.Commands
 				return;
 			}
 
-			using (var one = new OneNote(out page, out ns))
+			using var one = new OneNote(out page, out ns);
+			PageNamespace.Set(ns);
+
+			var paragraph = page.Root.Descendants(ns + "T")
+				.Where(e => e.Attribute("selected")?.Value == "all")
+				.Select(e => e.Parent)
+				.FirstOrDefault();
+
+			if (paragraph == null)
 			{
-				PageNamespace.Set(ns);
+				UIHelper.ShowInfo(one.Window, Resx.RemindCommand_noContext);
+				return;
+			}
 
-				var paragraph = page.Root.Descendants(ns + "T")
-					.Where(e => e.Attribute("selected")?.Value == "all")
-					.Select(e => e.Parent)
-					.FirstOrDefault();
+			var reminder = GetReminder(paragraph);
 
-				if (paragraph == null)
+			using var dialog = new RemindDialog(reminder, false);
+			if (dialog.ShowDialog() == DialogResult.OK)
+			{
+				if (SetReminder(paragraph, dialog.Reminder))
 				{
-					UIHelper.ShowInfo(one.Window, Resx.RemindCommand_noContext);
-					return;
-				}
-
-				var reminder = GetReminder(paragraph);
-
-				using (var dialog = new RemindDialog(reminder, false))
-				{
-					if (dialog.ShowDialog() == DialogResult.OK)
-					{
-						if (SetReminder(paragraph, dialog.Reminder))
-						{
-							await one.Update(page);
-						}
-					}
+					await one.Update(page);
 				}
 			}
 		}
@@ -73,48 +69,46 @@ namespace River.OneMoreAddIn.Commands
 			var pageId = parts[0];
 			var objectId = parts[1];
 
-			using (var one = new OneNote())
+			using var one = new OneNote();
+			Native.SetForegroundWindow(one.WindowHandle);
+			await one.NavigateTo(pageId, objectId);
+
+			page = one.GetPage(pageId);
+			ns = page.Namespace;
+
+			var paragraph = page.Root.Descendants(ns + "OE")
+				.FirstOrDefault(e => e.Attribute("objectID").Value == objectId);
+
+			var reminder = GetReminder(paragraph);
+			if (reminder == null)
 			{
-				Native.SetForegroundWindow(one.WindowHandle);
-				await one.NavigateTo(pageId, objectId);
+				// TODO: message?
+				return;
+			}
 
-				page = one.GetPage(pageId);
-				ns = page.Namespace;
-
-				var paragraph = page.Root.Descendants(ns + "OE")
-					.FirstOrDefault(e => e.Attribute("objectID").Value == objectId);
-
-				var reminder = GetReminder(paragraph);
-				if (reminder == null)
+			using (var dialog = new RemindDialog(reminder, true))
+			{
+				if (dialog.ShowDialog() == DialogResult.OK)
 				{
-					// TODO: message?
-					return;
-				}
-
-				using (var dialog = new RemindDialog(reminder, true))
-				{
-					if (dialog.ShowDialog() == DialogResult.OK)
+					if (SetReminder(paragraph, dialog.Reminder))
 					{
-						if (SetReminder(paragraph, dialog.Reminder))
-						{
-							await one.Update(page);
-						}
+						await one.Update(page);
 					}
 				}
+			}
 
-				if (reminder.Silent || reminder.Snooze != SnoozeRange.None)
-				{
-					RemindScheduler.CancelOverride(reminder);
-				}
-				else
-				{
-					var started = (
-						reminder.Status == ReminderStatus.InProgress ||
-						reminder.Status == ReminderStatus.Waiting) && 
-						DateTime.UtcNow.CompareTo(reminder.Started) > 0;
+			if (reminder.Silent || reminder.Snooze != SnoozeRange.None)
+			{
+				RemindScheduler.CancelOverride(reminder);
+			}
+			else
+			{
+				var started = (
+					reminder.Status == ReminderStatus.InProgress ||
+					reminder.Status == ReminderStatus.Waiting) &&
+					DateTime.UtcNow.CompareTo(reminder.Started) > 0;
 
-					RemindScheduler.ScheduleNotification(reminder, started);
-				}
+				RemindScheduler.ScheduleNotification(reminder, started);
 			}
 		}
 
@@ -257,26 +251,25 @@ namespace River.OneMoreAddIn.Commands
 
 		internal static void ReportDiagnostics(ILogger logger)
 		{
-			using (var one = new OneNote(out var page, out var ns))
+			using var one = new OneNote(out var spage, out var sns);
+
+			logger.WriteLine();
+			logger.WriteLine($"Reminders on current page ({spage.Title})");
+			var reminders = new ReminderSerializer().LoadReminders(spage);
+
+			foreach (var reminder in reminders)
 			{
-				logger.WriteLine();
-				logger.WriteLine($"Reminders on current page ({page.Title})");
-				var reminders = new ReminderSerializer().LoadReminders(page);
+				var subject = reminder.Subject;
+				if (subject.Length > 40) subject = subject.Substring(0, 38);
+				var start = reminder.Start.ToLocalTime().ToString();
+				var due = reminder.Due.ToLocalTime().ToString();
 
-				foreach (var reminder in reminders)
-				{
-					var subject = reminder.Subject;
-					if (subject.Length > 40) subject = subject.Substring(0, 38);
-					var start = reminder.Start.ToLocalTime().ToString();
-					var due = reminder.Due.ToLocalTime().ToString();
+				var anyOid = spage.Root.Descendants(sns + "OE")
+					.Any(e => e.Attribute("objectID").Value == reminder.ObjectId);
 
-					var anyOid = page.Root.Descendants(ns + "OE")
-						.Any(e => e.Attribute("objectID").Value == reminder.ObjectId);
+				var orphan = anyOid ? String.Empty : "(orphaned) ";
 
-					var orphan = anyOid ? String.Empty : "(orphaned) ";
-
-					logger.WriteLine($"- start:{start,22} due:{due,22} {orphan}\"{subject}\"");
-				}
+				logger.WriteLine($"- start:{start,22} due:{due,22} {orphan}\"{subject}\"");
 			}
 		}
 	}

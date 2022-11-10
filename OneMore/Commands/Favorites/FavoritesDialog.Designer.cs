@@ -61,7 +61,7 @@
 			this.gridView.ShowEditingIcon = false;
 			this.gridView.Size = new System.Drawing.Size(778, 499);
 			this.gridView.TabIndex = 3;
-			this.gridView.KeyDown += new System.Windows.Forms.KeyEventHandler(this.gridView_KeyDown);
+			this.gridView.KeyDown += new System.Windows.Forms.KeyEventHandler(this.ChooseFavoriteByKeyboard);
 			// 
 			// nameColumn
 			// 

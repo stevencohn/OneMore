@@ -56,7 +56,7 @@ namespace River.OneMoreAddIn.Commands
 			this.addressBox.Name = "addressBox";
 			this.addressBox.Size = new System.Drawing.Size(548, 26);
 			this.addressBox.TabIndex = 1;
-			this.addressBox.TextChanged += new System.EventHandler(this.addressBox_TextChanged);
+			this.addressBox.TextChanged += new System.EventHandler(this.ConfirmAddress);
 			// 
 			// okButton
 			// 

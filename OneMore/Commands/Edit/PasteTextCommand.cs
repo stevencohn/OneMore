@@ -22,46 +22,44 @@ namespace River.OneMoreAddIn.Commands
 
 		public override async Task Execute(params object[] args)
 		{
-			using (var one = new OneNote(out var page, out var ns))
+			using var one = new OneNote(out var page, out var ns);
+			var elements = page.Root.Descendants(ns + "T")
+				.Where(e => e.Attribute("selected")?.Value == "all");
+
+			var text = await new ClipboardProvider().GetText();
+			if (string.IsNullOrEmpty(text))
 			{
-				var elements = page.Root.Descendants(ns + "T")
-					.Where(e => e.Attribute("selected")?.Value == "all");
+				return;
+			}
 
-				var text = await new ClipboardProvider().GetText();
-				if (string.IsNullOrEmpty(text))
-				{
-					return;
-				}
+			var content = new XElement(ns + "T", new XCData(text));
 
-				var content = new XElement(ns + "T", new XCData(text));
-
-				if (elements == null)
+			if (elements == null)
+			{
+				// empty page so add new content
+				page.AddNextParagraph(content);
+			}
+			else if (elements.Count() > 1)
+			{
+				// selected multiple runs so replace them all
+				page.ReplaceSelectedWithContent(content);
+			}
+			else
+			{
+				var line = elements.First();
+				if (line.Value.Length == 0)
 				{
-					// empty page so add new content
-					page.AddNextParagraph(content);
-				}
-				else if (elements.Count() > 1)
-				{
-					// selected multiple runs so replace them all
-					page.ReplaceSelectedWithContent(content);
+					// empty cdata, unselected cursor so just insert
+					line.GetCData().Value = text;
 				}
 				else
 				{
-					var line = elements.First();
-					if (line.Value.Length == 0)
-					{
-						// empty cdata, unselected cursor so just insert
-						line.GetCData().Value = text;
-					}
-					else
-					{
-						// something is selected so replace it
-						page.ReplaceSelectedWithContent(content);
-					}
+					// something is selected so replace it
+					page.ReplaceSelectedWithContent(content);
 				}
-
-				await one.Update(page);
 			}
+
+			await one.Update(page);
 		}
 	}
 }

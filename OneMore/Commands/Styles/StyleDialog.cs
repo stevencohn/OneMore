@@ -230,7 +230,7 @@ namespace River.OneMoreAddIn.Commands
 		/// <summary>
 		/// Get the modified theme. Used when editing an entire theme.
 		/// </summary>
-		public Theme Theme => new Theme(MakeStyles(), theme.Key, theme.Name, theme.Dark);
+		public Theme Theme => new(MakeStyles(), theme.Key, theme.Name, theme.Dark);
 
 
 		// = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
@@ -338,19 +338,17 @@ namespace River.OneMoreAddIn.Commands
 				!selection.Background.IsEmpty &&
 				!selection.Background.Equals(Color.Transparent))
 			{
-				using (var highBrush = new SolidBrush(selection.Background))
+				using var highBrush = new SolidBrush(selection.Background);
+				if (offset)
 				{
-					if (offset)
-					{
-						e.Graphics.FillRectangle(highBrush,
-							textClip.X, textClip.Y, textClip.Width, textClip.Height);
-					}
-					else
-					{
-						e.Graphics.FillRectangle(highBrush,
-							sampleClip.X, sampleClip.Y,
-							Math.Min(sampleClip.Width, allWidth), sampleClip.Height);
-					}
+					e.Graphics.FillRectangle(highBrush,
+						textClip.X, textClip.Y, textClip.Width, textClip.Height);
+				}
+				else
+				{
+					e.Graphics.FillRectangle(highBrush,
+						sampleClip.X, sampleClip.Y,
+						Math.Min(sampleClip.Width, allWidth), sampleClip.Height);
 				}
 			}
 
@@ -732,36 +730,34 @@ namespace River.OneMoreAddIn.Commands
 
 		private void ReorderStyles(object sender, EventArgs e)
 		{
-			using (var dialog = new ReorderDialog(namesBox.Items))
+			using var dialog = new ReorderDialog(namesBox.Items);
+			dialog.ManualLocation = true;
+			var point = PointToScreen(mainTools.Location);
+			dialog.Location = new Point(point.X + dialog.Width, point.Y);
+
+			var result = dialog.ShowDialog();
+			if (result == DialogResult.OK)
 			{
-				dialog.ManualLocation = true;
-				var point = PointToScreen(mainTools.Location);
-				dialog.Location = new Point(point.X + dialog.Width, point.Y);
-
-				var result = dialog.ShowDialog();
-				if (result == DialogResult.OK)
+				string name = null;
+				if (namesBox.SelectedItem != null)
 				{
-					string name = null;
-					if (namesBox.SelectedItem != null)
-					{
-						name = ((GraphicStyle)namesBox.SelectedItem).Name;
-					}
+					name = ((GraphicStyle)namesBox.SelectedItem).Name;
+				}
 
-					var items = dialog.GetItems();
-					namesBox.Items.Clear();
-					namesBox.Items.AddRange(items);
+				var items = dialog.GetItems();
+				namesBox.Items.Clear();
+				namesBox.Items.AddRange(items);
 
-					var selected = namesBox.Items.Cast<GraphicStyle>()
-						.FirstOrDefault(s => s.Name.Equals(name));
+				var selected = namesBox.Items.Cast<GraphicStyle>()
+					.FirstOrDefault(s => s.Name.Equals(name));
 
-					if (selected != null)
-					{
-						namesBox.SelectedItem = selected;
-					}
-					else
-					{
-						namesBox.SelectedIndex = 0;
-					}
+				if (selected != null)
+				{
+					namesBox.SelectedItem = selected;
+				}
+				else
+				{
+					namesBox.SelectedIndex = 0;
 				}
 			}
 		}
@@ -769,43 +765,41 @@ namespace River.OneMoreAddIn.Commands
 
 		private void LoadTheme(object sender, EventArgs e)
 		{
-			using (var dialog = new OpenFileDialog())
-			{
-				dialog.DefaultExt = "xml";
-				dialog.Filter = "Theme files (*.xml)|*.xml|All files (*.*)|*.*";
-				dialog.Multiselect = false;
-				dialog.Title = "Open Style Theme";
-				dialog.ShowHelp = true; // stupid, but this is needed to avoid hang
-				dialog.AutoUpgradeEnabled = true; // simpler UI, faster
+			using var dialog = new OpenFileDialog();
+			dialog.DefaultExt = "xml";
+			dialog.Filter = "Theme files (*.xml)|*.xml|All files (*.*)|*.*";
+			dialog.Multiselect = false;
+			dialog.Title = "Open Style Theme";
+			dialog.ShowHelp = true; // stupid, but this is needed to avoid hang
+			dialog.AutoUpgradeEnabled = true; // simpler UI, faster
 
-				var path = Path.Combine(PathHelper.GetAppDataPath(), Resx.ThemesFolder);
-				if (Directory.Exists(path))
+			var path = Path.Combine(PathHelper.GetAppDataPath(), Resx.ThemesFolder);
+			if (Directory.Exists(path))
+			{
+				dialog.InitialDirectory = path;
+			}
+			else
+			{
+				dialog.InitialDirectory =
+					Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
+			}
+
+			var result = dialog.ShowDialog();
+			if (result == DialogResult.OK)
+			{
+				theme = new ThemeProvider(dialog.FileName).Theme;
+				var styles = theme?.GetStyles();
+				if (styles?.Count > 0)
 				{
-					dialog.InitialDirectory = path;
+					LoadStyles(styles);
+
+					// update dialog title
+					Text = string.Format(Resx.StyleDialog_ThemeText, theme.Name);
 				}
 				else
 				{
-					dialog.InitialDirectory =
-						Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
-				}
-
-				var result = dialog.ShowDialog();
-				if (result == DialogResult.OK)
-				{
-					theme = new ThemeProvider(dialog.FileName).Theme;
-					var styles = theme?.GetStyles();
-					if (styles?.Count > 0)
-					{
-						LoadStyles(styles);
-
-						// update dialog title
-						Text = string.Format(Resx.StyleDialog_ThemeText, theme.Name);
-					}
-					else
-					{
-						MessageBox.Show(this, "Could not load this theme file?", "Error",
-							MessageBoxButtons.OK, MessageBoxIcon.Error);
-					}
+					MessageBox.Show(this, "Could not load this theme file?", "Error",
+						MessageBoxButtons.OK, MessageBoxIcon.Error);
 				}
 			}
 		}
@@ -813,35 +807,33 @@ namespace River.OneMoreAddIn.Commands
 
 		private void SaveTheme(object sender, EventArgs e)
 		{
-			using (var dialog = new SaveFileDialog())
+			using var dialog = new SaveFileDialog();
+			dialog.DefaultExt = "xml";
+			dialog.Filter = "Theme files (*.xml)|*.xml|All files (*.*)|*.*";
+			dialog.Title = "Save Style Theme";
+			dialog.ShowHelp = true; // stupid, but this is needed to avoid hang
+
+			var path = PathHelper.GetAppDataPath();
+			if (Directory.Exists(path))
 			{
-				dialog.DefaultExt = "xml";
-				dialog.Filter = "Theme files (*.xml)|*.xml|All files (*.*)|*.*";
-				dialog.Title = "Save Style Theme";
-				dialog.ShowHelp = true; // stupid, but this is needed to avoid hang
+				dialog.InitialDirectory = path;
+			}
+			else
+			{
+				dialog.InitialDirectory =
+					Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
+			}
 
-				var path = PathHelper.GetAppDataPath();
-				if (Directory.Exists(path))
-				{
-					dialog.InitialDirectory = path;
-				}
-				else
-				{
-					dialog.InitialDirectory =
-						Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
-				}
+			var result = dialog.ShowDialog();
+			if (result == DialogResult.OK)
+			{
+				var key = Path.GetFileNameWithoutExtension(dialog.FileName);
+				theme = new Theme(MakeStyles(), key, key, theme.Dark);
+				ThemeProvider.Save(theme, dialog.FileName);
 
-				var result = dialog.ShowDialog();
-				if (result == DialogResult.OK)
-				{
-					var key = Path.GetFileNameWithoutExtension(dialog.FileName);
-					theme = new Theme(MakeStyles(), key, key, theme.Dark);
-					ThemeProvider.Save(theme, dialog.FileName);
-
-					Text = string.Format(
-						Resx.StyleDialog_ThemeText,
-						Path.GetFileNameWithoutExtension(dialog.FileName));
-				}
+				Text = string.Format(
+					Resx.StyleDialog_ThemeText,
+					Path.GetFileNameWithoutExtension(dialog.FileName));
 			}
 		}
 	}

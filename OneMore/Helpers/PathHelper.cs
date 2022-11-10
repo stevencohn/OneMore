@@ -20,7 +20,7 @@ namespace River.OneMoreAddIn
 		// MAX_PATH in Windows should be 260 but OneNote.Export further restricts it to 239
 		public const int MAX_PATH = 239;
 
-		private const string LongKey = @"SYSTEM\CurrentControlSet\Control\FileSystem\LongPathsEnabled";
+		//private const string LongKey = @"SYSTEM\CurrentControlSet\Control\FileSystem\LongPathsEnabled";
 
 		private static char[] invalidFileChars;
 
@@ -33,8 +33,7 @@ namespace River.OneMoreAddIn
 		/// <returns></returns>
 		public static string CleanFileName(string name)
 		{
-			if (invalidFileChars == null)
-				invalidFileChars = Path.GetInvalidFileNameChars();
+			invalidFileChars ??= Path.GetInvalidFileNameChars();
 
 			// OneNote sometimes add \r\n to URL names in HTML export files
 			name = Regex.Replace(name, @"[\r\n]+", " ");

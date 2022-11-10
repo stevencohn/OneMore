@@ -124,10 +124,7 @@ namespace River.OneMoreAddIn.UI
 			(_, float factorY) = UIHelper.GetScalingFactors();
 			Height = (int)Math.Round(CancelHeight * factorY);
 
-			if (source == null)
-			{
-				source = new CancellationTokenSource();
-			}
+			source ??= new CancellationTokenSource();
 
 			DialogResult result = DialogResult.Cancel;
 

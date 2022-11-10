@@ -30,43 +30,39 @@ namespace River.OneMoreAddIn.Commands
 
 		public override async Task Execute(params object[] args)
 		{
-			using (var one = new OneNote(out var page, out var ns))
+			using var one = new OneNote(out var page, out var ns);
+			using var dialog = new TaggingDialog();
+			var content = page.GetMetaContent(MetaNames.TaggingLabels);
+			if (!string.IsNullOrEmpty(content))
 			{
-				using (var dialog = new TaggingDialog())
-				{
-					var content = page.GetMetaContent(MetaNames.TaggingLabels);
-					if (!string.IsNullOrEmpty(content))
-					{
-						var parts = content.Split(
-								new string[] { AddIn.Culture.TextInfo.ListSeparator },
-								StringSplitOptions.RemoveEmptyEntries)
-							.Select(s => s.Trim())
-							.ToList();
+				var parts = content.Split(
+						new string[] { AddIn.Culture.TextInfo.ListSeparator },
+						StringSplitOptions.RemoveEmptyEntries)
+					.Select(s => s.Trim())
+					.ToList();
 
-						dialog.Tags = parts;
-					}
-
-					if (dialog.ShowDialog() != DialogResult.OK)
-					{
-						return;
-					}
-
-					// tags will appear in user's lanuage so need to use appropriate separator
-					page.SetMeta(MetaNames.TaggingLabels,
-						string.Join(AddIn.Culture.TextInfo.ListSeparator, dialog.Tags));
-
-					if (dialog.Tags.Any())
-					{
-						MakeWordBank(page, ns, dialog.Tags);
-					}
-					else
-					{
-						RemoveWordBank(one, page, ns);
-					}
-
-					await one.Update(page);
-				}
+				dialog.Tags = parts;
 			}
+
+			if (dialog.ShowDialog() != DialogResult.OK)
+			{
+				return;
+			}
+
+			// tags will appear in user's lanuage so need to use appropriate separator
+			page.SetMeta(MetaNames.TaggingLabels,
+				string.Join(AddIn.Culture.TextInfo.ListSeparator, dialog.Tags));
+
+			if (dialog.Tags.Any())
+			{
+				MakeWordBank(page, ns, dialog.Tags);
+			}
+			else
+			{
+				RemoveWordBank(one, page, ns);
+			}
+
+			await one.Update(page);
 		}
 
 
@@ -155,11 +151,7 @@ namespace River.OneMoreAddIn.Commands
 		private string MakeRibbonTagDef(Page page, int tagType)
 		{
 			var index = page.GetTagDefIndex(RibbonSymbol);
-			if (index == null)
-			{
-				index = page.AddTagDef(RibbonSymbol, "Page Tags", tagType);
-			}
-
+			index ??= page.AddTagDef(RibbonSymbol, "Page Tags", tagType);
 			return index;
 		}
 

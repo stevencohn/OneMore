@@ -212,8 +212,11 @@ namespace OneMoreCalendar
 			var location = PointToScreen(e.Bounds.Location);
 			location.Offset(50, 70);
 
-			snapForm = new SnapshotForm(e.Page, path);
-			snapForm.Location = location;
+			snapForm = new SnapshotForm(e.Page, path)
+			{
+				Location = location
+			};
+
 			snapForm.Deactivate += DeactivateSnap;
 			snapForm.Show(this);
 		}

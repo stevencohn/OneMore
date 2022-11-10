@@ -30,7 +30,7 @@ namespace River.OneMoreAddIn.Commands.Tables.Formulas
 
 	internal static class MathFunctions
 	{
-		private static readonly List<MathFunction> functions = new List<MathFunction>();
+		private static readonly List<MathFunction> functions = new();
 		private static readonly FormulaValueType D = FormulaValueType.Double;
 
 		static MathFunctions()

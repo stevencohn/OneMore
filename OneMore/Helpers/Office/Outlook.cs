@@ -26,16 +26,6 @@ namespace River.OneMoreAddIn.Helpers.Office
 		private DayOfWeek firstDay;
 
 
-		#region class FolderPath
-		private sealed class FolderPath
-		{
-			public string EntryID { get; set; }
-			public string Path { get; set; }
-		}
-		#endregion class FolderPath
-
-
-
 		/// <summary>
 		/// Initializes a new instance of the Outlook interop application. If Outlook is not
 		/// currently running, it will be started
@@ -197,7 +187,7 @@ namespace River.OneMoreAddIn.Helpers.Office
 		/// <returns></returns>
 		public bool SaveTask(OutlookTask task)
 		{
-			if (!(outlook.Session.GetItemFromID(task.EntryID) is TaskItem item))
+			if (outlook.Session.GetItemFromID(task.EntryID) is not TaskItem item)
 			{
 				return false;
 			}

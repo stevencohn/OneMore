@@ -264,10 +264,8 @@ namespace River.OneMoreAddIn.UI
 			if (zone != null)
 			{
 				active = preset = zone;
-				using (var pen = new Pen(Color.Magenta, 2f))
-				{
-					graphics.DrawRectangle(pen, active.Bounds);
-				}
+				using var pen = new Pen(Color.Magenta, 2f);
+				graphics.DrawRectangle(pen, active.Bounds);
 			}
 		}
 
@@ -287,18 +285,14 @@ namespace River.OneMoreAddIn.UI
 				{
 					if (active == preset)
 					{
-						using (var pen = new Pen(Color.Magenta, 2f))
-						{
-							graphics.DrawRectangle(pen, preset.Bounds);
-						}
+						using var pen = new Pen(Color.Magenta, 2f);
+						graphics.DrawRectangle(pen, preset.Bounds);
 					}
 					else
 					{
 						// erase previous selection box
-						using (var pen = new Pen(Color.White, 2f))
-						{
-							graphics.DrawRectangle(pen, active.Bounds);
-						}
+						using var pen = new Pen(Color.White, 2f);
+						graphics.DrawRectangle(pen, active.Bounds);
 					}
 				}
 

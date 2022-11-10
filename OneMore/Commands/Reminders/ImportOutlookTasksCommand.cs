@@ -67,21 +67,19 @@ namespace River.OneMoreAddIn.Commands
 			{
 				var folders = outlook.GetTaskHierarchy();
 
-				using (var dialog = new ImportOutlookTasksDialog(folders))
+				using var dialog = new ImportOutlookTasksDialog(folders);
+				if (dialog.ShowDialog() != System.Windows.Forms.DialogResult.OK)
 				{
-					if (dialog.ShowDialog() != System.Windows.Forms.DialogResult.OK)
-					{
-						return;
-					}
-
-					tasks = dialog.SelectedTasks;
-					if (!tasks.Any())
-					{
-						return;
-					}
-
-					detailed = dialog.ShowDetailedTable;
+					return;
 				}
+
+				tasks = dialog.SelectedTasks;
+				if (!tasks.Any())
+				{
+					return;
+				}
+
+				detailed = dialog.ShowDetailedTable;
 			}
 
 			using (one = new OneNote(out page, out ns))
@@ -375,22 +373,20 @@ namespace River.OneMoreAddIn.Commands
 				.Select(e => e.FirstAncestor(ns + "Outline"))
 				.First();
 
-			using (var outlook = new Outlook())
+			using var outlook = new Outlook();
+			foreach (var task in tasks)
 			{
-				foreach (var task in tasks)
+				var paragraph = outline.Descendants(ns + "OutlookTask")
+					.Where(e => e.Attribute("guidTask").Value == task.OneNoteTaskID)
+					.Select(e => e.Parent)
+					.FirstOrDefault();
+
+				if (paragraph != null)
 				{
-					var paragraph = outline.Descendants(ns + "OutlookTask")
-						.Where(e => e.Attribute("guidTask").Value == task.OneNoteTaskID)
-						.Select(e => e.Parent)
-						.FirstOrDefault();
+					var id = paragraph.Attribute("objectID").Value;
+					task.OneNoteURL = one.GetHyperlink(page.PageId, id);
 
-					if (paragraph != null)
-					{
-						var id = paragraph.Attribute("objectID").Value;
-						task.OneNoteURL = one.GetHyperlink(page.PageId, id);
-
-						outlook.SaveTask(task);
-					}
+					outlook.SaveTask(task);
 				}
 			}
 		}

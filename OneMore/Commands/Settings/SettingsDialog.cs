@@ -106,21 +106,20 @@ namespace River.OneMoreAddIn.Settings
 			}
 			else
 			{
-				switch (e.Node.Index)
+				sheet = e.Node.Index switch
 				{
-					case 0: sheet = new GeneralSheet(provider); break;
-					case 1: sheet = new AliasSheet(provider); break;
-					case 2: sheet = new ContextMenuSheet(provider); break;
-					case 3: sheet = new FavoritesSheet(provider, ribbon); break;
-					case 4: sheet = new HighlightsSheet(provider); break;
-					case 5: sheet = new KeyboardSheet(provider, ribbon); break;
-					case 6: sheet = new LinesSheet(provider); break;
-					case 7: sheet = await PluginsSheet.Create(provider, ribbon); break;
-					case 8: sheet = new RibbonBarSheet(provider); break;
-					case 9: sheet = new SearchEngineSheet(provider); break;
-					default: sheet = new SnippetsSheet(provider, ribbon); break;
-				}
-
+					0 => new GeneralSheet(provider),
+					1 => new AliasSheet(provider),
+					2 => new ContextMenuSheet(provider),
+					3 => new FavoritesSheet(provider, ribbon),
+					4 => new HighlightsSheet(provider),
+					5 => new KeyboardSheet(provider, ribbon),
+					6 => new LinesSheet(provider),
+					7 => await PluginsSheet.Create(provider, ribbon),
+					8 => new RibbonBarSheet(provider),
+					9 => new SearchEngineSheet(provider),
+					_ => new SnippetsSheet(provider, ribbon),
+				};
 				sheets.Add(e.Node.Index, sheet);
 			}
 

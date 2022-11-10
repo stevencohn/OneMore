@@ -59,51 +59,49 @@ namespace River.OneMoreAddIn.Commands
 
 		private async Task Scan()
 		{
-			using (var one = new OneNote())
+			using var one = new OneNote();
+			var hierarchy = await one.SearchMeta(string.Empty, MetaNames.Reminder);
+			if (hierarchy == null)
 			{
-				var hierarchy = await one.SearchMeta(string.Empty, MetaNames.Reminder);
-				if (hierarchy == null)
+				// may need to restart OneNote
+				return;
+			}
+
+			var ns = hierarchy.GetNamespaceOfPrefix(OneNote.Prefix);
+
+			var metas = hierarchy.Descendants(ns + "Meta").Where(e =>
+				e.Attribute("name").Value == MetaNames.Reminder &&
+				e.Attribute("content").Value.Length > 0);
+
+			if (!metas.Any())
+			{
+				return;
+			}
+
+			var serializer = new ReminderSerializer();
+			foreach (var meta in metas)
+			{
+				var reminders = serializer.DecodeContent(meta.Attribute("content").Value);
+				var pageID = meta.Parent.Attribute("ID").Value;
+				foreach (var reminder in reminders)
 				{
-					// may need to restart OneNote
-					return;
-				}
-
-				var ns = hierarchy.GetNamespaceOfPrefix(OneNote.Prefix);
-
-				var metas = hierarchy.Descendants(ns + "Meta").Where(e =>
-					e.Attribute("name").Value == MetaNames.Reminder &&
-					e.Attribute("content").Value.Length > 0);
-
-				if (!metas.Any())
-				{
-					return;
-				}
-
-				var serializer = new ReminderSerializer();
-				foreach (var meta in metas)
-				{
-					var reminders = serializer.DecodeContent(meta.Attribute("content").Value);
-					var pageID = meta.Parent.Attribute("ID").Value;
-					foreach (var reminder in reminders)
+					if (reminder.Silent)
 					{
-						if (reminder.Silent)
-						{
-							continue;
-						}
-
-						if (reminder.Snooze != SnoozeRange.None &&
-							DateTime.UtcNow.CompareTo(reminder.SnoozeTime) < 0)
-						{
-							continue;
-						}
-
-						if (RemindScheduler.WaitingOn(reminder))
-						{
-							continue;
-						}
-
-						await Test(reminder, pageID, one);
+						continue;
 					}
+
+					if (reminder.Snooze != SnoozeRange.None &&
+						DateTime.UtcNow.CompareTo(reminder.SnoozeTime) < 0)
+					{
+						continue;
+					}
+
+					if (RemindScheduler.WaitingOn(reminder))
+					{
+						continue;
+					}
+
+					await Test(reminder, pageID, one);
 				}
 			}
 		}

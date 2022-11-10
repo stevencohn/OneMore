@@ -91,13 +91,11 @@ namespace River.OneMoreAddIn.Helpers
 			{
 				foreach (var classNames in key.GetSubKeyNames())
 				{
-					using (var classKey = key.OpenSubKey(classNames))
+					using var classKey = key.OpenSubKey(classNames);
+					var association = GetDetails(classKey, ext, application);
+					if (association != null)
 					{
-						var association = GetDetails(classKey, ext, application);
-						if (association != null)
-						{
-							return association;
-						}
+						return association;
 					}
 				}
 			}

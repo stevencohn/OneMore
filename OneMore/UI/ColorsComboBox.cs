@@ -96,15 +96,9 @@ namespace River.OneMoreAddIn.UI
 
 		protected override void Dispose(bool disposing)
 		{
-			if (stringFormat != null)
-				stringFormat.Dispose();
-
-			if (itemFont != null)
-				itemFont.Dispose();
-
-			if (arrowFont != null)
-				arrowFont.Dispose();
-
+			stringFormat?.Dispose();
+			itemFont?.Dispose();
+			arrowFont?.Dispose();
 			base.Dispose(disposing);
 		}
 
@@ -211,14 +205,12 @@ namespace River.OneMoreAddIn.UI
 					// focus
 					if ((e.State & DrawItemState.Selected) == DrawItemState.Selected)
 					{
-						using (var pen = new Pen(dark ? Color.Red : Color.Blue, 2)
+						using var pen = new Pen(dark ? Color.Red : Color.Blue, 2)
 						{
 							DashStyle = DashStyle.Dash,
 							DashPattern = new float[] { 3, 2 }
-						})
-						{
-							e.Graphics.DrawRectangle(pen, e.Bounds);
-						}
+						};
+						e.Graphics.DrawRectangle(pen, e.Bounds);
 					}
 					else
 					{
@@ -234,19 +226,18 @@ namespace River.OneMoreAddIn.UI
 					}
 
 					// foreground
-					using (var textBrush = dark
+					using var textBrush = dark
 						? new SolidBrush(Color.WhiteSmoke)
-						: new SolidBrush(Color.Black))
-					{
-						e.Graphics.DrawString(
-							swatch.Name, itemFont,
-							textBrush, e.Bounds, stringFormat);
+						: new SolidBrush(Color.Black);
 
-						if (opened && (e.State & DrawItemState.Selected) == DrawItemState.Selected)
-						{
-							e.Graphics.DrawString(arrow, arrowFont,
-								textBrush, e.Bounds.X + 10, e.Bounds.Y);
-						}
+					e.Graphics.DrawString(
+						swatch.Name, itemFont,
+						textBrush, e.Bounds, stringFormat);
+
+					if (opened && (e.State & DrawItemState.Selected) == DrawItemState.Selected)
+					{
+						e.Graphics.DrawString(arrow, arrowFont,
+							textBrush, e.Bounds.X + 10, e.Bounds.Y);
 					}
 				}
 				catch (Exception exc)
@@ -271,10 +262,7 @@ namespace River.OneMoreAddIn.UI
 		protected override void OnRightToLeftChanged(EventArgs e)
 		{
 			base.OnRightToLeftChanged(e);
-
-			if (stringFormat != null)
-				stringFormat.Dispose();
-
+			stringFormat?.Dispose();
 			stringFormat = CreateStringFormat();
 		}
 

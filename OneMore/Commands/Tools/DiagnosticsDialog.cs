@@ -33,14 +33,12 @@ namespace River.OneMoreAddIn.Commands
 		{
 			linkLabel.Text = path;
 
-			using (var g = CreateGraphics())
+			using var g = CreateGraphics();
+			var size = g.MeasureString(path, linkLabel.Font);
+			var reqwidth = size.Width + 40;
+			if (reqwidth > Width)
 			{
-				var size = g.MeasureString(path, linkLabel.Font);
-				var reqwidth = size.Width + 40;
-				if (reqwidth > Width)
-				{
-					Width = (int)reqwidth;
-				}
+				Width = (int)reqwidth;
 			}
 		}
 

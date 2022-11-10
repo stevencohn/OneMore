@@ -199,16 +199,12 @@ namespace River.OneMoreAddIn.Commands
 			}
 
 			// read Xaml from rich text box
-			using (var stream = new MemoryStream())
-			{
-				range = new TextRange(box.Document.ContentStart, box.Document.ContentEnd);
-				range.Save(stream, DataFormats.Xaml);
-				stream.Seek(0, SeekOrigin.Begin);
-				using (var reader = new StreamReader(stream))
-				{
-					return reader.ReadToEnd();
-				}
-			}
+			using var stream = new MemoryStream();
+			range = new TextRange(box.Document.ContentStart, box.Document.ContentEnd);
+			range.Save(stream, DataFormats.Xaml);
+			stream.Seek(0, SeekOrigin.Begin);
+			using var reader = new StreamReader(stream);
+			return reader.ReadToEnd();
 		}
 
 
@@ -231,19 +227,17 @@ namespace River.OneMoreAddIn.Commands
 				while (outer.Read() && outer.NodeType != XmlNodeType.Element) { /**/ }
 				if (!outer.EOF)
 				{
-					using (var writer = new XmlTextWriter(new StringWriter(builder)))
+					using var writer = new XmlTextWriter(new StringWriter(builder));
+					// prepare proper HTML clipboard skeleton
+
+					writer.WriteComment("StartFragment");
+
+					using (var reader = outer.ReadSubtree())
 					{
-						// prepare proper HTML clipboard skeleton
-
-						writer.WriteComment("StartFragment");
-
-						using (var reader = outer.ReadSubtree())
-						{
-							ConvertXaml(reader, writer);
-						}
-
-						writer.WriteComment("EndFragment");
+						ConvertXaml(reader, writer);
 					}
+
+					writer.WriteComment("EndFragment");
 				}
 			}
 			builder.AppendLine();
@@ -413,88 +407,28 @@ namespace River.OneMoreAddIn.Commands
 
 		private string TranslateElementName(string xname, XmlReader reader = null)
 		{
-			string name;
-
-			switch (xname)
+			string name = xname switch
 			{
-				case "InlineUIContainer":
-				case "Span":
-					name = "span";
-					break;
-
-				case "Run":
-					name = "span";
-					break;
-
-				case "Bold":
-					name = "b";
-					break;
-
-				case "Italic":
-					name = "i";
-					break;
-
-				case "Paragraph":
-					name = "p";
-					break;
-
-				case "BlockUIContainer":
-				case "Section":
-					name = "div";
-					break;
-
-				case "Table":
-					name = "table";
-					break;
-
-				case "TableColumn":
-					name = "col";
-					break;
-
-				case "TableRowGroup":
-					name = "tbody";
-					break;
-
-				case "TableRow":
-					name = "tr";
-					break;
-
-				case "TableCell":
-					name = "td";
-					break;
-
-				case "List":
-					switch (reader.GetAttribute("MarkerStyle"))
-					{
-						case null:
-						case "None":
-						case "Disc":
-						case "Circle":
-						case "Square":
-						case "Box":
-							name = "ul";
-							break;
-
-						default:
-							name = "ol";
-							break;
-					}
-					break;
-
-				case "ListItem":
-					name = "li";
-					break;
-
-				case "Hyperlink":
-					name = "a";
-					break;
-
-				default:
-					// ignore
-					name = null;
-					break;
-			}
-
+				"InlineUIContainer" or "Span" => "span",
+				"Run" => "span",
+				"Bold" => "b",
+				"Italic" => "i",
+				"Paragraph" => "p",
+				"BlockUIContainer" or "Section" => "div",
+				"Table" => "table",
+				"TableColumn" => "col",
+				"TableRowGroup" => "tbody",
+				"TableRow" => "tr",
+				"TableCell" => "td",
+				"List" => reader.GetAttribute("MarkerStyle") switch
+				{
+					null or "None" or "Disc" or "Circle" or "Square" or "Box" => "ul",
+					_ => "ol",
+				},
+				"ListItem" => "li",
+				"Hyperlink" => "a",
+				_ => null,// ignore
+			};
 			return name;
 		}
 

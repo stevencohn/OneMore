@@ -21,46 +21,44 @@ namespace River.OneMoreAddIn.Commands
 
 		public override async Task Execute(params object[] args)
 		{
-			using (var one = new OneNote(out var page, out var ns))
+			using var one = new OneNote(out var page, out var ns);
+			var updated = false;
+			var index = 0;
+
+			var meta = page.GetMetaContent(MetaNames.HighlightIndex);
+			if (meta != null)
 			{
-				var updated = false;
-				var index = 0;
-
-				var meta = page.GetMetaContent(MetaNames.HighlightIndex);
-				if (meta != null)
+				if (int.TryParse(meta, out index))
 				{
-					if (int.TryParse(meta, out index))
-					{
-						index = index < 4 ? index + 1 : 0;
-					}
+					index = index < 4 ? index + 1 : 0;
+				}
+			}
+
+			var dark = page.GetPageColor(out _, out _).GetBrightness() < 0.5;
+			var color = GetColor(index, dark);
+
+			updated = page.EditSelected((s) =>
+			{
+				if (s is XText text)
+				{
+					return new XElement("span", new XAttribute("style", $"background:{color}"), text);
 				}
 
-				var dark = page.GetPageColor(out _, out _).GetBrightness() < 0.5;
-				var color = GetColor(index, dark);
+				var span = (XElement)s;
+				span.GetAttributeValue("style", out var style, string.Empty);
 
-				updated = page.EditSelected((s) =>
-				{
-					if (s is XText text)
-					{
-						return new XElement("span", new XAttribute("style", $"background:{color}"), text);
-					}
+				if (!string.IsNullOrEmpty(style))
+					span.SetAttributeValue("style", $"{style};background:{color}");
+				else
+					span.SetAttributeValue("style", $"background:{color}");
 
-					var span = (XElement)s;
-					span.GetAttributeValue("style", out var style, string.Empty);
+				return span;
+			});
 
-					if (!string.IsNullOrEmpty(style))
-						span.SetAttributeValue("style", $"{style};background:{color}");
-					else
-						span.SetAttributeValue("style", $"background:{color}");
-
-					return span;
-				});
-
-				if (updated)
-				{
-					page.SetMeta(MetaNames.HighlightIndex, index.ToString(CultureInfo.InvariantCulture));
-					await one.Update(page);
-				}
+			if (updated)
+			{
+				page.SetMeta(MetaNames.HighlightIndex, index.ToString(CultureInfo.InvariantCulture));
+				await one.Update(page);
 			}
 		}
 
@@ -69,14 +67,14 @@ namespace River.OneMoreAddIn.Commands
 		{
 			if (dark)
 			{
-				switch (index)
+				return index switch
 				{
-					case 1: return "#008000";   // Dark Green
-					case 2: return "#00B0F0";   // Turquoise
-					case 3: return "#800080";   // Dark Purple
-					case 4: return "#0000FF";   // Blue
-					default: return "#808000";  // Dark Yellow
-				}
+					1 => "#008000",// Dark Green
+					2 => "#00B0F0",// Turquoise
+					3 => "#800080",// Dark Purple
+					4 => "#0000FF",// Blue
+					_ => "#808000",// Dark Yellow
+				};
 			}
 
 			var theme = new SettingsProvider()
@@ -84,37 +82,37 @@ namespace River.OneMoreAddIn.Commands
 
 			if (theme == "Faded")
 			{
-				switch (index)
+				return index switch
 				{
-					case 1: return "#CCFFCC";   // Light Green
-					case 2: return "#CCFFFF";   // Sky Blue
-					case 3: return "#FF99CC";   // Pink
-					case 4: return "#99CCFF";   // Light Blue
-					default: return "#FFFF99";  // Light Yellow
-				}
+					1 => "#CCFFCC",// Light Green
+					2 => "#CCFFFF",// Sky Blue
+					3 => "#FF99CC",// Pink
+					4 => "#99CCFF",// Light Blue
+					_ => "#FFFF99",// Light Yellow
+				};
 			}
 
 			if (theme == "Deep")
 			{
-				switch (index)
+				return index switch
 				{
-					case 1: return "#92D050";   // Lime
-					case 2: return "#33CCCC";   // Teal
-					case 3: return "#CC99FF";   // Lavender
-					case 4: return "#00B0F0";   // Turquoise
-					default: return "#FFC000";  // Gold
-				}
+					1 => "#92D050",// Lime
+					2 => "#33CCCC",// Teal
+					3 => "#CC99FF",// Lavender
+					4 => "#00B0F0",// Turquoise
+					_ => "#FFC000",// Gold
+				};
 			}
 
 			// default theme "Normal"
-			switch (index)
+			return index switch
 			{
-				case 1: return "#00FF00";   // Light Green
-				case 2: return "#00FFFF";   // Sky Blue
-				case 3: return "#FF00CC";   // Pink
-				case 4: return "#0000FF";   // Light Blue
-				default: return "#FFFF00";  // Light Yellow
-			}
+				1 => "#00FF00",// Light Green
+				2 => "#00FFFF",// Sky Blue
+				3 => "#FF00CC",// Pink
+				4 => "#0000FF",// Light Blue
+				_ => "#FFFF00",// Light Yellow
+			};
 		}
 	}
 }

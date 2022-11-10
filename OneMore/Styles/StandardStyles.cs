@@ -96,22 +96,20 @@ namespace River.OneMoreAddIn.Styles
 
 		public static string ToName(this StandardStyles key)
 		{
-			string name;
-			switch (key)
+			string name = key switch
 			{
-				case StandardStyles.Heading1: name = "h1"; break;
-				case StandardStyles.Heading2: name = "h2"; break;
-				case StandardStyles.Heading3: name = "h3"; break;
-				case StandardStyles.Heading4: name = "h4"; break;
-				case StandardStyles.Heading5: name = "h5"; break;
-				case StandardStyles.Heading6: name = "h6"; break;
-				case StandardStyles.PageTitle: name = "PageTitle"; break;
-				case StandardStyles.Citation: name = "cite"; break;
-				case StandardStyles.Quote: name = "blockquote"; break;
-				case StandardStyles.Code: name = "code"; break;
-				default: name = "p"; break;
-			}
-
+				StandardStyles.Heading1 => "h1",
+				StandardStyles.Heading2 => "h2",
+				StandardStyles.Heading3 => "h3",
+				StandardStyles.Heading4 => "h4",
+				StandardStyles.Heading5 => "h5",
+				StandardStyles.Heading6 => "h6",
+				StandardStyles.PageTitle => "PageTitle",
+				StandardStyles.Citation => "cite",
+				StandardStyles.Quote => "blockquote",
+				StandardStyles.Code => "code",
+				_ => "p",
+			};
 			return name;
 		}
 	}

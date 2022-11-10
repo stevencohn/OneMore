@@ -34,12 +34,10 @@ namespace River.OneMoreAddIn
 		{
 			if (EnablersEnabled)
 			{
-				using (var one = new OneNote(out var page, out _))
-				{
-					// set the context for the getters
-					bodyContext = page.ConfirmBodyContext();
-					imageSelected = page.ConfirmImageSelected();
-				}
+				using var one = new OneNote(out var page, out _);
+				// set the context for the getters
+				bodyContext = page.ConfirmBodyContext();
+				imageSelected = page.ConfirmImageSelected();
 
 				//logger.WriteLine($"SetBodyContext({control.Id}) context:{bodyContext} imagesSelected:{imageSelected}");
 			}
@@ -116,19 +114,17 @@ namespace River.OneMoreAddIn
 		/// <returns>True if two or more pages are selected.</returns>
 		public bool GetMultiPageContext(IRibbonControl control)
 		{
-			using (var one = new OneNote())
-			{
-				var section = one.GetSection();
-				var sns = one.GetNamespace(section);
+			using var one = new OneNote();
+			var section = one.GetSection();
+			var sns = one.GetNamespace(section);
 
-				var count =
-					section.Elements(sns + "Page")
-					.Count(e => e.Attributes("selected").Any(a => a.Value.Equals("all")));
+			var count =
+				section.Elements(sns + "Page")
+				.Count(e => e.Attributes("selected").Any(a => a.Value.Equals("all")));
 
-				//logger.WriteLine($"GetMultiPageContext({control.Id}) count:{count}");
+			//logger.WriteLine($"GetMultiPageContext({control.Id}) count:{count}");
 
-				return count > 1;
-			}
+			return count > 1;
 		}
 
 

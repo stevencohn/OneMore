@@ -194,10 +194,7 @@ namespace River.OneMoreAddIn
 					.FirstOrDefault(e => e.Attribute("cmd").Value == runner);
 
 				// remove old instance so we can move it to the bottom and update args/context
-				if (element != null)
-				{
-					element.Remove();
-				}
+				element?.Remove();
 
 				// build new entry...
 

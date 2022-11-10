@@ -18,27 +18,25 @@ namespace River.OneMoreAddIn.Commands
 
 		public override async Task Execute(params object[] args)
 		{
-			using (var one = new OneNote(out var page, out var ns))
+			using var one = new OneNote(out var page, out var ns);
+			var images = page.Root.Descendants(ns + "Image");
+			if (images.Any())
 			{
-				var images = page.Root.Descendants(ns + "Image");
-				if (images.Any())
+				var selections = page.Root.Descendants()
+					.Where(e => e.Attribute("selected")?.Value == "all")
+					.ToList();
+
+				selections.ForEach((e) =>
 				{
-					var selections = page.Root.Descendants()
-						.Where(e => e.Attribute("selected")?.Value == "all")
-						.ToList();
+					e.Attributes("selected").Remove();
+				});
 
-					selections.ForEach((e) =>
-					{
-						e.Attributes("selected").Remove();
-					});
-
-					foreach (var image in images)
-					{
-						image.SetAttributeValue("selected", "all");
-					}
-
-					await one.Update(page);
+				foreach (var image in images)
+				{
+					image.SetAttributeValue("selected", "all");
 				}
+
+				await one.Update(page);
 			}
 		}
 	}

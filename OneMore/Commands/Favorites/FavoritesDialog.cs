@@ -91,7 +91,7 @@ namespace River.OneMoreAddIn.Commands.Favorites
 		}
 
 
-		private void gridView_KeyDown(object sender, KeyEventArgs e)
+		private void ChooseFavoriteByKeyboard(object sender, KeyEventArgs e)
 		{
 			if (e.KeyCode == Keys.Enter)
 			{

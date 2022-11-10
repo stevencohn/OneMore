@@ -101,7 +101,7 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		public Plugin Plugin => new Plugin
+		public Plugin Plugin => new()
 		{
 			Name = nameBox.Text,
 			OriginalName = nameBox.Text,
@@ -300,10 +300,7 @@ namespace River.OneMoreAddIn.Commands
 
 			name = name.ToLower();
 
-			if (invalidChars == null)
-			{
-				invalidChars = Path.GetInvalidFileNameChars();
-			}
+			invalidChars ??= Path.GetInvalidFileNameChars();
 
 			if (name.IndexOfAny(invalidChars) >= 0)
 			{
@@ -316,13 +313,10 @@ namespace River.OneMoreAddIn.Commands
 				return true;
 			}
 
-			if (predefinedNames == null)
-			{
-				// would be null in edit-mode
-				predefinedNames = new PluginsProvider().GetNames()
-					.Except(new List<string> { plugin.OriginalName })
-					.ToArray();
-			}
+			// would be null in edit-mode
+			predefinedNames ??= new PluginsProvider().GetNames()
+				.Except(new List<string> { plugin.OriginalName })
+				.ToArray();
 
 			if (predefinedNames.Any(s => s.Equals(name, StringComparison.OrdinalIgnoreCase)))
 			{
@@ -349,20 +343,18 @@ namespace River.OneMoreAddIn.Commands
 			// both cmdBox and argsBox use this handler
 			var box = sender == browseButton ? cmdBox : argsBox;
 
-			using (var dialog = new OpenFileDialog())
-			{
-				dialog.Filter = "All files (*.*)|*.*";
-				dialog.CheckFileExists = true;
-				dialog.Multiselect = false;
-				dialog.Title = Resx.Plugin_Title;
-				dialog.ShowHelp = true; // stupid, but this is needed to avoid hang
-				dialog.InitialDirectory = GetValidPath(box.Text);
+			using var dialog = new OpenFileDialog();
+			dialog.Filter = "All files (*.*)|*.*";
+			dialog.CheckFileExists = true;
+			dialog.Multiselect = false;
+			dialog.Title = Resx.Plugin_Title;
+			dialog.ShowHelp = true; // stupid, but this is needed to avoid hang
+			dialog.InitialDirectory = GetValidPath(box.Text);
 
-				var result = dialog.ShowDialog();
-				if (result == DialogResult.OK)
-				{
-					box.Text = dialog.FileName;
-				}
+			var result = dialog.ShowDialog();
+			if (result == DialogResult.OK)
+			{
+				box.Text = dialog.FileName;
 			}
 		}
 

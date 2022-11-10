@@ -251,10 +251,7 @@ namespace River.OneMoreAddIn
 				PathHelper.EnsurePathExists(PathHelper.GetAppDataPath());
 				root.Save(path, SaveOptions.None);
 
-				if (ribbon != null)
-				{
-					ribbon.InvalidateControl("ribFavoritesMenu");
-				}
+				ribbon?.InvalidateControl("ribFavoritesMenu");
 			}
 			catch (Exception exc)
 			{

@@ -109,16 +109,14 @@ namespace River.OneMoreAddIn
 				g.SmoothingMode = SmoothingMode.HighQuality;
 				g.PixelOffsetMode = PixelOffsetMode.HighQuality;
 
-				using (var attributes = new ImageAttributes())
-				{
-					attributes.SetWrapMode(WrapMode.TileFlipXY);
+				using var attributes = new ImageAttributes();
+				attributes.SetWrapMode(WrapMode.TileFlipXY);
 
-					g.DrawImage(image,
-						new Rectangle(0, 0, width, height),
-						0, 0, image.Width, image.Height,
-						GraphicsUnit.Pixel,
-						attributes);
-				}
+				g.DrawImage(image,
+					new Rectangle(0, 0, width, height),
+					0, 0, image.Width, image.Height,
+					GraphicsUnit.Pixel,
+					attributes);
 			}
 
 			return result;
@@ -200,15 +198,13 @@ namespace River.OneMoreAddIn
 					Matrix33 = opacity
 				};
 
-				using (var atts = new ImageAttributes())
-				{
-					atts.SetColorMatrix(matrix, ColorMatrixFlag.Default, ColorAdjustType.Bitmap);
+				using var atts = new ImageAttributes();
+				atts.SetColorMatrix(matrix, ColorMatrixFlag.Default, ColorAdjustType.Bitmap);
 
-					graphics.DrawImage(image,
-						new Rectangle(0, 0, canvas.Width, canvas.Height),
-						0, 0, image.Width, image.Height,
-						GraphicsUnit.Pixel, atts);
-				}
+				graphics.DrawImage(image,
+					new Rectangle(0, 0, canvas.Width, canvas.Height),
+					0, 0, image.Width, image.Height,
+					GraphicsUnit.Pixel, atts);
 			}
 
 			return canvas;
@@ -233,12 +229,10 @@ namespace River.OneMoreAddIn
 
 				var codec = ImageCodecInfo.GetImageEncoders().First(e => e.MimeType == "image/jpeg");
 
-				using (var stream = new MemoryStream())
-				{
-					image.Save(stream, codec, parameters);
-					image = new Bitmap(Image.FromStream(stream));
-					return image;
-				}
+				using var stream = new MemoryStream();
+				image.Save(stream, codec, parameters);
+				image = new Bitmap(Image.FromStream(stream));
+				return image;
 			}
 			catch (Exception exc)
 			{
@@ -370,17 +364,15 @@ namespace River.OneMoreAddIn
 
 			using (var g = Graphics.FromImage(canvas))
 			{
-				using (var attributes = new ImageAttributes())
-				{
-					attributes.ClearColorMatrix();
-					attributes.SetColorMatrix(matrix);
-					//attributes.SetGamma(1.0f, ColorAdjustType.Bitmap); // 1.0 = no change
+				using var attributes = new ImageAttributes();
+				attributes.ClearColorMatrix();
+				attributes.SetColorMatrix(matrix);
+				//attributes.SetGamma(1.0f, ColorAdjustType.Bitmap); // 1.0 = no change
 
-					g.DrawImage(image,
-						new Rectangle(0, 0, image.Width, image.Height),
-						0, 0, image.Width, image.Height,
-						GraphicsUnit.Pixel, attributes);
-				}
+				g.DrawImage(image,
+					new Rectangle(0, 0, image.Width, image.Height),
+					0, 0, image.Width, image.Height,
+					GraphicsUnit.Pixel, attributes);
 			}
 
 			return canvas;

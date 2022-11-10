@@ -60,11 +60,9 @@ namespace River.OneMoreAddIn.Commands
 
 			if (modified)
 			{
-				using (var one = new OneNote())
-				{
-					await one.Update(page);
-					logger.WriteTime("saved");
-				}
+				using var one = new OneNote();
+				await one.Update(page);
+				logger.WriteTime("saved");
 			}
 		}
 

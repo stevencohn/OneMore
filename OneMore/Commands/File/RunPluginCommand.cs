@@ -276,10 +276,7 @@ namespace River.OneMoreAddIn.Commands
 			}
 			finally
 			{
-				if (process != null)
-				{
-					process.Dispose();
-				}
+				process?.Dispose();
 			}
 
 			return ok;

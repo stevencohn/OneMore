@@ -56,32 +56,30 @@ namespace River.OneMoreAddIn.Commands
 				regex = new Regex(TwoSpacePattern);
 				replacement = "$1  $2$3$4";
 			}
-			
-			using (var one = new OneNote(out var page, out var ns))
+
+			using var one = new OneNote(out var page, out var ns);
+			logger.StartClock();
+
+			var nodes = page.Root.DescendantNodes().OfType<XCData>()
+				.Where(n => n.Value.Contains('.'));
+
+			if (nodes != null && nodes.Any())
 			{
-				logger.StartClock();
+				var updated = false;
 
-				var nodes = page.Root.DescendantNodes().OfType<XCData>()
-					.Where(n => n.Value.Contains('.'));
-
-				if (nodes != null && nodes.Any())
+				foreach (var cdata in nodes)
 				{
-					var updated = false;
-
-					foreach (var cdata in nodes)
-					{
-						cdata.Value = regex.Replace(cdata.Value, replacement);
-						updated = true;
-					}
-
-					if (updated)
-					{
-						await one.Update(page);
-					}
+					cdata.Value = regex.Replace(cdata.Value, replacement);
+					updated = true;
 				}
 
-				logger.StopClock();
+				if (updated)
+				{
+					await one.Update(page);
+				}
 			}
+
+			logger.StopClock();
 		}
 	}
 }

@@ -607,27 +607,15 @@ namespace River.OneMoreAddIn.Commands.Tables.Formulas
 		/// <returns></returns>
 		private static int GetPrecedence(string s)
 		{
-			switch (s)
+			return s switch
 			{
-				case ":":
-					return 1;
-
-				case "+":
-				case "-":
-					return 2;
-
-				case "*":
-				case "/":
-					return 3;
-
-				case "^":
-					return 4;
-
-				case UnaryMinus:
-					return 10;
-			}
-
-			return 0;
+				":" => 1,
+				"+" or "-" => 2,
+				"*" or "/" => 3,
+				"^" => 4,
+				UnaryMinus => 10,
+				_ => 0,
+			};
 		}
 
 

@@ -136,19 +136,17 @@ namespace River.OneMoreAddIn.Settings
 
 			var snippet = snippets[rowIndex];
 
-			using (var dialog = new SaveSnippetDialog())
-			{
-				dialog.SnippetName = snippet.Name;
+			using var dialog = new SaveSnippetDialog();
+			dialog.SnippetName = snippet.Name;
 
-				if (dialog.ShowDialog(this) == DialogResult.OK)
+			if (dialog.ShowDialog(this) == DialogResult.OK)
+			{
+				var path = snipsProvider.Rename(snippet.Path, dialog.SnippetName);
+				if (!string.IsNullOrEmpty(path))
 				{
-					var path = snipsProvider.Rename(snippet.Path, dialog.SnippetName);
-					if (!string.IsNullOrEmpty(path))
-					{
-						snippet.Name = dialog.SnippetName;
-						snippet.Path = path;
-						updated = true;
-					}
+					snippet.Name = dialog.SnippetName;
+					snippet.Path = path;
+					updated = true;
 				}
 			}
 		}

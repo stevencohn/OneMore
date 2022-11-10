@@ -34,50 +34,48 @@ namespace River.OneMoreAddIn.Commands
 
 		public override async Task Execute(params object[] args)
 		{
-			using (var dialog = new NumberPagesDialog())
+			using var dialog = new NumberPagesDialog();
+			if (dialog.ShowDialog() == DialogResult.OK)
 			{
-				if (dialog.ShowDialog() == DialogResult.OK)
+				using (one = new OneNote())
 				{
-					using (one = new OneNote())
-					{
-						var section = one.GetSection();
-						ns = one.GetNamespace(section);
+					var section = one.GetSection();
+					ns = one.GetNamespace(section);
 
-						var pages = section.Elements(ns + "Page")
-							.Select(e => new PageBasics
-							{
-								ID = e.Attribute("ID").Value,
-								Name = e.Attribute("name").Value,
-								Level = int.Parse(e.Attribute("pageLevel").Value)
-							})
-							.ToList();
-
-						if (pages?.Count > 0)
+					var pages = section.Elements(ns + "Page")
+						.Select(e => new PageBasics
 						{
-							logger.StartClock();
+							ID = e.Attribute("ID").Value,
+							Name = e.Attribute("name").Value,
+							Level = int.Parse(e.Attribute("pageLevel").Value)
+						})
+						.ToList();
 
-							var index = 0;
+					if (pages?.Count > 0)
+					{
+						logger.StartClock();
 
-							if (dialog.CleanupNumbering)
-							{
-								cleaner = new RemovePageNumbersCommand();
-							}
+						var index = 0;
 
-							using (progress = new UI.ProgressDialog())
-							{
-								progress.SetMaximum(pages.Count);
-								progress.Show();
-
-								await ApplyNumbering(
-									pages, index, pages[0].Level,
-									dialog.NumericNumbering, string.Empty);
-
-								progress.Close();
-							}
-
-							logger.StopClock();
-							logger.WriteTime("numbered pages");
+						if (dialog.CleanupNumbering)
+						{
+							cleaner = new RemovePageNumbersCommand();
 						}
+
+						using (progress = new UI.ProgressDialog())
+						{
+							progress.SetMaximum(pages.Count);
+							progress.Show();
+
+							await ApplyNumbering(
+								pages, index, pages[0].Level,
+								dialog.NumericNumbering, string.Empty);
+
+							progress.Close();
+						}
+
+						logger.StopClock();
+						logger.WriteTime("numbered pages");
 					}
 				}
 			}
@@ -102,10 +100,7 @@ namespace River.OneMoreAddIn.Commands
 				progress.Increment();
 
 				var text = cdata.Value;
-				if (cleaner != null)
-				{
-					cleaner.RemoveNumbering(cdata.Value, out text);
-				}
+				cleaner?.RemoveNumbering(cdata.Value, out text);
 
 				cdata.Value = BuildPrefix(counter, numeric, level, prefix) + " " + text;
 				await one.Update(page);

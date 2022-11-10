@@ -39,13 +39,11 @@ namespace River.OneMoreAddIn.Commands
 				});
 			}
 
-			using (var one = new OneNote(out var page, out _))
+			using var one = new OneNote(out var page, out _);
+			if (page == null)
 			{
-				if (page == null)
-				{
-					newChildButton.Enabled = false;
-					appendButton.Enabled = false;
-				}
+				newChildButton.Enabled = false;
+				appendButton.Enabled = false;
 			}
 		}
 
@@ -77,7 +75,7 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private void addressBox_TextChanged(object sender, EventArgs e)
+		private void ConfirmAddress(object sender, EventArgs e)
 		{
 			okButton.Enabled = Uri.IsWellFormedUriString(addressBox.Text.Trim(), UriKind.Absolute);
 		}

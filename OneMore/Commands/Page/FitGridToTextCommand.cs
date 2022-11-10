@@ -22,75 +22,71 @@ namespace River.OneMoreAddIn.Commands
 
 		public override async Task Execute(params object[] args)
 		{
-			using (var one = new OneNote(out var page, out var ns, OneNote.PageDetail.Basic))
+			using var one = new OneNote(out var page, out var ns, OneNote.PageDetail.Basic);
+			var rule = page.Root
+				.Elements(ns + "PageSettings")
+				.Elements(ns + "RuleLines")
+				.Where(e => e.Attribute("visible")?.Value == "true")
+				.Select(e => e.Element(ns + "Horizontal"))
+				.FirstOrDefault();
+
+			if (rule == null)
 			{
-				var rule = page.Root
-					.Elements(ns + "PageSettings")
-					.Elements(ns + "RuleLines")
-					.Where(e => e.Attribute("visible")?.Value == "true")
-					.Select(e => e.Element(ns + "Horizontal"))
-					.FirstOrDefault();
+				UIHelper.ShowMessage(Resx.FitGridToTextCommand_noGrid);
+				return;
+			}
 
-				if (rule == null)
+			var quickStyles = page.GetQuickStyles().Where(s => s.Name == "p");
+			if (!quickStyles.Any())
+			{
+				UIHelper.ShowMessage(Resx.FitGridToTextCommand_noText);
+				return;
+			}
+
+			var pindexes = quickStyles.Select(s => s.Index.ToString());
+
+			var common = page.Root.Descendants(ns + "OE")
+				// find all "p" paragraphs
+				.Where(e => pindexes.Contains(e.Attribute("quickStyleIndex").Value))
+				.Select(e => new
 				{
-					UIHelper.ShowMessage(Resx.FitGridToTextCommand_noGrid);
-					return;
-				}
-
-				var quickStyles = page.GetQuickStyles().Where(s => s.Name == "p");
-				if (!quickStyles.Any())
+					Element = e,
+					Index = e.Attribute("quickStyleIndex").Value,
+					Css = e.Attribute("style")?.Value
+				})
+				// count instances of distinct combinations
+				.GroupBy(o => new { o.Index, o.Css })
+				.Select(group => new
 				{
-					UIHelper.ShowMessage(Resx.FitGridToTextCommand_noText);
-					return;
-				}
+					group.Key.Index,
+					group.First().Element,
+					Count = group.Count()
+				})
+				// grab the most commonly used; if there are two equally
+				// used styles then this is arbitrary but OK
+				.OrderByDescending(g => g.Count)
+				.FirstOrDefault();
 
-				var pindexes = quickStyles.Select(s => s.Index.ToString());
+			if (common != null)
+			{
+				//var quickStyle = quickStyles.FirstOrDefault(s => s.Index.ToString() == common.Index);
 
-				var common = page.Root.Descendants(ns + "OE")
-					// find all "p" paragraphs
-					.Where(e => pindexes.Contains(e.Attribute("quickStyleIndex").Value))
-					.Select(e => new
-					{
-						Element = e,
-						Index = e.Attribute("quickStyleIndex").Value,
-						Css = e.Attribute("style")?.Value
-					})
-					// count instances of distinct combinations
-					.GroupBy(o => new { o.Index, o.Css })
-					.Select(group => new
-					{
-						group.Key.Index,
-						group.First().Element,
-						Count = group.Count()
-					})
-					// grab the most commonly used; if there are two equally
-					// used styles then this is arbitrary but OK
-					.OrderByDescending(g => g.Count)
-					.FirstOrDefault();
+				var analyzer = new StyleAnalyzer(page.Root);
+				var style = analyzer.CollectStyleFrom(common.Element);
+				var height = CalculateLineHeight(style);
 
-				if (common != null)
+				using var dialog = new FitGridToTextDialog(style.FontSize, height);
+				if (dialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
 				{
-					//var quickStyle = quickStyles.FirstOrDefault(s => s.Index.ToString() == common.Index);
+					rule.Attribute("spacing").Value = dialog.Spacing.ToString();
 
-					var analyzer = new StyleAnalyzer(page.Root);
-					var style = analyzer.CollectStyleFrom(common.Element);
-					var height = CalculateLineHeight(style);
-
-					using (var dialog = new FitGridToTextDialog(style.FontSize, height))
+					var vertical = rule.Parent.Element(ns + "Vertical");
+					if (vertical != null)
 					{
-						if (dialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-						{
-							rule.Attribute("spacing").Value = dialog.Spacing.ToString();
-
-							var vertical = rule.Parent.Element(ns + "Vertical");
-							if (vertical != null)
-							{
-								vertical.Attribute("spacing").Value = dialog.Spacing.ToString();
-							}
-
-							await one.Update(page);
-						}
+						vertical.Attribute("spacing").Value = dialog.Spacing.ToString();
 					}
+
+					await one.Update(page);
 				}
 			}
 		}
@@ -98,26 +94,22 @@ namespace River.OneMoreAddIn.Commands
 
 		private double CalculateLineHeight(StyleBase style)
 		{
-			using (var image = new Bitmap(1, 1))
-			{
-				using (var g = Graphics.FromImage(image))
-				{
-					var fontSize = float.Parse(style.FontSize);
-					using (var font = new Font(style.FontFamily, fontSize, FontStyle.Regular))
-					{
-						// the height of a single line is apparently greater than
-						// half of two lines! so use difference...
-						var size1 = g.MeasureString("A", font);
-						var size2 = g.MeasureString("A\nA", font);
-						var linespace = (size1.Height * 2) - size2.Height;
+			using var image = new Bitmap(1, 1);
+			using var g = Graphics.FromImage(image);
 
-						// (g.DpiY / 144) means this will work for 100% desktop scaling
-						// and for %150 desktop scaling...
+			var fontSize = float.Parse(style.FontSize);
+			using var font = new Font(style.FontFamily, fontSize, FontStyle.Regular);
 
-						return (size1.Height - linespace) / (g.DpiY / 144) / 2;
-					}
-				}
-			}
+			// the height of a single line is apparently greater than
+			// half of two lines! so use difference...
+			var size1 = g.MeasureString("A", font);
+			var size2 = g.MeasureString("A\nA", font);
+			var linespace = (size1.Height * 2) - size2.Height;
+
+			// (g.DpiY / 144) means this will work for 100% desktop scaling
+			// and for %150 desktop scaling...
+
+			return (size1.Height - linespace) / (g.DpiY / 144) / 2;
 		}
 	}
 }

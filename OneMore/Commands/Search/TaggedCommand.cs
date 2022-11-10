@@ -38,10 +38,8 @@ namespace River.OneMoreAddIn.Commands
 						? Resx.SearchQF_DescriptionCopy
 						: Resx.SearchQF_DescriptionMove;
 
-					using (var one = new OneNote())
-					{
-						one.SelectLocation(Resx.SearchQF_Title, desc, OneNote.Scope.Sections, Callback);
-					}
+					using var one = new OneNote();
+					one.SelectLocation(Resx.SearchQF_Title, desc, OneNote.Scope.Sections, Callback);
 				}
 			},
 			20);
@@ -62,24 +60,22 @@ namespace River.OneMoreAddIn.Commands
 
 			try
 			{
-				using (var one = new OneNote())
+				using var one = new OneNote();
+				var service = new SearchServices(owner, one, sectionId);
+
+				switch (command)
 				{
-					var service = new SearchServices(owner, one, sectionId);
+					case TaggedDialog.Commands.Index:
+						await service.IndexPages(pageIds);
+						break;
 
-					switch (command)
-					{
-						case TaggedDialog.Commands.Index:
-							await service.IndexPages(pageIds);
-							break;
+					case TaggedDialog.Commands.Copy:
+						await service.CopyPages(pageIds);
+						break;
 
-						case TaggedDialog.Commands.Copy:
-							await service.CopyPages(pageIds);
-							break;
-
-						case TaggedDialog.Commands.Move:
-							await service.MovePages(pageIds);
-							break;
-					}
+					case TaggedDialog.Commands.Move:
+						await service.MovePages(pageIds);
+						break;
 				}
 			}
 			catch (Exception exc)

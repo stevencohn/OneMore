@@ -109,7 +109,7 @@ namespace River.OneMoreAddIn.Styles
 
 		public override bool Equals(object obj)
 		{
-			if (!(obj is QuickStyleDef other))
+			if (obj is not QuickStyleDef other)
 			{
 				return false;
 			}

@@ -60,17 +60,15 @@ namespace River.OneMoreAddIn.Commands
 		{
 			get
 			{
-				switch (formatBox.SelectedIndex)
+				return formatBox.SelectedIndex switch
 				{
-					case 0: return OneNote.ExportFormat.HTML;
-					case 1: return OneNote.ExportFormat.PDF;
-					case 2: return OneNote.ExportFormat.Word;
-					case 3: return OneNote.ExportFormat.XML;
-					case 4: return OneNote.ExportFormat.Markdown;
-
-					default:
-						return OneNote.ExportFormat.OneNote;
-				}
+					0 => OneNote.ExportFormat.HTML,
+					1 => OneNote.ExportFormat.PDF,
+					2 => OneNote.ExportFormat.Word,
+					3 => OneNote.ExportFormat.XML,
+					4 => OneNote.ExportFormat.Markdown,
+					_ => OneNote.ExportFormat.OneNote,
+				};
 			}
 		}
 
@@ -128,17 +126,16 @@ namespace River.OneMoreAddIn.Commands
 				// FolderBrowserDialog must run in an STA thread
 				var thread = new Thread(() =>
 				{
-					using (var dialog = new FolderBrowserDialog()
+					using var dialog = new FolderBrowserDialog()
 					{
 						Description = "Export pages to this folder:",
 						SelectedPath = path
-					})
+					};
+
+					// cannot use owner parameter here or it will hang! cross-threading
+					if (dialog.ShowDialog() == DialogResult.OK)
 					{
-						// cannot use owner parameter here or it will hang! cross-threading
-						if (dialog.ShowDialog() == DialogResult.OK)
-						{
-							path = dialog.SelectedPath;
-						}
+						path = dialog.SelectedPath;
 					}
 				});
 

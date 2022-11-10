@@ -22,75 +22,73 @@ namespace River.OneMoreAddIn.Commands
 
 		public override async Task Execute(params object[] args)
 		{
-			using (var one = new OneNote(out var page, out var ns))
+			using var one = new OneNote(out var page, out var ns);
+			var pageColor = page.GetPageColor(out var automatic, out var black);
+			var dark = black || pageColor.GetBrightness() < 0.5;
+			var theme = dark ? "dark" : "light";
+			//logger.WriteLine($"theme: {theme} (color:{pageColor} automatic:{automatic} black:{black})");
+
+			var colorizer = new Colorizer(
+				args[0] as string,
+				theme,
+				automatic || (black && theme == "dark"));
+
+			var runs = page.Root.Descendants(ns + "T")
+				.Where(e => e.Attributes().Any(a => a.Name == "selected" && a.Value == "all"));
+
+			if (runs == null)
 			{
-				var pageColor = page.GetPageColor(out var automatic, out var black);
-				var dark = black || pageColor.GetBrightness() < 0.5;
-				var theme = dark ? "dark" : "light";
-				//logger.WriteLine($"theme: {theme} (color:{pageColor} automatic:{automatic} black:{black})");
+				return;
+			}
 
-				var colorizer = new Colorizer(
-					args[0] as string,
-					theme,
-					automatic || (black && theme == "dark"));
+			var updated = false;
 
-				var runs = page.Root.Descendants(ns + "T")
-					.Where(e => e.Attributes().Any(a => a.Name == "selected" && a.Value == "all"));
+			foreach (var run in runs.ToList())
+			{
+				run.SetAttributeValue("lang", "yo");
 
-				if (runs == null)
+				var cdata = run.GetCData();
+
+				if (cdata.Value.Contains("<br>"))
 				{
-					return;
-				}
+					// special handling to expand soft line breaks (Shift + Enter) into
+					// hard breaks, splitting the line into multiple ines.
+					// presume that br is always followed by newline...
 
-				var updated = false;
+					var text = cdata.GetWrapper().Value;
+					text = Regex.Replace(text, @"\r\n", "\n");
 
-				foreach (var run in runs.ToList())
-				{
-					run.SetAttributeValue("lang", "yo");
+					var lines = text.Split(new string[] { "\n" }, StringSplitOptions.None);
 
-					var cdata = run.GetCData();
+					// update current cdata with first line
+					cdata.Value = colorizer.ColorizeOne(lines[0]);
 
-					if (cdata.Value.Contains("<br>"))
+					// collect subsequent lines from soft-breaks
+					var elements = new List<XElement>();
+					for (int i = 1; i < lines.Length; i++)
 					{
-						// special handling to expand soft line breaks (Shift + Enter) into
-						// hard breaks, splitting the line into multiple ines.
-						// presume that br is always followed by newline...
+						var colorized = colorizer.ColorizeOne(lines[i]);
 
-						var text = cdata.GetWrapper().Value;
-						text = Regex.Replace(text, @"\r\n", "\n");
-
-						var lines = text.Split(new string[] { "\n" }, StringSplitOptions.None);
-
-						// update current cdata with first line
-						cdata.Value = colorizer.ColorizeOne(lines[0]);
-
-						// collect subsequent lines from soft-breaks
-						var elements = new List<XElement>();
-						for (int i = 1; i < lines.Length; i++)
-						{
-							var colorized = colorizer.ColorizeOne(lines[i]);
-
-							elements.Add(new XElement(ns + "OE",
-								run.Parent.Attributes(),
-								new XElement(ns + "T", new XCData(colorized)
-								)));
-						}
-
-						run.Parent.AddAfterSelf(elements);
-
-						updated = true;
+						elements.Add(new XElement(ns + "OE",
+							run.Parent.Attributes(),
+							new XElement(ns + "T", new XCData(colorized)
+							)));
 					}
-					else
-					{
-						cdata.Value = colorizer.ColorizeOne(cdata.GetWrapper().Value);
-						updated = true;
-					}
+
+					run.Parent.AddAfterSelf(elements);
+
+					updated = true;
 				}
-
-				if (updated)
+				else
 				{
-					await one.Update(page);
+					cdata.Value = colorizer.ColorizeOne(cdata.GetWrapper().Value);
+					updated = true;
 				}
+			}
+
+			if (updated)
+			{
+				await one.Update(page);
 			}
 		}
 	}

@@ -91,10 +91,7 @@ namespace River.OneMoreAddIn.Settings
 
 		public T Get<T>(string name, T defaultValue = default)
 		{
-			if (defaultValue == null)
-			{
-				defaultValue = default;
-			}
+			defaultValue ??= default;
 
 			try
 			{

@@ -12,7 +12,7 @@ namespace River.OneMoreAddIn.UI
 
 	internal partial class RenameDialog : UI.LocalizableForm
 	{
-		private IEnumerable<string> names;
+		private readonly IEnumerable<string> names;
 
 
 		public RenameDialog()

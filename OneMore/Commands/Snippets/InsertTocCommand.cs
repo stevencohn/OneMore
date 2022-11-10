@@ -184,10 +184,7 @@ namespace River.OneMoreAddIn.Commands
 				.FirstOrDefault(e => e.Attribute("name") is XAttribute attr &&
 					(attr.Value == TocMeta || attr.Value == TocOptionsMeta));
 
-			if (meta != null)
-			{
-				meta.Parent.Remove();
-			}
+			meta?.Parent.Remove();
 
 			// build new TOC...
 

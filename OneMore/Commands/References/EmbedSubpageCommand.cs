@@ -216,13 +216,11 @@ namespace River.OneMoreAddIn.Commands
 
 		private void EmbedContent()
 		{
-			using (var o = new OneNote())
-			{
-				o.SelectLocation(
-					Resx.EmbedSubpageCommand_Select,
-					Resx.EmbedSubpageCommand_SelectIntro,
-					OneNote.Scope.Pages, Callback);
-			}
+			using var o = new OneNote();
+			o.SelectLocation(
+				Resx.EmbedSubpageCommand_Select,
+				Resx.EmbedSubpageCommand_SelectIntro,
+				OneNote.Scope.Pages, Callback);
 		}
 
 

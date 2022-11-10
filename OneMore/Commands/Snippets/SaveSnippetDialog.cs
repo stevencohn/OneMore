@@ -55,10 +55,7 @@ namespace River.OneMoreAddIn.Commands
 
 			name = name.ToLower();
 
-			if (invalidChars == null)
-			{
-				invalidChars = Path.GetInvalidFileNameChars();
-			}
+			invalidChars ??= Path.GetInvalidFileNameChars();
 
 			if (name.IndexOfAny(invalidChars) >= 0)
 			{
@@ -67,10 +64,7 @@ namespace River.OneMoreAddIn.Commands
 				return;
 			}
 
-			if (names == null)
-			{
-				names = new SnippetsProvider().GetNames().Select(n => n.ToLower()).ToList();
-			}
+			names ??= new SnippetsProvider().GetNames().Select(n => n.ToLower()).ToList();
 
 			if (names.Contains(name))
 			{

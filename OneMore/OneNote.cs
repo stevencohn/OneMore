@@ -447,10 +447,7 @@ namespace River.OneMoreAddIn
 		/// <returns>The page-id value or null if not found</returns>
 		public string GetHyperKey(string uri)
 		{
-			if (pageEx == null)
-			{
-				pageEx = new Regex(@"page-id=({[^}]+?})");
-			}
+			pageEx ??= new Regex(@"page-id=({[^}]+?})");
 
 			var match = pageEx.Match(uri);
 			return match.Success ? match.Groups[1].Value : null;
@@ -774,8 +771,7 @@ namespace River.OneMoreAddIn
 		/// <returns></returns>
 		public HierarchyInfo GetPageInfo(string pageId = null, bool sized = false)
 		{
-			if (pageId == null)
-				pageId = CurrentPageId;
+			pageId ??= CurrentPageId;
 
 			var page = GetPage(pageId, sized ? PageDetail.BinaryData : PageDetail.Basic);
 			if (page == null)

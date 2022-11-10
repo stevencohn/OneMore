@@ -33,44 +33,43 @@ namespace River.OneMoreAddIn.Commands
 		{
 			delta = (int)args[0]; // +/-1
 
-			using (var one = new OneNote(out page, out ns))
+			using var one = new OneNote(out page, out ns);
+
+			if (page == null)
 			{
-				if (page == null)
-				{
-					return;
-				}
+				return;
+			}
 
-				// determine if range is selected or entire page
+			// determine if range is selected or entire page
 
-				/*
-				 * Note that since OneNote already has built-in key sequences to alter size of
-				 * selected text (Ctrl+Shift+> and Ctrl+Shift+<) we're commenting out the selected
-				 * block here so the command will apply to the entire page regardless of selection
-				 */
+			/*
+			 * Note that since OneNote already has built-in key sequences to alter size of
+			 * selected text (Ctrl+Shift+> and Ctrl+Shift+<) we're commenting out the selected
+			 * block here so the command will apply to the entire page regardless of selection
+			 */
 
-				//selected = page.Root.Element(ns + "Outline").Descendants(ns + "T")
-				//	.Where(e => e.Attributes("selected").Any(a => a.Value.Equals("all")))
-				//	.Any(e => e.GetCData().Value.Length > 0);
+			//selected = page.Root.Element(ns + "Outline").Descendants(ns + "T")
+			//	.Where(e => e.Attributes("selected").Any(a => a.Value.Equals("all")))
+			//	.Any(e => e.GetCData().Value.Length > 0);
 
-				selected = false;
+			selected = false;
 
-				var count = 0;
+			var count = 0;
 
-				if (selected)
-				{
-					count += AlterSelections();
-				}
-				else
-				{
-					count += AlterByName();
-					count += AlterElementsByValue();
-					count += AlterCDataByValue();
-				}
+			if (selected)
+			{
+				count += AlterSelections();
+			}
+			else
+			{
+				count += AlterByName();
+				count += AlterElementsByValue();
+				count += AlterCDataByValue();
+			}
 
-				if (count > 0)
-				{
-					await one.Update(page);
-				}
+			if (count > 0)
+			{
+				await one.Update(page);
 			}
 		}
 

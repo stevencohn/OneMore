@@ -662,56 +662,54 @@ namespace River.OneMoreAddIn.Commands
 			var bytes = Convert.FromBase64String(image.Element(ns + "Data").Value);
 			using (var stream = new MemoryStream(bytes, 0, bytes.Length))
 			{
-				using (var raw = Image.FromStream(stream))
+				using var raw = Image.FromStream(stream);
+				XElement img = null;
+				if (raw.Width > thumbnailSize || raw.Height > thumbnailSize)
 				{
-					XElement img = null;
-					if (raw.Width > thumbnailSize || raw.Height > thumbnailSize)
-					{
-						// maintain aspect ratio of image thumbnails
-						var zoom = raw.Width - thumbnailSize > raw.Height - thumbnailSize
-							? ((float)thumbnailSize) / raw.Width
-							: ((float)thumbnailSize) / raw.Height;
+					// maintain aspect ratio of image thumbnails
+					var zoom = raw.Width - thumbnailSize > raw.Height - thumbnailSize
+						? ((float)thumbnailSize) / raw.Width
+						: ((float)thumbnailSize) / raw.Height;
 
-						try
-						{
-							// callback is a required argument but is never used
-							var callback = new Image.GetThumbnailImageAbort(() => { return false; });
-							using (var thumbnail =
-								raw.GetThumbnailImage(
-									(int)(raw.Width * zoom),
-									(int)(raw.Height * zoom),
-									callback, IntPtr.Zero))
-							{
-								img = MakeImage(thumbnail);
-							}
-						}
-						catch (Exception exc)
-						{
-							image.GetAttributeValue("format", out var format, "?");
-							var msg = $"{format} caused {exc.Message}";
-							logger.WriteLine(msg, exc);
-							row[0].SetContent(msg);
-						}
+					try
+					{
+						// callback is a required argument but is never used
+						var callback = new Image.GetThumbnailImageAbort(() => { return false; });
+
+						using var thumbnail =
+							raw.GetThumbnailImage(
+								(int)(raw.Width * zoom),
+								(int)(raw.Height * zoom),
+								callback, IntPtr.Zero);
+
+						img = MakeImage(thumbnail);
+					}
+					catch (Exception exc)
+					{
+						image.GetAttributeValue("format", out var format, "?");
+						var msg = $"{format} caused {exc.Message}";
+						logger.WriteLine(msg, exc);
+						row[0].SetContent(msg);
+					}
+				}
+				else
+				{
+					img = MakeImage(raw);
+				}
+
+				if (img != null)
+				{
+					if (printout)
+					{
+						var print = new Table(ns, 1, 2);
+						print[0][0].SetContent("Printout:");
+						print[0][1].SetContent(img);
+						row[0].SetContent(print);
+
 					}
 					else
 					{
-						img = MakeImage(raw);
-					}
-
-					if (img != null)
-					{
-						if (printout)
-						{
-							var print = new Table(ns, 1, 2);
-							print[0][0].SetContent("Printout:");
-							print[0][1].SetContent(img);
-							row[0].SetContent(print);
-
-						}
-						else
-						{
-							row[0].SetContent(img);
-						}
+						row[0].SetContent(img);
 					}
 				}
 			}

@@ -25,67 +25,65 @@ namespace River.OneMoreAddIn.Commands
 
 		public override async Task Execute(params object[] args)
 		{
-			using (var one = new OneNote(out var page, out var ns))
+			using var one = new OneNote(out var page, out var ns);
+			var info = one.GetPageInfo();
+
+			// build hierarchy crumbs...
+
+			var crumbs = new StringBuilder();
+			var id = one.GetParent(info.PageId);
+			while (!string.IsNullOrEmpty(id))
 			{
-				var info = one.GetPageInfo();
+				var node = one.GetHierarchyNode(id);
+				crumbs.Insert(0, $"<a href={node.Link}>{node.Name}</a> {RightArrow} ");
+				id = one.GetParent(id);
+			}
 
-				// build hierarchy crumbs...
+			crumbs.Append(info.Name);
 
-				var crumbs = new StringBuilder();
-				var id = one.GetParent(info.PageId);
-				while (!string.IsNullOrEmpty(id))
+			var path = $"<span style='font-style:italic'>{crumbs}</span>";
+
+			// <one:Meta name="omBreadcrumb" content="1" />
+			var paragraph = page.Root
+				.Elements(ns + "Outline")
+				.Elements(ns + "OEChildren")
+				.Elements(ns + "OE")
+				.Elements(ns + "Meta")
+				.Where(e =>
+					e.Attributes().Any(a => a.Value.Equals(BreadcrumbMetaName)))
+				.Select(e => e.Parent)
+				.FirstOrDefault();
+
+			if (paragraph == null)
+			{
+				var index = page.GetQuickStyle(Styles.StandardStyles.Quote).Index;
+				paragraph = new Paragraph(ns,
+					new XElement(ns + "Meta",
+						new XAttribute("name", BreadcrumbMetaName),
+						new XAttribute("content", "1")),
+					new XElement(ns + "T",
+						new XCData(path))
+					).SetQuickStyle(index);
+
+				var container = page.EnsureContentContainer();
+				container.AddFirst(paragraph, new Paragraph(ns));
+			}
+			else
+			{
+				var run = paragraph.Elements(ns + "T").FirstOrDefault();
+				if (run == null)
 				{
-					var node = one.GetHierarchyNode(id);
-					crumbs.Insert(0, $"<a href={node.Link}>{node.Name}</a> {RightArrow} ");
-					id = one.GetParent(id);
-				}
-
-				crumbs.Append(info.Name);
-
-				var path = $"<span style='font-style:italic'>{crumbs}</span>";
-
-				// <one:Meta name="omBreadcrumb" content="1" />
-				var paragraph = page.Root
-					.Elements(ns + "Outline")
-					.Elements(ns + "OEChildren")
-					.Elements(ns + "OE")
-					.Elements(ns + "Meta")
-					.Where(e =>
-						e.Attributes().Any(a => a.Value.Equals(BreadcrumbMetaName)))
-					.Select(e => e.Parent)
-					.FirstOrDefault();
-
-				if (paragraph == null)
-				{
-					var index = page.GetQuickStyle(Styles.StandardStyles.Quote).Index;
-					paragraph = new Paragraph(ns,
-						new XElement(ns + "Meta",
-							new XAttribute("name", BreadcrumbMetaName),
-							new XAttribute("content", "1")),
-						new XElement(ns + "T",
-							new XCData(path))
-						).SetQuickStyle(index);
-
-					var container = page.EnsureContentContainer();
-					container.AddFirst(paragraph, new Paragraph(ns));
+					paragraph.Add(new XElement(ns + "T",
+						new XCData(path))
+						);
 				}
 				else
 				{
-					var run = paragraph.Elements(ns + "T").FirstOrDefault();
-					if (run == null)
-					{
-						paragraph.Add(new XElement(ns + "T",
-							new XCData(path))
-							);
-					}
-					else
-					{
-						run.GetCData().Value = path;
-					}
+					run.GetCData().Value = path;
 				}
-
-				await one.Update(page);
 			}
+
+			await one.Update(page);
 		}
 	}
 }

@@ -80,16 +80,15 @@ namespace River.OneMoreAddIn.Commands
 		{
 			var location = PointToScreen(shadingBox.Location);
 
-			using (var dialog = new UI.MoreColorDialog(Resx.PageColorDialog_Text,
+			using var dialog = new UI.MoreColorDialog(Resx.PageColorDialog_Text,
 				location.X + shadingBox.Bounds.Location.X + (shadingBox.Width / 2),
-				location.Y - 50))
-			{
-				dialog.Color = shadingBox.BackColor;
+				location.Y - 50);
 
-				if (dialog.ShowDialog() == DialogResult.OK)
-				{
-					shadingBox.BackColor = dialog.Color;
-				}
+			dialog.Color = shadingBox.BackColor;
+
+			if (dialog.ShowDialog() == DialogResult.OK)
+			{
+				shadingBox.BackColor = dialog.Color;
 			}
 		}
 	}

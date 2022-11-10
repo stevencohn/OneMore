@@ -42,7 +42,7 @@ namespace River.OneMoreAddIn.UI
 			sortProperty = prop;
 			sortDirection = direction;
 
-			if (!(Items is List<T> list)) return;
+			if (Items is not List<T> list) return;
 
 			list.Sort(Compare);
 

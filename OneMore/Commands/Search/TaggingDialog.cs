@@ -489,75 +489,73 @@ namespace River.OneMoreAddIn.Commands
 
 		private void FetchCommonWords()
 		{
-			using (var one = new OneNote(out var page, out var ns, OneNote.PageDetail.Basic))
+			using var one = new OneNote(out var page, out var ns, OneNote.PageDetail.Basic);
+			var builder = new StringBuilder();
+
+			// collect all visible text into one StringBuilder
+
+			var runs = page.Root.Elements(ns + "Outline")
+				.Where(e => !e.Elements(ns + "Meta")
+							.Any(m => m.Attribute("name").Value == MetaNames.TaggingBank))
+				.Descendants(ns + "T");
+
+			foreach (var run in runs)
 			{
-				var builder = new StringBuilder();
-
-				// collect all visible text into one StringBuilder
-
-				var runs = page.Root.Elements(ns + "Outline")
-					.Where(e => !e.Elements(ns + "Meta")
-								.Any(m => m.Attribute("name").Value == MetaNames.TaggingBank))
-					.Descendants(ns + "T");
-
-				foreach (var run in runs)
+				var cdata = run.GetCData();
+				if (cdata.Value.Contains("<"))
 				{
-					var cdata = run.GetCData();
-					if (cdata.Value.Contains("<"))
+					var wrapper = cdata.GetWrapper();
+					var text = wrapper.Value.Trim();
+					if (text.Length > 0)
 					{
-						var wrapper = cdata.GetWrapper();
-						var text = wrapper.Value.Trim();
-						if (text.Length > 0)
-						{
-							builder.Append(" ");
-							builder.Append(HttpUtility.HtmlDecode(text));
-						}
-					}
-					else
-					{
-						var text = cdata.Value.Trim();
-						if (text.Length > 0)
-						{
-							builder.Append(" ");
-							builder.Append(HttpUtility.HtmlDecode(text));
-						}
+						builder.Append(" ");
+						builder.Append(HttpUtility.HtmlDecode(text));
 					}
 				}
-
-				// collect OCR text, e.g. <one:OCRText><![CDATA[...
-
-				var data = page.Root.Elements(ns + "Outline").Descendants(ns + "OCRText")
-					.Select(e => e.GetCData());
-
-				foreach (var cdata in data)
+				else
 				{
-					builder.Append(" ");
-					builder.Append(cdata.Value);
-				}
-
-
-				// split text into individual words, discarding all non-word chars and numbers
-
-				var alltext = builder.Replace("\n", string.Empty).ToString();
-
-				var words = Regex.Split(alltext, @"\W")
-					.Select(w=> w.Trim().ToLower()).Where(w =>
-						w.Length > 1 && 
-						!Blacklist.Contains(w) && 
-						!Regex.Match(w, @"^\s*\d+\s*$").Success)
-					.GroupBy(w => w)
-					.Select(g => new
+					var text = cdata.Value.Trim();
+					if (text.Length > 0)
 					{
-						Word = g.Key,
-						Count = g.Count()
-					})
-					.OrderByDescending(g => g.Count)
-					.Take(PoolSize);
-
-				foreach (var word in words)
-				{
-					commonFlow.Controls.Add(MakeLabel(word.Word, $"{word.Word} ({word.Count})"));
+						builder.Append(" ");
+						builder.Append(HttpUtility.HtmlDecode(text));
+					}
 				}
+			}
+
+			// collect OCR text, e.g. <one:OCRText><![CDATA[...
+
+			var data = page.Root.Elements(ns + "Outline").Descendants(ns + "OCRText")
+				.Select(e => e.GetCData());
+
+			foreach (var cdata in data)
+			{
+				builder.Append(" ");
+				builder.Append(cdata.Value);
+			}
+
+
+			// split text into individual words, discarding all non-word chars and numbers
+
+			var alltext = builder.Replace("\n", string.Empty).ToString();
+
+			var words = Regex.Split(alltext, @"\W")
+				.Select(w => w.Trim().ToLower()).Where(w =>
+					w.Length > 1 &&
+					!Blacklist.Contains(w) &&
+					!Regex.Match(w, @"^\s*\d+\s*$").Success)
+				.GroupBy(w => w)
+				.Select(g => new
+				{
+					Word = g.Key,
+					Count = g.Count()
+				})
+				.OrderByDescending(g => g.Count)
+				.Take(PoolSize);
+
+			foreach (var word in words)
+			{
+				commonFlow.Controls.Add(MakeLabel(word.Word, $"{word.Word} ({word.Count})"));
 			}
 		}
 
