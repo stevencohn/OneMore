@@ -227,7 +227,7 @@ namespace River.OneMoreAddIn.Styles
 		/// <returns>true if the objects match; false otherwise</returns>
 		public override bool Equals(object obj)
 		{
-			if (!(obj is StyleBase style))
+			if (obj is not StyleBase style)
 			{
 				return false;
 			}

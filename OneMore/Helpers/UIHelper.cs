@@ -32,10 +32,8 @@ namespace River.OneMoreAddIn
 		/// <returns>A Tuple with DpiX and DpiY values</returns>
 		public static (float, float) GetDpiValues()
 		{
-			using (var graphics = Graphics.FromHwnd(IntPtr.Zero))
-			{
-				return (graphics.DpiX, graphics.DpiY);
-			}
+			using var graphics = Graphics.FromHwnd(IntPtr.Zero);
+			return (graphics.DpiX, graphics.DpiY);
 		}
 
 

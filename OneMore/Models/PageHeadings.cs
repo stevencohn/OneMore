@@ -134,10 +134,7 @@ namespace River.OneMoreAddIn.Models
 				.Select(e => e.Attribute("color").Value)
 				.FirstOrDefault();
 
-			if (pageColor == null)
-			{
-				pageColor = "automatic";
-			}
+			pageColor ??= "automatic";
 		}
 
 

@@ -24,11 +24,9 @@ namespace River.OneMoreAddIn.Styles
 			float scaleFactor = 1f;
 			if (scaling)
 			{
-				using (var bitmap = new Drawing.Bitmap(1, 1))
-				using (var graphics = Drawing.Graphics.FromImage(bitmap))
-				{
-					scaleFactor = 96 / graphics.DpiY;
-				}
+				using var bitmap = new Drawing.Bitmap(1, 1);
+				using var graphics = Drawing.Graphics.FromImage(bitmap);
+				scaleFactor = 96 / graphics.DpiY;
 			}
 
 			if (string.IsNullOrEmpty(Name))

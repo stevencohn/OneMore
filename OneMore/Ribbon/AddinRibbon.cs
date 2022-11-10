@@ -676,10 +676,8 @@ namespace River.OneMoreAddIn
 				if (!string.IsNullOrEmpty(img))
 				{
 					var bytes = Convert.FromBase64String(img);
-					using (var stream = new MemoryStream(bytes, 0, bytes.Length))
-					{
-						return ((Bitmap)(Image.FromStream(stream))).GetReadOnlyStream();
-					}
+					using var stream = new MemoryStream(bytes, 0, bytes.Length);
+					return ((Bitmap)(Image.FromStream(stream))).GetReadOnlyStream();
 				}
 			}
 

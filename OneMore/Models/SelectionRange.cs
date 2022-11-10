@@ -89,7 +89,7 @@ namespace River.OneMoreAddIn.Models
 			}
 
 			var cursor = selections.First();
-			if (!(cursor.FirstNode is XCData cdata))
+			if (cursor.FirstNode is not XCData cdata)
 			{
 				// shouldn't happen?
 				return null;
@@ -275,7 +275,7 @@ namespace River.OneMoreAddIn.Models
 			}
 
 			var cursor = selections.First();
-			if (!(cursor.FirstNode is XCData cdata))
+			if (cursor.FirstNode is not XCData cdata)
 			{
 				// shouldn't happen?
 				return null;

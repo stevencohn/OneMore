@@ -37,8 +37,8 @@ namespace River.OneMoreAddIn
 		private delegate void RegisterHotkeyDelegate(IntPtr hwnd, int id, uint modifiers, uint key);
 		private delegate void UnRegisterHotkeyDelegate(IntPtr hwnd, int id);
 
-		private static readonly List<Hotkey> registeredKeys = new List<Hotkey>();
-		private static readonly ManualResetEvent resetEvent = new ManualResetEvent(false);
+		private static readonly List<Hotkey> registeredKeys = new();
+		private static readonly ManualResetEvent resetEvent = new(false);
 		private static volatile MessageWindow window;
 		private static volatile IntPtr handle;
 		private static uint threadId;

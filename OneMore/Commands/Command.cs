@@ -48,10 +48,8 @@ namespace River.OneMoreAddIn
 			{
 				if (owner == null || !Native.IsWindow(owner.Handle))
 				{
-					using (var one = new OneNote())
-					{
-						owner = one.Window;
-					}
+					using var one = new OneNote();
+					owner = one.Window;
 				}
 
 				return owner;

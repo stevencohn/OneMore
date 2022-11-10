@@ -127,10 +127,7 @@ namespace River.OneMoreAddIn.Helpers.Office
 				if (key != null)
 				{
 					theme = key.GetValue("UI Theme") as Int32?;
-					if (theme == null)
-					{
-						theme = key.GetValue("Theme") as Int32?;
-					}
+					theme ??= key.GetValue("Theme") as Int32?;
 				}
 
 				if (theme == 4 && (ignorePage || !DarkModeLightsOn()))
@@ -158,12 +155,11 @@ namespace River.OneMoreAddIn.Helpers.Office
 		/// <returns></returns>
 		private static bool DarkModeLightsOn()
 		{
-			using (var key = Registry.CurrentUser.OpenSubKey(
-				@"Software\Microsoft\Office\16.0\OneNote\General"))
-			{
-				var enabled = key.GetValue("DarkModeCanvasLightsOn") as Int32?;
-				return enabled == 1;
-			}
+			using var key = Registry.CurrentUser.OpenSubKey(
+				@"Software\Microsoft\Office\16.0\OneNote\General");
+
+			var enabled = key.GetValue("DarkModeCanvasLightsOn") as Int32?;
+			return enabled == 1;
 		}
 
 
@@ -173,12 +169,11 @@ namespace River.OneMoreAddIn.Helpers.Office
 		/// <returns></returns>
 		private static bool SystemDefaultDarkMode()
 		{
-			using (var key = Registry.CurrentUser.OpenSubKey(
-				@"SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Personalize"))
-			{
-				var light = key.GetValue("AppsUseLightTheme") as Int32?;
-				return light == 0;
-			}
+			using var key = Registry.CurrentUser.OpenSubKey(
+				@"SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Personalize");
+
+			var light = key.GetValue("AppsUseLightTheme") as Int32?;
+			return light == 0;
 		}
 	}
 }

@@ -28,7 +28,7 @@ namespace River.OneMoreAddIn
 	/// await SomethingAsync().ConfigureAwait(false);
 	/// await context;
 	/// </example>
-	public struct SynchronizationContextAwaiter : INotifyCompletion
+	public readonly struct SynchronizationContextAwaiter : INotifyCompletion
 	{
 		private static readonly SendOrPostCallback callback = state => ((Action)state)();
 

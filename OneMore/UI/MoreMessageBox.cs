@@ -78,14 +78,13 @@ namespace River.OneMoreAddIn.UI
 
 		public void SetIcon(MessageBoxIcon mbicon)
 		{
-			Icon icon;
-			switch (mbicon)
+			Icon icon = mbicon switch
 			{
-				case MessageBoxIcon.Error: icon = SystemIcons.Error; break;
-				case MessageBoxIcon.Exclamation: icon = SystemIcons.Exclamation; break;
-				case MessageBoxIcon.Question: icon = SystemIcons.Question; break;
-				default: icon = SystemIcons.Information; break;
-			}
+				MessageBoxIcon.Error => SystemIcons.Error,
+				MessageBoxIcon.Exclamation => SystemIcons.Exclamation,
+				MessageBoxIcon.Question => SystemIcons.Question,
+				_ => SystemIcons.Information,
+			};
 
 			iconBox.Image = icon.ToBitmap();
 		}
@@ -101,38 +100,32 @@ namespace River.OneMoreAddIn.UI
 			MessageBoxButtons buttons,
 			MessageBoxIcon icon)
 		{
-			using (var box = new MoreMessageBox())
-			{
-				box.SetMessage(text);
-				box.SetIcon(icon);
-				box.SetButtons(buttons);
-				return box.ShowDialog(owner);
-			}
+			using var box = new MoreMessageBox();
+			box.SetMessage(text);
+			box.SetIcon(icon);
+			box.SetButtons(buttons);
+			return box.ShowDialog(owner);
 		}
 
 
 		public static DialogResult ShowError(IWin32Window owner, string text)
 		{
-			using (var box = new MoreMessageBox())
-			{
-				box.SetMessage(text);
-				box.SetIcon(MessageBoxIcon.Error);
-				box.SetButtons(MessageBoxButtons.OK);
-				return box.ShowDialog(owner);
-			}
+			using var box = new MoreMessageBox();
+			box.SetMessage(text);
+			box.SetIcon(MessageBoxIcon.Error);
+			box.SetButtons(MessageBoxButtons.OK);
+			return box.ShowDialog(owner);
 		}
 
 
 		public static DialogResult ShowErrorWithLogLink(IWin32Window owner, string text)
 		{
-			using (var box = new MoreMessageBox())
-			{
-				box.SetMessage(text);
-				box.ShowLogLink();
-				box.SetIcon(MessageBoxIcon.Error);
-				box.SetButtons(MessageBoxButtons.OK);
-				return box.ShowDialog(owner);
-			}
+			using var box = new MoreMessageBox();
+			box.SetMessage(text);
+			box.ShowLogLink();
+			box.SetIcon(MessageBoxIcon.Error);
+			box.SetButtons(MessageBoxButtons.OK);
+			return box.ShowDialog(owner);
 		}
 
 

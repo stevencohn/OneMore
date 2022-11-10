@@ -87,11 +87,7 @@ namespace River.OneMoreAddIn
 		{
 			get
 			{
-				if (instance == null)
-				{
-					instance = new Logger();
-				}
-
+				instance ??= new Logger();
 				return instance;
 			}
 		}

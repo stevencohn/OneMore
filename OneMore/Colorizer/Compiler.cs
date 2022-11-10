@@ -12,10 +12,10 @@ namespace River.OneMoreAddIn.Colorizer
 	internal static class Compiler
 	{
 		private static readonly Regex capturePattern =
-			new Regex(@"(?x)(?<!(\\|(?!\\)\(\?))\((?!\?)", RegexOptions.Compiled);
+			new(@"(?x)(?<!(\\|(?!\\)\(\?))\((?!\?)", RegexOptions.Compiled);
 
 		private static readonly Regex namedPattern =
-			new Regex(@"(?<!(\\|(?!\\)\(\?))\((\?<\w+>)", RegexOptions.Compiled);
+			new(@"(?<!(\\|(?!\\)\(\?))\((\?<\w+>)", RegexOptions.Compiled);
 
 
 		public static ICompiledLanguage Compile(ILanguage language)

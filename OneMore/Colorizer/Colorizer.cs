@@ -19,7 +19,6 @@ namespace River.OneMoreAddIn.Colorizer
 	{
 		private readonly Parser parser;
 		private readonly ITheme theme;
-		private readonly bool autoOverride;
 
 
 		/// <summary>
@@ -30,13 +29,11 @@ namespace River.OneMoreAddIn.Colorizer
 		/// </param>
 		/// <param name="themeName">Must be "light" or "dark"</param>
 		/// <param name="autoOverride">
-		/// True to use color overrides from theme file; this is need in dark mode
+		/// True to use color overrides from theme file; this is needed in dark mode
 		/// when the page color is auto to change the plain text color
 		/// </param>
 		public Colorizer(string languageName, string themeName, bool autoOverride)
 		{
-			this.autoOverride = autoOverride;
-
 			var root = GetColorizerDirectory();
 			var path = Path.Combine(root, $@"Languages\{languageName}.json");
 
