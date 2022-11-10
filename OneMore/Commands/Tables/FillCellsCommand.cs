@@ -36,51 +36,49 @@ namespace River.OneMoreAddIn.Commands
 
 		public override async Task Execute(params object[] args)
 		{
-			using (var one = new OneNote(out var page, out ns))
+			using var one = new OneNote(out var page, out ns);
+			// Find first selected cell as anchor point to locate table; by filtering on
+			// selected=all, we avoid including the parent table of a selected nested table.
+
+			var anchor = page.Root.Descendants(ns + "Cell")
+				// dive down to find the selected T within a table cell
+				.Elements(ns + "OEChildren")
+				.Elements(ns + "OE")
+				.Elements(ns + "T")
+				.Where(e => e.Attribute("selected")?.Value == "all")
+				// now move back up to the Cell
+				.Select(e => e.Parent.Parent.Parent)
+				.FirstOrDefault();
+
+			if (anchor == null)
 			{
-				// Find first selected cell as anchor point to locate table; by filtering on
-				// selected=all, we avoid including the parent table of a selected nested table.
+				UIHelper.ShowInfo(one.Window, Resx.InsertCellsCommand_NoSelection);
+				return;
+			}
 
-				var anchor = page.Root.Descendants(ns + "Cell")
-					// dive down to find the selected T within a table cell
-					.Elements(ns + "OEChildren")
-					.Elements(ns + "OE")
-					.Elements(ns + "T")
-					.Where(e => e.Attribute("selected")?.Value == "all")
-					// now move back up to the Cell
-					.Select(e => e.Parent.Parent.Parent)
-					.FirstOrDefault();
+			var table = new Table(anchor.FirstAncestor(ns + "Table"));
+			var cells = table.GetSelectedCells(out var range).ToList();
 
-				if (anchor == null)
-				{
-					UIHelper.ShowInfo(one.Window, Resx.InsertCellsCommand_NoSelection);
-					return;
-				}
+			// RowNum and ColNum are 1-based so must shift them to be 0-based
+			minCol = cells.Min(c => c.ColNum) - 1;
+			maxCol = cells.Max(c => c.ColNum) - 1;
+			minRow = cells.Min(c => c.RowNum) - 1;
+			maxRow = cells.Max(c => c.RowNum) - 1;
 
-				var table = new Table(anchor.FirstAncestor(ns + "Table"));
-				var cells = table.GetSelectedCells(out var range).ToList();
+			var updated = false;
 
-				// RowNum and ColNum are 1-based so must shift them to be 0-based
-				minCol = cells.Min(c => c.ColNum) - 1;
-				maxCol = cells.Max(c => c.ColNum) - 1;
-				minRow = cells.Min(c => c.RowNum) - 1;
-				maxRow = cells.Max(c => c.RowNum) - 1;
+			var action = (FillCells)args[0];
+			switch (action)
+			{
+				case FillCells.CopyAcross: updated = CopyAcross(table); break;
+				case FillCells.CopyDown: updated = CopyDown(table); break;
+				case FillCells.FillAcross: updated = FillAcross(table, cells); break;
+				case FillCells.FillDown: updated = FillDown(table, cells); break;
+			}
 
-				var updated = false;
-
-				var action = (FillCells)args[0];
-				switch (action)
-				{
-					case FillCells.CopyAcross: updated = CopyAcross(table); break;
-					case FillCells.CopyDown: updated = CopyDown(table); break;
-					case FillCells.FillAcross: updated = FillAcross(table, cells); break;
-					case FillCells.FillDown: updated = FillDown(table, cells); break;
-				}
-
-				if (updated)
-				{
-					await one.Update(page);
-				}
+			if (updated)
+			{
+				await one.Update(page);
 			}
 		}
 

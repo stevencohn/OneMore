@@ -66,51 +66,50 @@ namespace River.OneMoreAddIn.Commands
 					return;
 				}
 
-				using (var dialog = new FormulaDialog())
+				using var dialog = new FormulaDialog();
+
+				// display selected cell names
+				dialog.SetCellNames(
+					string.Join(", ", cells.Select(c => c.Coordinates))); // + $" ({rangeType})");
+
+				var cell = cells.First();
+
+				// display formula of first cell if any
+				var formula = new Formula(cell);
+				if (formula.Valid)
 				{
-					// display selected cell names
-					dialog.SetCellNames(
-						string.Join(", ", cells.Select(c => c.Coordinates))); // + $" ({rangeType})");
-
-					var cell = cells.First();
-
-					// display formula of first cell if any
-					var formula = new Formula(cell);
-					if (formula.Valid)
-					{
-						dialog.Format = formula.Format;
-						dialog.Formula = formula.Expression;
-						dialog.DecimalPlaces = formula.DecimalPlaces;
-					}
-
-					var tagIndex = page.GetTagDefIndex(BoltSymbol);
-					if (!string.IsNullOrEmpty(tagIndex))
-					{
-						if (cell.HasTag(tagIndex))
-						{
-							dialog.Tagged = true;
-						}
-					}
-
-					if (dialog.ShowDialog() != DialogResult.OK)
-					{
-						return;
-					}
-
-					if (dialog.Tagged)
-					{
-						tagIndex = page.AddTagDef(BoltSymbol, Resx.AddFormulaCommand_Calculated);
-					}
-
-					StoreFormula(cells,
-						dialog.Formula, dialog.Format, dialog.DecimalPlaces,
-						range, tagIndex);
-
-					var processor = new Processor(table);
-					processor.Execute(cells);
-
-					await one.Update(page);
+					dialog.Format = formula.Format;
+					dialog.Formula = formula.Expression;
+					dialog.DecimalPlaces = formula.DecimalPlaces;
 				}
+
+				var tagIndex = page.GetTagDefIndex(BoltSymbol);
+				if (!string.IsNullOrEmpty(tagIndex))
+				{
+					if (cell.HasTag(tagIndex))
+					{
+						dialog.Tagged = true;
+					}
+				}
+
+				if (dialog.ShowDialog() != DialogResult.OK)
+				{
+					return;
+				}
+
+				if (dialog.Tagged)
+				{
+					tagIndex = page.AddTagDef(BoltSymbol, Resx.AddFormulaCommand_Calculated);
+				}
+
+				StoreFormula(cells,
+					dialog.Formula, dialog.Format, dialog.DecimalPlaces,
+					range, tagIndex);
+
+				var processor = new Processor(table);
+				processor.Execute(cells);
+
+				await one.Update(page);
 			}
 		}
 

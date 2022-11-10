@@ -25,36 +25,34 @@ namespace River.OneMoreAddIn.Commands
 
 		public override async Task Execute(params object[] args)
 		{
-			using (var one = new OneNote(out var page, out var ns, OneNote.PageDetail.Selection))
+			using var one = new OneNote(out var page, out var ns, OneNote.PageDetail.Selection);
+			var selections = page.Root
+				.Descendants(page.Namespace + "OE")
+				.Elements(page.Namespace + "T")
+				.Where(e => e.Attribute("selected")?.Value == "all")
+				.Select(e => e.Parent)
+				.ToList();
+
+			if (selections.Count == 0 || (selections.Count == 1 && selections[0].Value == string.Empty))
 			{
-				var selections = page.Root
-					.Descendants(page.Namespace + "OE")
-					.Elements(page.Namespace + "T")
-					.Where(e => e.Attribute("selected")?.Value == "all")
-					.Select(e => e.Parent)
-					.ToList();
+				UIHelper.ShowInfo(one.Window, Resx.TextToTable_NoText);
+				return;
+			}
 
-				if (selections.Count == 0 || (selections.Count == 1 && selections[0].Value == string.Empty))
+			var table = TextToTable(page.Namespace, selections);
+
+			if (table != null)
+			{
+				var first = selections[0];
+				for (int i = 1; i < selections.Count; i++)
 				{
-					UIHelper.ShowInfo(one.Window, Resx.TextToTable_NoText);
-					return;
+					selections[i].Remove();
 				}
 
-				var table = TextToTable(page.Namespace, selections);
+				first.ReplaceNodes(table.Root);
 
-				if (table != null)
-				{
-					var first = selections[0];
-					for (int i = 1; i < selections.Count; i++)
-					{
-						selections[i].Remove();
-					}
-
-					first.ReplaceNodes(table.Root);
-
-					//logger.WriteLine(page.Root);
-					await one.Update(page);
-				}
+				//logger.WriteLine(page.Root);
+				await one.Update(page);
 			}
 		}
 
@@ -107,14 +105,14 @@ namespace River.OneMoreAddIn.Commands
 				cols = dialog.Columns;
 
 				delimetedBy = dialog.DelimetedBy;
-				switch (delimetedBy)
+				delimeter = delimetedBy switch
 				{
-					case TextToTableDialog.Delimeter.Commas: delimeter = ","; break;
-					case TextToTableDialog.Delimeter.Tabs: delimeter = "\t"; break;
-					case TextToTableDialog.Delimeter.Nbsp: delimeter = nbsp; break;
-					case TextToTableDialog.Delimeter.Other: delimeter = dialog.CustomDelimeter; break;
-					default: delimeter = string.Empty; break;
-				}
+					TextToTableDialog.Delimeter.Commas => ",",
+					TextToTableDialog.Delimeter.Tabs => "\t",
+					TextToTableDialog.Delimeter.Nbsp => nbsp,
+					TextToTableDialog.Delimeter.Other => dialog.CustomDelimeter,
+					_ => string.Empty,
+				};
 
 				hasHeader = dialog.HasHeader;
 				unquote = dialog.Unquote;

@@ -85,10 +85,7 @@ namespace River.OneMoreAddIn.Commands.Tables.Formulas
 				var index = tagx.Attribute("index").Value;
 				if (index != null)
 				{
-					if (tags == null)
-					{
-						tags = DiscoverTags();
-					}
+					tags ??= DiscoverTags();
 
 					var tag = tags.FirstOrDefault(t => t.Index == index);
 					if (tag != null)
