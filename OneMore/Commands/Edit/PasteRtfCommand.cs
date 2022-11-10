@@ -407,88 +407,28 @@ namespace River.OneMoreAddIn.Commands
 
 		private string TranslateElementName(string xname, XmlReader reader = null)
 		{
-			string name;
-
-			switch (xname)
+			string name = xname switch
 			{
-				case "InlineUIContainer":
-				case "Span":
-					name = "span";
-					break;
-
-				case "Run":
-					name = "span";
-					break;
-
-				case "Bold":
-					name = "b";
-					break;
-
-				case "Italic":
-					name = "i";
-					break;
-
-				case "Paragraph":
-					name = "p";
-					break;
-
-				case "BlockUIContainer":
-				case "Section":
-					name = "div";
-					break;
-
-				case "Table":
-					name = "table";
-					break;
-
-				case "TableColumn":
-					name = "col";
-					break;
-
-				case "TableRowGroup":
-					name = "tbody";
-					break;
-
-				case "TableRow":
-					name = "tr";
-					break;
-
-				case "TableCell":
-					name = "td";
-					break;
-
-				case "List":
-					switch (reader.GetAttribute("MarkerStyle"))
-					{
-						case null:
-						case "None":
-						case "Disc":
-						case "Circle":
-						case "Square":
-						case "Box":
-							name = "ul";
-							break;
-
-						default:
-							name = "ol";
-							break;
-					}
-					break;
-
-				case "ListItem":
-					name = "li";
-					break;
-
-				case "Hyperlink":
-					name = "a";
-					break;
-
-				default:
-					// ignore
-					name = null;
-					break;
-			}
-
+				"InlineUIContainer" or "Span" => "span",
+				"Run" => "span",
+				"Bold" => "b",
+				"Italic" => "i",
+				"Paragraph" => "p",
+				"BlockUIContainer" or "Section" => "div",
+				"Table" => "table",
+				"TableColumn" => "col",
+				"TableRowGroup" => "tbody",
+				"TableRow" => "tr",
+				"TableCell" => "td",
+				"List" => reader.GetAttribute("MarkerStyle") switch
+				{
+					null or "None" or "Disc" or "Circle" or "Square" or "Box" => "ul",
+					_ => "ol",
+				},
+				"ListItem" => "li",
+				"Hyperlink" => "a",
+				_ => null,// ignore
+			};
 			return name;
 		}
 

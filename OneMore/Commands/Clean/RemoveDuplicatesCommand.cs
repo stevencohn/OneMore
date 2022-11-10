@@ -33,7 +33,7 @@ namespace River.OneMoreAddIn.Commands
 			public string Path;
 			public string Link;
 			public int Distance;
-			public List<HashNode> Siblings = new List<HashNode>();
+			public List<HashNode> Siblings = new();
 		}
 
 		private OneNote one;

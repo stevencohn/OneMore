@@ -38,34 +38,34 @@ namespace River.OneMoreAddIn.Commands
 			var path = Path.Combine(PathHelper.GetAppDataPath(), Resx.ThemesFolder);
 			PathHelper.EnsurePathExists(path);
 
-			using (var dialog = new OpenFileDialog())
+			using var dialog = new OpenFileDialog
 			{
-				dialog.DefaultExt = "xml";
-				dialog.Filter = "Theme files (*.xml)|*.xml|All files (*.*)|*.*";
-				dialog.Multiselect = false;
-				dialog.Title = "Open Style Theme";
-				dialog.ShowHelp = true; // stupid, but this is needed to avoid hang
-				dialog.AutoUpgradeEnabled = true; // simpler UI, faster
-				dialog.InitialDirectory = path;
+				DefaultExt = "xml",
+				Filter = "Theme files (*.xml)|*.xml|All files (*.*)|*.*",
+				Multiselect = false,
+				Title = "Open Style Theme",
+				ShowHelp = true,			// stupid, but this is needed to avoid hang
+				AutoUpgradeEnabled = true,	// simpler UI, faster
+				InitialDirectory = path
+			};
 
-				if (dialog.ShowDialog(owner) != DialogResult.OK)
-				{
-					return null;
-				}
-
-				var theme = new ThemeProvider(dialog.FileName).Theme;
-				if (theme != null)
-				{
-					var styles = theme.GetStyles();
-					if (styles.Count > 0)
-					{
-						return theme;
-					}
-				}
-
-				UIHelper.ShowError("could not load theme file or them contains no styles");
+			if (dialog.ShowDialog(owner) != DialogResult.OK)
+			{
 				return null;
 			}
+
+			var theme = new ThemeProvider(dialog.FileName).Theme;
+			if (theme != null)
+			{
+				var styles = theme.GetStyles();
+				if (styles.Count > 0)
+				{
+					return theme;
+				}
+			}
+
+			UIHelper.ShowError("could not load theme file or them contains no styles");
+			return null;
 		}
 	}
 }

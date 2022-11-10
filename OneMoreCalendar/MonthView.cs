@@ -528,13 +528,16 @@ namespace OneMoreCalendar
 				Day = day
 			};
 
-			var button = new MoreButton();
-			button.Font = moreFont;
-			button.ForeColor = AppColors.ControlColor;
-			button.Location = location;
-			button.Text = type == Hottype.Up ? LessGlyph : MoreGlyph;
-			button.Size = new Size(moreSize.Width + 4, moreSize.Height + 2);
-			button.Tag = spot;
+			var button = new MoreButton
+			{
+				Font = moreFont,
+				ForeColor = AppColors.ControlColor,
+				Location = location,
+				Text = type == Hottype.Up ? LessGlyph : MoreGlyph,
+				Size = new Size(moreSize.Width + 4, moreSize.Height + 2),
+				Tag = spot
+			};
+
 			button.MouseDown += ClickScrollButton;
 			Controls.Add(button);
 
@@ -551,8 +554,7 @@ namespace OneMoreCalendar
 
 		private void ClickScrollButton(object sender, EventArgs e)
 		{
-			var spot = ((MoreButton)sender).Tag as Hotspot;
-			if (spot != null)
+			if (((MoreButton)sender).Tag is Hotspot spot)
 			{
 				ScrollDay(spot);
 			}

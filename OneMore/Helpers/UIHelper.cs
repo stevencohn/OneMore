@@ -46,16 +46,14 @@ namespace River.OneMoreAddIn
 		{
 			if (xScalingFactor == 0 && yScalingFactor == 0)
 			{
-				using (var g = Graphics.FromHwnd(IntPtr.Zero))
-				{
-					IntPtr desktop = g.GetHdc();
+				using var g = Graphics.FromHwnd(IntPtr.Zero);
+				IntPtr desktop = g.GetHdc();
 
-					int physScreenWidth = Native.GetDeviceCaps(desktop, Native.DEVICECAPS_DESKTOPHORZRES);
-					int physScreenHeight = Native.GetDeviceCaps(desktop, Native.DEVICECAPS_DESKTOPVERTRES);
+				int physScreenWidth = Native.GetDeviceCaps(desktop, Native.DEVICECAPS_DESKTOPHORZRES);
+				int physScreenHeight = Native.GetDeviceCaps(desktop, Native.DEVICECAPS_DESKTOPVERTRES);
 
-					xScalingFactor = physScreenWidth / (float)System.Windows.SystemParameters.WorkArea.Width;
-					yScalingFactor = physScreenHeight / (float)System.Windows.SystemParameters.WorkArea.Height;
-				}
+				xScalingFactor = physScreenWidth / (float)System.Windows.SystemParameters.WorkArea.Width;
+				yScalingFactor = physScreenHeight / (float)System.Windows.SystemParameters.WorkArea.Height;
 			}
 
 			return (xScalingFactor, yScalingFactor); // 1.25 = 125%

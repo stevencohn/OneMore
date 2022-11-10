@@ -105,14 +105,14 @@ namespace River.OneMoreAddIn.Commands
 			}
 
 			// default theme "Normal"
-			switch (index)
+			return index switch
 			{
-				case 1: return "#00FF00";   // Light Green
-				case 2: return "#00FFFF";   // Sky Blue
-				case 3: return "#FF00CC";   // Pink
-				case 4: return "#0000FF";   // Light Blue
-				default: return "#FFFF00";  // Light Yellow
-			}
+				1 => "#00FF00",// Light Green
+				2 => "#00FFFF",// Sky Blue
+				3 => "#FF00CC",// Pink
+				4 => "#0000FF",// Light Blue
+				_ => "#FFFF00",// Light Yellow
+			};
 		}
 	}
 }

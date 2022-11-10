@@ -19,10 +19,10 @@ namespace River.OneMoreAddIn.Commands
 		private readonly Image image;
 		private readonly int viewWidth;
 		private readonly int viewHeight;
+		private readonly MagicScaling scaling;
+		private readonly int originalWidth;
+		private readonly int originalHeight;
 		private SettingsProvider settings;
-		private MagicScaling scaling;
-		private int originalWidth;
-		private int originalHeight;
 		private Image preview;
 		private int storageSize;
 		private bool suspended = true;

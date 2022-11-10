@@ -101,7 +101,7 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		public Plugin Plugin => new Plugin
+		public Plugin Plugin => new()
 		{
 			Name = nameBox.Text,
 			OriginalName = nameBox.Text,

@@ -69,8 +69,62 @@ namespace River.OneMoreAddIn.Commands
 			int viewWidth = (int)decimal.Parse(size.Attribute("width").Value, CultureInfo.InvariantCulture);
 			int viewHeight = (int)decimal.Parse(size.Attribute("height").Value, CultureInfo.InvariantCulture);
 
-			using (var image = ReadImage(element))
+			using var image = ReadImage(element);
+
+			// when pasting an image onto the page, width or height can be zero
+			// OneNote ignores both if either is zero so we'll do the same...
+			if (viewWidth == 0 || viewHeight == 0)
 			{
+				viewWidth = image.Width;
+				viewHeight = image.Height;
+			}
+
+			using var dialog = new ResizeImagesDialog(image, viewWidth, viewHeight);
+			var result = dialog.ShowDialog();
+			if (result != DialogResult.OK)
+			{
+				return;
+			}
+
+			if (dialog.NeedsRewrite)
+			{
+				using var data = dialog.GetImage();
+				if (data != null)
+				{
+					WriteImage(element, data);
+				}
+			}
+
+			size.SetAttributeValue("width", dialog.ImageWidth.ToString(CultureInfo.InvariantCulture));
+			size.SetAttributeValue("height", dialog.ImageHeight.ToString(CultureInfo.InvariantCulture));
+			size.SetAttributeValue("isSetByUser", "true");
+
+			logger.WriteLine($"resized from {viewWidth} x {viewHeight} to {dialog.ImageWidth} x {dialog.ImageHeight}");
+
+			await one.Update(page);
+		}
+
+
+		private async Task ResizeMany(IEnumerable<XElement> elements)
+		{
+			using var dialog = new ResizeImagesDialog();
+			var result = dialog.ShowDialog();
+			if (result != DialogResult.OK)
+			{
+				return;
+			}
+
+			foreach (var element in elements)
+			{
+				using var image = ReadImage(element);
+				var size = element.Element(ns + "Size");
+
+				var viewWidth = (int)decimal.Parse(
+					size.Attribute("width").Value, CultureInfo.InvariantCulture);
+
+				var viewHeight = (int)decimal.Parse(
+					size.Attribute("height").Value, CultureInfo.InvariantCulture);
+
 				// when pasting an image onto the page, width or height can be zero
 				// OneNote ignores both if either is zero so we'll do the same...
 				if (viewWidth == 0 || viewHeight == 0)
@@ -79,125 +133,60 @@ namespace River.OneMoreAddIn.Commands
 					viewHeight = image.Height;
 				}
 
-				using (var dialog = new ResizeImagesDialog(image, viewWidth, viewHeight))
+				int width, height;
+				if (dialog.Percent > 0)
 				{
-					var result = dialog.ShowDialog();
-					if (result != DialogResult.OK)
-					{
-						return;
-					}
+					width = (int)(viewWidth * (dialog.Percent / 100));
+					height = (int)(viewHeight * (dialog.Percent / 100));
+				}
+				else
+				{
+					width = (int)dialog.ImageWidth;
 
+					height = dialog.LockAspect
+						? (int)(viewHeight * (dialog.ImageWidth / viewWidth))
+						: (int)dialog.ImageHeight;
+				}
+
+				if (dialog.ResizeOption == ResizeOption.All ||
+					(dialog.ResizeOption == ResizeOption.OnlyShrink && viewWidth > width) ||
+					(dialog.ResizeOption == ResizeOption.OnlyEnlarge && viewWidth < width))
+				{
 					if (dialog.NeedsRewrite)
 					{
-						using (var data = dialog.GetImage())
+						Image data = null;
+						try
 						{
-							if (data != null)
-							{
-								WriteImage(element, data);
-							}
+							data = dialog.Adjust(image.Resize(width, height));
+							WriteImage(element, data);
+						}
+						finally
+						{
+							data?.Dispose();
 						}
 					}
 
-					size.SetAttributeValue("width", dialog.ImageWidth.ToString(CultureInfo.InvariantCulture));
-					size.SetAttributeValue("height", dialog.ImageHeight.ToString(CultureInfo.InvariantCulture));
+					size.SetAttributeValue("width", width.ToString(CultureInfo.InvariantCulture));
+					size.SetAttributeValue("height", height.ToString(CultureInfo.InvariantCulture));
 					size.SetAttributeValue("isSetByUser", "true");
 
-					logger.WriteLine($"resized from {viewWidth} x {viewHeight} to {dialog.ImageWidth} x {dialog.ImageHeight}");
-
-					await one.Update(page);
+					logger.WriteLine($"resized from {viewWidth} x {viewHeight} to {width} x {height}");
+				}
+				else
+				{
+					logger.WriteLine($"skipped image with size {viewWidth} x {viewHeight}");
 				}
 			}
-		}
 
-
-		private async Task ResizeMany(IEnumerable<XElement> elements)
-		{
-			using (var dialog = new ResizeImagesDialog())
-			{
-				var result = dialog.ShowDialog();
-				if (result != DialogResult.OK)
-				{
-					return;
-				}
-
-				foreach (var element in elements)
-				{
-					using (var image = ReadImage(element))
-					{
-						var size = element.Element(ns + "Size");
-
-						var viewWidth = (int)decimal.Parse(
-							size.Attribute("width").Value, CultureInfo.InvariantCulture);
-
-						var viewHeight = (int)decimal.Parse(
-							size.Attribute("height").Value, CultureInfo.InvariantCulture);
-
-						// when pasting an image onto the page, width or height can be zero
-						// OneNote ignores both if either is zero so we'll do the same...
-						if (viewWidth == 0 || viewHeight == 0)
-						{
-							viewWidth = image.Width;
-							viewHeight = image.Height;
-						}
-
-						int width, height;
-						if (dialog.Percent > 0)
-						{
-							width = (int)(viewWidth * (dialog.Percent / 100));
-							height = (int)(viewHeight * (dialog.Percent / 100));
-						}
-						else
-						{
-							width = (int)dialog.ImageWidth;
-
-							height = dialog.LockAspect
-								? (int)(viewHeight * (dialog.ImageWidth / viewWidth))
-								: (int)dialog.ImageHeight;
-						}
-
-						if (dialog.ResizeOption == ResizeOption.All ||
-							(dialog.ResizeOption == ResizeOption.OnlyShrink && viewWidth > width) ||
-							(dialog.ResizeOption == ResizeOption.OnlyEnlarge && viewWidth < width))
-						{
-							if (dialog.NeedsRewrite)
-							{
-								Image data = null;
-								try
-								{
-									data = dialog.Adjust(image.Resize(width, height));
-									WriteImage(element, data);
-								}
-								finally
-								{
-									data?.Dispose();
-								}
-							}
-
-							size.SetAttributeValue("width", width.ToString(CultureInfo.InvariantCulture));
-							size.SetAttributeValue("height", height.ToString(CultureInfo.InvariantCulture));
-							size.SetAttributeValue("isSetByUser", "true");
-
-							logger.WriteLine($"resized from {viewWidth} x {viewHeight} to {width} x {height}");
-						}
-						else
-						{
-							logger.WriteLine($"skipped image with size {viewWidth} x {viewHeight}");
-						}
-					}
-				}
-
-				await one.Update(page);
-			}
+			await one.Update(page);
 		}
 
 
 		private Image ReadImage(XElement image)
 		{
 			var data = Convert.FromBase64String(image.Element(ns + "Data").Value);
-			using (var stream = new MemoryStream(data, 0, data.Length))
-			{
-				return Image.FromStream(stream);
-			}
+			using var stream = new MemoryStream(data, 0, data.Length);
+			return Image.FromStream(stream);
 		}
 
 

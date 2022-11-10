@@ -251,11 +251,11 @@ namespace River.OneMoreAddIn.Commands
 
 		internal static void ReportDiagnostics(ILogger logger)
 		{
-			using var one = new OneNote(out var page, out var ns);
+			using var one = new OneNote(out var spage, out var sns);
 
 			logger.WriteLine();
-			logger.WriteLine($"Reminders on current page ({page.Title})");
-			var reminders = new ReminderSerializer().LoadReminders(page);
+			logger.WriteLine($"Reminders on current page ({spage.Title})");
+			var reminders = new ReminderSerializer().LoadReminders(spage);
 
 			foreach (var reminder in reminders)
 			{
@@ -264,7 +264,7 @@ namespace River.OneMoreAddIn.Commands
 				var start = reminder.Start.ToLocalTime().ToString();
 				var due = reminder.Due.ToLocalTime().ToString();
 
-				var anyOid = page.Root.Descendants(ns + "OE")
+				var anyOid = spage.Root.Descendants(sns + "OE")
 					.Any(e => e.Attribute("objectID").Value == reminder.ObjectId);
 
 				var orphan = anyOid ? String.Empty : "(orphaned) ";
