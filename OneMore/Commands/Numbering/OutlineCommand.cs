@@ -26,42 +26,38 @@ namespace River.OneMoreAddIn.Commands
 
 		public override async Task Execute(params object[] args)
 		{
-			using (var dialog = new OutlineDialog())
+			using var dialog = new OutlineDialog();
+			if (dialog.ShowDialog() == DialogResult.OK)
 			{
-				if (dialog.ShowDialog() == DialogResult.OK)
+				using var one = new OneNote(out var page, out ns);
+				if (page.IsValid)
 				{
-					using (var one = new OneNote(out var page, out ns))
+					headings = page.GetHeadings(one);
+					if (dialog.CleanupNumbering)
 					{
-						if (page.IsValid)
-						{
-							headings = page.GetHeadings(one);
-							if (dialog.CleanupNumbering)
-							{
-								RemoveOutlineNumbering();
-							}
-
-							if (dialog.NumericNumbering)
-							{
-								AddOutlineNumbering(true, 0, 0, 1, string.Empty);
-							}
-							else if (dialog.AlphaNumbering)
-							{
-								AddOutlineNumbering(false, 0, 0, 1, string.Empty);
-							}
-
-							if (dialog.Indent || dialog.IndentTagged)
-							{
-								IndentContent(page,
-									dialog.Indent,
-									dialog.IndentTagged,
-									dialog.TagSymbol,
-									dialog.RemoveTags);
-							}
-
-							// if OK then something must have happened, so save it
-							await one.Update(page);
-						}
+						RemoveOutlineNumbering();
 					}
+
+					if (dialog.NumericNumbering)
+					{
+						AddOutlineNumbering(true, 0, 0, 1, string.Empty);
+					}
+					else if (dialog.AlphaNumbering)
+					{
+						AddOutlineNumbering(false, 0, 0, 1, string.Empty);
+					}
+
+					if (dialog.Indent || dialog.IndentTagged)
+					{
+						IndentContent(page,
+							dialog.Indent,
+							dialog.IndentTagged,
+							dialog.TagSymbol,
+							dialog.RemoveTags);
+					}
+
+					// if OK then something must have happened, so save it
+					await one.Update(page);
 				}
 			}
 		}

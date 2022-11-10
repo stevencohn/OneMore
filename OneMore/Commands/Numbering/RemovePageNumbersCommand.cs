@@ -38,36 +38,34 @@ namespace River.OneMoreAddIn.Commands
 						.Select(e => e.Attribute("ID").Value)
 						.ToList();
 
-					using (var progress = new UI.ProgressDialog())
+					using var progress = new UI.ProgressDialog();
+					progress.SetMaximum(pageIds.Count);
+					progress.Show();
+
+					foreach (var pageId in pageIds)
 					{
-						progress.SetMaximum(pageIds.Count);
-						progress.Show();
+						var page = one.GetPage(pageId, OneNote.PageDetail.Basic);
+						var name = page.Root.Attribute("name").Value;
 
-						foreach (var pageId in pageIds)
+						progress.SetMessage(string.Format(
+							Properties.Resources.RemovingPageNumber_Message, name));
+
+						progress.Increment();
+
+						if (string.IsNullOrEmpty(name))
 						{
-							var page = one.GetPage(pageId, OneNote.PageDetail.Basic);
-							var name = page.Root.Attribute("name").Value;
-							
-							progress.SetMessage(string.Format(
-								Properties.Resources.RemovingPageNumber_Message, name));
+							continue;
+						}
 
-							progress.Increment();
+						if (RemoveNumbering(name, out string clean))
+						{
+							page.Root
+								.Element(ns + "Title")
+								.Element(ns + "OE")
+								.Element(ns + "T")
+								.GetCData().Value = clean;
 
-							if (string.IsNullOrEmpty(name))
-							{
-								continue;
-							}
-
-							if (RemoveNumbering(name, out string clean))
-							{
-								page.Root
-									.Element(ns + "Title")
-									.Element(ns + "OE")
-									.Element(ns + "T")
-									.GetCData().Value = clean;
-
-								await one.Update(page);
-							}
+							await one.Update(page);
 						}
 					}
 				}
