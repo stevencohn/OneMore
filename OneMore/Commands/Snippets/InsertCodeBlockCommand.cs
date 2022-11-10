@@ -48,86 +48,84 @@ namespace River.OneMoreAddIn.Commands
 		{
 			var addTitle = args.Length == 0 || (bool)args[0];
 
-			using (var one = new OneNote(out var page, out ns))
+			using var one = new OneNote(out var page, out ns);
+			if (!page.ConfirmBodyContext())
 			{
-				if (!page.ConfirmBodyContext())
-				{
-					UIHelper.ShowError(Resx.Error_BodyContext);
-					return;
-				}
+				UIHelper.ShowError(Resx.Error_BodyContext);
+				return;
+			}
 
-				DetermineCellColors(page);
+			DetermineCellColors(page);
 
-				var table = new Table(ns)
-				{
-					BordersVisible = true
-				};
+			var table = new Table(ns)
+			{
+				BordersVisible = true
+			};
 
-				// remember selection cursor
-				var cursor = page.GetTextCursor();
+			// remember selection cursor
+			var cursor = page.GetTextCursor();
 
-				// determine if cursor is inside a table or outline with a user set width
-				table.AddColumn(CalculateWidth(cursor, page.Root), true);
+			// determine if cursor is inside a table or outline with a user set width
+			table.AddColumn(CalculateWidth(cursor, page.Root), true);
 
-				TableRow row;
-				TableCell cell;
+			TableRow row;
+			TableCell cell;
 
-				// title row...
+			// title row...
 
-				if (addTitle)
-				{
-					row = table.AddRow();
-					cell = row.Cells.First();
-
-					cell.SetContent(
-						new XElement(ns + "OE",
-							new XAttribute("style", $"font-family:'Segoe UI';font-size:11.0pt;color:{titleColor}"),
-							new XElement(ns + "T", new XCData("<span style='font-weight:bold'>Code</span>"))
-							));
-
-					cell.ShadingColor = shading;
-				}
-
-				// body row...
-
+			if (addTitle)
+			{
 				row = table.AddRow();
 				cell = row.Cells.First();
 
-				if (// cursor is not null if selection range is empty
-					cursor != null &&
-					// selection range is a single line containing a hyperlink
-					!(page.SelectionSpecial && page.SelectionScope == SelectionScope.Empty))
+				cell.SetContent(
+					new XElement(ns + "OE",
+						new XAttribute("style", $"font-family:'Segoe UI';font-size:11.0pt;color:{titleColor}"),
+						new XElement(ns + "T", new XCData("<span style='font-weight:bold'>Code</span>"))
+						));
+
+				cell.ShadingColor = shading;
+			}
+
+			// body row...
+
+			row = table.AddRow();
+			cell = row.Cells.First();
+
+			if (// cursor is not null if selection range is empty
+				cursor != null &&
+				// selection range is a single line containing a hyperlink
+				!(page.SelectionSpecial && page.SelectionScope == SelectionScope.Empty))
+			{
+				// empty text cursor found, add default content
+				cell.SetContent(MakeDefaultContent(addTitle));
+				page.AddNextParagraph(table.Root);
+			}
+			else
+			{
+				// selection range found so move it into snippet
+				var content = page.ExtractSelectedContent(out var firstParent);
+				cell.SetContent(content);
+
+				shading = DetermineShading(content);
+				if (shading != null)
 				{
-					// empty text cursor found, add default content
-					cell.SetContent(MakeDefaultContent(addTitle));
-					page.AddNextParagraph(table.Root);
+					cell.ShadingColor = shading;
+				}
+
+				if (firstParent.HasElements)
+				{
+					// selected text was a subset of runs under an OE
+					firstParent.AddAfterSelf(new XElement(ns + "OE", table.Root));
 				}
 				else
 				{
-					// selection range found so move it into snippet
-					var content = page.ExtractSelectedContent(out var firstParent);
-					cell.SetContent(content);
-
-					shading = DetermineShading(content);
-					if (shading != null)
-					{
-						cell.ShadingColor = shading;
-					}
-
-					if (firstParent.HasElements)
-					{
-						// selected text was a subset of runs under an OE
-						firstParent.AddAfterSelf(new XElement(ns + "OE", table.Root));
-					}
-					else
-					{
-						// selected text was all of an OE
-						firstParent.Add(table.Root);
-					}
+					// selected text was all of an OE
+					firstParent.Add(table.Root);
 				}
-
-				await one.Update(page);
 			}
+
+			await one.Update(page);
 		}
 
 

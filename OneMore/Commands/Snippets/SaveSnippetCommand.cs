@@ -40,17 +40,15 @@ namespace River.OneMoreAddIn.Commands
 				return;
 			}
 
-			using (var dialog = new SaveSnippetDialog())
+			using var dialog = new SaveSnippetDialog();
+			if (dialog.ShowDialog() != DialogResult.OK)
 			{
-				if (dialog.ShowDialog() != DialogResult.OK)
-				{
-					return;
-				}
-
-				await new SnippetsProvider().Save(html, dialog.SnippetName);
-
-				ribbon.InvalidateControl("ribFavoritesMenu");
+				return;
 			}
+
+			await new SnippetsProvider().Save(html, dialog.SnippetName);
+
+			ribbon.InvalidateControl("ribFavoritesMenu");
 		}
 	}
 }

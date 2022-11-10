@@ -100,11 +100,9 @@ namespace River.OneMoreAddIn.Commands
 
 			try
 			{
-				using (var stream = new FileStream(path, FileMode.Open, FileAccess.Read))
-				using (var reader = new StreamReader(stream, System.Text.Encoding.UTF8))
-				{
-					return await reader.ReadToEndAsync();
-				}
+				using var stream = new FileStream(path, FileMode.Open, FileAccess.Read);
+				using var reader = new StreamReader(stream, System.Text.Encoding.UTF8);
+				return await reader.ReadToEndAsync();
 			}
 			catch (Exception exc)
 			{
@@ -165,10 +163,8 @@ namespace River.OneMoreAddIn.Commands
 			{
 				PathHelper.EnsurePathExists(store);
 
-				using (var writer = new StreamWriter(path))
-				{
-					await writer.WriteAsync(snippet);
-				}
+				using var writer = new StreamWriter(path);
+				await writer.WriteAsync(snippet);
 			}
 			catch (Exception exc)
 			{

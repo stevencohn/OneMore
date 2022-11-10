@@ -21,53 +21,51 @@ namespace River.OneMoreAddIn.Commands
 
 		public override async Task Execute(params object[] args)
 		{
-			using (var one = new OneNote(out var page, out var ns))
+			using var one = new OneNote(out var page, out var ns);
+			if (!page.ConfirmBodyContext())
 			{
-				if (!page.ConfirmBodyContext())
-				{
-					UIHelper.ShowError(Resx.Error_BodyContext);
-					return;
-				}
-
-				var table = new Table(ns)
-				{
-					BordersVisible = true
-				};
-
-				table.AddColumn(550, true);
-				var row = table.AddRow();
-
-				var cell = row.Cells.First();
-				cell.SetContent("Your content here");
-
-				var expand = new XElement(ns + "OE",
-					new XAttribute("explicitExpandCollapseEnabled", "true"),
-					new XElement(ns + "T", new XCData("Your title here")),
-					new XElement(ns + "OEChildren",
-						new XElement(ns + "OE", table.Root),
-						new XElement(ns + "OE", new XElement(ns + "T", new XCData(string.Empty)))
-						)
-					);
-
-				// find the first (the default) paragraph style so we can apply it to the
-				// new content; this help when the page background is dark
-				var quickdef = page.Root.Elements(ns + "QuickStyleDef")
-					.Where(e => e.Attribute("name").Value == "p")
-					.Select(e => e.Attribute("index")?.Value)
-					.FirstOrDefault();
-
-				if (quickdef != null)
-				{
-					expand.Add(new XAttribute("quickStyleIndex", quickdef));
-					foreach (var oe in expand.Descendants(ns + "OE"))
-					{
-						oe.Add(new XAttribute("quickStyleIndex", quickdef));
-					}
-				}
-
-				page.AddNextParagraph(expand);
-				await one.Update(page);
+				UIHelper.ShowError(Resx.Error_BodyContext);
+				return;
 			}
+
+			var table = new Table(ns)
+			{
+				BordersVisible = true
+			};
+
+			table.AddColumn(550, true);
+			var row = table.AddRow();
+
+			var cell = row.Cells.First();
+			cell.SetContent("Your content here");
+
+			var expand = new XElement(ns + "OE",
+				new XAttribute("explicitExpandCollapseEnabled", "true"),
+				new XElement(ns + "T", new XCData("Your title here")),
+				new XElement(ns + "OEChildren",
+					new XElement(ns + "OE", table.Root),
+					new XElement(ns + "OE", new XElement(ns + "T", new XCData(string.Empty)))
+					)
+				);
+
+			// find the first (the default) paragraph style so we can apply it to the
+			// new content; this help when the page background is dark
+			var quickdef = page.Root.Elements(ns + "QuickStyleDef")
+				.Where(e => e.Attribute("name").Value == "p")
+				.Select(e => e.Attribute("index")?.Value)
+				.FirstOrDefault();
+
+			if (quickdef != null)
+			{
+				expand.Add(new XAttribute("quickStyleIndex", quickdef));
+				foreach (var oe in expand.Descendants(ns + "OE"))
+				{
+					oe.Add(new XAttribute("quickStyleIndex", quickdef));
+				}
+			}
+
+			page.AddNextParagraph(expand);
+			await one.Update(page);
 		}
 	}
 }
