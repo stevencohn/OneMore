@@ -81,14 +81,12 @@ namespace River.OneMoreAddIn.Commands
 			{
 				symbol = reminder.Symbol;
 				var symval = int.Parse(reminder.Symbol);
-				using (var dialog = new UI.TagPickerDialog(0, 0))
+				using var dialog = new UI.TagPickerDialog(0, 0);
+				var glyph = dialog.GetGlyph(symval);
+				if (glyph != null)
 				{
-					var glyph = dialog.GetGlyph(symval);
-					if (glyph != null)
-					{
-						tagButton.Text = null;
-						tagButton.Image = glyph;
-					}
+					tagButton.Text = null;
+					tagButton.Image = glyph;
 				}
 			}
 
@@ -131,34 +129,33 @@ namespace River.OneMoreAddIn.Commands
 		{
 			var location = PointToScreen(tagButton.Location);
 
-			using (var dialog = new UI.TagPickerDialog(0, 0))
+			using var dialog = new UI.TagPickerDialog(0, 0);
+
+			// TagPickerDialog customizes Left and Top in its constructor because most
+			// consumers place the tagButton in a groupBox and that offsets its true
+			// position, whereas here we need the actual location of tagButton
+			dialog.Left = location.X + (tagButton.Width / 2);
+			dialog.Top = location.Y + tagButton.Height - 3;
+
+			if (symbol is string sym && sym != "0")
 			{
-				// TagPickerDialog customizes Left and Top in its constructor because most
-				// consumers place the tagButton in a groupBox and that offsets its true
-				// position, whereas here we need the actual location of tagButton
-				dialog.Left = location.X + (tagButton.Width / 2);
-				dialog.Top = location.Y + tagButton.Height - 3;
+				dialog.Select(int.Parse(sym));
+			}
 
-				if (symbol is string sym && sym != "0")
+			if (dialog.ShowDialog(this) == DialogResult.OK)
+			{
+				var glyph = dialog.GetGlyph();
+				if (glyph != null)
 				{
-					dialog.Select(int.Parse(sym));
+					tagButton.Text = null;
+					tagButton.Image = glyph;
+				}
+				else
+				{
+					tagButton.Text = "?";
 				}
 
-				if (dialog.ShowDialog(this) == DialogResult.OK)
-				{
-					var glyph = dialog.GetGlyph();
-					if (glyph != null)
-					{
-						tagButton.Text = null;
-						tagButton.Image = glyph;
-					}
-					else
-					{
-						tagButton.Text = "?";
-					}
-
-					symbol = dialog.Symbol.ToString();
-				}
+				symbol = dialog.Symbol.ToString();
 			}
 		}
 
@@ -209,22 +206,22 @@ namespace River.OneMoreAddIn.Commands
 
 		private TimeSpan GetSnoozeSpan(SnoozeRange range)
 		{
-			switch (range)
+			return range switch
 			{
-				case SnoozeRange.S5minutes: return TimeSpan.FromMinutes(5);
-				case SnoozeRange.S10minutes: return TimeSpan.FromMinutes(10);
-				case SnoozeRange.S15minutes: return TimeSpan.FromMinutes(15);
-				case SnoozeRange.S30minutes: return TimeSpan.FromMinutes(30);
-				case SnoozeRange.S1hour: return TimeSpan.FromHours(1);
-				case SnoozeRange.S2hours: return TimeSpan.FromHours(2);
-				case SnoozeRange.S4hours: return TimeSpan.FromHours(4);
-				case SnoozeRange.S1day: return TimeSpan.FromDays(1);
-				case SnoozeRange.S2days: return TimeSpan.FromDays(2);
-				case SnoozeRange.S3days: return TimeSpan.FromDays(3);
-				case SnoozeRange.S1week: return TimeSpan.FromDays(7);
-				case SnoozeRange.S2weeks: return TimeSpan.FromDays(14);
-				default: return TimeSpan.Zero;
-			}
+				SnoozeRange.S5minutes => TimeSpan.FromMinutes(5),
+				SnoozeRange.S10minutes => TimeSpan.FromMinutes(10),
+				SnoozeRange.S15minutes => TimeSpan.FromMinutes(15),
+				SnoozeRange.S30minutes => TimeSpan.FromMinutes(30),
+				SnoozeRange.S1hour => TimeSpan.FromHours(1),
+				SnoozeRange.S2hours => TimeSpan.FromHours(2),
+				SnoozeRange.S4hours => TimeSpan.FromHours(4),
+				SnoozeRange.S1day => TimeSpan.FromDays(1),
+				SnoozeRange.S2days => TimeSpan.FromDays(2),
+				SnoozeRange.S3days => TimeSpan.FromDays(3),
+				SnoozeRange.S1week => TimeSpan.FromDays(7),
+				SnoozeRange.S2weeks => TimeSpan.FromDays(14),
+				_ => TimeSpan.Zero,
+			};
 		}
 
 

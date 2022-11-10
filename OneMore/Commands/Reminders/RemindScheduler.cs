@@ -28,8 +28,7 @@ namespace River.OneMoreAddIn.Commands
 		public const int SleepyTime = 60000 * SleepyMinutes;
 
 
-		private static readonly Dictionary<string, Reminder> cache 
-			= new Dictionary<string, Reminder>();
+		private static readonly Dictionary<string, Reminder> cache = new();
 
 
 		/// <summary>

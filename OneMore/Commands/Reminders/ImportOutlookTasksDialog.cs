@@ -140,8 +140,10 @@ namespace River.OneMoreAddIn.Commands
 
 				foreach (var task in folder.Tasks)
 				{
-					var leaf = new Node(task.Subject);
-					leaf.Tag = task;
+					var leaf = new Node(task.Subject)
+					{
+						Tag = task
+					};
 
 					if (!string.IsNullOrEmpty(task.OneNoteTaskID))
 					{

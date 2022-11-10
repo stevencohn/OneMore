@@ -65,7 +65,7 @@ namespace River.OneMoreAddIn.Commands
 				string pageId;
 				if (args.Length > 0 && args[0] is string refreshArg && refreshArg == "refresh")
 				{
-					if (args.Length < 1 || !(args[1] is string scopeArg) ||
+					if (args.Length < 1 || args[1] is not string scopeArg ||
 						!Enum.TryParse(scopeArg, out scope))
 					{
 						scope = OneNote.Scope.Notebooks;

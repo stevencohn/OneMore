@@ -147,30 +147,25 @@ namespace River.OneMoreAddIn.Commands
 			try
 			{
 				var bytes = Convert.FromBase64String(value);
-				using (var stream = new MemoryStream(bytes))
-				{
-					using (var zipper = new GZipStream(stream, CompressionMode.Decompress))
-					{
-						using (var reader = new StreamReader(zipper, Encoding.UTF8))
-						{
-							var json = reader.ReadToEnd();
-							// TODO: read-makes-right version check here...
+				using var stream = new MemoryStream(bytes);
+				using var zipper = new GZipStream(stream, CompressionMode.Decompress);
+				using var reader = new StreamReader(zipper, Encoding.UTF8);
+				var json = reader.ReadToEnd();
 
-							var content = JsonConvert.DeserializeObject<Reminder>(
-								json,
-								new JsonSerializerSettings { DateFormatString = JDateFormat });
+				// TODO: read-makes-right version check here...
 
-							// convert kind from Unspecified to Utc
-							content.Completed = DateTime.SpecifyKind(content.Completed, DateTimeKind.Utc);
-							content.Due = DateTime.SpecifyKind(content.Due, DateTimeKind.Utc);
-							content.SnoozeTime = DateTime.SpecifyKind(content.SnoozeTime, DateTimeKind.Utc);
-							content.Start = DateTime.SpecifyKind(content.Start, DateTimeKind.Utc);
-							content.Started = DateTime.SpecifyKind(content.Started, DateTimeKind.Utc);
+				var content = JsonConvert.DeserializeObject<Reminder>(
+					json,
+					new JsonSerializerSettings { DateFormatString = JDateFormat });
 
-							return content;
-						}
-					}
-				}
+				// convert kind from Unspecified to Utc
+				content.Completed = DateTime.SpecifyKind(content.Completed, DateTimeKind.Utc);
+				content.Due = DateTime.SpecifyKind(content.Due, DateTimeKind.Utc);
+				content.SnoozeTime = DateTime.SpecifyKind(content.SnoozeTime, DateTimeKind.Utc);
+				content.Start = DateTime.SpecifyKind(content.Start, DateTimeKind.Utc);
+				content.Started = DateTime.SpecifyKind(content.Started, DateTimeKind.Utc);
+
+				return content;
 			}
 			catch (Exception exc)
 			{
@@ -198,16 +193,14 @@ namespace River.OneMoreAddIn.Commands
 				var json = JsonConvert.SerializeObject(content,
 					new JsonSerializerSettings { DateFormatString = JDateFormat });
 
-				using (var stream = new MemoryStream())
+				using var stream = new MemoryStream();
+				using (var zipper = new GZipStream(stream, CompressionMode.Compress))
 				{
-					using (var zipper = new GZipStream(stream, CompressionMode.Compress))
-					{
-						var bytes = Encoding.UTF8.GetBytes(json);
-						zipper.Write(bytes, 0, bytes.Length);
-					}
-
-					return Convert.ToBase64String(stream.ToArray());
+					var bytes = Encoding.UTF8.GetBytes(json);
+					zipper.Write(bytes, 0, bytes.Length);
 				}
+
+				return Convert.ToBase64String(stream.ToArray());
 			}
 			catch (Exception exc)
 			{
