@@ -97,15 +97,13 @@ namespace River.OneMoreAddIn.Commands.Tools.Updater
 
 			try
 			{
-				using (var response = await client.GetAsync(LatestUrl))
-				{
-					var body = await response.Content.ReadAsStringAsync();
+				using var response = await client.GetAsync(LatestUrl);
+				var body = await response.Content.ReadAsStringAsync();
 
-					// use the .NET Framework serializer;
-					// it's not great but I didn't want to pull in a nuget if I didn't need to
-					var serializer = new JavaScriptSerializer();
-					release = serializer.Deserialize<GitRelease>(body);
-				}
+				// use the .NET Framework serializer;
+				// it's not great but I didn't want to pull in a nuget if I didn't need to
+				var serializer = new JavaScriptSerializer();
+				release = serializer.Deserialize<GitRelease>(body);
 			}
 			catch (Exception exc)
 			{
@@ -159,16 +157,10 @@ namespace River.OneMoreAddIn.Commands.Tools.Updater
 				if (!client.DefaultRequestHeaders.Contains("User-Agent"))
 					client.DefaultRequestHeaders.Add("User-Agent", "OneMore");
 
-				using (var response = await client.GetAsync(asset.browser_download_url))
-				{
-					using (var stream = await response.Content.ReadAsStreamAsync())
-					{
-						using (var file = File.OpenWrite(msi))
-						{
-							stream.CopyTo(file);
-						}
-					}
-				}
+				using var response = await client.GetAsync(asset.browser_download_url);
+				using var stream = await response.Content.ReadAsStreamAsync();
+				using var file = File.OpenWrite(msi);
+				stream.CopyTo(file);
 			}
 			catch (Exception exc)
 			{

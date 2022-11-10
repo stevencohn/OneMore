@@ -109,15 +109,12 @@ namespace River.OneMoreAddIn.Commands
 
 			// otherwise use default style
 
-			if (style == null)
+			style ??= new Style
 			{
-				style = new Style
-				{
-					Color = "#5B9BD5", // close to CornflowerBlue
-					FontSize = "10pt",
-					IsBold = true
-				};
-			}
+				Color = "#5B9BD5", // close to CornflowerBlue
+				FontSize = "10pt",
+				IsBold = true
+			};
 
 			return style;
 		}
