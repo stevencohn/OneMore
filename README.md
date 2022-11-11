@@ -317,9 +317,9 @@ And mind [the license](https://github.com/stevencohn/OneMore/blob/main/LICENSE).
    * VS Community Edition is sufficient
    * Ensure the VSTO option is selected which will add the necessary primary interop assemblies for Office
    * Ensure that nuget.org (https://api.nuget.org/v3/index.json) is included in the NuGet Sources in Settings
-   * Note that VSCode cannot be used since it doesn't support COMReference entries in csproj files_ 
+   * Note that VSCode cannot be used since it doesn't support COMReference entries in csproj files
 * Microsoft [Visual Studio 2022 Installer Projects extension](https://marketplace.visualstudio.com/items?itemName=VisualStudioClient.MicrosoftVisualStudio2022InstallerProjects)
-* Microsoft [Windows 10 SDK](https://developer.microsoft.com/en-US/windows/downloads/windows-10-sdk/)<sup>2</sup>
+* Microsoft [Windows 10 SDK](https://developer.microsoft.com/en-US/windows/downloads/windows-10-sdk/)
   * The Windows 10 SDK is required to reference the Windows.winmd meta file located at 
     "C:\Program Files (x86)\Windows Kits\10\UnionMetadata\10.0.**version**.0\Windows.winmd"
     where **version** is the version of the SDK you have installed, e.g. 19041. If your SDK has
