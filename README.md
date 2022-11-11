@@ -320,7 +320,8 @@ And mind [the license](https://github.com/stevencohn/OneMore/blob/main/LICENSE).
 * Microsoft OneNote 2016 32-bit or 64-bit
 
 <sup>1</sup>_VS Community Edition is sufficient. The VSTO option will add the necessary
-primary interop assemblies for Office. Note that VSCode cannot be used since it doesn't
+primary interop assemblies for Office. Ensure that nuget.org (https://api.nuget.org/v3/index.json)
+is included in the NuGet Sources in VS settings. Note that VSCode cannot be used since it doesn't
 support COMReference entries in csproj files_ 
 
 <sup>2</sup>_The Windows 10 SDK is required to reference the Windows.winmd meta file located
