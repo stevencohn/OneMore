@@ -19,7 +19,7 @@ namespace OneMoreCalendar
 
 		private const int ItemRadius = 4;
 
-		private int skipYear; // exclude currently displayed year
+		private readonly int skipYear; // exclude currently displayed year
 		private ListViewItem hoveredItem;
 
 

@@ -27,10 +27,8 @@ namespace OneMoreCalendar
 			if (pen == null)
 				throw new ArgumentNullException(nameof(pen), "cannot be null");
 
-			using (var path = CreateRoundedRectangle(bounds, cornerRadius))
-			{
-				graphics.DrawPath(pen, path);
-			}
+			using var path = CreateRoundedRectangle(bounds, cornerRadius);
+			graphics.DrawPath(pen, path);
 		}
 
 
@@ -50,10 +48,8 @@ namespace OneMoreCalendar
 			if (brush == null)
 				throw new ArgumentNullException(nameof(brush), "cannot be null");
 
-			using (var path = CreateRoundedRectangle(bounds, cornerRadius))
-			{
-				graphics.FillPath(brush, path);
-			}
+			using var path = CreateRoundedRectangle(bounds, cornerRadius);
+			graphics.FillPath(brush, path);
 		}
 
 

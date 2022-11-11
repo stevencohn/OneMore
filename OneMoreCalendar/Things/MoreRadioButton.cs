@@ -71,10 +71,8 @@ namespace OneMoreCalendar
 
 				if (Checked)
 				{
-					using (var brush = new SolidBrush(AppColors.ControlColor))
-					{
-						g.FillRectangle(brush, 2, 3, 11, 11);
-					}
+					using var brush = new SolidBrush(AppColors.ControlColor);
+					g.FillRectangle(brush, 2, 3, 11, 11);
 				}
 
 				var size = g.MeasureString(Text, Font);

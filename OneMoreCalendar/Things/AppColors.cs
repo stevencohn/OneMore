@@ -14,13 +14,13 @@ namespace OneMoreCalendar
 
 		public static Brush HoverBrush => new SolidBrush(ColorTranslator.FromHtml("#FFF7EDF7"));
 
-		public static Pen HoverPen => new Pen(ColorTranslator.FromHtml("#FFF0DAEE"));
+		public static Pen HoverPen => new(ColorTranslator.FromHtml("#FFF0DAEE"));
 
 		public static Brush RowBrush => new SolidBrush(ColorTranslator.FromHtml("#FFFDFAFE"));
 
 		public static Brush PressedBrush => new SolidBrush(ColorTranslator.FromHtml("#FFF0DAEE"));
 
-		public static Pen PressedPen => new Pen(ColorTranslator.FromHtml("#FF9E5499"));
+		public static Pen PressedPen => new(ColorTranslator.FromHtml("#FF9E5499"));
 
 		public static Brush TextBrush => new SolidBrush(Color.FromArgb(115, 53, 110));
 	}

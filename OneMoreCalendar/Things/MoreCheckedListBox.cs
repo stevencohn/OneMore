@@ -42,10 +42,8 @@ namespace OneMoreCalendar
 
 			if (CheckedIndices.Contains(e.Index))
 			{
-				using (var brush = new SolidBrush(boxColor))
-				{
-					g.FillRectangle(brush, 2, e.Bounds.Y + 3, 9, 9);
-				}
+				using var brush = new SolidBrush(boxColor);
+				g.FillRectangle(brush, 2, e.Bounds.Y + 3, 9, 9);
 			}
 
 			var size = g.MeasureString(Text, Font);

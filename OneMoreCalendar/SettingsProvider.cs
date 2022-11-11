@@ -43,10 +43,7 @@ namespace OneMoreCalendar
 				}
 			}
 
-			if (root == null)
-			{
-				root = new XElement("settings");
-			}
+			root ??= new XElement("settings");
 
 			var filters = root.Element("filters");
 			if (filters == null)

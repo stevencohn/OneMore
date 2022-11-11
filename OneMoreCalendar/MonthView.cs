@@ -208,10 +208,8 @@ namespace OneMoreCalendar
 
 			spot.Day.ScrollOffset = offset;
 
-			using (var g = CreateGraphics())
-			{
-				PaintDay(g, spot.Day);
-			}
+			using var g = CreateGraphics();
+			PaintDay(g, spot.Day);
 		}
 
 

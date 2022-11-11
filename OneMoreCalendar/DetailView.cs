@@ -94,22 +94,20 @@ namespace OneMoreCalendar
 
 		private void HeaderPanelPaint(object sender, PaintEventArgs e)
 		{
-			using (var font = new Font("Segoe UI Light", 10.0f, FontStyle.Regular))
-			{
-				headerPanel.Height = font.Height + VPadding;
-				var y = (headerPanel.Height - font.Height) / 2;
+			using var font = new Font("Segoe UI Light", 10.0f, FontStyle.Regular);
+			headerPanel.Height = font.Height + VPadding;
+			var y = (headerPanel.Height - font.Height) / 2;
 
-				var size = e.Graphics.MeasureString("DATE", font);
-				e.Graphics.DrawString("DATE", font, Brushes.SlateGray,
-					(HeadWidth - size.Width) / 2, y);
+			var size = e.Graphics.MeasureString("DATE", font);
+			e.Graphics.DrawString("DATE", font, Brushes.SlateGray,
+				(HeadWidth - size.Width) / 2, y);
 
-				var width = e.ClipRectangle.Width - SystemInformation.VerticalScrollBarWidth;
+			var width = e.ClipRectangle.Width - SystemInformation.VerticalScrollBarWidth;
 
-				e.Graphics.DrawString("SECTION", font, Brushes.SlateGray, HeadWidth + 20, y);
-				e.Graphics.DrawString("PAGE", font, Brushes.SlateGray, HeadWidth + PathWidth + 40, y);
-				e.Graphics.DrawString("CREATED", font, Brushes.SlateGray, width - DateWidth * 2, y);
-				e.Graphics.DrawString("MODIFIED", font, Brushes.SlateGray, width - DateWidth, y);
-			}
+			e.Graphics.DrawString("SECTION", font, Brushes.SlateGray, HeadWidth + 20, y);
+			e.Graphics.DrawString("PAGE", font, Brushes.SlateGray, HeadWidth + PathWidth + 40, y);
+			e.Graphics.DrawString("CREATED", font, Brushes.SlateGray, width - DateWidth * 2, y);
+			e.Graphics.DrawString("MODIFIED", font, Brushes.SlateGray, width - DateWidth, y);
 		}
 
 

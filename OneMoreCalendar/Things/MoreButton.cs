@@ -23,7 +23,6 @@ namespace OneMoreCalendar
 	internal class MoreButton : Button
 	{
 		private const int Radius = 4;
-		private IContainer components;
 		private MouseEventArgs downArgs = null;
 		private Image enabledImage;
 		private Timer timer;
@@ -48,7 +47,7 @@ namespace OneMoreCalendar
 
 		private void InitializeComponent()
 		{
-			components = new Container();
+			var components = new Container();
 			timer = new Timer(components);
 			SuspendLayout();
 			timer.Tick += new EventHandler(Tick);
@@ -113,17 +112,16 @@ namespace OneMoreCalendar
 			if (!string.IsNullOrEmpty(Text))
 			{
 				var size = g.MeasureString(Text, Font);
-				using (var brush = new SolidBrush(Enabled ? ForeColor : Color.Gray))
-				{
-					g.DrawString(Text, Font, brush,
-						(pevent.ClipRectangle.Width - size.Width) / 2,
-						(pevent.ClipRectangle.Height - size.Height) / 2,
-						new StringFormat
-						{
-							Trimming = StringTrimming.EllipsisCharacter,
-							FormatFlags = StringFormatFlags.LineLimit | StringFormatFlags.NoWrap
-						});
-				}
+				using var brush = new SolidBrush(Enabled ? ForeColor : Color.Gray);
+
+				g.DrawString(Text, Font, brush,
+					(pevent.ClipRectangle.Width - size.Width) / 2,
+					(pevent.ClipRectangle.Height - size.Height) / 2,
+					new StringFormat
+					{
+						Trimming = StringTrimming.EllipsisCharacter,
+						FormatFlags = StringFormatFlags.LineLimit | StringFormatFlags.NoWrap
+					});
 			}
 		}
 

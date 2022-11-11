@@ -32,9 +32,9 @@ namespace OneMoreCalendar
 			public int Mask;
 			public int Min;
 			public int Max;
-			public int Page;
+			//public int Page;
 			public int Position;
-			public int TrackPosition;
+			//public int TrackPosition;
 		}
 
 		[DllImport("user32.dll")]
@@ -87,8 +87,11 @@ namespace OneMoreCalendar
 
 		private ScrollInfo GetScrollInfo()
 		{
-			var info = new ScrollInfo();
-			info.Mask = SIF_ALL;
+			var info = new ScrollInfo
+			{
+				Mask = SIF_ALL
+			};
+
 			info.Size = Marshal.SizeOf(info);
 			GetScrollInfo(Handle, SB_VERT, ref info);
 			return info;
