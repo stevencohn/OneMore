@@ -310,7 +310,7 @@ See the [Developer Notes](../../wiki/~-Developer-Notes) page in the Wiki where I
 technical references and information regarding developing and debugging this OneNote add-in.
 And mind [the license](https://github.com/stevencohn/OneMore/blob/main/LICENSE).
 
-### Minimum Prerequisites for Development
+### Minimum Prerequisites for Development And How To Configure Your Development Environment
 
 * Windows 10
 * Microsoft [Visual Studio 2022](https://visualstudio.microsoft.com/vs/community/) including _Visual Studio Tools for Office_
