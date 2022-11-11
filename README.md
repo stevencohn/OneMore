@@ -320,7 +320,7 @@ And mind [the license](https://github.com/stevencohn/OneMore/blob/main/LICENSE).
    * Install the [Visual Studio 2022 Installer Projects extension](https://marketplace.visualstudio.com/items?itemName=VisualStudioClient.MicrosoftVisualStudio2022InstallerProjects)
    * Note that VSCode cannot be used since it doesn't support COMReference entries in csproj files
 * Microsoft [Windows 10 SDK](https://developer.microsoft.com/en-US/windows/downloads/windows-10-sdk/)
-  * The Windows 10 SDK is required to reference the Windows.winmd meta file located at 
+  * Required to reference the Windows.winmd meta file located at 
     "C:\Program Files (x86)\Windows Kits\10\UnionMetadata\10.0.**version**.0\Windows.winmd"
     where **version** is the version of the SDK you have installed, e.g. 19041. If your SDK has
     a different version then you must replace the **Windows** reference in OneMore.csproj
