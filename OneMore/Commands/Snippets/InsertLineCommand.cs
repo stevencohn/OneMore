@@ -38,7 +38,7 @@ namespace River.OneMoreAddIn.Commands
 			var color = dark ? "#D0D0D0" : "#202020";
 			var length = LineCharCount;
 
-			var settings = new SettingsProvider().GetCollection("LinesSheet");
+			var settings = new SettingsProvider().GetCollection(nameof(LinesSheet));
 			if (settings != null)
 			{
 				color = settings.Get<Color>("color", ColorTranslator.FromHtml(color)).ToRGBHtml();

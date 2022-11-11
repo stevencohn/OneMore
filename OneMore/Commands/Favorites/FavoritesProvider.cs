@@ -96,7 +96,7 @@ namespace River.OneMoreAddIn
 			}
 
 			var kbdshorts = new Settings.SettingsProvider()
-				.GetCollection("FavoritesSheet")?
+				.GetCollection(nameof(Settings.FavoritesSheet))?
 				.Get<bool>("kbdshorts") == true;
 
 			var button = root.Elements(ns + "button")

@@ -78,7 +78,7 @@ namespace River.OneMoreAddIn.Commands
 			}
 
 			var theme = new SettingsProvider()
-				.GetCollection("HighlightsSheet")?.Get<string>("theme");
+				.GetCollection(nameof(HighlightsSheet))?.Get<string>("theme");
 
 			if (theme == "Faded")
 			{

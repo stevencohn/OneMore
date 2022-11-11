@@ -62,12 +62,16 @@ namespace River.OneMoreAddIn.Commands
 
 				image.Save(path, format);
 
-				var settings = new SettingsProvider();
-				var editor = settings.GetCollection("images").Get("viewer", "mspaint");
-				editor = Environment.ExpandEnvironmentVariables(editor);
-
-				logger.WriteLine($"opening image viewer {editor} {path}");
-				System.Diagnostics.Process.Start(editor, path);
+				var editor = GetEditor();
+				if (editor != null)
+				{
+					logger.WriteLine($"opening image viewer {editor} {path}");
+					System.Diagnostics.Process.Start(editor, path);
+				}
+				else
+				{
+					logger.WriteLine("invalid image viewer");
+				}
 			}
 			catch (Exception exc)
 			{
@@ -93,6 +97,24 @@ namespace River.OneMoreAddIn.Commands
 				ImageSignature.PNG => ImageFormat.Png,
 				_ => ImageFormat.Bmp,
 			};
+		}
+
+
+		private string GetEditor()
+		{
+			// reader-makes-right...
+			var settings = new SettingsProvider();
+
+			var editor = 
+				settings.GetCollection(nameof(GeneralSheet)).Get<string>("imageViewer")
+				?? settings.GetCollection("images").Get("viewer", "mspaint");
+
+			if (editor != null)
+			{
+				editor = Environment.ExpandEnvironmentVariables(editor);
+			}
+
+			return editor;
 		}
 	}
 }

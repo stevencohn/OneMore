@@ -192,7 +192,7 @@ namespace River.OneMoreAddIn.Settings
 				{ "ribBlueStatusButton", "ribInsertBlueStatusButton" }
 			};
 
-			var collection = provider.GetCollection("ContextMenuSheet");
+			var collection = provider.GetCollection(nameof(ContextMenuSheet));
 			var updated = false;
 
 			exchange.ForEach(item =>

@@ -59,7 +59,7 @@ namespace River.OneMoreAddIn
 			logger.WriteLine($"defining {methods.Count()} hotkeys for input locale {locale}");
 
 			var settings = new SettingsProvider()
-				.GetCollection("KeyboardSheet")?.Get<XElement>("commands");
+				.GetCollection(nameof(KeyboardSheet))?.Get<XElement>("commands");
 
 			// register hotkey for each discovered command...
 

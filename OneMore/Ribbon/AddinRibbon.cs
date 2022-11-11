@@ -62,14 +62,14 @@ namespace River.OneMoreAddIn
 
 				var provider = new SettingsProvider();
 
-				var ribbonbar = provider.GetCollection("RibbonBarSheet");
+				var ribbonbar = provider.GetCollection(nameof(RibbonBarSheet));
 				if (ribbonbar.Count > 0)
 				{
 					AddRibbonBarCommands(ribbonbar, root);
 				}
 
-				var ccommands = provider.GetCollection("ContextMenuSheet");
-				var searchers = provider.GetCollection("SearchEngineSheet");
+				var ccommands = provider.GetCollection(nameof(ContextMenuSheet));
+				var searchers = provider.GetCollection(nameof(SearchEngineSheet));
 
 				if (ccommands.Count == 0 && searchers.Count == 0)
 				{

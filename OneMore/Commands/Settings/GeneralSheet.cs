@@ -12,6 +12,7 @@ namespace River.OneMoreAddIn.Settings
 	using System.Reflection;
 	using System.Text.RegularExpressions;
 	using System.Windows.Forms;
+	using Windows.UI.Xaml.Controls;
 	using Resx = River.OneMoreAddIn.Properties.Resources;
 
 
@@ -23,7 +24,7 @@ namespace River.OneMoreAddIn.Settings
 
 			LoadLanguages();
 
-			Name = "GeneralSheet";
+			Name = nameof(GeneralSheet);
 			Title = Resx.GeneralSheet_Title;
 
 			if (NeedsLocalizing())
@@ -53,8 +54,11 @@ namespace River.OneMoreAddIn.Settings
 				}
 			}
 
-			settings = provider.GetCollection("images");
-			imageViewerBox.Text = settings.Get("viewer", "mspaint");
+			// reader-makes-right...
+			var viewer = settings.Get<string>("imageViewer")
+				?? provider.GetCollection("images").Get("viewer", "mspaint");
+
+			imageViewerBox.Text = viewer;
 		}
 
 
@@ -177,23 +181,24 @@ namespace River.OneMoreAddIn.Settings
 			var lang = ((CultureInfo)(langBox.SelectedItem)).Name;
 			if (settings.Add("language", lang)) updated = true;
 
+			var viewer = imageViewerBox.Text.Trim();
+			if (string.IsNullOrEmpty(viewer))
+			{
+				viewer = "mspaint";
+			}
+			if (settings.Add("imageViewer", viewer)) updated = true;
+
 			if (updated)
 			{
 				provider.SetCollection(settings);
 				AddIn.EnablersEnabled = enablersBox.Checked;
 			}
 
-			// image viewer...
-
+			// remove old images/viewer entry
 			settings = provider.GetCollection("images");
-			var viewer = imageViewerBox.Text.Trim();
-			if (string.IsNullOrEmpty(viewer))
+			if (settings != null)
 			{
-				viewer = "mspaint";
-			}
-			if (settings.Add("viewer", viewer))
-			{
-				provider.SetCollection(settings);
+				provider.RemoveCollection("images");
 			}
 
 			return updated;

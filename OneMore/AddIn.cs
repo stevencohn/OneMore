@@ -59,7 +59,7 @@ namespace River.OneMoreAddIn
 
 			var thread = System.Threading.Thread.CurrentThread;
 
-			var settings = new SettingsProvider().GetCollection("GeneralSheet");
+			var settings = new SettingsProvider().GetCollection(nameof(GeneralSheet));
 			var lang = settings.Get("language", thread.CurrentUICulture.Name);
 			Culture = CultureInfo.GetCultureInfo(lang);
 			thread.CurrentCulture = Culture;
@@ -240,7 +240,7 @@ namespace River.OneMoreAddIn
 		private async Task SetGeneralOptions()
 		{
 			var provider = new SettingsProvider();
-			var settings = provider.GetCollection("GeneralSheet");
+			var settings = provider.GetCollection(nameof(GeneralSheet));
 			EnablersEnabled = settings.Get("enablers", true);
 
 			if (settings.Get("checkUpdates", false))
