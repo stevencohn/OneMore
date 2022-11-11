@@ -310,21 +310,22 @@ See the [Developer Notes](../../wiki/~-Developer-Notes) page in the Wiki where I
 technical references and information regarding developing and debugging this OneNote add-in.
 And mind [the license](https://github.com/stevencohn/OneMore/blob/main/LICENSE).
 
-### Minimum Prerequisites for Development
+### Minimum Prerequisites And How To Configure Your Development Environment
 
 * Windows 10
-* Microsoft Visual Studio 2022<sup>1</sup> including Office primary interop assemblies
-* Microsoft [Windows 10 SDK](https://developer.microsoft.com/en-US/windows/downloads/windows-10-sdk/)<sup>2</sup>
-* Microsoft [Visual Studio 2022 Installer Projects extension](https://marketplace.visualstudio.com/items?itemName=VisualStudioClient.MicrosoftVisualStudio2022InstallerProjects)
+* Microsoft [Visual Studio 2022](https://visualstudio.microsoft.com/vs/community/) including _Visual Studio Tools for Office_
+   * VS Community Edition is sufficient
+   * Ensure the VSTO option is selected which will add the necessary primary interop assemblies for Office
+   * Ensure that nuget.org (https://api.nuget.org/v3/index.json) is included in the NuGet Sources in Settings
+   * Install the [Visual Studio 2022 Installer Projects extension](https://marketplace.visualstudio.com/items?itemName=VisualStudioClient.MicrosoftVisualStudio2022InstallerProjects)
+   * Note that VSCode cannot be used since it doesn't support COMReference entries in csproj files
+* Microsoft [Windows 10 SDK](https://developer.microsoft.com/en-US/windows/downloads/windows-10-sdk/)
+  * Required to reference the Windows.winmd meta file located at 
+    "C:\Program Files (x86)\Windows Kits\10\UnionMetadata\10.0.**version**.0\Windows.winmd"
+    where **version** is the version of the SDK you have installed, e.g. 19041. If your SDK has
+    a different version then you must replace the **Windows** reference in OneMore.csproj
 * .NET Framework 4.8
 * Microsoft OneNote 2016 32-bit or 64-bit
-
-<sup>1</sup>_VSCode cannot be used since it doesn't support COMReference entries in csproj files_ 
-
-<sup>2</sup>_The Windows 10 SDK is required to reference the Windows.winmd meta file located
-at "C:\Program Files (x86)\Windows Kits\10\UnionMetadata\10.0.**version**.0\Windows.winmd"
-where **version** is the version of the SDK you have installed, e.g. 19041. If your SDK has
-a different version then you must replace the **Windows** reference in OneMoreAddin.csproj_
 
 Tested recently with:
 * Windows 11 Pro 21H2 22000.1098
