@@ -326,7 +326,7 @@ support COMReference entries in csproj files_
 <sup>2</sup>_The Windows 10 SDK is required to reference the Windows.winmd meta file located
 at "C:\Program Files (x86)\Windows Kits\10\UnionMetadata\10.0.**version**.0\Windows.winmd"
 where **version** is the version of the SDK you have installed, e.g. 19041. If your SDK has
-a different version then you must replace the **Windows** reference in OneMoreAddin.csproj_
+a different version then you must replace the **Windows** reference in OneMore.csproj_
 
 Tested recently with:
 * Windows 11 Pro 21H2 22000.1098
