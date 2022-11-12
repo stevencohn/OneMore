@@ -120,6 +120,12 @@
     <Compile Include="SnapshotForm.Designer.cs">
       <DependentUpon>SnapshotForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Things\ThemedForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Things\ThemedUserControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="YearsForm.cs">
       <SubType>Form</SubType>
     </Compile>

@@ -10,7 +10,7 @@ namespace OneMoreCalendar
 	using System.Windows.Forms;
 
 
-	internal partial class RoundedForm : Form
+	internal partial class RoundedForm : ThemedForm
 	{
 
 		[DllImport("Gdi32.dll", EntryPoint = "CreateRoundRectRgn")]

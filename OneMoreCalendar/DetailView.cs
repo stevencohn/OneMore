@@ -13,7 +13,7 @@ namespace OneMoreCalendar
 	using System.Windows.Forms;
 
 
-	internal partial class DetailView : UserControl, ICalendarView
+	internal partial class DetailView : ThemedUserControl, ICalendarView
 	{
 		private sealed class DayItem
 		{

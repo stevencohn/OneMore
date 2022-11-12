@@ -66,31 +66,28 @@ namespace OneMoreCalendar
 			}
 			else
 			{
-				using (var pen = new Pen(AppColors.ControlColor))
-				{
-					g.DrawRectangle(pen, 0, 1, 14, 14);
-				}
+				using var pen = new Pen(AppColors.ControlColor);
+				g.DrawRectangle(pen, 0, 1, 14, 14);
 
 				if (Checked)
 				{
-					using var brush = new SolidBrush(AppColors.ControlColor);
-					g.FillRectangle(brush, 2, 3, 11, 11);
+					using var backBrush = new SolidBrush(AppColors.ControlColor);
+					g.FillRectangle(backBrush, 2, 3, 11, 11);
 				}
 
 				var size = g.MeasureString(Text, Font);
-				using (var brush = new SolidBrush(ForeColor))
-				{
-					g.DrawString(Text, Font, brush,
-						new Rectangle(16, // standard icon size
-							(pevent.ClipRectangle.Height - (int)size.Height) / 2,
-							pevent.ClipRectangle.Width - 16,
-							(int)size.Height),
-						new StringFormat
-						{
-							Trimming = StringTrimming.EllipsisCharacter,
-							FormatFlags = StringFormatFlags.LineLimit | StringFormatFlags.NoWrap
-						});
-				}
+				using var brush = new SolidBrush(ForeColor);
+
+				g.DrawString(Text, Font, brush,
+					new Rectangle(16, // standard icon size
+						(pevent.ClipRectangle.Height - (int)size.Height) / 2,
+						pevent.ClipRectangle.Width - 16,
+						(int)size.Height),
+					new StringFormat
+					{
+						Trimming = StringTrimming.EllipsisCharacter,
+						FormatFlags = StringFormatFlags.LineLimit | StringFormatFlags.NoWrap
+					});
 			}
 		}
 

@@ -14,7 +14,7 @@ namespace OneMoreCalendar
 	/// <summary>
 	/// Main OneMoreCalendar form
 	/// </summary>
-	public partial class CalendarForm : Form
+	internal partial class CalendarForm : ThemedForm
 	{
 		private DateTime date;
 		private CalendarPages pages;
@@ -35,9 +35,6 @@ namespace OneMoreCalendar
 
 			Width = 1500; // TODO: save as settings?
 			Height = 1000;
-
-			// TODO: beta
-			Text = $"{Text} (BETA)";
 		}
 
 

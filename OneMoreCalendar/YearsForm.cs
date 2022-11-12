@@ -106,10 +106,12 @@ namespace OneMoreCalendar
 			}
 			else
 			{
-				e.Graphics.FillRectangle(Brushes.White, e.Bounds);
+				using var backBrush = new SolidBrush(AppColors.BackColor);
+				e.Graphics.FillRectangle(backBrush, e.Bounds);
 			}
 
-			e.Graphics.DrawString(e.Item.Text, listView.Font, AppColors.TextBrush, e.Bounds);
+			using var brush = new SolidBrush(AppColors.HighlightForeColor);
+			e.Graphics.DrawString(e.Item.Text, listView.Font, brush, e.Bounds);
 		}
 
 

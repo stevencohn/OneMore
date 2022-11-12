@@ -24,6 +24,8 @@ namespace OneMoreCalendar
 			: base()
 		{
 			InitializeComponent();
+
+			StaticColors = true;
 		}
 
 
