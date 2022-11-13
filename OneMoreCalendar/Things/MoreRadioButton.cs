@@ -59,7 +59,7 @@ namespace OneMoreCalendar
 					using var pen = new Pen(
 						MouseState.HasFlag(MouseState.Pushed) || Checked
 						? Theme.ButtonPressBorder
-						: Theme.BorderColor);
+						: Theme.Border);
 
 					g.DrawRoundedRectangle(pen, pevent.ClipRectangle, Radius);
 				}
@@ -71,7 +71,7 @@ namespace OneMoreCalendar
 			}
 			else
 			{
-				using (var pen = new Pen(Theme.ControlColor))
+				using (var pen = new Pen(Theme.Control))
 				{
 					if (Round)
 					{
@@ -85,7 +85,7 @@ namespace OneMoreCalendar
 
 				if (Checked)
 				{
-					using var brush = new SolidBrush(Theme.ControlColor);
+					using var brush = new SolidBrush(Theme.Control);
 					if (Round)
 					{
 						g.FillEllipse(brush, new Rectangle(2, 3, 10, 10));

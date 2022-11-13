@@ -30,12 +30,12 @@ namespace OneMoreCalendar
 			using var fill = new SolidBrush(BackColor);
 			g.FillRectangle(fill, 0, e.Bounds.Y, e.Bounds.Width, 16);
 
-			using var pen = new Pen(Theme.ControlColor);
+			using var pen = new Pen(Theme.Control);
 			g.DrawRectangle(pen, 0, e.Bounds.Y + 1, 12, 12);
 
 			if (CheckedIndices.Contains(e.Index))
 			{
-				using var brush = new SolidBrush(Theme.ControlColor);
+				using var brush = new SolidBrush(Theme.Control);
 				g.FillRectangle(brush, 2, e.Bounds.Y + 3, 9, 9);
 			}
 

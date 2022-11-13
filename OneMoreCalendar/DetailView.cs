@@ -276,7 +276,7 @@ namespace OneMoreCalendar
 					using var fill = new SolidBrush(index % 2 == 1 ? Theme.DetailOddBack : Theme.DetailEvenBack);
 					g.FillRectangle(fill, page.Bounds);
 
-					using var fore = new SolidBrush(Theme.HighlightForeColor);
+					using var fore = new SolidBrush(Theme.Highlight);
 					g.DrawString(page.Title,
 						page.IsDeleted ? deletedFont : hotFont,
 						fore, page.Bounds, format);

@@ -110,7 +110,7 @@ namespace OneMoreCalendar
 				e.Graphics.FillRectangle(backBrush, e.Bounds);
 			}
 
-			using var brush = new SolidBrush(Theme.HighlightForeColor);
+			using var brush = new SolidBrush(Theme.Highlight);
 			e.Graphics.DrawString(e.Item.Text, listView.Font, brush, e.Bounds);
 		}
 

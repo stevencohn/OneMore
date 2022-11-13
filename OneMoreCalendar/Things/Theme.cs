@@ -33,9 +33,9 @@ namespace OneMoreCalendar
 
 		public static Color BackColor { get; private set; }
 		public static Color ForeColor { get; private set; }
-		public static Color BorderColor { get; private set; }
-		public static Color HighlightForeColor { get; private set; }
-		public static Color ControlColor { get; private set; }
+		public static Color Border { get; private set; }
+		public static Color Highlight { get; private set; }
+		public static Color Control { get; private set; }
 
 		public static Color ButtonBack { get; private set; }
 		public static Color ButtonFore { get; private set; }
@@ -107,11 +107,11 @@ namespace OneMoreCalendar
 
 				BackColor = ColorTranslator.FromHtml("#FF383838");
 				ForeColor = ColorTranslator.FromHtml("#FFE6E6E6");
-				BorderColor = Color.DarkOrchid;
-				ControlColor = Color.MediumOrchid;
+				Border = Color.DarkOrchid;
+				Control = Color.MediumOrchid;
 
 				// light purple (pink)
-				HighlightForeColor = ColorTranslator.FromHtml("#FFD2A1DF");
+				Highlight = ColorTranslator.FromHtml("#FFD2A1DF");
 
 				ButtonBack = ColorTranslator.FromHtml("#FF363636");
 				ButtonFore = ColorTranslator.FromHtml("#FFE6E6E6");
@@ -140,11 +140,11 @@ namespace OneMoreCalendar
 			{
 				BackColor = Color.White;
 				ForeColor = Color.Black;
-				BorderColor = ColorTranslator.FromHtml("#FFD2A1DF");
-				ControlColor = ColorTranslator.FromHtml("#FF73356E"); // dark purple
+				Border = ColorTranslator.FromHtml("#FFD2A1DF");
+				Control = ColorTranslator.FromHtml("#FF73356E"); // dark purple
 
 				// light purple
-				HighlightForeColor = ColorTranslator.FromHtml("#FFBC58B6");
+				Highlight = ColorTranslator.FromHtml("#FFBC58B6");
 
 				ButtonBack = ColorTranslator.FromHtml("#FFF7EDF7");
 				ButtonFore = ColorTranslator.FromHtml("#FF73356E"); // dark purple
