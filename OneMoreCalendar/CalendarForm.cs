@@ -4,8 +4,10 @@
 
 namespace OneMoreCalendar
 {
+	using OneMoreCalendar.Properties;
 	using River.OneMoreAddIn;
 	using System;
+	using System.Drawing;
 	using System.IO;
 	using System.Threading.Tasks;
 	using System.Windows.Forms;
@@ -71,6 +73,22 @@ namespace OneMoreCalendar
 
 		public override void OnThemeChange()
 		{
+			if (Theme.DarkMode)
+			{
+				var fromColor = ColorTranslator.FromHtml("#FF80397B");
+				todayButton.Image = Resources.today_32.MapColor(fromColor, Color.MediumOrchid);
+				monthButton.Image = Resources.month_32.MapColor(fromColor, Color.MediumOrchid);
+				dayButton.Image = Resources.day_32.MapColor(fromColor, Color.MediumOrchid);
+				settingsButton.Image = Resources.settings_32.MapColor(fromColor, Color.MediumOrchid);
+			}
+			else
+			{
+				todayButton.Image = Resources.settings_32;
+				monthButton.Image = Resources.month_32;
+				dayButton.Image = Resources.day_32;
+				settingsButton.Image = Resources.settings_32;
+			}
+
 			nextButton.PreferredFore = Theme.LinkColor;
 			nextButton.PreferredBack = Theme.BackColor;
 			prevButton.PreferredFore = Theme.LinkColor;
@@ -173,6 +191,8 @@ namespace OneMoreCalendar
 				settings.Created, settings.Modified, settings.Deleted);
 
 			detailView.SetRange(date, endDate, pages);
+			detailView.OnThemeChange();
+
 			contentPanel.Controls.Add(detailView);
 		}
 

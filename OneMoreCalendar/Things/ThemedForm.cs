@@ -31,7 +31,6 @@ namespace OneMoreCalendar
 
 		public virtual void OnThemeChange()
 		{
-
 		}
 	}
 }
