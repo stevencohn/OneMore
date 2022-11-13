@@ -43,6 +43,9 @@ namespace OneMoreCalendar
 		public static readonly Color HeadBackColor;
 		public static readonly Color TodayHeadColor;
 
+		public static readonly Color DetailOddBack;
+		public static readonly Color DetailEvenBack;
+
 		public static readonly Color MonthPrimary;
 		public static readonly Color MonthSecondary;
 		public static readonly Color MonthGrid;
@@ -57,11 +60,18 @@ namespace OneMoreCalendar
 			DarkMode = Office.SystemDefaultDarkMode();
 			if (DarkMode)
 			{
+				// primary-dark = 202020 / 1F1F1F
+				// medium-dark  = 2B2B2B / 272727
+				// light-dark   = 363636 / 383838
+				// light purple = D2A1DF / D6A6D3
+				// dark purple  = 73356E (DarkOrchid)
+				// ---------------------------------------------------------
+
 				BackColor = ColorTranslator.FromHtml("#FF383838");
 				ForeColor = ColorTranslator.FromHtml("#FFE6E6E6");
 				ControlColor = ColorTranslator.FromHtml("#FF73356E");
 
-				// light purple
+				// light purple (pink)
 				HighlightForeColor = ColorTranslator.FromHtml("#FFD2A1DF");
 
 				HeadBackColor = ColorTranslator.FromHtml("#FFF4E8F3");
@@ -72,11 +82,14 @@ namespace OneMoreCalendar
 
 				MonthPrimary = ColorTranslator.FromHtml("#FF1F1F1F");
 				MonthSecondary = ColorTranslator.FromHtml("#FF272727");
-				MonthGrid = Color.DarkGray;
+				MonthGrid = ColorTranslator.FromHtml("#FF676767");
 				MonthDayFore = Color.LightGray;
 				MonthDayBack = ColorTranslator.FromHtml("#FF383838");
 				MonthTodayFore = Color.LightGray;
 				MonthTodayBack = ColorTranslator.FromHtml("#FFF4E8F3");
+
+				DetailOddBack = ColorTranslator.FromHtml("#FF1F1F1F");
+				DetailEvenBack = ColorTranslator.FromHtml("#FF272727");
 			}
 			else
 			{
@@ -86,6 +99,9 @@ namespace OneMoreCalendar
 
 				// light purple
 				HighlightForeColor = ColorTranslator.FromHtml("#FFBC58B6");
+
+				HeadBackColor = ColorTranslator.FromHtml("#FFF4E8F3");
+				TodayHeadColor = ColorTranslator.FromHtml("#FFD6A6D3");
 
 				PressedColor = ColorTranslator.FromHtml("#FFF0DAEE");
 				HoveredColor = ColorTranslator.FromHtml("#FFF7EDF7");
@@ -97,6 +113,9 @@ namespace OneMoreCalendar
 				MonthDayBack = ColorTranslator.FromHtml("#FFF4E8F3");
 				MonthTodayFore = Color.Black;
 				MonthTodayBack = ColorTranslator.FromHtml("#FFD6A6D3");
+
+				DetailOddBack = ColorTranslator.FromHtml("#FFFDFAFE");
+				DetailEvenBack = Color.White;
 			}
 		}
 

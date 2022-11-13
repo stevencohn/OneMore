@@ -2,6 +2,7 @@
 // Copyright © 2022 Steven M. Cohn. All Rights Reserved.
 //************************************************************************************************
 
+#pragma warning disable S1144 // Unused private types or members should be removed
 #pragma warning disable S4487 // Unread "private" fields should be removed
 #pragma warning disable S3459 // Unassigned members should be removed
 
@@ -32,9 +33,9 @@ namespace OneMoreCalendar
 			public int Mask;
 			public int Min;
 			public int Max;
-			//public int Page;
+			public int Page;            // unused but do not remove, S1144
 			public int Position;
-			//public int TrackPosition;
+			public int TrackPosition;   // unused but do not remove, S1144
 		}
 
 		[DllImport("user32.dll")]
@@ -93,6 +94,7 @@ namespace OneMoreCalendar
 			};
 
 			info.Size = Marshal.SizeOf(info);
+
 			GetScrollInfo(Handle, SB_VERT, ref info);
 			return info;
 		}

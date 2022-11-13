@@ -136,9 +136,11 @@ namespace OneMoreCalendar
 				return;
 			}
 
-			e.Graphics.FillRectangle(e.Index % 2 == 1 ? Theme.RowBrush : Brushes.White, e.Bounds);
+			using var fill = new SolidBrush(e.Index % 2 == 1 ? Theme.DetailOddBack : Theme.DetailEvenBack);
+			e.Graphics.FillRectangle(fill, e.Bounds);
 
-			e.Graphics.DrawLine(Pens.LightGray, e.Bounds.Left, e.Bounds.Top, e.Bounds.Width, e.Bounds.Top);
+			using var line = new Pen(Theme.MonthGrid);
+			e.Graphics.DrawLine(line, e.Bounds.Left, e.Bounds.Top, e.Bounds.Width, e.Bounds.Top);
 			//e.Graphics.DrawLine(Pens.LightGray, HeadWidth, e.Bounds.Top, HeadWidth, e.Bounds.Bottom);
 
 			if (listbox.Items[e.Index] is DayItem day)
@@ -149,7 +151,11 @@ namespace OneMoreCalendar
 				// header
 				var head = day.Date.ToString("ddd, MMM d");
 				var size = e.Graphics.MeasureString(head, listbox.Font);
-				e.Graphics.DrawString(head, listbox.Font, Brushes.Black,
+
+				using var fore = new SolidBrush(Theme.ForeColor);
+				using var gray = new SolidBrush(Color.Gray);
+
+				e.Graphics.DrawString(head, listbox.Font, fore,
 					(HeadWidth - size.Width) / 2,
 					e.Bounds.Top + (e.Bounds.Height - size.Height) / 2);
 
@@ -160,7 +166,7 @@ namespace OneMoreCalendar
 					// predict width of page title
 					size = e.Graphics.MeasureString(page.Title, listbox.Font);
 
-					var color = page.IsDeleted ? Brushes.Gray : Brushes.Black;
+					var color = page.IsDeleted ? gray : fore;
 
 					// section
 					e.Graphics.DrawString(page.Path,
@@ -237,11 +243,14 @@ namespace OneMoreCalendar
 				using (var g = listbox.CreateGraphics())
 				{
 					var index = listbox.Items.IndexOf(hotday);
-					g.FillRectangle(index % 2 == 1 ? Theme.RowBrush : Brushes.White, hotpage.Bounds);
+					using var fill = new SolidBrush(index % 2 == 1 ? Theme.DetailOddBack : Theme.DetailEvenBack);
+					g.FillRectangle(fill, hotpage.Bounds);
+
+					using var fore = new SolidBrush(hotpage.IsDeleted ? Color.Gray : Theme.ForeColor);
 
 					g.DrawString(hotpage.Title,
 						hotpage.IsDeleted ? deletedFont : listbox.Font,
-						hotpage.IsDeleted ? Brushes.Gray : Brushes.Black,
+						fore,
 						hotpage.Bounds, format);
 				}
 
@@ -256,11 +265,13 @@ namespace OneMoreCalendar
 				using (var g = listbox.CreateGraphics())
 				{
 					var index = listbox.Items.IndexOf(day);
-					g.FillRectangle(index % 2 == 1 ? Theme.RowBrush : Brushes.White, page.Bounds);
+					using var fill = new SolidBrush(index % 2 == 1 ? Theme.DetailOddBack : Theme.DetailEvenBack);
+					g.FillRectangle(fill, page.Bounds);
 
+					using var fore = new SolidBrush(Theme.HighlightForeColor);
 					g.DrawString(page.Title,
 						page.IsDeleted ? deletedFont : hotFont,
-						Brushes.DarkOrchid, page.Bounds, format);
+						fore, page.Bounds, format);
 				}
 
 				HoverPage?.Invoke(this, new CalendarPageEventArgs(page));
