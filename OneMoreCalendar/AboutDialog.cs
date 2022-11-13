@@ -23,6 +23,13 @@ namespace OneMoreCalendar
 		}
 
 
+		protected override void OnLoad(EventArgs e)
+		{
+			base.OnLoad(e);
+			BackColor = Theme.BackColor;
+		}
+
+
 		private void OK(object sender, EventArgs e)
 		{
 			Close();
