@@ -138,7 +138,7 @@ namespace OneMoreCalendar
 				HighlightForeColor = ColorTranslator.FromHtml("#FFBC58B6");
 
 				ButtonBack = ColorTranslator.FromHtml("#FFF7EDF7");
-				ButtonFore = Color.FromArgb(115, 53, 110);
+				ButtonFore = ColorTranslator.FromHtml("#FF73356E"); // dark purple
 				ButtonDisabled = Color.Gray;
 				ButtonBorder = ColorTranslator.FromHtml("#FFF0DAEE");
 				ButtonHotBack = ColorTranslator.FromHtml("#FFF0DAEE");

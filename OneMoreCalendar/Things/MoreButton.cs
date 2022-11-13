@@ -4,6 +4,7 @@
 
 namespace OneMoreCalendar
 {
+	using River.OneMoreAddIn;
 	using System;
 	using System.ComponentModel;
 	using System.Drawing;
@@ -124,6 +125,8 @@ namespace OneMoreCalendar
 
 			if (!string.IsNullOrEmpty(Text))
 			{
+				Logger.Current.WriteLine($"button {Name} fore=[{PreferredFore}]");
+
 				var size = g.MeasureString(Text, Font);
 				using var brush = new SolidBrush(Enabled 
 					? PreferredFore.IsEmpty ? Theme.ButtonFore : PreferredFore

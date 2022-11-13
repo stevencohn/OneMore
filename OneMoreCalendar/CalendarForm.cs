@@ -29,12 +29,6 @@ namespace OneMoreCalendar
 		{
 			InitializeComponent();
 
-			nextButton.PreferredFore = Theme.LinkColor;
-			nextButton.PreferredBack = Theme.MonthHeader;
-			prevButton.PreferredFore = Theme.LinkColor;
-			prevButton.PreferredBack = Theme.MonthHeader;
-			todayButton.PreferredBack = Theme.MonthHeader;
-
 			statusLabel.Text = string.Empty;
 			statusCreatedLabel.Text = string.Empty;
 			statusModifiedLabel.Text = string.Empty;
@@ -47,6 +41,12 @@ namespace OneMoreCalendar
 		protected override async void OnLoad(EventArgs e)
 		{
 			base.OnLoad(e);
+
+			nextButton.PreferredFore = Theme.LinkColor;
+			nextButton.PreferredBack = Theme.MonthHeader;
+			prevButton.PreferredFore = Theme.LinkColor;
+			prevButton.PreferredBack = Theme.MonthHeader;
+			todayButton.PreferredBack = Theme.MonthHeader;
 
 			// autoscale must be set prior to setting minsize otherwise it isn't applied
 			AutoScaleMode = AutoScaleMode.Font;

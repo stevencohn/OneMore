@@ -40,12 +40,12 @@
 			this.listView.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(115)))), ((int)(((byte)(53)))), ((int)(((byte)(110)))));
 			this.listView.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
 			this.listView.HideSelection = false;
-			this.listView.Location = new System.Drawing.Point(7, 9);
+			this.listView.Location = new System.Drawing.Point(4, 4);
 			this.listView.Margin = new System.Windows.Forms.Padding(0);
 			this.listView.MultiSelect = false;
 			this.listView.Name = "listView";
 			this.listView.OwnerDraw = true;
-			this.listView.Size = new System.Drawing.Size(370, 299);
+			this.listView.Size = new System.Drawing.Size(376, 309);
 			this.listView.TabIndex = 0;
 			this.listView.UseCompatibleStateImageBehavior = false;
 			this.listView.View = System.Windows.Forms.View.List;
@@ -68,7 +68,7 @@
 			this.MaximizeBox = false;
 			this.MinimizeBox = false;
 			this.Name = "YearsForm";
-			this.Padding = new System.Windows.Forms.Padding(7, 9, 7, 9);
+			this.Padding = new System.Windows.Forms.Padding(4);
 			this.ShowIcon = false;
 			this.ShowInTaskbar = false;
 			this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
