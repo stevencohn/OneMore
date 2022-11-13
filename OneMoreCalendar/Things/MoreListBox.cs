@@ -102,8 +102,8 @@ namespace OneMoreCalendar
 		protected override void OnMouseWheel(MouseEventArgs e)
 		{
 			base.OnMouseWheel(e);
-			var info = GetScrollInfo();
-			Logger.Current.WriteLine($"wheel delta:{e.Delta} pos:{info.Position} min:{info.Min} max:{info.Max}");
+			//var info = GetScrollInfo();
+			//Logger.Current.WriteLine($"wheel delta:{e.Delta} pos:{info.Position} min:{info.Min} max:{info.Max}");
 		}
 
 		protected override void WndProc(ref Message m)
