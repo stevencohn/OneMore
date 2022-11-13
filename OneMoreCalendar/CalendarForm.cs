@@ -42,12 +42,6 @@ namespace OneMoreCalendar
 		{
 			base.OnLoad(e);
 
-			nextButton.PreferredFore = Theme.LinkColor;
-			nextButton.PreferredBack = Theme.MonthHeader;
-			prevButton.PreferredFore = Theme.LinkColor;
-			prevButton.PreferredBack = Theme.MonthHeader;
-			todayButton.PreferredBack = Theme.MonthHeader;
-
 			// autoscale must be set prior to setting minsize otherwise it isn't applied
 			AutoScaleMode = AutoScaleMode.Font;
 			MinimumSize = new System.Drawing.Size(935, 625);
@@ -72,6 +66,17 @@ namespace OneMoreCalendar
 			// when started from OneNote, need to force window to top
 			TopMost = true;
 			TopMost = false;
+		}
+
+
+		public override void OnThemeChange()
+		{
+			Logger.Current.WriteLine("onthemechange");
+			nextButton.PreferredFore = Theme.LinkColor;
+			nextButton.PreferredBack = Theme.BackColor;
+			prevButton.PreferredFore = Theme.LinkColor;
+			prevButton.PreferredBack = Theme.BackColor;
+			todayButton.PreferredBack = Theme.BackColor;
 		}
 
 

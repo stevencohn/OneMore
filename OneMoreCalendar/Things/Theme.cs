@@ -78,6 +78,11 @@ namespace OneMoreCalendar
 
 			// controls...
 
+			if (container is ThemedForm form)
+			{
+				form.OnThemeChange();
+			}
+
 			container.BackColor = MonthHeader;
 			container.ForeColor = ForeColor;
 

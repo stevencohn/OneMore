@@ -19,11 +19,6 @@ namespace OneMoreCalendar
 			: base()
 		{
 			InitializeComponent();
-
-			if (!Theme.DarkMode)
-			{
-				Padding = new Padding(4, 4, 0, 0);
-			}
 		}
 
 
