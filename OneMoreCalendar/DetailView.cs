@@ -52,6 +52,12 @@ namespace OneMoreCalendar
 		}
 
 
+		public override void OnThemeChange()
+		{
+			BackColor = Theme.BackColor;
+		}
+
+
 		public event CalendarDayHandler ClickedDay;
 		public event CalendarHoverHandler HoverPage;
 		public event CalendarPageHandler ClickedPage;

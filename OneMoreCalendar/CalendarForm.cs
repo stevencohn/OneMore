@@ -71,7 +71,6 @@ namespace OneMoreCalendar
 
 		public override void OnThemeChange()
 		{
-			Logger.Current.WriteLine("onthemechange");
 			nextButton.PreferredFore = Theme.LinkColor;
 			nextButton.PreferredBack = Theme.BackColor;
 			prevButton.PreferredFore = Theme.LinkColor;

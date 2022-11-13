@@ -20,5 +20,11 @@ namespace OneMoreCalendar
 
 			Theme.InitializeTheme(this);
 		}
+
+
+		public virtual void OnThemeChange()
+		{
+
+		}
 	}
 }

@@ -113,7 +113,7 @@ namespace OneMoreCalendar
 				if (Scrolled != null)
 				{
 					var info = GetScrollInfo();
-					Logger.Current.WriteLine($"wndproc pos:{info.Position} min:{info.Min} max:{info.Max}");
+					//Logger.Current.WriteLine($"wndproc pos:{info.Position} min:{info.Min} max:{info.Max}");
 
 					if (m.WParam.ToInt32() == SB_ENDSCROLL)
 					{
