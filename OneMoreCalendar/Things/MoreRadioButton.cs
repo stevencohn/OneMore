@@ -5,6 +5,7 @@
 namespace OneMoreCalendar
 {
 	using System;
+	using System.ComponentModel;
 	using System.Drawing;
 	using System.Windows.Forms;
 
@@ -35,6 +36,10 @@ namespace OneMoreCalendar
 		public MouseState MouseState { get; private set; }
 
 
+		[Description("Round radio if true")]
+		public bool Round { get; set; }
+
+
 		protected override void OnPaint(PaintEventArgs pevent)
 		{
 			var g = pevent.Graphics;
@@ -44,15 +49,17 @@ namespace OneMoreCalendar
 			{
 				if (Enabled && (MouseState != MouseState.None || Checked))
 				{
-					var brush = MouseState.HasFlag(MouseState.Pushed) || Checked
-						? AppColors.PressedBrush
-						: AppColors.HoverBrush;
+					using var brush = new SolidBrush(
+						MouseState.HasFlag(MouseState.Pushed) || Checked
+						? Theme.ButtonHotBack
+						: Theme.ButtonBack);
 
 					g.FillRoundedRectangle(brush, pevent.ClipRectangle, Radius);
 
-					var pen = MouseState.HasFlag(MouseState.Pushed) || Checked
-						? AppColors.PressedPen
-						: AppColors.HoverPen;
+					using var pen = new Pen(
+						MouseState.HasFlag(MouseState.Pushed) || Checked
+						? Theme.ButtonPressBorder
+						: Theme.Border);
 
 					g.DrawRoundedRectangle(pen, pevent.ClipRectangle, Radius);
 				}
@@ -64,14 +71,26 @@ namespace OneMoreCalendar
 			}
 			else
 			{
-				using (var pen = new Pen(AppColors.ControlColor))
+				using (var pen = new Pen(Theme.Control))
 				{
-					g.DrawRectangle(pen, 0, 1, 14, 14);
+					if (Round)
+					{
+						g.DrawArc(pen, 0, 1, 14, 14, 0, 360);
+					}
+					else
+					{
+						g.DrawRectangle(pen, 0, 1, 14, 14);
+					}
 				}
 
 				if (Checked)
 				{
-					using (var brush = new SolidBrush(AppColors.ControlColor))
+					using var brush = new SolidBrush(Theme.Control);
+					if (Round)
+					{
+						g.FillEllipse(brush, new Rectangle(2, 3, 10, 10));
+					}
+					else
 					{
 						g.FillRectangle(brush, 2, 3, 11, 11);
 					}

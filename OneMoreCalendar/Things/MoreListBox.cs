@@ -2,6 +2,7 @@
 // Copyright © 2022 Steven M. Cohn. All Rights Reserved.
 //************************************************************************************************
 
+#pragma warning disable S1144 // Unused private types or members should be removed
 #pragma warning disable S4487 // Unread "private" fields should be removed
 #pragma warning disable S3459 // Unassigned members should be removed
 
@@ -32,9 +33,9 @@ namespace OneMoreCalendar
 			public int Mask;
 			public int Min;
 			public int Max;
-			public int Page;
+			public int Page;            // unused but do not remove, S1144
 			public int Position;
-			public int TrackPosition;
+			public int TrackPosition;   // unused but do not remove, S1144
 		}
 
 		[DllImport("user32.dll")]
@@ -87,9 +88,13 @@ namespace OneMoreCalendar
 
 		private ScrollInfo GetScrollInfo()
 		{
-			var info = new ScrollInfo();
-			info.Mask = SIF_ALL;
+			var info = new ScrollInfo
+			{
+				Mask = SIF_ALL
+			};
+
 			info.Size = Marshal.SizeOf(info);
+
 			GetScrollInfo(Handle, SB_VERT, ref info);
 			return info;
 		}
@@ -97,8 +102,8 @@ namespace OneMoreCalendar
 		protected override void OnMouseWheel(MouseEventArgs e)
 		{
 			base.OnMouseWheel(e);
-			var info = GetScrollInfo();
-			Logger.Current.WriteLine($"wheel delta:{e.Delta} pos:{info.Position} min:{info.Min} max:{info.Max}");
+			//var info = GetScrollInfo();
+			//Logger.Current.WriteLine($"wheel delta:{e.Delta} pos:{info.Position} min:{info.Min} max:{info.Max}");
 		}
 
 		protected override void WndProc(ref Message m)
@@ -108,7 +113,7 @@ namespace OneMoreCalendar
 				if (Scrolled != null)
 				{
 					var info = GetScrollInfo();
-					Logger.Current.WriteLine($"wndproc pos:{info.Position} min:{info.Min} max:{info.Max}");
+					//Logger.Current.WriteLine($"wndproc pos:{info.Position} min:{info.Min} max:{info.Max}");
 
 					if (m.WParam.ToInt32() == SB_ENDSCROLL)
 					{

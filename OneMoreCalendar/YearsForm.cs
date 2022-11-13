@@ -19,7 +19,7 @@ namespace OneMoreCalendar
 
 		private const int ItemRadius = 4;
 
-		private int skipYear; // exclude currently displayed year
+		private readonly int skipYear; // exclude currently displayed year
 		private ListViewItem hoveredItem;
 
 
@@ -58,12 +58,9 @@ namespace OneMoreCalendar
 				var years = await new OneNoteProvider()
 					.GetYears(await new SettingsProvider().GetNotebookIDs());
 
-				years.ToList().ForEach(y =>
+				years.Where(y => y != skipYear).ToList().ForEach(y =>
 				{
-					if (y != skipYear)
-					{
-						listView.Items.Add(y.ToString());
-					}
+					listView.Items.Add(y.ToString());
 				});
 			}
 		}
@@ -101,15 +98,20 @@ namespace OneMoreCalendar
 				var size = e.Graphics.MeasureString(e.Item.Text, listView.Font);
 				var bounds = new Rectangle(e.Bounds.X, e.Bounds.Y, (int)size.Width + 8, e.Bounds.Height);
 
-				e.Graphics.FillRoundedRectangle(AppColors.HoverBrush, bounds, ItemRadius);
-				e.Graphics.DrawRoundedRectangle(AppColors.HoverPen, bounds, ItemRadius);
+				using var fill = new SolidBrush(Theme.ButtonBack);
+				e.Graphics.FillRoundedRectangle(fill, bounds, ItemRadius);
+
+				using var fore = new Pen(Theme.ButtonFore);
+				e.Graphics.DrawRoundedRectangle(fore, bounds, ItemRadius);
 			}
 			else
 			{
-				e.Graphics.FillRectangle(Brushes.White, e.Bounds);
+				using var backBrush = new SolidBrush(Theme.BackColor);
+				e.Graphics.FillRectangle(backBrush, e.Bounds);
 			}
 
-			e.Graphics.DrawString(e.Item.Text, listView.Font, AppColors.TextBrush, e.Bounds);
+			using var brush = new SolidBrush(Theme.Highlight);
+			e.Graphics.DrawString(e.Item.Text, listView.Font, brush, e.Bounds);
 		}
 
 

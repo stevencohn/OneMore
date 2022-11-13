@@ -28,17 +28,15 @@ namespace OneMoreCalendar
 					new float[] { 0,     0,     0,     0, 1}
 				});
 
-				using (var attributes = new ImageAttributes())
-				{
-					attributes.SetColorMatrix(colorMatrix);
+				using var attributes = new ImageAttributes();
+				attributes.SetColorMatrix(colorMatrix);
 
-					// redraw original image onto new image using grayscale color matrix
-					g.DrawImage(original,
-						new Rectangle(0, 0, original.Width, original.Height),
-						0, 0, original.Width, original.Height,
-						GraphicsUnit.Pixel,
-						attributes);
-				}
+				// redraw original image onto new image using grayscale color matrix
+				g.DrawImage(original,
+					new Rectangle(0, 0, original.Width, original.Height),
+					0, 0, original.Width, original.Height,
+					GraphicsUnit.Pixel,
+					attributes);
 			}
 
 			return grayscale;

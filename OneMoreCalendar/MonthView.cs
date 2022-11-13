@@ -13,7 +13,7 @@ namespace OneMoreCalendar
 	using System.Windows.Forms;
 
 
-	internal partial class MonthView : UserControl, ICalendarView
+	internal partial class MonthView : ThemedUserControl, ICalendarView
 	{
 		private enum Hottype { Day, Page, Up, Down }
 
@@ -208,10 +208,8 @@ namespace OneMoreCalendar
 
 			spot.Day.ScrollOffset = offset;
 
-			using (var g = CreateGraphics())
-			{
-				PaintDay(g, spot.Day);
-			}
+			using var g = CreateGraphics();
+			PaintDay(g, spot.Day);
 		}
 
 
@@ -241,9 +239,11 @@ namespace OneMoreCalendar
 				{
 					using (var g = CreateGraphics())
 					{
-						g.FillRectangle(
-							hotspot.Page.Modified.Month == date.Month ? Brushes.White : Brushes.WhiteSmoke,
-							hotspot.Bounds);
+						using var brush = hotspot.Page.Modified.Month == date.Month
+							? new SolidBrush(Theme.MonthPrimary)
+							: new SolidBrush(Theme.MonthSecondary);
+
+						g.FillRectangle(brush, hotspot.Bounds);
 
 						if (hotspot.Page.IsDeleted)
 						{
@@ -253,8 +253,10 @@ namespace OneMoreCalendar
 						}
 						else
 						{
-							var brush = hotspot.InMonth ? Brushes.Black : Brushes.Gray;
-							g.DrawString(hotspot.Page.Title, Font, brush, hotspot.Bounds, format);
+							var titleBrush = new SolidBrush(hotspot.InMonth
+								? Theme.MonthTodayFore : Theme.MonthDayFore);
+
+							g.DrawString(hotspot.Page.Title, Font, titleBrush, hotspot.Bounds, format);
 						}
 					}
 
@@ -273,12 +275,12 @@ namespace OneMoreCalendar
 				{
 					using (var g = CreateGraphics())
 					{
-						var brush = spot.InMonth ? Brushes.White : Brushes.WhiteSmoke;
-						g.FillRectangle(brush, spot.Bounds);
+						using var fill = new SolidBrush(spot.InMonth ? Theme.MonthPrimary : Theme.MonthSecondary);
+						g.FillRectangle(fill, spot.Bounds);
 
+						using var fore = new SolidBrush(Theme.Highlight);
 						g.DrawString(spot.Page.Title,
-							spot.Page.IsDeleted ? deletedFont : hotFont,
-							Brushes.DarkOrchid,
+							spot.Page.IsDeleted ? deletedFont : hotFont, fore,
 							new Rectangle(spot.Bounds.X, spot.Bounds.Y, width, spot.Bounds.Height),
 							format);
 					}
@@ -294,26 +296,30 @@ namespace OneMoreCalendar
 
 		protected override void OnPaint(PaintEventArgs e)
 		{
+			SuspendLayout();
+
 			base.OnPaint(e);
 
 			hotspots.Clear();
 
 			PaintGrid(e);
 			PaintDays(e);
+
+			ResumeLayout();
 		}
 
 
 		private void PaintGrid(PaintEventArgs e)
 		{
-			e.Graphics.Clear(Color.White);
+			e.Graphics.Clear(Theme.BackColor);
 
 			// day of week names...
 
-			var dowFont = new Font("Segoe UI Light", 10.0f, FontStyle.Regular);
+			using var dowFont = new Font("Segoe UI Light", 10.0f, FontStyle.Regular);
 			var culture = Thread.CurrentThread.CurrentUICulture.DateTimeFormat;
-			dowOffset = dowFont.Height + 2;
+			dowOffset = dowFont.Height;
 
-			var dowFormat = new StringFormat
+			using var dowFormat = new StringFormat
 			{
 				Alignment = StringAlignment.Center,
 				FormatFlags = StringFormatFlags.NoWrap | StringFormatFlags.LineLimit,
@@ -324,14 +330,15 @@ namespace OneMoreCalendar
 
 			// day names and vertical lines...
 
-			var pen = new Pen(Color.DarkGray, 0.1f);
+			using var pen = new Pen(Theme.MonthGrid, 0.1f);
 			var dow = firstDow == DayOfWeek.Sunday ? 0 : 1;
 
 			for (int i = 0; i < 7; i++, dow++)
 			{
 				var name = culture.GetDayName((DayOfWeek)(dow % 7)).ToUpper();
 				var clip = new Rectangle(dayWidth * i, 1, dayWidth, dowFont.Height + 2);
-				e.Graphics.DrawString(name, dowFont, Brushes.SlateGray, clip, dowFormat);
+				using var brush = new SolidBrush(Theme.MonthDayFore);
+				e.Graphics.DrawString(name, dowFont, brush, clip, dowFormat);
 
 				if (i < 6)
 				{
@@ -350,10 +357,6 @@ namespace OneMoreCalendar
 					0, i * dayHeight + dowOffset,
 					e.ClipRectangle.Width, i * dayHeight + dowOffset);
 			}
-
-			dowFormat.Dispose();
-			dowFont.Dispose();
-			pen.Dispose();
 		}
 
 
@@ -364,10 +367,13 @@ namespace OneMoreCalendar
 			var row = 0;
 			var col = 0;
 
-			var headFont = new Font("Segoe UI", 10.0f, FontStyle.Regular);
-			var headFore = new SolidBrush(ColorTranslator.FromHtml(TodayHeadColor));
-			var headBack = new SolidBrush(ColorTranslator.FromHtml(HeadBackColor));
-			var headPen = new Pen(Color.DarkGray, 0.1f);
+			using var headFont = new Font("Segoe UI", 10.0f, FontStyle.Regular);
+			using var headFore = new SolidBrush(Theme.MonthDayFore);
+			using var headBack = new SolidBrush(Theme.MonthDayBack);
+			using var todayBack = new SolidBrush(Theme.MonthTodayBack);
+			using var gridPen = new Pen(Theme.MonthGrid, 0.1f);
+			using var inbrush = new SolidBrush(Theme.MonthTodayFore);
+			using var outbrush = new SolidBrush(Theme.MonthDayFore);
 
 			// how many lines fit in each day box
 			maxItems = (((Height - dowOffset) / weeks) - headFont.Height - 2) / Font.Height;
@@ -382,15 +388,17 @@ namespace OneMoreCalendar
 					col * dayWidth, row * dayHeight + dowOffset,
 					dayWidth, headFont.Height + 2);
 
+				var today = day.Date.Date.Equals(now.Date);
+
 				e.Graphics.FillRectangle(
 					// compare only date part
-					day.Date.Date.Equals(now.Date) ? headFore : headBack,
+					today ? todayBack : headBack,
 					box);
 
-				e.Graphics.DrawRectangle(headPen, box);
+				e.Graphics.DrawRectangle(gridPen, box);
 
 				e.Graphics.DrawString(day.Date.Day.ToString(), headFont,
-					day.InMonth ? Brushes.Black : Brushes.Gray,
+					day.InMonth ? inbrush : outbrush,
 					box.X + 3, box.Y + 1);
 
 				// record day header box
@@ -417,17 +425,13 @@ namespace OneMoreCalendar
 					row++;
 				}
 			}
-
-			headFore.Dispose();
-			headFont.Dispose();
-			headBack.Dispose();
-			headPen.Dispose();
 		}
 
 
 		private void PaintDay(Graphics g, CalendarDay day)
 		{
-			g.FillRectangle(day.InMonth ? Brushes.White : Brushes.WhiteSmoke, day.Bounds);
+			using var backBrush = new SolidBrush(day.InMonth ? Theme.MonthPrimary : Theme.MonthSecondary);
+			g.FillRectangle(backBrush, day.Bounds);
 
 			if (day.Pages.Count == 0)
 			{
@@ -461,8 +465,11 @@ namespace OneMoreCalendar
 					width, Font.Height);
 
 				var font = page.IsDeleted ? deletedFont : Font;
-				g.DrawString(page.Title, font,
-					page.IsDeleted || !day.InMonth ? Brushes.Gray : Brushes.Black, clip, format);
+				using var brush = new SolidBrush(page.IsDeleted || day.InMonth 
+					? Theme.MonthTodayFore
+					: Theme.MonthDayFore);
+
+				g.DrawString(page.Title, font, brush, clip, format);
 
 				// actual length of string for hyperlink hovering
 				var size = g.MeasureString(page.Title, font, clip.Width, format).ToSize();
@@ -531,7 +538,8 @@ namespace OneMoreCalendar
 			var button = new MoreButton
 			{
 				Font = moreFont,
-				ForeColor = AppColors.ControlColor,
+				PreferredBack = Theme.MonthPrimary,
+				PreferredFore = Theme.LinkColor,
 				Location = location,
 				Text = type == Hottype.Up ? LessGlyph : MoreGlyph,
 				Size = new Size(moreSize.Width + 4, moreSize.Height + 2),

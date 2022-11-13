@@ -34,10 +34,10 @@
 			this.copyLabel = new System.Windows.Forms.Label();
 			this.okButton = new OneMoreCalendar.MoreButton();
 			this.pleaseLabel = new System.Windows.Forms.Label();
-			this.pictureBox1 = new System.Windows.Forms.PictureBox();
+			this.logoBox = new System.Windows.Forms.PictureBox();
 			this.sponsorButton = new River.OneMoreAddIn.UI.MoreButton();
 			this.homeLink = new River.OneMoreAddIn.UI.MoreLinkLabel();
-			((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.logoBox)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// titleLabel
@@ -96,15 +96,15 @@
 			this.pleaseLabel.TabIndex = 14;
 			this.pleaseLabel.Text = "Please support future development of OneMore";
 			// 
-			// pictureBox1
+			// logoBox
 			// 
-			this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-			this.pictureBox1.Location = new System.Drawing.Point(12, 12);
-			this.pictureBox1.Name = "pictureBox1";
-			this.pictureBox1.Size = new System.Drawing.Size(124, 125);
-			this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-			this.pictureBox1.TabIndex = 0;
-			this.pictureBox1.TabStop = false;
+			this.logoBox.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+			this.logoBox.Location = new System.Drawing.Point(12, 12);
+			this.logoBox.Name = "pictureBox1";
+			this.logoBox.Size = new System.Drawing.Size(124, 125);
+			this.logoBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+			this.logoBox.TabIndex = 0;
+			this.logoBox.TabStop = false;
 			// 
 			// sponsorButton
 			// 
@@ -154,7 +154,7 @@
 			this.Controls.Add(this.copyLabel);
 			this.Controls.Add(this.versionLabel);
 			this.Controls.Add(this.titleLabel);
-			this.Controls.Add(this.pictureBox1);
+			this.Controls.Add(this.logoBox);
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
 			this.MaximizeBox = false;
 			this.MinimizeBox = false;
@@ -163,7 +163,7 @@
 			this.ShowInTaskbar = false;
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
 			this.Text = "OneMore Calendar";
-			((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.logoBox)).EndInit();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -171,11 +171,11 @@
 
 		#endregion
 
-		private System.Windows.Forms.PictureBox pictureBox1;
+		private System.Windows.Forms.PictureBox logoBox;
 		private System.Windows.Forms.Label titleLabel;
 		private System.Windows.Forms.Label versionLabel;
 		private System.Windows.Forms.Label copyLabel;
-		private MoreButton okButton;
+		private OneMoreCalendar.MoreButton okButton;
 		private River.OneMoreAddIn.UI.MoreLinkLabel homeLink;
 		private River.OneMoreAddIn.UI.MoreButton sponsorButton;
 		private System.Windows.Forms.Label pleaseLabel;

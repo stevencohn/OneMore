@@ -46,15 +46,17 @@ namespace OneMoreCalendar
 			{
 				if (Enabled && (MouseState != MouseState.None || Checked))
 				{
-					var brush = MouseState.HasFlag(MouseState.Pushed) || Checked
-						? AppColors.PressedBrush
-						: AppColors.HoverBrush;
+					using var brush = new SolidBrush(
+						MouseState.HasFlag(MouseState.Pushed) || Checked
+						? Theme.ButtonHotBack
+						: Theme.ButtonBack);
 
 					g.FillRoundedRectangle(brush, pevent.ClipRectangle, Radius);
 
-					var pen = MouseState.HasFlag(MouseState.Pushed) || Checked
-						? AppColors.PressedPen
-						: AppColors.HoverPen;
+					using var pen = new Pen(
+						MouseState.HasFlag(MouseState.Pushed) || Checked
+						? Theme.ButtonPressBorder
+						: Theme.Border);
 
 					g.DrawRoundedRectangle(pen, pevent.ClipRectangle, Radius);
 				}
@@ -66,33 +68,28 @@ namespace OneMoreCalendar
 			}
 			else
 			{
-				using (var pen = new Pen(AppColors.ControlColor))
-				{
-					g.DrawRectangle(pen, 0, 1, 14, 14);
-				}
+				using var pen = new Pen(Theme.Control);
+				g.DrawRectangle(pen, 0, 1, 14, 14);
 
 				if (Checked)
 				{
-					using (var brush = new SolidBrush(AppColors.ControlColor))
-					{
-						g.FillRectangle(brush, 2, 3, 11, 11);
-					}
+					using var backBrush = new SolidBrush(Theme.Control);
+					g.FillRectangle(backBrush, 2, 3, 11, 11);
 				}
 
 				var size = g.MeasureString(Text, Font);
-				using (var brush = new SolidBrush(ForeColor))
-				{
-					g.DrawString(Text, Font, brush,
-						new Rectangle(16, // standard icon size
-							(pevent.ClipRectangle.Height - (int)size.Height) / 2,
-							pevent.ClipRectangle.Width - 16,
-							(int)size.Height),
-						new StringFormat
-						{
-							Trimming = StringTrimming.EllipsisCharacter,
-							FormatFlags = StringFormatFlags.LineLimit | StringFormatFlags.NoWrap
-						});
-				}
+				using var brush = new SolidBrush(ForeColor);
+
+				g.DrawString(Text, Font, brush,
+					new Rectangle(16, // standard icon size
+						(pevent.ClipRectangle.Height - (int)size.Height) / 2,
+						pevent.ClipRectangle.Width - 16,
+						(int)size.Height),
+					new StringFormat
+					{
+						Trimming = StringTrimming.EllipsisCharacter,
+						FormatFlags = StringFormatFlags.LineLimit | StringFormatFlags.NoWrap
+					});
 			}
 		}
 

@@ -40,6 +40,13 @@ namespace OneMoreCalendar
 				deletedBox.Checked = provider.Deleted;
 				emptyBox.Checked = !provider.Empty;
 
+				switch (provider.Theme)
+				{
+					case ThemeMode.Light: lightModeButton.Checked = true; break;
+					case ThemeMode.Dark: darkModeButton.Checked = true; break;
+					default: systemModeButton.Checked = true; break;
+				}
+
 				var notebooks = await provider.GetNotebooks();
 				notebooksBox.Items.Clear();
 				foreach (var notebook in notebooks)
@@ -139,6 +146,11 @@ namespace OneMoreCalendar
 			provider.SetFilter(
 				createdBox.Checked, modifiedBox.Checked,
 				deletedBox.Checked, !emptyBox.Checked);
+
+			provider.SetTheme(
+				lightModeButton.Checked
+				? ThemeMode.Light
+				: darkModeButton.Checked ? ThemeMode.Dark : ThemeMode.System);
 
 			var ids = new List<string>();
 			foreach (Notebook notebook in notebooksBox.CheckedItems)

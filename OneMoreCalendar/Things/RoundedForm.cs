@@ -10,7 +10,7 @@ namespace OneMoreCalendar
 	using System.Windows.Forms;
 
 
-	internal partial class RoundedForm : Form
+	internal partial class RoundedForm : ThemedForm
 	{
 
 		[DllImport("Gdi32.dll", EntryPoint = "CreateRoundRectRgn")]
@@ -36,25 +36,28 @@ namespace OneMoreCalendar
 		protected override void OnLoad(EventArgs e)
 		{
 			base.OnLoad(e);
-			FormBorderStyle = FormBorderStyle.None;
-			Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, Width, Height, Radius, Radius));
+
+			if (!DesignMode)
+			{
+				FormBorderStyle = FormBorderStyle.None;
+				Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, Width, Height, Radius, Radius));
+			}
 		}
 
 
 		protected override void OnPaintBackground(PaintEventArgs e)
 		{
 			//base.OnPaintBackground(e);
-			
+
 			Rectangle r;
 
-			using (var brush = new SolidBrush(BackColor))
-			{
-				r = new Rectangle(0, 0, e.ClipRectangle.Width, e.ClipRectangle.Height);
-				e.Graphics.FillRoundedRectangle(brush, r, Radius);
-			}
+			using var brush = new SolidBrush(BackColor);
+			r = new Rectangle(0, 0, e.ClipRectangle.Width, e.ClipRectangle.Height);
+			e.Graphics.FillRoundedRectangle(brush, r, Radius);
 
+			using var pen = new Pen(Theme.Border);
 			r = new Rectangle(0, 0, e.ClipRectangle.Width - 1, e.ClipRectangle.Height - 1);
-			e.Graphics.DrawRoundedRectangle(AppColors.PressedPen, r, Radius);
+			e.Graphics.DrawRoundedRectangle(pen, r, Radius);
 		}
 	}
 }

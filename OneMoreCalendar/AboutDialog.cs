@@ -5,11 +5,10 @@
 namespace OneMoreCalendar
 {
 	using System;
-	using System.Drawing;
 	using System.Windows.Forms;
 
 
-	internal partial class AboutDialog : Form
+	internal partial class AboutDialog : ThemedForm
 	{
 
 		public AboutDialog()
@@ -19,8 +18,15 @@ namespace OneMoreCalendar
 			sponsorButton.SetHandCursor();
 
 			// TODO: beta
-			versionLabel.Text = string.Format(versionLabel.Text, AssemblyInfo.Version) + " (BETA)";
+			versionLabel.Text = string.Format(versionLabel.Text, AssemblyInfo.Version);
 			copyLabel.Text = string.Format(copyLabel.Text, DateTime.Now.Year);
+		}
+
+
+		protected override void OnLoad(EventArgs e)
+		{
+			base.OnLoad(e);
+			BackColor = Theme.BackColor;
 		}
 
 

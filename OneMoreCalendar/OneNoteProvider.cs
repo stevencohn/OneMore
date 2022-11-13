@@ -197,12 +197,11 @@ namespace OneMoreCalendar
 			using (one = new OneNote())
 			{
 				var url = one.GetHyperlink(pageID, string.Empty);
-				if (url != null)
+				if (!string.IsNullOrEmpty(url))
 				{
 					await one.NavigateTo(url);
 				}
 			}
-
 		}
 	}
 }

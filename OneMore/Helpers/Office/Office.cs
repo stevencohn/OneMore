@@ -166,8 +166,11 @@ namespace River.OneMoreAddIn.Helpers.Office
 		/// <summary>
 		/// Determines if Windows is set to dark mode
 		/// </summary>
-		/// <returns></returns>
-		private static bool SystemDefaultDarkMode()
+		/// <returns>True if the system default is dark mode</returns>
+		/// <remarks>
+		/// Declared as public so it can be used by OneMoreCalendar
+		/// </remarks>
+		public static bool SystemDefaultDarkMode()
 		{
 			using var key = Registry.CurrentUser.OpenSubKey(
 				@"SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Personalize");
