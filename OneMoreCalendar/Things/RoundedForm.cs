@@ -51,8 +51,9 @@ namespace OneMoreCalendar
 			r = new Rectangle(0, 0, e.ClipRectangle.Width, e.ClipRectangle.Height);
 			e.Graphics.FillRoundedRectangle(brush, r, Radius);
 
+			using var pen = new Pen(Theme.BorderColor);
 			r = new Rectangle(0, 0, e.ClipRectangle.Width - 1, e.ClipRectangle.Height - 1);
-			e.Graphics.DrawRoundedRectangle(Theme.PressedPen, r, Radius);
+			e.Graphics.DrawRoundedRectangle(pen, r, Radius);
 		}
 	}
 }

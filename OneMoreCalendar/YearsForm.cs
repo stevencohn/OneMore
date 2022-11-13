@@ -58,12 +58,9 @@ namespace OneMoreCalendar
 				var years = await new OneNoteProvider()
 					.GetYears(await new SettingsProvider().GetNotebookIDs());
 
-				years.ToList().ForEach(y =>
+				years.Where(y => y != skipYear).ToList().ForEach(y =>
 				{
-					if (y != skipYear)
-					{
-						listView.Items.Add(y.ToString());
-					}
+					listView.Items.Add(y.ToString());
 				});
 			}
 		}
@@ -101,8 +98,11 @@ namespace OneMoreCalendar
 				var size = e.Graphics.MeasureString(e.Item.Text, listView.Font);
 				var bounds = new Rectangle(e.Bounds.X, e.Bounds.Y, (int)size.Width + 8, e.Bounds.Height);
 
-				e.Graphics.FillRoundedRectangle(Theme.HoverBrush, bounds, ItemRadius);
-				e.Graphics.DrawRoundedRectangle(Theme.HoverPen, bounds, ItemRadius);
+				using var fill = new SolidBrush(Theme.ButtonBack);
+				e.Graphics.FillRoundedRectangle(fill, bounds, ItemRadius);
+
+				using var fore = new Pen(Theme.ButtonFore);
+				e.Graphics.DrawRoundedRectangle(fore, bounds, ItemRadius);
 			}
 			else
 			{

@@ -296,12 +296,16 @@ namespace OneMoreCalendar
 
 		protected override void OnPaint(PaintEventArgs e)
 		{
+			SuspendLayout();
+
 			base.OnPaint(e);
 
 			hotspots.Clear();
 
 			PaintGrid(e);
 			PaintDays(e);
+
+			ResumeLayout();
 		}
 
 
@@ -366,6 +370,7 @@ namespace OneMoreCalendar
 			using var headFont = new Font("Segoe UI", 10.0f, FontStyle.Regular);
 			using var headFore = new SolidBrush(Theme.MonthDayFore);
 			using var headBack = new SolidBrush(Theme.MonthDayBack);
+			using var todayBack = new SolidBrush(Theme.MonthTodayBack);
 			using var gridPen = new Pen(Theme.MonthGrid, 0.1f);
 			using var inbrush = new SolidBrush(Theme.MonthTodayFore);
 			using var outbrush = new SolidBrush(Theme.MonthDayFore);
@@ -387,13 +392,13 @@ namespace OneMoreCalendar
 
 				e.Graphics.FillRectangle(
 					// compare only date part
-					today ? headFore : headBack,
+					today ? todayBack : headBack,
 					box);
 
 				e.Graphics.DrawRectangle(gridPen, box);
 
 				e.Graphics.DrawString(day.Date.Day.ToString(), headFont,
-					day.InMonth ? (today ? headBack : inbrush) : outbrush,
+					day.InMonth ? inbrush : outbrush,
 					box.X + 3, box.Y + 1);
 
 				// record day header box

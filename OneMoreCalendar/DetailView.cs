@@ -60,6 +60,7 @@ namespace OneMoreCalendar
 
 		public void SetRange(DateTime startDate, DateTime endDate, CalendarPages pages)
 		{
+			SuspendLayout();
 			listbox.Items.Clear();
 
 			var date = startDate;
@@ -89,6 +90,7 @@ namespace OneMoreCalendar
 			}
 
 			Invalidate();
+			ResumeLayout();
 		}
 
 
@@ -99,15 +101,15 @@ namespace OneMoreCalendar
 			var y = (headerPanel.Height - font.Height) / 2;
 
 			var size = e.Graphics.MeasureString("DATE", font);
-			e.Graphics.DrawString("DATE", font, Brushes.SlateGray,
-				(HeadWidth - size.Width) / 2, y);
-
 			var width = e.ClipRectangle.Width - SystemInformation.VerticalScrollBarWidth;
 
-			e.Graphics.DrawString("SECTION", font, Brushes.SlateGray, HeadWidth + 20, y);
-			e.Graphics.DrawString("PAGE", font, Brushes.SlateGray, HeadWidth + PathWidth + 40, y);
-			e.Graphics.DrawString("CREATED", font, Brushes.SlateGray, width - DateWidth * 2, y);
-			e.Graphics.DrawString("MODIFIED", font, Brushes.SlateGray, width - DateWidth, y);
+			using var brush = new SolidBrush(Theme.MonthDayFore);
+
+			e.Graphics.DrawString("DATE", font, brush, (HeadWidth - size.Width) / 2, y);
+			e.Graphics.DrawString("SECTION", font, brush, HeadWidth + 20, y);
+			e.Graphics.DrawString("PAGE", font, brush, HeadWidth + PathWidth + 40, y);
+			e.Graphics.DrawString("CREATED", font, brush, width - DateWidth * 2, y);
+			e.Graphics.DrawString("MODIFIED", font, brush, width - DateWidth, y);
 		}
 
 

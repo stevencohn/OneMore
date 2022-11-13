@@ -21,23 +21,22 @@ namespace OneMoreCalendar
 		#endregion Native
 
 
-		public static Brush HoverBrush => new SolidBrush(ColorTranslator.FromHtml("#FFF7EDF7"));
-
-		public static Pen HoverPen => new(ColorTranslator.FromHtml("#FFF0DAEE"));
-
-		public static Brush PressedBrush => new SolidBrush(ColorTranslator.FromHtml("#FFF0DAEE"));
-
-		public static Pen PressedPen => new(ColorTranslator.FromHtml("#FF9E5499"));
-
-
 		public static readonly bool DarkMode;
 
 		public static readonly Color BackColor;
-		public static readonly Color ControlColor;
 		public static readonly Color ForeColor;
+		public static readonly Color BorderColor;
 		public static readonly Color HighlightForeColor;
-		public static readonly Color PressedColor;
-		public static readonly Color HoveredColor;
+		public static readonly Color ControlColor;
+
+		public static readonly Color ButtonBack;
+		public static readonly Color ButtonFore;
+		public static readonly Color ButtonDisabled;
+		public static readonly Color ButtonBorder;
+		public static readonly Color ButtonHotBack;
+		public static readonly Color ButtonHotBorder;
+		public static readonly Color ButtonPressBorder;
+
 		public static readonly Color HeadBackColor;
 		public static readonly Color TodayHeadColor;
 
@@ -67,7 +66,8 @@ namespace OneMoreCalendar
 
 				BackColor = ColorTranslator.FromHtml("#FF383838");
 				ForeColor = ColorTranslator.FromHtml("#FFE6E6E6");
-				ControlColor = ColorTranslator.FromHtml("#FF73356E");
+				BorderColor = Color.DarkOrchid;
+				ControlColor = ColorTranslator.FromHtml("#FF73356E");// dark purple
 
 				// light purple (pink)
 				HighlightForeColor = ColorTranslator.FromHtml("#FFD2A1DF");
@@ -75,8 +75,13 @@ namespace OneMoreCalendar
 				HeadBackColor = ColorTranslator.FromHtml("#FFF4E8F3");
 				TodayHeadColor = ColorTranslator.FromHtml("#FFD6A6D3");
 
-				PressedColor = ColorTranslator.FromHtml("#FFD2A1DF");
-				HoveredColor = ColorTranslator.FromHtml("#FFD2A1DF");
+				ButtonBack = ColorTranslator.FromHtml("#FF363636");
+				ButtonFore = ColorTranslator.FromHtml("#FFE6E6E6");
+				ButtonDisabled = Color.Gray;
+				ButtonBorder = ColorTranslator.FromHtml("#FF555555");
+				ButtonHotBack = ColorTranslator.FromHtml("#FF505050");
+				ButtonHotBorder = ColorTranslator.FromHtml("#FF808080");
+				ButtonPressBorder = Color.DarkOrchid;
 
 				MonthPrimary = ColorTranslator.FromHtml("#FF1F1F1F");
 				MonthSecondary = ColorTranslator.FromHtml("#FF272727");
@@ -84,7 +89,7 @@ namespace OneMoreCalendar
 				MonthDayFore = Color.LightGray;
 				MonthDayBack = ColorTranslator.FromHtml("#FF383838");
 				MonthTodayFore = Color.LightGray;
-				MonthTodayBack = ColorTranslator.FromHtml("#FFF4E8F3");
+				MonthTodayBack = ColorTranslator.FromHtml("#FF73356E");
 
 				DetailOddBack = ColorTranslator.FromHtml("#FF1F1F1F");
 				DetailEvenBack = ColorTranslator.FromHtml("#FF272727");
@@ -93,16 +98,22 @@ namespace OneMoreCalendar
 			{
 				BackColor = Color.White;
 				ForeColor = Color.Black;
-				ControlColor = ColorTranslator.FromHtml("#FF73356E");
+				BorderColor = ColorTranslator.FromHtml("#FFD2A1DF");
+				ControlColor = ColorTranslator.FromHtml("#FF73356E"); // dark purple
 
 				// light purple
 				HighlightForeColor = ColorTranslator.FromHtml("#FFBC58B6");
 
+				ButtonBack = ColorTranslator.FromHtml("#FFF7EDF7");
+				ButtonFore = Color.FromArgb(115, 53, 110);
+				ButtonDisabled = Color.Gray;
+				ButtonBorder = ColorTranslator.FromHtml("#FFF0DAEE");
+				ButtonHotBack = ColorTranslator.FromHtml("#FFF0DAEE");
+				ButtonHotBorder = ColorTranslator.FromHtml("#FF9E5499");
+				ButtonPressBorder = ColorTranslator.FromHtml("#FF9E5499");
+
 				HeadBackColor = ColorTranslator.FromHtml("#FFF4E8F3");
 				TodayHeadColor = ColorTranslator.FromHtml("#FFD6A6D3");
-
-				PressedColor = ColorTranslator.FromHtml("#FFF0DAEE");
-				HoveredColor = ColorTranslator.FromHtml("#FFF7EDF7");
 
 				MonthPrimary = Color.White;
 				MonthSecondary = Color.WhiteSmoke;
