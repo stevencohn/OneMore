@@ -12,7 +12,7 @@ namespace OneMoreCalendar
 	/// Changes the theme of the current Form instance to Dark mode if the Windows
 	/// system default theme is also Dark mode.
 	/// </summary>
-	internal abstract class ThemedForm : Form
+	internal class ThemedForm : Form
 	{
 
 		protected bool StaticColors { get; set; }

@@ -37,12 +37,13 @@ namespace OneMoreCalendar
 		public static readonly Color ButtonHotBorder;
 		public static readonly Color ButtonPressBorder;
 
-		public static readonly Color HeadBackColor;
-		public static readonly Color TodayHeadColor;
+		public static readonly Color LinkColor;
+		public static readonly Color HoverColor;
 
 		public static readonly Color DetailOddBack;
 		public static readonly Color DetailEvenBack;
 
+		public static readonly Color MonthHeader;
 		public static readonly Color MonthPrimary;
 		public static readonly Color MonthSecondary;
 		public static readonly Color MonthGrid;
@@ -72,9 +73,6 @@ namespace OneMoreCalendar
 				// light purple (pink)
 				HighlightForeColor = ColorTranslator.FromHtml("#FFD2A1DF");
 
-				HeadBackColor = ColorTranslator.FromHtml("#FFF4E8F3");
-				TodayHeadColor = ColorTranslator.FromHtml("#FFD6A6D3");
-
 				ButtonBack = ColorTranslator.FromHtml("#FF363636");
 				ButtonFore = ColorTranslator.FromHtml("#FFE6E6E6");
 				ButtonDisabled = Color.Gray;
@@ -83,13 +81,17 @@ namespace OneMoreCalendar
 				ButtonHotBorder = ColorTranslator.FromHtml("#FF808080");
 				ButtonPressBorder = Color.DarkOrchid;
 
+				LinkColor = Color.MediumOrchid;
+				HoverColor = Color.Orchid;
+
+				MonthHeader = ColorTranslator.FromHtml("#FF383838");
 				MonthPrimary = ColorTranslator.FromHtml("#FF1F1F1F");
 				MonthSecondary = ColorTranslator.FromHtml("#FF272727");
 				MonthGrid = ColorTranslator.FromHtml("#FF676767");
 				MonthDayFore = Color.LightGray;
 				MonthDayBack = ColorTranslator.FromHtml("#FF383838");
 				MonthTodayFore = Color.LightGray;
-				MonthTodayBack = ColorTranslator.FromHtml("#FF73356E");
+				MonthTodayBack = ColorTranslator.FromHtml("#FF73356E"); // dark purpose
 
 				DetailOddBack = ColorTranslator.FromHtml("#FF1F1F1F");
 				DetailEvenBack = ColorTranslator.FromHtml("#FF272727");
@@ -112,9 +114,10 @@ namespace OneMoreCalendar
 				ButtonHotBorder = ColorTranslator.FromHtml("#FF9E5499");
 				ButtonPressBorder = ColorTranslator.FromHtml("#FF9E5499");
 
-				HeadBackColor = ColorTranslator.FromHtml("#FFF4E8F3");
-				TodayHeadColor = ColorTranslator.FromHtml("#FFD6A6D3");
+				LinkColor = ColorTranslator.FromHtml("#FF73356E"); // dark purple
+				HoverColor = Color.MediumOrchid;
 
+				MonthHeader = SystemColors.Control;
 				MonthPrimary = Color.White;
 				MonthSecondary = Color.WhiteSmoke;
 				MonthGrid = Color.DarkGray;
@@ -141,8 +144,8 @@ namespace OneMoreCalendar
 
 				// controls...
 
-				container.BackColor = Theme.BackColor;
-				container.ForeColor = Theme.ForeColor;
+				container.BackColor = MonthHeader;
+				container.ForeColor = ForeColor;
 
 				Colorize(container.Controls);
 			}
@@ -153,8 +156,8 @@ namespace OneMoreCalendar
 		{
 			foreach (Control control in controls)
 			{
-				control.BackColor = Theme.BackColor;
-				control.ForeColor = Theme.ForeColor;
+				control.BackColor = BackColor;
+				control.ForeColor = ForeColor;
 
 				if (control.Controls.Count > 0)
 				{
@@ -165,9 +168,14 @@ namespace OneMoreCalendar
 				{
 					foreach (ListViewItem item in view.Items)
 					{
-						item.BackColor = Theme.BackColor;
-						item.ForeColor = Theme.ForeColor;
+						item.BackColor = MonthHeader;
+						item.ForeColor = ForeColor;
 					}
+				}
+				else if (control is River.OneMoreAddIn.UI.MoreLinkLabel label)
+				{
+					label.LinkColor= LinkColor;
+					label.HoverColor= HoverColor;
 				}
 			}
 		}

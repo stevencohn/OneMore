@@ -538,7 +538,8 @@ namespace OneMoreCalendar
 			var button = new MoreButton
 			{
 				Font = moreFont,
-				ForeColor = Theme.ControlColor,
+				PreferredBack = Theme.MonthPrimary,
+				PreferredFore = Theme.LinkColor,
 				Location = location,
 				Text = type == Hottype.Up ? LessGlyph : MoreGlyph,
 				Size = new Size(moreSize.Width + 4, moreSize.Height + 2),

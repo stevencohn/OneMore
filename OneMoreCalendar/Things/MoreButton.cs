@@ -69,6 +69,18 @@ namespace OneMoreCalendar
 
 
 		/// <summary>
+		/// Gets or sets the preferred background color
+		/// </summary>
+		public Color PreferredBack { get; set; } = Color.Empty;
+
+
+		/// <summary>
+		/// Gets or sets the preferred foreground color
+		/// </summary>
+		public Color PreferredFore { get; set; } = Color.Empty;
+
+
+		/// <summary>
 		/// Interval between repeat firings
 		/// </summary>
 		[DefaultValue(62)]
@@ -85,7 +97,7 @@ namespace OneMoreCalendar
 		protected override void OnPaint(PaintEventArgs pevent)
 		{
 			var g = pevent.Graphics;
-			g.Clear(Theme.BackColor);
+			g.Clear(PreferredBack.IsEmpty ? Theme.BackColor : PreferredBack);
 
 			if (Enabled && MouseState != MouseState.None)
 			{
@@ -113,7 +125,9 @@ namespace OneMoreCalendar
 			if (!string.IsNullOrEmpty(Text))
 			{
 				var size = g.MeasureString(Text, Font);
-				using var brush = new SolidBrush(Enabled ? Theme.ButtonFore : Theme.ButtonDisabled);
+				using var brush = new SolidBrush(Enabled 
+					? PreferredFore.IsEmpty ? Theme.ButtonFore : PreferredFore
+					: Theme.ButtonDisabled);
 
 				g.DrawString(Text, Font, brush,
 					(pevent.ClipRectangle.Width - size.Width) / 2,

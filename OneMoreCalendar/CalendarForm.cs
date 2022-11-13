@@ -29,6 +29,12 @@ namespace OneMoreCalendar
 		{
 			InitializeComponent();
 
+			nextButton.PreferredFore = Theme.LinkColor;
+			nextButton.PreferredBack = Theme.MonthHeader;
+			prevButton.PreferredFore = Theme.LinkColor;
+			prevButton.PreferredBack = Theme.MonthHeader;
+			todayButton.PreferredBack = Theme.MonthHeader;
+
 			statusLabel.Text = string.Empty;
 			statusCreatedLabel.Text = string.Empty;
 			statusModifiedLabel.Text = string.Empty;
