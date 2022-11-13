@@ -101,16 +101,16 @@ namespace OneMoreCalendar
 				var size = e.Graphics.MeasureString(e.Item.Text, listView.Font);
 				var bounds = new Rectangle(e.Bounds.X, e.Bounds.Y, (int)size.Width + 8, e.Bounds.Height);
 
-				e.Graphics.FillRoundedRectangle(AppColors.HoverBrush, bounds, ItemRadius);
-				e.Graphics.DrawRoundedRectangle(AppColors.HoverPen, bounds, ItemRadius);
+				e.Graphics.FillRoundedRectangle(Theme.HoverBrush, bounds, ItemRadius);
+				e.Graphics.DrawRoundedRectangle(Theme.HoverPen, bounds, ItemRadius);
 			}
 			else
 			{
-				using var backBrush = new SolidBrush(AppColors.BackColor);
+				using var backBrush = new SolidBrush(Theme.BackColor);
 				e.Graphics.FillRectangle(backBrush, e.Bounds);
 			}
 
-			using var brush = new SolidBrush(AppColors.HighlightForeColor);
+			using var brush = new SolidBrush(Theme.HighlightForeColor);
 			e.Graphics.DrawString(e.Item.Text, listView.Font, brush, e.Bounds);
 		}
 

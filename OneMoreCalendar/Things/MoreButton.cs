@@ -85,19 +85,19 @@ namespace OneMoreCalendar
 		protected override void OnPaint(PaintEventArgs pevent)
 		{
 			var g = pevent.Graphics;
-			g.Clear(BackColor);
+			g.Clear(Theme.BackColor);
 
 			if (Enabled && MouseState != MouseState.None)
 			{
 				g.FillRoundedRectangle(
-					MouseState.HasFlag(MouseState.Pushed) ? AppColors.PressedBrush : AppColors.HoverBrush,
+					MouseState.HasFlag(MouseState.Pushed) ? Theme.PressedBrush : Theme.HoverBrush,
 					pevent.ClipRectangle, Radius);
 			}
 
 			if (ShowBorder || (Enabled && MouseState != MouseState.None))
 			{
 				g.DrawRoundedRectangle(
-					MouseState.HasFlag(MouseState.Pushed) ? AppColors.PressedPen : AppColors.HoverPen,
+					MouseState.HasFlag(MouseState.Pushed) ? Theme.PressedPen : Theme.HoverPen,
 					pevent.ClipRectangle, Radius);
 			}
 

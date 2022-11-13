@@ -136,7 +136,7 @@ namespace OneMoreCalendar
 				return;
 			}
 
-			e.Graphics.FillRectangle(e.Index % 2 == 1 ? AppColors.RowBrush : Brushes.White, e.Bounds);
+			e.Graphics.FillRectangle(e.Index % 2 == 1 ? Theme.RowBrush : Brushes.White, e.Bounds);
 
 			e.Graphics.DrawLine(Pens.LightGray, e.Bounds.Left, e.Bounds.Top, e.Bounds.Width, e.Bounds.Top);
 			//e.Graphics.DrawLine(Pens.LightGray, HeadWidth, e.Bounds.Top, HeadWidth, e.Bounds.Bottom);
@@ -237,7 +237,7 @@ namespace OneMoreCalendar
 				using (var g = listbox.CreateGraphics())
 				{
 					var index = listbox.Items.IndexOf(hotday);
-					g.FillRectangle(index % 2 == 1 ? AppColors.RowBrush : Brushes.White, hotpage.Bounds);
+					g.FillRectangle(index % 2 == 1 ? Theme.RowBrush : Brushes.White, hotpage.Bounds);
 
 					g.DrawString(hotpage.Title,
 						hotpage.IsDeleted ? deletedFont : listbox.Font,
@@ -256,7 +256,7 @@ namespace OneMoreCalendar
 				using (var g = listbox.CreateGraphics())
 				{
 					var index = listbox.Items.IndexOf(day);
-					g.FillRectangle(index % 2 == 1 ? AppColors.RowBrush : Brushes.White, page.Bounds);
+					g.FillRectangle(index % 2 == 1 ? Theme.RowBrush : Brushes.White, page.Bounds);
 
 					g.DrawString(page.Title,
 						page.IsDeleted ? deletedFont : hotFont,

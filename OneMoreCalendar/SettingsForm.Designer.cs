@@ -1,4 +1,6 @@
-﻿namespace OneMoreCalendar
+﻿using System.Drawing;
+
+namespace OneMoreCalendar
 {
 	partial class SettingsForm
 	{
@@ -221,6 +223,7 @@
 			this.Controls.Add(this.settingsPanel);
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
 			this.KeyPreview = true;
+			this.Padding = new System.Windows.Forms.Padding(4);
 			this.MaximizeBox = false;
 			this.MinimizeBox = false;
 			this.Name = "SettingsForm";

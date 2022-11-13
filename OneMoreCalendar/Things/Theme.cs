@@ -5,11 +5,21 @@
 namespace OneMoreCalendar
 {
 	using River.OneMoreAddIn.Helpers.Office;
+	using System;
 	using System.Drawing;
+	using System.Runtime.InteropServices;
+	using System.Windows.Forms;
 
-
-	internal static class AppColors
+	internal static class Theme
 	{
+		#region Native
+		private const int DWMWA_USE_IMMERSIVE_DARK_MODE = 20;
+
+		[DllImport("dwmapi.dll", PreserveSig = true)]
+		private static extern int DwmSetWindowAttribute(
+			IntPtr hwnd, int attr, ref bool attrValue, int attrSize);
+		#endregion Native
+
 
 		public static Brush HoverBrush => new SolidBrush(ColorTranslator.FromHtml("#FFF7EDF7"));
 
@@ -42,7 +52,7 @@ namespace OneMoreCalendar
 		public static readonly Color MonthTodayBack;
 
 
-		static AppColors()
+		static Theme()
 		{
 			DarkMode = Office.SystemDefaultDarkMode();
 			if (DarkMode)
@@ -52,7 +62,7 @@ namespace OneMoreCalendar
 				ControlColor = ColorTranslator.FromHtml("#FF73356E");
 
 				// light purple
-				HighlightForeColor = ColorTranslator.FromHtml("#FFBC58B6");
+				HighlightForeColor = ColorTranslator.FromHtml("#FFD2A1DF");
 
 				HeadBackColor = ColorTranslator.FromHtml("#FFF4E8F3");
 				TodayHeadColor = ColorTranslator.FromHtml("#FFD6A6D3");
@@ -63,7 +73,7 @@ namespace OneMoreCalendar
 				MonthPrimary = ColorTranslator.FromHtml("#FF1F1F1F");
 				MonthSecondary = ColorTranslator.FromHtml("#FF272727");
 				MonthGrid = Color.DarkGray;
-				MonthDayFore = Color.Gray;
+				MonthDayFore = Color.LightGray;
 				MonthDayBack = ColorTranslator.FromHtml("#FF383838");
 				MonthTodayFore = Color.LightGray;
 				MonthTodayBack = ColorTranslator.FromHtml("#FFF4E8F3");
@@ -87,6 +97,50 @@ namespace OneMoreCalendar
 				MonthDayBack = ColorTranslator.FromHtml("#FFF4E8F3");
 				MonthTodayFore = Color.Black;
 				MonthTodayBack = ColorTranslator.FromHtml("#FFD6A6D3");
+			}
+		}
+
+
+		public static void InitializeTheme(ContainerControl container)
+		{
+			if (DarkMode)
+			{
+				// true=dark, false=normal
+				var value = true;
+
+				DwmSetWindowAttribute(
+					container.Handle, DWMWA_USE_IMMERSIVE_DARK_MODE, ref value, Marshal.SizeOf(value));
+
+				// controls...
+
+				container.BackColor = Theme.BackColor;
+				container.ForeColor = Theme.ForeColor;
+
+				Colorize(container.Controls);
+			}
+		}
+
+
+		private static void Colorize(Control.ControlCollection controls)
+		{
+			foreach (Control control in controls)
+			{
+				control.BackColor = Theme.BackColor;
+				control.ForeColor = Theme.ForeColor;
+
+				if (control.Controls.Count > 0)
+				{
+					Colorize(control.Controls);
+				}
+
+				if (control is ListView view)
+				{
+					foreach (ListViewItem item in view.Items)
+					{
+						item.BackColor = Theme.BackColor;
+						item.ForeColor = Theme.ForeColor;
+					}
+				}
 			}
 		}
 	}

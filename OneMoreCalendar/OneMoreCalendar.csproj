@@ -66,7 +66,7 @@
     <Compile Include="DetailView.Designer.cs">
       <DependentUpon>DetailView.cs</DependentUpon>
     </Compile>
-    <Compile Include="Things\AppColors.cs" />
+    <Compile Include="Things\Theme.cs" />
     <Compile Include="Things\BitmapExtensions.cs" />
     <Compile Include="Things\DateTimeExtensions.cs" />
     <Compile Include="Things\GraphicsExtensions.cs" />
