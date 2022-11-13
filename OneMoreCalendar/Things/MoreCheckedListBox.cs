@@ -10,8 +10,6 @@ namespace OneMoreCalendar
 
 	internal class MoreCheckedListBox : CheckedListBox
 	{
-        private const string BoxColor = "#FF73356E";
-
 
         public MoreCheckedListBox()
             : base()
@@ -29,20 +27,15 @@ namespace OneMoreCalendar
 
 			var g = e.Graphics;
 
-			using (var brush = new SolidBrush(BackColor))
-			{
-				g.FillRectangle(brush, 0, e.Bounds.Y, e.Bounds.Width, 16);
-			}
+			using var fill = new SolidBrush(BackColor);
+			g.FillRectangle(fill, 0, e.Bounds.Y, e.Bounds.Width, 16);
 
-			var boxColor = ColorTranslator.FromHtml(BoxColor);
-			using (var pen = new Pen(boxColor))
-			{
-				g.DrawRectangle(pen, 0, e.Bounds.Y + 1, 12, 12);
-			}
+			using var pen = new Pen(Theme.ControlColor);
+			g.DrawRectangle(pen, 0, e.Bounds.Y + 1, 12, 12);
 
 			if (CheckedIndices.Contains(e.Index))
 			{
-				using var brush = new SolidBrush(boxColor);
+				using var brush = new SolidBrush(Theme.ControlColor);
 				g.FillRectangle(brush, 2, e.Bounds.Y + 3, 9, 9);
 			}
 

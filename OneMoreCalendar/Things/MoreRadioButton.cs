@@ -5,6 +5,7 @@
 namespace OneMoreCalendar
 {
 	using System;
+	using System.ComponentModel;
 	using System.Drawing;
 	using System.Windows.Forms;
 
@@ -33,6 +34,10 @@ namespace OneMoreCalendar
 		/// Gets the state indicating normal, hover, or pressed.
 		/// </summary>
 		public MouseState MouseState { get; private set; }
+
+
+		[Description("Round radio if true")]
+		public bool Round { get; set; }
 
 
 		protected override void OnPaint(PaintEventArgs pevent)
@@ -68,13 +73,27 @@ namespace OneMoreCalendar
 			{
 				using (var pen = new Pen(Theme.ControlColor))
 				{
-					g.DrawRectangle(pen, 0, 1, 14, 14);
+					if (Round)
+					{
+						g.DrawArc(pen, 0, 1, 14, 14, 0, 360);
+					}
+					else
+					{
+						g.DrawRectangle(pen, 0, 1, 14, 14);
+					}
 				}
 
 				if (Checked)
 				{
 					using var brush = new SolidBrush(Theme.ControlColor);
-					g.FillRectangle(brush, 2, 3, 11, 11);
+					if (Round)
+					{
+						g.FillEllipse(brush, new Rectangle(2, 3, 10, 10));
+					}
+					else
+					{
+						g.FillRectangle(brush, 2, 3, 11, 11);
+					}
 				}
 
 				var size = g.MeasureString(Text, Font);

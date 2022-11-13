@@ -36,8 +36,12 @@ namespace OneMoreCalendar
 		protected override void OnLoad(EventArgs e)
 		{
 			base.OnLoad(e);
-			FormBorderStyle = FormBorderStyle.None;
-			Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, Width, Height, Radius, Radius));
+
+			if (!DesignMode)
+			{
+				FormBorderStyle = FormBorderStyle.None;
+				Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, Width, Height, Radius, Radius));
+			}
 		}
 
 

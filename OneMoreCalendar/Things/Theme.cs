@@ -10,6 +10,14 @@ namespace OneMoreCalendar
 	using System.Runtime.InteropServices;
 	using System.Windows.Forms;
 
+
+	internal enum ThemeMode
+	{
+		System = 0,
+		Light = 1,
+		Dark = 2
+	}
+
 	internal static class Theme
 	{
 		#region Native
@@ -21,41 +29,64 @@ namespace OneMoreCalendar
 		#endregion Native
 
 
-		public static readonly bool DarkMode;
+		public static bool DarkMode { get; private set; }
 
-		public static readonly Color BackColor;
-		public static readonly Color ForeColor;
-		public static readonly Color BorderColor;
-		public static readonly Color HighlightForeColor;
-		public static readonly Color ControlColor;
+		public static Color BackColor { get; private set; }
+		public static Color ForeColor { get; private set; }
+		public static Color BorderColor { get; private set; }
+		public static Color HighlightForeColor { get; private set; }
+		public static Color ControlColor { get; private set; }
 
-		public static readonly Color ButtonBack;
-		public static readonly Color ButtonFore;
-		public static readonly Color ButtonDisabled;
-		public static readonly Color ButtonBorder;
-		public static readonly Color ButtonHotBack;
-		public static readonly Color ButtonHotBorder;
-		public static readonly Color ButtonPressBorder;
+		public static Color ButtonBack { get; private set; }
+		public static Color ButtonFore { get; private set; }
+		public static Color ButtonDisabled { get; private set; }
+		public static Color ButtonBorder { get; private set; }
+		public static Color ButtonHotBack { get; private set; }
+		public static Color ButtonHotBorder { get; private set; }
+		public static Color ButtonPressBorder { get; private set; }
 
-		public static readonly Color LinkColor;
-		public static readonly Color HoverColor;
+		public static Color LinkColor { get; private set; }
+		public static Color HoverColor { get; private set; }
 
-		public static readonly Color DetailOddBack;
-		public static readonly Color DetailEvenBack;
+		public static Color DetailOddBack { get; private set; }
+		public static Color DetailEvenBack { get; private set; }
 
-		public static readonly Color MonthHeader;
-		public static readonly Color MonthPrimary;
-		public static readonly Color MonthSecondary;
-		public static readonly Color MonthGrid;
-		public static readonly Color MonthDayFore;
-		public static readonly Color MonthDayBack;
-		public static readonly Color MonthTodayFore;
-		public static readonly Color MonthTodayBack;
+		public static Color MonthHeader { get; private set; }
+		public static Color MonthPrimary { get; private set; }
+		public static Color MonthSecondary { get; private set; }
+		public static Color MonthGrid { get; private set; }
+		public static Color MonthDayFore { get; private set; }
+		public static Color MonthDayBack { get; private set; }
+		public static Color MonthTodayFore { get; private set; }
+		public static Color MonthTodayBack { get; private set; }
 
 
-		static Theme()
+		public static void InitializeTheme(ContainerControl container)
 		{
-			DarkMode = Office.SystemDefaultDarkMode();
+			var provider = new SettingsProvider();
+			var theme = provider.Theme;
+			DarkMode = theme == ThemeMode.Dark ||
+				(theme == ThemeMode.System && Office.SystemDefaultDarkMode());
+
+			SetColors();
+
+			// true=dark, false=normal
+			var value = DarkMode;
+
+			DwmSetWindowAttribute(
+				container.Handle, DWMWA_USE_IMMERSIVE_DARK_MODE, ref value, Marshal.SizeOf(value));
+
+			// controls...
+
+			container.BackColor = MonthHeader;
+			container.ForeColor = ForeColor;
+
+			Colorize(container.Controls);
+		}
+
+
+		private static void SetColors()
+		{
 			if (DarkMode)
 			{
 				// primary-dark = 202020 / 1F1F1F
@@ -68,7 +99,7 @@ namespace OneMoreCalendar
 				BackColor = ColorTranslator.FromHtml("#FF383838");
 				ForeColor = ColorTranslator.FromHtml("#FFE6E6E6");
 				BorderColor = Color.DarkOrchid;
-				ControlColor = ColorTranslator.FromHtml("#FF73356E");// dark purple
+				ControlColor = Color.MediumOrchid;
 
 				// light purple (pink)
 				HighlightForeColor = ColorTranslator.FromHtml("#FFD2A1DF");
@@ -128,26 +159,6 @@ namespace OneMoreCalendar
 
 				DetailOddBack = ColorTranslator.FromHtml("#FFFDFAFE");
 				DetailEvenBack = Color.White;
-			}
-		}
-
-
-		public static void InitializeTheme(ContainerControl container)
-		{
-			if (DarkMode)
-			{
-				// true=dark, false=normal
-				var value = true;
-
-				DwmSetWindowAttribute(
-					container.Handle, DWMWA_USE_IMMERSIVE_DARK_MODE, ref value, Marshal.SizeOf(value));
-
-				// controls...
-
-				container.BackColor = MonthHeader;
-				container.ForeColor = ForeColor;
-
-				Colorize(container.Controls);
 			}
 		}
 

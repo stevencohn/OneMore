@@ -381,6 +381,7 @@ namespace OneMoreCalendar
 
 			if (settingsForm.DialogResult == DialogResult.OK)
 			{
+				Theme.InitializeTheme(this);
 				await SetMonth(date.Year);
 			}
 		}

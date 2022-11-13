@@ -11,7 +11,9 @@ namespace OneMoreCalendar
 	using System.Linq;
 	using System.Threading.Tasks;
 	using System.Windows.Forms;
+	using System.Windows.Forms.VisualStyles;
 	using System.Xml.Linq;
+	using System.Xml.Serialization;
 
 
 	/// <summary>
@@ -62,6 +64,12 @@ namespace OneMoreCalendar
 					root.Add(notebooks);
 				}
 			}
+
+			var theme = root.Elements("theme");
+			if (theme == null)
+			{
+				root.Add(new XElement("theme", ThemeMode.System.ToString()));
+			}
 		}
 
 
@@ -86,6 +94,21 @@ namespace OneMoreCalendar
 
 		public bool Modified => 
 			root.Elements("filters").Elements("modified").Any(e => e.Value.Equals("true"));
+
+
+		public ThemeMode Theme
+		{
+			get
+			{
+				var element = root.Elements("theme").FirstOrDefault();
+				if (element != null)
+				{
+					return (ThemeMode)Enum.Parse(typeof(ThemeMode), element.Value);
+				}
+
+				return ThemeMode.System;
+			}
+		}
 
 
 		public async Task<IEnumerable<string>> GetNotebookIDs()
@@ -165,6 +188,20 @@ namespace OneMoreCalendar
 			foreach (var id in ids)
 			{
 				notebooks.Add(new XElement("notebook", id));
+			}
+		}
+
+
+		public void SetTheme(ThemeMode mode)
+		{
+			var theme = root.Element("theme");
+			if (theme == null)
+			{
+				root.Add(new XElement("theme", mode.ToString()));
+			}
+			else
+			{
+				theme.Value = mode.ToString();
 			}
 		}
 
