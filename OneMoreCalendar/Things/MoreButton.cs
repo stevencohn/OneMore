@@ -95,6 +95,10 @@ namespace OneMoreCalendar
 		public bool ShowBorder { get; set; }
 
 
+		private ThemeManager Theme => ThemeManager.Instance;
+
+
+
 		protected override void OnPaint(PaintEventArgs pevent)
 		{
 			var g = pevent.Graphics;

@@ -66,7 +66,7 @@
     <Compile Include="DetailView.Designer.cs">
       <DependentUpon>DetailView.cs</DependentUpon>
     </Compile>
-    <Compile Include="Things\Theme.cs" />
+    <Compile Include="Things\ThemeMode.cs" />
     <Compile Include="Things\BitmapExtensions.cs" />
     <Compile Include="Things\DateTimeExtensions.cs" />
     <Compile Include="Things\GraphicsExtensions.cs" />
@@ -126,6 +126,7 @@
     <Compile Include="Things\ThemedUserControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="Things\ThemeProvider.cs" />
     <Compile Include="YearsForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -163,6 +164,8 @@
     <EmbeddedResource Include="YearsForm.resx">
       <DependentUpon>YearsForm.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="Assets\DarkTheme.json" />
+    <None Include="Assets\LightTheme.json" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -191,6 +194,11 @@
     <Content Include="Assets\SponsorOver.png" />
     <Content Include="Assets\today-32.png" />
     <Content Include="Logo.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json">
+      <Version>13.0.1</Version>
+    </PackageReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
