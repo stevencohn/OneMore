@@ -18,6 +18,9 @@ namespace OneMoreCalendar
 		protected bool StaticColors { get; set; }
 
 
+		protected ThemeProvider Theme => ThemeProvider.Instance;
+
+
 		protected override void OnLoad(EventArgs e)
 		{
 			base.OnLoad(e);

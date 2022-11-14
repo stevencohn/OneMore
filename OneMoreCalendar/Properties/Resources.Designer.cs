@@ -61,12 +61,66 @@ namespace OneMoreCalendar.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to {
+        ///  &quot;DarkMode&quot;: true,
+        ///  &quot;Colors&quot;: {
+        ///    &quot;BackColor&quot;: &quot;#383838&quot;,
+        ///    &quot;ForeColor&quot;: &quot;#E6E6E6&quot;,
+        ///    &quot;Border&quot;: &quot;DarkOrchid&quot;,
+        ///    &quot;Control&quot;: &quot;MediumOrchid&quot;,
+        ///    &quot;Highlight&quot;: &quot;#D2A1DF&quot;,
+        ///    &quot;ButtonBack&quot;: &quot;#363636&quot;,
+        ///    &quot;ButtonFore&quot;: &quot;#E6E6E6&quot;,
+        ///    &quot;ButtonDisabled&quot;: &quot;Gray&quot;,
+        ///    &quot;ButtonBorder&quot;: &quot;#555555&quot;,
+        ///    &quot;ButtonHotBack&quot;: &quot;#505050&quot;,
+        ///    &quot;ButtonHotBorder&quot;: &quot;Gray&quot;,
+        ///    &quot;ButtonPressBorder&quot;: &quot;DarkOrchid&quot;,
+        ///    &quot;LinkColor&quot;: &quot;MediumOrchid&quot;,
+        ///    &quot;HoverColor&quot;: &quot;Orchid&quot;,
+        ///    &quot;MonthHeader&quot;: &quot;#383838&quot;,
+        ///    [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string DarkTheme {
+            get {
+                return ResourceManager.GetString("DarkTheme", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap day_32 {
             get {
                 object obj = ResourceManager.GetObject("day_32", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {
+        ///  &quot;DarkMode&quot;: false,
+        ///  &quot;Colors&quot;: {
+        ///    &quot;BackColor&quot;: &quot;White&quot;,
+        ///    &quot;ForeColor&quot;: &quot;Black&quot;,
+        ///    &quot;Border&quot;: &quot;#D2A1DF&quot;,
+        ///    &quot;Control&quot;: &quot;#73356E&quot;,
+        ///    &quot;Highlight&quot;: &quot;#BC58B6&quot;,
+        ///    &quot;ButtonBack&quot;: &quot;#F7EDF7&quot;,
+        ///    &quot;ButtonFore&quot;: &quot;#73356E&quot;,
+        ///    &quot;ButtonDisabled&quot;: &quot;Gray&quot;,
+        ///    &quot;ButtonBorder&quot;: &quot;#F0DAEE&quot;,
+        ///    &quot;ButtonHotBack&quot;: &quot;#F0DAEE&quot;,
+        ///    &quot;ButtonHotBorder&quot;: &quot;#9E5499&quot;,
+        ///    &quot;ButtonPressBorder&quot;: &quot;#9E5499&quot;,
+        ///    &quot;LinkColor&quot;: &quot;#73356E&quot;,
+        ///    &quot;HoverColor&quot;: &quot;MediumOrchid&quot;,
+        ///    &quot;MonthHeader&quot;: &quot;Control&quot;,
+        ///    &quot;MonthPri [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string LightTheme {
+            get {
+                return ResourceManager.GetString("LightTheme", resourceCulture);
             }
         }
         

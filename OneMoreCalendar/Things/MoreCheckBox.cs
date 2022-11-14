@@ -31,6 +31,9 @@ namespace OneMoreCalendar
 		}
 
 
+		private ThemeProvider Theme => ThemeProvider.Instance;
+
+
 		/// <summary>
 		/// Gets the state indicating normal, hover, or pressed.
 		/// </summary>

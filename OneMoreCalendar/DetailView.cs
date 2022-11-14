@@ -55,6 +55,7 @@ namespace OneMoreCalendar
 		public override void OnThemeChange()
 		{
 			BackColor = Theme.BackColor;
+			listbox.BackColor = BackColor;
 		}
 
 
@@ -85,11 +86,14 @@ namespace OneMoreCalendar
 
 				if (daypages.Any() || settings.Empty)
 				{
-					listbox.Items.Add(new DayItem
+					var item = new ListViewItem();
+					item.Tag = new DayItem
 					{
 						Date = date,
 						Pages = daypages
-					});
+					};
+
+					listbox.Items.Add(item);
 				}
 
 				date = date.AddDays(1);
@@ -102,6 +106,8 @@ namespace OneMoreCalendar
 
 		private void HeaderPanelPaint(object sender, PaintEventArgs e)
 		{
+			e.Graphics.Clear(BackColor);
+
 			using var font = new Font("Segoe UI Light", 10.0f, FontStyle.Regular);
 			headerPanel.Height = font.Height + VPadding;
 			var y = (headerPanel.Height - font.Height) / 2;
@@ -121,7 +127,7 @@ namespace OneMoreCalendar
 
 		private void ListBoxMeasureItem(object sender, MeasureItemEventArgs e)
 		{
-			if (listbox.Items[e.Index] is DayItem day)
+			if (listbox.Items[e.Index] is ListViewItem item && item.Tag is DayItem day)
 			{
 				e.ItemHeight = day.Pages.Count > 1
 					? (day.Pages.Count * listbox.Font.Height) + (VPadding * 3)
@@ -151,7 +157,7 @@ namespace OneMoreCalendar
 			e.Graphics.DrawLine(line, e.Bounds.Left, e.Bounds.Top, e.Bounds.Width, e.Bounds.Top);
 			//e.Graphics.DrawLine(Pens.LightGray, HeadWidth, e.Bounds.Top, HeadWidth, e.Bounds.Bottom);
 
-			if (listbox.Items[e.Index] is DayItem day)
+			if (listbox.Items[e.Index] is ListViewItem item && item.Tag is DayItem day)
 			{
 				// set every time to handle scrolled view
 				day.Bounds = e.Bounds;
@@ -170,7 +176,7 @@ namespace OneMoreCalendar
 				// pages
 				var top = e.Bounds.Top + VPadding;
 				foreach (var page in day.Pages)
-				{						
+				{
 					// predict width of page title
 					size = e.Graphics.MeasureString(page.Title, listbox.Font);
 
@@ -228,14 +234,21 @@ namespace OneMoreCalendar
 
 		private void ListBoxMouseMove(object sender, MouseEventArgs e)
 		{
-			var day = listbox.Items.OfType<DayItem>()
-				.FirstOrDefault(d => d.Bounds.Contains(e.Location));
+			//Logger.Current.WriteLine($"moveto {e.Location}");
 
-			CalendarPage page = null;
-			if (day != null)
+			if (listbox.Items.OfType<ListViewItem>()
+				.FirstOrDefault(d =>
+					listbox.GetItemRectangle(listbox.Items.IndexOf(d)).Contains(e.Location))?
+				.Tag is not DayItem day)
 			{
-				page = day.Pages.FirstOrDefault(p => p.Bounds.Contains(e.Location));
+				return;
 			}
+
+			//Logger.Current.WriteLine($"day bounds {day.Bounds}");
+
+			var page = day.Pages.FirstOrDefault(p => p.Bounds.Contains(e.Location));
+
+			//Logger.Current.WriteLine($"page bounds {page.Bounds}");
 
 			if (page == hotpage)
 			{
@@ -243,24 +256,29 @@ namespace OneMoreCalendar
 				{
 					Native.SetCursor(hand);
 				}
+
 				return;
 			}
 
+			using var g = listbox.CreateGraphics();
+			int index;
+
 			if (hotpage != null)
 			{
-				using (var g = listbox.CreateGraphics())
-				{
-					var index = listbox.Items.IndexOf(hotday);
-					using var fill = new SolidBrush(index % 2 == 1 ? Theme.DetailOddBack : Theme.DetailEvenBack);
-					g.FillRectangle(fill, hotpage.Bounds);
+				index = listbox.Items.OfType<ListViewItem>()
+					.Where(item => item.Tag == hotday)
+					.Select(item => listbox.Items.IndexOf(item))
+					.FirstOrDefault();
 
-					using var fore = new SolidBrush(hotpage.IsDeleted ? Color.Gray : Theme.ForeColor);
+				using var fill = new SolidBrush(index % 2 == 1 ? Theme.DetailOddBack : Theme.DetailEvenBack);
+				g.FillRectangle(fill, hotpage.Bounds);
 
-					g.DrawString(hotpage.Title,
-						hotpage.IsDeleted ? deletedFont : listbox.Font,
-						fore,
-						hotpage.Bounds, format);
-				}
+				using var fore = new SolidBrush(hotpage.IsDeleted ? Color.Gray : Theme.ForeColor);
+
+				g.DrawString(hotpage.Title,
+					hotpage.IsDeleted ? deletedFont : listbox.Font,
+					fore,
+					hotpage.Bounds, format);
 
 				HoverPage?.Invoke(this, new CalendarPageEventArgs(null));
 
@@ -270,17 +288,18 @@ namespace OneMoreCalendar
 
 			if (page != null)
 			{
-				using (var g = listbox.CreateGraphics())
-				{
-					var index = listbox.Items.IndexOf(day);
-					using var fill = new SolidBrush(index % 2 == 1 ? Theme.DetailOddBack : Theme.DetailEvenBack);
-					g.FillRectangle(fill, page.Bounds);
+				index = listbox.Items.OfType<ListViewItem>()
+						.Where(item => item.Tag == day)
+						.Select(item => listbox.Items.IndexOf(item))
+						.FirstOrDefault();
 
-					using var fore = new SolidBrush(Theme.Highlight);
-					g.DrawString(page.Title,
-						page.IsDeleted ? deletedFont : hotFont,
-						fore, page.Bounds, format);
-				}
+				using var fill2 = new SolidBrush(index % 2 == 1 ? Theme.DetailOddBack : Theme.DetailEvenBack);
+				g.FillRectangle(fill2, page.Bounds);
+
+				using var fore2 = new SolidBrush(Theme.Highlight);
+				g.DrawString(page.Title,
+					page.IsDeleted ? deletedFont : hotFont,
+					fore2, page.Bounds, format);
 
 				HoverPage?.Invoke(this, new CalendarPageEventArgs(page));
 
@@ -289,6 +308,7 @@ namespace OneMoreCalendar
 				Native.SetCursor(hand);
 			}
 		}
+
 
 		private void ListBoxResize(object sender, EventArgs e)
 		{
@@ -305,25 +325,30 @@ namespace OneMoreCalendar
 		 */
 		private void ListBoxMouseUp(object sender, MouseEventArgs e)
 		{
-			var day = listbox.Items.OfType<DayItem>()
-				.FirstOrDefault(d => d.Bounds.Contains(e.Location));
-
-			if (day != null)
+			if (listbox.Items.OfType<ListViewItem>()
+				.FirstOrDefault(d =>
+					listbox.GetItemRectangle(listbox.Items.IndexOf(d)).Contains(e.Location))?
+				.Tag is not DayItem day)
 			{
-				var page = day.Pages.FirstOrDefault(p => p.Bounds.Contains(e.Location));
-				if (page != null)
-				{
-					if (e.Button == MouseButtons.Right)
-					{
-						SnappedPage?.Invoke(this, new CalendarSnapshotEventArgs(page, page.Bounds));
-					}
-					else
-					{
-						ClickedPage?.Invoke(this, new CalendarPageEventArgs(page));
-					}
-				}
+				return;
+			}
+
+			var page = day.Pages.FirstOrDefault(p => p.Bounds.Contains(e.Location));
+			if (page == null)
+			{
+				return;
+			}
+
+			if (e.Button == MouseButtons.Right)
+			{
+				SnappedPage?.Invoke(this, new CalendarSnapshotEventArgs(page, page.Bounds));
+			}
+			else
+			{
+				ClickedPage?.Invoke(this, new CalendarPageEventArgs(page));
 			}
 		}
+
 
 		private void ListBoxScrolled(object sender, ScrollEventArgs e)
 		{

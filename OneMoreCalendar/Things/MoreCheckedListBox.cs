@@ -18,6 +18,9 @@ namespace OneMoreCalendar
 		}
 
 
+		private ThemeProvider Theme => ThemeProvider.Instance;
+
+
 		protected override void OnDrawItem(DrawItemEventArgs e)
 		{
 			if (Items.Count == 0)
