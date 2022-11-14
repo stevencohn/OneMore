@@ -55,6 +55,7 @@ namespace OneMoreCalendar
 		public override void OnThemeChange()
 		{
 			BackColor = Theme.BackColor;
+			listbox.BackColor = BackColor;
 		}
 
 
@@ -105,6 +106,8 @@ namespace OneMoreCalendar
 
 		private void HeaderPanelPaint(object sender, PaintEventArgs e)
 		{
+			e.Graphics.Clear(BackColor);
+
 			using var font = new Font("Segoe UI Light", 10.0f, FontStyle.Regular);
 			headerPanel.Height = font.Height + VPadding;
 			var y = (headerPanel.Height - font.Height) / 2;

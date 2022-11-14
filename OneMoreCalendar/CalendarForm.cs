@@ -94,6 +94,11 @@ namespace OneMoreCalendar
 			prevButton.PreferredFore = Theme.LinkColor;
 			prevButton.PreferredBack = Theme.BackColor;
 			todayButton.PreferredBack = Theme.BackColor;
+
+			if (contentPanel.Controls.Contains(monthView))
+			{
+				detailView.OnThemeChange();
+			}
 		}
 
 
@@ -191,7 +196,6 @@ namespace OneMoreCalendar
 				settings.Created, settings.Modified, settings.Deleted);
 
 			detailView.SetRange(date, endDate, pages);
-			detailView.OnThemeChange();
 
 			contentPanel.Controls.Add(detailView);
 		}
