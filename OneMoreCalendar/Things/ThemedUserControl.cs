@@ -12,7 +12,7 @@ namespace OneMoreCalendar
 	/// Changes the theme of the current UserControl instance to Dark mode if the Windows
 	/// system default theme is also Dark mode.
 	/// </summary>
-	internal abstract class ThemedUserControl : UserControl
+	internal class ThemedUserControl : UserControl
 	{
 		protected ThemeProvider Theme => ThemeProvider.Instance;
 

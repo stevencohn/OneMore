@@ -86,11 +86,13 @@ namespace OneMoreCalendar
 
 				if (daypages.Any() || settings.Empty)
 				{
-					var item = new ListViewItem();
-					item.Tag = new DayItem
+					var item = new ListViewItem
 					{
-						Date = date,
-						Pages = daypages
+						Tag = new DayItem
+						{
+							Date = date,
+							Pages = daypages
+						}
 					};
 
 					listbox.Items.Add(item);
