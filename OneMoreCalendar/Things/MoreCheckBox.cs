@@ -31,7 +31,7 @@ namespace OneMoreCalendar
 		}
 
 
-		private ThemeManager Theme => ThemeManager.Instance;
+		private ThemeProvider Theme => ThemeProvider.Instance;
 
 
 		/// <summary>

@@ -40,7 +40,7 @@ namespace OneMoreCalendar
 		public bool Round { get; set; }
 
 
-		private ThemeManager Theme => ThemeManager.Instance;
+		private ThemeProvider Theme => ThemeProvider.Instance;
 
 
 		protected override void OnPaint(PaintEventArgs pevent)

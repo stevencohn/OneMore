@@ -14,7 +14,7 @@ namespace OneMoreCalendar
 	/// </summary>
 	internal abstract class ThemedUserControl : UserControl
 	{
-		protected ThemeManager Theme => ThemeManager.Instance;
+		protected ThemeProvider Theme => ThemeProvider.Instance;
 
 
 		protected override void OnLoad(EventArgs e)

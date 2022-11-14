@@ -16,7 +16,7 @@ namespace OneMoreCalendar
 	/// <summary>
 	/// Defines themes and projects onto UI elements
 	/// </summary>
-	internal class ThemeManager
+	internal class ThemeProvider
 	{
 
 		#region ColorConverter
@@ -39,13 +39,13 @@ namespace OneMoreCalendar
 		#endregion ColorConverter
 
 
-		private static ThemeManager instance;
+		private static ThemeProvider instance;
 
 
 		/// <summary>
 		/// Singleton constructor
 		/// </summary>
-		private ThemeManager()
+		private ThemeProvider()
 		{
 			Colors = new Dictionary<string, Color>();
 		}
@@ -54,7 +54,7 @@ namespace OneMoreCalendar
 		/// <summary>
 		/// Gets the ThemeManager instance
 		/// </summary>
-		public static ThemeManager Instance => instance ??= new ThemeManager();
+		public static ThemeProvider Instance => instance ??= new ThemeProvider();
 
 
 		/// <summary>
@@ -146,7 +146,7 @@ namespace OneMoreCalendar
 
 			// set colors...
 
-			var cache = JsonConvert.DeserializeObject<ThemeManager>(
+			var cache = JsonConvert.DeserializeObject<ThemeProvider>(
 				DarkMode ? Properties.Resources.DarkTheme : Properties.Resources.LightTheme,
 				new ColorConverter());
 

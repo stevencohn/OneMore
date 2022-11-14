@@ -95,7 +95,7 @@ namespace OneMoreCalendar
 		public bool ShowBorder { get; set; }
 
 
-		private ThemeManager Theme => ThemeManager.Instance;
+		private ThemeProvider Theme => ThemeProvider.Instance;
 
 
 
