@@ -2,13 +2,17 @@
 // Copyright © 2022 Steven M Cohn.  All rights reserved.
 //************************************************************************************************
 
+#pragma warning disable S3011 // Reflection should not be used to increase accessibility of classes, methods, or fields
+
 namespace OneMoreCalendar
 {
 	using Newtonsoft.Json;
 	using River.OneMoreAddIn.Helpers.Office;
 	using System;
 	using System.Collections.Generic;
+	using System.ComponentModel;
 	using System.Drawing;
+	using System.Reflection;
 	using System.Runtime.InteropServices;
 	using System.Windows.Forms;
 
@@ -140,9 +144,20 @@ namespace OneMoreCalendar
 			var provider = new SettingsProvider();
 			var mode = provider.Theme;
 
-			DarkMode =
-				mode == ThemeMode.Dark ||
-				(mode == ThemeMode.System && Office.SystemDefaultDarkMode());
+			var designMode = false;
+			if (container is Component component)
+			{
+				// pull DesignMode protected property from container
+				// so we can support the Visual Studio Forms Designer
+				designMode = (bool)container.GetType()
+					.BaseType
+					.GetProperty("DesignMode", BindingFlags.Instance | BindingFlags.NonPublic)?
+					.GetValue(component);
+			}
+
+			DarkMode = !designMode &&
+				(mode == ThemeMode.Dark ||
+				(mode == ThemeMode.System && Office.SystemDefaultDarkMode()));
 
 			// set colors...
 
@@ -173,10 +188,13 @@ namespace OneMoreCalendar
 				control.OnThemeChange();
 			}
 
-			container.BackColor = MonthHeader;
-			container.ForeColor = ForeColor;
+			if (container != null)
+			{
+				container.BackColor = MonthHeader;
+				container.ForeColor = ForeColor;
 
-			Colorize(container.Controls);
+				Colorize(container.Controls);
+			}
 		}
 
 
