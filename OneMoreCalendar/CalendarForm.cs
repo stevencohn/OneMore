@@ -75,15 +75,14 @@ namespace OneMoreCalendar
 		{
 			if (Theme.DarkMode)
 			{
-				var fromColor = ColorTranslator.FromHtml("#FF80397B");
-				todayButton.Image = Resources.today_32.MapColor(fromColor, Color.MediumOrchid);
-				monthButton.Image = Resources.month_32.MapColor(fromColor, Color.MediumOrchid);
-				dayButton.Image = Resources.day_32.MapColor(fromColor, Color.MediumOrchid);
-				settingsButton.Image = Resources.settings_32.MapColor(fromColor, Color.MediumOrchid);
+				todayButton.Image = Resources.today_32.MapColor(Theme.IconColor);
+				monthButton.Image = Resources.month_32.MapColor(Theme.IconColor);
+				dayButton.Image = Resources.day_32.MapColor(Theme.IconColor);
+				settingsButton.Image = Resources.settings_32.MapColor(Theme.IconColor);
 			}
 			else
 			{
-				todayButton.Image = Resources.settings_32;
+				todayButton.Image = Resources.today_32;
 				monthButton.Image = Resources.month_32;
 				dayButton.Image = Resources.day_32;
 				settingsButton.Image = Resources.settings_32;
@@ -97,7 +96,7 @@ namespace OneMoreCalendar
 
 			if (contentPanel.Controls.Contains(monthView))
 			{
-				detailView.OnThemeChange();
+				detailView?.OnThemeChange();
 			}
 		}
 

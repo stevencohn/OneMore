@@ -164,6 +164,7 @@
     <EmbeddedResource Include="YearsForm.resx">
       <DependentUpon>YearsForm.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="Assets\DarkBlueTheme.json" />
     <None Include="Assets\DarkTheme.json" />
     <None Include="Assets\LightTheme.json" />
     <None Include="Properties\Settings.settings">

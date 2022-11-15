@@ -10,8 +10,9 @@ namespace OneMoreCalendar
 	/// </summary>
 	internal enum ThemeMode
 	{
-		System = 0,
-		Light = 1,
-		Dark = 2
+		System,
+		Light,
+		Dark,
+		User
 	}
 }
