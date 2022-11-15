@@ -11,9 +11,7 @@ namespace OneMoreCalendar
 	using System.Linq;
 	using System.Threading.Tasks;
 	using System.Windows.Forms;
-	using System.Windows.Forms.VisualStyles;
 	using System.Xml.Linq;
-	using System.Xml.Serialization;
 
 
 	/// <summary>

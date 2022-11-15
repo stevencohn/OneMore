@@ -5,6 +5,7 @@
     "ForeColor": "#E6E6E6",
     "Border": "DarkOrchid",
     "Control": "MediumOrchid",
+    "IconColor": "MediumOrchid",
     "Highlight": "#D2A1DF",
     "ButtonBack": "#363636",
     "ButtonFore": "#E6E6E6",

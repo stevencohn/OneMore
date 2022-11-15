@@ -7,11 +7,13 @@
 namespace OneMoreCalendar
 {
 	using Newtonsoft.Json;
+	using River.OneMoreAddIn;
 	using River.OneMoreAddIn.Helpers.Office;
 	using System;
 	using System.Collections.Generic;
 	using System.ComponentModel;
 	using System.Drawing;
+	using System.IO;
 	using System.Reflection;
 	using System.Runtime.InteropServices;
 	using System.Windows.Forms;
@@ -22,6 +24,8 @@ namespace OneMoreCalendar
 	/// </summary>
 	internal class ThemeProvider
 	{
+		private const string CustomThemeFile = "OneMoreCalendarTheme.json";
+
 
 		#region ColorConverter
 		private sealed class ColorConverter : JsonConverter<Color>
@@ -83,6 +87,8 @@ namespace OneMoreCalendar
 		public Color Highlight => Colors[nameof(Highlight)];
 		[JsonIgnore]
 		public Color Control => Colors[nameof(Control)];
+		[JsonIgnore]
+		public Color IconColor => Colors[nameof(IconColor)];
 		[JsonIgnore]
 		public Color ButtonBack => Colors[nameof(ButtonBack)];
 		[JsonIgnore]
@@ -155,18 +161,21 @@ namespace OneMoreCalendar
 					.GetValue(component);
 			}
 
-			DarkMode = !designMode &&
-				(mode == ThemeMode.Dark ||
-				(mode == ThemeMode.System && Office.SystemDefaultDarkMode()));
+			if ((mode != ThemeMode.User) || !LoadColors())
+			{
+				DarkMode = !designMode &&
+					(mode == ThemeMode.Dark ||
+					(mode == ThemeMode.System && Office.SystemDefaultDarkMode()));
 
-			// set colors...
+				// set colors...
 
-			var cache = JsonConvert.DeserializeObject<ThemeProvider>(
-				DarkMode ? Properties.Resources.DarkTheme : Properties.Resources.LightTheme,
-				new ColorConverter());
+				var cache = JsonConvert.DeserializeObject<ThemeProvider>(
+					DarkMode ? Properties.Resources.DarkTheme : Properties.Resources.LightTheme,
+					new ColorConverter());
 
-			Colors.Clear();
-			Colors = cache.Colors;
+				Colors.Clear();
+				Colors = cache.Colors;
+			}
 
 			// apply colors...
 
@@ -195,6 +204,38 @@ namespace OneMoreCalendar
 
 				Colorize(container.Controls);
 			}
+		}
+
+
+		public static bool HasCustomTheme()
+		{
+			var path = Path.Combine(PathHelper.GetAppDataPath(), CustomThemeFile);
+			return File.Exists(path);
+		}
+
+
+		private bool LoadColors()
+		{
+			var path = Path.Combine(PathHelper.GetAppDataPath(), CustomThemeFile);
+			if (File.Exists(path))
+			{
+				try
+				{
+					var json = File.ReadAllText(path);
+					var cache = JsonConvert.DeserializeObject<ThemeProvider>(json, new ColorConverter());
+
+					Colors.Clear();
+					Colors = cache.Colors;
+					DarkMode = cache.DarkMode;
+					return true;
+				}
+				catch (Exception exc)
+				{
+					Logger.Current.WriteLine("error loading custom theme file", exc);
+				}
+			}
+
+			return false;
 		}
 
 

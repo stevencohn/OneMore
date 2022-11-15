@@ -1,0 +1,30 @@
+{
+  "DarkMode": true,
+  "Colors": {
+    "BackColor": "#3A3D49",
+    "ForeColor": "#C1A100",
+    "Border": "#C1A100",
+    "Control": "#967D00",
+    "IconColor": "#967D00",
+    "Highlight": "#D2A1DF",
+    "ButtonBack": "#262938",
+    "ButtonFore": "#E6E6E6",
+    "ButtonDisabled": "Gray",
+    "ButtonBorder": "#555555",
+    "ButtonHotBack": "#303447",
+    "ButtonHotBorder": "Gray",
+    "ButtonPressBorder": "#967D00",
+    "LinkColor": "#C1A100",
+    "HoverColor": "#967D00",
+    "MonthHeader": "#3A3D49",
+    "MonthPrimary": "#191C28",
+    "MonthSecondary": "#262938",
+    "MonthGrid": "#676767",
+    "MonthDayFore": "LightGray",
+    "MonthDayBack": "#3A3D49",
+    "MonthTodayFore": "LightGray",
+    "MonthTodayBack": "#665921",
+    "DetailOddBack": "#191C28",
+    "DetailEvenBack": "#262938"
+  }
+}

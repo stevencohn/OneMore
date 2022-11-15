@@ -101,7 +101,7 @@ namespace OneMoreCalendar
 				using var fill = new SolidBrush(Theme.ButtonBack);
 				e.Graphics.FillRoundedRectangle(fill, bounds, ItemRadius);
 
-				using var fore = new Pen(Theme.ButtonFore);
+				using var fore = new Pen(Theme.Control);
 				e.Graphics.DrawRoundedRectangle(fore, bounds, ItemRadius);
 			}
 			else

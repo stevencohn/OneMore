@@ -40,11 +40,21 @@ namespace OneMoreCalendar
 				deletedBox.Checked = provider.Deleted;
 				emptyBox.Checked = !provider.Empty;
 
-				switch (provider.Theme)
+				var hasCustom = ThemeProvider.HasCustomTheme();
+
+				if (provider.Theme == ThemeMode.User && hasCustom)
 				{
-					case ThemeMode.Light: lightModeButton.Checked = true; break;
-					case ThemeMode.Dark: darkModeButton.Checked = true; break;
-					default: systemModeButton.Checked = true; break;
+					userModeButton.Checked = true;
+				}
+				else
+				{
+					userModeButton.Enabled = hasCustom;
+					switch (provider.Theme)
+					{
+						case ThemeMode.Light: lightModeButton.Checked = true; break;
+						case ThemeMode.Dark: darkModeButton.Checked = true; break;
+						default: systemModeButton.Checked = true; break;
+					}
 				}
 
 				var notebooks = await provider.GetNotebooks();
@@ -147,10 +157,13 @@ namespace OneMoreCalendar
 				createdBox.Checked, modifiedBox.Checked,
 				deletedBox.Checked, !emptyBox.Checked);
 
-			provider.SetTheme(
-				lightModeButton.Checked
-				? ThemeMode.Light
-				: darkModeButton.Checked ? ThemeMode.Dark : ThemeMode.System);
+			ThemeMode mode;
+			if (lightModeButton.Checked) mode = ThemeMode.Light;
+			else if (darkModeButton.Checked) mode = ThemeMode.Dark;
+			else if (userModeButton.Checked) mode = ThemeMode.User;
+			else mode = ThemeMode.System;
+
+			provider.SetTheme(mode);
 
 			var ids = new List<string>();
 			foreach (Notebook notebook in notebooksBox.CheckedItems)
