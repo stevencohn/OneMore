@@ -263,6 +263,7 @@ namespace OneMoreCalendar
 				{
 					label.LinkColor = LinkColor;
 					label.HoverColor = HoverColor;
+					label.ActiveLinkColor = LinkColor;
 				}
 			}
 		}
