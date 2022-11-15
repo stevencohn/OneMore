@@ -5652,7 +5652,7 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Calendar.
+        ///   Looks up a localized string similar to OneMore Calendar.
         /// </summary>
         internal static string ribCalendarButton_Label {
             get {

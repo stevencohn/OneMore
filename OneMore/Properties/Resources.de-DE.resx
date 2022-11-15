@@ -1133,8 +1133,8 @@ Notizbücher</value>
     <comment>label</comment>
   </data>
   <data name="ribCalendarButton_Label" xml:space="preserve">
-    <value>Kalender</value>
-    <comment>Ribbon OneMore-Calendar command</comment>
+    <value>OneMore-Kalender</value>
+    <comment>Ribbon OneMore-Calendar command NODUP</comment>
   </data>
   <data name="CustomStyle_Screentip" xml:space="preserve">
     <value>{0} (Strg + Alt + Umschalt + {1})</value>

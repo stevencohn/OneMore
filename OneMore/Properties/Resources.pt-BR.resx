@@ -1153,8 +1153,8 @@ Tente mais tarde</value>
     <comment>label</comment>
   </data>
   <data name="ribCalendarButton_Label" xml:space="preserve">
-    <value>Calendário</value>
-    <comment>Ribbon OneMore-Calendar command</comment>
+    <value>Mais um calendário</value>
+    <comment>Ribbon OneMore-Calendar command NODUP</comment>
   </data>
   <data name="CustomStyle_Screentip" xml:space="preserve">
     <value>{0} (Ctrl + Alt + Shift + {1})</value>

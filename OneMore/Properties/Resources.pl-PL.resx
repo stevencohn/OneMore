@@ -433,7 +433,7 @@ OneNote zamknie się automatycznie</value>
     <comment>ribbon NODUP</comment>
   </data>
   <data name="ribCalendarButton_Label" xml:space="preserve">
-    <value>Kalendarz</value>
+    <value>Kalendarz OneMore</value>
     <comment>Ribbon OneMore-Calendar command NODUP</comment>
   </data>
   <data name="Calculator_ErrInvalidCellRange" xml:space="preserve">
