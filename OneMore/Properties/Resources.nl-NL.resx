@@ -3746,11 +3746,7 @@ Kleinere afbeeldingen niet vergroten</value>
     <comment>not a menu, hotkey only</comment>
   </data>
   <data name="ribApplyStyle8Button_Label" xml:space="preserve">
-    <value>Pas stijl 8 toe</value>
-    <comment>not a menu, hotkey only</comment>
-  </data>
-  <data name="ribApplyStyle9Button_Label" xml:space="preserve">
-    <value>Pas stijl 9 toe</value>
+    <value>Stijl 9 toepassen</value>
     <comment>not a menu, hotkey only</comment>
   </data>
   <data name="ribInsertBreadcrumbButton_Label" xml:space="preserve">
@@ -3766,7 +3762,7 @@ Kleinere afbeeldingen niet vergroten</value>
     <comment>context menu option</comment>
   </data>
   <data name="ribApplyStyle6Button_Label" xml:space="preserve">
-    <value>Pas stijl 6 toe</value>
+    <value>Pas stijl 7 toe</value>
     <comment>not a menu, hotkey only</comment>
   </data>
   <data name="ribInsertGrayStatusButton_Label" xml:space="preserve">
@@ -3774,7 +3770,7 @@ Kleinere afbeeldingen niet vergroten</value>
     <comment>Ribbon OneMore menu item, Snippets...</comment>
   </data>
   <data name="ribApplyStyle1Button_Label" xml:space="preserve">
-    <value>Pas stijl 1 toe</value>
+    <value>Stijl 2 toepassen</value>
     <comment>not a menu, hotkey only</comment>
   </data>
   <data name="ribRefreshFootnotesButton_Label" xml:space="preserve">
@@ -3790,7 +3786,7 @@ Kleinere afbeeldingen niet vergroten</value>
     <comment>context menu option</comment>
   </data>
   <data name="ribApplyStyle7Button_Label" xml:space="preserve">
-    <value>Pas stijl 7 toe</value>
+    <value>Pas stijl 8 toe</value>
     <comment>not a menu, hotkey only</comment>
   </data>
   <data name="ribRefreshFootnotesButton_Screentip" xml:space="preserve">
@@ -3798,15 +3794,15 @@ Kleinere afbeeldingen niet vergroten</value>
     <comment>ribbon button</comment>
   </data>
   <data name="ribApplyStyle2Button_Label" xml:space="preserve">
-    <value>Pas stijl 2 toe</value>
+    <value>Stijl 3 toepassen</value>
     <comment>not a menu, hotkey only</comment>
   </data>
   <data name="ribApplyStyle3Button_Label" xml:space="preserve">
-    <value>Pas stijl 3 toe</value>
+    <value>Stijl 4 toepassen</value>
     <comment>not a menu, hotkey only</comment>
   </data>
   <data name="ribApplyStyle5Button_Label" xml:space="preserve">
-    <value>Pas stijl 5 toe</value>
+    <value>Pas stijl 6 toe</value>
     <comment>not a menu, hotkey only</comment>
   </data>
   <data name="ribSearchAndReplaceButton_Screentip" xml:space="preserve">
@@ -3870,7 +3866,7 @@ Kleinere afbeeldingen niet vergroten</value>
     <comment>Ribbon OneMore menu item, Extras...</comment>
   </data>
   <data name="ribApplyStyle4Button_Label" xml:space="preserve">
-    <value>Pas stijl 4 toe</value>
+    <value>Stijl 5 toepassen</value>
     <comment>not a menu, hotkey only</comment>
   </data>
   <data name="ribInsertExpandButton_Label" xml:space="preserve">
@@ -4230,5 +4226,9 @@ Lettertype laatste kolom</value>
   <data name="SortListDialog_duplicatesBox.Text" xml:space="preserve">
     <value>Duplicaten verwijderen</value>
     <comment>checkbox</comment>
+  </data>
+  <data name="ribApplyStyle0Button_Label" xml:space="preserve">
+    <value>Stijl 1 toepassen</value>
+    <comment>not a menu, hotkey only</comment>
   </data>
 </root>

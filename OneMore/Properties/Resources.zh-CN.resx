@@ -3736,10 +3736,6 @@ OneNote 文件 (*.one)</value>
     <comment>not a menu, hotkey only</comment>
   </data>
   <data name="ribApplyStyle8Button_Label" xml:space="preserve">
-    <value>应用样式 8</value>
-    <comment>not a menu, hotkey only</comment>
-  </data>
-  <data name="ribApplyStyle9Button_Label" xml:space="preserve">
     <value>应用样式 9</value>
     <comment>not a menu, hotkey only</comment>
   </data>
@@ -3756,7 +3752,7 @@ OneNote 文件 (*.one)</value>
     <comment>context menu option</comment>
   </data>
   <data name="ribApplyStyle6Button_Label" xml:space="preserve">
-    <value>应用样式 6</value>
+    <value>应用样式 7</value>
     <comment>not a menu, hotkey only</comment>
   </data>
   <data name="ribInsertGrayStatusButton_Label" xml:space="preserve">
@@ -3764,7 +3760,7 @@ OneNote 文件 (*.one)</value>
     <comment>Ribbon OneMore menu item, Snippets...</comment>
   </data>
   <data name="ribApplyStyle1Button_Label" xml:space="preserve">
-    <value>应用样式 1</value>
+    <value>应用样式 2</value>
     <comment>not a menu, hotkey only</comment>
   </data>
   <data name="ribRefreshFootnotesButton_Label" xml:space="preserve">
@@ -3780,7 +3776,7 @@ OneNote 文件 (*.one)</value>
     <comment>context menu option</comment>
   </data>
   <data name="ribApplyStyle7Button_Label" xml:space="preserve">
-    <value>应用样式 7</value>
+    <value>应用样式 8</value>
     <comment>not a menu, hotkey only</comment>
   </data>
   <data name="ribRefreshFootnotesButton_Screentip" xml:space="preserve">
@@ -3788,15 +3784,15 @@ OneNote 文件 (*.one)</value>
     <comment>ribbon button</comment>
   </data>
   <data name="ribApplyStyle2Button_Label" xml:space="preserve">
-    <value>应用样式 2</value>
-    <comment>not a menu, hotkey only</comment>
-  </data>
-  <data name="ribApplyStyle3Button_Label" xml:space="preserve">
     <value>应用样式 3</value>
     <comment>not a menu, hotkey only</comment>
   </data>
+  <data name="ribApplyStyle3Button_Label" xml:space="preserve">
+    <value>应用样式 4</value>
+    <comment>not a menu, hotkey only</comment>
+  </data>
   <data name="ribApplyStyle5Button_Label" xml:space="preserve">
-    <value>应用样式 5</value>
+    <value>应用样式 6</value>
     <comment>not a menu, hotkey only</comment>
   </data>
   <data name="ribSearchAndReplaceButton_Screentip" xml:space="preserve">
@@ -3860,7 +3856,7 @@ OneNote 文件 (*.one)</value>
     <comment>Ribbon OneMore menu item, Extras...</comment>
   </data>
   <data name="ribApplyStyle4Button_Label" xml:space="preserve">
-    <value>应用样式 4</value>
+    <value>应用样式 5</value>
     <comment>not a menu, hotkey only</comment>
   </data>
   <data name="ribInsertExpandButton_Label" xml:space="preserve">
@@ -4220,5 +4216,9 @@ OneNote 文件 (*.one)</value>
   <data name="SortListDialog_duplicatesBox.Text" xml:space="preserve">
     <value>删除重复项</value>
     <comment>checkbox</comment>
+  </data>
+  <data name="ribApplyStyle0Button_Label" xml:space="preserve">
+    <value>应用样式 1</value>
+    <comment>not a menu, hotkey only</comment>
   </data>
 </root>

@@ -1294,7 +1294,7 @@ Symbols: PI, E</value>
     <value>Table of Contents</value>
     <comment>page name</comment>
   </data>
-  <data name="ribApplyStyle8Button_Label" xml:space="preserve">
+  <data name="ribApplyStyle7Button_Label" xml:space="preserve">
     <value>Apply Style 8</value>
     <comment>not a menu, hotkey only</comment>
   </data>
@@ -1310,7 +1310,7 @@ Symbols: PI, E</value>
     <value>Export Pages</value>
     <comment>dialog title</comment>
   </data>
-  <data name="ribApplyStyle9Button_Label" xml:space="preserve">
+  <data name="ribApplyStyle8Button_Label" xml:space="preserve">
     <value>Apply Style 9</value>
     <comment>not a menu, hotkey only</comment>
   </data>
@@ -1391,7 +1391,7 @@ Percentage</value>
     <value>Move the text cursor to an item of a list</value>
     <comment>message box</comment>
   </data>
-  <data name="ribApplyStyle6Button_Label" xml:space="preserve">
+  <data name="ribApplyStyle5Button_Label" xml:space="preserve">
     <value>Apply Style 6</value>
     <comment>not a menu, hotkey only</comment>
   </data>
@@ -1572,7 +1572,7 @@ In this section</value>
     <value>Add or Update Reminders</value>
     <comment>ribbon button</comment>
   </data>
-  <data name="ribApplyStyle1Button_Label" xml:space="preserve">
+  <data name="ribApplyStyle0Button_Label" xml:space="preserve">
     <value>Apply Style 1</value>
     <comment>not a menu, hotkey only</comment>
   </data>
@@ -1747,7 +1747,7 @@ In this section</value>
     <value>... Warning Block</value>
     <comment>context menu option</comment>
   </data>
-  <data name="ribApplyStyle7Button_Label" xml:space="preserve">
+  <data name="ribApplyStyle6Button_Label" xml:space="preserve">
     <value>Apply Style 7</value>
     <comment>not a menu, hotkey only</comment>
   </data>
@@ -1899,7 +1899,7 @@ In this section</value>
     <value>Refresh footnote reference numbers sequentially</value>
     <comment>ribbon button</comment>
   </data>
-  <data name="ribApplyStyle2Button_Label" xml:space="preserve">
+  <data name="ribApplyStyle1Button_Label" xml:space="preserve">
     <value>Apply Style 2</value>
     <comment>not a menu, hotkey only</comment>
   </data>
@@ -1915,11 +1915,11 @@ In this section</value>
     <value>Indent only below tagged headings/paragraphs</value>
     <comment>checkbox</comment>
   </data>
-  <data name="ribApplyStyle3Button_Label" xml:space="preserve">
+  <data name="ribApplyStyle2Button_Label" xml:space="preserve">
     <value>Apply Style 3</value>
     <comment>not a menu, hotkey only</comment>
   </data>
-  <data name="ribApplyStyle5Button_Label" xml:space="preserve">
+  <data name="ribApplyStyle4Button_Label" xml:space="preserve">
     <value>Apply Style 5</value>
     <comment>not a menu, hotkey only</comment>
   </data>
@@ -2856,7 +2856,7 @@ High</value>
     <value>Remove footnote (Ctrl + Shift + F)</value>
     <comment>Ribbon OneMore menu item, Extras...</comment>
   </data>
-  <data name="ribApplyStyle4Button_Label" xml:space="preserve">
+  <data name="ribApplyStyle3Button_Label" xml:space="preserve">
     <value>Apply Style 4</value>
     <comment>not a menu, hotkey only</comment>
   </data>
