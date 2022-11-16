@@ -3799,10 +3799,6 @@ Nie powiększaj mniejszych obrazów</value>
     <comment>not a menu, hotkey only</comment>
   </data>
   <data name="ribApplyStyle8Button_Label" xml:space="preserve">
-    <value>Zastosuj styl 8</value>
-    <comment>not a menu, hotkey only</comment>
-  </data>
-  <data name="ribApplyStyle9Button_Label" xml:space="preserve">
     <value>Zastosuj styl 9</value>
     <comment>not a menu, hotkey only</comment>
   </data>
@@ -3819,7 +3815,7 @@ Nie powiększaj mniejszych obrazów</value>
     <comment>context menu option</comment>
   </data>
   <data name="ribApplyStyle6Button_Label" xml:space="preserve">
-    <value>Zastosuj styl 6</value>
+    <value>Zastosuj styl 7</value>
     <comment>not a menu, hotkey only</comment>
   </data>
   <data name="ribInsertGrayStatusButton_Label" xml:space="preserve">
@@ -3827,7 +3823,7 @@ Nie powiększaj mniejszych obrazów</value>
     <comment>Ribbon OneMore menu item, Snippets...</comment>
   </data>
   <data name="ribApplyStyle1Button_Label" xml:space="preserve">
-    <value>Zastosuj styl 1</value>
+    <value>Zastosuj styl 2</value>
     <comment>not a menu, hotkey only</comment>
   </data>
   <data name="ribRefreshFootnotesButton_Label" xml:space="preserve">
@@ -3843,7 +3839,7 @@ Nie powiększaj mniejszych obrazów</value>
     <comment>context menu option</comment>
   </data>
   <data name="ribApplyStyle7Button_Label" xml:space="preserve">
-    <value>Zastosuj styl 7</value>
+    <value>Zastosuj styl 8</value>
     <comment>not a menu, hotkey only</comment>
   </data>
   <data name="ribRefreshFootnotesButton_Screentip" xml:space="preserve">
@@ -3851,15 +3847,15 @@ Nie powiększaj mniejszych obrazów</value>
     <comment>ribbon button</comment>
   </data>
   <data name="ribApplyStyle2Button_Label" xml:space="preserve">
-    <value>Zastosuj styl 2</value>
-    <comment>not a menu, hotkey only</comment>
-  </data>
-  <data name="ribApplyStyle3Button_Label" xml:space="preserve">
     <value>Zastosuj styl 3</value>
     <comment>not a menu, hotkey only</comment>
   </data>
+  <data name="ribApplyStyle3Button_Label" xml:space="preserve">
+    <value>Zastosuj styl 4</value>
+    <comment>not a menu, hotkey only</comment>
+  </data>
   <data name="ribApplyStyle5Button_Label" xml:space="preserve">
-    <value>Zastosuj styl 5</value>
+    <value>Zastosuj styl 6</value>
     <comment>not a menu, hotkey only</comment>
   </data>
   <data name="ribSearchAndReplaceButton_Screentip" xml:space="preserve">
@@ -3923,7 +3919,7 @@ Nie powiększaj mniejszych obrazów</value>
     <comment>Ribbon OneMore menu item, Extras...</comment>
   </data>
   <data name="ribApplyStyle4Button_Label" xml:space="preserve">
-    <value>Zastosuj styl 4</value>
+    <value>Zastosuj styl 5</value>
     <comment>not a menu, hotkey only</comment>
   </data>
   <data name="ribInsertExpandButton_Label" xml:space="preserve">
@@ -4283,5 +4279,9 @@ Czcionka ostatniej kolumny</value>
   <data name="SortListDialog_duplicatesBox.Text" xml:space="preserve">
     <value>Usuń duplikaty</value>
     <comment>checkbox</comment>
+  </data>
+  <data name="ribApplyStyle0Button_Label" xml:space="preserve">
+    <value>Zastosuj styl 1</value>
+    <comment>not a menu, hotkey only</comment>
   </data>
 </root>
