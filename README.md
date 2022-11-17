@@ -1,8 +1,8 @@
 ﻿# ![logo](../../wiki/images/Logo.png "logo") OneMore - a OneNote Add-in
 
-A OneNote add-in with powerful yet simple and effective features. See the [**project wiki**](../../wiki) for full details. Meanwhile, here's some pleasant reading material...
-
 [![version](https://img.shields.io/github/v/release/stevencohn/OneMore?display_name=tag&color=7E5C81)](https://github.com/stevencohn/OneMore/releases/latest) [![downloads](https://img.shields.io/github/downloads/stevencohn/OneMore/total?color=blue)](https://github.com/stevencohn/OneMore/releases/latest) [![platform](https://img.shields.io/badge/platform-windows%20%7C%20onenote%20desktop-649BC1)](https://github.com/stevencohn/OneMore#-how-to-install-onemore-as-an-administrator) [![GitHub license](https://img.shields.io/badge/license-mpl--2.0-BF6A48)](https://github.com/stevencohn/OneMore/blob/main/LICENSE) [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/stevencohn/OneMore#-developing-onemore)
+
+A OneNote add-in with powerful yet simple and effective features. See the [**project wiki**](../../wiki) for full details. Meanwhile, here's some pleasant reading material...
 
 * Integrated with the OneNote ribbon, [context menus](../../wiki#extended-context-menus), and [keyboard shortcuts](../../wiki#keys) for easy access
 * [Customize the Text context menu](../../wiki/Settings) to add OneMore commands or a a custom search engine
