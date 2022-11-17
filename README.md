@@ -2,7 +2,7 @@
 
 A OneNote add-in with powerful yet simple and effective features. See the [**project wiki**](../../wiki) for full details. Meanwhile, here's some pleasant reading material...
 
-[![version](https://img.shields.io/badge/version-5.3.0-blue)](https://github.com/stevencohn/OneMore/releases/latest) [![GitHub license](https://img.shields.io/badge/license-mpl--2.0-orange)](https://github.com/stevencohn/OneMore/blob/main/LICENSE) [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/stevencohn/OneMore#-developing-onemore)
+[![version](https://img.shields.io/github/v/release/stevencohn/OneMore?display_name=tag)](https://github.com/stevencohn/OneMore/releases/latest) [![GitHub license](https://img.shields.io/badge/license-mpl--2.0-orange)](https://github.com/stevencohn/OneMore/blob/main/LICENSE) [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/stevencohn/OneMore#-developing-onemore)
 
 * Integrated with the OneNote ribbon, [context menus](../../wiki#extended-context-menus), and [keyboard shortcuts](../../wiki#keys) for easy access
 * [Customize the Text context menu](../../wiki/Settings) to add OneMore commands or a a custom search engine
