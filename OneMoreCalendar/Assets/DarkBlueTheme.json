@@ -2,11 +2,11 @@
   "DarkMode": true,
   "Colors": {
     "BackColor": "#3A3D49",
-    "ForeColor": "#C1A100",
+    "ForeColor": "LightGray",
     "Border": "#C1A100",
     "Control": "#967D00",
     "IconColor": "#967D00",
-    "Highlight": "#D2A1DF",
+    "Highlight": "#C1A100",
     "ButtonBack": "#262938",
     "ButtonFore": "#E6E6E6",
     "ButtonDisabled": "Gray",

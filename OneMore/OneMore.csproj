@@ -134,7 +134,7 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
     <Reference Include="Windows">
-      <HintPath>..\..\..\Program Files (x86)\Windows Kits\10\UnionMetadata\10.0.22000.0\Windows.winmd</HintPath>
+      <HintPath>..\..\..\Program Files (x86)\Windows Kits\10\UnionMetadata\10.0.22621.0\Windows.winmd</HintPath>
     </Reference>
     <Reference Include="WindowsBase" />
   </ItemGroup>
