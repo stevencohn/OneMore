@@ -688,7 +688,15 @@ namespace River.OneMoreAddIn.Models
 				.Where(e => e.Attributes().Any(a => a.Name == "selected" && a.Value == "all"))
 				.ToList();
 
-			if (runs.Count > 0)
+			if (!runs.Any())
+			{
+				runs = Root.Elements(Namespace + "Outline")
+					.Descendants(Namespace + "Image")
+					.Where(e => e.Attributes().Any(a => a.Name == "selected" && a.Value == "all"))
+					.ToList();
+			}
+
+			if (runs.Any())
 			{
 				// content will eventually be added after the first parent
 				firstParent = runs[0].Parent;
