@@ -113,6 +113,13 @@ namespace River.OneMoreAddIn.Commands
 					.Elements()
 					.ForEach(e => Write(e));
 
+				// page level Images outside of any Outline
+				page.Root.Elements(ns + "Image")
+					.ForEach(e => {
+						Write(e);
+						writer.WriteLine();
+					});
+
 				writer.WriteLine();
 			}
 		}
