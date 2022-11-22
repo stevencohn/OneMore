@@ -217,7 +217,7 @@ namespace River.OneMoreAddIn.Commands
 			if (DialogResult == DialogResult.OK)
 			{
 				var path = pathBox.Text;
-				if (PathHelper.HasWildFileName(path))
+				if (Path.HasExtension(path))
 				{
 					// strip off the filename so only the dir is stored
 					path = Path.GetDirectoryName(path);

@@ -4,7 +4,8 @@
 
 namespace River.OneMoreAddIn.Commands
 {
-	using MarkdownDeep;
+	using Markdig;
+	using Markdig.Renderers;
 	using River.OneMoreAddIn.Helpers.Office;
 	using River.OneMoreAddIn.Models;
 	using River.OneMoreAddIn.UI;
@@ -395,12 +396,6 @@ namespace River.OneMoreAddIn.Commands
 
 				logger.WriteLine($"importing markdown {filepath}");
 				var text = File.ReadAllText(filepath);
-				var deep = new Markdown
-				{
-					MaxImageWidth = 800,
-					ExtraMode = true,
-					UrlBaseLocation = Path.GetDirectoryName(filepath)
-				};
 
 				if (token != default && token.IsCancellationRequested)
 				{
@@ -408,7 +403,25 @@ namespace River.OneMoreAddIn.Commands
 					return;
 				}
 
-				var body = deep.Transform(text);
+				// render HTML...
+
+				using var writer = new StringWriter();
+				var renderer = new HtmlRenderer(writer)
+				{
+					BaseUrl = new Uri(Path.GetDirectoryName(filepath) + "/")
+				};
+
+				var pipeline = new MarkdownPipelineBuilder().UseAdvancedExtensions().Build();
+				pipeline.Setup(renderer);
+
+				var doc = Markdown.Parse(text, pipeline);
+
+				renderer.Render(doc);
+				writer.Flush();
+				var body = writer.ToString();
+
+				// copy/paste HTML...
+
 				if (!string.IsNullOrEmpty(body))
 				{
 					var builder = new StringBuilder();
