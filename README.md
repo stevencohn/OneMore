@@ -341,7 +341,9 @@ Tested recently with:
    * Used by Word Count command for Chinese text
 * [HtmlAgilityPack](https://www.nuget.org/packages/HtmlAgilityPack) - nuget, MIT license
    * Normalizes HTML and non-conformant XML to well-formed XML that can be consumed by XElement.Parse
-* [InputSimulator](https://github.com/michaelnoonan/inputsimulator) - nuget, MIT license
+* [InputSimulator](https://www.nuget.org/packages/InputSimulator) - nuget, MIT license
    * Replaces the use of SendKeys.Send, adding support for multilingual keyboards
-* [MarkdownDeep](https://github.com/toptensoftware/markdowndeep) - DLL in external folder
-   * Transforms markdown to HTML when importing md files
+* [Markdig.Signed](https://www.nuget.org/packages/Markdig.Signed) - nuget. BSD-2 license
+   * A fast, powerful, CommonMark compliant, extensible Markdown processor for .NET
+* [Newtonsoft.Json](https://www.nuget.org/packages/Newtonsoft.Json/) - nuget, MIT license
+   * Json.NET is a popular high-performance JSON framework for .NET
