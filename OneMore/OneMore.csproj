@@ -138,7 +138,7 @@
   <ItemGroup>
     <Compile Include="AddInCommands.cs" />
     <Compile Include="Commands\Edit\DuplicateLineCommand.cs" />
-    <Compile Include="Commands\File\OneMoreDigRenderer.cs" />
+    <Compile Include="Commands\File\Markdown\OneMoreDigRenderer.cs" />
     <Compile Include="Commands\Images\OpenImageWithCommand.cs" />
     <Compile Include="Commands\Tables\ApplyTableThemeCommand.cs" />
     <Compile Include="Commands\Tables\EditTableThemesCommand.cs" />
@@ -202,7 +202,7 @@
     <Compile Include="Commands\File\EvernoteReader.cs" />
     <Compile Include="Commands\Images\ResizeOption.cs" />
     <Compile Include="Commands\Page\ArrangeContainersCommand.cs" />
-    <Compile Include="Commands\File\MarkdownWriter.cs" />
+    <Compile Include="Commands\File\Markdown\MarkdownWriter.cs" />
     <Compile Include="Commands\Page\ArrangeContainersDialog.cs">
       <SubType>Form</SubType>
     </Compile>
