@@ -29,6 +29,7 @@ namespace River.OneMoreAddIn.Commands
 					"selectLabel",
 					"unselectLabel",
 					"useTextBox",
+					"rewireBox",
 					"okButton=word_OK",
 					"cancelButton=word_Cancel"
 				});
@@ -41,6 +42,9 @@ namespace River.OneMoreAddIn.Commands
 		{
 			gridView.DataSource = new SortableBindingList<CrawlHyperlink>(links);
 		}
+
+
+		public bool RewireParentLinks => rewireBox.Checked;
 
 
 		public bool UseTextTitles => useTextBox.Checked;

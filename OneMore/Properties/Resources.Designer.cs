@@ -1500,6 +1500,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Rewire parent links to sub-pages.
+        /// </summary>
+        internal static string CrawlWebPageDialog_rewireBox_Text {
+            get {
+                return ResourceManager.GetString("CrawlWebPageDialog_rewireBox.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Select all.
         /// </summary>
         internal static string CrawlWebPageDialog_selectLabel_Text {
@@ -1527,7 +1536,7 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Use Text Titles.
+        ///   Looks up a localized string similar to Apply Text columns to sub-page titles.
         /// </summary>
         internal static string CrawlWebPageDialog_useTextBox_Text {
             get {

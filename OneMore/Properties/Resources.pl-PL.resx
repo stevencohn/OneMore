@@ -3702,7 +3702,7 @@ Wybierz Nie, aby zachować jedną pustą linię między akapitami</value>
     <comment>link label</comment>
   </data>
   <data name="CrawlWebPageDialog_useTextBox.Text" xml:space="preserve">
-    <value>Użyj tytułów tekstowych</value>
+    <value>Zastosuj kolumny tekstowe do tytułów podstron</value>
     <comment>checkbox</comment>
   </data>
   <data name="word_No" xml:space="preserve">
@@ -4283,5 +4283,9 @@ Czcionka ostatniej kolumny</value>
   <data name="ribApplyStyle0Button_Label" xml:space="preserve">
     <value>Zastosuj styl 1</value>
     <comment>not a menu, hotkey only</comment>
+  </data>
+  <data name="CrawlWebPageDialog_rewireBox.Text" xml:space="preserve">
+    <value>Przeprowadź linki nadrzędne do podstron</value>
+    <comment>checkbox</comment>
   </data>
 </root>

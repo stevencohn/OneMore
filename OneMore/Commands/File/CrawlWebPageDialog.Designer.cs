@@ -41,6 +41,7 @@
 			this.addressColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.textColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.orderColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.rewireBox = new System.Windows.Forms.CheckBox();
 			this.buttonPanel.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.gridView)).BeginInit();
 			this.SuspendLayout();
@@ -50,7 +51,7 @@
 			this.okButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.okButton.DialogResult = System.Windows.Forms.DialogResult.OK;
 			this.okButton.Enabled = false;
-			this.okButton.Location = new System.Drawing.Point(944, 49);
+			this.okButton.Location = new System.Drawing.Point(944, 43);
 			this.okButton.Name = "okButton";
 			this.okButton.Size = new System.Drawing.Size(100, 38);
 			this.okButton.TabIndex = 11;
@@ -61,7 +62,7 @@
 			// 
 			this.cancelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-			this.cancelButton.Location = new System.Drawing.Point(1050, 49);
+			this.cancelButton.Location = new System.Drawing.Point(1050, 43);
 			this.cancelButton.Name = "cancelButton";
 			this.cancelButton.Size = new System.Drawing.Size(100, 38);
 			this.cancelButton.TabIndex = 10;
@@ -70,15 +71,16 @@
 			// 
 			// buttonPanel
 			// 
+			this.buttonPanel.Controls.Add(this.rewireBox);
 			this.buttonPanel.Controls.Add(this.useTextBox);
 			this.buttonPanel.Controls.Add(this.unselectLabel);
 			this.buttonPanel.Controls.Add(this.selectLabel);
 			this.buttonPanel.Controls.Add(this.cancelButton);
 			this.buttonPanel.Controls.Add(this.okButton);
 			this.buttonPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
-			this.buttonPanel.Location = new System.Drawing.Point(20, 439);
+			this.buttonPanel.Location = new System.Drawing.Point(20, 445);
 			this.buttonPanel.Name = "buttonPanel";
-			this.buttonPanel.Size = new System.Drawing.Size(1153, 90);
+			this.buttonPanel.Size = new System.Drawing.Size(1153, 84);
 			this.buttonPanel.TabIndex = 13;
 			// 
 			// useTextBox
@@ -86,17 +88,17 @@
 			this.useTextBox.AutoSize = true;
 			this.useTextBox.Checked = true;
 			this.useTextBox.CheckState = System.Windows.Forms.CheckState.Checked;
-			this.useTextBox.Location = new System.Drawing.Point(944, 16);
+			this.useTextBox.Location = new System.Drawing.Point(432, 19);
 			this.useTextBox.Name = "useTextBox";
-			this.useTextBox.Size = new System.Drawing.Size(139, 24);
+			this.useTextBox.Size = new System.Drawing.Size(297, 24);
 			this.useTextBox.TabIndex = 14;
-			this.useTextBox.Text = "Use Text Titles";
+			this.useTextBox.Text = "Apply Text columns to sub-page titles";
 			this.useTextBox.UseVisualStyleBackColor = true;
 			// 
 			// unselectLabel
 			// 
 			this.unselectLabel.AutoSize = true;
-			this.unselectLabel.Location = new System.Drawing.Point(32, 55);
+			this.unselectLabel.Location = new System.Drawing.Point(32, 50);
 			this.unselectLabel.Name = "unselectLabel";
 			this.unselectLabel.Size = new System.Drawing.Size(94, 20);
 			this.unselectLabel.TabIndex = 13;
@@ -150,7 +152,7 @@
 			this.gridView.RowHeadersWidth = 30;
 			this.gridView.RowTemplate.Height = 28;
 			this.gridView.ShowEditingIcon = false;
-			this.gridView.Size = new System.Drawing.Size(1153, 357);
+			this.gridView.Size = new System.Drawing.Size(1153, 363);
 			this.gridView.TabIndex = 16;
 			this.gridView.CurrentCellDirtyStateChanged += new System.EventHandler(this.DirtyStateChanged);
 			this.gridView.Resize += new System.EventHandler(this.GridResize);
@@ -195,6 +197,18 @@
 			this.orderColumn.ReadOnly = true;
 			this.orderColumn.Width = 90;
 			// 
+			// rewireBox
+			// 
+			this.rewireBox.AutoSize = true;
+			this.rewireBox.Checked = true;
+			this.rewireBox.CheckState = System.Windows.Forms.CheckState.Checked;
+			this.rewireBox.Location = new System.Drawing.Point(432, 49);
+			this.rewireBox.Name = "rewireBox";
+			this.rewireBox.Size = new System.Drawing.Size(266, 24);
+			this.rewireBox.TabIndex = 15;
+			this.rewireBox.Text = "Rewire parent links to sub-pages";
+			this.rewireBox.UseVisualStyleBackColor = true;
+			// 
 			// CrawlWebPageDialog
 			// 
 			this.AcceptButton = this.okButton;
@@ -235,5 +249,6 @@
 		private System.Windows.Forms.LinkLabel unselectLabel;
 		private System.Windows.Forms.LinkLabel selectLabel;
 		private System.Windows.Forms.CheckBox useTextBox;
+		private System.Windows.Forms.CheckBox rewireBox;
 	}
 }
