@@ -4225,4 +4225,12 @@ OneNote 文件 (*.one)</value>
     <value>将父链接重新连接到子页面</value>
     <comment>checkbox</comment>
   </data>
+  <data name="ribDuplicateLineButton_Label" xml:space="preserve">
+    <value>重复段落</value>
+    <comment>ribbon item</comment>
+  </data>
+  <data name="ribDuplicateLineAboveButton_Label" xml:space="preserve">
+    <value>重复以上段落</value>
+    <comment>pallette</comment>
+  </data>
 </root>

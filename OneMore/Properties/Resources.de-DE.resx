@@ -4227,4 +4227,12 @@ Schriftart der letzten Spalte</value>
     <value>Übergeordnete Links zu Unterseiten umverdrahten</value>
     <comment>checkbox</comment>
   </data>
+  <data name="ribDuplicateLineButton_Label" xml:space="preserve">
+    <value>Doppelter Absatz</value>
+    <comment>ribbon item</comment>
+  </data>
+  <data name="ribDuplicateLineAboveButton_Label" xml:space="preserve">
+    <value>Doppelter Absatz oben</value>
+    <comment>pallette</comment>
+  </data>
 </root>

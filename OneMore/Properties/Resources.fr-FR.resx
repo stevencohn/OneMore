@@ -4229,4 +4229,12 @@ Police de la dernière colonne</value>
     <value>Recâbler les liens parents vers les sous-pages</value>
     <comment>checkbox</comment>
   </data>
+  <data name="ribDuplicateLineButton_Label" xml:space="preserve">
+    <value>Paragraphe en double</value>
+    <comment>ribbon item</comment>
+  </data>
+  <data name="ribDuplicateLineAboveButton_Label" xml:space="preserve">
+    <value>Paragraphe en double ci-dessus</value>
+    <comment>pallette</comment>
+  </data>
 </root>

@@ -226,6 +226,16 @@ namespace River.OneMoreAddIn
 			=> await factory.Run<ProofingCommand>(ProofingCommand.NoLang);
 
 
+		[Command("ribDuplicateLineButton_Label", Keys.Alt | Keys.Shift | Keys.C, "Editing")]
+		public async Task DuplicateLineCmd(IRibbonControl control)
+			=> await factory.Run<DuplicateLineCommand>(false);
+
+
+		[Command("ribDuplicateLineAboveButton_Label", Keys.None, "Editing")]
+		public async Task DuplicateLineAboveCmd(IRibbonControl control)
+			=> await factory.Run<DuplicateLineCommand>(true);
+
+
 		public async Task EditStylesCmd(IRibbonControl control)
 			=> await factory.Run<EditStylesCommand>();
 

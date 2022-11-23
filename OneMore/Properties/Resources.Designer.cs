@@ -5967,6 +5967,24 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Duplicate Paragraph Above.
+        /// </summary>
+        internal static string ribDuplicateLineAboveButton_Label {
+            get {
+                return ResourceManager.GetString("ribDuplicateLineAboveButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Duplicate Paragraph.
+        /// </summary>
+        internal static string ribDuplicateLineButton_Label {
+            get {
+                return ResourceManager.GetString("ribDuplicateLineButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Edit.
         /// </summary>
         internal static string ribEditMenu_Label {

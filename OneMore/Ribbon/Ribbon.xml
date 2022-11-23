@@ -275,34 +275,11 @@
 
             <menu id="ribEditMenu" getLabel="GetRibbonLabel" imageMso="EditComposePage" showImage="true">
               <button
-                id="ribHighlightButton"
-                imageMso="AppointmentColorDialog"
-                getLabel="GetRibbonLabel"
-                onAction="HighlightCmd"/>
-              <button
                 id="ribCopyAsMarkdownButton"
                 imageMso="WatermarkGallery"
                 getLabel="GetRibbonLabel"
                 getScreentip="GetRibbonScreentip"
                 onAction="CopyAsMarkdownCmd"/>
-              <button
-                id="ribPasteRtfButton"
-                imageMso="PasteSpecialDialog"
-                getLabel="GetRibbonLabel"
-                getScreentip="GetRibbonScreentip"
-                onAction="PasteRtfCmd"/>
-              <button
-                id="ribPasteTextButton"
-                imageMso="PasteAlternative"
-                getLabel="GetRibbonLabel"
-                getScreentip="GetRibbonScreentip"
-                onAction="PasteTextCmd"/>
-              <button
-                id="ribEnableSpellCheckButton"
-                imageMso="Spelling"
-                getLabel="GetRibbonLabel"
-                getScreentip="GetRibbonScreentip"
-                onAction="EnableSpellCheckCmd"/>
               <button
                 id="ribDisableSpellCheckButton"
                 image="NoSpellCheck"
@@ -310,23 +287,17 @@
                 getScreentip="GetRibbonScreentip"
                 onAction="DisableSpellCheckCmd"/>
               <button
-                id="ribUppercaseButton"
-                imageMso="A"
+                id="ribEnableSpellCheckButton"
+                imageMso="Spelling"
                 getLabel="GetRibbonLabel"
                 getScreentip="GetRibbonScreentip"
-                onAction="UppercaseCmd"/>
+                onAction="EnableSpellCheckCmd"/>
               <button
-                id="ribLowercaseButton"
-                imageMso="ChangeCase"
+                id="ribDecreaseFontSizeButton"
+                imageMso="FontSizeDecreaseWord"
                 getLabel="GetRibbonLabel"
                 getScreentip="GetRibbonScreentip"
-                onAction="LowercaseCmd"/>
-              <button
-                id="ribTitlecaseButton"
-                imageMso="ChangeCase"
-                getLabel="GetRibbonLabel"
-                getScreentip="GetRibbonScreentip"
-                onAction="TitlecaseCmd"/>
+                onAction="DecreaseFontSizeCmd"/>
               <button
                 id="ribIncreaseFontSizeButton"
                 imageMso="FontSizeIncreaseWord"
@@ -334,11 +305,10 @@
                 getScreentip="GetRibbonScreentip"
                 onAction="IncreaseFontSizeCmd"/>
               <button
-                id="ribDecreaseFontSizeButton"
-                imageMso="FontSizeDecreaseWord"
+                id="ribDuplicateLineButton"
+                imageMso="PasteDuplicate"
                 getLabel="GetRibbonLabel"
-                getScreentip="GetRibbonScreentip"
-                onAction="DecreaseFontSizeCmd"/>
+                onAction="DuplicateLineCmd"/>
               <button
                 id="ribInvertSelectionButton"
                 imageMso="BlackAndWhiteInverseGrayscale"
@@ -349,6 +319,23 @@
                 imageMso="GroupMerge"
                 getLabel="GetRibbonLabel"
                 onAction="JoinParagraphCmd"/>
+              <button
+                id="ribPasteTextButton"
+                imageMso="PasteAlternative"
+                getLabel="GetRibbonLabel"
+                getScreentip="GetRibbonScreentip"
+                onAction="PasteTextCmd"/>
+              <button
+                id="ribPasteRtfButton"
+                imageMso="PasteSpecialDialog"
+                getLabel="GetRibbonLabel"
+                getScreentip="GetRibbonScreentip"
+                onAction="PasteRtfCmd"/>
+              <button
+                id="ribHighlightButton"
+                imageMso="AppointmentColorDialog"
+                getLabel="GetRibbonLabel"
+                onAction="HighlightCmd"/>
               <button
                 id="ribSelectImagesButton"
                 imageMso="AdpDiagramArrangeSelection"
@@ -364,6 +351,24 @@
                 imageMso="Bullets"
                 getLabel="GetRibbonLabel"
                 onAction="SortListCmd"/>
+              <button
+                id="ribLowercaseButton"
+                imageMso="ChangeCase"
+                getLabel="GetRibbonLabel"
+                getScreentip="GetRibbonScreentip"
+                onAction="LowercaseCmd"/>
+              <button
+                id="ribUppercaseButton"
+                imageMso="A"
+                getLabel="GetRibbonLabel"
+                getScreentip="GetRibbonScreentip"
+                onAction="UppercaseCmd"/>
+              <button
+                id="ribTitlecaseButton"
+                imageMso="ChangeCase"
+                getLabel="GetRibbonLabel"
+                getScreentip="GetRibbonScreentip"
+                onAction="TitlecaseCmd"/>
             </menu>
             <menu id="ribFileMenu" getLabel="GetRibbonLabel" imageMso="FileOpen" showImage="true">
               <button

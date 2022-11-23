@@ -137,6 +137,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AddInCommands.cs" />
+    <Compile Include="Commands\Edit\DuplicateLineCommand.cs" />
     <Compile Include="Commands\Images\OpenImageWithCommand.cs" />
     <Compile Include="Commands\Tables\ApplyTableThemeCommand.cs" />
     <Compile Include="Commands\Tables\EditTableThemesCommand.cs" />

@@ -4329,4 +4329,12 @@ Last Column Font</value>
     <value>Rewire parent links to sub-pages</value>
     <comment>checkbox</comment>
   </data>
+  <data name="ribDuplicateLineButton_Label" xml:space="preserve">
+    <value>Duplicate Paragraph</value>
+    <comment>ribbon item</comment>
+  </data>
+  <data name="ribDuplicateLineAboveButton_Label" xml:space="preserve">
+    <value>Duplicate Paragraph Above</value>
+    <comment>pallette</comment>
+  </data>
 </root>

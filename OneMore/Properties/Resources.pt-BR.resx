@@ -4235,4 +4235,12 @@ Fonte da última coluna</value>
     <value>Religar links pai para subpáginas</value>
     <comment>checkbox</comment>
   </data>
+  <data name="ribDuplicateLineButton_Label" xml:space="preserve">
+    <value>Parágrafo Duplicado</value>
+    <comment>ribbon item</comment>
+  </data>
+  <data name="ribDuplicateLineAboveButton_Label" xml:space="preserve">
+    <value>Duplicar parágrafo acima</value>
+    <comment>pallette</comment>
+  </data>
 </root>
