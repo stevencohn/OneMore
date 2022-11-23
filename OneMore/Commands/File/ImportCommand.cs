@@ -4,8 +4,6 @@
 
 namespace River.OneMoreAddIn.Commands
 {
-	using Markdig;
-	using Markdig.Renderers;
 	using River.OneMoreAddIn.Helpers.Office;
 	using River.OneMoreAddIn.Models;
 	using River.OneMoreAddIn.UI;
@@ -405,20 +403,7 @@ namespace River.OneMoreAddIn.Commands
 
 				// render HTML...
 
-				using var writer = new StringWriter();
-				var renderer = new HtmlRenderer(writer)
-				{
-					BaseUrl = new Uri(Path.GetDirectoryName(filepath) + "/")
-				};
-
-				var pipeline = new MarkdownPipelineBuilder().UseAdvancedExtensions().Build();
-				pipeline.Setup(renderer);
-
-				var doc = Markdown.Parse(text, pipeline);
-
-				renderer.Render(doc);
-				writer.Flush();
-				var body = writer.ToString();
+				var body = OneMoreDig.ConvertMarkdownToHtml(filepath, text);
 
 				// copy/paste HTML...
 
