@@ -557,7 +557,13 @@ namespace River.OneMoreAddIn.Commands
 				var src = image.GetAttributeValue("src", string.Empty);
 				if (!string.IsNullOrEmpty(src))
 				{
-					src = new Uri(oneUri, src).AbsoluteUri;
+					var uri = new Uri(oneUri, src);
+					if (!uri.Host.StartsWith("onemore."))
+					{
+						uri = new UriBuilder(uri) { Host = $"onemore.{uri.Host}" }.Uri;
+					}
+					src = uri.AbsoluteUri;
+
 					var anchor = Hap.HtmlNode.CreateNode($"<a href=\"{src}\">{src}</a>");
 					image.ParentNode.ReplaceChild(anchor, image);
 				}
@@ -700,7 +706,9 @@ namespace River.OneMoreAddIn.Commands
 				var updated = false;
 				var regex = new Regex(@"<a\s+href=""[^:]+://onemore-link([\d]+)\.");
 
-				var list = page.Root.DescendantNodes().OfType<XCData>()
+				var list = page.Root
+					.Elements(page.Namespace + "Outline")
+					.DescendantNodes().OfType<XCData>()
 					.Select(e => new
 					{
 						Data = e,
@@ -712,7 +720,9 @@ namespace River.OneMoreAddIn.Commands
 				foreach (var item in list)
 				{
 					var key = item.Match.Groups[1].Value;
-					var anchor = page.Root.DescendantNodes().OfType<XCData>()
+					var anchor = page.Root
+						.Elements(page.Namespace + "Outline")
+						.DescendantNodes().OfType<XCData>()
 						.Where(c => Regex.IsMatch(c.Value, $@"<a\s+href=""[^:]+://onemore-anchor({key})\."))
 						.Select(e => e.Parent)
 						.FirstOrDefault();

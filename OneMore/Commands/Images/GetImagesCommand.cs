@@ -98,7 +98,9 @@ namespace River.OneMoreAddIn.Commands
 			else
 			{
 				// determine if selected region or full page
-				selections = page.Root.Descendants(page.Namespace + "T")
+				selections = page.Root
+					.Elements(page.Namespace + "Outline")
+					.Descendants(page.Namespace + "T")
 					.Where(e =>
 						e.Attributes("selected").Any(a => a.Value.Equals("all")));
 			}
@@ -108,7 +110,9 @@ namespace River.OneMoreAddIn.Commands
 				(selections.First().DescendantNodes().OfType<XCData>().First().Value.Length == 0))
 			{
 				// single empty selection so affect entire page
-				runs = page.Root.DescendantNodes().OfType<XCData>()
+				runs = page.Root
+					.Elements(page.Namespace + "Outline")
+					.DescendantNodes().OfType<XCData>()
 					.Where(c => regex.IsMatch(c.Value))
 					.Select(e => e.Parent)
 					.ToList();
@@ -116,7 +120,9 @@ namespace River.OneMoreAddIn.Commands
 			else
 			{
 				// selected range so affect only within that
-				runs = page.Root.DescendantNodes().OfType<XCData>()
+				runs = page.Root
+					.Elements(page.Namespace + "Outline")
+					.DescendantNodes().OfType<XCData>()
 					.Where(c => regex.IsMatch(c.Value))
 					.Select(e => e.Parent)
 					.Where(e => e.Attributes("selected").Any(a => a.Value == "all"))
