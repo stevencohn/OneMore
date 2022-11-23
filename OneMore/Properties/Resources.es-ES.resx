@@ -3649,7 +3649,7 @@ Seleccione No para mantener una línea vacía entre los párrafos</value>
     <comment>link label</comment>
   </data>
   <data name="CrawlWebPageDialog_useTextBox.Text" xml:space="preserve">
-    <value>Use títulos de texto</value>
+    <value>Aplicar columnas de texto a los títulos de las subpáginas</value>
     <comment>checkbox</comment>
   </data>
   <data name="word_No" xml:space="preserve">
@@ -4230,5 +4230,9 @@ Fuente de la última columna</value>
   <data name="ribApplyStyle0Button_Label" xml:space="preserve">
     <value>Aplicar estilo 1</value>
     <comment>not a menu, hotkey only</comment>
+  </data>
+  <data name="CrawlWebPageDialog_rewireBox.Text" xml:space="preserve">
+    <value>Vuelva a cablear los enlaces principales a las subpáginas</value>
+    <comment>checkbox</comment>
   </data>
 </root>

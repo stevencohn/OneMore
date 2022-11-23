@@ -3643,7 +3643,7 @@ Sélectionnez Non pour conserver une ligne vide entre les paragraphes</value>
     <comment>link label</comment>
   </data>
   <data name="CrawlWebPageDialog_useTextBox.Text" xml:space="preserve">
-    <value>Utiliser des titres de texte</value>
+    <value>Appliquer des colonnes de texte aux titres de sous-page</value>
     <comment>checkbox</comment>
   </data>
   <data name="word_No" xml:space="preserve">
@@ -4224,5 +4224,9 @@ Police de la dernière colonne</value>
   <data name="ribApplyStyle0Button_Label" xml:space="preserve">
     <value>Appliquer le style 1</value>
     <comment>not a menu, hotkey only</comment>
+  </data>
+  <data name="CrawlWebPageDialog_rewireBox.Text" xml:space="preserve">
+    <value>Recâbler les liens parents vers les sous-pages</value>
+    <comment>checkbox</comment>
   </data>
 </root>

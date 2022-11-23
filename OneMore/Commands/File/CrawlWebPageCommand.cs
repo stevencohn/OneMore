@@ -24,6 +24,7 @@ namespace River.OneMoreAddIn.Commands
 		private ImportWebCommand importer;
 		private List<CrawlHyperlink> selections;
 		private bool useTextTitles;
+		private bool rewireParentLinks;
 
 
 		public CrawlWebPageCommand()
@@ -51,6 +52,7 @@ namespace River.OneMoreAddIn.Commands
 
 					selections = dialog.GetSelectedHyperlinks();
 					useTextTitles = dialog.UseTextTitles;
+					rewireParentLinks = dialog.RewireParentLinks;
 				}
 
 				// reverse so we create subpages in correct order
@@ -141,7 +143,7 @@ namespace River.OneMoreAddIn.Commands
 					useTextTitles ? selection.Text : null,
 					token);
 
-				if (page != null)
+				if (rewireParentLinks && page != null)
 				{
 					var pageUri = one.GetHyperlink(page.PageId, string.Empty);
 

@@ -3933,7 +3933,7 @@ Select No to keep one empty line between paragraphs</value>
     <comment>link label</comment>
   </data>
   <data name="CrawlWebPageDialog_useTextBox.Text" xml:space="preserve">
-    <value>Use Text Titles</value>
+    <value>Apply Text columns to sub-page titles</value>
     <comment>checkbox</comment>
   </data>
   <data name="word_No" xml:space="preserve">
@@ -4323,6 +4323,10 @@ Last Column Font</value>
   </data>
   <data name="SortListDialog_duplicatesBox.Text" xml:space="preserve">
     <value>Remove duplicates</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="CrawlWebPageDialog_rewireBox.Text" xml:space="preserve">
+    <value>Rewire parent links to sub-pages</value>
     <comment>checkbox</comment>
   </data>
 </root>

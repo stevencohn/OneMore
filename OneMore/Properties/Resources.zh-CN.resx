@@ -3639,7 +3639,7 @@ OneNote 文件 (*.one)</value>
     <comment>link label</comment>
   </data>
   <data name="CrawlWebPageDialog_useTextBox.Text" xml:space="preserve">
-    <value>使用文本标题</value>
+    <value>将文本列应用于子页面标题</value>
     <comment>checkbox</comment>
   </data>
   <data name="word_No" xml:space="preserve">
@@ -4220,5 +4220,9 @@ OneNote 文件 (*.one)</value>
   <data name="ribApplyStyle0Button_Label" xml:space="preserve">
     <value>应用样式 1</value>
     <comment>not a menu, hotkey only</comment>
+  </data>
+  <data name="CrawlWebPageDialog_rewireBox.Text" xml:space="preserve">
+    <value>将父链接重新连接到子页面</value>
+    <comment>checkbox</comment>
   </data>
 </root>

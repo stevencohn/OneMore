@@ -3649,7 +3649,7 @@ ISO-code then comma then language name</comment>
     <comment>link label</comment>
   </data>
   <data name="CrawlWebPageDialog_useTextBox.Text" xml:space="preserve">
-    <value>استخدم عناوين النص</value>
+    <value>تطبيق أعمدة النص على عناوين الصفحات الفرعية</value>
     <comment>checkbox</comment>
   </data>
   <data name="word_No" xml:space="preserve">
@@ -4230,5 +4230,9 @@ ISO-code then comma then language name</comment>
   <data name="ribApplyStyle0Button_Label" xml:space="preserve">
     <value>تطبيق النمط 1</value>
     <comment>not a menu, hotkey only</comment>
+  </data>
+  <data name="CrawlWebPageDialog_rewireBox.Text" xml:space="preserve">
+    <value>إعادة أسلاك روابط الأصل إلى الصفحات الفرعية</value>
+    <comment>checkbox</comment>
   </data>
 </root>

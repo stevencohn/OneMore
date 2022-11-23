@@ -3641,7 +3641,7 @@ Wählen Sie Nein, um eine leere Zeile zwischen den Absätzen zu halten</value>
     <comment>link label</comment>
   </data>
   <data name="CrawlWebPageDialog_useTextBox.Text" xml:space="preserve">
-    <value>Verwenden Sie Texttitel</value>
+    <value>Wenden Sie Textspalten auf Unterseitentitel an</value>
     <comment>checkbox</comment>
   </data>
   <data name="word_No" xml:space="preserve">
@@ -4222,5 +4222,9 @@ Schriftart der letzten Spalte</value>
   <data name="ribApplyStyle0Button_Label" xml:space="preserve">
     <value>Stil 1 anwenden</value>
     <comment>not a menu, hotkey only</comment>
+  </data>
+  <data name="CrawlWebPageDialog_rewireBox.Text" xml:space="preserve">
+    <value>Übergeordnete Links zu Unterseiten umverdrahten</value>
+    <comment>checkbox</comment>
   </data>
 </root>
