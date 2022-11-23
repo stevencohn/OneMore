@@ -4288,4 +4288,12 @@ Czcionka ostatniej kolumny</value>
     <value>Przeprowadź linki nadrzędne do podstron</value>
     <comment>checkbox</comment>
   </data>
+  <data name="ribDuplicateLineButton_Label" xml:space="preserve">
+    <value>Duplikat akapitu</value>
+    <comment>ribbon item</comment>
+  </data>
+  <data name="ribDuplicateLineAboveButton_Label" xml:space="preserve">
+    <value>Zduplikowany akapit powyżej</value>
+    <comment>pallette</comment>
+  </data>
 </root>

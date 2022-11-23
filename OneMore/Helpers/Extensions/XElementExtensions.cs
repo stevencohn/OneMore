@@ -517,6 +517,41 @@ namespace River.OneMoreAddIn
 		}
 
 
+		public static XElement RemoveID(this XElement element)
+		{
+			element.Attribute("objectID")?.Remove();
+			return element;
+		}
+
+
+		public static XElement RemovePII(this XElement element)
+		{
+			element.Attribute("author")?.Remove();
+			element.Attribute("authorInitials")?.Remove();
+			element.Attribute("authorResolutionID")?.Remove();
+			element.Attribute("creationTime")?.Remove();
+			element.Attribute("lastModifiedBy")?.Remove();
+			element.Attribute("lastModifiedByInitials")?.Remove();
+			element.Attribute("lastModifiedByResolutionID")?.Remove();
+			element.Attribute("lastModifiedTime")?.Remove();
+			return element;
+		}
+
+
+		public static XElement RemoveSelections(this XElement element)
+		{
+			element
+				.DescendantsAndSelf()
+				.Where(e => e.Attribute("selected") != null)
+				.ForEach(e =>
+				{
+					e.Attributes("selected").Remove();
+				});
+
+			return element;
+		}
+
+
 		/// <summary>
 		/// OneMore Extension >> Set or add the specified attribute with the given value.
 		/// </summary>

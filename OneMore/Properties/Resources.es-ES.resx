@@ -4235,4 +4235,12 @@ Fuente de la última columna</value>
     <value>Vuelva a cablear los enlaces principales a las subpáginas</value>
     <comment>checkbox</comment>
   </data>
+  <data name="ribDuplicateLineButton_Label" xml:space="preserve">
+    <value>Párrafo duplicado</value>
+    <comment>ribbon item</comment>
+  </data>
+  <data name="ribDuplicateLineAboveButton_Label" xml:space="preserve">
+    <value>Párrafo duplicado arriba</value>
+    <comment>pallette</comment>
+  </data>
 </root>

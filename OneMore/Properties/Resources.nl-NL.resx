@@ -4235,4 +4235,12 @@ Lettertype laatste kolom</value>
     <value>Bedraad bovenliggende links naar subpagina's</value>
     <comment>checkbox</comment>
   </data>
+  <data name="ribDuplicateLineButton_Label" xml:space="preserve">
+    <value>Dupliceer alinea</value>
+    <comment>ribbon item</comment>
+  </data>
+  <data name="ribDuplicateLineAboveButton_Label" xml:space="preserve">
+    <value>Dupliceer alinea hierboven</value>
+    <comment>pallette</comment>
+  </data>
 </root>

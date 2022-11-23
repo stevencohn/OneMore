@@ -4235,4 +4235,12 @@ ISO-code then comma then language name</comment>
     <value>إعادة أسلاك روابط الأصل إلى الصفحات الفرعية</value>
     <comment>checkbox</comment>
   </data>
+  <data name="ribDuplicateLineButton_Label" xml:space="preserve">
+    <value>فقرة مكررة</value>
+    <comment>ribbon item</comment>
+  </data>
+  <data name="ribDuplicateLineAboveButton_Label" xml:space="preserve">
+    <value>فقرة مكررة أعلاه</value>
+    <comment>pallette</comment>
+  </data>
 </root>
