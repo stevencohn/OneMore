@@ -38,7 +38,7 @@ namespace River.OneMoreAddIn.Commands
 				.RemoveSelections();
 
 			// this logic appears to be backwards but we want to visually "move" the
-			// cursor to the duplicate rathre than keeping on the current paragraph...
+			// cursor to the duplicate rather than keeping on the current paragraph...
 			if (above)
 			{
 				cursor.Parent.AddAfterSelf(copy);
