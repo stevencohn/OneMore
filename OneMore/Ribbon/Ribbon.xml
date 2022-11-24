@@ -9,7 +9,7 @@
         <group id="ribOneMoreGroup" getLabel="GetRibbonLabel">
           <gallery
             id="ribCustomStylesButton" columns="4" showItemLabel="false" size="normal"
-            imageMso="StylesPane"
+            image="CustomStyles"
             getLabel="GetRibbonLabel"
             getItemCount="GetStyleGalleryItemCount"
             getItemID="GetStyleGalleryItemId"
@@ -46,7 +46,7 @@
 
           <gallery
             id="ribTableThemesButton" columns="7" showItemLabel="false" size="normal"
-            imageMso="TableStylesGallery"
+            image="TableStyles"
             getLabel="GetRibbonLabel"
             getItemCount="GetTableGalleryItemCount"
             getItemID="GetTableGalleryItemID"
@@ -70,7 +70,7 @@
             id="ribFavoritesMenu"
             getLabel="GetRibbonLabel"
             size="normal"
-            imageMso="EditLinks"
+            image="Favorites"
             getContent="GetFavoritesContent"
             keytip="SF"/>
 
