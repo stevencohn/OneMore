@@ -21,11 +21,17 @@ namespace River.OneMoreAddIn.Commands
 		};
 
 
-		public OneMoreDigRenderer(HeadingRenderer headingRenderer)
+		public OneMoreDigRenderer()
 		{
 		}
 
 
+		/// <summary>
+		/// Rewrites headings as stylized paragraphs that we can then recognize and
+		/// transform into OneNote headings
+		/// </summary>
+		/// <param name="renderer"></param>
+		/// <param name="obj"></param>
 		protected override void Write(HtmlRenderer renderer, HeadingBlock obj)
 		{
 			var attributes = obj.TryGetAttributes() ?? new HtmlAttributes();

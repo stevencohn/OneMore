@@ -237,11 +237,8 @@ namespace River.OneMoreAddIn.Commands
 		{
 			progress.SetMessage($"Importing {filepath}...");
 
-			string outpath;
-			using (var powerpoint = new PowerPoint())
-			{
-				outpath = powerpoint.ConvertFileToImages(filepath);
-			}
+			using var powerpoint = new PowerPoint();
+			var outpath = powerpoint.ConvertFileToImages(filepath);
 
 			if (outpath == null)
 			{
@@ -429,16 +426,15 @@ namespace River.OneMoreAddIn.Commands
 					await clippy.StashState();
 					await clippy.SetHtml(html);
 
-					using (var one = new OneNote())
-					{
-						one.CreatePage(one.CurrentSectionId, out var pageId);
-						var page = one.GetPage(pageId, OneNote.PageDetail.All);
-						page.Title = Path.GetFileNameWithoutExtension(filepath);
-						await one.Update(page);
-						await one.NavigateTo(pageId);
+					using var one = new OneNote();
+					one.CreatePage(one.CurrentSectionId, out var pageId);
 
-						await clippy.Paste(true);
-					}
+					var page = one.GetPage(pageId, OneNote.PageDetail.All);
+					page.Title = Path.GetFileNameWithoutExtension(filepath);
+					await one.Update(page);
+					await one.NavigateTo(pageId);
+
+					await clippy.Paste(true);
 
 					await clippy.RestoreState();
 				}

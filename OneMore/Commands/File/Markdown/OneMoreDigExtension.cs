@@ -29,13 +29,11 @@ namespace River.OneMoreAddIn.Commands
 
 			if (renderer is TextRendererBase<HtmlRenderer> htmlRenderer)
 			{
-				var headingRenderer = htmlRenderer.ObjectRenderers.FindExact<HeadingRenderer>();
-				if (headingRenderer != null)
+				var defaultHR = htmlRenderer.ObjectRenderers.FindExact<HeadingRenderer>();
+				if (defaultHR != null)
 				{
-					htmlRenderer.ObjectRenderers.Remove(headingRenderer);
-
-					htmlRenderer.ObjectRenderers.AddIfNotAlready(
-						new OneMoreDigRenderer(headingRenderer));
+					htmlRenderer.ObjectRenderers.Remove(defaultHR);
+					htmlRenderer.ObjectRenderers.AddIfNotAlready(new OneMoreDigRenderer());
 				}
 			}
 		}
