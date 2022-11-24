@@ -1,13 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <hints>
-  <hint name="ribTableMenu_Label">
-    <source>
-      Table
-    </source>
-    <preferred>
-      表格
-    </preferred>
-  </hint>
   <hint name="ribImportButton_Label">
     <source>
       Import
@@ -16,15 +8,15 @@
       导入
     </preferred>
   </hint>
-  <hint name="StyleDialog_beforeLabel">
+  <hint name="ribTableMenu_Label">
     <source>
-      Space Before:
+      Table
     </source>
     <preferred>
-      段前空间:
+      表格
     </preferred>
   </hint>
-  <hint name="StyleDialog_afterLabel">
+  <hint name="StyleDialog_afterLabel.Text">
     <source>
       Space After:
     </source>
@@ -32,7 +24,15 @@
       段后空间:
     </preferred>
   </hint>
-  <hint name="StyleDialog_spacingLabel">
+  <hint name="StyleDialog_beforeLabel.Text">
+    <source>
+      Space Before:
+    </source>
+    <preferred>
+      段前空间:
+    </preferred>
+  </hint>
+  <hint name="StyleDialog_spacingLabel.Text">
     <source>
       Spacing:
     </source>
