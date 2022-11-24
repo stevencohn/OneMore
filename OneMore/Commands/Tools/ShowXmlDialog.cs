@@ -269,6 +269,27 @@ namespace River.OneMoreAddIn.Commands
 					|| a.Name.LocalName == "objectID")
 					.Remove();
 			}
+			else
+			{
+				root.Descendants()
+					.Where(e => e.Attributes("objectID").Any())
+					.ForEach(e =>
+					{
+						var attributes = e.Attributes().ToList();
+
+						// move objectID, lastModifiedTime, and creationTime to beginning of list
+						var moved = PromoteAttribute(attributes, "creationTime");
+						moved = PromoteAttribute(attributes, "lastModifiedTime") || moved;
+						moved = PromoteAttribute(attributes, "objectID") || moved;
+
+						if (moved)
+						{
+							e.ReplaceAttributes(attributes);
+						}
+
+						e.ReplaceAttributes(attributes);
+					});
+			}
 
 			if (hideLFBox.Checked)
 			{
@@ -290,6 +311,20 @@ namespace River.OneMoreAddIn.Commands
 			pageBox.Text = root.ToString(SaveOptions.None);
 
 			Highlights();
+		}
+
+
+		private bool PromoteAttribute(List<XAttribute> attributes, string name)
+		{
+			var att = attributes.FirstOrDefault(a => a.Name == name);
+			if (att != null)
+			{
+				attributes.Remove(att);
+				attributes.Insert(0, att);
+				return true;
+			}
+
+			return false;
 		}
 
 
