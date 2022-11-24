@@ -40,9 +40,13 @@ namespace River.OneMoreAddIn.Commands
 				return;
 			}
 
+			logger.StartClock();
+
 			using var one = new OneNote(out page, out ns);
 			if (page != null)
 			{
+				logger.WriteTime($"loaded page; applying style {style.Name}", true);
+
 				stylizer = new Stylizer(style);
 
 				bool success = style.StyleType == StyleType.Character
@@ -51,7 +55,11 @@ namespace River.OneMoreAddIn.Commands
 
 				if (success)
 				{
+					logger.WriteTime("applied style; saving page", true);
+
 					await one.Update(page);
+
+					logger.WriteTime("saved page");
 				}
 			}
 		}
