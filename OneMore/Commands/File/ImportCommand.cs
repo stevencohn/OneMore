@@ -4,8 +4,6 @@
 
 namespace River.OneMoreAddIn.Commands
 {
-	using Markdig;
-	using Markdig.Renderers;
 	using River.OneMoreAddIn.Helpers.Office;
 	using River.OneMoreAddIn.Models;
 	using River.OneMoreAddIn.UI;
@@ -239,11 +237,8 @@ namespace River.OneMoreAddIn.Commands
 		{
 			progress.SetMessage($"Importing {filepath}...");
 
-			string outpath;
-			using (var powerpoint = new PowerPoint())
-			{
-				outpath = powerpoint.ConvertFileToImages(filepath);
-			}
+			using var powerpoint = new PowerPoint();
+			var outpath = powerpoint.ConvertFileToImages(filepath);
 
 			if (outpath == null)
 			{
@@ -405,20 +400,7 @@ namespace River.OneMoreAddIn.Commands
 
 				// render HTML...
 
-				using var writer = new StringWriter();
-				var renderer = new HtmlRenderer(writer)
-				{
-					BaseUrl = new Uri(Path.GetDirectoryName(filepath) + "/")
-				};
-
-				var pipeline = new MarkdownPipelineBuilder().UseAdvancedExtensions().Build();
-				pipeline.Setup(renderer);
-
-				var doc = Markdown.Parse(text, pipeline);
-
-				renderer.Render(doc);
-				writer.Flush();
-				var body = writer.ToString();
+				var body = OneMoreDig.ConvertMarkdownToHtml(filepath, text);
 
 				// copy/paste HTML...
 
@@ -444,16 +426,15 @@ namespace River.OneMoreAddIn.Commands
 					await clippy.StashState();
 					await clippy.SetHtml(html);
 
-					using (var one = new OneNote())
-					{
-						one.CreatePage(one.CurrentSectionId, out var pageId);
-						var page = one.GetPage(pageId, OneNote.PageDetail.All);
-						page.Title = Path.GetFileNameWithoutExtension(filepath);
-						await one.Update(page);
-						await one.NavigateTo(pageId);
+					using var one = new OneNote();
+					one.CreatePage(one.CurrentSectionId, out var pageId);
 
-						await clippy.Paste(true);
-					}
+					var page = one.GetPage(pageId, OneNote.PageDetail.All);
+					page.Title = Path.GetFileNameWithoutExtension(filepath);
+					await one.Update(page);
+					await one.NavigateTo(pageId);
+
+					await clippy.Paste(true);
 
 					await clippy.RestoreState();
 				}
