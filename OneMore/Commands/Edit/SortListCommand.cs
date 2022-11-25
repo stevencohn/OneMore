@@ -88,15 +88,15 @@ namespace River.OneMoreAddIn.Commands
 			else
 			{
 				// root is the list's containing OEChildren
-				var root = cursor.Parent.Parent;
-				OrderList(root, dialog.IncludeChildLists, dialog.RemoveDuplicates);
+				var list = cursor.Parent.Parent;
+				OrderList(list, dialog.IncludeChildLists, dialog.RemoveDuplicates);
 			}
 
 			await one.Update(page);
 		}
 
 
-		private void OrderList(XElement root, bool includeChildLists, bool removeDuplicates)
+		private void OrderList(XElement list, bool includeChildLists, bool removeDuplicates)
 		{
 			// keep empty items with their preceding item, e.g. if an item with content is
 			// followed by two empty items then those two empty items are kept with the first
@@ -106,13 +106,25 @@ namespace River.OneMoreAddIn.Commands
 			// order images and other sibling elements, usually putting them first
 
 			// find all non-empty items
-			var items = root.Elements(ns + "OE")
-				.Select(e => new { Element = e, Text = e.Element(ns + "T")?.GetCData().Value })
+			var items = list.Elements(ns + "OE")
+				.Select(e => new 
+				{ 
+					Element = e,
+					Text = e.Elements(ns + "T")?
+
+						// TODO: using Aggregate here because GetCData alone will return only the
+						// first T which may be the select=all empty run which will end up
+						// deleting the item! (Issue #742)
+						// TODO: investigate whether GetCData is correct
+						// TODO: investigate whether we can optimize TextValue using Aggregate
+
+						.Aggregate(string.Empty, (s, t) => $"{s}{t.GetCData().Value}", s => s)
+				})
 				.Where(item => item.Text == null || item.Text.Length > 0)
 				.Select(item => new ListItem
 				{
 					Item = item.Element,
-					Text = item.Text,
+					Text = item.Text?.Trim(),
 					Spaces = new List<XElement>()
 				})
 				.ToList();
@@ -136,7 +148,8 @@ namespace River.OneMoreAddIn.Commands
 				// drag along empty followers
 				var element = item.Item;
 				while (element.NextNode is XElement next &&
-					next.Element(ns + "T")?.GetCData().Value.Length == 0)
+					next.Elements(ns + "T")?
+						.Aggregate(string.Empty, (s, t) => $"{s}{t.GetCData().Value}", s => s).Length == 0)
 				{
 					item.Spaces.Add(next);
 					element = next;
@@ -144,17 +157,23 @@ namespace River.OneMoreAddIn.Commands
 			}
 
 			// sort and repopulate
-			root.RemoveAll();
+			list.RemoveAll();
 
 			if (removeDuplicates)
 			{
 				items = items.GroupBy(i => i.Text).Select(g => g.First()).ToList();
 			}
 
-			foreach (var item in items.OrderBy(i => i.Text))
+			var ordered = items.OrderBy(i => i.Text);
+
+			foreach (var item in ordered)
 			{
-				root.Add(item.Item);
-				root.Add(item.Spaces);
+				list.Add(item.Item);
+
+				if (item.Spaces.Any())
+				{
+					list.Add(item.Spaces);
+				}
 			}
 
 			if (includeChildLists)
