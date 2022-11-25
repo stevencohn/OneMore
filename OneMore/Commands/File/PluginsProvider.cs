@@ -203,12 +203,6 @@ namespace River.OneMoreAddIn.Commands
 
 		public XElement MakePluginsMenu(XNamespace ns)
 		{
-			var plugins = GetPaths();
-			if (!plugins.Any())
-			{
-				return null;
-			}
-
 			var menu = new XElement(ns + "menu",
 				new XElement(ns + "button",
 					new XAttribute("id", RunPluginButtonId),
@@ -227,16 +221,20 @@ namespace River.OneMoreAddIn.Commands
 					)
 				);
 
-			var b = 0;
-			foreach (var plugin in plugins)
+			var plugins = GetPaths();
+			if (plugins.Any())
 			{
-				menu.Add(new XElement(ns + "button",
-					new XAttribute("id", $"ribMyPlugin{b++}"),
-					new XAttribute("imageMso", "GroupAddInsToolbarCommands"),
-					new XAttribute("label", Path.GetFileNameWithoutExtension(plugin)),
-					new XAttribute("tag", plugin),
-					new XAttribute("onAction", "RunPluginCmd")
-					));
+				var b = 0;
+				foreach (var plugin in plugins)
+				{
+					menu.Add(new XElement(ns + "button",
+						new XAttribute("id", $"ribMyPlugin{b++}"),
+						new XAttribute("imageMso", "GroupAddInsToolbarCommands"),
+						new XAttribute("label", Path.GetFileNameWithoutExtension(plugin)),
+						new XAttribute("tag", plugin),
+						new XAttribute("onAction", "RunPluginCmd")
+						));
+				}
 			}
 
 			return menu;
