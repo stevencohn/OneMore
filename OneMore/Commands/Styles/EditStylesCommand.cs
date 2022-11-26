@@ -6,7 +6,6 @@ namespace River.OneMoreAddIn.Commands
 {
 	using River.OneMoreAddIn.Styles;
 	using River.OneMoreAddIn.UI;
-	using System.Drawing;
 	using System.Threading.Tasks;
 	using System.Windows.Forms;
 
@@ -22,28 +21,23 @@ namespace River.OneMoreAddIn.Commands
 
 		public override async Task Execute(params object[] args)
 		{
-			Color pageColor;
-			using (var one = new OneNote(out var page, out _))
+			using var one = new OneNote(out var page, out _, OneNote.PageDetail.Basic);
+			var pageColor = page.GetPageColor(out _, out var black);
+			if (black)
 			{
-				pageColor = page.GetPageColor(out _, out var black);
-				if (black)
-				{
-					// if Office Black theme, translate to softer Black Shadow
-					pageColor = BasicColors.BlackSmoke;
-				}
+				// if Office Black theme, translate to softer Black Shadow
+				pageColor = BasicColors.BlackSmoke;
 			}
 
 			var theme = new ThemeProvider().Theme;
 
-			using (var dialog = new StyleDialog(theme, pageColor))
+			var dialog = new StyleDialog(theme, pageColor);
+			if (dialog.ShowDialog() == DialogResult.OK)
 			{
-				if (dialog.ShowDialog() == DialogResult.OK)
-				{
-					ThemeProvider.Save(dialog.Theme);
-					ThemeProvider.RecordTheme(dialog.Theme.Key);
+				ThemeProvider.Save(dialog.Theme);
+				ThemeProvider.RecordTheme(dialog.Theme.Key);
 
-					ribbon.Invalidate();
-				}
+				ribbon.Invalidate();
 			}
 
 			ribbon.Invalidate();

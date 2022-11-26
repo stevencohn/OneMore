@@ -30,6 +30,7 @@ namespace River.OneMoreAddIn.Commands
 		private readonly Color pageColor;
 		private bool allowEvents;
 		private Theme theme;
+		private Control activeFocus;
 
 
 		#region Lifecycle
@@ -386,6 +387,12 @@ namespace River.OneMoreAddIn.Commands
 
 		// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
+		private void SetActiveFocus(object sender, EventArgs e)
+		{
+			activeFocus = (Control)sender;
+		}
+
+
 		private void ChangeStyleName(object sender, EventArgs e)
 		{
 			if (allowEvents && nameBox.Visible)
@@ -596,14 +603,31 @@ namespace River.OneMoreAddIn.Commands
 
 		}
 
+
 		private void ChangeSpaceBefore(object sender, EventArgs e)
 		{
 			selection.SpaceBefore = spaceBeforeSpinner.Value.ToString("#0.0", CultureInfo.InvariantCulture);
 		}
 
+
 		private void ChangeSpacing(object sender, EventArgs e)
 		{
 			selection.Spacing = spacingSpinner.Value.ToString("#0.0", CultureInfo.InvariantCulture);
+		}
+
+
+		private void SaveStyle(object sender, EventArgs e)
+		{
+			// handles case where cursor is left in a text box without losing focus before
+			// the Save button is pressed; will force the appropriate model update before saving
+
+			if (activeFocus == nameBox) { ChangeStyleName(nameBox, e); }
+			else if (activeFocus == styleTypeBox) { ChangeStyleType(styleTypeBox, e); }
+			else if (activeFocus == familyBox) { ChangeFontFamily(familyBox, e); }
+			else if (activeFocus == sizeBox) { ChangeFontSize(sizeBox, e); }
+			else if (activeFocus == spaceAfterSpinner) { ChangeSpaceAfter(spaceAfterSpinner, e); }
+			else if (activeFocus == spaceBeforeSpinner) { ChangeSpaceBefore(spaceBeforeSpinner, e); }
+			else if (activeFocus == spacingSpinner) { ChangeSpacing(spacingSpinner, e); }
 		}
 
 
