@@ -4296,4 +4296,8 @@ W tej sekcji</value>
     <value>Wybrane słowa: {0}</value>
     <comment>message box</comment>
   </data>
+  <data name="SettingsDialog_keyboardNode.Text" xml:space="preserve">
+    <value>Skróty klawiszowe</value>
+    <comment>treenode</comment>
+  </data>
 </root>

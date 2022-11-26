@@ -855,6 +855,18 @@ OneNote will close automatically</value>
   <data name="Cyclist" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>emoji\cyclist.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="DarkCustomStyles" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>images\darkcustomstyles.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="DarkFavorites" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>images\darkfavorites.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="DarkSnippets" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>images\darksnippets.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="DarkTableStyles" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>images\darktablestyles.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="DefaultStyles" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>defaultstyles.xml;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
   </data>
@@ -3536,6 +3548,10 @@ Search engines will appear in the page context menu, right-click.</value>
     <value>Highlighter Themes</value>
     <comment>treenode</comment>
   </data>
+  <data name="SettingsDialog_keyboardNode.Text" xml:space="preserve">
+    <value>Keyboard Shortcuts</value>
+    <comment>treenode</comment>
+  </data>
   <data name="SettingsDialog_linesNode.Text" xml:space="preserve">
     <value>Horizontal Lines</value>
     <comment>settings dialog</comment>
@@ -4324,17 +4340,5 @@ In this section</value>
   <data name="WordCountCommand_Selected" xml:space="preserve">
     <value>Total words selected: {0}</value>
     <comment>message box</comment>
-  </data>
-  <data name="DarkCustomStyles" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>images\darkcustomstyles.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="DarkFavorites" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>images\darkfavorites.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="DarkSnippets" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>images\darksnippets.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="DarkTableStyles" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>images\darktablestyles.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

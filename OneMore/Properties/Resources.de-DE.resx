@@ -4235,4 +4235,8 @@ In diesem Abschnitt</value>
     <value>Gesamtzahl der ausgewählten Wörter: {0}</value>
     <comment>message box</comment>
   </data>
+  <data name="SettingsDialog_keyboardNode.Text" xml:space="preserve">
+    <value>Tastatürkürzel</value>
+    <comment>treenode</comment>
+  </data>
 </root>

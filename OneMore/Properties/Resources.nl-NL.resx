@@ -4243,4 +4243,8 @@ In deze sectie</value>
     <value>Totaal aantal geselecteerde woorden: {0}</value>
     <comment>message box</comment>
   </data>
+  <data name="SettingsDialog_keyboardNode.Text" xml:space="preserve">
+    <value>Toetsenbord sneltoetsen</value>
+    <comment>treenode</comment>
+  </data>
 </root>

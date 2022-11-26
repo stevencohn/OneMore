@@ -5587,9 +5587,9 @@ namespace River.OneMoreAddIn.Properties {
         ///        &lt;group id=&quot;ribOneMoreGroup&quot; getLabel=&quot;GetRibbonLabel&quot;&gt;
         ///          &lt;gallery
         ///            id=&quot;ribCustomStylesButton&quot; columns=&quot;4&quot; showItemLabel=&quot;false&quot; size=&quot;normal&quot;
-        ///            imageMso=&quot;StylesPane&quot;
+        ///            image=&quot;CustomStyles&quot;
         ///            getLabel=&quot;GetRibbonLabel&quot;
-        ///            getItemCount=&quot;GetStyleGalleryIt [rest of string was truncated]&quot;;.
+        ///            getItemCount=&quot;GetStyleGalleryIte [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string Ribbon {
             get {
@@ -7932,6 +7932,15 @@ namespace River.OneMoreAddIn.Properties {
         internal static string SettingsDialog_highlightNode_Text {
             get {
                 return ResourceManager.GetString("SettingsDialog_highlightNode.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Keyboard Shortcuts.
+        /// </summary>
+        internal static string SettingsDialog_keyboardNode_Text {
+            get {
+                return ResourceManager.GetString("SettingsDialog_keyboardNode.Text", resourceCulture);
             }
         }
         

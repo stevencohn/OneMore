@@ -4243,4 +4243,8 @@ Nesta secção</value>
     <value>Total de palavras selecionadas: {0}</value>
     <comment>message box</comment>
   </data>
+  <data name="SettingsDialog_keyboardNode.Text" xml:space="preserve">
+    <value>Atalhos do teclado</value>
+    <comment>treenode</comment>
+  </data>
 </root>

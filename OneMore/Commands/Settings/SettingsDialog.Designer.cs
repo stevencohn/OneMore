@@ -33,7 +33,7 @@
 			System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("Context Menu");
 			System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("Favorites");
 			System.Windows.Forms.TreeNode treeNode5 = new System.Windows.Forms.TreeNode("Highlighter Themes");
-			System.Windows.Forms.TreeNode treeNode6 = new System.Windows.Forms.TreeNode("Keyboard");
+			System.Windows.Forms.TreeNode treeNode6 = new System.Windows.Forms.TreeNode("Keyboard Shortcuts");
 			System.Windows.Forms.TreeNode treeNode7 = new System.Windows.Forms.TreeNode("Horizontal Lines");
 			System.Windows.Forms.TreeNode treeNode8 = new System.Windows.Forms.TreeNode("Plugins");
 			System.Windows.Forms.TreeNode treeNode9 = new System.Windows.Forms.TreeNode("Ribbon Bar");
@@ -140,7 +140,7 @@
 			treeNode5.Name = "highlightNode";
 			treeNode5.Text = "Highlighter Themes";
 			treeNode6.Name = "keyboardNode";
-			treeNode6.Text = "Keyboard";
+			treeNode6.Text = "Keyboard Shortcuts";
 			treeNode7.Name = "linesNode";
 			treeNode7.Text = "Horizontal Lines";
 			treeNode8.Name = "pluginsNode";

@@ -4243,4 +4243,8 @@ ISO-code then comma then language name</comment>
     <value>إجمالي الكلمات المحددة: {0}</value>
     <comment>message box</comment>
   </data>
+  <data name="SettingsDialog_keyboardNode.Text" xml:space="preserve">
+    <value>اختصارات لوحة المفاتيح</value>
+    <comment>treenode</comment>
+  </data>
 </root>
