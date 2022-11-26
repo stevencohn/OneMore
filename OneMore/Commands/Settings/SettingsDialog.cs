@@ -55,7 +55,7 @@ namespace River.OneMoreAddIn.Settings
 				navTree.Nodes["contextNode"].Text = Resx.SettingsDialog_contextNode_Text;
 				navTree.Nodes["favoritesNode"].Text = Resx.word_Favorites;
 				navTree.Nodes["highlightNode"].Text = Resx.SettingsDialog_highlightNode_Text;
-				navTree.Nodes["keyboardNode"].Text = Resx.word_Keyboard;
+				navTree.Nodes["keyboardNode"].Text = Resx.SettingsDialog_keyboardNode_Text;
 				navTree.Nodes["linesNode"].Text = Resx.SettingsDialog_linesNode_Text;
 				navTree.Nodes["pluginsNode"].Text = Resx.SettingsDialog_pluginsNode_Text;
 				navTree.Nodes["ribbonNode"].Text = Resx.SettingsDialog_ribbonNode_Text;
