@@ -373,7 +373,7 @@ namespace River.OneMoreAddIn.Models
 		/// <returns></returns>
 		public bool EditSelected(Func<XNode, XNode> edit)
 		{
-			var cursor = GetTextCursor();
+			var cursor = GetTextCursor(true);
 			if (cursor != null)
 			{
 				return EditNode(cursor, edit);
@@ -857,9 +857,11 @@ namespace River.OneMoreAddIn.Models
 		/// <returns>
 		/// The one:T XElement or null if there is a selected range greater than zero
 		/// </returns>
-		public XElement GetTextCursor()
+		public XElement GetTextCursor(bool allowPageTitle = false)
 		{
-			var selected = Root.Elements(Namespace + "Outline")
+			var root = allowPageTitle ? Root.Elements() : Root.Elements(Namespace + "Outline");
+
+			var selected = root.Elements(Namespace + "Outline")
 				.Descendants(Namespace + "T")
 				.Where(e => e.Attributes().Any(a => a.Name == "selected" && a.Value == "all"));
 
