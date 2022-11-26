@@ -104,6 +104,7 @@
 			this.sizeBox.Size = new System.Drawing.Size(104, 33);
 			this.sizeBox.TabIndex = 4;
 			this.sizeBox.SelectedIndexChanged += new System.EventHandler(this.ChangeFontSize);
+			this.sizeBox.Enter += new System.EventHandler(this.SetActiveFocus);
 			// 
 			// beforeLabel
 			// 
@@ -142,6 +143,7 @@
 			this.nameBox.Size = new System.Drawing.Size(475, 31);
 			this.nameBox.TabIndex = 1;
 			this.nameBox.TextChanged += new System.EventHandler(this.ChangeStyleName);
+			this.nameBox.Enter += new System.EventHandler(this.SetActiveFocus);
 			// 
 			// fontLabel
 			// 
@@ -160,6 +162,7 @@
 			this.spaceBeforeSpinner.Size = new System.Drawing.Size(108, 31);
 			this.spaceBeforeSpinner.TabIndex = 7;
 			this.spaceBeforeSpinner.ValueChanged += new System.EventHandler(this.ChangeSpaceBefore);
+			this.spaceBeforeSpinner.Enter += new System.EventHandler(this.SetActiveFocus);
 			// 
 			// spaceAfterSpinner
 			// 
@@ -169,6 +172,7 @@
 			this.spaceAfterSpinner.Size = new System.Drawing.Size(108, 31);
 			this.spaceAfterSpinner.TabIndex = 8;
 			this.spaceAfterSpinner.ValueChanged += new System.EventHandler(this.ChangeSpaceAfter);
+			this.spaceAfterSpinner.Enter += new System.EventHandler(this.SetActiveFocus);
 			// 
 			// previewBox
 			// 
@@ -204,6 +208,7 @@
 			this.okButton.TabIndex = 9;
 			this.okButton.Text = "OK (Save)";
 			this.okButton.UseVisualStyleBackColor = true;
+			this.okButton.Click += new System.EventHandler(this.SaveStyle);
 			// 
 			// namesBox
 			// 
@@ -265,6 +270,7 @@
 			this.spacingSpinner.Size = new System.Drawing.Size(108, 31);
 			this.spacingSpinner.TabIndex = 28;
 			this.spacingSpinner.ValueChanged += new System.EventHandler(this.ChangeSpacing);
+			this.spacingSpinner.Enter += new System.EventHandler(this.SetActiveFocus);
 			// 
 			// styleTypeLabel
 			// 
@@ -319,6 +325,7 @@
 			this.familyBox.Size = new System.Drawing.Size(355, 32);
 			this.familyBox.TabIndex = 3;
 			this.familyBox.SelectedIndexChanged += new System.EventHandler(this.ChangeFontFamily);
+			this.familyBox.Enter += new System.EventHandler(this.SetActiveFocus);
 			// 
 			// toolStrip
 			// 
