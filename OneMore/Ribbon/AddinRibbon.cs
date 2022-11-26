@@ -222,7 +222,7 @@ namespace River.OneMoreAddIn
 						"barPasteRtfButton", "PasteSpecialDialog", "PasteRtfCmd", showLabels));
 
 					group.Add(MakeRibbonButton(
-						"barReplaceButton", "ReplaceDialog", "SearchAndReplaceCmd", showLabels));
+						"barSearchAndReplaceButton", "ReplaceDialog", "SearchAndReplaceCmd", showLabels));
 				}
 
 				if (formulaCommands)
@@ -638,7 +638,13 @@ namespace River.OneMoreAddIn
 				id = $"rib{id.Substring(3)}";
 			}
 
-			return ReadString(id + "_Screentip");
+			var tip = ReadString(id + "_Screentip");
+			if (string.IsNullOrEmpty(tip))
+			{
+				tip = GetRibbonLabel(control);
+			}
+
+			return tip;
 		}
 
 
