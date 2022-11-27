@@ -443,9 +443,6 @@ namespace River.OneMoreAddIn.Commands
 					await clippy.Paste(true);
 					await clippy.RestoreState();
 
-
-					System.Diagnostics.Debugger.Launch();
-
 					using (var one = new OneNote())
 					{
 						page = one.GetPage(pageId, OneNote.PageDetail.Basic);
