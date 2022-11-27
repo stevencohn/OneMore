@@ -267,6 +267,11 @@ namespace River.OneMoreAddIn
 			=> await factory.Run<DuplicateLineCommand>(true);
 
 
+		[Command("ribDuplicatePageButton_Label", Keys.None, "Page")]
+		public async Task DuplicatePageCmd(IRibbonControl control)
+			=> await factory.Run<DuplicatePageCommand>(true);
+
+
 		[Command("ribEditStylesButton_Label", Keys.None, "Styles")]
 		public async Task EditStylesCmd(IRibbonControl control)
 			=> await factory.Run<EditStylesCommand>();

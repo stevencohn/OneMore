@@ -2687,6 +2687,10 @@ Polaroid</value>
     <value>Duplicate Paragraph</value>
     <comment>ribbon item</comment>
   </data>
+  <data name="ribDuplicatePageButton_Label" xml:space="preserve">
+    <value>Duplicate Page</value>
+    <comment>page context menu</comment>
+  </data>
   <data name="ribEditMenu_Label" xml:space="preserve">
     <value>Edit</value>
     <comment>OneMore Ribbon menu item</comment>

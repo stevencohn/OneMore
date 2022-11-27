@@ -4239,4 +4239,8 @@ In diesem Abschnitt</value>
     <value>Tastatürkürzel</value>
     <comment>treenode</comment>
   </data>
+  <data name="ribDuplicatePageButton_Label" xml:space="preserve">
+    <value>Seite duplizieren</value>
+    <comment>page context menu</comment>
+  </data>
 </root>

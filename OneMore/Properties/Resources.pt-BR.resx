@@ -4247,4 +4247,8 @@ Nesta secção</value>
     <value>Atalhos do teclado</value>
     <comment>treenode</comment>
   </data>
+  <data name="ribDuplicatePageButton_Label" xml:space="preserve">
+    <value>Página Duplicada</value>
+    <comment>page context menu</comment>
+  </data>
 </root>

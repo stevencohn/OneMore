@@ -4237,4 +4237,8 @@ ISO-code then comma then language name</comment>
     <value>键盘快捷键</value>
     <comment>treenode</comment>
   </data>
+  <data name="ribDuplicatePageButton_Label" xml:space="preserve">
+    <value>重复页面</value>
+    <comment>page context menu</comment>
+  </data>
 </root>
