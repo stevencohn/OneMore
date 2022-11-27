@@ -4247,4 +4247,8 @@ ISO-code then comma then language name</comment>
     <value>اختصارات لوحة المفاتيح</value>
     <comment>treenode</comment>
   </data>
+  <data name="ribDuplicatePageButton_Label" xml:space="preserve">
+    <value>صفحة مكررة</value>
+    <comment>page context menu</comment>
+  </data>
 </root>

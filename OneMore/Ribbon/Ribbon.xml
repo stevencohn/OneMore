@@ -480,6 +480,11 @@
                 getLabel="GetRibbonLabel"
                 onAction="CollapseContentCmd"/>
               <button
+                id="ribDuplicatePageButton"
+                imageMso="PasteDuplicate"
+                getLabel="GetRibbonLabel"
+                onAction="DuplicatePageCmd"/>
+              <button
                 id="ribExpandContentButton"
                 imageMso="OutlineExpandAll"
                 getLabel="GetRibbonLabel"
@@ -858,6 +863,12 @@
         insertBeforeMso="SectionInsert"/>
     </contextMenu>
     <contextMenu idMso="ContextMenuPage">
+      <button
+        id="ctxDuplicatePageButton"
+        imageMso="PasteDuplicate"
+        getLabel="GetRibbonLabel"
+        onAction="DuplicatePageCmd"
+        insertBeforeMso="RenamePageOneNote"/>
       <button
         id="ctxExportButton"
         imageMso="FileSave"

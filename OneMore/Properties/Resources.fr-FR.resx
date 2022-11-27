@@ -4241,4 +4241,8 @@ Dans cette section</value>
     <value>Raccourcis clavier</value>
     <comment>treenode</comment>
   </data>
+  <data name="ribDuplicatePageButton_Label" xml:space="preserve">
+    <value>Page dupliquée</value>
+    <comment>page context menu</comment>
+  </data>
 </root>

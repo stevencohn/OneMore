@@ -4300,4 +4300,8 @@ W tej sekcji</value>
     <value>Skróty klawiszowe</value>
     <comment>treenode</comment>
   </data>
+  <data name="ribDuplicatePageButton_Label" xml:space="preserve">
+    <value>Duplikat strony</value>
+    <comment>page context menu</comment>
+  </data>
 </root>
