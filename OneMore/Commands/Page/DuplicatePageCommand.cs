@@ -34,14 +34,13 @@ namespace River.OneMoreAddIn.Commands
 
 			// set the page ID to the new page's ID
 			page.Root.Attribute("ID").Value = newId;
+			// remove all objectID values and let OneNote generate new IDs
+			page.Root.Descendants().Attributes("objectID").Remove();
 			page = new Page(page.Root); // reparse to refresh PageId
 
 			var section = one.GetSection(sectionId);
-
 			SetUniquePageTitle(ns, section, page);
 
-			// remove all objectID values and let OneNote generate new IDs
-			page.Root.Descendants().Attributes("objectID").Remove();
 			await one.Update(page);
 
 			MovePageAfterOriginal(one, ns, section, page, originalId);
