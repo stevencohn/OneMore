@@ -426,17 +426,32 @@ namespace River.OneMoreAddIn.Commands
 					await clippy.StashState();
 					await clippy.SetHtml(html);
 
-					using var one = new OneNote();
-					one.CreatePage(one.CurrentSectionId, out var pageId);
+					Page page;
+					string pageId;
 
-					var page = one.GetPage(pageId, OneNote.PageDetail.All);
-					page.Title = Path.GetFileNameWithoutExtension(filepath);
-					await one.Update(page);
-					await one.NavigateTo(pageId);
+					using (var one = new OneNote())
+					{
+						one.CreatePage(one.CurrentSectionId, out pageId);
+
+						page = one.GetPage(pageId, OneNote.PageDetail.Basic);
+						page.Title = Path.GetFileNameWithoutExtension(filepath);
+
+						await one.Update(page);
+						await one.NavigateTo(pageId);
+					}
 
 					await clippy.Paste(true);
-
 					await clippy.RestoreState();
+
+
+					System.Diagnostics.Debugger.Launch();
+
+					using (var one = new OneNote())
+					{
+						page = one.GetPage(pageId, OneNote.PageDetail.Basic);
+						MarkdownConverter.RewriteHeadings(page);
+						await one.Update(page);
+					}
 				}
 			}
 			catch (Exception exc)
