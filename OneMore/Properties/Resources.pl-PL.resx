@@ -2207,10 +2207,6 @@ Odroczony</value>
     <value>Clipping</value>
     <comment>Screen clipping citation</comment>
   </data>
-  <data name="RemoveCitations_FromUrl" xml:space="preserve">
-    <value>Z &amp;lt;&amp;lt; a krewetka =. +? &amp;lt;/ A &amp;gt;&amp;gt;</value>
-    <comment>From &lt;URL&gt; pattern match</comment>
-  </data>
   <data name="RemoveDuplicatesDialog.Text" xml:space="preserve">
     <value>Usuń zduplikowane strony</value>
     <comment>dialog title</comment>

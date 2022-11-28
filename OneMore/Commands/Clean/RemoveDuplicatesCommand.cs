@@ -17,8 +17,8 @@ namespace River.OneMoreAddIn.Commands
 
 
 	/// <summary>
-	/// Analyze pages scanning for duplicates and close matches and let user cherrypick
-	/// duplicates to delete.
+	/// Analyze pages in a given context, scanning for duplicates and close-matches and lets
+	/// the user cherrypick which duplicates to delete
 	/// </summary>
 	internal class RemoveDuplicatesCommand : Command
 	{
@@ -91,8 +91,13 @@ namespace River.OneMoreAddIn.Commands
 
 			logger.WriteTime($"{hashes.Count} pages have one or more duplicates, scanned {scanCount} pages");
 
-			// let user cherrypick duplicate pages to delete...
+			if (hashes.Count == 0)
+			{
+				UIHelper.ShowInfo("No duplicate pages were found");
+				return;
+			}
 
+			// let user cherrypick duplicate pages to delete...
 			var navigator = new RemoveDuplicatesNavigator(hashes);
 			await navigator.RunModeless((sender, e) =>
 			{

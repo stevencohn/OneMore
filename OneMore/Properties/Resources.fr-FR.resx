@@ -2163,10 +2163,6 @@ Différé</value>
     <value>Coupure d'écran</value>
     <comment>Screen clipping citation</comment>
   </data>
-  <data name="RemoveCitations_FromUrl" xml:space="preserve">
-    <value>Depuis &amp;lt;&lt;a\shref=.+?&lt;/a&gt;&amp;gt;</value>
-    <comment>From &lt;URL&gt; pattern match</comment>
-  </data>
   <data name="RemoveDuplicatesDialog.Text" xml:space="preserve">
     <value>Supprimer les pages en double</value>
     <comment>dialog title</comment>

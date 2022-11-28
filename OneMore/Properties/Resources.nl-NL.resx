@@ -2168,10 +2168,6 @@ Verschoven</value>
     <value>Scherm knippen</value>
     <comment>Screen clipping citation</comment>
   </data>
-  <data name="RemoveCitations_FromUrl" xml:space="preserve">
-    <value>Van &amp;lt;&lt;a\shref=.+?&lt;/a&gt;&amp;gt;</value>
-    <comment>From &lt;URL&gt; pattern match</comment>
-  </data>
   <data name="RemoveDuplicatesDialog.Text" xml:space="preserve">
     <value>Dubbele pagina's verwijderen</value>
     <comment>dialog title</comment>

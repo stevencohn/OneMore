@@ -56,7 +56,6 @@
 			this.view.HighlightBackground = System.Drawing.Color.FromArgb(((int)(((byte)(215)))), ((int)(((byte)(193)))), ((int)(((byte)(255)))));
 			this.view.Location = new System.Drawing.Point(12, 35);
 			this.view.Name = "view";
-			this.view.OwnerDraw = true;
 			this.view.Size = new System.Drawing.Size(1054, 503);
 			this.view.TabIndex = 10;
 			this.view.UseCompatibleStateImageBehavior = false;

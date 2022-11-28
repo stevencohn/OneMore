@@ -8,9 +8,13 @@ namespace River.OneMoreAddIn.Commands
 	using System.Linq;
 	using System.Text.RegularExpressions;
 	using System.Threading.Tasks;
-	using Resx = River.OneMoreAddIn.Properties.Resources;
+	using Resx = Properties.Resources;
 
 
+	/// <summary>
+	/// Removes citations that OneNote auto-generates when you paste screen clipping and parts
+	/// of Web pages into OneNote, for example From <https://www....
+	/// </summary>
 	internal class RemoveCitationsCommand : Command
 	{
 		public RemoveCitationsCommand()
@@ -32,13 +36,13 @@ namespace River.OneMoreAddIn.Commands
 			}
 
 			var index = style.Index.ToString(CultureInfo.InvariantCulture);
-			var pattern = new Regex(Resx.RemoveCitations_FromUrl);
+			var regex = new Regex(@"From &lt;\s*<a\shref=.+?</a>\s*&gt;");
 
 			var elements =
 				(from e in page.Root.Descendants(ns + "OE")
 				 where e.Attributes("quickStyleIndex").Any(a => a.Value == index)
 				 let text = e.Element(ns + "T").GetCData().Value
-				 where text.Contains(Resx.RemoveCitations_Clippings) || pattern.Match(text).Success
+				 where text.Contains(Resx.RemoveCitations_Clippings) || regex.Match(text).Success
 				 select e)
 				.ToList();
 
@@ -58,14 +62,3 @@ namespace River.OneMoreAddIn.Commands
 		}
 	}
 }
-/*
-<one:OE quickStyleIndex="3">
-  <one:T><![CDATA[Screen clipping taken: 9/21/2020 5:19 PM]]></one:T>
-</one:OE>
-
-one:OE quickStyleIndex="3">
-  <one:T><![CDATA[From &lt;<a
-href="...">...</a>&gt; ]]></one:T>
-</one:OE>
-
- */

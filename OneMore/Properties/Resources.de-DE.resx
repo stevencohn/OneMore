@@ -2161,10 +2161,6 @@ Aufgeschoben</value>
     <value>Bildschirmausschnitt</value>
     <comment>Screen clipping citation</comment>
   </data>
-  <data name="RemoveCitations_FromUrl" xml:space="preserve">
-    <value>Von &amp;lt;&lt;a\shref=.+?&lt;/a&gt;&amp;gt;</value>
-    <comment>From &lt;URL&gt; pattern match</comment>
-  </data>
   <data name="RemoveDuplicatesDialog.Text" xml:space="preserve">
     <value>Doppelte Seiten entfernen</value>
     <comment>dialog title</comment>
