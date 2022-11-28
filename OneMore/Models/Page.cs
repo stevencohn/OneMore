@@ -861,8 +861,7 @@ namespace River.OneMoreAddIn.Models
 		{
 			var root = allowPageTitle ? Root.Elements() : Root.Elements(Namespace + "Outline");
 
-			var selected = root.Elements(Namespace + "Outline")
-				.Descendants(Namespace + "T")
+			var selected = root.Descendants(Namespace + "T")
 				.Where(e => e.Attributes().Any(a => a.Name == "selected" && a.Value == "all"));
 
 			var count = selected.Count();
