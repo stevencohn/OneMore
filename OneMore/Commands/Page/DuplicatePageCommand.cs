@@ -25,7 +25,7 @@ namespace River.OneMoreAddIn.Commands
 
 		public override async Task Execute(params object[] args)
 		{
-			using var one = new OneNote(out var page, out var ns);
+			using var one = new OneNote(out var page, out var ns, OneNote.PageDetail.Basic);
 			var originalId = page.PageId;
 			var sectionId = one.CurrentSectionId;
 
@@ -51,9 +51,12 @@ namespace River.OneMoreAddIn.Commands
 
 		private void SetUniquePageTitle(XNamespace ns, XElement section, Page page)
 		{
-			// not a great pattern but it works; matches the whole string or both the
-			// prefix and an embedded (index) number
-			var regex = new Regex(@"([^(]+)(?:\s*\((\d+)\))?");
+			// extract just name part without tag
+			var match = Regex.Match(page.Title, $@"([^(]+)(?:\s*\((\d+)\))?");
+			var title = match.Groups[1].Success ? match.Groups[1].Value.Trim() : page.Title;
+
+			// now match all pages in section on <name>[(tag)]
+			var regex = new Regex($@"{title}(?:\s*\((\d+)\))?");
 
 			var last = section.Elements(ns + "Page")
 				.Select(e => new
@@ -67,15 +70,14 @@ namespace River.OneMoreAddIn.Commands
 				.LastOrDefault();
 
 			// make unique title
-			if (last != null && last.Match.Success && last.Match.Groups[2].Success)
+			if (last != null && last.Match.Success && last.Match.Groups[1].Success)
 			{
-				var title = last.Match.Groups[1].Value;
-				var tag = int.Parse(last.Match.Groups[2].Value);
+				var tag = int.Parse(last.Match.Groups[1].Value) + 1;
 				page.Title = $"{title} ({tag})";
 			}
 			else
 			{
-				page.Title = $"{page.Title} (1)";
+				page.Title = $"{title} (1)";
 			}
 		}
 
