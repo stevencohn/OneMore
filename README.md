@@ -23,7 +23,7 @@ There are [full instructions here](#install).
 | ![screenshot](../../wiki/images/Screenshot.png) | ![Calendar](../../wiki/images/Calendar.png) |
 _Click an image to enlarge_
 
-## 💁 Features (160)
+## 💁 Features (161)
 *Want more from OneMore? OneMore has more...*
 
 [Clean commands](../../wiki/Clean-Commands) (13)
@@ -106,6 +106,7 @@ _Click an image to enlarge_
 * Create Pages from a list, table, or spreadsheet of names
 * Copy formatted hyperlink to page
 * Copy formatted hyperlink to paragraph
+* Duplicate the current page
 * Expand or Collapse indented outlines, save and restore outlining
 * Fit background grid spacing to most common text size
 * Merge pages, preserving formatting and position of outlines
