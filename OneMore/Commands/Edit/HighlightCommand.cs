@@ -11,6 +11,9 @@ namespace River.OneMoreAddIn.Commands
 	using System.Xml.Linq;
 
 
+	/// <summary>
+	/// Uses a rotating array of colors to highlight selected text.
+	/// </summary>
 	internal class HighlightCommand : Command
 	{
 
