@@ -15,9 +15,13 @@ namespace River.OneMoreAddIn.Commands
 	using System.Threading.Tasks;
 	using System.Windows.Forms;
 	using System.Xml.Linq;
-	using Resx = River.OneMoreAddIn.Properties.Resources;
+	using Resx = Properties.Resources;
 
 
+	/// <summary>
+	/// Generate a report, as a new page in this current section, showing how much disk space
+	/// is consumed by OneNote notebooks and their recycle bins, sections, and pages.
+	/// </summary>
 	internal class AnalyzeCommand : Command
 	{
 		private const string HeaderShading = "#DEEBF6";
@@ -223,8 +227,10 @@ namespace River.OneMoreAddIn.Commands
 				row = table.AddRow();
 
 				var name = book.Name;
+
 				var remote = book.Path.Contains("https://") ||
-					!Directory.Exists(Path.Combine(defaultPath, name));
+					!Directory.Exists(book.Path);
+				//!Directory.Exists(Path.Combine(defaultPath, name));
 
 				row[0].SetContent(
 					book.Online
@@ -397,17 +403,31 @@ namespace River.OneMoreAddIn.Commands
 				var title = folderPath == null ? name : Path.Combine(folderPath, name);
 				var subp = folderPath == null ? folderName : Path.Combine(folderPath, folderName);
 
-				var remote = section.Attribute("path").Value.Contains("https://");
-				var path = Path.Combine(remote ? backupPath : defaultPath, subp);
+				var path = section.Attribute("path").Value;
+				var remote = path.Contains("https://");
+
+				string filePath;
+				if (remote)
+				{
+					filePath = Path.Combine(backupPath, subp);
+				}
+				else
+				{
+					filePath = Path.Combine(defaultPath, subp);
+					if (!Directory.Exists(filePath))
+					{
+						filePath = Path.GetDirectoryName(path);
+					}
+				}
 
 				var row = table.AddRow();
 
-				if (Directory.Exists(path))
+				if (Directory.Exists(filePath))
 				{
 					row[0].SetContent(new Paragraph(title));
 
 					var filter = remote ? $"{name}.one (On *).one" : $"{name}.one";
-					var files = Directory.EnumerateFiles(path, filter).ToList();
+					var files = Directory.EnumerateFiles(filePath, filter).ToList();
 					if (files.Count > 0)
 					{
 						long first = 0;
@@ -437,7 +457,7 @@ namespace River.OneMoreAddIn.Commands
 					}
 					else
 					{
-						logger.WriteLine($"empty section {name} in {path}");
+						logger.WriteLine($"empty section {name} in {filePath}");
 					}
 				}
 				else
