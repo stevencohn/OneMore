@@ -9,6 +9,7 @@ namespace River.OneMoreAddIn.Commands
 	using System.Linq;
 	using System.Text.RegularExpressions;
 	using System.Threading.Tasks;
+	using System.Windows;
 	using System.Xml.Linq;
 	using Resx = Properties.Resources;
 
@@ -38,24 +39,14 @@ namespace River.OneMoreAddIn.Commands
 			}
 
 			var container = FindScopedContainer(anchor);
-
-			// find all selected T runs
-			var runs = container.Descendants(ns + "T")
-				.Where(e => e.Attribute("selected")?.Value == "all")
-				.ToList();
+			var runs = CollectRuns(container);
 
 			//Debug.Assert(anchor == runs[0], "anchor does not match first selected T run");
 
-			// join...
 			Join(runs);
 
-			// unselect all, including any beyond the scoped container
-			page.Root.DescendantNodes().OfType<XAttribute>()
-				.Where(a => a.Name.LocalName == "selected")
-				.Remove();
-
 			// clean up any left-over elements; must be in this order:
-			RemoveEmptyElements(page);
+			Cleanup(page);
 
 			// insert caret position
 			var caret = new XElement(ns + "T", new XCData(string.Empty));
@@ -67,9 +58,10 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		// anchor is first selected T run, regardless of content
 		private XElement FindAnchor(Page page)
 		{
+			// anchor is first selected T run, regardless of content
+
 			return page.Root.Elements(ns + "Outline")
 				.Descendants(ns + "T")
 				.FirstOrDefault(e => 
@@ -77,9 +69,10 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		// closest containing ancestor that is an Outline or Cell (Page is a catch-all)
 		private XElement FindScopedContainer(XElement element)
 		{
+			// closest containing ancestor that is an Outline or Cell (Page is a catch-all)
+
 			var container = element.Parent;
 
 			while (container.Name.LocalName != "Outline"
@@ -93,30 +86,55 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
+		private List<XElement> CollectRuns(XElement container)
+		{
+			// collect all selected T runs plus immediate siblings in containing OEs so entire
+			// paragraphs are joined, not just selected portions; this may not be precisely per
+			// requirements but it is infinitely easier to do and far less cases to decide
+
+			// find all selected T runs
+			var runs = container.Descendants(ns + "T")
+				.Where(e => e.Attribute("selected")?.Value == "all")
+				.ToList();
+
+			if (runs.Any())
+			{
+				// include sibling runs prior to first
+				runs.InsertRange(0, runs.First().ElementsBeforeSelf(ns + "T"));
+
+				if (runs.Count > 1)
+				{
+					// include sibling runs prior to first
+					runs.AddRange(runs.Last().ElementsAfterSelf(ns + "T"));
+				}
+			}
+
+			return runs;
+		}
+
+
 		private void Join(List<XElement> runs)
 		{
+			System.Diagnostics.Debugger.Launch();
+
+			var first = runs.First();
+
 			// parent OE to which everything is appended
-			var parent = runs[0].Parent;
-			runs[0].Attributes().Where(a => a.Name == "selected").Remove();
+			var parent = first.Parent;
+			first.Attributes().Where(a => a.Name == "selected").Remove();
 
-			/*
-			// if text is in the middle of a soft-break block then need to split the block
-			// into two so the text can be spliced, maintaining its relative position
-			if (runs[runs.Count - 1].NextNode != null)
+			if (runs.Count == 1)
 			{
-				var nextNodes = runs[runs.Count - 1].NodesAfterSelf().ToList();
-				nextNodes.Remove();
-
-				firstParent.AddAfterSelf(new XElement(ns + "OE",
-					firstParent.Attributes(),
-					nextNodes
-					));
+				var cdata = first.GetCData();
+				// collapse soft-breaks
+				cdata.Value = cdata.Value.Replace("<br>\n", " ").Trim();
+				return;
 			}
-			*/
 
 			// let OneNote combine and optimize so we don't have to...
+			var prev = parent;
 
-			runs.Skip(1).ForEach(run =>
+			foreach(var run in runs.Skip(1))
 			{
 				run.Parent.GetAttributeValue("style", out var pstyle);
 				if (pstyle != null)
@@ -126,34 +144,33 @@ namespace River.OneMoreAddIn.Commands
 					run.SetAttributeValue("style", style == null ? pstyle : $"{pstyle};{style}");
 				}
 
-				// remove run from current parent
-				run.Remove();
-
-				// add run into new OE
 				run.Attributes().Where(a => a.Name == "selected").Remove();
 
 				var cdata = run.GetCData();
-				cdata.Value = cdata.Value == string.Empty
-					? " "
-					: Regex.Replace(Regex.Replace(cdata.Value, @"<br>\n([^$])", " $1"), @"\s{2,}", " ");
 
-				if (cdata.Value.EndsWith("<br>\n"))
+				// collapse soft-breaks
+				var text = cdata.Value.Replace("<br>\n", " ").Trim();
+
+				if (run.NextNode == null || run.Parent != prev)
 				{
-					// double it up
-					cdata.Value = $"{cdata.Value}<br>\n";
+					cdata.Value = $"{text} ";
+				}
+				else
+				{
+					cdata.Value = text;
 				}
 
-				if (cdata.Value.Length > 0 && !cdata.StartsWithWhitespace())
-				{
-					cdata.Value = $"{cdata.Value} ";
-				}
+				// remove run from current parent
+				prev = run.Parent;
+				run.Remove();
 
+				// add run into OE of first run
 				parent.Add(run);
-			});
+			}
 		}
 
 
-		private void RemoveEmptyElements(Page page)
+		private void Cleanup(Page page)
 		{
 			// must be removed in exactly this order - lower hierarhcy to upper hierarchy
 
@@ -162,6 +179,11 @@ namespace River.OneMoreAddIn.Commands
 			page.Root.Descendants(ns + "List").Where(e => !e.HasElements).Remove();
 			page.Root.Descendants(ns + "OE").Where(e => !e.HasElements).Remove();
 			page.Root.Descendants(ns + "OEChildren").Where(e => !e.HasElements).Remove();
+
+			// unselect all, including any beyond the scoped container
+			page.Root.DescendantNodes().OfType<XAttribute>()
+				.Where(a => a.Name.LocalName == "selected")
+				.Remove();
 		}
 	}
 }
