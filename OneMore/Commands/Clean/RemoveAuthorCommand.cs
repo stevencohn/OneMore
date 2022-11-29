@@ -4,9 +4,15 @@
 
 namespace River.OneMoreAddIn.Commands
 {
+	using River.OneMoreAddIn.Models;
 	using System.Linq;
 	using System.Threading.Tasks;
 
+
+	/// <summary>
+	/// Removes "Authored by" annotations from a page, also removing related
+	/// attributes from all content on the page
+	/// </summary>
 	internal class RemoveAuthorsCommand : Command
 	{
 		public RemoveAuthorsCommand()
@@ -30,33 +36,28 @@ namespace River.OneMoreAddIn.Commands
 				d.Name.LocalName == "OE")
 				.ToList();
 
+			var editedByAttributes = KnownSchemaAttributes.GetEditedByAttributes();
+
 			foreach (var element in elements)
 			{
-				// editedByAttributes attributeGroup
-				var atts = element.Attributes().Where(a =>
-					a.Name == "author" ||
-					a.Name == "authorInitials" ||
-					a.Name == "authorResolutionID" ||
-					a.Name == "lastModifiedBy" ||
-					a.Name == "lastModifiedByInitials" ||
-					a.Name == "lastModifiedByResolutionID"
-					)
+				var attributes = element.Attributes()
+					.Where(a => editedByAttributes.Contains(a.Name.LocalName))
 					.ToList();
 
-				count += atts.Count;
-				atts.ForEach(a => a.Remove());
+				count += attributes.Count;
+				attributes.ForEach(a => a.Remove());
 			}
-
-			logger.WriteTime("removed authors, now saving...");
 
 			// TODO: This is removing authorship from OEs that wrap Images but
 			// OneNote isn't saving those changes. I don't know why...
 
 			if (count > 0)
 			{
-				logger.WriteLine($"cleaned {count} author attributes");
+				logger.WriteTime($"removed {count} author-related attributes; saving...", true);
 				await one.Update(page);
 			}
+
+			logger.WriteTime("removed authors completed");
 		}
 	}
 }

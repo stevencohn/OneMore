@@ -288,3 +288,5 @@ __pycache__/
 *.btm.cs
 *.odx.cs
 *.xsd.cs
+
+OneNote_RecycleBin/

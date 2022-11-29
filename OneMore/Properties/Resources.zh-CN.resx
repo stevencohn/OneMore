@@ -2163,10 +2163,6 @@ ISO-code then comma then language name</comment>
     <value>屏幕剪辑</value>
     <comment>Screen clipping citation</comment>
   </data>
-  <data name="RemoveCitations_FromUrl" xml:space="preserve">
-    <value>从 &amp;lt;&lt;a\shref=.+?&lt;/a&gt;&amp;gt;</value>
-    <comment>From &lt;URL&gt; pattern match</comment>
-  </data>
   <data name="RemoveDuplicatesDialog.Text" xml:space="preserve">
     <value>删除重复页面</value>
     <comment>dialog title</comment>

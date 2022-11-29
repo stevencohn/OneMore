@@ -8,6 +8,9 @@ namespace River.OneMoreAddIn.Commands
 	using System.Threading.Tasks;
 
 
+	/// <summary>
+	/// Removes all ink drawings and annotations from the current page.
+	/// </summary>
 	internal class RemoveInkCommand : Command
 	{
 		public RemoveInkCommand()

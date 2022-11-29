@@ -2167,10 +2167,6 @@ ISO-code then comma then language name</comment>
     <value>لقطة الشاشة</value>
     <comment>Screen clipping citation</comment>
   </data>
-  <data name="RemoveCitations_FromUrl" xml:space="preserve">
-    <value>من &amp;lt;&lt;a\shref=.+&amp;lt;/a&gt;&amp;gt;</value>
-    <comment>From &lt;URL&gt; pattern match</comment>
-  </data>
   <data name="RemoveDuplicatesDialog.Text" xml:space="preserve">
     <value>إزالة الصفحات المكررة</value>
     <comment>dialog title</comment>

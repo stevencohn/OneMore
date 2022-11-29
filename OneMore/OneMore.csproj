@@ -155,6 +155,7 @@
     </Compile>
     <Compile Include="Commands\Tables\TableThemePainter.cs" />
     <Compile Include="Helpers\Extensions\GraphicsExtensions.cs" />
+    <Compile Include="Models\KnownSchemaAttributes.cs" />
     <Compile Include="Ribbon\AddInRibbonEnablers.cs" />
     <Compile Include="AddInHotkeys.cs" />
     <Compile Include="Ribbon\AddInRibbon.cs" />

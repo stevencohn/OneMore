@@ -9,6 +9,9 @@ namespace River.OneMoreAddIn.Commands
 	using System.Xml.Linq;
 
 
+	/// <summary>
+	/// Removes all tags from the current page, except those that are associated with reminders.
+	/// </summary>
 	internal class RemoveTagsCommand : Command
 	{
 		public RemoveTagsCommand()

@@ -14,6 +14,9 @@ namespace River.OneMoreAddIn.Commands
 	/// </summary>
 	internal class RestoreAutosizeCommand : Command
 	{
+		private readonly int MaxWidth = 600;
+
+
 		public RestoreAutosizeCommand()
 		{
 		}
@@ -32,7 +35,6 @@ namespace River.OneMoreAddIn.Commands
 				if (sizes != null)
 				{
 					var modified = false;
-					var maxvalue = short.MaxValue.ToString() + ".0";
 
 					foreach (var size in sizes)
 					{
@@ -40,7 +42,7 @@ namespace River.OneMoreAddIn.Commands
 
 						// must modify both width and height in order for this to take effect
 
-						size.SetAttributeValue("width", maxvalue);
+						size.SetAttributeValue("width", $"{MaxWidth}.0");
 
 						size.GetAttributeValue("height", out float height);
 						size.SetAttributeValue("height", (height + 1).ToString("F04"));

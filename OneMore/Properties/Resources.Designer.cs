@@ -4944,15 +4944,6 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to From &amp;lt;&lt;a\shref=.+?&lt;/a&gt;&amp;gt;.
-        /// </summary>
-        internal static string RemoveCitations_FromUrl {
-            get {
-                return ResourceManager.GetString("RemoveCitations_FromUrl", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Basic XML structure.
         /// </summary>
         internal static string RemoveDuplicatesDialog_basicRadio_Text {

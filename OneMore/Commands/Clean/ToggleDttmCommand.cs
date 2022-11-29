@@ -11,6 +11,10 @@ namespace River.OneMoreAddIn.Commands
 	using System.Xml.Linq;
 
 
+	/// <summary>
+	/// Toggles the page date and time stamps under the title on the current page or all
+	/// pages in the current section
+	/// </summary>
 	internal class ToggleDttmCommand : Command
 	{
 

@@ -42,7 +42,7 @@ namespace River.OneMoreAddIn.Commands
 				analyzer = new StyleAnalyzer(page.Root);
 
 				var updated = ClearTextBackground(page.GetSelectedElements(all: true));
-				updated |= ClearCellBackground();
+				updated = ClearCellBackground() || updated;
 
 				if (updated)
 				{
