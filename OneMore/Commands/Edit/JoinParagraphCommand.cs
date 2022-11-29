@@ -5,6 +5,8 @@
 namespace River.OneMoreAddIn.Commands
 {
 	using River.OneMoreAddIn.Models;
+	using System.Collections.Generic;
+	using System.Diagnostics;
 	using System.Linq;
 	using System.Text.RegularExpressions;
 	using System.Threading.Tasks;
@@ -28,53 +30,83 @@ namespace River.OneMoreAddIn.Commands
 		public override async Task Execute(params object[] args)
 		{
 			using var one = new OneNote(out var page, out ns);
-			var content = CollectContent(page, out var firstParent);
-			if (content != null)
-			{
-				if (firstParent.HasElements)
-				{
-					// selected text was a subset of runs under an OE
-					firstParent.AddAfterSelf(content);
-				}
-				else
-				{
-					// selected text was all of an OE
-					firstParent.Add(content.Elements());
-				}
 
-				await one.Update(page);
+
+			System.Diagnostics.Debugger.Launch();
+
+
+			var anchor = FindAnchor(page);
+			if (anchor == null)
+			{
+				UIHelper.ShowInfo(Resx.JoinParagraphCommand_Select);
+				return;
 			}
+
+			var container = FindScopedContainer(anchor);
+
+			// find all selected T runs
+			var runs = container.Descendants(ns + "T")
+				.Where(e => e.Attribute("selected")?.Value == "all")
+				.ToList();
+
+			Debug.Assert(anchor == runs[0], "anchor does not match first selected T run");
+
+			// join...
+			Join(runs);
+
+			// unselect all, including any beyond the scoped container
+			page.Root.DescendantNodes().OfType<XAttribute>()
+				.Where(a => a.Name.LocalName == "selected")
+				.Remove();
+
+			// clean up any empty OEs left over
+			page.Root.Descendants(ns + "OE")
+				.Where(e => !e.HasElements)
+				.Remove();
+
+			// insert caret position
+			var caret = new XElement(ns + "T", new XCData(string.Empty));
+			caret.SetAttributeValue("selected", "all");
+			anchor.AddBeforeSelf(caret);
+
+			logger.WriteLine(page.Root);
+			await one.Update(page);
 		}
 
 
-		private XElement CollectContent(Page page, out XElement firstParent)
+		// anchor is first selected T run, regardless of content
+		private XElement FindAnchor(Page page)
 		{
-			firstParent = null;
-
-			var runs = page.Root.Elements(ns + "Outline")
+			return page.Root.Elements(ns + "Outline")
 				.Descendants(ns + "T")
-				.Where(e => e.Attributes().Any(a => a.Name == "selected" && a.Value == "all"))
-				.ToList();
+				.FirstOrDefault(e => 
+					e.Attributes().Any(a => a.Name.LocalName == "selected" && a.Value == "all"));
+		}
 
-			if (runs.Count == 0)
+
+		// closest containing ancestor that is an Outline or Cell (Page is a catch-all)
+		private XElement FindScopedContainer(XElement element)
+		{
+			var container = element.Parent;
+
+			while (container.Name.LocalName != "Outline"
+				&& container.Name.LocalName != "Cell"
+				&& container.Name.LocalName != "Page")
 			{
-				return null;
+				container = container.Parent;
 			}
 
-			var cursor = runs.First();
-			if (runs.Count == 1 && cursor.GetCData().Value == string.Empty)
-			{
-				UIHelper.ShowInfo(Resx.JoinParagraphCommand_Select);
-				return null;
-			}
+			return container;
+		}
 
-			// content will eventually be added after the first parent
-			firstParent = runs[0].Parent;
 
-			var content = new XElement(ns + "OE",
-				runs[0].Parent.Attributes().Where(a => a.Name != "selected")
-				);
+		private void Join(List<XElement> runs)
+		{
+			// parent OE to which everything is appended
+			var parent = runs[0].Parent;
+			runs[0].Attributes().Where(a => a.Name == "selected").Remove();
 
+			/*
 			// if text is in the middle of a soft-break block then need to split the block
 			// into two so the text can be spliced, maintaining its relative position
 			if (runs[runs.Count - 1].NextNode != null)
@@ -87,12 +119,20 @@ namespace River.OneMoreAddIn.Commands
 					nextNodes
 					));
 			}
+			*/
 
-			// collect the content by collating all T runs into a single OE,
 			// let OneNote combine and optimize them so we don't have to...
 
-			foreach (var run in runs)
+			runs.Skip(1).ForEach(run =>
 			{
+				run.Parent.GetAttributeValue("style", out var pstyle);
+				if (pstyle != null)
+				{
+					// inhert style from OE
+					run.GetAttributeValue("style", out var style);
+					run.SetAttributeValue("style", style == null ? pstyle : $"{pstyle};{style}");
+				}
+
 				// remove run from current parent
 				run.Remove();
 
@@ -115,10 +155,8 @@ namespace River.OneMoreAddIn.Commands
 					cdata.Value = $"{cdata.Value} ";
 				}
 
-				content.Add(run);
-			}
-
-			return content;
+				parent.Add(run);
+			});
 		}
 	}
 }
