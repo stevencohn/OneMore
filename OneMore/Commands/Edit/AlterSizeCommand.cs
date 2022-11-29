@@ -21,6 +21,7 @@ namespace River.OneMoreAddIn.Commands
 	internal class AlterSizeCommand : Command
 	{
 		private const double MinFontSize = 6.0;
+		private const double MaxFontSize = 144.0;
 
 		private Page page;
 		private int delta;
@@ -77,7 +78,10 @@ namespace River.OneMoreAddIn.Commands
 							if (double.TryParse(attr.Value,
 								NumberStyles.Any, CultureInfo.InvariantCulture, out var size))
 							{
-								size = Math.Max(size + delta, MinFontSize);
+								size = delta < 0
+									? Math.Max(size + delta, MinFontSize)
+									: Math.Min(size + delta, MaxFontSize);
+
 								attr.Value = size.ToString("#0") + ".05";
 								count++;
 							}
@@ -185,8 +189,11 @@ namespace River.OneMoreAddIn.Commands
 				if (properties.ContainsKey("font-size"))
 				{
 					var size = ParseFontSize(properties["font-size"]);
-					size = Math.Max(size + delta, MinFontSize);
-					
+
+					size = delta < 0
+						? Math.Max(size + delta, MinFontSize)
+						: Math.Min(size + delta, MaxFontSize);
+
 					properties["font-size"] = size.ToString("#0") + ".05pt";
 
 					attr.Value =
