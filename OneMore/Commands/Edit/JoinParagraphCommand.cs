@@ -6,7 +6,6 @@ namespace River.OneMoreAddIn.Commands
 {
 	using River.OneMoreAddIn.Models;
 	using System.Collections.Generic;
-	using System.Diagnostics;
 	using System.Linq;
 	using System.Text.RegularExpressions;
 	using System.Threading.Tasks;
@@ -31,10 +30,6 @@ namespace River.OneMoreAddIn.Commands
 		{
 			using var one = new OneNote(out var page, out ns);
 
-
-			System.Diagnostics.Debugger.Launch();
-
-
 			var anchor = FindAnchor(page);
 			if (anchor == null)
 			{
@@ -49,7 +44,7 @@ namespace River.OneMoreAddIn.Commands
 				.Where(e => e.Attribute("selected")?.Value == "all")
 				.ToList();
 
-			Debug.Assert(anchor == runs[0], "anchor does not match first selected T run");
+			//Debug.Assert(anchor == runs[0], "anchor does not match first selected T run");
 
 			// join...
 			Join(runs);
@@ -59,10 +54,8 @@ namespace River.OneMoreAddIn.Commands
 				.Where(a => a.Name.LocalName == "selected")
 				.Remove();
 
-			// clean up any empty OEs left over
-			page.Root.Descendants(ns + "OE")
-				.Where(e => !e.HasElements)
-				.Remove();
+			// clean up any left-over elements; must be in this order:
+			RemoveEmptyElements(page);
 
 			// insert caret position
 			var caret = new XElement(ns + "T", new XCData(string.Empty));
@@ -121,7 +114,7 @@ namespace River.OneMoreAddIn.Commands
 			}
 			*/
 
-			// let OneNote combine and optimize them so we don't have to...
+			// let OneNote combine and optimize so we don't have to...
 
 			runs.Skip(1).ForEach(run =>
 			{
@@ -150,13 +143,25 @@ namespace River.OneMoreAddIn.Commands
 					cdata.Value = $"{cdata.Value}<br>\n";
 				}
 
-				if (cdata.Value.Length > 0 && !cdata.EndsWithWhitespace())
+				if (cdata.Value.Length > 0 && !cdata.StartsWithWhitespace())
 				{
 					cdata.Value = $"{cdata.Value} ";
 				}
 
 				parent.Add(run);
 			});
+		}
+
+
+		private void RemoveEmptyElements(Page page)
+		{
+			// must be removed in exactly this order - lower hierarhcy to upper hierarchy
+
+			page.Root.Descendants(ns + "Bullet").Where(e => !e.HasElements).Remove();
+			page.Root.Descendants(ns + "Number").Where(e => !e.HasElements).Remove();
+			page.Root.Descendants(ns + "List").Where(e => !e.HasElements).Remove();
+			page.Root.Descendants(ns + "OE").Where(e => !e.HasElements).Remove();
+			page.Root.Descendants(ns + "OEChildren").Where(e => !e.HasElements).Remove();
 		}
 	}
 }
