@@ -11,6 +11,9 @@ namespace River.OneMoreAddIn.Commands
 	using System.Xml.Linq;
 
 
+	/// <summary>
+	/// Trims trailing whitespace from selected text or all text on the page
+	/// </summary>
 	internal class TrimCommand : Command
 	{
 		public TrimCommand()
