@@ -14,7 +14,7 @@ namespace River.OneMoreAddIn.Settings
 	using System.Reflection;
 	using System.Windows.Forms;
 	using System.Xml.Linq;
-	using Resx = River.OneMoreAddIn.Properties.Resources;
+	using Resx = Properties.Resources;
 
 
 	internal partial class KeyboardSheet : SheetBase
@@ -43,7 +43,8 @@ namespace River.OneMoreAddIn.Settings
 		}
 		#endregion KeyMap
 
-		private const string SettingsName = "commands";
+		public const string CollectionName = "KeyboardSheet";
+		public const string SettingsName = "commands";
 
 		private readonly IRibbonUI ribbon;
 		private readonly BindingList<KeyMap> map;
@@ -55,7 +56,7 @@ namespace River.OneMoreAddIn.Settings
 		{
 			InitializeComponent();
 
-			Name = "KeyboardSheet";
+			Name = CollectionName;
 			Title = Resx.SettingsDialog_keyboardNode_Text;
 
 			if (NeedsLocalizing())
