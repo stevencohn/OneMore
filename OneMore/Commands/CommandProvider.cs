@@ -92,8 +92,10 @@ namespace River.OneMoreAddIn
 				}
 			}
 
+			var setprovider = new SettingsProvider();
+
 			// load aliases
-			var settings = new SettingsProvider()
+			var settings = setprovider
 				.GetCollection(AliasSheet.CollectionName)?
 				.Get<XElement>(AliasSheet.SettingsName);
 
@@ -113,6 +115,37 @@ namespace River.OneMoreAddIn
 							Method = command.Method
 						});
 					}
+				}
+			}
+
+			// load custom keys
+			settings = setprovider
+				.GetCollection(KeyboardSheet.CollectionName)?
+				.Get<XElement>(KeyboardSheet.SettingsName);
+
+			if (settings != null)
+			{
+				foreach (var setting in settings.Elements())
+				{
+					commands
+						.Where(c => c.Method.Name == setting.Attribute("command").Value)
+						.ForEach(command =>
+						{
+							if (command != null &&
+								Enum.TryParse<Keys>(setting.Attribute("keys")?.Value, true, out var keys))
+							{
+								// has user deliberately cleared command binding (?HasFlag doesn't work?)
+								if ((keys & Keys.KeyCode) == Keys.Back)
+								{
+									command.Keys = Keys.None;
+								}
+								// has user overridden default binding
+								else
+								{
+									command.Keys = keys;
+								}
+							}
+						});
 				}
 			}
 
@@ -151,7 +184,7 @@ namespace River.OneMoreAddIn
 		public void SaveToMRU(Command command, params object[] args)
 		{
 			// ignore commands that pass the ribbon as an argument
-			if (args == null || 
+			if (args == null ||
 				args.Any(a => a != null && a.GetType().Name.Contains("ComObject")))
 			{
 				return;
