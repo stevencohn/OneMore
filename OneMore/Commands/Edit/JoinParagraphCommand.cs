@@ -36,6 +36,11 @@ namespace River.OneMoreAddIn.Commands
 				return;
 			}
 
+			// remember parent so we can add a new caret later
+			var parent = anchor.Parent;
+
+			System.Diagnostics.Debugger.Launch();
+
 			var container = FindScopedContainer(anchor);
 			var runs = CollectRuns(container, out var caret);
 
@@ -49,7 +54,7 @@ namespace River.OneMoreAddIn.Commands
 			// insert caret position
 			caret = new XElement(ns + "T", new XCData(string.Empty));
 			caret.SetAttributeValue("selected", "all");
-			anchor.AddBeforeSelf(caret);
+			parent.AddFirst(caret);
 
 			logger.WriteLine(page.Root);
 			await one.Update(page);
@@ -60,10 +65,19 @@ namespace River.OneMoreAddIn.Commands
 		{
 			// anchor is first selected T run, regardless of content
 
-			return page.Root.Elements(ns + "Outline")
+			var anchor = page.Root.Elements(ns + "Outline")
 				.Descendants(ns + "T")
 				.FirstOrDefault(e =>
 					e.Attributes().Any(a => a.Name.LocalName == "selected" && a.Value == "all"));
+
+			// don't use the caret as an anchor because it's going to be removed later
+			if (anchor?.GetCData().Value.Length == 0)
+			{
+				anchor = anchor.ElementsAfterSelf(ns + "T").FirstOrDefault()
+					?? anchor.ElementsBeforeSelf(ns + "T").FirstOrDefault();
+			}
+
+			return anchor;
 		}
 
 
@@ -105,21 +119,18 @@ namespace River.OneMoreAddIn.Commands
 					caret = first;
 				}
 
-				// include sibling runs prior first
+				// include siblings before first
 				var before = first.ElementsBeforeSelf(ns + "T");
 				if (before.Any())
 				{
 					runs.InsertRange(0, before);
 				}
 
-				if (runs.Count > 1)
+				// include siblings after last
+				var after = runs.Last().ElementsAfterSelf(ns + "T");
+				if (after.Any())
 				{
-					// include sibling runs after last
-					var after = runs.Last().ElementsAfterSelf(ns + "T");
-					if (after.Any())
-					{
-						runs.AddRange(after);
-					}
+					runs.AddRange(after);
 				}
 			}
 
@@ -129,63 +140,76 @@ namespace River.OneMoreAddIn.Commands
 
 		private void Join(List<XElement> runs, XElement caret)
 		{
-			System.Diagnostics.Debugger.Launch();
+			var start = 0;
+			var first = runs[start];
 
-			var first = runs.First();
-
-			// parent OE to which everything is appended
+			// parent OE into which all runs are collated
 			var parent = first.Parent;
-			first.Attributes().Where(a => a.Name == "selected").Remove();
 
-			if (runs.Count == 1)
+			if (first == caret && runs.Count > 1)
 			{
-				var cdata = first.GetCData();
-				// collapse soft-breaks
-				cdata.Value = cdata.Value.Replace("<br>\n", " ");
+				first.Remove();
+				start = 1;
+				first = runs[start];
+				parent = first.Parent;
+			}
+
+			Defrag(first, runs, start);
+
+			if (runs.Count == start)
+			{
 				return;
 			}
 
 			// let OneNote combine and optimize so we don't have to...
-			var prev = parent;
 
-			foreach (var run in runs.Skip(1))
+			for (int i = start; i < runs.Count; i++)
 			{
+				var run = runs[i];
 				if (run == caret)
 				{
+					run.Remove();
 					continue;
 				}
 
-				run.Parent.GetAttributeValue("style", out var pstyle);
-				if (pstyle != null)
+				Defrag(run, runs, i);
+
+				// collate all runs into first run's parent
+				if (run.Parent != parent)
 				{
-					// inhert style from OE
-					run.GetAttributeValue("style", out var style);
-					run.SetAttributeValue("style", style == null ? pstyle : $"{pstyle};{style}");
+					run.Remove();
+					parent.Add(run);
 				}
-
-				run.Attributes().Where(a => a.Name == "selected").Remove();
-
-				var cdata = run.GetCData();
-
-				// collapse soft-breaks
-				var text = cdata.Value.Replace("<br>\n", " ");
-
-				if (run.NextNode == null || run.Parent != prev)
-				{
-					cdata.Value = $"{text} ";
-				}
-				else
-				{
-					cdata.Value = text;
-				}
-
-				// remove run from current parent
-				prev = run.Parent;
-				run.Remove();
-
-				// add run into OE of first run
-				parent.Add(run);
 			}
+		}
+
+
+		private void Defrag(XElement run, List<XElement> runs, int index)
+		{
+			// inhert style from OE
+			run.Parent.GetAttributeValue("style", out var pstyle);
+			if (pstyle != null)
+			{
+				run.GetAttributeValue("style", out var style);
+				run.SetAttributeValue("style", style == null ? pstyle : $"{pstyle};{style}");
+			}
+
+			// deselect
+			run.Attributes().Where(a => a.Name == "selected").Remove();
+
+			var cdata = run.GetCData();
+
+			// collapse soft-breaks
+			var text = cdata.Value.Replace("<br>\n", " ").Trim();
+
+			if ((index < runs.Count - 1) && 
+				(run.Parent != runs[index + 1].Parent) &&
+				!text.EndsWithWhitespace())
+			{
+				text = $"{text} ";
+			}
+
+			cdata.Value = text;
 		}
 
 
