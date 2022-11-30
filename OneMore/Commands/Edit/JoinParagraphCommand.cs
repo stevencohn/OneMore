@@ -39,8 +39,6 @@ namespace River.OneMoreAddIn.Commands
 			// remember parent so we can add a new caret later
 			var parent = anchor.Parent;
 
-			System.Diagnostics.Debugger.Launch();
-
 			var container = FindScopedContainer(anchor);
 			var runs = CollectRuns(container, out var caret);
 
