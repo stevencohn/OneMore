@@ -7,9 +7,7 @@ namespace River.OneMoreAddIn.Commands
 	using River.OneMoreAddIn.Models;
 	using System.Collections.Generic;
 	using System.Linq;
-	using System.Text.RegularExpressions;
 	using System.Threading.Tasks;
-	using System.Windows;
 	using System.Xml.Linq;
 	using Resx = Properties.Resources;
 
@@ -39,17 +37,17 @@ namespace River.OneMoreAddIn.Commands
 			}
 
 			var container = FindScopedContainer(anchor);
-			var runs = CollectRuns(container);
+			var runs = CollectRuns(container, out var caret);
 
 			//Debug.Assert(anchor == runs[0], "anchor does not match first selected T run");
 
-			Join(runs);
+			Join(runs, caret);
 
 			// clean up any left-over elements; must be in this order:
 			Cleanup(page);
 
 			// insert caret position
-			var caret = new XElement(ns + "T", new XCData(string.Empty));
+			caret = new XElement(ns + "T", new XCData(string.Empty));
 			caret.SetAttributeValue("selected", "all");
 			anchor.AddBeforeSelf(caret);
 
@@ -64,7 +62,7 @@ namespace River.OneMoreAddIn.Commands
 
 			return page.Root.Elements(ns + "Outline")
 				.Descendants(ns + "T")
-				.FirstOrDefault(e => 
+				.FirstOrDefault(e =>
 					e.Attributes().Any(a => a.Name.LocalName == "selected" && a.Value == "all"));
 		}
 
@@ -86,7 +84,7 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private List<XElement> CollectRuns(XElement container)
+		private List<XElement> CollectRuns(XElement container, out XElement caret)
 		{
 			// collect all selected T runs plus immediate siblings in containing OEs so entire
 			// paragraphs are joined, not just selected portions; this may not be precisely per
@@ -97,15 +95,31 @@ namespace River.OneMoreAddIn.Commands
 				.Where(e => e.Attribute("selected")?.Value == "all")
 				.ToList();
 
+			caret = null;
+
 			if (runs.Any())
 			{
-				// include sibling runs prior to first
-				runs.InsertRange(0, runs.First().ElementsBeforeSelf(ns + "T"));
+				var first = runs.First();
+				if (runs.Count == 1 && first.GetCData().Value == string.Empty)
+				{
+					caret = first;
+				}
+
+				// include sibling runs prior first
+				var before = first.ElementsBeforeSelf(ns + "T");
+				if (before.Any())
+				{
+					runs.InsertRange(0, before);
+				}
 
 				if (runs.Count > 1)
 				{
-					// include sibling runs prior to first
-					runs.AddRange(runs.Last().ElementsAfterSelf(ns + "T"));
+					// include sibling runs after last
+					var after = runs.Last().ElementsAfterSelf(ns + "T");
+					if (after.Any())
+					{
+						runs.AddRange(after);
+					}
 				}
 			}
 
@@ -113,7 +127,7 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private void Join(List<XElement> runs)
+		private void Join(List<XElement> runs, XElement caret)
 		{
 			System.Diagnostics.Debugger.Launch();
 
@@ -127,15 +141,20 @@ namespace River.OneMoreAddIn.Commands
 			{
 				var cdata = first.GetCData();
 				// collapse soft-breaks
-				cdata.Value = cdata.Value.Replace("<br>\n", " ").Trim();
+				cdata.Value = cdata.Value.Replace("<br>\n", " ");
 				return;
 			}
 
 			// let OneNote combine and optimize so we don't have to...
 			var prev = parent;
 
-			foreach(var run in runs.Skip(1))
+			foreach (var run in runs.Skip(1))
 			{
+				if (run == caret)
+				{
+					continue;
+				}
+
 				run.Parent.GetAttributeValue("style", out var pstyle);
 				if (pstyle != null)
 				{
@@ -149,7 +168,7 @@ namespace River.OneMoreAddIn.Commands
 				var cdata = run.GetCData();
 
 				// collapse soft-breaks
-				var text = cdata.Value.Replace("<br>\n", " ").Trim();
+				var text = cdata.Value.Replace("<br>\n", " ");
 
 				if (run.NextNode == null || run.Parent != prev)
 				{
