@@ -50,7 +50,7 @@ namespace River.OneMoreAddIn.Commands
 			this.okButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.okButton.Name = "okButton";
 			this.okButton.Size = new System.Drawing.Size(112, 35);
-			this.okButton.TabIndex = 4;
+			this.okButton.TabIndex = 0;
 			this.okButton.Text = "OK";
 			this.okButton.UseVisualStyleBackColor = true;
 			// 
@@ -62,7 +62,7 @@ namespace River.OneMoreAddIn.Commands
 			this.cancelButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.cancelButton.Name = "cancelButton";
 			this.cancelButton.Size = new System.Drawing.Size(112, 35);
-			this.cancelButton.TabIndex = 3;
+			this.cancelButton.TabIndex = 1;
 			this.cancelButton.Text = "Cancel";
 			this.cancelButton.UseVisualStyleBackColor = true;
 			// 
@@ -117,7 +117,7 @@ namespace River.OneMoreAddIn.Commands
             0});
 			this.columnsBox.Name = "columnsBox";
 			this.columnsBox.Size = new System.Drawing.Size(131, 26);
-			this.columnsBox.TabIndex = 8;
+			this.columnsBox.TabIndex = 2;
 			this.columnsBox.Value = new decimal(new int[] {
             2,
             0,
@@ -140,7 +140,7 @@ namespace River.OneMoreAddIn.Commands
             0});
 			this.widthBox.Name = "widthBox";
 			this.widthBox.Size = new System.Drawing.Size(131, 26);
-			this.widthBox.TabIndex = 9;
+			this.widthBox.TabIndex = 3;
 			this.widthBox.Value = new decimal(new int[] {
             500,
             0,
