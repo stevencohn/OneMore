@@ -9,7 +9,7 @@ namespace River.OneMoreAddIn.Commands
 	using System.Linq;
 	using System.Threading.Tasks;
 	using System.Xml.Linq;
-	using Resx = River.OneMoreAddIn.Properties.Resources;
+	using Resx = Properties.Resources;
 
 
 	internal enum Expando
@@ -29,7 +29,6 @@ namespace River.OneMoreAddIn.Commands
 	{
 		private const string MetaName = "omExpando";
 
-		private OneNote one;
 		private Page page;
 		private XNamespace ns;
 
@@ -41,33 +40,32 @@ namespace River.OneMoreAddIn.Commands
 
 		public override async Task Execute(params object[] args)
 		{
-			using (one = new OneNote(out page, out ns))
+			using var one = new OneNote(out page, out ns);
+
+			bool updated = false;
+
+			switch ((Expando)(args[0]))
 			{
-				bool updated = false;
+				case Expando.Collapse:
+					updated = CollapseAll();
+					break;
 
-				switch ((Expando)(args[0]))
-				{
-					case Expando.Collapse:
-						updated = CollapseAll();
-						break;
+				case Expando.Expand:
+					updated = ExpandAll();
+					break;
 
-					case Expando.Expand:
-						updated = ExpandAll();
-						break;
+				case Expando.Restore:
+					updated = Restore();
+					break;
 
-					case Expando.Restore:
-						updated = Restore();
-						break;
+				case Expando.Save:
+					updated = Save();
+					break;
+			}
 
-					case Expando.Save:
-						updated = Save();
-						break;
-				}
-
-				if (updated)
-				{
-					await one.Update(page);
-				}
+			if (updated)
+			{
+				await one.Update(page);
 			}
 		}
 
