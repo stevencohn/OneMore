@@ -850,12 +850,15 @@ namespace River.OneMoreAddIn.Models
 		/// Gets the T element of a zero-width selection. Visually, this appears as the current
 		/// cursor insertion point and can be used to infer the current word or phrase in text.
 		/// </summary>
-		/// <param name="merge">
-		/// If true then merge the runs around the empty cursor and return that merged element
-		/// otherwise return the empty cursor
+		/// <param name="allowPageTitle">
+		/// True to include the page title, otherwise just the body of the page
 		/// </param>
 		/// <returns>
-		/// The one:T XElement or null if there is a selected range greater than zero
+		/// Returns the one:T XElement of an empty cursor and Page.SelectionScope
+		/// is set to Empty or Special if the cursor is on a hyperlink or mathML equation
+		/// and sets SelectionSpecial to true if the selection range is not empty.
+		/// Returns null if there is a selected range greater than zero and sets
+		/// the SelectionScope to Region.
 		/// </returns>
 		public XElement GetTextCursor(bool allowPageTitle = false)
 		{
@@ -864,33 +867,32 @@ namespace River.OneMoreAddIn.Models
 			var selected = root.Descendants(Namespace + "T")
 				.Where(e => e.Attributes().Any(a => a.Name == "selected" && a.Value == "all"));
 
+			if (!selected.Any())
+			{
+				SelectionScope = SelectionScope.Empty;
+				return null;
+			}
+
 			var count = selected.Count();
 			if (count == 1)
 			{
 				var cursor = selected.First();
-				if (cursor.FirstNode.NodeType == XmlNodeType.CDATA)
-				{
-					var cdata = cursor.FirstNode as XCData;
+				var cdata = cursor.GetCData();
 
-					// empty or link or xml-comment because we can't tell the difference between
-					// a zero-selection link and a partial or fully selected link. Note that XML
-					// comments are used to wrap mathML equations
-					if (cdata.Value.Length == 0 ||
-						Regex.IsMatch(cdata.Value, @"<a\s+href.+?</a>", RegexOptions.Singleline) ||
-						Regex.IsMatch(cdata.Value, @"<!--.+?-->", RegexOptions.Singleline))
-					{
-						SelectionScope = SelectionScope.Empty;
-						SelectionSpecial = cdata.Value.Length > 0;
-						return cursor;
-					}
+				// empty, link, or xml-comment because we can't tell the difference between
+				// a zero-selection link and a partial or fully selected link. Note that XML
+				// comments are used to wrap mathML equations
+				if (cdata.Value.Length == 0 ||
+					Regex.IsMatch(cdata.Value, @"<a\s+href.+?</a>", RegexOptions.Singleline) ||
+					Regex.IsMatch(cdata.Value, @"<!--.+?-->", RegexOptions.Singleline))
+				{
+					SelectionScope = SelectionScope.Empty;
+					SelectionSpecial = cdata.Value.Length > 0;
+					return cursor;
 				}
 			}
 
-			SelectionScope = count > 1
-				? SelectionScope.Region
-				: SelectionScope.Empty; // else 0
-
-			// zero or more-than-one empty cdata are selected
+			SelectionScope = SelectionScope.Region;
 			return null;
 		}
 

@@ -10,7 +10,7 @@ namespace River.OneMoreAddIn.Commands
 
 
 	/// <summary>
-	/// Join multiple lines of text into a single running paragraph, removing line breaks.
+	/// Pastes the contents of the clipboard as plain text.
 	/// </summary>
 	internal class PasteTextCommand : Command
 	{

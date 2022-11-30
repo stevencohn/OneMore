@@ -10,7 +10,7 @@ namespace River.OneMoreAddIn.Commands
 	using System.Linq;
 	using System.Threading.Tasks;
 	using System.Xml.Linq;
-	using Resx = River.OneMoreAddIn.Properties.Resources;
+	using Resx = Properties.Resources;
 
 
 	/// <summary>
@@ -60,7 +60,6 @@ namespace River.OneMoreAddIn.Commands
 					AnalyzeRun(run, style);
 				}
 
-				logger.WriteLine(page.Root);
 				logger.WriteLine($"Catalog depth:{analyzer.Depth}, hits:{analyzer.Hits}");
 
 				await one.Update(page);

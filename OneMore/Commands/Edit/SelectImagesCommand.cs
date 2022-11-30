@@ -8,6 +8,10 @@ namespace River.OneMoreAddIn.Commands
 	using System.Threading.Tasks;
 	using System.Xml.Linq;
 
+
+	/// <summary>
+	/// Select all images on the page
+	/// </summary>
 	internal class SelectImagesCommand : Command
 	{
 

@@ -5,7 +5,7 @@
 namespace River.OneMoreAddIn.Commands
 {
 	using System.Threading.Tasks; 
-	using Resx = River.OneMoreAddIn.Properties.Resources;
+	using Resx = Properties.Resources;
 
 
 	/// <summary>

@@ -12,6 +12,9 @@ namespace River.OneMoreAddIn.Commands
 	using System.Xml.Linq;
 
 
+	/// <summary>
+	/// Converts the selected text to uppercase, lowercase, or titlecase.
+	/// </summary>
 	internal class ToCaseCommand : Command
 	{
 		public const int Lowercase = 0;
