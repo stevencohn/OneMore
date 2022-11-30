@@ -105,8 +105,6 @@ namespace River.OneMoreAddIn.Commands
 				page.Root.Element(ns + "Title")?.Add(new XAttribute("lang", cultureName));
 			}
 
-			//logger.WriteLine(page.Root);
-
 			await one.Update(page);
 
 			var area = partial ? "selection" : "full page";

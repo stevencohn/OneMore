@@ -54,7 +54,6 @@ namespace River.OneMoreAddIn.Commands
 			caret.SetAttributeValue("selected", "all");
 			parent.AddFirst(caret);
 
-			logger.WriteLine(page.Root);
 			await one.Update(page);
 		}
 

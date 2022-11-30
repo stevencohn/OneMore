@@ -60,7 +60,6 @@ namespace River.OneMoreAddIn.Commands
 					AnalyzeRun(run, style);
 				}
 
-				logger.WriteLine(page.Root);
 				logger.WriteLine($"Catalog depth:{analyzer.Depth}, hits:{analyzer.Hits}");
 
 				await one.Update(page);
