@@ -894,7 +894,6 @@ namespace River.OneMoreAddIn.Models
 
 			SelectionScope = SelectionScope.Region;
 			return null;
-
 		}
 
 
