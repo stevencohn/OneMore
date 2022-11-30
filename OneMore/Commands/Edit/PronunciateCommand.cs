@@ -16,9 +16,13 @@ namespace River.OneMoreAddIn.Commands
 	using System.Windows.Forms;
 	using System.Xml;
 	using System.Xml.Linq;
-	using Resx = River.OneMoreAddIn.Properties.Resources;
+	using Resx = Properties.Resources;
 
 
+	/// <summary>
+	/// Inserts the "ruby text" pronunciation of selected words. This uses an online service
+	/// that supports over a dozen languages.
+	/// </summary>
 	internal class PronunciateCommand : Command
 	{
 		private string isoCode;
@@ -148,7 +152,7 @@ namespace River.OneMoreAddIn.Commands
 				//}
 				catch (Exception exc)
 				{
-					logger.WriteLine("error fetching definition", exc);
+					logger.WriteLine($"error fetching definition from {url}", exc);
 					logger.WriteLine($"retrying {(200 & retries)}ms");
 					await Task.Delay(200 * retries);
 				}

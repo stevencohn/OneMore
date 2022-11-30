@@ -9,6 +9,14 @@ namespace River.OneMoreAddIn.Commands
 	using System.Xml.Linq;
 
 
+	/// <summary>
+	/// Enables or disables proofing language of the selected content.
+	/// 
+	/// Also driven by Edit/Proofing Language menu to set an alternate language; this menu only
+	/// appears if you've configured Office with two or more proofing languages, which can be done
+	/// in any Office application including OneNote by going to the Options dialog and then the
+	/// Languages sheet.
+	/// </summary>
 	internal class ProofingCommand : Command
 	{
 		public const string NoLang = "yo";

@@ -16,9 +16,12 @@ namespace River.OneMoreAddIn.Commands
 	using System.Windows.Documents;
 	using System.Xml;
 	using System.Xml.Linq;
-	using Resx = River.OneMoreAddIn.Properties.Resources;
+	using Resx = Properties.Resources;
 
 
+	/// <summary>
+	/// Pastes rich text from the clipboard, preserving formatting and colors.
+	/// </summary>
 	internal class PasteRtfCommand : Command
 	{
 		private const double DeltaSize = 0.75;
