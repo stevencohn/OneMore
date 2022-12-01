@@ -9,9 +9,18 @@ namespace River.OneMoreAddIn.Commands
 	using System.Linq;
 	using System.Threading.Tasks;
 	using System.Xml.Linq;
-	using Resx = River.OneMoreAddIn.Properties.Resources;
+	using Resx = Properties.Resources;
 
 
+	/// <summary>
+	/// Add a caption to the selected image.
+	/// </summary>
+	/// <remarks>
+	/// This is done by moving the image into a one-row, one-column table and centering the
+	/// word "Caption" below the image, which of course you should edit immediately. 
+	/// If your custom styles has a style named exactly "Caption" then that style will be applied,
+	/// otherwise, a default caption style is used.
+	/// </remarks>
 	internal class AddCaptionCommand : Command
 	{
 		private XNamespace ns;
@@ -118,7 +127,7 @@ namespace River.OneMoreAddIn.Commands
 				.Any(e => e.Attribute("name").Value.Equals("om") &&
 					 e.Attribute("content").Value.Equals("caption")) == true)
 			{
-				UIHelper.ShowInfo(owner, Resx.AddCaptionCommand_Captioned);
+				UIHelper.ShowInfo(Resx.AddCaptionCommand_Captioned);
 				return true;
 			}
 
