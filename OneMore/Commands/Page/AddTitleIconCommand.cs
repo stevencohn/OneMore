@@ -51,9 +51,11 @@ namespace River.OneMoreAddIn.Commands
 		private async Task AddIcons(string[] codes)
 		{
 			using var one = new OneNote(out var page, out var ns);
-			var cdata = page.Root.Elements(page.Namespace + "Title")
-				.Elements(page.Namespace + "OE")
-				.Elements(page.Namespace + "T")
+
+			var cdata = page.Root
+				.Elements(page.Namespace + "Title")
+				.Elements(page.Namespace + "OE")	// should have exactly one OE
+				.Elements(page.Namespace + "T")		// but may have one or more Ts
 				.DescendantNodes().OfType<XCData>()
 				.FirstOrDefault();
 

@@ -9,9 +9,21 @@ namespace River.OneMoreAddIn.Commands
 	using System.Linq;
 	using System.Threading.Tasks;
 	using System.Xml.Linq;
-	using Resx = River.OneMoreAddIn.Properties.Resources;
+	using Resx = Properties.Resources;
 
 
+	/// <summary>
+	/// Auto-adjusts the size of the background grid, either lines or squares, to the size of
+	/// the most commonly used font on the page
+	/// </summary>
+	/// <remarks>
+	/// There is an option to override the auto calculation and enter a custom value as well. 
+	/// Grids and outlines on the page are not linked in any way in OneNote so grid may not 
+	/// align perfectly with text but the lines should be consistent in relation to the text 
+	/// content. Note this works well for pages that are mostly text; complicated pages with 
+	/// tables and headings will throw off the alignments since grid cannot dynamically change 
+	/// throughout a page.
+	/// </remarks>
 	internal class FitGridToTextCommand : Command
 	{
 
@@ -47,7 +59,7 @@ namespace River.OneMoreAddIn.Commands
 
 			var common = page.Root.Descendants(ns + "OE")
 				// find all "p" paragraphs
-				.Where(e => pindexes.Contains(e.Attribute("quickStyleIndex").Value))
+				.Where(e => pindexes.Contains(e.Attribute("quickStyleIndex")?.Value))
 				.Select(e => new
 				{
 					Element = e,

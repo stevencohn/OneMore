@@ -5,6 +5,7 @@
 namespace River.OneMoreAddIn.Commands
 {
 	using River.OneMoreAddIn.Models;
+	using System;
 	using System.Collections.Generic;
 	using System.Linq;
 	using System.Threading.Tasks;
@@ -20,7 +21,6 @@ namespace River.OneMoreAddIn.Commands
 		private const double BottomMargin = 36.0;
 		private const double RightMargin = 20.0;
 
-		private OneNote one;
 		private Page page;
 		private XNamespace ns;
 
@@ -32,35 +32,24 @@ namespace River.OneMoreAddIn.Commands
 
 		public override async Task Execute(params object[] args)
 		{
-			bool vertical;
-			int columns;
-			int pageWidth;
-
-			using (var dialog = new ArrangeContainersDialog())
+			using var dialog = new ArrangeContainersDialog();
+			if (dialog.ShowDialog() != System.Windows.Forms.DialogResult.OK)
 			{
-				if (dialog.ShowDialog() != System.Windows.Forms.DialogResult.OK)
-				{
-					return;
-				}
-
-				vertical = dialog.Vertical;
-				columns = dialog.Columns;
-				pageWidth = dialog.PageWidth;
+				return;
 			}
 
-			using (one = new OneNote(out page, out ns))
-			{
-				if (vertical)
-				{
-					ArrangeVertical();
-				}
-				else
-				{
-					ArrangeFlow(columns, pageWidth);
-				}
+			using var one = new OneNote(out page, out ns);
 
-				await one.Update(page);
+			if (dialog.Vertical)
+			{
+				ArrangeVertical();
 			}
+			else
+			{
+				ArrangeFlow(dialog.Columns, dialog.PageWidth);
+			}
+
+			await one.Update(page);
 		}
 
 
@@ -68,6 +57,7 @@ namespace River.OneMoreAddIn.Commands
 		{
 			var containers = CollectContainers(page, ns);
 
+			// find the topmost container position
 			var yoffset = containers
 				.Select(e => double.Parse(e.Element(ns + "Position").Attribute("y").Value))
 				.Min();
@@ -78,8 +68,8 @@ namespace River.OneMoreAddIn.Commands
 				position.SetAttributeValue("x", LeftMargin);
 				position.SetAttributeValue("y", yoffset);
 
-				var size = container.Element(ns + "Size");
-				yoffset += double.Parse(size.Attribute("height").Value) + BottomMargin;
+				var height = double.Parse(container.Element(ns + "Size").Attribute("height").Value);
+				yoffset += height + BottomMargin;
 			}
 		}
 
@@ -89,41 +79,51 @@ namespace River.OneMoreAddIn.Commands
 			var containers = CollectContainers(page, ns);
 
 			var xoffset = LeftMargin;
+
+			// find the topmost container position
 			var yoffset = containers
 				.Select(e => double.Parse(e.Element(ns + "Position").Attribute("y").Value))
 				.Min();
 
 			int col = 1;
 			double maxHeight = 0;
-			double width = (pageWidth / columns);
+			double colwidth = (pageWidth / columns);
+			double maxPageWidth = LeftMargin + pageWidth + (RightMargin * (columns - 1));
 
 			foreach (var container in containers)
 			{
-				var position = container.Element(ns + "Position");
-				position.SetAttributeValue("x", xoffset);
-				position.SetAttributeValue("y", yoffset);
-
 				var size = container.Element(ns + "Size");
-				size.SetAttributeValue("width", width.ToString("N3"));
-				size.SetAttributeValue("isSetByUser", "true");
-
+				var width = double.Parse(size.Attribute("width").Value);
 				var height = double.Parse(size.Attribute("height").Value);
+
 				if (height > maxHeight)
 				{
 					maxHeight = height;
 				}
 
-				if (col < columns)
-				{
-					xoffset += width + RightMargin;
-					col++;
-				}
-				else
+				// don't let containers extend too far off the page
+				if ((col > columns) ||
+					(col > 1 && (xoffset + width > maxPageWidth)))
 				{
 					xoffset = LeftMargin;
 					yoffset += maxHeight + BottomMargin;
+					maxHeight = height;
 					col = 1;
 				}
+
+				var position = container.Element(ns + "Position");
+				position.SetAttributeValue("x", xoffset);
+				position.SetAttributeValue("y", yoffset);
+
+				size.SetAttributeValue("width", colwidth.ToString("N3"));
+				// must set both width and height for changes to take effect
+				size.SetAttributeValue("height", (height + 0.001).ToString("N3"));
+				size.SetAttributeValue("isSetByUser", "true");
+
+				logger.WriteLine($"moved container to {LeftMargin} x {yoffset:N3}, size {width:N3} x {height:N3}");
+
+				xoffset += Math.Max(width, colwidth) + RightMargin;
+				col++;
 			}
 		}
 
@@ -134,9 +134,10 @@ namespace River.OneMoreAddIn.Commands
 		{
 			foreach (var container in page.Root.Elements(ns + "Outline").ToList())
 			{
-				var text = container.Descendants(ns + "T").Nodes().OfType<XCData>()
-				  .Select(c => c.Value.Trim())
-				  .Aggregate((a, b) => $"{a}{b}");
+				var text = container
+					.Descendants(ns + "T").Nodes().OfType<XCData>()
+					.Select(c => c.Value.Trim())
+					.Aggregate((a, b) => $"{a}{b}");
 
 				if (!string.IsNullOrWhiteSpace(text))
 				{

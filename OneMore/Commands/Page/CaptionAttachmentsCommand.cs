@@ -10,9 +10,13 @@ namespace River.OneMoreAddIn.Commands
 	using System.Linq;
 	using System.Threading.Tasks;
 	using System.Xml.Linq;
-	using Resx = River.OneMoreAddIn.Properties.Resources;
+	using Resx = Properties.Resources;
 
 
+	/// <summary>
+	/// Adds a caption below each selected attachment on the page showing the full name of
+	/// the attachment.
+	/// </summary>
 	internal class CaptionAttachmentsCommand : Command
 	{
 		private XNamespace ns;
@@ -31,15 +35,16 @@ namespace River.OneMoreAddIn.Commands
 		public override async Task Execute(params object[] args)
 		{
 			using var one = new OneNote(out var page, out ns, OneNote.PageDetail.Selection);
-			var files = page.Root.Descendants(ns + "InsertedFile")?
+
+			var files = page.Root.Descendants(ns + "InsertedFile")
 				.Where(e => e.Attribute("selected")?.Value == "all");
 
-			if (files?.Any() != true)
+			if (!files.Any())
 			{
 				files = page.Root.Descendants(ns + "InsertedFile");
 			}
 
-			if (files?.Any() != true)
+			if (!files.Any())
 			{
 				UIHelper.ShowError(Resx.Error_NoAttachments);
 				return;

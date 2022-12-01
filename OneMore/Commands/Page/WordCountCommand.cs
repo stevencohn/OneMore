@@ -9,9 +9,18 @@ namespace River.OneMoreAddIn.Commands
 	using System.Text.RegularExpressions;
 	using System.Threading.Tasks;
 	using System.Xml.Linq;
-	using Resx = River.OneMoreAddIn.Properties.Resources;
+	using Resx = Properties.Resources;
 
 
+	/// <summary>
+	/// Displays the number of words on the current page or in the selected region. 
+	/// </summary>
+	/// <remarks>
+	/// The word count may differ - be slightly lower - than the word count reported by Microsoft
+	/// Word because Word counts things like URLs as a single word but OneMore separates the
+	/// individual words in the URL. For example, Word reports one word in
+	/// "https://github.com/OneMore" whereas OneMore counts it as four words.
+	/// </remarks>
 	internal class WordCountCommand : Command
 	{
 		private const string CJKPattern = @"\p{IsCJKUnifiedIdeographs}+";

@@ -11,12 +11,16 @@ namespace River.OneMoreAddIn.Commands
 	using System.Threading.Tasks;
 	using System.Windows.Forms;
 	using System.Xml.Linq;
-	using Resx = River.OneMoreAddIn.Properties.Resources;
+	using Resx = Properties.Resources;
 
 
+	/// <summary>
+	/// Generates pages in the current section from a list of page names where the list could 
+	/// be a bulleted list, a numbered list, a column from a table, the first column from an 
+	/// embedded spreadsheet, or OCR text from an embedded image.
+	/// </summary>
 	internal class CreatePagesCommand : Command
 	{
-		private OneNote one;
 		private Page page;
 		private XNamespace ns;
 		private readonly List<string> names;
@@ -30,68 +34,67 @@ namespace River.OneMoreAddIn.Commands
 
 		public override async Task Execute(params object[] args)
 		{
-			using (one = new OneNote(out page, out ns, OneNote.PageDetail.Selection))
+			using var one = new OneNote(out page, out ns, OneNote.PageDetail.Selection);
+
+			var cursor = GetContextCursor(out var onlySelected);
+			if (cursor == null)
 			{
-				var cursor = GetContextCursor(out var onlySelected);
-				if (cursor == null)
+				UIHelper.ShowError(Resx.Error_BodyContext);
+				return;
+			}
+
+			ReadNamesFromContext(cursor, onlySelected);
+			if (!names.Any())
+			{
+				UIHelper.ShowError(Resx.CreatePagesCommand_NoNamesFound);
+				return;
+			}
+
+			var msg = string.Format(Resx.CreatePagesCommand_CreatePages, names.Count);
+			if (UIHelper.ShowQuestion(msg) != DialogResult.Yes)
+			{
+				return;
+			}
+
+			var progress = new UI.ProgressDialog(async (self, token) =>
+			{
+				logger.Start();
+				logger.StartClock();
+
+				var sectionId = one.CurrentSectionId;
+				self.SetMaximum(names.Count);
+
+				try
 				{
-					UIHelper.ShowError(Resx.Error_BodyContext);
-					return;
-				}
-
-				ReadNamesFromContext(cursor, onlySelected);
-				if (!names.Any())
-				{
-					UIHelper.ShowError(Resx.CreatePagesCommand_NoNamesFound);
-					return;
-				}
-
-				var msg = string.Format(Resx.CreatePagesCommand_CreatePages, names.Count);
-				if (UIHelper.ShowQuestion(msg) != DialogResult.Yes)
-				{
-					return;
-				}
-
-				var progress = new UI.ProgressDialog(async (self, token) =>
-				{
-					logger.Start();
-					logger.StartClock();
-
-					var sectionId = one.CurrentSectionId;
-					self.SetMaximum(names.Count);
-
-					try
+					foreach (var name in names)
 					{
-						foreach (var name in names)
+						if (!token.IsCancellationRequested)
 						{
-							if (!token.IsCancellationRequested)
-							{
-								self.SetMessage(name);
+							self.SetMessage(name);
 
-								//await one.CreatePage(sectionId, name);
-								one.CreatePage(sectionId, out var pageId);
-								var newpage = one.GetPage(pageId);
-								newpage.Title = name;
-								await one.Update(newpage);								
-								
-								self.Increment();
+							//await one.CreatePage(sectionId, name);
+							one.CreatePage(sectionId, out var pageId);
+							var newpage = one.GetPage(pageId);
+							newpage.Title = name;
+							await one.Update(newpage);
 
-								// purposely slowing it down so UI can catch up, yuck
-								await Task.Delay(100);
-							}
+							self.Increment();
+
+							// purposely slowing it down so UI can catch up, yuck
+							await Task.Delay(100);
 						}
 					}
-					finally
-					{
-						self.Close();
-					}
+				}
+				finally
+				{
+					self.Close();
+				}
 
-					logger.WriteTime("create pages complete");
-					logger.End();
-				});
+				logger.WriteTime("create pages complete");
+				logger.End();
+			});
 
-				await progress.RunModeless();
-			}
+			await progress.RunModeless();
 		}
 
 
@@ -172,8 +175,8 @@ namespace River.OneMoreAddIn.Commands
 			table.Elements(ns + "Row").ForEach(r =>
 			{
 				var cell = r.Elements(ns + "Cell").ElementAt(index);
-				if (cell != null && 
-					(!onlySelected || 
+				if (cell != null &&
+					(!onlySelected ||
 					(onlySelected && cell.Attribute("selected") != null)))
 				{
 					logger.WriteLine($"cell: {cell.TextValue()}");
