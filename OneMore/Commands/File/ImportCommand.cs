@@ -17,6 +17,18 @@ namespace River.OneMoreAddIn.Commands
 	using System.Xml.Linq;
 
 
+	/// <summary>
+	/// Import Word (.docx), PowerPoint (.pptx), Markdown (.md), OneNote (.one), or XML (.xml) by
+	/// either appending content to the current page or creating a new page. Additionally, for
+	/// PowerPoint, each slide can be imported into its own page so you could use OneNote as a
+	/// PowerPoint presenter by entering full screen mode and using Ctrl-PgDn to move to the
+	/// next slide.
+	/// </summary>
+	/// <remarks>
+	/// You can import multiple Word, PowerPoint, or Markdown files by using a wildcard in the
+	/// name, for example C:\docs\January*.md.Each file will be imported as a separate page;
+	/// the Append option is not available when importing using wildcards.
+	/// </remarks>
 	internal class ImportCommand : Command
 	{
 		private const int MaxTimeout = 15;

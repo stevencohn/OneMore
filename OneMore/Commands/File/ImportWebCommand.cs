@@ -18,9 +18,23 @@ namespace River.OneMoreAddIn.Commands
 	using Windows.Storage;
 	using Windows.Storage.Streams;
 	using Hap = HtmlAgilityPack;
-	using Resx = River.OneMoreAddIn.Properties.Resources;
+	using Resx = Properties.Resources;
 
 
+	/// <summary>
+	/// Imports the content of a Web page given its URL. The content can be added as a new page 
+	/// in the current section, as a new child page of the current page, or appended to the 
+	/// content of the current page. Can run in one of two modes. By default, the page is imported
+	/// as HTML and "optimized" by OneNote, meaning that styles are generally not preserved due
+	/// to the inherent limitations of OneNote.
+	/// 
+	/// The second mode is to import the Web page as a series of static images.This will preserve
+	/// most styling and layout of the page.It does this by internally printing the page to a PDF
+	/// and then importing each page of the PDF as an image. This can be a time consuming process,
+	/// taking up to 30 seconds, so give it time. The first time this mode is used, OneMore
+	/// downloads a local copy of the chromium browser so this will take some extra time.
+	/// Subsequent uses should be faster however.
+	/// </summary>
 	internal class ImportWebCommand : Command
 	{
 		private sealed class WebPageInfo
