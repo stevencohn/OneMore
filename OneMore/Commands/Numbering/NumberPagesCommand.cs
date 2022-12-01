@@ -11,6 +11,9 @@ namespace River.OneMoreAddIn.Commands
 	using System.Xml.Linq;
 
 
+	/// <summary>
+	/// Numbers pages using one of two different outline numbering schemes
+	/// </summary>
 	internal class NumberPagesCommand : Command
 	{
 		private sealed class PageBasics
@@ -35,48 +38,50 @@ namespace River.OneMoreAddIn.Commands
 		public override async Task Execute(params object[] args)
 		{
 			using var dialog = new NumberPagesDialog();
-			if (dialog.ShowDialog() == DialogResult.OK)
+			if (dialog.ShowDialog() != DialogResult.OK)
 			{
-				using (one = new OneNote())
-				{
-					var section = one.GetSection();
-					ns = one.GetNamespace(section);
+				return;
+			}
 
-					var pages = section.Elements(ns + "Page")
-						.Select(e => new PageBasics
-						{
-							ID = e.Attribute("ID").Value,
-							Name = e.Attribute("name").Value,
-							Level = int.Parse(e.Attribute("pageLevel").Value)
-						})
-						.ToList();
+			using (one = new OneNote())
+			{
+				var section = one.GetSection();
+				ns = one.GetNamespace(section);
 
-					if (pages?.Count > 0)
+				var pages = section.Elements(ns + "Page")
+					.Select(e => new PageBasics
 					{
-						logger.StartClock();
+						ID = e.Attribute("ID").Value,
+						Name = e.Attribute("name").Value,
+						Level = int.Parse(e.Attribute("pageLevel").Value)
+					});
 
-						var index = 0;
+				if (pages.Any())
+				{
+					logger.StartClock();
 
-						if (dialog.CleanupNumbering)
-						{
-							cleaner = new RemovePageNumbersCommand();
-						}
+					var list = pages.ToList();
+					var index = 0;
 
-						using (progress = new UI.ProgressDialog())
-						{
-							progress.SetMaximum(pages.Count);
-							progress.Show();
-
-							await ApplyNumbering(
-								pages, index, pages[0].Level,
-								dialog.NumericNumbering, string.Empty);
-
-							progress.Close();
-						}
-
-						logger.StopClock();
-						logger.WriteTime("numbered pages");
+					if (dialog.CleanupNumbering)
+					{
+						cleaner = new RemovePageNumbersCommand();
 					}
+
+					using (progress = new UI.ProgressDialog())
+					{
+						progress.SetMaximum(list.Count);
+						progress.Show();
+
+						await ApplyNumbering(
+							list, index, list[0].Level,
+							dialog.NumericNumbering, string.Empty);
+
+						progress.Close();
+					}
+
+					logger.StopClock();
+					logger.WriteTime("numbered pages");
 				}
 			}
 		}
