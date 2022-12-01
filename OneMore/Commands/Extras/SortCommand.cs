@@ -14,6 +14,13 @@ namespace River.OneMoreAddIn.Commands
 	using System.Xml.Linq;
 
 
+	/// <summary>
+	/// Sorts pages, sections, or notebooks.
+	/// </summary>
+	/// <remarks>
+	/// Pages are sorted within the current section only, not recursively throughout the notebook.
+	/// Sections are sorted throughout the current notebook recursively.
+	/// </remarks>
 	internal class SortCommand : Command
 	{
 		public enum SortBy
@@ -42,32 +49,23 @@ namespace River.OneMoreAddIn.Commands
 
 		public override async Task Execute(params object[] args)
 		{
-			OneNote.Scope scope;
-			SortBy sorting;
-			bool ascending;
-			bool pinNotes;
+			using var dialog = new SortDialog();
 
-			using (var dialog = new SortDialog())
+			if (args != null && args.Length > 0 && args[0] is OneNote.Scope scopeArg)
 			{
-				if (args != null && args.Length > 0 && args[0] is OneNote.Scope scopeArg)
-				{
-					dialog.SetScope(scopeArg);
-				}
-
-				if (dialog.ShowDialog() != DialogResult.OK)
-				{
-					return;
-				}
-
-				scope = dialog.Scope;
-				sorting = dialog.Sorting;
-				ascending = dialog.Direction == SortDialog.Directions.Ascending;
-				pinNotes = dialog.PinNotes;
+				dialog.SetScope(scopeArg);
 			}
 
-			logger.WriteLine($"sort scope:{scope} sorting:{sorting} ascending:{ascending}");
+			if (dialog.ShowDialog() != DialogResult.OK)
+			{
+				return;
+			}
 
-			switch (scope)
+			var sorting = dialog.Sorting;
+			var ascending = dialog.Direction == SortDialog.Directions.Ascending;
+			logger.WriteLine($"sort scope:{dialog.Scope} sorting:{sorting} ascending:{ascending}");
+
+			switch (dialog.Scope)
 			{
 				case OneNote.Scope.Children:
 					SortPages(sorting, ascending, true);
@@ -78,7 +76,7 @@ namespace River.OneMoreAddIn.Commands
 					break;
 
 				case OneNote.Scope.Sections:
-					await SortSections(sorting, ascending, pinNotes);
+					await SortSections(sorting, ascending, dialog.PinNotes);
 					break;
 
 				case OneNote.Scope.Notebooks:
@@ -105,44 +103,42 @@ namespace River.OneMoreAddIn.Commands
 
 			logger.StartClock();
 
-			using (var one = new OneNote())
+			using var one = new OneNote();
+			var section = one.GetSection();
+			var ns = section.GetNamespaceOfPrefix(OneNote.Prefix);
+
+			var pages = section.Elements(ns + "Page").ToList();
+
+			var tree = new List<PageNode>();
+			MakePageTree(tree, pages, 0, 1);
+
+			var cleaner = new Func<XElement, string>((e) => sorting == SortBy.Name
+				? AddTitleIconDialog.RemoveEmojis(e.Attribute("name").Value)
+				: sorting == SortBy.Created
+					? e.Attribute("dateTime").Value
+					: e.Attribute("lastModifiedTime").Value
+				);
+
+			if (children)
 			{
-				var section = one.GetSection();
-				var ns = section.GetNamespaceOfPrefix(OneNote.Prefix);
-
-				var pages = section.Elements(ns + "Page").ToList();
-
-				var tree = new List<PageNode>();
-				MakePageTree(tree, pages, 0, 1);
-
-				var cleaner = new Func<XElement, string>((e) => sorting == SortBy.Name
-					? AddTitleIconDialog.RemoveEmojis(e.Attribute("name").Value)
-					: sorting == SortBy.Created
-						? e.Attribute("dateTime").Value
-						: e.Attribute("lastModifiedTime").Value
-					);
-
-				if (children)
+				// sub-pages of currently selected page
+				var root = FindStartingNode(tree, one.CurrentPageId);
+				if (root?.Nodes.Any() == true)
 				{
-					// sub-pages of currently selected page
-					var root = FindStartingNode(tree, one.CurrentPageId);
-					if (root?.Nodes.Any() == true)
-					{
-						root.Nodes = SortPageTree(root.Nodes, ascending, cleaner);
-					}
+					root.Nodes = SortPageTree(root.Nodes, ascending, cleaner);
 				}
-				else
-				{
-					// pages within section
-					tree = SortPageTree(tree, ascending, cleaner);
-				}
-
-				section.Elements().Remove();
-				section.Add(FlattenPageTree(tree));
-				//logger.WriteLine(section);
-
-				one.UpdateHierarchy(section);
 			}
+			else
+			{
+				// pages within section
+				tree = SortPageTree(tree, ascending, cleaner);
+			}
+
+			section.Elements().Remove();
+			section.Add(FlattenPageTree(tree));
+			//logger.WriteLine(section);
+
+			one.UpdateHierarchy(section);
 
 			logger.WriteTime(nameof(SortPages));
 		}
@@ -246,27 +242,26 @@ namespace River.OneMoreAddIn.Commands
 
 			logger.StartClock();
 
-			using (var one = new OneNote())
+			using var one = new OneNote();
+
+			// get the current notebook with its sections
+			var notebook = await one.GetNotebook();
+
+			if (notebook == null)
 			{
-				// get the current notebook with its sections
-				var notebook = await one.GetNotebook();
-
-				if (notebook == null)
-				{
-					return;
-				}
-
-				var ns = one.GetNamespace(notebook);
-
-				var key = sorting == SortBy.Name
-					? "name"
-					: "lastModifiedTime";
-
-				SortSection(notebook, ns, key, ascending, pinNotes);
-
-				//logger.WriteLine(notebook);
-				one.UpdateHierarchy(notebook);
+				return;
 			}
+
+			var ns = one.GetNamespace(notebook);
+
+			var key = sorting == SortBy.Name
+				? "name"
+				: "lastModifiedTime";
+
+			SortSection(notebook, ns, key, ascending, pinNotes);
+
+			//logger.WriteLine(notebook);
+			one.UpdateHierarchy(notebook);
 
 			logger.WriteTime(nameof(SortSections));
 		}
@@ -361,33 +356,32 @@ namespace River.OneMoreAddIn.Commands
 
 			logger.StartClock();
 
-			using (var one = new OneNote())
+			using var one = new OneNote();
+
+			var root = await one.GetNotebooks();
+			var ns = one.GetNamespace(root);
+
+			// nickname is display name whereas name is the folder name
+			var key = sorting == SortBy.Name
+				? "nickname"
+				: "lastModifiedTime";
+
+			IEnumerable<XElement> books;
+			if (ascending)
 			{
-				var root = await one.GetNotebooks();
-				var ns = one.GetNamespace(root);
-
-				// nickname is display name whereas name is the folder name
-				var key = sorting == SortBy.Name
-					? "nickname"
-					: "lastModifiedTime";
-
-				IEnumerable<XElement> books;
-				if (ascending)
-				{
-					books = root.Elements(ns + "Notebook")
-						.OrderBy(s => s.Attribute(key).Value);
-				}
-				else
-				{
-					books = root.Elements(ns + "Notebook")
-						.OrderByDescending(s => s.Attribute(key).Value);
-				}
-
-				root.ReplaceNodes(books);
-
-				//logger.WriteLine(root);
-				one.UpdateHierarchy(root);
+				books = root.Elements(ns + "Notebook")
+					.OrderBy(s => s.Attribute(key).Value);
 			}
+			else
+			{
+				books = root.Elements(ns + "Notebook")
+					.OrderByDescending(s => s.Attribute(key).Value);
+			}
+
+			root.ReplaceNodes(books);
+
+			//logger.WriteLine(root);
+			one.UpdateHierarchy(root);
 
 			logger.WriteTime(nameof(SortNotebooks));
 		}

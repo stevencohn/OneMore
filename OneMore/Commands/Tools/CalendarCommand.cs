@@ -11,6 +11,9 @@ namespace River.OneMoreAddIn.Commands
 	using System.Threading.Tasks;
 
 
+	/// <summary>
+	/// Invokes  the OneMore Calendar app showing pages that were created and modified on each day
+	/// </summary>
 	internal class CalendarCommand : Command
 	{
 		public CalendarCommand()
