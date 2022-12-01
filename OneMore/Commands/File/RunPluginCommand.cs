@@ -17,7 +17,7 @@ namespace River.OneMoreAddIn.Commands
 	using System.Xml;
 	using System.Xml.Linq;
 	using System.Xml.Schema;
-	using Resx = River.OneMoreAddIn.Properties.Resources;
+	using Resx = Properties.Resources;
 
 
 	internal class RunPluginCommand : Command
