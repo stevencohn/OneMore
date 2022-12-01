@@ -11,6 +11,9 @@ namespace River.OneMoreAddIn.Commands
 	using System.Windows.Forms;
 
 
+	/// <summary>
+	/// Displays the OneMore Command Palette dialog
+	/// </summary>
 	internal class CommandPaletteCommand : Command
 	{
 		private List<CommandInfo> commands;

@@ -9,6 +9,18 @@ namespace River.OneMoreAddIn.Commands
 	using System.Threading.Tasks;
 	using System.Xml.Linq;
 
+
+	/// <summary>
+	/// Starts and opens a visual timer. This small window will first appear in the upper right
+	/// corner of the display and immediately starts counting seconds, minutes, and hours.
+	/// </summary>
+	/// <remarks>
+	/// There are three controls on the window: copy the current value to the clipboard, 
+	/// restart the timer from zero, and close the timer. The window can be moved but is limited 
+	/// to the current desktop window.
+	/// The current value shown in the timer window can easily be inserted into the body of the
+	/// open page by using the Insert Timer command.
+	/// </remarks>
 	internal class TimerWindowCommand : Command
 	{
 

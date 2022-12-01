@@ -8,6 +8,10 @@ namespace River.OneMoreAddIn.Commands
 	using System.Threading.Tasks;
 
 
+	/// <summary>
+	/// Prepends the title of each page in the current section with the created date of the page
+	/// using the form YYYY-MM-DD.If a page title already contains that value, no changes are made
+	/// </summary>
 	internal class DateStampCommand : Command
 	{
 		private sealed class PageInfo

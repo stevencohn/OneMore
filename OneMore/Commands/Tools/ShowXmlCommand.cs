@@ -21,10 +21,8 @@ namespace River.OneMoreAddIn.Commands
 
 		public override async Task Execute(params object[] args)
 		{
-			using (var dialog = new ShowXmlDialog())
-			{
-				dialog.ShowDialog();
-			}
+			using var dialog = new ShowXmlDialog();
+			dialog.ShowDialog();
 
 			await Task.Yield();
 		}
