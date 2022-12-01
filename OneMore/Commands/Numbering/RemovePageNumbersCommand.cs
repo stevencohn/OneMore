@@ -8,6 +8,7 @@ namespace River.OneMoreAddIn.Commands
 	using System.Text.RegularExpressions;
 	using System.Threading.Tasks;
 
+
 	internal class RemovePageNumbersCommand : Command
 	{
 		private readonly Regex npattern;
@@ -17,9 +18,12 @@ namespace River.OneMoreAddIn.Commands
 
 		public RemovePageNumbersCommand()
 		{
-			npattern = new Regex(@"^(\((?:\d+\.{0,1})+\)\s).+");
-			apattern = new Regex(@"^(\([a-z]+\)\s).+");
-			ipattern = new Regex(@"^(\((?:xc|xl|l?x{0,3})(?:ix|iv|v?i{0,3})\)\s).+");
+			// <span style='font-family:"Calibri Light"' lang=en-US>(1)</span>
+			var spanner = @"^((?:<span[^>]+\>)?\({0}\)\s*(?:</span>)?\s*)(?:.+)";
+
+			npattern = new Regex(string.Format(spanner, @"(?:\d+\.{0,1})+"));
+			apattern = new Regex(string.Format(spanner, @"[a-z]+"));
+			ipattern = new Regex(string.Format(spanner, @"(?:xc|xl|l?x{0,3})(?:ix|iv|v?i{0,3})"));
 		}
 
 
@@ -27,46 +31,47 @@ namespace River.OneMoreAddIn.Commands
 		{
 			logger.StartClock();
 
-			using (var one = new OneNote())
+			using var one = new OneNote();
+
+			var section = one.GetSection();
+			if (section != null)
 			{
-				var section = one.GetSection();
-				if (section != null)
+				var ns = one.GetNamespace(section);
+
+				var pageIds = section.Elements(ns + "Page")
+					.Select(e => e.Attribute("ID").Value)
+					.ToList();
+
+				using var progress = new UI.ProgressDialog();
+				progress.SetMaximum(pageIds.Count);
+				progress.Show();
+
+				foreach (var pageId in pageIds)
 				{
-					var ns = one.GetNamespace(section);
+					var page = one.GetPage(pageId, OneNote.PageDetail.Basic);
 
-					var pageIds = section.Elements(ns + "Page")
-						.Select(e => e.Attribute("ID").Value)
-						.ToList();
+					var name = page.Root.Attribute("name").Value;
+					progress.SetMessage(string.Format(
+						Properties.Resources.RemovingPageNumber_Message, name));
 
-					using var progress = new UI.ProgressDialog();
-					progress.SetMaximum(pageIds.Count);
-					progress.Show();
+					progress.Increment();
 
-					foreach (var pageId in pageIds)
+					if (string.IsNullOrEmpty(name))
 					{
-						var page = one.GetPage(pageId, OneNote.PageDetail.Basic);
-						var name = page.Root.Attribute("name").Value;
+						continue;
+					}
 
-						progress.SetMessage(string.Format(
-							Properties.Resources.RemovingPageNumber_Message, name));
+					var cdata = page.Root.Element(ns + "Title")
+						.Element(ns + "OE")
+						.Element(ns + "T")
+						.GetCData();
 
-						progress.Increment();
+					var text = cdata.Value;
 
-						if (string.IsNullOrEmpty(name))
-						{
-							continue;
-						}
-
-						if (RemoveNumbering(name, out string clean))
-						{
-							page.Root
-								.Element(ns + "Title")
-								.Element(ns + "OE")
-								.Element(ns + "T")
-								.GetCData().Value = clean;
-
-							await one.Update(page);
-						}
+					if (RemoveNumbering(text, out string clean))
+					{
+						cdata.Value = clean;
+						await one.Update(page);
 					}
 				}
 			}
@@ -75,21 +80,28 @@ namespace River.OneMoreAddIn.Commands
 			logger.WriteTime("removed page numbering");
 		}
 
+
+		/// <summary>
+		/// Used by NumberPagesCommand to clean up old numbers before applying new
+		/// </summary>
+		/// <param name="name"></param>
+		/// <param name="clean"></param>
+		/// <returns></returns>
 		public bool RemoveNumbering(string name, out string clean)
 		{
 			// numeric 1.
 			var match = npattern.Match(name);
 
+			// alpha i. -- do this prior to alpha match
+			if (!match.Success)
+			{
+				match = ipattern.Match(name);
+			}
+
 			// alpha a.
 			if (!match.Success)
 			{
 				match = apattern.Match(name);
-			}
-
-			// alpha i.
-			if (!match.Success)
-			{
-				match = ipattern.Match(name);
 			}
 
 			if (match.Success)

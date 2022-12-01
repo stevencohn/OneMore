@@ -10,6 +10,10 @@ namespace River.OneMoreAddIn.Commands
 	using System.Xml.Linq;
 
 
+	/// <summary>
+	/// Numbers all sections in the current notebook using simple numerical sequences.
+	/// Each section group is treated independently.
+	/// </summary>
 	internal class NumberSectionsCommand : Command
 	{
 		private Regex pattern;
@@ -22,17 +26,16 @@ namespace River.OneMoreAddIn.Commands
 
 		public override async Task Execute(params object[] args)
 		{
-			using (var one = new OneNote())
-			{
-				var notebook = await one.GetNotebook();
-				if (notebook != null)
-				{
-					pattern = new Regex(@"^(\(\d+\)\s).+");
+			using var one = new OneNote();
 
-					if (ApplyNumbering(notebook, one.GetNamespace(notebook)) > 0)
-					{
-						one.UpdateHierarchy(notebook);
-					}
+			var notebook = await one.GetNotebook();
+			if (notebook != null)
+			{
+				pattern = new Regex(@"^(\(\d+\)\s).+");
+
+				if (ApplyNumbering(notebook, one.GetNamespace(notebook)) > 0)
+				{
+					one.UpdateHierarchy(notebook);
 				}
 			}
 
