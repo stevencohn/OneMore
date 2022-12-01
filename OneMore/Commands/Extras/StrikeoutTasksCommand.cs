@@ -11,6 +11,9 @@ namespace River.OneMoreAddIn.Commands
 	using System.Xml.Linq;
 
 
+	/// <summary>
+	/// Toggles strikethrough text next to all completed/incompleted tags
+	/// </summary>
 	internal class StrikeoutTasksCommand : Command
 	{
 		public StrikeoutTasksCommand()
@@ -148,7 +151,7 @@ namespace River.OneMoreAddIn.Commands
 				}
 			}
 
-			cdata.Value = wrapper.GetInnerXml();
+			cdata.Value = wrapper.GetInnerXml().Replace("&amp;", "&");
 
 			return modified;
 		}
