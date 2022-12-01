@@ -13,9 +13,13 @@ namespace River.OneMoreAddIn.Commands
 	using System.Threading.Tasks;
 	using System.Windows.Forms;
 	using System.Xml.Linq;
-	using Resx = River.OneMoreAddIn.Properties.Resources;
+	using Resx = Properties.Resources;
 
 
+	/// <summary>
+	/// Discovers all external hyperlinks on the current page, presents a dialog from which the
+	/// user can select one or more link to import. Each hyperlink is imported as a separate page.
+	/// </summary>
 	internal class CrawlWebPageCommand : Command
 	{
 
