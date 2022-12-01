@@ -2505,8 +2505,8 @@ ISO-code then comma then language name</comment>
     <comment>ribbon item</comment>
   </data>
   <data name="ribCommandPaletteButton_Label" xml:space="preserve">
-    <value>打开命令面板</value>
-  </data>
+    <value>命令面板</value>
+  <comment>ribbon item</comment></data>
   <data name="ribCompleteReminderButton_Label" xml:space="preserve">
     <value>完整提醒</value>
     <comment>ribbon button</comment>

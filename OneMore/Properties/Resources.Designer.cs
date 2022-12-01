@@ -5760,7 +5760,7 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Open Command Palette.
+        ///   Looks up a localized string similar to Command Palette.
         /// </summary>
         internal static string ribCommandPaletteButton_Label {
             get {

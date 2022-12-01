@@ -2505,8 +2505,8 @@ Polaroïd</value>
     <comment>ribbon item</comment>
   </data>
   <data name="ribCommandPaletteButton_Label" xml:space="preserve">
-    <value>Ouvrir la palette de commandes</value>
-  </data>
+    <value>Palette de commandes</value>
+  <comment>ribbon item</comment></data>
   <data name="ribCompleteReminderButton_Label" xml:space="preserve">
     <value>Rappel complet</value>
     <comment>ribbon button</comment>

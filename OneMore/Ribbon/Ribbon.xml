@@ -781,20 +781,26 @@
                 imageMso="ShowJournalPage"
                 getLabel="GetRibbonLabel"
                 onAction="InsertTimerCmd"/>
+              <button
+                id="ribShowXmlButton"
+                imageMso="XmlSource"
+                getLabel="GetRibbonLabel"
+                getScreentip="GetRibbonScreentip"
+                onAction="ShowXmlCmd"/>
             </menu>
-            <menuSeparator id="sepTools" getTitle="GetRibbonLabel" />
+            <menuSeparator id="sepTools" />
+            <button
+              id="ribCommandPaletteButton"
+              imageMso="FormControlEditBox"
+              getLabel="GetRibbonLabel"
+              getScreentip="GetRibbonScreentip"
+              onAction="CommandPaletteCmd"/>
             <button
               id="ribCalendarButton"
               imageMso="OpenAttachedCalendar"
               getLabel="GetRibbonLabel"
               getScreentip="GetRibbonScreentip"
               onAction="CalendarCmd"/>
-            <button
-              id="ribShowXmlButton"
-              imageMso="XmlSource"
-              getLabel="GetRibbonLabel"
-              getScreentip="GetRibbonScreentip"
-              onAction="ShowXmlCmd"/>
             <button
               id="ribSettingsButton"
               imageMso="ReadingViewToolsMenu"

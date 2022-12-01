@@ -2509,8 +2509,8 @@ polaroid</value>
     <comment>ribbon item</comment>
   </data>
   <data name="ribCommandPaletteButton_Label" xml:space="preserve">
-    <value>Abrir paleta de comandos</value>
-  </data>
+    <value>Paleta de comandos</value>
+  <comment>ribbon item</comment></data>
   <data name="ribCompleteReminderButton_Label" xml:space="preserve">
     <value>Recordatorio completo</value>
     <comment>ribbon button</comment>

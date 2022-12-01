@@ -2552,8 +2552,8 @@ Polaroid</value>
     <comment>ribbon item</comment>
   </data>
   <data name="ribCommandPaletteButton_Label" xml:space="preserve">
-    <value>Otwórz paletę poleceń</value>
-  </data>
+    <value>Paleta poleceń</value>
+  <comment>ribbon item</comment></data>
   <data name="ribCompleteReminderButton_Label" xml:space="preserve">
     <value>Pełne przypomnienie</value>
     <comment>ribbon button</comment>

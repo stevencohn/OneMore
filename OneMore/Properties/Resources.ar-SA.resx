@@ -2509,8 +2509,8 @@ ISO-code then comma then language name</comment>
     <comment>ribbon item</comment>
   </data>
   <data name="ribCommandPaletteButton_Label" xml:space="preserve">
-    <value>افتح لوحة الأوامر</value>
-  </data>
+    <value>لوحة القيادة</value>
+  <comment>ribbon item</comment></data>
   <data name="ribCompleteReminderButton_Label" xml:space="preserve">
     <value>تذكير كامل</value>
     <comment>ribbon button</comment>
