@@ -18,9 +18,15 @@ namespace River.OneMoreAddIn.Commands
 	using System.Threading.Tasks;
 	using System.Windows.Forms;
 	using System.Xml.Linq;
-	using Resx = River.OneMoreAddIn.Properties.Resources;
+	using Resx = Properties.Resources;
 
 
+	/// <summary>
+	/// Replaces all or selected hyperlinked URLs that reference online images with those
+	/// referenced images. If the image cannot be downloaded, no changes are made. This will
+	/// only affect URLs where you can read the Web address on the page; it skips URLs where
+	/// the text differs from the actual address.
+	/// </summary>
 	internal class GetImagesCommand : Command
 	{
 		private readonly bool forceful;
@@ -74,7 +80,7 @@ namespace River.OneMoreAddIn.Commands
 			if (result == DialogResult.Yes)
 			{
 				// ensure page contains the definition of the Citation style
-				citation = page.GetQuickStyle(Styles.StandardStyles.Citation);
+				citation = page.GetQuickStyle(StandardStyles.Citation);
 			}
 
 			if (GetImages(page))

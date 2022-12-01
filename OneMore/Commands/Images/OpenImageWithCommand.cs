@@ -11,9 +11,14 @@ namespace River.OneMoreAddIn.Commands
 	using System.IO;
 	using System.Linq;
 	using System.Threading.Tasks;
-	using Resx = River.OneMoreAddIn.Properties.Resources;
+	using Resx = Properties.Resources;
 
 
+	/// <summary>
+	/// Available from the image context menu, this opens the selected image in an external
+	/// image viewer/editor. By default, this is MS Paint. This can be customized in the
+	/// Settings General page.
+	/// </summary>
 	internal class OpenImageWithCommand : Command
 	{
 
