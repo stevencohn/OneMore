@@ -55,10 +55,6 @@ namespace River.OneMoreAddIn.Commands
 				return;
 			}
 
-
-			System.Diagnostics.Debugger.Launch();
-
-
 			var pindexes = quickStyles.Select(s => s.Index.ToString());
 
 			var common = page.Root.Descendants(ns + "OE")

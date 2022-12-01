@@ -12,6 +12,24 @@ namespace River.OneMoreAddIn.Commands
 	using System.Xml.Linq;
 
 
+	/// <summary>
+	/// Merges two or more pages into a single page.
+	/// </summary>
+	/// <remarks>
+	/// If every selected page contains exactly one outline each then the content of the outlines
+	/// is concatenated to the outline in the target page, resulting in a single outline. However,
+	/// if at least one page has multiple outlines then all outlines are appended vertically on
+	/// the target page to preserve formatting and relative positioning.
+	/// 
+	/// Outlines are used in variety of ways, not the least of which to preserve some conceptual
+	/// context with other containers on the page based on size and position, so OneMore doesn't
+	/// attempt to merge containers from multiple pages but instead preserves the layout of
+	/// containers from each page in a continuous stream in the newly merged page.
+	/// 
+	/// Note that you can easily merge to containers by Shift+clicking one container and dragging
+	/// it on top of the container with which you want the first to be merged. This is a
+	/// built-in OneNote feature.
+	/// </summary>
 	internal class MergeCommand : Command
 	{
 
