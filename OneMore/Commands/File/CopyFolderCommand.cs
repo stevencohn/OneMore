@@ -9,11 +9,11 @@ namespace River.OneMoreAddIn.Commands
 	using System.Threading.Tasks;
 	using System.Windows.Forms;
 	using System.Xml.Linq;
-	using Resx = River.OneMoreAddIn.Properties.Resources;
+	using Resx = Properties.Resources;
 
 
 	/// <summary>
-	/// Copy a SectionGroup (folder) into another section group or notebook
+	/// Performs a deep copy of a SectionGroup (folder) into another section group or notebook
 	/// </summary>
 	internal class CopyFolderCommand : Command
 	{

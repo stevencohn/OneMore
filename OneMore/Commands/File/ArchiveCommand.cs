@@ -13,9 +13,16 @@ namespace River.OneMoreAddIn.Commands
 	using System.Threading.Tasks;
 	using System.Windows.Forms;
 	using System.Xml.Linq;
-	using Resx = River.OneMoreAddIn.Properties.Resources;
+	using Resx = Properties.Resources;
 
 
+	/// <summary>
+	/// Accessible from the context menu for both sections and notebooks, creates a zip file of
+	/// all pages in the section or notebook, exported to HTML, including all images and file
+	/// attachments on each page. Also fixes the hyperlinks between pages within the context of
+	/// the archive so the archive can stand on its own as a working directory of HTML files with
+	/// live hyperlinks.
+	/// </summary>
 	internal class ArchiveCommand : Command
 	{
 		private OneNote one;

@@ -52,34 +52,54 @@ namespace River.OneMoreAddIn.Commands
 
 		private void SetUniquePageTitle(XNamespace ns, XElement section, Page page)
 		{
-			// extract just name part without tag
+			// start by extracting just name part without tag
+			// note that page.Title gets plain text
+
 			var match = Regex.Match(page.Title, $@"([^(]+)(?:\s*\((\d+)\))?");
 			var title = match.Groups[1].Success ? match.Groups[1].Value.Trim() : page.Title;
 
-			// now match all pages in section on <name>[(tag)]
+			// match all pages in section on <name>[(tag)]
+
 			var regex = new Regex($@"{title}(?:\s*\((\d+)\))?");
 
-			var last = section.Elements(ns + "Page")
-				.Select(e => new
-				{
-					Element = e,
-					Name = e.Attribute("name").Value,
-					Match = regex.Match(e.Attribute("name").Value)
-				})
-				.Where(m => m.Match.Success)
-				.OrderBy(e => e.Name)
-				.LastOrDefault();
+			// this will also include the current page so should result in a max value
+			var index = section.Elements(ns + "Page")
+				.Select(e => regex.Match(e.Attribute("name").Value))
+				.Where(m => m.Success)
+				.Max(m => m.Groups[1].Success ? int.Parse(m.Groups[1].Value) : 0) + 1;
 
-			// make unique title
-			if (last != null && last.Match.Success && last.Match.Groups[1].Success)
+			// get the sytlized content so we can update the tag in place
+
+			var run = page.Root.Elements(ns + "Title")
+				.Elements(ns + "OE")
+				.Elements(ns + "T")
+				.LastOrDefault(e => !string.IsNullOrWhiteSpace(e.GetCData().Value));
+
+			if (run == null)
 			{
-				var tag = int.Parse(last.Match.Groups[1].Value) + 1;
-				page.Title = $"{title} ({tag})";
+				// shouldn't happen?
+				page.Title = $"{page.Title} ({index})";
+				return;
+			}
+
+			var wrapper = run.GetCData().GetWrapper();
+			var node = wrapper.Nodes().Last();
+
+			var text = node.NodeType == System.Xml.XmlNodeType.Text
+				? (XText)node
+				: ((XElement)node).Nodes().OfType<XText>().Last();
+
+			regex = new Regex(@"\(\d+\)\s*$");
+			if (regex.IsMatch(text.Value))
+			{
+				text.Value = regex.Replace(text.Value, $"({index})");
 			}
 			else
 			{
-				page.Title = $"{title} (1)";
+				text.Value = $"{text.Value} ({index})";
 			}
+
+			page.Title = wrapper.GetInnerXml();
 		}
 
 
