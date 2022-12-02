@@ -10,9 +10,13 @@ namespace River.OneMoreAddIn.Commands
 	using System.Linq;
 	using System.Threading.Tasks;
 	using System.Xml.Linq;
-	using Resx = River.OneMoreAddIn.Properties.Resources;
+	using Resx = Properties.Resources;
 
 
+	/// <summary>
+	/// Converts selected text to a table. Text must be delimited by a comma, space, or other
+	/// special character so the command can detect columns.
+	/// </summary>
 	internal class TextToTableCommand : Command
 	{
 		private const string HeaderShading = "#DEEBF6";
@@ -69,53 +73,52 @@ namespace River.OneMoreAddIn.Commands
 			bool hasHeader;
 			bool unquote;
 
-			using (var dialog = new TextToTableDialog())
+			using var dialog = new TextToTableDialog();
+
+			var first = selections[0].Value;
+			if (first.Contains('\t'))
 			{
-				var first = selections[0].Value;
-				if (first.Contains('\t'))
-				{
-					dialog.DelimetedBy = TextToTableDialog.Delimeter.Tabs;
-					dialog.Columns = first.Split(new char[] { '\t' }).Length;
-				}
-				else if (first.Contains(','))
-				{
-					dialog.DelimetedBy = TextToTableDialog.Delimeter.Commas;
-					dialog.Columns = first.Split(new char[] { ',' }).Length;
-				}
-				else if (first.Contains(nbsp))
-				{
-					dialog.DelimetedBy = TextToTableDialog.Delimeter.Nbsp;
-					dialog.Columns = first.Split(new string[] { nbsp }, StringSplitOptions.None).Length;
-				}
-				else
-				{
-					dialog.DelimetedBy = TextToTableDialog.Delimeter.Paragraphs;
-					dialog.Columns = 1;
-				}
-
-				dialog.Rows = selections.Count;
-
-				if (dialog.ShowDialog() == System.Windows.Forms.DialogResult.Cancel)
-				{
-					return null;
-				}
-
-				rows = dialog.Rows;
-				cols = dialog.Columns;
-
-				delimetedBy = dialog.DelimetedBy;
-				delimeter = delimetedBy switch
-				{
-					TextToTableDialog.Delimeter.Commas => ",",
-					TextToTableDialog.Delimeter.Tabs => "\t",
-					TextToTableDialog.Delimeter.Nbsp => nbsp,
-					TextToTableDialog.Delimeter.Other => dialog.CustomDelimeter,
-					_ => string.Empty,
-				};
-
-				hasHeader = dialog.HasHeader;
-				unquote = dialog.Unquote;
+				dialog.DelimetedBy = TextToTableDialog.Delimeter.Tabs;
+				dialog.Columns = first.Split(new char[] { '\t' }).Length;
 			}
+			else if (first.Contains(','))
+			{
+				dialog.DelimetedBy = TextToTableDialog.Delimeter.Commas;
+				dialog.Columns = first.Split(new char[] { ',' }).Length;
+			}
+			else if (first.Contains(nbsp))
+			{
+				dialog.DelimetedBy = TextToTableDialog.Delimeter.Nbsp;
+				dialog.Columns = first.Split(new string[] { nbsp }, StringSplitOptions.None).Length;
+			}
+			else
+			{
+				dialog.DelimetedBy = TextToTableDialog.Delimeter.Paragraphs;
+				dialog.Columns = 1;
+			}
+
+			dialog.Rows = selections.Count;
+
+			if (dialog.ShowDialog() == System.Windows.Forms.DialogResult.Cancel)
+			{
+				return null;
+			}
+
+			rows = dialog.Rows;
+			cols = dialog.Columns;
+
+			delimetedBy = dialog.DelimetedBy;
+			delimeter = delimetedBy switch
+			{
+				TextToTableDialog.Delimeter.Commas => ",",
+				TextToTableDialog.Delimeter.Tabs => "\t",
+				TextToTableDialog.Delimeter.Nbsp => nbsp,
+				TextToTableDialog.Delimeter.Other => dialog.CustomDelimeter,
+				_ => string.Empty,
+			};
+
+			hasHeader = dialog.HasHeader;
+			unquote = dialog.Unquote;
 
 			var table = new Table(ns, rows, cols)
 			{
@@ -133,7 +136,8 @@ namespace River.OneMoreAddIn.Commands
 				}
 				else
 				{
-					var parts = selection.Value.Split(new string[] { delimeter }, StringSplitOptions.None);
+					//var parts = selection.Value.Split(new string[] { delimeter }, StringSplitOptions.None);
+					var parts = SmartSplit(selection.Value, delimeter);
 					for (int c = 0; c < parts.Length && c < cols; c++)
 					{
 						SetCellContent(row.Cells.ElementAt(c), parts[c].Trim(), r, unquote, hasHeader);
@@ -142,6 +146,70 @@ namespace River.OneMoreAddIn.Commands
 			}
 
 			return table;
+		}
+
+
+		private string[] SmartSplit(string xml, string delimeter)
+		{
+			// handles odd OneNote style normalizations like this in order to preserve
+			// styles of each column
+			//
+			//		<span style='font-weight:bold'>Word, Int, Double, </span><span
+			//		style='font-weight: bold;font-style:italic'>Olde</span>
+			//
+
+			var wrapper = XElement.Parse($"<w>{xml}</w>");
+			var parts = new List<string>();
+			foreach (var node in wrapper.Nodes())
+			{
+				if (node is XText text)
+				{
+					if (text.Value.Contains(delimeter))
+					{
+						var values = text.Value
+							.Split(new string[] { delimeter }, StringSplitOptions.None);
+
+						for (int i = 0; i < values.Length; i++)
+						{
+							var v = values[i].Trim();
+							if (v.Length > 0 || parts.Count == 0)
+							{
+								parts.Add(v);
+							}
+						}
+					}
+					else
+					{
+						parts.Add(text.Value);
+					}
+				}
+				else
+				{
+					var element = (XElement)node;
+					if (element.Value.Contains(delimeter))
+					{
+						var values = element.Value
+							.Split(new string[] { delimeter }, StringSplitOptions.None);
+
+						for (int i = 0; i < values.Length; i++)
+						{
+							var v = values[i].Trim();
+							if (v.Length > 0 || i < values.Length - 1)
+							{
+								parts.Add(
+									new XElement("span", element.Attributes(), v)
+									.ToString(SaveOptions.DisableFormatting));
+							}
+						}
+					}
+					else
+					{
+						parts.Add(node.ToString(SaveOptions.DisableFormatting));
+					}
+				}
+			}
+
+			return parts.ToArray();
 		}
 
 
