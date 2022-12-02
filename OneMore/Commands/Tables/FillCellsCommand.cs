@@ -10,7 +10,7 @@ namespace River.OneMoreAddIn.Commands
 	using System.Linq;
 	using System.Threading.Tasks;
 	using System.Xml.Linq;
-	using Resx = River.OneMoreAddIn.Properties.Resources;
+	using Resx = Properties.Resources;
 
 
 	internal enum FillCells
@@ -22,9 +22,13 @@ namespace River.OneMoreAddIn.Commands
 	}
 
 
+	/// <summary>
+	/// The Copy Across and Copy Down commands will duplicate the contents of the lead cells in
+	/// the selection. The Fill Across and Fill Down commands will increment the values in the
+	/// lead cells in the selection
+	/// </summary>
 	internal class FillCellsCommand : Command
 	{
-		private XNamespace ns;
 		private int minCol, maxCol;
 		private int minRow, maxRow;
 
@@ -36,7 +40,7 @@ namespace River.OneMoreAddIn.Commands
 
 		public override async Task Execute(params object[] args)
 		{
-			using var one = new OneNote(out var page, out ns);
+			using var one = new OneNote(out var page, out var ns);
 			// Find first selected cell as anchor point to locate table; by filtering on
 			// selected=all, we avoid including the parent table of a selected nested table.
 

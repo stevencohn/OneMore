@@ -9,9 +9,16 @@ namespace River.OneMoreAddIn.Commands
 	using System.Linq;
 	using System.Threading.Tasks;
 	using System.Xml.Linq;
-	using Resx = River.OneMoreAddIn.Properties.Resources;
+	using Resx = Properties.Resources;
 
 
+	/// <summary>
+	/// Splits the current table starting at the row containing the input cursor.
+	/// </summary>
+	/// <remarks>
+	/// Optionally, the header can be duplicated in the new table and columns in both can be
+	/// fixed to their current widths so the two tables remain aligned.
+	/// </remarks>
 	internal class SplitTableCommand : Command
 	{
 
