@@ -263,7 +263,7 @@
     <Compile Include="Commands\References\LinkDialog.Designer.cs">
       <DependentUpon>LinkDialog.cs</DependentUpon>
     </Compile>
-    <Compile Include="Commands\Images\GetImagesCommand.cs" />
+    <Compile Include="Commands\References\GetImagesCommand.cs" />
     <Compile Include="Commands\References\RefreshPageLinksDialog.cs">
       <SubType>Form</SubType>
     </Compile>
