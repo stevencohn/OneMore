@@ -7,6 +7,10 @@ namespace River.OneMoreAddIn
 	using System.Threading.Tasks;
 
 
+	/// <summary>
+	/// Deletes the current footnote (by reference label or footnote context) and resequences
+	/// remaining footnote on the page.
+	/// </summary>
 	internal class RemoveFootnoteCommand : Command
 	{
 

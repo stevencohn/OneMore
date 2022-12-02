@@ -11,9 +11,22 @@ namespace River.OneMoreAddIn.Commands
 	using System.Threading;
 	using System.Threading.Tasks;
 	using System.Xml.Linq;
-	using Resx = River.OneMoreAddIn.Properties.Resources;
+	using Resx = Properties.Resources;
 
 
+	/// <summary>
+	/// Embeds the contents of a selected page into the current page at the cursor location.
+	/// </summary>
+	/// <remarks>
+	/// The embedded content is wrapped in a single-cell table with a visible border to indicate
+	/// that it is embedded content. Click the Refresh link in the upper right of the table cell
+	/// to refresh the embedded contents and synchronize with any changes from the source page.
+	/// Note that this will only embed the first outline on the page; outlines are the boxes that
+	/// appear and let you move content around the page. If you have a large and complex page with
+	/// multiple outlines, it would be better to simply link to that page rather than embed its
+	/// contents. The Update Embedded Pages command will refresh and resynchronize the content of
+	/// all embedded pages on the current page.
+	/// </remarks>
 	internal class EmbedSubpageCommand : Command
 	{
 		private sealed class SourceInfo

@@ -15,6 +15,17 @@ namespace River.OneMoreAddIn.Commands
 	using System.Xml.Linq;
 
 
+	/// <summary>
+	/// Generates a report showing all pages that contain links to other pages. This can be scope
+	/// to the current section, current notebook, or all notebooks. The report is produced as a
+	/// new page in the current section.
+	/// </summary>
+	/// <remarks>
+	/// By default, links are scanned within the chosen scope, e.g.just the current section.
+	/// If you want to include links beyond the current scope, check the Include cross-notebook
+	/// references checkbox.Depending on the number of pages and notebooks, this can be time
+	/// consuming.
+	/// </remarks>
 	internal class MapCommand : Command
 	{
 		private const string RightArrow = "\u2192";
@@ -36,16 +47,14 @@ namespace River.OneMoreAddIn.Commands
 
 		public override async Task Execute(params object[] args)
 		{
-			using (var dialog = new MapDialog())
+			using var dialog = new MapDialog();
+			if (dialog.ShowDialog() != System.Windows.Forms.DialogResult.OK)
 			{
-				if (dialog.ShowDialog() != System.Windows.Forms.DialogResult.OK)
-				{
-					return;
-				}
-
-				scope = dialog.Scope;
-				fullCatalog = dialog.FullCatalog;
+				return;
 			}
+
+			scope = dialog.Scope;
+			fullCatalog = dialog.FullCatalog;
 
 			var progressDialog = new UI.ProgressDialog(Execute);
 			await progressDialog.RunModeless();

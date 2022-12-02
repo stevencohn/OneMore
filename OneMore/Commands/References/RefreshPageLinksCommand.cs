@@ -10,12 +10,13 @@ namespace River.OneMoreAddIn.Commands
 	using System.Threading;
 	using System.Threading.Tasks;
 	using System.Xml.Linq;
-	using Resx = River.OneMoreAddIn.Properties.Resources;
+	using Resx = Properties.Resources;
 
 
 	/// <summary>
-	/// Updates all pages in scope that reference the current page, refreshing the displayed
-	/// title of the current page with any changes made after the initial hyperlinks were set.
+	/// After changing the name of a page which is referenced by other pages, this command will
+	/// update those referring pages in scope with the new title of the current page.This refreshes
+	/// those hyperlinked titles after the initial hyperlinks were set.
 	/// </summary>
 	internal class RefreshPageLinksCommand : Command
 	{
@@ -32,34 +33,31 @@ namespace River.OneMoreAddIn.Commands
 
 		public override async Task Execute(params object[] args)
 		{
-			using (var dialog = new RefreshPageLinksDialog())
+			using var dialog = new RefreshPageLinksDialog();
+			if (dialog.ShowDialog() != System.Windows.Forms.DialogResult.OK)
 			{
-				if (dialog.ShowDialog() != System.Windows.Forms.DialogResult.OK)
-				{
-					return;
-				}
-
-				scope = dialog.Scope;
+				return;
 			}
 
-			using (var one = new OneNote(out var page, out _))
-			{
-				// cleaned page title
-				title = Unstamp(page.Title);
+			scope = dialog.Scope;
 
-				// page's hyperlink section-id + page-id
-				var uri = one.GetHyperlink(page.PageId, string.Empty);
-				var match = Regex.Match(uri, "section-id={[0-9A-F-]+}&page-id={[0-9A-F-]+}&");
-				if (match.Success)
-				{
-					// ampersands aren't escaped in hyperlinks but they will be in XML
-					keys = match.Groups[0].Value.Replace("&", "&amp;");
-				}
-				else
-				{
-					logger.WriteLine($"error finding section/page IDs in page hyperlink");
-					return;
-				}
+			using var one = new OneNote(out var page, out _);
+
+			// cleaned page title
+			title = Unstamp(page.Title);
+
+			// page's hyperlink section-id + page-id
+			var uri = one.GetHyperlink(page.PageId, string.Empty);
+			var match = Regex.Match(uri, "section-id={[0-9A-F-]+}&page-id={[0-9A-F-]+}&");
+			if (match.Success)
+			{
+				// ampersands aren't escaped in hyperlinks but they will be in XML
+				keys = match.Groups[0].Value.Replace("&", "&amp;");
+			}
+			else
+			{
+				logger.WriteLine($"error finding section/page IDs in page hyperlink");
+				return;
 			}
 
 			var progressDialog = new UI.ProgressDialog(Execute);

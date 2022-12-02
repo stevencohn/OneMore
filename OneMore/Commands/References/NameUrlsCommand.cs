@@ -142,37 +142,34 @@ namespace River.OneMoreAddIn.Commands
 
 			var client = HttpClientFactory.Create();
 
-			using (var response = await client.GetAsync(new Uri(url, UriKind.Absolute)))
+			using var response = await client.GetAsync(new Uri(url, UriKind.Absolute));
+			using var stream = await response.Content.ReadAsStreamAsync();
+
+			// compiled regex to check for <title></title> block
+			var pattern = new Regex(@"<title>\s*(.+?)\s*</title>",
+				RegexOptions.Compiled | RegexOptions.IgnoreCase);
+
+			var chunkSize = 512;
+			var buffer = new byte[chunkSize];
+			var contents = "";
+			var length = 0;
+
+			while ((title == null) && (length = stream.Read(buffer, 0, chunkSize)) > 0)
 			{
-				using var stream = await response.Content.ReadAsStreamAsync();
+				// convert the byte-array to a string and add it to the rest of the
+				// contents that have been downloaded so far
+				contents += Encoding.UTF8.GetString(buffer, 0, length);
 
-				// compiled regex to check for <title></title> block
-				var pattern = new Regex(@"<title>\s*(.+?)\s*</title>",
-					RegexOptions.Compiled | RegexOptions.IgnoreCase);
-
-				var chunkSize = 512;
-				var buffer = new byte[chunkSize];
-				var contents = "";
-				var length = 0;
-
-				while ((title == null) && (length = stream.Read(buffer, 0, chunkSize)) > 0)
+				var match = pattern.Match(contents);
+				if (match.Success)
 				{
-					// convert the byte-array to a string and add it to the rest of the
-					// contents that have been downloaded so far
-					contents += Encoding.UTF8.GetString(buffer, 0, length);
-
-					var match = pattern.Match(contents);
-					if (match.Success)
-					{
-						// we found a <title></title> match
-						title = match.Groups[1].Value;
-					}
-					else if (contents.Contains("</head>"))
-					{
-						// reached end of head-block; no title found
-						title = string.Empty;
-					}
-
+					// we found a <title></title> match
+					title = match.Groups[1].Value;
+				}
+				else if (contents.Contains("</head>"))
+				{
+					// reached end of head-block; no title found
+					title = string.Empty;
 				}
 			}
 

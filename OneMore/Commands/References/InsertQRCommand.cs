@@ -11,9 +11,12 @@ namespace River.OneMoreAddIn
 	using System.Threading.Tasks;
 	using System.Web;
 	using System.Xml.Linq;
-	using Resx = River.OneMoreAddIn.Properties.Resources;
+	using Resx = Properties.Resources;
 
 
+	/// <summary>
+	/// 
+	/// </summary>
 	internal class InsertQRCommand : Command
 	{
 		private const string GetUri = "http://chart.apis.google.com/chart?cht=qr&chs={1}x{1}&chl={0}";
@@ -82,13 +85,11 @@ namespace River.OneMoreAddIn
 		{
 			var client = HttpClientFactory.Create();
 
-			using (var response = await client.GetAsync(url))
+			using var response = await client.GetAsync(url);
+			if (response.IsSuccessStatusCode)
 			{
-				if (response.IsSuccessStatusCode)
-				{
-					using var stream = await response.Content.ReadAsStreamAsync();
-					return Image.FromStream(stream);
-				}
+				using var stream = await response.Content.ReadAsStreamAsync();
+				return Image.FromStream(stream);
 			}
 
 			return null;

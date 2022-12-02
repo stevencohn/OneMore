@@ -7,6 +7,10 @@ namespace River.OneMoreAddIn.Commands
 	using System.Threading.Tasks;
 
 
+	/// <summary>
+	/// Resequences the bottom-of-page footnotes in the order in which the reference
+	/// labels appear on the page
+	/// </summary>
 	internal class RefreshFootnotesCommand : Command
 	{
 

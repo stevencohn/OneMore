@@ -7,6 +7,9 @@ namespace River.OneMoreAddIn
 	using System.Threading.Tasks;
 
 
+	/// <summary>
+	/// Inserts a new footnote from the current cursor to a reference at the bottom of the page
+	/// </summary>
 	internal class AddFootnoteCommand : Command
 	{
 

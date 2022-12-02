@@ -10,7 +10,7 @@ namespace River.OneMoreAddIn
 	using System.Threading.Tasks;
 	using System.Xml.Linq;
 	using Hap = HtmlAgilityPack;
-	using Resx = River.OneMoreAddIn.Properties.Resources;
+	using Resx = Properties.Resources;
 
 
 	/// <summary>
@@ -41,38 +41,37 @@ namespace River.OneMoreAddIn
 			// anchor/link sub-commands cannot be repeated
 			IsCancelled = true;
 
-			using (var one = new OneNote())
+			using var one = new OneNote();
+
+			if ((args[0] is string cmd) && (cmd == "mark"))
 			{
-				if ((args[0] is string cmd) && (cmd == "mark"))
+				if (!MarkAnchor(one))
 				{
-					if (!MarkAnchor(one))
-					{
-						UIHelper.ShowError(one.Window, Resx.BiLinkCommand_BadAnchor);
-						return;
-					}
-
-					if (anchorText.Length > 20) { anchorText = $"{anchorText.Substring(0,20)}..."; }
-					UIHelper.ShowInfo(one.Window, string.Format(Resx.BiLinkCommand_Marked, anchorText));
+					UIHelper.ShowError(one.Window, Resx.BiLinkCommand_BadAnchor);
+					return;
 				}
-				else
+
+				if (anchorText.Length > 20) { anchorText = $"{anchorText.Substring(0, 20)}..."; }
+				UIHelper.ShowInfo(one.Window, string.Format(Resx.BiLinkCommand_Marked, anchorText));
+			}
+			else
+			{
+				if (string.IsNullOrEmpty(anchorPageId))
 				{
-					if (string.IsNullOrEmpty(anchorPageId))
-					{
-						UIHelper.ShowError(one.Window, Resx.BiLinkCommand_NoAnchor);
-						return;
-					}
-
-					if (!await CreateLinks(one))
-					{
-						UIHelper.ShowError(one.Window, string.Format(Resx.BiLinkCommand_BadTarget, error));
-						return;
-					}
-
-					// reset
-					anchorPageId = null;
-					anchorId = null;
-					anchor = null;
+					UIHelper.ShowError(one.Window, Resx.BiLinkCommand_NoAnchor);
+					return;
 				}
+
+				if (!await CreateLinks(one))
+				{
+					UIHelper.ShowError(one.Window, string.Format(Resx.BiLinkCommand_BadTarget, error));
+					return;
+				}
+
+				// reset
+				anchorPageId = null;
+				anchorId = null;
+				anchor = null;
 			}
 
 			await Task.Yield();
@@ -240,7 +239,7 @@ namespace River.OneMoreAddIn
 				//logger.WriteLine($"newxml/candidate {newxml.Length}");
 				//logger.WriteLine(newxml);
 
-				for (int i= 0; i < oldxml.Length && i < newxml.Length; i++)
+				for (int i = 0; i < oldxml.Length && i < newxml.Length; i++)
 				{
 					if (oldxml[i] != newxml[i])
 					{

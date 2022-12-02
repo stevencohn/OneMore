@@ -12,9 +12,17 @@ namespace River.OneMoreAddIn.Commands
 	using System.Threading;
 	using System.Threading.Tasks;
 	using System.Xml.Linq;
-	using Resx = River.OneMoreAddIn.Properties.Resources;
+	using Resx = Properties.Resources;
 
 
+	/// <summary>
+	/// This is an automated approach to bidirectional linking that discovers all mentions of the
+	/// title of the current page on other pages and creates bi-directional reference links
+	/// between the two. Also, a Linked References paragraph is appended to this page with links
+	/// back to all referring pages. If the current page title has a date prefix of the form 
+	/// yyyy-mm-dd then that is ignored and the remainder of the title is used to search for back
+	/// references.
+	/// </summary>
 	internal class LinkReferencesCommand : Command
 	{
 		// OE meta for linked references paragraph
