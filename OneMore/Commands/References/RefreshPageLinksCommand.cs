@@ -14,8 +14,9 @@ namespace River.OneMoreAddIn.Commands
 
 
 	/// <summary>
-	/// Updates all pages in scope that reference the current page, refreshing the displayed
-	/// title of the current page with any changes made after the initial hyperlinks were set.
+	/// After changing the name of a page which is referenced by other pages, this command will
+	/// update those referring pages in scope with the new title of the current page.This refreshes
+	/// those hyperlinked titles after the initial hyperlinks were set.
 	/// </summary>
 	internal class RefreshPageLinksCommand : Command
 	{
