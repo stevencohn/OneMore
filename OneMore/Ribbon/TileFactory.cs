@@ -26,20 +26,21 @@ namespace River.OneMoreAddIn
 		{
 			var scale = 1.0f;
 
-#if Unecessary // Used in LinqPad but OneNote does its own scaling so we don't need this...
-			using (var b = new Bitmap(1, 1)) { using (var g = Graphics.FromImage(b)) { scale = g.DpiY / 96; } }
-#endif
 			var tileWidth = (int)(70f * scale);
 			var tileHeight = (int)(60f * scale);
 
 			using var image = new Bitmap(tileWidth, tileHeight);
 			using var g = Graphics.FromImage(image);
-			g.Clear(background);
-			g.InterpolationMode = InterpolationMode.NearestNeighbor;
-			g.TextRenderingHint = TextRenderingHint.AntiAlias;
 
-			// TODO: scale font size?
-			using var style = new GraphicStyle(themeStyle);
+#if Unecessary // Used in LinqPad but OneNote does its own scaling so we don't need this...
+			using (var b = new Bitmap(1, 1)) { scale = g.DpiY / 144; }
+#endif
+
+			g.Clear(background);
+			//g.InterpolationMode = InterpolationMode.NearestNeighbor;
+			//g.TextRenderingHint = TextRenderingHint.AntiAlias;
+
+			using var style = new GraphicStyle(themeStyle, true);
 
 			// draw name...
 
