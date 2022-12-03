@@ -188,14 +188,6 @@
     <value>Wähle ein oder mehrere Symbole aus, um sie dem Seitentitel hinzuzufügen</value>
     <comment>instructions</comment>
   </data>
-  <data name="AddTitleIconDialog.Text" xml:space="preserve">
-    <value>Kleine Symbole</value>
-    <comment>dialog title</comment>
-  </data>
-  <data name="AddTitleIconDialog_introLabel.Text" xml:space="preserve">
-    <value>Wähle ein oder mehrere Symbole aus, um sie dem Seitentitel hinzuzufügen</value>
-    <comment>instructions</comment>
-  </data>
   <data name="AliasSheet.Text" xml:space="preserve">
     <value>Definiere Befehlsaliase zur Verwendung in der Befehlspalette</value>
     <comment>intro box</comment>
@@ -423,11 +415,11 @@
     <comment>dialog title</comment>
   </data>
   <data name="ChangePageColorDialog_applyBox.Text" xml:space="preserve">
-    <value>Wende das Design auf dieser Seite an</value>
+    <value>Wenden Sie das Design auf dieser Seite an</value>
     <comment>checkbox</comment>
   </data>
   <data name="ChangePageColorDialog_colorLink.Text" xml:space="preserve">
-    <value>Wähle eine benutzerdefinierte Farbe</value>
+    <value>Wählen Sie eine benutzerdefinierte Farbe</value>
     <comment>link</comment>
   </data>
   <data name="ChangePageColorDialog_Contrast" xml:space="preserve">
@@ -1411,7 +1403,7 @@ Symbole: PI, E</value>
     <comment>radio</comment>
   </data>
   <data name="ImportDialog_wordCreateButton.Text" xml:space="preserve">
-    <value>Erstelle eine neue Seite</value>
+    <value>Erstellen Sie eine neue Seite</value>
     <comment>radio</comment>
   </data>
   <data name="ImportDialog_wordGroup.Text" xml:space="preserve">
@@ -2768,18 +2760,6 @@ Polaroid</value>
     <value>Rechtschreibprüfung deaktivieren</value>
     <comment>Ribbon OneMore menu item, no spell check on this page</comment>
   </data>
-  <data name="ribDisableSpellCheckButton_Screentip" xml:space="preserve">
-    <value>Rechtschreibprüfung innerhalb ausgewählter Inhalte deaktivieren</value>
-    <comment>ribbon edit</comment>
-  </data>
-  <data name="ribDrawPlantUmlButton_Label" xml:space="preserve">
-    <value>Zeichne PlantUML</value>
-    <comment>ribbon images</comment>
-  </data>
-  <data name="ribDrawPlantUmlButton_Screentip" xml:space="preserve">
-    <value>PlantUML- oder Graphviz-Bild aus ausgewähltem Text rendern</value>
-    <comment>ribbon images</comment>
-  </data>
   <data name="ribDuplicateLineAboveButton_Label" xml:space="preserve">
     <value>Doppelter Absatz oben</value>
     <comment>pallette</comment>
@@ -2807,10 +2787,6 @@ Polaroid</value>
   <data name="ribEmbedSubpageButton_Screentip" xml:space="preserve">
     <value>Inhalte einer anderen Seite in die aktuelle Seite einbetten</value>
     <comment>ribbon item screentip</comment>
-  </data>
-  <data name="ribEmojiButton_Label" xml:space="preserve">
-    <value>Emoji zum Seitentitel hinzufügen</value>
-    <comment>ribbon page</comment>
   </data>
   <data name="ribEnableSpellCheckButton_Label" xml:space="preserve">
     <value>Rechtschreibprüfung aktivieren</value>
@@ -3215,7 +3191,7 @@ Polaroid</value>
     <comment>Ribbon OneMore menu item</comment>
   </data>
   <data name="ribRemoveEmptyButton_Label" xml:space="preserve">
-    <value>Entferne leere Absätze und Überschriften</value>
+    <value>Entfernen Sie leere Absätze und Überschriften</value>
     <comment>Ribbon OneMore menu item</comment>
   </data>
   <data name="ribRemoveEmptyButton_Screentip" xml:space="preserve">
@@ -3282,7 +3258,7 @@ Polaroid</value>
     <comment>Ribbon OneMore menu item, Resize selected image(s)</comment>
   </data>
   <data name="ribRestoreAutosizeButton_Label" xml:space="preserve">
-    <value>Stelle die Containerbreiten der automatischen Größe wieder her</value>
+    <value>Stellen Sie die Containerbreiten der automatischen Größe wieder her</value>
     <comment>ribbon item</comment>
   </data>
   <data name="ribRestoreCollapsedButton_Label" xml:space="preserve">
@@ -4516,5 +4492,149 @@ In diesem Abschnitt</value>
   <data name="ShowXmlDialog_saveBox.Text" xml:space="preserve">
     <value>Fensterposition speichern</value>
     <comment>checkbox</comment>
+  </data>
+  <data name="SearchAndReplaceDialog_substitutions" xml:space="preserve">
+    <value>Gültige Ersetzungsparameter: {0}</value>
+    <comment>status label</comment>
+  </data>
+  <data name="ImagesSheet_introBox.Text" xml:space="preserve">
+    <value>Passen Sie die Standardeinstellungen für Bildbefehle an</value>
+    <comment>label</comment>
+  </data>
+  <data name="ImagesSheet_plantAfterBox.Text" xml:space="preserve">
+    <value>Zeichnung nach PlantUML-Text einfügen</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="ImagesSheet_plantCollapseBox.Text" xml:space="preserve">
+    <value>Reduzieren Sie den PlantUML-Text</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="SettingsDialog_imagesNode.Text" xml:space="preserve">
+    <value>Bilder</value>
+    <comment>treenode</comment>
+  </data>
+  <data name="ImagesSheet_plantGroup.Text" xml:space="preserve">
+    <value>PlantUML-Optionen</value>
+    <comment>groupbox</comment>
+  </data>
+  <data name="AliasSheet_Title" xml:space="preserve">
+    <value>Befehlsaliase</value>
+    <comment>sheet</comment>
+  </data>
+  <data name="ImagesSheet_imageBrowser" xml:space="preserve">
+    <value>Bildbetrachter</value>
+  </data>
+  <data name="ImagesSheet_imageViewerLabel.Text" xml:space="preserve">
+    <value>Externer Bildbetrachter (Standard, wenn leer, ist mspaint)</value>
+    <comment>label</comment>
+  </data>
+  <data name="ImagesSheet_resizeGroup.Text" xml:space="preserve">
+    <value>Optionen zur Größenänderung</value>
+    <comment>groupsbox</comment>
+  </data>
+  <data name="ImagesSheet_Title" xml:space="preserve">
+    <value>Bilder</value>
+    <comment>sheet</comment>
+  </data>
+  <data name="ImagesSheet_widthLabel.Text" xml:space="preserve">
+    <value>Bevorzugte Größenänderungsbreite</value>
+    <comment>label</comment>
+  </data>
+  <data name="PluginsSheet_Title" xml:space="preserve">
+    <value>Plugins</value>
+    <comment>sheet title EDIT</comment>
+  </data>
+  <data name="word_General" xml:space="preserve">
+    <value>Allgemein</value>
+  </data>
+  <data name="DrawPlantUml_broken" xml:space="preserve">
+    <value>PlantUML-Text ist entweder ungültig oder kann keine Verbindung zwischen Text und Bild finden</value>
+    <comment>error message</comment>
+  </data>
+  <data name="QuickNotesSheet_groupingBox.Text" xml:space="preserve">
+    <value>Arbeitswoche (2023-02-13 W7)
+Monat (2023-02)
+Quartal (2023 Q1)
+Jahr (2023)
+#Keyword in der ersten Notizzeile</value>
+    <comment>combobox</comment>
+  </data>
+  <data name="QuickNotesSheet_groupingLabel.Text" xml:space="preserve">
+    <value>In Abschnitte gruppieren nach</value>
+    <comment>label</comment>
+  </data>
+  <data name="QuickNotesSheet_introBox.Text" xml:space="preserve">
+    <value>Passen Sie das Verhalten des Befehls „Schnelle Notizen organisieren“ an</value>
+    <comment>textbox</comment>
+  </data>
+  <data name="QuickNotesSheet_notebookButton.Text" xml:space="preserve">
+    <value>Schnelle Notizen in dieses Notizbuch verschieben</value>
+    <comment>radio</comment>
+  </data>
+  <data name="QuickNotesSheet_notebookLink.Text" xml:space="preserve">
+    <value>Klicken Sie hier, um das Notizbuch auszuwählen</value>
+    <comment>linklabel</comment>
+  </data>
+  <data name="QuickNotesSheet_sectionButton.Text" xml:space="preserve">
+    <value>Verschieben Sie Quick Notes in diesen Abschnitt</value>
+    <comment>radio</comment>
+  </data>
+  <data name="QuickNotesSheet_sectionLink.Text" xml:space="preserve">
+    <value>Klicken Sie hier, um den Abschnitt auszuwählen</value>
+    <comment>linklabel</comment>
+  </data>
+  <data name="QuickNotesSheet_SelectNotebookIntro" xml:space="preserve">
+    <value>Wählen Sie das Notizbuch aus, das zum Organisieren Ihrer Schnellnotizen verwendet wird</value>
+    <comment>quick filing dialog intro</comment>
+  </data>
+  <data name="QuickNotesSheet_SelectNotebookTitle" xml:space="preserve">
+    <value>Wählen Sie Notizbuch aus</value>
+    <comment>quick filing dialog title</comment>
+  </data>
+  <data name="QuickNotesSheet_SelectSectionIntro" xml:space="preserve">
+    <value>Wählen Sie den Abschnitt aus, der zum Organisieren Ihrer Schnellnotizen verwendet wird</value>
+    <comment>quick filing dialog intro</comment>
+  </data>
+  <data name="QuickNotesSheet_SelectSectionTitle" xml:space="preserve">
+    <value>Abschnitt auswählen</value>
+    <comment>quick filing dialog title</comment>
+  </data>
+  <data name="QuickNotesSheet_stampBox.Text" xml:space="preserve">
+    <value>Stellen Sie dem Titel das Erstellungsdatum der Notiz voran</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="QuickNotesSheet_Title" xml:space="preserve">
+    <value>Schnelle Notizen</value>
+    <comment>sheet title</comment>
+  </data>
+  <data name="QuickNotesSheet_titleBox.Text" xml:space="preserve">
+    <value>Legen Sie den Seitentitel auf die ersten fünf Wörter der Notiz fest</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="SettingsDialog_quickNotesNode.Text" xml:space="preserve">
+    <value>Schnelle Notizen</value>
+    <comment>tree node</comment>
+  </data>
+  <data name="word_Notebook" xml:space="preserve">
+    <value>Notizbuch</value>
+  </data>
+  <data name="word_Section" xml:space="preserve">
+    <value>Abschnitt</value>
+  </data>
+  <data name="ribFileQuickNotesButton_Label" xml:space="preserve">
+    <value>Schnelle Notizen ablegen</value>
+    <comment>ribbon file</comment>
+  </data>
+  <data name="ribFileQuickNotesButton_Screentip" xml:space="preserve">
+    <value>Organisieren Sie Quick Notes in einem Notizbuch oder Abschnitt</value>
+    <comment>ribbon file</comment>
+  </data>
+  <data name="Favorites_suspect" xml:space="preserve">
+    <value>Seite nicht gefunden; es wurde möglicherweise umbenannt oder verschoben</value>
+    <comment>tooltip</comment>
+  </data>
+  <data name="Favorites_unknown" xml:space="preserve">
+    <value>Seite nicht mehr gefunden; es wurde möglicherweise gelöscht</value>
+    <comment>tooltip</comment>
   </data>
 </root>
