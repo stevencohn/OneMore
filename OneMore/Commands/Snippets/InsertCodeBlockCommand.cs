@@ -12,7 +12,7 @@ namespace River.OneMoreAddIn.Commands
 	using System.Text.RegularExpressions;
 	using System.Threading.Tasks;
 	using System.Xml.Linq;
-	using Resx = River.OneMoreAddIn.Properties.Resources;
+	using Resx = Properties.Resources;
 
 
 	/// <summary>
@@ -253,7 +253,7 @@ namespace River.OneMoreAddIn.Commands
 
 			// if all runs have background styles (this is an estimate since it is possible
 			// for there to be more backgrounds than runs if there are multiples in each run)
-			if (grounds.Count >= runs.Count())
+			if (grounds.Any() && grounds.Count >= runs.Count())
 			{
 				// find the most frequently occurring color
 				var mostFrequent = grounds.Select(v => v)

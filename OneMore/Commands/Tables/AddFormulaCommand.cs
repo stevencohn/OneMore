@@ -13,14 +13,28 @@ namespace River.OneMoreAddIn.Commands
 	using System.Threading.Tasks;
 	using System.Windows.Forms;
 	using System.Xml.Linq;
-	using Resx = River.OneMoreAddIn.Properties.Resources;
+	using Resx = Properties.Resources;
 
 
+	/// <summary>
+	/// Applies a formula to one or more selected cells in a table. A formula can consist of
+	/// basic mathematical operators, parenthesis, and most math functions such as abs, sum,
+	/// average, sin, etc.
+	/// </summary>
+	/// <remarks>
+	/// If you use cell references in your formula and you've selected more than one cell then
+	/// OneMore will automatically increment the references relative to each seleted cell. For
+	/// example, if you select cells A10, B10, and C10 and enter the formula sum(A1:A9) then that
+	/// will apply to A10, sum(B1:B9) will apply to B10, and sum(C1:C9) will apply to C10.
+	/// 
+	/// Formula processing is not recursive.This means that if cell A1 has a formula "A2+1" and
+	/// cell A2 has a formula "1+1", then when A1 is calculated, it will not force A2 to be
+	/// recalculated. Instead, each cell is calculated in order, top-down and left-to-right
+	/// across the table.
+	/// </remarks>
 	internal class AddFormulaCommand : Command
 	{
 		public const string BoltSymbol = "140";
-
-		private OneNote one;
 
 
 		public AddFormulaCommand()
@@ -30,87 +44,86 @@ namespace River.OneMoreAddIn.Commands
 
 		public override async Task Execute(params object[] args)
 		{
-			using (one = new OneNote(out var page, out var ns))
+			using var one = new OneNote(out var page, out var ns);
+
+			if (!page.ConfirmBodyContext())
 			{
-				if (!page.ConfirmBodyContext())
-				{
-					UIHelper.ShowInfo(one.Window, Resx.FormulaCommand_SelectOne);
-					return;
-				}
-
-				// Find first selected cell as anchor point to locate table into which
-				// the formula should be inserted; By filtering on selected=all, we avoid
-				// including the parent table of a selected nested table.
-
-				var anchor = page.Root.Descendants(ns + "Cell")
-					// first dive down to find the selected T
-					.Elements(ns + "OEChildren").Elements(ns + "OE")
-					.Elements(ns + "T")
-					.Where(e => e.Attribute("selected")?.Value == "all")
-					// now move back up to the Cell
-					.Select(e => e.Parent.Parent.Parent)
-					.FirstOrDefault();
-
-				if (anchor == null)
-				{
-					UIHelper.ShowInfo(one.Window, Resx.FormulaCommand_SelectOne);
-					return;
-				}
-
-				var table = new Table(anchor.FirstAncestor(ns + "Table"));
-				var cells = table.GetSelectedCells(out var range).ToList();
-
-				if (range == TableSelectionRange.Rectangular)
-				{
-					UIHelper.ShowInfo(one.Window, Resx.FormulaCommand_Linear);
-					return;
-				}
-
-				using var dialog = new FormulaDialog();
-
-				// display selected cell names
-				dialog.SetCellNames(
-					string.Join(", ", cells.Select(c => c.Coordinates))); // + $" ({rangeType})");
-
-				var cell = cells.First();
-
-				// display formula of first cell if any
-				var formula = new Formula(cell);
-				if (formula.Valid)
-				{
-					dialog.Format = formula.Format;
-					dialog.Formula = formula.Expression;
-					dialog.DecimalPlaces = formula.DecimalPlaces;
-				}
-
-				var tagIndex = page.GetTagDefIndex(BoltSymbol);
-				if (!string.IsNullOrEmpty(tagIndex))
-				{
-					if (cell.HasTag(tagIndex))
-					{
-						dialog.Tagged = true;
-					}
-				}
-
-				if (dialog.ShowDialog() != DialogResult.OK)
-				{
-					return;
-				}
-
-				if (dialog.Tagged)
-				{
-					tagIndex = page.AddTagDef(BoltSymbol, Resx.AddFormulaCommand_Calculated);
-				}
-
-				StoreFormula(cells,
-					dialog.Formula, dialog.Format, dialog.DecimalPlaces,
-					range, tagIndex);
-
-				var processor = new Processor(table);
-				processor.Execute(cells);
-
-				await one.Update(page);
+				UIHelper.ShowInfo(one.Window, Resx.FormulaCommand_SelectOne);
+				return;
 			}
+
+			// Find first selected cell as anchor point to locate table into which
+			// the formula should be inserted; By filtering on selected=all, we avoid
+			// including the parent table of a selected nested table.
+
+			var anchor = page.Root.Descendants(ns + "Cell")
+				// first dive down to find the selected T
+				.Elements(ns + "OEChildren").Elements(ns + "OE")
+				.Elements(ns + "T")
+				.Where(e => e.Attribute("selected")?.Value == "all")
+				// now move back up to the Cell
+				.Select(e => e.Parent.Parent.Parent)
+				.FirstOrDefault();
+
+			if (anchor == null)
+			{
+				UIHelper.ShowInfo(one.Window, Resx.FormulaCommand_SelectOne);
+				return;
+			}
+
+			var table = new Table(anchor.FirstAncestor(ns + "Table"));
+			var cells = table.GetSelectedCells(out var range).ToList();
+
+			if (range == TableSelectionRange.Rectangular)
+			{
+				UIHelper.ShowInfo(one.Window, Resx.FormulaCommand_Linear);
+				return;
+			}
+
+			using var dialog = new FormulaDialog();
+
+			// display selected cell names
+			dialog.SetCellNames(
+				string.Join(", ", cells.Select(c => c.Coordinates))); // + $" ({rangeType})");
+
+			var cell = cells.First();
+
+			// display formula of first cell if any
+			var formula = new Formula(cell);
+			if (formula.Valid)
+			{
+				dialog.Format = formula.Format;
+				dialog.Formula = formula.Expression;
+				dialog.DecimalPlaces = formula.DecimalPlaces;
+			}
+
+			var tagIndex = page.GetTagDefIndex(BoltSymbol);
+			if (!string.IsNullOrEmpty(tagIndex))
+			{
+				if (cell.HasTag(tagIndex))
+				{
+					dialog.Tagged = true;
+				}
+			}
+
+			if (dialog.ShowDialog() != DialogResult.OK)
+			{
+				return;
+			}
+
+			if (dialog.Tagged)
+			{
+				tagIndex = page.AddTagDef(BoltSymbol, Resx.AddFormulaCommand_Calculated);
+			}
+
+			StoreFormula(cells,
+				dialog.Formula, dialog.Format, dialog.DecimalPlaces,
+				range, tagIndex);
+
+			var processor = new Processor(table);
+			processor.Execute(cells);
+
+			await one.Update(page);
 		}
 
 

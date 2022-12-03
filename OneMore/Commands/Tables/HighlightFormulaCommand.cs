@@ -7,9 +7,12 @@ namespace River.OneMoreAddIn.Commands
 	using System.Linq;
 	using System.Threading.Tasks;
 	using System.Xml.Linq;
-	using Resx = River.OneMoreAddIn.Properties.Resources;
+	using Resx = Properties.Resources;
 
 
+	/// <summary>
+	/// Highlights cells in all tables on the page that containing formulas by selecting each cell
+	/// </summary>
 	internal class HighlightFormulaCommand : Command
 	{
 
@@ -22,41 +25,40 @@ namespace River.OneMoreAddIn.Commands
 		{
 			logger.StartClock();
 
-			using (var one = new OneNote(out var page, out var ns))
+			using var one = new OneNote(out var page, out var ns);
+
+			// deselect any selected content in the page
+			page.Root.Descendants().Attributes("selected").Remove();
+
+			// highlight all formula cells in all tables on the page
+
+			var tables = page.Root.Descendants(ns + "Cell")
+				.Elements(ns + "OEChildren")
+				.Elements(ns + "OE")
+				.Elements(ns + "Meta")
+				.Where(e => e.Attribute("name").Value == "omfx")
+				.Select(e => e.FirstAncestor(ns + "Table"));
+
+			if (tables?.Any() == true)
 			{
-				// deselect any selected content in the page
-				page.Root.Descendants().Attributes("selected").Remove();
-
-				// highlight all formula cells in all tables on the page
-
-				var tables = page.Root.Descendants(ns + "Cell")
-					.Elements(ns + "OEChildren")
-					.Elements(ns + "OE")
-					.Elements(ns + "Meta")
-					.Where(e => e.Attribute("name").Value == "omfx")
-					.Select(e => e.FirstAncestor(ns + "Table"));
-
-				if (tables?.Any() == true)
+				foreach (var table in tables)
 				{
-					foreach (var table in tables)
+					// select all omfx cells
+					var cells = table.Descendants(ns + "Meta")
+						.Where(e => e.Attribute("name").Value == "omfx")
+						.Select(e => e.Parent.Parent.Parent);
+
+					foreach (var cell in cells)
 					{
-						// select all omfx cells
-						var cells = table.Descendants(ns + "Meta")
-							.Where(e => e.Attribute("name").Value == "omfx")
-							.Select(e => e.Parent.Parent.Parent);
-
-						foreach (var cell in cells)
-						{
-							cell.SetAttributeValue("selected", "all");
-						}
+						cell.SetAttributeValue("selected", "all");
 					}
+				}
 
-					await one.Update(page);
-				}
-				else
-				{
-					UIHelper.ShowInfo(Resx.HighlightFormulaCommand_NoFormulas);
-				}
+				await one.Update(page);
+			}
+			else
+			{
+				UIHelper.ShowInfo(Resx.HighlightFormulaCommand_NoFormulas);
 			}
 
 			logger.WriteTime("highlight");

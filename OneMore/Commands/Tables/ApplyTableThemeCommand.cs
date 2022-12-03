@@ -11,6 +11,9 @@ namespace River.OneMoreAddIn.Commands
 	using System.Xml.Linq;
 
 
+	/// <summary>
+	/// Applies a table theme to the current table including cell shading and font styles.
+	/// </summary>
 	internal class ApplyTableThemeCommand : Command
 	{
 		public ApplyTableThemeCommand()

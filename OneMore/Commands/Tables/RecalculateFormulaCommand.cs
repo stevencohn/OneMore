@@ -9,9 +9,12 @@ namespace River.OneMoreAddIn.Commands
 	using System.Linq;
 	using System.Threading.Tasks;
 	using System.Xml.Linq;
-	using Resx = River.OneMoreAddIn.Properties.Resources;
+	using Resx = Properties.Resources;
 
 
+	/// <summary>
+	/// Recalculates all formulas in the selected table(s)
+	/// </summary>
 	internal class RecalculateFormulaCommand : Command
 	{
 
@@ -24,44 +27,43 @@ namespace River.OneMoreAddIn.Commands
 		{
 			logger.StartClock();
 
-			using (var one = new OneNote(out var page, out var ns))
+			using var one = new OneNote(out var page, out var ns);
+
+			var element = page.Root.Descendants(ns + "Cell")
+				// first dive down to find the selected T
+				.Elements(ns + "OEChildren")
+				.Elements(ns + "OE")
+				.Elements(ns + "T")
+				.Where(e => e.Attribute("selected")?.Value == "all")
+				// now move back up to the Table
+				.Select(e => e.FirstAncestor(ns + "Table"))
+				.FirstOrDefault();
+
+			var updated = false;
+
+			if (element != null)
 			{
-				var element = page.Root.Descendants(ns + "Cell")
-					// first dive down to find the selected T
-					.Elements(ns + "OEChildren")
-					.Elements(ns + "OE")
-					.Elements(ns + "T")
-					.Where(e => e.Attribute("selected")?.Value == "all")
-					// now move back up to the Table
-					.Select(e => e.FirstAncestor(ns + "Table"))
-					.FirstOrDefault();
+				var table = new Table(element);
 
-				var updated = false;
+				var cells =
+					from r in table.Rows
+					from c in r.Cells
+					where c.Root.Elements(ns + "OEChildren").Elements(ns + "OE").Elements(ns + "Meta").Any()
+					select c;
 
-				if (element != null)
+				if (cells?.Any() == true)
 				{
-					var table = new Table(element);
+					var processor = new Processor(table);
+					processor.Execute(cells.ToList());
 
-					var cells =
-						from r in table.Rows
-						from c in r.Cells
-						where c.Root.Elements(ns + "OEChildren").Elements(ns + "OE").Elements(ns + "Meta").Any()
-						select c;
-
-					if (cells?.Any() == true)
-					{
-						var processor = new Processor(table);
-						processor.Execute(cells.ToList());
-
-						await one.Update(page);
-						updated = true;
-					}
+					await one.Update(page);
+					updated = true;
 				}
+			}
 
-				if (!updated)
-				{
-					UIHelper.ShowInfo(Resx.RecalculateFormulaCommand_NoFormula);
-				}
+			if (!updated)
+			{
+				UIHelper.ShowInfo(Resx.RecalculateFormulaCommand_NoFormula);
 			}
 
 			logger.WriteTime("recalcution");

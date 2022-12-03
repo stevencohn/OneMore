@@ -10,13 +10,20 @@ namespace River.OneMoreAddIn.Commands
 	using System.Threading.Tasks;
 	using System.Xml.Linq;
 	using Hap = HtmlAgilityPack;
-	using Resx = River.OneMoreAddIn.Properties.Resources;
+	using Resx = Properties.Resources;
 
 
 	/// <summary>
-	/// Paste the copied cells into the target table, overlaying cells rather than inserting
-	/// a nested table. The target table is expanded with extra rows or columns as needed.
+	/// Paste copied cells into a table, overlaying cells rather than inserting a nested table as
+	/// OneNote does by default. The target table is expanded with extra rows or columns as needed.
+	/// All cell formatting, including cell shading, is preserved. This is useful for moving cells
+	/// around within a table or copying cells from one table to another.
 	/// </summary>
+	/// <remarks>
+	/// When copying cells with Ctrl-C and pasting back into the same table, the old cells are not
+	/// erased.If your intention is to move the cells, leaving blank cells behind, then instead
+	/// use Ctrl-X to copy and cut prior to running this paste command.
+	/// </remarks>
 	internal class PasteCellsCommand : Command
 	{
 		private OneNote one;

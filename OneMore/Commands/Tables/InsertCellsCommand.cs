@@ -10,9 +10,17 @@ namespace River.OneMoreAddIn.Commands
 	using System.Threading.Tasks;
 	using System.Windows.Forms;
 	using System.Xml.Linq;
-	using Resx = River.OneMoreAddIn.Properties.Resources;
+	using Resx = Properties.Resources;
 
 
+	/// <summary>
+	/// Adds the ability to insert cells into a table, shifting existing content down or to the
+	/// right. This is similar to the Excel functionality with one enhancement - if you select
+	/// a rectangular region of cells then it will shift just those cells, possibly overwriting
+	/// other cells. If you select cells from one column or cells from one row then it will
+	/// insert cells above or to the left and add rows or columns as needed to make room for
+	/// the new cells.
+	/// </summary>
 	internal class InsertCellsCommand : Command
 	{
 
