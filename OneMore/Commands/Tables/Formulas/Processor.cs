@@ -142,7 +142,7 @@ namespace River.OneMoreAddIn.Commands.Tables.Formulas
 					break;
 
 				case FormulaFormat.Percentage:
-					text = (result / 100).ToString("P", AddIn.Culture);
+					text = (result / 100).ToString($"P{dplaces}", AddIn.Culture);
 					break;
 			}
 

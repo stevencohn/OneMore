@@ -7,9 +7,12 @@ namespace River.OneMoreAddIn.Commands
 	using System.Linq;
 	using System.Threading.Tasks;
 	using System.Xml.Linq;
-	using Resx = River.OneMoreAddIn.Properties.Resources;
+	using Resx = Properties.Resources;
 
 
+	/// <summary>
+	/// Removes formula from the selected cell(s) but retain the values displayed in those cell.
+	/// </summary>
 	internal class DeleteFormulaCommand : Command
 	{
 

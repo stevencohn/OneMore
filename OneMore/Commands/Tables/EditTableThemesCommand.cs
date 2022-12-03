@@ -8,6 +8,10 @@ namespace River.OneMoreAddIn.Commands
 	using System.Windows.Forms;
 
 
+	/// <summary>
+	/// Opens the table theme editor dialog, providing a way to create and modify
+	/// custom table themes
+	/// </summary>
 	internal class EditTableThemesCommand : Command
 	{
 
