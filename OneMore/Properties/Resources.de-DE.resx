@@ -188,6 +188,14 @@
     <value>Wähle ein oder mehrere Symbole aus, um sie dem Seitentitel hinzuzufügen</value>
     <comment>instructions</comment>
   </data>
+  <data name="AddTitleIconDialog.Text" xml:space="preserve">
+    <value>Kleine Symbole</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="AddTitleIconDialog_introLabel.Text" xml:space="preserve">
+    <value>Wähle ein oder mehrere Symbole aus, um sie dem Seitentitel hinzuzufügen</value>
+    <comment>instructions</comment>
+  </data>
   <data name="AliasSheet.Text" xml:space="preserve">
     <value>Definiere Befehlsaliase zur Verwendung in der Befehlspalette</value>
     <comment>intro box</comment>
