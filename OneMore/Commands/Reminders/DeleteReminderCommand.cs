@@ -9,9 +9,12 @@ namespace River.OneMoreAddIn.Commands
 	using System.Threading.Tasks;
 	using System.Windows.Forms;
 	using System.Xml.Linq;
-	using Resx = River.OneMoreAddIn.Properties.Resources;
+	using Resx = Properties.Resources;
 
 
+	/// <summary>
+	/// Deletes the reminder associated with the current paragraph and optionally removes the tag.
+	/// </summary>
 	internal class DeleteReminderCommand : Command
 	{
 
