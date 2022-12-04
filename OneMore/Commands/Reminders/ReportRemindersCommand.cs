@@ -11,9 +11,12 @@ namespace River.OneMoreAddIn.Commands
 	using System.Threading.Tasks;
 	using System.Windows.Forms;
 	using System.Xml.Linq;
-	using Resx = River.OneMoreAddIn.Properties.Resources;
+	using Resx = Properties.Resources;
 
 
+	/// <summary>
+	/// Generates a detailed report page of all active and inactive reminders.
+	/// </summary>
 	internal class ReportRemindersCommand : Command
 	{
 		private sealed class Item
@@ -83,15 +86,13 @@ namespace River.OneMoreAddIn.Commands
 				}
 				else
 				{
-					using (var dialog = new ReportRemindersDialog())
+					using var dialog = new ReportRemindersDialog();
+					if (dialog.ShowDialog() != DialogResult.OK)
 					{
-						if (dialog.ShowDialog() != DialogResult.OK)
-						{
-							return;
-						}
-
-						scope = dialog.Scope;
+						return;
 					}
+
+					scope = dialog.Scope;
 
 					if (!await CollectReminders(scope))
 					{
