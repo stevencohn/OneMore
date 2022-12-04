@@ -11,9 +11,15 @@ namespace River.OneMoreAddIn.Commands
 	using System.Threading.Tasks;
 	using System.Windows.Forms;
 	using System.Xml.Linq;
-	using Resx = River.OneMoreAddIn.Properties.Resources;
+	using Resx = Properties.Resources;
 
 
+	/// <summary>
+	/// Creates or updates a reminder for the current paragraph. The cursor must be positioned
+	/// on the paragraph of interest with no text range selected. You can select one tag to
+	/// associate with the reminder; it is recommended that you select a checkable tag, but
+	/// any tag will do.
+	/// </summary>
 	internal class RemindCommand : Command
 	{
 		private Page page;
@@ -22,8 +28,6 @@ namespace River.OneMoreAddIn.Commands
 
 		public RemindCommand()
 		{
-			// prevent replay
-			IsCancelled = true;
 		}
 
 
