@@ -11,12 +11,19 @@ namespace River.OneMoreAddIn.Commands
 	using System.Linq;
 	using System.Threading.Tasks;
 	using System.Xml.Linq;
-	using Resx = River.OneMoreAddIn.Properties.Resources;
+	using Resx = Properties.Resources;
 
 
 	/// <summary>
-	/// Generates a list or a detailed table of selected Outlook tasks
+	/// Imports Outlook tasks in a list or tabular form. When imported as a table, the start, 
+	/// due, completed, and other properties are displayed. Note that OneMore can only keep track
+	/// of the status (clickable status flags) of tasks in the main Outlook Tasks folder. While
+	/// OneMore can import tasks from other folders, OneNote does not keep track of their status.
 	/// </summary>
+	/// <remarks>
+	/// The task detail table is accompanied by a title with a refresh link.Click this link to
+	/// update the task details from Outlook.
+	/// </remarks>
 	internal class ImportOutlookTasksCommand : Command
 	{
 		private const string TableMeta = "omOutlookTasks";
@@ -54,37 +61,34 @@ namespace River.OneMoreAddIn.Commands
 				return;
 			}
 
-			IEnumerable<OutlookTask> tasks = null;
-
 			if (args.Length > 1 && args[0] is string refreshArg && refreshArg == "refresh")
 			{
 				await UpdateTableReport(args[1] as string);
 				return;
 			}
 
-			var detailed = false;
-			using (var outlook = new Outlook())
+			// select...
+
+			using var outlook = new Outlook();
+			var folders = outlook.GetTaskHierarchy();
+
+			using var dialog = new ImportOutlookTasksDialog(folders);
+			if (dialog.ShowDialog() != System.Windows.Forms.DialogResult.OK)
 			{
-				var folders = outlook.GetTaskHierarchy();
-
-				using var dialog = new ImportOutlookTasksDialog(folders);
-				if (dialog.ShowDialog() != System.Windows.Forms.DialogResult.OK)
-				{
-					return;
-				}
-
-				tasks = dialog.SelectedTasks;
-				if (!tasks.Any())
-				{
-					return;
-				}
-
-				detailed = dialog.ShowDetailedTable;
+				return;
 			}
+
+			var tasks = dialog.SelectedTasks;
+			if (!tasks.Any())
+			{
+				return;
+			}
+
+			// import...
 
 			using (one = new OneNote(out page, out ns))
 			{
-				if (detailed)
+				if (dialog.ShowDetailedTable)
 				{
 					await GenerateTableReport(tasks);
 				}
