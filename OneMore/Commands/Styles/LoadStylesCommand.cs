@@ -8,9 +8,12 @@ namespace River.OneMoreAddIn.Commands
 	using System.IO;
 	using System.Threading.Tasks;
 	using System.Windows.Forms;
-	using Resx = River.OneMoreAddIn.Properties.Resources;
+	using Resx = Properties.Resources;
 
 
+	/// <summary>
+	/// Load custom styles from a specified file and update the style gallery
+	/// </summary>
 	internal class LoadStylesCommand : Command
 	{
 		public LoadStylesCommand()

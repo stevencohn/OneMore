@@ -4,13 +4,14 @@
 
 namespace River.OneMoreAddIn.Commands
 {
-	using River.OneMoreAddIn.Models;
 	using River.OneMoreAddIn.Styles;
-	using System.Drawing;
 	using System.Threading.Tasks;
 	using System.Windows.Forms;
 
 
+	/// <summary>
+	/// Create a new style based on the style of the selected content
+	/// </summary>
 	internal class NewStyleCommand : Command
 	{
 
@@ -21,12 +22,8 @@ namespace River.OneMoreAddIn.Commands
 
 		public override async Task Execute(params object[] args)
 		{
-			Page page;
-			Color pageColor;
-			using (var one = new OneNote(out page, out _))
-			{
-				pageColor = page.GetPageColor(out _, out _);
-			}
+			using var one = new OneNote(out var page, out _);
+			var pageColor = page.GetPageColor(out _, out _);
 
 			var analyzer = new StyleAnalyzer(page.Root);
 
@@ -36,15 +33,13 @@ namespace River.OneMoreAddIn.Commands
 				return;
 			}
 
-			using (var dialog = new StyleDialog(style, pageColor))
+			using var dialog = new StyleDialog(style, pageColor);
+			if (dialog.ShowDialog() == DialogResult.OK)
 			{
-				if (dialog.ShowDialog() == DialogResult.OK)
+				if (dialog.Style != null)
 				{
-					if (dialog.Style != null)
-					{
-						ThemeProvider.Save(dialog.Style);
-						ribbon.Invalidate();
-					}
+					ThemeProvider.Save(dialog.Style);
+					ribbon.Invalidate();
 				}
 			}
 

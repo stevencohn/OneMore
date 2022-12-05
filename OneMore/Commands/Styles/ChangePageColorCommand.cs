@@ -13,6 +13,10 @@ namespace River.OneMoreAddIn.Commands
 	using System.Xml.Linq;
 
 
+	/// <summary>
+	/// Applies a custom background color of the page and optionally applies the currently
+	/// loaded custom styles to all content on the page
+	/// </summary>
 	internal class ChangePageColorCommand : Command
 	{
 		public ChangePageColorCommand()
@@ -27,20 +31,18 @@ namespace River.OneMoreAddIn.Commands
 			using var one = new OneNote(out var page, out _);
 			var color = page.GetPageColor(out _, out _);
 
-			using (var dialog = new ChangePageColorDialog(color))
+			using var dialog = new ChangePageColorDialog(color);
+			if (dialog.ShowDialog() != DialogResult.OK)
 			{
-				if (dialog.ShowDialog() != DialogResult.OK)
-				{
-					return;
-				}
+				return;
+			}
 
-				UpdatePageColor(page, dialog.PageColor);
-				ThemeProvider.RecordTheme(dialog.ThemeKey);
+			UpdatePageColor(page, dialog.PageColor);
+			ThemeProvider.RecordTheme(dialog.ThemeKey);
 
-				if (dialog.ApplyStyle)
-				{
-					new ApplyStylesCommand().Apply(page);
-				}
+			if (dialog.ApplyStyle)
+			{
+				new ApplyStylesCommand().Apply(page);
 			}
 
 			await one.Update(page);

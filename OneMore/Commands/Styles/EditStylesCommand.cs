@@ -10,6 +10,9 @@ namespace River.OneMoreAddIn.Commands
 	using System.Windows.Forms;
 
 
+	/// <summary>
+	/// Edit custom styles
+	/// </summary>
 	internal class EditStylesCommand : Command
 	{
 		public EditStylesCommand()

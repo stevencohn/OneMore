@@ -14,6 +14,9 @@ namespace River.OneMoreAddIn.Commands
 	using System.Xml.Linq;
 
 
+	/// <summary>
+	/// Apply a custom style to the selected content
+	/// </summary>
 	internal class ApplyStyleCommand : Command
 	{
 		private Page page;
