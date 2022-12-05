@@ -14,8 +14,8 @@ namespace River.OneMoreAddIn.Commands
 
 
 	/// <summary>
-	/// Apply the user-defined custom styles of the current them to all content within the page
-	/// by attempting to match standard styles with custom styles. Ror example, it will apply
+	/// Apply the currently loaded user-defined custom styles to all content within the page
+	/// by attempting to match standard styles with custom styles. For example, it will apply
 	/// custom-heading-1 to all standard-heading-1 content. This is done by applying the styles
 	/// directly to the QuickStyleDefs declarations.
 	/// </summary>

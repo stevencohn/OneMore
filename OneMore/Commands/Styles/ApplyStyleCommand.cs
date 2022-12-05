@@ -15,7 +15,7 @@ namespace River.OneMoreAddIn.Commands
 
 
 	/// <summary>
-	/// Applies a custom style to the selected content
+	/// Apply a custom style to the selected content
 	/// </summary>
 	internal class ApplyStyleCommand : Command
 	{
