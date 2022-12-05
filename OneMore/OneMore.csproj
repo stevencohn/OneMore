@@ -1172,6 +1172,7 @@
     <EmbeddedResource Include="Commands\Settings\KeyboardSheet.resx">
       <DependentUpon>KeyboardSheet.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.he-IL.resx" />
     <EmbeddedResource Include="UI\RenameDialog.resx">
       <DependentUpon>RenameDialog.cs</DependentUpon>
     </EmbeddedResource>
