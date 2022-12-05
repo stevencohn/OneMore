@@ -13,6 +13,9 @@ namespace River.OneMoreAddIn.Commands
 	using System.Xml.Linq;
 
 
+	/// <summary>
+	/// 
+	/// </summary>
 	internal class ChangePageColorCommand : Command
 	{
 		public ChangePageColorCommand()
