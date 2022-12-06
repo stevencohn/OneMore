@@ -117,7 +117,7 @@ namespace River.OneMoreAddIn.Settings
 			dialog.ShowHelp = true; // stupid, but this is needed to avoid hang
 			dialog.InitialDirectory = GetValidPath(imageViewerBox.Text);
 
-			var result = dialog.ShowDialog();
+			var result = dialog.ShowDialog(/* leave empty */);
 			if (result == DialogResult.OK)
 			{
 				imageViewerBox.Text = dialog.FileName;

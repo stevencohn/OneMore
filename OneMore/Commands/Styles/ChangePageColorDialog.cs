@@ -102,7 +102,7 @@ namespace River.OneMoreAddIn.Commands
 
 			dialog.Color = colorsBox.CustomColor;
 
-			if (dialog.ShowDialog() == DialogResult.OK)
+			if (dialog.ShowDialog(this) == DialogResult.OK)
 			{
 				colorsBox.SetCustomColor(dialog.Color);
 

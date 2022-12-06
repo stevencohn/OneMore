@@ -62,7 +62,7 @@ namespace River.OneMoreAddIn.Commands
 
 			using (var dialog = new RemoveDuplicatesDialog())
 			{
-				result = dialog.ShowDialog();
+				result = dialog.ShowDialog(owner);
 				if (result != DialogResult.OK)
 				{
 					return;

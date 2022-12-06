@@ -59,7 +59,7 @@ namespace River.OneMoreAddIn.Commands
 
 			using (var dialog = new InsertCellsDialog())
 			{
-				if (dialog.ShowDialog() != DialogResult.OK)
+				if (dialog.ShowDialog(owner) != DialogResult.OK)
 				{
 					return;
 				}

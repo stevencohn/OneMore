@@ -1350,7 +1350,7 @@ namespace River.OneMoreAddIn
 				logger.Write($" window PID:{processId}, TID:{threadId}");
 				logger.Write($" handle:{window.WindowHandle:x}");
 
-				Native.GetWindowRect((IntPtr)win.WindowHandle, ref bounds);
+				Native.GetWindowRect((IntPtr)window.WindowHandle, ref bounds);
 				logger.WriteLine($" bounds:{bounds.Left},{bounds.Top},{bounds.Right},{bounds.Bottom}");
 			}
 		}

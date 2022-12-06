@@ -50,7 +50,7 @@ namespace River.OneMoreAddIn.Commands
 		{
 			using var box = new MoreBubbleWindow();
 			box.SetMessage(text);
-			return box.ShowDialog();
+			return box.ShowDialog(/* leave empty */);
 		}
 
 

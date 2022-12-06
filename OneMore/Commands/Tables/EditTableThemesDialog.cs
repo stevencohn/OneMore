@@ -392,7 +392,7 @@ namespace River.OneMoreAddIn.Commands
 					Color = swatch.Color
 				};
 
-				var result = dialog.ShowDialog();
+				var result = dialog.ShowDialog(this);
 				if (result == DialogResult.Cancel)
 				{
 					return;
@@ -622,7 +622,7 @@ namespace River.OneMoreAddIn.Commands
 
 			dialog.Color = colorfont.Foreground;
 
-			if (dialog.ShowDialog() == DialogResult.OK)
+			if (dialog.ShowDialog(this) == DialogResult.OK)
 			{
 				colorfont.Foreground = dialog.Color;
 			}

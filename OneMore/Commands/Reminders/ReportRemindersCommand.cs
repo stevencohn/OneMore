@@ -87,7 +87,7 @@ namespace River.OneMoreAddIn.Commands
 				else
 				{
 					using var dialog = new ReportRemindersDialog();
-					if (dialog.ShowDialog() != DialogResult.OK)
+					if (dialog.ShowDialog(owner) != DialogResult.OK)
 					{
 						return;
 					}
@@ -262,7 +262,7 @@ namespace River.OneMoreAddIn.Commands
 			DialogResult answer;
 			using (var dialog = new ReportRemindersReuseDialog())
 			{
-				if (dialog.ShowDialog() == DialogResult.Cancel)
+				if (dialog.ShowDialog(owner) == DialogResult.Cancel)
 				{
 					// kind of hacky but...
 					return String.Empty;

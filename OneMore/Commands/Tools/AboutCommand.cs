@@ -20,7 +20,7 @@ namespace River.OneMoreAddIn.Commands
 		{
 			using (var dialog = new AboutDialog(factory))
 			{
-				dialog.ShowDialog();
+				dialog.ShowDialog(owner);
 			}
 
 			await Task.Yield();

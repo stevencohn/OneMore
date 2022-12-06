@@ -576,7 +576,7 @@ namespace River.OneMoreAddIn.Commands
 			{
 				dialog.Color = color;
 
-				if (dialog.ShowDialog() == DialogResult.OK)
+				if (dialog.ShowDialog(this) == DialogResult.OK)
 				{
 					return dialog.Color;
 				}
@@ -759,7 +759,7 @@ namespace River.OneMoreAddIn.Commands
 			var point = PointToScreen(mainTools.Location);
 			dialog.Location = new Point(point.X + dialog.Width, point.Y);
 
-			var result = dialog.ShowDialog();
+			var result = dialog.ShowDialog(this);
 			if (result == DialogResult.OK)
 			{
 				string name = null;
@@ -808,7 +808,7 @@ namespace River.OneMoreAddIn.Commands
 					Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
 			}
 
-			var result = dialog.ShowDialog();
+			var result = dialog.ShowDialog(/* leave empty */);
 			if (result == DialogResult.OK)
 			{
 				theme = new ThemeProvider(dialog.FileName).Theme;
@@ -848,7 +848,7 @@ namespace River.OneMoreAddIn.Commands
 					Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
 			}
 
-			var result = dialog.ShowDialog();
+			var result = dialog.ShowDialog(/* leave empty */);
 			if (result == DialogResult.OK)
 			{
 				var key = Path.GetFileNameWithoutExtension(dialog.FileName);

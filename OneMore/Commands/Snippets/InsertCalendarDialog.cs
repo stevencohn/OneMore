@@ -86,7 +86,7 @@ namespace River.OneMoreAddIn.Commands
 
 			dialog.Color = shadingBox.BackColor;
 
-			if (dialog.ShowDialog() == DialogResult.OK)
+			if (dialog.ShowDialog(this) == DialogResult.OK)
 			{
 				shadingBox.BackColor = dialog.Color;
 			}

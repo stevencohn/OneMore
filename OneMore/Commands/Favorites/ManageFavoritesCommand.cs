@@ -20,7 +20,7 @@ namespace River.OneMoreAddIn.Commands
 			using (var dialog = new SettingsDialog(args[0] as IRibbonUI))
 			{
 				dialog.ActivateSheet(SettingsDialog.Sheets.Favorites);
-				dialog.ShowDialog();
+				dialog.ShowDialog(owner);
 			}
 
 			await Task.Yield();

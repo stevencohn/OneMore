@@ -56,7 +56,7 @@ namespace River.OneMoreAddIn.Commands
 				dialog.SetScope(scopeArg);
 			}
 
-			if (dialog.ShowDialog() != DialogResult.OK)
+			if (dialog.ShowDialog(owner) != DialogResult.OK)
 			{
 				return;
 			}

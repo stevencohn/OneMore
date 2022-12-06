@@ -35,7 +35,7 @@ namespace River.OneMoreAddIn.Commands
 			var theme = new ThemeProvider().Theme;
 
 			var dialog = new StyleDialog(theme, pageColor);
-			if (dialog.ShowDialog() == DialogResult.OK)
+			if (dialog.ShowDialog(owner) == DialogResult.OK)
 			{
 				ThemeProvider.Save(dialog.Theme);
 				ThemeProvider.RecordTheme(dialog.Theme.Key);

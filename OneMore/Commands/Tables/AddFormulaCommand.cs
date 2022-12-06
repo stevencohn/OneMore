@@ -106,7 +106,7 @@ namespace River.OneMoreAddIn.Commands
 				}
 			}
 
-			if (dialog.ShowDialog() != DialogResult.OK)
+			if (dialog.ShowDialog(owner) != DialogResult.OK)
 			{
 				return;
 			}

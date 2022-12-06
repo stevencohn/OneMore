@@ -26,7 +26,7 @@ namespace River.OneMoreAddIn.Commands
 			var themes = provider.GetUserThemes();
 
 			using var dialog = new EditTableThemesDialog(themes);
-			if (dialog.ShowDialog() == DialogResult.OK)
+			if (dialog.ShowDialog(owner) == DialogResult.OK)
 			{
 				if (dialog.Modified)
 				{

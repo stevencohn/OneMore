@@ -33,7 +33,7 @@ namespace River.OneMoreAddIn.Commands
 			dialog.RequestData += PopulateCommands;
 			PopulateCommands(dialog, EventArgs.Empty);
 
-			if (dialog.ShowDialog() == DialogResult.OK &&
+			if (dialog.ShowDialog(owner) == DialogResult.OK &&
 				dialog.Index >= 0)
 			{
 				var command = dialog.Recent
