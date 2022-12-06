@@ -26,7 +26,7 @@ namespace River.OneMoreAddIn.Commands
 		public override async Task Execute(params object[] args)
 		{
 			using var dialog = new ToggleDttmDialog();
-			if (dialog.ShowDialog() == DialogResult.OK)
+			if (dialog.ShowDialog(owner) == DialogResult.OK)
 			{
 				await Toggle(dialog.PageOnly, dialog.ShowTimestamps);
 			}

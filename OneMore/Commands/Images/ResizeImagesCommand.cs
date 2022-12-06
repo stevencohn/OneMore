@@ -83,7 +83,7 @@ namespace River.OneMoreAddIn.Commands
 			}
 
 			using var dialog = new ResizeImagesDialog(image, viewWidth, viewHeight);
-			var result = dialog.ShowDialog();
+			var result = dialog.ShowDialog(owner);
 			if (result != DialogResult.OK)
 			{
 				return;
@@ -111,7 +111,7 @@ namespace River.OneMoreAddIn.Commands
 		private async Task ResizeMany(IEnumerable<XElement> elements)
 		{
 			using var dialog = new ResizeImagesDialog();
-			var result = dialog.ShowDialog();
+			var result = dialog.ShowDialog(owner);
 			if (result != DialogResult.OK)
 			{
 				return;

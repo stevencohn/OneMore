@@ -73,7 +73,7 @@ namespace River.OneMoreAddIn.Commands
 			var folders = outlook.GetTaskHierarchy();
 
 			using var dialog = new ImportOutlookTasksDialog(folders);
-			if (dialog.ShowDialog() != System.Windows.Forms.DialogResult.OK)
+			if (dialog.ShowDialog(owner) != System.Windows.Forms.DialogResult.OK)
 			{
 				return;
 			}

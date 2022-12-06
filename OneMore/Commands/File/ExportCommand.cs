@@ -65,7 +65,7 @@ namespace River.OneMoreAddIn.Commands
 
 			using (var dialog = new ExportDialog(pageIDs.Count))
 			{
-				if (dialog.ShowDialog() != DialogResult.OK)
+				if (dialog.ShowDialog(owner) != DialogResult.OK)
 				{
 					return;
 				}

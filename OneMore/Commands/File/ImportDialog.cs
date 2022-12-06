@@ -192,7 +192,7 @@ namespace River.OneMoreAddIn.Commands
 					})
 					{
 						// cannot use owner parameter here or it will hang! cross-threading
-						if (dialog.ShowDialog() == DialogResult.OK)
+						if (dialog.ShowDialog(/* leave empty */) == DialogResult.OK)
 						{
 							return dialog.FileName;
 						}

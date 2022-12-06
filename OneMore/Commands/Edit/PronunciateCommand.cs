@@ -94,7 +94,7 @@ namespace River.OneMoreAddIn.Commands
 				using var dialog = new PronunciateDialog();
 				dialog.Word = word;
 
-				if (dialog.ShowDialog() != DialogResult.OK)
+				if (dialog.ShowDialog(owner) != DialogResult.OK)
 				{
 					IsCancelled = true;
 					return;

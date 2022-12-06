@@ -111,7 +111,7 @@ namespace River.OneMoreAddIn.Commands
 				PageName = "$name (2)"
 			};
 
-			if (dialog.ShowDialog() == DialogResult.Cancel)
+			if (dialog.ShowDialog(owner) == DialogResult.Cancel)
 			{
 				plugin = null;
 				return false;
@@ -170,7 +170,7 @@ namespace River.OneMoreAddIn.Commands
 
 				box.AppendMessage(" Do you wish to continue?");
 
-				if (box.ShowDialog(Owner) == DialogResult.No)
+				if (box.ShowDialog(owner) == DialogResult.No)
 				{
 					return null;
 				}

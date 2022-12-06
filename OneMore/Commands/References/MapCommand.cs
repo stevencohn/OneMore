@@ -48,7 +48,7 @@ namespace River.OneMoreAddIn.Commands
 		public override async Task Execute(params object[] args)
 		{
 			using var dialog = new MapDialog();
-			if (dialog.ShowDialog() != System.Windows.Forms.DialogResult.OK)
+			if (dialog.ShowDialog(owner) != System.Windows.Forms.DialogResult.OK)
 			{
 				return;
 			}

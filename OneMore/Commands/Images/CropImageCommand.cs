@@ -69,7 +69,7 @@ namespace River.OneMoreAddIn.Commands
 			var scales = new SizeF(width / image.Width, height / image.Height);
 
 			using var dialog = new CropImageDialog(image);
-			var result = dialog.ShowDialog();
+			var result = dialog.ShowDialog(owner);
 			if (result == DialogResult.OK)
 			{
 				var bytes = (byte[])new ImageConverter()

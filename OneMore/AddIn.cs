@@ -209,12 +209,7 @@ namespace River.OneMoreAddIn
 				// hotkeys
 				Task.Run(async () => { await RegisterHotkeys(); });
 
-				using (var one = new OneNote())
-				{
-					factory = new CommandFactory(logger, ribbon, trash,
-						// looks complicated but necessary for this to work
-						new Win32WindowHandle(new IntPtr((long)one.WindowHandle)));
-				}
+				factory = new CommandFactory(logger, ribbon, trash);
 
 				// command listener for Refresh links
 				new CommandService(factory).Startup();

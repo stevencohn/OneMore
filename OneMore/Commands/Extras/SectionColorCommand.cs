@@ -53,7 +53,7 @@ namespace River.OneMoreAddIn.Commands
 			// use the elevator to force ColorDialog to top-most first time used
 			// otherwise, it will be hidden by the OneMore window
 			using var elevator = new UI.WindowElevator(dialog);
-			var result = elevator.ShowDialog();
+			var result = elevator.ShowDialog(owner);
 			if (result == DialogResult.OK)
 			{
 				section.SetAttributeValue("color", dialog.Color.ToRGBHtml());

@@ -53,14 +53,14 @@ namespace River.OneMoreAddIn.Commands
 				{
 					// up to date...
 					using var dialog = new UpdateDialog(updater);
-					dialog.ShowDialog();
+					dialog.ShowDialog(owner);
 				}
 
 				return;
 			}
 
 			using var question = new UpdateDialog(updater);
-			if (question.ShowDialog() == DialogResult.OK)
+			if (question.ShowDialog(owner) == DialogResult.OK)
 			{
 				Updated = await updater.Update();
 			}

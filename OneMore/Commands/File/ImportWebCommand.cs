@@ -64,7 +64,7 @@ namespace River.OneMoreAddIn.Commands
 
 			using (var dialog = new ImportWebDialog())
 			{
-				if (dialog.ShowDialog() != DialogResult.OK)
+				if (dialog.ShowDialog(owner) != DialogResult.OK)
 				{
 					return;
 				}
@@ -507,7 +507,7 @@ namespace River.OneMoreAddIn.Commands
 						return true;
 					}));
 
-				form.ShowDialog();
+				form.ShowDialog(/* leave empty */);
 			});
 
 			if (!string.IsNullOrWhiteSpace(title) &&

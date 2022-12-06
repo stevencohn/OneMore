@@ -47,7 +47,7 @@ namespace River.OneMoreAddIn.Settings
 
 			dialog.Color = colorBox.BackColor;
 
-			if (dialog.ShowDialog() == DialogResult.OK)
+			if (dialog.ShowDialog(this) == DialogResult.OK)
 			{
 				colorBox.BackColor = dialog.Color;
 			}

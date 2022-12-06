@@ -32,7 +32,7 @@ namespace River.OneMoreAddIn.Commands
 			var color = page.GetPageColor(out _, out _);
 
 			using var dialog = new ChangePageColorDialog(color);
-			if (dialog.ShowDialog() != DialogResult.OK)
+			if (dialog.ShowDialog(owner) != DialogResult.OK)
 			{
 				return;
 			}

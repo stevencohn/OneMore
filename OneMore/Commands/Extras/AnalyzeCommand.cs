@@ -79,7 +79,7 @@ namespace River.OneMoreAddIn.Commands
 
 				using (var dialog = new AnalyzeDialog())
 				{
-					if (dialog.ShowDialog() != DialogResult.OK)
+					if (dialog.ShowDialog(owner) != DialogResult.OK)
 					{
 						return;
 					}

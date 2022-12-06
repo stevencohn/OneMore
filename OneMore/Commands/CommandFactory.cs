@@ -10,8 +10,7 @@ namespace River.OneMoreAddIn
 	using System.Collections.Generic;
 	using System.Linq;
 	using System.Threading.Tasks;
-	using System.Windows.Forms;
-	using Resx = River.OneMoreAddIn.Properties.Resources;
+	using Resx = Properties.Resources;
 
 
 	/// <summary>
@@ -21,7 +20,6 @@ namespace River.OneMoreAddIn
 	{
 		private readonly ILogger logger;
 		private readonly IRibbonUI ribbon;
-		private readonly IWin32Window owner;
 		private readonly List<IDisposable> trash;
 
 
@@ -33,11 +31,10 @@ namespace River.OneMoreAddIn
 		/// <param name="trash">A colleciton of IDisposables for cleanup on shutdown</param>
 		/// <param name="owner">The owner window</param>
 		public CommandFactory(
-			ILogger logger, IRibbonUI ribbon, List<IDisposable> trash, IWin32Window owner)
+			ILogger logger, IRibbonUI ribbon, List<IDisposable> trash)
 		{
 			this.logger = logger;
 			this.ribbon = ribbon;
-			this.owner = owner;
 			this.trash = trash;
 		}
 
@@ -67,6 +64,13 @@ namespace River.OneMoreAddIn
 		{
 			var type = command.GetType();
 			logger.Start($"{note} command {type.Name}");
+
+			// need to rediscover active OneNote window for each command instantiation
+			// otherwise closing the primary or last-used active window will leave owner
+			// set to an invalid window handle
+			using var one = new OneNote();
+			// convert the ulong to a IWin32Window which will be used by ShowDialog calls
+			var owner = new Win32WindowHandle(new IntPtr((long)one.WindowHandle));
 
 			command.SetFactory(this)
 				.SetLogger(logger)

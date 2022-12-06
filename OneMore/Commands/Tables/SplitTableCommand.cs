@@ -60,7 +60,7 @@ namespace River.OneMoreAddIn.Commands
 			var fixedCols = false;
 			using (var dialog = new SplitTableDialog())
 			{
-				if (dialog.ShowDialog() != System.Windows.Forms.DialogResult.OK)
+				if (dialog.ShowDialog(owner) != System.Windows.Forms.DialogResult.OK)
 				{
 					return;
 				}

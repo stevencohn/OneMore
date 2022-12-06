@@ -51,7 +51,7 @@ namespace River.OneMoreAddIn.Commands
 		public override async Task Execute(params object[] args)
 		{
 			using var dialog = new SplitDialog();
-			if (dialog.ShowDialog() == DialogResult.OK)
+			if (dialog.ShowDialog(owner) == DialogResult.OK)
 			{
 				using (one = new OneNote(out page, out ns, OneNote.PageDetail.All))
 				{
