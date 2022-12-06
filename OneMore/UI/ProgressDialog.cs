@@ -205,10 +205,9 @@ namespace River.OneMoreAddIn.UI
 				TopMost = true;
 
 				var rect = new Native.Rectangle();
-				using (var one = new OneNote())
-				{
-					Native.GetWindowRect(one.WindowHandle, ref rect);
-				}
+
+				using var one = new OneNote();
+				Native.GetWindowRect(one.WindowHandle, ref rect);
 
 				var yoffset = (int)(Height * 20 / 100.0);
 

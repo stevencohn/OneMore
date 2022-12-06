@@ -57,19 +57,17 @@ namespace River.OneMoreAddIn.Commands
 		{
 			// deal with primary/secondary displays in either duplicate or extended mode...
 			Rectangle area;
-			using (var one = new OneNote())
-			{
-				//for (int i = 0; i < Screen.AllScreens.Length; i++)
-				//{
-				//	var s = Screen.AllScreens[i];
-				//	logger.WriteLine($"Screen[{i}] ({s.DeviceName}), primary={s.Primary}, size={s.Bounds}");
-				//}
+			using var one = new OneNote();
+			//for (int i = 0; i < Screen.AllScreens.Length; i++)
+			//{
+			//	var s = Screen.AllScreens[i];
+			//	logger.WriteLine($"Screen[{i}] ({s.DeviceName}), primary={s.Primary}, size={s.Bounds}");
+			//}
 
-				var screen = Screen.FromHandle(one.WindowHandle);
-				//logger.WriteLine($"using screen ({screen.DeviceName}), primary={screen.Primary}, size={screen.Bounds}");
-				Location = screen.WorkingArea.Location;
-				area = screen.WorkingArea;
-			}
+			var screen = Screen.FromHandle(one.WindowHandle);
+			//logger.WriteLine($"using screen ({screen.DeviceName}), primary={screen.Primary}, size={screen.Bounds}");
+			Location = screen.WorkingArea.Location;
+			area = screen.WorkingArea;
 
 			// must add to area.X here to handle extended mode in which the coord of the secondary
 			// display is an extension of the first, so X would be greater than zero

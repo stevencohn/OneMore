@@ -32,17 +32,15 @@ namespace River.OneMoreAddIn
 		public CommandService(CommandFactory factory)
 			: base()
 		{
-			using (var key = Registry.ClassesRoot.OpenSubKey(KeyPath, false))
+			using var key = Registry.ClassesRoot.OpenSubKey(KeyPath, false);
+			if (key != null)
 			{
-				if (key != null)
-				{
-					// get default value string
-					pipe = (string)key.GetValue(string.Empty);
-				}
-				else
-				{
-					logger.WriteLine($"error reading pipe name from {KeyPath}");
-				}
+				// get default value string
+				pipe = (string)key.GetValue(string.Empty);
+			}
+			else
+			{
+				logger.WriteLine($"error reading pipe name from {KeyPath}");
 			}
 
 			this.factory = factory;
@@ -73,20 +71,18 @@ namespace River.OneMoreAddIn
 					{
 						string data = null;
 
-						using (var server = CreateSecuredPipe())
-						{
-							//logger.WriteLine($"command pipe started {pipe}");
-							await server.WaitForConnectionAsync();
+						using var server = CreateSecuredPipe();
+						//logger.WriteLine($"command pipe started {pipe}");
+						await server.WaitForConnectionAsync();
 
-							var buffer = new byte[MaxBytes];
-							await server.ReadAsync(buffer, 0, MaxBytes);
-							data = Encoding.UTF8.GetString(buffer, 0, buffer.Length).Trim((char)0);
-							//logger.WriteLine($"pipe received [{data}]");
+						var buffer = new byte[MaxBytes];
+						await server.ReadAsync(buffer, 0, MaxBytes);
+						data = Encoding.UTF8.GetString(buffer, 0, buffer.Length).Trim((char)0);
+						//logger.WriteLine($"pipe received [{data}]");
 
-							// clean up server so we can create a new one for next connection
-							server.Disconnect();
-							server.Close();
-						}
+						// clean up server so we can create a new one for next connection
+						server.Disconnect();
+						server.Close();
 
 						if (!string.IsNullOrEmpty(data) && data.StartsWith(Protocol))
 						{
@@ -124,7 +120,7 @@ namespace River.OneMoreAddIn
 
 			security.AddAccessRule(new PipeAccessRule(
 				user, PipeAccessRights.FullControl, AccessControlType.Allow));
-			
+
 			security.SetOwner(user);
 			security.SetGroup(user);
 

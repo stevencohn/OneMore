@@ -11,8 +11,8 @@ namespace OneMoreCalendar
 	internal class MoreCheckedListBox : CheckedListBox
 	{
 
-        public MoreCheckedListBox()
-            : base()
+		public MoreCheckedListBox()
+			: base()
 		{
 			CheckOnClick = true;
 		}
@@ -43,19 +43,19 @@ namespace OneMoreCalendar
 			}
 
 			var size = g.MeasureString(Text, Font);
-			using (var brush = new SolidBrush(ForeColor))
-			{
-				g.DrawString(Items[e.Index].ToString(), Font, brush,
-					new Rectangle(16, // standard icon size
-						e.Bounds.Y,
-						e.Bounds.Width - 16,
-						(int)size.Height),
-					new StringFormat
-					{
-						Trimming = StringTrimming.EllipsisCharacter,
-						FormatFlags = StringFormatFlags.LineLimit | StringFormatFlags.NoWrap
-					});
-			}
+
+			using var forebrush = new SolidBrush(ForeColor);
+
+			g.DrawString(Items[e.Index].ToString(), Font, forebrush,
+				new Rectangle(16, // standard icon size
+					e.Bounds.Y,
+					e.Bounds.Width - 16,
+					(int)size.Height),
+				new StringFormat
+				{
+					Trimming = StringTrimming.EllipsisCharacter,
+					FormatFlags = StringFormatFlags.LineLimit | StringFormatFlags.NoWrap
+				});
 		}
 
 
@@ -64,7 +64,7 @@ namespace OneMoreCalendar
 		/// </summary>
 		/// <param name="e">The Key event arguments</param>
 		protected override void OnKeyDown(KeyEventArgs e)
-        {
+		{
 			if (e.KeyCode == Keys.Enter)
 			{
 				// Enact selection.
@@ -89,5 +89,5 @@ namespace OneMoreCalendar
 			// If no Enter or Esc keys presses, let the base class handle it.
 			base.OnKeyDown(e);
 		}
-    }
+	}
 }

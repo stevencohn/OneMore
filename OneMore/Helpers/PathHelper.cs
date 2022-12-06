@@ -65,16 +65,14 @@ namespace River.OneMoreAddIn
 			if (Environment.OSVersion.Version.Major > 10 ||
 				Environment.OSVersion.Version.Build > 1607)
 			{
-				using (var key = Registry.ClassesRoot.OpenSubKey(LongKey, false))
+				using var key = Registry.ClassesRoot.OpenSubKey(LongKey, false);
+				if (key != null)
 				{
-					if (key != null)
+					// has user opted to enable long paths, greater than 260?
+					var allows = (int)key.GetValue(string.Empty);
+					if (allows == 1)
 					{
-						// has user opted to enable long paths, greater than 260?
-						var allows = (int)key.GetValue(string.Empty);
-						if (allows == 1)
-						{
-							return path;
-						}
+						return path;
 					}
 				}
 			}

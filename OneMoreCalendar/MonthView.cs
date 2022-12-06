@@ -58,10 +58,8 @@ namespace OneMoreCalendar
 			deletedFont = new Font(Font, FontStyle.Regular | FontStyle.Strikeout);
 			moreFont = new Font("Segoe UI", 14.0f, FontStyle.Regular);
 
-			using (var g = CreateGraphics())
-			{
-				moreSize = g.MeasureString(MoreGlyph, Font).ToSize();
-			}
+			using var g = CreateGraphics();
+			moreSize = g.MeasureString(MoreGlyph, Font).ToSize();
 
 			hotspots = new List<Hotspot>();
 

@@ -74,16 +74,14 @@ namespace OneMoreCalendar
 			}
 			else
 			{
-				using (var pen = new Pen(Theme.Control))
+				using var pen = new Pen(Theme.Control);
+				if (Round)
 				{
-					if (Round)
-					{
-						g.DrawArc(pen, 0, 1, 14, 14, 0, 360);
-					}
-					else
-					{
-						g.DrawRectangle(pen, 0, 1, 14, 14);
-					}
+					g.DrawArc(pen, 0, 1, 14, 14, 0, 360);
+				}
+				else
+				{
+					g.DrawRectangle(pen, 0, 1, 14, 14);
 				}
 
 				if (Checked)

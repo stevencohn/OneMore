@@ -57,10 +57,8 @@ namespace River.OneMoreAddIn
 		/// </summary>
 		public static void Initialize()
 		{
-			using (var one = new OneNote())
-			{
-				threadId = Native.GetWindowThreadProcessId(one.WindowHandle, out _);
-			}
+			using var one = new OneNote();
+			threadId = Native.GetWindowThreadProcessId(one.WindowHandle, out _);
 
 			var mthread = new Thread(delegate () { Application.Run(new MessageWindow()); })
 			{

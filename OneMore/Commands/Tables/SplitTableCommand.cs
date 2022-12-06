@@ -56,23 +56,16 @@ namespace River.OneMoreAddIn.Commands
 				return;
 			}
 
-			var copyHeader = false;
-			var fixedCols = false;
-			using (var dialog = new SplitTableDialog())
+			using var dialog = new SplitTableDialog();
+			if (dialog.ShowDialog(owner) != System.Windows.Forms.DialogResult.OK)
 			{
-				if (dialog.ShowDialog(owner) != System.Windows.Forms.DialogResult.OK)
-				{
-					return;
-				}
-
-				copyHeader = dialog.CopyHeader;
-				fixedCols = dialog.FixedColumns;
+				return;
 			}
 
 			// abstract the table into a Table and find the achor row
 			var table = new Table(anchor.FirstAncestor(ns + "Table"));
 
-			if (fixedCols)
+			if (dialog.FixedColumns)
 			{
 				table.FixColumns(true);
 			}
@@ -89,7 +82,7 @@ namespace River.OneMoreAddIn.Commands
 			// create split table to contain collection of rows
 			var split = new Table(table);
 
-			if (copyHeader)
+			if (dialog.CopyHeader)
 			{
 				var header = table.Rows.First();
 				split.AddRow(header.Root);

@@ -43,11 +43,10 @@ namespace River.OneMoreAddIn.Commands
 			all = result == DialogResult.Yes;
 
 			logger.StartClock();
-			using (var one = new OneNote())
-			{
-				page = one.GetPage(OneNote.PageDetail.Selection);
-				ns = page.Namespace;
-			}
+
+			using var one = new OneNote();
+			page = one.GetPage(OneNote.PageDetail.Selection);
+			ns = page.Namespace;
 
 			range = page.GetSelectedElements();
 			logger.WriteLine($"found {range.Count()} runs, scope={page.SelectionScope}");
@@ -60,7 +59,6 @@ namespace River.OneMoreAddIn.Commands
 
 			if (modified)
 			{
-				using var one = new OneNote();
 				await one.Update(page);
 				logger.WriteTime("saved");
 			}

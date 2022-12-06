@@ -218,12 +218,10 @@ namespace River.OneMoreAddIn.UI
 					}
 
 					// background
-					using (var backBrush = new SolidBrush(swatch.Color))
-					{
-						e.Graphics.FillRectangle(backBrush,
-							e.Bounds.X + 1, e.Bounds.Y + 1,
-							e.Bounds.Width - 2, e.Bounds.Height - 2);
-					}
+					using var backBrush = new SolidBrush(swatch.Color);
+					e.Graphics.FillRectangle(backBrush,
+						e.Bounds.X + 1, e.Bounds.Y + 1,
+						e.Bounds.Width - 2, e.Bounds.Height - 2);
 
 					// foreground
 					using var textBrush = dark

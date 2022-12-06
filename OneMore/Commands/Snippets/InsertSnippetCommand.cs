@@ -29,52 +29,51 @@ namespace River.OneMoreAddIn.Commands
 
 			var provider = new SnippetsProvider();
 
-			using (var one = new OneNote(out var page, out _))
+			using var one = new OneNote(out var page, out _);
+
+			if (!page.ConfirmBodyContext())
 			{
-				if (!page.ConfirmBodyContext())
+				UIHelper.ShowError(Resx.Error_BodyContext);
+				return;
+			}
+
+			// Either invoked via Alt+F3 to expand the selected name to a snippet
+			// or invoked from the My Custom snippets menu...
+
+			if (string.IsNullOrWhiteSpace(path))
+			{
+				// assume Expand command and infer name from current word...
+
+				path = page.GetSelectedText();
+				if (!string.IsNullOrWhiteSpace(path))
 				{
-					UIHelper.ShowError(Resx.Error_BodyContext);
-					return;
-				}
-
-				// Either invoked via Alt+F3 to expand the selected name to a snippet
-				// or invoked from the My Custom snippets menu...
-
-				if (string.IsNullOrWhiteSpace(path))
-				{
-					// assume Expand command and infer name from current word...
-
-					path = page.GetSelectedText();
-					if (!string.IsNullOrWhiteSpace(path))
+					snippet = await provider.LoadByName(path);
+					if (!string.IsNullOrEmpty(snippet))
 					{
-						snippet = await provider.LoadByName(path);
-						if (!string.IsNullOrEmpty(snippet))
+						// remove placeholder
+						var updated = page.EditSelected((s) =>
 						{
-							// remove placeholder
-							var updated = page.EditSelected((s) =>
+							if (s is XText text)
 							{
-								if (s is XText text)
-								{
-									text.Value = string.Empty;
-									return text;
-								}
-
-								var element = (XElement)s;
-								element.Value = string.Empty;
-								return element;
-							});
-
-							if (updated)
-							{
-								await one.Update(page);
+								text.Value = string.Empty;
+								return text;
 							}
+
+							var element = (XElement)s;
+							element.Value = string.Empty;
+							return element;
+						});
+
+						if (updated)
+						{
+							await one.Update(page);
 						}
 					}
 				}
-				else
-				{
-					snippet = await provider.Load(path);
-				}
+			}
+			else
+			{
+				snippet = await provider.Load(path);
 			}
 
 			if (string.IsNullOrWhiteSpace(snippet))

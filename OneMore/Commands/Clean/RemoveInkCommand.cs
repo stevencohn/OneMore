@@ -20,15 +20,13 @@ namespace River.OneMoreAddIn.Commands
 
 		public override async Task Execute(params object[] args)
 		{
-			using (var one = new OneNote(out var page, out var ns))
-			{
-				var ink = page.Root.Descendants(ns + "InkDrawing");
+			using var one = new OneNote(out var page, out var ns);
+			var ink = page.Root.Descendants(ns + "InkDrawing");
 
-				if (ink.Any())
-				{
-					ink.ForEach(e => 
-						one.DeleteContent(page.PageId, e.Attribute("objectID").Value));
-				}
+			if (ink.Any())
+			{
+				ink.ForEach(e =>
+					one.DeleteContent(page.PageId, e.Attribute("objectID").Value));
 			}
 
 			await Task.Yield();

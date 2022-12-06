@@ -54,27 +54,19 @@ namespace River.OneMoreAddIn.Commands
 			var table = new Table(anchor.FirstAncestor(ns + "Table"));
 			var cells = table.GetSelectedCells(out var range).ToList();
 
-			var shiftDown = true;
-			var shiftCount = 1;
-
-			using (var dialog = new InsertCellsDialog())
+			using var dialog = new InsertCellsDialog();
+			if (dialog.ShowDialog(owner) != DialogResult.OK)
 			{
-				if (dialog.ShowDialog(owner) != DialogResult.OK)
-				{
-					return;
-				}
-
-				shiftDown = dialog.ShiftDown;
-				shiftCount = dialog.ShiftCount;
+				return;
 			}
 
-			if (shiftDown)
+			if (dialog.ShiftDown)
 			{
-				ShiftDown(table, cells, shiftCount);
+				ShiftDown(table, cells, dialog.ShiftCount);
 			}
 			else
 			{
-				ShiftRight(table, cells, shiftCount);
+				ShiftRight(table, cells, dialog.ShiftCount);
 			}
 
 			await one.Update(page);

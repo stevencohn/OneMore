@@ -33,21 +33,19 @@ namespace River.OneMoreAddIn.Helpers.Office
 			var version = GetOfficeVersion();
 			var path = $@"SOFTWARE\Microsoft\Office\{version}\Common\LanguageResources\EnabledEditingLanguages";
 
-			using (var key = Registry.CurrentUser.OpenSubKey(path, false))
+			using var key = Registry.CurrentUser.OpenSubKey(path, false);
+			if (key != null)
 			{
-				if (key != null)
+				var list = new List<string>();
+				var names = key.GetValueNames();
+				foreach (var name in names)
 				{
-					var list = new List<string>();
-					var names = key.GetValueNames();
-					foreach (var name in names)
+					if (key.GetValue(name) is int value && ((value & 1) == 1))
 					{
-						if (key.GetValue(name) is int value && ((value & 1) == 1))
-						{
-							list.Add(name);
-						}
+						list.Add(name);
 					}
-					return list.ToArray();
 				}
+				return list.ToArray();
 			}
 
 			return new string[0];
@@ -72,16 +70,14 @@ namespace River.OneMoreAddIn.Helpers.Office
 
 		private static Version GetVersion(string name, int latest)
 		{
-			using (var key = Registry.ClassesRoot.OpenSubKey($@"\{name}.Application\CurVer", false))
+			using var key = Registry.ClassesRoot.OpenSubKey($@"\{name}.Application\CurVer", false);
+			if (key != null)
 			{
-				if (key != null)
-				{
-					// get default value string
-					var value = (string)key.GetValue(string.Empty);
-					// extract version number
-					var version = new Version(value.Substring(value.LastIndexOf('.') + 1) + ".0");
-					return version;
-				}
+				// get default value string
+				var value = (string)key.GetValue(string.Empty);
+				// extract version number
+				var version = new Version(value.Substring(value.LastIndexOf('.') + 1) + ".0");
+				return version;
 			}
 
 			// presume latest
@@ -112,28 +108,27 @@ namespace River.OneMoreAddIn.Helpers.Office
 
 			int? theme = 0;
 
-			using (var key = Registry.CurrentUser.OpenSubKey(
-				$@"Software\Microsoft\Office\{version.Major}.{version.Minor}\Common"))
+			using var key = Registry.CurrentUser.OpenSubKey(
+				$@"Software\Microsoft\Office\{version.Major}.{version.Minor}\Common");
+
+			/* Office Themes
+			 * -------------
+			 * Colorful   0
+			 * Dark Gray  3
+			 * Black      4
+			 * White      5
+			 * System     6
+			 */
+
+			if (key != null)
 			{
-				/* Office Themes
-				 * -------------
-				 * Colorful   0
-				 * Dark Gray  3
-				 * Black      4
-				 * White      5
-				 * System     6
-				 */
+				theme = key.GetValue("UI Theme") as Int32?;
+				theme ??= key.GetValue("Theme") as Int32?;
+			}
 
-				if (key != null)
-				{
-					theme = key.GetValue("UI Theme") as Int32?;
-					theme ??= key.GetValue("Theme") as Int32?;
-				}
-
-				if (theme == 4 && (ignorePage || !DarkModeLightsOn()))
-				{
-					return true;
-				}
+			if (theme == 4 && (ignorePage || !DarkModeLightsOn()))
+			{
+				return true;
 			}
 
 			// if office theme is 6 then use the system default...

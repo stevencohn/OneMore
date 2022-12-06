@@ -46,34 +46,32 @@ namespace River.OneMoreAddIn.Commands
 				return;
 			}
 
-			using (var dialog = new InsertCalendarDialog())
+			using var dialog = new InsertCalendarDialog();
+			if (dialog.ShowDialog(owner) != DialogResult.OK)
 			{
-				if (dialog.ShowDialog(owner) != DialogResult.OK)
-				{
-					return;
-				}
+				return;
+			}
 
-				logger.WriteLine($"making calendar for {dialog.Month}/{dialog.Year}");
+			logger.WriteLine($"making calendar for {dialog.Month}/{dialog.Year}");
 
-				var days = MakeDayList(dialog.Year, dialog.Month, dialog.FirstDay);
+			var days = MakeDayList(dialog.Year, dialog.Month, dialog.FirstDay);
 
-				var root = MakeCalendar(days, dialog.FirstDay, dialog.Large, dialog.HeaderShading);
-				var header = MakeHeader(dialog.Year, dialog.Month);
+			var root = MakeCalendar(days, dialog.FirstDay, dialog.Large, dialog.HeaderShading);
+			var header = MakeHeader(dialog.Year, dialog.Month);
 
-				if (dialog.Indent)
-				{
-					header.Add(new XElement(ns + "OEChildren",
-							new XElement(ns + "OE",
-							root)
-						));
+			if (dialog.Indent)
+			{
+				header.Add(new XElement(ns + "OEChildren",
+						new XElement(ns + "OE",
+						root)
+					));
 
-					page.AddNextParagraph(header);
-				}
-				else
-				{
-					page.AddNextParagraph(root);
-					page.AddNextParagraph(header);
-				}
+				page.AddNextParagraph(header);
+			}
+			else
+			{
+				page.AddNextParagraph(root);
+				page.AddNextParagraph(header);
 			}
 
 			await one.Update(page);

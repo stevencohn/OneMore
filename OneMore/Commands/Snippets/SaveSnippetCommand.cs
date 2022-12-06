@@ -19,20 +19,19 @@ namespace River.OneMoreAddIn.Commands
 
 		public override async Task Execute(params object[] args)
 		{
-			using (var one = new OneNote(out var page, out _))
+			using var one = new OneNote(out var page, out _);
+
+			if (page.GetTextCursor() != null)
 			{
-				if (page.GetTextCursor() != null)
-				{
-					UIHelper.ShowMessage(Resx.SaveSnippet_NeedSelection);
-					return;
-				}
-
-				// since the Hotkey message loop is watching all input, explicitly setting
-				// focus on the OneNote main window provides a direct path for SendKeys
-				Native.SetForegroundWindow(one.WindowHandle);
-
-				await new ClipboardProvider().Copy();
+				UIHelper.ShowMessage(Resx.SaveSnippet_NeedSelection);
+				return;
 			}
+
+			// since the Hotkey message loop is watching all input, explicitly setting
+			// focus on the OneNote main window provides a direct path for SendKeys
+			Native.SetForegroundWindow(one.WindowHandle);
+
+			await new ClipboardProvider().Copy();
 
 			var html = await new ClipboardProvider().GetHtml();
 			if (string.IsNullOrWhiteSpace(html))

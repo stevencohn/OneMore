@@ -20,16 +20,15 @@ namespace River.OneMoreAddIn
 		/// <returns>A string specifying the full command line or null if </returns>
 		public static string GetCommandLine(this Process process)
 		{
-			using (var searcher = new ManagementObjectSearcher(
-			  $"SELECT CommandLine FROM Win32_Process WHERE ProcessId = {process.Id}"))
+			using var searcher = new ManagementObjectSearcher(
+			  $"SELECT CommandLine FROM Win32_Process WHERE ProcessId = {process.Id}");
+
+			// since we look up the process using a unique PID, the query must
+			// return at most one match
+			using var e = searcher.Get().GetEnumerator();
+			if (e.MoveNext()) // move to first item
 			{
-				// since we look up the process using a unique PID, the query must
-				// return at most one match
-				using var e = searcher.Get().GetEnumerator();
-				if (e.MoveNext()) // move to first item
-				{
-					return e.Current["CommandLine"]?.ToString();
-				}
+				return e.Current["CommandLine"]?.ToString();
 			}
 
 			// not having found a command line implies either:

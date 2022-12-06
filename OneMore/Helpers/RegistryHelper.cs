@@ -87,16 +87,14 @@ namespace River.OneMoreAddIn.Helpers
 
 		private static FileAssociation LookupAssociation(string ext, string application)
 		{
-			using (var key = Registry.ClassesRoot.OpenSubKey("CLSID"))
+			using var key = Registry.ClassesRoot.OpenSubKey("CLSID");
+			foreach (var classNames in key.GetSubKeyNames())
 			{
-				foreach (var classNames in key.GetSubKeyNames())
+				using var classKey = key.OpenSubKey(classNames);
+				var association = GetDetails(classKey, ext, application);
+				if (association != null)
 				{
-					using var classKey = key.OpenSubKey(classNames);
-					var association = GetDetails(classKey, ext, application);
-					if (association != null)
-					{
-						return association;
-					}
+					return association;
 				}
 			}
 
@@ -164,12 +162,10 @@ namespace River.OneMoreAddIn.Helpers
 
 		private static string GetDefaultValue(RegistryKey key, string name)
 		{
-			using (var subkey = key.OpenSubKey(name))
+			using var subkey = key.OpenSubKey(name);
+			if (subkey != null)
 			{
-				if (subkey != null)
-				{
-					return (string)subkey.GetValue(string.Empty);
-				}
+				return (string)subkey.GetValue(string.Empty);
 			}
 
 			return null;
@@ -179,13 +175,12 @@ namespace River.OneMoreAddIn.Helpers
 		private static string GetUserChoiceProgID(string ext)
 		{
 			string progID = null;
-			using (var key = Registry.CurrentUser.OpenSubKey(
-				$@"Software\Microsoft\Windows\CurrentVersion\Explorer\FileExts\{ext}\UserChoice"))
+			using var key = Registry.CurrentUser.OpenSubKey(
+				$@"Software\Microsoft\Windows\CurrentVersion\Explorer\FileExts\{ext}\UserChoice");
+
+			if (key != null)
 			{
-				if (key != null)
-				{
-					progID = (string)key.GetValue("ProgID");
-				}
+				progID = (string)key.GetValue("ProgID");
 			}
 
 			return progID;

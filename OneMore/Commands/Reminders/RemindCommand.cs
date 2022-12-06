@@ -90,14 +90,12 @@ namespace River.OneMoreAddIn.Commands
 				return;
 			}
 
-			using (var dialog = new RemindDialog(reminder, true))
+			using var dialog = new RemindDialog(reminder, true);
+			if (dialog.ShowDialog(owner) == DialogResult.OK)
 			{
-				if (dialog.ShowDialog(owner) == DialogResult.OK)
+				if (SetReminder(paragraph, dialog.Reminder))
 				{
-					if (SetReminder(paragraph, dialog.Reminder))
-					{
-						await one.Update(page);
-					}
+					await one.Update(page);
 				}
 			}
 

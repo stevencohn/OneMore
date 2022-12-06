@@ -255,17 +255,15 @@ namespace River.OneMoreAddIn.Commands
 			XNamespace ns;
 			var scopeId = string.Empty;
 
-			using (var one = new OneNote())
+			using var one = new OneNote();
+			switch (scopeBox.SelectedIndex)
 			{
-				switch (scopeBox.SelectedIndex)
-				{
-					case 1: scopeId = one.CurrentNotebookId; break;
-					case 2: scopeId = one.CurrentSectionId; break;
-				}
-
-				results = await one.SearchMeta(scopeId, MetaNames.TaggingLabels);
-				ns = one.GetNamespace(results);
+				case 1: scopeId = one.CurrentNotebookId; break;
+				case 2: scopeId = one.CurrentSectionId; break;
 			}
+
+			results = await one.SearchMeta(scopeId, MetaNames.TaggingLabels);
+			ns = one.GetNamespace(results);
 
 			// remove recyclebin nodes
 			results.Descendants()

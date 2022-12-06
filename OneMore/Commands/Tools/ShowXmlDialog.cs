@@ -382,10 +382,8 @@ namespace River.OneMoreAddIn.Commands
 			{
 				try
 				{
-					using (var one = new OneNote())
-					{
-						await one.Update(XElement.Parse(pageBox.Text));
-					}
+					using var one = new OneNote();
+					await one.Update(XElement.Parse(pageBox.Text));
 
 					Close();
 
@@ -537,22 +535,21 @@ namespace River.OneMoreAddIn.Commands
 			{
 				XElement content = null;
 
-				using (var one = new OneNote())
+				using var one = new OneNote();
+
+				switch (functionBox.SelectedIndex)
 				{
-					switch (functionBox.SelectedIndex)
-					{
-						case 0:
-							content = await one.GetNotebook(objectIdBox.Text, OneNote.Scope.Pages);
-							break;
+					case 0:
+						content = await one.GetNotebook(objectIdBox.Text, OneNote.Scope.Pages);
+						break;
 
-						case 1:
-							content = one.GetSection(objectIdBox.Text);
-							break;
+					case 1:
+						content = one.GetSection(objectIdBox.Text);
+						break;
 
-						case 2:
-							content = one.GetPage(objectIdBox.Text, OneNote.PageDetail.BinaryData).Root;
-							break;
-					}
+					case 2:
+						content = one.GetPage(objectIdBox.Text, OneNote.PageDetail.BinaryData).Root;
+						break;
 				}
 
 				if (content == null)

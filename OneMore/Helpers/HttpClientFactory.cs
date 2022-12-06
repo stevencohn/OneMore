@@ -25,12 +25,10 @@ namespace River.OneMoreAddIn
 		/// To change the timeout per caller, use a unique cancellation token such as
 		///
 		/// <code>
-		/// using (var source = new CancellationTokenSource(timeout))
-		/// {
-		///     var response = await client.GetAsync(requestUri, source.Token)
-		///     response.EnsureSuccessStatusCode();
-		///     return await response.Content.ReadAsStringAsync();
-		/// }
+		/// using var source = new CancellationTokenSource(timeout);
+		/// var response = await client.GetAsync(requestUri, source.Token)
+		/// response.EnsureSuccessStatusCode();
+		/// return await response.Content.ReadAsStringAsync();
 		/// </code>
 		/// </remarks>
 		public static HttpClient Create()

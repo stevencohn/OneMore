@@ -56,19 +56,17 @@ namespace River.OneMoreAddIn.Commands
 			bool withPreviews;
 			bool withPages;
 
-			using (var dialog = new InsertTocDialog())
+			using var dialog = new InsertTocDialog();
+			if (dialog.ShowDialog(owner) == DialogResult.Cancel)
 			{
-				if (dialog.ShowDialog(owner) == DialogResult.Cancel)
-				{
-					return;
-				}
-
-				scope = dialog.Scope;
-				jumplinks = dialog.TopLinks;
-				alignlinks = dialog.RightAlignTopLinks;
-				withPreviews = dialog.PreviewPages;
-				withPages = dialog.SectionPages;
+				return;
 			}
+
+			scope = dialog.Scope;
+			jumplinks = dialog.TopLinks;
+			alignlinks = dialog.RightAlignTopLinks;
+			withPreviews = dialog.PreviewPages;
+			withPages = dialog.SectionPages;
 
 			try
 			{

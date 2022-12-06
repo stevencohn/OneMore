@@ -23,14 +23,12 @@ namespace River.OneMoreAddIn.Commands
 
 		public override async Task Execute(params object[] args)
 		{
-			using (var dialog = new SettingsDialog(args[0] as IRibbonUI))
-			{
-				dialog.ShowDialog(owner);
+			using var dialog = new SettingsDialog(args[0] as IRibbonUI);
+			dialog.ShowDialog(owner);
 
-				if (!dialog.RestartNeeded)
-				{
-					return;
-				}
+			if (!dialog.RestartNeeded)
+			{
+				return;
 			}
 
 			if (UIHelper.ShowQuestion(Resx.SettingsDialog_Restart) != DialogResult.Yes)

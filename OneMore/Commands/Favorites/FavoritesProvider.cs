@@ -46,33 +46,31 @@ namespace River.OneMoreAddIn
 				root = MakeMenuRoot();
 			}
 
-			using (var one = new OneNote())
+			using var one = new OneNote();
+			var info = addSection ? one.GetSectionInfo() : one.GetPageInfo();
+
+			var name = info.Name;
+			if (name.Length > 50)
 			{
-				var info = addSection ? one.GetSectionInfo() : one.GetPageInfo();
-
-				var name = info.Name;
-				if (name.Length > 50)
-				{
-					name = name.Substring(0, 50) + "...";
-				}
-
-				// similar to mongo ObjectId, a random-enough identifier for our needs
-				var id = ((DateTimeOffset.Now.ToUnixTimeSeconds() << 32)
-					+ new Random().Next()).ToString("x");
-
-				var imageMso = addSection ? "GroupInsertLinks" : "FileLinksToFiles";
-
-				root.Add(new XElement(ns + "button",
-					new XAttribute("id", $"omFavoriteLink{id}"),
-					new XAttribute("onAction", GotoFavoriteCmd),
-					new XAttribute("imageMso", imageMso),
-					new XAttribute("label", name),
-					new XAttribute("tag", info.Link),
-					new XAttribute("screentip", info.Path)
-					));
-
-				logger.WriteLine($"Saving favorite '{info.Path}' ({info.Link})");
+				name = name.Substring(0, 50) + "...";
 			}
+
+			// similar to mongo ObjectId, a random-enough identifier for our needs
+			var id = ((DateTimeOffset.Now.ToUnixTimeSeconds() << 32)
+				+ new Random().Next()).ToString("x");
+
+			var imageMso = addSection ? "GroupInsertLinks" : "FileLinksToFiles";
+
+			root.Add(new XElement(ns + "button",
+				new XAttribute("id", $"omFavoriteLink{id}"),
+				new XAttribute("onAction", GotoFavoriteCmd),
+				new XAttribute("imageMso", imageMso),
+				new XAttribute("label", name),
+				new XAttribute("tag", info.Link),
+				new XAttribute("screentip", info.Path)
+				));
+
+			logger.WriteLine($"Saving favorite '{info.Path}' ({info.Link})");
 
 			SaveFavorites(root);
 		}

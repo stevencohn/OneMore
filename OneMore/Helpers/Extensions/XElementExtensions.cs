@@ -159,11 +159,9 @@ namespace River.OneMoreAddIn
 			string xml = null;
 
 			// fastest way to get XElement inner XML
-			using (var reader = element.CreateReader())
-			{
-				reader.MoveToContent();
-				xml = reader.ReadInnerXml();
-			}
+			using var reader = element.CreateReader();
+			reader.MoveToContent();
+			xml = reader.ReadInnerXml();
 
 			// undo what XCData.GetWrapper did to <br/> elements
 			xml = Regex.Replace(xml, @"<\s*br\s*/>", "<br>");

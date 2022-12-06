@@ -83,53 +83,52 @@ namespace River.OneMoreAddIn.Commands
 			logger.Start();
 			logger.StartClock();
 
-			using (var one = new OneNote())
+			using var one = new OneNote();
+
+			var hierarchy = await GetHierarchy(one);
+			var ns = one.GetNamespace(hierarchy);
+
+			var pageList = hierarchy.Descendants(ns + "Page")
+				.Where(e => e.Attribute("isInRecycleBin") == null);
+
+			var pageCount = pageList.Count();
+			progress.SetMaximum(pageCount);
+			progress.SetMessage($"Scanning {pageCount} pages");
+
+			// OneNote likes to inject \n\r before the href attribute so match any spaces
+			var editor = new Regex(
+				$"(<a\\s+href=[^>]+{keys}[^>]+>)([^<]*)(</a>)",
+				RegexOptions.Compiled | RegexOptions.Multiline);
+
+			foreach (var item in pageList)
 			{
-				var hierarchy = await GetHierarchy(one);
-				var ns = one.GetNamespace(hierarchy);
+				progress.Increment();
+				progress.SetMessage(item.Attribute("name").Value);
 
-				var pageList = hierarchy.Descendants(ns + "Page")
-					.Where(e => e.Attribute("isInRecycleBin") == null);
+				var xml = one.GetPageXml(item.Attribute("ID").Value, OneNote.PageDetail.Basic);
 
-				var pageCount = pageList.Count();
-				progress.SetMaximum(pageCount);
-				progress.SetMessage($"Scanning {pageCount} pages");
-
-				// OneNote likes to inject \n\r before the href attribute so match any spaces
-				var editor = new Regex(
-					$"(<a\\s+href=[^>]+{keys}[^>]+>)([^<]*)(</a>)",
-					RegexOptions.Compiled | RegexOptions.Multiline);
-
-				foreach (var item in pageList)
+				// initial string scan before instantiating entire XElement DOM
+				if (xml.Contains(keys))
 				{
-					progress.Increment();
-					progress.SetMessage(item.Attribute("name").Value);
+					var page = new Page(XElement.Parse(xml));
 
-					var xml = one.GetPageXml(item.Attribute("ID").Value, OneNote.PageDetail.Basic);
+					var blocks = page.Root.DescendantNodes().OfType<XCData>()
+						.Where(n => n.Value.Contains(keys))
+						.ToList();
 
-					// initial string scan before instantiating entire XElement DOM
-					if (xml.Contains(keys))
+					foreach (var block in blocks)
 					{
-						var page = new Page(XElement.Parse(xml));
-
-						var blocks = page.Root.DescendantNodes().OfType<XCData>()
-							.Where(n => n.Value.Contains(keys))
-							.ToList();
-
-						foreach (var block in blocks)
-						{
-							block.Value = editor.Replace(block.Value, $"$1{title}$3");
-						}
-
-						await one.Update(page);
-						updates++;
+						block.Value = editor.Replace(block.Value, $"$1{title}$3");
 					}
 
-					if (token.IsCancellationRequested)
-					{
-						logger.WriteLine("cancelled");
-						break;
-					}
+					await one.Update(page);
+					updates++;
+				}
+
+				if (token.IsCancellationRequested)
+				{
+					logger.WriteLine("cancelled");
+					break;
 				}
 			}
 

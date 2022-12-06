@@ -24,36 +24,35 @@ namespace River.OneMoreAddIn.Commands
 
 		public override async Task Execute(params object[] args)
 		{
-			using (var one = new OneNote(out var page, out var ns))
+			using var one = new OneNote(out var page, out var ns);
+
+			var sizes = page.Root.Descendants(ns + "Outline")
+				.Elements(ns + "Size")
+				.Where(e =>
+					e.Attribute("isSetByUser") != null &&
+					e.Attribute("isSetByUser").Value == "true");
+
+			if (sizes != null)
 			{
-				var sizes = page.Root.Descendants(ns + "Outline")
-					.Elements(ns + "Size")
-					.Where(e =>
-						e.Attribute("isSetByUser") != null &&
-						e.Attribute("isSetByUser").Value == "true");
+				var modified = false;
 
-				if (sizes != null)
+				foreach (var size in sizes)
 				{
-					var modified = false;
+					size.SetAttributeValue("isSetByUser", "false");
 
-					foreach (var size in sizes)
-					{
-						size.SetAttributeValue("isSetByUser", "false");
+					// must modify both width and height in order for this to take effect
 
-						// must modify both width and height in order for this to take effect
+					size.SetAttributeValue("width", $"{MaxWidth}.0");
 
-						size.SetAttributeValue("width", $"{MaxWidth}.0");
+					size.GetAttributeValue("height", out float height);
+					size.SetAttributeValue("height", (height + 1).ToString("F04"));
 
-						size.GetAttributeValue("height", out float height);
-						size.SetAttributeValue("height", (height + 1).ToString("F04"));
+					modified = true;
+				}
 
-						modified = true;
-					}
-
-					if (modified)
-					{
-						await one.Update(page);
-					}
+				if (modified)
+				{
+					await one.Update(page);
 				}
 			}
 

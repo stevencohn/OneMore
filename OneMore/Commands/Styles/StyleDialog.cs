@@ -570,16 +570,15 @@ namespace River.OneMoreAddIn.Commands
 		{
 			var location = PointToScreen(toolStrip.Location);
 
-			using (var dialog = new UI.MoreColorDialog(title,
+			using var dialog = new UI.MoreColorDialog(title,
 				location.X + bounds.Location.X,
-				location.Y + bounds.Height + 4))
-			{
-				dialog.Color = color;
+				location.Y + bounds.Height + 4);
 
-				if (dialog.ShowDialog(this) == DialogResult.OK)
-				{
-					return dialog.Color;
-				}
+			dialog.Color = color;
+
+			if (dialog.ShowDialog(this) == DialogResult.OK)
+			{
+				return dialog.Color;
 			}
 
 			return Color.Empty;
@@ -648,19 +647,15 @@ namespace River.OneMoreAddIn.Commands
 
 			var name = "Style-" + new Random().Next(1000, 9999).ToString();
 
-			using (var dialog = new RenameDialog(names, name))
+			using var dialog = new RenameDialog(names, name);
+			if (dialog.ShowDialog(this) != DialogResult.OK)
 			{
-				if (dialog.ShowDialog(this) != DialogResult.OK)
-				{
-					return;
-				}
-
-				name = dialog.StyleName;
+				return;
 			}
 
 			namesBox.Items.Add(new GraphicStyle(new Style
 			{
-				Name = name,
+				Name = dialog.StyleName,
 				Index = index
 			},
 			false));
@@ -694,19 +689,14 @@ namespace River.OneMoreAddIn.Commands
 			}
 
 			var style = (GraphicStyle)namesBox.Items[namesBox.SelectedIndex];
-			var name = style.Name;
 
-			using (var dialog = new RenameDialog(names, name) { Rename = true })
+			using var dialog = new RenameDialog(names, style.Name) { Rename = true };
+			if (dialog.ShowDialog(this) != DialogResult.OK)
 			{
-				if (dialog.ShowDialog(this) != DialogResult.OK)
-				{
-					return;
-				}
-
-				name = dialog.StyleName;
+				return;
 			}
 
-			style.Name = name;
+			style.Name = dialog.StyleName;
 			index = namesBox.SelectedIndex;
 			namesBox.Items.RemoveAt(index);
 			namesBox.Items.Insert(index, style);

@@ -78,14 +78,13 @@ namespace River.OneMoreAddIn.UI
 			modeless = true;
 
 			var rect = new Native.Rectangle();
-			using (var one = new OneNote())
-			{
-				Native.GetWindowRect(one.WindowHandle, ref rect);
-			}
+
+			using var one = new OneNote();
+			Native.GetWindowRect(one.WindowHandle, ref rect);
 
 			var yoffset = (int)(Height * topDelta / 100.0);
 
-			Location = new System.Drawing.Point(
+			Location = new Point(
 				(rect.Left + ((rect.Right - rect.Left) / 2)) - (Width / 2),
 				(rect.Top + ((rect.Bottom - rect.Top) / 2)) - (Height / 2) - yoffset
 				);

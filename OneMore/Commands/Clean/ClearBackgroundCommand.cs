@@ -22,7 +22,6 @@ namespace River.OneMoreAddIn.Commands
 		private const string White = "#FFFFFF";
 		private const string Black = "#000000";
 
-		private OneNote one;
 		private XNamespace ns;
 		private Page page;
 		private bool darkPage;
@@ -36,18 +35,16 @@ namespace River.OneMoreAddIn.Commands
 
 		public override async Task Execute(params object[] args)
 		{
-			using (one = new OneNote(out page, out ns))
+			using var one = new OneNote(out page, out ns);
+			darkPage = page.GetPageColor(out _, out _).GetBrightness() < 0.5;
+			analyzer = new StyleAnalyzer(page.Root);
+
+			var updated = ClearTextBackground(page.GetSelectedElements(all: true));
+			updated = ClearCellBackground() || updated;
+
+			if (updated)
 			{
-				darkPage = page.GetPageColor(out _, out _).GetBrightness() < 0.5;
-				analyzer = new StyleAnalyzer(page.Root);
-
-				var updated = ClearTextBackground(page.GetSelectedElements(all: true));
-				updated = ClearCellBackground() || updated;
-
-				if (updated)
-				{
-					await one.Update(page);
-				}
+				await one.Update(page);
 			}
 		}
 

@@ -38,61 +38,60 @@ namespace River.OneMoreAddIn.Commands
 			logger.WriteLine($"Log path..: {logger.LogPath}");
 			logger.WriteLine();
 
-			using (var one = new OneNote())
-			{
-				var (backupFolder, defaultFolder, unfiledFolder) = one.GetFolders();
-				logger.WriteLine($"Default path: {defaultFolder}");
-				logger.WriteLine($"Backup  path: {backupFolder}");
-				logger.WriteLine($"Unfiled path: {unfiledFolder}");
-				logger.WriteLine();
+			using var one = new OneNote();
 
-				var info = one.GetPageInfo();
-				logger.WriteLine($"Page name: {info.Name}");
-				logger.WriteLine($"Page path: {info.Path}");
-				logger.WriteLine($"Page link: {info.Link}");
-				logger.WriteLine();
+			var (backupFolder, defaultFolder, unfiledFolder) = one.GetFolders();
+			logger.WriteLine($"Default path: {defaultFolder}");
+			logger.WriteLine($"Backup  path: {backupFolder}");
+			logger.WriteLine($"Unfiled path: {unfiledFolder}");
+			logger.WriteLine();
 
-				info = one.GetSectionInfo();
-				logger.WriteLine($"Section name: {info.Name}");
-				logger.WriteLine($"Section path: {info.Path}");
-				logger.WriteLine($"Section link: {info.Link}");
-				logger.WriteLine();
+			var info = one.GetPageInfo();
+			logger.WriteLine($"Page name: {info.Name}");
+			logger.WriteLine($"Page path: {info.Path}");
+			logger.WriteLine($"Page link: {info.Link}");
+			logger.WriteLine();
 
-				var notebook = await one.GetNotebook();
-				var notebookId = one.CurrentNotebookId;
-				logger.WriteLine($"Notebook name: {notebook.Attribute("name").Value}");
-				logger.WriteLine($"Notebook link: {one.GetHyperlink(notebookId, null)}");
-				logger.WriteLine();
+			info = one.GetSectionInfo();
+			logger.WriteLine($"Section name: {info.Name}");
+			logger.WriteLine($"Section path: {info.Path}");
+			logger.WriteLine($"Section link: {info.Link}");
+			logger.WriteLine();
 
-				one.ReportWindowDiagnostics(logger);
+			var notebook = await one.GetNotebook();
+			var notebookId = one.CurrentNotebookId;
+			logger.WriteLine($"Notebook name: {notebook.Attribute("name").Value}");
+			logger.WriteLine($"Notebook link: {one.GetHyperlink(notebookId, null)}");
+			logger.WriteLine();
 
-				logger.WriteLine();
+			one.ReportWindowDiagnostics(logger);
 
-				var page = one.GetPage();
-				var pageColor = page.GetPageColor(out _, out _);
-				var pageBrightness = pageColor.GetBrightness();
+			logger.WriteLine();
 
-				logger.WriteLine($"Page background: {pageColor.ToRGBHtml()}");
-				logger.WriteLine($"Page brightness: {pageBrightness}");
-				logger.WriteLine($"Page is dark...: {pageBrightness < 0.5}");
+			var page = one.GetPage();
+			var pageColor = page.GetPageColor(out _, out _);
+			var pageBrightness = pageColor.GetBrightness();
 
-				(float dpiX, float dpiY) = UIHelper.GetDpiValues();
-				logger.WriteLine($"Screen DPI.....: horizontal/X:{dpiX} vertical/Y:{dpiY}");
+			logger.WriteLine($"Page background: {pageColor.ToRGBHtml()}");
+			logger.WriteLine($"Page brightness: {pageBrightness}");
+			logger.WriteLine($"Page is dark...: {pageBrightness < 0.5}");
 
-				(float scalingX, float scalingY) = UIHelper.GetScalingFactors();
-				logger.WriteLine($"Scaling factors: horizontal/X:{scalingX} vertical/Y:{scalingY}");
+			(float dpiX, float dpiY) = UIHelper.GetDpiValues();
+			logger.WriteLine($"Screen DPI.....: horizontal/X:{dpiX} vertical/Y:{dpiY}");
 
-				var magic = new MagicScaling(100f, 100f);
-				logger.WriteLine($"Magic scaling..: ScalingX:{magic.ScalingX} ScalingY:{magic.ScalingY}");
+			(float scalingX, float scalingY) = UIHelper.GetScalingFactors();
+			logger.WriteLine($"Scaling factors: horizontal/X:{scalingX} vertical/Y:{scalingY}");
 
-				RemindCommand.ReportDiagnostics(logger);
-				RemindScheduler.ReportDiagnostics(logger);
+			var magic = new MagicScaling(100f, 100f);
+			logger.WriteLine($"Magic scaling..: ScalingX:{magic.ScalingX} ScalingY:{magic.ScalingY}");
 
-				logger.WriteLine(new string('-', 80));
+			RemindCommand.ReportDiagnostics(logger);
+			RemindScheduler.ReportDiagnostics(logger);
 
-				using var dialog = new DiagnosticsDialog(logger.LogPath);
-				dialog.ShowDialog(owner);
-			}
+			logger.WriteLine(new string('-', 80));
+
+			using var dialog = new DiagnosticsDialog(logger.LogPath);
+			dialog.ShowDialog(owner);
 
 			// turn headers back on
 			logger.End();

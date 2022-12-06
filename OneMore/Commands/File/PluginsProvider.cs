@@ -180,13 +180,11 @@ namespace River.OneMoreAddIn.Commands
 			{
 				PathHelper.EnsurePathExists(store);
 
-				using (var writer = new StreamWriter(path, false))
-				{
-					var serializer = new JavaScriptSerializer();
-					var json = serializer.Serialize(plugin);
+				using var writer = new StreamWriter(path, false);
+				var serializer = new JavaScriptSerializer();
+				var json = serializer.Serialize(plugin);
 
-					await writer.WriteAsync(json);
-				}
+				await writer.WriteAsync(json);
 
 				// overwrite original name
 				plugin.OriginalName = name;

@@ -40,14 +40,13 @@ namespace River.OneMoreAddIn
 		/// <returns></returns>
 		public int GetStyleGalleryItemCount(IRibbonControl control)
 		{
-			using (var one = new OneNote(out var page, out _))
+			using var one = new OneNote(out var page, out _);
+
+			galleryBack = page.GetPageColor(out _, out var black);
+			if (black)
 			{
-				galleryBack = page.GetPageColor(out _, out var black);
-				if (black)
-				{
-					// translate Black into a custom black smoke
-					galleryBack = ColorTranslator.FromHtml("#201F1E");
-				}
+				// translate Black into a custom black smoke
+				galleryBack = ColorTranslator.FromHtml("#201F1E");
 			}
 
 			// load/reload cached theme

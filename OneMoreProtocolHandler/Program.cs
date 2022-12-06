@@ -50,20 +50,19 @@ namespace OneMoreProtocolHandler
 					return;
 				}
 
-				using (var client = new NamedPipeClientStream(".",
-					pipeName, PipeDirection.Out, PipeOptions.Asynchronous))
-				{
-					// being an event-driven program to bounce messages back to OneMore
-					// set timeout because we shouldn't need to wait for server ever!
-					client.Connect(500);
-					logger.WriteLine("pipe client connected");
-					logger.WriteLine($"writing '{arg}'");
+				using var client = new NamedPipeClientStream(".",
+					pipeName, PipeDirection.Out, PipeOptions.Asynchronous);
 
-					var buffer = Encoding.UTF8.GetBytes(arg);
-					client.Write(buffer, 0, buffer.Length);
-					client.Flush();
-					client.Close();
-				}
+				// being an event-driven program to bounce messages back to OneMore
+				// set timeout because we shouldn't need to wait for server ever!
+				client.Connect(500);
+				logger.WriteLine("pipe client connected");
+				logger.WriteLine($"writing '{arg}'");
+
+				var buffer = Encoding.UTF8.GetBytes(arg);
+				client.Write(buffer, 0, buffer.Length);
+				client.Flush();
+				client.Close();
 			}
 			catch (Exception exc)
 			{

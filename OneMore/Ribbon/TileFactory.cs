@@ -33,7 +33,8 @@ namespace River.OneMoreAddIn
 			using var g = Graphics.FromImage(image);
 
 #if Unecessary // Used in LinqPad but OneNote does its own scaling so we don't need this...
-			using (var b = new Bitmap(1, 1)) { scale = g.DpiY / 144; }
+			using var b = new Bitmap(1, 1);
+			scale = g.DpiY / 144;
 #endif
 
 			g.Clear(background);

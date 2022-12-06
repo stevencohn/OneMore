@@ -63,11 +63,9 @@ namespace River.OneMoreAddIn.Styles
 			var serializer = new XmlSerializer(this.GetType());
 			string xml = null;
 
-			using (var writer = new StringWriter())
-			{
-				serializer.Serialize(writer, this);
-				xml = writer.ToString();
-			}
+			using var writer = new StringWriter();
+			serializer.Serialize(writer, this);
+			xml = writer.ToString();
 
 			return xml;
 		}

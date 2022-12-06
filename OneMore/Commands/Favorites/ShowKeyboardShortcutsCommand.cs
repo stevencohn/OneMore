@@ -104,10 +104,9 @@ namespace River.OneMoreAddIn.Commands
 				if (response.IsSuccessStatusCode)
 				{
 					path = Path.Combine(Path.GetTempPath(), Path.GetRandomFileName());
-					using (var output = File.Create(path))
-					{
-						await response.Content.CopyToAsync(output).ConfigureAwait(false);
-					}
+
+					using var output = File.Create(path);
+					await response.Content.CopyToAsync(output).ConfigureAwait(false);
 
 					return path;
 				}

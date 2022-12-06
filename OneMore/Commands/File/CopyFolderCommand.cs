@@ -26,12 +26,10 @@ namespace River.OneMoreAddIn.Commands
 
 		public override async Task Execute(params object[] args)
 		{
-			using (var one = new OneNote())
-			{
-				one.SelectLocation(
-					Resx.SearchQF_Title, Resx.SearchQF_DescriptionCopy,
-					OneNote.Scope.SectionGroups, Callback);
-			}
+			using var one = new OneNote();
+			one.SelectLocation(
+				Resx.SearchQF_Title, Resx.SearchQF_DescriptionCopy,
+				OneNote.Scope.SectionGroups, Callback);
 
 			await Task.Yield();
 		}

@@ -33,20 +33,15 @@ namespace River.OneMoreAddIn.Commands
 
 		public override async Task Execute(params object[] args)
 		{
-			bool singleSpace = true;
-			using (var dialog = new BreakingDialog())
+			using var dialog = new BreakingDialog();
+			if (dialog.ShowDialog(owner) != DialogResult.OK)
 			{
-				if (dialog.ShowDialog(owner) != DialogResult.OK)
-				{
-					return;
-				}
-
-				singleSpace = dialog.SingleSpace;
+				return;
 			}
 
 			Regex regex;
 			string replacement;
-			if (singleSpace)
+			if (dialog.SingleSpace)
 			{
 				regex = new Regex(OneSpacePattern);
 				replacement = "$1 $2$3$4$5";

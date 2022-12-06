@@ -34,11 +34,9 @@ namespace River.OneMoreAddIn
 
 		private Logger()
 		{
-			using (var process = Process.GetCurrentProcess())
-			{
-				processId = process.Id;
-				stdio = process.ProcessName.StartsWith("LINQPad");
-			}
+			using var process = Process.GetCurrentProcess();
+			processId = process.Id;
+			stdio = process.ProcessName.StartsWith("LINQPad");
 
 			LogPath = Path.Combine(
 				Path.GetTempPath(),

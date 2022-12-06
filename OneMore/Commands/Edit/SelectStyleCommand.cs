@@ -37,33 +37,32 @@ namespace River.OneMoreAddIn.Commands
 
 		public override async Task Execute(params object[] args)
 		{
-			using (var one = new OneNote(out var page, out ns))
+			using var one = new OneNote(out var page, out ns);
+
+			analyzer = new StyleAnalyzer(page.Root);
+			var style = analyzer.CollectFromSelection();
+
+			var ok = (style != null) &&
+				NormalizeTextCursor(page, analyzer);
+
+			if (!ok)
 			{
-				analyzer = new StyleAnalyzer(page.Root);
-				var style = analyzer.CollectFromSelection();
-
-				var ok = (style != null) &&
-					NormalizeTextCursor(page, analyzer);
-
-				if (!ok)
-				{
-					UIHelper.ShowInfo(one.Window, Resx.Error_BodyContext);
-					return;
-				}
-
-				var runs = page.Root
-					.Elements(ns + "Outline")
-					.Descendants(ns + "T").ToList();
-
-				foreach (var run in runs)
-				{
-					AnalyzeRun(run, style);
-				}
-
-				logger.WriteLine($"Catalog depth:{analyzer.Depth}, hits:{analyzer.Hits}");
-
-				await one.Update(page);
+				UIHelper.ShowInfo(one.Window, Resx.Error_BodyContext);
+				return;
 			}
+
+			var runs = page.Root
+				.Elements(ns + "Outline")
+				.Descendants(ns + "T").ToList();
+
+			foreach (var run in runs)
+			{
+				AnalyzeRun(run, style);
+			}
+
+			logger.WriteLine($"Catalog depth:{analyzer.Depth}, hits:{analyzer.Hits}");
+
+			await one.Update(page);
 
 			await Task.Yield();
 		}
@@ -131,7 +130,7 @@ namespace River.OneMoreAddIn.Commands
 					var nextValue = MakeStylizedSpan(
 						nextData, nextWrap.Nodes().First() as XElement, analyzer.CollectStyleFrom(next));
 
-					logger.WriteLine($"combining-2 '{prevValue}' and '{nextValue}'");					
+					logger.WriteLine($"combining-2 '{prevValue}' and '{nextValue}'");
 					prevData.Value = CombineSpans(prevValue, nextValue);
 				}
 

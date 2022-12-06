@@ -133,22 +133,21 @@ namespace River.OneMoreAddIn.Commands
 
 				PrepareTableContext();
 
-				using (var outlook = new Outlook())
-				{
-					var tasks = outlook.LoadTasksByID(taskIDs);
-					foreach (var task in tasks)
-					{
-						var row = table.Rows.FirstOrDefault(r => r.Root
-							.Element(ns + "Cell")
-							.Element(ns + "OEChildren")
-							.Element(ns + "OE")
-							.Element(ns + "OutlookTask")?
-							.Attribute("guidTask").Value == task.OneNoteTaskID);
+				using var outlook = new Outlook();
 
-						if (row != null)
-						{
-							PopulateRow(row, task, false);
-						}
+				var tasks = outlook.LoadTasksByID(taskIDs);
+				foreach (var task in tasks)
+				{
+					var row = table.Rows.FirstOrDefault(r => r.Root
+						.Element(ns + "Cell")
+						.Element(ns + "OEChildren")
+						.Element(ns + "OE")
+						.Element(ns + "OutlookTask")?
+						.Attribute("guidTask").Value == task.OneNoteTaskID);
+
+					if (row != null)
+					{
+						PopulateRow(row, task, false);
 					}
 				}
 

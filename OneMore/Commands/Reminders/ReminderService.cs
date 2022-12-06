@@ -199,21 +199,19 @@ namespace River.OneMoreAddIn.Commands
 		private void Send(string message, string args)
 		{
 			// this is for debugging; if SilentReminders value exists then only log
-			using (var key = Registry.ClassesRoot.OpenSubKey(@"River.OneMoreAddIn", false))
+			using var key = Registry.ClassesRoot.OpenSubKey(@"River.OneMoreAddIn", false);
+			if (key != null)
 			{
-				if (key != null)
+				if (!warned)
 				{
-					if (!warned)
-					{
-						logger.WriteLine("HKCR::River.OneMoreAddin SilientReminders is set to true");
-						warned = true;
-					}
+					logger.WriteLine("HKCR::River.OneMoreAddin SilientReminders is set to true");
+					warned = true;
+				}
 
-					if ((string)key.GetValue("SilentReminders") == "true")
-					{
-						logger.WriteLine($"Toast: {message}");
-						return;
-					}
+				if ((string)key.GetValue("SilentReminders") == "true")
+				{
+					logger.WriteLine($"Toast: {message}");
+					return;
 				}
 			}
 

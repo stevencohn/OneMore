@@ -47,39 +47,38 @@ namespace River.OneMoreAddIn.Commands.Tools.Updater
 			// since we only deploy a 64-bit installer now...
 			var path = @"Software\Microsoft\Windows\CurrentVersion\Uninstall";
 
-			using (var hive = RegistryKey
-				.OpenBaseKey(RegistryHive.LocalMachine, RegistryView.Registry64))
+			using var hive = RegistryKey
+				.OpenBaseKey(RegistryHive.LocalMachine, RegistryView.Registry64);
+
+			using var root = hive.OpenSubKey(path);
+			if (root != null)
 			{
-				using var root = hive.OpenSubKey(path);
-				if (root != null)
+				foreach (var subName in root.GetSubKeyNames())
 				{
-					foreach (var subName in root.GetSubKeyNames())
+					using var key = root.OpenSubKey(subName);
+
+					if (key?.GetValue("DisplayName") is string name &&
+						name == "OneMoreAddIn")
 					{
-						using var key = root.OpenSubKey(subName);
-
-						if (key?.GetValue("DisplayName") is string name &&
-							name == "OneMoreAddIn")
+						if (key.GetValue("UninstallString") is string cmd &&
+							!string.IsNullOrEmpty(cmd))
 						{
-							if (key.GetValue("UninstallString") is string cmd &&
-								!string.IsNullOrEmpty(cmd))
-							{
-								productCode = cmd.Substring(cmd.IndexOf('{'));
-							}
-
-							if (key.GetValue("InstallDate") is string indate)
-							{
-								InstalledDate = indate;
-							}
-
-							// found the OneMore key so our job is done here
-							break;
+							productCode = cmd.Substring(cmd.IndexOf('{'));
 						}
+
+						if (key.GetValue("InstallDate") is string indate)
+						{
+							InstalledDate = indate;
+						}
+
+						// found the OneMore key so our job is done here
+						break;
 					}
 				}
-				else
-				{
-					Logger.Current.WriteLine($"updater: Registry key not found HKLM::{path}");
-				}
+			}
+			else
+			{
+				Logger.Current.WriteLine($"updater: Registry key not found HKLM::{path}");
 			}
 
 			InstalledVersion = AssemblyInfo.Version;
@@ -175,12 +174,11 @@ namespace River.OneMoreAddIn.Commands.Tools.Updater
 			// to terminate onenote before the msi runs
 
 			var script = Path.Combine(Path.GetTempPath(), "OneMoreInstaller.bat");
-			using (var writer = new StreamWriter(script, false))
-			{
-				writer.WriteLine("taskkill /im ONENOTE.exe /f /t");
-				//writer.WriteLine($"start /wait msiexec /x{productCode}");
-				writer.WriteLine(msi);
-			}
+
+			using var writer = new StreamWriter(script, false);
+			writer.WriteLine("taskkill /im ONENOTE.exe /f /t");
+			//writer.WriteLine($"start /wait msiexec /x{productCode}");
+			writer.WriteLine(msi);
 
 			// run installer script
 

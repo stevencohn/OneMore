@@ -22,17 +22,15 @@ namespace River.OneMoreAddIn.Commands
 
 		public override async Task Execute(params object[] args)
 		{
-			using (var one = new OneNote())
+			using var one = new OneNote();
+			var notebook = await one.GetNotebook();
+			if (notebook != null)
 			{
-				var notebook = await one.GetNotebook();
-				if (notebook != null)
-				{
-					pattern = new Regex(@"^(\(\d+\)\s).+");
+				pattern = new Regex(@"^(\(\d+\)\s).+");
 
-					if (RemoveNumbering(notebook, one.GetNamespace(notebook)) > 0)
-					{
-						one.UpdateHierarchy(notebook);
-					}
+				if (RemoveNumbering(notebook, one.GetNamespace(notebook)) > 0)
+				{
+					one.UpdateHierarchy(notebook);
 				}
 			}
 

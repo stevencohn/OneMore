@@ -126,10 +126,10 @@ namespace OneMoreCalendar
 		private void ShowAbout(object sender, LinkLabelLinkClickedEventArgs e)
 		{
 			Busy = true;
-			using (var dialog = new AboutDialog())
-			{
-				dialog.ShowDialog(Program.MainForm);
-			}
+
+			using var dialog = new AboutDialog();
+			dialog.ShowDialog(Program.MainForm);
+
 			Busy = false;
 		}
 
