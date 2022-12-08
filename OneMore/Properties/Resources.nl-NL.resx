@@ -4247,4 +4247,7 @@ In deze sectie</value>
     <value>Dubbele pagina</value>
     <comment>page context menu</comment>
   </data>
+  <data name="word_Code" xml:space="preserve">
+    <value>Code</value>
+  </data>
 </root>

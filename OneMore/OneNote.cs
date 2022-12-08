@@ -999,6 +999,13 @@ namespace River.OneMoreAddIn
 				}
 			}
 
+			// dateExpectedLastModified is merely a pessimistic-locking safeguard to prevent
+			// updating parts of a shared page that have since been updated
+			//
+			//var lastModTime = element.Attribute("lastModifiedTime") is XAttribute att
+			//	? DateTime.Parse(att.Value).ToUniversalTime()
+			//	: DateTime.MinValue;
+
 			var xml = element.ToString(SaveOptions.DisableFormatting);
 
 			await InvokeWithRetry(() =>

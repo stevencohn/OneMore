@@ -4300,4 +4300,7 @@ W tej sekcji</value>
     <value>Duplikat strony</value>
     <comment>page context menu</comment>
   </data>
+  <data name="word_Code" xml:space="preserve">
+    <value>Kod</value>
+  </data>
 </root>

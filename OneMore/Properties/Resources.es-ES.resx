@@ -4247,4 +4247,7 @@ En esta sección</value>
     <value>Página duplicada</value>
     <comment>page context menu</comment>
   </data>
+  <data name="word_Code" xml:space="preserve">
+    <value>Código</value>
+  </data>
 </root>

@@ -57,6 +57,8 @@ namespace River.OneMoreAddIn.Commands
 
 			DetermineCellColors(page);
 
+			PageNamespace.Set(ns);
+
 			var table = new Table(ns)
 			{
 				BordersVisible = true
@@ -79,10 +81,8 @@ namespace River.OneMoreAddIn.Commands
 				cell = row.Cells.First();
 
 				cell.SetContent(
-					new XElement(ns + "OE",
-						new XAttribute("style", $"font-family:'Segoe UI';font-size:11.0pt;color:{titleColor}"),
-						new XElement(ns + "T", new XCData("<span style='font-weight:bold'>Code</span>"))
-						));
+					new Paragraph($"<span style='font-weight:bold'>{Resx.word_Code}</span>")
+						.SetStyle($"font-family:'Segoe UI';font-size:11.0pt;color:{titleColor}"));
 
 				cell.ShadingColor = shading;
 			}
@@ -201,26 +201,19 @@ namespace River.OneMoreAddIn.Commands
 		{
 			if (withTitle)
 			{
+				var css = $"font-family:Consolas;font-size:10.0pt;color:{textColor}";
+
 				return new XElement(ns + "OEChildren",
-					new XElement(ns + "OE",
-						new XAttribute("style", $"font-family:Consolas;font-size:10.0pt;color:{textColor}"),
-						new XElement(ns + "T", new XCData(string.Empty))
-						),
-					new XElement(ns + "OE",
-						new XAttribute("style", $"font-family:Consolas;font-size:10.0pt;color:{textColor}"),
-						new XElement(ns + "T", new XCData(Resx.InsertCodeBlockCommand_Code))
-						),
-					new XElement(ns + "OE",
-						new XAttribute("style", $"font-family:Consolas;font-size:10.0pt;color:{textColor}"),
-						new XElement(ns + "T", new XCData(string.Empty))
-						)
+					new Paragraph(string.Empty).SetStyle(css),
+					new Paragraph(Resx.InsertCodeBlockCommand_Code).SetStyle(css),
+					new Paragraph(string.Empty).SetStyle(css)
 					);
 			}
 
 			return new XElement(ns + "OEChildren",
-				new XElement(ns + "OE", new XElement(ns + "T", new XCData(string.Empty))),
-				new XElement(ns + "OE", new XElement(ns + "T", new XCData(Resx.InsertCodeBlockCommand_Text))),
-				new XElement(ns + "OE", new XElement(ns + "T", new XCData(string.Empty)))
+				new Paragraph(string.Empty),
+				new Paragraph(Resx.InsertCodeBlockCommand_Text),
+				new Paragraph(string.Empty)
 				);
 		}
 

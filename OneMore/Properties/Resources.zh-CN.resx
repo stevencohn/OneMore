@@ -4237,4 +4237,7 @@ ISO-code then comma then language name</comment>
     <value>重复页面</value>
     <comment>page context menu</comment>
   </data>
+  <data name="word_Code" xml:space="preserve">
+    <value>代码</value>
+  </data>
 </root>
