@@ -9,6 +9,9 @@ command in that category. The commands implemented in the Commands/Clean folder 
 described by the Clean section. Each command in a Commands/category folder has a 
 corresponding smoke test page under its similarly-named section.
 
+You can view a read-only copy 
+of [this notebook online here](https://1drv.ms/u/s!ArTUF0U30CVpg8lnWV_-ee6DvD9QyA?e=VHZirT)
+
 ## How to Test
 
 Generally
