@@ -66,8 +66,15 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
+		/// <summary>
+		/// Gets collection of user selected emojis
+		/// </summary>
+		/// <returns>A collection of IEmoji</returns>
 		public IEnumerable<IEmoji> GetEmojis()
 		{
+			// pre-dispose images so caller doesn't have to
+			emojis.Dispose();
+
 			foreach (int index in iconBox.SelectedIndices)
 			{
 				yield return emojis[index];
