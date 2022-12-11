@@ -2351,10 +2351,6 @@ Polaroïd</value>
     <value>Ajouter / modifier une formule dans les cellules sélectionnées du tableau (F5)</value>
     <comment>Ribbon OneMore menu item, Formula...</comment>
   </data>
-  <data name="ribAddTitleIconButton_Label" xml:space="preserve">
-    <value>Ajouter une icône au titre de la page</value>
-    <comment>Ribbon OneMore menu item, Extras...</comment>
-  </data>
   <data name="ribAnalyzeButton_Label" xml:space="preserve">
     <value>Analyser le stockage des données</value>
     <comment>ribbon item</comment>
@@ -4275,5 +4271,9 @@ Dans cette section</value>
   <data name="EmojiDialog_introLabel.Text" xml:space="preserve">
     <value>Sélectionnez un ou plusieurs emojis à ajouter au titre de la page</value>
     <comment>instructions</comment>
+  </data>
+  <data name="ribEmojiButton_Label" xml:space="preserve">
+    <value>Ajouter un titre de page Emoji</value>
+    <comment>Ribbon OneMore menu item, Extras... EDIT</comment>
   </data>
 </root>

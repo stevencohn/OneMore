@@ -2355,10 +2355,6 @@ polaroid</value>
     <value>Agregar / editar fórmula en celdas de tabla seleccionadas (F5)</value>
     <comment>Ribbon OneMore menu item, Formula...</comment>
   </data>
-  <data name="ribAddTitleIconButton_Label" xml:space="preserve">
-    <value>Añadir icono al título de la página</value>
-    <comment>Ribbon OneMore menu item, Extras...</comment>
-  </data>
   <data name="ribAnalyzeButton_Label" xml:space="preserve">
     <value>Analizar el almacenamiento de datos</value>
     <comment>ribbon item</comment>
@@ -4281,5 +4277,9 @@ En esta sección</value>
   <data name="EmojiDialog_introLabel.Text" xml:space="preserve">
     <value>Seleccione uno o más emojis para agregar al título de la página</value>
     <comment>instructions</comment>
+  </data>
+  <data name="ribEmojiButton_Label" xml:space="preserve">
+    <value>Añadir emoji de título de página</value>
+    <comment>Ribbon OneMore menu item, Extras... EDIT</comment>
   </data>
 </root>

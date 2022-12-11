@@ -2489,8 +2489,8 @@ Polaroid</value>
     <value>Add/edit formula in selected table cells (F5)</value>
     <comment>Ribbon OneMore menu item, Formula...</comment>
   </data>
-  <data name="ribAddTitleIconButton_Label" xml:space="preserve">
-    <value>Add Icon to Page Title</value>
+  <data name="ribEmojiButton_Label" xml:space="preserve">
+    <value>Add Page Title Emoji</value>
     <comment>Ribbon OneMore menu item, Extras...</comment>
   </data>
   <data name="ribAnalyzeButton_Label" xml:space="preserve">

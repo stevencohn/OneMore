@@ -45,9 +45,9 @@ namespace River.OneMoreAddIn
 			=> await factory.Run<AddFormulaCommand>();
 
 
-		[Command("ribAddTitleIconButton_Label", Keys.None, "Page")]
-		public async Task AddTitleIconCmd(IRibbonControl control)
-			=> await factory.Run<AddTitleIconCommand>();
+		[Command("ribEmojiButton_Label", Keys.None, "Page")]
+		public async Task EmojiCmd(IRibbonControl control)
+			=> await factory.Run<EmojiCommand>();
 
 
 		public async Task AnalyzeCmd(IRibbonControl control)

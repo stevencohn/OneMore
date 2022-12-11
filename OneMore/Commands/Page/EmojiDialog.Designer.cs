@@ -76,11 +76,11 @@
 			this.introLabel.AutoSize = true;
 			this.introLabel.Location = new System.Drawing.Point(14, 26);
 			this.introLabel.Name = "introLabel";
-			this.introLabel.Size = new System.Drawing.Size(320, 20);
+			this.introLabel.Size = new System.Drawing.Size(328, 20);
 			this.introLabel.TabIndex = 4;
-			this.introLabel.Text = "Select one or more icons to add to page title";
+			this.introLabel.Text = "Select one or more emojis to add to page title";
 			// 
-			// AddTitleIconDialog
+			// EmojiDialog
 			// 
 			this.AcceptButton = this.okButton;
 			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -95,10 +95,10 @@
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.MaximizeBox = false;
 			this.MinimizeBox = false;
-			this.Name = "AddTitleIconDialog";
+			this.Name = "EmojiDialog";
 			this.ShowInTaskbar = false;
 			this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
-			this.Text = "Title Icons";
+			this.Text = "Page Title Emojis";
 			this.ResumeLayout(false);
 			this.PerformLayout();
 

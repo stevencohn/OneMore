@@ -14,12 +14,12 @@ namespace River.OneMoreAddIn.Commands
 	/// <summary>
 	/// Prefix the page title with one or more chosen symbols from the Segoe UI Emoji char set
 	/// </summary>
-	internal class AddTitleIconCommand : Command
+	internal class EmojiCommand : Command
 	{
 		private IEnumerable<IEmoji> emojis;
 
 
-		public AddTitleIconCommand()
+		public EmojiCommand()
 		{
 		}
 

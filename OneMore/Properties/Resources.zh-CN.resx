@@ -2351,10 +2351,6 @@ ISO-code then comma then language name</comment>
     <value>在选定的表格单元格中添加/编辑公式（F5）</value>
     <comment>Ribbon OneMore menu item, Formula...</comment>
   </data>
-  <data name="ribAddTitleIconButton_Label" xml:space="preserve">
-    <value>将图标添加到页面标题</value>
-    <comment>Ribbon OneMore menu item, Extras...</comment>
-  </data>
   <data name="ribAnalyzeButton_Label" xml:space="preserve">
     <value>分析数据存储</value>
     <comment>ribbon item</comment>
@@ -4271,5 +4267,9 @@ ISO-code then comma then language name</comment>
   <data name="EmojiDialog_introLabel.Text" xml:space="preserve">
     <value>选择一个或多个表情符号以添加到页面标题</value>
     <comment>instructions</comment>
+  </data>
+  <data name="ribEmojiButton_Label" xml:space="preserve">
+    <value>添加页面标题表情符号</value>
+    <comment>Ribbon OneMore menu item, Extras... EDIT</comment>
   </data>
 </root>

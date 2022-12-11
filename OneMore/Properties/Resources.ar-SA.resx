@@ -2355,10 +2355,6 @@ ISO-code then comma then language name</comment>
     <value>إضافة / تحرير الصيغة في خلايا الجدول المحددة (F5)</value>
     <comment>Ribbon OneMore menu item, Formula...</comment>
   </data>
-  <data name="ribAddTitleIconButton_Label" xml:space="preserve">
-    <value>أضف أيقونة إلى عنوان الصفحة</value>
-    <comment>Ribbon OneMore menu item, Extras...</comment>
-  </data>
   <data name="ribAnalyzeButton_Label" xml:space="preserve">
     <value>تحليل تخزين البيانات</value>
     <comment>ribbon item</comment>
@@ -4281,5 +4277,9 @@ ISO-code then comma then language name</comment>
   <data name="EmojiDialog_introLabel.Text" xml:space="preserve">
     <value>حدد أو أكثر من الرموز التعبيرية لإضافتها إلى عنوان الصفحة</value>
     <comment>instructions</comment>
+  </data>
+  <data name="ribEmojiButton_Label" xml:space="preserve">
+    <value>إضافة رمز تعبيري لعنوان الصفحة</value>
+    <comment>Ribbon OneMore menu item, Extras... EDIT</comment>
   </data>
 </root>

@@ -580,7 +580,7 @@
     <Compile Include="Commands\Tools\DiagnosticsCommand.cs" />
     <Compile Include="Commands\Styles\EditStylesCommand.cs" />
     <Compile Include="Commands\References\AddFootnoteCommand.cs" />
-    <Compile Include="Commands\Page\AddTitleIconCommand.cs" />
+    <Compile Include="Commands\Page\EmojiCommand.cs" />
     <Compile Include="Commands\Edit\AlterSizeCommand.cs" />
     <Compile Include="Commands\Extras\CollapsePagesCommand.cs" />
     <Compile Include="Commands\CommandFactory.cs" />

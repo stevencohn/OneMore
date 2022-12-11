@@ -2356,10 +2356,6 @@ Polaroid</value>
     <value>Formule toevoegen/bewerken in geselecteerde tabelcellen (F5)</value>
     <comment>Ribbon OneMore menu item, Formula...</comment>
   </data>
-  <data name="ribAddTitleIconButton_Label" xml:space="preserve">
-    <value>Pictogram toevoegen aan paginatitel</value>
-    <comment>Ribbon OneMore menu item, Extras...</comment>
-  </data>
   <data name="ribAnalyzeButton_Label" xml:space="preserve">
     <value>Gegevensopslag analyseren</value>
     <comment>ribbon item</comment>
@@ -4281,5 +4277,9 @@ In deze sectie</value>
   <data name="EmojiDialog_introLabel.Text" xml:space="preserve">
     <value>Selecteer een of meer emoji's om toe te voegen aan de paginatitel</value>
     <comment>instructions</comment>
+  </data>
+  <data name="ribEmojiButton_Label" xml:space="preserve">
+    <value>Paginatitel-emoji toevoegen</value>
+    <comment>Ribbon OneMore menu item, Extras... EDIT</comment>
   </data>
 </root>

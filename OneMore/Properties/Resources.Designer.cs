@@ -5536,15 +5536,6 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Add Icon to Page Title.
-        /// </summary>
-        internal static string ribAddTitleIconButton_Label {
-            get {
-                return ResourceManager.GetString("ribAddTitleIconButton_Label", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Analyze Data Storage.
         /// </summary>
         internal static string ribAnalyzeButton_Label {
@@ -6148,6 +6139,15 @@ namespace River.OneMoreAddIn.Properties {
         internal static string ribEmbedSubpageButton_Screentip {
             get {
                 return ResourceManager.GetString("ribEmbedSubpageButton_Screentip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add Page Title Emoji.
+        /// </summary>
+        internal static string ribEmojiButton_Label {
+            get {
+                return ResourceManager.GetString("ribEmojiButton_Label", resourceCulture);
             }
         }
         
