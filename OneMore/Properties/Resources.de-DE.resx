@@ -180,14 +180,6 @@
   <data name="AddInTitle" xml:space="preserve">
     <value>OneMoreAddIn</value>
   </data>
-  <data name="AddTitleIconDialog.Text" xml:space="preserve">
-    <value>Kleine Symbole</value>
-    <comment>dialog title</comment>
-  </data>
-  <data name="AddTitleIconDialog_introLabel.Text" xml:space="preserve">
-    <value>Wählen Sie ein oder mehrere Symbole aus, um sie dem Seitentitel hinzuzufügen</value>
-    <comment>instructions</comment>
-  </data>
   <data name="AliasSheet.Text" xml:space="preserve">
     <value>Definieren Sie Befehlsaliase zur Verwendung in der Befehlspalette</value>
     <comment>intro box</comment>
@@ -2357,10 +2349,6 @@ Polaroid</value>
     <value>Formel in ausgewählten Tabellenzellen hinzufügen / bearbeiten (F5)</value>
     <comment>Ribbon OneMore menu item, Formula...</comment>
   </data>
-  <data name="ribAddTitleIconButton_Label" xml:space="preserve">
-    <value>Symbol zum Seitentitel hinzufügen</value>
-    <comment>Ribbon OneMore menu item, Extras...</comment>
-  </data>
   <data name="ribAnalyzeButton_Label" xml:space="preserve">
     <value>Datenspeicher analysieren</value>
     <comment>ribbon item</comment>
@@ -4241,5 +4229,49 @@ In diesem Abschnitt</value>
   </data>
   <data name="word_Code" xml:space="preserve">
     <value>Code</value>
+  </data>
+  <data name="Emoji_CheckMark" xml:space="preserve">
+    <value>Häkchen</value>
+    <comment>emoji</comment>
+  </data>
+  <data name="Emoji_Cloud" xml:space="preserve">
+    <value>Wolke</value>
+    <comment>emoji</comment>
+  </data>
+  <data name="Emoji_Copyright" xml:space="preserve">
+    <value>Urheberrechte ©</value>
+    <comment>emoji</comment>
+  </data>
+  <data name="Emoji_Eyes" xml:space="preserve">
+    <value>Augen</value>
+    <comment>emoji</comment>
+  </data>
+  <data name="Emoji_LeftwardsArrow" xml:space="preserve">
+    <value>Pfeil nach links</value>
+    <comment>emoji</comment>
+  </data>
+  <data name="Emoji_RightwardsArrow" xml:space="preserve">
+    <value>Pfeil nach rechts</value>
+    <comment>emoji</comment>
+  </data>
+  <data name="Emoji_Section" xml:space="preserve">
+    <value>Abschnitt</value>
+    <comment>emoji</comment>
+  </data>
+  <data name="Emoji_XMark" xml:space="preserve">
+    <value>X-Markierung</value>
+    <comment>emoji</comment>
+  </data>
+  <data name="EmojiDialog.Text" xml:space="preserve">
+    <value>Titel-Emojis</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="EmojiDialog_introLabel.Text" xml:space="preserve">
+    <value>Wählen Sie ein oder mehrere Emojis aus, um sie dem Seitentitel hinzuzufügen</value>
+    <comment>instructions</comment>
+  </data>
+  <data name="ribEmojiButton_Label" xml:space="preserve">
+    <value>Seitentitel Emoji hinzufügen</value>
+    <comment>Ribbon OneMore menu item, Extras... EDIT</comment>
   </data>
 </root>

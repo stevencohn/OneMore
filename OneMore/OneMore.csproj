@@ -145,6 +145,7 @@
     <Compile Include="Commands\File\Markdown\OneMoreDigRenderer.cs" />
     <Compile Include="Commands\Images\OpenImageWithCommand.cs" />
     <Compile Include="Commands\Page\DuplicatePageCommand.cs" />
+    <Compile Include="Commands\Page\Emojis.cs" />
     <Compile Include="Commands\Tables\ApplyTableThemeCommand.cs" />
     <Compile Include="Commands\Tables\EditTableThemesCommand.cs" />
     <Compile Include="Commands\Tables\EditTableThemesDialog.cs">
@@ -579,7 +580,7 @@
     <Compile Include="Commands\Tools\DiagnosticsCommand.cs" />
     <Compile Include="Commands\Styles\EditStylesCommand.cs" />
     <Compile Include="Commands\References\AddFootnoteCommand.cs" />
-    <Compile Include="Commands\Page\AddTitleIconCommand.cs" />
+    <Compile Include="Commands\Page\EmojiCommand.cs" />
     <Compile Include="Commands\Edit\AlterSizeCommand.cs" />
     <Compile Include="Commands\Extras\CollapsePagesCommand.cs" />
     <Compile Include="Commands\CommandFactory.cs" />
@@ -834,11 +835,11 @@
     <Compile Include="UI\MoreColorDialog.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Commands\Page\AddTitleIconDialog.cs">
+    <Compile Include="Commands\Page\EmojiDialog.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Commands\Page\AddTitleIconDialog.Designer.cs">
-      <DependentUpon>AddTitleIconDialog.cs</DependentUpon>
+    <Compile Include="Commands\Page\EmojiDialog.Designer.cs">
+      <DependentUpon>EmojiDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\FontComboBox.cs">
       <SubType>Component</SubType>
@@ -955,7 +956,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Commands\Search\x.png" />
-    <Content Include="Properties\Emoji\Architecture.png" />
+    <None Include="Properties\Emoji\Architecture.png" />
     <None Include="Colorizer\Languages\golang.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -1008,21 +1009,29 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Properties\Emoji\Automobile.png" />
-    <Content Include="Properties\Emoji\Bullet.png" />
-    <Content Include="Properties\Emoji\Calendar.png" />
-    <Content Include="Properties\Emoji\Camera.png" />
-    <Content Include="Properties\Emoji\Circle.png" />
-    <Content Include="Properties\Emoji\Cross.png" />
-    <Content Include="Properties\Emoji\Cyclist.png" />
-    <Content Include="Properties\Emoji\Envelope.png" />
+    <None Include="Properties\Emoji\Bullet.png" />
+    <None Include="Properties\Emoji\Calendar.png" />
+    <None Include="Properties\Emoji\Camera.png" />
+    <None Include="Properties\Emoji\CheckMark.png" />
+    <None Include="Properties\Emoji\Circle.png" />
+    <None Include="Properties\Emoji\Cloud.png" />
+    <None Include="Properties\Emoji\Copyright.png" />
+    <None Include="Properties\Emoji\Cross.png" />
+    <None Include="Properties\Emoji\Cyclist.png" />
+    <None Include="Properties\Emoji\Envelope.png" />
     <None Include="Properties\Emoji\Family.png" />
     <None Include="Properties\Emoji\Financial.png" />
-    <Content Include="Properties\Emoji\Flag.png" />
-    <Content Include="Properties\Emoji\Hammer.png" />
-    <Content Include="Properties\Emoji\Journal.png" />
+    <None Include="Properties\Emoji\Eyes.png" />
+    <None Include="Properties\Emoji\Flag.png" />
+    <None Include="Properties\Emoji\Hammer.png" />
+    <None Include="Properties\Emoji\Journal.png" />
     <None Include="Properties\Emoji\Memo.png" />
     <None Include="Properties\Emoji\Passwords.png" />
     <None Include="Properties\Images\Copy.png" />
+    <None Include="Properties\Emoji\LeftwardsArrow.png" />
+    <None Include="Properties\Emoji\RightwardsArrow.png" />
+    <None Include="Properties\Emoji\Section.png" />
+    <None Include="Properties\Emoji\XMark.png" />
     <Content Include="Properties\Images\CustomStyles.png" />
     <Content Include="Properties\Images\DarkCustomStyles.png" />
     <Content Include="Properties\Images\DarkFavorites.png" />
@@ -1039,17 +1048,17 @@
     <None Include="Properties\Images\Grid40.png" />
     <Content Include="Properties\Images\Label.png" />
     <Content Include="Properties\Images\LabelSearch.png" />
-    <Content Include="Properties\Emoji\Pencil.png" />
-    <Content Include="Properties\Emoji\Pushpin.png" />
+    <None Include="Properties\Emoji\Pencil.png" />
+    <None Include="Properties\Emoji\Pushpin.png" />
     <None Include="Properties\Emoji\Shazam.png" />
-    <Content Include="Properties\Emoji\Smiley.png" />
+    <None Include="Properties\Emoji\Smiley.png" />
     <None Include="Properties\Emoji\Software.png" />
     <None Include="Properties\Emoji\Sports.png" />
-    <Content Include="Properties\Emoji\Star.png" />
-    <Content Include="Properties\Emoji\Summary.png" />
+    <None Include="Properties\Emoji\Star.png" />
+    <None Include="Properties\Emoji\Summary.png" />
     <None Include="Properties\Emoji\Tasks.png" />
     <None Include="Properties\Emoji\Travel.png" />
-    <Content Include="Properties\Emoji\Watch.png" />
+    <None Include="Properties\Emoji\Watch.png" />
     <Content Include="Properties\Images\Bold.png" />
     <Content Include="Properties\Images\Delete.png" />
     <Content Include="Properties\Images\DoubleLine.png" />
@@ -1226,8 +1235,8 @@
     <EmbeddedResource Include="Commands\Images\CropImageDialog.resx">
       <DependentUpon>CropImageDialog.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Commands\Page\AddTitleIconDialog.resx">
-      <DependentUpon>AddTitleIconDialog.cs</DependentUpon>
+    <EmbeddedResource Include="Commands\Page\EmojiDialog.resx">
+      <DependentUpon>EmojiDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Commands\File\ExportDialog.resx">
       <DependentUpon>ExportDialog.cs</DependentUpon>

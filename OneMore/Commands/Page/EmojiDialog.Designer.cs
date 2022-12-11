@@ -1,6 +1,6 @@
 ﻿namespace River.OneMoreAddIn.Commands
 {
-	partial class AddTitleIconDialog
+	partial class EmojiDialog
 	{
 		/// <summary>
 		/// Required designer variable.
@@ -28,7 +28,7 @@
 		/// </summary>
 		private void InitializeComponent ()
 		{
-			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AddTitleIconDialog));
+			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(EmojiDialog));
 			this.cancelButton = new System.Windows.Forms.Button();
 			this.okButton = new System.Windows.Forms.Button();
 			this.iconBox = new System.Windows.Forms.ListBox();
@@ -41,7 +41,7 @@
 			this.cancelButton.Location = new System.Drawing.Point(268, 478);
 			this.cancelButton.Name = "cancelButton";
 			this.cancelButton.Size = new System.Drawing.Size(99, 38);
-			this.cancelButton.TabIndex = 0;
+			this.cancelButton.TabIndex = 2;
 			this.cancelButton.Text = "Cancel";
 			this.cancelButton.UseVisualStyleBackColor = true;
 			this.cancelButton.Click += new System.EventHandler(this.Cancel);
@@ -66,7 +66,7 @@
 			this.iconBox.Name = "iconBox";
 			this.iconBox.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
 			this.iconBox.Size = new System.Drawing.Size(349, 394);
-			this.iconBox.TabIndex = 2;
+			this.iconBox.TabIndex = 0;
 			this.iconBox.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.DrawIconItem);
 			this.iconBox.MeasureItem += new System.Windows.Forms.MeasureItemEventHandler(this.MeasureIconItemSIze);
 			this.iconBox.DoubleClick += new System.EventHandler(this.DoubleClickItem);
@@ -76,11 +76,11 @@
 			this.introLabel.AutoSize = true;
 			this.introLabel.Location = new System.Drawing.Point(14, 26);
 			this.introLabel.Name = "introLabel";
-			this.introLabel.Size = new System.Drawing.Size(320, 20);
+			this.introLabel.Size = new System.Drawing.Size(328, 20);
 			this.introLabel.TabIndex = 4;
-			this.introLabel.Text = "Select one or more icons to add to page title";
+			this.introLabel.Text = "Select one or more emojis to add to page title";
 			// 
-			// AddTitleIconDialog
+			// EmojiDialog
 			// 
 			this.AcceptButton = this.okButton;
 			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -95,10 +95,10 @@
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.MaximizeBox = false;
 			this.MinimizeBox = false;
-			this.Name = "AddTitleIconDialog";
+			this.Name = "EmojiDialog";
 			this.ShowInTaskbar = false;
 			this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
-			this.Text = "Title Icons";
+			this.Text = "Page Title Emojis";
 			this.ResumeLayout(false);
 			this.PerformLayout();
 

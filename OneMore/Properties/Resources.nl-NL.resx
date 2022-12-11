@@ -184,14 +184,6 @@ OneNote wordt automatisch gesloten</value>
     <value>OneMoreAddIn</value>
     <comment>SKIP</comment>
   </data>
-  <data name="AddTitleIconDialog.Text" xml:space="preserve">
-    <value>Titel Pictogrammen</value>
-    <comment>dialog title</comment>
-  </data>
-  <data name="AddTitleIconDialog_introLabel.Text" xml:space="preserve">
-    <value>Selecteer een of meer pictogrammen om toe te voegen aan de paginatitel</value>
-    <comment>instructions</comment>
-  </data>
   <data name="AliasSheet.Text" xml:space="preserve">
     <value>Opdrachtaliassen definiëren voor gebruik in het opdrachtenpalet</value>
     <comment>intro box</comment>
@@ -2364,10 +2356,6 @@ Polaroid</value>
     <value>Formule toevoegen/bewerken in geselecteerde tabelcellen (F5)</value>
     <comment>Ribbon OneMore menu item, Formula...</comment>
   </data>
-  <data name="ribAddTitleIconButton_Label" xml:space="preserve">
-    <value>Pictogram toevoegen aan paginatitel</value>
-    <comment>Ribbon OneMore menu item, Extras...</comment>
-  </data>
   <data name="ribAnalyzeButton_Label" xml:space="preserve">
     <value>Gegevensopslag analyseren</value>
     <comment>ribbon item</comment>
@@ -4249,5 +4237,49 @@ In deze sectie</value>
   </data>
   <data name="word_Code" xml:space="preserve">
     <value>Code</value>
+  </data>
+  <data name="Emoji_CheckMark" xml:space="preserve">
+    <value>Vinkje</value>
+    <comment>emoji</comment>
+  </data>
+  <data name="Emoji_Cloud" xml:space="preserve">
+    <value>Wolk</value>
+    <comment>emoji</comment>
+  </data>
+  <data name="Emoji_Copyright" xml:space="preserve">
+    <value>auteursrechten</value>
+    <comment>emoji</comment>
+  </data>
+  <data name="Emoji_Eyes" xml:space="preserve">
+    <value>Ogen</value>
+    <comment>emoji</comment>
+  </data>
+  <data name="Emoji_LeftwardsArrow" xml:space="preserve">
+    <value>Pijl naar links</value>
+    <comment>emoji</comment>
+  </data>
+  <data name="Emoji_RightwardsArrow" xml:space="preserve">
+    <value>Pijl naar rechts</value>
+    <comment>emoji</comment>
+  </data>
+  <data name="Emoji_Section" xml:space="preserve">
+    <value>Sectie</value>
+    <comment>emoji</comment>
+  </data>
+  <data name="Emoji_XMark" xml:space="preserve">
+    <value>X-markering</value>
+    <comment>emoji</comment>
+  </data>
+  <data name="EmojiDialog.Text" xml:space="preserve">
+    <value>Titel Emoji's</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="EmojiDialog_introLabel.Text" xml:space="preserve">
+    <value>Selecteer een of meer emoji's om toe te voegen aan de paginatitel</value>
+    <comment>instructions</comment>
+  </data>
+  <data name="ribEmojiButton_Label" xml:space="preserve">
+    <value>Paginatitel-emoji toevoegen</value>
+    <comment>Ribbon OneMore menu item, Extras... EDIT</comment>
   </data>
 </root>

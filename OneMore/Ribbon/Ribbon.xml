@@ -460,10 +460,10 @@
                 getLabel="GetRibbonLabel"
                 onAction="ArrangeContainersCmd"/>
               <button
-                id="ribAddTitleIconButton"
+                id="ribEmojiButton"
                 imageMso="DataGraphicIconSet"
                 getLabel="GetRibbonLabel"
-                onAction="AddTitleIconCmd"/>
+                onAction="EmojiCmd"/>
               <button
                 id="ribCaptionAttachmentsButton"
                 imageMso="CaptionInsert"

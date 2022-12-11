@@ -183,14 +183,6 @@
   <data name="AddInTitle" xml:space="preserve">
     <value>OneMoreAddIn</value>
   </data>
-  <data name="AddTitleIconDialog.Text" xml:space="preserve">
-    <value>أيقونات العنوان</value>
-    <comment>dialog title</comment>
-  </data>
-  <data name="AddTitleIconDialog_introLabel.Text" xml:space="preserve">
-    <value>حدد أو أكثر من الرموز لإضافتها إلى عنوان الصفحة</value>
-    <comment>instructions</comment>
-  </data>
   <data name="AliasSheet.Text" xml:space="preserve">
     <value>حدد الأسماء المستعارة للأوامر لاستخدامها في لوحة الأوامر</value>
     <comment>intro box</comment>
@@ -2363,10 +2355,6 @@ ISO-code then comma then language name</comment>
     <value>إضافة / تحرير الصيغة في خلايا الجدول المحددة (F5)</value>
     <comment>Ribbon OneMore menu item, Formula...</comment>
   </data>
-  <data name="ribAddTitleIconButton_Label" xml:space="preserve">
-    <value>أضف أيقونة إلى عنوان الصفحة</value>
-    <comment>Ribbon OneMore menu item, Extras...</comment>
-  </data>
   <data name="ribAnalyzeButton_Label" xml:space="preserve">
     <value>تحليل تخزين البيانات</value>
     <comment>ribbon item</comment>
@@ -4249,5 +4237,49 @@ ISO-code then comma then language name</comment>
   </data>
   <data name="word_Code" xml:space="preserve">
     <value>شفرة</value>
+  </data>
+  <data name="Emoji_CheckMark" xml:space="preserve">
+    <value>علامة الاختيار</value>
+    <comment>emoji</comment>
+  </data>
+  <data name="Emoji_Cloud" xml:space="preserve">
+    <value>سحاب</value>
+    <comment>emoji</comment>
+  </data>
+  <data name="Emoji_Copyright" xml:space="preserve">
+    <value>حقوق النشر</value>
+    <comment>emoji</comment>
+  </data>
+  <data name="Emoji_Eyes" xml:space="preserve">
+    <value>عيون</value>
+    <comment>emoji</comment>
+  </data>
+  <data name="Emoji_LeftwardsArrow" xml:space="preserve">
+    <value>سهم لليسار</value>
+    <comment>emoji</comment>
+  </data>
+  <data name="Emoji_RightwardsArrow" xml:space="preserve">
+    <value>سهم لليمين</value>
+    <comment>emoji</comment>
+  </data>
+  <data name="Emoji_Section" xml:space="preserve">
+    <value>الجزء</value>
+    <comment>emoji</comment>
+  </data>
+  <data name="Emoji_XMark" xml:space="preserve">
+    <value>X مارك</value>
+    <comment>emoji</comment>
+  </data>
+  <data name="EmojiDialog.Text" xml:space="preserve">
+    <value>TItle Emojis</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="EmojiDialog_introLabel.Text" xml:space="preserve">
+    <value>حدد أو أكثر من الرموز التعبيرية لإضافتها إلى عنوان الصفحة</value>
+    <comment>instructions</comment>
+  </data>
+  <data name="ribEmojiButton_Label" xml:space="preserve">
+    <value>إضافة رمز تعبيري لعنوان الصفحة</value>
+    <comment>Ribbon OneMore menu item, Extras... EDIT</comment>
   </data>
 </root>

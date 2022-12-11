@@ -113,7 +113,7 @@ namespace River.OneMoreAddIn.Commands
 			MakePageTree(tree, pages, 0, 1);
 
 			var cleaner = new Func<XElement, string>((e) => sorting == SortBy.Name
-				? AddTitleIconDialog.RemoveEmojis(e.Attribute("name").Value)
+				? Emojis.RemoveEmojis(e.Attribute("name").Value)
 				: sorting == SortBy.Created
 					? e.Attribute("dateTime").Value
 					: e.Attribute("lastModifiedTime").Value

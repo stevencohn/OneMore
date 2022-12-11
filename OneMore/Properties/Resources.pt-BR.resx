@@ -184,14 +184,6 @@ OneNote fechará automaticamente</value>
     <value>OneMoreAddIn</value>
     <comment>SKIP</comment>
   </data>
-  <data name="AddTitleIconDialog.Text" xml:space="preserve">
-    <value>Ícones de título</value>
-    <comment>dialog title</comment>
-  </data>
-  <data name="AddTitleIconDialog_introLabel.Text" xml:space="preserve">
-    <value>Selecione um ou mais ícones para adicionar ao título da página</value>
-    <comment>instructions</comment>
-  </data>
   <data name="AliasSheet.Text" xml:space="preserve">
     <value>Definir aliases de comando para uso na Paleta de Comandos</value>
     <comment>intro box</comment>
@@ -2364,10 +2356,6 @@ Polaroid.</value>
     <value>Adicionar/editar fórmula nas células selecionadas da tabela (F5)</value>
     <comment>Ribbon OneMore menu item, Formula...</comment>
   </data>
-  <data name="ribAddTitleIconButton_Label" xml:space="preserve">
-    <value>Adicionar ícone ao título da página</value>
-    <comment>Ribbon OneMore menu item, Extras...</comment>
-  </data>
   <data name="ribAnalyzeButton_Label" xml:space="preserve">
     <value>Analise o armazenamento de dados</value>
     <comment>ribbon item</comment>
@@ -4249,5 +4237,49 @@ Nesta secção</value>
   </data>
   <data name="word_Code" xml:space="preserve">
     <value>Código</value>
+  </data>
+  <data name="Emoji_CheckMark" xml:space="preserve">
+    <value>marca de verificação</value>
+    <comment>emoji</comment>
+  </data>
+  <data name="Emoji_Cloud" xml:space="preserve">
+    <value>Nuvem</value>
+    <comment>emoji</comment>
+  </data>
+  <data name="Emoji_Copyright" xml:space="preserve">
+    <value>direito autoral</value>
+    <comment>emoji</comment>
+  </data>
+  <data name="Emoji_Eyes" xml:space="preserve">
+    <value>Olhos</value>
+    <comment>emoji</comment>
+  </data>
+  <data name="Emoji_LeftwardsArrow" xml:space="preserve">
+    <value>Seta para a esquerda</value>
+    <comment>emoji</comment>
+  </data>
+  <data name="Emoji_RightwardsArrow" xml:space="preserve">
+    <value>Seta para a direita</value>
+    <comment>emoji</comment>
+  </data>
+  <data name="Emoji_Section" xml:space="preserve">
+    <value>Seção</value>
+    <comment>emoji</comment>
+  </data>
+  <data name="Emoji_XMark" xml:space="preserve">
+    <value>Marca X</value>
+    <comment>emoji</comment>
+  </data>
+  <data name="EmojiDialog.Text" xml:space="preserve">
+    <value>Título Emojis</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="EmojiDialog_introLabel.Text" xml:space="preserve">
+    <value>Selecione um ou mais emojis para adicionar ao título da página</value>
+    <comment>instructions</comment>
+  </data>
+  <data name="ribEmojiButton_Label" xml:space="preserve">
+    <value>Adicionar emoji de título de página</value>
+    <comment>Ribbon OneMore menu item, Extras... EDIT</comment>
   </data>
 </root>
