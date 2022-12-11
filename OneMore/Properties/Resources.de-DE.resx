@@ -180,14 +180,6 @@
   <data name="AddInTitle" xml:space="preserve">
     <value>OneMoreAddIn</value>
   </data>
-  <data name="AddTitleIconDialog.Text" xml:space="preserve">
-    <value>Kleine Symbole</value>
-    <comment>dialog title</comment>
-  </data>
-  <data name="AddTitleIconDialog_introLabel.Text" xml:space="preserve">
-    <value>Wählen Sie ein oder mehrere Symbole aus, um sie dem Seitentitel hinzuzufügen</value>
-    <comment>instructions</comment>
-  </data>
   <data name="AliasSheet.Text" xml:space="preserve">
     <value>Definieren Sie Befehlsaliase zur Verwendung in der Befehlspalette</value>
     <comment>intro box</comment>
@@ -4273,5 +4265,13 @@ In diesem Abschnitt</value>
   <data name="Emoji_XMark" xml:space="preserve">
     <value>X-Markierung</value>
     <comment>emoji</comment>
+  </data>
+  <data name="EmojiDialog.Text" xml:space="preserve">
+    <value>Titelsymbole</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="EmojiDialog_introLabel.Text" xml:space="preserve">
+    <value>Wählen Sie ein oder mehrere Symbole aus, um sie dem Seitentitel hinzuzufügen</value>
+    <comment>instructions</comment>
   </data>
 </root>

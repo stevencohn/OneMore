@@ -180,14 +180,6 @@
   <data name="AddInTitle" xml:space="preserve">
     <value>OneMoreAddIn</value>
   </data>
-  <data name="AddTitleIconDialog.Text" xml:space="preserve">
-    <value>Icônes subtiles</value>
-    <comment>dialog title</comment>
-  </data>
-  <data name="AddTitleIconDialog_introLabel.Text" xml:space="preserve">
-    <value>Sélectionnez une ou plusieurs icônes à ajouter au titre de la page</value>
-    <comment>instructions</comment>
-  </data>
   <data name="AliasSheet.Text" xml:space="preserve">
     <value>Définir les alias de commande à utiliser dans la palette de commandes</value>
     <comment>intro box</comment>
@@ -4275,5 +4267,13 @@ Dans cette section</value>
   <data name="Emoji_XMark" xml:space="preserve">
     <value>Marque X</value>
     <comment>emoji</comment>
+  </data>
+  <data name="EmojiDialog.Text" xml:space="preserve">
+    <value>Icônes de titre</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="EmojiDialog_introLabel.Text" xml:space="preserve">
+    <value>Sélectionnez une ou plusieurs icônes à ajouter au titre de la page</value>
+    <comment>instructions</comment>
   </data>
 </root>

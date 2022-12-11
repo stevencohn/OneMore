@@ -9,7 +9,6 @@ namespace River.OneMoreAddIn.Commands
 	using System;
 	using System.Collections.Generic;
 	using System.Drawing;
-	using System.Linq;
 	using System.Windows.Forms;
 	using Resx = Properties.Resources;
 
@@ -21,12 +20,12 @@ namespace River.OneMoreAddIn.Commands
 	/// Disposables taken care of in OnClosed.
 	/// </remarks>
 
-	internal partial class AddTitleIconDialog : UI.LocalizableForm
+	internal partial class EmojiDialog : UI.LocalizableForm
 	{
 		private readonly Emojis emojis;
 
 
-		public AddTitleIconDialog()
+		public EmojiDialog()
 		{
 			InitializeComponent();
 
@@ -38,7 +37,7 @@ namespace River.OneMoreAddIn.Commands
 
 			if (NeedsLocalizing())
 			{
-				Text = Resx.AddTitleIconDialog_Text;
+				Text = Resx.EmojiDialog_Text;
 
 				Localize(new string[]
 				{

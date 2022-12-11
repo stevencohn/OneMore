@@ -223,24 +223,6 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Select on or more icons to add to page title.
-        /// </summary>
-        internal static string AddTitleIconDialog_introLabel_Text {
-            get {
-                return ResourceManager.GetString("AddTitleIconDialog_introLabel.Text", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to TItle Icons.
-        /// </summary>
-        internal static string AddTitleIconDialog_Text {
-            get {
-                return ResourceManager.GetString("AddTitleIconDialog.Text", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Define command aliases for use in the Command Palette.
         /// </summary>
         internal static string AliasSheet_Text {
@@ -2442,6 +2424,24 @@ namespace River.OneMoreAddIn.Properties {
         internal static string Emoji_XMark {
             get {
                 return ResourceManager.GetString("Emoji_XMark", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select on or more icons to add to page title.
+        /// </summary>
+        internal static string EmojiDialog_introLabel_Text {
+            get {
+                return ResourceManager.GetString("EmojiDialog_introLabel.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to TItle Icons.
+        /// </summary>
+        internal static string EmojiDialog_Text {
+            get {
+                return ResourceManager.GetString("EmojiDialog.Text", resourceCulture);
             }
         }
         

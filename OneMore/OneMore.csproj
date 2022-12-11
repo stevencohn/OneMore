@@ -835,11 +835,11 @@
     <Compile Include="UI\MoreColorDialog.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Commands\Page\AddTitleIconDialog.cs">
+    <Compile Include="Commands\Page\EmojiDialog.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Commands\Page\AddTitleIconDialog.Designer.cs">
-      <DependentUpon>AddTitleIconDialog.cs</DependentUpon>
+    <Compile Include="Commands\Page\EmojiDialog.Designer.cs">
+      <DependentUpon>EmojiDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\FontComboBox.cs">
       <SubType>Component</SubType>
@@ -1235,8 +1235,8 @@
     <EmbeddedResource Include="Commands\Images\CropImageDialog.resx">
       <DependentUpon>CropImageDialog.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Commands\Page\AddTitleIconDialog.resx">
-      <DependentUpon>AddTitleIconDialog.cs</DependentUpon>
+    <EmbeddedResource Include="Commands\Page\EmojiDialog.resx">
+      <DependentUpon>EmojiDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Commands\File\ExportDialog.resx">
       <DependentUpon>ExportDialog.cs</DependentUpon>

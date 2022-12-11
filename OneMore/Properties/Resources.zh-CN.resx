@@ -182,14 +182,6 @@ OneNote 将自动关闭</value>
   <data name="AddInTitle" xml:space="preserve">
     <value>OneMoreAddIn</value>
   </data>
-  <data name="AddTitleIconDialog.Text" xml:space="preserve">
-    <value>标题图标</value>
-    <comment>dialog title</comment>
-  </data>
-  <data name="AddTitleIconDialog_introLabel.Text" xml:space="preserve">
-    <value>选择一个或多个图标以添加到页面标题</value>
-    <comment>instructions</comment>
-  </data>
   <data name="AliasSheet.Text" xml:space="preserve">
     <value>定义在命令面板中使用的命令别名</value>
     <comment>intro box</comment>
@@ -4271,5 +4263,13 @@ ISO-code then comma then language name</comment>
   <data name="Emoji_XMark" xml:space="preserve">
     <value>X标记</value>
     <comment>emoji</comment>
+  </data>
+  <data name="EmojiDialog.Text" xml:space="preserve">
+    <value>标题图标</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="EmojiDialog_introLabel.Text" xml:space="preserve">
+    <value>选择一个或多个图标以添加到页面标题</value>
+    <comment>instructions</comment>
   </data>
 </root>

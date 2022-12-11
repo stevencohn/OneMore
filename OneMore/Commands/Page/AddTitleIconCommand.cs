@@ -38,7 +38,7 @@ namespace River.OneMoreAddIn.Commands
 
 			if (emojis == null)
 			{
-				using var dialog = new AddTitleIconDialog();
+				using var dialog = new EmojiDialog();
 				if (dialog.ShowDialog(owner) == DialogResult.Cancel)
 				{
 					IsCancelled = true;

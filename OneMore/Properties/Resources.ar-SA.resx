@@ -183,14 +183,6 @@
   <data name="AddInTitle" xml:space="preserve">
     <value>OneMoreAddIn</value>
   </data>
-  <data name="AddTitleIconDialog.Text" xml:space="preserve">
-    <value>أيقونات العنوان</value>
-    <comment>dialog title</comment>
-  </data>
-  <data name="AddTitleIconDialog_introLabel.Text" xml:space="preserve">
-    <value>حدد أو أكثر من الرموز لإضافتها إلى عنوان الصفحة</value>
-    <comment>instructions</comment>
-  </data>
   <data name="AliasSheet.Text" xml:space="preserve">
     <value>حدد الأسماء المستعارة للأوامر لاستخدامها في لوحة الأوامر</value>
     <comment>intro box</comment>
@@ -4281,5 +4273,13 @@ ISO-code then comma then language name</comment>
   <data name="Emoji_XMark" xml:space="preserve">
     <value>X مارك</value>
     <comment>emoji</comment>
+  </data>
+  <data name="EmojiDialog.Text" xml:space="preserve">
+    <value>أيقونات العنوان</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="EmojiDialog_introLabel.Text" xml:space="preserve">
+    <value>حدد أو أكثر من الرموز لإضافتها إلى عنوان الصفحة</value>
+    <comment>instructions</comment>
   </data>
 </root>

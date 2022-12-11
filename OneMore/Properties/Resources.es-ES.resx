@@ -183,14 +183,6 @@ OneNote se cerrará automáticamente</value>
   <data name="AddInTitle" xml:space="preserve">
     <value>OneMoreAddIn</value>
   </data>
-  <data name="AddTitleIconDialog.Text" xml:space="preserve">
-    <value>Iconos de título</value>
-    <comment>dialog title</comment>
-  </data>
-  <data name="AddTitleIconDialog_introLabel.Text" xml:space="preserve">
-    <value>Seleccione uno o más iconos para agregar al título de la página</value>
-    <comment>instructions</comment>
-  </data>
   <data name="AliasSheet.Text" xml:space="preserve">
     <value>Definir alias de comando para usar en la Paleta de comandos</value>
     <comment>intro box</comment>
@@ -4281,5 +4273,13 @@ En esta sección</value>
   <data name="Emoji_XMark" xml:space="preserve">
     <value>Marca X</value>
     <comment>emoji</comment>
+  </data>
+  <data name="EmojiDialog.Text" xml:space="preserve">
+    <value>Iconos de título</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="EmojiDialog_introLabel.Text" xml:space="preserve">
+    <value>Seleccione uno o más íconos para agregar al título de la página</value>
+    <comment>instructions</comment>
   </data>
 </root>

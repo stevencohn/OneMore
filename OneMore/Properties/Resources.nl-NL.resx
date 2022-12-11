@@ -184,14 +184,6 @@ OneNote wordt automatisch gesloten</value>
     <value>OneMoreAddIn</value>
     <comment>SKIP</comment>
   </data>
-  <data name="AddTitleIconDialog.Text" xml:space="preserve">
-    <value>Titel Pictogrammen</value>
-    <comment>dialog title</comment>
-  </data>
-  <data name="AddTitleIconDialog_introLabel.Text" xml:space="preserve">
-    <value>Selecteer een of meer pictogrammen om toe te voegen aan de paginatitel</value>
-    <comment>instructions</comment>
-  </data>
   <data name="AliasSheet.Text" xml:space="preserve">
     <value>Opdrachtaliassen definiëren voor gebruik in het opdrachtenpalet</value>
     <comment>intro box</comment>
@@ -4281,5 +4273,13 @@ In deze sectie</value>
   <data name="Emoji_XMark" xml:space="preserve">
     <value>X-markering</value>
     <comment>emoji</comment>
+  </data>
+  <data name="EmojiDialog.Text" xml:space="preserve">
+    <value>Titel Pictogrammen</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="EmojiDialog_introLabel.Text" xml:space="preserve">
+    <value>Selecteer een of meer pictogrammen om aan de paginatitel toe te voegen</value>
+    <comment>instructions</comment>
   </data>
 </root>
