@@ -172,7 +172,7 @@ namespace River.OneMoreAddIn.Commands
 
 				var withElement = new XElement("A",
 					new XAttribute("href", pageLink),
-					page.Title
+					title
 					);
 
 				var editor = new SearchAndReplaceEditor(whatText, withElement,
@@ -192,8 +192,9 @@ namespace River.OneMoreAddIn.Commands
 					progress.SetMessage(referal.Attribute(NameAttr).Value);
 
 					var refpage = one.GetPage(referal.Attribute("ID").Value, OneNote.PageDetail.Basic);
+					var reftitle = Unstamp(refpage.Title);
 
-					logger.WriteLine($"searching for matches on '{refpage.Title}'");
+					logger.WriteLine($"searching for matches on '{reftitle}'");
 
 					var count = editor.SearchAndReplace(refpage);
 					if (count > 0)
@@ -238,13 +239,17 @@ namespace River.OneMoreAddIn.Commands
 
 		private string Unstamp(string title)
 		{
-			// ignore the date stamp prefix in a page title
+			// ignore the date stamp prefix and emoji prefixes in a page title
 
+			// strip date stamp
 			var match = Regex.Match(title, @"^\d{4}-\d{2}-\d{2}\s");
 			if (match.Success)
 			{
 				title = title.Substring(match.Length);
 			}
+
+			// strip emojis (Segoe UI Emoji font)
+			title = Emojis.RemoveEmojis(title);
 
 			return title.Trim();
 		}

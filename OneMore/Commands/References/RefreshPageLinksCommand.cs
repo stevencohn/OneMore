@@ -14,9 +14,9 @@ namespace River.OneMoreAddIn.Commands
 
 
 	/// <summary>
-	/// After changing the name of a page which is referenced by other pages, this command will
-	/// update those referring pages in scope with the new title of the current page.This refreshes
-	/// those hyperlinked titles after the initial hyperlinks were set.
+	/// After changing the name of a page which is referenced by other pages (after initial
+	/// hyperlinks were set), this command will update those referring pages in scope with the
+	/// new title of the current page.
 	/// </summary>
 	internal class RefreshPageLinksCommand : Command
 	{
@@ -96,8 +96,9 @@ namespace River.OneMoreAddIn.Commands
 			progress.SetMessage($"Scanning {pageCount} pages");
 
 			// OneNote likes to inject \n\r before the href attribute so match any spaces
+			// also the A element may contain an optional SPAN (just one?)
 			var editor = new Regex(
-				$"(<a\\s+href=[^>]+{keys}[^>]+>)([^<]*)(</a>)",
+				$"(.*<a\\s+href=[^>]+{keys}[^>]+>(?:<span[^>]+>))([^<]*)((?:</span>)</a>.*)",
 				RegexOptions.Compiled | RegexOptions.Multiline);
 
 			foreach (var item in pageList)
@@ -150,13 +151,17 @@ namespace River.OneMoreAddIn.Commands
 
 		private string Unstamp(string title)
 		{
-			// ignore the date stamp prefix in a page title
+			// ignore the date stamp prefix and emoji prefixes in a page title
 
+			// strip date stamp
 			var match = Regex.Match(title, @"^\d{4}-\d{2}-\d{2}\s");
 			if (match.Success)
 			{
 				title = title.Substring(match.Length);
 			}
+
+			// strip emojis (Segoe UI Emoji font)
+			title = Emojis.RemoveEmojis(title);
 
 			return title.Trim();
 		}
