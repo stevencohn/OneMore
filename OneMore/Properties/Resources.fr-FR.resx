@@ -4269,11 +4269,11 @@ Dans cette section</value>
     <comment>emoji</comment>
   </data>
   <data name="EmojiDialog.Text" xml:space="preserve">
-    <value>Icônes de titre</value>
+    <value>Titre Emojis</value>
     <comment>dialog title</comment>
   </data>
   <data name="EmojiDialog_introLabel.Text" xml:space="preserve">
-    <value>Sélectionnez une ou plusieurs icônes à ajouter au titre de la page</value>
+    <value>Sélectionnez un ou plusieurs emojis à ajouter au titre de la page</value>
     <comment>instructions</comment>
   </data>
 </root>

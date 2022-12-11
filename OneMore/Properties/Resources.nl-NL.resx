@@ -4275,11 +4275,11 @@ In deze sectie</value>
     <comment>emoji</comment>
   </data>
   <data name="EmojiDialog.Text" xml:space="preserve">
-    <value>Titel Pictogrammen</value>
+    <value>Titel Emoji's</value>
     <comment>dialog title</comment>
   </data>
   <data name="EmojiDialog_introLabel.Text" xml:space="preserve">
-    <value>Selecteer een of meer pictogrammen om aan de paginatitel toe te voegen</value>
+    <value>Selecteer een of meer emoji's om toe te voegen aan de paginatitel</value>
     <comment>instructions</comment>
   </data>
 </root>

@@ -4267,11 +4267,11 @@ In diesem Abschnitt</value>
     <comment>emoji</comment>
   </data>
   <data name="EmojiDialog.Text" xml:space="preserve">
-    <value>Titelsymbole</value>
+    <value>Titel-Emojis</value>
     <comment>dialog title</comment>
   </data>
   <data name="EmojiDialog_introLabel.Text" xml:space="preserve">
-    <value>Wählen Sie ein oder mehrere Symbole aus, um sie dem Seitentitel hinzuzufügen</value>
+    <value>Wählen Sie ein oder mehrere Emojis aus, um sie dem Seitentitel hinzuzufügen</value>
     <comment>instructions</comment>
   </data>
 </root>

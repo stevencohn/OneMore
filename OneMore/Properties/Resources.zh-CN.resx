@@ -4265,11 +4265,11 @@ ISO-code then comma then language name</comment>
     <comment>emoji</comment>
   </data>
   <data name="EmojiDialog.Text" xml:space="preserve">
-    <value>标题图标</value>
+    <value>标题表情符号</value>
     <comment>dialog title</comment>
   </data>
   <data name="EmojiDialog_introLabel.Text" xml:space="preserve">
-    <value>选择一个或多个图标以添加到页面标题</value>
+    <value>选择一个或多个表情符号以添加到页面标题</value>
     <comment>instructions</comment>
   </data>
 </root>

@@ -2428,7 +2428,7 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Select on or more icons to add to page title.
+        ///   Looks up a localized string similar to Select on or more emojis to add to page title.
         /// </summary>
         internal static string EmojiDialog_introLabel_Text {
             get {
@@ -2437,7 +2437,7 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to TItle Icons.
+        ///   Looks up a localized string similar to TItle Emojis.
         /// </summary>
         internal static string EmojiDialog_Text {
             get {

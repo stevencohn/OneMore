@@ -187,11 +187,11 @@ OneNote will close automatically</value>
     <comment>SKIP</comment>
   </data>
   <data name="EmojiDialog.Text" xml:space="preserve">
-    <value>TItle Icons</value>
+    <value>TItle Emojis</value>
     <comment>dialog title</comment>
   </data>
   <data name="EmojiDialog_introLabel.Text" xml:space="preserve">
-    <value>Select on or more icons to add to page title</value>
+    <value>Select on or more emojis to add to page title</value>
     <comment>instructions</comment>
   </data>
   <data name="AliasSheet.Text" xml:space="preserve">

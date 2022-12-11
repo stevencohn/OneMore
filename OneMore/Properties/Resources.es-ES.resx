@@ -4275,11 +4275,11 @@ En esta sección</value>
     <comment>emoji</comment>
   </data>
   <data name="EmojiDialog.Text" xml:space="preserve">
-    <value>Iconos de título</value>
+    <value>Emojis de títulos</value>
     <comment>dialog title</comment>
   </data>
   <data name="EmojiDialog_introLabel.Text" xml:space="preserve">
-    <value>Seleccione uno o más íconos para agregar al título de la página</value>
+    <value>Seleccione uno o más emojis para agregar al título de la página</value>
     <comment>instructions</comment>
   </data>
 </root>
