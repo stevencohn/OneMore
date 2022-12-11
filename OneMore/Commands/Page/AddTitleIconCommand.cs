@@ -4,6 +4,7 @@
 
 namespace River.OneMoreAddIn.Commands
 {
+	using System.Collections.Generic;
 	using System.Linq;
 	using System.Threading.Tasks;
 	using System.Windows.Forms;
@@ -11,11 +12,11 @@ namespace River.OneMoreAddIn.Commands
 
 
 	/// <summary>
-	/// Prefix the page title with one or more chosen icons
+	/// Prefix the page title with one or more chosen symbols from the Segoe UI Emoji char set
 	/// </summary>
 	internal class AddTitleIconCommand : Command
 	{
-		private string[] codes;
+		private IEnumerable<IEmoji> emojis;
 
 
 		public AddTitleIconCommand()
@@ -26,13 +27,16 @@ namespace River.OneMoreAddIn.Commands
 		public override async Task Execute(params object[] args)
 		{
 			// check for replay
-			var element = args?.FirstOrDefault(a => a is XElement e && e.Name.LocalName == "codes") as XElement;
+			var element = args?.FirstOrDefault(a => 
+				a is XElement e && e.Name.LocalName == "symbols") as XElement;
+
 			if (!string.IsNullOrEmpty(element?.Value))
 			{
-				codes = element.Value.Split(',');
+				using var map = new Emojis();
+				emojis = map.ParseSymbols(element.Value);
 			}
 
-			if (codes == null)
+			if (emojis == null)
 			{
 				using var dialog = new AddTitleIconDialog();
 				if (dialog.ShowDialog(owner) == DialogResult.Cancel)
@@ -41,60 +45,49 @@ namespace River.OneMoreAddIn.Commands
 					return;
 				}
 
-				codes = dialog.GetSelectedCodes();
+				emojis = dialog.GetEmojis().Reverse();
 			}
 
-			await AddIcons(codes);
+			await InsertSymbols();
 		}
 
 
-		private async Task AddIcons(string[] codes)
+		private async Task InsertSymbols()
 		{
 			using var one = new OneNote(out var page, out var ns);
 
 			var cdata = page.Root
 				.Elements(page.Namespace + "Title")
-				.Elements(page.Namespace + "OE")	// should have exactly one OE
-				.Elements(page.Namespace + "T")		// but may have one or more Ts
+				.Elements(page.Namespace + "OE")    // should have exactly one OE
+				.Elements(page.Namespace + "T")     // but may have one or more Ts
 				.DescendantNodes().OfType<XCData>()
 				.FirstOrDefault();
 
-			if (cdata != null)
+			if (cdata == null)
 			{
-				var wrapper = cdata.GetWrapper();
-
-				var espan = wrapper.Elements("span")
-					.FirstOrDefault(e =>
-						e.Attributes("style").Any(a => a.Value.Contains("Segoe UI Emoji")));
-
-				if (espan != null)
-				{
-					espan.Value = string.Join(string.Empty, codes) + espan.Value;
-				}
-				else
-				{
-					wrapper.AddFirst(new XElement("span",
-						new XAttribute("style", "font-family:'Segoe UI Emoji';font-size:16pt;"),
-						string.Join(string.Empty, codes)
-						));
-				}
-
-				var decoded = string.Concat(wrapper.Nodes()
-					.Select(x => x.ToString()).ToArray())
-					.Replace("&amp;", "&");
-
-				cdata.ReplaceWith(new XCData(decoded));
-
-				await one.Update(page);
+				// no title on page - this shouldn't happen!
+				return;
 			}
+
+			// blindly prepend title with new span, letting OneNote normalize consecutive spans...
+
+			foreach (var emoji in emojis)
+			{
+				var color = emoji.Color == null ? "" : $"color:{emoji.Color}";
+
+				cdata.Value = cdata.Value.Insert(0,
+					$"<span style=\"font-family:'Segoe UI Emoji';font-size:16pt;{color}\">{emoji.Symbol}</span>");
+			}
+
+			await one.Update(page);
 		}
 
 
 		public override XElement GetReplayArguments()
 		{
-			if (codes != null && codes.Length > 0)
+			if (emojis.Any())
 			{
-				return new XElement("codes", string.Join(",", codes));
+				return new XElement("symbols", string.Join(",", emojis.Select(e => e.Symbol)));
 			}
 
 			return null;

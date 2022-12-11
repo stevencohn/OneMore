@@ -852,6 +852,16 @@ namespace River.OneMoreAddIn.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap CheckMark {
+            get {
+                object obj = ResourceManager.GetObject("CheckMark", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Circle {
             get {
                 object obj = ResourceManager.GetObject("Circle", resourceCulture);
@@ -892,6 +902,16 @@ namespace River.OneMoreAddIn.Properties {
         internal static string ClearLog_Title {
             get {
                 return ResourceManager.GetString("ClearLog_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Cloud {
+            get {
+                object obj = ResourceManager.GetObject("Cloud", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
         
@@ -1478,6 +1498,16 @@ namespace River.OneMoreAddIn.Properties {
         internal static string CopyLinkCommand_LinkToParagraph {
             get {
                 return ResourceManager.GetString("CopyLinkCommand_LinkToParagraph", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Copyright {
+            get {
+                object obj = ResourceManager.GetObject("Copyright", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
         
@@ -2137,11 +2167,38 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Check Mark.
+        /// </summary>
+        internal static string Emoji_CheckMark {
+            get {
+                return ResourceManager.GetString("Emoji_CheckMark", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Circle.
         /// </summary>
         internal static string Emoji_Circle {
             get {
                 return ResourceManager.GetString("Emoji_Circle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cloud.
+        /// </summary>
+        internal static string Emoji_Cloud {
+            get {
+                return ResourceManager.GetString("Emoji_Cloud", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Copyright.
+        /// </summary>
+        internal static string Emoji_Copyright {
+            get {
+                return ResourceManager.GetString("Emoji_Copyright", resourceCulture);
             }
         }
         
@@ -2169,6 +2226,15 @@ namespace River.OneMoreAddIn.Properties {
         internal static string Emoji_Email {
             get {
                 return ResourceManager.GetString("Emoji_Email", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Eyes.
+        /// </summary>
+        internal static string Emoji_Eyes {
+            get {
+                return ResourceManager.GetString("Emoji_Eyes", resourceCulture);
             }
         }
         
@@ -2227,6 +2293,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Leftwards Arrow.
+        /// </summary>
+        internal static string Emoji_LeftwardsArrow {
+            get {
+                return ResourceManager.GetString("Emoji_LeftwardsArrow", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Memo.
         /// </summary>
         internal static string Emoji_Memo {
@@ -2259,6 +2334,24 @@ namespace River.OneMoreAddIn.Properties {
         internal static string Emoji_Pushpin {
             get {
                 return ResourceManager.GetString("Emoji_Pushpin", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rightwards Arrow.
+        /// </summary>
+        internal static string Emoji_RightwardsArrow {
+            get {
+                return ResourceManager.GetString("Emoji_RightwardsArrow", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Section.
+        /// </summary>
+        internal static string Emoji_Section {
+            get {
+                return ResourceManager.GetString("Emoji_Section", resourceCulture);
             }
         }
         
@@ -2340,6 +2433,15 @@ namespace River.OneMoreAddIn.Properties {
         internal static string Emoji_Watch {
             get {
                 return ResourceManager.GetString("Emoji_Watch", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to X Mark.
+        /// </summary>
+        internal static string Emoji_XMark {
+            get {
+                return ResourceManager.GetString("Emoji_XMark", resourceCulture);
             }
         }
         
@@ -2501,6 +2603,16 @@ namespace River.OneMoreAddIn.Properties {
         internal static string ExportDialog_underBox_Text {
             get {
                 return ResourceManager.GetString("ExportDialog_underBox.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Eyes {
+            get {
+                object obj = ResourceManager.GetObject("Eyes", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
         
@@ -3602,6 +3714,16 @@ namespace River.OneMoreAddIn.Properties {
         internal static System.Drawing.Bitmap LabelSearch {
             get {
                 object obj = ResourceManager.GetObject("LabelSearch", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap LeftwardsArrow {
+            get {
+                object obj = ResourceManager.GetObject("LeftwardsArrow", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -7490,6 +7612,16 @@ namespace River.OneMoreAddIn.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap RightwardsArrow {
+            get {
+                object obj = ResourceManager.GetObject("RightwardsArrow", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap SaveAs {
             get {
                 object obj = ResourceManager.GetObject("SaveAs", resourceCulture);
@@ -7831,6 +7963,16 @@ namespace River.OneMoreAddIn.Properties {
         internal static string SearchQF_Title {
             get {
                 return ResourceManager.GetString("SearchQF_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Section {
+            get {
+                object obj = ResourceManager.GetObject("Section", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
         
@@ -9906,6 +10048,16 @@ namespace River.OneMoreAddIn.Properties {
         internal static string WordCountCommand_Selected {
             get {
                 return ResourceManager.GetString("WordCountCommand_Selected", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap XMark {
+            get {
+                object obj = ResourceManager.GetObject("XMark", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
     }

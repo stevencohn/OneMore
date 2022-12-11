@@ -4242,4 +4242,36 @@ In diesem Abschnitt</value>
   <data name="word_Code" xml:space="preserve">
     <value>Code</value>
   </data>
+  <data name="Emoji_CheckMark" xml:space="preserve">
+    <value>Häkchen</value>
+    <comment>emoji</comment>
+  </data>
+  <data name="Emoji_Cloud" xml:space="preserve">
+    <value>Wolke</value>
+    <comment>emoji</comment>
+  </data>
+  <data name="Emoji_Copyright" xml:space="preserve">
+    <value>Urheberrechte ©</value>
+    <comment>emoji</comment>
+  </data>
+  <data name="Emoji_Eyes" xml:space="preserve">
+    <value>Augen</value>
+    <comment>emoji</comment>
+  </data>
+  <data name="Emoji_LeftwardsArrow" xml:space="preserve">
+    <value>Pfeil nach links</value>
+    <comment>emoji</comment>
+  </data>
+  <data name="Emoji_RightwardsArrow" xml:space="preserve">
+    <value>Pfeil nach rechts</value>
+    <comment>emoji</comment>
+  </data>
+  <data name="Emoji_Section" xml:space="preserve">
+    <value>Abschnitt</value>
+    <comment>emoji</comment>
+  </data>
+  <data name="Emoji_XMark" xml:space="preserve">
+    <value>X-Markierung</value>
+    <comment>emoji</comment>
+  </data>
 </root>

@@ -318,7 +318,7 @@ OneNote will close automatically</value>
     <comment>listview annotation</comment>
   </data>
   <data name="Automobile" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Emoji\Automobile.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>emoji\automobile.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="BiLinkCommand_BadAnchor" xml:space="preserve">
     <value>Could not mark anchor point. Select a word or phrase from one paragraph. See log file for details.</value>
@@ -456,6 +456,9 @@ OneNote will close automatically</value>
     <value>Optionally, load one of the predefined style themes or customize your own theme so all content has enough contrast to be visible.</value>
     <comment>label</comment>
   </data>
+  <data name="CheckMark" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>emoji\checkmark.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="Circle" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>emoji\circle.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -474,6 +477,9 @@ OneNote will close automatically</value>
   <data name="ClearLog_Title" xml:space="preserve">
     <value>Confirm</value>
     <comment>message box title</comment>
+  </data>
+  <data name="Cloud" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>emoji\cloud.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Command_Error" xml:space="preserve">
     <value>Error running command {0}</value>
@@ -733,6 +739,9 @@ OneNote will close automatically</value>
   <data name="CopyLinkCommand_LinkToParagraph" xml:space="preserve">
     <value>Copied link to this paragraph</value>
     <comment>message box</comment>
+  </data>
+  <data name="Copyright" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>emoji\copyright.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="CrawlWebCommand_NoHyperlinks" xml:space="preserve">
     <value>No hyperlinks found in range</value>
@@ -1005,8 +1014,20 @@ Last Column Font</value>
     <value>Calendar</value>
     <comment>emoji</comment>
   </data>
+  <data name="Emoji_CheckMark" xml:space="preserve">
+    <value>Check Mark</value>
+    <comment>emoji</comment>
+  </data>
   <data name="Emoji_Circle" xml:space="preserve">
     <value>Circle</value>
+    <comment>emoji</comment>
+  </data>
+  <data name="Emoji_Cloud" xml:space="preserve">
+    <value>Cloud</value>
+    <comment>emoji</comment>
+  </data>
+  <data name="Emoji_Copyright" xml:space="preserve">
+    <value>Copyright</value>
     <comment>emoji</comment>
   </data>
   <data name="Emoji_CrossMark" xml:space="preserve">
@@ -1019,6 +1040,10 @@ Last Column Font</value>
   </data>
   <data name="Emoji_Email" xml:space="preserve">
     <value>Email</value>
+    <comment>emoji</comment>
+  </data>
+  <data name="Emoji_Eyes" xml:space="preserve">
+    <value>Eyes</value>
     <comment>emoji</comment>
   </data>
   <data name="Emoji_Family" xml:space="preserve">
@@ -1045,6 +1070,10 @@ Last Column Font</value>
     <value>Journal</value>
     <comment>emoji</comment>
   </data>
+  <data name="Emoji_LeftwardsArrow" xml:space="preserve">
+    <value>Leftwards Arrow</value>
+    <comment>emoji</comment>
+  </data>
   <data name="Emoji_Memo" xml:space="preserve">
     <value>Memo</value>
     <comment>emoji</comment>
@@ -1059,6 +1088,14 @@ Last Column Font</value>
   </data>
   <data name="Emoji_Pushpin" xml:space="preserve">
     <value>Pushpin</value>
+    <comment>emoji</comment>
+  </data>
+  <data name="Emoji_RightwardsArrow" xml:space="preserve">
+    <value>Rightwards Arrow</value>
+    <comment>emoji</comment>
+  </data>
+  <data name="Emoji_Section" xml:space="preserve">
+    <value>Section</value>
     <comment>emoji</comment>
   </data>
   <data name="Emoji_Shazam" xml:space="preserve">
@@ -1095,6 +1132,10 @@ Last Column Font</value>
   </data>
   <data name="Emoji_Watch" xml:space="preserve">
     <value>Watch</value>
+    <comment>emoji</comment>
+  </data>
+  <data name="Emoji_XMark" xml:space="preserve">
+    <value>X Mark</value>
     <comment>emoji</comment>
   </data>
   <data name="Envelope" type="System.Resources.ResXFileRef, System.Windows.Forms">
@@ -1166,8 +1207,11 @@ OneNote File (*.one)</value>
     <value>Replace special characters in the file name with underscores</value>
     <comment>checkbox</comment>
   </data>
+  <data name="Eyes" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>emoji\eyes.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="Family" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Emoji\Family.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>emoji\family.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Favorites" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>images\favorites.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -1193,7 +1237,7 @@ OneNote File (*.one)</value>
     <comment>settings</comment>
   </data>
   <data name="Financial" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Emoji\Financial.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>emoji\financial.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="FitGridToTextCommand_noGrid" xml:space="preserve">
     <value>Enable grid lines before using this command</value>
@@ -1639,6 +1683,9 @@ Symbols: PI, E</value>
   <data name="LabelSearch" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>images\labelsearch.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="LeftwardsArrow" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>emoji\leftwardsarrow.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="LinesSheet_clickLabel.Text" xml:space="preserve">
     <value>(click to change)</value>
     <comment>settings sheet</comment>
@@ -1730,7 +1777,7 @@ Symbols: PI, E</value>
     <comment>dialog title</comment>
   </data>
   <data name="Memo" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Emoji\Memo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>emoji\memo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="NameStyleDialog_errorLabel.Text" xml:space="preserve">
     <value>Name exists. Choose a different name.</value>
@@ -1908,7 +1955,7 @@ Deferred</value>
     <comment>color popup dialog title</comment>
   </data>
   <data name="Passwords" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Emoji\Passwords.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>emoji\passwords.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="PasteCellsCommand_NoContent" xml:space="preserve">
     <value>No content to paste; copy one or more table cells to paste</value>
@@ -3353,6 +3400,9 @@ Polaroid</value>
     <value>Word Count</value>
     <comment>Ribbon OneMore menu extras</comment>
   </data>
+  <data name="RightwardsArrow" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>emoji\rightwardsarrow.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="SaveAs" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>images\saveas.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -3508,6 +3558,9 @@ Search engines will appear in the page context menu, right-click.</value>
     <value>Select Location</value>
     <comment>QuickFiling title</comment>
   </data>
+  <data name="Section" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>emoji\section.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="SectionColor_Title" xml:space="preserve">
     <value>Section Color</value>
     <comment>dialog title</comment>
@@ -3586,7 +3639,7 @@ Search engines will appear in the page context menu, right-click.</value>
     <comment>SKIP, filename</comment>
   </data>
   <data name="Shazam" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Emoji\Shazam.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>emoji\shazam.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="ShowXmlDialog.Text" xml:space="preserve">
     <value>OneMore XML</value>
@@ -3671,7 +3724,7 @@ Search engines will appear in the page context menu, right-click.</value>
     <comment>SnippetsSheet</comment>
   </data>
   <data name="Software" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Emoji\Software.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>emoji\software.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="SortDialog.Text" xml:space="preserve">
     <value>Sort</value>
@@ -3808,7 +3861,7 @@ Notebooks</value>
     <value>images\sponsorover.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Sports" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Emoji\Sports.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>emoji\sports.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Star" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>emoji\star.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -4013,7 +4066,7 @@ In this section</value>
     <value>images\task.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Tasks" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Emoji\Tasks.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>emoji\tasks.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="TextHighlightColorPicker" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>images\texthighlightcolorpicker.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -4103,7 +4156,7 @@ In this section</value>
     <comment>group box</comment>
   </data>
   <data name="Travel" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Emoji\Travel.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>emoji\travel.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Underline" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>images\underline.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -4344,5 +4397,8 @@ In this section</value>
   <data name="WordCountCommand_Selected" xml:space="preserve">
     <value>Total words selected: {0}</value>
     <comment>message box</comment>
+  </data>
+  <data name="XMark" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>emoji\xmark.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

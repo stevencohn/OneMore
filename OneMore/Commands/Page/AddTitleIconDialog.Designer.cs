@@ -41,7 +41,7 @@
 			this.cancelButton.Location = new System.Drawing.Point(268, 478);
 			this.cancelButton.Name = "cancelButton";
 			this.cancelButton.Size = new System.Drawing.Size(99, 38);
-			this.cancelButton.TabIndex = 0;
+			this.cancelButton.TabIndex = 2;
 			this.cancelButton.Text = "Cancel";
 			this.cancelButton.UseVisualStyleBackColor = true;
 			this.cancelButton.Click += new System.EventHandler(this.Cancel);
@@ -66,7 +66,7 @@
 			this.iconBox.Name = "iconBox";
 			this.iconBox.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
 			this.iconBox.Size = new System.Drawing.Size(349, 394);
-			this.iconBox.TabIndex = 2;
+			this.iconBox.TabIndex = 0;
 			this.iconBox.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.DrawIconItem);
 			this.iconBox.MeasureItem += new System.Windows.Forms.MeasureItemEventHandler(this.MeasureIconItemSIze);
 			this.iconBox.DoubleClick += new System.EventHandler(this.DoubleClickItem);

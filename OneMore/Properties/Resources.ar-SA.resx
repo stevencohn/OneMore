@@ -4250,4 +4250,36 @@ ISO-code then comma then language name</comment>
   <data name="word_Code" xml:space="preserve">
     <value>شفرة</value>
   </data>
+  <data name="Emoji_CheckMark" xml:space="preserve">
+    <value>علامة الاختيار</value>
+    <comment>emoji</comment>
+  </data>
+  <data name="Emoji_Cloud" xml:space="preserve">
+    <value>سحاب</value>
+    <comment>emoji</comment>
+  </data>
+  <data name="Emoji_Copyright" xml:space="preserve">
+    <value>حقوق النشر</value>
+    <comment>emoji</comment>
+  </data>
+  <data name="Emoji_Eyes" xml:space="preserve">
+    <value>عيون</value>
+    <comment>emoji</comment>
+  </data>
+  <data name="Emoji_LeftwardsArrow" xml:space="preserve">
+    <value>سهم لليسار</value>
+    <comment>emoji</comment>
+  </data>
+  <data name="Emoji_RightwardsArrow" xml:space="preserve">
+    <value>سهم لليمين</value>
+    <comment>emoji</comment>
+  </data>
+  <data name="Emoji_Section" xml:space="preserve">
+    <value>الجزء</value>
+    <comment>emoji</comment>
+  </data>
+  <data name="Emoji_XMark" xml:space="preserve">
+    <value>X مارك</value>
+    <comment>emoji</comment>
+  </data>
 </root>
