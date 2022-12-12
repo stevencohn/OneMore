@@ -8,10 +8,10 @@ namespace River.OneMoreAddIn.Commands
 	using System;
 	using System.Collections.Concurrent;
 	using System.Collections.Generic;
-	using System.Diagnostics;
 	using System.Linq;
 	using System.Text;
 	using System.Text.RegularExpressions;
+	using System.Threading;
 	using System.Threading.Tasks;
 	using System.Web;
 	using System.Xml.Linq;
@@ -34,14 +34,14 @@ namespace River.OneMoreAddIn.Commands
 			}
 
 			using var one = new OneNote(out var page, out _);
-			if (NameUrls(page))
+			if (await NameUrls(page))
 			{
 				await one.Update(page);
 			}
 		}
 
 
-		private bool NameUrls(Page page)
+		private async Task<bool> NameUrls(Page page)
 		{
 			List<XElement> elements = null;
 			var regex = new Regex(@"<a\s+href=", RegexOptions.Compiled);
@@ -69,7 +69,7 @@ namespace River.OneMoreAddIn.Commands
 					.ToList();
 			}
 
-			// parallelize internet access for all hyperlinks on page
+			// parallelize internet access for all hyperlinks on page...
 
 			int count = 0;
 			if (elements?.Count > 0)
@@ -77,14 +77,14 @@ namespace River.OneMoreAddIn.Commands
 				// must use a thread-safe collection here
 				var tasks = new ConcurrentBag<Task<int>>();
 
-				Parallel.ForEach(elements, (element) =>
+				foreach (var element in elements)
 				{
-					// do not use await in the body of a Parallel.ForEach
+					// do not use await in the body loop; just build list of tasks
 					tasks.Add(ReplaceUrlText(element));
-				});
+				}
 
-				Task.WaitAll(tasks.ToArray());
-				count = tasks.Sum(t => t.Result);
+				await Task.WhenAll(tasks.ToArray());
+				count = tasks.Sum(t => t.IsFaulted ? 0 : t.Result);
 			}
 
 			return count > 0;
@@ -96,36 +96,39 @@ namespace River.OneMoreAddIn.Commands
 			var cdata = element.GetCData();
 
 			var wrapper = cdata.GetWrapper();
-			var a = wrapper.Element("a");
-			if (a != null)
+			var anchor = wrapper.Element("a");
+			if (anchor == null)
 			{
-				var href = a.Attribute("href")?.Value;
-				if (href != null && href == a.Value)
+				return 0;
+			}
+
+			var href = anchor.Attribute("href")?.Value;
+			if (string.IsNullOrWhiteSpace(href))
+			{
+				return 0;
+			}
+
+			string title;
+			var watch = new System.Diagnostics.Stopwatch();
+			watch.Start();
+
+			try
+			{
+				title = await FetchPageTitle(href);
+				watch.Stop();
+
+				if (!string.IsNullOrWhiteSpace(title))
 				{
-					string title;
-					var watch = new Stopwatch();
-					watch.Start();
-
-					try
-					{
-						title = await FetchPageTitle(href);
-						watch.Stop();
-					}
-					catch
-					{
-						watch.Stop();
-						logger.WriteLine($"cannot resolve {href} after {watch.ElapsedMilliseconds}ms");
-						return 0;
-					}
-
-					if (title != null)
-					{
-						logger.WriteLine($"resolved {href} in {watch.ElapsedMilliseconds}ms");
-						a.Value = HttpUtility.HtmlDecode(title);
-						cdata.ReplaceWith(wrapper.GetInnerXml());
-						return 1;
-					}
+					logger.WriteLine($"resolved {href} in {watch.ElapsedMilliseconds}ms");
+					anchor.Value = HttpUtility.HtmlDecode(title);
+					cdata.ReplaceWith(wrapper.GetInnerXml());
+					return 1;
 				}
+			}
+			catch
+			{
+				watch.Stop();
+				logger.WriteLine($"cannot resolve {href} after {watch.ElapsedMilliseconds}ms");
 			}
 
 			return 0;
@@ -140,37 +143,56 @@ namespace River.OneMoreAddIn.Commands
 		{
 			string title = null;
 
-			var client = HttpClientFactory.Create();
-
-			using var response = await client.GetAsync(new Uri(url, UriKind.Absolute));
-			using var stream = await response.Content.ReadAsStreamAsync();
-
-			// compiled regex to check for <title></title> block
-			var pattern = new Regex(@"<title>\s*(.+?)\s*</title>",
-				RegexOptions.Compiled | RegexOptions.IgnoreCase);
-
-			var chunkSize = 512;
-			var buffer = new byte[chunkSize];
-			var contents = "";
-			var length = 0;
-
-			while ((title == null) && (length = stream.Read(buffer, 0, chunkSize)) > 0)
+			try
 			{
-				// convert the byte-array to a string and add it to the rest of the
-				// contents that have been downloaded so far
-				contents += Encoding.UTF8.GetString(buffer, 0, length);
+				logger.WriteLine($"fetching {url}");
+				var client = HttpClientFactory.Create();
 
-				var match = pattern.Match(contents);
-				if (match.Success)
+				using var source = new CancellationTokenSource(TimeSpan.FromSeconds(10));
+				using var response = await client
+					.GetAsync(new Uri(url, UriKind.Absolute), source.Token).ConfigureAwait(false);
+
+				if (!response.IsSuccessStatusCode)
 				{
-					// we found a <title></title> match
-					title = match.Groups[1].Value;
+					using var stream = await response.Content
+						.ReadAsStreamAsync()
+						.ConfigureAwait(false);
+
+					// compiled regex to check for <title></title> block
+					var pattern = new Regex(@"<title>([^<]+)</title>",
+						RegexOptions.Compiled | RegexOptions.IgnoreCase);
+
+					var chunkSize = 512;
+					var buffer = new byte[chunkSize];
+					var contents = "";
+					var length = 0;
+
+					while ((title == null) && (length = stream.Read(buffer, 0, chunkSize)) > 0)
+					{
+						// convert the byte-array to a string and add it to the rest of the
+						// contents that have been downloaded so far
+						var line = Encoding.UTF8.GetString(buffer, 0, length);
+						contents += line;
+
+						var match = pattern.Match(contents);
+						if (match.Success)
+						{
+							// we found a <title></title> match
+							title = match.Groups[1].Value.Trim();
+						}
+
+						// must do this after appending content if either tag spans chunks
+						if (contents.Contains("</head>") || contents.Contains("<body"))
+						{
+							// reached end of head-block; no title found
+							break;
+						}
+					}
 				}
-				else if (contents.Contains("</head>"))
-				{
-					// reached end of head-block; no title found
-					title = string.Empty;
-				}
+			}
+			catch (Exception exc)
+			{
+				logger.WriteLine($"cannot retrieve title of {url}", exc);
 			}
 
 			return title;

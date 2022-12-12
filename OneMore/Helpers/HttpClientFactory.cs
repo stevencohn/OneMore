@@ -35,10 +35,12 @@ namespace River.OneMoreAddIn
 		{
 			if (client == null)
 			{
-				ServicePointManager.SecurityProtocol =
-					SecurityProtocolType.Tls12 | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls;
+				ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
 
 				client = new HttpClient();
+
+				// set user-agent otherwise GetAsync can hang especially in Parallel.ForEach
+				client.DefaultRequestHeaders.Add("User-Agent", "OneMore");
 			}
 
 			return client;
