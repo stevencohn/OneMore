@@ -94,7 +94,6 @@ namespace River.OneMoreAddIn.Commands
 			logger.WriteLine("downloading template");
 
 			var client = HttpClientFactory.Create();
-			client.DefaultRequestHeaders.Add("User-Agent", "OneMore");
 
 			string path = null;
 

@@ -83,14 +83,14 @@ namespace River.OneMoreAddIn.Commands
 				citation = page.GetQuickStyle(StandardStyles.Citation);
 			}
 
-			if (GetImages(page))
+			if (await GetImages(page))
 			{
 				await one.Update(page);
 			}
 		}
 
 
-		public bool GetImages(Page page)
+		public async Task<bool> GetImages(Page page)
 		{
 			List<XElement> runs = null;
 
@@ -135,7 +135,7 @@ namespace River.OneMoreAddIn.Commands
 					.ToList();
 			}
 
-			// parallelize internet access for all hyperlinks on page
+			// parallelize internet access for all hyperlinks on page...
 
 			int count = 0;
 			if (runs?.Count > 0)
@@ -145,9 +145,9 @@ namespace River.OneMoreAddIn.Commands
 				// must use a thread-safe collection here
 				var tasks = new ConcurrentBag<Task<int>>();
 
-				Parallel.ForEach(runs, (run) =>
+				foreach (var run in runs)
 				{
-					// do not use await in the body of a Parallel.ForEach
+					// do not use await in the body loop; just build list of tasks
 
 					// do not reprocess captioned images
 					if (!run.Parent.Descendants().Any(m =>
@@ -157,11 +157,11 @@ namespace River.OneMoreAddIn.Commands
 					{
 						tasks.Add(GetImage(run));
 					}
-				});
+				}
 
 				if (tasks.Any())
 				{
-					Task.WaitAll(tasks.ToArray());
+					await Task.WhenAll(tasks.ToArray());
 
 					count = tasks.Sum(t => t.Result);
 				}
@@ -295,11 +295,11 @@ namespace River.OneMoreAddIn.Commands
 			}
 			catch (TaskCanceledException exc)
 			{
-				logger.WriteLine("timeout fetching image", exc);
+				logger.WriteLine($"timeout fetching image from {url}", exc);
 			}
 			catch (Exception exc)
 			{
-				logger.WriteLine("error fetching image", exc);
+				logger.WriteLine($"error fetching image from {url}", exc);
 			}
 
 			return null;

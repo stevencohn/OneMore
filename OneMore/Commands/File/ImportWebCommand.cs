@@ -661,7 +661,7 @@ namespace River.OneMoreAddIn.Commands
 				var updated = false;
 				if (hasImages)
 				{
-					updated |= PatchImages(page);
+					updated |= await PatchImages(page);
 				}
 
 				if (hasAnchors)
@@ -682,7 +682,7 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private bool PatchImages(Page page)
+		private async Task<bool> PatchImages(Page page)
 		{
 			try
 			{
@@ -695,7 +695,7 @@ namespace River.OneMoreAddIn.Commands
 
 				// download and embed images
 				var cmd = new GetImagesCommand(regex);
-				if (cmd.GetImages(page))
+				if (await cmd.GetImages(page))
 				{
 					return true;
 				}
@@ -755,7 +755,7 @@ namespace River.OneMoreAddIn.Commands
 
 							// a cdata may contain more than one <a>
 							wrapper.Descendants("a")
-								.FirstOrDefault(a => a.Attribute("href").Value.Contains($"://onemore-link{key}."))
+								.FirstOrDefault(a => a.Attribute("href").Value.Contains($"://onemore-link{key}."))?
 								.SetAttributeValue("href", hyperlink);
 
 							item.Data.Value = wrapper.GetInnerXml();
