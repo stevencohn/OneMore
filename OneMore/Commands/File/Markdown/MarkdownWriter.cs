@@ -37,6 +37,7 @@ namespace River.OneMoreAddIn.Commands
 		private readonly bool withAttachments;
 		private readonly List<Style> quickStyles;
 		private readonly Stack<Context> contexts;
+		private int tableDepth;
 		private int imageCounter;
 		private bool copyMode;
 #if LOG
@@ -54,6 +55,7 @@ namespace River.OneMoreAddIn.Commands
 			quickStyles = page.GetQuickStyles();
 			contexts = new Stack<Context>();
 			this.withAttachments = withAttachments;
+			tableDepth = 0;
 		}
 
 
@@ -68,7 +70,7 @@ namespace River.OneMoreAddIn.Commands
 			using var stream = new MemoryStream();
 			using (writer = new StreamWriter(stream))
 			{
-				writer.WriteLine($"# {page.Title}");
+				writer.WriteLine($"# {Emojis.RemoveEmojis(page.Title)}");
 
 				if (content.Name.LocalName == "Page")
 				{
@@ -90,6 +92,9 @@ namespace River.OneMoreAddIn.Commands
 				using var reader = new StreamReader(stream);
 
 				var clippy = new ClipboardProvider();
+				// clear all data object with other formats
+				await clippy.Clear();
+				// set only our content as text
 				await clippy.SetText(reader.ReadToEnd());
 			}
 		}
@@ -115,7 +120,8 @@ namespace River.OneMoreAddIn.Commands
 
 				// page level Images outside of any Outline
 				page.Root.Elements(ns + "Image")
-					.ForEach(e => {
+					.ForEach(e =>
+					{
 						Write(e);
 						writer.WriteLine();
 					});
@@ -428,6 +434,14 @@ namespace River.OneMoreAddIn.Commands
 		private void WriteTable(XElement element)
 		{
 			var table = new Table(element);
+			tableDepth++;
+
+			if (tableDepth > 1)
+			{
+				WriteRawTable(table);
+				tableDepth--;
+				return;
+			}
 
 			// table needs a blank line before it
 			writer.WriteLine();
@@ -451,7 +465,7 @@ namespace River.OneMoreAddIn.Commands
 			// data
 			foreach (var row in table.Rows)
 			{
-				writer.Write("| ");
+				writer.Write("|");
 				foreach (var cell in row.Cells)
 				{
 					cell.Root
@@ -463,6 +477,42 @@ namespace River.OneMoreAddIn.Commands
 				}
 				writer.WriteLine();
 			}
+
+			tableDepth--;
+		}
+
+
+		private void WriteRawTable(Table table)
+		{
+			// table needs a blank line before it
+			writer.WriteLine();
+
+			// header
+			writer.Write("<table><tr>");
+			for (int i = 0; i < table.ColumnCount; i++)
+			{
+				writer.Write($"<td>{TableCell.IndexToLetters(i + 1)}</td>");
+			}
+			writer.Write("</tr>");
+
+			// data
+			foreach (var row in table.Rows)
+			{
+				writer.Write("<tr>");
+				foreach (var cell in row.Cells)
+				{
+					writer.Write("<td>");
+					cell.Root
+						.Element(ns + "OEChildren")
+						.Elements(ns + "OE")
+						.ForEach(e => Write(e, contained: true));
+
+					writer.Write("</td>");
+				}
+				writer.Write("</tr>");
+			}
+
+			writer.Write("</table>");
 		}
 	}
 }

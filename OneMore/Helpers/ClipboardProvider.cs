@@ -35,6 +35,18 @@ namespace River.OneMoreAddIn
 		}
 
 
+		/// <summary>
+		/// Removes all content from the system clipboard.
+		/// </summary>
+		/// <returns></returns>
+		public async Task Clear()
+		{
+			await SingleThreaded.Invoke(() =>
+			{
+				Win.Clipboard.Clear();
+			});
+		}
+
 
 		/// <summary>
 		/// Initiates a copy operation by emitting a Ctrl+C keypress and delays the current
