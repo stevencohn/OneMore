@@ -14,6 +14,8 @@ namespace River.OneMoreAddIn
 	/// </summary>
 	internal static class HttpClientFactory
 	{
+		private const string AcceptHeader = "text/html,application/xhtml+xml,application/xml,application/json";
+
 		private static HttpClient client;
 
 
@@ -46,7 +48,7 @@ namespace River.OneMoreAddIn
 
 				// required headers otherwise some sites may not respond
 				client.DefaultRequestHeaders.Add("user-agent", "OneMore");
-				client.DefaultRequestHeaders.Add("accept", "text/html,application/xhtml+xml,application/xml");
+				client.DefaultRequestHeaders.Add("accept", AcceptHeader);
 				client.DefaultRequestHeaders.Add("accept-encoding", "gzip, deflate");
 				client.DefaultRequestHeaders.Add("accept-language", "en-US;q=0.9");
 			}

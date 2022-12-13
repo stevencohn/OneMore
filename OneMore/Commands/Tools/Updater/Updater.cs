@@ -12,6 +12,7 @@ namespace River.OneMoreAddIn.Commands.Tools.Updater
 	using System.IO;
 	using System.Linq;
 	using System.Text.RegularExpressions;
+	using System.Threading;
 	using System.Threading.Tasks;
 	using System.Web.Script.Serialization;
 
@@ -89,14 +90,11 @@ namespace River.OneMoreAddIn.Commands.Tools.Updater
 		public async Task<bool> FetchLatestRelease()
 		{
 			var client = HttpClientFactory.Create();
-			if (!client.DefaultRequestHeaders.Contains("User-Agent"))
-			{
-				client.DefaultRequestHeaders.Add("User-Agent", "OneMore");
-			}
 
 			try
 			{
-				using var response = await client.GetAsync(LatestUrl);
+				using var source = new CancellationTokenSource(TimeSpan.FromSeconds(5));
+				using var response = await client.GetAsync(LatestUrl, source.Token).ConfigureAwait(false);
 				var body = await response.Content.ReadAsStringAsync();
 
 				// use the .NET Framework serializer;
@@ -153,8 +151,6 @@ namespace River.OneMoreAddIn.Commands.Tools.Updater
 			try
 			{
 				var client = HttpClientFactory.Create();
-				if (!client.DefaultRequestHeaders.Contains("User-Agent"))
-					client.DefaultRequestHeaders.Add("User-Agent", "OneMore");
 
 				using var response = await client.GetAsync(asset.browser_download_url);
 				using var stream = await response.Content.ReadAsStreamAsync();
