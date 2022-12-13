@@ -272,7 +272,7 @@ namespace River.OneMoreAddIn.Commands
 
 			try
 			{
-				using var source = new CancellationTokenSource(TimeSpan.FromSeconds(10));
+				using var source = new CancellationTokenSource(TimeSpan.FromSeconds(5));
 				using var response = await client.GetAsync(new Uri(url, UriKind.Absolute), source.Token);
 				if (response.IsSuccessStatusCode)
 				{
