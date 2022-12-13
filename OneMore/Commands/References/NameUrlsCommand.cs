@@ -152,7 +152,7 @@ namespace River.OneMoreAddIn.Commands
 				using var response = await client
 					.GetAsync(new Uri(url, UriKind.Absolute), source.Token).ConfigureAwait(false);
 
-				if (!response.IsSuccessStatusCode)
+				if (response.IsSuccessStatusCode)
 				{
 					using var stream = await response.Content
 						.ReadAsStreamAsync()
