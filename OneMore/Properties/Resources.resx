@@ -186,14 +186,6 @@ OneNote will close automatically</value>
     <value>OneMoreAddIn</value>
     <comment>SKIP</comment>
   </data>
-  <data name="EmojiDialog.Text" xml:space="preserve">
-    <value>TItle Emojis</value>
-    <comment>dialog title</comment>
-  </data>
-  <data name="EmojiDialog_introLabel.Text" xml:space="preserve">
-    <value>Select on or more emojis to add to page title</value>
-    <comment>instructions</comment>
-  </data>
   <data name="AliasSheet.Text" xml:space="preserve">
     <value>Define command aliases for use in the Command Palette</value>
     <comment>intro box</comment>
@@ -1137,6 +1129,14 @@ Last Column Font</value>
   <data name="Emoji_XMark" xml:space="preserve">
     <value>X Mark</value>
     <comment>emoji</comment>
+  </data>
+  <data name="EmojiDialog.Text" xml:space="preserve">
+    <value>TItle Emojis</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="EmojiDialog_introLabel.Text" xml:space="preserve">
+    <value>Select on or more emojis to add to page title</value>
+    <comment>instructions</comment>
   </data>
   <data name="Envelope" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>emoji\envelope.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -2489,10 +2489,6 @@ Polaroid</value>
     <value>Add/edit formula in selected table cells (F5)</value>
     <comment>Ribbon OneMore menu item, Formula...</comment>
   </data>
-  <data name="ribEmojiButton_Label" xml:space="preserve">
-    <value>Add Page Title Emoji</value>
-    <comment>Ribbon OneMore menu item, Extras...</comment>
-  </data>
   <data name="ribAnalyzeButton_Label" xml:space="preserve">
     <value>Analyze Data Storage</value>
     <comment>ribbon item</comment>
@@ -2754,6 +2750,10 @@ Polaroid</value>
   <data name="ribEmbedSubpageButton_Screentip" xml:space="preserve">
     <value>Embed content of another page into the current page</value>
     <comment>ribbon item screentip</comment>
+  </data>
+  <data name="ribEmojiButton_Label" xml:space="preserve">
+    <value>Add Page Title Emoji</value>
+    <comment>Ribbon OneMore menu item, Extras...</comment>
   </data>
   <data name="ribEnableSpellCheckButton_Label" xml:space="preserve">
     <value>Enable Spell Check</value>
@@ -4296,6 +4296,9 @@ In this section</value>
   </data>
   <data name="word_Language" xml:space="preserve">
     <value>Language</value>
+  </data>
+  <data name="word_Limit" xml:space="preserve">
+    <value>Limit</value>
   </data>
   <data name="word_Move" xml:space="preserve">
     <value>Move</value>

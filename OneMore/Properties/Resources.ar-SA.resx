@@ -4282,4 +4282,7 @@ ISO-code then comma then language name</comment>
     <value>إضافة رمز تعبيري لعنوان الصفحة</value>
     <comment>Ribbon OneMore menu item, Extras... EDIT</comment>
   </data>
+  <data name="word_Limit" xml:space="preserve">
+    <value>حد</value>
+  </data>
 </root>

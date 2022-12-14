@@ -78,6 +78,7 @@ namespace River.OneMoreAddIn.Commands
 			this.saturationLabel = new System.Windows.Forms.Label();
 			this.saturationBox = new System.Windows.Forms.NumericUpDown();
 			this.limitsBox = new System.Windows.Forms.ComboBox();
+			this.repositionBox = new System.Windows.Forms.CheckBox();
 			((System.ComponentModel.ISupportInitialize)(this.percentBox)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.widthBox)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.heightBox)).BeginInit();
@@ -100,7 +101,7 @@ namespace River.OneMoreAddIn.Commands
 			// 
 			this.cancelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-			this.cancelButton.Location = new System.Drawing.Point(900, 594);
+			this.cancelButton.Location = new System.Drawing.Point(900, 595);
 			this.cancelButton.Name = "cancelButton";
 			this.cancelButton.Size = new System.Drawing.Size(100, 38);
 			this.cancelButton.TabIndex = 24;
@@ -111,7 +112,7 @@ namespace River.OneMoreAddIn.Commands
 			// okButton
 			// 
 			this.okButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-			this.okButton.Location = new System.Drawing.Point(794, 594);
+			this.okButton.Location = new System.Drawing.Point(794, 595);
 			this.okButton.Name = "okButton";
 			this.okButton.Size = new System.Drawing.Size(100, 38);
 			this.okButton.TabIndex = 23;
@@ -123,7 +124,7 @@ namespace River.OneMoreAddIn.Commands
 			// 
 			this.pctRadio.AutoSize = true;
 			this.pctRadio.Checked = true;
-			this.pctRadio.Location = new System.Drawing.Point(24, 119);
+			this.pctRadio.Location = new System.Drawing.Point(39, 143);
 			this.pctRadio.Name = "pctRadio";
 			this.pctRadio.Size = new System.Drawing.Size(116, 24);
 			this.pctRadio.TabIndex = 1;
@@ -136,7 +137,7 @@ namespace River.OneMoreAddIn.Commands
 			// absRadio
 			// 
 			this.absRadio.AutoSize = true;
-			this.absRadio.Location = new System.Drawing.Point(24, 159);
+			this.absRadio.Location = new System.Drawing.Point(39, 183);
 			this.absRadio.Name = "absRadio";
 			this.absRadio.Size = new System.Drawing.Size(97, 24);
 			this.absRadio.TabIndex = 3;
@@ -147,7 +148,7 @@ namespace River.OneMoreAddIn.Commands
 			// 
 			// percentBox
 			// 
-			this.percentBox.Location = new System.Drawing.Point(200, 119);
+			this.percentBox.Location = new System.Drawing.Point(188, 143);
 			this.percentBox.Maximum = new decimal(new int[] {
             6000,
             0,
@@ -171,7 +172,7 @@ namespace River.OneMoreAddIn.Commands
 			// pctLabel
 			// 
 			this.pctLabel.AutoSize = true;
-			this.pctLabel.Location = new System.Drawing.Point(300, 123);
+			this.pctLabel.Location = new System.Drawing.Point(288, 147);
 			this.pctLabel.Name = "pctLabel";
 			this.pctLabel.Size = new System.Drawing.Size(23, 20);
 			this.pctLabel.TabIndex = 5;
@@ -180,7 +181,7 @@ namespace River.OneMoreAddIn.Commands
 			// widthBox
 			// 
 			this.widthBox.Enabled = false;
-			this.widthBox.Location = new System.Drawing.Point(200, 159);
+			this.widthBox.Location = new System.Drawing.Point(188, 183);
 			this.widthBox.Maximum = new decimal(new int[] {
             10000000,
             0,
@@ -194,7 +195,7 @@ namespace River.OneMoreAddIn.Commands
 			// heightBox
 			// 
 			this.heightBox.Enabled = false;
-			this.heightBox.Location = new System.Drawing.Point(200, 190);
+			this.heightBox.Location = new System.Drawing.Point(188, 214);
 			this.heightBox.Maximum = new decimal(new int[] {
             10000000,
             0,
@@ -208,7 +209,7 @@ namespace River.OneMoreAddIn.Commands
 			// widthLabel
 			// 
 			this.widthLabel.AutoSize = true;
-			this.widthLabel.Location = new System.Drawing.Point(329, 161);
+			this.widthLabel.Location = new System.Drawing.Point(317, 185);
 			this.widthLabel.Name = "widthLabel";
 			this.widthLabel.Size = new System.Drawing.Size(50, 20);
 			this.widthLabel.TabIndex = 9;
@@ -217,7 +218,7 @@ namespace River.OneMoreAddIn.Commands
 			// heightLabel
 			// 
 			this.heightLabel.AutoSize = true;
-			this.heightLabel.Location = new System.Drawing.Point(329, 192);
+			this.heightLabel.Location = new System.Drawing.Point(317, 216);
 			this.heightLabel.Name = "heightLabel";
 			this.heightLabel.Size = new System.Drawing.Size(56, 20);
 			this.heightLabel.TabIndex = 10;
@@ -226,7 +227,7 @@ namespace River.OneMoreAddIn.Commands
 			// viewSizeLabel
 			// 
 			this.viewSizeLabel.AutoSize = true;
-			this.viewSizeLabel.Location = new System.Drawing.Point(49, 23);
+			this.viewSizeLabel.Location = new System.Drawing.Point(37, 17);
 			this.viewSizeLabel.Name = "viewSizeLabel";
 			this.viewSizeLabel.Size = new System.Drawing.Size(75, 20);
 			this.viewSizeLabel.TabIndex = 11;
@@ -235,7 +236,7 @@ namespace River.OneMoreAddIn.Commands
 			// presetRadio
 			// 
 			this.presetRadio.AutoSize = true;
-			this.presetRadio.Location = new System.Drawing.Point(24, 235);
+			this.presetRadio.Location = new System.Drawing.Point(39, 255);
 			this.presetRadio.Name = "presetRadio";
 			this.presetRadio.Size = new System.Drawing.Size(80, 24);
 			this.presetRadio.TabIndex = 7;
@@ -247,7 +248,7 @@ namespace River.OneMoreAddIn.Commands
 			// presetBox
 			// 
 			this.presetBox.Enabled = false;
-			this.presetBox.Location = new System.Drawing.Point(200, 235);
+			this.presetBox.Location = new System.Drawing.Point(188, 257);
 			this.presetBox.Maximum = new decimal(new int[] {
             10000000,
             0,
@@ -266,7 +267,7 @@ namespace River.OneMoreAddIn.Commands
 			// presetLabel
 			// 
 			this.presetLabel.AutoSize = true;
-			this.presetLabel.Location = new System.Drawing.Point(329, 237);
+			this.presetLabel.Location = new System.Drawing.Point(317, 259);
 			this.presetLabel.Name = "presetLabel";
 			this.presetLabel.Size = new System.Drawing.Size(50, 20);
 			this.presetLabel.TabIndex = 15;
@@ -275,7 +276,7 @@ namespace River.OneMoreAddIn.Commands
 			// imageSizeLabel
 			// 
 			this.imageSizeLabel.AutoSize = true;
-			this.imageSizeLabel.Location = new System.Drawing.Point(49, 44);
+			this.imageSizeLabel.Location = new System.Drawing.Point(37, 38);
 			this.imageSizeLabel.Name = "imageSizeLabel";
 			this.imageSizeLabel.Size = new System.Drawing.Size(86, 20);
 			this.imageSizeLabel.TabIndex = 16;
@@ -286,7 +287,7 @@ namespace River.OneMoreAddIn.Commands
 			this.viewSizeLink.AutoSize = true;
 			this.viewSizeLink.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.viewSizeLink.HoverColor = System.Drawing.Color.MediumOrchid;
-			this.viewSizeLink.Location = new System.Drawing.Point(195, 23);
+			this.viewSizeLink.Location = new System.Drawing.Point(183, 17);
 			this.viewSizeLink.Name = "viewSizeLink";
 			this.viewSizeLink.Size = new System.Drawing.Size(78, 20);
 			this.viewSizeLink.TabIndex = 21;
@@ -299,7 +300,7 @@ namespace River.OneMoreAddIn.Commands
 			this.imageSizeLink.AutoSize = true;
 			this.imageSizeLink.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.imageSizeLink.HoverColor = System.Drawing.Color.MediumOrchid;
-			this.imageSizeLink.Location = new System.Drawing.Point(195, 44);
+			this.imageSizeLink.Location = new System.Drawing.Point(183, 38);
 			this.imageSizeLink.Name = "imageSizeLink";
 			this.imageSizeLink.Size = new System.Drawing.Size(78, 20);
 			this.imageSizeLink.TabIndex = 22;
@@ -310,7 +311,7 @@ namespace River.OneMoreAddIn.Commands
 			// allLabel
 			// 
 			this.allLabel.AutoSize = true;
-			this.allLabel.Location = new System.Drawing.Point(300, 23);
+			this.allLabel.Location = new System.Drawing.Point(288, 17);
 			this.allLabel.Name = "allLabel";
 			this.allLabel.Size = new System.Drawing.Size(170, 20);
 			this.allLabel.TabIndex = 20;
@@ -322,7 +323,7 @@ namespace River.OneMoreAddIn.Commands
 			this.preserveBox.AutoSize = true;
 			this.preserveBox.Checked = true;
 			this.preserveBox.CheckState = System.Windows.Forms.CheckState.Checked;
-			this.preserveBox.Location = new System.Drawing.Point(53, 548);
+			this.preserveBox.Location = new System.Drawing.Point(41, 557);
 			this.preserveBox.Name = "preserveBox";
 			this.preserveBox.Size = new System.Drawing.Size(187, 24);
 			this.preserveBox.TabIndex = 20;
@@ -333,7 +334,7 @@ namespace River.OneMoreAddIn.Commands
 			// qualityLabel
 			// 
 			this.qualityLabel.AutoSize = true;
-			this.qualityLabel.Location = new System.Drawing.Point(48, 495);
+			this.qualityLabel.Location = new System.Drawing.Point(36, 509);
 			this.qualityLabel.Name = "qualityLabel";
 			this.qualityLabel.Size = new System.Drawing.Size(57, 20);
 			this.qualityLabel.TabIndex = 1;
@@ -344,7 +345,7 @@ namespace River.OneMoreAddIn.Commands
 			// 
 			this.qualBar.AutoSize = false;
 			this.qualBar.LargeChange = 10;
-			this.qualBar.Location = new System.Drawing.Point(304, 495);
+			this.qualBar.Location = new System.Drawing.Point(292, 509);
 			this.qualBar.Maximum = 100;
 			this.qualBar.Name = "qualBar";
 			this.qualBar.Size = new System.Drawing.Size(190, 25);
@@ -357,7 +358,7 @@ namespace River.OneMoreAddIn.Commands
 			// 
 			// opacityBox
 			// 
-			this.opacityBox.Location = new System.Drawing.Point(199, 292);
+			this.opacityBox.Location = new System.Drawing.Point(187, 316);
 			this.opacityBox.Minimum = new decimal(new int[] {
             1,
             0,
@@ -376,7 +377,7 @@ namespace River.OneMoreAddIn.Commands
 			// opacityLabel
 			// 
 			this.opacityLabel.AutoSize = true;
-			this.opacityLabel.Location = new System.Drawing.Point(47, 295);
+			this.opacityLabel.Location = new System.Drawing.Point(35, 319);
 			this.opacityLabel.Name = "opacityLabel";
 			this.opacityLabel.Size = new System.Drawing.Size(62, 20);
 			this.opacityLabel.TabIndex = 24;
@@ -393,7 +394,7 @@ namespace River.OneMoreAddIn.Commands
 			this.previewGroup.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.previewGroup.Name = "previewGroup";
 			this.previewGroup.Padding = new System.Windows.Forms.Padding(22, 23, 22, 23);
-			this.previewGroup.Size = new System.Drawing.Size(488, 534);
+			this.previewGroup.Size = new System.Drawing.Size(488, 535);
 			this.previewGroup.TabIndex = 25;
 			this.previewGroup.TabStop = false;
 			this.previewGroup.Text = "Preview";
@@ -407,7 +408,7 @@ namespace River.OneMoreAddIn.Commands
 			this.previewBox.Location = new System.Drawing.Point(22, 42);
 			this.previewBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.previewBox.Name = "previewBox";
-			this.previewBox.Size = new System.Drawing.Size(444, 469);
+			this.previewBox.Size = new System.Drawing.Size(444, 470);
 			this.previewBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
 			this.previewBox.TabIndex = 0;
 			this.previewBox.TabStop = false;
@@ -416,7 +417,7 @@ namespace River.OneMoreAddIn.Commands
 			// brightnessLabel
 			// 
 			this.brightnessLabel.AutoSize = true;
-			this.brightnessLabel.Location = new System.Drawing.Point(47, 327);
+			this.brightnessLabel.Location = new System.Drawing.Point(35, 351);
 			this.brightnessLabel.Name = "brightnessLabel";
 			this.brightnessLabel.Size = new System.Drawing.Size(85, 20);
 			this.brightnessLabel.TabIndex = 28;
@@ -425,7 +426,7 @@ namespace River.OneMoreAddIn.Commands
 			// 
 			// brightnessBox
 			// 
-			this.brightnessBox.Location = new System.Drawing.Point(199, 324);
+			this.brightnessBox.Location = new System.Drawing.Point(187, 348);
 			this.brightnessBox.Minimum = new decimal(new int[] {
             100,
             0,
@@ -439,7 +440,7 @@ namespace River.OneMoreAddIn.Commands
 			// contrastLabel
 			// 
 			this.contrastLabel.AutoSize = true;
-			this.contrastLabel.Location = new System.Drawing.Point(47, 359);
+			this.contrastLabel.Location = new System.Drawing.Point(35, 383);
 			this.contrastLabel.Name = "contrastLabel";
 			this.contrastLabel.Size = new System.Drawing.Size(70, 20);
 			this.contrastLabel.TabIndex = 31;
@@ -448,7 +449,7 @@ namespace River.OneMoreAddIn.Commands
 			// 
 			// contrastBox
 			// 
-			this.contrastBox.Location = new System.Drawing.Point(199, 356);
+			this.contrastBox.Location = new System.Drawing.Point(187, 380);
 			this.contrastBox.Minimum = new decimal(new int[] {
             100,
             0,
@@ -463,7 +464,7 @@ namespace River.OneMoreAddIn.Commands
 			// 
 			this.brightnessBar.AutoSize = false;
 			this.brightnessBar.LargeChange = 10;
-			this.brightnessBar.Location = new System.Drawing.Point(304, 327);
+			this.brightnessBar.Location = new System.Drawing.Point(292, 351);
 			this.brightnessBar.Maximum = 100;
 			this.brightnessBar.Minimum = -100;
 			this.brightnessBar.Name = "brightnessBar";
@@ -477,7 +478,7 @@ namespace River.OneMoreAddIn.Commands
 			// 
 			this.contrastBar.AutoSize = false;
 			this.contrastBar.LargeChange = 10;
-			this.contrastBar.Location = new System.Drawing.Point(304, 358);
+			this.contrastBar.Location = new System.Drawing.Point(292, 382);
 			this.contrastBar.Maximum = 100;
 			this.contrastBar.Minimum = -100;
 			this.contrastBar.Name = "contrastBar";
@@ -491,7 +492,7 @@ namespace River.OneMoreAddIn.Commands
 			// 
 			this.opacityBar.AutoSize = false;
 			this.opacityBar.LargeChange = 10;
-			this.opacityBar.Location = new System.Drawing.Point(304, 296);
+			this.opacityBar.Location = new System.Drawing.Point(292, 320);
 			this.opacityBar.Maximum = 100;
 			this.opacityBar.Minimum = 1;
 			this.opacityBar.Name = "opacityBar";
@@ -505,7 +506,7 @@ namespace River.OneMoreAddIn.Commands
 			// storageLabel
 			// 
 			this.storageLabel.AutoSize = true;
-			this.storageLabel.Location = new System.Drawing.Point(49, 66);
+			this.storageLabel.Location = new System.Drawing.Point(37, 60);
 			this.storageLabel.Name = "storageLabel";
 			this.storageLabel.Size = new System.Drawing.Size(66, 20);
 			this.storageLabel.TabIndex = 37;
@@ -514,7 +515,7 @@ namespace River.OneMoreAddIn.Commands
 			// storedSizeLabel
 			// 
 			this.storedSizeLabel.AutoSize = true;
-			this.storedSizeLabel.Location = new System.Drawing.Point(196, 66);
+			this.storedSizeLabel.Location = new System.Drawing.Point(184, 60);
 			this.storedSizeLabel.Name = "storedSizeLabel";
 			this.storedSizeLabel.Size = new System.Drawing.Size(60, 20);
 			this.storedSizeLabel.TabIndex = 38;
@@ -522,7 +523,7 @@ namespace River.OneMoreAddIn.Commands
 			// 
 			// qualBox
 			// 
-			this.qualBox.Location = new System.Drawing.Point(199, 493);
+			this.qualBox.Location = new System.Drawing.Point(187, 507);
 			this.qualBox.Name = "qualBox";
 			this.qualBox.Size = new System.Drawing.Size(94, 26);
 			this.qualBox.TabIndex = 18;
@@ -542,7 +543,7 @@ namespace River.OneMoreAddIn.Commands
             "Gray scale",
             "Sepia",
             "Polaroid"});
-			this.styleBox.Location = new System.Drawing.Point(199, 437);
+			this.styleBox.Location = new System.Drawing.Point(187, 456);
 			this.styleBox.Name = "styleBox";
 			this.styleBox.Size = new System.Drawing.Size(295, 28);
 			this.styleBox.TabIndex = 17;
@@ -551,7 +552,7 @@ namespace River.OneMoreAddIn.Commands
 			// styleLabel
 			// 
 			this.styleLabel.AutoSize = true;
-			this.styleLabel.Location = new System.Drawing.Point(49, 440);
+			this.styleLabel.Location = new System.Drawing.Point(37, 459);
 			this.styleLabel.Name = "styleLabel";
 			this.styleLabel.Size = new System.Drawing.Size(55, 20);
 			this.styleLabel.TabIndex = 43;
@@ -565,7 +566,7 @@ namespace River.OneMoreAddIn.Commands
 			this.lockButton.Checked = true;
 			this.lockButton.CheckState = System.Windows.Forms.CheckState.Checked;
 			this.lockButton.Enabled = false;
-			this.lockButton.Location = new System.Drawing.Point(415, 168);
+			this.lockButton.Location = new System.Drawing.Point(403, 192);
 			this.lockButton.Name = "lockButton";
 			this.lockButton.Size = new System.Drawing.Size(33, 33);
 			this.lockButton.TabIndex = 6;
@@ -576,7 +577,7 @@ namespace River.OneMoreAddIn.Commands
 			// 
 			this.saturationBar.AutoSize = false;
 			this.saturationBar.LargeChange = 10;
-			this.saturationBar.Location = new System.Drawing.Point(304, 390);
+			this.saturationBar.Location = new System.Drawing.Point(292, 414);
 			this.saturationBar.Maximum = 100;
 			this.saturationBar.Minimum = -100;
 			this.saturationBar.Name = "saturationBar";
@@ -589,7 +590,7 @@ namespace River.OneMoreAddIn.Commands
 			// saturationLabel
 			// 
 			this.saturationLabel.AutoSize = true;
-			this.saturationLabel.Location = new System.Drawing.Point(47, 391);
+			this.saturationLabel.Location = new System.Drawing.Point(35, 415);
 			this.saturationLabel.Name = "saturationLabel";
 			this.saturationLabel.Size = new System.Drawing.Size(83, 20);
 			this.saturationLabel.TabIndex = 47;
@@ -598,7 +599,7 @@ namespace River.OneMoreAddIn.Commands
 			// 
 			// saturationBox
 			// 
-			this.saturationBox.Location = new System.Drawing.Point(199, 388);
+			this.saturationBox.Location = new System.Drawing.Point(187, 412);
 			this.saturationBox.Minimum = new decimal(new int[] {
             100,
             0,
@@ -617,11 +618,24 @@ namespace River.OneMoreAddIn.Commands
             "Resize all images",
             "Do not shrink larger images",
             "Do no enlarge smaller images"});
-			this.limitsBox.Location = new System.Drawing.Point(200, 594);
+			this.limitsBox.Location = new System.Drawing.Point(493, 601);
 			this.limitsBox.Name = "limitsBox";
 			this.limitsBox.Size = new System.Drawing.Size(295, 28);
 			this.limitsBox.TabIndex = 0;
 			this.limitsBox.Visible = false;
+			// 
+			// repositionBox
+			// 
+			this.repositionBox.AutoSize = true;
+			this.repositionBox.Checked = true;
+			this.repositionBox.CheckState = System.Windows.Forms.CheckState.Checked;
+			this.repositionBox.Location = new System.Drawing.Point(39, 96);
+			this.repositionBox.Name = "repositionBox";
+			this.repositionBox.Size = new System.Drawing.Size(254, 24);
+			this.repositionBox.TabIndex = 48;
+			this.repositionBox.Text = "Reposition background images";
+			this.repositionBox.UseVisualStyleBackColor = true;
+			this.repositionBox.Visible = false;
 			// 
 			// ResizeImagesDialog
 			// 
@@ -629,7 +643,8 @@ namespace River.OneMoreAddIn.Commands
 			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.CancelButton = this.cancelButton;
-			this.ClientSize = new System.Drawing.Size(1026, 643);
+			this.ClientSize = new System.Drawing.Size(1026, 644);
+			this.Controls.Add(this.repositionBox);
 			this.Controls.Add(this.limitsBox);
 			this.Controls.Add(this.saturationBar);
 			this.Controls.Add(this.saturationLabel);
@@ -743,5 +758,6 @@ namespace River.OneMoreAddIn.Commands
 		private System.Windows.Forms.Label saturationLabel;
 		private System.Windows.Forms.NumericUpDown saturationBox;
 		private System.Windows.Forms.ComboBox limitsBox;
+		private System.Windows.Forms.CheckBox repositionBox;
 	}
 }

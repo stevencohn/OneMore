@@ -9755,6 +9755,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Limit.
+        /// </summary>
+        internal static string word_Limit {
+            get {
+                return ResourceManager.GetString("word_Limit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Move.
         /// </summary>
         internal static string word_Move {

@@ -4282,4 +4282,7 @@ In deze sectie</value>
     <value>Paginatitel-emoji toevoegen</value>
     <comment>Ribbon OneMore menu item, Extras... EDIT</comment>
   </data>
+  <data name="word_Limit" xml:space="preserve">
+    <value>Begrenzing</value>
+  </data>
 </root>
