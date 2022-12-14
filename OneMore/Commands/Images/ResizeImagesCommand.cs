@@ -22,6 +22,8 @@ namespace River.OneMoreAddIn.Commands
 	/// </summary>
 	internal class ResizeImagesCommand : Command
 	{
+		private const int ImageMargin = 15;
+
 		private OneNote one;
 		private Page page;
 		private XNamespace ns;
@@ -110,16 +112,28 @@ namespace River.OneMoreAddIn.Commands
 
 		private async Task ResizeMany(IEnumerable<XElement> elements)
 		{
-			using var dialog = new ResizeImagesDialog();
+			var hasBackgroundImages = elements.Any(e => e.Parent.Name.LocalName == "Page");
+
+			using var dialog = new ResizeImagesDialog(hasBackgroundImages);
 			var result = dialog.ShowDialog(owner);
 			if (result != DialogResult.OK)
 			{
 				return;
 			}
 
+			var top = int.MinValue;
+
 			foreach (var element in elements)
 			{
 				using var image = ReadImage(element);
+
+				var position = element.Element(ns + "Position");
+				if (dialog.RepositionImages && top == int.MinValue)
+				{
+					top = (int)decimal.Parse(
+						position.Attribute("y").Value, CultureInfo.InvariantCulture);
+				}
+
 				var size = element.Element(ns + "Size");
 
 				var viewWidth = (int)decimal.Parse(
@@ -149,6 +163,12 @@ namespace River.OneMoreAddIn.Commands
 					height = dialog.LockAspect
 						? (int)(viewHeight * (dialog.ImageWidth / viewWidth))
 						: (int)dialog.ImageHeight;
+				}
+
+				if (dialog.RepositionImages)
+				{
+					position.SetAttributeValue("y", top.ToString(CultureInfo.InvariantCulture));
+					top += height + ImageMargin;
 				}
 
 				if (dialog.ResizeOption == ResizeOption.All ||
@@ -191,7 +211,6 @@ namespace River.OneMoreAddIn.Commands
 			using var stream = new MemoryStream(data, 0, data.Length);
 			return Image.FromStream(stream);
 		}
-
 
 
 		private void WriteImage(XElement element, Image image)

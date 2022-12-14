@@ -11,7 +11,7 @@ namespace River.OneMoreAddIn.Commands
 	using System;
 	using System.Drawing;
 	using System.Windows.Forms;
-	using Resx = River.OneMoreAddIn.Properties.Resources;
+	using Resx = Properties.Resources;
 
 
 	internal partial class ResizeImagesDialog : UI.LocalizableForm
@@ -33,7 +33,7 @@ namespace River.OneMoreAddIn.Commands
 		/// Initializes a new dialog to resize all images on the page to a standard width
 		/// and height with respective ratio
 		/// </summary>
-		public ResizeImagesDialog()
+		public ResizeImagesDialog(bool hasBackgroundImages)
 		{
 			Initialize();
 
@@ -50,8 +50,9 @@ namespace River.OneMoreAddIn.Commands
 			allLabel.Location = viewSizeLink.Location;
 			allLabel.Visible = true;
 
-			storageLabel.Text = Resx.word_Options;
-			limitsBox.Location = storedSizeLabel.Location;
+			storageLabel.Text = Resx.word_Limit;
+			storageLabel.Top -= 5;
+			limitsBox.Location = new Point(storedSizeLabel.Location.X, storedSizeLabel.Location.Y - 5);
 			limitsBox.SelectedIndex = 0;
 			limitsBox.Visible = true;
 
@@ -69,6 +70,8 @@ namespace River.OneMoreAddIn.Commands
 
 			presetRadio.Checked = true;
 			RadioClick(presetRadio, null);
+
+			repositionBox.Visible = hasBackgroundImages;
 
 			scaling = null;
 		}
@@ -194,6 +197,9 @@ namespace River.OneMoreAddIn.Commands
 
 
 		public decimal Percent => pctRadio.Checked ? percentBox.Value : 0;
+
+
+		public bool RepositionImages => repositionBox.Checked;
 
 
 

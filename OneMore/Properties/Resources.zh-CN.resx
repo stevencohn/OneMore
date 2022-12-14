@@ -4272,4 +4272,7 @@ ISO-code then comma then language name</comment>
     <value>添加页面标题表情符号</value>
     <comment>Ribbon OneMore menu item, Extras... EDIT</comment>
   </data>
+  <data name="word_Limit" xml:space="preserve">
+    <value>限制</value>
+  </data>
 </root>
