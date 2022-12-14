@@ -4282,4 +4282,7 @@ En esta sección</value>
     <value>Añadir emoji de título de página</value>
     <comment>Ribbon OneMore menu item, Extras... EDIT</comment>
   </data>
+  <data name="word_Limit" xml:space="preserve">
+    <value>Límite</value>
+  </data>
 </root>
