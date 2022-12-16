@@ -169,6 +169,33 @@ namespace River.OneMoreAddIn
 		}
 
 
+		// https://learn.microsoft.com/en-us/windows/win32/api/wingdi/ns-wingdi-textmetricw
+		[StructLayout(LayoutKind.Sequential, CharSet = CharSet.Unicode)]
+		public struct TextMetrics
+		{
+			public int tmHeight;
+			public int tmAscent;
+			public int tmDescent;
+			public int tmInternalLeading;
+			public int tmExternalLeading;
+			public int tmAveCharWidth;
+			public int tmMaxCharWidth;
+			public int tmWeight;
+			public int tmOverhang;
+			public int tmDigitizedAspectX;
+			public int tmDigitizedAspectY;
+			public ushort tmFirstChar;
+			public ushort tmLastChar;
+			public ushort tmDefaultChar;
+			public ushort tmBreakChar;
+			public byte tmItalic;
+			public byte tmUnderlined;
+			public byte tmStruckOut;
+			public byte tmPitchAndFamily;
+			public byte tmCharSet;
+		}
+
+
 		/// <summary>
 		/// Specifies the attributes of a node in a TreeView
 		/// </summary>
@@ -206,6 +233,12 @@ namespace River.OneMoreAddIn
 			string pszExtra, [Out] StringBuilder pszOut, ref uint pcchOut);
 
 
+		// https://learn.microsoft.com/en-us/windows/win32/api/wingdi/nf-wingdi-deleteobject?redirectedfrom=MSDN
+		[DllImport("gdi32.dll", CharSet = CharSet.Auto, SetLastError = true)]
+		public static extern bool DeleteObject(IntPtr hObject);
+
+
+		// https://learn.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-getcursorpos
 		[DllImport("user32.dll")]
 		public static extern bool GetCursorPos(out Point lpPoint);
 
@@ -218,6 +251,11 @@ namespace River.OneMoreAddIn
 		// https://docs.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-getforegroundwindow
 		[DllImport("user32.dll")]
 		public static extern IntPtr GetForegroundWindow();
+
+
+		// https://learn.microsoft.com/en-us/windows/win32/api/wingdi/nf-wingdi-gettextmetrics
+		[DllImport("gdi32.dll", CharSet = CharSet.Auto)]
+		public static extern bool GetTextMetrics(IntPtr hdc, out TextMetrics lptm);
 
 
 		// https://docs.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-getparent
@@ -239,6 +277,11 @@ namespace River.OneMoreAddIn
 		// https://docs.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-loadcursora		
 		[DllImport("user32.dll", CharSet = CharSet.Auto, SetLastError = true)]
 		public static extern IntPtr LoadCursor(IntPtr hInstance, int lpCursorName);
+
+
+		// https://learn.microsoft.com/en-us/windows/win32/api/wingdi/nf-wingdi-selectobject?redirectedfrom=MSDN
+		[DllImport("gdi32.dll", CharSet = CharSet.Auto)]
+		public static extern IntPtr SelectObject(IntPtr hdc, IntPtr hgdiObj);
 
 
 		// https://docs.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-setcursor

@@ -25,6 +25,7 @@ namespace River.OneMoreAddIn.Commands
 			public string Owner;
 			public int QuickStyleIndex;
 			public string Enclosure;
+			public bool CodeBlock;
 		}
 
 		// no good way to indent text; closest alternative is to use a string of nbsp but that
@@ -35,6 +36,7 @@ namespace River.OneMoreAddIn.Commands
 		private readonly Page page;
 		private readonly XNamespace ns;
 		private readonly bool withAttachments;
+		private readonly StyleAnalyzer analyzer;
 		private readonly List<Style> quickStyles;
 		private readonly Stack<Context> contexts;
 		private int tableDepth;
@@ -52,6 +54,7 @@ namespace River.OneMoreAddIn.Commands
 		{
 			this.page = page;
 			ns = page.Namespace;
+			analyzer = new StyleAnalyzer(page.Root);
 			quickStyles = page.GetQuickStyles();
 			contexts = new Stack<Context>();
 			this.withAttachments = withAttachments;
@@ -149,7 +152,7 @@ namespace River.OneMoreAddIn.Commands
 
 				case "OE":
 					pushed = DetectQuickStyle(element);
-					startpara = true;
+					startpara = contexts.Peek().CodeBlock;
 					break;
 
 				case "Tag":
@@ -204,9 +207,17 @@ namespace River.OneMoreAddIn.Commands
 			var context = pushed ? contexts.Pop() : null;
 			if (element.Name.LocalName == "OE")
 			{
-				if (context != null && !string.IsNullOrEmpty(context.Enclosure))
+				if (context != null)
 				{
-					writer.Write(context.Enclosure);
+					if (context.CodeBlock)
+					{
+						writer.WriteLine();
+						writer.WriteLine("```");
+					}
+					else if (!string.IsNullOrEmpty(context.Enclosure))
+					{
+						writer.Write(context.Enclosure);
+					}
 				}
 
 				// if not in a table cell
@@ -228,13 +239,31 @@ namespace River.OneMoreAddIn.Commands
 					Owner = element.Name.LocalName,
 					QuickStyleIndex = index
 				};
+
 				var quick = quickStyles.First(q => q.Index == index);
 				if (quick != null)
 				{
-					// cite becomes italic
-					if (quick.Name == "cite") context.Enclosure = "*";
-					else if (quick.Name == "code") context.Enclosure = "`";
+					var handled = false;
+					if (element.Name.LocalName == "OE")
+					{
+						var style = analyzer.CollectStyleFrom(element);
+						using var font = new Font(style.FontFamily, (float)decimal.Parse(style.FontSize));
+						var fixedWidth = font.IsFixedWidthFont();
+						if (fixedWidth && (!contexts.Any() || !contexts.Peek().CodeBlock))
+						{
+							context.CodeBlock = true;
+							handled = true;
+						}
+					}
+
+					if (!handled)
+					{
+						// cite becomes italic
+						if (quick.Name == "cite") context.Enclosure = "*";
+						else if (quick.Name == "code") context.Enclosure = "`";
+					}
 				}
+
 				contexts.Push(context);
 				return true;
 			}
@@ -248,6 +277,13 @@ namespace River.OneMoreAddIn.Commands
 			writer.Write(prefix);
 			if (contexts.Count == 0) return;
 			var context = contexts.Peek();
+
+			if (context.CodeBlock)
+			{
+				writer.WriteLine("```");
+				return;
+			}
+
 			var quick = quickStyles.First(q => q.Index == context.QuickStyleIndex);
 			switch (quick.Name)
 			{
