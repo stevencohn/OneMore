@@ -38,6 +38,8 @@ namespace River.OneMoreAddIn.Commands
 
 		private const string RefreshStyle = "font-style:italic;font-size:9.0pt;color:#808080";
 
+		private const int SynopsisLength = 110;
+
 		private OneNote one;
 		private OneNote.Scope scope;
 		private Page page;
@@ -204,7 +206,7 @@ namespace River.OneMoreAddIn.Commands
 
 						if (synopses)
 						{
-							referal.SetAttributeValue(SynopsisAttr, GetSynopsis(refpage));
+							referal.SetAttributeValue(SynopsisAttr, GetSynopsis(refpage, title));
 						}
 
 						updates++;
@@ -276,7 +278,7 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private string GetSynopsis(Page page)
+		private string GetSynopsis(Page page, string title)
 		{
 			var body = page.Root
 				.Elements(ns + "Outline")
@@ -293,8 +295,19 @@ namespace River.OneMoreAddIn.Commands
 			// an issue where TextValue() can't parse embedded XML snippets in image OCR
 			body.Descendants(ns + "Image").Remove();
 
-			var synopsis = body.TextValue();
-			return synopsis.Length < 111 ? synopsis : synopsis.Substring(0, 110);
+			// extract snippet of text surrounding first occurances of title within body...
+			// Note that attemps were made to find the sentence containing the title but this
+			// gets complicated when it contains decimals (4.5) or names (Mr. John Q. Public)
+
+			var text = body.TextValue();
+			var start = text.IndexOf(title);
+			if (start < 0 || string.IsNullOrWhiteSpace(title))
+			{
+				return text.Length <= SynopsisLength ? text : text.Substring(0, SynopsisLength);
+			}
+
+			start = Math.Max(start - ((SynopsisLength - title.Length) / 2), 0);
+			return text.Substring(start, Math.Min(SynopsisLength, text.Length - start));
 		}
 
 
