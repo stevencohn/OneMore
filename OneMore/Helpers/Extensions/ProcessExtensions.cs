@@ -25,7 +25,8 @@ namespace River.OneMoreAddIn
 
 			// since we look up the process using a unique PID, the query must
 			// return at most one match
-			using var e = searcher.Get().GetEnumerator();
+			using var collection = searcher.Get();
+			using var e = collection.GetEnumerator();
 			if (e.MoveNext()) // move to first item
 			{
 				return e.Current["CommandLine"]?.ToString();
