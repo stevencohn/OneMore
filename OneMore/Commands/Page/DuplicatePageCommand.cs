@@ -60,7 +60,7 @@ namespace River.OneMoreAddIn.Commands
 
 			// match all pages in section on <name>[(tag)]
 
-			var regex = new Regex($@"{title}(?:\s*\((\d+)\))?");
+			var regex = new Regex($@"{title.EscapeForRegex()}(?:\s*\((\d+)\))?");
 
 			// this will also include the current page so should result in a max value
 			var index = section.Elements(ns + "Page")

@@ -7,6 +7,7 @@
 namespace River.OneMoreAddIn
 {
 	using System;
+	using System.Linq;
 	using System.Text;
 	using System.Text.RegularExpressions;
 	using System.Xml.Linq;
@@ -18,84 +19,6 @@ namespace River.OneMoreAddIn
 
 	internal static class Extensions
 	{
-
-		/// <summary>
-		/// Determines if the string ends with whitespace, either chars or HTML escapes
-		/// </summary>
-		/// <param name="value"></param>
-		/// <returns></returns>
-		public static bool EndsWithWhitespace(this string value)
-		{
-			// \s includes space, tab, CR, NL, FF, VT, and \u00A0
-			return Regex.IsMatch(value, @"(\W|&#160;|&nbsp;)$");
-		}
-
-
-		/// <summary>
-		/// Determines if the string starts with whitespace, either chars or HTML escapes
-		/// </summary>
-		/// <param name="value"></param>
-		/// <returns></returns>
-		public static bool StartsWithWhitespace(this string value)
-		{
-			// \s includes space, tab, CR, NL, FF, VT, and \u00A0
-			return Regex.IsMatch(value, @"^(\W|&#160;|&nbsp;)");
-		}
-
-
-		/// <summary>
-		/// Compares this string with a given string ignoring case.
-		/// </summary>
-		/// <param name="s">The current string</param>
-		/// <param name="value">The comparison string</param>
-		/// <returns>True if both strings are equal</returns>
-
-		public static bool EqualsICIC(this string s, string value)
-		{
-			return s.Equals(value, StringComparison.InvariantCultureIgnoreCase);
-		}
-
-
-		/// <summary>
-		/// Escapes only a select few special character in a URL. Needed for the
-		/// Copy Link to Page command so the pasted link can be clicked and properly 
-		/// navigate back to the source page.
-		/// </summary>
-		/// <param name="s"></param>
-		/// <returns></returns>
-		public static string SafeUrlEncode(this string s)
-		{
-			// all normally escaped chars --> " $&`:<>[]{}\"+#%@/;=?\\^|~',"
-
-			var builder = new StringBuilder();
-			for (var i = 0; i < s.Length; i++)
-			{
-				if (s[i] == ' ' || s[i] == '"' || s[i] == '\'')
-				{
-					builder.Append($"%{((int)s[i]):X2}");
-				}
-				else
-				{
-					builder.Append(s[i]);
-				}
-			}
-
-			return builder.ToString();
-		}
-
-
-		/// <summary>
-		/// Determines if the given string starts with a given substring, ignoring case.
-		/// </summary>
-		/// <param name="s">The current string</param>
-		/// <param name="value">The substring to use as a search</param>
-		/// <returns>True if the current start starts with the given substring</returns>
-
-		public static bool StartsWithICIC(this string s, string value)
-		{
-			return s.StartsWith(value, StringComparison.InvariantCultureIgnoreCase);
-		}
-
 
 		/// <summary>
 		/// 
@@ -170,6 +93,113 @@ namespace River.OneMoreAddIn
 			}
 
 			return v0[t.Length];
+		}
+
+
+		/// <summary>
+		/// Determines if the string ends with whitespace, either chars or HTML escapes
+		/// </summary>
+		/// <param name="value"></param>
+		/// <returns></returns>
+		public static bool EndsWithWhitespace(this string value)
+		{
+			// \s includes space, tab, CR, NL, FF, VT, and \u00A0
+			return Regex.IsMatch(value, @"(\W|&#160;|&nbsp;)$");
+		}
+
+
+
+		/// <summary>
+		/// Escape all control chars in given string. Typically used to escape the search
+		/// string when not using regular expressions
+		/// </summary>
+		/// <param name="plain">The string to treat as plain text</param>
+		/// <returns>A string in which all regular expression control chars are escaped</returns>
+		public static string EscapeForRegex(this string plain)
+		{
+			var codes = new char[] { '\\', '.', '*', '|', '?', '(', '[', '$', '^', '+' };
+
+			var builder = new StringBuilder();
+			for (var i = 0; i < plain.Length; i++)
+			{
+				if (codes.Contains(plain[i]))
+				{
+					if (i == 0 || plain[i - 1] != '\\')
+					{
+						builder.Append('\\');
+					}
+				}
+
+				builder.Append(plain[i]);
+			}
+
+			return builder.ToString();
+		}       
+		
+		
+		/// <summary>
+		/// Compares this string with a given string ignoring case.
+		/// </summary>
+		/// <param name="s">The current string</param>
+		/// <param name="value">The comparison string</param>
+		/// <returns>True if both strings are equal</returns>
+
+		public static bool EqualsICIC(this string s, string value)
+		{
+			return s.Equals(value, StringComparison.InvariantCultureIgnoreCase);
+		}
+
+
+		/// <summary>
+		/// Escapes only a select few special character in a URL. Needed for the
+		/// Copy Link to Page command so the pasted link can be clicked and properly 
+		/// navigate back to the source page.
+		/// </summary>
+		/// <param name="s"></param>
+		/// <returns></returns>
+		public static string SafeUrlEncode(this string s)
+		{
+			// all normally escaped chars --> " $&`:<>[]{}\"+#%@/;=?\\^|~',"
+
+			var builder = new StringBuilder();
+			for (var i = 0; i < s.Length; i++)
+			{
+				if (s[i] == ' ' || s[i] == '"' || s[i] == '\'')
+				{
+					builder.Append($"%{((int)s[i]):X2}");
+				}
+				else
+				{
+					builder.Append(s[i]);
+				}
+			}
+
+			return builder.ToString();
+		}
+
+
+		/// <summary>
+		/// Determines if the given string starts with a given substring, ignoring case.
+		/// </summary>
+		/// <param name="s">The current string</param>
+		/// <param name="value">The substring to use as a search</param>
+		/// <returns>True if the current start starts with the given substring</returns>
+
+		public static bool StartsWithICIC(this string s, string value)
+		{
+			return s.StartsWith(value, StringComparison.InvariantCultureIgnoreCase);
+		}
+
+
+		/// <summary>
+		/// Determines if the string starts with whitespace, either chars or HTML escapes
+		/// </summary>
+		/// <param name="value"></param>
+		/// <returns></returns>
+		public static bool StartsWithWhitespace(this string value)
+		{
+			// \s includes space, tab, CR, NL, FF, VT, and \u00A0
+			return Regex.IsMatch(value, @"^(\W|&#160;|&nbsp;)");
 		}
 
 
