@@ -286,8 +286,6 @@ namespace River.OneMoreAddIn.Commands
 						{
 							e.ReplaceAttributes(attributes);
 						}
-
-						e.ReplaceAttributes(attributes);
 					});
 			}
 
@@ -310,7 +308,7 @@ namespace River.OneMoreAddIn.Commands
 
 			pageBox.Text = root.ToString(SaveOptions.None);
 
-			Highlights();
+			Highlights(pageBox);
 		}
 
 
@@ -328,22 +326,22 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private void Highlights()
+		private void Highlights(RichTextBox box, bool forceAttributes = false)
 		{
-			var matches = Regex.Matches(pageBox.Text,
+			var matches = Regex.Matches(box.Text,
 				@"<((?:[a-zA-Z][a-zA-Z0-9]*?:)?[a-zA-Z][a-zA-Z0-9]*?)[^>]+selected=""all""[^\1]*?\1>");
 
 			foreach (Match match in matches)
 			{
-				pageBox.SelectionStart = match.Index;
-				pageBox.SelectionLength = match.Length;
-				pageBox.SelectionBackColor = Color.Yellow;
+				box.SelectionStart = match.Index;
+				box.SelectionLength = match.Length;
+				box.SelectionBackColor = Color.Yellow;
 			}
 
-			if (!hideBox.Checked)
+			if (!hideBox.Checked || forceAttributes)
 			{
 				// author attributes
-				matches = Regex.Matches(pageBox.Text,
+				matches = Regex.Matches(box.Text,
 					"(?:author|authorInitials|authorResolutionID|lastModifiedBy|" +
 					"lastModifiedByInitials|lastModifiedByResolutionID|creationTime|" +
 					"lastModifiedTime)=\"[^\"]*\""
@@ -351,19 +349,19 @@ namespace River.OneMoreAddIn.Commands
 
 				foreach (Match m in matches)
 				{
-					pageBox.SelectionStart = m.Index;
-					pageBox.SelectionLength = m.Length;
-					pageBox.SelectionColor = Color.Silver;
+					box.SelectionStart = m.Index;
+					box.SelectionLength = m.Length;
+					box.SelectionColor = Color.Silver;
 				}
 
 				// objectID
-				matches = Regex.Matches(pageBox.Text, "(?:objectID)=\"[^\"]*\"");
+				matches = Regex.Matches(box.Text, "(?:objectID|ID)=\"[^\"]*\"");
 
 				foreach (Match m in matches)
 				{
-					pageBox.SelectionStart = m.Index;
-					pageBox.SelectionLength = m.Length;
-					pageBox.SelectionColor = Color.CornflowerBlue;
+					box.SelectionStart = m.Index;
+					box.SelectionLength = m.Length;
+					box.SelectionColor = Color.CornflowerBlue;
 				}
 			}
 		}
@@ -473,6 +471,22 @@ namespace River.OneMoreAddIn.Commands
 						Sanitize(root);
 					}
 
+					root.Descendants()
+						.Where(e => e.Attributes("ID").Any())
+						.ForEach(e =>
+						{
+							var attributes = e.Attributes().ToList();
+
+							// move objectID, lastModifiedTime, and creationTime to beginning of list
+							var moved = PromoteAttribute(attributes, "ID");
+							moved = PromoteAttribute(attributes, "name") || moved;
+
+							if (moved)
+							{
+								e.ReplaceAttributes(attributes);
+							}
+						});
+
 					box.Clear();
 					box.WordWrap = wrapBox.Checked;
 					box.SelectionColor = Color.Black;
@@ -485,6 +499,8 @@ namespace River.OneMoreAddIn.Commands
 					box.Text = "no hierarchy";
 				}
 			}
+
+			Highlights(box, true);
 
 			box.Select(0, 0);
 			box.Focus();
