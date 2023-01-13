@@ -86,8 +86,8 @@ namespace River.OneMoreAddIn.Commands
 					$"oldsize:{width}x{height} setsiz:{setWidth}x{setHeight}"
 					);
 #endif
-				size.SetAttributeValue("width", $"{setWidth:0.0}");
-				size.SetAttributeValue("height", $"{setHeight:0.0}");
+				size.SetAttributeValue("width", FormattableString.Invariant($"{setWidth:0.0}"));
+				size.SetAttributeValue("height", FormattableString.Invariant($"{setHeight:0.0}"));
 				size.SetAttributeValue("isSetByUser", "true");
 
 				// when a document is printed to OneNote as a series of page images,
