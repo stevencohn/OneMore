@@ -4,6 +4,7 @@
 
 namespace River.OneMoreAddIn.Commands
 {
+	using System.Globalization;
 	using System.Linq;
 	using System.Threading.Tasks;
 	using System.Xml.Linq;
@@ -45,7 +46,7 @@ namespace River.OneMoreAddIn.Commands
 					size.SetAttributeValue("width", $"{MaxWidth}.0");
 
 					size.GetAttributeValue("height", out float height);
-					size.SetAttributeValue("height", (height + 1).ToString("F04"));
+					size.SetAttributeValue("height", (height + 1).ToString("F04", CultureInfo.InvariantCulture));
 
 					modified = true;
 				}
