@@ -7,6 +7,7 @@ namespace River.OneMoreAddIn.Commands
 	using River.OneMoreAddIn.Models;
 	using System;
 	using System.Collections.Generic;
+	using System.Globalization;
 	using System.Linq;
 	using System.Threading.Tasks;
 	using System.Xml.Linq;
@@ -65,10 +66,12 @@ namespace River.OneMoreAddIn.Commands
 			foreach (var container in containers)
 			{
 				var position = container.Element(ns + "Position");
-				position.SetAttributeValue("x", LeftMargin);
-				position.SetAttributeValue("y", yoffset);
+				position.SetAttributeValue("x", LeftMargin.ToString(CultureInfo.InvariantCulture));
+				position.SetAttributeValue("y", yoffset.ToString(CultureInfo.InvariantCulture));
 
-				var height = double.Parse(container.Element(ns + "Size").Attribute("height").Value);
+				var height = double.Parse(container.Element(ns + "Size")
+					.Attribute("height").Value, CultureInfo.InvariantCulture);
+
 				yoffset += height + BottomMargin;
 			}
 		}
@@ -112,12 +115,12 @@ namespace River.OneMoreAddIn.Commands
 				}
 
 				var position = container.Element(ns + "Position");
-				position.SetAttributeValue("x", xoffset);
-				position.SetAttributeValue("y", yoffset);
+				position.SetAttributeValue("x", xoffset.ToString(CultureInfo.InvariantCulture));
+				position.SetAttributeValue("y", yoffset.ToString(CultureInfo.InvariantCulture));
 
-				size.SetAttributeValue("width", colwidth.ToString("N3"));
+				size.SetAttributeValue("width", colwidth.ToString("N3", CultureInfo.InvariantCulture));
 				// must set both width and height for changes to take effect
-				size.SetAttributeValue("height", (height + 0.001).ToString("N3"));
+				size.SetAttributeValue("height", (height + 0.001).ToString("N3", CultureInfo.InvariantCulture));
 				size.SetAttributeValue("isSetByUser", "true");
 
 				logger.WriteLine($"moved container to {LeftMargin} x {yoffset:N3}, size {width:N3} x {height:N3}");

@@ -55,6 +55,7 @@ namespace River.OneMoreAddIn.Commands
 				{
 					var processor = new Processor(table);
 					processor.Execute(cells.ToList());
+					logger.WriteTime("calculation completed", true);
 
 					await one.Update(page);
 					updated = true;
