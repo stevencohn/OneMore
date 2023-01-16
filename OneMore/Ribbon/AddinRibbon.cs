@@ -5,6 +5,9 @@
 #pragma warning disable CS3001      // Type is not CLS-compliant
 #pragma warning disable IDE0060     // remove unused parameter
 
+#define xVerboseLogging
+#define LoggingImageLoad
+
 namespace River.OneMoreAddIn
 {
 	using Microsoft.Office.Core;
@@ -434,7 +437,9 @@ namespace River.OneMoreAddIn
 		/// <returns></returns>
 		public string GetFavoritesContent(IRibbonControl control)
 		{
-			//logger.WriteLine($"GetFavoritesContent({control.Id}) culture:{AddIn.Culture.Name}");
+#if VerboseLogging
+			logger.WriteLine($"GetFavoritesContent({control.Id}) culture:{AddIn.Culture.Name}");
+#endif
 
 			// TODO: this doesn't seem to work!
 			System.Threading.Thread.CurrentThread.CurrentCulture = AddIn.Culture;
@@ -473,7 +478,9 @@ namespace River.OneMoreAddIn
 		/// <param name="ribbon">The Ribbon</param>
 		public void RibbonLoaded(IRibbonUI ribbon)
 		{
-			//logger.WriteLine("RibbonLoaded()");
+#if VerboseLogging
+			logger.WriteLine("RibbonLoaded()");
+#endif
 			this.ribbon = ribbon;
 		}
 
@@ -485,7 +492,9 @@ namespace River.OneMoreAddIn
 		/// <returns>A Bitmap image</returns>
 		public IStream GetColorizeImage(IRibbonControl control)
 		{
-			//logger.WriteLine($"GetColorizeImage({control.Tag})");
+#if VerboseLogging
+			logger.WriteLine($"GetColorizeImage({control.Tag})");
+#endif
 			IStream stream = null;
 			try
 			{
@@ -522,7 +531,9 @@ namespace River.OneMoreAddIn
 			if (Office.IsBlackThemeEnabled(true))
 			{
 				var darkName = $"Dark{imageName}";
-				//logger.WriteLine($"GetRibbonImage({imageName})");
+#if LoggingImageLoad
+				logger.WriteLine($"GetRibbonImage({imageName})");
+#endif
 				try
 				{
 					if (Resx.ResourceManager.GetObject(darkName) is Bitmap res)
@@ -540,7 +551,9 @@ namespace River.OneMoreAddIn
 
 			try
 			{
-				//logger.WriteLine($"GetRibbonImage({imageName})");
+#if LoggingImageLoad
+				logger.WriteLine($"GetRibbonImage({imageName})");
+#endif
 				if (Resx.ResourceManager.GetObject(imageName) is Bitmap res)
 				{
 					var stream = res.GetReadOnlyStream();
@@ -564,7 +577,9 @@ namespace River.OneMoreAddIn
 		 */
 		public IStream GetOneMoreRibbonImage(IRibbonControl control)
 		{
-			//logger.WriteLine($"GetOneMoreRibbonImage({control.Id})");
+#if VerboseLogging
+			logger.WriteLine($"GetOneMoreRibbonImage({control.Id})");
+#endif
 			IStream stream = null;
 			try
 			{
@@ -587,7 +602,9 @@ namespace River.OneMoreAddIn
 		/// <returns></returns>
 		public string GetRibbonContent(IRibbonControl control)
 		{
-			//logger.WriteLine($"GetRibbonContent({control.Id})");
+#if VerboseLogging
+			logger.WriteLine($"GetRibbonContent({control.Id})");
+#endif
 			return null;
 		}
 
@@ -599,7 +616,9 @@ namespace River.OneMoreAddIn
 		/// <returns></returns>
 		public bool GetRibbonEnabled(IRibbonControl control)
 		{
-			//logger.WriteLine($"GetRibbonEnabled({control.Id})");
+#if VerboseLogging
+			logger.WriteLine($"GetRibbonEnabled({control.Id})");
+#endif
 			return true;
 		}
 
@@ -652,7 +671,9 @@ namespace River.OneMoreAddIn
 		{
 			try
 			{
-				//logger.WriteLine($"GetString({resId})");
+#if VerboseLogging
+				logger.WriteLine($"GetString({resId})");
+#endif
 				return Resx.ResourceManager.GetString(resId, AddIn.Culture);
 			}
 			catch (Exception exc)
@@ -671,7 +692,9 @@ namespace River.OneMoreAddIn
 		/// <returns>A steam of the Image to display</returns>
 		public IStream GetRibbonSearchImage(IRibbonControl control)
 		{
-			//logger.WriteLine($"GetRibbonSearchImage({control.Tag})");
+#if VerboseLogging
+			logger.WriteLine($"GetRibbonSearchImage({control.Tag})");
+#endif
 
 			if (engines?.HasElements == true)
 			{
