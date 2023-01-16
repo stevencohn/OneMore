@@ -14,6 +14,7 @@ namespace River.OneMoreAddIn.Commands
 	using System.Drawing.Imaging;
 	using System.IO;
 	using System.Linq;
+	using System.Text;
 	using System.Threading.Tasks;
 	using System.Xml.Linq;
 
@@ -22,16 +23,27 @@ namespace River.OneMoreAddIn.Commands
 	{
 		private sealed class Context
 		{
-			public string Owner;
+			public XElement Owner;
 			public int QuickStyleIndex;
 			public string Enclosure;
-			public bool CodeBlock;
 		}
+
+		private sealed class IndexedLine
+		{
+			public int Index;
+			public string Text;
+		}
+
 
 		// no good way to indent text; closest alternative is to use a string of nbsp but that
 		// conflicts with other directives like headings and list numbering. so substitute
 		// indentations (OEChildren) with the blockquote directive instead
 		private const string Indent = ">"; //&nbsp;&nbsp;&nbsp;&nbsp;";
+
+		// replica of TextWriter.CoreNewLine so we can find end of lines in StringBuilder
+		private static char[] CoreNewLine = new char[] { '\r', '\n' };
+		private const char BackTick = '`';
+
 
 		private readonly Page page;
 		private readonly XNamespace ns;
@@ -45,7 +57,7 @@ namespace River.OneMoreAddIn.Commands
 #if LOG
 		private readonly ILogger writer = Logger.Current;
 #else
-		private StreamWriter writer;
+		private TextWriter writer;
 		private string path;
 #endif
 
@@ -70,8 +82,9 @@ namespace River.OneMoreAddIn.Commands
 		public async Task Copy(XElement content)
 		{
 			copyMode = true;
-			using var stream = new MemoryStream();
-			using (writer = new StreamWriter(stream))
+
+			var builder = new StringBuilder();
+			using (writer = new StringWriter(builder))
 			{
 				writer.WriteLine($"# {Emojis.RemoveEmojis(page.Title)}");
 
@@ -90,16 +103,15 @@ namespace River.OneMoreAddIn.Commands
 
 				writer.WriteLine();
 				writer.Flush();
-
-				stream.Position = 0;
-				using var reader = new StreamReader(stream);
-
-				var clippy = new ClipboardProvider();
-				// clear all data object with other formats
-				await clippy.Clear();
-				// set only our content as text
-				await clippy.SetText(reader.ReadToEnd());
 			}
+
+			var text = MergeCodeLines(builder);
+
+			var clippy = new ClipboardProvider();
+			// clear all data object with other formats
+			await clippy.Clear();
+			// set only our content as text
+			await clippy.SetText(text);
 		}
 
 
@@ -111,7 +123,9 @@ namespace River.OneMoreAddIn.Commands
 		{
 #if !LOG
 			path = Path.GetDirectoryName(filename);
-			using (writer = File.CreateText(filename))
+
+			var builder = new StringBuilder();
+			using (writer = new StringWriter(builder))
 #endif
 			{
 				writer.WriteLine($"# {page.Title}");
@@ -130,6 +144,12 @@ namespace River.OneMoreAddIn.Commands
 					});
 
 				writer.WriteLine();
+				writer.Flush();
+			}
+
+			using (writer = File.CreateText(filename))
+			{
+				writer.Write(MergeCodeLines(builder));
 			}
 		}
 
@@ -152,7 +172,7 @@ namespace River.OneMoreAddIn.Commands
 
 				case "OE":
 					pushed = DetectQuickStyle(element);
-					startpara = contexts.Peek().CodeBlock;
+					startpara = true;
 					break;
 
 				case "Tag":
@@ -207,17 +227,9 @@ namespace River.OneMoreAddIn.Commands
 			var context = pushed ? contexts.Pop() : null;
 			if (element.Name.LocalName == "OE")
 			{
-				if (context != null)
+				if (context != null && !string.IsNullOrEmpty(context.Enclosure))
 				{
-					if (context.CodeBlock)
-					{
-						writer.WriteLine();
-						writer.WriteLine("```");
-					}
-					else if (!string.IsNullOrEmpty(context.Enclosure))
-					{
-						writer.Write(context.Enclosure);
-					}
+					writer.Write(context.Enclosure);
 				}
 
 				// if not in a table cell
@@ -236,31 +248,33 @@ namespace River.OneMoreAddIn.Commands
 			{
 				var context = new Context
 				{
-					Owner = element.Name.LocalName,
+					Owner = element,
 					QuickStyleIndex = index
 				};
 
 				var quick = quickStyles.First(q => q.Index == index);
 				if (quick != null)
 				{
-					var handled = false;
-					if (element.Name.LocalName == "OE")
+					// cite becomes italic
+					if (quick.Name == "cite")
 					{
-						var style = analyzer.CollectStyleFrom(element);
-						using var font = new Font(style.FontFamily, (float)decimal.Parse(style.FontSize));
-						var fixedWidth = font.IsFixedWidthFont();
-						if (fixedWidth && (!contexts.Any() || !contexts.Peek().CodeBlock))
-						{
-							context.CodeBlock = true;
-							handled = true;
-						}
+						context.Enclosure = "*";
 					}
-
-					if (!handled)
+					else
 					{
-						// cite becomes italic
-						if (quick.Name == "cite") context.Enclosure = "*";
-						else if (quick.Name == "code") context.Enclosure = "`";
+						if (quick.Name == "code")
+						{
+							context.Enclosure = $"{BackTick}";
+						}
+						else
+						{
+							var style = analyzer.CollectStyleFrom(element);
+							using var font = new Font(style.FontFamily, (float)decimal.Parse(style.FontSize));
+							if (font.IsFixedWidthFont())
+							{
+								context.Enclosure = $"{BackTick}";
+							}
+						}
 					}
 				}
 
@@ -278,12 +292,6 @@ namespace River.OneMoreAddIn.Commands
 			if (contexts.Count == 0) return;
 			var context = contexts.Peek();
 
-			if (context.CodeBlock)
-			{
-				writer.WriteLine("```");
-				return;
-			}
-
 			var quick = quickStyles.First(q => q.Index == context.QuickStyleIndex);
 			switch (quick.Name)
 			{
@@ -297,8 +305,18 @@ namespace River.OneMoreAddIn.Commands
 				case "blockquote": writer.Write("> "); break;
 				// cite and code are both block-scope style, on the OE
 				case "cite": writer.Write("*"); break;
-				case "code": writer.Write("`"); break;
-					//case "p": logger.Write(Environment.NewLine); break;
+				case "code": writer.Write(BackTick); break;
+				
+				case "p":
+					{
+						var style = analyzer.CollectStyleFrom(context.Owner);
+						using var font = new Font(style.FontFamily, (float)decimal.Parse(style.FontSize));
+						if (font.IsFixedWidthFont())
+						{
+							writer.Write(BackTick);
+						}
+					}
+					break;
 			}
 		}
 
@@ -549,6 +567,67 @@ namespace River.OneMoreAddIn.Commands
 			}
 
 			writer.Write("</table>");
+		}
+
+
+		private string MergeCodeLines(StringBuilder builder)
+		{
+			// cheap hack but so much easier to do this as a post-processor than inline...
+
+			if (builder.Length == 0)
+			{
+				return builder.ToString();
+			}
+
+			var i = builder.IndexOf(BackTick);
+			if (i < 0)
+			{
+				return builder.ToString();
+			}
+
+			var index = 0;
+			var lines = builder.ToString().Split(CoreNewLine)
+				.Select(line => new IndexedLine { Index = index++, Text = line })
+				.ToList();
+
+			var lastIndex = lines.Count - 1;
+
+			var leads = lines.Where(line =>
+				line.Index < lastIndex &&
+				(IsCode(line.Text) && (line.Index == 0 || !IsCode(lines[line.Index - 1].Text))) &&
+				IsCode(lines[line.Index + 1].Text));
+
+			if (!leads.Any())
+			{
+				return builder.ToString();
+			}
+
+			var newline = new string(CoreNewLine);
+			var block = new string(BackTick, 3);
+
+			leads.ForEach(lead =>
+			{
+				lines[lead.Index].Text = $"{block}{newline}{Unquote(lines[lead.Index].Text)}";
+				index = lead.Index + 1;
+				while (index <= lastIndex && IsCode(lines[index].Text))
+				{
+					lines[index].Text = Unquote(lines[index].Text);
+					index++;
+				}
+				lines[index - 1].Text = $"{lines[index - 1].Text}{newline}{block}";
+			});
+
+			return string.Join(newline, lines.Select(l => l.Text));
+
+			static bool IsCode(string line)
+			{
+				return line.Length > 1 && line[0] == BackTick && line[line.Length - 1] == BackTick;
+			}
+
+			static string Unquote(string line)
+			{
+				return line.Substring(1, line.Length - 2);
+			}
 		}
 	}
 }
