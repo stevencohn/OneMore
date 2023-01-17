@@ -112,7 +112,7 @@ namespace River.OneMoreAddIn.Commands
 			{
 				TextToTableDialog.Delimeter.Commas => ",",
 				TextToTableDialog.Delimeter.Tabs => "\t",
-				TextToTableDialog.Delimeter.Nbsp => nbsp,
+				TextToTableDialog.Delimeter.Nbsp => "\t",
 				TextToTableDialog.Delimeter.Other => dialog.CustomDelimeter,
 				_ => string.Empty,
 			};
@@ -136,8 +136,15 @@ namespace River.OneMoreAddIn.Commands
 				}
 				else
 				{
-					//var parts = selection.Value.Split(new string[] { delimeter }, StringSplitOptions.None);
-					var parts = SmartSplit(selection.Value, delimeter);
+					// special case to avoid exception when XML parsing the &nbsp; so replace
+					// string of 8 &nbsp; sequences with a tab and split by that instead...
+
+					var text = delimetedBy == TextToTableDialog.Delimeter.Nbsp
+						? selection.Value.Replace(nbsp, delimeter)
+						: selection.Value;
+
+					var parts = SmartSplit(text, delimeter);
+
 					for (int c = 0; c < parts.Length && c < cols; c++)
 					{
 						SetCellContent(row.Cells.ElementAt(c), parts[c].Trim(), r, unquote, hasHeader);
