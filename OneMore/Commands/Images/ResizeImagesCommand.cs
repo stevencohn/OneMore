@@ -123,9 +123,6 @@ namespace River.OneMoreAddIn.Commands
 
 			var top = int.MinValue;
 
-
-			System.Diagnostics.Debugger.Launch();
-
 			foreach (var element in elements)
 			{
 				using var image = ReadImage(element);
