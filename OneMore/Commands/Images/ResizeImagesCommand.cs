@@ -123,12 +123,15 @@ namespace River.OneMoreAddIn.Commands
 
 			var top = int.MinValue;
 
+
+			System.Diagnostics.Debugger.Launch();
+
 			foreach (var element in elements)
 			{
 				using var image = ReadImage(element);
 
 				var position = element.Element(ns + "Position");
-				if (dialog.RepositionImages && top == int.MinValue)
+				if (position != null && dialog.RepositionImages && top == int.MinValue)
 				{
 					top = (int)decimal.Parse(
 						position.Attribute("y").Value, CultureInfo.InvariantCulture);
@@ -165,7 +168,7 @@ namespace River.OneMoreAddIn.Commands
 						: (int)dialog.ImageHeight;
 				}
 
-				if (dialog.RepositionImages)
+				if (position != null && dialog.RepositionImages)
 				{
 					position.SetAttributeValue("y", top.ToString(CultureInfo.InvariantCulture));
 					top += height + ImageMargin;
