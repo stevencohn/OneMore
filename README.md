@@ -126,12 +126,13 @@ _Click an image to enlarge_
 * Replace hyperlinked URLs with their Web page titles
 * Replace hyperlinked URLs with their downloaded images
 
-[Reminder commands](../../wiki/Reminder-Commands) (5)
+[Reminder commands](../../wiki/Reminder-Commands) (6)
 * Add or update a reminder for any paragraph on a page (F8)
 * Mark the selected reminder as completed
 * Delete the seleted reminder
 * Generate a detailed report of all reminders and their status
 * Import Tasks from Outlook
+* Toggle strikethrough text next to all completed/incompleted tags
 
 [Search commands](../../wiki/Search-Commands) (4)
 
@@ -170,7 +171,7 @@ _Click an image to enlarge_
 * Fill across and fill down (Ctrl + D) to fill all or selected cells with increment values
 * Split table
 
-[Extra commands](../../wiki/Extra-Commands) (12)
+[Extra commands](../../wiki/Extra-Commands) (11)
 
 * Generate a report of the size of notebooks, section, pages, and image and file attachments on pages
 * Collapse the page hierarchy to see only top-level pages
@@ -178,7 +179,6 @@ _Click an image to enlarge_
 * Insert pronunciation of words from over a dozen languages
 * Sort pages, sections, or notebooks
 * Start and display a visual timer (Alt + F2) and insert the timer value (F2)
-* Toggle strikethrough text next to all completed/incompleted tags
 
 [Main Menu](../../wiki/Tools) (5)
 
