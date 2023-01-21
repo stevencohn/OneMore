@@ -1215,7 +1215,7 @@ Operatoren: + - / * ^
 Zellreferenz: A1, A2, ... ZZZ999
 Zellbereich: A1:A22
 Symbole: PI, E</value>
-  <comment></comment></data>
+  </data>
   <data name="FormulaDialog_helpButton.Text" xml:space="preserve">
     <value>Hilfe</value>
     <comment>help checkbox button</comment>
@@ -2477,7 +2477,8 @@ Polaroid</value>
   </data>
   <data name="ribClearTableShadingButton_Label" xml:space="preserve">
     <value>Alles löschen Tischgestaltung</value>
-  <comment>ribbon item</comment></data>
+    <comment>ribbon item</comment>
+  </data>
   <data name="ribCollapseContentButton_Label" xml:space="preserve">
     <value>Gliederung ausblenden</value>
     <comment>ribbon item</comment>
@@ -2492,7 +2493,8 @@ Polaroid</value>
   </data>
   <data name="ribCommandPaletteButton_Label" xml:space="preserve">
     <value>Befehlspalette</value>
-  <comment>ribbon item</comment></data>
+    <comment>ribbon item</comment>
+  </data>
   <data name="ribCompleteReminderButton_Label" xml:space="preserve">
     <value>Vollständige Erinnerung</value>
     <comment>ribbon button</comment>
@@ -2810,8 +2812,9 @@ Polaroid</value>
     <comment>ribbon button</comment>
   </data>
   <data name="ribLinkReferencesButton_Label" xml:space="preserve">
-    Verweise auf diese Seite zuordnen
-  <comment>ribbon button</comment></data>
+    <value>Verweise auf diese Seite zuordnen</value>
+    <comment>ribbon button</comment>
+  </data>
   <data name="ribLoadStylesButton_Label" xml:space="preserve">
     <value>Stile laden</value>
     <comment>ribbon item</comment>
@@ -2913,14 +2916,6 @@ Polaroid</value>
   </data>
   <data name="ribPasteTextButton_Label" xml:space="preserve">
     <value>Einfügen und nur Text halten</value>
-    <comment>ribbon item</comment>
-  </data>
-  <data name="ribPasteTextButton_Label" xml:space="preserve">
-    <value>Einfügen und nur Text halten</value>
-    <comment>ribbon item</comment>
-  </data>
-  <data name="ribPasteTextButton_Screentip" xml:space="preserve">
-    <value>Einfügen und den Text nur einfügen (Strg + Shift + V)</value>
     <comment>ribbon item</comment>
   </data>
   <data name="ribPasteTextButton_Screentip" xml:space="preserve">
@@ -4277,11 +4272,11 @@ In diesem Abschnitt</value>
   <data name="word_Limit" xml:space="preserve">
     <value>Grenze</value>
   </data>
-  <data name="RemoveCitations_From" xml:space="preserve">
-    <value>Von</value>
-    <comment>prefix word</comment>
-  </data>
   <data name="HasActiveMedia" xml:space="preserve">
     <value>OneMore-Befehle können nicht aufgerufen werden, während eine Aufzeichnung aktiv ist. Bitte stoppen Sie die Aufnahme und versuchen Sie es erneut.</value>
+  </data>
+  <data name="RemoveCitations_From" xml:space="preserve">
+    <value>Aus</value>
+    <comment>prefix word</comment>
   </data>
 </root>
