@@ -47,6 +47,10 @@ namespace River.OneMoreAddIn.Commands.Tools.Updater
 			// since we only deploy a 64-bit installer now...
 			var path = @"Software\Microsoft\Windows\CurrentVersion\Uninstall";
 
+
+			System.Diagnostics.Debugger.Launch();
+
+
 			using var hive = RegistryKey
 				.OpenBaseKey(RegistryHive.LocalMachine, RegistryView.Registry64);
 
@@ -120,7 +124,7 @@ namespace River.OneMoreAddIn.Commands.Tools.Updater
 
 			var currentVersion = new Version(InstalledVersion);
 			var releaseVersion = new Version(plainver);
-			IsUpToDate = currentVersion >= releaseVersion;
+			IsUpToDate = false; // currentVersion >= releaseVersion;
 
 			return true;
 		}
@@ -152,10 +156,9 @@ namespace River.OneMoreAddIn.Commands.Tools.Updater
 
 			try
 			{
-				var client = HttpClientFactory.Create();
-				if (!client.DefaultRequestHeaders.Contains("User-Agent"))
-					client.DefaultRequestHeaders.Add("User-Agent", "OneMore");
+				Logger.Current.WriteLine($"downloading MSI from {asset.browser_download_url}");
 
+				var client = HttpClientFactory.Create();
 				using var response = await client.GetAsync(asset.browser_download_url);
 				using var stream = await response.Content.ReadAsStreamAsync();
 				using var file = File.OpenWrite(msi);
@@ -175,13 +178,17 @@ namespace River.OneMoreAddIn.Commands.Tools.Updater
 
 			var script = Path.Combine(Path.GetTempPath(), "OneMoreInstaller.bat");
 
+			Logger.Current.WriteLine($"creating install script {script}");
 			using var writer = new StreamWriter(script, false);
 			writer.WriteLine("taskkill /im ONENOTE.exe /f /t");
 			//writer.WriteLine($"start /wait msiexec /x{productCode}");
 			writer.WriteLine(msi);
+			writer.Flush();
+			writer.Close();
 
 			// run installer script
 
+			Logger.Current.WriteLine($"starting installation process");
 			Process.Start(new ProcessStartInfo
 			{
 				FileName = script,
