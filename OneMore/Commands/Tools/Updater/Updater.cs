@@ -47,10 +47,6 @@ namespace River.OneMoreAddIn.Commands.Tools.Updater
 			// since we only deploy a 64-bit installer now...
 			var path = @"Software\Microsoft\Windows\CurrentVersion\Uninstall";
 
-
-			System.Diagnostics.Debugger.Launch();
-
-
 			using var hive = RegistryKey
 				.OpenBaseKey(RegistryHive.LocalMachine, RegistryView.Registry64);
 
@@ -124,7 +120,7 @@ namespace River.OneMoreAddIn.Commands.Tools.Updater
 
 			var currentVersion = new Version(InstalledVersion);
 			var releaseVersion = new Version(plainver);
-			IsUpToDate = false; // currentVersion >= releaseVersion;
+			IsUpToDate = currentVersion >= releaseVersion;
 
 			return true;
 		}
