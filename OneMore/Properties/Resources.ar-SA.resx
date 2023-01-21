@@ -4285,4 +4285,8 @@ ISO-code then comma then language name</comment>
   <data name="word_Limit" xml:space="preserve">
     <value>حد</value>
   </data>
+  <data name="RemoveCitations_From" xml:space="preserve">
+    <value>من</value>
+    <comment>prefix word</comment>
+  </data>
 </root>

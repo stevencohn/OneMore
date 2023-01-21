@@ -4277,4 +4277,8 @@ In diesem Abschnitt</value>
   <data name="word_Limit" xml:space="preserve">
     <value>Grenze</value>
   </data>
+  <data name="RemoveCitations_From" xml:space="preserve">
+    <value>Von</value>
+    <comment>prefix word</comment>
+  </data>
 </root>

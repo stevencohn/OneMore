@@ -5066,6 +5066,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to From.
+        /// </summary>
+        internal static string RemoveCitations_From {
+            get {
+                return ResourceManager.GetString("RemoveCitations_From", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Basic XML structure.
         /// </summary>
         internal static string RemoveDuplicatesDialog_basicRadio_Text {

@@ -36,7 +36,9 @@ namespace River.OneMoreAddIn.Commands
 			}
 
 			var index = style.Index.ToString(CultureInfo.InvariantCulture);
-			var regex = new Regex(@"From &lt;\s*<a\shref=.+?</a>\s*&gt;");
+
+			// TODO: not sure if this entire string needs localizing to accomodate RTL
+			var regex = new Regex($@"{Resx.RemoveCitations_From} &lt;\s*<a\shref=.+?</a>\s*&gt;");
 
 			var elements =
 				(from e in page.Root.Descendants(ns + "OE")

@@ -4275,4 +4275,8 @@ ISO-code then comma then language name</comment>
   <data name="word_Limit" xml:space="preserve">
     <value>限制</value>
   </data>
+  <data name="RemoveCitations_From" xml:space="preserve">
+    <value>从</value>
+    <comment>prefix word</comment>
+  </data>
 </root>
