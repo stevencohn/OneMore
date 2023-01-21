@@ -364,7 +364,7 @@ namespace River.OneMoreAddIn.Commands
 				}
 				else
 				{
-					await one.Update(root);
+					await one.Update(new Page(root));
 				}
 			}
 			catch (Exception exc)

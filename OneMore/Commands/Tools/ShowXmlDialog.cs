@@ -383,7 +383,7 @@ namespace River.OneMoreAddIn.Commands
 				try
 				{
 					using var one = new OneNote();
-					await one.Update(XElement.Parse(pageBox.Text));
+					await one.Update(new Models.Page(XElement.Parse(pageBox.Text)));
 
 					Close();
 

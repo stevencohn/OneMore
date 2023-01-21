@@ -1383,6 +1383,9 @@ Symbols: PI, E</value>
   <data name="Hammer" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>emoji\hammer.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="HasActiveMedia" xml:space="preserve">
+    <value>Cannot invoke OneMore commands while there is an active recording. Please stop the recording and try again.</value>
+  </data>
   <data name="HighlightFormulaCommand_NoFormulas" xml:space="preserve">
     <value>No formulas found on this page</value>
     <comment>highlight command message</comment>

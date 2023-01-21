@@ -3031,6 +3031,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Cannot invoke OneMore commands while there is an active recording. Please stop the recording and try again..
+        /// </summary>
+        internal static string HasActiveMedia {
+            get {
+                return ResourceManager.GetString("HasActiveMedia", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to No formulas found on this page.
         /// </summary>
         internal static string HighlightFormulaCommand_NoFormulas {

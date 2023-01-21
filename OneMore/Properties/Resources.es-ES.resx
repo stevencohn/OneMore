@@ -4289,4 +4289,7 @@ En esta sección</value>
     <value>De</value>
     <comment>prefix word</comment>
   </data>
+  <data name="HasActiveMedia" xml:space="preserve">
+    <value>No se pueden invocar los comandos de OneMore mientras hay una grabación activa. Detenga la grabación y vuelva a intentarlo.</value>
+  </data>
 </root>

@@ -4289,4 +4289,7 @@ Nesta secção</value>
     <value>A partir de</value>
     <comment>prefix word</comment>
   </data>
+  <data name="HasActiveMedia" xml:space="preserve">
+    <value>Não é possível invocar comandos OneMore enquanto houver uma gravação ativa. Pare a gravação e tente novamente.</value>
+  </data>
 </root>
