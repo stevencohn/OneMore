@@ -42,8 +42,13 @@ namespace River.OneMoreAddIn.Commands
 
 				//logger.WriteLine($"invoking command[{dialog.Index},{dialog.Recent}] '{command.Method.Name}'");
 				await (Task)command.Method.Invoke(AddIn.Self, new object[] { null });
+
+				// reset focus to OneNote window
+				using var one = new OneNote();
+				Native.SwitchToThisWindow(one.WindowHandle, true);
 			}
 		}
+
 
 		private void PopulateCommands(object sender, EventArgs e)
 		{

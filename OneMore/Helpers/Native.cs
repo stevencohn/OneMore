@@ -305,6 +305,11 @@ namespace River.OneMoreAddIn
 			WinEventDelegate lpfnWinEventProc, uint idProcess, uint idThread, uint dwFlags);
 
 
+		// https://learn.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-switchtothiswindow
+		[DllImport("user32.dll", SetLastError = true)]
+		public static extern void SwitchToThisWindow(IntPtr hWnd, bool turnOn);
+
+
 		// https://docs.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-unregisterhotkey
 		[DllImport("user32", SetLastError = true)]
 		public static extern bool UnregisterHotKey(IntPtr hWnd, int id);
