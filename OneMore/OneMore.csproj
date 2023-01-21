@@ -1102,8 +1102,8 @@
     <Content Include="Properties\Images\TableStyles.png" />
     <Content Include="Properties\Images\Task.png" />
     <Content Include="Properties\Images\Unlocked.png" />
-    <Content Include="Properties\Resources-de-DE-hints.xml" />
-    <Content Include="Properties\Resources-zh-CN-hints.xml" />
+    <Content Include="Properties\Resources.de-DE-hints.xml" />
+    <Content Include="Properties\Resources.zh-CN-hints.xml" />
     <None Include="Ribbon\DefaultTableThemes.json" />
     <Content Include="UI\TagMap.png" />
     <Content Include="Properties\Images\TextHighlightColorPicker.png" />
