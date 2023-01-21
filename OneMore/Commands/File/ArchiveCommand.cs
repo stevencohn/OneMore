@@ -5,6 +5,7 @@
 namespace River.OneMoreAddIn.Commands
 {
 	using River.OneMoreAddIn.Models;
+	using River.OneMoreAddIn.UI;
 	using System;
 	using System.IO;
 	using System.IO.Compression;
@@ -34,6 +35,8 @@ namespace River.OneMoreAddIn.Commands
 		private int totalCount;
 		private int pageCount = 0;
 		private bool bookScope;
+
+		private Exception exception = null;
 
 
 		public ArchiveCommand()
@@ -75,8 +78,12 @@ namespace River.OneMoreAddIn.Commands
 				}
 
 				var progressDialog = new UI.ProgressDialog(Execute);
-				await progressDialog.RunModeless();
+
+				// report result is needed to show UI after Execute is completed on another thread
+				await progressDialog.RunModeless(ReportResult);
 			}
+
+			logger.WriteLine("done");
 		}
 
 
@@ -103,12 +110,18 @@ namespace River.OneMoreAddIn.Commands
 			progress.SetMaximum(totalCount);
 			progress.SetMessage($"Archiving {totalCount} pages");
 
-			using (var stream = new FileStream(zipPath, FileMode.Create))
+			try
 			{
+				using var stream = new FileStream(zipPath, FileMode.Create);
 				using (archive = new ZipArchive(stream, ZipArchiveMode.Create))
 				{
 					await Archive(progress, hierarchy, hierarchy.Attribute("name").Value);
 				}
+			}
+			catch (Exception exc)
+			{
+				logger.WriteLine($"cannot create archive", exc);
+				exception = exc;
 			}
 
 			try
@@ -121,10 +134,24 @@ namespace River.OneMoreAddIn.Commands
 			}
 
 			progress.Close();
-			UIHelper.ShowMessage(string.Format(Resx.ArchiveCommand_archived, pageCount, zipPath));
 
 			logger.WriteTime("archive complete");
 			logger.End();
+		}
+
+
+		private void ReportResult(object sender, EventArgs e)
+		{
+			// report results back on the main UI thread...
+
+			if (exception == null)
+			{
+				UIHelper.ShowMessage(string.Format(Resx.ArchiveCommand_archived, pageCount, zipPath));
+			}
+			else
+			{
+				MoreMessageBox.ShowErrorWithLogLink(owner, exception.Message);
+			}
 		}
 
 
