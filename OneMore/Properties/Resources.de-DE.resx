@@ -4281,4 +4281,7 @@ In diesem Abschnitt</value>
     <value>Von</value>
     <comment>prefix word</comment>
   </data>
+  <data name="HasActiveMedia" xml:space="preserve">
+    <value>OneMore-Befehle können nicht aufgerufen werden, während eine Aufzeichnung aktiv ist. Bitte stoppen Sie die Aufnahme und versuchen Sie es erneut.</value>
+  </data>
 </root>

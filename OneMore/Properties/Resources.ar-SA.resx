@@ -4289,4 +4289,7 @@ ISO-code then comma then language name</comment>
     <value>من</value>
     <comment>prefix word</comment>
   </data>
+  <data name="HasActiveMedia" xml:space="preserve">
+    <value>لا يمكن استدعاء أوامر OneMore أثناء وجود تسجيل نشط. الرجاء إيقاف التسجيل وحاول مرة أخرى.</value>
+  </data>
 </root>

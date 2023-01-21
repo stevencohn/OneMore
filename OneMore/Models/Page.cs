@@ -1057,6 +1057,44 @@ namespace River.OneMoreAddIn.Models
 
 
 		/// <summary>
+		/// Determines if the page has an active, incomplete media file which could be
+		/// either video or audio.
+		/// </summary>
+		/// <returns>True if there is active media content</returns>
+		public bool HasActiveMedia()
+		{
+			// there always seems to be two MediaIndex elements, one for the media file and one
+			// for the citation; only when the recording is complete will the first instance be
+			// accompanied by a MediaFile element, so we need to check all unique IDs
+
+			var empty = Guid.Empty.ToString("B");
+
+			var mediaIDs = Root
+				.Descendants(Namespace + "MediaIndex")
+				.Elements(Namespace + "MediaReference")
+				.Attributes("mediaID")
+				.Select(a => a.Value)
+				.Where(a => a != empty)
+				.Distinct();
+
+			foreach (var mediaID in mediaIDs)
+			{
+				var file = Root.Descendants(Namespace + "MediaFile")
+					.Elements(Namespace + "MediaReference")
+					.FirstOrDefault(e => e.Attribute("mediaID").Value == mediaID);
+
+				if (file == null)
+				{
+					// MediaFile element exists only after recording has stopped
+					return true;
+				}
+			}
+
+			return false;
+		}
+
+
+		/// <summary>
 		/// Adds the given content immediately before or after the selected insertion point;
 		/// this will not replace selected regions.
 		/// </summary>

@@ -4342,4 +4342,7 @@ W tej sekcji</value>
     <value>Od</value>
     <comment>prefix word</comment>
   </data>
+  <data name="HasActiveMedia" xml:space="preserve">
+    <value>Nie można wywołać poleceń OneMore, gdy aktywne jest nagrywanie. Zatrzymaj nagrywanie i spróbuj ponownie.</value>
+  </data>
 </root>

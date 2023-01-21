@@ -981,6 +981,12 @@ namespace River.OneMoreAddIn
 		/// <param name="page">A Page</param>
 		public async Task Update(Page page)
 		{
+			if (page.HasActiveMedia())
+			{
+				UIHelper.ShowInfo(Resx.HasActiveMedia);
+				return;
+			}
+
 			await Update(page.Root);
 		}
 
