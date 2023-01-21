@@ -4338,4 +4338,8 @@ W tej sekcji</value>
   <data name="word_Limit" xml:space="preserve">
     <value>Limit</value>
   </data>
+  <data name="RemoveCitations_From" xml:space="preserve">
+    <value>Od</value>
+    <comment>prefix word</comment>
+  </data>
 </root>

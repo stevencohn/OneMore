@@ -4285,4 +4285,8 @@ In deze sectie</value>
   <data name="word_Limit" xml:space="preserve">
     <value>Begrenzing</value>
   </data>
+  <data name="RemoveCitations_From" xml:space="preserve">
+    <value>Van</value>
+    <comment>prefix word</comment>
+  </data>
 </root>

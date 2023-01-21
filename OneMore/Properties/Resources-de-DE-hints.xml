@@ -40,6 +40,14 @@
       Auswählen, wie Stile in der Galerie angezeigt werden
     </preferred>
   </hint>
+  <hint name="RemoveCitations_From">
+    <source>
+      From
+    </source>
+    <preferred>
+      Aus
+    </preferred>
+  </hint>
   <hint name="ribLinkReferencesButton_Label">
     <source>
       Link References to this Page
