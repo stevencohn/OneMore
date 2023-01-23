@@ -6737,6 +6737,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Total Words in Notebook.
+        /// </summary>
+        internal static string ribNotebookWordCountButton_Label {
+            get {
+                return ResourceManager.GetString("ribNotebookWordCountButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Numbering.
         /// </summary>
         internal static string ribNumberingMenu_Label {
@@ -7282,6 +7291,15 @@ namespace River.OneMoreAddIn.Properties {
         internal static string ribSectionColorButton_Label {
             get {
                 return ResourceManager.GetString("ribSectionColorButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Total Words in Section.
+        /// </summary>
+        internal static string ribSectionWordCountButton_Label {
+            get {
+                return ResourceManager.GetString("ribSectionWordCountButton_Label", resourceCulture);
             }
         }
         
@@ -10025,6 +10043,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Total.
+        /// </summary>
+        internal static string word_Total {
+            get {
+                return ResourceManager.GetString("word_Total", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Width.
         /// </summary>
         internal static string word_Width {
@@ -10039,6 +10066,15 @@ namespace River.OneMoreAddIn.Properties {
         internal static string word_Word {
             get {
                 return ResourceManager.GetString("word_Word", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Words.
+        /// </summary>
+        internal static string word_Words {
+            get {
+                return ResourceManager.GetString("word_Words", resourceCulture);
             }
         }
         
@@ -10075,6 +10111,42 @@ namespace River.OneMoreAddIn.Properties {
         internal static string WordCountCommand_Selected {
             get {
                 return ResourceManager.GetString("WordCountCommand_Selected", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} Notebook.
+        /// </summary>
+        internal static string WordCounts_Notebook {
+            get {
+                return ResourceManager.GetString("WordCounts_Notebook", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} Section.
+        /// </summary>
+        internal static string WordCounts_Section {
+            get {
+                return ResourceManager.GetString("WordCounts_Section", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Total Words.
+        /// </summary>
+        internal static string WordCounts_TotalWords {
+            get {
+                return ResourceManager.GetString("WordCounts_TotalWords", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Word Counts.
+        /// </summary>
+        internal static string WordCountsCommand_Title {
+            get {
+                return ResourceManager.GetString("WordCountsCommand_Title", resourceCulture);
             }
         }
         

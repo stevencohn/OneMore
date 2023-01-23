@@ -34,5 +34,8 @@ namespace River.OneMoreAddIn.Models
 
 		// page tag list
 		public static readonly string TaggingLabels = "omTaggingLabels";
+
+		// word count report for section or notebook
+		public static readonly string WordCount = "omWordCounts";
 	}
 }

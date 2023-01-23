@@ -520,6 +520,11 @@ namespace River.OneMoreAddIn
 			=> await factory.Run<NewStyleCommand>();
 
 
+		[Command("ribNotebookWordCountButton_Label", Keys.None, "Tools")]
+		public async Task NotebookWordCountCmd(IRibbonControl control)
+			=> await factory.Run<WordCountCommand>(OneNote.Scope.Sections);
+
+
 		[Command("ribNumberPagesButton_Label", Keys.None, "Numbering")]
 		public async Task NumberPagesCmd(IRibbonControl control)
 			=> await factory.Run<NumberPagesCommand>();
@@ -689,6 +694,11 @@ namespace River.OneMoreAddIn
 
 		public async Task SectionColorCmd(IRibbonControl control)
 			=> await factory.Run<SectionColorCommand>();
+
+
+		[Command("ribSectionWordCountButton_Label", Keys.None, "Tools")]
+		public async Task SectionWordCountCmd(IRibbonControl control)
+			=> await factory.Run<WordCountCommand>(OneNote.Scope.Pages);
 
 
 		[Command("ribSelectImagesButton_Label", Keys.None, "Edit")]

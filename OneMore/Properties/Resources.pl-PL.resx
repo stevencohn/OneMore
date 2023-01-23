@@ -4345,4 +4345,33 @@ W tej sekcji</value>
   <data name="HasActiveMedia" xml:space="preserve">
     <value>Nie można wywołać poleceń OneMore, gdy aktywne jest nagrywanie. Zatrzymaj nagrywanie i spróbuj ponownie.</value>
   </data>
+  <data name="ribNotebookWordCountButton_Label" xml:space="preserve">
+    <value>Wszystkich słów w Notatniku</value>
+    <comment>ribbon</comment>
+  </data>
+  <data name="ribSectionWordCountButton_Label" xml:space="preserve">
+    <value>Całkowita liczba słów w sekcji</value>
+    <comment>ribbon</comment>
+  </data>
+  <data name="word_Total" xml:space="preserve">
+    <value>Całkowity</value>
+  </data>
+  <data name="word_Words" xml:space="preserve">
+    <value>Słowa</value>
+  </data>
+  <data name="WordCounts_Notebook" xml:space="preserve">
+    <value>{0} Notatnik</value>
+    <comment>page heading</comment>
+  </data>
+  <data name="WordCounts_Section" xml:space="preserve">
+    <value>{0} Sekcja</value>
+    <comment>page heading</comment>
+  </data>
+  <data name="WordCounts_TotalWords" xml:space="preserve">
+    <value>Wszystkie słowa</value>
+  </data>
+  <data name="WordCountsCommand_Title" xml:space="preserve">
+    <value>Liczy się słowo</value>
+    <comment>page title</comment>
+  </data>
 </root>

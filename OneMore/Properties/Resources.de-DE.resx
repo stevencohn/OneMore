@@ -4279,4 +4279,33 @@ In diesem Abschnitt</value>
     <value>Aus</value>
     <comment>prefix word</comment>
   </data>
+  <data name="ribNotebookWordCountButton_Label" xml:space="preserve">
+    <value>Gesamtzahl der Wörter im Notizbuch</value>
+    <comment>ribbon</comment>
+  </data>
+  <data name="ribSectionWordCountButton_Label" xml:space="preserve">
+    <value>Gesamtzahl der Wörter im Abschnitt</value>
+    <comment>ribbon</comment>
+  </data>
+  <data name="word_Total" xml:space="preserve">
+    <value>Gesamt</value>
+  </data>
+  <data name="word_Words" xml:space="preserve">
+    <value>Wörter</value>
+  </data>
+  <data name="WordCounts_Notebook" xml:space="preserve">
+    <value>{0} Notizbuch</value>
+    <comment>page heading</comment>
+  </data>
+  <data name="WordCounts_Section" xml:space="preserve">
+    <value>{0} Abschnitt</value>
+    <comment>page heading</comment>
+  </data>
+  <data name="WordCounts_TotalWords" xml:space="preserve">
+    <value>Gesamtworte</value>
+  </data>
+  <data name="WordCountsCommand_Title" xml:space="preserve">
+    <value>Wort zählt</value>
+    <comment>page title</comment>
+  </data>
 </root>
