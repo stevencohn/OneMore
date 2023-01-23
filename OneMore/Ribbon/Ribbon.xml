@@ -853,6 +853,12 @@
         getLabel="GetRibbonLabel"
         onAction="SortSectionsCmd"
         insertBeforeMso="ShareThisNotebook"/>
+      <button
+        id="ctxNotebookWordCountButton"
+        imageMso="WordCount"
+        getLabel="GetRibbonLabel"
+        onAction="NotebookWordCountCmd"
+        insertBeforeMso="ShareThisNotebook"/>
       <menuSeparator
         id="omNotebookContextMenuSeparator"
         insertBeforeMso="ShareThisNotebook"/>
@@ -991,6 +997,12 @@
         imageMso="SortUp"
         getLabel="GetRibbonLabel"
         onAction="SortPagesCmd"
+        insertBeforeMso="SectionRenameOneNote"/>
+      <button
+        id="ctxSectionWordCountButton"
+        imageMso="WordCount"
+        getLabel="GetRibbonLabel"
+        onAction="SectionWordCountCmd"
         insertBeforeMso="SectionRenameOneNote"/>
       <menuSeparator
         id="omSectionContextMenuSeparator"
