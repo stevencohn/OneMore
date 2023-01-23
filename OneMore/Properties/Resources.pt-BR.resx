@@ -4292,4 +4292,33 @@ Nesta secção</value>
   <data name="HasActiveMedia" xml:space="preserve">
     <value>Não é possível invocar comandos OneMore enquanto houver uma gravação ativa. Pare a gravação e tente novamente.</value>
   </data>
+  <data name="ribNotebookWordCountButton_Label" xml:space="preserve">
+    <value>Total de Palavras no Caderno</value>
+    <comment>ribbon</comment>
+  </data>
+  <data name="ribSectionWordCountButton_Label" xml:space="preserve">
+    <value>Total de palavras na seção</value>
+    <comment>ribbon</comment>
+  </data>
+  <data name="word_Total" xml:space="preserve">
+    <value>Total</value>
+  </data>
+  <data name="word_Words" xml:space="preserve">
+    <value>Palavras</value>
+  </data>
+  <data name="WordCounts_Notebook" xml:space="preserve">
+    <value>{0} Caderno</value>
+    <comment>page heading</comment>
+  </data>
+  <data name="WordCounts_Section" xml:space="preserve">
+    <value>{0} Seção</value>
+    <comment>page heading</comment>
+  </data>
+  <data name="WordCounts_TotalWords" xml:space="preserve">
+    <value>Palavras totais</value>
+  </data>
+  <data name="WordCountsCommand_Title" xml:space="preserve">
+    <value>Contagem de palavras</value>
+    <comment>page title</comment>
+  </data>
 </root>

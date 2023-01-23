@@ -4292,4 +4292,33 @@ In deze sectie</value>
   <data name="HasActiveMedia" xml:space="preserve">
     <value>Kan OneMore-opdrachten niet aanroepen terwijl er een actieve opname is. Stop de opname en probeer het opnieuw.</value>
   </data>
+  <data name="ribNotebookWordCountButton_Label" xml:space="preserve">
+    <value>Totaal aantal woorden in notitieblok</value>
+    <comment>ribbon</comment>
+  </data>
+  <data name="ribSectionWordCountButton_Label" xml:space="preserve">
+    <value>Totaal aantal woorden in sectie</value>
+    <comment>ribbon</comment>
+  </data>
+  <data name="word_Total" xml:space="preserve">
+    <value>Totaal</value>
+  </data>
+  <data name="word_Words" xml:space="preserve">
+    <value>Woorden</value>
+  </data>
+  <data name="WordCounts_Notebook" xml:space="preserve">
+    <value>{0} Notitieboekje</value>
+    <comment>page heading</comment>
+  </data>
+  <data name="WordCounts_Section" xml:space="preserve">
+    <value>{0} Sectie</value>
+    <comment>page heading</comment>
+  </data>
+  <data name="WordCounts_TotalWords" xml:space="preserve">
+    <value>Totaal aantal woorden</value>
+  </data>
+  <data name="WordCountsCommand_Title" xml:space="preserve">
+    <value>Woorden tellen</value>
+    <comment>page title</comment>
+  </data>
 </root>

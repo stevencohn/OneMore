@@ -4292,4 +4292,33 @@ En esta sección</value>
   <data name="HasActiveMedia" xml:space="preserve">
     <value>No se pueden invocar los comandos de OneMore mientras hay una grabación activa. Detenga la grabación y vuelva a intentarlo.</value>
   </data>
+  <data name="ribNotebookWordCountButton_Label" xml:space="preserve">
+    <value>Total de palabras en el cuaderno</value>
+    <comment>ribbon</comment>
+  </data>
+  <data name="ribSectionWordCountButton_Label" xml:space="preserve">
+    <value>Total de palabras en la sección</value>
+    <comment>ribbon</comment>
+  </data>
+  <data name="word_Total" xml:space="preserve">
+    <value>Total</value>
+  </data>
+  <data name="word_Words" xml:space="preserve">
+    <value>Palabras</value>
+  </data>
+  <data name="WordCounts_Notebook" xml:space="preserve">
+    <value>{0} cuaderno</value>
+    <comment>page heading</comment>
+  </data>
+  <data name="WordCounts_Section" xml:space="preserve">
+    <value>{0} Sección</value>
+    <comment>page heading</comment>
+  </data>
+  <data name="WordCounts_TotalWords" xml:space="preserve">
+    <value>Palabras totales</value>
+  </data>
+  <data name="WordCountsCommand_Title" xml:space="preserve">
+    <value>Conteo de palabras</value>
+    <comment>page title</comment>
+  </data>
 </root>
