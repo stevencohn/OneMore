@@ -5500,11 +5500,29 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Add caption to selected image.
+        /// </summary>
+        internal static string ribAddCaptionButton_Screentip {
+            get {
+                return ResourceManager.GetString("ribAddCaptionButton_Screentip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Add current page.
         /// </summary>
         internal static string ribAddFavoritePageButton_Label {
             get {
                 return ResourceManager.GetString("ribAddFavoritePageButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add current page to Favorites.
+        /// </summary>
+        internal static string ribAddFavoritePageButton_Screentip {
+            get {
+                return ResourceManager.GetString("ribAddFavoritePageButton_Screentip", resourceCulture);
             }
         }
         
@@ -5518,6 +5536,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Add section to Favorites menu.
+        /// </summary>
+        internal static string ribAddFavoriteSectionButton_Screentip {
+            get {
+                return ResourceManager.GetString("ribAddFavoriteSectionButton_Screentip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Add Footnote.
         /// </summary>
         internal static string ribAddFootnoteButton_Label {
@@ -5527,7 +5554,7 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Add footnote (Ctrl + Alt + F).
+        ///   Looks up a localized string similar to Add new footnote from current position (Ctrl + Alt + F).
         /// </summary>
         internal static string ribAddFootnoteButton_Screentip {
             get {
@@ -5545,7 +5572,7 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Add/edit formula in selected table cells (F5).
+        ///   Looks up a localized string similar to Add or edit a formula in selected table cells (F5).
         /// </summary>
         internal static string ribAddFormulaButton_Screentip {
             get {
@@ -5559,6 +5586,15 @@ namespace River.OneMoreAddIn.Properties {
         internal static string ribAnalyzeButton_Label {
             get {
                 return ResourceManager.GetString("ribAnalyzeButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Generate a report of storage used by section or notebook.
+        /// </summary>
+        internal static string ribAnalyzeButton_Screentip {
+            get {
+                return ResourceManager.GetString("ribAnalyzeButton_Screentip", resourceCulture);
             }
         }
         
@@ -5653,6 +5689,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Apply custom styles to all content on this page.
+        /// </summary>
+        internal static string ribApplyStylesButton_Screentip {
+            get {
+                return ResourceManager.GetString("ribApplyStylesButton_Screentip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Archive Notebook.
         /// </summary>
         internal static string ribArchiveNotebookButton_Label {
@@ -5662,29 +5707,11 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Zip all pages including attachments.
-        /// </summary>
-        internal static string ribArchiveNotebookButton_Screentip {
-            get {
-                return ResourceManager.GetString("ribArchiveNotebookButton_Screentip", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Archive Section.
         /// </summary>
         internal static string ribArchiveSectionButton_Label {
             get {
                 return ResourceManager.GetString("ribArchiveSectionButton_Label", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Zip all pages including attachments.
-        /// </summary>
-        internal static string ribArchiveSectionButton_Screentip {
-            get {
-                return ResourceManager.GetString("ribArchiveSectionButton_Screentip", resourceCulture);
             }
         }
         
@@ -5783,11 +5810,29 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Toggle between one and two spaces between sentences.
+        /// </summary>
+        internal static string ribBreakingButton_Screentip {
+            get {
+                return ResourceManager.GetString("ribBreakingButton_Screentip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to OneMore Calendar.
         /// </summary>
         internal static string ribCalendarButton_Label {
             get {
                 return ResourceManager.GetString("ribCalendarButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Open the OneMore Calendar app.
+        /// </summary>
+        internal static string ribCalendarButton_Screentip {
+            get {
+                return ResourceManager.GetString("ribCalendarButton_Screentip", resourceCulture);
             }
         }
         
@@ -5801,11 +5846,29 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Add a caption to each attachment on the page.
+        /// </summary>
+        internal static string ribCaptionAttachmentsButton_Screentip {
+            get {
+                return ResourceManager.GetString("ribCaptionAttachmentsButton_Screentip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Change Page Theme.
         /// </summary>
         internal static string ribChangePageColorButton_Label {
             get {
                 return ResourceManager.GetString("ribChangePageColorButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Apply styles and background color to page.
+        /// </summary>
+        internal static string ribChangePageColorButton_Screentip {
+            get {
+                return ResourceManager.GetString("ribChangePageColorButton_Screentip", resourceCulture);
             }
         }
         
@@ -5846,6 +5909,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Reset the background color of the page.
+        /// </summary>
+        internal static string ribClearBackgroundButton_Screentip {
+            get {
+                return ResourceManager.GetString("ribClearBackgroundButton_Screentip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Clear Log File.
         /// </summary>
         internal static string ribClearLogButton_Label {
@@ -5864,6 +5936,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Reset shading in all cells in the current table.
+        /// </summary>
+        internal static string ribClearTableShadingButton_Screentip {
+            get {
+                return ResourceManager.GetString("ribClearTableShadingButton_Screentip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Collapse Outlining.
         /// </summary>
         internal static string ribCollapseContentButton_Label {
@@ -5873,11 +5954,29 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Collapse all headings with indented content.
+        /// </summary>
+        internal static string ribCollapseContentButton_Screentip {
+            get {
+                return ResourceManager.GetString("ribCollapseContentButton_Screentip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Collapse Pages.
         /// </summary>
         internal static string ribCollapsePagesButton_Label {
             get {
                 return ResourceManager.GetString("ribCollapsePagesButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Collapse child pages in Page navigation panel.
+        /// </summary>
+        internal static string ribCollapsePagesButton_Screentip {
+            get {
+                return ResourceManager.GetString("ribCollapsePagesButton_Screentip", resourceCulture);
             }
         }
         
@@ -5900,6 +5999,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Open the Command Palette window.
+        /// </summary>
+        internal static string ribCommandPaletteButton_Screentip {
+            get {
+                return ResourceManager.GetString("ribCommandPaletteButton_Screentip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Complete Reminder.
         /// </summary>
         internal static string ribCompleteReminderButton_Label {
@@ -5909,7 +6017,16 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Copy Across.
+        ///   Looks up a localized string similar to Mark the paragraph reminder as complete.
+        /// </summary>
+        internal static string ribCompleteReminderButton_Screentip {
+            get {
+                return ResourceManager.GetString("ribCompleteReminderButton_Screentip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Copy content across the selected rows.
         /// </summary>
         internal static string ribCopyAcrossButton_Label {
             get {
@@ -5927,11 +6044,29 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Copy select content as markdown.
+        /// </summary>
+        internal static string ribCopyAsMarkdownButton_Screentip {
+            get {
+                return ResourceManager.GetString("ribCopyAsMarkdownButton_Screentip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Copy Down.
         /// </summary>
         internal static string ribCopyDownButton_Label {
             get {
                 return ResourceManager.GetString("ribCopyDownButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Copy content down the selected columns.
+        /// </summary>
+        internal static string ribCopyDownButton_Screentip {
+            get {
+                return ResourceManager.GetString("ribCopyDownButton_Screentip", resourceCulture);
             }
         }
         
@@ -5954,11 +6089,29 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Copy a hyperlink to the current page.
+        /// </summary>
+        internal static string ribCopyLinkToPageButton_Screentip {
+            get {
+                return ResourceManager.GetString("ribCopyLinkToPageButton_Screentip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Copy Link to Paragraph.
         /// </summary>
         internal static string ribCopyLinkToParagraphButton_Label {
             get {
                 return ResourceManager.GetString("ribCopyLinkToParagraphButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Copy a hyperlink to the current paragraph.
+        /// </summary>
+        internal static string ribCopyLinkToParagraphButton_Screentip {
+            get {
+                return ResourceManager.GetString("ribCopyLinkToParagraphButton_Screentip", resourceCulture);
             }
         }
         
