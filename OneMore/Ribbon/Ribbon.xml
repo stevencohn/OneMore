@@ -20,6 +20,7 @@
             <button
               id="ribLoadStylesButton"
               getLabel="GetRibbonLabel"
+              getScreentip="GetRibbonScreentip"
               imageMso="SharingOpenWssDocumentList"
               onAction="LoadStylesCmd"/>
             <button
@@ -31,6 +32,7 @@
             <button
               id="ribNewStyleButton"
               getLabel="GetRibbonLabel"
+              getScreentip="GetRibbonScreentip"
               imageMso="StylesPaneNewStyle"
               onAction="NewStyleCmd"/>
             <button
@@ -104,16 +106,19 @@
               id="ribInsertTocButton"
               imageMso="WordInsertTableOfContents2"
               getLabel="GetRibbonLabel"
+              getScreentip="GetRibbonScreentip"
               onAction="InsertTocCmd"/>
             <button
               id="ribInsertBreadcrumbButton"
               imageMso="ShapeRightArrow"
               getLabel="GetRibbonLabel"
+              getScreentip="GetRibbonScreentip"
               onAction="InsertBreadcrumbCmd"/>
             <button
               id="ribInsertCalendarButton"
               imageMso="CalendarInsert"
               getLabel="GetRibbonLabel"
+              getScreentip="GetRibbonScreentip"
               getEnabled="GetBodyContext"
               onAction="InsertCalendarCmd"/>
             <button
@@ -140,48 +145,56 @@
               id="ribInsertInfoBlockButton"
               imageMso="Info"
               getLabel="GetRibbonLabel"
+              getScreentip="GetRibbonScreentip"
               getEnabled="GetBodyContext"
               onAction="InsertInfoBlockCmd"/>
             <button
               id="ribInsertWarnBlockButton"
               imageMso="HighImportance"
               getLabel="GetRibbonLabel"
+              getScreentip="GetRibbonScreentip"
               getEnabled="GetBodyContext"
               onAction="InsertWarnBlockCmd"/>
             <button
               id="ribInsertExpandButton"
               imageMso="PivotExpandIndicators"
               getLabel="GetRibbonLabel"
+              getScreentip="GetRibbonScreentip"
               getEnabled="GetBodyContext"
               onAction="InsertExpandCmd"/>
             <button
               id="ribInsertGrayStatusButton"
               imageMso="AppointmentColor4"
               getLabel="GetRibbonLabel"
+              getScreentip="GetRibbonScreentip"
               getEnabled="GetBodyContext"
               onAction="InsertGrayStatusCmd"/>
             <button
               id="ribInsertRedStatusButton"
               imageMso="AppointmentColor1"
               getLabel="GetRibbonLabel"
+              getScreentip="GetRibbonScreentip"
               getEnabled="GetBodyContext"
               onAction="InsertRedStatusCmd"/>
             <button
               id="ribInsertYellowStatusButton"
               imageMso="AppointmentColor10"
               getLabel="GetRibbonLabel"
+              getScreentip="GetRibbonScreentip"
               getEnabled="GetBodyContext"
               onAction="InsertYellowStatusCmd"/>
             <button
               id="ribInsertGreenStatusButton"
               imageMso="AppointmentColor3"
               getLabel="GetRibbonLabel"
+              getScreentip="GetRibbonScreentip"
               getEnabled="GetBodyContext"
               onAction="InsertGreenStatusCmd"/>
             <button
               id="ribInsertBlueStatusButton"
               imageMso="AppointmentColor2"
               getLabel="GetRibbonLabel"
+              getScreentip="GetRibbonScreentip"
               getEnabled="GetBodyContext"
               onAction="InsertBlueStatusCmd"/>
           </menu>
@@ -231,6 +244,7 @@
                 id="ribRemoveInkButton"
                 imageMso="InkDeleteAllInk"
                 getLabel="GetRibbonLabel"
+                getScreentip="GetRibbonScreentip"
                 onAction="RemoveInkCmd"/>
               <button
                 id="ribRemoveEmptyButton"
@@ -321,11 +335,13 @@
                 id="ribInvertSelectionButton"
                 imageMso="BlackAndWhiteInverseGrayscale"
                 getLabel="GetRibbonLabel"
+                getScreentip="GetRibbonScreentip"
                 onAction="InvertSelectionCmd"/>
               <button
                 id="ribJoinParagraphButton"
                 imageMso="GroupMerge"
                 getLabel="GetRibbonLabel"
+                getScreentip="GetRibbonScreentip"
                 onAction="JoinParagraphCmd"/>
               <button
                 id="ribPasteTextButton"
@@ -343,6 +359,7 @@
                 id="ribHighlightButton"
                 imageMso="AppointmentColorDialog"
                 getLabel="GetRibbonLabel"
+                getScreentip="GetRibbonScreentip"
                 onAction="HighlightCmd"/>
               <button
                 id="ribSelectImagesButton"
@@ -389,6 +406,7 @@
                 id="ribImportButton"
                 imageMso="FileOpen"
                 getLabel="GetRibbonLabel"
+                getScreentip="GetRibbonScreentip"
                 onAction="ImportCmd"/>
               <button
                 id="ribImportWebButton"
@@ -426,6 +444,7 @@
                 id="ribOpenImageWithButton"
                 imageMso="PictureInsertFromFile"
                 getLabel="GetRibbonLabel"
+                getScreentip="GetRibbonScreentip"
                 onAction="OpenImageWithCmd"/>
               <button
                 id="ribResizeImagesButton"
@@ -520,11 +539,13 @@
                 id="ribFitGridToTextButton"
                 imageMso="SizeToGridOutlook"
                 getLabel="GetRibbonLabel"
+                getScreentip="GetRibbonScreentip"
                 onAction="FitGridToTextCmd"/>
               <button
                 id="ribMergeButton"
                 imageMso="CompareAndCombine"
                 getLabel="GetRibbonLabel"
+                getScreentip="GetRibbonScreentip"
                 getEnabled="GetMultiPageContext"
                 onAction="MergeCmd"/>
               <button
@@ -582,6 +603,7 @@
                 id="ribFinishBiLinkButton"
                 imageMso="CircularReferences"
                 getLabel="GetRibbonLabel"
+                getScreentip="GetRibbonScreentip"
                 getEnabled="GetBodyContext"
                 onAction="FinishBiLinkCmd"/>
               <button
@@ -601,23 +623,27 @@
               <button
                 id="ribInsertQRButton"
                 getLabel="GetRibbonLabel"
+                getScreentip="GetRibbonScreentip"
                 imageMso="BarcodeInsert"
                 getEnabled="GetBodyContext"
                 onAction="InsertQRCmd"/>
               <button
                 id="ribMapButton"
                 getLabel="GetRibbonLabel"
+                getScreentip="GetRibbonScreentip"
                 imageMso="CreateMap"
                 onAction="MapCmd"/>
               <button
                 id="ribLinkReferencesButton"
                 getLabel="GetRibbonLabel"
+                getScreentip="GetRibbonScreentip"
                 imageMso="TextBoxPreviousLinked"
                 onAction="LinkReferencesCmd"/>
               <button
                 id="ribRefreshPageLinksButton"
                 imageMso="SourceControlRefreshStatus"
                 getLabel="GetRibbonLabel"
+                getScreentip="GetRibbonScreentip"
                 onAction="RefreshPageLinksCmd"/>
               <button
                 id="ribNameUrlsButton"
@@ -628,6 +654,7 @@
                 id="ribGetImagesButton"
                 imageMso="PictureReset"
                 getLabel="GetRibbonLabel"
+                getScreentip="GetRibbonScreentip"
                 onAction="GetImagesCmd"/>
             </menu>
             <menu id="ribRemindersMenu" getLabel="GetRibbonLabel" imageMso="ReminderGallery" showImage="true">
@@ -635,6 +662,7 @@
                 id="ribRemindButton"
                 imageMso="NewTask"
                 getLabel="GetRibbonLabel"
+                getScreentip="GetRibbonScreentip"
                 onAction="RemindCmd"/>
               <button
                 id="ribCompleteReminderButton"
@@ -657,6 +685,7 @@
                 id="ribImportOutlookTasksButton"
                 imageMso="ImportOutlook"
                 getLabel="GetRibbonLabel"
+                getScreentip="GetRibbonScreentip"
                 onAction="ImportOutlookTasksCmd"/>
               <button
                 id="ribStrikeoutTasksButton"
@@ -708,6 +737,7 @@
                 id="ribHighlightFormulaButton"
                 imageMso="PivotTableListFormulas"
                 getLabel="GetRibbonLabel"
+                getScreentip="GetRibbonScreentip"
                 onAction="HighlightFormulaCmd"/>
               <button
                 id="ribRecalculateFormulaButton"
@@ -725,6 +755,7 @@
                 id="ribInsertCellsButton"
                 imageMso="TableInsertCellsDialog"
                 getLabel="GetRibbonLabel"
+                getScreentip="GetRibbonScreentip"
                 getEnabled="GetBodyContext"
                 onAction="InsertCellsCmd"/>
               <button
@@ -751,6 +782,7 @@
                 id="ribFillAcrossButton"
                 imageMso="TableColumnsDistribute"
                 getLabel="GetRibbonLabel"
+                getScreentip="GetRibbonScreentip"
                 getEnabled="GetBodyContext"
                 onAction="FillAcrossCmd"/>
               <button
@@ -789,6 +821,7 @@
               <button
                 id="ribPronunciateButton"
                 getLabel="GetRibbonLabel"
+                getScreentip="GetRibbonScreentip"
                 imageMso="SpeakOnEnter"
                 getEnabled="GetBodyContext"
                 onAction="PronunciateCmd"/>

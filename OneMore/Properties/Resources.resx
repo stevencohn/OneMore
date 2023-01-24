@@ -2916,103 +2916,151 @@ Polaroid</value>
   </data>
   <data name="ribFillAcrossButton_Label" xml:space="preserve">
     <value>Fill Across</value>
-    <comment>ribbon</comment>
+    <comment>ribbon table</comment>
+  </data>
+  <data name="ribFillAcrossButton_Screentip" xml:space="preserve">
+    <value>Fill sequence across selected rows</value>
+    <comment>ribbon table</comment>
   </data>
   <data name="ribFillDownButton_Label" xml:space="preserve">
     <value>Fill Down</value>
-    <comment>ribbon</comment>
+    <comment>ribbon table</comment>
   </data>
   <data name="ribFillDownButton_Screentip" xml:space="preserve">
-    <value>Fill Down (Ctrl + D)</value>
-    <comment>ribbon</comment>
+    <value>Fill sequence down selected columns (Ctrl + D)</value>
+    <comment>ribbon table</comment>
   </data>
   <data name="ribFinishBiLinkButton_Label" xml:space="preserve">
     <value>Finish Bidirectional Link</value>
-    <comment>ribbon item</comment>
+    <comment>ribbon references </comment>
+  </data>
+  <data name="ribFinishBiLinkButton_Screentip" xml:space="preserve">
+    <value>Finish link between anchor and current location</value>
+    <comment>ribbon references </comment>
   </data>
   <data name="ribFitGridToTextButton_Label" xml:space="preserve">
     <value>Fit Grid to Text</value>
-    <comment>ribbon item NODUP</comment>
+    <comment>ribbon page NODUP</comment>
+  </data>
+  <data name="ribFitGridToTextButton_Screentip" xml:space="preserve">
+    <value>Resize background grid to match common font size</value>
+    <comment>ribbon page NODUP</comment>
   </data>
   <data name="ribGetImagesButton_Label" xml:space="preserve">
     <value>Replace URLs with Images</value>
-    <comment>Ribbon OneMore menu item, Extras...</comment>
+    <comment>ribbon references</comment>
+  </data>
+  <data name="ribGetImagesButton_Screentip" xml:space="preserve">
+    <value>Download and insert referenced images</value>
+    <comment>ribbon references</comment>
   </data>
   <data name="ribHighlightButton_Label" xml:space="preserve">
     <value>Rotating Highlighter</value>
-    <comment>menu</comment>
+    <comment>ribbon edit</comment>
+  </data>
+  <data name="ribHighlightButton_Screentip" xml:space="preserve">
+    <value>Highligt text with a rotating highlighter</value>
+    <comment>ribbon edit</comment>
   </data>
   <data name="ribHighlightFormulaButton_Label" xml:space="preserve">
     <value>Highlight Formula</value>
-    <comment>Ribbon OneMore menu item, Formula...</comment>
+    <comment>ribbon table</comment>
   </data>
   <data name="ribHighlightFormulaButton_Screentip" xml:space="preserve">
     <value>High cells with formula in current table</value>
-    <comment>Ribbon OneMore menu item, Formula...</comment>
+    <comment>ribbon table</comment>
   </data>
   <data name="ribImagesMenu_Label" xml:space="preserve">
     <value>Images</value>
-    <comment>Ribbon OneMore menu item, Images... NODUP</comment>
+    <comment>menu NODUP</comment>
   </data>
   <data name="ribImportButton_Label" xml:space="preserve">
     <value>Import</value>
-    <comment>ribbon item NODUP</comment>
+    <comment>ribbon file NODUP</comment>
+  </data>
+  <data name="ribImportButton_Screentip" xml:space="preserve">
+    <value>Import a file</value>
+    <comment>ribbon file NODUP</comment>
   </data>
   <data name="ribImportOutlookTasksButton_Label" xml:space="preserve">
     <value>Import Tasks from Outlook</value>
-    <comment>ribbon Reminders item NODUP</comment>
+    <comment>ribbon reminders NODUP</comment>
+  </data>
+  <data name="ribImportOutlookTasksButton_Screentip" xml:space="preserve">
+    <value>Import task information from Outlook</value>
+    <comment>ribbon reminders NODUP</comment>
   </data>
   <data name="ribImportWebButton_Label" xml:space="preserve">
     <value>Import Web Page</value>
-    <comment>ribbon NODUP</comment>
+    <comment>ribbon file NODUP</comment>
+  </data>
+  <data name="ribImportWebButton_Screentip" xml:space="preserve">
+    <value>Import Web Page given a URL</value>
+    <comment>ribbon file NODUP</comment>
   </data>
   <data name="ribIncreaseFontSizeButton_Label" xml:space="preserve">
     <value>Increase Font Size</value>
-    <comment>Ribbon OneMore menu item</comment>
+    <comment>ribbon edit</comment>
   </data>
   <data name="ribIncreaseFontSizeButton_Screentip" xml:space="preserve">
     <value>Increase page font size (Ctrl + Alt + Plus)</value>
-    <comment>Ribbon OneMore menu item</comment>
+    <comment>ribbon edit</comment>
   </data>
   <data name="ribInsertBlueStatusButton_Label" xml:space="preserve">
     <value>Blue Status</value>
-    <comment>Ribbon OneMore menu item, Snippets...</comment>
+    <comment>ribbon snippets</comment>
+  </data>
+  <data name="ribInsertBlueStatusButton_Screentip" xml:space="preserve">
+    <value>Insert a blue status label</value>
+    <comment>ribbon snippets</comment>
   </data>
   <data name="ribInsertBoxButton_Label" xml:space="preserve">
     <value>Text Box</value>
-    <comment>ribbon</comment>
+    <comment>ribbon snippets</comment>
   </data>
   <data name="ribInsertBoxButton_Screentip" xml:space="preserve">
-    <value>Insert a single-cell table, optionally wrapping selected text</value>
-    <comment>ribbon</comment>
+    <value>Insert a single-cell table, wrapping selected text</value>
+    <comment>ribbon snippets</comment>
   </data>
   <data name="ribInsertBreadcrumbButton_Label" xml:space="preserve">
     <value>Breadcrumb</value>
-    <comment>ribbon snippets menu</comment>
+    <comment>ribbon snippets</comment>
+  </data>
+  <data name="ribInsertBreadcrumbButton_Screentip" xml:space="preserve">
+    <value>Insert breadcrumb of page location at top of page</value>
+    <comment>ribbon snippets</comment>
   </data>
   <data name="ribInsertCalendarButton_Label" xml:space="preserve">
     <value>Calendar</value>
-    <comment>ribbon button NODUP</comment>
+    <comment>ribbon snippets NODUP</comment>
+  </data>
+  <data name="ribInsertCalendarButton_Screentip" xml:space="preserve">
+    <value>Insert a montly calendar</value>
+    <comment>ribbon snippets</comment>
   </data>
   <data name="ribInsertCellsButton_Label" xml:space="preserve">
     <value>Insert Table Cells</value>
-    <comment>ribbon item</comment>
+    <comment>ribbon table</comment>
+  </data>
+  <data name="ribInsertCellsButton_Screentip" xml:space="preserve">
+    <value>Insert cells into current table</value>
+    <comment>ribbon table</comment>
   </data>
   <data name="ribInsertCodeBlockButton_Label" xml:space="preserve">
     <value>Code block</value>
-    <comment>Ribbon OneMore menu item, Snippets...</comment>
+    <comment>ribbon snippets</comment>
   </data>
   <data name="ribInsertCodeBlockButton_Screentip" xml:space="preserve">
-    <value>Insert a code block (F6)</value>
-    <comment>menu</comment>
+    <value>Insert a code block (F6), wrapping selected content</value>
+    <comment>ribbon snippets</comment>
   </data>
   <data name="ribInsertDateButton_Label" xml:space="preserve">
     <value>Sortable Date</value>
-    <comment>ribbon item</comment>
+    <comment>ribbon snippets</comment>
   </data>
   <data name="ribInsertDateButton_Screentip" xml:space="preserve">
     <value>Insert the current date (Ctrl + Shift + D)</value>
-    <comment>ribbon</comment>
+    <comment>ribbon snippets</comment>
   </data>
   <data name="ribInsertDateTimeButton_Label" xml:space="preserve">
     <value>Sortable Date with Time</value>
@@ -3020,83 +3068,139 @@ Polaroid</value>
   </data>
   <data name="ribInsertDoubleLineButton_Label" xml:space="preserve">
     <value>Double Horizontal Line</value>
-    <comment>Ribbon OneMore menu item, Extras...</comment>
+    <comment>ribbon snippets</comment>
   </data>
   <data name="ribInsertDoubleLineButton_Screentip" xml:space="preserve">
     <value>Insert double horizontal line (Shift + Alt + Equals)</value>
-    <comment>Ribbon OneMore menu item, Extras...</comment>
+    <comment>ribbon snippets</comment>
   </data>
   <data name="ribInsertExpandButton_Label" xml:space="preserve">
     <value>Expand/Collapse</value>
-    <comment>Ribbon OneMore menu item, Snippets...</comment>
+    <comment>ribbon snippets</comment>
+  </data>
+  <data name="ribInsertExpandButton_Screentip" xml:space="preserve">
+    <value>Insert a collapsible control</value>
+    <comment>ribbon snippets</comment>
   </data>
   <data name="ribInsertGrayStatusButton_Label" xml:space="preserve">
     <value>Gray Status</value>
-    <comment>Ribbon OneMore menu item, Snippets...</comment>
+    <comment>ribbon snippets</comment>
+  </data>
+  <data name="ribInsertGrayStatusButton_Screentip" xml:space="preserve">
+    <value>Insert a gray status label</value>
+    <comment>ribbon snippets</comment>
   </data>
   <data name="ribInsertGreenStatusButton_Label" xml:space="preserve">
     <value>Green Status</value>
-    <comment>Ribbon OneMore menu item, Snippets...</comment>
+    <comment>ribbon snippets</comment>
+  </data>
+  <data name="ribInsertGreenStatusButton_Screentip" xml:space="preserve">
+    <value>Insert a green status label</value>
+    <comment>ribbon snippets</comment>
   </data>
   <data name="ribInsertInfoBlockButton_Label" xml:space="preserve">
     <value>Info block</value>
-    <comment>Ribbon OneMore menu item, Snippets...</comment>
+    <comment>ribbon snippets</comment>
+  </data>
+  <data name="ribInsertInfoBlockButton_Screentip" xml:space="preserve">
+    <value>Insert an informational block</value>
+    <comment>ribbon snippets</comment>
   </data>
   <data name="ribInsertQRButton_Label" xml:space="preserve">
     <value>Insert QR Code</value>
-    <comment>ribbon button</comment>
+    <comment>ribbon references</comment>
+  </data>
+  <data name="ribInsertQRButton_Screentip" xml:space="preserve">
+    <value>Insert a QR Code represented the selected text</value>
+    <comment>ribbon references</comment>
   </data>
   <data name="ribInsertRedStatusButton_Label" xml:space="preserve">
     <value>Red Status</value>
-    <comment>Ribbon OneMore menu item, Snippets...</comment>
+    <comment>ribbon snippets</comment>
+  </data>
+  <data name="ribInsertRedStatusButton_Screentip" xml:space="preserve">
+    <value>Insert a red status label</value>
+    <comment>ribbon snippets</comment>
   </data>
   <data name="ribInsertSingleLineButton_Label" xml:space="preserve">
     <value>Horizontal Line</value>
-    <comment>Ribbon OneMore menu item, Extras...</comment>
+    <comment>ribbon snippets</comment>
   </data>
   <data name="ribInsertSingleLineButton_Screentip" xml:space="preserve">
     <value>Insert single horizontal line (Shift + Alt + Minus)</value>
-    <comment>Ribbon OneMore menu item, Extras...</comment>
+    <comment>ribbon snippets</comment>
   </data>
   <data name="ribInsertTimerButton_Label" xml:space="preserve">
     <value>Insert Timer</value>
-    <comment>ribbon item</comment>
+    <comment>ribbon extras</comment>
+  </data>
+  <data name="ribInsertTimerButton_Screentip" xml:space="preserve">
+    <value>Insert the current timer value</value>
+    <comment>ribbon extras</comment>
   </data>
   <data name="ribInsertTocButton_Label" xml:space="preserve">
     <value>Table of Contents</value>
-    <comment>Ribbon OneMore menu item, Extras... NODUP</comment>
+    <comment>ribbon snippets NODUP</comment>
+  </data>
+  <data name="ribInsertTocButton_Screentip" xml:space="preserve">
+    <value>Insert a headings table of contents at the top of the page</value>
+    <comment>ribbon snippets</comment>
   </data>
   <data name="ribInsertWarnBlockButton_Label" xml:space="preserve">
     <value>Warning block</value>
-    <comment>Ribbon OneMore menu item, Snippets...</comment>
+    <comment>ribbon snippets</comment>
+  </data>
+  <data name="ribInsertWarnBlockButton_Screentip" xml:space="preserve">
+    <value>Insert a warning block</value>
+    <comment>ribbon snippets</comment>
   </data>
   <data name="ribInsertYellowStatusButton_Label" xml:space="preserve">
     <value>Yellow Status</value>
-    <comment>Ribbon OneMore menu item, Snippets...</comment>
+    <comment>ribbon snippets</comment>
+  </data>
+  <data name="ribInsertYellowStatusButton_Screentip" xml:space="preserve">
+    <value>Insert a yellow status label</value>
+    <comment>ribbon snippets</comment>
   </data>
   <data name="ribInvertSelectionButton_Label" xml:space="preserve">
     <value>Invert Selection</value>
-    <comment>ribbon button</comment>
+    <comment>ribbon edit</comment>
+  </data>
+  <data name="ribInvertSelectionButton_Screentip" xml:space="preserve">
+    <value>Invert selection</value>
+    <comment>ribbon edit</comment>
   </data>
   <data name="ribJoinParagraphButton_Label" xml:space="preserve">
     <value>Join Paragraph</value>
-    <comment>ribbon button</comment>
+    <comment>ribbon edit</comment>
+  </data>
+  <data name="ribJoinParagraphButton_Screentip" xml:space="preserve">
+    <value>Join selected paragraphs</value>
+    <comment>ribbon edit</comment>
   </data>
   <data name="ribLinkReferencesButton_Label" xml:space="preserve">
     <value>Link References to this Page</value>
-    <comment>ribbon button</comment>
+    <comment>ribbon references</comment>
+  </data>
+  <data name="ribLinkReferencesButton_Screentip" xml:space="preserve">
+    <value>Generate bi-directional links to this page based on its title</value>
+    <comment>ribbon references</comment>
   </data>
   <data name="ribLoadStylesButton_Label" xml:space="preserve">
     <value>Load Styles</value>
-    <comment>ribbon item</comment>
+    <comment>ribbon styles</comment>
+  </data>
+  <data name="ribLoadStylesButton_Screentip" xml:space="preserve">
+    <value>Load custom styles from a file</value>
+    <comment>ribbon styles</comment>
   </data>
   <data name="ribLowercaseButton_Label" xml:space="preserve">
     <value>To lowercase</value>
-    <comment>Ribbon OneMore menu item NODUP</comment>
+    <comment>ribbon edit NODUP</comment>
   </data>
   <data name="ribLowercaseButton_Screentip" xml:space="preserve">
     <value>Convert text to lowercase (Ctrl + Shift + U)</value>
-    <comment>Ribbon OneMore menu item</comment>
+    <comment>ribbon edit</comment>
   </data>
   <data name="ribManageFavoritesButton_Label" xml:space="preserve">
     <value>Manage Favorites</value>
@@ -3112,66 +3216,91 @@ Polaroid</value>
   </data>
   <data name="ribMapButton_Label" xml:space="preserve">
     <value>Create Page Map</value>
-    <comment>ribbon button NODUP</comment>
+    <comment>ribbon references NODUP</comment>
+  </data>
+  <data name="ribMapButton_Screentip" xml:space="preserve">
+    <value>Report all pages that contain links to other pages</value>
+    <comment>ribbon references</comment>
   </data>
   <data name="ribMergeButton_Label" xml:space="preserve">
     <value>Merge Pages</value>
-    <comment>Ribbon OneMore menu item, Extras...</comment>
+    <comment>ribbon page</comment>
+  </data>
+  <data name="ribMergeButton_Screentip" xml:space="preserve">
+    <value>Merge selected pages</value>
+    <comment>ribbon page</comment>
   </data>
   <data name="ribNameUrlsButton_Label" xml:space="preserve">
     <value>Replace URLs with Web Page Titles</value>
-    <comment>Ribbon OneMore menu item, Extras...</comment>
+    <comment>ribbon references</comment>
+  </data>
+  <data name="ribNameUrlsButton_Screentip" xml:space="preserve">
+    <value>Replace URLs with Web page titles</value>
+    <comment>ribbon references</comment>
   </data>
   <data name="ribNewStyleButton_Label" xml:space="preserve">
     <value>Create Style from Selection</value>
-    <comment>Ribbon Custom Styles menu item, create new style</comment>
+    <comment>ribbon styles</comment>
+  </data>
+  <data name="ribNewStyleButton_Screentip" xml:space="preserve">
+    <value>Create a new style from the current selection</value>
+    <comment>ribbon styles</comment>
   </data>
   <data name="ribNoSpellCheckButton_Screentip" xml:space="preserve">
     <value>Disable spell check for entire page (F4)</value>
-    <comment>Ribbon OneMore menu item, no spell check on this page</comment>
+    <comment>OBSOLETE?</comment>
   </data>
   <data name="ribNotebookWordCountButton_Label" xml:space="preserve">
     <value>Total Words in Notebook</value>
-    <comment>ribbon</comment>
+    <comment>notebook context menu</comment>
   </data>
   <data name="ribNumberingMenu_Label" xml:space="preserve">
     <value>Numbering</value>
-    <comment>Ribbon OneMore menu item NODUP</comment>
+    <comment>ribbon menu NODUP</comment>
   </data>
   <data name="ribNumberPagesButton_Label" xml:space="preserve">
     <value>Number Pages</value>
-    <comment>Ribbon OneMore menu item</comment>
+    <comment>ribbon numbering</comment>
   </data>
   <data name="ribNumberPagesButton_Screentip" xml:space="preserve">
     <value>Add or update number of all pages in this section</value>
-    <comment>Ribbon OneMore menu item</comment>
+    <comment>ribbon numbering</comment>
   </data>
   <data name="ribNumberSectionsButton_Label" xml:space="preserve">
     <value>Number Sections</value>
-    <comment>Ribbon OneMore menu item</comment>
+    <comment>ribbon numbering</comment>
   </data>
   <data name="ribNumberSectionsButton_Screentip" xml:space="preserve">
     <value>Add or update numbering of all sections in this notebook</value>
-    <comment>Ribbon OneMore menu item</comment>
+    <comment>ribbon numbering</comment>
   </data>
   <data name="ribOneMoreGroup_Label" xml:space="preserve">
     <value>OneMore</value>
-    <comment>Ribbon Group NODUP</comment>
+    <comment>ribbon Group NODUP</comment>
   </data>
   <data name="ribOneMoreMenu_Label" xml:space="preserve">
     <value>More</value>
-    <comment>Ribbon main button</comment>
+    <comment>ribbon main button</comment>
   </data>
   <data name="ribOpenImageWithButton_Label" xml:space="preserve">
     <value>Open Image With</value>
-    <comment>Ribbon OneMore menu item</comment>
+    <comment>ribbon images</comment>
+  </data>
+  <data name="ribOpenImageWithButton_Screentip" xml:space="preserve">
+    <value>Open the selected image with an external editor</value>
+    <comment>ribbon images</comment>
   </data>
   <data name="ribOpenLogButton_Label" xml:space="preserve">
     <value>Open Log File</value>
+    <comment>command</comment>
   </data>
   <data name="ribOutlineButton_Label" xml:space="preserve">
     <value>Outline Formatting</value>
-    <comment>Ribbon OneMore menu item, Extras...</comment>
+    <comment>ribbon numbering</comment>
+  </data>
+  <data name="ribOutlineButton_Screentip" xml:space="preserve">
+    <value>Numbering headings on this page</value>
+    <comment>ribbon numbering</comment>
   </data>
   <data name="ribPageMenu_Label" xml:space="preserve">
     <value>Page</value>
@@ -3179,35 +3308,43 @@ Polaroid</value>
   </data>
   <data name="ribPasteCellsButton_Label" xml:space="preserve">
     <value>Paste Cells</value>
-    <comment>ribbon</comment>
+    <comment>ribbon table</comment>
+  </data>
+  <data name="ribPasteCellsButton_Screentip" xml:space="preserve">
+    <value>Paste content in existing cells</value>
+    <comment>ribbon table</comment>
   </data>
   <data name="ribPasteRtfButton_Label" xml:space="preserve">
     <value>Paste Rich Text</value>
-    <comment>Ribbon OneMore menu item, paste rich text NODUP</comment>
+    <comment>ribbon edit NODUP</comment>
   </data>
   <data name="ribPasteRtfButton_Screentip" xml:space="preserve">
     <value>Paste rich text (Ctrl + Alt + V)</value>
-    <comment>Ribbon OneMore menu item, paste rich text</comment>
+    <comment>ribbon edit</comment>
   </data>
   <data name="ribPasteTextButton_Label" xml:space="preserve">
     <value>Paste and Keep Text Only</value>
-    <comment>ribbon item</comment>
+    <comment>ribbon edit</comment>
   </data>
   <data name="ribPasteTextButton_Screentip" xml:space="preserve">
     <value>Paste and Keep Text Only (Ctrl + Shift + V)</value>
-    <comment>ribbon item</comment>
+    <comment>ribbon edit</comment>
   </data>
   <data name="ribPluginButton_Label" xml:space="preserve">
     <value>Run Plugin</value>
-    <comment>Ribbon OneMore menu item NODUP</comment>
+    <comment>ribbon file NODUP</comment>
   </data>
   <data name="ribPluginsMenu_Label" xml:space="preserve">
     <value>Plugins</value>
-    <comment>favorites menu</comment>
+    <comment>ribbon menu</comment>
   </data>
   <data name="ribPronunciateButton_Label" xml:space="preserve">
     <value>Insert Pronunciation</value>
-    <comment>Ribbon OneMore menu item</comment>
+    <comment>ribbon edit</comment>
+  </data>
+  <data name="ribPronunciateButton_Screentip" xml:space="preserve">
+    <value>Insert phonetic pronunciation of selected text</value>
+    <comment>ribbon edit</comment>
   </data>
   <data name="ribProofingMenu_Label" xml:space="preserve">
     <value>Proofing Language</value>
@@ -3215,31 +3352,39 @@ Polaroid</value>
   </data>
   <data name="ribRecalculateFormulaButton_Label" xml:space="preserve">
     <value>Recalculate Formula</value>
-    <comment>Ribbon OneMore menu item, Formula...</comment>
+    <comment>ribbon table</comment>
   </data>
   <data name="ribRecalculateFormulaButton_Screentip" xml:space="preserve">
     <value>Recalculate all formula in the current table (Shift + F5)</value>
-    <comment>Ribbon OneMore menu item, Formula...</comment>
+    <comment>ribbon table</comment>
   </data>
   <data name="ribReferencesMenu_Label" xml:space="preserve">
     <value>References</value>
-    <comment>ribbon references menu</comment>
+    <comment>ribbon menu</comment>
   </data>
   <data name="ribRefreshFootnotesButton_Label" xml:space="preserve">
     <value>Refresh Footnotes</value>
-    <comment>ribbon button</comment>
+    <comment>ribbon references</comment>
   </data>
   <data name="ribRefreshFootnotesButton_Screentip" xml:space="preserve">
     <value>Refresh footnote reference numbers sequentially</value>
-    <comment>ribbon button</comment>
+    <comment>ribbon references</comment>
   </data>
   <data name="ribRefreshPageLinksButton_Label" xml:space="preserve">
     <value>Refresh Page References</value>
-    <comment>ribbon item NODUP</comment>
+    <comment>ribbon references NODUP</comment>
+  </data>
+  <data name="ribRefreshPageLinksButton_Screentip" xml:space="preserve">
+    <value>Refresh bi-directional link references</value>
+    <comment>ribbon references</comment>
   </data>
   <data name="ribRemindButton_Label" xml:space="preserve">
     <value>Add or Update Reminders</value>
-    <comment>ribbon button</comment>
+    <comment>ribbon reminders</comment>
+  </data>
+  <data name="ribRemindButton_Screentip" xml:space="preserve">
+    <value>Add or update a reminder on the current paragraph</value>
+    <comment>ribbon reminders</comment>
   </data>
   <data name="ribRemindersMenu_Label" xml:space="preserve">
     <value>Reminders</value>
@@ -3247,82 +3392,91 @@ Polaroid</value>
   </data>
   <data name="ribRemoveAuthorsButton_Label" xml:space="preserve">
     <value>Remove Author Information</value>
-    <comment>Ribbon OneMore menu item</comment>
+    <comment>ribbon clean</comment>
   </data>
   <data name="ribRemoveAuthorsButton_Screentip" xml:space="preserve">
     <value>Remove information for all authors on this page</value>
-    <comment>Ribbon OneMore menu item</comment>
+    <comment>ribbon clean</comment>
   </data>
   <data name="ribRemoveCitationsButton_Label" xml:space="preserve">
     <value>Remove Pasted Citations</value>
-    <comment>Ribbon OneMore menu item</comment>
+    <comment>ribbon clean</comment>
   </data>
   <data name="ribRemoveCitationsButton_Screentip" xml:space="preserve">
     <value>Remove screen clipping and paste URL citations</value>
-    <comment>Ribbon OneMore menu item</comment>
+    <comment>ribbon clean</comment>
   </data>
   <data name="ribRemoveDuplicatesButton_Label" xml:space="preserve">
     <value>Remove Duplicate Pages</value>
-    <comment>Ribbon OneMore menu item</comment>
+    <comment>ribbon clean</comment>
+  </data>
+  <data name="ribRemoveDuplicatesButton_Screentip" xml:space="preserve">
+    <value>Identify and remove duplicate pages</value>
+    <comment>ribbon clean</comment>
   </data>
   <data name="ribRemoveEmptyButton_Label" xml:space="preserve">
     <value>Remove empty paragraphs and headers</value>
-    <comment>Ribbon OneMore menu item</comment>
+    <comment>ribbon clean</comment>
   </data>
   <data name="ribRemoveEmptyButton_Screentip" xml:space="preserve">
     <value>Remove extra empty lines between paragraph and remove empty headers</value>
-    <comment>Ribbon OneMore menu item</comment>
+    <comment>ribbon clean</comment>
   </data>
   <data name="ribRemoveFootnoteButton_Label" xml:space="preserve">
     <value>Remove Footnote</value>
-    <comment>Ribbon OneMore menu item, Extras...</comment>
+    <comment>ribbon references</comment>
   </data>
   <data name="ribRemoveFootnoteButton_Screentip" xml:space="preserve">
     <value>Remove footnote (Ctrl + Shift + F)</value>
-    <comment>Ribbon OneMore menu item, Extras...</comment>
+    <comment>ribbon references</comment>
   </data>
   <data name="ribRemoveInkButton_Label" xml:space="preserve">
     <value>Remove Ink</value>
-    <comment>Ribbon OneMore menu item</comment>
+    <comment>ribbon clean</comment>
+  </data>
+  <data name="ribRemoveInkButton_Screentip" xml:space="preserve">
+    <value>Remove all pen drawings from this page</value>
+    <comment>ribbon clean</comment>
   </data>
   <data name="ribRemovePageNumbersButton_Label" xml:space="preserve">
     <value>Remove Page Numbers</value>
-    <comment>Ribbon OneMore menu item</comment>
+    <comment>ribbon numbering</comment>
   </data>
   <data name="ribRemovePageNumbersButton_Screentip" xml:space="preserve">
     <value>Remove numbers from all pages in this section</value>
-    <comment>Ribbon OneMore menu item</comment>
+    <comment>ribbon numbering</comment>
   </data>
   <data name="ribRemoveSectionNumbersButton_Label" xml:space="preserve">
     <value>Remove Section Numbers</value>
-    <comment>Ribbon OneMore menu item</comment>
+    <comment>ribbon numbering</comment>
   </data>
   <data name="ribRemoveSectionNumbersButton_Screentip" xml:space="preserve">
     <value>Remove numbers from all sectionsin this notebook</value>
-    <comment>Ribbon OneMore menu item</comment>
+    <comment>ribbon numbering</comment>
   </data>
   <data name="ribRemoveSpacingButton_Label" xml:space="preserve">
     <value>Remove Paragraph Spacing</value>
-    <comment>Ribbon OneMore menu item, Clean... NODUP</comment>
+    <comment>ribbon clean NODUP</comment>
   </data>
   <data name="ribRemoveSpacingButton_Screentip" xml:space="preserve">
     <value>Remove paragraph, heading, and line spacing</value>
-    <comment>Ribbon OneMore menu item, Clean...</comment>
+    <comment>ribbon clean</comment>
   </data>
   <data name="ribRemoveTagsButton_Label" xml:space="preserve">
     <value>Remove Tags</value>
-    <comment>Ribbon OneMore menu item</comment>
+    <comment>ribbon clean</comment>
   </data>
   <data name="ribRemoveTagsButton_Screentip" xml:space="preserve">
     <value>Remove tags not associated with reminders</value>
+    <comment>ribbon clean</comment>
   </data>
   <data name="ribReplayButton_Label" xml:space="preserve">
     <value>Replay Last Command</value>
-    <comment>Ribbon OneMore menu item, trim</comment>
+    <comment>ribbon main</comment>
   </data>
   <data name="ribReplayButton_Screentip" xml:space="preserve">
     <value>Replay last command (Alt + Shift + R)</value>
-    <comment>Ribbon OneMore menu item, trim</comment>
+    <comment>ribbon main</comment>
   </data>
   <data name="ribReportRemindersButton_Label" xml:space="preserve">
     <value>Reminder Summary Report</value>
