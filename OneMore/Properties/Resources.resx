@@ -2744,107 +2744,151 @@ Polaroid</value>
   </data>
   <data name="ribCrawlWebPageButton_Label" xml:space="preserve">
     <value>Import Hyperlinks</value>
-    <comment>ribbon item</comment>
+    <comment>ribbon file</comment>
+  </data>
+  <data name="ribCrawlWebPageButton_Screentip" xml:space="preserve">
+    <value>Import hyperlinks as new pages</value>
+    <comment>ribbon file</comment>
   </data>
   <data name="ribCreatePagesButton_Label" xml:space="preserve">
     <value>Create Pages from List</value>
-    <comment>ribbon item</comment>
+    <comment>ribbon page</comment>
+  </data>
+  <data name="ribCreatePagesButton_Screentip" xml:space="preserve">
+    <value>Create new pages using list items as titles</value>
+    <comment>ribbon page</comment>
   </data>
   <data name="ribCropImageButton_Label" xml:space="preserve">
     <value>Crop and Rotate</value>
-    <comment>Ribbon OneMore menu item, Images... NODUP</comment>
+    <comment>ribbon images NODUP</comment>
+  </data>
+  <data name="ribCropImageButton_Screentip" xml:space="preserve">
+    <value>Crop and rotate selected image</value>
+    <comment>ribbon images NODUP</comment>
   </data>
   <data name="ribCustomSnippetsMenu_Label" xml:space="preserve">
     <value>My Custom Snippets</value>
-    <comment>ribbon </comment>
+    <comment>ribbon menu</comment>
   </data>
   <data name="ribCustomStylesButton_Label" xml:space="preserve">
     <value>Custom Styles</value>
-    <comment>Ribbon main custom styles button NODUP</comment>
+    <comment>Ribbon menu NODUP</comment>
   </data>
   <data name="ribDateStampButton_Label" xml:space="preserve">
     <value>Date stamp pages in section</value>
-    <comment>ribbon</comment>
+    <comment>ribbon extras</comment>
   </data>
   <data name="ribDateStampButton_Screentip" xml:space="preserve">
     <value>Prepend page titles with creation date</value>
-    <comment>ribbon</comment>
+    <comment>ribbon extras</comment>
   </data>
   <data name="ribDecreaseFontSizeButton_Label" xml:space="preserve">
     <value>Decrease Font Size</value>
-    <comment>Ribbon OneMore menu item</comment>
+    <comment>ribbon edit</comment>
   </data>
   <data name="ribDecreaseFontSizeButton_Screentip" xml:space="preserve">
     <value>Decrease page font size (Ctrl + Alt + Minus)</value>
-    <comment>Ribbon OneMore menu item</comment>
+    <comment>ribbon edit</comment>
   </data>
   <data name="ribDeleteFormulaButton_Label" xml:space="preserve">
     <value>Delete Formula</value>
-    <comment>Ribbon OneMore menu item, Formula...</comment>
+    <comment>ribbon table</comment>
   </data>
   <data name="ribDeleteFormulaButton_Screentip" xml:space="preserve">
     <value>Delete formula from selected table cell(s)</value>
-    <comment>Ribbon OneMore menu item, Formula...</comment>
+    <comment>ribbon table</comment>
   </data>
   <data name="ribDeleteReminderButton_Label" xml:space="preserve">
     <value>Delete Reminder</value>
-    <comment>ribbon button</comment>
+    <comment>ribbon reminders</comment>
+  </data>
+  <data name="ribDeleteReminderButton_Screentip" xml:space="preserve">
+    <value>Delete reminder from current paragraph</value>
+    <comment>ribbon reminders</comment>
   </data>
   <data name="ribDiagnosticsButton_Label" xml:space="preserve">
     <value>Dump Diagnostics to Log</value>
-    <comment>not a menu, hotkey only</comment>
+    <comment>hotkey</comment>
   </data>
   <data name="ribDisableSpellCheckButton_Label" xml:space="preserve">
     <value>Disable Spell Check</value>
-    <comment>Ribbon OneMore menu item, no spell check on this page</comment>
+    <comment>ribbon edit</comment>
+  </data>
+  <data name="ribDisableSpellCheckButton_Screentip" xml:space="preserve">
+    <value>Disable spell checking within selected content</value>
+    <comment>ribbon edit</comment>
   </data>
   <data name="ribDuplicateLineAboveButton_Label" xml:space="preserve">
     <value>Duplicate Paragraph Above</value>
-    <comment>pallette</comment>
+    <comment>command</comment>
   </data>
   <data name="ribDuplicateLineButton_Label" xml:space="preserve">
     <value>Duplicate Paragraph</value>
-    <comment>ribbon item</comment>
+    <comment>ribbon edit</comment>
+  </data>
+  <data name="ribDuplicateLineButton_Screentip" xml:space="preserve">
+    <value>Duplicate the current paragraph</value>
+    <comment>ribbon edit</comment>
   </data>
   <data name="ribDuplicatePageButton_Label" xml:space="preserve">
     <value>Duplicate Page</value>
-    <comment>page context menu</comment>
+    <comment>ribbon page</comment>
+  </data>
+  <data name="ribDuplicatePageButton_Screentip" xml:space="preserve">
+    <value>Duplicate the current page</value>
+    <comment>ribbon page</comment>
   </data>
   <data name="ribEditMenu_Label" xml:space="preserve">
     <value>Edit</value>
-    <comment>OneMore Ribbon menu item</comment>
+    <comment>ribbon menu</comment>
   </data>
   <data name="ribEditStylesButton_Label" xml:space="preserve">
     <value>Edit Styles</value>
-    <comment>Ribbon Custom Styles menu item, edit custom styles</comment>
+    <comment>ribbon styles</comment>
+  </data>
+  <data name="ribEditStylesButton_Screentip" xml:space="preserve">
+    <value>Edit custom styles</value>
+    <comment>ribbon styles</comment>
   </data>
   <data name="ribEditTableThemesButton_Label" xml:space="preserve">
     <value>Edit Custom Table Styles</value>
-    <comment>table styles ribbon gallery button</comment>
+    <comment>ribbon table styles</comment>
+  </data>
+  <data name="ribEditTableThemesButton_Screentip" xml:space="preserve">
+    <value>Edit custom custom table styles</value>
+    <comment>ribbon table styles</comment>
   </data>
   <data name="ribEmbedSubpageButton_Label" xml:space="preserve">
     <value>Embed Page</value>
-    <comment>ribbon item</comment>
+    <comment>ribbon references</comment>
   </data>
   <data name="ribEmbedSubpageButton_Screentip" xml:space="preserve">
     <value>Embed content of another page into the current page</value>
-    <comment>ribbon item screentip</comment>
+    <comment>ribbon references</comment>
   </data>
   <data name="ribEmojiButton_Label" xml:space="preserve">
     <value>Add Page Title Emoji</value>
-    <comment>Ribbon OneMore menu item, Extras...</comment>
+    <comment>ribbon page</comment>
+  </data>
+  <data name="ribEmojiButton_Screentip" xml:space="preserve">
+    <value>Prepent page title with emojis</value>
+    <comment>ribbon page</comment>
   </data>
   <data name="ribEnableSpellCheckButton_Label" xml:space="preserve">
     <value>Enable Spell Check</value>
-    <comment>Ribbon OneMore menu item, no spell check on this page</comment>
+    <comment>ribbon edit</comment>
   </data>
   <data name="ribEnableSpellCheckButton_Screentip" xml:space="preserve">
-    <value>Enable spell check for entire page</value>
-    <comment>Ribbon OneMore menu item, no spell check on this page</comment>
+    <value>Enable spell check within selected content</value>
+    <comment>ribbon edit</comment>
   </data>
   <data name="ribExpandContentButton_Label" xml:space="preserve">
     <value>Expand Outlining</value>
-    <comment>ribbon item</comment>
+    <comment>ribbon page</comment>
+  </data>
+  <data name="ribExpandContentButton_Screentip" xml:space="preserve">
+    <value>Expand all headings with indented content</value>
+    <comment>ribbon page</comment>
   </data>
   <data name="ribExpandSnippetButton_Label" xml:space="preserve">
     <value>Expand Snippet From Name</value>
@@ -2852,19 +2896,19 @@ Polaroid</value>
   </data>
   <data name="ribExportButton_Label" xml:space="preserve">
     <value>Export</value>
-    <comment>Ribbon OneMore menu item</comment>
+    <comment>ribbon file</comment>
   </data>
   <data name="ribExportButton_Screentip" xml:space="preserve">
     <value>Export page(s) as HTML, PDF, Word or XML</value>
-    <comment>Ribbon OneMore menu item</comment>
+    <comment>ribbon file</comment>
   </data>
   <data name="ribExtrasMenu_Label" xml:space="preserve">
     <value>Extras</value>
-    <comment>Ribbon OneMore menu item, Extras...</comment>
+    <comment>ribbon menu</comment>
   </data>
   <data name="ribFavoritesMenu_Label" xml:space="preserve">
     <value>Favorites</value>
-    <comment>Ribbon main favorites button NODUP</comment>
+    <comment>ribbon menu NODUP</comment>
   </data>
   <data name="ribFileMenu_Label" xml:space="preserve">
     <value>File</value>

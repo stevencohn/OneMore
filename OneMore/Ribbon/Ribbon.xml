@@ -25,6 +25,7 @@
             <button
               id="ribEditStylesButton"
               getLabel="GetRibbonLabel"
+              getScreentip="GetRibbonScreentip"
               imageMso="StylesModifyStyle"
               onAction="EditStylesCmd"/>
             <button
@@ -59,6 +60,7 @@
             <button
               id="ribEditTableThemesButton"
               getLabel="GetRibbonLabel"
+              getScreentip="GetRibbonScreentip"
               getEnabled="SetBodyContext"
               onAction="EditTableThemesCmd"/>
             <button
@@ -313,6 +315,7 @@
                 id="ribDuplicateLineButton"
                 imageMso="PasteDuplicate"
                 getLabel="GetRibbonLabel"
+                getScreentip="GetRibbonScreentip"
                 onAction="DuplicateLineCmd"/>
               <button
                 id="ribInvertSelectionButton"
@@ -396,6 +399,7 @@
                 id="ribCrawlWebPageButton"
                 imageMso="FileNewWebPage"
                 getLabel="GetRibbonLabel"
+                getScreentip="GetRibbonScreentip"
                 onAction="CrawlWebPageCmd"/>
               <dynamicMenu
                 id="ribPluginsMenu"
@@ -415,6 +419,7 @@
                 id="ribCropImageButton"
                 imageMso="PictureCrop"
                 getLabel="GetRibbonLabel"
+                getScreentip="GetRibbonScreentip"
                 getEnabled="GetImageSelected"
                 onAction="CropImageCmd"/>
               <button
@@ -469,6 +474,7 @@
                 id="ribEmojiButton"
                 imageMso="DataGraphicIconSet"
                 getLabel="GetRibbonLabel"
+                getScreentip="GetRibbonScreentip"
                 onAction="EmojiCmd"/>
               <button
                 id="ribCaptionAttachmentsButton"
@@ -480,6 +486,7 @@
                 id="ribCreatePagesButton"
                 imageMso="CreateHandoutsInWord"
                 getLabel="GetRibbonLabel"
+                getScreentip="GetRibbonScreentip"
                 onAction="CreatePagesCmd"/>
               <button
                 id="ribCollapseContentButton"
@@ -491,11 +498,13 @@
                 id="ribDuplicatePageButton"
                 imageMso="PasteDuplicate"
                 getLabel="GetRibbonLabel"
+                getScreentip="GetRibbonScreentip"
                 onAction="DuplicatePageCmd"/>
               <button
                 id="ribExpandContentButton"
                 imageMso="OutlineExpandAll"
                 getLabel="GetRibbonLabel"
+                getScreentip="GetRibbonScreentip"
                 onAction="ExpandContentCmd"/>
               <button
                 id="ribSaveCollapsedButton"
@@ -637,6 +646,7 @@
                 id="ribDeleteReminderButton"
                 imageMso="CancelTaskAssignment"
                 getLabel="GetRibbonLabel"
+                getScreentip="GetRibbonScreentip"
                 onAction="DeleteReminderCmd"/>
               <button
                 id="ribReportRemindersButton"
@@ -691,6 +701,7 @@
                 id="ribDeleteFormulaButton"
                 imageMso="SheetDelete"
                 getLabel="GetRibbonLabel"
+                getScreentip="GetRibbonScreentip"
                 getEnabled="GetBodyContext"
                 onAction="DeleteFormulaCmd"/>
               <button
