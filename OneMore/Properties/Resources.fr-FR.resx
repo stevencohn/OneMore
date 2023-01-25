@@ -2600,7 +2600,7 @@ Polaroïd</value>
   </data>
   <data name="ribCopyAcrossButton_Label" xml:space="preserve">
     <value>Copier à travers</value>
-    <comment>ribbon</comment>
+    <comment>ribbon table</comment>
   </data>
   <data name="ribCopyAsMarkdownButton_Label" xml:space="preserve">
     <value>Copier comme Markdown</value>
@@ -4654,5 +4654,9 @@ Dans cette section</value>
   <data name="WordCountsCommand_Title" xml:space="preserve">
     <value>Nombre de mots</value>
     <comment>page title</comment>
+  </data>
+  <data name="ribCopyAcrossButton_Screentip" xml:space="preserve">
+    <value>Copier le contenu sur les lignes sélectionnées</value>
+    <comment>ribbon table</comment>
   </data>
 </root>

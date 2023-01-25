@@ -2604,8 +2604,8 @@ Polaroid</value>
     <comment>ribbon reminders</comment>
   </data>
   <data name="ribCopyAcrossButton_Label" xml:space="preserve">
-    <value>Kopieer over</value>
-    <comment>ribbon</comment>
+    <value>Kopiëren over</value>
+    <comment>ribbon table</comment>
   </data>
   <data name="ribCopyAsMarkdownButton_Label" xml:space="preserve">
     <value>Kopiëren als Markdown</value>
@@ -4660,5 +4660,9 @@ In deze sectie</value>
   <data name="WordCountsCommand_Title" xml:space="preserve">
     <value>Woorden tellen</value>
     <comment>page title</comment>
+  </data>
+  <data name="ribCopyAcrossButton_Screentip" xml:space="preserve">
+    <value>Kopieer inhoud over de geselecteerde rijen</value>
+    <comment>ribbon table</comment>
   </data>
 </root>

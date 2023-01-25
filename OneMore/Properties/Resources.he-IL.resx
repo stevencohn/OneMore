@@ -2684,8 +2684,8 @@ ISO-code then comma then language name</comment>
     <comment>ribbon reminders</comment>
   </data>
   <data name="ribCopyAcrossButton_Label" xml:space="preserve">
-    <value>העתק על פני</value>
-    <comment>ribbon</comment>
+    <value>העתק</value>
+    <comment>ribbon table</comment>
   </data>
   <data name="ribCopyAsMarkdownButton_Label" xml:space="preserve">
     <value>העתק בתור Markdown</value>
@@ -4755,5 +4755,9 @@ ISO-code then comma then language name</comment>
   <data name="WordCountsCommand_Title" xml:space="preserve">
     <value>ספירת מילים</value>
     <comment>page title</comment>
+  </data>
+  <data name="ribCopyAcrossButton_Screentip" xml:space="preserve">
+    <value>העתק תוכן על פני השורות שנבחרו</value>
+    <comment>ribbon table</comment>
   </data>
 </root>

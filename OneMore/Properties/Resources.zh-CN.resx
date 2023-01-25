@@ -2602,7 +2602,7 @@ ISO-code then comma then language name</comment>
   </data>
   <data name="ribCopyAcrossButton_Label" xml:space="preserve">
     <value>复制</value>
-    <comment>ribbon</comment>
+    <comment>ribbon table</comment>
   </data>
   <data name="ribCopyAsMarkdownButton_Label" xml:space="preserve">
     <value>复制为 Markdown</value>
@@ -4644,5 +4644,9 @@ ISO-code then comma then language name</comment>
   <data name="WordCountsCommand_Title" xml:space="preserve">
     <value>字数统计</value>
     <comment>page title</comment>
+  </data>
+  <data name="ribCopyAcrossButton_Screentip" xml:space="preserve">
+    <value>通过选定的行复制内容</value>
+    <comment>ribbon table</comment>
   </data>
 </root>

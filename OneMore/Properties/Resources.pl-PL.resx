@@ -2647,7 +2647,7 @@ Polaroid</value>
   </data>
   <data name="ribCopyAcrossButton_Label" xml:space="preserve">
     <value>Kopiuj</value>
-    <comment>ribbon</comment>
+    <comment>ribbon table</comment>
   </data>
   <data name="ribCopyAsMarkdownButton_Label" xml:space="preserve">
     <value>Kopiuj jako Markdown</value>
@@ -4713,5 +4713,9 @@ W tej sekcji</value>
   <data name="WordCountsCommand_Title" xml:space="preserve">
     <value>Liczy się słowo</value>
     <comment>page title</comment>
+  </data>
+  <data name="ribCopyAcrossButton_Screentip" xml:space="preserve">
+    <value>Skopiuj treść w wybranych wierszach</value>
+    <comment>ribbon table</comment>
   </data>
 </root>

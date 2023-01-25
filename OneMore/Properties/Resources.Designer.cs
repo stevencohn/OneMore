@@ -6026,11 +6026,20 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Copy content across the selected rows.
+        ///   Looks up a localized string similar to Copy Across.
         /// </summary>
         internal static string ribCopyAcrossButton_Label {
             get {
                 return ResourceManager.GetString("ribCopyAcrossButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Copy content across the selected rows.
+        /// </summary>
+        internal static string ribCopyAcrossButton_Screentip {
+            get {
+                return ResourceManager.GetString("ribCopyAcrossButton_Screentip", resourceCulture);
             }
         }
         
@@ -7628,7 +7637,7 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Remove empty paragraphs and headers.
+        ///   Looks up a localized string similar to Remove Empty Paragraphs and Headers.
         /// </summary>
         internal static string ribRemoveEmptyButton_Label {
             get {

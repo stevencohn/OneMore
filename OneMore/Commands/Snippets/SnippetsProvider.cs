@@ -181,18 +181,21 @@ namespace River.OneMoreAddIn.Commands
 				new XElement(ns + "button",
 					new XAttribute("id", SaveSnippetButtonId),
 					new XAttribute("getLabel", "GetRibbonLabel"),
+					new XAttribute("getScreentip", "GetRibbonScreentip"),
 					new XAttribute("imageMso", "SaveSelectionToQuickPartGallery"),
 					new XAttribute("onAction", "SaveSnippetCmd")
 					),
 				new XElement(ns + "button",
 					new XAttribute("id", ManageSnippetsButtonId),
 					new XAttribute("getLabel", "GetRibbonLabel"),
+					new XAttribute("getScreentip", "GetRibbonScreentip"),
 					new XAttribute("imageMso", "BibliographyManageSources"),
 					new XAttribute("onAction", "ManageSnippetsCmd")
 					),
 				new XElement(ns + "button",
 					new XAttribute("id", ExpandSnippetButtonId),
 					new XAttribute("getLabel", "GetRibbonLabel"),
+					new XAttribute("getScreentip", "GetRibbonScreentip"),
 					new XAttribute("imageMso", "ReplaceWithAutoText"),
 					new XAttribute("onAction", "ExpandSnippetCmd")
 					),
