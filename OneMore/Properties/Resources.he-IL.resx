@@ -3212,8 +3212,8 @@ ISO-code then comma then language name</comment>
     <comment>ribbon page</comment>
   </data>
   <data name="ribNameUrlsButton_Label" xml:space="preserve">
-    <value>החלף כתובות URL בכותרות של דפי אינטרנט</value>
-    <comment>Ribbon OneMore menu item, Extras...</comment>
+    <value>החלף כתובות אתרים בכותרות</value>
+    <comment>ribbon references</comment>
   </data>
   <data name="ribNameUrlsButton_Screentip" xml:space="preserve">
     <value>החלף כתובות אתרים בכותרות של דף אינטרנט</value>
@@ -3395,8 +3395,8 @@ ISO-code then comma then language name</comment>
     <comment>ribbon clean</comment>
   </data>
   <data name="ribRemoveEmptyButton_Label" xml:space="preserve">
-    <value>הסר פסקאות וכותרות ריקות</value>
-    <comment>Ribbon OneMore menu item</comment>
+    <value>הסר קווים ריקים</value>
+    <comment>ribbon clean</comment>
   </data>
   <data name="ribRemoveEmptyButton_Screentip" xml:space="preserve">
     <value>הסר שורות ריקות נוספות בין הפסקה והסר כותרות ריקות</value>
@@ -3474,8 +3474,8 @@ ISO-code then comma then language name</comment>
     <comment>ribbon images</comment>
   </data>
   <data name="ribRestoreAutosizeButton_Label" xml:space="preserve">
-    <value>שחזר רוחבי מיכל בגודל אוטומטי</value>
-    <comment>ribbon item</comment>
+    <value>שחזור רוחב מיכל</value>
+    <comment>ribbon clean</comment>
   </data>
   <data name="ribRestoreAutosizeButton_Screentip" xml:space="preserve">
     <value>אפס רוחב אוטומטי של כל המכולות</value>
@@ -3693,8 +3693,8 @@ ISO-code then comma then language name</comment>
     <value>המרת טקסט לאותיות רישיות בכותרת</value>
   </data>
   <data name="ribToggleDttmButton_Label" xml:space="preserve">
-    <value>הצג/הסתר חותמות תאריך ושעה של הדף</value>
-    <comment>Ribbon OneMore menu item</comment>
+    <value>הצג/הסתר חותמות זמן</value>
+    <comment>ribbon page</comment>
   </data>
   <data name="ribToggleDttmButton_Screentip" xml:space="preserve">
     <value>הצג/הסתר חותמות תאריך ושעה של העמוד מתחת לכותרת</value>

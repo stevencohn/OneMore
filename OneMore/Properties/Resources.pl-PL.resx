@@ -3174,8 +3174,8 @@ Polaroid</value>
     <comment>ribbon page</comment>
   </data>
   <data name="ribNameUrlsButton_Label" xml:space="preserve">
-    <value>Wymień adresy URL z tytułami stron internetowych</value>
-    <comment>Ribbon OneMore menu item, Extras...</comment>
+    <value>Wymień adresy URL tytułami</value>
+    <comment>ribbon references</comment>
   </data>
   <data name="ribNameUrlsButton_Screentip" xml:space="preserve">
     <value>Zamień adresy URL na tytuły stron internetowych</value>
@@ -3365,8 +3365,8 @@ Polaroid</value>
     <comment>ribbon clean</comment>
   </data>
   <data name="ribRemoveEmptyButton_Label" xml:space="preserve">
-    <value>Usuń puste akapity i nagłówki</value>
-    <comment>Ribbon OneMore menu item</comment>
+    <value>Usuń puste linie</value>
+    <comment>ribbon clean</comment>
   </data>
   <data name="ribRemoveEmptyButton_Screentip" xml:space="preserve">
     <value>Usuń dodatkowe puste linie między akapitem a usuwanie pustych nagłówków</value>
@@ -3444,8 +3444,8 @@ Polaroid</value>
     <comment>ribbon images</comment>
   </data>
   <data name="ribRestoreAutosizeButton_Label" xml:space="preserve">
-    <value>Przywróć szerokości pojemników z automatyczną wielkości</value>
-    <comment>ribbon item</comment>
+    <value>Przywróć szerokości pojemników</value>
+    <comment>ribbon clean</comment>
   </data>
   <data name="ribRestoreAutosizeButton_Screentip" xml:space="preserve">
     <value>Zresetuj automatyczną szerokość wszystkich kontenerów</value>
@@ -3663,8 +3663,8 @@ Polaroid</value>
     <value>Konwertuj tekst do tytułu</value>
   </data>
   <data name="ribToggleDttmButton_Label" xml:space="preserve">
-    <value>Pokaż / Ukryj Date Date Data i Remon</value>
-    <comment>Ribbon OneMore menu item</comment>
+    <value>Pokaż/ukryj znaczki czasowe</value>
+    <comment>ribbon page</comment>
   </data>
   <data name="ribToggleDttmButton_Screentip" xml:space="preserve">
     <value>Pokaż / Ukryj Page Date Date Date Date Date Poniżej tytułu</value>

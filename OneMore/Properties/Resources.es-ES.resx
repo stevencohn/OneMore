@@ -3131,8 +3131,8 @@ polaroid</value>
     <comment>ribbon page</comment>
   </data>
   <data name="ribNameUrlsButton_Label" xml:space="preserve">
-    <value>Reemplazar URL con títulos de páginas web</value>
-    <comment>Ribbon OneMore menu item, Extras...</comment>
+    <value>Reemplace las URL con títulos</value>
+    <comment>ribbon references</comment>
   </data>
   <data name="ribNameUrlsButton_Screentip" xml:space="preserve">
     <value>Reemplazar URL con títulos de páginas web</value>
@@ -3322,8 +3322,8 @@ polaroid</value>
     <comment>ribbon clean</comment>
   </data>
   <data name="ribRemoveEmptyButton_Label" xml:space="preserve">
-    <value>Eliminar párrafos y encabezados vacíos</value>
-    <comment>Ribbon OneMore menu item</comment>
+    <value>Eliminar líneas vacías</value>
+    <comment>ribbon clean</comment>
   </data>
   <data name="ribRemoveEmptyButton_Screentip" xml:space="preserve">
     <value>Elimina las líneas vacías adicionales entre el párrafo y elimina los encabezados vacíos</value>
@@ -3401,8 +3401,8 @@ polaroid</value>
     <comment>ribbon images</comment>
   </data>
   <data name="ribRestoreAutosizeButton_Label" xml:space="preserve">
-    <value>Restaurar anchos de contenedor de tamaño automático</value>
-    <comment>ribbon item</comment>
+    <value>Restaurar los anchos del contenedor</value>
+    <comment>ribbon clean</comment>
   </data>
   <data name="ribRestoreAutosizeButton_Screentip" xml:space="preserve">
     <value>Restablecer el ancho automático de todos los contenedores</value>
@@ -3620,8 +3620,8 @@ polaroid</value>
     <value>Convertir texto en mayúsculas y minúsculas</value>
   </data>
   <data name="ribToggleDttmButton_Label" xml:space="preserve">
-    <value>Mostrar/ocultar marcas de fecha y hora de la página</value>
-    <comment>Ribbon OneMore menu item</comment>
+    <value>Mostrar/ocultar sellos de tiempo</value>
+    <comment>ribbon page</comment>
   </data>
   <data name="ribToggleDttmButton_Screentip" xml:space="preserve">
     <value>Mostrar/ocultar las marcas de fecha y hora de la página debajo del título</value>

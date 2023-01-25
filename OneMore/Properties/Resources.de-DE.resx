@@ -3127,8 +3127,8 @@ Polaroid</value>
     <comment>ribbon page</comment>
   </data>
   <data name="ribNameUrlsButton_Label" xml:space="preserve">
-    <value>Ersetzen Sie URLs durch Webseitentitel</value>
-    <comment>Ribbon OneMore menu item, Extras...</comment>
+    <value>Ersetzen Sie URLs durch Titel</value>
+    <comment>ribbon references</comment>
   </data>
   <data name="ribNameUrlsButton_Screentip" xml:space="preserve">
     <value>Ersetzen Sie URLs durch Webseitentitel</value>
@@ -3310,8 +3310,8 @@ Polaroid</value>
     <comment>ribbon clean</comment>
   </data>
   <data name="ribRemoveEmptyButton_Label" xml:space="preserve">
-    <value>Entfernen Sie leere Absätze und Überschriften</value>
-    <comment>Ribbon OneMore menu item</comment>
+    <value>Leere Linien entfernen</value>
+    <comment>ribbon clean</comment>
   </data>
   <data name="ribRemoveEmptyButton_Screentip" xml:space="preserve">
     <value>Entfernen Sie zusätzliche leere Zeilen zwischen Absätzen und entfernen Sie leere Überschriften</value>
@@ -3389,8 +3389,8 @@ Polaroid</value>
     <comment>ribbon images</comment>
   </data>
   <data name="ribRestoreAutosizeButton_Label" xml:space="preserve">
-    <value>Stellen Sie die Containerbreiten der automatischen Größe wieder her</value>
-    <comment>ribbon item</comment>
+    <value>Behälterbreiten wiederherstellen</value>
+    <comment>ribbon clean</comment>
   </data>
   <data name="ribRestoreAutosizeButton_Screentip" xml:space="preserve">
     <value>Automatische Breite aller Container zurücksetzen</value>
@@ -3608,8 +3608,8 @@ Polaroid</value>
     <value>Konvertieren Sie Text in Groß- und Kleinschreibung</value>
   </data>
   <data name="ribToggleDttmButton_Label" xml:space="preserve">
-    <value>Datums- und Zeitstempel der Seite ein- / ausblenden</value>
-    <comment>Ribbon OneMore menu item</comment>
+    <value>Zeitstempel zeigen/verstecken</value>
+    <comment>ribbon page</comment>
   </data>
   <data name="ribToggleDttmButton_Screentip" xml:space="preserve">
     <value>Datums- und Zeitstempel der Seite unter dem Titel ein- / ausblenden</value>

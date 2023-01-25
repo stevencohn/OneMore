@@ -3131,8 +3131,8 @@ Polaroid.</value>
     <comment>ribbon page</comment>
   </data>
   <data name="ribNameUrlsButton_Label" xml:space="preserve">
-    <value>Substituir URLs por títulos de páginas da web</value>
-    <comment>Ribbon OneMore menu item, Extras...</comment>
+    <value>Substitua URLs por títulos</value>
+    <comment>ribbon references</comment>
   </data>
   <data name="ribNameUrlsButton_Screentip" xml:space="preserve">
     <value>Substituir URLs por títulos de páginas da Web</value>
@@ -3322,8 +3322,8 @@ Polaroid.</value>
     <comment>ribbon clean</comment>
   </data>
   <data name="ribRemoveEmptyButton_Label" xml:space="preserve">
-    <value>Remova parágrafos e cabeçalhos vazios</value>
-    <comment>Ribbon OneMore menu item</comment>
+    <value>Remova linhas vazias</value>
+    <comment>ribbon clean</comment>
   </data>
   <data name="ribRemoveEmptyButton_Screentip" xml:space="preserve">
     <value>Remova as linhas vazias extras entre o parágrafo e remova os cabeçalhos vazios</value>
@@ -3401,8 +3401,8 @@ Polaroid.</value>
     <comment>ribbon images</comment>
   </data>
   <data name="ribRestoreAutosizeButton_Label" xml:space="preserve">
-    <value>Restaurar larguras de contêiner de tamanho automático</value>
-    <comment>ribbon item</comment>
+    <value>Restaure as larguras dos contêineres</value>
+    <comment>ribbon clean</comment>
   </data>
   <data name="ribRestoreAutosizeButton_Screentip" xml:space="preserve">
     <value>Redefinir a largura automática de todos os contêineres</value>
@@ -3620,8 +3620,8 @@ Polaroid.</value>
     <value>Converter texto em maiúsculas</value>
   </data>
   <data name="ribToggleDttmButton_Label" xml:space="preserve">
-    <value>Mostrar/ocultar data e hora da página</value>
-    <comment>Ribbon OneMore menu item</comment>
+    <value>Mostrar/ocultar carimbos de hora</value>
+    <comment>ribbon page</comment>
   </data>
   <data name="ribToggleDttmButton_Screentip" xml:space="preserve">
     <value>Mostrar/ocultar data e hora da página abaixo do título</value>

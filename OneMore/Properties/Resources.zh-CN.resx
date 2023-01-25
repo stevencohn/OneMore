@@ -3129,8 +3129,8 @@ ISO-code then comma then language name</comment>
     <comment>ribbon page</comment>
   </data>
   <data name="ribNameUrlsButton_Label" xml:space="preserve">
-    <value>用网页标题替换网址</value>
-    <comment>Ribbon OneMore menu item, Extras...</comment>
+    <value>用标题替换URL</value>
+    <comment>ribbon references</comment>
   </data>
   <data name="ribNameUrlsButton_Screentip" xml:space="preserve">
     <value>用网页标题替换 URL</value>
@@ -3312,8 +3312,8 @@ ISO-code then comma then language name</comment>
     <comment>ribbon clean</comment>
   </data>
   <data name="ribRemoveEmptyButton_Label" xml:space="preserve">
-    <value>删除空的段落和标题</value>
-    <comment>Ribbon OneMore menu item</comment>
+    <value>卸下空线</value>
+    <comment>ribbon clean</comment>
   </data>
   <data name="ribRemoveEmptyButton_Screentip" xml:space="preserve">
     <value>删除段落之间多余的空行并删除空标题</value>
@@ -3391,8 +3391,8 @@ ISO-code then comma then language name</comment>
     <comment>ribbon images</comment>
   </data>
   <data name="ribRestoreAutosizeButton_Label" xml:space="preserve">
-    <value>还原自动大小的容器宽度</value>
-    <comment>ribbon item</comment>
+    <value>还原容器宽度</value>
+    <comment>ribbon clean</comment>
   </data>
   <data name="ribRestoreAutosizeButton_Screentip" xml:space="preserve">
     <value>重置所有容器的自动宽度</value>
@@ -3610,8 +3610,8 @@ ISO-code then comma then language name</comment>
     <value>将文本转换为标题大小写</value>
   </data>
   <data name="ribToggleDttmButton_Label" xml:space="preserve">
-    <value>显示/隐藏页面日期和时间戳</value>
-    <comment>Ribbon OneMore menu item</comment>
+    <value>显示/隐藏时间戳记</value>
+    <comment>ribbon page</comment>
   </data>
   <data name="ribToggleDttmButton_Screentip" xml:space="preserve">
     <value>在标题下方显示/隐藏页面日期和时间戳</value>

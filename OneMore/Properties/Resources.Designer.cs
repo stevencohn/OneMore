@@ -7223,7 +7223,7 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Replace URLs with Web Page Titles.
+        ///   Looks up a localized string similar to Replace URLs with Titles.
         /// </summary>
         internal static string ribNameUrlsButton_Label {
             get {
@@ -7637,7 +7637,7 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Remove Empty Paragraphs and Headers.
+        ///   Looks up a localized string similar to Remove Empty Lines.
         /// </summary>
         internal static string ribRemoveEmptyButton_Label {
             get {
@@ -7817,7 +7817,7 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Restore Auto-size Container Widths.
+        ///   Looks up a localized string similar to Restore Container Widths.
         /// </summary>
         internal static string ribRestoreAutosizeButton_Label {
             get {
@@ -8312,7 +8312,7 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Show/Hide Page Date and Time Stamps.
+        ///   Looks up a localized string similar to Show/Hide Time Stamps.
         /// </summary>
         internal static string ribToggleDttmButton_Label {
             get {

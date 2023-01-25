@@ -3131,8 +3131,8 @@ ISO-code then comma then language name</comment>
     <comment>ribbon page</comment>
   </data>
   <data name="ribNameUrlsButton_Label" xml:space="preserve">
-    <value>استبدل عناوين URL بعناوين صفحات الويب</value>
-    <comment>Ribbon OneMore menu item, Extras...</comment>
+    <value>استبدال عناوين URL بالعناوين</value>
+    <comment>ribbon references</comment>
   </data>
   <data name="ribNameUrlsButton_Screentip" xml:space="preserve">
     <value>استبدل عناوين URL بعناوين صفحات الويب</value>
@@ -3322,8 +3322,8 @@ ISO-code then comma then language name</comment>
     <comment>ribbon clean</comment>
   </data>
   <data name="ribRemoveEmptyButton_Label" xml:space="preserve">
-    <value>قم بإزالة الفقرات والعناوين الفارغة</value>
-    <comment>Ribbon OneMore menu item</comment>
+    <value>إزالة الخطوط الفارغة</value>
+    <comment>ribbon clean</comment>
   </data>
   <data name="ribRemoveEmptyButton_Screentip" xml:space="preserve">
     <value>أزل الأسطر الفارغة الزائدة بين الفقرة وأزل الرؤوس الفارغة</value>
@@ -3401,8 +3401,8 @@ ISO-code then comma then language name</comment>
     <comment>ribbon images</comment>
   </data>
   <data name="ribRestoreAutosizeButton_Label" xml:space="preserve">
-    <value>استعادة عرض الحاوية بحجم السيارات</value>
-    <comment>ribbon item</comment>
+    <value>استعادة عرض الحاوية</value>
+    <comment>ribbon clean</comment>
   </data>
   <data name="ribRestoreAutosizeButton_Screentip" xml:space="preserve">
     <value>إعادة تعيين العرض التلقائي لجميع الحاويات</value>
@@ -3620,8 +3620,8 @@ ISO-code then comma then language name</comment>
     <value>تحويل النص إلى حالة العنوان</value>
   </data>
   <data name="ribToggleDttmButton_Label" xml:space="preserve">
-    <value>إظهار / إخفاء الصفحة تاريخ ووقت الطوابع</value>
-    <comment>Ribbon OneMore menu item</comment>
+    <value>إظهار/إخفاء الطوابع الزمنية</value>
+    <comment>ribbon page</comment>
   </data>
   <data name="ribToggleDttmButton_Screentip" xml:space="preserve">
     <value>إظهار / إخفاء الصفحة طوابع التاريخ والوقت أسفل العنوان</value>

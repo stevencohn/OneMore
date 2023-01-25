@@ -3231,7 +3231,7 @@ Polaroid</value>
     <comment>ribbon page</comment>
   </data>
   <data name="ribNameUrlsButton_Label" xml:space="preserve">
-    <value>Replace URLs with Web Page Titles</value>
+    <value>Replace URLs with Titles</value>
     <comment>ribbon references</comment>
   </data>
   <data name="ribNameUrlsButton_Screentip" xml:space="preserve">
@@ -3415,7 +3415,7 @@ Polaroid</value>
     <comment>ribbon clean</comment>
   </data>
   <data name="ribRemoveEmptyButton_Label" xml:space="preserve">
-    <value>Remove Empty Paragraphs and Headers</value>
+    <value>Remove Empty Lines</value>
     <comment>ribbon clean</comment>
   </data>
   <data name="ribRemoveEmptyButton_Screentip" xml:space="preserve">
@@ -3495,7 +3495,7 @@ Polaroid</value>
     <comment>ribbon images</comment>
   </data>
   <data name="ribRestoreAutosizeButton_Label" xml:space="preserve">
-    <value>Restore Auto-size Container Widths</value>
+    <value>Restore Container Widths</value>
     <comment>ribbon clean</comment>
   </data>
   <data name="ribRestoreAutosizeButton_Screentip" xml:space="preserve">
@@ -3715,7 +3715,7 @@ Polaroid</value>
     <comment>ribbon edit</comment>
   </data>
   <data name="ribToggleDttmButton_Label" xml:space="preserve">
-    <value>Show/Hide Page Date and Time Stamps</value>
+    <value>Show/Hide Time Stamps</value>
     <comment>ribbon page</comment>
   </data>
   <data name="ribToggleDttmButton_Screentip" xml:space="preserve">

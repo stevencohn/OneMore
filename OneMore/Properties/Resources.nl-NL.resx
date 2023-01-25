@@ -3131,8 +3131,8 @@ Polaroid</value>
     <comment>ribbon page</comment>
   </data>
   <data name="ribNameUrlsButton_Label" xml:space="preserve">
-    <value>Vervang URL's door titels van webpagina's</value>
-    <comment>Ribbon OneMore menu item, Extras...</comment>
+    <value>Vervang URL's door titels</value>
+    <comment>ribbon references</comment>
   </data>
   <data name="ribNameUrlsButton_Screentip" xml:space="preserve">
     <value>Vervang URL's door titels van webpagina's</value>
@@ -3322,8 +3322,8 @@ Polaroid</value>
     <comment>ribbon clean</comment>
   </data>
   <data name="ribRemoveEmptyButton_Label" xml:space="preserve">
-    <value>Verwijder lege alinea's en kopteksten</value>
-    <comment>Ribbon OneMore menu item</comment>
+    <value>Verwijder lege lijnen</value>
+    <comment>ribbon clean</comment>
   </data>
   <data name="ribRemoveEmptyButton_Screentip" xml:space="preserve">
     <value>Verwijder extra lege regels tussen alinea's en verwijder lege kopteksten</value>
@@ -3401,8 +3401,8 @@ Polaroid</value>
     <comment>ribbon images</comment>
   </data>
   <data name="ribRestoreAutosizeButton_Label" xml:space="preserve">
-    <value>Herstel automatische grootte containerbreedtes</value>
-    <comment>ribbon item</comment>
+    <value>Herstel containerbreedtes</value>
+    <comment>ribbon clean</comment>
   </data>
   <data name="ribRestoreAutosizeButton_Screentip" xml:space="preserve">
     <value>Reset automatische breedte van alle containers</value>
@@ -3620,8 +3620,8 @@ Polaroid</value>
     <value>Converteer tekst naar hoofdlettergebruik</value>
   </data>
   <data name="ribToggleDttmButton_Label" xml:space="preserve">
-    <value>Toon / verberg pagina Datum- en tijdstempels</value>
-    <comment>Ribbon OneMore menu item</comment>
+    <value>Toon/verbergen tijdstempels</value>
+    <comment>ribbon page</comment>
   </data>
   <data name="ribToggleDttmButton_Screentip" xml:space="preserve">
     <value>Toon / verberg pagina datum- en tijdstempels onder titel</value>

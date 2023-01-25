@@ -3126,8 +3126,8 @@ Polaroïd</value>
     <comment>ribbon page</comment>
   </data>
   <data name="ribNameUrlsButton_Label" xml:space="preserve">
-    <value>Remplacer les URL par des titres de page Web</value>
-    <comment>Ribbon OneMore menu item, Extras...</comment>
+    <value>Remplacer les URL par des titres</value>
+    <comment>ribbon references</comment>
   </data>
   <data name="ribNameUrlsButton_Screentip" xml:space="preserve">
     <value>Remplacer les URL par des titres de page Web</value>
@@ -3317,8 +3317,8 @@ Polaroïd</value>
     <comment>ribbon clean</comment>
   </data>
   <data name="ribRemoveEmptyButton_Label" xml:space="preserve">
-    <value>Supprimer les paragraphes et les en-têtes vides</value>
-    <comment>Ribbon OneMore menu item</comment>
+    <value>Supprimer les lignes vides</value>
+    <comment>ribbon clean</comment>
   </data>
   <data name="ribRemoveEmptyButton_Screentip" xml:space="preserve">
     <value>Supprimer les lignes vides supplémentaires entre les paragraphes et supprimer les en-têtes vides</value>
@@ -3396,8 +3396,8 @@ Polaroïd</value>
     <comment>ribbon images</comment>
   </data>
   <data name="ribRestoreAutosizeButton_Label" xml:space="preserve">
-    <value>Restaurer les largeurs de conteneurs de taille automatique</value>
-    <comment>ribbon item</comment>
+    <value>Restaurer les largeurs de conteneurs</value>
+    <comment>ribbon clean</comment>
   </data>
   <data name="ribRestoreAutosizeButton_Screentip" xml:space="preserve">
     <value>Réinitialiser la largeur automatique de tous les conteneurs</value>
@@ -3615,8 +3615,8 @@ Polaroïd</value>
     <value>Convertir le texte en casse du titre</value>
   </data>
   <data name="ribToggleDttmButton_Label" xml:space="preserve">
-    <value>Afficher / masquer la date et l'heure de la page</value>
-    <comment>Ribbon OneMore menu item</comment>
+    <value>Afficher / masquer les horodatages</value>
+    <comment>ribbon page</comment>
   </data>
   <data name="ribToggleDttmButton_Screentip" xml:space="preserve">
     <value>Afficher / masquer la date et l'heure de la page sous le titre</value>
