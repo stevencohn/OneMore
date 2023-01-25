@@ -962,8 +962,20 @@
     <value>التقويم</value>
     <comment>emoji</comment>
   </data>
+  <data name="Emoji_CheckMark" xml:space="preserve">
+    <value>علامة الاختيار</value>
+    <comment>emoji</comment>
+  </data>
   <data name="Emoji_Circle" xml:space="preserve">
     <value>دائرة</value>
+    <comment>emoji</comment>
+  </data>
+  <data name="Emoji_Cloud" xml:space="preserve">
+    <value>سحاب</value>
+    <comment>emoji</comment>
+  </data>
+  <data name="Emoji_Copyright" xml:space="preserve">
+    <value>حقوق النشر</value>
     <comment>emoji</comment>
   </data>
   <data name="Emoji_CrossMark" xml:space="preserve">
@@ -976,6 +988,10 @@
   </data>
   <data name="Emoji_Email" xml:space="preserve">
     <value>البريد الإلكتروني</value>
+    <comment>emoji</comment>
+  </data>
+  <data name="Emoji_Eyes" xml:space="preserve">
+    <value>عيون</value>
     <comment>emoji</comment>
   </data>
   <data name="Emoji_Family" xml:space="preserve">
@@ -1002,6 +1018,10 @@
     <value>مجلة</value>
     <comment>emoji</comment>
   </data>
+  <data name="Emoji_LeftwardsArrow" xml:space="preserve">
+    <value>سهم لليسار</value>
+    <comment>emoji</comment>
+  </data>
   <data name="Emoji_Memo" xml:space="preserve">
     <value>مذكرة</value>
     <comment>emoji</comment>
@@ -1016,6 +1036,14 @@
   </data>
   <data name="Emoji_Pushpin" xml:space="preserve">
     <value>دبوس التثبيت</value>
+    <comment>emoji</comment>
+  </data>
+  <data name="Emoji_RightwardsArrow" xml:space="preserve">
+    <value>سهم لليمين</value>
+    <comment>emoji</comment>
+  </data>
+  <data name="Emoji_Section" xml:space="preserve">
+    <value>الجزء</value>
     <comment>emoji</comment>
   </data>
   <data name="Emoji_Shazam" xml:space="preserve">
@@ -1053,6 +1081,18 @@
   <data name="Emoji_Watch" xml:space="preserve">
     <value>راقب</value>
     <comment>emoji</comment>
+  </data>
+  <data name="Emoji_XMark" xml:space="preserve">
+    <value>X مارك</value>
+    <comment>emoji</comment>
+  </data>
+  <data name="EmojiDialog.Text" xml:space="preserve">
+    <value>TItle Emojis</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="EmojiDialog_introLabel.Text" xml:space="preserve">
+    <value>حدد أو أكثر من الرموز التعبيرية لإضافتها إلى عنوان الصفحة</value>
+    <comment>instructions</comment>
   </data>
   <data name="Envelope" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>emoji\envelope.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -1277,6 +1317,9 @@
   </data>
   <data name="Hammer" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>emoji\hammer.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="HasActiveMedia" xml:space="preserve">
+    <value>لا يمكن استدعاء أوامر OneMore أثناء وجود تسجيل نشط. الرجاء إيقاف التسجيل وحاول مرة أخرى.</value>
   </data>
   <data name="HighlightFormulaCommand_NoFormulas" xml:space="preserve">
     <value>لا توجد صيغ في هذه الصفحة</value>
@@ -2159,6 +2202,10 @@ ISO-code then comma then language name</comment>
     <value>لقطة الشاشة</value>
     <comment>Screen clipping citation</comment>
   </data>
+  <data name="RemoveCitations_From" xml:space="preserve">
+    <value>من</value>
+    <comment>prefix word</comment>
+  </data>
   <data name="RemoveDuplicatesDialog.Text" xml:space="preserve">
     <value>إزالة الصفحات المكررة</value>
     <comment>dialog title</comment>
@@ -2331,13 +2378,25 @@ ISO-code then comma then language name</comment>
     <value>إضافة تعليق</value>
     <comment>Ribbon OneMore menu item, Add caption to selected image</comment>
   </data>
+  <data name="ribAddCaptionButton_Screentip" xml:space="preserve">
+    <value>أضف تعليقًا على الصورة المحددة</value>
+    <comment>ribbon images</comment>
+  </data>
   <data name="ribAddFavoritePageButton_Label" xml:space="preserve">
     <value>أضف الصفحة الحالية</value>
     <comment>favorites menu command</comment>
   </data>
+  <data name="ribAddFavoritePageButton_Screentip" xml:space="preserve">
+    <value>أضف الصفحة الحالية إلى المفضلة</value>
+    <comment>ribbon favorites</comment>
+  </data>
   <data name="ribAddFavoriteSectionButton_Label" xml:space="preserve">
     <value>اضافة الى المفضلة</value>
     <comment>ribbon</comment>
+  </data>
+  <data name="ribAddFavoriteSectionButton_Screentip" xml:space="preserve">
+    <value>إضافة قسم إلى قائمة المفضلة</value>
+    <comment>section context menu</comment>
   </data>
   <data name="ribAddFootnoteButton_Label" xml:space="preserve">
     <value>أضف حاشية سفلية</value>
@@ -2358,6 +2417,10 @@ ISO-code then comma then language name</comment>
   <data name="ribAnalyzeButton_Label" xml:space="preserve">
     <value>تحليل تخزين البيانات</value>
     <comment>ribbon item</comment>
+  </data>
+  <data name="ribAnalyzeButton_Screentip" xml:space="preserve">
+    <value>قم بإنشاء تقرير عن التخزين المستخدم بواسطة القسم أو الكمبيوتر الدفتري</value>
+    <comment>ribbon extras</comment>
   </data>
   <data name="ribApplyStyle0Button_Label" xml:space="preserve">
     <value>تطبيق النمط 1</value>
@@ -2399,21 +2462,17 @@ ISO-code then comma then language name</comment>
     <value>تطبيق الأنماط على الصفحة</value>
     <comment>Ribbon Custom Styles menu item, apply all custom style to page</comment>
   </data>
+  <data name="ribApplyStylesButton_Screentip" xml:space="preserve">
+    <value>تطبيق الأنماط المخصصة على كافة المحتويات في هذه الصفحة</value>
+    <comment>ribbon styles</comment>
+  </data>
   <data name="ribArchiveNotebookButton_Label" xml:space="preserve">
     <value>دفتر الأرشيف</value>
     <comment>ribbon menu</comment>
   </data>
-  <data name="ribArchiveNotebookButton_Screentip" xml:space="preserve">
-    <value>اضغط على جميع الصفحات بما في ذلك المرفقات</value>
-    <comment>tip</comment>
-  </data>
   <data name="ribArchiveSectionButton_Label" xml:space="preserve">
     <value>قسم الأرشيف</value>
     <comment>ribbon menu</comment>
-  </data>
-  <data name="ribArchiveSectionButton_Screentip" xml:space="preserve">
-    <value>اضغط على جميع الصفحات بما في ذلك المرفقات</value>
-    <comment>tip</comment>
   </data>
   <data name="ribArrangeContainersButton_Label" xml:space="preserve">
     <value>ترتيب الحاويات</value>
@@ -2450,17 +2509,33 @@ ISO-code then comma then language name</comment>
     <value>تغيير تباعد الجمل</value>
     <comment>clean menu item</comment>
   </data>
+  <data name="ribBreakingButton_Screentip" xml:space="preserve">
+    <value>قم بالتبديل بين مسافة واحدة أو مسافتين بين الجمل</value>
+    <comment>ribbon clean NODUP</comment>
+  </data>
   <data name="ribCalendarButton_Label" xml:space="preserve">
     <value>تقويم OneMore</value>
     <comment>Ribbon OneMore-Calendar command NODUP</comment>
+  </data>
+  <data name="ribCalendarButton_Screentip" xml:space="preserve">
+    <value>افتح تطبيق OneMore Calendar</value>
+    <comment>ribbon main NODUP</comment>
   </data>
   <data name="ribCaptionAttachmentsButton_Label" xml:space="preserve">
     <value>مرفقات التسمية التوضيحية</value>
     <comment>ribbon item</comment>
   </data>
+  <data name="ribCaptionAttachmentsButton_Screentip" xml:space="preserve">
+    <value>أضف تعليقًا على كل مرفق في الصفحة</value>
+    <comment>ribbon page</comment>
+  </data>
   <data name="ribChangePageColorButton_Label" xml:space="preserve">
     <value>تغيير سمة الصفحة</value>
     <comment>Ribbon Custom Styles menu item, set page background color</comment>
+  </data>
+  <data name="ribChangePageColorButton_Screentip" xml:space="preserve">
+    <value>تطبيق الأنماط ولون الخلفية على الصفحة</value>
+    <comment>ribbon styles NODUP</comment>
   </data>
   <data name="ribCheckForUpdatesButton_Label" xml:space="preserve">
     <value>تحقق من وجود تحديثات</value>
@@ -2477,6 +2552,10 @@ ISO-code then comma then language name</comment>
     <value>مسح لون الخلفية</value>
     <comment>ribbon menu item</comment>
   </data>
+  <data name="ribClearBackgroundButton_Screentip" xml:space="preserve">
+    <value>أعد تعيين لون خلفية الصفحة</value>
+    <comment>ribbon clean</comment>
+  </data>
   <data name="ribClearLogButton_Label" xml:space="preserve">
     <value>مسح ملف السجل</value>
     <comment>not a menu, hotkey only</comment>
@@ -2484,13 +2563,25 @@ ISO-code then comma then language name</comment>
   <data name="ribClearTableShadingButton_Label" xml:space="preserve">
     <value>مسح كافة أنماط الجدول</value>
   <comment>ribbon item</comment></data>
+  <data name="ribClearTableShadingButton_Screentip" xml:space="preserve">
+    <value>إعادة تعيين التظليل في كل الخلايا في الجدول الحالي</value>
+    <comment>ribbon table styles</comment>
+  </data>
   <data name="ribCollapseContentButton_Label" xml:space="preserve">
     <value>طي مخطط تفصيلي</value>
     <comment>ribbon item</comment>
   </data>
+  <data name="ribCollapseContentButton_Screentip" xml:space="preserve">
+    <value>تصغير جميع العناوين ذات المحتوى ذي المسافة البادئة</value>
+    <comment>ribbon page</comment>
+  </data>
   <data name="ribCollapsePagesButton_Label" xml:space="preserve">
     <value>تصغير الصفحات</value>
     <comment>Ribbon OneMore menu item</comment>
+  </data>
+  <data name="ribCollapsePagesButton_Screentip" xml:space="preserve">
+    <value>طي الصفحات الفرعية في لوحة تصفح الصفحة</value>
+    <comment>ribbon extras</comment>
   </data>
   <data name="ribColorizeMenu_Label" xml:space="preserve">
     <value>تلوين</value>
@@ -2499,9 +2590,17 @@ ISO-code then comma then language name</comment>
   <data name="ribCommandPaletteButton_Label" xml:space="preserve">
     <value>لوحة القيادة</value>
   <comment>ribbon item</comment></data>
+  <data name="ribCommandPaletteButton_Screentip" xml:space="preserve">
+    <value>افتح نافذة لوحة الأوامر</value>
+    <comment>ribbon main</comment>
+  </data>
   <data name="ribCompleteReminderButton_Label" xml:space="preserve">
     <value>تذكير كامل</value>
     <comment>ribbon button</comment>
+  </data>
+  <data name="ribCompleteReminderButton_Screentip" xml:space="preserve">
+    <value>ضع علامة على تذكير الفقرة كمكتمل</value>
+    <comment>ribbon reminders</comment>
   </data>
   <data name="ribCopyAcrossButton_Label" xml:space="preserve">
     <value>نسخ عبر</value>
@@ -2511,9 +2610,17 @@ ISO-code then comma then language name</comment>
     <value>نسخ باسم Markdown</value>
     <comment>ribbon item</comment>
   </data>
+  <data name="ribCopyAsMarkdownButton_Screentip" xml:space="preserve">
+    <value>نسخ حدد المحتوى باعتباره تخفيض السعر</value>
+    <comment>ribbon edit</comment>
+  </data>
   <data name="ribCopyDownButton_Label" xml:space="preserve">
     <value>انسخ</value>
     <comment>ribbon</comment>
+  </data>
+  <data name="ribCopyDownButton_Screentip" xml:space="preserve">
+    <value>انسخ المحتوى أسفل الأعمدة المحددة</value>
+    <comment>ribbon table</comment>
   </data>
   <data name="ribCopyFolderButton_Label" xml:space="preserve">
     <value>مجموعة قسم النسخ</value>
@@ -2523,21 +2630,41 @@ ISO-code then comma then language name</comment>
     <value>نسخ الرابط إلى الصفحة</value>
     <comment>ribbon item</comment>
   </data>
+  <data name="ribCopyLinkToPageButton_Screentip" xml:space="preserve">
+    <value>انسخ ارتباطًا تشعبيًا إلى الصفحة الحالية</value>
+    <comment>ribbon references</comment>
+  </data>
   <data name="ribCopyLinkToParagraphButton_Label" xml:space="preserve">
     <value>نسخ الرابط إلى الفقرة</value>
     <comment>ribbon item</comment>
+  </data>
+  <data name="ribCopyLinkToParagraphButton_Screentip" xml:space="preserve">
+    <value>انسخ ارتباطًا تشعبيًا إلى الفقرة الحالية</value>
+    <comment>ribbon references</comment>
   </data>
   <data name="ribCrawlWebPageButton_Label" xml:space="preserve">
     <value>استيراد ارتباطات تشعبية</value>
     <comment>ribbon item</comment>
   </data>
+  <data name="ribCrawlWebPageButton_Screentip" xml:space="preserve">
+    <value>استيراد الارتباطات التشعبية كصفحات جديدة</value>
+    <comment>ribbon file</comment>
+  </data>
   <data name="ribCreatePagesButton_Label" xml:space="preserve">
     <value>قم بإنشاء صفحات من القائمة</value>
     <comment>ribbon item</comment>
   </data>
+  <data name="ribCreatePagesButton_Screentip" xml:space="preserve">
+    <value>إنشاء صفحات جديدة باستخدام عناصر القائمة كعناوين</value>
+    <comment>ribbon page</comment>
+  </data>
   <data name="ribCropImageButton_Label" xml:space="preserve">
     <value>اقتصاص وتدوير</value>
     <comment>Ribbon OneMore menu item, Images...</comment>
+  </data>
+  <data name="ribCropImageButton_Screentip" xml:space="preserve">
+    <value>اقتصاص وتدوير الصورة المحددة</value>
+    <comment>ribbon images NODUP</comment>
   </data>
   <data name="ribCustomSnippetsMenu_Label" xml:space="preserve">
     <value>مقتطفاتي المخصصة</value>
@@ -2575,6 +2702,10 @@ ISO-code then comma then language name</comment>
     <value>حذف تذكير</value>
     <comment>ribbon button</comment>
   </data>
+  <data name="ribDeleteReminderButton_Screentip" xml:space="preserve">
+    <value>حذف تذكير من الفقرة الحالية</value>
+    <comment>ribbon reminders</comment>
+  </data>
   <data name="ribDiagnosticsButton_Label" xml:space="preserve">
     <value>تفريغ التشخيصات في السجل</value>
     <comment>not a menu, hotkey only</comment>
@@ -2582,6 +2713,10 @@ ISO-code then comma then language name</comment>
   <data name="ribDisableSpellCheckButton_Label" xml:space="preserve">
     <value>تعطيل التدقيق الإملائي</value>
     <comment>Ribbon OneMore menu item, no spell check on this page</comment>
+  </data>
+  <data name="ribDisableSpellCheckButton_Screentip" xml:space="preserve">
+    <value>تعطيل التدقيق الإملائي داخل المحتوى المحدد</value>
+    <comment>ribbon edit</comment>
   </data>
   <data name="ribDuplicateLineAboveButton_Label" xml:space="preserve">
     <value>فقرة مكررة أعلاه</value>
@@ -2591,6 +2726,18 @@ ISO-code then comma then language name</comment>
     <value>فقرة مكررة</value>
     <comment>ribbon item</comment>
   </data>
+  <data name="ribDuplicateLineButton_Screentip" xml:space="preserve">
+    <value>كرر الفقرة الحالية</value>
+    <comment>ribbon edit</comment>
+  </data>
+  <data name="ribDuplicatePageButton_Label" xml:space="preserve">
+    <value>صفحة مكررة</value>
+    <comment>page context menu</comment>
+  </data>
+  <data name="ribDuplicatePageButton_Screentip" xml:space="preserve">
+    <value>قم بتكرار الصفحة الحالية</value>
+    <comment>ribbon page</comment>
+  </data>
   <data name="ribEditMenu_Label" xml:space="preserve">
     <value>تعديل</value>
     <comment>OneMore Ribbon menu item</comment>
@@ -2599,9 +2746,17 @@ ISO-code then comma then language name</comment>
     <value>تحرير الأنماط</value>
     <comment>Ribbon Custom Styles menu item, edit custom styles</comment>
   </data>
+  <data name="ribEditStylesButton_Screentip" xml:space="preserve">
+    <value>تحرير الأنماط المخصصة</value>
+    <comment>ribbon styles</comment>
+  </data>
   <data name="ribEditTableThemesButton_Label" xml:space="preserve">
     <value>تحرير أنماط الجدول المخصصة</value>
     <comment>table styles ribbon gallery button</comment>
+  </data>
+  <data name="ribEditTableThemesButton_Screentip" xml:space="preserve">
+    <value>تحرير أنماط الجدول المخصصة</value>
+    <comment>ribbon table styles</comment>
   </data>
   <data name="ribEmbedSubpageButton_Label" xml:space="preserve">
     <value>تضمين الصفحة</value>
@@ -2610,6 +2765,14 @@ ISO-code then comma then language name</comment>
   <data name="ribEmbedSubpageButton_Screentip" xml:space="preserve">
     <value>تضمين محتوى صفحة أخرى في الصفحة الحالية</value>
     <comment>ribbon item screentip</comment>
+  </data>
+  <data name="ribEmojiButton_Label" xml:space="preserve">
+    <value>إضافة رمز تعبيري لعنوان الصفحة</value>
+    <comment>Ribbon OneMore menu item, Extras... EDIT</comment>
+  </data>
+  <data name="ribEmojiButton_Screentip" xml:space="preserve">
+    <value>قبل عنوان الصفحة مع الرموز التعبيرية</value>
+    <comment>ribbon page</comment>
   </data>
   <data name="ribEnableSpellCheckButton_Label" xml:space="preserve">
     <value>تمكين التدقيق الإملائي</value>
@@ -2622,6 +2785,10 @@ ISO-code then comma then language name</comment>
   <data name="ribExpandContentButton_Label" xml:space="preserve">
     <value>قم بتوسيع المخطط التفصيلي</value>
     <comment>ribbon item</comment>
+  </data>
+  <data name="ribExpandContentButton_Screentip" xml:space="preserve">
+    <value>قم بتوسيع كافة العناوين ذات المحتوى ذي المسافة البادئة</value>
+    <comment>ribbon page</comment>
   </data>
   <data name="ribExpandSnippetButton_Label" xml:space="preserve">
     <value>قم بتوسيع المقتطف من الاسم</value>
@@ -2651,6 +2818,10 @@ ISO-code then comma then language name</comment>
     <value>تعبئة عرضية</value>
     <comment>ribbon</comment>
   </data>
+  <data name="ribFillAcrossButton_Screentip" xml:space="preserve">
+    <value>تسلسل التعبئة عبر الصفوف المحددة</value>
+    <comment>ribbon table</comment>
+  </data>
   <data name="ribFillDownButton_Label" xml:space="preserve">
     <value>تعبئة لأسفل</value>
     <comment>ribbon</comment>
@@ -2663,17 +2834,33 @@ ISO-code then comma then language name</comment>
     <value>قم بإنهاء الارتباط ثنائي الاتجاه</value>
     <comment>ribbon item</comment>
   </data>
+  <data name="ribFinishBiLinkButton_Screentip" xml:space="preserve">
+    <value>إنهاء الارتباط بين المرساة والموقع الحالي</value>
+    <comment>ribbon references </comment>
+  </data>
   <data name="ribFitGridToTextButton_Label" xml:space="preserve">
     <value>احتواء الشبكة على النص</value>
     <comment>ribbon item</comment>
+  </data>
+  <data name="ribFitGridToTextButton_Screentip" xml:space="preserve">
+    <value>تغيير حجم شبكة الخلفية لتتناسب مع حجم الخط المشترك</value>
+    <comment>ribbon page NODUP</comment>
   </data>
   <data name="ribGetImagesButton_Label" xml:space="preserve">
     <value>استبدل عناوين URL بالصور</value>
     <comment>Ribbon OneMore menu item, Extras...</comment>
   </data>
+  <data name="ribGetImagesButton_Screentip" xml:space="preserve">
+    <value>تنزيل وإدراج الصور المرجعية</value>
+    <comment>ribbon references</comment>
+  </data>
   <data name="ribHighlightButton_Label" xml:space="preserve">
     <value>قلم تمييز دوار</value>
     <comment>menu</comment>
+  </data>
+  <data name="ribHighlightButton_Screentip" xml:space="preserve">
+    <value>نص تمييزي باستخدام أداة تمييز دوارة</value>
+    <comment>ribbon edit</comment>
   </data>
   <data name="ribHighlightFormulaButton_Label" xml:space="preserve">
     <value>تسليط الضوء على الصيغة</value>
@@ -2691,13 +2878,25 @@ ISO-code then comma then language name</comment>
     <value>استيراد</value>
     <comment>ribbon item</comment>
   </data>
+  <data name="ribImportButton_Screentip" xml:space="preserve">
+    <value>قم باستيراد ملف</value>
+    <comment>ribbon file NODUP</comment>
+  </data>
   <data name="ribImportOutlookTasksButton_Label" xml:space="preserve">
     <value>استيراد المهام من Outlook</value>
     <comment>ribbon Reminders item</comment>
   </data>
+  <data name="ribImportOutlookTasksButton_Screentip" xml:space="preserve">
+    <value>استيراد معلومات المهمة من Outlook</value>
+    <comment>ribbon reminders NODUP</comment>
+  </data>
   <data name="ribImportWebButton_Label" xml:space="preserve">
     <value>استيراد صفحة ويب</value>
     <comment>ribbon</comment>
+  </data>
+  <data name="ribImportWebButton_Screentip" xml:space="preserve">
+    <value>استيراد صفحة ويب إعطاء عنوان URL</value>
+    <comment>ribbon file NODUP</comment>
   </data>
   <data name="ribIncreaseFontSizeButton_Label" xml:space="preserve">
     <value>زيادة حجم الخط</value>
@@ -2711,6 +2910,10 @@ ISO-code then comma then language name</comment>
     <value>الحالة الزرقاء</value>
     <comment>Ribbon OneMore menu item, Snippets...</comment>
   </data>
+  <data name="ribInsertBlueStatusButton_Screentip" xml:space="preserve">
+    <value>أدخل تسمية الحالة الزرقاء</value>
+    <comment>ribbon snippets</comment>
+  </data>
   <data name="ribInsertBoxButton_Label" xml:space="preserve">
     <value>مربع الكتابة</value>
     <comment>ribbon</comment>
@@ -2723,13 +2926,25 @@ ISO-code then comma then language name</comment>
     <value>مسار التنقل</value>
     <comment>ribbon snippets menu</comment>
   </data>
+  <data name="ribInsertBreadcrumbButton_Screentip" xml:space="preserve">
+    <value>أدخل مسار التنقل لموقع الصفحة في أعلى الصفحة</value>
+    <comment>ribbon snippets</comment>
+  </data>
   <data name="ribInsertCalendarButton_Label" xml:space="preserve">
     <value>تقويم</value>
     <comment>ribbon button</comment>
   </data>
+  <data name="ribInsertCalendarButton_Screentip" xml:space="preserve">
+    <value>أدخل تقويم شهرى</value>
+    <comment>ribbon snippets</comment>
+  </data>
   <data name="ribInsertCellsButton_Label" xml:space="preserve">
     <value>أدخل خلايا الجدول</value>
     <comment>ribbon item</comment>
+  </data>
+  <data name="ribInsertCellsButton_Screentip" xml:space="preserve">
+    <value>أدخل الخلايا في الجدول الحالي</value>
+    <comment>ribbon table</comment>
   </data>
   <data name="ribInsertCodeBlockButton_Label" xml:space="preserve">
     <value>كتلة التعليمات البرمجية</value>
@@ -2763,25 +2978,49 @@ ISO-code then comma then language name</comment>
     <value>توسيع الانهيار</value>
     <comment>Ribbon OneMore menu item, Snippets...</comment>
   </data>
+  <data name="ribInsertExpandButton_Screentip" xml:space="preserve">
+    <value>أدخل عنصر تحكم قابل للطي</value>
+    <comment>ribbon snippets</comment>
+  </data>
   <data name="ribInsertGrayStatusButton_Label" xml:space="preserve">
     <value>الحالة الرمادية</value>
     <comment>Ribbon OneMore menu item, Snippets...</comment>
+  </data>
+  <data name="ribInsertGrayStatusButton_Screentip" xml:space="preserve">
+    <value>أدخل تسمية الحالة الرمادية</value>
+    <comment>ribbon snippets</comment>
   </data>
   <data name="ribInsertGreenStatusButton_Label" xml:space="preserve">
     <value>الحالة الخضراء</value>
     <comment>Ribbon OneMore menu item, Snippets...</comment>
   </data>
+  <data name="ribInsertGreenStatusButton_Screentip" xml:space="preserve">
+    <value>أدخل تسمية الحالة الخضراء</value>
+    <comment>ribbon snippets</comment>
+  </data>
   <data name="ribInsertInfoBlockButton_Label" xml:space="preserve">
     <value>كتلة المعلومات</value>
     <comment>Ribbon OneMore menu item, Snippets...</comment>
+  </data>
+  <data name="ribInsertInfoBlockButton_Screentip" xml:space="preserve">
+    <value>أدخل كتلة إعلامية</value>
+    <comment>ribbon snippets</comment>
   </data>
   <data name="ribInsertQRButton_Label" xml:space="preserve">
     <value>أدخل رمز الاستجابة السريعة</value>
     <comment>ribbon button</comment>
   </data>
+  <data name="ribInsertQRButton_Screentip" xml:space="preserve">
+    <value>أدخل رمز الاستجابة السريعة يمثل النص المحدد</value>
+    <comment>ribbon references</comment>
+  </data>
   <data name="ribInsertRedStatusButton_Label" xml:space="preserve">
     <value>الحالة الحمراء</value>
     <comment>Ribbon OneMore menu item, Snippets...</comment>
+  </data>
+  <data name="ribInsertRedStatusButton_Screentip" xml:space="preserve">
+    <value>أدخل تسمية الحالة الحمراء</value>
+    <comment>ribbon snippets</comment>
   </data>
   <data name="ribInsertSingleLineButton_Label" xml:space="preserve">
     <value>خط أفقي</value>
@@ -2795,33 +3034,65 @@ ISO-code then comma then language name</comment>
     <value>أدخل الموقت</value>
     <comment>ribbon item</comment>
   </data>
+  <data name="ribInsertTimerButton_Screentip" xml:space="preserve">
+    <value>أدخل قيمة المؤقت الحالي</value>
+    <comment>ribbon extras</comment>
+  </data>
   <data name="ribInsertTocButton_Label" xml:space="preserve">
     <value>جدول المحتويات</value>
     <comment>Ribbon OneMore menu item, Extras...</comment>
+  </data>
+  <data name="ribInsertTocButton_Screentip" xml:space="preserve">
+    <value>أدخل جدول محتويات عناوين في أعلى الصفحة</value>
+    <comment>ribbon snippets</comment>
   </data>
   <data name="ribInsertWarnBlockButton_Label" xml:space="preserve">
     <value>كتلة تحذير</value>
     <comment>Ribbon OneMore menu item, Snippets...</comment>
   </data>
+  <data name="ribInsertWarnBlockButton_Screentip" xml:space="preserve">
+    <value>أدخل كتلة تحذير</value>
+    <comment>ribbon snippets</comment>
+  </data>
   <data name="ribInsertYellowStatusButton_Label" xml:space="preserve">
     <value>الحالة الصفراء</value>
     <comment>Ribbon OneMore menu item, Snippets...</comment>
+  </data>
+  <data name="ribInsertYellowStatusButton_Screentip" xml:space="preserve">
+    <value>أدخل تسمية الحالة الصفراء</value>
+    <comment>ribbon snippets</comment>
   </data>
   <data name="ribInvertSelectionButton_Label" xml:space="preserve">
     <value>اختيار المقلوب</value>
     <comment>ribbon button</comment>
   </data>
+  <data name="ribInvertSelectionButton_Screentip" xml:space="preserve">
+    <value>اختيار المقلوب</value>
+    <comment>ribbon edit</comment>
+  </data>
   <data name="ribJoinParagraphButton_Label" xml:space="preserve">
     <value>الانضمام إلى الفقرة</value>
     <comment>ribbon button</comment>
+  </data>
+  <data name="ribJoinParagraphButton_Screentip" xml:space="preserve">
+    <value>ربط الفقرات المحددة</value>
+    <comment>ribbon edit</comment>
   </data>
   <data name="ribLinkReferencesButton_Label" xml:space="preserve">
     <value>مراجع الخريطة لهذه الصفحة</value>
     <comment>ribbon button</comment>
   </data>
+  <data name="ribLinkReferencesButton_Screentip" xml:space="preserve">
+    <value>إنشاء روابط ثنائية الاتجاه لهذه الصفحة بناءً على عنوانها</value>
+    <comment>ribbon references</comment>
+  </data>
   <data name="ribLoadStylesButton_Label" xml:space="preserve">
     <value>أنماط التحميل</value>
     <comment>ribbon item</comment>
+  </data>
+  <data name="ribLoadStylesButton_Screentip" xml:space="preserve">
+    <value>تحميل أنماط مخصصة من ملف</value>
+    <comment>ribbon styles</comment>
   </data>
   <data name="ribLowercaseButton_Label" xml:space="preserve">
     <value>لأحرف صغيرة</value>
@@ -2847,21 +3118,41 @@ ISO-code then comma then language name</comment>
     <value>إنشاء خريطة الصفحة</value>
     <comment>ribbon button</comment>
   </data>
+  <data name="ribMapButton_Screentip" xml:space="preserve">
+    <value>الإبلاغ عن جميع الصفحات التي تحتوي على روابط لصفحات أخرى</value>
+    <comment>ribbon references</comment>
+  </data>
   <data name="ribMergeButton_Label" xml:space="preserve">
     <value>دمج الصفحات</value>
     <comment>Ribbon OneMore menu item, Extras...</comment>
+  </data>
+  <data name="ribMergeButton_Screentip" xml:space="preserve">
+    <value>دمج الصفحات المحددة</value>
+    <comment>ribbon page</comment>
   </data>
   <data name="ribNameUrlsButton_Label" xml:space="preserve">
     <value>استبدل عناوين URL بعناوين صفحات الويب</value>
     <comment>Ribbon OneMore menu item, Extras...</comment>
   </data>
+  <data name="ribNameUrlsButton_Screentip" xml:space="preserve">
+    <value>استبدل عناوين URL بعناوين صفحات الويب</value>
+    <comment>ribbon references</comment>
+  </data>
   <data name="ribNewStyleButton_Label" xml:space="preserve">
     <value>إنشاء نمط من التحديد</value>
     <comment>Ribbon Custom Styles menu item, create new style</comment>
   </data>
+  <data name="ribNewStyleButton_Screentip" xml:space="preserve">
+    <value>قم بإنشاء نمط جديد من التحديد الحالي</value>
+    <comment>ribbon styles</comment>
+  </data>
   <data name="ribNoSpellCheckButton_Screentip" xml:space="preserve">
     <value>تعطيل التدقيق الإملائي للصفحة بأكملها (F4)</value>
     <comment>Ribbon OneMore menu item, no spell check on this page</comment>
+  </data>
+  <data name="ribNotebookWordCountButton_Label" xml:space="preserve">
+    <value>مجموع الكلمات في المفكرة</value>
+    <comment>ribbon</comment>
   </data>
   <data name="ribNumberingMenu_Label" xml:space="preserve">
     <value>الترقيم</value>
@@ -2895,12 +3186,20 @@ ISO-code then comma then language name</comment>
     <value>فتح الصورة باستخدام</value>
     <comment>Ribbon OneMore menu item</comment>
   </data>
+  <data name="ribOpenImageWithButton_Screentip" xml:space="preserve">
+    <value>افتح الصورة المحددة باستخدام محرر خارجي</value>
+    <comment>ribbon images</comment>
+  </data>
   <data name="ribOpenLogButton_Label" xml:space="preserve">
     <value>افتح ملف السجل</value>
   </data>
   <data name="ribOutlineButton_Label" xml:space="preserve">
     <value>تنسيق المخطط التفصيلي</value>
     <comment>Ribbon OneMore menu item, Extras...</comment>
+  </data>
+  <data name="ribOutlineButton_Screentip" xml:space="preserve">
+    <value>ترقيم العناوين في هذه الصفحة</value>
+    <comment>ribbon numbering</comment>
   </data>
   <data name="ribPageMenu_Label" xml:space="preserve">
     <value>صفحة</value>
@@ -2909,6 +3208,10 @@ ISO-code then comma then language name</comment>
   <data name="ribPasteCellsButton_Label" xml:space="preserve">
     <value>لصق الخلايا</value>
     <comment>ribbon</comment>
+  </data>
+  <data name="ribPasteCellsButton_Screentip" xml:space="preserve">
+    <value>لصق المحتوى في الخلايا الموجودة</value>
+    <comment>ribbon table</comment>
   </data>
   <data name="ribPasteRtfButton_Label" xml:space="preserve">
     <value>لصق نص منسق</value>
@@ -2946,6 +3249,10 @@ ISO-code then comma then language name</comment>
     <value>أدخل النطق</value>
     <comment>Ribbon OneMore menu item</comment>
   </data>
+  <data name="ribPronunciateButton_Screentip" xml:space="preserve">
+    <value>أدخل النطق الصوتي للنص المحدد</value>
+    <comment>ribbon edit</comment>
+  </data>
   <data name="ribProofingMenu_Label" xml:space="preserve">
     <value>لغة التدقيق</value>
     <comment>ribbon menu</comment>
@@ -2974,9 +3281,17 @@ ISO-code then comma then language name</comment>
     <value>قم بتحديث مراجع الصفحة</value>
     <comment>ribbon item</comment>
   </data>
+  <data name="ribRefreshPageLinksButton_Screentip" xml:space="preserve">
+    <value>تحديث مراجع الارتباط ثنائي الاتجاه</value>
+    <comment>ribbon references</comment>
+  </data>
   <data name="ribRemindButton_Label" xml:space="preserve">
     <value>إضافة أو تحديث التذكيرات</value>
     <comment>ribbon button</comment>
+  </data>
+  <data name="ribRemindButton_Screentip" xml:space="preserve">
+    <value>أضف أو حدّث تذكيرًا بالفقرة الحالية</value>
+    <comment>ribbon reminders</comment>
   </data>
   <data name="ribRemindersMenu_Label" xml:space="preserve">
     <value>تذكير</value>
@@ -3002,6 +3317,10 @@ ISO-code then comma then language name</comment>
     <value>إزالة الصفحات المكررة</value>
     <comment>Ribbon OneMore menu item</comment>
   </data>
+  <data name="ribRemoveDuplicatesButton_Screentip" xml:space="preserve">
+    <value>تحديد وإزالة الصفحات المكررة</value>
+    <comment>ribbon clean</comment>
+  </data>
   <data name="ribRemoveEmptyButton_Label" xml:space="preserve">
     <value>قم بإزالة الفقرات والعناوين الفارغة</value>
     <comment>Ribbon OneMore menu item</comment>
@@ -3021,6 +3340,10 @@ ISO-code then comma then language name</comment>
   <data name="ribRemoveInkButton_Label" xml:space="preserve">
     <value>إزالة الحبر</value>
     <comment>ribbon item</comment>
+  </data>
+  <data name="ribRemoveInkButton_Screentip" xml:space="preserve">
+    <value>قم بإزالة كافة الرسومات بالقلم من هذه الصفحة</value>
+    <comment>ribbon clean</comment>
   </data>
   <data name="ribRemovePageNumbersButton_Label" xml:space="preserve">
     <value>إزالة أرقام الصفحات</value>
@@ -3065,29 +3388,57 @@ ISO-code then comma then language name</comment>
     <value>تقرير ملخص التذكير</value>
     <comment>ribbon item</comment>
   </data>
+  <data name="ribReportRemindersButton_Screentip" xml:space="preserve">
+    <value>قم بإنشاء تقرير موجز للتذكيرات</value>
+    <comment>ribbon reminders</comment>
+  </data>
   <data name="ribResizeImagesButton_Label" xml:space="preserve">
     <value>تغيير حجم وتعديل</value>
     <comment>Ribbon OneMore menu item, Resize selected image(s)</comment>
+  </data>
+  <data name="ribResizeImagesButton_Screentip" xml:space="preserve">
+    <value>تغيير حجم الصور المحددة وضبطها</value>
+    <comment>ribbon images</comment>
   </data>
   <data name="ribRestoreAutosizeButton_Label" xml:space="preserve">
     <value>استعادة عرض الحاوية بحجم السيارات</value>
     <comment>ribbon item</comment>
   </data>
+  <data name="ribRestoreAutosizeButton_Screentip" xml:space="preserve">
+    <value>إعادة تعيين العرض التلقائي لجميع الحاويات</value>
+    <comment>ribbon clean</comment>
+  </data>
   <data name="ribRestoreCollapsedButton_Label" xml:space="preserve">
     <value>استعادة المخطط التفصيلي المطوي</value>
     <comment>ribbon</comment>
+  </data>
+  <data name="ribRestoreCollapsedButton_Screentip" xml:space="preserve">
+    <value>قم بتوسيع العناوين إلى الحالة المحفوظة مؤخرًا</value>
+    <comment>ribbon page</comment>
   </data>
   <data name="ribRunPluginButton_Label" xml:space="preserve">
     <value>تشغيل البرنامج المساعد</value>
     <comment>Ribbon OneMore menu item</comment>
   </data>
+  <data name="ribRunPluginButton_Screentip" xml:space="preserve">
+    <value>قم بتشغيل أو تحديد مكون إضافي مخصص</value>
+    <comment>ribbon file</comment>
+  </data>
   <data name="ribSaveCollapsedButton_Label" xml:space="preserve">
     <value>تم حفظ مخطط تفصيلي مطوي</value>
     <comment>ribbon</comment>
   </data>
+  <data name="ribSaveCollapsedButton_Screentip" xml:space="preserve">
+    <value>تم حفظ الحالة المنهارة لجميع العناوين</value>
+    <comment>ribbon page</comment>
+  </data>
   <data name="ribSaveSnippetButton_Label" xml:space="preserve">
     <value>حفظ المقتطف المخصص</value>
     <comment>ribbon button</comment>
+  </data>
+  <data name="ribSaveSnippetButton_Screentip" xml:space="preserve">
+    <value>احفظ مقتطفًا مخصصًا جديدًا من المحتوى المحدد</value>
+    <comment>ribbon snippets</comment>
   </data>
   <data name="ribSearchAndReplaceButton_Label" xml:space="preserve">
     <value>البحث والاستبدال</value>
@@ -3113,17 +3464,33 @@ ISO-code then comma then language name</comment>
     <value>تخصيص لون القسم</value>
     <comment>Context menu</comment>
   </data>
+  <data name="ribSectionWordCountButton_Label" xml:space="preserve">
+    <value>مجموع الكلمات في القسم</value>
+    <comment>ribbon</comment>
+  </data>
   <data name="ribSelectImagesButton_Label" xml:space="preserve">
     <value>حدد كل الصور</value>
     <comment>ribbon menu edit item</comment>
   </data>
+  <data name="ribSelectImagesButton_Screentip" xml:space="preserve">
+    <value>حدد كل الصور على الصفحة</value>
+    <comment>ribbon edit</comment>
+  </data>
   <data name="ribSelectStyleButton_Label" xml:space="preserve">
+    <value>حدد نص مشابه</value>
+    <comment>ribbon edit</comment>
+  </data>
+  <data name="ribSelectStyleButton_Screentip" xml:space="preserve">
     <value>حدد نصًا بتنسيق مماثل</value>
-    <comment>ribbon item</comment>
+    <comment>ribbon edit</comment>
   </data>
   <data name="ribSettingsButton_Label" xml:space="preserve">
     <value>الإعدادات</value>
     <comment>ribbon button</comment>
+  </data>
+  <data name="ribSettingsButton_Screentip" xml:space="preserve">
+    <value>افتح نافذة إعدادات OneMore</value>
+    <comment>ribbon main</comment>
   </data>
   <data name="ribShowKeyboardShortcutsButton_Label" xml:space="preserve">
     <value>اختصارات لوحة مفاتيح OneNote</value>
@@ -3149,6 +3516,10 @@ ISO-code then comma then language name</comment>
     <value>قائمة الفرز</value>
     <comment>ribbon item</comment>
   </data>
+  <data name="ribSortListButton_Screentip" xml:space="preserve">
+    <value>فرز العناصر داخل القائمة</value>
+    <comment>ribbon edit</comment>
+  </data>
   <data name="ribSortNotebooksButton_Label" xml:space="preserve">
     <value>فرز دفاتر الملاحظات</value>
     <comment>ribbon/context menu</comment>
@@ -3173,17 +3544,33 @@ ISO-code then comma then language name</comment>
     <value>تقسيم الصفحة</value>
     <comment>ribbon item</comment>
   </data>
+  <data name="ribSplitButton_Screentip" xml:space="preserve">
+    <value>تقسيم الصفحة في العنوان 1 إلى عدة صفحات</value>
+    <comment>ribbon page</comment>
+  </data>
   <data name="ribSplitTableButton_Label" xml:space="preserve">
     <value>انقسام الجدول</value>
     <comment>ribbon button</comment>
+  </data>
+  <data name="ribSplitTableButton_Screentip" xml:space="preserve">
+    <value>انقسام الجدول في الصف الحالي</value>
+    <comment>ribbon table</comment>
   </data>
   <data name="ribStartBiLinkButton_Label" xml:space="preserve">
     <value>ابدأ رابط ثنائي الاتجاه</value>
     <comment>ribbon item</comment>
   </data>
+  <data name="ribStartBiLinkButton_Screentip" xml:space="preserve">
+    <value>ابدأ ارتباط ثنائي الاتجاه</value>
+    <comment>ribbon references</comment>
+  </data>
   <data name="ribStartTimerButton_Label" xml:space="preserve">
     <value>بدء الموقت</value>
     <comment>ribbon item</comment>
+  </data>
+  <data name="ribStartTimerButton_Screentip" xml:space="preserve">
+    <value>افتح وابدأ نافذة المؤقت</value>
+    <comment>ribbon extras</comment>
   </data>
   <data name="ribStrikeoutTasksButton_Label" xml:space="preserve">
     <value>اكتمل يتوسطه خط مهام المهام</value>
@@ -3205,13 +3592,25 @@ ISO-code then comma then language name</comment>
     <value>البحث عن الصفحات ذات العلامات</value>
     <comment>menu item</comment>
   </data>
+  <data name="ribTaggedButton_Screentip" xml:space="preserve">
+    <value>ابحث عن الصفحات ذات العلامات المخصصة</value>
+    <comment>ribbon search</comment>
+  </data>
   <data name="ribTaggingButton_Label" xml:space="preserve">
     <value>صفحة العلامة</value>
     <comment>menu item</comment>
   </data>
+  <data name="ribTaggingButton_Screentip" xml:space="preserve">
+    <value>أضف علامات مخصصة لهذه الصفحة</value>
+    <comment>ribbon search</comment>
+  </data>
   <data name="ribTextToTableButton_Label" xml:space="preserve">
     <value>تحويل النص إلى جدول</value>
     <comment>Ribbon OneMore menu item, extras</comment>
+  </data>
+  <data name="ribTextToTableButton_Screentip" xml:space="preserve">
+    <value>تحويل النص المحدد إلى جدول</value>
+    <comment>ribbon table</comment>
   </data>
   <data name="ribTitlecaseButton_Label" xml:space="preserve">
     <value>إلى حالة العنوان</value>
@@ -3263,6 +3662,10 @@ ISO-code then comma then language name</comment>
   <data name="ribWordCountButton_Label" xml:space="preserve">
     <value>عدد الكلمات</value>
     <comment>Ribbon OneMore menu extras</comment>
+  </data>
+  <data name="ribWordCountButton_Screentip" xml:space="preserve">
+    <value>تقرير عدد الكلمات في هذه الصفحة</value>
+    <comment>ribbon page</comment>
   </data>
   <data name="SaveAs" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>images\saveas.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -3458,6 +3861,10 @@ ISO-code then comma then language name</comment>
   </data>
   <data name="SettingsDialog_highlightNode.Text" xml:space="preserve">
     <value>سمات تمييز</value>
+    <comment>treenode</comment>
+  </data>
+  <data name="SettingsDialog_keyboardNode.Text" xml:space="preserve">
+    <value>اختصارات لوحة المفاتيح</value>
     <comment>treenode</comment>
   </data>
   <data name="SettingsDialog_linesNode.Text" xml:space="preserve">
@@ -4075,6 +4482,9 @@ ISO-code then comma then language name</comment>
   <data name="word_Close" xml:space="preserve">
     <value>قريب</value>
   </data>
+  <data name="word_Code" xml:space="preserve">
+    <value>شفرة</value>
+  </data>
   <data name="word_Color" xml:space="preserve">
     <value>اللون</value>
   </data>
@@ -4125,6 +4535,9 @@ ISO-code then comma then language name</comment>
   </data>
   <data name="word_Language" xml:space="preserve">
     <value>لغة</value>
+  </data>
+  <data name="word_Limit" xml:space="preserve">
+    <value>حد</value>
   </data>
   <data name="word_Move" xml:space="preserve">
     <value>نقل</value>
@@ -4207,11 +4620,17 @@ ISO-code then comma then language name</comment>
   <data name="word_Text" xml:space="preserve">
     <value>نص</value>
   </data>
+  <data name="word_Total" xml:space="preserve">
+    <value>مجموع</value>
+  </data>
   <data name="word_Width" xml:space="preserve">
     <value>عرض</value>
   </data>
   <data name="word_Word" xml:space="preserve">
     <value>كلمة</value>
+  </data>
+  <data name="word_Words" xml:space="preserve">
+    <value>كلمات</value>
   </data>
   <data name="word_XML" xml:space="preserve">
     <value>XML</value>
@@ -4226,85 +4645,6 @@ ISO-code then comma then language name</comment>
   <data name="WordCountCommand_Selected" xml:space="preserve">
     <value>إجمالي الكلمات المحددة: {0}</value>
     <comment>message box</comment>
-  </data>
-  <data name="SettingsDialog_keyboardNode.Text" xml:space="preserve">
-    <value>اختصارات لوحة المفاتيح</value>
-    <comment>treenode</comment>
-  </data>
-  <data name="ribDuplicatePageButton_Label" xml:space="preserve">
-    <value>صفحة مكررة</value>
-    <comment>page context menu</comment>
-  </data>
-  <data name="word_Code" xml:space="preserve">
-    <value>شفرة</value>
-  </data>
-  <data name="Emoji_CheckMark" xml:space="preserve">
-    <value>علامة الاختيار</value>
-    <comment>emoji</comment>
-  </data>
-  <data name="Emoji_Cloud" xml:space="preserve">
-    <value>سحاب</value>
-    <comment>emoji</comment>
-  </data>
-  <data name="Emoji_Copyright" xml:space="preserve">
-    <value>حقوق النشر</value>
-    <comment>emoji</comment>
-  </data>
-  <data name="Emoji_Eyes" xml:space="preserve">
-    <value>عيون</value>
-    <comment>emoji</comment>
-  </data>
-  <data name="Emoji_LeftwardsArrow" xml:space="preserve">
-    <value>سهم لليسار</value>
-    <comment>emoji</comment>
-  </data>
-  <data name="Emoji_RightwardsArrow" xml:space="preserve">
-    <value>سهم لليمين</value>
-    <comment>emoji</comment>
-  </data>
-  <data name="Emoji_Section" xml:space="preserve">
-    <value>الجزء</value>
-    <comment>emoji</comment>
-  </data>
-  <data name="Emoji_XMark" xml:space="preserve">
-    <value>X مارك</value>
-    <comment>emoji</comment>
-  </data>
-  <data name="EmojiDialog.Text" xml:space="preserve">
-    <value>TItle Emojis</value>
-    <comment>dialog title</comment>
-  </data>
-  <data name="EmojiDialog_introLabel.Text" xml:space="preserve">
-    <value>حدد أو أكثر من الرموز التعبيرية لإضافتها إلى عنوان الصفحة</value>
-    <comment>instructions</comment>
-  </data>
-  <data name="ribEmojiButton_Label" xml:space="preserve">
-    <value>إضافة رمز تعبيري لعنوان الصفحة</value>
-    <comment>Ribbon OneMore menu item, Extras... EDIT</comment>
-  </data>
-  <data name="word_Limit" xml:space="preserve">
-    <value>حد</value>
-  </data>
-  <data name="RemoveCitations_From" xml:space="preserve">
-    <value>من</value>
-    <comment>prefix word</comment>
-  </data>
-  <data name="HasActiveMedia" xml:space="preserve">
-    <value>لا يمكن استدعاء أوامر OneMore أثناء وجود تسجيل نشط. الرجاء إيقاف التسجيل وحاول مرة أخرى.</value>
-  </data>
-  <data name="ribNotebookWordCountButton_Label" xml:space="preserve">
-    <value>مجموع الكلمات في المفكرة</value>
-    <comment>ribbon</comment>
-  </data>
-  <data name="ribSectionWordCountButton_Label" xml:space="preserve">
-    <value>مجموع الكلمات في القسم</value>
-    <comment>ribbon</comment>
-  </data>
-  <data name="word_Total" xml:space="preserve">
-    <value>مجموع</value>
-  </data>
-  <data name="word_Words" xml:space="preserve">
-    <value>كلمات</value>
   </data>
   <data name="WordCounts_Notebook" xml:space="preserve">
     <value>{0} مفكرة</value>

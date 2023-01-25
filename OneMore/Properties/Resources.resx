@@ -2640,7 +2640,7 @@ Polaroid</value>
   </data>
   <data name="ribCleanMenu_Label" xml:space="preserve">
     <value>Clean</value>
-    <comment>Ribbon OneMore menu item</comment>
+    <comment>ribbon menu</comment>
   </data>
   <data name="ribClearBackgroundButton_Label" xml:space="preserve">
     <value>Clear Background Color</value>
@@ -2697,10 +2697,6 @@ Polaroid</value>
   <data name="ribCompleteReminderButton_Screentip" xml:space="preserve">
     <value>Mark the paragraph reminder as complete</value>
     <comment>ribbon reminders</comment>
-  </data>
-  <data name="ribCopyAcrossButton_Label" xml:space="preserve">
-    <value>Copy Across</value>
-    <comment>ribbon table</comment>
   </data>
   <data name="ribCopyAcrossButton_Label" xml:space="preserve">
     <value>Copy content across the selected rows</value>
@@ -2772,7 +2768,7 @@ Polaroid</value>
   </data>
   <data name="ribCustomStylesButton_Label" xml:space="preserve">
     <value>Custom Styles</value>
-    <comment>Ribbon menu NODUP</comment>
+    <comment>ribbon menu NODUP</comment>
   </data>
   <data name="ribDateStampButton_Label" xml:space="preserve">
     <value>Date stamp pages in section</value>
@@ -3208,11 +3204,11 @@ Polaroid</value>
   </data>
   <data name="ribManagePluginsButton_Label" xml:space="preserve">
     <value>Manage Saved Plugins</value>
-    <comment>favorites button</comment>
+    <comment>ribbon favorites</comment>
   </data>
   <data name="ribManageSnippetsButton_Label" xml:space="preserve">
     <value>Manage Custom Snippets</value>
-    <comment>ribbon button</comment>
+    <comment>ribbon snippets</comment>
   </data>
   <data name="ribMapButton_Label" xml:space="preserve">
     <value>Create Page Map</value>
@@ -3572,7 +3568,7 @@ Polaroid</value>
   </data>
   <data name="ribSelectStyleButton_Label" xml:space="preserve">
     <value>Select Similar Text</value>
-    <comment>ribbon edit EDIT</comment>
+    <comment>ribbon edit</comment>
   </data>
   <data name="ribSelectStyleButton_Screentip" xml:space="preserve">
     <value>Select text with similar formatting</value>
@@ -3604,7 +3600,7 @@ Polaroid</value>
   </data>
   <data name="ribSortButton_Label" xml:space="preserve">
     <value>Sort</value>
-    <comment>Ribbon OneMore menu item NODUP</comment>
+    <comment>ribbon extras NODUP</comment>
   </data>
   <data name="ribSortListButton_Label" xml:space="preserve">
     <value>Sort List</value>

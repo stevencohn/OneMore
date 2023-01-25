@@ -186,14 +186,6 @@ OneNote ייסגר אוטומטית</value>
     <value>OneMoreAddIn</value>
     <comment>SKIP</comment>
   </data>
-  <data name="AddTitleIconDialog.Text" xml:space="preserve">
-    <value>סמלים של כותרת</value>
-    <comment>dialog title</comment>
-  </data>
-  <data name="AddTitleIconDialog_introLabel.Text" xml:space="preserve">
-    <value>בחר בסמלים או יותר כדי להוסיף לכותרת העמוד</value>
-    <comment>instructions</comment>
-  </data>
   <data name="AliasSheet.Text" xml:space="preserve">
     <value>הגדר כינויי פקודות לשימוש בלוח הפקודות</value>
     <comment>intro box</comment>
@@ -1005,8 +997,20 @@ Total Row Font
     <value>לוּחַ שָׁנָה</value>
     <comment>emoji</comment>
   </data>
+  <data name="Emoji_CheckMark" xml:space="preserve">
+    <value>בדוק את סימן</value>
+    <comment>emoji</comment>
+  </data>
   <data name="Emoji_Circle" xml:space="preserve">
     <value>מעגל</value>
+    <comment>emoji</comment>
+  </data>
+  <data name="Emoji_Cloud" xml:space="preserve">
+    <value>ענן</value>
+    <comment>emoji</comment>
+  </data>
+  <data name="Emoji_Copyright" xml:space="preserve">
+    <value>זכויות יוצרים</value>
     <comment>emoji</comment>
   </data>
   <data name="Emoji_CrossMark" xml:space="preserve">
@@ -1019,6 +1023,10 @@ Total Row Font
   </data>
   <data name="Emoji_Email" xml:space="preserve">
     <value>אימייל</value>
+    <comment>emoji</comment>
+  </data>
+  <data name="Emoji_Eyes" xml:space="preserve">
+    <value>עיניים</value>
     <comment>emoji</comment>
   </data>
   <data name="Emoji_Family" xml:space="preserve">
@@ -1045,6 +1053,10 @@ Total Row Font
     <value>כתב עת</value>
     <comment>emoji</comment>
   </data>
+  <data name="Emoji_LeftwardsArrow" xml:space="preserve">
+    <value>חץ שמאלה</value>
+    <comment>emoji</comment>
+  </data>
   <data name="Emoji_Memo" xml:space="preserve">
     <value>תַזכִּיר</value>
     <comment>emoji</comment>
@@ -1059,6 +1071,14 @@ Total Row Font
   </data>
   <data name="Emoji_Pushpin" xml:space="preserve">
     <value>יתד דחיפה</value>
+    <comment>emoji</comment>
+  </data>
+  <data name="Emoji_RightwardsArrow" xml:space="preserve">
+    <value>חץ ימין</value>
+    <comment>emoji</comment>
+  </data>
+  <data name="Emoji_Section" xml:space="preserve">
+    <value>סָעִיף</value>
     <comment>emoji</comment>
   </data>
   <data name="Emoji_Shazam" xml:space="preserve">
@@ -1096,6 +1116,18 @@ Total Row Font
   <data name="Emoji_Watch" xml:space="preserve">
     <value>שעון</value>
     <comment>emoji</comment>
+  </data>
+  <data name="Emoji_XMark" xml:space="preserve">
+    <value>X סימן</value>
+    <comment>emoji</comment>
+  </data>
+  <data name="EmojiDialog.Text" xml:space="preserve">
+    <value>תואר אמוג'ים</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="EmojiDialog_introLabel.Text" xml:space="preserve">
+    <value>בחר או יותר אמוג'ים כדי להוסיף לכותרת העמוד</value>
+    <comment>instructions</comment>
   </data>
   <data name="Envelope" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>emoji\envelope.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -1338,6 +1370,9 @@ Total Row Font
   </data>
   <data name="Hammer" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>emoji\hammer.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="HasActiveMedia" xml:space="preserve">
+    <value>לא יכול להפעיל פקודות של OneMore בזמן שיש הקלטה פעילה. אנא הפסק את ההקלטה ונסה שוב.</value>
   </data>
   <data name="HighlightFormulaCommand_NoFormulas" xml:space="preserve">
     <value>לא נמצאו נוסחאות בדף זה</value>
@@ -2236,6 +2271,10 @@ ISO-code then comma then language name</comment>
     <value>גזירת מסך</value>
     <comment>Screen clipping citation</comment>
   </data>
+  <data name="RemoveCitations_From" xml:space="preserve">
+    <value>מ</value>
+    <comment>prefix word</comment>
+  </data>
   <data name="RemoveDuplicatesDialog.Text" xml:space="preserve">
     <value>הסר דפים כפולים</value>
     <comment>dialog title</comment>
@@ -2418,13 +2457,25 @@ ISO-code then comma then language name</comment>
     <value>הוסף כיתוב</value>
     <comment>Ribbon OneMore menu item, Add caption to selected image</comment>
   </data>
+  <data name="ribAddCaptionButton_Screentip" xml:space="preserve">
+    <value>הוסף כיתוב לתמונה שנבחרה</value>
+    <comment>ribbon images</comment>
+  </data>
   <data name="ribAddFavoritePageButton_Label" xml:space="preserve">
     <value>הוסף עמוד נוכחי</value>
     <comment>favorites menu command</comment>
   </data>
+  <data name="ribAddFavoritePageButton_Screentip" xml:space="preserve">
+    <value>הוסף דף נוכחי למועדפים</value>
+    <comment>ribbon favorites</comment>
+  </data>
   <data name="ribAddFavoriteSectionButton_Label" xml:space="preserve">
     <value>הוסף למועדפים</value>
     <comment>ribbon</comment>
+  </data>
+  <data name="ribAddFavoriteSectionButton_Screentip" xml:space="preserve">
+    <value>הוסף קטע לתפריט המועדפים</value>
+    <comment>section context menu</comment>
   </data>
   <data name="ribAddFootnoteButton_Label" xml:space="preserve">
     <value>הוסף הערת שוליים</value>
@@ -2442,13 +2493,13 @@ ISO-code then comma then language name</comment>
     <value>הוסף/ערוך נוסחה בתאי טבלה שנבחרו (F5)</value>
     <comment>Ribbon OneMore menu item, Formula...</comment>
   </data>
-  <data name="ribAddTitleIconButton_Label" xml:space="preserve">
-    <value>הוסף אייקון לכותרת העמוד</value>
-    <comment>Ribbon OneMore menu item, Extras...</comment>
-  </data>
   <data name="ribAnalyzeButton_Label" xml:space="preserve">
     <value>ניתוח אחסון נתונים</value>
     <comment>ribbon item</comment>
+  </data>
+  <data name="ribAnalyzeButton_Screentip" xml:space="preserve">
+    <value>צור דוח אחסון המשמש את החלק או המחברת</value>
+    <comment>ribbon extras</comment>
   </data>
   <data name="ribApplyStyle0Button_Label" xml:space="preserve">
     <value>החל סגנון 1</value>
@@ -2490,21 +2541,17 @@ ISO-code then comma then language name</comment>
     <value>החל סגנונות על הדף</value>
     <comment>Ribbon Custom Styles menu item, apply all custom style to page</comment>
   </data>
+  <data name="ribApplyStylesButton_Screentip" xml:space="preserve">
+    <value>החל סגנונות מותאמים אישית על כל התוכן בדף זה</value>
+    <comment>ribbon styles</comment>
+  </data>
   <data name="ribArchiveNotebookButton_Label" xml:space="preserve">
     <value>מחברת ארכיון</value>
     <comment>ribbon menu</comment>
   </data>
-  <data name="ribArchiveNotebookButton_Screentip" xml:space="preserve">
-    <value>רוכס את כל הדפים כולל קבצים מצורפים</value>
-    <comment>tip NODUP</comment>
-  </data>
   <data name="ribArchiveSectionButton_Label" xml:space="preserve">
     <value>מדור ארכיון</value>
     <comment>ribbon menu</comment>
-  </data>
-  <data name="ribArchiveSectionButton_Screentip" xml:space="preserve">
-    <value>רוכס את כל הדפים כולל קבצים מצורפים</value>
-    <comment>tip NODUP</comment>
   </data>
   <data name="ribArrangeContainersButton_Label" xml:space="preserve">
     <value>מסדרים מיכלים</value>
@@ -2541,17 +2588,33 @@ ISO-code then comma then language name</comment>
     <value>שנה את מרווח המשפטים</value>
     <comment>clean menu item NODUP</comment>
   </data>
+  <data name="ribBreakingButton_Screentip" xml:space="preserve">
+    <value>לעבור בין אחד לשני מרחבים בין משפטים</value>
+    <comment>ribbon clean NODUP</comment>
+  </data>
   <data name="ribCalendarButton_Label" xml:space="preserve">
     <value>לוח שנה של OneMore</value>
     <comment>Ribbon OneMore-Calendar command NODUP</comment>
+  </data>
+  <data name="ribCalendarButton_Screentip" xml:space="preserve">
+    <value>פתח את אפליקציית לוח השנה של OneMore</value>
+    <comment>ribbon main NODUP</comment>
   </data>
   <data name="ribCaptionAttachmentsButton_Label" xml:space="preserve">
     <value>כיתוב קבצים מצורפים</value>
     <comment>ribbon item</comment>
   </data>
+  <data name="ribCaptionAttachmentsButton_Screentip" xml:space="preserve">
+    <value>הוסף כיתוב לכל קובץ מצורף בדף</value>
+    <comment>ribbon page</comment>
+  </data>
   <data name="ribChangePageColorButton_Label" xml:space="preserve">
     <value>שנה את נושא הדף</value>
     <comment>Ribbon Custom Styles menu item, set page background color NODUP</comment>
+  </data>
+  <data name="ribChangePageColorButton_Screentip" xml:space="preserve">
+    <value>החל סגנונות וצבע רקע על עמוד</value>
+    <comment>ribbon styles NODUP</comment>
   </data>
   <data name="ribCheckForUpdatesButton_Label" xml:space="preserve">
     <value>בדוק עדכונים</value>
@@ -2568,6 +2631,10 @@ ISO-code then comma then language name</comment>
     <value>צבע רקע ברור</value>
     <comment>ribbon menu item</comment>
   </data>
+  <data name="ribClearBackgroundButton_Screentip" xml:space="preserve">
+    <value>אפס את צבע הרקע של הדף</value>
+    <comment>ribbon clean</comment>
+  </data>
   <data name="ribClearLogButton_Label" xml:space="preserve">
     <value>נקה קובץ יומן</value>
     <comment>not a menu, hotkey only</comment>
@@ -2576,13 +2643,25 @@ ISO-code then comma then language name</comment>
     <value>נקה את כל עיצוב השולחן</value>
     <comment>ribbon item</comment>
   </data>
+  <data name="ribClearTableShadingButton_Screentip" xml:space="preserve">
+    <value>איפוס הצללה בכל התאים בטבלה הנוכחית</value>
+    <comment>ribbon table styles</comment>
+  </data>
   <data name="ribCollapseContentButton_Label" xml:space="preserve">
     <value>כיווץ מתאר</value>
     <comment>ribbon item</comment>
   </data>
+  <data name="ribCollapseContentButton_Screentip" xml:space="preserve">
+    <value>קרסו את כל הכותרות עם תוכן מוטבע</value>
+    <comment>ribbon page</comment>
+  </data>
   <data name="ribCollapsePagesButton_Label" xml:space="preserve">
     <value>כווץ דפים</value>
     <comment>Ribbon OneMore menu item</comment>
+  </data>
+  <data name="ribCollapsePagesButton_Screentip" xml:space="preserve">
+    <value>דפי קריסת ילדים בלוח הניווט בעמודים</value>
+    <comment>ribbon extras</comment>
   </data>
   <data name="ribColorizeMenu_Label" xml:space="preserve">
     <value>צבע</value>
@@ -2592,9 +2671,17 @@ ISO-code then comma then language name</comment>
     <value>לוח פקודות</value>
     <comment>ribbon item</comment>
   </data>
+  <data name="ribCommandPaletteButton_Screentip" xml:space="preserve">
+    <value>פתח את חלון לוח הפקודה</value>
+    <comment>ribbon main</comment>
+  </data>
   <data name="ribCompleteReminderButton_Label" xml:space="preserve">
     <value>תזכורת מלאה</value>
     <comment>ribbon button</comment>
+  </data>
+  <data name="ribCompleteReminderButton_Screentip" xml:space="preserve">
+    <value>סמן את תזכורת הפסקה כשלמה</value>
+    <comment>ribbon reminders</comment>
   </data>
   <data name="ribCopyAcrossButton_Label" xml:space="preserve">
     <value>העתק על פני</value>
@@ -2604,9 +2691,17 @@ ISO-code then comma then language name</comment>
     <value>העתק בתור Markdown</value>
     <comment>ribbon item</comment>
   </data>
+  <data name="ribCopyAsMarkdownButton_Screentip" xml:space="preserve">
+    <value>העתק בחר תוכן כ- Markdown</value>
+    <comment>ribbon edit</comment>
+  </data>
   <data name="ribCopyDownButton_Label" xml:space="preserve">
     <value>העתק למטה</value>
     <comment>ribbon</comment>
+  </data>
+  <data name="ribCopyDownButton_Screentip" xml:space="preserve">
+    <value>העתק תוכן במורד העמודות שנבחרו</value>
+    <comment>ribbon table</comment>
   </data>
   <data name="ribCopyFolderButton_Label" xml:space="preserve">
     <value>העתק קבוצת מדור</value>
@@ -2616,21 +2711,41 @@ ISO-code then comma then language name</comment>
     <value>העתק קישור לעמוד</value>
     <comment>ribbon item</comment>
   </data>
+  <data name="ribCopyLinkToPageButton_Screentip" xml:space="preserve">
+    <value>העתק היפר -קישור לדף הנוכחי</value>
+    <comment>ribbon references</comment>
+  </data>
   <data name="ribCopyLinkToParagraphButton_Label" xml:space="preserve">
     <value>העתק קישור לפסקה</value>
     <comment>ribbon item</comment>
+  </data>
+  <data name="ribCopyLinkToParagraphButton_Screentip" xml:space="preserve">
+    <value>העתק היפר -קישור לפסקה הנוכחית</value>
+    <comment>ribbon references</comment>
   </data>
   <data name="ribCrawlWebPageButton_Label" xml:space="preserve">
     <value>ייבוא ​​היפר-קישורים</value>
     <comment>ribbon item</comment>
   </data>
+  <data name="ribCrawlWebPageButton_Screentip" xml:space="preserve">
+    <value>ייבא היפר -קישורים כדפים חדשים</value>
+    <comment>ribbon file</comment>
+  </data>
   <data name="ribCreatePagesButton_Label" xml:space="preserve">
     <value>צור דפים מתוך רשימה</value>
     <comment>ribbon item</comment>
   </data>
+  <data name="ribCreatePagesButton_Screentip" xml:space="preserve">
+    <value>צור דפים חדשים באמצעות פריטי רשימה ככותרות</value>
+    <comment>ribbon page</comment>
+  </data>
   <data name="ribCropImageButton_Label" xml:space="preserve">
     <value>חתוך וסובב</value>
     <comment>Ribbon OneMore menu item, Images... NODUP</comment>
+  </data>
+  <data name="ribCropImageButton_Screentip" xml:space="preserve">
+    <value>יבול וסובב תמונה שנבחרה</value>
+    <comment>ribbon images NODUP</comment>
   </data>
   <data name="ribCustomSnippetsMenu_Label" xml:space="preserve">
     <value>הקטעים המותאמים אישית שלי</value>
@@ -2668,6 +2783,10 @@ ISO-code then comma then language name</comment>
     <value>מחק תזכורת</value>
     <comment>ribbon button</comment>
   </data>
+  <data name="ribDeleteReminderButton_Screentip" xml:space="preserve">
+    <value>מחק תזכורת מהפסקה הנוכחית</value>
+    <comment>ribbon reminders</comment>
+  </data>
   <data name="ribDiagnosticsButton_Label" xml:space="preserve">
     <value>זרוק אבחון ללוג</value>
     <comment>not a menu, hotkey only</comment>
@@ -2675,6 +2794,10 @@ ISO-code then comma then language name</comment>
   <data name="ribDisableSpellCheckButton_Label" xml:space="preserve">
     <value>השבת את בדיקת האיות</value>
     <comment>Ribbon OneMore menu item, no spell check on this page</comment>
+  </data>
+  <data name="ribDisableSpellCheckButton_Screentip" xml:space="preserve">
+    <value>השבת בדיקת איות בתוכן שנבחר</value>
+    <comment>ribbon edit</comment>
   </data>
   <data name="ribDuplicateLineAboveButton_Label" xml:space="preserve">
     <value>שכפל פסקה למעלה</value>
@@ -2684,9 +2807,17 @@ ISO-code then comma then language name</comment>
     <value>פסקה כפולה</value>
     <comment>ribbon item</comment>
   </data>
+  <data name="ribDuplicateLineButton_Screentip" xml:space="preserve">
+    <value>שכפול את הפסקה הנוכחית</value>
+    <comment>ribbon edit</comment>
+  </data>
   <data name="ribDuplicatePageButton_Label" xml:space="preserve">
     <value>עמוד כפול</value>
     <comment>page context menu</comment>
+  </data>
+  <data name="ribDuplicatePageButton_Screentip" xml:space="preserve">
+    <value>שכפל את הדף הנוכחי</value>
+    <comment>ribbon page</comment>
   </data>
   <data name="ribEditMenu_Label" xml:space="preserve">
     <value>לַעֲרוֹך</value>
@@ -2696,9 +2827,17 @@ ISO-code then comma then language name</comment>
     <value>ערוך סגנונות</value>
     <comment>Ribbon Custom Styles menu item, edit custom styles</comment>
   </data>
+  <data name="ribEditStylesButton_Screentip" xml:space="preserve">
+    <value>ערוך סגנונות מותאמים אישית</value>
+    <comment>ribbon styles</comment>
+  </data>
   <data name="ribEditTableThemesButton_Label" xml:space="preserve">
     <value>ערוך סגנונות טבלה מותאמים אישית</value>
     <comment>table styles ribbon gallery button</comment>
+  </data>
+  <data name="ribEditTableThemesButton_Screentip" xml:space="preserve">
+    <value>ערוך סגנונות טבלה מותאמים אישית בהתאמה אישית</value>
+    <comment>ribbon table styles</comment>
   </data>
   <data name="ribEmbedSubpageButton_Label" xml:space="preserve">
     <value>הטמע עמוד</value>
@@ -2707,6 +2846,14 @@ ISO-code then comma then language name</comment>
   <data name="ribEmbedSubpageButton_Screentip" xml:space="preserve">
     <value>הטמע תוכן של דף אחר בדף הנוכחי</value>
     <comment>ribbon item screentip</comment>
+  </data>
+  <data name="ribEmojiButton_Label" xml:space="preserve">
+    <value>הוסף אמוג'י כותרת עמוד</value>
+    <comment>ribbon page</comment>
+  </data>
+  <data name="ribEmojiButton_Screentip" xml:space="preserve">
+    <value>כותרת עמוד מקדימה עם אמוג'ים</value>
+    <comment>ribbon page</comment>
   </data>
   <data name="ribEnableSpellCheckButton_Label" xml:space="preserve">
     <value>אפשר בדיקת איות</value>
@@ -2719,6 +2866,10 @@ ISO-code then comma then language name</comment>
   <data name="ribExpandContentButton_Label" xml:space="preserve">
     <value>הרחב את מתאר</value>
     <comment>ribbon item</comment>
+  </data>
+  <data name="ribExpandContentButton_Screentip" xml:space="preserve">
+    <value>הרחב את כל הכותרות עם תוכן מוטבע</value>
+    <comment>ribbon page</comment>
   </data>
   <data name="ribExpandSnippetButton_Label" xml:space="preserve">
     <value>הרחב את Snippet From Name</value>
@@ -2748,6 +2899,10 @@ ISO-code then comma then language name</comment>
     <value>למלא על פני</value>
     <comment>ribbon</comment>
   </data>
+  <data name="ribFillAcrossButton_Screentip" xml:space="preserve">
+    <value>מלא רצף על פני שורות שנבחרו</value>
+    <comment>ribbon table</comment>
+  </data>
   <data name="ribFillDownButton_Label" xml:space="preserve">
     <value>למלא למטה</value>
     <comment>ribbon</comment>
@@ -2760,17 +2915,33 @@ ISO-code then comma then language name</comment>
     <value>סיים קישור דו-כיווני</value>
     <comment>ribbon item</comment>
   </data>
+  <data name="ribFinishBiLinkButton_Screentip" xml:space="preserve">
+    <value>סיום קישור בין עוגן למיקום הנוכחי</value>
+    <comment>ribbon references </comment>
+  </data>
   <data name="ribFitGridToTextButton_Label" xml:space="preserve">
     <value>התאם רשת לטקסט</value>
     <comment>ribbon item NODUP</comment>
+  </data>
+  <data name="ribFitGridToTextButton_Screentip" xml:space="preserve">
+    <value>שינוי גודל רשת רקע כדי להתאים לגודל הגופן הנפוץ</value>
+    <comment>ribbon page NODUP</comment>
   </data>
   <data name="ribGetImagesButton_Label" xml:space="preserve">
     <value>החלף כתובות אתרים בתמונות</value>
     <comment>Ribbon OneMore menu item, Extras...</comment>
   </data>
+  <data name="ribGetImagesButton_Screentip" xml:space="preserve">
+    <value>הורד והכניס תמונות שהוזכרו</value>
+    <comment>ribbon references</comment>
+  </data>
   <data name="ribHighlightButton_Label" xml:space="preserve">
     <value>סימון מסתובב</value>
     <comment>menu</comment>
+  </data>
+  <data name="ribHighlightButton_Screentip" xml:space="preserve">
+    <value>הדגש טקסט עם סימון מסתובב</value>
+    <comment>ribbon edit</comment>
   </data>
   <data name="ribHighlightFormulaButton_Label" xml:space="preserve">
     <value>הדגש את הנוסחה</value>
@@ -2788,13 +2959,25 @@ ISO-code then comma then language name</comment>
     <value>יְבוּא</value>
     <comment>ribbon item NODUP</comment>
   </data>
+  <data name="ribImportButton_Screentip" xml:space="preserve">
+    <value>ייבא קובץ</value>
+    <comment>ribbon file NODUP</comment>
+  </data>
   <data name="ribImportOutlookTasksButton_Label" xml:space="preserve">
     <value>ייבוא ​​משימות מ- Outlook</value>
     <comment>ribbon Reminders item NODUP</comment>
   </data>
+  <data name="ribImportOutlookTasksButton_Screentip" xml:space="preserve">
+    <value>ייבא מידע על משימות מ- Outlook</value>
+    <comment>ribbon reminders NODUP</comment>
+  </data>
   <data name="ribImportWebButton_Label" xml:space="preserve">
     <value>ייבוא ​​דף אינטרנט</value>
     <comment>ribbon NODUP</comment>
+  </data>
+  <data name="ribImportWebButton_Screentip" xml:space="preserve">
+    <value>ייבא דף אינטרנט שניתן כתובת אתר</value>
+    <comment>ribbon file NODUP</comment>
   </data>
   <data name="ribIncreaseFontSizeButton_Label" xml:space="preserve">
     <value>הגדל את גודל הגופן</value>
@@ -2808,6 +2991,10 @@ ISO-code then comma then language name</comment>
     <value>סטטוס כחול</value>
     <comment>Ribbon OneMore menu item, Snippets...</comment>
   </data>
+  <data name="ribInsertBlueStatusButton_Screentip" xml:space="preserve">
+    <value>הכנס תווית סטטוס כחולה</value>
+    <comment>ribbon snippets</comment>
+  </data>
   <data name="ribInsertBoxButton_Label" xml:space="preserve">
     <value>תיבת טקסט</value>
     <comment>ribbon</comment>
@@ -2820,13 +3007,25 @@ ISO-code then comma then language name</comment>
     <value>פירורי לחם</value>
     <comment>ribbon snippets menu</comment>
   </data>
+  <data name="ribInsertBreadcrumbButton_Screentip" xml:space="preserve">
+    <value>הכנס את פירור הלחם של מיקום העמוד בראש העמוד</value>
+    <comment>ribbon snippets</comment>
+  </data>
   <data name="ribInsertCalendarButton_Label" xml:space="preserve">
     <value>לוּחַ שָׁנָה</value>
     <comment>ribbon button NODUP</comment>
   </data>
+  <data name="ribInsertCalendarButton_Screentip" xml:space="preserve">
+    <value>הכנס לוח שנה חודשי</value>
+    <comment>ribbon snippets</comment>
+  </data>
   <data name="ribInsertCellsButton_Label" xml:space="preserve">
     <value>הכנס תאי טבלה</value>
     <comment>ribbon item</comment>
+  </data>
+  <data name="ribInsertCellsButton_Screentip" xml:space="preserve">
+    <value>הכנס תאים לטבלה הנוכחית</value>
+    <comment>ribbon table</comment>
   </data>
   <data name="ribInsertCodeBlockButton_Label" xml:space="preserve">
     <value>בלוק קוד</value>
@@ -2860,25 +3059,49 @@ ISO-code then comma then language name</comment>
     <value>להרחיב לצמצם</value>
     <comment>Ribbon OneMore menu item, Snippets...</comment>
   </data>
+  <data name="ribInsertExpandButton_Screentip" xml:space="preserve">
+    <value>הכנס שליטה מתקפלת</value>
+    <comment>ribbon snippets</comment>
+  </data>
   <data name="ribInsertGrayStatusButton_Label" xml:space="preserve">
     <value>מצב אפור</value>
     <comment>Ribbon OneMore menu item, Snippets...</comment>
+  </data>
+  <data name="ribInsertGrayStatusButton_Screentip" xml:space="preserve">
+    <value>הכנס תווית סטטוס אפור</value>
+    <comment>ribbon snippets</comment>
   </data>
   <data name="ribInsertGreenStatusButton_Label" xml:space="preserve">
     <value>מצב ירוק</value>
     <comment>Ribbon OneMore menu item, Snippets...</comment>
   </data>
+  <data name="ribInsertGreenStatusButton_Screentip" xml:space="preserve">
+    <value>הכנס תווית סטטוס ירוקה</value>
+    <comment>ribbon snippets</comment>
+  </data>
   <data name="ribInsertInfoBlockButton_Label" xml:space="preserve">
     <value>בלוק מידע</value>
     <comment>Ribbon OneMore menu item, Snippets...</comment>
+  </data>
+  <data name="ribInsertInfoBlockButton_Screentip" xml:space="preserve">
+    <value>הכנס חסימת מידע</value>
+    <comment>ribbon snippets</comment>
   </data>
   <data name="ribInsertQRButton_Label" xml:space="preserve">
     <value>הכנס קוד QR</value>
     <comment>ribbon button</comment>
   </data>
+  <data name="ribInsertQRButton_Screentip" xml:space="preserve">
+    <value>הכנס קוד QR ייצג את הטקסט שנבחר</value>
+    <comment>ribbon references</comment>
+  </data>
   <data name="ribInsertRedStatusButton_Label" xml:space="preserve">
     <value>סטטוס אדום</value>
     <comment>Ribbon OneMore menu item, Snippets...</comment>
+  </data>
+  <data name="ribInsertRedStatusButton_Screentip" xml:space="preserve">
+    <value>הכנס תווית סטטוס אדומה</value>
+    <comment>ribbon snippets</comment>
   </data>
   <data name="ribInsertSingleLineButton_Label" xml:space="preserve">
     <value>קו אופקי</value>
@@ -2892,33 +3115,65 @@ ISO-code then comma then language name</comment>
     <value>הכנס טיימר</value>
     <comment>ribbon item</comment>
   </data>
+  <data name="ribInsertTimerButton_Screentip" xml:space="preserve">
+    <value>הכנס את ערך הטיימר הנוכחי</value>
+    <comment>ribbon extras</comment>
+  </data>
   <data name="ribInsertTocButton_Label" xml:space="preserve">
     <value>תוכן העניינים</value>
     <comment>Ribbon OneMore menu item, Extras... NODUP</comment>
+  </data>
+  <data name="ribInsertTocButton_Screentip" xml:space="preserve">
+    <value>הכנס טבלת תוכן של ענייני כותרות בראש העמוד</value>
+    <comment>ribbon snippets</comment>
   </data>
   <data name="ribInsertWarnBlockButton_Label" xml:space="preserve">
     <value>חסימת אזהרה</value>
     <comment>Ribbon OneMore menu item, Snippets...</comment>
   </data>
+  <data name="ribInsertWarnBlockButton_Screentip" xml:space="preserve">
+    <value>הכנס חסימת אזהרה</value>
+    <comment>ribbon snippets</comment>
+  </data>
   <data name="ribInsertYellowStatusButton_Label" xml:space="preserve">
     <value>סטטוס צהוב</value>
     <comment>Ribbon OneMore menu item, Snippets...</comment>
+  </data>
+  <data name="ribInsertYellowStatusButton_Screentip" xml:space="preserve">
+    <value>הכנס תווית סטטוס צהוב</value>
+    <comment>ribbon snippets</comment>
   </data>
   <data name="ribInvertSelectionButton_Label" xml:space="preserve">
     <value>בחירה הפוך</value>
     <comment>ribbon button</comment>
   </data>
+  <data name="ribInvertSelectionButton_Screentip" xml:space="preserve">
+    <value>בחירה הפוך</value>
+    <comment>ribbon edit</comment>
+  </data>
   <data name="ribJoinParagraphButton_Label" xml:space="preserve">
     <value>הצטרף לפסקה</value>
     <comment>ribbon button</comment>
+  </data>
+  <data name="ribJoinParagraphButton_Screentip" xml:space="preserve">
+    <value>הצטרף לפסקאות נבחרות</value>
+    <comment>ribbon edit</comment>
   </data>
   <data name="ribLinkReferencesButton_Label" xml:space="preserve">
     <value>קישור הפניות לדף זה</value>
     <comment>ribbon button</comment>
   </data>
+  <data name="ribLinkReferencesButton_Screentip" xml:space="preserve">
+    <value>צור קישורים דו כיווניים לדף זה בהתבסס על כותרתו</value>
+    <comment>ribbon references</comment>
+  </data>
   <data name="ribLoadStylesButton_Label" xml:space="preserve">
     <value>טען סגנונות</value>
     <comment>ribbon item</comment>
+  </data>
+  <data name="ribLoadStylesButton_Screentip" xml:space="preserve">
+    <value>טען סגנונות מותאמים אישית מקובץ</value>
+    <comment>ribbon styles</comment>
   </data>
   <data name="ribLowercaseButton_Label" xml:space="preserve">
     <value>לאותיות קטנות</value>
@@ -2944,21 +3199,41 @@ ISO-code then comma then language name</comment>
     <value>צור מפת עמוד</value>
     <comment>ribbon button NODUP</comment>
   </data>
+  <data name="ribMapButton_Screentip" xml:space="preserve">
+    <value>דווח על כל הדפים המכילים קישורים לדפים אחרים</value>
+    <comment>ribbon references</comment>
+  </data>
   <data name="ribMergeButton_Label" xml:space="preserve">
     <value>מיזוג דפים</value>
     <comment>Ribbon OneMore menu item, Extras...</comment>
+  </data>
+  <data name="ribMergeButton_Screentip" xml:space="preserve">
+    <value>למזג דפים נבחרים</value>
+    <comment>ribbon page</comment>
   </data>
   <data name="ribNameUrlsButton_Label" xml:space="preserve">
     <value>החלף כתובות URL בכותרות של דפי אינטרנט</value>
     <comment>Ribbon OneMore menu item, Extras...</comment>
   </data>
+  <data name="ribNameUrlsButton_Screentip" xml:space="preserve">
+    <value>החלף כתובות אתרים בכותרות של דף אינטרנט</value>
+    <comment>ribbon references</comment>
+  </data>
   <data name="ribNewStyleButton_Label" xml:space="preserve">
     <value>צור סגנון מתוך בחירה</value>
     <comment>Ribbon Custom Styles menu item, create new style</comment>
   </data>
+  <data name="ribNewStyleButton_Screentip" xml:space="preserve">
+    <value>צור סגנון חדש מהבחירה הנוכחית</value>
+    <comment>ribbon styles</comment>
+  </data>
   <data name="ribNoSpellCheckButton_Screentip" xml:space="preserve">
     <value>השבת את בדיקת האיות עבור כל העמוד (F4)</value>
     <comment>Ribbon OneMore menu item, no spell check on this page</comment>
+  </data>
+  <data name="ribNotebookWordCountButton_Label" xml:space="preserve">
+    <value>סה"כ המילים במחברת</value>
+    <comment>notebook context menu</comment>
   </data>
   <data name="ribNumberingMenu_Label" xml:space="preserve">
     <value>סִפְרוּר</value>
@@ -2992,12 +3267,20 @@ ISO-code then comma then language name</comment>
     <value>פתח תמונה עם</value>
     <comment>Ribbon OneMore menu item</comment>
   </data>
+  <data name="ribOpenImageWithButton_Screentip" xml:space="preserve">
+    <value>פתח את התמונה שנבחרה עם עורך חיצוני</value>
+    <comment>ribbon images</comment>
+  </data>
   <data name="ribOpenLogButton_Label" xml:space="preserve">
     <value>פתח את קובץ היומן</value>
   </data>
   <data name="ribOutlineButton_Label" xml:space="preserve">
     <value>עיצוב מתאר</value>
     <comment>Ribbon OneMore menu item, Extras...</comment>
+  </data>
+  <data name="ribOutlineButton_Screentip" xml:space="preserve">
+    <value>כותרות מספור בדף זה</value>
+    <comment>ribbon numbering</comment>
   </data>
   <data name="ribPageMenu_Label" xml:space="preserve">
     <value>עמוד</value>
@@ -3006,6 +3289,10 @@ ISO-code then comma then language name</comment>
   <data name="ribPasteCellsButton_Label" xml:space="preserve">
     <value>הדבק תאים</value>
     <comment>ribbon</comment>
+  </data>
+  <data name="ribPasteCellsButton_Screentip" xml:space="preserve">
+    <value>הדבק תוכן בתאים קיימים</value>
+    <comment>ribbon table</comment>
   </data>
   <data name="ribPasteRtfButton_Label" xml:space="preserve">
     <value>הדבק טקסט עשיר</value>
@@ -3035,6 +3322,10 @@ ISO-code then comma then language name</comment>
     <value>הכנס הגייה</value>
     <comment>Ribbon OneMore menu item</comment>
   </data>
+  <data name="ribPronunciateButton_Screentip" xml:space="preserve">
+    <value>הכנס הגייה פונטית של הטקסט שנבחר</value>
+    <comment>ribbon edit</comment>
+  </data>
   <data name="ribProofingMenu_Label" xml:space="preserve">
     <value>שפת הגהה</value>
     <comment>ribbon menu</comment>
@@ -3063,9 +3354,17 @@ ISO-code then comma then language name</comment>
     <value>רענן הפניות לדף</value>
     <comment>ribbon item NODUP</comment>
   </data>
+  <data name="ribRefreshPageLinksButton_Screentip" xml:space="preserve">
+    <value>רענן הפניות לקישור דו כיווני</value>
+    <comment>ribbon references</comment>
+  </data>
   <data name="ribRemindButton_Label" xml:space="preserve">
     <value>הוסף או עדכן תזכורות</value>
     <comment>ribbon button</comment>
+  </data>
+  <data name="ribRemindButton_Screentip" xml:space="preserve">
+    <value>הוסף או עדכן תזכורת בפסקה הנוכחית</value>
+    <comment>ribbon reminders</comment>
   </data>
   <data name="ribRemindersMenu_Label" xml:space="preserve">
     <value>תזכורות</value>
@@ -3091,6 +3390,10 @@ ISO-code then comma then language name</comment>
     <value>הסר דפים כפולים</value>
     <comment>Ribbon OneMore menu item</comment>
   </data>
+  <data name="ribRemoveDuplicatesButton_Screentip" xml:space="preserve">
+    <value>זהה והסר דפים כפולים</value>
+    <comment>ribbon clean</comment>
+  </data>
   <data name="ribRemoveEmptyButton_Label" xml:space="preserve">
     <value>הסר פסקאות וכותרות ריקות</value>
     <comment>Ribbon OneMore menu item</comment>
@@ -3110,6 +3413,10 @@ ISO-code then comma then language name</comment>
   <data name="ribRemoveInkButton_Label" xml:space="preserve">
     <value>הסר דיו</value>
     <comment>Ribbon OneMore menu item</comment>
+  </data>
+  <data name="ribRemoveInkButton_Screentip" xml:space="preserve">
+    <value>הסר את כל רישומי העט מדף זה</value>
+    <comment>ribbon clean</comment>
   </data>
   <data name="ribRemovePageNumbersButton_Label" xml:space="preserve">
     <value>הסר מספרי עמודים</value>
@@ -3154,29 +3461,57 @@ ISO-code then comma then language name</comment>
     <value>דוח סיכום תזכורת</value>
     <comment>ribbon item NODUP</comment>
   </data>
+  <data name="ribReportRemindersButton_Screentip" xml:space="preserve">
+    <value>צור דוח סיכום של תזכורות</value>
+    <comment>ribbon reminders</comment>
+  </data>
   <data name="ribResizeImagesButton_Label" xml:space="preserve">
     <value>שנה גודל והתאם</value>
     <comment>Ribbon OneMore menu item, Resize selected image(s)</comment>
+  </data>
+  <data name="ribResizeImagesButton_Screentip" xml:space="preserve">
+    <value>שינוי גודל והתאם תמונות שנבחרו</value>
+    <comment>ribbon images</comment>
   </data>
   <data name="ribRestoreAutosizeButton_Label" xml:space="preserve">
     <value>שחזר רוחבי מיכל בגודל אוטומטי</value>
     <comment>ribbon item</comment>
   </data>
+  <data name="ribRestoreAutosizeButton_Screentip" xml:space="preserve">
+    <value>אפס רוחב אוטומטי של כל המכולות</value>
+    <comment>ribbon clean</comment>
+  </data>
   <data name="ribRestoreCollapsedButton_Label" xml:space="preserve">
     <value>שחזר קווי מתאר מכווץ</value>
     <comment>ribbon</comment>
+  </data>
+  <data name="ribRestoreCollapsedButton_Screentip" xml:space="preserve">
+    <value>הרחב את הכותרות למדינה שנשמרה לאחרונה</value>
+    <comment>ribbon page</comment>
   </data>
   <data name="ribRunPluginButton_Label" xml:space="preserve">
     <value>הפעל פלאגין</value>
     <comment>Ribbon OneMore menu item NODUP</comment>
   </data>
+  <data name="ribRunPluginButton_Screentip" xml:space="preserve">
+    <value>הפעל או הגדר תוסף מותאם אישית</value>
+    <comment>ribbon file</comment>
+  </data>
   <data name="ribSaveCollapsedButton_Label" xml:space="preserve">
     <value>נשמר מתאר מכווץ</value>
     <comment>ribbon</comment>
   </data>
+  <data name="ribSaveCollapsedButton_Screentip" xml:space="preserve">
+    <value>הציל את המצב שהתמוטט של כל הכותרות</value>
+    <comment>ribbon page</comment>
+  </data>
   <data name="ribSaveSnippetButton_Label" xml:space="preserve">
     <value>שמור קטע קוד מותאם אישית</value>
     <comment>ribbon button</comment>
+  </data>
+  <data name="ribSaveSnippetButton_Screentip" xml:space="preserve">
+    <value>שמור קטע מותאם אישית חדש מהתוכן שנבחר</value>
+    <comment>ribbon snippets</comment>
   </data>
   <data name="ribSearchAndReplaceButton_Label" xml:space="preserve">
     <value>חפש והחלף</value>
@@ -3202,17 +3537,33 @@ ISO-code then comma then language name</comment>
     <value>התאם אישית את צבע המדור</value>
     <comment>Context menu</comment>
   </data>
+  <data name="ribSectionWordCountButton_Label" xml:space="preserve">
+    <value>סה"כ מילים בסעיף</value>
+    <comment>section context menu</comment>
+  </data>
   <data name="ribSelectImagesButton_Label" xml:space="preserve">
     <value>בחר כל התמונות</value>
     <comment>ribbon menu edit item</comment>
+  </data>
+  <data name="ribSelectImagesButton_Screentip" xml:space="preserve">
+    <value>בחר את כל התמונות בדף</value>
+    <comment>ribbon edit</comment>
   </data>
   <data name="ribSelectStyleButton_Label" xml:space="preserve">
     <value>בחר טקסט עם עיצוב דומה</value>
     <comment>ribbon item</comment>
   </data>
+  <data name="ribSelectStyleButton_Screentip" xml:space="preserve">
+    <value>בחר טקסט עם עיצוב דומה</value>
+    <comment>ribbon edit</comment>
+  </data>
   <data name="ribSettingsButton_Label" xml:space="preserve">
     <value>הגדרות</value>
     <comment>ribbon button</comment>
+  </data>
+  <data name="ribSettingsButton_Screentip" xml:space="preserve">
+    <value>פתח את חלון ההגדרות של OneMore</value>
+    <comment>ribbon main</comment>
   </data>
   <data name="ribShowKeyboardShortcutsButton_Label" xml:space="preserve">
     <value>קיצורי מקשים של OneNote</value>
@@ -3238,6 +3589,10 @@ ISO-code then comma then language name</comment>
     <value>רשימת מיון</value>
     <comment>ribbon item</comment>
   </data>
+  <data name="ribSortListButton_Screentip" xml:space="preserve">
+    <value>מיין פריטים ברשימה</value>
+    <comment>ribbon edit</comment>
+  </data>
   <data name="ribSortNotebooksButton_Label" xml:space="preserve">
     <value>מיין מחברות</value>
     <comment>ribbon/context menu</comment>
@@ -3262,17 +3617,33 @@ ISO-code then comma then language name</comment>
     <value>עמוד מפוצל</value>
     <comment>ribbon item NODUP</comment>
   </data>
+  <data name="ribSplitButton_Screentip" xml:space="preserve">
+    <value>פיצול עמוד בכיוון 1 למספר עמודים</value>
+    <comment>ribbon page</comment>
+  </data>
   <data name="ribSplitTableButton_Label" xml:space="preserve">
     <value>שולחן מפוצל</value>
     <comment>ribbon button</comment>
+  </data>
+  <data name="ribSplitTableButton_Screentip" xml:space="preserve">
+    <value>טבלה מפוצלת בשורה הנוכחית</value>
+    <comment>ribbon table</comment>
   </data>
   <data name="ribStartBiLinkButton_Label" xml:space="preserve">
     <value>התחל קישור דו-כיווני</value>
     <comment>ribbon item</comment>
   </data>
+  <data name="ribStartBiLinkButton_Screentip" xml:space="preserve">
+    <value>התחל קישור דו כיווני</value>
+    <comment>ribbon references</comment>
+  </data>
   <data name="ribStartTimerButton_Label" xml:space="preserve">
     <value>התחל טיימר</value>
     <comment>ribbon item</comment>
+  </data>
+  <data name="ribStartTimerButton_Screentip" xml:space="preserve">
+    <value>פתח והתחל את חלון הטיימר</value>
+    <comment>ribbon extras</comment>
   </data>
   <data name="ribStrikeoutTasksButton_Label" xml:space="preserve">
     <value>תגיות מטלות חוצה שהושלמו</value>
@@ -3294,13 +3665,25 @@ ISO-code then comma then language name</comment>
     <value>מצא דפים מתויגים</value>
     <comment>menu item NODUP</comment>
   </data>
+  <data name="ribTaggedButton_Screentip" xml:space="preserve">
+    <value>מצא דפים עם תגיות בהתאמה אישית</value>
+    <comment>ribbon search</comment>
+  </data>
   <data name="ribTaggingButton_Label" xml:space="preserve">
     <value>עמוד תיוג</value>
     <comment>menu item</comment>
   </data>
+  <data name="ribTaggingButton_Screentip" xml:space="preserve">
+    <value>הוסף תגים מותאמים אישית לדף זה</value>
+    <comment>ribbon search</comment>
+  </data>
   <data name="ribTextToTableButton_Label" xml:space="preserve">
     <value>המרת טקסט לטבלה</value>
     <comment>Ribbon OneMore menu item, extras NODUP</comment>
+  </data>
+  <data name="ribTextToTableButton_Screentip" xml:space="preserve">
+    <value>המרת טקסט שנבחר לטבלה</value>
+    <comment>ribbon table</comment>
   </data>
   <data name="ribTitlecaseButton_Label" xml:space="preserve">
     <value>למקרה הכותרת</value>
@@ -3352,6 +3735,10 @@ ISO-code then comma then language name</comment>
   <data name="ribWordCountButton_Label" xml:space="preserve">
     <value>ספירת מילים</value>
     <comment>Ribbon OneMore menu extras</comment>
+  </data>
+  <data name="ribWordCountButton_Screentip" xml:space="preserve">
+    <value>דווח על מספר המילים בדף זה</value>
+    <comment>ribbon page</comment>
   </data>
   <data name="SaveAs" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>images\saveas.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -4190,6 +4577,9 @@ ISO-code then comma then language name</comment>
   <data name="word_Close" xml:space="preserve">
     <value>סגור</value>
   </data>
+  <data name="word_Code" xml:space="preserve">
+    <value>קוד</value>
+  </data>
   <data name="word_Color" xml:space="preserve">
     <value>צֶבַע</value>
   </data>
@@ -4240,6 +4630,9 @@ ISO-code then comma then language name</comment>
   </data>
   <data name="word_Language" xml:space="preserve">
     <value>שפה</value>
+  </data>
+  <data name="word_Limit" xml:space="preserve">
+    <value>לְהַגבִּיל</value>
   </data>
   <data name="word_Move" xml:space="preserve">
     <value>מהלך \ לזוז \ לעבור</value>
@@ -4322,11 +4715,17 @@ ISO-code then comma then language name</comment>
   <data name="word_Text" xml:space="preserve">
     <value>טֶקסט</value>
   </data>
+  <data name="word_Total" xml:space="preserve">
+    <value>סה"כ</value>
+  </data>
   <data name="word_Width" xml:space="preserve">
     <value>רוֹחַב</value>
   </data>
   <data name="word_Word" xml:space="preserve">
     <value>מִלָה</value>
+  </data>
+  <data name="word_Words" xml:space="preserve">
+    <value>מילים</value>
   </data>
   <data name="word_XML" xml:space="preserve">
     <value>XML</value>
@@ -4341,5 +4740,20 @@ ISO-code then comma then language name</comment>
   <data name="WordCountCommand_Selected" xml:space="preserve">
     <value>סה"כ מילים שנבחרו: {0}</value>
     <comment>message box</comment>
+  </data>
+  <data name="WordCounts_Notebook" xml:space="preserve">
+    <value>{0} מחברת</value>
+    <comment>page heading</comment>
+  </data>
+  <data name="WordCounts_Section" xml:space="preserve">
+    <value>{0} קטע</value>
+    <comment>page heading</comment>
+  </data>
+  <data name="WordCounts_TotalWords" xml:space="preserve">
+    <value>סה"כ מילים</value>
+  </data>
+  <data name="WordCountsCommand_Title" xml:space="preserve">
+    <value>ספירת מילים</value>
+    <comment>page title</comment>
   </data>
 </root>
