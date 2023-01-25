@@ -268,6 +268,7 @@
                 id="ribRestoreAutosizeButton"
                 imageMso="SizeToControlWidth"
                 getLabel="GetRibbonLabel"
+                getScreentip="GetRibbonScreentip"
                 onAction="RestoreAutosizeCmd"/>
               <button
                 id="ribToggleDttmButton"
@@ -365,16 +366,19 @@
                 id="ribSelectImagesButton"
                 imageMso="AdpDiagramArrangeSelection"
                 getLabel="GetRibbonLabel"
+                getScreentip="GetRibbonScreentip"
                 onAction="SelectImagesCmd"/>
               <button
                 id="ribSelectStyleButton"
                 imageMso="StylesStyleInspector"
                 getLabel="GetRibbonLabel"
+                getScreentip="GetRibbonScreentip"
                 onAction="SelectStyleCmd"/>
               <button
                 id="ribSortListButton"
                 imageMso="Bullets"
                 getLabel="GetRibbonLabel"
+                getScreentip="GetRibbonScreentip"
                 onAction="SortListCmd"/>
               <button
                 id="ribLowercaseButton"
@@ -412,6 +416,7 @@
                 id="ribImportWebButton"
                 imageMso="ImportHtmlDocument"
                 getLabel="GetRibbonLabel"
+                getScreentip="GetRibbonScreentip"
                 onAction="ImportWebCmd"/>
               <button
                 id="ribCrawlWebPageButton"
@@ -422,6 +427,7 @@
               <dynamicMenu
                 id="ribPluginsMenu"
                 getLabel="GetRibbonLabel"
+                getScreentip="GetRibbonScreentip"
                 imageMso="AddInsMenu"
                 getContent="GetMyPluginsContent" />
             </menu>
@@ -450,6 +456,7 @@
                 id="ribResizeImagesButton"
                 imageMso="GroupPictureCompress"
                 getLabel="GetRibbonLabel"
+                getScreentip="GetRibbonScreentip"
                 onAction="ResizeImagesCmd"/>
             </menu>
             <menu id="ribNumberingMenu" getLabel="GetRibbonLabel" imageMso="Numbering" showImage="true">
@@ -457,6 +464,7 @@
                 id="ribOutlineButton"
                 imageMso="OutlineShowDetail"
                 getLabel="GetRibbonLabel"
+                getScreentip="GetRibbonScreentip"
                 onAction="OutlineCmd"/>
               <button
                 id="ribNumberSectionsButton"
@@ -488,6 +496,7 @@
                 id="ribArrangeContainersButton"
                 imageMso="WindowsArrangeAll"
                 getLabel="GetRibbonLabel"
+                getScreentip="GetRibbonScreentip"
                 onAction="ArrangeContainersCmd"/>
               <button
                 id="ribEmojiButton"
@@ -529,11 +538,13 @@
                 id="ribSaveCollapsedButton"
                 imageMso="SaveSelectionToFooterGallery"
                 getLabel="GetRibbonLabel"
+                getScreentip="GetRibbonScreentip"
                 onAction="SaveCollapsedCmd"/>
               <button
                 id="ribRestoreCollapsedButton"
                 imageMso="OutlineShowDetail"
                 getLabel="GetRibbonLabel"
+                getScreentip="GetRibbonScreentip"
                 onAction="RestoreCollapsedCmd"/>
               <button
                 id="ribFitGridToTextButton"
@@ -552,11 +563,13 @@
                 id="ribSplitButton"
                 imageMso="MasterDocumentSplitSubdocuments"
                 getLabel="GetRibbonLabel"
+                getScreentip="GetRibbonScreentip"
                 onAction="SplitCmd"/>
               <button
                 id="ribWordCountButton"
                 imageMso="WordCount"
                 getLabel="GetRibbonLabel"
+                getScreentip="GetRibbonScreentip"
                 onAction="WordCountCmd"/>
             </menu>
             <menu id="ribReferencesMenu" getLabel="GetRibbonLabel" imageMso="CrossReferenceInsert" showImage="true">
@@ -597,6 +610,7 @@
                 id="ribStartBiLinkButton"
                 imageMso="PositionAbsoluteMarks"
                 getLabel="GetRibbonLabel"
+                getScreentip="GetRibbonScreentip"
                 getEnabled="GetBodyContext"
                 onAction="StartBiLinkCmd"/>
               <button
@@ -649,6 +663,7 @@
                 id="ribNameUrlsButton"
                 imageMso="AutoSigWebInsertHyperlink"
                 getLabel="GetRibbonLabel"
+                getScreentip="GetRibbonScreentip"
                 onAction="NameUrlsCmd"/>
               <button
                 id="ribGetImagesButton"
@@ -680,6 +695,7 @@
                 id="ribReportRemindersButton"
                 imageMso="ShowTaskDetailsPage"
                 getLabel="GetRibbonLabel"
+                getScreentip="GetRibbonScreentip"
                 onAction="ReportRemindersCmd"/>
               <button
                 id="ribImportOutlookTasksButton"
@@ -711,11 +727,13 @@
                 id="ribTaggingButton"
                 image="Label"
                 getLabel="GetRibbonLabel"
+                getScreentip="GetRibbonScreentip"
                 onAction="TaggingCmd"/>
               <button
                 id="ribTaggedButton"
                 image="LabelSearch"
                 getLabel="GetRibbonLabel"
+                getScreentip="GetRibbonScreentip"
                 onAction="TaggedCmd"/>
             </menu>
             <menu id="ribTableMenu" getLabel="GetRibbonLabel" imageMso="TableInsert" showImage="true" enabled="true">
@@ -749,6 +767,7 @@
                 id="ribTextToTableButton"
                 imageMso="ConvertTextToTable"
                 getLabel="GetRibbonLabel"
+                getScreentip="GetRibbonScreentip"
                 getEnabled="GetBodyContext"
                 onAction="TextToTableCmd"/>
               <button
@@ -762,6 +781,7 @@
                 id="ribPasteCellsButton"
                 imageMso="PasteAsNestedTable"
                 getLabel="GetRibbonLabel"
+                getScreentip="GetRibbonScreentip"
                 getEnabled="GetBodyContext"
                 onAction="PasteCellsCmd"/>
               <button
@@ -796,6 +816,7 @@
                 id="ribSplitTableButton"
                 imageMso="TableSplitTable"
                 getLabel="GetRibbonLabel"
+                getScreentip="GetRibbonScreentip"
                 getEnabled="GetBodyContext"
                 onAction="SplitTableCmd"/>
             </menu>
@@ -829,16 +850,19 @@
                 id="ribSortButton"
                 imageMso="SortUp"
                 getLabel="GetRibbonLabel"
+                getScreentip="GetRibbonScreentip"
                 onAction="SortCmd"/>
               <button
                 id="ribStartTimerButton"
                 imageMso="StartTimer"
                 getLabel="GetRibbonLabel"
+                getScreentip="GetRibbonScreentip"
                 onAction="StartTimerCmd"/>
               <button
                 id="ribInsertTimerButton"
                 imageMso="ShowJournalPage"
                 getLabel="GetRibbonLabel"
+                getScreentip="GetRibbonScreentip"
                 onAction="InsertTimerCmd"/>
               <button
                 id="ribShowXmlButton"
@@ -864,10 +888,12 @@
               id="ribSettingsButton"
               imageMso="ReadingViewToolsMenu"
               getLabel="GetRibbonLabel"
+              getScreentip="GetRibbonScreentip"
               onAction="SettingsCmd"/>
             <button
               id="ribAboutButton"
               getLabel="GetRibbonLabel"
+              getScreentip="GetRibbonScreentip"
               onAction="AboutCmd"/>
           </menu>
         </group>
@@ -880,6 +906,7 @@
         id="ctxCaptionAttachmentsButton"
         imageMso="CaptionInsert"
         getLabel="GetRibbonLabel"
+        getScreentip="GetRibbonScreentip"
         onAction="CaptionAttachmentsCmd"
         insertBeforeMso="FilePrintoutInsert"/>
     </contextMenu>
@@ -888,6 +915,7 @@
         id="ctxArchiveNotebookButton"
         imageMso="SaveAttachments"
         getLabel="GetRibbonLabel"
+        getScreentip="GetRibbonScreentip"
         onAction="ArchiveCmd"
         tag="notebook"
         insertBeforeMso="ShareThisNotebook"/>
@@ -909,12 +937,14 @@
         id="ctxSortNotebookSectionsButton"
         imageMso="SortUp"
         getLabel="GetRibbonLabel"
+        getScreentip="GetRibbonScreentip"
         onAction="SortSectionsCmd"
         insertBeforeMso="ShareThisNotebook"/>
       <button
         id="ctxNotebookWordCountButton"
         imageMso="WordCount"
         getLabel="GetRibbonLabel"
+        getScreentip="GetRibbonScreentip"
         onAction="NotebookWordCountCmd"
         insertBeforeMso="ShareThisNotebook"/>
       <menuSeparator
@@ -926,6 +956,7 @@
         id="ctxSortNotebooksButton"
         imageMso="SortUp"
         getLabel="GetRibbonLabel"
+        getScreentip="GetRibbonScreentip"
         onAction="SortNotebooksCmd"
         insertBeforeMso="SectionInsert"/>
       <menuSeparator
@@ -937,12 +968,14 @@
         id="ctxDuplicatePageButton"
         imageMso="PasteDuplicate"
         getLabel="GetRibbonLabel"
+        getScreentip="GetRibbonScreentip"
         onAction="DuplicatePageCmd"
         insertBeforeMso="RenamePageOneNote"/>
       <button
         id="ctxExportButton"
         imageMso="FileSave"
         getLabel="GetRibbonLabel"
+        getScreentip="GetRibbonScreentip"
         getEnabled="GetOfficeInstalled"
         onAction="ExportCmd"
         insertBeforeMso="RenamePageOneNote"/>
@@ -950,6 +983,7 @@
         id="ctxMergeButton"
         imageMso="CompareAndCombine"
         getLabel="GetRibbonLabel"
+        getScreentip="GetRibbonScreentip"
         getEnabled="GetMultiPageContext"
         onAction="MergeCmd"
         insertBeforeMso="RenamePageOneNote"/>
@@ -957,12 +991,14 @@
         id="ctxSplitButton"
         imageMso="MasterDocumentSplitSubdocuments"
         getLabel="GetRibbonLabel"
+        getScreentip="GetRibbonScreentip"
         onAction="SplitCmd"
         insertBeforeMso="RenamePageOneNote"/>
       <button
         id="ctxSortPageButton"
         imageMso="SortUp"
         getLabel="GetRibbonLabel"
+        getScreentip="GetRibbonScreentip"
         onAction="SortPageCmd"
         insertBeforeMso="RenamePageOneNote"/>
       <menuSeparator
@@ -997,24 +1033,28 @@
         id="ctxAddCaptionButton"
         imageMso="CaptionInsert"
         getLabel="GetRibbonLabel"
+        getScreentip="GetRibbonScreentip"
         onAction="AddCaptionCmd"
         insertBeforeMso="Cut"/>
       <button
         id="ctxCropImageButton"
         imageMso="PictureCrop"
         getLabel="GetRibbonLabel"
+        getScreentip="GetRibbonScreentip"
         onAction="CropImageCmd"
         insertBeforeMso="Cut"/>
       <button
         id="ctxOpenImageWithButton"
         imageMso="PictureInsertFromFile"
         getLabel="GetRibbonLabel"
+        getScreentip="GetRibbonScreentip"
         onAction="OpenImageWithCmd"
         insertBeforeMso="Cut"/>
       <button
         id="ctxResizeImagesButton"
         imageMso="GroupPictureCompress"
         getLabel="GetRibbonLabel"
+        getScreentip="GetRibbonScreentip"
         onAction="ResizeImagesCmd"
         insertBeforeMso="Cut"/>
       <menuSeparator
@@ -1033,6 +1073,7 @@
         id="ctxArchiveSectionButton"
         imageMso="SaveAttachments"
         getLabel="GetRibbonLabel"
+        getScreentip="GetRibbonScreentip"
         onAction="ArchiveCmd"
         tag="section"
         insertBeforeMso="SectionRenameOneNote"/>
@@ -1048,18 +1089,21 @@
         id="ctxSectionColorButton"
         imageMso="ShapeFillColorPicker"
         getLabel="GetRibbonLabel"
+        getScreentip="GetRibbonScreentip"
         onAction="SectionColorCmd"
         insertBeforeMso="SectionRenameOneNote"/>
       <button
         id="ctxSortSectionPagesButton"
         imageMso="SortUp"
         getLabel="GetRibbonLabel"
+        getScreentip="GetRibbonScreentip"
         onAction="SortPagesCmd"
         insertBeforeMso="SectionRenameOneNote"/>
       <button
         id="ctxSectionWordCountButton"
         imageMso="WordCount"
         getLabel="GetRibbonLabel"
+        getScreentip="GetRibbonScreentip"
         onAction="SectionWordCountCmd"
         insertBeforeMso="SectionRenameOneNote"/>
       <menuSeparator
@@ -1093,6 +1137,7 @@
         id="ct2SortNotebookSectionsButton"
         imageMso="SortUp"
         getLabel="GetRibbonLabel"
+        getScreentip="GetRibbonScreentip"
         onAction="SortSectionsCmd"
         insertBeforeMso="SectionInsert"/>
       <menuSeparator
@@ -1104,6 +1149,7 @@
         id="ctxCopyFolderButton"
         imageMso="CopyFolder"
         getLabel="GetRibbonLabel"
+        getScreentip="GetRibbonScreentip"
         onAction="CopyFolderCmd"
         insertBeforeMso="FolderRename"/>
       <menuSeparator

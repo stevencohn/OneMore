@@ -3480,87 +3480,127 @@ Polaroid</value>
   </data>
   <data name="ribReportRemindersButton_Label" xml:space="preserve">
     <value>Reminder Summary Report</value>
-    <comment>ribbon item NODUP</comment>
+    <comment>ribbon reminders NODUP</comment>
+  </data>
+  <data name="ribReportRemindersButton_Screentip" xml:space="preserve">
+    <value>Generate a summary report of reminders</value>
+    <comment>ribbon reminders</comment>
   </data>
   <data name="ribResizeImagesButton_Label" xml:space="preserve">
     <value>Resize and Adjust</value>
-    <comment>Ribbon OneMore menu item, Resize selected image(s)</comment>
+    <comment>ribbon images</comment>
+  </data>
+  <data name="ribResizeImagesButton_Screentip" xml:space="preserve">
+    <value>Resize and adjust selected images</value>
+    <comment>ribbon images</comment>
   </data>
   <data name="ribRestoreAutosizeButton_Label" xml:space="preserve">
     <value>Restore Auto-size Container Widths</value>
-    <comment>ribbon item</comment>
+    <comment>ribbon clean</comment>
+  </data>
+  <data name="ribRestoreAutosizeButton_Screentip" xml:space="preserve">
+    <value>Reset automatic width of all containers</value>
+    <comment>ribbon clean</comment>
   </data>
   <data name="ribRestoreCollapsedButton_Label" xml:space="preserve">
     <value>Restore Collapsed Outline</value>
-    <comment>ribbon</comment>
+    <comment>ribbon page</comment>
+  </data>
+  <data name="ribRestoreCollapsedButton_Screentip" xml:space="preserve">
+    <value>Expand headings to recently saved state</value>
+    <comment>ribbon page</comment>
   </data>
   <data name="ribRunPluginButton_Label" xml:space="preserve">
     <value>Run Plugin</value>
-    <comment>Ribbon OneMore menu item NODUP</comment>
+    <comment>ribbon file NODUP</comment>
+  </data>
+  <data name="ribRunPluginButton_Screentip" xml:space="preserve">
+    <value>Run or define a custom plugin</value>
+    <comment>ribbon file</comment>
   </data>
   <data name="ribSaveCollapsedButton_Label" xml:space="preserve">
     <value>Saved Collapsed Outline</value>
-    <comment>ribbon</comment>
+    <comment>ribbon page</comment>
+  </data>
+  <data name="ribSaveCollapsedButton_Screentip" xml:space="preserve">
+    <value>Saved the collapsed state of all headings</value>
+    <comment>ribbon page</comment>
   </data>
   <data name="ribSaveSnippetButton_Label" xml:space="preserve">
     <value>Save Custom Snippet</value>
-    <comment>ribbon button</comment>
+    <comment>ribbon snippets</comment>
+  </data>
+  <data name="ribSaveSnippetButton_Screentip" xml:space="preserve">
+    <value>Save a new custom snippet from the selected content</value>
+    <comment>ribbon snippets</comment>
   </data>
   <data name="ribSearchAndReplaceButton_Label" xml:space="preserve">
     <value>Search and Replace</value>
-    <comment>Ribbon OneMore menu item, search and replace NODUP</comment>
+    <comment>ribbon search NODUP</comment>
   </data>
   <data name="ribSearchAndReplaceButton_Screentip" xml:space="preserve">
     <value>Search and replace (Ctrl + H)</value>
-    <comment>Ribbon OneMore menu item, search and replace</comment>
+    <comment>ribbon search</comment>
   </data>
   <data name="ribSearchButton_Label" xml:space="preserve">
     <value>Search and Copy/Move</value>
-    <comment>ribbon item</comment>
+    <comment>ribbon search</comment>
   </data>
   <data name="ribSearchButton_Screentip" xml:space="preserve">
     <value>Search pages for keywords and copy/move to another section (Alt + F)</value>
-    <comment>ribbon item</comment>
+    <comment>ribbon search</comment>
   </data>
   <data name="ribSearchMenu_Label" xml:space="preserve">
     <value>Search and Tag</value>
-    <comment>ribbon menu item</comment>
+    <comment>ribbon menu</comment>
   </data>
   <data name="ribSectionColorButton_Label" xml:space="preserve">
     <value>Customize Section Color</value>
-    <comment>Context menu</comment>
+    <comment>section Context menu</comment>
   </data>
   <data name="ribSectionWordCountButton_Label" xml:space="preserve">
     <value>Total Words in Section</value>
-    <comment>ribbon</comment>
+    <comment>section context menu</comment>
   </data>
   <data name="ribSelectImagesButton_Label" xml:space="preserve">
     <value>Select All Images</value>
-    <comment>ribbon menu edit item</comment>
+    <comment>ribbon edit</comment>
+  </data>
+  <data name="ribSelectImagesButton_Screentip" xml:space="preserve">
+    <value>Select all images on the page</value>
+    <comment>ribbon edit</comment>
   </data>
   <data name="ribSelectStyleButton_Label" xml:space="preserve">
+    <value>Select Similar Text</value>
+    <comment>ribbon edit EDIT</comment>
+  </data>
+  <data name="ribSelectStyleButton_Screentip" xml:space="preserve">
     <value>Select text with similar formatting</value>
-    <comment>ribbon item</comment>
+    <comment>ribbon edit</comment>
   </data>
   <data name="ribSettingsButton_Label" xml:space="preserve">
     <value>Settings</value>
-    <comment>ribbon button</comment>
+    <comment>ribbon main</comment>
+  </data>
+  <data name="ribSettingsButton_Screentip" xml:space="preserve">
+    <value>Open the OneMore settings window</value>
+    <comment>ribbon main</comment>
   </data>
   <data name="ribShowKeyboardShortcutsButton_Label" xml:space="preserve">
     <value>OneNote Keyboard Shortcuts</value>
-    <comment>favorite</comment>
+    <comment>ribbon favorites</comment>
   </data>
   <data name="ribShowXmlButton_Label" xml:space="preserve">
     <value>Show XML</value>
-    <comment>Ribbon OneMore menu item</comment>
+    <comment>ribbon extras</comment>
   </data>
   <data name="ribShowXmlButton_Screentip" xml:space="preserve">
     <value>Show XML of hierarchy and current page (Ctrl + Shift + Alt + X)</value>
-    <comment>Ribbon OneMore menu item</comment>
+    <comment>ribbon extras</comment>
   </data>
   <data name="ribSnippetsMenu_Label" xml:space="preserve">
     <value>Snippets</value>
-    <comment>Ribbon OneMore menu item, Snippets... NODUP</comment>
+    <comment>ribbon menu NODUP</comment>
   </data>
   <data name="ribSortButton_Label" xml:space="preserve">
     <value>Sort</value>
@@ -3568,122 +3608,159 @@ Polaroid</value>
   </data>
   <data name="ribSortListButton_Label" xml:space="preserve">
     <value>Sort List</value>
-    <comment>ribbon item</comment>
+    <comment>ribbon edit</comment>
+  </data>
+  <data name="ribSortListButton_Screentip" xml:space="preserve">
+    <value>Sort items within a list</value>
+    <comment>ribbon edit</comment>
   </data>
   <data name="ribSortNotebooksButton_Label" xml:space="preserve">
     <value>Sort Notebooks</value>
-    <comment>ribbon/context menu</comment>
+    <comment>panel context menu</comment>
   </data>
   <data name="ribSortNotebookSectionsButton_Label" xml:space="preserve">
     <value>Sort Sections in Notebook</value>
-    <comment>ribbon/context menu</comment>
+    <comment>notebook context menu</comment>
   </data>
   <data name="ribSortPageButton_Label" xml:space="preserve">
     <value>Sort Child Pages</value>
-    <comment>ribbon/context menu</comment>
+    <comment>page context menu</comment>
   </data>
   <data name="ribSortPagesButton_Label" xml:space="preserve">
     <value>Sort Pages in Section</value>
-    <comment>ribbon/context menu NODUP</comment>
+    <comment>panel context menu NODUP</comment>
   </data>
   <data name="ribSortSectionPagesButton_Label" xml:space="preserve">
     <value>Sort Pages in Section</value>
-    <comment>ribbon/context menu NODUP</comment>
+    <comment>section context menu NODUP</comment>
   </data>
   <data name="ribSplitButton_Label" xml:space="preserve">
     <value>Split Page</value>
-    <comment>ribbon item NODUP</comment>
+    <comment>ribbon page NODUP</comment>
+  </data>
+  <data name="ribSplitButton_Screentip" xml:space="preserve">
+    <value>Split page at Heading 1 into multiple pages</value>
+    <comment>ribbon page</comment>
   </data>
   <data name="ribSplitTableButton_Label" xml:space="preserve">
     <value>Split Table</value>
-    <comment>ribbon button</comment>
+    <comment>ribbon table</comment>
+  </data>
+  <data name="ribSplitTableButton_Screentip" xml:space="preserve">
+    <value>Split table at current row</value>
+    <comment>ribbon table</comment>
   </data>
   <data name="ribStartBiLinkButton_Label" xml:space="preserve">
     <value>Start Bidirectional Link</value>
-    <comment>ribbon item</comment>
+    <comment>ribbon references</comment>
+  </data>
+  <data name="ribStartBiLinkButton_Screentip" xml:space="preserve">
+    <value>Start bi-directional link</value>
+    <comment>ribbon references</comment>
   </data>
   <data name="ribStartTimerButton_Label" xml:space="preserve">
     <value>Start Timer</value>
-    <comment>ribbon item</comment>
+    <comment>ribbon extras</comment>
+  </data>
+  <data name="ribStartTimerButton_Screentip" xml:space="preserve">
+    <value>Open and start the timer window</value>
+    <comment>ribbon extras</comment>
   </data>
   <data name="ribStrikeoutTasksButton_Label" xml:space="preserve">
     <value>Strikethrough Completed To Do Tags</value>
-    <comment>Ribbon OneMore menu item</comment>
+    <comment>ribbon reminders</comment>
   </data>
   <data name="ribStrikeoutTasksButton_Screentip" xml:space="preserve">
     <value>Toggle strikethough of text marked with complete or incomplete To Do tags</value>
-    <comment>Ribbon OneMore menu item</comment>
+    <comment>ribbon reminders</comment>
   </data>
   <data name="ribTableMenu_Label" xml:space="preserve">
     <value>Table</value>
-    <comment>Ribbon OneMore menu item, Formula...</comment>
+    <comment>ribbon menu</comment>
   </data>
   <data name="ribTableThemesButton_Label" xml:space="preserve">
     <value>Table Styles</value>
-    <comment>ribbon</comment>
+    <comment>ribbon main</comment>
   </data>
   <data name="ribTaggedButton_Label" xml:space="preserve">
     <value>Find Tagged Pages</value>
-    <comment>menu item NODUP</comment>
+    <comment>ribbon search NODUP</comment>
+  </data>
+  <data name="ribTaggedButton_Screentip" xml:space="preserve">
+    <value>Find pages with custom tags</value>
+    <comment>ribbon search</comment>
   </data>
   <data name="ribTaggingButton_Label" xml:space="preserve">
     <value>Tag Page</value>
-    <comment>menu item</comment>
+    <comment>ribbon search</comment>
+  </data>
+  <data name="ribTaggingButton_Screentip" xml:space="preserve">
+    <value>Add custom tags to this page</value>
+    <comment>ribbon search</comment>
   </data>
   <data name="ribTextToTableButton_Label" xml:space="preserve">
     <value>Convert Text to Table</value>
-    <comment>Ribbon OneMore menu item, extras NODUP</comment>
+    <comment>ribbon table NODUP</comment>
+  </data>
+  <data name="ribTextToTableButton_Screentip" xml:space="preserve">
+    <value>Convert selected text to table</value>
+    <comment>ribbon table</comment>
   </data>
   <data name="ribTitlecaseButton_Label" xml:space="preserve">
     <value>To Title Case</value>
-    <comment>rib button</comment>
+    <comment>ribbon edit</comment>
   </data>
   <data name="ribTitlecaseButton_Screentip" xml:space="preserve">
     <value>Convert text to title case</value>
+    <comment>ribbon edit</comment>
   </data>
   <data name="ribToggleDttmButton_Label" xml:space="preserve">
     <value>Show/Hide Page Date and Time Stamps</value>
-    <comment>Ribbon OneMore menu item</comment>
+    <comment>ribbon page</comment>
   </data>
   <data name="ribToggleDttmButton_Screentip" xml:space="preserve">
     <value>Show/hide page date and time stamps below title</value>
-    <comment>Ribbon OneMore menu item</comment>
+    <comment>ribbon page</comment>
   </data>
   <data name="ribTrimButton_Label" xml:space="preserve">
     <value>Trim Whitespace</value>
-    <comment>Ribbon OneMore menu item, trim</comment>
+    <comment>ribbon edit</comment>
   </data>
   <data name="ribTrimButton_Screentip" xml:space="preserve">
     <value>Trim trailing whitespace from selected text</value>
-    <comment>Ribbon OneMore menu item, trim</comment>
+    <comment>ribbon edit</comment>
   </data>
   <data name="ribTrimLeadingButton_Label" xml:space="preserve">
     <value>Trim Leading Whitespace</value>
-    <comment>ribbon item</comment>
+    <comment>ribbon edit</comment>
   </data>
   <data name="ribTrimLeadingButton_Screentip" xml:space="preserve">
     <value>Trim leading whitespace from selected text</value>
-    <comment>ribbon item tootp</comment>
+    <comment>ribbon edit</comment>
   </data>
   <data name="ribUpdateSubpageButton_Label" xml:space="preserve">
     <value>Update Embedded Pages</value>
-    <comment>ribbon item</comment>
+    <comment>ribbon page</comment>
   </data>
   <data name="ribUpdateSubpageButton_Screentip" xml:space="preserve">
     <value>Update all embedded content on this page</value>
-    <comment>ribbon item screentip</comment>
+    <comment>ribbon page</comment>
   </data>
   <data name="ribUppercaseButton_Label" xml:space="preserve">
     <value>To UPPERCASE</value>
-    <comment>Ribbon OneMore menu item NODUP</comment>
+    <comment>ribbon edit NODUP</comment>
   </data>
   <data name="ribUppercaseButton_Screentip" xml:space="preserve">
     <value>Convert text to uppercase (Ctrl + Shift + Alt + U)</value>
-    <comment>Ribbon OneMore menu item</comment>
+    <comment>ribbon edit</comment>
   </data>
   <data name="ribWordCountButton_Label" xml:space="preserve">
     <value>Word Count</value>
-    <comment>Ribbon OneMore menu extras</comment>
+    <comment>ribbon page</comment>
+  </data>
+  <data name="ribWordCountButton_Screentip" xml:space="preserve">
+    <value>Report the number of words on this page</value>
+    <comment>ribbon page</comment>
   </data>
   <data name="RightwardsArrow" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>emoji\rightwardsarrow.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
