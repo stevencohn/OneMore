@@ -89,10 +89,6 @@ namespace River.OneMoreAddIn.Commands.Tools.Updater
 		public async Task<bool> FetchLatestRelease()
 		{
 			var client = HttpClientFactory.Create();
-			if (!client.DefaultRequestHeaders.Contains("User-Agent"))
-			{
-				client.DefaultRequestHeaders.Add("User-Agent", "OneMore");
-			}
 
 			try
 			{
@@ -104,9 +100,23 @@ namespace River.OneMoreAddIn.Commands.Tools.Updater
 				var serializer = new JavaScriptSerializer();
 				release = serializer.Deserialize<GitRelease>(body);
 			}
+			catch (AggregateException exc)
+			{
+				Logger.Current.WriteLine("aggregate exception...");
+
+				exc.Handle(e =>
+				{
+					// called for each exception in AggregateException...
+
+					Logger.Current.WriteLine("error(s) fetching latest release", e);
+					return true; // true=handled, don't rethrow
+				});
+
+				return false;
+			}
 			catch (Exception exc)
 			{
-				Logger.Current.WriteLine("error fetching latest release", exc);
+				Logger.Current.WriteLine($"error fetching latest release {exc.Message}", exc);
 				return false;
 			}
 

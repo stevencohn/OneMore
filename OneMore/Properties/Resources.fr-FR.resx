@@ -959,8 +959,20 @@ Police de la dernière colonne</value>
     <value>Calendrier</value>
     <comment>emoji</comment>
   </data>
+  <data name="Emoji_CheckMark" xml:space="preserve">
+    <value>Coche</value>
+    <comment>emoji</comment>
+  </data>
   <data name="Emoji_Circle" xml:space="preserve">
     <value>Cercle</value>
+    <comment>emoji</comment>
+  </data>
+  <data name="Emoji_Cloud" xml:space="preserve">
+    <value>Nuage</value>
+    <comment>emoji</comment>
+  </data>
+  <data name="Emoji_Copyright" xml:space="preserve">
+    <value>droits d'auteur</value>
     <comment>emoji</comment>
   </data>
   <data name="Emoji_CrossMark" xml:space="preserve">
@@ -973,6 +985,10 @@ Police de la dernière colonne</value>
   </data>
   <data name="Emoji_Email" xml:space="preserve">
     <value>Email</value>
+    <comment>emoji</comment>
+  </data>
+  <data name="Emoji_Eyes" xml:space="preserve">
+    <value>Yeux</value>
     <comment>emoji</comment>
   </data>
   <data name="Emoji_Family" xml:space="preserve">
@@ -999,6 +1015,10 @@ Police de la dernière colonne</value>
     <value>Journal</value>
     <comment>emoji</comment>
   </data>
+  <data name="Emoji_LeftwardsArrow" xml:space="preserve">
+    <value>Flèche vers la gauche</value>
+    <comment>emoji</comment>
+  </data>
   <data name="Emoji_Memo" xml:space="preserve">
     <value>Note</value>
     <comment>emoji</comment>
@@ -1013,6 +1033,14 @@ Police de la dernière colonne</value>
   </data>
   <data name="Emoji_Pushpin" xml:space="preserve">
     <value>Punaise</value>
+    <comment>emoji</comment>
+  </data>
+  <data name="Emoji_RightwardsArrow" xml:space="preserve">
+    <value>Flèche vers la droite</value>
+    <comment>emoji</comment>
+  </data>
+  <data name="Emoji_Section" xml:space="preserve">
+    <value>Section</value>
     <comment>emoji</comment>
   </data>
   <data name="Emoji_Shazam" xml:space="preserve">
@@ -1050,6 +1078,18 @@ Police de la dernière colonne</value>
   <data name="Emoji_Watch" xml:space="preserve">
     <value>Regarder</value>
     <comment>emoji</comment>
+  </data>
+  <data name="Emoji_XMark" xml:space="preserve">
+    <value>Marque X</value>
+    <comment>emoji</comment>
+  </data>
+  <data name="EmojiDialog.Text" xml:space="preserve">
+    <value>Titre Emojis</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="EmojiDialog_introLabel.Text" xml:space="preserve">
+    <value>Sélectionnez un ou plusieurs emojis à ajouter au titre de la page</value>
+    <comment>instructions</comment>
   </data>
   <data name="Envelope" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>emoji\envelope.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -1274,6 +1314,9 @@ Symboles : PI, E</value>
   </data>
   <data name="Hammer" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>emoji\hammer.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="HasActiveMedia" xml:space="preserve">
+    <value>Impossible d'invoquer les commandes OneMore pendant qu'il y a un enregistrement actif. Veuillez arrêter l'enregistrement et réessayer.</value>
   </data>
   <data name="HighlightFormulaCommand_NoFormulas" xml:space="preserve">
     <value>Aucune formule trouvée sur cette page</value>
@@ -2155,6 +2198,10 @@ Différé</value>
     <value>Coupure d'écran</value>
     <comment>Screen clipping citation</comment>
   </data>
+  <data name="RemoveCitations_From" xml:space="preserve">
+    <value>À partir de</value>
+    <comment>prefix word</comment>
+  </data>
   <data name="RemoveDuplicatesDialog.Text" xml:space="preserve">
     <value>Supprimer les pages en double</value>
     <comment>dialog title</comment>
@@ -2327,13 +2374,25 @@ Polaroïd</value>
     <value>Ajouter une légende</value>
     <comment>Ribbon OneMore menu item, Add caption to selected image</comment>
   </data>
+  <data name="ribAddCaptionButton_Screentip" xml:space="preserve">
+    <value>Ajouter une légende à l'image sélectionnée</value>
+    <comment>ribbon images</comment>
+  </data>
   <data name="ribAddFavoritePageButton_Label" xml:space="preserve">
     <value>Ajouter la page actuelle</value>
     <comment>favorites menu command</comment>
   </data>
+  <data name="ribAddFavoritePageButton_Screentip" xml:space="preserve">
+    <value>Ajouter la page actuelle aux favoris</value>
+    <comment>ribbon favorites</comment>
+  </data>
   <data name="ribAddFavoriteSectionButton_Label" xml:space="preserve">
     <value>Ajouter aux Favoris</value>
     <comment>ribbon</comment>
+  </data>
+  <data name="ribAddFavoriteSectionButton_Screentip" xml:space="preserve">
+    <value>Ajouter une section au menu Favoris</value>
+    <comment>section context menu</comment>
   </data>
   <data name="ribAddFootnoteButton_Label" xml:space="preserve">
     <value>Ajouter une note de bas de page</value>
@@ -2354,6 +2413,10 @@ Polaroïd</value>
   <data name="ribAnalyzeButton_Label" xml:space="preserve">
     <value>Analyser le stockage des données</value>
     <comment>ribbon item</comment>
+  </data>
+  <data name="ribAnalyzeButton_Screentip" xml:space="preserve">
+    <value>Générer un rapport de stockage utilisé par section ou bloc-notes</value>
+    <comment>ribbon extras</comment>
   </data>
   <data name="ribApplyStyle0Button_Label" xml:space="preserve">
     <value>Appliquer le style 1</value>
@@ -2395,21 +2458,17 @@ Polaroïd</value>
     <value>Appliquer des styles à la page</value>
     <comment>Ribbon Custom Styles menu item, apply all custom style to page</comment>
   </data>
+  <data name="ribApplyStylesButton_Screentip" xml:space="preserve">
+    <value>Appliquer des styles personnalisés à tout le contenu de cette page</value>
+    <comment>ribbon styles</comment>
+  </data>
   <data name="ribArchiveNotebookButton_Label" xml:space="preserve">
     <value>Cahier d'archives</value>
     <comment>ribbon menu</comment>
   </data>
-  <data name="ribArchiveNotebookButton_Screentip" xml:space="preserve">
-    <value>Zip toutes les pages, y compris les pièces jointes</value>
-    <comment>tip</comment>
-  </data>
   <data name="ribArchiveSectionButton_Label" xml:space="preserve">
     <value>Section des archives</value>
     <comment>ribbon menu</comment>
-  </data>
-  <data name="ribArchiveSectionButton_Screentip" xml:space="preserve">
-    <value>Zip toutes les pages, y compris les pièces jointes</value>
-    <comment>tip</comment>
   </data>
   <data name="ribArrangeContainersButton_Label" xml:space="preserve">
     <value>Organiser les conteneurs</value>
@@ -2446,17 +2505,33 @@ Polaroïd</value>
     <value>Modifier l'espacement des phrases</value>
     <comment>clean menu item</comment>
   </data>
+  <data name="ribBreakingButton_Screentip" xml:space="preserve">
+    <value>Basculer entre un et deux espaces entre les phrases</value>
+    <comment>ribbon clean NODUP</comment>
+  </data>
   <data name="ribCalendarButton_Label" xml:space="preserve">
     <value>Calendrier OneMore</value>
     <comment>Ribbon OneMore-Calendar command NODUP</comment>
+  </data>
+  <data name="ribCalendarButton_Screentip" xml:space="preserve">
+    <value>Ouvrez l'application OneMore Calendar</value>
+    <comment>ribbon main NODUP</comment>
   </data>
   <data name="ribCaptionAttachmentsButton_Label" xml:space="preserve">
     <value>Attaches de légende</value>
     <comment>ribbon item</comment>
   </data>
+  <data name="ribCaptionAttachmentsButton_Screentip" xml:space="preserve">
+    <value>Ajouter une légende à chaque pièce jointe sur la page</value>
+    <comment>ribbon page</comment>
+  </data>
   <data name="ribChangePageColorButton_Label" xml:space="preserve">
     <value>Changer le thème de la page</value>
     <comment>Ribbon Custom Styles menu item, set page background color</comment>
+  </data>
+  <data name="ribChangePageColorButton_Screentip" xml:space="preserve">
+    <value>Appliquer des styles et une couleur d'arrière-plan à la page</value>
+    <comment>ribbon styles NODUP</comment>
   </data>
   <data name="ribCheckForUpdatesButton_Label" xml:space="preserve">
     <value>Vérifier les mises à jour</value>
@@ -2473,6 +2548,10 @@ Polaroïd</value>
     <value>Couleur d'arrière-plan claire</value>
     <comment>ribbon menu item</comment>
   </data>
+  <data name="ribClearBackgroundButton_Screentip" xml:space="preserve">
+    <value>Réinitialiser la couleur de fond de la page</value>
+    <comment>ribbon clean</comment>
+  </data>
   <data name="ribClearLogButton_Label" xml:space="preserve">
     <value>Effacer le fichier journal</value>
     <comment>not a menu, hotkey only</comment>
@@ -2480,13 +2559,25 @@ Polaroïd</value>
   <data name="ribClearTableShadingButton_Label" xml:space="preserve">
     <value>Effacer tous les styles de tableau</value>
   <comment>ribbon item</comment></data>
+  <data name="ribClearTableShadingButton_Screentip" xml:space="preserve">
+    <value>Réinitialiser l'ombrage dans toutes les cellules du tableau actuel</value>
+    <comment>ribbon table styles</comment>
+  </data>
   <data name="ribCollapseContentButton_Label" xml:space="preserve">
     <value>Réduire le contour</value>
     <comment>ribbon item</comment>
   </data>
+  <data name="ribCollapseContentButton_Screentip" xml:space="preserve">
+    <value>Réduire tous les titres avec un contenu en retrait</value>
+    <comment>ribbon page</comment>
+  </data>
   <data name="ribCollapsePagesButton_Label" xml:space="preserve">
     <value>Réduire les pages</value>
     <comment>Ribbon OneMore menu item</comment>
+  </data>
+  <data name="ribCollapsePagesButton_Screentip" xml:space="preserve">
+    <value>Réduire les pages enfants dans le panneau de navigation de page</value>
+    <comment>ribbon extras</comment>
   </data>
   <data name="ribColorizeMenu_Label" xml:space="preserve">
     <value>Coloriser</value>
@@ -2495,21 +2586,37 @@ Polaroïd</value>
   <data name="ribCommandPaletteButton_Label" xml:space="preserve">
     <value>Palette de commandes</value>
   <comment>ribbon item</comment></data>
+  <data name="ribCommandPaletteButton_Screentip" xml:space="preserve">
+    <value>Ouvrir la fenêtre de la palette de commandes</value>
+    <comment>ribbon main</comment>
+  </data>
   <data name="ribCompleteReminderButton_Label" xml:space="preserve">
     <value>Rappel complet</value>
     <comment>ribbon button</comment>
   </data>
+  <data name="ribCompleteReminderButton_Screentip" xml:space="preserve">
+    <value>Marquer le rappel de paragraphe comme terminé</value>
+    <comment>ribbon reminders</comment>
+  </data>
   <data name="ribCopyAcrossButton_Label" xml:space="preserve">
     <value>Copier à travers</value>
-    <comment>ribbon</comment>
+    <comment>ribbon table</comment>
   </data>
   <data name="ribCopyAsMarkdownButton_Label" xml:space="preserve">
     <value>Copier comme Markdown</value>
     <comment>ribbon item</comment>
   </data>
+  <data name="ribCopyAsMarkdownButton_Screentip" xml:space="preserve">
+    <value>Copiez le contenu sélectionné en tant que démarquage</value>
+    <comment>ribbon edit</comment>
+  </data>
   <data name="ribCopyDownButton_Label" xml:space="preserve">
     <value>Recopie</value>
     <comment>ribbon</comment>
+  </data>
+  <data name="ribCopyDownButton_Screentip" xml:space="preserve">
+    <value>Copier le contenu dans les colonnes sélectionnées</value>
+    <comment>ribbon table</comment>
   </data>
   <data name="ribCopyFolderButton_Label" xml:space="preserve">
     <value>Copier le groupe de sections</value>
@@ -2519,21 +2626,41 @@ Polaroïd</value>
     <value>Copier le lien vers la page</value>
     <comment>ribbon item</comment>
   </data>
+  <data name="ribCopyLinkToPageButton_Screentip" xml:space="preserve">
+    <value>Copier un lien hypertexte vers la page actuelle</value>
+    <comment>ribbon references</comment>
+  </data>
   <data name="ribCopyLinkToParagraphButton_Label" xml:space="preserve">
     <value>Copier le lien vers le paragraphe</value>
     <comment>ribbon item</comment>
+  </data>
+  <data name="ribCopyLinkToParagraphButton_Screentip" xml:space="preserve">
+    <value>Copier un lien hypertexte vers le paragraphe courant</value>
+    <comment>ribbon references</comment>
   </data>
   <data name="ribCrawlWebPageButton_Label" xml:space="preserve">
     <value>Hyperliens d'importation</value>
     <comment>ribbon item</comment>
   </data>
+  <data name="ribCrawlWebPageButton_Screentip" xml:space="preserve">
+    <value>Importer des hyperliens en tant que nouvelles pages</value>
+    <comment>ribbon file</comment>
+  </data>
   <data name="ribCreatePagesButton_Label" xml:space="preserve">
     <value>Créer des pages à partir de la liste</value>
     <comment>ribbon item</comment>
   </data>
+  <data name="ribCreatePagesButton_Screentip" xml:space="preserve">
+    <value>Créer de nouvelles pages en utilisant des éléments de liste comme titres</value>
+    <comment>ribbon page</comment>
+  </data>
   <data name="ribCropImageButton_Label" xml:space="preserve">
     <value>Recadrer et faire pivoter</value>
     <comment>Ribbon OneMore menu item, Images...</comment>
+  </data>
+  <data name="ribCropImageButton_Screentip" xml:space="preserve">
+    <value>Recadrer et faire pivoter l'image sélectionnée</value>
+    <comment>ribbon images NODUP</comment>
   </data>
   <data name="ribCustomSnippetsMenu_Label" xml:space="preserve">
     <value>Mes extraits personnalisés</value>
@@ -2571,6 +2698,10 @@ Polaroïd</value>
     <value>Supprimer le rappel</value>
     <comment>ribbon button</comment>
   </data>
+  <data name="ribDeleteReminderButton_Screentip" xml:space="preserve">
+    <value>Supprimer le rappel du paragraphe actuel</value>
+    <comment>ribbon reminders</comment>
+  </data>
   <data name="ribDiagnosticsButton_Label" xml:space="preserve">
     <value>Vider les diagnostics dans le journal</value>
     <comment>not a menu, hotkey only</comment>
@@ -2578,6 +2709,10 @@ Polaroïd</value>
   <data name="ribDisableSpellCheckButton_Label" xml:space="preserve">
     <value>Désactiver la vérification orthographique</value>
     <comment>Ribbon OneMore menu item, no spell check on this page</comment>
+  </data>
+  <data name="ribDisableSpellCheckButton_Screentip" xml:space="preserve">
+    <value>Désactiver la vérification orthographique dans le contenu sélectionné</value>
+    <comment>ribbon edit</comment>
   </data>
   <data name="ribDuplicateLineAboveButton_Label" xml:space="preserve">
     <value>Paragraphe en double ci-dessus</value>
@@ -2587,6 +2722,18 @@ Polaroïd</value>
     <value>Paragraphe en double</value>
     <comment>ribbon item</comment>
   </data>
+  <data name="ribDuplicateLineButton_Screentip" xml:space="preserve">
+    <value>Dupliquer le paragraphe courant</value>
+    <comment>ribbon edit</comment>
+  </data>
+  <data name="ribDuplicatePageButton_Label" xml:space="preserve">
+    <value>Page dupliquée</value>
+    <comment>page context menu</comment>
+  </data>
+  <data name="ribDuplicatePageButton_Screentip" xml:space="preserve">
+    <value>Dupliquer la page actuelle</value>
+    <comment>ribbon page</comment>
+  </data>
   <data name="ribEditMenu_Label" xml:space="preserve">
     <value>Éditer</value>
     <comment>OneMore Ribbon menu item</comment>
@@ -2595,9 +2742,17 @@ Polaroïd</value>
     <value>Modifier les styles</value>
     <comment>Ribbon Custom Styles menu item, edit custom styles</comment>
   </data>
+  <data name="ribEditStylesButton_Screentip" xml:space="preserve">
+    <value>Modifier les styles personnalisés</value>
+    <comment>ribbon styles</comment>
+  </data>
   <data name="ribEditTableThemesButton_Label" xml:space="preserve">
     <value>Modifier les styles de tableau personnalisés</value>
     <comment>table styles ribbon gallery button</comment>
+  </data>
+  <data name="ribEditTableThemesButton_Screentip" xml:space="preserve">
+    <value>Modifier les styles de tableau personnalisés personnalisés</value>
+    <comment>ribbon table styles</comment>
   </data>
   <data name="ribEmbedSubpageButton_Label" xml:space="preserve">
     <value>Intégrer la page</value>
@@ -2606,6 +2761,14 @@ Polaroïd</value>
   <data name="ribEmbedSubpageButton_Screentip" xml:space="preserve">
     <value>Intégrer le contenu d'une autre page dans la page actuelle</value>
     <comment>ribbon item screentip</comment>
+  </data>
+  <data name="ribEmojiButton_Label" xml:space="preserve">
+    <value>Ajouter un titre de page Emoji</value>
+    <comment>Ribbon OneMore menu item, Extras... EDIT</comment>
+  </data>
+  <data name="ribEmojiButton_Screentip" xml:space="preserve">
+    <value>Préparez le titre de la page avec des emojis</value>
+    <comment>ribbon page</comment>
   </data>
   <data name="ribEnableSpellCheckButton_Label" xml:space="preserve">
     <value>Activer la vérification orthographique</value>
@@ -2618,6 +2781,10 @@ Polaroïd</value>
   <data name="ribExpandContentButton_Label" xml:space="preserve">
     <value>Développer le contour</value>
     <comment>ribbon item</comment>
+  </data>
+  <data name="ribExpandContentButton_Screentip" xml:space="preserve">
+    <value>Développer tous les titres avec un contenu en retrait</value>
+    <comment>ribbon page</comment>
   </data>
   <data name="ribExpandSnippetButton_Label" xml:space="preserve">
     <value>Développer l'extrait de nom</value>
@@ -2647,6 +2814,10 @@ Polaroïd</value>
     <value>Remplir à travers</value>
     <comment>ribbon</comment>
   </data>
+  <data name="ribFillAcrossButton_Screentip" xml:space="preserve">
+    <value>Remplir la séquence sur les lignes sélectionnées</value>
+    <comment>ribbon table</comment>
+  </data>
   <data name="ribFillDownButton_Label" xml:space="preserve">
     <value>Remplissez</value>
     <comment>ribbon</comment>
@@ -2659,17 +2830,33 @@ Polaroïd</value>
     <value>Terminer le lien bidirectionnel</value>
     <comment>ribbon item</comment>
   </data>
+  <data name="ribFinishBiLinkButton_Screentip" xml:space="preserve">
+    <value>Terminer le lien entre l'ancre et l'emplacement actuel</value>
+    <comment>ribbon references </comment>
+  </data>
   <data name="ribFitGridToTextButton_Label" xml:space="preserve">
     <value>Ajuster la grille au texte</value>
     <comment>ribbon item</comment>
+  </data>
+  <data name="ribFitGridToTextButton_Screentip" xml:space="preserve">
+    <value>Redimensionner la grille d'arrière-plan pour correspondre à la taille de police courante</value>
+    <comment>ribbon page NODUP</comment>
   </data>
   <data name="ribGetImagesButton_Label" xml:space="preserve">
     <value>Remplacer les URL par des images</value>
     <comment>Ribbon OneMore menu item, Extras...</comment>
   </data>
+  <data name="ribGetImagesButton_Screentip" xml:space="preserve">
+    <value>Télécharger et insérer des images référencées</value>
+    <comment>ribbon references</comment>
+  </data>
   <data name="ribHighlightButton_Label" xml:space="preserve">
     <value>Surligneur rotatif</value>
     <comment>menu</comment>
+  </data>
+  <data name="ribHighlightButton_Screentip" xml:space="preserve">
+    <value>Texte en surbrillance avec un surligneur rotatif</value>
+    <comment>ribbon edit</comment>
   </data>
   <data name="ribHighlightFormulaButton_Label" xml:space="preserve">
     <value>Mettre en évidence la formule</value>
@@ -2687,13 +2874,25 @@ Polaroïd</value>
     <value>Importer</value>
     <comment>ribbon item</comment>
   </data>
+  <data name="ribImportButton_Screentip" xml:space="preserve">
+    <value>Importer un fichier</value>
+    <comment>ribbon file NODUP</comment>
+  </data>
   <data name="ribImportOutlookTasksButton_Label" xml:space="preserve">
     <value>Importer des tâches depuis Outlook</value>
     <comment>ribbon Reminders item</comment>
   </data>
+  <data name="ribImportOutlookTasksButton_Screentip" xml:space="preserve">
+    <value>Importer des informations sur les tâches à partir d'Outlook</value>
+    <comment>ribbon reminders NODUP</comment>
+  </data>
   <data name="ribImportWebButton_Label" xml:space="preserve">
     <value>Importer une page Web</value>
     <comment>ribbon</comment>
+  </data>
+  <data name="ribImportWebButton_Screentip" xml:space="preserve">
+    <value>Importer une page Web avec une URL</value>
+    <comment>ribbon file NODUP</comment>
   </data>
   <data name="ribIncreaseFontSizeButton_Label" xml:space="preserve">
     <value>Augmenter la taille de la police</value>
@@ -2707,6 +2906,10 @@ Polaroïd</value>
     <value>Statut bleu</value>
     <comment>Ribbon OneMore menu item, Snippets...</comment>
   </data>
+  <data name="ribInsertBlueStatusButton_Screentip" xml:space="preserve">
+    <value>Insérer une étiquette d'état bleue</value>
+    <comment>ribbon snippets</comment>
+  </data>
   <data name="ribInsertBoxButton_Label" xml:space="preserve">
     <value>Zone de texte</value>
     <comment>ribbon</comment>
@@ -2719,13 +2922,25 @@ Polaroïd</value>
     <value>Miette de pain</value>
     <comment>ribbon snippets menu</comment>
   </data>
+  <data name="ribInsertBreadcrumbButton_Screentip" xml:space="preserve">
+    <value>Insérer le fil d'Ariane de l'emplacement de la page en haut de la page</value>
+    <comment>ribbon snippets</comment>
+  </data>
   <data name="ribInsertCalendarButton_Label" xml:space="preserve">
     <value>Calendrier</value>
     <comment>ribbon button</comment>
   </data>
+  <data name="ribInsertCalendarButton_Screentip" xml:space="preserve">
+    <value>Insérer un calendrier mensuel</value>
+    <comment>ribbon snippets</comment>
+  </data>
   <data name="ribInsertCellsButton_Label" xml:space="preserve">
     <value>Insérer des cellules de tableau</value>
     <comment>ribbon item</comment>
+  </data>
+  <data name="ribInsertCellsButton_Screentip" xml:space="preserve">
+    <value>Insérer des cellules dans le tableau actuel</value>
+    <comment>ribbon table</comment>
   </data>
   <data name="ribInsertCodeBlockButton_Label" xml:space="preserve">
     <value>Bloc de code</value>
@@ -2759,25 +2974,49 @@ Polaroïd</value>
     <value>Développer/Réduire</value>
     <comment>Ribbon OneMore menu item, Snippets...</comment>
   </data>
+  <data name="ribInsertExpandButton_Screentip" xml:space="preserve">
+    <value>Insérer un contrôle réductible</value>
+    <comment>ribbon snippets</comment>
+  </data>
   <data name="ribInsertGrayStatusButton_Label" xml:space="preserve">
     <value>Statut gris</value>
     <comment>Ribbon OneMore menu item, Snippets...</comment>
+  </data>
+  <data name="ribInsertGrayStatusButton_Screentip" xml:space="preserve">
+    <value>Insérer une étiquette d'état grise</value>
+    <comment>ribbon snippets</comment>
   </data>
   <data name="ribInsertGreenStatusButton_Label" xml:space="preserve">
     <value>Statut vert</value>
     <comment>Ribbon OneMore menu item, Snippets...</comment>
   </data>
+  <data name="ribInsertGreenStatusButton_Screentip" xml:space="preserve">
+    <value>Insérer une étiquette d'état verte</value>
+    <comment>ribbon snippets</comment>
+  </data>
   <data name="ribInsertInfoBlockButton_Label" xml:space="preserve">
     <value>Bloc d'informations</value>
     <comment>Ribbon OneMore menu item, Snippets...</comment>
+  </data>
+  <data name="ribInsertInfoBlockButton_Screentip" xml:space="preserve">
+    <value>Insérer un bloc d'information</value>
+    <comment>ribbon snippets</comment>
   </data>
   <data name="ribInsertQRButton_Label" xml:space="preserve">
     <value>Insérer le code QR</value>
     <comment>ribbon button</comment>
   </data>
+  <data name="ribInsertQRButton_Screentip" xml:space="preserve">
+    <value>Insérer un QR Code représentant le texte sélectionné</value>
+    <comment>ribbon references</comment>
+  </data>
   <data name="ribInsertRedStatusButton_Label" xml:space="preserve">
     <value>Statut rouge</value>
     <comment>Ribbon OneMore menu item, Snippets...</comment>
+  </data>
+  <data name="ribInsertRedStatusButton_Screentip" xml:space="preserve">
+    <value>Insérer une étiquette d'état rouge</value>
+    <comment>ribbon snippets</comment>
   </data>
   <data name="ribInsertSingleLineButton_Label" xml:space="preserve">
     <value>Ligne horizontale</value>
@@ -2791,32 +3030,64 @@ Polaroïd</value>
     <value>Insérer une minuterie</value>
     <comment>ribbon item</comment>
   </data>
+  <data name="ribInsertTimerButton_Screentip" xml:space="preserve">
+    <value>Insérer la valeur actuelle de la minuterie</value>
+    <comment>ribbon extras</comment>
+  </data>
   <data name="ribInsertTocButton_Label" xml:space="preserve">
     <value>Table des matières</value>
     <comment>Ribbon OneMore menu item, Extras...</comment>
+  </data>
+  <data name="ribInsertTocButton_Screentip" xml:space="preserve">
+    <value>Insérer une table des matières des titres en haut de la page</value>
+    <comment>ribbon snippets</comment>
   </data>
   <data name="ribInsertWarnBlockButton_Label" xml:space="preserve">
     <value>Bloc d'avertissement</value>
     <comment>Ribbon OneMore menu item, Snippets...</comment>
   </data>
+  <data name="ribInsertWarnBlockButton_Screentip" xml:space="preserve">
+    <value>Insérer un bloc d'avertissement</value>
+    <comment>ribbon snippets</comment>
+  </data>
   <data name="ribInsertYellowStatusButton_Label" xml:space="preserve">
     <value>Statut jaune</value>
     <comment>Ribbon OneMore menu item, Snippets...</comment>
+  </data>
+  <data name="ribInsertYellowStatusButton_Screentip" xml:space="preserve">
+    <value>Insérer une étiquette d'état jaune</value>
+    <comment>ribbon snippets</comment>
   </data>
   <data name="ribInvertSelectionButton_Label" xml:space="preserve">
     <value>Inverser la sélection</value>
     <comment>ribbon button</comment>
   </data>
+  <data name="ribInvertSelectionButton_Screentip" xml:space="preserve">
+    <value>Inverser la sélection</value>
+    <comment>ribbon edit</comment>
+  </data>
   <data name="ribJoinParagraphButton_Label" xml:space="preserve">
     <value>Joindre le paragraphe</value>
     <comment>ribbon button</comment>
   </data>
+  <data name="ribJoinParagraphButton_Screentip" xml:space="preserve">
+    <value>Joindre les paragraphes sélectionnés</value>
+    <comment>ribbon edit</comment>
+  </data>
   <data name="ribLinkReferencesButton_Label" xml:space="preserve">
     <value>Lier les références à cette page</value>
   <comment>ribbon button</comment></data>
+  <data name="ribLinkReferencesButton_Screentip" xml:space="preserve">
+    <value>Générer des liens bidirectionnels vers cette page en fonction de son titre</value>
+    <comment>ribbon references</comment>
+  </data>
   <data name="ribLoadStylesButton_Label" xml:space="preserve">
     <value>Styles de charge</value>
     <comment>ribbon item</comment>
+  </data>
+  <data name="ribLoadStylesButton_Screentip" xml:space="preserve">
+    <value>Charger des styles personnalisés à partir d'un fichier</value>
+    <comment>ribbon styles</comment>
   </data>
   <data name="ribLowercaseButton_Label" xml:space="preserve">
     <value>En minuscules</value>
@@ -2842,21 +3113,41 @@ Polaroïd</value>
     <value>Créer une carte de page</value>
     <comment>ribbon button</comment>
   </data>
+  <data name="ribMapButton_Screentip" xml:space="preserve">
+    <value>Signaler toutes les pages contenant des liens vers d'autres pages</value>
+    <comment>ribbon references</comment>
+  </data>
   <data name="ribMergeButton_Label" xml:space="preserve">
     <value>Fusionner les pages</value>
     <comment>Ribbon OneMore menu item, Extras...</comment>
   </data>
+  <data name="ribMergeButton_Screentip" xml:space="preserve">
+    <value>Fusionner les pages sélectionnées</value>
+    <comment>ribbon page</comment>
+  </data>
   <data name="ribNameUrlsButton_Label" xml:space="preserve">
+    <value>Remplacer les URL par des titres</value>
+    <comment>ribbon references</comment>
+  </data>
+  <data name="ribNameUrlsButton_Screentip" xml:space="preserve">
     <value>Remplacer les URL par des titres de page Web</value>
-    <comment>Ribbon OneMore menu item, Extras...</comment>
+    <comment>ribbon references</comment>
   </data>
   <data name="ribNewStyleButton_Label" xml:space="preserve">
     <value>Créer un style à partir de la sélection</value>
     <comment>Ribbon Custom Styles menu item, create new style</comment>
   </data>
+  <data name="ribNewStyleButton_Screentip" xml:space="preserve">
+    <value>Créer un nouveau style à partir de la sélection actuelle</value>
+    <comment>ribbon styles</comment>
+  </data>
   <data name="ribNoSpellCheckButton_Screentip" xml:space="preserve">
     <value>Désactiver la vérification orthographique pour toute la page (F4)</value>
     <comment>Ribbon OneMore menu item, no spell check on this page</comment>
+  </data>
+  <data name="ribNotebookWordCountButton_Label" xml:space="preserve">
+    <value>Total de mots dans le cahier</value>
+    <comment>ribbon</comment>
   </data>
   <data name="ribNumberingMenu_Label" xml:space="preserve">
     <value>Numérotage</value>
@@ -2890,12 +3181,20 @@ Polaroïd</value>
     <value>Ouvrir l'image avec</value>
     <comment>Ribbon OneMore menu item</comment>
   </data>
+  <data name="ribOpenImageWithButton_Screentip" xml:space="preserve">
+    <value>Ouvrir l'image sélectionnée avec un éditeur externe</value>
+    <comment>ribbon images</comment>
+  </data>
   <data name="ribOpenLogButton_Label" xml:space="preserve">
     <value>Ouvrir le fichier journal</value>
   </data>
   <data name="ribOutlineButton_Label" xml:space="preserve">
     <value>Mise en forme du contour</value>
     <comment>Ribbon OneMore menu item, Extras...</comment>
+  </data>
+  <data name="ribOutlineButton_Screentip" xml:space="preserve">
+    <value>Numérotation des titres sur cette page</value>
+    <comment>ribbon numbering</comment>
   </data>
   <data name="ribPageMenu_Label" xml:space="preserve">
     <value>Page</value>
@@ -2904,6 +3203,10 @@ Polaroïd</value>
   <data name="ribPasteCellsButton_Label" xml:space="preserve">
     <value>Coller des cellules</value>
     <comment>ribbon</comment>
+  </data>
+  <data name="ribPasteCellsButton_Screentip" xml:space="preserve">
+    <value>Coller le contenu dans les cellules existantes</value>
+    <comment>ribbon table</comment>
   </data>
   <data name="ribPasteRtfButton_Label" xml:space="preserve">
     <value>Coller du texte enrichi</value>
@@ -2941,6 +3244,10 @@ Polaroïd</value>
     <value>Insérer la prononciation</value>
     <comment>Ribbon OneMore menu item</comment>
   </data>
+  <data name="ribPronunciateButton_Screentip" xml:space="preserve">
+    <value>Insérer la prononciation phonétique du texte sélectionné</value>
+    <comment>ribbon edit</comment>
+  </data>
   <data name="ribProofingMenu_Label" xml:space="preserve">
     <value>Langue de vérification</value>
     <comment>ribbon menu</comment>
@@ -2969,9 +3276,17 @@ Polaroïd</value>
     <value>Actualiser les références de page</value>
     <comment>ribbon item</comment>
   </data>
+  <data name="ribRefreshPageLinksButton_Screentip" xml:space="preserve">
+    <value>Actualiser les références de liens bidirectionnels</value>
+    <comment>ribbon references</comment>
+  </data>
   <data name="ribRemindButton_Label" xml:space="preserve">
     <value>Ajouter ou mettre à jour des rappels</value>
     <comment>ribbon button</comment>
+  </data>
+  <data name="ribRemindButton_Screentip" xml:space="preserve">
+    <value>Ajouter ou mettre à jour un rappel sur le paragraphe en cours</value>
+    <comment>ribbon reminders</comment>
   </data>
   <data name="ribRemindersMenu_Label" xml:space="preserve">
     <value>Rappels</value>
@@ -2997,9 +3312,13 @@ Polaroïd</value>
     <value>Supprimer les pages en double</value>
     <comment>Ribbon OneMore menu item</comment>
   </data>
+  <data name="ribRemoveDuplicatesButton_Screentip" xml:space="preserve">
+    <value>Identifier et supprimer les pages en double</value>
+    <comment>ribbon clean</comment>
+  </data>
   <data name="ribRemoveEmptyButton_Label" xml:space="preserve">
-    <value>Supprimer les paragraphes et les en-têtes vides</value>
-    <comment>Ribbon OneMore menu item</comment>
+    <value>Supprimer les lignes vides</value>
+    <comment>ribbon clean</comment>
   </data>
   <data name="ribRemoveEmptyButton_Screentip" xml:space="preserve">
     <value>Supprimer les lignes vides supplémentaires entre les paragraphes et supprimer les en-têtes vides</value>
@@ -3016,6 +3335,10 @@ Polaroïd</value>
   <data name="ribRemoveInkButton_Label" xml:space="preserve">
     <value>Supprimer l'encre</value>
     <comment>ribbon item</comment>
+  </data>
+  <data name="ribRemoveInkButton_Screentip" xml:space="preserve">
+    <value>Supprimer tous les dessins au stylo de cette page</value>
+    <comment>ribbon clean</comment>
   </data>
   <data name="ribRemovePageNumbersButton_Label" xml:space="preserve">
     <value>Supprimer les numéros de page</value>
@@ -3060,29 +3383,57 @@ Polaroïd</value>
     <value>Rapport récapitulatif de rappel</value>
     <comment>ribbon item</comment>
   </data>
+  <data name="ribReportRemindersButton_Screentip" xml:space="preserve">
+    <value>Générer un rapport récapitulatif des rappels</value>
+    <comment>ribbon reminders</comment>
+  </data>
   <data name="ribResizeImagesButton_Label" xml:space="preserve">
     <value>Redimensionner et ajuster</value>
     <comment>Ribbon OneMore menu item, Resize selected image(s)</comment>
   </data>
+  <data name="ribResizeImagesButton_Screentip" xml:space="preserve">
+    <value>Redimensionner et ajuster les images sélectionnées</value>
+    <comment>ribbon images</comment>
+  </data>
   <data name="ribRestoreAutosizeButton_Label" xml:space="preserve">
-    <value>Restaurer les largeurs de conteneurs de taille automatique</value>
-    <comment>ribbon item</comment>
+    <value>Restaurer les largeurs de conteneurs</value>
+    <comment>ribbon clean</comment>
+  </data>
+  <data name="ribRestoreAutosizeButton_Screentip" xml:space="preserve">
+    <value>Réinitialiser la largeur automatique de tous les conteneurs</value>
+    <comment>ribbon clean</comment>
   </data>
   <data name="ribRestoreCollapsedButton_Label" xml:space="preserve">
     <value>Restaurer le contour réduit</value>
     <comment>ribbon</comment>
   </data>
+  <data name="ribRestoreCollapsedButton_Screentip" xml:space="preserve">
+    <value>Développer les en-têtes jusqu'à l'état récemment enregistré</value>
+    <comment>ribbon page</comment>
+  </data>
   <data name="ribRunPluginButton_Label" xml:space="preserve">
     <value>Exécuter le plugin</value>
     <comment>Ribbon OneMore menu item</comment>
+  </data>
+  <data name="ribRunPluginButton_Screentip" xml:space="preserve">
+    <value>Exécuter ou définir un plugin personnalisé</value>
+    <comment>ribbon file</comment>
   </data>
   <data name="ribSaveCollapsedButton_Label" xml:space="preserve">
     <value>Plan réduit enregistré</value>
     <comment>ribbon</comment>
   </data>
+  <data name="ribSaveCollapsedButton_Screentip" xml:space="preserve">
+    <value>Enregistré l'état réduit de tous les titres</value>
+    <comment>ribbon page</comment>
+  </data>
   <data name="ribSaveSnippetButton_Label" xml:space="preserve">
     <value>Enregistrer l'extrait de code personnalisé</value>
     <comment>ribbon button</comment>
+  </data>
+  <data name="ribSaveSnippetButton_Screentip" xml:space="preserve">
+    <value>Enregistrer un nouvel extrait personnalisé à partir du contenu sélectionné</value>
+    <comment>ribbon snippets</comment>
   </data>
   <data name="ribSearchAndReplaceButton_Label" xml:space="preserve">
     <value>Rechercher et remplacer</value>
@@ -3108,17 +3459,33 @@ Polaroïd</value>
     <value>Personnaliser la couleur de la section</value>
     <comment>Context menu</comment>
   </data>
+  <data name="ribSectionWordCountButton_Label" xml:space="preserve">
+    <value>Nombre total de mots dans la section</value>
+    <comment>ribbon</comment>
+  </data>
   <data name="ribSelectImagesButton_Label" xml:space="preserve">
     <value>Sélectionner toutes les images</value>
     <comment>ribbon menu edit item</comment>
   </data>
+  <data name="ribSelectImagesButton_Screentip" xml:space="preserve">
+    <value>Sélectionnez toutes les images de la page</value>
+    <comment>ribbon edit</comment>
+  </data>
   <data name="ribSelectStyleButton_Label" xml:space="preserve">
-    <value>Sélectionnez du texte avec une mise en forme similaire</value>
-    <comment>ribbon item</comment>
+    <value>Sélectionner un texte similaire</value>
+    <comment>ribbon edit</comment>
+  </data>
+  <data name="ribSelectStyleButton_Screentip" xml:space="preserve">
+    <value>Sélectionner du texte avec une mise en forme similaire</value>
+    <comment>ribbon edit</comment>
   </data>
   <data name="ribSettingsButton_Label" xml:space="preserve">
     <value>Paramètres</value>
     <comment>ribbon button</comment>
+  </data>
+  <data name="ribSettingsButton_Screentip" xml:space="preserve">
+    <value>Ouvrez la fenêtre des paramètres OneMore</value>
+    <comment>ribbon main</comment>
   </data>
   <data name="ribShowKeyboardShortcutsButton_Label" xml:space="preserve">
     <value>Raccourcis clavier OneNote</value>
@@ -3144,6 +3511,10 @@ Polaroïd</value>
     <value>Liste de tri</value>
     <comment>ribbon item</comment>
   </data>
+  <data name="ribSortListButton_Screentip" xml:space="preserve">
+    <value>Trier les éléments d'une liste</value>
+    <comment>ribbon edit</comment>
+  </data>
   <data name="ribSortNotebooksButton_Label" xml:space="preserve">
     <value>Trier les cahiers</value>
     <comment>ribbon/context menu</comment>
@@ -3168,17 +3539,33 @@ Polaroïd</value>
     <value>Page divisée</value>
     <comment>ribbon item</comment>
   </data>
+  <data name="ribSplitButton_Screentip" xml:space="preserve">
+    <value>Diviser la page du titre 1 en plusieurs pages</value>
+    <comment>ribbon page</comment>
+  </data>
   <data name="ribSplitTableButton_Label" xml:space="preserve">
     <value>Table divisée</value>
     <comment>ribbon button</comment>
+  </data>
+  <data name="ribSplitTableButton_Screentip" xml:space="preserve">
+    <value>Fractionner le tableau à la ligne actuelle</value>
+    <comment>ribbon table</comment>
   </data>
   <data name="ribStartBiLinkButton_Label" xml:space="preserve">
     <value>Démarrer le lien bidirectionnel</value>
     <comment>ribbon item</comment>
   </data>
+  <data name="ribStartBiLinkButton_Screentip" xml:space="preserve">
+    <value>Démarrer un lien bidirectionnel</value>
+    <comment>ribbon references</comment>
+  </data>
   <data name="ribStartTimerButton_Label" xml:space="preserve">
     <value>Démarrer la minuterie</value>
     <comment>ribbon item</comment>
+  </data>
+  <data name="ribStartTimerButton_Screentip" xml:space="preserve">
+    <value>Ouvrir et démarrer la fenêtre de la minuterie</value>
+    <comment>ribbon extras</comment>
   </data>
   <data name="ribStrikeoutTasksButton_Label" xml:space="preserve">
     <value>Barré terminé pour faire des balises</value>
@@ -3200,13 +3587,25 @@ Polaroïd</value>
     <value>Rechercher des pages balisées</value>
     <comment>menu item</comment>
   </data>
+  <data name="ribTaggedButton_Screentip" xml:space="preserve">
+    <value>Rechercher des pages avec des balises personnalisées</value>
+    <comment>ribbon search</comment>
+  </data>
   <data name="ribTaggingButton_Label" xml:space="preserve">
     <value>Page de balise</value>
     <comment>menu item</comment>
   </data>
+  <data name="ribTaggingButton_Screentip" xml:space="preserve">
+    <value>Ajouter des balises personnalisées à cette page</value>
+    <comment>ribbon search</comment>
+  </data>
   <data name="ribTextToTableButton_Label" xml:space="preserve">
     <value>Convertir le texte en tableau</value>
     <comment>Ribbon OneMore menu item, extras</comment>
+  </data>
+  <data name="ribTextToTableButton_Screentip" xml:space="preserve">
+    <value>Convertir le texte sélectionné en tableau</value>
+    <comment>ribbon table</comment>
   </data>
   <data name="ribTitlecaseButton_Label" xml:space="preserve">
     <value>À la casse du titre</value>
@@ -3216,8 +3615,8 @@ Polaroïd</value>
     <value>Convertir le texte en casse du titre</value>
   </data>
   <data name="ribToggleDttmButton_Label" xml:space="preserve">
-    <value>Afficher / masquer la date et l'heure de la page</value>
-    <comment>Ribbon OneMore menu item</comment>
+    <value>Afficher / masquer les horodatages</value>
+    <comment>ribbon page</comment>
   </data>
   <data name="ribToggleDttmButton_Screentip" xml:space="preserve">
     <value>Afficher / masquer la date et l'heure de la page sous le titre</value>
@@ -3258,6 +3657,10 @@ Polaroïd</value>
   <data name="ribWordCountButton_Label" xml:space="preserve">
     <value>Nombre de mots</value>
     <comment>Ribbon OneMore menu extras</comment>
+  </data>
+  <data name="ribWordCountButton_Screentip" xml:space="preserve">
+    <value>Indiquez le nombre de mots sur cette page</value>
+    <comment>ribbon page</comment>
   </data>
   <data name="SaveAs" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>images\saveas.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -3453,6 +3856,10 @@ Les moteurs de recherche apparaîtront dans le menu contextuel de la page, faite
   </data>
   <data name="SettingsDialog_highlightNode.Text" xml:space="preserve">
     <value>Thèmes de surligneur</value>
+    <comment>treenode</comment>
+  </data>
+  <data name="SettingsDialog_keyboardNode.Text" xml:space="preserve">
+    <value>Raccourcis clavier</value>
     <comment>treenode</comment>
   </data>
   <data name="SettingsDialog_linesNode.Text" xml:space="preserve">
@@ -4069,6 +4476,9 @@ Dans cette section</value>
   <data name="word_Close" xml:space="preserve">
     <value>proche</value>
   </data>
+  <data name="word_Code" xml:space="preserve">
+    <value>Code</value>
+  </data>
   <data name="word_Color" xml:space="preserve">
     <value>Couleur</value>
   </data>
@@ -4119,6 +4529,9 @@ Dans cette section</value>
   </data>
   <data name="word_Language" xml:space="preserve">
     <value>Langue</value>
+  </data>
+  <data name="word_Limit" xml:space="preserve">
+    <value>Limite</value>
   </data>
   <data name="word_Move" xml:space="preserve">
     <value>Se déplacer</value>
@@ -4201,11 +4614,17 @@ Dans cette section</value>
   <data name="word_Text" xml:space="preserve">
     <value>Texte</value>
   </data>
+  <data name="word_Total" xml:space="preserve">
+    <value>Le total</value>
+  </data>
   <data name="word_Width" xml:space="preserve">
     <value>Largeur</value>
   </data>
   <data name="word_Word" xml:space="preserve">
     <value>Mot</value>
+  </data>
+  <data name="word_Words" xml:space="preserve">
+    <value>Mots</value>
   </data>
   <data name="word_XML" xml:space="preserve">
     <value>Xml</value>
@@ -4221,85 +4640,6 @@ Dans cette section</value>
     <value>Nombre total de mots sélectionnés : {0}</value>
     <comment>message box</comment>
   </data>
-  <data name="SettingsDialog_keyboardNode.Text" xml:space="preserve">
-    <value>Raccourcis clavier</value>
-    <comment>treenode</comment>
-  </data>
-  <data name="ribDuplicatePageButton_Label" xml:space="preserve">
-    <value>Page dupliquée</value>
-    <comment>page context menu</comment>
-  </data>
-  <data name="word_Code" xml:space="preserve">
-    <value>Code</value>
-  </data>
-  <data name="Emoji_CheckMark" xml:space="preserve">
-    <value>Coche</value>
-    <comment>emoji</comment>
-  </data>
-  <data name="Emoji_Cloud" xml:space="preserve">
-    <value>Nuage</value>
-    <comment>emoji</comment>
-  </data>
-  <data name="Emoji_Copyright" xml:space="preserve">
-    <value>droits d'auteur</value>
-    <comment>emoji</comment>
-  </data>
-  <data name="Emoji_Eyes" xml:space="preserve">
-    <value>Yeux</value>
-    <comment>emoji</comment>
-  </data>
-  <data name="Emoji_LeftwardsArrow" xml:space="preserve">
-    <value>Flèche vers la gauche</value>
-    <comment>emoji</comment>
-  </data>
-  <data name="Emoji_RightwardsArrow" xml:space="preserve">
-    <value>Flèche vers la droite</value>
-    <comment>emoji</comment>
-  </data>
-  <data name="Emoji_Section" xml:space="preserve">
-    <value>Section</value>
-    <comment>emoji</comment>
-  </data>
-  <data name="Emoji_XMark" xml:space="preserve">
-    <value>Marque X</value>
-    <comment>emoji</comment>
-  </data>
-  <data name="EmojiDialog.Text" xml:space="preserve">
-    <value>Titre Emojis</value>
-    <comment>dialog title</comment>
-  </data>
-  <data name="EmojiDialog_introLabel.Text" xml:space="preserve">
-    <value>Sélectionnez un ou plusieurs emojis à ajouter au titre de la page</value>
-    <comment>instructions</comment>
-  </data>
-  <data name="ribEmojiButton_Label" xml:space="preserve">
-    <value>Ajouter un titre de page Emoji</value>
-    <comment>Ribbon OneMore menu item, Extras... EDIT</comment>
-  </data>
-  <data name="word_Limit" xml:space="preserve">
-    <value>Limite</value>
-  </data>
-  <data name="RemoveCitations_From" xml:space="preserve">
-    <value>À partir de</value>
-    <comment>prefix word</comment>
-  </data>
-  <data name="HasActiveMedia" xml:space="preserve">
-    <value>Impossible d'invoquer les commandes OneMore pendant qu'il y a un enregistrement actif. Veuillez arrêter l'enregistrement et réessayer.</value>
-  </data>
-  <data name="ribNotebookWordCountButton_Label" xml:space="preserve">
-    <value>Total de mots dans le cahier</value>
-    <comment>ribbon</comment>
-  </data>
-  <data name="ribSectionWordCountButton_Label" xml:space="preserve">
-    <value>Nombre total de mots dans la section</value>
-    <comment>ribbon</comment>
-  </data>
-  <data name="word_Total" xml:space="preserve">
-    <value>Le total</value>
-  </data>
-  <data name="word_Words" xml:space="preserve">
-    <value>Mots</value>
-  </data>
   <data name="WordCounts_Notebook" xml:space="preserve">
     <value>{0} Bloc-notes</value>
     <comment>page heading</comment>
@@ -4314,5 +4654,9 @@ Dans cette section</value>
   <data name="WordCountsCommand_Title" xml:space="preserve">
     <value>Nombre de mots</value>
     <comment>page title</comment>
+  </data>
+  <data name="ribCopyAcrossButton_Screentip" xml:space="preserve">
+    <value>Copier le contenu sur les lignes sélectionnées</value>
+    <comment>ribbon table</comment>
   </data>
 </root>

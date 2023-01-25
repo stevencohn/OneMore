@@ -619,7 +619,7 @@ namespace River.OneMoreAddIn
 				id = $"rib{id.Substring(3)}";
 			}
 
-			return ReadString(id + "_Label");
+			return ReadString($"{id}_Label");
 		}
 
 
@@ -633,12 +633,12 @@ namespace River.OneMoreAddIn
 		{
 			// convert ctx items to rib items so they share the same label
 			var id = control.Id;
-			if (id.StartsWith("ctx") || id.StartsWith("bar"))
+			if (id.StartsWith("ctx") || id.StartsWith("ct2") || id.StartsWith("bar"))
 			{
 				id = $"rib{id.Substring(3)}";
 			}
 
-			var tip = ReadString(id + "_Screentip");
+			var tip = ReadString($"{id}_Screentip");
 			if (string.IsNullOrEmpty(tip))
 			{
 				tip = GetRibbonLabel(control);

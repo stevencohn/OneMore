@@ -132,6 +132,7 @@ namespace River.OneMoreAddIn
 			return new XElement(ns + "button",
 				new XAttribute("id", AddButtonId),
 				new XAttribute("label", Resx.ribAddFavoritePageButton_Label),
+				new XAttribute("screentip", Resx.ribAddFavoritePageButton_Screentip),
 				new XAttribute("imageMso", "AddToFavorites"),
 				new XAttribute("onAction", "AddFavoritePageCmd")
 				);
