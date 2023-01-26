@@ -194,9 +194,13 @@ namespace River.OneMoreAddIn.Commands
 					new JsonSerializerSettings { DateFormatString = JDateFormat });
 
 				using var stream = new MemoryStream();
-				using var zipper = new GZipStream(stream, CompressionMode.Compress);
-				var bytes = Encoding.UTF8.GetBytes(json);
-				zipper.Write(bytes, 0, bytes.Length);
+
+				// do not simplify this statement to ensure stream is Flushed and Closed
+				using (var zipper = new GZipStream(stream, CompressionMode.Compress))
+				{
+					var bytes = Encoding.UTF8.GetBytes(json);
+					zipper.Write(bytes, 0, bytes.Length);
+				}
 
 				return Convert.ToBase64String(stream.ToArray());
 			}
