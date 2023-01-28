@@ -1305,9 +1305,6 @@ Símbolos: PI, E</value>
     <value>Idioma de exibição (deve reiniciar o OneNote)</value>
     <comment>label</comment>
   </data>
-  <data name="GeneralSheet_pathNotFound" xml:space="preserve">
-    <value>Caminho não encontrado</value>
-  </data>
   <data name="GeneralSheet_Title" xml:space="preserve">
     <value>Opções gerais</value>
     <comment>settings sheet</comment>
@@ -4664,5 +4661,8 @@ Nesta secção</value>
   <data name="ribCopyAcrossButton_Screentip" xml:space="preserve">
     <value>Copie o conteúdo nas linhas selecionadas</value>
     <comment>ribbon table</comment>
+  </data>
+  <data name="phrase_PathNotFound" xml:space="preserve">
+    <value>Caminho não encontrado</value>
   </data>
 </root>

@@ -12,7 +12,7 @@ namespace River.OneMoreAddIn.Commands
 	using System.ComponentModel;
 	using System.IO;
 	using System.Windows.Forms;
-	using Resx = River.OneMoreAddIn.Properties.Resources;
+	using Resx = Properties.Resources;
 
 
 	internal partial class ImportDialog : UI.LocalizableForm
@@ -29,6 +29,7 @@ namespace River.OneMoreAddIn.Commands
 
 		private readonly bool wordInstalled;
 		private readonly bool powerPointInstalled;
+		private bool initialized = false;
 
 
 		public ImportDialog()
@@ -61,6 +62,7 @@ namespace River.OneMoreAddIn.Commands
 					"powerCreateButton",
 					"powerSectionButton",
 					"notInstalledLabel",
+					"errorLabel=phrase_PathNotFound",
 					"okButton=word_OK",
 					"cancelButton=word_Cancel"
 				});
@@ -77,6 +79,8 @@ namespace River.OneMoreAddIn.Commands
 			{
 				pathBox.Text = defaultPath;
 			}
+
+			initialized = true;
 		}
 
 
@@ -100,7 +104,7 @@ namespace River.OneMoreAddIn.Commands
 		{
 			try
 			{
-				var wild = pathBox.Text.Contains("*");
+				var wild = PathHelper.HasWildFileName(pathBox.Text);
 				var ext = Path.GetExtension(pathBox.Text);
 
 				switch (ext)
@@ -165,10 +169,31 @@ namespace River.OneMoreAddIn.Commands
 						okButton.Enabled = false;
 						break;
 				}
+
+				if (initialized)
+				{
+					var path = pathBox.Text.Trim();
+					if (string.IsNullOrWhiteSpace(path))
+					{
+						errorLabel.Visible = false;
+						okButton.Enabled = false;
+					}
+					else
+					{
+						var ok = PathHelper.HasWildFileName(path)
+							? Directory.GetFiles(
+								Path.GetDirectoryName(path), Path.GetFileName(path)).Length > 0
+							: File.Exists(path);
+
+						errorLabel.Visible = !ok;
+						okButton.Enabled = ok;
+					}
+				}
 			}
 			catch
 			{
 				okButton.Enabled = false;
+				errorLabel.Visible = initialized;
 			}
 		}
 

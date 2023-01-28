@@ -157,7 +157,7 @@ namespace River.OneMoreAddIn.Settings
 			var path = imageViewerBox.Text.Trim();
 			if (!string.IsNullOrEmpty(path) && (path != "mspaint") && !File.Exists(path))
 			{
-				errorProvider1.SetError(imageViewerButton, Resx.GeneralSheet_pathNotFound);
+				errorProvider1.SetError(imageViewerButton, Resx.phrase_PathNotFound);
 			}
 			else
 			{

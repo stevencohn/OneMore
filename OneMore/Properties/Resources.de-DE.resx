@@ -1299,9 +1299,6 @@ Symbole: PI, E</value>
     <value>Anzeigesprache (OneNote muss neu gestartet werden)</value>
     <comment>label</comment>
   </data>
-  <data name="GeneralSheet_pathNotFound" xml:space="preserve">
-    <value>Pfad nicht gefunden</value>
-  </data>
   <data name="GeneralSheet_Title" xml:space="preserve">
     <value>Allgemeine Optionen</value>
     <comment>settings sheet</comment>
@@ -4651,5 +4648,8 @@ In diesem Abschnitt</value>
   <data name="ribCopyAcrossButton_Screentip" xml:space="preserve">
     <value>Kopieren Sie Inhalte über die ausgewählten Zeilen</value>
     <comment>ribbon table</comment>
+  </data>
+  <data name="phrase_PathNotFound" xml:space="preserve">
+    <value>Pfad nicht gefunden</value>
   </data>
 </root>

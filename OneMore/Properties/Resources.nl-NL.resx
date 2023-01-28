@@ -1305,9 +1305,6 @@ Symbolen: PI, E</value>
     <value>Weergavetaal (moet OneNote opnieuw starten)</value>
     <comment>label</comment>
   </data>
-  <data name="GeneralSheet_pathNotFound" xml:space="preserve">
-    <value>Pad niet gevonden</value>
-  </data>
   <data name="GeneralSheet_Title" xml:space="preserve">
     <value>Algemene opties</value>
     <comment>settings sheet</comment>
@@ -4664,5 +4661,8 @@ In deze sectie</value>
   <data name="ribCopyAcrossButton_Screentip" xml:space="preserve">
     <value>Kopieer inhoud over de geselecteerde rijen</value>
     <comment>ribbon table</comment>
+  </data>
+  <data name="phrase_PathNotFound" xml:space="preserve">
+    <value>Pad niet gevonden</value>
   </data>
 </root>

@@ -43,6 +43,7 @@
 			this.powerSectionButton = new System.Windows.Forms.RadioButton();
 			this.introLabel = new System.Windows.Forms.Label();
 			this.notInstalledLabel = new System.Windows.Forms.Label();
+			this.errorLabel = new System.Windows.Forms.Label();
 			this.wordGroup.SuspendLayout();
 			this.powerGroup.SuspendLayout();
 			this.SuspendLayout();
@@ -195,12 +196,24 @@
 			// notInstalledLabel
 			// 
 			this.notInstalledLabel.AutoSize = true;
+			this.notInstalledLabel.ForeColor = System.Drawing.Color.Firebrick;
 			this.notInstalledLabel.Location = new System.Drawing.Point(27, 113);
 			this.notInstalledLabel.Name = "notInstalledLabel";
 			this.notInstalledLabel.Size = new System.Drawing.Size(306, 20);
 			this.notInstalledLabel.TabIndex = 10;
 			this.notInstalledLabel.Text = "The required Office product is not installed";
 			this.notInstalledLabel.Visible = false;
+			// 
+			// errorLabel
+			// 
+			this.errorLabel.AutoSize = true;
+			this.errorLabel.ForeColor = System.Drawing.Color.Firebrick;
+			this.errorLabel.Location = new System.Drawing.Point(27, 270);
+			this.errorLabel.Name = "errorLabel";
+			this.errorLabel.Size = new System.Drawing.Size(114, 20);
+			this.errorLabel.TabIndex = 11;
+			this.errorLabel.Text = "Path not found";
+			this.errorLabel.Visible = false;
 			// 
 			// ImportDialog
 			// 
@@ -209,6 +222,7 @@
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.CancelButton = this.cancelButton;
 			this.ClientSize = new System.Drawing.Size(579, 317);
+			this.Controls.Add(this.errorLabel);
 			this.Controls.Add(this.notInstalledLabel);
 			this.Controls.Add(this.introLabel);
 			this.Controls.Add(this.wordGroup);
@@ -252,5 +266,6 @@
 		private System.Windows.Forms.RadioButton powerSectionButton;
 		private System.Windows.Forms.Label introLabel;
 		private System.Windows.Forms.Label notInstalledLabel;
+		private System.Windows.Forms.Label errorLabel;
 	}
 }

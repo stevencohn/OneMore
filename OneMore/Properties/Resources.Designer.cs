@@ -2984,15 +2984,6 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Path not found.
-        /// </summary>
-        internal static string GeneralSheet_pathNotFound {
-            get {
-                return ResourceManager.GetString("GeneralSheet_pathNotFound", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to General Options.
         /// </summary>
         internal static string GeneralSheet_Title {
@@ -4398,6 +4389,15 @@ namespace River.OneMoreAddIn.Properties {
             get {
                 object obj = ResourceManager.GetObject("Pencil", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Path not found.
+        /// </summary>
+        internal static string phrase_PathNotFound {
+            get {
+                return ResourceManager.GetString("phrase_PathNotFound", resourceCulture);
             }
         }
         
