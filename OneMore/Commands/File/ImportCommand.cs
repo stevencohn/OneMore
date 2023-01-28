@@ -357,6 +357,8 @@ namespace River.OneMoreAddIn.Commands
 
 		private async Task ImportMarkdown(string filepath)
 		{
+			logger.StartClock();
+
 			if (!PathHelper.HasWildFileName(filepath))
 			{
 				await ImportMarkdownFile(filepath, default);
@@ -366,8 +368,6 @@ namespace River.OneMoreAddIn.Commands
 
 			var files = Directory.GetFiles(Path.GetDirectoryName(filepath), Path.GetFileName(filepath));
 			var timeout = 10 + (files.Length * 3);
-
-			logger.StartClock();
 
 			var completed = RunWithProgress(timeout, filepath, async (token) =>
 			{
@@ -441,8 +441,10 @@ namespace River.OneMoreAddIn.Commands
 					Page page;
 					string pageId;
 
+					IntPtr handle;
 					using (var one = new OneNote())
 					{
+						handle = one.WindowHandle;
 						one.CreatePage(one.CurrentSectionId, out pageId);
 
 						page = one.GetPage(pageId, OneNote.PageDetail.Basic);
@@ -451,6 +453,10 @@ namespace River.OneMoreAddIn.Commands
 						await one.Update(page);
 						await one.NavigateTo(pageId);
 					}
+
+					// need to set focus from Progress window to OneNote window to give
+					// the paste operation the correct target
+					Native.SwitchToThisWindow(handle, true);
 
 					await clippy.Paste(true);
 					await clippy.RestoreState();
