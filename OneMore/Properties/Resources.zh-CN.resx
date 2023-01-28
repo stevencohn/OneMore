@@ -1303,9 +1303,6 @@ OneNote 文件 (*.one)</value>
     <value>显示语言（必须重启 OneNote）</value>
     <comment>label</comment>
   </data>
-  <data name="GeneralSheet_pathNotFound" xml:space="preserve">
-    <value>找不到路径</value>
-  </data>
   <data name="GeneralSheet_Title" xml:space="preserve">
     <value>常规选项</value>
     <comment>settings sheet</comment>
@@ -4648,5 +4645,8 @@ ISO-code then comma then language name</comment>
   <data name="ribCopyAcrossButton_Screentip" xml:space="preserve">
     <value>通过选定的行复制内容</value>
     <comment>ribbon table</comment>
+  </data>
+  <data name="phrase_PathNotFound" xml:space="preserve">
+    <value>找不到路径</value>
   </data>
 </root>

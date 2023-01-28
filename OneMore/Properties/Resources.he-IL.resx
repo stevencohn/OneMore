@@ -1354,9 +1354,6 @@ Total Row Font
     <value>שפת תצוגה (חייב להפעיל מחדש את OneNote)</value>
     <comment>label</comment>
   </data>
-  <data name="GeneralSheet_pathNotFound" xml:space="preserve">
-    <value>נתיב לא נמצא</value>
-  </data>
   <data name="GeneralSheet_Title" xml:space="preserve">
     <value>אפשרויות כלליות</value>
     <comment>settings sheet</comment>
@@ -4759,5 +4756,8 @@ ISO-code then comma then language name</comment>
   <data name="ribCopyAcrossButton_Screentip" xml:space="preserve">
     <value>העתק תוכן על פני השורות שנבחרו</value>
     <comment>ribbon table</comment>
+  </data>
+  <data name="phrase_PathNotFound" xml:space="preserve">
+    <value>נתיב לא נמצא</value>
   </data>
 </root>

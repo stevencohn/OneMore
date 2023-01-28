@@ -1366,9 +1366,6 @@ Symbols: PI, E</value>
     <value>Display language (must restart OneNote)</value>
     <comment>label</comment>
   </data>
-  <data name="GeneralSheet_pathNotFound" xml:space="preserve">
-    <value>Path not found</value>
-  </data>
   <data name="GeneralSheet_Title" xml:space="preserve">
     <value>General Options</value>
     <comment>settings sheet</comment>
@@ -1970,6 +1967,9 @@ Deferred</value>
   </data>
   <data name="Pencil" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>emoji\pencil.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="phrase_PathNotFound" xml:space="preserve">
+    <value>Path not found</value>
   </data>
   <data name="Plugin_InvalidSchema" xml:space="preserve">
     <value>Invalid XML detected. Check log file for details</value>
