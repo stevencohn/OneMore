@@ -4665,4 +4665,8 @@ En esta sección</value>
   <data name="phrase_PathNotFound" xml:space="preserve">
     <value>Camino no encontrado</value>
   </data>
+  <data name="ribRemoveDateStampButton_Label" xml:space="preserve">
+    <value>Eliminar el prefijo del sello de fecha de los títulos de página</value>
+    <comment>command</comment>
+  </data>
 </root>

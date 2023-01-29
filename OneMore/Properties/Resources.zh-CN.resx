@@ -4649,4 +4649,8 @@ ISO-code then comma then language name</comment>
   <data name="phrase_PathNotFound" xml:space="preserve">
     <value>找不到路径</value>
   </data>
+  <data name="ribRemoveDateStampButton_Label" xml:space="preserve">
+    <value>从页面标题中删除日期戳前缀</value>
+    <comment>command</comment>
+  </data>
 </root>

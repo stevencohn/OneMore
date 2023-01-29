@@ -7617,11 +7617,22 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("ribRemoveCitationsButton_Screentip", resourceCulture);
             }
         }
-        
+
+		/// <summary>
+		///   Looks up a localized string similar to Remove Date Stamp Prefix from Page Titles.
+		/// </summary>
+		internal static string ribRemoveDateStampButton_Label
+		{
+			get
+			{
+				return ResourceManager.GetString("ribRemoveDateStampButton_Label", resourceCulture);
+			}
+		}
+		
         /// <summary>
-        ///   Looks up a localized string similar to Remove Duplicate Pages.
-        /// </summary>
-        internal static string ribRemoveDuplicatesButton_Label {
+		///   Looks up a localized string similar to Remove Duplicate Pages.
+		/// </summary>
+		internal static string ribRemoveDuplicatesButton_Label {
             get {
                 return ResourceManager.GetString("ribRemoveDuplicatesButton_Label", resourceCulture);
             }

@@ -600,6 +600,11 @@ namespace River.OneMoreAddIn
 			=> await factory.Run<RemoveCitationsCommand>();
 
 
+		[Command("ribRemoveDateStampButton_Label", Keys.None, "Tools")]
+		public async Task RemoveDateStampCmd(IRibbonControl control)
+			=> await factory.Run<DateStampCommand>(false);
+
+
 		[Command("ribRemoveDuplicatesButton_Label", Keys.None, "Clean")]
 		public async Task RemoveDuplicatesCmd(IRibbonControl control)
 			=> await factory.Run<RemoveDuplicatesCommand>();

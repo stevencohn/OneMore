@@ -5,6 +5,7 @@
 namespace River.OneMoreAddIn.Commands
 {
 	using System.Linq;
+	using System.Text.RegularExpressions;
 	using System.Threading.Tasks;
 
 
@@ -24,6 +25,7 @@ namespace River.OneMoreAddIn.Commands
 
 		private OneNote one;
 		private UI.ProgressDialog progress;
+		private Regex regex;
 
 
 		public DateStampCommand()
@@ -33,6 +35,13 @@ namespace River.OneMoreAddIn.Commands
 
 		public override async Task Execute(params object[] args)
 		{
+			var stamping = (args.Length == 0) || ((args[0] is bool b) && b);
+
+			if (!stamping)
+			{
+				regex = new Regex(@"^\d{4}-\d{2}-\d{2}\s.+", RegexOptions.Compiled);
+			}
+
 			using (one = new OneNote())
 			{
 				var section = one.GetSection();
@@ -59,7 +68,15 @@ namespace River.OneMoreAddIn.Commands
 						foreach (var info in infos)
 						{
 							progress.SetMessage(info.Name);
-							await StampPage(info);
+
+							if (stamping)
+							{
+								await StampPage(info);
+							}
+							else
+							{
+								await UnstampPage(info);
+							}
 						}
 
 						progress.Close();
@@ -84,6 +101,17 @@ namespace River.OneMoreAddIn.Commands
 			page.Title = $"{stamp} {page.Title}";
 
 			await one.Update(page);
+		}
+
+
+		private async Task UnstampPage(PageInfo info)
+		{
+			if (regex.Match(info.Name).Success)
+			{
+				var page = one.GetPage(info.ID, OneNote.PageDetail.Basic);
+				page.Title = page.Title.Substring(11);
+				await one.Update(page);
+			}
 		}
 	}
 }

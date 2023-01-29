@@ -4652,4 +4652,8 @@ In diesem Abschnitt</value>
   <data name="phrase_PathNotFound" xml:space="preserve">
     <value>Pfad nicht gefunden</value>
   </data>
+  <data name="ribRemoveDateStampButton_Label" xml:space="preserve">
+    <value>Datumspräfix aus Seitentiteln entfernen</value>
+    <comment>command</comment>
+  </data>
 </root>

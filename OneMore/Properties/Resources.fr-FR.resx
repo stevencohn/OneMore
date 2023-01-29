@@ -4659,4 +4659,8 @@ Dans cette section</value>
   <data name="phrase_PathNotFound" xml:space="preserve">
     <value>Chemin introuvable</value>
   </data>
+  <data name="ribRemoveDateStampButton_Label" xml:space="preserve">
+    <value>Supprimer le préfixe de l'horodatage des titres de page</value>
+    <comment>command</comment>
+  </data>
 </root>

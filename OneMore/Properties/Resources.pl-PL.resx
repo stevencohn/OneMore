@@ -4718,4 +4718,8 @@ W tej sekcji</value>
   <data name="phrase_PathNotFound" xml:space="preserve">
     <value>Droga nie znaleziona</value>
   </data>
+  <data name="ribRemoveDateStampButton_Label" xml:space="preserve">
+    <value>Usuń prefiks datownika z tytułów stron</value>
+    <comment>command</comment>
+  </data>
 </root>

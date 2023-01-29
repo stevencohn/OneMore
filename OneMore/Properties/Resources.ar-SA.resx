@@ -4665,4 +4665,8 @@ ISO-code then comma then language name</comment>
   <data name="phrase_PathNotFound" xml:space="preserve">
     <value>المسار مفقود</value>
   </data>
+  <data name="ribRemoveDateStampButton_Label" xml:space="preserve">
+    <value>قم بإزالة بادئة طابع التاريخ من عناوين الصفحة</value>
+    <comment>command</comment>
+  </data>
 </root>
