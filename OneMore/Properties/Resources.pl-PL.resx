@@ -4719,7 +4719,7 @@ W tej sekcji</value>
     <value>Droga nie znaleziona</value>
   </data>
   <data name="ribRemoveDateStampButton_Label" xml:space="preserve">
-    <value>Usuń prefiks datownika z tytułów stron</value>
+    <value>Usuń prefiks datownika ze stron w sekcji</value>
     <comment>command</comment>
   </data>
 </root>

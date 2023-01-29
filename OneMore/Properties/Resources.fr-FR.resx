@@ -4660,7 +4660,7 @@ Dans cette section</value>
     <value>Chemin introuvable</value>
   </data>
   <data name="ribRemoveDateStampButton_Label" xml:space="preserve">
-    <value>Supprimer le préfixe de l'horodatage des titres de page</value>
+    <value>Supprimer le préfixe de l'horodatage des pages de la section</value>
     <comment>command</comment>
   </data>
 </root>

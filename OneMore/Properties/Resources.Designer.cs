@@ -7619,7 +7619,7 @@ namespace River.OneMoreAddIn.Properties {
         }
 
 		/// <summary>
-		///   Looks up a localized string similar to Remove Date Stamp Prefix from Page Titles.
+		///   Looks up a localized string similar to Remove Date Stamp Prefix from Pages in Section.
 		/// </summary>
 		internal static string ribRemoveDateStampButton_Label
 		{

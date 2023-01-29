@@ -4666,7 +4666,7 @@ In deze sectie</value>
     <value>Pad niet gevonden</value>
   </data>
   <data name="ribRemoveDateStampButton_Label" xml:space="preserve">
-    <value>Datumstempelvoorvoegsel verwijderen uit paginatitels</value>
+    <value>Datumstempelvoorvoegsel verwijderen uit pagina's in sectie</value>
     <comment>command</comment>
   </data>
 </root>

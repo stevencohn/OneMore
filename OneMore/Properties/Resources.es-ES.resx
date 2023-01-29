@@ -4666,7 +4666,7 @@ En esta sección</value>
     <value>Camino no encontrado</value>
   </data>
   <data name="ribRemoveDateStampButton_Label" xml:space="preserve">
-    <value>Eliminar el prefijo del sello de fecha de los títulos de página</value>
+    <value>Eliminar el prefijo del sello de fecha de las páginas en la sección</value>
     <comment>command</comment>
   </data>
 </root>

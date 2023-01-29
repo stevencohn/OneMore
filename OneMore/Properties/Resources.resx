@@ -3407,7 +3407,7 @@ Polaroid</value>
     <comment>ribbon clean</comment>
   </data>
   <data name="ribRemoveDateStampButton_Label" xml:space="preserve">
-    <value>Remove Date Stamp Prefix from Page Titles</value>
+    <value>Remove Date Stamp Prefix from Pages in Section</value>
     <comment>command</comment>
   </data>
   <data name="ribRemoveDuplicatesButton_Label" xml:space="preserve">
