@@ -45,6 +45,8 @@ namespace River.OneMoreAddIn.Commands
 
 		public override async Task Execute(params object[] args)
 		{
+			regex = new Regex(CJKPattern);
+
 			using (one = new OneNote())
 			{
 				if (args.Length > 0 && args[0] is OneNote.Scope scope)
@@ -105,7 +107,6 @@ namespace River.OneMoreAddIn.Commands
 		private async Task ReportWordCounts(OneNote.Scope scope)
 		{
 			grandTotal = 0;
-			regex = new Regex(CJKPattern);
 
 			one.CreatePage(one.CurrentSectionId, out var pageId);
 			var page = one.GetPage(pageId);
