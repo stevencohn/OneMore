@@ -4650,7 +4650,7 @@ ISO-code then comma then language name</comment>
     <value>找不到路径</value>
   </data>
   <data name="ribRemoveDateStampButton_Label" xml:space="preserve">
-    <value>从部分中的页面中删除日期戳前缀</value>
-    <comment>command</comment>
+    <value>删除日期戳</value>
+    <comment>section context menu</comment>
   </data>
 </root>

@@ -4653,7 +4653,7 @@ In diesem Abschnitt</value>
     <value>Pfad nicht gefunden</value>
   </data>
   <data name="ribRemoveDateStampButton_Label" xml:space="preserve">
-    <value>Datumsstempel-Präfix von Seiten im Abschnitt entfernen</value>
-    <comment>command</comment>
+    <value>Datumsstempel entfernen</value>
+    <comment>section context menu</comment>
   </data>
 </root>

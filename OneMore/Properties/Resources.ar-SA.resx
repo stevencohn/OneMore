@@ -4666,7 +4666,7 @@ ISO-code then comma then language name</comment>
     <value>المسار مفقود</value>
   </data>
   <data name="ribRemoveDateStampButton_Label" xml:space="preserve">
-    <value>قم بإزالة بادئة طابع التاريخ من الصفحات في القسم</value>
-    <comment>command</comment>
+    <value>إزالة طوابع التاريخ</value>
+    <comment>section context menu</comment>
   </data>
 </root>

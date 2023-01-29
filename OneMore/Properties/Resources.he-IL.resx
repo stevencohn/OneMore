@@ -4761,7 +4761,7 @@ ISO-code then comma then language name</comment>
     <value>נתיב לא נמצא</value>
   </data>
   <data name="ribRemoveDateStampButton_Label" xml:space="preserve">
-    <value>הסר קידומת חותמת תאריך מדפים בסעיף</value>
-    <comment>command</comment>
+    <value>הסר חותמות תאריך</value>
+    <comment>section context menu</comment>
   </data>
 </root>

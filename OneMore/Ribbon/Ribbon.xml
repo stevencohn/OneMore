@@ -1093,6 +1093,14 @@
         onAction="SectionColorCmd"
         insertBeforeMso="SectionRenameOneNote"/>
       <button
+        id="ctxRemoveDateStampButton"
+        imageMso="RemoveCitation"
+        getLabel="GetRibbonLabel"
+        getScreentip="GetRibbonScreentip"
+        onAction="RemoveDateStampCmd"
+        tag="section"
+        insertBeforeMso="SectionRenameOneNote"/>
+      <button
         id="ctxSortSectionPagesButton"
         imageMso="SortUp"
         getLabel="GetRibbonLabel"

@@ -4666,7 +4666,7 @@ Nesta secção</value>
     <value>Caminho não encontrado</value>
   </data>
   <data name="ribRemoveDateStampButton_Label" xml:space="preserve">
-    <value>Remova o prefixo do carimbo de data das páginas na seção</value>
-    <comment>command</comment>
+    <value>Remover carimbos de data</value>
+    <comment>section context menu</comment>
   </data>
 </root>
