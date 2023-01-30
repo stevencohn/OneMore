@@ -46,7 +46,7 @@ namespace River.OneMoreAddIn.Commands
 
 			// reset focus to OneNote window
 			using var one = new OneNote();
-			Native.SwitchToThisWindow(one.WindowHandle, true);
+			Native.SwitchToThisWindow(one.WindowHandle, false);
 		}
 
 

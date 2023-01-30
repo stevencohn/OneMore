@@ -49,12 +49,20 @@ namespace River.OneMoreAddIn
 		public async Task<Command> Run<T>(params object[] args) where T : Command, new()
 		{
 			var command = new T();
-			await Run("Running", command, args);
 
-			if (!command.IsCancelled)
+			// this extra Task.Run was added to "fix" a problem where batched File/Import was not
+			// working correctly, although it worked fine from the command palette and Replay...
+			// TODO: not sure why this fixes it! needs more research
+
+			await Task.Run(async () =>
 			{
-				new CommandProvider().SaveToMRU(command, args);
-			}
+				await Run("Running", command, args);
+
+				if (!command.IsCancelled)
+				{
+					new CommandProvider().SaveToMRU(command, args);
+				}
+			});
 
 			return command;
 		}

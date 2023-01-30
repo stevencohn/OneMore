@@ -352,16 +352,6 @@ namespace River.OneMoreAddIn
 
 
 		[Command("ribImportButton_Label", Keys.None, "File")]
-		public async Task ImportOutlookTasksCmd(IRibbonControl control)
-			=> await factory.Run<ImportOutlookTasksCommand>();
-
-
-		[Command("ribIncreaseFontSizeButton_Label", Keys.Control | Keys.Alt | Keys.Oemplus, "Editing")]
-		public async Task IncreaseFontSizeCmd(IRibbonControl control)
-			=> await factory.Run<AlterSizeCommand>(1);
-
-
-		[Command("ribImportOutlookTasksButton_Label", Keys.None, "Reminders")]
 		public async Task ImportCmd(IRibbonControl control)
 			=> await factory.Run<ImportCommand>();
 
@@ -369,6 +359,16 @@ namespace River.OneMoreAddIn
 		[Command("ribImportWebButton_Label", Keys.None, "File")]
 		public async Task ImportWebCmd(IRibbonControl control)
 			=> await factory.Run<ImportWebCommand>();
+
+
+		[Command("ribImportOutlookTasksButton_Label", Keys.None, "Reminders")]
+		public async Task ImportOutlookTasksCmd(IRibbonControl control)
+			=> await factory.Run<ImportOutlookTasksCommand>();
+
+
+		[Command("ribIncreaseFontSizeButton_Label", Keys.Control | Keys.Alt | Keys.Oemplus, "Editing")]
+		public async Task IncreaseFontSizeCmd(IRibbonControl control)
+			=> await factory.Run<AlterSizeCommand>(1);
 
 
 		[Command("ribInsertBlueStatusButton_Label", Keys.None, "Snippets")]

@@ -456,7 +456,7 @@ namespace River.OneMoreAddIn.Commands
 
 					// need to set focus from Progress window to OneNote window to give
 					// the paste operation the correct target
-					Native.SwitchToThisWindow(handle, true);
+					Native.SwitchToThisWindow(handle, false);
 
 					await clippy.Paste(true);
 					await clippy.RestoreState();
