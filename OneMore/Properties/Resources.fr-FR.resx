@@ -4663,4 +4663,24 @@ Dans cette section</value>
     <value>Supprimer les tampons de date</value>
     <comment>section context menu</comment>
   </data>
+  <data name="DrawPlantUml_EmptySelection" xml:space="preserve">
+    <value>Sélection vide. Sélectionnez un bloc valide de texte PlantUML.</value>
+    <comment>error message</comment>
+  </data>
+  <data name="DrawPlantUml_Error" xml:space="preserve">
+    <value>Syntaxe invalide ou sélection incomplète de PlantUML</value>
+    <comment>error message</comment>
+  </data>
+  <data name="DrawPlantUml_NoParent" xml:space="preserve">
+    <value>Selection invalide; doit sélectionner un bloc de texte</value>
+    <comment>error message</comment>
+  </data>
+  <data name="ribDrawPlantUmlButton_Label" xml:space="preserve">
+    <value>Dessiner PlantUML</value>
+    <comment>ribbon images</comment>
+  </data>
+  <data name="ribDrawPlantUmlButton_Screentip" xml:space="preserve">
+    <value>Rendre l'image PlantUML ou Graphviz à partir du texte sélectionné</value>
+    <comment>ribbon images</comment>
+  </data>
 </root>

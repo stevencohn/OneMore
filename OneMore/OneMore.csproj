@@ -143,6 +143,7 @@
     <Compile Include="Commands\File\Markdown\OneMoreDigExtension.cs" />
     <Compile Include="Commands\File\Markdown\OneMoreDigExtensions.cs" />
     <Compile Include="Commands\File\Markdown\OneMoreDigRenderer.cs" />
+    <Compile Include="Commands\Images\DrawPlantUmlCommand.cs" />
     <Compile Include="Commands\Images\OpenImageWithCommand.cs" />
     <Compile Include="Commands\Page\DuplicatePageCommand.cs" />
     <Compile Include="Commands\Page\Emojis.cs" />
@@ -1405,10 +1406,13 @@
       <Version>2.2.8</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.Web.WebView2">
-      <Version>1.0.1418.22</Version>
+      <Version>1.0.1518.46</Version>
     </PackageReference>
     <PackageReference Include="Newtonsoft.Json">
-      <Version>13.0.1</Version>
+      <Version>13.0.2</Version>
+    </PackageReference>
+    <PackageReference Include="PlantUml.Net">
+      <Version>1.4.80</Version>
     </PackageReference>
     <PackageReference Include="System.Net.Http">
       <Version>4.3.4</Version>

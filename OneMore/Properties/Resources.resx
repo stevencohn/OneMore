@@ -907,6 +907,18 @@ OneNote will close automatically</value>
   <data name="DownArrow" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>images\downarrow.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="DrawPlantUml_EmptySelection" xml:space="preserve">
+    <value>Empty selection. Select a valid block of PlantUML text.</value>
+    <comment>error message</comment>
+  </data>
+  <data name="DrawPlantUml_Error" xml:space="preserve">
+    <value>Invalid syntax or incomplete selection of PlantUML</value>
+    <comment>error message</comment>
+  </data>
+  <data name="DrawPlantUml_NoParent" xml:space="preserve">
+    <value>Invalid selection; must select a block of text</value>
+    <comment>error message</comment>
+  </data>
   <data name="EditTableThemesDialog_colorsTab.Text" xml:space="preserve">
     <value>Colors</value>
     <comment>tab</comment>
@@ -2817,6 +2829,14 @@ Polaroid</value>
   <data name="ribDisableSpellCheckButton_Screentip" xml:space="preserve">
     <value>Disable spell checking within selected content</value>
     <comment>ribbon edit</comment>
+  </data>
+  <data name="ribDrawPlantUmlButton_Label" xml:space="preserve">
+    <value>Draw PlantUML</value>
+    <comment>ribbon images</comment>
+  </data>
+  <data name="ribDrawPlantUmlButton_Screentip" xml:space="preserve">
+    <value>Render PlantUML or Graphviz image from selected text</value>
+    <comment>ribbon images</comment>
   </data>
   <data name="ribDuplicateLineAboveButton_Label" xml:space="preserve">
     <value>Duplicate Paragraph Above</value>

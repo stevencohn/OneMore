@@ -1944,6 +1944,33 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Empty selection. Select a valid block of PlantUML text..
+        /// </summary>
+        internal static string DrawPlantUml_EmptySelection {
+            get {
+                return ResourceManager.GetString("DrawPlantUml_EmptySelection", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Invalid syntax or incomplete selection of PlantUML.
+        /// </summary>
+        internal static string DrawPlantUml_Error {
+            get {
+                return ResourceManager.GetString("DrawPlantUml_Error", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Invalid selection; must select a block of text.
+        /// </summary>
+        internal static string DrawPlantUml_NoParent {
+            get {
+                return ResourceManager.GetString("DrawPlantUml_NoParent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Colors.
         /// </summary>
         internal static string EditTableThemesDialog_colorsTab_Text {
@@ -6296,6 +6323,24 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Draw PlantUML.
+        /// </summary>
+        internal static string ribDrawPlantUmlButton_Label {
+            get {
+                return ResourceManager.GetString("ribDrawPlantUmlButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Render PlantUML or Graphviz image from selected text.
+        /// </summary>
+        internal static string ribDrawPlantUmlButton_Screentip {
+            get {
+                return ResourceManager.GetString("ribDrawPlantUmlButton_Screentip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Duplicate Paragraph Above.
         /// </summary>
         internal static string ribDuplicateLineAboveButton_Label {
@@ -7617,22 +7662,20 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("ribRemoveCitationsButton_Screentip", resourceCulture);
             }
         }
-
-		/// <summary>
-		///   Looks up a localized string similar to Remove Date Stamp Prefix from Pages in Section.
-		/// </summary>
-		internal static string ribRemoveDateStampButton_Label
-		{
-			get
-			{
-				return ResourceManager.GetString("ribRemoveDateStampButton_Label", resourceCulture);
-			}
-		}
-		
+        
         /// <summary>
-		///   Looks up a localized string similar to Remove Duplicate Pages.
-		/// </summary>
-		internal static string ribRemoveDuplicatesButton_Label {
+        ///   Looks up a localized string similar to Remove Date Stamps.
+        /// </summary>
+        internal static string ribRemoveDateStampButton_Label {
+            get {
+                return ResourceManager.GetString("ribRemoveDateStampButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Remove Duplicate Pages.
+        /// </summary>
+        internal static string ribRemoveDuplicatesButton_Label {
             get {
                 return ResourceManager.GetString("ribRemoveDuplicatesButton_Label", resourceCulture);
             }

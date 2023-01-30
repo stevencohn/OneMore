@@ -4764,4 +4764,24 @@ ISO-code then comma then language name</comment>
     <value>הסר חותמות תאריך</value>
     <comment>section context menu</comment>
   </data>
+  <data name="DrawPlantUml_EmptySelection" xml:space="preserve">
+    <value>בחירה ריקה. בחר בלוק חוקי של טקסט PlantUML.</value>
+    <comment>error message</comment>
+  </data>
+  <data name="DrawPlantUml_Error" xml:space="preserve">
+    <value>תחביר לא חוקי או בחירה לא מלאה של PlantUML</value>
+    <comment>error message</comment>
+  </data>
+  <data name="DrawPlantUml_NoParent" xml:space="preserve">
+    <value>בחירה לא חוקית; חייב לבחור גוש טקסט</value>
+    <comment>error message</comment>
+  </data>
+  <data name="ribDrawPlantUmlButton_Label" xml:space="preserve">
+    <value>צייר PlantUML</value>
+    <comment>ribbon images</comment>
+  </data>
+  <data name="ribDrawPlantUmlButton_Screentip" xml:space="preserve">
+    <value>עבד את תמונת PlantUML או Graphviz מטקסט שנבחר</value>
+    <comment>ribbon images</comment>
+  </data>
 </root>

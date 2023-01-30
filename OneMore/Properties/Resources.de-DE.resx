@@ -4656,4 +4656,24 @@ In diesem Abschnitt</value>
     <value>Datumsstempel entfernen</value>
     <comment>section context menu</comment>
   </data>
+  <data name="DrawPlantUml_EmptySelection" xml:space="preserve">
+    <value>Leere Auswahl. Wählen Sie einen gültigen Block von PlantUML-Text aus.</value>
+    <comment>error message</comment>
+  </data>
+  <data name="DrawPlantUml_Error" xml:space="preserve">
+    <value>Ungültige Syntax oder unvollständige Auswahl von PlantUML</value>
+    <comment>error message</comment>
+  </data>
+  <data name="DrawPlantUml_NoParent" xml:space="preserve">
+    <value>Ungültige Auswahl; muss einen Textblock auswählen</value>
+    <comment>error message</comment>
+  </data>
+  <data name="ribDrawPlantUmlButton_Label" xml:space="preserve">
+    <value>Zeichne PlantUML</value>
+    <comment>ribbon images</comment>
+  </data>
+  <data name="ribDrawPlantUmlButton_Screentip" xml:space="preserve">
+    <value>PlantUML- oder Graphviz-Bild aus ausgewähltem Text rendern</value>
+    <comment>ribbon images</comment>
+  </data>
 </root>
