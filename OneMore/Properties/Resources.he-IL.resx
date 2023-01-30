@@ -4784,4 +4784,8 @@ ISO-code then comma then language name</comment>
     <value>עבד את תמונת PlantUML או Graphviz מטקסט שנבחר</value>
     <comment>ribbon images</comment>
   </data>
+  <data name="ResizeImagesDialog_resetLinkLabel.Text" xml:space="preserve">
+    <value>אפס ערכים</value>
+    <comment>link label</comment>
+  </data>
 </root>

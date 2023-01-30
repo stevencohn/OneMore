@@ -4689,4 +4689,8 @@ ISO-code then comma then language name</comment>
     <value>عرض صورة PlantUML أو Graphviz من النص المحدد</value>
     <comment>ribbon images</comment>
   </data>
+  <data name="ResizeImagesDialog_resetLinkLabel.Text" xml:space="preserve">
+    <value>إعادة القيم</value>
+    <comment>link label</comment>
+  </data>
 </root>

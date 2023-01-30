@@ -2458,6 +2458,10 @@ Do no enlarge smaller images</value>
     <value>Preset</value>
     <comment>radio</comment>
   </data>
+  <data name="ResizeImagesDialog_resetLinkLabel.Text" xml:space="preserve">
+    <value>Reset values</value>
+    <comment>link label</comment>
+  </data>
   <data name="ResizeImagesDialog_sizeLink.Text" xml:space="preserve">
     <value>{0} x {1}</value>
     <comment>width x height</comment>

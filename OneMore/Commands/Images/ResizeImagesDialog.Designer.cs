@@ -79,6 +79,7 @@ namespace River.OneMoreAddIn.Commands
 			this.saturationBox = new System.Windows.Forms.NumericUpDown();
 			this.limitsBox = new System.Windows.Forms.ComboBox();
 			this.repositionBox = new System.Windows.Forms.CheckBox();
+			this.resetLinkLabel = new River.OneMoreAddIn.UI.MoreLinkLabel();
 			((System.ComponentModel.ISupportInitialize)(this.percentBox)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.widthBox)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.heightBox)).BeginInit();
@@ -618,7 +619,7 @@ namespace River.OneMoreAddIn.Commands
             "Resize all images",
             "Do not shrink larger images",
             "Do no enlarge smaller images"});
-			this.limitsBox.Location = new System.Drawing.Point(493, 601);
+			this.limitsBox.Location = new System.Drawing.Point(39, 601);
 			this.limitsBox.Name = "limitsBox";
 			this.limitsBox.Size = new System.Drawing.Size(295, 28);
 			this.limitsBox.TabIndex = 0;
@@ -637,6 +638,20 @@ namespace River.OneMoreAddIn.Commands
 			this.repositionBox.UseVisualStyleBackColor = true;
 			this.repositionBox.Visible = false;
 			// 
+			// resetLinkLabel
+			// 
+			this.resetLinkLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+			this.resetLinkLabel.AutoSize = true;
+			this.resetLinkLabel.Cursor = System.Windows.Forms.Cursors.Hand;
+			this.resetLinkLabel.HoverColor = System.Drawing.Color.MediumOrchid;
+			this.resetLinkLabel.Location = new System.Drawing.Point(546, 604);
+			this.resetLinkLabel.Name = "resetLinkLabel";
+			this.resetLinkLabel.Size = new System.Drawing.Size(154, 20);
+			this.resetLinkLabel.TabIndex = 49;
+			this.resetLinkLabel.TabStop = true;
+			this.resetLinkLabel.Text = "Reset default values";
+			this.resetLinkLabel.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.ResetDefaultValues);
+			// 
 			// ResizeImagesDialog
 			// 
 			this.AcceptButton = this.okButton;
@@ -644,6 +659,7 @@ namespace River.OneMoreAddIn.Commands
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.CancelButton = this.cancelButton;
 			this.ClientSize = new System.Drawing.Size(1026, 644);
+			this.Controls.Add(this.resetLinkLabel);
 			this.Controls.Add(this.repositionBox);
 			this.Controls.Add(this.limitsBox);
 			this.Controls.Add(this.saturationBar);
@@ -759,5 +775,6 @@ namespace River.OneMoreAddIn.Commands
 		private System.Windows.Forms.NumericUpDown saturationBox;
 		private System.Windows.Forms.ComboBox limitsBox;
 		private System.Windows.Forms.CheckBox repositionBox;
+		private UI.MoreLinkLabel resetLinkLabel;
 	}
 }
