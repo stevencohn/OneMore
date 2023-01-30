@@ -4722,4 +4722,24 @@ W tej sekcji</value>
     <value>Usuń datowniki</value>
     <comment>section context menu</comment>
   </data>
+  <data name="DrawPlantUml_EmptySelection" xml:space="preserve">
+    <value>Pusty wybór. Wybierz prawidłowy blok tekstu PlantUML.</value>
+    <comment>error message</comment>
+  </data>
+  <data name="DrawPlantUml_Error" xml:space="preserve">
+    <value>Niepoprawna składnia lub niepełny wybór PlantUML</value>
+    <comment>error message</comment>
+  </data>
+  <data name="DrawPlantUml_NoParent" xml:space="preserve">
+    <value>Nieprawidłowy wybór; musi wybrać blok tekstu</value>
+    <comment>error message</comment>
+  </data>
+  <data name="ribDrawPlantUmlButton_Label" xml:space="preserve">
+    <value>Narysuj PlantUML</value>
+    <comment>ribbon images</comment>
+  </data>
+  <data name="ribDrawPlantUmlButton_Screentip" xml:space="preserve">
+    <value>Renderuj obraz PlantUML lub Graphviz z zaznaczonego tekstu</value>
+    <comment>ribbon images</comment>
+  </data>
 </root>

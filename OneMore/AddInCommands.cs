@@ -257,6 +257,11 @@ namespace River.OneMoreAddIn
 			=> await factory.Run<ProofingCommand>(ProofingCommand.NoLang);
 
 
+		[Command("ribDrawPlantUmlButton_Label", Keys.None, "Images")]
+		public async Task DrawPlantUmlCmd(IRibbonControl control)
+			=> await factory.Run<DrawPlantUmlCommand>();
+
+
 		[Command("ribDuplicateLineButton_Label", Keys.Alt | Keys.Shift | Keys.C, "Editing")]
 		public async Task DuplicateLineCmd(IRibbonControl control)
 			=> await factory.Run<DuplicateLineCommand>(false);

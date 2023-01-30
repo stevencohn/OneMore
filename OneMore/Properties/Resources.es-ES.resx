@@ -4669,4 +4669,24 @@ En esta sección</value>
     <value>Eliminar sellos de fecha</value>
     <comment>section context menu</comment>
   </data>
+  <data name="DrawPlantUml_EmptySelection" xml:space="preserve">
+    <value>Selección vacía. Seleccione un bloque válido de texto PlantUML.</value>
+    <comment>error message</comment>
+  </data>
+  <data name="DrawPlantUml_Error" xml:space="preserve">
+    <value>Sintaxis no válida o selección incompleta de PlantUML</value>
+    <comment>error message</comment>
+  </data>
+  <data name="DrawPlantUml_NoParent" xml:space="preserve">
+    <value>Selección invalida; debe seleccionar un bloque de texto</value>
+    <comment>error message</comment>
+  </data>
+  <data name="ribDrawPlantUmlButton_Label" xml:space="preserve">
+    <value>Dibujar PlantaUML</value>
+    <comment>ribbon images</comment>
+  </data>
+  <data name="ribDrawPlantUmlButton_Screentip" xml:space="preserve">
+    <value>Renderizar una imagen PlantUML o Graphviz a partir del texto seleccionado</value>
+    <comment>ribbon images</comment>
+  </data>
 </root>

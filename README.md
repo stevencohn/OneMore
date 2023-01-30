@@ -348,3 +348,5 @@ Tested recently with:
    * A fast, powerful, CommonMark compliant, extensible Markdown processor for .NET
 * [Newtonsoft.Json](https://www.nuget.org/packages/Newtonsoft.Json/) - nuget, MIT license
    * Json.NET is a popular high-performance JSON framework for .NET
+* [PlantUML.NET](https://www.nuget.org/packages/PlantUml.Net//) - nuget, MIT license
+   * PlantUml.Net is a .Net wrapper for PlantUml

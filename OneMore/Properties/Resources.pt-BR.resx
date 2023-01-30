@@ -4669,4 +4669,24 @@ Nesta secção</value>
     <value>Remover carimbos de data</value>
     <comment>section context menu</comment>
   </data>
+  <data name="DrawPlantUml_EmptySelection" xml:space="preserve">
+    <value>Seleção vazia. Selecione um bloco válido de texto PlantUML.</value>
+    <comment>error message</comment>
+  </data>
+  <data name="DrawPlantUml_Error" xml:space="preserve">
+    <value>Sintaxe inválida ou seleção incompleta de PlantUML</value>
+    <comment>error message</comment>
+  </data>
+  <data name="DrawPlantUml_NoParent" xml:space="preserve">
+    <value>Seleção inválida; deve selecionar um bloco de texto</value>
+    <comment>error message</comment>
+  </data>
+  <data name="ribDrawPlantUmlButton_Label" xml:space="preserve">
+    <value>Desenhar PlantUML</value>
+    <comment>ribbon images</comment>
+  </data>
+  <data name="ribDrawPlantUmlButton_Screentip" xml:space="preserve">
+    <value>Renderizar imagem PlantUML ou Graphviz do texto selecionado</value>
+    <comment>ribbon images</comment>
+  </data>
 </root>
