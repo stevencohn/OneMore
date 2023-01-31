@@ -5460,6 +5460,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Reset values.
+        /// </summary>
+        internal static string ResizeImagesDialog_resetLinkLabel_Text {
+            get {
+                return ResourceManager.GetString("ResizeImagesDialog_resetLinkLabel.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to {0} x {1}.
         /// </summary>
         internal static string ResizeImagesDialog_sizeLink_Text {

@@ -4689,4 +4689,8 @@ En esta sección</value>
     <value>Renderizar una imagen PlantUML o Graphviz a partir del texto seleccionado</value>
     <comment>ribbon images</comment>
   </data>
+  <data name="ResizeImagesDialog_resetLinkLabel.Text" xml:space="preserve">
+    <value>Restablecer valores</value>
+    <comment>link label</comment>
+  </data>
 </root>

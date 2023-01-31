@@ -74,6 +74,8 @@ namespace River.OneMoreAddIn.Commands
 			repositionBox.Visible = hasBackgroundImages;
 
 			scaling = null;
+
+			LoadSettings(false);
 		}
 
 
@@ -106,6 +108,7 @@ namespace River.OneMoreAddIn.Commands
 
 			scaling = new MagicScaling(image.HorizontalResolution, image.VerticalResolution);
 
+			LoadSettings(true);
 			DrawPreview();
 		}
 
@@ -141,13 +144,11 @@ namespace River.OneMoreAddIn.Commands
 					"qualityLabel=word_Quality",
 					"preserveBox",
 					"previewGroup=word_Preview",
+					"resetLinkLabel",
 					"okButton=word_OK",
 					"cancelButton=word_Cancel"
 				});
 			}
-
-			settings = new SettingsProvider();
-			presetBox.Value = settings.GetCollection("images").Get("mruWidth", 500);
 
 			//lockButton.AutoSize = false;
 			//lockButton.Size = new Size(28, 28);
@@ -156,6 +157,42 @@ namespace River.OneMoreAddIn.Commands
 			//logger.WriteLine($"fx {fx} fy {fy}");
 
 			styleBox.SelectedIndex = 0;
+		}
+
+
+		private void LoadSettings(bool oneImage)
+		{
+			settings = new SettingsProvider();
+			var collection = settings.GetCollection("images");
+
+			int value = collection.Get<int>("mruSizeBy", oneImage ? 0 : 2);
+			if (value == 0)
+			{
+				pctRadio.Checked = true;
+				percentBox.Value = collection.Get("mruPercent", 100);
+			}
+			else if (value == 1)
+			{
+				absRadio.Checked = true;
+			}
+			else
+			{
+				presetRadio.Checked = true;
+			}
+
+			presetBox.Value = collection.Get("mruWidth", 500);
+
+			if (!oneImage)
+			{
+				limitsBox.SelectedIndex = collection.Get("limits", 0);
+			}
+
+			opacityBox.Value = collection.Get("opacity", 100);
+			brightnessBox.Value = collection.Get("brightness", 0);
+			contrastBox.Value = collection.Get("contrast", 0);
+			saturationBox.Value = collection.Get("saturation", 0);
+			qualBox.Value = collection.Get("quality", 100);
+			preserveBox.Checked = collection.Get("preserve", true);
 		}
 
 
@@ -571,6 +608,31 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
+		private void ResetDefaultValues(object sender, LinkLabelLinkClickedEventArgs e)
+		{
+			if (limitsBox.Items.Count > 0)
+			{
+				limitsBox.SelectedIndex = 0;
+			}
+
+			if (repositionBox.Visible)
+			{
+				repositionBox.Checked = true;
+			}
+
+			percentBox.Value = 100;
+			presetBox.Value = 500;
+			opacityBox.Value = 100;
+			brightnessBox.Value = 0;
+			contrastBox.Value = 0;
+			saturationBox.Value = 0;
+			qualBox.Value = 100;
+			preserveBox.Checked = true;
+
+			SaveSettings();
+		}
+
+
 
 		private void StylizeSelectedIndexChanged(object sender, EventArgs e)
 		{
@@ -599,11 +661,7 @@ namespace River.OneMoreAddIn.Commands
 		{
 			if (presetRadio.Checked)
 			{
-				// settings is shared with OpenImageWithCmd so preserve its integrity
-				var collection = settings.GetCollection("images");
-				collection.Add("mruWidth", (int)presetBox.Value);
-				settings.SetCollection(collection);
-				settings.Save();
+				SaveSettings();
 
 				suspended = true;
 				widthBox.Value = presetBox.Value;
@@ -614,6 +672,42 @@ namespace River.OneMoreAddIn.Commands
 			}
 
 			DialogResult = DialogResult.OK;
+		}
+
+
+		private void SaveSettings()
+		{
+			// images/viewer setting is deprecated but preserve integrity until that is
+			// gone from the wild and OpenImageWithCmd no longer uses it...
+
+			var collection = settings.GetCollection("images");
+
+			if (pctRadio.Checked)
+			{
+				collection.Add("mruSizeBy", "0");
+				collection.Add("mruPercent", (int)percentBox.Value);
+			}
+			else
+			{
+				collection.Add("mruSizeBy", presetRadio.Checked ? "2" : "1");
+			}
+
+			collection.Add("mruWidth", (int)presetBox.Value);
+
+			if (limitsBox.Items.Count > 0)
+			{
+				collection.Add("limits", limitsBox.SelectedIndex);
+			}
+
+			collection.Add("opacity", (int)opacityBox.Value);
+			collection.Add("brightness", (int)brightnessBox.Value);
+			collection.Add("contrast", (int)contrastBox.Value);
+			collection.Add("saturation", (int)saturationBox.Value);
+			collection.Add("quality", (int)qualBox.Value);
+			collection.Add("preserve", preserveBox.Checked);
+
+			settings.SetCollection(collection);
+			settings.Save();
 		}
 
 
