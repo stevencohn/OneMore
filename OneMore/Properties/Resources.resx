@@ -1443,13 +1443,9 @@ Symbols: PI, E</value>
     <value>Choose file to import</value>
     <comment>openfiledialog title</comment>
   </data>
-  <data name="ImportDialog_powerAppendButton.Text" xml:space="preserve">
-    <value>Append to this page</value>
-    <comment>radio</comment>
-  </data>
-  <data name="ImportDialog_powerCreateButton.Text" xml:space="preserve">
-    <value>Create a new page</value>
-    <comment>radio</comment>
+  <data name="ImportDialog_pdfGroup.Text" xml:space="preserve">
+    <value>PDF Options</value>
+    <comment>group box</comment>
   </data>
   <data name="ImportDialog_powerGroup.Text" xml:space="preserve">
     <value>Powerpoint Options</value>
@@ -1462,14 +1458,6 @@ Symbols: PI, E</value>
   <data name="ImportDialog_Text" xml:space="preserve">
     <value>Import</value>
     <comment>dialog title</comment>
-  </data>
-  <data name="ImportDialog_wordAppendButton.Text" xml:space="preserve">
-    <value>Append to this page</value>
-    <comment>radio</comment>
-  </data>
-  <data name="ImportDialog_wordCreateButton.Text" xml:space="preserve">
-    <value>Create a new page</value>
-    <comment>radio</comment>
   </data>
   <data name="ImportDialog_wordGroup.Text" xml:space="preserve">
     <value>Word Options</value>
@@ -1979,6 +1967,12 @@ Deferred</value>
   </data>
   <data name="Pencil" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>emoji\pencil.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="phrase_AppendToThisPage" xml:space="preserve">
+    <value>Append to this page</value>
+  </data>
+  <data name="phrase_CreateANewPage" xml:space="preserve">
+    <value>Create a new page</value>
   </data>
   <data name="phrase_PathNotFound" xml:space="preserve">
     <value>Path not found</value>

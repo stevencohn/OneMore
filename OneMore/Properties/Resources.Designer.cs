@@ -3166,20 +3166,11 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Append to this page.
+        ///   Looks up a localized string similar to PDF Options.
         /// </summary>
-        internal static string ImportDialog_powerAppendButton_Text {
+        internal static string ImportDialog_pdfGroup_Text {
             get {
-                return ResourceManager.GetString("ImportDialog_powerAppendButton.Text", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Create a new page.
-        /// </summary>
-        internal static string ImportDialog_powerCreateButton_Text {
-            get {
-                return ResourceManager.GetString("ImportDialog_powerCreateButton.Text", resourceCulture);
+                return ResourceManager.GetString("ImportDialog_pdfGroup.Text", resourceCulture);
             }
         }
         
@@ -3207,24 +3198,6 @@ namespace River.OneMoreAddIn.Properties {
         internal static string ImportDialog_Text {
             get {
                 return ResourceManager.GetString("ImportDialog_Text", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Append to this page.
-        /// </summary>
-        internal static string ImportDialog_wordAppendButton_Text {
-            get {
-                return ResourceManager.GetString("ImportDialog_wordAppendButton.Text", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Create a new page.
-        /// </summary>
-        internal static string ImportDialog_wordCreateButton_Text {
-            get {
-                return ResourceManager.GetString("ImportDialog_wordCreateButton.Text", resourceCulture);
             }
         }
         
@@ -4416,6 +4389,24 @@ namespace River.OneMoreAddIn.Properties {
             get {
                 object obj = ResourceManager.GetObject("Pencil", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Append to this page.
+        /// </summary>
+        internal static string phrase_AppendToThisPage {
+            get {
+                return ResourceManager.GetString("phrase_AppendToThisPage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Create a new page.
+        /// </summary>
+        internal static string phrase_CreateANewPage {
+            get {
+                return ResourceManager.GetString("phrase_CreateANewPage", resourceCulture);
             }
         }
         
