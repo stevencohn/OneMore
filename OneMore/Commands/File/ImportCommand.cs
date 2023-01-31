@@ -390,6 +390,9 @@ namespace River.OneMoreAddIn.Commands
 					}
 
 					await ImportPdfFile(file, append, token);
+
+					// OneNote needs a moment to calm down...
+					await Task.Delay(300);
 				}
 
 				return !token.IsCancellationRequested;

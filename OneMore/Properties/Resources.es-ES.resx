@@ -1359,7 +1359,7 @@ Símbolos: PI, E</value>
     <comment>label</comment>
   </data>
   <data name="ImportDialog_OpenFileFilter" xml:space="preserve">
-    <value>Todos los archivos (* .docx; *. Pptx; *. Md; *. One; *. Xml) | * .docx; *. Doc; *. Pptx; * ppt; *. Md; *. One; *. Xml </value>
+    <value>Todos los archivos (*.docx;*.pptx;*.pdf;*.md;*.one;*.xml)|*.docx;*.doc;*.pptx;*ppt;*.pdf;*.md ;*.one;*.xml|Archivos de Word (*.docx)|*.docx|Archivos de Powerpoint (*.pptx)|*.pptx|PDF (*.pdf)|*.pdf|Markdown (*.md) |*.md|Archivo de OneNote (*.one)|*.one|Archivos de plantilla de OneMore (*.xml)|*.xml</value>
     <comment>openfiledialog filter</comment>
   </data>
   <data name="ImportDialog_OpenFileTitle" xml:space="preserve">

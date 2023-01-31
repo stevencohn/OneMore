@@ -1359,7 +1359,7 @@
     <comment>label</comment>
   </data>
   <data name="ImportDialog_OpenFileFilter" xml:space="preserve">
-    <value>جميع الملفات (* .docx؛ *. pptx؛ *. md؛ *. one؛ *. xml) | * .docx؛ *. doc؛ *. pptx؛ * ppt؛ *. md؛ *. one؛ *. xml </value>
+    <value>جميع الملفات (* .docx؛ *. pptx؛ *. pdf؛ *. md؛ *. one؛ *. xml) | * .docx؛ *. doc؛ *. pptx؛ * ppt؛ *. pdf؛ *. md ؛ *. one؛ *. xml | ملفات Word (* .docx) | * .docx | ملفات Powerpoint (* .pptx) | * .pptx | PDF (* .pdf) | * .pdf | Markdown (* .md) | * .md | OneNote File (* .one) | * .one | OneMore Template files (* .xml) | * .xml</value>
     <comment>openfiledialog filter</comment>
   </data>
   <data name="ImportDialog_OpenFileTitle" xml:space="preserve">

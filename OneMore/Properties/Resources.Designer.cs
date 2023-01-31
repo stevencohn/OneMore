@@ -3148,7 +3148,7 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to All files (*.docx;*.pptx;*.md;*.one;*.xml)|*.docx;*.doc;*.pptx;*ppt;*.md;*.one;*.xml|Word files (*.docx)|*.docx|Powerpoint files (*.pptx)|*.pptx|Markdown (*.md)|*.md|OneNote File (*.one)|*.one|OneMore Template files (*.xml)|*.xml.
+        ///   Looks up a localized string similar to All files (*.docx;*.pptx;*.pdf;*.md;*.one;*.xml)|*.docx;*.doc;*.pptx;*ppt;*.pdf;*.md;*.one;*.xml|Word files (*.docx)|*.docx|Powerpoint files (*.pptx)|*.pptx|PDF (*.pdf)|*.pdf|Markdown (*.md)|*.md|OneNote File (*.one)|*.one|OneMore Template files (*.xml)|*.xml.
         /// </summary>
         internal static string ImportDialog_OpenFileFilter {
             get {

@@ -1412,7 +1412,7 @@ Total Row Font
     <comment>label</comment>
   </data>
   <data name="ImportDialog_OpenFileFilter" xml:space="preserve">
-    <value>כל הקבצים (*.docx;*.pptx;*.md;*.one;*.xml)|*.docx;*.doc;*.pptx;*ppt;*.md;*.one;*.xml |קובצי Word (*.docx)|*.docx|קובצי Powerpoint (*.pptx)|*.pptx|Markdown (*.md)|*.md|OneNote File (*.one)|*.one|OneMore Template קבצים (*.xml)|*.xml</value>
+    <value>כל הקבצים (*.docx;*.pptx;*.pdf;*.md;*.one;*.xml)|*.docx;*.doc;*.pptx;*ppt;*.pdf;*.md ;*.one;*.xml|קובצי Word (*.docx)|*.docx|קובצי Powerpoint (*.pptx)|*.pptx|PDF (*.pdf)|*.pdf|Markdown (*.md) |*.md|קובץ OneNote (*.one)|*.one|קובצי תבנית OneMore (*.xml)|*.xml</value>
     <comment>openfiledialog filter</comment>
   </data>
   <data name="ImportDialog_OpenFileTitle" xml:space="preserve">
