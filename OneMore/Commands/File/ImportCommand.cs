@@ -411,6 +411,8 @@ namespace River.OneMoreAddIn.Commands
 			progress.SetMessage($"Importing {filepath}...");
 
 			Page page;
+
+			// keep this using block or the StorageFile/PdfDocument context will corrupt it
 			using (var one = new OneNote())
 			{
 				if (append)
@@ -469,6 +471,7 @@ namespace River.OneMoreAddIn.Commands
 				);
 			}
 
+			// keep this using block or the StorageFile/PdfDocument context will corrupt it
 			using (var one = new OneNote())
 			{
 				await one.Update(page);
