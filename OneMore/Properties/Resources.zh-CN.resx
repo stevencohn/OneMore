@@ -1358,7 +1358,7 @@ OneNote 文件 (*.one)</value>
     <comment>label</comment>
   </data>
   <data name="ImportDialog_OpenFileFilter" xml:space="preserve">
-    <value>所有文件 (*.docx;*.pptx;*.md;*.one;*.xml)|*.docx;*.doc;*.pptx;*ppt;*.md;*.one;*.xml </value>
+    <value>所有文件(*.docx;*.pptx;*.pdf;*.md;*.one;*.xml)|*.docx;*.doc;*.pptx;*ppt;*.pdf;*.md ;*.one;*.xml|Word 文件 (*.docx)|*.docx|Powerpoint 文件 (*.pptx)|*.pptx|PDF (*.pdf)|*.pdf|Markdown (*.md) |*.md|OneNote 文件(*.one)|*.one|OneMore 模板文件(*.xml)|*.xml</value>
     <comment>openfiledialog filter</comment>
   </data>
   <data name="ImportDialog_OpenFileTitle" xml:space="preserve">

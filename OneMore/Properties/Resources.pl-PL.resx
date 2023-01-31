@@ -1386,7 +1386,7 @@ Symbole: PI, E</value>
     <comment>label</comment>
   </data>
   <data name="ImportDialog_OpenFileFilter" xml:space="preserve">
-    <value>Wszystkie pliki (* .docx; *. PPTX; *. Md; *. Jeden; *. XML) | * .docx; *. Doktor; *. PPTX; * PPT; * | Pliki Word (* .docx) | * .docx | Pliki PowerPoint (* .pptx) | * .pptx | Markdown (* .md) | * .md | Plik OneNote (* Pliki (* .xml) | * .xml</value>
+    <value>Wszystkie pliki (*.docx;*.pptx;*.pdf;*.md;*.one;*.xml)|*.docx;*.doc;*.pptx;*ppt;*.pdf;*.md ;*.one;*.xml|Pliki Word (*.docx)|*.docx|Pliki PowerPoint (*.pptx)|*.pptx|PDF (*.pdf)|*.pdf|Markdown (*.md) |*.md|Plik OneNote (*.one)|*.one|Pliki szablonów OneMore (*.xml)|*.xml</value>
     <comment>openfiledialog filter</comment>
   </data>
   <data name="ImportDialog_OpenFileTitle" xml:space="preserve">
