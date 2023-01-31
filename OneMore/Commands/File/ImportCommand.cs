@@ -15,6 +15,9 @@ namespace River.OneMoreAddIn.Commands
 	using System.Threading.Tasks;
 	using System.Windows.Forms;
 	using System.Xml.Linq;
+	using Windows.Data.Pdf;
+	using Windows.Storage;
+	using Windows.Storage.Streams;
 
 
 	/// <summary>
@@ -32,7 +35,7 @@ namespace River.OneMoreAddIn.Commands
 	internal class ImportCommand : Command
 	{
 		private const int MaxTimeout = 15;
-		private UI.ProgressDialog progress;
+		private ProgressDialog progress;
 
 
 		public ImportCommand()
@@ -69,6 +72,10 @@ namespace River.OneMoreAddIn.Commands
 
 				case ImportDialog.Formats.Markdown:
 					await ImportMarkdown(dialog.FilePath);
+					break;
+
+				case ImportDialog.Formats.Pdf:
+					ImportPdf(dialog.FilePath, dialog.AppendToPage);
 					break;
 			}
 		}
@@ -227,7 +234,7 @@ namespace River.OneMoreAddIn.Commands
 						break;
 					}
 
-					await ImportPowerPointFile(filepath, append, split, token);
+					await ImportPowerPointFile(file, append, split, token);
 				}
 
 				return !token.IsCancellationRequested;
@@ -349,6 +356,128 @@ namespace River.OneMoreAddIn.Commands
 					new XElement(ns + "T", new XCData(string.Empty))
 					)
 				);
+		}
+
+
+		// = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
+		// PDF...
+
+		private void ImportPdf(string filepath, bool append)
+		{
+			string[] files;
+			int timeout = MaxTimeout;
+
+			if (PathHelper.HasWildFileName(filepath))
+			{
+				files = Directory.GetFiles(Path.GetDirectoryName(filepath), Path.GetFileName(filepath));
+				timeout = 10 + (files.Length * 4);
+			}
+			else
+			{
+				files = new string[] { filepath };
+			}
+
+			logger.StartClock();
+
+			var completed = RunWithProgress(timeout, filepath, async (token) =>
+			{
+				foreach (var file in files)
+				{
+					if (token.IsCancellationRequested)
+					{
+						logger.WriteLine("PdfImporter cancelled");
+						break;
+					}
+
+					await ImportPdfFile(file, append, token);
+				}
+
+				return !token.IsCancellationRequested;
+			});
+
+			if (completed)
+			{
+				logger.WriteTime("pdf file(s) imported");
+			}
+			else
+			{
+				logger.WriteTime("pdf file(s) cancelled");
+			}
+		}
+
+
+		private async Task ImportPdfFile(string filepath, bool append, CancellationToken token)
+		{
+			progress.SetMessage($"Importing {filepath}...");
+
+			Page page;
+			using (var one = new OneNote())
+			{
+				if (append)
+				{
+					page = one.GetPage();
+				}
+				else
+				{
+					one.CreatePage(one.CurrentSectionId, out var pageId);
+					page = one.GetPage(pageId);
+					page.Title = Path.GetFileName(filepath);
+				}
+			}
+
+			var container = page.EnsureContentContainer();
+
+			PdfDocument doc;
+
+			try
+			{
+				var file = await StorageFile.GetFileFromPathAsync(filepath);
+				doc = await PdfDocument.LoadFromFileAsync(file);
+			}
+			catch (Exception exc)
+			{
+				logger.WriteLine($"error reading pdf {filepath}", exc);
+				return;
+			}
+
+			for (int i = 0; i < doc.PageCount; i++)
+			{
+				progress.SetMessage($"Rasterizing image {i} of {doc.PageCount}");
+				progress.Increment();
+
+				//logger.WriteLine($"rasterizing page {i}");
+				var pdfpage = doc.GetPage((uint)i);
+
+				using var stream = new InMemoryRandomAccessStream();
+				await pdfpage.RenderToStreamAsync(stream);
+
+				using var image = new Bitmap(stream.AsStream());
+
+				var data = Convert.ToBase64String(
+					(byte[])new ImageConverter().ConvertTo(image, typeof(byte[]))
+					);
+
+				container.Add(new XElement(page.Namespace + "OE",
+					new XElement(page.Namespace + "Image",
+						new XAttribute("format", "png"),
+						new XElement(page.Namespace + "Size",
+							new XAttribute("width", $"{image.Width}.0"),
+							new XAttribute("height", $"{image.Height}.0")),
+						new XElement(page.Namespace + "Data", data)
+					)),
+					new Paragraph(page.Namespace, " ")
+				);
+			}
+
+			using (var one = new OneNote())
+			{
+				await one.Update(page);
+
+				if (!append)
+				{
+					await one.NavigateTo(page.PageId);
+				}
+			}
 		}
 
 

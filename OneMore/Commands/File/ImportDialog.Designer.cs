@@ -41,11 +41,15 @@
 			this.powerCreateButton = new System.Windows.Forms.RadioButton();
 			this.powerAppendButton = new System.Windows.Forms.RadioButton();
 			this.powerSectionButton = new System.Windows.Forms.RadioButton();
+			this.pdfGroup = new System.Windows.Forms.GroupBox();
+			this.pdfCreateButton = new System.Windows.Forms.RadioButton();
+			this.pdfAppendButton = new System.Windows.Forms.RadioButton();
 			this.introLabel = new System.Windows.Forms.Label();
 			this.notInstalledLabel = new System.Windows.Forms.Label();
 			this.errorLabel = new System.Windows.Forms.Label();
 			this.wordGroup.SuspendLayout();
 			this.powerGroup.SuspendLayout();
+			this.pdfGroup.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// fileLabel
@@ -184,6 +188,42 @@
 			this.powerSectionButton.Text = "Create a new section with a page each slide";
 			this.powerSectionButton.UseVisualStyleBackColor = true;
 			// 
+			// pdfGroup
+			// 
+			this.pdfGroup.Controls.Add(this.pdfCreateButton);
+			this.pdfGroup.Controls.Add(this.pdfAppendButton);
+			this.pdfGroup.Location = new System.Drawing.Point(22, 98);
+			this.pdfGroup.Name = "pdfGroup";
+			this.pdfGroup.Padding = new System.Windows.Forms.Padding(3, 10, 3, 3);
+			this.pdfGroup.Size = new System.Drawing.Size(539, 144);
+			this.pdfGroup.TabIndex = 8;
+			this.pdfGroup.TabStop = false;
+			this.pdfGroup.Text = "PDF Options";
+			// 
+			// pdfCreateButton
+			// 
+			this.pdfCreateButton.AutoSize = true;
+			this.pdfCreateButton.Checked = true;
+			this.pdfCreateButton.Location = new System.Drawing.Point(40, 67);
+			this.pdfCreateButton.Name = "pdfCreateButton";
+			this.pdfCreateButton.Size = new System.Drawing.Size(155, 24);
+			this.pdfCreateButton.TabIndex = 10;
+			this.pdfCreateButton.TabStop = true;
+			this.pdfCreateButton.Text = "Create new page";
+			this.pdfCreateButton.UseVisualStyleBackColor = true;
+			// 
+			// pdfAppendButton
+			// 
+			this.pdfAppendButton.AutoSize = true;
+			this.pdfAppendButton.Location = new System.Drawing.Point(40, 32);
+			this.pdfAppendButton.Margin = new System.Windows.Forms.Padding(3, 3, 3, 8);
+			this.pdfAppendButton.Name = "pdfAppendButton";
+			this.pdfAppendButton.Size = new System.Drawing.Size(177, 24);
+			this.pdfAppendButton.TabIndex = 9;
+			this.pdfAppendButton.TabStop = true;
+			this.pdfAppendButton.Text = "Append to this page";
+			this.pdfAppendButton.UseVisualStyleBackColor = true;
+			// 
 			// introLabel
 			// 
 			this.introLabel.AutoSize = true;
@@ -227,6 +267,7 @@
 			this.Controls.Add(this.introLabel);
 			this.Controls.Add(this.wordGroup);
 			this.Controls.Add(this.powerGroup);
+			this.Controls.Add(this.pdfGroup);
 			this.Controls.Add(this.browseButton);
 			this.Controls.Add(this.okButton);
 			this.Controls.Add(this.pathBox);
@@ -245,6 +286,8 @@
 			this.wordGroup.PerformLayout();
 			this.powerGroup.ResumeLayout(false);
 			this.powerGroup.PerformLayout();
+			this.pdfGroup.ResumeLayout(false);
+			this.pdfGroup.PerformLayout();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -264,6 +307,9 @@
 		private System.Windows.Forms.RadioButton powerCreateButton;
 		private System.Windows.Forms.RadioButton powerAppendButton;
 		private System.Windows.Forms.RadioButton powerSectionButton;
+		private System.Windows.Forms.GroupBox pdfGroup;
+		private System.Windows.Forms.RadioButton pdfCreateButton;
+		private System.Windows.Forms.RadioButton pdfAppendButton;
 		private System.Windows.Forms.Label introLabel;
 		private System.Windows.Forms.Label notInstalledLabel;
 		private System.Windows.Forms.Label errorLabel;

@@ -1366,14 +1366,6 @@ Símbolos: PI, E</value>
     <value>Elija el archivo para importar</value>
     <comment>openfiledialog title</comment>
   </data>
-  <data name="ImportDialog_powerAppendButton.Text" xml:space="preserve">
-    <value>Agregar a esta página</value>
-    <comment>radio</comment>
-  </data>
-  <data name="ImportDialog_powerCreateButton.Text" xml:space="preserve">
-    <value>Crea una nueva pagina</value>
-    <comment>radio</comment>
-  </data>
   <data name="ImportDialog_powerGroup.Text" xml:space="preserve">
     <value>Opciones de PowerPoint</value>
     <comment>group box</comment>
@@ -1385,14 +1377,6 @@ Símbolos: PI, E</value>
   <data name="ImportDialog_Text" xml:space="preserve">
     <value>Importar</value>
     <comment>dialog title</comment>
-  </data>
-  <data name="ImportDialog_wordAppendButton.Text" xml:space="preserve">
-    <value>Agregar a esta página</value>
-    <comment>radio</comment>
-  </data>
-  <data name="ImportDialog_wordCreateButton.Text" xml:space="preserve">
-    <value>Crea una nueva pagina</value>
-    <comment>radio</comment>
   </data>
   <data name="ImportDialog_wordGroup.Text" xml:space="preserve">
     <value>Opciones de Word</value>
@@ -4692,5 +4676,15 @@ En esta sección</value>
   <data name="ResizeImagesDialog_resetLinkLabel.Text" xml:space="preserve">
     <value>Restablecer valores</value>
     <comment>link label</comment>
+  </data>
+  <data name="ImportDialog_pdfGroup.Text" xml:space="preserve">
+    <value>Opciones de PDF</value>
+    <comment>group box</comment>
+  </data>
+  <data name="phrase_AppendToThisPage" xml:space="preserve">
+    <value>Añadir a esta página</value>
+  </data>
+  <data name="phrase_CreateANewPage" xml:space="preserve">
+    <value>Crear una nueva página</value>
   </data>
 </root>

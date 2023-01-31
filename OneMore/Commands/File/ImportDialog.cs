@@ -23,7 +23,8 @@ namespace River.OneMoreAddIn.Commands
 			PowerPoint,
 			Xml,
 			OneNote,
-			Markdown
+			Markdown,
+			Pdf
 		}
 
 
@@ -41,6 +42,7 @@ namespace River.OneMoreAddIn.Commands
 
 			wordGroup.Visible = false;
 			powerGroup.Visible = false;
+			pdfGroup.Visible = false;
 			notInstalledLabel.Visible = false;
 
 			browseButton.Top = pathBox.Top;
@@ -55,12 +57,15 @@ namespace River.OneMoreAddIn.Commands
 					"introLabel",
 					"fileLabel",
 					"wordGroup",
-					"wordAppendButton",
-					"wordCreateButton",
+					"wordAppendButton=phrase_AppendToThisPage",
+					"wordCreateButton=phrase_CreateANewPage",
 					"powerGroup",
-					"powerAppendButton",
-					"powerCreateButton",
+					"powerAppendButton=phrase_AppendToThisPage",
+					"powerCreateButton=phrase_CreateANewPage",
 					"powerSectionButton",
+					"pdfGroup",
+					"pdfAppendButton=phrase_AppendToThisPage",
+					"pdfCreateButton=phrase_CreateANewPage",
 					"notInstalledLabel",
 					"errorLabel=phrase_PathNotFound",
 					"okButton=word_OK",
@@ -92,8 +97,13 @@ namespace River.OneMoreAddIn.Commands
 		{
 			get
 			{
-				if (Format == Formats.Xml) return false;
-				return Format == Formats.Word ? wordAppendButton.Checked : powerAppendButton.Checked;
+				return Format switch
+				{
+					Formats.Word => wordAppendButton.Checked,
+					Formats.PowerPoint => powerAppendButton.Checked,
+					Formats.Pdf => pdfAppendButton.Checked,
+					_ => false
+				};
 			}
 		}
 
@@ -113,6 +123,7 @@ namespace River.OneMoreAddIn.Commands
 					case ".docx":
 						wordGroup.Visible = wordInstalled;
 						powerGroup.Visible = false;
+						pdfGroup.Visible = false;
 						notInstalledLabel.Visible = !wordInstalled;
 						okButton.Enabled = wordInstalled;
 						Format = Formats.Word;
@@ -127,15 +138,32 @@ namespace River.OneMoreAddIn.Commands
 					case ".md":
 						wordGroup.Visible = false;
 						powerGroup.Visible = false;
+						pdfGroup.Visible = false;
 						notInstalledLabel.Visible = false;
 						okButton.Enabled = true;
 						Format = Formats.Markdown;
+						break;
+
+					case ".pdf":
+						wordGroup.Visible = false;
+						powerGroup.Visible = false;
+						pdfGroup.Visible = true;
+						notInstalledLabel.Visible = false;
+						okButton.Enabled = false;
+						Format = Formats.Pdf;
+						wordAppendButton.Enabled = !wild;
+						if (wild)
+						{
+							pdfAppendButton.Checked = false;
+							pdfCreateButton.Checked = true;
+						}
 						break;
 
 					case ".ppt":
 					case ".pptx":
 						wordGroup.Visible = false;
 						powerGroup.Visible = powerPointInstalled;
+						pdfGroup.Visible = false;
 						notInstalledLabel.Visible = !powerPointInstalled;
 						okButton.Enabled = powerPointInstalled;
 						Format = Formats.PowerPoint;
@@ -150,6 +178,7 @@ namespace River.OneMoreAddIn.Commands
 					case ".xml":
 						wordGroup.Visible = false;
 						powerGroup.Visible = false;
+						pdfGroup.Visible = false;
 						notInstalledLabel.Visible = false;
 						okButton.Enabled = !wild;
 						Format = Formats.Xml;
@@ -158,13 +187,14 @@ namespace River.OneMoreAddIn.Commands
 					case ".one":
 						wordGroup.Visible = false;
 						powerGroup.Visible = false;
+						pdfGroup.Visible = false;
 						notInstalledLabel.Visible = false;
 						okButton.Enabled = !wild;
 						Format = Formats.OneNote;
 						break;
 
 					default:
-						wordGroup.Visible = powerGroup.Visible = false;
+						wordGroup.Visible = powerGroup.Visible = pdfGroup.Visible = false;
 						notInstalledLabel.Visible = false;
 						okButton.Enabled = false;
 						break;
