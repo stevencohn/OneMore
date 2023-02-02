@@ -4,6 +4,8 @@
 
 namespace River.OneMoreAddIn.Commands
 {
+	using River.OneMoreAddIn.Helpers.Office;
+	using River.OneMoreAddIn.Settings;
 	using System;
 	using System.Drawing;
 	using System.Windows.Forms;
@@ -17,11 +19,28 @@ namespace River.OneMoreAddIn.Commands
 			InitializeComponent();
 		}
 
+
 		public PageColorDialog(Color color)
 			: this()
 		{
-			FillBox(omBox, Color.Wheat);
-			FillBox(customBox, Color.DarkSlateBlue);
+			var provider = new SettingsProvider();
+			var settings = provider.GetCollection("pageColor");
+			if (settings == null)
+			{
+				omBox.BackColor = color;
+				customBox.BackColor = color;
+			}
+			else
+			{
+				var setting = settings["omColor"];
+				omBox.BackColor = setting == null ? color : ColorTranslator.FromHtml(setting);
+
+				setting = settings["customColor"];
+				customBox.BackColor = setting == null ? color : ColorTranslator.FromHtml(setting);
+			}
+
+			FillBox(omBox, omBox.BackColor);
+			FillBox(customBox, customBox.BackColor);
 		}
 
 
@@ -59,7 +78,15 @@ namespace River.OneMoreAddIn.Commands
 
 			if (dialog.ShowDialog() == DialogResult.OK)
 			{
-				FillBox(omBox, dialog.Color);
+				var color = dialog.Color;
+				if (color == Color.Transparent)
+				{
+					color = SystemColors.Window;
+				}
+
+				// use BackColor as a cache for ApplyColor
+				omBox.BackColor = color;
+				FillBox(omBox, color);
 			}
 		}
 
@@ -71,39 +98,55 @@ namespace River.OneMoreAddIn.Commands
 			using var dialog = new UI.MoreColorDialog(
 				Resx.PageColorDialog_Text,
 				// negative Left means right-justify window; see MoreColorDialog.HookProc!
-				-(location.X + customBox.Width - 10),
+				-(location.X + customBox.Width),
 				location.Y + customBox.Height - 4
 				);
 
-			dialog.Color = Color.Blue; //CustomColor;
+			dialog.Color = customBox.BackColor;
 
 			if (dialog.ShowDialog() == DialogResult.OK)
 			{
+				// use BackColor as a cache for ApplyCustomColor
+				customBox.BackColor = dialog.Color;
 				FillBox(customBox, dialog.Color);
-
-				//var provider = new SettingsProvider();
-				//var settings = provider.GetCollection("pageTheme");
-				//settings.Add("customColor", dialog.Color.ToRGBHtml());
-				//provider.SetCollection(settings);
-				//provider.Save();
 			}
-
 		}
 
 
 		private void ApplyColor(object sender, EventArgs e)
 		{
+			Color = omBox.BackColor;
 
+			var provider = new SettingsProvider();
+			var settings = provider.GetCollection("pageColor");
+			settings.Add("omColor", Color.ToRGBHtml());
+			provider.SetCollection(settings);
+			provider.Save();
+
+			DialogResult = DialogResult.OK;
+			Close();
 		}
 
 		private void ApplyCustomColor(object sender, EventArgs e)
 		{
+			Color = customBox.BackColor;
 
+			var provider = new SettingsProvider();
+			var settings = provider.GetCollection("pageColor");
+			settings.Add("customColor", Color.ToRGBHtml());
+			provider.SetCollection(settings);
+			provider.Save();
+
+			DialogResult = DialogResult.OK;
+			Close();
 		}
+
 
 		private void ApplyNoColor(object sender, EventArgs e)
 		{
-
+			Color = Color.Transparent;
+			DialogResult = DialogResult.OK;
+			Close();
 		}
 	}
 }

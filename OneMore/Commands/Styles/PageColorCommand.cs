@@ -4,8 +4,8 @@
 
 namespace River.OneMoreAddIn.Commands
 {
+	using River.OneMoreAddIn.Helpers.Office;
 	using River.OneMoreAddIn.Models;
-	using River.OneMoreAddIn.Styles;
 	using System.Drawing;
 	using System.Linq;
 	using System.Threading.Tasks;
@@ -34,20 +34,34 @@ namespace River.OneMoreAddIn.Commands
 			}
 
 			using var dialog = new PageColorDialog(color);
-			if (dialog.ShowDialog(owner) != DialogResult.OK)
+			if (dialog.ShowDialog(owner) == DialogResult.OK)
 			{
-				return;
+				UpdatePageColor(page, MakePageColor(dialog.Color));
+
+				//if (dialog.ApplyStyle)
+				//{
+				//	ThemeProvider.RecordTheme(dialog.ThemeKey);
+				//	new ApplyStylesCommand().Apply(page);
+				//}
+
+				using var one = new OneNote();
+				await one.Update(page);
+			}
+		}
+
+
+		public string MakePageColor(Color color)
+		{
+			var dark = Office.IsBlackThemeEnabled();
+
+			if (color.Equals(Color.Transparent) ||
+				(color.Equals(Color.Black) && dark) ||
+				(color.Equals(Color.White) && !dark))
+			{
+				return "automatic";
 			}
 
-			//UpdatePageColor(page, dialog.Color);
-			//ThemeProvider.RecordTheme(dialog.ThemeKey);
-
-			//if (dialog.ApplyStyle)
-			//{
-			//	new ApplyStylesCommand().Apply(page);
-			//}
-
-			//await one.Update(page);
+			return color.ToRGBHtml();
 		}
 
 
