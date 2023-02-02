@@ -555,6 +555,11 @@ namespace River.OneMoreAddIn
 			=> await factory.Run<OutlineCommand>();
 
 
+		[Command("ribPageColorButton_Label", Keys.None, "Page")]
+		public async Task PageColorCmd(IRibbonControl control)
+			=> await factory.Run<PageColorCommand>();
+
+
 		[Command("ribPasteCellsButton_Label", Keys.None, "Table")]
 		public async Task PasteCellsCmd(IRibbonControl control)
 			=> await factory.Run<PasteCellsCommand>();

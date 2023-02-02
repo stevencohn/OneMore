@@ -7430,6 +7430,24 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Page Color.
+        /// </summary>
+        internal static string ribPageColorButton_Label {
+            get {
+                return ResourceManager.GetString("ribPageColorButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Choose a custom color for the page background.
+        /// </summary>
+        internal static string ribPageColorButton_Screentip {
+            get {
+                return ResourceManager.GetString("ribPageColorButton_Screentip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Page.
         /// </summary>
         internal static string ribPageMenu_Label {

@@ -4809,4 +4809,12 @@ In this section</value>
   <data name="XMark" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>emoji\xmark.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="ribPageColorButton_Label" xml:space="preserve">
+    <value>Page Color</value>
+    <comment>page context menu</comment>
+  </data>
+  <data name="ribPageColorButton_Screentip" xml:space="preserve">
+    <value>Choose a custom color for the page background</value>
+    <comment>page context menu</comment>
+  </data>
 </root>

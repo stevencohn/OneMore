@@ -147,6 +147,19 @@
     <Compile Include="Commands\Images\OpenImageWithCommand.cs" />
     <Compile Include="Commands\Page\DuplicatePageCommand.cs" />
     <Compile Include="Commands\Page\Emojis.cs" />
+    <Compile Include="Commands\Styles\PageColorCommand.cs" />
+    <Compile Include="Commands\Styles\PageColorDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Commands\Styles\PageColorDialog.Designer.cs">
+      <DependentUpon>PageColorDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Commands\Styles\PageColorSelector.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Commands\Styles\PageColorSelector.Designer.cs">
+      <DependentUpon>PageColorSelector.cs</DependentUpon>
+    </Compile>
     <Compile Include="Commands\Tables\ApplyTableThemeCommand.cs" />
     <Compile Include="Commands\Tables\EditTableThemesCommand.cs" />
     <Compile Include="Commands\Tables\EditTableThemesDialog.cs">
@@ -1182,6 +1195,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Commands\Settings\KeyboardSheet.resx">
       <DependentUpon>KeyboardSheet.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Commands\Styles\PageColorDialog.resx">
+      <DependentUpon>PageColorDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Commands\Styles\PageColorSelector.resx">
+      <DependentUpon>PageColorSelector.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.he-IL.resx" />
     <EmbeddedResource Include="UI\RenameDialog.resx">

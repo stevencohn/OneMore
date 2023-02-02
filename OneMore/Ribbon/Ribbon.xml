@@ -994,6 +994,13 @@
         onAction="MergeCmd"
         insertBeforeMso="RenamePageOneNote"/>
       <button
+        id="ctxPageColorButton"
+        imageMso="ShapeFillColorPicker"
+        getLabel="GetRibbonLabel"
+        getScreentip="GetRibbonScreentip"
+        onAction="PageColorCmd"
+        insertBeforeMso="RenamePageOneNote"/>
+      <button
         id="ctxSplitButton"
         imageMso="MasterDocumentSplitSubdocuments"
         getLabel="GetRibbonLabel"
