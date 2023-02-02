@@ -11,7 +11,7 @@ namespace River.OneMoreAddIn.Commands
 	using System;
 	using System.Drawing;
 	using System.Windows.Forms;
-	using Resx = River.OneMoreAddIn.Properties.Resources;
+	using Resx = Properties.Resources;
 
 
 	internal partial class ChangePageColorDialog : UI.LocalizableForm

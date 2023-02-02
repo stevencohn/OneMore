@@ -4,6 +4,7 @@
 
 namespace River.OneMoreAddIn.UI
 {
+	using River.OneMoreAddIn.Helpers.Office;
 	using System;
 	using System.Drawing;
 	using System.Drawing.Drawing2D;
@@ -21,7 +22,23 @@ namespace River.OneMoreAddIn.UI
 		{
 			public readonly string Name;
 			public Color Color;
-			public Swatch(string name, Color color) { Name = name; Color = color; }
+			public Color Paint;
+			public Swatch(string name)
+			{
+				Name = name;
+				Color = Color.Transparent;
+				Paint = Color.Empty;
+			}
+			public Swatch(string name, uint color)
+				: this(name, color, color)
+			{
+			}
+			public Swatch(string name, uint color, uint paint)
+			{
+				Name = name;
+				Color = Color.FromArgb((int)color);
+				Paint = Color.FromArgb((int)paint);
+			}
 		}
 
 		private const string arrow = "\u00E8"; // black right arrow
@@ -36,31 +53,70 @@ namespace River.OneMoreAddIn.UI
 
 		public ColorsComboBox()
 		{
-			Items.AddRange(new[]
+			if (Office.IsBlackThemeEnabled())
 			{
-				// light
-				new Swatch(Color.White.Name, Color.White),
-				new Swatch(Color.WhiteSmoke.Name, Color.WhiteSmoke),
-				new Swatch(Color.AliceBlue.Name, Color.AliceBlue),
-				new Swatch(Color.MintCream.Name, Color.MintCream),
-				new Swatch(Color.Honeydew.Name, Color.Honeydew),
-				new Swatch(Color.Ivory.Name, Color.Ivory),
-				new Swatch(Color.Snow.Name, Color.Snow),
-				new Swatch(Color.SeaShell.Name, Color.SeaShell),
-				new Swatch(Color.Linen.Name, Color.Linen),
-				// dark
-				new Swatch(Color.Black.Name, Color.Black),
-				new Swatch("Black Smoke", BasicColors.BlackSmoke),
-				new Swatch(Color.DarkCyan.Name, Color.FromArgb(39, 81, 81)),
-				new Swatch(Color.DarkOliveGreen.Name, Color.FromArgb(41, 53, 34)),
-				new Swatch(Color.DarkSlateBlue.Name, Color.FromArgb(46, 46, 73)),
-				new Swatch(Color.SteelBlue.Name, Color.FromArgb(33, 54, 79)),
-				new Swatch(Color.MidnightBlue.Name, Color.FromArgb(39, 46, 68)),
-				new Swatch(Color.SaddleBrown.Name, Color.FromArgb(76, 51, 26)),
-				new Swatch(Color.Brown.Name, Color.FromArgb(84, 37, 37)),
-				new Swatch(Color.Purple.Name, Color.FromArgb(61, 31, 50)),
-				new Swatch("Custom", Color.Transparent)
-			});
+				// dark colors - the color:param is applied to the page but inverted by OneNote
+				// so the rendered color follows a conversion algorithm. The paint:param is used
+				// to render the swatch in the ComboBox dropdown showing how it will appear
+				// when applied to a page in dark mode...
+
+				Items.AddRange(new[]
+				{
+					// dark
+					new Swatch("Black", 0xFFEEEEEE, 0xFF131313),
+					new Swatch("Gray", 0xFFCFCFCF, 0xFF303030),
+					new Swatch("Dark Teal", 0xFFB6DCDB, 0xFF1F4140),
+					new Swatch("Dark Olive Green", 0xFFD0E2C4, 0xFF2F4321),
+					new Swatch("Dark Slate Blue", 0xFFB6B6D1, 0xFF232338),
+					new Swatch("Midnight Blue", 0xFFBBC2D8, 0xFF23293D),
+					new Swatch("Saddle Brown", 0xFFE5CCB3, 0xFF473018),
+					new Swatch("Brown", 0xFFDAABAB, 0xFF401C1C),
+					new Swatch("Dark Purple", 0xFFE0C2D5, 0xFF412135),
+					// light
+					new Swatch("White", 0xFF010101, 0xFFF3F3F3),
+					new Swatch("White Smoke", 0xFF111111, 0xFFF2F2F2),
+					new Swatch("Alice Blue", 0xFF003E75, 0xFFECF5FF),
+					new Swatch("Mint Cream", 0xFF00753A, 0xFFECFFF5),
+					new Swatch("Honeydew", 0xFF007500, 0xFFECFFEC),
+					new Swatch("Ivory", 0xFF757500, 0xFFFFFFEC),
+					new Swatch("Snow", 0xFF225151, 0xFFF0F9F9),
+					new Swatch("Seashell", 0xFF220E00, 0xFFFFF0E6),
+					new Swatch("Linen", 0xFF1B1005, 0xFFFCF3EB),
+					// custom
+					new Swatch("Custom")
+				});
+			}
+			else
+			{
+				// light colors - explicit, exact color representations from ligth to dark
+				// are applied to the page and rendered as specified...
+
+				Items.AddRange(new[]
+				{
+					// light
+					new Swatch("White", 0xFFF3F3F3),
+					new Swatch("White Smoke", 0xFFF2F2F2),
+					new Swatch("Alice Blue", 0xFFECF5FF),
+					new Swatch("Mint Cream", 0xFFECFFF5),
+					new Swatch("Honeydew", 0xFFECFFEC),
+					new Swatch("Ivory", 0xFFFFFFEC),
+					new Swatch("Snow", 0xFFF0F9F9),
+					new Swatch("Seashell", 0xFFFFF0E6),
+					new Swatch("Linen", 0xFFFCF3EB),
+					// dark
+					new Swatch("Black", 0xFF131313),
+					new Swatch("Gray", 0xFF303030),
+					new Swatch("Dark Teal", 0xFF1F4140),
+					new Swatch("Dark Olive Green", 0xFF2F4321),
+					new Swatch("Dark Slate Blue", 0xFF232338),
+					new Swatch("Midnight Blue", 0xFF23293D),
+					new Swatch("Saddle Brown", 0xFF473018),
+					new Swatch("Brown", 0xFF401C1C),
+					new Swatch("Dark Purple", 0xFF412135),
+					// custom
+					new Swatch("Custom")
+				});
+			}
 
 			customIndex = Items.Count - 1;
 			arrowFont = new Font("Wingdings", 11.0f);
@@ -200,7 +256,8 @@ namespace River.OneMoreAddIn.UI
 				try
 				{
 					var swatch = (Swatch)Items[e.Index];
-					var dark = swatch.Color.GetBrightness() < 0.5;
+					var color = swatch.Paint == Color.Empty ? swatch.Color : swatch.Paint;
+					var dark = color.GetBrightness() < 0.5;
 
 					// focus
 					if ((e.State & DrawItemState.Selected) == DrawItemState.Selected)
@@ -218,7 +275,7 @@ namespace River.OneMoreAddIn.UI
 					}
 
 					// background
-					using var backBrush = new SolidBrush(swatch.Color);
+					using var backBrush = new SolidBrush(color);
 					e.Graphics.FillRectangle(backBrush,
 						e.Bounds.X + 1, e.Bounds.Y + 1,
 						e.Bounds.Width - 2, e.Bounds.Height - 2);

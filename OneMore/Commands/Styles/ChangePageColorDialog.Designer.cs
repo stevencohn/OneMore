@@ -130,8 +130,6 @@
 			// applyBox
 			// 
 			this.applyBox.AutoSize = true;
-			this.applyBox.Checked = true;
-			this.applyBox.CheckState = System.Windows.Forms.CheckState.Checked;
 			this.applyBox.Location = new System.Drawing.Point(22, 171);
 			this.applyBox.Name = "applyBox";
 			this.applyBox.Size = new System.Drawing.Size(246, 24);
