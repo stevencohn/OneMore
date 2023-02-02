@@ -42,15 +42,11 @@ namespace River.OneMoreAddIn.Commands
 		private readonly bool blackTheme;
 		private readonly Pen borderPen;
 		private readonly Pen activePen;
-		private readonly float xFactor;
-		private readonly float yFactor;
 
 
 		public PageColorSelector()
 		{
 			InitializeComponent();
-
-			(xFactor, yFactor) = UIHelper.GetScalingFactors();
 
 			Width = SwatchMargin + ((SwatchSize + SwatchMargin) * 3);
 			var paletteHeight = SwatchMargin + ((SwatchSize + SwatchMargin) * 6);
@@ -71,6 +67,7 @@ namespace River.OneMoreAddIn.Commands
 		{
 			get
 			{
+				// force a drop-shadow on the window
 				const int CS_DROPSHADOW = 0x20000;
 				CreateParams cp = base.CreateParams;
 				cp.ClassStyle |= CS_DROPSHADOW;
@@ -117,7 +114,7 @@ namespace River.OneMoreAddIn.Commands
 				// are applied to the page and rendered as specified...
 
 				// light
-				Register("White", 0xFFF3F3F3);
+				Register("White", 0xFFFFFFFF);
 				Register("White Smoke", 0xFFF2F2F2);
 				Register("Alice Blue", 0xFFECF5FF);
 				Register("Mint Cream", 0xFFECFFF5);
@@ -143,10 +140,7 @@ namespace River.OneMoreAddIn.Commands
 		private void Register(string name, uint color, uint? paint = null)
 		{
 			var swatch = new Swatch(name, color);
-			if (paint != null)
-			{
-				swatch.Paint = Color.FromArgb((int)paint);
-			}
+			swatch.Paint = paint == null ? swatch.Color : Color.FromArgb((int)paint);
 
 			var row = palette.Count / 3;
 			var col = palette.Count == 0 ? 0 : palette.Count % 3;
@@ -173,7 +167,7 @@ namespace River.OneMoreAddIn.Commands
 				var swatch = palette[i];
 
 				using var brush = new SolidBrush(
-					swatch.Paint == Color.Empty ? swatch.Color : swatch.Paint);
+					swatch.Paint.IsEmpty ? swatch.Color : swatch.Paint);
 
 				g.FillRectangle(brush, swatch.Bounds);
 				g.DrawRectangle(borderPen, swatch.Bounds);
@@ -184,6 +178,7 @@ namespace River.OneMoreAddIn.Commands
 
 
 		public Color Color { get; private set; }
+		public Color PaintColor { get; private set; }
 
 
 		private void HitTest(object sender, MouseEventArgs e)
@@ -196,12 +191,12 @@ namespace River.OneMoreAddIn.Commands
 				if (active != null)
 				{
 					g.DrawRectangle(borderPen, active.Bounds);
-					//tooltip.Show(swatch.Name, this, e.Location, 2000);
 				}
 
 				if (swatch != null)
 				{
 					g.DrawRectangle(activePen, swatch.Bounds);
+					tooltip.Show(swatch.Name, paletteBox, e.Location, 2000);
 				}
 
 				active = swatch;
@@ -215,6 +210,7 @@ namespace River.OneMoreAddIn.Commands
 			if (swatch != null)
 			{
 				Color = swatch.Color;
+				PaintColor = swatch.Paint;
 				DialogResult = DialogResult.OK;
 				Close();
 			}
@@ -224,6 +220,7 @@ namespace River.OneMoreAddIn.Commands
 		private void ChooseNoColor(object sender, EventArgs e)
 		{
 			Color = Color.Transparent;
+			PaintColor = Color.Transparent;
 			DialogResult = DialogResult.OK;
 			Close();
 		}

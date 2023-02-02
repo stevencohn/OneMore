@@ -71,13 +71,12 @@ namespace River.OneMoreAddIn.Commands
 				.Elements(page.Namespace + "PageSettings")
 				.FirstOrDefault();
 
+			// this SHOULD be impossible
 			if (element == null)
 			{
-				logger.WriteLine("ChangePageColor failed because PageSettings not found");
+				logger.WriteLine("PageColor failed because PageSettings not found!");
 				return;
 			}
-
-			ribbon.Invalidate();
 
 			var attr = element.Attribute("color");
 			if (attr != null)

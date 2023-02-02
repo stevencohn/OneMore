@@ -4,7 +4,6 @@
 
 namespace River.OneMoreAddIn.Commands
 {
-	using River.OneMoreAddIn.Helpers.Office;
 	using River.OneMoreAddIn.Settings;
 	using System;
 	using System.Drawing;
@@ -27,20 +26,20 @@ namespace River.OneMoreAddIn.Commands
 			var settings = provider.GetCollection("pageColor");
 			if (settings == null)
 			{
-				omBox.BackColor = color;
-				customBox.BackColor = color;
+				omBox.Tag = color;
+				customBox.Tag = color;
 			}
 			else
 			{
 				var setting = settings["omColor"];
-				omBox.BackColor = setting == null ? color : ColorTranslator.FromHtml(setting);
+				omBox.Tag = setting == null ? color : ColorTranslator.FromHtml(setting);
 
 				setting = settings["customColor"];
-				customBox.BackColor = setting == null ? color : ColorTranslator.FromHtml(setting);
+				customBox.Tag = setting == null ? color : ColorTranslator.FromHtml(setting);
 			}
 
-			FillBox(omBox, omBox.BackColor);
-			FillBox(customBox, customBox.BackColor);
+			FillBox(omBox, (Color)omBox.Tag);
+			FillBox(customBox, (Color)customBox.Tag);
 		}
 
 
@@ -78,14 +77,15 @@ namespace River.OneMoreAddIn.Commands
 
 			if (dialog.ShowDialog() == DialogResult.OK)
 			{
-				var color = dialog.Color;
-				if (color == Color.Transparent)
+				// use Tag as a cache for ApplyColor
+				omBox.Tag = dialog.Color;
+
+				var color = dialog.PaintColor;
+				if (color.Equals(Color.Transparent))
 				{
 					color = SystemColors.Window;
 				}
 
-				// use BackColor as a cache for ApplyColor
-				omBox.BackColor = color;
 				FillBox(omBox, color);
 			}
 		}
@@ -98,16 +98,16 @@ namespace River.OneMoreAddIn.Commands
 			using var dialog = new UI.MoreColorDialog(
 				Resx.PageColorDialog_Text,
 				// negative Left means right-justify window; see MoreColorDialog.HookProc!
-				-(location.X + customBox.Width),
+				-(location.X + customBox.Width) - 6,
 				location.Y + customBox.Height - 4
 				);
 
-			dialog.Color = customBox.BackColor;
+			dialog.Color = (Color)customBox.Tag;
 
 			if (dialog.ShowDialog() == DialogResult.OK)
 			{
-				// use BackColor as a cache for ApplyCustomColor
-				customBox.BackColor = dialog.Color;
+				// use Tag as a cache for ApplyCustomColor
+				customBox.Tag = dialog.Color;
 				FillBox(customBox, dialog.Color);
 			}
 		}
@@ -115,7 +115,7 @@ namespace River.OneMoreAddIn.Commands
 
 		private void ApplyColor(object sender, EventArgs e)
 		{
-			Color = omBox.BackColor;
+			Color = (Color)omBox.Tag;
 
 			var provider = new SettingsProvider();
 			var settings = provider.GetCollection("pageColor");
@@ -129,7 +129,7 @@ namespace River.OneMoreAddIn.Commands
 
 		private void ApplyCustomColor(object sender, EventArgs e)
 		{
-			Color = customBox.BackColor;
+			Color = (Color)customBox.Tag;
 
 			var provider = new SettingsProvider();
 			var settings = provider.GetCollection("pageColor");
