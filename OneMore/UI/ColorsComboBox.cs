@@ -30,13 +30,13 @@ namespace River.OneMoreAddIn.UI
 				Paint = Color.Empty;
 			}
 			public Swatch(string name, uint color)
-				: this(name)
+				: this(name, color, color)
 			{
-				Color = Color.FromArgb((int)color);
 			}
 			public Swatch(string name, uint color, uint paint)
-				: this(name, color)
 			{
+				Name = name;
+				Color = Color.FromArgb((int)color);
 				Paint = Color.FromArgb((int)paint);
 			}
 		}
@@ -55,7 +55,11 @@ namespace River.OneMoreAddIn.UI
 		{
 			if (Office.IsBlackThemeEnabled())
 			{
-				// dark colors
+				// dark colors - the color:param is applied to the page but inverted by OneNote
+				// so the rendered color follows a conversion algorithm. The paint:param is used
+				// to render the swatch in the ComboBox dropdown showing how it will appear
+				// when applied to a page in dark mode...
+
 				Items.AddRange(new[]
 				{
 					// dark
@@ -84,7 +88,9 @@ namespace River.OneMoreAddIn.UI
 			}
 			else
 			{
-				// light colors
+				// light colors - explicit, exact color representations from ligth to dark
+				// are applied to the page and rendered as specified...
+
 				Items.AddRange(new[]
 				{
 					// light
