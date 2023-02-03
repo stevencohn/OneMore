@@ -2684,8 +2684,8 @@ Polaroïd</value>
     <comment>OneMore Ribbon menu item</comment>
   </data>
   <data name="ribEditStylesButton_Label" xml:space="preserve">
-    <value>Modifier les styles</value>
-    <comment>Ribbon Custom Styles menu item, edit custom styles</comment>
+    <value>Modifier le thème du style</value>
+    <comment>ribbon styles</comment>
   </data>
   <data name="ribEditStylesButton_Screentip" xml:space="preserve">
     <value>Modifier les styles personnalisés</value>
@@ -3027,11 +3027,11 @@ Polaroïd</value>
     <comment>ribbon references</comment>
   </data>
   <data name="ribLoadStylesButton_Label" xml:space="preserve">
-    <value>Styles de charge</value>
-    <comment>ribbon item</comment>
+    <value>Charger le thème de style</value>
+    <comment>ribbon styles</comment>
   </data>
   <data name="ribLoadStylesButton_Screentip" xml:space="preserve">
-    <value>Charger des styles personnalisés à partir d'un fichier</value>
+    <value>Charger des styles personnalisés à partir d'un fichier de thème</value>
     <comment>ribbon styles</comment>
   </data>
   <data name="ribLowercaseButton_Label" xml:space="preserve">
@@ -4684,5 +4684,16 @@ Dans cette section</value>
   <data name="ribPageColorButton_Screentip" xml:space="preserve">
     <value>Choisissez une couleur personnalisée pour l'arrière-plan de la page</value>
     <comment>page context menu</comment>
+  </data>
+  <data name="LoadStyleTheme_errorLoading" xml:space="preserve">
+    <value>Impossible de charger le fichier ou le fichier est vide</value>
+  </data>
+  <data name="LoadStyleTheme_filter" xml:space="preserve">
+    <value>Fichiers de thème (*.xml)|*.xml|Tous les fichiers (*.*)|*.*</value>
+    <comment>OpenFileDialog filter</comment>
+  </data>
+  <data name="LoadStyleTheme_Title" xml:space="preserve">
+    <value>Charger le thème de style</value>
+    <comment>OpenFileDialog title</comment>
   </data>
 </root>

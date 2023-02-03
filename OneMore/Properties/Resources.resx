@@ -1713,6 +1713,17 @@ Symbols: PI, E</value>
     <value>No references found. Consider enabling the option to include unindexed pages</value>
     <comment>message</comment>
   </data>
+  <data name="LoadStyleTheme_errorLoading" xml:space="preserve">
+    <value>Cannot load file or file is empty</value>
+  </data>
+  <data name="LoadStyleTheme_filter" xml:space="preserve">
+    <value>Theme files (*.xml)|*.xml|All files (*.*)|*.*</value>
+    <comment>OpenFileDialog filter</comment>
+  </data>
+  <data name="LoadStyleTheme_Title" xml:space="preserve">
+    <value>Load Style Theme</value>
+    <comment>OpenFileDialog title</comment>
+  </data>
   <data name="Locked" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>images\locked.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -2860,11 +2871,11 @@ Polaroid</value>
     <comment>ribbon menu</comment>
   </data>
   <data name="ribEditStylesButton_Label" xml:space="preserve">
-    <value>Edit Styles</value>
+    <value>Edit Style Theme</value>
     <comment>ribbon styles</comment>
   </data>
   <data name="ribEditStylesButton_Screentip" xml:space="preserve">
-    <value>Edit custom styles</value>
+    <value>Edit custom styles or load alternate theme</value>
     <comment>ribbon styles</comment>
   </data>
   <data name="ribEditTableThemesButton_Label" xml:space="preserve">
@@ -3204,11 +3215,11 @@ Polaroid</value>
     <comment>ribbon references</comment>
   </data>
   <data name="ribLoadStylesButton_Label" xml:space="preserve">
-    <value>Load Styles</value>
+    <value>Load Style Theme</value>
     <comment>ribbon styles</comment>
   </data>
   <data name="ribLoadStylesButton_Screentip" xml:space="preserve">
-    <value>Load custom styles from a file</value>
+    <value>Load custom styles from a theme file</value>
     <comment>ribbon styles</comment>
   </data>
   <data name="ribLowercaseButton_Label" xml:space="preserve">

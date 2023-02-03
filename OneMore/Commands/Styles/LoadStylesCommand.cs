@@ -44,9 +44,9 @@ namespace River.OneMoreAddIn.Commands
 			using var dialog = new OpenFileDialog
 			{
 				DefaultExt = "xml",
-				Filter = "Theme files (*.xml)|*.xml|All files (*.*)|*.*",
+				Filter = Resx.LoadStyleTheme_filter,
 				Multiselect = false,
-				Title = "Open Style Theme",
+				Title = Resx.LoadStyleTheme_Title,
 				ShowHelp = true,			// stupid, but this is needed to avoid hang
 				AutoUpgradeEnabled = true,	// simpler UI, faster
 				InitialDirectory = path
@@ -67,7 +67,7 @@ namespace River.OneMoreAddIn.Commands
 				}
 			}
 
-			UIHelper.ShowError("could not load theme file or them contains no styles");
+			UIHelper.ShowError(Resx.LoadStyleTheme_errorLoading);
 			return null;
 		}
 	}

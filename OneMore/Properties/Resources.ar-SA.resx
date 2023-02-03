@@ -2688,8 +2688,8 @@ ISO-code then comma then language name</comment>
     <comment>OneMore Ribbon menu item</comment>
   </data>
   <data name="ribEditStylesButton_Label" xml:space="preserve">
-    <value>تحرير الأنماط</value>
-    <comment>Ribbon Custom Styles menu item, edit custom styles</comment>
+    <value>تحرير نسق النمط</value>
+    <comment>ribbon styles</comment>
   </data>
   <data name="ribEditStylesButton_Screentip" xml:space="preserve">
     <value>تحرير الأنماط المخصصة</value>
@@ -3032,11 +3032,11 @@ ISO-code then comma then language name</comment>
     <comment>ribbon references</comment>
   </data>
   <data name="ribLoadStylesButton_Label" xml:space="preserve">
-    <value>أنماط التحميل</value>
-    <comment>ribbon item</comment>
+    <value>تحميل نمط النمط</value>
+    <comment>ribbon styles</comment>
   </data>
   <data name="ribLoadStylesButton_Screentip" xml:space="preserve">
-    <value>تحميل أنماط مخصصة من ملف</value>
+    <value>تحميل أنماط مخصصة من ملف موضوع</value>
     <comment>ribbon styles</comment>
   </data>
   <data name="ribLowercaseButton_Label" xml:space="preserve">
@@ -4690,5 +4690,16 @@ ISO-code then comma then language name</comment>
   <data name="ribPageColorButton_Screentip" xml:space="preserve">
     <value>اختر لونًا مخصصًا لخلفية الصفحة</value>
     <comment>page context menu</comment>
+  </data>
+  <data name="LoadStyleTheme_errorLoading" xml:space="preserve">
+    <value>لا يمكن تحميل الملف أو الملف فارغ</value>
+  </data>
+  <data name="LoadStyleTheme_filter" xml:space="preserve">
+    <value>ملفات السمات (* .xml) | * .xml | كافة الملفات (*. *) | *. *</value>
+    <comment>OpenFileDialog filter</comment>
+  </data>
+  <data name="LoadStyleTheme_Title" xml:space="preserve">
+    <value>تحميل نمط النمط</value>
+    <comment>OpenFileDialog title</comment>
   </data>
 </root>

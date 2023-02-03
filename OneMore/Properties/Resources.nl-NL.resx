@@ -2689,8 +2689,8 @@ Polaroid</value>
     <comment>OneMore Ribbon menu item</comment>
   </data>
   <data name="ribEditStylesButton_Label" xml:space="preserve">
-    <value>Stijlen bewerken</value>
-    <comment>Ribbon Custom Styles menu item, edit custom styles</comment>
+    <value>Stijlthema bewerken</value>
+    <comment>ribbon styles</comment>
   </data>
   <data name="ribEditStylesButton_Screentip" xml:space="preserve">
     <value>Bewerk aangepaste stijlen</value>
@@ -3032,11 +3032,11 @@ Polaroid</value>
     <comment>ribbon references</comment>
   </data>
   <data name="ribLoadStylesButton_Label" xml:space="preserve">
-    <value>Laad stijlen</value>
-    <comment>ribbon item</comment>
+    <value>Laad stijlthema</value>
+    <comment>ribbon styles</comment>
   </data>
   <data name="ribLoadStylesButton_Screentip" xml:space="preserve">
-    <value>Laad aangepaste stijlen uit een bestand</value>
+    <value>Laad aangepaste stijlen vanuit een themabestand</value>
     <comment>ribbon styles</comment>
   </data>
   <data name="ribLowercaseButton_Label" xml:space="preserve">
@@ -4690,5 +4690,16 @@ In deze sectie</value>
   <data name="ribPageColorButton_Screentip" xml:space="preserve">
     <value>Kies een aangepaste kleur voor de pagina-achtergrond</value>
     <comment>page context menu</comment>
+  </data>
+  <data name="LoadStyleTheme_errorLoading" xml:space="preserve">
+    <value>Kan bestand niet laden of bestand is leeg</value>
+  </data>
+  <data name="LoadStyleTheme_filter" xml:space="preserve">
+    <value>Themabestanden (*.xml)|*.xml|Alle bestanden (*.*)|*.*</value>
+    <comment>OpenFileDialog filter</comment>
+  </data>
+  <data name="LoadStyleTheme_Title" xml:space="preserve">
+    <value>Laad stijlthema</value>
+    <comment>OpenFileDialog title</comment>
   </data>
 </root>

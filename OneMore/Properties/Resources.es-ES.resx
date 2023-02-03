@@ -2688,8 +2688,8 @@ polaroid</value>
     <comment>OneMore Ribbon menu item</comment>
   </data>
   <data name="ribEditStylesButton_Label" xml:space="preserve">
-    <value>Editar estilos</value>
-    <comment>Ribbon Custom Styles menu item, edit custom styles</comment>
+    <value>Editar tema de estilo</value>
+    <comment>ribbon styles</comment>
   </data>
   <data name="ribEditStylesButton_Screentip" xml:space="preserve">
     <value>Editar estilos personalizados</value>
@@ -3032,11 +3032,11 @@ polaroid</value>
     <comment>ribbon references</comment>
   </data>
   <data name="ribLoadStylesButton_Label" xml:space="preserve">
-    <value>Cargar estilos</value>
-    <comment>ribbon item</comment>
+    <value>Tema de estilo de carga</value>
+    <comment>ribbon styles</comment>
   </data>
   <data name="ribLoadStylesButton_Screentip" xml:space="preserve">
-    <value>Cargar estilos personalizados desde un archivo</value>
+    <value>Cargue estilos personalizados desde un archivo de tema</value>
     <comment>ribbon styles</comment>
   </data>
   <data name="ribLowercaseButton_Label" xml:space="preserve">
@@ -4690,5 +4690,16 @@ En esta sección</value>
   <data name="ribPageColorButton_Screentip" xml:space="preserve">
     <value>Elija un color personalizado para el fondo de la página</value>
     <comment>page context menu</comment>
+  </data>
+  <data name="LoadStyleTheme_errorLoading" xml:space="preserve">
+    <value>No se puede cargar el archivo o el archivo está vacío</value>
+  </data>
+  <data name="LoadStyleTheme_filter" xml:space="preserve">
+    <value>Archivos de temas (*.xml)|*.xml|Todos los archivos (*.*)|*.*</value>
+    <comment>OpenFileDialog filter</comment>
+  </data>
+  <data name="LoadStyleTheme_Title" xml:space="preserve">
+    <value>Tema de estilo de carga</value>
+    <comment>OpenFileDialog title</comment>
   </data>
 </root>

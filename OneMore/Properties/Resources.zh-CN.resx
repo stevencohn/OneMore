@@ -2686,8 +2686,8 @@ ISO-code then comma then language name</comment>
     <comment>OneMore Ribbon menu item</comment>
   </data>
   <data name="ribEditStylesButton_Label" xml:space="preserve">
-    <value>编辑样式</value>
-    <comment>Ribbon Custom Styles menu item, edit custom styles</comment>
+    <value>编辑样式主题</value>
+    <comment>ribbon styles</comment>
   </data>
   <data name="ribEditStylesButton_Screentip" xml:space="preserve">
     <value>编辑自定义样式</value>
@@ -3030,11 +3030,11 @@ ISO-code then comma then language name</comment>
     <comment>ribbon references</comment>
   </data>
   <data name="ribLoadStylesButton_Label" xml:space="preserve">
-    <value>加载样式</value>
-    <comment>ribbon item</comment>
+    <value>加载样式主题</value>
+    <comment>ribbon styles</comment>
   </data>
   <data name="ribLoadStylesButton_Screentip" xml:space="preserve">
-    <value>从文件加载自定义样式</value>
+    <value>从主题文件加载自定义样式</value>
     <comment>ribbon styles</comment>
   </data>
   <data name="ribLowercaseButton_Label" xml:space="preserve">
@@ -4674,5 +4674,16 @@ ISO-code then comma then language name</comment>
   <data name="ribPageColorButton_Screentip" xml:space="preserve">
     <value>为页面背景选择自定义颜色</value>
     <comment>page context menu</comment>
+  </data>
+  <data name="LoadStyleTheme_errorLoading" xml:space="preserve">
+    <value>无法加载文件或文件为空</value>
+  </data>
+  <data name="LoadStyleTheme_filter" xml:space="preserve">
+    <value>主题文件(*.xml)|*.xml|所有文件(*.*)|*.*</value>
+    <comment>OpenFileDialog filter</comment>
+  </data>
+  <data name="LoadStyleTheme_Title" xml:space="preserve">
+    <value>加载样式主题</value>
+    <comment>OpenFileDialog title</comment>
   </data>
 </root>

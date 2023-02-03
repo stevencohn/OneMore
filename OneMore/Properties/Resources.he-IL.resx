@@ -2769,8 +2769,8 @@ ISO-code then comma then language name</comment>
     <comment>OneMore Ribbon menu item</comment>
   </data>
   <data name="ribEditStylesButton_Label" xml:space="preserve">
-    <value>ערוך סגנונות</value>
-    <comment>Ribbon Custom Styles menu item, edit custom styles</comment>
+    <value>ערוך את ערכת נושא הסגנון</value>
+    <comment>ribbon styles</comment>
   </data>
   <data name="ribEditStylesButton_Screentip" xml:space="preserve">
     <value>ערוך סגנונות מותאמים אישית</value>
@@ -3113,11 +3113,11 @@ ISO-code then comma then language name</comment>
     <comment>ribbon references</comment>
   </data>
   <data name="ribLoadStylesButton_Label" xml:space="preserve">
-    <value>טען סגנונות</value>
-    <comment>ribbon item</comment>
+    <value>טען ערכת נושא בסגנון</value>
+    <comment>ribbon styles</comment>
   </data>
   <data name="ribLoadStylesButton_Screentip" xml:space="preserve">
-    <value>טען סגנונות מותאמים אישית מקובץ</value>
+    <value>טען סגנונות מותאמים אישית מקובץ ערכת נושא</value>
     <comment>ribbon styles</comment>
   </data>
   <data name="ribLowercaseButton_Label" xml:space="preserve">
@@ -4785,5 +4785,16 @@ ISO-code then comma then language name</comment>
   <data name="ribPageColorButton_Screentip" xml:space="preserve">
     <value>בחר צבע מותאם אישית עבור רקע העמוד</value>
     <comment>page context menu</comment>
+  </data>
+  <data name="LoadStyleTheme_errorLoading" xml:space="preserve">
+    <value>לא ניתן לטעון את הקובץ או שהקובץ ריק</value>
+  </data>
+  <data name="LoadStyleTheme_filter" xml:space="preserve">
+    <value>קבצי עיצוב (*.xml)|*.xml|כל הקבצים (*.*)|*.*</value>
+    <comment>OpenFileDialog filter</comment>
+  </data>
+  <data name="LoadStyleTheme_Title" xml:space="preserve">
+    <value>טען ערכת נושא בסגנון</value>
+    <comment>OpenFileDialog title</comment>
   </data>
 </root>
