@@ -4689,4 +4689,8 @@ In diesem Abschnitt</value>
     <value>Style-Design laden</value>
     <comment>OpenFileDialog title</comment>
   </data>
+  <data name="ribEditStylesButton_named" xml:space="preserve">
+    <value>Stildesign bearbeiten ({0})</value>
+    <comment>ribbon styles with theme name</comment>
+  </data>
 </root>

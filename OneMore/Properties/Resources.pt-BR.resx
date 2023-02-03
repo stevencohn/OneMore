@@ -4702,4 +4702,8 @@ Nesta secção</value>
     <value>Carregar tema de estilo</value>
     <comment>OpenFileDialog title</comment>
   </data>
+  <data name="ribEditStylesButton_named" xml:space="preserve">
+    <value>Editar tema de estilo ({0})</value>
+    <comment>ribbon styles with theme name</comment>
+  </data>
 </root>

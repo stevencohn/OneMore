@@ -5,12 +5,15 @@
 #pragma warning disable CS3001      // Type is not CLS-compliant
 #pragma warning disable IDE0060     // remove unused parameter
 
+#define xLOG_AddInRibbon
+
 namespace River.OneMoreAddIn
 {
 	using Microsoft.Office.Core;
 	using River.OneMoreAddIn.Commands;
 	using River.OneMoreAddIn.Helpers.Office;
 	using River.OneMoreAddIn.Settings;
+	using River.OneMoreAddIn.Styles;
 	using System;
 	using System.Drawing;
 	using System.Globalization;
@@ -434,8 +437,9 @@ namespace River.OneMoreAddIn
 		/// <returns></returns>
 		public string GetFavoritesContent(IRibbonControl control)
 		{
-			//logger.WriteLine($"GetFavoritesContent({control.Id}) culture:{AddIn.Culture.Name}");
-
+#if LOG_AddInRibbon
+			logger.WriteLine($"GetFavoritesContent({control.Id}) culture:{AddIn.Culture.Name}");
+#endif
 			// TODO: this doesn't seem to work!
 			System.Threading.Thread.CurrentThread.CurrentCulture = AddIn.Culture;
 			System.Threading.Thread.CurrentThread.CurrentUICulture = AddIn.Culture;
@@ -473,7 +477,9 @@ namespace River.OneMoreAddIn
 		/// <param name="ribbon">The Ribbon</param>
 		public void RibbonLoaded(IRibbonUI ribbon)
 		{
-			//logger.WriteLine("RibbonLoaded()");
+#if LOG_AddInRibbon
+			logger.WriteLine("RibbonLoaded()");
+#endif
 			this.ribbon = ribbon;
 		}
 
@@ -485,7 +491,9 @@ namespace River.OneMoreAddIn
 		/// <returns>A Bitmap image</returns>
 		public IStream GetColorizeImage(IRibbonControl control)
 		{
-			//logger.WriteLine($"GetColorizeImage({control.Tag})");
+#if LOG_AddInRibbon
+			logger.WriteLine($"GetColorizeImage({control.Tag})");
+#endif
 			IStream stream = null;
 			try
 			{
@@ -522,7 +530,9 @@ namespace River.OneMoreAddIn
 			if (Office.IsBlackThemeEnabled(true))
 			{
 				var darkName = $"Dark{imageName}";
-				//logger.WriteLine($"GetRibbonImage({imageName})");
+#if LOG_AddInRibbon
+				logger.WriteLine($"GetRibbonImage({imageName})");
+#endif
 				try
 				{
 					if (Resx.ResourceManager.GetObject(darkName) is Bitmap res)
@@ -540,7 +550,9 @@ namespace River.OneMoreAddIn
 
 			try
 			{
-				//logger.WriteLine($"GetRibbonImage({imageName})");
+#if LOG_AddInRibbon
+				logger.WriteLine($"GetRibbonImage({imageName})");
+#endif
 				if (Resx.ResourceManager.GetObject(imageName) is Bitmap res)
 				{
 					var stream = res.GetReadOnlyStream();
@@ -564,7 +576,9 @@ namespace River.OneMoreAddIn
 		 */
 		public IStream GetOneMoreRibbonImage(IRibbonControl control)
 		{
-			//logger.WriteLine($"GetOneMoreRibbonImage({control.Id})");
+#if LOG_AddInRibbon
+			logger.WriteLine($"GetOneMoreRibbonImage({control.Id})");
+#endif
 			IStream stream = null;
 			try
 			{
@@ -587,7 +601,9 @@ namespace River.OneMoreAddIn
 		/// <returns></returns>
 		public string GetRibbonContent(IRibbonControl control)
 		{
-			//logger.WriteLine($"GetRibbonContent({control.Id})");
+#if LOG_AddInRibbon
+			logger.WriteLine($"GetRibbonContent({control.Id})");
+#endif
 			return null;
 		}
 
@@ -599,7 +615,9 @@ namespace River.OneMoreAddIn
 		/// <returns></returns>
 		public bool GetRibbonEnabled(IRibbonControl control)
 		{
-			//logger.WriteLine($"GetRibbonEnabled({control.Id})");
+#if LOG_AddInRibbon
+			logger.WriteLine($"GetRibbonEnabled({control.Id})");
+#endif
 			return true;
 		}
 
@@ -610,6 +628,10 @@ namespace River.OneMoreAddIn
 		/// </summary>
 		/// <param name="control">The control element with a unique Id.</param>
 		/// <returns>A string specifying the text of the element</returns>
+		/// <remarks>
+		/// This is called each time a menu is opened for each item in that menu.
+		/// So we can inject our own customizations, such as the one for ribEditStylesButton
+		/// </remarks>
 		public string GetRibbonLabel(IRibbonControl control)
 		{
 			// convert ctx items to rib items so they share the same label
@@ -619,7 +641,40 @@ namespace River.OneMoreAddIn
 				id = $"rib{id.Substring(3)}";
 			}
 
-			return ReadString($"{id}_Label");
+			string label = null;
+			if (id == "ribEditStylesButton")
+			{
+				label = MakeEditStylesButtonLabel();
+			}
+
+			if (label == null)
+			{
+				label = ReadString($"{id}_Label");
+			}
+
+#if LOG_AddInRibbon
+			logger.WriteLine($"GetRibbonLabel({id}_Label) => [{label}]");
+#endif
+			return label;
+		}
+
+
+		private string MakeEditStylesButtonLabel()
+		{
+			Theme theme = null;
+			try
+			{
+				theme = new ThemeProvider().Theme;
+			}
+			catch (Exception exc)
+			{
+				logger.WriteLine($"MakeEditStylesButtonLabel cannot load theme", exc);
+				theme = null;
+			}
+
+			return theme == null
+				? Resx.ribEditStylesButton_Label
+				: string.Format(Resx.ribEditStylesButton_named, theme.Name);
 		}
 
 
@@ -643,7 +698,9 @@ namespace River.OneMoreAddIn
 			{
 				tip = GetRibbonLabel(control);
 			}
-
+#if LOG_AddInRibbon
+			logger.WriteLine($"GetRibbonScreentip({id}_Screentip) => [{tip}]");
+#endif
 			return tip;
 		}
 
@@ -652,7 +709,6 @@ namespace River.OneMoreAddIn
 		{
 			try
 			{
-				//logger.WriteLine($"GetString({resId})");
 				return Resx.ResourceManager.GetString(resId, AddIn.Culture);
 			}
 			catch (Exception exc)
@@ -671,7 +727,9 @@ namespace River.OneMoreAddIn
 		/// <returns>A steam of the Image to display</returns>
 		public IStream GetRibbonSearchImage(IRibbonControl control)
 		{
-			//logger.WriteLine($"GetRibbonSearchImage({control.Tag})");
+#if LOG_AddInRibbon
+			logger.WriteLine($"GetRibbonSearchImage({control.Tag})");
+#endif
 
 			if (engines?.HasElements == true)
 			{

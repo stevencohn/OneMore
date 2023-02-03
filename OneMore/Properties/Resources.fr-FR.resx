@@ -4696,4 +4696,8 @@ Dans cette section</value>
     <value>Charger le thème de style</value>
     <comment>OpenFileDialog title</comment>
   </data>
+  <data name="ribEditStylesButton_named" xml:space="preserve">
+    <value>Modifier le thème de style ({0})</value>
+    <comment>ribbon styles with theme name</comment>
+  </data>
 </root>

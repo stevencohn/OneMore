@@ -6432,6 +6432,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Edit Style Theme ({0}).
+        /// </summary>
+        internal static string ribEditStylesButton_named {
+            get {
+                return ResourceManager.GetString("ribEditStylesButton_named", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Edit custom styles or load alternate theme.
         /// </summary>
         internal static string ribEditStylesButton_Screentip {
