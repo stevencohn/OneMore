@@ -2539,6 +2539,16 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap ExpandArrow {
+            get {
+                object obj = ResourceManager.GetObject("ExpandArrow", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Outline state has been saved for this page.
         /// </summary>
         internal static string ExpandoCommand_Saved {
@@ -4342,6 +4352,78 @@ namespace River.OneMoreAddIn.Properties {
         internal static string OutlookTaskReport_Week {
             get {
                 return ResourceManager.GetString("OutlookTaskReport_Week", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Apply style theme to this page.
+        /// </summary>
+        internal static string PageColorDialog_applyThemeBox_Text {
+            get {
+                return ResourceManager.GetString("PageColorDialog_applyThemeBox.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Text may be unreadable.
+        /// </summary>
+        internal static string PageColorDialog_contrastWarning {
+            get {
+                return ResourceManager.GetString("PageColorDialog_contrastWarning", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The current style theme is {0}.
+        /// </summary>
+        internal static string PageColorDialog_currentThemeLabel_Text {
+            get {
+                return ResourceManager.GetString("PageColorDialog_currentThemeLabel.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Click here to change your own custom color.
+        /// </summary>
+        internal static string PageColorDialog_customLabel {
+            get {
+                return ResourceManager.GetString("PageColorDialog_customLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Advanced Options.
+        /// </summary>
+        internal static string PageColorDialog_expander_Title {
+            get {
+                return ResourceManager.GetString("PageColorDialog_expander.Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Load a different style theme.
+        /// </summary>
+        internal static string PageColorDialog_loadThemeLink_Text {
+            get {
+                return ResourceManager.GetString("PageColorDialog_loadThemeLink.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to or choose no page color.
+        /// </summary>
+        internal static string PageColorDialog_noLabel_Text {
+            get {
+                return ResourceManager.GetString("PageColorDialog_noLabel.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Click here to select a pre-defined color.
+        /// </summary>
+        internal static string PageColorDialog_omLabel {
+            get {
+                return ResourceManager.GetString("PageColorDialog_omLabel", resourceCulture);
             }
         }
         

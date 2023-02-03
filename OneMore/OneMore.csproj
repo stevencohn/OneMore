@@ -356,6 +356,12 @@
     </Compile>
     <Compile Include="Commands\Snippets\InsertBreadcrumbCommand.cs" />
     <Compile Include="Commands\References\EmbedSubpageCommand.cs" />
+    <Compile Include="UI\MoreExpander.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\MoreExpander.Designer.cs">
+      <DependentUpon>MoreExpander.cs</DependentUpon>
+    </Compile>
     <Compile Include="UI\RenameDialog.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1056,6 +1062,7 @@
     <Content Include="Properties\Images\Equal.png" />
     <Content Include="Properties\Images\Exclamation.png" />
     <None Include="Properties\Images\Exit.png" />
+    <Content Include="Properties\Images\ExpandArrow.png" />
     <Content Include="Properties\Images\Favorites.png" />
     <Content Include="Properties\Images\FolderClose.png" />
     <Content Include="Properties\Images\FolderOpen.png" />
@@ -1203,6 +1210,9 @@
       <DependentUpon>PageColorSelector.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.he-IL.resx" />
+    <EmbeddedResource Include="UI\MoreExpander.resx">
+      <DependentUpon>MoreExpander.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UI\RenameDialog.resx">
       <DependentUpon>RenameDialog.cs</DependentUpon>
     </EmbeddedResource>

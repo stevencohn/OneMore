@@ -89,8 +89,6 @@ namespace River.OneMoreAddIn.Commands
 		{
 			InitializeComponent();
 
-			VerticalOffset = 3;
-
 			selectionRegion = new Region();
 			selectionRegion.MakeEmpty();
 			selectionPath = new GraphicsPath();

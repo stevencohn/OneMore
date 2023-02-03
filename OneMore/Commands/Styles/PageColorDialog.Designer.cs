@@ -30,54 +30,42 @@
 		{
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PageColorDialog));
 			this.omBox = new River.OneMoreAddIn.UI.MorePictureBox();
-			this.omButton = new System.Windows.Forms.Button();
-			this.customButton = new System.Windows.Forms.Button();
 			this.customBox = new River.OneMoreAddIn.UI.MorePictureBox();
 			this.noLabel = new System.Windows.Forms.Label();
-			this.noButton = new System.Windows.Forms.Button();
 			this.noPanel = new System.Windows.Forms.Panel();
 			this.cancelButton = new System.Windows.Forms.Button();
+			this.expander = new River.OneMoreAddIn.UI.MoreExpander();
+			this.optionsPanel = new System.Windows.Forms.Panel();
+			this.loadThemeLink = new River.OneMoreAddIn.UI.MoreLinkLabel();
+			this.currentThemeLabel = new System.Windows.Forms.Label();
+			this.applyThemeBox = new System.Windows.Forms.CheckBox();
+			this.okButton = new System.Windows.Forms.Button();
+			this.omButton = new System.Windows.Forms.RadioButton();
+			this.customButton = new System.Windows.Forms.RadioButton();
+			this.noButton = new System.Windows.Forms.RadioButton();
+			this.statusLabel = new System.Windows.Forms.Label();
 			((System.ComponentModel.ISupportInitialize)(this.omBox)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.customBox)).BeginInit();
 			this.noPanel.SuspendLayout();
+			this.optionsPanel.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// omBox
 			// 
 			this.omBox.Cursor = System.Windows.Forms.Cursors.Hand;
-			this.omBox.Location = new System.Drawing.Point(18, 18);
+			this.omBox.Location = new System.Drawing.Point(67, 21);
 			this.omBox.Name = "omBox";
-			this.omBox.Size = new System.Drawing.Size(450, 60);
+			this.omBox.Size = new System.Drawing.Size(550, 60);
 			this.omBox.TabIndex = 0;
 			this.omBox.TabStop = false;
 			this.omBox.Click += new System.EventHandler(this.ChooseColor);
 			// 
-			// omButton
-			// 
-			this.omButton.Location = new System.Drawing.Point(474, 28);
-			this.omButton.Name = "omButton";
-			this.omButton.Size = new System.Drawing.Size(202, 40);
-			this.omButton.TabIndex = 3;
-			this.omButton.Text = "Selected Color";
-			this.omButton.UseVisualStyleBackColor = true;
-			this.omButton.Click += new System.EventHandler(this.ApplyColor);
-			// 
-			// customButton
-			// 
-			this.customButton.Location = new System.Drawing.Point(474, 110);
-			this.customButton.Name = "customButton";
-			this.customButton.Size = new System.Drawing.Size(202, 40);
-			this.customButton.TabIndex = 4;
-			this.customButton.Text = "Custom Color";
-			this.customButton.UseVisualStyleBackColor = true;
-			this.customButton.Click += new System.EventHandler(this.ApplyCustomColor);
-			// 
 			// customBox
 			// 
 			this.customBox.Cursor = System.Windows.Forms.Cursors.Hand;
-			this.customBox.Location = new System.Drawing.Point(18, 100);
+			this.customBox.Location = new System.Drawing.Point(67, 103);
 			this.customBox.Name = "customBox";
-			this.customBox.Size = new System.Drawing.Size(450, 60);
+			this.customBox.Size = new System.Drawing.Size(550, 60);
 			this.customBox.TabIndex = 5;
 			this.customBox.TabStop = false;
 			this.customBox.Click += new System.EventHandler(this.ChooseCustomColor);
@@ -90,48 +78,157 @@
 			this.noLabel.Size = new System.Drawing.Size(179, 20);
 			this.noLabel.TabIndex = 6;
 			this.noLabel.Text = "or choose no page color";
-			// 
-			// noButton
-			// 
-			this.noButton.Location = new System.Drawing.Point(474, 191);
-			this.noButton.Name = "noButton";
-			this.noButton.Size = new System.Drawing.Size(202, 40);
-			this.noButton.TabIndex = 7;
-			this.noButton.Text = "No Color";
-			this.noButton.UseVisualStyleBackColor = true;
-			this.noButton.Click += new System.EventHandler(this.ApplyNoColor);
+			this.noLabel.Click += new System.EventHandler(this.ChooseNoColor);
 			// 
 			// noPanel
 			// 
 			this.noPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
 			this.noPanel.Controls.Add(this.noLabel);
-			this.noPanel.Location = new System.Drawing.Point(18, 182);
+			this.noPanel.Location = new System.Drawing.Point(67, 185);
 			this.noPanel.Name = "noPanel";
-			this.noPanel.Size = new System.Drawing.Size(450, 60);
+			this.noPanel.Size = new System.Drawing.Size(550, 60);
 			this.noPanel.TabIndex = 8;
+			this.noPanel.Click += new System.EventHandler(this.ChooseNoColor);
 			// 
 			// cancelButton
 			// 
 			this.cancelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-			this.cancelButton.Location = new System.Drawing.Point(584, 551);
+			this.cancelButton.Location = new System.Drawing.Point(497, 484);
 			this.cancelButton.Name = "cancelButton";
 			this.cancelButton.Size = new System.Drawing.Size(130, 40);
 			this.cancelButton.TabIndex = 9;
 			this.cancelButton.Text = "Cancel";
 			this.cancelButton.UseVisualStyleBackColor = true;
 			// 
+			// expander
+			// 
+			this.expander.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.expander.ContentControl = this.optionsPanel;
+			this.expander.Cursor = System.Windows.Forms.Cursors.Hand;
+			this.expander.Expanded = false;
+			this.expander.ForeColor = System.Drawing.SystemColors.ActiveCaption;
+			this.expander.Location = new System.Drawing.Point(67, 289);
+			this.expander.MaxContentHeight = 130;
+			this.expander.Name = "expander";
+			this.expander.Size = new System.Drawing.Size(547, 44);
+			this.expander.TabIndex = 10;
+			this.expander.Title = "Advanced Options";
+			// 
+			// optionsPanel
+			// 
+			this.optionsPanel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.optionsPanel.Controls.Add(this.loadThemeLink);
+			this.optionsPanel.Controls.Add(this.currentThemeLabel);
+			this.optionsPanel.Controls.Add(this.applyThemeBox);
+			this.optionsPanel.Location = new System.Drawing.Point(33, 341);
+			this.optionsPanel.Name = "optionsPanel";
+			this.optionsPanel.Padding = new System.Windows.Forms.Padding(4);
+			this.optionsPanel.Size = new System.Drawing.Size(583, 122);
+			this.optionsPanel.TabIndex = 11;
+			// 
+			// loadThemeLink
+			// 
+			this.loadThemeLink.AutoSize = true;
+			this.loadThemeLink.Cursor = System.Windows.Forms.Cursors.Hand;
+			this.loadThemeLink.HoverColor = System.Drawing.Color.MediumOrchid;
+			this.loadThemeLink.Location = new System.Drawing.Point(50, 37);
+			this.loadThemeLink.Name = "loadThemeLink";
+			this.loadThemeLink.Size = new System.Drawing.Size(206, 20);
+			this.loadThemeLink.TabIndex = 2;
+			this.loadThemeLink.TabStop = true;
+			this.loadThemeLink.Text = "Load a different style theme";
+			this.loadThemeLink.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.LoadTheme);
+			// 
+			// currentThemeLabel
+			// 
+			this.currentThemeLabel.AutoSize = true;
+			this.currentThemeLabel.Location = new System.Drawing.Point(50, 4);
+			this.currentThemeLabel.Name = "currentThemeLabel";
+			this.currentThemeLabel.Size = new System.Drawing.Size(213, 20);
+			this.currentThemeLabel.TabIndex = 1;
+			this.currentThemeLabel.Text = "The current style theme is {0}";
+			// 
+			// applyThemeBox
+			// 
+			this.applyThemeBox.AutoSize = true;
+			this.applyThemeBox.Location = new System.Drawing.Point(51, 82);
+			this.applyThemeBox.Name = "applyThemeBox";
+			this.applyThemeBox.Size = new System.Drawing.Size(246, 24);
+			this.applyThemeBox.TabIndex = 0;
+			this.applyThemeBox.Text = "Apply style theme to this page";
+			this.applyThemeBox.UseVisualStyleBackColor = true;
+			// 
+			// okButton
+			// 
+			this.okButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+			this.okButton.DialogResult = System.Windows.Forms.DialogResult.OK;
+			this.okButton.Location = new System.Drawing.Point(361, 484);
+			this.okButton.Name = "okButton";
+			this.okButton.Size = new System.Drawing.Size(130, 40);
+			this.okButton.TabIndex = 12;
+			this.okButton.Text = "OK";
+			this.okButton.UseVisualStyleBackColor = true;
+			this.okButton.Click += new System.EventHandler(this.Apply);
+			// 
+			// omButton
+			// 
+			this.omButton.AutoSize = true;
+			this.omButton.Location = new System.Drawing.Point(33, 39);
+			this.omButton.Name = "omButton";
+			this.omButton.Size = new System.Drawing.Size(21, 20);
+			this.omButton.TabIndex = 13;
+			this.omButton.TabStop = true;
+			this.omButton.UseVisualStyleBackColor = true;
+			// 
+			// customButton
+			// 
+			this.customButton.AutoSize = true;
+			this.customButton.Location = new System.Drawing.Point(33, 117);
+			this.customButton.Name = "customButton";
+			this.customButton.Size = new System.Drawing.Size(21, 20);
+			this.customButton.TabIndex = 14;
+			this.customButton.TabStop = true;
+			this.customButton.UseVisualStyleBackColor = true;
+			// 
+			// noButton
+			// 
+			this.noButton.AutoSize = true;
+			this.noButton.Location = new System.Drawing.Point(33, 202);
+			this.noButton.Name = "noButton";
+			this.noButton.Size = new System.Drawing.Size(21, 20);
+			this.noButton.TabIndex = 15;
+			this.noButton.TabStop = true;
+			this.noButton.UseVisualStyleBackColor = true;
+			// 
+			// statusLabel
+			// 
+			this.statusLabel.AutoSize = true;
+			this.statusLabel.ForeColor = System.Drawing.Color.Brown;
+			this.statusLabel.Location = new System.Drawing.Point(110, 266);
+			this.statusLabel.Name = "statusLabel";
+			this.statusLabel.Size = new System.Drawing.Size(31, 20);
+			this.statusLabel.TabIndex = 16;
+			this.statusLabel.Text = "OK";
+			// 
 			// PageColorDialog
 			// 
+			this.AcceptButton = this.okButton;
 			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.CancelButton = this.cancelButton;
-			this.ClientSize = new System.Drawing.Size(727, 604);
-			this.Controls.Add(this.cancelButton);
-			this.Controls.Add(this.noPanel);
+			this.ClientSize = new System.Drawing.Size(640, 537);
+			this.Controls.Add(this.statusLabel);
 			this.Controls.Add(this.noButton);
 			this.Controls.Add(this.customButton);
 			this.Controls.Add(this.omButton);
+			this.Controls.Add(this.okButton);
+			this.Controls.Add(this.optionsPanel);
+			this.Controls.Add(this.expander);
+			this.Controls.Add(this.cancelButton);
+			this.Controls.Add(this.noPanel);
 			this.Controls.Add(this.omBox);
 			this.Controls.Add(this.customBox);
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
@@ -148,19 +245,29 @@
 			((System.ComponentModel.ISupportInitialize)(this.customBox)).EndInit();
 			this.noPanel.ResumeLayout(false);
 			this.noPanel.PerformLayout();
+			this.optionsPanel.ResumeLayout(false);
+			this.optionsPanel.PerformLayout();
 			this.ResumeLayout(false);
+			this.PerformLayout();
 
 		}
 
 		#endregion
 
 		private River.OneMoreAddIn.UI.MorePictureBox omBox;
-		private System.Windows.Forms.Button omButton;
-		private System.Windows.Forms.Button customButton;
 		private River.OneMoreAddIn.UI.MorePictureBox customBox;
 		private System.Windows.Forms.Label noLabel;
-		private System.Windows.Forms.Button noButton;
 		private System.Windows.Forms.Panel noPanel;
 		private System.Windows.Forms.Button cancelButton;
+		private UI.MoreExpander expander;
+		private System.Windows.Forms.Panel optionsPanel;
+		private UI.MoreLinkLabel loadThemeLink;
+		private System.Windows.Forms.Label currentThemeLabel;
+		private System.Windows.Forms.CheckBox applyThemeBox;
+		private System.Windows.Forms.Button okButton;
+		private System.Windows.Forms.RadioButton omButton;
+		private System.Windows.Forms.RadioButton customButton;
+		private System.Windows.Forms.RadioButton noButton;
+		private System.Windows.Forms.Label statusLabel;
 	}
 }

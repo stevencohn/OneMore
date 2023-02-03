@@ -4,7 +4,9 @@
 
 namespace River.OneMoreAddIn.Commands
 {
+	using River.OneMoreAddIn.Helpers.Office;
 	using River.OneMoreAddIn.Settings;
+	using River.OneMoreAddIn.Styles;
 	using System;
 	using System.Drawing;
 	using System.Windows.Forms;
@@ -13,40 +15,99 @@ namespace River.OneMoreAddIn.Commands
 
 	internal partial class PageColorDialog : UI.LocalizableForm
 	{
+		private bool darkMode;
+		private Theme theme;
+		private Color pageColor;
+
+
 		public PageColorDialog()
 		{
 			InitializeComponent();
+
+			if (NeedsLocalizing())
+			{
+				Text = Resx.PageColorDialog_Text;
+
+				Localize(new string[]
+				{
+					"noLabel",
+					"expander.Title",
+					"currentThemeLabel",
+					"loadThemeLink",
+					"applyThemeBox",
+					"okButton=word_OK",
+					"cancelButton=word_Cancel"
+				});
+			}
+
+			VerticalOffset = -(Height / 3);
+			Height -= optionsPanel.Height;
+			optionsPanel.Height = 0;
+
+			darkMode = Office.IsBlackThemeEnabled();
+			statusLabel.Text = string.Empty;
 		}
 
 
 		public PageColorDialog(Color color)
 			: this()
 		{
+			pageColor = color;
+
 			var provider = new SettingsProvider();
 			var settings = provider.GetCollection("pageColor");
 			if (settings == null)
 			{
-				omBox.Tag = color;
-				customBox.Tag = color;
+				omBox.Tag = pageColor;
+				customBox.Tag = pageColor;
 			}
 			else
 			{
 				var setting = settings["omColor"];
-				omBox.Tag = setting == null ? color : ColorTranslator.FromHtml(setting);
+				omBox.Tag = setting == null ? pageColor : ColorTranslator.FromHtml(setting);
 
 				setting = settings["customColor"];
-				customBox.Tag = setting == null ? color : ColorTranslator.FromHtml(setting);
+				customBox.Tag = setting == null ? pageColor : ColorTranslator.FromHtml(setting);
 			}
 
-			FillBox(omBox, (Color)omBox.Tag);
-			FillBox(customBox, (Color)customBox.Tag);
+			FillBox(omBox, EstimateOneNoteColor((Color)omBox.Tag));
+			FillBox(customBox, EstimateOneNoteColor((Color)customBox.Tag));
+
+			if (pageColor.Equals(Color.Transparent))
+			{
+				noButton.Checked = true;
+			}
+			else
+			{
+				omButton.Checked = true;
+			}
+
+			theme = new ThemeProvider().Theme;
+			currentThemeLabel.Text = 
+				string.Format(Resx.PageColorDialog_currentThemeLabel_Text, theme.Name);
 		}
+
+
+		public bool ApplyStyle => expander.Expanded && applyThemeBox.Checked;
 
 
 		public Color Color { get; private set; }
 
 
-		public string ThemeKey { get; private set; }
+		public string ThemeKey => theme.Key;
+
+
+		private Color EstimateOneNoteColor(Color color)
+		{
+			if (darkMode)
+			{
+				return color.GetBrightness() > 0.5
+					? ControlPaint.Dark(color, 0.9f)
+					: ControlPaint.Light(color, 1.9f);
+			}
+
+			return color;
+		}
 
 
 		private void FillBox(PictureBox box, Color color)
@@ -58,8 +119,8 @@ namespace River.OneMoreAddIn.Commands
 
 			// TODO: resx
 			var label = box == omBox
-				? "Click here to select a pre-defined color"
-				: "Click here to change your own custom color";
+				? Resx.PageColorDialog_omLabel
+				: Resx.PageColorDialog_customLabel;
 
 			var fbrush = color.GetBrightness() < 0.5 ? Brushes.White : Brushes.Black;
 			var size = g.MeasureString(label, Font);
@@ -69,6 +130,8 @@ namespace River.OneMoreAddIn.Commands
 
 		private void ChooseColor(object sender, EventArgs e)
 		{
+			omButton.Checked = true;
+
 			var location = PointToScreen(omBox.Location);
 
 			using var dialog = new PageColorSelector();
@@ -87,66 +150,103 @@ namespace River.OneMoreAddIn.Commands
 				}
 
 				FillBox(omBox, color);
+				CheckContrast();
 			}
 		}
 
 
 		private void ChooseCustomColor(object sender, EventArgs e)
 		{
+			customButton.Checked = true;
+
 			var location = PointToScreen(customBox.Location);
 
 			using var dialog = new UI.MoreColorDialog(
 				Resx.PageColorDialog_Text,
-				// negative Left means right-justify window; see MoreColorDialog.HookProc!
-				-(location.X + customBox.Width) - 6,
+				location.X + 30,
 				location.Y + customBox.Height - 4
 				);
 
 			dialog.Color = (Color)customBox.Tag;
+			dialog.FullOpen = true;
 
 			if (dialog.ShowDialog() == DialogResult.OK)
 			{
 				// use Tag as a cache for ApplyCustomColor
 				customBox.Tag = dialog.Color;
-				FillBox(customBox, dialog.Color);
+				FillBox(customBox, EstimateOneNoteColor(dialog.Color));
+				CheckContrast();
 			}
 		}
 
 
-		private void ApplyColor(object sender, EventArgs e)
+		private void ChooseNoColor(object sender, EventArgs e)
 		{
-			Color = (Color)omBox.Tag;
-
-			var provider = new SettingsProvider();
-			var settings = provider.GetCollection("pageColor");
-			settings.Add("omColor", Color.ToRGBHtml());
-			provider.SetCollection(settings);
-			provider.Save();
-
-			DialogResult = DialogResult.OK;
-			Close();
-		}
-
-		private void ApplyCustomColor(object sender, EventArgs e)
-		{
-			Color = (Color)customBox.Tag;
-
-			var provider = new SettingsProvider();
-			var settings = provider.GetCollection("pageColor");
-			settings.Add("customColor", Color.ToRGBHtml());
-			provider.SetCollection(settings);
-			provider.Save();
-
-			DialogResult = DialogResult.OK;
-			Close();
+			noButton.Checked = true;
+			CheckContrast();
 		}
 
 
-		private void ApplyNoColor(object sender, EventArgs e)
+		private void LoadTheme(object sender, LinkLabelLinkClickedEventArgs e)
 		{
-			Color = Color.Transparent;
-			DialogResult = DialogResult.OK;
-			Close();
+			var candidate = new LoadStylesCommand().LoadTheme();
+			if (candidate != null)
+			{
+				theme = candidate;
+				currentThemeLabel.Text =
+					string.Format(Resx.PageColorDialog_currentThemeLabel_Text, theme.Name);
+
+				CheckContrast();
+			}
+		}
+
+
+		private void CheckContrast()
+		{
+			if (theme == null)
+			{
+				statusLabel.Text = string.Empty;
+				return;
+			}
+
+			var color = omButton.Checked
+				? (Color)omBox.Tag
+				: customButton.Checked ? (Color)customBox.Tag : pageColor;
+
+			var dark = color.GetBrightness() < 0.5;
+
+			statusLabel.Text = theme.Dark == dark
+				? string.Empty
+				: Resx.PageColorDialog_contrastWarning;
+		}
+
+
+		private void Apply(object sender, EventArgs e)
+		{
+			if (omButton.Checked)
+			{
+				Color = (Color)omBox.Tag;
+				Save("omColor");
+			}
+			else if (customButton.Checked)
+			{
+				Color = (Color)customBox.Tag;
+				Save("customColor");
+			}
+			else
+			{
+				Color = Color.Transparent;
+			}
+		}
+
+
+		private void Save(string key)
+		{
+			var provider = new SettingsProvider();
+			var settings = provider.GetCollection("pageColor");
+			settings.Add(key, Color.ToRGBHtml());
+			provider.SetCollection(settings);
+			provider.Save();
 		}
 	}
 }

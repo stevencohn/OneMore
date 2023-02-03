@@ -6,6 +6,7 @@ namespace River.OneMoreAddIn.Commands
 {
 	using River.OneMoreAddIn.Helpers.Office;
 	using River.OneMoreAddIn.Models;
+	using River.OneMoreAddIn.Styles;
 	using System.Drawing;
 	using System.Linq;
 	using System.Threading.Tasks;
@@ -38,11 +39,11 @@ namespace River.OneMoreAddIn.Commands
 			{
 				UpdatePageColor(page, MakePageColor(dialog.Color));
 
-				//if (dialog.ApplyStyle)
-				//{
-				//	ThemeProvider.RecordTheme(dialog.ThemeKey);
-				//	new ApplyStylesCommand().Apply(page);
-				//}
+				if (dialog.ApplyStyle)
+				{
+					ThemeProvider.RecordTheme(dialog.ThemeKey);
+					new ApplyStylesCommand().Apply(page);
+				}
 
 				using var one = new OneNote();
 				await one.Update(page);

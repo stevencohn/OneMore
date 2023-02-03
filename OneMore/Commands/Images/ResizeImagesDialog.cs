@@ -37,7 +37,7 @@ namespace River.OneMoreAddIn.Commands
 		{
 			Initialize();
 
-			VerticalOffset = 3;
+			VerticalOffset = -(Height / 3);
 
 			FormBorderStyle = FormBorderStyle.FixedDialog;
 			MaximizeBox = false;

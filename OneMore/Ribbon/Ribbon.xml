@@ -42,11 +42,11 @@
               imageMso="ApplyStylesPane"
               onAction="ApplyStylesCmd"/>
             <button
-              id="ribChangePageColorButton"
+              id="ribPageColorButton"
+              imageMso="ShapeFillColorPicker"
               getLabel="GetRibbonLabel"
               getScreentip="GetRibbonScreentip"
-              imageMso="FormatBackground"
-              onAction="ChangePageColorCmd"/>
+              onAction="PageColorCmd"/>
           </gallery>
 
           <gallery
