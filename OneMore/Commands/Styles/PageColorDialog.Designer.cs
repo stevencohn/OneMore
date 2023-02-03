@@ -156,9 +156,9 @@
 			this.applyThemeBox.AutoSize = true;
 			this.applyThemeBox.Location = new System.Drawing.Point(51, 82);
 			this.applyThemeBox.Name = "applyThemeBox";
-			this.applyThemeBox.Size = new System.Drawing.Size(246, 24);
+			this.applyThemeBox.Size = new System.Drawing.Size(205, 24);
 			this.applyThemeBox.TabIndex = 0;
-			this.applyThemeBox.Text = "Apply style theme to this page";
+			this.applyThemeBox.Text = "Apply styles to this page";
 			this.applyThemeBox.UseVisualStyleBackColor = true;
 			// 
 			// okButton
@@ -182,6 +182,7 @@
 			this.omButton.TabIndex = 13;
 			this.omButton.TabStop = true;
 			this.omButton.UseVisualStyleBackColor = true;
+			this.omButton.CheckedChanged += new System.EventHandler(this.ChangeColorOption);
 			// 
 			// customButton
 			// 

@@ -4646,7 +4646,7 @@ Dans cette section</value>
     <value>Créer une nouvelle page</value>
   </data>
   <data name="PageColorDialog_applyThemeBox.Text" xml:space="preserve">
-    <value>Appliquer le thème de style à cette page</value>
+    <value>Appliquer des styles à cette page</value>
     <comment>checkbox</comment>
   </data>
   <data name="PageColorDialog_contrastWarning" xml:space="preserve">

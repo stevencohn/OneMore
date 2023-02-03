@@ -1922,7 +1922,7 @@ Deferred</value>
     <comment>dialog title</comment>
   </data>
   <data name="PageColorDialog_applyThemeBox.Text" xml:space="preserve">
-    <value>Apply style theme to this page</value>
+    <value>Apply styles to this page</value>
     <comment>checkbox</comment>
   </data>
   <data name="PageColorDialog_contrastWarning" xml:space="preserve">

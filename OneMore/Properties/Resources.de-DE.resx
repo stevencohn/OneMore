@@ -4639,7 +4639,7 @@ In diesem Abschnitt</value>
     <value>Erstellen Sie eine neue Seite</value>
   </data>
   <data name="PageColorDialog_applyThemeBox.Text" xml:space="preserve">
-    <value>Stilthema auf diese Seite anwenden</value>
+    <value>Wenden Sie Stile auf diese Seite an</value>
     <comment>checkbox</comment>
   </data>
   <data name="PageColorDialog_contrastWarning" xml:space="preserve">

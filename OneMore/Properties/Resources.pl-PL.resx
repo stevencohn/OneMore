@@ -4705,7 +4705,7 @@ W tej sekcji</value>
     <value>Utwórz nową stronę</value>
   </data>
   <data name="PageColorDialog_applyThemeBox.Text" xml:space="preserve">
-    <value>Zastosuj motyw stylu do tej strony</value>
+    <value>Zastosuj style do tej strony</value>
     <comment>checkbox</comment>
   </data>
   <data name="PageColorDialog_contrastWarning" xml:space="preserve">

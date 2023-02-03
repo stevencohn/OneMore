@@ -4747,7 +4747,7 @@ ISO-code then comma then language name</comment>
     <value>צור דף חדש</value>
   </data>
   <data name="PageColorDialog_applyThemeBox.Text" xml:space="preserve">
-    <value>החל נושא סגנון על דף זה</value>
+    <value>החל סגנונות על דף זה</value>
     <comment>checkbox</comment>
   </data>
   <data name="PageColorDialog_contrastWarning" xml:space="preserve">

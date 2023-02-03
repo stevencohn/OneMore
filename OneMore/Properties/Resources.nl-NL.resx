@@ -4652,7 +4652,7 @@ In deze sectie</value>
     <value>Maak een nieuwe pagina aan</value>
   </data>
   <data name="PageColorDialog_applyThemeBox.Text" xml:space="preserve">
-    <value>Stijlthema toepassen op deze pagina</value>
+    <value>Pas stijlen toe op deze pagina</value>
     <comment>checkbox</comment>
   </data>
   <data name="PageColorDialog_contrastWarning" xml:space="preserve">

@@ -806,14 +806,14 @@
                 onAction="CopyDownCmd"/>
               <button
                 id="ribFillAcrossButton"
-                imageMso="TableColumnsDistribute"
+                imageMso="FillRight"
                 getLabel="GetRibbonLabel"
                 getScreentip="GetRibbonScreentip"
                 getEnabled="GetBodyContext"
                 onAction="FillAcrossCmd"/>
               <button
                 id="ribFillDownButton"
-                imageMso="TableRowsDistribute"
+                imageMso="FillDown"
                 getLabel="GetRibbonLabel"
                 getScreentip="GetRibbonScreentip"
                 getEnabled="GetBodyContext"

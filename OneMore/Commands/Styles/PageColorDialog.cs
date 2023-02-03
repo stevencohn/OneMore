@@ -187,6 +187,13 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
+		private void ChangeColorOption(object sender, EventArgs e)
+		{
+			CheckContrast();
+		}
+
+
+
 		private void LoadTheme(object sender, LinkLabelLinkClickedEventArgs e)
 		{
 			var candidate = new LoadStylesCommand().LoadTheme();
