@@ -33,6 +33,10 @@ namespace River.OneMoreAddIn.UI
 		public bool ManualLocation { get; set; } = false;
 
 
+		/// <summary>
+		/// Sets the absolute vertical offset in pixels from "centered" that you want to
+		/// position this window upon load. This can be either a positive or negative value.
+		/// </summary>
 		public int VerticalOffset { private get; set; }
 
 
@@ -132,10 +136,11 @@ namespace River.OneMoreAddIn.UI
 				Location = new Point(center.X - (Width / 2), center.Y - (Height / 2));
 			}
 
-			if (VerticalOffset > 0)
+			if (VerticalOffset != 0)
 			{
+				StartPosition = FormStartPosition.Manual;
 				var x = Location.X < 0 ? 0 : Location.X;
-				var y = Location.Y - (Height / VerticalOffset);
+				var y = Location.Y + VerticalOffset;
 
 				Location = new Point(x, y < 0 ? 0 : y);
 			}

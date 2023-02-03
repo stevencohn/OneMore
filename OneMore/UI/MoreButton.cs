@@ -7,7 +7,6 @@ namespace River.OneMoreAddIn.UI
 	using System;
 	using System.ComponentModel;
 	using System.Drawing;
-	using System.Management.Instrumentation;
 	using System.Windows.Forms;
 
 

@@ -410,42 +410,6 @@ OneNote zamknie się automatycznie</value>
   <data name="Camera" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>emoji\camera.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="ChangePageColorDialog.Text" xml:space="preserve">
-    <value>Zmień motyw strony.</value>
-    <comment>dialog title</comment>
-  </data>
-  <data name="ChangePageColorDialog_applyBox.Text" xml:space="preserve">
-    <value>Zastosuj motyw stylu na tę stronę</value>
-    <comment>checkbox</comment>
-  </data>
-  <data name="ChangePageColorDialog_colorLink.Text" xml:space="preserve">
-    <value>Wybierz niestandardowy kolor</value>
-    <comment>link</comment>
-  </data>
-  <data name="ChangePageColorDialog_Contrast" xml:space="preserve">
-    <value>Kolor i temat może nie mieć wystarczająco dużo kontrastu</value>
-    <comment>label</comment>
-  </data>
-  <data name="ChangePageColorDialog_currentLabel.Text" xml:space="preserve">
-    <value>Aktualny motyw:</value>
-    <comment>label</comment>
-  </data>
-  <data name="ChangePageColorDialog_customLink.Text" xml:space="preserve">
-    <value>Wybrać niestandardowy kolor</value>
-    <comment>linklabel</comment>
-  </data>
-  <data name="ChangePageColorDialog_introLabel.Text" xml:space="preserve">
-    <value>Po wybraniu koloru strony załaduj jeden z predefiniowanych stylów lub dostosować własne style, aby wszystkie zawartość ma wystarczająco dużo kontrast, aby być widocznym.</value>
-    <comment>instructions</comment>
-  </data>
-  <data name="ChangePageColorDialog_loadLink.Text" xml:space="preserve">
-    <value>Załaduj motyw stylu</value>
-    <comment>hyperlink</comment>
-  </data>
-  <data name="ChangePageColorDialog_themeIntroLabel.Text" xml:space="preserve">
-    <value>Opcjonalnie załaduj jeden z predefiniowanych motywów stylów lub dostosować własny motyw, aby wszystkie treści mają wystarczająco dużo kontrast, aby być widocznym.</value>
-    <comment>label</comment>
-  </data>
   <data name="Circle" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>emoji\circle.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -2767,8 +2731,8 @@ Polaroid</value>
     <comment>OneMore Ribbon menu item</comment>
   </data>
   <data name="ribEditStylesButton_Label" xml:space="preserve">
-    <value>Edytuj style.</value>
-    <comment>Ribbon Custom Styles menu item, edit custom styles</comment>
+    <value>Edytuj motyw stylu</value>
+    <comment>ribbon styles</comment>
   </data>
   <data name="ribEditStylesButton_Screentip" xml:space="preserve">
     <value>Edytuj niestandardowe style</value>
@@ -3111,11 +3075,11 @@ Polaroid</value>
     <comment>ribbon references</comment>
   </data>
   <data name="ribLoadStylesButton_Label" xml:space="preserve">
-    <value>Ładunki</value>
-    <comment>ribbon item</comment>
+    <value>Załaduj motyw stylu</value>
+    <comment>ribbon styles</comment>
   </data>
   <data name="ribLoadStylesButton_Screentip" xml:space="preserve">
-    <value>Załaduj niestandardowe style z pliku</value>
+    <value>Załaduj niestandardowe style z pliku motywu</value>
     <comment>ribbon styles</comment>
   </data>
   <data name="ribLowercaseButton_Label" xml:space="preserve">
@@ -4739,5 +4703,56 @@ W tej sekcji</value>
   </data>
   <data name="phrase_CreateANewPage" xml:space="preserve">
     <value>Utwórz nową stronę</value>
+  </data>
+  <data name="PageColorDialog_applyThemeBox.Text" xml:space="preserve">
+    <value>Zastosuj style do tej strony</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="PageColorDialog_contrastWarning" xml:space="preserve">
+    <value>Tekst może być nieczytelny</value>
+    <comment>label</comment>
+  </data>
+  <data name="PageColorDialog_currentThemeLabel.Text" xml:space="preserve">
+    <value>Bieżący motyw stylu to {0}</value>
+    <comment>label</comment>
+  </data>
+  <data name="PageColorDialog_customLabel" xml:space="preserve">
+    <value>Kliknij tutaj, aby zmienić własny niestandardowy kolor</value>
+    <comment>label</comment>
+  </data>
+  <data name="PageColorDialog_expander.Title" xml:space="preserve">
+    <value>Zaawansowane opcje</value>
+    <comment>expander control</comment>
+  </data>
+  <data name="PageColorDialog_loadThemeLink.Text" xml:space="preserve">
+    <value>Załaduj inny motyw stylu</value>
+    <comment>linklabel</comment>
+  </data>
+  <data name="PageColorDialog_noLabel.Text" xml:space="preserve">
+    <value>lub nie wybieraj koloru strony</value>
+    <comment>label</comment>
+  </data>
+  <data name="PageColorDialog_omLabel" xml:space="preserve">
+    <value>Kliknij tutaj, aby wybrać predefiniowany kolor</value>
+    <comment>label</comment>
+  </data>
+  <data name="ribPageColorButton_Label" xml:space="preserve">
+    <value>Kolor strony</value>
+    <comment>page context menu</comment>
+  </data>
+  <data name="ribPageColorButton_Screentip" xml:space="preserve">
+    <value>Wybierz niestandardowy kolor tła strony</value>
+    <comment>page context menu</comment>
+  </data>
+  <data name="LoadStyleTheme_errorLoading" xml:space="preserve">
+    <value>Nie można załadować pliku lub plik jest pusty</value>
+  </data>
+  <data name="LoadStyleTheme_filter" xml:space="preserve">
+    <value>Pliki motywu (*.xml)|*.xml|Wszystkie pliki (*.*)|*.*</value>
+    <comment>OpenFileDialog filter</comment>
+  </data>
+  <data name="LoadStyleTheme_Title" xml:space="preserve">
+    <value>Załaduj motyw stylu</value>
+    <comment>OpenFileDialog title</comment>
   </data>
 </root>

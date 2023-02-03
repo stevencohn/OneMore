@@ -52,7 +52,7 @@ namespace River.OneMoreAddIn.Commands
 
 
 		/// <summary>
-		/// Invoked from ChangePageColor command
+		/// Invoked from PageColorCommand
 		/// </summary>
 		/// <param name="page"></param>
 		public void Apply(Page page)

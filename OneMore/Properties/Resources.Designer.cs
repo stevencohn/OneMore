@@ -751,87 +751,6 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Apply style theme to this page.
-        /// </summary>
-        internal static string ChangePageColorDialog_applyBox_Text {
-            get {
-                return ResourceManager.GetString("ChangePageColorDialog_applyBox.Text", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Choose a custom color.
-        /// </summary>
-        internal static string ChangePageColorDialog_colorLink_Text {
-            get {
-                return ResourceManager.GetString("ChangePageColorDialog_colorLink.Text", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Color and theme may not have enough contrast.
-        /// </summary>
-        internal static string ChangePageColorDialog_Contrast {
-            get {
-                return ResourceManager.GetString("ChangePageColorDialog_Contrast", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Current Theme:.
-        /// </summary>
-        internal static string ChangePageColorDialog_currentLabel_Text {
-            get {
-                return ResourceManager.GetString("ChangePageColorDialog_currentLabel.Text", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Chose a custom color.
-        /// </summary>
-        internal static string ChangePageColorDialog_customLink_Text {
-            get {
-                return ResourceManager.GetString("ChangePageColorDialog_customLink.Text", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to After choosing a page color, load one of the predefined styles or customize your own styles so all content has enough contrast to be visible..
-        /// </summary>
-        internal static string ChangePageColorDialog_introLabel_Text {
-            get {
-                return ResourceManager.GetString("ChangePageColorDialog_introLabel.Text", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Load a style theme.
-        /// </summary>
-        internal static string ChangePageColorDialog_loadLink_Text {
-            get {
-                return ResourceManager.GetString("ChangePageColorDialog_loadLink.Text", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Change Page Theme.
-        /// </summary>
-        internal static string ChangePageColorDialog_Text {
-            get {
-                return ResourceManager.GetString("ChangePageColorDialog.Text", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Optionally, load one of the predefined style themes or customize your own theme so all content has enough contrast to be visible..
-        /// </summary>
-        internal static string ChangePageColorDialog_themeIntroLabel_Text {
-            get {
-                return ResourceManager.GetString("ChangePageColorDialog_themeIntroLabel.Text", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap CheckMark {
@@ -2539,6 +2458,16 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap ExpandArrow {
+            get {
+                object obj = ResourceManager.GetObject("ExpandArrow", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Outline state has been saved for this page.
         /// </summary>
         internal static string ExpandoCommand_Saved {
@@ -3864,6 +3793,33 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Cannot load file or file is empty.
+        /// </summary>
+        internal static string LoadStyleTheme_errorLoading {
+            get {
+                return ResourceManager.GetString("LoadStyleTheme_errorLoading", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Theme files (*.xml)|*.xml|All files (*.*)|*.*.
+        /// </summary>
+        internal static string LoadStyleTheme_filter {
+            get {
+                return ResourceManager.GetString("LoadStyleTheme_filter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Load Style Theme.
+        /// </summary>
+        internal static string LoadStyleTheme_Title {
+            get {
+                return ResourceManager.GetString("LoadStyleTheme_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap Locked {
@@ -4342,6 +4298,78 @@ namespace River.OneMoreAddIn.Properties {
         internal static string OutlookTaskReport_Week {
             get {
                 return ResourceManager.GetString("OutlookTaskReport_Week", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Apply styles to this page.
+        /// </summary>
+        internal static string PageColorDialog_applyThemeBox_Text {
+            get {
+                return ResourceManager.GetString("PageColorDialog_applyThemeBox.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Text may be unreadable.
+        /// </summary>
+        internal static string PageColorDialog_contrastWarning {
+            get {
+                return ResourceManager.GetString("PageColorDialog_contrastWarning", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The current style theme is {0}.
+        /// </summary>
+        internal static string PageColorDialog_currentThemeLabel_Text {
+            get {
+                return ResourceManager.GetString("PageColorDialog_currentThemeLabel.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Click here to change your own custom color.
+        /// </summary>
+        internal static string PageColorDialog_customLabel {
+            get {
+                return ResourceManager.GetString("PageColorDialog_customLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Advanced Options.
+        /// </summary>
+        internal static string PageColorDialog_expander_Title {
+            get {
+                return ResourceManager.GetString("PageColorDialog_expander.Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Load a different style theme.
+        /// </summary>
+        internal static string PageColorDialog_loadThemeLink_Text {
+            get {
+                return ResourceManager.GetString("PageColorDialog_loadThemeLink.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to or choose no page color.
+        /// </summary>
+        internal static string PageColorDialog_noLabel_Text {
+            get {
+                return ResourceManager.GetString("PageColorDialog_noLabel.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Click here to select a pre-defined color.
+        /// </summary>
+        internal static string PageColorDialog_omLabel {
+            get {
+                return ResourceManager.GetString("PageColorDialog_omLabel", resourceCulture);
             }
         }
         
@@ -6395,7 +6423,7 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Edit Styles.
+        ///   Looks up a localized string similar to Edit Style Theme.
         /// </summary>
         internal static string ribEditStylesButton_Label {
             get {
@@ -6404,7 +6432,7 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Edit custom styles.
+        ///   Looks up a localized string similar to Edit custom styles or load alternate theme.
         /// </summary>
         internal static string ribEditStylesButton_Screentip {
             get {
@@ -7169,7 +7197,7 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Load Styles.
+        ///   Looks up a localized string similar to Load Style Theme.
         /// </summary>
         internal static string ribLoadStylesButton_Label {
             get {
@@ -7178,7 +7206,7 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Load custom styles from a file.
+        ///   Looks up a localized string similar to Load custom styles from a theme file.
         /// </summary>
         internal static string ribLoadStylesButton_Screentip {
             get {
@@ -7426,6 +7454,24 @@ namespace River.OneMoreAddIn.Properties {
         internal static string ribOutlineButton_Screentip {
             get {
                 return ResourceManager.GetString("ribOutlineButton_Screentip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Page Color.
+        /// </summary>
+        internal static string ribPageColorButton_Label {
+            get {
+                return ResourceManager.GetString("ribPageColorButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Choose a custom color for the page background.
+        /// </summary>
+        internal static string ribPageColorButton_Screentip {
+            get {
+                return ResourceManager.GetString("ribPageColorButton_Screentip", resourceCulture);
             }
         }
         

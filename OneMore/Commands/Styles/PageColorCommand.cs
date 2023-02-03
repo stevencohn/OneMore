@@ -4,6 +4,7 @@
 
 namespace River.OneMoreAddIn.Commands
 {
+	using River.OneMoreAddIn.Helpers.Office;
 	using River.OneMoreAddIn.Models;
 	using River.OneMoreAddIn.Styles;
 	using System.Drawing;
@@ -14,38 +15,54 @@ namespace River.OneMoreAddIn.Commands
 
 
 	/// <summary>
-	/// Applies a custom background color of the page and optionally applies the currently
+	/// Applies a custom background color to the page and optionally applies the currently
 	/// loaded custom styles to all content on the page
 	/// </summary>
-	internal class ChangePageColorCommand : Command
+	internal class PageColorCommand : Command
 	{
-		public ChangePageColorCommand()
+		public PageColorCommand()
 		{
-			// prevent replay
-			IsCancelled = true;
 		}
 
 
 		public override async Task Execute(params object[] args)
 		{
-			using var one = new OneNote(out var page, out _);
-			var color = page.GetPageColor(out _, out _);
-
-			using var dialog = new ChangePageColorDialog(color);
-			if (dialog.ShowDialog(owner) != DialogResult.OK)
+			Color color;
+			Page page;
+			using (var one = new OneNote(out page, out _))
 			{
-				return;
+				color = page.GetPageColor(out _, out _);
 			}
 
-			UpdatePageColor(page, dialog.PageColor);
-			ThemeProvider.RecordTheme(dialog.ThemeKey);
-
-			if (dialog.ApplyStyle)
+			using var dialog = new PageColorDialog(color);
+			if (dialog.ShowDialog(owner) == DialogResult.OK)
 			{
-				new ApplyStylesCommand().Apply(page);
+				UpdatePageColor(page, MakePageColor(dialog.Color));
+
+				if (dialog.ApplyStyle)
+				{
+					ThemeProvider.RecordTheme(dialog.ThemeKey);
+					new ApplyStylesCommand().Apply(page);
+				}
+
+				using var one = new OneNote();
+				await one.Update(page);
+			}
+		}
+
+
+		public string MakePageColor(Color color)
+		{
+			var dark = Office.IsBlackThemeEnabled();
+
+			if (color.Equals(Color.Transparent) ||
+				(color.Equals(Color.Black) && dark) ||
+				(color.Equals(Color.White) && !dark))
+			{
+				return "automatic";
 			}
 
-			await one.Update(page);
+			return color.ToRGBHtml();
 		}
 
 
@@ -55,13 +72,12 @@ namespace River.OneMoreAddIn.Commands
 				.Elements(page.Namespace + "PageSettings")
 				.FirstOrDefault();
 
+			// this SHOULD be impossible
 			if (element == null)
 			{
-				logger.WriteLine("ChangePageColor failed because PageSettings not found");
+				logger.WriteLine("PageColor failed because PageSettings not found!");
 				return;
 			}
-
-			ribbon.Invalidate();
 
 			var attr = element.Attribute("color");
 			if (attr != null)

@@ -412,42 +412,6 @@ OneNote will close automatically</value>
   <data name="Camera" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>emoji\camera.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="ChangePageColorDialog.Text" xml:space="preserve">
-    <value>Change Page Theme</value>
-    <comment>dialog title</comment>
-  </data>
-  <data name="ChangePageColorDialog_applyBox.Text" xml:space="preserve">
-    <value>Apply style theme to this page</value>
-    <comment>checkbox</comment>
-  </data>
-  <data name="ChangePageColorDialog_colorLink.Text" xml:space="preserve">
-    <value>Choose a custom color</value>
-    <comment>link</comment>
-  </data>
-  <data name="ChangePageColorDialog_Contrast" xml:space="preserve">
-    <value>Color and theme may not have enough contrast</value>
-    <comment>label</comment>
-  </data>
-  <data name="ChangePageColorDialog_currentLabel.Text" xml:space="preserve">
-    <value>Current Theme:</value>
-    <comment>label</comment>
-  </data>
-  <data name="ChangePageColorDialog_customLink.Text" xml:space="preserve">
-    <value>Chose a custom color</value>
-    <comment>linklabel</comment>
-  </data>
-  <data name="ChangePageColorDialog_introLabel.Text" xml:space="preserve">
-    <value>After choosing a page color, load one of the predefined styles or customize your own styles so all content has enough contrast to be visible.</value>
-    <comment>instructions</comment>
-  </data>
-  <data name="ChangePageColorDialog_loadLink.Text" xml:space="preserve">
-    <value>Load a style theme</value>
-    <comment>hyperlink</comment>
-  </data>
-  <data name="ChangePageColorDialog_themeIntroLabel.Text" xml:space="preserve">
-    <value>Optionally, load one of the predefined style themes or customize your own theme so all content has enough contrast to be visible.</value>
-    <comment>label</comment>
-  </data>
   <data name="CheckMark" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>emoji\checkmark.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -1174,6 +1138,9 @@ Last Column Font</value>
   <data name="Exit" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Images\Exit.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="ExpandArrow" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>images\expandarrow.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="ExpandoCommand_Saved" xml:space="preserve">
     <value>Outline state has been saved for this page</value>
     <comment>message box</comment>
@@ -1746,6 +1713,17 @@ Symbols: PI, E</value>
     <value>No references found. Consider enabling the option to include unindexed pages</value>
     <comment>message</comment>
   </data>
+  <data name="LoadStyleTheme_errorLoading" xml:space="preserve">
+    <value>Cannot load file or file is empty</value>
+  </data>
+  <data name="LoadStyleTheme_filter" xml:space="preserve">
+    <value>Theme files (*.xml)|*.xml|All files (*.*)|*.*</value>
+    <comment>OpenFileDialog filter</comment>
+  </data>
+  <data name="LoadStyleTheme_Title" xml:space="preserve">
+    <value>Load Style Theme</value>
+    <comment>OpenFileDialog title</comment>
+  </data>
   <data name="Locked" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>images\locked.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -1952,7 +1930,39 @@ Deferred</value>
   </data>
   <data name="PageColorDialog.Text" xml:space="preserve">
     <value>Page Color</value>
-    <comment>color popup dialog title</comment>
+    <comment>dialog title</comment>
+  </data>
+  <data name="PageColorDialog_applyThemeBox.Text" xml:space="preserve">
+    <value>Apply styles to this page</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="PageColorDialog_contrastWarning" xml:space="preserve">
+    <value>Text may be unreadable</value>
+    <comment>label</comment>
+  </data>
+  <data name="PageColorDialog_currentThemeLabel.Text" xml:space="preserve">
+    <value>The current style theme is {0}</value>
+    <comment>label</comment>
+  </data>
+  <data name="PageColorDialog_customLabel" xml:space="preserve">
+    <value>Click here to change your own custom color</value>
+    <comment>label</comment>
+  </data>
+  <data name="PageColorDialog_expander.Title" xml:space="preserve">
+    <value>Advanced Options</value>
+    <comment>expander control</comment>
+  </data>
+  <data name="PageColorDialog_loadThemeLink.Text" xml:space="preserve">
+    <value>Load a different style theme</value>
+    <comment>linklabel</comment>
+  </data>
+  <data name="PageColorDialog_noLabel.Text" xml:space="preserve">
+    <value>or choose no page color</value>
+    <comment>label</comment>
+  </data>
+  <data name="PageColorDialog_omLabel" xml:space="preserve">
+    <value>Click here to select a pre-defined color</value>
+    <comment>label</comment>
   </data>
   <data name="Passwords" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>emoji\passwords.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -2861,11 +2871,11 @@ Polaroid</value>
     <comment>ribbon menu</comment>
   </data>
   <data name="ribEditStylesButton_Label" xml:space="preserve">
-    <value>Edit Styles</value>
+    <value>Edit Style Theme</value>
     <comment>ribbon styles</comment>
   </data>
   <data name="ribEditStylesButton_Screentip" xml:space="preserve">
-    <value>Edit custom styles</value>
+    <value>Edit custom styles or load alternate theme</value>
     <comment>ribbon styles</comment>
   </data>
   <data name="ribEditTableThemesButton_Label" xml:space="preserve">
@@ -3205,11 +3215,11 @@ Polaroid</value>
     <comment>ribbon references</comment>
   </data>
   <data name="ribLoadStylesButton_Label" xml:space="preserve">
-    <value>Load Styles</value>
+    <value>Load Style Theme</value>
     <comment>ribbon styles</comment>
   </data>
   <data name="ribLoadStylesButton_Screentip" xml:space="preserve">
-    <value>Load custom styles from a file</value>
+    <value>Load custom styles from a theme file</value>
     <comment>ribbon styles</comment>
   </data>
   <data name="ribLowercaseButton_Label" xml:space="preserve">
@@ -3319,6 +3329,14 @@ Polaroid</value>
   <data name="ribOutlineButton_Screentip" xml:space="preserve">
     <value>Numbering headings on this page</value>
     <comment>ribbon numbering</comment>
+  </data>
+  <data name="ribPageColorButton_Label" xml:space="preserve">
+    <value>Page Color</value>
+    <comment>page context menu</comment>
+  </data>
+  <data name="ribPageColorButton_Screentip" xml:space="preserve">
+    <value>Choose a custom color for the page background</value>
+    <comment>page context menu</comment>
   </data>
   <data name="ribPageMenu_Label" xml:space="preserve">
     <value>Page</value>

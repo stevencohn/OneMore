@@ -412,42 +412,6 @@ OneNote ייסגר אוטומטית</value>
   <data name="Camera" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>emoji\camera.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="ChangePageColorDialog.Text" xml:space="preserve">
-    <value>שנה את נושא הדף</value>
-    <comment>dialog title</comment>
-  </data>
-  <data name="ChangePageColorDialog_applyBox.Text" xml:space="preserve">
-    <value>החל נושא סגנון על דף זה</value>
-    <comment>checkbox</comment>
-  </data>
-  <data name="ChangePageColorDialog_colorLink.Text" xml:space="preserve">
-    <value>בחר צבע מותאם אישית</value>
-    <comment>link</comment>
-  </data>
-  <data name="ChangePageColorDialog_Contrast" xml:space="preserve">
-    <value>ייתכן שלצבע ולנושא אין מספיק ניגודיות</value>
-    <comment>label</comment>
-  </data>
-  <data name="ChangePageColorDialog_currentLabel.Text" xml:space="preserve">
-    <value>נושא נוכחי:</value>
-    <comment>label</comment>
-  </data>
-  <data name="ChangePageColorDialog_customLink.Text" xml:space="preserve">
-    <value>בחר צבע מותאם אישית</value>
-    <comment>linklabel</comment>
-  </data>
-  <data name="ChangePageColorDialog_introLabel.Text" xml:space="preserve">
-    <value>לאחר בחירת צבע עמוד, טען אחד מהסגנונות המוגדרים מראש או התאם אישית את הסגנונות שלך כך שלכל התוכן יהיה מספיק ניגודיות כדי שיהיה גלוי.</value>
-    <comment>instructions</comment>
-  </data>
-  <data name="ChangePageColorDialog_loadLink.Text" xml:space="preserve">
-    <value>טען ערכת נושא בסגנון</value>
-    <comment>hyperlink</comment>
-  </data>
-  <data name="ChangePageColorDialog_themeIntroLabel.Text" xml:space="preserve">
-    <value>לחלופין, טען אחד מנושאות הסגנון המוגדרות מראש או התאם אישית את ערכת הנושא שלך כך שלכל התוכן יהיה מספיק ניגודיות כדי שיהיה גלוי.</value>
-    <comment>label</comment>
-  </data>
   <data name="Circle" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>emoji\circle.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -2805,8 +2769,8 @@ ISO-code then comma then language name</comment>
     <comment>OneMore Ribbon menu item</comment>
   </data>
   <data name="ribEditStylesButton_Label" xml:space="preserve">
-    <value>ערוך סגנונות</value>
-    <comment>Ribbon Custom Styles menu item, edit custom styles</comment>
+    <value>ערוך את ערכת נושא הסגנון</value>
+    <comment>ribbon styles</comment>
   </data>
   <data name="ribEditStylesButton_Screentip" xml:space="preserve">
     <value>ערוך סגנונות מותאמים אישית</value>
@@ -3149,11 +3113,11 @@ ISO-code then comma then language name</comment>
     <comment>ribbon references</comment>
   </data>
   <data name="ribLoadStylesButton_Label" xml:space="preserve">
-    <value>טען סגנונות</value>
-    <comment>ribbon item</comment>
+    <value>טען ערכת נושא בסגנון</value>
+    <comment>ribbon styles</comment>
   </data>
   <data name="ribLoadStylesButton_Screentip" xml:space="preserve">
-    <value>טען סגנונות מותאמים אישית מקובץ</value>
+    <value>טען סגנונות מותאמים אישית מקובץ ערכת נושא</value>
     <comment>ribbon styles</comment>
   </data>
   <data name="ribLowercaseButton_Label" xml:space="preserve">
@@ -4781,5 +4745,56 @@ ISO-code then comma then language name</comment>
   </data>
   <data name="phrase_CreateANewPage" xml:space="preserve">
     <value>צור דף חדש</value>
+  </data>
+  <data name="PageColorDialog_applyThemeBox.Text" xml:space="preserve">
+    <value>החל סגנונות על דף זה</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="PageColorDialog_contrastWarning" xml:space="preserve">
+    <value>ייתכן שהטקסט אינו קריא</value>
+    <comment>label</comment>
+  </data>
+  <data name="PageColorDialog_currentThemeLabel.Text" xml:space="preserve">
+    <value>נושא הסגנון הנוכחי הוא {0}</value>
+    <comment>label</comment>
+  </data>
+  <data name="PageColorDialog_customLabel" xml:space="preserve">
+    <value>לחץ כאן כדי לשנות את הצבע המותאם אישית שלך</value>
+    <comment>label</comment>
+  </data>
+  <data name="PageColorDialog_expander.Title" xml:space="preserve">
+    <value>אפשרויות מתקדמות</value>
+    <comment>expander control</comment>
+  </data>
+  <data name="PageColorDialog_loadThemeLink.Text" xml:space="preserve">
+    <value>טען ערכת נושא בסגנון שונה</value>
+    <comment>linklabel</comment>
+  </data>
+  <data name="PageColorDialog_noLabel.Text" xml:space="preserve">
+    <value>או בחר ללא צבע עמוד</value>
+    <comment>label</comment>
+  </data>
+  <data name="PageColorDialog_omLabel" xml:space="preserve">
+    <value>לחץ כאן כדי לבחור צבע מוגדר מראש</value>
+    <comment>label</comment>
+  </data>
+  <data name="ribPageColorButton_Label" xml:space="preserve">
+    <value>צבע עמוד</value>
+    <comment>page context menu</comment>
+  </data>
+  <data name="ribPageColorButton_Screentip" xml:space="preserve">
+    <value>בחר צבע מותאם אישית עבור רקע העמוד</value>
+    <comment>page context menu</comment>
+  </data>
+  <data name="LoadStyleTheme_errorLoading" xml:space="preserve">
+    <value>לא ניתן לטעון את הקובץ או שהקובץ ריק</value>
+  </data>
+  <data name="LoadStyleTheme_filter" xml:space="preserve">
+    <value>קבצי עיצוב (*.xml)|*.xml|כל הקבצים (*.*)|*.*</value>
+    <comment>OpenFileDialog filter</comment>
+  </data>
+  <data name="LoadStyleTheme_Title" xml:space="preserve">
+    <value>טען ערכת נושא בסגנון</value>
+    <comment>OpenFileDialog title</comment>
   </data>
 </root>

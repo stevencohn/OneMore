@@ -128,11 +128,6 @@ namespace River.OneMoreAddIn
 			=> await factory.Run<CaptionAttachmentsCommand>();
 
 
-		[Command("ribChangePageColorButton_Label", Keys.None, "Styles")]
-		public async Task ChangePageColorCmd(IRibbonControl control)
-			=> await factory.Run<ChangePageColorCommand>();
-
-
 		[Command("ribCheckForUpdatesButton_Label", Keys.None, "Tools")]
 		public async Task CheckForUpdatesCmd(IRibbonControl control)
 			=> await factory.Run<UpdateCommand>(true);
@@ -553,6 +548,11 @@ namespace River.OneMoreAddIn
 		[Command("ribOutlineButton_Label", Keys.None, "Numbering")]
 		public async Task OutlineCmd(IRibbonControl control)
 			=> await factory.Run<OutlineCommand>();
+
+
+		[Command("ribPageColorButton_Label", Keys.None, "Page")]
+		public async Task PageColorCmd(IRibbonControl control)
+			=> await factory.Run<PageColorCommand>();
 
 
 		[Command("ribPasteCellsButton_Label", Keys.None, "Table")]

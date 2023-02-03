@@ -42,11 +42,11 @@
               imageMso="ApplyStylesPane"
               onAction="ApplyStylesCmd"/>
             <button
-              id="ribChangePageColorButton"
+              id="ribPageColorButton"
+              imageMso="ShapeFillColorPicker"
               getLabel="GetRibbonLabel"
               getScreentip="GetRibbonScreentip"
-              imageMso="FormatBackground"
-              onAction="ChangePageColorCmd"/>
+              onAction="PageColorCmd"/>
           </gallery>
 
           <gallery
@@ -806,14 +806,14 @@
                 onAction="CopyDownCmd"/>
               <button
                 id="ribFillAcrossButton"
-                imageMso="TableColumnsDistribute"
+                imageMso="FillRight"
                 getLabel="GetRibbonLabel"
                 getScreentip="GetRibbonScreentip"
                 getEnabled="GetBodyContext"
                 onAction="FillAcrossCmd"/>
               <button
                 id="ribFillDownButton"
-                imageMso="TableRowsDistribute"
+                imageMso="FillDown"
                 getLabel="GetRibbonLabel"
                 getScreentip="GetRibbonScreentip"
                 getEnabled="GetBodyContext"
@@ -992,6 +992,13 @@
         getScreentip="GetRibbonScreentip"
         getEnabled="GetMultiPageContext"
         onAction="MergeCmd"
+        insertBeforeMso="RenamePageOneNote"/>
+      <button
+        id="ctxPageColorButton"
+        imageMso="ShapeFillColorPicker"
+        getLabel="GetRibbonLabel"
+        getScreentip="GetRibbonScreentip"
+        onAction="PageColorCmd"
         insertBeforeMso="RenamePageOneNote"/>
       <button
         id="ctxSplitButton"
