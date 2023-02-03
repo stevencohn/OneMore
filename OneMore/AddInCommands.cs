@@ -128,11 +128,6 @@ namespace River.OneMoreAddIn
 			=> await factory.Run<CaptionAttachmentsCommand>();
 
 
-		[Command("ribChangePageColorButton_Label", Keys.None, "Styles")]
-		public async Task ChangePageColorCmd(IRibbonControl control)
-			=> await factory.Run<ChangePageColorCommand>();
-
-
 		[Command("ribCheckForUpdatesButton_Label", Keys.None, "Tools")]
 		public async Task CheckForUpdatesCmd(IRibbonControl control)
 			=> await factory.Run<UpdateCommand>(true);

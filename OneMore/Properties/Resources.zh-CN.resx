@@ -400,42 +400,6 @@ OneNote 将自动关闭</value>
   <data name="Camera" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>emoji\camera.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="ChangePageColorDialog.Text" xml:space="preserve">
-    <value>更改页面主题</value>
-    <comment>dialog title</comment>
-  </data>
-  <data name="ChangePageColorDialog_applyBox.Text" xml:space="preserve">
-    <value>将样式主题应用于此页面</value>
-    <comment>checkbox</comment>
-  </data>
-  <data name="ChangePageColorDialog_colorLink.Text" xml:space="preserve">
-    <value>选择自定义颜色</value>
-    <comment>link</comment>
-  </data>
-  <data name="ChangePageColorDialog_Contrast" xml:space="preserve">
-    <value>颜色和主题可能没有足够的对比度</value>
-    <comment>label</comment>
-  </data>
-  <data name="ChangePageColorDialog_currentLabel.Text" xml:space="preserve">
-    <value>当前主题：</value>
-    <comment>label</comment>
-  </data>
-  <data name="ChangePageColorDialog_customLink.Text" xml:space="preserve">
-    <value>选择了定制颜色</value>
-    <comment>linklabel</comment>
-  </data>
-  <data name="ChangePageColorDialog_introLabel.Text" xml:space="preserve">
-    <value>选择页面颜色后，加载预定义的样式之一或自定义样式，以便所有内容具有足够的对比度以使其可见。</value>
-    <comment>instructions</comment>
-  </data>
-  <data name="ChangePageColorDialog_loadLink.Text" xml:space="preserve">
-    <value>加载样式主题</value>
-    <comment>hyperlink</comment>
-  </data>
-  <data name="ChangePageColorDialog_themeIntroLabel.Text" xml:space="preserve">
-    <value>（可选），加载其中一个预定义的样式主题或自定义自己的主题，因此所有内容都有足够的对比度可见。</value>
-    <comment>label</comment>
-  </data>
   <data name="Circle" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>emoji\circle.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -4670,5 +4634,45 @@ ISO-code then comma then language name</comment>
   </data>
   <data name="phrase_CreateANewPage" xml:space="preserve">
     <value>创建一个新页面</value>
+  </data>
+  <data name="PageColorDialog_applyThemeBox.Text" xml:space="preserve">
+    <value>将样式主题应用于此页面</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="PageColorDialog_contrastWarning" xml:space="preserve">
+    <value>文本可能不可读</value>
+    <comment>label</comment>
+  </data>
+  <data name="PageColorDialog_currentThemeLabel.Text" xml:space="preserve">
+    <value>当前样式主题是 {0}</value>
+    <comment>label</comment>
+  </data>
+  <data name="PageColorDialog_customLabel" xml:space="preserve">
+    <value>单击此处更改您自己的自定义颜色</value>
+    <comment>label</comment>
+  </data>
+  <data name="PageColorDialog_expander.Title" xml:space="preserve">
+    <value>高级选项</value>
+    <comment>expander control</comment>
+  </data>
+  <data name="PageColorDialog_loadThemeLink.Text" xml:space="preserve">
+    <value>加载不同风格的主题</value>
+    <comment>linklabel</comment>
+  </data>
+  <data name="PageColorDialog_noLabel.Text" xml:space="preserve">
+    <value>或选择无页面颜色</value>
+    <comment>label</comment>
+  </data>
+  <data name="PageColorDialog_omLabel" xml:space="preserve">
+    <value>单击此处选择预定义颜色</value>
+    <comment>label</comment>
+  </data>
+  <data name="ribPageColorButton_Label" xml:space="preserve">
+    <value>页面颜色</value>
+    <comment>page context menu</comment>
+  </data>
+  <data name="ribPageColorButton_Screentip" xml:space="preserve">
+    <value>为页面背景选择自定义颜色</value>
+    <comment>page context menu</comment>
   </data>
 </root>
