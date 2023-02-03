@@ -312,7 +312,7 @@ namespace River.OneMoreAddIn.Commands
 
 			var contrastPen = pageColor.GetBrightness() <= 0.5 ? Pens.White : Pens.Black;
 
-			e.Graphics.Clear(pageColor);
+			e.Graphics.Clear(pageColor.Equals(Color.Transparent) ? Color.White : pageColor);
 			e.Graphics.DrawLine(contrastPen, 0, vcenter, 15, vcenter);
 			e.Graphics.DrawLine(contrastPen, previewBox.Width - 15, vcenter, previewBox.Width, vcenter);
 
@@ -896,6 +896,28 @@ namespace River.OneMoreAddIn.Commands
 
 				previewBox.Invalidate();
 			}
+		}
+
+		private void ChangePageColorOption(object sender, EventArgs e)
+		{
+			if (theme == null)
+			{
+				// before OnLoad completes
+				return;
+			}
+
+			if (pageColorBox.Checked)
+			{
+				pageColor = theme.Color.StartsWith("#")
+					? ColorTranslator.FromHtml(theme.Color)
+					: pageColor;
+			}
+			else
+			{
+				pageColor = Color.Transparent;
+			}
+
+			previewBox.Invalidate();
 		}
 	}
 }

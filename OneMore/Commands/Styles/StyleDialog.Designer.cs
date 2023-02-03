@@ -305,6 +305,7 @@
 			this.pageColorBox.TabIndex = 0;
 			this.pageColorBox.Text = "Change page color when applying this theme";
 			this.pageColorBox.UseVisualStyleBackColor = true;
+			this.pageColorBox.CheckedChanged += new System.EventHandler(this.ChangePageColorOption);
 			// 
 			// spacingLabel
 			// 

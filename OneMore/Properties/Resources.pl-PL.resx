@@ -2447,8 +2447,8 @@ Polaroid</value>
     <comment>not a menu, hotkey only</comment>
   </data>
   <data name="ribApplyStylesButton_Label" xml:space="preserve">
-    <value>Zastosuj style do strony</value>
-    <comment>Ribbon Custom Styles menu item, apply all custom style to page</comment>
+    <value>Zastosuj motyw stylu do strony</value>
+    <comment>ribbon styles</comment>
   </data>
   <data name="ribApplyStylesButton_Screentip" xml:space="preserve">
     <value>Zastosuj niestandardowe style do całej zawartości tej strony</value>
@@ -4169,10 +4169,6 @@ Notebooki</value>
     <value>Nowy niestandardowy styl</value>
     <comment>dialog title</comment>
   </data>
-  <data name="StyleDialog_okButton.Text" xml:space="preserve">
-    <value>Ok (oszczędzaj)</value>
-    <comment>button</comment>
-  </data>
   <data name="StyleDialog_reorderButton.Text" xml:space="preserve">
     <value>Zmienić kolejność</value>
     <comment>button</comment>
@@ -4758,5 +4754,21 @@ W tej sekcji</value>
   <data name="ribEditStylesButton_named" xml:space="preserve">
     <value>Edytuj motyw stylu ({0})</value>
     <comment>ribbon styles with theme name</comment>
+  </data>
+  <data name="StyleDialog_darkBox.Text" xml:space="preserve">
+    <value>Przeznaczony dla stron z ciemnym tłem</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="StyleDialog_optionsGroup.Text" xml:space="preserve">
+    <value>Opcje motywu</value>
+    <comment>groupbox</comment>
+  </data>
+  <data name="StyleDialog_pageColorBox.Text" xml:space="preserve">
+    <value>Zmień kolor strony podczas stosowania tego motywu</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="StyleDialog_pageColorLink.Text" xml:space="preserve">
+    <value>Kliknij tutaj, aby wybrać kolor strony</value>
+    <comment>linklabel</comment>
   </data>
 </root>

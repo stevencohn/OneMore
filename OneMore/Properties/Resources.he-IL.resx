@@ -2483,8 +2483,8 @@ ISO-code then comma then language name</comment>
     <comment>not a menu, hotkey only</comment>
   </data>
   <data name="ribApplyStylesButton_Label" xml:space="preserve">
-    <value>החל סגנונות על הדף</value>
-    <comment>Ribbon Custom Styles menu item, apply all custom style to page</comment>
+    <value>החל עיצוב סגנון על הדף</value>
+    <comment>ribbon styles</comment>
   </data>
   <data name="ribApplyStylesButton_Screentip" xml:space="preserve">
     <value>החל סגנונות מותאמים אישית על כל התוכן בדף זה</value>
@@ -4208,10 +4208,6 @@ ISO-code then comma then language name</comment>
     <value>סגנון מותאם אישית חדש</value>
     <comment>dialog title</comment>
   </data>
-  <data name="StyleDialog_okButton.Text" xml:space="preserve">
-    <value>בסדר (שמור)</value>
-    <comment>button</comment>
-  </data>
   <data name="StyleDialog_reorderButton.Text" xml:space="preserve">
     <value>להזמין מחדש</value>
     <comment>button</comment>
@@ -4800,5 +4796,21 @@ ISO-code then comma then language name</comment>
   <data name="ribEditStylesButton_named" xml:space="preserve">
     <value>ערוך עיצוב סגנון ({0})</value>
     <comment>ribbon styles with theme name</comment>
+  </data>
+  <data name="StyleDialog_darkBox.Text" xml:space="preserve">
+    <value>מיועד לדפים עם רקע כהה</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="StyleDialog_optionsGroup.Text" xml:space="preserve">
+    <value>אפשרויות ערכת נושא</value>
+    <comment>groupbox</comment>
+  </data>
+  <data name="StyleDialog_pageColorBox.Text" xml:space="preserve">
+    <value>שנה את צבע העמוד בעת החלת ערכת נושא זה</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="StyleDialog_pageColorLink.Text" xml:space="preserve">
+    <value>לחץ כאן כדי לבחור את צבע העמוד</value>
+    <comment>linklabel</comment>
   </data>
 </root>

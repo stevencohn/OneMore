@@ -2405,8 +2405,8 @@ Polaroid.</value>
     <comment>not a menu, hotkey only</comment>
   </data>
   <data name="ribApplyStylesButton_Label" xml:space="preserve">
-    <value>Aplicar estilos à página</value>
-    <comment>Ribbon Custom Styles menu item, apply all custom style to page</comment>
+    <value>Aplicar tema de estilo à página</value>
+    <comment>ribbon styles</comment>
   </data>
   <data name="ribApplyStylesButton_Screentip" xml:space="preserve">
     <value>Aplicar estilos personalizados a todo o conteúdo desta página</value>
@@ -4126,10 +4126,6 @@ Cadernos</value>
     <value>Novo Estilo Personalizado</value>
     <comment>dialog title</comment>
   </data>
-  <data name="StyleDialog_okButton.Text" xml:space="preserve">
-    <value>OK (Salvar)</value>
-    <comment>button</comment>
-  </data>
   <data name="StyleDialog_reorderButton.Text" xml:space="preserve">
     <value>Reordenar</value>
     <comment>button</comment>
@@ -4705,5 +4701,21 @@ Nesta secção</value>
   <data name="ribEditStylesButton_named" xml:space="preserve">
     <value>Editar tema de estilo ({0})</value>
     <comment>ribbon styles with theme name</comment>
+  </data>
+  <data name="StyleDialog_darkBox.Text" xml:space="preserve">
+    <value>Destinado a páginas com fundos escuros</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="StyleDialog_optionsGroup.Text" xml:space="preserve">
+    <value>Opções de temas</value>
+    <comment>groupbox</comment>
+  </data>
+  <data name="StyleDialog_pageColorBox.Text" xml:space="preserve">
+    <value>Alterar a cor da página ao aplicar este tema</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="StyleDialog_pageColorLink.Text" xml:space="preserve">
+    <value>Clique aqui para selecionar a cor da página</value>
+    <comment>linklabel</comment>
   </data>
 </root>

@@ -2400,8 +2400,8 @@ ISO-code then comma then language name</comment>
     <comment>not a menu, hotkey only</comment>
   </data>
   <data name="ribApplyStylesButton_Label" xml:space="preserve">
-    <value>将样式应用于页面</value>
-    <comment>Ribbon Custom Styles menu item, apply all custom style to page</comment>
+    <value>将样式主题应用于页面</value>
+    <comment>ribbon styles</comment>
   </data>
   <data name="ribApplyStylesButton_Screentip" xml:space="preserve">
     <value>将自定义样式应用于此页面上的所有内容</value>
@@ -4110,10 +4110,6 @@ ISO-code then comma then language name</comment>
     <value>新的自定义样式</value>
     <comment>dialog title</comment>
   </data>
-  <data name="StyleDialog_okButton.Text" xml:space="preserve">
-    <value>确定（保存）</value>
-    <comment>button</comment>
-  </data>
   <data name="StyleDialog_reorderButton.Text" xml:space="preserve">
     <value>重新排序</value>
     <comment>button</comment>
@@ -4689,5 +4685,21 @@ ISO-code then comma then language name</comment>
   <data name="ribEditStylesButton_named" xml:space="preserve">
     <value>编辑样式主题 ({0})</value>
     <comment>ribbon styles with theme name</comment>
+  </data>
+  <data name="StyleDialog_darkBox.Text" xml:space="preserve">
+    <value>适用于深色背景的页面</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="StyleDialog_optionsGroup.Text" xml:space="preserve">
+    <value>主题选项</value>
+    <comment>groupbox</comment>
+  </data>
+  <data name="StyleDialog_pageColorBox.Text" xml:space="preserve">
+    <value>应用此主题时更改页面颜色</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="StyleDialog_pageColorLink.Text" xml:space="preserve">
+    <value>点击此处选择页面颜色</value>
+    <comment>linklabel</comment>
   </data>
 </root>
