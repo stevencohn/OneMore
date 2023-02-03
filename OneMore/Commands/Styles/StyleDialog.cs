@@ -13,7 +13,7 @@ namespace River.OneMoreAddIn.Commands
 	using System.IO;
 	using System.Linq;
 	using System.Windows.Forms;
-	using Resx = River.OneMoreAddIn.Properties.Resources;
+	using Resx = Properties.Resources;
 
 
 	/// <summary>
@@ -24,10 +24,10 @@ namespace River.OneMoreAddIn.Commands
 	/// All other local disposables are handled.
 	/// </remarks>
 
-	internal partial class StyleDialog : UI.LocalizableForm
+	internal partial class StyleDialog : LocalizableForm
 	{
 		private GraphicStyle selection;
-		private readonly Color pageColor;
+		private Color pageColor;
 		private bool allowEvents;
 		private Theme theme;
 		private Control activeFocus;
@@ -58,6 +58,9 @@ namespace River.OneMoreAddIn.Commands
 			selection = new GraphicStyle(style, false);
 
 			Text = Resx.StyleDialog_NewText;
+
+			Height -= optionsGroup.Height;
+			optionsGroup.Visible = false;
 		}
 
 
@@ -80,7 +83,11 @@ namespace River.OneMoreAddIn.Commands
 				selection = new GraphicStyle(styles[0], false);
 			}
 
-			this.pageColor = pageColor;
+			this.pageColor = theme.Color.StartsWith("#")
+				? ColorTranslator.FromHtml(theme.Color)
+				: pageColor;
+
+			darkBox.Checked = theme.Dark;
 
 			Text = string.Format(Resx.StyleDialog_ThemeText, theme.Name);
 			this.theme = theme;
@@ -122,7 +129,12 @@ namespace River.OneMoreAddIn.Commands
 					"fontLabel",
 					"styleTypeLabel",
 					"applyColorsBox",
-					"okButton",
+					// options
+					"optionsGroup",
+					"darkBox",
+					"pageColorBox",
+					"pageColorLink",
+					"okButton=word_OK",
 					"cancelButton=word_Cancel"
 				});
 
@@ -627,6 +639,10 @@ namespace River.OneMoreAddIn.Commands
 			else if (activeFocus == spaceAfterSpinner) { ChangeSpaceAfter(spaceAfterSpinner, e); }
 			else if (activeFocus == spaceBeforeSpinner) { ChangeSpaceBefore(spaceBeforeSpinner, e); }
 			else if (activeFocus == spacingSpinner) { ChangeSpacing(spacingSpinner, e); }
+
+			theme.Color = pageColorBox.Checked ? pageColor.ToRGBHtml() : string.Empty;
+			theme.Dark = darkBox.Checked;
+			// save will be done when we return to EditStylesCommand...
 		}
 
 
@@ -848,6 +864,31 @@ namespace River.OneMoreAddIn.Commands
 				Text = string.Format(
 					Resx.StyleDialog_ThemeText,
 					Path.GetFileNameWithoutExtension(dialog.FileName));
+			}
+		}
+
+		private void SelectPageColor(object sender, LinkLabelLinkClickedEventArgs e)
+		{
+			using var dialog = new PageColorDialog(Color.White);
+			dialog.HideOptions();
+			dialog.StartPosition = FormStartPosition.CenterParent;
+			dialog.VerticalOffset = 50;
+
+			if (dialog.ShowDialog(this) == DialogResult.OK)
+			{
+				pageColor = dialog.Color;
+
+				var dark = pageColor.GetBrightness() < 0.5;
+				if (dark && !darkBox.Checked)
+				{
+					darkBox.Checked = true;
+				}
+				else if (!dark && darkBox.Checked)
+				{
+					darkBox.Checked = false;
+				}
+
+				previewBox.Invalidate();
 			}
 		}
 	}

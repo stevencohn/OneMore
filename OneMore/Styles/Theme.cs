@@ -2,6 +2,8 @@
 // Copyright © 2021 Steven M Cohn.  All rights reserved.
 //************************************************************************************************
 
+#pragma warning disable S2292 // Trivial properties should be auto-implemented
+
 namespace River.OneMoreAddIn.Styles
 {
 	using System.Collections.Generic;
@@ -14,8 +16,8 @@ namespace River.OneMoreAddIn.Styles
 		private readonly XElement root;
 		private readonly XNamespace ns;
 		private readonly string name;
-		private readonly string color;
-		private readonly bool dark;
+		private string color;
+		private bool dark;
 
 
 		/// <summary>
@@ -73,7 +75,11 @@ namespace River.OneMoreAddIn.Styles
 		/// <summary>
 		/// Gets the preferred page background color
 		/// </summary>
-		public string Color => color;
+		public string Color
+		{
+			get => color;
+			set => color = value;
+		}
 
 
 		/// <summary>
@@ -86,7 +92,11 @@ namespace River.OneMoreAddIn.Styles
 		/// Gets a Boolean value indicating if this theme is intended for
 		/// use on dark background pages
 		/// </summary>
-		public bool Dark => dark;
+		public bool Dark
+		{
+			get => dark;
+			set => dark = value;
+		}
 
 
 		/// <summary>

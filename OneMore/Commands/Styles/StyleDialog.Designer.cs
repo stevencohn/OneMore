@@ -43,6 +43,10 @@
 			this.okButton = new System.Windows.Forms.Button();
 			this.namesBox = new System.Windows.Forms.ComboBox();
 			this.panel1 = new System.Windows.Forms.Panel();
+			this.optionsGroup = new System.Windows.Forms.GroupBox();
+			this.pageColorLink = new River.OneMoreAddIn.UI.MoreLinkLabel();
+			this.darkBox = new System.Windows.Forms.CheckBox();
+			this.pageColorBox = new System.Windows.Forms.CheckBox();
 			this.spacingLabel = new System.Windows.Forms.Label();
 			this.spacingSpinner = new System.Windows.Forms.NumericUpDown();
 			this.styleTypeLabel = new System.Windows.Forms.Label();
@@ -73,6 +77,7 @@
 			((System.ComponentModel.ISupportInitialize)(this.spaceAfterSpinner)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.previewBox)).BeginInit();
 			this.panel1.SuspendLayout();
+			this.optionsGroup.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.spacingSpinner)).BeginInit();
 			this.toolStrip.SuspendLayout();
 			this.mainTools.SuspendLayout();
@@ -191,7 +196,7 @@
 			// 
 			this.cancelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-			this.cancelButton.Location = new System.Drawing.Point(526, 368);
+			this.cancelButton.Location = new System.Drawing.Point(526, 501);
 			this.cancelButton.Name = "cancelButton";
 			this.cancelButton.Size = new System.Drawing.Size(116, 38);
 			this.cancelButton.TabIndex = 10;
@@ -202,11 +207,11 @@
 			// 
 			this.okButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.okButton.DialogResult = System.Windows.Forms.DialogResult.OK;
-			this.okButton.Location = new System.Drawing.Point(368, 368);
+			this.okButton.Location = new System.Drawing.Point(404, 501);
 			this.okButton.Name = "okButton";
-			this.okButton.Size = new System.Drawing.Size(154, 38);
+			this.okButton.Size = new System.Drawing.Size(116, 38);
 			this.okButton.TabIndex = 9;
-			this.okButton.Text = "OK (Save)";
+			this.okButton.Text = "OK";
 			this.okButton.UseVisualStyleBackColor = true;
 			this.okButton.Click += new System.EventHandler(this.SaveStyle);
 			// 
@@ -216,7 +221,7 @@
 			this.namesBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this.namesBox.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.namesBox.FormattingEnabled = true;
-			this.namesBox.Location = new System.Drawing.Point(18, 372);
+			this.namesBox.Location = new System.Drawing.Point(18, 505);
 			this.namesBox.Name = "namesBox";
 			this.namesBox.Size = new System.Drawing.Size(121, 33);
 			this.namesBox.TabIndex = 21;
@@ -228,6 +233,7 @@
 			this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+			this.panel1.Controls.Add(this.optionsGroup);
 			this.panel1.Controls.Add(this.spacingLabel);
 			this.panel1.Controls.Add(this.spacingSpinner);
 			this.panel1.Controls.Add(this.styleTypeLabel);
@@ -250,8 +256,55 @@
 			this.panel1.Location = new System.Drawing.Point(8, 40);
 			this.panel1.Name = "panel1";
 			this.panel1.Padding = new System.Windows.Forms.Padding(15, 20, 15, 9);
-			this.panel1.Size = new System.Drawing.Size(660, 418);
+			this.panel1.Size = new System.Drawing.Size(660, 551);
 			this.panel1.TabIndex = 25;
+			// 
+			// optionsGroup
+			// 
+			this.optionsGroup.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.optionsGroup.Controls.Add(this.pageColorLink);
+			this.optionsGroup.Controls.Add(this.darkBox);
+			this.optionsGroup.Controls.Add(this.pageColorBox);
+			this.optionsGroup.Location = new System.Drawing.Point(22, 356);
+			this.optionsGroup.Name = "optionsGroup";
+			this.optionsGroup.Size = new System.Drawing.Size(619, 139);
+			this.optionsGroup.TabIndex = 30;
+			this.optionsGroup.TabStop = false;
+			this.optionsGroup.Text = "Theme Options";
+			// 
+			// pageColorLink
+			// 
+			this.pageColorLink.AutoSize = true;
+			this.pageColorLink.Cursor = System.Windows.Forms.Cursors.Hand;
+			this.pageColorLink.HoverColor = System.Drawing.Color.MediumOrchid;
+			this.pageColorLink.Location = new System.Drawing.Point(46, 90);
+			this.pageColorLink.Name = "pageColorLink";
+			this.pageColorLink.Size = new System.Drawing.Size(247, 20);
+			this.pageColorLink.TabIndex = 2;
+			this.pageColorLink.TabStop = true;
+			this.pageColorLink.Text = "Click here to select the page color";
+			this.pageColorLink.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.SelectPageColor);
+			// 
+			// darkBox
+			// 
+			this.darkBox.AutoSize = true;
+			this.darkBox.Location = new System.Drawing.Point(22, 33);
+			this.darkBox.Name = "darkBox";
+			this.darkBox.Size = new System.Drawing.Size(341, 24);
+			this.darkBox.TabIndex = 1;
+			this.darkBox.Text = "Intended for pages with dark bakckgrounds";
+			this.darkBox.UseVisualStyleBackColor = true;
+			// 
+			// pageColorBox
+			// 
+			this.pageColorBox.AutoSize = true;
+			this.pageColorBox.Location = new System.Drawing.Point(22, 63);
+			this.pageColorBox.Name = "pageColorBox";
+			this.pageColorBox.Size = new System.Drawing.Size(351, 24);
+			this.pageColorBox.TabIndex = 0;
+			this.pageColorBox.Text = "Change page color when applying this theme";
+			this.pageColorBox.UseVisualStyleBackColor = true;
 			// 
 			// spacingLabel
 			// 
@@ -554,7 +607,7 @@
 			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.CancelButton = this.cancelButton;
-			this.ClientSize = new System.Drawing.Size(675, 466);
+			this.ClientSize = new System.Drawing.Size(675, 599);
 			this.Controls.Add(this.mainTools);
 			this.Controls.Add(this.panel1);
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
@@ -571,6 +624,8 @@
 			((System.ComponentModel.ISupportInitialize)(this.previewBox)).EndInit();
 			this.panel1.ResumeLayout(false);
 			this.panel1.PerformLayout();
+			this.optionsGroup.ResumeLayout(false);
+			this.optionsGroup.PerformLayout();
 			((System.ComponentModel.ISupportInitialize)(this.spacingSpinner)).EndInit();
 			this.toolStrip.ResumeLayout(false);
 			this.toolStrip.PerformLayout();
@@ -622,5 +677,9 @@
 		private System.Windows.Forms.NumericUpDown spacingSpinner;
 		private System.Windows.Forms.ToolStripButton renameButton;
 		private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+		private System.Windows.Forms.GroupBox optionsGroup;
+		private System.Windows.Forms.CheckBox pageColorBox;
+		private System.Windows.Forms.CheckBox darkBox;
+		private UI.MoreLinkLabel pageColorLink;
 	}
 }
