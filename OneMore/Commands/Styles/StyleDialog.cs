@@ -83,7 +83,9 @@ namespace River.OneMoreAddIn.Commands
 				selection = new GraphicStyle(styles[0], false);
 			}
 
-			this.pageColor = theme.Color.StartsWith("#")
+			pageColorBox.Checked = theme.Color.StartsWith("#");
+
+			this.pageColor = pageColorBox.Checked
 				? ColorTranslator.FromHtml(theme.Color)
 				: pageColor;
 
@@ -640,7 +642,10 @@ namespace River.OneMoreAddIn.Commands
 			else if (activeFocus == spaceBeforeSpinner) { ChangeSpaceBefore(spaceBeforeSpinner, e); }
 			else if (activeFocus == spacingSpinner) { ChangeSpacing(spacingSpinner, e); }
 
-			theme.Color = pageColorBox.Checked ? pageColor.ToRGBHtml() : string.Empty;
+			theme.Color = !pageColorBox.Checked || pageColor.Equals(Color.Transparent)
+				? StyleBase.Automatic
+				: pageColor.ToRGBHtml();
+
 			theme.Dark = darkBox.Checked;
 			// save will be done when we return to EditStylesCommand...
 		}
@@ -877,6 +882,7 @@ namespace River.OneMoreAddIn.Commands
 			if (dialog.ShowDialog(this) == DialogResult.OK)
 			{
 				pageColor = dialog.Color;
+				pageColorBox.Checked = true;
 
 				var dark = pageColor.GetBrightness() < 0.5;
 				if (dark && !darkBox.Checked)
