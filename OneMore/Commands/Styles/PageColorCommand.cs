@@ -66,7 +66,7 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private void UpdatePageColor(Page page, string color)
+		public bool UpdatePageColor(Page page, string color)
 		{
 			var element = page.Root
 				.Elements(page.Namespace + "PageSettings")
@@ -76,28 +76,44 @@ namespace River.OneMoreAddIn.Commands
 			if (element == null)
 			{
 				logger.WriteLine("PageColor failed because PageSettings not found!");
-				return;
+				return false;
 			}
+
+			var changed = false;
 
 			var attr = element.Attribute("color");
 			if (attr != null)
 			{
-				attr.Value = color;
+				if (attr.Value != color)
+				{
+					attr.Value = color;
+					changed = true;
+				}
 			}
 			else
 			{
 				element.Add(new XAttribute("color", color));
+				changed = true;
 			}
 
-			// if light->dark or dark->light, apply appropriate theme...
-
-			var dark = false;
-			if (color != "automatic")
+			if (changed)
 			{
-				dark = ColorTranslator.FromHtml(color).GetBrightness() < 0.5;
+				// if light->dark or dark->light, apply appropriate theme...
+
+				var dark = false;
+				if (color != "automatic")
+				{
+					dark = ColorTranslator.FromHtml(color).GetBrightness() < 0.5;
+				}
+
+				logger.WriteLine($"color set to {color} (dark:{dark})");
+			}
+			else
+			{
+				logger.WriteLine($"page color unchanged");
 			}
 
-			logger.WriteLine($"color set to {color} (dark:{dark})");
+			return changed;
 		}
 	}
 }

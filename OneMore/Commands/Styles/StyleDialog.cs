@@ -231,7 +231,7 @@ namespace River.OneMoreAddIn.Commands
 		/// <summary>
 		/// Get the modified theme. Used when editing an entire theme.
 		/// </summary>
-		public Theme Theme => new(MakeStyles(), theme.Key, theme.Name, theme.Dark);
+		public Theme Theme => new(MakeStyles(), theme.Key, theme.Name, theme.Color, theme.Dark);
 
 
 		// = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
@@ -842,7 +842,7 @@ namespace River.OneMoreAddIn.Commands
 			if (result == DialogResult.OK)
 			{
 				var key = Path.GetFileNameWithoutExtension(dialog.FileName);
-				theme = new Theme(MakeStyles(), key, key, theme.Dark);
+				theme = new Theme(MakeStyles(), key, key, theme.Color, theme.Dark);
 				ThemeProvider.Save(theme, dialog.FileName);
 
 				Text = string.Format(

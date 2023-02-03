@@ -14,6 +14,7 @@ namespace River.OneMoreAddIn.Styles
 		private readonly XElement root;
 		private readonly XNamespace ns;
 		private readonly string name;
+		private readonly string color;
 		private readonly bool dark;
 
 
@@ -32,6 +33,7 @@ namespace River.OneMoreAddIn.Styles
 				root.Add(new XAttribute("name", name));
 			}
 
+			root.GetAttributeValue("color", out color, string.Empty);
 			root.GetAttributeValue("dark", out dark, false);
 		}
 
@@ -43,14 +45,16 @@ namespace River.OneMoreAddIn.Styles
 		/// <param name="key">The access key for the theme</param>
 		/// <param name="name">The display name of the theme</param>
 		/// <param name="dark">True if intended for a dark background</param>
-		public Theme(List<Style> styles, string key, string name, bool dark)
+		public Theme(List<Style> styles, string key, string name, string color, bool dark)
 		{
 			Key = key;
 			this.name = name;
+			this.color = color;
 			this.dark = dark;
 
 			root = new XElement("Theme",
 				new XAttribute("name", name),
+				new XAttribute("color", color),
 				new XAttribute("dark", dark.ToString())
 				);
 
@@ -64,6 +68,12 @@ namespace River.OneMoreAddIn.Styles
 		/// Gets the key for this theme. Used as the file name
 		/// </summary>
 		public string Key { get; private set; }
+
+
+		/// <summary>
+		/// Gets the preferred page background color
+		/// </summary>
+		public string Color => color;
 
 
 		/// <summary>

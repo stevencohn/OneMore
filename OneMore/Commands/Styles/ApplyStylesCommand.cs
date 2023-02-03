@@ -65,7 +65,11 @@ namespace River.OneMoreAddIn.Commands
 
 		private bool ApplyCurrentTheme()
 		{
-			var styles = new ThemeProvider().Theme.GetStyles();
+			var theme = new ThemeProvider().Theme;
+
+			var changed = ApplyPageColor(theme.Color);
+
+			var styles = theme.GetStyles();
 			if (ApplyStyles(styles))
 			{
 				// lists require some inline styling
@@ -77,10 +81,21 @@ namespace River.OneMoreAddIn.Commands
 					ApplyToHyperlinks();
 				}
 
-				return true;
+				changed = true;
 			}
 
-			return false;
+			return changed;
+		}
+
+
+		private bool ApplyPageColor(string color)
+		{
+			if (string.IsNullOrWhiteSpace(color))
+			{
+				return false;
+			}
+
+			return new PageColorCommand().UpdatePageColor(page, color);
 		}
 
 
