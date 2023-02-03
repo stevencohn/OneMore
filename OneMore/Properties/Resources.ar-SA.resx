@@ -4702,4 +4702,8 @@ ISO-code then comma then language name</comment>
     <value>تحميل نمط النمط</value>
     <comment>OpenFileDialog title</comment>
   </data>
+  <data name="ribEditStylesButton_named" xml:space="preserve">
+    <value>تحرير سمة النمط ({0})</value>
+    <comment>ribbon styles with theme name</comment>
+  </data>
 </root>

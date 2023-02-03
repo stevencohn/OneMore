@@ -4686,4 +4686,8 @@ ISO-code then comma then language name</comment>
     <value>加载样式主题</value>
     <comment>OpenFileDialog title</comment>
   </data>
+  <data name="ribEditStylesButton_named" xml:space="preserve">
+    <value>编辑样式主题 ({0})</value>
+    <comment>ribbon styles with theme name</comment>
+  </data>
 </root>

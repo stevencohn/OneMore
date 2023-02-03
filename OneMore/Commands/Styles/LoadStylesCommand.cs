@@ -29,6 +29,8 @@ namespace River.OneMoreAddIn.Commands
 			if (theme != null)
 			{
 				ThemeProvider.RecordTheme(theme.Key);
+
+				logger.WriteLine($"loaded theme {theme.Key}");
 				ribbon.Invalidate();
 			}
 

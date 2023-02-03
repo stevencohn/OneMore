@@ -4702,4 +4702,8 @@ In deze sectie</value>
     <value>Laad stijlthema</value>
     <comment>OpenFileDialog title</comment>
   </data>
+  <data name="ribEditStylesButton_named" xml:space="preserve">
+    <value>Stijlthema bewerken ({0})</value>
+    <comment>ribbon styles with theme name</comment>
+  </data>
 </root>

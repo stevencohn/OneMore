@@ -4797,4 +4797,8 @@ ISO-code then comma then language name</comment>
     <value>טען ערכת נושא בסגנון</value>
     <comment>OpenFileDialog title</comment>
   </data>
+  <data name="ribEditStylesButton_named" xml:space="preserve">
+    <value>ערוך עיצוב סגנון ({0})</value>
+    <comment>ribbon styles with theme name</comment>
+  </data>
 </root>

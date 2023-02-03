@@ -2874,6 +2874,10 @@ Polaroid</value>
     <value>Edit Style Theme</value>
     <comment>ribbon styles</comment>
   </data>
+  <data name="ribEditStylesButton_named" xml:space="preserve">
+    <value>Edit Style Theme ({0})</value>
+    <comment>ribbon styles with theme name</comment>
+  </data>
   <data name="ribEditStylesButton_Screentip" xml:space="preserve">
     <value>Edit custom styles or load alternate theme</value>
     <comment>ribbon styles</comment>
