@@ -4344,11 +4344,11 @@ Notebooks</value>
     <comment>dialog title</comment>
   </data>
   <data name="StyleDialog_optionsGroup.Text" xml:space="preserve">
-    <value>Theme Options</value>
+    <value>Options</value>
     <comment>groupbox</comment>
   </data>
   <data name="StyleDialog_pageColorBox.Text" xml:space="preserve">
-    <value>Change page color when applying this theme</value>
+    <value>Change the page color when applying these styles</value>
     <comment>checkbox</comment>
   </data>
   <data name="StyleDialog_pageColorLink.Text" xml:space="preserve">

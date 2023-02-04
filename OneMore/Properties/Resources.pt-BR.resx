@@ -4707,11 +4707,11 @@ Nesta secção</value>
     <comment>checkbox</comment>
   </data>
   <data name="StyleDialog_optionsGroup.Text" xml:space="preserve">
-    <value>Opções de temas</value>
+    <value>Opções</value>
     <comment>groupbox</comment>
   </data>
   <data name="StyleDialog_pageColorBox.Text" xml:space="preserve">
-    <value>Alterar a cor da página ao aplicar este tema</value>
+    <value>Alterar a cor da página ao aplicar esses estilos</value>
     <comment>checkbox</comment>
   </data>
   <data name="StyleDialog_pageColorLink.Text" xml:space="preserve">

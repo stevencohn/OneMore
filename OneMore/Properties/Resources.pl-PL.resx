@@ -4760,11 +4760,11 @@ W tej sekcji</value>
     <comment>checkbox</comment>
   </data>
   <data name="StyleDialog_optionsGroup.Text" xml:space="preserve">
-    <value>Opcje motywu</value>
+    <value>Opcje</value>
     <comment>groupbox</comment>
   </data>
   <data name="StyleDialog_pageColorBox.Text" xml:space="preserve">
-    <value>Zmień kolor strony podczas stosowania tego motywu</value>
+    <value>Zmień kolor strony podczas stosowania tych stylów</value>
     <comment>checkbox</comment>
   </data>
   <data name="StyleDialog_pageColorLink.Text" xml:space="preserve">
