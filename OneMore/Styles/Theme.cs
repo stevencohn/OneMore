@@ -16,8 +16,9 @@ namespace River.OneMoreAddIn.Styles
 		private readonly XElement root;
 		private readonly XNamespace ns;
 		private readonly string name;
-		private string color;
 		private bool dark;
+		private bool setColor;
+		private string color;
 
 
 		/// <summary>
@@ -36,6 +37,7 @@ namespace River.OneMoreAddIn.Styles
 			}
 
 			root.GetAttributeValue("color", out color, string.Empty);
+			root.GetAttributeValue("setColor", out setColor, false);
 			root.GetAttributeValue("dark", out dark, false);
 		}
 
@@ -47,16 +49,18 @@ namespace River.OneMoreAddIn.Styles
 		/// <param name="key">The access key for the theme</param>
 		/// <param name="name">The display name of the theme</param>
 		/// <param name="dark">True if intended for a dark background</param>
-		public Theme(List<Style> styles, string key, string name, string color, bool dark)
+		public Theme(List<Style> styles, string key, string name, string color, bool setColor, bool dark)
 		{
 			Key = key;
 			this.name = name;
 			this.color = color;
+			this.setColor = setColor;
 			this.dark = dark;
 
 			root = new XElement("Theme",
 				new XAttribute("name", name),
 				new XAttribute("color", color),
+				new XAttribute("setColor", setColor.ToString()),
 				new XAttribute("dark", dark.ToString())
 				);
 
@@ -96,6 +100,17 @@ namespace River.OneMoreAddIn.Styles
 		{
 			get => dark;
 			set => dark = value;
+		}
+
+
+		/// <summary>
+		/// Gets or sets a boolean value indicating whether the background color should be
+		/// applied, even if it is "automatic"
+		/// </summary>
+		public bool SetColor
+		{
+			get => setColor;
+			set => setColor = value;
 		}
 
 

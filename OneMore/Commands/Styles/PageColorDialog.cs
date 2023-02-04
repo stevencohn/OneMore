@@ -79,6 +79,10 @@ namespace River.OneMoreAddIn.Commands
 			{
 				noButton.Checked = true;
 			}
+			else if (pageColor.Equals((Color)customBox.Tag))
+			{
+				customButton.Checked = true;
+			}
 			else
 			{
 				omButton.Checked = true;

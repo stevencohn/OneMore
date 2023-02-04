@@ -28,6 +28,7 @@ namespace River.OneMoreAddIn.Commands
 	{
 		private GraphicStyle selection;
 		private Color pageColor;
+		private Color originalColor;
 		private bool allowEvents;
 		private Theme theme;
 		private Control activeFocus;
@@ -46,7 +47,7 @@ namespace River.OneMoreAddIn.Commands
 			Logger.SetDesignMode(DesignMode);
 
 			allowEvents = false;
-			this.pageColor = pageColor;
+			this.pageColor = originalColor = pageColor;
 
 			mainTools.Visible = false;
 			loadButton.Enabled = false;
@@ -83,10 +84,11 @@ namespace River.OneMoreAddIn.Commands
 				selection = new GraphicStyle(styles[0], false);
 			}
 
-			pageColorBox.Checked = theme.Color.StartsWith("#");
+			originalColor = pageColor;
+			pageColorBox.Checked = theme.SetColor;
 
-			this.pageColor = pageColorBox.Checked
-				? ColorTranslator.FromHtml(theme.Color)
+			this.pageColor = theme.SetColor
+				? theme.Color.Equals(StyleBase.Automatic) ? originalColor : ColorTranslator.FromHtml(theme.Color)
 				: pageColor;
 
 			darkBox.Checked = theme.Dark;
@@ -245,7 +247,8 @@ namespace River.OneMoreAddIn.Commands
 		/// <summary>
 		/// Get the modified theme. Used when editing an entire theme.
 		/// </summary>
-		public Theme Theme => new(MakeStyles(), theme.Key, theme.Name, theme.Color, theme.Dark);
+		public Theme Theme => new(MakeStyles(), 
+			theme.Key, theme.Name, theme.Color, theme.SetColor, theme.Dark);
 
 
 		// = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
@@ -642,7 +645,8 @@ namespace River.OneMoreAddIn.Commands
 			else if (activeFocus == spaceBeforeSpinner) { ChangeSpaceBefore(spaceBeforeSpinner, e); }
 			else if (activeFocus == spacingSpinner) { ChangeSpacing(spacingSpinner, e); }
 
-			theme.Color = !pageColorBox.Checked || pageColor.Equals(Color.Transparent)
+			theme.SetColor = pageColorBox.Checked;
+			theme.Color = pageColor.Equals(Color.Transparent)
 				? StyleBase.Automatic
 				: pageColor.ToRGBHtml();
 
@@ -863,7 +867,7 @@ namespace River.OneMoreAddIn.Commands
 			if (result == DialogResult.OK)
 			{
 				var key = Path.GetFileNameWithoutExtension(dialog.FileName);
-				theme = new Theme(MakeStyles(), key, key, theme.Color, theme.Dark);
+				theme = new Theme(MakeStyles(), key, key, theme.Color, theme.SetColor, theme.Dark);
 				ThemeProvider.Save(theme, dialog.FileName);
 
 				Text = string.Format(
@@ -874,7 +878,7 @@ namespace River.OneMoreAddIn.Commands
 
 		private void SelectPageColor(object sender, LinkLabelLinkClickedEventArgs e)
 		{
-			using var dialog = new PageColorDialog(Color.White);
+			using var dialog = new PageColorDialog(pageColor);
 			dialog.HideOptions();
 			dialog.StartPosition = FormStartPosition.CenterParent;
 			dialog.VerticalOffset = 50;
@@ -914,7 +918,7 @@ namespace River.OneMoreAddIn.Commands
 			}
 			else
 			{
-				pageColor = Color.Transparent;
+				pageColor = originalColor;
 			}
 
 			previewBox.Invalidate();

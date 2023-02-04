@@ -172,7 +172,8 @@ namespace River.OneMoreAddIn.Styles
 				new XAttribute("key", key),
 				new XAttribute("name", name),
 				new XAttribute("color", theme.Color),
-				new XAttribute("dark", theme.Dark)
+				new XAttribute("setColor", theme.SetColor.ToString()),
+				new XAttribute("dark", theme.Dark.ToString())
 				);
 
 			foreach (var record in theme.GetRecords())

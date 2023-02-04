@@ -59,7 +59,7 @@ namespace River.OneMoreAddIn.Commands
 				(color.Equals(Color.Black) && dark) ||
 				(color.Equals(Color.White) && !dark))
 			{
-				return "automatic";
+				return StyleBase.Automatic;
 			}
 
 			return color.ToRGBHtml();
@@ -101,7 +101,7 @@ namespace River.OneMoreAddIn.Commands
 				// if light->dark or dark->light, apply appropriate theme...
 
 				var dark = false;
-				if (color != "automatic")
+				if (color != StyleBase.Automatic)
 				{
 					dark = ColorTranslator.FromHtml(color).GetBrightness() < 0.5;
 				}
