@@ -9775,7 +9775,7 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Theme Options.
+        ///   Looks up a localized string similar to Options.
         /// </summary>
         internal static string StyleDialog_optionsGroup_Text {
             get {
@@ -9784,7 +9784,7 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Change page color when applying this theme.
+        ///   Looks up a localized string similar to Change the page color when applying these styles.
         /// </summary>
         internal static string StyleDialog_pageColorBox_Text {
             get {

@@ -4701,11 +4701,11 @@ Dans cette section</value>
     <comment>checkbox</comment>
   </data>
   <data name="StyleDialog_optionsGroup.Text" xml:space="preserve">
-    <value>Options du thème</value>
+    <value>Choix</value>
     <comment>groupbox</comment>
   </data>
   <data name="StyleDialog_pageColorBox.Text" xml:space="preserve">
-    <value>Changer la couleur de la page lors de l'application de ce thème</value>
+    <value>Changer la couleur de la page lors de l'application de ces styles</value>
     <comment>checkbox</comment>
   </data>
   <data name="StyleDialog_pageColorLink.Text" xml:space="preserve">

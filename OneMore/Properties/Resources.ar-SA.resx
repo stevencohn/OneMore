@@ -4707,11 +4707,11 @@ ISO-code then comma then language name</comment>
     <comment>checkbox</comment>
   </data>
   <data name="StyleDialog_optionsGroup.Text" xml:space="preserve">
-    <value>خيارات الموضوع</value>
+    <value>خيارات</value>
     <comment>groupbox</comment>
   </data>
   <data name="StyleDialog_pageColorBox.Text" xml:space="preserve">
-    <value>تغيير لون الصفحة عند تطبيق هذا الموضوع</value>
+    <value>قم بتغيير لون الصفحة عند تطبيق هذه الأنماط</value>
     <comment>checkbox</comment>
   </data>
   <data name="StyleDialog_pageColorLink.Text" xml:space="preserve">

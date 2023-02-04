@@ -4694,11 +4694,11 @@ In diesem Abschnitt</value>
     <comment>checkbox</comment>
   </data>
   <data name="StyleDialog_optionsGroup.Text" xml:space="preserve">
-    <value>Themenoptionen</value>
+    <value>Optionen</value>
     <comment>groupbox</comment>
   </data>
   <data name="StyleDialog_pageColorBox.Text" xml:space="preserve">
-    <value>Ändern Sie die Seitenfarbe, wenn Sie dieses Design anwenden</value>
+    <value>Ändern Sie die Seitenfarbe, wenn Sie diese Stile anwenden</value>
     <comment>checkbox</comment>
   </data>
   <data name="StyleDialog_pageColorLink.Text" xml:space="preserve">

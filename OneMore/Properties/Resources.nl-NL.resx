@@ -4707,11 +4707,11 @@ In deze sectie</value>
     <comment>checkbox</comment>
   </data>
   <data name="StyleDialog_optionsGroup.Text" xml:space="preserve">
-    <value>thema opties</value>
+    <value>Opties</value>
     <comment>groupbox</comment>
   </data>
   <data name="StyleDialog_pageColorBox.Text" xml:space="preserve">
-    <value>Wijzig de paginakleur bij het toepassen van dit thema</value>
+    <value>Wijzig de paginakleur bij het toepassen van deze stijlen</value>
     <comment>checkbox</comment>
   </data>
   <data name="StyleDialog_pageColorLink.Text" xml:space="preserve">

@@ -4802,11 +4802,11 @@ ISO-code then comma then language name</comment>
     <comment>checkbox</comment>
   </data>
   <data name="StyleDialog_optionsGroup.Text" xml:space="preserve">
-    <value>אפשרויות ערכת נושא</value>
+    <value>אפשרויות</value>
     <comment>groupbox</comment>
   </data>
   <data name="StyleDialog_pageColorBox.Text" xml:space="preserve">
-    <value>שנה את צבע העמוד בעת החלת ערכת נושא זה</value>
+    <value>שנה את צבע העמוד בעת החלת סגנונות אלה</value>
     <comment>checkbox</comment>
   </data>
   <data name="StyleDialog_pageColorLink.Text" xml:space="preserve">

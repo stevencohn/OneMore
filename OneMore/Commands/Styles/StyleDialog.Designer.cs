@@ -278,7 +278,7 @@
 			this.optionsGroup.Size = new System.Drawing.Size(619, 151);
 			this.optionsGroup.TabIndex = 30;
 			this.optionsGroup.TabStop = false;
-			this.optionsGroup.Text = "Theme Options";
+			this.optionsGroup.Text = "Options";
 			// 
 			// statusLabel
 			// 
@@ -319,9 +319,9 @@
 			this.pageColorBox.AutoSize = true;
 			this.pageColorBox.Location = new System.Drawing.Point(22, 63);
 			this.pageColorBox.Name = "pageColorBox";
-			this.pageColorBox.Size = new System.Drawing.Size(351, 24);
+			this.pageColorBox.Size = new System.Drawing.Size(388, 24);
 			this.pageColorBox.TabIndex = 0;
-			this.pageColorBox.Text = "Change page color when applying this theme";
+			this.pageColorBox.Text = "Change the page color when applying these styles";
 			this.pageColorBox.UseVisualStyleBackColor = true;
 			this.pageColorBox.CheckedChanged += new System.EventHandler(this.ChangePageColorOption);
 			// 
