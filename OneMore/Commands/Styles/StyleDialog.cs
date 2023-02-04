@@ -930,9 +930,14 @@ namespace River.OneMoreAddIn.Commands
 
 			if (pageColorBox.Checked)
 			{
-				pageColor = theme.Color.StartsWith("#")
-					? ColorTranslator.FromHtml(theme.Color)
-					: pageColor;
+				if (theme.Color.StartsWith("#"))
+				{
+					pageColor = ColorTranslator.FromHtml(theme.Color);
+					if (darkMode)
+					{
+						pageColor = pageColor.Invert();
+					}
+				}
 			}
 			else
 			{

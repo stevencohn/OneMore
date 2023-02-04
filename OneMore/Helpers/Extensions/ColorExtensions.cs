@@ -6,10 +6,24 @@ namespace River.OneMoreAddIn
 {
 	using System;
 	using System.Drawing;
-
+	using System.Windows.Forms;
 
 	internal static class ColorExtensions
 	{
+
+		/// <summary>
+		/// Inverts the color to estimate how the color would be presented
+		/// by OneNote in if shown in dark mode.
+		/// </summary>
+		/// <param name="color">The raw color to invert</param>
+		/// <returns>An inverted color</returns>
+		public static Color Invert(this Color color)
+		{
+			return color.GetBrightness() > 0.5
+				? ControlPaint.Dark(color, 0.9f)
+				: ControlPaint.Light(color, 1.9f);
+		}
+
 
 		/// <summary>
 		/// Determines if the color describes any shade of gray in where

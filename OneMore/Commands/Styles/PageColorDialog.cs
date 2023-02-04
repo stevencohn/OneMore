@@ -105,14 +105,7 @@ namespace River.OneMoreAddIn.Commands
 
 		private Color EstimateOneNoteColor(Color color)
 		{
-			if (darkMode)
-			{
-				return color.GetBrightness() > 0.5
-					? ControlPaint.Dark(color, 0.9f)
-					: ControlPaint.Light(color, 1.9f);
-			}
-
-			return color;
+			return darkMode ? color.Invert() : color;
 		}
 
 
