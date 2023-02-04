@@ -6,12 +6,13 @@ namespace River.OneMoreAddIn.Commands
 {
 	using River.OneMoreAddIn.Styles;
 	using River.OneMoreAddIn.UI;
+	using System.Drawing;
 	using System.Threading.Tasks;
 	using System.Windows.Forms;
 
 
 	/// <summary>
-	/// Edit custom styles
+	/// Edit style theme
 	/// </summary>
 	internal class EditStylesCommand : Command
 	{
@@ -25,16 +26,21 @@ namespace River.OneMoreAddIn.Commands
 		public override async Task Execute(params object[] args)
 		{
 			using var one = new OneNote(out var page, out _, OneNote.PageDetail.Basic);
-			var pageColor = page.GetPageColor(out _, out var black);
-			if (black)
+			var pageColor = page.GetPageColor(out bool automatic, out var black);
+
+			if (automatic)
 			{
-				// if Office Black theme, translate to softer Black Shadow
+				pageColor = Color.Transparent;
+			}
+			else if (black)
+			{
+				// if Office Black theme, translate to slightly softer shade
 				pageColor = BasicColors.BlackSmoke;
 			}
 
 			var theme = new ThemeProvider().Theme;
 
-			var dialog = new StyleDialog(theme, pageColor);
+			var dialog = new StyleDialog(theme, pageColor, black);
 			if (dialog.ShowDialog(owner) == DialogResult.OK)
 			{
 				ThemeProvider.Save(dialog.Theme);

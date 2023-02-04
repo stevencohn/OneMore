@@ -1736,10 +1736,10 @@ namespace River.OneMoreAddIn.Properties {
         
         /// <summary>
         ///   Looks up a localized string similar to &lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
-        ///&lt;Theme name=&quot;Orange&quot; dark=&quot;false&quot;&gt;
+        ///&lt;Theme key=&quot;Orange&quot; name=&quot;Orange&quot; color=&quot;automatic&quot; setColor=&quot;False&quot; dark=&quot;False&quot;&gt;
         ///  &lt;Style index=&quot;0&quot; name=&quot;Heading 1&quot; font=&quot;Calibri Light&quot; fontColor=&quot;Black&quot; fontSize=&quot;20.0&quot; spaceBefore=&quot;14.0&quot; spaceAfter=&quot;0.0&quot; applyColors=&quot;true&quot; styleType=&quot;Heading&quot; /&gt;
         ///  &lt;Style index=&quot;1&quot; name=&quot;Heading 2&quot; font=&quot;Calibri Light&quot; fontColor=&quot;#E67832&quot; fontSize=&quot;18.0&quot; spaceBefore=&quot;14.0&quot; spaceAfter=&quot;0.0&quot; applyColors=&quot;true&quot; styleType=&quot;Heading&quot; /&gt;
-        ///  &lt;Style index=&quot;2&quot; name=&quot;Heading 3&quot; font=&quot;Calibri Light&quot; fontColor=&quot;#823D0A&quot; fontSize=&quot;16.0&quot; s [rest of string was truncated]&quot;;.
+        ///  &lt;Style index=&quot;2&quot; name=&quot;Heading 3&quot; font=&quot;Cali [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string DefaultStyles {
             get {
@@ -4311,6 +4311,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to There may not be enough contrast between the text color and the page color.
+        /// </summary>
+        internal static string PageColorDialog_contrastTooltip {
+            get {
+                return ResourceManager.GetString("PageColorDialog_contrastTooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Text may be unreadable.
         /// </summary>
         internal static string PageColorDialog_contrastWarning {
@@ -5735,7 +5744,7 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Apply Styles to Page.
+        ///   Looks up a localized string similar to Apply Style Theme to Page.
         /// </summary>
         internal static string ribApplyStylesButton_Label {
             get {
@@ -9685,6 +9694,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Intended for pages with dark backgrounds.
+        /// </summary>
+        internal static string StyleDialog_darkBox_Text {
+            get {
+                return ResourceManager.GetString("StyleDialog_darkBox.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Default (Black).
         /// </summary>
         internal static string StyleDialog_defaultBlackToolStripMenuItem_Text {
@@ -9757,11 +9775,29 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to OK (Save).
+        ///   Looks up a localized string similar to Theme Options.
         /// </summary>
-        internal static string StyleDialog_okButton_Text {
+        internal static string StyleDialog_optionsGroup_Text {
             get {
-                return ResourceManager.GetString("StyleDialog_okButton.Text", resourceCulture);
+                return ResourceManager.GetString("StyleDialog_optionsGroup.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Change page color when applying this theme.
+        /// </summary>
+        internal static string StyleDialog_pageColorBox_Text {
+            get {
+                return ResourceManager.GetString("StyleDialog_pageColorBox.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Click here to select the page color.
+        /// </summary>
+        internal static string StyleDialog_pageColorLink_Text {
+            get {
+                return ResourceManager.GetString("StyleDialog_pageColorLink.Text", resourceCulture);
             }
         }
         

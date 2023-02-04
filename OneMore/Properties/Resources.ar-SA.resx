@@ -2404,8 +2404,8 @@ ISO-code then comma then language name</comment>
     <comment>not a menu, hotkey only</comment>
   </data>
   <data name="ribApplyStylesButton_Label" xml:space="preserve">
-    <value>تطبيق الأنماط على الصفحة</value>
-    <comment>Ribbon Custom Styles menu item, apply all custom style to page</comment>
+    <value>تطبيق سمة النمط على الصفحة</value>
+    <comment>ribbon styles</comment>
   </data>
   <data name="ribApplyStylesButton_Screentip" xml:space="preserve">
     <value>تطبيق الأنماط المخصصة على كافة المحتويات في هذه الصفحة</value>
@@ -4126,10 +4126,6 @@ ISO-code then comma then language name</comment>
     <value>نمط مخصص جديد</value>
     <comment>dialog title</comment>
   </data>
-  <data name="StyleDialog_okButton.Text" xml:space="preserve">
-    <value>موافق (حفظ)</value>
-    <comment>button</comment>
-  </data>
   <data name="StyleDialog_reorderButton.Text" xml:space="preserve">
     <value>إعادة ترتيب</value>
     <comment>button</comment>
@@ -4705,5 +4701,25 @@ ISO-code then comma then language name</comment>
   <data name="ribEditStylesButton_named" xml:space="preserve">
     <value>تحرير سمة النمط ({0})</value>
     <comment>ribbon styles with theme name</comment>
+  </data>
+  <data name="StyleDialog_darkBox.Text" xml:space="preserve">
+    <value>مخصص للصفحات ذات الخلفيات الداكنة</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="StyleDialog_optionsGroup.Text" xml:space="preserve">
+    <value>خيارات الموضوع</value>
+    <comment>groupbox</comment>
+  </data>
+  <data name="StyleDialog_pageColorBox.Text" xml:space="preserve">
+    <value>تغيير لون الصفحة عند تطبيق هذا الموضوع</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="StyleDialog_pageColorLink.Text" xml:space="preserve">
+    <value>انقر هنا لتحديد لون الصفحة</value>
+    <comment>linklabel</comment>
+  </data>
+  <data name="PageColorDialog_contrastTooltip" xml:space="preserve">
+    <value>قد لا يكون هناك تباين كافٍ بين لون النص ولون الصفحة</value>
+    <comment>tooltip</comment>
   </data>
 </root>

@@ -18,6 +18,7 @@ namespace River.OneMoreAddIn.Commands
 		private bool darkMode;
 		private Theme theme;
 		private Color pageColor;
+		private bool optionsAvailable;
 
 
 		public PageColorDialog()
@@ -43,6 +44,7 @@ namespace River.OneMoreAddIn.Commands
 			VerticalOffset = -(Height / 3);
 			Height -= optionsPanel.Height;
 			optionsPanel.Height = 0;
+			optionsAvailable = true;
 
 			darkMode = Office.IsBlackThemeEnabled();
 			statusLabel.Text = string.Empty;
@@ -77,6 +79,10 @@ namespace River.OneMoreAddIn.Commands
 			{
 				noButton.Checked = true;
 			}
+			else if (pageColor.Equals((Color)customBox.Tag))
+			{
+				customButton.Checked = true;
+			}
 			else
 			{
 				omButton.Checked = true;
@@ -99,19 +105,22 @@ namespace River.OneMoreAddIn.Commands
 
 		private Color EstimateOneNoteColor(Color color)
 		{
-			if (darkMode)
-			{
-				return color.GetBrightness() > 0.5
-					? ControlPaint.Dark(color, 0.9f)
-					: ControlPaint.Light(color, 1.9f);
-			}
+			return darkMode ? color.Invert() : color;
+		}
 
-			return color;
+
+		public void HideOptions()
+		{
+			Height -= expander.Height - statusLabel.Height;
+			expander.Visible = false;
+			statusLabel.Visible = false;
+			optionsAvailable = false;
 		}
 
 
 		private void FillBox(PictureBox box, Color color)
 		{
+			box.Image?.Dispose();
 			box.Image = new Bitmap(box.Width, box.Height);
 			using var g = Graphics.FromImage(box.Image);
 			g.Clear(color);
@@ -210,7 +219,7 @@ namespace River.OneMoreAddIn.Commands
 
 		private void CheckContrast()
 		{
-			if (theme == null)
+			if (theme == null || !optionsAvailable)
 			{
 				statusLabel.Text = string.Empty;
 				return;

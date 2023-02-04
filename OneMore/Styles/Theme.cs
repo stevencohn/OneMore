@@ -2,6 +2,8 @@
 // Copyright © 2021 Steven M Cohn.  All rights reserved.
 //************************************************************************************************
 
+#pragma warning disable S2292 // Trivial properties should be auto-implemented
+
 namespace River.OneMoreAddIn.Styles
 {
 	using System.Collections.Generic;
@@ -14,7 +16,9 @@ namespace River.OneMoreAddIn.Styles
 		private readonly XElement root;
 		private readonly XNamespace ns;
 		private readonly string name;
-		private readonly bool dark;
+		private bool dark;
+		private bool setColor;
+		private string color;
 
 
 		/// <summary>
@@ -32,6 +36,8 @@ namespace River.OneMoreAddIn.Styles
 				root.Add(new XAttribute("name", name));
 			}
 
+			root.GetAttributeValue("color", out color, string.Empty);
+			root.GetAttributeValue("setColor", out setColor, false);
 			root.GetAttributeValue("dark", out dark, false);
 		}
 
@@ -43,14 +49,18 @@ namespace River.OneMoreAddIn.Styles
 		/// <param name="key">The access key for the theme</param>
 		/// <param name="name">The display name of the theme</param>
 		/// <param name="dark">True if intended for a dark background</param>
-		public Theme(List<Style> styles, string key, string name, bool dark)
+		public Theme(List<Style> styles, string key, string name, string color, bool setColor, bool dark)
 		{
 			Key = key;
 			this.name = name;
+			this.color = color;
+			this.setColor = setColor;
 			this.dark = dark;
 
 			root = new XElement("Theme",
 				new XAttribute("name", name),
+				new XAttribute("color", color),
+				new XAttribute("setColor", setColor.ToString()),
 				new XAttribute("dark", dark.ToString())
 				);
 
@@ -67,6 +77,16 @@ namespace River.OneMoreAddIn.Styles
 
 
 		/// <summary>
+		/// Gets the preferred page background color
+		/// </summary>
+		public string Color
+		{
+			get => color;
+			set => color = value;
+		}
+
+
+		/// <summary>
 		/// Gets the display name of the theme
 		/// </summary>
 		public string Name => name;
@@ -76,7 +96,22 @@ namespace River.OneMoreAddIn.Styles
 		/// Gets a Boolean value indicating if this theme is intended for
 		/// use on dark background pages
 		/// </summary>
-		public bool Dark => dark;
+		public bool Dark
+		{
+			get => dark;
+			set => dark = value;
+		}
+
+
+		/// <summary>
+		/// Gets or sets a boolean value indicating whether the background color should be
+		/// applied, even if it is "automatic"
+		/// </summary>
+		public bool SetColor
+		{
+			get => setColor;
+			set => setColor = value;
+		}
 
 
 		/// <summary>

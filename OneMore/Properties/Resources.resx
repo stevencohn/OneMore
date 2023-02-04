@@ -1936,6 +1936,10 @@ Deferred</value>
     <value>Apply styles to this page</value>
     <comment>checkbox</comment>
   </data>
+  <data name="PageColorDialog_contrastTooltip" xml:space="preserve">
+    <value>There may not be enough contrast between the text color and the page color</value>
+    <comment>tooltip</comment>
+  </data>
   <data name="PageColorDialog_contrastWarning" xml:space="preserve">
     <value>Text may be unreadable</value>
     <comment>label</comment>
@@ -2573,7 +2577,7 @@ Polaroid</value>
     <comment>hotkey</comment>
   </data>
   <data name="ribApplyStylesButton_Label" xml:space="preserve">
-    <value>Apply Styles to Page</value>
+    <value>Apply Style Theme to Page</value>
     <comment>ribbon styles</comment>
   </data>
   <data name="ribApplyStylesButton_Screentip" xml:space="preserve">
@@ -4303,6 +4307,10 @@ Notebooks</value>
     <value>Text Color</value>
     <comment>button tip</comment>
   </data>
+  <data name="StyleDialog_darkBox.Text" xml:space="preserve">
+    <value>Intended for pages with dark backgrounds</value>
+    <comment>checkbox</comment>
+  </data>
   <data name="StyleDialog_defaultBlackToolStripMenuItem.Text" xml:space="preserve">
     <value>Default (Black)</value>
     <comment>menu item</comment>
@@ -4335,9 +4343,17 @@ Notebooks</value>
     <value>New Custom Style</value>
     <comment>dialog title</comment>
   </data>
-  <data name="StyleDialog_okButton.Text" xml:space="preserve">
-    <value>OK (Save)</value>
-    <comment>button</comment>
+  <data name="StyleDialog_optionsGroup.Text" xml:space="preserve">
+    <value>Theme Options</value>
+    <comment>groupbox</comment>
+  </data>
+  <data name="StyleDialog_pageColorBox.Text" xml:space="preserve">
+    <value>Change page color when applying this theme</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="StyleDialog_pageColorLink.Text" xml:space="preserve">
+    <value>Click here to select the page color</value>
+    <comment>linklabel</comment>
   </data>
   <data name="StyleDialog_reorderButton.Text" xml:space="preserve">
     <value>Reorder</value>

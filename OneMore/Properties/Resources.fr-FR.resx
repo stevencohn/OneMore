@@ -2400,8 +2400,8 @@ Polaroïd</value>
     <comment>not a menu, hotkey only</comment>
   </data>
   <data name="ribApplyStylesButton_Label" xml:space="preserve">
-    <value>Appliquer des styles à la page</value>
-    <comment>Ribbon Custom Styles menu item, apply all custom style to page</comment>
+    <value>Appliquer le thème de style à la page</value>
+    <comment>ribbon styles</comment>
   </data>
   <data name="ribApplyStylesButton_Screentip" xml:space="preserve">
     <value>Appliquer des styles personnalisés à tout le contenu de cette page</value>
@@ -4120,10 +4120,6 @@ Des cahiers</value>
     <value>Nouveau style personnalisé</value>
     <comment>dialog title</comment>
   </data>
-  <data name="StyleDialog_okButton.Text" xml:space="preserve">
-    <value>OK (Enregistrer)</value>
-    <comment>button</comment>
-  </data>
   <data name="StyleDialog_reorderButton.Text" xml:space="preserve">
     <value>Réorganiser</value>
     <comment>button</comment>
@@ -4699,5 +4695,25 @@ Dans cette section</value>
   <data name="ribEditStylesButton_named" xml:space="preserve">
     <value>Modifier le thème de style ({0})</value>
     <comment>ribbon styles with theme name</comment>
+  </data>
+  <data name="StyleDialog_darkBox.Text" xml:space="preserve">
+    <value>Destiné aux pages avec des arrière-plans sombres</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="StyleDialog_optionsGroup.Text" xml:space="preserve">
+    <value>Options du thème</value>
+    <comment>groupbox</comment>
+  </data>
+  <data name="StyleDialog_pageColorBox.Text" xml:space="preserve">
+    <value>Changer la couleur de la page lors de l'application de ce thème</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="StyleDialog_pageColorLink.Text" xml:space="preserve">
+    <value>Cliquez ici pour sélectionner la couleur de la page</value>
+    <comment>linklabel</comment>
+  </data>
+  <data name="PageColorDialog_contrastTooltip" xml:space="preserve">
+    <value>Il se peut qu'il n'y ait pas assez de contraste entre la couleur du texte et la couleur de la page</value>
+    <comment>tooltip</comment>
   </data>
 </root>

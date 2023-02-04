@@ -5,6 +5,8 @@
 namespace River.OneMoreAddIn.Commands
 {
 	using River.OneMoreAddIn.Styles;
+	using River.OneMoreAddIn.UI;
+	using System.Drawing;
 	using System.Threading.Tasks;
 	using System.Windows.Forms;
 
@@ -23,7 +25,17 @@ namespace River.OneMoreAddIn.Commands
 		public override async Task Execute(params object[] args)
 		{
 			using var one = new OneNote(out var page, out _);
-			var pageColor = page.GetPageColor(out _, out _);
+			var pageColor = page.GetPageColor(out var automatic, out var black);
+
+			if (automatic)
+			{
+				pageColor = Color.Transparent;
+			}
+			else if (black)
+			{
+				// if Office Black theme, translate to slightly softer shade
+				pageColor = BasicColors.BlackSmoke;
+			}
 
 			var analyzer = new StyleAnalyzer(page.Root);
 
@@ -33,7 +45,7 @@ namespace River.OneMoreAddIn.Commands
 				return;
 			}
 
-			using var dialog = new StyleDialog(style, pageColor);
+			using var dialog = new StyleDialog(style, pageColor, black);
 			if (dialog.ShowDialog(owner) == DialogResult.OK)
 			{
 				if (dialog.Style != null)

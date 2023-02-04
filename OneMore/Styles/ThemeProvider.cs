@@ -10,7 +10,7 @@ namespace River.OneMoreAddIn.Styles
 	using System;
 	using System.IO;
 	using System.Xml.Linq;
-	using Resx = River.OneMoreAddIn.Properties.Resources;
+	using Resx = Properties.Resources;
 
 
 	internal class ThemeProvider : Loggable
@@ -171,7 +171,9 @@ namespace River.OneMoreAddIn.Styles
 			var root = new XElement("Theme",
 				new XAttribute("key", key),
 				new XAttribute("name", name),
-				new XAttribute("dark", theme.Dark)
+				new XAttribute("color", theme.Color),
+				new XAttribute("setColor", theme.SetColor.ToString()),
+				new XAttribute("dark", theme.Dark.ToString())
 				);
 
 			foreach (var record in theme.GetRecords())

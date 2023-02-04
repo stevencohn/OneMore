@@ -2405,8 +2405,8 @@ Polaroid</value>
     <comment>not a menu, hotkey only</comment>
   </data>
   <data name="ribApplyStylesButton_Label" xml:space="preserve">
-    <value>Pas stijlen toe op pagina</value>
-    <comment>Ribbon Custom Styles menu item, apply all custom style to page</comment>
+    <value>Stijlthema toepassen op pagina</value>
+    <comment>ribbon styles</comment>
   </data>
   <data name="ribApplyStylesButton_Screentip" xml:space="preserve">
     <value>Pas aangepaste stijlen toe op alle inhoud op deze pagina</value>
@@ -4126,10 +4126,6 @@ Notitieboekjes</value>
     <value>Nieuwe aangepaste stijl</value>
     <comment>dialog title</comment>
   </data>
-  <data name="StyleDialog_okButton.Text" xml:space="preserve">
-    <value>OK (Opslaan)</value>
-    <comment>button</comment>
-  </data>
   <data name="StyleDialog_reorderButton.Text" xml:space="preserve">
     <value>Opnieuw ordenen</value>
     <comment>button</comment>
@@ -4705,5 +4701,25 @@ In deze sectie</value>
   <data name="ribEditStylesButton_named" xml:space="preserve">
     <value>Stijlthema bewerken ({0})</value>
     <comment>ribbon styles with theme name</comment>
+  </data>
+  <data name="StyleDialog_darkBox.Text" xml:space="preserve">
+    <value>Bedoeld voor pagina's met een donkere achtergrond</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="StyleDialog_optionsGroup.Text" xml:space="preserve">
+    <value>thema opties</value>
+    <comment>groupbox</comment>
+  </data>
+  <data name="StyleDialog_pageColorBox.Text" xml:space="preserve">
+    <value>Wijzig de paginakleur bij het toepassen van dit thema</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="StyleDialog_pageColorLink.Text" xml:space="preserve">
+    <value>Klik hier om de paginakleur te selecteren</value>
+    <comment>linklabel</comment>
+  </data>
+  <data name="PageColorDialog_contrastTooltip" xml:space="preserve">
+    <value>Er is mogelijk onvoldoende contrast tussen de tekstkleur en de paginakleur</value>
+    <comment>tooltip</comment>
   </data>
 </root>

@@ -2398,8 +2398,8 @@ Polaroid</value>
     <comment>not a menu, hotkey only</comment>
   </data>
   <data name="ribApplyStylesButton_Label" xml:space="preserve">
-    <value>Stile auf Seite anwenden</value>
-    <comment>Ribbon Custom Styles menu item, apply all custom style to page</comment>
+    <value>Stildesign auf Seite anwenden</value>
+    <comment>ribbon styles</comment>
   </data>
   <data name="ribApplyStylesButton_Screentip" xml:space="preserve">
     <value>Wenden Sie benutzerdefinierte Stile auf alle Inhalte auf dieser Seite an</value>
@@ -4113,10 +4113,6 @@ Notizbücher</value>
     <value>Neuer benutzerdefinierter Stil</value>
     <comment>dialog title</comment>
   </data>
-  <data name="StyleDialog_okButton.Text" xml:space="preserve">
-    <value>OK (Speichern)</value>
-    <comment>button</comment>
-  </data>
   <data name="StyleDialog_reorderButton.Text" xml:space="preserve">
     <value>Nachbestellen</value>
     <comment>button</comment>
@@ -4692,5 +4688,25 @@ In diesem Abschnitt</value>
   <data name="ribEditStylesButton_named" xml:space="preserve">
     <value>Stildesign bearbeiten ({0})</value>
     <comment>ribbon styles with theme name</comment>
+  </data>
+  <data name="StyleDialog_darkBox.Text" xml:space="preserve">
+    <value>Vorgesehen für Seiten mit dunklem Hintergrund</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="StyleDialog_optionsGroup.Text" xml:space="preserve">
+    <value>Themenoptionen</value>
+    <comment>groupbox</comment>
+  </data>
+  <data name="StyleDialog_pageColorBox.Text" xml:space="preserve">
+    <value>Ändern Sie die Seitenfarbe, wenn Sie dieses Design anwenden</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="StyleDialog_pageColorLink.Text" xml:space="preserve">
+    <value>Klicken Sie hier, um die Seitenfarbe auszuwählen</value>
+    <comment>linklabel</comment>
+  </data>
+  <data name="PageColorDialog_contrastTooltip" xml:space="preserve">
+    <value>Möglicherweise ist der Kontrast zwischen der Textfarbe und der Seitenfarbe nicht ausreichend</value>
+    <comment>tooltip</comment>
   </data>
 </root>
