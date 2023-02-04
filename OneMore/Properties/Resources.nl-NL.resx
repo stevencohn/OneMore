@@ -4680,11 +4680,11 @@ In deze sectie</value>
     <comment>label</comment>
   </data>
   <data name="ribPageColorButton_Label" xml:space="preserve">
-    <value>Pagina kleur</value>
+    <value>Stel de paginakleur in</value>
     <comment>page context menu</comment>
   </data>
   <data name="ribPageColorButton_Screentip" xml:space="preserve">
-    <value>Kies een aangepaste kleur voor de pagina-achtergrond</value>
+    <value>Wijzig de achtergrond van deze pagina in een aangepaste kleur</value>
     <comment>page context menu</comment>
   </data>
   <data name="LoadStyleTheme_errorLoading" xml:space="preserve">

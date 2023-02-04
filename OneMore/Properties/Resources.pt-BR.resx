@@ -4680,11 +4680,11 @@ Nesta secção</value>
     <comment>label</comment>
   </data>
   <data name="ribPageColorButton_Label" xml:space="preserve">
-    <value>Cor da página</value>
+    <value>Definir cor da página</value>
     <comment>page context menu</comment>
   </data>
   <data name="ribPageColorButton_Screentip" xml:space="preserve">
-    <value>Escolha uma cor personalizada para o plano de fundo da página</value>
+    <value>Altere o plano de fundo desta página para uma cor personalizada</value>
     <comment>page context menu</comment>
   </data>
   <data name="LoadStyleTheme_errorLoading" xml:space="preserve">

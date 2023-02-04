@@ -4667,11 +4667,11 @@ In diesem Abschnitt</value>
     <comment>label</comment>
   </data>
   <data name="ribPageColorButton_Label" xml:space="preserve">
-    <value>Seitenfarbe</value>
+    <value>Seitenfarbe festlegen</value>
     <comment>page context menu</comment>
   </data>
   <data name="ribPageColorButton_Screentip" xml:space="preserve">
-    <value>Wählen Sie eine benutzerdefinierte Farbe für den Seitenhintergrund</value>
+    <value>Ändern Sie den Hintergrund dieser Seite in eine benutzerdefinierte Farbe</value>
     <comment>page context menu</comment>
   </data>
   <data name="LoadStyleTheme_errorLoading" xml:space="preserve">

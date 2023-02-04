@@ -4664,11 +4664,11 @@ ISO-code then comma then language name</comment>
     <comment>label</comment>
   </data>
   <data name="ribPageColorButton_Label" xml:space="preserve">
-    <value>页面颜色</value>
+    <value>设置页面颜色</value>
     <comment>page context menu</comment>
   </data>
   <data name="ribPageColorButton_Screentip" xml:space="preserve">
-    <value>为页面背景选择自定义颜色</value>
+    <value>将此页面的背景更改为自定义颜色</value>
     <comment>page context menu</comment>
   </data>
   <data name="LoadStyleTheme_errorLoading" xml:space="preserve">

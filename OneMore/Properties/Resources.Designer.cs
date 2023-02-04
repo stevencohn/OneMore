@@ -7476,7 +7476,7 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Page Color.
+        ///   Looks up a localized string similar to Set Page Color.
         /// </summary>
         internal static string ribPageColorButton_Label {
             get {
@@ -7485,7 +7485,7 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Choose a custom color for the page background.
+        ///   Looks up a localized string similar to Change the background of this page to a custom color.
         /// </summary>
         internal static string ribPageColorButton_Screentip {
             get {
