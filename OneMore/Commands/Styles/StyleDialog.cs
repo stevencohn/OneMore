@@ -17,7 +17,7 @@ namespace River.OneMoreAddIn.Commands
 
 
 	/// <summary>
-	/// Edit a single style to create or edit multiple styles to manage.
+	/// Edits a single style an entire style theme.
 	/// </summary>
 	/// <remarks>
 	/// Disposables: the List of Styles is input and managed by the consumer.
@@ -26,28 +26,37 @@ namespace River.OneMoreAddIn.Commands
 
 	internal partial class StyleDialog : LocalizableForm
 	{
-		private GraphicStyle selection;
 		private Color pageColor;
-		private Color originalColor;
-		private bool allowEvents;
+		private readonly Color originalColor;
+		private readonly bool darkMode;
 		private Theme theme;
+
+		private GraphicStyle selection;
 		private Control activeFocus;
+		private bool eventing;
 
 
 		#region Lifecycle
 
 		/// <summary>
-		/// Create a dialog to edit a single style; this is for creating new styles
+		/// Initialize the dialog to edit a single style; called to create new styles
 		/// </summary>
-		/// <param name="style"></param>
+		/// <param name="style">The style to copy</param>
+		/// <param name="pageColor">The background color of the page</param>
+		/// <param name="darkMode">Indicates that the page is in "dark mode"</param>
 
-		public StyleDialog(Style style, Color pageColor)
+		public StyleDialog(Style style, Color pageColor, bool darkMode)
 		{
 			Initialize();
 			Logger.SetDesignMode(DesignMode);
+			eventing = false;
 
-			allowEvents = false;
+			Text = Resx.StyleDialog_NewText;
+
 			this.pageColor = originalColor = pageColor;
+			this.darkMode = darkMode;
+
+			selection = new GraphicStyle(style, false);
 
 			mainTools.Visible = false;
 			loadButton.Enabled = false;
@@ -56,36 +65,28 @@ namespace River.OneMoreAddIn.Commands
 			reorderButton.Enabled = false;
 			deleteButton.Enabled = false;
 
-			selection = new GraphicStyle(style, false);
-
-			Text = Resx.StyleDialog_NewText;
-
 			Height -= optionsGroup.Height;
 			optionsGroup.Visible = false;
 		}
 
 
 		/// <summary>
-		/// Create a dialog to edit multiple styles; this is for editing existing styles.
+		/// Initialize the dialog to edit a style theme; called to edit existing styles
 		/// </summary>
-		/// <param name="styles"></param>
-
-		public StyleDialog(Theme theme, Color pageColor)
+		/// <param name="theme">The theme to edit</param>
+		/// <param name="pageColor">The background color of the page</param>
+		/// <param name="darkMode">Indicates that the page is in "dark mode"</param>
+		public StyleDialog(Theme theme, Color pageColor, bool darkMode)
 		{
 			Initialize();
+			eventing = false;
 
-			allowEvents = false;
-
-			var styles = theme.GetStyles();
-			LoadStyles(styles);
-
-			if (styles.Count > 0)
-			{
-				selection = new GraphicStyle(styles[0], false);
-			}
+			Text = string.Format(Resx.StyleDialog_ThemeText, theme.Name);
 
 			originalColor = pageColor;
 			pageColorBox.Checked = theme.SetColor;
+
+			this.darkMode = darkMode;
 
 			this.pageColor = theme.SetColor
 				? theme.Color.Equals(StyleBase.Automatic) ? originalColor : ColorTranslator.FromHtml(theme.Color)
@@ -93,8 +94,14 @@ namespace River.OneMoreAddIn.Commands
 
 			darkBox.Checked = theme.Dark;
 
-			Text = string.Format(Resx.StyleDialog_ThemeText, theme.Name);
 			this.theme = theme;
+
+			var styles = theme.GetStyles();
+			LoadStyles(styles);
+			if (styles.Count > 0)
+			{
+				selection = new GraphicStyle(styles[0], false);
+			}
 		}
 
 
@@ -210,7 +217,7 @@ namespace River.OneMoreAddIn.Commands
 		{
 			base.OnShown(e);
 
-			allowEvents = true;
+			eventing = true;
 
 			if (selection != null)
 			{
@@ -261,7 +268,7 @@ namespace River.OneMoreAddIn.Commands
 
 		private void ShowSelection()
 		{
-			allowEvents = false;
+			eventing = false;
 
 			// nameBox may not be visible but oh well
 			nameBox.Text = selection.Name;
@@ -303,9 +310,22 @@ namespace River.OneMoreAddIn.Commands
 					spacingSpinner.Value = dss;
 			}
 
-			allowEvents = true;
+			eventing = true;
 
 			previewBox.Invalidate();
+		}
+
+
+		private Color BestBackgroundColor()
+		{
+			if (pageColor.IsEmpty || pageColor.Equals(Color.Transparent))
+			{
+				return originalColor.IsEmpty || originalColor.Equals(Color.Transparent)
+					? (darkMode ? BasicColors.BlackSmoke : Color.White)
+					: originalColor;
+			}
+
+			return pageColor;
 		}
 
 
@@ -313,9 +333,13 @@ namespace River.OneMoreAddIn.Commands
 		{
 			var vcenter = previewBox.Height / 2;
 
-			var contrastPen = pageColor.GetBrightness() <= 0.5 ? Pens.White : Pens.Black;
+			var background = BestBackgroundColor();
 
-			e.Graphics.Clear(pageColor.Equals(Color.Transparent) ? Color.White : pageColor);
+			using var contrastPen = background.GetBrightness() <= 0.5
+				? new Pen(Color.White)
+				: new Pen(BasicColors.BlackSmoke);
+
+			e.Graphics.Clear(background);
 			e.Graphics.DrawLine(contrastPen, 0, vcenter, 15, vcenter);
 			e.Graphics.DrawLine(contrastPen, previewBox.Width - 15, vcenter, previewBox.Width, vcenter);
 
@@ -326,7 +350,7 @@ namespace River.OneMoreAddIn.Commands
 				sampleFontSize = (float)StyleBase.DefaultFontSize;
 			}
 
-			var sampleFont = offset
+			using var sampleFont = offset
 				? new Font(familyBox.Text, sampleFontSize)
 				: MakeFont(sampleFontSize); // dispose
 
@@ -339,7 +363,7 @@ namespace River.OneMoreAddIn.Commands
 				? (float)Math.Round(sampleFontSize * 0.5)
 				: sampleFontSize;
 
-			var textFont = MakeFont(Math.Max(textFontSize, 4)); // dispose
+			using var textFont = MakeFont(Math.Max(textFontSize, 4)); // dispose
 
 			var textSize = e.Graphics.MeasureString("Text", textFont);
 			var allWidth = sampleSize.Width + textSize.Width;
@@ -373,20 +397,15 @@ namespace River.OneMoreAddIn.Commands
 			var format = new StringFormat(StringFormatFlags.NoWrap);
 
 			var textColor = selection?.ApplyColors == true ? selection.Foreground : contrastPen.Color;
-			var textBrush = new SolidBrush(textColor); // dispose
+			using var textBrush = new SolidBrush(textColor); // dispose
 
 			var sampleColor = offset ? Color.Gray : textColor;
-			var sampleBrush = new SolidBrush(sampleColor); // dispose
+			using var sampleBrush = new SolidBrush(sampleColor); // dispose
 
 			e.Graphics.DrawString("Sample ", sampleFont, sampleBrush, sampleClip, format);
 
 			if (subButton.Checked) textClip.Y += (int)textSize.Height;
 			e.Graphics.DrawString("Text", textFont, textBrush, textClip, format);
-
-			textBrush.Dispose();
-			sampleBrush.Dispose();
-			textFont.Dispose();
-			sampleFont.Dispose();
 		}
 
 
@@ -412,7 +431,7 @@ namespace River.OneMoreAddIn.Commands
 
 		private void ChangeStyleName(object sender, EventArgs e)
 		{
-			if (allowEvents && nameBox.Visible)
+			if (eventing && nameBox.Visible)
 			{
 				if (selection != null)
 				{
@@ -425,7 +444,7 @@ namespace River.OneMoreAddIn.Commands
 
 		private void ChangeStyleListSelection(object sender, EventArgs e)
 		{
-			if (allowEvents && namesBox.Visible)
+			if (eventing && namesBox.Visible)
 			{
 				selection = namesBox.SelectedItem as GraphicStyle;
 				ShowSelection();
@@ -442,7 +461,7 @@ namespace River.OneMoreAddIn.Commands
 
 			if (selection != null)
 			{
-				if (allowEvents)
+				if (eventing)
 				{
 					selection.StyleType = (StyleType)styleTypeBox.SelectedIndex;
 				}
@@ -467,7 +486,7 @@ namespace River.OneMoreAddIn.Commands
 
 		private void ChangeFontFamily(object sender, EventArgs e)
 		{
-			if (allowEvents && (selection != null))
+			if (eventing && (selection != null))
 			{
 				var save = selection.Font;
 
@@ -488,7 +507,7 @@ namespace River.OneMoreAddIn.Commands
 
 		private void ChangeFontSize(object sender, EventArgs e)
 		{
-			if (allowEvents && (selection != null))
+			if (eventing && (selection != null))
 			{
 				var save = selection.Font;
 
@@ -509,7 +528,7 @@ namespace River.OneMoreAddIn.Commands
 
 		private void ChangeFontStyle(object sender, EventArgs e)
 		{
-			if (allowEvents && (selection != null))
+			if (eventing && (selection != null))
 			{
 				var save = selection.Font;
 
@@ -885,8 +904,8 @@ namespace River.OneMoreAddIn.Commands
 
 			if (dialog.ShowDialog(this) == DialogResult.OK)
 			{
-				pageColor = dialog.Color;
 				pageColorBox.Checked = true;
+				pageColor = dialog.Color;
 
 				var dark = pageColor.GetBrightness() < 0.5;
 				if (dark && !darkBox.Checked)
@@ -904,9 +923,8 @@ namespace River.OneMoreAddIn.Commands
 
 		private void ChangePageColorOption(object sender, EventArgs e)
 		{
-			if (theme == null)
+			if (!eventing)
 			{
-				// before OnLoad completes
 				return;
 			}
 

@@ -29,6 +29,7 @@
 		/// </summary>
 		private void InitializeComponent ()
 		{
+			this.components = new System.ComponentModel.Container();
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(StyleDialog));
 			this.sizeBox = new System.Windows.Forms.ComboBox();
 			this.beforeLabel = new System.Windows.Forms.Label();
@@ -73,6 +74,7 @@
 			this.deleteButton = new System.Windows.Forms.ToolStripButton();
 			this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
 			this.reorderButton = new System.Windows.Forms.ToolStripButton();
+			this.tooltip = new System.Windows.Forms.ToolTip(this.components);
 			((System.ComponentModel.ISupportInitialize)(this.spaceBeforeSpinner)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.spaceAfterSpinner)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.previewBox)).BeginInit();
@@ -119,6 +121,7 @@
 			this.beforeLabel.Size = new System.Drawing.Size(111, 20);
 			this.beforeLabel.TabIndex = 6;
 			this.beforeLabel.Text = "Space Before:";
+			this.tooltip.SetToolTip(this.beforeLabel, "Spacing before a paragraph");
 			// 
 			// afterLabel
 			// 
@@ -128,6 +131,7 @@
 			this.afterLabel.Size = new System.Drawing.Size(98, 20);
 			this.afterLabel.TabIndex = 7;
 			this.afterLabel.Text = "Space After:";
+			this.tooltip.SetToolTip(this.afterLabel, "Spacing after a paragraph");
 			// 
 			// nameLabel
 			// 
@@ -137,6 +141,7 @@
 			this.nameLabel.Size = new System.Drawing.Size(94, 20);
 			this.nameLabel.TabIndex = 8;
 			this.nameLabel.Text = "Style Name:";
+			this.tooltip.SetToolTip(this.nameLabel, "Must be unique");
 			// 
 			// nameBox
 			// 
@@ -294,6 +299,7 @@
 			this.darkBox.Size = new System.Drawing.Size(341, 24);
 			this.darkBox.TabIndex = 1;
 			this.darkBox.Text = "Intended for pages with dark bakckgrounds";
+			this.tooltip.SetToolTip(this.darkBox, "Used in Page Color dialog to warn about non-readable text");
 			this.darkBox.UseVisualStyleBackColor = true;
 			// 
 			// pageColorBox
@@ -315,6 +321,7 @@
 			this.spacingLabel.Size = new System.Drawing.Size(71, 20);
 			this.spacingLabel.TabIndex = 29;
 			this.spacingLabel.Text = "Spacing:";
+			this.tooltip.SetToolTip(this.spacingLabel, "Spacing between lines in a paragraph");
 			// 
 			// spacingSpinner
 			// 
@@ -334,6 +341,7 @@
 			this.styleTypeLabel.Size = new System.Drawing.Size(86, 20);
 			this.styleTypeLabel.TabIndex = 27;
 			this.styleTypeLabel.Text = "Style Type:";
+			this.tooltip.SetToolTip(this.styleTypeLabel, "Determines the scope of text affected by this style");
 			// 
 			// styleTypeBox
 			// 
@@ -682,5 +690,6 @@
 		private System.Windows.Forms.CheckBox pageColorBox;
 		private System.Windows.Forms.CheckBox darkBox;
 		private UI.MoreLinkLabel pageColorLink;
+		private System.Windows.Forms.ToolTip tooltip;
 	}
 }
