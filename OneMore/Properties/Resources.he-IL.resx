@@ -4775,11 +4775,11 @@ ISO-code then comma then language name</comment>
     <comment>label</comment>
   </data>
   <data name="ribPageColorButton_Label" xml:space="preserve">
-    <value>צבע עמוד</value>
+    <value>הגדר צבע עמוד</value>
     <comment>page context menu</comment>
   </data>
   <data name="ribPageColorButton_Screentip" xml:space="preserve">
-    <value>בחר צבע מותאם אישית עבור רקע העמוד</value>
+    <value>שנה את הרקע של דף זה לצבע מותאם אישית</value>
     <comment>page context menu</comment>
   </data>
   <data name="LoadStyleTheme_errorLoading" xml:space="preserve">

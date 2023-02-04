@@ -4680,11 +4680,11 @@ ISO-code then comma then language name</comment>
     <comment>label</comment>
   </data>
   <data name="ribPageColorButton_Label" xml:space="preserve">
-    <value>لون الصفحة</value>
+    <value>تعيين لون الصفحة</value>
     <comment>page context menu</comment>
   </data>
   <data name="ribPageColorButton_Screentip" xml:space="preserve">
-    <value>اختر لونًا مخصصًا لخلفية الصفحة</value>
+    <value>قم بتغيير خلفية هذه الصفحة إلى لون مخصص</value>
     <comment>page context menu</comment>
   </data>
   <data name="LoadStyleTheme_errorLoading" xml:space="preserve">

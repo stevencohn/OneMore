@@ -3339,11 +3339,11 @@ Polaroid</value>
     <comment>ribbon numbering</comment>
   </data>
   <data name="ribPageColorButton_Label" xml:space="preserve">
-    <value>Page Color</value>
+    <value>Set Page Color</value>
     <comment>page context menu</comment>
   </data>
   <data name="ribPageColorButton_Screentip" xml:space="preserve">
-    <value>Choose a custom color for the page background</value>
+    <value>Change the background of this page to a custom color</value>
     <comment>page context menu</comment>
   </data>
   <data name="ribPageMenu_Label" xml:space="preserve">

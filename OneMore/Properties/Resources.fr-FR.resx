@@ -4674,11 +4674,11 @@ Dans cette section</value>
     <comment>label</comment>
   </data>
   <data name="ribPageColorButton_Label" xml:space="preserve">
-    <value>Couleur des pages</value>
+    <value>Définir la couleur de la page</value>
     <comment>page context menu</comment>
   </data>
   <data name="ribPageColorButton_Screentip" xml:space="preserve">
-    <value>Choisissez une couleur personnalisée pour l'arrière-plan de la page</value>
+    <value>Remplacez l'arrière-plan de cette page par une couleur personnalisée</value>
     <comment>page context menu</comment>
   </data>
   <data name="LoadStyleTheme_errorLoading" xml:space="preserve">

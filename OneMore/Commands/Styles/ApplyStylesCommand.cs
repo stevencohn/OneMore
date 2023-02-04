@@ -95,7 +95,9 @@ namespace River.OneMoreAddIn.Commands
 				return false;
 			}
 
-			return new PageColorCommand().UpdatePageColor(page, color);
+			var cmd = new PageColorCommand();
+			cmd.SetLogger(logger);
+			return cmd.UpdatePageColor(page, color);
 		}
 
 

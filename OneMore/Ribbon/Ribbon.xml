@@ -18,11 +18,11 @@
             onAction="ApplyStyleCmd"
             keytip="ST">
             <button
-              id="ribLoadStylesButton"
+              id="ribApplyStylesButton"
               getLabel="GetRibbonLabel"
               getScreentip="GetRibbonScreentip"
-              imageMso="SharingOpenWssDocumentList"
-              onAction="LoadStylesCmd"/>
+              imageMso="ApplyStylesPane"
+              onAction="ApplyStylesCmd"/>
             <button
               id="ribEditStylesButton"
               getLabel="GetRibbonLabel"
@@ -30,17 +30,17 @@
               imageMso="StylesModifyStyle"
               onAction="EditStylesCmd"/>
             <button
+              id="ribLoadStylesButton"
+              getLabel="GetRibbonLabel"
+              getScreentip="GetRibbonScreentip"
+              imageMso="SharingOpenWssDocumentList"
+              onAction="LoadStylesCmd"/>
+            <button
               id="ribNewStyleButton"
               getLabel="GetRibbonLabel"
               getScreentip="GetRibbonScreentip"
               imageMso="StylesPaneNewStyle"
               onAction="NewStyleCmd"/>
-            <button
-              id="ribApplyStylesButton"
-              getLabel="GetRibbonLabel"
-              getScreentip="GetRibbonScreentip"
-              imageMso="ApplyStylesPane"
-              onAction="ApplyStylesCmd"/>
             <button
               id="ribPageColorButton"
               imageMso="ShapeFillColorPicker"
