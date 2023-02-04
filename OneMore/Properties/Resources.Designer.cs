@@ -1736,10 +1736,10 @@ namespace River.OneMoreAddIn.Properties {
         
         /// <summary>
         ///   Looks up a localized string similar to &lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
-        ///&lt;Theme name=&quot;Orange&quot; dark=&quot;false&quot;&gt;
+        ///&lt;Theme key=&quot;Orange&quot; name=&quot;Orange&quot; color=&quot;automatic&quot; setColor=&quot;False&quot; dark=&quot;False&quot;&gt;
         ///  &lt;Style index=&quot;0&quot; name=&quot;Heading 1&quot; font=&quot;Calibri Light&quot; fontColor=&quot;Black&quot; fontSize=&quot;20.0&quot; spaceBefore=&quot;14.0&quot; spaceAfter=&quot;0.0&quot; applyColors=&quot;true&quot; styleType=&quot;Heading&quot; /&gt;
         ///  &lt;Style index=&quot;1&quot; name=&quot;Heading 2&quot; font=&quot;Calibri Light&quot; fontColor=&quot;#E67832&quot; fontSize=&quot;18.0&quot; spaceBefore=&quot;14.0&quot; spaceAfter=&quot;0.0&quot; applyColors=&quot;true&quot; styleType=&quot;Heading&quot; /&gt;
-        ///  &lt;Style index=&quot;2&quot; name=&quot;Heading 3&quot; font=&quot;Calibri Light&quot; fontColor=&quot;#823D0A&quot; fontSize=&quot;16.0&quot; s [rest of string was truncated]&quot;;.
+        ///  &lt;Style index=&quot;2&quot; name=&quot;Heading 3&quot; font=&quot;Cali [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string DefaultStyles {
             get {
@@ -4307,6 +4307,15 @@ namespace River.OneMoreAddIn.Properties {
         internal static string PageColorDialog_applyThemeBox_Text {
             get {
                 return ResourceManager.GetString("PageColorDialog_applyThemeBox.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to There may not be enough contrast between the text color and the page color.
+        /// </summary>
+        internal static string PageColorDialog_contrastTooltip {
+            get {
+                return ResourceManager.GetString("PageColorDialog_contrastTooltip", resourceCulture);
             }
         }
         

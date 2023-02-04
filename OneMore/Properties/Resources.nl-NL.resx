@@ -4718,4 +4718,8 @@ In deze sectie</value>
     <value>Klik hier om de paginakleur te selecteren</value>
     <comment>linklabel</comment>
   </data>
+  <data name="PageColorDialog_contrastTooltip" xml:space="preserve">
+    <value>Er is mogelijk onvoldoende contrast tussen de tekstkleur en de paginakleur</value>
+    <comment>tooltip</comment>
+  </data>
 </root>

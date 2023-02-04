@@ -1936,6 +1936,10 @@ Deferred</value>
     <value>Apply styles to this page</value>
     <comment>checkbox</comment>
   </data>
+  <data name="PageColorDialog_contrastTooltip" xml:space="preserve">
+    <value>There may not be enough contrast between the text color and the page color</value>
+    <comment>tooltip</comment>
+  </data>
   <data name="PageColorDialog_contrastWarning" xml:space="preserve">
     <value>Text may be unreadable</value>
     <comment>label</comment>

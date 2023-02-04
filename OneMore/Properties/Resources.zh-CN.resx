@@ -4702,4 +4702,8 @@ ISO-code then comma then language name</comment>
     <value>点击此处选择页面颜色</value>
     <comment>linklabel</comment>
   </data>
+  <data name="PageColorDialog_contrastTooltip" xml:space="preserve">
+    <value>文本颜色和页面颜色之间可能没有足够的对比度</value>
+    <comment>tooltip</comment>
+  </data>
 </root>

@@ -4705,4 +4705,8 @@ In diesem Abschnitt</value>
     <value>Klicken Sie hier, um die Seitenfarbe auszuwählen</value>
     <comment>linklabel</comment>
   </data>
+  <data name="PageColorDialog_contrastTooltip" xml:space="preserve">
+    <value>Möglicherweise ist der Kontrast zwischen der Textfarbe und der Seitenfarbe nicht ausreichend</value>
+    <comment>tooltip</comment>
+  </data>
 </root>

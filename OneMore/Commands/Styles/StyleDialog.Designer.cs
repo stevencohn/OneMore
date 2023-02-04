@@ -45,6 +45,7 @@
 			this.namesBox = new System.Windows.Forms.ComboBox();
 			this.panel1 = new System.Windows.Forms.Panel();
 			this.optionsGroup = new System.Windows.Forms.GroupBox();
+			this.statusLabel = new System.Windows.Forms.Label();
 			this.pageColorLink = new River.OneMoreAddIn.UI.MoreLinkLabel();
 			this.darkBox = new System.Windows.Forms.CheckBox();
 			this.pageColorBox = new System.Windows.Forms.CheckBox();
@@ -201,7 +202,7 @@
 			// 
 			this.cancelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-			this.cancelButton.Location = new System.Drawing.Point(526, 501);
+			this.cancelButton.Location = new System.Drawing.Point(526, 510);
 			this.cancelButton.Name = "cancelButton";
 			this.cancelButton.Size = new System.Drawing.Size(116, 38);
 			this.cancelButton.TabIndex = 10;
@@ -212,7 +213,7 @@
 			// 
 			this.okButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.okButton.DialogResult = System.Windows.Forms.DialogResult.OK;
-			this.okButton.Location = new System.Drawing.Point(404, 501);
+			this.okButton.Location = new System.Drawing.Point(404, 510);
 			this.okButton.Name = "okButton";
 			this.okButton.Size = new System.Drawing.Size(116, 38);
 			this.okButton.TabIndex = 9;
@@ -226,7 +227,7 @@
 			this.namesBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this.namesBox.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.namesBox.FormattingEnabled = true;
-			this.namesBox.Location = new System.Drawing.Point(18, 505);
+			this.namesBox.Location = new System.Drawing.Point(18, 514);
 			this.namesBox.Name = "namesBox";
 			this.namesBox.Size = new System.Drawing.Size(121, 33);
 			this.namesBox.TabIndex = 21;
@@ -261,22 +262,33 @@
 			this.panel1.Location = new System.Drawing.Point(8, 40);
 			this.panel1.Name = "panel1";
 			this.panel1.Padding = new System.Windows.Forms.Padding(15, 20, 15, 9);
-			this.panel1.Size = new System.Drawing.Size(660, 551);
+			this.panel1.Size = new System.Drawing.Size(660, 560);
 			this.panel1.TabIndex = 25;
 			// 
 			// optionsGroup
 			// 
 			this.optionsGroup.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+			this.optionsGroup.Controls.Add(this.statusLabel);
 			this.optionsGroup.Controls.Add(this.pageColorLink);
 			this.optionsGroup.Controls.Add(this.darkBox);
 			this.optionsGroup.Controls.Add(this.pageColorBox);
-			this.optionsGroup.Location = new System.Drawing.Point(22, 356);
+			this.optionsGroup.Location = new System.Drawing.Point(22, 353);
 			this.optionsGroup.Name = "optionsGroup";
-			this.optionsGroup.Size = new System.Drawing.Size(619, 139);
+			this.optionsGroup.Size = new System.Drawing.Size(619, 151);
 			this.optionsGroup.TabIndex = 30;
 			this.optionsGroup.TabStop = false;
 			this.optionsGroup.Text = "Theme Options";
+			// 
+			// statusLabel
+			// 
+			this.statusLabel.AutoSize = true;
+			this.statusLabel.ForeColor = System.Drawing.Color.Maroon;
+			this.statusLabel.Location = new System.Drawing.Point(46, 117);
+			this.statusLabel.Name = "statusLabel";
+			this.statusLabel.Size = new System.Drawing.Size(31, 20);
+			this.statusLabel.TabIndex = 3;
+			this.statusLabel.Text = "OK";
 			// 
 			// pageColorLink
 			// 
@@ -616,7 +628,7 @@
 			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.CancelButton = this.cancelButton;
-			this.ClientSize = new System.Drawing.Size(675, 599);
+			this.ClientSize = new System.Drawing.Size(675, 608);
 			this.Controls.Add(this.mainTools);
 			this.Controls.Add(this.panel1);
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
@@ -691,5 +703,6 @@
 		private System.Windows.Forms.CheckBox darkBox;
 		private UI.MoreLinkLabel pageColorLink;
 		private System.Windows.Forms.ToolTip tooltip;
+		private System.Windows.Forms.Label statusLabel;
 	}
 }

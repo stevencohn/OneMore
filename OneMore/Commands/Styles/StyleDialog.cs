@@ -171,6 +171,8 @@ namespace River.OneMoreAddIn.Commands
 			spaceAfterSpinner.Value = 0;
 			spaceBeforeSpinner.Value = 0;
 			spacingSpinner.Value = 0;
+
+			statusLabel.Text = string.Empty;
 		}
 
 
@@ -335,6 +337,11 @@ namespace River.OneMoreAddIn.Commands
 
 			var background = BestBackgroundColor();
 
+			tooltip.SetToolTip(previewBox,
+				$"pageColor:{pageColor.ToRGBHtml()}\n" +
+				$"background:{background.ToRGBHtml()}\n" +
+				$"theme:{theme?.Color} {(theme?.SetColor == true ? " (set-color)" : string.Empty)}");
+
 			using var contrastPen = background.GetBrightness() <= 0.5
 				? new Pen(Color.White)
 				: new Pen(BasicColors.BlackSmoke);
@@ -352,7 +359,7 @@ namespace River.OneMoreAddIn.Commands
 
 			using var sampleFont = offset
 				? new Font(familyBox.Text, sampleFontSize)
-				: MakeFont(sampleFontSize); // dispose
+				: MakeFont(sampleFontSize);
 
 			var sampleSize = e.Graphics.MeasureString(offset ? "Sample" : "Sample ", sampleFont);
 
@@ -363,7 +370,7 @@ namespace River.OneMoreAddIn.Commands
 				? (float)Math.Round(sampleFontSize * 0.5)
 				: sampleFontSize;
 
-			using var textFont = MakeFont(Math.Max(textFontSize, 4)); // dispose
+			using var textFont = MakeFont(Math.Max(textFontSize, 4));
 
 			var textSize = e.Graphics.MeasureString("Text", textFont);
 			var allWidth = sampleSize.Width + textSize.Width;
@@ -397,15 +404,29 @@ namespace River.OneMoreAddIn.Commands
 			var format = new StringFormat(StringFormatFlags.NoWrap);
 
 			var textColor = selection?.ApplyColors == true ? selection.Foreground : contrastPen.Color;
-			using var textBrush = new SolidBrush(textColor); // dispose
+			using var textBrush = new SolidBrush(textColor);
 
 			var sampleColor = offset ? Color.Gray : textColor;
-			using var sampleBrush = new SolidBrush(sampleColor); // dispose
+			using var sampleBrush = new SolidBrush(sampleColor);
 
 			e.Graphics.DrawString("Sample ", sampleFont, sampleBrush, sampleClip, format);
 
 			if (subButton.Checked) textClip.Y += (int)textSize.Height;
 			e.Graphics.DrawString("Text", textFont, textBrush, textClip, format);
+
+			// check contrast
+			var backBrightness = pageColor.GetBrightness() < 0.5;
+			var textBrightness = sampleColor.GetBrightness() < 0.5;
+			if (backBrightness == textBrightness)
+			{
+				statusLabel.Text = Resx.PageColorDialog_contrastWarning;
+				tooltip.SetToolTip(statusLabel, Resx.PageColorDialog_contrastTooltip);
+			}
+			else
+			{
+				statusLabel.Text = string.Empty;
+				tooltip.SetToolTip(statusLabel, string.Empty);
+			}
 		}
 
 
@@ -664,13 +685,24 @@ namespace River.OneMoreAddIn.Commands
 			else if (activeFocus == spaceBeforeSpinner) { ChangeSpaceBefore(spaceBeforeSpinner, e); }
 			else if (activeFocus == spacingSpinner) { ChangeSpacing(spacingSpinner, e); }
 
-			theme.SetColor = pageColorBox.Checked;
-			theme.Color = pageColor.Equals(Color.Transparent)
-				? StyleBase.Automatic
-				: pageColor.ToRGBHtml();
+			if (theme != null)
+			{
+				if (!pageColorBox.Checked)
+				{
+					theme.SetColor = false;
+					theme.Color = StyleBase.Automatic;
+				}
+				else
+				{
+					theme.SetColor = true;
+					theme.Color = pageColor.Equals(Color.Transparent)
+						? StyleBase.Automatic
+						: pageColor.ToRGBHtml();
+				}
 
-			theme.Dark = darkBox.Checked;
-			// save will be done when we return to EditStylesCommand...
+				theme.Dark = darkBox.Checked;
+				// save will be done when we return to EditStylesCommand...
+			}
 		}
 
 
@@ -885,6 +917,11 @@ namespace River.OneMoreAddIn.Commands
 			var result = dialog.ShowDialog(/* leave empty */);
 			if (result == DialogResult.OK)
 			{
+				if (!theme.SetColor)
+				{
+					theme.Color = StyleBase.Automatic;
+				}
+
 				var key = Path.GetFileNameWithoutExtension(dialog.FileName);
 				theme = new Theme(MakeStyles(), key, key, theme.Color, theme.SetColor, theme.Dark);
 				ThemeProvider.Save(theme, dialog.FileName);

@@ -4771,4 +4771,8 @@ W tej sekcji</value>
     <value>Kliknij tutaj, aby wybrać kolor strony</value>
     <comment>linklabel</comment>
   </data>
+  <data name="PageColorDialog_contrastTooltip" xml:space="preserve">
+    <value>Kontrast między kolorem tekstu a kolorem strony może być niewystarczający</value>
+    <comment>tooltip</comment>
+  </data>
 </root>

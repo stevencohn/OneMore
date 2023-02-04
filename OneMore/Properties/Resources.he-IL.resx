@@ -4813,4 +4813,8 @@ ISO-code then comma then language name</comment>
     <value>לחץ כאן כדי לבחור את צבע העמוד</value>
     <comment>linklabel</comment>
   </data>
+  <data name="PageColorDialog_contrastTooltip" xml:space="preserve">
+    <value>ייתכן שלא תהיה ניגודיות מספקת בין צבע הטקסט לצבע העמוד</value>
+    <comment>tooltip</comment>
+  </data>
 </root>

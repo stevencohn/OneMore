@@ -4718,4 +4718,8 @@ ISO-code then comma then language name</comment>
     <value>انقر هنا لتحديد لون الصفحة</value>
     <comment>linklabel</comment>
   </data>
+  <data name="PageColorDialog_contrastTooltip" xml:space="preserve">
+    <value>قد لا يكون هناك تباين كافٍ بين لون النص ولون الصفحة</value>
+    <comment>tooltip</comment>
+  </data>
 </root>
