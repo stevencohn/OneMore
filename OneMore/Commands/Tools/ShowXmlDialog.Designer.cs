@@ -70,6 +70,7 @@
 			this.findBox = new System.Windows.Forms.TextBox();
 			this.findButton = new System.Windows.Forms.Button();
 			this.masterPanel = new System.Windows.Forms.Panel();
+			this.saveBox = new System.Windows.Forms.CheckBox();
 			this.tabs.SuspendLayout();
 			this.pageTab.SuspendLayout();
 			this.sectionTab.SuspendLayout();
@@ -98,7 +99,7 @@
 			this.tabs.Margin = new System.Windows.Forms.Padding(2);
 			this.tabs.Name = "tabs";
 			this.tabs.SelectedIndex = 0;
-			this.tabs.Size = new System.Drawing.Size(1462, 853);
+			this.tabs.Size = new System.Drawing.Size(2440, 765);
 			this.tabs.TabIndex = 0;
 			this.tabs.SelectedIndexChanged += new System.EventHandler(this.TabsSelectedIndexChanged);
 			this.tabs.Selecting += new System.Windows.Forms.TabControlCancelEventHandler(this.TabsSelecting);
@@ -112,7 +113,7 @@
 			this.pageTab.Margin = new System.Windows.Forms.Padding(2);
 			this.pageTab.Name = "pageTab";
 			this.pageTab.Padding = new System.Windows.Forms.Padding(2);
-			this.pageTab.Size = new System.Drawing.Size(1454, 820);
+			this.pageTab.Size = new System.Drawing.Size(2432, 732);
 			this.pageTab.TabIndex = 0;
 			this.pageTab.Text = "Page";
 			// 
@@ -124,7 +125,7 @@
 			this.pageBox.Location = new System.Drawing.Point(2, 2);
 			this.pageBox.Margin = new System.Windows.Forms.Padding(2);
 			this.pageBox.Name = "pageBox";
-			this.pageBox.Size = new System.Drawing.Size(1450, 816);
+			this.pageBox.Size = new System.Drawing.Size(2428, 728);
 			this.pageBox.TabIndex = 7;
 			this.pageBox.Text = "";
 			this.pageBox.WordWrap = false;
@@ -279,7 +280,7 @@
 			this.manualPanel.Controls.Add(this.functionBox);
 			this.manualPanel.Controls.Add(this.objectIdBox);
 			this.manualPanel.Controls.Add(this.manualLabel);
-			this.manualPanel.Location = new System.Drawing.Point(1208, 0);
+			this.manualPanel.Location = new System.Drawing.Point(1506, 3);
 			this.manualPanel.Name = "manualPanel";
 			this.manualPanel.Size = new System.Drawing.Size(928, 90);
 			this.manualPanel.TabIndex = 2;
@@ -349,7 +350,7 @@
 			// 
 			this.cancelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-			this.cancelButton.Location = new System.Drawing.Point(1322, 18);
+			this.cancelButton.Location = new System.Drawing.Point(2300, 18);
 			this.cancelButton.Margin = new System.Windows.Forms.Padding(2);
 			this.cancelButton.Name = "cancelButton";
 			this.cancelButton.Size = new System.Drawing.Size(124, 35);
@@ -368,17 +369,17 @@
 			this.buttonPanel.Controls.Add(this.pagePathLabel);
 			this.buttonPanel.Controls.Add(this.pageNameLabel);
 			this.buttonPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
-			this.buttonPanel.Location = new System.Drawing.Point(0, 960);
+			this.buttonPanel.Location = new System.Drawing.Point(0, 872);
 			this.buttonPanel.Margin = new System.Windows.Forms.Padding(2);
 			this.buttonPanel.Name = "buttonPanel";
-			this.buttonPanel.Size = new System.Drawing.Size(1462, 68);
+			this.buttonPanel.Size = new System.Drawing.Size(2440, 68);
 			this.buttonPanel.TabIndex = 4;
 			// 
 			// okButton
 			// 
 			this.okButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.okButton.Enabled = false;
-			this.okButton.Location = new System.Drawing.Point(1190, 18);
+			this.okButton.Location = new System.Drawing.Point(2168, 18);
 			this.okButton.Margin = new System.Windows.Forms.Padding(2);
 			this.okButton.Name = "okButton";
 			this.okButton.Size = new System.Drawing.Size(124, 35);
@@ -448,13 +449,14 @@
 			// 
 			// pagePanel
 			// 
+			this.pagePanel.Controls.Add(this.saveBox);
 			this.pagePanel.Controls.Add(this.hideLFBox);
 			this.pagePanel.Controls.Add(this.hideBox);
 			this.pagePanel.Controls.Add(this.scopeBox);
 			this.pagePanel.Controls.Add(this.pageInfoLabel);
 			this.pagePanel.Location = new System.Drawing.Point(408, 8);
 			this.pagePanel.Name = "pagePanel";
-			this.pagePanel.Size = new System.Drawing.Size(802, 90);
+			this.pagePanel.Size = new System.Drawing.Size(1100, 90);
 			this.pagePanel.TabIndex = 9;
 			// 
 			// hideLFBox
@@ -528,7 +530,7 @@
 			this.topPanel.Margin = new System.Windows.Forms.Padding(2);
 			this.topPanel.Name = "topPanel";
 			this.topPanel.Padding = new System.Windows.Forms.Padding(8, 8, 0, 0);
-			this.topPanel.Size = new System.Drawing.Size(1462, 107);
+			this.topPanel.Size = new System.Drawing.Size(2440, 107);
 			this.topPanel.TabIndex = 5;
 			// 
 			// wrapBox
@@ -572,15 +574,25 @@
 			this.masterPanel.Location = new System.Drawing.Point(8, 8);
 			this.masterPanel.Margin = new System.Windows.Forms.Padding(2);
 			this.masterPanel.Name = "masterPanel";
-			this.masterPanel.Size = new System.Drawing.Size(1462, 1028);
+			this.masterPanel.Size = new System.Drawing.Size(2440, 940);
 			this.masterPanel.TabIndex = 6;
+			// 
+			// saveBox
+			// 
+			this.saveBox.AutoSize = true;
+			this.saveBox.Location = new System.Drawing.Point(800, 22);
+			this.saveBox.Name = "saveBox";
+			this.saveBox.Size = new System.Drawing.Size(186, 24);
+			this.saveBox.TabIndex = 7;
+			this.saveBox.Text = "Save window location";
+			this.saveBox.UseVisualStyleBackColor = true;
 			// 
 			// ShowXmlDialog
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.CancelButton = this.cancelButton;
-			this.ClientSize = new System.Drawing.Size(1478, 1044);
+			this.ClientSize = new System.Drawing.Size(2456, 956);
 			this.Controls.Add(this.pagePanel);
 			this.Controls.Add(this.masterPanel);
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -589,7 +601,7 @@
 			this.Name = "ShowXmlDialog";
 			this.Padding = new System.Windows.Forms.Padding(8);
 			this.ShowInTaskbar = false;
-			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+			this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
 			this.Text = "OneMore XML";
 			this.tabs.ResumeLayout(false);
 			this.pageTab.ResumeLayout(false);
@@ -653,5 +665,6 @@
 		private System.Windows.Forms.Panel manualPanel;
 		private System.Windows.Forms.CheckBox hidePidBox;
 		private System.Windows.Forms.ImageList tabIcons;
+		private System.Windows.Forms.CheckBox saveBox;
 	}
 }
