@@ -53,7 +53,7 @@ namespace River.OneMoreAddIn.Commands
 
 
 		/// <summary>
-		/// Called to set the current page color
+		/// Called to manage the current style theme.
 		/// </summary>
 		/// <param name="color">
 		/// The current color of the page;
@@ -118,13 +118,25 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		public PageColorDialog(Color color, string themeName)
+		/// <summary>
+		/// Called to set the current page color
+		/// </summary>
+		/// <param name="color">
+		/// The current color of the page;
+		/// If the page color is "automatic" then this should be Color.Transparent
+		/// </param>
+		/// <param name="themeKey">
+		/// The name of the current theme
+		/// </param>
+		public PageColorDialog(Color color, string themeKey)
 			: this(color)
 		{
-			if (themeName != null)
+			if (themeKey != null)
 			{
 				currentThemeLabel.Text =
-					string.Format(Resx.PageColorDialog_currentThemeLabel_Text, themeName);
+					string.Format(Resx.PageColorDialog_currentThemeLabel_Text, themeKey);
+
+				theme = new ThemeProvider(themeKey).Theme;
 			}
 		}
 
