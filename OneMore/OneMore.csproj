@@ -154,6 +154,7 @@
     <Compile Include="Commands\Styles\PageColorDialog.Designer.cs">
       <DependentUpon>PageColorDialog.cs</DependentUpon>
     </Compile>
+    <Compile Include="Commands\Styles\PageColors.cs" />
     <Compile Include="Commands\Styles\PageColorSelector.cs">
       <SubType>Form</SubType>
     </Compile>

@@ -81,13 +81,13 @@ namespace River.OneMoreAddIn.Commands
 			{
 				noButton.Checked = true;
 			}
-			else if (pageColor.Equals((Color)customBox.Tag))
+			else if (new PageColors().Contains(pageColor))
 			{
-				customButton.Checked = true;
+				omButton.Checked = true;
 			}
 			else
 			{
-				omButton.Checked = true;
+				customButton.Checked = true;
 			}
 
 			if (themeName != null)
