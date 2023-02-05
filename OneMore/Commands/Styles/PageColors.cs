@@ -116,11 +116,5 @@ namespace River.OneMoreAddIn.Commands
 
 			Add(swatch);
 		}
-
-
-		public bool Contains(Color color)
-		{
-			return this.Any(s => s.Color.Equals(color));
-		}
 	}
 }
