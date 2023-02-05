@@ -31,10 +31,14 @@ namespace River.OneMoreAddIn.Commands
 			Page page;
 			using (var one = new OneNote(out page, out _))
 			{
-				color = page.GetPageColor(out _, out _);
+				color = page.GetPageColor(out var automatic, out _);
+				if (automatic)
+				{
+					color = Color.Transparent;
+				}
 			}
 
-			using var dialog = new PageColorDialog(color, true);
+			using var dialog = new PageColorDialog(color);
 			if (dialog.ShowDialog(owner) == DialogResult.OK)
 			{
 				UpdatePageColor(page, MakePageColor(dialog.Color));

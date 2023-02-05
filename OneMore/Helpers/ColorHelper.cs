@@ -4,11 +4,45 @@
 
 namespace River.OneMoreAddIn
 {
+	using River.OneMoreAddIn.Styles;
 	using System.Drawing;
 
 
 	internal static class ColorHelper
 	{
+
+		/// <summary>
+		/// Converts a CSS color specification, a color name, or the constant "automatic"
+		/// to a Color instance.
+		/// </summary>
+		/// <param name="html">The color specification</param>
+		/// <returns>
+		/// A new Color value, Color.Transparent, or Color.Empty if the html specification
+		/// cannot be converted to a proper value
+		/// </returns>
+		public static Color FromHtml(string html)
+		{
+			if (html.Equals(StyleBase.Automatic))
+			{
+				return Color.Transparent;
+			}
+
+			if (html.StartsWith("#"))
+			{
+				return ColorTranslator.FromHtml(html);
+			}
+
+			try
+			{
+				return Color.FromName(html);
+			}
+			catch
+			{
+				return Color.Empty;
+			}
+		}
+
+
 		/// <summary>
 		/// Converts a simple 0x123456 int color value to a Color
 		/// </summary>

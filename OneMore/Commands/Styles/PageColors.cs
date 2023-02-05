@@ -11,9 +11,9 @@ namespace River.OneMoreAddIn.Commands
 
 
 	/// <summary>
-	/// 
+	/// A custom page color swatch
 	/// </summary>
-	public sealed class Swatch
+	internal sealed class Swatch
 	{
 		public const int Size = 60;
 		public const int Margin = 3;
@@ -33,7 +33,7 @@ namespace River.OneMoreAddIn.Commands
 
 
 	/// <summary>
-	/// 
+	/// Custom page colors
 	/// </summary>
 	internal class PageColors : List<Swatch>
 	{

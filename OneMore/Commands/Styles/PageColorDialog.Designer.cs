@@ -28,6 +28,7 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
+			this.components = new System.ComponentModel.Container();
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PageColorDialog));
 			this.omBox = new River.OneMoreAddIn.UI.MorePictureBox();
 			this.customBox = new River.OneMoreAddIn.UI.MorePictureBox();
@@ -44,6 +45,7 @@
 			this.customButton = new System.Windows.Forms.RadioButton();
 			this.noButton = new System.Windows.Forms.RadioButton();
 			this.statusLabel = new System.Windows.Forms.Label();
+			this.tooltip = new System.Windows.Forms.ToolTip(this.components);
 			((System.ComponentModel.ISupportInitialize)(this.omBox)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.customBox)).BeginInit();
 			this.noPanel.SuspendLayout();
@@ -270,5 +272,6 @@
 		private System.Windows.Forms.RadioButton customButton;
 		private System.Windows.Forms.RadioButton noButton;
 		private System.Windows.Forms.Label statusLabel;
+		private System.Windows.Forms.ToolTip tooltip;
 	}
 }

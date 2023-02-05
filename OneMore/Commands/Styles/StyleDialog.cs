@@ -256,7 +256,7 @@ namespace River.OneMoreAddIn.Commands
 		/// <summary>
 		/// Get the modified theme. Used when editing an entire theme.
 		/// </summary>
-		public Theme Theme => new(MakeStyles(), 
+		public Theme Theme => new(MakeStyles(),
 			theme.Key, theme.Name, theme.Color, theme.SetColor, theme.Dark);
 
 
@@ -934,7 +934,10 @@ namespace River.OneMoreAddIn.Commands
 
 		private void SelectPageColor(object sender, LinkLabelLinkClickedEventArgs e)
 		{
-			using var dialog = new PageColorDialog(pageColor, applyColorsBox.Checked, theme.Name);
+			var color = pageColorBox.Checked ? ColorHelper.FromHtml(theme.Color) : pageColor;
+
+			using var dialog = new PageColorDialog(color, theme.Name, useTheme: pageColorBox.Checked);
+
 			dialog.HideOptions();
 			dialog.StartPosition = FormStartPosition.CenterParent;
 			dialog.VerticalOffset = 50;

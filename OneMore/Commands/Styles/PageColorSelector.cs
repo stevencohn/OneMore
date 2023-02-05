@@ -99,7 +99,9 @@ namespace River.OneMoreAddIn.Commands
 				if (swatch != null)
 				{
 					g.DrawRectangle(activePen, swatch.Bounds);
-					tooltip.Show(swatch.Name, paletteBox, e.Location, 2000);
+					tooltip.Show(
+						$"{swatch.Name} ({swatch.Color.ToRGBHtml()})",
+						paletteBox, e.Location, 2000);
 				}
 
 				active = swatch;
