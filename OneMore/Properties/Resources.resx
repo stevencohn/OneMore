@@ -4075,6 +4075,10 @@ Search engines will appear in the page context menu, right-click.</value>
     <value>Notebook with Sections</value>
     <comment>tab</comment>
   </data>
+  <data name="ShowXmlDialog_newlineBox.Text" xml:space="preserve">
+    <value>Attributes on new lines</value>
+    <comment>checkbox</comment>
+  </data>
   <data name="ShowXmlDialog_notebooksTab.Text" xml:space="preserve">
     <value>Notebooks</value>
     <comment>tab</comment>
@@ -4094,6 +4098,10 @@ Search engines will appear in the page context menu, right-click.</value>
   <data name="ShowXmlDialog_pagePathLabel.Text" xml:space="preserve">
     <value>Path:</value>
     <comment>label</comment>
+  </data>
+  <data name="ShowXmlDialog_saveBox.Text" xml:space="preserve">
+    <value>Save window location</value>
+    <comment>checkbox</comment>
   </data>
   <data name="ShowXmlDialog_sectionTab.Text" xml:space="preserve">
     <value>Section</value>

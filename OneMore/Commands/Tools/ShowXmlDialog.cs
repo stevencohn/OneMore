@@ -52,6 +52,8 @@ namespace River.OneMoreAddIn.Commands
 					"pageInfoLabel",
 					"hideBox",
 					"hideLFBox",
+					"newlineBox",
+					"saveBox",
 					// manualPanel
 					"manualLabel",
 					"hidePidBox",
