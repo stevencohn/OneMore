@@ -60,6 +60,7 @@
 			this.pagePathLabel = new System.Windows.Forms.Label();
 			this.pageNameLabel = new System.Windows.Forms.Label();
 			this.pagePanel = new System.Windows.Forms.Panel();
+			this.saveBox = new System.Windows.Forms.CheckBox();
 			this.hideLFBox = new System.Windows.Forms.CheckBox();
 			this.hideBox = new System.Windows.Forms.CheckBox();
 			this.scopeBox = new System.Windows.Forms.ListBox();
@@ -70,7 +71,6 @@
 			this.findBox = new System.Windows.Forms.TextBox();
 			this.findButton = new System.Windows.Forms.Button();
 			this.masterPanel = new System.Windows.Forms.Panel();
-			this.saveBox = new System.Windows.Forms.CheckBox();
 			this.tabs.SuspendLayout();
 			this.pageTab.SuspendLayout();
 			this.sectionTab.SuspendLayout();
@@ -119,6 +119,7 @@
 			// 
 			// pageBox
 			// 
+			this.pageBox.AcceptsTab = true;
 			this.pageBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
 			this.pageBox.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.pageBox.Font = new System.Drawing.Font("Lucida Console", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -139,7 +140,7 @@
 			this.sectionTab.Margin = new System.Windows.Forms.Padding(2);
 			this.sectionTab.Name = "sectionTab";
 			this.sectionTab.Padding = new System.Windows.Forms.Padding(2);
-			this.sectionTab.Size = new System.Drawing.Size(1454, 820);
+			this.sectionTab.Size = new System.Drawing.Size(2432, 732);
 			this.sectionTab.TabIndex = 2;
 			this.sectionTab.Text = "Section";
 			this.sectionTab.UseVisualStyleBackColor = true;
@@ -152,7 +153,7 @@
 			this.sectionBox.Location = new System.Drawing.Point(2, 2);
 			this.sectionBox.Margin = new System.Windows.Forms.Padding(2);
 			this.sectionBox.Name = "sectionBox";
-			this.sectionBox.Size = new System.Drawing.Size(1450, 816);
+			this.sectionBox.Size = new System.Drawing.Size(2428, 728);
 			this.sectionBox.TabIndex = 1;
 			this.sectionBox.Text = "";
 			this.sectionBox.WordWrap = false;
@@ -165,7 +166,7 @@
 			this.notebooksTab.Margin = new System.Windows.Forms.Padding(2);
 			this.notebooksTab.Name = "notebooksTab";
 			this.notebooksTab.Padding = new System.Windows.Forms.Padding(2);
-			this.notebooksTab.Size = new System.Drawing.Size(1454, 820);
+			this.notebooksTab.Size = new System.Drawing.Size(2432, 732);
 			this.notebooksTab.TabIndex = 3;
 			this.notebooksTab.Text = "Notebooks";
 			this.notebooksTab.UseVisualStyleBackColor = true;
@@ -178,7 +179,7 @@
 			this.notebookBox.Location = new System.Drawing.Point(2, 2);
 			this.notebookBox.Margin = new System.Windows.Forms.Padding(2);
 			this.notebookBox.Name = "notebookBox";
-			this.notebookBox.Size = new System.Drawing.Size(1450, 816);
+			this.notebookBox.Size = new System.Drawing.Size(2428, 728);
 			this.notebookBox.TabIndex = 1;
 			this.notebookBox.Text = "";
 			this.notebookBox.WordWrap = false;
@@ -191,7 +192,7 @@
 			this.nbSectionsTab.Margin = new System.Windows.Forms.Padding(2);
 			this.nbSectionsTab.Name = "nbSectionsTab";
 			this.nbSectionsTab.Padding = new System.Windows.Forms.Padding(2);
-			this.nbSectionsTab.Size = new System.Drawing.Size(1454, 820);
+			this.nbSectionsTab.Size = new System.Drawing.Size(2432, 732);
 			this.nbSectionsTab.TabIndex = 4;
 			this.nbSectionsTab.Text = "Notebook with Sections";
 			this.nbSectionsTab.UseVisualStyleBackColor = true;
@@ -204,7 +205,7 @@
 			this.nbSectionBox.Location = new System.Drawing.Point(2, 2);
 			this.nbSectionBox.Margin = new System.Windows.Forms.Padding(2);
 			this.nbSectionBox.Name = "nbSectionBox";
-			this.nbSectionBox.Size = new System.Drawing.Size(1450, 816);
+			this.nbSectionBox.Size = new System.Drawing.Size(2428, 728);
 			this.nbSectionBox.TabIndex = 1;
 			this.nbSectionBox.Text = "";
 			this.nbSectionBox.WordWrap = false;
@@ -217,7 +218,7 @@
 			this.nbPagesTab.Margin = new System.Windows.Forms.Padding(2);
 			this.nbPagesTab.Name = "nbPagesTab";
 			this.nbPagesTab.Padding = new System.Windows.Forms.Padding(2);
-			this.nbPagesTab.Size = new System.Drawing.Size(1454, 820);
+			this.nbPagesTab.Size = new System.Drawing.Size(2432, 732);
 			this.nbPagesTab.TabIndex = 5;
 			this.nbPagesTab.Text = "Notebook with Pages";
 			this.nbPagesTab.UseVisualStyleBackColor = true;
@@ -230,7 +231,7 @@
 			this.nbPagesBox.Location = new System.Drawing.Point(2, 2);
 			this.nbPagesBox.Margin = new System.Windows.Forms.Padding(2);
 			this.nbPagesBox.Name = "nbPagesBox";
-			this.nbPagesBox.Size = new System.Drawing.Size(1450, 816);
+			this.nbPagesBox.Size = new System.Drawing.Size(2428, 728);
 			this.nbPagesBox.TabIndex = 1;
 			this.nbPagesBox.Text = "";
 			this.nbPagesBox.WordWrap = false;
@@ -243,7 +244,7 @@
 			this.manualTab.Margin = new System.Windows.Forms.Padding(2);
 			this.manualTab.Name = "manualTab";
 			this.manualTab.Padding = new System.Windows.Forms.Padding(2);
-			this.manualTab.Size = new System.Drawing.Size(1454, 820);
+			this.manualTab.Size = new System.Drawing.Size(2432, 732);
 			this.manualTab.TabIndex = 1;
 			this.manualTab.Text = "Manual lookup";
 			this.manualTab.UseVisualStyleBackColor = true;
@@ -256,7 +257,7 @@
 			this.manualBox.Location = new System.Drawing.Point(2, 2);
 			this.manualBox.Margin = new System.Windows.Forms.Padding(2);
 			this.manualBox.Name = "manualBox";
-			this.manualBox.Size = new System.Drawing.Size(1450, 816);
+			this.manualBox.Size = new System.Drawing.Size(2428, 728);
 			this.manualBox.TabIndex = 0;
 			this.manualBox.Text = "";
 			this.manualBox.WordWrap = false;
@@ -459,6 +460,16 @@
 			this.pagePanel.Size = new System.Drawing.Size(1100, 90);
 			this.pagePanel.TabIndex = 9;
 			// 
+			// saveBox
+			// 
+			this.saveBox.AutoSize = true;
+			this.saveBox.Location = new System.Drawing.Point(800, 22);
+			this.saveBox.Name = "saveBox";
+			this.saveBox.Size = new System.Drawing.Size(186, 24);
+			this.saveBox.TabIndex = 7;
+			this.saveBox.Text = "Save window location";
+			this.saveBox.UseVisualStyleBackColor = true;
+			// 
 			// hideLFBox
 			// 
 			this.hideLFBox.AutoSize = true;
@@ -576,16 +587,6 @@
 			this.masterPanel.Name = "masterPanel";
 			this.masterPanel.Size = new System.Drawing.Size(2440, 940);
 			this.masterPanel.TabIndex = 6;
-			// 
-			// saveBox
-			// 
-			this.saveBox.AutoSize = true;
-			this.saveBox.Location = new System.Drawing.Point(800, 22);
-			this.saveBox.Name = "saveBox";
-			this.saveBox.Size = new System.Drawing.Size(186, 24);
-			this.saveBox.TabIndex = 7;
-			this.saveBox.Text = "Save window location";
-			this.saveBox.UseVisualStyleBackColor = true;
 			// 
 			// ShowXmlDialog
 			// 
