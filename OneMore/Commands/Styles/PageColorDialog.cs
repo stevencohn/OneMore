@@ -67,54 +67,47 @@ namespace River.OneMoreAddIn.Commands
 
 			var provider = new SettingsProvider();
 			var settings = provider.GetCollection("pageColor");
-			if (settings == null)
-			{
-				omBox.Tag = omColor = new PageColors()[0].Color;
-				customBox.Tag = customColor = pageColor;
 
-				if (pageColor.Equals(Color.Transparent))
-					noButton.Checked = true;
+			var customPaint = pageColor.Equals(Color.Transparent)
+				? darkMode ? BasicColors.BlackSmoke : Color.White
+				: pageColor;
+
+			// prioritize MRU, otherwise default to page color
+			var setting = settings["customColor"];
+			if (setting != null)
+			{
+				customPaint = ColorHelper.FromHtml(setting);
+			}
+
+			customBox.Tag = customPaint;
+			customColor = customPaint;
+
+			if (pageColor.Equals(Color.Transparent))
+				noButton.Checked = true;
+			else
+				customButton.Checked = true;
+
+			// prioritize MRU, otherwise default to page color
+			setting = settings["omColor"];
+			if (setting == null)
+			{
+				var colors = new PageColors();
+				var index = colors.FindIndex(s => s.Color.Equals(pageColor));
+				if (index >= 0)
+				{
+					omBox.Tag = omColor = colors[index].Color;
+					omButton.Checked = true;
+				}
 				else
-					customButton.Checked = true;
+				{
+					omBox.Tag = omColor = colors[0].Color;
+				}
 			}
 			else
 			{
-				var paintColor = pageColor.Equals(Color.Transparent)
-					? darkMode ? BasicColors.BlackSmoke : Color.White 
-					: pageColor;
-
-				// prioritize MRU, otherwise default to page color
-				var setting = settings["customColor"];
-				customBox.Tag = setting == null ? paintColor : ColorHelper.FromHtml(setting);
-				customColor = pageColor;
-
-				if (pageColor.Equals(Color.Transparent))
-					noButton.Checked = true;
-				else
-					customButton.Checked = true;
-
-				// prioritize MRU, otherwise default to page color
-				setting = settings["omColor"];
-				if (setting == null)
-				{
-					var colors = new PageColors();
-					var index = colors.FindIndex(s => s.Color.Equals(pageColor));
-					if (index >= 0)
-					{
-						omBox.Tag = omColor = colors[index].Color;
-						omButton.Checked = true;
-					}
-					else
-					{
-						omBox.Tag = omColor = colors[0].Color;
-					}
-				}
-				else
-				{
-					omColor = ColorHelper.FromHtml(setting);
-					omBox.Tag = omColor;
-					omButton.Checked = omColor.Equals(pageColor);
-				}
+				omColor = ColorHelper.FromHtml(setting);
+				omBox.Tag = omColor;
+				omButton.Checked = omColor.Equals(pageColor);
 			}
 
 			FillBox(omBox, EstimateOneNoteColor((Color)omBox.Tag));
@@ -129,10 +122,58 @@ namespace River.OneMoreAddIn.Commands
 			: this(color)
 		{
 			pageColor = color;
+			Color customColor, omColor;
 
-			if (useTheme)
+			var provider = new SettingsProvider();
+			var settings = provider.GetCollection("pageColor");
+
+			var customPaint = pageColor.Equals(Color.Transparent)
+				? darkMode ? BasicColors.BlackSmoke : Color.White
+				: pageColor;
+
+			// prioritize MRU, otherwise default to page color
+			var setting = settings["customColor"];
+			if (setting != null)
 			{
+				customPaint = ColorHelper.FromHtml(setting);
 			}
+
+			customBox.Tag = customPaint;
+			customColor = customPaint;
+
+			if (pageColor.Equals(Color.Transparent))
+				noButton.Checked = true;
+			else
+				customButton.Checked = true;
+
+			// prioritize MRU, otherwise default to page color
+			setting = settings["omColor"];
+			if (setting == null)
+			{
+				var colors = new PageColors();
+				var index = colors.FindIndex(s => s.Color.Equals(pageColor));
+				if (index >= 0)
+				{
+					omBox.Tag = omColor = colors[index].Color;
+					omButton.Checked = true;
+				}
+				else
+				{
+					omBox.Tag = omColor = colors[0].Color;
+				}
+			}
+			else
+			{
+				omColor = ColorHelper.FromHtml(setting);
+				omBox.Tag = omColor;
+				omButton.Checked = omColor.Equals(pageColor);
+			}
+
+			FillBox(omBox, EstimateOneNoteColor((Color)omBox.Tag));
+			FillBox(customBox, EstimateOneNoteColor((Color)customBox.Tag));
+
+			TipBox(omBox, omColor);
+			TipBox(customBox, customColor);
 
 			if (themeName != null)
 			{
