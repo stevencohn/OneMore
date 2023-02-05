@@ -550,9 +550,6 @@
     <Compile Include="Styles\StyleProperties.cs" />
     <Compile Include="Styles\Theme.cs" />
     <Compile Include="Styles\ThemeProvider.cs" />
-    <Compile Include="UI\ColorsComboBox.cs">
-      <SubType>Component</SubType>
-    </Compile>
     <Compile Include="UI\FormTextBox.cs">
       <SubType>Component</SubType>
     </Compile>

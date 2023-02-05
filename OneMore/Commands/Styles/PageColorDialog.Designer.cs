@@ -136,10 +136,10 @@
 			this.loadThemeLink.HoverColor = System.Drawing.Color.MediumOrchid;
 			this.loadThemeLink.Location = new System.Drawing.Point(50, 37);
 			this.loadThemeLink.Name = "loadThemeLink";
-			this.loadThemeLink.Size = new System.Drawing.Size(206, 20);
+			this.loadThemeLink.Size = new System.Drawing.Size(152, 20);
 			this.loadThemeLink.TabIndex = 2;
 			this.loadThemeLink.TabStop = true;
-			this.loadThemeLink.Text = "Load a different style theme";
+			this.loadThemeLink.Text = "Load different styles";
 			this.loadThemeLink.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.LoadTheme);
 			// 
 			// currentThemeLabel

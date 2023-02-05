@@ -51,7 +51,7 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		public PageColorDialog(Color color)
+		public PageColorDialog(Color color, bool setColor, string themeName = null)
 			: this()
 		{
 			pageColor = color;
@@ -75,6 +75,8 @@ namespace River.OneMoreAddIn.Commands
 			FillBox(omBox, EstimateOneNoteColor((Color)omBox.Tag));
 			FillBox(customBox, EstimateOneNoteColor((Color)customBox.Tag));
 
+			// find cloest match...
+
 			if (pageColor.Equals(Color.Transparent))
 			{
 				noButton.Checked = true;
@@ -88,9 +90,11 @@ namespace River.OneMoreAddIn.Commands
 				omButton.Checked = true;
 			}
 
-			theme = new ThemeProvider().Theme;
-			currentThemeLabel.Text = 
-				string.Format(Resx.PageColorDialog_currentThemeLabel_Text, theme.Name);
+			if (themeName != null)
+			{
+				currentThemeLabel.Text =
+					string.Format(Resx.PageColorDialog_currentThemeLabel_Text, themeName);
+			}
 		}
 
 

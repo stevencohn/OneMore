@@ -20,21 +20,20 @@ namespace River.OneMoreAddIn.Commands
 			public Color Color;
 			public Color Paint;
 			public Rectangle Bounds;
-			public Swatch(string name, uint color)
+			public Swatch(string name, int color)
 			{
 				Name = name;
-				Color = Color.FromArgb((int)color);
+				Color = ColorHelper.FromRgb(color);
 				Paint = Color.Empty;
 			}
 		}
 
+		private const int BorderRgb = 0x484644;             // light gray
+		private const int ActiveBorderRgb = 0xD42314;       // orangy red
+		private const int DarkBackgroundRgb = 0x292929;     // dark gray
 
 		private const int SwatchSize = 60;
 		private const int SwatchMargin = 3;
-		private static uint BorderRgb = 0xFF484644;             // light gray
-		private static uint ActiveBorderRgb = 0xFFD42314;       // orangy red
-		private static uint DarkBackgroundRgb = 0xFF292929;     // dark gray
-
 
 		private List<Swatch> palette;
 		private Swatch active;
@@ -54,8 +53,8 @@ namespace River.OneMoreAddIn.Commands
 			paletteBox.Image = new Bitmap(Width, paletteHeight);
 
 			// disposed in Dispose()
-			borderPen = new Pen(Color.FromArgb((int)BorderRgb));
-			activePen = new Pen(Color.FromArgb((int)ActiveBorderRgb));
+			borderPen = new Pen(ColorHelper.FromRgb(BorderRgb));
+			activePen = new Pen(ColorHelper.FromRgb(ActiveBorderRgb));
 
 			blackTheme = Office.IsBlackThemeEnabled();
 			LoadPalette();
@@ -88,25 +87,25 @@ namespace River.OneMoreAddIn.Commands
 				// in dark mode...
 
 				// dark
-				Register("Black", 0xFFEEEEEE, 0xFF131313);
-				Register("Gray", 0xFFCFCFCF, 0xFF303030);
-				Register("Dark Teal", 0xFFB6DCDB, 0xFF1F4140);
-				Register("Dark Olive Green", 0xFFD0E2C4, 0xFF2F4321);
-				Register("Dark Slate Blue", 0xFFB6B6D1, 0xFF232338);
-				Register("Midnight Blue", 0xFFBBC2D8, 0xFF23293D);
-				Register("Saddle Brown", 0xFFE5CCB3, 0xFF473018);
-				Register("Brown", 0xFFDAABAB, 0xFF401C1C);
-				Register("Dark Purple", 0xFFE0C2D5, 0xFF412135);
+				Register("Black", 0xEEEEEE, 0x131313);
+				Register("Gray", 0xCFCFCF, 0x303030);
+				Register("Dark Teal", 0xB6DCDB, 0x1F4140);
+				Register("Dark Olive Green", 0xD0E2C4, 0x2F4321);
+				Register("Dark Slate Blue", 0xB6B6D1, 0x232338);
+				Register("Midnight Blue", 0xBBC2D8, 0x23293D);
+				Register("Saddle Brown", 0xE5CCB3, 0x473018);
+				Register("Brown", 0xDAABAB, 0x401C1C);
+				Register("Dark Purple", 0xE0C2D5, 0x412135);
 				// light
-				Register("White", 0xFF010101, 0xFFF3F3F3);
-				Register("White Smoke", 0xFF111111, 0xFFF2F2F2);
-				Register("Alice Blue", 0xFF003E75, 0xFFECF5FF);
-				Register("Mint Cream", 0xFF00753A, 0xFFECFFF5);
-				Register("Honeydew", 0xFF007500, 0xFFECFFEC);
-				Register("Ivory", 0xFF757500, 0xFFFFFFEC);
-				Register("Snow", 0xFF225151, 0xFFF0F9F9);
-				Register("Seashell", 0xFF220E00, 0xFFFFF0E6);
-				Register("Linen", 0xFF1B1005, 0xFFFCF3EB);
+				Register("White", 0x010101, 0xF3F3F3);
+				Register("White Smoke", 0x111111, 0xF2F2F2);
+				Register("Alice Blue", 0x003E75, 0xECF5FF);
+				Register("Mint Cream", 0x00753A, 0xECFFF5);
+				Register("Honeydew", 0x007500, 0xECFFEC);
+				Register("Ivory", 0x757500, 0xFFFFEC);
+				Register("Snow", 0x225151, 0xF0F9F9);
+				Register("Seashell", 0x220E00, 0xFFF0E6);
+				Register("Linen", 0x1B1005, 0xFCF3EB);
 			}
 			else
 			{
@@ -114,33 +113,33 @@ namespace River.OneMoreAddIn.Commands
 				// are applied to the page and rendered as specified...
 
 				// light
-				Register("White", 0xFFFFFFFF);
-				Register("White Smoke", 0xFFF2F2F2);
-				Register("Alice Blue", 0xFFECF5FF);
-				Register("Mint Cream", 0xFFECFFF5);
-				Register("Honeydew", 0xFFECFFEC);
-				Register("Ivory", 0xFFFFFFEC);
-				Register("Snow", 0xFFF0F9F9);
-				Register("Seashell", 0xFFFFF0E6);
-				Register("Linen", 0xFFFCF3EB);
+				Register("White", 0xFFFFFF);
+				Register("White Smoke", 0xF2F2F2);
+				Register("Alice Blue", 0xECF5FF);
+				Register("Mint Cream", 0xECFFF5);
+				Register("Honeydew", 0xECFFEC);
+				Register("Ivory", 0xFFFFEC);
+				Register("Snow", 0xF0F9F9);
+				Register("Seashell", 0xFFF0E6);
+				Register("Linen", 0xFCF3EB);
 				// dark
-				Register("Black", 0xFF131313);
-				Register("Gray", 0xFF303030);
-				Register("Dark Teal", 0xFF1F4140);
-				Register("Dark Olive Green", 0xFF2F4321);
-				Register("Dark Slate Blue", 0xFF232338);
-				Register("Midnight Blue", 0xFF23293D);
-				Register("Saddle Brown", 0xFF473018);
-				Register("Brown", 0xFF401C1C);
-				Register("Dark Purple", 0xFF412135);
+				Register("Black", 0x131313);
+				Register("Gray", 0x303030);
+				Register("Dark Teal", 0x1F4140);
+				Register("Dark Olive Green", 0x2F4321);
+				Register("Dark Slate Blue", 0x232338);
+				Register("Midnight Blue", 0x23293D);
+				Register("Saddle Brown", 0x473018);
+				Register("Brown", 0x401C1C);
+				Register("Dark Purple", 0x412135);
 			}
 		}
 
 
-		private void Register(string name, uint color, uint? paint = null)
+		private void Register(string name, int color, int? paint = null)
 		{
 			var swatch = new Swatch(name, color);
-			swatch.Paint = paint == null ? swatch.Color : Color.FromArgb((int)paint);
+			swatch.Paint = paint == null ? swatch.Color : ColorHelper.FromRgb((int)paint);
 
 			var row = palette.Count / 3;
 			var col = palette.Count == 0 ? 0 : palette.Count % 3;
@@ -157,7 +156,7 @@ namespace River.OneMoreAddIn.Commands
 
 		private void DrawPalette()
 		{
-			background = blackTheme ? Color.FromArgb((int)DarkBackgroundRgb) : BackColor;
+			background = blackTheme ? ColorHelper.FromRgb(DarkBackgroundRgb) : BackColor;
 
 			using var g = Graphics.FromImage(paletteBox.Image);
 			g.Clear(background);

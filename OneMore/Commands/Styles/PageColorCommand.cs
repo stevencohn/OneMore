@@ -34,7 +34,7 @@ namespace River.OneMoreAddIn.Commands
 				color = page.GetPageColor(out _, out _);
 			}
 
-			using var dialog = new PageColorDialog(color);
+			using var dialog = new PageColorDialog(color, true);
 			if (dialog.ShowDialog(owner) == DialogResult.OK)
 			{
 				UpdatePageColor(page, MakePageColor(dialog.Color));
