@@ -244,6 +244,11 @@ namespace River.OneMoreAddIn.Commands
 			{
 				findBox.Focus();
 			}
+			else if (sender == pageBox && e.KeyCode == Keys.F3)
+			{
+				// Find next
+				FindClicked(sender, e);
+			}
 		}
 
 
