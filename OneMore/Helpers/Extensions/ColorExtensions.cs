@@ -8,6 +8,7 @@ namespace River.OneMoreAddIn
 	using System.Drawing;
 	using System.Windows.Forms;
 
+
 	internal static class ColorExtensions
 	{
 

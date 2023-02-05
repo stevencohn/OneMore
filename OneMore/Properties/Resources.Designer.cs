@@ -3802,7 +3802,7 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Theme files (*.xml)|*.xml|All files (*.*)|*.*.
+        ///   Looks up a localized string similar to Style definitions (*.xml)|*.xml|All files (*.*)|*.*.
         /// </summary>
         internal static string LoadStyleTheme_filter {
             get {
@@ -3811,7 +3811,7 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Load Style Theme.
+        ///   Looks up a localized string similar to Load Styles.
         /// </summary>
         internal static string LoadStyleTheme_Title {
             get {
@@ -4329,7 +4329,7 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The current style theme is {0}.
+        ///   Looks up a localized string similar to The current styles definition is &quot;{0}&quot;.
         /// </summary>
         internal static string PageColorDialog_currentThemeLabel_Text {
             get {
@@ -4356,7 +4356,7 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Load a different style theme.
+        ///   Looks up a localized string similar to Load different styles.
         /// </summary>
         internal static string PageColorDialog_loadThemeLink_Text {
             get {
@@ -5315,7 +5315,7 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Reorder Custom Styles.
+        ///   Looks up a localized string similar to Reorder Styles.
         /// </summary>
         internal static string ReorderDialog_Text {
             get {
@@ -5744,7 +5744,7 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Apply Style Theme to Page.
+        ///   Looks up a localized string similar to Apply These Styles to Page.
         /// </summary>
         internal static string ribApplyStylesButton_Label {
             get {
@@ -5753,7 +5753,7 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Apply custom styles to all content on this page.
+        ///   Looks up a localized string similar to Apply these styles to all content on this page.
         /// </summary>
         internal static string ribApplyStylesButton_Screentip {
             get {
@@ -5915,24 +5915,6 @@ namespace River.OneMoreAddIn.Properties {
         internal static string ribCaptionAttachmentsButton_Screentip {
             get {
                 return ResourceManager.GetString("ribCaptionAttachmentsButton_Screentip", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Change Page Theme.
-        /// </summary>
-        internal static string ribChangePageColorButton_Label {
-            get {
-                return ResourceManager.GetString("ribChangePageColorButton_Label", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Apply styles and background color to page.
-        /// </summary>
-        internal static string ribChangePageColorButton_Screentip {
-            get {
-                return ResourceManager.GetString("ribChangePageColorButton_Screentip", resourceCulture);
             }
         }
         
@@ -6252,7 +6234,7 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Custom Styles.
+        ///   Looks up a localized string similar to My Styles.
         /// </summary>
         internal static string ribCustomStylesButton_Label {
             get {
@@ -6432,7 +6414,7 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Edit Style Theme.
+        ///   Looks up a localized string similar to Edit Styles.
         /// </summary>
         internal static string ribEditStylesButton_Label {
             get {
@@ -6441,7 +6423,7 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Edit Style Theme ({0}).
+        ///   Looks up a localized string similar to Edit Styles ({0}).
         /// </summary>
         internal static string ribEditStylesButton_named {
             get {
@@ -6450,7 +6432,7 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Edit custom styles or load alternate theme.
+        ///   Looks up a localized string similar to Edit styles or load different styles.
         /// </summary>
         internal static string ribEditStylesButton_Screentip {
             get {
@@ -7215,7 +7197,7 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Load Style Theme.
+        ///   Looks up a localized string similar to Load Styles.
         /// </summary>
         internal static string ribLoadStylesButton_Label {
             get {
@@ -7224,7 +7206,7 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Load custom styles from a theme file.
+        ///   Looks up a localized string similar to Load My Styles from a definition file.
         /// </summary>
         internal static string ribLoadStylesButton_Screentip {
             get {
@@ -7332,7 +7314,7 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Create Style from Selection.
+        ///   Looks up a localized string similar to Create New Style from Text.
         /// </summary>
         internal static string ribNewStyleButton_Label {
             get {
@@ -9766,7 +9748,7 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to New Custom Style.
+        ///   Looks up a localized string similar to New Style.
         /// </summary>
         internal static string StyleDialog_NewText {
             get {
@@ -9816,6 +9798,15 @@ namespace River.OneMoreAddIn.Properties {
         internal static string StyleDialog_saveButton_Text {
             get {
                 return ResourceManager.GetString("StyleDialog_saveButton.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Save Styles.
+        /// </summary>
+        internal static string StyleDialog_saveStylesTitle {
+            get {
+                return ResourceManager.GetString("StyleDialog_saveStylesTitle", resourceCulture);
             }
         }
         
@@ -9876,7 +9867,7 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Custom Styles.
+        ///   Looks up a localized string similar to My Styles.
         /// </summary>
         internal static string StyleDialog_Text {
             get {

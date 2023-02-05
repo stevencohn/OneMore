@@ -256,7 +256,7 @@ namespace River.OneMoreAddIn.Commands
 		/// <summary>
 		/// Get the modified theme. Used when editing an entire theme.
 		/// </summary>
-		public Theme Theme => new(MakeStyles(), 
+		public Theme Theme => new(MakeStyles(),
 			theme.Key, theme.Name, theme.Color, theme.SetColor, theme.Dark);
 
 
@@ -857,9 +857,9 @@ namespace River.OneMoreAddIn.Commands
 		{
 			using var dialog = new OpenFileDialog();
 			dialog.DefaultExt = "xml";
-			dialog.Filter = "Theme files (*.xml)|*.xml|All files (*.*)|*.*";
+			dialog.Filter = Resx.LoadStyleTheme_filter;
 			dialog.Multiselect = false;
-			dialog.Title = "Open Style Theme";
+			dialog.Title = Resx.ribLoadStylesButton_Label;
 			dialog.ShowHelp = true; // stupid, but this is needed to avoid hang
 			dialog.AutoUpgradeEnabled = true; // simpler UI, faster
 
@@ -899,11 +899,11 @@ namespace River.OneMoreAddIn.Commands
 		{
 			using var dialog = new SaveFileDialog();
 			dialog.DefaultExt = "xml";
-			dialog.Filter = "Theme files (*.xml)|*.xml|All files (*.*)|*.*";
-			dialog.Title = "Save Style Theme";
+			dialog.Filter = Resx.LoadStyleTheme_filter;
+			dialog.Title = Resx.StyleDialog_saveStylesTitle;
 			dialog.ShowHelp = true; // stupid, but this is needed to avoid hang
 
-			var path = PathHelper.GetAppDataPath();
+			var path = Path.Combine(PathHelper.GetAppDataPath(), Resx.ThemesFolder);
 			if (Directory.Exists(path))
 			{
 				dialog.InitialDirectory = path;
@@ -934,7 +934,9 @@ namespace River.OneMoreAddIn.Commands
 
 		private void SelectPageColor(object sender, LinkLabelLinkClickedEventArgs e)
 		{
-			using var dialog = new PageColorDialog(pageColor);
+			var color = pageColorBox.Checked ? ColorHelper.FromHtml(theme.Color) : pageColor;
+
+			using var dialog = new PageColorDialog(color);
 			dialog.HideOptions();
 			dialog.StartPosition = FormStartPosition.CenterParent;
 			dialog.VerticalOffset = 50;

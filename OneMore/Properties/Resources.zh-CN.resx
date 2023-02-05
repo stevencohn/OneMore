@@ -2212,7 +2212,7 @@ ISO-code then comma then language name</comment>
     <value>images\reorder.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="ReorderDialog.Text" xml:space="preserve">
-    <value>重新排序自定义样式</value>
+    <value>重新排序样式</value>
     <comment>dialog title</comment>
   </data>
   <data name="ReorderDialog_label.Text" xml:space="preserve">
@@ -2400,11 +2400,11 @@ ISO-code then comma then language name</comment>
     <comment>not a menu, hotkey only</comment>
   </data>
   <data name="ribApplyStylesButton_Label" xml:space="preserve">
-    <value>将样式主题应用于页面</value>
+    <value>将这些样式应用于页面</value>
     <comment>ribbon styles</comment>
   </data>
   <data name="ribApplyStylesButton_Screentip" xml:space="preserve">
-    <value>将自定义样式应用于此页面上的所有内容</value>
+    <value>将这些样式应用于此页面上的所有内容</value>
     <comment>ribbon styles</comment>
   </data>
   <data name="ribArchiveNotebookButton_Label" xml:space="preserve">
@@ -2469,14 +2469,6 @@ ISO-code then comma then language name</comment>
   <data name="ribCaptionAttachmentsButton_Screentip" xml:space="preserve">
     <value>为页面上的每个附件添加标题</value>
     <comment>ribbon page</comment>
-  </data>
-  <data name="ribChangePageColorButton_Label" xml:space="preserve">
-    <value>更改页面主题</value>
-    <comment>Ribbon Custom Styles menu item, set page background color</comment>
-  </data>
-  <data name="ribChangePageColorButton_Screentip" xml:space="preserve">
-    <value>将样式和背景颜色应用于页面</value>
-    <comment>ribbon styles NODUP</comment>
   </data>
   <data name="ribCheckForUpdatesButton_Label" xml:space="preserve">
     <value>检查更新</value>
@@ -2614,8 +2606,8 @@ ISO-code then comma then language name</comment>
     <comment>ribbon </comment>
   </data>
   <data name="ribCustomStylesButton_Label" xml:space="preserve">
-    <value>样式</value>
-    <comment>Ribbon main custom styles button</comment>
+    <value>我的风格</value>
+    <comment>ribbon menu NODUP</comment>
   </data>
   <data name="ribDateStampButton_Label" xml:space="preserve">
     <value>节中的日期戳页</value>
@@ -2686,11 +2678,11 @@ ISO-code then comma then language name</comment>
     <comment>OneMore Ribbon menu item</comment>
   </data>
   <data name="ribEditStylesButton_Label" xml:space="preserve">
-    <value>编辑样式主题</value>
+    <value>编辑样式</value>
     <comment>ribbon styles</comment>
   </data>
   <data name="ribEditStylesButton_Screentip" xml:space="preserve">
-    <value>编辑自定义样式</value>
+    <value>编辑样式或加载不同的样式</value>
     <comment>ribbon styles</comment>
   </data>
   <data name="ribEditTableThemesButton_Label" xml:space="preserve">
@@ -3030,7 +3022,7 @@ ISO-code then comma then language name</comment>
     <comment>ribbon references</comment>
   </data>
   <data name="ribLoadStylesButton_Label" xml:space="preserve">
-    <value>加载样式主题</value>
+    <value>加载样式</value>
     <comment>ribbon styles</comment>
   </data>
   <data name="ribLoadStylesButton_Screentip" xml:space="preserve">
@@ -3082,8 +3074,8 @@ ISO-code then comma then language name</comment>
     <comment>ribbon references</comment>
   </data>
   <data name="ribNewStyleButton_Label" xml:space="preserve">
-    <value>从选择创建样式</value>
-    <comment>Ribbon Custom Styles menu item, create new style</comment>
+    <value>从文本创建新样式</value>
+    <comment>ribbon styles</comment>
   </data>
   <data name="ribNewStyleButton_Screentip" xml:space="preserve">
     <value>从当前选择创建新样式</value>
@@ -4107,7 +4099,7 @@ ISO-code then comma then language name</comment>
     <comment>button</comment>
   </data>
   <data name="StyleDialog_NewText" xml:space="preserve">
-    <value>新的自定义样式</value>
+    <value>新风格</value>
     <comment>dialog title</comment>
   </data>
   <data name="StyleDialog_reorderButton.Text" xml:space="preserve">
@@ -4145,7 +4137,7 @@ ISO-code then comma then language name</comment>
     <comment>button</comment>
   </data>
   <data name="StyleDialog_Text" xml:space="preserve">
-    <value>自定义样式</value>
+    <value>我的风格</value>
     <comment>dialog title</comment>
   </data>
   <data name="StyleDialog_ThemeText" xml:space="preserve">
@@ -4640,7 +4632,7 @@ ISO-code then comma then language name</comment>
     <comment>label</comment>
   </data>
   <data name="PageColorDialog_currentThemeLabel.Text" xml:space="preserve">
-    <value>当前样式主题是 {0}</value>
+    <value>当前样式定义为“{0}”</value>
     <comment>label</comment>
   </data>
   <data name="PageColorDialog_customLabel" xml:space="preserve">
@@ -4652,7 +4644,7 @@ ISO-code then comma then language name</comment>
     <comment>expander control</comment>
   </data>
   <data name="PageColorDialog_loadThemeLink.Text" xml:space="preserve">
-    <value>加载不同风格的主题</value>
+    <value>加载不同的样式</value>
     <comment>linklabel</comment>
   </data>
   <data name="PageColorDialog_noLabel.Text" xml:space="preserve">
@@ -4675,7 +4667,7 @@ ISO-code then comma then language name</comment>
     <value>无法加载文件或文件为空</value>
   </data>
   <data name="LoadStyleTheme_filter" xml:space="preserve">
-    <value>主题文件(*.xml)|*.xml|所有文件(*.*)|*.*</value>
+    <value>样式定义(*.xml)|*.xml|所有文件(*.*)|*.*</value>
     <comment>OpenFileDialog filter</comment>
   </data>
   <data name="LoadStyleTheme_Title" xml:space="preserve">
@@ -4683,7 +4675,7 @@ ISO-code then comma then language name</comment>
     <comment>OpenFileDialog title</comment>
   </data>
   <data name="ribEditStylesButton_named" xml:space="preserve">
-    <value>编辑样式主题 ({0})</value>
+    <value>编辑样式 ({0})</value>
     <comment>ribbon styles with theme name</comment>
   </data>
   <data name="StyleDialog_darkBox.Text" xml:space="preserve">
@@ -4705,5 +4697,9 @@ ISO-code then comma then language name</comment>
   <data name="PageColorDialog_contrastTooltip" xml:space="preserve">
     <value>文本颜色和页面颜色之间可能没有足够的对比度</value>
     <comment>tooltip</comment>
+  </data>
+  <data name="StyleDialog_saveStylesTitle" xml:space="preserve">
+    <value>保存样式</value>
+    <comment>dialog title</comment>
   </data>
 </root>

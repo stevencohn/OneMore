@@ -2210,7 +2210,7 @@ Wählen Sie Nein, um eine leere Zeile zwischen den Absätzen zu halten</value>
     <value>images\reorder.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="ReorderDialog.Text" xml:space="preserve">
-    <value>Benutzerdefinierte Stile neu anordnen</value>
+    <value>Stile neu anordnen</value>
     <comment>dialog title</comment>
   </data>
   <data name="ReorderDialog_label.Text" xml:space="preserve">
@@ -2398,11 +2398,11 @@ Polaroid</value>
     <comment>not a menu, hotkey only</comment>
   </data>
   <data name="ribApplyStylesButton_Label" xml:space="preserve">
-    <value>Stildesign auf Seite anwenden</value>
+    <value>Wenden Sie diese Stile auf die Seite an</value>
     <comment>ribbon styles</comment>
   </data>
   <data name="ribApplyStylesButton_Screentip" xml:space="preserve">
-    <value>Wenden Sie benutzerdefinierte Stile auf alle Inhalte auf dieser Seite an</value>
+    <value>Wenden Sie diese Stile auf alle Inhalte auf dieser Seite an</value>
     <comment>ribbon styles</comment>
   </data>
   <data name="ribArchiveNotebookButton_Label" xml:space="preserve">
@@ -2467,14 +2467,6 @@ Polaroid</value>
   <data name="ribCaptionAttachmentsButton_Screentip" xml:space="preserve">
     <value>Fügen Sie jedem Anhang auf der Seite eine Beschriftung hinzu</value>
     <comment>ribbon page</comment>
-  </data>
-  <data name="ribChangePageColorButton_Label" xml:space="preserve">
-    <value>Seitendesign ändern</value>
-    <comment>Ribbon Custom Styles menu item, set page background color</comment>
-  </data>
-  <data name="ribChangePageColorButton_Screentip" xml:space="preserve">
-    <value>Wenden Sie Stile und Hintergrundfarbe auf die Seite an</value>
-    <comment>ribbon styles NODUP</comment>
   </data>
   <data name="ribCheckForUpdatesButton_Label" xml:space="preserve">
     <value>Auf Updates prüfen</value>
@@ -2612,8 +2604,8 @@ Polaroid</value>
     <comment>ribbon </comment>
   </data>
   <data name="ribCustomStylesButton_Label" xml:space="preserve">
-    <value>Benutzerdefinierte Stile</value>
-    <comment>Ribbon main custom styles button</comment>
+    <value>Meine Stile</value>
+    <comment>ribbon menu NODUP</comment>
   </data>
   <data name="ribDateStampButton_Label" xml:space="preserve">
     <value>Datumsstempelseiten im Abschnitt</value>
@@ -2684,11 +2676,11 @@ Polaroid</value>
     <comment>OneMore Ribbon menu item</comment>
   </data>
   <data name="ribEditStylesButton_Label" xml:space="preserve">
-    <value>Stilthema bearbeiten</value>
+    <value>Stile bearbeiten</value>
     <comment>ribbon styles</comment>
   </data>
   <data name="ribEditStylesButton_Screentip" xml:space="preserve">
-    <value>Benutzerdefinierte Stile bearbeiten</value>
+    <value>Bearbeiten Sie Stile oder laden Sie verschiedene Stile</value>
     <comment>ribbon styles</comment>
   </data>
   <data name="ribEditTableThemesButton_Label" xml:space="preserve">
@@ -3028,7 +3020,7 @@ Polaroid</value>
     <comment>ribbon references</comment>
   </data>
   <data name="ribLoadStylesButton_Label" xml:space="preserve">
-    <value>Style-Design laden</value>
+    <value>Stile laden</value>
     <comment>ribbon styles</comment>
   </data>
   <data name="ribLoadStylesButton_Screentip" xml:space="preserve">
@@ -3080,8 +3072,8 @@ Polaroid</value>
     <comment>ribbon references</comment>
   </data>
   <data name="ribNewStyleButton_Label" xml:space="preserve">
-    <value>Stil aus Auswahl erstellen</value>
-    <comment>Ribbon Custom Styles menu item, create new style</comment>
+    <value>Neuen Stil aus Text erstellen</value>
+    <comment>ribbon styles</comment>
   </data>
   <data name="ribNewStyleButton_Screentip" xml:space="preserve">
     <value>Erstellen Sie einen neuen Stil aus der aktuellen Auswahl</value>
@@ -4110,7 +4102,7 @@ Notizbücher</value>
     <comment>button</comment>
   </data>
   <data name="StyleDialog_NewText" xml:space="preserve">
-    <value>Neuer benutzerdefinierter Stil</value>
+    <value>Neuer Stil</value>
     <comment>dialog title</comment>
   </data>
   <data name="StyleDialog_reorderButton.Text" xml:space="preserve">
@@ -4148,7 +4140,7 @@ Absatz - ganzer Absatz
     <comment>button</comment>
   </data>
   <data name="StyleDialog_Text" xml:space="preserve">
-    <value>Benutzerdefinierte Stile</value>
+    <value>Meine Stile</value>
     <comment>dialog title</comment>
   </data>
   <data name="StyleDialog_ThemeText" xml:space="preserve">
@@ -4643,7 +4635,7 @@ In diesem Abschnitt</value>
     <comment>label</comment>
   </data>
   <data name="PageColorDialog_currentThemeLabel.Text" xml:space="preserve">
-    <value>Das aktuelle Designthema ist {0}</value>
+    <value>Die aktuelle Stildefinition ist "{0}".</value>
     <comment>label</comment>
   </data>
   <data name="PageColorDialog_customLabel" xml:space="preserve">
@@ -4655,7 +4647,7 @@ In diesem Abschnitt</value>
     <comment>expander control</comment>
   </data>
   <data name="PageColorDialog_loadThemeLink.Text" xml:space="preserve">
-    <value>Laden Sie ein anderes Stilthema</value>
+    <value>Laden Sie verschiedene Stile</value>
     <comment>linklabel</comment>
   </data>
   <data name="PageColorDialog_noLabel.Text" xml:space="preserve">
@@ -4678,7 +4670,7 @@ In diesem Abschnitt</value>
     <value>Datei kann nicht geladen werden oder Datei ist leer</value>
   </data>
   <data name="LoadStyleTheme_filter" xml:space="preserve">
-    <value>Designdateien (*.xml)|*.xml|Alle Dateien (*.*)|*.*</value>
+    <value>Stildefinitionen (*.xml)|*.xml|Alle Dateien (*.*)|*.*</value>
     <comment>OpenFileDialog filter</comment>
   </data>
   <data name="LoadStyleTheme_Title" xml:space="preserve">
@@ -4686,7 +4678,7 @@ In diesem Abschnitt</value>
     <comment>OpenFileDialog title</comment>
   </data>
   <data name="ribEditStylesButton_named" xml:space="preserve">
-    <value>Stildesign bearbeiten ({0})</value>
+    <value>Stile bearbeiten ({0})</value>
     <comment>ribbon styles with theme name</comment>
   </data>
   <data name="StyleDialog_darkBox.Text" xml:space="preserve">
@@ -4708,5 +4700,9 @@ In diesem Abschnitt</value>
   <data name="PageColorDialog_contrastTooltip" xml:space="preserve">
     <value>Möglicherweise ist der Kontrast zwischen der Textfarbe und der Seitenfarbe nicht ausreichend</value>
     <comment>tooltip</comment>
+  </data>
+  <data name="StyleDialog_saveStylesTitle" xml:space="preserve">
+    <value>Stile speichern</value>
+    <comment>dialog title</comment>
   </data>
 </root>

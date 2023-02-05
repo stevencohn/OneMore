@@ -154,6 +154,7 @@
     <Compile Include="Commands\Styles\PageColorDialog.Designer.cs">
       <DependentUpon>PageColorDialog.cs</DependentUpon>
     </Compile>
+    <Compile Include="Commands\Styles\PageColors.cs" />
     <Compile Include="Commands\Styles\PageColorSelector.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -169,6 +170,7 @@
       <DependentUpon>EditTableThemesDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="Commands\Tables\TableThemePainter.cs" />
+    <Compile Include="Helpers\ColorHelper.cs" />
     <Compile Include="Helpers\Extensions\GraphicsExtensions.cs" />
     <Compile Include="Models\KnownSchemaAttributes.cs" />
     <Compile Include="Models\PageReader.cs" />
@@ -550,9 +552,6 @@
     <Compile Include="Styles\StyleProperties.cs" />
     <Compile Include="Styles\Theme.cs" />
     <Compile Include="Styles\ThemeProvider.cs" />
-    <Compile Include="UI\ColorsComboBox.cs">
-      <SubType>Component</SubType>
-    </Compile>
     <Compile Include="UI\FormTextBox.cs">
       <SubType>Component</SubType>
     </Compile>

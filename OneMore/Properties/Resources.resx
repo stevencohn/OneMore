@@ -808,7 +808,7 @@ OneNote will close automatically</value>
   </data>
   <data name="CustomStyle_Screentip" xml:space="preserve">
     <value>{0} (Ctrl+Alt+Shift + {1})</value>
-    <comment>Screentip for custom style gallery tiles</comment>
+    <comment>Screentip for My Styles gallery tiles</comment>
   </data>
   <data name="CustomStyles" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>images\customstyles.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -1717,11 +1717,11 @@ Symbols: PI, E</value>
     <value>Cannot load file or file is empty</value>
   </data>
   <data name="LoadStyleTheme_filter" xml:space="preserve">
-    <value>Theme files (*.xml)|*.xml|All files (*.*)|*.*</value>
+    <value>Style definitions (*.xml)|*.xml|All files (*.*)|*.*</value>
     <comment>OpenFileDialog filter</comment>
   </data>
   <data name="LoadStyleTheme_Title" xml:space="preserve">
-    <value>Load Style Theme</value>
+    <value>Load Styles</value>
     <comment>OpenFileDialog title</comment>
   </data>
   <data name="Locked" type="System.Resources.ResXFileRef, System.Windows.Forms">
@@ -1945,7 +1945,7 @@ Deferred</value>
     <comment>label</comment>
   </data>
   <data name="PageColorDialog_currentThemeLabel.Text" xml:space="preserve">
-    <value>The current style theme is {0}</value>
+    <value>The current styles definition is "{0}"</value>
     <comment>label</comment>
   </data>
   <data name="PageColorDialog_customLabel" xml:space="preserve">
@@ -1957,7 +1957,7 @@ Deferred</value>
     <comment>expander control</comment>
   </data>
   <data name="PageColorDialog_loadThemeLink.Text" xml:space="preserve">
-    <value>Load a different style theme</value>
+    <value>Load different styles</value>
     <comment>linklabel</comment>
   </data>
   <data name="PageColorDialog_noLabel.Text" xml:space="preserve">
@@ -2382,7 +2382,7 @@ Select No to keep one empty line between paragraphs</value>
     <value>images\reorder.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="ReorderDialog.Text" xml:space="preserve">
-    <value>Reorder Custom Styles</value>
+    <value>Reorder Styles</value>
     <comment>dialog title</comment>
   </data>
   <data name="ReorderDialog_label.Text" xml:space="preserve">
@@ -2577,11 +2577,11 @@ Polaroid</value>
     <comment>hotkey</comment>
   </data>
   <data name="ribApplyStylesButton_Label" xml:space="preserve">
-    <value>Apply Style Theme to Page</value>
+    <value>Apply These Styles to Page</value>
     <comment>ribbon styles</comment>
   </data>
   <data name="ribApplyStylesButton_Screentip" xml:space="preserve">
-    <value>Apply custom styles to all content on this page</value>
+    <value>Apply these styles to all content on this page</value>
     <comment>ribbon styles</comment>
   </data>
   <data name="ribArchiveNotebookButton_Label" xml:space="preserve">
@@ -2646,14 +2646,6 @@ Polaroid</value>
   <data name="ribCaptionAttachmentsButton_Screentip" xml:space="preserve">
     <value>Add a caption to each attachment on the page</value>
     <comment>ribbon page</comment>
-  </data>
-  <data name="ribChangePageColorButton_Label" xml:space="preserve">
-    <value>Change Page Theme</value>
-    <comment>ribbon styles NODUP</comment>
-  </data>
-  <data name="ribChangePageColorButton_Screentip" xml:space="preserve">
-    <value>Apply styles and background color to page</value>
-    <comment>ribbon styles NODUP</comment>
   </data>
   <data name="ribCheckForUpdatesButton_Label" xml:space="preserve">
     <value>Check for Updates</value>
@@ -2795,7 +2787,7 @@ Polaroid</value>
     <comment>ribbon menu</comment>
   </data>
   <data name="ribCustomStylesButton_Label" xml:space="preserve">
-    <value>Custom Styles</value>
+    <value>My Styles</value>
     <comment>ribbon menu NODUP</comment>
   </data>
   <data name="ribDateStampButton_Label" xml:space="preserve">
@@ -2875,15 +2867,15 @@ Polaroid</value>
     <comment>ribbon menu</comment>
   </data>
   <data name="ribEditStylesButton_Label" xml:space="preserve">
-    <value>Edit Style Theme</value>
+    <value>Edit Styles</value>
     <comment>ribbon styles</comment>
   </data>
   <data name="ribEditStylesButton_named" xml:space="preserve">
-    <value>Edit Style Theme ({0})</value>
+    <value>Edit Styles ({0})</value>
     <comment>ribbon styles with theme name</comment>
   </data>
   <data name="ribEditStylesButton_Screentip" xml:space="preserve">
-    <value>Edit custom styles or load alternate theme</value>
+    <value>Edit styles or load different styles</value>
     <comment>ribbon styles</comment>
   </data>
   <data name="ribEditTableThemesButton_Label" xml:space="preserve">
@@ -3223,11 +3215,11 @@ Polaroid</value>
     <comment>ribbon references</comment>
   </data>
   <data name="ribLoadStylesButton_Label" xml:space="preserve">
-    <value>Load Style Theme</value>
+    <value>Load Styles</value>
     <comment>ribbon styles</comment>
   </data>
   <data name="ribLoadStylesButton_Screentip" xml:space="preserve">
-    <value>Load custom styles from a theme file</value>
+    <value>Load My Styles from a definition file</value>
     <comment>ribbon styles</comment>
   </data>
   <data name="ribLowercaseButton_Label" xml:space="preserve">
@@ -3275,7 +3267,7 @@ Polaroid</value>
     <comment>ribbon references</comment>
   </data>
   <data name="ribNewStyleButton_Label" xml:space="preserve">
-    <value>Create Style from Selection</value>
+    <value>Create New Style from Text</value>
     <comment>ribbon styles</comment>
   </data>
   <data name="ribNewStyleButton_Screentip" xml:space="preserve">
@@ -4340,7 +4332,7 @@ Notebooks</value>
     <comment>button</comment>
   </data>
   <data name="StyleDialog_NewText" xml:space="preserve">
-    <value>New Custom Style</value>
+    <value>New Style</value>
     <comment>dialog title</comment>
   </data>
   <data name="StyleDialog_optionsGroup.Text" xml:space="preserve">
@@ -4362,6 +4354,10 @@ Notebooks</value>
   <data name="StyleDialog_saveButton.Text" xml:space="preserve">
     <value>Save as...</value>
     <comment>menu item</comment>
+  </data>
+  <data name="StyleDialog_saveStylesTitle" xml:space="preserve">
+    <value>Save Styles</value>
+    <comment>dialog title</comment>
   </data>
   <data name="StyleDialog_spacingLabel.Text" xml:space="preserve">
     <value>Spacing:</value>
@@ -4390,7 +4386,7 @@ Heading - include in TOC</value>
     <comment>button</comment>
   </data>
   <data name="StyleDialog_Text" xml:space="preserve">
-    <value>Custom Styles</value>
+    <value>My Styles</value>
     <comment>dialog title</comment>
   </data>
   <data name="StyleDialog_ThemeText" xml:space="preserve">

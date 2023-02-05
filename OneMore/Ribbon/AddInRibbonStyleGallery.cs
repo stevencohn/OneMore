@@ -16,10 +16,8 @@ namespace River.OneMoreAddIn
 
 	public partial class AddIn
 	{
-		// background color, shared with RibbonTableGallery functions
-		private static Color galleryBack;
-
-		private static Theme styleGalleryTheme;
+		private static Theme galleryTheme;	// theme of styles that might force back color
+		private static Color galleryBack;	// background color
 
 
 		/*
@@ -40,19 +38,26 @@ namespace River.OneMoreAddIn
 		/// <returns></returns>
 		public int GetStyleGalleryItemCount(IRibbonControl control)
 		{
-			using var one = new OneNote(out var page, out _);
+			// load/reload cached theme; this may or may not override page background
+			// based on its SetColor property...
+			galleryTheme = new ThemeProvider().Theme;
 
-			galleryBack = page.GetPageColor(out _, out var black);
-			if (black)
+			if (galleryTheme.SetColor && !galleryTheme.Color.Equals(StyleBase.Automatic))
 			{
-				// translate Black into a custom black smoke
-				galleryBack = ColorTranslator.FromHtml("#201F1E");
+				galleryBack = ColorTranslator.FromHtml(galleryTheme.Color);
+			}
+			else
+			{
+				using var one = new OneNote(out var page, out _);
+				galleryBack = page.GetPageColor(out _, out var black);
+				if (black)
+				{
+					// translate Black into a custom black smoke
+					galleryBack = ColorTranslator.FromHtml("#201F1E");
+				}
 			}
 
-			// load/reload cached theme
-			styleGalleryTheme = new ThemeProvider().Theme;
-
-			var count = styleGalleryTheme.GetCount();
+			var count = galleryTheme.GetCount();
 			//logger.WriteLine($"GetStyleGalleryItemCount() count:{count}");
 			return count;
 		}
@@ -80,7 +85,7 @@ namespace River.OneMoreAddIn
 		public IStream GetStyleGalleryItemImage(IRibbonControl control, int itemIndex)
 		{
 			//logger.WriteLine($"GetStyleGalleryItemImage({control.Id}, {itemIndex})");
-			return TileFactory.MakeStyleTile(styleGalleryTheme.GetStyle(itemIndex), galleryBack);
+			return TileFactory.MakeStyleTile(galleryTheme.GetStyle(itemIndex), galleryBack);
 		}
 
 
@@ -92,7 +97,7 @@ namespace River.OneMoreAddIn
 		/// <returns></returns>
 		public string GetStyleGalleryItemScreentip(IRibbonControl control, int itemIndex)
 		{
-			var tip = styleGalleryTheme.GetName(itemIndex);
+			var tip = galleryTheme.GetName(itemIndex);
 
 			if (itemIndex < 9)
 			{

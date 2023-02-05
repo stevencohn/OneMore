@@ -2217,7 +2217,7 @@ Selecteer NO om één lege regel tussen paragrafen te behouden</value>
     <value>images\reorder.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="ReorderDialog.Text" xml:space="preserve">
-    <value>Herschik aangepaste stijlen</value>
+    <value>Stijlen opnieuw ordenen</value>
     <comment>dialog title</comment>
   </data>
   <data name="ReorderDialog_label.Text" xml:space="preserve">
@@ -2405,11 +2405,11 @@ Polaroid</value>
     <comment>not a menu, hotkey only</comment>
   </data>
   <data name="ribApplyStylesButton_Label" xml:space="preserve">
-    <value>Stijlthema toepassen op pagina</value>
+    <value>Pas deze stijlen toe op pagina</value>
     <comment>ribbon styles</comment>
   </data>
   <data name="ribApplyStylesButton_Screentip" xml:space="preserve">
-    <value>Pas aangepaste stijlen toe op alle inhoud op deze pagina</value>
+    <value>Pas deze stijlen toe op alle inhoud op deze pagina</value>
     <comment>ribbon styles</comment>
   </data>
   <data name="ribArchiveNotebookButton_Label" xml:space="preserve">
@@ -2474,14 +2474,6 @@ Polaroid</value>
   <data name="ribCaptionAttachmentsButton_Screentip" xml:space="preserve">
     <value>Voeg een bijschrift toe aan elke bijlage op de pagina</value>
     <comment>ribbon page</comment>
-  </data>
-  <data name="ribChangePageColorButton_Label" xml:space="preserve">
-    <value>Paginathema wijzigen</value>
-    <comment>Ribbon Custom Styles menu item, set page background color</comment>
-  </data>
-  <data name="ribChangePageColorButton_Screentip" xml:space="preserve">
-    <value>Pas stijlen en achtergrondkleur toe op de pagina</value>
-    <comment>ribbon styles NODUP</comment>
   </data>
   <data name="ribCheckForUpdatesButton_Label" xml:space="preserve">
     <value>Controleren op updates</value>
@@ -2617,8 +2609,8 @@ Polaroid</value>
     <comment>ribbon </comment>
   </data>
   <data name="ribCustomStylesButton_Label" xml:space="preserve">
-    <value>Aangepaste stijlen</value>
-    <comment>Ribbon main custom styles button</comment>
+    <value>Mijn stijlen</value>
+    <comment>ribbon menu NODUP</comment>
   </data>
   <data name="ribDateStampButton_Label" xml:space="preserve">
     <value>Datumstempelpagina's in sectie</value>
@@ -2689,11 +2681,11 @@ Polaroid</value>
     <comment>OneMore Ribbon menu item</comment>
   </data>
   <data name="ribEditStylesButton_Label" xml:space="preserve">
-    <value>Stijlthema bewerken</value>
+    <value>Stijlen bewerken</value>
     <comment>ribbon styles</comment>
   </data>
   <data name="ribEditStylesButton_Screentip" xml:space="preserve">
-    <value>Bewerk aangepaste stijlen</value>
+    <value>Bewerk stijlen of laad verschillende stijlen</value>
     <comment>ribbon styles</comment>
   </data>
   <data name="ribEditTableThemesButton_Label" xml:space="preserve">
@@ -3032,7 +3024,7 @@ Polaroid</value>
     <comment>ribbon references</comment>
   </data>
   <data name="ribLoadStylesButton_Label" xml:space="preserve">
-    <value>Laad stijlthema</value>
+    <value>Laad stijlen</value>
     <comment>ribbon styles</comment>
   </data>
   <data name="ribLoadStylesButton_Screentip" xml:space="preserve">
@@ -3084,8 +3076,8 @@ Polaroid</value>
     <comment>ribbon references</comment>
   </data>
   <data name="ribNewStyleButton_Label" xml:space="preserve">
-    <value>Creëer stijl op basis van selectie</value>
-    <comment>Ribbon Custom Styles menu item, create new style</comment>
+    <value>Maak een nieuwe stijl van tekst</value>
+    <comment>ribbon styles</comment>
   </data>
   <data name="ribNewStyleButton_Screentip" xml:space="preserve">
     <value>Maak een nieuwe stijl van de huidige selectie</value>
@@ -4123,7 +4115,7 @@ Notitieboekjes</value>
     <comment>button</comment>
   </data>
   <data name="StyleDialog_NewText" xml:space="preserve">
-    <value>Nieuwe aangepaste stijl</value>
+    <value>Nieuwe stijl</value>
     <comment>dialog title</comment>
   </data>
   <data name="StyleDialog_reorderButton.Text" xml:space="preserve">
@@ -4161,7 +4153,7 @@ Kop - opnemen in inhoudsopgave</value>
     <comment>button</comment>
   </data>
   <data name="StyleDialog_Text" xml:space="preserve">
-    <value>Aangepaste stijlen</value>
+    <value>Mijn stijlen</value>
     <comment>dialog title</comment>
   </data>
   <data name="StyleDialog_ThemeText" xml:space="preserve">
@@ -4656,7 +4648,7 @@ In deze sectie</value>
     <comment>label</comment>
   </data>
   <data name="PageColorDialog_currentThemeLabel.Text" xml:space="preserve">
-    <value>Het huidige stijlthema is {0}</value>
+    <value>De huidige stijldefinitie is "{0}"</value>
     <comment>label</comment>
   </data>
   <data name="PageColorDialog_customLabel" xml:space="preserve">
@@ -4668,7 +4660,7 @@ In deze sectie</value>
     <comment>expander control</comment>
   </data>
   <data name="PageColorDialog_loadThemeLink.Text" xml:space="preserve">
-    <value>Laad een ander stijlthema</value>
+    <value>Laad verschillende stijlen</value>
     <comment>linklabel</comment>
   </data>
   <data name="PageColorDialog_noLabel.Text" xml:space="preserve">
@@ -4691,7 +4683,7 @@ In deze sectie</value>
     <value>Kan bestand niet laden of bestand is leeg</value>
   </data>
   <data name="LoadStyleTheme_filter" xml:space="preserve">
-    <value>Themabestanden (*.xml)|*.xml|Alle bestanden (*.*)|*.*</value>
+    <value>Stijldefinities (*.xml)|*.xml|Alle bestanden (*.*)|*.*</value>
     <comment>OpenFileDialog filter</comment>
   </data>
   <data name="LoadStyleTheme_Title" xml:space="preserve">
@@ -4699,7 +4691,7 @@ In deze sectie</value>
     <comment>OpenFileDialog title</comment>
   </data>
   <data name="ribEditStylesButton_named" xml:space="preserve">
-    <value>Stijlthema bewerken ({0})</value>
+    <value>Stijlen bewerken ({0})</value>
     <comment>ribbon styles with theme name</comment>
   </data>
   <data name="StyleDialog_darkBox.Text" xml:space="preserve">
@@ -4721,5 +4713,9 @@ In deze sectie</value>
   <data name="PageColorDialog_contrastTooltip" xml:space="preserve">
     <value>Er is mogelijk onvoldoende contrast tussen de tekstkleur en de paginakleur</value>
     <comment>tooltip</comment>
+  </data>
+  <data name="StyleDialog_saveStylesTitle" xml:space="preserve">
+    <value>Stijlen opslaan</value>
+    <comment>dialog title</comment>
   </data>
 </root>
