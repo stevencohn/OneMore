@@ -4813,4 +4813,12 @@ ISO-code then comma then language name</comment>
     <value>שמור סגנונות</value>
     <comment>dialog title</comment>
   </data>
+  <data name="ShowXmlDialog_newlineBox.Text" xml:space="preserve">
+    <value>תכונות בקווים חדשים</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="ShowXmlDialog_saveBox.Text" xml:space="preserve">
+    <value>שמור את מיקום החלון</value>
+    <comment>checkbox</comment>
+  </data>
 </root>

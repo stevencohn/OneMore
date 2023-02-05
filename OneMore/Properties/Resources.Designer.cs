@@ -9142,6 +9142,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Attributes on new lines.
+        /// </summary>
+        internal static string ShowXmlDialog_newlineBox_Text {
+            get {
+                return ResourceManager.GetString("ShowXmlDialog_newlineBox.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Notebooks.
         /// </summary>
         internal static string ShowXmlDialog_notebooksTab_Text {
@@ -9183,6 +9192,15 @@ namespace River.OneMoreAddIn.Properties {
         internal static string ShowXmlDialog_pagePathLabel_Text {
             get {
                 return ResourceManager.GetString("ShowXmlDialog_pagePathLabel.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Save window location.
+        /// </summary>
+        internal static string ShowXmlDialog_saveBox_Text {
+            get {
+                return ResourceManager.GetString("ShowXmlDialog_saveBox.Text", resourceCulture);
             }
         }
         

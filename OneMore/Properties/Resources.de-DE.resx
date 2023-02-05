@@ -4705,4 +4705,12 @@ In diesem Abschnitt</value>
     <value>Stile speichern</value>
     <comment>dialog title</comment>
   </data>
+  <data name="ShowXmlDialog_newlineBox.Text" xml:space="preserve">
+    <value>Attribute in neuen Zeilen</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="ShowXmlDialog_saveBox.Text" xml:space="preserve">
+    <value>Fensterposition speichern</value>
+    <comment>checkbox</comment>
+  </data>
 </root>

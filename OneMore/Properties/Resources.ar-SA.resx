@@ -4718,4 +4718,12 @@ ISO-code then comma then language name</comment>
     <value>حفظ الأنماط</value>
     <comment>dialog title</comment>
   </data>
+  <data name="ShowXmlDialog_newlineBox.Text" xml:space="preserve">
+    <value>السمات في الأسطر الجديدة</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="ShowXmlDialog_saveBox.Text" xml:space="preserve">
+    <value>حفظ موقع النافذة</value>
+    <comment>checkbox</comment>
+  </data>
 </root>

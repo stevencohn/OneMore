@@ -4718,4 +4718,12 @@ En esta sección</value>
     <value>Guardar estilos</value>
     <comment>dialog title</comment>
   </data>
+  <data name="ShowXmlDialog_newlineBox.Text" xml:space="preserve">
+    <value>Atributos en nuevas líneas</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="ShowXmlDialog_saveBox.Text" xml:space="preserve">
+    <value>Guardar la ubicación de la ventana</value>
+    <comment>checkbox</comment>
+  </data>
 </root>

@@ -4718,4 +4718,12 @@ In deze sectie</value>
     <value>Stijlen opslaan</value>
     <comment>dialog title</comment>
   </data>
+  <data name="ShowXmlDialog_newlineBox.Text" xml:space="preserve">
+    <value>Attributen op nieuwe regels</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="ShowXmlDialog_saveBox.Text" xml:space="preserve">
+    <value>Vensterlocatie opslaan</value>
+    <comment>checkbox</comment>
+  </data>
 </root>

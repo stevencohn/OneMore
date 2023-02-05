@@ -4712,4 +4712,12 @@ Dans cette section</value>
     <value>Enregistrer les styles</value>
     <comment>dialog title</comment>
   </data>
+  <data name="ShowXmlDialog_newlineBox.Text" xml:space="preserve">
+    <value>Attributs sur les nouvelles lignes</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="ShowXmlDialog_saveBox.Text" xml:space="preserve">
+    <value>Enregistrer l'emplacement de la fenêtre</value>
+    <comment>checkbox</comment>
+  </data>
 </root>
