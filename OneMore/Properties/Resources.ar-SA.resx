@@ -2216,7 +2216,7 @@ ISO-code then comma then language name</comment>
     <value>images\reorder.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="ReorderDialog.Text" xml:space="preserve">
-    <value>إعادة ترتيب الأنماط المخصصة</value>
+    <value>إعادة ترتيب الأنماط</value>
     <comment>dialog title</comment>
   </data>
   <data name="ReorderDialog_label.Text" xml:space="preserve">
@@ -2404,11 +2404,11 @@ ISO-code then comma then language name</comment>
     <comment>not a menu, hotkey only</comment>
   </data>
   <data name="ribApplyStylesButton_Label" xml:space="preserve">
-    <value>تطبيق سمة النمط على الصفحة</value>
+    <value>قم بتطبيق هذه الأنماط على الصفحة</value>
     <comment>ribbon styles</comment>
   </data>
   <data name="ribApplyStylesButton_Screentip" xml:space="preserve">
-    <value>تطبيق الأنماط المخصصة على كافة المحتويات في هذه الصفحة</value>
+    <value>قم بتطبيق هذه الأنماط على كافة المحتويات في هذه الصفحة</value>
     <comment>ribbon styles</comment>
   </data>
   <data name="ribArchiveNotebookButton_Label" xml:space="preserve">
@@ -2473,14 +2473,6 @@ ISO-code then comma then language name</comment>
   <data name="ribCaptionAttachmentsButton_Screentip" xml:space="preserve">
     <value>أضف تعليقًا على كل مرفق في الصفحة</value>
     <comment>ribbon page</comment>
-  </data>
-  <data name="ribChangePageColorButton_Label" xml:space="preserve">
-    <value>تغيير سمة الصفحة</value>
-    <comment>Ribbon Custom Styles menu item, set page background color</comment>
-  </data>
-  <data name="ribChangePageColorButton_Screentip" xml:space="preserve">
-    <value>تطبيق الأنماط ولون الخلفية على الصفحة</value>
-    <comment>ribbon styles NODUP</comment>
   </data>
   <data name="ribCheckForUpdatesButton_Label" xml:space="preserve">
     <value>تحقق من وجود تحديثات</value>
@@ -2616,8 +2608,8 @@ ISO-code then comma then language name</comment>
     <comment>ribbon </comment>
   </data>
   <data name="ribCustomStylesButton_Label" xml:space="preserve">
-    <value>الأنماط المخصصة</value>
-    <comment>Ribbon main custom styles button</comment>
+    <value>الأنماط الخاصة بي</value>
+    <comment>ribbon menu NODUP</comment>
   </data>
   <data name="ribDateStampButton_Label" xml:space="preserve">
     <value>صفحات طابع التاريخ في القسم</value>
@@ -2688,11 +2680,11 @@ ISO-code then comma then language name</comment>
     <comment>OneMore Ribbon menu item</comment>
   </data>
   <data name="ribEditStylesButton_Label" xml:space="preserve">
-    <value>تحرير نسق النمط</value>
+    <value>تحرير الأنماط</value>
     <comment>ribbon styles</comment>
   </data>
   <data name="ribEditStylesButton_Screentip" xml:space="preserve">
-    <value>تحرير الأنماط المخصصة</value>
+    <value>تحرير الأنماط أو تحميل أنماط مختلفة</value>
     <comment>ribbon styles</comment>
   </data>
   <data name="ribEditTableThemesButton_Label" xml:space="preserve">
@@ -3032,7 +3024,7 @@ ISO-code then comma then language name</comment>
     <comment>ribbon references</comment>
   </data>
   <data name="ribLoadStylesButton_Label" xml:space="preserve">
-    <value>تحميل نمط النمط</value>
+    <value>أنماط التحميل</value>
     <comment>ribbon styles</comment>
   </data>
   <data name="ribLoadStylesButton_Screentip" xml:space="preserve">
@@ -3084,8 +3076,8 @@ ISO-code then comma then language name</comment>
     <comment>ribbon references</comment>
   </data>
   <data name="ribNewStyleButton_Label" xml:space="preserve">
-    <value>إنشاء نمط من التحديد</value>
-    <comment>Ribbon Custom Styles menu item, create new style</comment>
+    <value>إنشاء نمط جديد من النص</value>
+    <comment>ribbon styles</comment>
   </data>
   <data name="ribNewStyleButton_Screentip" xml:space="preserve">
     <value>قم بإنشاء نمط جديد من التحديد الحالي</value>
@@ -4123,7 +4115,7 @@ ISO-code then comma then language name</comment>
     <comment>button</comment>
   </data>
   <data name="StyleDialog_NewText" xml:space="preserve">
-    <value>نمط مخصص جديد</value>
+    <value>أسلوب جديد</value>
     <comment>dialog title</comment>
   </data>
   <data name="StyleDialog_reorderButton.Text" xml:space="preserve">
@@ -4161,7 +4153,7 @@ ISO-code then comma then language name</comment>
     <comment>button</comment>
   </data>
   <data name="StyleDialog_Text" xml:space="preserve">
-    <value>الأنماط المخصصة</value>
+    <value>الأنماط الخاصة بي</value>
     <comment>dialog title</comment>
   </data>
   <data name="StyleDialog_ThemeText" xml:space="preserve">
@@ -4656,7 +4648,7 @@ ISO-code then comma then language name</comment>
     <comment>label</comment>
   </data>
   <data name="PageColorDialog_currentThemeLabel.Text" xml:space="preserve">
-    <value>موضوع النمط الحالي هو {0}</value>
+    <value>تعريف الأنماط الحالي هو "{0}"</value>
     <comment>label</comment>
   </data>
   <data name="PageColorDialog_customLabel" xml:space="preserve">
@@ -4668,7 +4660,7 @@ ISO-code then comma then language name</comment>
     <comment>expander control</comment>
   </data>
   <data name="PageColorDialog_loadThemeLink.Text" xml:space="preserve">
-    <value>تحميل موضوع نمط مختلف</value>
+    <value>تحميل أنماط مختلفة</value>
     <comment>linklabel</comment>
   </data>
   <data name="PageColorDialog_noLabel.Text" xml:space="preserve">
@@ -4691,7 +4683,7 @@ ISO-code then comma then language name</comment>
     <value>لا يمكن تحميل الملف أو الملف فارغ</value>
   </data>
   <data name="LoadStyleTheme_filter" xml:space="preserve">
-    <value>ملفات السمات (* .xml) | * .xml | كافة الملفات (*. *) | *. *</value>
+    <value>تعريفات الأنماط (* .xml) | * .xml | كافة الملفات (*. *) | *. *</value>
     <comment>OpenFileDialog filter</comment>
   </data>
   <data name="LoadStyleTheme_Title" xml:space="preserve">
@@ -4699,7 +4691,7 @@ ISO-code then comma then language name</comment>
     <comment>OpenFileDialog title</comment>
   </data>
   <data name="ribEditStylesButton_named" xml:space="preserve">
-    <value>تحرير سمة النمط ({0})</value>
+    <value>تحرير الأنماط ({0})</value>
     <comment>ribbon styles with theme name</comment>
   </data>
   <data name="StyleDialog_darkBox.Text" xml:space="preserve">
@@ -4721,5 +4713,9 @@ ISO-code then comma then language name</comment>
   <data name="PageColorDialog_contrastTooltip" xml:space="preserve">
     <value>قد لا يكون هناك تباين كافٍ بين لون النص ولون الصفحة</value>
     <comment>tooltip</comment>
+  </data>
+  <data name="StyleDialog_saveStylesTitle" xml:space="preserve">
+    <value>حفظ الأنماط</value>
+    <comment>dialog title</comment>
   </data>
 </root>

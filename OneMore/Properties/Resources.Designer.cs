@@ -5315,7 +5315,7 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Reorder Custom Styles.
+        ///   Looks up a localized string similar to Reorder Styles.
         /// </summary>
         internal static string ReorderDialog_Text {
             get {
@@ -6234,7 +6234,7 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Custom Styles.
+        ///   Looks up a localized string similar to My Styles.
         /// </summary>
         internal static string ribCustomStylesButton_Label {
             get {
@@ -7206,7 +7206,7 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Load custom styles from a definition file.
+        ///   Looks up a localized string similar to Load My Styles from a definition file.
         /// </summary>
         internal static string ribLoadStylesButton_Screentip {
             get {
@@ -9748,7 +9748,7 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to New Custom Style.
+        ///   Looks up a localized string similar to New Style.
         /// </summary>
         internal static string StyleDialog_NewText {
             get {
@@ -9867,7 +9867,7 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Custom Styles.
+        ///   Looks up a localized string similar to My Styles.
         /// </summary>
         internal static string StyleDialog_Text {
             get {

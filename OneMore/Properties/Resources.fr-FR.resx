@@ -2212,7 +2212,7 @@ Sélectionnez Non pour conserver une ligne vide entre les paragraphes</value>
     <value>images\reorder.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="ReorderDialog.Text" xml:space="preserve">
-    <value>Réorganiser les styles personnalisés</value>
+    <value>Réorganiser les styles</value>
     <comment>dialog title</comment>
   </data>
   <data name="ReorderDialog_label.Text" xml:space="preserve">
@@ -2400,11 +2400,11 @@ Polaroïd</value>
     <comment>not a menu, hotkey only</comment>
   </data>
   <data name="ribApplyStylesButton_Label" xml:space="preserve">
-    <value>Appliquer le thème de style à la page</value>
+    <value>Appliquer ces styles à la page</value>
     <comment>ribbon styles</comment>
   </data>
   <data name="ribApplyStylesButton_Screentip" xml:space="preserve">
-    <value>Appliquer des styles personnalisés à tout le contenu de cette page</value>
+    <value>Appliquer ces styles à tout le contenu de cette page</value>
     <comment>ribbon styles</comment>
   </data>
   <data name="ribArchiveNotebookButton_Label" xml:space="preserve">
@@ -2469,14 +2469,6 @@ Polaroïd</value>
   <data name="ribCaptionAttachmentsButton_Screentip" xml:space="preserve">
     <value>Ajouter une légende à chaque pièce jointe sur la page</value>
     <comment>ribbon page</comment>
-  </data>
-  <data name="ribChangePageColorButton_Label" xml:space="preserve">
-    <value>Changer le thème de la page</value>
-    <comment>Ribbon Custom Styles menu item, set page background color</comment>
-  </data>
-  <data name="ribChangePageColorButton_Screentip" xml:space="preserve">
-    <value>Appliquer des styles et une couleur d'arrière-plan à la page</value>
-    <comment>ribbon styles NODUP</comment>
   </data>
   <data name="ribCheckForUpdatesButton_Label" xml:space="preserve">
     <value>Vérifier les mises à jour</value>
@@ -2612,8 +2604,8 @@ Polaroïd</value>
     <comment>ribbon </comment>
   </data>
   <data name="ribCustomStylesButton_Label" xml:space="preserve">
-    <value>Styles personnalisés</value>
-    <comment>Ribbon main custom styles button</comment>
+    <value>Mes Styles</value>
+    <comment>ribbon menu NODUP</comment>
   </data>
   <data name="ribDateStampButton_Label" xml:space="preserve">
     <value>Pages d'horodatage dans la section</value>
@@ -2684,11 +2676,11 @@ Polaroïd</value>
     <comment>OneMore Ribbon menu item</comment>
   </data>
   <data name="ribEditStylesButton_Label" xml:space="preserve">
-    <value>Modifier le thème du style</value>
+    <value>Modifier les styles</value>
     <comment>ribbon styles</comment>
   </data>
   <data name="ribEditStylesButton_Screentip" xml:space="preserve">
-    <value>Modifier les styles personnalisés</value>
+    <value>Modifier les styles ou charger différents styles</value>
     <comment>ribbon styles</comment>
   </data>
   <data name="ribEditTableThemesButton_Label" xml:space="preserve">
@@ -3027,7 +3019,7 @@ Polaroïd</value>
     <comment>ribbon references</comment>
   </data>
   <data name="ribLoadStylesButton_Label" xml:space="preserve">
-    <value>Charger le thème de style</value>
+    <value>Charger des styles</value>
     <comment>ribbon styles</comment>
   </data>
   <data name="ribLoadStylesButton_Screentip" xml:space="preserve">
@@ -3079,8 +3071,8 @@ Polaroïd</value>
     <comment>ribbon references</comment>
   </data>
   <data name="ribNewStyleButton_Label" xml:space="preserve">
-    <value>Créer un style à partir de la sélection</value>
-    <comment>Ribbon Custom Styles menu item, create new style</comment>
+    <value>Créer un nouveau style à partir du texte</value>
+    <comment>ribbon styles</comment>
   </data>
   <data name="ribNewStyleButton_Screentip" xml:space="preserve">
     <value>Créer un nouveau style à partir de la sélection actuelle</value>
@@ -4117,7 +4109,7 @@ Des cahiers</value>
     <comment>button</comment>
   </data>
   <data name="StyleDialog_NewText" xml:space="preserve">
-    <value>Nouveau style personnalisé</value>
+    <value>Nouveau style</value>
     <comment>dialog title</comment>
   </data>
   <data name="StyleDialog_reorderButton.Text" xml:space="preserve">
@@ -4155,7 +4147,7 @@ Titre - inclure dans la table des matières</value>
     <comment>button</comment>
   </data>
   <data name="StyleDialog_Text" xml:space="preserve">
-    <value>Styles personnalisés</value>
+    <value>Mes Styles</value>
     <comment>dialog title</comment>
   </data>
   <data name="StyleDialog_ThemeText" xml:space="preserve">
@@ -4650,7 +4642,7 @@ Dans cette section</value>
     <comment>label</comment>
   </data>
   <data name="PageColorDialog_currentThemeLabel.Text" xml:space="preserve">
-    <value>Le thème de style actuel est {0}</value>
+    <value>La définition actuelle des styles est "{0}"</value>
     <comment>label</comment>
   </data>
   <data name="PageColorDialog_customLabel" xml:space="preserve">
@@ -4662,7 +4654,7 @@ Dans cette section</value>
     <comment>expander control</comment>
   </data>
   <data name="PageColorDialog_loadThemeLink.Text" xml:space="preserve">
-    <value>Charger un thème de style différent</value>
+    <value>Charger différents styles</value>
     <comment>linklabel</comment>
   </data>
   <data name="PageColorDialog_noLabel.Text" xml:space="preserve">
@@ -4685,7 +4677,7 @@ Dans cette section</value>
     <value>Impossible de charger le fichier ou le fichier est vide</value>
   </data>
   <data name="LoadStyleTheme_filter" xml:space="preserve">
-    <value>Fichiers de thème (*.xml)|*.xml|Tous les fichiers (*.*)|*.*</value>
+    <value>Définitions de style (*.xml)|*.xml|Tous les fichiers (*.*)|*.*</value>
     <comment>OpenFileDialog filter</comment>
   </data>
   <data name="LoadStyleTheme_Title" xml:space="preserve">
@@ -4693,7 +4685,7 @@ Dans cette section</value>
     <comment>OpenFileDialog title</comment>
   </data>
   <data name="ribEditStylesButton_named" xml:space="preserve">
-    <value>Modifier le thème de style ({0})</value>
+    <value>Modifier les styles ({0})</value>
     <comment>ribbon styles with theme name</comment>
   </data>
   <data name="StyleDialog_darkBox.Text" xml:space="preserve">
@@ -4715,5 +4707,9 @@ Dans cette section</value>
   <data name="PageColorDialog_contrastTooltip" xml:space="preserve">
     <value>Il se peut qu'il n'y ait pas assez de contraste entre la couleur du texte et la couleur de la page</value>
     <comment>tooltip</comment>
+  </data>
+  <data name="StyleDialog_saveStylesTitle" xml:space="preserve">
+    <value>Enregistrer les styles</value>
+    <comment>dialog title</comment>
   </data>
 </root>

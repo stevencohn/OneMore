@@ -2292,7 +2292,7 @@ ISO-code then comma then language name</comment>
     <value>images\reorder.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="ReorderDialog.Text" xml:space="preserve">
-    <value>סדר מחדש סגנונות מותאמים אישית</value>
+    <value>סדר מחדש סגנונות</value>
     <comment>dialog title</comment>
   </data>
   <data name="ReorderDialog_label.Text" xml:space="preserve">
@@ -2483,11 +2483,11 @@ ISO-code then comma then language name</comment>
     <comment>not a menu, hotkey only</comment>
   </data>
   <data name="ribApplyStylesButton_Label" xml:space="preserve">
-    <value>החל עיצוב סגנון על הדף</value>
+    <value>החל את הסגנונות האלה בדף</value>
     <comment>ribbon styles</comment>
   </data>
   <data name="ribApplyStylesButton_Screentip" xml:space="preserve">
-    <value>החל סגנונות מותאמים אישית על כל התוכן בדף זה</value>
+    <value>החל את הסגנונות האלה על כל התוכן בדף זה</value>
     <comment>ribbon styles</comment>
   </data>
   <data name="ribArchiveNotebookButton_Label" xml:space="preserve">
@@ -2552,14 +2552,6 @@ ISO-code then comma then language name</comment>
   <data name="ribCaptionAttachmentsButton_Screentip" xml:space="preserve">
     <value>הוסף כיתוב לכל קובץ מצורף בדף</value>
     <comment>ribbon page</comment>
-  </data>
-  <data name="ribChangePageColorButton_Label" xml:space="preserve">
-    <value>שנה את נושא הדף</value>
-    <comment>Ribbon Custom Styles menu item, set page background color NODUP</comment>
-  </data>
-  <data name="ribChangePageColorButton_Screentip" xml:space="preserve">
-    <value>החל סגנונות וצבע רקע על עמוד</value>
-    <comment>ribbon styles NODUP</comment>
   </data>
   <data name="ribCheckForUpdatesButton_Label" xml:space="preserve">
     <value>בדוק עדכונים</value>
@@ -2697,8 +2689,8 @@ ISO-code then comma then language name</comment>
     <comment>ribbon </comment>
   </data>
   <data name="ribCustomStylesButton_Label" xml:space="preserve">
-    <value>סגנונות מותאמים אישית</value>
-    <comment>Ribbon main custom styles button NODUP</comment>
+    <value>הסגנונות שלי</value>
+    <comment>ribbon menu NODUP</comment>
   </data>
   <data name="ribDateStampButton_Label" xml:space="preserve">
     <value>דפי חותמת תאריך בקטע</value>
@@ -2769,11 +2761,11 @@ ISO-code then comma then language name</comment>
     <comment>OneMore Ribbon menu item</comment>
   </data>
   <data name="ribEditStylesButton_Label" xml:space="preserve">
-    <value>ערוך את ערכת נושא הסגנון</value>
+    <value>ערוך סגנונות</value>
     <comment>ribbon styles</comment>
   </data>
   <data name="ribEditStylesButton_Screentip" xml:space="preserve">
-    <value>ערוך סגנונות מותאמים אישית</value>
+    <value>ערוך סגנונות או טען סגנונות שונים</value>
     <comment>ribbon styles</comment>
   </data>
   <data name="ribEditTableThemesButton_Label" xml:space="preserve">
@@ -3113,7 +3105,7 @@ ISO-code then comma then language name</comment>
     <comment>ribbon references</comment>
   </data>
   <data name="ribLoadStylesButton_Label" xml:space="preserve">
-    <value>טען ערכת נושא בסגנון</value>
+    <value>טען סגנונות</value>
     <comment>ribbon styles</comment>
   </data>
   <data name="ribLoadStylesButton_Screentip" xml:space="preserve">
@@ -3165,8 +3157,8 @@ ISO-code then comma then language name</comment>
     <comment>ribbon references</comment>
   </data>
   <data name="ribNewStyleButton_Label" xml:space="preserve">
-    <value>צור סגנון מתוך בחירה</value>
-    <comment>Ribbon Custom Styles menu item, create new style</comment>
+    <value>צור סגנון חדש מטקסט</value>
+    <comment>ribbon styles</comment>
   </data>
   <data name="ribNewStyleButton_Screentip" xml:space="preserve">
     <value>צור סגנון חדש מהבחירה הנוכחית</value>
@@ -4205,7 +4197,7 @@ ISO-code then comma then language name</comment>
     <comment>button</comment>
   </data>
   <data name="StyleDialog_NewText" xml:space="preserve">
-    <value>סגנון מותאם אישית חדש</value>
+    <value>סטייל חדש</value>
     <comment>dialog title</comment>
   </data>
   <data name="StyleDialog_reorderButton.Text" xml:space="preserve">
@@ -4243,7 +4235,7 @@ ISO-code then comma then language name</comment>
     <comment>button</comment>
   </data>
   <data name="StyleDialog_Text" xml:space="preserve">
-    <value>סגנונות בהתאמה אישית</value>
+    <value>הסגנונות שלי</value>
     <comment>dialog title</comment>
   </data>
   <data name="StyleDialog_ThemeText" xml:space="preserve">
@@ -4751,7 +4743,7 @@ ISO-code then comma then language name</comment>
     <comment>label</comment>
   </data>
   <data name="PageColorDialog_currentThemeLabel.Text" xml:space="preserve">
-    <value>נושא הסגנון הנוכחי הוא {0}</value>
+    <value>הגדרת הסגנונות הנוכחית היא "{0}"</value>
     <comment>label</comment>
   </data>
   <data name="PageColorDialog_customLabel" xml:space="preserve">
@@ -4763,7 +4755,7 @@ ISO-code then comma then language name</comment>
     <comment>expander control</comment>
   </data>
   <data name="PageColorDialog_loadThemeLink.Text" xml:space="preserve">
-    <value>טען ערכת נושא בסגנון שונה</value>
+    <value>טען סגנונות שונים</value>
     <comment>linklabel</comment>
   </data>
   <data name="PageColorDialog_noLabel.Text" xml:space="preserve">
@@ -4786,7 +4778,7 @@ ISO-code then comma then language name</comment>
     <value>לא ניתן לטעון את הקובץ או שהקובץ ריק</value>
   </data>
   <data name="LoadStyleTheme_filter" xml:space="preserve">
-    <value>קבצי עיצוב (*.xml)|*.xml|כל הקבצים (*.*)|*.*</value>
+    <value>הגדרות סגנון (*.xml)|*.xml|כל הקבצים (*.*)|*.*</value>
     <comment>OpenFileDialog filter</comment>
   </data>
   <data name="LoadStyleTheme_Title" xml:space="preserve">
@@ -4794,7 +4786,7 @@ ISO-code then comma then language name</comment>
     <comment>OpenFileDialog title</comment>
   </data>
   <data name="ribEditStylesButton_named" xml:space="preserve">
-    <value>ערוך עיצוב סגנון ({0})</value>
+    <value>ערוך סגנונות ({0})</value>
     <comment>ribbon styles with theme name</comment>
   </data>
   <data name="StyleDialog_darkBox.Text" xml:space="preserve">
@@ -4816,5 +4808,9 @@ ISO-code then comma then language name</comment>
   <data name="PageColorDialog_contrastTooltip" xml:space="preserve">
     <value>ייתכן שלא תהיה ניגודיות מספקת בין צבע הטקסט לצבע העמוד</value>
     <comment>tooltip</comment>
+  </data>
+  <data name="StyleDialog_saveStylesTitle" xml:space="preserve">
+    <value>שמור סגנונות</value>
+    <comment>dialog title</comment>
   </data>
 </root>
