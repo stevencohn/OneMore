@@ -290,6 +290,12 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
+		private void NewlineChanged(object sender, EventArgs e)
+		{
+			ScopeSelectedValueChanged(sender, e);
+		}
+
+
 		private void ApplyHideOptions()
 		{
 			var root = XElement.Parse(pageBox.Text);
@@ -348,7 +354,9 @@ namespace River.OneMoreAddIn.Commands
 				}
 			}
 
-			pageBox.Text = root.ToString(SaveOptions.None);
+			pageBox.Text = newlineBox.Checked
+				? root.PrettyPrint()
+				: root.ToString(SaveOptions.None);
 
 			Highlights();
 		}

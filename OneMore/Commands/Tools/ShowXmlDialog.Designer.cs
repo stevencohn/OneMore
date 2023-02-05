@@ -60,6 +60,7 @@
 			this.pagePathLabel = new System.Windows.Forms.Label();
 			this.pageNameLabel = new System.Windows.Forms.Label();
 			this.pagePanel = new System.Windows.Forms.Panel();
+			this.newlineBox = new System.Windows.Forms.CheckBox();
 			this.saveBox = new System.Windows.Forms.CheckBox();
 			this.hideLFBox = new System.Windows.Forms.CheckBox();
 			this.hideBox = new System.Windows.Forms.CheckBox();
@@ -450,6 +451,7 @@
 			// 
 			// pagePanel
 			// 
+			this.pagePanel.Controls.Add(this.newlineBox);
 			this.pagePanel.Controls.Add(this.saveBox);
 			this.pagePanel.Controls.Add(this.hideLFBox);
 			this.pagePanel.Controls.Add(this.hideBox);
@@ -460,10 +462,21 @@
 			this.pagePanel.Size = new System.Drawing.Size(1100, 90);
 			this.pagePanel.TabIndex = 9;
 			// 
+			// newlineBox
+			// 
+			this.newlineBox.AutoSize = true;
+			this.newlineBox.Location = new System.Drawing.Point(804, 20);
+			this.newlineBox.Name = "newlineBox";
+			this.newlineBox.Size = new System.Drawing.Size(195, 24);
+			this.newlineBox.TabIndex = 8;
+			this.newlineBox.Text = "Attributes on new lines";
+			this.newlineBox.UseVisualStyleBackColor = true;
+			this.newlineBox.CheckedChanged += new System.EventHandler(this.NewlineChanged);
+			// 
 			// saveBox
 			// 
 			this.saveBox.AutoSize = true;
-			this.saveBox.Location = new System.Drawing.Point(800, 22);
+			this.saveBox.Location = new System.Drawing.Point(804, 51);
 			this.saveBox.Name = "saveBox";
 			this.saveBox.Size = new System.Drawing.Size(186, 24);
 			this.saveBox.TabIndex = 7;
@@ -475,7 +488,7 @@
 			this.hideLFBox.AutoSize = true;
 			this.hideLFBox.Checked = true;
 			this.hideLFBox.CheckState = System.Windows.Forms.CheckState.Checked;
-			this.hideLFBox.Location = new System.Drawing.Point(367, 50);
+			this.hideLFBox.Location = new System.Drawing.Point(367, 51);
 			this.hideLFBox.Name = "hideLFBox";
 			this.hideLFBox.Size = new System.Drawing.Size(211, 24);
 			this.hideLFBox.TabIndex = 6;
@@ -667,5 +680,6 @@
 		private System.Windows.Forms.CheckBox hidePidBox;
 		private System.Windows.Forms.ImageList tabIcons;
 		private System.Windows.Forms.CheckBox saveBox;
+		private System.Windows.Forms.CheckBox newlineBox;
 	}
 }

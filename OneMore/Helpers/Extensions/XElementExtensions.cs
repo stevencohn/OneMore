@@ -7,6 +7,7 @@ namespace River.OneMoreAddIn
 	using System.Collections.Generic;
 	using System.ComponentModel;
 	using System.Globalization;
+	using System.IO;
 	using System.Linq;
 	using System.Text.RegularExpressions;
 	using System.Xml;
@@ -512,6 +513,24 @@ namespace River.OneMoreAddIn
 
 			value = defaultV;
 			return false;
+		}
+
+
+		public static string PrettyPrint(this XElement element)
+		{
+			var settings = new XmlWriterSettings
+			{
+				OmitXmlDeclaration = true,
+				Indent = true,
+				NewLineOnAttributes = true,
+			};
+
+			using var buffer = new StringWriter(CultureInfo.InvariantCulture);
+			var writer = XmlWriter.Create(buffer, settings);
+			element.Save(writer);
+			writer.Flush();
+
+			return buffer.ToString();
 		}
 
 
