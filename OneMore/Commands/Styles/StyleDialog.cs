@@ -936,8 +936,7 @@ namespace River.OneMoreAddIn.Commands
 		{
 			var color = pageColorBox.Checked ? ColorHelper.FromHtml(theme.Color) : pageColor;
 
-			using var dialog = new PageColorDialog(color, theme.Name, useTheme: pageColorBox.Checked);
-
+			using var dialog = new PageColorDialog(color);
 			dialog.HideOptions();
 			dialog.StartPosition = FormStartPosition.CenterParent;
 			dialog.VerticalOffset = 50;

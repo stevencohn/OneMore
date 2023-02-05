@@ -38,7 +38,7 @@ namespace River.OneMoreAddIn.Commands
 				}
 			}
 
-			using var dialog = new PageColorDialog(color);
+			using var dialog = new PageColorDialog(color, new ThemeProvider().Theme.Name);
 			if (dialog.ShowDialog(owner) == DialogResult.OK)
 			{
 				UpdatePageColor(page, MakePageColor(dialog.Color));
