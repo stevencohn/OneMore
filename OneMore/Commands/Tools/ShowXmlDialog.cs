@@ -7,6 +7,7 @@
 namespace River.OneMoreAddIn.Commands
 {
 	using River.OneMoreAddIn.UI;
+	using River.OneMoreAddIn.Settings;
 	using System;
 	using System.Collections.Generic;
 	using System.Drawing;
@@ -16,15 +17,16 @@ namespace River.OneMoreAddIn.Commands
 	using System.Threading.Tasks;
 	using System.Windows.Forms;
 	using System.Xml.Linq;
-	using Resx = River.OneMoreAddIn.Properties.Resources;
+	using Resx = Properties.Resources;
 
 
 	/// <summary>
 	/// A dialog to view page and hierarchy XML and update page XML if desired.
 	/// </summary>
-	internal partial class ShowXmlDialog : UI.LocalizableForm
+	internal partial class ShowXmlDialog : LocalizableForm
 	{
 		private int findIndex = -1;
+		private bool savedSettings;
 
 
 		public ShowXmlDialog()
@@ -69,9 +71,6 @@ namespace River.OneMoreAddIn.Commands
 				});
 			}
 
-			Width = Math.Min(2000, (int)(Screen.PrimaryScreen.WorkingArea.Width * 0.8));
-			Height = Math.Min(1500, (int)(Screen.PrimaryScreen.WorkingArea.Height * 0.8));
-
 			manualPanel.Location = pagePanel.Location;
 			((Control)manualTab).Enabled = false;
 		}
@@ -104,6 +103,21 @@ namespace River.OneMoreAddIn.Commands
 			pageName.Text = $"{info.Name} ({info.Size.ToBytes()})";
 			pagePath.Text = info.Path;
 			pageLink.Text = info.Link;
+
+			var settings = new SettingsProvider().GetCollection("XmlDialog");
+			saveBox.Checked = settings.Count > 0;
+
+			Width = settings.Get("width",
+				Math.Min(2000, (int)(Screen.PrimaryScreen.WorkingArea.Width * 0.8)));
+
+			Height = settings.Get("height",
+				Math.Min(1500, (int)(Screen.PrimaryScreen.WorkingArea.Height * 0.8)));
+
+			Left = settings.Get("left", (Screen.PrimaryScreen.WorkingArea.Width - Width) / 2);
+			Top = settings.Get("top", (Screen.PrimaryScreen.WorkingArea.Height - Height) / 2);
+
+			if (Left < 0 || Left > Screen.PrimaryScreen.WorkingArea.Width) Left = 0;
+			if (Top < 0 || Top > Screen.PrimaryScreen.WorkingArea.Height) Top = 0;
 		}
 
 
@@ -136,7 +150,33 @@ namespace River.OneMoreAddIn.Commands
 
 		private void Close(object sender, EventArgs e)
 		{
+			SaveSettings();
 			Close();
+		}
+
+
+		private void SaveSettings()
+		{
+			if (!savedSettings)
+			{
+				var settings = new SettingsProvider();
+				if (saveBox.Checked)
+				{
+					var collection = settings.GetCollection("XmlDialog");
+					collection.Add("left", Left);
+					collection.Add("top", Top);
+					collection.Add("width", Width);
+					collection.Add("height", Height);
+					settings.SetCollection(collection);
+				}
+				else
+				{
+					settings.RemoveCollection("XmlDialog");
+				}
+
+				settings.Save();
+				savedSettings = true;
+			}
 		}
 
 
@@ -398,6 +438,8 @@ namespace River.OneMoreAddIn.Commands
 					logger.WriteLine("error updating page content", exc);
 				}
 			}
+
+			SaveSettings();
 		}
 
 
