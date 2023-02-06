@@ -59,7 +59,11 @@ namespace River.OneMoreAddIn.Styles
 		/// Initialize a new instance by parsing the given CSS
 		/// </summary>
 		/// <param name="css">The value of an element's style attribute.</param>
-		public Style(string css) : base()
+		/// <param name="setDefaults">
+		/// A Boolean indicating whether to set default values even for missing properties.
+		/// Set this to false to not include defaulted missing properties in ToCss()
+		/// </param>
+		public Style(string css, bool setDefaults = true) : base(setDefaults)
 		{
 			ReadCss(css);
 		}

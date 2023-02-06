@@ -4,6 +4,7 @@
 
 namespace River.OneMoreAddIn
 {
+	using River.OneMoreAddIn.Helpers.Office;
 	using System;
 	using System.Drawing;
 	using System.Windows.Forms;
@@ -20,6 +21,11 @@ namespace River.OneMoreAddIn
 		/// <returns>An inverted color</returns>
 		public static Color Invert(this Color color)
 		{
+			if (color.Equals(Color.Transparent) || color.Equals(Color.Empty))
+			{
+				return color;
+			}
+
 			return color.IsLight()
 				? ControlPaint.Dark(color, 0.9f)
 				: ControlPaint.Light(color, 1.9f);
@@ -34,7 +40,7 @@ namespace River.OneMoreAddIn
 		/// <returns></returns>
 		public static bool IsDark(this Color color)
 		{
-			return color.GetBrightness() < 0.4;
+			return color.GetBrightness() < 0.5;
 		}
 
 
@@ -46,7 +52,7 @@ namespace River.OneMoreAddIn
 		/// <returns></returns>
 		public static bool IsLight(this Color color)
 		{
-			return color.GetBrightness() > 0.6;
+			return color.GetBrightness() > 0.5;
 		}
 
 
@@ -60,6 +66,32 @@ namespace River.OneMoreAddIn
 		public static bool IsGray(this Color color)
 		{
 			return (Math.Abs(color.R - color.G) < 3) && (Math.Abs(color.R - color.B) < 3);
+		}
+
+
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="color"></param>
+		/// <param name="other"></param>
+		/// <returns></returns>
+		public static bool LowContrast(this Color color, Color other)
+		{
+			if (color.Equals(other))
+			{
+				return true;
+			}
+
+			if (Office.IsBlackThemeEnabled())
+			{
+				color = color.Invert();
+				other = other.Invert();
+				return Math.Abs(color.GetBrightness() - other.GetBrightness()) < 0.2;
+			}
+
+			return Math.Abs(color.GetBrightness() - other.GetBrightness()) < 0.3;
+				//(color.IsDark() && other.IsDark()) ||
+				//(color.IsLight() && other.IsLight());
 		}
 
 

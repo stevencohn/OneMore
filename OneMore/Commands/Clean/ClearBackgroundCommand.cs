@@ -4,6 +4,7 @@
 
 namespace River.OneMoreAddIn.Commands
 {
+	using River.OneMoreAddIn.Helpers.Office;
 	using River.OneMoreAddIn.Models;
 	using River.OneMoreAddIn.Styles;
 	using System.Collections.Generic;
@@ -22,7 +23,7 @@ namespace River.OneMoreAddIn.Commands
 	{
 		private XNamespace ns;
 		private Page page;
-		private bool darkPage;
+		private Color pageColor;
 		private string pcolor;
 
 
@@ -34,8 +35,12 @@ namespace River.OneMoreAddIn.Commands
 		public override async Task Execute(params object[] args)
 		{
 			using var one = new OneNote(out page, out ns);
-			var pageColor = page.GetPageColor(out var automatic, out var black);
-			darkPage = (automatic && black) || pageColor.IsDark();
+			pageColor = page.GetPageColor(out var automatic, out var black);
+			//if (automatic && black)
+			//{
+			//	pageColor = BasicColors.BlackSmoke;
+			//}
+
 			pcolor = page.GetQuickStyle(StandardStyles.Normal).Color;
 
 			var updated = ClearTextBackground(page.GetSelectedElements(all: true));
@@ -61,13 +66,12 @@ namespace River.OneMoreAddIn.Commands
 					continue;
 				}
 
+				var original = cdata.Value;
+				var parstyle = run.Parent.Attribute("style")?.Value;
+
 				// remove CDATA 'background' and 'mso-highlight' CSS properties...
 
 				var matches = regex.Matches(cdata.Value);
-				if (matches.Count == 0)
-				{
-					continue;
-				}
 
 				for (int i = matches.Count - 1; i >= 0; i--)
 				{
@@ -76,6 +80,8 @@ namespace River.OneMoreAddIn.Commands
 						cdata.Value = cdata.Value.Remove(
 							matches[i].Groups[j].Index,
 							matches[i].Groups[j].Length);
+
+						updated = true;
 					}
 				}
 
@@ -90,12 +96,11 @@ namespace River.OneMoreAddIn.Commands
 					if (rewrap)
 					{
 						cdata.Value = wrapper.GetInnerXml();
+						updated = true;
 					}
 				}
 
-				CheckContrast(run.Parent);
-
-				updated = true;
+				updated = CheckContrast(run.Parent) || updated;
 
 				// deep prevents runs from being processed multiple times
 
@@ -104,9 +109,22 @@ namespace River.OneMoreAddIn.Commands
 
 				if (!deep && run.Parent.Attribute("collapsed")?.Value == "1")
 				{
-					updated |= ClearTextBackground(
+					updated = ClearTextBackground(
 						run.Parent.Descendants(ns + "T").Where(e => e != run),
-						true);
+						true) || updated;
+				}
+
+				if (cdata.Value != original)
+				{
+					logger.WriteLine("---------");
+					logger.WriteLine($"original: [{original}]");
+					logger.WriteLine($"modified: [{cdata.Value}]");
+				}
+				if (run.Parent.Attribute("style")?.Value != parstyle)
+				{
+					logger.WriteLine("---------");
+					logger.WriteLine($"parentst: [{parstyle}]");
+					logger.WriteLine($"modified: [{run.Parent.Attribute("style")?.Value}]");
 				}
 			}
 
@@ -119,16 +137,16 @@ namespace River.OneMoreAddIn.Commands
 			var css = element.Attribute("style")?.Value;
 			if (css != null)
 			{
-				var style = new Style(css) { ApplyColors = true };
+				var style = new Style(css, false) { ApplyColors = true };
 
-				if (!string.IsNullOrWhiteSpace(style.Color))
+				if (!string.IsNullOrWhiteSpace(style.Color) &&
+					style.Color != StyleBase.Automatic)
 				{
 					var color = ColorHelper.FromHtml(style.Color);
-					var ness = color.GetBrightness();
-
-
-					if ((darkPage && ness < 0.4) || (!darkPage && ness > 0.6))
+					if (color.LowContrast(pageColor))
 					{
+						logger.WriteLine($"pageColor:{pageColor.ToRGBHtml()} (dark:{pageColor.Invert().ToRGBHtml()}) ~ {color.ToRGBHtml()} (dark:{color.Invert().ToRGBHtml()}) -> {pcolor}");
+
 						style.Color = pcolor;
 						element.Attribute("style").Value = style.ToCss();
 						return true;
@@ -160,13 +178,17 @@ namespace River.OneMoreAddIn.Commands
 			}
 
 			var updated = false;
+			var darkMode = Office.IsBlackThemeEnabled();
 
 			foreach (var cell in cells)
 			{
 				var attr = cell.Attribute("shadingColor");
 
 				// if dark-on-light or light-on-dark
-				if (darkPage != ColorTranslator.FromHtml(attr.Value).IsDark())
+				var shade = ColorTranslator.FromHtml(attr.Value);
+				if ((!darkMode && pageColor.IsDark() != shade.IsDark()) ||
+					(darkMode && pageColor.IsLight() != shade.IsLight()))
+				//if (!ColorTranslator.FromHtml(attr.Value).LowContrast(pageColor))
 				{
 					attr.Remove();
 					updated = true;

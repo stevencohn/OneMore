@@ -35,13 +35,16 @@ namespace River.OneMoreAddIn.Styles
 		/// <summary>
 		/// Initializes a new instance with defaults.
 		/// </summary>
-		protected StyleBase()
+		protected StyleBase(bool setDefaults = true)
 		{
-			Color = Automatic;
-			Highlight = Automatic;
-			FontFamily = DefaultFontFamily;
-			fontSize = DefaultFontSize;
-			ApplyColors = true;
+			if (setDefaults)
+			{
+				Color = Automatic;
+				Highlight = Automatic;
+				FontFamily = DefaultFontFamily;
+				fontSize = DefaultFontSize;
+				ApplyColors = true;
+			}
 
 			logger = Logger.Current;
 		}
