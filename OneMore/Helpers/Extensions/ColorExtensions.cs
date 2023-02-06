@@ -40,7 +40,8 @@ namespace River.OneMoreAddIn
 		/// <returns></returns>
 		public static bool IsDark(this Color color)
 		{
-			return color.GetBrightness() < 0.5;
+			var limit = Office.IsBlackThemeEnabled() ? 0.3 : 0.5;
+			return color.GetBrightness() < limit;
 		}
 
 
@@ -52,7 +53,8 @@ namespace River.OneMoreAddIn
 		/// <returns></returns>
 		public static bool IsLight(this Color color)
 		{
-			return color.GetBrightness() > 0.5;
+			var limit = Office.IsBlackThemeEnabled() ? 0.6 : 0.5;
+			return color.GetBrightness() > limit;
 		}
 
 
@@ -90,8 +92,6 @@ namespace River.OneMoreAddIn
 			}
 
 			return Math.Abs(color.GetBrightness() - other.GetBrightness()) < 0.3;
-				//(color.IsDark() && other.IsDark()) ||
-				//(color.IsLight() && other.IsLight());
 		}
 
 
