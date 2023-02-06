@@ -107,7 +107,7 @@ namespace River.OneMoreAddIn.Commands
 				var dark = false;
 				if (color != StyleBase.Automatic)
 				{
-					dark = ColorTranslator.FromHtml(color).GetBrightness() < 0.5;
+					dark = ColorTranslator.FromHtml(color).IsDark();
 				}
 
 				logger.WriteLine($"color set to {color} (dark:{dark})");
