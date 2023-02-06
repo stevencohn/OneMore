@@ -126,14 +126,11 @@ namespace River.OneMoreAddIn.Commands
 					var color = ColorHelper.FromHtml(style.Color);
 					var ness = color.GetBrightness();
 
-					logger.WriteLine($"cc-> darkPage:{darkPage} ness:{ness} [{element.Value}]");
 
 					if ((darkPage && ness < 0.4) || (!darkPage && ness > 0.6))
 					{
 						style.Color = pcolor;
 						element.Attribute("style").Value = style.ToCss();
-
-						logger.WriteLine($"cc --> {element.ToString(SaveOptions.DisableFormatting)}");
 						return true;
 					}
 				}
