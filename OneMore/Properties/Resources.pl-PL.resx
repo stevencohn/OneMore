@@ -4708,10 +4708,6 @@ W tej sekcji</value>
     <value>Kliknij tutaj, aby zmienić własny niestandardowy kolor</value>
     <comment>label</comment>
   </data>
-  <data name="PageColorDialog_expander.Title" xml:space="preserve">
-    <value>Zaawansowane opcje</value>
-    <comment>expander control</comment>
-  </data>
   <data name="PageColorDialog_loadThemeLink.Text" xml:space="preserve">
     <value>Załaduj różne style</value>
     <comment>linklabel</comment>

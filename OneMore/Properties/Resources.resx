@@ -1952,10 +1952,6 @@ Deferred</value>
     <value>Click here to change your own custom color</value>
     <comment>label</comment>
   </data>
-  <data name="PageColorDialog_expander.Title" xml:space="preserve">
-    <value>Advanced Options</value>
-    <comment>expander control</comment>
-  </data>
   <data name="PageColorDialog_loadThemeLink.Text" xml:space="preserve">
     <value>Load different styles</value>
     <comment>linklabel</comment>

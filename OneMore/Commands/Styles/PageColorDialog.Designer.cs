@@ -116,7 +116,7 @@
 			this.expander.Name = "expander";
 			this.expander.Size = new System.Drawing.Size(547, 44);
 			this.expander.TabIndex = 10;
-			this.expander.Title = "Advanced Options";
+			this.expander.Title = "Options";
 			// 
 			// optionsPanel
 			// 

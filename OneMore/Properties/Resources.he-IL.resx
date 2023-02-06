@@ -4750,10 +4750,6 @@ ISO-code then comma then language name</comment>
     <value>לחץ כאן כדי לשנות את הצבע המותאם אישית שלך</value>
     <comment>label</comment>
   </data>
-  <data name="PageColorDialog_expander.Title" xml:space="preserve">
-    <value>אפשרויות מתקדמות</value>
-    <comment>expander control</comment>
-  </data>
   <data name="PageColorDialog_loadThemeLink.Text" xml:space="preserve">
     <value>טען סגנונות שונים</value>
     <comment>linklabel</comment>
