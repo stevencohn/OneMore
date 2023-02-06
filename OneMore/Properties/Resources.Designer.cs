@@ -4347,15 +4347,6 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Advanced Options.
-        /// </summary>
-        internal static string PageColorDialog_expander_Title {
-            get {
-                return ResourceManager.GetString("PageColorDialog_expander.Title", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Load different styles.
         /// </summary>
         internal static string PageColorDialog_loadThemeLink_Text {

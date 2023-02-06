@@ -33,7 +33,7 @@ namespace River.OneMoreAddIn.Commands
 				Localize(new string[]
 				{
 					"noLabel",
-					"expander.Title",
+					"expander.Title=word_Options",
 					"currentThemeLabel",
 					"loadThemeLink",
 					"applyThemeBox",

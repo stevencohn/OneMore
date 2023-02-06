@@ -4649,10 +4649,6 @@ Dans cette section</value>
     <value>Cliquez ici pour changer votre propre couleur personnalisée</value>
     <comment>label</comment>
   </data>
-  <data name="PageColorDialog_expander.Title" xml:space="preserve">
-    <value>Options avancées</value>
-    <comment>expander control</comment>
-  </data>
   <data name="PageColorDialog_loadThemeLink.Text" xml:space="preserve">
     <value>Charger différents styles</value>
     <comment>linklabel</comment>
