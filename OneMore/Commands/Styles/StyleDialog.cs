@@ -415,9 +415,7 @@ namespace River.OneMoreAddIn.Commands
 			e.Graphics.DrawString("Text", textFont, textBrush, textClip, format);
 
 			// check contrast
-			var backBrightness = pageColor.GetBrightness() < 0.5;
-			var textBrightness = sampleColor.GetBrightness() < 0.5;
-			if (backBrightness == textBrightness)
+			if (pageColor.IsDark() == sampleColor.IsDark())
 			{
 				statusLabel.Text = Resx.PageColorDialog_contrastWarning;
 				tooltip.SetToolTip(statusLabel, Resx.PageColorDialog_contrastTooltip);
@@ -946,7 +944,7 @@ namespace River.OneMoreAddIn.Commands
 				pageColorBox.Checked = true;
 				pageColor = dialog.Color;
 
-				var dark = pageColor.GetBrightness() < 0.5;
+				var dark = pageColor.IsDark();
 				if (dark && !darkBox.Checked)
 				{
 					darkBox.Checked = true;

@@ -9,23 +9,21 @@ namespace River.OneMoreAddIn.Commands
 	using System.Collections.Generic;
 	using System.Drawing;
 	using System.Linq;
+	using System.Text.RegularExpressions;
 	using System.Threading.Tasks;
 	using System.Xml.Linq;
 
 
 	/// <summary>
-	/// Clear the background color or (table cell) shading of the selected text and reset the
+	/// Clear the background color or table cell shading of the selected text and reset the
 	/// text color to add contrast with page background.
 	/// </summary>
 	internal class ClearBackgroundCommand : Command
 	{
-		private const string White = "#FFFFFF";
-		private const string Black = "#000000";
-
 		private XNamespace ns;
 		private Page page;
 		private bool darkPage;
-		private StyleAnalyzer analyzer;
+		private string pcolor;
 
 
 		public ClearBackgroundCommand()
@@ -36,8 +34,9 @@ namespace River.OneMoreAddIn.Commands
 		public override async Task Execute(params object[] args)
 		{
 			using var one = new OneNote(out page, out ns);
-			darkPage = page.GetPageColor(out _, out _).GetBrightness() < 0.5;
-			analyzer = new StyleAnalyzer(page.Root);
+			var pageColor = page.GetPageColor(out var automatic, out var black);
+			darkPage = (automatic && black) || pageColor.IsDark();
+			pcolor = page.GetQuickStyle(StandardStyles.Normal).Color;
 
 			var updated = ClearTextBackground(page.GetSelectedElements(all: true));
 			updated = ClearCellBackground() || updated;
@@ -52,29 +51,50 @@ namespace River.OneMoreAddIn.Commands
 		private bool ClearTextBackground(IEnumerable<XElement> runs, bool deep = false)
 		{
 			var updated = false;
+			var regex = new Regex(@"<span[^>]*(background:[^;']+)(;mso-highlight:[^;']+)?");
 
 			foreach (var run in runs)
 			{
-				var style = new Style(analyzer.CollectFrom(run, true));
-
-				if (!string.IsNullOrEmpty(style.Highlight))
+				var cdata = run.GetCData();
+				if (cdata == null)
 				{
-					style.Highlight = Style.Automatic;
+					continue;
 				}
 
-				var darkText = !style.Color.Equals(Style.Automatic)
-					&& ColorTranslator.FromHtml(style.Color).GetBrightness() < 0.5;
+				// remove CDATA 'background' and 'mso-highlight' CSS properties...
 
-				// if dark-on-dark or light-on-light
-				if (darkText == darkPage)
+				var matches = regex.Matches(cdata.Value);
+				if (matches.Count == 0)
 				{
-					style.Color = darkText ? White : Black;
+					continue;
 				}
 
-				var stylizer = new Stylizer(style);
-				stylizer.ApplyStyle(run);
+				for (int i = matches.Count - 1; i >= 0; i--)
+				{
+					for (int j = matches[i].Groups.Count - 1; j >= 1; j--)
+					{
+						cdata.Value = cdata.Value.Remove(
+							matches[i].Groups[j].Index,
+							matches[i].Groups[j].Length);
+					}
+				}
 
-				ClearHyperlinkBackground(run);
+				// correct for contrast...
+
+				if (cdata.Value.Contains("<span"))
+				{
+					var rewrap = false;
+					var wrapper = cdata.GetWrapper();
+					wrapper.Elements("span").ForEach(e => rewrap = CheckContrast(e) || rewrap);
+
+					if (rewrap)
+					{
+						cdata.Value = wrapper.GetInnerXml();
+					}
+				}
+
+				CheckContrast(run.Parent);
+
 				updated = true;
 
 				// deep prevents runs from being processed multiple times
@@ -94,36 +114,29 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private void ClearHyperlinkBackground(XElement run)
+		private bool CheckContrast(XElement element)
 		{
-			// hyperlinks are further styled with their own span, usually including both the
-			// background and mso-highlight css attributes, but we only care about background
-			// attribute since rebuilding it with a Style object will wipe out mso-highlight.
-			// OneNote will manage the font color of hyperlinks so don't bother with that
-
-			var cdata = run.GetCData();
-			var wrapper = cdata.GetWrapper();
-
-			var found = false;
-			wrapper.Descendants("span")
-				.Where(e => e.Attribute("style") != null &&
-					e.Attribute("style").Value.Contains("background"))
-				.Select(e => e.Attribute("style"))
-				.ForEach(a =>
-				{
-					var style = new Style(a.Value)
-					{
-						Highlight = Style.Automatic
-					};
-
-					a.Value = style.ToCss();
-					found = true;
-				});
-
-			if (found)
+			var css = element.Attribute("style")?.Value;
+			if (css != null)
 			{
-				cdata.Value = wrapper.GetInnerXml();
+				var style = new Style(css) { ApplyColors = true };
+
+				if (!string.IsNullOrWhiteSpace(style.Color))
+				{
+					var color = ColorHelper.FromHtml(style.Color);
+					var ness = color.GetBrightness();
+
+
+					if ((darkPage && ness < 0.4) || (!darkPage && ness > 0.6))
+					{
+						style.Color = pcolor;
+						element.Attribute("style").Value = style.ToCss();
+						return true;
+					}
+				}
 			}
+
+			return false;
 		}
 
 
@@ -151,10 +164,9 @@ namespace River.OneMoreAddIn.Commands
 			foreach (var cell in cells)
 			{
 				var attr = cell.Attribute("shadingColor");
-				var darkCell = ColorTranslator.FromHtml(attr.Value).GetBrightness() < 0.5;
 
 				// if dark-on-light or light-on-dark
-				if (darkCell != darkPage)
+				if (darkPage != ColorTranslator.FromHtml(attr.Value).IsDark())
 				{
 					attr.Remove();
 					updated = true;

@@ -20,9 +20,33 @@ namespace River.OneMoreAddIn
 		/// <returns>An inverted color</returns>
 		public static Color Invert(this Color color)
 		{
-			return color.GetBrightness() > 0.5
+			return color.IsLight()
 				? ControlPaint.Dark(color, 0.9f)
 				: ControlPaint.Light(color, 1.9f);
+		}
+
+
+		/// <summary>
+		/// Determines if a color is generally "dark" which would imply low constrast
+		/// resulting in readability issues against a dark background
+		/// </summary>
+		/// <param name="color"></param>
+		/// <returns></returns>
+		public static bool IsDark(this Color color)
+		{
+			return color.GetBrightness() < 0.4;
+		}
+
+
+		/// <summary>
+		/// Determines if a color is generally "light" which would imply low constrast
+		/// resulting in readability issues against a light background
+		/// </summary>
+		/// <param name="color"></param>
+		/// <returns></returns>
+		public static bool IsLight(this Color color)
+		{
+			return color.GetBrightness() > 0.6;
 		}
 
 

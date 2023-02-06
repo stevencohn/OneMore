@@ -178,7 +178,7 @@ namespace River.OneMoreAddIn.Commands
 				? Resx.PageColorDialog_omLabel
 				: Resx.PageColorDialog_customLabel;
 
-			var fbrush = color.GetBrightness() < 0.5 ? Brushes.White : Brushes.Black;
+			var fbrush = color.IsDark() ? Brushes.White : Brushes.Black;
 			var size = g.MeasureString(label, Font);
 			g.DrawString(label, Font, fbrush, 8, box.Height / 2 - size.Height / 2);
 		}
@@ -289,9 +289,7 @@ namespace River.OneMoreAddIn.Commands
 				? (Color)omBox.Tag
 				: customButton.Checked ? (Color)customBox.Tag : pageColor;
 
-			var dark = color.GetBrightness() < 0.5;
-
-			statusLabel.Text = theme.Dark == dark
+			statusLabel.Text = theme.Dark == color.IsDark()
 				? string.Empty
 				: Resx.PageColorDialog_contrastWarning;
 		}

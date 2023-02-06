@@ -70,11 +70,10 @@ namespace River.OneMoreAddIn.Commands
 
 			var page = one.GetPage();
 			var pageColor = page.GetPageColor(out _, out _);
-			var pageBrightness = pageColor.GetBrightness();
 
 			logger.WriteLine($"Page background: {pageColor.ToRGBHtml()}");
-			logger.WriteLine($"Page brightness: {pageBrightness}");
-			logger.WriteLine($"Page is dark...: {pageBrightness < 0.5}");
+			logger.WriteLine($"Page brightness: {pageColor.GetBrightness()}");
+			logger.WriteLine($"Page is dark...: {pageColor.IsDark()}");
 
 			(float dpiX, float dpiY) = UIHelper.GetDpiValues();
 			logger.WriteLine($"Screen DPI.....: horizontal/X:{dpiX} vertical/Y:{dpiY}");
