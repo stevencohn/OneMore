@@ -31,8 +31,8 @@ namespace River.OneMoreAddIn.Commands
 			// build our own text block including Newlines...
 
 			var builder = new StringBuilder();
-			page.Root.Descendants(ns + "OE")
-				.Where(e => e.Attribute("selected")?.Value == "partial")
+			page.Root.Descendants(ns + "T")
+				.Where(e => e.Attribute("selected")?.Value == "all")
 				.ForEach(e =>
 				{
 					builder.AppendLine(e.TextValue(true));
