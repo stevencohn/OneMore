@@ -84,12 +84,12 @@ namespace River.OneMoreAddIn
 				return true;
 			}
 
-			if (Office.IsBlackThemeEnabled())
-			{
-				color = color.Invert();
-				other = other.Invert();
-				return Math.Abs(color.GetBrightness() - other.GetBrightness()) < 0.2;
-			}
+			//if (Office.IsBlackThemeEnabled())
+			//{
+			//	color = color.Invert();
+			//	other = other.Invert();
+			//	return Math.Abs(color.GetBrightness() - other.GetBrightness()) < 0.2;
+			//}
 
 			return Math.Abs(color.GetBrightness() - other.GetBrightness()) < 0.3;
 		}

@@ -4,7 +4,6 @@
 
 namespace River.OneMoreAddIn.Commands
 {
-	using River.OneMoreAddIn.Helpers.Office;
 	using River.OneMoreAddIn.Models;
 	using River.OneMoreAddIn.Styles;
 	using System.Collections.Generic;
@@ -35,12 +34,7 @@ namespace River.OneMoreAddIn.Commands
 		public override async Task Execute(params object[] args)
 		{
 			using var one = new OneNote(out page, out ns);
-			pageColor = page.GetPageColor(out var automatic, out var black);
-			//if (automatic && black)
-			//{
-			//	pageColor = BasicColors.BlackSmoke;
-			//}
-
+			pageColor = page.GetPageColor(out var _, out var _);
 			pcolor = page.GetQuickStyle(StandardStyles.Normal).Color;
 
 			var updated = ClearTextBackground(page.GetSelectedElements(all: true));
@@ -65,10 +59,10 @@ namespace River.OneMoreAddIn.Commands
 				{
 					continue;
 				}
-
+#if LOG
 				var original = cdata.Value;
 				var parstyle = run.Parent.Attribute("style")?.Value;
-
+#endif
 				// remove CDATA 'background' and 'mso-highlight' CSS properties...
 
 				var matches = regex.Matches(cdata.Value);
@@ -113,7 +107,7 @@ namespace River.OneMoreAddIn.Commands
 						run.Parent.Descendants(ns + "T").Where(e => e != run),
 						true) || updated;
 				}
-
+#if LOG
 				if (cdata.Value != original)
 				{
 					logger.WriteLine("---------");
@@ -126,6 +120,7 @@ namespace River.OneMoreAddIn.Commands
 					logger.WriteLine($"parentst: [{parstyle}]");
 					logger.WriteLine($"modified: [{run.Parent.Attribute("style")?.Value}]");
 				}
+#endif
 			}
 
 			return updated;
@@ -178,17 +173,13 @@ namespace River.OneMoreAddIn.Commands
 			}
 
 			var updated = false;
-			var darkMode = Office.IsBlackThemeEnabled();
-
 			foreach (var cell in cells)
 			{
 				var attr = cell.Attribute("shadingColor");
 
 				// if dark-on-light or light-on-dark
 				var shade = ColorTranslator.FromHtml(attr.Value);
-				if ((!darkMode && pageColor.IsDark() != shade.IsDark()) ||
-					(darkMode && pageColor.IsLight() != shade.IsLight()))
-				//if (!ColorTranslator.FromHtml(attr.Value).LowContrast(pageColor))
+				if (pageColor.IsDark() != shade.IsDark())
 				{
 					attr.Remove();
 					updated = true;
