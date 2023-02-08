@@ -1881,15 +1881,6 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Invalid selection; must select a block of text.
-        /// </summary>
-        internal static string DrawPlantUml_NoParent {
-            get {
-                return ResourceManager.GetString("DrawPlantUml_NoParent", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Colors.
         /// </summary>
         internal static string EditTableThemesDialog_colorsTab_Text {
@@ -3046,6 +3037,42 @@ namespace River.OneMoreAddIn.Properties {
         internal static string HighlightsSheet_Title {
             get {
                 return ResourceManager.GetString("HighlightsSheet_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Customize the defaults for Image commands.
+        /// </summary>
+        internal static string ImagesSheet_introBox_Text {
+            get {
+                return ResourceManager.GetString("ImagesSheet_introBox.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Insert drawing after PlantUML text.
+        /// </summary>
+        internal static string ImagesSheet_plantAfterBox_Text {
+            get {
+                return ResourceManager.GetString("ImagesSheet_plantAfterBox.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Collapse PlantUML text.
+        /// </summary>
+        internal static string ImagesSheet_plantCollapseBox_Text {
+            get {
+                return ResourceManager.GetString("ImagesSheet_plantCollapseBox.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to PlantUML Options.
+        /// </summary>
+        internal static string ImagesSheet_plantGroup_Text {
+            get {
+                return ResourceManager.GetString("ImagesSheet_plantGroup.Text", resourceCulture);
             }
         }
         
@@ -8984,6 +9011,15 @@ namespace River.OneMoreAddIn.Properties {
         internal static string SettingsDialog_highlightNode_Text {
             get {
                 return ResourceManager.GetString("SettingsDialog_highlightNode.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Images.
+        /// </summary>
+        internal static string SettingsDialog_imagesNode_Text {
+            get {
+                return ResourceManager.GetString("SettingsDialog_imagesNode.Text", resourceCulture);
             }
         }
         

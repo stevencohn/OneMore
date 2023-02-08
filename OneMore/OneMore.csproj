@@ -147,6 +147,12 @@
     <Compile Include="Commands\Images\OpenImageWithCommand.cs" />
     <Compile Include="Commands\Page\DuplicatePageCommand.cs" />
     <Compile Include="Commands\Page\Emojis.cs" />
+    <Compile Include="Commands\Settings\ImagesSheet.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Commands\Settings\ImagesSheet.Designer.cs">
+      <DependentUpon>ImagesSheet.cs</DependentUpon>
+    </Compile>
     <Compile Include="Commands\Styles\PageColorCommand.cs" />
     <Compile Include="Commands\Styles\PageColorDialog.cs">
       <SubType>Form</SubType>
@@ -1185,6 +1191,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Commands\Settings\AliasSheet.resx">
       <DependentUpon>AliasSheet.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Commands\Settings\ImagesSheet.resx">
+      <DependentUpon>ImagesSheet.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Commands\Settings\LinesSheet.resx">
       <DependentUpon>LinesSheet.cs</DependentUpon>

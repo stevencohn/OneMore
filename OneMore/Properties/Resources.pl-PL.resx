@@ -4666,10 +4666,6 @@ W tej sekcji</value>
     <value>Niepoprawna składnia lub niepełny wybór PlantUML</value>
     <comment>error message</comment>
   </data>
-  <data name="DrawPlantUml_NoParent" xml:space="preserve">
-    <value>Nieprawidłowy wybór; musi wybrać blok tekstu</value>
-    <comment>error message</comment>
-  </data>
   <data name="ribDrawPlantUmlButton_Label" xml:space="preserve">
     <value>Narysuj PlantUML</value>
     <comment>ribbon images</comment>
@@ -4778,5 +4774,25 @@ W tej sekcji</value>
   <data name="SearchAndReplaceDialog_substitutions" xml:space="preserve">
     <value>Prawidłowe parametry podstawienia: {0}</value>
     <comment>status label</comment>
+  </data>
+  <data name="ImagesSheet_introBox.Text" xml:space="preserve">
+    <value>Dostosuj ustawienia domyślne dla poleceń obrazu</value>
+    <comment>label</comment>
+  </data>
+  <data name="ImagesSheet_plantAfterBox.Text" xml:space="preserve">
+    <value>Wstaw rysunek po tekście PlantUML</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="ImagesSheet_plantCollapseBox.Text" xml:space="preserve">
+    <value>Zwiń tekst PlantUML</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="SettingsDialog_imagesNode.Text" xml:space="preserve">
+    <value>Obrazy</value>
+    <comment>treenode</comment>
+  </data>
+  <data name="ImagesSheet_plantGroup.Text" xml:space="preserve">
+    <value>Opcje PlantUML</value>
+    <comment>groupbox</comment>
   </data>
 </root>

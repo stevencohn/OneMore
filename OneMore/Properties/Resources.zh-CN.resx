@@ -4597,10 +4597,6 @@ ISO-code then comma then language name</comment>
     <value>PlantUML 语法无效或选择不完整</value>
     <comment>error message</comment>
   </data>
-  <data name="DrawPlantUml_NoParent" xml:space="preserve">
-    <value>无效选择；必须选择一个文本块</value>
-    <comment>error message</comment>
-  </data>
   <data name="ribDrawPlantUmlButton_Label" xml:space="preserve">
     <value>画PlantUML</value>
     <comment>ribbon images</comment>
@@ -4709,5 +4705,25 @@ ISO-code then comma then language name</comment>
   <data name="SearchAndReplaceDialog_substitutions" xml:space="preserve">
     <value>有效替换参数：{0}</value>
     <comment>status label</comment>
+  </data>
+  <data name="ImagesSheet_introBox.Text" xml:space="preserve">
+    <value>自定义图像命令的默认值</value>
+    <comment>label</comment>
+  </data>
+  <data name="ImagesSheet_plantAfterBox.Text" xml:space="preserve">
+    <value>在 PlantUML 文本后插入绘图</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="ImagesSheet_plantCollapseBox.Text" xml:space="preserve">
+    <value>折叠 PlantUML 文本</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="SettingsDialog_imagesNode.Text" xml:space="preserve">
+    <value>图片</value>
+    <comment>treenode</comment>
+  </data>
+  <data name="ImagesSheet_plantGroup.Text" xml:space="preserve">
+    <value>PlantUML 选项</value>
+    <comment>groupbox</comment>
   </data>
 </root>
