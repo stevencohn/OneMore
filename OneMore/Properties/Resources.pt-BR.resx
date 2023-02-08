@@ -4613,10 +4613,6 @@ Nesta secção</value>
     <value>Sintaxe inválida ou seleção incompleta de PlantUML</value>
     <comment>error message</comment>
   </data>
-  <data name="DrawPlantUml_NoParent" xml:space="preserve">
-    <value>Seleção inválida; deve selecionar um bloco de texto</value>
-    <comment>error message</comment>
-  </data>
   <data name="ribDrawPlantUmlButton_Label" xml:space="preserve">
     <value>Desenhar PlantUML</value>
     <comment>ribbon images</comment>
@@ -4725,5 +4721,25 @@ Nesta secção</value>
   <data name="SearchAndReplaceDialog_substitutions" xml:space="preserve">
     <value>Parâmetros de substituição válidos: {0}</value>
     <comment>status label</comment>
+  </data>
+  <data name="ImagesSheet_introBox.Text" xml:space="preserve">
+    <value>Personalize os padrões para comandos de imagem</value>
+    <comment>label</comment>
+  </data>
+  <data name="ImagesSheet_plantAfterBox.Text" xml:space="preserve">
+    <value>Inserir desenho após o texto PlantUML</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="ImagesSheet_plantCollapseBox.Text" xml:space="preserve">
+    <value>Recolher texto PlantUML</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="SettingsDialog_imagesNode.Text" xml:space="preserve">
+    <value>Imagens</value>
+    <comment>treenode</comment>
+  </data>
+  <data name="ImagesSheet_plantGroup.Text" xml:space="preserve">
+    <value>Opções PlantUML</value>
+    <comment>groupbox</comment>
   </data>
 </root>

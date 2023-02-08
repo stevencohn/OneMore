@@ -879,10 +879,6 @@ OneNote will close automatically</value>
     <value>Invalid syntax or incomplete selection of PlantUML</value>
     <comment>error message</comment>
   </data>
-  <data name="DrawPlantUml_NoParent" xml:space="preserve">
-    <value>Invalid selection; must select a block of text</value>
-    <comment>error message</comment>
-  </data>
   <data name="EditTableThemesDialog_colorsTab.Text" xml:space="preserve">
     <value>Colors</value>
     <comment>tab</comment>
@@ -1389,6 +1385,22 @@ Symbols: PI, E</value>
   <data name="HighlightsSheet_Title" xml:space="preserve">
     <value>Rotating Highlighter Options</value>
     <comment>sheet intro</comment>
+  </data>
+  <data name="ImagesSheet_introBox.Text" xml:space="preserve">
+    <value>Customize the defaults for Image commands</value>
+    <comment>label</comment>
+  </data>
+  <data name="ImagesSheet_plantAfterBox.Text" xml:space="preserve">
+    <value>Insert drawing after PlantUML text</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="ImagesSheet_plantCollapseBox.Text" xml:space="preserve">
+    <value>Collapse PlantUML text</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="ImagesSheet_plantGroup.Text" xml:space="preserve">
+    <value>PlantUML Options</value>
+    <comment>groupbox</comment>
   </data>
   <data name="ImportDialog_fileLabel.Text" xml:space="preserve">
     <value>File:</value>
@@ -4002,6 +4014,10 @@ Search engines will appear in the page context menu, right-click.</value>
   </data>
   <data name="SettingsDialog_highlightNode.Text" xml:space="preserve">
     <value>Highlighter Themes</value>
+    <comment>treenode</comment>
+  </data>
+  <data name="SettingsDialog_imagesNode.Text" xml:space="preserve">
+    <value>Images</value>
     <comment>treenode</comment>
   </data>
   <data name="SettingsDialog_keyboardNode.Text" xml:space="preserve">

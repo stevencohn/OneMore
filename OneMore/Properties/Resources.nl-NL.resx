@@ -4613,10 +4613,6 @@ In deze sectie</value>
     <value>Ongeldige syntaxis of onvolledige selectie van PlantUML</value>
     <comment>error message</comment>
   </data>
-  <data name="DrawPlantUml_NoParent" xml:space="preserve">
-    <value>Ongeldige selectie; moet een tekstblok selecteren</value>
-    <comment>error message</comment>
-  </data>
   <data name="ribDrawPlantUmlButton_Label" xml:space="preserve">
     <value>Teken PlantUML</value>
     <comment>ribbon images</comment>
@@ -4725,5 +4721,25 @@ In deze sectie</value>
   <data name="SearchAndReplaceDialog_substitutions" xml:space="preserve">
     <value>Geldige vervangingsparameters: {0}</value>
     <comment>status label</comment>
+  </data>
+  <data name="ImagesSheet_introBox.Text" xml:space="preserve">
+    <value>Pas de standaardinstellingen voor afbeeldingsopdrachten aan</value>
+    <comment>label</comment>
+  </data>
+  <data name="ImagesSheet_plantAfterBox.Text" xml:space="preserve">
+    <value>Tekening invoegen na PlantUML-tekst</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="ImagesSheet_plantCollapseBox.Text" xml:space="preserve">
+    <value>PlantUML-tekst samenvouwen</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="SettingsDialog_imagesNode.Text" xml:space="preserve">
+    <value>Afbeeldingen</value>
+    <comment>treenode</comment>
+  </data>
+  <data name="ImagesSheet_plantGroup.Text" xml:space="preserve">
+    <value>PlantUML-opties</value>
+    <comment>groupbox</comment>
   </data>
 </root>

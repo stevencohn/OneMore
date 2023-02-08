@@ -4613,10 +4613,6 @@ ISO-code then comma then language name</comment>
     <value>بناء جملة غير صالح أو تحديد غير كامل لـ PlantUML</value>
     <comment>error message</comment>
   </data>
-  <data name="DrawPlantUml_NoParent" xml:space="preserve">
-    <value>اختيار غير صحيح ؛ يجب تحديد كتلة نصية</value>
-    <comment>error message</comment>
-  </data>
   <data name="ribDrawPlantUmlButton_Label" xml:space="preserve">
     <value>رسم النبات</value>
     <comment>ribbon images</comment>
@@ -4725,5 +4721,25 @@ ISO-code then comma then language name</comment>
   <data name="SearchAndReplaceDialog_substitutions" xml:space="preserve">
     <value>معلمات الاستبدال الصالحة: {0}</value>
     <comment>status label</comment>
+  </data>
+  <data name="ImagesSheet_introBox.Text" xml:space="preserve">
+    <value>تخصيص الإعدادات الافتراضية لأوامر الصورة</value>
+    <comment>label</comment>
+  </data>
+  <data name="ImagesSheet_plantAfterBox.Text" xml:space="preserve">
+    <value>أدخل الرسم بعد نص PlantUML</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="ImagesSheet_plantCollapseBox.Text" xml:space="preserve">
+    <value>طي نص PlantUML</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="SettingsDialog_imagesNode.Text" xml:space="preserve">
+    <value>الصور</value>
+    <comment>treenode</comment>
+  </data>
+  <data name="ImagesSheet_plantGroup.Text" xml:space="preserve">
+    <value>خيارات PlantUML</value>
+    <comment>groupbox</comment>
   </data>
 </root>

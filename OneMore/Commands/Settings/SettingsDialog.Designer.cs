@@ -33,12 +33,13 @@
 			System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("Context Menu");
 			System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("Favorites");
 			System.Windows.Forms.TreeNode treeNode5 = new System.Windows.Forms.TreeNode("Highlighter Themes");
-			System.Windows.Forms.TreeNode treeNode6 = new System.Windows.Forms.TreeNode("Keyboard Shortcuts");
-			System.Windows.Forms.TreeNode treeNode7 = new System.Windows.Forms.TreeNode("Horizontal Lines");
-			System.Windows.Forms.TreeNode treeNode8 = new System.Windows.Forms.TreeNode("Plugins");
-			System.Windows.Forms.TreeNode treeNode9 = new System.Windows.Forms.TreeNode("Ribbon Bar");
-			System.Windows.Forms.TreeNode treeNode10 = new System.Windows.Forms.TreeNode("Search Engines");
-			System.Windows.Forms.TreeNode treeNode11 = new System.Windows.Forms.TreeNode("Snippets");
+			System.Windows.Forms.TreeNode treeNode6 = new System.Windows.Forms.TreeNode("Images");
+			System.Windows.Forms.TreeNode treeNode7 = new System.Windows.Forms.TreeNode("Keyboard Shortcuts");
+			System.Windows.Forms.TreeNode treeNode8 = new System.Windows.Forms.TreeNode("Horizontal Lines");
+			System.Windows.Forms.TreeNode treeNode9 = new System.Windows.Forms.TreeNode("Plugins");
+			System.Windows.Forms.TreeNode treeNode10 = new System.Windows.Forms.TreeNode("Ribbon Bar");
+			System.Windows.Forms.TreeNode treeNode11 = new System.Windows.Forms.TreeNode("Search Engines");
+			System.Windows.Forms.TreeNode treeNode12 = new System.Windows.Forms.TreeNode("Snippets");
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SettingsDialog));
 			this.buttonPanel = new System.Windows.Forms.Panel();
 			this.okButton = new System.Windows.Forms.Button();
@@ -139,18 +140,20 @@
 			treeNode4.Text = "Favorites";
 			treeNode5.Name = "highlightNode";
 			treeNode5.Text = "Highlighter Themes";
-			treeNode6.Name = "keyboardNode";
-			treeNode6.Text = "Keyboard Shortcuts";
-			treeNode7.Name = "linesNode";
-			treeNode7.Text = "Horizontal Lines";
-			treeNode8.Name = "pluginsNode";
-			treeNode8.Text = "Plugins";
-			treeNode9.Name = "ribbonNode";
-			treeNode9.Text = "Ribbon Bar";
-			treeNode10.Name = "searchNode";
-			treeNode10.Text = "Search Engines";
-			treeNode11.Name = "snippetsNode";
-			treeNode11.Text = "Snippets";
+			treeNode6.Name = "imagesNode";
+			treeNode6.Text = "Images";
+			treeNode7.Name = "keyboardNode";
+			treeNode7.Text = "Keyboard Shortcuts";
+			treeNode8.Name = "linesNode";
+			treeNode8.Text = "Horizontal Lines";
+			treeNode9.Name = "pluginsNode";
+			treeNode9.Text = "Plugins";
+			treeNode10.Name = "ribbonNode";
+			treeNode10.Text = "Ribbon Bar";
+			treeNode11.Name = "searchNode";
+			treeNode11.Text = "Search Engines";
+			treeNode12.Name = "snippetsNode";
+			treeNode12.Text = "Snippets";
 			this.navTree.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
             treeNode1,
             treeNode2,
@@ -162,7 +165,8 @@
             treeNode8,
             treeNode9,
             treeNode10,
-            treeNode11});
+            treeNode11,
+            treeNode12});
 			this.navTree.Size = new System.Drawing.Size(300, 546);
 			this.navTree.TabIndex = 2;
 			this.navTree.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.Navigate);
