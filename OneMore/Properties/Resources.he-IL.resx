@@ -4817,4 +4817,8 @@ ISO-code then comma then language name</comment>
     <value>שמור את מיקום החלון</value>
     <comment>checkbox</comment>
   </data>
+  <data name="SearchAndReplaceDialog_substitutions" xml:space="preserve">
+    <value>פרמטרי החלפה חוקיים: {0}</value>
+    <comment>status label</comment>
+  </data>
 </root>

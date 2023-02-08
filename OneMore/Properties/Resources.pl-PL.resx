@@ -4775,4 +4775,8 @@ W tej sekcji</value>
     <value>Zapisz lokalizację okna</value>
     <comment>checkbox</comment>
   </data>
+  <data name="SearchAndReplaceDialog_substitutions" xml:space="preserve">
+    <value>Prawidłowe parametry podstawienia: {0}</value>
+    <comment>status label</comment>
+  </data>
 </root>

@@ -12,26 +12,52 @@ namespace River.OneMoreAddIn.Commands
 	using System.Xml.Linq;
 
 
+	/// <summary>
+	/// Searches a page for a specified pattern and replaces matches with a given string,
+	/// possibly using capture group substitution.
+	/// </summary>
 	internal class SearchAndReplaceEditor
 	{
-		private readonly string search;
-		private readonly string replace;
+		private readonly Regex regex;
+		private readonly string replacementString;
 		private readonly XElement replaceElement;
-		private readonly RegexOptions options;
 
 
-		public SearchAndReplaceEditor(string search, string replace, bool useRegex, bool caseSensitive)
+		/// <summary>
+		/// Initialize a new editor, invoked primarily by the SearchAndReplace command
+		/// </summary>
+		/// <param name="pattern">A string or regular expression</param>
+		/// <param name="replacement">A string which might contain capture references, e.g. $1</param>
+		/// <param name="enableRegex">Determines whether to treat pattern as a regular expression</param>
+		/// <param name="caseSensitive">Determines whether to be case sensitive</param>
+		public SearchAndReplaceEditor(
+			string pattern, string replacement, bool enableRegex, bool caseSensitive)
 		{
-			this.search = useRegex ? search : EscapeEscapes(search);
-			this.replace = replace;
-			options = caseSensitive ? RegexOptions.None : RegexOptions.IgnoreCase;
+			regex = new Regex(
+				enableRegex ? pattern : EscapeEscapes(pattern),
+				caseSensitive ? RegexOptions.None : RegexOptions.IgnoreCase
+				);
+
+			replacementString = replacement;
 		}
 
-		public SearchAndReplaceEditor(string search, XElement replaceElement, bool useRegex, bool caseSensitive)
+
+		/// <summary>
+		/// Initializes a new editor, invoked primarily by the LinkReferences command
+		/// </summary>
+		/// <param name="pattern">A string or regular expression</param>
+		/// <param name="element">A element to insert in place of each match</param>
+		/// <param name="enableRegex">Determines whether to treat pattern as a regular expression</param>
+		/// <param name="caseSensitive">Determines whether to be case sensitive</param>
+		public SearchAndReplaceEditor(
+			string pattern, XElement element, bool enableRegex, bool caseSensitive)
 		{
-			this.search = useRegex ? search : EscapeEscapes(search);
-			this.replaceElement = replaceElement;
-			options = caseSensitive ? RegexOptions.None : RegexOptions.IgnoreCase;
+			regex = new Regex(
+				enableRegex ? pattern : EscapeEscapes(pattern),
+				caseSensitive ? RegexOptions.None : RegexOptions.IgnoreCase
+				);
+
+			replaceElement = element;
 		}
 
 
@@ -43,7 +69,7 @@ namespace River.OneMoreAddIn.Commands
 		/// <returns>A string in which all regular expression control chars are escaped</returns>
 		public static string EscapeEscapes(string plain)
 		{
-			var codes = new char[] { '\\', '.', '*', '|', '?', '(', '[', '$', '^', '+' };
+			var codes = new char[] { '\\', '.', '*', '|', '?', '(', ')', '[', '$', '^', '+' };
 
 			var builder = new StringBuilder();
 			for (var i = 0; i < plain.Length; i++)
@@ -64,10 +90,11 @@ namespace River.OneMoreAddIn.Commands
 
 
 		/// <summary>
-		/// 
+		/// Search selected content on the given page and replace matches with the
+		/// specified replacement value.
 		/// </summary>
-		/// <param name="page"></param>
-		/// <returns></returns>
+		/// <param name="page">The page to modify</param>
+		/// <returns>The number of successful replacements</returns>
 		public int SearchAndReplace(Page page)
 		{
 			var elements = page.GetSelectedElements();
@@ -102,11 +129,14 @@ namespace River.OneMoreAddIn.Commands
 
 			var wrapper = cdata.GetWrapper();
 
-			// find all distinct occurrences of search string across all text of the run
-			// regardless of internal SPANs; we'll compensate for those below...
+			// replace unicode no-break space with normal space
+			var rawtext = wrapper.Value.Replace('\u00A0', ' ');
 
-			var matches = Regex.Matches(wrapper.Value, search, options);
-			if (matches?.Count > 0)
+			// find all distinct occurrences of search string across all text of the run
+			// regardless of internal SPANs; we'll compensate for those in Replace() below...
+
+			var matches = regex.Matches(rawtext);
+			if (matches.Count > 0)
 			{
 				// iterate backwards to avoid cumulative offets if Match length differs
 				// from length of replacement text...
@@ -123,17 +153,12 @@ namespace River.OneMoreAddIn.Commands
 					{
 						// regex does not contain any capture or non-capture groups
 						// for example "abc"
-						Replace(wrapper, match.Index, match.Length);
+						Replace(wrapper, match.Index, match.Length, replacementString);
 					}
 					else if (match.Groups.Count > 1)
 					{
-						// regex contains at least one capture or non-capture group
-						// for example "(abc)" or "(?:abc)"
-						// skip 0th item which is always the full match
-						for (var j = match.Groups.Count - 1; j > 0; j--)
-						{
-							Replace(wrapper, match.Groups[j].Index, match.Groups[j].Length);
-						}
+						Replace(wrapper, match.Index, match.Length,
+							replaceElement == null ? ExpandReplacement(match) : null);
 					}
 				}
 
@@ -146,14 +171,49 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
+		// Substitute $1..$n parameters in replacementString with capture groups
+		private string ExpandReplacement(Match match)
+		{
+			if (string.IsNullOrWhiteSpace(replacementString))
+			{
+				return replacementString;
+			}
+
+			var matches = Regex.Matches(replacementString, @"\$\d+");
+			if (matches.Count > 0)
+			{
+				var expanded = replacementString;
+				for (int i = matches.Count - 1; i >= 0; i--)
+				{
+					var m = matches[i];
+
+					// 1-based indexing can be used here because match.Groups[0] is always skipped
+					var index = int.Parse(m.Value.Substring(1));
+
+					if (index >= 0 && index <= match.Groups.Count)
+					{
+						expanded = expanded
+							.Remove(m.Index, m.Length)
+							.Insert(m.Index, match.Groups[index].Value);
+					}
+				}
+
+				return expanded;
+			}
+
+			return replacementString;
+		}
+
+
 		// Replace a single match in the given text.
 		// A wrapper consists of both XText nodes and XElement nodes where the elements are
 		// most likely SPAN or BR tags. This routine ignores the SPAN XElements themsevles
 		// and focuses only on the inner text of the SPAN.
 		private void Replace(
-			XElement wrapper,		// the wrapped CDATA of the run
-			int searchIndex,		// the starting index of the match in the text
-			int searchLength)		// the length of the match
+			XElement wrapper,       // the wrapped CDATA of the run
+			int searchIndex,        // the starting index of the match in the text
+			int searchLength,       // the length of the match
+			string value)           // the capture value, if any
 		{
 			// XText and XElement nodes in wrapper
 			var nodes = wrapper.Nodes().ToList();
@@ -182,13 +242,13 @@ namespace River.OneMoreAddIn.Commands
 					var index = searchIndex - nodeStart;
 					var chars = Math.Min(remaining, atom.Length - index);
 
-					if (replace != null)
+					if (replaceElement != null)
 					{
-						atom.Replace(index, chars, replace);
+						atom.Replace(index, chars, replaceElement);
 					}
 					else
 					{
-						atom.Replace(index, chars, replaceElement);
+						atom.Replace(index, chars, value);
 					}
 
 					remaining -= chars;

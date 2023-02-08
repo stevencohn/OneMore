@@ -4709,4 +4709,8 @@ In diesem Abschnitt</value>
     <value>Fensterposition speichern</value>
     <comment>checkbox</comment>
   </data>
+  <data name="SearchAndReplaceDialog_substitutions" xml:space="preserve">
+    <value>Gültige Ersetzungsparameter: {0}</value>
+    <comment>status label</comment>
+  </data>
 </root>

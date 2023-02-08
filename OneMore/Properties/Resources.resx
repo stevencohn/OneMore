@@ -3860,6 +3860,10 @@ Polaroid</value>
     <value>Use regular expressions</value>
     <comment>checkbox</comment>
   </data>
+  <data name="SearchAndReplaceDialog_substitutions" xml:space="preserve">
+    <value>Valid substitution parameters: {0}</value>
+    <comment>status label</comment>
+  </data>
   <data name="SearchAndReplaceDialog_Text" xml:space="preserve">
     <value>Search and Replace</value>
     <comment>dialog title</comment>

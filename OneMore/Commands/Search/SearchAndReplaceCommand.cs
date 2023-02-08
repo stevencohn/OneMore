@@ -52,7 +52,7 @@ namespace River.OneMoreAddIn.Commands
 			withText = withText.Replace("\\n", "\n");
 
 			var editor = new SearchAndReplaceEditor(whatText, withText,
-				useRegex: useRegex,
+				enableRegex: useRegex,
 				caseSensitive: matchCase
 				);
 
