@@ -178,7 +178,7 @@ namespace River.OneMoreAddIn.Commands
 					);
 
 				var editor = new SearchAndReplaceEditor(whatText, withElement,
-					useRegex: true,
+					enableRegex: true,
 					caseSensitive: false
 					);
 

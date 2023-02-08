@@ -7,8 +7,9 @@ namespace River.OneMoreAddIn.Commands
 	using River.OneMoreAddIn.Settings;
 	using System;
 	using System.Linq;
+	using System.Text.RegularExpressions;
 	using System.Xml.Linq;
-	using Resx = River.OneMoreAddIn.Properties.Resources;
+	using Resx = Properties.Resources;
 
 
 	internal partial class SearchAndReplaceDialog : UI.LocalizableForm
@@ -16,7 +17,7 @@ namespace River.OneMoreAddIn.Commands
 		private XElement whats;
 
 
-		public SearchAndReplaceDialog ()
+		public SearchAndReplaceDialog()
 		{
 			InitializeComponent();
 
@@ -34,6 +35,9 @@ namespace River.OneMoreAddIn.Commands
 					"cancelButton=word_Cancel"
 				});
 			}
+
+			whatStatusLabel.Text = string.Empty;
+			withStatusLabel.Text = string.Empty;
 
 			LoadSettings();
 		}
@@ -80,15 +84,65 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private void SearchAndReplaceDialog_Shown (object sender, EventArgs e)
+		private void FocusOnWhat(object sender, EventArgs e)
 		{
 			UIHelper.SetForegroundWindow(this);
 			whatBox.Focus();
 		}
 
-		private void WTextChanged (object sender, EventArgs e)
+
+		private void ToggleRegex(object sender, EventArgs e)
 		{
-			okButton.Enabled = whatBox.Text.Length > 0;
+			CheckPattern(sender, e);
+		}
+
+
+		private void CheckPattern(object sender, EventArgs e)
+		{
+			var text = whatBox.Text.Trim();
+			if (text.Length == 0)
+			{
+				whatStatusLabel.Text = string.Empty;
+				withStatusLabel.Text = string.Empty;
+			}
+
+			if (regBox.Checked)
+			{
+				try
+				{
+					var regex = new Regex(text);
+
+					var count = regex.GetGroupNumbers().Length - 1;
+					if (count > 0)
+					{
+						var range = count == 1
+							? "$1"
+							: $"$1 - ${count}";
+
+						withStatusLabel.Text =
+							string.Format(Resx.SearchAndReplaceDialog_substitutions, range);
+					}
+					else
+					{
+						withStatusLabel.Text = string.Empty;
+					}
+
+					okButton.Enabled = whatBox.Text.Length > 0;
+				}
+				catch (Exception exc)
+				{
+					logger.WriteLine(text, exc);
+					whatStatusLabel.Text = exc.Message;
+					withStatusLabel.Text = string.Empty;
+					okButton.Enabled = false;
+				}
+			}
+			else
+			{
+				whatStatusLabel.Text = string.Empty;
+				withStatusLabel.Text = string.Empty;
+				okButton.Enabled = whatBox.Text.Length > 0;
+			}
 		}
 
 

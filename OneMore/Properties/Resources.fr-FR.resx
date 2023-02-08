@@ -4716,4 +4716,8 @@ Dans cette section</value>
     <value>Enregistrer l'emplacement de la fenêtre</value>
     <comment>checkbox</comment>
   </data>
+  <data name="SearchAndReplaceDialog_substitutions" xml:space="preserve">
+    <value>Paramètres de substitution valides : {0}</value>
+    <comment>status label</comment>
+  </data>
 </root>

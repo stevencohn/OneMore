@@ -8657,6 +8657,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Valid substitution parameters: {0}.
+        /// </summary>
+        internal static string SearchAndReplaceDialog_substitutions {
+            get {
+                return ResourceManager.GetString("SearchAndReplaceDialog_substitutions", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Search and Replace.
         /// </summary>
         internal static string SearchAndReplaceDialog_Text {

@@ -4706,4 +4706,8 @@ ISO-code then comma then language name</comment>
     <value>保存窗口位置</value>
     <comment>checkbox</comment>
   </data>
+  <data name="SearchAndReplaceDialog_substitutions" xml:space="preserve">
+    <value>有效替换参数：{0}</value>
+    <comment>status label</comment>
+  </data>
 </root>

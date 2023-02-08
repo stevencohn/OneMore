@@ -4722,4 +4722,8 @@ En esta sección</value>
     <value>Guardar la ubicación de la ventana</value>
     <comment>checkbox</comment>
   </data>
+  <data name="SearchAndReplaceDialog_substitutions" xml:space="preserve">
+    <value>Parámetros de sustitución válidos: {0}</value>
+    <comment>status label</comment>
+  </data>
 </root>
