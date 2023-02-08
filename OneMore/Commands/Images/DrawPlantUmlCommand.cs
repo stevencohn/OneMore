@@ -6,6 +6,9 @@ namespace River.OneMoreAddIn.Commands
 {
 	using PlantUml.Net;
 	using System;
+	using System.Drawing;
+	using System.Globalization;
+	using System.IO;
 	using System.Linq;
 	using System.Text;
 	using System.Threading.Tasks;
@@ -76,8 +79,14 @@ namespace River.OneMoreAddIn.Commands
 				return;
 			}
 
+			using var stream = new MemoryStream(bytes);
+			var image = (Bitmap)Image.FromStream(stream);
+
 			container.AddAfterSelf(new XElement(ns + "OE",
 				new XElement(ns + "Image",
+					new XElement(ns + "Size",
+						new XAttribute("width", image.Width.ToString(CultureInfo.InvariantCulture)),
+						new XAttribute("height", image.Height.ToString(CultureInfo.InvariantCulture))),
 					new XElement(ns + "Data", Convert.ToBase64String(bytes))
 					)));
 
