@@ -119,11 +119,14 @@ namespace River.OneMoreAddIn.Commands
 							? "$1"
 							: $"$1 - ${count}";
 
+						whatStatusLabel.Text = string.Empty;
+
 						withStatusLabel.Text =
 							string.Format(Resx.SearchAndReplaceDialog_substitutions, range);
 					}
 					else
 					{
+						whatStatusLabel.Text = string.Empty;
 						withStatusLabel.Text = string.Empty;
 					}
 
