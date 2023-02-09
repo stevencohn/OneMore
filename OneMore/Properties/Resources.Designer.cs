@@ -232,6 +232,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Command Aliases.
+        /// </summary>
+        internal static string AliasSheet_Title {
+            get {
+                return ResourceManager.GetString("AliasSheet_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The cache is an internal directory managed by OneNote to optimize its performance. The recommendation is to avoid manually deleting the contents of the cache directory unless it becomes corrupted or hampers the operation of OneNote..
         /// </summary>
         internal static string AnalyzeCommand_CacheSummary {
@@ -1348,7 +1357,7 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Context Menu Options.
+        ///   Looks up a localized string similar to Context Menu.
         /// </summary>
         internal static string ContextMenuSheet_Title {
             get {
@@ -2620,7 +2629,7 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Manage Favorites.
+        ///   Looks up a localized string similar to Favorites.
         /// </summary>
         internal static string FavoritesSheet_Text {
             get {
@@ -2895,24 +2904,6 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Image Viewer.
-        /// </summary>
-        internal static string GeneralSheet_imageBrowser {
-            get {
-                return ResourceManager.GetString("GeneralSheet_imageBrowser", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to External image viewer (default if empty is mspaint).
-        /// </summary>
-        internal static string GeneralSheet_imageViewerLabel_Text {
-            get {
-                return ResourceManager.GetString("GeneralSheet_imageViewerLabel.Text", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Customize the overall behavior of OneMore.
         /// </summary>
         internal static string GeneralSheet_introBox_Text {
@@ -3032,11 +3023,29 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Rotating Highlighter Options.
+        ///   Looks up a localized string similar to Highlighter Themes.
         /// </summary>
         internal static string HighlightsSheet_Title {
             get {
                 return ResourceManager.GetString("HighlightsSheet_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Image Viewer.
+        /// </summary>
+        internal static string ImagesSheet_imageBrowser {
+            get {
+                return ResourceManager.GetString("ImagesSheet_imageBrowser", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to External image viewer (default if empty is mspaint).
+        /// </summary>
+        internal static string ImagesSheet_imageViewerLabel_Text {
+            get {
+                return ResourceManager.GetString("ImagesSheet_imageViewerLabel.Text", resourceCulture);
             }
         }
         
@@ -3073,6 +3082,33 @@ namespace River.OneMoreAddIn.Properties {
         internal static string ImagesSheet_plantGroup_Text {
             get {
                 return ResourceManager.GetString("ImagesSheet_plantGroup.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Resize Options.
+        /// </summary>
+        internal static string ImagesSheet_resizeGroup_Text {
+            get {
+                return ResourceManager.GetString("ImagesSheet_resizeGroup.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Images.
+        /// </summary>
+        internal static string ImagesSheet_Title {
+            get {
+                return ResourceManager.GetString("ImagesSheet_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Preferred resize width.
+        /// </summary>
+        internal static string ImagesSheet_widthLabel_Text {
+            get {
+                return ResourceManager.GetString("ImagesSheet_widthLabel.Text", resourceCulture);
             }
         }
         
@@ -3721,7 +3757,7 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Horizontal Line Options.
+        ///   Looks up a localized string similar to Horizontal Lines.
         /// </summary>
         internal static string LinesSheet_Title {
             get {
@@ -4692,11 +4728,11 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Manage My Plugins.
+        ///   Looks up a localized string similar to Plugins.
         /// </summary>
-        internal static string PluginsSheet_Text {
+        internal static string PluginsSheet_Title {
             get {
-                return ResourceManager.GetString("PluginsSheet.Text", resourceCulture);
+                return ResourceManager.GetString("PluginsSheet_Title", resourceCulture);
             }
         }
         
@@ -5874,7 +5910,7 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Ribbon Bar Options.
+        ///   Looks up a localized string similar to Ribbon Bar.
         /// </summary>
         internal static string RibbonBarSheet_Title {
             get {
@@ -9315,7 +9351,7 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Manage My Custom Snippets.
+        ///   Looks up a localized string similar to Snippets.
         /// </summary>
         internal static string SnippetsSheet_Text {
             get {
@@ -10715,6 +10751,15 @@ namespace River.OneMoreAddIn.Properties {
         internal static string word_Font {
             get {
                 return ResourceManager.GetString("word_Font", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to General.
+        /// </summary>
+        internal static string word_General {
+            get {
+                return ResourceManager.GetString("word_General", resourceCulture);
             }
         }
         

@@ -668,7 +668,7 @@ OneNote ייסגר אוטומטית</value>
     <comment>context menu option</comment>
   </data>
   <data name="ContextMenuSheet_Title" xml:space="preserve">
-    <value>אפשרויות תפריט הקשר</value>
+    <value>תפריט הקשר</value>
     <comment>sheet</comment>
   </data>
   <data name="Copy" type="System.Resources.ResXFileRef, System.Windows.Forms">
@@ -1185,7 +1185,7 @@ Total Row Font
     <comment>settings</comment>
   </data>
   <data name="FavoritesSheet_Text" xml:space="preserve">
-    <value>נהל מועדפים</value>
+    <value>מועדפים</value>
     <comment>settings</comment>
   </data>
   <data name="Financial" type="System.Resources.ResXFileRef, System.Windows.Forms">
@@ -1303,13 +1303,6 @@ Total Row Font
     <value>הפעל את הגדרות ההקשר של התפריט הדינמי. השבת אם הוספת פקודות OneMore לסרגל הכלים של גישה מהירה</value>
     <comment>checkbox</comment>
   </data>
-  <data name="GeneralSheet_imageBrowser" xml:space="preserve">
-    <value>צופה תמונה</value>
-  </data>
-  <data name="GeneralSheet_imageViewerLabel.Text" xml:space="preserve">
-    <value>מציג תמונות חיצוני (ברירת מחדל אם ריק הוא mspaint)</value>
-    <comment>label</comment>
-  </data>
   <data name="GeneralSheet_introBox.Text" xml:space="preserve">
     <value>התאם אישית את ההתנהגות הכוללת של OneMore</value>
     <comment>textbox</comment>
@@ -1360,7 +1353,7 @@ Total Row Font
     <comment>group</comment>
   </data>
   <data name="HighlightsSheet_Title" xml:space="preserve">
-    <value>סיבוב אפשרויות מדגיש</value>
+    <value>נושאי מדגיש</value>
     <comment>sheet intro</comment>
   </data>
   <data name="ImportDialog_fileLabel.Text" xml:space="preserve">
@@ -1636,7 +1629,7 @@ Total Row Font
     <comment>settings sheet</comment>
   </data>
   <data name="LinesSheet_Title" xml:space="preserve">
-    <value>אפשרויות קו אופקי</value>
+    <value>קווים אופקיים</value>
     <comment>settings sheet</comment>
   </data>
   <data name="LinkDialog_groupBox.Text" xml:space="preserve">
@@ -1989,10 +1982,6 @@ Total Row Font
   <data name="PluginDialog_updateRadio.Text" xml:space="preserve">
     <value>עדכן את הדף הנוכחי</value>
     <comment>radio button</comment>
-  </data>
-  <data name="PluginsSheet.Text" xml:space="preserve">
-    <value>נהל את התוספים שלי</value>
-    <comment>sheet title</comment>
   </data>
   <data name="PluginsSheet_ConfirmDelete" xml:space="preserve">
     <value>מחק את הפלאגין "{0}"</value>
@@ -2526,7 +2515,7 @@ ISO-code then comma then language name</comment>
     <comment>settings dialog, ribbon bar options</comment>
   </data>
   <data name="RibbonBarSheet_Title" xml:space="preserve">
-    <value>אפשרויות בר סרט</value>
+    <value>בר סרט</value>
     <comment>settings dialog</comment>
   </data>
   <data name="ribBreakingButton_Label" xml:space="preserve">
@@ -3991,7 +3980,7 @@ ISO-code then comma then language name</comment>
     <comment>label</comment>
   </data>
   <data name="SnippetsSheet_Text" xml:space="preserve">
-    <value>נהל את קטעי ההתאמה אישית שלי</value>
+    <value>קטעים</value>
     <comment>SnippetsSheet</comment>
   </data>
   <data name="Software" type="System.Resources.ResXFileRef, System.Windows.Forms">
@@ -4836,5 +4825,35 @@ ISO-code then comma then language name</comment>
   <data name="ImagesSheet_plantGroup.Text" xml:space="preserve">
     <value>אפשרויות PlantUML</value>
     <comment>groupbox</comment>
+  </data>
+  <data name="AliasSheet_Title" xml:space="preserve">
+    <value>כינויי פיקוד</value>
+    <comment>sheet</comment>
+  </data>
+  <data name="ImagesSheet_imageBrowser" xml:space="preserve">
+    <value>צופה תמונה</value>
+  </data>
+  <data name="ImagesSheet_imageViewerLabel.Text" xml:space="preserve">
+    <value>מציג תמונות חיצוני (ברירת מחדל אם ריק הוא mspaint)</value>
+    <comment>label</comment>
+  </data>
+  <data name="ImagesSheet_resizeGroup.Text" xml:space="preserve">
+    <value>שינוי גודל אפשרויות</value>
+    <comment>groupsbox</comment>
+  </data>
+  <data name="ImagesSheet_Title" xml:space="preserve">
+    <value>תמונות</value>
+    <comment>sheet</comment>
+  </data>
+  <data name="ImagesSheet_widthLabel.Text" xml:space="preserve">
+    <value>שינוי גודל רוחב מועדף</value>
+    <comment>label</comment>
+  </data>
+  <data name="PluginsSheet_Title" xml:space="preserve">
+    <value>תוספים</value>
+    <comment>sheet title EDIT</comment>
+  </data>
+  <data name="word_General" xml:space="preserve">
+    <value>כללי</value>
   </data>
 </root>

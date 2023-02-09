@@ -190,6 +190,10 @@ OneNote will close automatically</value>
     <value>Define command aliases for use in the Command Palette</value>
     <comment>intro box</comment>
   </data>
+  <data name="AliasSheet_Title" xml:space="preserve">
+    <value>Command Aliases</value>
+    <comment>sheet</comment>
+  </data>
   <data name="AnalyzeCommand_CacheSummary" xml:space="preserve">
     <value>The cache is an internal directory managed by OneNote to optimize its performance. The recommendation is to avoid manually deleting the contents of the cache directory unless it becomes corrupted or hampers the operation of OneNote.</value>
     <comment>summary text</comment>
@@ -674,7 +678,7 @@ OneNote will close automatically</value>
     <comment>context menu option</comment>
   </data>
   <data name="ContextMenuSheet_Title" xml:space="preserve">
-    <value>Context Menu Options</value>
+    <value>Context Menu</value>
     <comment>sheet</comment>
   </data>
   <data name="Copy" type="System.Resources.ResXFileRef, System.Windows.Forms">
@@ -1208,7 +1212,7 @@ OneNote File (*.one)</value>
     <comment>settings</comment>
   </data>
   <data name="FavoritesSheet_Text" xml:space="preserve">
-    <value>Manage Favorites</value>
+    <value>Favorites</value>
     <comment>settings</comment>
   </data>
   <data name="Financial" type="System.Resources.ResXFileRef, System.Windows.Forms">
@@ -1326,13 +1330,6 @@ Symbols: PI, E</value>
     <value>Enable dynamic menu context settings. Disable if you've added OneMore commands to the Quick Access toolbar</value>
     <comment>checkbox</comment>
   </data>
-  <data name="GeneralSheet_imageBrowser" xml:space="preserve">
-    <value>Image Viewer</value>
-  </data>
-  <data name="GeneralSheet_imageViewerLabel.Text" xml:space="preserve">
-    <value>External image viewer (default if empty is mspaint)</value>
-    <comment>label</comment>
-  </data>
   <data name="GeneralSheet_introBox.Text" xml:space="preserve">
     <value>Customize the overall behavior of OneMore</value>
     <comment>textbox</comment>
@@ -1383,8 +1380,15 @@ Symbols: PI, E</value>
     <comment>group</comment>
   </data>
   <data name="HighlightsSheet_Title" xml:space="preserve">
-    <value>Rotating Highlighter Options</value>
+    <value>Highlighter Themes</value>
     <comment>sheet intro</comment>
+  </data>
+  <data name="ImagesSheet_imageBrowser" xml:space="preserve">
+    <value>Image Viewer</value>
+  </data>
+  <data name="ImagesSheet_imageViewerLabel.Text" xml:space="preserve">
+    <value>External image viewer (default if empty is mspaint)</value>
+    <comment>label</comment>
   </data>
   <data name="ImagesSheet_introBox.Text" xml:space="preserve">
     <value>Customize the defaults for Image commands</value>
@@ -1401,6 +1405,18 @@ Symbols: PI, E</value>
   <data name="ImagesSheet_plantGroup.Text" xml:space="preserve">
     <value>PlantUML Options</value>
     <comment>groupbox</comment>
+  </data>
+  <data name="ImagesSheet_resizeGroup.Text" xml:space="preserve">
+    <value>Resize Options</value>
+    <comment>groupsbox</comment>
+  </data>
+  <data name="ImagesSheet_Title" xml:space="preserve">
+    <value>Images</value>
+    <comment>sheet</comment>
+  </data>
+  <data name="ImagesSheet_widthLabel.Text" xml:space="preserve">
+    <value>Preferred resize width</value>
+    <comment>label</comment>
   </data>
   <data name="ImportDialog_fileLabel.Text" xml:space="preserve">
     <value>File:</value>
@@ -1682,7 +1698,7 @@ Symbols: PI, E</value>
     <comment>settings sheet</comment>
   </data>
   <data name="LinesSheet_Title" xml:space="preserve">
-    <value>Horizontal Line Options</value>
+    <value>Horizontal Lines</value>
     <comment>settings sheet</comment>
   </data>
   <data name="LinkDialog_groupBox.Text" xml:space="preserve">
@@ -2088,10 +2104,6 @@ Current notebook</value>
     <value>Update current page</value>
     <comment>radio button</comment>
   </data>
-  <data name="PluginsSheet.Text" xml:space="preserve">
-    <value>Manage My Plugins</value>
-    <comment>sheet title</comment>
-  </data>
   <data name="PluginsSheet_ConfirmDelete" xml:space="preserve">
     <value>Delete plugin "{0}"</value>
     <comment>question</comment>
@@ -2099,6 +2111,10 @@ Current notebook</value>
   <data name="PluginsSheet_introLabel.Text" xml:space="preserve">
     <value>Manage my plugins</value>
     <comment>label</comment>
+  </data>
+  <data name="PluginsSheet_Title" xml:space="preserve">
+    <value>Plugins</value>
+    <comment>sheet title</comment>
   </data>
   <data name="ProgramName" xml:space="preserve">
     <value>OneMore</value>
@@ -2628,7 +2644,7 @@ Polaroid</value>
     <comment>settings dialog, ribbon bar options</comment>
   </data>
   <data name="RibbonBarSheet_Title" xml:space="preserve">
-    <value>Ribbon Bar Options</value>
+    <value>Ribbon Bar</value>
     <comment>settings dialog</comment>
   </data>
   <data name="ribBreakingButton_Label" xml:space="preserve">
@@ -4146,7 +4162,7 @@ Search engines will appear in the page context menu, right-click.</value>
     <comment>label</comment>
   </data>
   <data name="SnippetsSheet_Text" xml:space="preserve">
-    <value>Manage My Custom Snippets</value>
+    <value>Snippets</value>
     <comment>SnippetsSheet</comment>
   </data>
   <data name="Software" type="System.Resources.ResXFileRef, System.Windows.Forms">
@@ -4726,6 +4742,9 @@ In this section</value>
   </data>
   <data name="word_Font" xml:space="preserve">
     <value>Font</value>
+  </data>
+  <data name="word_General" xml:space="preserve">
+    <value>General</value>
   </data>
   <data name="word_Go" xml:space="preserve">
     <value>Go</value>

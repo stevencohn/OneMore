@@ -657,7 +657,7 @@
     <comment>context menu option</comment>
   </data>
   <data name="ContextMenuSheet_Title" xml:space="preserve">
-    <value>خيارات قائمة السياق</value>
+    <value>قائمة السياق</value>
     <comment>sheet</comment>
   </data>
   <data name="CopyAsMarkdownCommand_copied" xml:space="preserve">
@@ -1141,7 +1141,7 @@
     <comment>settings</comment>
   </data>
   <data name="FavoritesSheet_Text" xml:space="preserve">
-    <value>إدارة المفضلة</value>
+    <value>المفضلة</value>
     <comment>settings</comment>
   </data>
   <data name="Financial" type="System.Resources.ResXFileRef, System.Windows.Forms">
@@ -1253,13 +1253,6 @@
     <value>تفعيل إعدادات سياق القائمة الديناميكية. </value>
     <comment>checkbox</comment>
   </data>
-  <data name="GeneralSheet_imageBrowser" xml:space="preserve">
-    <value>عارض الصور</value>
-  </data>
-  <data name="GeneralSheet_imageViewerLabel.Text" xml:space="preserve">
-    <value>عارض الصور الخارجي (الافتراضي إذا كان فارغًا هو mspaint)</value>
-    <comment>label</comment>
-  </data>
   <data name="GeneralSheet_introBox.Text" xml:space="preserve">
     <value>تخصيص السلوك العام لـ OneMore</value>
     <comment>textbox</comment>
@@ -1307,7 +1300,7 @@
     <comment>group</comment>
   </data>
   <data name="HighlightsSheet_Title" xml:space="preserve">
-    <value>تدوير خيارات التظليل</value>
+    <value>سمات تمييز</value>
     <comment>sheet intro</comment>
   </data>
   <data name="ImportDialog_fileLabel.Text" xml:space="preserve">
@@ -1577,7 +1570,7 @@
     <comment>settings sheet</comment>
   </data>
   <data name="LinesSheet_Title" xml:space="preserve">
-    <value>خيارات الخط الأفقي</value>
+    <value>خطوط أفقية</value>
     <comment>settings sheet</comment>
   </data>
   <data name="LinkDialog_groupBox.Text" xml:space="preserve">
@@ -1924,10 +1917,6 @@
   <data name="PluginDialog_updateRadio.Text" xml:space="preserve">
     <value>تحديث الصفحة الحالية</value>
     <comment>radio button</comment>
-  </data>
-  <data name="PluginsSheet.Text" xml:space="preserve">
-    <value>إدارة ملحقاتي</value>
-    <comment>sheet title</comment>
   </data>
   <data name="PluginsSheet_ConfirmDelete" xml:space="preserve">
     <value>حذف المكون الإضافي "{0}"</value>
@@ -2447,7 +2436,7 @@ ISO-code then comma then language name</comment>
     <comment>settings dialog, ribbon bar options</comment>
   </data>
   <data name="RibbonBarSheet_Title" xml:space="preserve">
-    <value>خيارات شريط الشريط</value>
+    <value>شريط الشريط</value>
     <comment>settings dialog</comment>
   </data>
   <data name="ribBreakingButton_Label" xml:space="preserve">
@@ -3915,7 +3904,7 @@ ISO-code then comma then language name</comment>
     <comment>label</comment>
   </data>
   <data name="SnippetsSheet_Text" xml:space="preserve">
-    <value>إدارة مقتطفاتي المخصصة</value>
+    <value>المقتطفات</value>
     <comment>SnippetsSheet</comment>
   </data>
   <data name="Software" type="System.Resources.ResXFileRef, System.Windows.Forms">
@@ -4741,5 +4730,35 @@ ISO-code then comma then language name</comment>
   <data name="ImagesSheet_plantGroup.Text" xml:space="preserve">
     <value>خيارات PlantUML</value>
     <comment>groupbox</comment>
+  </data>
+  <data name="AliasSheet_Title" xml:space="preserve">
+    <value>قيادة الأسماء المستعارة</value>
+    <comment>sheet</comment>
+  </data>
+  <data name="ImagesSheet_imageBrowser" xml:space="preserve">
+    <value>عارض الصور</value>
+  </data>
+  <data name="ImagesSheet_imageViewerLabel.Text" xml:space="preserve">
+    <value>عارض الصور الخارجي (الافتراضي إذا كان فارغًا هو mspaint)</value>
+    <comment>label</comment>
+  </data>
+  <data name="ImagesSheet_resizeGroup.Text" xml:space="preserve">
+    <value>خيارات تغيير الحجم</value>
+    <comment>groupsbox</comment>
+  </data>
+  <data name="ImagesSheet_Title" xml:space="preserve">
+    <value>الصور</value>
+    <comment>sheet</comment>
+  </data>
+  <data name="ImagesSheet_widthLabel.Text" xml:space="preserve">
+    <value>عرض تغيير الحجم المفضل</value>
+    <comment>label</comment>
+  </data>
+  <data name="PluginsSheet_Title" xml:space="preserve">
+    <value>الإضافات</value>
+    <comment>sheet title EDIT</comment>
+  </data>
+  <data name="word_General" xml:space="preserve">
+    <value>عام</value>
   </data>
 </root>

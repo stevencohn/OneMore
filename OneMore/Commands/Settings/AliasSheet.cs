@@ -36,7 +36,7 @@ namespace River.OneMoreAddIn.Settings
 			InitializeComponent();
 
 			Name = CollectionName;
-			Title = Resx.AliasSheet_Text;
+			Title = Resx.AliasSheet_Title;
 
 			if (NeedsLocalizing())
 			{

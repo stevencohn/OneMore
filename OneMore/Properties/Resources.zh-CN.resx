@@ -656,7 +656,7 @@ OneNote 将自动关闭</value>
     <comment>context menu option</comment>
   </data>
   <data name="ContextMenuSheet_Title" xml:space="preserve">
-    <value>上下文菜单选项</value>
+    <value>上下文菜单</value>
     <comment>sheet</comment>
   </data>
   <data name="CopyAsMarkdownCommand_copied" xml:space="preserve">
@@ -1140,7 +1140,7 @@ OneNote 文件 (*.one)</value>
     <comment>settings</comment>
   </data>
   <data name="FavoritesSheet_Text" xml:space="preserve">
-    <value>管理收藏夹</value>
+    <value>收藏夹</value>
     <comment>settings</comment>
   </data>
   <data name="Financial" type="System.Resources.ResXFileRef, System.Windows.Forms">
@@ -1252,13 +1252,6 @@ OneNote 文件 (*.one)</value>
     <value>启用动态菜单上下文设置。</value>
     <comment>checkbox</comment>
   </data>
-  <data name="GeneralSheet_imageBrowser" xml:space="preserve">
-    <value>图像查看器</value>
-  </data>
-  <data name="GeneralSheet_imageViewerLabel.Text" xml:space="preserve">
-    <value>外部图像查看器（如果为空则默认为 mspaint）</value>
-    <comment>label</comment>
-  </data>
   <data name="GeneralSheet_introBox.Text" xml:space="preserve">
     <value>自定义OneMore的整体行为</value>
     <comment>textbox</comment>
@@ -1306,7 +1299,7 @@ OneNote 文件 (*.one)</value>
     <comment>group</comment>
   </data>
   <data name="HighlightsSheet_Title" xml:space="preserve">
-    <value>旋转荧光笔选项</value>
+    <value>荧光笔主题</value>
     <comment>sheet intro</comment>
   </data>
   <data name="ImportDialog_fileLabel.Text" xml:space="preserve">
@@ -1576,7 +1569,7 @@ OneNote 文件 (*.one)</value>
     <comment>settings sheet</comment>
   </data>
   <data name="LinesSheet_Title" xml:space="preserve">
-    <value>水平线选项</value>
+    <value>横线</value>
     <comment>settings sheet</comment>
   </data>
   <data name="LinkDialog_groupBox.Text" xml:space="preserve">
@@ -1920,10 +1913,6 @@ OneNote 文件 (*.one)</value>
   <data name="PluginDialog_updateRadio.Text" xml:space="preserve">
     <value>更新当前页面</value>
     <comment>radio button</comment>
-  </data>
-  <data name="PluginsSheet.Text" xml:space="preserve">
-    <value>管理我的插件</value>
-    <comment>sheet title</comment>
   </data>
   <data name="PluginsSheet_ConfirmDelete" xml:space="preserve">
     <value>删除插件“ {0}”</value>
@@ -2443,7 +2432,7 @@ ISO-code then comma then language name</comment>
     <comment>settings dialog, ribbon bar options</comment>
   </data>
   <data name="RibbonBarSheet_Title" xml:space="preserve">
-    <value>色带栏选项</value>
+    <value>丝带栏</value>
     <comment>settings dialog</comment>
   </data>
   <data name="ribBreakingButton_Label" xml:space="preserve">
@@ -3899,7 +3888,7 @@ ISO-code then comma then language name</comment>
     <comment>label</comment>
   </data>
   <data name="SnippetsSheet_Text" xml:space="preserve">
-    <value>管理我的自定义片段</value>
+    <value>片段</value>
     <comment>SnippetsSheet</comment>
   </data>
   <data name="Software" type="System.Resources.ResXFileRef, System.Windows.Forms">
@@ -4725,5 +4714,35 @@ ISO-code then comma then language name</comment>
   <data name="ImagesSheet_plantGroup.Text" xml:space="preserve">
     <value>PlantUML 选项</value>
     <comment>groupbox</comment>
+  </data>
+  <data name="AliasSheet_Title" xml:space="preserve">
+    <value>命令别名</value>
+    <comment>sheet</comment>
+  </data>
+  <data name="ImagesSheet_imageBrowser" xml:space="preserve">
+    <value>图像查看器</value>
+  </data>
+  <data name="ImagesSheet_imageViewerLabel.Text" xml:space="preserve">
+    <value>外部图像查看器（如果为空则默认为 mspaint）</value>
+    <comment>label</comment>
+  </data>
+  <data name="ImagesSheet_resizeGroup.Text" xml:space="preserve">
+    <value>调整大小选项</value>
+    <comment>groupsbox</comment>
+  </data>
+  <data name="ImagesSheet_Title" xml:space="preserve">
+    <value>图片</value>
+    <comment>sheet</comment>
+  </data>
+  <data name="ImagesSheet_widthLabel.Text" xml:space="preserve">
+    <value>首选调整宽度</value>
+    <comment>label</comment>
+  </data>
+  <data name="PluginsSheet_Title" xml:space="preserve">
+    <value>插件</value>
+    <comment>sheet title EDIT</comment>
+  </data>
+  <data name="word_General" xml:space="preserve">
+    <value>一般的</value>
   </data>
 </root>

@@ -29,13 +29,26 @@ namespace River.OneMoreAddIn.Settings
 		/// </summary>
 		private void InitializeComponent()
 		{
+			this.components = new System.ComponentModel.Container();
 			this.introBox = new System.Windows.Forms.TextBox();
 			this.layoutPanel = new System.Windows.Forms.Panel();
+			this.resizeGroup = new System.Windows.Forms.GroupBox();
+			this.widthBox = new System.Windows.Forms.NumericUpDown();
+			this.widthLabel = new System.Windows.Forms.Label();
+			this.generalGroup = new System.Windows.Forms.GroupBox();
+			this.imageViewerLabel = new System.Windows.Forms.Label();
+			this.imageViewerBox = new System.Windows.Forms.TextBox();
+			this.imageViewerButton = new System.Windows.Forms.Button();
 			this.plantGroup = new System.Windows.Forms.GroupBox();
 			this.plantCollapseBox = new System.Windows.Forms.CheckBox();
 			this.plantAfterBox = new System.Windows.Forms.CheckBox();
+			this.errorProvider = new System.Windows.Forms.ErrorProvider(this.components);
 			this.layoutPanel.SuspendLayout();
+			this.resizeGroup.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.widthBox)).BeginInit();
+			this.generalGroup.SuspendLayout();
 			this.plantGroup.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.errorProvider)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// introBox
@@ -47,19 +60,103 @@ namespace River.OneMoreAddIn.Settings
 			this.introBox.Multiline = true;
 			this.introBox.Name = "introBox";
 			this.introBox.ReadOnly = true;
-			this.introBox.Size = new System.Drawing.Size(772, 66);
+			this.introBox.Size = new System.Drawing.Size(772, 52);
 			this.introBox.TabIndex = 3;
 			this.introBox.Text = "Customize the defaults for Image commands";
 			// 
 			// layoutPanel
 			// 
+			this.layoutPanel.Controls.Add(this.resizeGroup);
+			this.layoutPanel.Controls.Add(this.generalGroup);
 			this.layoutPanel.Controls.Add(this.plantGroup);
 			this.layoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.layoutPanel.Location = new System.Drawing.Point(13, 74);
+			this.layoutPanel.Location = new System.Drawing.Point(13, 60);
 			this.layoutPanel.Margin = new System.Windows.Forms.Padding(0);
 			this.layoutPanel.Name = "layoutPanel";
-			this.layoutPanel.Size = new System.Drawing.Size(772, 416);
+			this.layoutPanel.Size = new System.Drawing.Size(772, 430);
 			this.layoutPanel.TabIndex = 4;
+			// 
+			// resizeGroup
+			// 
+			this.resizeGroup.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.resizeGroup.Controls.Add(this.widthBox);
+			this.resizeGroup.Controls.Add(this.widthLabel);
+			this.resizeGroup.Location = new System.Drawing.Point(7, 128);
+			this.resizeGroup.Name = "resizeGroup";
+			this.resizeGroup.Size = new System.Drawing.Size(762, 100);
+			this.resizeGroup.TabIndex = 11;
+			this.resizeGroup.TabStop = false;
+			this.resizeGroup.Text = "Resize Options";
+			// 
+			// widthBox
+			// 
+			this.widthBox.Location = new System.Drawing.Point(254, 33);
+			this.widthBox.Maximum = new decimal(new int[] {
+            2000,
+            0,
+            0,
+            0});
+			this.widthBox.Name = "widthBox";
+			this.widthBox.Size = new System.Drawing.Size(120, 26);
+			this.widthBox.TabIndex = 1;
+			this.widthBox.Value = new decimal(new int[] {
+            500,
+            0,
+            0,
+            0});
+			// 
+			// widthLabel
+			// 
+			this.widthLabel.AutoSize = true;
+			this.widthLabel.Location = new System.Drawing.Point(28, 35);
+			this.widthLabel.Name = "widthLabel";
+			this.widthLabel.Size = new System.Drawing.Size(162, 20);
+			this.widthLabel.TabIndex = 0;
+			this.widthLabel.Text = "Preferred resize width";
+			// 
+			// generalGroup
+			// 
+			this.generalGroup.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.generalGroup.Controls.Add(this.imageViewerLabel);
+			this.generalGroup.Controls.Add(this.imageViewerBox);
+			this.generalGroup.Controls.Add(this.imageViewerButton);
+			this.generalGroup.Location = new System.Drawing.Point(7, 6);
+			this.generalGroup.Name = "generalGroup";
+			this.generalGroup.Size = new System.Drawing.Size(762, 116);
+			this.generalGroup.TabIndex = 10;
+			this.generalGroup.TabStop = false;
+			this.generalGroup.Text = "General";
+			// 
+			// imageViewerLabel
+			// 
+			this.imageViewerLabel.AutoSize = true;
+			this.imageViewerLabel.Location = new System.Drawing.Point(28, 32);
+			this.imageViewerLabel.Margin = new System.Windows.Forms.Padding(3, 10, 3, 0);
+			this.imageViewerLabel.Name = "imageViewerLabel";
+			this.imageViewerLabel.Size = new System.Drawing.Size(359, 20);
+			this.imageViewerLabel.TabIndex = 9;
+			this.imageViewerLabel.Text = "External image viewer (default if empty is mspaint)";
+			// 
+			// imageViewerBox
+			// 
+			this.imageViewerBox.Location = new System.Drawing.Point(32, 55);
+			this.imageViewerBox.Name = "imageViewerBox";
+			this.imageViewerBox.Size = new System.Drawing.Size(578, 26);
+			this.imageViewerBox.TabIndex = 7;
+			this.imageViewerBox.Text = "mspaint";
+			this.imageViewerBox.TextChanged += new System.EventHandler(this.ValidateImageViewer);
+			// 
+			// imageViewerButton
+			// 
+			this.imageViewerButton.Location = new System.Drawing.Point(616, 54);
+			this.imageViewerButton.Name = "imageViewerButton";
+			this.imageViewerButton.Size = new System.Drawing.Size(36, 31);
+			this.imageViewerButton.TabIndex = 8;
+			this.imageViewerButton.Text = "...";
+			this.imageViewerButton.UseVisualStyleBackColor = true;
+			this.imageViewerButton.Click += new System.EventHandler(this.BrowseImageViewer);
 			// 
 			// plantGroup
 			// 
@@ -67,9 +164,9 @@ namespace River.OneMoreAddIn.Settings
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.plantGroup.Controls.Add(this.plantCollapseBox);
 			this.plantGroup.Controls.Add(this.plantAfterBox);
-			this.plantGroup.Location = new System.Drawing.Point(3, 6);
+			this.plantGroup.Location = new System.Drawing.Point(7, 234);
 			this.plantGroup.Name = "plantGroup";
-			this.plantGroup.Size = new System.Drawing.Size(766, 128);
+			this.plantGroup.Size = new System.Drawing.Size(762, 128);
 			this.plantGroup.TabIndex = 0;
 			this.plantGroup.TabStop = false;
 			this.plantGroup.Text = "PlantUML Options";
@@ -94,6 +191,10 @@ namespace River.OneMoreAddIn.Settings
 			this.plantAfterBox.Text = "Insert drawing after PlantUML text";
 			this.plantAfterBox.UseVisualStyleBackColor = true;
 			// 
+			// errorProvider
+			// 
+			this.errorProvider.ContainerControl = this;
+			// 
 			// ImagesSheet
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -105,8 +206,14 @@ namespace River.OneMoreAddIn.Settings
 			this.Padding = new System.Windows.Forms.Padding(13, 8, 15, 10);
 			this.Size = new System.Drawing.Size(800, 500);
 			this.layoutPanel.ResumeLayout(false);
+			this.resizeGroup.ResumeLayout(false);
+			this.resizeGroup.PerformLayout();
+			((System.ComponentModel.ISupportInitialize)(this.widthBox)).EndInit();
+			this.generalGroup.ResumeLayout(false);
+			this.generalGroup.PerformLayout();
 			this.plantGroup.ResumeLayout(false);
 			this.plantGroup.PerformLayout();
+			((System.ComponentModel.ISupportInitialize)(this.errorProvider)).EndInit();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -119,5 +226,13 @@ namespace River.OneMoreAddIn.Settings
 		private System.Windows.Forms.GroupBox plantGroup;
 		private System.Windows.Forms.CheckBox plantCollapseBox;
 		private System.Windows.Forms.CheckBox plantAfterBox;
+		private System.Windows.Forms.GroupBox generalGroup;
+		private System.Windows.Forms.Label imageViewerLabel;
+		private System.Windows.Forms.TextBox imageViewerBox;
+		private System.Windows.Forms.Button imageViewerButton;
+		private System.Windows.Forms.GroupBox resizeGroup;
+		private System.Windows.Forms.NumericUpDown widthBox;
+		private System.Windows.Forms.Label widthLabel;
+		private System.Windows.Forms.ErrorProvider errorProvider;
 	}
 }

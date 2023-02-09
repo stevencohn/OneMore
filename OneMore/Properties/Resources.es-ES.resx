@@ -657,7 +657,7 @@ OneNote se cerrará automáticamente</value>
     <comment>context menu option</comment>
   </data>
   <data name="ContextMenuSheet_Title" xml:space="preserve">
-    <value>Opciones del menú contextual</value>
+    <value>Menú de contexto</value>
     <comment>sheet</comment>
   </data>
   <data name="CopyAsMarkdownCommand_copied" xml:space="preserve">
@@ -1141,7 +1141,7 @@ Archivo de OneNote (* .one)</value>
     <comment>settings</comment>
   </data>
   <data name="FavoritesSheet_Text" xml:space="preserve">
-    <value>Administrar favoritos</value>
+    <value>Favoritos</value>
     <comment>settings</comment>
   </data>
   <data name="Financial" type="System.Resources.ResXFileRef, System.Windows.Forms">
@@ -1253,13 +1253,6 @@ Símbolos: PI, E</value>
     <value>Habilite la configuración de contexto del menú dinámico. </value>
     <comment>checkbox</comment>
   </data>
-  <data name="GeneralSheet_imageBrowser" xml:space="preserve">
-    <value>Visor de imágenes</value>
-  </data>
-  <data name="GeneralSheet_imageViewerLabel.Text" xml:space="preserve">
-    <value>Visor de imágenes externo (predeterminado si está vacío es mspaint)</value>
-    <comment>label</comment>
-  </data>
   <data name="GeneralSheet_introBox.Text" xml:space="preserve">
     <value>Personalice el comportamiento general de OneMore</value>
     <comment>textbox</comment>
@@ -1307,7 +1300,7 @@ Símbolos: PI, E</value>
     <comment>group</comment>
   </data>
   <data name="HighlightsSheet_Title" xml:space="preserve">
-    <value>Opciones de resaltador giratorio</value>
+    <value>Temas de resaltado</value>
     <comment>sheet intro</comment>
   </data>
   <data name="ImportDialog_fileLabel.Text" xml:space="preserve">
@@ -1577,7 +1570,7 @@ Símbolos: PI, E</value>
     <comment>settings sheet</comment>
   </data>
   <data name="LinesSheet_Title" xml:space="preserve">
-    <value>Opciones de línea horizontal</value>
+    <value>Lineas horizontales</value>
     <comment>settings sheet</comment>
   </data>
   <data name="LinkDialog_groupBox.Text" xml:space="preserve">
@@ -1924,10 +1917,6 @@ Cuaderno actual</value>
   <data name="PluginDialog_updateRadio.Text" xml:space="preserve">
     <value>Actualizar la página actual</value>
     <comment>radio button</comment>
-  </data>
-  <data name="PluginsSheet.Text" xml:space="preserve">
-    <value>Administrar mis complementos</value>
-    <comment>sheet title</comment>
   </data>
   <data name="PluginsSheet_ConfirmDelete" xml:space="preserve">
     <value>Eliminar el complemento "{0}"</value>
@@ -2447,7 +2436,7 @@ polaroid</value>
     <comment>settings dialog, ribbon bar options</comment>
   </data>
   <data name="RibbonBarSheet_Title" xml:space="preserve">
-    <value>Opciones de la barra de cinta</value>
+    <value>Barra de la cinta</value>
     <comment>settings dialog</comment>
   </data>
   <data name="ribBreakingButton_Label" xml:space="preserve">
@@ -3915,7 +3904,7 @@ Los motores de búsqueda aparecerán en el menú contextual de la página, haga 
     <comment>label</comment>
   </data>
   <data name="SnippetsSheet_Text" xml:space="preserve">
-    <value>Administrar mis fragmentos personalizados</value>
+    <value>fragmentos</value>
     <comment>SnippetsSheet</comment>
   </data>
   <data name="Software" type="System.Resources.ResXFileRef, System.Windows.Forms">
@@ -4741,5 +4730,35 @@ En esta sección</value>
   <data name="ImagesSheet_plantGroup.Text" xml:space="preserve">
     <value>Opciones de PlantUML</value>
     <comment>groupbox</comment>
+  </data>
+  <data name="AliasSheet_Title" xml:space="preserve">
+    <value>Alias ​​de comando</value>
+    <comment>sheet</comment>
+  </data>
+  <data name="ImagesSheet_imageBrowser" xml:space="preserve">
+    <value>Visor de imágenes</value>
+  </data>
+  <data name="ImagesSheet_imageViewerLabel.Text" xml:space="preserve">
+    <value>Visor de imágenes externo (predeterminado si está vacío es mspaint)</value>
+    <comment>label</comment>
+  </data>
+  <data name="ImagesSheet_resizeGroup.Text" xml:space="preserve">
+    <value>Opciones de cambio de tamaño</value>
+    <comment>groupsbox</comment>
+  </data>
+  <data name="ImagesSheet_Title" xml:space="preserve">
+    <value>Imágenes</value>
+    <comment>sheet</comment>
+  </data>
+  <data name="ImagesSheet_widthLabel.Text" xml:space="preserve">
+    <value>Ancho de cambio de tamaño preferido</value>
+    <comment>label</comment>
+  </data>
+  <data name="PluginsSheet_Title" xml:space="preserve">
+    <value>Complementos</value>
+    <comment>sheet title EDIT</comment>
+  </data>
+  <data name="word_General" xml:space="preserve">
+    <value>General</value>
   </data>
 </root>
