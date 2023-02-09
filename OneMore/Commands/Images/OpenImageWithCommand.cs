@@ -111,7 +111,7 @@ namespace River.OneMoreAddIn.Commands
 			var settings = new SettingsProvider();
 
 			var editor = 
-				settings.GetCollection(nameof(GeneralSheet)).Get<string>("imageViewer")
+				settings.GetCollection(nameof(ImagesSheet)).Get<string>("imageViewer")
 				?? settings.GetCollection("images").Get("viewer", "mspaint");
 
 			if (editor != null)

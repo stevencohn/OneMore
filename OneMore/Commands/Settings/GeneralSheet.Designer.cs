@@ -32,9 +32,6 @@ namespace River.OneMoreAddIn.Settings
 			this.components = new System.ComponentModel.Container();
 			this.introBox = new System.Windows.Forms.TextBox();
 			this.layoutPanel = new System.Windows.Forms.Panel();
-			this.imageViewerLabel = new System.Windows.Forms.Label();
-			this.imageViewerButton = new System.Windows.Forms.Button();
-			this.imageViewerBox = new System.Windows.Forms.TextBox();
 			this.langBox = new System.Windows.Forms.ComboBox();
 			this.langLabel = new System.Windows.Forms.Label();
 			this.checkUpdatesBox = new System.Windows.Forms.CheckBox();
@@ -59,9 +56,6 @@ namespace River.OneMoreAddIn.Settings
 			// 
 			// layoutPanel
 			// 
-			this.layoutPanel.Controls.Add(this.imageViewerLabel);
-			this.layoutPanel.Controls.Add(this.imageViewerButton);
-			this.layoutPanel.Controls.Add(this.imageViewerBox);
 			this.layoutPanel.Controls.Add(this.langBox);
 			this.layoutPanel.Controls.Add(this.langLabel);
 			this.layoutPanel.Controls.Add(this.checkUpdatesBox);
@@ -72,35 +66,6 @@ namespace River.OneMoreAddIn.Settings
 			this.layoutPanel.Name = "layoutPanel";
 			this.layoutPanel.Size = new System.Drawing.Size(772, 416);
 			this.layoutPanel.TabIndex = 4;
-			// 
-			// imageViewerLabel
-			// 
-			this.imageViewerLabel.AutoSize = true;
-			this.imageViewerLabel.Location = new System.Drawing.Point(3, 218);
-			this.imageViewerLabel.Margin = new System.Windows.Forms.Padding(3, 10, 3, 0);
-			this.imageViewerLabel.Name = "imageViewerLabel";
-			this.imageViewerLabel.Size = new System.Drawing.Size(359, 20);
-			this.imageViewerLabel.TabIndex = 6;
-			this.imageViewerLabel.Text = "External image viewer (default if empty is mspaint)";
-			// 
-			// imageViewerButton
-			// 
-			this.imageViewerButton.Location = new System.Drawing.Point(591, 240);
-			this.imageViewerButton.Name = "imageViewerButton";
-			this.imageViewerButton.Size = new System.Drawing.Size(36, 31);
-			this.imageViewerButton.TabIndex = 5;
-			this.imageViewerButton.Text = "...";
-			this.imageViewerButton.UseVisualStyleBackColor = true;
-			this.imageViewerButton.Click += new System.EventHandler(this.BrowseImageViewer);
-			// 
-			// imageViewerBox
-			// 
-			this.imageViewerBox.Location = new System.Drawing.Point(7, 241);
-			this.imageViewerBox.Name = "imageViewerBox";
-			this.imageViewerBox.Size = new System.Drawing.Size(578, 26);
-			this.imageViewerBox.TabIndex = 4;
-			this.imageViewerBox.Text = "mspaint";
-			this.imageViewerBox.TextChanged += new System.EventHandler(this.ValidateImageViewer);
 			// 
 			// langBox
 			// 
@@ -175,9 +140,6 @@ namespace River.OneMoreAddIn.Settings
 		private System.Windows.Forms.CheckBox checkUpdatesBox;
 		private System.Windows.Forms.ComboBox langBox;
 		private System.Windows.Forms.Label langLabel;
-		private System.Windows.Forms.Label imageViewerLabel;
-		private System.Windows.Forms.Button imageViewerButton;
-		private System.Windows.Forms.TextBox imageViewerBox;
 		private System.Windows.Forms.ErrorProvider errorProvider1;
 	}
 }

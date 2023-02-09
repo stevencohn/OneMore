@@ -4,16 +4,13 @@
 
 namespace River.OneMoreAddIn.Settings
 {
-	using System;
 	using System.Collections.Generic;
 	using System.Globalization;
 	using System.IO;
 	using System.Linq;
 	using System.Reflection;
 	using System.Text.RegularExpressions;
-	using System.Windows.Forms;
-	using Windows.UI.Xaml.Controls;
-	using Resx = River.OneMoreAddIn.Properties.Resources;
+	using Resx = Properties.Resources;
 
 
 	internal partial class GeneralSheet : SheetBase
@@ -34,8 +31,7 @@ namespace River.OneMoreAddIn.Settings
 					"introBox",
 					"enablersBox",
 					"checkUpdatesBox",
-					"langLabel",
-					"imageViewerLabel"
+					"langLabel"
 				});
 			}
 
@@ -53,12 +49,6 @@ namespace River.OneMoreAddIn.Settings
 					break;
 				}
 			}
-
-			// reader-makes-right...
-			var viewer = settings.Get<string>("imageViewer")
-				?? provider.GetCollection("images").Get("viewer", "mspaint");
-
-			imageViewerBox.Text = viewer;
 		}
 
 
@@ -106,66 +96,6 @@ namespace River.OneMoreAddIn.Settings
 		}
 
 
-		private void BrowseImageViewer(object sender, System.EventArgs e)
-		{
-			// both cmdBox and argsBox use this handler
-			using var dialog = new OpenFileDialog();
-			dialog.Filter = "All files (*.*)|*.*";
-			dialog.CheckFileExists = true;
-			dialog.Multiselect = false;
-			dialog.Title = Resx.GeneralSheet_imageBrowser;
-			dialog.ShowHelp = true; // stupid, but this is needed to avoid hang
-			dialog.InitialDirectory = GetValidPath(imageViewerBox.Text);
-
-			var result = dialog.ShowDialog(/* leave empty */);
-			if (result == DialogResult.OK)
-			{
-				imageViewerBox.Text = dialog.FileName;
-			}
-		}
-
-
-		private string GetValidPath(string path)
-		{
-			path = path.Trim();
-			if (path == string.Empty)
-			{
-				return Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles);
-			}
-
-			if (File.Exists(path))
-			{
-				return Path.GetDirectoryName(path);
-			}
-			else if (Directory.Exists(path))
-			{
-				return path;
-			}
-
-			path = Path.GetDirectoryName(path);
-			if (Directory.Exists(path))
-			{
-				return path;
-			}
-
-			return Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles);
-		}
-
-
-		private void ValidateImageViewer(object sender, EventArgs e)
-		{
-			var path = imageViewerBox.Text.Trim();
-			if (!string.IsNullOrEmpty(path) && (path != "mspaint") && !File.Exists(path))
-			{
-				errorProvider1.SetError(imageViewerButton, Resx.phrase_PathNotFound);
-			}
-			else
-			{
-				errorProvider1.SetError(imageViewerButton, String.Empty);
-			}
-		}
-
-
 		public override bool CollectSettings()
 		{
 			// set to true to recommend OneNote restart
@@ -175,30 +105,19 @@ namespace River.OneMoreAddIn.Settings
 
 			var settings = provider.GetCollection(Name);
 
-			if (settings.Add("enablers", enablersBox.Checked)) updated = true;
-			if (settings.Add("checkUpdates", checkUpdatesBox.Checked)) updated = true;
+			updated = settings.Add("enablers", enablersBox.Checked) || updated;
+			updated = settings.Add("checkUpdates", checkUpdatesBox.Checked) || updated;
 
 			var lang = ((CultureInfo)(langBox.SelectedItem)).Name;
-			if (settings.Add("language", lang)) updated = true;
+			updated = settings.Add("language", lang) || updated;
 
-			var viewer = imageViewerBox.Text.Trim();
-			if (string.IsNullOrEmpty(viewer))
-			{
-				viewer = "mspaint";
-			}
-			if (settings.Add("imageViewer", viewer)) updated = true;
+			// deprecated
+			updated = settings.Remove("imageViewer") || updated;
 
 			if (updated)
 			{
 				provider.SetCollection(settings);
 				AddIn.EnablersEnabled = enablersBox.Checked;
-			}
-
-			// remove old images/viewer entry
-			settings = provider.GetCollection("images");
-			if (settings != null)
-			{
-				provider.RemoveCollection("images");
 			}
 
 			return updated;

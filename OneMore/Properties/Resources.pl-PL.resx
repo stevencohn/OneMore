@@ -666,7 +666,7 @@ OneNote zamknie się automatycznie</value>
     <comment>context menu option</comment>
   </data>
   <data name="ContextMenuSheet_Title" xml:space="preserve">
-    <value>Opcje menu kontekstowego</value>
+    <value>Menu kontekstowe</value>
     <comment>sheet</comment>
   </data>
   <data name="Copy" type="System.Resources.ResXFileRef, System.Windows.Forms">
@@ -1159,7 +1159,7 @@ Plik OneNote (* .o)</value>
     <comment>settings</comment>
   </data>
   <data name="FavoritesSheet_Text" xml:space="preserve">
-    <value>Zarządzaj ulubionymi</value>
+    <value>Ulubione</value>
     <comment>settings</comment>
   </data>
   <data name="Financial" type="System.Resources.ResXFileRef, System.Windows.Forms">
@@ -1277,13 +1277,6 @@ Symbole: PI, E</value>
     <value>Włącz ustawienia kontekstu menu dynamicznego. Wyłącz, jeśli dodałeś komendy OneMore do paska narzędzi Szybki dostęp</value>
     <comment>checkbox</comment>
   </data>
-  <data name="GeneralSheet_imageBrowser" xml:space="preserve">
-    <value>Przeglądarka zdjęć</value>
-  </data>
-  <data name="GeneralSheet_imageViewerLabel.Text" xml:space="preserve">
-    <value>Zewnętrzna przeglądarka obrazów (domyślnie, jeśli pusty to mspaint)</value>
-    <comment>label</comment>
-  </data>
   <data name="GeneralSheet_introBox.Text" xml:space="preserve">
     <value>Dostosuj ogólne zachowanie OneMore</value>
     <comment>textbox</comment>
@@ -1293,7 +1286,7 @@ Symbole: PI, E</value>
     <comment>label</comment>
   </data>
   <data name="GeneralSheet_Title" xml:space="preserve">
-    <value>Ogólne opcje</value>
+    <value>Opcje ogólne</value>
     <comment>settings sheet</comment>
   </data>
   <data name="GetImagesCommand_Cite" xml:space="preserve">
@@ -1334,7 +1327,7 @@ Symbole: PI, E</value>
     <comment>group</comment>
   </data>
   <data name="HighlightsSheet_Title" xml:space="preserve">
-    <value>Obracanie opcji wyróżnienia</value>
+    <value>Motywy wyróżnienia</value>
     <comment>sheet intro</comment>
   </data>
   <data name="ImportDialog_fileLabel.Text" xml:space="preserve">
@@ -1610,7 +1603,7 @@ Symbole: PI, E</value>
     <comment>settings sheet</comment>
   </data>
   <data name="LinesSheet_Title" xml:space="preserve">
-    <value>Opcje poziome</value>
+    <value>Linie poziome</value>
     <comment>settings sheet</comment>
   </data>
   <data name="LinkDialog_groupBox.Text" xml:space="preserve">
@@ -1960,10 +1953,6 @@ Bieżący notatnik</value>
   <data name="PluginDialog_updateRadio.Text" xml:space="preserve">
     <value>Zaktualizuj bieżącą stronę</value>
     <comment>radio button</comment>
-  </data>
-  <data name="PluginsSheet.Text" xml:space="preserve">
-    <value>Zarządzaj moimi wtyczkami</value>
-    <comment>sheet title</comment>
   </data>
   <data name="PluginsSheet_ConfirmDelete" xml:space="preserve">
     <value>Usuń wtyczkę "{0}"</value>
@@ -2490,7 +2479,7 @@ Polaroid</value>
     <comment>settings dialog, ribbon bar options</comment>
   </data>
   <data name="RibbonBarSheet_Title" xml:space="preserve">
-    <value>Opcje paska wstążki</value>
+    <value>pasek wstążki</value>
     <comment>settings dialog</comment>
   </data>
   <data name="ribBreakingButton_Label" xml:space="preserve">
@@ -3958,7 +3947,7 @@ Wyszukiwarki pojawią się w menu kontekstowym strony, kliknij prawym przyciskie
     <comment>label</comment>
   </data>
   <data name="SnippetsSheet_Text" xml:space="preserve">
-    <value>Zarządzaj moimi niestandardowymi fragmentami</value>
+    <value>Fragmenty</value>
     <comment>SnippetsSheet</comment>
   </data>
   <data name="Software" type="System.Resources.ResXFileRef, System.Windows.Forms">
@@ -4794,5 +4783,35 @@ W tej sekcji</value>
   <data name="ImagesSheet_plantGroup.Text" xml:space="preserve">
     <value>Opcje PlantUML</value>
     <comment>groupbox</comment>
+  </data>
+  <data name="AliasSheet_Title" xml:space="preserve">
+    <value>Aliasy poleceń</value>
+    <comment>sheet</comment>
+  </data>
+  <data name="ImagesSheet_imageBrowser" xml:space="preserve">
+    <value>Przeglądarka obrazów</value>
+  </data>
+  <data name="ImagesSheet_imageViewerLabel.Text" xml:space="preserve">
+    <value>Zewnętrzna przeglądarka obrazów (domyślna, jeśli pusta to mspaint)</value>
+    <comment>label</comment>
+  </data>
+  <data name="ImagesSheet_resizeGroup.Text" xml:space="preserve">
+    <value>Opcje zmiany rozmiaru</value>
+    <comment>groupsbox</comment>
+  </data>
+  <data name="ImagesSheet_Title" xml:space="preserve">
+    <value>Obrazy</value>
+    <comment>sheet</comment>
+  </data>
+  <data name="ImagesSheet_widthLabel.Text" xml:space="preserve">
+    <value>Preferowana szerokość zmiany rozmiaru</value>
+    <comment>label</comment>
+  </data>
+  <data name="PluginsSheet_Title" xml:space="preserve">
+    <value>Wtyczki</value>
+    <comment>sheet title EDIT</comment>
+  </data>
+  <data name="word_General" xml:space="preserve">
+    <value>Ogólny</value>
   </data>
 </root>

@@ -165,7 +165,7 @@ namespace River.OneMoreAddIn.Commands
 			settings = new SettingsProvider();
 			var collection = settings.GetCollection("images");
 
-			int value = collection.Get<int>("mruSizeBy", oneImage ? 0 : 2);
+			int value = collection.Get("mruSizeBy", oneImage ? 0 : 2);
 			if (value == 0)
 			{
 				pctRadio.Checked = true;
@@ -180,7 +180,8 @@ namespace River.OneMoreAddIn.Commands
 				presetRadio.Checked = true;
 			}
 
-			presetBox.Value = collection.Get("mruWidth", 500);
+			presetBox.Value = collection.Get("mruWidth",
+				settings.GetCollection(nameof(ImagesSheet)).Get("presetWidth", 500));
 
 			if (!oneImage)
 			{
@@ -621,7 +622,10 @@ namespace River.OneMoreAddIn.Commands
 			}
 
 			percentBox.Value = 100;
-			presetBox.Value = 500;
+
+			presetBox.Value = new SettingsProvider()
+				.GetCollection(nameof(ImagesSheet)).Get("presetWidth", 500);
+
 			opacityBox.Value = 100;
 			brightnessBox.Value = 0;
 			contrastBox.Value = 0;

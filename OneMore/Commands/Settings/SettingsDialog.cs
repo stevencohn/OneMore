@@ -56,9 +56,9 @@ namespace River.OneMoreAddIn.Settings
 				navTree.Nodes["contextNode"].Text = Resx.SettingsDialog_contextNode_Text;
 				navTree.Nodes["favoritesNode"].Text = Resx.word_Favorites;
 				navTree.Nodes["highlightNode"].Text = Resx.SettingsDialog_highlightNode_Text;
+				navTree.Nodes["linesNode"].Text = Resx.SettingsDialog_linesNode_Text;
 				navTree.Nodes["imagesNode"].Text = Resx.SettingsDialog_imagesNode_Text;
 				navTree.Nodes["keyboardNode"].Text = Resx.SettingsDialog_keyboardNode_Text;
-				navTree.Nodes["linesNode"].Text = Resx.SettingsDialog_linesNode_Text;
 				navTree.Nodes["pluginsNode"].Text = Resx.SettingsDialog_pluginsNode_Text;
 				navTree.Nodes["ribbonNode"].Text = Resx.SettingsDialog_ribbonNode_Text;
 				navTree.Nodes["searchNode"].Text = Resx.SettingsDialog_searchNode_Text;
@@ -115,9 +115,9 @@ namespace River.OneMoreAddIn.Settings
 					2 => new ContextMenuSheet(provider),
 					3 => new FavoritesSheet(provider, ribbon),
 					4 => new HighlightsSheet(provider),
-					5 => new ImagesSheet(provider),
-					6 => new KeyboardSheet(provider, ribbon),
-					7 => new LinesSheet(provider),
+					5 => new LinesSheet(provider),
+					6 => new ImagesSheet(provider),
+					7 => new KeyboardSheet(provider, ribbon),
 					8 => await PluginsSheet.Create(provider, ribbon),
 					9 => new RibbonBarSheet(provider),
 					10 => new SearchEngineSheet(provider),
