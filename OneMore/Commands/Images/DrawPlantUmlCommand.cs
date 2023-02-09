@@ -5,6 +5,7 @@
 namespace River.OneMoreAddIn.Commands
 {
 	using PlantUml.Net;
+	using River.OneMoreAddIn.Models;
 	using River.OneMoreAddIn.Settings;
 	using River.OneMoreAddIn.UI;
 	using System;
@@ -26,6 +27,10 @@ namespace River.OneMoreAddIn.Commands
 	/// </summary>
 	internal class DrawPlantUmlCommand : Command
 	{
+		private const string PlantMeta = "omPlant";
+		private const string ImageMeta = "omPlantImage";
+
+
 		public DrawPlantUmlCommand()
 		{
 		}
@@ -36,6 +41,15 @@ namespace River.OneMoreAddIn.Commands
 			if (!HttpClientFactory.IsNetworkAvailable())
 			{
 				UIHelper.ShowInfo(Resx.NetwordConnectionUnavailable);
+				return;
+			}
+
+
+			if ((args.Length > 0) && (args[0] is string pid))
+			{
+				// not sure why logger is null here so we have to set it
+				logger = Logger.Current;
+				await RefreshDiagram(pid);
 				return;
 			}
 
@@ -91,8 +105,12 @@ namespace River.OneMoreAddIn.Commands
 			using var stream = new MemoryStream(bytes);
 			var image = (Bitmap)Image.FromStream(stream);
 
+			var plantID = Guid.NewGuid().ToString("N");
+			PageNamespace.Set(ns);
+
 			var element = new XElement(ns + "OE",
 				new XAttribute("selected", "partial"),
+				new Meta(ImageMeta, plantID),
 				new XElement(ns + "Image",
 					new XAttribute("selected", "all"),
 					new XElement(ns + "Size",
@@ -114,10 +132,15 @@ namespace River.OneMoreAddIn.Commands
 
 			if (collapse)
 			{
+				var url = $"onemore://DrawPlantUmlCommand/{plantID}";
+
 				var container = new XElement(ns + "OE",
 					new XAttribute("collapsed", "1"),
+					new Meta(PlantMeta, plantID),
 					new XElement(ns + "T",
-						new XCData("<span style='font-style:italic'>PlantUML</span>"))
+						new XCData(
+							"<span style='font-style:italic'>PlantUML " +
+							$"(<a href=\"{url}\">{Resx.word_Refresh}</a>)</span>"))
 					);
 
 				runs.First().Parent.AddBeforeSelf(container);
@@ -166,6 +189,79 @@ namespace River.OneMoreAddIn.Commands
 				});
 
 			return result == DialogResult.OK ? bytes : new byte[0];
+		}
+
+
+		private async Task<bool> RefreshDiagram(string plantID)
+		{
+			using var one = new OneNote(out var page, out var ns, OneNote.PageDetail.All);
+
+			var image = page.Root.Descendants(ns + "OE").Elements(ns + "Meta")
+				.Where(e =>
+					e.Attribute("name")?.Value == ImageMeta &&
+					e.Attribute("content")?.Value == plantID)
+				.Select(e => e.Parent.Elements(ns + "Image").FirstOrDefault())
+				.FirstOrDefault();
+
+			if (image == null)
+			{
+				UIHelper.ShowError(Resx.DrawPlantUml_broken);
+				return false;
+			}
+
+			var plant = page.Root.Descendants(ns + "OE").Elements(ns + "Meta")
+				.Where(e =>
+					e.Attribute("name")?.Value == PlantMeta &&
+					e.Attribute("content")?.Value == plantID)
+				.Select(e => e.Parent.Elements(ns + "OEChildren").FirstOrDefault())
+				.FirstOrDefault();
+
+			if (plant == null)
+			{
+				UIHelper.ShowError(Resx.DrawPlantUml_broken);
+				return false;
+			}
+
+			var runs = plant.Descendants(ns + "T");
+			if (!runs.Any())
+			{
+				UIHelper.ShowError(Resx.DrawPlantUml_broken);
+				return false;
+			}
+
+			// build our own text block including Newlines...
+
+			var builder = new StringBuilder();
+			runs.ForEach(e =>
+			{
+				builder.AppendLine(e.TextValue(true));
+			});
+
+			var text = builder.ToString();
+			if (string.IsNullOrWhiteSpace(text))
+			{
+				UIHelper.ShowError(Resx.DrawPlantUml_broken);
+				return false;
+			}
+
+			// convert...
+
+			var bytes = ConvertToDiagram(text);
+
+			// update image...
+
+			var data = image.Elements(ns + "Data").FirstOrDefault();
+			if (data == null)
+			{
+				UIHelper.ShowError(Resx.DrawPlantUml_broken);
+				return false;
+			}
+
+			data.Value = Convert.ToBase64String(bytes);
+
+			await one.Update(page);
+
+			return true;
 		}
 	}
 }

@@ -4761,4 +4761,8 @@ In deze sectie</value>
   <data name="word_General" xml:space="preserve">
     <value>Algemeen</value>
   </data>
+  <data name="DrawPlantUml_broken" xml:space="preserve">
+    <value>PlantUML-tekst is ongeldig of kan geen verband vinden tussen tekst en afbeelding</value>
+    <comment>error message</comment>
+  </data>
 </root>

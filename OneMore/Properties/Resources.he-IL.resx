@@ -4856,4 +4856,8 @@ ISO-code then comma then language name</comment>
   <data name="word_General" xml:space="preserve">
     <value>כללי</value>
   </data>
+  <data name="DrawPlantUml_broken" xml:space="preserve">
+    <value>טקסט PlantUML אינו חוקי או שאינו יכול למצוא קשר בין טקסט לתמונה</value>
+    <comment>error message</comment>
+  </data>
 </root>
