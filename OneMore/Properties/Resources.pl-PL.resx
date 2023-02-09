@@ -4814,4 +4814,8 @@ W tej sekcji</value>
   <data name="word_General" xml:space="preserve">
     <value>Ogólny</value>
   </data>
+  <data name="DrawPlantUml_broken" xml:space="preserve">
+    <value>Tekst PlantUML jest nieprawidłowy lub nie może znaleźć połączenia między tekstem a obrazem</value>
+    <comment>error message</comment>
+  </data>
 </root>

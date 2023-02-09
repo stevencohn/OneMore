@@ -4761,4 +4761,8 @@ ISO-code then comma then language name</comment>
   <data name="word_General" xml:space="preserve">
     <value>عام</value>
   </data>
+  <data name="DrawPlantUml_broken" xml:space="preserve">
+    <value>نص PlantUML إما غير صالح أو لا يمكنه العثور على اتصال بين النص والصورة</value>
+    <comment>error message</comment>
+  </data>
 </root>

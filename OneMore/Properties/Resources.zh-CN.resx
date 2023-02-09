@@ -4745,4 +4745,8 @@ ISO-code then comma then language name</comment>
   <data name="word_General" xml:space="preserve">
     <value>一般的</value>
   </data>
+  <data name="DrawPlantUml_broken" xml:space="preserve">
+    <value>PlantUML 文本无效或找不到文本和图像之间的连接</value>
+    <comment>error message</comment>
+  </data>
 </root>

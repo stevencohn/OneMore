@@ -1872,6 +1872,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to PlantUML text is either invalid or cannot find connection between text and image.
+        /// </summary>
+        internal static string DrawPlantUml_broken {
+            get {
+                return ResourceManager.GetString("DrawPlantUml_broken", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Empty selection. Select a valid block of PlantUML text..
         /// </summary>
         internal static string DrawPlantUml_EmptySelection {

@@ -4748,4 +4748,8 @@ In diesem Abschnitt</value>
   <data name="word_General" xml:space="preserve">
     <value>Allgemein</value>
   </data>
+  <data name="DrawPlantUml_broken" xml:space="preserve">
+    <value>PlantUML-Text ist entweder ungültig oder kann keine Verbindung zwischen Text und Bild finden</value>
+    <comment>error message</comment>
+  </data>
 </root>
