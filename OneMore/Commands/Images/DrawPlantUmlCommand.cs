@@ -30,6 +30,8 @@ namespace River.OneMoreAddIn.Commands
 		private const string PlantMeta = "omPlant";
 		private const string ImageMeta = "omPlantImage";
 
+		private string errorMessage;
+
 
 		public DrawPlantUmlCommand()
 		{
@@ -84,6 +86,12 @@ namespace River.OneMoreAddIn.Commands
 			// convert...
 
 			var bytes = ConvertToDiagram(text);
+
+			if (!string.IsNullOrWhiteSpace(errorMessage))
+			{
+				UIHelper.ShowError(errorMessage);
+				return;
+			}
 
 			// get settings...
 
@@ -161,7 +169,7 @@ namespace River.OneMoreAddIn.Commands
 
 		private byte[] ConvertToDiagram(string text)
 		{
-			using var progress = new ProgressDialog(10);
+			using var progress = new ProgressDialog(15);
 			progress.Tag = text;
 			progress.SetMessage("Converting using the service http://www.plantuml.com...");
 
@@ -179,9 +187,9 @@ namespace River.OneMoreAddIn.Commands
 					}
 					catch (Exception exc)
 					{
+						errorMessage = exc.Message;
 						logger.WriteLine(text);
 						logger.WriteLine("error rendering plantuml", exc);
-						UIHelper.ShowError(Resx.DrawPlantUml_Error);
 						return false;
 					}
 
