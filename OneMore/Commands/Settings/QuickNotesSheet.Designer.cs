@@ -92,6 +92,8 @@ namespace River.OneMoreAddIn.Settings
 			// titleBox
 			// 
 			this.titleBox.AutoSize = true;
+			this.titleBox.Checked = true;
+			this.titleBox.CheckState = System.Windows.Forms.CheckState.Checked;
 			this.titleBox.Location = new System.Drawing.Point(13, 25);
 			this.titleBox.Name = "titleBox";
 			this.titleBox.Size = new System.Drawing.Size(390, 24);
@@ -169,9 +171,10 @@ namespace River.OneMoreAddIn.Settings
 			this.groupingBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this.groupingBox.FormattingEnabled = true;
 			this.groupingBox.Items.AddRange(new object[] {
-            "Work Week (2023-02-13 Wk 7)",
+            "Work Week (2023-02-13 W7)",
             "Month (2023-02)",
             "Quarter (2023 Q1)",
+            "Year (2023)",
             "#Keyword in first line of note"});
 			this.groupingBox.Location = new System.Drawing.Point(277, 90);
 			this.groupingBox.Name = "groupingBox";

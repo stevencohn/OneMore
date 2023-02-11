@@ -2166,9 +2166,10 @@ ISO-code then comma then language name</comment>
     <value>emoji\pushpin.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="QuickNotesSheet_groupingBox.Text" xml:space="preserve">
-    <value>Work Week (2023-02-13 Wk 7)
+    <value>Work Week (2023-02-13 W7)
 Month (2023-02)
 Quarter (2023 Q1)
+Year (2023)
 #Keyword in first line of note</value>
     <comment>combobox</comment>
   </data>
@@ -3028,6 +3029,14 @@ Polaroid</value>
   <data name="ribFileMenu_Label" xml:space="preserve">
     <value>File</value>
     <comment>ribbon menu NODUP</comment>
+  </data>
+  <data name="ribFileQuickNotesButton_Label" xml:space="preserve">
+    <value>File Quick Notes</value>
+    <comment>ribbon file</comment>
+  </data>
+  <data name="ribFileQuickNotesButton_Screentip" xml:space="preserve">
+    <value>Organize Quick Notes into a notebook or section</value>
+    <comment>ribbon file</comment>
   </data>
   <data name="ribFillAcrossButton_Label" xml:space="preserve">
     <value>Fill Across</value>
@@ -4958,13 +4967,5 @@ In this section</value>
   </data>
   <data name="XMark" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>emoji\xmark.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="ribFileQuickNotesButton_Label" xml:space="preserve">
-    <value>File Quick Notes</value>
-    <comment>ribbon file</comment>
-  </data>
-  <data name="ribFileQuickNotesButton_Screentip" xml:space="preserve">
-    <value>Organize Quick Notes into a notebook or section</value>
-    <comment>ribbon file</comment>
   </data>
 </root>

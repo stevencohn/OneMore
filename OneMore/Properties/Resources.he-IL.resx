@@ -4861,9 +4861,10 @@ ISO-code then comma then language name</comment>
     <comment>error message</comment>
   </data>
   <data name="QuickNotesSheet_groupingBox.Text" xml:space="preserve">
-    <value>שבוע עבודה (2023-02-13 בשבוע 7)
+    <value>שבוע עבודה (2023-02-13 W7)
 חודש (2023-02)
 רבעון (2023 Q1)
+שנה (2023)
 #מילת מפתח בשורה הראשונה של הערה</value>
     <comment>combobox</comment>
   </data>
@@ -4928,5 +4929,13 @@ ISO-code then comma then language name</comment>
   </data>
   <data name="word_Section" xml:space="preserve">
     <value>סָעִיף</value>
+  </data>
+  <data name="ribFileQuickNotesButton_Label" xml:space="preserve">
+    <value>קובץ הערות מהירות</value>
+    <comment>ribbon file</comment>
+  </data>
+  <data name="ribFileQuickNotesButton_Screentip" xml:space="preserve">
+    <value>ארגן הערות מהירות למחברת או למדור</value>
+    <comment>ribbon file</comment>
   </data>
 </root>

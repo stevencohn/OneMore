@@ -4766,9 +4766,10 @@ In deze sectie</value>
     <comment>error message</comment>
   </data>
   <data name="QuickNotesSheet_groupingBox.Text" xml:space="preserve">
-    <value>Werkweek (2023-02-13 Wk 7)
+    <value>Werkweek (2023-02-13 W7)
 Maand (2023-02)
 Kwartaal (2023 Q1)
+Jaar (2023)
 #Trefwoord in de eerste regel van de opmerking</value>
     <comment>combobox</comment>
   </data>
@@ -4833,5 +4834,13 @@ Kwartaal (2023 Q1)
   </data>
   <data name="word_Section" xml:space="preserve">
     <value>Sectie</value>
+  </data>
+  <data name="ribFileQuickNotesButton_Label" xml:space="preserve">
+    <value>Sla snelle notities op</value>
+    <comment>ribbon file</comment>
+  </data>
+  <data name="ribFileQuickNotesButton_Screentip" xml:space="preserve">
+    <value>Organiseer Quick Notes in een notitieboek of sectie</value>
+    <comment>ribbon file</comment>
   </data>
 </root>

@@ -4819,9 +4819,10 @@ W tej sekcji</value>
     <comment>error message</comment>
   </data>
   <data name="QuickNotesSheet_groupingBox.Text" xml:space="preserve">
-    <value>Tydzień roboczy (2023-02-13 Tydzień 7)
+    <value>Tydzień roboczy (2023-02-13 W7)
 Miesiąc (2023-02)
 Kwartał (I kw. 2023 r.)
+Rok (2023)
 #Keyword w pierwszym wierszu notatki</value>
     <comment>combobox</comment>
   </data>
@@ -4886,5 +4887,13 @@ Kwartał (I kw. 2023 r.)
   </data>
   <data name="word_Section" xml:space="preserve">
     <value>Sekcja</value>
+  </data>
+  <data name="ribFileQuickNotesButton_Label" xml:space="preserve">
+    <value>Plik Szybkie notatki</value>
+    <comment>ribbon file</comment>
+  </data>
+  <data name="ribFileQuickNotesButton_Screentip" xml:space="preserve">
+    <value>Organizuj szybkie notatki w notatniku lub sekcji</value>
+    <comment>ribbon file</comment>
   </data>
 </root>

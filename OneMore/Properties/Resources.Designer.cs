@@ -4832,9 +4832,10 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Work Week (2023-02-13 Wk 7)
+        ///   Looks up a localized string similar to Work Week (2023-02-13 W7)
         ///Month (2023-02)
         ///Quarter (2023 Q1)
+        ///Year (2023)
         ///#Keyword in first line of note.
         /// </summary>
         internal static string QuickNotesSheet_groupingBox_Text {

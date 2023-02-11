@@ -4750,9 +4750,10 @@ ISO-code then comma then language name</comment>
     <comment>error message</comment>
   </data>
   <data name="QuickNotesSheet_groupingBox.Text" xml:space="preserve">
-    <value>工作周 (2023-02-13 第 7 周)
+    <value>工作周 (2023-02-13 W7)
 月份 (2023-02)
 季度（2023 年第一季度）
+年份 (2023)
 #注释第一行的关键字</value>
     <comment>combobox</comment>
   </data>
@@ -4817,5 +4818,13 @@ ISO-code then comma then language name</comment>
   </data>
   <data name="word_Section" xml:space="preserve">
     <value>部分</value>
+  </data>
+  <data name="ribFileQuickNotesButton_Label" xml:space="preserve">
+    <value>文件快速注释</value>
+    <comment>ribbon file</comment>
+  </data>
+  <data name="ribFileQuickNotesButton_Screentip" xml:space="preserve">
+    <value>将快速笔记组织到笔记本或分区中</value>
+    <comment>ribbon file</comment>
   </data>
 </root>

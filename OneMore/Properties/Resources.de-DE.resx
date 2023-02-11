@@ -4753,9 +4753,10 @@ In diesem Abschnitt</value>
     <comment>error message</comment>
   </data>
   <data name="QuickNotesSheet_groupingBox.Text" xml:space="preserve">
-    <value>Arbeitswoche (2023-02-13 Woche 7)
+    <value>Arbeitswoche (2023-02-13 W7)
 Monat (2023-02)
 Quartal (2023 Q1)
+Jahr (2023)
 #Keyword in der ersten Notizzeile</value>
     <comment>combobox</comment>
   </data>
@@ -4820,5 +4821,13 @@ Quartal (2023 Q1)
   </data>
   <data name="word_Section" xml:space="preserve">
     <value>Abschnitt</value>
+  </data>
+  <data name="ribFileQuickNotesButton_Label" xml:space="preserve">
+    <value>Schnelle Notizen ablegen</value>
+    <comment>ribbon file</comment>
+  </data>
+  <data name="ribFileQuickNotesButton_Screentip" xml:space="preserve">
+    <value>Organisieren Sie Quick Notes in einem Notizbuch oder Abschnitt</value>
+    <comment>ribbon file</comment>
   </data>
 </root>

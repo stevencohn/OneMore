@@ -4766,9 +4766,10 @@ En esta sección</value>
     <comment>error message</comment>
   </data>
   <data name="QuickNotesSheet_groupingBox.Text" xml:space="preserve">
-    <value>Semana laboral (2023-02-13 Semana 7)
+    <value>Semana laboral (2023-02-13 W7)
 Mes (2023-02)
 Trimestre (2023 Q1)
+Año (2023)
 #Palabra clave en la primera línea de la nota</value>
     <comment>combobox</comment>
   </data>
@@ -4833,5 +4834,13 @@ Trimestre (2023 Q1)
   </data>
   <data name="word_Section" xml:space="preserve">
     <value>Sección</value>
+  </data>
+  <data name="ribFileQuickNotesButton_Label" xml:space="preserve">
+    <value>Archivo de notas rápidas</value>
+    <comment>ribbon file</comment>
+  </data>
+  <data name="ribFileQuickNotesButton_Screentip" xml:space="preserve">
+    <value>Organice Quick Notes en un cuaderno o sección</value>
+    <comment>ribbon file</comment>
   </data>
 </root>
