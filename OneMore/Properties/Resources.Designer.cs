@@ -4832,6 +4832,136 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Work Week (2023-02-13 W7)
+        ///Month (2023-02)
+        ///Quarter (2023 Q1)
+        ///Year (2023)
+        ///#Keyword in first line of note.
+        /// </summary>
+        internal static string QuickNotesSheet_groupingBox_Text {
+            get {
+                return ResourceManager.GetString("QuickNotesSheet_groupingBox.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Group into sections by.
+        /// </summary>
+        internal static string QuickNotesSheet_groupingLabel_Text {
+            get {
+                return ResourceManager.GetString("QuickNotesSheet_groupingLabel.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Custom the behavior of the Organize Quick Notes command.
+        /// </summary>
+        internal static string QuickNotesSheet_introBox_Text {
+            get {
+                return ResourceManager.GetString("QuickNotesSheet_introBox.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Move Quick Notes into this notebook.
+        /// </summary>
+        internal static string QuickNotesSheet_notebookButton_Text {
+            get {
+                return ResourceManager.GetString("QuickNotesSheet_notebookButton.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Click here to select the notebook.
+        /// </summary>
+        internal static string QuickNotesSheet_notebookLink_Text {
+            get {
+                return ResourceManager.GetString("QuickNotesSheet_notebookLink.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Move Quick Notes into this section.
+        /// </summary>
+        internal static string QuickNotesSheet_sectionButton_Text {
+            get {
+                return ResourceManager.GetString("QuickNotesSheet_sectionButton.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Click here to select the section.
+        /// </summary>
+        internal static string QuickNotesSheet_sectionLink_Text {
+            get {
+                return ResourceManager.GetString("QuickNotesSheet_sectionLink.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select the notebook used to organize your Quick Notes.
+        /// </summary>
+        internal static string QuickNotesSheet_SelectNotebookIntro {
+            get {
+                return ResourceManager.GetString("QuickNotesSheet_SelectNotebookIntro", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select Notebook.
+        /// </summary>
+        internal static string QuickNotesSheet_SelectNotebookTitle {
+            get {
+                return ResourceManager.GetString("QuickNotesSheet_SelectNotebookTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select the section used to organize your Quick Notes.
+        /// </summary>
+        internal static string QuickNotesSheet_SelectSectionIntro {
+            get {
+                return ResourceManager.GetString("QuickNotesSheet_SelectSectionIntro", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select Section.
+        /// </summary>
+        internal static string QuickNotesSheet_SelectSectionTitle {
+            get {
+                return ResourceManager.GetString("QuickNotesSheet_SelectSectionTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Prepend the title with the date that the note was created.
+        /// </summary>
+        internal static string QuickNotesSheet_stampBox_Text {
+            get {
+                return ResourceManager.GetString("QuickNotesSheet_stampBox.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Quick Notes.
+        /// </summary>
+        internal static string QuickNotesSheet_Title {
+            get {
+                return ResourceManager.GetString("QuickNotesSheet_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Set the page title to the first fiew words of the note.
+        /// </summary>
+        internal static string QuickNotesSheet_titleBox_Text {
+            get {
+                return ResourceManager.GetString("QuickNotesSheet_titleBox.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to No formula found in the selected table.
         /// </summary>
         internal static string RecalculateFormulaCommand_NoFormula {
@@ -6644,6 +6774,24 @@ namespace River.OneMoreAddIn.Properties {
         internal static string ribFileMenu_Label {
             get {
                 return ResourceManager.GetString("ribFileMenu_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to File Quick Notes.
+        /// </summary>
+        internal static string ribFileQuickNotesButton_Label {
+            get {
+                return ResourceManager.GetString("ribFileQuickNotesButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Organize Quick Notes into a notebook or section.
+        /// </summary>
+        internal static string ribFileQuickNotesButton_Screentip {
+            get {
+                return ResourceManager.GetString("ribFileQuickNotesButton_Screentip", resourceCulture);
             }
         }
         
@@ -9096,6 +9244,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Quick Notes.
+        /// </summary>
+        internal static string SettingsDialog_quickNotesNode_Text {
+            get {
+                return ResourceManager.GetString("SettingsDialog_quickNotesNode.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to One or more changes require OneNote to be restarted. Do you want to restart OneNote now?.
         /// </summary>
         internal static string SettingsDialog_Restart {
@@ -10845,6 +11002,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Notebook.
+        /// </summary>
+        internal static string word_Notebook {
+            get {
+                return ResourceManager.GetString("word_Notebook", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to OK.
         /// </summary>
         internal static string word_OK {
@@ -10976,6 +11142,15 @@ namespace River.OneMoreAddIn.Properties {
         internal static string word_Scope {
             get {
                 return ResourceManager.GetString("word_Scope", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Section.
+        /// </summary>
+        internal static string word_Section {
+            get {
+                return ResourceManager.GetString("word_Section", resourceCulture);
             }
         }
         

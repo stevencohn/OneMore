@@ -4,10 +4,8 @@
 
 namespace River.OneMoreAddIn.Settings
 {
-	using System.Linq;
-	using System.Threading;
+	using River.OneMoreAddIn.UI;
 	using System.Windows.Forms;
-	using Resx = River.OneMoreAddIn.Properties.Resources;
 
 
 	/// <summary>
@@ -61,18 +59,7 @@ namespace River.OneMoreAddIn.Settings
 		/// <param name="keys">An collection of strings specifying the control names</param>
 		protected void Localize(string[] keys)
 		{
-			foreach (var key in keys)
-			{
-				var control = Controls.Find(key, true).FirstOrDefault();
-				if (control != null)
-				{
-					var text = Resx.ResourceManager.GetString($"{Name}_{key}.Text", AddIn.Culture);
-					if (text != null)
-					{
-						control.Text = text;
-					}
-				}
-			}
+			TranslationHelper.Localize(this, keys);
 		}
 
 

@@ -878,9 +878,10 @@ namespace River.OneMoreAddIn
 		/// used to build up Favorites
 		/// </summary>
 		/// <returns></returns>
-		public HierarchyInfo GetSectionInfo()
+		public HierarchyInfo GetSectionInfo(string sectionID = null)
 		{
-			var section = GetSection();
+			var secID = sectionID ?? CurrentSectionId;
+			var section = GetSection(secID);
 			if (section == null)
 			{
 				return null;
@@ -888,8 +889,7 @@ namespace River.OneMoreAddIn
 
 			var info = new HierarchyInfo
 			{
-				SectionId = CurrentSectionId,
-				NotebookId = CurrentNotebookId,
+				SectionId = secID,
 				Name = section.Attribute("name")?.Value
 			};
 
@@ -897,7 +897,7 @@ namespace River.OneMoreAddIn
 			var builder = new StringBuilder();
 			builder.Append($"/{info.Name}");
 
-			var id = GetParent(CurrentSectionId);
+			var id = info.NotebookId = GetParent(secID);
 			while (!string.IsNullOrEmpty(id))
 			{
 				onenote.GetHierarchy(id, HierarchyScope.hsSelf, out var xml, XMLSchema.xs2013);
@@ -1107,7 +1107,7 @@ namespace River.OneMoreAddIn
 			dialog.Description = description;
 			dialog.ParentWindowHandle = onenote.Windows.CurrentWindow.WindowHandle;
 
-			var restriction = HierarchyElement.heSections;
+			var restriction = HierarchyElement.heNotebooks;
 
 			switch (scope)
 			{
@@ -1122,6 +1122,7 @@ namespace River.OneMoreAddIn
 					break;
 				case Scope.Sections:
 					dialog.TreeDepth = HierarchyElement.heSections;
+					restriction = HierarchyElement.heSections;
 					break;
 				case Scope.Pages:
 					dialog.TreeDepth = HierarchyElement.hePages;

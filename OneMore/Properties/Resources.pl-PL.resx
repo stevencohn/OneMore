@@ -4818,4 +4818,82 @@ W tej sekcji</value>
     <value>Tekst PlantUML jest nieprawidłowy lub nie może znaleźć połączenia między tekstem a obrazem</value>
     <comment>error message</comment>
   </data>
+  <data name="QuickNotesSheet_groupingBox.Text" xml:space="preserve">
+    <value>Tydzień roboczy (2023-02-13 W7)
+Miesiąc (2023-02)
+Kwartał (I kw. 2023 r.)
+Rok (2023)
+#Keyword w pierwszym wierszu notatki</value>
+    <comment>combobox</comment>
+  </data>
+  <data name="QuickNotesSheet_groupingLabel.Text" xml:space="preserve">
+    <value>Pogrupuj w sekcje wg</value>
+    <comment>label</comment>
+  </data>
+  <data name="QuickNotesSheet_introBox.Text" xml:space="preserve">
+    <value>Dostosuj zachowanie polecenia Organizuj szybkie notatki</value>
+    <comment>textbox</comment>
+  </data>
+  <data name="QuickNotesSheet_notebookButton.Text" xml:space="preserve">
+    <value>Przenieś Szybkie notatki do tego notatnika</value>
+    <comment>radio</comment>
+  </data>
+  <data name="QuickNotesSheet_notebookLink.Text" xml:space="preserve">
+    <value>Kliknij tutaj, aby wybrać notatnik</value>
+    <comment>linklabel</comment>
+  </data>
+  <data name="QuickNotesSheet_sectionButton.Text" xml:space="preserve">
+    <value>Przenieś Szybkie notatki do tej sekcji</value>
+    <comment>radio</comment>
+  </data>
+  <data name="QuickNotesSheet_sectionLink.Text" xml:space="preserve">
+    <value>Kliknij tutaj, aby wybrać sekcję</value>
+    <comment>linklabel</comment>
+  </data>
+  <data name="QuickNotesSheet_SelectNotebookIntro" xml:space="preserve">
+    <value>Wybierz notatnik używany do organizowania szybkich notatek</value>
+    <comment>quick filing dialog intro</comment>
+  </data>
+  <data name="QuickNotesSheet_SelectNotebookTitle" xml:space="preserve">
+    <value>Wybierz Notatnik</value>
+    <comment>quick filing dialog title</comment>
+  </data>
+  <data name="QuickNotesSheet_SelectSectionIntro" xml:space="preserve">
+    <value>Wybierz sekcję służącą do organizowania szybkich notatek</value>
+    <comment>quick filing dialog intro</comment>
+  </data>
+  <data name="QuickNotesSheet_SelectSectionTitle" xml:space="preserve">
+    <value>Wybierz sekcję</value>
+    <comment>quick filing dialog title</comment>
+  </data>
+  <data name="QuickNotesSheet_stampBox.Text" xml:space="preserve">
+    <value>Dodaj tytuł z datą utworzenia notatki</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="QuickNotesSheet_Title" xml:space="preserve">
+    <value>Szybkie notatki</value>
+    <comment>sheet title</comment>
+  </data>
+  <data name="QuickNotesSheet_titleBox.Text" xml:space="preserve">
+    <value>Ustaw tytuł strony na pierwsze pięć słów notatki</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="SettingsDialog_quickNotesNode.Text" xml:space="preserve">
+    <value>Szybkie notatki</value>
+    <comment>tree node</comment>
+  </data>
+  <data name="word_Notebook" xml:space="preserve">
+    <value>Zeszyt</value>
+  </data>
+  <data name="word_Section" xml:space="preserve">
+    <value>Sekcja</value>
+  </data>
+  <data name="ribFileQuickNotesButton_Label" xml:space="preserve">
+    <value>Plik Szybkie notatki</value>
+    <comment>ribbon file</comment>
+  </data>
+  <data name="ribFileQuickNotesButton_Screentip" xml:space="preserve">
+    <value>Organizuj szybkie notatki w notatniku lub sekcji</value>
+    <comment>ribbon file</comment>
+  </data>
 </root>

@@ -138,6 +138,7 @@
   <ItemGroup>
     <Compile Include="AddInCommands.cs" />
     <Compile Include="Commands\Edit\DuplicateLineCommand.cs" />
+    <Compile Include="Commands\File\FileQuickNotesCommand.cs" />
     <Compile Include="Commands\File\Markdown\MarkdownConverter.cs" />
     <Compile Include="Commands\File\Markdown\OneMoreDig.cs" />
     <Compile Include="Commands\File\Markdown\OneMoreDigExtension.cs" />
@@ -147,6 +148,12 @@
     <Compile Include="Commands\Images\OpenImageWithCommand.cs" />
     <Compile Include="Commands\Page\DuplicatePageCommand.cs" />
     <Compile Include="Commands\Page\Emojis.cs" />
+    <Compile Include="Commands\Settings\QuickNotesSheet.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Commands\Settings\QuickNotesSheet.Designer.cs">
+      <DependentUpon>QuickNotesSheet.cs</DependentUpon>
+    </Compile>
     <Compile Include="Commands\Settings\ImagesSheet.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -1191,6 +1198,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Commands\Settings\AliasSheet.resx">
       <DependentUpon>AliasSheet.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Commands\Settings\QuickNotesSheet.resx">
+      <DependentUpon>QuickNotesSheet.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Commands\Settings\ImagesSheet.resx">
       <DependentUpon>ImagesSheet.cs</DependentUpon>

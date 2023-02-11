@@ -424,6 +424,19 @@
                 getLabel="GetRibbonLabel"
                 getScreentip="GetRibbonScreentip"
                 onAction="CrawlWebPageCmd"/>
+              <menuSeparator id="sepFile" />
+              <button
+                id="ribAnalyzeButton"
+                imageMso="FileCompactAndRepairDatabase"
+                getLabel="GetRibbonLabel"
+                getScreentip="GetRibbonScreentip"
+                onAction="AnalyzeCmd"/>
+              <button
+                id="ribFileQuickNotesButton"
+                imageMso="Organizer"
+                getLabel="GetRibbonLabel"
+                getScreentip="GetRibbonScreentip"
+                onAction="FileQuickNotesCmd"/>
               <dynamicMenu
                 id="ribPluginsMenu"
                 getLabel="GetRibbonLabel"
@@ -827,12 +840,6 @@
                 onAction="SplitTableCmd"/>
             </menu>
             <menu id="ribExtrasMenu" getLabel="GetRibbonLabel" imageMso="OutlineDemote" showImage="true">
-              <button
-                id="ribAnalyzeButton"
-                imageMso="FileCompactAndRepairDatabase"
-                getLabel="GetRibbonLabel"
-                getScreentip="GetRibbonScreentip"
-                onAction="AnalyzeCmd"/>
               <button
                 id="ribCollapsePagesButton"
                 imageMso="CollapseAll"

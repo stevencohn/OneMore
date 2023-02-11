@@ -29,16 +29,13 @@ namespace River.OneMoreAddIn.Settings
 		/// </summary>
 		private void InitializeComponent()
 		{
-			this.components = new System.ComponentModel.Container();
 			this.introBox = new System.Windows.Forms.TextBox();
 			this.layoutPanel = new System.Windows.Forms.Panel();
 			this.langBox = new System.Windows.Forms.ComboBox();
 			this.langLabel = new System.Windows.Forms.Label();
 			this.checkUpdatesBox = new System.Windows.Forms.CheckBox();
 			this.enablersBox = new System.Windows.Forms.CheckBox();
-			this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
 			this.layoutPanel.SuspendLayout();
-			((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// introBox
@@ -110,10 +107,6 @@ namespace River.OneMoreAddIn.Settings
     " the Quick Access toolbar";
 			this.enablersBox.UseVisualStyleBackColor = true;
 			// 
-			// errorProvider1
-			// 
-			this.errorProvider1.ContainerControl = this;
-			// 
 			// GeneralSheet
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -126,7 +119,6 @@ namespace River.OneMoreAddIn.Settings
 			this.Size = new System.Drawing.Size(800, 500);
 			this.layoutPanel.ResumeLayout(false);
 			this.layoutPanel.PerformLayout();
-			((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -140,6 +132,5 @@ namespace River.OneMoreAddIn.Settings
 		private System.Windows.Forms.CheckBox checkUpdatesBox;
 		private System.Windows.Forms.ComboBox langBox;
 		private System.Windows.Forms.Label langLabel;
-		private System.Windows.Forms.ErrorProvider errorProvider1;
 	}
 }
