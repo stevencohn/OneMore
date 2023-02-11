@@ -6777,6 +6777,24 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to File Quick Notes.
+        /// </summary>
+        internal static string ribFileQuickNotesButton_Label {
+            get {
+                return ResourceManager.GetString("ribFileQuickNotesButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Organize Quick Notes into a notebook or section.
+        /// </summary>
+        internal static string ribFileQuickNotesButton_Screentip {
+            get {
+                return ResourceManager.GetString("ribFileQuickNotesButton_Screentip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Fill Across.
         /// </summary>
         internal static string ribFillAcrossButton_Label {

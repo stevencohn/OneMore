@@ -424,6 +424,12 @@
                 getLabel="GetRibbonLabel"
                 getScreentip="GetRibbonScreentip"
                 onAction="CrawlWebPageCmd"/>
+              <button
+                id="ribFileQuickNotesButton"
+                imageMso="Organizer"
+                getLabel="GetRibbonLabel"
+                getScreentip="GetRibbonScreentip"
+                onAction="FileQuickNotesCmd"/>
               <dynamicMenu
                 id="ribPluginsMenu"
                 getLabel="GetRibbonLabel"

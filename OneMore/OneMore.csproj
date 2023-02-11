@@ -138,6 +138,7 @@
   <ItemGroup>
     <Compile Include="AddInCommands.cs" />
     <Compile Include="Commands\Edit\DuplicateLineCommand.cs" />
+    <Compile Include="Commands\File\FileQuickNotesCommand.cs" />
     <Compile Include="Commands\File\Markdown\MarkdownConverter.cs" />
     <Compile Include="Commands\File\Markdown\OneMoreDig.cs" />
     <Compile Include="Commands\File\Markdown\OneMoreDigExtension.cs" />

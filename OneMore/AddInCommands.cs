@@ -307,6 +307,11 @@ namespace River.OneMoreAddIn
 			=> await factory.Run<ExportCommand>();
 
 
+		[Command("ribFileQuickNotesButton_Label", Keys.None, "Extras")]
+		public async Task FileQuickNotesCmd(IRibbonControl control)
+			=> await factory.Run<FileQuickNotesCommand>();
+
+
 		[Command("ribFillAcrossButton_Label", Keys.None, "Table")]
 		public async Task FillAcrossCmd(IRibbonControl control)
 			=> await factory.Run<FillCellsCommand>(FillCells.FillAcross);
