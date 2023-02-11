@@ -4765,4 +4765,73 @@ In deze sectie</value>
     <value>PlantUML-tekst is ongeldig of kan geen verband vinden tussen tekst en afbeelding</value>
     <comment>error message</comment>
   </data>
+  <data name="QuickNotesSheet_groupingBox.Text" xml:space="preserve">
+    <value>Werkweek (2023-02-13 Wk 7)
+Maand (2023-02)
+Kwartaal (2023 Q1)
+#Trefwoord in de eerste regel van de opmerking</value>
+    <comment>combobox</comment>
+  </data>
+  <data name="QuickNotesSheet_groupingLabel.Text" xml:space="preserve">
+    <value>Groepeer in secties op basis van</value>
+    <comment>label</comment>
+  </data>
+  <data name="QuickNotesSheet_introBox.Text" xml:space="preserve">
+    <value>Pas het gedrag van de opdracht Snelle notities organiseren aan</value>
+    <comment>textbox</comment>
+  </data>
+  <data name="QuickNotesSheet_notebookButton.Text" xml:space="preserve">
+    <value>Verplaats Quick Notes naar dit notitieboek</value>
+    <comment>radio</comment>
+  </data>
+  <data name="QuickNotesSheet_notebookLink.Text" xml:space="preserve">
+    <value>Klik hier om het notitieboek te selecteren</value>
+    <comment>linklabel</comment>
+  </data>
+  <data name="QuickNotesSheet_sectionButton.Text" xml:space="preserve">
+    <value>Verplaats Quick Notes naar deze sectie</value>
+    <comment>radio</comment>
+  </data>
+  <data name="QuickNotesSheet_sectionLink.Text" xml:space="preserve">
+    <value>Klik hier om de sectie te selecteren</value>
+    <comment>linklabel</comment>
+  </data>
+  <data name="QuickNotesSheet_SelectNotebookIntro" xml:space="preserve">
+    <value>Selecteer het notitieboek dat wordt gebruikt om uw Quick Notes te ordenen</value>
+    <comment>quick filing dialog intro</comment>
+  </data>
+  <data name="QuickNotesSheet_SelectNotebookTitle" xml:space="preserve">
+    <value>Selecteer Notitieboekje</value>
+    <comment>quick filing dialog title</comment>
+  </data>
+  <data name="QuickNotesSheet_SelectSectionIntro" xml:space="preserve">
+    <value>Selecteer de sectie die wordt gebruikt om uw Quick Notes te ordenen</value>
+    <comment>quick filing dialog intro</comment>
+  </data>
+  <data name="QuickNotesSheet_SelectSectionTitle" xml:space="preserve">
+    <value>Selecteer Sectie</value>
+    <comment>quick filing dialog title</comment>
+  </data>
+  <data name="QuickNotesSheet_stampBox.Text" xml:space="preserve">
+    <value>Plaats vóór de titel de datum waarop de notitie is gemaakt</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="QuickNotesSheet_Title" xml:space="preserve">
+    <value>Snelle notities</value>
+    <comment>sheet title</comment>
+  </data>
+  <data name="QuickNotesSheet_titleBox.Text" xml:space="preserve">
+    <value>Stel de paginatitel in op de eerste weergavewoorden van de notitie</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="SettingsDialog_quickNotesNode.Text" xml:space="preserve">
+    <value>Snelle notities</value>
+    <comment>tree node</comment>
+  </data>
+  <data name="word_Notebook" xml:space="preserve">
+    <value>Notitieboekje</value>
+  </data>
+  <data name="word_Section" xml:space="preserve">
+    <value>Sectie</value>
+  </data>
 </root>

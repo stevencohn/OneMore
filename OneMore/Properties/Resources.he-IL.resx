@@ -4860,4 +4860,73 @@ ISO-code then comma then language name</comment>
     <value>טקסט PlantUML אינו חוקי או שאינו יכול למצוא קשר בין טקסט לתמונה</value>
     <comment>error message</comment>
   </data>
+  <data name="QuickNotesSheet_groupingBox.Text" xml:space="preserve">
+    <value>שבוע עבודה (2023-02-13 בשבוע 7)
+חודש (2023-02)
+רבעון (2023 Q1)
+#מילת מפתח בשורה הראשונה של הערה</value>
+    <comment>combobox</comment>
+  </data>
+  <data name="QuickNotesSheet_groupingLabel.Text" xml:space="preserve">
+    <value>קבץ למקטעים לפי</value>
+    <comment>label</comment>
+  </data>
+  <data name="QuickNotesSheet_introBox.Text" xml:space="preserve">
+    <value>התאמה אישית של ההתנהגות של הפקודה ארגן הערות מהירות</value>
+    <comment>textbox</comment>
+  </data>
+  <data name="QuickNotesSheet_notebookButton.Text" xml:space="preserve">
+    <value>העבר הערות מהירות למחברת זו</value>
+    <comment>radio</comment>
+  </data>
+  <data name="QuickNotesSheet_notebookLink.Text" xml:space="preserve">
+    <value>לחץ כאן כדי לבחור את המחברת</value>
+    <comment>linklabel</comment>
+  </data>
+  <data name="QuickNotesSheet_sectionButton.Text" xml:space="preserve">
+    <value>העבר הערות מהירות לקטע זה</value>
+    <comment>radio</comment>
+  </data>
+  <data name="QuickNotesSheet_sectionLink.Text" xml:space="preserve">
+    <value>לחץ כאן כדי לבחור את הקטע</value>
+    <comment>linklabel</comment>
+  </data>
+  <data name="QuickNotesSheet_SelectNotebookIntro" xml:space="preserve">
+    <value>בחר את המחברת המשמשת לארגון ההערות המהירות שלך</value>
+    <comment>quick filing dialog intro</comment>
+  </data>
+  <data name="QuickNotesSheet_SelectNotebookTitle" xml:space="preserve">
+    <value>בחר מחברת</value>
+    <comment>quick filing dialog title</comment>
+  </data>
+  <data name="QuickNotesSheet_SelectSectionIntro" xml:space="preserve">
+    <value>בחר את הקטע המשמש לארגון ההערות המהירות שלך</value>
+    <comment>quick filing dialog intro</comment>
+  </data>
+  <data name="QuickNotesSheet_SelectSectionTitle" xml:space="preserve">
+    <value>בחר סעיף</value>
+    <comment>quick filing dialog title</comment>
+  </data>
+  <data name="QuickNotesSheet_stampBox.Text" xml:space="preserve">
+    <value>הוסף את הכותרת עם התאריך שבו נוצרה ההערה</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="QuickNotesSheet_Title" xml:space="preserve">
+    <value>הערות מהירות</value>
+    <comment>sheet title</comment>
+  </data>
+  <data name="QuickNotesSheet_titleBox.Text" xml:space="preserve">
+    <value>הגדר את כותרת העמוד למילים הראשונות של ההערה</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="SettingsDialog_quickNotesNode.Text" xml:space="preserve">
+    <value>הערות מהירות</value>
+    <comment>tree node</comment>
+  </data>
+  <data name="word_Notebook" xml:space="preserve">
+    <value>מחברת</value>
+  </data>
+  <data name="word_Section" xml:space="preserve">
+    <value>סָעִיף</value>
+  </data>
 </root>

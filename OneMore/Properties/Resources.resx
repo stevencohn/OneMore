@@ -2165,6 +2165,65 @@ ISO-code then comma then language name</comment>
   <data name="Pushpin" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>emoji\pushpin.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="QuickNotesSheet_groupingBox.Text" xml:space="preserve">
+    <value>Work Week (2023-02-13 Wk 7)
+Month (2023-02)
+Quarter (2023 Q1)
+#Keyword in first line of note</value>
+    <comment>combobox</comment>
+  </data>
+  <data name="QuickNotesSheet_groupingLabel.Text" xml:space="preserve">
+    <value>Group into sections by</value>
+    <comment>label</comment>
+  </data>
+  <data name="QuickNotesSheet_introBox.Text" xml:space="preserve">
+    <value>Custom the behavior of the Organize Quick Notes command</value>
+    <comment>textbox</comment>
+  </data>
+  <data name="QuickNotesSheet_notebookButton.Text" xml:space="preserve">
+    <value>Move Quick Notes into this notebook</value>
+    <comment>radio</comment>
+  </data>
+  <data name="QuickNotesSheet_notebookLink.Text" xml:space="preserve">
+    <value>Click here to select the notebook</value>
+    <comment>linklabel</comment>
+  </data>
+  <data name="QuickNotesSheet_sectionButton.Text" xml:space="preserve">
+    <value>Move Quick Notes into this section</value>
+    <comment>radio</comment>
+  </data>
+  <data name="QuickNotesSheet_sectionLink.Text" xml:space="preserve">
+    <value>Click here to select the section</value>
+    <comment>linklabel</comment>
+  </data>
+  <data name="QuickNotesSheet_SelectNotebookIntro" xml:space="preserve">
+    <value>Select the notebook used to organize your Quick Notes</value>
+    <comment>quick filing dialog intro</comment>
+  </data>
+  <data name="QuickNotesSheet_SelectNotebookTitle" xml:space="preserve">
+    <value>Select Notebook</value>
+    <comment>quick filing dialog title</comment>
+  </data>
+  <data name="QuickNotesSheet_SelectSectionIntro" xml:space="preserve">
+    <value>Select the section used to organize your Quick Notes</value>
+    <comment>quick filing dialog intro</comment>
+  </data>
+  <data name="QuickNotesSheet_SelectSectionTitle" xml:space="preserve">
+    <value>Select Section</value>
+    <comment>quick filing dialog title</comment>
+  </data>
+  <data name="QuickNotesSheet_stampBox.Text" xml:space="preserve">
+    <value>Prepend the title with the date that the note was created</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="QuickNotesSheet_Title" xml:space="preserve">
+    <value>Quick Notes</value>
+    <comment>sheet title</comment>
+  </data>
+  <data name="QuickNotesSheet_titleBox.Text" xml:space="preserve">
+    <value>Set the page title to the first fiew words of the note</value>
+    <comment>checkbox</comment>
+  </data>
   <data name="RecalculateFormulaCommand_NoFormula" xml:space="preserve">
     <value>No formula found in the selected table</value>
     <comment>recalculate command message</comment>
@@ -4052,6 +4111,10 @@ Search engines will appear in the page context menu, right-click.</value>
     <value>Plugins</value>
     <comment>tree node</comment>
   </data>
+  <data name="SettingsDialog_quickNotesNode.Text" xml:space="preserve">
+    <value>Quick Notes</value>
+    <comment>tree node</comment>
+  </data>
   <data name="SettingsDialog_Restart" xml:space="preserve">
     <value>One or more changes require OneNote to be restarted. Do you want to restart OneNote now?</value>
     <comment>restart message</comment>
@@ -4774,6 +4837,9 @@ In this section</value>
   <data name="word_No" xml:space="preserve">
     <value>No</value>
   </data>
+  <data name="word_Notebook" xml:space="preserve">
+    <value>Notebook</value>
+  </data>
   <data name="word_OK" xml:space="preserve">
     <value>OK</value>
   </data>
@@ -4818,6 +4884,9 @@ In this section</value>
   </data>
   <data name="word_Scope" xml:space="preserve">
     <value>Scope</value>
+  </data>
+  <data name="word_Section" xml:space="preserve">
+    <value>Section</value>
   </data>
   <data name="word_Silenced" xml:space="preserve">
     <value>Silenced</value>
