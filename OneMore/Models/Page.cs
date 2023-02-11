@@ -27,6 +27,8 @@ namespace River.OneMoreAddIn.Models
 	/// </summary>
 	internal partial class Page
 	{
+		public int TopOutlinePosition = 86;
+
 
 		/// <summary>
 		/// Initialize a new instance with the given page XML root
@@ -1299,6 +1301,38 @@ namespace River.OneMoreAddIn.Models
 			else
 			{
 				meta.Attribute("content").Value = value;
+			}
+		}
+
+
+		/// <summary>
+		/// Set the title of the current page or adds a new title if one doesn't already exist
+		/// </summary>
+		/// <param name="title">The title to use</param>
+		public void SetTitle(string title)
+		{
+			var ns = Namespace;
+			PageNamespace.Set(ns);
+
+			var block = Root.Elements(ns + "Title").FirstOrDefault();
+			if (block == null)
+			{
+				var style = GetQuickStyle(StandardStyles.PageTitle);
+				block = new XElement(ns  + "Title",
+					new Paragraph(title).SetQuickStyle(style.Index));
+
+				var outline = Root.Elements(ns + "Outline")
+					.FirstOrDefault(e => !e.Elements(ns + "Meta")
+						.Any(m => m.Attribute("name").Value.Equals(MetaNames.TaggingBank)));
+
+				outline ??= EnsureContentContainer();
+				outline.AddBeforeSelf(block);
+			}
+			else
+			{
+				// overwrite the entire title
+				block.Elements(ns + "OE").FirstOrDefault()?
+					.ReplaceNodes(new XElement(ns + "T", new XCData(title)));
 			}
 		}
 	}

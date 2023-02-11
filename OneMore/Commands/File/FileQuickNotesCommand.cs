@@ -89,6 +89,7 @@ namespace River.OneMoreAddIn.Commands
 				var pageID = await CopyPage(page, sectionID);
 
 				Timewarp(sectionID, pageID, dateTime, lastModifiedTime);
+				count++;
 			});
 
 			if (count > 0)
@@ -133,28 +134,22 @@ namespace River.OneMoreAddIn.Commands
 				name = $"{dttm.ToString("yyyy-MM-dd")} {name}";
 			}
 
-			PageNamespace.Set(page.Namespace);
-			var ns = page.Namespace;
-			var title = page.Root.Elements(ns + "Title").FirstOrDefault();
-			if (title == null)
+			page.SetTitle(name);
+
+			// shift content down...
+
+			page.Root.Elements(page.Namespace + "Outline").ForEach(e =>
 			{
-				var style = page.GetQuickStyle(Styles.StandardStyles.PageTitle);
-				title = new XElement(ns + "Title",
-					new Paragraph(name).SetQuickStyle(style.Index));
-
-				var outline = page.Root.Elements(ns + "Outline")
-					.FirstOrDefault();
-
-				if (outline != null)
+				var position = e.Element(page.Namespace + "Position");
+				if (position != null)
 				{
-					outline.AddBeforeSelf(title);
+					position.GetAttributeValue("y", out var y, 0.0);
+					if (y < page.TopOutlinePosition)
+					{
+						position.SetAttributeValue("y", $"{page.TopOutlinePosition}.0");
+					}
 				}
-			}
-			else
-			{
-				var para = new Paragraph(title.Elements(ns + "OE").First());
-				para.GetCData().Value = name;
-			}
+			});
 		}
 
 
@@ -197,17 +192,10 @@ namespace River.OneMoreAddIn.Commands
 		{
 			var ns = one.GetNamespace(unfiled);
 
-			var sectionID = unfiled
-				.Elements(ns + "Section")
-				.Attributes("ID")
-				.Select(a => a.Value)
-				.FirstOrDefault();
-
-			if (!string.IsNullOrWhiteSpace(sectionID))
+			unfiled.Descendants(ns + "Page").ForEach(e =>
 			{
-				logger.WriteLine($"deleting section [{sectionID}]");
-				//one.DeleteHierarchy(sectionID);
-			}
+				one.DeleteHierarchy(e.Attribute("ID").Value);
+			});
 		}
 	}
 }
