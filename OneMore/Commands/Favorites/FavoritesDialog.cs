@@ -5,23 +5,16 @@
 namespace River.OneMoreAddIn.Commands.Favorites
 {
 	using System;
-	using System.Collections.Generic;
 	using System.ComponentModel;
-	using System.Linq;
+	using System.Drawing;
 	using System.Windows.Forms;
-	using Resx = River.OneMoreAddIn.Properties.Resources;
+	using Favorite = FavoritesProvider.Favorite;
+	using FavoriteStatus = FavoritesProvider.FavoriteStatus;
+	using Resx = Properties.Resources;
 
 
 	internal partial class FavoritesDialog : UI.LocalizableForm
 	{
-		private sealed class Favorite
-		{
-			public int Index { get; set; }
-			public string Name { get; set; }
-			public string Location { get; set; }
-			public string Uri { get; set; }
-		}
-
 
 		public FavoritesDialog()
 		{
@@ -40,44 +33,44 @@ namespace River.OneMoreAddIn.Commands.Favorites
 				nameColumn.HeaderText = Resx.word_Name;
 				locationColumn.HeaderText = Resx.FavoritesSheet_locationColumn_HeaderText;
 			}
+		}
+
+
+		private async void LoadData(object sender, EventArgs e)
+		{
+			using var provider = new FavoritesProvider(null);
+			var favorites = await provider.LoadFavorites();
 
 			gridView.AutoGenerateColumns = false;
 			gridView.Columns[0].DataPropertyName = "Name";
 			gridView.Columns[1].DataPropertyName = "Location";
-			gridView.DataSource = new BindingList<Favorite>(LoadFavorites());
+			gridView.DataSource = new BindingList<Favorite>(favorites);
 		}
+
 
 
 		public string Uri { get; private set; }
 
 
-		private List<Favorite> LoadFavorites()
+		private void FormatCell(object sender, DataGridViewCellFormattingEventArgs e)
 		{
-			var list = new List<Favorite>();
-			var root = new FavoritesProvider(null).LoadFavoritesMenu();
-			var ns = root.Name.Namespace;
-
-			// filter out the add/manage/shortcuts buttons
-			var elements = root.Elements(ns + "button")
-				.Where(e => e.Attribute("onAction")?.Value == FavoritesProvider.GotoFavoriteCmd);
-
-			int index = 0;
-			foreach (var element in elements)
+			if (gridView.Rows[e.RowIndex].DataBoundItem is Favorite favorite)
 			{
-				list.Add(new Favorite
+				if (favorite.Status == FavoriteStatus.Unknown)
 				{
-					Index = index++,
-					Name = element.Attribute("label").Value,
-					Location = element.Attribute("screentip").Value,
-					Uri = element.Attribute("tag").Value
-				});
+					e.CellStyle.BackColor = Color.Pink;
+					e.FormattingApplied = true;
+				}
+				else if (favorite.Status == FavoriteStatus.Suspect)
+				{
+					e.CellStyle.BackColor = Color.LightGoldenrodYellow;
+					e.FormattingApplied = true;
+				}
 			}
-
-			return list;
 		}
 
 
-		private void ChooseFavorite(object sender, EventArgs e)
+		private void ChooseByClick(object sender, EventArgs e)
 		{
 			if (gridView.SelectedCells.Count == 0)
 				return;
@@ -91,11 +84,11 @@ namespace River.OneMoreAddIn.Commands.Favorites
 		}
 
 
-		private void ChooseFavoriteByKeyboard(object sender, KeyEventArgs e)
+		private void ChooseByKeyboard(object sender, KeyEventArgs e)
 		{
 			if (e.KeyCode == Keys.Enter)
 			{
-				ChooseFavorite(null, null);
+				ChooseByClick(null, null);
 				DialogResult = DialogResult.OK;
 				Close();
 			}

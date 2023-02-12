@@ -8,28 +8,21 @@ namespace River.OneMoreAddIn.Settings
 {
 	using Microsoft.Office.Core;
 	using System;
-	using System.Collections.Generic;
 	using System.ComponentModel;
+	using System.Drawing;
 	using System.Linq;
 	using System.Windows.Forms;
-	using System.Xml.Linq;
-	using Resx = River.OneMoreAddIn.Properties.Resources;
+	using Favorite = FavoritesProvider.Favorite;
+	using FavoriteStatus = FavoritesProvider.FavoriteStatus;
+	using Resx = Properties.Resources;
 
 
 	internal partial class FavoritesSheet : SheetBase
 	{
-		private sealed class Favorite
-		{
-			public int Index { get; set; }
-			public XElement Root { get; set; }
-			public string Name { get; set; }
-			public string Location { get; set; }
-		}
-
 
 		private readonly IRibbonUI ribbon;
-		private readonly BindingList<Favorite> favorites;
 		private readonly bool shortcuts;
+		private BindingList<Favorite> favorites;
 		private bool updated = false;
 
 
@@ -69,36 +62,34 @@ namespace River.OneMoreAddIn.Settings
 
 			shortcuts = provider.GetCollection(Name).Get<bool>("kbdshorts");
 			shortcutsBox.Checked = shortcuts;
+		}
 
-			favorites = new BindingList<Favorite>(LoadFavorites());
+
+		private async void LoadData(object sender, EventArgs e)
+		{
+			using var provider = new FavoritesProvider(null);
+			var list = await provider.LoadFavorites();
+			favorites = new BindingList<Favorite>(list);
 
 			gridView.DataSource = favorites;
 		}
 
 
-		private List<Favorite> LoadFavorites()
+		private void FormatCell(object sender, DataGridViewCellFormattingEventArgs e)
 		{
-			var list = new List<Favorite>();
-			var root = new FavoritesProvider(ribbon).LoadFavoritesMenu();
-			var ns = root.Name.Namespace;
-
-			// filter out the add/manage/shortcuts buttons
-			var elements = root.Elements(ns + "button")
-				.Where(e => e.Attribute("onAction")?.Value == FavoritesProvider.GotoFavoriteCmd);
-
-			int index = 0;
-			foreach (var element in elements)
+			if (gridView.Rows[e.RowIndex].DataBoundItem is Favorite favorite)
 			{
-				list.Add(new Favorite
+				if (favorite.Status == FavoriteStatus.Unknown)
 				{
-					Index = index++,
-					Root = element,
-					Name = element.Attribute("label").Value,
-					Location = element.Attribute("screentip").Value
-				});
+					e.CellStyle.BackColor = Color.Pink;
+					e.FormattingApplied = true;
+				}
+				else if (favorite.Status == FavoriteStatus.Suspect)
+				{
+					e.CellStyle.BackColor = Color.LightGoldenrodYellow;
+					e.FormattingApplied = true;
+				}
 			}
-
-			return list;
 		}
 
 
@@ -210,7 +201,8 @@ namespace River.OneMoreAddIn.Settings
 					root.Add(favorite.Root);
 				}
 
-				new FavoritesProvider(ribbon).SaveFavorites(root);
+				using var provider = new FavoritesProvider(ribbon);
+				provider.SaveFavorites(root);
 			}
 			else if (shortcuts != shortcutsBox.Checked)
 			{

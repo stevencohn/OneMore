@@ -6,14 +6,45 @@ namespace River.OneMoreAddIn
 {
 	using Microsoft.Office.Core;
 	using System;
+	using System.Collections.Generic;
 	using System.IO;
 	using System.Linq;
+	using System.Threading.Tasks;
 	using System.Xml.Linq;
 	using Resx = Properties.Resources;
 
 
-	internal class FavoritesProvider
+	internal sealed class FavoritesProvider : IDisposable
 	{
+		public enum FavoriteStatus
+		{
+			Known,      // found by notebookID+objectID, high confidence
+			Suspect,    // not found by path, renamed? low confidence
+			Unknown     // has notebookID+objectID but not found, zero confidence
+		}
+
+
+		public sealed class Favorite
+		{
+			// sequence number
+			public int Index { get; set; }
+			// short name (page or section)
+			public string Name { get; set; }
+			// named hierarchy path (notebook/section/page)
+			public string Location { get; set; }
+			// onenote:// URL of favorite
+			public string Uri { get; set; }
+			// hierarchy notebook ID
+			public string NotebookID { get; set; }
+			// hierarchy object ID (page or section)
+			public string ObjectID { get; set; }
+			// known status
+			public FavoriteStatus Status { get; set; }
+			// button XML root, used by settings sheet
+			public XElement Root { get; set; }
+		}
+
+
 		private static readonly XNamespace ns = "http://schemas.microsoft.com/office/2009/07/customui";
 		private static readonly string AddButtonId = "omAddFavoriteButton";
 		private static readonly string ManageButtonId = "omManageFavoritesButton";
@@ -24,6 +55,11 @@ namespace River.OneMoreAddIn
 		private readonly IRibbonUI ribbon;
 		private readonly ILogger logger;
 
+		private OneNote one;
+		private XElement books;
+		private Dictionary<string, XElement> notebooks;
+		private bool disposed;
+
 
 		public FavoritesProvider(IRibbonUI ribbon)
 		{
@@ -33,21 +69,34 @@ namespace River.OneMoreAddIn
 		}
 
 
+		public void Dispose()
+		{
+			if (!disposed)
+			{
+				one?.Dispose();
+				disposed = true;
+			}
+		}
+
+
+
 		public void AddFavorite(bool addSection = false)
 		{
 			XElement root;
 
 			if (File.Exists(path))
 			{
-				root = UpgradeFavoritesMenu(XElement.Load(path, LoadOptions.None));
+				root = UpgradeFavoritesMenu(XElement.Load(path, LoadOptions.None), true);
 			}
 			else
 			{
 				root = MakeMenuRoot();
 			}
 
-			using var one = new OneNote();
+			one ??= new OneNote();
+
 			var info = addSection ? one.GetSectionInfo() : one.GetPageInfo();
+			var notebookID = one.CurrentNotebookId;
 
 			var name = info.Name;
 			if (name.Length > 50)
@@ -63,6 +112,8 @@ namespace River.OneMoreAddIn
 
 			root.Add(new XElement(ns + "button",
 				new XAttribute("id", $"omFavoriteLink{id}"),
+				new XAttribute("notebookID", notebookID),
+				new XAttribute("objectID", addSection ? info.SectionId : info.PageId),
 				new XAttribute("onAction", GotoFavoriteCmd),
 				new XAttribute("imageMso", imageMso),
 				new XAttribute("label", name),
@@ -76,17 +127,126 @@ namespace River.OneMoreAddIn
 		}
 
 
+		public async Task<List<Favorite>> LoadFavorites()
+		{
+			var list = new List<Favorite>();
+			var root = LoadFavoritesMenu(false);
+			var nx = root.Name.Namespace;
+
+			// filter out the add/manage/shortcuts buttons
+			var elements = root.Elements(nx + "button")
+				.Where(e => e.Attribute("onAction")?.Value == GotoFavoriteCmd);
+
+			int index = 0;
+			foreach (var element in elements)
+			{
+				list.Add(new Favorite
+				{
+					Index = index++,
+					Name = element.Attribute("label").Value,
+					Location = element.Attribute("screentip").Value,
+					Uri = element.Attribute("tag").Value,
+					NotebookID = element.Attribute("notebookID")?.Value,
+					ObjectID = element.Attribute("objectID")?.Value,
+					Root = element
+				});
+			}
+
+			await ValidateFavorites(list);
+
+			return list;
+		}
+
+
+		private async Task ValidateFavorites(List<Favorite> favorites)
+		{
+			one ??= new OneNote();
+
+			notebooks = new Dictionary<string, XElement>();
+
+			foreach (var f in favorites)
+			{
+				f.Status = string.IsNullOrWhiteSpace(f.NotebookID) || string.IsNullOrWhiteSpace(f.ObjectID)
+					? await ConfirmByName(f.Location)
+					: await ConfirmByID(f.NotebookID, f.ObjectID);
+			}
+		}
+
+
+		private async Task<FavoriteStatus> ConfirmByName(string path)
+		{
+			books ??= await one.GetNotebooks();
+
+			var parts = path.Split(new char[] { '/' }, StringSplitOptions.RemoveEmptyEntries);
+			var notebook = notebooks.Values.FirstOrDefault(n => n.Name == parts[0]);
+			if (notebook == null)
+			{
+				var nx = books.GetNamespaceOfPrefix(OneNote.Prefix);
+				var book = books.Elements(nx + "Notebook")
+					.FirstOrDefault(n => n.Attribute("name")?.Value == parts[0]);
+
+				if (book == null)
+				{
+					return FavoriteStatus.Suspect;
+				}
+
+				var id = book.Attribute("ID").Value;
+
+				if (notebooks.ContainsKey(id))
+				{
+					notebook = notebooks[id];
+				}
+				else
+				{
+					notebook = await one.GetNotebook(id, OneNote.Scope.Pages);
+					notebooks.Add(id, notebook);
+				}
+			}
+
+			var node = notebook;
+			for (int i = 1; i < parts.Length; i++)
+			{
+				node = node.Elements().FirstOrDefault(n => n.Attribute("name").Value == parts[i]);
+				if (node == null)
+				{
+					return FavoriteStatus.Suspect;
+				}
+			}
+
+			return FavoriteStatus.Known;
+		}
+
+
+		private async Task<FavoriteStatus> ConfirmByID(string notebookID, string objectID)
+		{
+			XElement notebook;
+			if (notebooks.ContainsKey(notebookID))
+			{
+				notebook = notebooks[notebookID];
+			}
+			else
+			{
+				notebook = await one.GetNotebook(notebookID, OneNote.Scope.Pages);
+				notebooks.Add(notebookID, notebook);
+			}
+
+			return notebook.Descendants().Any(e => e.Attribute("ID")?.Value == objectID)
+				? FavoriteStatus.Known
+				: FavoriteStatus.Unknown;
+		}
+
+
 		/// <summary>
 		/// Load the raw favorites document; use for Settings
 		/// </summary>
 		/// <returns></returns>
-		public XElement LoadFavoritesMenu()
+		public XElement LoadFavoritesMenu(bool cleanup = true)
 		{
 			XElement root = null;
 
 			if (File.Exists(path))
 			{
-				root = UpgradeFavoritesMenu(XElement.Load(path, LoadOptions.None));
+				root = UpgradeFavoritesMenu(XElement.Load(path, LoadOptions.None), cleanup);
 			}
 			else
 			{
@@ -162,7 +322,7 @@ namespace River.OneMoreAddIn
 
 
 		// temporary upgrade routine...
-		private static XElement UpgradeFavoritesMenu(XElement root)
+		private static XElement UpgradeFavoritesMenu(XElement root, bool cleanup)
 		{
 			root = RewriteNamespace(root, ns);
 
@@ -205,6 +365,15 @@ namespace River.OneMoreAddIn
 				var button = element.Elements(ns + "button").First();
 				button.Attribute("onAction").Value = GotoFavoriteCmd;
 				element.ReplaceWith(button);
+			}
+
+			if (cleanup)
+			{
+				// THIS IS NEW! remove the notebookID and objectID attributes because they are not
+				// valid attributes of the button element; we use them internally but not for the menu
+				root.Elements(ns + "button").Attributes()
+					.Where(a => a.Name == "notebookID" || a.Name == "objectID")
+					.Remove();
 			}
 
 			return root;

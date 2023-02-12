@@ -61,7 +61,8 @@
 			this.gridView.ShowEditingIcon = false;
 			this.gridView.Size = new System.Drawing.Size(778, 499);
 			this.gridView.TabIndex = 3;
-			this.gridView.KeyDown += new System.Windows.Forms.KeyEventHandler(this.ChooseFavoriteByKeyboard);
+			this.gridView.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.FormatCell);
+			this.gridView.KeyDown += new System.Windows.Forms.KeyEventHandler(this.ChooseByKeyboard);
 			// 
 			// nameColumn
 			// 
@@ -98,7 +99,7 @@
 			this.goButton.TabIndex = 1;
 			this.goButton.Text = "Go";
 			this.goButton.UseVisualStyleBackColor = true;
-			this.goButton.Click += new System.EventHandler(this.ChooseFavorite);
+			this.goButton.Click += new System.EventHandler(this.ChooseByClick);
 			// 
 			// cancelButton
 			// 
@@ -127,6 +128,7 @@
 			this.Name = "FavoritesDialog";
 			this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
 			this.Text = "Favorites";
+			this.Load += new System.EventHandler(this.LoadData);
 			((System.ComponentModel.ISupportInitialize)(this.gridView)).EndInit();
 			this.buttonPanel.ResumeLayout(false);
 			this.ResumeLayout(false);
