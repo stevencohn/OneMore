@@ -4,6 +4,7 @@
 
 namespace River.OneMoreAddIn.Commands.Favorites
 {
+	using Microsoft.AspNetCore.WebUtilities;
 	using System;
 	using System.ComponentModel;
 	using System.Drawing;
@@ -47,6 +48,10 @@ namespace River.OneMoreAddIn.Commands.Favorites
 			gridView.DataSource = new BindingList<Favorite>(favorites);
 		}
 
+		private void ShowForm(object sender, EventArgs e)
+		{
+			searchBox.Focus();
+		}
 
 
 		public string Uri { get; private set; }
@@ -71,6 +76,58 @@ namespace River.OneMoreAddIn.Commands.Favorites
 
 					e.CellStyle.BackColor = Color.LightGoldenrodYellow;
 					e.FormattingApplied = true;
+				}
+			}
+		}
+
+
+		private void HandleKey(object sender, KeyEventArgs e)
+		{
+			bool ShowText()
+			{
+				searchBox.Text = (string)gridView.SelectedCells[0].Value;
+				searchBox.Select(searchBox.Text.Length, 0);
+				return true;
+			}
+
+
+			if (gridView.Rows.Count == 0)
+			{
+				return;
+			}
+
+			if (e.KeyCode == Keys.Down)
+			{
+				if (gridView.SelectedCells.Count == 0)
+				{
+					gridView.Rows[0].Cells[0].Selected = true;
+					e.Handled = ShowText();
+				}
+				else
+				{
+					var index = gridView.SelectedCells[0].RowIndex;
+					if (index < gridView.Rows.Count - 1)
+					{
+						gridView.Rows[index + 1].Cells[0].Selected = true;
+						e.Handled = ShowText();
+					}
+				}
+			}
+			else if (e.KeyCode == Keys.Up)
+			{
+				if (gridView.SelectedCells.Count == 0)
+				{
+					gridView.Rows[0].Cells[0].Selected = true;
+					e.Handled = ShowText();
+				}
+				else
+				{
+					var index = gridView.SelectedCells[0].RowIndex;
+					if (index > 0)
+					{
+						gridView.Rows[index - 1].Cells[0].Selected = true;
+						e.Handled = ShowText();
+					}
 				}
 			}
 		}
