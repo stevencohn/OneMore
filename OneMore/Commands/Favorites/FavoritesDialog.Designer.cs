@@ -65,7 +65,7 @@
 			this.gridView.ShowEditingIcon = false;
 			this.gridView.Size = new System.Drawing.Size(778, 425);
 			this.gridView.TabIndex = 0;
-			this.gridView.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.FormatCell);
+			this.gridView.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.ValidateOnCellFormatting);
 			this.gridView.KeyDown += new System.Windows.Forms.KeyEventHandler(this.ChooseByKeyboard);
 			// 
 			// nameColumn
@@ -134,7 +134,7 @@
 			this.searchBox.Name = "searchBox";
 			this.searchBox.Size = new System.Drawing.Size(385, 28);
 			this.searchBox.TabIndex = 0;
-			this.searchBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.HandleKey);
+			this.searchBox.KeyUp += new System.Windows.Forms.KeyEventHandler(this.FilterRowOnKeyUp);
 			// 
 			// searchLabel
 			// 
@@ -162,8 +162,8 @@
 			this.Name = "FavoritesDialog";
 			this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
 			this.Text = "Favorites";
-			this.Load += new System.EventHandler(this.LoadData);
-			this.Shown += new System.EventHandler(this.ShowForm);
+			this.Activated += new System.EventHandler(this.FocusOnActivated);
+			this.Load += new System.EventHandler(this.BindOnLoad);
 			((System.ComponentModel.ISupportInitialize)(this.gridView)).EndInit();
 			this.buttonPanel.ResumeLayout(false);
 			this.searchPanel.ResumeLayout(false);

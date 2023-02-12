@@ -4,7 +4,6 @@
 
 namespace River.OneMoreAddIn.Commands.Favorites
 {
-	using Microsoft.AspNetCore.WebUtilities;
 	using System;
 	using System.ComponentModel;
 	using System.Drawing;
@@ -37,7 +36,7 @@ namespace River.OneMoreAddIn.Commands.Favorites
 		}
 
 
-		private async void LoadData(object sender, EventArgs e)
+		private async void BindOnLoad(object sender, EventArgs e)
 		{
 			using var provider = new FavoritesProvider(null);
 			var favorites = await provider.LoadFavorites();
@@ -46,9 +45,11 @@ namespace River.OneMoreAddIn.Commands.Favorites
 			gridView.Columns[0].DataPropertyName = "Name";
 			gridView.Columns[1].DataPropertyName = "Location";
 			gridView.DataSource = new BindingList<Favorite>(favorites);
+			gridView.ClearSelection();
 		}
 
-		private void ShowForm(object sender, EventArgs e)
+
+		private void FocusOnActivated(object sender, EventArgs e)
 		{
 			searchBox.Focus();
 		}
@@ -57,7 +58,7 @@ namespace River.OneMoreAddIn.Commands.Favorites
 		public string Uri { get; private set; }
 
 
-		private void FormatCell(object sender, DataGridViewCellFormattingEventArgs e)
+		private void ValidateOnCellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
 		{
 			if (gridView.Rows[e.RowIndex].DataBoundItem is Favorite favorite)
 			{
@@ -81,16 +82,8 @@ namespace River.OneMoreAddIn.Commands.Favorites
 		}
 
 
-		private void HandleKey(object sender, KeyEventArgs e)
+		private void FilterRowOnKeyUp(object sender, KeyEventArgs e)
 		{
-			bool ShowText()
-			{
-				searchBox.Text = (string)gridView.SelectedCells[0].Value;
-				searchBox.Select(searchBox.Text.Length, 0);
-				return true;
-			}
-
-
 			if (gridView.Rows.Count == 0)
 			{
 				return;
@@ -98,38 +91,112 @@ namespace River.OneMoreAddIn.Commands.Favorites
 
 			if (e.KeyCode == Keys.Down)
 			{
-				if (gridView.SelectedCells.Count == 0)
-				{
-					gridView.Rows[0].Cells[0].Selected = true;
-					e.Handled = ShowText();
-				}
-				else
-				{
-					var index = gridView.SelectedCells[0].RowIndex;
-					if (index < gridView.Rows.Count - 1)
-					{
-						gridView.Rows[index + 1].Cells[0].Selected = true;
-						e.Handled = ShowText();
-					}
-				}
+				e.Handled = SelectNextRow();
 			}
 			else if (e.KeyCode == Keys.Up)
 			{
-				if (gridView.SelectedCells.Count == 0)
+				e.Handled = SelectPreviousRow();
+			}
+			else
+			{
+				var text = searchBox.Text.Trim();
+
+				var index = gridView.SelectedCells.Count > 0
+					? gridView.SelectedCells[0].RowIndex
+					: 0;
+
+				// must suspend currency manager in order to hide selected or remaining rows
+				var mgr = (CurrencyManager)BindingContext[gridView.DataSource];
+				mgr.SuspendBinding();
+
+				if (text.Length > 2)
 				{
-					gridView.Rows[0].Cells[0].Selected = true;
-					e.Handled = ShowText();
+					foreach (DataGridViewRow row in gridView.Rows)
+					{
+						if (row.Cells[0].Value.ToString().ContainsICIC(text) ||
+							row.Cells[1].Value.ToString().ContainsICIC(text))
+						{
+							row.Visible = true;
+						}
+						else
+						{
+							row.Cells[0].Selected = row.Cells[1].Selected = false;
+							row.Selected = false;
+							row.Visible = false;
+						}
+					}
 				}
 				else
 				{
-					var index = gridView.SelectedCells[0].RowIndex;
-					if (index > 0)
+					foreach (DataGridViewRow row in gridView.Rows)
 					{
-						gridView.Rows[index - 1].Cells[0].Selected = true;
-						e.Handled = ShowText();
+						row.Visible = true;
 					}
 				}
+
+				mgr.ResumeBinding();
+
+				// ensure selection...
+
+				if (index >= 0)
+				{
+
+				}
+				else
+				{
+					gridView.Rows[0].Cells[0].Selected = true;
+				}
 			}
+		}
+
+
+		private bool ShowText()
+		{
+			searchBox.Text = (string)gridView.SelectedCells[0].Value;
+			searchBox.Select(searchBox.Text.Length, 0);
+			return true;
+		}
+
+
+		private bool SelectNextRow()
+		{
+			if (gridView.SelectedCells.Count == 0)
+			{
+				gridView.Rows[0].Cells[0].Selected = true;
+				return ShowText();
+			}
+			else
+			{
+				var index = gridView.SelectedCells[0].RowIndex;
+				if (index < gridView.Rows.Count - 1)
+				{
+					gridView.Rows[index + 1].Cells[0].Selected = true;
+					return ShowText();
+				}
+			}
+
+			return false;
+		}
+
+
+		private bool SelectPreviousRow()
+		{
+			if (gridView.SelectedCells.Count == 0)
+			{
+				gridView.Rows[0].Cells[0].Selected = true;
+				return ShowText();
+			}
+			else
+			{
+				var index = gridView.SelectedCells[0].RowIndex;
+				if (index > 0)
+				{
+					gridView.Rows[index - 1].Cells[0].Selected = true;
+					return ShowText();
+				}
+			}
+
+			return false;
 		}
 
 

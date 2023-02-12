@@ -20,6 +20,18 @@ namespace River.OneMoreAddIn
 	{
 
 		/// <summary>
+		/// Determines if the given value is contained within the string, ignoring case
+		/// </summary>
+		/// <param name="s"></param>
+		/// <param name="value"></param>
+		/// <returns></returns>
+		public static bool ContainsICIC(this string s, string value)
+		{
+			return s.IndexOf(value, StringComparison.InvariantCultureIgnoreCase) >= 0;
+		}
+
+
+		/// <summary>
 		/// Determines if the string ends with whitespace, either chars or HTML escapes
 		/// </summary>
 		/// <param name="value"></param>

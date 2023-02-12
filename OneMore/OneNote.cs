@@ -22,7 +22,7 @@ namespace River.OneMoreAddIn
 	using System.Xml.Linq;
 	using System.Xml.Schema;
 	using Forms = System.Windows.Forms;
-	using Resx = River.OneMoreAddIn.Properties.Resources;
+	using Resx = Properties.Resources;
 
 
 	/// <summary>
@@ -234,6 +234,14 @@ namespace River.OneMoreAddIn
 						var ms = 250 * retries;
 
 						logger.WriteLine($"OneNote is busy, retyring in {ms}ms");
+						await Task.Delay(ms);
+					}
+					catch (COMException exc) when ((uint)exc.ErrorCode == ErrorCodes.hrObjectMissing)
+					{
+						retries++;
+						var ms = 250 * retries;
+
+						logger.WriteLine($"{ErrorCodes.GetDescription(exc.ErrorCode)}, retyring in {ms}ms");
 						await Task.Delay(ms);
 					}
 				}
