@@ -45,7 +45,6 @@ namespace River.OneMoreAddIn.Commands.Favorites
 			gridView.Columns[0].DataPropertyName = "Name";
 			gridView.Columns[1].DataPropertyName = "Location";
 			gridView.DataSource = new BindingList<Favorite>(favorites);
-			gridView.ClearSelection();
 		}
 
 
@@ -101,9 +100,9 @@ namespace River.OneMoreAddIn.Commands.Favorites
 			{
 				var text = searchBox.Text.Trim();
 
-				var index = gridView.SelectedCells.Count > 0
+				var selected = gridView.SelectedCells.Count > 0
 					? gridView.SelectedCells[0].RowIndex
-					: 0;
+					: -1;
 
 				// must suspend currency manager in order to hide selected or remaining rows
 				var mgr = (CurrencyManager)BindingContext[gridView.DataSource];
@@ -137,14 +136,41 @@ namespace River.OneMoreAddIn.Commands.Favorites
 				mgr.ResumeBinding();
 
 				// ensure selection...
+				var rowCount = gridView.Rows.Count;
 
-				if (index >= 0)
+				if (selected >= 0)
 				{
+					if (!gridView.Rows[selected].Visible)
+					{
+						var i = -1;
+						if (selected > 0)
+						{
+							for (i = selected; i > 0 && !gridView.Rows[i].Visible; i--) { }
+						}
 
+						if (i < 0 && selected < rowCount - 1)
+						{
+							for (i = selected; i < rowCount && !gridView.Rows[i].Visible; i++) { }
+						}
+
+						if (i >= 0 && i < rowCount && gridView.Rows[i].Visible)
+						{
+							gridView.Rows[i].Cells[0].Selected = true;
+						}
+					}
 				}
 				else
 				{
-					gridView.Rows[0].Cells[0].Selected = true;
+					selected = 0;
+					while (selected < rowCount && !gridView.Rows[selected].Visible)
+					{
+						selected++;
+					}
+
+					if (selected < rowCount)
+					{
+						gridView.Rows[selected].Cells[0].Selected = true;
+					}
 				}
 			}
 		}
