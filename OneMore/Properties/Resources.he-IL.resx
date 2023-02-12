@@ -4938,4 +4938,12 @@ ISO-code then comma then language name</comment>
     <value>ארגן הערות מהירות למחברת או למדור</value>
     <comment>ribbon file</comment>
   </data>
+  <data name="Favorites_suspect" xml:space="preserve">
+    <value>הדף לא נמצא; ייתכן ששמו שונה או הועבר</value>
+    <comment>tooltip</comment>
+  </data>
+  <data name="Favorites_unknown" xml:space="preserve">
+    <value>הדף כבר לא נמצא; ייתכן שהוא נמחק</value>
+    <comment>tooltip</comment>
+  </data>
 </root>

@@ -4896,4 +4896,12 @@ Rok (2023)
     <value>Organizuj szybkie notatki w notatniku lub sekcji</value>
     <comment>ribbon file</comment>
   </data>
+  <data name="Favorites_suspect" xml:space="preserve">
+    <value>Strona nie znaleziona; mogła zostać zmieniona lub przeniesiona</value>
+    <comment>tooltip</comment>
+  </data>
+  <data name="Favorites_unknown" xml:space="preserve">
+    <value>Strona nie została już znaleziona; mógł zostać usunięty</value>
+    <comment>tooltip</comment>
+  </data>
 </root>

@@ -4830,4 +4830,12 @@ Jahr (2023)
     <value>Organisieren Sie Quick Notes in einem Notizbuch oder Abschnitt</value>
     <comment>ribbon file</comment>
   </data>
+  <data name="Favorites_suspect" xml:space="preserve">
+    <value>Seite nicht gefunden; es wurde möglicherweise umbenannt oder verschoben</value>
+    <comment>tooltip</comment>
+  </data>
+  <data name="Favorites_unknown" xml:space="preserve">
+    <value>Seite nicht mehr gefunden; es wurde möglicherweise gelöscht</value>
+    <comment>tooltip</comment>
+  </data>
 </root>

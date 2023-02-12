@@ -5,23 +5,16 @@
 namespace River.OneMoreAddIn.Commands.Favorites
 {
 	using System;
-	using System.Collections.Generic;
 	using System.ComponentModel;
-	using System.Linq;
+	using System.Drawing;
 	using System.Windows.Forms;
-	using Resx = River.OneMoreAddIn.Properties.Resources;
+	using Favorite = FavoritesProvider.Favorite;
+	using FavoriteStatus = FavoritesProvider.FavoriteStatus;
+	using Resx = Properties.Resources;
 
 
 	internal partial class FavoritesDialog : UI.LocalizableForm
 	{
-		private sealed class Favorite
-		{
-			public int Index { get; set; }
-			public string Name { get; set; }
-			public string Location { get; set; }
-			public string Uri { get; set; }
-		}
-
 
 		public FavoritesDialog()
 		{
@@ -40,44 +33,200 @@ namespace River.OneMoreAddIn.Commands.Favorites
 				nameColumn.HeaderText = Resx.word_Name;
 				locationColumn.HeaderText = Resx.FavoritesSheet_locationColumn_HeaderText;
 			}
+		}
+
+
+		private async void BindOnLoad(object sender, EventArgs e)
+		{
+			using var provider = new FavoritesProvider(null);
+			var favorites = await provider.LoadFavorites();
 
 			gridView.AutoGenerateColumns = false;
 			gridView.Columns[0].DataPropertyName = "Name";
 			gridView.Columns[1].DataPropertyName = "Location";
-			gridView.DataSource = new BindingList<Favorite>(LoadFavorites());
+			gridView.DataSource = new BindingList<Favorite>(favorites);
+		}
+
+
+		private void FocusOnActivated(object sender, EventArgs e)
+		{
+			searchBox.Focus();
 		}
 
 
 		public string Uri { get; private set; }
 
 
-		private List<Favorite> LoadFavorites()
+		private void ValidateOnCellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
 		{
-			var list = new List<Favorite>();
-			var root = new FavoritesProvider(null).LoadFavoritesMenu();
-			var ns = root.Name.Namespace;
-
-			// filter out the add/manage/shortcuts buttons
-			var elements = root.Elements(ns + "button")
-				.Where(e => e.Attribute("onAction")?.Value == FavoritesProvider.GotoFavoriteCmd);
-
-			int index = 0;
-			foreach (var element in elements)
+			if (gridView.Rows[e.RowIndex].DataBoundItem is Favorite favorite)
 			{
-				list.Add(new Favorite
+				if (favorite.Status == FavoriteStatus.Unknown)
 				{
-					Index = index++,
-					Name = element.Attribute("label").Value,
-					Location = element.Attribute("screentip").Value,
-					Uri = element.Attribute("tag").Value
-				});
-			}
+					gridView.Rows[e.RowIndex].Cells[e.ColumnIndex].ToolTipText =
+						Resx.Favorites_unknown;
 
-			return list;
+					e.CellStyle.BackColor = Color.Pink;
+					e.FormattingApplied = true;
+				}
+				else if (favorite.Status == FavoriteStatus.Suspect)
+				{
+					gridView.Rows[e.RowIndex].Cells[e.ColumnIndex].ToolTipText =
+						Resx.Favorites_suspect;
+
+					e.CellStyle.BackColor = Color.LightGoldenrodYellow;
+					e.FormattingApplied = true;
+				}
+			}
 		}
 
 
-		private void ChooseFavorite(object sender, EventArgs e)
+		private void FilterRowOnKeyUp(object sender, KeyEventArgs e)
+		{
+			if (gridView.Rows.Count == 0)
+			{
+				return;
+			}
+
+			if (e.KeyCode == Keys.Down)
+			{
+				e.Handled = SelectNextRow();
+			}
+			else if (e.KeyCode == Keys.Up)
+			{
+				e.Handled = SelectPreviousRow();
+			}
+			else
+			{
+				var text = searchBox.Text.Trim();
+
+				var selected = gridView.SelectedCells.Count > 0
+					? gridView.SelectedCells[0].RowIndex
+					: -1;
+
+				// must suspend currency manager in order to hide selected or remaining rows
+				var mgr = (CurrencyManager)BindingContext[gridView.DataSource];
+				mgr.SuspendBinding();
+
+				if (text.Length > 2)
+				{
+					foreach (DataGridViewRow row in gridView.Rows)
+					{
+						if (row.Cells[0].Value.ToString().ContainsICIC(text) ||
+							row.Cells[1].Value.ToString().ContainsICIC(text))
+						{
+							row.Visible = true;
+						}
+						else
+						{
+							row.Cells[0].Selected = row.Cells[1].Selected = false;
+							row.Selected = false;
+							row.Visible = false;
+						}
+					}
+				}
+				else
+				{
+					foreach (DataGridViewRow row in gridView.Rows)
+					{
+						row.Visible = true;
+					}
+				}
+
+				mgr.ResumeBinding();
+
+				// ensure selection...
+				var rowCount = gridView.Rows.Count;
+
+				if (selected >= 0)
+				{
+					if (!gridView.Rows[selected].Visible)
+					{
+						var i = -1;
+						if (selected > 0)
+						{
+							for (i = selected; i > 0 && !gridView.Rows[i].Visible; i--) { }
+						}
+
+						if (i < 0 && selected < rowCount - 1)
+						{
+							for (i = selected; i < rowCount && !gridView.Rows[i].Visible; i++) { }
+						}
+
+						if (i >= 0 && i < rowCount && gridView.Rows[i].Visible)
+						{
+							gridView.Rows[i].Cells[0].Selected = true;
+						}
+					}
+				}
+				else
+				{
+					selected = 0;
+					while (selected < rowCount && !gridView.Rows[selected].Visible)
+					{
+						selected++;
+					}
+
+					if (selected < rowCount)
+					{
+						gridView.Rows[selected].Cells[0].Selected = true;
+					}
+				}
+			}
+		}
+
+
+		private bool ShowText()
+		{
+			searchBox.Text = (string)gridView.SelectedCells[0].Value;
+			searchBox.Select(searchBox.Text.Length, 0);
+			return true;
+		}
+
+
+		private bool SelectNextRow()
+		{
+			if (gridView.SelectedCells.Count == 0)
+			{
+				gridView.Rows[0].Cells[0].Selected = true;
+				return ShowText();
+			}
+			else
+			{
+				var index = gridView.SelectedCells[0].RowIndex;
+				if (index < gridView.Rows.Count - 1)
+				{
+					gridView.Rows[index + 1].Cells[0].Selected = true;
+					return ShowText();
+				}
+			}
+
+			return false;
+		}
+
+
+		private bool SelectPreviousRow()
+		{
+			if (gridView.SelectedCells.Count == 0)
+			{
+				gridView.Rows[0].Cells[0].Selected = true;
+				return ShowText();
+			}
+			else
+			{
+				var index = gridView.SelectedCells[0].RowIndex;
+				if (index > 0)
+				{
+					gridView.Rows[index - 1].Cells[0].Selected = true;
+					return ShowText();
+				}
+			}
+
+			return false;
+		}
+
+
+		private void ChooseByClick(object sender, EventArgs e)
 		{
 			if (gridView.SelectedCells.Count == 0)
 				return;
@@ -91,11 +240,11 @@ namespace River.OneMoreAddIn.Commands.Favorites
 		}
 
 
-		private void ChooseFavoriteByKeyboard(object sender, KeyEventArgs e)
+		private void ChooseByKeyboard(object sender, KeyEventArgs e)
 		{
 			if (e.KeyCode == Keys.Enter)
 			{
-				ChooseFavorite(null, null);
+				ChooseByClick(null, null);
 				DialogResult = DialogResult.OK;
 				Close();
 			}

@@ -72,8 +72,7 @@ namespace River.OneMoreAddIn.UI
 		public bool HasMatches =>
 			string.IsNullOrWhiteSpace(Owner.Text.Trim()) ||
 			commands.Count == 0 ||
-			commands.Any(c => 
-				c.Name.IndexOf(Owner.Text.Trim(), StringComparison.InvariantCultureIgnoreCase) >= 0);
+			commands.Any(c => c.Name.ContainsICIC(Owner.Text.Trim()));
 
 
 		/// <summary>
@@ -326,7 +325,7 @@ namespace River.OneMoreAddIn.UI
 
 				foreach (var cmd in commands)
 				{
-					if (cmd.Name.IndexOf(text, StringComparison.InvariantCultureIgnoreCase) >= 0)
+					if (cmd.Name.ContainsICIC(text))
 					{
 						matches.Add(cmd);
 					}

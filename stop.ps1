@@ -18,10 +18,25 @@ Process
 
 	if ($processId)
 	{
-		# terminate dllhost
-		taskkill /pid $processId
+		Write-Host "... stopping dllhost" -Fore DarkYellow
+		taskkill /pid $processId /f
+	}
+	else
+	{
+		Write-Host '... dllhost not found' -Fore DarkGray
 	}
 
-	# terminates the OneNote process
-	taskkill /fi "pid gt 0" /im ONENOTE.exe /t /f
+	$processId = gcim Win32_Process | select ProcessId, Name | `
+		where { $_.Name -eq 'ONENOTE.EXE' } | `
+		foreach { $_.ProcessId }
+
+	if ($processId)
+	{
+		Write-Host "... stopping ONENOTE.EXE" -Fore DarkYellow
+		taskkill /fi "pid gt 0" /im ONENOTE.exe /t /f
+	}
+	else
+	{
+		Write-Host '... ONENOTE.EXE not found' -Fore DarkGray
+	}
 }

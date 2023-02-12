@@ -7,6 +7,7 @@ namespace River.OneMoreAddIn
 	internal static class ErrorCodes
 	{
 		public const uint hrCOMBusy = 0x8001010A;
+		public const uint hrObjectMissing = 0x80042014;
 
 
 		public static string GetDescription(int code)

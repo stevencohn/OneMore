@@ -4843,4 +4843,12 @@ ISO-code then comma then language name</comment>
     <value>تنظيم الملاحظات السريعة في دفتر ملاحظات أو قسم</value>
     <comment>ribbon file</comment>
   </data>
+  <data name="Favorites_suspect" xml:space="preserve">
+    <value>الصفحة غير موجودة؛ ربما تمت إعادة تسميته أو نقله</value>
+    <comment>tooltip</comment>
+  </data>
+  <data name="Favorites_unknown" xml:space="preserve">
+    <value>لم تعد الصفحة موجودة ؛ قد تم حذفه</value>
+    <comment>tooltip</comment>
+  </data>
 </root>

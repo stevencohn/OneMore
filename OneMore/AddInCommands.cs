@@ -27,12 +27,18 @@ namespace River.OneMoreAddIn
 
 		[IgnorePalette]
 		public void AddFavoritePageCmd(IRibbonControl control)
-			=> new FavoritesProvider(ribbon).AddFavorite();
+		{
+			using var provider = new FavoritesProvider(ribbon);
+			provider.AddFavorite();
+		}
 
 
 		[IgnorePalette]
 		public void AddFavoriteSectionCmd(IRibbonControl control)
-			=> new FavoritesProvider(ribbon).AddFavorite(true);
+		{
+			using var provider = new FavoritesProvider(ribbon);
+			provider.AddFavorite(true);
+		}
 
 
 		[Command("ribAddFootnoteButton_Label", Keys.Control | Keys.Alt | Keys.F, "References")]

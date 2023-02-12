@@ -444,7 +444,8 @@ namespace River.OneMoreAddIn
 			System.Threading.Thread.CurrentThread.CurrentCulture = AddIn.Culture;
 			System.Threading.Thread.CurrentThread.CurrentUICulture = AddIn.Culture;
 
-			var favorites = new FavoritesProvider(ribbon).LoadFavoritesMenu();
+			using var provider = new FavoritesProvider(ribbon);
+			var favorites = provider.LoadFavoritesMenu();
 
 			return favorites.ToString(SaveOptions.DisableFormatting);
 		}
