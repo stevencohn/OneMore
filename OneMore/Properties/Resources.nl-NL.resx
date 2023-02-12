@@ -4843,4 +4843,12 @@ Jaar (2023)
     <value>Organiseer Quick Notes in een notitieboek of sectie</value>
     <comment>ribbon file</comment>
   </data>
+  <data name="Favorites_suspect" xml:space="preserve">
+    <value>Pagina niet gevonden; het kan zijn hernoemd of verplaatst</value>
+    <comment>tooltip</comment>
+  </data>
+  <data name="Favorites_unknown" xml:space="preserve">
+    <value>Pagina niet meer gevonden; het kan zijn verwijderd</value>
+    <comment>tooltip</comment>
+  </data>
 </root>

@@ -4827,4 +4827,12 @@ ISO-code then comma then language name</comment>
     <value>将快速笔记组织到笔记本或分区中</value>
     <comment>ribbon file</comment>
   </data>
+  <data name="Favorites_suspect" xml:space="preserve">
+    <value>找不到网页;它可能已被重命名或移动</value>
+    <comment>tooltip</comment>
+  </data>
+  <data name="Favorites_unknown" xml:space="preserve">
+    <value>不再找到页面；它可能已被删除</value>
+    <comment>tooltip</comment>
+  </data>
 </root>

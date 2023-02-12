@@ -4843,4 +4843,12 @@ Año (2023)
     <value>Organice Quick Notes en un cuaderno o sección</value>
     <comment>ribbon file</comment>
   </data>
+  <data name="Favorites_suspect" xml:space="preserve">
+    <value>Página no encontrada; puede haber sido renombrado o movido</value>
+    <comment>tooltip</comment>
+  </data>
+  <data name="Favorites_unknown" xml:space="preserve">
+    <value>Ya no se encuentra la página; Puede haber sido borrada</value>
+    <comment>tooltip</comment>
+  </data>
 </root>

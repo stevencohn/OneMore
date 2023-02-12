@@ -4843,4 +4843,12 @@ Ano (2023)
     <value>Organize notas rápidas em um caderno ou seção</value>
     <comment>ribbon file</comment>
   </data>
+  <data name="Favorites_suspect" xml:space="preserve">
+    <value>Página não encontrada; pode ter sido renomeado ou movido</value>
+    <comment>tooltip</comment>
+  </data>
+  <data name="Favorites_unknown" xml:space="preserve">
+    <value>A página não foi mais encontrada; pode ter sido deletado</value>
+    <comment>tooltip</comment>
+  </data>
 </root>

@@ -4837,4 +4837,12 @@ Année (2023)
     <value>Organiser les notes rapides dans un bloc-notes ou une section</value>
     <comment>ribbon file</comment>
   </data>
+  <data name="Favorites_suspect" xml:space="preserve">
+    <value>Page non trouvée; il a peut-être été renommé ou déplacé</value>
+    <comment>tooltip</comment>
+  </data>
+  <data name="Favorites_unknown" xml:space="preserve">
+    <value>Page introuvable ; Il a peut-être été supprimé</value>
+    <comment>tooltip</comment>
+  </data>
 </root>

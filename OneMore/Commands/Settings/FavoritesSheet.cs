@@ -81,11 +81,17 @@ namespace River.OneMoreAddIn.Settings
 			{
 				if (favorite.Status == FavoriteStatus.Unknown)
 				{
+					gridView.Rows[e.RowIndex].Cells[e.ColumnIndex].ToolTipText =
+						Resx.Favorites_unknown;
+
 					e.CellStyle.BackColor = Color.Pink;
 					e.FormattingApplied = true;
 				}
 				else if (favorite.Status == FavoriteStatus.Suspect)
 				{
+					gridView.Rows[e.RowIndex].Cells[e.ColumnIndex].ToolTipText =
+						Resx.Favorites_suspect;
+
 					e.CellStyle.BackColor = Color.LightGoldenrodYellow;
 					e.FormattingApplied = true;
 				}

@@ -2602,6 +2602,24 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Page not found; it may have been renamed or moved.
+        /// </summary>
+        internal static string Favorites_suspect {
+            get {
+                return ResourceManager.GetString("Favorites_suspect", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Page no longer found; it may have been deleted.
+        /// </summary>
+        internal static string Favorites_unknown {
+            get {
+                return ResourceManager.GetString("Favorites_unknown", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Favorites.xml.
         /// </summary>
         internal static string FavoritesFilename {

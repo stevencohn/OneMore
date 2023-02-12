@@ -49,6 +49,7 @@ namespace River.OneMoreAddIn
 		private static readonly string AddButtonId = "omAddFavoriteButton";
 		private static readonly string ManageButtonId = "omManageFavoritesButton";
 		public static readonly string KbdShortcutsId = "omShowKeyboardShortcutsButton";
+		public static readonly string AddFavoritePageCmd = "AddFavoritePageCmd";
 		public static readonly string GotoFavoriteCmd = "GotoFavoriteCmd";
 
 		private readonly string path;
@@ -334,7 +335,7 @@ namespace River.OneMoreAddIn
 			{
 				// use new values
 				addButton.Attribute("id").Value = AddButtonId;
-				addButton.Attribute("onAction").Value = "AddFavoritePageCmd";
+				addButton.Attribute("onAction").Value = AddFavoritePageCmd;
 			}
 			else
 			{
