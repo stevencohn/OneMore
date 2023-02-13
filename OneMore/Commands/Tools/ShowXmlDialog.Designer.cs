@@ -45,7 +45,9 @@
 			this.manualBox = new System.Windows.Forms.RichTextBox();
 			this.tabIcons = new System.Windows.Forms.ImageList(this.components);
 			this.manualPanel = new System.Windows.Forms.Panel();
-			this.hidePidBox = new System.Windows.Forms.CheckBox();
+			this.pidBox = new System.Windows.Forms.CheckBox();
+			this.multilineBox2 = new System.Windows.Forms.CheckBox();
+			this.fnLabel = new System.Windows.Forms.Label();
 			this.queryButton = new System.Windows.Forms.Button();
 			this.functionBox = new System.Windows.Forms.ComboBox();
 			this.objectIdBox = new System.Windows.Forms.TextBox();
@@ -59,13 +61,13 @@
 			this.pageLinkLabel = new System.Windows.Forms.Label();
 			this.pagePathLabel = new System.Windows.Forms.Label();
 			this.pageNameLabel = new System.Windows.Forms.Label();
-			this.pagePanel = new System.Windows.Forms.Panel();
+			this.pageOptionsPanel = new System.Windows.Forms.Panel();
 			this.editModeBox = new System.Windows.Forms.CheckBox();
-			this.multilineBox = new System.Windows.Forms.CheckBox();
 			this.saveWindowBox = new System.Windows.Forms.CheckBox();
-			this.linefeedBox = new System.Windows.Forms.CheckBox();
-			this.editedByBox = new System.Windows.Forms.CheckBox();
+			this.multilineBox = new System.Windows.Forms.CheckBox();
 			this.scopeBox = new System.Windows.Forms.ListBox();
+			this.editedByBox = new System.Windows.Forms.CheckBox();
+			this.linefeedBox = new System.Windows.Forms.CheckBox();
 			this.pageInfoLabel = new System.Windows.Forms.Label();
 			this.selectButton = new System.Windows.Forms.Button();
 			this.topPanel = new System.Windows.Forms.Panel();
@@ -83,7 +85,7 @@
 			this.manualTab.SuspendLayout();
 			this.manualPanel.SuspendLayout();
 			this.buttonPanel.SuspendLayout();
-			this.pagePanel.SuspendLayout();
+			this.pageOptionsPanel.SuspendLayout();
 			this.topPanel.SuspendLayout();
 			this.masterPanel.SuspendLayout();
 			this.SuspendLayout();
@@ -97,12 +99,13 @@
 			this.tabs.Controls.Add(this.nbPagesTab);
 			this.tabs.Controls.Add(this.manualTab);
 			this.tabs.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.tabs.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.tabs.ImageList = this.tabIcons;
-			this.tabs.Location = new System.Drawing.Point(0, 125);
+			this.tabs.Location = new System.Drawing.Point(0, 152);
 			this.tabs.Margin = new System.Windows.Forms.Padding(2);
 			this.tabs.Name = "tabs";
 			this.tabs.SelectedIndex = 0;
-			this.tabs.Size = new System.Drawing.Size(2440, 747);
+			this.tabs.Size = new System.Drawing.Size(2440, 720);
 			this.tabs.TabIndex = 0;
 			this.tabs.SelectedIndexChanged += new System.EventHandler(this.TabsSelectedIndexChanged);
 			this.tabs.Selecting += new System.Windows.Forms.TabControlCancelEventHandler(this.TabsSelecting);
@@ -112,11 +115,11 @@
 			this.pageTab.BackColor = System.Drawing.Color.Transparent;
 			this.pageTab.Controls.Add(this.pageBox);
 			this.pageTab.ImageIndex = 0;
-			this.pageTab.Location = new System.Drawing.Point(4, 29);
+			this.pageTab.Location = new System.Drawing.Point(4, 31);
 			this.pageTab.Margin = new System.Windows.Forms.Padding(2);
 			this.pageTab.Name = "pageTab";
-			this.pageTab.Padding = new System.Windows.Forms.Padding(2);
-			this.pageTab.Size = new System.Drawing.Size(2432, 714);
+			this.pageTab.Padding = new System.Windows.Forms.Padding(2, 2, 8, 2);
+			this.pageTab.Size = new System.Drawing.Size(2432, 685);
 			this.pageTab.TabIndex = 0;
 			this.pageTab.Text = "Page";
 			// 
@@ -130,7 +133,7 @@
 			this.pageBox.Margin = new System.Windows.Forms.Padding(2);
 			this.pageBox.Name = "pageBox";
 			this.pageBox.ReadOnly = true;
-			this.pageBox.Size = new System.Drawing.Size(2428, 710);
+			this.pageBox.Size = new System.Drawing.Size(2422, 681);
 			this.pageBox.TabIndex = 7;
 			this.pageBox.Text = "";
 			this.pageBox.WordWrap = false;
@@ -140,11 +143,11 @@
 			// 
 			this.sectionTab.Controls.Add(this.sectionBox);
 			this.sectionTab.ImageIndex = 1;
-			this.sectionTab.Location = new System.Drawing.Point(4, 29);
+			this.sectionTab.Location = new System.Drawing.Point(4, 31);
 			this.sectionTab.Margin = new System.Windows.Forms.Padding(2);
 			this.sectionTab.Name = "sectionTab";
-			this.sectionTab.Padding = new System.Windows.Forms.Padding(2);
-			this.sectionTab.Size = new System.Drawing.Size(2432, 714);
+			this.sectionTab.Padding = new System.Windows.Forms.Padding(2, 2, 8, 2);
+			this.sectionTab.Size = new System.Drawing.Size(2432, 685);
 			this.sectionTab.TabIndex = 2;
 			this.sectionTab.Text = "Section";
 			this.sectionTab.UseVisualStyleBackColor = true;
@@ -157,7 +160,8 @@
 			this.sectionBox.Location = new System.Drawing.Point(2, 2);
 			this.sectionBox.Margin = new System.Windows.Forms.Padding(2);
 			this.sectionBox.Name = "sectionBox";
-			this.sectionBox.Size = new System.Drawing.Size(2428, 710);
+			this.sectionBox.ReadOnly = true;
+			this.sectionBox.Size = new System.Drawing.Size(2422, 681);
 			this.sectionBox.TabIndex = 1;
 			this.sectionBox.Text = "";
 			this.sectionBox.WordWrap = false;
@@ -166,11 +170,11 @@
 			// 
 			this.notebooksTab.Controls.Add(this.notebookBox);
 			this.notebooksTab.ImageIndex = 2;
-			this.notebooksTab.Location = new System.Drawing.Point(4, 29);
+			this.notebooksTab.Location = new System.Drawing.Point(4, 31);
 			this.notebooksTab.Margin = new System.Windows.Forms.Padding(2);
 			this.notebooksTab.Name = "notebooksTab";
-			this.notebooksTab.Padding = new System.Windows.Forms.Padding(2);
-			this.notebooksTab.Size = new System.Drawing.Size(2432, 714);
+			this.notebooksTab.Padding = new System.Windows.Forms.Padding(2, 2, 8, 2);
+			this.notebooksTab.Size = new System.Drawing.Size(2432, 685);
 			this.notebooksTab.TabIndex = 3;
 			this.notebooksTab.Text = "Notebooks";
 			this.notebooksTab.UseVisualStyleBackColor = true;
@@ -183,7 +187,8 @@
 			this.notebookBox.Location = new System.Drawing.Point(2, 2);
 			this.notebookBox.Margin = new System.Windows.Forms.Padding(2);
 			this.notebookBox.Name = "notebookBox";
-			this.notebookBox.Size = new System.Drawing.Size(2428, 710);
+			this.notebookBox.ReadOnly = true;
+			this.notebookBox.Size = new System.Drawing.Size(2422, 681);
 			this.notebookBox.TabIndex = 1;
 			this.notebookBox.Text = "";
 			this.notebookBox.WordWrap = false;
@@ -192,11 +197,11 @@
 			// 
 			this.nbSectionsTab.Controls.Add(this.nbSectionBox);
 			this.nbSectionsTab.ImageIndex = 3;
-			this.nbSectionsTab.Location = new System.Drawing.Point(4, 29);
+			this.nbSectionsTab.Location = new System.Drawing.Point(4, 31);
 			this.nbSectionsTab.Margin = new System.Windows.Forms.Padding(2);
 			this.nbSectionsTab.Name = "nbSectionsTab";
-			this.nbSectionsTab.Padding = new System.Windows.Forms.Padding(2);
-			this.nbSectionsTab.Size = new System.Drawing.Size(2432, 714);
+			this.nbSectionsTab.Padding = new System.Windows.Forms.Padding(2, 2, 8, 2);
+			this.nbSectionsTab.Size = new System.Drawing.Size(2432, 685);
 			this.nbSectionsTab.TabIndex = 4;
 			this.nbSectionsTab.Text = "Notebook with Sections";
 			this.nbSectionsTab.UseVisualStyleBackColor = true;
@@ -209,7 +214,8 @@
 			this.nbSectionBox.Location = new System.Drawing.Point(2, 2);
 			this.nbSectionBox.Margin = new System.Windows.Forms.Padding(2);
 			this.nbSectionBox.Name = "nbSectionBox";
-			this.nbSectionBox.Size = new System.Drawing.Size(2428, 710);
+			this.nbSectionBox.ReadOnly = true;
+			this.nbSectionBox.Size = new System.Drawing.Size(2422, 681);
 			this.nbSectionBox.TabIndex = 1;
 			this.nbSectionBox.Text = "";
 			this.nbSectionBox.WordWrap = false;
@@ -218,11 +224,11 @@
 			// 
 			this.nbPagesTab.Controls.Add(this.nbPagesBox);
 			this.nbPagesTab.ImageIndex = 4;
-			this.nbPagesTab.Location = new System.Drawing.Point(4, 29);
+			this.nbPagesTab.Location = new System.Drawing.Point(4, 31);
 			this.nbPagesTab.Margin = new System.Windows.Forms.Padding(2);
 			this.nbPagesTab.Name = "nbPagesTab";
-			this.nbPagesTab.Padding = new System.Windows.Forms.Padding(2);
-			this.nbPagesTab.Size = new System.Drawing.Size(2432, 714);
+			this.nbPagesTab.Padding = new System.Windows.Forms.Padding(2, 2, 8, 2);
+			this.nbPagesTab.Size = new System.Drawing.Size(2432, 685);
 			this.nbPagesTab.TabIndex = 5;
 			this.nbPagesTab.Text = "Notebook with Pages";
 			this.nbPagesTab.UseVisualStyleBackColor = true;
@@ -235,7 +241,8 @@
 			this.nbPagesBox.Location = new System.Drawing.Point(2, 2);
 			this.nbPagesBox.Margin = new System.Windows.Forms.Padding(2);
 			this.nbPagesBox.Name = "nbPagesBox";
-			this.nbPagesBox.Size = new System.Drawing.Size(2428, 710);
+			this.nbPagesBox.ReadOnly = true;
+			this.nbPagesBox.Size = new System.Drawing.Size(2422, 681);
 			this.nbPagesBox.TabIndex = 1;
 			this.nbPagesBox.Text = "";
 			this.nbPagesBox.WordWrap = false;
@@ -244,11 +251,11 @@
 			// 
 			this.manualTab.Controls.Add(this.manualBox);
 			this.manualTab.ImageIndex = 5;
-			this.manualTab.Location = new System.Drawing.Point(4, 29);
+			this.manualTab.Location = new System.Drawing.Point(4, 31);
 			this.manualTab.Margin = new System.Windows.Forms.Padding(2);
 			this.manualTab.Name = "manualTab";
 			this.manualTab.Padding = new System.Windows.Forms.Padding(2);
-			this.manualTab.Size = new System.Drawing.Size(2432, 714);
+			this.manualTab.Size = new System.Drawing.Size(2432, 685);
 			this.manualTab.TabIndex = 1;
 			this.manualTab.Text = "Manual lookup";
 			this.manualTab.UseVisualStyleBackColor = true;
@@ -261,7 +268,8 @@
 			this.manualBox.Location = new System.Drawing.Point(2, 2);
 			this.manualBox.Margin = new System.Windows.Forms.Padding(2);
 			this.manualBox.Name = "manualBox";
-			this.manualBox.Size = new System.Drawing.Size(2428, 710);
+			this.manualBox.ReadOnly = true;
+			this.manualBox.Size = new System.Drawing.Size(2428, 681);
 			this.manualBox.TabIndex = 0;
 			this.manualBox.Text = "";
 			this.manualBox.WordWrap = false;
@@ -280,35 +288,58 @@
 			// 
 			// manualPanel
 			// 
-			this.manualPanel.Controls.Add(this.hidePidBox);
+			this.manualPanel.Controls.Add(this.pidBox);
+			this.manualPanel.Controls.Add(this.multilineBox2);
+			this.manualPanel.Controls.Add(this.fnLabel);
 			this.manualPanel.Controls.Add(this.queryButton);
 			this.manualPanel.Controls.Add(this.functionBox);
 			this.manualPanel.Controls.Add(this.objectIdBox);
 			this.manualPanel.Controls.Add(this.manualLabel);
-			this.manualPanel.Location = new System.Drawing.Point(1506, 3);
+			this.manualPanel.Location = new System.Drawing.Point(1397, 4);
 			this.manualPanel.Name = "manualPanel";
-			this.manualPanel.Size = new System.Drawing.Size(928, 90);
+			this.manualPanel.Size = new System.Drawing.Size(977, 116);
 			this.manualPanel.TabIndex = 2;
 			this.manualPanel.Visible = false;
 			// 
-			// hidePidBox
+			// pidBox
 			// 
-			this.hidePidBox.AutoSize = true;
-			this.hidePidBox.Checked = true;
-			this.hidePidBox.CheckState = System.Windows.Forms.CheckState.Checked;
-			this.hidePidBox.Location = new System.Drawing.Point(13, 61);
-			this.hidePidBox.Name = "hidePidBox";
-			this.hidePidBox.Size = new System.Drawing.Size(99, 24);
-			this.hidePidBox.TabIndex = 10;
-			this.hidePidBox.Text = "Hide PID";
-			this.hidePidBox.UseVisualStyleBackColor = true;
-			this.hidePidBox.CheckedChanged += new System.EventHandler(this.HidePidCheckedChanged);
+			this.pidBox.AutoSize = true;
+			this.pidBox.Checked = true;
+			this.pidBox.CheckState = System.Windows.Forms.CheckState.Checked;
+			this.pidBox.Location = new System.Drawing.Point(3, 18);
+			this.pidBox.Name = "pidBox";
+			this.pidBox.Size = new System.Drawing.Size(99, 24);
+			this.pidBox.TabIndex = 10;
+			this.pidBox.Text = "Hide PID";
+			this.pidBox.UseVisualStyleBackColor = true;
+			this.pidBox.CheckedChanged += new System.EventHandler(this.HidePidCheckedChanged);
+			// 
+			// multilineBox2
+			// 
+			this.multilineBox2.AutoSize = true;
+			this.multilineBox2.Location = new System.Drawing.Point(3, 48);
+			this.multilineBox2.Name = "multilineBox2";
+			this.multilineBox2.Size = new System.Drawing.Size(195, 24);
+			this.multilineBox2.TabIndex = 8;
+			this.multilineBox2.Text = "Attributes on new lines";
+			this.multilineBox2.UseVisualStyleBackColor = true;
+			this.multilineBox2.CheckedChanged += new System.EventHandler(this.ToggleMultilineOnCheckedChanged);
+			// 
+			// fnLabel
+			// 
+			this.fnLabel.AutoSize = true;
+			this.fnLabel.Location = new System.Drawing.Point(284, 56);
+			this.fnLabel.Margin = new System.Windows.Forms.Padding(100, 8, 3, 0);
+			this.fnLabel.Name = "fnLabel";
+			this.fnLabel.Size = new System.Drawing.Size(71, 20);
+			this.fnLabel.TabIndex = 10;
+			this.fnLabel.Text = "Function";
 			// 
 			// queryButton
 			// 
 			this.queryButton.Enabled = false;
 			this.queryButton.Image = ((System.Drawing.Image)(resources.GetObject("queryButton.Image")));
-			this.queryButton.Location = new System.Drawing.Point(862, 11);
+			this.queryButton.Location = new System.Drawing.Point(623, 50);
 			this.queryButton.Name = "queryButton";
 			this.queryButton.Size = new System.Drawing.Size(47, 32);
 			this.queryButton.TabIndex = 9;
@@ -324,7 +355,7 @@
             "GetNotebook",
             "GetSection",
             "GetPage"});
-			this.functionBox.Location = new System.Drawing.Point(655, 13);
+			this.functionBox.Location = new System.Drawing.Point(416, 52);
 			this.functionBox.Margin = new System.Windows.Forms.Padding(3, 5, 3, 3);
 			this.functionBox.Name = "functionBox";
 			this.functionBox.Size = new System.Drawing.Size(201, 30);
@@ -334,7 +365,7 @@
 			// objectIdBox
 			// 
 			this.objectIdBox.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.objectIdBox.Location = new System.Drawing.Point(140, 13);
+			this.objectIdBox.Location = new System.Drawing.Point(416, 15);
 			this.objectIdBox.Margin = new System.Windows.Forms.Padding(3, 6, 3, 3);
 			this.objectIdBox.Name = "objectIdBox";
 			this.objectIdBox.Size = new System.Drawing.Size(509, 29);
@@ -344,12 +375,12 @@
 			// manualLabel
 			// 
 			this.manualLabel.AutoSize = true;
-			this.manualLabel.Location = new System.Drawing.Point(8, 15);
+			this.manualLabel.Location = new System.Drawing.Point(284, 17);
 			this.manualLabel.Margin = new System.Windows.Forms.Padding(100, 8, 3, 0);
 			this.manualLabel.Name = "manualLabel";
-			this.manualLabel.Size = new System.Drawing.Size(128, 20);
+			this.manualLabel.Size = new System.Drawing.Size(129, 20);
 			this.manualLabel.TabIndex = 6;
-			this.manualLabel.Text = "Manual ObjectID";
+			this.manualLabel.Text = "Lookup ObjectID";
 			// 
 			// cancelButton
 			// 
@@ -452,26 +483,26 @@
 			this.pageNameLabel.TabIndex = 0;
 			this.pageNameLabel.Text = "Name:";
 			// 
-			// pagePanel
+			// pageOptionsPanel
 			// 
-			this.pagePanel.Controls.Add(this.editModeBox);
-			this.pagePanel.Controls.Add(this.multilineBox);
-			this.pagePanel.Controls.Add(this.saveWindowBox);
-			this.pagePanel.Controls.Add(this.linefeedBox);
-			this.pagePanel.Controls.Add(this.editedByBox);
-			this.pagePanel.Controls.Add(this.scopeBox);
-			this.pagePanel.Controls.Add(this.pageInfoLabel);
-			this.pagePanel.Location = new System.Drawing.Point(408, 8);
-			this.pagePanel.Name = "pagePanel";
-			this.pagePanel.Size = new System.Drawing.Size(1100, 127);
-			this.pagePanel.TabIndex = 9;
+			this.pageOptionsPanel.Controls.Add(this.editModeBox);
+			this.pageOptionsPanel.Controls.Add(this.saveWindowBox);
+			this.pageOptionsPanel.Controls.Add(this.multilineBox);
+			this.pageOptionsPanel.Controls.Add(this.scopeBox);
+			this.pageOptionsPanel.Controls.Add(this.editedByBox);
+			this.pageOptionsPanel.Controls.Add(this.linefeedBox);
+			this.pageOptionsPanel.Controls.Add(this.pageInfoLabel);
+			this.pageOptionsPanel.Location = new System.Drawing.Point(422, 4);
+			this.pageOptionsPanel.Name = "pageOptionsPanel";
+			this.pageOptionsPanel.Size = new System.Drawing.Size(969, 117);
+			this.pageOptionsPanel.TabIndex = 9;
 			// 
 			// editModeBox
 			// 
 			this.editModeBox.AutoSize = true;
 			this.editModeBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.editModeBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-			this.editModeBox.Location = new System.Drawing.Point(804, 17);
+			this.editModeBox.Location = new System.Drawing.Point(330, 18);
 			this.editModeBox.Name = "editModeBox";
 			this.editModeBox.Size = new System.Drawing.Size(159, 24);
 			this.editModeBox.TabIndex = 9;
@@ -480,10 +511,20 @@
 			this.editModeBox.UseVisualStyleBackColor = true;
 			this.editModeBox.CheckedChanged += new System.EventHandler(this.ToggleEditModeOnCheckedChanged);
 			// 
+			// saveWindowBox
+			// 
+			this.saveWindowBox.AutoSize = true;
+			this.saveWindowBox.Location = new System.Drawing.Point(330, 48);
+			this.saveWindowBox.Name = "saveWindowBox";
+			this.saveWindowBox.Size = new System.Drawing.Size(186, 24);
+			this.saveWindowBox.TabIndex = 7;
+			this.saveWindowBox.Text = "Save window location";
+			this.saveWindowBox.UseVisualStyleBackColor = true;
+			// 
 			// multilineBox
 			// 
 			this.multilineBox.AutoSize = true;
-			this.multilineBox.Location = new System.Drawing.Point(367, 50);
+			this.multilineBox.Location = new System.Drawing.Point(3, 48);
 			this.multilineBox.Name = "multilineBox";
 			this.multilineBox.Size = new System.Drawing.Size(195, 24);
 			this.multilineBox.TabIndex = 8;
@@ -491,35 +532,22 @@
 			this.multilineBox.UseVisualStyleBackColor = true;
 			this.multilineBox.CheckedChanged += new System.EventHandler(this.ToggleMultilineOnCheckedChanged);
 			// 
-			// saveWindowBox
+			// scopeBox
 			// 
-			this.saveWindowBox.AutoSize = true;
-			this.saveWindowBox.Location = new System.Drawing.Point(804, 50);
-			this.saveWindowBox.Name = "saveWindowBox";
-			this.saveWindowBox.Size = new System.Drawing.Size(186, 24);
-			this.saveWindowBox.TabIndex = 7;
-			this.saveWindowBox.Text = "Save window location";
-			this.saveWindowBox.UseVisualStyleBackColor = true;
-			// 
-			// linefeedBox
-			// 
-			this.linefeedBox.AutoSize = true;
-			this.linefeedBox.Checked = true;
-			this.linefeedBox.CheckState = System.Windows.Forms.CheckState.Checked;
-			this.linefeedBox.Location = new System.Drawing.Point(367, 80);
-			this.linefeedBox.Name = "linefeedBox";
-			this.linefeedBox.Size = new System.Drawing.Size(211, 24);
-			this.linefeedBox.TabIndex = 6;
-			this.linefeedBox.Text = "Remove LF from CDATA";
-			this.linefeedBox.UseVisualStyleBackColor = true;
-			this.linefeedBox.CheckedChanged += new System.EventHandler(this.HideCheckedChanged);
+			this.scopeBox.ItemHeight = 20;
+			this.scopeBox.Location = new System.Drawing.Point(708, 10);
+			this.scopeBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+			this.scopeBox.Name = "scopeBox";
+			this.scopeBox.Size = new System.Drawing.Size(223, 104);
+			this.scopeBox.TabIndex = 4;
+			this.scopeBox.SelectedValueChanged += new System.EventHandler(this.ChangeScopeOnSelectedValueChanged);
 			// 
 			// editedByBox
 			// 
 			this.editedByBox.AutoSize = true;
 			this.editedByBox.Checked = true;
 			this.editedByBox.CheckState = System.Windows.Forms.CheckState.Checked;
-			this.editedByBox.Location = new System.Drawing.Point(367, 20);
+			this.editedByBox.Location = new System.Drawing.Point(3, 18);
 			this.editedByBox.Name = "editedByBox";
 			this.editedByBox.Size = new System.Drawing.Size(208, 24);
 			this.editedByBox.TabIndex = 5;
@@ -527,20 +555,23 @@
 			this.editedByBox.UseVisualStyleBackColor = true;
 			this.editedByBox.CheckedChanged += new System.EventHandler(this.HideCheckedChanged);
 			// 
-			// scopeBox
+			// linefeedBox
 			// 
-			this.scopeBox.ItemHeight = 20;
-			this.scopeBox.Location = new System.Drawing.Point(94, 11);
-			this.scopeBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-			this.scopeBox.Name = "scopeBox";
-			this.scopeBox.Size = new System.Drawing.Size(223, 64);
-			this.scopeBox.TabIndex = 4;
-			this.scopeBox.SelectedValueChanged += new System.EventHandler(this.ChangeScopeOnSelectedValueChanged);
+			this.linefeedBox.AutoSize = true;
+			this.linefeedBox.Checked = true;
+			this.linefeedBox.CheckState = System.Windows.Forms.CheckState.Checked;
+			this.linefeedBox.Location = new System.Drawing.Point(3, 78);
+			this.linefeedBox.Name = "linefeedBox";
+			this.linefeedBox.Size = new System.Drawing.Size(211, 24);
+			this.linefeedBox.TabIndex = 6;
+			this.linefeedBox.Text = "Remove LF from CDATA";
+			this.linefeedBox.UseVisualStyleBackColor = true;
+			this.linefeedBox.CheckedChanged += new System.EventHandler(this.HideCheckedChanged);
 			// 
 			// pageInfoLabel
 			// 
 			this.pageInfoLabel.AutoSize = true;
-			this.pageInfoLabel.Location = new System.Drawing.Point(8, 18);
+			this.pageInfoLabel.Location = new System.Drawing.Point(623, 12);
 			this.pageInfoLabel.Name = "pageInfoLabel";
 			this.pageInfoLabel.Size = new System.Drawing.Size(78, 20);
 			this.pageInfoLabel.TabIndex = 0;
@@ -550,19 +581,20 @@
 			// 
 			this.selectButton.Image = ((System.Drawing.Image)(resources.GetObject("selectButton.Image")));
 			this.selectButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-			this.selectButton.Location = new System.Drawing.Point(163, 50);
+			this.selectButton.Location = new System.Drawing.Point(10, 53);
 			this.selectButton.Margin = new System.Windows.Forms.Padding(2);
 			this.selectButton.Name = "selectButton";
 			this.selectButton.Padding = new System.Windows.Forms.Padding(4, 0, 0, 0);
-			this.selectButton.Size = new System.Drawing.Size(117, 35);
+			this.selectButton.Size = new System.Drawing.Size(140, 35);
 			this.selectButton.TabIndex = 3;
 			this.selectButton.Text = "Select All";
-			this.selectButton.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+			this.selectButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
 			this.selectButton.Click += new System.EventHandler(this.SelectAllOnClick);
 			// 
 			// topPanel
 			// 
 			this.topPanel.Controls.Add(this.manualPanel);
+			this.topPanel.Controls.Add(this.pageOptionsPanel);
 			this.topPanel.Controls.Add(this.wrapBox);
 			this.topPanel.Controls.Add(this.findBox);
 			this.topPanel.Controls.Add(this.findButton);
@@ -571,14 +603,14 @@
 			this.topPanel.Location = new System.Drawing.Point(0, 0);
 			this.topPanel.Margin = new System.Windows.Forms.Padding(2);
 			this.topPanel.Name = "topPanel";
-			this.topPanel.Padding = new System.Windows.Forms.Padding(8, 8, 0, 0);
-			this.topPanel.Size = new System.Drawing.Size(2440, 125);
+			this.topPanel.Padding = new System.Windows.Forms.Padding(8, 1, 0, 0);
+			this.topPanel.Size = new System.Drawing.Size(2440, 152);
 			this.topPanel.TabIndex = 5;
 			// 
 			// wrapBox
 			// 
 			this.wrapBox.AutoSize = true;
-			this.wrapBox.Location = new System.Drawing.Point(27, 56);
+			this.wrapBox.Location = new System.Drawing.Point(177, 59);
 			this.wrapBox.Name = "wrapBox";
 			this.wrapBox.Size = new System.Drawing.Size(103, 24);
 			this.wrapBox.TabIndex = 2;
@@ -625,7 +657,6 @@
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.CancelButton = this.cancelButton;
 			this.ClientSize = new System.Drawing.Size(2456, 956);
-			this.Controls.Add(this.pagePanel);
 			this.Controls.Add(this.masterPanel);
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.Margin = new System.Windows.Forms.Padding(2);
@@ -646,8 +677,8 @@
 			this.manualPanel.PerformLayout();
 			this.buttonPanel.ResumeLayout(false);
 			this.buttonPanel.PerformLayout();
-			this.pagePanel.ResumeLayout(false);
-			this.pagePanel.PerformLayout();
+			this.pageOptionsPanel.ResumeLayout(false);
+			this.pageOptionsPanel.PerformLayout();
 			this.topPanel.ResumeLayout(false);
 			this.topPanel.PerformLayout();
 			this.masterPanel.ResumeLayout(false);
@@ -671,7 +702,7 @@
 		private System.Windows.Forms.Button selectButton;
 		private System.Windows.Forms.Button okButton;
 		private System.Windows.Forms.Label pageInfoLabel;
-		private System.Windows.Forms.Panel pagePanel;
+		private System.Windows.Forms.Panel pageOptionsPanel;
 		private System.Windows.Forms.CheckBox wrapBox;
 		private System.Windows.Forms.CheckBox editedByBox;
 		private System.Windows.Forms.CheckBox linefeedBox;
@@ -695,11 +726,13 @@
 		private System.Windows.Forms.RichTextBox nbSectionBox;
 		private System.Windows.Forms.RichTextBox nbPagesBox;
 		private System.Windows.Forms.Panel manualPanel;
-		private System.Windows.Forms.CheckBox hidePidBox;
+		private System.Windows.Forms.CheckBox pidBox;
 		private System.Windows.Forms.ImageList tabIcons;
 		private System.Windows.Forms.CheckBox saveWindowBox;
 		private System.Windows.Forms.CheckBox multilineBox;
 		private System.Windows.Forms.CheckBox editModeBox;
 		private System.Windows.Forms.ToolTip tooltip;
+		private System.Windows.Forms.CheckBox multilineBox2;
+		private System.Windows.Forms.Label fnLabel;
 	}
 }

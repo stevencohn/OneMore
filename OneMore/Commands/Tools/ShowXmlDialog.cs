@@ -72,7 +72,7 @@ namespace River.OneMoreAddIn.Commands
 				});
 			}
 
-			manualPanel.Location = pagePanel.Location;
+			manualPanel.Location = pageOptionsPanel.Location;
 			((Control)manualTab).Enabled = false;
 		}
 
@@ -296,6 +296,11 @@ namespace River.OneMoreAddIn.Commands
 		private void ToggleMultilineOnCheckedChanged(object sender, EventArgs e)
 		{
 			ChangeScopeOnSelectedValueChanged(sender, e);
+
+			if (sender == multilineBox)
+				multilineBox2.Checked = multilineBox.Checked;
+			else
+				multilineBox.Checked = multilineBox2.Checked;
 		}
 
 
@@ -319,7 +324,34 @@ namespace River.OneMoreAddIn.Commands
 
 		private void ApplyHideOptions()
 		{
-			var root = XElement.Parse(pageBox.Text);
+			ApplyHideOptions(pageBox);
+
+			for (int i = 1; i <= 4; i++)
+			{
+				var box = i switch
+				{
+					1 => sectionBox,
+					2 => notebookBox,
+					3 => nbSectionBox,
+					4 => nbPagesBox,
+					_ => null
+				};
+
+				if (box != null && i == tabs.SelectedIndex && box.Text.Length > 0)
+				{
+					box.Text = string.Empty;
+					TabsSelectedIndexChanged(null, null);
+				}
+				else if (box != null)
+				{
+					box.Text = string.Empty;
+				}
+			}
+		}
+
+		private void ApplyHideOptions(RichTextBox box)
+		{
+			var root = XElement.Parse(box.Text);
 
 			if (editedByBox.Checked)
 			{
@@ -339,7 +371,7 @@ namespace River.OneMoreAddIn.Commands
 			else
 			{
 				root.Descendants()
-					.Where(e => e.Attributes("objectID").Any())
+					.Where(e => e.Attributes("objectID").Any() || e.Attributes("ID").Any())
 					.ForEach(e =>
 					{
 						var attributes = e.Attributes().ToList();
@@ -348,6 +380,7 @@ namespace River.OneMoreAddIn.Commands
 						var moved = PromoteAttribute(attributes, "creationTime");
 						moved = PromoteAttribute(attributes, "lastModifiedTime") || moved;
 						moved = PromoteAttribute(attributes, "objectID") || moved;
+						moved = PromoteAttribute(attributes, "ID") || moved;
 
 						if (moved)
 						{
@@ -375,11 +408,11 @@ namespace River.OneMoreAddIn.Commands
 				}
 			}
 
-			pageBox.Text = multilineBox.Checked
+			box.Text = multilineBox.Checked
 				? root.PrettyPrint()
 				: root.ToString(SaveOptions.None);
 
-			Highlights();
+			Highlights(box);
 		}
 
 
@@ -397,22 +430,22 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private void Highlights()
+		private void Highlights(RichTextBox box)
 		{
-			var matches = Regex.Matches(pageBox.Text,
+			var matches = Regex.Matches(box.Text,
 				@"<((?:[a-zA-Z][a-zA-Z0-9]*?:)?[a-zA-Z][a-zA-Z0-9]*?)[^>]+selected=""all""[^\1]*?\1>");
 
 			foreach (Match match in matches)
 			{
-				pageBox.SelectionStart = match.Index;
-				pageBox.SelectionLength = match.Length;
-				pageBox.SelectionBackColor = Color.Yellow;
+				box.SelectionStart = match.Index;
+				box.SelectionLength = match.Length;
+				box.SelectionBackColor = Color.Yellow;
 			}
 
 			if (!editedByBox.Checked)
 			{
 				// author attributes
-				matches = Regex.Matches(pageBox.Text,
+				matches = Regex.Matches(box.Text,
 					"(?:author|authorInitials|authorResolutionID|lastModifiedBy|" +
 					"lastModifiedByInitials|lastModifiedByResolutionID|creationTime|" +
 					"lastModifiedTime)=\"[^\"]*\""
@@ -420,19 +453,19 @@ namespace River.OneMoreAddIn.Commands
 
 				foreach (Match m in matches)
 				{
-					pageBox.SelectionStart = m.Index;
-					pageBox.SelectionLength = m.Length;
-					pageBox.SelectionColor = Color.Silver;
+					box.SelectionStart = m.Index;
+					box.SelectionLength = m.Length;
+					box.SelectionColor = Color.Silver;
 				}
 
 				// objectID
-				matches = Regex.Matches(pageBox.Text, "(?:objectID)=\"[^\"]*\"");
+				matches = Regex.Matches(box.Text, "(?:objectID|ID)=\"[^\"]*\"");
 
 				foreach (Match m in matches)
 				{
-					pageBox.SelectionStart = m.Index;
-					pageBox.SelectionLength = m.Length;
-					pageBox.SelectionColor = Color.CornflowerBlue;
+					box.SelectionStart = m.Index;
+					box.SelectionLength = m.Length;
+					box.SelectionColor = Color.CornflowerBlue;
 				}
 			}
 		}
@@ -488,7 +521,7 @@ namespace River.OneMoreAddIn.Commands
 				pageBox.Select(0, 0);
 				pageBox.Focus();
 				okButton.Visible = true;
-				pagePanel.Visible = true;
+				pageOptionsPanel.Visible = true;
 				manualPanel.Visible = false;
 				wrapBox.Checked = pageBox.WordWrap;
 			}
@@ -518,10 +551,10 @@ namespace River.OneMoreAddIn.Commands
 				}
 
 				wrapBox.Checked = ((RichTextBox)tabs.SelectedTab.Controls[0]).WordWrap;
-				hidePidBox.Checked = tabs.SelectedTab.Tag == null || (bool)tabs.SelectedTab.Tag;
+				pidBox.Checked = tabs.SelectedTab.Tag == null || (bool)tabs.SelectedTab.Tag;
 
 				okButton.Visible = false;
-				pagePanel.Visible = false;
+				pageOptionsPanel.Visible = false;
 				manualPanel.Visible = true;
 			}
 		}
@@ -537,15 +570,19 @@ namespace River.OneMoreAddIn.Commands
 
 				if (root != null)
 				{
-					if (hidePidBox.Checked)
+					if (pidBox.Checked)
 					{
 						Sanitize(root);
 					}
 
+					var text = multilineBox2.Checked
+						? root.PrettyPrint()
+						: root.ToString(SaveOptions.None);
+
 					box.Clear();
 					box.WordWrap = wrapBox.Checked;
 					box.SelectionColor = Color.Black;
-					box.Text = $"<!-- {comment} -->\n{root.ToString(SaveOptions.None)}";
+					box.Text = $"<!-- {comment} -->\n{text}";
 					box.Select(0, comment.Length + 9);
 					box.SelectionColor = Color.Green;
 				}
@@ -553,6 +590,8 @@ namespace River.OneMoreAddIn.Commands
 				{
 					box.Text = "no hierarchy";
 				}
+
+				Highlights(box);
 			}
 
 			box.Select(0, 0);
@@ -582,7 +621,7 @@ namespace River.OneMoreAddIn.Commands
 			var box = tabs.TabPages[tabs.SelectedIndex].Controls[0] as RichTextBox;
 			box.Clear();
 
-			tabs.TabPages[tabs.SelectedIndex].Tag = hidePidBox.Checked;
+			tabs.TabPages[tabs.SelectedIndex].Tag = pidBox.Checked;
 
 			TabsSelectedIndexChanged(sender, e);
 		}
