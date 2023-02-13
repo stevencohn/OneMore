@@ -99,17 +99,30 @@ namespace River.OneMoreAddIn.Settings
 		}
 
 
-		private void DeleteItem(object sender, EventArgs e)
+		private void DeleteOnKeyUp(object sender, KeyEventArgs e)
 		{
-			if (gridView.SelectedCells.Count == 0)
+			if (e.KeyCode == Keys.Delete)
+			{
+				DeleteItems(sender, e);
+			}
+		}
+
+
+		private void DeleteItems(object sender, EventArgs e)
+		{
+			if (gridView.SelectedRows.Count == 0)
 				return;
 
-			int rowIndex = gridView.SelectedCells[0].RowIndex;
-			if (rowIndex >= favorites.Count)
+			int first = gridView.SelectedRows[0].Index;
+			if (first >= favorites.Count)
 				return;
+
+			var text = gridView.SelectedRows.Count == 1
+				? favorites[first].Name
+				: $"({gridView.SelectedRows.Count})";
 
 			var result = MessageBox.Show(
-				string.Format(Resx.FavoritesSheet_DeleteMessage, favorites[rowIndex].Name),
+				string.Format(Resx.FavoritesSheet_DeleteMessage, text),
 				"OneMore",
 				MessageBoxButtons.YesNo, MessageBoxIcon.Question,
 				MessageBoxDefaultButton.Button2,
@@ -118,13 +131,23 @@ namespace River.OneMoreAddIn.Settings
 			if (result != DialogResult.Yes)
 				return;
 
-			favorites.RemoveAt(rowIndex);
+			for (int i = gridView.SelectedRows.Count - 1; i >= 0; i--)
+			{
+				favorites.RemoveAt(gridView.SelectedRows[i].Index);
+			}
+
+			gridView.ClearSelection();
+
 			updated = true;
 
-			rowIndex--;
-			if (rowIndex >= 0)
+			first--;
+			if (first < 0 && gridView.Rows.Count > 0)
 			{
-				gridView.Rows[rowIndex].Cells[0].Selected = true;
+				gridView.Rows[0].Cells[0].Selected = true;
+			}
+			else if (first < gridView.Rows.Count)
+			{
+				gridView.Rows[first].Cells[0].Selected = true;
 			}
 		}
 

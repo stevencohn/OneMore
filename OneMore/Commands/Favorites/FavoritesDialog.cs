@@ -88,98 +88,243 @@ namespace River.OneMoreAddIn.Commands.Favorites
 				return;
 			}
 
-			if (e.KeyCode == Keys.Down)
+			switch (e.KeyCode)
 			{
-				e.Handled = SelectNextRow();
-			}
-			else if (e.KeyCode == Keys.Up)
-			{
-				e.Handled = SelectPreviousRow();
-			}
-			else
-			{
-				var text = searchBox.Text.Trim();
+				case Keys.Down:
+					e.Handled = SelectNextRow();
+					break;
 
-				var selected = gridView.SelectedCells.Count > 0
-					? gridView.SelectedCells[0].RowIndex
-					: -1;
+				case Keys.Up:
+					e.Handled = SelectPreviousRow();
+					break;
 
-				// must suspend currency manager in order to hide selected or remaining rows
-				var mgr = (CurrencyManager)BindingContext[gridView.DataSource];
-				mgr.SuspendBinding();
+				case Keys.PageDown:
+					e.Handled = MovePageDown();
+					break;
 
-				if (text.Length > 2)
-				{
-					foreach (DataGridViewRow row in gridView.Rows)
+				case Keys.PageUp:
+					e.Handled = MovePageUp();
+					break;
+
+				case Keys.Home:
+					if (e.Modifiers == 0)
 					{
-						if (row.Cells[0].Value.ToString().ContainsICIC(text) ||
-							row.Cells[1].Value.ToString().ContainsICIC(text))
-						{
-							row.Visible = true;
-						}
-						else
-						{
-							row.Cells[0].Selected = row.Cells[1].Selected = false;
-							row.Selected = false;
-							row.Visible = false;
-						}
+						e.Handled = MoveTop();
 					}
-				}
-				else
+					break;
+
+				case Keys.End:
+					if (e.Modifiers == 0)
+					{
+						e.Handled = MoveBottom();
+					}
+					break;
+
+				case Keys.Left:
+				case Keys.Right:
+					if (e.Modifiers == 0)
+					{
+						e.Handled = true;
+					}
+					break;
+			}
+
+			if (e.Handled)
+			{
+				return;
+			}
+
+			if (Char.IsControl((char)e.KeyValue) &&
+				e.KeyCode != Keys.Delete && e.KeyCode != Keys.Back)
+			{
+				e.Handled = true;
+				return;
+			}
+
+			// filter list based on search text...
+
+			var text = searchBox.Text.Trim();
+
+			var selected = gridView.SelectedCells.Count > 0
+				? gridView.SelectedCells[0].RowIndex
+				: -1;
+
+			// must suspend currency manager in order to hide selected or remaining rows
+			var mgr = (CurrencyManager)BindingContext[gridView.DataSource];
+			mgr.SuspendBinding();
+
+			if (text.Length > 2)
+			{
+				foreach (DataGridViewRow row in gridView.Rows)
 				{
-					foreach (DataGridViewRow row in gridView.Rows)
+					if (row.Cells[0].Value.ToString().ContainsICIC(text) ||
+						row.Cells[1].Value.ToString().ContainsICIC(text))
 					{
 						row.Visible = true;
 					}
-				}
-
-				mgr.ResumeBinding();
-
-				// ensure selection...
-				var rowCount = gridView.Rows.Count;
-
-				if (selected >= 0)
-				{
-					if (!gridView.Rows[selected].Visible)
+					else
 					{
-						var i = -1;
-						if (selected > 0)
-						{
-							for (i = selected; i > 0 && !gridView.Rows[i].Visible; i--) { }
-						}
-
-						if (i < 0 && selected < rowCount - 1)
-						{
-							for (i = selected; i < rowCount && !gridView.Rows[i].Visible; i++) { }
-						}
-
-						if (i >= 0 && i < rowCount && gridView.Rows[i].Visible)
-						{
-							gridView.Rows[i].Cells[0].Selected = true;
-						}
-					}
-				}
-				else
-				{
-					selected = 0;
-					while (selected < rowCount && !gridView.Rows[selected].Visible)
-					{
-						selected++;
-					}
-
-					if (selected < rowCount)
-					{
-						gridView.Rows[selected].Cells[0].Selected = true;
+						row.Cells[0].Selected = row.Cells[1].Selected = false;
+						row.Selected = false;
+						row.Visible = false;
 					}
 				}
 			}
+			else
+			{
+				foreach (DataGridViewRow row in gridView.Rows)
+				{
+					row.Visible = true;
+				}
+			}
+
+			mgr.ResumeBinding();
+
+			// ensure there is a selection...
+
+			if (selected < 0 || text.Length < 3)
+			{
+				// previously was no selection, this should force first visible
+				var first = gridView.Rows.GetFirstRow(DataGridViewElementStates.Visible);
+				if (first >= 0)
+				{
+					gridView.Rows[first].Cells[0].Selected = true;
+				}
+			}
+			else
+			{
+				// find visible row above starting position
+				selected = gridView.Rows.GetPreviousRow(selected, DataGridViewElementStates.Visible);
+				if (selected < 0)
+				{
+					selected = gridView.Rows.GetFirstRow(DataGridViewElementStates.Visible);
+				}
+
+				if (selected >= 0)
+				{
+					gridView.Rows[selected].Cells[0].Selected = true;
+				}
+			}
+
+			e.Handled = true;
 		}
 
 
-		private bool ShowText()
+		private void ShowText()
 		{
 			searchBox.Text = (string)gridView.SelectedCells[0].Value;
 			searchBox.Select(searchBox.Text.Length, 0);
+		}
+
+
+		private bool MoveBottom()
+		{
+			if (gridView.Rows.Count == 0)
+			{
+				return true;
+			}
+
+			var index = gridView.Rows.GetLastRow(DataGridViewElementStates.Visible);
+			if (index >= 0)
+			{
+				gridView.Rows[index].Cells[0].Selected = true;
+				ShowText();
+				return true;
+			}
+
+			return false;
+		}
+
+
+		private bool MoveTop()
+		{
+			if (gridView.Rows.Count == 0)
+			{
+				return true;
+			}
+
+			var index = gridView.Rows.GetFirstRow(DataGridViewElementStates.Visible);
+			if (index >= 0)
+			{
+				gridView.Rows[index].Cells[0].Selected = true;
+				ShowText();
+				return true;
+			}
+
+			return false;
+		}
+
+
+		private bool MovePageDown()
+		{
+			if (gridView.Rows.Count == 0)
+			{
+				return true;
+			}
+
+			if (gridView.SelectedCells.Count == 0)
+			{
+				var first = gridView.Rows.GetFirstRow(DataGridViewElementStates.Visible);
+				gridView.Rows[first].Cells[0].Selected = true;
+				ShowText();
+			}
+			else
+			{
+				var displayed = gridView.DisplayedRowCount(true);
+				var index = gridView.SelectedCells[0].RowIndex;
+
+				while (displayed >= 0 && index > 0 && index < gridView.Rows.Count)
+				{
+					index = gridView.Rows.GetNextRow(index, DataGridViewElementStates.Visible);
+					displayed--;
+				}
+
+				if (index < 0 || index > gridView.Rows.Count)
+				{
+					index = gridView.Rows.GetLastRow(DataGridViewElementStates.Visible);
+				}
+
+				gridView.Rows[index].Cells[0].Selected = true;
+				ShowText();
+			}
+
+			return true;
+		}
+
+
+		private bool MovePageUp()
+		{
+			if (gridView.Rows.Count == 0)
+			{
+				return true;
+			}
+
+			if (gridView.SelectedCells.Count == 0)
+			{
+				var first = gridView.Rows.GetFirstRow(DataGridViewElementStates.Visible);
+				gridView.Rows[first].Cells[0].Selected = true;
+				ShowText();
+			}
+			else
+			{
+				var displayed = gridView.DisplayedRowCount(true);
+				var index = gridView.SelectedCells[0].RowIndex;
+
+				while (displayed >= 0 && index >= 0)
+				{
+					index = gridView.Rows.GetPreviousRow(index, DataGridViewElementStates.Visible);
+					displayed--;
+				}
+
+				if (index < 0)
+				{
+					index = gridView.Rows.GetFirstRow(DataGridViewElementStates.Visible);
+				}
+
+				gridView.Rows[index].Cells[0].Selected = true;
+				ShowText();
+			}
+
 			return true;
 		}
 
@@ -188,20 +333,34 @@ namespace River.OneMoreAddIn.Commands.Favorites
 		{
 			if (gridView.SelectedCells.Count == 0)
 			{
-				gridView.Rows[0].Cells[0].Selected = true;
-				return ShowText();
+				var first = gridView.Rows.GetFirstRow(DataGridViewElementStates.Visible);
+				if (first >= 0)
+				{
+					gridView.Rows[first].Cells[0].Selected = true;
+					ShowText();
+				}
+
+				return true;
+			}
+
+			var start = gridView.SelectedCells[0].RowIndex;
+			var index = gridView.Rows.GetNextRow(start, DataGridViewElementStates.Visible);
+			if (index > 0)
+			{
+				gridView.Rows[index].Cells[0].Selected = true;
+				ShowText();
 			}
 			else
 			{
-				var index = gridView.SelectedCells[0].RowIndex;
-				if (index < gridView.Rows.Count - 1)
+				index = gridView.Rows.GetPreviousRow(start, DataGridViewElementStates.Visible);
+				if (index >= 0)
 				{
-					gridView.Rows[index + 1].Cells[0].Selected = true;
-					return ShowText();
+					gridView.Rows[index].Cells[0].Selected = true;
+					ShowText();
 				}
 			}
 
-			return false;
+			return true;
 		}
 
 
@@ -209,20 +368,40 @@ namespace River.OneMoreAddIn.Commands.Favorites
 		{
 			if (gridView.SelectedCells.Count == 0)
 			{
-				gridView.Rows[0].Cells[0].Selected = true;
-				return ShowText();
+				var first = gridView.Rows.GetFirstRow(DataGridViewElementStates.Visible);
+				if (first >= 0)
+				{
+					gridView.Rows[first].Cells[0].Selected = true;
+					ShowText();
+				}
+
+				return true;
+			}
+
+			var start = gridView.SelectedCells[0].RowIndex;
+			var index = gridView.Rows.GetPreviousRow(start, DataGridViewElementStates.Visible);
+			if (index >= 0)
+			{
+				gridView.Rows[index].Cells[0].Selected = true;
+				ShowText();
 			}
 			else
 			{
-				var index = gridView.SelectedCells[0].RowIndex;
+				index = gridView.Rows.GetNextRow(start, DataGridViewElementStates.Visible);
 				if (index > 0)
 				{
-					gridView.Rows[index - 1].Cells[0].Selected = true;
-					return ShowText();
+					gridView.Rows[index].Cells[0].Selected = true;
+					ShowText();
 				}
 			}
 
-			return false;
+			return true;
+		}
+
+
+		private void RefocusOnGotFocus(object sender, EventArgs e)
+		{
+			searchBox.Focus();
 		}
 
 

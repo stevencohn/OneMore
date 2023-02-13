@@ -52,6 +52,7 @@
 			// gridView
 			// 
 			this.gridView.AllowUserToAddRows = false;
+			this.gridView.AllowUserToDeleteRows = false;
 			this.gridView.AllowUserToResizeRows = false;
 			this.gridView.BackgroundColor = System.Drawing.SystemColors.ControlLightLight;
 			this.gridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -60,16 +61,17 @@
             this.locationColumn});
 			this.gridView.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.gridView.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
-			this.gridView.Location = new System.Drawing.Point(10, 132);
-			this.gridView.MultiSelect = false;
+			this.gridView.Location = new System.Drawing.Point(10, 137);
 			this.gridView.Name = "gridView";
 			this.gridView.RowHeadersVisible = false;
 			this.gridView.RowHeadersWidth = 30;
 			this.gridView.RowTemplate.Height = 28;
+			this.gridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
 			this.gridView.ShowEditingIcon = false;
-			this.gridView.Size = new System.Drawing.Size(780, 359);
+			this.gridView.Size = new System.Drawing.Size(780, 354);
 			this.gridView.TabIndex = 2;
 			this.gridView.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.FormatCell);
+			this.gridView.KeyUp += new System.Windows.Forms.KeyEventHandler(this.DeleteOnKeyUp);
 			// 
 			// nameColumn
 			// 
@@ -132,7 +134,7 @@
 			this.toolStrip.Location = new System.Drawing.Point(10, 99);
 			this.toolStrip.Name = "toolStrip";
 			this.toolStrip.Padding = new System.Windows.Forms.Padding(0, 0, 3, 0);
-			this.toolStrip.Size = new System.Drawing.Size(780, 33);
+			this.toolStrip.Size = new System.Drawing.Size(780, 38);
 			this.toolStrip.TabIndex = 4;
 			this.toolStrip.Text = "Tool Strip";
 			// 
@@ -142,7 +144,7 @@
 			this.sortButton.Image = ((System.Drawing.Image)(resources.GetObject("sortButton.Image")));
 			this.sortButton.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.sortButton.Name = "sortButton";
-			this.sortButton.Size = new System.Drawing.Size(34, 28);
+			this.sortButton.Size = new System.Drawing.Size(34, 33);
 			this.sortButton.Text = "toolStripButton1";
 			this.sortButton.ToolTipText = "Sort by Name";
 			this.sortButton.Click += new System.EventHandler(this.SortItems);
@@ -150,7 +152,7 @@
 			// toolStripSeparator2
 			// 
 			this.toolStripSeparator2.Name = "toolStripSeparator2";
-			this.toolStripSeparator2.Size = new System.Drawing.Size(6, 33);
+			this.toolStripSeparator2.Size = new System.Drawing.Size(6, 38);
 			// 
 			// upButton
 			// 
@@ -158,7 +160,7 @@
 			this.upButton.Image = global::River.OneMoreAddIn.Properties.Resources.UpArrow;
 			this.upButton.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.upButton.Name = "upButton";
-			this.upButton.Size = new System.Drawing.Size(34, 28);
+			this.upButton.Size = new System.Drawing.Size(34, 33);
 			this.upButton.Text = "Move up";
 			this.upButton.Click += new System.EventHandler(this.MoveItemUp);
 			// 
@@ -168,19 +170,19 @@
 			this.downButton.Image = global::River.OneMoreAddIn.Properties.Resources.DownArrow;
 			this.downButton.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.downButton.Name = "downButton";
-			this.downButton.Size = new System.Drawing.Size(34, 28);
+			this.downButton.Size = new System.Drawing.Size(34, 33);
 			this.downButton.Text = "Move down";
 			this.downButton.Click += new System.EventHandler(this.MoveItemDown);
 			// 
 			// toolStripSeparator1
 			// 
 			this.toolStripSeparator1.Name = "toolStripSeparator1";
-			this.toolStripSeparator1.Size = new System.Drawing.Size(6, 33);
+			this.toolStripSeparator1.Size = new System.Drawing.Size(6, 38);
 			// 
 			// deleteLabel
 			// 
 			this.deleteLabel.Name = "deleteLabel";
-			this.deleteLabel.Size = new System.Drawing.Size(66, 28);
+			this.deleteLabel.Size = new System.Drawing.Size(66, 33);
 			this.deleteLabel.Text = "Delete:";
 			// 
 			// deleteButton
@@ -189,9 +191,9 @@
 			this.deleteButton.Image = global::River.OneMoreAddIn.Properties.Resources.Delete;
 			this.deleteButton.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.deleteButton.Name = "deleteButton";
-			this.deleteButton.Size = new System.Drawing.Size(34, 28);
+			this.deleteButton.Size = new System.Drawing.Size(34, 33);
 			this.deleteButton.Text = "Delete";
-			this.deleteButton.Click += new System.EventHandler(this.DeleteItem);
+			this.deleteButton.Click += new System.EventHandler(this.DeleteItems);
 			// 
 			// FavoritesSheet
 			// 
