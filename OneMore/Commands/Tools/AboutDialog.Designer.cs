@@ -31,7 +31,7 @@
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AboutDialog));
 			this.pictureBox1 = new System.Windows.Forms.PictureBox();
 			this.titleLabel = new System.Windows.Forms.Label();
-			this.versionLabel = new System.Windows.Forms.Label();
+			this.versionLabel = new System.Windows.Forms.TextBox();
 			this.copyLabel = new System.Windows.Forms.Label();
 			this.okButton = new System.Windows.Forms.Button();
 			this.logLabel = new River.OneMoreAddIn.UI.MoreLinkLabel();
@@ -59,18 +59,19 @@
 			this.titleLabel.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.titleLabel.Location = new System.Drawing.Point(156, 26);
 			this.titleLabel.Name = "titleLabel";
-			this.titleLabel.Size = new System.Drawing.Size(312, 25);
+			this.titleLabel.Size = new System.Drawing.Size(267, 25);
 			this.titleLabel.TabIndex = 1;
 			this.titleLabel.Text = "OneMore Add-in for OneNote";
 			// 
 			// versionLabel
 			// 
-			this.versionLabel.AutoSize = true;
+			this.versionLabel.BackColor = System.Drawing.Color.White;
+			this.versionLabel.BorderStyle = System.Windows.Forms.BorderStyle.None;
 			this.versionLabel.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.versionLabel.Location = new System.Drawing.Point(156, 49);
+			this.versionLabel.Location = new System.Drawing.Point(161, 54);
 			this.versionLabel.Name = "versionLabel";
-			this.versionLabel.Padding = new System.Windows.Forms.Padding(0, 8, 0, 0);
-			this.versionLabel.Size = new System.Drawing.Size(99, 33);
+			this.versionLabel.ReadOnly = true;
+			this.versionLabel.Size = new System.Drawing.Size(534, 24);
 			this.versionLabel.TabIndex = 2;
 			this.versionLabel.Text = "Version 1.0";
 			// 
@@ -226,7 +227,7 @@
 
 		private System.Windows.Forms.PictureBox pictureBox1;
 		private System.Windows.Forms.Label titleLabel;
-		private System.Windows.Forms.Label versionLabel;
+		private System.Windows.Forms.TextBox versionLabel;
 		private System.Windows.Forms.Label copyLabel;
 		private System.Windows.Forms.Button okButton;
 		private UI.MoreLinkLabel logLabel;
