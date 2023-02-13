@@ -83,16 +83,31 @@ namespace River.OneMoreAddIn
 
 		public void AddFavorite(bool addSection = false)
 		{
-			XElement root;
+			XElement root = null;
 
 			if (File.Exists(path))
 			{
-				root = UpgradeFavoritesMenu(XElement.Load(path, LoadOptions.None), true);
+				try
+				{
+					root = UpgradeFavoritesMenu(XElement.Load(path, LoadOptions.None), false);
+				}
+				catch (Exception exc)
+				{
+					try
+					{
+						logger.WriteLine(File.ReadAllText(path));
+					}
+					catch (Exception e2)
+					{
+						logger.WriteLine("could not dump favorites.xml; possibly locked", e2);
+
+					}
+					logger.WriteLine("could not load favorites.xml", exc);
+					root = null;
+				}
 			}
-			else
-			{
-				root = MakeMenuRoot();
-			}
+
+			root ??= MakeMenuRoot();
 
 			one ??= new OneNote();
 
@@ -179,7 +194,7 @@ namespace River.OneMoreAddIn
 			books ??= await one.GetNotebooks();
 
 			var parts = path.Split(new char[] { '/' }, StringSplitOptions.RemoveEmptyEntries);
-			var notebook = notebooks.Values.FirstOrDefault(n => n.Name == parts[0]);
+			var notebook = notebooks.Values.FirstOrDefault(n => n.Attribute("name")?.Value == parts[0]);
 			if (notebook == null)
 			{
 				var nx = books.GetNamespaceOfPrefix(OneNote.Prefix);
@@ -392,6 +407,7 @@ namespace River.OneMoreAddIn
 				);
 		}
 
+
 		private static void RewriteChildNamespace(XElement element, XNamespace ns)
 		{
 			foreach (var child in element.Elements())
@@ -410,7 +426,6 @@ namespace River.OneMoreAddIn
 				}
 			}
 		}
-
 
 
 		public void SaveFavorites(XElement root)

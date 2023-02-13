@@ -96,6 +96,10 @@ namespace River.OneMoreAddIn.Commands.Favorites
 			{
 				e.Handled = SelectPreviousRow();
 			}
+			else if (Char.IsControl((char)e.KeyValue) || e.KeyCode == Keys.Left || e.KeyCode == Keys.Right)
+			{
+				e.Handled = true;
+			}
 			else
 			{
 				var text = searchBox.Text.Trim();
@@ -103,6 +107,8 @@ namespace River.OneMoreAddIn.Commands.Favorites
 				var selected = gridView.SelectedCells.Count > 0
 					? gridView.SelectedCells[0].RowIndex
 					: -1;
+
+				// filter list based on search text...
 
 				// must suspend currency manager in order to hide selected or remaining rows
 				var mgr = (CurrencyManager)BindingContext[gridView.DataSource];
@@ -135,39 +141,23 @@ namespace River.OneMoreAddIn.Commands.Favorites
 
 				mgr.ResumeBinding();
 
-				// ensure selection...
-				var rowCount = gridView.Rows.Count;
+				// ensure there is a selection...
 
-				if (selected >= 0)
+				if (selected < 0)
 				{
-					if (!gridView.Rows[selected].Visible)
-					{
-						var i = -1;
-						if (selected > 0)
-						{
-							for (i = selected; i > 0 && !gridView.Rows[i].Visible; i--) { }
-						}
-
-						if (i < 0 && selected < rowCount - 1)
-						{
-							for (i = selected; i < rowCount && !gridView.Rows[i].Visible; i++) { }
-						}
-
-						if (i >= 0 && i < rowCount && gridView.Rows[i].Visible)
-						{
-							gridView.Rows[i].Cells[0].Selected = true;
-						}
-					}
+					// previously was no selection, this should force first visible
+					SelectNextRow();
 				}
 				else
 				{
-					selected = 0;
-					while (selected < rowCount && !gridView.Rows[selected].Visible)
+					// find visible row above starting position
+					selected = gridView.Rows.GetPreviousRow(selected, DataGridViewElementStates.Visible);
+					if (selected < 0)
 					{
-						selected++;
+						selected = gridView.Rows.GetFirstRow(DataGridViewElementStates.Visible);
 					}
 
-					if (selected < rowCount)
+					if (selected >= 0)
 					{
 						gridView.Rows[selected].Cells[0].Selected = true;
 					}
@@ -184,45 +174,57 @@ namespace River.OneMoreAddIn.Commands.Favorites
 		}
 
 
-		private bool SelectNextRow()
+		private bool SelectNextRow(bool reverse = true)
 		{
-			if (gridView.SelectedCells.Count == 0)
+			var start = gridView.SelectedCells.Count == 0 ? -1 : gridView.SelectedCells[0].RowIndex;
+			var end = gridView.Rows.GetNextRow(start, DataGridViewElementStates.Visible);
+			if (end < 0 && start > 0 && reverse)
 			{
-				gridView.Rows[0].Cells[0].Selected = true;
-				return ShowText();
-			}
-			else
-			{
-				var index = gridView.SelectedCells[0].RowIndex;
-				if (index < gridView.Rows.Count - 1)
+				var last = gridView.Rows.GetLastRow(DataGridViewElementStates.Visible);
+				if (start == last)
 				{
-					gridView.Rows[index + 1].Cells[0].Selected = true;
-					return ShowText();
+					return true;
 				}
+
+				return SelectPreviousRow(false);
+			}
+			else if (end >= 0)
+			{
+				gridView.Rows[end].Cells[0].Selected = true;
+				return ShowText();
 			}
 
 			return false;
 		}
 
 
-		private bool SelectPreviousRow()
+		private bool SelectPreviousRow(bool reverse = true)
 		{
-			if (gridView.SelectedCells.Count == 0)
+			var start = gridView.SelectedCells.Count == 0 ? 0 : gridView.SelectedCells[0].RowIndex;
+			var end = gridView.Rows.GetPreviousRow(start, DataGridViewElementStates.Visible);
+			if (end < 0 && start < gridView.Rows.Count - 1 && reverse)
 			{
-				gridView.Rows[0].Cells[0].Selected = true;
-				return ShowText();
-			}
-			else
-			{
-				var index = gridView.SelectedCells[0].RowIndex;
-				if (index > 0)
+				var first = gridView.Rows.GetFirstRow(DataGridViewElementStates.Visible);
+				if (start == first)
 				{
-					gridView.Rows[index - 1].Cells[0].Selected = true;
-					return ShowText();
+					return true;
 				}
+
+				return SelectNextRow(false);
+			}
+			else if (end >= 0)
+			{
+				gridView.Rows[end].Cells[0].Selected = true;
+				return ShowText();
 			}
 
 			return false;
+		}
+
+
+		private void RefocusOnGotFocus(object sender, EventArgs e)
+		{
+			searchBox.Focus();
 		}
 
 
