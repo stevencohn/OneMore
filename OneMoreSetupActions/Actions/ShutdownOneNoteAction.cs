@@ -6,6 +6,7 @@ namespace OneMoreSetupActions
 {
 	using System.Diagnostics;
 	using System.Linq;
+	using System.Management;
 
 
 	/// <summary>
@@ -14,6 +15,7 @@ namespace OneMoreSetupActions
 	internal class ShutdownOneNoteAction : CustomAction
 	{
 		private const string OneNoteName = "ONENOTE";
+		private const string DllHostName = "dllhost";
 
 
 		public ShutdownOneNoteAction(Logger logger, Stepper stepper)
@@ -26,7 +28,14 @@ namespace OneMoreSetupActions
 		{
 			logger.WriteLine();
 			logger.WriteLine("ShutdownOneNoteAction.Install ---");
-			return StopProcess();
+
+			var status = StopHost();
+			if (status == SUCCESS)
+			{
+				status = StopOneNote();
+			}
+
+			return status;
 		}
 
 
@@ -40,7 +49,12 @@ namespace OneMoreSetupActions
 
 			while (status == FAILURE && tries < 2)
 			{
-				status = StopProcess();
+				status = StopHost();
+				if (status == SUCCESS)
+				{
+					status = StopOneNote();
+				}
+
 				tries++;
 			}
 
@@ -48,7 +62,77 @@ namespace OneMoreSetupActions
 		}
 
 
-		private int StopProcess()
+		private int StopHost()
+		{
+			var status = SUCCESS;
+			var killed = false;
+
+			var sql = 
+				"SELECT ProcessID, CommandLine FROM Win32_Process " +
+				$"WHERE CommandLine LIKE '%{RegistryHelper.OneNoteID}%'";
+
+			using (var searcher = new ManagementObjectSearcher(sql))
+			{
+				using (var collection = searcher.Get())
+				{
+					if (collection.Count > 0)
+					{
+						foreach (var item in collection)
+						{
+							var processID = (int)(uint)item["ProcessID"];
+							item.Dispose();
+
+							using (var process = Process.GetProcessById(processID))
+							{
+								if (process == null)
+								{
+									logger.WriteLine($"{DllHostName} process not found");
+								}
+								else
+								{
+									logger.WriteLine($"stopping process {DllHostName}, pid {process.Id}");
+									process.Kill();
+									killed = true;
+
+									if (!process.WaitForExit(3000))
+									{
+										status = FAILURE;
+									}
+								}
+							}
+						}
+					}
+					else
+					{
+						logger.WriteLine($"{DllHostName} process not found");
+					}
+				}
+			}
+
+			if (killed && status == SUCCESS)
+			{
+				using (var searcher = new ManagementObjectSearcher(sql))
+				{
+					using (var collection = searcher.Get())
+					{
+						if (collection.Count == 0)
+						{
+							logger.WriteLine($"{DllHostName} process termination confirmed");
+						}
+						else
+						{
+							logger.WriteLine($"{DllHostName} process still running after 3 seconds");
+							status = FAILURE;
+						}
+					}
+				}
+			}
+
+			return status;
+		}
+
+
+		private int StopOneNote()
 		{
 			var status = SUCCESS;
 			var killed = false;
@@ -78,11 +162,11 @@ namespace OneMoreSetupActions
 				{
 					if (process == null)
 					{
-						logger.WriteLine("process termination confirmed");
+						logger.WriteLine($"{OneNoteName} process termination confirmed");
 					}
 					else
 					{
-						logger.WriteLine("process still running after 3 seconds");
+						logger.WriteLine($"{OneNoteName} process still running after 3 seconds");
 						status = FAILURE;
 					}
 				}
