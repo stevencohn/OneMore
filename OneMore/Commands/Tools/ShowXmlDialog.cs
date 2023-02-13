@@ -26,7 +26,6 @@ namespace River.OneMoreAddIn.Commands
 	internal partial class ShowXmlDialog : LocalizableForm
 	{
 		private int findIndex = -1;
-		private bool savedSettings;
 
 
 		public ShowXmlDialog()
@@ -152,33 +151,30 @@ namespace River.OneMoreAddIn.Commands
 
 		private void Close(object sender, EventArgs e)
 		{
-			SaveSettings();
 			Close();
 		}
 
 
-		private void SaveSettings()
+		protected override void OnFormClosing(FormClosingEventArgs e)
 		{
-			if (!savedSettings)
+			var settings = new SettingsProvider();
+			if (saveBox.Checked)
 			{
-				var settings = new SettingsProvider();
-				if (saveBox.Checked)
-				{
-					var collection = settings.GetCollection("XmlDialog");
-					collection.Add("left", Left);
-					collection.Add("top", Top);
-					collection.Add("width", Width);
-					collection.Add("height", Height);
-					settings.SetCollection(collection);
-				}
-				else
-				{
-					settings.RemoveCollection("XmlDialog");
-				}
-
-				settings.Save();
-				savedSettings = true;
+				var collection = settings.GetCollection("XmlDialog");
+				collection.Add("left", Left);
+				collection.Add("top", Top);
+				collection.Add("width", Width);
+				collection.Add("height", Height);
+				settings.SetCollection(collection);
 			}
+			else
+			{
+				settings.RemoveCollection("XmlDialog");
+			}
+
+			settings.Save();
+
+			base.OnFormClosing(e);
 		}
 
 
@@ -453,8 +449,6 @@ namespace River.OneMoreAddIn.Commands
 					logger.WriteLine("error updating page content", exc);
 				}
 			}
-
-			SaveSettings();
 		}
 
 
