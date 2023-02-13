@@ -93,6 +93,9 @@ namespace River.OneMoreAddIn
 				}
 				catch (Exception exc)
 				{
+					logger.WriteLine("could not load favorites.xml; trying to dump its contents...", exc);
+					root = null;
+
 					try
 					{
 						logger.WriteLine(File.ReadAllText(path));
@@ -102,8 +105,6 @@ namespace River.OneMoreAddIn
 						logger.WriteLine("could not dump favorites.xml; possibly locked", e2);
 
 					}
-					logger.WriteLine("could not load favorites.xml", exc);
-					root = null;
 				}
 			}
 
