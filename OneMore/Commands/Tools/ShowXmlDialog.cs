@@ -106,7 +106,7 @@ namespace River.OneMoreAddIn.Commands
 			pageLink.Text = info.Link;
 
 			var settings = new SettingsProvider().GetCollection("XmlDialog");
-			saveBox.Checked = settings.Count > 0;
+			saveWindowBox.Checked = settings.Count > 0;
 
 			Width = settings.Get("width",
 				Math.Min(2000, (int)(Screen.PrimaryScreen.WorkingArea.Width * 0.8)));
@@ -142,7 +142,7 @@ namespace River.OneMoreAddIn.Commands
 			else if (keyData == Keys.F3)
 			{
 				// Find next
-				FindClicked(null, null);
+				FindOnClick(null, null);
 			}
 
 			return base.ProcessDialogKey(keyData);
@@ -158,7 +158,7 @@ namespace River.OneMoreAddIn.Commands
 		protected override void OnFormClosing(FormClosingEventArgs e)
 		{
 			var settings = new SettingsProvider();
-			if (saveBox.Checked)
+			if (saveWindowBox.Checked)
 			{
 				var collection = settings.GetCollection("XmlDialog");
 				collection.Add("left", Left);
@@ -180,7 +180,7 @@ namespace River.OneMoreAddIn.Commands
 
 		// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-		private void FindTextChanged(object sender, EventArgs e)
+		private void FindOptionsOnTextChanged(object sender, EventArgs e)
 		{
 			if (findBox.Text.Length == 0)
 			{
@@ -195,7 +195,7 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private void FindClicked(object sender, EventArgs e)
+		private void FindOnClick(object sender, EventArgs e)
 		{
 			var box = tabs.TabPages[tabs.SelectedIndex].Controls[0] as RichTextBox;
 			var index = FindNext(box, findBox.Text);
@@ -224,17 +224,17 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private void FindBoxKeyUP(object sender, KeyEventArgs e)
+		private void FindOnKeyUp(object sender, KeyEventArgs e)
 		{
 			if (e.KeyCode == Keys.Enter)
 			{
-				FindClicked(sender, e);
+				FindOnClick(sender, e);
 				e.Handled = true;
 			}
 		}
 
 
-		private void XmlBoxKeyUp(object sender, KeyEventArgs e)
+		private void XmlBoxKeyHandlerOnKeyUp(object sender, KeyEventArgs e)
 		{
 			if (e.Control && (e.KeyCode == Keys.F))
 			{
@@ -243,12 +243,12 @@ namespace River.OneMoreAddIn.Commands
 			else if (sender == pageBox && e.KeyCode == Keys.F3)
 			{
 				// Find next
-				FindClicked(sender, e);
+				FindOnClick(sender, e);
 			}
 		}
 
 
-		private void ChangeWrap(object sender, EventArgs e)
+		private void ToggleWrapOnCheckedChanged(object sender, EventArgs e)
 		{
 			var box = tabs.TabPages[tabs.SelectedIndex].Controls[0] as RichTextBox;
 			box.WordWrap = wrapBox.Checked;
@@ -256,7 +256,7 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private void SelectAllClicked(object sender, EventArgs e)
+		private void SelectAllOnClick(object sender, EventArgs e)
 		{
 			var box = tabs.TabPages[tabs.SelectedIndex].Controls[0] as RichTextBox;
 			box.SelectAll();
@@ -266,7 +266,7 @@ namespace River.OneMoreAddIn.Commands
 
 		// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-		private void ScopeSelectedValueChanged(object sender, EventArgs e)
+		private void ChangeScopeOnSelectedValueChanged(object sender, EventArgs e)
 		{
 			if (Enum.TryParse<OneNote.PageDetail>(scopeBox.Text, out var info))
 			{
@@ -288,22 +288,40 @@ namespace River.OneMoreAddIn.Commands
 
 		private void HideCheckedChanged(object sender, EventArgs e)
 		{
-			ScopeSelectedValueChanged(sender, e);
-			okButton.Enabled = !hideBox.Checked;
+			ChangeScopeOnSelectedValueChanged(sender, e);
+			okButton.Enabled = !editedByBox.Checked;
 		}
 
 
-		private void NewlineChanged(object sender, EventArgs e)
+		private void ToggleMultilineOnCheckedChanged(object sender, EventArgs e)
 		{
-			ScopeSelectedValueChanged(sender, e);
+			ChangeScopeOnSelectedValueChanged(sender, e);
 		}
+
+
+		private void ToggleEditModeOnCheckedChanged(object sender, EventArgs e)
+		{
+			okButton.Enabled = editModeBox.Checked;
+			pageBox.ReadOnly = !editModeBox.Checked;
+
+			if (editModeBox.Checked)
+			{
+				editedByBox.Checked = false;
+				editedByBox.Enabled = false;
+			}
+			else
+			{
+				editedByBox.Enabled = true;
+			}
+		}
+
 
 
 		private void ApplyHideOptions()
 		{
 			var root = XElement.Parse(pageBox.Text);
 
-			if (hideBox.Checked)
+			if (editedByBox.Checked)
 			{
 				// EditedByAttributes and others
 				root.Descendants().Attributes().Where(a =>
@@ -340,7 +358,7 @@ namespace River.OneMoreAddIn.Commands
 					});
 			}
 
-			if (hideLFBox.Checked)
+			if (linefeedBox.Checked)
 			{
 				var nodes = root.DescendantNodes().OfType<XCData>();
 				if (!nodes.IsNullOrEmpty())
@@ -357,7 +375,7 @@ namespace River.OneMoreAddIn.Commands
 				}
 			}
 
-			pageBox.Text = newlineBox.Checked
+			pageBox.Text = multilineBox.Checked
 				? root.PrettyPrint()
 				: root.ToString(SaveOptions.None);
 
@@ -391,7 +409,7 @@ namespace River.OneMoreAddIn.Commands
 				pageBox.SelectionBackColor = Color.Yellow;
 			}
 
-			if (!hideBox.Checked)
+			if (!editedByBox.Checked)
 			{
 				// author attributes
 				matches = Regex.Matches(pageBox.Text,
@@ -421,7 +439,7 @@ namespace River.OneMoreAddIn.Commands
 
 
 		// async event handlers should be be declared 'async void'
-		private async void Update(object sender, EventArgs e)
+		private async void UpdateOnClick(object sender, EventArgs e)
 		{
 			var result = MessageBox.Show(
 				"Are you sure? This may corrupt the current page.",
