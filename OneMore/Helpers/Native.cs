@@ -36,6 +36,7 @@ namespace River.OneMoreAddIn
 		public const int WM_SETCURSOR = 0x0020;
 		public const int WM_SETREDRAW = 11;
 		public const int WM_SYSCOMMAND = 0x112;
+		public const int WM_USER = 0x0400; // 1024
 
 		public const int MF_BYPOSITION = 0x400;
 
@@ -43,6 +44,9 @@ namespace River.OneMoreAddIn
 		public const uint WINEVENT_SKIPOWNTHREAD = 0x0001;
 		public const uint WINEVENT_SKIPOWNPROCESS = 0x0002;
 		public const uint WINEVENT_INCONTEXT = 0x0004;
+
+		public const int EM_GETEVENTMASK = WM_USER + 59; // 1083
+		public const int EM_SETEVENTMASK = WM_USER + 69; // 1093
 
 		public const uint EVENT_SYSTEM_FOREGROUND = 3;
 		public const uint EVENT_SYSTEM_MINIMIZESTART = 22;

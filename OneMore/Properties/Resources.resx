@@ -4163,16 +4163,16 @@ Search engines will appear in the page context menu, right-click.</value>
     <value>OneMore XML</value>
     <comment>dialog title</comment>
   </data>
-  <data name="ShowXmlDialog_hideBox.Text" xml:space="preserve">
-    <value>Hide edited-by attributes (uncheck to edit page)</value>
+  <data name="ShowXmlDialog_editModeBox.Text" xml:space="preserve">
+    <value>Enable edit mode</value>
     <comment>checkbox</comment>
   </data>
-  <data name="ShowXmlDialog_hideLFBox.Text" xml:space="preserve">
+  <data name="ShowXmlDialog_hideEditedByBox.Text" xml:space="preserve">
+    <value>Hide edited-by attributes</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="ShowXmlDialog_linefeedBox.Text" xml:space="preserve">
     <value>Remove LF from CDATA</value>
-    <comment>checkbox</comment>
-  </data>
-  <data name="ShowXmlDialog_hidePidBox.Text" xml:space="preserve">
-    <value>Hide PID</value>
     <comment>checkbox</comment>
   </data>
   <data name="ShowXmlDialog_manualLabel.Text" xml:space="preserve">
@@ -4183,6 +4183,10 @@ Search engines will appear in the page context menu, right-click.</value>
     <value>Manual lookup</value>
     <comment>tab</comment>
   </data>
+  <data name="ShowXmlDialog_multilineBox.Text" xml:space="preserve">
+    <value>Attributes on new lines</value>
+    <comment>checkbox</comment>
+  </data>
   <data name="ShowXmlDialog_nbPagesTab.Text" xml:space="preserve">
     <value>Notebook with Pages</value>
     <comment>tab</comment>
@@ -4191,9 +4195,9 @@ Search engines will appear in the page context menu, right-click.</value>
     <value>Notebook with Sections</value>
     <comment>tab</comment>
   </data>
-  <data name="ShowXmlDialog_newlineBox.Text" xml:space="preserve">
-    <value>Attributes on new lines</value>
-    <comment>checkbox</comment>
+  <data name="ShowXmlDialog_noHierarchy" xml:space="preserve">
+    <value>No hierarchy</value>
+    <comment>message</comment>
   </data>
   <data name="ShowXmlDialog_notebooksTab.Text" xml:space="preserve">
     <value>Notebooks</value>
@@ -4215,17 +4219,25 @@ Search engines will appear in the page context menu, right-click.</value>
     <value>Path:</value>
     <comment>label</comment>
   </data>
-  <data name="ShowXmlDialog_saveBox.Text" xml:space="preserve">
-    <value>Save window location</value>
+  <data name="ShowXmlDialog_pidBox.Text" xml:space="preserve">
+    <value>Hide PID</value>
     <comment>checkbox</comment>
   </data>
-  <data name="ShowXmlDialog_sectionTab.Text" xml:space="preserve">
-    <value>Section</value>
-    <comment>tab</comment>
+  <data name="ShowXmlDialog_saveWindowBox.Text" xml:space="preserve">
+    <value>Save window location</value>
+    <comment>checkbox</comment>
   </data>
   <data name="ShowXmlDialog_selectButton.Text" xml:space="preserve">
     <value>Select all</value>
     <comment>button</comment>
+  </data>
+  <data name="ShowXmlDialog_WARNING" xml:space="preserve">
+    <value>This is a dangerous operation!
+
+Incorrect changes may result in lost data.
+
+Are you sure you want to continue?</value>
+    <comment>confirmation</comment>
   </data>
   <data name="ShowXmlDialog_wrapBox.Text" xml:space="preserve">
     <value>Wrap text</value>
@@ -4826,6 +4838,9 @@ In this section</value>
   </data>
   <data name="word_Font" xml:space="preserve">
     <value>Font</value>
+  </data>
+  <data name="word_Function" xml:space="preserve">
+    <value>Function</value>
   </data>
   <data name="word_General" xml:space="preserve">
     <value>General</value>

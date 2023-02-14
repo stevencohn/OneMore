@@ -188,6 +188,10 @@ OneNote wordt automatisch gesloten</value>
     <value>Opdrachtaliassen definiëren voor gebruik in het opdrachtenpalet</value>
     <comment>intro box</comment>
   </data>
+  <data name="AliasSheet_Title" xml:space="preserve">
+    <value>Commando aliassen</value>
+    <comment>sheet</comment>
+  </data>
   <data name="AnalyzeCommand_CacheSummary" xml:space="preserve">
     <value>De cache is een interne map die wordt beheerd door OneNote om de prestaties te optimaliseren. </value>
     <comment>summary text</comment>
@@ -828,6 +832,18 @@ OneNote wordt automatisch gesloten</value>
   <data name="DownArrow" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>images\downarrow.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="DrawPlantUml_broken" xml:space="preserve">
+    <value>PlantUML-tekst is ongeldig of kan geen verband vinden tussen tekst en afbeelding</value>
+    <comment>error message</comment>
+  </data>
+  <data name="DrawPlantUml_EmptySelection" xml:space="preserve">
+    <value>Lege selectie. Selecteer een geldig blok PlantUML-tekst.</value>
+    <comment>error message</comment>
+  </data>
+  <data name="DrawPlantUml_Error" xml:space="preserve">
+    <value>Ongeldige syntaxis of onvolledige selectie van PlantUML</value>
+    <comment>error message</comment>
+  </data>
   <data name="EditTableThemesDialog_colorsTab.Text" xml:space="preserve">
     <value>Kleuren</value>
     <comment>tab</comment>
@@ -1125,6 +1141,14 @@ OneNote-bestand (*.one)</value>
   <data name="Family" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Emoji\Family.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="Favorites_suspect" xml:space="preserve">
+    <value>Pagina niet gevonden; het kan zijn hernoemd of verplaatst</value>
+    <comment>tooltip</comment>
+  </data>
+  <data name="Favorites_unknown" xml:space="preserve">
+    <value>Pagina niet meer gevonden; het kan zijn verwijderd</value>
+    <comment>tooltip</comment>
+  </data>
   <data name="FavoritesFilename" xml:space="preserve">
     <value>Favorites.xml</value>
     <comment>SKIP, filename</comment>
@@ -1304,6 +1328,41 @@ Symbolen: PI, E</value>
     <value>Markeerstift Thema's</value>
     <comment>sheet intro</comment>
   </data>
+  <data name="ImagesSheet_imageBrowser" xml:space="preserve">
+    <value>Afbeeldingsviewer</value>
+  </data>
+  <data name="ImagesSheet_imageViewerLabel.Text" xml:space="preserve">
+    <value>Externe afbeeldingsviewer (standaard indien leeg is mspaint)</value>
+    <comment>label</comment>
+  </data>
+  <data name="ImagesSheet_introBox.Text" xml:space="preserve">
+    <value>Pas de standaardinstellingen voor afbeeldingsopdrachten aan</value>
+    <comment>label</comment>
+  </data>
+  <data name="ImagesSheet_plantAfterBox.Text" xml:space="preserve">
+    <value>Tekening invoegen na PlantUML-tekst</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="ImagesSheet_plantCollapseBox.Text" xml:space="preserve">
+    <value>PlantUML-tekst samenvouwen</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="ImagesSheet_plantGroup.Text" xml:space="preserve">
+    <value>PlantUML-opties</value>
+    <comment>groupbox</comment>
+  </data>
+  <data name="ImagesSheet_resizeGroup.Text" xml:space="preserve">
+    <value>Formaat wijzigen</value>
+    <comment>groupsbox</comment>
+  </data>
+  <data name="ImagesSheet_Title" xml:space="preserve">
+    <value>Afbeeldingen</value>
+    <comment>sheet</comment>
+  </data>
+  <data name="ImagesSheet_widthLabel.Text" xml:space="preserve">
+    <value>Voorkeur formaat wijzigen breedte</value>
+    <comment>label</comment>
+  </data>
   <data name="ImportDialog_fileLabel.Text" xml:space="preserve">
     <value>Het dossier:</value>
     <comment>label</comment>
@@ -1323,6 +1382,10 @@ Symbolen: PI, E</value>
   <data name="ImportDialog_OpenFileTitle" xml:space="preserve">
     <value>Kies een bestand om te importeren</value>
     <comment>openfiledialog title</comment>
+  </data>
+  <data name="ImportDialog_pdfGroup.Text" xml:space="preserve">
+    <value>PDF-opties</value>
+    <comment>group box</comment>
   </data>
   <data name="ImportDialog_powerGroup.Text" xml:space="preserve">
     <value>Powerpoint-opties</value>
@@ -1614,6 +1677,17 @@ Symbolen: PI, E</value>
     <value>Geen referenties gevonden. </value>
     <comment>message</comment>
   </data>
+  <data name="LoadStyleTheme_errorLoading" xml:space="preserve">
+    <value>Kan bestand niet laden of bestand is leeg</value>
+  </data>
+  <data name="LoadStyleTheme_filter" xml:space="preserve">
+    <value>Stijldefinities (*.xml)|*.xml|Alle bestanden (*.*)|*.*</value>
+    <comment>OpenFileDialog filter</comment>
+  </data>
+  <data name="LoadStyleTheme_Title" xml:space="preserve">
+    <value>Laad stijlthema</value>
+    <comment>OpenFileDialog title</comment>
+  </data>
   <data name="Logo" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>images\logo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -1816,6 +1890,38 @@ Verschoven</value>
     <value>Paginakleur</value>
     <comment>color popup dialog title</comment>
   </data>
+  <data name="PageColorDialog_applyThemeBox.Text" xml:space="preserve">
+    <value>Pas stijlen toe op deze pagina</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="PageColorDialog_contrastTooltip" xml:space="preserve">
+    <value>Er is mogelijk onvoldoende contrast tussen de tekstkleur en de paginakleur</value>
+    <comment>tooltip</comment>
+  </data>
+  <data name="PageColorDialog_contrastWarning" xml:space="preserve">
+    <value>De tekst is mogelijk onleesbaar</value>
+    <comment>label</comment>
+  </data>
+  <data name="PageColorDialog_currentThemeLabel.Text" xml:space="preserve">
+    <value>De huidige stijldefinitie is "{0}"</value>
+    <comment>label</comment>
+  </data>
+  <data name="PageColorDialog_customLabel" xml:space="preserve">
+    <value>Klik hier om uw eigen aangepaste kleur te wijzigen</value>
+    <comment>label</comment>
+  </data>
+  <data name="PageColorDialog_loadThemeLink.Text" xml:space="preserve">
+    <value>Laad verschillende stijlen</value>
+    <comment>linklabel</comment>
+  </data>
+  <data name="PageColorDialog_noLabel.Text" xml:space="preserve">
+    <value>of kies geen paginakleur</value>
+    <comment>label</comment>
+  </data>
+  <data name="PageColorDialog_omLabel" xml:space="preserve">
+    <value>Klik hier om een ​​voorgedefinieerde kleur te selecteren</value>
+    <comment>label</comment>
+  </data>
   <data name="Passwords" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Emoji\Passwords.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -1829,6 +1935,15 @@ Verschoven</value>
   </data>
   <data name="Pencil" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>emoji\pencil.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="phrase_AppendToThisPage" xml:space="preserve">
+    <value>Voeg toe aan deze pagina</value>
+  </data>
+  <data name="phrase_CreateANewPage" xml:space="preserve">
+    <value>Maak een nieuwe pagina aan</value>
+  </data>
+  <data name="phrase_PathNotFound" xml:space="preserve">
+    <value>Pad niet gevonden</value>
   </data>
   <data name="Plugin_InvalidSchema" xml:space="preserve">
     <value>Ongeldige XML gedetecteerd. </value>
@@ -1927,6 +2042,10 @@ Huidig ​​notitieboek</value>
     <value>Beheer mijn plug-ins</value>
     <comment>label</comment>
   </data>
+  <data name="PluginsSheet_Title" xml:space="preserve">
+    <value>Plug-ins</value>
+    <comment>sheet title EDIT</comment>
+  </data>
   <data name="Pronunciate_EmptyWord" xml:space="preserve">
     <value>Het geselecteerde woord mag niet leeg zijn</value>
     <comment>error message box</comment>
@@ -1967,6 +2086,66 @@ ISO-code then comma then language name</comment>
   </data>
   <data name="Pushpin" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>emoji\pushpin.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="QuickNotesSheet_groupingBox.Text" xml:space="preserve">
+    <value>Werkweek (2023-02-13 W7)
+Maand (2023-02)
+Kwartaal (2023 Q1)
+Jaar (2023)
+#Trefwoord in de eerste regel van de opmerking</value>
+    <comment>combobox</comment>
+  </data>
+  <data name="QuickNotesSheet_groupingLabel.Text" xml:space="preserve">
+    <value>Groepeer in secties op basis van</value>
+    <comment>label</comment>
+  </data>
+  <data name="QuickNotesSheet_introBox.Text" xml:space="preserve">
+    <value>Pas het gedrag van de opdracht Snelle notities organiseren aan</value>
+    <comment>textbox</comment>
+  </data>
+  <data name="QuickNotesSheet_notebookButton.Text" xml:space="preserve">
+    <value>Verplaats Quick Notes naar dit notitieboek</value>
+    <comment>radio</comment>
+  </data>
+  <data name="QuickNotesSheet_notebookLink.Text" xml:space="preserve">
+    <value>Klik hier om het notitieboek te selecteren</value>
+    <comment>linklabel</comment>
+  </data>
+  <data name="QuickNotesSheet_sectionButton.Text" xml:space="preserve">
+    <value>Verplaats Quick Notes naar deze sectie</value>
+    <comment>radio</comment>
+  </data>
+  <data name="QuickNotesSheet_sectionLink.Text" xml:space="preserve">
+    <value>Klik hier om de sectie te selecteren</value>
+    <comment>linklabel</comment>
+  </data>
+  <data name="QuickNotesSheet_SelectNotebookIntro" xml:space="preserve">
+    <value>Selecteer het notitieboek dat wordt gebruikt om uw Quick Notes te ordenen</value>
+    <comment>quick filing dialog intro</comment>
+  </data>
+  <data name="QuickNotesSheet_SelectNotebookTitle" xml:space="preserve">
+    <value>Selecteer Notitieboekje</value>
+    <comment>quick filing dialog title</comment>
+  </data>
+  <data name="QuickNotesSheet_SelectSectionIntro" xml:space="preserve">
+    <value>Selecteer de sectie die wordt gebruikt om uw Quick Notes te ordenen</value>
+    <comment>quick filing dialog intro</comment>
+  </data>
+  <data name="QuickNotesSheet_SelectSectionTitle" xml:space="preserve">
+    <value>Selecteer Sectie</value>
+    <comment>quick filing dialog title</comment>
+  </data>
+  <data name="QuickNotesSheet_stampBox.Text" xml:space="preserve">
+    <value>Plaats vóór de titel de datum waarop de notitie is gemaakt</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="QuickNotesSheet_Title" xml:space="preserve">
+    <value>Snelle notities</value>
+    <comment>sheet title</comment>
+  </data>
+  <data name="QuickNotesSheet_titleBox.Text" xml:space="preserve">
+    <value>Stel de paginatitel in op de eerste weergavewoorden van de notitie</value>
+    <comment>checkbox</comment>
   </data>
   <data name="RecalculateFormulaCommand_NoFormula" xml:space="preserve">
     <value>Geen formule gevonden in de geselecteerde tabel</value>
@@ -2290,6 +2469,10 @@ Kleinere afbeeldingen niet vergroten</value>
     <value>Vooraf ingesteld</value>
     <comment>radio</comment>
   </data>
+  <data name="ResizeImagesDialog_resetLinkLabel.Text" xml:space="preserve">
+    <value>Waarden resetten</value>
+    <comment>link label</comment>
+  </data>
   <data name="ResizeImagesDialog_sizeLink.Text" xml:space="preserve">
     <value>{0} x {1}</value>
     <comment>width x height</comment>
@@ -2533,6 +2716,10 @@ Polaroid</value>
     <value>Kopiëren over</value>
     <comment>ribbon table</comment>
   </data>
+  <data name="ribCopyAcrossButton_Screentip" xml:space="preserve">
+    <value>Kopieer inhoud over de geselecteerde rijen</value>
+    <comment>ribbon table</comment>
+  </data>
   <data name="ribCopyAsMarkdownButton_Label" xml:space="preserve">
     <value>Kopiëren als Markdown</value>
     <comment>ribbon item</comment>
@@ -2645,6 +2832,14 @@ Polaroid</value>
     <value>Spellingcontrole binnen geselecteerde inhoud uitschakelen</value>
     <comment>ribbon edit</comment>
   </data>
+  <data name="ribDrawPlantUmlButton_Label" xml:space="preserve">
+    <value>Teken PlantUML</value>
+    <comment>ribbon images</comment>
+  </data>
+  <data name="ribDrawPlantUmlButton_Screentip" xml:space="preserve">
+    <value>Render PlantUML- of Graphviz-afbeelding uit geselecteerde tekst</value>
+    <comment>ribbon images</comment>
+  </data>
   <data name="ribDuplicateLineAboveButton_Label" xml:space="preserve">
     <value>Dupliceer alinea hierboven</value>
     <comment>pallette</comment>
@@ -2672,6 +2867,10 @@ Polaroid</value>
   <data name="ribEditStylesButton_Label" xml:space="preserve">
     <value>Stijlen bewerken</value>
     <comment>ribbon styles</comment>
+  </data>
+  <data name="ribEditStylesButton_named" xml:space="preserve">
+    <value>Stijlen bewerken ({0})</value>
+    <comment>ribbon styles with theme name</comment>
   </data>
   <data name="ribEditStylesButton_Screentip" xml:space="preserve">
     <value>Bewerk stijlen of laad verschillende stijlen</value>
@@ -2740,6 +2939,14 @@ Polaroid</value>
   <data name="ribFileMenu_Label" xml:space="preserve">
     <value>Bestand</value>
     <comment>ribbon menu</comment>
+  </data>
+  <data name="ribFileQuickNotesButton_Label" xml:space="preserve">
+    <value>Sla snelle notities op</value>
+    <comment>ribbon file</comment>
+  </data>
+  <data name="ribFileQuickNotesButton_Screentip" xml:space="preserve">
+    <value>Organiseer Quick Notes in een notitieboek of sectie</value>
+    <comment>ribbon file</comment>
   </data>
   <data name="ribFillAcrossButton_Label" xml:space="preserve">
     <value>Vul over</value>
@@ -3127,6 +3334,14 @@ Polaroid</value>
     <value>Nummering van koppen op deze pagina</value>
     <comment>ribbon numbering</comment>
   </data>
+  <data name="ribPageColorButton_Label" xml:space="preserve">
+    <value>Stel de paginakleur in</value>
+    <comment>page context menu</comment>
+  </data>
+  <data name="ribPageColorButton_Screentip" xml:space="preserve">
+    <value>Wijzig de achtergrond van deze pagina in een aangepaste kleur</value>
+    <comment>page context menu</comment>
+  </data>
   <data name="ribPageMenu_Label" xml:space="preserve">
     <value>Bladzijde</value>
     <comment>ribbon menu</comment>
@@ -3238,6 +3453,10 @@ Polaroid</value>
   <data name="ribRemoveCitationsButton_Screentip" xml:space="preserve">
     <value>Verwijder schermknipsels en plak URL-citaten</value>
     <comment>Ribbon OneMore menu item</comment>
+  </data>
+  <data name="ribRemoveDateStampButton_Label" xml:space="preserve">
+    <value>Datumstempels verwijderen</value>
+    <comment>section context menu</comment>
   </data>
   <data name="ribRemoveDuplicatesButton_Label" xml:space="preserve">
     <value>Dubbele pagina's verwijderen</value>
@@ -3652,6 +3871,10 @@ Polaroid</value>
     <value>Gebruik reguliere expressies</value>
     <comment>checkbox</comment>
   </data>
+  <data name="SearchAndReplaceDialog_substitutions" xml:space="preserve">
+    <value>Geldige vervangingsparameters: {0}</value>
+    <comment>status label</comment>
+  </data>
   <data name="SearchAndReplaceDialog_Text" xml:space="preserve">
     <value>Zoek en vervang</value>
     <comment>dialog title</comment>
@@ -3789,6 +4012,10 @@ Zoekmachines verschijnen in het contextmenu van de pagina, klik met de rechtermu
     <value>Markeerstiftthema's</value>
     <comment>treenode</comment>
   </data>
+  <data name="SettingsDialog_imagesNode.Text" xml:space="preserve">
+    <value>Afbeeldingen</value>
+    <comment>treenode</comment>
+  </data>
   <data name="SettingsDialog_keyboardNode.Text" xml:space="preserve">
     <value>Toetsenbord sneltoetsen</value>
     <comment>treenode</comment>
@@ -3799,6 +4026,10 @@ Zoekmachines verschijnen in het contextmenu van de pagina, klik met de rechtermu
   </data>
   <data name="SettingsDialog_pluginsNode.Text" xml:space="preserve">
     <value>Plug-ins</value>
+    <comment>tree node</comment>
+  </data>
+  <data name="SettingsDialog_quickNotesNode.Text" xml:space="preserve">
+    <value>Snelle notities</value>
     <comment>tree node</comment>
   </data>
   <data name="SettingsDialog_Restart" xml:space="preserve">
@@ -3832,16 +4063,16 @@ Zoekmachines verschijnen in het contextmenu van de pagina, klik met de rechtermu
     <value>OneMore XML</value>
     <comment>dialog title</comment>
   </data>
-  <data name="ShowXmlDialog_hideBox.Text" xml:space="preserve">
-    <value>Verberg door bewerkte attributen (vink uit om pagina te bewerken)</value>
+  <data name="ShowXmlDialog_editModeBox.Text" xml:space="preserve">
+    <value>Schakel de bewerkingsmodus in</value>
     <comment>checkbox</comment>
   </data>
-  <data name="ShowXmlDialog_hideLFBox.Text" xml:space="preserve">
+  <data name="ShowXmlDialog_hideEditedByBox.Text" xml:space="preserve">
+    <value>Verberg bewerkt door attributen</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="ShowXmlDialog_linefeedBox.Text" xml:space="preserve">
     <value>Verwijder LF uit CDATA</value>
-    <comment>checkbox</comment>
-  </data>
-  <data name="ShowXmlDialog_hidePidBox.Text" xml:space="preserve">
-    <value>Verberg PID</value>
     <comment>checkbox</comment>
   </data>
   <data name="ShowXmlDialog_manualLabel.Text" xml:space="preserve">
@@ -3852,6 +4083,10 @@ Zoekmachines verschijnen in het contextmenu van de pagina, klik met de rechtermu
     <value>Handmatige opzoeking</value>
     <comment>tab</comment>
   </data>
+  <data name="ShowXmlDialog_multilineBox.Text" xml:space="preserve">
+    <value>Attributen op nieuwe regels</value>
+    <comment>checkbox</comment>
+  </data>
   <data name="ShowXmlDialog_nbPagesTab.Text" xml:space="preserve">
     <value>Notebook met pagina's</value>
     <comment>tab</comment>
@@ -3859,6 +4094,10 @@ Zoekmachines verschijnen in het contextmenu van de pagina, klik met de rechtermu
   <data name="ShowXmlDialog_nbSectionsTab.Text" xml:space="preserve">
     <value>Notebook met secties</value>
     <comment>tab</comment>
+  </data>
+  <data name="ShowXmlDialog_noHierarchy" xml:space="preserve">
+    <value>Geen hiërarchie</value>
+    <comment>message</comment>
   </data>
   <data name="ShowXmlDialog_notebooksTab.Text" xml:space="preserve">
     <value>Notebooks</value>
@@ -3880,13 +4119,25 @@ Zoekmachines verschijnen in het contextmenu van de pagina, klik met de rechtermu
     <value>Pad:</value>
     <comment>label</comment>
   </data>
-  <data name="ShowXmlDialog_sectionTab.Text" xml:space="preserve">
-    <value>Sectie</value>
-    <comment>tab</comment>
+  <data name="ShowXmlDialog_pidBox.Text" xml:space="preserve">
+    <value>PID verbergen</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="ShowXmlDialog_saveWindowBox.Text" xml:space="preserve">
+    <value>Vensterlocatie opslaan</value>
+    <comment>checkbox</comment>
   </data>
   <data name="ShowXmlDialog_selectButton.Text" xml:space="preserve">
     <value>Selecteer alles</value>
     <comment>button</comment>
+  </data>
+  <data name="ShowXmlDialog_WARNING" xml:space="preserve">
+    <value>Dit is een gevaarlijke operatie!
+
+Onjuiste wijzigingen kunnen leiden tot verloren gegevens.
+
+Weet je zeker dat je door wilt gaan?</value>
+    <comment>confirmation</comment>
   </data>
   <data name="ShowXmlDialog_wrapBox.Text" xml:space="preserve">
     <value>Omloop tekst</value>
@@ -4075,6 +4326,10 @@ Notitieboekjes</value>
     <value>Tekst kleur</value>
     <comment>button tip</comment>
   </data>
+  <data name="StyleDialog_darkBox.Text" xml:space="preserve">
+    <value>Bedoeld voor pagina's met een donkere achtergrond</value>
+    <comment>checkbox</comment>
+  </data>
   <data name="StyleDialog_defaultBlackToolStripMenuItem.Text" xml:space="preserve">
     <value>Standaard (zwart)</value>
     <comment>menu item</comment>
@@ -4107,6 +4362,18 @@ Notitieboekjes</value>
     <value>Nieuwe stijl</value>
     <comment>dialog title</comment>
   </data>
+  <data name="StyleDialog_optionsGroup.Text" xml:space="preserve">
+    <value>Opties</value>
+    <comment>groupbox</comment>
+  </data>
+  <data name="StyleDialog_pageColorBox.Text" xml:space="preserve">
+    <value>Wijzig de paginakleur bij het toepassen van deze stijlen</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="StyleDialog_pageColorLink.Text" xml:space="preserve">
+    <value>Klik hier om de paginakleur te selecteren</value>
+    <comment>linklabel</comment>
+  </data>
   <data name="StyleDialog_reorderButton.Text" xml:space="preserve">
     <value>Opnieuw ordenen</value>
     <comment>button</comment>
@@ -4114,6 +4381,10 @@ Notitieboekjes</value>
   <data name="StyleDialog_saveButton.Text" xml:space="preserve">
     <value>Opslaan als...</value>
     <comment>menu item</comment>
+  </data>
+  <data name="StyleDialog_saveStylesTitle" xml:space="preserve">
+    <value>Stijlen opslaan</value>
+    <comment>dialog title</comment>
   </data>
   <data name="StyleDialog_spacingLabel.Text" xml:space="preserve">
     <value>Spatiëring:</value>
@@ -4446,6 +4717,12 @@ In deze sectie</value>
   <data name="word_Font" xml:space="preserve">
     <value>Lettertype</value>
   </data>
+  <data name="word_Function" xml:space="preserve">
+    <value>Functie</value>
+  </data>
+  <data name="word_General" xml:space="preserve">
+    <value>Algemeen</value>
+  </data>
   <data name="word_Go" xml:space="preserve">
     <value>Gaan</value>
   </data>
@@ -4469,6 +4746,9 @@ In deze sectie</value>
   </data>
   <data name="word_No" xml:space="preserve">
     <value>Nee</value>
+  </data>
+  <data name="word_Notebook" xml:space="preserve">
+    <value>Notitieboekje</value>
   </data>
   <data name="word_OK" xml:space="preserve">
     <value>Oke</value>
@@ -4514,6 +4794,9 @@ In deze sectie</value>
   </data>
   <data name="word_Scope" xml:space="preserve">
     <value>Domein</value>
+  </data>
+  <data name="word_Section" xml:space="preserve">
+    <value>Sectie</value>
   </data>
   <data name="word_Silenced" xml:space="preserve">
     <value>tot zwijgen gebracht</value>
@@ -4582,273 +4865,5 @@ In deze sectie</value>
   <data name="WordCountsCommand_Title" xml:space="preserve">
     <value>Woorden tellen</value>
     <comment>page title</comment>
-  </data>
-  <data name="ribCopyAcrossButton_Screentip" xml:space="preserve">
-    <value>Kopieer inhoud over de geselecteerde rijen</value>
-    <comment>ribbon table</comment>
-  </data>
-  <data name="phrase_PathNotFound" xml:space="preserve">
-    <value>Pad niet gevonden</value>
-  </data>
-  <data name="ribRemoveDateStampButton_Label" xml:space="preserve">
-    <value>Datumstempels verwijderen</value>
-    <comment>section context menu</comment>
-  </data>
-  <data name="DrawPlantUml_EmptySelection" xml:space="preserve">
-    <value>Lege selectie. Selecteer een geldig blok PlantUML-tekst.</value>
-    <comment>error message</comment>
-  </data>
-  <data name="DrawPlantUml_Error" xml:space="preserve">
-    <value>Ongeldige syntaxis of onvolledige selectie van PlantUML</value>
-    <comment>error message</comment>
-  </data>
-  <data name="ribDrawPlantUmlButton_Label" xml:space="preserve">
-    <value>Teken PlantUML</value>
-    <comment>ribbon images</comment>
-  </data>
-  <data name="ribDrawPlantUmlButton_Screentip" xml:space="preserve">
-    <value>Render PlantUML- of Graphviz-afbeelding uit geselecteerde tekst</value>
-    <comment>ribbon images</comment>
-  </data>
-  <data name="ResizeImagesDialog_resetLinkLabel.Text" xml:space="preserve">
-    <value>Waarden resetten</value>
-    <comment>link label</comment>
-  </data>
-  <data name="ImportDialog_pdfGroup.Text" xml:space="preserve">
-    <value>PDF-opties</value>
-    <comment>group box</comment>
-  </data>
-  <data name="phrase_AppendToThisPage" xml:space="preserve">
-    <value>Voeg toe aan deze pagina</value>
-  </data>
-  <data name="phrase_CreateANewPage" xml:space="preserve">
-    <value>Maak een nieuwe pagina aan</value>
-  </data>
-  <data name="PageColorDialog_applyThemeBox.Text" xml:space="preserve">
-    <value>Pas stijlen toe op deze pagina</value>
-    <comment>checkbox</comment>
-  </data>
-  <data name="PageColorDialog_contrastWarning" xml:space="preserve">
-    <value>De tekst is mogelijk onleesbaar</value>
-    <comment>label</comment>
-  </data>
-  <data name="PageColorDialog_currentThemeLabel.Text" xml:space="preserve">
-    <value>De huidige stijldefinitie is "{0}"</value>
-    <comment>label</comment>
-  </data>
-  <data name="PageColorDialog_customLabel" xml:space="preserve">
-    <value>Klik hier om uw eigen aangepaste kleur te wijzigen</value>
-    <comment>label</comment>
-  </data>
-  <data name="PageColorDialog_loadThemeLink.Text" xml:space="preserve">
-    <value>Laad verschillende stijlen</value>
-    <comment>linklabel</comment>
-  </data>
-  <data name="PageColorDialog_noLabel.Text" xml:space="preserve">
-    <value>of kies geen paginakleur</value>
-    <comment>label</comment>
-  </data>
-  <data name="PageColorDialog_omLabel" xml:space="preserve">
-    <value>Klik hier om een ​​voorgedefinieerde kleur te selecteren</value>
-    <comment>label</comment>
-  </data>
-  <data name="ribPageColorButton_Label" xml:space="preserve">
-    <value>Stel de paginakleur in</value>
-    <comment>page context menu</comment>
-  </data>
-  <data name="ribPageColorButton_Screentip" xml:space="preserve">
-    <value>Wijzig de achtergrond van deze pagina in een aangepaste kleur</value>
-    <comment>page context menu</comment>
-  </data>
-  <data name="LoadStyleTheme_errorLoading" xml:space="preserve">
-    <value>Kan bestand niet laden of bestand is leeg</value>
-  </data>
-  <data name="LoadStyleTheme_filter" xml:space="preserve">
-    <value>Stijldefinities (*.xml)|*.xml|Alle bestanden (*.*)|*.*</value>
-    <comment>OpenFileDialog filter</comment>
-  </data>
-  <data name="LoadStyleTheme_Title" xml:space="preserve">
-    <value>Laad stijlthema</value>
-    <comment>OpenFileDialog title</comment>
-  </data>
-  <data name="ribEditStylesButton_named" xml:space="preserve">
-    <value>Stijlen bewerken ({0})</value>
-    <comment>ribbon styles with theme name</comment>
-  </data>
-  <data name="StyleDialog_darkBox.Text" xml:space="preserve">
-    <value>Bedoeld voor pagina's met een donkere achtergrond</value>
-    <comment>checkbox</comment>
-  </data>
-  <data name="StyleDialog_optionsGroup.Text" xml:space="preserve">
-    <value>Opties</value>
-    <comment>groupbox</comment>
-  </data>
-  <data name="StyleDialog_pageColorBox.Text" xml:space="preserve">
-    <value>Wijzig de paginakleur bij het toepassen van deze stijlen</value>
-    <comment>checkbox</comment>
-  </data>
-  <data name="StyleDialog_pageColorLink.Text" xml:space="preserve">
-    <value>Klik hier om de paginakleur te selecteren</value>
-    <comment>linklabel</comment>
-  </data>
-  <data name="PageColorDialog_contrastTooltip" xml:space="preserve">
-    <value>Er is mogelijk onvoldoende contrast tussen de tekstkleur en de paginakleur</value>
-    <comment>tooltip</comment>
-  </data>
-  <data name="StyleDialog_saveStylesTitle" xml:space="preserve">
-    <value>Stijlen opslaan</value>
-    <comment>dialog title</comment>
-  </data>
-  <data name="ShowXmlDialog_newlineBox.Text" xml:space="preserve">
-    <value>Attributen op nieuwe regels</value>
-    <comment>checkbox</comment>
-  </data>
-  <data name="ShowXmlDialog_saveBox.Text" xml:space="preserve">
-    <value>Vensterlocatie opslaan</value>
-    <comment>checkbox</comment>
-  </data>
-  <data name="SearchAndReplaceDialog_substitutions" xml:space="preserve">
-    <value>Geldige vervangingsparameters: {0}</value>
-    <comment>status label</comment>
-  </data>
-  <data name="ImagesSheet_introBox.Text" xml:space="preserve">
-    <value>Pas de standaardinstellingen voor afbeeldingsopdrachten aan</value>
-    <comment>label</comment>
-  </data>
-  <data name="ImagesSheet_plantAfterBox.Text" xml:space="preserve">
-    <value>Tekening invoegen na PlantUML-tekst</value>
-    <comment>checkbox</comment>
-  </data>
-  <data name="ImagesSheet_plantCollapseBox.Text" xml:space="preserve">
-    <value>PlantUML-tekst samenvouwen</value>
-    <comment>checkbox</comment>
-  </data>
-  <data name="SettingsDialog_imagesNode.Text" xml:space="preserve">
-    <value>Afbeeldingen</value>
-    <comment>treenode</comment>
-  </data>
-  <data name="ImagesSheet_plantGroup.Text" xml:space="preserve">
-    <value>PlantUML-opties</value>
-    <comment>groupbox</comment>
-  </data>
-  <data name="AliasSheet_Title" xml:space="preserve">
-    <value>Commando aliassen</value>
-    <comment>sheet</comment>
-  </data>
-  <data name="ImagesSheet_imageBrowser" xml:space="preserve">
-    <value>Afbeeldingsviewer</value>
-  </data>
-  <data name="ImagesSheet_imageViewerLabel.Text" xml:space="preserve">
-    <value>Externe afbeeldingsviewer (standaard indien leeg is mspaint)</value>
-    <comment>label</comment>
-  </data>
-  <data name="ImagesSheet_resizeGroup.Text" xml:space="preserve">
-    <value>Formaat wijzigen</value>
-    <comment>groupsbox</comment>
-  </data>
-  <data name="ImagesSheet_Title" xml:space="preserve">
-    <value>Afbeeldingen</value>
-    <comment>sheet</comment>
-  </data>
-  <data name="ImagesSheet_widthLabel.Text" xml:space="preserve">
-    <value>Voorkeur formaat wijzigen breedte</value>
-    <comment>label</comment>
-  </data>
-  <data name="PluginsSheet_Title" xml:space="preserve">
-    <value>Plug-ins</value>
-    <comment>sheet title EDIT</comment>
-  </data>
-  <data name="word_General" xml:space="preserve">
-    <value>Algemeen</value>
-  </data>
-  <data name="DrawPlantUml_broken" xml:space="preserve">
-    <value>PlantUML-tekst is ongeldig of kan geen verband vinden tussen tekst en afbeelding</value>
-    <comment>error message</comment>
-  </data>
-  <data name="QuickNotesSheet_groupingBox.Text" xml:space="preserve">
-    <value>Werkweek (2023-02-13 W7)
-Maand (2023-02)
-Kwartaal (2023 Q1)
-Jaar (2023)
-#Trefwoord in de eerste regel van de opmerking</value>
-    <comment>combobox</comment>
-  </data>
-  <data name="QuickNotesSheet_groupingLabel.Text" xml:space="preserve">
-    <value>Groepeer in secties op basis van</value>
-    <comment>label</comment>
-  </data>
-  <data name="QuickNotesSheet_introBox.Text" xml:space="preserve">
-    <value>Pas het gedrag van de opdracht Snelle notities organiseren aan</value>
-    <comment>textbox</comment>
-  </data>
-  <data name="QuickNotesSheet_notebookButton.Text" xml:space="preserve">
-    <value>Verplaats Quick Notes naar dit notitieboek</value>
-    <comment>radio</comment>
-  </data>
-  <data name="QuickNotesSheet_notebookLink.Text" xml:space="preserve">
-    <value>Klik hier om het notitieboek te selecteren</value>
-    <comment>linklabel</comment>
-  </data>
-  <data name="QuickNotesSheet_sectionButton.Text" xml:space="preserve">
-    <value>Verplaats Quick Notes naar deze sectie</value>
-    <comment>radio</comment>
-  </data>
-  <data name="QuickNotesSheet_sectionLink.Text" xml:space="preserve">
-    <value>Klik hier om de sectie te selecteren</value>
-    <comment>linklabel</comment>
-  </data>
-  <data name="QuickNotesSheet_SelectNotebookIntro" xml:space="preserve">
-    <value>Selecteer het notitieboek dat wordt gebruikt om uw Quick Notes te ordenen</value>
-    <comment>quick filing dialog intro</comment>
-  </data>
-  <data name="QuickNotesSheet_SelectNotebookTitle" xml:space="preserve">
-    <value>Selecteer Notitieboekje</value>
-    <comment>quick filing dialog title</comment>
-  </data>
-  <data name="QuickNotesSheet_SelectSectionIntro" xml:space="preserve">
-    <value>Selecteer de sectie die wordt gebruikt om uw Quick Notes te ordenen</value>
-    <comment>quick filing dialog intro</comment>
-  </data>
-  <data name="QuickNotesSheet_SelectSectionTitle" xml:space="preserve">
-    <value>Selecteer Sectie</value>
-    <comment>quick filing dialog title</comment>
-  </data>
-  <data name="QuickNotesSheet_stampBox.Text" xml:space="preserve">
-    <value>Plaats vóór de titel de datum waarop de notitie is gemaakt</value>
-    <comment>checkbox</comment>
-  </data>
-  <data name="QuickNotesSheet_Title" xml:space="preserve">
-    <value>Snelle notities</value>
-    <comment>sheet title</comment>
-  </data>
-  <data name="QuickNotesSheet_titleBox.Text" xml:space="preserve">
-    <value>Stel de paginatitel in op de eerste weergavewoorden van de notitie</value>
-    <comment>checkbox</comment>
-  </data>
-  <data name="SettingsDialog_quickNotesNode.Text" xml:space="preserve">
-    <value>Snelle notities</value>
-    <comment>tree node</comment>
-  </data>
-  <data name="word_Notebook" xml:space="preserve">
-    <value>Notitieboekje</value>
-  </data>
-  <data name="word_Section" xml:space="preserve">
-    <value>Sectie</value>
-  </data>
-  <data name="ribFileQuickNotesButton_Label" xml:space="preserve">
-    <value>Sla snelle notities op</value>
-    <comment>ribbon file</comment>
-  </data>
-  <data name="ribFileQuickNotesButton_Screentip" xml:space="preserve">
-    <value>Organiseer Quick Notes in een notitieboek of sectie</value>
-    <comment>ribbon file</comment>
-  </data>
-  <data name="Favorites_suspect" xml:space="preserve">
-    <value>Pagina niet gevonden; het kan zijn hernoemd of verplaatst</value>
-    <comment>tooltip</comment>
-  </data>
-  <data name="Favorites_unknown" xml:space="preserve">
-    <value>Pagina niet meer gevonden; het kan zijn verwijderd</value>
-    <comment>tooltip</comment>
   </data>
 </root>

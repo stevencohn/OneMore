@@ -9335,29 +9335,29 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Hide edited-by attributes (uncheck to edit page).
+        ///   Looks up a localized string similar to Enable edit mode.
         /// </summary>
-        internal static string ShowXmlDialog_hideBox_Text {
+        internal static string ShowXmlDialog_editModeBox_Text {
             get {
-                return ResourceManager.GetString("ShowXmlDialog_hideBox.Text", resourceCulture);
+                return ResourceManager.GetString("ShowXmlDialog_editModeBox.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hide edited-by attributes.
+        /// </summary>
+        internal static string ShowXmlDialog_hideEditedByBox_Text {
+            get {
+                return ResourceManager.GetString("ShowXmlDialog_hideEditedByBox.Text", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Remove LF from CDATA.
         /// </summary>
-        internal static string ShowXmlDialog_hideLFBox_Text {
+        internal static string ShowXmlDialog_linefeedBox_Text {
             get {
-                return ResourceManager.GetString("ShowXmlDialog_hideLFBox.Text", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Hide PID.
-        /// </summary>
-        internal static string ShowXmlDialog_hidePidBox_Text {
-            get {
-                return ResourceManager.GetString("ShowXmlDialog_hidePidBox.Text", resourceCulture);
+                return ResourceManager.GetString("ShowXmlDialog_linefeedBox.Text", resourceCulture);
             }
         }
         
@@ -9380,6 +9380,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Attributes on new lines.
+        /// </summary>
+        internal static string ShowXmlDialog_multilineBox_Text {
+            get {
+                return ResourceManager.GetString("ShowXmlDialog_multilineBox.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Notebook with Pages.
         /// </summary>
         internal static string ShowXmlDialog_nbPagesTab_Text {
@@ -9398,11 +9407,11 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Attributes on new lines.
+        ///   Looks up a localized string similar to No hierarchy.
         /// </summary>
-        internal static string ShowXmlDialog_newlineBox_Text {
+        internal static string ShowXmlDialog_noHierarchy {
             get {
-                return ResourceManager.GetString("ShowXmlDialog_newlineBox.Text", resourceCulture);
+                return ResourceManager.GetString("ShowXmlDialog_noHierarchy", resourceCulture);
             }
         }
         
@@ -9452,20 +9461,20 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Save window location.
+        ///   Looks up a localized string similar to Hide PID.
         /// </summary>
-        internal static string ShowXmlDialog_saveBox_Text {
+        internal static string ShowXmlDialog_pidBox_Text {
             get {
-                return ResourceManager.GetString("ShowXmlDialog_saveBox.Text", resourceCulture);
+                return ResourceManager.GetString("ShowXmlDialog_pidBox.Text", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Section.
+        ///   Looks up a localized string similar to Save window location.
         /// </summary>
-        internal static string ShowXmlDialog_sectionTab_Text {
+        internal static string ShowXmlDialog_saveWindowBox_Text {
             get {
-                return ResourceManager.GetString("ShowXmlDialog_sectionTab.Text", resourceCulture);
+                return ResourceManager.GetString("ShowXmlDialog_saveWindowBox.Text", resourceCulture);
             }
         }
         
@@ -9484,6 +9493,19 @@ namespace River.OneMoreAddIn.Properties {
         internal static string ShowXmlDialog_Text {
             get {
                 return ResourceManager.GetString("ShowXmlDialog.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This is a dangerous operation!
+        ///
+        ///Incorrect changes may result in lost data.
+        ///
+        ///Are you sure you want to continue?.
+        /// </summary>
+        internal static string ShowXmlDialog_WARNING {
+            get {
+                return ResourceManager.GetString("ShowXmlDialog_WARNING", resourceCulture);
             }
         }
         
@@ -10935,6 +10957,15 @@ namespace River.OneMoreAddIn.Properties {
         internal static string word_Font {
             get {
                 return ResourceManager.GetString("word_Font", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Function.
+        /// </summary>
+        internal static string word_Function {
+            get {
+                return ResourceManager.GetString("word_Function", resourceCulture);
             }
         }
         

@@ -48,17 +48,21 @@ namespace River.OneMoreAddIn.Commands
 					"wrapBox",
 					"selectButton",
 					// pagePanel
+					"hideEditedByBox",
+					"multilineBox",
+					"linefeedBox",
+					"editModeBox",
+					"saveWindowBox",
 					"pageInfoLabel",
-					"hideBox",
-					"hideLFBox",
-					"newlineBox",
-					"saveBox",
 					// manualPanel
+					"hideEditedByBox2=ShowXmlDialog_hideEditedByBox.Text",
+					"multilineBox2=ShowXmlDialog_multilineBox.Text",
+					"pidBox",
 					"manualLabel",
-					"hidePidBox",
+					"fnLabel=word_Function",
 					// tabs
 					"pageTab=word_Page",
-					"sectionTab",
+					"sectionTab=word_Section",
 					"notebooksTab",
 					"nbSectionsTab",
 					"nbPagesTab",
@@ -68,11 +72,11 @@ namespace River.OneMoreAddIn.Commands
 					"pagePathLabel",
 					"pageLinkLabel",
 					"okButton",
-					"cancelButton=word_Cancel"
+					"cancelButton=word_Close"
 				});
 			}
 
-			manualPanel.Location = pagePanel.Location;
+			manualPanel.Location = pageOptionsPanel.Location;
 			((Control)manualTab).Enabled = false;
 		}
 
@@ -106,7 +110,7 @@ namespace River.OneMoreAddIn.Commands
 			pageLink.Text = info.Link;
 
 			var settings = new SettingsProvider().GetCollection("XmlDialog");
-			saveBox.Checked = settings.Count > 0;
+			saveWindowBox.Checked = settings.Count > 0;
 
 			Width = settings.Get("width",
 				Math.Min(2000, (int)(Screen.PrimaryScreen.WorkingArea.Width * 0.8)));
@@ -142,7 +146,7 @@ namespace River.OneMoreAddIn.Commands
 			else if (keyData == Keys.F3)
 			{
 				// Find next
-				FindClicked(null, null);
+				FindOnClick(null, null);
 			}
 
 			return base.ProcessDialogKey(keyData);
@@ -158,7 +162,7 @@ namespace River.OneMoreAddIn.Commands
 		protected override void OnFormClosing(FormClosingEventArgs e)
 		{
 			var settings = new SettingsProvider();
-			if (saveBox.Checked)
+			if (saveWindowBox.Checked)
 			{
 				var collection = settings.GetCollection("XmlDialog");
 				collection.Add("left", Left);
@@ -180,7 +184,7 @@ namespace River.OneMoreAddIn.Commands
 
 		// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-		private void FindTextChanged(object sender, EventArgs e)
+		private void FindOptionsOnTextChanged(object sender, EventArgs e)
 		{
 			if (findBox.Text.Length == 0)
 			{
@@ -195,7 +199,7 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private void FindClicked(object sender, EventArgs e)
+		private void FindOnClick(object sender, EventArgs e)
 		{
 			var box = tabs.TabPages[tabs.SelectedIndex].Controls[0] as RichTextBox;
 			var index = FindNext(box, findBox.Text);
@@ -224,17 +228,17 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private void FindBoxKeyUP(object sender, KeyEventArgs e)
+		private void FindOnKeyUp(object sender, KeyEventArgs e)
 		{
 			if (e.KeyCode == Keys.Enter)
 			{
-				FindClicked(sender, e);
+				FindOnClick(sender, e);
 				e.Handled = true;
 			}
 		}
 
 
-		private void XmlBoxKeyUp(object sender, KeyEventArgs e)
+		private void XmlBoxKeyHandlerOnKeyUp(object sender, KeyEventArgs e)
 		{
 			if (e.Control && (e.KeyCode == Keys.F))
 			{
@@ -243,20 +247,12 @@ namespace River.OneMoreAddIn.Commands
 			else if (sender == pageBox && e.KeyCode == Keys.F3)
 			{
 				// Find next
-				FindClicked(sender, e);
+				FindOnClick(sender, e);
 			}
 		}
 
 
-		private void ChangeWrap(object sender, EventArgs e)
-		{
-			var box = tabs.TabPages[tabs.SelectedIndex].Controls[0] as RichTextBox;
-			box.WordWrap = wrapBox.Checked;
-			box.Focus();
-		}
-
-
-		private void SelectAllClicked(object sender, EventArgs e)
+		private void SelectAll(object sender, EventArgs e)
 		{
 			var box = tabs.TabPages[tabs.SelectedIndex].Controls[0] as RichTextBox;
 			box.SelectAll();
@@ -264,46 +260,80 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-		private void ScopeSelectedValueChanged(object sender, EventArgs e)
+		private void ToggleWrap(object sender, EventArgs e)
 		{
-			if (Enum.TryParse<OneNote.PageDetail>(scopeBox.Text, out var info))
+			var box = tabs.TabPages[tabs.SelectedIndex].Controls[0] as RichTextBox;
+			box.WordWrap = wrapBox.Checked;
+			box.Focus();
+		}
+
+
+		// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+		// Page Editor
+
+		private void RefreshPage(object sender, EventArgs e)
+		{
+			if (!Enum.TryParse<OneNote.PageDetail>(scopeBox.Text, out var scope))
 			{
-				using var one = new OneNote();
-				var page = one.GetPage(info);
-				if (page != null)
-				{
-					var xml = page.Root.ToString(SaveOptions.None);
-					pageBox.WordWrap = wrapBox.Checked;
-					pageBox.Text = xml;
+				// should never happen!
+				return;
+			}
 
-					ApplyHideOptions();
+			using var one = new OneNote();
+			var page = one.GetPage(scope);
+			if (page == null)
+			{
+				// should never happen!
+				return;
+			}
 
-					logger.WriteLine($"XmlDialog loaded page, scope {info}, {xml.Length} chars");
-				}
+			var xml = Format(
+				page.Root.ToString(SaveOptions.None),
+				hideEditedByBox.Checked, multilineBox.Checked, linefeedBox.Checked);
+
+			pageBox.Clear();
+			pageBox.Text = xml;
+
+			Colorize(pageBox, !hideEditedByBox.Checked);
+
+			logger.WriteLine($"XmlDialog loaded page, scope {scope}, {xml.Length} chars");
+		}
+
+
+		private void RefreshOnClick(object sender, EventArgs e)
+		{
+			// editedByBox clicked
+			// rely on Clicked event instead of Checked changed because editedByBox is
+			// also controlled by editedByBox2
+
+			if (sender == hideEditedByBox)
+				hideEditedByBox2.Checked = hideEditedByBox.Checked;
+			else if (sender == hideEditedByBox2)
+				hideEditedByBox.Checked = hideEditedByBox2.Checked;
+			else if (sender == multilineBox)
+				multilineBox2.Checked = multilineBox.Checked;
+			else if (sender == multilineBox2)
+				multilineBox.Checked = multilineBox2.Checked;
+
+			if (tabs.SelectedIndex == 0)
+			{
+				RefreshPage(sender, e);
+				MarkHierarchyTabs(-1);
+			}
+			else
+			{
+				((RichTextBox)tabs.TabPages[tabs.SelectedIndex].Controls[0]).Clear();
+				RefreshHierarchy(sender, e);
+				RefreshPage(sender, e);
 			}
 		}
 
 
-		private void HideCheckedChanged(object sender, EventArgs e)
+		private string Format(string xml, bool hideEditedBy, bool multiline, bool hideLinefeeds)
 		{
-			ScopeSelectedValueChanged(sender, e);
-			okButton.Enabled = !hideBox.Checked;
-		}
+			var root = XElement.Parse(xml);
 
-
-		private void NewlineChanged(object sender, EventArgs e)
-		{
-			ScopeSelectedValueChanged(sender, e);
-		}
-
-
-		private void ApplyHideOptions()
-		{
-			var root = XElement.Parse(pageBox.Text);
-
-			if (hideBox.Checked)
+			if (hideEditedBy)
 			{
 				// EditedByAttributes and others
 				root.Descendants().Attributes().Where(a =>
@@ -315,21 +345,28 @@ namespace River.OneMoreAddIn.Commands
 					|| a.Name.LocalName == "lastModifiedByResolutionID"
 					|| a.Name.LocalName == "creationTime"
 					|| a.Name.LocalName == "lastModifiedTime"
-					|| a.Name.LocalName == "objectID")
+					|| a.Name.LocalName == "objectID"
+					|| a.Name.LocalName == "ID")
 					.Remove();
 			}
 			else
 			{
+				// reshuffle attributes...
+
 				root.Descendants()
-					.Where(e => e.Attributes("objectID").Any())
+					.Where(e => e.Attributes("objectID").Any() || e.Attributes("ID").Any())
 					.ForEach(e =>
 					{
 						var attributes = e.Attributes().ToList();
 
 						// move objectID, lastModifiedTime, and creationTime to beginning of list
+						// ... this is reverse-order
 						var moved = PromoteAttribute(attributes, "creationTime");
 						moved = PromoteAttribute(attributes, "lastModifiedTime") || moved;
 						moved = PromoteAttribute(attributes, "objectID") || moved;
+						moved = PromoteAttribute(attributes, "ID") || moved;
+						moved = PromoteAttribute(attributes, "nickname") || moved;
+						moved = PromoteAttribute(attributes, "name") || moved;
 
 						if (moved)
 						{
@@ -340,7 +377,7 @@ namespace River.OneMoreAddIn.Commands
 					});
 			}
 
-			if (hideLFBox.Checked)
+			if (hideLinefeeds)
 			{
 				var nodes = root.DescendantNodes().OfType<XCData>();
 				if (!nodes.IsNullOrEmpty())
@@ -357,11 +394,9 @@ namespace River.OneMoreAddIn.Commands
 				}
 			}
 
-			pageBox.Text = newlineBox.Checked
+			return multiline
 				? root.PrettyPrint()
 				: root.ToString(SaveOptions.None);
-
-			Highlights();
 		}
 
 
@@ -379,22 +414,22 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private void Highlights()
+		private void Colorize(RichTextBox box, bool editedBy)
 		{
-			var matches = Regex.Matches(pageBox.Text,
+			var matches = Regex.Matches(box.Text,
 				@"<((?:[a-zA-Z][a-zA-Z0-9]*?:)?[a-zA-Z][a-zA-Z0-9]*?)[^>]+selected=""all""[^\1]*?\1>");
 
 			foreach (Match match in matches)
 			{
-				pageBox.SelectionStart = match.Index;
-				pageBox.SelectionLength = match.Length;
-				pageBox.SelectionBackColor = Color.Yellow;
+				box.SelectionStart = match.Index;
+				box.SelectionLength = match.Length;
+				box.SelectionBackColor = Color.Yellow;
 			}
 
-			if (!hideBox.Checked)
+			if (editedBy)
 			{
 				// author attributes
-				matches = Regex.Matches(pageBox.Text,
+				matches = Regex.Matches(box.Text,
 					"(?:author|authorInitials|authorResolutionID|lastModifiedBy|" +
 					"lastModifiedByInitials|lastModifiedByResolutionID|creationTime|" +
 					"lastModifiedTime)=\"[^\"]*\""
@@ -402,109 +437,140 @@ namespace River.OneMoreAddIn.Commands
 
 				foreach (Match m in matches)
 				{
-					pageBox.SelectionStart = m.Index;
-					pageBox.SelectionLength = m.Length;
-					pageBox.SelectionColor = Color.Silver;
+					box.SelectionStart = m.Index;
+					box.SelectionLength = m.Length;
+					box.SelectionColor = Color.Silver;
 				}
 
 				// objectID
-				matches = Regex.Matches(pageBox.Text, "(?:objectID)=\"[^\"]*\"");
+				matches = Regex.Matches(box.Text, "(?:objectID|ID)=\"[^\"]*\"");
 
 				foreach (Match m in matches)
 				{
-					pageBox.SelectionStart = m.Index;
-					pageBox.SelectionLength = m.Length;
-					pageBox.SelectionColor = Color.CornflowerBlue;
+					box.SelectionStart = m.Index;
+					box.SelectionLength = m.Length;
+					box.SelectionColor = Color.CornflowerBlue;
 				}
 			}
 		}
 
 
-		// async event handlers should be be declared 'async void'
-		private async void Update(object sender, EventArgs e)
+		private void ToggleEditMode(object sender, EventArgs e)
 		{
-			var result = MessageBox.Show(
-				"Are you sure? This may corrupt the current page.",
-				"Feelin lucky punk?",
-				MessageBoxButtons.OKCancel,
-				MessageBoxIcon.Warning);
-
-			if (result == DialogResult.OK)
+			if (editModeBox.Checked)
 			{
-				try
-				{
-					using var one = new OneNote();
-					await one.Update(new Models.Page(XElement.Parse(pageBox.Text)));
+				pageBox.BackColor = Color.White;
+				pageBox.ReadOnly = false;
+				okButton.Enabled = true;
+				hideEditedByBox.Checked = false;
+				hideEditedByBox.Enabled = false;
+				multilineBox.Enabled = false;
+				linefeedBox.Enabled = false;
+				scopeBox.Enabled = false;
+				wrapBox.Enabled = false;
 
-					Close();
-
-					// doesn't account for binary data, but close enough
-					logger.WriteLine($"updating {pageBox.Text.Length} bytes");
-				}
-				catch (Exception exc)
-				{
-					MoreMessageBox.ShowErrorWithLogLink(Owner,
-						$"Error updating page content: {exc.Message}\n\nSee log for details");
-
-					logger.WriteLine("error updating page content", exc);
-				}
+				RefreshPage(sender, e);
+			}
+			else
+			{
+				pageBox.BackColor = SystemColors.Control;
+				pageBox.ReadOnly = true;
+				okButton.Enabled = false;
+				hideEditedByBox.Enabled = true;
+				multilineBox.Enabled = true;
+				linefeedBox.Enabled = true;
+				scopeBox.Enabled = true;
+				wrapBox.Enabled = true;
 			}
 		}
 
 
 		// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+		// Hierarchy Viewers
 
-		private void TabsSelecting(object sender, TabControlCancelEventArgs e)
+		private void TabGuard(object sender, TabControlCancelEventArgs e)
 		{
+			// prevents moving to the Manual tab until its contents are enabled
 			if (!((Control)e.TabPage).Enabled)
 			{
 				e.Cancel = true;
 			}
 		}
 
-
-		private async void TabsSelectedIndexChanged(object sender, EventArgs e)
+		private void TogglePid(object sender, EventArgs e)
 		{
-			if (tabs.SelectedIndex == 0)
+			((RichTextBox)tabs.TabPages[tabs.SelectedIndex].Controls[0]).Clear();
+			RefreshHierarchy(sender, e);
+		}
+
+
+		private async void RefreshHierarchy(object sender, EventArgs e)
+		{
+			var enabled = true;
+
+			switch (tabs.SelectedIndex)
 			{
-				pageBox.Select(0, 0);
-				pageBox.Focus();
-				okButton.Visible = true;
-				pagePanel.Visible = true;
-				manualPanel.Visible = false;
-				wrapBox.Checked = pageBox.WordWrap;
+				case 0: // Page
+					pageBox.Select(0, 0);
+					pageBox.Focus();
+					okButton.Visible = true;
+					pageOptionsPanel.Visible = true;
+					manualPanel.Visible = false;
+					wrapBox.Checked = pageBox.WordWrap;
+					return;
+
+				case 1: // Section+Pages
+					await ShowHierarchy(sectionBox, "one.GetSection()",
+						async (one) => { await Task.Yield(); return one.GetSection(); });
+					break;
+
+				case 2: // Notebooks
+					await ShowHierarchy(notebookBox, "one.GetNotebooks()",
+						async (one) => { return await one.GetNotebooks(); });
+					break;
+
+				case 3: // Notebook+Sections
+					await ShowHierarchy(nbSectionBox, "one.GetNotebook()",
+						async (one) => { return await one.GetNotebook(); });
+					break;
+
+				case 4: // Notebook+Sections+Pages
+					await ShowHierarchy(nbPagesBox, "one.GetNotebook(OneNote.Scope.Pages)",
+						async (one) => { return await one.GetNotebook(OneNote.Scope.Pages); });
+					break;
+
+				case 5:
+					enabled = false;
+					break;
 			}
-			else
+
+			hideEditedByBox2.Enabled = enabled;
+			multilineBox2.Enabled = enabled;
+			pidBox.Enabled = enabled;
+
+			if (sender is not TabControl)
 			{
-				switch (tabs.SelectedIndex)
-				{
-					case 1: // Section+Pages
-						await ShowHierarchy(sectionBox, "one.GetSection()",
-							async (one) => { await Task.Yield(); return one.GetSection(); });
-						break;
+				// changed filtering so mark other tabs as dirty
+				MarkHierarchyTabs(tabs.SelectedIndex);
+			}
 
-					case 2: // Notebooks
-						await ShowHierarchy(notebookBox, "one.GetNotebooks()",
-							async (one) => { return await one.GetNotebooks(); });
-						break;
-
-					case 3: // Notebook+Sections
-						await ShowHierarchy(nbSectionBox, "one.GetNotebook()",
-							async (one) => { return await one.GetNotebook(); });
-						break;
-
-					case 4: // Notebook+Sections+Pages
-						await ShowHierarchy(nbPagesBox, "one.GetNotebook(OneNote.Scope.Pages)",
-							async (one) => { return await one.GetNotebook(OneNote.Scope.Pages); });
-						break;
-				}
-
-				wrapBox.Checked = ((RichTextBox)tabs.SelectedTab.Controls[0]).WordWrap;
-				hidePidBox.Checked = tabs.SelectedTab.Tag == null || (bool)tabs.SelectedTab.Tag;
-
+			if (okButton.Visible)
+			{
 				okButton.Visible = false;
-				pagePanel.Visible = false;
+				pageOptionsPanel.Visible = false;
 				manualPanel.Visible = true;
+			}
+		}
+
+
+		private void MarkHierarchyTabs(int selected)
+		{
+			for (int i = 1; i <= 4; i++)
+			{
+				if (i != selected)
+				{
+					((RichTextBox)tabs.TabPages[i].Controls[0]).Clear();
+				}
 			}
 		}
 
@@ -519,21 +585,31 @@ namespace River.OneMoreAddIn.Commands
 
 				if (root != null)
 				{
-					if (hidePidBox.Checked)
+					if (pidBox.Checked)
 					{
 						Sanitize(root);
 					}
 
+					logger.WriteLine($"box1={hideEditedByBox2.Checked} box2={multilineBox2.Checked}");
+
+					var xml = Format(
+						root.ToString(SaveOptions.None),
+						hideEditedByBox2.Checked, multilineBox2.Checked, linefeedBox.Checked);
+
 					box.Clear();
 					box.WordWrap = wrapBox.Checked;
 					box.SelectionColor = Color.Black;
-					box.Text = $"<!-- {comment} -->\n{root.ToString(SaveOptions.None)}";
+					box.Text = $"<!-- {comment} -->\n{xml}";
 					box.Select(0, comment.Length + 9);
 					box.SelectionColor = Color.Green;
+
+					Colorize(box, !hideEditedByBox2.Checked);
+
+					logger.WriteLine($"XmlDialog loaded hierarchy, {comment}, {xml.Length} chars");
 				}
 				else
 				{
-					box.Text = "no hierarchy";
+					box.Text = Resx.ShowXmlDialog_noHierarchy;
 				}
 			}
 
@@ -559,16 +635,8 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private void HidePidCheckedChanged(object sender, EventArgs e)
-		{
-			var box = tabs.TabPages[tabs.SelectedIndex].Controls[0] as RichTextBox;
-			box.Clear();
-
-			tabs.TabPages[tabs.SelectedIndex].Tag = hidePidBox.Checked;
-
-			TabsSelectedIndexChanged(sender, e);
-		}
-
+		// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+		// Manual Query
 
 		private void ManualInputChanged(object sender, EventArgs e)
 		{
@@ -612,12 +680,22 @@ namespace River.OneMoreAddIn.Commands
 				((Control)manualTab).Enabled = true;
 				tabs.SelectTab(5);
 
+				// supress rendering
+				Native.SendMessage(manualBox.Handle, Native.WM_SETREDRAW, 0, 0);
+				var eventMask = Native.SendMessage(manualBox.Handle, Native.EM_GETEVENTMASK, 0, 0);
+
 				manualBox.Clear();
 				manualBox.SelectionColor = Color.Black;
 
 				await ShowHierarchy(manualBox,
 					$"{(string)functionBox.SelectedItem}(\"{objectIdBox.Text}\")",
 					async (one) => { await Task.Yield(); return content; });
+
+				// resume rendering
+				Native.SendMessage(manualBox.Handle, Native.EM_SETEVENTMASK, 0, eventMask);
+				Native.SendMessage(manualBox.Handle, Native.WM_SETREDRAW, 1, 0);
+				manualBox.Invalidate();
+
 			}
 			catch (Exception exc)
 			{
@@ -636,6 +714,35 @@ namespace River.OneMoreAddIn.Commands
 				manualBox.SelectionColor = Color.Red;
 
 				logger.WriteLine(exc);
+			}
+		}
+
+
+		// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+		// Update Page
+
+		private async void UpdatePage(object sender, EventArgs e)
+		{
+			var result = UIHelper.ShowQuestion(Resx.ShowXmlDialog_WARNING);
+			if (result == DialogResult.OK)
+			{
+				try
+				{
+					using var one = new OneNote();
+					await one.Update(new Models.Page(XElement.Parse(pageBox.Text)));
+
+					Close();
+
+					// doesn't account for binary data, but close enough
+					logger.WriteLine($"updating {pageBox.Text.Length} bytes");
+				}
+				catch (Exception exc)
+				{
+					MoreMessageBox.ShowErrorWithLogLink(Owner,
+						$"Error updating page content: {exc.Message}\n\nSee log for details");
+
+					logger.WriteLine("error updating page content", exc);
+				}
 			}
 		}
 	}

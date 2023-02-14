@@ -190,6 +190,10 @@ OneNote ייסגר אוטומטית</value>
     <value>הגדר כינויי פקודות לשימוש בלוח הפקודות</value>
     <comment>intro box</comment>
   </data>
+  <data name="AliasSheet_Title" xml:space="preserve">
+    <value>כינויי פיקוד</value>
+    <comment>sheet</comment>
+  </data>
   <data name="AnalyzeCommand_CacheSummary" xml:space="preserve">
     <value>המטמון הוא ספרייה פנימית המנוהלת על ידי OneNote כדי לייעל את הביצועים שלו. ההמלצה היא להימנע ממחיקה ידנית של התוכן של ספריית המטמון, אלא אם כן היא פגומה או מעכבת את פעולת OneNote.</value>
     <comment>summary text</comment>
@@ -862,6 +866,18 @@ OneNote ייסגר אוטומטית</value>
   <data name="DownArrow" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>images\downarrow.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="DrawPlantUml_broken" xml:space="preserve">
+    <value>טקסט PlantUML אינו חוקי או שאינו יכול למצוא קשר בין טקסט לתמונה</value>
+    <comment>error message</comment>
+  </data>
+  <data name="DrawPlantUml_EmptySelection" xml:space="preserve">
+    <value>בחירה ריקה. בחר בלוק חוקי של טקסט PlantUML.</value>
+    <comment>error message</comment>
+  </data>
+  <data name="DrawPlantUml_Error" xml:space="preserve">
+    <value>תחביר לא חוקי או בחירה לא מלאה של PlantUML</value>
+    <comment>error message</comment>
+  </data>
   <data name="EditTableThemesDialog_colorsTab.Text" xml:space="preserve">
     <value>צבעים</value>
     <comment>tab</comment>
@@ -1168,6 +1184,14 @@ Total Row Font
   <data name="Favorites" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>images\favorites.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="Favorites_suspect" xml:space="preserve">
+    <value>הדף לא נמצא; ייתכן ששמו שונה או הועבר</value>
+    <comment>tooltip</comment>
+  </data>
+  <data name="Favorites_unknown" xml:space="preserve">
+    <value>הדף כבר לא נמצא; ייתכן שהוא נמחק</value>
+    <comment>tooltip</comment>
+  </data>
   <data name="FavoritesFilename" xml:space="preserve">
     <value>Favorites.xml</value>
     <comment>SKIP, filename</comment>
@@ -1356,6 +1380,41 @@ Total Row Font
     <value>נושאי מדגיש</value>
     <comment>sheet intro</comment>
   </data>
+  <data name="ImagesSheet_imageBrowser" xml:space="preserve">
+    <value>צופה תמונה</value>
+  </data>
+  <data name="ImagesSheet_imageViewerLabel.Text" xml:space="preserve">
+    <value>מציג תמונות חיצוני (ברירת מחדל אם ריק הוא mspaint)</value>
+    <comment>label</comment>
+  </data>
+  <data name="ImagesSheet_introBox.Text" xml:space="preserve">
+    <value>התאם אישית את ברירות המחדל עבור פקודות תמונה</value>
+    <comment>label</comment>
+  </data>
+  <data name="ImagesSheet_plantAfterBox.Text" xml:space="preserve">
+    <value>הוסף ציור אחרי טקסט PlantUML</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="ImagesSheet_plantCollapseBox.Text" xml:space="preserve">
+    <value>כווץ טקסט PlantUML</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="ImagesSheet_plantGroup.Text" xml:space="preserve">
+    <value>אפשרויות PlantUML</value>
+    <comment>groupbox</comment>
+  </data>
+  <data name="ImagesSheet_resizeGroup.Text" xml:space="preserve">
+    <value>שינוי גודל אפשרויות</value>
+    <comment>groupsbox</comment>
+  </data>
+  <data name="ImagesSheet_Title" xml:space="preserve">
+    <value>תמונות</value>
+    <comment>sheet</comment>
+  </data>
+  <data name="ImagesSheet_widthLabel.Text" xml:space="preserve">
+    <value>שינוי גודל רוחב מועדף</value>
+    <comment>label</comment>
+  </data>
   <data name="ImportDialog_fileLabel.Text" xml:space="preserve">
     <value>קוֹבֶץ:</value>
     <comment>label</comment>
@@ -1375,6 +1434,10 @@ Total Row Font
   <data name="ImportDialog_OpenFileTitle" xml:space="preserve">
     <value>בחר קובץ לייבוא</value>
     <comment>openfiledialog title</comment>
+  </data>
+  <data name="ImportDialog_pdfGroup.Text" xml:space="preserve">
+    <value>אפשרויות PDF</value>
+    <comment>group box</comment>
   </data>
   <data name="ImportDialog_powerGroup.Text" xml:space="preserve">
     <value>אפשרויות Powerpoint</value>
@@ -1672,6 +1735,17 @@ Total Row Font
     <value>לא נמצאו הפניות. שקול להפעיל את האפשרות לכלול דפים לא נוספו לאינדקס</value>
     <comment>message</comment>
   </data>
+  <data name="LoadStyleTheme_errorLoading" xml:space="preserve">
+    <value>לא ניתן לטעון את הקובץ או שהקובץ ריק</value>
+  </data>
+  <data name="LoadStyleTheme_filter" xml:space="preserve">
+    <value>הגדרות סגנון (*.xml)|*.xml|כל הקבצים (*.*)|*.*</value>
+    <comment>OpenFileDialog filter</comment>
+  </data>
+  <data name="LoadStyleTheme_Title" xml:space="preserve">
+    <value>טען ערכת נושא בסגנון</value>
+    <comment>OpenFileDialog title</comment>
+  </data>
   <data name="Locked" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>images\locked.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -1880,6 +1954,38 @@ Total Row Font
     <value>צבע עמוד</value>
     <comment>color popup dialog title</comment>
   </data>
+  <data name="PageColorDialog_applyThemeBox.Text" xml:space="preserve">
+    <value>החל סגנונות על דף זה</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="PageColorDialog_contrastTooltip" xml:space="preserve">
+    <value>ייתכן שלא תהיה ניגודיות מספקת בין צבע הטקסט לצבע העמוד</value>
+    <comment>tooltip</comment>
+  </data>
+  <data name="PageColorDialog_contrastWarning" xml:space="preserve">
+    <value>ייתכן שהטקסט אינו קריא</value>
+    <comment>label</comment>
+  </data>
+  <data name="PageColorDialog_currentThemeLabel.Text" xml:space="preserve">
+    <value>הגדרת הסגנונות הנוכחית היא "{0}"</value>
+    <comment>label</comment>
+  </data>
+  <data name="PageColorDialog_customLabel" xml:space="preserve">
+    <value>לחץ כאן כדי לשנות את הצבע המותאם אישית שלך</value>
+    <comment>label</comment>
+  </data>
+  <data name="PageColorDialog_loadThemeLink.Text" xml:space="preserve">
+    <value>טען סגנונות שונים</value>
+    <comment>linklabel</comment>
+  </data>
+  <data name="PageColorDialog_noLabel.Text" xml:space="preserve">
+    <value>או בחר ללא צבע עמוד</value>
+    <comment>label</comment>
+  </data>
+  <data name="PageColorDialog_omLabel" xml:space="preserve">
+    <value>לחץ כאן כדי לבחור צבע מוגדר מראש</value>
+    <comment>label</comment>
+  </data>
   <data name="Passwords" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Emoji\Passwords.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -1893,6 +1999,15 @@ Total Row Font
   </data>
   <data name="Pencil" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>emoji\pencil.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="phrase_AppendToThisPage" xml:space="preserve">
+    <value>צרף לדף זה</value>
+  </data>
+  <data name="phrase_CreateANewPage" xml:space="preserve">
+    <value>צור דף חדש</value>
+  </data>
+  <data name="phrase_PathNotFound" xml:space="preserve">
+    <value>נתיב לא נמצא</value>
   </data>
   <data name="Plugin_InvalidSchema" xml:space="preserve">
     <value>זוהה XML לא חוקי. בדוק את קובץ היומן לפרטים</value>
@@ -1991,6 +2106,10 @@ Total Row Font
     <value>נהל את התוספים שלי</value>
     <comment>label</comment>
   </data>
+  <data name="PluginsSheet_Title" xml:space="preserve">
+    <value>תוספים</value>
+    <comment>sheet title EDIT</comment>
+  </data>
   <data name="ProgramName" xml:space="preserve">
     <value>OneMore</value>
     <comment>SKIP</comment>
@@ -2035,6 +2154,66 @@ ISO-code then comma then language name</comment>
   </data>
   <data name="Pushpin" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>emoji\pushpin.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="QuickNotesSheet_groupingBox.Text" xml:space="preserve">
+    <value>שבוע עבודה (2023-02-13 W7)
+חודש (2023-02)
+רבעון (2023 Q1)
+שנה (2023)
+#מילת מפתח בשורה הראשונה של הערה</value>
+    <comment>combobox</comment>
+  </data>
+  <data name="QuickNotesSheet_groupingLabel.Text" xml:space="preserve">
+    <value>קבץ למקטעים לפי</value>
+    <comment>label</comment>
+  </data>
+  <data name="QuickNotesSheet_introBox.Text" xml:space="preserve">
+    <value>התאמה אישית של ההתנהגות של הפקודה ארגן הערות מהירות</value>
+    <comment>textbox</comment>
+  </data>
+  <data name="QuickNotesSheet_notebookButton.Text" xml:space="preserve">
+    <value>העבר הערות מהירות למחברת זו</value>
+    <comment>radio</comment>
+  </data>
+  <data name="QuickNotesSheet_notebookLink.Text" xml:space="preserve">
+    <value>לחץ כאן כדי לבחור את המחברת</value>
+    <comment>linklabel</comment>
+  </data>
+  <data name="QuickNotesSheet_sectionButton.Text" xml:space="preserve">
+    <value>העבר הערות מהירות לקטע זה</value>
+    <comment>radio</comment>
+  </data>
+  <data name="QuickNotesSheet_sectionLink.Text" xml:space="preserve">
+    <value>לחץ כאן כדי לבחור את הקטע</value>
+    <comment>linklabel</comment>
+  </data>
+  <data name="QuickNotesSheet_SelectNotebookIntro" xml:space="preserve">
+    <value>בחר את המחברת המשמשת לארגון ההערות המהירות שלך</value>
+    <comment>quick filing dialog intro</comment>
+  </data>
+  <data name="QuickNotesSheet_SelectNotebookTitle" xml:space="preserve">
+    <value>בחר מחברת</value>
+    <comment>quick filing dialog title</comment>
+  </data>
+  <data name="QuickNotesSheet_SelectSectionIntro" xml:space="preserve">
+    <value>בחר את הקטע המשמש לארגון ההערות המהירות שלך</value>
+    <comment>quick filing dialog intro</comment>
+  </data>
+  <data name="QuickNotesSheet_SelectSectionTitle" xml:space="preserve">
+    <value>בחר סעיף</value>
+    <comment>quick filing dialog title</comment>
+  </data>
+  <data name="QuickNotesSheet_stampBox.Text" xml:space="preserve">
+    <value>הוסף את הכותרת עם התאריך שבו נוצרה ההערה</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="QuickNotesSheet_Title" xml:space="preserve">
+    <value>הערות מהירות</value>
+    <comment>sheet title</comment>
+  </data>
+  <data name="QuickNotesSheet_titleBox.Text" xml:space="preserve">
+    <value>הגדר את כותרת העמוד למילים הראשונות של ההערה</value>
+    <comment>checkbox</comment>
   </data>
   <data name="RecalculateFormulaCommand_NoFormula" xml:space="preserve">
     <value>לא נמצאה נוסחה בטבלה שנבחרה</value>
@@ -2365,6 +2544,10 @@ ISO-code then comma then language name</comment>
     <value>מוגדר מראש</value>
     <comment>radio</comment>
   </data>
+  <data name="ResizeImagesDialog_resetLinkLabel.Text" xml:space="preserve">
+    <value>אפס ערכים</value>
+    <comment>link label</comment>
+  </data>
   <data name="ResizeImagesDialog_sizeLink.Text" xml:space="preserve">
     <value>{0} x {1}</value>
     <comment>width x height</comment>
@@ -2613,6 +2796,10 @@ ISO-code then comma then language name</comment>
     <value>העתק</value>
     <comment>ribbon table</comment>
   </data>
+  <data name="ribCopyAcrossButton_Screentip" xml:space="preserve">
+    <value>העתק תוכן על פני השורות שנבחרו</value>
+    <comment>ribbon table</comment>
+  </data>
   <data name="ribCopyAsMarkdownButton_Label" xml:space="preserve">
     <value>העתק בתור Markdown</value>
     <comment>ribbon item</comment>
@@ -2725,6 +2912,14 @@ ISO-code then comma then language name</comment>
     <value>השבת בדיקת איות בתוכן שנבחר</value>
     <comment>ribbon edit</comment>
   </data>
+  <data name="ribDrawPlantUmlButton_Label" xml:space="preserve">
+    <value>צייר PlantUML</value>
+    <comment>ribbon images</comment>
+  </data>
+  <data name="ribDrawPlantUmlButton_Screentip" xml:space="preserve">
+    <value>עבד את תמונת PlantUML או Graphviz מטקסט שנבחר</value>
+    <comment>ribbon images</comment>
+  </data>
   <data name="ribDuplicateLineAboveButton_Label" xml:space="preserve">
     <value>שכפל פסקה למעלה</value>
     <comment>pallette</comment>
@@ -2752,6 +2947,10 @@ ISO-code then comma then language name</comment>
   <data name="ribEditStylesButton_Label" xml:space="preserve">
     <value>ערוך סגנונות</value>
     <comment>ribbon styles</comment>
+  </data>
+  <data name="ribEditStylesButton_named" xml:space="preserve">
+    <value>ערוך סגנונות ({0})</value>
+    <comment>ribbon styles with theme name</comment>
   </data>
   <data name="ribEditStylesButton_Screentip" xml:space="preserve">
     <value>ערוך סגנונות או טען סגנונות שונים</value>
@@ -2820,6 +3019,14 @@ ISO-code then comma then language name</comment>
   <data name="ribFileMenu_Label" xml:space="preserve">
     <value>קוֹבֶץ</value>
     <comment>ribbon menu NODUP</comment>
+  </data>
+  <data name="ribFileQuickNotesButton_Label" xml:space="preserve">
+    <value>קובץ הערות מהירות</value>
+    <comment>ribbon file</comment>
+  </data>
+  <data name="ribFileQuickNotesButton_Screentip" xml:space="preserve">
+    <value>ארגן הערות מהירות למחברת או למדור</value>
+    <comment>ribbon file</comment>
   </data>
   <data name="ribFillAcrossButton_Label" xml:space="preserve">
     <value>למלא על פני</value>
@@ -3208,6 +3415,14 @@ ISO-code then comma then language name</comment>
     <value>כותרות מספור בדף זה</value>
     <comment>ribbon numbering</comment>
   </data>
+  <data name="ribPageColorButton_Label" xml:space="preserve">
+    <value>הגדר צבע עמוד</value>
+    <comment>page context menu</comment>
+  </data>
+  <data name="ribPageColorButton_Screentip" xml:space="preserve">
+    <value>שנה את הרקע של דף זה לצבע מותאם אישית</value>
+    <comment>page context menu</comment>
+  </data>
   <data name="ribPageMenu_Label" xml:space="preserve">
     <value>עמוד</value>
     <comment>ribbon menu NODUP</comment>
@@ -3311,6 +3526,10 @@ ISO-code then comma then language name</comment>
   <data name="ribRemoveCitationsButton_Screentip" xml:space="preserve">
     <value>הסר גזירת מסך והדבק ציטוטים של כתובות אתרים</value>
     <comment>Ribbon OneMore menu item</comment>
+  </data>
+  <data name="ribRemoveDateStampButton_Label" xml:space="preserve">
+    <value>הסר חותמות תאריך</value>
+    <comment>section context menu</comment>
   </data>
   <data name="ribRemoveDuplicatesButton_Label" xml:space="preserve">
     <value>הסר דפים כפולים</value>
@@ -3725,6 +3944,10 @@ ISO-code then comma then language name</comment>
     <value>השתמש בביטויים רגילים</value>
     <comment>checkbox</comment>
   </data>
+  <data name="SearchAndReplaceDialog_substitutions" xml:space="preserve">
+    <value>פרמטרי החלפה חוקיים: {0}</value>
+    <comment>status label</comment>
+  </data>
   <data name="SearchAndReplaceDialog_Text" xml:space="preserve">
     <value>חפש והחלף</value>
     <comment>dialog title</comment>
@@ -3862,6 +4085,10 @@ ISO-code then comma then language name</comment>
     <value>נושאי סימון</value>
     <comment>treenode</comment>
   </data>
+  <data name="SettingsDialog_imagesNode.Text" xml:space="preserve">
+    <value>תמונות</value>
+    <comment>treenode</comment>
+  </data>
   <data name="SettingsDialog_keyboardNode.Text" xml:space="preserve">
     <value>קיצורי דרך במקלדת</value>
     <comment>treenode</comment>
@@ -3872,6 +4099,10 @@ ISO-code then comma then language name</comment>
   </data>
   <data name="SettingsDialog_pluginsNode.Text" xml:space="preserve">
     <value>תוספים</value>
+    <comment>tree node</comment>
+  </data>
+  <data name="SettingsDialog_quickNotesNode.Text" xml:space="preserve">
+    <value>הערות מהירות</value>
     <comment>tree node</comment>
   </data>
   <data name="SettingsDialog_Restart" xml:space="preserve">
@@ -3905,16 +4136,16 @@ ISO-code then comma then language name</comment>
     <value>Onemore XML</value>
     <comment>dialog title</comment>
   </data>
-  <data name="ShowXmlDialog_hideBox.Text" xml:space="preserve">
-    <value>הסתר תכונות ערוכות (בטל את הסימון לערוך עמוד)</value>
+  <data name="ShowXmlDialog_editModeBox.Text" xml:space="preserve">
+    <value>הפעל מצב עריכה</value>
     <comment>checkbox</comment>
   </data>
-  <data name="ShowXmlDialog_hideLFBox.Text" xml:space="preserve">
-    <value>הסר את LF מ- CDATA</value>
+  <data name="ShowXmlDialog_hideEditedByBox.Text" xml:space="preserve">
+    <value>הסתר תכונות שנערך על ידי</value>
     <comment>checkbox</comment>
   </data>
-  <data name="ShowXmlDialog_hidePidBox.Text" xml:space="preserve">
-    <value>הסתר PID</value>
+  <data name="ShowXmlDialog_linefeedBox.Text" xml:space="preserve">
+    <value>הסר את LF מ-CDATA</value>
     <comment>checkbox</comment>
   </data>
   <data name="ShowXmlDialog_manualLabel.Text" xml:space="preserve">
@@ -3925,6 +4156,10 @@ ISO-code then comma then language name</comment>
     <value>חיפוש ידני</value>
     <comment>tab</comment>
   </data>
+  <data name="ShowXmlDialog_multilineBox.Text" xml:space="preserve">
+    <value>תכונות בקווים חדשים</value>
+    <comment>checkbox</comment>
+  </data>
   <data name="ShowXmlDialog_nbPagesTab.Text" xml:space="preserve">
     <value>מחברת עם דפים</value>
     <comment>tab</comment>
@@ -3932,6 +4167,10 @@ ISO-code then comma then language name</comment>
   <data name="ShowXmlDialog_nbSectionsTab.Text" xml:space="preserve">
     <value>מחברת עם קטעים</value>
     <comment>tab</comment>
+  </data>
+  <data name="ShowXmlDialog_noHierarchy" xml:space="preserve">
+    <value>אין היררכיה</value>
+    <comment>message</comment>
   </data>
   <data name="ShowXmlDialog_notebooksTab.Text" xml:space="preserve">
     <value>מחברות</value>
@@ -3953,13 +4192,25 @@ ISO-code then comma then language name</comment>
     <value>נָתִיב:</value>
     <comment>label</comment>
   </data>
-  <data name="ShowXmlDialog_sectionTab.Text" xml:space="preserve">
-    <value>סָעִיף</value>
-    <comment>tab</comment>
+  <data name="ShowXmlDialog_pidBox.Text" xml:space="preserve">
+    <value>הסתר PID</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="ShowXmlDialog_saveWindowBox.Text" xml:space="preserve">
+    <value>שמור את מיקום החלון</value>
+    <comment>checkbox</comment>
   </data>
   <data name="ShowXmlDialog_selectButton.Text" xml:space="preserve">
     <value>בחר הכל</value>
     <comment>button</comment>
+  </data>
+  <data name="ShowXmlDialog_WARNING" xml:space="preserve">
+    <value>זו פעולה מסוכנת!
+
+שינויים שגויים עלולים לגרום לאובדן נתונים.
+
+האם אתה בטוח שאתה רוצה להמשיך?</value>
+    <comment>confirmation</comment>
   </data>
   <data name="ShowXmlDialog_wrapBox.Text" xml:space="preserve">
     <value>גלישת טקסט</value>
@@ -4157,6 +4408,10 @@ ISO-code then comma then language name</comment>
     <value>צבע טקסט</value>
     <comment>button tip</comment>
   </data>
+  <data name="StyleDialog_darkBox.Text" xml:space="preserve">
+    <value>מיועד לדפים עם רקע כהה</value>
+    <comment>checkbox</comment>
+  </data>
   <data name="StyleDialog_defaultBlackToolStripMenuItem.Text" xml:space="preserve">
     <value>ברירת מחדל (שחור)</value>
     <comment>menu item</comment>
@@ -4189,6 +4444,18 @@ ISO-code then comma then language name</comment>
     <value>סטייל חדש</value>
     <comment>dialog title</comment>
   </data>
+  <data name="StyleDialog_optionsGroup.Text" xml:space="preserve">
+    <value>אפשרויות</value>
+    <comment>groupbox</comment>
+  </data>
+  <data name="StyleDialog_pageColorBox.Text" xml:space="preserve">
+    <value>שנה את צבע העמוד בעת החלת סגנונות אלה</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="StyleDialog_pageColorLink.Text" xml:space="preserve">
+    <value>לחץ כאן כדי לבחור את צבע העמוד</value>
+    <comment>linklabel</comment>
+  </data>
   <data name="StyleDialog_reorderButton.Text" xml:space="preserve">
     <value>להזמין מחדש</value>
     <comment>button</comment>
@@ -4196,6 +4463,10 @@ ISO-code then comma then language name</comment>
   <data name="StyleDialog_saveButton.Text" xml:space="preserve">
     <value>שמור כ...</value>
     <comment>menu item</comment>
+  </data>
+  <data name="StyleDialog_saveStylesTitle" xml:space="preserve">
+    <value>שמור סגנונות</value>
+    <comment>dialog title</comment>
   </data>
   <data name="StyleDialog_spacingLabel.Text" xml:space="preserve">
     <value>מרווח:</value>
@@ -4541,6 +4812,12 @@ ISO-code then comma then language name</comment>
   <data name="word_Font" xml:space="preserve">
     <value>גוֹפָן</value>
   </data>
+  <data name="word_Function" xml:space="preserve">
+    <value>פוּנקצִיָה</value>
+  </data>
+  <data name="word_General" xml:space="preserve">
+    <value>כללי</value>
+  </data>
   <data name="word_Go" xml:space="preserve">
     <value>ללכת</value>
   </data>
@@ -4564,6 +4841,9 @@ ISO-code then comma then language name</comment>
   </data>
   <data name="word_No" xml:space="preserve">
     <value>לא</value>
+  </data>
+  <data name="word_Notebook" xml:space="preserve">
+    <value>מחברת</value>
   </data>
   <data name="word_OK" xml:space="preserve">
     <value>בסדר</value>
@@ -4609,6 +4889,9 @@ ISO-code then comma then language name</comment>
   </data>
   <data name="word_Scope" xml:space="preserve">
     <value>תְחוּם</value>
+  </data>
+  <data name="word_Section" xml:space="preserve">
+    <value>סָעִיף</value>
   </data>
   <data name="word_Silenced" xml:space="preserve">
     <value>מושתק</value>
@@ -4677,273 +4960,5 @@ ISO-code then comma then language name</comment>
   <data name="WordCountsCommand_Title" xml:space="preserve">
     <value>ספירת מילים</value>
     <comment>page title</comment>
-  </data>
-  <data name="ribCopyAcrossButton_Screentip" xml:space="preserve">
-    <value>העתק תוכן על פני השורות שנבחרו</value>
-    <comment>ribbon table</comment>
-  </data>
-  <data name="phrase_PathNotFound" xml:space="preserve">
-    <value>נתיב לא נמצא</value>
-  </data>
-  <data name="ribRemoveDateStampButton_Label" xml:space="preserve">
-    <value>הסר חותמות תאריך</value>
-    <comment>section context menu</comment>
-  </data>
-  <data name="DrawPlantUml_EmptySelection" xml:space="preserve">
-    <value>בחירה ריקה. בחר בלוק חוקי של טקסט PlantUML.</value>
-    <comment>error message</comment>
-  </data>
-  <data name="DrawPlantUml_Error" xml:space="preserve">
-    <value>תחביר לא חוקי או בחירה לא מלאה של PlantUML</value>
-    <comment>error message</comment>
-  </data>
-  <data name="ribDrawPlantUmlButton_Label" xml:space="preserve">
-    <value>צייר PlantUML</value>
-    <comment>ribbon images</comment>
-  </data>
-  <data name="ribDrawPlantUmlButton_Screentip" xml:space="preserve">
-    <value>עבד את תמונת PlantUML או Graphviz מטקסט שנבחר</value>
-    <comment>ribbon images</comment>
-  </data>
-  <data name="ResizeImagesDialog_resetLinkLabel.Text" xml:space="preserve">
-    <value>אפס ערכים</value>
-    <comment>link label</comment>
-  </data>
-  <data name="ImportDialog_pdfGroup.Text" xml:space="preserve">
-    <value>אפשרויות PDF</value>
-    <comment>group box</comment>
-  </data>
-  <data name="phrase_AppendToThisPage" xml:space="preserve">
-    <value>צרף לדף זה</value>
-  </data>
-  <data name="phrase_CreateANewPage" xml:space="preserve">
-    <value>צור דף חדש</value>
-  </data>
-  <data name="PageColorDialog_applyThemeBox.Text" xml:space="preserve">
-    <value>החל סגנונות על דף זה</value>
-    <comment>checkbox</comment>
-  </data>
-  <data name="PageColorDialog_contrastWarning" xml:space="preserve">
-    <value>ייתכן שהטקסט אינו קריא</value>
-    <comment>label</comment>
-  </data>
-  <data name="PageColorDialog_currentThemeLabel.Text" xml:space="preserve">
-    <value>הגדרת הסגנונות הנוכחית היא "{0}"</value>
-    <comment>label</comment>
-  </data>
-  <data name="PageColorDialog_customLabel" xml:space="preserve">
-    <value>לחץ כאן כדי לשנות את הצבע המותאם אישית שלך</value>
-    <comment>label</comment>
-  </data>
-  <data name="PageColorDialog_loadThemeLink.Text" xml:space="preserve">
-    <value>טען סגנונות שונים</value>
-    <comment>linklabel</comment>
-  </data>
-  <data name="PageColorDialog_noLabel.Text" xml:space="preserve">
-    <value>או בחר ללא צבע עמוד</value>
-    <comment>label</comment>
-  </data>
-  <data name="PageColorDialog_omLabel" xml:space="preserve">
-    <value>לחץ כאן כדי לבחור צבע מוגדר מראש</value>
-    <comment>label</comment>
-  </data>
-  <data name="ribPageColorButton_Label" xml:space="preserve">
-    <value>הגדר צבע עמוד</value>
-    <comment>page context menu</comment>
-  </data>
-  <data name="ribPageColorButton_Screentip" xml:space="preserve">
-    <value>שנה את הרקע של דף זה לצבע מותאם אישית</value>
-    <comment>page context menu</comment>
-  </data>
-  <data name="LoadStyleTheme_errorLoading" xml:space="preserve">
-    <value>לא ניתן לטעון את הקובץ או שהקובץ ריק</value>
-  </data>
-  <data name="LoadStyleTheme_filter" xml:space="preserve">
-    <value>הגדרות סגנון (*.xml)|*.xml|כל הקבצים (*.*)|*.*</value>
-    <comment>OpenFileDialog filter</comment>
-  </data>
-  <data name="LoadStyleTheme_Title" xml:space="preserve">
-    <value>טען ערכת נושא בסגנון</value>
-    <comment>OpenFileDialog title</comment>
-  </data>
-  <data name="ribEditStylesButton_named" xml:space="preserve">
-    <value>ערוך סגנונות ({0})</value>
-    <comment>ribbon styles with theme name</comment>
-  </data>
-  <data name="StyleDialog_darkBox.Text" xml:space="preserve">
-    <value>מיועד לדפים עם רקע כהה</value>
-    <comment>checkbox</comment>
-  </data>
-  <data name="StyleDialog_optionsGroup.Text" xml:space="preserve">
-    <value>אפשרויות</value>
-    <comment>groupbox</comment>
-  </data>
-  <data name="StyleDialog_pageColorBox.Text" xml:space="preserve">
-    <value>שנה את צבע העמוד בעת החלת סגנונות אלה</value>
-    <comment>checkbox</comment>
-  </data>
-  <data name="StyleDialog_pageColorLink.Text" xml:space="preserve">
-    <value>לחץ כאן כדי לבחור את צבע העמוד</value>
-    <comment>linklabel</comment>
-  </data>
-  <data name="PageColorDialog_contrastTooltip" xml:space="preserve">
-    <value>ייתכן שלא תהיה ניגודיות מספקת בין צבע הטקסט לצבע העמוד</value>
-    <comment>tooltip</comment>
-  </data>
-  <data name="StyleDialog_saveStylesTitle" xml:space="preserve">
-    <value>שמור סגנונות</value>
-    <comment>dialog title</comment>
-  </data>
-  <data name="ShowXmlDialog_newlineBox.Text" xml:space="preserve">
-    <value>תכונות בקווים חדשים</value>
-    <comment>checkbox</comment>
-  </data>
-  <data name="ShowXmlDialog_saveBox.Text" xml:space="preserve">
-    <value>שמור את מיקום החלון</value>
-    <comment>checkbox</comment>
-  </data>
-  <data name="SearchAndReplaceDialog_substitutions" xml:space="preserve">
-    <value>פרמטרי החלפה חוקיים: {0}</value>
-    <comment>status label</comment>
-  </data>
-  <data name="ImagesSheet_introBox.Text" xml:space="preserve">
-    <value>התאם אישית את ברירות המחדל עבור פקודות תמונה</value>
-    <comment>label</comment>
-  </data>
-  <data name="ImagesSheet_plantAfterBox.Text" xml:space="preserve">
-    <value>הוסף ציור אחרי טקסט PlantUML</value>
-    <comment>checkbox</comment>
-  </data>
-  <data name="ImagesSheet_plantCollapseBox.Text" xml:space="preserve">
-    <value>כווץ טקסט PlantUML</value>
-    <comment>checkbox</comment>
-  </data>
-  <data name="SettingsDialog_imagesNode.Text" xml:space="preserve">
-    <value>תמונות</value>
-    <comment>treenode</comment>
-  </data>
-  <data name="ImagesSheet_plantGroup.Text" xml:space="preserve">
-    <value>אפשרויות PlantUML</value>
-    <comment>groupbox</comment>
-  </data>
-  <data name="AliasSheet_Title" xml:space="preserve">
-    <value>כינויי פיקוד</value>
-    <comment>sheet</comment>
-  </data>
-  <data name="ImagesSheet_imageBrowser" xml:space="preserve">
-    <value>צופה תמונה</value>
-  </data>
-  <data name="ImagesSheet_imageViewerLabel.Text" xml:space="preserve">
-    <value>מציג תמונות חיצוני (ברירת מחדל אם ריק הוא mspaint)</value>
-    <comment>label</comment>
-  </data>
-  <data name="ImagesSheet_resizeGroup.Text" xml:space="preserve">
-    <value>שינוי גודל אפשרויות</value>
-    <comment>groupsbox</comment>
-  </data>
-  <data name="ImagesSheet_Title" xml:space="preserve">
-    <value>תמונות</value>
-    <comment>sheet</comment>
-  </data>
-  <data name="ImagesSheet_widthLabel.Text" xml:space="preserve">
-    <value>שינוי גודל רוחב מועדף</value>
-    <comment>label</comment>
-  </data>
-  <data name="PluginsSheet_Title" xml:space="preserve">
-    <value>תוספים</value>
-    <comment>sheet title EDIT</comment>
-  </data>
-  <data name="word_General" xml:space="preserve">
-    <value>כללי</value>
-  </data>
-  <data name="DrawPlantUml_broken" xml:space="preserve">
-    <value>טקסט PlantUML אינו חוקי או שאינו יכול למצוא קשר בין טקסט לתמונה</value>
-    <comment>error message</comment>
-  </data>
-  <data name="QuickNotesSheet_groupingBox.Text" xml:space="preserve">
-    <value>שבוע עבודה (2023-02-13 W7)
-חודש (2023-02)
-רבעון (2023 Q1)
-שנה (2023)
-#מילת מפתח בשורה הראשונה של הערה</value>
-    <comment>combobox</comment>
-  </data>
-  <data name="QuickNotesSheet_groupingLabel.Text" xml:space="preserve">
-    <value>קבץ למקטעים לפי</value>
-    <comment>label</comment>
-  </data>
-  <data name="QuickNotesSheet_introBox.Text" xml:space="preserve">
-    <value>התאמה אישית של ההתנהגות של הפקודה ארגן הערות מהירות</value>
-    <comment>textbox</comment>
-  </data>
-  <data name="QuickNotesSheet_notebookButton.Text" xml:space="preserve">
-    <value>העבר הערות מהירות למחברת זו</value>
-    <comment>radio</comment>
-  </data>
-  <data name="QuickNotesSheet_notebookLink.Text" xml:space="preserve">
-    <value>לחץ כאן כדי לבחור את המחברת</value>
-    <comment>linklabel</comment>
-  </data>
-  <data name="QuickNotesSheet_sectionButton.Text" xml:space="preserve">
-    <value>העבר הערות מהירות לקטע זה</value>
-    <comment>radio</comment>
-  </data>
-  <data name="QuickNotesSheet_sectionLink.Text" xml:space="preserve">
-    <value>לחץ כאן כדי לבחור את הקטע</value>
-    <comment>linklabel</comment>
-  </data>
-  <data name="QuickNotesSheet_SelectNotebookIntro" xml:space="preserve">
-    <value>בחר את המחברת המשמשת לארגון ההערות המהירות שלך</value>
-    <comment>quick filing dialog intro</comment>
-  </data>
-  <data name="QuickNotesSheet_SelectNotebookTitle" xml:space="preserve">
-    <value>בחר מחברת</value>
-    <comment>quick filing dialog title</comment>
-  </data>
-  <data name="QuickNotesSheet_SelectSectionIntro" xml:space="preserve">
-    <value>בחר את הקטע המשמש לארגון ההערות המהירות שלך</value>
-    <comment>quick filing dialog intro</comment>
-  </data>
-  <data name="QuickNotesSheet_SelectSectionTitle" xml:space="preserve">
-    <value>בחר סעיף</value>
-    <comment>quick filing dialog title</comment>
-  </data>
-  <data name="QuickNotesSheet_stampBox.Text" xml:space="preserve">
-    <value>הוסף את הכותרת עם התאריך שבו נוצרה ההערה</value>
-    <comment>checkbox</comment>
-  </data>
-  <data name="QuickNotesSheet_Title" xml:space="preserve">
-    <value>הערות מהירות</value>
-    <comment>sheet title</comment>
-  </data>
-  <data name="QuickNotesSheet_titleBox.Text" xml:space="preserve">
-    <value>הגדר את כותרת העמוד למילים הראשונות של ההערה</value>
-    <comment>checkbox</comment>
-  </data>
-  <data name="SettingsDialog_quickNotesNode.Text" xml:space="preserve">
-    <value>הערות מהירות</value>
-    <comment>tree node</comment>
-  </data>
-  <data name="word_Notebook" xml:space="preserve">
-    <value>מחברת</value>
-  </data>
-  <data name="word_Section" xml:space="preserve">
-    <value>סָעִיף</value>
-  </data>
-  <data name="ribFileQuickNotesButton_Label" xml:space="preserve">
-    <value>קובץ הערות מהירות</value>
-    <comment>ribbon file</comment>
-  </data>
-  <data name="ribFileQuickNotesButton_Screentip" xml:space="preserve">
-    <value>ארגן הערות מהירות למחברת או למדור</value>
-    <comment>ribbon file</comment>
-  </data>
-  <data name="Favorites_suspect" xml:space="preserve">
-    <value>הדף לא נמצא; ייתכן ששמו שונה או הועבר</value>
-    <comment>tooltip</comment>
-  </data>
-  <data name="Favorites_unknown" xml:space="preserve">
-    <value>הדף כבר לא נמצא; ייתכן שהוא נמחק</value>
-    <comment>tooltip</comment>
   </data>
 </root>
