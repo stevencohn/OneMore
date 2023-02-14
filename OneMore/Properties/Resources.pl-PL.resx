@@ -188,6 +188,10 @@ OneNote zamknie się automatycznie</value>
     <value>Zdefiniuj aliasy poleceń do użycia w palecie poleceń</value>
     <comment>intro box</comment>
   </data>
+  <data name="AliasSheet_Title" xml:space="preserve">
+    <value>Aliasy poleceń</value>
+    <comment>sheet</comment>
+  </data>
   <data name="AnalyzeCommand_CacheSummary" xml:space="preserve">
     <value>Pamięć podręczna jest katalogiem wewnętrznym zarządzanym przez OneNote, aby zoptymalizować jego wydajność. Zaleceniem jest uniknięcie ręcznego usuwania zawartości katalogu pamięci podręcznej, chyba że zostanie uszkodzony lub utrudnia działanie OneNote.</value>
     <comment>summary text</comment>
@@ -842,6 +846,18 @@ OneNote zamknie się automatycznie</value>
   <data name="DownArrow" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>images\downarrow.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="DrawPlantUml_broken" xml:space="preserve">
+    <value>Tekst PlantUML jest nieprawidłowy lub nie może znaleźć połączenia między tekstem a obrazem</value>
+    <comment>error message</comment>
+  </data>
+  <data name="DrawPlantUml_EmptySelection" xml:space="preserve">
+    <value>Pusty wybór. Wybierz prawidłowy blok tekstu PlantUML.</value>
+    <comment>error message</comment>
+  </data>
+  <data name="DrawPlantUml_Error" xml:space="preserve">
+    <value>Niepoprawna składnia lub niepełny wybór PlantUML</value>
+    <comment>error message</comment>
+  </data>
   <data name="EditTableThemesDialog_colorsTab.Text" xml:space="preserve">
     <value>Zabarwienie</value>
     <comment>tab</comment>
@@ -1142,6 +1158,14 @@ Plik OneNote (* .o)</value>
   <data name="Family" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Emoji\Family.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="Favorites_suspect" xml:space="preserve">
+    <value>Strona nie znaleziona; mogła zostać zmieniona lub przeniesiona</value>
+    <comment>tooltip</comment>
+  </data>
+  <data name="Favorites_unknown" xml:space="preserve">
+    <value>Strona nie została już znaleziona; mógł zostać usunięty</value>
+    <comment>tooltip</comment>
+  </data>
   <data name="FavoritesFilename" xml:space="preserve">
     <value>Favorites.xml</value>
     <comment>SKIP, filename</comment>
@@ -1330,6 +1354,41 @@ Symbole: PI, E</value>
     <value>Motywy wyróżnienia</value>
     <comment>sheet intro</comment>
   </data>
+  <data name="ImagesSheet_imageBrowser" xml:space="preserve">
+    <value>Przeglądarka obrazów</value>
+  </data>
+  <data name="ImagesSheet_imageViewerLabel.Text" xml:space="preserve">
+    <value>Zewnętrzna przeglądarka obrazów (domyślna, jeśli pusta to mspaint)</value>
+    <comment>label</comment>
+  </data>
+  <data name="ImagesSheet_introBox.Text" xml:space="preserve">
+    <value>Dostosuj ustawienia domyślne dla poleceń obrazu</value>
+    <comment>label</comment>
+  </data>
+  <data name="ImagesSheet_plantAfterBox.Text" xml:space="preserve">
+    <value>Wstaw rysunek po tekście PlantUML</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="ImagesSheet_plantCollapseBox.Text" xml:space="preserve">
+    <value>Zwiń tekst PlantUML</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="ImagesSheet_plantGroup.Text" xml:space="preserve">
+    <value>Opcje PlantUML</value>
+    <comment>groupbox</comment>
+  </data>
+  <data name="ImagesSheet_resizeGroup.Text" xml:space="preserve">
+    <value>Opcje zmiany rozmiaru</value>
+    <comment>groupsbox</comment>
+  </data>
+  <data name="ImagesSheet_Title" xml:space="preserve">
+    <value>Obrazy</value>
+    <comment>sheet</comment>
+  </data>
+  <data name="ImagesSheet_widthLabel.Text" xml:space="preserve">
+    <value>Preferowana szerokość zmiany rozmiaru</value>
+    <comment>label</comment>
+  </data>
   <data name="ImportDialog_fileLabel.Text" xml:space="preserve">
     <value>Plik:</value>
     <comment>label</comment>
@@ -1349,6 +1408,10 @@ Symbole: PI, E</value>
   <data name="ImportDialog_OpenFileTitle" xml:space="preserve">
     <value>Wybierz plik do importu</value>
     <comment>openfiledialog title</comment>
+  </data>
+  <data name="ImportDialog_pdfGroup.Text" xml:space="preserve">
+    <value>Opcje PDF</value>
+    <comment>group box</comment>
   </data>
   <data name="ImportDialog_powerGroup.Text" xml:space="preserve">
     <value>Opcje PowerPoint.</value>
@@ -1646,6 +1709,17 @@ Symbole: PI, E</value>
     <value>Nie znaleziono żadnych referencji. Zastanów się, aby umożliwić opcję dołączenie stron nieinindeksowanych</value>
     <comment>message</comment>
   </data>
+  <data name="LoadStyleTheme_errorLoading" xml:space="preserve">
+    <value>Nie można załadować pliku lub plik jest pusty</value>
+  </data>
+  <data name="LoadStyleTheme_filter" xml:space="preserve">
+    <value>Definicje stylów (*.xml)|*.xml|Wszystkie pliki (*.*)|*.*</value>
+    <comment>OpenFileDialog filter</comment>
+  </data>
+  <data name="LoadStyleTheme_Title" xml:space="preserve">
+    <value>Załaduj motyw stylu</value>
+    <comment>OpenFileDialog title</comment>
+  </data>
   <data name="Locked" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>images\locked.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -1851,6 +1925,38 @@ Odroczony</value>
     <value>Kolor strony</value>
     <comment>color popup dialog title</comment>
   </data>
+  <data name="PageColorDialog_applyThemeBox.Text" xml:space="preserve">
+    <value>Zastosuj style do tej strony</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="PageColorDialog_contrastTooltip" xml:space="preserve">
+    <value>Kontrast między kolorem tekstu a kolorem strony może być niewystarczający</value>
+    <comment>tooltip</comment>
+  </data>
+  <data name="PageColorDialog_contrastWarning" xml:space="preserve">
+    <value>Tekst może być nieczytelny</value>
+    <comment>label</comment>
+  </data>
+  <data name="PageColorDialog_currentThemeLabel.Text" xml:space="preserve">
+    <value>Bieżąca definicja stylów to „{0}”</value>
+    <comment>label</comment>
+  </data>
+  <data name="PageColorDialog_customLabel" xml:space="preserve">
+    <value>Kliknij tutaj, aby zmienić własny niestandardowy kolor</value>
+    <comment>label</comment>
+  </data>
+  <data name="PageColorDialog_loadThemeLink.Text" xml:space="preserve">
+    <value>Załaduj różne style</value>
+    <comment>linklabel</comment>
+  </data>
+  <data name="PageColorDialog_noLabel.Text" xml:space="preserve">
+    <value>lub nie wybieraj koloru strony</value>
+    <comment>label</comment>
+  </data>
+  <data name="PageColorDialog_omLabel" xml:space="preserve">
+    <value>Kliknij tutaj, aby wybrać predefiniowany kolor</value>
+    <comment>label</comment>
+  </data>
   <data name="Passwords" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Emoji\Passwords.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -1864,6 +1970,15 @@ Odroczony</value>
   </data>
   <data name="Pencil" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>emoji\pencil.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="phrase_AppendToThisPage" xml:space="preserve">
+    <value>Dołącz do tej strony</value>
+  </data>
+  <data name="phrase_CreateANewPage" xml:space="preserve">
+    <value>Utwórz nową stronę</value>
+  </data>
+  <data name="phrase_PathNotFound" xml:space="preserve">
+    <value>Droga nie znaleziona</value>
   </data>
   <data name="Plugin_InvalidSchema" xml:space="preserve">
     <value>Nieprawidłowy wykryty XML. Szczegółowe informacje można znaleźć w pliku dziennika</value>
@@ -1962,6 +2077,10 @@ Bieżący notatnik</value>
     <value>Zarządzaj moimi wtyczkami</value>
     <comment>label</comment>
   </data>
+  <data name="PluginsSheet_Title" xml:space="preserve">
+    <value>Wtyczki</value>
+    <comment>sheet title EDIT</comment>
+  </data>
   <data name="ProgramName" xml:space="preserve">
     <value>OneMore</value>
     <comment>SKIP</comment>
@@ -2006,6 +2125,66 @@ ISO-code then comma then language name</comment>
   </data>
   <data name="Pushpin" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>emoji\pushpin.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="QuickNotesSheet_groupingBox.Text" xml:space="preserve">
+    <value>Tydzień roboczy (2023-02-13 W7)
+Miesiąc (2023-02)
+Kwartał (I kw. 2023 r.)
+Rok (2023)
+#Keyword w pierwszym wierszu notatki</value>
+    <comment>combobox</comment>
+  </data>
+  <data name="QuickNotesSheet_groupingLabel.Text" xml:space="preserve">
+    <value>Pogrupuj w sekcje wg</value>
+    <comment>label</comment>
+  </data>
+  <data name="QuickNotesSheet_introBox.Text" xml:space="preserve">
+    <value>Dostosuj zachowanie polecenia Organizuj szybkie notatki</value>
+    <comment>textbox</comment>
+  </data>
+  <data name="QuickNotesSheet_notebookButton.Text" xml:space="preserve">
+    <value>Przenieś Szybkie notatki do tego notatnika</value>
+    <comment>radio</comment>
+  </data>
+  <data name="QuickNotesSheet_notebookLink.Text" xml:space="preserve">
+    <value>Kliknij tutaj, aby wybrać notatnik</value>
+    <comment>linklabel</comment>
+  </data>
+  <data name="QuickNotesSheet_sectionButton.Text" xml:space="preserve">
+    <value>Przenieś Szybkie notatki do tej sekcji</value>
+    <comment>radio</comment>
+  </data>
+  <data name="QuickNotesSheet_sectionLink.Text" xml:space="preserve">
+    <value>Kliknij tutaj, aby wybrać sekcję</value>
+    <comment>linklabel</comment>
+  </data>
+  <data name="QuickNotesSheet_SelectNotebookIntro" xml:space="preserve">
+    <value>Wybierz notatnik używany do organizowania szybkich notatek</value>
+    <comment>quick filing dialog intro</comment>
+  </data>
+  <data name="QuickNotesSheet_SelectNotebookTitle" xml:space="preserve">
+    <value>Wybierz Notatnik</value>
+    <comment>quick filing dialog title</comment>
+  </data>
+  <data name="QuickNotesSheet_SelectSectionIntro" xml:space="preserve">
+    <value>Wybierz sekcję służącą do organizowania szybkich notatek</value>
+    <comment>quick filing dialog intro</comment>
+  </data>
+  <data name="QuickNotesSheet_SelectSectionTitle" xml:space="preserve">
+    <value>Wybierz sekcję</value>
+    <comment>quick filing dialog title</comment>
+  </data>
+  <data name="QuickNotesSheet_stampBox.Text" xml:space="preserve">
+    <value>Dodaj tytuł z datą utworzenia notatki</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="QuickNotesSheet_Title" xml:space="preserve">
+    <value>Szybkie notatki</value>
+    <comment>sheet title</comment>
+  </data>
+  <data name="QuickNotesSheet_titleBox.Text" xml:space="preserve">
+    <value>Ustaw tytuł strony na pierwsze pięć słów notatki</value>
+    <comment>checkbox</comment>
   </data>
   <data name="RecalculateFormulaCommand_NoFormula" xml:space="preserve">
     <value>Nie znaleziono formuły w wybranej tabeli</value>
@@ -2329,6 +2508,10 @@ Nie powiększaj mniejszych obrazów</value>
     <value>Preset.</value>
     <comment>radio</comment>
   </data>
+  <data name="ResizeImagesDialog_resetLinkLabel.Text" xml:space="preserve">
+    <value>Zresetuj wartości</value>
+    <comment>link label</comment>
+  </data>
   <data name="ResizeImagesDialog_sizeLink.Text" xml:space="preserve">
     <value>{0} x {1}</value>
     <comment>width x height</comment>
@@ -2575,6 +2758,10 @@ Polaroid</value>
     <value>Kopiuj</value>
     <comment>ribbon table</comment>
   </data>
+  <data name="ribCopyAcrossButton_Screentip" xml:space="preserve">
+    <value>Skopiuj treść w wybranych wierszach</value>
+    <comment>ribbon table</comment>
+  </data>
   <data name="ribCopyAsMarkdownButton_Label" xml:space="preserve">
     <value>Kopiuj jako Markdown</value>
     <comment>ribbon item</comment>
@@ -2687,6 +2874,14 @@ Polaroid</value>
     <value>Wyłącz sprawdzanie pisowni w obrębie wybranej treści</value>
     <comment>ribbon edit</comment>
   </data>
+  <data name="ribDrawPlantUmlButton_Label" xml:space="preserve">
+    <value>Narysuj PlantUML</value>
+    <comment>ribbon images</comment>
+  </data>
+  <data name="ribDrawPlantUmlButton_Screentip" xml:space="preserve">
+    <value>Renderuj obraz PlantUML lub Graphviz z zaznaczonego tekstu</value>
+    <comment>ribbon images</comment>
+  </data>
   <data name="ribDuplicateLineAboveButton_Label" xml:space="preserve">
     <value>Zduplikowany akapit powyżej</value>
     <comment>pallette</comment>
@@ -2714,6 +2909,10 @@ Polaroid</value>
   <data name="ribEditStylesButton_Label" xml:space="preserve">
     <value>Edytuj style</value>
     <comment>ribbon styles</comment>
+  </data>
+  <data name="ribEditStylesButton_named" xml:space="preserve">
+    <value>Edytuj style ({0})</value>
+    <comment>ribbon styles with theme name</comment>
   </data>
   <data name="ribEditStylesButton_Screentip" xml:space="preserve">
     <value>Edytuj style lub załaduj różne style</value>
@@ -2782,6 +2981,14 @@ Polaroid</value>
   <data name="ribFileMenu_Label" xml:space="preserve">
     <value>Plik</value>
     <comment>ribbon menu NODUP</comment>
+  </data>
+  <data name="ribFileQuickNotesButton_Label" xml:space="preserve">
+    <value>Plik Szybkie notatki</value>
+    <comment>ribbon file</comment>
+  </data>
+  <data name="ribFileQuickNotesButton_Screentip" xml:space="preserve">
+    <value>Organizuj szybkie notatki w notatniku lub sekcji</value>
+    <comment>ribbon file</comment>
   </data>
   <data name="ribFillAcrossButton_Label" xml:space="preserve">
     <value>Wypełnić</value>
@@ -3170,6 +3377,14 @@ Polaroid</value>
     <value>Numeracja nagłówków na tej stronie</value>
     <comment>ribbon numbering</comment>
   </data>
+  <data name="ribPageColorButton_Label" xml:space="preserve">
+    <value>Ustaw kolor strony</value>
+    <comment>page context menu</comment>
+  </data>
+  <data name="ribPageColorButton_Screentip" xml:space="preserve">
+    <value>Zmień tło tej strony na niestandardowy kolor</value>
+    <comment>page context menu</comment>
+  </data>
   <data name="ribPageMenu_Label" xml:space="preserve">
     <value>Strona</value>
     <comment>ribbon menu NODUP</comment>
@@ -3281,6 +3496,10 @@ Polaroid</value>
   <data name="ribRemoveCitationsButton_Screentip" xml:space="preserve">
     <value>Usuń cytryny przycinające i pasty cytaty URL</value>
     <comment>Ribbon OneMore menu item</comment>
+  </data>
+  <data name="ribRemoveDateStampButton_Label" xml:space="preserve">
+    <value>Usuń datowniki</value>
+    <comment>section context menu</comment>
   </data>
   <data name="ribRemoveDuplicatesButton_Label" xml:space="preserve">
     <value>Usuń zduplikowane strony</value>
@@ -3695,6 +3914,10 @@ Polaroid</value>
     <value>Używaj wyrażeń regularnych</value>
     <comment>checkbox</comment>
   </data>
+  <data name="SearchAndReplaceDialog_substitutions" xml:space="preserve">
+    <value>Prawidłowe parametry podstawienia: {0}</value>
+    <comment>status label</comment>
+  </data>
   <data name="SearchAndReplaceDialog_Text" xml:space="preserve">
     <value>Wyszukaj i wymień.</value>
     <comment>dialog title</comment>
@@ -3832,6 +4055,10 @@ Wyszukiwarki pojawią się w menu kontekstowym strony, kliknij prawym przyciskie
     <value>Najlepsze motywy</value>
     <comment>treenode</comment>
   </data>
+  <data name="SettingsDialog_imagesNode.Text" xml:space="preserve">
+    <value>Obrazy</value>
+    <comment>treenode</comment>
+  </data>
   <data name="SettingsDialog_keyboardNode.Text" xml:space="preserve">
     <value>Skróty klawiszowe</value>
     <comment>treenode</comment>
@@ -3842,6 +4069,10 @@ Wyszukiwarki pojawią się w menu kontekstowym strony, kliknij prawym przyciskie
   </data>
   <data name="SettingsDialog_pluginsNode.Text" xml:space="preserve">
     <value>Wtyczki</value>
+    <comment>tree node</comment>
+  </data>
+  <data name="SettingsDialog_quickNotesNode.Text" xml:space="preserve">
+    <value>Szybkie notatki</value>
     <comment>tree node</comment>
   </data>
   <data name="SettingsDialog_Restart" xml:space="preserve">
@@ -3875,16 +4106,16 @@ Wyszukiwarki pojawią się w menu kontekstowym strony, kliknij prawym przyciskie
     <value>OneMore XML.</value>
     <comment>dialog title</comment>
   </data>
-  <data name="ShowXmlDialog_hideBox.Text" xml:space="preserve">
-    <value>Ukryj edytowane atrybuty (odznacz do edycji strony)</value>
+  <data name="ShowXmlDialog_editModeBox.Text" xml:space="preserve">
+    <value>Włącz tryb edycji</value>
     <comment>checkbox</comment>
   </data>
-  <data name="ShowXmlDialog_hideLFBox.Text" xml:space="preserve">
+  <data name="ShowXmlDialog_hideEditedByBox.Text" xml:space="preserve">
+    <value>Ukryj atrybuty edytowane przez</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="ShowXmlDialog_linefeedBox.Text" xml:space="preserve">
     <value>Usuń LF z CDATA</value>
-    <comment>checkbox</comment>
-  </data>
-  <data name="ShowXmlDialog_hidePidBox.Text" xml:space="preserve">
-    <value>Ukryj pid.</value>
     <comment>checkbox</comment>
   </data>
   <data name="ShowXmlDialog_manualLabel.Text" xml:space="preserve">
@@ -3895,6 +4126,10 @@ Wyszukiwarki pojawią się w menu kontekstowym strony, kliknij prawym przyciskie
     <value>Wyszukiwanie ręczne.</value>
     <comment>tab</comment>
   </data>
+  <data name="ShowXmlDialog_multilineBox.Text" xml:space="preserve">
+    <value>Atrybuty w nowych liniach</value>
+    <comment>checkbox</comment>
+  </data>
   <data name="ShowXmlDialog_nbPagesTab.Text" xml:space="preserve">
     <value>Notatnik z stronami</value>
     <comment>tab</comment>
@@ -3902,6 +4137,10 @@ Wyszukiwarki pojawią się w menu kontekstowym strony, kliknij prawym przyciskie
   <data name="ShowXmlDialog_nbSectionsTab.Text" xml:space="preserve">
     <value>Notatnik z sekcjami</value>
     <comment>tab</comment>
+  </data>
+  <data name="ShowXmlDialog_noHierarchy" xml:space="preserve">
+    <value>Brak hierarchii</value>
+    <comment>message</comment>
   </data>
   <data name="ShowXmlDialog_notebooksTab.Text" xml:space="preserve">
     <value>Notebooki</value>
@@ -3923,13 +4162,25 @@ Wyszukiwarki pojawią się w menu kontekstowym strony, kliknij prawym przyciskie
     <value>Ścieżka:</value>
     <comment>label</comment>
   </data>
-  <data name="ShowXmlDialog_sectionTab.Text" xml:space="preserve">
-    <value>Sekcja</value>
-    <comment>tab</comment>
+  <data name="ShowXmlDialog_pidBox.Text" xml:space="preserve">
+    <value>Ukryj PID</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="ShowXmlDialog_saveWindowBox.Text" xml:space="preserve">
+    <value>Zapisz lokalizację okna</value>
+    <comment>checkbox</comment>
   </data>
   <data name="ShowXmlDialog_selectButton.Text" xml:space="preserve">
     <value>Zaznacz wszystko</value>
     <comment>button</comment>
+  </data>
+  <data name="ShowXmlDialog_WARNING" xml:space="preserve">
+    <value>To niebezpieczna operacja!
+
+Niewłaściwe zmiany mogą spowodować utratę danych.
+
+Jesteś pewien, że chcesz kontynuować?</value>
+    <comment>confirmation</comment>
   </data>
   <data name="ShowXmlDialog_wrapBox.Text" xml:space="preserve">
     <value>Owiń tekst</value>
@@ -4118,6 +4369,10 @@ Notebooki</value>
     <value>Kolor tekstu</value>
     <comment>button tip</comment>
   </data>
+  <data name="StyleDialog_darkBox.Text" xml:space="preserve">
+    <value>Przeznaczony dla stron z ciemnym tłem</value>
+    <comment>checkbox</comment>
+  </data>
   <data name="StyleDialog_defaultBlackToolStripMenuItem.Text" xml:space="preserve">
     <value>Domyślnie (czarny)</value>
     <comment>menu item</comment>
@@ -4150,6 +4405,18 @@ Notebooki</value>
     <value>Nowy styl</value>
     <comment>dialog title</comment>
   </data>
+  <data name="StyleDialog_optionsGroup.Text" xml:space="preserve">
+    <value>Opcje</value>
+    <comment>groupbox</comment>
+  </data>
+  <data name="StyleDialog_pageColorBox.Text" xml:space="preserve">
+    <value>Zmień kolor strony podczas stosowania tych stylów</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="StyleDialog_pageColorLink.Text" xml:space="preserve">
+    <value>Kliknij tutaj, aby wybrać kolor strony</value>
+    <comment>linklabel</comment>
+  </data>
   <data name="StyleDialog_reorderButton.Text" xml:space="preserve">
     <value>Zmienić kolejność</value>
     <comment>button</comment>
@@ -4157,6 +4424,10 @@ Notebooki</value>
   <data name="StyleDialog_saveButton.Text" xml:space="preserve">
     <value>Zapisz jako...</value>
     <comment>menu item</comment>
+  </data>
+  <data name="StyleDialog_saveStylesTitle" xml:space="preserve">
+    <value>Zapisz style</value>
+    <comment>dialog title</comment>
   </data>
   <data name="StyleDialog_spacingLabel.Text" xml:space="preserve">
     <value>Rozstaw:</value>
@@ -4499,6 +4770,12 @@ W tej sekcji</value>
   <data name="word_Font" xml:space="preserve">
     <value>Czcionka</value>
   </data>
+  <data name="word_Function" xml:space="preserve">
+    <value>Funkcjonować</value>
+  </data>
+  <data name="word_General" xml:space="preserve">
+    <value>Ogólny</value>
+  </data>
   <data name="word_Go" xml:space="preserve">
     <value>Iść</value>
   </data>
@@ -4522,6 +4799,9 @@ W tej sekcji</value>
   </data>
   <data name="word_No" xml:space="preserve">
     <value>Nie</value>
+  </data>
+  <data name="word_Notebook" xml:space="preserve">
+    <value>Zeszyt</value>
   </data>
   <data name="word_OK" xml:space="preserve">
     <value>ok</value>
@@ -4567,6 +4847,9 @@ W tej sekcji</value>
   </data>
   <data name="word_Scope" xml:space="preserve">
     <value>Zakres</value>
+  </data>
+  <data name="word_Section" xml:space="preserve">
+    <value>Sekcja</value>
   </data>
   <data name="word_Silenced" xml:space="preserve">
     <value>Uciszony</value>
@@ -4635,273 +4918,5 @@ W tej sekcji</value>
   <data name="WordCountsCommand_Title" xml:space="preserve">
     <value>Liczy się słowo</value>
     <comment>page title</comment>
-  </data>
-  <data name="ribCopyAcrossButton_Screentip" xml:space="preserve">
-    <value>Skopiuj treść w wybranych wierszach</value>
-    <comment>ribbon table</comment>
-  </data>
-  <data name="phrase_PathNotFound" xml:space="preserve">
-    <value>Droga nie znaleziona</value>
-  </data>
-  <data name="ribRemoveDateStampButton_Label" xml:space="preserve">
-    <value>Usuń datowniki</value>
-    <comment>section context menu</comment>
-  </data>
-  <data name="DrawPlantUml_EmptySelection" xml:space="preserve">
-    <value>Pusty wybór. Wybierz prawidłowy blok tekstu PlantUML.</value>
-    <comment>error message</comment>
-  </data>
-  <data name="DrawPlantUml_Error" xml:space="preserve">
-    <value>Niepoprawna składnia lub niepełny wybór PlantUML</value>
-    <comment>error message</comment>
-  </data>
-  <data name="ribDrawPlantUmlButton_Label" xml:space="preserve">
-    <value>Narysuj PlantUML</value>
-    <comment>ribbon images</comment>
-  </data>
-  <data name="ribDrawPlantUmlButton_Screentip" xml:space="preserve">
-    <value>Renderuj obraz PlantUML lub Graphviz z zaznaczonego tekstu</value>
-    <comment>ribbon images</comment>
-  </data>
-  <data name="ResizeImagesDialog_resetLinkLabel.Text" xml:space="preserve">
-    <value>Zresetuj wartości</value>
-    <comment>link label</comment>
-  </data>
-  <data name="ImportDialog_pdfGroup.Text" xml:space="preserve">
-    <value>Opcje PDF</value>
-    <comment>group box</comment>
-  </data>
-  <data name="phrase_AppendToThisPage" xml:space="preserve">
-    <value>Dołącz do tej strony</value>
-  </data>
-  <data name="phrase_CreateANewPage" xml:space="preserve">
-    <value>Utwórz nową stronę</value>
-  </data>
-  <data name="PageColorDialog_applyThemeBox.Text" xml:space="preserve">
-    <value>Zastosuj style do tej strony</value>
-    <comment>checkbox</comment>
-  </data>
-  <data name="PageColorDialog_contrastWarning" xml:space="preserve">
-    <value>Tekst może być nieczytelny</value>
-    <comment>label</comment>
-  </data>
-  <data name="PageColorDialog_currentThemeLabel.Text" xml:space="preserve">
-    <value>Bieżąca definicja stylów to „{0}”</value>
-    <comment>label</comment>
-  </data>
-  <data name="PageColorDialog_customLabel" xml:space="preserve">
-    <value>Kliknij tutaj, aby zmienić własny niestandardowy kolor</value>
-    <comment>label</comment>
-  </data>
-  <data name="PageColorDialog_loadThemeLink.Text" xml:space="preserve">
-    <value>Załaduj różne style</value>
-    <comment>linklabel</comment>
-  </data>
-  <data name="PageColorDialog_noLabel.Text" xml:space="preserve">
-    <value>lub nie wybieraj koloru strony</value>
-    <comment>label</comment>
-  </data>
-  <data name="PageColorDialog_omLabel" xml:space="preserve">
-    <value>Kliknij tutaj, aby wybrać predefiniowany kolor</value>
-    <comment>label</comment>
-  </data>
-  <data name="ribPageColorButton_Label" xml:space="preserve">
-    <value>Ustaw kolor strony</value>
-    <comment>page context menu</comment>
-  </data>
-  <data name="ribPageColorButton_Screentip" xml:space="preserve">
-    <value>Zmień tło tej strony na niestandardowy kolor</value>
-    <comment>page context menu</comment>
-  </data>
-  <data name="LoadStyleTheme_errorLoading" xml:space="preserve">
-    <value>Nie można załadować pliku lub plik jest pusty</value>
-  </data>
-  <data name="LoadStyleTheme_filter" xml:space="preserve">
-    <value>Definicje stylów (*.xml)|*.xml|Wszystkie pliki (*.*)|*.*</value>
-    <comment>OpenFileDialog filter</comment>
-  </data>
-  <data name="LoadStyleTheme_Title" xml:space="preserve">
-    <value>Załaduj motyw stylu</value>
-    <comment>OpenFileDialog title</comment>
-  </data>
-  <data name="ribEditStylesButton_named" xml:space="preserve">
-    <value>Edytuj style ({0})</value>
-    <comment>ribbon styles with theme name</comment>
-  </data>
-  <data name="StyleDialog_darkBox.Text" xml:space="preserve">
-    <value>Przeznaczony dla stron z ciemnym tłem</value>
-    <comment>checkbox</comment>
-  </data>
-  <data name="StyleDialog_optionsGroup.Text" xml:space="preserve">
-    <value>Opcje</value>
-    <comment>groupbox</comment>
-  </data>
-  <data name="StyleDialog_pageColorBox.Text" xml:space="preserve">
-    <value>Zmień kolor strony podczas stosowania tych stylów</value>
-    <comment>checkbox</comment>
-  </data>
-  <data name="StyleDialog_pageColorLink.Text" xml:space="preserve">
-    <value>Kliknij tutaj, aby wybrać kolor strony</value>
-    <comment>linklabel</comment>
-  </data>
-  <data name="PageColorDialog_contrastTooltip" xml:space="preserve">
-    <value>Kontrast między kolorem tekstu a kolorem strony może być niewystarczający</value>
-    <comment>tooltip</comment>
-  </data>
-  <data name="StyleDialog_saveStylesTitle" xml:space="preserve">
-    <value>Zapisz style</value>
-    <comment>dialog title</comment>
-  </data>
-  <data name="ShowXmlDialog_newlineBox.Text" xml:space="preserve">
-    <value>Atrybuty w nowych liniach</value>
-    <comment>checkbox</comment>
-  </data>
-  <data name="ShowXmlDialog_saveBox.Text" xml:space="preserve">
-    <value>Zapisz lokalizację okna</value>
-    <comment>checkbox</comment>
-  </data>
-  <data name="SearchAndReplaceDialog_substitutions" xml:space="preserve">
-    <value>Prawidłowe parametry podstawienia: {0}</value>
-    <comment>status label</comment>
-  </data>
-  <data name="ImagesSheet_introBox.Text" xml:space="preserve">
-    <value>Dostosuj ustawienia domyślne dla poleceń obrazu</value>
-    <comment>label</comment>
-  </data>
-  <data name="ImagesSheet_plantAfterBox.Text" xml:space="preserve">
-    <value>Wstaw rysunek po tekście PlantUML</value>
-    <comment>checkbox</comment>
-  </data>
-  <data name="ImagesSheet_plantCollapseBox.Text" xml:space="preserve">
-    <value>Zwiń tekst PlantUML</value>
-    <comment>checkbox</comment>
-  </data>
-  <data name="SettingsDialog_imagesNode.Text" xml:space="preserve">
-    <value>Obrazy</value>
-    <comment>treenode</comment>
-  </data>
-  <data name="ImagesSheet_plantGroup.Text" xml:space="preserve">
-    <value>Opcje PlantUML</value>
-    <comment>groupbox</comment>
-  </data>
-  <data name="AliasSheet_Title" xml:space="preserve">
-    <value>Aliasy poleceń</value>
-    <comment>sheet</comment>
-  </data>
-  <data name="ImagesSheet_imageBrowser" xml:space="preserve">
-    <value>Przeglądarka obrazów</value>
-  </data>
-  <data name="ImagesSheet_imageViewerLabel.Text" xml:space="preserve">
-    <value>Zewnętrzna przeglądarka obrazów (domyślna, jeśli pusta to mspaint)</value>
-    <comment>label</comment>
-  </data>
-  <data name="ImagesSheet_resizeGroup.Text" xml:space="preserve">
-    <value>Opcje zmiany rozmiaru</value>
-    <comment>groupsbox</comment>
-  </data>
-  <data name="ImagesSheet_Title" xml:space="preserve">
-    <value>Obrazy</value>
-    <comment>sheet</comment>
-  </data>
-  <data name="ImagesSheet_widthLabel.Text" xml:space="preserve">
-    <value>Preferowana szerokość zmiany rozmiaru</value>
-    <comment>label</comment>
-  </data>
-  <data name="PluginsSheet_Title" xml:space="preserve">
-    <value>Wtyczki</value>
-    <comment>sheet title EDIT</comment>
-  </data>
-  <data name="word_General" xml:space="preserve">
-    <value>Ogólny</value>
-  </data>
-  <data name="DrawPlantUml_broken" xml:space="preserve">
-    <value>Tekst PlantUML jest nieprawidłowy lub nie może znaleźć połączenia między tekstem a obrazem</value>
-    <comment>error message</comment>
-  </data>
-  <data name="QuickNotesSheet_groupingBox.Text" xml:space="preserve">
-    <value>Tydzień roboczy (2023-02-13 W7)
-Miesiąc (2023-02)
-Kwartał (I kw. 2023 r.)
-Rok (2023)
-#Keyword w pierwszym wierszu notatki</value>
-    <comment>combobox</comment>
-  </data>
-  <data name="QuickNotesSheet_groupingLabel.Text" xml:space="preserve">
-    <value>Pogrupuj w sekcje wg</value>
-    <comment>label</comment>
-  </data>
-  <data name="QuickNotesSheet_introBox.Text" xml:space="preserve">
-    <value>Dostosuj zachowanie polecenia Organizuj szybkie notatki</value>
-    <comment>textbox</comment>
-  </data>
-  <data name="QuickNotesSheet_notebookButton.Text" xml:space="preserve">
-    <value>Przenieś Szybkie notatki do tego notatnika</value>
-    <comment>radio</comment>
-  </data>
-  <data name="QuickNotesSheet_notebookLink.Text" xml:space="preserve">
-    <value>Kliknij tutaj, aby wybrać notatnik</value>
-    <comment>linklabel</comment>
-  </data>
-  <data name="QuickNotesSheet_sectionButton.Text" xml:space="preserve">
-    <value>Przenieś Szybkie notatki do tej sekcji</value>
-    <comment>radio</comment>
-  </data>
-  <data name="QuickNotesSheet_sectionLink.Text" xml:space="preserve">
-    <value>Kliknij tutaj, aby wybrać sekcję</value>
-    <comment>linklabel</comment>
-  </data>
-  <data name="QuickNotesSheet_SelectNotebookIntro" xml:space="preserve">
-    <value>Wybierz notatnik używany do organizowania szybkich notatek</value>
-    <comment>quick filing dialog intro</comment>
-  </data>
-  <data name="QuickNotesSheet_SelectNotebookTitle" xml:space="preserve">
-    <value>Wybierz Notatnik</value>
-    <comment>quick filing dialog title</comment>
-  </data>
-  <data name="QuickNotesSheet_SelectSectionIntro" xml:space="preserve">
-    <value>Wybierz sekcję służącą do organizowania szybkich notatek</value>
-    <comment>quick filing dialog intro</comment>
-  </data>
-  <data name="QuickNotesSheet_SelectSectionTitle" xml:space="preserve">
-    <value>Wybierz sekcję</value>
-    <comment>quick filing dialog title</comment>
-  </data>
-  <data name="QuickNotesSheet_stampBox.Text" xml:space="preserve">
-    <value>Dodaj tytuł z datą utworzenia notatki</value>
-    <comment>checkbox</comment>
-  </data>
-  <data name="QuickNotesSheet_Title" xml:space="preserve">
-    <value>Szybkie notatki</value>
-    <comment>sheet title</comment>
-  </data>
-  <data name="QuickNotesSheet_titleBox.Text" xml:space="preserve">
-    <value>Ustaw tytuł strony na pierwsze pięć słów notatki</value>
-    <comment>checkbox</comment>
-  </data>
-  <data name="SettingsDialog_quickNotesNode.Text" xml:space="preserve">
-    <value>Szybkie notatki</value>
-    <comment>tree node</comment>
-  </data>
-  <data name="word_Notebook" xml:space="preserve">
-    <value>Zeszyt</value>
-  </data>
-  <data name="word_Section" xml:space="preserve">
-    <value>Sekcja</value>
-  </data>
-  <data name="ribFileQuickNotesButton_Label" xml:space="preserve">
-    <value>Plik Szybkie notatki</value>
-    <comment>ribbon file</comment>
-  </data>
-  <data name="ribFileQuickNotesButton_Screentip" xml:space="preserve">
-    <value>Organizuj szybkie notatki w notatniku lub sekcji</value>
-    <comment>ribbon file</comment>
-  </data>
-  <data name="Favorites_suspect" xml:space="preserve">
-    <value>Strona nie znaleziona; mogła zostać zmieniona lub przeniesiona</value>
-    <comment>tooltip</comment>
-  </data>
-  <data name="Favorites_unknown" xml:space="preserve">
-    <value>Strona nie została już znaleziona; mógł zostać usunięty</value>
-    <comment>tooltip</comment>
   </data>
 </root>

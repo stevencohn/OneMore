@@ -186,6 +186,10 @@ OneNote 将自动关闭</value>
     <value>定义在命令面板中使用的命令别名</value>
     <comment>intro box</comment>
   </data>
+  <data name="AliasSheet_Title" xml:space="preserve">
+    <value>命令别名</value>
+    <comment>sheet</comment>
+  </data>
   <data name="AnalyzeCommand_CacheSummary" xml:space="preserve">
     <value>缓存是 OneNote 管理的一个内部目录，用于优化其性能。</value>
     <comment>summary text</comment>
@@ -826,6 +830,18 @@ OneNote 将自动关闭</value>
   <data name="DownArrow" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>images\downarrow.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="DrawPlantUml_broken" xml:space="preserve">
+    <value>PlantUML 文本无效或找不到文本和图像之间的连接</value>
+    <comment>error message</comment>
+  </data>
+  <data name="DrawPlantUml_EmptySelection" xml:space="preserve">
+    <value>空选择。选择一个有效的 PlantUML 文本块。</value>
+    <comment>error message</comment>
+  </data>
+  <data name="DrawPlantUml_Error" xml:space="preserve">
+    <value>PlantUML 语法无效或选择不完整</value>
+    <comment>error message</comment>
+  </data>
   <data name="EditTableThemesDialog_colorsTab.Text" xml:space="preserve">
     <value>颜色</value>
     <comment>tab</comment>
@@ -1123,6 +1139,14 @@ OneNote 文件 (*.one)</value>
   <data name="Family" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Emoji\Family.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="Favorites_suspect" xml:space="preserve">
+    <value>找不到网页;它可能已被重命名或移动</value>
+    <comment>tooltip</comment>
+  </data>
+  <data name="Favorites_unknown" xml:space="preserve">
+    <value>不再找到页面；它可能已被删除</value>
+    <comment>tooltip</comment>
+  </data>
   <data name="FavoritesFilename" xml:space="preserve">
     <value>Favorites.xml</value>
     <comment>FILENAME</comment>
@@ -1302,6 +1326,41 @@ OneNote 文件 (*.one)</value>
     <value>荧光笔主题</value>
     <comment>sheet intro</comment>
   </data>
+  <data name="ImagesSheet_imageBrowser" xml:space="preserve">
+    <value>图像查看器</value>
+  </data>
+  <data name="ImagesSheet_imageViewerLabel.Text" xml:space="preserve">
+    <value>外部图像查看器（如果为空则默认为 mspaint）</value>
+    <comment>label</comment>
+  </data>
+  <data name="ImagesSheet_introBox.Text" xml:space="preserve">
+    <value>自定义图像命令的默认值</value>
+    <comment>label</comment>
+  </data>
+  <data name="ImagesSheet_plantAfterBox.Text" xml:space="preserve">
+    <value>在 PlantUML 文本后插入绘图</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="ImagesSheet_plantCollapseBox.Text" xml:space="preserve">
+    <value>折叠 PlantUML 文本</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="ImagesSheet_plantGroup.Text" xml:space="preserve">
+    <value>PlantUML 选项</value>
+    <comment>groupbox</comment>
+  </data>
+  <data name="ImagesSheet_resizeGroup.Text" xml:space="preserve">
+    <value>调整大小选项</value>
+    <comment>groupsbox</comment>
+  </data>
+  <data name="ImagesSheet_Title" xml:space="preserve">
+    <value>图片</value>
+    <comment>sheet</comment>
+  </data>
+  <data name="ImagesSheet_widthLabel.Text" xml:space="preserve">
+    <value>首选调整宽度</value>
+    <comment>label</comment>
+  </data>
   <data name="ImportDialog_fileLabel.Text" xml:space="preserve">
     <value>文件：</value>
     <comment>label</comment>
@@ -1321,6 +1380,10 @@ OneNote 文件 (*.one)</value>
   <data name="ImportDialog_OpenFileTitle" xml:space="preserve">
     <value>选择要导入的文件</value>
     <comment>openfiledialog title</comment>
+  </data>
+  <data name="ImportDialog_pdfGroup.Text" xml:space="preserve">
+    <value>PDF选项</value>
+    <comment>group box</comment>
   </data>
   <data name="ImportDialog_powerGroup.Text" xml:space="preserve">
     <value>简报选项</value>
@@ -1612,6 +1675,17 @@ OneNote 文件 (*.one)</value>
     <value>没有找到参考。</value>
     <comment>message</comment>
   </data>
+  <data name="LoadStyleTheme_errorLoading" xml:space="preserve">
+    <value>无法加载文件或文件为空</value>
+  </data>
+  <data name="LoadStyleTheme_filter" xml:space="preserve">
+    <value>样式定义(*.xml)|*.xml|所有文件(*.*)|*.*</value>
+    <comment>OpenFileDialog filter</comment>
+  </data>
+  <data name="LoadStyleTheme_Title" xml:space="preserve">
+    <value>加载样式主题</value>
+    <comment>OpenFileDialog title</comment>
+  </data>
   <data name="Logo" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>images\logo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -1811,6 +1885,38 @@ OneNote 文件 (*.one)</value>
     <value>页面颜色</value>
     <comment>color popup dialog title</comment>
   </data>
+  <data name="PageColorDialog_applyThemeBox.Text" xml:space="preserve">
+    <value>将样式应用于此页面</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="PageColorDialog_contrastTooltip" xml:space="preserve">
+    <value>文本颜色和页面颜色之间可能没有足够的对比度</value>
+    <comment>tooltip</comment>
+  </data>
+  <data name="PageColorDialog_contrastWarning" xml:space="preserve">
+    <value>文本可能不可读</value>
+    <comment>label</comment>
+  </data>
+  <data name="PageColorDialog_currentThemeLabel.Text" xml:space="preserve">
+    <value>当前样式定义为“{0}”</value>
+    <comment>label</comment>
+  </data>
+  <data name="PageColorDialog_customLabel" xml:space="preserve">
+    <value>单击此处更改您自己的自定义颜色</value>
+    <comment>label</comment>
+  </data>
+  <data name="PageColorDialog_loadThemeLink.Text" xml:space="preserve">
+    <value>加载不同的样式</value>
+    <comment>linklabel</comment>
+  </data>
+  <data name="PageColorDialog_noLabel.Text" xml:space="preserve">
+    <value>或选择无页面颜色</value>
+    <comment>label</comment>
+  </data>
+  <data name="PageColorDialog_omLabel" xml:space="preserve">
+    <value>单击此处选择预定义颜色</value>
+    <comment>label</comment>
+  </data>
   <data name="Passwords" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Emoji\Passwords.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -1824,6 +1930,15 @@ OneNote 文件 (*.one)</value>
   </data>
   <data name="Pencil" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>emoji\pencil.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="phrase_AppendToThisPage" xml:space="preserve">
+    <value>附加到此页面</value>
+  </data>
+  <data name="phrase_CreateANewPage" xml:space="preserve">
+    <value>创建一个新页面</value>
+  </data>
+  <data name="phrase_PathNotFound" xml:space="preserve">
+    <value>找不到路径</value>
   </data>
   <data name="Plugin_InvalidSchema" xml:space="preserve">
     <value>检测到无效的XML。 检查日志文件以获取详细信息</value>
@@ -1922,6 +2037,10 @@ OneNote 文件 (*.one)</value>
     <value>管理我的插件</value>
     <comment>label</comment>
   </data>
+  <data name="PluginsSheet_Title" xml:space="preserve">
+    <value>插件</value>
+    <comment>sheet title EDIT</comment>
+  </data>
   <data name="Pronunciate_EmptyWord" xml:space="preserve">
     <value>所选单词不能为空</value>
     <comment>error message box</comment>
@@ -1962,6 +2081,66 @@ ISO-code then comma then language name</comment>
   </data>
   <data name="Pushpin" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>emoji\pushpin.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="QuickNotesSheet_groupingBox.Text" xml:space="preserve">
+    <value>工作周 (2023-02-13 W7)
+月份 (2023-02)
+季度（2023 年第一季度）
+年份 (2023)
+#注释第一行的关键字</value>
+    <comment>combobox</comment>
+  </data>
+  <data name="QuickNotesSheet_groupingLabel.Text" xml:space="preserve">
+    <value>按以下方式分组</value>
+    <comment>label</comment>
+  </data>
+  <data name="QuickNotesSheet_introBox.Text" xml:space="preserve">
+    <value>自定义组织快速笔记命令的行为</value>
+    <comment>textbox</comment>
+  </data>
+  <data name="QuickNotesSheet_notebookButton.Text" xml:space="preserve">
+    <value>将快速笔记移动到此笔记本中</value>
+    <comment>radio</comment>
+  </data>
+  <data name="QuickNotesSheet_notebookLink.Text" xml:space="preserve">
+    <value>单击此处选择笔记本</value>
+    <comment>linklabel</comment>
+  </data>
+  <data name="QuickNotesSheet_sectionButton.Text" xml:space="preserve">
+    <value>将快速注释移至此部分</value>
+    <comment>radio</comment>
+  </data>
+  <data name="QuickNotesSheet_sectionLink.Text" xml:space="preserve">
+    <value>单击此处选择部分</value>
+    <comment>linklabel</comment>
+  </data>
+  <data name="QuickNotesSheet_SelectNotebookIntro" xml:space="preserve">
+    <value>选择用于整理快速笔记的笔记本</value>
+    <comment>quick filing dialog intro</comment>
+  </data>
+  <data name="QuickNotesSheet_SelectNotebookTitle" xml:space="preserve">
+    <value>选择笔记本</value>
+    <comment>quick filing dialog title</comment>
+  </data>
+  <data name="QuickNotesSheet_SelectSectionIntro" xml:space="preserve">
+    <value>选择用于组织快速笔记的部分</value>
+    <comment>quick filing dialog intro</comment>
+  </data>
+  <data name="QuickNotesSheet_SelectSectionTitle" xml:space="preserve">
+    <value>选择部分</value>
+    <comment>quick filing dialog title</comment>
+  </data>
+  <data name="QuickNotesSheet_stampBox.Text" xml:space="preserve">
+    <value>在标题前加上笔记的创建日期</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="QuickNotesSheet_Title" xml:space="preserve">
+    <value>快速笔记</value>
+    <comment>sheet title</comment>
+  </data>
+  <data name="QuickNotesSheet_titleBox.Text" xml:space="preserve">
+    <value>将页面标题设置为笔记的第一个单词</value>
+    <comment>checkbox</comment>
   </data>
   <data name="RecalculateFormulaCommand_NoFormula" xml:space="preserve">
     <value>在所选表格中找不到公式</value>
@@ -2285,6 +2464,10 @@ ISO-code then comma then language name</comment>
     <value>预设值</value>
     <comment>radio</comment>
   </data>
+  <data name="ResizeImagesDialog_resetLinkLabel.Text" xml:space="preserve">
+    <value>重置值</value>
+    <comment>link label</comment>
+  </data>
   <data name="ResizeImagesDialog_sizeLink.Text" xml:space="preserve">
     <value>{0} x {1}</value>
     <comment>width x height</comment>
@@ -2530,6 +2713,10 @@ ISO-code then comma then language name</comment>
     <value>复制</value>
     <comment>ribbon table</comment>
   </data>
+  <data name="ribCopyAcrossButton_Screentip" xml:space="preserve">
+    <value>通过选定的行复制内容</value>
+    <comment>ribbon table</comment>
+  </data>
   <data name="ribCopyAsMarkdownButton_Label" xml:space="preserve">
     <value>复制为 Markdown</value>
     <comment>ribbon item</comment>
@@ -2642,6 +2829,14 @@ ISO-code then comma then language name</comment>
     <value>在所选内容中禁用拼写检查</value>
     <comment>ribbon edit</comment>
   </data>
+  <data name="ribDrawPlantUmlButton_Label" xml:space="preserve">
+    <value>画PlantUML</value>
+    <comment>ribbon images</comment>
+  </data>
+  <data name="ribDrawPlantUmlButton_Screentip" xml:space="preserve">
+    <value>从选定文本渲染 PlantUML 或 Graphviz 图像</value>
+    <comment>ribbon images</comment>
+  </data>
   <data name="ribDuplicateLineAboveButton_Label" xml:space="preserve">
     <value>重复以上段落</value>
     <comment>pallette</comment>
@@ -2669,6 +2864,10 @@ ISO-code then comma then language name</comment>
   <data name="ribEditStylesButton_Label" xml:space="preserve">
     <value>编辑样式</value>
     <comment>ribbon styles</comment>
+  </data>
+  <data name="ribEditStylesButton_named" xml:space="preserve">
+    <value>编辑样式 ({0})</value>
+    <comment>ribbon styles with theme name</comment>
   </data>
   <data name="ribEditStylesButton_Screentip" xml:space="preserve">
     <value>编辑样式或加载不同的样式</value>
@@ -2737,6 +2936,14 @@ ISO-code then comma then language name</comment>
   <data name="ribFileMenu_Label" xml:space="preserve">
     <value>文件</value>
     <comment>ribbon menu</comment>
+  </data>
+  <data name="ribFileQuickNotesButton_Label" xml:space="preserve">
+    <value>文件快速注释</value>
+    <comment>ribbon file</comment>
+  </data>
+  <data name="ribFileQuickNotesButton_Screentip" xml:space="preserve">
+    <value>将快速笔记组织到笔记本或分区中</value>
+    <comment>ribbon file</comment>
   </data>
   <data name="ribFillAcrossButton_Label" xml:space="preserve">
     <value>填满</value>
@@ -3125,6 +3332,14 @@ ISO-code then comma then language name</comment>
     <value>为本页标题编号</value>
     <comment>ribbon numbering</comment>
   </data>
+  <data name="ribPageColorButton_Label" xml:space="preserve">
+    <value>设置页面颜色</value>
+    <comment>page context menu</comment>
+  </data>
+  <data name="ribPageColorButton_Screentip" xml:space="preserve">
+    <value>将此页面的背景更改为自定义颜色</value>
+    <comment>page context menu</comment>
+  </data>
   <data name="ribPageMenu_Label" xml:space="preserve">
     <value>页</value>
     <comment>ribbon menu</comment>
@@ -3228,6 +3443,10 @@ ISO-code then comma then language name</comment>
   <data name="ribRemoveCitationsButton_Screentip" xml:space="preserve">
     <value>删除屏幕剪辑并粘贴URL引用</value>
     <comment>Ribbon OneMore menu item</comment>
+  </data>
+  <data name="ribRemoveDateStampButton_Label" xml:space="preserve">
+    <value>删除日期戳</value>
+    <comment>section context menu</comment>
   </data>
   <data name="ribRemoveDuplicatesButton_Label" xml:space="preserve">
     <value>删除重复页面</value>
@@ -3642,6 +3861,10 @@ ISO-code then comma then language name</comment>
     <value>使用正则表达式</value>
     <comment>checkbox</comment>
   </data>
+  <data name="SearchAndReplaceDialog_substitutions" xml:space="preserve">
+    <value>有效替换参数：{0}</value>
+    <comment>status label</comment>
+  </data>
   <data name="SearchAndReplaceDialog_Text" xml:space="preserve">
     <value>搜索和替换</value>
     <comment>dialog title</comment>
@@ -3773,6 +3996,10 @@ ISO-code then comma then language name</comment>
     <value>荧光笔主题</value>
     <comment>treenode</comment>
   </data>
+  <data name="SettingsDialog_imagesNode.Text" xml:space="preserve">
+    <value>图片</value>
+    <comment>treenode</comment>
+  </data>
   <data name="SettingsDialog_keyboardNode.Text" xml:space="preserve">
     <value>键盘快捷键</value>
     <comment>treenode</comment>
@@ -3783,6 +4010,10 @@ ISO-code then comma then language name</comment>
   </data>
   <data name="SettingsDialog_pluginsNode.Text" xml:space="preserve">
     <value>插件</value>
+    <comment>tree node</comment>
+  </data>
+  <data name="SettingsDialog_quickNotesNode.Text" xml:space="preserve">
+    <value>快速笔记</value>
     <comment>tree node</comment>
   </data>
   <data name="SettingsDialog_Restart" xml:space="preserve">
@@ -3816,16 +4047,16 @@ ISO-code then comma then language name</comment>
     <value>OneMore XML</value>
     <comment>dialog title</comment>
   </data>
-  <data name="ShowXmlDialog_hideBox.Text" xml:space="preserve">
-    <value>隐藏编辑者属性（取消选中以编辑页面）</value>
+  <data name="ShowXmlDialog_editModeBox.Text" xml:space="preserve">
+    <value>启用编辑模式</value>
     <comment>checkbox</comment>
   </data>
-  <data name="ShowXmlDialog_hideLFBox.Text" xml:space="preserve">
-    <value>从CDATA删除LF</value>
+  <data name="ShowXmlDialog_hideEditedByBox.Text" xml:space="preserve">
+    <value>隐藏编辑者属性</value>
     <comment>checkbox</comment>
   </data>
-  <data name="ShowXmlDialog_hidePidBox.Text" xml:space="preserve">
-    <value>隐藏pid.</value>
+  <data name="ShowXmlDialog_linefeedBox.Text" xml:space="preserve">
+    <value>从 CDATA 中删除 LF</value>
     <comment>checkbox</comment>
   </data>
   <data name="ShowXmlDialog_manualLabel.Text" xml:space="preserve">
@@ -3836,6 +4067,10 @@ ISO-code then comma then language name</comment>
     <value>手动查找</value>
     <comment>tab</comment>
   </data>
+  <data name="ShowXmlDialog_multilineBox.Text" xml:space="preserve">
+    <value>新行的属性</value>
+    <comment>checkbox</comment>
+  </data>
   <data name="ShowXmlDialog_nbPagesTab.Text" xml:space="preserve">
     <value>有页面的笔记本</value>
     <comment>tab</comment>
@@ -3843,6 +4078,10 @@ ISO-code then comma then language name</comment>
   <data name="ShowXmlDialog_nbSectionsTab.Text" xml:space="preserve">
     <value>有部分的笔记本</value>
     <comment>tab</comment>
+  </data>
+  <data name="ShowXmlDialog_noHierarchy" xml:space="preserve">
+    <value>没有等级制度</value>
+    <comment>message</comment>
   </data>
   <data name="ShowXmlDialog_notebooksTab.Text" xml:space="preserve">
     <value>笔记本</value>
@@ -3864,13 +4103,25 @@ ISO-code then comma then language name</comment>
     <value>路径：</value>
     <comment>label</comment>
   </data>
-  <data name="ShowXmlDialog_sectionTab.Text" xml:space="preserve">
-    <value>部分</value>
-    <comment>tab</comment>
+  <data name="ShowXmlDialog_pidBox.Text" xml:space="preserve">
+    <value>隐藏 PID</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="ShowXmlDialog_saveWindowBox.Text" xml:space="preserve">
+    <value>保存窗口位置</value>
+    <comment>checkbox</comment>
   </data>
   <data name="ShowXmlDialog_selectButton.Text" xml:space="preserve">
     <value>全选</value>
     <comment>button</comment>
+  </data>
+  <data name="ShowXmlDialog_WARNING" xml:space="preserve">
+    <value>这是危险的操作！
+
+不正确的更改可能会导致数据丢失。
+
+你确定你要继续吗？</value>
+    <comment>confirmation</comment>
   </data>
   <data name="ShowXmlDialog_wrapBox.Text" xml:space="preserve">
     <value>自动换行</value>
@@ -4059,6 +4310,10 @@ ISO-code then comma then language name</comment>
     <value>文字颜色</value>
     <comment>button tip</comment>
   </data>
+  <data name="StyleDialog_darkBox.Text" xml:space="preserve">
+    <value>适用于深色背景的页面</value>
+    <comment>checkbox</comment>
+  </data>
   <data name="StyleDialog_defaultBlackToolStripMenuItem.Text" xml:space="preserve">
     <value>默认值（黑色）</value>
     <comment>menu item</comment>
@@ -4091,6 +4346,18 @@ ISO-code then comma then language name</comment>
     <value>新风格</value>
     <comment>dialog title</comment>
   </data>
+  <data name="StyleDialog_optionsGroup.Text" xml:space="preserve">
+    <value>选项</value>
+    <comment>groupbox</comment>
+  </data>
+  <data name="StyleDialog_pageColorBox.Text" xml:space="preserve">
+    <value>应用这些样式时更改页面颜色</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="StyleDialog_pageColorLink.Text" xml:space="preserve">
+    <value>点击此处选择页面颜色</value>
+    <comment>linklabel</comment>
+  </data>
   <data name="StyleDialog_reorderButton.Text" xml:space="preserve">
     <value>重新排序</value>
     <comment>button</comment>
@@ -4098,6 +4365,10 @@ ISO-code then comma then language name</comment>
   <data name="StyleDialog_saveButton.Text" xml:space="preserve">
     <value>另存为...</value>
     <comment>menu item</comment>
+  </data>
+  <data name="StyleDialog_saveStylesTitle" xml:space="preserve">
+    <value>保存样式</value>
+    <comment>dialog title</comment>
   </data>
   <data name="StyleDialog_spacingLabel.Text" xml:space="preserve">
     <value>行距:</value>
@@ -4430,6 +4701,12 @@ ISO-code then comma then language name</comment>
   <data name="word_Font" xml:space="preserve">
     <value>字体</value>
   </data>
+  <data name="word_Function" xml:space="preserve">
+    <value>功能</value>
+  </data>
+  <data name="word_General" xml:space="preserve">
+    <value>一般的</value>
+  </data>
   <data name="word_Go" xml:space="preserve">
     <value>去</value>
   </data>
@@ -4453,6 +4730,9 @@ ISO-code then comma then language name</comment>
   </data>
   <data name="word_No" xml:space="preserve">
     <value>不</value>
+  </data>
+  <data name="word_Notebook" xml:space="preserve">
+    <value>笔记本</value>
   </data>
   <data name="word_OK" xml:space="preserve">
     <value>好的</value>
@@ -4498,6 +4778,9 @@ ISO-code then comma then language name</comment>
   </data>
   <data name="word_Scope" xml:space="preserve">
     <value>范围</value>
+  </data>
+  <data name="word_Section" xml:space="preserve">
+    <value>部分</value>
   </data>
   <data name="word_Silenced" xml:space="preserve">
     <value>沉默</value>
@@ -4566,273 +4849,5 @@ ISO-code then comma then language name</comment>
   <data name="WordCountsCommand_Title" xml:space="preserve">
     <value>字数统计</value>
     <comment>page title</comment>
-  </data>
-  <data name="ribCopyAcrossButton_Screentip" xml:space="preserve">
-    <value>通过选定的行复制内容</value>
-    <comment>ribbon table</comment>
-  </data>
-  <data name="phrase_PathNotFound" xml:space="preserve">
-    <value>找不到路径</value>
-  </data>
-  <data name="ribRemoveDateStampButton_Label" xml:space="preserve">
-    <value>删除日期戳</value>
-    <comment>section context menu</comment>
-  </data>
-  <data name="DrawPlantUml_EmptySelection" xml:space="preserve">
-    <value>空选择。选择一个有效的 PlantUML 文本块。</value>
-    <comment>error message</comment>
-  </data>
-  <data name="DrawPlantUml_Error" xml:space="preserve">
-    <value>PlantUML 语法无效或选择不完整</value>
-    <comment>error message</comment>
-  </data>
-  <data name="ribDrawPlantUmlButton_Label" xml:space="preserve">
-    <value>画PlantUML</value>
-    <comment>ribbon images</comment>
-  </data>
-  <data name="ribDrawPlantUmlButton_Screentip" xml:space="preserve">
-    <value>从选定文本渲染 PlantUML 或 Graphviz 图像</value>
-    <comment>ribbon images</comment>
-  </data>
-  <data name="ResizeImagesDialog_resetLinkLabel.Text" xml:space="preserve">
-    <value>重置值</value>
-    <comment>link label</comment>
-  </data>
-  <data name="ImportDialog_pdfGroup.Text" xml:space="preserve">
-    <value>PDF选项</value>
-    <comment>group box</comment>
-  </data>
-  <data name="phrase_AppendToThisPage" xml:space="preserve">
-    <value>附加到此页面</value>
-  </data>
-  <data name="phrase_CreateANewPage" xml:space="preserve">
-    <value>创建一个新页面</value>
-  </data>
-  <data name="PageColorDialog_applyThemeBox.Text" xml:space="preserve">
-    <value>将样式应用于此页面</value>
-    <comment>checkbox</comment>
-  </data>
-  <data name="PageColorDialog_contrastWarning" xml:space="preserve">
-    <value>文本可能不可读</value>
-    <comment>label</comment>
-  </data>
-  <data name="PageColorDialog_currentThemeLabel.Text" xml:space="preserve">
-    <value>当前样式定义为“{0}”</value>
-    <comment>label</comment>
-  </data>
-  <data name="PageColorDialog_customLabel" xml:space="preserve">
-    <value>单击此处更改您自己的自定义颜色</value>
-    <comment>label</comment>
-  </data>
-  <data name="PageColorDialog_loadThemeLink.Text" xml:space="preserve">
-    <value>加载不同的样式</value>
-    <comment>linklabel</comment>
-  </data>
-  <data name="PageColorDialog_noLabel.Text" xml:space="preserve">
-    <value>或选择无页面颜色</value>
-    <comment>label</comment>
-  </data>
-  <data name="PageColorDialog_omLabel" xml:space="preserve">
-    <value>单击此处选择预定义颜色</value>
-    <comment>label</comment>
-  </data>
-  <data name="ribPageColorButton_Label" xml:space="preserve">
-    <value>设置页面颜色</value>
-    <comment>page context menu</comment>
-  </data>
-  <data name="ribPageColorButton_Screentip" xml:space="preserve">
-    <value>将此页面的背景更改为自定义颜色</value>
-    <comment>page context menu</comment>
-  </data>
-  <data name="LoadStyleTheme_errorLoading" xml:space="preserve">
-    <value>无法加载文件或文件为空</value>
-  </data>
-  <data name="LoadStyleTheme_filter" xml:space="preserve">
-    <value>样式定义(*.xml)|*.xml|所有文件(*.*)|*.*</value>
-    <comment>OpenFileDialog filter</comment>
-  </data>
-  <data name="LoadStyleTheme_Title" xml:space="preserve">
-    <value>加载样式主题</value>
-    <comment>OpenFileDialog title</comment>
-  </data>
-  <data name="ribEditStylesButton_named" xml:space="preserve">
-    <value>编辑样式 ({0})</value>
-    <comment>ribbon styles with theme name</comment>
-  </data>
-  <data name="StyleDialog_darkBox.Text" xml:space="preserve">
-    <value>适用于深色背景的页面</value>
-    <comment>checkbox</comment>
-  </data>
-  <data name="StyleDialog_optionsGroup.Text" xml:space="preserve">
-    <value>选项</value>
-    <comment>groupbox</comment>
-  </data>
-  <data name="StyleDialog_pageColorBox.Text" xml:space="preserve">
-    <value>应用这些样式时更改页面颜色</value>
-    <comment>checkbox</comment>
-  </data>
-  <data name="StyleDialog_pageColorLink.Text" xml:space="preserve">
-    <value>点击此处选择页面颜色</value>
-    <comment>linklabel</comment>
-  </data>
-  <data name="PageColorDialog_contrastTooltip" xml:space="preserve">
-    <value>文本颜色和页面颜色之间可能没有足够的对比度</value>
-    <comment>tooltip</comment>
-  </data>
-  <data name="StyleDialog_saveStylesTitle" xml:space="preserve">
-    <value>保存样式</value>
-    <comment>dialog title</comment>
-  </data>
-  <data name="ShowXmlDialog_newlineBox.Text" xml:space="preserve">
-    <value>新行的属性</value>
-    <comment>checkbox</comment>
-  </data>
-  <data name="ShowXmlDialog_saveBox.Text" xml:space="preserve">
-    <value>保存窗口位置</value>
-    <comment>checkbox</comment>
-  </data>
-  <data name="SearchAndReplaceDialog_substitutions" xml:space="preserve">
-    <value>有效替换参数：{0}</value>
-    <comment>status label</comment>
-  </data>
-  <data name="ImagesSheet_introBox.Text" xml:space="preserve">
-    <value>自定义图像命令的默认值</value>
-    <comment>label</comment>
-  </data>
-  <data name="ImagesSheet_plantAfterBox.Text" xml:space="preserve">
-    <value>在 PlantUML 文本后插入绘图</value>
-    <comment>checkbox</comment>
-  </data>
-  <data name="ImagesSheet_plantCollapseBox.Text" xml:space="preserve">
-    <value>折叠 PlantUML 文本</value>
-    <comment>checkbox</comment>
-  </data>
-  <data name="SettingsDialog_imagesNode.Text" xml:space="preserve">
-    <value>图片</value>
-    <comment>treenode</comment>
-  </data>
-  <data name="ImagesSheet_plantGroup.Text" xml:space="preserve">
-    <value>PlantUML 选项</value>
-    <comment>groupbox</comment>
-  </data>
-  <data name="AliasSheet_Title" xml:space="preserve">
-    <value>命令别名</value>
-    <comment>sheet</comment>
-  </data>
-  <data name="ImagesSheet_imageBrowser" xml:space="preserve">
-    <value>图像查看器</value>
-  </data>
-  <data name="ImagesSheet_imageViewerLabel.Text" xml:space="preserve">
-    <value>外部图像查看器（如果为空则默认为 mspaint）</value>
-    <comment>label</comment>
-  </data>
-  <data name="ImagesSheet_resizeGroup.Text" xml:space="preserve">
-    <value>调整大小选项</value>
-    <comment>groupsbox</comment>
-  </data>
-  <data name="ImagesSheet_Title" xml:space="preserve">
-    <value>图片</value>
-    <comment>sheet</comment>
-  </data>
-  <data name="ImagesSheet_widthLabel.Text" xml:space="preserve">
-    <value>首选调整宽度</value>
-    <comment>label</comment>
-  </data>
-  <data name="PluginsSheet_Title" xml:space="preserve">
-    <value>插件</value>
-    <comment>sheet title EDIT</comment>
-  </data>
-  <data name="word_General" xml:space="preserve">
-    <value>一般的</value>
-  </data>
-  <data name="DrawPlantUml_broken" xml:space="preserve">
-    <value>PlantUML 文本无效或找不到文本和图像之间的连接</value>
-    <comment>error message</comment>
-  </data>
-  <data name="QuickNotesSheet_groupingBox.Text" xml:space="preserve">
-    <value>工作周 (2023-02-13 W7)
-月份 (2023-02)
-季度（2023 年第一季度）
-年份 (2023)
-#注释第一行的关键字</value>
-    <comment>combobox</comment>
-  </data>
-  <data name="QuickNotesSheet_groupingLabel.Text" xml:space="preserve">
-    <value>按以下方式分组</value>
-    <comment>label</comment>
-  </data>
-  <data name="QuickNotesSheet_introBox.Text" xml:space="preserve">
-    <value>自定义组织快速笔记命令的行为</value>
-    <comment>textbox</comment>
-  </data>
-  <data name="QuickNotesSheet_notebookButton.Text" xml:space="preserve">
-    <value>将快速笔记移动到此笔记本中</value>
-    <comment>radio</comment>
-  </data>
-  <data name="QuickNotesSheet_notebookLink.Text" xml:space="preserve">
-    <value>单击此处选择笔记本</value>
-    <comment>linklabel</comment>
-  </data>
-  <data name="QuickNotesSheet_sectionButton.Text" xml:space="preserve">
-    <value>将快速注释移至此部分</value>
-    <comment>radio</comment>
-  </data>
-  <data name="QuickNotesSheet_sectionLink.Text" xml:space="preserve">
-    <value>单击此处选择部分</value>
-    <comment>linklabel</comment>
-  </data>
-  <data name="QuickNotesSheet_SelectNotebookIntro" xml:space="preserve">
-    <value>选择用于整理快速笔记的笔记本</value>
-    <comment>quick filing dialog intro</comment>
-  </data>
-  <data name="QuickNotesSheet_SelectNotebookTitle" xml:space="preserve">
-    <value>选择笔记本</value>
-    <comment>quick filing dialog title</comment>
-  </data>
-  <data name="QuickNotesSheet_SelectSectionIntro" xml:space="preserve">
-    <value>选择用于组织快速笔记的部分</value>
-    <comment>quick filing dialog intro</comment>
-  </data>
-  <data name="QuickNotesSheet_SelectSectionTitle" xml:space="preserve">
-    <value>选择部分</value>
-    <comment>quick filing dialog title</comment>
-  </data>
-  <data name="QuickNotesSheet_stampBox.Text" xml:space="preserve">
-    <value>在标题前加上笔记的创建日期</value>
-    <comment>checkbox</comment>
-  </data>
-  <data name="QuickNotesSheet_Title" xml:space="preserve">
-    <value>快速笔记</value>
-    <comment>sheet title</comment>
-  </data>
-  <data name="QuickNotesSheet_titleBox.Text" xml:space="preserve">
-    <value>将页面标题设置为笔记的第一个单词</value>
-    <comment>checkbox</comment>
-  </data>
-  <data name="SettingsDialog_quickNotesNode.Text" xml:space="preserve">
-    <value>快速笔记</value>
-    <comment>tree node</comment>
-  </data>
-  <data name="word_Notebook" xml:space="preserve">
-    <value>笔记本</value>
-  </data>
-  <data name="word_Section" xml:space="preserve">
-    <value>部分</value>
-  </data>
-  <data name="ribFileQuickNotesButton_Label" xml:space="preserve">
-    <value>文件快速注释</value>
-    <comment>ribbon file</comment>
-  </data>
-  <data name="ribFileQuickNotesButton_Screentip" xml:space="preserve">
-    <value>将快速笔记组织到笔记本或分区中</value>
-    <comment>ribbon file</comment>
-  </data>
-  <data name="Favorites_suspect" xml:space="preserve">
-    <value>找不到网页;它可能已被重命名或移动</value>
-    <comment>tooltip</comment>
-  </data>
-  <data name="Favorites_unknown" xml:space="preserve">
-    <value>不再找到页面；它可能已被删除</value>
-    <comment>tooltip</comment>
   </data>
 </root>

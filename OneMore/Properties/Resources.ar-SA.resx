@@ -187,6 +187,10 @@
     <value>حدد الأسماء المستعارة للأوامر لاستخدامها في لوحة الأوامر</value>
     <comment>intro box</comment>
   </data>
+  <data name="AliasSheet_Title" xml:space="preserve">
+    <value>قيادة الأسماء المستعارة</value>
+    <comment>sheet</comment>
+  </data>
   <data name="AnalyzeCommand_CacheSummary" xml:space="preserve">
     <value>ذاكرة التخزين المؤقت عبارة عن دليل داخلي يديره OneNote لتحسين أدائه. </value>
     <comment>summary text</comment>
@@ -827,6 +831,18 @@
   <data name="DownArrow" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>images\downarrow.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="DrawPlantUml_broken" xml:space="preserve">
+    <value>نص PlantUML إما غير صالح أو لا يمكنه العثور على اتصال بين النص والصورة</value>
+    <comment>error message</comment>
+  </data>
+  <data name="DrawPlantUml_EmptySelection" xml:space="preserve">
+    <value>اختيار فارغ. حدد كتلة صالحة من نص PlantUML.</value>
+    <comment>error message</comment>
+  </data>
+  <data name="DrawPlantUml_Error" xml:space="preserve">
+    <value>بناء جملة غير صالح أو تحديد غير كامل لـ PlantUML</value>
+    <comment>error message</comment>
+  </data>
   <data name="EditTableThemesDialog_colorsTab.Text" xml:space="preserve">
     <value>الألوان</value>
     <comment>tab</comment>
@@ -1124,6 +1140,14 @@
   <data name="Family" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Emoji\Family.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="Favorites_suspect" xml:space="preserve">
+    <value>الصفحة غير موجودة؛ ربما تمت إعادة تسميته أو نقله</value>
+    <comment>tooltip</comment>
+  </data>
+  <data name="Favorites_unknown" xml:space="preserve">
+    <value>لم تعد الصفحة موجودة ؛ قد تم حذفه</value>
+    <comment>tooltip</comment>
+  </data>
   <data name="FavoritesFilename" xml:space="preserve">
     <value>Favorites.xml</value>
     <comment>FILENAME</comment>
@@ -1303,6 +1327,41 @@
     <value>سمات تمييز</value>
     <comment>sheet intro</comment>
   </data>
+  <data name="ImagesSheet_imageBrowser" xml:space="preserve">
+    <value>عارض الصور</value>
+  </data>
+  <data name="ImagesSheet_imageViewerLabel.Text" xml:space="preserve">
+    <value>عارض الصور الخارجي (الافتراضي إذا كان فارغًا هو mspaint)</value>
+    <comment>label</comment>
+  </data>
+  <data name="ImagesSheet_introBox.Text" xml:space="preserve">
+    <value>تخصيص الإعدادات الافتراضية لأوامر الصورة</value>
+    <comment>label</comment>
+  </data>
+  <data name="ImagesSheet_plantAfterBox.Text" xml:space="preserve">
+    <value>أدخل الرسم بعد نص PlantUML</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="ImagesSheet_plantCollapseBox.Text" xml:space="preserve">
+    <value>طي نص PlantUML</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="ImagesSheet_plantGroup.Text" xml:space="preserve">
+    <value>خيارات PlantUML</value>
+    <comment>groupbox</comment>
+  </data>
+  <data name="ImagesSheet_resizeGroup.Text" xml:space="preserve">
+    <value>خيارات تغيير الحجم</value>
+    <comment>groupsbox</comment>
+  </data>
+  <data name="ImagesSheet_Title" xml:space="preserve">
+    <value>الصور</value>
+    <comment>sheet</comment>
+  </data>
+  <data name="ImagesSheet_widthLabel.Text" xml:space="preserve">
+    <value>عرض تغيير الحجم المفضل</value>
+    <comment>label</comment>
+  </data>
   <data name="ImportDialog_fileLabel.Text" xml:space="preserve">
     <value>ملف:</value>
     <comment>label</comment>
@@ -1322,6 +1381,10 @@
   <data name="ImportDialog_OpenFileTitle" xml:space="preserve">
     <value>اختر الملف المراد استيراده</value>
     <comment>openfiledialog title</comment>
+  </data>
+  <data name="ImportDialog_pdfGroup.Text" xml:space="preserve">
+    <value>خيارات PDF</value>
+    <comment>group box</comment>
   </data>
   <data name="ImportDialog_powerGroup.Text" xml:space="preserve">
     <value>خيارات Powerpoint</value>
@@ -1613,6 +1676,17 @@
     <value>لم يتم العثور على مراجع. </value>
     <comment>message</comment>
   </data>
+  <data name="LoadStyleTheme_errorLoading" xml:space="preserve">
+    <value>لا يمكن تحميل الملف أو الملف فارغ</value>
+  </data>
+  <data name="LoadStyleTheme_filter" xml:space="preserve">
+    <value>تعريفات الأنماط (* .xml) | * .xml | كافة الملفات (*. *) | *. *</value>
+    <comment>OpenFileDialog filter</comment>
+  </data>
+  <data name="LoadStyleTheme_Title" xml:space="preserve">
+    <value>تحميل نمط النمط</value>
+    <comment>OpenFileDialog title</comment>
+  </data>
   <data name="Logo" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>images\logo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -1815,6 +1889,38 @@
     <value>لون الصفحة</value>
     <comment>color popup dialog title</comment>
   </data>
+  <data name="PageColorDialog_applyThemeBox.Text" xml:space="preserve">
+    <value>تطبيق الأنماط على هذه الصفحة</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="PageColorDialog_contrastTooltip" xml:space="preserve">
+    <value>قد لا يكون هناك تباين كافٍ بين لون النص ولون الصفحة</value>
+    <comment>tooltip</comment>
+  </data>
+  <data name="PageColorDialog_contrastWarning" xml:space="preserve">
+    <value>قد يكون النص غير قابل للقراءة</value>
+    <comment>label</comment>
+  </data>
+  <data name="PageColorDialog_currentThemeLabel.Text" xml:space="preserve">
+    <value>تعريف الأنماط الحالي هو "{0}"</value>
+    <comment>label</comment>
+  </data>
+  <data name="PageColorDialog_customLabel" xml:space="preserve">
+    <value>انقر هنا لتغيير لونك المخصص</value>
+    <comment>label</comment>
+  </data>
+  <data name="PageColorDialog_loadThemeLink.Text" xml:space="preserve">
+    <value>تحميل أنماط مختلفة</value>
+    <comment>linklabel</comment>
+  </data>
+  <data name="PageColorDialog_noLabel.Text" xml:space="preserve">
+    <value>أو اختر أي لون للصفحة</value>
+    <comment>label</comment>
+  </data>
+  <data name="PageColorDialog_omLabel" xml:space="preserve">
+    <value>انقر هنا لتحديد لون محدد مسبقًا</value>
+    <comment>label</comment>
+  </data>
   <data name="Passwords" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Emoji\Passwords.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -1828,6 +1934,15 @@
   </data>
   <data name="Pencil" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>emoji\pencil.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="phrase_AppendToThisPage" xml:space="preserve">
+    <value>إلحاق بهذه الصفحة</value>
+  </data>
+  <data name="phrase_CreateANewPage" xml:space="preserve">
+    <value>قم بإنشاء صفحة جديدة</value>
+  </data>
+  <data name="phrase_PathNotFound" xml:space="preserve">
+    <value>المسار مفقود</value>
   </data>
   <data name="Plugin_InvalidSchema" xml:space="preserve">
     <value>تم اكتشاف ملف XML غير صالح. </value>
@@ -1926,6 +2041,10 @@
     <value>إدارة ملحقاتي</value>
     <comment>label</comment>
   </data>
+  <data name="PluginsSheet_Title" xml:space="preserve">
+    <value>الإضافات</value>
+    <comment>sheet title EDIT</comment>
+  </data>
   <data name="Pronunciate_EmptyWord" xml:space="preserve">
     <value>لا يمكن أن تكون الكلمة المحددة فارغة</value>
     <comment>error message box</comment>
@@ -1966,6 +2085,66 @@ ISO-code then comma then language name</comment>
   </data>
   <data name="Pushpin" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>emoji\pushpin.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="QuickNotesSheet_groupingBox.Text" xml:space="preserve">
+    <value>أسبوع العمل (2023-02-13 W7)
+الشهر (2023-02)
+ربع (2023 Q1)
+عام (2023)
+# الكلمة الرئيسية في السطر الأول من الملاحظة</value>
+    <comment>combobox</comment>
+  </data>
+  <data name="QuickNotesSheet_groupingLabel.Text" xml:space="preserve">
+    <value>تجميع في أقسام حسب</value>
+    <comment>label</comment>
+  </data>
+  <data name="QuickNotesSheet_introBox.Text" xml:space="preserve">
+    <value>قم بتخصيص سلوك أمر تنظيم الملاحظات السريعة</value>
+    <comment>textbox</comment>
+  </data>
+  <data name="QuickNotesSheet_notebookButton.Text" xml:space="preserve">
+    <value>انقل Quick Notes إلى دفتر الملاحظات هذا</value>
+    <comment>radio</comment>
+  </data>
+  <data name="QuickNotesSheet_notebookLink.Text" xml:space="preserve">
+    <value>انقر هنا لتحديد دفتر الملاحظات</value>
+    <comment>linklabel</comment>
+  </data>
+  <data name="QuickNotesSheet_sectionButton.Text" xml:space="preserve">
+    <value>انقل الملاحظات السريعة إلى هذا القسم</value>
+    <comment>radio</comment>
+  </data>
+  <data name="QuickNotesSheet_sectionLink.Text" xml:space="preserve">
+    <value>انقر هنا لتحديد القسم</value>
+    <comment>linklabel</comment>
+  </data>
+  <data name="QuickNotesSheet_SelectNotebookIntro" xml:space="preserve">
+    <value>حدد دفتر الملاحظات المستخدم لتنظيم ملاحظاتك السريعة</value>
+    <comment>quick filing dialog intro</comment>
+  </data>
+  <data name="QuickNotesSheet_SelectNotebookTitle" xml:space="preserve">
+    <value>حدد دفتر ملاحظات</value>
+    <comment>quick filing dialog title</comment>
+  </data>
+  <data name="QuickNotesSheet_SelectSectionIntro" xml:space="preserve">
+    <value>حدد القسم المستخدم لتنظيم ملاحظاتك السريعة</value>
+    <comment>quick filing dialog intro</comment>
+  </data>
+  <data name="QuickNotesSheet_SelectSectionTitle" xml:space="preserve">
+    <value>حدد القسم</value>
+    <comment>quick filing dialog title</comment>
+  </data>
+  <data name="QuickNotesSheet_stampBox.Text" xml:space="preserve">
+    <value>قم بإلحاق العنوان بتاريخ إنشاء الملاحظة</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="QuickNotesSheet_Title" xml:space="preserve">
+    <value>ملاحظات سريعة</value>
+    <comment>sheet title</comment>
+  </data>
+  <data name="QuickNotesSheet_titleBox.Text" xml:space="preserve">
+    <value>اضبط عنوان الصفحة على أول كلمات fiew في الملاحظة</value>
+    <comment>checkbox</comment>
   </data>
   <data name="RecalculateFormulaCommand_NoFormula" xml:space="preserve">
     <value>لم يتم العثور على صيغة في الجدول المحدد</value>
@@ -2289,6 +2468,10 @@ ISO-code then comma then language name</comment>
     <value>المعد مسبقا</value>
     <comment>radio</comment>
   </data>
+  <data name="ResizeImagesDialog_resetLinkLabel.Text" xml:space="preserve">
+    <value>إعادة القيم</value>
+    <comment>link label</comment>
+  </data>
   <data name="ResizeImagesDialog_sizeLink.Text" xml:space="preserve">
     <value>{0} × {1}</value>
     <comment>width x height</comment>
@@ -2532,6 +2715,10 @@ ISO-code then comma then language name</comment>
     <value>نسخ عبر</value>
     <comment>ribbon table</comment>
   </data>
+  <data name="ribCopyAcrossButton_Screentip" xml:space="preserve">
+    <value>نسخ المحتوى عبر الصفوف المحددة</value>
+    <comment>ribbon table</comment>
+  </data>
   <data name="ribCopyAsMarkdownButton_Label" xml:space="preserve">
     <value>نسخ باسم Markdown</value>
     <comment>ribbon item</comment>
@@ -2644,6 +2831,14 @@ ISO-code then comma then language name</comment>
     <value>تعطيل التدقيق الإملائي داخل المحتوى المحدد</value>
     <comment>ribbon edit</comment>
   </data>
+  <data name="ribDrawPlantUmlButton_Label" xml:space="preserve">
+    <value>رسم النبات</value>
+    <comment>ribbon images</comment>
+  </data>
+  <data name="ribDrawPlantUmlButton_Screentip" xml:space="preserve">
+    <value>عرض صورة PlantUML أو Graphviz من النص المحدد</value>
+    <comment>ribbon images</comment>
+  </data>
   <data name="ribDuplicateLineAboveButton_Label" xml:space="preserve">
     <value>فقرة مكررة أعلاه</value>
     <comment>pallette</comment>
@@ -2671,6 +2866,10 @@ ISO-code then comma then language name</comment>
   <data name="ribEditStylesButton_Label" xml:space="preserve">
     <value>تحرير الأنماط</value>
     <comment>ribbon styles</comment>
+  </data>
+  <data name="ribEditStylesButton_named" xml:space="preserve">
+    <value>تحرير الأنماط ({0})</value>
+    <comment>ribbon styles with theme name</comment>
   </data>
   <data name="ribEditStylesButton_Screentip" xml:space="preserve">
     <value>تحرير الأنماط أو تحميل أنماط مختلفة</value>
@@ -2739,6 +2938,14 @@ ISO-code then comma then language name</comment>
   <data name="ribFileMenu_Label" xml:space="preserve">
     <value>ملف</value>
     <comment>ribbon menu</comment>
+  </data>
+  <data name="ribFileQuickNotesButton_Label" xml:space="preserve">
+    <value>ملاحظات سريعة للملف</value>
+    <comment>ribbon file</comment>
+  </data>
+  <data name="ribFileQuickNotesButton_Screentip" xml:space="preserve">
+    <value>تنظيم الملاحظات السريعة في دفتر ملاحظات أو قسم</value>
+    <comment>ribbon file</comment>
   </data>
   <data name="ribFillAcrossButton_Label" xml:space="preserve">
     <value>تعبئة عرضية</value>
@@ -3127,6 +3334,14 @@ ISO-code then comma then language name</comment>
     <value>ترقيم العناوين في هذه الصفحة</value>
     <comment>ribbon numbering</comment>
   </data>
+  <data name="ribPageColorButton_Label" xml:space="preserve">
+    <value>تعيين لون الصفحة</value>
+    <comment>page context menu</comment>
+  </data>
+  <data name="ribPageColorButton_Screentip" xml:space="preserve">
+    <value>قم بتغيير خلفية هذه الصفحة إلى لون مخصص</value>
+    <comment>page context menu</comment>
+  </data>
   <data name="ribPageMenu_Label" xml:space="preserve">
     <value>صفحة</value>
     <comment>ribbon menu</comment>
@@ -3238,6 +3453,10 @@ ISO-code then comma then language name</comment>
   <data name="ribRemoveCitationsButton_Screentip" xml:space="preserve">
     <value>إزالة لقطة الشاشة ولصق الاقتباسات URL</value>
     <comment>Ribbon OneMore menu item</comment>
+  </data>
+  <data name="ribRemoveDateStampButton_Label" xml:space="preserve">
+    <value>إزالة طوابع التاريخ</value>
+    <comment>section context menu</comment>
   </data>
   <data name="ribRemoveDuplicatesButton_Label" xml:space="preserve">
     <value>إزالة الصفحات المكررة</value>
@@ -3652,6 +3871,10 @@ ISO-code then comma then language name</comment>
     <value>استخدم التعبيرات العادية</value>
     <comment>checkbox</comment>
   </data>
+  <data name="SearchAndReplaceDialog_substitutions" xml:space="preserve">
+    <value>معلمات الاستبدال الصالحة: {0}</value>
+    <comment>status label</comment>
+  </data>
   <data name="SearchAndReplaceDialog_Text" xml:space="preserve">
     <value>بحث واستبدال</value>
     <comment>dialog title</comment>
@@ -3789,6 +4012,10 @@ ISO-code then comma then language name</comment>
     <value>سمات تمييز</value>
     <comment>treenode</comment>
   </data>
+  <data name="SettingsDialog_imagesNode.Text" xml:space="preserve">
+    <value>الصور</value>
+    <comment>treenode</comment>
+  </data>
   <data name="SettingsDialog_keyboardNode.Text" xml:space="preserve">
     <value>اختصارات لوحة المفاتيح</value>
     <comment>treenode</comment>
@@ -3799,6 +4026,10 @@ ISO-code then comma then language name</comment>
   </data>
   <data name="SettingsDialog_pluginsNode.Text" xml:space="preserve">
     <value>الإضافات</value>
+    <comment>tree node</comment>
+  </data>
+  <data name="SettingsDialog_quickNotesNode.Text" xml:space="preserve">
+    <value>ملاحظات سريعة</value>
     <comment>tree node</comment>
   </data>
   <data name="SettingsDialog_Restart" xml:space="preserve">
@@ -3832,16 +4063,16 @@ ISO-code then comma then language name</comment>
     <value>OneMore XML</value>
     <comment>dialog title</comment>
   </data>
-  <data name="ShowXmlDialog_hideBox.Text" xml:space="preserve">
-    <value>إخفاء السمات التي تم تحريرها بواسطة (قم بإلغاء التحديد لتحرير الصفحة)</value>
+  <data name="ShowXmlDialog_editModeBox.Text" xml:space="preserve">
+    <value>قم بتمكين وضع التحرير</value>
     <comment>checkbox</comment>
   </data>
-  <data name="ShowXmlDialog_hideLFBox.Text" xml:space="preserve">
+  <data name="ShowXmlDialog_hideEditedByBox.Text" xml:space="preserve">
+    <value>إخفاء السمات التي تم تحريرها</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="ShowXmlDialog_linefeedBox.Text" xml:space="preserve">
     <value>قم بإزالة LF من CDATA</value>
-    <comment>checkbox</comment>
-  </data>
-  <data name="ShowXmlDialog_hidePidBox.Text" xml:space="preserve">
-    <value>إخفاء pid.</value>
     <comment>checkbox</comment>
   </data>
   <data name="ShowXmlDialog_manualLabel.Text" xml:space="preserve">
@@ -3852,6 +4083,10 @@ ISO-code then comma then language name</comment>
     <value>البحث اليدوي</value>
     <comment>tab</comment>
   </data>
+  <data name="ShowXmlDialog_multilineBox.Text" xml:space="preserve">
+    <value>السمات في الأسطر الجديدة</value>
+    <comment>checkbox</comment>
+  </data>
   <data name="ShowXmlDialog_nbPagesTab.Text" xml:space="preserve">
     <value>دفتر الملاحظات مع الصفحات</value>
     <comment>tab</comment>
@@ -3859,6 +4094,10 @@ ISO-code then comma then language name</comment>
   <data name="ShowXmlDialog_nbSectionsTab.Text" xml:space="preserve">
     <value>دفتر الملاحظات مع الأقسام</value>
     <comment>tab</comment>
+  </data>
+  <data name="ShowXmlDialog_noHierarchy" xml:space="preserve">
+    <value>لا تسلسل هرمي</value>
+    <comment>message</comment>
   </data>
   <data name="ShowXmlDialog_notebooksTab.Text" xml:space="preserve">
     <value>دفاتر الملاحظات</value>
@@ -3880,13 +4119,25 @@ ISO-code then comma then language name</comment>
     <value>مسار:</value>
     <comment>label</comment>
   </data>
-  <data name="ShowXmlDialog_sectionTab.Text" xml:space="preserve">
-    <value>الجزء</value>
-    <comment>tab</comment>
+  <data name="ShowXmlDialog_pidBox.Text" xml:space="preserve">
+    <value>إخفاء PID</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="ShowXmlDialog_saveWindowBox.Text" xml:space="preserve">
+    <value>حفظ موقع النافذة</value>
+    <comment>checkbox</comment>
   </data>
   <data name="ShowXmlDialog_selectButton.Text" xml:space="preserve">
     <value>اختر الكل</value>
     <comment>button</comment>
+  </data>
+  <data name="ShowXmlDialog_WARNING" xml:space="preserve">
+    <value>هذه عملية خطيرة!
+
+قد تؤدي التغييرات غير الصحيحة إلى فقدان البيانات.
+
+هل أنت متأكد أنك تريد الاستمرار؟</value>
+    <comment>confirmation</comment>
   </data>
   <data name="ShowXmlDialog_wrapBox.Text" xml:space="preserve">
     <value>دوران النص</value>
@@ -4075,6 +4326,10 @@ ISO-code then comma then language name</comment>
     <value>لون الخط</value>
     <comment>button tip</comment>
   </data>
+  <data name="StyleDialog_darkBox.Text" xml:space="preserve">
+    <value>مخصص للصفحات ذات الخلفيات الداكنة</value>
+    <comment>checkbox</comment>
+  </data>
   <data name="StyleDialog_defaultBlackToolStripMenuItem.Text" xml:space="preserve">
     <value>افتراضي (أسود)</value>
     <comment>menu item</comment>
@@ -4107,6 +4362,18 @@ ISO-code then comma then language name</comment>
     <value>أسلوب جديد</value>
     <comment>dialog title</comment>
   </data>
+  <data name="StyleDialog_optionsGroup.Text" xml:space="preserve">
+    <value>خيارات</value>
+    <comment>groupbox</comment>
+  </data>
+  <data name="StyleDialog_pageColorBox.Text" xml:space="preserve">
+    <value>قم بتغيير لون الصفحة عند تطبيق هذه الأنماط</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="StyleDialog_pageColorLink.Text" xml:space="preserve">
+    <value>انقر هنا لتحديد لون الصفحة</value>
+    <comment>linklabel</comment>
+  </data>
   <data name="StyleDialog_reorderButton.Text" xml:space="preserve">
     <value>إعادة ترتيب</value>
     <comment>button</comment>
@@ -4114,6 +4381,10 @@ ISO-code then comma then language name</comment>
   <data name="StyleDialog_saveButton.Text" xml:space="preserve">
     <value>حفظ باسم ...</value>
     <comment>menu item</comment>
+  </data>
+  <data name="StyleDialog_saveStylesTitle" xml:space="preserve">
+    <value>حفظ الأنماط</value>
+    <comment>dialog title</comment>
   </data>
   <data name="StyleDialog_spacingLabel.Text" xml:space="preserve">
     <value>التباعد:</value>
@@ -4446,6 +4717,12 @@ ISO-code then comma then language name</comment>
   <data name="word_Font" xml:space="preserve">
     <value>الخط</value>
   </data>
+  <data name="word_Function" xml:space="preserve">
+    <value>وظيفة</value>
+  </data>
+  <data name="word_General" xml:space="preserve">
+    <value>عام</value>
+  </data>
   <data name="word_Go" xml:space="preserve">
     <value>يذهب</value>
   </data>
@@ -4469,6 +4746,9 @@ ISO-code then comma then language name</comment>
   </data>
   <data name="word_No" xml:space="preserve">
     <value>رقم</value>
+  </data>
+  <data name="word_Notebook" xml:space="preserve">
+    <value>دفتر</value>
   </data>
   <data name="word_OK" xml:space="preserve">
     <value>نعم</value>
@@ -4514,6 +4794,9 @@ ISO-code then comma then language name</comment>
   </data>
   <data name="word_Scope" xml:space="preserve">
     <value>نِطَاق</value>
+  </data>
+  <data name="word_Section" xml:space="preserve">
+    <value>قسم</value>
   </data>
   <data name="word_Silenced" xml:space="preserve">
     <value>صامت</value>
@@ -4582,273 +4865,5 @@ ISO-code then comma then language name</comment>
   <data name="WordCountsCommand_Title" xml:space="preserve">
     <value>عدد الكلمات</value>
     <comment>page title</comment>
-  </data>
-  <data name="ribCopyAcrossButton_Screentip" xml:space="preserve">
-    <value>نسخ المحتوى عبر الصفوف المحددة</value>
-    <comment>ribbon table</comment>
-  </data>
-  <data name="phrase_PathNotFound" xml:space="preserve">
-    <value>المسار مفقود</value>
-  </data>
-  <data name="ribRemoveDateStampButton_Label" xml:space="preserve">
-    <value>إزالة طوابع التاريخ</value>
-    <comment>section context menu</comment>
-  </data>
-  <data name="DrawPlantUml_EmptySelection" xml:space="preserve">
-    <value>اختيار فارغ. حدد كتلة صالحة من نص PlantUML.</value>
-    <comment>error message</comment>
-  </data>
-  <data name="DrawPlantUml_Error" xml:space="preserve">
-    <value>بناء جملة غير صالح أو تحديد غير كامل لـ PlantUML</value>
-    <comment>error message</comment>
-  </data>
-  <data name="ribDrawPlantUmlButton_Label" xml:space="preserve">
-    <value>رسم النبات</value>
-    <comment>ribbon images</comment>
-  </data>
-  <data name="ribDrawPlantUmlButton_Screentip" xml:space="preserve">
-    <value>عرض صورة PlantUML أو Graphviz من النص المحدد</value>
-    <comment>ribbon images</comment>
-  </data>
-  <data name="ResizeImagesDialog_resetLinkLabel.Text" xml:space="preserve">
-    <value>إعادة القيم</value>
-    <comment>link label</comment>
-  </data>
-  <data name="ImportDialog_pdfGroup.Text" xml:space="preserve">
-    <value>خيارات PDF</value>
-    <comment>group box</comment>
-  </data>
-  <data name="phrase_AppendToThisPage" xml:space="preserve">
-    <value>إلحاق بهذه الصفحة</value>
-  </data>
-  <data name="phrase_CreateANewPage" xml:space="preserve">
-    <value>قم بإنشاء صفحة جديدة</value>
-  </data>
-  <data name="PageColorDialog_applyThemeBox.Text" xml:space="preserve">
-    <value>تطبيق الأنماط على هذه الصفحة</value>
-    <comment>checkbox</comment>
-  </data>
-  <data name="PageColorDialog_contrastWarning" xml:space="preserve">
-    <value>قد يكون النص غير قابل للقراءة</value>
-    <comment>label</comment>
-  </data>
-  <data name="PageColorDialog_currentThemeLabel.Text" xml:space="preserve">
-    <value>تعريف الأنماط الحالي هو "{0}"</value>
-    <comment>label</comment>
-  </data>
-  <data name="PageColorDialog_customLabel" xml:space="preserve">
-    <value>انقر هنا لتغيير لونك المخصص</value>
-    <comment>label</comment>
-  </data>
-  <data name="PageColorDialog_loadThemeLink.Text" xml:space="preserve">
-    <value>تحميل أنماط مختلفة</value>
-    <comment>linklabel</comment>
-  </data>
-  <data name="PageColorDialog_noLabel.Text" xml:space="preserve">
-    <value>أو اختر أي لون للصفحة</value>
-    <comment>label</comment>
-  </data>
-  <data name="PageColorDialog_omLabel" xml:space="preserve">
-    <value>انقر هنا لتحديد لون محدد مسبقًا</value>
-    <comment>label</comment>
-  </data>
-  <data name="ribPageColorButton_Label" xml:space="preserve">
-    <value>تعيين لون الصفحة</value>
-    <comment>page context menu</comment>
-  </data>
-  <data name="ribPageColorButton_Screentip" xml:space="preserve">
-    <value>قم بتغيير خلفية هذه الصفحة إلى لون مخصص</value>
-    <comment>page context menu</comment>
-  </data>
-  <data name="LoadStyleTheme_errorLoading" xml:space="preserve">
-    <value>لا يمكن تحميل الملف أو الملف فارغ</value>
-  </data>
-  <data name="LoadStyleTheme_filter" xml:space="preserve">
-    <value>تعريفات الأنماط (* .xml) | * .xml | كافة الملفات (*. *) | *. *</value>
-    <comment>OpenFileDialog filter</comment>
-  </data>
-  <data name="LoadStyleTheme_Title" xml:space="preserve">
-    <value>تحميل نمط النمط</value>
-    <comment>OpenFileDialog title</comment>
-  </data>
-  <data name="ribEditStylesButton_named" xml:space="preserve">
-    <value>تحرير الأنماط ({0})</value>
-    <comment>ribbon styles with theme name</comment>
-  </data>
-  <data name="StyleDialog_darkBox.Text" xml:space="preserve">
-    <value>مخصص للصفحات ذات الخلفيات الداكنة</value>
-    <comment>checkbox</comment>
-  </data>
-  <data name="StyleDialog_optionsGroup.Text" xml:space="preserve">
-    <value>خيارات</value>
-    <comment>groupbox</comment>
-  </data>
-  <data name="StyleDialog_pageColorBox.Text" xml:space="preserve">
-    <value>قم بتغيير لون الصفحة عند تطبيق هذه الأنماط</value>
-    <comment>checkbox</comment>
-  </data>
-  <data name="StyleDialog_pageColorLink.Text" xml:space="preserve">
-    <value>انقر هنا لتحديد لون الصفحة</value>
-    <comment>linklabel</comment>
-  </data>
-  <data name="PageColorDialog_contrastTooltip" xml:space="preserve">
-    <value>قد لا يكون هناك تباين كافٍ بين لون النص ولون الصفحة</value>
-    <comment>tooltip</comment>
-  </data>
-  <data name="StyleDialog_saveStylesTitle" xml:space="preserve">
-    <value>حفظ الأنماط</value>
-    <comment>dialog title</comment>
-  </data>
-  <data name="ShowXmlDialog_newlineBox.Text" xml:space="preserve">
-    <value>السمات في الأسطر الجديدة</value>
-    <comment>checkbox</comment>
-  </data>
-  <data name="ShowXmlDialog_saveBox.Text" xml:space="preserve">
-    <value>حفظ موقع النافذة</value>
-    <comment>checkbox</comment>
-  </data>
-  <data name="SearchAndReplaceDialog_substitutions" xml:space="preserve">
-    <value>معلمات الاستبدال الصالحة: {0}</value>
-    <comment>status label</comment>
-  </data>
-  <data name="ImagesSheet_introBox.Text" xml:space="preserve">
-    <value>تخصيص الإعدادات الافتراضية لأوامر الصورة</value>
-    <comment>label</comment>
-  </data>
-  <data name="ImagesSheet_plantAfterBox.Text" xml:space="preserve">
-    <value>أدخل الرسم بعد نص PlantUML</value>
-    <comment>checkbox</comment>
-  </data>
-  <data name="ImagesSheet_plantCollapseBox.Text" xml:space="preserve">
-    <value>طي نص PlantUML</value>
-    <comment>checkbox</comment>
-  </data>
-  <data name="SettingsDialog_imagesNode.Text" xml:space="preserve">
-    <value>الصور</value>
-    <comment>treenode</comment>
-  </data>
-  <data name="ImagesSheet_plantGroup.Text" xml:space="preserve">
-    <value>خيارات PlantUML</value>
-    <comment>groupbox</comment>
-  </data>
-  <data name="AliasSheet_Title" xml:space="preserve">
-    <value>قيادة الأسماء المستعارة</value>
-    <comment>sheet</comment>
-  </data>
-  <data name="ImagesSheet_imageBrowser" xml:space="preserve">
-    <value>عارض الصور</value>
-  </data>
-  <data name="ImagesSheet_imageViewerLabel.Text" xml:space="preserve">
-    <value>عارض الصور الخارجي (الافتراضي إذا كان فارغًا هو mspaint)</value>
-    <comment>label</comment>
-  </data>
-  <data name="ImagesSheet_resizeGroup.Text" xml:space="preserve">
-    <value>خيارات تغيير الحجم</value>
-    <comment>groupsbox</comment>
-  </data>
-  <data name="ImagesSheet_Title" xml:space="preserve">
-    <value>الصور</value>
-    <comment>sheet</comment>
-  </data>
-  <data name="ImagesSheet_widthLabel.Text" xml:space="preserve">
-    <value>عرض تغيير الحجم المفضل</value>
-    <comment>label</comment>
-  </data>
-  <data name="PluginsSheet_Title" xml:space="preserve">
-    <value>الإضافات</value>
-    <comment>sheet title EDIT</comment>
-  </data>
-  <data name="word_General" xml:space="preserve">
-    <value>عام</value>
-  </data>
-  <data name="DrawPlantUml_broken" xml:space="preserve">
-    <value>نص PlantUML إما غير صالح أو لا يمكنه العثور على اتصال بين النص والصورة</value>
-    <comment>error message</comment>
-  </data>
-  <data name="QuickNotesSheet_groupingBox.Text" xml:space="preserve">
-    <value>أسبوع العمل (2023-02-13 W7)
-الشهر (2023-02)
-ربع (2023 Q1)
-عام (2023)
-# الكلمة الرئيسية في السطر الأول من الملاحظة</value>
-    <comment>combobox</comment>
-  </data>
-  <data name="QuickNotesSheet_groupingLabel.Text" xml:space="preserve">
-    <value>تجميع في أقسام حسب</value>
-    <comment>label</comment>
-  </data>
-  <data name="QuickNotesSheet_introBox.Text" xml:space="preserve">
-    <value>قم بتخصيص سلوك أمر تنظيم الملاحظات السريعة</value>
-    <comment>textbox</comment>
-  </data>
-  <data name="QuickNotesSheet_notebookButton.Text" xml:space="preserve">
-    <value>انقل Quick Notes إلى دفتر الملاحظات هذا</value>
-    <comment>radio</comment>
-  </data>
-  <data name="QuickNotesSheet_notebookLink.Text" xml:space="preserve">
-    <value>انقر هنا لتحديد دفتر الملاحظات</value>
-    <comment>linklabel</comment>
-  </data>
-  <data name="QuickNotesSheet_sectionButton.Text" xml:space="preserve">
-    <value>انقل الملاحظات السريعة إلى هذا القسم</value>
-    <comment>radio</comment>
-  </data>
-  <data name="QuickNotesSheet_sectionLink.Text" xml:space="preserve">
-    <value>انقر هنا لتحديد القسم</value>
-    <comment>linklabel</comment>
-  </data>
-  <data name="QuickNotesSheet_SelectNotebookIntro" xml:space="preserve">
-    <value>حدد دفتر الملاحظات المستخدم لتنظيم ملاحظاتك السريعة</value>
-    <comment>quick filing dialog intro</comment>
-  </data>
-  <data name="QuickNotesSheet_SelectNotebookTitle" xml:space="preserve">
-    <value>حدد دفتر ملاحظات</value>
-    <comment>quick filing dialog title</comment>
-  </data>
-  <data name="QuickNotesSheet_SelectSectionIntro" xml:space="preserve">
-    <value>حدد القسم المستخدم لتنظيم ملاحظاتك السريعة</value>
-    <comment>quick filing dialog intro</comment>
-  </data>
-  <data name="QuickNotesSheet_SelectSectionTitle" xml:space="preserve">
-    <value>حدد القسم</value>
-    <comment>quick filing dialog title</comment>
-  </data>
-  <data name="QuickNotesSheet_stampBox.Text" xml:space="preserve">
-    <value>قم بإلحاق العنوان بتاريخ إنشاء الملاحظة</value>
-    <comment>checkbox</comment>
-  </data>
-  <data name="QuickNotesSheet_Title" xml:space="preserve">
-    <value>ملاحظات سريعة</value>
-    <comment>sheet title</comment>
-  </data>
-  <data name="QuickNotesSheet_titleBox.Text" xml:space="preserve">
-    <value>اضبط عنوان الصفحة على أول كلمات fiew في الملاحظة</value>
-    <comment>checkbox</comment>
-  </data>
-  <data name="SettingsDialog_quickNotesNode.Text" xml:space="preserve">
-    <value>ملاحظات سريعة</value>
-    <comment>tree node</comment>
-  </data>
-  <data name="word_Notebook" xml:space="preserve">
-    <value>دفتر</value>
-  </data>
-  <data name="word_Section" xml:space="preserve">
-    <value>قسم</value>
-  </data>
-  <data name="ribFileQuickNotesButton_Label" xml:space="preserve">
-    <value>ملاحظات سريعة للملف</value>
-    <comment>ribbon file</comment>
-  </data>
-  <data name="ribFileQuickNotesButton_Screentip" xml:space="preserve">
-    <value>تنظيم الملاحظات السريعة في دفتر ملاحظات أو قسم</value>
-    <comment>ribbon file</comment>
-  </data>
-  <data name="Favorites_suspect" xml:space="preserve">
-    <value>الصفحة غير موجودة؛ ربما تمت إعادة تسميته أو نقله</value>
-    <comment>tooltip</comment>
-  </data>
-  <data name="Favorites_unknown" xml:space="preserve">
-    <value>لم تعد الصفحة موجودة ؛ قد تم حذفه</value>
-    <comment>tooltip</comment>
   </data>
 </root>

@@ -48,17 +48,21 @@ namespace River.OneMoreAddIn.Commands
 					"wrapBox",
 					"selectButton",
 					// pagePanel
+					"hideEditedByBox",
+					"multilineBox",
+					"linefeedBox",
+					"editModeBox",
+					"saveWindowBox",
 					"pageInfoLabel",
-					"hideBox",
-					"hideLFBox",
-					"newlineBox",
-					"saveBox",
 					// manualPanel
+					"hideEditedByBox2=ShowXmlDialog_hideEditedByBox.Text",
+					"multilineBox2=ShowXmlDialog_multilineBox.Text",
+					"pidBox",
 					"manualLabel",
-					"hidePidBox",
+					"fnLabel=word_Function",
 					// tabs
 					"pageTab=word_Page",
-					"sectionTab",
+					"sectionTab=word_Section",
 					"notebooksTab",
 					"nbSectionsTab",
 					"nbPagesTab",
@@ -68,7 +72,7 @@ namespace River.OneMoreAddIn.Commands
 					"pagePathLabel",
 					"pageLinkLabel",
 					"okButton",
-					"cancelButton=word_Cancel"
+					"cancelButton=word_Close"
 				});
 			}
 
@@ -302,16 +306,6 @@ namespace River.OneMoreAddIn.Commands
 			// rely on Clicked event instead of Checked changed because editedByBox is
 			// also controlled by editedByBox2
 
-			if (tabs.SelectedIndex == 0)
-			{
-				RefreshPage(sender, e);
-			}
-			else
-			{
-				((RichTextBox)tabs.TabPages[tabs.SelectedIndex].Controls[0]).Clear();
-				RefreshHierarchy(sender, e);
-			}
-
 			if (sender == hideEditedByBox)
 				hideEditedByBox2.Checked = hideEditedByBox.Checked;
 			else if (sender == hideEditedByBox2)
@@ -320,6 +314,18 @@ namespace River.OneMoreAddIn.Commands
 				multilineBox2.Checked = multilineBox.Checked;
 			else if (sender == multilineBox2)
 				multilineBox.Checked = multilineBox2.Checked;
+
+			if (tabs.SelectedIndex == 0)
+			{
+				RefreshPage(sender, e);
+				MarkHierarchyTabs(-1);
+			}
+			else
+			{
+				((RichTextBox)tabs.TabPages[tabs.SelectedIndex].Controls[0]).Clear();
+				RefreshHierarchy(sender, e);
+				RefreshPage(sender, e);
+			}
 		}
 
 
@@ -410,6 +416,8 @@ namespace River.OneMoreAddIn.Commands
 
 		private void Colorize(RichTextBox box, bool editedBy)
 		{
+			box.SuspendLayout();
+
 			var matches = Regex.Matches(box.Text,
 				@"<((?:[a-zA-Z][a-zA-Z0-9]*?:)?[a-zA-Z][a-zA-Z0-9]*?)[^>]+selected=""all""[^\1]*?\1>");
 
@@ -446,6 +454,8 @@ namespace River.OneMoreAddIn.Commands
 					box.SelectionColor = Color.CornflowerBlue;
 				}
 			}
+
+			box.ResumeLayout();
 		}
 
 
@@ -500,6 +510,8 @@ namespace River.OneMoreAddIn.Commands
 
 		private async void RefreshHierarchy(object sender, EventArgs e)
 		{
+			var enabled = true;
+
 			switch (tabs.SelectedIndex)
 			{
 				case 0: // Page
@@ -530,18 +542,20 @@ namespace River.OneMoreAddIn.Commands
 					await ShowHierarchy(nbPagesBox, "one.GetNotebook(OneNote.Scope.Pages)",
 						async (one) => { return await one.GetNotebook(OneNote.Scope.Pages); });
 					break;
+
+				case 5:
+					enabled = false;
+					break;
 			}
+
+			hideEditedByBox2.Enabled = enabled;
+			multilineBox2.Enabled = enabled;
+			pidBox.Enabled = enabled;
 
 			if (sender is not TabControl)
 			{
 				// changed filtering so mark other tabs as dirty
-				for (int i = 1; i <= 4; i++)
-				{
-					if (i != tabs.SelectedIndex)
-					{
-						((RichTextBox)tabs.TabPages[i].Controls[0]).Clear();
-					}
-				}
+				MarkHierarchyTabs(tabs.SelectedIndex);
 			}
 
 			if (okButton.Visible)
@@ -549,6 +563,18 @@ namespace River.OneMoreAddIn.Commands
 				okButton.Visible = false;
 				pageOptionsPanel.Visible = false;
 				manualPanel.Visible = true;
+			}
+		}
+
+
+		private void MarkHierarchyTabs(int selected)
+		{
+			for (int i = 1; i <= 4; i++)
+			{
+				if (i != selected)
+				{
+					((RichTextBox)tabs.TabPages[i].Controls[0]).Clear();
+				}
 			}
 		}
 
@@ -587,7 +613,7 @@ namespace River.OneMoreAddIn.Commands
 				}
 				else
 				{
-					box.Text = "no hierarchy";
+					box.Text = Resx.ShowXmlDialog_noHierarchy;
 				}
 			}
 
@@ -691,11 +717,7 @@ namespace River.OneMoreAddIn.Commands
 
 		private async void UpdatePage(object sender, EventArgs e)
 		{
-			var result = UIHelper.ShowQuestion(
-				"This is a dangerous operation!\n\n" +
-				"Incorrect changes may result in lost data.\n\n" +
-				"Are you sure you want to continue?");
-
+			var result = UIHelper.ShowQuestion(Resx.ShowXmlDialog_WARNING);
 			if (result == DialogResult.OK)
 			{
 				try
