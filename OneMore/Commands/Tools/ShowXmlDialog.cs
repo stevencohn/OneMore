@@ -432,7 +432,7 @@ namespace River.OneMoreAddIn.Commands
 				matches = Regex.Matches(box.Text,
 					"(?:author|authorInitials|authorResolutionID|lastModifiedBy|" +
 					"lastModifiedByInitials|lastModifiedByResolutionID|creationTime|" +
-					"lastModifiedTime)=\"[^\"]*\""
+					"lastModifiedTime|dateTime)=\"[^\"]*\""
 					);
 
 				foreach (Match m in matches)
