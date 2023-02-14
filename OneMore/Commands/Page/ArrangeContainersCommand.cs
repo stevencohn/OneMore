@@ -4,14 +4,12 @@
 
 namespace River.OneMoreAddIn.Commands
 {
-	using Microsoft.Office.Interop.PowerPoint;
 	using River.OneMoreAddIn.Models;
 	using System;
 	using System.Collections.Generic;
 	using System.Globalization;
 	using System.Linq;
 	using System.Threading.Tasks;
-	using System.Windows.Media;
 	using System.Xml.Linq;
 
 
@@ -74,8 +72,6 @@ namespace River.OneMoreAddIn.Commands
 			}
 			else
 			{
-
-				System.Diagnostics.Debugger.Launch();
 				bank.Element(ns + "Position").GetAttributeValue("y", out var y, 0.0);
 				bank.Element(ns + "Size").GetAttributeValue("height", out var h, 0.0);
 				topMargin = Math.Max(y + h + 10, TopMargin);
