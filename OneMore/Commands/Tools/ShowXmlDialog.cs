@@ -416,8 +416,6 @@ namespace River.OneMoreAddIn.Commands
 
 		private void Colorize(RichTextBox box, bool editedBy)
 		{
-			box.SuspendLayout();
-
 			var matches = Regex.Matches(box.Text,
 				@"<((?:[a-zA-Z][a-zA-Z0-9]*?:)?[a-zA-Z][a-zA-Z0-9]*?)[^>]+selected=""all""[^\1]*?\1>");
 
@@ -454,8 +452,6 @@ namespace River.OneMoreAddIn.Commands
 					box.SelectionColor = Color.CornflowerBlue;
 				}
 			}
-
-			box.ResumeLayout();
 		}
 
 
@@ -684,12 +680,22 @@ namespace River.OneMoreAddIn.Commands
 				((Control)manualTab).Enabled = true;
 				tabs.SelectTab(5);
 
+				// supress rendering
+				Native.SendMessage(manualBox.Handle, Native.WM_SETREDRAW, 0, 0);
+				var eventMask = Native.SendMessage(manualBox.Handle, Native.EM_GETEVENTMASK, 0, 0);
+
 				manualBox.Clear();
 				manualBox.SelectionColor = Color.Black;
 
 				await ShowHierarchy(manualBox,
 					$"{(string)functionBox.SelectedItem}(\"{objectIdBox.Text}\")",
 					async (one) => { await Task.Yield(); return content; });
+
+				// resume rendering
+				Native.SendMessage(manualBox.Handle, Native.EM_SETEVENTMASK, 0, eventMask);
+				Native.SendMessage(manualBox.Handle, Native.WM_SETREDRAW, 1, 0);
+				manualBox.Invalidate();
+
 			}
 			catch (Exception exc)
 			{
