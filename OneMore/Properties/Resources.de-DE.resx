@@ -3188,7 +3188,7 @@ Polaroid</value>
     <comment>Ribbon OneMore menu item</comment>
   </data>
   <data name="ribRemoveCitationsButton_Screentip" xml:space="preserve">
-    <value>Entferne Bildschirmausschnitte und fügen Sie URL-Zitate ein</value>
+    <value>Entferne Bildschirmausschnitte und füge URL-Zitate ein</value>
     <comment>Ribbon OneMore menu item</comment>
   </data>
   <data name="ribRemoveDateStampButton_Label" xml:space="preserve">
