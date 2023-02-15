@@ -2809,7 +2809,7 @@ Polaroid</value>
     <comment>ribbon item screentip</comment>
   </data>
   <data name="ribEmojiButton_Label" xml:space="preserve">
-    <value>Füge Seitentitel Emoji hinzu</value>
+    <value>Emoji zum Seitentitel hinzufügen</value>
     <comment>ribbon page</comment>
   </data>
   <data name="ribEnableSpellCheckButton_Label" xml:space="preserve">
