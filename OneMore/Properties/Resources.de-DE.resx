@@ -2769,6 +2769,18 @@ Polaroid</value>
     <value>Rechtschreibprüfung deaktivieren</value>
     <comment>Ribbon OneMore menu item, no spell check on this page</comment>
   </data>
+  <data name="ribDisableSpellCheckButton_Screentip" xml:space="preserve">
+    <value>Rechtschreibprüfung innerhalb ausgewählter Inhalte deaktivieren</value>
+    <comment>ribbon edit</comment>
+  </data>
+  <data name="ribDrawPlantUmlButton_Label" xml:space="preserve">
+    <value>Zeichne PlantUML</value>
+    <comment>ribbon images</comment>
+  </data>
+  <data name="ribDrawPlantUmlButton_Screentip" xml:space="preserve">
+    <value>PlantUML- oder Graphviz-Bild aus ausgewähltem Text rendern</value>
+    <comment>ribbon images</comment>
+  </data>
   <data name="ribDuplicateLineAboveButton_Label" xml:space="preserve">
     <value>Doppelter Absatz oben</value>
     <comment>pallette</comment>
@@ -2796,6 +2808,10 @@ Polaroid</value>
   <data name="ribEmbedSubpageButton_Screentip" xml:space="preserve">
     <value>Inhalte einer anderen Seite in die aktuelle Seite einbetten</value>
     <comment>ribbon item screentip</comment>
+  </data>
+  <data name="ribEmojiButton_Label" xml:space="preserve">
+    <value>Füge Seitentitel Emoji hinzu</value>
+    <comment>ribbon page</comment>
   </data>
   <data name="ribEnableSpellCheckButton_Label" xml:space="preserve">
     <value>Rechtschreibprüfung aktivieren</value>
