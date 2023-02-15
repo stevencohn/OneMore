@@ -317,10 +317,11 @@ namespace River.OneMoreAddIn
 		private string MakeHeader()
 		{
 			//$"{DateTime.Now.ToString("hh:mm:ss.fff")} [{Thread.CurrentThread.ManagedThreadId}] ";
+			//$"{processId}:{Thread.CurrentThread.ManagedThreadId}] {preamble}";
 
 			if (!stdio)
 			{
-				return $"{processId}:{Thread.CurrentThread.ManagedThreadId}] {preamble}";
+				return $"{Thread.CurrentThread.ManagedThreadId:00}| {preamble}";
 			}
 
 			return string.Empty;

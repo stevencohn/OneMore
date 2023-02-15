@@ -72,7 +72,8 @@ namespace River.OneMoreAddIn
 				$"Starting {process.ProcessName} {process.Id}, CPU={clockSpeed}Mhz, " +
 				$"{thread.CurrentCulture.Name}/{thread.CurrentUICulture.Name}, " +
 				$"v{AssemblyInfo.Version}, OneNote {Office.GetOneNoteVersion()}, " +
-				$"Office {Office.GetOfficeVersion()}");
+				$"Office {Office.GetOfficeVersion()}, " +
+				DateTime.Now.ToString("yyyy-MM-dd HH:mm"));
 
 			var hostproc = Process.GetProcessesByName("ONENOTE");
 			if (hostproc.Length > 0)
