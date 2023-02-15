@@ -23,7 +23,7 @@ namespace River.OneMoreAddIn.Commands
 		{
 			var uri = args == null || args.Length == 0 ? null : (string)args[0];
 
-			if (uri == null)
+			if (string.IsNullOrWhiteSpace(uri))
 			{
 				using var dialog = new FavoritesDialog();
 				if (dialog.ShowDialog(owner) == DialogResult.Cancel)
@@ -32,6 +32,11 @@ namespace River.OneMoreAddIn.Commands
 				}
 
 				uri = dialog.Uri;
+			}
+
+			if (string.IsNullOrWhiteSpace(uri))
+			{
+				return;
 			}
 
 			try
