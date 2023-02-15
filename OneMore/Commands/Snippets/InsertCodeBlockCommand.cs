@@ -8,6 +8,7 @@ namespace River.OneMoreAddIn.Commands
 	using System;
 	using System.Collections.Generic;
 	using System.Drawing;
+	using System.Globalization;
 	using System.Linq;
 	using System.Text.RegularExpressions;
 	using System.Threading.Tasks;
@@ -178,7 +179,8 @@ namespace River.OneMoreAddIn.Commands
 
 				if (column != null)
 				{
-					return (float)Math.Floor(double.Parse(column.Attribute("width").Value));
+					return (float)Math.Floor(double.Parse(
+						column.Attribute("width").Value, CultureInfo.InvariantCulture));
 				}
 			}
 
@@ -190,7 +192,8 @@ namespace River.OneMoreAddIn.Commands
 
 			if (size != null)
 			{
-				return (float)Math.Floor(double.Parse(size.Attribute("width").Value));
+				return (float)Math.Floor(double.Parse(
+					size.Attribute("width").Value, CultureInfo.InvariantCulture));
 			}
 
 			return DefaultWidth;

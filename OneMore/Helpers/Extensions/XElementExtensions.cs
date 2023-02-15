@@ -458,6 +458,30 @@ namespace River.OneMoreAddIn
 
 
 		/// <summary>
+		/// Specific InvariantCulture double interpretation of an element's named attribute.
+		/// This is important so that we don't allow double.Parse(string) to misinterpret
+		/// double numbers in various cultures that treat a dot as a thousandth separator.
+		/// </summary>
+		/// <param name="element">This element</param>
+		/// <param name="name">Name of the attribute to parse</param>
+		/// <returns>The double value or NaN if the attribute can't be parsed as a double.</returns>
+		public static double GetAttributeDouble(this XElement element, string name)
+		{
+			var text = element.Attribute(name)?.Value;
+			if (text != null)
+			{
+				if (double.TryParse(text, NumberStyles.Any,
+					CultureInfo.InvariantCulture, out var result))
+				{
+					return result;
+				}
+			}
+
+			return double.NaN;
+		}
+
+
+		/// <summary>
 		/// OneMore Extension >> Get the value of the named attribute or a default if not present
 		/// </summary>
 		/// <param name="element"></param>
