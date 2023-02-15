@@ -9908,6 +9908,20 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to $guid = &apos;~guid~&apos;;
+        ///$processId = gcim Win32_Process | select ProcessId, CommandLine | where { $_.CommandLine -and $_.CommandLine.Contains($guid) } | foreach { $_.ProcessId }
+        ///if ($processId) { taskkill /pid $processId /f }
+        ///$processId = gcim Win32_Process | select ProcessId, Name | where { $_.Name -eq &apos;ONENOTE.EXE&apos; } | foreach { $_.ProcessId }
+        ///if ($processId) { taskkill /fi &apos;pid gt 0&apos; /im ONENOTE.exe /t /f }
+        ///.
+        /// </summary>
+        internal static string StopOneNote {
+            get {
+                return ResourceManager.GetString("StopOneNote", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap Strikethrough {
