@@ -106,7 +106,7 @@
 			this.tabs.Margin = new System.Windows.Forms.Padding(2);
 			this.tabs.Name = "tabs";
 			this.tabs.SelectedIndex = 0;
-			this.tabs.Size = new System.Drawing.Size(2440, 720);
+			this.tabs.Size = new System.Drawing.Size(2440, 708);
 			this.tabs.TabIndex = 0;
 			this.tabs.SelectedIndexChanged += new System.EventHandler(this.RefreshHierarchy);
 			this.tabs.Selecting += new System.Windows.Forms.TabControlCancelEventHandler(this.TabGuard);
@@ -120,7 +120,7 @@
 			this.pageTab.Margin = new System.Windows.Forms.Padding(2);
 			this.pageTab.Name = "pageTab";
 			this.pageTab.Padding = new System.Windows.Forms.Padding(2, 2, 8, 2);
-			this.pageTab.Size = new System.Drawing.Size(2432, 685);
+			this.pageTab.Size = new System.Drawing.Size(2432, 673);
 			this.pageTab.TabIndex = 0;
 			this.pageTab.Text = "Page";
 			// 
@@ -134,7 +134,7 @@
 			this.pageBox.Margin = new System.Windows.Forms.Padding(2);
 			this.pageBox.Name = "pageBox";
 			this.pageBox.ReadOnly = true;
-			this.pageBox.Size = new System.Drawing.Size(2422, 681);
+			this.pageBox.Size = new System.Drawing.Size(2422, 669);
 			this.pageBox.TabIndex = 7;
 			this.pageBox.Text = "";
 			this.pageBox.WordWrap = false;
@@ -404,7 +404,7 @@
 			// 
 			this.cancelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-			this.cancelButton.Location = new System.Drawing.Point(2300, 18);
+			this.cancelButton.Location = new System.Drawing.Point(2301, 23);
 			this.cancelButton.Margin = new System.Windows.Forms.Padding(2);
 			this.cancelButton.Name = "cancelButton";
 			this.cancelButton.Size = new System.Drawing.Size(124, 35);
@@ -423,17 +423,17 @@
 			this.editByBox2.Controls.Add(this.pagePathLabel);
 			this.editByBox2.Controls.Add(this.pageNameLabel);
 			this.editByBox2.Dock = System.Windows.Forms.DockStyle.Bottom;
-			this.editByBox2.Location = new System.Drawing.Point(0, 872);
+			this.editByBox2.Location = new System.Drawing.Point(0, 860);
 			this.editByBox2.Margin = new System.Windows.Forms.Padding(2);
 			this.editByBox2.Name = "editByBox2";
-			this.editByBox2.Size = new System.Drawing.Size(2440, 68);
+			this.editByBox2.Size = new System.Drawing.Size(2440, 80);
 			this.editByBox2.TabIndex = 4;
 			// 
 			// okButton
 			// 
 			this.okButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.okButton.Enabled = false;
-			this.okButton.Location = new System.Drawing.Point(2168, 18);
+			this.okButton.Location = new System.Drawing.Point(2169, 23);
 			this.okButton.Margin = new System.Windows.Forms.Padding(2);
 			this.okButton.Name = "okButton";
 			this.okButton.Size = new System.Drawing.Size(124, 35);
@@ -445,7 +445,7 @@
 			// 
 			this.pageLink.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
 			this.pageLink.AutoSize = true;
-			this.pageLink.Location = new System.Drawing.Point(64, 48);
+			this.pageLink.Location = new System.Drawing.Point(64, 60);
 			this.pageLink.Name = "pageLink";
 			this.pageLink.Size = new System.Drawing.Size(14, 20);
 			this.pageLink.TabIndex = 0;
@@ -455,7 +455,7 @@
 			// 
 			this.pagePath.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
 			this.pagePath.AutoSize = true;
-			this.pagePath.Location = new System.Drawing.Point(64, 28);
+			this.pagePath.Location = new System.Drawing.Point(64, 40);
 			this.pagePath.Name = "pagePath";
 			this.pagePath.Size = new System.Drawing.Size(14, 20);
 			this.pagePath.TabIndex = 0;
@@ -465,7 +465,7 @@
 			// 
 			this.pageName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
 			this.pageName.AutoSize = true;
-			this.pageName.Location = new System.Drawing.Point(64, 8);
+			this.pageName.Location = new System.Drawing.Point(64, 20);
 			this.pageName.Name = "pageName";
 			this.pageName.Size = new System.Drawing.Size(14, 20);
 			this.pageName.TabIndex = 0;
@@ -475,7 +475,7 @@
 			// 
 			this.pageLinkLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
 			this.pageLinkLabel.AutoSize = true;
-			this.pageLinkLabel.Location = new System.Drawing.Point(3, 48);
+			this.pageLinkLabel.Location = new System.Drawing.Point(3, 60);
 			this.pageLinkLabel.Name = "pageLinkLabel";
 			this.pageLinkLabel.Size = new System.Drawing.Size(42, 20);
 			this.pageLinkLabel.TabIndex = 0;
@@ -485,7 +485,7 @@
 			// 
 			this.pagePathLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
 			this.pagePathLabel.AutoSize = true;
-			this.pagePathLabel.Location = new System.Drawing.Point(3, 28);
+			this.pagePathLabel.Location = new System.Drawing.Point(3, 40);
 			this.pagePathLabel.Name = "pagePathLabel";
 			this.pagePathLabel.Size = new System.Drawing.Size(46, 20);
 			this.pagePathLabel.TabIndex = 0;
@@ -495,7 +495,7 @@
 			// 
 			this.pageNameLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
 			this.pageNameLabel.AutoSize = true;
-			this.pageNameLabel.Location = new System.Drawing.Point(3, 8);
+			this.pageNameLabel.Location = new System.Drawing.Point(3, 20);
 			this.pageNameLabel.Name = "pageNameLabel";
 			this.pageNameLabel.Size = new System.Drawing.Size(55, 20);
 			this.pageNameLabel.TabIndex = 0;
@@ -683,7 +683,7 @@
 			this.Controls.Add(this.masterPanel);
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.Margin = new System.Windows.Forms.Padding(2);
-			this.MinimumSize = new System.Drawing.Size(1500, 500);
+			this.MinimumSize = new System.Drawing.Size(800, 500);
 			this.Name = "ShowXmlDialog";
 			this.Padding = new System.Windows.Forms.Padding(8);
 			this.ShowInTaskbar = false;
