@@ -734,7 +734,7 @@ namespace River.OneMoreAddIn.Commands
 		private async void UpdatePage(object sender, EventArgs e)
 		{
 			var result = UIHelper.ShowQuestion(Resx.ShowXmlDialog_WARNING);
-			if (result == DialogResult.OK)
+			if (result == DialogResult.Yes)
 			{
 				try
 				{
