@@ -68,7 +68,8 @@ namespace River.OneMoreAddIn.Settings
 		private async void LoadData(object sender, EventArgs e)
 		{
 			using var provider = new FavoritesProvider(null);
-			var list = await provider.LoadFavorites();
+			var list = provider.LoadFavorites();
+			await provider.ValidateFavorites(list);
 			favorites = new BindingList<Favorite>(list);
 
 			gridView.DataSource = favorites;

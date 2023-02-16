@@ -31,6 +31,12 @@ namespace River.OneMoreAddIn.Commands
 					return;
 				}
 
+				if (dialog.Manage)
+				{
+					await new ManageFavoritesCommand().Execute(ribbon);
+					return;
+				}
+
 				uri = dialog.Uri;
 			}
 
