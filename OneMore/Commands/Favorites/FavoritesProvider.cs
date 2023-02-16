@@ -144,7 +144,7 @@ namespace River.OneMoreAddIn
 		}
 
 
-		public async Task<List<Favorite>> LoadFavorites()
+		public List<Favorite> LoadFavorites()
 		{
 			var list = new List<Favorite>();
 			var root = LoadFavoritesMenu(false);
@@ -165,17 +165,16 @@ namespace River.OneMoreAddIn
 					Uri = element.Attribute("tag").Value,
 					NotebookID = element.Attribute("notebookID")?.Value,
 					ObjectID = element.Attribute("objectID")?.Value,
+					Status = FavoriteStatus.Known,
 					Root = element
 				});
 			}
-
-			await ValidateFavorites(list);
 
 			return list;
 		}
 
 
-		private async Task ValidateFavorites(List<Favorite> favorites)
+		public async Task ValidateFavorites(List<Favorite> favorites)
 		{
 			one ??= new OneNote();
 

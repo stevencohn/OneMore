@@ -7,6 +7,7 @@ namespace River.OneMoreAddIn.Commands.Favorites
 	using System;
 	using System.ComponentModel;
 	using System.Drawing;
+	using System.Linq;
 	using System.Windows.Forms;
 	using Favorite = FavoritesProvider.Favorite;
 	using FavoriteStatus = FavoritesProvider.FavoriteStatus;
@@ -36,10 +37,10 @@ namespace River.OneMoreAddIn.Commands.Favorites
 		}
 
 
-		private async void BindOnLoad(object sender, EventArgs e)
+		private void BindOnLoad(object sender, EventArgs e)
 		{
 			using var provider = new FavoritesProvider(null);
-			var favorites = await provider.LoadFavorites();
+			var favorites = provider.LoadFavorites();
 
 			gridView.AutoGenerateColumns = false;
 			gridView.Columns[0].DataPropertyName = "Name";
@@ -52,6 +53,9 @@ namespace River.OneMoreAddIn.Commands.Favorites
 		{
 			searchBox.Focus();
 		}
+
+
+		public bool Manage { get; private set; }
 
 
 		public string Uri { get; private set; }
@@ -427,6 +431,32 @@ namespace River.OneMoreAddIn.Commands.Favorites
 				DialogResult = DialogResult.OK;
 				Close();
 			}
+		}
+
+		private void ShowMenu(object sender, EventArgs e)
+		{
+			contextMenu.Show(menuButton, new Point(
+				-(contextMenu.Width - menuButton.Width),
+				menuButton.Height));
+		}
+
+
+		private async void CheckFavorites(object sender, EventArgs e)
+		{
+			using var provider = new FavoritesProvider(null);
+
+			var list = ((BindingList<Favorite>)gridView.DataSource).ToList();
+			await provider.ValidateFavorites(list);
+			gridView.DataSource = new BindingList<Favorite>(list);
+
+		}
+
+
+		private void ManageFavorites(object sender, EventArgs e)
+		{
+			Manage = true;
+			DialogResult = DialogResult.OK;
+			Close();
 		}
 	}
 }

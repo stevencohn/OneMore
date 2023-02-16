@@ -28,6 +28,7 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
+			this.components = new System.ComponentModel.Container();
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FavoritesDialog));
 			this.gridView = new System.Windows.Forms.DataGridView();
 			this.nameColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -36,11 +37,16 @@
 			this.goButton = new System.Windows.Forms.Button();
 			this.cancelButton = new System.Windows.Forms.Button();
 			this.searchPanel = new System.Windows.Forms.Panel();
+			this.menuButton = new System.Windows.Forms.Button();
 			this.searchBox = new System.Windows.Forms.TextBox();
 			this.searchLabel = new System.Windows.Forms.Label();
+			this.contextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
+			this.checkButton = new System.Windows.Forms.ToolStripMenuItem();
+			this.manageButton = new System.Windows.Forms.ToolStripMenuItem();
 			((System.ComponentModel.ISupportInitialize)(this.gridView)).BeginInit();
 			this.buttonPanel.SuspendLayout();
 			this.searchPanel.SuspendLayout();
+			this.contextMenu.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// gridView
@@ -119,6 +125,7 @@
 			// 
 			// searchPanel
 			// 
+			this.searchPanel.Controls.Add(this.menuButton);
 			this.searchPanel.Controls.Add(this.searchBox);
 			this.searchPanel.Controls.Add(this.searchLabel);
 			this.searchPanel.Dock = System.Windows.Forms.DockStyle.Top;
@@ -127,6 +134,20 @@
 			this.searchPanel.Padding = new System.Windows.Forms.Padding(15);
 			this.searchPanel.Size = new System.Drawing.Size(778, 74);
 			this.searchPanel.TabIndex = 5;
+			// 
+			// menuButton
+			// 
+			this.menuButton.FlatAppearance.BorderSize = 0;
+			this.menuButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+			this.menuButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.menuButton.ForeColor = System.Drawing.SystemColors.GrayText;
+			this.menuButton.Location = new System.Drawing.Point(716, 18);
+			this.menuButton.Name = "menuButton";
+			this.menuButton.Size = new System.Drawing.Size(50, 38);
+			this.menuButton.TabIndex = 1;
+			this.menuButton.Text = "•••";
+			this.menuButton.UseVisualStyleBackColor = true;
+			this.menuButton.Click += new System.EventHandler(this.ShowMenu);
 			// 
 			// searchBox
 			// 
@@ -145,6 +166,29 @@
 			this.searchLabel.Size = new System.Drawing.Size(60, 20);
 			this.searchLabel.TabIndex = 0;
 			this.searchLabel.Text = "Search";
+			// 
+			// contextMenu
+			// 
+			this.contextMenu.ImageScalingSize = new System.Drawing.Size(24, 24);
+			this.contextMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.checkButton,
+            this.manageButton});
+			this.contextMenu.Name = "contextMenu";
+			this.contextMenu.Size = new System.Drawing.Size(241, 101);
+			// 
+			// checkButton
+			// 
+			this.checkButton.Name = "checkButton";
+			this.checkButton.Size = new System.Drawing.Size(240, 32);
+			this.checkButton.Text = "Check Favorites";
+			this.checkButton.Click += new System.EventHandler(this.CheckFavorites);
+			// 
+			// manageButton
+			// 
+			this.manageButton.Name = "manageButton";
+			this.manageButton.Size = new System.Drawing.Size(240, 32);
+			this.manageButton.Text = "Manage Favorites";
+			this.manageButton.Click += new System.EventHandler(this.ManageFavorites);
 			// 
 			// FavoritesDialog
 			// 
@@ -169,6 +213,7 @@
 			this.buttonPanel.ResumeLayout(false);
 			this.searchPanel.ResumeLayout(false);
 			this.searchPanel.PerformLayout();
+			this.contextMenu.ResumeLayout(false);
 			this.ResumeLayout(false);
 
 		}
@@ -183,5 +228,9 @@
 		private System.Windows.Forms.Panel searchPanel;
 		private System.Windows.Forms.TextBox searchBox;
 		private System.Windows.Forms.Label searchLabel;
+		private System.Windows.Forms.Button menuButton;
+		private System.Windows.Forms.ContextMenuStrip contextMenu;
+		private System.Windows.Forms.ToolStripMenuItem checkButton;
+		private System.Windows.Forms.ToolStripMenuItem manageButton;
 	}
 }
