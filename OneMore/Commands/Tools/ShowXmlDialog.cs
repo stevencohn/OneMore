@@ -451,7 +451,24 @@ namespace River.OneMoreAddIn.Commands
 					box.SelectionLength = m.Length;
 					box.SelectionColor = Color.CornflowerBlue;
 				}
+			}
 
+			if (box == pageBox)
+			{
+				// CDATA
+				//<one:T><![CDATA[A]]></one:T>
+
+				matches = Regex.Matches(box.Text, @"(?:\<!\[CDATA\[)([^\]]*)(?:\]]>)");
+
+				foreach (Match m in matches)
+				{
+					box.SelectionStart = m.Groups[1].Index;
+					box.SelectionLength = m.Groups[1].Length;
+					box.SelectionColor = Color.Maroon;
+				}
+			}
+			else
+			{
 				// recycleBin
 				matches = Regex.Matches(box.Text, "(?:isRecycleBin|isInRecycleBin|isDeletedPages)=\"[^\"]*\"");
 
