@@ -77,7 +77,10 @@ namespace River.OneMoreAddIn.Commands
 			return page.Root.Descendants(ns + "OE")
 				.Where(e => e.Element(ns + "OEChildren") != null
 					&& e.Element(ns + "OEChildren").ElementsBeforeSelf()
-						.All(b => b.Name.LocalName == "T" || b.Name.LocalName == "Meta"));
+						.All(b =>
+							b.Name.LocalName == "T" ||
+							b.Name.LocalName == "List" ||
+							b.Name.LocalName == "Meta"));
 		}
 
 
