@@ -41,7 +41,7 @@ namespace River.OneMoreAddIn.Colorizer
 		//  Matches[0].Group[7].Capture[0] = "/>"   ; index=21
 		//
 		// Notice that the index of each capture is not in sequence and that scoped values, like
-		// "a1" and "a2" are grouped together. OrderCapturesByIndex will project these into a
+		// "a1" and "a2" are grouped together. CollectCaptures.OrderBy will project these into a
 		// list of OrderedCapture items that can be sorted by index offset
 		#endregion
 		private sealed class OrderedCapture
@@ -113,7 +113,7 @@ namespace River.OneMoreAddIn.Colorizer
 
 			var index = 0;
 
-			var captures = OrderCapturesByIndex(matches).OrderBy(c => c.Index).ToList();
+			var captures = CollectCaptures(matches).OrderBy(c => c.Index).ToList();
 			for (captureIndex = 0; captureIndex < captures.Count; captureIndex++)
 			{
 				var capture = captures[captureIndex];
@@ -187,7 +187,7 @@ namespace River.OneMoreAddIn.Colorizer
 		}
 
 
-		private IEnumerable<OrderedCapture> OrderCapturesByIndex(MatchCollection matches)
+		private IEnumerable<OrderedCapture> CollectCaptures(MatchCollection matches)
 		{
 			for (var mi = 0; mi < matches.Count; mi++)
 			{
