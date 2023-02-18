@@ -4850,4 +4850,12 @@ ISO-code then comma then language name</comment>
     <value>字数统计</value>
     <comment>page title</comment>
   </data>
+  <data name="GeneralSheet_advancedGroup.Text" xml:space="preserve">
+    <value>高级选项</value>
+    <comment>groupbox</comment>
+  </data>
+  <data name="GeneralSheet_verboseBox.Text" xml:space="preserve">
+    <value>启用详细日志记录</value>
+    <comment>checkbox</comment>
+  </data>
 </root>

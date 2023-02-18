@@ -53,8 +53,8 @@ namespace River.OneMoreAddIn.Colorizer
 		}
 
 
+		private readonly ILogger logger;
 		private readonly ICompiledLanguage language;
-		private readonly bool lx = false;
 		private MatchCollection matches;
 		private int captureIndex;
 		private string scopeOverride;
@@ -63,6 +63,7 @@ namespace River.OneMoreAddIn.Colorizer
 		public Parser(ICompiledLanguage language)
 		{
 			this.language = language;
+			logger = Logger.Current;
 		}
 
 
@@ -103,8 +104,7 @@ namespace River.OneMoreAddIn.Colorizer
 
 			if (matches.Count == 0)
 			{
-				if (lx)
-					Logger.Current.WriteLine($"report(\"{source}\", null); // no match");
+				logger.Verbose($"report(\"{source}\", null); // no match");
 
 				captureIndex = 0;
 				report(source, null);
@@ -118,48 +118,55 @@ namespace River.OneMoreAddIn.Colorizer
 			{
 				var capture = captures[captureIndex];
 
+				// report text prior to capture or in between captures...
+
 				if (index < capture.Index)
 				{
-					if (lx)
-						Logger.Current.WriteLine(
-							$"report(\"{source.Substring(index, capture.Index - index)}\", " +
-							$"{scopeOverride ?? "null"}); // space");
+					logger.Verbose(
+						$"report(\"{source.Substring(index, capture.Index - index)}\", " +
+						$"{scopeOverride ?? "null"}); // space");
 
-					// default text prior to match or in between matches
 					report(source.Substring(index, capture.Index - index), scopeOverride ?? null);
 				}
 
-				var sc = string.IsNullOrEmpty(scopeOverride)
+				// report capture...
+
+				var scope = string.IsNullOrEmpty(scopeOverride)
 					? language.Scopes[capture.Scope]
 					: scopeOverride;
 
-				if (lx)
-					Logger.Current.WriteLine(
-						$"report(\"{capture.Value}\", {sc}); " +
-						$"// scopeOverride:{scopeOverride ?? "null"}, colorized");
+				logger.Verbose(
+					$"report(\"{capture.Value}\", {scope}); " +
+					$"// scopeOverride:{scopeOverride ?? "null"}, colorized");
 
-				report(capture.Value, sc);
+				report(capture.Value, scope);
 				index = capture.Index + capture.Length;
 
 				// check scope override...
 
-				// skip compiler-added scopes (0=*=entire string, 1=$=end of line)
-				var over = 2;
-				var r = 0;
-				while ((r < language.Rules.Count) && (over < capture.Scope))
+				if (capture.Scope < 2)
 				{
-					over += language.Rules[r].Captures.Count;
-					r++;
+					// linebreak
+					continue;
 				}
 
-				if (r < language.Rules.Count)
+				// capture.Scope will index the collated capture across all rules.
+				// skip compiler-added scopes (0=*=entire string, 1=$=end of line)
+				var over = 2;
+				var ri = 0;
+				while ((ri < language.Rules.Count) && (over < capture.Scope))
 				{
-					var rule = language.Rules[r];
+					over += language.Rules[ri].Captures.Count;
+					ri++;
+				}
+
+				if (ri < language.Rules.Count)
+				{
+					var rule = language.Rules[ri];
 					var newOverride = rule.Scope;
 
-					if (lx)
-						Logger.Current.WriteLine(
-							$".. newOverride ({newOverride ?? "null"}) from rule {r} /{rule.Pattern}/");
+					logger.Verbose(
+						$".. newOverride ({newOverride ?? "null"}) from rule {ri} /{rule.Pattern}/");
 
 					// special case of multi-line comments, started by a rule with
 					// the "comment" scope and ended by a rule with the "" scope
@@ -170,16 +177,12 @@ namespace River.OneMoreAddIn.Colorizer
 					else if (scopeOverride != "comment")
 						scopeOverride = newOverride;
 
-					if (lx)
-						Logger.Current.WriteLine(
-							$".. scopeOverride ({scopeOverride ?? "null"})");
+					logger.Verbose($".. scopeOverride ({scopeOverride ?? "null"})");
 				}
 			}
 			if (index < source.Length)
 			{
-				if (lx)
-					Logger.Current.WriteLine(
-						$"report(\"{source.Substring(index)}\", null); // remaining");
+				logger.Verbose($"report(\"{source.Substring(index)}\", null); // remaining");
 
 				// remaining source after all captures
 				report(source.Substring(index), null);

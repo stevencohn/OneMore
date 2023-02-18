@@ -4860,4 +4860,12 @@ Dans cette section</value>
     <value>Nombre de mots</value>
     <comment>page title</comment>
   </data>
+  <data name="GeneralSheet_advancedGroup.Text" xml:space="preserve">
+    <value>Options avancées</value>
+    <comment>groupbox</comment>
+  </data>
+  <data name="GeneralSheet_verboseBox.Text" xml:space="preserve">
+    <value>Activer la journalisation détaillée</value>
+    <comment>checkbox</comment>
+  </data>
 </root>

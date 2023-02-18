@@ -51,8 +51,11 @@ namespace River.OneMoreAddIn.Colorizer
 				// ?x ignores pattern whitespace again
 				builder.AppendLine(")(?x)");
 
+				// collect named captures as a list of scopes
 				scopes.AddRange(rule.Captures);
 			}
+
+			Logger.Current.Verbose(builder.ToString());
 
 			var compiled = (Language)language;
 			compiled.Regex = new Regex(builder.ToString());
@@ -67,14 +70,14 @@ namespace River.OneMoreAddIn.Colorizer
 			if (string.IsNullOrWhiteSpace(rule.Pattern))
 			{
 				throw new LanguageException(
-					string.Format("{0} rule {1} has an empty pattern", language.Name, ruleNum),
+					$"{language.Name} rule {ruleNum} has an empty pattern",
 					language.Name, ruleNum);
 			}
 
 			if (rule.Captures == null || rule.Captures.Count == 0)
 			{
 				throw new LanguageException(
-					string.Format("{0} rule {1} does not have defined captures", language.Name, ruleNum),
+					$"{language.Name} rule {ruleNum} does not have defined captures",
 					language.Name, ruleNum);
 			}
 
@@ -82,14 +85,14 @@ namespace River.OneMoreAddIn.Colorizer
 			if (count != rule.Captures.Count)
 			{
 				throw new LanguageException(
-					string.Format("{0} rule {1} has misalignment captures", language.Name, ruleNum),
+					$"{language.Name} rule {ruleNum} has misalignment captures",
 					language.Name, ruleNum);
 			}
 
 			if (namedPattern.Match(rule.Pattern).Success)
 			{
 				throw new LanguageException(
-					string.Format("{0} rule {1} cannot contain a named group", language.Name, ruleNum),
+					$"{language.Name} rule {ruleNum} cannot contain a named group",
 					language.Name, ruleNum);
 			}
 		}

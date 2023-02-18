@@ -4866,4 +4866,12 @@ Nesta secção</value>
     <value>Contagem de palavras</value>
     <comment>page title</comment>
   </data>
+  <data name="GeneralSheet_advancedGroup.Text" xml:space="preserve">
+    <value>Opções avançadas</value>
+    <comment>groupbox</comment>
+  </data>
+  <data name="GeneralSheet_verboseBox.Text" xml:space="preserve">
+    <value>Ativar registro detalhado</value>
+    <comment>checkbox</comment>
+  </data>
 </root>

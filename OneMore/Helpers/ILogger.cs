@@ -97,6 +97,35 @@ namespace River.OneMoreAddIn
 
 
 		/// <summary>
+		/// If verbose logging is enabled, writes a new text message without a newline.
+		/// This can be used to append text to an already-started log entry.
+		/// </summary>
+		/// <param name="message"></param>
+		void WriteVerbose(string message);
+
+
+		/// <summary>
+		/// If verbose logging is enabled, writes a blank line to the log file
+		/// </summary>
+		void Verbose();
+
+
+		/// <summary>
+		/// If verbose logging is enabled, writes a text message along with a newline.
+		/// Could be a new entry or an entry started with a Write
+		/// </summary>
+		/// <param name="message"></param>
+		void Verbose(string message);
+
+
+		/// <summary>
+		/// If verbose logging is enabled, writes the XML of the given XElement
+		/// </summary>
+		/// <param name="element"></param>
+		void Verbose(XElement element);
+
+
+		/// <summary>
 		/// Stops the stopwatch and Writes a message along with the mm.ss timespan
 		/// since the stopwatch was started.
 		/// </summary>

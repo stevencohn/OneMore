@@ -4866,4 +4866,12 @@ ISO-code then comma then language name</comment>
     <value>عدد الكلمات</value>
     <comment>page title</comment>
   </data>
+  <data name="GeneralSheet_advancedGroup.Text" xml:space="preserve">
+    <value>خيارات متقدمة</value>
+    <comment>groupbox</comment>
+  </data>
+  <data name="GeneralSheet_verboseBox.Text" xml:space="preserve">
+    <value>تمكين التسجيل المطول</value>
+    <comment>checkbox</comment>
+  </data>
 </root>

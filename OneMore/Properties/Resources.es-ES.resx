@@ -4866,4 +4866,12 @@ En esta sección</value>
     <value>Conteo de palabras</value>
     <comment>page title</comment>
   </data>
+  <data name="GeneralSheet_advancedGroup.Text" xml:space="preserve">
+    <value>Opciones avanzadas</value>
+    <comment>groupbox</comment>
+  </data>
+  <data name="GeneralSheet_verboseBox.Text" xml:space="preserve">
+    <value>Habilitar registro detallado</value>
+    <comment>checkbox</comment>
+  </data>
 </root>

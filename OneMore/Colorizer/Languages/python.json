@@ -2,44 +2,53 @@
   "name": "Python",
   "rules": [
     {
-      "pattern": "^[\\s]*(\\\"{3}[^\\r\\n]*)$",
+      // [2] (""" comment)
+      // start of a multi-line comment
+      "pattern": "^((?:\\s*)\\u0022{3}[^\\r\\n]*)$",
       "scope": "Comment",
       "captures": [
         "Comment"
       ]
     },
     {
-      "pattern": "^([^\\r\\n]*\\\"{3})[\\s]*$",
+      // [3] (comment """)
+      // end of a multi-line comment
+      "pattern": "([^\\r\\n\\u0022]*\\u0022{3}(?:\\s*))",
       "scope": "",
       "captures": [
         "Comment"
       ]
     },
     {
-      "pattern": "(#.*?)\\r?$",
+      // [4] (# comment)
+      "pattern": "(#[^\\r\\n]*)[]\\r\\n]?$",
       "captures": [
         "Comment"
       ]
     },
     {
-      "pattern": "('[^\\n]*?(?<!\\\\)')",
+      // [5] ('string')
+      "pattern": "('[^\\r\\n\\']*\\')",
       "captures": [
         "String"
       ]
     },
     {
-      "pattern": "([^\"]\"[^\\n]*?(?<!\\\\)\")",
+      // [6] ("string")
+      "pattern": "(\\u0022[^\\r\\n\\u0022]*\\u0022)",
       "captures": [
         "String"
       ]
     },
     {
+      // [7] (keyword)
       "pattern": "\\b(and|as|assert|async|await|break|class|continue|def|del|elif|else|except|exec|False|finally|for|from|global|if|import|in|is|lambda|None|not|or|pass|print|raise|return|True|try|while|yield)\\b",
       "captures": [
         "Keyword"
       ]
     },
     {
+      // [8] (1234)
       "pattern": "\\b([0-9]{1,})\\b",
       "captures": [
         "Number"
