@@ -110,6 +110,7 @@
 			this.tabs.TabIndex = 0;
 			this.tabs.SelectedIndexChanged += new System.EventHandler(this.RefreshHierarchy);
 			this.tabs.Selecting += new System.Windows.Forms.TabControlCancelEventHandler(this.TabGuard);
+			this.tabs.MouseUp += new System.Windows.Forms.MouseEventHandler(this.FocusFind);
 			// 
 			// pageTab
 			// 
@@ -148,7 +149,7 @@
 			this.sectionTab.Margin = new System.Windows.Forms.Padding(2);
 			this.sectionTab.Name = "sectionTab";
 			this.sectionTab.Padding = new System.Windows.Forms.Padding(2, 2, 8, 2);
-			this.sectionTab.Size = new System.Drawing.Size(2432, 685);
+			this.sectionTab.Size = new System.Drawing.Size(2432, 673);
 			this.sectionTab.TabIndex = 2;
 			this.sectionTab.Text = "Section";
 			this.sectionTab.UseVisualStyleBackColor = true;
@@ -162,7 +163,7 @@
 			this.sectionBox.Margin = new System.Windows.Forms.Padding(2);
 			this.sectionBox.Name = "sectionBox";
 			this.sectionBox.ReadOnly = true;
-			this.sectionBox.Size = new System.Drawing.Size(2422, 681);
+			this.sectionBox.Size = new System.Drawing.Size(2422, 669);
 			this.sectionBox.TabIndex = 1;
 			this.sectionBox.Text = "";
 			this.sectionBox.WordWrap = false;
@@ -175,7 +176,7 @@
 			this.notebooksTab.Margin = new System.Windows.Forms.Padding(2);
 			this.notebooksTab.Name = "notebooksTab";
 			this.notebooksTab.Padding = new System.Windows.Forms.Padding(2, 2, 8, 2);
-			this.notebooksTab.Size = new System.Drawing.Size(2432, 685);
+			this.notebooksTab.Size = new System.Drawing.Size(2432, 673);
 			this.notebooksTab.TabIndex = 3;
 			this.notebooksTab.Text = "Notebooks";
 			this.notebooksTab.UseVisualStyleBackColor = true;
@@ -189,7 +190,7 @@
 			this.notebookBox.Margin = new System.Windows.Forms.Padding(2);
 			this.notebookBox.Name = "notebookBox";
 			this.notebookBox.ReadOnly = true;
-			this.notebookBox.Size = new System.Drawing.Size(2422, 681);
+			this.notebookBox.Size = new System.Drawing.Size(2422, 669);
 			this.notebookBox.TabIndex = 1;
 			this.notebookBox.Text = "";
 			this.notebookBox.WordWrap = false;
@@ -202,7 +203,7 @@
 			this.nbSectionsTab.Margin = new System.Windows.Forms.Padding(2);
 			this.nbSectionsTab.Name = "nbSectionsTab";
 			this.nbSectionsTab.Padding = new System.Windows.Forms.Padding(2, 2, 8, 2);
-			this.nbSectionsTab.Size = new System.Drawing.Size(2432, 685);
+			this.nbSectionsTab.Size = new System.Drawing.Size(2432, 673);
 			this.nbSectionsTab.TabIndex = 4;
 			this.nbSectionsTab.Text = "Notebook with Sections";
 			this.nbSectionsTab.UseVisualStyleBackColor = true;
@@ -216,7 +217,7 @@
 			this.nbSectionBox.Margin = new System.Windows.Forms.Padding(2);
 			this.nbSectionBox.Name = "nbSectionBox";
 			this.nbSectionBox.ReadOnly = true;
-			this.nbSectionBox.Size = new System.Drawing.Size(2422, 681);
+			this.nbSectionBox.Size = new System.Drawing.Size(2422, 669);
 			this.nbSectionBox.TabIndex = 1;
 			this.nbSectionBox.Text = "";
 			this.nbSectionBox.WordWrap = false;
@@ -229,7 +230,7 @@
 			this.nbPagesTab.Margin = new System.Windows.Forms.Padding(2);
 			this.nbPagesTab.Name = "nbPagesTab";
 			this.nbPagesTab.Padding = new System.Windows.Forms.Padding(2, 2, 8, 2);
-			this.nbPagesTab.Size = new System.Drawing.Size(2432, 685);
+			this.nbPagesTab.Size = new System.Drawing.Size(2432, 673);
 			this.nbPagesTab.TabIndex = 5;
 			this.nbPagesTab.Text = "Notebook with Pages";
 			this.nbPagesTab.UseVisualStyleBackColor = true;
@@ -243,7 +244,7 @@
 			this.nbPagesBox.Margin = new System.Windows.Forms.Padding(2);
 			this.nbPagesBox.Name = "nbPagesBox";
 			this.nbPagesBox.ReadOnly = true;
-			this.nbPagesBox.Size = new System.Drawing.Size(2422, 681);
+			this.nbPagesBox.Size = new System.Drawing.Size(2422, 669);
 			this.nbPagesBox.TabIndex = 1;
 			this.nbPagesBox.Text = "";
 			this.nbPagesBox.WordWrap = false;
@@ -256,7 +257,7 @@
 			this.manualTab.Margin = new System.Windows.Forms.Padding(2);
 			this.manualTab.Name = "manualTab";
 			this.manualTab.Padding = new System.Windows.Forms.Padding(2);
-			this.manualTab.Size = new System.Drawing.Size(2432, 685);
+			this.manualTab.Size = new System.Drawing.Size(2432, 673);
 			this.manualTab.TabIndex = 1;
 			this.manualTab.Text = "Manual lookup";
 			this.manualTab.UseVisualStyleBackColor = true;
@@ -270,7 +271,7 @@
 			this.manualBox.Margin = new System.Windows.Forms.Padding(2);
 			this.manualBox.Name = "manualBox";
 			this.manualBox.ReadOnly = true;
-			this.manualBox.Size = new System.Drawing.Size(2428, 681);
+			this.manualBox.Size = new System.Drawing.Size(2428, 669);
 			this.manualBox.TabIndex = 0;
 			this.manualBox.Text = "";
 			this.manualBox.WordWrap = false;
@@ -528,6 +529,7 @@
 			this.tooltip.SetToolTip(this.editModeBox, "Enable to edit this page");
 			this.editModeBox.UseVisualStyleBackColor = true;
 			this.editModeBox.CheckedChanged += new System.EventHandler(this.ToggleEditMode);
+			this.editModeBox.MouseUp += new System.Windows.Forms.MouseEventHandler(this.FocusBox);
 			// 
 			// saveWindowBox
 			// 
@@ -539,6 +541,7 @@
 			this.saveWindowBox.Text = "Save window location";
 			this.tooltip.SetToolTip(this.saveWindowBox, "Enable to save window position and size on close");
 			this.saveWindowBox.UseVisualStyleBackColor = true;
+			this.saveWindowBox.MouseUp += new System.Windows.Forms.MouseEventHandler(this.FocusFind);
 			// 
 			// multilineBox
 			// 
@@ -551,6 +554,7 @@
 			this.tooltip.SetToolTip(this.multilineBox, "Enable to show each attribute on its own line");
 			this.multilineBox.UseVisualStyleBackColor = true;
 			this.multilineBox.Click += new System.EventHandler(this.RefreshOnClick);
+			this.multilineBox.MouseUp += new System.Windows.Forms.MouseEventHandler(this.FocusFind);
 			// 
 			// scopeBox
 			// 
@@ -562,6 +566,7 @@
 			this.scopeBox.TabIndex = 4;
 			this.tooltip.SetToolTip(this.scopeBox, "Select the level of detail to display");
 			this.scopeBox.SelectedValueChanged += new System.EventHandler(this.RefreshPage);
+			this.scopeBox.MouseUp += new System.Windows.Forms.MouseEventHandler(this.FocusFind);
 			// 
 			// hideEditedByBox
 			// 
@@ -576,6 +581,7 @@
 			this.tooltip.SetToolTip(this.hideEditedByBox, "Enable to hide ID and timestamp attributes");
 			this.hideEditedByBox.UseVisualStyleBackColor = true;
 			this.hideEditedByBox.Click += new System.EventHandler(this.RefreshOnClick);
+			this.hideEditedByBox.MouseUp += new System.Windows.Forms.MouseEventHandler(this.FocusFind);
 			// 
 			// linefeedBox
 			// 
@@ -590,6 +596,7 @@
 			this.tooltip.SetToolTip(this.linefeedBox, "Enable to remove LF/CR from CDATA <spans>");
 			this.linefeedBox.UseVisualStyleBackColor = true;
 			this.linefeedBox.Click += new System.EventHandler(this.RefreshPage);
+			this.linefeedBox.MouseUp += new System.Windows.Forms.MouseEventHandler(this.FocusFind);
 			// 
 			// pageInfoLabel
 			// 

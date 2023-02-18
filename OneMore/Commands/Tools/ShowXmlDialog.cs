@@ -230,11 +230,38 @@ namespace River.OneMoreAddIn.Commands
 
 		private void FindOnKeyUp(object sender, KeyEventArgs e)
 		{
-			if (e.KeyCode == Keys.Enter)
+			switch (e.KeyCode)
 			{
-				FindOnClick(sender, e);
-				e.Handled = true;
+				case Keys.Enter:
+					FindOnClick(sender, e);
+					e.Handled = true;
+					break;
+
+				case Keys.Home:
+					KeyBox(findBox, "^({HOME})");
+					break;
+
+				case Keys.End:
+					KeyBox(findBox, "^({END})");
+					break;
+
+				case Keys.PageDown:
+					KeyBox(findBox, "{PGDN}");
+					break;
+
+				case Keys.PageUp:
+					KeyBox(findBox, "{PGUP}");
+					break;
 			}
+		}
+
+
+		private void KeyBox(Control sender, string keys)
+		{
+			var box = tabs.TabPages[tabs.SelectedIndex].Controls[0] as RichTextBox;
+			box.Focus();
+			SendKeys.SendWait(keys);
+			sender.Focus();
 		}
 
 
@@ -508,6 +535,33 @@ namespace River.OneMoreAddIn.Commands
 				linefeedBox.Enabled = true;
 				scopeBox.Enabled = true;
 				wrapBox.Enabled = true;
+			}
+		}
+
+
+		private void FocusFind(object sender, MouseEventArgs e)
+		{
+			if (tabs.SelectedTab.Controls[0] == pageBox && editModeBox.Checked)
+			{
+				pageBox.Focus();
+			}
+			else
+			{
+				findBox.Focus();
+			}
+		}
+
+
+		private void FocusBox(object sender, MouseEventArgs e)
+		{
+			if (editModeBox.Checked)
+			{
+				pageBox.Select(0, 0);
+				pageBox.Focus();
+			}
+			else
+			{
+				findBox.Focus();
 			}
 		}
 
