@@ -20,9 +20,6 @@ namespace River.OneMoreAddIn.Colorizer
 
 		public static ICompiledLanguage Compile(ILanguage language)
 		{
-
-			System.Diagnostics.Debugger.Launch();
-
 			var builder = new StringBuilder();
 
 			// ignore pattern whitespace (?x)

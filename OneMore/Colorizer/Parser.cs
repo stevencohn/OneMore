@@ -144,22 +144,29 @@ namespace River.OneMoreAddIn.Colorizer
 
 				// check scope override...
 
-				// skip compiler-added scopes (0=*=entire string, 1=$=end of line)
-				var over = 2;
-				var r = 0;
-				while ((r < language.Rules.Count) && (over < capture.Scope))
+				if (capture.Scope < 2)
 				{
-					over += language.Rules[r].Captures.Count;
-					r++;
+					// linebreak
+					continue;
 				}
 
-				if (r < language.Rules.Count)
+				// capture.Scope will index the collated capture across all rules.
+				// skip compiler-added scopes (0=*=entire string, 1=$=end of line)
+				var over = 2;
+				var ri = 0;
+				while ((ri < language.Rules.Count) && (over < capture.Scope))
 				{
-					var rule = language.Rules[r];
+					over += language.Rules[ri].Captures.Count;
+					ri++;
+				}
+
+				if (ri < language.Rules.Count)
+				{
+					var rule = language.Rules[ri];
 					var newOverride = rule.Scope;
 
 					logger.Verbose(
-						$".. newOverride ({newOverride ?? "null"}) from rule {r} /{rule.Pattern}/");
+						$".. newOverride ({newOverride ?? "null"}) from rule {ri} /{rule.Pattern}/");
 
 					// special case of multi-line comments, started by a rule with
 					// the "comment" scope and ended by a rule with the "" scope
