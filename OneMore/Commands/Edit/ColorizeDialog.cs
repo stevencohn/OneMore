@@ -50,7 +50,7 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		public string LanguageKey => view.SelectedItems.Count == 0 
+		public string LanguageKey => view.SelectedItems.Count == 0
 			? null
 			: view.SelectedItems[0].Tag as string;
 
@@ -85,6 +85,17 @@ namespace River.OneMoreAddIn.Commands
 		{
 			view.Focus();
 		}
+
+
+		private void SelectOnDoubleClick(object sender, EventArgs e)
+		{
+			if (view.SelectedItems.Count > 0)
+			{
+				DialogResult = DialogResult.OK;
+				Close();
+			}
+		}
+
 
 
 		private void CancelOnKeyUp(object sender, KeyEventArgs e)

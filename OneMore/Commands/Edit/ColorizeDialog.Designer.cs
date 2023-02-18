@@ -83,6 +83,7 @@
 			this.view.TabIndex = 0;
 			this.view.UseCompatibleStateImageBehavior = false;
 			this.view.View = System.Windows.Forms.View.Details;
+			this.view.DoubleClick += new System.EventHandler(this.SelectOnDoubleClick);
 			this.view.KeyUp += new System.Windows.Forms.KeyEventHandler(this.CancelOnKeyUp);
 			// 
 			// nameColumn
