@@ -50,13 +50,20 @@ namespace River.OneMoreAddIn.Colorizer
 
 			var names = new SortedDictionary<string, string>();
 
-			foreach (var file in Directory.GetFiles(dirPath, "*.json"))
+			try
 			{
-				var language = LoadLanguage(file);
-				if (language != null)
+				foreach (var file in Directory.GetFiles(dirPath, "*.json"))
 				{
-					names.Add(language.Name, Path.GetFileNameWithoutExtension(file));
+					var language = LoadLanguage(file);
+					if (language != null)
+					{
+						names.Add(language.Name, Path.GetFileNameWithoutExtension(file));
+					}
 				}
+			}
+			catch (Exception exc)
+			{
+				Logger.Current.WriteLine($"error listing language {dirPath}", exc);
 			}
 
 			return names;

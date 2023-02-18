@@ -137,6 +137,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AddInCommands.cs" />
+    <Compile Include="Commands\Edit\ChooseColorerCommand.cs" />
+    <Compile Include="Commands\Edit\ColorizeDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Commands\Edit\ColorizeDialog.Designer.cs">
+      <DependentUpon>ColorizeDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="Commands\Edit\DuplicateLineCommand.cs" />
     <Compile Include="Commands\File\FileQuickNotesCommand.cs" />
     <Compile Include="Commands\File\Markdown\MarkdownConverter.cs" />
@@ -1156,6 +1163,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Commands\Clean\RemoveDuplicatesNavigator.resx">
       <DependentUpon>RemoveDuplicatesNavigator.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Commands\Edit\ColorizeDialog.resx">
+      <DependentUpon>ColorizeDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Commands\Edit\SortListDialog.resx">
       <DependentUpon>SortListDialog.cs</DependentUpon>

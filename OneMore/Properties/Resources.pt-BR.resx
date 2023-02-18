@@ -4874,4 +4874,12 @@ Nesta secção</value>
     <value>Ativar registro detalhado</value>
     <comment>checkbox</comment>
   </data>
+  <data name="ColorizeDialog_Title" xml:space="preserve">
+    <value>Selecione o idioma</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="ribChooseColorizerButton_Label" xml:space="preserve">
+    <value>colorir</value>
+    <comment>ribbon edit</comment>
+  </data>
 </root>

@@ -4874,4 +4874,12 @@ In deze sectie</value>
     <value>Schakel uitgebreide logboekregistratie in</value>
     <comment>checkbox</comment>
   </data>
+  <data name="ColorizeDialog_Title" xml:space="preserve">
+    <value>Selecteer Taal</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="ribChooseColorizerButton_Label" xml:space="preserve">
+    <value>Inkleuren</value>
+    <comment>ribbon edit</comment>
+  </data>
 </root>

@@ -826,6 +826,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Select Language.
+        /// </summary>
+        internal static string ColorizeDialog_Title {
+            get {
+                return ResourceManager.GetString("ColorizeDialog_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Error running command {0}.
         /// </summary>
         internal static string Command_Error {
@@ -6153,6 +6162,15 @@ namespace River.OneMoreAddIn.Properties {
         internal static string ribCheckForUpdatesButton_Label {
             get {
                 return ResourceManager.GetString("ribCheckForUpdatesButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Colorize.
+        /// </summary>
+        internal static string ribChooseColorizerButton_Label {
+            get {
+                return ResourceManager.GetString("ribChooseColorizerButton_Label", resourceCulture);
             }
         }
         
