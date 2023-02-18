@@ -118,25 +118,28 @@ namespace River.OneMoreAddIn.Colorizer
 			{
 				var capture = captures[captureIndex];
 
+				// report text prior to capture or in between captures...
+
 				if (index < capture.Index)
 				{
 					logger.Verbose(
 						$"report(\"{source.Substring(index, capture.Index - index)}\", " +
 						$"{scopeOverride ?? "null"}); // space");
 
-					// default text prior to match or in between matches
 					report(source.Substring(index, capture.Index - index), scopeOverride ?? null);
 				}
 
-				var sc = string.IsNullOrEmpty(scopeOverride)
+				// report capture...
+
+				var scope = string.IsNullOrEmpty(scopeOverride)
 					? language.Scopes[capture.Scope]
 					: scopeOverride;
 
 				logger.Verbose(
-					$"report(\"{capture.Value}\", {sc}); " +
+					$"report(\"{capture.Value}\", {scope}); " +
 					$"// scopeOverride:{scopeOverride ?? "null"}, colorized");
 
-				report(capture.Value, sc);
+				report(capture.Value, scope);
 				index = capture.Index + capture.Length;
 
 				// check scope override...

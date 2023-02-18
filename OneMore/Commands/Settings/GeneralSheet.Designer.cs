@@ -31,12 +31,12 @@ namespace River.OneMoreAddIn.Settings
 		{
 			this.introBox = new System.Windows.Forms.TextBox();
 			this.layoutPanel = new System.Windows.Forms.Panel();
+			this.advancedGroup = new System.Windows.Forms.GroupBox();
+			this.verboseBox = new System.Windows.Forms.CheckBox();
 			this.langBox = new System.Windows.Forms.ComboBox();
 			this.langLabel = new System.Windows.Forms.Label();
 			this.checkUpdatesBox = new System.Windows.Forms.CheckBox();
 			this.enablersBox = new System.Windows.Forms.CheckBox();
-			this.advancedGroup = new System.Windows.Forms.GroupBox();
-			this.verboseBox = new System.Windows.Forms.CheckBox();
 			this.layoutPanel.SuspendLayout();
 			this.advancedGroup.SuspendLayout();
 			this.SuspendLayout();
@@ -67,6 +67,29 @@ namespace River.OneMoreAddIn.Settings
 			this.layoutPanel.Name = "layoutPanel";
 			this.layoutPanel.Size = new System.Drawing.Size(772, 416);
 			this.layoutPanel.TabIndex = 4;
+			// 
+			// advancedGroup
+			// 
+			this.advancedGroup.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.advancedGroup.Controls.Add(this.verboseBox);
+			this.advancedGroup.Location = new System.Drawing.Point(7, 294);
+			this.advancedGroup.Name = "advancedGroup";
+			this.advancedGroup.Padding = new System.Windows.Forms.Padding(15, 10, 10, 10);
+			this.advancedGroup.Size = new System.Drawing.Size(762, 119);
+			this.advancedGroup.TabIndex = 4;
+			this.advancedGroup.TabStop = false;
+			this.advancedGroup.Text = "Advanced Options";
+			// 
+			// verboseBox
+			// 
+			this.verboseBox.AutoSize = true;
+			this.verboseBox.Location = new System.Drawing.Point(18, 32);
+			this.verboseBox.Name = "verboseBox";
+			this.verboseBox.Size = new System.Drawing.Size(200, 24);
+			this.verboseBox.TabIndex = 0;
+			this.verboseBox.Text = "Enable verbose logging";
+			this.verboseBox.UseVisualStyleBackColor = true;
 			// 
 			// langBox
 			// 
@@ -110,27 +133,6 @@ namespace River.OneMoreAddIn.Settings
 			this.enablersBox.Text = "Enable dynamic menu context settings. Disable if you\'ve added OneMore commands to" +
     " the Quick Access toolbar";
 			this.enablersBox.UseVisualStyleBackColor = true;
-			// 
-			// advancedGroup
-			// 
-			this.advancedGroup.Controls.Add(this.verboseBox);
-			this.advancedGroup.Location = new System.Drawing.Point(7, 294);
-			this.advancedGroup.Name = "advancedGroup";
-			this.advancedGroup.Padding = new System.Windows.Forms.Padding(15, 10, 10, 10);
-			this.advancedGroup.Size = new System.Drawing.Size(762, 119);
-			this.advancedGroup.TabIndex = 4;
-			this.advancedGroup.TabStop = false;
-			this.advancedGroup.Text = "Advanced Options";
-			// 
-			// verboseBox
-			// 
-			this.verboseBox.AutoSize = true;
-			this.verboseBox.Location = new System.Drawing.Point(18, 32);
-			this.verboseBox.Name = "verboseBox";
-			this.verboseBox.Size = new System.Drawing.Size(200, 24);
-			this.verboseBox.TabIndex = 0;
-			this.verboseBox.Text = "Enable verbose logging";
-			this.verboseBox.UseVisualStyleBackColor = true;
 			// 
 			// GeneralSheet
 			// 
