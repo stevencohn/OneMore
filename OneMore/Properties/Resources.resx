@@ -441,6 +441,10 @@ OneNote will close automatically</value>
   <data name="Cloud" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>emoji\cloud.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="ColorizeDialog_Title" xml:space="preserve">
+    <value>Select Language</value>
+    <comment>dialog title</comment>
+  </data>
   <data name="Command_Error" xml:space="preserve">
     <value>Error running command {0}</value>
     <comment>logged and displayed in messagebox</comment>
@@ -2754,6 +2758,10 @@ Polaroid</value>
   <data name="ribCheckForUpdatesButton_Label" xml:space="preserve">
     <value>Check for Updates</value>
     <comment>command</comment>
+  </data>
+  <data name="ribChooseColorizerButton_Label" xml:space="preserve">
+    <value>Colorize</value>
+    <comment>ribbon edit</comment>
   </data>
   <data name="ribChooseFavoriteButton_Label" xml:space="preserve">
     <value>Choose Favorite</value>

@@ -4969,4 +4969,12 @@ ISO-code then comma then language name</comment>
     <value>אפשר רישום מילולי</value>
     <comment>checkbox</comment>
   </data>
+  <data name="ColorizeDialog_Title" xml:space="preserve">
+    <value>בחר שפה</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="ribChooseColorizerButton_Label" xml:space="preserve">
+    <value>צבע</value>
+    <comment>ribbon edit</comment>
+  </data>
 </root>
