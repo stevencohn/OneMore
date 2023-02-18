@@ -2913,6 +2913,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Advanced Options.
+        /// </summary>
+        internal static string GeneralSheet_advancedGroup_Text {
+            get {
+                return ResourceManager.GetString("GeneralSheet_advancedGroup.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Check for new versions of OneMore when OneNote starts.
         /// </summary>
         internal static string GeneralSheet_checkUpdatesBox_Text {
@@ -2954,6 +2963,15 @@ namespace River.OneMoreAddIn.Properties {
         internal static string GeneralSheet_Title {
             get {
                 return ResourceManager.GetString("GeneralSheet_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enable verbose logging.
+        /// </summary>
+        internal static string GeneralSheet_verboseBox_Text {
+            get {
+                return ResourceManager.GetString("GeneralSheet_verboseBox.Text", resourceCulture);
             }
         }
         
@@ -9908,7 +9926,7 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to $guid = &apos;~guid~&apos;;
+        ///   Looks up a localized string similar to $guid = &apos;{~guid~}&apos;;
         ///$processId = gcim Win32_Process | select ProcessId, CommandLine | where { $_.CommandLine -and $_.CommandLine.Contains($guid) } | foreach { $_.ProcessId }
         ///if ($processId) { taskkill /pid $processId /f }
         ///$processId = gcim Win32_Process | select ProcessId, Name | where { $_.Name -eq &apos;ONENOTE.EXE&apos; } | foreach { $_.ProcessId }

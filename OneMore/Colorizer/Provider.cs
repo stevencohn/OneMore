@@ -7,7 +7,7 @@ namespace River.OneMoreAddIn.Colorizer
 	using System;
 	using System.Collections.Generic;
 	using System.IO;
-	using System.Web.Script.Serialization;
+	using Newtonsoft.Json;
 
 
 	internal static class Provider
@@ -19,14 +19,13 @@ namespace River.OneMoreAddIn.Colorizer
 		/// <param name="path">The path to the language json definition file</param>
 		/// <returns>An ILanguage describing the langauge</returns>
 		public static ILanguage LoadLanguage(string path)
-		{
-			var json = File.ReadAllText(path);
-			var serializer = new JavaScriptSerializer();
+		{			
 			Language language = null;
 
 			try
 			{
-				language = serializer.Deserialize<Language>(json);
+				var json = File.ReadAllText(path);
+				language = JsonConvert.DeserializeObject<Language>(json);
 			}
 			catch (Exception exc)
 			{
@@ -72,13 +71,12 @@ namespace River.OneMoreAddIn.Colorizer
 		/// <returns></returns>
 		public static ITheme LoadTheme(string path, bool autoOverride)
 		{
-			var json = File.ReadAllText(path);
-			var serializer = new JavaScriptSerializer();
 			Theme theme = null;
 
 			try
 			{
-				theme = serializer.Deserialize<Theme>(json);
+				var json = File.ReadAllText(path);
+				theme = JsonConvert.DeserializeObject<Theme>(json);
 				theme.TranslateColorNames(autoOverride);
 			}
 			catch (Exception exc)

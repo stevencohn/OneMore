@@ -20,6 +20,9 @@ namespace River.OneMoreAddIn.Colorizer
 
 		public static ICompiledLanguage Compile(ILanguage language)
 		{
+
+			System.Diagnostics.Debugger.Launch();
+
 			var builder = new StringBuilder();
 
 			// ignore pattern whitespace (?x)
@@ -53,6 +56,8 @@ namespace River.OneMoreAddIn.Colorizer
 
 				scopes.AddRange(rule.Captures);
 			}
+
+			Logger.Current.Verbose(builder.ToString());
 
 			var compiled = (Language)language;
 			compiled.Regex = new Regex(builder.ToString());

@@ -4919,4 +4919,12 @@ W tej sekcji</value>
     <value>Liczy się słowo</value>
     <comment>page title</comment>
   </data>
+  <data name="GeneralSheet_advancedGroup.Text" xml:space="preserve">
+    <value>Zaawansowane opcje</value>
+    <comment>groupbox</comment>
+  </data>
+  <data name="GeneralSheet_verboseBox.Text" xml:space="preserve">
+    <value>Włącz pełne rejestrowanie</value>
+    <comment>checkbox</comment>
+  </data>
 </root>

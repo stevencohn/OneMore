@@ -31,7 +31,9 @@ namespace River.OneMoreAddIn.Settings
 					"introBox",
 					"enablersBox",
 					"checkUpdatesBox",
-					"langLabel"
+					"langLabel",
+					"advancedGroup",
+					"verboseBox"
 				});
 			}
 
@@ -39,6 +41,7 @@ namespace River.OneMoreAddIn.Settings
 
 			enablersBox.Checked = settings.Get("enablers", true);
 			checkUpdatesBox.Checked = settings.Get("checkUpdates", false);
+			verboseBox.Checked = settings.Get("verbose", false);
 
 			var lang = settings.Get("language", "en-US");
 			foreach (CultureInfo info in langBox.Items)
@@ -98,18 +101,26 @@ namespace River.OneMoreAddIn.Settings
 
 		public override bool CollectSettings()
 		{
-			// set to true to recommend OneNote restart
-			var updated = false;
-
 			// general...
 
 			var settings = provider.GetCollection(Name);
 
-			updated = settings.Add("enablers", enablersBox.Checked) || updated;
-			updated = settings.Add("checkUpdates", checkUpdatesBox.Checked) || updated;
+			var updated = enablersBox.Checked
+				? settings.Add("enablers", true)
+				: settings.Remove("enablers");
+
+			// does not require a restart
+			if (checkUpdatesBox.Checked)
+				settings.Add("checkUpdates", true);
+			else
+				settings.Remove("checkUpdates");
 
 			var lang = ((CultureInfo)(langBox.SelectedItem)).Name;
 			updated = settings.Add("language", lang) || updated;
+
+			updated = verboseBox.Checked
+				? settings.Add("verbose", true) || updated
+				: settings.Remove("verbose") || updated;
 
 			// deprecated
 			updated = settings.Remove("imageViewer") || updated;

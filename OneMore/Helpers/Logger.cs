@@ -7,6 +7,7 @@ namespace River.OneMoreAddIn
 	using System;
 	using System.Diagnostics;
 	using System.IO;
+	using System.Linq;
 	using System.Text;
 	using System.Threading;
 	using System.Xml.Linq;
@@ -23,6 +24,8 @@ namespace River.OneMoreAddIn
 		private static string appname = "OneMore";
 
 		private readonly bool stdio;
+		private readonly bool longHeader;
+		private readonly bool verbose;
 		private readonly int processId;
 		private string preamble;
 		private bool isNewline;
@@ -47,6 +50,32 @@ namespace River.OneMoreAddIn
 			isNewline = true;
 			isDisposed = false;
 			writeHeader = true;
+
+			// read settings, without dependency on SettingsProvider...
+
+			var path = Path.Combine(
+				PathHelper.GetAppDataPath(), Properties.Resources.SettingsFilename);
+
+			if (File.Exists(path))
+			{
+				try
+				{
+					var root = XElement.Load(path);
+					var settings = root
+						.Elements(nameof(Settings.GeneralSheet))
+						.FirstOrDefault();
+
+					if (settings != null)
+					{
+						longHeader = "true".EqualsICIC(settings.Element("longHeader")?.Value);
+						verbose = "true".EqualsICIC(settings.Element("verbose")?.Value);
+					}
+				}
+				catch (Exception exc)
+				{
+					WriteLine("error reading settings for Logger", exc);
+				}
+			}
 		}
 
 
@@ -297,6 +326,43 @@ namespace River.OneMoreAddIn
 		}
 
 
+		public void WriteVerbose(string message)
+		{
+			if (verbose)
+			{
+				Write(message);
+			}
+		}
+
+
+		public void Verbose()
+		{
+			if (verbose)
+			{
+				WriteLine();
+			}
+		}
+
+
+		public void Verbose(string message)
+		{
+			if (verbose)
+			{
+				WriteLine(message);
+			}
+		}
+
+
+		public void Verbose(XElement element)
+		{
+			if (verbose)
+			{
+				WriteLine(element);
+			}
+		}
+
+
+
 		public void WriteTime(string message, bool keepRunning = false)
 		{
 			if (clock == null)
@@ -316,11 +382,15 @@ namespace River.OneMoreAddIn
 
 		private string MakeHeader()
 		{
-			//$"{DateTime.Now.ToString("hh:mm:ss.fff")} [{Thread.CurrentThread.ManagedThreadId}] ";
-			//$"{processId}:{Thread.CurrentThread.ManagedThreadId}] {preamble}";
-
 			if (!stdio)
 			{
+				if (longHeader)
+				{
+					return
+						$"{DateTime.Now:hh:mm:ss.fff} " +
+						$"[{processId}:{Thread.CurrentThread.ManagedThreadId:00}] {preamble}";
+				}
+
 				return $"{Thread.CurrentThread.ManagedThreadId:00}| {preamble}";
 			}
 

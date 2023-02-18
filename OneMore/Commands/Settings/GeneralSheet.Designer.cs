@@ -35,7 +35,10 @@ namespace River.OneMoreAddIn.Settings
 			this.langLabel = new System.Windows.Forms.Label();
 			this.checkUpdatesBox = new System.Windows.Forms.CheckBox();
 			this.enablersBox = new System.Windows.Forms.CheckBox();
+			this.advancedGroup = new System.Windows.Forms.GroupBox();
+			this.verboseBox = new System.Windows.Forms.CheckBox();
 			this.layoutPanel.SuspendLayout();
+			this.advancedGroup.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// introBox
@@ -53,6 +56,7 @@ namespace River.OneMoreAddIn.Settings
 			// 
 			// layoutPanel
 			// 
+			this.layoutPanel.Controls.Add(this.advancedGroup);
 			this.layoutPanel.Controls.Add(this.langBox);
 			this.layoutPanel.Controls.Add(this.langLabel);
 			this.layoutPanel.Controls.Add(this.checkUpdatesBox);
@@ -86,10 +90,10 @@ namespace River.OneMoreAddIn.Settings
 			// 
 			this.checkUpdatesBox.Checked = true;
 			this.checkUpdatesBox.CheckState = System.Windows.Forms.CheckState.Checked;
-			this.checkUpdatesBox.Location = new System.Drawing.Point(0, 65);
+			this.checkUpdatesBox.Location = new System.Drawing.Point(7, 65);
 			this.checkUpdatesBox.Margin = new System.Windows.Forms.Padding(0, 10, 0, 0);
 			this.checkUpdatesBox.Name = "checkUpdatesBox";
-			this.checkUpdatesBox.Size = new System.Drawing.Size(772, 52);
+			this.checkUpdatesBox.Size = new System.Drawing.Size(762, 52);
 			this.checkUpdatesBox.TabIndex = 1;
 			this.checkUpdatesBox.Text = "Check for new versions of OneMore when OneNote starts";
 			this.checkUpdatesBox.UseVisualStyleBackColor = true;
@@ -98,14 +102,35 @@ namespace River.OneMoreAddIn.Settings
 			// 
 			this.enablersBox.Checked = true;
 			this.enablersBox.CheckState = System.Windows.Forms.CheckState.Checked;
-			this.enablersBox.Location = new System.Drawing.Point(0, 3);
+			this.enablersBox.Location = new System.Drawing.Point(7, 3);
 			this.enablersBox.Margin = new System.Windows.Forms.Padding(0);
 			this.enablersBox.Name = "enablersBox";
-			this.enablersBox.Size = new System.Drawing.Size(772, 52);
+			this.enablersBox.Size = new System.Drawing.Size(762, 52);
 			this.enablersBox.TabIndex = 0;
 			this.enablersBox.Text = "Enable dynamic menu context settings. Disable if you\'ve added OneMore commands to" +
     " the Quick Access toolbar";
 			this.enablersBox.UseVisualStyleBackColor = true;
+			// 
+			// advancedGroup
+			// 
+			this.advancedGroup.Controls.Add(this.verboseBox);
+			this.advancedGroup.Location = new System.Drawing.Point(7, 294);
+			this.advancedGroup.Name = "advancedGroup";
+			this.advancedGroup.Padding = new System.Windows.Forms.Padding(15, 10, 10, 10);
+			this.advancedGroup.Size = new System.Drawing.Size(762, 119);
+			this.advancedGroup.TabIndex = 4;
+			this.advancedGroup.TabStop = false;
+			this.advancedGroup.Text = "Advanced Options";
+			// 
+			// verboseBox
+			// 
+			this.verboseBox.AutoSize = true;
+			this.verboseBox.Location = new System.Drawing.Point(18, 32);
+			this.verboseBox.Name = "verboseBox";
+			this.verboseBox.Size = new System.Drawing.Size(200, 24);
+			this.verboseBox.TabIndex = 0;
+			this.verboseBox.Text = "Enable verbose logging";
+			this.verboseBox.UseVisualStyleBackColor = true;
 			// 
 			// GeneralSheet
 			// 
@@ -119,6 +144,8 @@ namespace River.OneMoreAddIn.Settings
 			this.Size = new System.Drawing.Size(800, 500);
 			this.layoutPanel.ResumeLayout(false);
 			this.layoutPanel.PerformLayout();
+			this.advancedGroup.ResumeLayout(false);
+			this.advancedGroup.PerformLayout();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -132,5 +159,7 @@ namespace River.OneMoreAddIn.Settings
 		private System.Windows.Forms.CheckBox checkUpdatesBox;
 		private System.Windows.Forms.ComboBox langBox;
 		private System.Windows.Forms.Label langLabel;
+		private System.Windows.Forms.GroupBox advancedGroup;
+		private System.Windows.Forms.CheckBox verboseBox;
 	}
 }
