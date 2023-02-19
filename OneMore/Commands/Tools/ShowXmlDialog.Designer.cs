@@ -139,6 +139,7 @@
 			this.pageBox.TabIndex = 7;
 			this.pageBox.Text = "";
 			this.pageBox.WordWrap = false;
+			this.pageBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.XmlBoxKeyHandlerOnKeyDown);
 			this.pageBox.KeyUp += new System.Windows.Forms.KeyEventHandler(this.XmlBoxKeyHandlerOnKeyUp);
 			// 
 			// sectionTab
