@@ -53,7 +53,7 @@ namespace River.OneMoreAddIn.Commands
 			this.okButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.okButton.Name = "okButton";
 			this.okButton.Size = new System.Drawing.Size(112, 35);
-			this.okButton.TabIndex = 0;
+			this.okButton.TabIndex = 6;
 			this.okButton.Text = "OK";
 			this.okButton.UseVisualStyleBackColor = true;
 			this.okButton.Click += new System.EventHandler(this.SaveSettingsOnClick);
@@ -66,7 +66,7 @@ namespace River.OneMoreAddIn.Commands
 			this.cancelButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.cancelButton.Name = "cancelButton";
 			this.cancelButton.Size = new System.Drawing.Size(112, 35);
-			this.cancelButton.TabIndex = 1;
+			this.cancelButton.TabIndex = 7;
 			this.cancelButton.Text = "Cancel";
 			this.cancelButton.UseVisualStyleBackColor = true;
 			// 
@@ -78,7 +78,7 @@ namespace River.OneMoreAddIn.Commands
 			this.verticalButton.Margin = new System.Windows.Forms.Padding(3, 3, 3, 10);
 			this.verticalButton.Name = "verticalButton";
 			this.verticalButton.Size = new System.Drawing.Size(354, 24);
-			this.verticalButton.TabIndex = 5;
+			this.verticalButton.TabIndex = 0;
 			this.verticalButton.TabStop = true;
 			this.verticalButton.Text = "Arrange all containers vertically, top to bottom";
 			this.verticalButton.UseVisualStyleBackColor = true;
@@ -91,7 +91,7 @@ namespace River.OneMoreAddIn.Commands
 			this.flowButton.Margin = new System.Windows.Forms.Padding(3, 3, 3, 8);
 			this.flowButton.Name = "flowButton";
 			this.flowButton.Size = new System.Drawing.Size(394, 24);
-			this.flowButton.TabIndex = 6;
+			this.flowButton.TabIndex = 3;
 			this.flowButton.Text = "Arrange in columns and then rows, fit to page width";
 			this.flowButton.UseVisualStyleBackColor = true;
 			this.flowButton.CheckedChanged += new System.EventHandler(this.ChangeSelection);
@@ -121,7 +121,7 @@ namespace River.OneMoreAddIn.Commands
             0});
 			this.columnsBox.Name = "columnsBox";
 			this.columnsBox.Size = new System.Drawing.Size(131, 26);
-			this.columnsBox.TabIndex = 2;
+			this.columnsBox.TabIndex = 4;
 			this.columnsBox.Value = new decimal(new int[] {
             2,
             0,
@@ -144,7 +144,7 @@ namespace River.OneMoreAddIn.Commands
             0});
 			this.widthBox.Name = "widthBox";
 			this.widthBox.Size = new System.Drawing.Size(131, 26);
-			this.widthBox.TabIndex = 3;
+			this.widthBox.TabIndex = 5;
 			this.widthBox.Value = new decimal(new int[] {
             500,
             0,
@@ -166,7 +166,7 @@ namespace River.OneMoreAddIn.Commands
 			this.setWidthCheckBox.Location = new System.Drawing.Point(72, 60);
 			this.setWidthCheckBox.Name = "setWidthCheckBox";
 			this.setWidthCheckBox.Size = new System.Drawing.Size(76, 24);
-			this.setWidthCheckBox.TabIndex = 11;
+			this.setWidthCheckBox.TabIndex = 1;
 			this.setWidthCheckBox.Text = "Width";
 			this.setWidthCheckBox.UseVisualStyleBackColor = true;
 			// 
@@ -185,7 +185,7 @@ namespace River.OneMoreAddIn.Commands
             0});
 			this.setWidthBox.Name = "setWidthBox";
 			this.setWidthBox.Size = new System.Drawing.Size(131, 26);
-			this.setWidthBox.TabIndex = 12;
+			this.setWidthBox.TabIndex = 2;
 			this.setWidthBox.Value = new decimal(new int[] {
             500,
             0,
