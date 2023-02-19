@@ -137,7 +137,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AddInCommands.cs" />
-    <Compile Include="Commands\Edit\ChooseColorerCommand.cs" />
+    <Compile Include="Commands\Edit\ChooseColorizerCommand.cs" />
     <Compile Include="Commands\Edit\ColorizeDialog.cs">
       <SubType>Form</SubType>
     </Compile>
