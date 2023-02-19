@@ -265,9 +265,28 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
+		private void XmlBoxKeyHandlerOnKeyDown(object sender, KeyEventArgs e)
+		{
+			if (e.Control && e.KeyCode == Keys.Enter)
+			{
+				if (editModeBox.Checked)
+				{
+					// OK
+					UpdatePage(sender, e);
+				}
+				else
+				{
+					findBox.Focus();
+				}
+
+				e.Handled = true;
+			}
+		}
+
+
 		private void XmlBoxKeyHandlerOnKeyUp(object sender, KeyEventArgs e)
 		{
-			if (e.Control && (e.KeyCode == Keys.F))
+			if (e.Control && e.KeyCode == Keys.F)
 			{
 				findBox.Focus();
 			}
