@@ -678,6 +678,7 @@ namespace River.OneMoreAddIn.Models
 
 			if (!runs.Any())
 			{
+				// not "text" so look for selected image(s)...
 				runs = Root.Elements(Namespace + "Outline")
 					.Descendants(Namespace + "Image")
 					.Where(e => e.Attributes().Any(a => a.Name == "selected" && a.Value == "all"))
@@ -707,6 +708,13 @@ namespace River.OneMoreAddIn.Models
 				{
 					// new OE for run
 					var oe = new XElement(Namespace + "OE", run.Parent.Attributes());
+
+					// if run is part of a bullet or number list then include the one:List
+					if (run.PreviousNode is XElement list && list.Name.LocalName == "List")
+					{
+						list.Remove();
+						oe.Add(list);
+					}
 
 					// remove run from current parent
 					run.Remove();
