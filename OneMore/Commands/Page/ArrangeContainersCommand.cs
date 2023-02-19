@@ -47,7 +47,7 @@ namespace River.OneMoreAddIn.Commands
 
 			if (dialog.Vertical)
 			{
-				ArrangeVertical();
+				ArrangeVertical(dialog.PageWidth);
 			}
 			else
 			{
@@ -79,15 +79,14 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private void ArrangeVertical()
+		private void ArrangeVertical(int pageWidth)
 		{
 			var containers = CollectContainers(page, ns);
 
 			// find the topmost container position
 			var yoffset = Math.Min(
 				topMargin,
-				containers.Select(e => double.Parse(e.Element(ns + "Position")
-					.Attribute("y").Value, CultureInfo.InvariantCulture)).Min()
+				containers.Select(e => e.Element(ns + "Position").GetAttributeDouble("y")).Min()
 				);
 
 			foreach (var container in containers)
@@ -96,9 +95,15 @@ namespace River.OneMoreAddIn.Commands
 				position.SetAttributeValue("x", LeftMargin.ToString(CultureInfo.InvariantCulture));
 				position.SetAttributeValue("y", yoffset.ToString(CultureInfo.InvariantCulture));
 
-				var height = double.Parse(container.Element(ns + "Size")
-					.Attribute("height").Value, CultureInfo.InvariantCulture);
+				var size = container.Element(ns + "Size");
 
+				if (pageWidth > 0)
+				{
+					size.SetAttributeValue("isSetByUser", "true");
+					size.SetAttributeValue("width", pageWidth.ToString());
+				}
+
+				var height = size.GetAttributeDouble("height");
 				yoffset += height + BottomMargin;
 			}
 		}
@@ -113,8 +118,7 @@ namespace River.OneMoreAddIn.Commands
 			// find the topmost container position
 			var yoffset = Math.Min(
 				topMargin,
-				containers.Select(e => double.Parse(e.Element(ns + "Position")
-					.Attribute("y").Value, CultureInfo.InvariantCulture)).Min()
+				containers.Select(e => e.Element(ns + "Position").GetAttributeDouble("y")).Min()
 				);
 
 			int col = 1;
@@ -125,8 +129,8 @@ namespace River.OneMoreAddIn.Commands
 			foreach (var container in containers)
 			{
 				var size = container.Element(ns + "Size");
-				var width = double.Parse(size.Attribute("width").Value, CultureInfo.InvariantCulture);
-				var height = double.Parse(size.Attribute("height").Value, CultureInfo.InvariantCulture);
+				var width = size.GetAttributeDouble("width");
+				var height = size.GetAttributeDouble("height");
 
 				if (height > maxHeight)
 				{

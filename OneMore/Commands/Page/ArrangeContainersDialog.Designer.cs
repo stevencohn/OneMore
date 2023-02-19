@@ -38,27 +38,31 @@ namespace River.OneMoreAddIn.Commands
 			this.columnsBox = new System.Windows.Forms.NumericUpDown();
 			this.widthBox = new System.Windows.Forms.NumericUpDown();
 			this.widthLabel = new System.Windows.Forms.Label();
+			this.setWidthCheckBox = new System.Windows.Forms.CheckBox();
+			this.setWidthBox = new System.Windows.Forms.NumericUpDown();
 			((System.ComponentModel.ISupportInitialize)(this.columnsBox)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.widthBox)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.setWidthBox)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// okButton
 			// 
 			this.okButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.okButton.DialogResult = System.Windows.Forms.DialogResult.OK;
-			this.okButton.Location = new System.Drawing.Point(285, 185);
+			this.okButton.Location = new System.Drawing.Point(285, 238);
 			this.okButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.okButton.Name = "okButton";
 			this.okButton.Size = new System.Drawing.Size(112, 35);
 			this.okButton.TabIndex = 0;
 			this.okButton.Text = "OK";
 			this.okButton.UseVisualStyleBackColor = true;
+			this.okButton.Click += new System.EventHandler(this.SaveSettingsOnClick);
 			// 
 			// cancelButton
 			// 
 			this.cancelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-			this.cancelButton.Location = new System.Drawing.Point(406, 185);
+			this.cancelButton.Location = new System.Drawing.Point(406, 238);
 			this.cancelButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.cancelButton.Name = "cancelButton";
 			this.cancelButton.Size = new System.Drawing.Size(112, 35);
@@ -83,7 +87,7 @@ namespace River.OneMoreAddIn.Commands
 			// flowButton
 			// 
 			this.flowButton.AutoSize = true;
-			this.flowButton.Location = new System.Drawing.Point(23, 60);
+			this.flowButton.Location = new System.Drawing.Point(23, 115);
 			this.flowButton.Margin = new System.Windows.Forms.Padding(3, 3, 3, 8);
 			this.flowButton.Name = "flowButton";
 			this.flowButton.Size = new System.Drawing.Size(394, 24);
@@ -95,7 +99,7 @@ namespace River.OneMoreAddIn.Commands
 			// columnsLabel
 			// 
 			this.columnsLabel.AutoSize = true;
-			this.columnsLabel.Location = new System.Drawing.Point(68, 97);
+			this.columnsLabel.Location = new System.Drawing.Point(68, 152);
 			this.columnsLabel.Name = "columnsLabel";
 			this.columnsLabel.Size = new System.Drawing.Size(71, 20);
 			this.columnsLabel.TabIndex = 7;
@@ -104,7 +108,7 @@ namespace River.OneMoreAddIn.Commands
 			// columnsBox
 			// 
 			this.columnsBox.Enabled = false;
-			this.columnsBox.Location = new System.Drawing.Point(208, 95);
+			this.columnsBox.Location = new System.Drawing.Point(208, 150);
 			this.columnsBox.Maximum = new decimal(new int[] {
             10,
             0,
@@ -127,7 +131,7 @@ namespace River.OneMoreAddIn.Commands
 			// widthBox
 			// 
 			this.widthBox.Enabled = false;
-			this.widthBox.Location = new System.Drawing.Point(208, 127);
+			this.widthBox.Location = new System.Drawing.Point(208, 182);
 			this.widthBox.Maximum = new decimal(new int[] {
             2000,
             0,
@@ -150,11 +154,43 @@ namespace River.OneMoreAddIn.Commands
 			// widthLabel
 			// 
 			this.widthLabel.AutoSize = true;
-			this.widthLabel.Location = new System.Drawing.Point(68, 129);
+			this.widthLabel.Location = new System.Drawing.Point(68, 184);
 			this.widthLabel.Name = "widthLabel";
 			this.widthLabel.Size = new System.Drawing.Size(87, 20);
 			this.widthLabel.TabIndex = 10;
 			this.widthLabel.Text = "Page width";
+			// 
+			// setWidthCheckBox
+			// 
+			this.setWidthCheckBox.AutoSize = true;
+			this.setWidthCheckBox.Location = new System.Drawing.Point(72, 60);
+			this.setWidthCheckBox.Name = "setWidthCheckBox";
+			this.setWidthCheckBox.Size = new System.Drawing.Size(76, 24);
+			this.setWidthCheckBox.TabIndex = 11;
+			this.setWidthCheckBox.Text = "Width";
+			this.setWidthCheckBox.UseVisualStyleBackColor = true;
+			// 
+			// setWidthBox
+			// 
+			this.setWidthBox.Location = new System.Drawing.Point(208, 59);
+			this.setWidthBox.Maximum = new decimal(new int[] {
+            2000,
+            0,
+            0,
+            0});
+			this.setWidthBox.Minimum = new decimal(new int[] {
+            200,
+            0,
+            0,
+            0});
+			this.setWidthBox.Name = "setWidthBox";
+			this.setWidthBox.Size = new System.Drawing.Size(131, 26);
+			this.setWidthBox.TabIndex = 12;
+			this.setWidthBox.Value = new decimal(new int[] {
+            500,
+            0,
+            0,
+            0});
 			// 
 			// ArrangeContainersDialog
 			// 
@@ -162,7 +198,9 @@ namespace River.OneMoreAddIn.Commands
 			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.CancelButton = this.cancelButton;
-			this.ClientSize = new System.Drawing.Size(537, 240);
+			this.ClientSize = new System.Drawing.Size(537, 293);
+			this.Controls.Add(this.setWidthBox);
+			this.Controls.Add(this.setWidthCheckBox);
 			this.Controls.Add(this.widthLabel);
 			this.Controls.Add(this.widthBox);
 			this.Controls.Add(this.columnsBox);
@@ -181,6 +219,7 @@ namespace River.OneMoreAddIn.Commands
 			this.Text = "Arrange Containers";
 			((System.ComponentModel.ISupportInitialize)(this.columnsBox)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.widthBox)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.setWidthBox)).EndInit();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -196,5 +235,7 @@ namespace River.OneMoreAddIn.Commands
 		private System.Windows.Forms.NumericUpDown columnsBox;
 		private System.Windows.Forms.NumericUpDown widthBox;
 		private System.Windows.Forms.Label widthLabel;
+		private System.Windows.Forms.CheckBox setWidthCheckBox;
+		private System.Windows.Forms.NumericUpDown setWidthBox;
 	}
 }
