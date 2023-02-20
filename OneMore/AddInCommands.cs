@@ -387,7 +387,7 @@ namespace River.OneMoreAddIn
 			=> await factory.Run<InsertStatusCommand>(StatusColor.Blue);
 
 
-		[Command("ribInsertBoxButton_Label", Keys.None, "Snippets")]
+		[Command("ribInsertBoxButton_Label", Keys.Alt | Keys.T, "Snippets")]
 		public async Task InsertBoxCmd(IRibbonControl control)
 			=> await factory.Run<InsertCodeBlockCommand>(false);
 
