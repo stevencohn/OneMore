@@ -2781,8 +2781,8 @@ Polaroid</value>
     <comment>ribbon images NODUP</comment>
   </data>
   <data name="ribCustomSnippetsMenu_Label" xml:space="preserve">
-    <value>Mijn aangepaste fragmenten</value>
-    <comment>ribbon </comment>
+    <value>Mijn fragmenten</value>
+    <comment>ribbon menu</comment>
   </data>
   <data name="ribCustomStylesButton_Label" xml:space="preserve">
     <value>Mijn stijlen</value>
@@ -3244,8 +3244,8 @@ Polaroid</value>
     <comment>favorites button</comment>
   </data>
   <data name="ribManageSnippetsButton_Label" xml:space="preserve">
-    <value>Beheer aangepaste fragmenten</value>
-    <comment>ribbon button</comment>
+    <value>Beheer Mijn Fragmenten</value>
+    <comment>ribbon snippets</comment>
   </data>
   <data name="ribMapButton_Label" xml:space="preserve">
     <value>Paginaoverzicht maken</value>
@@ -3578,8 +3578,8 @@ Polaroid</value>
     <comment>ribbon page</comment>
   </data>
   <data name="ribSaveSnippetButton_Label" xml:space="preserve">
-    <value>Bewaar aangepast fragment</value>
-    <comment>ribbon button</comment>
+    <value>Sla nieuw fragment op</value>
+    <comment>ribbon snippets</comment>
   </data>
   <data name="ribSaveSnippetButton_Screentip" xml:space="preserve">
     <value>Sla een nieuw aangepast fragment op van de geselecteerde inhoud</value>
@@ -4151,7 +4151,7 @@ Weet je zeker dat je door wilt gaan?</value>
     <comment>question</comment>
   </data>
   <data name="SnippetsSheet_introLabel.Text" xml:space="preserve">
-    <value>Mijn aangepaste fragmenten beheren</value>
+    <value>Beheer mijn fragmenten</value>
     <comment>label</comment>
   </data>
   <data name="SnippetsSheet_Text" xml:space="preserve">

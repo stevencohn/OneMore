@@ -2778,8 +2778,8 @@ ISO-code then comma then language name</comment>
     <comment>ribbon images NODUP</comment>
   </data>
   <data name="ribCustomSnippetsMenu_Label" xml:space="preserve">
-    <value>我的自定义片段</value>
-    <comment>ribbon </comment>
+    <value>我的片段</value>
+    <comment>ribbon menu</comment>
   </data>
   <data name="ribCustomStylesButton_Label" xml:space="preserve">
     <value>我的风格</value>
@@ -3242,8 +3242,8 @@ ISO-code then comma then language name</comment>
     <comment>favorites button</comment>
   </data>
   <data name="ribManageSnippetsButton_Label" xml:space="preserve">
-    <value>管理自定义片段</value>
-    <comment>ribbon button</comment>
+    <value>管理我的片段</value>
+    <comment>ribbon snippets</comment>
   </data>
   <data name="ribMapButton_Label" xml:space="preserve">
     <value>创建页面地图</value>
@@ -3568,8 +3568,8 @@ ISO-code then comma then language name</comment>
     <comment>ribbon page</comment>
   </data>
   <data name="ribSaveSnippetButton_Label" xml:space="preserve">
-    <value>保存自定义代码段</value>
-    <comment>ribbon button</comment>
+    <value>保存新片段</value>
+    <comment>ribbon snippets</comment>
   </data>
   <data name="ribSaveSnippetButton_Screentip" xml:space="preserve">
     <value>从所选内容中保存新的自定义片段</value>
@@ -4135,7 +4135,7 @@ ISO-code then comma then language name</comment>
     <comment>question</comment>
   </data>
   <data name="SnippetsSheet_introLabel.Text" xml:space="preserve">
-    <value>管理我的自定义片段</value>
+    <value>管理我的片段</value>
     <comment>label</comment>
   </data>
   <data name="SnippetsSheet_Text" xml:space="preserve">

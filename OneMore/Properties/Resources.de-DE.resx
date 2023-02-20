@@ -2776,8 +2776,8 @@ Polaroid</value>
     <comment>ribbon images NODUP</comment>
   </data>
   <data name="ribCustomSnippetsMenu_Label" xml:space="preserve">
-    <value>Meine benutzerdefinierten Schnipsel</value>
-    <comment>ribbon </comment>
+    <value>Meine Schnipsel</value>
+    <comment>ribbon menu</comment>
   </data>
   <data name="ribCustomStylesButton_Label" xml:space="preserve">
     <value>Meine Stile</value>
@@ -3240,8 +3240,8 @@ Polaroid</value>
     <comment>favorites button</comment>
   </data>
   <data name="ribManageSnippetsButton_Label" xml:space="preserve">
-    <value>Benutzerdefinierte Snippets verwalten</value>
-    <comment>ribbon button</comment>
+    <value>Meine Snippets verwalten</value>
+    <comment>ribbon snippets</comment>
   </data>
   <data name="ribMapButton_Label" xml:space="preserve">
     <value>Seitenkarte erstellen</value>
@@ -3566,8 +3566,8 @@ Polaroid</value>
     <comment>ribbon page</comment>
   </data>
   <data name="ribSaveSnippetButton_Label" xml:space="preserve">
-    <value>Benutzerdefiniertes Snippet speichern</value>
-    <comment>ribbon button</comment>
+    <value>Neues Snippet speichern</value>
+    <comment>ribbon snippets</comment>
   </data>
   <data name="ribSaveSnippetButton_Screentip" xml:space="preserve">
     <value>Speichern Sie ein neues benutzerdefiniertes Snippet aus dem ausgewählten Inhalt</value>
@@ -4139,7 +4139,7 @@ Bist du dir sicher, dass du weitermachen willst?</value>
     <comment>question</comment>
   </data>
   <data name="SnippetsSheet_introLabel.Text" xml:space="preserve">
-    <value>Meine benutzerdefinierten Snippets verwalten</value>
+    <value>Meine Snippets verwalten</value>
     <comment>label</comment>
   </data>
   <data name="SnippetsSheet_Text" xml:space="preserve">

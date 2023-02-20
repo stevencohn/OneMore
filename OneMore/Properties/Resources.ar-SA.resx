@@ -2780,8 +2780,8 @@ ISO-code then comma then language name</comment>
     <comment>ribbon images NODUP</comment>
   </data>
   <data name="ribCustomSnippetsMenu_Label" xml:space="preserve">
-    <value>مقتطفاتي المخصصة</value>
-    <comment>ribbon </comment>
+    <value>مقتطفاتي</value>
+    <comment>ribbon menu</comment>
   </data>
   <data name="ribCustomStylesButton_Label" xml:space="preserve">
     <value>الأنماط الخاصة بي</value>
@@ -3244,8 +3244,8 @@ ISO-code then comma then language name</comment>
     <comment>favorites button</comment>
   </data>
   <data name="ribManageSnippetsButton_Label" xml:space="preserve">
-    <value>إدارة المقتطفات المخصصة</value>
-    <comment>ribbon button</comment>
+    <value>إدارة مقتطفاتي</value>
+    <comment>ribbon snippets</comment>
   </data>
   <data name="ribMapButton_Label" xml:space="preserve">
     <value>إنشاء خريطة الصفحة</value>
@@ -3578,8 +3578,8 @@ ISO-code then comma then language name</comment>
     <comment>ribbon page</comment>
   </data>
   <data name="ribSaveSnippetButton_Label" xml:space="preserve">
-    <value>حفظ المقتطف المخصص</value>
-    <comment>ribbon button</comment>
+    <value>حفظ المقتطف الجديد</value>
+    <comment>ribbon snippets</comment>
   </data>
   <data name="ribSaveSnippetButton_Screentip" xml:space="preserve">
     <value>احفظ مقتطفًا مخصصًا جديدًا من المحتوى المحدد</value>
@@ -4151,7 +4151,7 @@ ISO-code then comma then language name</comment>
     <comment>question</comment>
   </data>
   <data name="SnippetsSheet_introLabel.Text" xml:space="preserve">
-    <value>إدارة المقتطفات المخصصة الخاصة بي</value>
+    <value>إدارة مقتطفاتي</value>
     <comment>label</comment>
   </data>
   <data name="SnippetsSheet_Text" xml:space="preserve">

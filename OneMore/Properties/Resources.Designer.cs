@@ -6472,7 +6472,7 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to My Custom Snippets.
+        ///   Looks up a localized string similar to My Snippets.
         /// </summary>
         internal static string ribCustomSnippetsMenu_Label {
             get {
@@ -7516,7 +7516,7 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Manage Custom Snippets.
+        ///   Looks up a localized string similar to Manage My Snippets.
         /// </summary>
         internal static string ribManageSnippetsButton_Label {
             get {
@@ -8254,7 +8254,7 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Save Custom Snippet.
+        ///   Looks up a localized string similar to Save New Snippet.
         /// </summary>
         internal static string ribSaveSnippetButton_Label {
             get {
@@ -8263,7 +8263,7 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Save a new custom snippet from the selected content.
+        ///   Looks up a localized string similar to Save a new snippet from the selected content.
         /// </summary>
         internal static string ribSaveSnippetButton_Screentip {
             get {
@@ -9584,7 +9584,7 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Manage my custom snippets.
+        ///   Looks up a localized string similar to Manage my snippets.
         /// </summary>
         internal static string SnippetsSheet_introLabel_Text {
             get {

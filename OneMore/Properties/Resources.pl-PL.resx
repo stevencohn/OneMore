@@ -2823,8 +2823,8 @@ Polaroid</value>
     <comment>ribbon images NODUP</comment>
   </data>
   <data name="ribCustomSnippetsMenu_Label" xml:space="preserve">
-    <value>Moje niestandardowe fragmenty</value>
-    <comment>ribbon </comment>
+    <value>Moje fragmenty</value>
+    <comment>ribbon menu</comment>
   </data>
   <data name="ribCustomStylesButton_Label" xml:space="preserve">
     <value>Moje style</value>
@@ -3287,8 +3287,8 @@ Polaroid</value>
     <comment>favorites button</comment>
   </data>
   <data name="ribManageSnippetsButton_Label" xml:space="preserve">
-    <value>Zarządzaj niestandardowymi fragmentami</value>
-    <comment>ribbon button</comment>
+    <value>Zarządzaj moimi fragmentami</value>
+    <comment>ribbon snippets</comment>
   </data>
   <data name="ribMapButton_Label" xml:space="preserve">
     <value>Utwórz mapę stron</value>
@@ -3621,8 +3621,8 @@ Polaroid</value>
     <comment>ribbon page</comment>
   </data>
   <data name="ribSaveSnippetButton_Label" xml:space="preserve">
-    <value>Zapisz niestandardowy fragment</value>
-    <comment>ribbon button</comment>
+    <value>Zapisz nowy fragment</value>
+    <comment>ribbon snippets</comment>
   </data>
   <data name="ribSaveSnippetButton_Screentip" xml:space="preserve">
     <value>Zapisz nowy niestandardowy fragment z wybranej treści</value>
@@ -4194,7 +4194,7 @@ Jesteś pewien, że chcesz kontynuować?</value>
     <comment>question</comment>
   </data>
   <data name="SnippetsSheet_introLabel.Text" xml:space="preserve">
-    <value>Zarządzaj moimi niestandardowymi fragmentami</value>
+    <value>Zarządzaj moimi fragmentami</value>
     <comment>label</comment>
   </data>
   <data name="SnippetsSheet_Text" xml:space="preserve">

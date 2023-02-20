@@ -2861,8 +2861,8 @@ ISO-code then comma then language name</comment>
     <comment>ribbon images NODUP</comment>
   </data>
   <data name="ribCustomSnippetsMenu_Label" xml:space="preserve">
-    <value>הקטעים המותאמים אישית שלי</value>
-    <comment>ribbon </comment>
+    <value>הקטעים שלי</value>
+    <comment>ribbon menu</comment>
   </data>
   <data name="ribCustomStylesButton_Label" xml:space="preserve">
     <value>הסגנונות שלי</value>
@@ -3325,8 +3325,8 @@ ISO-code then comma then language name</comment>
     <comment>favorites button</comment>
   </data>
   <data name="ribManageSnippetsButton_Label" xml:space="preserve">
-    <value>נהל קטעי טקסט מותאמים אישית</value>
-    <comment>ribbon button</comment>
+    <value>נהל את הקטעים שלי</value>
+    <comment>ribbon snippets</comment>
   </data>
   <data name="ribMapButton_Label" xml:space="preserve">
     <value>צור מפת עמוד</value>
@@ -3651,8 +3651,8 @@ ISO-code then comma then language name</comment>
     <comment>ribbon page</comment>
   </data>
   <data name="ribSaveSnippetButton_Label" xml:space="preserve">
-    <value>שמור קטע קוד מותאם אישית</value>
-    <comment>ribbon button</comment>
+    <value>שמור קטע קוד חדש</value>
+    <comment>ribbon snippets</comment>
   </data>
   <data name="ribSaveSnippetButton_Screentip" xml:space="preserve">
     <value>שמור קטע מותאם אישית חדש מהתוכן שנבחר</value>
@@ -4227,7 +4227,7 @@ ISO-code then comma then language name</comment>
     <comment>question</comment>
   </data>
   <data name="SnippetsSheet_introLabel.Text" xml:space="preserve">
-    <value>נהל את קטעי ההתאמה אישית שלי</value>
+    <value>נהל את הקטעים שלי</value>
     <comment>label</comment>
   </data>
   <data name="SnippetsSheet_Text" xml:space="preserve">

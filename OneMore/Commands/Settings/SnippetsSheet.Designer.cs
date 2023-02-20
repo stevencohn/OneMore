@@ -81,9 +81,9 @@
 			this.introLabel.AutoSize = true;
 			this.introLabel.Location = new System.Drawing.Point(3, 0);
 			this.introLabel.Name = "introLabel";
-			this.introLabel.Size = new System.Drawing.Size(211, 20);
+			this.introLabel.Size = new System.Drawing.Size(155, 20);
 			this.introLabel.TabIndex = 0;
-			this.introLabel.Text = "Manage my custom snippets";
+			this.introLabel.Text = "Manage my snippets";
 			// 
 			// toolStrip
 			// 

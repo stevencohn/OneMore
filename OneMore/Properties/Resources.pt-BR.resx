@@ -2781,8 +2781,8 @@ Polaroid.</value>
     <comment>ribbon images NODUP</comment>
   </data>
   <data name="ribCustomSnippetsMenu_Label" xml:space="preserve">
-    <value>Meus snippets personalizados</value>
-    <comment>ribbon </comment>
+    <value>Meus trechos</value>
+    <comment>ribbon menu</comment>
   </data>
   <data name="ribCustomStylesButton_Label" xml:space="preserve">
     <value>meus estilos</value>
@@ -3244,8 +3244,8 @@ Polaroid.</value>
     <comment>favorites button</comment>
   </data>
   <data name="ribManageSnippetsButton_Label" xml:space="preserve">
-    <value>Gerenciar snippets personalizados</value>
-    <comment>ribbon button</comment>
+    <value>Gerenciar meus trechos</value>
+    <comment>ribbon snippets</comment>
   </data>
   <data name="ribMapButton_Label" xml:space="preserve">
     <value>Criar Mapa de Página</value>
@@ -3578,8 +3578,8 @@ Polaroid.</value>
     <comment>ribbon page</comment>
   </data>
   <data name="ribSaveSnippetButton_Label" xml:space="preserve">
-    <value>Salvar trecho personalizado</value>
-    <comment>ribbon button</comment>
+    <value>Salvar novo trecho</value>
+    <comment>ribbon snippets</comment>
   </data>
   <data name="ribSaveSnippetButton_Screentip" xml:space="preserve">
     <value>Salve um novo snippet personalizado do conteúdo selecionado</value>
@@ -4151,7 +4151,7 @@ Você tem certeza que quer continuar?</value>
     <comment>question</comment>
   </data>
   <data name="SnippetsSheet_introLabel.Text" xml:space="preserve">
-    <value>Gerenciar meus snippets personalizados</value>
+    <value>Gerenciar meus trechos</value>
     <comment>label</comment>
   </data>
   <data name="SnippetsSheet_Text" xml:space="preserve">

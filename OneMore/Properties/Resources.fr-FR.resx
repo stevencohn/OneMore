@@ -2776,8 +2776,8 @@ Polaroïd</value>
     <comment>ribbon images NODUP</comment>
   </data>
   <data name="ribCustomSnippetsMenu_Label" xml:space="preserve">
-    <value>Mes extraits personnalisés</value>
-    <comment>ribbon </comment>
+    <value>Mes extraits</value>
+    <comment>ribbon menu</comment>
   </data>
   <data name="ribCustomStylesButton_Label" xml:space="preserve">
     <value>Mes Styles</value>
@@ -3239,8 +3239,8 @@ Polaroïd</value>
     <comment>favorites button</comment>
   </data>
   <data name="ribManageSnippetsButton_Label" xml:space="preserve">
-    <value>Gérer les extraits de code personnalisés</value>
-    <comment>ribbon button</comment>
+    <value>Gérer mes extraits</value>
+    <comment>ribbon snippets</comment>
   </data>
   <data name="ribMapButton_Label" xml:space="preserve">
     <value>Créer une carte de page</value>
@@ -3573,8 +3573,8 @@ Polaroïd</value>
     <comment>ribbon page</comment>
   </data>
   <data name="ribSaveSnippetButton_Label" xml:space="preserve">
-    <value>Enregistrer l'extrait de code personnalisé</value>
-    <comment>ribbon button</comment>
+    <value>Enregistrer le nouvel extrait</value>
+    <comment>ribbon snippets</comment>
   </data>
   <data name="ribSaveSnippetButton_Screentip" xml:space="preserve">
     <value>Enregistrer un nouvel extrait personnalisé à partir du contenu sélectionné</value>
@@ -4146,7 +4146,7 @@ Es-tu sur de vouloir continuer?</value>
     <comment>question</comment>
   </data>
   <data name="SnippetsSheet_introLabel.Text" xml:space="preserve">
-    <value>Gérer mes extraits personnalisés</value>
+    <value>Gérer mes extraits</value>
     <comment>label</comment>
   </data>
   <data name="SnippetsSheet_Text" xml:space="preserve">

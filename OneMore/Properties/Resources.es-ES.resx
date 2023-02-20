@@ -2780,8 +2780,8 @@ polaroid</value>
     <comment>ribbon images NODUP</comment>
   </data>
   <data name="ribCustomSnippetsMenu_Label" xml:space="preserve">
-    <value>Mis fragmentos personalizados</value>
-    <comment>ribbon </comment>
+    <value>Mis fragmentos</value>
+    <comment>ribbon menu</comment>
   </data>
   <data name="ribCustomStylesButton_Label" xml:space="preserve">
     <value>Mis estilos</value>
@@ -3244,8 +3244,8 @@ polaroid</value>
     <comment>favorites button</comment>
   </data>
   <data name="ribManageSnippetsButton_Label" xml:space="preserve">
-    <value>Administrar fragmentos personalizados</value>
-    <comment>ribbon button</comment>
+    <value>Administrar mis fragmentos</value>
+    <comment>ribbon snippets</comment>
   </data>
   <data name="ribMapButton_Label" xml:space="preserve">
     <value>Crear mapa de página</value>
@@ -3578,8 +3578,8 @@ polaroid</value>
     <comment>ribbon page</comment>
   </data>
   <data name="ribSaveSnippetButton_Label" xml:space="preserve">
-    <value>Guardar fragmento personalizado</value>
-    <comment>ribbon button</comment>
+    <value>Guardar nuevo fragmento</value>
+    <comment>ribbon snippets</comment>
   </data>
   <data name="ribSaveSnippetButton_Screentip" xml:space="preserve">
     <value>Guardar un nuevo fragmento personalizado del contenido seleccionado</value>
@@ -4151,7 +4151,7 @@ Estás seguro de que quieres continuar?</value>
     <comment>question</comment>
   </data>
   <data name="SnippetsSheet_introLabel.Text" xml:space="preserve">
-    <value>Administrar mis fragmentos personalizados</value>
+    <value>Administrar mis fragmentos</value>
     <comment>label</comment>
   </data>
   <data name="SnippetsSheet_Text" xml:space="preserve">
