@@ -2,19 +2,21 @@
 
 [![version](https://img.shields.io/github/v/release/stevencohn/OneMore?display_name=tag&color=7E5C81)](https://github.com/stevencohn/OneMore/releases/latest) [![downloads](https://img.shields.io/github/downloads/stevencohn/OneMore/total?color=blue)](https://github.com/stevencohn/OneMore/releases/latest) [![platform](https://img.shields.io/badge/platform-windows%20%7C%20onenote%20desktop-649BC1)](https://github.com/stevencohn/OneMore#-how-to-install-onemore-as-an-administrator) [![GitHub license](https://img.shields.io/badge/license-mpl--2.0-BF6A48)](https://github.com/stevencohn/OneMore/blob/main/LICENSE) [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/stevencohn/OneMore#-developing-onemore)
 
-A OneNote add-in with powerful yet simple and effective features. See the [**project wiki**](https://onedrive.live.com/redir?resid=6925D0374517D4B4%2158723&authkey=%21AN6SD9aiIbjQLi0&page=View&wd=target%281%20User%20Guide.one%7Cd1eaf02b-5881-42a1-a83b-df7fe2f7f1af%2FWelcome%20to%20OneMore%7C31f507da-15d3-4c07-bb6c-06b9a1390c13%2F%29&wdorigin=NavigationUrl) for full details. Meanwhile, here's some pleasant reading material...
+OneMore is an add-in for OneNote with simple and powerful features that make OneNote a better OneNote.  
 
-* Integrated with the OneNote ribbon, [context menus](../../wiki#extended-context-menus), and [keyboard shortcuts](../../wiki#keys) for easy access
-* [Customize the Text context menu](../../wiki/Settings) to add OneMore commands or a a custom search engine
-* Apply [colorized syntax highlighting](../../wiki/Edit-Commands) to snippets of source code
-* Create/edit/apply [custom styles](../../wiki/Custom-Styles-and-Favorites) with advanced options
-* Apply or clear [styles in tables](../../wiki/Table-Commands#table-styles) or create your own table styles
-* Manage menu of [Favorites](../../wiki/Custom-Styles-and-Favorites#Favorites) for one-click link to your most referenced pages
-* Save and reuse [custom snippets](../../wiki/Custom-Styles-and-Favorites#Favorites) of content anywhere on any page
-* Add [formulas](../../wiki/Table-Commands) to table cell using Excel-like expressions
-
-## How do I Install OneMore?
-There are [full instructions here](#install). 
+Please see the [OneNote Wiki](https://onedrive.live.com/redir?resid=6925D0374517D4B4%2158723&amp;authkey=%21AN6SD9aiIbjQLi0&amp;page=View&amp;wd=target%281%20User%20Guide.one%7Cd1eaf02b-5881-42a1-a83b-df7fe2f7f1af%2FWelcome%20to%20OneMore%7C31f507da-15d3-4c07-bb6c-06b9a1390c13%2F%29&amp;wdorigin=NavigationUrl) for a full user guide including <a href="https://onedrive.live.com/redir?resid=6925D0374517D4B4%2158723&amp;authkey=%21AN6SD9aiIbjQLi0&amp;page=View&amp;wd=target%28Getting%20Started.one%7Cd1eaf02b-5881-42a1-a83b-df7fe2f7f1af%2FInstallation%7Cb18686f6-450d-49b8-8b1f-e7cb5ff14c6c%2F%29&amp;wdorigin=703">installation instructions</a>.  
+  
+# Highlights  
+- The almighty [Command Palette](https://onedrive.live.com/redir?resid=6925D0374517D4B4%2158723&amp;authkey=%21AN6SD9aiIbjQLi0&amp;page=View&amp;wd=target%281%20The%20Basics.one%7Cf2cc1a14-be59-4df4-8ade-d330363d3296%2FBasics%7Cc32c3754-5b91-4164-83a3-33ca9a3a581a%2F%29&amp;wdorigin=703)!  
+- Designed for efficiency by integrating with the [ribbon bar](https://onedrive.live.com/redir?resid=6925D0374517D4B4%2158723&amp;authkey=%21AN6SD9aiIbjQLi0&amp;page=View&amp;wd=target%281%20The%20Basics.one%7Cf2cc1a14-be59-4df4-8ade-d330363d3296%2FBasics%7Cc32c3754-5b91-4164-83a3-33ca9a3a581a%2F%29&amp;wdorigin=703), extensible <a href="https://onedrive.live.com/redir?resid=6925D0374517D4B4%2158723&amp;authkey=%21AN6SD9aiIbjQLi0&amp;page=View&amp;wd=target%282%20Context%20Menus.one%7Cc25d31ff-31fe-473b-9295-9b8be5b2bcab%2F%29&amp;wdorigin=717">context menus</a>, and customizable <a href="https://onedrive.live.com/redir?resid=6925D0374517D4B4%2158723&amp;authkey=%21AN6SD9aiIbjQLi0&amp;page=View&amp;wd=target%281%20The%20Basics.one%7Cf2cc1a14-be59-4df4-8ade-d330363d3296%2FOneNote%20Keyboard%20Shortcuts%7C6db55fc1-b30f-4740-b7e5-0b472258d6e5%2F%29&amp;wdorigin=703">keyboard shortcuts</a>  
+- Create [customized font styles](https://onedrive.live.com/redir?resid=6925D0374517D4B4%2158723&amp;authkey=%21AN6SD9aiIbjQLi0&amp;page=View&amp;wd=target%28Commands.one%7Cdefb70f1-1b5e-4ca1-95db-a5227b84d8de%2FMy%20Styles%20Commands%7C5c8ace54-e8ea-44aa-9fe5-4e957b96a683%2F%29&amp;wdorigin=703) beyond the standard styles provided by OneNote, apply one style to selected text, or apply all styles to the entire page  
+- Use predefined [table styles](https://onedrive.live.com/redir?resid=6925D0374517D4B4%2158723&amp;authkey=%21AN6SD9aiIbjQLi0&amp;page=View&amp;wd=target%28Commands.one%7Cdefb70f1-1b5e-4ca1-95db-a5227b84d8de%2FTable%20Style%20Commands%7C84ce75a7-9e7d-4354-8089-a2160f7c5c3a%2F%29&amp;wdorigin=703) or create your own to selectively set cell background and fonts  
+- Manage a collection of [favorite pages and sections](https://onedrive.live.com/redir?resid=6925D0374517D4B4%2158723&amp;authkey=%21AN6SD9aiIbjQLi0&amp;page=View&amp;wd=target%28Commands.one%7Cdefb70f1-1b5e-4ca1-95db-a5227b84d8de%2FFavorites%20Commands%7C8fd78346-b3d5-4768-9869-7bdfd630990e%2F%29&amp;wdorigin=703) with shortcuts to quickly jump to a favorite  
+- Add [colorized syntax highlighting](https://onedrive.live.com/redir?resid=6925D0374517D4B4%2158723&amp;authkey=%21AN6SD9aiIbjQLi0&amp;page=View&amp;wd=target%28Commands.one%7Cdefb70f1-1b5e-4ca1-95db-a5227b84d8de%2FColorize%20Command%7C18723824-84e4-49d2-a93b-72af605470b8%2F%29&amp;wdorigin=703) to snippets of source code  
+- Add [formulas in table cells](https://onedrive.live.com/redir?resid=6925D0374517D4B4%2158723&amp;authkey=%21AN6SD9aiIbjQLi0&amp;page=View&amp;wd=target%28Commands.one%7Cdefb70f1-1b5e-4ca1-95db-a5227b84d8de%2FTable%20Commands%7Cbe1092b4-045f-4147-8bc7-de2d6d84e4a5%2F%29&amp;wdorigin=703) using Excel-like expressions  
+- [Crop, rotate, or adjust images](https://onedrive.live.com/redir?resid=6925D0374517D4B4%2158723&amp;authkey=%21AN6SD9aiIbjQLi0&amp;page=View&amp;wd=target%28Commands.one%7Cdefb70f1-1b5e-4ca1-95db-a5227b84d8de%2FImage%20Commands%7Cf6168fd4-145a-4c83-b3c0-1a5ba2b41a3d%2F%29&amp;wdorigin=703) on a page without opening an external photo editor  
+- Save and reuse [custom snippets](https://onedrive.live.com/redir?resid=6925D0374517D4B4%2158723&amp;authkey=%21AN6SD9aiIbjQLi0&amp;page=View&amp;wd=target%28Commands.one%7Cdefb70f1-1b5e-4ca1-95db-a5227b84d8de%2FSnippets%20Commands%7Cacd2f75e-4e1c-49a0-962b-a0b75b27aae3%2F%29&amp;wdorigin=703) of content anywhere on any page  
+- And many, many more… see below  
 
 ## Screenshots
 
@@ -23,330 +25,167 @@ There are [full instructions here](#install).
 | ![screenshot](../../wiki/images/Screenshot.png) | ![Calendar](../../wiki/images/Calendar.png) |
 _Click an image to enlarge_
 
-## 💁 Features (161)
+## 💁 Features
 *Want more from OneMore? OneMore has more...*
 
-[Clean commands](../../wiki/Clean-Commands) (13)
+### [Main Menu](https://github.com/stevencohn/OneMore/wiki/Tools)  
+- Run the OneMore Calendar, a view into your note history  
+- Replay the last OneMore action with a quick keyboard shortcut, default is Alt + Shift + R  
+- Edit OneMore settings  
+- Check for updates and install upgrades on-demand  
+  
+### [Clean commands](https://onedrive.live.com/redir?resid=6925D0374517D4B4%2158723&amp;authkey=%21AN6SD9aiIbjQLi0&amp;page=View&amp;wd=target%28Commands.one%7Cdefb70f1-1b5e-4ca1-95db-a5227b84d8de%2FClean%20Commands%7C8c793fdb-93ac-4838-860f-2566bf59d5bf%2F%29&amp;wdorigin=703)  
+- Change spacing between sentences to one or two spaces  
+- Clear background color and reset text color of selected text  
+- Remove author/citation information from paragraphs  
+- Remove duplicate and empty pages  
+- Remove pasted screen clipping and URL citation lines from page  
+- Remove empty headers and "extra" empty lines between paragraphs  
+- Remove ink annotations from the current page  
+- Remove spacing between paragraphs and headings  
+- Remove tags from the current page, those not associated with reminders  
+- Restore Container Size Auto Widths  
+- Show/Hide the page date and time stamps under the title on page or all pages in section  
+- Trim leading whitespace from selected text  
+- Trim trailing whitespace from selected text  
+  
+### [Colorize command](https://onedrive.live.com/redir?resid=6925D0374517D4B4%2158723&amp;authkey=%21AN6SD9aiIbjQLi0&amp;page=View&amp;wd=target%28Commands.one%7Cdefb70f1-1b5e-4ca1-95db-a5227b84d8de%2FColorize%20Command%7C18723824-84e4-49d2-a93b-72af605470b8%2F%29&amp;wdorigin=703)  
+- Apply syntax highlighting to source code, available for many commonly used programming languages  
 
-* Change spacing between sentences to one or two spaces
-* Clear background color and reset text color of selected text
-* Remove author/citation information from paragraphs
-* Remove duplicate and empty pages
-* Remove pasted screen clipping and URL citation lines from page
-* Remove empty headers and "extra" empty lines between paragraphs
-* Remove ink annotations from the current page
-* Remove spacing between paragraphs and headings
-* Remove tags from the current page, those not associated with reminders
-* Restore Container Size Auto Widths
-* Show/Hide the page date and time stamps under the title on page or all pages in section
-* Trim leading whitespace from selected text
-* Trim trailing whitespace from selected text
+### [Edit commands](https://onedrive.live.com/redir?resid=6925D0374517D4B4%2158723&amp;authkey=%21AN6SD9aiIbjQLi0&amp;page=View&amp;wd=target%28Commands.one%7Cdefb70f1-1b5e-4ca1-95db-a5227b84d8de%2FEdit%20Commands%7C78affe03-f9a8-404d-843b-69d421ea1135%2F%29&amp;wdorigin=703)  
+- Copy page or selected content as markdown that can then be pasted into another application  
+- Set proofing language of selected text to one of the installed Office proofing languages  
+- Highlight selected text using a rotating array of colors  
+- Paste Rich Text to, for example, preserve colors when pasting code from Visual Studio  
+- Enabled spell-checking on the current page, resets to the current culture language  
+- Disable spell-check on the current page  
+- Change selected text to UPPERCASE, lowercase, Or Title Case  
+- Increase or Decrease the font size of all content on the current page  
+- Invert text selection  
+- Join Paragraph to remove soft-breaks and join lines into a single flowing paragraph  
+- Select all images on the page  
+- Select all text on a page with similar formatting to the currently selected text  
+- Sort bulleted or numbered lists alphabetically  
+  
+### [Favorites commands](https://onedrive.live.com/redir?resid=6925D0374517D4B4%2158723&amp;authkey=%21AN6SD9aiIbjQLi0&amp;page=View&amp;wd=target%28Commands.one%7Cdefb70f1-1b5e-4ca1-95db-a5227b84d8de%2FFavorites%20Commands%7C8fd78346-b3d5-4768-9869-7bdfd630990e%2F%29&amp;wdorigin=703)  
+- Add pages and sections the Favorites menus  
+- Add a link to a special page containing all OneNote and OneMore keyboard shortcuts  
+- Sort or reorder favorites using the Favorites Manager  
+- Press a shortcut key sequence to open the Favorites dialog for quick navigation  
+  
+### [File Commands](https://onedrive.live.com/redir?resid=6925D0374517D4B4%2158723&amp;authkey=%21AN6SD9aiIbjQLi0&amp;page=View&amp;wd=target%28Commands.one%7Cdefb70f1-1b5e-4ca1-95db-a5227b84d8de%2FFile%20Commands%7C05c20cee-54d7-494b-9b82-87e7e6af2b20%2F%29&amp;wdorigin=703)  
+- Archive sections and notebooks as Zip files (available from context menus and the Command Palette)  
+- Import MSWord, PowerPoint, Markdown and others into the current page or a new page  
+- Import a Web page from a specified URL  
+- Import hyperlinks on the current page as separate sub-pages  
+- Export the current page or selected pages as HTML, PDF, MSWord, Markdown, or as raw OneNote XML  
+- Organize Quick Notes into collated sections and notebooks by date or keyword  
+- Invoke an external custom plugin to process a page  
+- Generate a report of the size of notebooks, section, pages, and image and file attachments on pages  
+- Quick access to user-defined plugins  
+  
+### [Image commands](https://onedrive.live.com/redir?resid=6925D0374517D4B4%2158723&amp;authkey=%21AN6SD9aiIbjQLi0&amp;page=View&amp;wd=target%28Commands.one%7Cdefb70f1-1b5e-4ca1-95db-a5227b84d8de%2FImage%20Commands%7Cf6168fd4-145a-4c83-b3c0-1a5ba2b41a3d%2F%29&amp;wdorigin=703)  
+- Add caption to a selected images  
+- Apply a variety of adjustment to an image including brightness, contrast, opacity, saturation, and stylizations like grayscale, sepia, and Polaroid  
+- Precisely crop a selected image  
+- Resize a selected image or all images on the page  
+- Rotate an image to any angle  
+  
+### [My Styles commands](https://onedrive.live.com/redir?resid=6925D0374517D4B4%2158723&amp;authkey=%21AN6SD9aiIbjQLi0&amp;page=View&amp;wd=target%28Commands.one%7Cdefb70f1-1b5e-4ca1-95db-a5227b84d8de%2FMy%20Styles%20Commands%7C5c8ace54-e8ea-44aa-9fe5-4e957b96a683%2F%29&amp;wdorigin=703)  
+- Apply custom styles to selected text  
+- Load different styles for different purposes  
+- Edit custom styles  
+- Create new styles based on the selected text  
+- Apply an entire set of styles to a page  
+- Set the page background along with styles, with dark-mode awareness  
+  
+### [Numbering commands](https://onedrive.live.com/redir?resid=6925D0374517D4B4%2158723&amp;authkey=%21AN6SD9aiIbjQLi0&amp;page=View&amp;wd=target%28Commands.one%7Cdefb70f1-1b5e-4ca1-95db-a5227b84d8de%2FNumbering%20Commands%7C12fa19e3-dfa9-4e7d-95fe-0367b4b58536%2F%29&amp;wdorigin=703)  
+- Number page headings with numeric or alpha-numeric outline prefixes  
+- Number all sections in the current notebook  
+- Number all pages in the current section with numeric or alpha-numeric prefixes  
+- Remove numbering from sections  
+- Remove numbering from pages  
+  
+### [Page commands](https://onedrive.live.com/redir?resid=6925D0374517D4B4%2158723&amp;authkey=%21AN6SD9aiIbjQLi0&amp;page=View&amp;wd=target%28Commands.one%7Cdefb70f1-1b5e-4ca1-95db-a5227b84d8de%2FPage%20Commands%7C5fd8f26f-7d51-4142-88e4-b6e12c709ee6%2F%29&amp;wdorigin=703)  
+- Arrange containers vertically or in columns  
+- Add caption to selected file attachments on the page  
+- Add special icon to the page title, also appears in page hierarchy  
+- Create Pages from a list, table, or spreadsheet of names  
+- Copy formatted hyperlink to page  
+- Copy formatted hyperlink to paragraph  
+- Duplicate the current page  
+- Expand or Collapse indented outlines, save and restore outlining  
+- Fit background grid spacing to most common text size  
+- Merge pages, preserving formatting and position of outlines  
+- Split current page into multiple pages  
+- Show number of words on the page or in the selected region  
+- Create report showing total number of words in all pages in a section or an entire notebook  
+  
+### [Reference Commands](https://onedrive.live.com/redir?resid=6925D0374517D4B4%2158723&amp;authkey=%21AN6SD9aiIbjQLi0&amp;page=View&amp;wd=target%28Commands.one%7Cdefb70f1-1b5e-4ca1-95db-a5227b84d8de%2FReference%20Commands%7C70cfb9db-f83f-46cb-97a0-aff91ca8a9de%2F%29&amp;wdorigin=703)  
+- Insert a new footnote (endnote) at the current location  
+- Remove a footnote from either the label or from the footer description  
+- Copy link to page or link to paragraph; will paste as a breadcrumb  
+- Create bidirectional links between pages or paragraphs on a page  
+- Embed the contents of one page into the current pages  
+- Insert QR code representation of selected text  
+- Map Linked Pages to report all pages that link to other pages  
+- Link to current page from other pages that reference this page title  
+- Refresh text of hyperlinks back to this page based on its title  
+- Replace hyperlinked URLs with their Web page titles  
+- Replace hyperlinked URLs with their downloaded images  
+  
+### [Reminder commands](https://onedrive.live.com/redir?resid=6925D0374517D4B4%2158723&amp;authkey=%21AN6SD9aiIbjQLi0&amp;page=View&amp;wd=target%28Commands.one%7Cdefb70f1-1b5e-4ca1-95db-a5227b84d8de%2FReminder%20Commands%7C9f22eb25-ca3a-4770-bf49-a2f01ffd48a3%2F%29&amp;wdorigin=703)  
+- Add or update a reminder for any paragraph on a page  
+- Mark the selected reminder as completed  
+- Delete the selected reminder  
+- Generate a detailed report of all reminders and their status  
+- Import Tasks from Outlook  
+- Toggle strikethrough text next to all completed/incomplete tags  
+  
+### [Search and Tag commands](https://onedrive.live.com/redir?resid=6925D0374517D4B4%2158723&amp;authkey=%21AN6SD9aiIbjQLi0&amp;page=View&amp;wd=target%28Commands.one%7Cdefb70f1-1b5e-4ca1-95db-a5227b84d8de%2FSearch%20and%20Tag%20Commands%7C34389ab1-e751-47e1-a702-bffaa7961e8d%2F%29&amp;wdorigin=703)  
+- Search and replace text on the current page  
+- Search for keywords and copy or move selected pages  
+- Add arbitrary tags to a page  
+- Search arbitrary page tags to index, copy, or move selected pages  
+  
+### [Snippets commands](https://onedrive.live.com/redir?resid=6925D0374517D4B4%2158723&amp;authkey=%21AN6SD9aiIbjQLi0&amp;page=View&amp;wd=target%28Commands.one%7Cdefb70f1-1b5e-4ca1-95db-a5227b84d8de%2FSnippets%20Commands%7Cacd2f75e-4e1c-49a0-962b-a0b75b27aae3%2F%29&amp;wdorigin=703)  
+- Save and reuse custom snippets of content anywhere on any page  
+- Expand custom snippet from name  
+- Insert single or double horizontal line  
+- Insert breadcrumb at top of page  
+- Insert Table of Contents of headers, pages, or sections  
+- Insert small or large monthly calendar for a specific month  
+- Insert sortable date, similar to 2020-12-23  
+- Insert sortable date/time  
+- Insert a text box, a single-cell table, and optionally wrap selecting content  
+- Insert Code box similar to Confluence Code macro, optionally wrap selected content  
+- Insert Info/Warn boxes similar to Confluence Info and Warn macros  
+- Insert collapsible sections to hide secondary or sensitive information  
+- Insert status labels similar to the Confluence status macro  
+  
+### [Table commands](https://onedrive.live.com/redir?resid=6925D0374517D4B4%2158723&amp;authkey=%21AN6SD9aiIbjQLi0&amp;page=View&amp;wd=target%28Commands.one%7Cdefb70f1-1b5e-4ca1-95db-a5227b84d8de%2FTable%20Commands%7Cbe1092b4-045f-4147-8bc7-de2d6d84e4a5%2F%29&amp;wdorigin=703)  
+- Calculate Excel-like formulas in tables  
+- Apply or clear styling in tables, including cell shading and fonts  
+- Create your own custom table styles  
+- Delete formula from selected table cells  
+- Highlight all cells on the page with custom formulas  
+- Recalculate all formulas in selected tables on the page  
+- Convert select text to a table  
+- Insert Table Cells, shifting content as expected  
+- Paste copied table cells by overlaying cells rather than inserting a nested table  
+- Copy across and copy down to fill all or selected cells with a copy of a cell  
+- Fill across and fill down to fill all or selected cells with increment values  
+- Split table  
 
-[Custom Styles](../../wiki/Custom-styles-and-Favorites) (6)
-
-* Apply custom styles to selected text
-* Load a custom theme of styles, user-defined and some provided with OneMore
-* Edit custom style themes
-* Create new styles based on the selected text
-* Apply an entire theme to a page
-* Change page theme inluding background and styles, optioanally with dark-mode awareness
-
-[File Commands](../../wiki/Tools) (5)
-* Import MSWord, PowerPoint, Markdown and others into the current page or a new page
-* Import a Web page from a specified URL
-* Import hyperlinks on the current page as separate sub-pages
-* Export the current page or selected pages as HTML, PDF, MSWord, Markdown, or as raw OneNote XML
-* Invoke an external custom plugin to process a page
-
-
-[Edit Commands](../../wiki/Edit-Commands) (16)
-* Colorize selected text as a chosen programming language - _syntax highlighting_
-* Copy page or selected content as markdown that can then be pastde into another application
-* Set proofing language of selected text to one of the installed Office proofing languages
-* Highlight selected text using a rotating array of colors (Ctrl + Shift + H)
-* Paste Rich Text (preserve colors when pasting code from Visual Studio)<sup>1</sup> (Ctrl + Alt + V)
-* Enabled spell-checking on the current page, resets to the current culture language
-* Disable spell-check on the current page (F4)
-* Change selected text to UPPERCASE (Ctrl+Shift+Alt+U), lowercase (Ctrl+Shift+U), Or Title Case
-* Increase (Ctrl+Alt+Plus) or Decrease (Ctrl+Alt+Minus) the font size of all content on the current page
-* Invert text selection
-* Join Paragraph to remove soft-breaks and join lines into a single flowing paragraph
-* Select all images on the page
-* Select all text on a page with similar formatting to the currently selected text
-* Sort bulleted or numbered lists alphabetically
-
-[Favorites and Custom Snippets](../../wiki/Custom-Styles-and-Favorites#Favorites) (5)
-
-* Add any page in OneNote to the Favorites menu for quick access
-* Sort or reorder favorites using the Favorites Manager
-* Save and reuse custom snippets of content anywhere on any page
-* Quick access to user-defined plugins
-* Add a link to a special page containing all OneNote and OneMore keyboard shortcuts
-
-[Image commands](../../wiki/Image-Commands) (5)
-
-* Add caption to a selected images
-* Apply a variety of adjustment to an image including brightness, contrast, opacity, saturation, and stylizations like grayscale, sepia, and Polaroid
-* Precisely crop a selected image
-* Resize a selected image or all images on the page
-* Rotate an image to any angle
-
-[Numbering commands](../../wiki/Numbering-Commands) (5)
-
-* Number page headings with numeric or alpha-numeric outline prefixes
-* Number all sections in the current notebook
-* Number all pages in the current section with numeric or alpha-numeric prefixes
-* Remove numbering from sections
-* Remove numbering from pages
-
-[Page Commands](../../wiki/Page-Commands) (14)
-* Arrange containers vertically or in columns
-* Add caption to selected file attachments on the page
-* Add special icon to the page title, also appears in page hierarchy
-* Create Pages from a list, table, or spreadsheet of names
-* Copy formatted hyperlink to page
-* Copy formatted hyperlink to paragraph
-* Duplicate the current page
-* Expand or Collapse indented outlines, save and restore outlining
-* Fit background grid spacing to most common text size
-* Merge pages, preserving formatting and position of outlines
-* Split current page into multiple pages
-* Report number of words on the page or in the selected region
-
-[Reference Commands](../../wiki/Reference-Commands) (15)
-* Insert a new footnote (endnote) at the current location (Ctrl + Alt + F)
-* Remove a footnote from either the label or from the footer description (Ctrl + Shift + F)
-* Copy link to page or link to paragraph; will paste as a breadcrumb
-* Create bidirectional links between pages or paragraphs on a page
-* Embed the contents of one page into the current pages
-* Insert QR code representation of selected text
-* Map Linked Pages to report all pages that link to other pages
-* Link to current page from other pages that reference this page title
-* Refresh text of hyperlinks back to this page based on its title
-* Replace hyperlinked URLs with their Web page titles
-* Replace hyperlinked URLs with their downloaded images
-
-[Reminder commands](../../wiki/Reminder-Commands) (6)
-* Add or update a reminder for any paragraph on a page (F8)
-* Mark the selected reminder as completed
-* Delete the seleted reminder
-* Generate a detailed report of all reminders and their status
-* Import Tasks from Outlook
-* Toggle strikethrough text next to all completed/incompleted tags
-
-[Search commands](../../wiki/Search-Commands) (4)
-
-* Search and replace text on the current page (Ctrl + H)
-* Search for keywords and copy or move selected pages (Alt + F)
-* Add arbitrary tags to a page (Alt + T)
-* Search arbitrary page tags to index, copy, or move selected pages (Ctrl + Alt + T)
-
-[Snippets commands](../../wiki/Snippets-Commands) (18)
-
-* Expand custom snippet from name (Alt + F3)
-* Insert single (Shift + Alt + F11) or double (Shift + Alt + F12) horizontal line
-* Insert breadcrumb at top of page
-* Insert Table of Contents of headers, pages, or sections
-* Insert small or large monthly calendar for a specific month
-* Insert sortable date, similar to 2020-12-23 (Ctrl + Shift + D)
-* Insert sortable date/time (Ctrl + Shift + Alt + D)
-* Insert a text box, a single-cell table, and optionally wrap selecting content
-* Insert Code box similar to Confluence Code macro, optionally wrap selected content (F6)
-* Insert Info/Warn boxes similar to Confluence Info and Warn macros
-* Insert collapsable sections to hide secondary or sensitive information
-* Insert status labels similar to the Confluence status macro
-
-[Table commands](../../wiki/Table-Commands) (12)
-
-* Calculate Excel-like formulas in tables (F5)
-* Apply or clear styling in tables, including cell shading and fonts
-* Create your own custom table styles
-* Delete formula from selected table cells
-* Highlight all cells on the page with custom formulas
-* Recalculate all formulas in selected tables on the page (Shift + F5)
-* Convert select text to a table
-* Insert Table Cells, shifting content as expected
-* Paste copied table cells by overlaying cells rather than inserting a nested table
-* Copy across and copy down to fill all or selected cells with a copy of a cell
-* Fill across and fill down (Ctrl + D) to fill all or selected cells with increment values
-* Split table
-
-[Extra commands](../../wiki/Extra-Commands) (11)
-
-* Generate a report of the size of notebooks, section, pages, and image and file attachments on pages
-* Collapse the page hierarchy to see only top-level pages
-* Prepend page titles with the created date of each page
-* Insert pronunciation of words from over a dozen languages
-* Sort pages, sections, or notebooks
-* Start and display a visual timer (Alt + F2) and insert the timer value (F2)
-
-[Main Menu](../../wiki/Tools) (5)
-
-* Run OneMore Calendar
-* Replay the last OneMore action with a quick keyboard shortcut (Alt + Shift + R)
-* View and edit the internal OneNote XML of the current page (Ctrl + Shift + Alt + X)
-* Edit OneMore settings
-* Check for updates and install upgrades on-demand
-
-[Context Menus](../../wiki#extended-context-menus)
-  * Notebook context menu
-    * Archive the entire notebook to a zip of HTML files, including all images and attachments
-    * Number the sections in the notebook
-    * Remove section numbering
-  * Section context menu
-    * Add the section to the Favorites menu
-    * Archive the entire section to a zip of HTML files, including all images and attachments
-    * Prefix all page titles with a date stamp representing the data the page was created
-    * Customize the tab color of sections beyond the set of colors provided by OneNote
-  * Section Group context menu
-    * Copy section group and its entire contents to another location (OneNote only has a _move_ command)
-  * Page context menu
-    * Export the page as HTML, PDF, Word, XML, or a .one file
-    * Merge two or more selected pages into one page
-    * Split the current page on _Heading 1_ boundaries or other options
-    * Click in a blank area of the Pages panel to add or remove page numbering
-  * Image context menu
-    * Add a centered caption to the image
-    * Crop and rotate the image
-    * Resize the image
-
----
-<a name="install"></a>
-## 💾 How to Install OneMore as an Administrator
-The OneMore installer requires admin rights to complete configuration and update the Windows Registry.
-If your account has admin rights then follow these steps:
-
-> Please note that I currently cannot support OneMore with Microsoft Office Insider or Beta builds.
-> I'm very sorry for the inconvenience. If I have an opportunity to access these special channels,
-> I will update this notice.
-
-1. Close OneNote if it is currently running (See below if you need to install OneNote)
-2. Download the [latest installer from here](https://github.com/stevencohn/OneMore/releases/latest)
-   - Use the x86 installer only if you are running on a 32-bit Windows machine; it has nothing to do
-     with the bitness of Office itself.
-   - Use the x64 installer when running on a 64-bit Windows machine for either 32-bit or 64-bit Office.
-4. Right-click the downloaded installer msi and choose Properties, then tick the Unblock box and click OK
-5. Run the installer
-   - If you're currently logged in as a user with admin rights and this is the account with which you will 
-     use OneMore then you will be able to start OneNote immediately.
-   - Other users on the system will experience a slight delay the first time they log in after OneMore
-     is installed while settings are applied to their accounts. This only occurs once.
-   - If you're currently logged in as a user without admin rights, you can install OneMore if you have
-     the user name and password of an account with admin rights. See below for further instructions.
-5. Run OneNote and enjoy
-
-### How to Install OneMore as a Normal User
-If you have the user name and password of an account with admin rights, you can run the OneMore installer
-from your current account using this command entered from a console window:
-
-    runas /user:<username> "msiexec.exe /i <path-to-installer>"
-
-where &lt;username&gt; is the user name of an account with admin rights and
-&lt;path-to-installer&gt; is the full path to the OneMore installer .msi file
-
-You wil be prompted for the password of the admin user. The installation will continue.
-
-You must sign out and then sign in again before you will see OneMore in the OneNote ribbon.
-
-
-### How to Upgrade OneMore
-
-The OneMore installer is built such that it can be installed on top of an older version and will
-effectively perform an _upgrade_. This is the preferred method and can be done in one of two ways:
-
-1. Open the OneMore About dialog and click Check for updates. If there is a new version available,
-you will be given the option of upgrading. OneNote will be shut down to perform the upgrade.
-2. Or, download the OneMore installer and run it. There is no need to uninstall the previous version;
-the new installer will simply overwrite the old files and _upgrade_ OneMore. Note that when you
-download the installer, you will need to unblock it by opening its Properties dialog and clicking
-the _Unblock_ checkbox.
-
-### How to Install OneNote
-
-OneNote can be installed after installing Office or even installed standalone without Office at all.
-
-1. Optionally install Office - do not run the Setup.exe; instead, run Office\Setup64.exe
-   - Download the OneNote installer, OfficeSetup.exe [from here](https://support.microsoft.com/en-us/office/install-or-reinstall-onenote-for-windows-c08068d8-b517-4464-9ff2-132cb9c45c08)
-   - If run standalone, it will install 32-bit OneNote
-   - If run after installing Office, it will install 32 or 64 bit based on the bitness of Office
-1. Download the standalone OneNote installer (does not require Office or can be installed ontop of Office)
-   - The standalone OneNote 64-bit installer is [here](http://www.onenote.com/download/win32/x64/en-US)
-   - The standalone OneNote 32-bit installer is [here](http://www.onenote.com/download/win32/x86/en-US)
-
-Note that Microsoft has changed its OneNote strategy. Instead of promoting the OneNote for Windows 10 app,
-which sucks in my opinion, they are now working on combining the best features from that app into a new
-desktop edition, hopefully to be released in 2022.
-
-## Languages
-OneMore is translated to *Arabic, Chinese (Simplified), Dutch, English, French, German, Polish, Portuguese, and Spanish*. Please let me know if you'd like it translated to another language. I use my [ResxTranslator](https://github.com/stevencohn/ResxTranslator) program to automate the translations but can also override inaccuracies of specific words and phrases. If you think a translation is not correct, again please let me know.
-
-### OneMore in the Media and Online
-
-* [makeuseof.com - How to Increase the Functionality of OneNote With OneMore Add-In](https://www.makeuseof.com/increase-functionally-onenote-with-onemore-add-in/)
-* [MSN Technology - Every Programmer Who Uses OneNote Needs This Add-On ASAP](https://www.msn.com/en-us/news/technology/every-programmer-who-uses-onenote-needs-this-add-on-asap/ar-AAZL7dk)
-* [Microsoft OneNote Forum](https://answers.microsoft.com/en-us/msoffice/forum/all/onemore-add-in-for-onenote/4290f427-aec4-4365-920b-6523ca98f221)
-
-### Why?
-
-I wanted something more than what OneNote provided. I was overwhelmed by _OneNote Gem_,
-aghast at its bloated useless overloads of what was already otherwise available or features that
-I would never use in a million years - and, oh yeah, that price! I admit I was intrigued by the
-_Onetastic Macro_ approach but thought it limited and obtuse, decipherable only by programmers.
-And both of these charge money for something that should be open source and neither provided exactly
-what I wanted. So I did what any self respecting software engineer would do... I built my own.
-
-**Please Support**  
-I do this as a hobby. I will never charge you to use OneMore. So it is with great humility and
-appreciation that I humbly request that you consider a small donation to support the development
-of OneMore. In exchange, I pledge to continue listening with an open mind and to respond to your
-questions and tips in a timely manner.
-
-Please consider a sponsorship or one-time donation, click here:
-
-   [![Sponsor](../../wiki/images/Sponsor.png)](https://github.com/sponsors/stevencohn)
-
----
-## 🤖 Developing OneMore
-
-Are you programmer? Please feel free to explore the source code and have a play.
-See the [Developer Notes](../../wiki/~-Developer-Notes) page in the Wiki where I keep a list of
-technical references and information regarding developing and debugging this OneNote add-in.
-And mind [the license](https://github.com/stevencohn/OneMore/blob/main/LICENSE).
-
-### Minimum Prerequisites And How To Configure Your Development Environment
-
-* Windows 10
-* Microsoft [Visual Studio 2022](https://visualstudio.microsoft.com/vs/community/) including _Visual Studio Tools for Office_
-   * VS Community Edition is sufficient
-   * Ensure the VSTO option is selected which will add the necessary primary interop assemblies for Office
-   * Ensure that nuget.org (https://api.nuget.org/v3/index.json) is included in the NuGet Sources in Settings
-   * Install the [Visual Studio 2022 Installer Projects extension](https://marketplace.visualstudio.com/items?itemName=VisualStudioClient.MicrosoftVisualStudio2022InstallerProjects)
-   * Note that VSCode cannot be used since it doesn't support COMReference entries in csproj files
-* Microsoft [Windows 10 SDK](https://developer.microsoft.com/en-US/windows/downloads/windows-10-sdk/)
-  * Required to reference the Windows.winmd meta file located at 
-    "C:\Program Files (x86)\Windows Kits\10\UnionMetadata\10.0.**version**.0\Windows.winmd"
-    where **version** is the version of the SDK you have installed, e.g. 19041. If your SDK has
-    a different version then you must replace the **Windows** reference in OneMore.csproj
-* .NET Framework 4.8
-* Microsoft OneNote 2016 32-bit or 64-bit
-
-Tested recently with:
-* Windows 11 Pro 21H2 22000.1098
-* Windows 11 SDK 10.0.22000.0
-* Visual Studio 2022 17.3.6
-* OneNote® 2021 MSO (Version 2209 Build 16.0.15629.20200) 64-bit 
-
-#### Dependencies
-
-* [Chinese](https://www.nuget.org/packages/Chinese) - nuget, MIT license
-   * Used by Word Count command for Chinese text
-* [HtmlAgilityPack](https://www.nuget.org/packages/HtmlAgilityPack) - nuget, MIT license
-   * Normalizes HTML and non-conformant XML to well-formed XML that can be consumed by XElement.Parse
-* [InputSimulator](https://www.nuget.org/packages/InputSimulator) - nuget, MIT license
-   * Replaces the use of SendKeys.Send, adding support for multilingual keyboards
-* [Markdig.Signed](https://www.nuget.org/packages/Markdig.Signed) - nuget. BSD-2 license
-   * A fast, powerful, CommonMark compliant, extensible Markdown processor for .NET
-* [Newtonsoft.Json](https://www.nuget.org/packages/Newtonsoft.Json/) - nuget, MIT license
-   * Json.NET is a popular high-performance JSON framework for .NET
-* [PlantUML.NET](https://www.nuget.org/packages/PlantUml.Net//) - nuget, MIT license
-   * PlantUml.Net is a .Net wrapper for PlantUml
+### [Table Style commands](https://onedrive.live.com/redir?resid=6925D0374517D4B4%2158723&amp;authkey=%21AN6SD9aiIbjQLi0&amp;page=View&amp;wd=target%28Commands.one%7Cdefb70f1-1b5e-4ca1-95db-a5227b84d8de%2FTable%20Style%20Commands%7C84ce75a7-9e7d-4354-8089-a2160f7c5c3a%2F%29&amp;wdorigin=703)  
+- Apply patterns of cell shading to tables to highlight header rows, total rows, and more  
+- Apply fonts to specific rows or columns or the entire table  
+- Clear and reset cell shading and fonts in a table  
+  
+### [Extra commands](https://onedrive.live.com/redir?resid=6925D0374517D4B4%2158723&amp;authkey=%21AN6SD9aiIbjQLi0&amp;page=View&amp;wd=target%28Commands.one%7Cdefb70f1-1b5e-4ca1-95db-a5227b84d8de%2FExtra%20Commands%7Ced8bffbe-0211-4fe6-8a53-53bc4b2772f3%2F%29&amp;wdorigin=703)  
+- Collapse the page hierarchy to see only top-level pages  
+- Prepend page titles with the created date of each page  
+- Insert pronunciation of words from over a dozen languages  
+- Sort pages, sections, or notebooks  
+- Start and display a visual timer and insert the timer value  
+- *Prototype! Dangerous! Pass at your own risk!* The OneNote XML viewer and editor  
