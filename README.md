@@ -189,3 +189,6 @@ _Click an image to enlarge_
 - Sort pages, sections, or notebooks  
 - Start and display a visual timer and insert the timer value  
 - *Prototype! Dangerous! Pass at your own risk!* The OneNote XML viewer and editor  
+
+
+© 2020 Steven M Cohn. All rights reserved.
