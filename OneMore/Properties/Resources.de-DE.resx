@@ -4861,8 +4861,12 @@ In diesem Abschnitt</value>
     <value>Aktivieren Sie die ausführliche Protokollierung</value>
     <comment>checkbox</comment>
   </data>
-  <data name="ShowXmlDialog_saveBox.Text" xml:space="preserve">
-    <value>Fensterposition speichern</value>
-    <comment>checkbox</comment>
+  <data name="ColorizeDialog_Title" xml:space="preserve">
+    <value>Sprache auswählen</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="ribChooseColorizerButton_Label" xml:space="preserve">
+    <value>Einfärben</value>
+    <comment>ribbon edit</comment>
   </data>
 </root>
