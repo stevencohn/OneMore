@@ -73,7 +73,7 @@ _Click an image to enlarge_
 - Sort or reorder favorites using the Favorites Manager  
 - Press a shortcut key sequence to open the Favorites dialog for quick navigation  
   
-### [File Commands](https://onedrive.live.com/redir?resid=6925D0374517D4B4%2158723&amp;authkey=%21AN6SD9aiIbjQLi0&amp;page=View&amp;wd=target%28Commands.one%7Cdefb70f1-1b5e-4ca1-95db-a5227b84d8de%2FFile%20Commands%7C05c20cee-54d7-494b-9b82-87e7e6af2b20%2F%29&amp;wdorigin=703)  
+### [File commands](https://onedrive.live.com/redir?resid=6925D0374517D4B4%2158723&amp;authkey=%21AN6SD9aiIbjQLi0&amp;page=View&amp;wd=target%28Commands.one%7Cdefb70f1-1b5e-4ca1-95db-a5227b84d8de%2FFile%20Commands%7C05c20cee-54d7-494b-9b82-87e7e6af2b20%2F%29&amp;wdorigin=703)  
 - Archive sections and notebooks as Zip files (available from context menus and the Command Palette)  
 - Import MSWord, PowerPoint, Markdown and others into the current page or a new page  
 - Import a Web page from a specified URL  
@@ -121,7 +121,7 @@ _Click an image to enlarge_
 - Show number of words on the page or in the selected region  
 - Create report showing total number of words in all pages in a section or an entire notebook  
   
-### [Reference Commands](https://onedrive.live.com/redir?resid=6925D0374517D4B4%2158723&amp;authkey=%21AN6SD9aiIbjQLi0&amp;page=View&amp;wd=target%28Commands.one%7Cdefb70f1-1b5e-4ca1-95db-a5227b84d8de%2FReference%20Commands%7C70cfb9db-f83f-46cb-97a0-aff91ca8a9de%2F%29&amp;wdorigin=703)  
+### [Reference commands](https://onedrive.live.com/redir?resid=6925D0374517D4B4%2158723&amp;authkey=%21AN6SD9aiIbjQLi0&amp;page=View&amp;wd=target%28Commands.one%7Cdefb70f1-1b5e-4ca1-95db-a5227b84d8de%2FReference%20Commands%7C70cfb9db-f83f-46cb-97a0-aff91ca8a9de%2F%29&amp;wdorigin=703)  
 - Insert a new footnote (endnote) at the current location  
 - Remove a footnote from either the label or from the footer description  
 - Copy link to page or link to paragraph; will paste as a breadcrumb  
