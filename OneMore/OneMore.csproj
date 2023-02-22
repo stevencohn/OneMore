@@ -501,11 +501,11 @@
     <Compile Include="Commands\Tables\SplitTableDialog.Designer.cs">
       <DependentUpon>SplitTableDialog.cs</DependentUpon>
     </Compile>
-    <Compile Include="Commands\Extras\AnalyzeCommand.cs" />
-    <Compile Include="Commands\Extras\AnalyzeDialog.cs">
+    <Compile Include="Commands\File\AnalyzeCommand.cs" />
+    <Compile Include="Commands\File\AnalyzeDialog.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Commands\Extras\AnalyzeDialog.Designer.cs">
+    <Compile Include="Commands\File\AnalyzeDialog.Designer.cs">
       <DependentUpon>AnalyzeDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="Commands\Extras\SectionColorCommand.cs" />
@@ -1309,7 +1309,7 @@
     <EmbeddedResource Include="Commands\Settings\FavoritesSheet.resx">
       <DependentUpon>FavoritesSheet.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Commands\Extras\AnalyzeDialog.resx">
+    <EmbeddedResource Include="Commands\File\AnalyzeDialog.resx">
       <DependentUpon>AnalyzeDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Commands\Tools\CommandPaletteDialog.resx">
