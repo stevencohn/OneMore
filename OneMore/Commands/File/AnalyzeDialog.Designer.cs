@@ -39,13 +39,14 @@ namespace River.OneMoreAddIn.Commands
 			this.noDetailsBox = new System.Windows.Forms.RadioButton();
 			this.thumbnailLabel = new System.Windows.Forms.Label();
 			this.sizeBox = new System.Windows.Forms.ComboBox();
+			this.warningLabel = new System.Windows.Forms.Label();
 			this.SuspendLayout();
 			// 
 			// okButton
 			// 
 			this.okButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.okButton.DialogResult = System.Windows.Forms.DialogResult.OK;
-			this.okButton.Location = new System.Drawing.Point(270, 295);
+			this.okButton.Location = new System.Drawing.Point(270, 307);
 			this.okButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.okButton.Name = "okButton";
 			this.okButton.Size = new System.Drawing.Size(112, 35);
@@ -57,7 +58,7 @@ namespace River.OneMoreAddIn.Commands
 			// 
 			this.cancelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-			this.cancelButton.Location = new System.Drawing.Point(390, 295);
+			this.cancelButton.Location = new System.Drawing.Point(390, 307);
 			this.cancelButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.cancelButton.Name = "cancelButton";
 			this.cancelButton.Size = new System.Drawing.Size(112, 35);
@@ -144,9 +145,22 @@ namespace River.OneMoreAddIn.Commands
             "40 x 40",
             "80 x 80"});
 			this.sizeBox.Location = new System.Drawing.Point(156, 225);
+			this.sizeBox.Margin = new System.Windows.Forms.Padding(3, 3, 3, 6);
 			this.sizeBox.Name = "sizeBox";
 			this.sizeBox.Size = new System.Drawing.Size(185, 28);
 			this.sizeBox.TabIndex = 13;
+			this.sizeBox.SelectedIndexChanged += new System.EventHandler(this.Validate);
+			// 
+			// warningLabel
+			// 
+			this.warningLabel.AutoSize = true;
+			this.warningLabel.ForeColor = System.Drawing.Color.Maroon;
+			this.warningLabel.Location = new System.Drawing.Point(152, 259);
+			this.warningLabel.Name = "warningLabel";
+			this.warningLabel.Size = new System.Drawing.Size(186, 20);
+			this.warningLabel.TabIndex = 14;
+			this.warningLabel.Text = "Report may take minutes";
+			this.warningLabel.Visible = false;
 			// 
 			// AnalyzeDialog
 			// 
@@ -154,7 +168,8 @@ namespace River.OneMoreAddIn.Commands
 			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.CancelButton = this.cancelButton;
-			this.ClientSize = new System.Drawing.Size(521, 350);
+			this.ClientSize = new System.Drawing.Size(521, 362);
+			this.Controls.Add(this.warningLabel);
 			this.Controls.Add(this.sizeBox);
 			this.Controls.Add(this.thumbnailLabel);
 			this.Controls.Add(this.noDetailsBox);
@@ -188,5 +203,6 @@ namespace River.OneMoreAddIn.Commands
 		private System.Windows.Forms.RadioButton noDetailsBox;
 		private System.Windows.Forms.Label thumbnailLabel;
 		private System.Windows.Forms.ComboBox sizeBox;
+		private System.Windows.Forms.Label warningLabel;
 	}
 }

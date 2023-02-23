@@ -250,6 +250,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to {0} est.
+        /// </summary>
+        internal static string AnalyzeCommand_est {
+            get {
+                return ResourceManager.GetString("AnalyzeCommand_est", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Backup path not found or backup are not enabled in OneNote options. Cannot continue..
         /// </summary>
         internal static string AnalyzeCommand_NoBackups {
@@ -340,6 +349,24 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to {0} total.
+        /// </summary>
+        internal static string AnalyzeCommand_total {
+            get {
+                return ResourceManager.GetString("AnalyzeCommand_total", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} total images.
+        /// </summary>
+        internal static string AnalyzeCommand_totalImages {
+            get {
+                return ResourceManager.GetString("AnalyzeCommand_totalImages", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Include page details for all sections in this notebook.
         /// </summary>
         internal static string AnalyzeDialog_allDetailsBox_Text {
@@ -390,6 +417,15 @@ namespace River.OneMoreAddIn.Properties {
         internal static string AnalyzeDialog_Text {
             get {
                 return ResourceManager.GetString("AnalyzeDialog.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Report may take minutes.
+        /// </summary>
+        internal static string AnalyzeDialog_warningLabel_Text {
+            get {
+                return ResourceManager.GetString("AnalyzeDialog_warningLabel.Text", resourceCulture);
             }
         }
         
@@ -11097,6 +11133,15 @@ namespace River.OneMoreAddIn.Properties {
         internal static string word_No {
             get {
                 return ResourceManager.GetString("word_No", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to None.
+        /// </summary>
+        internal static string word_None {
+            get {
+                return ResourceManager.GetString("word_None", resourceCulture);
             }
         }
         

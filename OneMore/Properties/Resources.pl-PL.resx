@@ -4935,4 +4935,23 @@ W tej sekcji</value>
     <value>Pokoloruj</value>
     <comment>ribbon edit</comment>
   </data>
+  <data name="word_None" xml:space="preserve">
+    <value>Nic</value>
+  </data>
+  <data name="AnalyzeCommand_est" xml:space="preserve">
+    <value>{0} szac</value>
+    <comment>estimate</comment>
+  </data>
+  <data name="AnalyzeCommand_total" xml:space="preserve">
+    <value>łącznie {0}</value>
+    <comment>total image size</comment>
+  </data>
+  <data name="AnalyzeCommand_totalImages" xml:space="preserve">
+    <value>łącznie {0} obrazów</value>
+    <comment>total image count</comment>
+  </data>
+  <data name="AnalyzeDialog_warningLabel.Text" xml:space="preserve">
+    <value>Raport może zająć kilka minut</value>
+    <comment>label</comment>
+  </data>
 </root>

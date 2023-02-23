@@ -4977,4 +4977,23 @@ ISO-code then comma then language name</comment>
     <value>צבע</value>
     <comment>ribbon edit</comment>
   </data>
+  <data name="word_None" xml:space="preserve">
+    <value>אף אחד</value>
+  </data>
+  <data name="AnalyzeCommand_est" xml:space="preserve">
+    <value>{0} משוער</value>
+    <comment>estimate</comment>
+  </data>
+  <data name="AnalyzeCommand_total" xml:space="preserve">
+    <value>{0} סה"כ</value>
+    <comment>total image size</comment>
+  </data>
+  <data name="AnalyzeCommand_totalImages" xml:space="preserve">
+    <value>{0} תמונות בסך הכל</value>
+    <comment>total image count</comment>
+  </data>
+  <data name="AnalyzeDialog_warningLabel.Text" xml:space="preserve">
+    <value>הדיווח עשוי להימשך דקות</value>
+    <comment>label</comment>
+  </data>
 </root>

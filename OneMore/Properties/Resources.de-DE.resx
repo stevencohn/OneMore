@@ -4869,4 +4869,23 @@ In diesem Abschnitt</value>
     <value>Einfärben</value>
     <comment>ribbon edit</comment>
   </data>
+  <data name="word_None" xml:space="preserve">
+    <value>Keiner</value>
+  </data>
+  <data name="AnalyzeCommand_est" xml:space="preserve">
+    <value>{0} geschätzt</value>
+    <comment>estimate</comment>
+  </data>
+  <data name="AnalyzeCommand_total" xml:space="preserve">
+    <value>{0} insgesamt</value>
+    <comment>total image size</comment>
+  </data>
+  <data name="AnalyzeCommand_totalImages" xml:space="preserve">
+    <value>{0} Bilder insgesamt</value>
+    <comment>total image count</comment>
+  </data>
+  <data name="AnalyzeDialog_warningLabel.Text" xml:space="preserve">
+    <value>Der Bericht kann Minuten dauern</value>
+    <comment>label</comment>
+  </data>
 </root>

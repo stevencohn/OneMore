@@ -598,9 +598,19 @@ namespace River.OneMoreAddIn.Commands
 			row[1].SetContent(new Paragraph("XML Size").SetStyle(HeaderCss).SetAlignment("center"));
 			row[2].SetContent(new Paragraph("Native Size").SetStyle(HeaderCss).SetAlignment("center"));
 
-			foreach (var image in images)
+			if (images.Count > 0)
 			{
-				ReportImage(detail, image);
+				if (thumbnailSize == 0)
+				{
+					SummarizeImages(detail, images);
+				}
+				else
+				{
+					foreach (var image in images)
+					{
+						ReportImage(detail, image);
+					}
+				}
 			}
 
 			foreach (var file in files)
@@ -674,6 +684,20 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
+		private void SummarizeImages(Table detail, List<XElement> images)
+		{
+			var total = images.Sum(i => i.Element(ns + "Data").Value.Length);
+
+			var data = total.ToBytes(1);
+			var estimate = ((int)(total * 0.733)).ToBytes(1);
+
+			var row = detail.AddRow();
+			row[0].SetContent(new Paragraph($"{images.Count} images").SetStyle("font-style:italic"));
+			row[1].SetContent(new Paragraph($"{data} total").SetAlignment("right"));
+			row[2].SetContent(new Paragraph($"{estimate} est").SetAlignment("right"));
+		}
+
+
 		private void ReportImage(Table detail, XElement image, bool printout = false)
 		{
 			var row = detail.AddRow();
@@ -684,37 +708,41 @@ namespace River.OneMoreAddIn.Commands
 			{
 				using var raw = Image.FromStream(stream);
 				XElement img = null;
-				if (raw.Width > thumbnailSize || raw.Height > thumbnailSize)
+				if (thumbnailSize > 0)
 				{
-					// maintain aspect ratio of image thumbnails
-					var zoom = raw.Width - thumbnailSize > raw.Height - thumbnailSize
-						? ((float)thumbnailSize) / raw.Width
-						: ((float)thumbnailSize) / raw.Height;
-
-					try
+					if (raw.Width > thumbnailSize || raw.Height > thumbnailSize)
 					{
-						// callback is a required argument but is never used
-						var callback = new Image.GetThumbnailImageAbort(() => { return false; });
+						// maintain aspect ratio of image thumbnails
+						var zoom = raw.Width - thumbnailSize > raw.Height - thumbnailSize
+							? ((float)thumbnailSize) / raw.Width
+							: ((float)thumbnailSize) / raw.Height;
 
-						using var thumbnail =
-							raw.GetThumbnailImage(
+						Image thumbnail = null;
+
+						try
+						{
+							thumbnail = new Bitmap(raw,
 								(int)(raw.Width * zoom),
-								(int)(raw.Height * zoom),
-								callback, IntPtr.Zero);
+								(int)(raw.Height * zoom));
 
-						img = MakeImage(thumbnail);
+							img = MakeImage(thumbnail);
+						}
+						catch (Exception exc)
+						{
+							image.GetAttributeValue("format", out var format, "?");
+							var msg = $"{format} caused {exc.Message}";
+							logger.WriteLine(msg, exc);
+							row[0].SetContent(msg);
+						}
+						finally
+						{
+							thumbnail?.Dispose();
+						}
 					}
-					catch (Exception exc)
+					else
 					{
-						image.GetAttributeValue("format", out var format, "?");
-						var msg = $"{format} caused {exc.Message}";
-						logger.WriteLine(msg, exc);
-						row[0].SetContent(msg);
+						img = MakeImage(raw);
 					}
-				}
-				else
-				{
-					img = MakeImage(raw);
 				}
 
 				if (img != null)

@@ -4866,4 +4866,23 @@ ISO-code then comma then language name</comment>
     <value>着色</value>
     <comment>ribbon edit</comment>
   </data>
+  <data name="word_None" xml:space="preserve">
+    <value>没有任何</value>
+  </data>
+  <data name="AnalyzeCommand_est" xml:space="preserve">
+    <value>{0} 东部时间</value>
+    <comment>estimate</comment>
+  </data>
+  <data name="AnalyzeCommand_total" xml:space="preserve">
+    <value>{0} 总计</value>
+    <comment>total image size</comment>
+  </data>
+  <data name="AnalyzeCommand_totalImages" xml:space="preserve">
+    <value>{0} 张图片</value>
+    <comment>total image count</comment>
+  </data>
+  <data name="AnalyzeDialog_warningLabel.Text" xml:space="preserve">
+    <value>报告可能需要几分钟</value>
+    <comment>label</comment>
+  </data>
 </root>

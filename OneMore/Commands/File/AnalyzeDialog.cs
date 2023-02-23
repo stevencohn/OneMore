@@ -6,7 +6,7 @@
 
 namespace River.OneMoreAddIn.Commands
 {
-	using Resx = River.OneMoreAddIn.Properties.Resources;
+	using Resx = Properties.Resources;
 
 
 	internal enum AnalysisDetail
@@ -23,8 +23,6 @@ namespace River.OneMoreAddIn.Commands
 		{
 			InitializeComponent();
 
-			sizeBox.SelectedIndex = 0;
-
 			if (NeedsLocalizing())
 			{
 				Text = Resx.AnalyzeDialog_Text;
@@ -36,10 +34,14 @@ namespace River.OneMoreAddIn.Commands
 					"sectionDetailsBox",
 					"allDetailsBox",
 					"noDetailsBox",
+					"warningLabel",
 					"okButton=word_OK",
 					"cancelButton=word_Cancel"
 				});
 			}
+
+			sizeBox.Items.Insert(0, Resx.word_None);
+			sizeBox.SelectedIndex = 0;
 		}
 
 
@@ -59,15 +61,13 @@ namespace River.OneMoreAddIn.Commands
 			}
 		}
 
-		public int ThumbnailSize
+		public int ThumbnailSize => sizeBox.SelectedIndex switch
 		{
-			get
-			{
-				if (sizeBox.SelectedIndex == 0) return 20;
-				if (sizeBox.SelectedIndex == 1) return 40;
-				return 80;
-			}
-		}
+			1 => 20,
+			2 => 40,
+			3 => 80,
+			_ => 0
+		};
 
 
 		private void Validate(object sender, System.EventArgs e)
@@ -81,6 +81,10 @@ namespace River.OneMoreAddIn.Commands
 			sizeBox.Enabled =
 				allDetailsBox.Checked ||
 				sectionDetailBox.Checked;
+
+			warningLabel.Visible =
+				(sectionDetailBox.Checked || allDetailsBox.Checked) &&
+				sizeBox.SelectedIndex > 0;
 		}
 	}
 }

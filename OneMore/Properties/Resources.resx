@@ -198,6 +198,10 @@ OneNote will close automatically</value>
     <value>The cache is an internal directory managed by OneNote to optimize its performance. The recommendation is to avoid manually deleting the contents of the cache directory unless it becomes corrupted or hampers the operation of OneNote.</value>
     <comment>summary text</comment>
   </data>
+  <data name="AnalyzeCommand_est" xml:space="preserve">
+    <value>{0} est</value>
+    <comment>estimate</comment>
+  </data>
   <data name="AnalyzeCommand_NoBackups" xml:space="preserve">
     <value>Backup path not found or backup are not enabled in OneNote options. Cannot continue.</value>
     <comment>error message</comment>
@@ -238,6 +242,14 @@ OneNote will close automatically</value>
     <value>OneNote Storage Analysis</value>
     <comment>page title</comment>
   </data>
+  <data name="AnalyzeCommand_total" xml:space="preserve">
+    <value>{0} total</value>
+    <comment>total image size</comment>
+  </data>
+  <data name="AnalyzeCommand_totalImages" xml:space="preserve">
+    <value>{0} total images</value>
+    <comment>total image count</comment>
+  </data>
   <data name="AnalyzeDialog.Text" xml:space="preserve">
     <value>Storage Analysis Report Options</value>
     <comment>dialog title</comment>
@@ -261,6 +273,10 @@ OneNote will close automatically</value>
   <data name="AnalyzeDialog_sectionDetailsBox.Text" xml:space="preserve">
     <value>Include page details for current section</value>
     <comment>radio</comment>
+  </data>
+  <data name="AnalyzeDialog_warningLabel.Text" xml:space="preserve">
+    <value>Report may take minutes</value>
+    <comment>label</comment>
   </data>
   <data name="Architecture" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>emoji\architecture.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -4887,6 +4903,9 @@ In this section</value>
   </data>
   <data name="word_No" xml:space="preserve">
     <value>No</value>
+  </data>
+  <data name="word_None" xml:space="preserve">
+    <value>None</value>
   </data>
   <data name="word_Notebook" xml:space="preserve">
     <value>Notebook</value>
