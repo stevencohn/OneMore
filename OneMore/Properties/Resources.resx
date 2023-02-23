@@ -198,6 +198,10 @@ OneNote will close automatically</value>
     <value>The cache is an internal directory managed by OneNote to optimize its performance. The recommendation is to avoid manually deleting the contents of the cache directory unless it becomes corrupted or hampers the operation of OneNote.</value>
     <comment>summary text</comment>
   </data>
+  <data name="AnalyzeCommand_est" xml:space="preserve">
+    <value>{0} est</value>
+    <comment>estimate</comment>
+  </data>
   <data name="AnalyzeCommand_NoBackups" xml:space="preserve">
     <value>Backup path not found or backup are not enabled in OneNote options. Cannot continue.</value>
     <comment>error message</comment>
@@ -237,6 +241,14 @@ OneNote will close automatically</value>
   <data name="AnalyzeCommand_Title" xml:space="preserve">
     <value>OneNote Storage Analysis</value>
     <comment>page title</comment>
+  </data>
+  <data name="AnalyzeCommand_total" xml:space="preserve">
+    <value>{0} total</value>
+    <comment>total image size</comment>
+  </data>
+  <data name="AnalyzeCommand_totalImages" xml:space="preserve">
+    <value>{0} total images</value>
+    <comment>total image count</comment>
   </data>
   <data name="AnalyzeDialog.Text" xml:space="preserve">
     <value>Storage Analysis Report Options</value>
@@ -4887,6 +4899,9 @@ In this section</value>
   </data>
   <data name="word_No" xml:space="preserve">
     <value>No</value>
+  </data>
+  <data name="word_None" xml:space="preserve">
+    <value>None</value>
   </data>
   <data name="word_Notebook" xml:space="preserve">
     <value>Notebook</value>

@@ -4876,4 +4876,19 @@ Dans cette section</value>
     <value>Coloriser</value>
     <comment>ribbon edit</comment>
   </data>
+  <data name="word_None" xml:space="preserve">
+    <value>Aucun</value>
+  </data>
+  <data name="AnalyzeCommand_est" xml:space="preserve">
+    <value>{0} est</value>
+    <comment>estimate</comment>
+  </data>
+  <data name="AnalyzeCommand_total" xml:space="preserve">
+    <value>{0} au total</value>
+    <comment>total image size</comment>
+  </data>
+  <data name="AnalyzeCommand_totalImages" xml:space="preserve">
+    <value>{0} images au total</value>
+    <comment>total image count</comment>
+  </data>
 </root>

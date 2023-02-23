@@ -4882,4 +4882,19 @@ In deze sectie</value>
     <value>Inkleuren</value>
     <comment>ribbon edit</comment>
   </data>
+  <data name="word_None" xml:space="preserve">
+    <value>Geen</value>
+  </data>
+  <data name="AnalyzeCommand_est" xml:space="preserve">
+    <value>{0} geschat</value>
+    <comment>estimate</comment>
+  </data>
+  <data name="AnalyzeCommand_total" xml:space="preserve">
+    <value>{0} totaal</value>
+    <comment>total image size</comment>
+  </data>
+  <data name="AnalyzeCommand_totalImages" xml:space="preserve">
+    <value>{0} totale afbeeldingen</value>
+    <comment>total image count</comment>
+  </data>
 </root>

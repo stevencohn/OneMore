@@ -4882,4 +4882,19 @@ Nesta secção</value>
     <value>colorir</value>
     <comment>ribbon edit</comment>
   </data>
+  <data name="word_None" xml:space="preserve">
+    <value>Nenhum</value>
+  </data>
+  <data name="AnalyzeCommand_est" xml:space="preserve">
+    <value>{0} est</value>
+    <comment>estimate</comment>
+  </data>
+  <data name="AnalyzeCommand_total" xml:space="preserve">
+    <value>{0} total</value>
+    <comment>total image size</comment>
+  </data>
+  <data name="AnalyzeCommand_totalImages" xml:space="preserve">
+    <value>{0} total de imagens</value>
+    <comment>total image count</comment>
+  </data>
 </root>

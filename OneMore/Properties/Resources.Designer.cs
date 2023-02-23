@@ -250,6 +250,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to {0} est.
+        /// </summary>
+        internal static string AnalyzeCommand_est {
+            get {
+                return ResourceManager.GetString("AnalyzeCommand_est", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Backup path not found or backup are not enabled in OneNote options. Cannot continue..
         /// </summary>
         internal static string AnalyzeCommand_NoBackups {
@@ -336,6 +345,24 @@ namespace River.OneMoreAddIn.Properties {
         internal static string AnalyzeCommand_Title {
             get {
                 return ResourceManager.GetString("AnalyzeCommand_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} total.
+        /// </summary>
+        internal static string AnalyzeCommand_total {
+            get {
+                return ResourceManager.GetString("AnalyzeCommand_total", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} total images.
+        /// </summary>
+        internal static string AnalyzeCommand_totalImages {
+            get {
+                return ResourceManager.GetString("AnalyzeCommand_totalImages", resourceCulture);
             }
         }
         
@@ -11097,6 +11124,15 @@ namespace River.OneMoreAddIn.Properties {
         internal static string word_No {
             get {
                 return ResourceManager.GetString("word_No", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to None.
+        /// </summary>
+        internal static string word_None {
+            get {
+                return ResourceManager.GetString("word_None", resourceCulture);
             }
         }
         
