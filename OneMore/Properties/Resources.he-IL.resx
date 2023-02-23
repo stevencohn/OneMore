@@ -4992,4 +4992,8 @@ ISO-code then comma then language name</comment>
     <value>{0} תמונות בסך הכל</value>
     <comment>total image count</comment>
   </data>
+  <data name="AnalyzeDialog_warningLabel.Text" xml:space="preserve">
+    <value>הדיווח עשוי להימשך דקות</value>
+    <comment>label</comment>
+  </data>
 </root>

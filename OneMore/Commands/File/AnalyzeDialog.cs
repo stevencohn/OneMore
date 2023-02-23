@@ -6,7 +6,7 @@
 
 namespace River.OneMoreAddIn.Commands
 {
-	using Resx = River.OneMoreAddIn.Properties.Resources;
+	using Resx = Properties.Resources;
 
 
 	internal enum AnalysisDetail
@@ -34,6 +34,7 @@ namespace River.OneMoreAddIn.Commands
 					"sectionDetailsBox",
 					"allDetailsBox",
 					"noDetailsBox",
+					"warningLabel",
 					"okButton=word_OK",
 					"cancelButton=word_Cancel"
 				});
@@ -80,6 +81,10 @@ namespace River.OneMoreAddIn.Commands
 			sizeBox.Enabled =
 				allDetailsBox.Checked ||
 				sectionDetailBox.Checked;
+
+			warningLabel.Visible =
+				(sectionDetailBox.Checked || allDetailsBox.Checked) &&
+				sizeBox.SelectedIndex > 0;
 		}
 	}
 }

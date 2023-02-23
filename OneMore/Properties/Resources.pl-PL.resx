@@ -4950,4 +4950,8 @@ W tej sekcji</value>
     <value>łącznie {0} obrazów</value>
     <comment>total image count</comment>
   </data>
+  <data name="AnalyzeDialog_warningLabel.Text" xml:space="preserve">
+    <value>Raport może zająć kilka minut</value>
+    <comment>label</comment>
+  </data>
 </root>

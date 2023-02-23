@@ -4881,4 +4881,8 @@ ISO-code then comma then language name</comment>
     <value>{0} 张图片</value>
     <comment>total image count</comment>
   </data>
+  <data name="AnalyzeDialog_warningLabel.Text" xml:space="preserve">
+    <value>报告可能需要几分钟</value>
+    <comment>label</comment>
+  </data>
 </root>
