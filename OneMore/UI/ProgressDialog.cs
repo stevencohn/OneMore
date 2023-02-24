@@ -250,6 +250,21 @@ namespace River.OneMoreAddIn.UI
 		}
 
 
+		/// <summary>
+		/// Needed after calling base.Show()
+		/// </summary>
+		/// <param name="e"></param>
+		protected override void OnVisibleChanged(EventArgs e)
+		{
+			base.OnVisibleChanged(e);
+			if (Visible)
+			{
+				TopMost = false;
+				TopMost = true;
+			}
+		}
+
+
 		private void Tick(object sender, EventArgs e)
 		{
 			if (source.Token.IsCancellationRequested)

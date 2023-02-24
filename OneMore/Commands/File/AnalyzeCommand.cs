@@ -90,6 +90,8 @@ namespace River.OneMoreAddIn.Commands
 					thumbnailSize = dialog.ThumbnailSize;
 				}
 
+				logger.StartClock();
+
 				one.CreatePage(one.CurrentSectionId, out var pageId);
 				var page = one.GetPage(pageId);
 				page.Title = Resx.AnalyzeCommand_Title;
@@ -153,7 +155,11 @@ namespace River.OneMoreAddIn.Commands
 					await one.Update(page);
 				}
 
+				logger.WriteTime("analysis completed", true);
+
 				await one.NavigateTo(pageId);
+
+				logger.WriteTime("analysis report completed");
 			}
 		}
 
@@ -730,7 +736,15 @@ namespace River.OneMoreAddIn.Commands
 						catch (Exception exc)
 						{
 							image.GetAttributeValue("format", out var format, "?");
-							var msg = $"{format} caused {exc.Message}";
+
+							var cid = image.Element(ns + "CallbackID")?.Attribute("callbackID")?.Value
+								?? "{unknown}";
+
+							var info = image.Ancestors(ns + "Page")
+								.Select(e => new { Name = e.Attribute("name").Value, ID = e.Attribute("ID").Value })
+								.First();
+
+							var msg = $"{format} caused {exc.Message}; callbackID {cid} on page '{info.Name}', ID {info.ID}";
 							logger.WriteLine(msg, exc);
 							row[0].SetContent(msg);
 						}
