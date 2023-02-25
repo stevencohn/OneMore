@@ -32,7 +32,9 @@ namespace River.OneMoreAddIn.Commands
 
 		private OneNote one;
 		private XNamespace ns;
+		private OneNote.Scope scope;
 		private int grandTotal;
+		private int grandTotalPages;
 		private int heading2Index;
 		private Regex regex;
 		private UI.ProgressDialog progress;
@@ -49,12 +51,14 @@ namespace River.OneMoreAddIn.Commands
 
 			using (one = new OneNote())
 			{
-				if (args.Length > 0 && args[0] is OneNote.Scope scope)
+				scope = args.Length > 0 && args[0] is OneNote.Scope
+					? (OneNote.Scope)args[0]
+					: OneNote.Scope.Self;
+
+				if (scope == OneNote.Scope.Self)
 				{
-					await ReportWordCounts(scope);
-				}
-				else
-				{
+					// words on the current page...
+
 					var count = WordsOnPage(one.CurrentPageId, out var wholePage);
 
 					if (wholePage)
@@ -66,13 +70,25 @@ namespace River.OneMoreAddIn.Commands
 						UIHelper.ShowMessage(string.Format(Resx.WordCountCommand_Selected, count));
 					}
 				}
+				else
+				{
+					// words on pages within scope...
+
+					await ReportWordCounts(scope);
+				}
 			}
 		}
 
 
 		private int WordsOnPage(string pageID, out bool wholePage)
 		{
-			var page = one.GetPage(pageID, OneNote.PageDetail.Selection);
+			var page = one.GetPage(pageID,
+				// only use Selection for current page,
+				// otherwise counts might be off for pages other than the current page
+				scope == OneNote.Scope.Self
+					? OneNote.PageDetail.Selection
+					: OneNote.PageDetail.Basic);
+
 			var runs = page.GetSelectedElements(true);
 			var count = 0;
 
@@ -106,7 +122,7 @@ namespace River.OneMoreAddIn.Commands
 
 		private async Task ReportWordCounts(OneNote.Scope scope)
 		{
-			grandTotal = 0;
+			grandTotal = grandTotalPages = 0;
 
 			one.CreatePage(one.CurrentSectionId, out var pageId);
 			var page = one.GetPage(pageId);
@@ -147,8 +163,8 @@ namespace River.OneMoreAddIn.Commands
 					var notebook = await one.GetNotebook(OneNote.Scope.Pages);
 
 					var count = notebook.Descendants(ns + "Page")
-						.Count(e => 
-							e.Attribute("ID").Value != pageId && 
+						.Count(e =>
+							e.Attribute("ID").Value != pageId &&
 							e.Attribute("isInRecycleBin") == null);
 
 					progress.SetMaximum(count);
@@ -198,9 +214,10 @@ namespace River.OneMoreAddIn.Commands
 			row[1].SetContent(new Paragraph(Resx.word_Words).SetStyle(HeaderCss).SetAlignment("center"));
 
 			var total = 0;
+			var pages = 0;
 
 			section.Elements(ns + "Page")
-				.Where(e => 
+				.Where(e =>
 					e.Attribute("ID").Value != page.PageId &&
 					e.Attribute("isInRecycleBin") == null)
 				.ForEach(child =>
@@ -214,16 +231,20 @@ namespace River.OneMoreAddIn.Commands
 				row[0].SetContent(new Paragraph(name));
 
 				var count = WordsOnPage(child.Attribute("ID").Value, out _);
+
+				pages++;
 				total += count;
 				grandTotal += count;
 
 				row[1].SetContent(new Paragraph(count.ToString("n0")).SetAlignment("center"));
 			});
 
-			row = table.AddRow();
-			row[0].SetContent(new Paragraph(
-				Resx.word_Total).SetStyle("font-weight:bold").SetAlignment("right"));
+			grandTotalPages += pages;
 
+			row = table.AddRow();
+			var text = string.Format(Resx.WordCounts_SectionTotal, pages);
+
+			row[0].SetContent(new Paragraph(text).SetStyle(HeaderCss).SetAlignment("right"));
 			row[1].SetContent(new Paragraph(total.ToString("n0")).SetAlignment("center"));
 
 			container.Add(
@@ -244,11 +265,10 @@ namespace River.OneMoreAddIn.Commands
 			table.SetColumnWidth(1, 80);
 
 			var row = table[0];
+			var text = string.Format(Resx.WordCounts_NotebookTotal, grandTotalPages);
 
 			row[0].ShadingColor = Header2Shading;
-			row[0].SetContent(new Paragraph(
-				Resx.WordCounts_TotalWords).SetStyle("font-weight:bold").SetAlignment("right"));
-
+			row[0].SetContent(new Paragraph(text).SetStyle(HeaderCss).SetAlignment("right"));
 			row[1].SetContent(new Paragraph(grandTotal.ToString("n0")).SetAlignment("center"));
 
 			container.Add(new Paragraph(table.Root));

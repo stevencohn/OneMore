@@ -4846,9 +4846,6 @@ In diesem Abschnitt</value>
     <value>{0} Abschnitt</value>
     <comment>page heading</comment>
   </data>
-  <data name="WordCounts_TotalWords" xml:space="preserve">
-    <value>Gesamtworte</value>
-  </data>
   <data name="WordCountsCommand_Title" xml:space="preserve">
     <value>Wort zählt</value>
     <comment>page title</comment>
@@ -4887,5 +4884,13 @@ In diesem Abschnitt</value>
   <data name="AnalyzeDialog_warningLabel.Text" xml:space="preserve">
     <value>Der Bericht kann Minuten dauern</value>
     <comment>label</comment>
+  </data>
+  <data name="WordCounts_NotebookTotal" xml:space="preserve">
+    <value>Gesamtzahl der Wörter im Notizbuch auf {0} Seiten</value>
+    <comment>report</comment>
+  </data>
+  <data name="WordCounts_SectionTotal" xml:space="preserve">
+    <value>Gesamtzahl der Wörter im Abschnitt auf {0} Seiten</value>
+    <comment>report</comment>
   </data>
 </root>

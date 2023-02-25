@@ -4843,9 +4843,6 @@ ISO-code then comma then language name</comment>
     <value>{0} 部分</value>
     <comment>page heading</comment>
   </data>
-  <data name="WordCounts_TotalWords" xml:space="preserve">
-    <value>总字数</value>
-  </data>
   <data name="WordCountsCommand_Title" xml:space="preserve">
     <value>字数统计</value>
     <comment>page title</comment>
@@ -4884,5 +4881,13 @@ ISO-code then comma then language name</comment>
   <data name="AnalyzeDialog_warningLabel.Text" xml:space="preserve">
     <value>报告可能需要几分钟</value>
     <comment>label</comment>
+  </data>
+  <data name="WordCounts_NotebookTotal" xml:space="preserve">
+    <value>{0} 页笔记本中的总字数</value>
+    <comment>report</comment>
+  </data>
+  <data name="WordCounts_SectionTotal" xml:space="preserve">
+    <value>{0} 页部分的总字数</value>
+    <comment>report</comment>
   </data>
 </root>

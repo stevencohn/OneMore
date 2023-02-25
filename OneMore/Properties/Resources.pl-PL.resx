@@ -4912,9 +4912,6 @@ W tej sekcji</value>
     <value>{0} Sekcja</value>
     <comment>page heading</comment>
   </data>
-  <data name="WordCounts_TotalWords" xml:space="preserve">
-    <value>Wszystkie słowa</value>
-  </data>
   <data name="WordCountsCommand_Title" xml:space="preserve">
     <value>Liczy się słowo</value>
     <comment>page title</comment>
@@ -4953,5 +4950,13 @@ W tej sekcji</value>
   <data name="AnalyzeDialog_warningLabel.Text" xml:space="preserve">
     <value>Raport może zająć kilka minut</value>
     <comment>label</comment>
+  </data>
+  <data name="WordCounts_NotebookTotal" xml:space="preserve">
+    <value>Łączna liczba słów w notatniku na {0} stronach</value>
+    <comment>report</comment>
+  </data>
+  <data name="WordCounts_SectionTotal" xml:space="preserve">
+    <value>Łączna liczba słów w sekcji na {0} stronach</value>
+    <comment>report</comment>
   </data>
 </root>

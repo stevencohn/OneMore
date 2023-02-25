@@ -5015,12 +5015,17 @@ In this section</value>
     <value>{0} Notebook</value>
     <comment>page heading</comment>
   </data>
+  <data name="WordCounts_NotebookTotal" xml:space="preserve">
+    <value>Total words in notebook across {0} pages</value>
+    <comment>report</comment>
+  </data>
   <data name="WordCounts_Section" xml:space="preserve">
     <value>{0} Section</value>
     <comment>page heading</comment>
   </data>
-  <data name="WordCounts_TotalWords" xml:space="preserve">
-    <value>Total Words</value>
+  <data name="WordCounts_SectionTotal" xml:space="preserve">
+    <value>Total words in section across {0} pages</value>
+    <comment>report</comment>
   </data>
   <data name="WordCountsCommand_Title" xml:space="preserve">
     <value>Word Counts</value>

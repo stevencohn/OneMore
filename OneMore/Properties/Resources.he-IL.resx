@@ -4954,9 +4954,6 @@ ISO-code then comma then language name</comment>
     <value>{0} קטע</value>
     <comment>page heading</comment>
   </data>
-  <data name="WordCounts_TotalWords" xml:space="preserve">
-    <value>סה"כ מילים</value>
-  </data>
   <data name="WordCountsCommand_Title" xml:space="preserve">
     <value>ספירת מילים</value>
     <comment>page title</comment>
@@ -4995,5 +4992,13 @@ ISO-code then comma then language name</comment>
   <data name="AnalyzeDialog_warningLabel.Text" xml:space="preserve">
     <value>הדיווח עשוי להימשך דקות</value>
     <comment>label</comment>
+  </data>
+  <data name="WordCounts_NotebookTotal" xml:space="preserve">
+    <value>סך המילים במחברת על פני {0} דפים</value>
+    <comment>report</comment>
+  </data>
+  <data name="WordCounts_SectionTotal" xml:space="preserve">
+    <value>סך המילים בקטע על פני {0} דפים</value>
+    <comment>report</comment>
   </data>
 </root>

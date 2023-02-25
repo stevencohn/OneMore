@@ -11461,6 +11461,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Total words in notebook across {0} pages.
+        /// </summary>
+        internal static string WordCounts_NotebookTotal {
+            get {
+                return ResourceManager.GetString("WordCounts_NotebookTotal", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to {0} Section.
         /// </summary>
         internal static string WordCounts_Section {
@@ -11470,11 +11479,11 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Total Words.
+        ///   Looks up a localized string similar to Total words in section across {0} pages.
         /// </summary>
-        internal static string WordCounts_TotalWords {
+        internal static string WordCounts_SectionTotal {
             get {
-                return ResourceManager.GetString("WordCounts_TotalWords", resourceCulture);
+                return ResourceManager.GetString("WordCounts_SectionTotal", resourceCulture);
             }
         }
         

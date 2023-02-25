@@ -4853,9 +4853,6 @@ Dans cette section</value>
     <value>{0} Rubrique</value>
     <comment>page heading</comment>
   </data>
-  <data name="WordCounts_TotalWords" xml:space="preserve">
-    <value>Mots totaux</value>
-  </data>
   <data name="WordCountsCommand_Title" xml:space="preserve">
     <value>Nombre de mots</value>
     <comment>page title</comment>
@@ -4894,5 +4891,13 @@ Dans cette section</value>
   <data name="AnalyzeDialog_warningLabel.Text" xml:space="preserve">
     <value>Le rapport peut prendre quelques minutes</value>
     <comment>label</comment>
+  </data>
+  <data name="WordCounts_NotebookTotal" xml:space="preserve">
+    <value>Nombre total de mots dans le bloc-notes sur {0} pages</value>
+    <comment>report</comment>
+  </data>
+  <data name="WordCounts_SectionTotal" xml:space="preserve">
+    <value>Nombre total de mots dans la section sur {0} pages</value>
+    <comment>report</comment>
   </data>
 </root>

@@ -4859,9 +4859,6 @@ En esta sección</value>
     <value>{0} Sección</value>
     <comment>page heading</comment>
   </data>
-  <data name="WordCounts_TotalWords" xml:space="preserve">
-    <value>Palabras totales</value>
-  </data>
   <data name="WordCountsCommand_Title" xml:space="preserve">
     <value>Conteo de palabras</value>
     <comment>page title</comment>
@@ -4900,5 +4897,13 @@ En esta sección</value>
   <data name="AnalyzeDialog_warningLabel.Text" xml:space="preserve">
     <value>El informe puede tardar unos minutos</value>
     <comment>label</comment>
+  </data>
+  <data name="WordCounts_NotebookTotal" xml:space="preserve">
+    <value>Total de palabras en el cuaderno en {0} páginas</value>
+    <comment>report</comment>
+  </data>
+  <data name="WordCounts_SectionTotal" xml:space="preserve">
+    <value>Total de palabras en la sección en {0} páginas</value>
+    <comment>report</comment>
   </data>
 </root>

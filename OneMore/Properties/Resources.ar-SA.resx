@@ -4859,9 +4859,6 @@ ISO-code then comma then language name</comment>
     <value>{0} قسم</value>
     <comment>page heading</comment>
   </data>
-  <data name="WordCounts_TotalWords" xml:space="preserve">
-    <value>مجموع الكلمات</value>
-  </data>
   <data name="WordCountsCommand_Title" xml:space="preserve">
     <value>عدد الكلمات</value>
     <comment>page title</comment>
@@ -4900,5 +4897,13 @@ ISO-code then comma then language name</comment>
   <data name="AnalyzeDialog_warningLabel.Text" xml:space="preserve">
     <value>قد يستغرق التقرير دقائق</value>
     <comment>label</comment>
+  </data>
+  <data name="WordCounts_NotebookTotal" xml:space="preserve">
+    <value>إجمالي الكلمات في المفكرة عبر {0} صفحة</value>
+    <comment>report</comment>
+  </data>
+  <data name="WordCounts_SectionTotal" xml:space="preserve">
+    <value>إجمالي الكلمات في القسم عبر {0} صفحة</value>
+    <comment>report</comment>
   </data>
 </root>
