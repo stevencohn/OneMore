@@ -76,7 +76,7 @@ namespace River.OneMoreAddIn.Commands
 			// file not found then initialize with defaults
 			root ??= new XElement("navigation",
 				new XElement("history"),
-				new XElement("pins")
+				new XElement("pinned")
 			);
 
 			return root;
