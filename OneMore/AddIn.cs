@@ -225,6 +225,9 @@ namespace River.OneMoreAddIn
 				// reminder task scanner
 				new Commands.ReminderService().Startup();
 
+				// navigation listener
+				new Commands.NavigationService().Startup();
+
 				// activate enablers and update check
 				Task.Run(async () => { await SetGeneralOptions(); });
 

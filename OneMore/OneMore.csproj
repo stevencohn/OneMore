@@ -153,6 +153,8 @@
     <Compile Include="Commands\File\Markdown\OneMoreDigRenderer.cs" />
     <Compile Include="Commands\Images\DrawPlantUmlCommand.cs" />
     <Compile Include="Commands\Images\OpenImageWithCommand.cs" />
+    <Compile Include="Commands\Navigator\NavigationProvider.cs" />
+    <Compile Include="Commands\Navigator\NavigationService.cs" />
     <Compile Include="Commands\Page\DuplicatePageCommand.cs" />
     <Compile Include="Commands\Page\Emojis.cs" />
     <Compile Include="Commands\Settings\QuickNotesSheet.cs">
