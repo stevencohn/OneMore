@@ -155,6 +155,13 @@
     <Compile Include="Commands\Images\OpenImageWithCommand.cs" />
     <Compile Include="Commands\Navigator\NavigationProvider.cs" />
     <Compile Include="Commands\Navigator\NavigationService.cs" />
+    <Compile Include="Commands\Navigator\NavigatorCommand.cs" />
+    <Compile Include="Commands\Navigator\NavigatorWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Commands\Navigator\NavigatorWindow.Designer.cs">
+      <DependentUpon>NavigatorWindow.cs</DependentUpon>
+    </Compile>
     <Compile Include="Commands\Page\DuplicatePageCommand.cs" />
     <Compile Include="Commands\Page\Emojis.cs" />
     <Compile Include="Commands\Settings\QuickNotesSheet.cs">
@@ -1183,6 +1190,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Commands\File\ImportWebDialog.resx">
       <DependentUpon>ImportWebDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Commands\Navigator\NavigatorWindow.resx">
+      <DependentUpon>NavigatorWindow.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Commands\Page\ArrangeContainersDialog.resx">
       <DependentUpon>ArrangeContainersDialog.cs</DependentUpon>

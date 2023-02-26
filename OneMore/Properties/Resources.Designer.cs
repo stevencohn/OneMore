@@ -7615,6 +7615,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Navigator Window.
+        /// </summary>
+        internal static string ribNavigatorButton_Label {
+            get {
+                return ResourceManager.GetString("ribNavigatorButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Create New Style from Text.
         /// </summary>
         internal static string ribNewStyleButton_Label {
