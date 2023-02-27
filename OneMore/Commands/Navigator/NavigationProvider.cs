@@ -13,23 +13,112 @@ namespace River.OneMoreAddIn.Commands
 	using System.Xml.Linq;
 
 
-	internal class NavigationProvider : Loggable
+	internal class NavigationProvider : Loggable, IDisposable
 	{
-		private static readonly SemaphoreSlim semaphore = new(1);
+		private static readonly SemaphoreSlim semalock = new(1);
+		private static readonly SemaphoreSlim semapub = new(1);
+
 		private readonly string path;
+		private FileSystemWatcher watcher;
+		private EventHandler<List<string>> navigated;
+		private DateTime lastWrite;
+		private bool disposedValue;
 
 
 		public NavigationProvider()
 		{
 			path = Path.Combine(PathHelper.GetAppDataPath(), "Navigator.xml");
+			lastWrite = DateTime.MinValue;
 		}
 
+
+		#region Dispose
+		protected virtual void Dispose(bool disposing)
+		{
+			if (!disposedValue)
+			{
+				if (disposing)
+				{
+					if (watcher != null)
+					{
+						watcher.Created -= NavigationHandler;
+						watcher.Changed -= NavigationHandler;
+						watcher.Dispose();
+						watcher = null;
+					}
+				}
+
+				disposedValue = true;
+			}
+		}
+
+		public void Dispose()
+		{
+			// Do not change this code. Put cleanup code in 'Dispose(bool disposing)' method
+			Dispose(disposing: true);
+			GC.SuppressFinalize(this);
+		}
+		#endregion Dispose
+
+
+		public event EventHandler<List<string>> Navigated
+		{
+			add
+			{
+				var dir = Path.GetDirectoryName(path);
+				var nam = Path.GetFileNameWithoutExtension(path);
+				var ext = Path.GetExtension(path);
+				watcher = new FileSystemWatcher(dir, $"{nam}*{ext}")
+				{
+					NotifyFilter = NotifyFilters.LastWrite
+				};
+				watcher.Changed += NavigationHandler;
+				watcher.EnableRaisingEvents = true;
+				navigated += value;
+			}
+
+			remove
+			{
+				navigated -= value;
+				watcher.EnableRaisingEvents = false;
+				watcher.Changed -= NavigationHandler;
+				watcher.Dispose();
+				watcher = null;
+			}
+		}
+
+
+		private async void NavigationHandler(object sender, FileSystemEventArgs e)
+		{
+			try
+			{
+				await semapub.WaitAsync();
+
+				// time-check will prevent known bug/feature where FileSystemWatcher.Changed
+				// seems to raise duplicate events within just a couple of ticks of each other;
+				// throttle should be less than NavigationService.PollingInterval
+
+				var time = File.GetLastWriteTime(e.FullPath);
+				if (time.Subtract(lastWrite).Milliseconds > NavigationService.SafeWatchInterval)
+				{
+					navigated?.Invoke(this, await ReadHistory());
+					lastWrite = time;
+				}
+			}
+			finally
+			{
+				semapub.Release();
+			}
+		}
+
+
+		// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 		public async Task<List<string>> ReadHistory()
 		{
 			try
 			{
-				await semaphore.WaitAsync();
+				await semalock.WaitAsync();
 
 				var root = await Read();
 
@@ -43,7 +132,7 @@ namespace River.OneMoreAddIn.Commands
 			}
 			finally
 			{
-				semaphore.Release();
+				semalock.Release();
 			}
 		}
 
@@ -70,10 +159,11 @@ namespace River.OneMoreAddIn.Commands
 				catch (Exception exc)
 				{
 					logger.WriteLine($"error reading {path}", exc);
+					root = null;
 				}
 			}
 
-			// file not found then initialize with defaults
+			// file not found or problem reading then initialize with defaults
 			root ??= new XElement("navigation",
 				new XElement("history"),
 				new XElement("pinned")
@@ -85,7 +175,7 @@ namespace River.OneMoreAddIn.Commands
 
 		public async Task<bool> RecordHistory(string pageID, int depth)
 		{
-			await semaphore.WaitAsync();
+			await semalock.WaitAsync();
 
 			try
 			{
@@ -134,6 +224,9 @@ namespace River.OneMoreAddIn.Commands
 							FileAccess.Write,
 							FileShare.ReadWrite);
 
+						// clear contents if writing less bytes than file contains
+						stream.SetLength(0);
+
 						using var writer = new StreamWriter(stream);
 
 						await writer.WriteAsync(xml);
@@ -150,7 +243,7 @@ namespace River.OneMoreAddIn.Commands
 			}
 			finally
 			{
-				semaphore.Release();
+				semalock.Release();
 			}
 		}
 	}

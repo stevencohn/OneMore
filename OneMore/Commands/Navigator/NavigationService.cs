@@ -14,6 +14,17 @@ namespace River.OneMoreAddIn.Commands
 	/// </summary>
 	internal class NavigationService : Loggable
 	{
+		/// <summary>
+		/// Used by Settings to limit polling interval so we don't affect overall performance
+		/// </summary>
+		public const int MinimumPollingInterval = 1500;
+
+		/// <summary>
+		/// Used by NavigationProvider to filter out duplicate FileSystemWatcher.Changed events.
+		/// </summary>
+		public const int SafeWatchInterval = MinimumPollingInterval - 500;
+
+
 		private const int PollingInterval = 1750; // 1.75s
 		private const int HistoryDepth = 10;
 

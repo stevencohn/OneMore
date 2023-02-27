@@ -6,6 +6,7 @@ namespace River.OneMoreAddIn.Commands
 {
 	using River.OneMoreAddIn.UI;
 	using System;
+	using System.Collections.Generic;
 	using System.Drawing;
 	using System.Globalization;
 	using System.Windows.Forms;
@@ -16,6 +17,9 @@ namespace River.OneMoreAddIn.Commands
 		private int maxLeft;
 		private int maxTop;
 
+		// disposed
+		private readonly NavigationProvider provider;
+
 
 		public NavigatorWindow()
 		{
@@ -23,7 +27,7 @@ namespace River.OneMoreAddIn.Commands
 
 			if (NeedsLocalizing())
 			{
-				//Text = Resx.TimerWindow_Text;
+				//Text = Resx.NavigatorWindow_Text;
 
 				Localize(new string[]
 				{
@@ -33,10 +37,13 @@ namespace River.OneMoreAddIn.Commands
 
 			ManualLocation = true;
 			TopMost = true;
+
+			provider = new NavigationProvider();
+			provider.Navigated += Navigated;
 		}
 
 
-		private void PositionOnLoad(object sender, EventArgs e)
+		private async void PositionOnLoad(object sender, EventArgs e)
 		{
 			// deal with primary/secondary displays in either duplicate or extended mode...
 
@@ -64,7 +71,7 @@ namespace River.OneMoreAddIn.Commands
 				Left = (int)(10 * scalingX);
 			}
 
-			TopOnShown(sender, e);
+			Navigated(null, await provider.ReadHistory());
 		}
 
 
@@ -79,12 +86,28 @@ namespace River.OneMoreAddIn.Commands
 			}
 		}
 
+
 		private void TopOnShown(object sender, EventArgs e)
 		{
 			TopMost = false;
 			TopMost = true;
 			TopLevel = true;
 			this.ForceTopMost();
+		}
+
+
+		private void CloseOnClick(object sender, EventArgs e)
+		{
+			Close();
+		}
+
+
+		// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+		private void Navigated(object sender, List<string> e)
+		{
+			historyBox.Items.Clear();
+			historyBox.Items.AddRange(e.ToArray());
 		}
 	}
 }
