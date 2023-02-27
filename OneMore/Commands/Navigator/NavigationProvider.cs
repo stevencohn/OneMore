@@ -99,7 +99,7 @@ namespace River.OneMoreAddIn.Commands
 				// throttle should be less than NavigationService.PollingInterval
 
 				var time = File.GetLastWriteTime(e.FullPath);
-				if (time.Subtract(lastWrite).Milliseconds > NavigationService.SafeWatchInterval)
+				if (time.Subtract(lastWrite).TotalMilliseconds > NavigationService.SafeWatchInterval)
 				{
 					navigated?.Invoke(this, await ReadHistory());
 					lastWrite = time;

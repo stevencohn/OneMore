@@ -34,16 +34,16 @@
 			this.controlPanel = new System.Windows.Forms.Panel();
 			this.closeButton = new System.Windows.Forms.Button();
 			this.mainContainer = new System.Windows.Forms.SplitContainer();
+			this.pageBox = new System.Windows.Forms.ListBox();
 			this.head1Panel = new System.Windows.Forms.Panel();
 			this.head1Label = new System.Windows.Forms.Label();
 			this.subContainer = new System.Windows.Forms.SplitContainer();
+			this.pinnedBox = new System.Windows.Forms.ListBox();
 			this.head2Panel = new System.Windows.Forms.Panel();
 			this.head2Label = new System.Windows.Forms.Label();
+			this.historyBox = new System.Windows.Forms.ListBox();
 			this.head3Panel = new System.Windows.Forms.Panel();
 			this.head3Label = new System.Windows.Forms.Label();
-			this.historyBox = new System.Windows.Forms.ListBox();
-			this.pinnedBox = new System.Windows.Forms.ListBox();
-			this.pageBox = new System.Windows.Forms.ListBox();
 			this.controlPanel.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.mainContainer)).BeginInit();
 			this.mainContainer.Panel1.SuspendLayout();
@@ -103,6 +103,16 @@
 			this.mainContainer.SplitterDistance = 291;
 			this.mainContainer.TabIndex = 1;
 			// 
+			// pageBox
+			// 
+			this.pageBox.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.pageBox.FormattingEnabled = true;
+			this.pageBox.ItemHeight = 20;
+			this.pageBox.Location = new System.Drawing.Point(0, 41);
+			this.pageBox.Name = "pageBox";
+			this.pageBox.Size = new System.Drawing.Size(528, 250);
+			this.pageBox.TabIndex = 4;
+			// 
 			// head1Panel
 			// 
 			this.head1Panel.BackColor = System.Drawing.Color.Lavender;
@@ -149,6 +159,17 @@
 			this.subContainer.SplitterDistance = 253;
 			this.subContainer.TabIndex = 0;
 			// 
+			// pinnedBox
+			// 
+			this.pinnedBox.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.pinnedBox.FormattingEnabled = true;
+			this.pinnedBox.ItemHeight = 20;
+			this.pinnedBox.Location = new System.Drawing.Point(0, 41);
+			this.pinnedBox.Name = "pinnedBox";
+			this.pinnedBox.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
+			this.pinnedBox.Size = new System.Drawing.Size(528, 212);
+			this.pinnedBox.TabIndex = 3;
+			// 
 			// head2Panel
 			// 
 			this.head2Panel.BackColor = System.Drawing.Color.Lavender;
@@ -169,6 +190,17 @@
 			this.head2Label.Size = new System.Drawing.Size(73, 22);
 			this.head2Label.TabIndex = 1;
 			this.head2Label.Text = "Pinned";
+			// 
+			// historyBox
+			// 
+			this.historyBox.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.historyBox.FormattingEnabled = true;
+			this.historyBox.ItemHeight = 20;
+			this.historyBox.Location = new System.Drawing.Point(0, 41);
+			this.historyBox.Name = "historyBox";
+			this.historyBox.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
+			this.historyBox.Size = new System.Drawing.Size(528, 287);
+			this.historyBox.TabIndex = 2;
 			// 
 			// head3Panel
 			// 
@@ -191,36 +223,6 @@
 			this.head3Label.TabIndex = 1;
 			this.head3Label.Text = "History";
 			// 
-			// historyBox
-			// 
-			this.historyBox.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.historyBox.FormattingEnabled = true;
-			this.historyBox.ItemHeight = 20;
-			this.historyBox.Location = new System.Drawing.Point(0, 41);
-			this.historyBox.Name = "historyBox";
-			this.historyBox.Size = new System.Drawing.Size(528, 287);
-			this.historyBox.TabIndex = 2;
-			// 
-			// pinnedBox
-			// 
-			this.pinnedBox.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.pinnedBox.FormattingEnabled = true;
-			this.pinnedBox.ItemHeight = 20;
-			this.pinnedBox.Location = new System.Drawing.Point(0, 41);
-			this.pinnedBox.Name = "pinnedBox";
-			this.pinnedBox.Size = new System.Drawing.Size(528, 212);
-			this.pinnedBox.TabIndex = 3;
-			// 
-			// pageBox
-			// 
-			this.pageBox.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.pageBox.FormattingEnabled = true;
-			this.pageBox.ItemHeight = 20;
-			this.pageBox.Location = new System.Drawing.Point(0, 41);
-			this.pageBox.Name = "pageBox";
-			this.pageBox.Size = new System.Drawing.Size(528, 250);
-			this.pageBox.TabIndex = 4;
-			// 
 			// NavigatorWindow
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -240,6 +242,7 @@
 			this.Activated += new System.EventHandler(this.TopOnShown);
 			this.Load += new System.EventHandler(this.PositionOnLoad);
 			this.Shown += new System.EventHandler(this.TopOnShown);
+			this.SizeChanged += new System.EventHandler(this.SetLimitsOnSizeChanged);
 			this.Move += new System.EventHandler(this.RestrictOnMove);
 			this.controlPanel.ResumeLayout(false);
 			this.mainContainer.Panel1.ResumeLayout(false);
