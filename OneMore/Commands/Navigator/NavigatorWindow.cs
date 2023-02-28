@@ -54,7 +54,7 @@ namespace River.OneMoreAddIn.Commands
 			history = new List<HierarchyInfo>();
 			pinned = new List<HierarchyInfo>();
 
-			var rowWidth = Width - SystemInformation.VerticalScrollBarWidth;
+			var rowWidth = Width - SystemInformation.VerticalScrollBarWidth * 2;
 
 			historyBox.FullRowSelect = true;
 			historyBox.Columns.Add(
@@ -62,6 +62,7 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
+		#region Handlers
 		private async void PositionOnLoad(object sender, EventArgs e)
 		{
 			// deal with primary/secondary displays in either duplicate or extended mode...
@@ -122,6 +123,7 @@ namespace River.OneMoreAddIn.Commands
 		{
 			Close();
 		}
+		#endregion Handlers
 
 
 		// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -

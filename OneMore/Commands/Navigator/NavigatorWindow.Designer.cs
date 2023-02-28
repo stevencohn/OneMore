@@ -40,9 +40,11 @@
 			this.subContainer = new System.Windows.Forms.SplitContainer();
 			this.pinnedBox = new System.Windows.Forms.ListBox();
 			this.head2Panel = new System.Windows.Forms.Panel();
+			this.unpinButton = new System.Windows.Forms.Button();
 			this.head2Label = new System.Windows.Forms.Label();
 			this.historyBox = new River.OneMoreAddIn.UI.MoreListView();
 			this.head3Panel = new System.Windows.Forms.Panel();
+			this.pinButton = new System.Windows.Forms.Button();
 			this.head3Label = new System.Windows.Forms.Label();
 			this.controlPanel.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.mainContainer)).BeginInit();
@@ -82,7 +84,7 @@
 			// 
 			// mainContainer
 			// 
-			this.mainContainer.BackColor = System.Drawing.Color.MediumPurple;
+			this.mainContainer.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(143)))), ((int)(((byte)(32)))), ((int)(((byte)(199)))));
 			this.mainContainer.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.mainContainer.Location = new System.Drawing.Point(0, 0);
 			this.mainContainer.Name = "mainContainer";
@@ -106,8 +108,9 @@
 			// pageBox
 			// 
 			this.pageBox.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.pageBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.pageBox.FormattingEnabled = true;
-			this.pageBox.ItemHeight = 20;
+			this.pageBox.ItemHeight = 22;
 			this.pageBox.Location = new System.Drawing.Point(0, 41);
 			this.pageBox.Name = "pageBox";
 			this.pageBox.Size = new System.Drawing.Size(528, 250);
@@ -115,7 +118,7 @@
 			// 
 			// head1Panel
 			// 
-			this.head1Panel.BackColor = System.Drawing.Color.Lavender;
+			this.head1Panel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(205)))), ((int)(((byte)(179)))), ((int)(((byte)(218)))));
 			this.head1Panel.Controls.Add(this.head1Label);
 			this.head1Panel.Dock = System.Windows.Forms.DockStyle.Top;
 			this.head1Panel.Location = new System.Drawing.Point(0, 0);
@@ -136,7 +139,7 @@
 			// 
 			// subContainer
 			// 
-			this.subContainer.BackColor = System.Drawing.Color.MediumPurple;
+			this.subContainer.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(143)))), ((int)(((byte)(32)))), ((int)(((byte)(199)))));
 			this.subContainer.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.subContainer.Location = new System.Drawing.Point(0, 0);
 			this.subContainer.Name = "subContainer";
@@ -162,8 +165,9 @@
 			// pinnedBox
 			// 
 			this.pinnedBox.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.pinnedBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.pinnedBox.FormattingEnabled = true;
-			this.pinnedBox.ItemHeight = 20;
+			this.pinnedBox.ItemHeight = 22;
 			this.pinnedBox.Location = new System.Drawing.Point(0, 41);
 			this.pinnedBox.Name = "pinnedBox";
 			this.pinnedBox.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
@@ -172,20 +176,35 @@
 			// 
 			// head2Panel
 			// 
-			this.head2Panel.BackColor = System.Drawing.Color.Lavender;
+			this.head2Panel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(205)))), ((int)(((byte)(179)))), ((int)(((byte)(218)))));
+			this.head2Panel.Controls.Add(this.unpinButton);
 			this.head2Panel.Controls.Add(this.head2Label);
 			this.head2Panel.Dock = System.Windows.Forms.DockStyle.Top;
 			this.head2Panel.Location = new System.Drawing.Point(0, 0);
 			this.head2Panel.Margin = new System.Windows.Forms.Padding(0);
 			this.head2Panel.Name = "head2Panel";
+			this.head2Panel.Padding = new System.Windows.Forms.Padding(0, 2, 5, 2);
 			this.head2Panel.Size = new System.Drawing.Size(528, 41);
 			this.head2Panel.TabIndex = 1;
+			// 
+			// unpinButton
+			// 
+			this.unpinButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.unpinButton.FlatAppearance.BorderSize = 0;
+			this.unpinButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+			this.unpinButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.unpinButton.Location = new System.Drawing.Point(481, 3);
+			this.unpinButton.Name = "unpinButton";
+			this.unpinButton.Size = new System.Drawing.Size(35, 37);
+			this.unpinButton.TabIndex = 3;
+			this.unpinButton.Text = "🗑";
+			this.unpinButton.UseVisualStyleBackColor = true;
 			// 
 			// head2Label
 			// 
 			this.head2Label.AutoSize = true;
 			this.head2Label.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.head2Label.Location = new System.Drawing.Point(12, 10);
+			this.head2Label.Location = new System.Drawing.Point(12, 12);
 			this.head2Label.Name = "head2Label";
 			this.head2Label.Size = new System.Drawing.Size(73, 22);
 			this.head2Label.TabIndex = 1;
@@ -195,9 +214,10 @@
 			// 
 			this.historyBox.ControlPadding = 2;
 			this.historyBox.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.historyBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.historyBox.FullRowSelect = true;
 			this.historyBox.HideSelection = false;
-			this.historyBox.HighlightBackground = System.Drawing.Color.FromArgb(((int)(((byte)(215)))), ((int)(((byte)(193)))), ((int)(((byte)(255)))));
+			this.historyBox.HighlightBackground = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(213)))), ((int)(((byte)(228)))));
 			this.historyBox.HighlightForeground = System.Drawing.SystemColors.HighlightText;
 			this.historyBox.Location = new System.Drawing.Point(0, 41);
 			this.historyBox.Name = "historyBox";
@@ -210,20 +230,35 @@
 			// 
 			// head3Panel
 			// 
-			this.head3Panel.BackColor = System.Drawing.Color.Lavender;
+			this.head3Panel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(205)))), ((int)(((byte)(179)))), ((int)(((byte)(218)))));
+			this.head3Panel.Controls.Add(this.pinButton);
 			this.head3Panel.Controls.Add(this.head3Label);
 			this.head3Panel.Dock = System.Windows.Forms.DockStyle.Top;
 			this.head3Panel.Location = new System.Drawing.Point(0, 0);
 			this.head3Panel.Margin = new System.Windows.Forms.Padding(0);
 			this.head3Panel.Name = "head3Panel";
+			this.head3Panel.Padding = new System.Windows.Forms.Padding(5, 2, 5, 2);
 			this.head3Panel.Size = new System.Drawing.Size(528, 41);
 			this.head3Panel.TabIndex = 1;
+			// 
+			// pinButton
+			// 
+			this.pinButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.pinButton.FlatAppearance.BorderSize = 0;
+			this.pinButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+			this.pinButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.pinButton.Location = new System.Drawing.Point(481, 2);
+			this.pinButton.Name = "pinButton";
+			this.pinButton.Size = new System.Drawing.Size(35, 35);
+			this.pinButton.TabIndex = 2;
+			this.pinButton.Text = "📌";
+			this.pinButton.UseVisualStyleBackColor = true;
 			// 
 			// head3Label
 			// 
 			this.head3Label.AutoSize = true;
 			this.head3Label.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.head3Label.Location = new System.Drawing.Point(12, 10);
+			this.head3Label.Location = new System.Drawing.Point(17, 12);
 			this.head3Label.Name = "head3Label";
 			this.head3Label.Size = new System.Drawing.Size(74, 22);
 			this.head3Label.TabIndex = 1;
@@ -284,5 +319,7 @@
 		private System.Windows.Forms.ListBox pinnedBox;
 		private River.OneMoreAddIn.UI.MoreListView historyBox;
 		private System.Windows.Forms.ListBox pageBox;
+		private System.Windows.Forms.Button pinButton;
+		private System.Windows.Forms.Button unpinButton;
 	}
 }

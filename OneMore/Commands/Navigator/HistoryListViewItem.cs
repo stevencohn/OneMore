@@ -33,12 +33,17 @@ namespace River.OneMoreAddIn.Commands
 			{
 				Dock = DockStyle.Fill,
 				BackColor = Color.Transparent,
+				ForeColor = SystemColors.WindowText,
+				LinkColor = SystemColors.WindowText,
+				VisitedLinkColor = SystemColors.WindowText,
 				Text = info.Name,
 				Tag = info,
 				Font = new Font("Segoe UI", 8, FontStyle.Regular),
 				Padding = new Padding(0),
 				Margin = new Padding(4, 0, 0, 0)
 			};
+
+			link.Font = new Font(link.Font.FontFamily, 8.5f, link.Font.Style, GraphicsUnit.Point);
 
 			link.LinkClicked += new LinkLabelLinkClickedEventHandler(async (s, e) =>
 			{

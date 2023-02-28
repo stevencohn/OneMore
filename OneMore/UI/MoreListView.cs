@@ -178,6 +178,8 @@ namespace River.OneMoreAddIn.UI
 				router.Register(control, "Click", (object s, EventArgs e) =>
 				{
 					SelectImplicitly(item);
+					FocusedItem = item;
+					Focus();
 				});
 			}
 
