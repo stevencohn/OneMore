@@ -194,12 +194,12 @@ namespace River.OneMoreAddIn.UI
 
 		private void SelectImplicitly(ListViewItem item)
 		{
-			if (Control.ModifierKeys.HasFlag(Keys.Control))
+			if (ModifierKeys.HasFlag(Keys.Control))
 			{
 				// ctlr-click individuals
 				item.Selected = !item.Selected;
 			}
-			else if (Control.ModifierKeys.HasFlag(Keys.Shift))
+			else if (ModifierKeys.HasFlag(Keys.Shift))
 			{
 				// shift-click range
 				if (SelectedIndices.Count > 0)

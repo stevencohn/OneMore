@@ -12,17 +12,19 @@ namespace River.OneMoreAddIn.Commands
 	using System.Globalization;
 	using System.Linq;
 	using System.Windows.Forms;
-	using PageInfo = OneNote.HierarchyInfo;
+	using HierarchyInfo = OneNote.HierarchyInfo;
 
 
 	internal partial class NavigatorWindow : LocalizableForm
 	{
 		private const int WindowMargin = 20;
 
+		private static string visitedID;
+
 		private Screen screen;
 		private Point corral;
-		private readonly List<PageInfo> history;
-		private readonly List<PageInfo> pinned;
+		private readonly List<HierarchyInfo> history;
+		private readonly List<HierarchyInfo> pinned;
 
 
 		// disposed
@@ -49,8 +51,8 @@ namespace River.OneMoreAddIn.Commands
 			provider = new NavigationProvider();
 			provider.Navigated += Navigated;
 
-			history = new List<PageInfo>();
-			pinned = new List<PageInfo>();
+			history = new List<HierarchyInfo>();
+			pinned = new List<HierarchyInfo>();
 
 			var rowWidth = Width - SystemInformation.VerticalScrollBarWidth;
 
@@ -124,23 +126,40 @@ namespace River.OneMoreAddIn.Commands
 
 		// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-		private void Navigated(object sender, List<string> e)
+		public static void SetVisited(string ID)
+		{
+			// need to lock?
+			visitedID = ID;
+		}
+
+
+		private void Navigated(object sender, List<HistoryRecord> e)
 		{
 			if (historyBox.InvokeRequired)
 			{
 				historyBox.Invoke(new Action(() => Navigated(sender, e)));
+				return;
+			}
+
+			if (e.Count > 0 && e[0].PageID == visitedID)
+			{
+				// user clicked ths page in navigator; don't reorder the list or they'll lose
+				// their context and get confused
+				return;
 			}
 
 			if (ResolveReferences(history, e))
 			{
+				visitedID = null;
+
 				ShowPageOutline(history[0]);
 
 				historyBox.Items.Clear();
 				historyBox.BeginUpdate();
 
-				history.ForEach(h =>
+				history.ForEach(info =>
 				{
-					var control = new HistoryListViewItem("x", h.Name, h.Link);
+					var control = new HistoryListViewItem("x", info);
 					var item = historyBox.AddHostedItem(control);
 				});
 
@@ -152,21 +171,23 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private bool ResolveReferences(List<PageInfo> details, List<string> ids)
+		private bool ResolveReferences(List<HierarchyInfo> details, List<HistoryRecord> records)
 		{
 			using var one = new OneNote();
-			var list = new List<PageInfo>();
+			var list = new List<HierarchyInfo>();
 			var updated = false;
 
 			// iterate manually to check both existence and order
-			for (int i = 0;  i < ids.Count; i++)
+			for (int i = 0;  i < records.Count; i++)
 			{
-				var id = ids[i];
-				var j = details.FindIndex(d => d.PageId == id);
+				var record = records[i];
+				var j = details.FindIndex(d => d.PageId == record.PageID);
 
 				var item = j < 0
-					? one.GetPageInfo(id)
+					? one.GetPageInfo(record.PageID)
 					: details[j];
+
+				item.Visited = record.Visited;
 
 				list.Add(item);
 
@@ -183,7 +204,7 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private void ShowPageOutline(PageInfo info)
+		private void ShowPageOutline(HierarchyInfo info)
 		{
 			using var one = new OneNote();
 			var page = one.GetPage(info.PageId, OneNote.PageDetail.Basic);

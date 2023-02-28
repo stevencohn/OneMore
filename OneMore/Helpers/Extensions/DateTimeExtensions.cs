@@ -8,6 +8,23 @@ namespace River.OneMoreAddIn
 	using System.Globalization;
 
 
+	internal static class DateTimeHelper
+	{
+		public const int TicksInOneSecond = 10000000;
+
+
+		/// <summary>
+		/// Converts tick-seconds to a new DateTime.
+		/// </summary>
+		/// <param name="ticks">Number of seconds since 1 Jan 0001</param>
+		/// <returns></returns>
+		public static DateTime FromTicksSeconds(long ticks)
+		{
+			return new DateTime(ticks * TicksInOneSecond);
+		}
+	}
+
+
 	internal static class DateTimeExtensions
 	{
 		private static readonly string friendlyPattern =
@@ -22,6 +39,17 @@ namespace River.OneMoreAddIn
 		/// Used to set custom formatting in DateTimePicker
 		/// </summary>
 		public static string FriendlyPattern => friendlyPattern;
+
+
+		/// <summary>
+		/// Gets the number of seconds since 1-Jan-0001
+		/// </summary>
+		/// <param name="dttm"></param>
+		/// <returns></returns>
+		public static long GetTickSeconds(this DateTime dttm)
+		{
+			return dttm.Ticks / DateTimeHelper.TicksInOneSecond;
+		}
 
 
 		/// <summary>

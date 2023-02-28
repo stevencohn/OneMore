@@ -156,6 +156,7 @@
     <Compile Include="Commands\Navigator\HistoryListViewItem.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="Commands\Navigator\HistoryRecord.cs" />
     <Compile Include="Commands\Navigator\NavigationProvider.cs" />
     <Compile Include="Commands\Navigator\NavigationService.cs" />
     <Compile Include="Commands\Navigator\NavigatorCommand.cs" />

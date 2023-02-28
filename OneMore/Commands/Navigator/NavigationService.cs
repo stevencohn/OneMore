@@ -22,7 +22,7 @@ namespace River.OneMoreAddIn.Commands
 		/// <summary>
 		/// Used by NavigationProvider to filter out duplicate FileSystemWatcher.Changed events.
 		/// </summary>
-		public const int MinWatch = MinimumPollingInterval - 500;
+		public const int SafeWatchWindow = MinimumPollingInterval - 500;
 
 
 		private const int PollingInterval = 1250; // 1.25s
@@ -83,7 +83,6 @@ namespace River.OneMoreAddIn.Commands
 
 			if (pageId != currentId)
 			{
-				logger.Verbose($"nav- {pageId}");
 				currentId = pageId;
 				commitment = 0;
 			}
@@ -92,7 +91,6 @@ namespace River.OneMoreAddIn.Commands
 				commitment++;
 				if (commitment == 1)
 				{
-					logger.Verbose($"nav+ {currentId} .. {commitment}");
 					await provider.RecordHistory(pageId, HistoryDepth);
 				}
 			}

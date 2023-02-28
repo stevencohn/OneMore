@@ -78,13 +78,14 @@ namespace River.OneMoreAddIn
 
 		public class HierarchyInfo
 		{
-			public string PageId;
-			public string SectionId; // immediate owner regardless of depth (e.g. SectionGroups)
-			public string NotebookId;
-			public string Name;
-			public string Path;
-			public string Link;
-			public int Size;
+			public string PageId;		// ID of page if this is a page
+			public string SectionId;	// immediate owner regardless of depth (e.g. SectionGroups)
+			public string NotebookId;	// ID of owning notebook
+			public string Name;			// name of object
+			public string Path;			// full path including name
+			public string Link;			// onenote: hyperlink to object
+			public int Size;			// size in bytes of page
+			public long Visited;		// last time visited in ms
 		}
 
 		public class HierarchyNode

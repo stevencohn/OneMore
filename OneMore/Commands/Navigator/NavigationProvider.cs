@@ -20,7 +20,7 @@ namespace River.OneMoreAddIn.Commands
 
 		private readonly string path;
 		private FileSystemWatcher watcher;
-		private EventHandler<List<string>> navigated;
+		private EventHandler<List<HistoryRecord>> navigated;
 		private DateTime lastWrite;
 		private bool disposedValue;
 
@@ -61,7 +61,7 @@ namespace River.OneMoreAddIn.Commands
 		#endregion Dispose
 
 
-		public event EventHandler<List<string>> Navigated
+		public event EventHandler<List<HistoryRecord>> Navigated
 		{
 			add
 			{
@@ -99,7 +99,7 @@ namespace River.OneMoreAddIn.Commands
 				// throttle should be less than NavigationService.PollingInterval
 
 				var time = File.GetLastWriteTime(e.FullPath);
-				if (time.Subtract(lastWrite).TotalMilliseconds > NavigationService.MinWatch)
+				if (time.Subtract(lastWrite).TotalMilliseconds > NavigationService.SafeWatchWindow)
 				{
 					navigated?.Invoke(this, await ReadHistory());
 					lastWrite = time;
@@ -114,7 +114,7 @@ namespace River.OneMoreAddIn.Commands
 
 		// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-		public async Task<List<string>> ReadHistory()
+		public async Task<List<HistoryRecord>> ReadHistory()
 		{
 			try
 			{
@@ -125,10 +125,16 @@ namespace River.OneMoreAddIn.Commands
 				var history = root.Element("history");
 				if (history == null)
 				{
-					return new List<string>();
+					return new List<HistoryRecord>();
 				}
 
-				return history.Elements("page").Select(e => e.Value).ToList();
+				return history.Elements("page")
+					.Select(e => new HistoryRecord
+					{
+						PageID = e.Value,
+						Visited = long.Parse(e.Attribute("visited").Value)
+					})
+					.ToList();
 			}
 			finally
 			{
@@ -193,7 +199,8 @@ namespace River.OneMoreAddIn.Commands
 				var node = history.Elements("page").FirstOrDefault(e => e.Value == pageID);
 				if (node == null)
 				{
-					history.AddFirst(new XElement("page", pageID));
+					node = new XElement("page", pageID);
+					history.AddFirst(node);
 					updated = true;
 				}
 				else
@@ -208,6 +215,8 @@ namespace River.OneMoreAddIn.Commands
 
 				if (updated)
 				{
+					node.SetAttributeValue("visited", DateTime.Now.GetTickSeconds());
+
 					if (history.Elements().Count() > depth)
 					{
 						history.Elements().Skip(depth).Remove();

@@ -8,6 +8,7 @@ namespace River.OneMoreAddIn.Commands
 	using System;
 	using System.Drawing;
 	using System.Windows.Forms;
+	using HierarchyInfo = OneNote.HierarchyInfo;
 
 
 	internal class HistoryListViewItem : UserControl, IChameleon
@@ -15,7 +16,7 @@ namespace River.OneMoreAddIn.Commands
 		private readonly MoreLinkLabel link;
 
 
-		public HistoryListViewItem(string ico, string text, string url)
+		public HistoryListViewItem(string ico, HierarchyInfo info)
 		{
 			var picture = new PictureBox
 			{
@@ -32,8 +33,8 @@ namespace River.OneMoreAddIn.Commands
 			{
 				Dock = DockStyle.Fill,
 				BackColor = Color.Transparent,
-				Text = text,
-				Tag = url,
+				Text = info.Name,
+				Tag = info,
 				Font = new Font("Segoe UI", 8, FontStyle.Regular),
 				Padding = new Padding(0),
 				Margin = new Padding(4, 0, 0, 0)
@@ -43,10 +44,19 @@ namespace River.OneMoreAddIn.Commands
 			{
 				if (s is MoreLinkLabel label)
 				{
+					var info = (HierarchyInfo)label.Tag;
+
+					// TODO: this breaks the space-time continuum
+					NavigatorWindow.SetVisited(info.PageId);
+
 					using var one = new OneNote();
-					await one.NavigateTo((string)label.Tag);
+					await one.NavigateTo(info.Link);
 				}
 			});
+
+			var tip = new ToolTip();
+			var visited = DateTimeHelper.FromTicksSeconds(info.Visited).ToFriendlyString();
+			tip.SetToolTip(link, $"{info.Path}\n{visited}");
 
 			BackColor = Color.Transparent;
 			Width = 100;

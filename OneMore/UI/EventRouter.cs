@@ -33,6 +33,7 @@ namespace River.OneMoreAddIn.UI
 		}
 
 
+		#region Dispose
 		protected virtual void Dispose(bool disposing)
 		{
 			if (!disposedValue)
@@ -59,6 +60,7 @@ namespace River.OneMoreAddIn.UI
 			Dispose(disposing: true);
 			GC.SuppressFinalize(this);
 		}
+		#endregion Dispose
 
 
 		/// <summary>
