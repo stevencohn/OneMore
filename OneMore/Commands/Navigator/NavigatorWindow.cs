@@ -161,7 +161,7 @@ namespace River.OneMoreAddIn.Commands
 
 				history.ForEach(info =>
 				{
-					var control = new HistoryListViewItem("x", info);
+					var control = new HistoryListViewItem(info);
 					var item = historyBox.AddHostedItem(control);
 				});
 
@@ -190,6 +190,9 @@ namespace River.OneMoreAddIn.Commands
 					: details[j];
 
 				item.Visited = record.Visited;
+
+				var parentID = one.GetParent(record.PageID);
+				_ = one.GetHierarchyNode(parentID);
 
 				list.Add(item);
 

@@ -83,7 +83,8 @@ namespace River.OneMoreAddIn
 			public string NotebookId;	// ID of owning notebook
 			public string Name;			// name of object
 			public string Path;			// full path including name
-			public string Link;			// onenote: hyperlink to object
+			public string Link;         // onenote: hyperlink to object
+			public string Color;		// node color
 			public int Size;			// size in bytes of page
 			public long Visited;		// last time visited in ms
 		}
@@ -818,6 +819,7 @@ namespace River.OneMoreAddIn
 				if (parent.Name.LocalName == "Section" && string.IsNullOrEmpty(info.SectionId))
 				{
 					info.SectionId = parent.Attribute("ID").Value;
+					info.Color = parent.Attribute("color")?.Value;
 				}
 				else if (parent.Name.LocalName == "Notebook")
 				{

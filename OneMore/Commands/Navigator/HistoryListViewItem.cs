@@ -8,6 +8,7 @@ namespace River.OneMoreAddIn.Commands
 	using System;
 	using System.Drawing;
 	using System.Windows.Forms;
+	using Resx = Properties.Resources;
 	using HierarchyInfo = OneNote.HierarchyInfo;
 
 
@@ -16,7 +17,7 @@ namespace River.OneMoreAddIn.Commands
 		private readonly MoreLinkLabel link;
 
 
-		public HistoryListViewItem(string ico, HierarchyInfo info)
+		public HistoryListViewItem(HierarchyInfo info)
 		{
 			var picture = new PictureBox
 			{
@@ -27,7 +28,10 @@ namespace River.OneMoreAddIn.Commands
 
 			using var g = Graphics.FromImage(picture.Image);
 			g.Clear(SystemColors.Window);
-			g.DrawImage(Image.FromFile(@"C:\Github\OneMore\OneMore\Properties\Images\Logo.png"), 0, 0, 24, 24);
+
+			using var image = Resx.SectionMask;
+			image.MapColor(Color.Black, ColorHelper.FromHtml(info.Color));
+			g.DrawImage(image, 0, 0, 24, 24);
 
 			link = new MoreLinkLabel
 			{

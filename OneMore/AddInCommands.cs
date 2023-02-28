@@ -531,7 +531,7 @@ namespace River.OneMoreAddIn
 			=> await factory.Run<NameUrlsCommand>();
 
 
-		[Command("ribNavigatorButton_Label", Keys.None, "Tools")]
+		[Command("ribNavigatorButton_Label", Keys.Shift | Keys.Alt | Keys.N, "Tools")]
 		public async Task NavigatorCmd(IRibbonControl control)
 			=> await factory.Run<NavigatorCommand>();
 
