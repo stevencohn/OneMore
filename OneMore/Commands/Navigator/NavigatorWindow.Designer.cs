@@ -38,7 +38,7 @@
 			this.head1Panel = new System.Windows.Forms.Panel();
 			this.head1Label = new System.Windows.Forms.Label();
 			this.subContainer = new System.Windows.Forms.SplitContainer();
-			this.pinnedBox = new System.Windows.Forms.ListBox();
+			this.pinnedBox = new River.OneMoreAddIn.UI.MoreListView();
 			this.head2Panel = new System.Windows.Forms.Panel();
 			this.unpinButton = new System.Windows.Forms.Button();
 			this.head2Label = new System.Windows.Forms.Label();
@@ -166,13 +166,18 @@
 			// 
 			this.pinnedBox.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.pinnedBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.pinnedBox.FormattingEnabled = true;
-			this.pinnedBox.ItemHeight = 22;
+			this.pinnedBox.FullRowSelect = true;
+			this.pinnedBox.HideSelection = false;
+			this.pinnedBox.HighlightBackground = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(213)))), ((int)(((byte)(228)))));
+			this.pinnedBox.HighlightForeground = System.Drawing.SystemColors.HighlightText;
 			this.pinnedBox.Location = new System.Drawing.Point(0, 41);
 			this.pinnedBox.Name = "pinnedBox";
-			this.pinnedBox.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
+			this.pinnedBox.RowHeight = 29;
 			this.pinnedBox.Size = new System.Drawing.Size(528, 212);
+			this.pinnedBox.SortedBackground = System.Drawing.SystemColors.Window;
 			this.pinnedBox.TabIndex = 3;
+			this.pinnedBox.UseCompatibleStateImageBehavior = false;
+			this.pinnedBox.View = System.Windows.Forms.View.Details;
 			// 
 			// head2Panel
 			// 
@@ -199,6 +204,7 @@
 			this.unpinButton.TabIndex = 3;
 			this.unpinButton.Text = "🗑";
 			this.unpinButton.UseVisualStyleBackColor = true;
+			this.unpinButton.Click += new System.EventHandler(this.UnpinOnClick);
 			// 
 			// head2Label
 			// 
@@ -253,6 +259,7 @@
 			this.pinButton.TabIndex = 2;
 			this.pinButton.Text = "📌";
 			this.pinButton.UseVisualStyleBackColor = true;
+			this.pinButton.Click += new System.EventHandler(this.PinOnClick);
 			// 
 			// head3Label
 			// 
@@ -316,7 +323,7 @@
 		private System.Windows.Forms.Label head1Label;
 		private System.Windows.Forms.Label head2Label;
 		private System.Windows.Forms.Label head3Label;
-		private System.Windows.Forms.ListBox pinnedBox;
+		private River.OneMoreAddIn.UI.MoreListView pinnedBox;
 		private River.OneMoreAddIn.UI.MoreListView historyBox;
 		private System.Windows.Forms.ListBox pageBox;
 		private System.Windows.Forms.Button pinButton;

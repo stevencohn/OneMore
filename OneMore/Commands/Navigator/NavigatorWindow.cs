@@ -11,6 +11,8 @@ namespace River.OneMoreAddIn.Commands
 	using System.Drawing;
 	using System.Globalization;
 	using System.Linq;
+	using System.ServiceModel;
+	using System.Threading.Tasks;
 	using System.Windows.Forms;
 	using HierarchyInfo = OneNote.HierarchyInfo;
 
@@ -56,6 +58,10 @@ namespace River.OneMoreAddIn.Commands
 
 			var rowWidth = Width - SystemInformation.VerticalScrollBarWidth * 2;
 
+			pinnedBox.FullRowSelect = true;
+			pinnedBox.Columns.Add(
+				new MoreColumnHeader(string.Empty, rowWidth) { AutoSizeItems = true });
+
 			historyBox.FullRowSelect = true;
 			historyBox.Columns.Add(
 				new MoreColumnHeader(string.Empty, rowWidth) { AutoSizeItems = true });
@@ -87,6 +93,7 @@ namespace River.OneMoreAddIn.Commands
 			// designer defines width but height is calculated
 			MaximumSize = new Size(MaximumSize.Width, screen.WorkingArea.Height - (WindowMargin * 2));
 
+			await LoadPinned();
 			Navigated(null, await provider.ReadHistory());
 		}
 
@@ -135,6 +142,40 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
+		private async Task LoadPinned()
+		{
+			var pins = await provider.ReadPinned();
+
+			var action = new Action(() =>
+			{
+				if (ResolveReferences(pinned, pins))
+				{
+					pinnedBox.BeginUpdate();
+					pinnedBox.Items.Clear();
+
+					pinned.ForEach(info =>
+					{
+						var control = new HistoryListViewItem(info);
+						var item = pinnedBox.AddHostedItem(control);
+						item.Tag = info;
+					});
+
+					pinnedBox.EndUpdate();
+					pinnedBox.Invalidate();
+				}
+			});
+
+			if (pinnedBox.InvokeRequired)
+			{
+				pinnedBox.Invoke(action);
+			}
+			else
+			{
+				action();
+			}
+		}
+
+
 		private void Navigated(object sender, List<HistoryRecord> e)
 		{
 			if (historyBox.InvokeRequired)
@@ -156,18 +197,18 @@ namespace River.OneMoreAddIn.Commands
 
 				ShowPageOutline(history[0]);
 
-				historyBox.Items.Clear();
 				historyBox.BeginUpdate();
+				historyBox.Items.Clear();
 
 				history.ForEach(info =>
 				{
 					var control = new HistoryListViewItem(info);
 					var item = historyBox.AddHostedItem(control);
+					item.Tag = info;
 				});
 
 				historyBox.Items[0].Selected = true;
 				historyBox.EndUpdate();
-
 				historyBox.Invalidate();
 			}
 		}
@@ -206,6 +247,62 @@ namespace River.OneMoreAddIn.Commands
 			}
 
 			return updated;
+		}
+
+
+		private async void PinOnClick(object sender, EventArgs e)
+		{
+			if (historyBox.SelectedItems.Count == 0)
+			{
+				return;
+			}
+
+			var list = new List<string>();
+			foreach (IMoreHostItem host in historyBox.SelectedItems)
+			{
+				if (host.Tag is HierarchyInfo info)
+				{
+					list.Add(info.PageId);
+				}
+			}
+
+			if (list.Count > 0)
+			{
+				SetVisited(list.Last());
+				await provider.PinPages(list);
+				await LoadPinned();
+			}
+		}
+
+
+		private async void UnpinOnClick(object sender, EventArgs e)
+		{
+			if (pinnedBox.SelectedItems.Count == 0)
+			{
+				return;
+			}
+
+			var list = new List<string>();
+			foreach (IMoreHostItem host in pinnedBox.SelectedItems)
+			{
+				if (host.Tag is HierarchyInfo info)
+				{
+					list.Add(info.PageId);
+				}
+			}
+
+			if (list.Count > 0)
+			{
+				var i = historyBox.SelectedItems.Count - 1;
+				if (historyBox.SelectedItems[i] is IMoreHostItem item &&
+					item.Control.Tag is HierarchyInfo info)
+				{
+					SetVisited(info.PageId);
+				}
+
+				await provider.UnpinPages(list);
+				await LoadPinned();
+			}
 		}
 
 

@@ -734,6 +734,8 @@ namespace River.OneMoreAddIn.UI
 
 		Control Control { get; }
 
+		object Tag { get; }
+
 		string Text { get; }
 	}
 

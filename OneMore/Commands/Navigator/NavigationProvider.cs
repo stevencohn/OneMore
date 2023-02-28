@@ -114,6 +114,113 @@ namespace River.OneMoreAddIn.Commands
 
 		// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
+		public async Task<bool> PinPages(List<string> list)
+		{
+			await semalock.WaitAsync();
+
+			try
+			{
+				var root = await Read();
+
+				var pinned = root.Element("pinned");
+				if (pinned == null)
+				{
+					pinned = new XElement("pinned");
+					root.Add(pinned);
+				}
+
+				var updated = false;
+				list.ForEach(id =>
+				{
+					if (!pinned.Elements().Any(e => e.Value == id))
+					{
+						pinned.Add(new XElement("page", id));
+						updated = true;
+					}
+				});
+
+
+				if (updated)
+				{
+					await Save(root);
+				}
+
+				return updated;
+			}
+			finally
+			{
+				semalock.Release();
+			}
+		}
+
+
+		public async Task<bool> UnpinPages(List<string> list)
+		{
+			await semalock.WaitAsync();
+
+			try
+			{
+				var root = await Read();
+
+				var pinned = root.Element("pinned");
+				if (pinned == null)
+				{
+					pinned = new XElement("pinned");
+					root.Add(pinned);
+				}
+
+				var updated = false;
+				list.ForEach(id =>
+				{
+					var pin = pinned.Elements().FirstOrDefault(e => e.Value == id);
+					if (pin != null)
+					{
+						pin.Remove();
+						updated = true;
+					}
+				});
+
+
+				if (updated)
+				{
+					await Save(root);
+				}
+
+				return updated;
+			}
+			finally
+			{
+				semalock.Release();
+			}
+		}
+
+
+		private async Task Save(XElement root)
+		{
+			var xml = root.ToString(SaveOptions.None);
+
+			try
+			{
+				// ensure we have ReadWrite sharing enabled so we don't block access
+				// between NavigationService and NavigationDialog
+				using var stream = new FileStream(path,
+					FileMode.OpenOrCreate,
+					FileAccess.Write,
+					FileShare.ReadWrite);
+
+				// clear contents if writing less bytes than file contains
+				stream.SetLength(0);
+
+				using var writer = new StreamWriter(stream);
+				await writer.WriteAsync(xml);
+			}
+			catch (Exception exc)
+			{
+				logger.WriteLine($"error saving {path}", exc);
+			}
+		}
+
+
 		public async Task<List<HistoryRecord>> ReadHistory()
 		{
 			try
@@ -179,6 +286,34 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
+		public async Task<List<HistoryRecord>> ReadPinned()
+		{
+			await semalock.WaitAsync();
+
+			try
+			{
+				var root = await Read();
+
+				var pinned = root.Element("pinned");
+				if (pinned != null)
+				{
+					return pinned.Elements()
+						.Select(e => new HistoryRecord
+						{
+							PageID = e.Value
+						})
+						.ToList();
+				}
+
+				return new List<HistoryRecord>();
+			}
+			finally
+			{
+				semalock.Release();
+			}
+		}
+
+
 		public async Task<bool> RecordHistory(string pageID, int depth)
 		{
 			await semalock.WaitAsync();
@@ -222,30 +357,7 @@ namespace River.OneMoreAddIn.Commands
 						history.Elements().Skip(depth).Remove();
 					}
 
-					var xml = root.ToString(SaveOptions.None);
-
-					try
-					{
-						// ensure we have ReadWrite sharing enabled so we don't block access
-						// between NavigationService and NavigationDialog
-						using var stream = new FileStream(path,
-							FileMode.OpenOrCreate,
-							FileAccess.Write,
-							FileShare.ReadWrite);
-
-						// clear contents if writing less bytes than file contains
-						stream.SetLength(0);
-
-						using var writer = new StreamWriter(stream);
-
-						await writer.WriteAsync(xml);
-						
-						logger.Verbose($"history {pageID}");
-					}
-					catch (Exception exc)
-					{
-						logger.WriteLine($"error reading {path}", exc);
-					}
+					await Save(root);
 				}
 
 				return updated;
