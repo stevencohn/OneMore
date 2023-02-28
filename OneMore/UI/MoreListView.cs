@@ -194,13 +194,48 @@ namespace River.OneMoreAddIn.UI
 
 		private void SelectImplicitly(ListViewItem item)
 		{
-			if (!Control.ModifierKeys.HasFlag(Keys.Shift) &&
-				!Control.ModifierKeys.HasFlag(Keys.Control))
+			if (Control.ModifierKeys.HasFlag(Keys.Control))
 			{
-				SelectedItems.Clear();
+				// ctlr-click individuals
+				item.Selected = !item.Selected;
 			}
+			else if (Control.ModifierKeys.HasFlag(Keys.Shift))
+			{
+				// shift-click range
+				if (SelectedIndices.Count > 0)
+				{
+					if (SelectedIndices[0] == item.Index)
+					{
+						item.Selected = true;
+					}
+					else
+					{
+						(int first, int last) = SelectedIndices[0] < item.Index
+							? (SelectedIndices[0], item.Index)
+							: (item.Index, SelectedIndices[SelectedIndices.Count - 1]);
 
-			item.Selected = !item.Selected;
+						SuspendLayout();
+						SelectedItems.Clear();
+						for (var i = first; i <= last; i++)
+						{
+							Items[i].Selected = true;
+						}
+						ResumeLayout();
+					}
+				}
+				else
+				{
+					item.Selected = true;
+				}
+			}
+			else
+			{
+				// single-click
+				SuspendLayout();
+				SelectedItems.Clear();
+				item.Selected = !item.Selected;
+				ResumeLayout();
+			}
 		}
 
 

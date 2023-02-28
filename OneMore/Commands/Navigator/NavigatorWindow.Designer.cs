@@ -41,7 +41,7 @@
 			this.pinnedBox = new System.Windows.Forms.ListBox();
 			this.head2Panel = new System.Windows.Forms.Panel();
 			this.head2Label = new System.Windows.Forms.Label();
-			this.historyBox = new System.Windows.Forms.ListBox();
+			this.historyBox = new River.OneMoreAddIn.UI.MoreListView();
 			this.head3Panel = new System.Windows.Forms.Panel();
 			this.head3Label = new System.Windows.Forms.Label();
 			this.controlPanel.SuspendLayout();
@@ -193,14 +193,20 @@
 			// 
 			// historyBox
 			// 
+			this.historyBox.ControlPadding = 2;
 			this.historyBox.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.historyBox.FormattingEnabled = true;
-			this.historyBox.ItemHeight = 20;
+			this.historyBox.FullRowSelect = true;
+			this.historyBox.HideSelection = false;
+			this.historyBox.HighlightBackground = System.Drawing.Color.FromArgb(((int)(((byte)(215)))), ((int)(((byte)(193)))), ((int)(((byte)(255)))));
+			this.historyBox.HighlightForeground = System.Drawing.SystemColors.HighlightText;
 			this.historyBox.Location = new System.Drawing.Point(0, 41);
 			this.historyBox.Name = "historyBox";
-			this.historyBox.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
+			this.historyBox.RowHeight = 29;
 			this.historyBox.Size = new System.Drawing.Size(528, 287);
+			this.historyBox.SortedBackground = System.Drawing.SystemColors.Window;
 			this.historyBox.TabIndex = 2;
+			this.historyBox.UseCompatibleStateImageBehavior = false;
+			this.historyBox.View = System.Windows.Forms.View.Details;
 			// 
 			// head3Panel
 			// 
@@ -276,7 +282,7 @@
 		private System.Windows.Forms.Label head2Label;
 		private System.Windows.Forms.Label head3Label;
 		private System.Windows.Forms.ListBox pinnedBox;
-		private System.Windows.Forms.ListBox historyBox;
+		private River.OneMoreAddIn.UI.MoreListView historyBox;
 		private System.Windows.Forms.ListBox pageBox;
 	}
 }

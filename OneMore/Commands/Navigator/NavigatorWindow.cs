@@ -51,6 +51,12 @@ namespace River.OneMoreAddIn.Commands
 
 			history = new List<PageInfo>();
 			pinned = new List<PageInfo>();
+
+			var rowWidth = Width - SystemInformation.VerticalScrollBarWidth;
+
+			historyBox.FullRowSelect = true;
+			historyBox.Columns.Add(
+				new MoreColumnHeader(string.Empty, rowWidth) { AutoSizeItems = true });
 		}
 
 
@@ -120,15 +126,28 @@ namespace River.OneMoreAddIn.Commands
 
 		private void Navigated(object sender, List<string> e)
 		{
+			if (historyBox.InvokeRequired)
+			{
+				historyBox.Invoke(new Action(() => Navigated(sender, e)));
+			}
+
 			if (ResolveReferences(history, e))
 			{
 				ShowPageOutline(history[0]);
 
 				historyBox.Items.Clear();
-				historyBox.Items.AddRange(history.Select(h => h.Name).ToArray());
-				historyBox.Invalidate();
+				historyBox.BeginUpdate();
 
-				//historyBox.Items.AddRange(history.ToArray());
+				history.ForEach(h =>
+				{
+					var control = new HistoryListViewItem("x", h.Name, h.Link);
+					var item = historyBox.AddHostedItem(control);
+				});
+
+				historyBox.Items[0].Selected = true;
+				historyBox.EndUpdate();
+
+				historyBox.Invalidate();
 			}
 		}
 

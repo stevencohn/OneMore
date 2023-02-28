@@ -39,11 +39,12 @@ namespace River.OneMoreAddIn.Commands
 				Margin = new Padding(4, 0, 0, 0)
 			};
 
-			link.LinkClicked += new LinkLabelLinkClickedEventHandler((s, e) =>
+			link.LinkClicked += new LinkLabelLinkClickedEventHandler(async (s, e) =>
 			{
 				if (s is MoreLinkLabel label)
 				{
-					MessageBox.Show($"click [{label.Text}] @ {label.Tag}");
+					using var one = new OneNote();
+					await one.NavigateTo((string)label.Tag);
 				}
 			});
 
@@ -57,8 +58,8 @@ namespace River.OneMoreAddIn.Commands
 				link.BackColor = ((Control)s).BackColor;
 			});
 
-			Controls.Add(picture);
 			Controls.Add(link);
+			Controls.Add(picture);
 		}
 
 
