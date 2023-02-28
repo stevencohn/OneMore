@@ -17,15 +17,15 @@ namespace River.OneMoreAddIn.Commands
 		/// <summary>
 		/// Used by Settings to limit polling interval so we don't affect overall performance
 		/// </summary>
-		public const int MinimumPollingInterval = 1500;
+		public const int MinimumPollingInterval = 1000;
 
 		/// <summary>
 		/// Used by NavigationProvider to filter out duplicate FileSystemWatcher.Changed events.
 		/// </summary>
-		public const int SafeWatchInterval = MinimumPollingInterval - 500;
+		public const int MinWatch = MinimumPollingInterval - 500;
 
 
-		private const int PollingInterval = 1750; // 1.75s
+		private const int PollingInterval = 1250; // 1.25s
 		private const int HistoryDepth = 10;
 
 		private readonly NavigationProvider provider;

@@ -153,6 +153,9 @@
     <Compile Include="Commands\File\Markdown\OneMoreDigRenderer.cs" />
     <Compile Include="Commands\Images\DrawPlantUmlCommand.cs" />
     <Compile Include="Commands\Images\OpenImageWithCommand.cs" />
+    <Compile Include="Commands\Navigator\HistoryListViewItem.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="Commands\Navigator\NavigationProvider.cs" />
     <Compile Include="Commands\Navigator\NavigationService.cs" />
     <Compile Include="Commands\Navigator\NavigatorCommand.cs" />
@@ -388,6 +391,7 @@
     </Compile>
     <Compile Include="Commands\Snippets\InsertBreadcrumbCommand.cs" />
     <Compile Include="Commands\References\EmbedSubpageCommand.cs" />
+    <Compile Include="UI\EventRouter.cs" />
     <Compile Include="UI\MoreExpander.cs">
       <SubType>UserControl</SubType>
     </Compile>

@@ -72,6 +72,7 @@ namespace River.OneMoreAddIn.UI
 		private SolidBrush highBackBrush;
 		private SolidBrush highForeBrush;
 		private readonly List<HostedControl> hostedControls;
+		private readonly EventRouter router;
 
 
 		/// <summary>
@@ -81,6 +82,7 @@ namespace River.OneMoreAddIn.UI
 		{
 			View = View.Details;
 
+			router = new EventRouter();
 			hostedControls = new List<HostedControl>();
 			highBackBrush = new SolidBrush(ColorTranslator.FromHtml("#D7C1FF"));
 			highForeBrush = new SolidBrush(SystemColors.HighlightText);
@@ -172,6 +174,11 @@ namespace River.OneMoreAddIn.UI
 			if (control != null)
 			{
 				RegisterHostedControl(item, new RegistrationEventArgs(item, control, 0));
+
+				router.Register(control, "Click", (object s, EventArgs e) =>
+				{
+					SelectImplicitly(item);
+				});
 			}
 
 			return item;
@@ -182,6 +189,18 @@ namespace River.OneMoreAddIn.UI
 		{
 			hostedControls.Add(new HostedControl(subitem, e.Item, e.Control, e.ColumnIndex));
 			Controls.Add(e.Control);
+		}
+
+
+		private void SelectImplicitly(ListViewItem item)
+		{
+			if (!Control.ModifierKeys.HasFlag(Keys.Shift) &&
+				!Control.ModifierKeys.HasFlag(Keys.Control))
+			{
+				SelectedItems.Clear();
+			}
+
+			item.Selected = !item.Selected;
 		}
 
 
@@ -305,6 +324,23 @@ namespace River.OneMoreAddIn.UI
 				if (test.SubItem.Bounds.Left < 0)
 				{
 					Native.SendMessage(Handle, Native.LVM_SCROLL, test.SubItem.Bounds.Left, 0);
+				}
+			}
+		}
+
+
+		protected override void OnItemSelectionChanged(ListViewItemSelectionChangedEventArgs e)
+		{
+			base.OnItemSelectionChanged(e);
+			if (e.Item is IMoreHostItem host && host.Control is IChameleon item)
+			{
+				if (e.IsSelected)
+				{
+					item.ApplyBackground(highBackBrush.Color);
+				}
+				else
+				{
+					item.ResetBackground();
 				}
 			}
 		}
@@ -559,6 +595,17 @@ namespace River.OneMoreAddIn.UI
 	internal interface IMoreHostedValue
 	{
 		string Value { get; }
+	}
+
+
+	/// <summary>
+	/// Provides callback methods for MoreHostedListViewItem implementors to react when an item
+	/// is selected or deselected, so that it can change the backcolor of itself as needed.
+	/// </summary>
+	internal interface IChameleon
+	{
+		void ApplyBackground(Color color);
+		void ResetBackground();
 	}
 
 

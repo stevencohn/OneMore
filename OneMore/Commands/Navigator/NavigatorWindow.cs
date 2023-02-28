@@ -12,6 +12,7 @@ namespace River.OneMoreAddIn.Commands
 	using System.Globalization;
 	using System.Linq;
 	using System.Windows.Forms;
+	using PageInfo = OneNote.HierarchyInfo;
 
 
 	internal partial class NavigatorWindow : LocalizableForm
@@ -20,8 +21,8 @@ namespace River.OneMoreAddIn.Commands
 
 		private Screen screen;
 		private Point corral;
-		private readonly List<OneNote.HierarchyInfo> history;
-		private readonly List<OneNote.HierarchyInfo> pinned;
+		private readonly List<PageInfo> history;
+		private readonly List<PageInfo> pinned;
 
 
 		// disposed
@@ -48,8 +49,8 @@ namespace River.OneMoreAddIn.Commands
 			provider = new NavigationProvider();
 			provider.Navigated += Navigated;
 
-			history = new List<OneNote.HierarchyInfo>();
-			pinned = new List<OneNote.HierarchyInfo>();
+			history = new List<PageInfo>();
+			pinned = new List<PageInfo>();
 		}
 
 
@@ -121,6 +122,8 @@ namespace River.OneMoreAddIn.Commands
 		{
 			if (ResolveReferences(history, e))
 			{
+				ShowPageOutline(history[0]);
+
 				historyBox.Items.Clear();
 				historyBox.Items.AddRange(history.Select(h => h.Name).ToArray());
 				historyBox.Invalidate();
@@ -130,10 +133,10 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private bool ResolveReferences(List<OneNote.HierarchyInfo> details, List<string> ids)
+		private bool ResolveReferences(List<PageInfo> details, List<string> ids)
 		{
 			using var one = new OneNote();
-			var list = new List<OneNote.HierarchyInfo>();
+			var list = new List<PageInfo>();
 			var updated = false;
 
 			// iterate manually to check both existence and order
@@ -158,6 +161,19 @@ namespace River.OneMoreAddIn.Commands
 			}
 
 			return updated;
+		}
+
+
+		private void ShowPageOutline(PageInfo info)
+		{
+			using var one = new OneNote();
+			var page = one.GetPage(info.PageId, OneNote.PageDetail.Basic);
+			var headings = page.GetHeadings(one);
+
+			head1Label.Text = page.Title;
+
+			pageBox.Items.Clear();
+			pageBox.Items.AddRange(headings.Select(h => h.Text).ToArray());
 		}
 	}
 }
