@@ -13,6 +13,10 @@ namespace River.OneMoreAddIn.Commands
 	using System.Xml.Linq;
 
 
+	/// <summary>
+	/// Provides thread-safe access to the navigation history file.
+	/// This is used by both NavigationService and NavigatorWindow.
+	/// </summary>
 	internal class NavigationProvider : Loggable, IDisposable
 	{
 		private static readonly SemaphoreSlim semalock = new(1);
@@ -61,6 +65,10 @@ namespace River.OneMoreAddIn.Commands
 		#endregion Dispose
 
 
+		/// <summary>
+		/// Adds or removes an event handler to signal that the user has navigated to a page
+		/// and stayed long enough to be recorded as "read"
+		/// </summary>
 		public event EventHandler<List<HistoryRecord>> Navigated
 		{
 			add
@@ -114,6 +122,11 @@ namespace River.OneMoreAddIn.Commands
 
 		// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
+		/// <summary>
+		/// Records the given list of page IDs as "pinned" items.
+		/// </summary>
+		/// <param name="list">A list of page IDs</param>
+		/// <returns>True if the pinned list is updated; false if no changes needed</returns>
 		public async Task<bool> PinPages(List<string> list)
 		{
 			await semalock.WaitAsync();
@@ -154,7 +167,11 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		public async Task<bool> UnpinPages(List<string> list)
+		/// <summary>
+		/// Returns the list of pinned items saved by the user.
+		/// </summary>
+		/// <returns></returns>
+		public async Task<List<HistoryRecord>> ReadPinned()
 		{
 			await semalock.WaitAsync();
 
@@ -163,30 +180,17 @@ namespace River.OneMoreAddIn.Commands
 				var root = await Read();
 
 				var pinned = root.Element("pinned");
-				if (pinned == null)
+				if (pinned != null)
 				{
-					pinned = new XElement("pinned");
-					root.Add(pinned);
+					return pinned.Elements()
+						.Select(e => new HistoryRecord
+						{
+							PageID = e.Value
+						})
+						.ToList();
 				}
 
-				var updated = false;
-				list.ForEach(id =>
-				{
-					var pin = pinned.Elements().FirstOrDefault(e => e.Value == id);
-					if (pin != null)
-					{
-						pin.Remove();
-						updated = true;
-					}
-				});
-
-
-				if (updated)
-				{
-					await Save(root);
-				}
-
-				return updated;
+				return new List<HistoryRecord>();
 			}
 			finally
 			{
@@ -195,32 +199,10 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private async Task Save(XElement root)
-		{
-			var xml = root.ToString(SaveOptions.None);
-
-			try
-			{
-				// ensure we have ReadWrite sharing enabled so we don't block access
-				// between NavigationService and NavigationDialog
-				using var stream = new FileStream(path,
-					FileMode.OpenOrCreate,
-					FileAccess.Write,
-					FileShare.ReadWrite);
-
-				// clear contents if writing less bytes than file contains
-				stream.SetLength(0);
-
-				using var writer = new StreamWriter(stream);
-				await writer.WriteAsync(xml);
-			}
-			catch (Exception exc)
-			{
-				logger.WriteLine($"error saving {path}", exc);
-			}
-		}
-
-
+		/// <summary>
+		/// Returns the list of history items tracking visited pages.
+		/// </summary>
+		/// <returns></returns>
 		public async Task<List<HistoryRecord>> ReadHistory()
 		{
 			try
@@ -250,70 +232,13 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private async Task<XElement> Read()
-		{
-			XElement root = null;
-
-			if (File.Exists(path))
-			{
-				try
-				{
-					// ensure we have ReadWrite sharing enabled so we don't block access
-					// between NavigationService and NavigationDialog
-					using var stream = new FileStream(path,
-						FileMode.Open,
-						FileAccess.Read,
-						FileShare.ReadWrite);
-
-					using var reader = new StreamReader(stream);
-
-					root = XElement.Parse(await reader.ReadToEndAsync());
-				}
-				catch (Exception exc)
-				{
-					logger.WriteLine($"error reading {path}", exc);
-					root = null;
-				}
-			}
-
-			// file not found or problem reading then initialize with defaults
-			root ??= new XElement("navigation",
-				new XElement("history"),
-				new XElement("pinned")
-			);
-
-			return root;
-		}
-
-
-		public async Task<List<HistoryRecord>> ReadPinned()
-		{
-			await semalock.WaitAsync();
-
-			try
-			{
-				var root = await Read();
-
-				var pinned = root.Element("pinned");
-				if (pinned != null)
-				{
-					return pinned.Elements()
-						.Select(e => new HistoryRecord
-						{
-							PageID = e.Value
-						})
-						.ToList();
-				}
-
-				return new List<HistoryRecord>();
-			}
-			finally
-			{
-				semalock.Release();
-			}
-		}
-
-
+		/// <summary>
+		/// Records the given page ID as a visited page, marking it with the current time
+		/// to record the "last visited" time.
+		/// </summary>
+		/// <param name="pageID">The ID of the visited page</param>
+		/// <param name="depth">The maximum number of history records to maintain</param>
+		/// <returns></returns>
 		public async Task<bool> RecordHistory(string pageID, int depth)
 		{
 			await semalock.WaitAsync();
@@ -365,6 +290,114 @@ namespace River.OneMoreAddIn.Commands
 			finally
 			{
 				semalock.Release();
+			}
+		}
+
+
+		/// <summary>
+		/// Removes the list of page IDs from the pinned list.
+		/// </summary>
+		/// <param name="list"></param>
+		/// <returns></returns>
+		public async Task<bool> UnpinPages(List<string> list)
+		{
+			await semalock.WaitAsync();
+
+			try
+			{
+				var root = await Read();
+
+				var pinned = root.Element("pinned");
+				if (pinned == null)
+				{
+					pinned = new XElement("pinned");
+					root.Add(pinned);
+				}
+
+				var updated = false;
+				list.ForEach(id =>
+				{
+					var pin = pinned.Elements().FirstOrDefault(e => e.Value == id);
+					if (pin != null)
+					{
+						pin.Remove();
+						updated = true;
+					}
+				});
+
+
+				if (updated)
+				{
+					await Save(root);
+				}
+
+				return updated;
+			}
+			finally
+			{
+				semalock.Release();
+			}
+		}
+
+
+		private async Task<XElement> Read()
+		{
+			XElement root = null;
+
+			if (File.Exists(path))
+			{
+				try
+				{
+					// ensure we have ReadWrite sharing enabled so we don't block access
+					// between NavigationService and NavigationDialog
+					using var stream = new FileStream(path,
+						FileMode.Open,
+						FileAccess.Read,
+						FileShare.ReadWrite);
+
+					using var reader = new StreamReader(stream);
+
+					root = XElement.Parse(await reader.ReadToEndAsync());
+				}
+				catch (Exception exc)
+				{
+					logger.WriteLine($"error reading {path}", exc);
+					root = null;
+				}
+			}
+
+			// file not found or problem reading then initialize with defaults
+			root ??= new XElement("navigation",
+				new XElement("history"),
+				new XElement("pinned")
+			);
+
+			return root;
+		}
+
+
+		private async Task Save(XElement root)
+		{
+			var xml = root.ToString(SaveOptions.None);
+
+			try
+			{
+				// ensure we have ReadWrite sharing enabled so we don't block access
+				// between NavigationService and NavigationDialog
+				using var stream = new FileStream(path,
+					FileMode.OpenOrCreate,
+					FileAccess.Write,
+					FileShare.ReadWrite);
+
+				// clear contents if writing less bytes than file contains
+				stream.SetLength(0);
+
+				using var writer = new StreamWriter(stream);
+				await writer.WriteAsync(xml);
+			}
+			catch (Exception exc)
+			{
+				logger.WriteLine($"error saving {path}", exc);
 			}
 		}
 	}

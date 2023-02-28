@@ -24,6 +24,7 @@ namespace River.OneMoreAddIn.Settings
 			Highlight,
 			Images,
 			Keyboard,
+			Navigator,
 			Lines,
 			Plugins,
 			QuickNotes,
@@ -60,6 +61,7 @@ namespace River.OneMoreAddIn.Settings
 				navTree.Nodes["linesNode"].Text = Resx.SettingsDialog_linesNode_Text;
 				navTree.Nodes["imagesNode"].Text = Resx.SettingsDialog_imagesNode_Text;
 				navTree.Nodes["keyboardNode"].Text = Resx.SettingsDialog_keyboardNode_Text;
+				navTree.Nodes["navigatorNode"].Text = Resx.SettingsDialog_navigatorNode_Text;
 				navTree.Nodes["pluginsNode"].Text = Resx.SettingsDialog_pluginsNode_Text;
 				navTree.Nodes["quickNotesNode"].Text = Resx.SettingsDialog_quickNotesNode_Text;
 				navTree.Nodes["ribbonNode"].Text = Resx.SettingsDialog_ribbonNode_Text;

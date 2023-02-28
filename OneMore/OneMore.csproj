@@ -168,6 +168,12 @@
     </Compile>
     <Compile Include="Commands\Page\DuplicatePageCommand.cs" />
     <Compile Include="Commands\Page\Emojis.cs" />
+    <Compile Include="Commands\Settings\NavigatorSheet.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Commands\Settings\NavigatorSheet.Designer.cs">
+      <DependentUpon>NavigatorSheet.cs</DependentUpon>
+    </Compile>
     <Compile Include="Commands\Settings\QuickNotesSheet.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -1227,6 +1233,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Commands\Settings\AliasSheet.resx">
       <DependentUpon>AliasSheet.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Commands\Settings\NavigatorSheet.resx">
+      <DependentUpon>NavigatorSheet.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Commands\Settings\QuickNotesSheet.resx">
       <DependentUpon>QuickNotesSheet.cs</DependentUpon>

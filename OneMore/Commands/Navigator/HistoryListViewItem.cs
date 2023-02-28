@@ -12,6 +12,9 @@ namespace River.OneMoreAddIn.Commands
 	using HierarchyInfo = OneNote.HierarchyInfo;
 
 
+	/// <summary>
+	/// Hosted control to be used in the pinned and history MoreListViews
+	/// </summary>
 	internal class HistoryListViewItem : UserControl, IChameleon
 	{
 		private readonly MoreLinkLabel link;

@@ -6,12 +6,12 @@ namespace River.OneMoreAddIn.Commands
 {
 	using River.OneMoreAddIn.Helpers.Extensions;
 	using River.OneMoreAddIn.UI;
+	using River.OneMoreAddIn.Settings;
 	using System;
 	using System.Collections.Generic;
 	using System.Drawing;
 	using System.Globalization;
 	using System.Linq;
-	using System.ServiceModel;
 	using System.Threading.Tasks;
 	using System.Windows.Forms;
 	using HierarchyInfo = OneNote.HierarchyInfo;
@@ -25,6 +25,7 @@ namespace River.OneMoreAddIn.Commands
 
 		private Screen screen;
 		private Point corral;
+		private readonly bool corralled;
 		private readonly List<HierarchyInfo> history;
 		private readonly List<HierarchyInfo> pinned;
 
@@ -65,6 +66,10 @@ namespace River.OneMoreAddIn.Commands
 			historyBox.FullRowSelect = true;
 			historyBox.Columns.Add(
 				new MoreColumnHeader(string.Empty, rowWidth) { AutoSizeItems = true });
+
+			corralled = new SettingsProvider()
+				.GetCollection("NavigatorSheet")
+				.Get("corralled", false);
 		}
 
 
@@ -107,7 +112,7 @@ namespace River.OneMoreAddIn.Commands
 
 		private void RestrictOnMove(object sender, EventArgs e)
 		{
-			if (corral.X > 0)
+			if (corralled && corral.X > 0)
 			{
 				if (Left < 10) Left = 10;
 				if (Left > corral.X) Left = corral.X;

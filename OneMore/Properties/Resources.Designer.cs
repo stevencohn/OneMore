@@ -4093,6 +4093,51 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Restrict the Navigator window to the active screen.
+        /// </summary>
+        internal static string NavigatorSheet_corrallBox_Text {
+            get {
+                return ResourceManager.GetString("NavigatorSheet_corrallBox.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Max number of pages to save in navigation history.
+        /// </summary>
+        internal static string NavigatorSheet_depthLabel_Text {
+            get {
+                return ResourceManager.GetString("NavigatorSheet_depthLabel.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Polling interval (seconds).
+        /// </summary>
+        internal static string NavigatorSheet_intervalLabel_Text {
+            get {
+                return ResourceManager.GetString("NavigatorSheet_intervalLabel.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Customize advanced options for the Navigator Service.
+        /// </summary>
+        internal static string NavigatorSheet_introBox_Text {
+            get {
+                return ResourceManager.GetString("NavigatorSheet_introBox.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Navigator.
+        /// </summary>
+        internal static string NavigatorSheet_Title {
+            get {
+                return ResourceManager.GetString("NavigatorSheet_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Network connection is not available.
         /// </summary>
         internal static string NetwordConnectionUnavailable {
@@ -9330,6 +9375,15 @@ namespace River.OneMoreAddIn.Properties {
         internal static string SettingsDialog_linesNode_Text {
             get {
                 return ResourceManager.GetString("SettingsDialog_linesNode.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Navigator.
+        /// </summary>
+        internal static string SettingsDialog_navigatorNode_Text {
+            get {
+                return ResourceManager.GetString("SettingsDialog_navigatorNode.Text", resourceCulture);
             }
         }
         

@@ -4,29 +4,30 @@
 
 namespace River.OneMoreAddIn.Commands
 {
+	using River.OneMoreAddIn.Settings;
 	using System;
 	using System.Threading;
 	using System.Threading.Tasks;
 
 
 	/// <summary>
-	/// 
+	/// Background service to monitor page navigations. This is a polling mechanism with
+	/// specified throttling limits.
 	/// </summary>
 	internal class NavigationService : Loggable
 	{
-		/// <summary>
-		/// Used by Settings to limit polling interval so we don't affect overall performance
-		/// </summary>
-		public const int MinimumPollingInterval = 1000;
 
-		/// <summary>
-		/// Used by NavigationProvider to filter out duplicate FileSystemWatcher.Changed events.
-		/// </summary>
+		// SafeWatchWindow must be less than MinimumPollingInterval; used by NavigationProvider
+		// to filter out duplicate FileSystemWatcher.Changed events
+		public const int MinimumPollingInterval = 1000; // do not change!
 		public const int SafeWatchWindow = MinimumPollingInterval - 500;
 
+		// defaults are used by Settings dialog
+		public const int DefaultPollingInterval = 1250; // 1.25s
+		public const int DefaultHistoryDepth = 10;
 
-		private const int PollingInterval = 1250; // 1.25s
-		private const int HistoryDepth = 10;
+		private readonly int pollingInterval;
+		private readonly int historyDepth;
 
 		private readonly NavigationProvider provider;
 		private string currentId = null;
@@ -36,6 +37,11 @@ namespace River.OneMoreAddIn.Commands
 		public NavigationService()
 		{
 			provider = new NavigationProvider();
+
+			var settings = new SettingsProvider();
+			var collection = settings.GetCollection("NavigatorSheet");
+			pollingInterval = collection.Get("interval", DefaultPollingInterval);
+			historyDepth = collection.Get("depth", DefaultHistoryDepth);
 		}
 
 
@@ -63,7 +69,7 @@ namespace River.OneMoreAddIn.Commands
 						errors++;
 					}
 
-					await Task.Delay(PollingInterval);
+					await Task.Delay(pollingInterval);
 				}
 
 				logger.WriteLine("navigation service has stopped; check for exceptions above");
@@ -76,7 +82,7 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		public async Task Scan()
+		private async Task Scan()
 		{
 			using var one = new OneNote();
 			var pageId = one.CurrentPageId;
@@ -91,7 +97,7 @@ namespace River.OneMoreAddIn.Commands
 				commitment++;
 				if (commitment == 1)
 				{
-					await provider.RecordHistory(pageId, HistoryDepth);
+					await provider.RecordHistory(pageId, historyDepth);
 				}
 			}
 		}
