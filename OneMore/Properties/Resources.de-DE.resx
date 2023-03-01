@@ -4925,4 +4925,8 @@ In diesem Abschnitt</value>
     <value>Nicht verfügbar</value>
     <comment>tooltip</comment>
   </data>
+  <data name="NavigatorWindow_Text" xml:space="preserve">
+    <value>Navigator-Fenster</value>
+    <comment>window title</comment>
+  </data>
 </root>

@@ -4938,4 +4938,8 @@ En esta sección</value>
     <value>No disponible</value>
     <comment>tooltip</comment>
   </data>
+  <data name="NavigatorWindow_Text" xml:space="preserve">
+    <value>Ventana del navegador</value>
+    <comment>window title</comment>
+  </data>
 </root>

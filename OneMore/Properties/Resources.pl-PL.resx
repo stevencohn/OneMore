@@ -4991,4 +4991,8 @@ W tej sekcji</value>
     <value>Niedostępne</value>
     <comment>tooltip</comment>
   </data>
+  <data name="NavigatorWindow_Text" xml:space="preserve">
+    <value>Okno nawigatora</value>
+    <comment>window title</comment>
+  </data>
 </root>

@@ -4938,4 +4938,8 @@ ISO-code then comma then language name</comment>
     <value>غير متاح</value>
     <comment>tooltip</comment>
   </data>
+  <data name="NavigatorWindow_Text" xml:space="preserve">
+    <value>نافذة المستكشف</value>
+    <comment>window title</comment>
+  </data>
 </root>

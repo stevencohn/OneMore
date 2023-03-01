@@ -4147,6 +4147,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Navigator Window.
+        /// </summary>
+        internal static string NavigatorWindow_Text {
+            get {
+                return ResourceManager.GetString("NavigatorWindow_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Network connection is not available.
         /// </summary>
         internal static string NetwordConnectionUnavailable {

@@ -4932,4 +4932,8 @@ Dans cette section</value>
     <value>Pas disponible</value>
     <comment>tooltip</comment>
   </data>
+  <data name="NavigatorWindow_Text" xml:space="preserve">
+    <value>Fenêtre du navigateur</value>
+    <comment>window title</comment>
+  </data>
 </root>

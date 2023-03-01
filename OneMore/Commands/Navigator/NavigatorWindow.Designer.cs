@@ -78,7 +78,7 @@
 			this.closeButton.Name = "closeButton";
 			this.closeButton.Size = new System.Drawing.Size(108, 38);
 			this.closeButton.TabIndex = 2;
-			this.closeButton.Text = "OK";
+			this.closeButton.Text = "Close";
 			this.closeButton.UseVisualStyleBackColor = true;
 			this.closeButton.Click += new System.EventHandler(this.CloseOnClick);
 			// 
@@ -164,6 +164,7 @@
 			// 
 			// pinnedBox
 			// 
+			this.pinnedBox.ControlPadding = 2;
 			this.pinnedBox.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.pinnedBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.pinnedBox.FullRowSelect = true;
@@ -273,9 +274,9 @@
 			// 
 			// NavigatorWindow
 			// 
+			this.AcceptButton = this.closeButton;
 			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.CancelButton = this.closeButton;
 			this.ClientSize = new System.Drawing.Size(528, 944);
 			this.Controls.Add(this.mainContainer);
 			this.Controls.Add(this.controlPanel);

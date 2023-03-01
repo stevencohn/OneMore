@@ -5033,4 +5033,8 @@ ISO-code then comma then language name</comment>
     <value>לא זמין</value>
     <comment>tooltip</comment>
   </data>
+  <data name="NavigatorWindow_Text" xml:space="preserve">
+    <value>חלון ניווט</value>
+    <comment>window title</comment>
+  </data>
 </root>

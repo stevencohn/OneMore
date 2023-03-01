@@ -4938,4 +4938,8 @@ In deze sectie</value>
     <value>Niet beschikbaar</value>
     <comment>tooltip</comment>
   </data>
+  <data name="NavigatorWindow_Text" xml:space="preserve">
+    <value>Navigator-venster</value>
+    <comment>window title</comment>
+  </data>
 </root>

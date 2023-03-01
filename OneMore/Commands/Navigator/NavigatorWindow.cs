@@ -14,6 +14,7 @@ namespace River.OneMoreAddIn.Commands
 	using System.Linq;
 	using System.Threading.Tasks;
 	using System.Windows.Forms;
+	using Resx = Properties.Resources;
 	using HierarchyInfo = OneNote.HierarchyInfo;
 
 
@@ -40,7 +41,7 @@ namespace River.OneMoreAddIn.Commands
 
 			if (NeedsLocalizing())
 			{
-				//Text = Resx.NavigatorWindow_Text;
+				Text = Resx.NavigatorWindow_Text;
 
 				Localize(new string[]
 				{
@@ -88,12 +89,32 @@ namespace River.OneMoreAddIn.Commands
 
 			corral = screen.GetBoundedLocation(this);
 
-			Left = corral.X;
-			Top = SystemInformation.CaptionHeight + WindowMargin;
-
-			if (CultureInfo.CurrentUICulture.TextInfo.IsRightToLeft)
+			var settings = new SettingsProvider().GetCollection("navigator");
+			if (settings.Contains("left") && settings.Contains("top"))
 			{
-				Left = WindowMargin;
+				Left = settings.Get("left", Left);
+				Top = settings.Get("top", Top);
+			}
+			else
+			{
+				Left = corral.X;
+				Top = SystemInformation.CaptionHeight + WindowMargin;
+
+				if (CultureInfo.CurrentUICulture.TextInfo.IsRightToLeft)
+				{
+					Left = WindowMargin;
+				}
+			}
+
+			// it's possible that screen resolution has changed since settings were saved
+			// and that left/top is now off the visible screen...
+			if (Left > screen.WorkingArea.Width) Left = WindowMargin;
+			if (Top > screen.WorkingArea.Height) Top = WindowMargin;
+
+			if (settings.Contains("width") && settings.Contains("height"))
+			{
+				Width = settings.Get("width", Width);
+				Height = settings.Get("height", Height);
 			}
 
 			// designer defines width but height is calculated
@@ -134,6 +155,15 @@ namespace River.OneMoreAddIn.Commands
 
 		private void CloseOnClick(object sender, EventArgs e)
 		{
+			var settings = new SettingsProvider();
+			var collection = settings.GetCollection("navigator");
+			collection.Add("left", Left);
+			collection.Add("top", Top);
+			collection.Add("width", Width);
+			collection.Add("heigth", Height);
+			settings.SetCollection(collection);
+			settings.Save();
+
 			Close();
 		}
 		#endregion Handlers

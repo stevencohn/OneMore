@@ -66,9 +66,13 @@ namespace River.OneMoreAddIn.Commands
 				}
 			});
 
-			var tip = new ToolTip();
-			var visited = DateTimeHelper.FromTicksSeconds(info.Visited).ToFriendlyString();
-			tip.SetToolTip(link, $"{info.Path}\n{visited}");
+			// history items should have a Visited value but pinned items would not
+			if (info.Visited > 0)
+			{
+				var tip = new ToolTip();
+				var visited = DateTimeHelper.FromTicksSeconds(info.Visited).ToFriendlyString();
+				tip.SetToolTip(link, $"{info.Path}\n{visited}");
+			}
 
 			BackColor = Color.Transparent;
 			Width = 100;

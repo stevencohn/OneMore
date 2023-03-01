@@ -4922,4 +4922,8 @@ ISO-code then comma then language name</comment>
     <value>无法使用</value>
     <comment>tooltip</comment>
   </data>
+  <data name="NavigatorWindow_Text" xml:space="preserve">
+    <value>导航窗口</value>
+    <comment>window title</comment>
+  </data>
 </root>
