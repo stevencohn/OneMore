@@ -354,14 +354,11 @@ namespace River.OneMoreAddIn.Commands
 
 			pageBox.Controls.Clear();
 
-
-
-			System.Diagnostics.Debugger.Launch();
-
 			foreach (var heading in headings)
 			{
-				// strip out <span> elements from text
-				var text = new XElement("t", new XCData(heading.Text)).Value;
+				var wrapper = new XElement("wrapper", heading.Text);
+				var text = wrapper.TextValue();
+
 				var leftpad = heading.Level * HeaderIndent;
 
 				var link = new MoreLinkLabel
@@ -374,7 +371,8 @@ namespace River.OneMoreAddIn.Commands
 					Tag = heading,
 					Font = new Font("Segoe UI", 8.5F, FontStyle.Regular, GraphicsUnit.Point),
 					Padding = new Padding(0),
-					Margin = new Padding(4 + leftpad, 0, 0, 4)
+					Margin = new Padding(4 + leftpad, 0, 0, 4),
+					Width = pageBox.Width - WindowMargin * 2
 				};
 
 				link.LinkClicked += new LinkLabelLinkClickedEventHandler(async (s, e) =>
