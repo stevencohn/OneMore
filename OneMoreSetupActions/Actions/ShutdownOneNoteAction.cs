@@ -4,6 +4,7 @@
 
 namespace OneMoreSetupActions
 {
+	using System;
 	using System.Diagnostics;
 	using System.Linq;
 	using System.Management;
@@ -67,64 +68,82 @@ namespace OneMoreSetupActions
 			var status = SUCCESS;
 			var killed = false;
 
-			var sql = 
+			var sql =
 				"SELECT ProcessID, CommandLine FROM Win32_Process " +
 				$"WHERE CommandLine LIKE '%{RegistryHelper.OneNoteID}%'";
 
-			using (var searcher = new ManagementObjectSearcher(sql))
-			{
-				using (var collection = searcher.Get())
-				{
-					if (collection.Count > 0)
-					{
-						foreach (var item in collection)
-						{
-							var processID = (int)(uint)item["ProcessID"];
-							item.Dispose();
-
-							using (var process = Process.GetProcessById(processID))
-							{
-								if (process == null)
-								{
-									logger.WriteLine($"{DllHostName} process not found");
-								}
-								else
-								{
-									logger.WriteLine($"stopping process {DllHostName}, pid {process.Id}");
-									process.Kill();
-									killed = true;
-
-									if (!process.WaitForExit(3000))
-									{
-										status = FAILURE;
-									}
-								}
-							}
-						}
-					}
-					else
-					{
-						logger.WriteLine($"{DllHostName} process not found");
-					}
-				}
-			}
-
-			if (killed && status == SUCCESS)
+			try
 			{
 				using (var searcher = new ManagementObjectSearcher(sql))
 				{
 					using (var collection = searcher.Get())
 					{
-						if (collection.Count == 0)
+						if (collection.Count > 0)
 						{
-							logger.WriteLine($"{DllHostName} process termination confirmed");
+							foreach (var item in collection)
+							{
+								var processID = (int)(uint)item["ProcessID"];
+								item.Dispose();
+
+								using (var process = Process.GetProcessById(processID))
+								{
+									if (process == null)
+									{
+										logger.WriteLine($"{DllHostName} process not found");
+									}
+									else
+									{
+										logger.WriteLine($"stopping process {DllHostName}, pid {process.Id}");
+										process.Kill();
+										killed = true;
+
+										if (!process.WaitForExit(3000))
+										{
+											status = FAILURE;
+										}
+									}
+								}
+							}
 						}
 						else
 						{
-							logger.WriteLine($"{DllHostName} process still running after 3 seconds");
-							status = FAILURE;
+							logger.WriteLine($"{DllHostName} process not found");
 						}
 					}
+				}
+			}
+			catch (Exception exc)
+			{
+				logger.WriteLine($"failed to run termination step of StopHost()");
+				logger.WriteLine(exc);
+				status = FAILURE;
+			}
+
+			if (killed && status == SUCCESS)
+			{
+				try
+				{
+					using (var searcher = new ManagementObjectSearcher(sql))
+					{
+						using (var collection = searcher.Get())
+						{
+							if (collection.Count == 0)
+							{
+								logger.WriteLine($"{DllHostName} process termination confirmed");
+							}
+							else
+							{
+								logger.WriteLine($"{DllHostName} process still running after 3 seconds");
+								status = FAILURE;
+							}
+						}
+					}
+				}
+				catch (Exception exc)
+				{
+					logger.WriteLine($"failed to run verification step of StopHost()");
+					logger.WriteLine(exc);
+					status = FAILURE;
 				}
 			}
 
