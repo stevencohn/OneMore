@@ -31,6 +31,7 @@ namespace River.OneMoreAddIn.Commands
 		private readonly bool corralled;
 		private readonly List<HierarchyInfo> history;
 		private readonly List<HierarchyInfo> pinned;
+		private readonly List<IDisposable> trash;
 
 
 		// disposed
@@ -40,6 +41,7 @@ namespace River.OneMoreAddIn.Commands
 		public NavigatorWindow()
 		{
 			InitializeComponent();
+			trash = new List<IDisposable>();
 
 			if (NeedsLocalizing())
 			{
@@ -55,6 +57,7 @@ namespace River.OneMoreAddIn.Commands
 
 			provider = new NavigationProvider();
 			provider.Navigated += Navigated;
+			trash.Add(provider);
 
 			history = new List<HierarchyInfo>();
 			pinned = new List<HierarchyInfo>();
@@ -79,6 +82,7 @@ namespace River.OneMoreAddIn.Commands
 		#region Handlers
 		private async void PositionOnLoad(object sender, EventArgs e)
 		{
+			logger.WriteLine("PositionOnLoad");
 			// deal with primary/secondary displays in either duplicate or extended mode...
 			// Load is invoked prior to SizeChanged
 
@@ -128,6 +132,7 @@ namespace River.OneMoreAddIn.Commands
 
 		private void SetLimitsOnSizeChanged(object sender, EventArgs e)
 		{
+			logger.WriteLine("SetLimitsOnsizeChanged");
 			// SizeChanged is invoked after Load which sets screenArea
 			corral = screen.GetBoundedLocation(this);
 		}
@@ -135,6 +140,7 @@ namespace River.OneMoreAddIn.Commands
 
 		private void RestrictOnMove(object sender, EventArgs e)
 		{
+			logger.WriteLine("RestrictOnMove");
 			if (corralled && corral.X > 0)
 			{
 				if (Left < 10) Left = 10;
@@ -147,6 +153,7 @@ namespace River.OneMoreAddIn.Commands
 
 		private void TopOnShown(object sender, EventArgs e)
 		{
+			logger.WriteLine("TopOnShown");
 			BringToFront();
 			TopMost = true;
 			Activate();
@@ -362,8 +369,16 @@ namespace River.OneMoreAddIn.Commands
 			var headings = page.GetHeadings(one);
 
 			head1Label.Text = page.Title;
-
 			pageBox.Controls.Clear();
+
+			if (headings.Count == 0)
+			{
+				return;
+			}
+
+			var font = new Font("Segoe UI", 8.5F, FontStyle.Regular, GraphicsUnit.Point);
+			trash.Add(font);
+
 			var margin = WindowMargin * 2 + SystemInformation.VerticalScrollBarWidth * 2;
 
 			foreach (var heading in headings)
@@ -382,7 +397,7 @@ namespace River.OneMoreAddIn.Commands
 					VisitedLinkColor = SystemColors.WindowText,
 					Text = text,
 					Tag = heading,
-					Font = new Font("Segoe UI", 8.5F, FontStyle.Regular, GraphicsUnit.Point),
+					Font = font,
 					Padding = new Padding(0),
 					Margin = new Padding(leftmar, 0, 0, 4),
 					Width = pageBox.Width - leftmar - margin
@@ -395,8 +410,6 @@ namespace River.OneMoreAddIn.Commands
 						using var one = new OneNote();
 						var heading = (Models.Heading)label.Tag;
 						await one.NavigateTo(heading.Link);
-
-						Native.SwitchToThisWindow(one.WindowHandle, false);
 					}
 				});
 

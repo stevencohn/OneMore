@@ -17,7 +17,12 @@
 			{
 				components.Dispose();
 
-				provider.Dispose();
+				foreach (var item in trash)
+				{
+					item?.Dispose();
+				}
+
+				trash.Clear();
 			}
 			base.Dispose(disposing);
 		}
