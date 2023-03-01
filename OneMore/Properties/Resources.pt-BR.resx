@@ -4906,4 +4906,36 @@ Nesta secção</value>
     <value>Total de palavras na seção em {0} páginas</value>
     <comment>report</comment>
   </data>
+  <data name="NavigatorSheet_corrallBox.Text" xml:space="preserve">
+    <value>Restringir a janela do Navegador à tela ativa</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="NavigatorSheet_corrallBox_Tooltip" xml:space="preserve">
+    <value>Ativado apenas quando várias telas estão disponíveis</value>
+    <comment>tooltip</comment>
+  </data>
+  <data name="NavigatorSheet_depthLabel.Text" xml:space="preserve">
+    <value>Número máximo de páginas para salvar no histórico de navegação</value>
+    <comment>label</comment>
+  </data>
+  <data name="NavigatorSheet_intervalLabel.Text" xml:space="preserve">
+    <value>Intervalo de sondagem (segundos)</value>
+    <comment>label</comment>
+  </data>
+  <data name="NavigatorSheet_introBox.Text" xml:space="preserve">
+    <value>Personalizar opções avançadas para o serviço Navigator</value>
+    <comment>label</comment>
+  </data>
+  <data name="NavigatorSheet_Title" xml:space="preserve">
+    <value>Navegador</value>
+    <comment>sheet title</comment>
+  </data>
+  <data name="ribNavigatorButton_Label" xml:space="preserve">
+    <value>Janela do Navegador</value>
+    <comment>ribbon main</comment>
+  </data>
+  <data name="SettingsDialog_navigatorNode.Text" xml:space="preserve">
+    <value>Navegador</value>
+    <comment>tree node</comment>
+  </data>
 </root>

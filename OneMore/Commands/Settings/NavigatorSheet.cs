@@ -5,11 +5,15 @@
 namespace River.OneMoreAddIn.Settings
 {
 	using River.OneMoreAddIn.Commands;
+	using System.Windows.Forms;
 	using Resx = Properties.Resources;
 
 
 	internal partial class NavigatorSheet : SheetBase
 	{
+		private const decimal Millisecond = 1000M;
+
+
 		public NavigatorSheet(SettingsProvider provider) : base(provider)
 		{
 			InitializeComponent();
@@ -33,9 +37,19 @@ namespace River.OneMoreAddIn.Settings
 			depthBox.Value = settings.Get("depth", NavigationService.DefaultHistoryDepth);
 
 			var interval = settings.Get("interval", NavigationService.DefaultPollingInterval);
-			intervalBox.Value = (decimal)(interval / 100.0);
+			intervalBox.Value = interval / Millisecond;
 
-			corrallBox.Checked = settings.Get("corralled", false);
+			if (Screen.AllScreens.Length == 1)
+			{
+				corrallBox.Checked = true;
+				corrallBox.Enabled = false;
+			}
+			else
+			{
+				corrallBox.Checked = settings.Get("corralled", false);
+			}
+
+			tooltip.SetToolTip(corrallBox, Resx.NavigatorSheet_corrallBox_Tooltip);
 		}
 
 
@@ -47,7 +61,7 @@ namespace River.OneMoreAddIn.Settings
 
 			var updated = settings.Add("depth", (int)depthBox.Value);
 
-			updated = settings.Add("interval", (int)(intervalBox.Value * 100)) || updated;
+			updated = settings.Add("interval", (int)(intervalBox.Value * Millisecond)) || updated;
 
 			updated = corrallBox.Checked
 				? settings.Add("corralled", true) || updated

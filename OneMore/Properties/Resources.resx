@@ -1841,6 +1841,30 @@ Symbols: PI, E</value>
     <value>Rename Style</value>
     <comment>dialog title</comment>
   </data>
+  <data name="NavigatorSheet_corrallBox.Text" xml:space="preserve">
+    <value>Restrict the Navigator window to the active screen</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="NavigatorSheet_corrallBox_Tooltip" xml:space="preserve">
+    <value>Enabled only when multiple screens are available</value>
+    <comment>tooltip</comment>
+  </data>
+  <data name="NavigatorSheet_depthLabel.Text" xml:space="preserve">
+    <value>Max number of pages to save in navigation history</value>
+    <comment>label</comment>
+  </data>
+  <data name="NavigatorSheet_intervalLabel.Text" xml:space="preserve">
+    <value>Polling interval (seconds)</value>
+    <comment>label</comment>
+  </data>
+  <data name="NavigatorSheet_introBox.Text" xml:space="preserve">
+    <value>Customize advanced options for the Navigator Service</value>
+    <comment>label</comment>
+  </data>
+  <data name="NavigatorSheet_Title" xml:space="preserve">
+    <value>Navigator</value>
+    <comment>sheet title</comment>
+  </data>
   <data name="NetwordConnectionUnavailable" xml:space="preserve">
     <value>Network connection is not available</value>
     <comment>error</comment>
@@ -3402,6 +3426,10 @@ Polaroid</value>
     <value>Replace URLs with Web page titles</value>
     <comment>ribbon references</comment>
   </data>
+  <data name="ribNavigatorButton_Label" xml:space="preserve">
+    <value>Navigator Window</value>
+    <comment>ribbon main</comment>
+  </data>
   <data name="ribNewStyleButton_Label" xml:space="preserve">
     <value>Create New Style from Text</value>
     <comment>ribbon styles</comment>
@@ -4155,6 +4183,10 @@ Search engines will appear in the page context menu, right-click.</value>
   <data name="SettingsDialog_linesNode.Text" xml:space="preserve">
     <value>Horizontal Lines</value>
     <comment>settings dialog</comment>
+  </data>
+  <data name="SettingsDialog_navigatorNode.Text" xml:space="preserve">
+    <value>Navigator</value>
+    <comment>tree node</comment>
   </data>
   <data name="SettingsDialog_pluginsNode.Text" xml:space="preserve">
     <value>Plugins</value>
@@ -5033,33 +5065,5 @@ In this section</value>
   </data>
   <data name="XMark" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>emoji\xmark.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="ribNavigatorButton_Label" xml:space="preserve">
-    <value>Navigator Window</value>
-    <comment>ribbon main</comment>
-  </data>
-  <data name="NavigatorSheet_corrallBox.Text" xml:space="preserve">
-    <value>Restrict the Navigator window to the active screen</value>
-    <comment>checkbox</comment>
-  </data>
-  <data name="NavigatorSheet_depthLabel.Text" xml:space="preserve">
-    <value>Max number of pages to save in navigation history</value>
-    <comment>label</comment>
-  </data>
-  <data name="NavigatorSheet_intervalLabel.Text" xml:space="preserve">
-    <value>Polling interval (seconds)</value>
-    <comment>label</comment>
-  </data>
-  <data name="NavigatorSheet_introBox.Text" xml:space="preserve">
-    <value>Customize advanced options for the Navigator Service</value>
-    <comment>label</comment>
-  </data>
-  <data name="NavigatorSheet_Title" xml:space="preserve">
-    <value>Navigator</value>
-    <comment>sheet title</comment>
-  </data>
-  <data name="SettingsDialog_navigatorNode.Text" xml:space="preserve">
-    <value>Navigator</value>
-    <comment>tree node</comment>
   </data>
 </root>

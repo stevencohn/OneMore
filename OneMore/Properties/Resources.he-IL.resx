@@ -5001,4 +5001,36 @@ ISO-code then comma then language name</comment>
     <value>סך המילים בקטע על פני {0} דפים</value>
     <comment>report</comment>
   </data>
+  <data name="NavigatorSheet_corrallBox.Text" xml:space="preserve">
+    <value>הגבל את חלון הניווט למסך הפעיל</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="NavigatorSheet_corrallBox_Tooltip" xml:space="preserve">
+    <value>מופעל רק כאשר מספר מסכים זמינים</value>
+    <comment>tooltip</comment>
+  </data>
+  <data name="NavigatorSheet_depthLabel.Text" xml:space="preserve">
+    <value>מספר דפים מקסימלי לשמירה בהיסטוריית הניווט</value>
+    <comment>label</comment>
+  </data>
+  <data name="NavigatorSheet_intervalLabel.Text" xml:space="preserve">
+    <value>מרווח סקרים (שניות)</value>
+    <comment>label</comment>
+  </data>
+  <data name="NavigatorSheet_introBox.Text" xml:space="preserve">
+    <value>התאם אישית אפשרויות מתקדמות עבור שירות הניווט</value>
+    <comment>label</comment>
+  </data>
+  <data name="NavigatorSheet_Title" xml:space="preserve">
+    <value>נווט</value>
+    <comment>sheet title</comment>
+  </data>
+  <data name="ribNavigatorButton_Label" xml:space="preserve">
+    <value>חלון ניווט</value>
+    <comment>ribbon main</comment>
+  </data>
+  <data name="SettingsDialog_navigatorNode.Text" xml:space="preserve">
+    <value>נווט</value>
+    <comment>tree node</comment>
+  </data>
 </root>

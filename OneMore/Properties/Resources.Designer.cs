@@ -4102,6 +4102,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Enabled only when multiple screens are available.
+        /// </summary>
+        internal static string NavigatorSheet_corrallBox_Tooltip {
+            get {
+                return ResourceManager.GetString("NavigatorSheet_corrallBox_Tooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Max number of pages to save in navigation history.
         /// </summary>
         internal static string NavigatorSheet_depthLabel_Text {

@@ -122,10 +122,11 @@ namespace River.OneMoreAddIn.Settings
 					5 => new LinesSheet(provider),
 					6 => new ImagesSheet(provider),
 					7 => new KeyboardSheet(provider, ribbon),
-					8 => await PluginsSheet.Create(provider, ribbon),
-					9 => new QuickNotesSheet(provider),
-					10 => new RibbonBarSheet(provider),
-					11 => new SearchEngineSheet(provider),
+					8 => new NavigatorSheet(provider),
+					9 => await PluginsSheet.Create(provider, ribbon),
+					10 => new QuickNotesSheet(provider),
+					11 => new RibbonBarSheet(provider),
+					12 => new SearchEngineSheet(provider),
 					_ => new SnippetsSheet(provider, ribbon),
 				};
 				sheets.Add(e.Node.Index, sheet);

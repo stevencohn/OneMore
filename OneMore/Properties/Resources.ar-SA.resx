@@ -4906,4 +4906,36 @@ ISO-code then comma then language name</comment>
     <value>إجمالي الكلمات في القسم عبر {0} صفحة</value>
     <comment>report</comment>
   </data>
+  <data name="NavigatorSheet_corrallBox.Text" xml:space="preserve">
+    <value>قصر نافذة المستكشف على الشاشة النشطة</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="NavigatorSheet_corrallBox_Tooltip" xml:space="preserve">
+    <value>يتم التمكين فقط عندما تكون الشاشات المتعددة متاحة</value>
+    <comment>tooltip</comment>
+  </data>
+  <data name="NavigatorSheet_depthLabel.Text" xml:space="preserve">
+    <value>أقصى عدد من الصفحات لحفظها في سجل التنقل</value>
+    <comment>label</comment>
+  </data>
+  <data name="NavigatorSheet_intervalLabel.Text" xml:space="preserve">
+    <value>الفاصل الزمني للاستقصاء (بالثواني)</value>
+    <comment>label</comment>
+  </data>
+  <data name="NavigatorSheet_introBox.Text" xml:space="preserve">
+    <value>تخصيص الخيارات المتقدمة لخدمة Navigator</value>
+    <comment>label</comment>
+  </data>
+  <data name="NavigatorSheet_Title" xml:space="preserve">
+    <value>الملاح</value>
+    <comment>sheet title</comment>
+  </data>
+  <data name="ribNavigatorButton_Label" xml:space="preserve">
+    <value>نافذة المستكشف</value>
+    <comment>ribbon main</comment>
+  </data>
+  <data name="SettingsDialog_navigatorNode.Text" xml:space="preserve">
+    <value>الملاح</value>
+    <comment>tree node</comment>
+  </data>
 </root>

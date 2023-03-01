@@ -29,6 +29,7 @@ namespace River.OneMoreAddIn.Settings
 		/// </summary>
 		private void InitializeComponent()
 		{
+			this.components = new System.ComponentModel.Container();
 			this.introBox = new System.Windows.Forms.TextBox();
 			this.layoutPanel = new System.Windows.Forms.Panel();
 			this.intervalBox = new System.Windows.Forms.NumericUpDown();
@@ -36,6 +37,7 @@ namespace River.OneMoreAddIn.Settings
 			this.depthBox = new System.Windows.Forms.NumericUpDown();
 			this.depthLabel = new System.Windows.Forms.Label();
 			this.corrallBox = new System.Windows.Forms.CheckBox();
+			this.tooltip = new System.Windows.Forms.ToolTip(this.components);
 			this.layoutPanel.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.intervalBox)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.depthBox)).BeginInit();
@@ -145,6 +147,7 @@ namespace River.OneMoreAddIn.Settings
 			this.corrallBox.Size = new System.Drawing.Size(765, 43);
 			this.corrallBox.TabIndex = 0;
 			this.corrallBox.Text = "Restrict the Navigator window to the active screen";
+			this.tooltip.SetToolTip(this.corrallBox, "Enabled only when multiple screens are available");
 			this.corrallBox.UseVisualStyleBackColor = true;
 			// 
 			// NavigatorSheet
@@ -175,5 +178,6 @@ namespace River.OneMoreAddIn.Settings
 		private System.Windows.Forms.Label depthLabel;
 		private System.Windows.Forms.NumericUpDown intervalBox;
 		private System.Windows.Forms.Label intervalLabel;
+		private System.Windows.Forms.ToolTip tooltip;
 	}
 }

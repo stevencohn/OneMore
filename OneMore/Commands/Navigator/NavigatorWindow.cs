@@ -69,7 +69,8 @@ namespace River.OneMoreAddIn.Commands
 
 			corralled = new SettingsProvider()
 				.GetCollection("NavigatorSheet")
-				.Get("corralled", false);
+				.Get("corralled", false) ||
+				Screen.AllScreens.Length == 1;
 		}
 
 
