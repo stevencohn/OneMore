@@ -4939,4 +4939,10 @@ Dans cette section</value>
   <data name="word_Seconds" xml:space="preserve">
     <value>Secondes</value>
   </data>
+  <data name="word_History" xml:space="preserve">
+    <value>Histoire</value>
+  </data>
+  <data name="word_Pinned" xml:space="preserve">
+    <value>Épinglé</value>
+  </data>
 </root>

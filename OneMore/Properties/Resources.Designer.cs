@@ -11164,6 +11164,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to History.
+        /// </summary>
+        internal static string word_History {
+            get {
+                return ResourceManager.GetString("word_History", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Keyboard.
         /// </summary>
         internal static string word_Keyboard {
@@ -11277,6 +11286,15 @@ namespace River.OneMoreAddIn.Properties {
         internal static string word_PercentSymbol {
             get {
                 return ResourceManager.GetString("word_PercentSymbol", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Pinned.
+        /// </summary>
+        internal static string word_Pinned {
+            get {
+                return ResourceManager.GetString("word_Pinned", resourceCulture);
             }
         }
         

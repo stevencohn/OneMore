@@ -4945,4 +4945,10 @@ Nesta secção</value>
   <data name="word_Seconds" xml:space="preserve">
     <value>Segundos</value>
   </data>
+  <data name="word_History" xml:space="preserve">
+    <value>História</value>
+  </data>
+  <data name="word_Pinned" xml:space="preserve">
+    <value>Fixado</value>
+  </data>
 </root>

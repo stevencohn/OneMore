@@ -45,13 +45,13 @@
 			this.head1Label = new System.Windows.Forms.Label();
 			this.subContainer = new System.Windows.Forms.SplitContainer();
 			this.pinnedBox = new River.OneMoreAddIn.UI.MoreListView();
-			this.head2Panel = new System.Windows.Forms.Panel();
+			this.pinnedHeadPanel = new System.Windows.Forms.Panel();
 			this.unpinButton = new System.Windows.Forms.Button();
-			this.head2Label = new System.Windows.Forms.Label();
+			this.pinnedHeadLabel = new System.Windows.Forms.Label();
 			this.historyBox = new River.OneMoreAddIn.UI.MoreListView();
-			this.head3Panel = new System.Windows.Forms.Panel();
+			this.historyHeadPanel = new System.Windows.Forms.Panel();
 			this.pinButton = new System.Windows.Forms.Button();
-			this.head3Label = new System.Windows.Forms.Label();
+			this.historyHeadLabel = new System.Windows.Forms.Label();
 			this.controlPanel.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.mainContainer)).BeginInit();
 			this.mainContainer.Panel1.SuspendLayout();
@@ -62,8 +62,8 @@
 			this.subContainer.Panel1.SuspendLayout();
 			this.subContainer.Panel2.SuspendLayout();
 			this.subContainer.SuspendLayout();
-			this.head2Panel.SuspendLayout();
-			this.head3Panel.SuspendLayout();
+			this.pinnedHeadPanel.SuspendLayout();
+			this.historyHeadPanel.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// controlPanel
@@ -170,14 +170,14 @@
 			// 
 			this.subContainer.Panel1.BackColor = System.Drawing.SystemColors.Window;
 			this.subContainer.Panel1.Controls.Add(this.pinnedBox);
-			this.subContainer.Panel1.Controls.Add(this.head2Panel);
+			this.subContainer.Panel1.Controls.Add(this.pinnedHeadPanel);
 			this.subContainer.Panel1MinSize = 80;
 			// 
 			// subContainer.Panel2
 			// 
 			this.subContainer.Panel2.BackColor = System.Drawing.SystemColors.Window;
 			this.subContainer.Panel2.Controls.Add(this.historyBox);
-			this.subContainer.Panel2.Controls.Add(this.head3Panel);
+			this.subContainer.Panel2.Controls.Add(this.historyHeadPanel);
 			this.subContainer.Panel2MinSize = 80;
 			this.subContainer.Size = new System.Drawing.Size(528, 585);
 			this.subContainer.SplitterDistance = 253;
@@ -201,18 +201,18 @@
 			this.pinnedBox.UseCompatibleStateImageBehavior = false;
 			this.pinnedBox.View = System.Windows.Forms.View.Details;
 			// 
-			// head2Panel
+			// pinnedHeadPanel
 			// 
-			this.head2Panel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(205)))), ((int)(((byte)(179)))), ((int)(((byte)(218)))));
-			this.head2Panel.Controls.Add(this.unpinButton);
-			this.head2Panel.Controls.Add(this.head2Label);
-			this.head2Panel.Dock = System.Windows.Forms.DockStyle.Top;
-			this.head2Panel.Location = new System.Drawing.Point(0, 0);
-			this.head2Panel.Margin = new System.Windows.Forms.Padding(0);
-			this.head2Panel.Name = "head2Panel";
-			this.head2Panel.Padding = new System.Windows.Forms.Padding(0, 2, 5, 2);
-			this.head2Panel.Size = new System.Drawing.Size(528, 41);
-			this.head2Panel.TabIndex = 1;
+			this.pinnedHeadPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(205)))), ((int)(((byte)(179)))), ((int)(((byte)(218)))));
+			this.pinnedHeadPanel.Controls.Add(this.unpinButton);
+			this.pinnedHeadPanel.Controls.Add(this.pinnedHeadLabel);
+			this.pinnedHeadPanel.Dock = System.Windows.Forms.DockStyle.Top;
+			this.pinnedHeadPanel.Location = new System.Drawing.Point(0, 0);
+			this.pinnedHeadPanel.Margin = new System.Windows.Forms.Padding(0);
+			this.pinnedHeadPanel.Name = "pinnedHeadPanel";
+			this.pinnedHeadPanel.Padding = new System.Windows.Forms.Padding(0, 2, 5, 2);
+			this.pinnedHeadPanel.Size = new System.Drawing.Size(528, 41);
+			this.pinnedHeadPanel.TabIndex = 1;
 			// 
 			// unpinButton
 			// 
@@ -229,15 +229,15 @@
 			this.unpinButton.UseVisualStyleBackColor = true;
 			this.unpinButton.Click += new System.EventHandler(this.UnpinOnClick);
 			// 
-			// head2Label
+			// pinnedHeadLabel
 			// 
-			this.head2Label.AutoSize = true;
-			this.head2Label.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.head2Label.Location = new System.Drawing.Point(12, 12);
-			this.head2Label.Name = "head2Label";
-			this.head2Label.Size = new System.Drawing.Size(73, 22);
-			this.head2Label.TabIndex = 1;
-			this.head2Label.Text = "Pinned";
+			this.pinnedHeadLabel.AutoSize = true;
+			this.pinnedHeadLabel.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.pinnedHeadLabel.Location = new System.Drawing.Point(12, 12);
+			this.pinnedHeadLabel.Name = "pinnedHeadLabel";
+			this.pinnedHeadLabel.Size = new System.Drawing.Size(73, 22);
+			this.pinnedHeadLabel.TabIndex = 1;
+			this.pinnedHeadLabel.Text = "Pinned";
 			// 
 			// historyBox
 			// 
@@ -257,18 +257,18 @@
 			this.historyBox.UseCompatibleStateImageBehavior = false;
 			this.historyBox.View = System.Windows.Forms.View.Details;
 			// 
-			// head3Panel
+			// historyHeadPanel
 			// 
-			this.head3Panel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(205)))), ((int)(((byte)(179)))), ((int)(((byte)(218)))));
-			this.head3Panel.Controls.Add(this.pinButton);
-			this.head3Panel.Controls.Add(this.head3Label);
-			this.head3Panel.Dock = System.Windows.Forms.DockStyle.Top;
-			this.head3Panel.Location = new System.Drawing.Point(0, 0);
-			this.head3Panel.Margin = new System.Windows.Forms.Padding(0);
-			this.head3Panel.Name = "head3Panel";
-			this.head3Panel.Padding = new System.Windows.Forms.Padding(5, 2, 5, 2);
-			this.head3Panel.Size = new System.Drawing.Size(528, 41);
-			this.head3Panel.TabIndex = 1;
+			this.historyHeadPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(205)))), ((int)(((byte)(179)))), ((int)(((byte)(218)))));
+			this.historyHeadPanel.Controls.Add(this.pinButton);
+			this.historyHeadPanel.Controls.Add(this.historyHeadLabel);
+			this.historyHeadPanel.Dock = System.Windows.Forms.DockStyle.Top;
+			this.historyHeadPanel.Location = new System.Drawing.Point(0, 0);
+			this.historyHeadPanel.Margin = new System.Windows.Forms.Padding(0);
+			this.historyHeadPanel.Name = "historyHeadPanel";
+			this.historyHeadPanel.Padding = new System.Windows.Forms.Padding(5, 2, 5, 2);
+			this.historyHeadPanel.Size = new System.Drawing.Size(528, 41);
+			this.historyHeadPanel.TabIndex = 1;
 			// 
 			// pinButton
 			// 
@@ -285,15 +285,15 @@
 			this.pinButton.UseVisualStyleBackColor = true;
 			this.pinButton.Click += new System.EventHandler(this.PinOnClick);
 			// 
-			// head3Label
+			// historyHeadLabel
 			// 
-			this.head3Label.AutoSize = true;
-			this.head3Label.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.head3Label.Location = new System.Drawing.Point(17, 12);
-			this.head3Label.Name = "head3Label";
-			this.head3Label.Size = new System.Drawing.Size(74, 22);
-			this.head3Label.TabIndex = 1;
-			this.head3Label.Text = "History";
+			this.historyHeadLabel.AutoSize = true;
+			this.historyHeadLabel.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.historyHeadLabel.Location = new System.Drawing.Point(17, 12);
+			this.historyHeadLabel.Name = "historyHeadLabel";
+			this.historyHeadLabel.Size = new System.Drawing.Size(74, 22);
+			this.historyHeadLabel.TabIndex = 1;
+			this.historyHeadLabel.Text = "History";
 			// 
 			// NavigatorWindow
 			// 
@@ -327,10 +327,10 @@
 			this.subContainer.Panel2.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.subContainer)).EndInit();
 			this.subContainer.ResumeLayout(false);
-			this.head2Panel.ResumeLayout(false);
-			this.head2Panel.PerformLayout();
-			this.head3Panel.ResumeLayout(false);
-			this.head3Panel.PerformLayout();
+			this.pinnedHeadPanel.ResumeLayout(false);
+			this.pinnedHeadPanel.PerformLayout();
+			this.historyHeadPanel.ResumeLayout(false);
+			this.historyHeadPanel.PerformLayout();
 			this.ResumeLayout(false);
 
 		}
@@ -342,11 +342,11 @@
 		private System.Windows.Forms.SplitContainer mainContainer;
 		private System.Windows.Forms.Panel head1Panel;
 		private System.Windows.Forms.SplitContainer subContainer;
-		private System.Windows.Forms.Panel head2Panel;
-		private System.Windows.Forms.Panel head3Panel;
+		private System.Windows.Forms.Panel pinnedHeadPanel;
+		private System.Windows.Forms.Panel historyHeadPanel;
 		private System.Windows.Forms.Label head1Label;
-		private System.Windows.Forms.Label head2Label;
-		private System.Windows.Forms.Label head3Label;
+		private System.Windows.Forms.Label pinnedHeadLabel;
+		private System.Windows.Forms.Label historyHeadLabel;
 		private River.OneMoreAddIn.UI.MoreListView pinnedBox;
 		private River.OneMoreAddIn.UI.MoreListView historyBox;
 		private System.Windows.Forms.FlowLayoutPanel pageBox;

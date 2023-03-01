@@ -22,7 +22,7 @@ namespace River.OneMoreAddIn.Commands
 	internal partial class NavigatorWindow : LocalizableForm
 	{
 		private const int WindowMargin = 20;
-		private const int HeaderIndent = 12;
+		private const int HeaderIndent = 16;
 
 		private static string visitedID;
 
@@ -49,6 +49,8 @@ namespace River.OneMoreAddIn.Commands
 
 				Localize(new string[]
 				{
+					"pinnedHeadLabel=word_Pinned",
+					"historyHeadLabel=word_History",
 					"closeButton"
 				});
 			}
@@ -231,7 +233,8 @@ namespace River.OneMoreAddIn.Commands
 			if (e.Count > 0 && e[0].PageID == visitedID)
 			{
 				// user clicked ths page in navigator; don't reorder the list or they'll lose
-				// their context and get confused
+				// their context and get confused, but refresh the headings pane
+				LoadPageHeadings(e[0].PageID);
 				return;
 			}
 

@@ -4929,4 +4929,10 @@ ISO-code then comma then language name</comment>
   <data name="word_Seconds" xml:space="preserve">
     <value>秒</value>
   </data>
+  <data name="word_History" xml:space="preserve">
+    <value>历史</value>
+  </data>
+  <data name="word_Pinned" xml:space="preserve">
+    <value>置顶</value>
+  </data>
 </root>
