@@ -16,11 +16,13 @@ namespace River.OneMoreAddIn.Commands
 	using System.Windows.Forms;
 	using Resx = Properties.Resources;
 	using HierarchyInfo = OneNote.HierarchyInfo;
-
+	using System.Runtime.InteropServices;
+	using System.Xml.Linq;
 
 	internal partial class NavigatorWindow : LocalizableForm
 	{
 		private const int WindowMargin = 20;
+		private const int HeaderIndent = 12;
 
 		private static string visitedID;
 
@@ -350,8 +352,43 @@ namespace River.OneMoreAddIn.Commands
 
 			head1Label.Text = page.Title;
 
-			pageBox.Items.Clear();
-			pageBox.Items.AddRange(headings.Select(h => h.Text).ToArray());
+			pageBox.Controls.Clear();
+
+
+
+			System.Diagnostics.Debugger.Launch();
+
+			foreach (var heading in headings)
+			{
+				// strip out <span> elements from text
+				var text = new XElement("t", new XCData(heading.Text)).Value;
+				var leftpad = heading.Level * HeaderIndent;
+
+				var link = new MoreLinkLabel
+				{
+					BackColor = Color.Transparent,
+					ForeColor = SystemColors.WindowText,
+					LinkColor = SystemColors.WindowText,
+					VisitedLinkColor = SystemColors.WindowText,
+					Text = text,
+					Tag = heading,
+					Font = new Font("Segoe UI", 8.5F, FontStyle.Regular, GraphicsUnit.Point),
+					Padding = new Padding(0),
+					Margin = new Padding(4 + leftpad, 0, 0, 4)
+				};
+
+				link.LinkClicked += new LinkLabelLinkClickedEventHandler(async (s, e) =>
+				{
+					if (s is MoreLinkLabel label)
+					{
+						using var one = new OneNote();
+						var heading = (Models.Heading)label.Tag;
+						await one.NavigateTo(heading.Link);
+					}
+				});
+
+				pageBox.Controls.Add(link);
+			}
 		}
 	}
 }

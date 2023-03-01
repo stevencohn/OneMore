@@ -45,12 +45,10 @@ namespace River.OneMoreAddIn.Commands
 				VisitedLinkColor = SystemColors.WindowText,
 				Text = info.Name,
 				Tag = info,
-				Font = new Font("Segoe UI", 8, FontStyle.Regular),
+				Font = new Font("Segoe UI", 8.5f, FontStyle.Regular, GraphicsUnit.Point),
 				Padding = new Padding(0),
 				Margin = new Padding(4, 0, 0, 0)
 			};
-
-			link.Font = new Font(link.Font.FontFamily, 8.5f, link.Font.Style, GraphicsUnit.Point);
 
 			link.LinkClicked += new LinkLabelLinkClickedEventHandler(async (s, e) =>
 			{

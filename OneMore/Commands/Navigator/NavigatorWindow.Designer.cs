@@ -34,7 +34,7 @@
 			this.controlPanel = new System.Windows.Forms.Panel();
 			this.closeButton = new System.Windows.Forms.Button();
 			this.mainContainer = new System.Windows.Forms.SplitContainer();
-			this.pageBox = new System.Windows.Forms.ListBox();
+			this.pageBox = new System.Windows.Forms.FlowLayoutPanel();
 			this.head1Panel = new System.Windows.Forms.Panel();
 			this.head1Label = new System.Windows.Forms.Label();
 			this.subContainer = new System.Windows.Forms.SplitContainer();
@@ -108,9 +108,8 @@
 			// pageBox
 			// 
 			this.pageBox.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.pageBox.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
 			this.pageBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.pageBox.FormattingEnabled = true;
-			this.pageBox.ItemHeight = 22;
 			this.pageBox.Location = new System.Drawing.Point(0, 41);
 			this.pageBox.Name = "pageBox";
 			this.pageBox.Size = new System.Drawing.Size(528, 250);
@@ -326,7 +325,7 @@
 		private System.Windows.Forms.Label head3Label;
 		private River.OneMoreAddIn.UI.MoreListView pinnedBox;
 		private River.OneMoreAddIn.UI.MoreListView historyBox;
-		private System.Windows.Forms.ListBox pageBox;
+		private System.Windows.Forms.FlowLayoutPanel pageBox;
 		private System.Windows.Forms.Button pinButton;
 		private System.Windows.Forms.Button unpinButton;
 	}
