@@ -5,8 +5,8 @@
 namespace River.OneMoreAddIn.Commands
 {
 	using River.OneMoreAddIn.Helpers.Extensions;
-	using River.OneMoreAddIn.UI;
 	using River.OneMoreAddIn.Settings;
+	using River.OneMoreAddIn.UI;
 	using System;
 	using System.Collections.Generic;
 	using System.Drawing;
@@ -14,10 +14,10 @@ namespace River.OneMoreAddIn.Commands
 	using System.Linq;
 	using System.Threading.Tasks;
 	using System.Windows.Forms;
-	using Resx = Properties.Resources;
-	using HierarchyInfo = OneNote.HierarchyInfo;
-	using System.Runtime.InteropServices;
 	using System.Xml.Linq;
+	using HierarchyInfo = OneNote.HierarchyInfo;
+	using Resx = Properties.Resources;
+
 
 	internal partial class NavigatorWindow : LocalizableForm
 	{
@@ -52,7 +52,6 @@ namespace River.OneMoreAddIn.Commands
 			}
 
 			ManualLocation = true;
-			TopMost = true;
 
 			provider = new NavigationProvider();
 			provider.Navigated += Navigated;
@@ -148,10 +147,10 @@ namespace River.OneMoreAddIn.Commands
 
 		private void TopOnShown(object sender, EventArgs e)
 		{
-			TopMost = false;
+			BringToFront();
 			TopMost = true;
-			TopLevel = true;
-			this.ForceTopMost();
+			Activate();
+			Focus();
 		}
 
 
@@ -346,13 +345,26 @@ namespace River.OneMoreAddIn.Commands
 
 		private void ShowPageOutline(HierarchyInfo info)
 		{
+			LoadPageHeadings(info.PageId);
+		}
+
+
+		private void RefreshPageHeadings(object sender, EventArgs e)
+		{
+			LoadPageHeadings(null);
+		}
+
+
+		private void LoadPageHeadings(string pageID)
+		{
 			using var one = new OneNote();
-			var page = one.GetPage(info.PageId, OneNote.PageDetail.Basic);
+			var page = one.GetPage(pageID ?? one.CurrentPageId, OneNote.PageDetail.Basic);
 			var headings = page.GetHeadings(one);
 
 			head1Label.Text = page.Title;
 
 			pageBox.Controls.Clear();
+			var margin = WindowMargin * 2 + SystemInformation.VerticalScrollBarWidth * 2;
 
 			foreach (var heading in headings)
 			{
@@ -360,6 +372,7 @@ namespace River.OneMoreAddIn.Commands
 				var text = wrapper.TextValue();
 
 				var leftpad = heading.Level * HeaderIndent;
+				var leftmar = leftpad + 4;
 
 				var link = new MoreLinkLabel
 				{
@@ -371,8 +384,8 @@ namespace River.OneMoreAddIn.Commands
 					Tag = heading,
 					Font = new Font("Segoe UI", 8.5F, FontStyle.Regular, GraphicsUnit.Point),
 					Padding = new Padding(0),
-					Margin = new Padding(4 + leftpad, 0, 0, 4),
-					Width = pageBox.Width - WindowMargin * 2
+					Margin = new Padding(leftmar, 0, 0, 4),
+					Width = pageBox.Width - leftmar - margin
 				};
 
 				link.LinkClicked += new LinkLabelLinkClickedEventHandler(async (s, e) =>
@@ -382,10 +395,13 @@ namespace River.OneMoreAddIn.Commands
 						using var one = new OneNote();
 						var heading = (Models.Heading)label.Tag;
 						await one.NavigateTo(heading.Link);
+
+						Native.SwitchToThisWindow(one.WindowHandle, false);
 					}
 				});
 
 				pageBox.Controls.Add(link);
+				pageBox.SetFlowBreak(link, true);
 			}
 		}
 	}

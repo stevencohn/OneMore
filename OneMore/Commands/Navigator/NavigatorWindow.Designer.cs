@@ -36,6 +36,7 @@
 			this.mainContainer = new System.Windows.Forms.SplitContainer();
 			this.pageBox = new System.Windows.Forms.FlowLayoutPanel();
 			this.head1Panel = new System.Windows.Forms.Panel();
+			this.refreshButton = new System.Windows.Forms.Button();
 			this.head1Label = new System.Windows.Forms.Label();
 			this.subContainer = new System.Windows.Forms.SplitContainer();
 			this.pinnedBox = new River.OneMoreAddIn.UI.MoreListView();
@@ -107,8 +108,8 @@
 			// 
 			// pageBox
 			// 
+			this.pageBox.AutoScroll = true;
 			this.pageBox.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.pageBox.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
 			this.pageBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.pageBox.Location = new System.Drawing.Point(0, 41);
 			this.pageBox.Name = "pageBox";
@@ -118,6 +119,7 @@
 			// head1Panel
 			// 
 			this.head1Panel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(205)))), ((int)(((byte)(179)))), ((int)(((byte)(218)))));
+			this.head1Panel.Controls.Add(this.refreshButton);
 			this.head1Panel.Controls.Add(this.head1Label);
 			this.head1Panel.Dock = System.Windows.Forms.DockStyle.Top;
 			this.head1Panel.Location = new System.Drawing.Point(0, 0);
@@ -125,6 +127,21 @@
 			this.head1Panel.Name = "head1Panel";
 			this.head1Panel.Size = new System.Drawing.Size(528, 41);
 			this.head1Panel.TabIndex = 0;
+			// 
+			// refreshButton
+			// 
+			this.refreshButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.refreshButton.FlatAppearance.BorderSize = 0;
+			this.refreshButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+			this.refreshButton.Font = new System.Drawing.Font("Segoe UI Emoji", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.refreshButton.Location = new System.Drawing.Point(481, 1);
+			this.refreshButton.Name = "refreshButton";
+			this.refreshButton.Size = new System.Drawing.Size(35, 37);
+			this.refreshButton.TabIndex = 4;
+			this.refreshButton.Text = "↻";
+			this.refreshButton.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+			this.refreshButton.UseVisualStyleBackColor = true;
+			this.refreshButton.Click += new System.EventHandler(this.RefreshPageHeadings);
 			// 
 			// head1Label
 			// 
@@ -197,12 +214,13 @@
 			this.unpinButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.unpinButton.FlatAppearance.BorderSize = 0;
 			this.unpinButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-			this.unpinButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.unpinButton.Font = new System.Drawing.Font("Segoe UI Emoji", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.unpinButton.Location = new System.Drawing.Point(481, 3);
 			this.unpinButton.Name = "unpinButton";
 			this.unpinButton.Size = new System.Drawing.Size(35, 37);
 			this.unpinButton.TabIndex = 3;
-			this.unpinButton.Text = "🗑";
+			this.unpinButton.Text = "✘";
+			this.unpinButton.TextAlign = System.Drawing.ContentAlignment.TopCenter;
 			this.unpinButton.UseVisualStyleBackColor = true;
 			this.unpinButton.Click += new System.EventHandler(this.UnpinOnClick);
 			// 
@@ -252,12 +270,13 @@
 			this.pinButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.pinButton.FlatAppearance.BorderSize = 0;
 			this.pinButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-			this.pinButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.pinButton.Font = new System.Drawing.Font("Segoe UI Emoji", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.pinButton.Location = new System.Drawing.Point(481, 2);
 			this.pinButton.Name = "pinButton";
 			this.pinButton.Size = new System.Drawing.Size(35, 35);
 			this.pinButton.TabIndex = 2;
 			this.pinButton.Text = "📌";
+			this.pinButton.TextAlign = System.Drawing.ContentAlignment.TopCenter;
 			this.pinButton.UseVisualStyleBackColor = true;
 			this.pinButton.Click += new System.EventHandler(this.PinOnClick);
 			// 
@@ -328,5 +347,6 @@
 		private System.Windows.Forms.FlowLayoutPanel pageBox;
 		private System.Windows.Forms.Button pinButton;
 		private System.Windows.Forms.Button unpinButton;
+		private System.Windows.Forms.Button refreshButton;
 	}
 }

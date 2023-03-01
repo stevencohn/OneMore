@@ -28,9 +28,10 @@ namespace River.OneMoreAddIn.Commands
 				window = new NavigatorWindow();
 				window.FormClosed += CloseNavigatorWindow;
 				await window.RunModeless();
+				return;
 			}
 
-			if (window == null || window.IsDisposed)
+			if (window.IsDisposed)
 			{
 				return;
 			}

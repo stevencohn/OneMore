@@ -61,6 +61,7 @@ namespace River.OneMoreAddIn.Commands
 
 					using var one = new OneNote();
 					await one.NavigateTo(info.Link);
+					Native.SwitchToThisWindow(one.WindowHandle, false);
 				}
 			});
 
