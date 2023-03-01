@@ -5006,11 +5006,11 @@ ISO-code then comma then language name</comment>
     <comment>checkbox</comment>
   </data>
   <data name="NavigatorSheet_depthLabel.Text" xml:space="preserve">
-    <value>מספר דפים מקסימלי לשמירה בהיסטוריית הניווט</value>
+    <value>אורך מקסימלי של היסטוריה מאוחסנת</value>
     <comment>label</comment>
   </data>
   <data name="NavigatorSheet_intervalLabel.Text" xml:space="preserve">
-    <value>מרווח סקרים (שניות)</value>
+    <value>זמן קריאה מינימלי לפני הוספה להיסטוריה</value>
     <comment>label</comment>
   </data>
   <data name="NavigatorSheet_introBox.Text" xml:space="preserve">
@@ -5036,5 +5036,8 @@ ISO-code then comma then language name</comment>
   <data name="NavigatorWindow_Text" xml:space="preserve">
     <value>חלון ניווט</value>
     <comment>window title</comment>
+  </data>
+  <data name="word_Seconds" xml:space="preserve">
+    <value>שניות</value>
   </data>
 </root>

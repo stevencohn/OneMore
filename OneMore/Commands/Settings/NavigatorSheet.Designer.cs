@@ -38,6 +38,7 @@ namespace River.OneMoreAddIn.Settings
 			this.depthLabel = new System.Windows.Forms.Label();
 			this.corrallBox = new System.Windows.Forms.CheckBox();
 			this.tooltip = new System.Windows.Forms.ToolTip(this.components);
+			this.secLabel = new System.Windows.Forms.Label();
 			this.layoutPanel.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.intervalBox)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.depthBox)).BeginInit();
@@ -58,6 +59,7 @@ namespace River.OneMoreAddIn.Settings
 			// 
 			// layoutPanel
 			// 
+			this.layoutPanel.Controls.Add(this.secLabel);
 			this.layoutPanel.Controls.Add(this.intervalBox);
 			this.layoutPanel.Controls.Add(this.intervalLabel);
 			this.layoutPanel.Controls.Add(this.depthBox);
@@ -75,18 +77,18 @@ namespace River.OneMoreAddIn.Settings
 			this.intervalBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.intervalBox.DecimalPlaces = 2;
 			this.intervalBox.Increment = new decimal(new int[] {
-            25,
+            5,
             0,
             0,
-            131072});
-			this.intervalBox.Location = new System.Drawing.Point(606, 60);
+            65536});
+			this.intervalBox.Location = new System.Drawing.Point(397, 60);
 			this.intervalBox.Maximum = new decimal(new int[] {
             600,
             0,
             0,
             65536});
 			this.intervalBox.Minimum = new decimal(new int[] {
-            10,
+            20,
             0,
             0,
             65536});
@@ -94,24 +96,24 @@ namespace River.OneMoreAddIn.Settings
 			this.intervalBox.Size = new System.Drawing.Size(120, 26);
 			this.intervalBox.TabIndex = 4;
 			this.intervalBox.Value = new decimal(new int[] {
-            125,
+            20,
             0,
             0,
-            131072});
+            65536});
 			// 
 			// intervalLabel
 			// 
 			this.intervalLabel.AutoSize = true;
-			this.intervalLabel.Location = new System.Drawing.Point(3, 60);
+			this.intervalLabel.Location = new System.Drawing.Point(3, 62);
 			this.intervalLabel.Name = "intervalLabel";
-			this.intervalLabel.Size = new System.Drawing.Size(183, 20);
+			this.intervalLabel.Size = new System.Drawing.Size(274, 20);
 			this.intervalLabel.TabIndex = 3;
-			this.intervalLabel.Text = "Polling interval (seconds)";
+			this.intervalLabel.Text = "Min read time before adding to history";
 			// 
 			// depthBox
 			// 
 			this.depthBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.depthBox.Location = new System.Drawing.Point(606, 8);
+			this.depthBox.Location = new System.Drawing.Point(397, 8);
 			this.depthBox.Minimum = new decimal(new int[] {
             5,
             0,
@@ -129,11 +131,11 @@ namespace River.OneMoreAddIn.Settings
 			// depthLabel
 			// 
 			this.depthLabel.AutoSize = true;
-			this.depthLabel.Location = new System.Drawing.Point(3, 8);
+			this.depthLabel.Location = new System.Drawing.Point(3, 10);
 			this.depthLabel.Name = "depthLabel";
-			this.depthLabel.Size = new System.Drawing.Size(359, 20);
+			this.depthLabel.Size = new System.Drawing.Size(203, 20);
 			this.depthLabel.TabIndex = 1;
-			this.depthLabel.Text = "Max number of pages to save in navigation history";
+			this.depthLabel.Text = "Max length of stored history";
 			// 
 			// corrallBox
 			// 
@@ -141,7 +143,7 @@ namespace River.OneMoreAddIn.Settings
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.corrallBox.Checked = true;
 			this.corrallBox.CheckState = System.Windows.Forms.CheckState.Checked;
-			this.corrallBox.Location = new System.Drawing.Point(7, 103);
+			this.corrallBox.Location = new System.Drawing.Point(7, 141);
 			this.corrallBox.Margin = new System.Windows.Forms.Padding(0);
 			this.corrallBox.Name = "corrallBox";
 			this.corrallBox.Size = new System.Drawing.Size(765, 43);
@@ -149,6 +151,15 @@ namespace River.OneMoreAddIn.Settings
 			this.corrallBox.Text = "Restrict the Navigator window to the active screen";
 			this.tooltip.SetToolTip(this.corrallBox, "Enabled only when multiple screens are available");
 			this.corrallBox.UseVisualStyleBackColor = true;
+			// 
+			// secLabel
+			// 
+			this.secLabel.AutoSize = true;
+			this.secLabel.Location = new System.Drawing.Point(523, 62);
+			this.secLabel.Name = "secLabel";
+			this.secLabel.Size = new System.Drawing.Size(72, 20);
+			this.secLabel.TabIndex = 5;
+			this.secLabel.Text = "Seconds";
 			// 
 			// NavigatorSheet
 			// 
@@ -179,5 +190,6 @@ namespace River.OneMoreAddIn.Settings
 		private System.Windows.Forms.NumericUpDown intervalBox;
 		private System.Windows.Forms.Label intervalLabel;
 		private System.Windows.Forms.ToolTip tooltip;
+		private System.Windows.Forms.Label secLabel;
 	}
 }

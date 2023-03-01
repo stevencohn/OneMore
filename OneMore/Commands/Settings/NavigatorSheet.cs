@@ -28,6 +28,7 @@ namespace River.OneMoreAddIn.Settings
 					"introBox",
 					"depthLabel",
 					"intervalLabel",
+					"secLabel=word_Seconds",
 					"corrallBox"
 				});
 			}
@@ -37,7 +38,7 @@ namespace River.OneMoreAddIn.Settings
 			depthBox.Value = settings.Get("depth", NavigationService.DefaultHistoryDepth);
 
 			var interval = settings.Get("interval", NavigationService.DefaultPollingInterval);
-			intervalBox.Value = interval / Millisecond;
+			intervalBox.Value = interval / Millisecond * 2;
 
 			if (Screen.AllScreens.Length == 1)
 			{
@@ -60,7 +61,7 @@ namespace River.OneMoreAddIn.Settings
 
 			var updated = settings.Add("depth", (int)depthBox.Value);
 
-			updated = settings.Add("interval", (int)(intervalBox.Value * Millisecond)) || updated;
+			updated = settings.Add("interval", (int)(intervalBox.Value * Millisecond / 2)) || updated;
 
 			updated = corrallBox.Checked
 				? settings.Add("corralled", true) || updated

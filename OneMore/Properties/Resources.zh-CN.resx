@@ -4895,11 +4895,11 @@ ISO-code then comma then language name</comment>
     <comment>checkbox</comment>
   </data>
   <data name="NavigatorSheet_depthLabel.Text" xml:space="preserve">
-    <value>保存在导航历史中的最大页数</value>
+    <value>存储历史的最大长度</value>
     <comment>label</comment>
   </data>
   <data name="NavigatorSheet_intervalLabel.Text" xml:space="preserve">
-    <value>轮询间隔（秒）</value>
+    <value>添加到历史记录之前的最小阅读时间</value>
     <comment>label</comment>
   </data>
   <data name="NavigatorSheet_introBox.Text" xml:space="preserve">
@@ -4925,5 +4925,8 @@ ISO-code then comma then language name</comment>
   <data name="NavigatorWindow_Text" xml:space="preserve">
     <value>导航窗口</value>
     <comment>window title</comment>
+  </data>
+  <data name="word_Seconds" xml:space="preserve">
+    <value>秒</value>
   </data>
 </root>

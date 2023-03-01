@@ -1850,11 +1850,11 @@ Symbols: PI, E</value>
     <comment>tooltip</comment>
   </data>
   <data name="NavigatorSheet_depthLabel.Text" xml:space="preserve">
-    <value>Max number of pages to save in navigation history</value>
+    <value>Max length of stored history</value>
     <comment>label</comment>
   </data>
   <data name="NavigatorSheet_intervalLabel.Text" xml:space="preserve">
-    <value>Polling interval (seconds)</value>
+    <value>Min read time before adding to history</value>
     <comment>label</comment>
   </data>
   <data name="NavigatorSheet_introBox.Text" xml:space="preserve">
@@ -4990,6 +4990,9 @@ In this section</value>
   </data>
   <data name="word_Scope" xml:space="preserve">
     <value>Scope</value>
+  </data>
+  <data name="word_Seconds" xml:space="preserve">
+    <value>Seconds</value>
   </data>
   <data name="word_Section" xml:space="preserve">
     <value>Section</value>

@@ -4911,11 +4911,11 @@ In deze sectie</value>
     <comment>checkbox</comment>
   </data>
   <data name="NavigatorSheet_depthLabel.Text" xml:space="preserve">
-    <value>Maximaal aantal pagina's om op te slaan in navigatiegeschiedenis</value>
+    <value>Maximale lengte van opgeslagen geschiedenis</value>
     <comment>label</comment>
   </data>
   <data name="NavigatorSheet_intervalLabel.Text" xml:space="preserve">
-    <value>Polling-interval (seconden)</value>
+    <value>Minimale leestijd voordat deze aan de geschiedenis wordt toegevoegd</value>
     <comment>label</comment>
   </data>
   <data name="NavigatorSheet_introBox.Text" xml:space="preserve">
@@ -4941,5 +4941,8 @@ In deze sectie</value>
   <data name="NavigatorWindow_Text" xml:space="preserve">
     <value>Navigator-venster</value>
     <comment>window title</comment>
+  </data>
+  <data name="word_Seconds" xml:space="preserve">
+    <value>seconden</value>
   </data>
 </root>

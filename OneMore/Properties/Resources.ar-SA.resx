@@ -4911,11 +4911,11 @@ ISO-code then comma then language name</comment>
     <comment>checkbox</comment>
   </data>
   <data name="NavigatorSheet_depthLabel.Text" xml:space="preserve">
-    <value>أقصى عدد من الصفحات لحفظها في سجل التنقل</value>
+    <value>أقصى طول للتاريخ المخزن</value>
     <comment>label</comment>
   </data>
   <data name="NavigatorSheet_intervalLabel.Text" xml:space="preserve">
-    <value>الفاصل الزمني للاستقصاء (بالثواني)</value>
+    <value>دقيقة وقت القراءة قبل الإضافة إلى التاريخ</value>
     <comment>label</comment>
   </data>
   <data name="NavigatorSheet_introBox.Text" xml:space="preserve">
@@ -4941,5 +4941,8 @@ ISO-code then comma then language name</comment>
   <data name="NavigatorWindow_Text" xml:space="preserve">
     <value>نافذة المستكشف</value>
     <comment>window title</comment>
+  </data>
+  <data name="word_Seconds" xml:space="preserve">
+    <value>ثواني</value>
   </data>
 </root>

@@ -4111,7 +4111,7 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Max number of pages to save in navigation history.
+        ///   Looks up a localized string similar to Max length of stored history.
         /// </summary>
         internal static string NavigatorSheet_depthLabel_Text {
             get {
@@ -4120,7 +4120,7 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Polling interval (seconds).
+        ///   Looks up a localized string similar to Min read time before adding to history.
         /// </summary>
         internal static string NavigatorSheet_intervalLabel_Text {
             get {
@@ -11367,6 +11367,15 @@ namespace River.OneMoreAddIn.Properties {
         internal static string word_Scope {
             get {
                 return ResourceManager.GetString("word_Scope", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Seconds.
+        /// </summary>
+        internal static string word_Seconds {
+            get {
+                return ResourceManager.GetString("word_Seconds", resourceCulture);
             }
         }
         

@@ -4898,11 +4898,11 @@ In diesem Abschnitt</value>
     <comment>checkbox</comment>
   </data>
   <data name="NavigatorSheet_depthLabel.Text" xml:space="preserve">
-    <value>Maximale Anzahl von Seiten, die im Navigationsverlauf gespeichert werden können</value>
+    <value>Maximale Länge des gespeicherten Verlaufs</value>
     <comment>label</comment>
   </data>
   <data name="NavigatorSheet_intervalLabel.Text" xml:space="preserve">
-    <value>Abfrageintervall (Sekunden)</value>
+    <value>Mindestlesezeit vor dem Hinzufügen zum Verlauf</value>
     <comment>label</comment>
   </data>
   <data name="NavigatorSheet_introBox.Text" xml:space="preserve">
@@ -4928,5 +4928,8 @@ In diesem Abschnitt</value>
   <data name="NavigatorWindow_Text" xml:space="preserve">
     <value>Navigator-Fenster</value>
     <comment>window title</comment>
+  </data>
+  <data name="word_Seconds" xml:space="preserve">
+    <value>Sekunden</value>
   </data>
 </root>

@@ -4911,11 +4911,11 @@ En esta sección</value>
     <comment>checkbox</comment>
   </data>
   <data name="NavigatorSheet_depthLabel.Text" xml:space="preserve">
-    <value>Número máximo de páginas para guardar en el historial de navegación</value>
+    <value>Longitud máxima del historial almacenado</value>
     <comment>label</comment>
   </data>
   <data name="NavigatorSheet_intervalLabel.Text" xml:space="preserve">
-    <value>Intervalo de sondeo (segundos)</value>
+    <value>Tiempo mínimo de lectura antes de agregar al historial</value>
     <comment>label</comment>
   </data>
   <data name="NavigatorSheet_introBox.Text" xml:space="preserve">
@@ -4941,5 +4941,8 @@ En esta sección</value>
   <data name="NavigatorWindow_Text" xml:space="preserve">
     <value>Ventana del navegador</value>
     <comment>window title</comment>
+  </data>
+  <data name="word_Seconds" xml:space="preserve">
+    <value>Segundos</value>
   </data>
 </root>
