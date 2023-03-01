@@ -41,6 +41,7 @@ namespace River.OneMoreAddIn.Settings
 
 			if (Screen.AllScreens.Length == 1)
 			{
+				corrallBox.Text = $"{corrallBox.Text} ({Resx.NavigatorSheet_corrallBox_disabled})";
 				corrallBox.Checked = true;
 				corrallBox.Enabled = false;
 			}
@@ -48,8 +49,6 @@ namespace River.OneMoreAddIn.Settings
 			{
 				corrallBox.Checked = settings.Get("corralled", false);
 			}
-
-			tooltip.SetToolTip(corrallBox, Resx.NavigatorSheet_corrallBox_Tooltip);
 		}
 
 

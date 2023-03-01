@@ -1845,8 +1845,8 @@ Symbols: PI, E</value>
     <value>Restrict the Navigator window to the active screen</value>
     <comment>checkbox</comment>
   </data>
-  <data name="NavigatorSheet_corrallBox_Tooltip" xml:space="preserve">
-    <value>Enabled only when multiple screens are available</value>
+  <data name="NavigatorSheet_corrallBox_disabled" xml:space="preserve">
+    <value>Not available</value>
     <comment>tooltip</comment>
   </data>
   <data name="NavigatorSheet_depthLabel.Text" xml:space="preserve">

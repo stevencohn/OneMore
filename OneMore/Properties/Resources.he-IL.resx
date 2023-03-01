@@ -5005,10 +5005,6 @@ ISO-code then comma then language name</comment>
     <value>הגבל את חלון הניווט למסך הפעיל</value>
     <comment>checkbox</comment>
   </data>
-  <data name="NavigatorSheet_corrallBox_Tooltip" xml:space="preserve">
-    <value>מופעל רק כאשר מספר מסכים זמינים</value>
-    <comment>tooltip</comment>
-  </data>
   <data name="NavigatorSheet_depthLabel.Text" xml:space="preserve">
     <value>מספר דפים מקסימלי לשמירה בהיסטוריית הניווט</value>
     <comment>label</comment>
@@ -5032,5 +5028,9 @@ ISO-code then comma then language name</comment>
   <data name="SettingsDialog_navigatorNode.Text" xml:space="preserve">
     <value>נווט</value>
     <comment>tree node</comment>
+  </data>
+  <data name="NavigatorSheet_corrallBox_disabled" xml:space="preserve">
+    <value>לא זמין</value>
+    <comment>tooltip</comment>
   </data>
 </root>

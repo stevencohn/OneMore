@@ -4910,10 +4910,6 @@ In deze sectie</value>
     <value>Beperk het Navigator-venster tot het actieve scherm</value>
     <comment>checkbox</comment>
   </data>
-  <data name="NavigatorSheet_corrallBox_Tooltip" xml:space="preserve">
-    <value>Alleen ingeschakeld als er meerdere schermen beschikbaar zijn</value>
-    <comment>tooltip</comment>
-  </data>
   <data name="NavigatorSheet_depthLabel.Text" xml:space="preserve">
     <value>Maximaal aantal pagina's om op te slaan in navigatiegeschiedenis</value>
     <comment>label</comment>
@@ -4937,5 +4933,9 @@ In deze sectie</value>
   <data name="SettingsDialog_navigatorNode.Text" xml:space="preserve">
     <value>Navigator</value>
     <comment>tree node</comment>
+  </data>
+  <data name="NavigatorSheet_corrallBox_disabled" xml:space="preserve">
+    <value>Niet beschikbaar</value>
+    <comment>tooltip</comment>
   </data>
 </root>

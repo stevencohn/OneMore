@@ -4897,10 +4897,6 @@ In diesem Abschnitt</value>
     <value>Beschränken Sie das Navigator-Fenster auf den aktiven Bildschirm</value>
     <comment>checkbox</comment>
   </data>
-  <data name="NavigatorSheet_corrallBox_Tooltip" xml:space="preserve">
-    <value>Nur aktiviert, wenn mehrere Bildschirme verfügbar sind</value>
-    <comment>tooltip</comment>
-  </data>
   <data name="NavigatorSheet_depthLabel.Text" xml:space="preserve">
     <value>Maximale Anzahl von Seiten, die im Navigationsverlauf gespeichert werden können</value>
     <comment>label</comment>
@@ -4924,5 +4920,9 @@ In diesem Abschnitt</value>
   <data name="SettingsDialog_navigatorNode.Text" xml:space="preserve">
     <value>Navigator</value>
     <comment>tree node</comment>
+  </data>
+  <data name="NavigatorSheet_corrallBox_disabled" xml:space="preserve">
+    <value>Nicht verfügbar</value>
+    <comment>tooltip</comment>
   </data>
 </root>

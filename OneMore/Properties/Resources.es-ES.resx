@@ -4910,10 +4910,6 @@ En esta sección</value>
     <value>Restringir la ventana del Navegador a la pantalla activa</value>
     <comment>checkbox</comment>
   </data>
-  <data name="NavigatorSheet_corrallBox_Tooltip" xml:space="preserve">
-    <value>Habilitado solo cuando hay varias pantallas disponibles</value>
-    <comment>tooltip</comment>
-  </data>
   <data name="NavigatorSheet_depthLabel.Text" xml:space="preserve">
     <value>Número máximo de páginas para guardar en el historial de navegación</value>
     <comment>label</comment>
@@ -4937,5 +4933,9 @@ En esta sección</value>
   <data name="SettingsDialog_navigatorNode.Text" xml:space="preserve">
     <value>Navegador</value>
     <comment>tree node</comment>
+  </data>
+  <data name="NavigatorSheet_corrallBox_disabled" xml:space="preserve">
+    <value>No disponible</value>
+    <comment>tooltip</comment>
   </data>
 </root>

@@ -4894,10 +4894,6 @@ ISO-code then comma then language name</comment>
     <value>将导航器窗口限制为活动屏幕</value>
     <comment>checkbox</comment>
   </data>
-  <data name="NavigatorSheet_corrallBox_Tooltip" xml:space="preserve">
-    <value>仅在多个屏幕可用时启用</value>
-    <comment>tooltip</comment>
-  </data>
   <data name="NavigatorSheet_depthLabel.Text" xml:space="preserve">
     <value>保存在导航历史中的最大页数</value>
     <comment>label</comment>
@@ -4921,5 +4917,9 @@ ISO-code then comma then language name</comment>
   <data name="SettingsDialog_navigatorNode.Text" xml:space="preserve">
     <value>航海家</value>
     <comment>tree node</comment>
+  </data>
+  <data name="NavigatorSheet_corrallBox_disabled" xml:space="preserve">
+    <value>无法使用</value>
+    <comment>tooltip</comment>
   </data>
 </root>

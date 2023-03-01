@@ -4904,10 +4904,6 @@ Dans cette section</value>
     <value>Restreindre la fenêtre du navigateur à l'écran actif</value>
     <comment>checkbox</comment>
   </data>
-  <data name="NavigatorSheet_corrallBox_Tooltip" xml:space="preserve">
-    <value>Activé uniquement lorsque plusieurs écrans sont disponibles</value>
-    <comment>tooltip</comment>
-  </data>
   <data name="NavigatorSheet_depthLabel.Text" xml:space="preserve">
     <value>Nombre maximum de pages à enregistrer dans l'historique de navigation</value>
     <comment>label</comment>
@@ -4931,5 +4927,9 @@ Dans cette section</value>
   <data name="SettingsDialog_navigatorNode.Text" xml:space="preserve">
     <value>Navigateur</value>
     <comment>tree node</comment>
+  </data>
+  <data name="NavigatorSheet_corrallBox_disabled" xml:space="preserve">
+    <value>Pas disponible</value>
+    <comment>tooltip</comment>
   </data>
 </root>

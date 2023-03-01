@@ -4093,20 +4093,20 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Not available.
+        /// </summary>
+        internal static string NavigatorSheet_corrallBox_disabled {
+            get {
+                return ResourceManager.GetString("NavigatorSheet_corrallBox_disabled", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Restrict the Navigator window to the active screen.
         /// </summary>
         internal static string NavigatorSheet_corrallBox_Text {
             get {
                 return ResourceManager.GetString("NavigatorSheet_corrallBox.Text", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Enabled only when multiple screens are available.
-        /// </summary>
-        internal static string NavigatorSheet_corrallBox_Tooltip {
-            get {
-                return ResourceManager.GetString("NavigatorSheet_corrallBox_Tooltip", resourceCulture);
             }
         }
         

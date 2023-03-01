@@ -4963,10 +4963,6 @@ W tej sekcji</value>
     <value>Ogranicz okno Nawigatora do aktywnego ekranu</value>
     <comment>checkbox</comment>
   </data>
-  <data name="NavigatorSheet_corrallBox_Tooltip" xml:space="preserve">
-    <value>Włączone tylko wtedy, gdy dostępnych jest wiele ekranów</value>
-    <comment>tooltip</comment>
-  </data>
   <data name="NavigatorSheet_depthLabel.Text" xml:space="preserve">
     <value>Maksymalna liczba stron do zapisania w historii nawigacji</value>
     <comment>label</comment>
@@ -4990,5 +4986,9 @@ W tej sekcji</value>
   <data name="SettingsDialog_navigatorNode.Text" xml:space="preserve">
     <value>Nawigator</value>
     <comment>tree node</comment>
+  </data>
+  <data name="NavigatorSheet_corrallBox_disabled" xml:space="preserve">
+    <value>Niedostępne</value>
+    <comment>tooltip</comment>
   </data>
 </root>
