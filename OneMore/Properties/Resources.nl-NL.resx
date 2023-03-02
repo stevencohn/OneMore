@@ -4951,4 +4951,16 @@ In deze sectie</value>
   <data name="word_Pinned" xml:space="preserve">
     <value>Vastgezet</value>
   </data>
+  <data name="NavigatorWindow_pinButton_Tooltip" xml:space="preserve">
+    <value>Zet geselecteerde items vast</value>
+    <comment>tooltip</comment>
+  </data>
+  <data name="NavigatorWindow_refreshButton_Tooltip" xml:space="preserve">
+    <value>Vernieuw de koppen van de huidige pagina</value>
+    <comment>tooltip</comment>
+  </data>
+  <data name="NavigatorWindow_unpinButton_Tooltip" xml:space="preserve">
+    <value>Maak geselecteerde items los</value>
+    <comment>tooltip</comment>
+  </data>
 </root>

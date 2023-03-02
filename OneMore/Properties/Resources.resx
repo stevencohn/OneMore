@@ -1865,9 +1865,21 @@ Symbols: PI, E</value>
     <value>Navigator</value>
     <comment>sheet title</comment>
   </data>
+  <data name="NavigatorWindow_pinButton_Tooltip" xml:space="preserve">
+    <value>Pin selected items</value>
+    <comment>tooltip</comment>
+  </data>
+  <data name="NavigatorWindow_refreshButton_Tooltip" xml:space="preserve">
+    <value>Refresh headings from current page</value>
+    <comment>tooltip</comment>
+  </data>
   <data name="NavigatorWindow_Text" xml:space="preserve">
     <value>Navigator Window</value>
     <comment>window title</comment>
+  </data>
+  <data name="NavigatorWindow_unpinButton_Tooltip" xml:space="preserve">
+    <value>Unpin selected items</value>
+    <comment>tooltip</comment>
   </data>
   <data name="NetwordConnectionUnavailable" xml:space="preserve">
     <value>Network connection is not available</value>

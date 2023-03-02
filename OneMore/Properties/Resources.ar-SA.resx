@@ -4951,4 +4951,16 @@ ISO-code then comma then language name</comment>
   <data name="word_Pinned" xml:space="preserve">
     <value>مثبت</value>
   </data>
+  <data name="NavigatorWindow_pinButton_Tooltip" xml:space="preserve">
+    <value>تثبيت العناصر المحددة</value>
+    <comment>tooltip</comment>
+  </data>
+  <data name="NavigatorWindow_refreshButton_Tooltip" xml:space="preserve">
+    <value>تحديث العناوين من الصفحة الحالية</value>
+    <comment>tooltip</comment>
+  </data>
+  <data name="NavigatorWindow_unpinButton_Tooltip" xml:space="preserve">
+    <value>قم بإلغاء تثبيت العناصر المحددة</value>
+    <comment>tooltip</comment>
+  </data>
 </root>

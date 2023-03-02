@@ -4945,4 +4945,16 @@ Dans cette section</value>
   <data name="word_Pinned" xml:space="preserve">
     <value>Épinglé</value>
   </data>
+  <data name="NavigatorWindow_pinButton_Tooltip" xml:space="preserve">
+    <value>Épingler les éléments sélectionnés</value>
+    <comment>tooltip</comment>
+  </data>
+  <data name="NavigatorWindow_refreshButton_Tooltip" xml:space="preserve">
+    <value>Actualiser les titres de la page actuelle</value>
+    <comment>tooltip</comment>
+  </data>
+  <data name="NavigatorWindow_unpinButton_Tooltip" xml:space="preserve">
+    <value>Détacher les éléments sélectionnés</value>
+    <comment>tooltip</comment>
+  </data>
 </root>

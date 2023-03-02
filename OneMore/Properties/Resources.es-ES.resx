@@ -4951,4 +4951,16 @@ En esta sección</value>
   <data name="word_Pinned" xml:space="preserve">
     <value>Fijado</value>
   </data>
+  <data name="NavigatorWindow_pinButton_Tooltip" xml:space="preserve">
+    <value>Anclar elementos seleccionados</value>
+    <comment>tooltip</comment>
+  </data>
+  <data name="NavigatorWindow_refreshButton_Tooltip" xml:space="preserve">
+    <value>Actualizar encabezados de la página actual</value>
+    <comment>tooltip</comment>
+  </data>
+  <data name="NavigatorWindow_unpinButton_Tooltip" xml:space="preserve">
+    <value>Desanclar elementos seleccionados</value>
+    <comment>tooltip</comment>
+  </data>
 </root>

@@ -4147,11 +4147,38 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Pin selected items.
+        /// </summary>
+        internal static string NavigatorWindow_pinButton_Tooltip {
+            get {
+                return ResourceManager.GetString("NavigatorWindow_pinButton_Tooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Refresh headings from current page.
+        /// </summary>
+        internal static string NavigatorWindow_refreshButton_Tooltip {
+            get {
+                return ResourceManager.GetString("NavigatorWindow_refreshButton_Tooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Navigator Window.
         /// </summary>
         internal static string NavigatorWindow_Text {
             get {
                 return ResourceManager.GetString("NavigatorWindow_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unpin selected items.
+        /// </summary>
+        internal static string NavigatorWindow_unpinButton_Tooltip {
+            get {
+                return ResourceManager.GetString("NavigatorWindow_unpinButton_Tooltip", resourceCulture);
             }
         }
         

@@ -5046,4 +5046,16 @@ ISO-code then comma then language name</comment>
   <data name="word_Pinned" xml:space="preserve">
     <value>מוצמד</value>
   </data>
+  <data name="NavigatorWindow_pinButton_Tooltip" xml:space="preserve">
+    <value>הצמד את הפריטים שנבחרו</value>
+    <comment>tooltip</comment>
+  </data>
+  <data name="NavigatorWindow_refreshButton_Tooltip" xml:space="preserve">
+    <value>רענן כותרות מהדף הנוכחי</value>
+    <comment>tooltip</comment>
+  </data>
+  <data name="NavigatorWindow_unpinButton_Tooltip" xml:space="preserve">
+    <value>בטל את ההצמדה של הפריטים שנבחרו</value>
+    <comment>tooltip</comment>
+  </data>
 </root>

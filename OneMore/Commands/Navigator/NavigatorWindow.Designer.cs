@@ -35,6 +35,7 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
+			this.components = new System.ComponentModel.Container();
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(NavigatorWindow));
 			this.controlPanel = new System.Windows.Forms.Panel();
 			this.closeButton = new System.Windows.Forms.Button();
@@ -52,6 +53,7 @@
 			this.historyHeadPanel = new System.Windows.Forms.Panel();
 			this.pinButton = new System.Windows.Forms.Button();
 			this.historyHeadLabel = new System.Windows.Forms.Label();
+			this.tooltip = new System.Windows.Forms.ToolTip(this.components);
 			this.controlPanel.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.mainContainer)).BeginInit();
 			this.mainContainer.Panel1.SuspendLayout();
@@ -145,6 +147,7 @@
 			this.refreshButton.TabIndex = 4;
 			this.refreshButton.Text = "↻";
 			this.refreshButton.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+			this.tooltip.SetToolTip(this.refreshButton, "Refresh headings from current page");
 			this.refreshButton.UseVisualStyleBackColor = true;
 			this.refreshButton.Click += new System.EventHandler(this.RefreshPageHeadings);
 			// 
@@ -226,6 +229,7 @@
 			this.unpinButton.TabIndex = 3;
 			this.unpinButton.Text = "✘";
 			this.unpinButton.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+			this.tooltip.SetToolTip(this.unpinButton, "Unpin selected items");
 			this.unpinButton.UseVisualStyleBackColor = true;
 			this.unpinButton.Click += new System.EventHandler(this.UnpinOnClick);
 			// 
@@ -282,6 +286,7 @@
 			this.pinButton.TabIndex = 2;
 			this.pinButton.Text = "📌";
 			this.pinButton.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+			this.tooltip.SetToolTip(this.pinButton, "Pin selected items");
 			this.pinButton.UseVisualStyleBackColor = true;
 			this.pinButton.Click += new System.EventHandler(this.PinOnClick);
 			// 
@@ -354,5 +359,6 @@
 		private System.Windows.Forms.Button pinButton;
 		private System.Windows.Forms.Button unpinButton;
 		private System.Windows.Forms.Button refreshButton;
+		private System.Windows.Forms.ToolTip tooltip;
 	}
 }

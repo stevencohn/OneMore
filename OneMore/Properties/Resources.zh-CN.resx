@@ -4935,4 +4935,16 @@ ISO-code then comma then language name</comment>
   <data name="word_Pinned" xml:space="preserve">
     <value>置顶</value>
   </data>
+  <data name="NavigatorWindow_pinButton_Tooltip" xml:space="preserve">
+    <value>固定所选项目</value>
+    <comment>tooltip</comment>
+  </data>
+  <data name="NavigatorWindow_refreshButton_Tooltip" xml:space="preserve">
+    <value>从当前页面刷新标题</value>
+    <comment>tooltip</comment>
+  </data>
+  <data name="NavigatorWindow_unpinButton_Tooltip" xml:space="preserve">
+    <value>取消固定所选项目</value>
+    <comment>tooltip</comment>
+  </data>
 </root>

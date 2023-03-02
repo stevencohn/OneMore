@@ -53,6 +53,10 @@ namespace River.OneMoreAddIn.Commands
 					"historyHeadLabel=word_History",
 					"closeButton"
 				});
+
+				tooltip.SetToolTip(refreshButton, Resx.NavigatorWindow_refreshButton_Tooltip);
+				tooltip.SetToolTip(unpinButton, Resx.NavigatorWindow_unpinButton_Tooltip);
+				tooltip.SetToolTip(pinButton, Resx.NavigatorWindow_pinButton_Tooltip);
 			}
 
 			ManualLocation = true;
