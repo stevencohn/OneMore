@@ -4911,7 +4911,7 @@ ISO-code then comma then language name</comment>
     <comment>sheet title</comment>
   </data>
   <data name="ribNavigatorButton_Label" xml:space="preserve">
-    <value>导航窗口</value>
+    <value>航海家</value>
     <comment>ribbon main</comment>
   </data>
   <data name="SettingsDialog_navigatorNode.Text" xml:space="preserve">

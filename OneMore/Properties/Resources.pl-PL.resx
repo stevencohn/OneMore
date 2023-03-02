@@ -4980,7 +4980,7 @@ W tej sekcji</value>
     <comment>sheet title</comment>
   </data>
   <data name="ribNavigatorButton_Label" xml:space="preserve">
-    <value>Okno nawigatora</value>
+    <value>Nawigator</value>
     <comment>ribbon main</comment>
   </data>
   <data name="SettingsDialog_navigatorNode.Text" xml:space="preserve">

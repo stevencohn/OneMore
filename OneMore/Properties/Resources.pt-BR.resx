@@ -4927,7 +4927,7 @@ Nesta secção</value>
     <comment>sheet title</comment>
   </data>
   <data name="ribNavigatorButton_Label" xml:space="preserve">
-    <value>Janela do Navegador</value>
+    <value>Navegador</value>
     <comment>ribbon main</comment>
   </data>
   <data name="SettingsDialog_navigatorNode.Text" xml:space="preserve">

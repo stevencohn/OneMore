@@ -7678,7 +7678,7 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Navigator Window.
+        ///   Looks up a localized string similar to Navigator.
         /// </summary>
         internal static string ribNavigatorButton_Label {
             get {
