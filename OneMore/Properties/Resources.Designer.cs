@@ -4093,6 +4093,69 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Not available.
+        /// </summary>
+        internal static string NavigatorSheet_corrallBox_disabled {
+            get {
+                return ResourceManager.GetString("NavigatorSheet_corrallBox_disabled", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Restrict the Navigator window to the active screen.
+        /// </summary>
+        internal static string NavigatorSheet_corrallBox_Text {
+            get {
+                return ResourceManager.GetString("NavigatorSheet_corrallBox.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Max length of stored history.
+        /// </summary>
+        internal static string NavigatorSheet_depthLabel_Text {
+            get {
+                return ResourceManager.GetString("NavigatorSheet_depthLabel.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Min read time before adding to history.
+        /// </summary>
+        internal static string NavigatorSheet_intervalLabel_Text {
+            get {
+                return ResourceManager.GetString("NavigatorSheet_intervalLabel.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Customize advanced options for the Navigator Service.
+        /// </summary>
+        internal static string NavigatorSheet_introBox_Text {
+            get {
+                return ResourceManager.GetString("NavigatorSheet_introBox.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Navigator.
+        /// </summary>
+        internal static string NavigatorSheet_Title {
+            get {
+                return ResourceManager.GetString("NavigatorSheet_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Navigator Window.
+        /// </summary>
+        internal static string NavigatorWindow_Text {
+            get {
+                return ResourceManager.GetString("NavigatorWindow_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Network connection is not available.
         /// </summary>
         internal static string NetwordConnectionUnavailable {
@@ -7615,6 +7678,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Navigator.
+        /// </summary>
+        internal static string ribNavigatorButton_Label {
+            get {
+                return ResourceManager.GetString("ribNavigatorButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Create New Style from Text.
         /// </summary>
         internal static string ribNewStyleButton_Label {
@@ -9321,6 +9393,15 @@ namespace River.OneMoreAddIn.Properties {
         internal static string SettingsDialog_linesNode_Text {
             get {
                 return ResourceManager.GetString("SettingsDialog_linesNode.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Navigator.
+        /// </summary>
+        internal static string SettingsDialog_navigatorNode_Text {
+            get {
+                return ResourceManager.GetString("SettingsDialog_navigatorNode.Text", resourceCulture);
             }
         }
         
@@ -11083,6 +11164,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to History.
+        /// </summary>
+        internal static string word_History {
+            get {
+                return ResourceManager.GetString("word_History", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Keyboard.
         /// </summary>
         internal static string word_Keyboard {
@@ -11200,6 +11290,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Pinned.
+        /// </summary>
+        internal static string word_Pinned {
+            get {
+                return ResourceManager.GetString("word_Pinned", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Planned.
         /// </summary>
         internal static string word_Planned {
@@ -11286,6 +11385,15 @@ namespace River.OneMoreAddIn.Properties {
         internal static string word_Scope {
             get {
                 return ResourceManager.GetString("word_Scope", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Seconds.
+        /// </summary>
+        internal static string word_Seconds {
+            get {
+                return ResourceManager.GetString("word_Seconds", resourceCulture);
             }
         }
         

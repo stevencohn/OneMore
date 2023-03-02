@@ -4890,4 +4890,49 @@ ISO-code then comma then language name</comment>
     <value>{0} 页部分的总字数</value>
     <comment>report</comment>
   </data>
+  <data name="NavigatorSheet_corrallBox.Text" xml:space="preserve">
+    <value>将导航器窗口限制为活动屏幕</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="NavigatorSheet_depthLabel.Text" xml:space="preserve">
+    <value>存储历史的最大长度</value>
+    <comment>label</comment>
+  </data>
+  <data name="NavigatorSheet_intervalLabel.Text" xml:space="preserve">
+    <value>添加到历史记录之前的最小阅读时间</value>
+    <comment>label</comment>
+  </data>
+  <data name="NavigatorSheet_introBox.Text" xml:space="preserve">
+    <value>自定义 Navigator 服务的高级选项</value>
+    <comment>label</comment>
+  </data>
+  <data name="NavigatorSheet_Title" xml:space="preserve">
+    <value>航海家</value>
+    <comment>sheet title</comment>
+  </data>
+  <data name="ribNavigatorButton_Label" xml:space="preserve">
+    <value>航海家</value>
+    <comment>ribbon main</comment>
+  </data>
+  <data name="SettingsDialog_navigatorNode.Text" xml:space="preserve">
+    <value>航海家</value>
+    <comment>tree node</comment>
+  </data>
+  <data name="NavigatorSheet_corrallBox_disabled" xml:space="preserve">
+    <value>无法使用</value>
+    <comment>tooltip</comment>
+  </data>
+  <data name="NavigatorWindow_Text" xml:space="preserve">
+    <value>导航窗口</value>
+    <comment>window title</comment>
+  </data>
+  <data name="word_Seconds" xml:space="preserve">
+    <value>秒</value>
+  </data>
+  <data name="word_History" xml:space="preserve">
+    <value>历史</value>
+  </data>
+  <data name="word_Pinned" xml:space="preserve">
+    <value>置顶</value>
+  </data>
 </root>

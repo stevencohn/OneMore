@@ -72,6 +72,7 @@ namespace River.OneMoreAddIn.UI
 		private SolidBrush highBackBrush;
 		private SolidBrush highForeBrush;
 		private readonly List<HostedControl> hostedControls;
+		private readonly EventRouter router;
 
 
 		/// <summary>
@@ -81,6 +82,7 @@ namespace River.OneMoreAddIn.UI
 		{
 			View = View.Details;
 
+			router = new EventRouter();
 			hostedControls = new List<HostedControl>();
 			highBackBrush = new SolidBrush(ColorTranslator.FromHtml("#D7C1FF"));
 			highForeBrush = new SolidBrush(SystemColors.HighlightText);
@@ -172,6 +174,13 @@ namespace River.OneMoreAddIn.UI
 			if (control != null)
 			{
 				RegisterHostedControl(item, new RegistrationEventArgs(item, control, 0));
+
+				router.Register(control, "Click", (object s, EventArgs e) =>
+				{
+					SelectImplicitly(item);
+					FocusedItem = item;
+					Focus();
+				});
 			}
 
 			return item;
@@ -182,6 +191,53 @@ namespace River.OneMoreAddIn.UI
 		{
 			hostedControls.Add(new HostedControl(subitem, e.Item, e.Control, e.ColumnIndex));
 			Controls.Add(e.Control);
+		}
+
+
+		private void SelectImplicitly(ListViewItem item)
+		{
+			if (ModifierKeys.HasFlag(Keys.Control))
+			{
+				// ctlr-click individuals
+				item.Selected = !item.Selected;
+			}
+			else if (ModifierKeys.HasFlag(Keys.Shift))
+			{
+				// shift-click range
+				if (SelectedIndices.Count > 0)
+				{
+					if (SelectedIndices[0] == item.Index)
+					{
+						item.Selected = true;
+					}
+					else
+					{
+						(int first, int last) = SelectedIndices[0] < item.Index
+							? (SelectedIndices[0], item.Index)
+							: (item.Index, SelectedIndices[SelectedIndices.Count - 1]);
+
+						SuspendLayout();
+						SelectedItems.Clear();
+						for (var i = first; i <= last; i++)
+						{
+							Items[i].Selected = true;
+						}
+						ResumeLayout();
+					}
+				}
+				else
+				{
+					item.Selected = true;
+				}
+			}
+			else
+			{
+				// single-click
+				SuspendLayout();
+				SelectedItems.Clear();
+				item.Selected = !item.Selected;
+				ResumeLayout();
+			}
 		}
 
 
@@ -305,6 +361,23 @@ namespace River.OneMoreAddIn.UI
 				if (test.SubItem.Bounds.Left < 0)
 				{
 					Native.SendMessage(Handle, Native.LVM_SCROLL, test.SubItem.Bounds.Left, 0);
+				}
+			}
+		}
+
+
+		protected override void OnItemSelectionChanged(ListViewItemSelectionChangedEventArgs e)
+		{
+			base.OnItemSelectionChanged(e);
+			if (e.Item is IMoreHostItem host && host.Control is IChameleon item)
+			{
+				if (e.IsSelected)
+				{
+					item.ApplyBackground(highBackBrush.Color);
+				}
+				else
+				{
+					item.ResetBackground();
 				}
 			}
 		}
@@ -563,6 +636,17 @@ namespace River.OneMoreAddIn.UI
 
 
 	/// <summary>
+	/// Provides callback methods for MoreHostedListViewItem implementors to react when an item
+	/// is selected or deselected, so that it can change the backcolor of itself as needed.
+	/// </summary>
+	internal interface IChameleon
+	{
+		void ApplyBackground(Color color);
+		void ResetBackground();
+	}
+
+
+	/// <summary>
 	/// Base class provided common members inherited by custom column headers. Inheritors
 	/// may extend this with their own "templating" information such as a list of images
 	/// to display in a drop-down ComboBox.
@@ -649,6 +733,8 @@ namespace River.OneMoreAddIn.UI
 		Rectangle Bounds { get; }
 
 		Control Control { get; }
+
+		object Tag { get; }
 
 		string Text { get; }
 	}

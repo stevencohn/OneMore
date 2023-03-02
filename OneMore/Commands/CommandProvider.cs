@@ -268,5 +268,61 @@ namespace River.OneMoreAddIn
 				Logger.Current.WriteLine("error recording MRU", exc);
 			}
 		}
+
+
+		/// <summary>
+		/// Emulates MRU entries after invoking from the Command Palette; these commands
+		/// are not fully qualified "...Command" types so we need to fabricate a name
+		/// </summary>
+		/// <param name="command"></param>
+		public void SaveToMRU(CommandInfo command)
+		{
+			var runner = command.Method.Name.Replace("Cmd", "Command");
+			var runtype = $"River.OneMoreAddIn.Commands.{runner}";
+
+			Logger.Current.WriteLine($"SaveToMRU using method {command.Method.Name} -> {runtype}");
+
+			try
+			{
+				var provider = new SettingsProvider();
+				var settings = provider.GetCollection(CollectionName);
+				var commands = settings.Get<XElement>(SettingsName);
+				if (commands == null)
+				{
+					commands = new XElement(SettingsName);
+					settings.Add(SettingsName, commands);
+				}
+
+				// is this command alraedy in the MRU?
+				var element = commands.Elements()
+					.FirstOrDefault(e => e.Attribute("cmd").Value == command.Method.Name);
+
+				// remove old instance so we can move it to the bottom and update args/context
+				element?.Remove();
+
+				// build new entry...
+
+				// "type" will be the presumed runner name
+				// "cmd" records the AddInCommands xxxCmd method name
+				var setting = new XElement(SettingName,
+					new XAttribute("type", runtype),
+					new XAttribute("cmd", command.Method.Name),
+					new XElement("arguments")
+					);
+
+				commands.Add(setting);
+				while (commands.Elements().Count() > 5)
+				{
+					commands.Elements().First().Remove();
+				}
+
+				provider.SetCollection(settings);
+				provider.Save();
+			}
+			catch (Exception exc)
+			{
+				Logger.Current.WriteLine("error recording MRU", exc);
+			}
+		}
 	}
 }

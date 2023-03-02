@@ -892,6 +892,12 @@
               getScreentip="GetRibbonScreentip"
               onAction="CommandPaletteCmd"/>
             <button
+              id="ribNavigatorButton"
+              imageMso="RmsNavigationBar"
+              getLabel="GetRibbonLabel"
+              getScreentip="GetRibbonScreentip"
+              onAction="NavigatorCmd"/>
+            <button
               id="ribCalendarButton"
               imageMso="OpenAttachedCalendar"
               getLabel="GetRibbonLabel"

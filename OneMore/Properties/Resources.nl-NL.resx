@@ -4906,4 +4906,49 @@ In deze sectie</value>
     <value>Totaal aantal woorden in sectie over {0} pagina's</value>
     <comment>report</comment>
   </data>
+  <data name="NavigatorSheet_corrallBox.Text" xml:space="preserve">
+    <value>Beperk het Navigator-venster tot het actieve scherm</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="NavigatorSheet_depthLabel.Text" xml:space="preserve">
+    <value>Maximale lengte van opgeslagen geschiedenis</value>
+    <comment>label</comment>
+  </data>
+  <data name="NavigatorSheet_intervalLabel.Text" xml:space="preserve">
+    <value>Minimale leestijd voordat deze aan de geschiedenis wordt toegevoegd</value>
+    <comment>label</comment>
+  </data>
+  <data name="NavigatorSheet_introBox.Text" xml:space="preserve">
+    <value>Pas geavanceerde opties voor de Navigator-service aan</value>
+    <comment>label</comment>
+  </data>
+  <data name="NavigatorSheet_Title" xml:space="preserve">
+    <value>Navigator</value>
+    <comment>sheet title</comment>
+  </data>
+  <data name="ribNavigatorButton_Label" xml:space="preserve">
+    <value>Navigator</value>
+    <comment>ribbon main</comment>
+  </data>
+  <data name="SettingsDialog_navigatorNode.Text" xml:space="preserve">
+    <value>Navigator</value>
+    <comment>tree node</comment>
+  </data>
+  <data name="NavigatorSheet_corrallBox_disabled" xml:space="preserve">
+    <value>Niet beschikbaar</value>
+    <comment>tooltip</comment>
+  </data>
+  <data name="NavigatorWindow_Text" xml:space="preserve">
+    <value>Navigator-venster</value>
+    <comment>window title</comment>
+  </data>
+  <data name="word_Seconds" xml:space="preserve">
+    <value>seconden</value>
+  </data>
+  <data name="word_History" xml:space="preserve">
+    <value>Geschiedenis</value>
+  </data>
+  <data name="word_Pinned" xml:space="preserve">
+    <value>Vastgezet</value>
+  </data>
 </root>

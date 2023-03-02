@@ -5001,4 +5001,49 @@ ISO-code then comma then language name</comment>
     <value>סך המילים בקטע על פני {0} דפים</value>
     <comment>report</comment>
   </data>
+  <data name="NavigatorSheet_corrallBox.Text" xml:space="preserve">
+    <value>הגבל את חלון הניווט למסך הפעיל</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="NavigatorSheet_depthLabel.Text" xml:space="preserve">
+    <value>אורך מקסימלי של היסטוריה מאוחסנת</value>
+    <comment>label</comment>
+  </data>
+  <data name="NavigatorSheet_intervalLabel.Text" xml:space="preserve">
+    <value>זמן קריאה מינימלי לפני הוספה להיסטוריה</value>
+    <comment>label</comment>
+  </data>
+  <data name="NavigatorSheet_introBox.Text" xml:space="preserve">
+    <value>התאם אישית אפשרויות מתקדמות עבור שירות הניווט</value>
+    <comment>label</comment>
+  </data>
+  <data name="NavigatorSheet_Title" xml:space="preserve">
+    <value>נווט</value>
+    <comment>sheet title</comment>
+  </data>
+  <data name="ribNavigatorButton_Label" xml:space="preserve">
+    <value>נווט</value>
+    <comment>ribbon main</comment>
+  </data>
+  <data name="SettingsDialog_navigatorNode.Text" xml:space="preserve">
+    <value>נווט</value>
+    <comment>tree node</comment>
+  </data>
+  <data name="NavigatorSheet_corrallBox_disabled" xml:space="preserve">
+    <value>לא זמין</value>
+    <comment>tooltip</comment>
+  </data>
+  <data name="NavigatorWindow_Text" xml:space="preserve">
+    <value>חלון ניווט</value>
+    <comment>window title</comment>
+  </data>
+  <data name="word_Seconds" xml:space="preserve">
+    <value>שניות</value>
+  </data>
+  <data name="word_History" xml:space="preserve">
+    <value>הִיסטוֹרִיָה</value>
+  </data>
+  <data name="word_Pinned" xml:space="preserve">
+    <value>מוצמד</value>
+  </data>
 </root>

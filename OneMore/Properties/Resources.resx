@@ -1841,6 +1841,34 @@ Symbols: PI, E</value>
     <value>Rename Style</value>
     <comment>dialog title</comment>
   </data>
+  <data name="NavigatorSheet_corrallBox.Text" xml:space="preserve">
+    <value>Restrict the Navigator window to the active screen</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="NavigatorSheet_corrallBox_disabled" xml:space="preserve">
+    <value>Not available</value>
+    <comment>tooltip</comment>
+  </data>
+  <data name="NavigatorSheet_depthLabel.Text" xml:space="preserve">
+    <value>Max length of stored history</value>
+    <comment>label</comment>
+  </data>
+  <data name="NavigatorSheet_intervalLabel.Text" xml:space="preserve">
+    <value>Min read time before adding to history</value>
+    <comment>label</comment>
+  </data>
+  <data name="NavigatorSheet_introBox.Text" xml:space="preserve">
+    <value>Customize advanced options for the Navigator Service</value>
+    <comment>label</comment>
+  </data>
+  <data name="NavigatorSheet_Title" xml:space="preserve">
+    <value>Navigator</value>
+    <comment>sheet title</comment>
+  </data>
+  <data name="NavigatorWindow_Text" xml:space="preserve">
+    <value>Navigator Window</value>
+    <comment>window title</comment>
+  </data>
   <data name="NetwordConnectionUnavailable" xml:space="preserve">
     <value>Network connection is not available</value>
     <comment>error</comment>
@@ -3402,6 +3430,10 @@ Polaroid</value>
     <value>Replace URLs with Web page titles</value>
     <comment>ribbon references</comment>
   </data>
+  <data name="ribNavigatorButton_Label" xml:space="preserve">
+    <value>Navigator</value>
+    <comment>ribbon main</comment>
+  </data>
   <data name="ribNewStyleButton_Label" xml:space="preserve">
     <value>Create New Style from Text</value>
     <comment>ribbon styles</comment>
@@ -4156,6 +4188,10 @@ Search engines will appear in the page context menu, right-click.</value>
     <value>Horizontal Lines</value>
     <comment>settings dialog</comment>
   </data>
+  <data name="SettingsDialog_navigatorNode.Text" xml:space="preserve">
+    <value>Navigator</value>
+    <comment>tree node</comment>
+  </data>
   <data name="SettingsDialog_pluginsNode.Text" xml:space="preserve">
     <value>Plugins</value>
     <comment>tree node</comment>
@@ -4886,6 +4922,9 @@ In this section</value>
   <data name="word_Grayscale" xml:space="preserve">
     <value>Grayscale</value>
   </data>
+  <data name="word_History" xml:space="preserve">
+    <value>History</value>
+  </data>
   <data name="word_Keyboard" xml:space="preserve">
     <value>Keyboard</value>
   </data>
@@ -4925,6 +4964,9 @@ In this section</value>
   <data name="word_PercentSymbol" xml:space="preserve">
     <value>%</value>
   </data>
+  <data name="word_Pinned" xml:space="preserve">
+    <value>Pinned</value>
+  </data>
   <data name="word_Planned" xml:space="preserve">
     <value>Planned</value>
   </data>
@@ -4954,6 +4996,9 @@ In this section</value>
   </data>
   <data name="word_Scope" xml:space="preserve">
     <value>Scope</value>
+  </data>
+  <data name="word_Seconds" xml:space="preserve">
+    <value>Seconds</value>
   </data>
   <data name="word_Section" xml:space="preserve">
     <value>Section</value>

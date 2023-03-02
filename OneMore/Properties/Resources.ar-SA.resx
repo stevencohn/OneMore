@@ -4906,4 +4906,49 @@ ISO-code then comma then language name</comment>
     <value>إجمالي الكلمات في القسم عبر {0} صفحة</value>
     <comment>report</comment>
   </data>
+  <data name="NavigatorSheet_corrallBox.Text" xml:space="preserve">
+    <value>قصر نافذة المستكشف على الشاشة النشطة</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="NavigatorSheet_depthLabel.Text" xml:space="preserve">
+    <value>أقصى طول للتاريخ المخزن</value>
+    <comment>label</comment>
+  </data>
+  <data name="NavigatorSheet_intervalLabel.Text" xml:space="preserve">
+    <value>دقيقة وقت القراءة قبل الإضافة إلى التاريخ</value>
+    <comment>label</comment>
+  </data>
+  <data name="NavigatorSheet_introBox.Text" xml:space="preserve">
+    <value>تخصيص الخيارات المتقدمة لخدمة Navigator</value>
+    <comment>label</comment>
+  </data>
+  <data name="NavigatorSheet_Title" xml:space="preserve">
+    <value>الملاح</value>
+    <comment>sheet title</comment>
+  </data>
+  <data name="ribNavigatorButton_Label" xml:space="preserve">
+    <value>الملاح</value>
+    <comment>ribbon main</comment>
+  </data>
+  <data name="SettingsDialog_navigatorNode.Text" xml:space="preserve">
+    <value>الملاح</value>
+    <comment>tree node</comment>
+  </data>
+  <data name="NavigatorSheet_corrallBox_disabled" xml:space="preserve">
+    <value>غير متاح</value>
+    <comment>tooltip</comment>
+  </data>
+  <data name="NavigatorWindow_Text" xml:space="preserve">
+    <value>نافذة المستكشف</value>
+    <comment>window title</comment>
+  </data>
+  <data name="word_Seconds" xml:space="preserve">
+    <value>ثواني</value>
+  </data>
+  <data name="word_History" xml:space="preserve">
+    <value>تاريخ</value>
+  </data>
+  <data name="word_Pinned" xml:space="preserve">
+    <value>مثبت</value>
+  </data>
 </root>

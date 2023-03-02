@@ -24,6 +24,7 @@ namespace River.OneMoreAddIn.Settings
 			Highlight,
 			Images,
 			Keyboard,
+			Navigator,
 			Lines,
 			Plugins,
 			QuickNotes,
@@ -60,6 +61,7 @@ namespace River.OneMoreAddIn.Settings
 				navTree.Nodes["linesNode"].Text = Resx.SettingsDialog_linesNode_Text;
 				navTree.Nodes["imagesNode"].Text = Resx.SettingsDialog_imagesNode_Text;
 				navTree.Nodes["keyboardNode"].Text = Resx.SettingsDialog_keyboardNode_Text;
+				navTree.Nodes["navigatorNode"].Text = Resx.SettingsDialog_navigatorNode_Text;
 				navTree.Nodes["pluginsNode"].Text = Resx.SettingsDialog_pluginsNode_Text;
 				navTree.Nodes["quickNotesNode"].Text = Resx.SettingsDialog_quickNotesNode_Text;
 				navTree.Nodes["ribbonNode"].Text = Resx.SettingsDialog_ribbonNode_Text;
@@ -120,10 +122,11 @@ namespace River.OneMoreAddIn.Settings
 					5 => new LinesSheet(provider),
 					6 => new ImagesSheet(provider),
 					7 => new KeyboardSheet(provider, ribbon),
-					8 => await PluginsSheet.Create(provider, ribbon),
-					9 => new QuickNotesSheet(provider),
-					10 => new RibbonBarSheet(provider),
-					11 => new SearchEngineSheet(provider),
+					8 => new NavigatorSheet(provider),
+					9 => await PluginsSheet.Create(provider, ribbon),
+					10 => new QuickNotesSheet(provider),
+					11 => new RibbonBarSheet(provider),
+					12 => new SearchEngineSheet(provider),
 					_ => new SnippetsSheet(provider, ribbon),
 				};
 				sheets.Add(e.Node.Index, sheet);

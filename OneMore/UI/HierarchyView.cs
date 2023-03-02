@@ -272,7 +272,7 @@ namespace River.OneMoreAddIn.UI
 				case HierarchyLevels.Notebook:
 					{
 						var image = Resx.NotebookMask;
-						image.MapColor(Color.Black, ReadColor(node.Root.Attribute("color").Value));
+						image.MapColor(Color.Black, ColorHelper.FromHtml(node.Root.Attribute("color").Value));
 						e.Graphics.DrawImage(image, bounds.Left, bounds.Top);
 					}
 					break;
@@ -280,7 +280,7 @@ namespace River.OneMoreAddIn.UI
 				case HierarchyLevels.Section:
 					{
 						var image = Resx.SectionMask;
-						image.MapColor(Color.Black, ReadColor(node.Root.Attribute("color").Value));
+						image.MapColor(Color.Black, ColorHelper.FromHtml(node.Root.Attribute("color").Value));
 						e.Graphics.DrawImage(image, bounds.Left, bounds.Top);
 					}
 					break;
@@ -327,25 +327,6 @@ namespace River.OneMoreAddIn.UI
 				node.Bounds.Top,
 				node.Bounds.Width + ImageWidth,
 				node.Bounds.Height);
-		}
-
-
-		private Color ReadColor(string value)
-		{
-			if (value.Equals("none", StringComparison.InvariantCultureIgnoreCase))
-			{
-				return Color.LightGray;
-			}
-
-			try
-			{
-				return ColorTranslator.FromHtml(value);
-			}
-			catch
-			{
-				// dont' know why but just in case!
-				return Color.LightGray;
-			}
 		}
 	}
 }

@@ -178,7 +178,7 @@ namespace River.OneMoreAddIn
 			=> await factory.Run<ColorizeCommand>(control.Tag); // tag=language
 
 
-		[Command("ribCommandPaletteButton_Label", Keys.Control | Keys.Shift | Keys.P, "")]
+		[Command("ribCommandPaletteButton_Label", Keys.Control | Keys.Shift | Keys.P, "Tools")]
 		public async Task CommandPaletteCmd(IRibbonControl control)
 			=> await factory.Run<CommandPaletteCommand>();
 
@@ -531,6 +531,11 @@ namespace River.OneMoreAddIn
 			=> await factory.Run<NameUrlsCommand>();
 
 
+		[Command("ribNavigatorButton_Label", Keys.Shift | Keys.Alt | Keys.N, "Tools")]
+		public async Task NavigatorCmd(IRibbonControl control)
+			=> await factory.Run<NavigatorCommand>();
+
+
 		[Command("ribNewStyleButton_Label", Keys.None, "Styles")]
 		public async Task NewStyleCmd(IRibbonControl control)
 			=> await factory.Run<NewStyleCommand>();
@@ -666,7 +671,7 @@ namespace River.OneMoreAddIn
 			=> await factory.Run<RemoveTagsCommand>();
 
 
-		[Command("ribReplayButton_Label", Keys.Alt | Keys.Shift | Keys.R, "")]
+		[Command("ribReplayButton_Label", Keys.Alt | Keys.Shift | Keys.R, "Tools")]
 		public async Task ReplayCmd(IRibbonControl control)
 			=> await factory.ReplayLastAction();
 

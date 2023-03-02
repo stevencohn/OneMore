@@ -4893,4 +4893,49 @@ In diesem Abschnitt</value>
     <value>Gesamtzahl der Wörter im Abschnitt auf {0} Seiten</value>
     <comment>report</comment>
   </data>
+  <data name="NavigatorSheet_corrallBox.Text" xml:space="preserve">
+    <value>Beschränken Sie das Navigator-Fenster auf den aktiven Bildschirm</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="NavigatorSheet_depthLabel.Text" xml:space="preserve">
+    <value>Maximale Länge des gespeicherten Verlaufs</value>
+    <comment>label</comment>
+  </data>
+  <data name="NavigatorSheet_intervalLabel.Text" xml:space="preserve">
+    <value>Mindestlesezeit vor dem Hinzufügen zum Verlauf</value>
+    <comment>label</comment>
+  </data>
+  <data name="NavigatorSheet_introBox.Text" xml:space="preserve">
+    <value>Passen Sie erweiterte Optionen für den Navigator-Dienst an</value>
+    <comment>label</comment>
+  </data>
+  <data name="NavigatorSheet_Title" xml:space="preserve">
+    <value>Navigator</value>
+    <comment>sheet title</comment>
+  </data>
+  <data name="ribNavigatorButton_Label" xml:space="preserve">
+    <value>Navigator</value>
+    <comment>ribbon main</comment>
+  </data>
+  <data name="SettingsDialog_navigatorNode.Text" xml:space="preserve">
+    <value>Navigator</value>
+    <comment>tree node</comment>
+  </data>
+  <data name="NavigatorSheet_corrallBox_disabled" xml:space="preserve">
+    <value>Nicht verfügbar</value>
+    <comment>tooltip</comment>
+  </data>
+  <data name="NavigatorWindow_Text" xml:space="preserve">
+    <value>Navigator-Fenster</value>
+    <comment>window title</comment>
+  </data>
+  <data name="word_Seconds" xml:space="preserve">
+    <value>Sekunden</value>
+  </data>
+  <data name="word_History" xml:space="preserve">
+    <value>Geschichte</value>
+  </data>
+  <data name="word_Pinned" xml:space="preserve">
+    <value>Gepinnt</value>
+  </data>
 </root>
