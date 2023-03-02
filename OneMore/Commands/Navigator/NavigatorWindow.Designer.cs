@@ -312,6 +312,7 @@
 			this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
 			this.Text = "OneMore Navigator";
 			this.Activated += new System.EventHandler(this.TopOnShown);
+			this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.SaveOnFormClosing);
 			this.Load += new System.EventHandler(this.PositionOnLoad);
 			this.Shown += new System.EventHandler(this.TopOnShown);
 			this.SizeChanged += new System.EventHandler(this.SetLimitsOnSizeChanged);

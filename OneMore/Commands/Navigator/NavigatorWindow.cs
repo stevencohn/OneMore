@@ -161,6 +161,12 @@ namespace River.OneMoreAddIn.Commands
 
 		private void CloseOnClick(object sender, EventArgs e)
 		{
+			Close();
+		}
+
+
+		private void SaveOnFormClosing(object sender, FormClosingEventArgs e)
+		{
 			var settings = new SettingsProvider();
 			var collection = settings.GetCollection("navigator");
 			collection.Add("left", Left);
@@ -169,8 +175,6 @@ namespace River.OneMoreAddIn.Commands
 			collection.Add("heigth", Height);
 			settings.SetCollection(collection);
 			settings.Save();
-
-			Close();
 		}
 		#endregion Handlers
 
