@@ -45,7 +45,7 @@ namespace River.OneMoreAddIn.Commands
 				{
 					if (watcher != null)
 					{
-						watcher.Created -= NavigationHandler;
+						watcher.EnableRaisingEvents = false;
 						watcher.Changed -= NavigationHandler;
 						watcher.Dispose();
 						watcher = null;

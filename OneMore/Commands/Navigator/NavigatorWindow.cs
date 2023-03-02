@@ -84,7 +84,6 @@ namespace River.OneMoreAddIn.Commands
 		#region Handlers
 		private async void PositionOnLoad(object sender, EventArgs e)
 		{
-			logger.WriteLine("PositionOnLoad");
 			// deal with primary/secondary displays in either duplicate or extended mode...
 			// Load is invoked prior to SizeChanged
 
@@ -134,7 +133,6 @@ namespace River.OneMoreAddIn.Commands
 
 		private void SetLimitsOnSizeChanged(object sender, EventArgs e)
 		{
-			logger.WriteLine("SetLimitsOnsizeChanged");
 			// SizeChanged is invoked after Load which sets screenArea
 			corral = screen.GetBoundedLocation(this);
 		}
@@ -142,7 +140,6 @@ namespace River.OneMoreAddIn.Commands
 
 		private void RestrictOnMove(object sender, EventArgs e)
 		{
-			logger.WriteLine("RestrictOnMove");
 			if (corralled && corral.X > 0)
 			{
 				if (Left < 10) Left = 10;
@@ -155,7 +152,6 @@ namespace River.OneMoreAddIn.Commands
 
 		private void TopOnShown(object sender, EventArgs e)
 		{
-			logger.WriteLine("TopOnShown");
 			BringToFront();
 			TopMost = true;
 			Activate();
@@ -230,33 +226,41 @@ namespace River.OneMoreAddIn.Commands
 				return;
 			}
 
-			if (e.Count > 0 && e[0].PageID == visitedID)
+			try
 			{
-				// user clicked ths page in navigator; don't reorder the list or they'll lose
-				// their context and get confused, but refresh the headings pane
-				LoadPageHeadings(e[0].PageID);
-				return;
-			}
-
-			if (ResolveReferences(history, e))
-			{
-				visitedID = null;
-
-				ShowPageOutline(history[0]);
-
-				historyBox.BeginUpdate();
-				historyBox.Items.Clear();
-
-				history.ForEach(info =>
+				if (e.Count > 0 && e[0].PageID == visitedID)
 				{
-					var control = new HistoryListViewItem(info);
-					var item = historyBox.AddHostedItem(control);
-					item.Tag = info;
-				});
+					// user clicked ths page in navigator; don't reorder the list or they'll lose
+					// their context and get confused, but refresh the headings pane
+					LoadPageHeadings(e[0].PageID);
+					visitedID = null;
+					return;
+				}
 
-				historyBox.Items[0].Selected = true;
-				historyBox.EndUpdate();
-				historyBox.Invalidate();
+				if (ResolveReferences(history, e))
+				{
+					visitedID = null;
+
+					ShowPageOutline(history[0]);
+
+					historyBox.BeginUpdate();
+					historyBox.Items.Clear();
+
+					history.ForEach(info =>
+					{
+						var control = new HistoryListViewItem(info);
+						var item = historyBox.AddHostedItem(control);
+						item.Tag = info;
+					});
+
+					historyBox.Items[0].Selected = true;
+					historyBox.EndUpdate();
+					historyBox.Invalidate();
+				}
+			}
+			catch (Exception exc)
+			{
+				logger.WriteLine($"error navigating", exc);
 			}
 		}
 
@@ -273,18 +277,28 @@ namespace River.OneMoreAddIn.Commands
 				var record = records[i];
 				var j = details.FindIndex(d => d.PageId == record.PageID);
 
-				var item = j < 0
-					? one.GetPageInfo(record.PageID)
-					: details[j];
+				try
+				{
+					var item = j < 0
+						? one.GetPageInfo(record.PageID)
+						: details[j];
 
-				item.Visited = record.Visited;
+					if (item != null)
+					{
+						item.Visited = record.Visited;
 
-				var parentID = one.GetParent(record.PageID);
-				_ = one.GetHierarchyNode(parentID);
+						var parentID = one.GetParent(record.PageID);
+						_ = one.GetHierarchyNode(parentID);
 
-				list.Add(item);
+						list.Add(item);
 
-				updated |= (j != i);
+						updated |= (j != i);
+					}
+				}
+				catch (Exception exc)
+				{
+					logger.WriteLine($"navigator resolve skipping page {record.PageID}", exc);
+				}
 			}
 
 			if (updated)

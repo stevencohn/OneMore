@@ -40,8 +40,10 @@ namespace River.OneMoreAddIn.Commands
 					? recent.ElementAt(dialog.Index)
 					: commands.ElementAt(dialog.Index);
 
-				//logger.WriteLine($"invoking command[{dialog.Index},{dialog.Recent}] '{command.Method.Name}'");
+				//logger.WriteLine($"invoking command[index:{dialog.Index},recent:{dialog.Recent}] 'method:{command.Method.Name}'");
 				await (Task)command.Method.Invoke(AddIn.Self, new object[] { null });
+
+				new CommandProvider().SaveToMRU(command);
 			}
 
 			// reset focus to OneNote window
