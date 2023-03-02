@@ -187,33 +187,32 @@ namespace River.OneMoreAddIn.Commands
 		private async Task LoadPinned()
 		{
 			var pins = await provider.ReadPinned();
+			ShowPins(pins);
+		}
 
-			var action = new Action(() =>
-			{
-				if (ResolveReferences(pinned, pins))
-				{
-					pinnedBox.BeginUpdate();
-					pinnedBox.Items.Clear();
 
-					pinned.ForEach(info =>
-					{
-						var control = new HistoryListViewItem(info);
-						var item = pinnedBox.AddHostedItem(control);
-						item.Tag = info;
-					});
-
-					pinnedBox.EndUpdate();
-					pinnedBox.Invalidate();
-				}
-			});
-
+		private void ShowPins(List<HistoryRecord> pins)
+		{
 			if (pinnedBox.InvokeRequired)
 			{
-				pinnedBox.Invoke(action);
+				pinnedBox.Invoke(new Action(() => ShowPins(pins)));
+				return;
 			}
-			else
+
+			if (ResolveReferences(pinned, pins))
 			{
-				action();
+				pinnedBox.BeginUpdate();
+				pinnedBox.Items.Clear();
+
+				pinned.ForEach(info =>
+				{
+					var control = new HistoryListViewItem(info);
+					var item = pinnedBox.AddHostedItem(control);
+					item.Tag = info;
+				});
+
+				pinnedBox.EndUpdate();
+				pinnedBox.Invalidate();
 			}
 		}
 
@@ -283,6 +282,7 @@ namespace River.OneMoreAddIn.Commands
 						? one.GetPageInfo(record.PageID)
 						: details[j];
 
+					// might be null if the page no longer exits; exception raised in GetPageInfo
 					if (item != null)
 					{
 						item.Visited = record.Visited;
@@ -300,6 +300,8 @@ namespace River.OneMoreAddIn.Commands
 					logger.WriteLine($"navigator resolve skipping page {record.PageID}", exc);
 				}
 			}
+
+			updated |= list.Count != details.Count;
 
 			if (updated)
 			{
@@ -354,8 +356,11 @@ namespace River.OneMoreAddIn.Commands
 
 			if (list.Count > 0)
 			{
-				var i = historyBox.SelectedItems.Count - 1;
-				if (historyBox.SelectedItems[i] is IMoreHostItem item &&
+				var hit = historyBox.SelectedItems.Count > 0
+					? historyBox.SelectedItems[historyBox.SelectedItems.Count - 1]
+					: historyBox.Items[0];
+
+				if (hit is IMoreHostItem item &&
 					item.Control.Tag is HierarchyInfo info)
 				{
 					SetVisited(info.PageId);
