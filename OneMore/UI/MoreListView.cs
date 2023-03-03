@@ -34,6 +34,7 @@ namespace River.OneMoreAddIn.UI
 			{
 				Host = host;
 				Control = control;
+				// commandeer Tag to point back up to hosting item
 				control.Tag = item;
 				ColumnIndex = columnIndex;
 			}
@@ -68,6 +69,7 @@ namespace River.OneMoreAddIn.UI
 		private const string UpGlyph = "△"; // ▲
 		private const string DnGlyph = "▽"; // ▼
 
+		private bool allowItemReorder;
 		private SolidBrush sortedBrush;
 		private SolidBrush highBackBrush;
 		private SolidBrush highForeBrush;
@@ -99,12 +101,56 @@ namespace River.OneMoreAddIn.UI
 
 			var (_, yScaling) = UIHelper.GetScalingFactors();
 			RowHeight = (int)(Font.Height * yScaling);
+
+			Click += RouteClick;
+
+			router.Register(this, "Click");
+		}
+
+
+		protected override void Dispose(bool disposing)
+		{
+			base.Dispose(disposing);
+			if (disposing)
+			{
+				router.Dispose();
+				highBackBrush.Dispose();
+				highForeBrush.Dispose();
+				sortedBrush.Dispose();
+			}
+		}
+
+
+		/// <summary>
+		/// Gets or sets whether items can be reordered using drag and drop.
+		/// </summary>
+		[Category("Behavior")]
+		[Description("Specifies whether items can be reordered using drag and drop")]
+		public bool AllowItemReorder
+		{
+			get => allowItemReorder;
+
+			set
+			{
+				allowItemReorder = value;
+				if (value)
+				{
+					router.Register(this, "MouseDown");
+					router.Register(this, "DragDrop");
+
+					Click += RouteClick;
+					MouseDown += RouteMouseDown;
+					DragDrop += RouteDragDrop;
+				}
+			}
 		}
 
 
 		/// <summary>
 		/// Gets or set the padding around hosted controls in each cell of the list view.
 		/// </summary>
+		[Category("Appearance")]
+		[Description("The padding around hosted controls")]
 		public int ControlPadding { get; set; } = 2;
 
 
@@ -174,13 +220,6 @@ namespace River.OneMoreAddIn.UI
 			if (control != null)
 			{
 				RegisterHostedControl(item, new RegistrationEventArgs(item, control, 0));
-
-				router.Register(control, "Click", (object s, EventArgs e) =>
-				{
-					SelectImplicitly(item);
-					FocusedItem = item;
-					Focus();
-				});
 			}
 
 			return item;
@@ -191,6 +230,50 @@ namespace River.OneMoreAddIn.UI
 		{
 			hostedControls.Add(new HostedControl(subitem, e.Item, e.Control, e.ColumnIndex));
 			Controls.Add(e.Control);
+		}
+
+
+		public void EnableItemEventBubbling()
+		{
+			router.Register(this, Items, "Click");
+
+			if (allowItemReorder)
+			{
+				router.Register(this, Items, "MouseDown");
+				router.Register(this, Items, "DragDrop");
+			}
+		}
+
+
+		/// <summary>
+		/// Select the specified item if it is not already selected. If it is not selected
+		/// then other selected items will be deselected before this item is selected.
+		/// </summary>
+		/// <param name="item">The item to select</param>
+		/// <remarks>
+		/// This should be used when you want to programmaticaly for a selection of the
+		/// row when the user interacts with a hosted control, like a Button or LinkLabel
+		/// which would not normally select that row automatically.
+		/// </remarks>
+		public void SelectIf(ListViewItem item)
+		{
+			if (!item.Selected)
+			{
+				SelectedItems.Clear();
+				item.Selected = true;
+			}
+		}
+
+		#region Routed events
+		private void RouteClick(object sender, EventArgs e)
+		{
+			Logger.Current.WriteLine($"RouteClick {sender.GetType().FullName}");
+			var point = PointToClient(Control.MousePosition);
+			var item = GetItemAt(point.X, point.Y);
+			if (item != null)
+			{
+				SelectImplicitly(item);
+			}
 		}
 
 
@@ -241,25 +324,17 @@ namespace River.OneMoreAddIn.UI
 		}
 
 
-		/// <summary>
-		/// Select the specified item if it is not already selected. If it is not selected
-		/// then other selected items will be deselected before this item is selected.
-		/// </summary>
-		/// <param name="item">The item to select</param>
-		/// <remarks>
-		/// This should be used when you want to programmaticaly for a selection of the
-		/// row when the user interacts with a hosted control, like a Button or LinkLabel
-		/// which would not normally select that row automatically.
-		/// </remarks>
-		public void SelectIf(ListViewItem item)
+		private void RouteMouseDown(object sender, MouseEventArgs e)
 		{
-			if (!item.Selected)
-			{
-				SelectedItems.Clear();
-				item.Selected = true;
-			}
+			DoDragDrop(sender, DragDropEffects.Move);
 		}
 
+
+		private void RouteDragDrop(object sender, DragEventArgs e)
+		{
+			Logger.Current.WriteLine($"drop");
+		}
+		#endregion Routed events
 
 		#region Overrides
 
@@ -524,6 +599,138 @@ namespace River.OneMoreAddIn.UI
 		}
 
 		#endregion Overrides
+
+		#region DragDrop Overrides
+		protected override void OnItemDrag(ItemDragEventArgs e)
+		{
+			base.OnItemDrag(e);
+			if (!AllowItemReorder)
+			{
+				return;
+			}
+
+			DoDragDrop(nameof(MoreListView), DragDropEffects.Move);
+		}
+
+
+		protected override void OnDragOver(DragEventArgs e)
+		{
+			if (!AllowItemReorder)
+			{
+				e.Effect = DragDropEffects.None;
+				return;
+			}
+
+			if (!e.Data.GetDataPresent(DataFormats.Text))
+			{
+				e.Effect = DragDropEffects.None;
+				return;
+			}
+
+			var cp = PointToClient(new Point(e.X, e.Y));
+			var hoverItem = GetItemAt(cp.X, cp.Y);
+			if (hoverItem == null)
+			{
+				e.Effect = DragDropEffects.None;
+				return;
+			}
+
+			foreach (ListViewItem moveItem in SelectedItems)
+			{
+				if (moveItem.Index == hoverItem.Index)
+				{
+					e.Effect = DragDropEffects.None;
+					hoverItem.EnsureVisible();
+					return;
+				}
+			}
+
+			base.OnDragOver(e);
+			var text = (string)e.Data.GetData(typeof(string));
+			if (text.CompareTo(nameof(MoreListView)) == 0)
+			{
+				e.Effect = DragDropEffects.Move;
+				hoverItem.EnsureVisible();
+			}
+			else
+			{
+				e.Effect = DragDropEffects.None;
+			}
+		}
+
+
+		protected override void OnDragDrop(DragEventArgs e)
+		{
+			base.OnDragDrop(e);
+			if (!AllowItemReorder)
+			{
+				return;
+			}
+
+			if (SelectedItems.Count == 0)
+			{
+				return;
+			}
+
+			var cp = PointToClient(new Point(e.X, e.Y));
+			var dragToItem = GetItemAt(cp.X, cp.Y);
+			if (dragToItem == null)
+			{
+				return;
+			}
+
+			var dropIndex = dragToItem.Index;
+			if (dropIndex > SelectedItems[0].Index)
+			{
+				dropIndex++;
+			}
+
+			var insertItems = new ArrayList(SelectedItems.Count);
+			foreach (ListViewItem item in SelectedItems)
+			{
+				insertItems.Add(item.Clone());
+			}
+
+			for (int i = insertItems.Count - 1; i >= 0; i--)
+			{
+				ListViewItem insertItem = (ListViewItem)insertItems[i];
+				Items.Insert(dropIndex, insertItem);
+			}
+
+			foreach (ListViewItem removeItem in SelectedItems)
+			{
+				Items.Remove(removeItem);
+			}
+		}
+
+
+		protected override void OnDragEnter(DragEventArgs e)
+		{
+			base.OnDragEnter(e);
+			if (!AllowItemReorder)
+			{
+				e.Effect = DragDropEffects.None;
+				return;
+			}
+
+			if (!e.Data.GetDataPresent(DataFormats.Text))
+			{
+				e.Effect = DragDropEffects.None;
+				return;
+			}
+
+			base.OnDragEnter(e);
+			var text = (string)e.Data.GetData(typeof(string));
+			if (text.CompareTo(nameof(MoreListView)) == 0)
+			{
+				e.Effect = DragDropEffects.Move;
+			}
+			else
+			{
+				e.Effect = DragDropEffects.None;
+			}
+		}
+		#endregion DragDrop Overrides
 
 		#region Comparers
 		private abstract class ComparerBase : IComparer
