@@ -4147,11 +4147,20 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Pin selected items.
+        ///   Looks up a localized string similar to Add selected items to My Reading List.
         /// </summary>
         internal static string NavigatorWindow_pinButton_Tooltip {
             get {
                 return ResourceManager.GetString("NavigatorWindow_pinButton_Tooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to My Reading List.
+        /// </summary>
+        internal static string NavigatorWindow_pinnedHeadLabel_Text {
+            get {
+                return ResourceManager.GetString("NavigatorWindow_pinnedHeadLabel.Text", resourceCulture);
             }
         }
         
@@ -4174,7 +4183,7 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Unpin selected items.
+        ///   Looks up a localized string similar to Remove selected items from My Reading List.
         /// </summary>
         internal static string NavigatorWindow_unpinButton_Tooltip {
             get {
@@ -11313,15 +11322,6 @@ namespace River.OneMoreAddIn.Properties {
         internal static string word_PercentSymbol {
             get {
                 return ResourceManager.GetString("word_PercentSymbol", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Pinned.
-        /// </summary>
-        internal static string word_Pinned {
-            get {
-                return ResourceManager.GetString("word_Pinned", resourceCulture);
             }
         }
         

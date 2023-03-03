@@ -188,6 +188,7 @@
 			// 
 			// pinnedBox
 			// 
+			this.pinnedBox.AllowItemReorder = true;
 			this.pinnedBox.ControlPadding = 2;
 			this.pinnedBox.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.pinnedBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -229,7 +230,7 @@
 			this.unpinButton.TabIndex = 3;
 			this.unpinButton.Text = "✘";
 			this.unpinButton.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-			this.tooltip.SetToolTip(this.unpinButton, "Unpin selected items");
+			this.tooltip.SetToolTip(this.unpinButton, "Remove selected items from My Reading List");
 			this.unpinButton.UseVisualStyleBackColor = true;
 			this.unpinButton.Click += new System.EventHandler(this.UnpinOnClick);
 			// 
@@ -239,12 +240,13 @@
 			this.pinnedHeadLabel.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.pinnedHeadLabel.Location = new System.Drawing.Point(12, 12);
 			this.pinnedHeadLabel.Name = "pinnedHeadLabel";
-			this.pinnedHeadLabel.Size = new System.Drawing.Size(73, 22);
+			this.pinnedHeadLabel.Size = new System.Drawing.Size(151, 22);
 			this.pinnedHeadLabel.TabIndex = 1;
-			this.pinnedHeadLabel.Text = "Pinned";
+			this.pinnedHeadLabel.Text = "My Reading List";
 			// 
 			// historyBox
 			// 
+			this.historyBox.AllowItemReorder = false;
 			this.historyBox.ControlPadding = 2;
 			this.historyBox.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.historyBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -286,7 +288,7 @@
 			this.pinButton.TabIndex = 2;
 			this.pinButton.Text = "📌";
 			this.pinButton.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-			this.tooltip.SetToolTip(this.pinButton, "Pin selected items");
+			this.tooltip.SetToolTip(this.pinButton, "Add selected items to My Reading List");
 			this.pinButton.UseVisualStyleBackColor = true;
 			this.pinButton.Click += new System.EventHandler(this.PinOnClick);
 			// 

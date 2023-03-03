@@ -4948,11 +4948,8 @@ In deze sectie</value>
   <data name="word_History" xml:space="preserve">
     <value>Geschiedenis</value>
   </data>
-  <data name="word_Pinned" xml:space="preserve">
-    <value>Vastgezet</value>
-  </data>
   <data name="NavigatorWindow_pinButton_Tooltip" xml:space="preserve">
-    <value>Zet geselecteerde items vast</value>
+    <value>Voeg geselecteerde items toe aan Mijn leeslijst</value>
     <comment>tooltip</comment>
   </data>
   <data name="NavigatorWindow_refreshButton_Tooltip" xml:space="preserve">
@@ -4960,7 +4957,10 @@ In deze sectie</value>
     <comment>tooltip</comment>
   </data>
   <data name="NavigatorWindow_unpinButton_Tooltip" xml:space="preserve">
-    <value>Maak geselecteerde items los</value>
+    <value>Verwijder geselecteerde items uit Mijn leeslijst</value>
     <comment>tooltip</comment>
+  </data>
+  <data name="NavigatorWindow_pinnedHeadLabel.Text" xml:space="preserve">
+    <value>Mijn leeslijst</value>
   </data>
 </root>

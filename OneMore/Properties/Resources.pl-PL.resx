@@ -5001,11 +5001,8 @@ W tej sekcji</value>
   <data name="word_History" xml:space="preserve">
     <value>Historia</value>
   </data>
-  <data name="word_Pinned" xml:space="preserve">
-    <value>Przypięty</value>
-  </data>
   <data name="NavigatorWindow_pinButton_Tooltip" xml:space="preserve">
-    <value>Przypnij wybrane elementy</value>
+    <value>Dodaj wybrane pozycje do Mojej listy czytelniczej</value>
     <comment>tooltip</comment>
   </data>
   <data name="NavigatorWindow_refreshButton_Tooltip" xml:space="preserve">
@@ -5013,7 +5010,10 @@ W tej sekcji</value>
     <comment>tooltip</comment>
   </data>
   <data name="NavigatorWindow_unpinButton_Tooltip" xml:space="preserve">
-    <value>Odepnij wybrane elementy</value>
+    <value>Usuń wybrane pozycje z Mojej listy czytelniczej</value>
     <comment>tooltip</comment>
+  </data>
+  <data name="NavigatorWindow_pinnedHeadLabel.Text" xml:space="preserve">
+    <value>Moja lista lektur</value>
   </data>
 </root>

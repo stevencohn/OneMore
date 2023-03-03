@@ -32,13 +32,13 @@ namespace River.OneMoreAddIn.Settings
 			this.components = new System.ComponentModel.Container();
 			this.introBox = new System.Windows.Forms.TextBox();
 			this.layoutPanel = new System.Windows.Forms.Panel();
+			this.secLabel = new System.Windows.Forms.Label();
 			this.intervalBox = new System.Windows.Forms.NumericUpDown();
 			this.intervalLabel = new System.Windows.Forms.Label();
 			this.depthBox = new System.Windows.Forms.NumericUpDown();
 			this.depthLabel = new System.Windows.Forms.Label();
 			this.corrallBox = new System.Windows.Forms.CheckBox();
 			this.tooltip = new System.Windows.Forms.ToolTip(this.components);
-			this.secLabel = new System.Windows.Forms.Label();
 			this.layoutPanel.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.intervalBox)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.depthBox)).BeginInit();
@@ -72,9 +72,17 @@ namespace River.OneMoreAddIn.Settings
 			this.layoutPanel.Size = new System.Drawing.Size(772, 416);
 			this.layoutPanel.TabIndex = 4;
 			// 
+			// secLabel
+			// 
+			this.secLabel.AutoSize = true;
+			this.secLabel.Location = new System.Drawing.Point(523, 62);
+			this.secLabel.Name = "secLabel";
+			this.secLabel.Size = new System.Drawing.Size(72, 20);
+			this.secLabel.TabIndex = 5;
+			this.secLabel.Text = "Seconds";
+			// 
 			// intervalBox
 			// 
-			this.intervalBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.intervalBox.DecimalPlaces = 2;
 			this.intervalBox.Increment = new decimal(new int[] {
             5,
@@ -112,7 +120,6 @@ namespace River.OneMoreAddIn.Settings
 			// 
 			// depthBox
 			// 
-			this.depthBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.depthBox.Location = new System.Drawing.Point(397, 8);
 			this.depthBox.Minimum = new decimal(new int[] {
             5,
@@ -151,15 +158,6 @@ namespace River.OneMoreAddIn.Settings
 			this.corrallBox.Text = "Restrict the Navigator window to the active screen";
 			this.tooltip.SetToolTip(this.corrallBox, "Enabled only when multiple screens are available");
 			this.corrallBox.UseVisualStyleBackColor = true;
-			// 
-			// secLabel
-			// 
-			this.secLabel.AutoSize = true;
-			this.secLabel.Location = new System.Drawing.Point(523, 62);
-			this.secLabel.Name = "secLabel";
-			this.secLabel.Size = new System.Drawing.Size(72, 20);
-			this.secLabel.TabIndex = 5;
-			this.secLabel.Text = "Seconds";
 			// 
 			// NavigatorSheet
 			// 

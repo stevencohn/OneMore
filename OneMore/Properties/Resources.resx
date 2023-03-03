@@ -1866,8 +1866,11 @@ Symbols: PI, E</value>
     <comment>sheet title</comment>
   </data>
   <data name="NavigatorWindow_pinButton_Tooltip" xml:space="preserve">
-    <value>Pin selected items</value>
+    <value>Add selected items to My Reading List</value>
     <comment>tooltip</comment>
+  </data>
+  <data name="NavigatorWindow_pinnedHeadLabel.Text" xml:space="preserve">
+    <value>My Reading List</value>
   </data>
   <data name="NavigatorWindow_refreshButton_Tooltip" xml:space="preserve">
     <value>Refresh headings from current page</value>
@@ -1878,7 +1881,7 @@ Symbols: PI, E</value>
     <comment>window title</comment>
   </data>
   <data name="NavigatorWindow_unpinButton_Tooltip" xml:space="preserve">
-    <value>Unpin selected items</value>
+    <value>Remove selected items from My Reading List</value>
     <comment>tooltip</comment>
   </data>
   <data name="NetwordConnectionUnavailable" xml:space="preserve">
@@ -4975,9 +4978,6 @@ In this section</value>
   </data>
   <data name="word_PercentSymbol" xml:space="preserve">
     <value>%</value>
-  </data>
-  <data name="word_Pinned" xml:space="preserve">
-    <value>Pinned</value>
   </data>
   <data name="word_Planned" xml:space="preserve">
     <value>Planned</value>

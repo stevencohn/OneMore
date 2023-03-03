@@ -49,7 +49,7 @@ namespace River.OneMoreAddIn.Commands
 
 				Localize(new string[]
 				{
-					"pinnedHeadLabel=word_Pinned",
+					"pinnedHeadLabel",
 					"historyHeadLabel=word_History",
 					"closeButton"
 				});
@@ -221,6 +221,8 @@ namespace River.OneMoreAddIn.Commands
 
 				pinnedBox.EndUpdate();
 				pinnedBox.Invalidate();
+
+				pinnedBox.EnableItemEventBubbling();
 			}
 		}
 
@@ -263,6 +265,8 @@ namespace River.OneMoreAddIn.Commands
 					historyBox.Items[0].Selected = true;
 					historyBox.EndUpdate();
 					historyBox.Invalidate();
+
+					historyBox.EnableItemEventBubbling();
 				}
 			}
 			catch (Exception exc)
