@@ -60,6 +60,8 @@ namespace River.OneMoreAddIn.Commands
 				tooltip.SetToolTip(downButton, Resx.NavigatorWindow_downButton_Tooltip);
 				tooltip.SetToolTip(unpinButton, Resx.NavigatorWindow_unpinButton_Tooltip);
 				tooltip.SetToolTip(pinButton, Resx.NavigatorWindow_pinButton_Tooltip);
+				tooltip.SetToolTip(copyPinnedButton, Resx.NavigatorWindow_copyTooltip);
+				tooltip.SetToolTip(copyHistoryButton, Resx.NavigatorWindow_copyTooltip);
 			}
 
 			ManualLocation = true;

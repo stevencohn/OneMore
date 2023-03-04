@@ -1892,6 +1892,10 @@ Symbols: PI, E</value>
     <value>Navigator</value>
     <comment>sheet title</comment>
   </data>
+  <data name="NavigatorWindow_copyTooltip" xml:space="preserve">
+    <value>Copy selected items to the clipboard</value>
+    <comment>button tooltip</comment>
+  </data>
   <data name="NavigatorWindow_downButton_Tooltip" xml:space="preserve">
     <value>Move selected items down</value>
     <comment>tooltip</comment>

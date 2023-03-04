@@ -4985,4 +4985,8 @@ In diesem Abschnitt</value>
     <value>Bevorzugte Importbildbreite</value>
     <comment>label</comment>
   </data>
+  <data name="NavigatorWindow_copyTooltip" xml:space="preserve">
+    <value>Ausgewählte Elemente in die Zwischenablage kopieren</value>
+    <comment>button tooltip</comment>
+  </data>
 </root>

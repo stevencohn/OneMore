@@ -47,17 +47,17 @@
 			this.subContainer = new System.Windows.Forms.SplitContainer();
 			this.pinnedBox = new River.OneMoreAddIn.UI.MoreListView();
 			this.pinnedHeadPanel = new System.Windows.Forms.Panel();
+			this.copyPinnedButton = new System.Windows.Forms.Button();
 			this.upButton = new System.Windows.Forms.Button();
 			this.downButton = new System.Windows.Forms.Button();
 			this.unpinButton = new System.Windows.Forms.Button();
 			this.pinnedHeadLabel = new System.Windows.Forms.Label();
 			this.historyBox = new River.OneMoreAddIn.UI.MoreListView();
 			this.historyHeadPanel = new System.Windows.Forms.Panel();
+			this.copyHistoryButton = new System.Windows.Forms.Button();
 			this.pinButton = new System.Windows.Forms.Button();
 			this.historyHeadLabel = new System.Windows.Forms.Label();
 			this.tooltip = new System.Windows.Forms.ToolTip(this.components);
-			this.copyHistoryButton = new System.Windows.Forms.Button();
-			this.copyPinnedButton = new System.Windows.Forms.Button();
 			this.controlPanel.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.mainContainer)).BeginInit();
 			this.mainContainer.Panel1.SuspendLayout();
@@ -225,6 +225,22 @@
 			this.pinnedHeadPanel.Size = new System.Drawing.Size(528, 41);
 			this.pinnedHeadPanel.TabIndex = 1;
 			// 
+			// copyPinnedButton
+			// 
+			this.copyPinnedButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.copyPinnedButton.FlatAppearance.BorderSize = 0;
+			this.copyPinnedButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+			this.copyPinnedButton.Font = new System.Drawing.Font("Segoe UI Emoji", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.copyPinnedButton.Location = new System.Drawing.Point(440, 3);
+			this.copyPinnedButton.Name = "copyPinnedButton";
+			this.copyPinnedButton.Size = new System.Drawing.Size(35, 35);
+			this.copyPinnedButton.TabIndex = 6;
+			this.copyPinnedButton.Text = "🔗";
+			this.copyPinnedButton.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+			this.tooltip.SetToolTip(this.copyPinnedButton, "Copy selected items to the clipboard");
+			this.copyPinnedButton.UseVisualStyleBackColor = true;
+			this.copyPinnedButton.Click += new System.EventHandler(this.CopyLinksOnClick);
+			// 
 			// upButton
 			// 
 			this.upButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -316,6 +332,22 @@
 			this.historyHeadPanel.Size = new System.Drawing.Size(528, 41);
 			this.historyHeadPanel.TabIndex = 1;
 			// 
+			// copyHistoryButton
+			// 
+			this.copyHistoryButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.copyHistoryButton.FlatAppearance.BorderSize = 0;
+			this.copyHistoryButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+			this.copyHistoryButton.Font = new System.Drawing.Font("Segoe UI Emoji", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.copyHistoryButton.Location = new System.Drawing.Point(440, 2);
+			this.copyHistoryButton.Name = "copyHistoryButton";
+			this.copyHistoryButton.Size = new System.Drawing.Size(35, 35);
+			this.copyHistoryButton.TabIndex = 3;
+			this.copyHistoryButton.Text = "🔗";
+			this.copyHistoryButton.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+			this.tooltip.SetToolTip(this.copyHistoryButton, "Copy selected items to the clipboard");
+			this.copyHistoryButton.UseVisualStyleBackColor = true;
+			this.copyHistoryButton.Click += new System.EventHandler(this.CopyLinksOnClick);
+			// 
 			// pinButton
 			// 
 			this.pinButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -341,38 +373,6 @@
 			this.historyHeadLabel.Size = new System.Drawing.Size(74, 22);
 			this.historyHeadLabel.TabIndex = 1;
 			this.historyHeadLabel.Text = "History";
-			// 
-			// copyHistoryButton
-			// 
-			this.copyHistoryButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.copyHistoryButton.FlatAppearance.BorderSize = 0;
-			this.copyHistoryButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-			this.copyHistoryButton.Font = new System.Drawing.Font("Segoe UI Emoji", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.copyHistoryButton.Location = new System.Drawing.Point(440, 2);
-			this.copyHistoryButton.Name = "copyHistoryButton";
-			this.copyHistoryButton.Size = new System.Drawing.Size(35, 35);
-			this.copyHistoryButton.TabIndex = 3;
-			this.copyHistoryButton.Text = "🔗";
-			this.copyHistoryButton.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-			this.tooltip.SetToolTip(this.copyHistoryButton, "Copy ");
-			this.copyHistoryButton.UseVisualStyleBackColor = true;
-			this.copyHistoryButton.Click += new System.EventHandler(this.CopyLinksOnClick);
-			// 
-			// copyPinnedButton
-			// 
-			this.copyPinnedButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.copyPinnedButton.FlatAppearance.BorderSize = 0;
-			this.copyPinnedButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-			this.copyPinnedButton.Font = new System.Drawing.Font("Segoe UI Emoji", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.copyPinnedButton.Location = new System.Drawing.Point(440, 3);
-			this.copyPinnedButton.Name = "copyPinnedButton";
-			this.copyPinnedButton.Size = new System.Drawing.Size(35, 35);
-			this.copyPinnedButton.TabIndex = 6;
-			this.copyPinnedButton.Text = "🔗";
-			this.copyPinnedButton.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-			this.tooltip.SetToolTip(this.copyPinnedButton, "Add selected items to My Reading List");
-			this.copyPinnedButton.UseVisualStyleBackColor = true;
-			this.copyPinnedButton.Click += new System.EventHandler(this.CopyLinksOnClick);
 			// 
 			// NavigatorWindow
 			// 

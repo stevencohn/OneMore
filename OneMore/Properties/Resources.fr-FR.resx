@@ -4992,4 +4992,8 @@ Dans cette section</value>
     <value>Largeur d'image d'importation préférée</value>
     <comment>label</comment>
   </data>
+  <data name="NavigatorWindow_copyTooltip" xml:space="preserve">
+    <value>Copier les éléments sélectionnés dans le presse-papiers</value>
+    <comment>button tooltip</comment>
+  </data>
 </root>

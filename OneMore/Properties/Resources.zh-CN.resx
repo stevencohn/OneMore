@@ -4982,4 +4982,8 @@ ISO-code then comma then language name</comment>
     <value>首选导入图像宽度</value>
     <comment>label</comment>
   </data>
+  <data name="NavigatorWindow_copyTooltip" xml:space="preserve">
+    <value>将所选项目复制到剪贴板</value>
+    <comment>button tooltip</comment>
+  </data>
 </root>

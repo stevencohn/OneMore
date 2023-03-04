@@ -4998,4 +4998,8 @@ Nesta secção</value>
     <value>Largura da imagem de importação preferida</value>
     <comment>label</comment>
   </data>
+  <data name="NavigatorWindow_copyTooltip" xml:space="preserve">
+    <value>Copiar itens selecionados para a área de transferência</value>
+    <comment>button tooltip</comment>
+  </data>
 </root>

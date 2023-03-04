@@ -5051,4 +5051,8 @@ W tej sekcji</value>
     <value>Preferowana szerokość importowanego obrazu</value>
     <comment>label</comment>
   </data>
+  <data name="NavigatorWindow_copyTooltip" xml:space="preserve">
+    <value>Skopiuj wybrane elementy do schowka</value>
+    <comment>button tooltip</comment>
+  </data>
 </root>

@@ -4210,6 +4210,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Copy selected items to the clipboard.
+        /// </summary>
+        internal static string NavigatorWindow_copyTooltip {
+            get {
+                return ResourceManager.GetString("NavigatorWindow_copyTooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Move selected items down.
         /// </summary>
         internal static string NavigatorWindow_downButton_Tooltip {

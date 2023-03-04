@@ -4998,4 +4998,8 @@ In deze sectie</value>
     <value>Gewenste import afbeeldingsbreedte</value>
     <comment>label</comment>
   </data>
+  <data name="NavigatorWindow_copyTooltip" xml:space="preserve">
+    <value>Kopieer geselecteerde items naar het klembord</value>
+    <comment>button tooltip</comment>
+  </data>
 </root>

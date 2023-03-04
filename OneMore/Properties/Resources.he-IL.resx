@@ -5093,4 +5093,8 @@ ISO-code then comma then language name</comment>
     <value>רוחב תמונת ייבוא ​​מועדף</value>
     <comment>label</comment>
   </data>
+  <data name="NavigatorWindow_copyTooltip" xml:space="preserve">
+    <value>העתק פריטים נבחרים ללוח</value>
+    <comment>button tooltip</comment>
+  </data>
 </root>

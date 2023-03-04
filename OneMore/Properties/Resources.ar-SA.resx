@@ -4998,4 +4998,8 @@ ISO-code then comma then language name</comment>
     <value>عرض صورة الاستيراد المفضل</value>
     <comment>label</comment>
   </data>
+  <data name="NavigatorWindow_copyTooltip" xml:space="preserve">
+    <value>نسخ العناصر المحددة إلى الحافظة</value>
+    <comment>button tooltip</comment>
+  </data>
 </root>
