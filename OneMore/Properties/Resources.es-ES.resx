@@ -4978,4 +4978,12 @@ En esta sección</value>
   <data name="ColorizeSheet_Title" xml:space="preserve">
     <value>Colorizador</value>
   </data>
+  <data name="NavigatorWindow_downButton_Tooltip" xml:space="preserve">
+    <value>Mover elementos seleccionados hacia abajo</value>
+    <comment>tooltip</comment>
+  </data>
+  <data name="NavigatorWindow_upButton_Tooltip" xml:space="preserve">
+    <value>Mover elementos seleccionados hacia arriba</value>
+    <comment>tooltip</comment>
+  </data>
 </root>

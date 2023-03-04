@@ -4183,6 +4183,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Move selected items down.
+        /// </summary>
+        internal static string NavigatorWindow_downButton_Tooltip {
+            get {
+                return ResourceManager.GetString("NavigatorWindow_downButton_Tooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Add selected items to My Reading List.
         /// </summary>
         internal static string NavigatorWindow_pinButton_Tooltip {
@@ -4224,6 +4233,15 @@ namespace River.OneMoreAddIn.Properties {
         internal static string NavigatorWindow_unpinButton_Tooltip {
             get {
                 return ResourceManager.GetString("NavigatorWindow_unpinButton_Tooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Move selected items up.
+        /// </summary>
+        internal static string NavigatorWindow_upButton_Tooltip {
+            get {
+                return ResourceManager.GetString("NavigatorWindow_upButton_Tooltip", resourceCulture);
             }
         }
         

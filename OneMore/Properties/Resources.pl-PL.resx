@@ -5031,4 +5031,12 @@ W tej sekcji</value>
   <data name="ColorizeSheet_Title" xml:space="preserve">
     <value>Koloryzator</value>
   </data>
+  <data name="NavigatorWindow_downButton_Tooltip" xml:space="preserve">
+    <value>Przenieś wybrane elementy w dół</value>
+    <comment>tooltip</comment>
+  </data>
+  <data name="NavigatorWindow_upButton_Tooltip" xml:space="preserve">
+    <value>Przenieś wybrane elementy w górę</value>
+    <comment>tooltip</comment>
+  </data>
 </root>

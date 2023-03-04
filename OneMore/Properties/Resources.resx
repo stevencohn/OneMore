@@ -1880,6 +1880,10 @@ Symbols: PI, E</value>
     <value>Navigator</value>
     <comment>sheet title</comment>
   </data>
+  <data name="NavigatorWindow_downButton_Tooltip" xml:space="preserve">
+    <value>Move selected items down</value>
+    <comment>tooltip</comment>
+  </data>
   <data name="NavigatorWindow_pinButton_Tooltip" xml:space="preserve">
     <value>Add selected items to My Reading List</value>
     <comment>tooltip</comment>
@@ -1897,6 +1901,10 @@ Symbols: PI, E</value>
   </data>
   <data name="NavigatorWindow_unpinButton_Tooltip" xml:space="preserve">
     <value>Remove selected items from My Reading List</value>
+    <comment>tooltip</comment>
+  </data>
+  <data name="NavigatorWindow_upButton_Tooltip" xml:space="preserve">
+    <value>Move selected items up</value>
     <comment>tooltip</comment>
   </data>
   <data name="NetwordConnectionUnavailable" xml:space="preserve">

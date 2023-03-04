@@ -51,10 +51,12 @@ namespace River.OneMoreAddIn.Commands
 				{
 					"pinnedHeadLabel",
 					"historyHeadLabel=word_History",
-					"closeButton"
+					"closeButton=word_Close"
 				});
 
 				tooltip.SetToolTip(refreshButton, Resx.NavigatorWindow_refreshButton_Tooltip);
+				tooltip.SetToolTip(upButton, Resx.NavigatorWindow_upButton_Tooltip);
+				tooltip.SetToolTip(downButton, Resx.NavigatorWindow_downButton_Tooltip);
 				tooltip.SetToolTip(unpinButton, Resx.NavigatorWindow_unpinButton_Tooltip);
 				tooltip.SetToolTip(pinButton, Resx.NavigatorWindow_pinButton_Tooltip);
 			}
@@ -176,7 +178,7 @@ namespace River.OneMoreAddIn.Commands
 			collection.Add("left", Left);
 			collection.Add("top", Top);
 			collection.Add("width", Width);
-			collection.Add("heigth", Height);
+			collection.Add("height", Height);
 			settings.SetCollection(collection);
 			settings.Save();
 		}
@@ -283,7 +285,7 @@ namespace River.OneMoreAddIn.Commands
 			var updated = false;
 
 			// iterate manually to check both existence and order
-			for (int i = 0;  i < records.Count; i++)
+			for (int i = 0; i < records.Count; i++)
 			{
 				var record = records[i];
 				var j = details.FindIndex(d => d.PageId == record.PageID);
@@ -381,6 +383,72 @@ namespace River.OneMoreAddIn.Commands
 				await provider.UnpinPages(list);
 				await LoadPinned();
 			}
+		}
+
+
+		private async void MoveUpOnClick(object sender, EventArgs e)
+		{
+			if (pinnedBox.SelectedItems.Count > 0)
+			{
+				var first = pinnedBox.SelectedIndices[0];
+				if (first > 0)
+				{
+					// move...
+					foreach (ListViewItem item in pinnedBox.SelectedItems)
+					{
+						item.Remove();
+						pinnedBox.Items.Insert(first - 1, item);
+					}
+
+					// save...
+					await SavePinned();
+				}
+			}
+		}
+
+
+		private async void MoveDownOnClick(object sender, EventArgs e)
+		{
+			if (pinnedBox.SelectedItems.Count > 0)
+			{
+				var last = pinnedBox.SelectedIndices[pinnedBox.SelectedIndices.Count - 1];
+				if (last < pinnedBox.Items.Count - 1)
+				{
+					// move...
+					var index = last + 1;
+					foreach (ListViewItem item in pinnedBox.SelectedItems)
+					{
+						item.Remove();
+
+						if (index == pinnedBox.Items.Count)
+						{
+							pinnedBox.Items.Add(item);
+						}
+						else
+						{
+							pinnedBox.Items.Insert(index, item);
+						}
+					}
+
+					// save...
+					await SavePinned();
+				}
+			}
+		}
+
+
+		private async Task SavePinned()
+		{
+			var list = new List<string>();
+			foreach (IMoreHostItem host in pinnedBox.Items)
+			{
+				if (host.Tag is HierarchyInfo info)
+				{
+					list.Add(info.PageId);
+				}
+			}
+
+			await provider.SavePinned(list);
 		}
 
 
