@@ -2746,6 +2746,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to File Import.
+        /// </summary>
+        internal static string FileImportSheet_Title {
+            get {
+                return ResourceManager.GetString("FileImportSheet_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap Financial {
