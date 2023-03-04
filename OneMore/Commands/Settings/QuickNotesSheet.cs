@@ -174,40 +174,37 @@ namespace River.OneMoreAddIn.Settings
 
 		public override bool CollectSettings()
 		{
-			// set to true to recommend OneNote restart
-			bool updated = false;
-
 			var settings = provider.GetCollection(Name);
 
 			if (notebookButton.Checked && !string.IsNullOrEmpty(notebookID))
 			{
-				updated = settings.Add("organization", "notebook");
-				updated = settings.Add("notebookID", notebookID) || updated;
-				updated = settings.Add("grouping", groupingBox.SelectedIndex) || updated;
-				updated = settings.Remove("sectionID") || updated;
+				settings.Add("organization", "notebook");
+				settings.Add("notebookID", notebookID);
+				settings.Add("grouping", groupingBox.SelectedIndex);
+				settings.Remove("sectionID");
 			}
 			else if (!string.IsNullOrEmpty(sectionID))
 			{
-				updated = settings.Add("organization", "section");
-				updated = settings.Add("sectionID", sectionID) || updated;
-				updated = settings.Remove("notebookID") || updated;
-				updated = settings.Remove("grouping") || updated;
+				settings.Add("organization", "section");
+				settings.Add("sectionID", sectionID);
+				settings.Remove("notebookID");
+				settings.Remove("grouping");
 			}
 
-			updated = titleBox.Checked
-				? settings.Add("titled", "True") || updated
-				: settings.Remove("titled") || updated;
+			if (titleBox.Checked)
+				settings.Add("titled", "True");
+			else
+				settings.Remove("titled");
 
-			updated = stampBox.Checked
-				? settings.Add("stamped", "True") || updated
-				: settings.Remove("stamped") || updated;
+			if (stampBox.Checked)
+				settings.Add("stamped", "True");
+			else
+				settings.Remove("stamped");
 
-			if (updated)
-			{
-				provider.SetCollection(settings);
-			}
+			provider.SetCollection(settings);
 
-			return updated;
+			// restart not required
+			return false;
 		}
 	}
 }

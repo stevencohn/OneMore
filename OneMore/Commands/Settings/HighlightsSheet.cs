@@ -49,6 +49,7 @@ namespace River.OneMoreAddIn.Settings
 
 			provider.SetCollection(settings);
 
+			// restart not required
 			return false;
 		}
 

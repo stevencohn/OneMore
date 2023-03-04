@@ -1262,6 +1262,18 @@ OneNote File (*.one)</value>
     <value>Favorites</value>
     <comment>settings</comment>
   </data>
+  <data name="FileImportSheet_introBox.Text" xml:space="preserve">
+    <value>Customize PowerPoint and PDF import options</value>
+    <comment>label</comment>
+  </data>
+  <data name="FileImportSheet_Title" xml:space="preserve">
+    <value>File Import</value>
+    <comment>settings sheet</comment>
+  </data>
+  <data name="FileImportSheet_widthLabel.Text" xml:space="preserve">
+    <value>Preferred import image width</value>
+    <comment>label</comment>
+  </data>
   <data name="Financial" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>emoji\financial.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>

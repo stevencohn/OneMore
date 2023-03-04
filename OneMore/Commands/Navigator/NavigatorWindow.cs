@@ -487,7 +487,7 @@ namespace River.OneMoreAddIn.Commands
 
 			var board = new ClipboardProvider();
 
-			var html = PasteRtfCommand.AddHtmlPreamble(hbuilder.ToString());
+			var html = ClipboardProvider.WrapWithHtmlPreamble(hbuilder.ToString());
 			board.Stash(System.Windows.TextDataFormat.Html, html);
 
 			var text = tbuilder.ToString();

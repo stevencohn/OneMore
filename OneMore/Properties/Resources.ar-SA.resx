@@ -4986,4 +4986,16 @@ ISO-code then comma then language name</comment>
     <value>نقل العناصر المحددة لأعلى</value>
     <comment>tooltip</comment>
   </data>
+  <data name="FileImportSheet_Title" xml:space="preserve">
+    <value>استيراد ملف</value>
+    <comment>settings sheet</comment>
+  </data>
+  <data name="FileImportSheet_introBox.Text" xml:space="preserve">
+    <value>تخصيص خيارات استيراد PowerPoint و PDF</value>
+    <comment>label</comment>
+  </data>
+  <data name="FileImportSheet_widthLabel.Text" xml:space="preserve">
+    <value>عرض صورة الاستيراد المفضل</value>
+    <comment>label</comment>
+  </data>
 </root>

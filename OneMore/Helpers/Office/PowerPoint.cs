@@ -6,6 +6,7 @@ namespace River.OneMoreAddIn.Helpers.Office
 {
 	using Microsoft.Office.Core;
 	using Microsoft.Office.Interop.PowerPoint;
+	using River.OneMoreAddIn.Settings;
 	using System;
 	using System.IO;
 	using System.Runtime.InteropServices;
@@ -13,8 +14,9 @@ namespace River.OneMoreAddIn.Helpers.Office
 
 	internal class PowerPoint : IDisposable
 	{
-		private const int DesiredWidth = 550;
+		private const int DefaultWidth = 600;
 
+		private readonly int preferredWidth;
 		private Application power;
 		private bool disposed;
 
@@ -22,6 +24,10 @@ namespace River.OneMoreAddIn.Helpers.Office
 		public PowerPoint()
 		{
 			power = new Application();
+
+			preferredWidth = new SettingsProvider()
+				.GetCollection(nameof(FileImportSheet))
+				.Get("width", DefaultWidth);
 		}
 
 
@@ -63,8 +69,8 @@ namespace River.OneMoreAddIn.Helpers.Office
 				Logger.Current.WriteLine(
 					$"presentation size= {setup.SlideWidth} x {setup.SlideHeight} ({setup.SlideSize})");
 
-				var width = DesiredWidth;
-				var height = (int)(setup.SlideHeight * (DesiredWidth / setup.SlideWidth));
+				var width = preferredWidth;
+				var height = (int)(setup.SlideHeight * (preferredWidth / setup.SlideWidth));
 
 				var path = Path.Combine(
 					Path.GetTempPath(),

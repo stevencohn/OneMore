@@ -8,6 +8,7 @@ namespace River.OneMoreAddIn
 {
 	using System;
 	using System.Collections.Generic;
+	using System.Text;
 	using System.Threading.Tasks;
 	using System.Windows.Media.Imaging;
 	using WindowsInput;
@@ -20,6 +21,10 @@ namespace River.OneMoreAddIn
 	/// </summary>
 	internal class ClipboardProvider
 	{
+		private const char Space = '\u00a0'; // Unicode no-break space
+		private const string StartFragment = "<!--StartFragment-->";
+		private const string EndFragment = "<!--EndFragment-->";
+
 		private readonly object gate;
 		private readonly Dictionary<Win.TextDataFormat, string> stash;
 		private BitmapSource stashedImage;
@@ -269,6 +274,75 @@ namespace River.OneMoreAddIn
 
 				// TODO: other formats, e.g. files?
 			});
+		}
+
+
+		/// <summary>
+		/// Wraps an HTML fragment in a container including a preamble that describes its
+		/// size. This is a prescribed Clipboard form described by
+		/// https://docs.microsoft.com/en-us/windows/win32/dataxchg/html-clipboard-format
+		/// </summary>
+		/// <param name="html">
+		/// The HTML fragment to wrap. Can include HTML/BODY/StartFragment-EndFragment but if not
+		/// then it will be wrapped
+		/// </param>
+		/// <returns>A new string</returns>
+		public static string WrapWithHtmlPreamble(string html)
+		{
+			/* Version:0.9
+			 * StartHTML:0000000071
+			 * EndHTML:0000000170
+			 * StartFragment:0000000140
+			 * EndFragment:0000000160
+			 * <html>
+			 * <body>
+			 * <!--StartFragment--> ... <!--EndFragment-->
+			 * </body>
+			 * </html>
+			 */
+
+			int start = html.IndexOf(StartFragment);
+			if (start < 0)
+			{
+				html = $"<html>\n<body>\n{StartFragment}\n{html}\n{EndFragment}\n</body>\n</html>";
+				start = html.IndexOf(StartFragment);
+			}
+
+			var builder = new StringBuilder();
+			builder.AppendLine("Version:0.9");
+			builder.AppendLine("StartHTML:0000000000");
+			builder.AppendLine("EndHTML:1111111111");
+			builder.AppendLine("StartFragment:2222222222");
+			builder.AppendLine("EndFragment:3333333333");
+
+			// calculate offsets, accounting for Unicode no-break space chars
+
+			builder.Replace("0000000000", builder.Length.ToString("D10"));
+
+			int spaces = 0;
+			for (int i = 0; i < start; i++)
+			{
+				if (html[i] == Space)
+				{
+					spaces++;
+				}
+			}
+			builder.Replace("2222222222", (builder.Length + start + 20 + spaces).ToString("D10"));
+
+			int end = html.IndexOf(EndFragment);
+			for (int i = start + 20; i < end; i++)
+			{
+				if (html[i] == Space)
+				{
+					spaces++;
+				}
+			}
+			spaces--;
+			builder.Replace("3333333333", (builder.Length + end + spaces).ToString("D10"));
+			builder.Replace("1111111111", (builder.Length + html.Length + spaces).ToString("D10"));
+
+			builder.AppendLine(html);
+			return builder.ToString();
 		}
 	}
 }
