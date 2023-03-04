@@ -19,6 +19,7 @@ namespace River.OneMoreAddIn.Settings
 		{
 			General,
 			Aliases,
+			Colorizer,
 			Context,
 			Favorites,
 			Highlight,
@@ -54,6 +55,7 @@ namespace River.OneMoreAddIn.Settings
 				});
 
 				navTree.Nodes["generalNode"].Text = Resx.SettingsDialog_generalNode_Text;
+				navTree.Nodes["colorizerNode"].Text = Resx.ColorizeSheet_Title;
 				navTree.Nodes["aliasNode"].Text = Resx.SettingsDialog_aliasNode_Text;
 				navTree.Nodes["contextNode"].Text = Resx.SettingsDialog_contextNode_Text;
 				navTree.Nodes["favoritesNode"].Text = Resx.word_Favorites;
@@ -115,18 +117,19 @@ namespace River.OneMoreAddIn.Settings
 				sheet = e.Node.Index switch
 				{
 					0 => new GeneralSheet(provider),
-					1 => new AliasSheet(provider),
-					2 => new ContextMenuSheet(provider),
-					3 => new FavoritesSheet(provider, ribbon),
-					4 => new HighlightsSheet(provider),
-					5 => new LinesSheet(provider),
-					6 => new ImagesSheet(provider),
-					7 => new KeyboardSheet(provider, ribbon),
-					8 => new NavigatorSheet(provider),
-					9 => await PluginsSheet.Create(provider, ribbon),
-					10 => new QuickNotesSheet(provider),
-					11 => new RibbonBarSheet(provider),
-					12 => new SearchEngineSheet(provider),
+					1 => new ColorizerSheet(provider),
+					2 => new AliasSheet(provider),
+					3 => new ContextMenuSheet(provider),
+					4 => new FavoritesSheet(provider, ribbon),
+					5 => new HighlightsSheet(provider),
+					6 => new LinesSheet(provider),
+					7 => new ImagesSheet(provider),
+					8 => new KeyboardSheet(provider, ribbon),
+					9 => new NavigatorSheet(provider),
+					10 => await PluginsSheet.Create(provider, ribbon),
+					11 => new QuickNotesSheet(provider),
+					12 => new RibbonBarSheet(provider),
+					13 => new SearchEngineSheet(provider),
 					_ => new SnippetsSheet(provider, ribbon),
 				};
 				sheets.Add(e.Node.Index, sheet);

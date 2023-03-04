@@ -4963,4 +4963,19 @@ En esta sección</value>
   <data name="NavigatorWindow_pinnedHeadLabel.Text" xml:space="preserve">
     <value>Mi lista de lectura</value>
   </data>
+  <data name="ColorizerSheet_fixedBox.Text" xml:space="preserve">
+    <value>Mostrar solo fuentes de ancho fijo</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="ColorizeSheet_applyBox.Text" xml:space="preserve">
+    <value>Aplique siempre la siguiente fuente al colorear el código</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="ColorizeSheet_introBox.Text" xml:space="preserve">
+    <value>Personalizar el comportamiento del comando Colorear</value>
+    <comment>label</comment>
+  </data>
+  <data name="ColorizeSheet_Title" xml:space="preserve">
+    <value>Colorizador</value>
+  </data>
 </root>

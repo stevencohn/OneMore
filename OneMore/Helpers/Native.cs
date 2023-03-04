@@ -152,6 +152,10 @@ namespace River.OneMoreAddIn
 		}
 
 
+		/// <summary>
+		/// Defines the x- and y-coordinates of a point.
+		/// https://learn.microsoft.com/en-us/windows/win32/api/windef/ns-windef-point
+		/// </summary>
 		[StructLayout(LayoutKind.Sequential)]
 		public struct Point
 		{
@@ -162,6 +166,7 @@ namespace River.OneMoreAddIn
 
 		/// <summary>
 		/// Specifies the position and size of a window
+		/// https://learn.microsoft.com/en-us/windows/win32/api/windef/ns-windef-rect
 		/// </summary>
 		[StructLayout(LayoutKind.Sequential)]
 		public struct Rectangle
@@ -173,6 +178,37 @@ namespace River.OneMoreAddIn
 		}
 
 
+		/// <summary>
+		/// Contains basic information about a physical font. All sizes are specified in logical
+		/// units; that is, they depend on the current mapping mode of the display context.
+		/// https://learn.microsoft.com/en-us/windows/win32/api/wingdi/ns-wingdi-textmetricw
+		/// </summary>
+		[StructLayout(LayoutKind.Sequential, CharSet = CharSet.Unicode)]
+		public struct TextMetrics
+		{
+			public int tmHeight;
+			public int tmAscent;
+			public int tmDescent;
+			public int tmInternalLeading;
+			public int tmExternalLeading;
+			public int tmAveCharWidth;
+			public int tmMaxCharWidth;
+			public int tmWeight;
+			public int tmOverhang;
+			public int tmDigitizedAspectX;
+			public int tmDigitizedAspectY;
+			public ushort tmFirstChar;
+			public ushort tmLastChar;
+			public ushort tmDefaultChar;
+			public ushort tmBreakChar;
+			public byte tmItalic;
+			public byte tmUnderlined;
+			public byte tmStruckOut;
+			public byte tmPitchAndFamily;
+			public byte tmCharSet;
+		}       
+		
+		
 		/// <summary>
 		/// Specifies the attributes of a node in a TreeView
 		/// </summary>
@@ -210,6 +246,12 @@ namespace River.OneMoreAddIn
 			string pszExtra, [Out] StringBuilder pszOut, ref uint pcchOut);
 
 
+		// https://learn.microsoft.com/en-us/windows/win32/api/wingdi/nf-wingdi-deleteobject
+		[DllImport("gdi32.dll", CharSet = CharSet.Auto, SetLastError = true)]
+		public static extern bool DeleteObject(IntPtr hObject);
+
+
+		// https://learn.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-getcursorpos
 		[DllImport("user32.dll")]
 		public static extern bool GetCursorPos(out Point lpPoint);
 
@@ -232,6 +274,11 @@ namespace River.OneMoreAddIn
 		// https://docs.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-getsystemmenu
 		[DllImport("user32.dll")]
 		public static extern IntPtr GetSystemMenu(IntPtr hWnd, bool bRevert);
+
+
+		// https://learn.microsoft.com/en-us/windows/win32/api/wingdi/nf-wingdi-gettextmetrics
+		[DllImport("gdi32.dll", CharSet = CharSet.Auto)]
+		public static extern bool GetTextMetrics(IntPtr hdc, out TextMetrics lptm);
 
 
 		// https://docs.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-iswindow
@@ -268,6 +315,11 @@ namespace River.OneMoreAddIn
 
 		[DllImport("user32.dll")]
 		public static extern bool ReleaseCapture();
+
+
+		// https://learn.microsoft.com/en-us/windows/win32/api/wingdi/nf-wingdi-selectobject
+		[DllImport("gdi32.dll", CharSet = CharSet.Auto)]
+		public static extern IntPtr SelectObject(IntPtr hdc, IntPtr hgdiObj);
 
 
 		[DllImport("user32.dll", CharSet = CharSet.Auto)]

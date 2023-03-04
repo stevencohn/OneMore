@@ -4,6 +4,7 @@
 
 namespace River.OneMoreAddIn.Colorizer
 {
+	using River.OneMoreAddIn.Settings;
 	using System.Collections.Generic;
 	using System.IO;
 	using System.Reflection;
@@ -19,6 +20,7 @@ namespace River.OneMoreAddIn.Colorizer
 	{
 		private readonly Parser parser;
 		private readonly ITheme theme;
+		private readonly string fontStyle;
 
 
 		/// <summary>
@@ -46,6 +48,26 @@ namespace River.OneMoreAddIn.Colorizer
 
 			theme = Provider.LoadTheme(
 				Path.Combine(root, $@"Themes\{themeName}-theme.json"), autoOverride);
+
+			var settings = new SettingsProvider().GetCollection(nameof(ColorizerSheet));
+			if (settings.Get("apply", false))
+			{
+				// both must exist to be applied
+				var size = settings.Get<string>("size");
+				if (!string.IsNullOrWhiteSpace(size))
+				{
+					var family = settings.Get<string>("family");
+					if (!string.IsNullOrWhiteSpace(family))
+					{
+						if (size.IndexOf('.') < 0)
+						{
+							size = $"{size}.0";
+						}
+
+						fontStyle = $"font-family:{family};font-size:{size}pt";
+					}
+				}
+			}
 		}
 
 
@@ -158,6 +180,12 @@ namespace River.OneMoreAddIn.Colorizer
 					}
 				}
 			});
+
+			if (fontStyle != null)
+			{
+				builder.Insert(0, $"<span style='{fontStyle}'>");
+				builder.Append("</span>");
+			}
 
 			return builder.ToString();
 		}

@@ -143,47 +143,59 @@ namespace River.OneMoreAddIn.UI
 		}
 
 
-		public virtual void LoadFontFamilies()
+		public virtual void LoadFontFamilies(bool fixedWidth = false)
 		{
-			if (Items.Count == 0)
+			if (Items.Count > 0)
 			{
-				Cursor.Current = Cursors.WaitCursor;
+				return;
+			}
 
-				var families = FontFamily.Families.ToList();
+			Cursor.Current = Cursors.WaitCursor;
 
-				// collecting OTF font directly is probably not necessary but just to be sure...
+			var families = fixedWidth
+				? FontFamily.Families.Where(f => f.IsFixedWidthFont()).ToList()
+				: FontFamily.Families.ToList();
 
-				var other = new PrivateFontCollection();
-				var path = Environment.GetFolderPath(Environment.SpecialFolder.Fonts);
-				var files = System.IO.Directory.GetFiles(path, "*.otf");
-				foreach (var file in files)
+			// collecting OTF font directly is probably not necessary but just to be sure...
+
+			var other = new PrivateFontCollection();
+			var path = Environment.GetFolderPath(Environment.SpecialFolder.Fonts);
+			var files = System.IO.Directory.GetFiles(path, "*.otf");
+			foreach (var file in files)
+			{
+				other.AddFontFile(file);
+			}
+
+			if (other.Families.Length > 0)
+			{
+				foreach (var family in other.Families)
 				{
-					other.AddFontFile(file);
-				}
-
-				if (other.Families.Length > 0)
-				{
-					foreach (var family in other.Families)
+					if (fixedWidth)
 					{
-						if (!families.Any(f => f.Name == family.Name))
+						if (!family.IsFixedWidthFont())
 						{
-							families.Add(family);
+							continue;
 						}
 					}
 
-					families = families.OrderBy(f => f.Name).ToList();
+					if (!families.Any(f => f.Name == family.Name))
+					{
+						families.Add(family);
+					}
 				}
 
-				foreach (var family in families)
-				{
-					Items.Add(family.Name);
-					family.Dispose();
-				}
-
-				families.Clear();
-
-				Cursor.Current = Cursors.Default;
+				families = families.OrderBy(f => f.Name).ToList();
 			}
+
+			foreach (var family in families)
+			{
+				Items.Add(family.Name);
+				family.Dispose();
+			}
+
+			families.Clear();
+
+			Cursor.Current = Cursors.Default;
 		}
 
 

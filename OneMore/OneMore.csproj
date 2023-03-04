@@ -168,6 +168,12 @@
     </Compile>
     <Compile Include="Commands\Page\DuplicatePageCommand.cs" />
     <Compile Include="Commands\Page\Emojis.cs" />
+    <Compile Include="Commands\Settings\ColorizerSheet.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Commands\Settings\ColorizerSheet.Designer.cs">
+      <DependentUpon>ColorizerSheet.cs</DependentUpon>
+    </Compile>
     <Compile Include="Commands\Settings\NavigatorSheet.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -210,6 +216,7 @@
     </Compile>
     <Compile Include="Commands\Tables\TableThemePainter.cs" />
     <Compile Include="Helpers\ColorHelper.cs" />
+    <Compile Include="Helpers\Extensions\FontFamilyExtensions.cs" />
     <Compile Include="Helpers\Extensions\GraphicsExtensions.cs" />
     <Compile Include="Helpers\Extensions\ScreenExtensions.cs" />
     <Compile Include="Models\KnownSchemaAttributes.cs" />
@@ -1233,6 +1240,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Commands\Settings\AliasSheet.resx">
       <DependentUpon>AliasSheet.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Commands\Settings\ColorizerSheet.resx">
+      <DependentUpon>ColorizerSheet.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Commands\Settings\NavigatorSheet.resx">
       <DependentUpon>NavigatorSheet.cs</DependentUpon>

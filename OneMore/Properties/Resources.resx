@@ -461,6 +461,21 @@ OneNote will close automatically</value>
     <value>Select Language</value>
     <comment>dialog title</comment>
   </data>
+  <data name="ColorizerSheet_fixedBox.Text" xml:space="preserve">
+    <value>Show only fixed-width fonts</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="ColorizeSheet_applyBox.Text" xml:space="preserve">
+    <value>Always apply the following font when colorizing code</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="ColorizeSheet_introBox.Text" xml:space="preserve">
+    <value>Customize the behavior of the Colorize command</value>
+    <comment>label</comment>
+  </data>
+  <data name="ColorizeSheet_Title" xml:space="preserve">
+    <value>Colorizer</value>
+  </data>
   <data name="Command_Error" xml:space="preserve">
     <value>Error running command {0}</value>
     <comment>logged and displayed in messagebox</comment>
