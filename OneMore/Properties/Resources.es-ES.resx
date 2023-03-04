@@ -4986,4 +4986,16 @@ En esta sección</value>
     <value>Mover elementos seleccionados hacia arriba</value>
     <comment>tooltip</comment>
   </data>
+  <data name="FileImportSheet_Title" xml:space="preserve">
+    <value>Importación de archivos</value>
+    <comment>settings sheet</comment>
+  </data>
+  <data name="FileImportSheet_introBox.Text" xml:space="preserve">
+    <value>Personalice las opciones de importación de PowerPoint y PDF</value>
+    <comment>label</comment>
+  </data>
+  <data name="FileImportSheet_widthLabel.Text" xml:space="preserve">
+    <value>Ancho de imagen de importación preferido</value>
+    <comment>label</comment>
+  </data>
 </root>

@@ -2746,11 +2746,29 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Customize PowerPoint and PDF import options.
+        /// </summary>
+        internal static string FileImportSheet_introBox_Text {
+            get {
+                return ResourceManager.GetString("FileImportSheet_introBox.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to File Import.
         /// </summary>
         internal static string FileImportSheet_Title {
             get {
                 return ResourceManager.GetString("FileImportSheet_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Preferred import image width.
+        /// </summary>
+        internal static string FileImportSheet_widthLabel_Text {
+            get {
+                return ResourceManager.GetString("FileImportSheet_widthLabel.Text", resourceCulture);
             }
         }
         

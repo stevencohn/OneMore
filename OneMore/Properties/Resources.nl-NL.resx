@@ -4986,4 +4986,16 @@ In deze sectie</value>
     <value>Verplaats geselecteerde items omhoog</value>
     <comment>tooltip</comment>
   </data>
+  <data name="FileImportSheet_Title" xml:space="preserve">
+    <value>Bestand importeren</value>
+    <comment>settings sheet</comment>
+  </data>
+  <data name="FileImportSheet_introBox.Text" xml:space="preserve">
+    <value>Pas PowerPoint- en PDF-importopties aan</value>
+    <comment>label</comment>
+  </data>
+  <data name="FileImportSheet_widthLabel.Text" xml:space="preserve">
+    <value>Gewenste import afbeeldingsbreedte</value>
+    <comment>label</comment>
+  </data>
 </root>

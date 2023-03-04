@@ -5081,4 +5081,16 @@ ISO-code then comma then language name</comment>
     <value>הזז את הפריטים שנבחרו למעלה</value>
     <comment>tooltip</comment>
   </data>
+  <data name="FileImportSheet_Title" xml:space="preserve">
+    <value>ייבוא ​​קבצים</value>
+    <comment>settings sheet</comment>
+  </data>
+  <data name="FileImportSheet_introBox.Text" xml:space="preserve">
+    <value>התאם אישית אפשרויות ייבוא ​​של PowerPoint ו-PDF</value>
+    <comment>label</comment>
+  </data>
+  <data name="FileImportSheet_widthLabel.Text" xml:space="preserve">
+    <value>רוחב תמונת ייבוא ​​מועדף</value>
+    <comment>label</comment>
+  </data>
 </root>
