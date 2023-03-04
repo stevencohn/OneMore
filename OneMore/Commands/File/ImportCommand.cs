@@ -6,11 +6,11 @@ namespace River.OneMoreAddIn.Commands
 {
 	using River.OneMoreAddIn.Helpers.Office;
 	using River.OneMoreAddIn.Models;
+	using River.OneMoreAddIn.Settings;
 	using River.OneMoreAddIn.UI;
 	using System;
 	using System.Drawing;
 	using System.IO;
-	using System.Text;
 	using System.Threading;
 	using System.Threading.Tasks;
 	using System.Windows.Forms;
@@ -34,7 +34,9 @@ namespace River.OneMoreAddIn.Commands
 	/// </remarks>
 	internal class ImportCommand : Command
 	{
+		private const uint DefaultWidth = 600;
 		private const int MaxTimeout = 15;
+
 		private ProgressDialog progress;
 
 
@@ -445,6 +447,16 @@ namespace River.OneMoreAddIn.Commands
 				return;
 			}
 
+			// Convert physical pixels to device independent pixel DestinationWidth
+			var options = new PdfPageRenderOptions
+			{
+				DestinationWidth = (uint)(new SettingsProvider()
+					.GetCollection(nameof(FileImportSheet))
+					.Get("width", DefaultWidth)
+					*
+					UIHelper.GetScalingFactors().Item1)
+			};
+
 			for (int i = 0; i < doc.PageCount; i++)
 			{
 				progress.SetMessage($"Rasterizing image {i} of {doc.PageCount}");
@@ -454,7 +466,7 @@ namespace River.OneMoreAddIn.Commands
 				var pdfpage = doc.GetPage((uint)i);
 
 				using var stream = new InMemoryRandomAccessStream();
-				await pdfpage.RenderToStreamAsync(stream);
+				await pdfpage.RenderToStreamAsync(stream, options);
 
 				using var image = new Bitmap(stream.AsStream());
 
