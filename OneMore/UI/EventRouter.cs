@@ -16,7 +16,7 @@ namespace River.OneMoreAddIn.UI
 	/// Implement event bubbling within a control and all of its descendants, routing events
 	/// from child to parent.
 	/// </summary>
-	public class EventRouter : IDisposable
+	internal class EventRouter : Loggable, IDisposable
 	{
 		private sealed class Trash
 		{
@@ -91,6 +91,7 @@ namespace River.OneMoreAddIn.UI
 		{
 			foreach (var item in items)
 			{
+				// special case for our MoreListView and hosted controls
 				if (item is IMoreHostItem child)
 				{
 					Register(control, child.Control, eventName);
@@ -112,9 +113,22 @@ namespace River.OneMoreAddIn.UI
 
 				if (method != null)
 				{
-					var action = (EventHandler)((object s, EventArgs e) =>
+					//logger.WriteLine(
+					//	$"registering {eventName} for {ptype.FullName} from {ctype.FullName}");
+
+					var action = (EventHandler)((s, e) =>
 					{
-						method.Invoke(parent, new object[] { e });
+						logger.WriteLine(
+							$"raising {eventName}({e.GetType().FullName}) for {parent.GetType().Name}");
+
+						try
+						{
+							method.Invoke(parent, new object[] { e });
+						}
+						catch (Exception exc)
+						{
+							logger.WriteLine("error raising", exc);
+						}
 					});
 
 					var pointer = action.Method.MethodHandle.GetFunctionPointer();
@@ -125,8 +139,12 @@ namespace River.OneMoreAddIn.UI
 
 					vent.AddEventHandler(child, handler);
 
-					trash.Add(new Trash {
-						Control = child, EventName = eventName, Handler = handler });
+					trash.Add(new Trash
+					{
+						Control = child,
+						EventName = eventName,
+						Handler = handler
+					});
 
 					bound = true;
 				}

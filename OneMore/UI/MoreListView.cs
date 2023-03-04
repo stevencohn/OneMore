@@ -135,12 +135,11 @@ namespace River.OneMoreAddIn.UI
 				allowItemReorder = value;
 				if (value)
 				{
-					router.Register(this, "MouseDown");
-					router.Register(this, "DragDrop");
-
-					Click += RouteClick;
 					MouseDown += RouteMouseDown;
 					DragDrop += RouteDragDrop;
+
+					router.Register(this, "MouseDown");
+					router.Register(this, "DragDrop");
 				}
 			}
 		}
@@ -267,7 +266,6 @@ namespace River.OneMoreAddIn.UI
 		#region Routed events
 		private void RouteClick(object sender, EventArgs e)
 		{
-			Logger.Current.WriteLine($"RouteClick {sender.GetType().FullName}");
 			var point = PointToClient(Control.MousePosition);
 			var item = GetItemAt(point.X, point.Y);
 			if (item != null)
@@ -283,6 +281,10 @@ namespace River.OneMoreAddIn.UI
 			{
 				// ctlr-click individuals
 				item.Selected = !item.Selected;
+				if (item.Selected)
+				{
+					FocusedItem = item;
+				}
 			}
 			else if (ModifierKeys.HasFlag(Keys.Shift))
 			{
@@ -292,6 +294,7 @@ namespace River.OneMoreAddIn.UI
 					if (SelectedIndices[0] == item.Index)
 					{
 						item.Selected = true;
+						FocusedItem = item;
 					}
 					else
 					{
@@ -299,33 +302,43 @@ namespace River.OneMoreAddIn.UI
 							? (SelectedIndices[0], item.Index)
 							: (item.Index, SelectedIndices[SelectedIndices.Count - 1]);
 
-						SuspendLayout();
+						BeginUpdate();
 						SelectedItems.Clear();
 						for (var i = first; i <= last; i++)
 						{
 							Items[i].Selected = true;
 						}
-						ResumeLayout();
+
+						FocusedItem = SelectedItems[first];
+						EndUpdate();
 					}
 				}
 				else
 				{
 					item.Selected = true;
+					FocusedItem = item;
 				}
 			}
 			else
 			{
 				// single-click
-				SuspendLayout();
+				BeginUpdate();
 				SelectedItems.Clear();
 				item.Selected = !item.Selected;
-				ResumeLayout();
+				if (item.Selected)
+				{
+					FocusedItem = item;
+				}
+				EndUpdate();
 			}
+
+			Focus();
 		}
 
 
 		private void RouteMouseDown(object sender, MouseEventArgs e)
 		{
+			Logger.Current.WriteLine($"drag start for {sender.GetType().FullName}");
 			DoDragDrop(sender, DragDropEffects.Move);
 		}
 
@@ -604,7 +617,7 @@ namespace River.OneMoreAddIn.UI
 		protected override void OnItemDrag(ItemDragEventArgs e)
 		{
 			base.OnItemDrag(e);
-			if (!AllowItemReorder)
+			if (!allowItemReorder)
 			{
 				return;
 			}
@@ -615,7 +628,7 @@ namespace River.OneMoreAddIn.UI
 
 		protected override void OnDragOver(DragEventArgs e)
 		{
-			if (!AllowItemReorder)
+			if (!allowItemReorder)
 			{
 				e.Effect = DragDropEffects.None;
 				return;
@@ -662,7 +675,7 @@ namespace River.OneMoreAddIn.UI
 		protected override void OnDragDrop(DragEventArgs e)
 		{
 			base.OnDragDrop(e);
-			if (!AllowItemReorder)
+			if (!allowItemReorder)
 			{
 				return;
 			}
@@ -707,7 +720,7 @@ namespace River.OneMoreAddIn.UI
 		protected override void OnDragEnter(DragEventArgs e)
 		{
 			base.OnDragEnter(e);
-			if (!AllowItemReorder)
+			if (!allowItemReorder)
 			{
 				e.Effect = DragDropEffects.None;
 				return;
