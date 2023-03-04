@@ -871,6 +871,42 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Show only fixed-width fonts.
+        /// </summary>
+        internal static string ColorizerSheet_fixedBox_Text {
+            get {
+                return ResourceManager.GetString("ColorizerSheet_fixedBox.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Always apply the following font when colorizing code.
+        /// </summary>
+        internal static string ColorizeSheet_applyBox_Text {
+            get {
+                return ResourceManager.GetString("ColorizeSheet_applyBox.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Customize the behavior of the Colorize command.
+        /// </summary>
+        internal static string ColorizeSheet_introBox_Text {
+            get {
+                return ResourceManager.GetString("ColorizeSheet_introBox.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Colorizer.
+        /// </summary>
+        internal static string ColorizeSheet_Title {
+            get {
+                return ResourceManager.GetString("ColorizeSheet_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Error running command {0}.
         /// </summary>
         internal static string Command_Error {
