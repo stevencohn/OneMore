@@ -2,36 +2,36 @@
 // Copyright © 2023 Steven M Cohn.  All rights reserved.
 //************************************************************************************************
 
+#pragma warning disable S3011 // Reflection should not be used to increase accessibility
+
 namespace River.OneMoreAddIn.UI
 {
 	using System;
 	using System.Collections.Generic;
+	using System.Reflection;
 	using System.Windows.Forms;
 
 
 	/// <summary>
-	/// Route events from any control contained in a given container to the specified
-	/// target control. This is a broadcast approach to event bubbling where an event from any
-	/// control within a hierarchy of controls is directed to one specific listener control.
+	/// Implement event bubbling within a control and all of its descendants, routing events
+	/// from child to parent.
 	/// </summary>
-	internal class EventRouter : IDisposable
+	internal class EventRouter : Loggable, IDisposable
 	{
 		private sealed class Trash
 		{
 			public Control Control;
 			public string EventName;
-			public EventHandler Handler;
+			public Delegate Handler;
 		}
 
 		private readonly List<Trash> trash;
 		private bool disposedValue;
 
-
 		public EventRouter()
 		{
 			trash = new List<Trash>();
 		}
-
 
 		#region Dispose
 		protected virtual void Dispose(bool disposing)
@@ -40,11 +40,11 @@ namespace River.OneMoreAddIn.UI
 			{
 				if (disposing)
 				{
-					foreach (var t in trash)
+					foreach (var item in trash)
 					{
-						var type = t.Control.GetType();
-						var ev = type.GetEvent(t.EventName);
-						ev.RemoveEventHandler(t.Control, t.Handler);
+						var type = item.Control.GetType();
+						var vent = type.GetEvent(item.EventName);
+						vent.RemoveEventHandler(item.Control, item.Handler);
 					}
 
 					trash.Clear();
@@ -64,22 +64,95 @@ namespace River.OneMoreAddIn.UI
 
 
 		/// <summary>
-		/// Registers a named event for all controls recursively owned by the given control
-		/// and redirects those events to the given handler.
+		/// Route events for all descendants of the given container control, from child to parent,
+		/// bubbling up to the container control.
 		/// </summary>
-		/// <param name="control">Container control with recursive child controls</param>
-		/// <param name="eventName">The name of the event, e.g. "Click" or "MouseClicked"</param>
-		/// <param name="handler">The event handler to invoke, can be (s,e)=>{lambda}</param>
-		public void Register(Control control, string eventName, EventHandler handler)
+		/// <param name="control">Control containing hierarchy of child controls</param>
+		/// <param name="eventName">
+		/// The name of the event, e.g. Click or MouseClicked.
+		/// The named event must have a corresponding "On" method, e.g. OnClick or OnMouseClicked.
+		/// </param>
+		public void Register(Control control, string eventName)
 		{
-			var type = control.GetType();
-			var ev = type.GetEvent(eventName);
-			ev.AddEventHandler(control, handler);
-			trash.Add(new Trash { Control = control, EventName = eventName, Handler = handler });
-
 			foreach (Control child in control.Controls)
 			{
-				Register(child, eventName, handler);
+				Register(control, child, eventName);
+			}
+		}
+
+
+		/// <summary>
+		/// Special case for MoreListView IMoreHostItem collection
+		/// </summary>
+		/// <param name="control"></param>
+		/// <param name="items"></param>
+		/// <param name="eventName"></param>
+		public void Register(Control control, System.Collections.IEnumerable items, string eventName)
+		{
+			foreach (var item in items)
+			{
+				// special case for our MoreListView and hosted controls
+				if (item is IMoreHostItem child)
+				{
+					Register(control, child.Control, eventName);
+				}
+			}
+		}
+
+
+		private void Register(Control parent, Control child, string eventName)
+		{
+			var bound = false;
+			var ptype = parent.GetType();
+			var ctype = child.GetType();
+			var vent = ctype.GetEvent(eventName);
+			if (vent != null && ptype.GetEvent(eventName) != null)
+			{
+				var method = ptype.GetMethod($"On{eventName}",
+					BindingFlags.NonPublic | BindingFlags.Instance);
+
+				if (method != null)
+				{
+					//logger.WriteLine(
+					//	$"registering {eventName} for {ptype.FullName} from {ctype.FullName}");
+
+					var action = (EventHandler)((s, e) =>
+					{
+						logger.WriteLine(
+							$"raising {eventName}({e.GetType().FullName}) for {parent.GetType().Name}");
+
+						try
+						{
+							method.Invoke(parent, new object[] { e });
+						}
+						catch (Exception exc)
+						{
+							logger.WriteLine("error raising", exc);
+						}
+					});
+
+					var pointer = action.Method.MethodHandle.GetFunctionPointer();
+
+					var handler = (Delegate)vent.EventHandlerType
+						.GetConstructor(new[] { typeof(object), typeof(IntPtr) })
+						.Invoke(new[] { action.Target, pointer });
+
+					vent.AddEventHandler(child, handler);
+
+					trash.Add(new Trash
+					{
+						Control = child,
+						EventName = eventName,
+						Handler = handler
+					});
+
+					bound = true;
+				}
+			}
+
+			foreach (Control grandChild in child.Controls)
+			{
+				Register(bound ? child : parent, grandChild, eventName);
 			}
 		}
 	}
