@@ -295,6 +295,45 @@ namespace River.OneMoreAddIn.Commands
 
 
 		/// <summary>
+		/// Saves the pinned list; used when reordering pages
+		/// </summary>
+		/// <param name="list">Reordered list of page IDs</param>
+		/// <returns></returns>
+		public async Task SavePinned(List<string> list)
+		{
+			await semalock.WaitAsync();
+
+			try
+			{
+				var root = await Read();
+
+				var pinned = root.Element("pinned");
+				if (pinned == null)
+				{
+					pinned = new XElement("pinned");
+					root.Add(pinned);
+				}
+
+				// clear
+				pinned.Elements().Remove();
+
+				// add
+				list.ForEach(id =>
+				{
+					pinned.Add(new XElement("page", id));
+				});
+
+
+				await Save(root);
+			}
+			finally
+			{
+				semalock.Release();
+			}
+		}
+
+
+		/// <summary>
 		/// Removes the list of page IDs from the pinned list.
 		/// </summary>
 		/// <param name="list"></param>

@@ -118,8 +118,8 @@ namespace River.OneMoreAddIn.UI
 
 					var action = (EventHandler)((s, e) =>
 					{
-						logger.WriteLine(
-							$"raising {eventName}({e.GetType().FullName}) for {parent.GetType().Name}");
+						//logger.WriteLine(
+						//	$"raising {eventName}({e.GetType().FullName}) for {parent.GetType().Name}");
 
 						try
 						{

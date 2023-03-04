@@ -47,6 +47,8 @@
 			this.subContainer = new System.Windows.Forms.SplitContainer();
 			this.pinnedBox = new River.OneMoreAddIn.UI.MoreListView();
 			this.pinnedHeadPanel = new System.Windows.Forms.Panel();
+			this.upButton = new System.Windows.Forms.Button();
+			this.downButton = new System.Windows.Forms.Button();
 			this.unpinButton = new System.Windows.Forms.Button();
 			this.pinnedHeadLabel = new System.Windows.Forms.Label();
 			this.historyBox = new River.OneMoreAddIn.UI.MoreListView();
@@ -188,7 +190,7 @@
 			// 
 			// pinnedBox
 			// 
-			this.pinnedBox.AllowItemReorder = true;
+			this.pinnedBox.AllowItemReorder = false;
 			this.pinnedBox.ControlPadding = 2;
 			this.pinnedBox.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.pinnedBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -208,6 +210,8 @@
 			// pinnedHeadPanel
 			// 
 			this.pinnedHeadPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(205)))), ((int)(((byte)(179)))), ((int)(((byte)(218)))));
+			this.pinnedHeadPanel.Controls.Add(this.upButton);
+			this.pinnedHeadPanel.Controls.Add(this.downButton);
 			this.pinnedHeadPanel.Controls.Add(this.unpinButton);
 			this.pinnedHeadPanel.Controls.Add(this.pinnedHeadLabel);
 			this.pinnedHeadPanel.Dock = System.Windows.Forms.DockStyle.Top;
@@ -217,6 +221,38 @@
 			this.pinnedHeadPanel.Padding = new System.Windows.Forms.Padding(0, 2, 5, 2);
 			this.pinnedHeadPanel.Size = new System.Drawing.Size(528, 41);
 			this.pinnedHeadPanel.TabIndex = 1;
+			// 
+			// upButton
+			// 
+			this.upButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.upButton.FlatAppearance.BorderSize = 0;
+			this.upButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+			this.upButton.Font = new System.Drawing.Font("Segoe UI Emoji", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.upButton.Location = new System.Drawing.Point(399, 2);
+			this.upButton.Name = "upButton";
+			this.upButton.Size = new System.Drawing.Size(35, 37);
+			this.upButton.TabIndex = 5;
+			this.upButton.Text = "↥";
+			this.upButton.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+			this.tooltip.SetToolTip(this.upButton, "Move selected items up");
+			this.upButton.UseVisualStyleBackColor = true;
+			this.upButton.Click += new System.EventHandler(this.MoveUpOnClick);
+			// 
+			// downButton
+			// 
+			this.downButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.downButton.FlatAppearance.BorderSize = 0;
+			this.downButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+			this.downButton.Font = new System.Drawing.Font("Segoe UI Emoji", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.downButton.Location = new System.Drawing.Point(440, 3);
+			this.downButton.Name = "downButton";
+			this.downButton.Size = new System.Drawing.Size(35, 37);
+			this.downButton.TabIndex = 4;
+			this.downButton.Text = "↧";
+			this.downButton.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+			this.tooltip.SetToolTip(this.downButton, "Move selected items down");
+			this.downButton.UseVisualStyleBackColor = true;
+			this.downButton.Click += new System.EventHandler(this.MoveDownOnClick);
 			// 
 			// unpinButton
 			// 
@@ -362,5 +398,7 @@
 		private System.Windows.Forms.Button unpinButton;
 		private System.Windows.Forms.Button refreshButton;
 		private System.Windows.Forms.ToolTip tooltip;
+		private System.Windows.Forms.Button upButton;
+		private System.Windows.Forms.Button downButton;
 	}
 }
