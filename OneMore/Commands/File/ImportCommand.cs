@@ -553,15 +553,7 @@ namespace River.OneMoreAddIn.Commands
 
 				if (!string.IsNullOrEmpty(body))
 				{
-					var builder = new StringBuilder();
-					builder.AppendLine("<html>");
-					builder.AppendLine("<body>");
-					builder.AppendLine("<!--StartFragment-->");
-					builder.AppendLine(body);
-					builder.AppendLine("<!--EndFragment-->");
-					builder.AppendLine("</body>");
-					builder.AppendLine("</html>");
-					var html = PasteRtfCommand.AddHtmlPreamble(builder.ToString());
+					var html = ClipboardProvider.WrapWithHtmlPreamble(body);
 
 					if (token != default && token.IsCancellationRequested)
 					{
