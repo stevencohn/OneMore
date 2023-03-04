@@ -214,6 +214,26 @@ namespace River.OneMoreAddIn
 
 
 		/// <summary>
+		/// Stash the given value. Can be used to build up a multi-entry stash that can then
+		/// be rehydrated onto the clipbard using RestoreState().
+		/// Presumes StashState has not been called.
+		/// </summary>
+		/// <param name="format"></param>
+		/// <param name="text"></param>
+		public void Stash(Win.TextDataFormat format, string text)
+		{
+			if (stash.ContainsKey(format))
+			{
+				stash[format] = text;
+			}
+			else
+			{
+				stash.Add(format, text);
+			}
+		}
+
+
+		/// <summary>
 		/// Stashes the entire state of and clears out the clipboard so that it can be used
 		/// temporarily. Remember to restore the state by calling RestoreState()
 		/// </summary>

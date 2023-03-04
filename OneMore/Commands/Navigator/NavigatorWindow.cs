@@ -12,6 +12,7 @@ namespace River.OneMoreAddIn.Commands
 	using System.Drawing;
 	using System.Globalization;
 	using System.Linq;
+	using System.Text;
 	using System.Threading.Tasks;
 	using System.Windows.Forms;
 	using System.Xml.Linq;
@@ -449,6 +450,51 @@ namespace River.OneMoreAddIn.Commands
 			}
 
 			await provider.SavePinned(list);
+		}
+
+
+		private async void CopyLinksOnClick(object sender, EventArgs e)
+		{
+			var box = sender == copyPinnedButton ? pinnedBox : historyBox;
+
+			var list = new List<HierarchyInfo>();
+			foreach (IMoreHostItem host in box.SelectedItems)
+			{
+				if (host.Tag is HierarchyInfo info)
+				{
+					list.Add(info);
+				}
+			}
+
+			var hbuilder = new StringBuilder();
+			var tbuilder = new StringBuilder();
+			var one = list.Count == 1;
+
+			foreach (var info in list)
+			{
+				if (one)
+				{
+					hbuilder.Append($"<a href=\"{info.Link}\">{info.Name}</a>");
+					tbuilder.Append(info.Link);
+				}
+				else
+				{
+					hbuilder.Append($"<p><a href=\"{info.Link}\">{info.Name}</a></p>");
+					tbuilder.Append($"{info.Link}\n");
+				}
+
+			}
+
+			var board = new ClipboardProvider();
+
+			var html = PasteRtfCommand.AddHtmlPreamble(hbuilder.ToString());
+			board.Stash(System.Windows.TextDataFormat.Html, html);
+
+			var text = tbuilder.ToString();
+			board.Stash(System.Windows.TextDataFormat.Text, text);
+			board.Stash(System.Windows.TextDataFormat.UnicodeText, text);
+
+			await board.RestoreState();
 		}
 
 
