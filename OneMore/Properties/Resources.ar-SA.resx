@@ -4863,10 +4863,6 @@ ISO-code then comma then language name</comment>
     <value>عدد الكلمات</value>
     <comment>page title</comment>
   </data>
-  <data name="GeneralSheet_advancedGroup.Text" xml:space="preserve">
-    <value>خيارات متقدمة</value>
-    <comment>groupbox</comment>
-  </data>
   <data name="GeneralSheet_verboseBox.Text" xml:space="preserve">
     <value>تمكين التسجيل المطول</value>
     <comment>checkbox</comment>
@@ -5001,5 +4997,16 @@ ISO-code then comma then language name</comment>
   <data name="NavigatorWindow_copyTooltip" xml:space="preserve">
     <value>نسخ العناصر المحددة إلى الحافظة</value>
     <comment>button tooltip</comment>
+  </data>
+  <data name="NavigatorSheet_disabledBox.Text" xml:space="preserve">
+    <value>قم بتعطيل خدمة الملاحة. سيؤدي هذا إلى جعل نافذة المستكشف غير قابلة للتشغيل.</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="phrase_AdvancedOptions" xml:space="preserve">
+    <value>خيارات متقدمة</value>
+  </data>
+  <data name="NavigatorWindow_disabled" xml:space="preserve">
+    <value>تم تعطيل خدمة الملاحة. افتح الإعدادات لتمكين الخدمة.</value>
+    <comment>message</comment>
   </data>
 </root>

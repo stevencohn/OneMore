@@ -4,8 +4,10 @@
 
 namespace River.OneMoreAddIn.Commands
 {
+	using River.OneMoreAddIn.Settings;
 	using System.Threading.Tasks;
 	using System.Windows.Forms;
+	using Resx = Properties.Resources;
 
 
 	/// <summary>
@@ -23,6 +25,13 @@ namespace River.OneMoreAddIn.Commands
 
 		public override async Task Execute(params object[] args)
 		{
+			if (new SettingsProvider()
+				.GetCollection(nameof(NavigatorSheet)).Get("disabled", false))
+			{
+				UIHelper.ShowInfo(Resx.NavigatorWindow_disabled);
+				return;
+			}
+
 			if (window == null)
 			{
 				window = new NavigatorWindow();

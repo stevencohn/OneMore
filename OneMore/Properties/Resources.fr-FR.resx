@@ -4857,10 +4857,6 @@ Dans cette section</value>
     <value>Nombre de mots</value>
     <comment>page title</comment>
   </data>
-  <data name="GeneralSheet_advancedGroup.Text" xml:space="preserve">
-    <value>Options avancées</value>
-    <comment>groupbox</comment>
-  </data>
   <data name="GeneralSheet_verboseBox.Text" xml:space="preserve">
     <value>Activer la journalisation détaillée</value>
     <comment>checkbox</comment>
@@ -4995,5 +4991,16 @@ Dans cette section</value>
   <data name="NavigatorWindow_copyTooltip" xml:space="preserve">
     <value>Copier les éléments sélectionnés dans le presse-papiers</value>
     <comment>button tooltip</comment>
+  </data>
+  <data name="NavigatorSheet_disabledBox.Text" xml:space="preserve">
+    <value>Désactivez le service de navigation. Cela rendra la fenêtre du Navigateur inutilisable.</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="phrase_AdvancedOptions" xml:space="preserve">
+    <value>Options avancées</value>
+  </data>
+  <data name="NavigatorWindow_disabled" xml:space="preserve">
+    <value>Le service de navigation est désactivé. Ouvrez Paramètres pour activer le service.</value>
+    <comment>message</comment>
   </data>
 </root>

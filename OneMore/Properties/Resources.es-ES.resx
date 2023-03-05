@@ -4863,10 +4863,6 @@ En esta sección</value>
     <value>Conteo de palabras</value>
     <comment>page title</comment>
   </data>
-  <data name="GeneralSheet_advancedGroup.Text" xml:space="preserve">
-    <value>Opciones avanzadas</value>
-    <comment>groupbox</comment>
-  </data>
   <data name="GeneralSheet_verboseBox.Text" xml:space="preserve">
     <value>Habilitar registro detallado</value>
     <comment>checkbox</comment>
@@ -5001,5 +4997,16 @@ En esta sección</value>
   <data name="NavigatorWindow_copyTooltip" xml:space="preserve">
     <value>Copiar elementos seleccionados al portapapeles</value>
     <comment>button tooltip</comment>
+  </data>
+  <data name="NavigatorSheet_disabledBox.Text" xml:space="preserve">
+    <value>Deshabilitar el servicio de navegación. Esto hará que la ventana del Navegador no funcione.</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="phrase_AdvancedOptions" xml:space="preserve">
+    <value>Opciones avanzadas</value>
+  </data>
+  <data name="NavigatorWindow_disabled" xml:space="preserve">
+    <value>El servicio de navegación está deshabilitado. Abra Configuración para habilitar el servicio.</value>
+    <comment>message</comment>
   </data>
 </root>

@@ -32,6 +32,8 @@ namespace River.OneMoreAddIn.Settings
 			this.components = new System.ComponentModel.Container();
 			this.introBox = new System.Windows.Forms.TextBox();
 			this.layoutPanel = new System.Windows.Forms.Panel();
+			this.advancedGroup = new System.Windows.Forms.GroupBox();
+			this.disabledBox = new System.Windows.Forms.CheckBox();
 			this.secLabel = new System.Windows.Forms.Label();
 			this.intervalBox = new System.Windows.Forms.NumericUpDown();
 			this.intervalLabel = new System.Windows.Forms.Label();
@@ -40,6 +42,7 @@ namespace River.OneMoreAddIn.Settings
 			this.corrallBox = new System.Windows.Forms.CheckBox();
 			this.tooltip = new System.Windows.Forms.ToolTip(this.components);
 			this.layoutPanel.SuspendLayout();
+			this.advancedGroup.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.intervalBox)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.depthBox)).BeginInit();
 			this.SuspendLayout();
@@ -59,6 +62,7 @@ namespace River.OneMoreAddIn.Settings
 			// 
 			// layoutPanel
 			// 
+			this.layoutPanel.Controls.Add(this.advancedGroup);
 			this.layoutPanel.Controls.Add(this.secLabel);
 			this.layoutPanel.Controls.Add(this.intervalBox);
 			this.layoutPanel.Controls.Add(this.intervalLabel);
@@ -71,6 +75,29 @@ namespace River.OneMoreAddIn.Settings
 			this.layoutPanel.Name = "layoutPanel";
 			this.layoutPanel.Size = new System.Drawing.Size(772, 416);
 			this.layoutPanel.TabIndex = 4;
+			// 
+			// advancedGroup
+			// 
+			this.advancedGroup.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.advancedGroup.Controls.Add(this.disabledBox);
+			this.advancedGroup.Location = new System.Drawing.Point(10, 241);
+			this.advancedGroup.Name = "advancedGroup";
+			this.advancedGroup.Padding = new System.Windows.Forms.Padding(15, 3, 3, 3);
+			this.advancedGroup.Size = new System.Drawing.Size(762, 106);
+			this.advancedGroup.TabIndex = 6;
+			this.advancedGroup.TabStop = false;
+			this.advancedGroup.Text = "Advanced Options";
+			// 
+			// disabledBox
+			// 
+			this.disabledBox.Location = new System.Drawing.Point(18, 25);
+			this.disabledBox.Name = "disabledBox";
+			this.disabledBox.Size = new System.Drawing.Size(716, 62);
+			this.disabledBox.TabIndex = 0;
+			this.disabledBox.Text = "Disable the navigation service. This will render the Navigator window inoperaable" +
+    ".";
+			this.disabledBox.UseVisualStyleBackColor = true;
 			// 
 			// secLabel
 			// 
@@ -171,6 +198,7 @@ namespace River.OneMoreAddIn.Settings
 			this.Size = new System.Drawing.Size(800, 500);
 			this.layoutPanel.ResumeLayout(false);
 			this.layoutPanel.PerformLayout();
+			this.advancedGroup.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.intervalBox)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.depthBox)).EndInit();
 			this.ResumeLayout(false);
@@ -189,5 +217,7 @@ namespace River.OneMoreAddIn.Settings
 		private System.Windows.Forms.Label intervalLabel;
 		private System.Windows.Forms.ToolTip tooltip;
 		private System.Windows.Forms.Label secLabel;
+		private System.Windows.Forms.GroupBox advancedGroup;
+		private System.Windows.Forms.CheckBox disabledBox;
 	}
 }

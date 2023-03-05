@@ -4847,10 +4847,6 @@ ISO-code then comma then language name</comment>
     <value>字数统计</value>
     <comment>page title</comment>
   </data>
-  <data name="GeneralSheet_advancedGroup.Text" xml:space="preserve">
-    <value>高级选项</value>
-    <comment>groupbox</comment>
-  </data>
   <data name="GeneralSheet_verboseBox.Text" xml:space="preserve">
     <value>启用详细日志记录</value>
     <comment>checkbox</comment>
@@ -4985,5 +4981,16 @@ ISO-code then comma then language name</comment>
   <data name="NavigatorWindow_copyTooltip" xml:space="preserve">
     <value>将所选项目复制到剪贴板</value>
     <comment>button tooltip</comment>
+  </data>
+  <data name="NavigatorSheet_disabledBox.Text" xml:space="preserve">
+    <value>禁用导航服务。这将使导航器窗口无法操作。</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="phrase_AdvancedOptions" xml:space="preserve">
+    <value>高级选项</value>
+  </data>
+  <data name="NavigatorWindow_disabled" xml:space="preserve">
+    <value>导航服务被禁用。打开设置以启用该服务。</value>
+    <comment>message</comment>
   </data>
 </root>
