@@ -37,8 +37,7 @@ namespace River.OneMoreAddIn
 				{
 					m.Method,
 					Command = (CommandAttribute)m.Attributes.First()
-				})
-				.Where(m => m.Command.DefaultKeys != Keys.None);
+				});
 
 			// an awful hack to avoid a conflict with Italian keyboard (FIGS and likely UK) that
 			// use AltGr as Ctrl+Alt. This means users pressing AltGr+OemPlus to get a square
@@ -57,14 +56,13 @@ namespace River.OneMoreAddIn
 				return;
 			}
 
-			logger.WriteLine($"defining {methods.Count()} hotkeys for input locale {locale}");
-
 			var settings = new SettingsProvider()
 				.GetCollection(nameof(KeyboardSheet))?.Get<XElement>("commands");
 
 			// register hotkey for each discovered command...
 
 			HotkeyManager.Initialize();
+			var count = 0;
 
 			methods.ForEach((m) =>
 			{
@@ -91,7 +89,7 @@ namespace River.OneMoreAddIn
 					}
 				}
 
-				if (hotkey != null)
+				if (hotkey != null && hotkey.Keys != Keys.None)
 				{
 					// all commands should be of the form:
 					// public async Task NAME(IRibbonControl control)
@@ -105,9 +103,13 @@ namespace River.OneMoreAddIn
 
 						},
 						hotkey);
+
+						count++;
 					}
 				}
 			});
+
+			logger.WriteLine($"defined {count} hotkeys for input locale {locale}");
 		}
 	}
 }
