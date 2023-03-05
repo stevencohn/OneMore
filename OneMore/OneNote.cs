@@ -195,6 +195,14 @@ namespace River.OneMoreAddIn
 
 
 		/// <summary>
+		/// Gets or sets whether exceptions are allowed to fall through back to caller or
+		/// are caught and reported by this class. This is a special case for some consumers
+		/// who wish to handle certain exceptions themselves to serve data management.
+		/// </summary>
+		public bool FallThrough { get; set; }
+
+
+		/// <summary>
 		/// Gets the Win32 Window associated with the current window's handle
 		/// </summary>
 		public Forms.IWin32Window Window => Forms.Control.FromHandle(WindowHandle);
@@ -740,6 +748,11 @@ namespace River.OneMoreAddIn
 			}
 			catch (Exception exc)
 			{
+				if (FallThrough)
+				{
+					throw;
+				}
+
 				logger.WriteLine($"error getting page {pageId}", exc);
 			}
 

@@ -46,6 +46,11 @@ namespace River.OneMoreAddIn.Commands
 			}
 
 			window.ForceTopMost();
+
+			if (window.WindowState == FormWindowState.Minimized)
+			{
+				window.WindowState = FormWindowState.Normal;
+			}
 		}
 
 

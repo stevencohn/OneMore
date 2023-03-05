@@ -393,7 +393,9 @@
 			this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.SaveOnFormClosing);
 			this.Load += new System.EventHandler(this.PositionOnLoad);
 			this.Shown += new System.EventHandler(this.TopOnShown);
+			this.LocationChanged += new System.EventHandler(this.TrackOnLocationChanged);
 			this.SizeChanged += new System.EventHandler(this.SetLimitsOnSizeChanged);
+			this.Layout += new System.Windows.Forms.LayoutEventHandler(this.TrackMinimizedOnLayout);
 			this.Move += new System.EventHandler(this.RestrictOnMove);
 			this.controlPanel.ResumeLayout(false);
 			this.mainContainer.Panel1.ResumeLayout(false);
