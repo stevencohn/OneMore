@@ -145,6 +145,12 @@ namespace River.OneMoreAddIn.Commands
 
 		private void SetLimitsOnSizeChanged(object sender, EventArgs e)
 		{
+			if (screen == null)
+			{
+				// too early; Load event hasn't fired yet
+				return;
+			}
+
 			// SizeChanged is invoked after Load which sets screenArea
 			corral = screen.GetBoundedLocation(this);
 
