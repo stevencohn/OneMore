@@ -27,17 +27,18 @@ namespace River.OneMoreAddIn
 			// discover all command methods with CommandAttribute...
 
 			var methods = typeof(AddIn).GetMethods()
-				.Select(m => new 
-				{ 
-					Method = m, 
+				.Select(m => new
+				{
+					Method = m,
 					Attributes = m.GetCustomAttributes(typeof(CommandAttribute), false)
 				})
 				.Where(m => m.Attributes.Any())
-				.Select(m => new 
+				.Select(m => new
 				{
 					m.Method,
 					Command = (CommandAttribute)m.Attributes.First()
-				});
+				})
+				.Where(m => m.Command.DefaultKeys != Keys.None);
 
 			// an awful hack to avoid a conflict with Italian keyboard (FIGS and likely UK) that
 			// use AltGr as Ctrl+Alt. This means users pressing AltGr+OemPlus to get a square
