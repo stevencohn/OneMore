@@ -24,11 +24,14 @@ namespace River.OneMoreAddIn.Commands
 	{
 		private const int WindowMargin = 20;
 		private const int HeaderIndent = 16;
+		private const int MinimizedBounds = -32000;
 
 		private static string visitedID;
 
 		private Screen screen;
 		private Point corral;
+		private Point location;
+		private bool minimized;
 		private readonly bool corralled;
 		private readonly List<HierarchyInfo> history;
 		private readonly List<HierarchyInfo> pinned;
@@ -161,10 +164,38 @@ namespace River.OneMoreAddIn.Commands
 
 		private void TopOnShown(object sender, EventArgs e)
 		{
+			if (minimized)
+			{
+				Location = location;
+				minimized = false;
+			}
+
 			BringToFront();
 			TopMost = true;
 			Activate();
 			Focus();
+		}
+
+
+		// TrackMinimizedOnLayout and TrackOnLocationChanged keep track of the window position
+		// across minimize/restore actions. This fixes the problem where the window is always
+		// restored to 0,0 and instead resets the location to the previous point.
+		private void TrackMinimizedOnLayout(object sender, LayoutEventArgs e)
+		{
+			if (e.AffectedProperty == "Bounds" &&
+				Bounds.X == MinimizedBounds &&
+				Bounds.Y == MinimizedBounds)
+			{
+				minimized = true;
+			}
+		}
+
+		private void TrackOnLocationChanged(object sender, EventArgs e)
+		{
+			if (WindowState == FormWindowState.Normal)
+			{
+				location = Location;
+			}
 		}
 
 
@@ -283,7 +314,11 @@ namespace River.OneMoreAddIn.Commands
 
 		private bool ResolveReferences(List<HierarchyInfo> details, List<HistoryRecord> records)
 		{
-			using var one = new OneNote();
+			using var one = new OneNote
+			{
+				FallThrough = true
+			};
+
 			var list = new List<HierarchyInfo>();
 			var updated = false;
 
@@ -312,9 +347,13 @@ namespace River.OneMoreAddIn.Commands
 						updated |= (j != i);
 					}
 				}
+				catch (System.Runtime.InteropServices.COMException)
+				{
+					logger.WriteLine($"navigator resolve skipping broken page {record.PageID}");
+				}
 				catch (Exception exc)
 				{
-					logger.WriteLine($"navigator resolve skipping page {record.PageID}", exc);
+					logger.WriteLine($"navigator can't resolve page {record.PageID}", exc);
 				}
 			}
 
