@@ -147,6 +147,10 @@ namespace River.OneMoreAddIn.Commands
 		{
 			// SizeChanged is invoked after Load which sets screenArea
 			corral = screen.GetBoundedLocation(this);
+
+			var rowWidth = Width - SystemInformation.VerticalScrollBarWidth * 2;
+			pinnedBox.Columns[0].Width = rowWidth;
+			historyBox.Columns[0].Width = rowWidth;
 		}
 
 
