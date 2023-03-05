@@ -29,7 +29,9 @@ namespace River.OneMoreAddIn.Settings
 					"depthLabel",
 					"intervalLabel",
 					"secLabel=word_Seconds",
-					"corrallBox"
+					"corrallBox",
+					"advancedGroup=phrase_AdvancedOptions",
+					"disabledBox"
 				});
 			}
 
@@ -50,6 +52,8 @@ namespace River.OneMoreAddIn.Settings
 			{
 				corrallBox.Checked = settings.Get("corralled", false);
 			}
+
+			disabledBox.Checked = settings.Get("disabled", false);
 		}
 
 
@@ -66,6 +70,10 @@ namespace River.OneMoreAddIn.Settings
 			updated = corrallBox.Checked
 				? settings.Add("corralled", true) || updated
 				: settings.Remove("corralled") || updated;
+
+			updated = disabledBox.Checked
+				? settings.Add("disabled", true) || updated
+				: settings.Remove("disabled") || updated;
 
 			if (updated)
 			{

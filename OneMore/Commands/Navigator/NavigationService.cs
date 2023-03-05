@@ -28,6 +28,7 @@ namespace River.OneMoreAddIn.Commands
 
 		private readonly int pollingInterval;
 		private readonly int historyDepth;
+		private readonly bool disabled;
 
 		private readonly NavigationProvider provider;
 		private string currentId = null;
@@ -42,11 +43,18 @@ namespace River.OneMoreAddIn.Commands
 			var collection = settings.GetCollection("NavigatorSheet");
 			pollingInterval = collection.Get("interval", DefaultPollingInterval);
 			historyDepth = collection.Get("depth", DefaultHistoryDepth);
+			disabled = collection.Get("disabled", false);
 		}
 
 
 		public void Startup()
 		{
+			if (disabled)
+			{
+				logger.WriteLine("navigation service is disabled");
+				return;
+			}
+
 			logger.WriteLine("starting navigation service");
 
 			var thread = new Thread(async () =>

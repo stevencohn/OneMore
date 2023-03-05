@@ -3021,15 +3021,6 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Advanced Options.
-        /// </summary>
-        internal static string GeneralSheet_advancedGroup_Text {
-            get {
-                return ResourceManager.GetString("GeneralSheet_advancedGroup.Text", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Check for new versions of OneMore when OneNote starts.
         /// </summary>
         internal static string GeneralSheet_checkUpdatesBox_Text {
@@ -4183,6 +4174,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Disable the navigation service. This will render the Navigator window inoperaable..
+        /// </summary>
+        internal static string NavigatorSheet_disabledBox_Text {
+            get {
+                return ResourceManager.GetString("NavigatorSheet_disabledBox.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Min read time before adding to history.
         /// </summary>
         internal static string NavigatorSheet_intervalLabel_Text {
@@ -4215,6 +4215,15 @@ namespace River.OneMoreAddIn.Properties {
         internal static string NavigatorWindow_copyTooltip {
             get {
                 return ResourceManager.GetString("NavigatorWindow_copyTooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The navigation service is disabled. Open Settings to enable the service..
+        /// </summary>
+        internal static string NavigatorWindow_disabled {
+            get {
+                return ResourceManager.GetString("NavigatorWindow_disabled", resourceCulture);
             }
         }
         
@@ -4759,6 +4768,15 @@ namespace River.OneMoreAddIn.Properties {
             get {
                 object obj = ResourceManager.GetObject("Pencil", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Advanced Options.
+        /// </summary>
+        internal static string phrase_AdvancedOptions {
+            get {
+                return ResourceManager.GetString("phrase_AdvancedOptions", resourceCulture);
             }
         }
         

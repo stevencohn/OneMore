@@ -4916,10 +4916,6 @@ W tej sekcji</value>
     <value>Liczy się słowo</value>
     <comment>page title</comment>
   </data>
-  <data name="GeneralSheet_advancedGroup.Text" xml:space="preserve">
-    <value>Zaawansowane opcje</value>
-    <comment>groupbox</comment>
-  </data>
   <data name="GeneralSheet_verboseBox.Text" xml:space="preserve">
     <value>Włącz pełne rejestrowanie</value>
     <comment>checkbox</comment>
@@ -5054,5 +5050,16 @@ W tej sekcji</value>
   <data name="NavigatorWindow_copyTooltip" xml:space="preserve">
     <value>Skopiuj wybrane elementy do schowka</value>
     <comment>button tooltip</comment>
+  </data>
+  <data name="NavigatorSheet_disabledBox.Text" xml:space="preserve">
+    <value>Wyłącz usługę nawigacji. Spowoduje to, że okno Nawigatora przestanie działać.</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="phrase_AdvancedOptions" xml:space="preserve">
+    <value>Zaawansowane opcje</value>
+  </data>
+  <data name="NavigatorWindow_disabled" xml:space="preserve">
+    <value>Usługa nawigacji jest wyłączona. Otwórz Ustawienia, aby włączyć usługę.</value>
+    <comment>message</comment>
   </data>
 </root>

@@ -4863,10 +4863,6 @@ In deze sectie</value>
     <value>Woorden tellen</value>
     <comment>page title</comment>
   </data>
-  <data name="GeneralSheet_advancedGroup.Text" xml:space="preserve">
-    <value>Geavanceerde mogelijkheden</value>
-    <comment>groupbox</comment>
-  </data>
   <data name="GeneralSheet_verboseBox.Text" xml:space="preserve">
     <value>Schakel uitgebreide logboekregistratie in</value>
     <comment>checkbox</comment>
@@ -5001,5 +4997,16 @@ In deze sectie</value>
   <data name="NavigatorWindow_copyTooltip" xml:space="preserve">
     <value>Kopieer geselecteerde items naar het klembord</value>
     <comment>button tooltip</comment>
+  </data>
+  <data name="NavigatorSheet_disabledBox.Text" xml:space="preserve">
+    <value>Schakel de navigatieservice uit. Hierdoor wordt het Navigator-venster onbruikbaar.</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="phrase_AdvancedOptions" xml:space="preserve">
+    <value>Geavanceerde mogelijkheden</value>
+  </data>
+  <data name="NavigatorWindow_disabled" xml:space="preserve">
+    <value>De navigatieservice is uitgeschakeld. Open Instellingen om de service in te schakelen.</value>
+    <comment>message</comment>
   </data>
 </root>

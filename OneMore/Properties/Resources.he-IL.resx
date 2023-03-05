@@ -4958,10 +4958,6 @@ ISO-code then comma then language name</comment>
     <value>ספירת מילים</value>
     <comment>page title</comment>
   </data>
-  <data name="GeneralSheet_advancedGroup.Text" xml:space="preserve">
-    <value>אפשרויות מתקדמות</value>
-    <comment>groupbox</comment>
-  </data>
   <data name="GeneralSheet_verboseBox.Text" xml:space="preserve">
     <value>אפשר רישום מילולי</value>
     <comment>checkbox</comment>
@@ -5096,5 +5092,16 @@ ISO-code then comma then language name</comment>
   <data name="NavigatorWindow_copyTooltip" xml:space="preserve">
     <value>העתק פריטים נבחרים ללוח</value>
     <comment>button tooltip</comment>
+  </data>
+  <data name="NavigatorSheet_disabledBox.Text" xml:space="preserve">
+    <value>השבת את שירות הניווט. פעולה זו תהפוך את חלון הניווט לבלתי ניתן להפעלה.</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="phrase_AdvancedOptions" xml:space="preserve">
+    <value>אפשרויות מתקדמות</value>
+  </data>
+  <data name="NavigatorWindow_disabled" xml:space="preserve">
+    <value>שירות הניווט מושבת. פתח את ההגדרות כדי להפעיל את השירות.</value>
+    <comment>message</comment>
   </data>
 </root>

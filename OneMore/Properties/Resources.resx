@@ -1381,10 +1381,6 @@ Symbols: PI, E</value>
     <value>Status:</value>
     <comment>status label</comment>
   </data>
-  <data name="GeneralSheet_advancedGroup.Text" xml:space="preserve">
-    <value>Advanced Options</value>
-    <comment>groupbox</comment>
-  </data>
   <data name="GeneralSheet_checkUpdatesBox.Text" xml:space="preserve">
     <value>Check for new versions of OneMore when OneNote starts</value>
     <comment>checkbox</comment>
@@ -1880,6 +1876,10 @@ Symbols: PI, E</value>
     <value>Max length of stored history</value>
     <comment>label</comment>
   </data>
+  <data name="NavigatorSheet_disabledBox.Text" xml:space="preserve">
+    <value>Disable the navigation service. This will render the Navigator window inoperaable.</value>
+    <comment>checkbox</comment>
+  </data>
   <data name="NavigatorSheet_intervalLabel.Text" xml:space="preserve">
     <value>Min read time before adding to history</value>
     <comment>label</comment>
@@ -1895,6 +1895,10 @@ Symbols: PI, E</value>
   <data name="NavigatorWindow_copyTooltip" xml:space="preserve">
     <value>Copy selected items to the clipboard</value>
     <comment>button tooltip</comment>
+  </data>
+  <data name="NavigatorWindow_disabled" xml:space="preserve">
+    <value>The navigation service is disabled. Open Settings to enable the service.</value>
+    <comment>message</comment>
   </data>
   <data name="NavigatorWindow_downButton_Tooltip" xml:space="preserve">
     <value>Move selected items down</value>
@@ -2127,6 +2131,9 @@ Deferred</value>
   </data>
   <data name="Pencil" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>emoji\pencil.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="phrase_AdvancedOptions" xml:space="preserve">
+    <value>Advanced Options</value>
   </data>
   <data name="phrase_AppendToThisPage" xml:space="preserve">
     <value>Append to this page</value>

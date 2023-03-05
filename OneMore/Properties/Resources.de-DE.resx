@@ -4850,10 +4850,6 @@ In diesem Abschnitt</value>
     <value>Wort zählt</value>
     <comment>page title</comment>
   </data>
-  <data name="GeneralSheet_advancedGroup.Text" xml:space="preserve">
-    <value>Erweiterte Optionen</value>
-    <comment>groupbox</comment>
-  </data>
   <data name="GeneralSheet_verboseBox.Text" xml:space="preserve">
     <value>Aktivieren Sie die ausführliche Protokollierung</value>
     <comment>checkbox</comment>
@@ -4988,5 +4984,16 @@ In diesem Abschnitt</value>
   <data name="NavigatorWindow_copyTooltip" xml:space="preserve">
     <value>Ausgewählte Elemente in die Zwischenablage kopieren</value>
     <comment>button tooltip</comment>
+  </data>
+  <data name="NavigatorSheet_disabledBox.Text" xml:space="preserve">
+    <value>Deaktivieren Sie den Navigationsdienst. Dadurch wird das Navigator-Fenster funktionsunfähig.</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="phrase_AdvancedOptions" xml:space="preserve">
+    <value>Erweiterte Optionen</value>
+  </data>
+  <data name="NavigatorWindow_disabled" xml:space="preserve">
+    <value>Der Navigationsdienst ist deaktiviert. Öffnen Sie Einstellungen, um den Dienst zu aktivieren.</value>
+    <comment>message</comment>
   </data>
 </root>
