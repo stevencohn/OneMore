@@ -241,6 +241,11 @@ namespace River.OneMoreAddIn.Commands
 		/// <returns></returns>
 		public async Task<bool> RecordHistory(string pageID, int depth)
 		{
+			if (string.IsNullOrWhiteSpace(pageID))
+			{
+				return false;
+			}
+
 			await semalock.WaitAsync();
 
 			try
