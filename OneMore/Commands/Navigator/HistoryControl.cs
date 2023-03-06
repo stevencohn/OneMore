@@ -15,12 +15,12 @@ namespace River.OneMoreAddIn.Commands
 	/// <summary>
 	/// Hosted control to be used in the pinned and history MoreListViews
 	/// </summary>
-	internal class HistoryListViewItem : UserControl, IChameleon
+	internal class HistoryControl : UserControl, IChameleon
 	{
 		private readonly MoreLinkLabel link;
 
 
-		public HistoryListViewItem(HierarchyInfo info)
+		public HistoryControl(HierarchyInfo info)
 		{
 			var picture = new PictureBox
 			{
@@ -98,6 +98,12 @@ namespace River.OneMoreAddIn.Commands
 		{
 			BackColor = Color.Transparent;
 			link.BackColor = Color.Transparent;
+		}
+
+
+		public void SetTitle(string title)
+		{
+			link.Text = title;
 		}
 	}
 }
