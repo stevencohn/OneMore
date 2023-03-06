@@ -4,7 +4,8 @@
 
 OneMore is an add-in for OneNote with simple and powerful features that make OneNote a better OneNote.  
 
-Please see the [OneNote Wiki](https://onedrive.live.com/redir?resid=6925D0374517D4B4%2158723&amp;authkey=%21AN6SD9aiIbjQLi0&amp;page=View&amp;wd=target%281%20User%20Guide.one%7Cd1eaf02b-5881-42a1-a83b-df7fe2f7f1af%2FWelcome%20to%20OneMore%7C31f507da-15d3-4c07-bb6c-06b9a1390c13%2F%29&amp;wdorigin=NavigationUrl) for a full user guide including <a href="https://onedrive.live.com/redir?resid=6925D0374517D4B4%2158723&amp;authkey=%21AN6SD9aiIbjQLi0&amp;page=View&amp;wd=target%28Getting%20Started.one%7Cd1eaf02b-5881-42a1-a83b-df7fe2f7f1af%2FInstallation%7Cb18686f6-450d-49b8-8b1f-e7cb5ff14c6c%2F%29&amp;wdorigin=703">installation instructions</a> and download the [latest release from here](https://github.com/stevencohn/OneMore/releases/latest).
+* Please see the [OneNote Wiki](https://onedrive.live.com/redir?resid=6925D0374517D4B4%2158723&amp;authkey=%21AN6SD9aiIbjQLi0&amp;page=View&amp;wd=target%281%20User%20Guide.one%7Cd1eaf02b-5881-42a1-a83b-df7fe2f7f1af%2FWelcome%20to%20OneMore%7C31f507da-15d3-4c07-bb6c-06b9a1390c13%2F%29&amp;wdorigin=NavigationUrl) for a full user guide
+* Download the [latest release](https://github.com/stevencohn/OneMore/releases/latest) and read the [installation instructions](https://onedrive.live.com/redir?resid=6925D0374517D4B4%2158723&amp;authkey=%21AN6SD9aiIbjQLi0&amp;page=View&amp;wd=target%28Getting%20Started.one%7Cd1eaf02b-5881-42a1-a83b-df7fe2f7f1af%2FInstallation%7Cb18686f6-450d-49b8-8b1f-e7cb5ff14c6c%2F%29&amp;wdorigin=703)
   
 # Highlights  
 - The almighty [Command Palette](https://onedrive.live.com/redir?resid=6925D0374517D4B4%2158723&amp;authkey=%21AN6SD9aiIbjQLi0&amp;page=View&amp;wd=target%281%20The%20Basics.one%7Cf2cc1a14-be59-4df4-8ade-d330363d3296%2FBasics%7Cc32c3754-5b91-4164-83a3-33ca9a3a581a%2F%29&amp;wdorigin=703)!  
