@@ -16,7 +16,7 @@ namespace River.OneMoreAddIn.Commands
 	using System.Threading.Tasks;
 	using System.Windows.Forms;
 	using System.Xml.Linq;
-	using HierarchyInfo = OneNote.HierarchyInfo;
+	using HistoryRecord = OneNote.HierarchyInfo;
 	using Resx = Properties.Resources;
 
 
@@ -33,8 +33,6 @@ namespace River.OneMoreAddIn.Commands
 		private Point location;
 		private bool minimized;
 		private readonly bool corralled;
-		private readonly List<HierarchyInfo> history;
-		private readonly List<HierarchyInfo> pinned;
 		private readonly List<IDisposable> trash;
 
 
@@ -72,9 +70,6 @@ namespace River.OneMoreAddIn.Commands
 			provider = new NavigationProvider();
 			provider.Navigated += Navigated;
 			trash.Add(provider);
-
-			history = new List<HierarchyInfo>();
-			pinned = new List<HierarchyInfo>();
 
 			var rowWidth = Width - SystemInformation.VerticalScrollBarWidth * 2;
 
@@ -245,31 +240,28 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private void ShowPins(List<HistoryRecord> pins)
+		private void ShowPins(List<HistoryRecord> pinned)
 		{
 			if (pinnedBox.InvokeRequired)
 			{
-				pinnedBox.Invoke(new Action(() => ShowPins(pins)));
+				pinnedBox.Invoke(new Action(() => ShowPins(pinned)));
 				return;
 			}
 
-			if (ResolveReferences(pinned, pins))
+			pinnedBox.BeginUpdate();
+			pinnedBox.Items.Clear();
+
+			pinned.ForEach(record =>
 			{
-				pinnedBox.BeginUpdate();
-				pinnedBox.Items.Clear();
+				var control = new HistoryListViewItem(record);
+				var item = pinnedBox.AddHostedItem(control);
+				item.Tag = record;
+			});
 
-				pinned.ForEach(info =>
-				{
-					var control = new HistoryListViewItem(info);
-					var item = pinnedBox.AddHostedItem(control);
-					item.Tag = info;
-				});
+			pinnedBox.EndUpdate();
+			pinnedBox.Invalidate();
 
-				pinnedBox.EndUpdate();
-				pinnedBox.Invalidate();
-
-				pinnedBox.EnableItemEventBubbling();
-			}
+			pinnedBox.EnableItemEventBubbling();
 		}
 
 
@@ -283,99 +275,39 @@ namespace River.OneMoreAddIn.Commands
 
 			try
 			{
-				if (e.Count > 0 && e[0].PageID == visitedID)
+				if (e.Count > 0 && e[0].PageId == visitedID)
 				{
 					// user clicked ths page in navigator; don't reorder the list or they'll lose
 					// their context and get confused, but refresh the headings pane
-					LoadPageHeadings(e[0].PageID);
+					LoadPageHeadings(e[0].PageId);
 					visitedID = null;
 					return;
 				}
 
-				if (ResolveReferences(history, e))
+				visitedID = null;
+
+				ShowPageOutline(e[0]);
+
+				historyBox.BeginUpdate();
+				historyBox.Items.Clear();
+
+				e.ForEach(record =>
 				{
-					visitedID = null;
+					var control = new HistoryListViewItem(record);
+					var item = historyBox.AddHostedItem(control);
+					item.Tag = record;
+				});
 
-					ShowPageOutline(history[0]);
+				historyBox.Items[0].Selected = true;
+				historyBox.EndUpdate();
+				historyBox.Invalidate();
 
-					historyBox.BeginUpdate();
-					historyBox.Items.Clear();
-
-					history.ForEach(info =>
-					{
-						var control = new HistoryListViewItem(info);
-						var item = historyBox.AddHostedItem(control);
-						item.Tag = info;
-					});
-
-					historyBox.Items[0].Selected = true;
-					historyBox.EndUpdate();
-					historyBox.Invalidate();
-
-					historyBox.EnableItemEventBubbling();
-				}
+				historyBox.EnableItemEventBubbling();
 			}
 			catch (Exception exc)
 			{
 				logger.WriteLine($"error navigating", exc);
 			}
-		}
-
-
-		private bool ResolveReferences(List<HierarchyInfo> details, List<HistoryRecord> records)
-		{
-			using var one = new OneNote
-			{
-				FallThrough = true
-			};
-
-			var list = new List<HierarchyInfo>();
-			var updated = false;
-
-			// iterate manually to check both existence and order
-			for (int i = 0; i < records.Count; i++)
-			{
-				var record = records[i];
-				var j = details.FindIndex(d => d.PageId == record.PageID);
-
-				try
-				{
-					var item = j < 0
-						? one.GetPageInfo(record.PageID)
-						: details[j];
-
-					// might be null if the page no longer exits; exception raised in GetPageInfo
-					if (item != null)
-					{
-						item.Visited = record.Visited;
-
-						var parentID = one.GetParent(record.PageID);
-						_ = one.GetHierarchyNode(parentID);
-
-						list.Add(item);
-
-						updated |= (j != i);
-					}
-				}
-				catch (System.Runtime.InteropServices.COMException)
-				{
-					logger.WriteLine($"navigator resolve skipping broken page {record.PageID}");
-				}
-				catch (Exception exc)
-				{
-					logger.WriteLine($"navigator can't resolve page {record.PageID}", exc);
-				}
-			}
-
-			updated |= list.Count != details.Count;
-
-			if (updated)
-			{
-				details.Clear();
-				details.AddRange(list);
-			}
-
-			return updated;
 		}
 
 
@@ -386,19 +318,19 @@ namespace River.OneMoreAddIn.Commands
 				return;
 			}
 
-			var list = new List<string>();
+			var records = new List<HistoryRecord>();
 			foreach (IMoreHostItem host in historyBox.SelectedItems)
 			{
-				if (host.Tag is HierarchyInfo info)
+				if (host.Tag is HistoryRecord record)
 				{
-					list.Add(info.PageId);
+					records.Add(record);
 				}
 			}
 
-			if (list.Count > 0)
+			if (records.Count > 0)
 			{
-				SetVisited(list.Last());
-				await provider.PinPages(list);
+				SetVisited(records.Last().PageId);
+				await provider.AddPinned(records);
 				await LoadPinned();
 			}
 		}
@@ -411,28 +343,28 @@ namespace River.OneMoreAddIn.Commands
 				return;
 			}
 
-			var list = new List<string>();
+			var records = new List<HistoryRecord>();
 			foreach (IMoreHostItem host in pinnedBox.SelectedItems)
 			{
-				if (host.Tag is HierarchyInfo info)
+				if (host.Tag is HistoryRecord record)
 				{
-					list.Add(info.PageId);
+					records.Add(record);
 				}
 			}
 
-			if (list.Count > 0)
+			if (records.Count > 0)
 			{
-				var hit = historyBox.SelectedItems.Count > 0
+				var item = historyBox.SelectedItems.Count > 0
 					? historyBox.SelectedItems[historyBox.SelectedItems.Count - 1]
 					: historyBox.Items[0];
 
-				if (hit is IMoreHostItem item &&
-					item.Control.Tag is HierarchyInfo info)
+				if (item is IMoreHostItem host &&
+					host.Control.Tag is HistoryRecord record)
 				{
-					SetVisited(info.PageId);
+					SetVisited(record.PageId);
 				}
 
-				await provider.UnpinPages(list);
+				await provider.UnpinPages(records);
 				await LoadPinned();
 			}
 		}
@@ -491,16 +423,16 @@ namespace River.OneMoreAddIn.Commands
 
 		private async Task SavePinned()
 		{
-			var list = new List<string>();
+			var records = new List<HistoryRecord>();
 			foreach (IMoreHostItem host in pinnedBox.Items)
 			{
-				if (host.Tag is HierarchyInfo info)
+				if (host.Tag is HistoryRecord record)
 				{
-					list.Add(info.PageId);
+					records.Add(record);
 				}
 			}
 
-			await provider.SavePinned(list);
+			await provider.SavePinned(records);
 		}
 
 
@@ -508,30 +440,30 @@ namespace River.OneMoreAddIn.Commands
 		{
 			var box = sender == copyPinnedButton ? pinnedBox : historyBox;
 
-			var list = new List<HierarchyInfo>();
+			var records = new List<HistoryRecord>();
 			foreach (IMoreHostItem host in box.SelectedItems)
 			{
-				if (host.Tag is HierarchyInfo info)
+				if (host.Tag is HistoryRecord record)
 				{
-					list.Add(info);
+					records.Add(record);
 				}
 			}
 
 			var hbuilder = new StringBuilder();
 			var tbuilder = new StringBuilder();
-			var one = list.Count == 1;
+			var one = records.Count == 1;
 
-			foreach (var info in list)
+			foreach (var record in records)
 			{
 				if (one)
 				{
-					hbuilder.Append($"<a href=\"{info.Link}\">{info.Name}</a>");
-					tbuilder.Append(info.Link);
+					hbuilder.Append($"<a href=\"{record.Link}\">{record.Name}</a>");
+					tbuilder.Append(record.Link);
 				}
 				else
 				{
-					hbuilder.Append($"<p><a href=\"{info.Link}\">{info.Name}</a></p>");
-					tbuilder.Append($"{info.Link}\n");
+					hbuilder.Append($"<p><a href=\"{record.Link}\">{record.Name}</a></p>");
+					tbuilder.Append($"{record.Link}\n");
 				}
 
 			}
@@ -549,7 +481,7 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private void ShowPageOutline(HierarchyInfo info)
+		private void ShowPageOutline(HistoryRecord info)
 		{
 			LoadPageHeadings(info.PageId);
 		}
