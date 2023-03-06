@@ -4,13 +4,13 @@
 
 namespace River.OneMoreAddIn.Commands
 {
+	using Newtonsoft.Json;
 	using System;
 	using System.Collections.Generic;
 	using System.IO;
-	using System.Linq;
 	using System.Threading;
 	using System.Threading.Tasks;
-	using System.Xml.Linq;
+	using HistoryRecord = OneNote.HierarchyInfo;
 
 
 	/// <summary>
@@ -31,7 +31,7 @@ namespace River.OneMoreAddIn.Commands
 
 		public NavigationProvider()
 		{
-			path = Path.Combine(PathHelper.GetAppDataPath(), "Navigator.xml");
+			path = Path.Combine(PathHelper.GetAppDataPath(), "Navigator.json");
 			lastWrite = DateTime.MinValue;
 		}
 
@@ -121,83 +121,7 @@ namespace River.OneMoreAddIn.Commands
 
 
 		// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-		/// <summary>
-		/// Records the given list of page IDs as "pinned" items.
-		/// </summary>
-		/// <param name="list">A list of page IDs</param>
-		/// <returns>True if the pinned list is updated; false if no changes needed</returns>
-		public async Task<bool> PinPages(List<string> list)
-		{
-			await semalock.WaitAsync();
-
-			try
-			{
-				var root = await Read();
-
-				var pinned = root.Element("pinned");
-				if (pinned == null)
-				{
-					pinned = new XElement("pinned");
-					root.Add(pinned);
-				}
-
-				var updated = false;
-				list.ForEach(id =>
-				{
-					if (!pinned.Elements().Any(e => e.Value == id))
-					{
-						pinned.Add(new XElement("page", id));
-						updated = true;
-					}
-				});
-
-
-				if (updated)
-				{
-					await Save(root);
-				}
-
-				return updated;
-			}
-			finally
-			{
-				semalock.Release();
-			}
-		}
-
-
-		/// <summary>
-		/// Returns the list of pinned items saved by the user.
-		/// </summary>
-		/// <returns></returns>
-		public async Task<List<HistoryRecord>> ReadPinned()
-		{
-			await semalock.WaitAsync();
-
-			try
-			{
-				var root = await Read();
-
-				var pinned = root.Element("pinned");
-				if (pinned != null)
-				{
-					return pinned.Elements()
-						.Select(e => new HistoryRecord
-						{
-							PageID = e.Value
-						})
-						.ToList();
-				}
-
-				return new List<HistoryRecord>();
-			}
-			finally
-			{
-				semalock.Release();
-			}
-		}
-
+		// History...
 
 		/// <summary>
 		/// Returns the list of history items tracking visited pages.
@@ -209,21 +133,8 @@ namespace River.OneMoreAddIn.Commands
 			{
 				await semalock.WaitAsync();
 
-				var root = await Read();
-
-				var history = root.Element("history");
-				if (history == null)
-				{
-					return new List<HistoryRecord>();
-				}
-
-				return history.Elements("page")
-					.Select(e => new HistoryRecord
-					{
-						PageID = e.Value,
-						Visited = long.Parse(e.Attribute("visited").Value)
-					})
-					.ToList();
+				var log = await Read();
+				return log.History;
 			}
 			finally
 			{
@@ -250,44 +161,123 @@ namespace River.OneMoreAddIn.Commands
 
 			try
 			{
-				var root = await Read();
-
-				var history = root.Element("history");
-				if (history == null)
-				{
-					history = new XElement("history");
-					root.Add(history);
-				}
+				var log = await Read();
 
 				var updated = false;
 
-				var node = history.Elements("page").FirstOrDefault(e => e.Value == pageID);
-				if (node == null)
+				HistoryRecord record;
+				var index = log.History.FindIndex(r => r.PageId == pageID);
+				if (index < 0)
 				{
-					node = new XElement("page", pageID);
-					history.AddFirst(node);
+					record = Resolve(pageID);
+					log.History.Insert(0, record);
 					updated = true;
 				}
 				else
 				{
-					if (node != history.Elements().First())
+					record = log.History[index];
+					if (index > 0)
 					{
-						node.Remove();
-						history.AddFirst(node);
+						log.History.RemoveAt(index);
+						log.History.Insert(0, record);
 						updated = true;
 					}
 				}
 
 				if (updated)
 				{
-					node.SetAttributeValue("visited", DateTime.Now.GetTickSeconds());
+					record.Visited = DateTime.Now.GetTickSeconds();
 
-					if (history.Elements().Count() > depth)
+					if (log.History.Count > depth)
 					{
-						history.Elements().Skip(depth).Remove();
+						log.History.RemoveRange(depth, log.History.Count - depth);
 					}
 
-					await Save(root);
+					await Save(log);
+				}
+
+				return updated;
+			}
+			finally
+			{
+				semalock.Release();
+			}
+		}
+
+
+		private HistoryRecord Resolve(string pageID)
+		{
+			using var one = new OneNote { FallThrough = true };
+
+			try
+			{
+				// might be null if the page no longer exits; exception raised in GetPageInfo
+				return one.GetPageInfo(pageID);
+			}
+			catch (System.Runtime.InteropServices.COMException)
+			{
+				logger.WriteLine($"navigator resolve skipping broken page {pageID}");
+			}
+			catch (Exception exc)
+			{
+				logger.WriteLine($"navigator can't resolve page {pageID}", exc);
+			}
+
+			return null;
+		}
+
+
+		// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+		// Pinned...
+
+		/// <summary>
+		/// Returns the list of pinned items saved by the user.
+		/// </summary>
+		/// <returns></returns>
+		public async Task<List<HistoryRecord>> ReadPinned()
+		{
+			await semalock.WaitAsync();
+
+			try
+			{
+				var log = await Read();
+				return log.Pinned;
+			}
+			finally
+			{
+				semalock.Release();
+			}
+		}
+
+
+		/// <summary>
+		/// Records the given list of page IDs as "pinned" items
+		/// </summary>
+		/// <param name="records">A list of page IDs</param>
+		/// <returns>True if the pinned list is updated; false if no changes needed</returns>
+		public async Task<bool> AddPinned(List<HistoryRecord> records)
+		{
+			await semalock.WaitAsync();
+
+			try
+			{
+				var log = await Read();
+
+				var updated = false;
+				records.ForEach(record =>
+				{
+					var index = log.Pinned.FindIndex(p => p.PageId == record.PageId);
+					if (index < 0)
+					{
+						log.Pinned.Add(record);
+						updated = true;
+					}
+				});
+
+
+				if (updated)
+				{
+					await Save(log);
 				}
 
 				return updated;
@@ -302,34 +292,18 @@ namespace River.OneMoreAddIn.Commands
 		/// <summary>
 		/// Saves the pinned list; used when reordering pages
 		/// </summary>
-		/// <param name="list">Reordered list of page IDs</param>
+		/// <param name="records">Reordered list of page IDs</param>
 		/// <returns></returns>
-		public async Task SavePinned(List<string> list)
+		public async Task SavePinned(List<HistoryRecord> records)
 		{
 			await semalock.WaitAsync();
 
 			try
 			{
-				var root = await Read();
-
-				var pinned = root.Element("pinned");
-				if (pinned == null)
-				{
-					pinned = new XElement("pinned");
-					root.Add(pinned);
-				}
-
-				// clear
-				pinned.Elements().Remove();
-
-				// add
-				list.ForEach(id =>
-				{
-					pinned.Add(new XElement("page", id));
-				});
-
-
-				await Save(root);
+				var log = await Read();
+				log.Pinned.Clear();
+				log.Pinned.AddRange(records);
+				await Save(log);
 			}
 			finally
 			{
@@ -341,30 +315,23 @@ namespace River.OneMoreAddIn.Commands
 		/// <summary>
 		/// Removes the list of page IDs from the pinned list.
 		/// </summary>
-		/// <param name="list"></param>
+		/// <param name="records"></param>
 		/// <returns></returns>
-		public async Task<bool> UnpinPages(List<string> list)
+		public async Task<bool> UnpinPages(List<HistoryRecord> records)
 		{
 			await semalock.WaitAsync();
 
 			try
 			{
-				var root = await Read();
-
-				var pinned = root.Element("pinned");
-				if (pinned == null)
-				{
-					pinned = new XElement("pinned");
-					root.Add(pinned);
-				}
+				var log = await Read();
 
 				var updated = false;
-				list.ForEach(id =>
+				records.ForEach(record =>
 				{
-					var pin = pinned.Elements().FirstOrDefault(e => e.Value == id);
-					if (pin != null)
+					var index = log.Pinned.FindIndex(p => p.PageId == record.PageId);
+					if (index >= 0)
 					{
-						pin.Remove();
+						log.Pinned.RemoveAt(index);
 						updated = true;
 					}
 				});
@@ -372,7 +339,7 @@ namespace River.OneMoreAddIn.Commands
 
 				if (updated)
 				{
-					await Save(root);
+					await Save(log);
 				}
 
 				return updated;
@@ -384,9 +351,12 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private async Task<XElement> Read()
+		// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+		// Helpers...
+
+		private async Task<HistoryLog> Read()
 		{
-			XElement root = null;
+			HistoryLog log = null;
 
 			if (File.Exists(path))
 			{
@@ -401,31 +371,25 @@ namespace River.OneMoreAddIn.Commands
 
 					using var reader = new StreamReader(stream);
 
-					root = XElement.Parse(await reader.ReadToEndAsync());
+					log = JsonConvert.DeserializeObject<HistoryLog>(await reader.ReadToEndAsync());
 				}
 				catch (Exception exc)
 				{
 					logger.WriteLine($"error reading {path}", exc);
-					root = null;
+					log = null;
 				}
 			}
 
-			// file not found or problem reading then initialize with defaults
-			root ??= new XElement("navigation",
-				new XElement("history"),
-				new XElement("pinned")
-			);
-
-			return root;
+			return log ?? new HistoryLog();
 		}
 
 
-		private async Task Save(XElement root)
+		private async Task Save(HistoryLog log)
 		{
-			var xml = root.ToString(SaveOptions.None);
-
 			try
 			{
+				var json = JsonConvert.SerializeObject(log, Formatting.Indented);
+
 				// ensure we have ReadWrite sharing enabled so we don't block access
 				// between NavigationService and NavigationDialog
 				using var stream = new FileStream(path,
@@ -437,7 +401,7 @@ namespace River.OneMoreAddIn.Commands
 				stream.SetLength(0);
 
 				using var writer = new StreamWriter(stream);
-				await writer.WriteAsync(xml);
+				await writer.WriteAsync(json);
 			}
 			catch (Exception exc)
 			{
