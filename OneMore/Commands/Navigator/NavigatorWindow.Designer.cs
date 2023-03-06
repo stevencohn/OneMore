@@ -40,10 +40,10 @@
 			this.controlPanel = new System.Windows.Forms.Panel();
 			this.closeButton = new System.Windows.Forms.Button();
 			this.mainContainer = new System.Windows.Forms.SplitContainer();
-			this.pageBox = new System.Windows.Forms.FlowLayoutPanel();
-			this.head1Panel = new System.Windows.Forms.Panel();
+			this.pageBox = new River.OneMoreAddIn.UI.MoreFlowLayoutPanel();
+			this.pageHeadPanel = new System.Windows.Forms.Panel();
 			this.refreshButton = new System.Windows.Forms.Button();
-			this.head1Label = new System.Windows.Forms.Label();
+			this.pageHeadLabel = new System.Windows.Forms.Label();
 			this.subContainer = new System.Windows.Forms.SplitContainer();
 			this.pinnedBox = new River.OneMoreAddIn.UI.MoreListView();
 			this.pinnedHeadPanel = new System.Windows.Forms.Panel();
@@ -63,7 +63,7 @@
 			this.mainContainer.Panel1.SuspendLayout();
 			this.mainContainer.Panel2.SuspendLayout();
 			this.mainContainer.SuspendLayout();
-			this.head1Panel.SuspendLayout();
+			this.pageHeadPanel.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.subContainer)).BeginInit();
 			this.subContainer.Panel1.SuspendLayout();
 			this.subContainer.Panel2.SuspendLayout();
@@ -89,7 +89,7 @@
 			this.closeButton.Location = new System.Drawing.Point(407, 13);
 			this.closeButton.Name = "closeButton";
 			this.closeButton.Size = new System.Drawing.Size(108, 38);
-			this.closeButton.TabIndex = 2;
+			this.closeButton.TabIndex = 0;
 			this.closeButton.Text = "Close";
 			this.closeButton.UseVisualStyleBackColor = true;
 			this.closeButton.Click += new System.EventHandler(this.CloseOnClick);
@@ -106,7 +106,7 @@
 			// 
 			this.mainContainer.Panel1.BackColor = System.Drawing.SystemColors.Window;
 			this.mainContainer.Panel1.Controls.Add(this.pageBox);
-			this.mainContainer.Panel1.Controls.Add(this.head1Panel);
+			this.mainContainer.Panel1.Controls.Add(this.pageHeadPanel);
 			this.mainContainer.Panel1MinSize = 80;
 			// 
 			// mainContainer.Panel2
@@ -125,19 +125,20 @@
 			this.pageBox.Location = new System.Drawing.Point(0, 41);
 			this.pageBox.Name = "pageBox";
 			this.pageBox.Size = new System.Drawing.Size(528, 250);
-			this.pageBox.TabIndex = 4;
+			this.pageBox.TabIndex = 0;
 			// 
-			// head1Panel
+			// pageHeadPanel
 			// 
-			this.head1Panel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(205)))), ((int)(((byte)(179)))), ((int)(((byte)(218)))));
-			this.head1Panel.Controls.Add(this.refreshButton);
-			this.head1Panel.Controls.Add(this.head1Label);
-			this.head1Panel.Dock = System.Windows.Forms.DockStyle.Top;
-			this.head1Panel.Location = new System.Drawing.Point(0, 0);
-			this.head1Panel.Margin = new System.Windows.Forms.Padding(0);
-			this.head1Panel.Name = "head1Panel";
-			this.head1Panel.Size = new System.Drawing.Size(528, 41);
-			this.head1Panel.TabIndex = 0;
+			this.pageHeadPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(205)))), ((int)(((byte)(179)))), ((int)(((byte)(218)))));
+			this.pageHeadPanel.Controls.Add(this.refreshButton);
+			this.pageHeadPanel.Controls.Add(this.pageHeadLabel);
+			this.pageHeadPanel.Dock = System.Windows.Forms.DockStyle.Top;
+			this.pageHeadPanel.Location = new System.Drawing.Point(0, 0);
+			this.pageHeadPanel.Margin = new System.Windows.Forms.Padding(0);
+			this.pageHeadPanel.Name = "pageHeadPanel";
+			this.pageHeadPanel.Size = new System.Drawing.Size(528, 41);
+			this.pageHeadPanel.TabIndex = 0;
+			this.pageHeadPanel.Click += new System.EventHandler(this.PanelFocusOnClick);
 			// 
 			// refreshButton
 			// 
@@ -148,22 +149,23 @@
 			this.refreshButton.Location = new System.Drawing.Point(481, 1);
 			this.refreshButton.Name = "refreshButton";
 			this.refreshButton.Size = new System.Drawing.Size(35, 37);
-			this.refreshButton.TabIndex = 4;
+			this.refreshButton.TabIndex = 0;
 			this.refreshButton.Text = "↻";
 			this.refreshButton.TextAlign = System.Drawing.ContentAlignment.TopCenter;
 			this.tooltip.SetToolTip(this.refreshButton, "Refresh headings from current page");
 			this.refreshButton.UseVisualStyleBackColor = true;
 			this.refreshButton.Click += new System.EventHandler(this.RefreshPageHeadings);
 			// 
-			// head1Label
+			// pageHeadLabel
 			// 
-			this.head1Label.AutoSize = true;
-			this.head1Label.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.head1Label.Location = new System.Drawing.Point(12, 9);
-			this.head1Label.Name = "head1Label";
-			this.head1Label.Size = new System.Drawing.Size(216, 22);
-			this.head1Label.TabIndex = 0;
-			this.head1Label.Text = "Current page title here";
+			this.pageHeadLabel.AutoSize = true;
+			this.pageHeadLabel.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.pageHeadLabel.Location = new System.Drawing.Point(12, 9);
+			this.pageHeadLabel.Name = "pageHeadLabel";
+			this.pageHeadLabel.Size = new System.Drawing.Size(216, 22);
+			this.pageHeadLabel.TabIndex = 0;
+			this.pageHeadLabel.Text = "Current page title here";
+			this.pageHeadLabel.Click += new System.EventHandler(this.PanelFocusOnClick);
 			// 
 			// subContainer
 			// 
@@ -205,7 +207,7 @@
 			this.pinnedBox.RowHeight = 29;
 			this.pinnedBox.Size = new System.Drawing.Size(528, 212);
 			this.pinnedBox.SortedBackground = System.Drawing.SystemColors.Window;
-			this.pinnedBox.TabIndex = 3;
+			this.pinnedBox.TabIndex = 0;
 			this.pinnedBox.UseCompatibleStateImageBehavior = false;
 			this.pinnedBox.View = System.Windows.Forms.View.Details;
 			// 
@@ -224,6 +226,7 @@
 			this.pinnedHeadPanel.Padding = new System.Windows.Forms.Padding(0, 2, 5, 2);
 			this.pinnedHeadPanel.Size = new System.Drawing.Size(528, 41);
 			this.pinnedHeadPanel.TabIndex = 1;
+			this.pinnedHeadPanel.Click += new System.EventHandler(this.PanelFocusOnClick);
 			// 
 			// copyPinnedButton
 			// 
@@ -234,7 +237,7 @@
 			this.copyPinnedButton.Location = new System.Drawing.Point(440, 3);
 			this.copyPinnedButton.Name = "copyPinnedButton";
 			this.copyPinnedButton.Size = new System.Drawing.Size(35, 35);
-			this.copyPinnedButton.TabIndex = 6;
+			this.copyPinnedButton.TabIndex = 2;
 			this.copyPinnedButton.Text = "🔗";
 			this.copyPinnedButton.TextAlign = System.Drawing.ContentAlignment.TopCenter;
 			this.tooltip.SetToolTip(this.copyPinnedButton, "Copy selected items to the clipboard");
@@ -250,7 +253,7 @@
 			this.upButton.Location = new System.Drawing.Point(358, 2);
 			this.upButton.Name = "upButton";
 			this.upButton.Size = new System.Drawing.Size(35, 37);
-			this.upButton.TabIndex = 5;
+			this.upButton.TabIndex = 0;
 			this.upButton.Text = "↥";
 			this.upButton.TextAlign = System.Drawing.ContentAlignment.TopCenter;
 			this.tooltip.SetToolTip(this.upButton, "Move selected items up");
@@ -266,7 +269,7 @@
 			this.downButton.Location = new System.Drawing.Point(399, 3);
 			this.downButton.Name = "downButton";
 			this.downButton.Size = new System.Drawing.Size(35, 37);
-			this.downButton.TabIndex = 4;
+			this.downButton.TabIndex = 1;
 			this.downButton.Text = "↧";
 			this.downButton.TextAlign = System.Drawing.ContentAlignment.TopCenter;
 			this.tooltip.SetToolTip(this.downButton, "Move selected items down");
@@ -298,6 +301,7 @@
 			this.pinnedHeadLabel.Size = new System.Drawing.Size(151, 22);
 			this.pinnedHeadLabel.TabIndex = 1;
 			this.pinnedHeadLabel.Text = "My Reading List";
+			this.pinnedHeadLabel.Click += new System.EventHandler(this.PanelFocusOnClick);
 			// 
 			// historyBox
 			// 
@@ -314,7 +318,7 @@
 			this.historyBox.RowHeight = 29;
 			this.historyBox.Size = new System.Drawing.Size(528, 287);
 			this.historyBox.SortedBackground = System.Drawing.SystemColors.Window;
-			this.historyBox.TabIndex = 2;
+			this.historyBox.TabIndex = 0;
 			this.historyBox.UseCompatibleStateImageBehavior = false;
 			this.historyBox.View = System.Windows.Forms.View.Details;
 			// 
@@ -331,6 +335,7 @@
 			this.historyHeadPanel.Padding = new System.Windows.Forms.Padding(5, 2, 5, 2);
 			this.historyHeadPanel.Size = new System.Drawing.Size(528, 41);
 			this.historyHeadPanel.TabIndex = 1;
+			this.historyHeadPanel.Click += new System.EventHandler(this.PanelFocusOnClick);
 			// 
 			// copyHistoryButton
 			// 
@@ -341,7 +346,7 @@
 			this.copyHistoryButton.Location = new System.Drawing.Point(440, 2);
 			this.copyHistoryButton.Name = "copyHistoryButton";
 			this.copyHistoryButton.Size = new System.Drawing.Size(35, 35);
-			this.copyHistoryButton.TabIndex = 3;
+			this.copyHistoryButton.TabIndex = 0;
 			this.copyHistoryButton.Text = "🔗";
 			this.copyHistoryButton.TextAlign = System.Drawing.ContentAlignment.TopCenter;
 			this.tooltip.SetToolTip(this.copyHistoryButton, "Copy selected items to the clipboard");
@@ -357,7 +362,7 @@
 			this.pinButton.Location = new System.Drawing.Point(481, 2);
 			this.pinButton.Name = "pinButton";
 			this.pinButton.Size = new System.Drawing.Size(35, 35);
-			this.pinButton.TabIndex = 2;
+			this.pinButton.TabIndex = 1;
 			this.pinButton.Text = "📌";
 			this.pinButton.TextAlign = System.Drawing.ContentAlignment.TopCenter;
 			this.tooltip.SetToolTip(this.pinButton, "Add selected items to My Reading List");
@@ -373,6 +378,7 @@
 			this.historyHeadLabel.Size = new System.Drawing.Size(74, 22);
 			this.historyHeadLabel.TabIndex = 1;
 			this.historyHeadLabel.Text = "History";
+			this.historyHeadLabel.Click += new System.EventHandler(this.PanelFocusOnClick);
 			// 
 			// NavigatorWindow
 			// 
@@ -389,10 +395,10 @@
 			this.Name = "NavigatorWindow";
 			this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
 			this.Text = "OneMore Navigator";
-			this.Activated += new System.EventHandler(this.TopOnShown);
+			this.Activated += new System.EventHandler(this.TopOnShownOnActivate);
 			this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.SaveOnFormClosing);
 			this.Load += new System.EventHandler(this.PositionOnLoad);
-			this.Shown += new System.EventHandler(this.TopOnShown);
+			this.Shown += new System.EventHandler(this.TopOnShownOnActivate);
 			this.LocationChanged += new System.EventHandler(this.TrackOnLocationChanged);
 			this.SizeChanged += new System.EventHandler(this.SetLimitsOnSizeChanged);
 			this.Layout += new System.Windows.Forms.LayoutEventHandler(this.TrackMinimizedOnLayout);
@@ -402,8 +408,8 @@
 			this.mainContainer.Panel2.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.mainContainer)).EndInit();
 			this.mainContainer.ResumeLayout(false);
-			this.head1Panel.ResumeLayout(false);
-			this.head1Panel.PerformLayout();
+			this.pageHeadPanel.ResumeLayout(false);
+			this.pageHeadPanel.PerformLayout();
 			this.subContainer.Panel1.ResumeLayout(false);
 			this.subContainer.Panel2.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.subContainer)).EndInit();
@@ -421,16 +427,16 @@
 		private System.Windows.Forms.Panel controlPanel;
 		private System.Windows.Forms.Button closeButton;
 		private System.Windows.Forms.SplitContainer mainContainer;
-		private System.Windows.Forms.Panel head1Panel;
+		private System.Windows.Forms.Panel pageHeadPanel;
 		private System.Windows.Forms.SplitContainer subContainer;
 		private System.Windows.Forms.Panel pinnedHeadPanel;
 		private System.Windows.Forms.Panel historyHeadPanel;
-		private System.Windows.Forms.Label head1Label;
+		private System.Windows.Forms.Label pageHeadLabel;
 		private System.Windows.Forms.Label pinnedHeadLabel;
 		private System.Windows.Forms.Label historyHeadLabel;
 		private River.OneMoreAddIn.UI.MoreListView pinnedBox;
 		private River.OneMoreAddIn.UI.MoreListView historyBox;
-		private System.Windows.Forms.FlowLayoutPanel pageBox;
+		private River.OneMoreAddIn.UI.MoreFlowLayoutPanel pageBox;
 		private System.Windows.Forms.Button pinButton;
 		private System.Windows.Forms.Button unpinButton;
 		private System.Windows.Forms.Button refreshButton;

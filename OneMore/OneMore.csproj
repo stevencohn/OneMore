@@ -153,7 +153,7 @@
     <Compile Include="Commands\File\Markdown\OneMoreDigRenderer.cs" />
     <Compile Include="Commands\Images\DrawPlantUmlCommand.cs" />
     <Compile Include="Commands\Images\OpenImageWithCommand.cs" />
-    <Compile Include="Commands\Navigator\HistoryListViewItem.cs">
+    <Compile Include="Commands\Navigator\HistoryControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Commands\Navigator\HistoryLog.cs" />
@@ -417,6 +417,9 @@
     </Compile>
     <Compile Include="UI\MoreExpander.Designer.cs">
       <DependentUpon>MoreExpander.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\MoreFlowLayoutPanel.cs">
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="UI\RenameDialog.cs">
       <SubType>Form</SubType>

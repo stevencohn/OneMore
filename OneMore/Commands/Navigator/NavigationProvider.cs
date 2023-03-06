@@ -5,6 +5,7 @@
 namespace River.OneMoreAddIn.Commands
 {
 	using Newtonsoft.Json;
+	using River.OneMoreAddIn.Settings;
 	using System;
 	using System.Collections.Generic;
 	using System.IO;
@@ -176,7 +177,9 @@ namespace River.OneMoreAddIn.Commands
 				else
 				{
 					record = log.History[index];
-					if (index > 0)
+					UpdateTitle(record);
+
+					if (index >= 0)
 					{
 						log.History.RemoveAt(index);
 						log.History.Insert(0, record);
@@ -207,11 +210,10 @@ namespace River.OneMoreAddIn.Commands
 
 		private HistoryRecord Resolve(string pageID)
 		{
-			using var one = new OneNote { FallThrough = true };
-
 			try
 			{
 				// might be null if the page no longer exits; exception raised in GetPageInfo
+				using var one = new OneNote { FallThrough = true };
 				return one.GetPageInfo(pageID);
 			}
 			catch (System.Runtime.InteropServices.COMException)
@@ -224,6 +226,25 @@ namespace River.OneMoreAddIn.Commands
 			}
 
 			return null;
+		}
+
+
+		private void UpdateTitle(HistoryRecord record)
+		{
+			try
+			{
+				using var one = new OneNote { FallThrough = true };
+				var page = one.GetPage(record.PageId, OneNote.PageDetail.Basic);
+				record.Name = page.Title;
+			}
+			catch (System.Runtime.InteropServices.COMException)
+			{
+				logger.WriteLine($"navigator update title skipping broken page {record.PageId}");
+			}
+			catch (Exception exc)
+			{
+				logger.WriteLine($"navigator can't udpate title for page {record.PageId}", exc);
+			}
 		}
 
 

@@ -45,12 +45,14 @@ namespace River.OneMoreAddIn.Commands
 				return;
 			}
 
-			window.ForceTopMost();
-
 			if (window.WindowState == FormWindowState.Minimized)
 			{
 				window.WindowState = FormWindowState.Normal;
 			}
+
+			window.ForceTopMost();
+			window.Activate();
+			window.Focus();
 		}
 
 
