@@ -168,8 +168,8 @@ namespace River.OneMoreAddIn
 			var sequence = string.Empty;
 			var mods = (HotModifier)HotModifiers;
 			if (mods.HasFlag(HotModifier.Control)) sequence = $"{sequence}Ctrl+";
-			if (mods.HasFlag(HotModifier.Shift)) sequence = $"{sequence}Shift+";
 			if (mods.HasFlag(HotModifier.Alt)) sequence = $"{sequence}Alt+";
+			if (mods.HasFlag(HotModifier.Shift)) sequence = $"{sequence}Shift+";
 			return $"{sequence}{(Keys)Key}";
 		}
 	}
