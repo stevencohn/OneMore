@@ -45,8 +45,7 @@ namespace River.OneMoreAddIn
 		private static volatile IntPtr mhandle;         // message window handle
 		private static GCHandle mroot;                  // rooted handle to message window
 
-		private static uint oprocessId;                 // onenote process ID
-		private static uint dprocessId;                 // onemore dllhost process ID
+		private static uint oneNotePID;                 // onenote process ID
 
 		private static bool registered = false;
 
@@ -63,8 +62,7 @@ namespace River.OneMoreAddIn
 		public static void Initialize()
 		{
 			using var one = new OneNote();
-			Native.GetWindowThreadProcessId(one.WindowHandle, out oprocessId);
-			dprocessId = (uint)Process.GetCurrentProcess().Id;
+			Native.GetWindowThreadProcessId(one.WindowHandle, out oneNotePID);
 
 			var mthread = new Thread(delegate () { Application.Run(new MessageWindow()); })
 			{
@@ -159,16 +157,10 @@ namespace River.OneMoreAddIn
 
 		private sealed class MessageWindow : Form
 		{
-			private readonly uint msgThreadId;
-
 			public MessageWindow()
 			{
 				mwindow = this;
 				mhandle = Handle;
-
-				// thread of MessageWindow would be a separate dllhost.exe
-				// process started by the OneNote process (with SysWOW64 in its command line)
-				msgThreadId = Native.GetWindowThreadProcessId(mhandle, out _);
 
 				// maintain a ref so GC doesn't remove it and cause exceptions
 				var evDelegate = new Native.WinEventDelegate(WinEventProc);
@@ -203,7 +195,7 @@ namespace River.OneMoreAddIn
 					// OneNote.exe from another app; while msgThreadId will be current when
 					// opening a OneMore dialog such as "Search and Replace"
 
-					if (pid == oprocessId || pid == dprocessId)
+					if (pid == oneNotePID)
 					{
 						if (!registered && registeredKeys.Count > 0)
 						{
@@ -235,7 +227,7 @@ namespace River.OneMoreAddIn
 				{
 					// check if this is the main OneNote.exe thread and not a dllhost.exe thread
 					Native.GetWindowThreadProcessId(Native.GetForegroundWindow(), out var pid);
-					if (pid == oprocessId)
+					if (pid == oneNotePID)
 					{
 						OnHotKeyPressed(new HotkeyEventArgs(m.LParam));
 					}
