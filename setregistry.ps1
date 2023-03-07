@@ -7,6 +7,7 @@ intead of the program files install path
 Resets the registry settings back to the install path
 #>
 
+[CmdletBinding()]
 param ([switch] $Reset)
 
 Begin
@@ -14,6 +15,26 @@ Begin
     $script:guid = '{88AB88AB-CDFB-4C68-9C3A-F10B75A5BC61}'
     $script:modern = ($env:PROCESSOR_ARCHITECTURE -match '64')
     $script:onewow = $false
+
+    function WriteTitle
+    {
+        param($text)
+        Write-Host "`n$text..." -Fore DarkCyan
+    }
+
+    function WriteOK
+    {
+        param($text)
+        Write-Host 'OK ' -Fore Green -NoNewLine
+        Write-Host $text
+    }
+
+    function WriteBad
+    {
+        param($text)
+        Write-Host 'BAD ' -Fore Red -NoNewLine
+        Write-Host $text -Fore Yellow
+    }
 
     function SetOneNoteProperties
     {
@@ -63,12 +84,14 @@ Begin
 
     function SetProtocolHandler
     {
+        WriteTitle 'Protocol handler'
         # onemore:// protocol handler registration
 	    $0 = 'Registry::HKEY_CLASSES_ROOT\onemore\shell\open\command'
         if (Test-Path $0)
         {
-            Write-Host "setting $0"
 	        Set-ItemProperty $0 -Name '(Default)' -Type String -Value "`"$proto`" %1 %2 %3 %4 %5"
+            WriteOK $0
+            Write-Verbose "`"$proto`" %1 %2 %3 %4 %5"
         }
     }
 
@@ -78,13 +101,15 @@ Begin
 
         if ($wow) { $clsid = 'WOW6432Node\CLSID' } else { $clsid = 'CLSID' }
 
+        WriteTitle $clsid
         $0 = "Registry::HKEY_CLASSES_ROOT\$clsid\$guid\InprocServer32"
         if (Test-Path $0)
         {
-            Write-Host "setting $0"
             $asm = "River.OneMoreAddIn, Version=$pv, Culture=neutral, PublicKeyToken=null"
 	        Set-ItemProperty $0 -Name Assembly -Type String -Value $asm
 	        Set-ItemProperty $0 -Name CodeBase -Type String -Value $addin
+            WriteOK $0
+            Write-Verbose $addin
         }
 
         $1 = "Registry::HKEY_CLASSES_ROOT\$clsid\$guid\InprocServer32\$pv"
@@ -97,23 +122,27 @@ Begin
             Set-ItemProperty $1 -Name 'Class' -Type String -Value 'River.OneMoreAddIn.AddIn'
             Set-ItemProperty $1 -Name 'RuntimeVersion' (Get-ItemPropertyValue $0 -Name 'RuntimeVersion')
         }
-        Write-Host "setting $1"
         Set-ItemProperty $1 -Name CodeBase -Type String -Value $addin
+        WriteOK $1
     }
 
     function SetAppPath
     {
-        # app path
+        WriteTitle 'App Paths'
         $0 = 'Registry::HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\River.OneMoreAddIn.dll'
         if (Test-Path $0)
         {
-            Write-Host "setting $0"
 	        Set-ItemProperty $0 -Name Path -Type String -Value $addin
+            WriteOK $0
+            Write-Verbose $addin
         }
     }
 }
 Process
 {
+    $vcolor = $Host.PrivateData.VerboseForegroundColor
+    $Host.PrivateData.VerboseForegroundColor = 'DarkGray'
+
     SetOneNoteProperties
     SetPaths
 
@@ -127,4 +156,6 @@ Process
     }
 
     SetAppPath
+
+    $Host.PrivateData.VerboseForegroundColor = $vcolor
 }
