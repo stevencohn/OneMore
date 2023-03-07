@@ -153,7 +153,6 @@ Begin
 	        Set-ItemProperty $0 -Name Assembly -Type String -Value $asm
 	        Set-ItemProperty $0 -Name CodeBase -Type String -Value $addin
             WriteOK $0
-            Write-Verbose $addin
         }
 
         $1 = "Registry::HKEY_CLASSES_ROOT\$clsid\$guid\InprocServer32\$pv"
@@ -168,6 +167,7 @@ Begin
         }
         Set-ItemProperty $1 -Name CodeBase -Type String -Value $addin
         WriteOK $1
+        Write-Verbose $addin
     }
 
     function SetAppPath
