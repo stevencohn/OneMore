@@ -39,18 +39,16 @@ Begin
     function SetOneNoteProperties
     {
         if (-not $modern) {
-            $script:one64 = $false
+            $script:onewow = $false
             return
         }
 
         $0 = 'Registry::HKEY_CLASSES_ROOT\OneNote.Application\CLSID'
         $clsid = (Get-ItemPropertyValue -Path $0 -Name '(default)')
 
-        if ($onewow) {
+        $0 = "Registry::HKEY_CLASSES_ROOT\CLSID\$clsid\LocalServer32"
+        if (!(Test-Path $0)) {
             $0 = "Registry::HKEY_CLASSES_ROOT\WOW6432Node\CLSID\$clsid\LocalServer32"
-        }
-        else {
-            $0 = "Registry::HKEY_CLASSES_ROOT\CLSID\$clsid\LocalServer32"
         }
 
         $server = (Get-ItemPropertyValue -Path $0 -Name '(default)')
