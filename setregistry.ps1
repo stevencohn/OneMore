@@ -45,7 +45,14 @@ Begin
 
         $0 = 'Registry::HKEY_CLASSES_ROOT\OneNote.Application\CLSID'
         $clsid = (Get-ItemPropertyValue -Path $0 -Name '(default)')
-        $0 = "Registry::HKEY_CLASSES_ROOT\CLSID\$clsid\LocalServer32"
+
+        if ($onewow) {
+            $0 = "Registry::HKEY_CLASSES_ROOT\WOW6432Node\CLSID\$clsid\LocalServer32"
+        }
+        else {
+            $0 = "Registry::HKEY_CLASSES_ROOT\CLSID\$clsid\LocalServer32"
+        }
+
         $server = (Get-ItemPropertyValue -Path $0 -Name '(default)')
         $script:onewow = $server.Contains('Program Files (x86)')
     }
@@ -115,7 +122,7 @@ Begin
         $1 = "Registry::HKEY_CLASSES_ROOT\$clsid\$guid\InprocServer32\$pv"
         if (!(Test-Path $1))
         {
-            write-Host "creating $1"
+            write-Host "creating $1" -Fore Yellow
             New-Item -Path $0 -Name $pv | Out-Null
             $asm = "River.OneMoreAddIn, Version=$pv, Culture=neutral, PublicKeyToken=null"
 	        Set-ItemProperty $1 -Name 'Assembly' -Type String -Value $asm
