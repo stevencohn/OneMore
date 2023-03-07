@@ -153,7 +153,7 @@ Process
 
     SetOneNoteProperties
 
-    if (!SetPaths) { return }
+    if (!(SetPaths)) { return }
 
     $script:pv = MaKeVersion (Get-Item $addin | % { $_.VersionInfo.ProductVersion })
 
