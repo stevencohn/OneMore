@@ -16,6 +16,17 @@ Begin
     $script:modern = ($env:PROCESSOR_ARCHITECTURE -match '64')
     $script:onewow = $false
 
+    function HasKey
+    {
+        param($kpath)
+        if (-not (Test-Path $kpath))
+        {
+            write-Host "key not found: $kpath" -Fore Red
+            return $false
+        }
+        return $true
+    }
+
     function WriteTitle
     {
         param($text)
@@ -34,6 +45,31 @@ Begin
         param($text)
         Write-Host 'BAD ' -Fore Red -NoNewLine
         Write-Host $text -Fore Yellow
+    }
+
+    function ReportOneNoteVersion
+    {
+        Write-Host
+        $0 = "Registry::HKEY_CLASSES_ROOT\onenote\shell\Open\command"
+        if (-not (HasKey $0)) {
+            write-Host "cannot determine shell command path of OneNote"
+        } else {
+            $script:onewow = (Get-ItemPropertyValue -Path $0 -Name '(default)'
+                ).Contains('Program Files (x86)')
+        }
+
+        $0 = "Registry::HKEY_CLASSES_ROOT\OneNote.Application\CurVer"
+        if (-not (HasKey $0)) {
+            write-Host "cannot determine version of OneNote"
+        } else {
+            $parts = (Get-ItemPropertyValue -Path $0 -Name '(default)').Split('.')
+            $script:oneVersion = $parts[$parts.Length - 1] + ".0"
+            if ($onewow) {
+                Write-Host "OneNote version is $oneVersion (32-bit)"
+            } else {
+                Write-Host "OneNote version is $oneVersion (64-bit)"
+            }
+        }
     }
 
     function SetOneNoteProperties
@@ -151,6 +187,7 @@ Process
     $vcolor = $Host.PrivateData.VerboseForegroundColor
     $Host.PrivateData.VerboseForegroundColor = 'DarkGray'
 
+    ReportOneNoteVersion
     SetOneNoteProperties
 
     if (!(SetPaths)) { return }
