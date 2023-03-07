@@ -11,6 +11,7 @@ Begin
     $script:guid = '{88AB88AB-CDFB-4C68-9C3A-F10B75A5BC61}'
     $script:webview2client = '{F3017226-FE2A-4295-8BDF-00C3A9A7E4C5}'
     $script:modern = ($env:PROCESSOR_ARCHITECTURE -match '64')
+    $script:onewow = $false
 
     function WriteTitle
     {
@@ -96,13 +97,25 @@ Begin
             WriteOK "Office version is $offVersion"
         }
 
+        $0 = "Registry::HKEY_CLASSES_ROOT\onenote\shell\Open\command"
+        if (-not (HasKey $0)) {
+            write-Host "cannot determine shell command path of OneNote"
+        } else {
+            $script:onewow = (Get-ItemPropertyValue -Path $0 -Name '(default)'
+                ).Contains('Program Files (x86)');
+        }
+
         $0 = "Registry::HKEY_CLASSES_ROOT\OneNote.Application\CurVer"
         if (-not (HasKey $0)) {
             write-Host "cannot determine version of OneNote"
         } else {
             $parts = (Get-ItemPropertyValue -Path $0 -Name '(default)').Split('.')
             $script:oneVersion = $parts[$parts.Length - 1] + ".0"
-            WriteOK "OneNote version is $oneVersion"
+            if ($onewow) {
+                WriteOK "OneNote version is $oneVersion (32-bit)"
+            } else {
+                WriteOK "OneNote version is $oneVersion (64-bit)"
+            }
         }
     }
 
@@ -161,14 +174,18 @@ Begin
 
     function CheckCLSID
     {
-        WriteTitle "CLSID"
-        $0 = "Registry::HKEY_CLASSES_ROOT\CLSID\$guid"
+        param([boolean] $wow = $false)
+
+        if ($wow) { $clsid = 'WOW6432Node\CLSID' } else { $clsid = 'CLSID' }
+
+        WriteTitle $clsid
+        $0 = "Registry::HKEY_CLASSES_ROOT\$clsid\$guid"
         $ok = (HasKey $0)
         if ($ok) {
             $ok = (HasValue $0 '(default)' 'River.OneMoreAddIn.AddIn')
             $ok = (HasValue $0 'AppID' $guid) -and $ok
         }
-        if ($ok) { WriteOK $0 } else { WriteBad $0 }
+        if ($ok) { WriteOK $0 } else { WriteBad $0 ; return }
 
         $1 = "$0\Implemented Categories\{62C8FE65-4EBB-45E7-B440-6E39B2CDBF29}"
         $ver = $null
@@ -261,9 +278,15 @@ Begin
         if ($ok) { WriteOK $0 } else { WriteBad $0 }
 
         $0 = "Registry::HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\River.OneMoreAddIn.dll"
-        $ok = (HasValue $0 'Path' $codeBase)
-        if ($ok) { WriteOK $0 } else { WriteBad $0 }
-        Write-Verbose $lastvalue
+        if ($codebase -eq $null) {
+            Write-Host "CLSID codebase is not defined" -Fore Yellow
+            WriteBAD $0
+        } 
+        else {
+            $ok = (HasValue $0 'Path' $codeBase)
+            if ($ok) { WriteOK $0 } else { WriteBad $0 }
+            Write-Verbose $lastvalue
+        }
 
         $0 = "Registry::HKEY_CURRENT_USER\SOFTWARE\Policies\Microsoft\Office\$offVersion\Common\Security\Trusted Protocols\All Applications\onemore:"
         $ok = (HasKey $0)
@@ -330,6 +353,11 @@ Process
     CheckShell
     CheckAddIn
     CheckCLSID
+
+    if ($onewow) {
+        CheckCLSID $true
+    }
+
     CheckUser
     CheckWebView2
 
