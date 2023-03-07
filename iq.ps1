@@ -102,7 +102,7 @@ Begin
             write-Host "cannot determine shell command path of OneNote"
         } else {
             $script:onewow = (Get-ItemPropertyValue -Path $0 -Name '(default)'
-                ).Contains('Program Files (x86)');
+                ).Contains('Program Files (x86)')
         }
 
         $0 = "Registry::HKEY_CLASSES_ROOT\OneNote.Application\CurVer"

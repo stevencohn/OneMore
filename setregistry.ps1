@@ -68,11 +68,14 @@ Begin
             $script:proto = Join-Path $root 'OneMoreProtocolHandler\bin\Debug\OneMoreProtocolHandler.exe'
             if (!(Test-Path $addin))
             {
-                Write-Host "cannot find $addin" -Fore Yellow
-                Write-Host 'Build the OneMore solution before calling setregistry.ps1' -Fore Yellow
-                return
+                Write-Host "`ncannot find $addin" -Fore Yellow
+                Write-Host 'build the OneMore solution before calling setregistry.ps1' -Fore Yellow
+                Write-Host
+                return $false
             }
         }
+
+        return $true
     }
 
     # ProductVersion may be truncated such as "4.12" so this expands it to be "4.12.0.0"
@@ -149,7 +152,8 @@ Process
     $Host.PrivateData.VerboseForegroundColor = 'DarkGray'
 
     SetOneNoteProperties
-    SetPaths
+
+    if (!SetPaths) { return }
 
     $script:pv = MaKeVersion (Get-Item $addin | % { $_.VersionInfo.ProductVersion })
 
