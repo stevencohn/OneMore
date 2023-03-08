@@ -1,5 +1,73 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <hints>
+  <hint name="AboutDialog_clearLogLabel.Text">
+    <source>Clear the log file</source>
+    <preferred>Lösche Protokolldatei</preferred>
+  </hint>
+  <hint name="AboutDialog_NewVersionTitle">
+    <source>Update OneMore</source>
+    <preferred>Aktualisiere OneMore</preferred>
+  </hint>
+  <hint name="AboutDialog_pleaseLabel.Text">
+    <source>Please support future development of OneMore</source>
+    <preferred>Bitte unterstütze die zukünftige Entwicklung von OneMore</preferred>
+  </hint>
+  <hint name="AddFormula_linearMessage">
+    <source>Select one or more cells from the same row or the same column</source>
+    <preferred>Wähle  eine oder mehrere Zellen aus derselben Zeile oder derselben Spalte aus</preferred>
+  </hint>
+  <hint name="AliasSheet.Text">
+    <source>Define command aliases for use in the Command Palette</source>
+    <preferred>Definiere Befehlsaliase zur Verwendung in der Befehlspalette</preferred>
+  </hint>
+  <hint name="BiLinkCommand_NoTarget">
+    <source>Select a word or phrase from one paragraph</source>
+    <preferred>Wähle ein Wort oder einen Satz aus einem Absatz</preferred>
+  </hint>
+  <hint name="CommandPaletteDialog_introLabel.Text">
+    <source>Type a command and press Enter or click and item from the list</source>
+    <preferred>Gib einen Befehl ein und drücke die Eingabetaste oder klicke auf ein Element aus der Liste</preferred>
+  </hint>
+  <hint name="ContextMenuSheet_introBox.Text">
+    <source>Choose commands to display in the Page context menu. Menu items include all commands in that menu. Restart OneNote to see changes.</source>
+    <preferred>Wähle Befehle aus, die im Kontextmenü Seite angezeigt werden sollen. </preferred>
+  </hint>
+  <hint name="CrawlWebPageDialog_introBox.Text">
+    <source>Select links to import as sub-pages. These will be relinked to from this page.</source>
+    <preferred>Wähle Links, um als Unterseiten zu importieren. Diese werden von dieser Seite wieder hergestellt.</preferred>
+  </hint>
+  <hint name="CrawlWebPageDialog_selectLabel.Text">
+    <source>Select all</source>
+    <preferred>Wähle Alle</preferred>
+  </hint>
+  <hint name="CrawlWebPageDialog_useTextBox.Text">
+    <source>Apply Text columns to sub-page titles</source>
+    <preferred>Wende Textspalten auf Unterseitentitel an</preferred>
+  </hint>
+  <hint name="CreatePagesCommand_CreatePages">
+    <source>Would you like to create {0} pages?</source>
+    <preferred>Sollen {0} Seiten erstellt werden?</preferred>
+  </hint>
+  <hint name="CropImage_oneImage">
+    <source>Select one image to crop</source>
+    <preferred>Wähle ein Bild zum Zuschneiden aus</preferred>
+  </hint>
+  <hint name="CropImageDialog_introText.Text">
+    <source>Use the mouse to select an area to crop. Ctrl+D to deselect. Use the slider to rotate the image. Click OK to finish.</source>
+    <preferred>Verwende die Maus, um einen Bereich zum Zuschneiden auszuwählen. </preferred>
+  </hint>
+  <hint name="CropImageDialog_printout">
+    <source>This image is from a printout. If it is cropped, it will no longer be associated with that original file. Do you want to continue cropping?</source>
+    <preferred>Dieses Bild stammt von einem Ausdruck. Wenn es beschnitten wird, ist es nicht mehr mit dieser Originaldatei verknüpft. Mit dem Zuschneiden fortfahren?</preferred>
+  </hint>
+  <hint name="CropImageDialog_selectButton.Text">
+    <source>Select All</source>
+    <preferred>Alles auswählen</preferred>
+  </hint>
+  <hint name="EmbedSubpageCommand_SelectIntro">
+    <source>Select the page to embed on this page</source>
+    <preferred>Wähle die Seite aus, die in diese Seite eingebettet werden soll</preferred>
+  </hint>
   <hint name="Emoji_Architecture">
     <source>
       Architecture
@@ -8,13 +76,129 @@
       Architektur
     </preferred>
   </hint>
+  <hint name="Error_CursorContext">
+    <source>Position the cursor in the body of the page without selecting a range of text</source>
+    <preferred>Positioniere den Cursor im Körper der Seite, ohne einen Textbereich auszuwählen</preferred>
+  </hint>
+  <hint name="Error_SelectImage">
+    <source>Select an image before invoking this command</source>
+    <preferred>Wähle ein Bild aus, bevor dieser Befehl aufgerufen wird</preferred>
+  </hint>
+  <hint name="ExportDialog_underBox.Text">
+    <source>Replace special characters in the file name with underscores</source>
+    <preferred>Ersetze Sonderzeichen in dem Dateinamen mit Unterstrichen</preferred>
+  </hint>
+  <hint name="FitGridToTextCommand_noGrid">
+    <source>Enable grid lines before using this command</source>
+    <preferred>Aktiviere Rasterlinien, bevor dieser Befehl verwendet wird</preferred>
+  </hint>
+  <hint name="FormulaCommand_SelectOne">
+    <source>Select one or more table cells</source>
+    <preferred>Wähle eine oder mehrere Tabellenzellen aus</preferred>
+  </hint>
+  <hint name="GeneralSheet_enablersBox.Text">
+    <source>Enable dynamic menu context settings. Disable if you've added OneMore commands to the Quick Access toolbar</source>
+    <preferred>Aktiviere die Einstellungen für den dynamischen Menükontext. </preferred>
+  </hint>
+  <hint name="GeneralSheet_introBox.Text">
+    <source>Customize the overall behavior of OneMore</source>
+    <preferred>Passe das Gesamtverhalten von OneMore an</preferred>
+  </hint>
+  <hint name="GetImagesCommand_Cite">
+    <source>Would you like to annotate the image with its URL?</source>
+    <preferred>Soll das Bild mit seiner URL versehen werden?</preferred>
+  </hint>
+  <hint name="ImportDialog_introLabel.Text">
+    <source>Select a Word, PowerPoint, OneNote, Markdown, or XML file</source>
+    <preferred>Wähle eine Word-, PowerPoint-, OneNote-, Markdown- oder XML-Datei aus</preferred>
+  </hint>
+  <hint name="ImportDialog_OpenFileTitle">
+    <source>Choose file to import</source>
+    <preferred>Wähle die zu importierende Datei aus</preferred>
+  </hint>
+  <hint name="ImportDialog_powerSectionButton.Text">
+    <source>Create a new section with a page for each slide</source>
+    <preferred>Erstelle für jede Folie einen neuen Abschnitt mit einer Seite</preferred>
+  </hint>
+  <hint name="ImportOutlookTasksDialog_introBox.Text">
+    <source>Choose an entire folder or individual tasks to import from Outlook into OneNote. Disabled items indicate tasks already linked to OneNote</source>
+    <preferred>Wähle einen ganzen Ordner oder einzelne Aufgaben aus, die aus Outlook in OneNote importiert werden soll. </preferred>
+  </hint>
+  <hint name="InsertCellsCommand_NoSelection">
+    <source>Select one or more table cells</source>
+    <preferred>Wähle eine oder mehrere Tabellenzellen aus</preferred>
+  </hint>
+  <hint name="InsertCellsDialog_shiftDownRadio.Text">
+    <source>Shift cells down</source>
+    <preferred>Verschiebe die Zellen nach unten</preferred>
+  </hint>
+  <hint name="InsertCellsDialog_shiftRightRadio.Text">
+    <source>Shift cells right</source>
+    <preferred>Verschiebe die Zellen nach rechts</preferred>
+  </hint>
+  <hint name="InsertQRCommand_NoSelection">
+    <source>Select text to render as a new QR code</source>
+    <preferred>Wähle den Text aus, der als neuer QR-Code gerendert werden soll</preferred>
+  </hint>
+  <hint name="InsertTocDialog_pageRadio.Text">
+    <source>Insert table of headings on this page</source>
+    <preferred>Füge auf dieser Seite eine Tabelle mit Überschriften ein</preferred>
+  </hint>
+  <hint name="InsertTocDialog_pagesBox.Text">
+    <source>Include pages in each section</source>
+    <preferred>Füge Seiten in jeden Abschnitt ein</preferred>
+  </hint>
+  <hint name="InsertTocDialog_previewBox.Text">
+    <source>Include text preview of each page</source>
+    <preferred>Füge die Textvorschau der jeder Seite ein</preferred>
+  </hint>
+  <hint name="InsertTocDialog_rightAlignBox.Text">
+    <source>Right-align top of page link</source>
+    <preferred>Richte den Link oben auf der Seite rechts aus</preferred>
+  </hint>
+  <hint name="InsertTocDialog_topBox.Text">
+    <source>Add link to each heading to jump to top of page</source>
+    <preferred>Füge jeder Überschrift einen Link hinzu, um zum Seitenanfang zu springen</preferred>
+  </hint>
+  <hint name="JoinParagraphCommand_Select">
+    <source>Select two or more lines to join</source>
+    <preferred>Wähle zwei oder mehr Linien zum Verbinden aus</preferred>
+  </hint>
   <hint name="KeyboardSheet_introLabel.Text">
-    <source>
-      Manage my custom keyboard shortcuts. Select a command and press a key sequence.
-    </source>
-    <preferred>
-      Verwalten Sie Ihre benutzerdefinierten Tastenkombinationen. Wählen Sie einen Befehl aus und drücken Sie eine Tastenfolge.
-    </preferred>
+    <source>Manage my custom keyboard shortcuts. Select a command and press a key sequence.</source>
+    <preferred>Verwaltee meine benutzerdefinierten Tastenkombinationen. Wähle einen Befehl aus und drücke eine Tastenfolge.</preferred>
+  </hint>
+  <hint name="LinesSheet_introBox.Text">
+    <source>Customize the default style for horiztonal line snippets</source>
+    <preferred>Passe den Standardstil für horizontale Zeilenausschnitte an</preferred>
+  </hint>
+  <hint name="LinkDialog_introLabel.Text">
+    <source>Create linked references to the title of this page</source>
+    <preferred>Erstelle verlinkte Verweise auf den Titel dieser Seite</preferred>
+  </hint>
+  <hint name="MapDialog_synopsisBox.Text">
+    <source>Include a synopsis of each page</source>
+    <preferred>Füge eine Zusammenfassung jeder Seite hinzu</preferred>
+  </hint>
+  <hint name="NameStyleDialog_errorLabel.Text">
+    <source>Name exists. Choose a different name.</source>
+    <preferred>Name existiert. Wähle einen anderen Namen.</preferred>
+  </hint>
+  <hint name="NumberPagesDialog_introLabel.Text">
+    <source>Choose the numbering style</source>
+    <preferred>Wähle den Nummerierungsstil</preferred>
+  </hint>
+  <hint name="OpenImageWithCommand_selectOne">
+    <source>Select one image to open</source>
+    <preferred>Wähle ein Bild zum Öffnen aus</preferred>
+  </hint>
+  <hint name="PasteCellsCommand_SelectCell">
+    <source>Select a table cell where pasted cells should start overlaying</source>
+    <preferred>Wähle eine Tabellenzelle aus, in der eingefügte Zellen überlagert werden sollen</preferred>
+  </hint>
+  <hint name="PluginDialog_createRadio.Text">
+    <source>Create a new page named</source>
+    <preferred>Erstelle eine neue Seite mit dem Namen</preferred>
   </hint>
   <hint name="PluginDialog_okButton.Text">
     <source>
@@ -32,13 +216,13 @@
       Verwalte Plugins
     </preferred>
   </hint>
-  <hint name="ReorderDialog_label.Text">
-    <source>
-      Reorder how styles appear in the gallery. Also changes the order of headings in a TOC
-    </source>
-    <preferred>
-      Auswählen, wie Stile in der Galerie angezeigt werden
-    </preferred>
+  <hint name="RemindCommand_Reuse">
+    <source>Click Yes to update this existing report, No to create a new report, or Cancel</source>
+    <preferred>Klicke auf Ja, um diesen vorhandenen Bericht zu aktualisieren, auf Nein, um einen neuen Bericht zu erstellen, oder auf Abbrechen</preferred>
+  </hint>
+  <hint name="RemindDialog_snoozeLabel.Text">
+    <source>Click snooze to be reminded in</source>
+    <preferred>Klicke auf Snooze, um daran erinnert zu werden</preferred>
   </hint>
   <hint name="RemoveCitations_From">
     <source>
@@ -48,6 +232,208 @@
       Aus
     </preferred>
   </hint>
+  <hint name="RemoveDuplicatesDialog_includeTitlesBox.Text">
+    <source>Include page titles when comparing</source>
+    <preferred>Beziehe beim Vergleich Seitentitel mit ein</preferred>
+  </hint>
+  <hint name="RemoveDuplicatesNavigator_confirm1">
+    <source>Are you sure you want to delete the selected page?</source>
+    <preferred>Gewählte Seite wirklich löschen?</preferred>
+  </hint>
+  <hint name="RemoveDuplicatesNavigator_confirmAll">
+    <source>Are you sure you want to delete the {0} selected pages?</source>
+    <preferred>Ausgewählte Seiten {0} wirklich löschen?</preferred>
+  </hint>
+  <hint name="RemoveEmptyCommand_option">
+    <source>Remove all empty lines?
+
+Select Yes to remove all empty lines between paragraphs
+Select No to keep one empty line between paragraphs</source>
+    <preferred>Alle leeren Linien entfernen?
+
+Wähle Ja, um alle leeren Zeilen zwischen den Absätzen zu entfernen
+Wähle Nein, um eine leere Zeile zwischen den Absätzen zu halten</preferred>
+  </hint>
+  <hint name="RemoveSpacingDialog_beforeBox.Text">
+    <source>Remove spacing before paragraphs</source>
+    <preferred>Entferne den Abstand vor Absätzen</preferred>
+  </hint>
+  <hint name="ReorderDialog_label.Text">
+    <source>Reorder how styles appear in the gallery. Also changes the order of headings in a TOC</source>
+    <preferred>Ordne neu, wie Stile in der Galerie angezeigt werden. </preferred>
+  </hint>
+  <hint name="ReportRemindersDialog_introLabel.Text">
+    <source>Generate report for reminders in this scope</source>
+    <preferred>Erstelle Bericht für Erinnerungen in diesem Bereich</preferred>
+  </hint>
+  <hint name="ReportRemindersReuseDialog_newRadio.Text">
+    <source>Create a new report page</source>
+    <preferred>Erstelle eine neue Berichtsseite</preferred>
+  </hint>
+  <hint name="ReportRemindersReuseDialog_oldRadio.Text">
+    <source>Update this existing report</source>
+    <preferred>Aktualisiere diesen vorhandenen Bericht</preferred>
+  </hint>
+  <hint name="ResizeImagesDialog_limitsBox.Text">
+    <source>Resize all images
+Do not shrink larger images
+Do no enlarge smaller images</source>
+    <preferred>Größe aller Bilder ändern
+Größere Bilder nicht verkleinern
+Vergrößere kleinere Bilder nicht</preferred>
+  </hint>
+  <hint name="ribApplyStylesButton_Label">
+    <source>Apply These Styles to Page</source>
+    <preferred>Wende diese Stile auf die Seite an</preferred>
+  </hint>
+  <hint name="ribApplyStylesButton_Screentip">
+    <source>Apply these styles to all content on this page</source>
+    <preferred>Wende diese Stile auf alle Inhalte auf dieser Seite an</preferred>
+  </hint>
+  <hint name="RibbonBarSheet_introBox.Text">
+    <source>Choose which commands to include in the ribbon bar and whether to display icons or icons and lables. Restart OneNote to see changes.</source>
+    <preferred>Wähle aus, welche Befehle in die Multifunktionsleiste aufgenommen werden sollen und ob Symbole oder Symbole und Etiketten angezeigt werden sollen. </preferred>
+  </hint>
+  <hint name="ribCaptionAttachmentsButton_Screentip">
+    <source>Add a caption to each attachment on the page</source>
+    <preferred>Füge jedem Anhang auf der Seite eine Beschriftung hinzu</preferred>
+  </hint>
+  <hint name="ribChooseFavoriteButton_Label">
+    <source>Choose Favorite</source>
+    <preferred>Wähle Favorit</preferred>
+  </hint>
+  <hint name="ribClearBackgroundButton_Screentip">
+    <source>Reset the background color of the page</source>
+    <preferred>Setze die Hintergrundfarbe der Seite zurück</preferred>
+  </hint>
+  <hint name="ribCopyAcrossButton_Screentip">
+    <source>Copy content across the selected rows</source>
+    <preferred>Kopiere Inhalte über die ausgewählten Zeilen</preferred>
+  </hint>
+  <hint name="ribCopyLinkToParagraphButton_Screentip">
+    <source>Copy a hyperlink to the current paragraph</source>
+    <preferred>Kopiere einen Hyperlink zum aktuellen Absatz</preferred>
+  </hint>
+  <hint name="ribCreatePagesButton_Screentip">
+    <source>Create new pages using list items as titles</source>
+    <preferred>Erstelle neue Seiten mit Listenelementen als Titel</preferred>
+  </hint>
+  <hint name="ribDecreaseFontSizeButton_Screentip">
+    <source>Decrease page font size (Ctrl + Alt + Minus)</source>
+    <preferred>Verringer die Schriftgröße der Seite (Strg + Alt + Minus)</preferred>
+  </hint>
+  <hint name="ribDisableSpellCheckButton_Screentip">
+    <source>Disable spell checking within selected content</source>
+    <preferred>Rechtschreibprüfung innerhalb ausgewählter Inhalte deaktivieren</preferred>
+  </hint>
+  <hint name="ribDuplicateLineButton_Screentip">
+    <source>Duplicate the current paragraph</source>
+    <preferred>Dupliziere den aktuellen Absatz</preferred>
+  </hint>
+  <hint name="ribDuplicatePageButton_Screentip">
+    <source>Duplicate the current page</source>
+    <preferred>Dupliziere die aktuelle Seite</preferred>
+  </hint>
+  <hint name="ribEditTableThemesButton_Screentip">
+    <source>Edit custom custom table styles</source>
+    <preferred>Bearbeite benutzerdefinierte benutzerdefinierte Tabellenstile</preferred>
+  </hint>
+  <hint name="ribExpandContentButton_Label">
+    <source>Expand Outlining</source>
+    <preferred>Erweiter Gliederung</preferred>
+  </hint>
+  <hint name="ribExpandContentButton_Screentip">
+    <source>Expand all headings with indented content</source>
+    <preferred>Erweiter alle Überschriften mit eingerücktem Inhalt</preferred>
+  </hint>
+  <hint name="ribExpandSnippetButton_Label">
+    <source>Expand Snippet From Name</source>
+    <preferred>Erweiter Snippet From Name</preferred>
+  </hint>
+  <hint name="ribExportButton_Screentip">
+    <source>Export page(s) as HTML, PDF, Word or XML</source>
+    <preferred>Exportiere Seiten als HTML, PDF, Word oder XML</preferred>
+  </hint>
+  <hint name="ribGetImagesButton_Screentip">
+    <source>Download and insert referenced images</source>
+    <preferred>Lade referenzierte Bilder herunter und fügen Sie sie ein</preferred>
+  </hint>
+  <hint name="ribHighlightButton_Screentip">
+    <source>Highligt text with a rotating highlighter</source>
+    <preferred>Markiere Text mit einem rotierenden Textmarker</preferred>
+  </hint>
+  <hint name="ribHighlightFormulaButton_Label">
+    <source>Highlight Formula</source>
+    <preferred>Markiere Formel</preferred>
+  </hint>
+  <hint name="ribImportButton_Screentip">
+    <source>Import a file</source>
+    <preferred>Importiere eine Datei</preferred>
+  </hint>
+  <hint name="ribImportOutlookTasksButton_Label">
+    <source>Import Tasks from Outlook</source>
+    <preferred>Importiere Aufgaben aus Outlook</preferred>
+  </hint>
+  <hint name="ribIncreaseFontSizeButton_Screentip">
+    <source>Increase page font size (Ctrl + Alt + Plus)</source>
+    <preferred>Erhöhe die Schriftgröße der Seite (Strg + Alt + Plus).</preferred>
+  </hint>
+  <hint name="ribInsertBlueStatusButton_Screentip">
+    <source>Insert a blue status label</source>
+    <preferred>Füge ein blaues Statusetikett ein</preferred>
+  </hint>
+  <hint name="ribInsertCalendarButton_Screentip">
+    <source>Insert a montly calendar</source>
+    <preferred>Füge einen Monatskalender ein</preferred>
+  </hint>
+  <hint name="ribInsertDateButton_Screentip">
+    <source>Insert the current date (Ctrl + Shift + D)</source>
+    <preferred>Gib das aktuelle Datum ein (Strg + Umschalt + D)</preferred>
+  </hint>
+  <hint name="ribInsertExpandButton_Screentip">
+    <source>Insert a collapsible control</source>
+    <preferred>Füge ein reduzierbares Steuerelement ein</preferred>
+  </hint>
+  <hint name="ribInsertGrayStatusButton_Screentip">
+    <source>Insert a gray status label</source>
+    <preferred>Füge ein graues Statusetikett ein</preferred>
+  </hint>
+  <hint name="ribInsertGreenStatusButton_Screentip">
+    <source>Insert a green status label</source>
+    <preferred>Füge ein grünes Statusetikett ein</preferred>
+  </hint>
+  <hint name="ribInsertInfoBlockButton_Screentip">
+    <source>Insert an informational block</source>
+    <preferred>Füge einen Informationsblock ein</preferred>
+  </hint>
+  <hint name="ribInsertQRButton_Screentip">
+    <source>Insert a QR Code represented the selected text</source>
+    <preferred>Füge einen QR-Code ein, der den ausgewählten Text darstellt</preferred>
+  </hint>
+  <hint name="ribInsertRedStatusButton_Screentip">
+    <source>Insert a red status label</source>
+    <preferred>Füge ein rotes Statuslabel ein</preferred>
+  </hint>
+  <hint name="ribInsertSingleLineButton_Screentip">
+    <source>Insert single horizontal line (Shift + Alt + Minus)</source>
+    <preferred>Füge eine einzelne horizontale Linie ein (Umschalt + Alt + Minus)</preferred>
+  </hint>
+  <hint name="ribInsertTimerButton_Screentip">
+    <source>Insert the current timer value</source>
+    <preferred>Füge den aktuellen Timerwert ein</preferred>
+  </hint>
+  <hint name="ribInsertTocButton_Screentip">
+    <source>Insert a headings table of contents at the top of the page</source>
+    <preferred>Füge oben auf der Seite ein Inhaltsverzeichnis für Überschriften ein</preferred>
+  </hint>
+  <hint name="ribInsertWarnBlockButton_Screentip">
+    <source>Insert a warning block</source>
+    <preferred>Füge einen Warnblock ein</preferred>
+  </hint>
+  <hint name="ribInsertYellowStatusButton_Screentip">
+    <source>Insert a yellow status label</source>
+    <preferred>Füge ein gelbes Statusetikett ein</preferred>
+  </hint>
   <hint name="ribLinkReferencesButton_Label">
     <source>
       Link References to this Page
@@ -55,6 +441,42 @@
     <preferred>
       Verweise auf diese Seite zuordnen
     </preferred>
+  </hint>
+  <hint name="ribLinkReferencesButton_Screentip">
+    <source>Generate bi-directional links to this page based on its title</source>
+    <preferred>Generiere bidirektionale Links zu dieser Seite basierend auf ihrem Titel</preferred>
+  </hint>
+  <hint name="ribLoadStylesButton_Screentip">
+    <source>Load My Styles from a definition file</source>
+    <preferred>Lade benutzerdefinierte Stile aus einer Designdatei</preferred>
+  </hint>
+  <hint name="ribNameUrlsButton_Label">
+    <source>Replace URLs with Titles</source>
+    <preferred>Ersetze URLs durch Titel</preferred>
+  </hint>
+  <hint name="ribNameUrlsButton_Screentip">
+    <source>Replace URLs with Web page titles</source>
+    <preferred>Ersetze URLs durch Webseitentitel</preferred>
+  </hint>
+  <hint name="ribNewStyleButton_Screentip">
+    <source>Create a new style from the current selection</source>
+    <preferred>Erstelle einen neuen Stil aus der aktuellen Auswahl</preferred>
+  </hint>
+  <hint name="ribNumberPagesButton_Screentip">
+    <source>Add or update number of all pages in this section</source>
+    <preferred>Füge die Nummer aller Seiten in diesem Abschnitt hinzu oder aktualisiere sie</preferred>
+  </hint>
+  <hint name="ribOpenImageWithButton_Screentip">
+    <source>Open the selected image with an external editor</source>
+    <preferred>Öffne das ausgewählte Bild mit einem externen Editor</preferred>
+  </hint>
+  <hint name="ribPageColorButton_Screentip">
+    <source>Change the background of this page to a custom color</source>
+    <preferred>Änder den Hintergrund dieser Seite in eine benutzerdefinierte Farbe</preferred>
+  </hint>
+  <hint name="ribPasteRtfButton_Screentip">
+    <source>Paste rich text (Ctrl + Alt + V)</source>
+    <preferred>Füge Rich Text ein (Strg + Alt + V)</preferred>
   </hint>
   <hint name="ribPasteTextButton_Label">
     <source>
@@ -64,37 +486,165 @@
       Einfügen und nur Text behalten
     </preferred>
   </hint>
+  <hint name="ribRecalculateFormulaButton_Screentip">
+    <source>Recalculate all formula in the current table (Shift + F5)</source>
+    <preferred>Berechne alle Formeln in der aktuellen Tabelle neu (Umschalt + F5).</preferred>
+  </hint>
+  <hint name="ribRefreshFootnotesButton_Screentip">
+    <source>Refresh footnote reference numbers sequentially</source>
+    <preferred>Aktualisiere die Referenznummern der Fußnoten der Reihe nach</preferred>
+  </hint>
+  <hint name="ribRefreshPageLinksButton_Screentip">
+    <source>Refresh bi-directional link references</source>
+    <preferred>Aktualisiere bidirektionale Linkreferenzen</preferred>
+  </hint>
+  <hint name="ribRemoveAuthorsButton_Screentip">
+    <source>Remove information for all authors on this page</source>
+    <preferred>Entferne Informationen für alle Autoren auf dieser Seite</preferred>
+  </hint>
+  <hint name="ribRemoveCitationsButton_Label">
+    <source>Remove Pasted Citations</source>
+    <preferred>Entferne eingefügte Zitate</preferred>
+  </hint>
+  <hint name="ribRemoveCitationsButton_Screentip">
+    <source>Remove screen clipping and paste URL citations</source>
+    <preferred>Entferne Bildschirmausschnitte und füge URL-Zitate ein</preferred>
+  </hint>
+  <hint name="ribRemoveEmptyButton_Screentip">
+    <source>Remove extra empty lines between paragraph and remove empty headers</source>
+    <preferred>Entferne zusätzliche leere Zeilen zwischen Absätzen und entferne leere Überschriften</preferred>
+  </hint>
+  <hint name="ribRemoveInkButton_Screentip">
+    <source>Remove all pen drawings from this page</source>
+    <preferred>Entferne alle Stiftzeichnungen von dieser Seite</preferred>
+  </hint>
+  <hint name="ribRemovePageNumbersButton_Screentip">
+    <source>Remove numbers from all pages in this section</source>
+    <preferred>Entferne Zahlen von allen Seiten in diesem Abschnitt</preferred>
+  </hint>
+  <hint name="ribRemoveSectionNumbersButton_Screentip">
+    <source>Remove numbers from all sectionsin this notebook</source>
+    <preferred>Entferne Zahlen aus allen Abschnitten in diesem Notizbuch</preferred>
+  </hint>
+  <hint name="ribRemoveSpacingButton_Screentip">
+    <source>Remove paragraph, heading, and line spacing</source>
+    <preferred>Entferne Absatz, Überschrift und Zeilenabstand</preferred>
+  </hint>
+  <hint name="ribRemoveTagsButton_Screentip">
+    <source>Remove tags not associated with reminders</source>
+    <preferred>Entferne Tags, die nicht mit Erinnerungen verknüpft sind</preferred>
+  </hint>
+  <hint name="ribReportRemindersButton_Screentip">
+    <source>Generate a summary report of reminders</source>
+    <preferred>Generiere einen zusammenfassenden Bericht der Erinnerungen</preferred>
+  </hint>
+  <hint name="ribRestoreCollapsedButton_Screentip">
+    <source>Expand headings to recently saved state</source>
+    <preferred>Erweiter die Überschriften auf den zuletzt gespeicherten Zustand</preferred>
+  </hint>
+  <hint name="ribRunPluginButton_Screentip">
+    <source>Run or define a custom plugin</source>
+    <preferred>Führe ein benutzerdefiniertes Plugin aus oder definieren Sie es</preferred>
+  </hint>
+  <hint name="ribSaveSnippetButton_Screentip">
+    <source>Save a new snippet from the selected content</source>
+    <preferred>Speicher ein neues benutzerdefiniertes Snippet aus dem ausgewählten Inhalt</preferred>
+  </hint>
+  <hint name="ribSearchButton_Screentip">
+    <source>Search pages for keywords and copy/move to another section (Alt + F)</source>
+    <preferred>Durchsuche die Seiten nach Schlüsselwörtern und kopieren / verschiebe sie in einen anderen Abschnitt (Alt + F).</preferred>
+  </hint>
+  <hint name="ribSelectImagesButton_Screentip">
+    <source>Select all images on the page</source>
+    <preferred>Wähle alle Bilder auf der Seite aus</preferred>
+  </hint>
+  <hint name="ribSelectStyleButton_Screentip">
+    <source>Select text with similar formatting</source>
+    <preferred>Wähle Text mit ähnlicher Formatierung aus</preferred>
+  </hint>
   <hint name="ribSettingsButton_Label">
-    <source>
-      Settings
-    </source>
-    <preferred>
-      Einstellungen
-    </preferred>
+    <source>Settings</source>
+    <preferred>Einstellungen</preferred>
+  </hint>
+  <hint name="ribSettingsButton_Screentip">
+    <source>Open the OneMore settings window</source>
+    <preferred>Öffne das OneMore-Einstellungsfenster</preferred>
+  </hint>
+  <hint name="ribStrikeoutTasksButton_Screentip">
+    <source>Toggle strikethough of text marked with complete or incomplete To Do tags</source>
+    <preferred>Aktiviere das Kontrollkästchen für Text, der mit vollständigen oder unvollständigen Aufgaben-Tags markiert ist</preferred>
   </hint>
   <hint name="ribTaggedButton_Label">
-    <source>
-      Find Tagged Pages
-    </source>
-    <preferred>
-      Suchen nach markierten Seiten
-    </preferred>
+    <source>Find Tagged Pages</source>
+    <preferred>Suche nach markierten Seiten</preferred>
+  </hint>
+  <hint name="ribTitlecaseButton_Screentip">
+    <source>Convert text to title case</source>
+    <preferred>Konvertiere Text in Groß- und Kleinschreibung</preferred>
   </hint>
   <hint name="ribTrimButton_Screentip">
-    <source>
-      Trim trailing whitespace from selected text
-    </source>
-    <preferred>
-      Trimmen nachgestellter Leerzeichen aus dem ausgewählten Text
-    </preferred>
+    <source>Trim trailing whitespace from selected text</source>
+    <preferred>Trimme nachgestellte Leerzeichen aus dem ausgewählten Text</preferred>
   </hint>
   <hint name="ribTrimLeadingButton_Label">
-    <source>
-      Trim Leading Whitespace
-    </source>
-    <preferred>
-      Trimmen führender Leerzeichen
-    </preferred>
+    <source>Trim Leading Whitespace</source>
+    <preferred>Trimme führende Leerzeichen</preferred>
+  </hint>
+  <hint name="ribTrimLeadingButton_Screentip">
+    <source>Trim leading whitespace from selected text</source>
+    <preferred>Schneide führende Leerzeichen aus dem ausgewählten Text</preferred>
+  </hint>
+  <hint name="ribUppercaseButton_Screentip">
+    <source>Convert text to uppercase (Ctrl + Shift + Alt + U)</source>
+    <preferred>Konvertiere Text in Großbuchstaben (Strg + Umschalt + Alt + U)</preferred>
+  </hint>
+  <hint name="ribWordCountButton_Screentip">
+    <source>Report the number of words on this page</source>
+    <preferred>Gib die Anzahl der Wörter auf dieser Seite an</preferred>
+  </hint>
+  <hint name="SaveSnippet_NeedSelection">
+    <source>Select content to save as a new snippet</source>
+    <preferred>Wähle den Inhalt aus, der als neues Snippet gespeichert werden soll</preferred>
+  </hint>
+  <hint name="SearchAndReplaceDialog_regBox.Text">
+    <source>Use regular expressions</source>
+    <preferred>Verwende reguläre Ausdrücke</preferred>
+  </hint>
+  <hint name="SearchDialog_introLabel.Text">
+    <source>Enter one or more keywords, "quoted phrases", and use uppercase AND and OR</source>
+    <preferred>Gib ein oder mehrere Schlüsselwörter, \"zitierte Phrasen\", ein und verwende UND und ODER in Großbuchstaben</preferred>
+  </hint>
+  <hint name="SearchEngineDialog_upButton.Text">
+    <source>Move up</source>
+    <preferred>Bewege nach oben</preferred>
+  </hint>
+  <hint name="SearchEngineSheet_introLabel.Text">
+    <source>URL Patterns must contain a string replacement token, such as &amp;q={0}
+
+Search engines will appear in the page context menu, right-click.</source>
+    <preferred>URL-Muster müssen ein Zeichenketten-Ersetzungstoken enthalten, z. B. &amp;q={0}
+
+Suchmaschinen werden im Kontextmenü der Seite angezeigt, klicke mit der rechten Maustaste.</preferred>
+  </hint>
+  <hint name="SearchEngineSheet_upButton.Text">
+    <source>Move up</source>
+    <preferred>Bewege sich nach oben</preferred>
+  </hint>
+  <hint name="SearchQF_DescriptionCopy">
+    <source>Pick the location where selected pages should be copied</source>
+    <preferred>Wähle den Ort aus, an den ausgewählte Seiten kopiert werden sollen</preferred>
+  </hint>
+  <hint name="SearchQF_DescriptionMove">
+    <source>Pick the location where selected pages should be moved</source>
+    <preferred>Wähle den Ort aus, an den ausgewählte Seiten verschoben werden sollen</preferred>
+  </hint>
+  <hint name="SelectStyleCommand_context">
+    <source>Move the text cursor to a single position on the page. Selection regions are not allowed.</source>
+    <preferred>Bewege den Textcursor in eine einzige Position auf der Seite. Auswahlregionen sind nicht zulässig.</preferred>
+  </hint>
+  <hint name="ShowXmlDialog_selectButton.Text">
+    <source>Select all</source>
+    <preferred>Wähle Alle</preferred>
   </hint>
   <hint name="SnippetsSheet_Text">
     <source>
@@ -104,21 +654,49 @@
       Verwalte Snippets
     </preferred>
   </hint>
+  <hint name="SortListCommand_BadContext">
+    <source>Move the text cursor to an item of a list</source>
+    <preferred>Bewege den Textcursor auf ein Element einer Liste</preferred>
+  </hint>
+  <hint name="SplitDialog_byHeading1Label.Text">
+    <source>Link headings to new pages and move content to each page</source>
+    <preferred>Verknüpfe Überschriften mit neuen Seiten und verschieben Sie den Inhalt auf jede Seite</preferred>
+  </hint>
+  <hint name="SplitDialog_byLinksLabel.Text">
+    <source>Move content to each linked page</source>
+    <preferred>Verschiebe Inhalte auf jede verknüpfte Seite</preferred>
+  </hint>
+  <hint name="SplitTableCommand_FirstRow">
+    <source>Choose a row after the first row before splitting</source>
+    <preferred>Wähle vor dem Teilen eine Zeile nach der ersten Zeile</preferred>
+  </hint>
+  <hint name="SplitTableCommand_NoSelection">
+    <source>Select a table cell to indicate the first row to split</source>
+    <preferred>Wähle eine Tabellenzelle aus, um die erste zu teilende Zeile anzugeben</preferred>
+  </hint>
+  <hint name="SplitTableDialog_fixedColsBox.Text">
+    <source>Set all columns as fixed-width</source>
+    <preferred>Stelle alle Spalten auf feste Breite ein</preferred>
+  </hint>
   <hint name="TaggedDialog_checkAllLabel.Text">
-    <source>
-      Check all pages
-    </source>
-    <preferred>
-      Überprüfung aller Seiten
-    </preferred>
+    <source>Check all pages</source>
+    <preferred>Überprüfe alle Seiten</preferred>
+  </hint>
+  <hint name="TaggedDialog_clearAllLabel.Text">
+    <source>Uncheck all pages</source>
+    <preferred>Deaktiviere alle Seiten</preferred>
+  </hint>
+  <hint name="TaggedDialog_introLabel.Text">
+    <source>Enter one or more tags separated by commas. Use the minus operator to exclude individual tags</source>
+    <preferred>Gib ein oder mehrere durch Kommas getrennte Tags ein. </preferred>
   </hint>
   <hint name="TaggedDialog_Title">
-    <source>
-      Find Tagged Pages
-    </source>
-    <preferred>
-      Suchen nach markierten Seiten
-    </preferred>
+    <source>Find Tagged Pages</source>
+    <preferred>Suche nach markierten Seiten</preferred>
+  </hint>
+  <hint name="TextToTableDialog_unquoteBox.Text">
+    <source>Remove quotes from complete strings</source>
+    <preferred>Entferne Anführungszeichen aus vollständigen Zeichenfolgen</preferred>
   </hint>
   <hint name="word_Keyboard">
     <source>
