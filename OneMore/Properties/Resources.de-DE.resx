@@ -4846,16 +4846,9 @@ In diesem Abschnitt</value>
     <value>{0} Abschnitt</value>
     <comment>page heading</comment>
   </data>
-  <data name="WordCounts_TotalWords" xml:space="preserve">
-    <value>Gesamtworte</value>
-  </data>
   <data name="WordCountsCommand_Title" xml:space="preserve">
     <value>Wort zählt</value>
     <comment>page title</comment>
-  </data>
-  <data name="GeneralSheet_advancedGroup.Text" xml:space="preserve">
-    <value>Erweiterte Optionen</value>
-    <comment>groupbox</comment>
   </data>
   <data name="GeneralSheet_verboseBox.Text" xml:space="preserve">
     <value>Aktivieren Sie die ausführliche Protokollierung</value>

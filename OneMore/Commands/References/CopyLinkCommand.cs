@@ -94,17 +94,10 @@ namespace River.OneMoreAddIn
 			}
 
 			crumbs.Append(page.Title);
-			var path = specific ? $"{crumbs} {RightArrow} <i>{text}</i>" : crumbs.ToString();
 
-			var builder = new StringBuilder();
-			builder.AppendLine("<html>");
-			builder.AppendLine("<body>");
-			builder.AppendLine("<!--StartFragment-->");
-			builder.AppendLine($"<a href='{hyperlink}'>{path}</a>");
-			builder.AppendLine("<!--EndFragment-->");
-			builder.AppendLine("</body>");
-			builder.AppendLine("</html>");
-			var html = PasteRtfCommand.AddHtmlPreamble(builder.ToString());
+			var path = specific ? $"{crumbs} {RightArrow} <i>{text}</i>" : crumbs.ToString();
+			var fragment = $"<a href='{hyperlink}'>{path}</a>";
+			var html = ClipboardProvider.WrapWithHtmlPreamble(fragment);
 
 			// copy hyperlink to clipboard
 			await new ClipboardProvider().SetHtml(html);

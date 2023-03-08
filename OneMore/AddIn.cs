@@ -39,7 +39,6 @@ namespace River.OneMoreAddIn
 		private CommandFactory factory;
 		private readonly Process process;           // current process, to kill if necessary
 		private List<IDisposable> trash;            // track disposables
-		private uint clockSpeed;                    // Mhz of CPU
 
 
 		// Lifecycle...
@@ -65,11 +64,11 @@ namespace River.OneMoreAddIn
 			thread.CurrentCulture = Culture;
 			thread.CurrentUICulture = Culture;
 
-			GetCurrentClockSpeed();
+			var (cpu, ram) = GetMachineProps();
 
 			logger.WriteLine();
 			logger.Start(
-				$"Starting {process.ProcessName} {process.Id}, CPU={clockSpeed}Mhz, " +
+				$"Starting {process.ProcessName} {process.Id}, {cpu} Mhz, {ram.ToBytes()}, " +
 				$"{thread.CurrentCulture.Name}/{thread.CurrentUICulture.Name}, " +
 				$"v{AssemblyInfo.Version}, OneNote {Office.GetOneNoteVersion()}, " +
 				$"Office {Office.GetOfficeVersion()}, " +
@@ -144,22 +143,30 @@ namespace River.OneMoreAddIn
 
 
 
-		private void GetCurrentClockSpeed()
+		private (int, int) GetMachineProps()
 		{
+			uint Query(string field, string table)
+			{
+				uint value = 0;
+				using var searcher = new ManagementObjectSearcher($"select {field} from {table}");
+				foreach (var item in searcher.Get())
+				{
+					value = (uint)item[field];
+					item.Dispose();
+				}
+				return value;
+			}
+
 			// using this as a means of short-circuiting the Ensure methods for slower machines
 			// to speed up the display of the menus. CurrentClockSpeed will vary depending on
 			// battery capacity and other factors, whereas MaxClockSpeed is a constant
+			var speed = Query("CurrentClockSpeed", "Win32_Processor");
+			if (speed == 0) speed = ReasonableClockSpeed;
 
-			clockSpeed = ReasonableClockSpeed;
+			// returns total RAM across all physical slots
+			var memory = Query("MaxCapacity", "Win32_PhysicalMemoryArray");
 
-			using var searcher = 
-				new ManagementObjectSearcher("select CurrentClockSpeed from Win32_Processor");
-
-			foreach (var item in searcher.Get())
-			{
-				clockSpeed = (uint)item["CurrentClockSpeed"];
-				item.Dispose();
-			}
+			return ((int)speed, (int)memory);
 		}
 
 
@@ -217,6 +224,9 @@ namespace River.OneMoreAddIn
 
 				// reminder task scanner
 				new Commands.ReminderService().Startup();
+
+				// navigation listener
+				new Commands.NavigationService().Startup();
 
 				// activate enablers and update check
 				Task.Run(async () => { await SetGeneralOptions(); });

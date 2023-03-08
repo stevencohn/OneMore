@@ -46,6 +46,8 @@ namespace River.OneMoreAddIn.Commands
 			foreach (var run in runs.ToList())
 			{
 				run.SetAttributeValue("lang", "yo");
+				run.Parent.Attributes("spaceAfter").Remove();
+				run.Parent.Attributes("spaceBefore").Remove();
 
 				var cdata = run.GetCData();
 
@@ -93,11 +95,3 @@ namespace River.OneMoreAddIn.Commands
 		}
 	}
 }
-/*
-<one:T><![CDATA[&lt;?xml version=&quot;1.0&quot;?&gt; <br>
-&lt;hello xmlns=&quot;urn:ietf:params:xml:ns:netconf:base:1.0&quot;&gt; <br>
-  &lt;capabilities&gt;   <br>
-    &lt;capability&gt;urn:ietf:params:xml:ns:netconf:base:1.0&lt;/capability&gt;   <br>
-  &lt;/capabilities&gt;   <br>
-&lt;/hello&gt;]]&gt;]]&gt;]]></one:T>
-*/

@@ -153,8 +153,39 @@
     <Compile Include="Commands\File\Markdown\OneMoreDigRenderer.cs" />
     <Compile Include="Commands\Images\DrawPlantUmlCommand.cs" />
     <Compile Include="Commands\Images\OpenImageWithCommand.cs" />
+    <Compile Include="Commands\Navigator\HistoryControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Commands\Navigator\HistoryLog.cs" />
+    <Compile Include="Commands\Navigator\NavigationProvider.cs" />
+    <Compile Include="Commands\Navigator\NavigationService.cs" />
+    <Compile Include="Commands\Navigator\NavigatorCommand.cs" />
+    <Compile Include="Commands\Navigator\NavigatorWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Commands\Navigator\NavigatorWindow.Designer.cs">
+      <DependentUpon>NavigatorWindow.cs</DependentUpon>
+    </Compile>
     <Compile Include="Commands\Page\DuplicatePageCommand.cs" />
     <Compile Include="Commands\Page\Emojis.cs" />
+    <Compile Include="Commands\Settings\ColorizerSheet.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Commands\Settings\ColorizerSheet.Designer.cs">
+      <DependentUpon>ColorizerSheet.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Commands\Settings\FileImportSheet.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Commands\Settings\FileImportSheet.Designer.cs">
+      <DependentUpon>FileImportSheet.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Commands\Settings\NavigatorSheet.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Commands\Settings\NavigatorSheet.Designer.cs">
+      <DependentUpon>NavigatorSheet.cs</DependentUpon>
+    </Compile>
     <Compile Include="Commands\Settings\QuickNotesSheet.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -191,7 +222,9 @@
     </Compile>
     <Compile Include="Commands\Tables\TableThemePainter.cs" />
     <Compile Include="Helpers\ColorHelper.cs" />
+    <Compile Include="Helpers\Extensions\FontFamilyExtensions.cs" />
     <Compile Include="Helpers\Extensions\GraphicsExtensions.cs" />
+    <Compile Include="Helpers\Extensions\ScreenExtensions.cs" />
     <Compile Include="Models\KnownSchemaAttributes.cs" />
     <Compile Include="Models\PageReader.cs" />
     <Compile Include="Ribbon\AddInRibbonEnablers.cs" />
@@ -378,11 +411,15 @@
     </Compile>
     <Compile Include="Commands\Snippets\InsertBreadcrumbCommand.cs" />
     <Compile Include="Commands\References\EmbedSubpageCommand.cs" />
+    <Compile Include="UI\EventRouter.cs" />
     <Compile Include="UI\MoreExpander.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="UI\MoreExpander.Designer.cs">
       <DependentUpon>MoreExpander.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\MoreFlowLayoutPanel.cs">
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="UI\RenameDialog.cs">
       <SubType>Form</SubType>
@@ -1182,6 +1219,9 @@
     <EmbeddedResource Include="Commands\File\ImportWebDialog.resx">
       <DependentUpon>ImportWebDialog.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Commands\Navigator\NavigatorWindow.resx">
+      <DependentUpon>NavigatorWindow.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Commands\Page\ArrangeContainersDialog.resx">
       <DependentUpon>ArrangeContainersDialog.cs</DependentUpon>
     </EmbeddedResource>
@@ -1209,6 +1249,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Commands\Settings\AliasSheet.resx">
       <DependentUpon>AliasSheet.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Commands\Settings\ColorizerSheet.resx">
+      <DependentUpon>ColorizerSheet.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Commands\Settings\FileImportSheet.resx">
+      <DependentUpon>FileImportSheet.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Commands\Settings\NavigatorSheet.resx">
+      <DependentUpon>NavigatorSheet.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Commands\Settings\QuickNotesSheet.resx">
       <DependentUpon>QuickNotesSheet.cs</DependentUpon>

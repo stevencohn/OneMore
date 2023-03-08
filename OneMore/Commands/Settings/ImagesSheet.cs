@@ -121,7 +121,6 @@ namespace River.OneMoreAddIn.Settings
 
 		public override bool CollectSettings()
 		{
-			var updated = false;
 			var settings = provider.GetCollection(Name);
 
 			// generalGroup
@@ -131,20 +130,21 @@ namespace River.OneMoreAddIn.Settings
 			{
 				viewer = "mspaint";
 			}
-			updated = settings.Add("imageViewer", viewer) || updated;
+			settings.Add("imageViewer", viewer);
 
 			// resizeGroup
 
-			updated = settings.Add("presetWidth", (int)widthBox.Value) || updated;
+			settings.Add("presetWidth", (int)widthBox.Value);
 
 			// plantGroup
 
-			updated = settings.Add("plantAfter", plantAfterBox.Checked.ToString()) || updated;
-			updated = settings.Add("plantCollapsed", plantCollapseBox.Checked.ToString()) || updated;
+			settings.Add("plantAfter", plantAfterBox.Checked.ToString());
+			settings.Add("plantCollapsed", plantCollapseBox.Checked.ToString());
 
 			provider.SetCollection(settings);
 
-			return updated;
+			// restart not required
+			return false;
 		}
 	}
 }

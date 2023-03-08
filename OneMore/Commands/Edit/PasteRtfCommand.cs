@@ -85,7 +85,7 @@ namespace River.OneMoreAddIn.Commands
 					if (offset >= 0)
 					{
 						html = TranslateWhitespace(text.Substring(offset));
-						RebuildClipboard(AddHtmlPreamble(html));
+						RebuildClipboard(ClipboardProvider.WrapWithHtmlPreamble(html));
 					}
 					else
 					{
@@ -98,7 +98,7 @@ namespace River.OneMoreAddIn.Commands
 					html = ConvertXamlToHtml(
 						ConvertRtfToXaml(Clipboard.GetText(TextDataFormat.Rtf)));
 
-					RebuildClipboard(AddHtmlPreamble(html));
+					RebuildClipboard(ClipboardProvider.WrapWithHtmlPreamble(html));
 					//logger.WriteLine("PasteRtf Rtf -> Html");
 				}
 				else if (Clipboard.ContainsText(TextDataFormat.Xaml))
@@ -106,7 +106,7 @@ namespace River.OneMoreAddIn.Commands
 					html = ConvertXamlToHtml(
 							Clipboard.GetText(TextDataFormat.Xaml));
 
-					RebuildClipboard(AddHtmlPreamble(html));
+					RebuildClipboard(ClipboardProvider.WrapWithHtmlPreamble(html));
 					//logger.WriteLine("PasteRtf Xaml -> Html");
 				}
 				else
@@ -602,61 +602,6 @@ namespace River.OneMoreAddIn.Commands
 				}
 			}
 
-			return builder.ToString();
-		}
-
-
-		public static string AddHtmlPreamble(string html)
-		{
-			/*
-			 * https://docs.microsoft.com/en-us/windows/win32/dataxchg/html-clipboard-format
-			 * 
-			 * StartHTML:00071
-			 * EndHTML:00170
-			 * StartFragment:00140
-			 * EndFragment:00160
-			 * <html>
-			 * <body>
-			 * <!--StartFragment--> ... <!--EndFragment-->
-			 * </body>
-			 * </html>
-			 */
-
-			var builder = new StringBuilder();
-			builder.AppendLine("Version:0.9");
-			builder.AppendLine("StartHTML:0000000000");
-			builder.AppendLine("EndHTML:1111111111");
-			builder.AppendLine("StartFragment:2222222222");
-			builder.AppendLine("EndFragment:3333333333");
-
-			// calculate offsets, accounting for Unicode no-break space chars
-
-			builder.Replace("0000000000", builder.Length.ToString("D10"));
-
-			int start = html.IndexOf("<!--StartFragment-->");
-			int spaces = 0;
-			for (int i = 0; i < start; i++)
-			{
-				if (html[i] == Space)
-				{
-					spaces++;
-				}
-			}
-			builder.Replace("2222222222", (builder.Length + start + 20 + spaces).ToString("D10"));
-
-			int end = html.IndexOf("<!--EndFragment-->");
-			for (int i = start + 20; i < end; i++)
-			{
-				if (html[i] == Space)
-				{
-					spaces++;
-				}
-			}
-			spaces--;
-			builder.Replace("3333333333", (builder.Length + end + spaces).ToString("D10"));
-			builder.Replace("1111111111", (builder.Length + html.Length + spaces).ToString("D10"));
-
-			builder.AppendLine(html);
 			return builder.ToString();
 		}
 	}

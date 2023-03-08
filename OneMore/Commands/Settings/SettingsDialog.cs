@@ -19,11 +19,14 @@ namespace River.OneMoreAddIn.Settings
 		{
 			General,
 			Aliases,
+			Colorizer,
 			Context,
 			Favorites,
+			FileImport,
 			Highlight,
 			Images,
 			Keyboard,
+			Navigator,
 			Lines,
 			Plugins,
 			QuickNotes,
@@ -53,13 +56,16 @@ namespace River.OneMoreAddIn.Settings
 				});
 
 				navTree.Nodes["generalNode"].Text = Resx.SettingsDialog_generalNode_Text;
+				navTree.Nodes["colorizerNode"].Text = Resx.ColorizeSheet_Title;
 				navTree.Nodes["aliasNode"].Text = Resx.SettingsDialog_aliasNode_Text;
 				navTree.Nodes["contextNode"].Text = Resx.SettingsDialog_contextNode_Text;
 				navTree.Nodes["favoritesNode"].Text = Resx.word_Favorites;
+				navTree.Nodes["fileImportNode"].Text = Resx.FileImportSheet_Title;
 				navTree.Nodes["highlightNode"].Text = Resx.SettingsDialog_highlightNode_Text;
 				navTree.Nodes["linesNode"].Text = Resx.SettingsDialog_linesNode_Text;
 				navTree.Nodes["imagesNode"].Text = Resx.SettingsDialog_imagesNode_Text;
 				navTree.Nodes["keyboardNode"].Text = Resx.SettingsDialog_keyboardNode_Text;
+				navTree.Nodes["navigatorNode"].Text = Resx.SettingsDialog_navigatorNode_Text;
 				navTree.Nodes["pluginsNode"].Text = Resx.SettingsDialog_pluginsNode_Text;
 				navTree.Nodes["quickNotesNode"].Text = Resx.SettingsDialog_quickNotesNode_Text;
 				navTree.Nodes["ribbonNode"].Text = Resx.SettingsDialog_ribbonNode_Text;
@@ -113,17 +119,20 @@ namespace River.OneMoreAddIn.Settings
 				sheet = e.Node.Index switch
 				{
 					0 => new GeneralSheet(provider),
-					1 => new AliasSheet(provider),
-					2 => new ContextMenuSheet(provider),
-					3 => new FavoritesSheet(provider, ribbon),
-					4 => new HighlightsSheet(provider),
-					5 => new LinesSheet(provider),
-					6 => new ImagesSheet(provider),
-					7 => new KeyboardSheet(provider, ribbon),
-					8 => await PluginsSheet.Create(provider, ribbon),
-					9 => new QuickNotesSheet(provider),
-					10 => new RibbonBarSheet(provider),
-					11 => new SearchEngineSheet(provider),
+					1 => new ColorizerSheet(provider),
+					2 => new AliasSheet(provider),
+					3 => new ContextMenuSheet(provider),
+					4 => new FavoritesSheet(provider, ribbon),
+					5 => new FileImportSheet(provider),
+					6 => new HighlightsSheet(provider),
+					7 => new LinesSheet(provider),
+					8 => new ImagesSheet(provider),
+					9 => new KeyboardSheet(provider, ribbon),
+					10 => new NavigatorSheet(provider),
+					11 => await PluginsSheet.Create(provider, ribbon),
+					12 => new QuickNotesSheet(provider),
+					13 => new RibbonBarSheet(provider),
+					14 => new SearchEngineSheet(provider),
 					_ => new SnippetsSheet(provider, ribbon),
 				};
 				sheets.Add(e.Node.Index, sheet);

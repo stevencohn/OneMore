@@ -32,7 +32,7 @@ namespace River.OneMoreAddIn.Settings
 					"enablersBox",
 					"checkUpdatesBox",
 					"langLabel",
-					"advancedGroup",
+					"advancedGroup=phrase_AdvancedOptions",
 					"verboseBox"
 				});
 			}

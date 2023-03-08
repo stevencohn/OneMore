@@ -5,6 +5,7 @@
 namespace River.OneMoreAddIn
 {
 	using River.OneMoreAddIn.Styles;
+	using System;
 	using System.Drawing;
 
 
@@ -30,6 +31,11 @@ namespace River.OneMoreAddIn
 			if (html.StartsWith("#"))
 			{
 				return ColorTranslator.FromHtml(html);
+			}
+
+			if (html.Equals("none", StringComparison.InvariantCultureIgnoreCase))
+			{
+				return Color.Empty;
 			}
 
 			try

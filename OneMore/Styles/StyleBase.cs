@@ -19,7 +19,9 @@ namespace River.OneMoreAddIn.Styles
 	{
 		public static readonly string Automatic = "automatic";
 		public static readonly string Transparent = "Transparent";
+		public static readonly string DefaultCodeFamily = "Lucida Console";
 		public static readonly string DefaultFontFamily = "Calibri";
+		public static readonly double DefaultCodeSize = 10.0;
 		public static readonly double DefaultFontSize = 11.0;
 
 		protected string color;

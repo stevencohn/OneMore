@@ -4859,16 +4859,9 @@ In deze sectie</value>
     <value>{0} Sectie</value>
     <comment>page heading</comment>
   </data>
-  <data name="WordCounts_TotalWords" xml:space="preserve">
-    <value>Totaal aantal woorden</value>
-  </data>
   <data name="WordCountsCommand_Title" xml:space="preserve">
     <value>Woorden tellen</value>
     <comment>page title</comment>
-  </data>
-  <data name="GeneralSheet_advancedGroup.Text" xml:space="preserve">
-    <value>Geavanceerde mogelijkheden</value>
-    <comment>groupbox</comment>
   </data>
   <data name="GeneralSheet_verboseBox.Text" xml:space="preserve">
     <value>Schakel uitgebreide logboekregistratie in</value>
@@ -4900,5 +4893,120 @@ In deze sectie</value>
   <data name="AnalyzeDialog_warningLabel.Text" xml:space="preserve">
     <value>Rapportage kan minuten duren</value>
     <comment>label</comment>
+  </data>
+  <data name="WordCounts_NotebookTotal" xml:space="preserve">
+    <value>Totaal aantal woorden in notitieboek over {0} pagina's</value>
+    <comment>report</comment>
+  </data>
+  <data name="WordCounts_SectionTotal" xml:space="preserve">
+    <value>Totaal aantal woorden in sectie over {0} pagina's</value>
+    <comment>report</comment>
+  </data>
+  <data name="NavigatorSheet_corrallBox.Text" xml:space="preserve">
+    <value>Beperk het Navigator-venster tot het actieve scherm</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="NavigatorSheet_depthLabel.Text" xml:space="preserve">
+    <value>Maximale lengte van opgeslagen geschiedenis</value>
+    <comment>label</comment>
+  </data>
+  <data name="NavigatorSheet_intervalLabel.Text" xml:space="preserve">
+    <value>Minimale leestijd voordat deze aan de geschiedenis wordt toegevoegd</value>
+    <comment>label</comment>
+  </data>
+  <data name="NavigatorSheet_introBox.Text" xml:space="preserve">
+    <value>Pas geavanceerde opties voor de Navigator-service aan</value>
+    <comment>label</comment>
+  </data>
+  <data name="NavigatorSheet_Title" xml:space="preserve">
+    <value>Navigator</value>
+    <comment>sheet title</comment>
+  </data>
+  <data name="ribNavigatorButton_Label" xml:space="preserve">
+    <value>Navigator</value>
+    <comment>ribbon main</comment>
+  </data>
+  <data name="SettingsDialog_navigatorNode.Text" xml:space="preserve">
+    <value>Navigator</value>
+    <comment>tree node</comment>
+  </data>
+  <data name="NavigatorSheet_corrallBox_disabled" xml:space="preserve">
+    <value>Niet beschikbaar</value>
+    <comment>tooltip</comment>
+  </data>
+  <data name="NavigatorWindow_Text" xml:space="preserve">
+    <value>Navigator-venster</value>
+    <comment>window title</comment>
+  </data>
+  <data name="word_Seconds" xml:space="preserve">
+    <value>seconden</value>
+  </data>
+  <data name="word_History" xml:space="preserve">
+    <value>Geschiedenis</value>
+  </data>
+  <data name="NavigatorWindow_pinButton_Tooltip" xml:space="preserve">
+    <value>Voeg geselecteerde items toe aan Mijn leeslijst</value>
+    <comment>tooltip</comment>
+  </data>
+  <data name="NavigatorWindow_refreshButton_Tooltip" xml:space="preserve">
+    <value>Vernieuw de koppen van de huidige pagina</value>
+    <comment>tooltip</comment>
+  </data>
+  <data name="NavigatorWindow_unpinButton_Tooltip" xml:space="preserve">
+    <value>Verwijder geselecteerde items uit Mijn leeslijst</value>
+    <comment>tooltip</comment>
+  </data>
+  <data name="NavigatorWindow_pinnedHeadLabel.Text" xml:space="preserve">
+    <value>Mijn leeslijst</value>
+  </data>
+  <data name="ColorizerSheet_fixedBox.Text" xml:space="preserve">
+    <value>Toon alleen lettertypen met een vaste breedte</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="ColorizeSheet_applyBox.Text" xml:space="preserve">
+    <value>Pas altijd het volgende lettertype toe bij het inkleuren van code</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="ColorizeSheet_introBox.Text" xml:space="preserve">
+    <value>Pas het gedrag van de opdracht Inkleuren aan</value>
+    <comment>label</comment>
+  </data>
+  <data name="ColorizeSheet_Title" xml:space="preserve">
+    <value>Kleurmaker</value>
+  </data>
+  <data name="NavigatorWindow_downButton_Tooltip" xml:space="preserve">
+    <value>Verplaats geselecteerde items naar beneden</value>
+    <comment>tooltip</comment>
+  </data>
+  <data name="NavigatorWindow_upButton_Tooltip" xml:space="preserve">
+    <value>Verplaats geselecteerde items omhoog</value>
+    <comment>tooltip</comment>
+  </data>
+  <data name="FileImportSheet_Title" xml:space="preserve">
+    <value>Bestand importeren</value>
+    <comment>settings sheet</comment>
+  </data>
+  <data name="FileImportSheet_introBox.Text" xml:space="preserve">
+    <value>Pas PowerPoint- en PDF-importopties aan</value>
+    <comment>label</comment>
+  </data>
+  <data name="FileImportSheet_widthLabel.Text" xml:space="preserve">
+    <value>Gewenste import afbeeldingsbreedte</value>
+    <comment>label</comment>
+  </data>
+  <data name="NavigatorWindow_copyTooltip" xml:space="preserve">
+    <value>Kopieer geselecteerde items naar het klembord</value>
+    <comment>button tooltip</comment>
+  </data>
+  <data name="NavigatorSheet_disabledBox.Text" xml:space="preserve">
+    <value>Schakel de navigatieservice uit. Hierdoor wordt het Navigator-venster onbruikbaar.</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="phrase_AdvancedOptions" xml:space="preserve">
+    <value>Geavanceerde mogelijkheden</value>
+  </data>
+  <data name="NavigatorWindow_disabled" xml:space="preserve">
+    <value>De navigatieservice is uitgeschakeld. Open Instellingen om de service in te schakelen.</value>
+    <comment>message</comment>
   </data>
 </root>

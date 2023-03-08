@@ -4859,16 +4859,9 @@ ISO-code then comma then language name</comment>
     <value>{0} قسم</value>
     <comment>page heading</comment>
   </data>
-  <data name="WordCounts_TotalWords" xml:space="preserve">
-    <value>مجموع الكلمات</value>
-  </data>
   <data name="WordCountsCommand_Title" xml:space="preserve">
     <value>عدد الكلمات</value>
     <comment>page title</comment>
-  </data>
-  <data name="GeneralSheet_advancedGroup.Text" xml:space="preserve">
-    <value>خيارات متقدمة</value>
-    <comment>groupbox</comment>
   </data>
   <data name="GeneralSheet_verboseBox.Text" xml:space="preserve">
     <value>تمكين التسجيل المطول</value>
@@ -4900,5 +4893,120 @@ ISO-code then comma then language name</comment>
   <data name="AnalyzeDialog_warningLabel.Text" xml:space="preserve">
     <value>قد يستغرق التقرير دقائق</value>
     <comment>label</comment>
+  </data>
+  <data name="WordCounts_NotebookTotal" xml:space="preserve">
+    <value>إجمالي الكلمات في المفكرة عبر {0} صفحة</value>
+    <comment>report</comment>
+  </data>
+  <data name="WordCounts_SectionTotal" xml:space="preserve">
+    <value>إجمالي الكلمات في القسم عبر {0} صفحة</value>
+    <comment>report</comment>
+  </data>
+  <data name="NavigatorSheet_corrallBox.Text" xml:space="preserve">
+    <value>قصر نافذة المستكشف على الشاشة النشطة</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="NavigatorSheet_depthLabel.Text" xml:space="preserve">
+    <value>أقصى طول للتاريخ المخزن</value>
+    <comment>label</comment>
+  </data>
+  <data name="NavigatorSheet_intervalLabel.Text" xml:space="preserve">
+    <value>دقيقة وقت القراءة قبل الإضافة إلى التاريخ</value>
+    <comment>label</comment>
+  </data>
+  <data name="NavigatorSheet_introBox.Text" xml:space="preserve">
+    <value>تخصيص الخيارات المتقدمة لخدمة Navigator</value>
+    <comment>label</comment>
+  </data>
+  <data name="NavigatorSheet_Title" xml:space="preserve">
+    <value>الملاح</value>
+    <comment>sheet title</comment>
+  </data>
+  <data name="ribNavigatorButton_Label" xml:space="preserve">
+    <value>الملاح</value>
+    <comment>ribbon main</comment>
+  </data>
+  <data name="SettingsDialog_navigatorNode.Text" xml:space="preserve">
+    <value>الملاح</value>
+    <comment>tree node</comment>
+  </data>
+  <data name="NavigatorSheet_corrallBox_disabled" xml:space="preserve">
+    <value>غير متاح</value>
+    <comment>tooltip</comment>
+  </data>
+  <data name="NavigatorWindow_Text" xml:space="preserve">
+    <value>نافذة المستكشف</value>
+    <comment>window title</comment>
+  </data>
+  <data name="word_Seconds" xml:space="preserve">
+    <value>ثواني</value>
+  </data>
+  <data name="word_History" xml:space="preserve">
+    <value>تاريخ</value>
+  </data>
+  <data name="NavigatorWindow_pinButton_Tooltip" xml:space="preserve">
+    <value>إضافة العناصر المحددة إلى قائمة القراءة الخاصة بي</value>
+    <comment>tooltip</comment>
+  </data>
+  <data name="NavigatorWindow_refreshButton_Tooltip" xml:space="preserve">
+    <value>تحديث العناوين من الصفحة الحالية</value>
+    <comment>tooltip</comment>
+  </data>
+  <data name="NavigatorWindow_unpinButton_Tooltip" xml:space="preserve">
+    <value>إزالة العناصر المحددة من قائمة القراءة الخاصة بي</value>
+    <comment>tooltip</comment>
+  </data>
+  <data name="NavigatorWindow_pinnedHeadLabel.Text" xml:space="preserve">
+    <value>قائمة القراءة الخاصة بي</value>
+  </data>
+  <data name="ColorizerSheet_fixedBox.Text" xml:space="preserve">
+    <value>إظهار الخطوط ذات العرض الثابت فقط</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="ColorizeSheet_applyBox.Text" xml:space="preserve">
+    <value>قم دائمًا بتطبيق الخط التالي عند تلوين التعليمات البرمجية</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="ColorizeSheet_introBox.Text" xml:space="preserve">
+    <value>تخصيص سلوك أمر Colorize</value>
+    <comment>label</comment>
+  </data>
+  <data name="ColorizeSheet_Title" xml:space="preserve">
+    <value>تلوين</value>
+  </data>
+  <data name="NavigatorWindow_downButton_Tooltip" xml:space="preserve">
+    <value>نقل العناصر المحددة لأسفل</value>
+    <comment>tooltip</comment>
+  </data>
+  <data name="NavigatorWindow_upButton_Tooltip" xml:space="preserve">
+    <value>نقل العناصر المحددة لأعلى</value>
+    <comment>tooltip</comment>
+  </data>
+  <data name="FileImportSheet_Title" xml:space="preserve">
+    <value>استيراد ملف</value>
+    <comment>settings sheet</comment>
+  </data>
+  <data name="FileImportSheet_introBox.Text" xml:space="preserve">
+    <value>تخصيص خيارات استيراد PowerPoint و PDF</value>
+    <comment>label</comment>
+  </data>
+  <data name="FileImportSheet_widthLabel.Text" xml:space="preserve">
+    <value>عرض صورة الاستيراد المفضل</value>
+    <comment>label</comment>
+  </data>
+  <data name="NavigatorWindow_copyTooltip" xml:space="preserve">
+    <value>نسخ العناصر المحددة إلى الحافظة</value>
+    <comment>button tooltip</comment>
+  </data>
+  <data name="NavigatorSheet_disabledBox.Text" xml:space="preserve">
+    <value>قم بتعطيل خدمة الملاحة. سيؤدي هذا إلى جعل نافذة المستكشف غير قابلة للتشغيل.</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="phrase_AdvancedOptions" xml:space="preserve">
+    <value>خيارات متقدمة</value>
+  </data>
+  <data name="NavigatorWindow_disabled" xml:space="preserve">
+    <value>تم تعطيل خدمة الملاحة. افتح الإعدادات لتمكين الخدمة.</value>
+    <comment>message</comment>
   </data>
 </root>

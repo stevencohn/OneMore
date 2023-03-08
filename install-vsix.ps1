@@ -13,9 +13,10 @@ Begin
 		$root = & "${env:ProgramFiles(x86)}\Microsoft Visual Studio\Installer\vswhere.exe" -latest -property installationPath
 		$installer = "$root\Common7\IDE\vsixinstaller.exe"
 
+		# TODO: currently for VS2022
 		# TODO: update these versions every now and then...
-		
-		InstallVsix $installer 'InstallerProjects' 'VisualStudioClient/vsextensions/MicrosoftVisualStudio2017InstallerProjects/1.0.0/vspackage'
+
+		InstallVsix $installer 'InstallerProjects' 'VisualStudioClient/vsextensions/MicrosoftVisualStudio2022InstallerProjects/2.0.0/vspackage'
 
 		Write-Host
 		Write-Host '... Waiting a minute for the VSIXInstaller processes to complete' -ForegroundColor Yellow

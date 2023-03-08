@@ -78,13 +78,15 @@ namespace River.OneMoreAddIn
 
 		public class HierarchyInfo
 		{
-			public string PageId;
-			public string SectionId; // immediate owner regardless of depth (e.g. SectionGroups)
-			public string NotebookId;
-			public string Name;
-			public string Path;
-			public string Link;
-			public int Size;
+			public string PageId;		// ID of page if this is a page
+			public string SectionId;	// immediate owner regardless of depth (e.g. SectionGroups)
+			public string NotebookId;	// ID of owning notebook
+			public string Name;			// name of object
+			public string Path;			// full path including name
+			public string Link;         // onenote: hyperlink to object
+			public string Color;		// node color
+			public int Size;			// size in bytes of page
+			public long Visited;		// last time visited in ms
 		}
 
 		public class HierarchyNode
@@ -190,6 +192,14 @@ namespace River.OneMoreAddIn
 		/// Gets the currently viewed notebook ID
 		/// </summary>
 		public string CurrentNotebookId => onenote.Windows.CurrentWindow?.CurrentNotebookId;
+
+
+		/// <summary>
+		/// Gets or sets whether exceptions are allowed to fall through back to caller or
+		/// are caught and reported by this class. This is a special case for some consumers
+		/// who wish to handle certain exceptions themselves to serve data management.
+		/// </summary>
+		public bool FallThrough { get; set; }
 
 
 		/// <summary>
@@ -738,6 +748,11 @@ namespace River.OneMoreAddIn
 			}
 			catch (Exception exc)
 			{
+				if (FallThrough)
+				{
+					throw;
+				}
+
 				logger.WriteLine($"error getting page {pageId}", exc);
 			}
 
@@ -817,6 +832,7 @@ namespace River.OneMoreAddIn
 				if (parent.Name.LocalName == "Section" && string.IsNullOrEmpty(info.SectionId))
 				{
 					info.SectionId = parent.Attribute("ID").Value;
+					info.Color = parent.Attribute("color")?.Value;
 				}
 				else if (parent.Name.LocalName == "Notebook")
 				{

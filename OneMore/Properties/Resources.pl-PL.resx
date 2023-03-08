@@ -4912,16 +4912,9 @@ W tej sekcji</value>
     <value>{0} Sekcja</value>
     <comment>page heading</comment>
   </data>
-  <data name="WordCounts_TotalWords" xml:space="preserve">
-    <value>Wszystkie słowa</value>
-  </data>
   <data name="WordCountsCommand_Title" xml:space="preserve">
     <value>Liczy się słowo</value>
     <comment>page title</comment>
-  </data>
-  <data name="GeneralSheet_advancedGroup.Text" xml:space="preserve">
-    <value>Zaawansowane opcje</value>
-    <comment>groupbox</comment>
   </data>
   <data name="GeneralSheet_verboseBox.Text" xml:space="preserve">
     <value>Włącz pełne rejestrowanie</value>
@@ -4953,5 +4946,120 @@ W tej sekcji</value>
   <data name="AnalyzeDialog_warningLabel.Text" xml:space="preserve">
     <value>Raport może zająć kilka minut</value>
     <comment>label</comment>
+  </data>
+  <data name="WordCounts_NotebookTotal" xml:space="preserve">
+    <value>Łączna liczba słów w notatniku na {0} stronach</value>
+    <comment>report</comment>
+  </data>
+  <data name="WordCounts_SectionTotal" xml:space="preserve">
+    <value>Łączna liczba słów w sekcji na {0} stronach</value>
+    <comment>report</comment>
+  </data>
+  <data name="NavigatorSheet_corrallBox.Text" xml:space="preserve">
+    <value>Ogranicz okno Nawigatora do aktywnego ekranu</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="NavigatorSheet_depthLabel.Text" xml:space="preserve">
+    <value>Maksymalna długość przechowywanej historii</value>
+    <comment>label</comment>
+  </data>
+  <data name="NavigatorSheet_intervalLabel.Text" xml:space="preserve">
+    <value>Min. czas odczytu przed dodaniem do historii</value>
+    <comment>label</comment>
+  </data>
+  <data name="NavigatorSheet_introBox.Text" xml:space="preserve">
+    <value>Dostosuj zaawansowane opcje usługi Navigator</value>
+    <comment>label</comment>
+  </data>
+  <data name="NavigatorSheet_Title" xml:space="preserve">
+    <value>Nawigator</value>
+    <comment>sheet title</comment>
+  </data>
+  <data name="ribNavigatorButton_Label" xml:space="preserve">
+    <value>Nawigator</value>
+    <comment>ribbon main</comment>
+  </data>
+  <data name="SettingsDialog_navigatorNode.Text" xml:space="preserve">
+    <value>Nawigator</value>
+    <comment>tree node</comment>
+  </data>
+  <data name="NavigatorSheet_corrallBox_disabled" xml:space="preserve">
+    <value>Niedostępne</value>
+    <comment>tooltip</comment>
+  </data>
+  <data name="NavigatorWindow_Text" xml:space="preserve">
+    <value>Okno nawigatora</value>
+    <comment>window title</comment>
+  </data>
+  <data name="word_Seconds" xml:space="preserve">
+    <value>sekundy</value>
+  </data>
+  <data name="word_History" xml:space="preserve">
+    <value>Historia</value>
+  </data>
+  <data name="NavigatorWindow_pinButton_Tooltip" xml:space="preserve">
+    <value>Dodaj wybrane pozycje do Mojej listy czytelniczej</value>
+    <comment>tooltip</comment>
+  </data>
+  <data name="NavigatorWindow_refreshButton_Tooltip" xml:space="preserve">
+    <value>Odśwież nagłówki z bieżącej strony</value>
+    <comment>tooltip</comment>
+  </data>
+  <data name="NavigatorWindow_unpinButton_Tooltip" xml:space="preserve">
+    <value>Usuń wybrane pozycje z Mojej listy czytelniczej</value>
+    <comment>tooltip</comment>
+  </data>
+  <data name="NavigatorWindow_pinnedHeadLabel.Text" xml:space="preserve">
+    <value>Moja lista lektur</value>
+  </data>
+  <data name="ColorizerSheet_fixedBox.Text" xml:space="preserve">
+    <value>Pokaż tylko czcionki o stałej szerokości</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="ColorizeSheet_applyBox.Text" xml:space="preserve">
+    <value>Podczas kolorowania kodu zawsze stosuj poniższą czcionkę</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="ColorizeSheet_introBox.Text" xml:space="preserve">
+    <value>Dostosuj zachowanie polecenia Koloruj</value>
+    <comment>label</comment>
+  </data>
+  <data name="ColorizeSheet_Title" xml:space="preserve">
+    <value>Koloryzator</value>
+  </data>
+  <data name="NavigatorWindow_downButton_Tooltip" xml:space="preserve">
+    <value>Przenieś wybrane elementy w dół</value>
+    <comment>tooltip</comment>
+  </data>
+  <data name="NavigatorWindow_upButton_Tooltip" xml:space="preserve">
+    <value>Przenieś wybrane elementy w górę</value>
+    <comment>tooltip</comment>
+  </data>
+  <data name="FileImportSheet_Title" xml:space="preserve">
+    <value>Import plików</value>
+    <comment>settings sheet</comment>
+  </data>
+  <data name="FileImportSheet_introBox.Text" xml:space="preserve">
+    <value>Dostosuj opcje importu PowerPoint i PDF</value>
+    <comment>label</comment>
+  </data>
+  <data name="FileImportSheet_widthLabel.Text" xml:space="preserve">
+    <value>Preferowana szerokość importowanego obrazu</value>
+    <comment>label</comment>
+  </data>
+  <data name="NavigatorWindow_copyTooltip" xml:space="preserve">
+    <value>Skopiuj wybrane elementy do schowka</value>
+    <comment>button tooltip</comment>
+  </data>
+  <data name="NavigatorSheet_disabledBox.Text" xml:space="preserve">
+    <value>Wyłącz usługę nawigacji. Spowoduje to, że okno Nawigatora przestanie działać.</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="phrase_AdvancedOptions" xml:space="preserve">
+    <value>Zaawansowane opcje</value>
+  </data>
+  <data name="NavigatorWindow_disabled" xml:space="preserve">
+    <value>Usługa nawigacji jest wyłączona. Otwórz Ustawienia, aby włączyć usługę.</value>
+    <comment>message</comment>
   </data>
 </root>

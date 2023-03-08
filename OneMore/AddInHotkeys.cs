@@ -27,13 +27,13 @@ namespace River.OneMoreAddIn
 			// discover all command methods with CommandAttribute...
 
 			var methods = typeof(AddIn).GetMethods()
-				.Select(m => new 
-				{ 
-					Method = m, 
+				.Select(m => new
+				{
+					Method = m,
 					Attributes = m.GetCustomAttributes(typeof(CommandAttribute), false)
 				})
 				.Where(m => m.Attributes.Any())
-				.Select(m => new 
+				.Select(m => new
 				{
 					m.Method,
 					Command = (CommandAttribute)m.Attributes.First()
@@ -56,14 +56,13 @@ namespace River.OneMoreAddIn
 				return;
 			}
 
-			logger.WriteLine($"defining {methods.Count()} hotkeys for input locale {locale}");
-
 			var settings = new SettingsProvider()
 				.GetCollection(nameof(KeyboardSheet))?.Get<XElement>("commands");
 
 			// register hotkey for each discovered command...
 
 			HotkeyManager.Initialize();
+			var count = 0;
 
 			methods.ForEach((m) =>
 			{
@@ -90,7 +89,7 @@ namespace River.OneMoreAddIn
 					}
 				}
 
-				if (hotkey != null)
+				if (hotkey != null && hotkey.Keys != Keys.None)
 				{
 					// all commands should be of the form:
 					// public async Task NAME(IRibbonControl control)
@@ -104,9 +103,13 @@ namespace River.OneMoreAddIn
 
 						},
 						hotkey);
+
+						count++;
 					}
 				}
 			});
+
+			logger.WriteLine($"defined {count} hotkeys for input locale {locale}");
 		}
 	}
 }

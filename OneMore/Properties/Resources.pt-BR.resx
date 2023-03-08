@@ -4859,16 +4859,9 @@ Nesta secção</value>
     <value>{0} Seção</value>
     <comment>page heading</comment>
   </data>
-  <data name="WordCounts_TotalWords" xml:space="preserve">
-    <value>Palavras totais</value>
-  </data>
   <data name="WordCountsCommand_Title" xml:space="preserve">
     <value>Contagem de palavras</value>
     <comment>page title</comment>
-  </data>
-  <data name="GeneralSheet_advancedGroup.Text" xml:space="preserve">
-    <value>Opções avançadas</value>
-    <comment>groupbox</comment>
   </data>
   <data name="GeneralSheet_verboseBox.Text" xml:space="preserve">
     <value>Ativar registro detalhado</value>
@@ -4900,5 +4893,120 @@ Nesta secção</value>
   <data name="AnalyzeDialog_warningLabel.Text" xml:space="preserve">
     <value>Relatório pode levar minutos</value>
     <comment>label</comment>
+  </data>
+  <data name="WordCounts_NotebookTotal" xml:space="preserve">
+    <value>Total de palavras no caderno em {0} páginas</value>
+    <comment>report</comment>
+  </data>
+  <data name="WordCounts_SectionTotal" xml:space="preserve">
+    <value>Total de palavras na seção em {0} páginas</value>
+    <comment>report</comment>
+  </data>
+  <data name="NavigatorSheet_corrallBox.Text" xml:space="preserve">
+    <value>Restringir a janela do Navegador à tela ativa</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="NavigatorSheet_depthLabel.Text" xml:space="preserve">
+    <value>Duração máxima do histórico armazenado</value>
+    <comment>label</comment>
+  </data>
+  <data name="NavigatorSheet_intervalLabel.Text" xml:space="preserve">
+    <value>Tempo mínimo de leitura antes de adicionar ao histórico</value>
+    <comment>label</comment>
+  </data>
+  <data name="NavigatorSheet_introBox.Text" xml:space="preserve">
+    <value>Personalizar opções avançadas para o serviço Navigator</value>
+    <comment>label</comment>
+  </data>
+  <data name="NavigatorSheet_Title" xml:space="preserve">
+    <value>Navegador</value>
+    <comment>sheet title</comment>
+  </data>
+  <data name="ribNavigatorButton_Label" xml:space="preserve">
+    <value>Navegador</value>
+    <comment>ribbon main</comment>
+  </data>
+  <data name="SettingsDialog_navigatorNode.Text" xml:space="preserve">
+    <value>Navegador</value>
+    <comment>tree node</comment>
+  </data>
+  <data name="NavigatorSheet_corrallBox_disabled" xml:space="preserve">
+    <value>Não disponível</value>
+    <comment>tooltip</comment>
+  </data>
+  <data name="NavigatorWindow_Text" xml:space="preserve">
+    <value>Janela do Navegador</value>
+    <comment>window title</comment>
+  </data>
+  <data name="word_Seconds" xml:space="preserve">
+    <value>Segundos</value>
+  </data>
+  <data name="word_History" xml:space="preserve">
+    <value>História</value>
+  </data>
+  <data name="NavigatorWindow_pinButton_Tooltip" xml:space="preserve">
+    <value>Adicionar itens selecionados à minha lista de leitura</value>
+    <comment>tooltip</comment>
+  </data>
+  <data name="NavigatorWindow_refreshButton_Tooltip" xml:space="preserve">
+    <value>Atualizar cabeçalhos da página atual</value>
+    <comment>tooltip</comment>
+  </data>
+  <data name="NavigatorWindow_unpinButton_Tooltip" xml:space="preserve">
+    <value>Remover itens selecionados da Minha lista de leitura</value>
+    <comment>tooltip</comment>
+  </data>
+  <data name="NavigatorWindow_pinnedHeadLabel.Text" xml:space="preserve">
+    <value>Minha lista de leitura</value>
+  </data>
+  <data name="ColorizerSheet_fixedBox.Text" xml:space="preserve">
+    <value>Mostrar apenas fontes de largura fixa</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="ColorizeSheet_applyBox.Text" xml:space="preserve">
+    <value>Sempre aplique a seguinte fonte ao colorir o código</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="ColorizeSheet_introBox.Text" xml:space="preserve">
+    <value>Personalize o comportamento do comando Colorize</value>
+    <comment>label</comment>
+  </data>
+  <data name="ColorizeSheet_Title" xml:space="preserve">
+    <value>Colorizador</value>
+  </data>
+  <data name="NavigatorWindow_downButton_Tooltip" xml:space="preserve">
+    <value>Mover itens selecionados para baixo</value>
+    <comment>tooltip</comment>
+  </data>
+  <data name="NavigatorWindow_upButton_Tooltip" xml:space="preserve">
+    <value>Mover itens selecionados para cima</value>
+    <comment>tooltip</comment>
+  </data>
+  <data name="FileImportSheet_Title" xml:space="preserve">
+    <value>Importação de arquivo</value>
+    <comment>settings sheet</comment>
+  </data>
+  <data name="FileImportSheet_introBox.Text" xml:space="preserve">
+    <value>Personalize as opções de importação de PowerPoint e PDF</value>
+    <comment>label</comment>
+  </data>
+  <data name="FileImportSheet_widthLabel.Text" xml:space="preserve">
+    <value>Largura da imagem de importação preferida</value>
+    <comment>label</comment>
+  </data>
+  <data name="NavigatorWindow_copyTooltip" xml:space="preserve">
+    <value>Copiar itens selecionados para a área de transferência</value>
+    <comment>button tooltip</comment>
+  </data>
+  <data name="NavigatorSheet_disabledBox.Text" xml:space="preserve">
+    <value>Desabilite o serviço de navegação. Isso tornará a janela do Navegador inoperável.</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="phrase_AdvancedOptions" xml:space="preserve">
+    <value>Opções avançadas</value>
+  </data>
+  <data name="NavigatorWindow_disabled" xml:space="preserve">
+    <value>O serviço de navegação está desativado. Abra Configurações para habilitar o serviço.</value>
+    <comment>message</comment>
   </data>
 </root>
