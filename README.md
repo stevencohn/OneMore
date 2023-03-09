@@ -9,6 +9,7 @@ OneMore is an add-in for OneNote with simple and powerful features that make One
   
 # Highlights  
 - The almighty [Command Palette](https://onedrive.live.com/redir?resid=6925D0374517D4B4%2158723&amp;authkey=%21AN6SD9aiIbjQLi0&amp;page=View&amp;wd=target%281%20The%20Basics.one%7Cf2cc1a14-be59-4df4-8ade-d330363d3296%2FBasics%7Cc32c3754-5b91-4164-83a3-33ca9a3a581a%2F%29&amp;wdorigin=703)!  
+- The [Navigator window](https://onedrive.live.com/redir?resid=6925D0374517D4B4%2158723&authkey=%21AN6SD9aiIbjQLi0&page=View&wd=target%28The%20Basics.one%7Cf2cc1a14-be59-4df4-8ade-d330363d3296%2FNavigator%7C585812bb-9822-431a-afac-06c1a03e47bd%2F%29&wdorigin=NavigationUrl) keeps track of your visited pages, your personalized reading list, and lets you navigate the headings of the current page.
 - Designed for efficiency by integrating with the [ribbon bar](https://onedrive.live.com/redir?resid=6925D0374517D4B4%2158723&amp;authkey=%21AN6SD9aiIbjQLi0&amp;page=View&amp;wd=target%281%20The%20Basics.one%7Cf2cc1a14-be59-4df4-8ade-d330363d3296%2FBasics%7Cc32c3754-5b91-4164-83a3-33ca9a3a581a%2F%29&amp;wdorigin=703), extensible <a href="https://onedrive.live.com/redir?resid=6925D0374517D4B4%2158723&amp;authkey=%21AN6SD9aiIbjQLi0&amp;page=View&amp;wd=target%282%20Context%20Menus.one%7Cc25d31ff-31fe-473b-9295-9b8be5b2bcab%2F%29&amp;wdorigin=717">context menus</a>, and customizable <a href="https://onedrive.live.com/redir?resid=6925D0374517D4B4%2158723&amp;authkey=%21AN6SD9aiIbjQLi0&amp;page=View&amp;wd=target%281%20The%20Basics.one%7Cf2cc1a14-be59-4df4-8ade-d330363d3296%2FOneNote%20Keyboard%20Shortcuts%7C6db55fc1-b30f-4740-b7e5-0b472258d6e5%2F%29&amp;wdorigin=703">keyboard shortcuts</a>  
 - Create [customized font styles](https://onedrive.live.com/redir?resid=6925D0374517D4B4%2158723&amp;authkey=%21AN6SD9aiIbjQLi0&amp;page=View&amp;wd=target%28Commands.one%7Cdefb70f1-1b5e-4ca1-95db-a5227b84d8de%2FMy%20Styles%20Commands%7C5c8ace54-e8ea-44aa-9fe5-4e957b96a683%2F%29&amp;wdorigin=703) beyond the standard styles provided by OneNote, apply one style to selected text, or apply all styles to the entire page  
 - Use predefined [table styles](https://onedrive.live.com/redir?resid=6925D0374517D4B4%2158723&amp;authkey=%21AN6SD9aiIbjQLi0&amp;page=View&amp;wd=target%28Commands.one%7Cdefb70f1-1b5e-4ca1-95db-a5227b84d8de%2FTable%20Style%20Commands%7C84ce75a7-9e7d-4354-8089-a2160f7c5c3a%2F%29&amp;wdorigin=703) or create your own to selectively set cell background and fonts  
@@ -30,6 +31,8 @@ _Click an image to enlarge_
 *Want more from OneMore? OneMore has more...*
 
 ### [Main Menu](https://github.com/stevencohn/OneMore/wiki/Tools)  
+- Open the command palette
+- Open the Navigator window
 - Run the OneMore Calendar, a view into your note history  
 - Replay the last OneMore action with a quick keyboard shortcut, default is Alt + Shift + R  
 - Edit OneMore settings  
