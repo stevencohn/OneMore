@@ -86,31 +86,31 @@ Begin
     
     function GetVersions
     {
-        WriteTitle "Versions"
-        $0 = "Registry::HKEY_CLASSES_ROOT\Excel.Application\CurVer"
+        WriteTitle 'Versions'
+        $0 = 'Registry::HKEY_CLASSES_ROOT\Excel.Application\CurVer'
         if (-not (HasKey $0)) {
-            write-Host "cannot determine version of Office, assuming 16.0" -Fore Yellow
+            write-Host 'cannot determine version of Office, assuming 16.0' -Fore Yellow
             $script:offversion = '16.0'
         } else {
             $parts = (Get-ItemPropertyValue -Path $0 -Name '(default)').Split('.')
-            $script:offVersion = $parts[$parts.Length - 1] + ".0"
+            $script:offVersion = $parts[$parts.Length - 1] + '.0'
             WriteOK "Office version is $offVersion"
         }
 
-        $0 = "Registry::HKEY_CLASSES_ROOT\onenote\shell\Open\command"
+        $0 = 'Registry::HKEY_CLASSES_ROOT\onenote\shell\Open\command'
         if (-not (HasKey $0)) {
-            write-Host "cannot determine shell command path of OneNote"
+            write-Host 'cannot determine shell command path of OneNote'
         } else {
             $script:onewow = (Get-ItemPropertyValue -Path $0 -Name '(default)'
                 ).Contains('Program Files (x86)')
         }
 
-        $0 = "Registry::HKEY_CLASSES_ROOT\OneNote.Application\CurVer"
+        $0 = 'Registry::HKEY_CLASSES_ROOT\OneNote.Application\CurVer'
         if (-not (HasKey $0)) {
-            write-Host "cannot determine version of OneNote"
+            write-Host 'cannot determine version of OneNote'
         } else {
             $parts = (Get-ItemPropertyValue -Path $0 -Name '(default)').Split('.')
-            $script:oneVersion = $parts[$parts.Length - 1] + ".0"
+            $script:oneVersion = $parts[$parts.Length - 1] + '.0'
             if ($onewow) {
                 WriteOK "OneNote version is $oneVersion (32-bit)"
             } else {
@@ -121,7 +121,7 @@ Begin
 
     function CheckAppID
     {
-        WriteTitle "AppID"
+        WriteTitle 'AppID'
         $0 = "Registry::HKEY_CLASSES_ROOT\AppID\$guid"
         $ok = (HasKey $0)
         if ($ok) { $ok = (HasValue $0 'DllSurrogate' '') }
@@ -130,8 +130,8 @@ Begin
 
     function CheckRoot
     {
-        WriteTitle "Root"
-        $0 = "Registry::HKEY_CLASSES_ROOT\onemore"
+        WriteTitle 'Root'
+        $0 = 'Registry::HKEY_CLASSES_ROOT\onemore'
         $ok = (HasKey $0)
         if ($ok) {
             $ok = (HasValue $0 '(default)' 'URL:OneMore Protocol Handler') -and $ok
@@ -142,9 +142,9 @@ Begin
 
     function CheckShell
     {
-        WriteTitle "Shell"
+        WriteTitle 'Shell'
         # this also covers the virtual node LOCAL_MACHINE\SOFTWARE\Classes\onemore\shell\open\command
-        $0 = "Registry::HKEY_CLASSES_ROOT\onemore\shell\open\command"
+        $0 = 'Registry::HKEY_CLASSES_ROOT\onemore\shell\open\command'
         $ok = (HasKey $0)
         if ($ok) { $ok = (HasValue $0 '(default)' '\\OneMoreProtocolHandler.exe"? %1 %2 %3 %4 %5' -match) }
         if ($ok) { WriteOK "$0" } else { WriteBad $0 }
@@ -153,8 +153,8 @@ Begin
 
     function CheckAddIn
     {
-        WriteTitle "AddIn"
-        $0 = "Registry::HKEY_CLASSES_ROOT\River.OneMoreAddIn"
+        WriteTitle 'AddIn'
+        $0 = 'Registry::HKEY_CLASSES_ROOT\River.OneMoreAddIn'
         $ok = (HasKey $0)
         if ($ok) {
             $ok = (HasValue $0 '(default)' 'River.OneMoreAddIn.AddIn') -and $ok
@@ -165,7 +165,7 @@ Begin
         }
         if ($ok) { WriteOK "$0" } else { WriteBad $0 }
 
-        $0 = "Registry::HKEY_CLASSES_ROOT\River.OneMoreAddIn.1"
+        $0 = 'Registry::HKEY_CLASSES_ROOT\River.OneMoreAddIn.1'
         $ok = (HasValue $0 '(default)' 'Addin class')
         $1 = "$0\CLSID"
         $ok = (HasValue $1 '(default)' $guid) -and $ok
@@ -239,7 +239,7 @@ Begin
 
         Write-Verbose "Assembly = $assembly"
         Write-Verbose "CodeBase = $codeBase"
-        Write-Verbose "RuntimeVersion = runtimeVersion"
+        Write-Verbose "RuntimeVersion = $runtimeVersion"
         Write-Verbose "Class = $class"
 
         $1 = "$0\ProgID"
@@ -265,21 +265,21 @@ Begin
 
     function CheckUser
     {
-        WriteTitle "User"
+        WriteTitle 'User'
         $0 = "Registry::HKEY_CURRENT_USER\SOFTWARE\Classes\AppID\$guid"
         $ok = (HasKey $0)
         if ($ok) { $ok = (HasValue $0 'DllSurrogate' '') }
         if ($ok) { WriteOK $0 } else { WriteBad $0 }
 
-        $0 = "Registry::HKEY_CURRENT_USER\SOFTWARE\Microsoft\Office\OneNote\AddIns\River.OneMoreAddIn"
+        $0 = 'Registry::HKEY_CURRENT_USER\SOFTWARE\Microsoft\Office\OneNote\AddIns\River.OneMoreAddIn'
         $ok = (HasValue $0 'LoadBehavior' '3')
         $ok = (HasValue $0 'Description' 'Extension for OneNote') -and $ok
         $ok = (HasValue $0 'FriendlyName' 'OneMoreAddIn') -and $ok
         if ($ok) { WriteOK $0 } else { WriteBad $0 }
 
-        $0 = "Registry::HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\River.OneMoreAddIn.dll"
+        $0 = 'Registry::HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\River.OneMoreAddIn.dll'
         if ($codebase -eq $null) {
-            Write-Host "CLSID codebase is not defined" -Fore Yellow
+            Write-Host 'CLSID codebase is not defined' -Fore Yellow
             WriteBAD $0
         } 
         else {
@@ -295,7 +295,7 @@ Begin
 
     function CheckWebView2
     {
-        WriteTitle "WebView2"
+        WriteTitle 'WebView2'
 
         # either of these keys need to be defined, per
         # > https://docs.microsoft.com/en-us/microsoft-edge/webview2/concepts/distribution
@@ -336,7 +336,7 @@ Begin
                 Write-Verbose "location = $location"
             } else {
                 WriteBad $path
-                Write-Host "... has version 0.0.0.0" -Fore Yellow
+                Write-Host '... has version 0.0.0.0' -Fore Yellow
             }
         }
         return $ok
