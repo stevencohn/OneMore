@@ -98,7 +98,10 @@ Begin
         # Updating $lines in memory is super fast. Also, Out-File -Append seems to have a problem
         # where it skips lines because it thinks the csproj is locked, probably if VS is open
 
-        $lines | Out-File $csproj
+        if ($updated)
+        {
+            $lines | Out-File $csproj
+        }
 
         return $updated
 	}
