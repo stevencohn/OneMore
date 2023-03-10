@@ -6,10 +6,11 @@ namespace River.OneMoreAddIn.Commands
 {
 	using Microsoft.Office.Core;
 	using River.OneMoreAddIn.Settings;
+	using System;
 	using System.Diagnostics;
 	using System.Threading.Tasks;
 	using System.Windows.Forms;
-	using Resx = River.OneMoreAddIn.Properties.Resources;
+	using Resx = Properties.Resources;
 
 
 	internal class SettingsCommand : Command
@@ -31,7 +32,13 @@ namespace River.OneMoreAddIn.Commands
 				return;
 			}
 
-			if (UIHelper.ShowQuestion(Resx.SettingsDialog_Restart) != DialogResult.Yes)
+			var one = new OneNote();
+			if (one.WindowCount > 1)
+			{
+				UIHelper.ShowInfo(Resx.SettingsDialog_closeWindows);
+				return;
+			}
+			else if (UIHelper.ShowQuestion(Resx.SettingsDialog_Restart) != DialogResult.Yes)
 			{
 				return;
 			}

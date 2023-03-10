@@ -209,6 +209,12 @@ namespace River.OneMoreAddIn
 
 
 		/// <summary>
+		/// Gets the number of open OneNote windows
+		/// </summary>
+		public int WindowCount => (int)onenote.Windows.Count;
+
+
+		/// <summary>
 		/// Gets the handle of the current window
 		/// </summary>
 		public IntPtr WindowHandle => (IntPtr)onenote.Windows.CurrentWindow.WindowHandle;
