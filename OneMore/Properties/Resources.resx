@@ -4225,6 +4225,10 @@ Search engines will appear in the page context menu, right-click.</value>
   <data name="SettingsDialog_aliasNode.Text" xml:space="preserve">
     <value>Command Aliases</value>
   </data>
+  <data name="SettingsDialog_closeWindows" xml:space="preserve">
+    <value>Multiple OneNote window are open. Close these windows and restart OneNote to apply new settings</value>
+    <comment>message</comment>
+  </data>
   <data name="SettingsDialog_contextNode.Text" xml:space="preserve">
     <value>Context Menu</value>
     <comment>treenode</comment>

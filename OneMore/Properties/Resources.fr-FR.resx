@@ -192,6 +192,10 @@
     <value>Le cache est un répertoire interne géré par OneNote pour optimiser ses performances. </value>
     <comment>summary text</comment>
   </data>
+  <data name="AnalyzeCommand_est" xml:space="preserve">
+    <value>{0} est</value>
+    <comment>estimate</comment>
+  </data>
   <data name="AnalyzeCommand_NoBackups" xml:space="preserve">
     <value>Chemin de sauvegarde introuvable ou sauvegarde non activée dans les options OneNote. </value>
     <comment>error message</comment>
@@ -224,6 +228,14 @@
     <value>Analyse du stockage OneNote</value>
     <comment>page title</comment>
   </data>
+  <data name="AnalyzeCommand_total" xml:space="preserve">
+    <value>{0} au total</value>
+    <comment>total image size</comment>
+  </data>
+  <data name="AnalyzeCommand_totalImages" xml:space="preserve">
+    <value>{0} images au total</value>
+    <comment>total image count</comment>
+  </data>
   <data name="AnalyzeDialog.Text" xml:space="preserve">
     <value>Options du rapport d'analyse du stockage</value>
     <comment>dialog title</comment>
@@ -247,6 +259,10 @@
   <data name="AnalyzeDialog_sectionDetailsBox.Text" xml:space="preserve">
     <value>Inclure les détails de la page pour la section actuelle</value>
     <comment>radio</comment>
+  </data>
+  <data name="AnalyzeDialog_warningLabel.Text" xml:space="preserve">
+    <value>Le rapport peut prendre quelques minutes</value>
+    <comment>label</comment>
   </data>
   <data name="Architecture" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>emoji\architecture.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -420,6 +436,25 @@
   <data name="ClearLog_Title" xml:space="preserve">
     <value>Confirmer</value>
     <comment>message box title</comment>
+  </data>
+  <data name="ColorizeDialog_Title" xml:space="preserve">
+    <value>Choisir la langue</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="ColorizerSheet_fixedBox.Text" xml:space="preserve">
+    <value>Afficher uniquement les polices à largeur fixe</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="ColorizeSheet_applyBox.Text" xml:space="preserve">
+    <value>Appliquez toujours la police suivante lors de la colorisation du code</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="ColorizeSheet_introBox.Text" xml:space="preserve">
+    <value>Personnaliser le comportement de la commande Coloriser</value>
+    <comment>label</comment>
+  </data>
+  <data name="ColorizeSheet_Title" xml:space="preserve">
+    <value>Coloriser</value>
   </data>
   <data name="Command_Error" xml:space="preserve">
     <value>Erreur lors de l'exécution de la commande {0}</value>
@@ -1165,6 +1200,18 @@ Fichier OneNote (*.one)</value>
     <value>Favoris</value>
     <comment>settings</comment>
   </data>
+  <data name="FileImportSheet_introBox.Text" xml:space="preserve">
+    <value>Personnalisez les options d'importation PowerPoint et PDF</value>
+    <comment>label</comment>
+  </data>
+  <data name="FileImportSheet_Title" xml:space="preserve">
+    <value>Importation de fichiers</value>
+    <comment>settings sheet</comment>
+  </data>
+  <data name="FileImportSheet_widthLabel.Text" xml:space="preserve">
+    <value>Largeur d'image d'importation préférée</value>
+    <comment>label</comment>
+  </data>
   <data name="Financial" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Emoji\Financial.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -1285,6 +1332,10 @@ Symboles : PI, E</value>
   <data name="GeneralSheet_Title" xml:space="preserve">
     <value>Options générales</value>
     <comment>settings sheet</comment>
+  </data>
+  <data name="GeneralSheet_verboseBox.Text" xml:space="preserve">
+    <value>Activer la journalisation détaillée</value>
+    <comment>checkbox</comment>
   </data>
   <data name="GetImagesCommand_Cite" xml:space="preserve">
     <value>Souhaitez-vous annoter l'image avec son URL ?</value>
@@ -1730,6 +1781,69 @@ Symboles : PI, E</value>
     <value>Renommer Style</value>
     <comment>dialog title</comment>
   </data>
+  <data name="NavigatorSheet_corrallBox.Text" xml:space="preserve">
+    <value>Restreindre la fenêtre du navigateur à l'écran actif</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="NavigatorSheet_corrallBox_disabled" xml:space="preserve">
+    <value>Pas disponible</value>
+    <comment>tooltip</comment>
+  </data>
+  <data name="NavigatorSheet_depthLabel.Text" xml:space="preserve">
+    <value>Longueur maximale de l'historique stocké</value>
+    <comment>label</comment>
+  </data>
+  <data name="NavigatorSheet_disabledBox.Text" xml:space="preserve">
+    <value>Désactivez le service de navigation. Cela rendra la fenêtre du Navigateur inutilisable.</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="NavigatorSheet_intervalLabel.Text" xml:space="preserve">
+    <value>Temps de lecture minimum avant d'ajouter à l'historique</value>
+    <comment>label</comment>
+  </data>
+  <data name="NavigatorSheet_introBox.Text" xml:space="preserve">
+    <value>Personnaliser les options avancées du service Navigator</value>
+    <comment>label</comment>
+  </data>
+  <data name="NavigatorSheet_Title" xml:space="preserve">
+    <value>Navigateur</value>
+    <comment>sheet title</comment>
+  </data>
+  <data name="NavigatorWindow_copyTooltip" xml:space="preserve">
+    <value>Copier les éléments sélectionnés dans le presse-papiers</value>
+    <comment>button tooltip</comment>
+  </data>
+  <data name="NavigatorWindow_disabled" xml:space="preserve">
+    <value>Le service de navigation est désactivé. Ouvrez Paramètres pour activer le service.</value>
+    <comment>message</comment>
+  </data>
+  <data name="NavigatorWindow_downButton_Tooltip" xml:space="preserve">
+    <value>Déplacer les éléments sélectionnés vers le bas</value>
+    <comment>tooltip</comment>
+  </data>
+  <data name="NavigatorWindow_pinButton_Tooltip" xml:space="preserve">
+    <value>Ajouter les éléments sélectionnés à Ma liste de lecture</value>
+    <comment>tooltip</comment>
+  </data>
+  <data name="NavigatorWindow_pinnedHeadLabel.Text" xml:space="preserve">
+    <value>Ma liste de lecture</value>
+  </data>
+  <data name="NavigatorWindow_refreshButton_Tooltip" xml:space="preserve">
+    <value>Actualiser les titres de la page actuelle</value>
+    <comment>tooltip</comment>
+  </data>
+  <data name="NavigatorWindow_Text" xml:space="preserve">
+    <value>Fenêtre du navigateur</value>
+    <comment>window title</comment>
+  </data>
+  <data name="NavigatorWindow_unpinButton_Tooltip" xml:space="preserve">
+    <value>Supprimer les éléments sélectionnés de Ma liste de lecture</value>
+    <comment>tooltip</comment>
+  </data>
+  <data name="NavigatorWindow_upButton_Tooltip" xml:space="preserve">
+    <value>Déplacer les éléments sélectionnés vers le haut</value>
+    <comment>tooltip</comment>
+  </data>
   <data name="NetwordConnectionUnavailable" xml:space="preserve">
     <value>La connexion réseau n'est pas disponible</value>
     <comment>error</comment>
@@ -1931,6 +2045,9 @@ Différé</value>
   </data>
   <data name="Pencil" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>emoji\pencil.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="phrase_AdvancedOptions" xml:space="preserve">
+    <value>Options avancées</value>
   </data>
   <data name="phrase_AppendToThisPage" xml:space="preserve">
     <value>Joindre à cette page</value>
@@ -2646,6 +2763,10 @@ Polaroïd</value>
     <value>Vérifier les mises à jour</value>
     <comment>command</comment>
   </data>
+  <data name="ribChooseColorizerButton_Label" xml:space="preserve">
+    <value>Coloriser</value>
+    <comment>ribbon edit</comment>
+  </data>
   <data name="ribChooseFavoriteButton_Label" xml:space="preserve">
     <value>Choisissez favori</value>
   </data>
@@ -3265,6 +3386,10 @@ Polaroïd</value>
   <data name="ribNameUrlsButton_Screentip" xml:space="preserve">
     <value>Remplacer les URL par des titres de page Web</value>
     <comment>ribbon references</comment>
+  </data>
+  <data name="ribNavigatorButton_Label" xml:space="preserve">
+    <value>Navigateur</value>
+    <comment>ribbon main</comment>
   </data>
   <data name="ribNewStyleButton_Label" xml:space="preserve">
     <value>Créer un nouveau style à partir du texte</value>
@@ -3995,6 +4120,10 @@ Les moteurs de recherche apparaîtront dans le menu contextuel de la page, faite
   <data name="SettingsDialog_aliasNode.Text" xml:space="preserve">
     <value>Alias ​​de commande</value>
   </data>
+  <data name="SettingsDialog_closeWindows" xml:space="preserve">
+    <value>Plusieurs fenêtres OneNote sont ouvertes. Fermez ces fenêtres et redémarrez OneNote pour appliquer les nouveaux paramètres</value>
+    <comment>message</comment>
+  </data>
   <data name="SettingsDialog_contextNode.Text" xml:space="preserve">
     <value>Menu contextuel</value>
     <comment>treenode</comment>
@@ -4018,6 +4147,10 @@ Les moteurs de recherche apparaîtront dans le menu contextuel de la page, faite
   <data name="SettingsDialog_linesNode.Text" xml:space="preserve">
     <value>Lignes horizontales</value>
     <comment>settings dialog</comment>
+  </data>
+  <data name="SettingsDialog_navigatorNode.Text" xml:space="preserve">
+    <value>Navigateur</value>
+    <comment>tree node</comment>
   </data>
   <data name="SettingsDialog_pluginsNode.Text" xml:space="preserve">
     <value>Plugins</value>
@@ -4723,6 +4856,9 @@ Dans cette section</value>
   <data name="word_Grayscale" xml:space="preserve">
     <value>Niveaux de gris</value>
   </data>
+  <data name="word_History" xml:space="preserve">
+    <value>Histoire</value>
+  </data>
   <data name="word_Keyboard" xml:space="preserve">
     <value>Clavier</value>
   </data>
@@ -4740,6 +4876,9 @@ Dans cette section</value>
   </data>
   <data name="word_No" xml:space="preserve">
     <value>Non</value>
+  </data>
+  <data name="word_None" xml:space="preserve">
+    <value>Aucun</value>
   </data>
   <data name="word_Notebook" xml:space="preserve">
     <value>Carnet de notes</value>
@@ -4788,6 +4927,9 @@ Dans cette section</value>
   </data>
   <data name="word_Scope" xml:space="preserve">
     <value>Portée</value>
+  </data>
+  <data name="word_Seconds" xml:space="preserve">
+    <value>Secondes</value>
   </data>
   <data name="word_Section" xml:space="preserve">
     <value>Section</value>
@@ -4849,158 +4991,20 @@ Dans cette section</value>
     <value>{0} Bloc-notes</value>
     <comment>page heading</comment>
   </data>
-  <data name="WordCounts_Section" xml:space="preserve">
-    <value>{0} Rubrique</value>
-    <comment>page heading</comment>
-  </data>
-  <data name="WordCountsCommand_Title" xml:space="preserve">
-    <value>Nombre de mots</value>
-    <comment>page title</comment>
-  </data>
-  <data name="GeneralSheet_verboseBox.Text" xml:space="preserve">
-    <value>Activer la journalisation détaillée</value>
-    <comment>checkbox</comment>
-  </data>
-  <data name="ColorizeDialog_Title" xml:space="preserve">
-    <value>Choisir la langue</value>
-    <comment>dialog title</comment>
-  </data>
-  <data name="ribChooseColorizerButton_Label" xml:space="preserve">
-    <value>Coloriser</value>
-    <comment>ribbon edit</comment>
-  </data>
-  <data name="word_None" xml:space="preserve">
-    <value>Aucun</value>
-  </data>
-  <data name="AnalyzeCommand_est" xml:space="preserve">
-    <value>{0} est</value>
-    <comment>estimate</comment>
-  </data>
-  <data name="AnalyzeCommand_total" xml:space="preserve">
-    <value>{0} au total</value>
-    <comment>total image size</comment>
-  </data>
-  <data name="AnalyzeCommand_totalImages" xml:space="preserve">
-    <value>{0} images au total</value>
-    <comment>total image count</comment>
-  </data>
-  <data name="AnalyzeDialog_warningLabel.Text" xml:space="preserve">
-    <value>Le rapport peut prendre quelques minutes</value>
-    <comment>label</comment>
-  </data>
   <data name="WordCounts_NotebookTotal" xml:space="preserve">
     <value>Nombre total de mots dans le bloc-notes sur {0} pages</value>
     <comment>report</comment>
+  </data>
+  <data name="WordCounts_Section" xml:space="preserve">
+    <value>{0} Rubrique</value>
+    <comment>page heading</comment>
   </data>
   <data name="WordCounts_SectionTotal" xml:space="preserve">
     <value>Nombre total de mots dans la section sur {0} pages</value>
     <comment>report</comment>
   </data>
-  <data name="NavigatorSheet_corrallBox.Text" xml:space="preserve">
-    <value>Restreindre la fenêtre du navigateur à l'écran actif</value>
-    <comment>checkbox</comment>
-  </data>
-  <data name="NavigatorSheet_depthLabel.Text" xml:space="preserve">
-    <value>Longueur maximale de l'historique stocké</value>
-    <comment>label</comment>
-  </data>
-  <data name="NavigatorSheet_intervalLabel.Text" xml:space="preserve">
-    <value>Temps de lecture minimum avant d'ajouter à l'historique</value>
-    <comment>label</comment>
-  </data>
-  <data name="NavigatorSheet_introBox.Text" xml:space="preserve">
-    <value>Personnaliser les options avancées du service Navigator</value>
-    <comment>label</comment>
-  </data>
-  <data name="NavigatorSheet_Title" xml:space="preserve">
-    <value>Navigateur</value>
-    <comment>sheet title</comment>
-  </data>
-  <data name="ribNavigatorButton_Label" xml:space="preserve">
-    <value>Navigateur</value>
-    <comment>ribbon main</comment>
-  </data>
-  <data name="SettingsDialog_navigatorNode.Text" xml:space="preserve">
-    <value>Navigateur</value>
-    <comment>tree node</comment>
-  </data>
-  <data name="NavigatorSheet_corrallBox_disabled" xml:space="preserve">
-    <value>Pas disponible</value>
-    <comment>tooltip</comment>
-  </data>
-  <data name="NavigatorWindow_Text" xml:space="preserve">
-    <value>Fenêtre du navigateur</value>
-    <comment>window title</comment>
-  </data>
-  <data name="word_Seconds" xml:space="preserve">
-    <value>Secondes</value>
-  </data>
-  <data name="word_History" xml:space="preserve">
-    <value>Histoire</value>
-  </data>
-  <data name="NavigatorWindow_pinButton_Tooltip" xml:space="preserve">
-    <value>Ajouter les éléments sélectionnés à Ma liste de lecture</value>
-    <comment>tooltip</comment>
-  </data>
-  <data name="NavigatorWindow_refreshButton_Tooltip" xml:space="preserve">
-    <value>Actualiser les titres de la page actuelle</value>
-    <comment>tooltip</comment>
-  </data>
-  <data name="NavigatorWindow_unpinButton_Tooltip" xml:space="preserve">
-    <value>Supprimer les éléments sélectionnés de Ma liste de lecture</value>
-    <comment>tooltip</comment>
-  </data>
-  <data name="NavigatorWindow_pinnedHeadLabel.Text" xml:space="preserve">
-    <value>Ma liste de lecture</value>
-  </data>
-  <data name="ColorizerSheet_fixedBox.Text" xml:space="preserve">
-    <value>Afficher uniquement les polices à largeur fixe</value>
-    <comment>checkbox</comment>
-  </data>
-  <data name="ColorizeSheet_applyBox.Text" xml:space="preserve">
-    <value>Appliquez toujours la police suivante lors de la colorisation du code</value>
-    <comment>checkbox</comment>
-  </data>
-  <data name="ColorizeSheet_introBox.Text" xml:space="preserve">
-    <value>Personnaliser le comportement de la commande Coloriser</value>
-    <comment>label</comment>
-  </data>
-  <data name="ColorizeSheet_Title" xml:space="preserve">
-    <value>Coloriser</value>
-  </data>
-  <data name="NavigatorWindow_downButton_Tooltip" xml:space="preserve">
-    <value>Déplacer les éléments sélectionnés vers le bas</value>
-    <comment>tooltip</comment>
-  </data>
-  <data name="NavigatorWindow_upButton_Tooltip" xml:space="preserve">
-    <value>Déplacer les éléments sélectionnés vers le haut</value>
-    <comment>tooltip</comment>
-  </data>
-  <data name="FileImportSheet_Title" xml:space="preserve">
-    <value>Importation de fichiers</value>
-    <comment>settings sheet</comment>
-  </data>
-  <data name="FileImportSheet_introBox.Text" xml:space="preserve">
-    <value>Personnalisez les options d'importation PowerPoint et PDF</value>
-    <comment>label</comment>
-  </data>
-  <data name="FileImportSheet_widthLabel.Text" xml:space="preserve">
-    <value>Largeur d'image d'importation préférée</value>
-    <comment>label</comment>
-  </data>
-  <data name="NavigatorWindow_copyTooltip" xml:space="preserve">
-    <value>Copier les éléments sélectionnés dans le presse-papiers</value>
-    <comment>button tooltip</comment>
-  </data>
-  <data name="NavigatorSheet_disabledBox.Text" xml:space="preserve">
-    <value>Désactivez le service de navigation. Cela rendra la fenêtre du Navigateur inutilisable.</value>
-    <comment>checkbox</comment>
-  </data>
-  <data name="phrase_AdvancedOptions" xml:space="preserve">
-    <value>Options avancées</value>
-  </data>
-  <data name="NavigatorWindow_disabled" xml:space="preserve">
-    <value>Le service de navigation est désactivé. Ouvrez Paramètres pour activer le service.</value>
-    <comment>message</comment>
+  <data name="WordCountsCommand_Title" xml:space="preserve">
+    <value>Nombre de mots</value>
+    <comment>page title</comment>
   </data>
 </root>

@@ -194,6 +194,10 @@ OneNote 将自动关闭</value>
     <value>缓存是 OneNote 管理的一个内部目录，用于优化其性能。</value>
     <comment>summary text</comment>
   </data>
+  <data name="AnalyzeCommand_est" xml:space="preserve">
+    <value>{0} 东部时间</value>
+    <comment>estimate</comment>
+  </data>
   <data name="AnalyzeCommand_NoBackups" xml:space="preserve">
     <value>OneNote 选项中未找到备份路径或未启用备份。</value>
     <comment>error message</comment>
@@ -226,6 +230,14 @@ OneNote 将自动关闭</value>
     <value>OneNote 存储分析</value>
     <comment>page title</comment>
   </data>
+  <data name="AnalyzeCommand_total" xml:space="preserve">
+    <value>{0} 总计</value>
+    <comment>total image size</comment>
+  </data>
+  <data name="AnalyzeCommand_totalImages" xml:space="preserve">
+    <value>{0} 张图片</value>
+    <comment>total image count</comment>
+  </data>
   <data name="AnalyzeDialog.Text" xml:space="preserve">
     <value>存储分析报告选项</value>
     <comment>dialog title</comment>
@@ -249,6 +261,10 @@ OneNote 将自动关闭</value>
   <data name="AnalyzeDialog_sectionDetailsBox.Text" xml:space="preserve">
     <value>包括当前部分的页面详细信息</value>
     <comment>radio</comment>
+  </data>
+  <data name="AnalyzeDialog_warningLabel.Text" xml:space="preserve">
+    <value>报告可能需要几分钟</value>
+    <comment>label</comment>
   </data>
   <data name="Architecture" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>emoji\architecture.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -422,6 +438,25 @@ OneNote 将自动关闭</value>
   <data name="ClearLog_Title" xml:space="preserve">
     <value>确认</value>
     <comment>message box title</comment>
+  </data>
+  <data name="ColorizeDialog_Title" xml:space="preserve">
+    <value>选择语言</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="ColorizerSheet_fixedBox.Text" xml:space="preserve">
+    <value>仅显示固定宽度的字体</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="ColorizeSheet_applyBox.Text" xml:space="preserve">
+    <value>为代码着色时始终应用以下字体</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="ColorizeSheet_introBox.Text" xml:space="preserve">
+    <value>自定义着色命令的行为</value>
+    <comment>label</comment>
+  </data>
+  <data name="ColorizeSheet_Title" xml:space="preserve">
+    <value>着色剂</value>
   </data>
   <data name="Command_Error" xml:space="preserve">
     <value>运行命令{0}时出错</value>
@@ -1167,6 +1202,18 @@ OneNote 文件 (*.one)</value>
     <value>收藏夹</value>
     <comment>settings</comment>
   </data>
+  <data name="FileImportSheet_introBox.Text" xml:space="preserve">
+    <value>自定义 PowerPoint 和 PDF 导入选项</value>
+    <comment>label</comment>
+  </data>
+  <data name="FileImportSheet_Title" xml:space="preserve">
+    <value>文件导入</value>
+    <comment>settings sheet</comment>
+  </data>
+  <data name="FileImportSheet_widthLabel.Text" xml:space="preserve">
+    <value>首选导入图像宽度</value>
+    <comment>label</comment>
+  </data>
   <data name="Financial" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Emoji\Financial.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -1287,6 +1334,10 @@ OneNote 文件 (*.one)</value>
   <data name="GeneralSheet_Title" xml:space="preserve">
     <value>常规选项</value>
     <comment>settings sheet</comment>
+  </data>
+  <data name="GeneralSheet_verboseBox.Text" xml:space="preserve">
+    <value>启用详细日志记录</value>
+    <comment>checkbox</comment>
   </data>
   <data name="GetImagesCommand_Cite" xml:space="preserve">
     <value>你想用它的 URL 注释图像吗？</value>
@@ -1732,6 +1783,69 @@ OneNote 文件 (*.one)</value>
     <value>重命名风格</value>
     <comment>dialog title</comment>
   </data>
+  <data name="NavigatorSheet_corrallBox.Text" xml:space="preserve">
+    <value>将导航器窗口限制为活动屏幕</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="NavigatorSheet_corrallBox_disabled" xml:space="preserve">
+    <value>无法使用</value>
+    <comment>tooltip</comment>
+  </data>
+  <data name="NavigatorSheet_depthLabel.Text" xml:space="preserve">
+    <value>存储历史的最大长度</value>
+    <comment>label</comment>
+  </data>
+  <data name="NavigatorSheet_disabledBox.Text" xml:space="preserve">
+    <value>禁用导航服务。这将使导航器窗口无法操作。</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="NavigatorSheet_intervalLabel.Text" xml:space="preserve">
+    <value>添加到历史记录之前的最小阅读时间</value>
+    <comment>label</comment>
+  </data>
+  <data name="NavigatorSheet_introBox.Text" xml:space="preserve">
+    <value>自定义 Navigator 服务的高级选项</value>
+    <comment>label</comment>
+  </data>
+  <data name="NavigatorSheet_Title" xml:space="preserve">
+    <value>航海家</value>
+    <comment>sheet title</comment>
+  </data>
+  <data name="NavigatorWindow_copyTooltip" xml:space="preserve">
+    <value>将所选项目复制到剪贴板</value>
+    <comment>button tooltip</comment>
+  </data>
+  <data name="NavigatorWindow_disabled" xml:space="preserve">
+    <value>导航服务被禁用。打开设置以启用该服务。</value>
+    <comment>message</comment>
+  </data>
+  <data name="NavigatorWindow_downButton_Tooltip" xml:space="preserve">
+    <value>向下移动所选项目</value>
+    <comment>tooltip</comment>
+  </data>
+  <data name="NavigatorWindow_pinButton_Tooltip" xml:space="preserve">
+    <value>将所选项目添加到我的阅读列表</value>
+    <comment>tooltip</comment>
+  </data>
+  <data name="NavigatorWindow_pinnedHeadLabel.Text" xml:space="preserve">
+    <value>我的阅读清单</value>
+  </data>
+  <data name="NavigatorWindow_refreshButton_Tooltip" xml:space="preserve">
+    <value>从当前页面刷新标题</value>
+    <comment>tooltip</comment>
+  </data>
+  <data name="NavigatorWindow_Text" xml:space="preserve">
+    <value>导航窗口</value>
+    <comment>window title</comment>
+  </data>
+  <data name="NavigatorWindow_unpinButton_Tooltip" xml:space="preserve">
+    <value>从我的阅读列表中删除所选项目</value>
+    <comment>tooltip</comment>
+  </data>
+  <data name="NavigatorWindow_upButton_Tooltip" xml:space="preserve">
+    <value>上移所选项目</value>
+    <comment>tooltip</comment>
+  </data>
   <data name="NetwordConnectionUnavailable" xml:space="preserve">
     <value>网络连接不可用</value>
     <comment>error</comment>
@@ -1930,6 +2044,9 @@ OneNote 文件 (*.one)</value>
   </data>
   <data name="Pencil" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>emoji\pencil.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="phrase_AdvancedOptions" xml:space="preserve">
+    <value>高级选项</value>
   </data>
   <data name="phrase_AppendToThisPage" xml:space="preserve">
     <value>附加到此页面</value>
@@ -2646,6 +2763,10 @@ ISO-code then comma then language name</comment>
     <value>检查更新</value>
     <comment>command</comment>
   </data>
+  <data name="ribChooseColorizerButton_Label" xml:space="preserve">
+    <value>着色</value>
+    <comment>ribbon edit</comment>
+  </data>
   <data name="ribChooseFavoriteButton_Label" xml:space="preserve">
     <value>选择收藏夹</value>
   </data>
@@ -3268,6 +3389,10 @@ ISO-code then comma then language name</comment>
   <data name="ribNameUrlsButton_Screentip" xml:space="preserve">
     <value>用网页标题替换 URL</value>
     <comment>ribbon references</comment>
+  </data>
+  <data name="ribNavigatorButton_Label" xml:space="preserve">
+    <value>航海家</value>
+    <comment>ribbon main</comment>
   </data>
   <data name="ribNewStyleButton_Label" xml:space="preserve">
     <value>从文本创建新样式</value>
@@ -3984,6 +4109,10 @@ ISO-code then comma then language name</comment>
   <data name="SettingsDialog_aliasNode.Text" xml:space="preserve">
     <value>命令别名</value>
   </data>
+  <data name="SettingsDialog_closeWindows" xml:space="preserve">
+    <value>多个 OneNote 窗口打开。关闭这些窗口并重新启动 OneNote 以应用新设置</value>
+    <comment>message</comment>
+  </data>
   <data name="SettingsDialog_contextNode.Text" xml:space="preserve">
     <value>上下文菜单</value>
     <comment>treenode</comment>
@@ -4007,6 +4136,10 @@ ISO-code then comma then language name</comment>
   <data name="SettingsDialog_linesNode.Text" xml:space="preserve">
     <value>水平线</value>
     <comment>settings dialog</comment>
+  </data>
+  <data name="SettingsDialog_navigatorNode.Text" xml:space="preserve">
+    <value>航海家</value>
+    <comment>tree node</comment>
   </data>
   <data name="SettingsDialog_pluginsNode.Text" xml:space="preserve">
     <value>插件</value>
@@ -4713,6 +4846,9 @@ ISO-code then comma then language name</comment>
   <data name="word_Grayscale" xml:space="preserve">
     <value>灰度</value>
   </data>
+  <data name="word_History" xml:space="preserve">
+    <value>历史</value>
+  </data>
   <data name="word_Keyboard" xml:space="preserve">
     <value>键盘</value>
   </data>
@@ -4730,6 +4866,9 @@ ISO-code then comma then language name</comment>
   </data>
   <data name="word_No" xml:space="preserve">
     <value>不</value>
+  </data>
+  <data name="word_None" xml:space="preserve">
+    <value>没有任何</value>
   </data>
   <data name="word_Notebook" xml:space="preserve">
     <value>笔记本</value>
@@ -4778,6 +4917,9 @@ ISO-code then comma then language name</comment>
   </data>
   <data name="word_Scope" xml:space="preserve">
     <value>范围</value>
+  </data>
+  <data name="word_Seconds" xml:space="preserve">
+    <value>秒</value>
   </data>
   <data name="word_Section" xml:space="preserve">
     <value>部分</value>
@@ -4839,158 +4981,20 @@ ISO-code then comma then language name</comment>
     <value>{0} 笔记本</value>
     <comment>page heading</comment>
   </data>
-  <data name="WordCounts_Section" xml:space="preserve">
-    <value>{0} 部分</value>
-    <comment>page heading</comment>
-  </data>
-  <data name="WordCountsCommand_Title" xml:space="preserve">
-    <value>字数统计</value>
-    <comment>page title</comment>
-  </data>
-  <data name="GeneralSheet_verboseBox.Text" xml:space="preserve">
-    <value>启用详细日志记录</value>
-    <comment>checkbox</comment>
-  </data>
-  <data name="ColorizeDialog_Title" xml:space="preserve">
-    <value>选择语言</value>
-    <comment>dialog title</comment>
-  </data>
-  <data name="ribChooseColorizerButton_Label" xml:space="preserve">
-    <value>着色</value>
-    <comment>ribbon edit</comment>
-  </data>
-  <data name="word_None" xml:space="preserve">
-    <value>没有任何</value>
-  </data>
-  <data name="AnalyzeCommand_est" xml:space="preserve">
-    <value>{0} 东部时间</value>
-    <comment>estimate</comment>
-  </data>
-  <data name="AnalyzeCommand_total" xml:space="preserve">
-    <value>{0} 总计</value>
-    <comment>total image size</comment>
-  </data>
-  <data name="AnalyzeCommand_totalImages" xml:space="preserve">
-    <value>{0} 张图片</value>
-    <comment>total image count</comment>
-  </data>
-  <data name="AnalyzeDialog_warningLabel.Text" xml:space="preserve">
-    <value>报告可能需要几分钟</value>
-    <comment>label</comment>
-  </data>
   <data name="WordCounts_NotebookTotal" xml:space="preserve">
     <value>{0} 页笔记本中的总字数</value>
     <comment>report</comment>
+  </data>
+  <data name="WordCounts_Section" xml:space="preserve">
+    <value>{0} 部分</value>
+    <comment>page heading</comment>
   </data>
   <data name="WordCounts_SectionTotal" xml:space="preserve">
     <value>{0} 页部分的总字数</value>
     <comment>report</comment>
   </data>
-  <data name="NavigatorSheet_corrallBox.Text" xml:space="preserve">
-    <value>将导航器窗口限制为活动屏幕</value>
-    <comment>checkbox</comment>
-  </data>
-  <data name="NavigatorSheet_depthLabel.Text" xml:space="preserve">
-    <value>存储历史的最大长度</value>
-    <comment>label</comment>
-  </data>
-  <data name="NavigatorSheet_intervalLabel.Text" xml:space="preserve">
-    <value>添加到历史记录之前的最小阅读时间</value>
-    <comment>label</comment>
-  </data>
-  <data name="NavigatorSheet_introBox.Text" xml:space="preserve">
-    <value>自定义 Navigator 服务的高级选项</value>
-    <comment>label</comment>
-  </data>
-  <data name="NavigatorSheet_Title" xml:space="preserve">
-    <value>航海家</value>
-    <comment>sheet title</comment>
-  </data>
-  <data name="ribNavigatorButton_Label" xml:space="preserve">
-    <value>航海家</value>
-    <comment>ribbon main</comment>
-  </data>
-  <data name="SettingsDialog_navigatorNode.Text" xml:space="preserve">
-    <value>航海家</value>
-    <comment>tree node</comment>
-  </data>
-  <data name="NavigatorSheet_corrallBox_disabled" xml:space="preserve">
-    <value>无法使用</value>
-    <comment>tooltip</comment>
-  </data>
-  <data name="NavigatorWindow_Text" xml:space="preserve">
-    <value>导航窗口</value>
-    <comment>window title</comment>
-  </data>
-  <data name="word_Seconds" xml:space="preserve">
-    <value>秒</value>
-  </data>
-  <data name="word_History" xml:space="preserve">
-    <value>历史</value>
-  </data>
-  <data name="NavigatorWindow_pinButton_Tooltip" xml:space="preserve">
-    <value>将所选项目添加到我的阅读列表</value>
-    <comment>tooltip</comment>
-  </data>
-  <data name="NavigatorWindow_refreshButton_Tooltip" xml:space="preserve">
-    <value>从当前页面刷新标题</value>
-    <comment>tooltip</comment>
-  </data>
-  <data name="NavigatorWindow_unpinButton_Tooltip" xml:space="preserve">
-    <value>从我的阅读列表中删除所选项目</value>
-    <comment>tooltip</comment>
-  </data>
-  <data name="NavigatorWindow_pinnedHeadLabel.Text" xml:space="preserve">
-    <value>我的阅读清单</value>
-  </data>
-  <data name="ColorizerSheet_fixedBox.Text" xml:space="preserve">
-    <value>仅显示固定宽度的字体</value>
-    <comment>checkbox</comment>
-  </data>
-  <data name="ColorizeSheet_applyBox.Text" xml:space="preserve">
-    <value>为代码着色时始终应用以下字体</value>
-    <comment>checkbox</comment>
-  </data>
-  <data name="ColorizeSheet_introBox.Text" xml:space="preserve">
-    <value>自定义着色命令的行为</value>
-    <comment>label</comment>
-  </data>
-  <data name="ColorizeSheet_Title" xml:space="preserve">
-    <value>着色剂</value>
-  </data>
-  <data name="NavigatorWindow_downButton_Tooltip" xml:space="preserve">
-    <value>向下移动所选项目</value>
-    <comment>tooltip</comment>
-  </data>
-  <data name="NavigatorWindow_upButton_Tooltip" xml:space="preserve">
-    <value>上移所选项目</value>
-    <comment>tooltip</comment>
-  </data>
-  <data name="FileImportSheet_Title" xml:space="preserve">
-    <value>文件导入</value>
-    <comment>settings sheet</comment>
-  </data>
-  <data name="FileImportSheet_introBox.Text" xml:space="preserve">
-    <value>自定义 PowerPoint 和 PDF 导入选项</value>
-    <comment>label</comment>
-  </data>
-  <data name="FileImportSheet_widthLabel.Text" xml:space="preserve">
-    <value>首选导入图像宽度</value>
-    <comment>label</comment>
-  </data>
-  <data name="NavigatorWindow_copyTooltip" xml:space="preserve">
-    <value>将所选项目复制到剪贴板</value>
-    <comment>button tooltip</comment>
-  </data>
-  <data name="NavigatorSheet_disabledBox.Text" xml:space="preserve">
-    <value>禁用导航服务。这将使导航器窗口无法操作。</value>
-    <comment>checkbox</comment>
-  </data>
-  <data name="phrase_AdvancedOptions" xml:space="preserve">
-    <value>高级选项</value>
-  </data>
-  <data name="NavigatorWindow_disabled" xml:space="preserve">
-    <value>导航服务被禁用。打开设置以启用该服务。</value>
-    <comment>message</comment>
+  <data name="WordCountsCommand_Title" xml:space="preserve">
+    <value>字数统计</value>
+    <comment>page title</comment>
   </data>
 </root>

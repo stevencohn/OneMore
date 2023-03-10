@@ -198,6 +198,10 @@ OneNote ייסגר אוטומטית</value>
     <value>המטמון הוא ספרייה פנימית המנוהלת על ידי OneNote כדי לייעל את הביצועים שלו. ההמלצה היא להימנע ממחיקה ידנית של התוכן של ספריית המטמון, אלא אם כן היא פגומה או מעכבת את פעולת OneNote.</value>
     <comment>summary text</comment>
   </data>
+  <data name="AnalyzeCommand_est" xml:space="preserve">
+    <value>{0} משוער</value>
+    <comment>estimate</comment>
+  </data>
   <data name="AnalyzeCommand_NoBackups" xml:space="preserve">
     <value>נתיב הגיבוי לא נמצא או גיבוי אינם מופעלים באפשרויות OneNote. אי אפשר להמשיך.</value>
     <comment>error message</comment>
@@ -238,6 +242,14 @@ OneNote ייסגר אוטומטית</value>
     <value>ניתוח אחסון של OneNote</value>
     <comment>page title</comment>
   </data>
+  <data name="AnalyzeCommand_total" xml:space="preserve">
+    <value>{0} סה"כ</value>
+    <comment>total image size</comment>
+  </data>
+  <data name="AnalyzeCommand_totalImages" xml:space="preserve">
+    <value>{0} תמונות בסך הכל</value>
+    <comment>total image count</comment>
+  </data>
   <data name="AnalyzeDialog.Text" xml:space="preserve">
     <value>אפשרויות דוח ניתוח אחסון</value>
     <comment>dialog title</comment>
@@ -261,6 +273,10 @@ OneNote ייסגר אוטומטית</value>
   <data name="AnalyzeDialog_sectionDetailsBox.Text" xml:space="preserve">
     <value>כלול פרטי עמוד עבור הקטע הנוכחי</value>
     <comment>radio</comment>
+  </data>
+  <data name="AnalyzeDialog_warningLabel.Text" xml:space="preserve">
+    <value>הדיווח עשוי להימשך דקות</value>
+    <comment>label</comment>
   </data>
   <data name="Architecture" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>emoji\architecture.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -434,6 +450,25 @@ OneNote ייסגר אוטומטית</value>
   <data name="ClearLog_Title" xml:space="preserve">
     <value>לְאַשֵׁר</value>
     <comment>message box title</comment>
+  </data>
+  <data name="ColorizeDialog_Title" xml:space="preserve">
+    <value>בחר שפה</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="ColorizerSheet_fixedBox.Text" xml:space="preserve">
+    <value>הצג רק גופנים ברוחב קבוע</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="ColorizeSheet_applyBox.Text" xml:space="preserve">
+    <value>החל תמיד את הגופן הבא בעת צביעה של קוד</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="ColorizeSheet_introBox.Text" xml:space="preserve">
+    <value>התאם אישית את ההתנהגות של הפקודה Colorize</value>
+    <comment>label</comment>
+  </data>
+  <data name="ColorizeSheet_Title" xml:space="preserve">
+    <value>צבעוניות</value>
   </data>
   <data name="Command_Error" xml:space="preserve">
     <value>שגיאה בהפעלת הפקודה {0}</value>
@@ -1212,6 +1247,18 @@ Total Row Font
     <value>מועדפים</value>
     <comment>settings</comment>
   </data>
+  <data name="FileImportSheet_introBox.Text" xml:space="preserve">
+    <value>התאם אישית אפשרויות ייבוא ​​של PowerPoint ו-PDF</value>
+    <comment>label</comment>
+  </data>
+  <data name="FileImportSheet_Title" xml:space="preserve">
+    <value>ייבוא ​​קבצים</value>
+    <comment>settings sheet</comment>
+  </data>
+  <data name="FileImportSheet_widthLabel.Text" xml:space="preserve">
+    <value>רוחב תמונת ייבוא ​​מועדף</value>
+    <comment>label</comment>
+  </data>
   <data name="Financial" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Emoji\Financial.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -1338,6 +1385,10 @@ Total Row Font
   <data name="GeneralSheet_Title" xml:space="preserve">
     <value>אפשרויות כלליות</value>
     <comment>settings sheet</comment>
+  </data>
+  <data name="GeneralSheet_verboseBox.Text" xml:space="preserve">
+    <value>אפשר רישום מילולי</value>
+    <comment>checkbox</comment>
   </data>
   <data name="GetImagesCommand_Cite" xml:space="preserve">
     <value>האם תרצה להוסיף הערה לתמונה בכתובת האתר שלה?</value>
@@ -1795,6 +1846,69 @@ Total Row Font
     <value>שנה את שם הסגנון</value>
     <comment>dialog title</comment>
   </data>
+  <data name="NavigatorSheet_corrallBox.Text" xml:space="preserve">
+    <value>הגבל את חלון הניווט למסך הפעיל</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="NavigatorSheet_corrallBox_disabled" xml:space="preserve">
+    <value>לא זמין</value>
+    <comment>tooltip</comment>
+  </data>
+  <data name="NavigatorSheet_depthLabel.Text" xml:space="preserve">
+    <value>אורך מקסימלי של היסטוריה מאוחסנת</value>
+    <comment>label</comment>
+  </data>
+  <data name="NavigatorSheet_disabledBox.Text" xml:space="preserve">
+    <value>השבת את שירות הניווט. פעולה זו תהפוך את חלון הניווט לבלתי ניתן להפעלה.</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="NavigatorSheet_intervalLabel.Text" xml:space="preserve">
+    <value>זמן קריאה מינימלי לפני הוספה להיסטוריה</value>
+    <comment>label</comment>
+  </data>
+  <data name="NavigatorSheet_introBox.Text" xml:space="preserve">
+    <value>התאם אישית אפשרויות מתקדמות עבור שירות הניווט</value>
+    <comment>label</comment>
+  </data>
+  <data name="NavigatorSheet_Title" xml:space="preserve">
+    <value>נווט</value>
+    <comment>sheet title</comment>
+  </data>
+  <data name="NavigatorWindow_copyTooltip" xml:space="preserve">
+    <value>העתק פריטים נבחרים ללוח</value>
+    <comment>button tooltip</comment>
+  </data>
+  <data name="NavigatorWindow_disabled" xml:space="preserve">
+    <value>שירות הניווט מושבת. פתח את ההגדרות כדי להפעיל את השירות.</value>
+    <comment>message</comment>
+  </data>
+  <data name="NavigatorWindow_downButton_Tooltip" xml:space="preserve">
+    <value>הזז את הפריטים שנבחרו למטה</value>
+    <comment>tooltip</comment>
+  </data>
+  <data name="NavigatorWindow_pinButton_Tooltip" xml:space="preserve">
+    <value>הוסף פריטים נבחרים לרשימת הקריאה שלי</value>
+    <comment>tooltip</comment>
+  </data>
+  <data name="NavigatorWindow_pinnedHeadLabel.Text" xml:space="preserve">
+    <value>רשימת הקריאה שלי</value>
+  </data>
+  <data name="NavigatorWindow_refreshButton_Tooltip" xml:space="preserve">
+    <value>רענן כותרות מהדף הנוכחי</value>
+    <comment>tooltip</comment>
+  </data>
+  <data name="NavigatorWindow_Text" xml:space="preserve">
+    <value>חלון ניווט</value>
+    <comment>window title</comment>
+  </data>
+  <data name="NavigatorWindow_unpinButton_Tooltip" xml:space="preserve">
+    <value>הסר פריטים נבחרים מרשימת הקריאה שלי</value>
+    <comment>tooltip</comment>
+  </data>
+  <data name="NavigatorWindow_upButton_Tooltip" xml:space="preserve">
+    <value>הזז את הפריטים שנבחרו למעלה</value>
+    <comment>tooltip</comment>
+  </data>
   <data name="NetwordConnectionUnavailable" xml:space="preserve">
     <value>חיבור רשת אינו זמין</value>
     <comment>error</comment>
@@ -1999,6 +2113,9 @@ Total Row Font
   </data>
   <data name="Pencil" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>emoji\pencil.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="phrase_AdvancedOptions" xml:space="preserve">
+    <value>אפשרויות מתקדמות</value>
   </data>
   <data name="phrase_AppendToThisPage" xml:space="preserve">
     <value>צרף לדף זה</value>
@@ -2729,6 +2846,10 @@ ISO-code then comma then language name</comment>
     <value>בדוק עדכונים</value>
     <comment>command</comment>
   </data>
+  <data name="ribChooseColorizerButton_Label" xml:space="preserve">
+    <value>צבע</value>
+    <comment>ribbon edit</comment>
+  </data>
   <data name="ribChooseFavoriteButton_Label" xml:space="preserve">
     <value>בחר מועדף</value>
   </data>
@@ -3351,6 +3472,10 @@ ISO-code then comma then language name</comment>
   <data name="ribNameUrlsButton_Screentip" xml:space="preserve">
     <value>החלף כתובות אתרים בכותרות של דף אינטרנט</value>
     <comment>ribbon references</comment>
+  </data>
+  <data name="ribNavigatorButton_Label" xml:space="preserve">
+    <value>נווט</value>
+    <comment>ribbon main</comment>
   </data>
   <data name="ribNewStyleButton_Label" xml:space="preserve">
     <value>צור סגנון חדש מטקסט</value>
@@ -4073,6 +4198,10 @@ ISO-code then comma then language name</comment>
   <data name="SettingsDialog_aliasNode.Text" xml:space="preserve">
     <value>כינויי פקודה</value>
   </data>
+  <data name="SettingsDialog_closeWindows" xml:space="preserve">
+    <value>חלונות OneNote מרובים פתוחים. סגור חלונות אלה והפעל מחדש את OneNote כדי להחיל הגדרות חדשות</value>
+    <comment>message</comment>
+  </data>
   <data name="SettingsDialog_contextNode.Text" xml:space="preserve">
     <value>תפריט הקשר</value>
     <comment>treenode</comment>
@@ -4096,6 +4225,10 @@ ISO-code then comma then language name</comment>
   <data name="SettingsDialog_linesNode.Text" xml:space="preserve">
     <value>קווים אופקיים</value>
     <comment>settings dialog</comment>
+  </data>
+  <data name="SettingsDialog_navigatorNode.Text" xml:space="preserve">
+    <value>נווט</value>
+    <comment>tree node</comment>
   </data>
   <data name="SettingsDialog_pluginsNode.Text" xml:space="preserve">
     <value>תוספים</value>
@@ -4824,6 +4957,9 @@ ISO-code then comma then language name</comment>
   <data name="word_Grayscale" xml:space="preserve">
     <value>גווני אפור</value>
   </data>
+  <data name="word_History" xml:space="preserve">
+    <value>הִיסטוֹרִיָה</value>
+  </data>
   <data name="word_Keyboard" xml:space="preserve">
     <value>מקלדת</value>
   </data>
@@ -4841,6 +4977,9 @@ ISO-code then comma then language name</comment>
   </data>
   <data name="word_No" xml:space="preserve">
     <value>לא</value>
+  </data>
+  <data name="word_None" xml:space="preserve">
+    <value>אף אחד</value>
   </data>
   <data name="word_Notebook" xml:space="preserve">
     <value>מחברת</value>
@@ -4889,6 +5028,9 @@ ISO-code then comma then language name</comment>
   </data>
   <data name="word_Scope" xml:space="preserve">
     <value>תְחוּם</value>
+  </data>
+  <data name="word_Seconds" xml:space="preserve">
+    <value>שניות</value>
   </data>
   <data name="word_Section" xml:space="preserve">
     <value>סָעִיף</value>
@@ -4950,158 +5092,20 @@ ISO-code then comma then language name</comment>
     <value>{0} מחברת</value>
     <comment>page heading</comment>
   </data>
-  <data name="WordCounts_Section" xml:space="preserve">
-    <value>{0} קטע</value>
-    <comment>page heading</comment>
-  </data>
-  <data name="WordCountsCommand_Title" xml:space="preserve">
-    <value>ספירת מילים</value>
-    <comment>page title</comment>
-  </data>
-  <data name="GeneralSheet_verboseBox.Text" xml:space="preserve">
-    <value>אפשר רישום מילולי</value>
-    <comment>checkbox</comment>
-  </data>
-  <data name="ColorizeDialog_Title" xml:space="preserve">
-    <value>בחר שפה</value>
-    <comment>dialog title</comment>
-  </data>
-  <data name="ribChooseColorizerButton_Label" xml:space="preserve">
-    <value>צבע</value>
-    <comment>ribbon edit</comment>
-  </data>
-  <data name="word_None" xml:space="preserve">
-    <value>אף אחד</value>
-  </data>
-  <data name="AnalyzeCommand_est" xml:space="preserve">
-    <value>{0} משוער</value>
-    <comment>estimate</comment>
-  </data>
-  <data name="AnalyzeCommand_total" xml:space="preserve">
-    <value>{0} סה"כ</value>
-    <comment>total image size</comment>
-  </data>
-  <data name="AnalyzeCommand_totalImages" xml:space="preserve">
-    <value>{0} תמונות בסך הכל</value>
-    <comment>total image count</comment>
-  </data>
-  <data name="AnalyzeDialog_warningLabel.Text" xml:space="preserve">
-    <value>הדיווח עשוי להימשך דקות</value>
-    <comment>label</comment>
-  </data>
   <data name="WordCounts_NotebookTotal" xml:space="preserve">
     <value>סך המילים במחברת על פני {0} דפים</value>
     <comment>report</comment>
+  </data>
+  <data name="WordCounts_Section" xml:space="preserve">
+    <value>{0} קטע</value>
+    <comment>page heading</comment>
   </data>
   <data name="WordCounts_SectionTotal" xml:space="preserve">
     <value>סך המילים בקטע על פני {0} דפים</value>
     <comment>report</comment>
   </data>
-  <data name="NavigatorSheet_corrallBox.Text" xml:space="preserve">
-    <value>הגבל את חלון הניווט למסך הפעיל</value>
-    <comment>checkbox</comment>
-  </data>
-  <data name="NavigatorSheet_depthLabel.Text" xml:space="preserve">
-    <value>אורך מקסימלי של היסטוריה מאוחסנת</value>
-    <comment>label</comment>
-  </data>
-  <data name="NavigatorSheet_intervalLabel.Text" xml:space="preserve">
-    <value>זמן קריאה מינימלי לפני הוספה להיסטוריה</value>
-    <comment>label</comment>
-  </data>
-  <data name="NavigatorSheet_introBox.Text" xml:space="preserve">
-    <value>התאם אישית אפשרויות מתקדמות עבור שירות הניווט</value>
-    <comment>label</comment>
-  </data>
-  <data name="NavigatorSheet_Title" xml:space="preserve">
-    <value>נווט</value>
-    <comment>sheet title</comment>
-  </data>
-  <data name="ribNavigatorButton_Label" xml:space="preserve">
-    <value>נווט</value>
-    <comment>ribbon main</comment>
-  </data>
-  <data name="SettingsDialog_navigatorNode.Text" xml:space="preserve">
-    <value>נווט</value>
-    <comment>tree node</comment>
-  </data>
-  <data name="NavigatorSheet_corrallBox_disabled" xml:space="preserve">
-    <value>לא זמין</value>
-    <comment>tooltip</comment>
-  </data>
-  <data name="NavigatorWindow_Text" xml:space="preserve">
-    <value>חלון ניווט</value>
-    <comment>window title</comment>
-  </data>
-  <data name="word_Seconds" xml:space="preserve">
-    <value>שניות</value>
-  </data>
-  <data name="word_History" xml:space="preserve">
-    <value>הִיסטוֹרִיָה</value>
-  </data>
-  <data name="NavigatorWindow_pinButton_Tooltip" xml:space="preserve">
-    <value>הוסף פריטים נבחרים לרשימת הקריאה שלי</value>
-    <comment>tooltip</comment>
-  </data>
-  <data name="NavigatorWindow_refreshButton_Tooltip" xml:space="preserve">
-    <value>רענן כותרות מהדף הנוכחי</value>
-    <comment>tooltip</comment>
-  </data>
-  <data name="NavigatorWindow_unpinButton_Tooltip" xml:space="preserve">
-    <value>הסר פריטים נבחרים מרשימת הקריאה שלי</value>
-    <comment>tooltip</comment>
-  </data>
-  <data name="NavigatorWindow_pinnedHeadLabel.Text" xml:space="preserve">
-    <value>רשימת הקריאה שלי</value>
-  </data>
-  <data name="ColorizerSheet_fixedBox.Text" xml:space="preserve">
-    <value>הצג רק גופנים ברוחב קבוע</value>
-    <comment>checkbox</comment>
-  </data>
-  <data name="ColorizeSheet_applyBox.Text" xml:space="preserve">
-    <value>החל תמיד את הגופן הבא בעת צביעה של קוד</value>
-    <comment>checkbox</comment>
-  </data>
-  <data name="ColorizeSheet_introBox.Text" xml:space="preserve">
-    <value>התאם אישית את ההתנהגות של הפקודה Colorize</value>
-    <comment>label</comment>
-  </data>
-  <data name="ColorizeSheet_Title" xml:space="preserve">
-    <value>צבעוניות</value>
-  </data>
-  <data name="NavigatorWindow_downButton_Tooltip" xml:space="preserve">
-    <value>הזז את הפריטים שנבחרו למטה</value>
-    <comment>tooltip</comment>
-  </data>
-  <data name="NavigatorWindow_upButton_Tooltip" xml:space="preserve">
-    <value>הזז את הפריטים שנבחרו למעלה</value>
-    <comment>tooltip</comment>
-  </data>
-  <data name="FileImportSheet_Title" xml:space="preserve">
-    <value>ייבוא ​​קבצים</value>
-    <comment>settings sheet</comment>
-  </data>
-  <data name="FileImportSheet_introBox.Text" xml:space="preserve">
-    <value>התאם אישית אפשרויות ייבוא ​​של PowerPoint ו-PDF</value>
-    <comment>label</comment>
-  </data>
-  <data name="FileImportSheet_widthLabel.Text" xml:space="preserve">
-    <value>רוחב תמונת ייבוא ​​מועדף</value>
-    <comment>label</comment>
-  </data>
-  <data name="NavigatorWindow_copyTooltip" xml:space="preserve">
-    <value>העתק פריטים נבחרים ללוח</value>
-    <comment>button tooltip</comment>
-  </data>
-  <data name="NavigatorSheet_disabledBox.Text" xml:space="preserve">
-    <value>השבת את שירות הניווט. פעולה זו תהפוך את חלון הניווט לבלתי ניתן להפעלה.</value>
-    <comment>checkbox</comment>
-  </data>
-  <data name="phrase_AdvancedOptions" xml:space="preserve">
-    <value>אפשרויות מתקדמות</value>
-  </data>
-  <data name="NavigatorWindow_disabled" xml:space="preserve">
-    <value>שירות הניווט מושבת. פתח את ההגדרות כדי להפעיל את השירות.</value>
-    <comment>message</comment>
+  <data name="WordCountsCommand_Title" xml:space="preserve">
+    <value>ספירת מילים</value>
+    <comment>page title</comment>
   </data>
 </root>

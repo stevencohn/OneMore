@@ -9487,6 +9487,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Multiple OneNote window are open. Close these windows and restart OneNote to apply new settings.
+        /// </summary>
+        internal static string SettingsDialog_closeWindows {
+            get {
+                return ResourceManager.GetString("SettingsDialog_closeWindows", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Context Menu.
         /// </summary>
         internal static string SettingsDialog_contextNode_Text {

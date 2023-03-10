@@ -4115,6 +4115,10 @@ Suchmaschinen werden im Kontextmenü der Seite angezeigt, klicke mit der rechten
   <data name="SettingsDialog_aliasNode.Text" xml:space="preserve">
     <value>Befehlsaliase</value>
   </data>
+  <data name="SettingsDialog_closeWindows" xml:space="preserve">
+    <value>Mehrere OneNote-Fenster sind geöffnet. Schließen Sie diese Fenster und starten Sie OneNote neu, um die neuen Einstellungen zu übernehmen</value>
+    <comment>message</comment>
+  </data>
   <data name="SettingsDialog_contextNode.Text" xml:space="preserve">
     <value>Kontextmenü</value>
     <comment>treenode</comment>
