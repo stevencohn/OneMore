@@ -40,6 +40,7 @@ namespace River.OneMoreAddIn.Settings
 			this.imageViewerBox = new System.Windows.Forms.TextBox();
 			this.imageViewerButton = new System.Windows.Forms.Button();
 			this.plantGroup = new System.Windows.Forms.GroupBox();
+			this.plantEmbedBox = new System.Windows.Forms.CheckBox();
 			this.plantCollapseBox = new System.Windows.Forms.CheckBox();
 			this.plantAfterBox = new System.Windows.Forms.CheckBox();
 			this.errorProvider = new System.Windows.Forms.ErrorProvider(this.components);
@@ -162,14 +163,25 @@ namespace River.OneMoreAddIn.Settings
 			// 
 			this.plantGroup.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+			this.plantGroup.Controls.Add(this.plantEmbedBox);
 			this.plantGroup.Controls.Add(this.plantCollapseBox);
 			this.plantGroup.Controls.Add(this.plantAfterBox);
 			this.plantGroup.Location = new System.Drawing.Point(7, 234);
 			this.plantGroup.Name = "plantGroup";
-			this.plantGroup.Size = new System.Drawing.Size(762, 128);
+			this.plantGroup.Size = new System.Drawing.Size(762, 148);
 			this.plantGroup.TabIndex = 0;
 			this.plantGroup.TabStop = false;
 			this.plantGroup.Text = "PlantUML Options";
+			// 
+			// plantEmbedBox
+			// 
+			this.plantEmbedBox.AutoSize = true;
+			this.plantEmbedBox.Location = new System.Drawing.Point(32, 97);
+			this.plantEmbedBox.Name = "plantEmbedBox";
+			this.plantEmbedBox.Size = new System.Drawing.Size(384, 24);
+			this.plantEmbedBox.TabIndex = 2;
+			this.plantEmbedBox.Text = "Remove PlantUML text and embed it in the image";
+			this.plantEmbedBox.UseVisualStyleBackColor = true;
 			// 
 			// plantCollapseBox
 			// 
@@ -234,5 +246,6 @@ namespace River.OneMoreAddIn.Settings
 		private System.Windows.Forms.NumericUpDown widthBox;
 		private System.Windows.Forms.Label widthLabel;
 		private System.Windows.Forms.ErrorProvider errorProvider;
+		private System.Windows.Forms.CheckBox plantEmbedBox;
 	}
 }

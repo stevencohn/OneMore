@@ -31,7 +31,8 @@ namespace River.OneMoreAddIn.Settings
 					"widthLabel",
 					"plantGroup",
 					"plantAfterBox",
-					"plantCollapseBox"
+					"plantCollapseBox",
+					"plantEmbedBox"
 				});
 			}
 
@@ -54,6 +55,7 @@ namespace River.OneMoreAddIn.Settings
 
 			plantAfterBox.Checked = settings.Get("plantAfter", false);
 			plantCollapseBox.Checked = settings.Get("plantCollapsed", false);
+			plantEmbedBox.Checked = settings.Get("plantEmbed", false);
 		}
 
 
@@ -140,6 +142,7 @@ namespace River.OneMoreAddIn.Settings
 
 			settings.Add("plantAfter", plantAfterBox.Checked.ToString());
 			settings.Add("plantCollapsed", plantCollapseBox.Checked.ToString());
+			settings.Add("plantEmbed", plantEmbedBox.Checked.ToString());
 
 			provider.SetCollection(settings);
 

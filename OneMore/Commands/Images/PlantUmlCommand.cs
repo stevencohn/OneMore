@@ -11,7 +11,6 @@ namespace River.OneMoreAddIn.Commands
 	using System.Drawing;
 	using System.IO;
 	using System.Linq;
-	using System.Net;
 	using System.Text;
 	using System.Threading;
 	using System.Threading.Tasks;
@@ -81,7 +80,7 @@ namespace River.OneMoreAddIn.Commands
 
 			// convert...
 
-			var bytes = ConvertToDiagram(text);
+			var bytes = Render(text);
 			if (!string.IsNullOrWhiteSpace(errorMessage))
 			{
 				UIHelper.ShowError(errorMessage);
@@ -92,11 +91,13 @@ namespace River.OneMoreAddIn.Commands
 
 			var after = true;
 			var collapse = false;
+			var embed = false;
 			var settings = new SettingsProvider().GetCollection("ImagesSheet");
 			if (settings != null)
 			{
 				after = settings.Get("plantAfter", true);
 				collapse = settings.Get("plantCollapsed", false);
+				embed = settings.Get("plantEmbed", false);
 			}
 
 			// insert image immediately before or after text...
@@ -111,7 +112,7 @@ namespace River.OneMoreAddIn.Commands
 			var plantID = Guid.NewGuid().ToString("N");
 			PageNamespace.Set(ns);
 
-			var element = new XElement(ns + "OE",
+			var content = new XElement(ns + "OE",
 				new XAttribute("selected", "partial"),
 				new Meta(ImageMeta, plantID),
 				new XElement(ns + "Image",
@@ -122,13 +123,17 @@ namespace River.OneMoreAddIn.Commands
 					new XElement(ns + "Data", Convert.ToBase64String(bytes))
 					));
 
+			var title = PlantUmlHelper.ReadTitle(text);
+			var table = AddCaptionCommand.MakeCaptionTable(ns, content, title, out var cdata);
+
+
 			if (after)
 			{
-				anchor.AddAfterSelf(element);
+				anchor.AddAfterSelf(table.Root);
 			}
 			else
 			{
-				anchor.AddBeforeSelf(element);
+				anchor.AddBeforeSelf(table.Root);
 			}
 
 			// collapse text into sub-paragraph...
@@ -162,7 +167,7 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private byte[] ConvertToDiagram(string text)
+		private byte[] Render(string text)
 		{
 			using var progress = new ProgressDialog(10);
 			progress.Tag = text;
@@ -177,7 +182,7 @@ namespace River.OneMoreAddIn.Commands
 				{
 					try
 					{
-						var renderer = new PlantUmlRenderer();
+						var renderer = new PlantUmlHelper();
 						bytes = await renderer.RenderRemotely(text, token);
 
 						if (bytes.Length > 0)
@@ -261,7 +266,7 @@ namespace River.OneMoreAddIn.Commands
 
 			// convert...
 
-			var bytes = ConvertToDiagram(text);
+			var bytes = Render(text);
 			if (bytes.Length == 0)
 			{
 				UIHelper.ShowError(Resx.PlantUmlCommand_tooBig);

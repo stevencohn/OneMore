@@ -5,11 +5,11 @@
 namespace River.OneMoreAddIn.Commands
 {
 	using System;
-	using System.Drawing;
 	using System.IO;
 	using System.IO.Compression;
 	using System.Net;
 	using System.Text;
+	using System.Text.RegularExpressions;
 	using System.Threading;
 	using System.Threading.Tasks;
 	using System.Windows.Media.Imaging;
@@ -22,10 +22,10 @@ namespace River.OneMoreAddIn.Commands
 	/// <remarks>
 	/// Text encoding is performed according to https://plantuml.com/en-dark/text-encoding
 	/// </remarks>
-	internal class PlantUmlRenderer : Loggable
+	internal class PlantUmlHelper : Loggable
 	{
 
-		public PlantUmlRenderer()
+		public PlantUmlHelper()
 		{
 		}
 
@@ -212,6 +212,33 @@ namespace River.OneMoreAddIn.Commands
 			}
 
 			return null;
+		}
+
+
+		/// <summary>
+		/// Reads the best title from the given PlantUML. The title could be described by a
+		/// title line or as the first parameter of the @startuml line
+		/// </summary>
+		/// <param name="uml"></param>
+		/// <returns></returns>
+		public static string ReadTitle(string uml)
+		{
+			var match = Regex.Match(uml, @"[\n\r]+title[ ]+([^\n\r]+)[\n\r]+", RegexOptions.IgnoreCase);
+			if (!match.Success)
+			{
+				match = Regex.Match(uml, @"@startuml[ ]+([^\n\r]+)[\n\r]+", RegexOptions.IgnoreCase);
+			}
+
+			if (match.Success)
+			{
+				var title = match.Groups[1].Value.Trim();
+				if (title.Length > 0)
+				{
+					return title;
+				}
+			}
+
+			return "PlantUML";
 		}
 	}
 }
