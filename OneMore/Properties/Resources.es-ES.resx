@@ -2061,6 +2061,10 @@ Diferido</value>
   <data name="phrase_PathNotFound" xml:space="preserve">
     <value>Camino no encontrado</value>
   </data>
+  <data name="PlantUmlCommand_tooBig" xml:space="preserve">
+    <value>Este código PlantUML es demasiado grande. No puede superar los 2.011 caracteres.</value>
+    <comment>error message</comment>
+  </data>
   <data name="Plugin_InvalidSchema" xml:space="preserve">
     <value>XML no válido detectado. </value>
     <comment>error message</comment>

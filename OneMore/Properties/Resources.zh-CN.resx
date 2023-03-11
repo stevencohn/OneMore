@@ -2057,6 +2057,10 @@ OneNote 文件 (*.one)</value>
   <data name="phrase_PathNotFound" xml:space="preserve">
     <value>找不到路径</value>
   </data>
+  <data name="PlantUmlCommand_tooBig" xml:space="preserve">
+    <value>此 PlantUML 代码太大。它不能超过 2,011 个字符。</value>
+    <comment>error message</comment>
+  </data>
   <data name="Plugin_InvalidSchema" xml:space="preserve">
     <value>检测到无效的XML。 检查日志文件以获取详细信息</value>
     <comment>error message</comment>

@@ -2097,6 +2097,10 @@ Odroczony</value>
   <data name="phrase_PathNotFound" xml:space="preserve">
     <value>Droga nie znaleziona</value>
   </data>
+  <data name="PlantUmlCommand_tooBig" xml:space="preserve">
+    <value>Ten kod PlantUML jest za duży. Nie może przekraczać 2011 znaków.</value>
+    <comment>error message</comment>
+  </data>
   <data name="Plugin_InvalidSchema" xml:space="preserve">
     <value>Nieprawidłowy wykryty XML. Szczegółowe informacje można znaleźć w pliku dziennika</value>
     <comment>error message</comment>

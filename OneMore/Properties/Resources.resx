@@ -2144,6 +2144,14 @@ Deferred</value>
   <data name="phrase_PathNotFound" xml:space="preserve">
     <value>Path not found</value>
   </data>
+  <data name="PlantUmlCommand_PlantUrl" xml:space="preserve">
+    <value>http://www.plantuml.com/plantuml/png/</value>
+    <comment>PlantUML Remote servier SKIP</comment>
+  </data>
+  <data name="PlantUmlCommand_tooBig" xml:space="preserve">
+    <value>This PlantUML code is too large. It cannot exceed 2,011 characters.</value>
+    <comment>error message</comment>
+  </data>
   <data name="Plugin_InvalidSchema" xml:space="preserve">
     <value>Invalid XML detected. Check log file for details</value>
     <comment>error message</comment>
