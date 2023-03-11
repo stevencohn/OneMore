@@ -134,7 +134,7 @@ namespace River.OneMoreAddIn.UI
 				// the OneNote MTA thread environment
 				var thread = new Thread(async () =>
 				{
-					logger.WriteLine("running action...");
+					logger.WriteLine("progressing action...");
 					var ok = await action(this, source.Token);
 					logger.WriteLine($"completed action ({ok})");
 

@@ -2061,6 +2061,10 @@
   <data name="phrase_PathNotFound" xml:space="preserve">
     <value>المسار مفقود</value>
   </data>
+  <data name="PlantUmlCommand_tooBig" xml:space="preserve">
+    <value>رمز PlantUML هذا كبير جدًا. لا يمكن أن يتجاوز 2011 حرفًا.</value>
+    <comment>error message</comment>
+  </data>
   <data name="Plugin_InvalidSchema" xml:space="preserve">
     <value>تم اكتشاف ملف XML غير صالح. </value>
     <comment>error message</comment>

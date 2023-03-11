@@ -2,17 +2,22 @@
 // Copyright © 2023 Steven M Cohn.  All rights reserved.
 //************************************************************************************************
 
+#define _PlantUmlNet
+
 namespace River.OneMoreAddIn.Commands
 {
+#if PlantUmlNet
 	using PlantUml.Net;
+	using System.Windows.Forms;
+#endif
 	using River.OneMoreAddIn.Models;
 	using River.OneMoreAddIn.Settings;
 	using River.OneMoreAddIn.UI;
 	using System;
 	using System.Drawing;
-	using System.Globalization;
 	using System.IO;
 	using System.Linq;
+	using System.Net;
 	using System.Text;
 	using System.Threading;
 	using System.Threading.Tasks;
@@ -27,6 +32,8 @@ namespace River.OneMoreAddIn.Commands
 	/// </summary>
 	internal class DrawPlantUmlCommand : Command
 	{
+		private const int MaxPlantSize = 4096;
+
 		private const string PlantMeta = "omPlant";
 		private const string ImageMeta = "omPlantImage";
 
@@ -87,6 +94,12 @@ namespace River.OneMoreAddIn.Commands
 
 			var bytes = ConvertToDiagram(text);
 
+			if (bytes.Length == 1)
+			{
+				UIHelper.ShowError(Resx.PlantUmlCommand_tooBig);
+				return;
+			}
+
 			if (!string.IsNullOrWhiteSpace(errorMessage))
 			{
 				UIHelper.ShowError(errorMessage);
@@ -122,8 +135,8 @@ namespace River.OneMoreAddIn.Commands
 				new XElement(ns + "Image",
 					new XAttribute("selected", "all"),
 					new XElement(ns + "Size",
-						new XAttribute("width", image.Width.ToString(CultureInfo.InvariantCulture)),
-						new XAttribute("height", image.Height.ToString(CultureInfo.InvariantCulture))),
+						new XAttribute("width", FormattableString.Invariant($"{image.Width:0.0}")),
+						new XAttribute("height", FormattableString.Invariant($"{image.Height:0.0}"))),
 					new XElement(ns + "Data", Convert.ToBase64String(bytes))
 					));
 
@@ -173,7 +186,10 @@ namespace River.OneMoreAddIn.Commands
 			progress.Tag = text;
 			progress.SetMessage("Converting using the service http://www.plantuml.com...");
 
+			// text will have gone through wrapping and unwrapping so needs decoding
 			text = HttpUtility.HtmlDecode(text);
+
+#if PlantUmlNet
 			byte[] bytes = null;
 
 			var result = progress.ShowTimedDialog(
@@ -183,13 +199,16 @@ namespace River.OneMoreAddIn.Commands
 					{
 						var factory = new RendererFactory();
 						var renderer = factory.CreateRenderer(new PlantUmlSettings());
-						bytes = await renderer.RenderAsync((string)dialog.Tag, OutputFormat.Png);
+
+						var text = (string)dialog.Tag;
+						logger.WriteLine($"rendering:\n{text}");
+
+						bytes = await renderer.RenderAsync(text, OutputFormat.Png);
 					}
 					catch (Exception exc)
 					{
 						errorMessage = exc.Message;
-						logger.WriteLine(text);
-						logger.WriteLine("error rendering plantuml", exc);
+						logger.WriteLine($"error rendering plantuml\n{text}", exc);
 						return false;
 					}
 
@@ -197,6 +216,57 @@ namespace River.OneMoreAddIn.Commands
 				});
 
 			return result == DialogResult.OK ? bytes : new byte[0];
+#else
+			// convert PlantUml text to basic HEX
+			byte[] utf8 = Encoding.UTF8.GetBytes(text);
+			string hex = string.Concat(utf8.Select(c => ((int)c).ToString("X2")));
+			var urx = $"{Resx.PlantUmlCommand_PlantUrl}~h{hex}";
+			logger.WriteLine($"text length = {text.Length}, plantUml HEX length = {urx.Length} bytes");
+
+			if (urx.Length > MaxPlantSize)
+			{
+				return new byte[1];
+			}
+
+			byte[] bytes = null;
+
+			var result = progress.ShowTimedDialog(
+				async (ProgressDialog dialog, CancellationToken token) =>
+				{
+					try
+					{
+						var client = HttpClientFactory.Create();
+						client.DefaultRequestHeaders.Add("user-agent", "OneMore");
+						client.DefaultRequestHeaders.Add("accept", "image/png");
+
+						using var response = await client.GetAsync(urx, token).ConfigureAwait(false);
+						if (response.IsSuccessStatusCode)
+						{
+							bytes = await response.Content.ReadAsByteArrayAsync().ConfigureAwait(false);
+							logger.WriteLine($"received {bytes.Length} bytes");
+							return true;
+						}
+
+						logger.WriteLine($"response.ReasonPhrase = \"{response.ReasonPhrase}\"");
+
+						if (response.StatusCode == HttpStatusCode.BadRequest)
+						{
+							var messages = response.Headers.GetValues("X-PlantUML-Diagram-Error");
+							logger.WriteLine(string.Join(Environment.NewLine, messages));
+						}
+
+						return false;
+					}
+					catch (Exception exc)
+					{
+						errorMessage = exc.Message;
+						logger.WriteLine($"error rendering plantuml\n{text}", exc);
+						return false;
+					}
+				});
+
+			return result == DialogResult.OK ? bytes : new byte[0];
+#endif
 		}
 
 
@@ -256,6 +326,11 @@ namespace River.OneMoreAddIn.Commands
 
 			var bytes = ConvertToDiagram(text);
 
+			if (bytes.Length == 0)
+			{
+				UIHelper.ShowError(Resx.PlantUmlCommand_tooBig);
+			}
+
 			// update image...
 
 			var data = image.Elements(ns + "Data").FirstOrDefault();
@@ -266,6 +341,32 @@ namespace River.OneMoreAddIn.Commands
 			}
 
 			data.Value = Convert.ToBase64String(bytes);
+
+			// check image size to maintain aspect ratio...
+
+			var size = image.Element(ns + "Size");
+			if (size != null)
+			{
+				var width = size.GetAttributeDouble("width");
+				var height = size.GetAttributeDouble("height");
+
+				using var bitmap = (Bitmap)new ImageConverter().ConvertFrom(bytes);
+				if (width < height && bitmap.Width < bitmap.Height)
+				{
+					width *= (bitmap.Width / bitmap.Height);
+					size.SetAttributeValue("width", FormattableString.Invariant($"{width:0.0}"));
+				}
+				else if (width > height && bitmap.Width > bitmap.Height)
+				{
+					height *= (bitmap.Height / bitmap.Width);
+					size.SetAttributeValue("height", FormattableString.Invariant($"{height:0.0}"));
+				}
+				else
+				{
+					size.SetAttributeValue("width", FormattableString.Invariant($"{bitmap.Width:0.0}"));
+					size.SetAttributeValue("height", FormattableString.Invariant($"{bitmap.Height:0.0}"));
+				}
+			}
 
 			await one.Update(page);
 

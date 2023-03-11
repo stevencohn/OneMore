@@ -2062,6 +2062,10 @@ Verschoven</value>
   <data name="phrase_PathNotFound" xml:space="preserve">
     <value>Pad niet gevonden</value>
   </data>
+  <data name="PlantUmlCommand_tooBig" xml:space="preserve">
+    <value>Deze PlantUML-code is te groot. Het mag niet langer zijn dan 2.011 tekens.</value>
+    <comment>error message</comment>
+  </data>
   <data name="Plugin_InvalidSchema" xml:space="preserve">
     <value>Ongeldige XML gedetecteerd. </value>
     <comment>error message</comment>
