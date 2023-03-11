@@ -1955,27 +1955,27 @@ namespace River.OneMoreAddIn.Properties {
         /// <summary>
         ///   Looks up a localized string similar to PlantUML text is either invalid or cannot find connection between text and image.
         /// </summary>
-        internal static string DrawPlantUml_broken {
+        internal static string PlantUml_broken {
             get {
-                return ResourceManager.GetString("DrawPlantUml_broken", resourceCulture);
+                return ResourceManager.GetString("PlantUml_broken", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Empty selection. Select a valid block of PlantUML text..
         /// </summary>
-        internal static string DrawPlantUml_EmptySelection {
+        internal static string PlantUml_EmptySelection {
             get {
-                return ResourceManager.GetString("DrawPlantUml_EmptySelection", resourceCulture);
+                return ResourceManager.GetString("PlantUml_EmptySelection", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Invalid syntax or incomplete selection of PlantUML.
         /// </summary>
-        internal static string DrawPlantUml_Error {
+        internal static string PlantUml_Error {
             get {
-                return ResourceManager.GetString("DrawPlantUml_Error", resourceCulture);
+                return ResourceManager.GetString("PlantUml_Error", resourceCulture);
             }
         }
         
@@ -6852,18 +6852,18 @@ namespace River.OneMoreAddIn.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Draw PlantUML.
         /// </summary>
-        internal static string ribDrawPlantUmlButton_Label {
+        internal static string ribPlantUmlButton_Label {
             get {
-                return ResourceManager.GetString("ribDrawPlantUmlButton_Label", resourceCulture);
+                return ResourceManager.GetString("ribPlantUmlButton_Label", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Render PlantUML or Graphviz image from selected text.
         /// </summary>
-        internal static string ribDrawPlantUmlButton_Screentip {
+        internal static string ribPlantUmlButton_Screentip {
             get {
-                return ResourceManager.GetString("ribDrawPlantUmlButton_Screentip", resourceCulture);
+                return ResourceManager.GetString("ribPlantUmlButton_Screentip", resourceCulture);
             }
         }
         

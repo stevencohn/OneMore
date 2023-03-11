@@ -881,15 +881,15 @@ OneNote zamknie się automatycznie</value>
   <data name="DownArrow" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>images\downarrow.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="DrawPlantUml_broken" xml:space="preserve">
+  <data name="PlantUml_broken" xml:space="preserve">
     <value>Tekst PlantUML jest nieprawidłowy lub nie może znaleźć połączenia między tekstem a obrazem</value>
     <comment>error message</comment>
   </data>
-  <data name="DrawPlantUml_EmptySelection" xml:space="preserve">
+  <data name="PlantUml_EmptySelection" xml:space="preserve">
     <value>Pusty wybór. Wybierz prawidłowy blok tekstu PlantUML.</value>
     <comment>error message</comment>
   </data>
-  <data name="DrawPlantUml_Error" xml:space="preserve">
+  <data name="PlantUml_Error" xml:space="preserve">
     <value>Niepoprawna składnia lub niepełny wybór PlantUML</value>
     <comment>error message</comment>
   </data>
@@ -2999,11 +2999,11 @@ Polaroid</value>
     <value>Wyłącz sprawdzanie pisowni w obrębie wybranej treści</value>
     <comment>ribbon edit</comment>
   </data>
-  <data name="ribDrawPlantUmlButton_Label" xml:space="preserve">
+  <data name="ribPlantUmlButton_Label" xml:space="preserve">
     <value>Narysuj PlantUML</value>
     <comment>ribbon images</comment>
   </data>
-  <data name="ribDrawPlantUmlButton_Screentip" xml:space="preserve">
+  <data name="ribPlantUmlButton_Screentip" xml:space="preserve">
     <value>Renderuj obraz PlantUML lub Graphviz z zaznaczonego tekstu</value>
     <comment>ribbon images</comment>
   </data>

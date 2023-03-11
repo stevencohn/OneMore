@@ -151,8 +151,9 @@
     <Compile Include="Commands\File\Markdown\OneMoreDigExtension.cs" />
     <Compile Include="Commands\File\Markdown\OneMoreDigExtensions.cs" />
     <Compile Include="Commands\File\Markdown\OneMoreDigRenderer.cs" />
-    <Compile Include="Commands\Images\DrawPlantUmlCommand.cs" />
+    <Compile Include="Commands\Images\PlantUmlCommand.cs" />
     <Compile Include="Commands\Images\OpenImageWithCommand.cs" />
+    <Compile Include="Commands\Images\PlantUmlRenderer.cs" />
     <Compile Include="Commands\Navigator\HistoryControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -1508,9 +1509,6 @@
     </PackageReference>
     <PackageReference Include="Newtonsoft.Json">
       <Version>13.0.2</Version>
-    </PackageReference>
-    <PackageReference Include="PlantUml.Net">
-      <Version>1.4.80</Version>
     </PackageReference>
     <PackageReference Include="System.Net.Http">
       <Version>4.3.4</Version>

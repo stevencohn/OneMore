@@ -2,14 +2,8 @@
 // Copyright © 2023 Steven M Cohn.  All rights reserved.
 //************************************************************************************************
 
-#define _PlantUmlNet
-
 namespace River.OneMoreAddIn.Commands
 {
-#if PlantUmlNet
-	using PlantUml.Net;
-	using System.Windows.Forms;
-#endif
 	using River.OneMoreAddIn.Models;
 	using River.OneMoreAddIn.Settings;
 	using River.OneMoreAddIn.UI;
@@ -30,17 +24,15 @@ namespace River.OneMoreAddIn.Commands
 	/// <summary>
 	/// Render image from selected PlantUML or Graphviz text
 	/// </summary>
-	internal class DrawPlantUmlCommand : Command
+	internal class PlantUmlCommand : Command
 	{
-		private const int MaxPlantSize = 4096;
-
 		private const string PlantMeta = "omPlant";
 		private const string ImageMeta = "omPlantImage";
 
 		private string errorMessage;
 
 
-		public DrawPlantUmlCommand()
+		public PlantUmlCommand()
 		{
 		}
 
@@ -53,7 +45,6 @@ namespace River.OneMoreAddIn.Commands
 				return;
 			}
 
-
 			if ((args.Length > 0) && (args[0] is string pid))
 			{
 				// not sure why logger is null here so we have to set it
@@ -64,13 +55,12 @@ namespace River.OneMoreAddIn.Commands
 
 			using var one = new OneNote(out var page, out var ns);
 
-			// get selecte content...
+			// get selected content...
 
 			var runs = page.GetSelectedElements();
-
 			if (!runs.Any() || page.SelectionScope != SelectionScope.Region)
 			{
-				UIHelper.ShowError(Resx.DrawPlantUml_EmptySelection);
+				UIHelper.ShowError(Resx.PlantUml_EmptySelection);
 				return;
 			}
 
@@ -83,23 +73,15 @@ namespace River.OneMoreAddIn.Commands
 			});
 
 			var text = builder.ToString();
-
 			if (string.IsNullOrWhiteSpace(text))
 			{
-				UIHelper.ShowError(Resx.DrawPlantUml_EmptySelection);
+				UIHelper.ShowError(Resx.PlantUml_EmptySelection);
 				return;
 			}
 
 			// convert...
 
 			var bytes = ConvertToDiagram(text);
-
-			if (bytes.Length == 1)
-			{
-				UIHelper.ShowError(Resx.PlantUmlCommand_tooBig);
-				return;
-			}
-
 			if (!string.IsNullOrWhiteSpace(errorMessage))
 			{
 				UIHelper.ShowError(errorMessage);
@@ -124,7 +106,7 @@ namespace River.OneMoreAddIn.Commands
 				: runs.First().Parent;
 
 			using var stream = new MemoryStream(bytes);
-			var image = (Bitmap)Image.FromStream(stream);
+			using var image = (Bitmap)Image.FromStream(stream);
 
 			var plantID = Guid.NewGuid().ToString("N");
 			PageNamespace.Set(ns);
@@ -153,7 +135,7 @@ namespace River.OneMoreAddIn.Commands
 
 			if (collapse)
 			{
-				var url = $"onemore://DrawPlantUmlCommand/{plantID}";
+				var url = $"onemore://PlantUmlCommand/{plantID}";
 
 				var container = new XElement(ns + "OE",
 					new XAttribute("collapsed", "1"),
@@ -182,14 +164,12 @@ namespace River.OneMoreAddIn.Commands
 
 		private byte[] ConvertToDiagram(string text)
 		{
-			using var progress = new ProgressDialog(15);
+			using var progress = new ProgressDialog(10);
 			progress.Tag = text;
 			progress.SetMessage("Converting using the service http://www.plantuml.com...");
 
 			// text will have gone through wrapping and unwrapping so needs decoding
 			text = HttpUtility.HtmlDecode(text);
-
-#if PlantUmlNet
 			byte[] bytes = null;
 
 			var result = progress.ShowTimedDialog(
@@ -197,62 +177,20 @@ namespace River.OneMoreAddIn.Commands
 				{
 					try
 					{
-						var factory = new RendererFactory();
-						var renderer = factory.CreateRenderer(new PlantUmlSettings());
+						var renderer = new PlantUmlRenderer();
+						bytes = await renderer.RenderRemotely(text, token);
 
-						var text = (string)dialog.Tag;
-						logger.WriteLine($"rendering:\n{text}");
-
-						bytes = await renderer.RenderAsync(text, OutputFormat.Png);
-					}
-					catch (Exception exc)
-					{
-						errorMessage = exc.Message;
-						logger.WriteLine($"error rendering plantuml\n{text}", exc);
-						return false;
-					}
-
-					return true;
-				});
-
-			return result == DialogResult.OK ? bytes : new byte[0];
-#else
-			// convert PlantUml text to basic HEX
-			byte[] utf8 = Encoding.UTF8.GetBytes(text);
-			string hex = string.Concat(utf8.Select(c => ((int)c).ToString("X2")));
-			var urx = $"{Resx.PlantUmlCommand_PlantUrl}~h{hex}";
-			logger.WriteLine($"text length = {text.Length}, plantUml HEX length = {urx.Length} bytes");
-
-			if (urx.Length > MaxPlantSize)
-			{
-				return new byte[1];
-			}
-
-			byte[] bytes = null;
-
-			var result = progress.ShowTimedDialog(
-				async (ProgressDialog dialog, CancellationToken token) =>
-				{
-					try
-					{
-						var client = HttpClientFactory.Create();
-						client.DefaultRequestHeaders.Add("user-agent", "OneMore");
-						client.DefaultRequestHeaders.Add("accept", "image/png");
-
-						using var response = await client.GetAsync(urx, token).ConfigureAwait(false);
-						if (response.IsSuccessStatusCode)
+						if (bytes.Length > 0)
 						{
-							bytes = await response.Content.ReadAsByteArrayAsync().ConfigureAwait(false);
-							logger.WriteLine($"received {bytes.Length} bytes");
+							//logger.WriteLine($"received {bytes.Length} bytes");
 							return true;
 						}
 
-						logger.WriteLine($"response.ReasonPhrase = \"{response.ReasonPhrase}\"");
-
-						if (response.StatusCode == HttpStatusCode.BadRequest)
+						if (!string.IsNullOrWhiteSpace(renderer.ErrorMessages))
 						{
-							var messages = response.Headers.GetValues("X-PlantUML-Diagram-Error");
-							logger.WriteLine(string.Join(Environment.NewLine, messages));
+							errorMessage = renderer.ErrorMessages;
+							logger.WriteLine("rendering messages:");
+							logger.WriteLine(renderer.ErrorMessages);
 						}
 
 						return false;
@@ -260,13 +198,12 @@ namespace River.OneMoreAddIn.Commands
 					catch (Exception exc)
 					{
 						errorMessage = exc.Message;
-						logger.WriteLine($"error rendering plantuml\n{text}", exc);
+						logger.WriteLine($"error rendering PlantUml\n{text}", exc);
 						return false;
 					}
 				});
 
 			return result == DialogResult.OK ? bytes : new byte[0];
-#endif
 		}
 
 
@@ -283,7 +220,7 @@ namespace River.OneMoreAddIn.Commands
 
 			if (image == null)
 			{
-				UIHelper.ShowError(Resx.DrawPlantUml_broken);
+				UIHelper.ShowError(Resx.PlantUml_broken);
 				return false;
 			}
 
@@ -296,14 +233,14 @@ namespace River.OneMoreAddIn.Commands
 
 			if (plant == null)
 			{
-				UIHelper.ShowError(Resx.DrawPlantUml_broken);
+				UIHelper.ShowError(Resx.PlantUml_broken);
 				return false;
 			}
 
 			var runs = plant.Descendants(ns + "T");
 			if (!runs.Any())
 			{
-				UIHelper.ShowError(Resx.DrawPlantUml_broken);
+				UIHelper.ShowError(Resx.PlantUml_broken);
 				return false;
 			}
 
@@ -318,14 +255,13 @@ namespace River.OneMoreAddIn.Commands
 			var text = builder.ToString();
 			if (string.IsNullOrWhiteSpace(text))
 			{
-				UIHelper.ShowError(Resx.DrawPlantUml_broken);
+				UIHelper.ShowError(Resx.PlantUml_broken);
 				return false;
 			}
 
 			// convert...
 
 			var bytes = ConvertToDiagram(text);
-
 			if (bytes.Length == 0)
 			{
 				UIHelper.ShowError(Resx.PlantUmlCommand_tooBig);
@@ -336,7 +272,7 @@ namespace River.OneMoreAddIn.Commands
 			var data = image.Elements(ns + "Data").FirstOrDefault();
 			if (data == null)
 			{
-				UIHelper.ShowError(Resx.DrawPlantUml_broken);
+				UIHelper.ShowError(Resx.PlantUml_broken);
 				return false;
 			}
 
