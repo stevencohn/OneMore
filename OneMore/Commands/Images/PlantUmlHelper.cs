@@ -24,6 +24,7 @@ namespace River.OneMoreAddIn.Commands
 	/// </remarks>
 	internal class PlantUmlHelper : Loggable
 	{
+		private const string DiagramErrorHeader = "X-PlantUML-Diagram-Error";
 
 		public PlantUmlHelper()
 		{
@@ -62,7 +63,7 @@ namespace River.OneMoreAddIn.Commands
 				{
 					if (response.StatusCode == HttpStatusCode.BadRequest)
 					{
-						var messages = response.Headers.GetValues("X-PlantUML-Diagram-Error");
+						var messages = response.Headers.GetValues(DiagramErrorHeader);
 						ErrorMessages = string.Join(Environment.NewLine, response.ReasonPhrase, messages);
 					}
 

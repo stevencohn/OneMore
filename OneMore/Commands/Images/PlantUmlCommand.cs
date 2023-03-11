@@ -112,8 +112,11 @@ namespace River.OneMoreAddIn.Commands
 			var plantID = Guid.NewGuid().ToString("N");
 			PageNamespace.Set(ns);
 
+
+			System.Diagnostics.Debugger.Launch();
+
 			var content = new XElement(ns + "OE",
-				new XAttribute("selected", "partial"),
+				//new XAttribute("selected", "partial"),
 				new Meta(ImageMeta, plantID),
 				new XElement(ns + "Image",
 					new XAttribute("selected", "all"),
@@ -129,11 +132,11 @@ namespace River.OneMoreAddIn.Commands
 
 			if (after)
 			{
-				anchor.AddAfterSelf(table.Root);
+				anchor.AddAfterSelf(new XElement(ns + "OE", table.Root));
 			}
 			else
 			{
-				anchor.AddBeforeSelf(table.Root);
+				anchor.AddBeforeSelf(new XElement(ns + "OE", table.Root));
 			}
 
 			// collapse text into sub-paragraph...

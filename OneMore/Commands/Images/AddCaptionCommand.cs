@@ -103,13 +103,23 @@ namespace River.OneMoreAddIn.Commands
 			var row = table.AddRow();
 			var cell = row.Cells.First();
 
+			if (content.Name.LocalName == "OE")
+			{
+				content.SetAttributeValue("alignment", "center");
+			}
+			else
+			{
+				content = new XElement(ns + "OE",
+					new XAttribute("alignment", "center"),
+					content
+					);
+			}
+
 			cdata = new XCData(caption);
 
 			cell.SetContent(
 				new XElement(ns + "OEChildren",
-					new XElement(ns + "OE",
-						new XAttribute("alignment", "center"),
-						content),
+					content,
 					new XElement(ns + "OE",
 						new XAttribute("alignment", "center"),
 						new XElement(ns + "Meta",
