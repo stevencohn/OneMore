@@ -65,7 +65,7 @@ namespace River.OneMoreAddIn.Settings
 			"ribInsertCalendarButton",		// ... Calendar
 			"ribInsertDateButton",			// ... Sortable Date
 			"ribInsertBoxButton",			// ... Block
-			"ribInsertCodeBlockButton",		// ... Code Block
+			"ribInsertBoxButton",		// ... Code Block
 			"ribInsertInfoBoxButton",		// ... Info Box
 			"ribInsertWarnBoxButton",		// ... Warning Box
 			"ribInsertExpandButton",		// ... Expand/Collapse
@@ -182,7 +182,7 @@ namespace River.OneMoreAddIn.Settings
 				{ "ribTocButton", "ribInsertTocButton" },
 				{ "ribCalendarButton", "ribInsertCalendarButton" },
 				{ "ribBoxButton", "ribInsertBoxButton" },
-				{ "ribCodeBlockButton", "ribInsertCodeBlockButton" },
+				{ "ribCodeBoxButton", "ribInsertBoxButton" },
 				{ "ribInfoBoxButton", "ribInsertInfoBoxButton" },
 				{ "ribExpandButton", "ribInsertExpandButton" },
 				{ "ribGrayStatusButton", "ribInsertGrayStatusButton" },

@@ -22,7 +22,7 @@ namespace River.OneMoreAddIn.Commands
 	/// </summary>
 	internal class InsertBoxCommand : Command
 	{
-		private const string Shading = "#F2F2F2";
+		private const string Shading = "#D0CECE";
 		private const string TitleColor = "#000000";
 		private const string TextColor = "#000000";
 
@@ -99,7 +99,12 @@ namespace River.OneMoreAddIn.Commands
 				// selection range found so move it into snippet
 				var content = page.ExtractSelectedContent(out var firstParent);
 				cell.SetContent(content);
-				cell.ShadingColor = Shading;
+
+				var shading = DetermineShading(page, content);
+				if (shading != null)
+				{
+					cell.ShadingColor = shading;
+				}
 
 				if (firstParent.HasElements)
 				{
@@ -174,20 +179,20 @@ namespace River.OneMoreAddIn.Commands
 
 				return new XElement(ns + "OEChildren",
 					new Paragraph(string.Empty).SetStyle(css),
-					new Paragraph(Resx.InsertCodeBlockCommand_Code).SetStyle(css),
+					new Paragraph(Resx.InsertBoxCommand_Code).SetStyle(css),
 					new Paragraph(string.Empty).SetStyle(css)
 					);
 			}
 
 			return new XElement(ns + "OEChildren",
 				new Paragraph(string.Empty),
-				new Paragraph(Resx.InsertCodeBlockCommand_Text),
+				new Paragraph(Resx.InsertBoxCommand_Text),
 				new Paragraph(string.Empty)
 				);
 		}
 
 
-		private string DetermineShading(XElement content)
+		private string DetermineShading(Page page, XElement content)
 		{
 			string background = null;
 
@@ -212,6 +217,8 @@ namespace River.OneMoreAddIn.Commands
 					grounds.Add(match.Groups[1].Value);
 				}
 			}
+
+			var dark = page.GetPageColor(out _, out var black).GetBrightness() < 0.5;
 
 			// if all runs have background styles (this is an estimate since it is possible
 			// for there to be more backgrounds than runs if there are multiples in each run)

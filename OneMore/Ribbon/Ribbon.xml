@@ -128,19 +128,19 @@
               getScreentip="GetRibbonScreentip"
               onAction="InsertDateCmd"/>
             <button
-              id="ribInsertBoxButton"
+              id="ribInsertTextBoxButton"
               imageMso="TextBoxInsert"
               getLabel="GetRibbonLabel"
               getScreentip="GetRibbonScreentip"
               getEnabled="GetBodyContext"
-              onAction="InsertBoxCmd"/>
+              onAction="InsertTextBoxCmd"/>
             <button
-              id="ribInsertCodeBlockButton"
+              id="ribInsertCodeBoxButton"
               imageMso="CodeEdit"
               getLabel="GetRibbonLabel"
               getScreentip="GetRibbonScreentip"
               getEnabled="GetBodyContext"
-              onAction="InsertCodeBlockCmd"/>
+              onAction="InsertCodeBoxCmd"/>
             <button
               id="ribInsertInfoBoxButton"
               imageMso="Info"

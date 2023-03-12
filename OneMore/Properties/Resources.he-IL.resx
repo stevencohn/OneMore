@@ -574,15 +574,11 @@ OneNote ייסגר אוטומטית</value>
     <value>... סטטוס כחול</value>
     <comment>context menu option</comment>
   </data>
-  <data name="ContextMenuSheet_ribInsertBoxButton" xml:space="preserve">
-    <value>... תיבת טקסט</value>
-    <comment>context menu option</comment>
-  </data>
   <data name="ContextMenuSheet_ribInsertCalendarButton" xml:space="preserve">
     <value>... לוח שנה</value>
     <comment>context menu option</comment>
   </data>
-  <data name="ContextMenuSheet_ribInsertCodeBlockButton" xml:space="preserve">
+  <data name="ContextMenuSheet_ribInsertCodeBoxButton" xml:space="preserve">
     <value>... בלוק קוד</value>
     <comment>context menu option</comment>
   </data>
@@ -616,6 +612,10 @@ OneNote ייסגר אוטומטית</value>
   </data>
   <data name="ContextMenuSheet_ribInsertSingleLineButton" xml:space="preserve">
     <value>... קו אופקי</value>
+    <comment>context menu option</comment>
+  </data>
+  <data name="ContextMenuSheet_ribInsertTextBoxButton" xml:space="preserve">
+    <value>... תיבת טקסט</value>
     <comment>context menu option</comment>
   </data>
   <data name="ContextMenuSheet_ribInsertTocButton" xml:space="preserve">
@@ -1554,6 +1554,14 @@ Total Row Font
     <value>ייבוא ​​דף אינטרנט</value>
     <comment>dialog title</comment>
   </data>
+  <data name="InsertBoxCommand_Code" xml:space="preserve">
+    <value>הקוד שלך כאן...</value>
+    <comment>text</comment>
+  </data>
+  <data name="InsertBoxCommand_Text" xml:space="preserve">
+    <value>התוכן שלך כאן...</value>
+    <comment>text</comment>
+  </data>
   <data name="InsertCalendarDialog.Text" xml:space="preserve">
     <value>הוסף לוח שנה</value>
     <comment>dialog title</comment>
@@ -1613,14 +1621,6 @@ Total Row Font
   <data name="InsertCellsDialog_shiftRightRadio.Text" xml:space="preserve">
     <value>העבר תאים ימינה</value>
     <comment>radio</comment>
-  </data>
-  <data name="InsertCodeBlockCommand_Code" xml:space="preserve">
-    <value>הקוד שלך כאן...</value>
-    <comment>text</comment>
-  </data>
-  <data name="InsertCodeBlockCommand_Text" xml:space="preserve">
-    <value>התוכן שלך כאן...</value>
-    <comment>text</comment>
   </data>
   <data name="InsertInfoBox_yourContentHere" xml:space="preserve">
     <value>התוכן שלך כאן...</value>
@@ -3252,14 +3252,6 @@ ISO-code then comma then language name</comment>
     <value>הכנס תווית סטטוס כחולה</value>
     <comment>ribbon snippets</comment>
   </data>
-  <data name="ribInsertBoxButton_Label" xml:space="preserve">
-    <value>תיבת טקסט</value>
-    <comment>ribbon</comment>
-  </data>
-  <data name="ribInsertBoxButton_Screentip" xml:space="preserve">
-    <value>הוסף טבלה בת תא בודד, אופציונלי גלישת טקסט נבחר</value>
-    <comment>ribbon</comment>
-  </data>
   <data name="ribInsertBreadcrumbButton_Label" xml:space="preserve">
     <value>פירורי לחם</value>
     <comment>ribbon snippets menu</comment>
@@ -3284,13 +3276,13 @@ ISO-code then comma then language name</comment>
     <value>הכנס תאים לטבלה הנוכחית</value>
     <comment>ribbon table</comment>
   </data>
-  <data name="ribInsertCodeBlockButton_Label" xml:space="preserve">
-    <value>בלוק קוד</value>
-    <comment>Ribbon OneMore menu item, Snippets...</comment>
+  <data name="ribInsertCodeBoxButton_Label" xml:space="preserve">
+    <value>תיבת קוד</value>
+    <comment>ribbon snippets</comment>
   </data>
-  <data name="ribInsertCodeBlockButton_Screentip" xml:space="preserve">
-    <value>הכנס בלוק קוד (F6)</value>
-    <comment>menu</comment>
+  <data name="ribInsertCodeBoxButton_Screentip" xml:space="preserve">
+    <value>הכנס תיבת קוד (F6), עטוף את התוכן הנבחר</value>
+    <comment>ribbon snippets</comment>
   </data>
   <data name="ribInsertDateButton_Label" xml:space="preserve">
     <value>תאריך שניתן למיין</value>
@@ -3375,6 +3367,14 @@ ISO-code then comma then language name</comment>
   <data name="ribInsertSingleLineButton_Screentip" xml:space="preserve">
     <value>הוסף קו אופקי בודד (Shift + Alt + מינוס)</value>
     <comment>Ribbon OneMore menu item, Extras...</comment>
+  </data>
+  <data name="ribInsertTextBoxButton_Label" xml:space="preserve">
+    <value>תיבת טקסט</value>
+    <comment>ribbon snippets</comment>
+  </data>
+  <data name="ribInsertTextBoxButton_Screentip" xml:space="preserve">
+    <value>הוסף טבלה בת תא בודד, עטוף את הטקסט שנבחר</value>
+    <comment>ribbon snippets</comment>
   </data>
   <data name="ribInsertTimerButton_Label" xml:space="preserve">
     <value>הכנס טיימר</value>

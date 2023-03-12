@@ -562,16 +562,12 @@ OneNote 将自动关闭</value>
     <value>... 蓝色状态</value>
     <comment>context menu option</comment>
   </data>
-  <data name="ContextMenuSheet_ribInsertBoxButton" xml:space="preserve">
-    <value>... 文本框</value>
-    <comment>context menu option</comment>
-  </data>
   <data name="ContextMenuSheet_ribInsertCalendarButton" xml:space="preserve">
     <value>... 日历</value>
     <comment>context menu option</comment>
   </data>
-  <data name="ContextMenuSheet_ribInsertCodeBlockButton" xml:space="preserve">
-    <value>... 代码块</value>
+  <data name="ContextMenuSheet_ribInsertCodeBoxButton" xml:space="preserve">
+    <value>...代码块</value>
     <comment>context menu option</comment>
   </data>
   <data name="ContextMenuSheet_ribInsertDateButton" xml:space="preserve">
@@ -605,6 +601,10 @@ OneNote 将自动关闭</value>
   <data name="ContextMenuSheet_ribInsertSingleLineButton" xml:space="preserve">
     <value>...水平线</value>
     <comment>option</comment>
+  </data>
+  <data name="ContextMenuSheet_ribInsertTextBoxButton" xml:space="preserve">
+    <value>... 文本框</value>
+    <comment>context menu option</comment>
   </data>
   <data name="ContextMenuSheet_ribInsertTocButton" xml:space="preserve">
     <value>... 目录</value>
@@ -1500,6 +1500,14 @@ OneNote 文件 (*.one)</value>
     <value>导入网页</value>
     <comment>dialog title</comment>
   </data>
+  <data name="InsertBoxCommand_Code" xml:space="preserve">
+    <value>你的代码在这里...</value>
+    <comment>text</comment>
+  </data>
+  <data name="InsertBoxCommand_Text" xml:space="preserve">
+    <value>你的内容在这里...</value>
+    <comment>text</comment>
+  </data>
   <data name="InsertCalendarDialog.Text" xml:space="preserve">
     <value>插入日历</value>
     <comment>dialog title</comment>
@@ -1559,14 +1567,6 @@ OneNote 文件 (*.one)</value>
   <data name="InsertCellsDialog_shiftRightRadio.Text" xml:space="preserve">
     <value>向右移动单元格</value>
     <comment>radio</comment>
-  </data>
-  <data name="InsertCodeBlockCommand_Code" xml:space="preserve">
-    <value>您的代码在这里...</value>
-    <comment>text</comment>
-  </data>
-  <data name="InsertCodeBlockCommand_Text" xml:space="preserve">
-    <value>您的内容在这里...</value>
-    <comment>text</comment>
   </data>
   <data name="InsertInfoBox_yourContentHere" xml:space="preserve">
     <value>你的内容在这里...</value>
@@ -3169,14 +3169,6 @@ ISO-code then comma then language name</comment>
     <value>插入蓝色状态标签</value>
     <comment>ribbon snippets</comment>
   </data>
-  <data name="ribInsertBoxButton_Label" xml:space="preserve">
-    <value>文本框</value>
-    <comment>ribbon</comment>
-  </data>
-  <data name="ribInsertBoxButton_Screentip" xml:space="preserve">
-    <value>插入单单元格表格，可选择换行所选文本</value>
-    <comment>ribbon</comment>
-  </data>
   <data name="ribInsertBreadcrumbButton_Label" xml:space="preserve">
     <value>面包屑</value>
     <comment>ribbon snippets menu</comment>
@@ -3201,13 +3193,13 @@ ISO-code then comma then language name</comment>
     <value>将单元格插入当前表格</value>
     <comment>ribbon table</comment>
   </data>
-  <data name="ribInsertCodeBlockButton_Label" xml:space="preserve">
-    <value>代码块</value>
-    <comment>Ribbon OneMore menu item, Snippets...</comment>
+  <data name="ribInsertCodeBoxButton_Label" xml:space="preserve">
+    <value>代码框</value>
+    <comment>ribbon snippets</comment>
   </data>
-  <data name="ribInsertCodeBlockButton_Screentip" xml:space="preserve">
-    <value>插入代码块 (F6)</value>
-    <comment>menu</comment>
+  <data name="ribInsertCodeBoxButton_Screentip" xml:space="preserve">
+    <value>插入代码框（F6），包裹选中的内容</value>
+    <comment>ribbon snippets</comment>
   </data>
   <data name="ribInsertDateButton_Label" xml:space="preserve">
     <value>可排序日期</value>
@@ -3292,6 +3284,14 @@ ISO-code then comma then language name</comment>
   <data name="ribInsertSingleLineButton_Screentip" xml:space="preserve">
     <value>插入水平线 (Shift + Alt + Minus)</value>
     <comment>Ribbon OneMore menu item, Extras...</comment>
+  </data>
+  <data name="ribInsertTextBoxButton_Label" xml:space="preserve">
+    <value>文本框</value>
+    <comment>ribbon snippets</comment>
+  </data>
+  <data name="ribInsertTextBoxButton_Screentip" xml:space="preserve">
+    <value>插入单单元格表格，将选定的文本换行</value>
+    <comment>ribbon snippets</comment>
   </data>
   <data name="ribInsertTimerButton_Label" xml:space="preserve">
     <value>插入定时器</value>

@@ -564,15 +564,11 @@ OneNote wordt automatisch gesloten</value>
     <value>... Blauwe status</value>
     <comment>context menu option</comment>
   </data>
-  <data name="ContextMenuSheet_ribInsertBoxButton" xml:space="preserve">
-    <value>... Tekstveld</value>
-    <comment>context menu option</comment>
-  </data>
   <data name="ContextMenuSheet_ribInsertCalendarButton" xml:space="preserve">
     <value>... Kalender</value>
     <comment>context menu option</comment>
   </data>
-  <data name="ContextMenuSheet_ribInsertCodeBlockButton" xml:space="preserve">
+  <data name="ContextMenuSheet_ribInsertCodeBoxButton" xml:space="preserve">
     <value>... Codeblok</value>
     <comment>context menu option</comment>
   </data>
@@ -607,6 +603,10 @@ OneNote wordt automatisch gesloten</value>
   <data name="ContextMenuSheet_ribInsertSingleLineButton" xml:space="preserve">
     <value>... Horizontale lijn</value>
     <comment>option</comment>
+  </data>
+  <data name="ContextMenuSheet_ribInsertTextBoxButton" xml:space="preserve">
+    <value>... Tekstvak</value>
+    <comment>context menu option</comment>
   </data>
   <data name="ContextMenuSheet_ribInsertTocButton" xml:space="preserve">
     <value>... Inhoudsopgave</value>
@@ -1502,6 +1502,14 @@ Symbolen: PI, E</value>
     <value>Webpagina importeren</value>
     <comment>dialog title</comment>
   </data>
+  <data name="InsertBoxCommand_Code" xml:space="preserve">
+    <value>Uw code hier...</value>
+    <comment>text</comment>
+  </data>
+  <data name="InsertBoxCommand_Text" xml:space="preserve">
+    <value>Uw inhoud hier...</value>
+    <comment>text</comment>
+  </data>
   <data name="InsertCalendarDialog.Text" xml:space="preserve">
     <value>Agenda invoegen</value>
     <comment>dialog title</comment>
@@ -1561,14 +1569,6 @@ Symbolen: PI, E</value>
   <data name="InsertCellsDialog_shiftRightRadio.Text" xml:space="preserve">
     <value>Schuif cellen naar rechts</value>
     <comment>radio</comment>
-  </data>
-  <data name="InsertCodeBlockCommand_Code" xml:space="preserve">
-    <value>Uw code hier ...</value>
-    <comment>text</comment>
-  </data>
-  <data name="InsertCodeBlockCommand_Text" xml:space="preserve">
-    <value>Uw inhoud hier ...</value>
-    <comment>text</comment>
   </data>
   <data name="InsertInfoBox_yourContentHere" xml:space="preserve">
     <value>Uw inhoud hier...</value>
@@ -3172,14 +3172,6 @@ Polaroid</value>
     <value>Plaats een blauw statuslabel</value>
     <comment>ribbon snippets</comment>
   </data>
-  <data name="ribInsertBoxButton_Label" xml:space="preserve">
-    <value>Tekstveld</value>
-    <comment>ribbon</comment>
-  </data>
-  <data name="ribInsertBoxButton_Screentip" xml:space="preserve">
-    <value>Een eencellige tabel invoegen, eventueel geselecteerde tekst laten omlopen</value>
-    <comment>ribbon</comment>
-  </data>
   <data name="ribInsertBreadcrumbButton_Label" xml:space="preserve">
     <value>broodkruimel</value>
     <comment>ribbon snippets menu</comment>
@@ -3204,13 +3196,13 @@ Polaroid</value>
     <value>Voeg cellen in de huidige tabel in</value>
     <comment>ribbon table</comment>
   </data>
-  <data name="ribInsertCodeBlockButton_Label" xml:space="preserve">
-    <value>Codeblok</value>
-    <comment>Ribbon OneMore menu item, Snippets...</comment>
+  <data name="ribInsertCodeBoxButton_Label" xml:space="preserve">
+    <value>Code vak</value>
+    <comment>ribbon snippets</comment>
   </data>
-  <data name="ribInsertCodeBlockButton_Screentip" xml:space="preserve">
-    <value>Een codeblok invoegen (F6)</value>
-    <comment>menu</comment>
+  <data name="ribInsertCodeBoxButton_Screentip" xml:space="preserve">
+    <value>Voeg een codevak in (F6), waarin de geselecteerde inhoud wordt omwikkeld</value>
+    <comment>ribbon snippets</comment>
   </data>
   <data name="ribInsertDateButton_Label" xml:space="preserve">
     <value>Sorteerbare datum</value>
@@ -3295,6 +3287,14 @@ Polaroid</value>
   <data name="ribInsertSingleLineButton_Screentip" xml:space="preserve">
     <value>Enkele horizontale lijn invoegen (Shift + Alt + Minus)</value>
     <comment>Ribbon OneMore menu item, Extras...</comment>
+  </data>
+  <data name="ribInsertTextBoxButton_Label" xml:space="preserve">
+    <value>Tekstvak</value>
+    <comment>ribbon snippets</comment>
+  </data>
+  <data name="ribInsertTextBoxButton_Screentip" xml:space="preserve">
+    <value>Voeg een eencellige tabel in, waarbij de geselecteerde tekst omloopt</value>
+    <comment>ribbon snippets</comment>
   </data>
   <data name="ribInsertTimerButton_Label" xml:space="preserve">
     <value>Timer invoegen</value>
