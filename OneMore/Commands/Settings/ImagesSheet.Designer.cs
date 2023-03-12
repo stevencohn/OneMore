@@ -204,6 +204,7 @@ namespace River.OneMoreAddIn.Settings
 			this.plantAfterBox.TabIndex = 0;
 			this.plantAfterBox.Text = "Insert drawing after PlantUML text rather than before";
 			this.plantAfterBox.UseVisualStyleBackColor = true;
+			this.plantAfterBox.Click += new System.EventHandler(this.ToggleOnClick);
 			// 
 			// errorProvider
 			// 

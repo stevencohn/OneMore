@@ -157,12 +157,17 @@ namespace River.OneMoreAddIn.Commands
 
 			if (collapse)
 			{
+				if (title != "PlantUML")
+				{
+					title = $"{title} PlantUML";
+				}
+
 				var container = new XElement(ns + "OE",
 					new XAttribute("collapsed", "1"),
 					new Meta(PlantMeta, plantID),
 					new XElement(ns + "T",
 						new XCData(
-							"<span style='font-style:italic'>PlantUML " +
+							$"<span style='font-style:italic'>{title} " +
 							$"(<a href=\"{url}\">{Resx.word_Refresh}</a>)</span>"))
 					);
 
