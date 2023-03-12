@@ -594,7 +594,7 @@ OneNote 将自动关闭</value>
     <value>... 绿色状态</value>
     <comment>context menu option</comment>
   </data>
-  <data name="ContextMenuSheet_ribInsertInfoBlockButton" xml:space="preserve">
+  <data name="ContextMenuSheet_ribInsertInfoBoxButton" xml:space="preserve">
     <value>...信息块</value>
     <comment>context menu option</comment>
   </data>
@@ -610,7 +610,7 @@ OneNote 将自动关闭</value>
     <value>... 目录</value>
     <comment>context menu option</comment>
   </data>
-  <data name="ContextMenuSheet_ribInsertWarnBlockButton" xml:space="preserve">
+  <data name="ContextMenuSheet_ribInsertWarnBoxButton" xml:space="preserve">
     <value>... 警告块</value>
     <comment>context menu option</comment>
   </data>
@@ -1567,6 +1567,9 @@ OneNote 文件 (*.one)</value>
   <data name="InsertCodeBlockCommand_Text" xml:space="preserve">
     <value>您的内容在这里...</value>
     <comment>text</comment>
+  </data>
+  <data name="InsertInfoBox_yourContentHere" xml:space="preserve">
+    <value>你的内容在这里...</value>
   </data>
   <data name="InsertQRCommand_MaxLength" xml:space="preserve">
     <value>所选文字不能超过{0}个字符</value>
@@ -3250,12 +3253,20 @@ ISO-code then comma then language name</comment>
     <value>插入绿色状态标签</value>
     <comment>ribbon snippets</comment>
   </data>
-  <data name="ribInsertInfoBlockButton_Label" xml:space="preserve">
-    <value>信息块</value>
-    <comment>Ribbon OneMore menu item, Snippets...</comment>
+  <data name="ribInsertInfoBoxButton_Label" xml:space="preserve">
+    <value>信息框</value>
+    <comment>ribbon snippets</comment>
   </data>
-  <data name="ribInsertInfoBlockButton_Screentip" xml:space="preserve">
-    <value>插入信息块</value>
+  <data name="ribInsertInfoBoxButton_Screentip" xml:space="preserve">
+    <value>插入信息框</value>
+    <comment>ribbon snippets</comment>
+  </data>
+  <data name="ribInsertNoteBoxButton_Label" xml:space="preserve">
+    <value>笔记框</value>
+    <comment>ribbon snippets</comment>
+  </data>
+  <data name="ribInsertNoteBoxButton_Screentip" xml:space="preserve">
+    <value>插入备注框</value>
     <comment>ribbon snippets</comment>
   </data>
   <data name="ribInsertQRButton_Label" xml:space="preserve">
@@ -3298,12 +3309,12 @@ ISO-code then comma then language name</comment>
     <value>在页面顶部插入标题目录</value>
     <comment>ribbon snippets</comment>
   </data>
-  <data name="ribInsertWarnBlockButton_Label" xml:space="preserve">
-    <value>警告块</value>
-    <comment>Ribbon OneMore menu item, Snippets...</comment>
+  <data name="ribInsertWarnBoxButton_Label" xml:space="preserve">
+    <value>警告框</value>
+    <comment>ribbon snippets</comment>
   </data>
-  <data name="ribInsertWarnBlockButton_Screentip" xml:space="preserve">
-    <value>插入警告块</value>
+  <data name="ribInsertWarnBoxButton_Screentip" xml:space="preserve">
+    <value>插入警告框</value>
     <comment>ribbon snippets</comment>
   </data>
   <data name="ribInsertYellowStatusButton_Label" xml:space="preserve">
@@ -4863,6 +4874,9 @@ ISO-code then comma then language name</comment>
   <data name="word_History" xml:space="preserve">
     <value>历史</value>
   </data>
+  <data name="word_Information" xml:space="preserve">
+    <value>信息</value>
+  </data>
   <data name="word_Keyboard" xml:space="preserve">
     <value>键盘</value>
   </data>
@@ -4886,6 +4900,9 @@ ISO-code then comma then language name</comment>
   </data>
   <data name="word_Notebook" xml:space="preserve">
     <value>笔记本</value>
+  </data>
+  <data name="word_Notes" xml:space="preserve">
+    <value>笔记</value>
   </data>
   <data name="word_OK" xml:space="preserve">
     <value>好的</value>
@@ -4967,6 +4984,9 @@ ISO-code then comma then language name</comment>
   </data>
   <data name="word_Total" xml:space="preserve">
     <value>全部的</value>
+  </data>
+  <data name="word_Warning" xml:space="preserve">
+    <value>警告</value>
   </data>
   <data name="word_Width" xml:space="preserve">
     <value>宽度</value>

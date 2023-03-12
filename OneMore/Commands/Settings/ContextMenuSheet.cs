@@ -66,8 +66,8 @@ namespace River.OneMoreAddIn.Settings
 			"ribInsertDateButton",			// ... Sortable Date
 			"ribInsertBoxButton",			// ... Block
 			"ribInsertCodeBlockButton",		// ... Code Block
-			"ribInsertInfoBlockButton",		// ... Info Block
-			"ribInsertWarnBlockButton",		// ... Warning Block
+			"ribInsertInfoBoxButton",		// ... Info Box
+			"ribInsertWarnBoxButton",		// ... Warning Box
 			"ribInsertExpandButton",		// ... Expand/Collapse
 			"ribInsertGrayStatusButton",	// ... Gray Status
 			"ribInsertRedStatusButton",		// ... Red Status
@@ -105,7 +105,7 @@ namespace River.OneMoreAddIn.Settings
 					continue;
 				}
 
-				var text = Resx.ResourceManager.GetString($"{Name}_{key}") ?? key;
+				var text = Resx.ResourceManager.GetString($"{Name}_{key}", AddIn.Culture) ?? key;
 				commandsBox.Items.Add(new MenuItem(key, text));
 			}
 
@@ -183,7 +183,7 @@ namespace River.OneMoreAddIn.Settings
 				{ "ribCalendarButton", "ribInsertCalendarButton" },
 				{ "ribBoxButton", "ribInsertBoxButton" },
 				{ "ribCodeBlockButton", "ribInsertCodeBlockButton" },
-				{ "ribInfoBlockButton", "ribInsertInfoBlockButton" },
+				{ "ribInfoBoxButton", "ribInsertInfoBoxButton" },
 				{ "ribExpandButton", "ribInsertExpandButton" },
 				{ "ribGrayStatusButton", "ribInsertGrayStatusButton" },
 				{ "ribRedStatusButton", "ribInsertRedStatusButton" },

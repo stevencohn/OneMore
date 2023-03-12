@@ -402,7 +402,7 @@ Vergrößere kleinere Bilder nicht</preferred>
     <source>Insert a green status label</source>
     <preferred>Füge ein grünes Statusetikett ein</preferred>
   </hint>
-  <hint name="ribInsertInfoBlockButton_Screentip">
+  <hint name="ribInsertInfoBoxButton_Screentip">
     <source>Insert an informational block</source>
     <preferred>Füge einen Informationsblock ein</preferred>
   </hint>
@@ -426,7 +426,7 @@ Vergrößere kleinere Bilder nicht</preferred>
     <source>Insert a headings table of contents at the top of the page</source>
     <preferred>Füge oben auf der Seite ein Inhaltsverzeichnis für Überschriften ein</preferred>
   </hint>
-  <hint name="ribInsertWarnBlockButton_Screentip">
+  <hint name="ribInsertWarnBoxButton_Screentip">
     <source>Insert a warning block</source>
     <preferred>Füge einen Warnblock ein</preferred>
   </hint>

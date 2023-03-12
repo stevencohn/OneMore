@@ -1,0 +1,32 @@
+{
+  "info": {
+    "shading": "#DEEBF6",
+    "symbol": "1F6C8",
+    "symbolFont": "Segoe UI Symbol",
+    "symbolSize": 22,
+    "symbolColor": "#2E75B5",
+    "titlex": "word_Information",
+    "titleColor": "#333333",
+    "textColor": "#333333"
+  },
+  "note": {
+    "shading": "#E5E0EC",
+    "symbol": "1F4D3",
+    "symbolFont": "Segoe UI Symbol",
+    "symbolSize": 22,
+    "symbolColor": "#5F497A",
+    "titlex": "word_Notes",
+    "titleColor": "#333333",
+    "textColor": "#333333"
+  },
+  "warn": {
+    "shading": "#FADBD2",
+    "symbol": "26A0",
+    "symbolFont": "Segoe UI Symbol",
+    "symbolSize": 22,
+    "symbolColor": "#E84C22",
+    "titlex": "word_Warning",
+    "titleColor": "#333333",
+    "textColor": "#333333"
+  }
+}

@@ -442,9 +442,14 @@ namespace River.OneMoreAddIn
 			=> await factory.Run<InsertStatusCommand>(StatusColor.Green);
 
 
-		[Command("ribInsertInfoBlockButton_Label", Keys.None, "Snippets")]
-		public async Task InsertInfoBlockCmd(IRibbonControl control)
-			=> await factory.Run<InsertInfoBlockCommand>(false);
+		[Command("ribInsertInfoBoxButton_Label", Keys.None, "Snippets")]
+		public async Task InsertInfoBoxCmd(IRibbonControl control)
+			=> await factory.Run<InsertInfoBoxCommand>("info");
+
+
+		[Command("ribInsertNoteBoxButton_Label", Keys.None, "Snippets")]
+		public async Task InsertNoteBoxCmd(IRibbonControl control)
+			=> await factory.Run<InsertInfoBoxCommand>("note");
 
 
 		[Command("ribInsertQRButton_Label", Keys.None, "References")]
@@ -476,9 +481,9 @@ namespace River.OneMoreAddIn
 			=> await factory.Run<InsertTocCommand>();
 
 
-		[Command("ribInsertWarnBlockButton_Label", Keys.None, "Snippets")]
-		public async Task InsertWarnBlockCmd(IRibbonControl control)
-			=> await factory.Run<InsertInfoBlockCommand>(true);
+		[Command("ribInsertWarnBoxButton_Label", Keys.None, "Snippets")]
+		public async Task InsertWarnBoxCmd(IRibbonControl control)
+			=> await factory.Run<InsertInfoBoxCommand>("warn");
 
 
 		[Command("ribInsertYellowStatusButton_Label", Keys.None, "Snippets")]

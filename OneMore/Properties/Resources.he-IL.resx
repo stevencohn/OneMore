@@ -606,7 +606,7 @@ OneNote ייסגר אוטומטית</value>
     <value>... סטטוס ירוק</value>
     <comment>context menu option</comment>
   </data>
-  <data name="ContextMenuSheet_ribInsertInfoBlockButton" xml:space="preserve">
+  <data name="ContextMenuSheet_ribInsertInfoBoxButton" xml:space="preserve">
     <value>... בלוק מידע</value>
     <comment>context menu option</comment>
   </data>
@@ -622,7 +622,7 @@ OneNote ייסגר אוטומטית</value>
     <value>... תוכן העניינים</value>
     <comment>context menu option</comment>
   </data>
-  <data name="ContextMenuSheet_ribInsertWarnBlockButton" xml:space="preserve">
+  <data name="ContextMenuSheet_ribInsertWarnBoxButton" xml:space="preserve">
     <value>... בלוק אזהרה</value>
     <comment>context menu option</comment>
   </data>
@@ -1621,6 +1621,9 @@ Total Row Font
   <data name="InsertCodeBlockCommand_Text" xml:space="preserve">
     <value>התוכן שלך כאן...</value>
     <comment>text</comment>
+  </data>
+  <data name="InsertInfoBox_yourContentHere" xml:space="preserve">
+    <value>התוכן שלך כאן...</value>
   </data>
   <data name="InsertQRCommand_MaxLength" xml:space="preserve">
     <value>הטקסט שנבחר אינו יכול לחרוג מ-{0} תווים</value>
@@ -3333,12 +3336,20 @@ ISO-code then comma then language name</comment>
     <value>הכנס תווית סטטוס ירוקה</value>
     <comment>ribbon snippets</comment>
   </data>
-  <data name="ribInsertInfoBlockButton_Label" xml:space="preserve">
-    <value>בלוק מידע</value>
-    <comment>Ribbon OneMore menu item, Snippets...</comment>
+  <data name="ribInsertInfoBoxButton_Label" xml:space="preserve">
+    <value>תיבת מידע</value>
+    <comment>ribbon snippets</comment>
   </data>
-  <data name="ribInsertInfoBlockButton_Screentip" xml:space="preserve">
-    <value>הכנס חסימת מידע</value>
+  <data name="ribInsertInfoBoxButton_Screentip" xml:space="preserve">
+    <value>הכנס תיבת מידע</value>
+    <comment>ribbon snippets</comment>
+  </data>
+  <data name="ribInsertNoteBoxButton_Label" xml:space="preserve">
+    <value>תיבת הערות</value>
+    <comment>ribbon snippets</comment>
+  </data>
+  <data name="ribInsertNoteBoxButton_Screentip" xml:space="preserve">
+    <value>הכנס תיבת הערות</value>
     <comment>ribbon snippets</comment>
   </data>
   <data name="ribInsertQRButton_Label" xml:space="preserve">
@@ -3381,12 +3392,12 @@ ISO-code then comma then language name</comment>
     <value>הכנס טבלת תוכן של ענייני כותרות בראש העמוד</value>
     <comment>ribbon snippets</comment>
   </data>
-  <data name="ribInsertWarnBlockButton_Label" xml:space="preserve">
-    <value>חסימת אזהרה</value>
-    <comment>Ribbon OneMore menu item, Snippets...</comment>
+  <data name="ribInsertWarnBoxButton_Label" xml:space="preserve">
+    <value>תיבת אזהרה</value>
+    <comment>ribbon snippets</comment>
   </data>
-  <data name="ribInsertWarnBlockButton_Screentip" xml:space="preserve">
-    <value>הכנס חסימת אזהרה</value>
+  <data name="ribInsertWarnBoxButton_Screentip" xml:space="preserve">
+    <value>הכנס תיבת אזהרה</value>
     <comment>ribbon snippets</comment>
   </data>
   <data name="ribInsertYellowStatusButton_Label" xml:space="preserve">
@@ -4974,6 +4985,9 @@ ISO-code then comma then language name</comment>
   <data name="word_History" xml:space="preserve">
     <value>הִיסטוֹרִיָה</value>
   </data>
+  <data name="word_Information" xml:space="preserve">
+    <value>מֵידָע</value>
+  </data>
   <data name="word_Keyboard" xml:space="preserve">
     <value>מקלדת</value>
   </data>
@@ -4997,6 +5011,9 @@ ISO-code then comma then language name</comment>
   </data>
   <data name="word_Notebook" xml:space="preserve">
     <value>מחברת</value>
+  </data>
+  <data name="word_Notes" xml:space="preserve">
+    <value>הערות</value>
   </data>
   <data name="word_OK" xml:space="preserve">
     <value>בסדר</value>
@@ -5078,6 +5095,9 @@ ISO-code then comma then language name</comment>
   </data>
   <data name="word_Total" xml:space="preserve">
     <value>סה"כ</value>
+  </data>
+  <data name="word_Warning" xml:space="preserve">
+    <value>אַזהָרָה</value>
   </data>
   <data name="word_Width" xml:space="preserve">
     <value>רוֹחַב</value>

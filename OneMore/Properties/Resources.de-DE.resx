@@ -592,7 +592,7 @@
     <value>... Grüner Status</value>
     <comment>context menu option</comment>
   </data>
-  <data name="ContextMenuSheet_ribInsertInfoBlockButton" xml:space="preserve">
+  <data name="ContextMenuSheet_ribInsertInfoBoxButton" xml:space="preserve">
     <value>... Infoblock</value>
     <comment>context menu option</comment>
   </data>
@@ -608,7 +608,7 @@
     <value>... Inhaltsverzeichnis</value>
     <comment>context menu option</comment>
   </data>
-  <data name="ContextMenuSheet_ribInsertWarnBlockButton" xml:space="preserve">
+  <data name="ContextMenuSheet_ribInsertWarnBoxButton" xml:space="preserve">
     <value>... Warnblock</value>
     <comment>context menu option</comment>
   </data>
@@ -1563,6 +1563,9 @@ Symbole: PI, E</value>
   <data name="InsertCodeBlockCommand_Text" xml:space="preserve">
     <value>Ihr Inhalt hier ...</value>
     <comment>text</comment>
+  </data>
+  <data name="InsertInfoBox_yourContentHere" xml:space="preserve">
+    <value>Ihre Inhalte hier...</value>
   </data>
   <data name="InsertQRCommand_MaxLength" xml:space="preserve">
     <value>Der ausgewählte Text darf {0} Zeichen nicht überschreiten</value>
@@ -3248,12 +3251,20 @@ Polaroid</value>
     <value>Füge ein grünes Statusetikett ein</value>
     <comment>ribbon snippets</comment>
   </data>
-  <data name="ribInsertInfoBlockButton_Label" xml:space="preserve">
-    <value>Infoblock</value>
-    <comment>Ribbon OneMore menu item, Snippets...</comment>
+  <data name="ribInsertInfoBoxButton_Label" xml:space="preserve">
+    <value>Infobox</value>
+    <comment>ribbon snippets</comment>
   </data>
-  <data name="ribInsertInfoBlockButton_Screentip" xml:space="preserve">
-    <value>Füge einen Informationsblock ein</value>
+  <data name="ribInsertInfoBoxButton_Screentip" xml:space="preserve">
+    <value>Fügen Sie ein Informationsfeld ein</value>
+    <comment>ribbon snippets</comment>
+  </data>
+  <data name="ribInsertNoteBoxButton_Label" xml:space="preserve">
+    <value>Notizen-Box</value>
+    <comment>ribbon snippets</comment>
+  </data>
+  <data name="ribInsertNoteBoxButton_Screentip" xml:space="preserve">
+    <value>Fügen Sie ein Notizfeld ein</value>
     <comment>ribbon snippets</comment>
   </data>
   <data name="ribInsertQRButton_Label" xml:space="preserve">
@@ -3296,12 +3307,12 @@ Polaroid</value>
     <value>Füge oben auf der Seite ein Inhaltsverzeichnis für Überschriften ein</value>
     <comment>ribbon snippets</comment>
   </data>
-  <data name="ribInsertWarnBlockButton_Label" xml:space="preserve">
-    <value>Warnblock</value>
-    <comment>Ribbon OneMore menu item, Snippets...</comment>
+  <data name="ribInsertWarnBoxButton_Label" xml:space="preserve">
+    <value>Warnbox</value>
+    <comment>ribbon snippets</comment>
   </data>
-  <data name="ribInsertWarnBlockButton_Screentip" xml:space="preserve">
-    <value>Füge einen Warnblock ein</value>
+  <data name="ribInsertWarnBoxButton_Screentip" xml:space="preserve">
+    <value>Fügen Sie ein Warnfeld ein</value>
     <comment>ribbon snippets</comment>
   </data>
   <data name="ribInsertYellowStatusButton_Label" xml:space="preserve">
@@ -4868,6 +4879,9 @@ In diesem Abschnitt</value>
   <data name="word_History" xml:space="preserve">
     <value>Geschichte</value>
   </data>
+  <data name="word_Information" xml:space="preserve">
+    <value>Information</value>
+  </data>
   <data name="word_Keyboard" xml:space="preserve">
     <value>Klaviatur</value>
   </data>
@@ -4891,6 +4905,9 @@ In diesem Abschnitt</value>
   </data>
   <data name="word_Notebook" xml:space="preserve">
     <value>Notizbuch</value>
+  </data>
+  <data name="word_Notes" xml:space="preserve">
+    <value>Anmerkungen</value>
   </data>
   <data name="word_OK" xml:space="preserve">
     <value>OK</value>
@@ -4972,6 +4989,9 @@ In diesem Abschnitt</value>
   </data>
   <data name="word_Total" xml:space="preserve">
     <value>Gesamt</value>
+  </data>
+  <data name="word_Warning" xml:space="preserve">
+    <value>Warnung</value>
   </data>
   <data name="word_Width" xml:space="preserve">
     <value>Breite</value>

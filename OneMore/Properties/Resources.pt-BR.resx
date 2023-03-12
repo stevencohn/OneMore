@@ -596,7 +596,7 @@ OneNote fechará automaticamente</value>
     <value>... Estado Verde</value>
     <comment>context menu option</comment>
   </data>
-  <data name="ContextMenuSheet_ribInsertInfoBlockButton" xml:space="preserve">
+  <data name="ContextMenuSheet_ribInsertInfoBoxButton" xml:space="preserve">
     <value>... Bloco de informações</value>
     <comment>context menu option</comment>
   </data>
@@ -612,7 +612,7 @@ OneNote fechará automaticamente</value>
     <value>... Índice</value>
     <comment>context menu option</comment>
   </data>
-  <data name="ContextMenuSheet_ribInsertWarnBlockButton" xml:space="preserve">
+  <data name="ContextMenuSheet_ribInsertWarnBoxButton" xml:space="preserve">
     <value>... Bloco de Aviso</value>
     <comment>context menu option</comment>
   </data>
@@ -1569,6 +1569,9 @@ Símbolos: PI, E</value>
   <data name="InsertCodeBlockCommand_Text" xml:space="preserve">
     <value>Seu conteúdo aqui ...</value>
     <comment>text</comment>
+  </data>
+  <data name="InsertInfoBox_yourContentHere" xml:space="preserve">
+    <value>Seu conteúdo aqui...</value>
   </data>
   <data name="InsertQRCommand_MaxLength" xml:space="preserve">
     <value>O texto selecionado não pode ter mais de {0} caracteres</value>
@@ -3253,12 +3256,20 @@ Polaroid.</value>
     <value>Insira um rótulo de status verde</value>
     <comment>ribbon snippets</comment>
   </data>
-  <data name="ribInsertInfoBlockButton_Label" xml:space="preserve">
-    <value>Bloco de informações</value>
-    <comment>Ribbon OneMore menu item, Snippets...</comment>
+  <data name="ribInsertInfoBoxButton_Label" xml:space="preserve">
+    <value>Caixa de informação</value>
+    <comment>ribbon snippets</comment>
   </data>
-  <data name="ribInsertInfoBlockButton_Screentip" xml:space="preserve">
-    <value>Inserir um bloco informativo</value>
+  <data name="ribInsertInfoBoxButton_Screentip" xml:space="preserve">
+    <value>Insira uma caixa informativa</value>
+    <comment>ribbon snippets</comment>
+  </data>
+  <data name="ribInsertNoteBoxButton_Label" xml:space="preserve">
+    <value>caixa de notas</value>
+    <comment>ribbon snippets</comment>
+  </data>
+  <data name="ribInsertNoteBoxButton_Screentip" xml:space="preserve">
+    <value>Inserir uma caixa de notas</value>
     <comment>ribbon snippets</comment>
   </data>
   <data name="ribInsertQRButton_Label" xml:space="preserve">
@@ -3301,12 +3312,12 @@ Polaroid.</value>
     <value>Inserir um sumário de títulos no topo da página</value>
     <comment>ribbon snippets</comment>
   </data>
-  <data name="ribInsertWarnBlockButton_Label" xml:space="preserve">
-    <value>Bloco de aviso</value>
-    <comment>Ribbon OneMore menu item, Snippets...</comment>
+  <data name="ribInsertWarnBoxButton_Label" xml:space="preserve">
+    <value>caixa de aviso</value>
+    <comment>ribbon snippets</comment>
   </data>
-  <data name="ribInsertWarnBlockButton_Screentip" xml:space="preserve">
-    <value>Insira um bloco de aviso</value>
+  <data name="ribInsertWarnBoxButton_Screentip" xml:space="preserve">
+    <value>Insira uma caixa de aviso</value>
     <comment>ribbon snippets</comment>
   </data>
   <data name="ribInsertYellowStatusButton_Label" xml:space="preserve">
@@ -4879,6 +4890,9 @@ Nesta secção</value>
   <data name="word_History" xml:space="preserve">
     <value>História</value>
   </data>
+  <data name="word_Information" xml:space="preserve">
+    <value>Informação</value>
+  </data>
   <data name="word_Keyboard" xml:space="preserve">
     <value>Teclado</value>
   </data>
@@ -4902,6 +4916,9 @@ Nesta secção</value>
   </data>
   <data name="word_Notebook" xml:space="preserve">
     <value>Caderno</value>
+  </data>
+  <data name="word_Notes" xml:space="preserve">
+    <value>Notas</value>
   </data>
   <data name="word_OK" xml:space="preserve">
     <value>OK</value>
@@ -4983,6 +5000,9 @@ Nesta secção</value>
   </data>
   <data name="word_Total" xml:space="preserve">
     <value>Total</value>
+  </data>
+  <data name="word_Warning" xml:space="preserve">
+    <value>Aviso</value>
   </data>
   <data name="word_Width" xml:space="preserve">
     <value>Largura</value>
