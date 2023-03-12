@@ -63,11 +63,13 @@ namespace River.OneMoreAddIn.Commands
 				{
 					if (response.StatusCode == HttpStatusCode.BadRequest)
 					{
-						var messages = response.Headers.GetValues(DiagramErrorHeader);
-						ErrorMessages = string.Join(Environment.NewLine, response.ReasonPhrase, messages);
+						var messages = string.Join(Environment.NewLine, 
+							response.Headers.GetValues(DiagramErrorHeader));
+
+						ErrorMessages = $"{response.ReasonPhrase}\n{messages}";
 					}
 
-					return null;
+					return new byte[0];
 				}
 
 				var bytes = await response.Content.ReadAsByteArrayAsync().ConfigureAwait(false);
