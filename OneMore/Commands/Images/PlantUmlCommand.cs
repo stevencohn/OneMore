@@ -130,7 +130,7 @@ namespace River.OneMoreAddIn.Commands
 				new XElement(ns + "Image",
 					new XAttribute("selected", "all"),
 					new XElement(ns + "Size",
-						new XAttribute("width", FormattableString.Invariant($"{image.Width:0.0}")),
+						new XAttribute("width", "0.0"),
 						new XAttribute("height", FormattableString.Invariant($"{image.Height:0.0}"))),
 					new XElement(ns + "Data", Convert.ToBase64String(bytes))
 					));
@@ -141,11 +141,7 @@ namespace River.OneMoreAddIn.Commands
 
 			var table = AddCaptionCommand.MakeCaptionTable(ns, content, caption, out var cdata);
 
-
-			System.Diagnostics.Debugger.Launch();
-
 			XElement body;
-
 			if (after)
 			{
 				body = new Paragraph(table.Root);
