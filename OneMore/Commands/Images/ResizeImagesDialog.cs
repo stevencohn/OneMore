@@ -170,14 +170,17 @@ namespace River.OneMoreAddIn.Commands
 			{
 				pctRadio.Checked = true;
 				percentBox.Value = collection.Get("mruPercent", 100);
+				RadioClick(pctRadio, EventArgs.Empty);
 			}
 			else if (value == 1)
 			{
 				absRadio.Checked = true;
+				RadioClick(absRadio, EventArgs.Empty);
 			}
 			else
 			{
 				presetRadio.Checked = true;
+				RadioClick(presetRadio, EventArgs.Empty);
 			}
 
 			presetBox.Value = collection.Get("mruWidth",
