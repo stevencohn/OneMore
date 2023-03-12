@@ -389,7 +389,7 @@ namespace River.OneMoreAddIn
 
 		[Command("ribInsertBoxButton_Label", Keys.Alt | Keys.F6, "Snippets")]
 		public async Task InsertBoxCmd(IRibbonControl control)
-			=> await factory.Run<InsertCodeBlockCommand>(false);
+			=> await factory.Run<InsertBoxCommand>(false);
 
 
 		[Command("ribInsertBreadcrumbButton_Label", Keys.None, "Snippets")]
@@ -409,7 +409,7 @@ namespace River.OneMoreAddIn
 
 		[Command("ribInsertCodeBlockButton_Label", Keys.F6, "Snippets")]
 		public async Task InsertCodeBlockCmd(IRibbonControl control)
-			=> await factory.Run<InsertCodeBlockCommand>(true);
+			=> await factory.Run<InsertBoxCommand>(true);
 
 
 		[Command("ribInsertDateButton_Label", Keys.Control | Keys.Shift | Keys.D, "Snippets")]

@@ -790,7 +790,7 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Ribbon\TileFactory.cs" />
-    <Compile Include="Commands\Snippets\InsertCodeBlockCommand.cs" />
+    <Compile Include="Commands\Snippets\InsertBoxCommand.cs" />
     <Compile Include="Commands\Snippets\InsertExpandCommand.cs" />
     <Compile Include="Commands\Snippets\InsertInfoBoxCommand.cs" />
     <Compile Include="Commands\Snippets\InsertLineCommand.cs" />
