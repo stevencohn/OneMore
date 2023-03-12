@@ -5,7 +5,7 @@
 namespace River.OneMoreAddIn.Settings
 {
 	using River.OneMoreAddIn.Helpers.Office;
-	using Resx = River.OneMoreAddIn.Properties.Resources;
+	using Resx = Properties.Resources;
 
 
 	internal partial class ContextMenuSheet : SheetBase
@@ -64,8 +64,8 @@ namespace River.OneMoreAddIn.Settings
 			"ribInsertTocButton",			// ... Table of Contents
 			"ribInsertCalendarButton",		// ... Calendar
 			"ribInsertDateButton",			// ... Sortable Date
-			"ribInsertBoxButton",			// ... Block
-			"ribInsertBoxButton",		// ... Code Block
+			"ribInsertCodeBoxButton",		// ... Code Box
+			"ribInsertTextBoxButton",		// ... Text Box
 			"ribInsertInfoBoxButton",		// ... Info Box
 			"ribInsertWarnBoxButton",		// ... Warning Box
 			"ribInsertExpandButton",		// ... Expand/Collapse

@@ -569,7 +569,7 @@ OneNote wordt automatisch gesloten</value>
     <comment>context menu option</comment>
   </data>
   <data name="ContextMenuSheet_ribInsertCodeBoxButton" xml:space="preserve">
-    <value>... Codeblok</value>
+    <value>... Codebox</value>
     <comment>context menu option</comment>
   </data>
   <data name="ContextMenuSheet_ribInsertDateButton" xml:space="preserve">
@@ -593,7 +593,7 @@ OneNote wordt automatisch gesloten</value>
     <comment>context menu option</comment>
   </data>
   <data name="ContextMenuSheet_ribInsertInfoBoxButton" xml:space="preserve">
-    <value>... Infoblok</value>
+    <value>... Informatie box</value>
     <comment>context menu option</comment>
   </data>
   <data name="ContextMenuSheet_ribInsertRedStatusButton" xml:space="preserve">
@@ -613,7 +613,7 @@ OneNote wordt automatisch gesloten</value>
     <comment>context menu option</comment>
   </data>
   <data name="ContextMenuSheet_ribInsertWarnBoxButton" xml:space="preserve">
-    <value>... Waarschuwingsblok</value>
+    <value>... waarschuwingsdoos</value>
     <comment>context menu option</comment>
   </data>
   <data name="ContextMenuSheet_ribInsertYellowStatusButton" xml:space="preserve">

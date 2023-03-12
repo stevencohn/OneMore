@@ -1150,7 +1150,7 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ... Code Block.
+        ///   Looks up a localized string similar to ... Code Box.
         /// </summary>
         internal static string ContextMenuSheet_ribInsertCodeBoxButton {
             get {
@@ -1204,7 +1204,7 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ... Info Block.
+        ///   Looks up a localized string similar to ... Info Box.
         /// </summary>
         internal static string ContextMenuSheet_ribInsertInfoBoxButton {
             get {
@@ -1249,7 +1249,7 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ... Warning Block.
+        ///   Looks up a localized string similar to ... Warning Box.
         /// </summary>
         internal static string ContextMenuSheet_ribInsertWarnBoxButton {
             get {

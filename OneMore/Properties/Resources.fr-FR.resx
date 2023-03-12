@@ -565,7 +565,7 @@
     <comment>context menu option</comment>
   </data>
   <data name="ContextMenuSheet_ribInsertCodeBoxButton" xml:space="preserve">
-    <value>... Bloc de code</value>
+    <value>... boîte de code</value>
     <comment>context menu option</comment>
   </data>
   <data name="ContextMenuSheet_ribInsertDateButton" xml:space="preserve">
@@ -589,7 +589,7 @@
     <comment>context menu option</comment>
   </data>
   <data name="ContextMenuSheet_ribInsertInfoBoxButton" xml:space="preserve">
-    <value>... Bloc d'informations</value>
+    <value>... Boîte d'info</value>
     <comment>context menu option</comment>
   </data>
   <data name="ContextMenuSheet_ribInsertRedStatusButton" xml:space="preserve">
@@ -609,7 +609,7 @@
     <comment>context menu option</comment>
   </data>
   <data name="ContextMenuSheet_ribInsertWarnBoxButton" xml:space="preserve">
-    <value>... Bloc d'avertissement</value>
+    <value>... Boîte d'avertissement</value>
     <comment>context menu option</comment>
   </data>
   <data name="ContextMenuSheet_ribInsertYellowStatusButton" xml:space="preserve">

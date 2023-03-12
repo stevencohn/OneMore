@@ -568,7 +568,7 @@
     <comment>context menu option</comment>
   </data>
   <data name="ContextMenuSheet_ribInsertCodeBoxButton" xml:space="preserve">
-    <value>... كود بلوك</value>
+    <value>... مربع الرمز</value>
     <comment>context menu option</comment>
   </data>
   <data name="ContextMenuSheet_ribInsertDateButton" xml:space="preserve">
@@ -592,7 +592,7 @@
     <comment>context menu option</comment>
   </data>
   <data name="ContextMenuSheet_ribInsertInfoBoxButton" xml:space="preserve">
-    <value>... كتلة المعلومات</value>
+    <value>... معلومات مربع</value>
     <comment>context menu option</comment>
   </data>
   <data name="ContextMenuSheet_ribInsertRedStatusButton" xml:space="preserve">
@@ -612,7 +612,7 @@
     <comment>context menu option</comment>
   </data>
   <data name="ContextMenuSheet_ribInsertWarnBoxButton" xml:space="preserve">
-    <value>... كتلة تحذير</value>
+    <value>... مربع تحذير</value>
     <comment>context menu option</comment>
   </data>
   <data name="ContextMenuSheet_ribInsertYellowStatusButton" xml:space="preserve">

@@ -577,7 +577,7 @@ OneNote zamknie się automatycznie</value>
     <comment>context menu option</comment>
   </data>
   <data name="ContextMenuSheet_ribInsertCodeBoxButton" xml:space="preserve">
-    <value>... Blok kodu</value>
+    <value>... pole kodu</value>
     <comment>context menu option</comment>
   </data>
   <data name="ContextMenuSheet_ribInsertDateButton" xml:space="preserve">
@@ -601,7 +601,7 @@ OneNote zamknie się automatycznie</value>
     <comment>context menu option</comment>
   </data>
   <data name="ContextMenuSheet_ribInsertInfoBoxButton" xml:space="preserve">
-    <value>... Blok informacji</value>
+    <value>... Skrzynka informacyjna</value>
     <comment>context menu option</comment>
   </data>
   <data name="ContextMenuSheet_ribInsertRedStatusButton" xml:space="preserve">
@@ -621,7 +621,7 @@ OneNote zamknie się automatycznie</value>
     <comment>context menu option</comment>
   </data>
   <data name="ContextMenuSheet_ribInsertWarnBoxButton" xml:space="preserve">
-    <value>... Blok ostrzegawczy</value>
+    <value>... Pudełko ostrzegawcze</value>
     <comment>context menu option</comment>
   </data>
   <data name="ContextMenuSheet_ribInsertYellowStatusButton" xml:space="preserve">

@@ -579,7 +579,7 @@ OneNote ייסגר אוטומטית</value>
     <comment>context menu option</comment>
   </data>
   <data name="ContextMenuSheet_ribInsertCodeBoxButton" xml:space="preserve">
-    <value>... בלוק קוד</value>
+    <value>... תיבת קוד</value>
     <comment>context menu option</comment>
   </data>
   <data name="ContextMenuSheet_ribInsertDateButton" xml:space="preserve">
@@ -603,7 +603,7 @@ OneNote ייסגר אוטומטית</value>
     <comment>context menu option</comment>
   </data>
   <data name="ContextMenuSheet_ribInsertInfoBoxButton" xml:space="preserve">
-    <value>... בלוק מידע</value>
+    <value>... תיבת מידע</value>
     <comment>context menu option</comment>
   </data>
   <data name="ContextMenuSheet_ribInsertRedStatusButton" xml:space="preserve">
@@ -623,7 +623,7 @@ OneNote ייסגר אוטומטית</value>
     <comment>context menu option</comment>
   </data>
   <data name="ContextMenuSheet_ribInsertWarnBoxButton" xml:space="preserve">
-    <value>... בלוק אזהרה</value>
+    <value>... תיבת אזהרה</value>
     <comment>context menu option</comment>
   </data>
   <data name="ContextMenuSheet_ribInsertYellowStatusButton" xml:space="preserve">
