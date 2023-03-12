@@ -175,21 +175,10 @@ namespace River.OneMoreAddIn.Settings
 		{
 			var exchange = new System.Collections.Generic.Dictionary<string, string>
 			{
-				{ "ribFootnoteButton", "ribAddFootnoteButton" },
-				{ "ribNoSpellCheckButton", "ribDisableSpellCheckButton" },
-				{ "ribSpellCheckButton", "ribEnableSpellCheckButton" },
-				{ "ribReplaceButton", "ribSearchAndReplaceButton" },
-				{ "ribTocButton", "ribInsertTocButton" },
-				{ "ribCalendarButton", "ribInsertCalendarButton" },
-				{ "ribBoxButton", "ribInsertBoxButton" },
-				{ "ribCodeBoxButton", "ribInsertBoxButton" },
-				{ "ribInfoBoxButton", "ribInsertInfoBoxButton" },
-				{ "ribExpandButton", "ribInsertExpandButton" },
-				{ "ribGrayStatusButton", "ribInsertGrayStatusButton" },
-				{ "ribRedStatusButton", "ribInsertRedStatusButton" },
-				{ "ribYellowStatusButton", "ribInsertYellowStatusButton" },
-				{ "ribGreenStatusButton", "ribInsertGreenStatusButton" },
-				{ "ribBlueStatusButton", "ribInsertBlueStatusButton" }
+				{ "ribDrawPlantUmlButton", "ribPlantUmlButton" },
+				{ "ribInsertBoxButton", "ribInsertTextBoxButton" },
+				{ "ribInsertCodeBlockButton", "ribInsertCodeBoxButton" },
+				{ "ribInsertInfoBlockButton", "ribInsertInfoBoxButton" }
 			};
 
 			var collection = provider.GetCollection(nameof(ContextMenuSheet));
