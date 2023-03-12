@@ -13,7 +13,8 @@ namespace River.OneMoreAddIn
 	{
 
 		/// <summary>
-		/// Determines if the node contains multiple words, separated by any HTML space character
+		/// OneMore Extension >> Determines if the node contains multiple words, separated by any
+		/// HTML space character
 		/// </summary>
 		/// <param name="cdata">The instance</param>
 		/// <returns>True if the value contains multiple words, false otherwise</returns>
@@ -25,8 +26,8 @@ namespace River.OneMoreAddIn
 
 
 		/// <summary>
-		/// Determines if the node is empty. This usually indicates the position of the
-		/// text cursor but could also be randomly in the XML as well.
+		/// OneMore Extension >> Determines if the node is empty. This usually indicates the
+		/// position of the text cursor but could also be randomly in the XML as well.
 		/// </summary>
 		/// <param name="cdata">The instance</param>
 		/// <returns>True if the value is empty, false otherwise.</returns>
@@ -37,7 +38,7 @@ namespace River.OneMoreAddIn
 
 
 		/// <summary>
-		/// Creates an XElement from the given cdata node.
+		/// OneMore Extension >> Creates an XElement from the given cdata node.
 		/// </summary>
 		/// <param name="cdata">The instance</param>
 		/// <returns>A new XElement with the name "cdata"</returns>

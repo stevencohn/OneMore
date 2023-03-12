@@ -12,6 +12,7 @@ namespace River.OneMoreAddIn.Commands
 	using System.IO;
 	using System.Linq;
 	using System.Text;
+	using System.Text.RegularExpressions;
 	using System.Threading;
 	using System.Threading.Tasks;
 	using System.Web;
@@ -44,19 +45,33 @@ namespace River.OneMoreAddIn.Commands
 				return;
 			}
 
-			if ((args.Length > 0) && (args[0] is string pid))
+			if (args.Length > 0)
 			{
 				// not sure why logger is null here so we have to set it
 				logger = Logger.Current;
-				await RefreshDiagram(pid);
-				return;
+
+				var pid = (string)args[0];
+				if (args.Length > 1)
+				{
+					var cmd = (string)args[1];
+					if ("extract".Equals(cmd, StringComparison.InvariantCultureIgnoreCase))
+					{
+						await ExtractUml(pid);
+						return;
+					}
+				}
+				else
+				{
+					await RefreshDiagram(pid);
+					return;
+				}
 			}
 
 			using var one = new OneNote(out var page, out var ns);
 
 			// get selected content...
 
-			var runs = page.GetSelectedElements();
+			var runs = page.GetSelectedElements().ToList();
 			if (!runs.Any() || page.SelectionScope != SelectionScope.Region)
 			{
 				UIHelper.ShowError(Resx.PlantUml_EmptySelection);
@@ -91,29 +106,23 @@ namespace River.OneMoreAddIn.Commands
 
 			var after = true;
 			var collapse = false;
-			var embed = false;
+			var remove = false;
 			var settings = new SettingsProvider().GetCollection("ImagesSheet");
 			if (settings != null)
 			{
 				after = settings.Get("plantAfter", true);
 				collapse = settings.Get("plantCollapsed", false);
-				embed = settings.Get("plantEmbed", false);
+				remove = settings.Get("plantRemoveText", false);
 			}
 
 			// insert image immediately before or after text...
-
-			var anchor = after
-				? runs.Last().Parent
-				: runs.First().Parent;
 
 			using var stream = new MemoryStream(bytes);
 			using var image = (Bitmap)Image.FromStream(stream);
 
 			var plantID = Guid.NewGuid().ToString("N");
+			var url = $"onemore://PlantUmlCommand/{plantID}";
 			PageNamespace.Set(ns);
-
-
-			System.Diagnostics.Debugger.Launch();
 
 			var content = new XElement(ns + "OE",
 				//new XAttribute("selected", "partial"),
@@ -127,24 +136,31 @@ namespace River.OneMoreAddIn.Commands
 					));
 
 			var title = PlantUmlHelper.ReadTitle(text);
-			var table = AddCaptionCommand.MakeCaptionTable(ns, content, title, out var cdata);
+			var caption = $"{title} <span style='font-style:italic'>(" +
+				$"<a href=\"{url}/extract\">{Resx.word_Extract}</a>)</span>";
 
+			var table = AddCaptionCommand.MakeCaptionTable(ns, content, caption, out var cdata);
+
+
+			System.Diagnostics.Debugger.Launch();
+
+			XElement body;
 
 			if (after)
 			{
-				anchor.AddAfterSelf(new XElement(ns + "OE", table.Root));
+				body = new Paragraph(table.Root);
+				runs.Last().Parent.AddAfterSelf(body);
 			}
 			else
 			{
-				anchor.AddBeforeSelf(new XElement(ns + "OE", table.Root));
+				body = new Paragraph(table.Root);
+				runs.First().Parent.AddBeforeSelf(body);
 			}
 
 			// collapse text into sub-paragraph...
 
 			if (collapse)
 			{
-				var url = $"onemore://PlantUmlCommand/{plantID}";
-
 				var container = new XElement(ns + "OE",
 					new XAttribute("collapsed", "1"),
 					new Meta(PlantMeta, plantID),
@@ -154,16 +170,34 @@ namespace River.OneMoreAddIn.Commands
 							$"(<a href=\"{url}\">{Resx.word_Refresh}</a>)</span>"))
 					);
 
-				runs.First().Parent.AddBeforeSelf(container);
-
 				var parents = runs.Select(e => e.Parent).Distinct().ToList();
-
-				parents.DescendantsAndSelf()
-					.Attributes("selected")?.Remove();
-
+				parents.DescendantsAndSelf().Attributes("selected")?.Remove();
 				parents.Remove();
-
 				container.Add(new XElement(ns + "OEChildren", parents));
+
+				if (after)
+				{
+					body.AddBeforeSelf(container, new Paragraph(string.Empty));
+				}
+				else
+				{
+					body.AddAfterSelf(new Paragraph(string.Empty), container);
+				}
+			}
+			else if (remove)
+			{
+				runs.Select(e => e.Parent).Distinct().Remove();
+			}
+			else
+			{
+				if (after)
+				{
+					body.AddBeforeSelf(new Paragraph(string.Empty));
+				}
+				else
+				{
+					body.AddAfterSelf(new Paragraph(string.Empty));
+				}
 			}
 
 			await one.Update(page);
@@ -219,14 +253,14 @@ namespace River.OneMoreAddIn.Commands
 		{
 			using var one = new OneNote(out var page, out var ns, OneNote.PageDetail.All);
 
-			var image = page.Root.Descendants(ns + "OE").Elements(ns + "Meta")
+			var element = page.Root.Descendants(ns + "OE").Elements(ns + "Meta")
 				.Where(e =>
 					e.Attribute("name")?.Value == ImageMeta &&
 					e.Attribute("content")?.Value == plantID)
 				.Select(e => e.Parent.Elements(ns + "Image").FirstOrDefault())
 				.FirstOrDefault();
 
-			if (image == null)
+			if (element == null)
 			{
 				UIHelper.ShowError(Resx.PlantUml_broken);
 				return false;
@@ -277,7 +311,7 @@ namespace River.OneMoreAddIn.Commands
 
 			// update image...
 
-			var data = image.Elements(ns + "Data").FirstOrDefault();
+			var data = element.Elements(ns + "Data").FirstOrDefault();
 			if (data == null)
 			{
 				UIHelper.ShowError(Resx.PlantUml_broken);
@@ -288,7 +322,7 @@ namespace River.OneMoreAddIn.Commands
 
 			// check image size to maintain aspect ratio...
 
-			var size = image.Element(ns + "Size");
+			var size = element.Element(ns + "Size");
 			if (size != null)
 			{
 				var width = size.GetAttributeDouble("width");
@@ -315,6 +349,38 @@ namespace River.OneMoreAddIn.Commands
 			await one.Update(page);
 
 			return true;
+		}
+
+
+		private async Task ExtractUml(string plantID)
+		{
+			using var one = new OneNote(out var page, out var ns, OneNote.PageDetail.All);
+
+			var element = page.Root.Descendants(ns + "OE").Elements(ns + "Meta")
+				.Where(e =>
+					e.Attribute("name")?.Value == ImageMeta &&
+					e.Attribute("content")?.Value == plantID)
+				.Select(e => e.Parent.Elements(ns + "Image").FirstOrDefault())
+				.FirstOrDefault();
+
+			if (element == null)
+			{
+				UIHelper.ShowError(Resx.PlantUml_broken);
+				return;
+			}
+
+			var uml = PlantUmlHelper.ExtractUmlFromImageData(element.Element(ns + "Data").Value);
+
+			var container = element.FirstAncestor(ns + "Table").Parent;
+			PageNamespace.Set(ns);
+
+			var lines = Regex.Split(uml, "\r\n|\r|\n");
+
+			container.AddAfterSelf(
+				new Paragraph(string.Empty),
+				lines.Select(line => new Paragraph(line)));
+
+			await one.Update(page);
 		}
 	}
 }

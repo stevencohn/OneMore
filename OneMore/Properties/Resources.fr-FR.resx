@@ -863,18 +863,6 @@
   <data name="DownArrow" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>images\downarrow.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="PlantUml_broken" xml:space="preserve">
-    <value>Le texte PlantUML est invalide ou ne peut pas trouver de connexion entre le texte et l'image</value>
-    <comment>error message</comment>
-  </data>
-  <data name="PlantUml_EmptySelection" xml:space="preserve">
-    <value>Sélection vide. Sélectionnez un bloc valide de texte PlantUML.</value>
-    <comment>error message</comment>
-  </data>
-  <data name="PlantUml_Error" xml:space="preserve">
-    <value>Syntaxe invalide ou sélection incomplète de PlantUML</value>
-    <comment>error message</comment>
-  </data>
   <data name="EditTableThemesDialog_colorsTab.Text" xml:space="preserve">
     <value>Couleurs</value>
     <comment>tab</comment>
@@ -1375,6 +1363,10 @@ Symboles : PI, E</value>
     <value>Thèmes de surligneur</value>
     <comment>sheet intro</comment>
   </data>
+  <data name="ImageSheet_plantRemoveBox.Text" xml:space="preserve">
+    <value>Supprimer le texte PlantUML et l'intégrer dans l'image</value>
+    <comment>checkbox</comment>
+  </data>
   <data name="ImagesSheet_imageBrowser" xml:space="preserve">
     <value>Visionneuse d'images</value>
   </data>
@@ -1387,7 +1379,7 @@ Symboles : PI, E</value>
     <comment>label</comment>
   </data>
   <data name="ImagesSheet_plantAfterBox.Text" xml:space="preserve">
-    <value>Insérer un dessin après le texte PlantUML</value>
+    <value>Insérer le dessin après le texte PlantUML plutôt qu'avant</value>
     <comment>checkbox</comment>
   </data>
   <data name="ImagesSheet_plantCollapseBox.Text" xml:space="preserve">
@@ -2057,6 +2049,18 @@ Différé</value>
   </data>
   <data name="phrase_PathNotFound" xml:space="preserve">
     <value>Chemin introuvable</value>
+  </data>
+  <data name="PlantUml_broken" xml:space="preserve">
+    <value>Le texte PlantUML est invalide ou ne peut pas trouver de connexion entre le texte et l'image</value>
+    <comment>error message</comment>
+  </data>
+  <data name="PlantUml_EmptySelection" xml:space="preserve">
+    <value>Sélection vide. Sélectionnez un bloc valide de texte PlantUML.</value>
+    <comment>error message</comment>
+  </data>
+  <data name="PlantUml_Error" xml:space="preserve">
+    <value>Syntaxe invalide ou sélection incomplète de PlantUML</value>
+    <comment>error message</comment>
   </data>
   <data name="PlantUmlCommand_tooBig" xml:space="preserve">
     <value>Ce code PlantUML est trop volumineux. Il ne peut pas dépasser 2 011 caractères.</value>
@@ -2952,14 +2956,6 @@ Polaroïd</value>
     <value>Désactiver la vérification orthographique dans le contenu sélectionné</value>
     <comment>ribbon edit</comment>
   </data>
-  <data name="ribPlantUmlButton_Label" xml:space="preserve">
-    <value>Dessiner PlantUML</value>
-    <comment>ribbon images</comment>
-  </data>
-  <data name="ribPlantUmlButton_Screentip" xml:space="preserve">
-    <value>Rendre l'image PlantUML ou Graphviz à partir du texte sélectionné</value>
-    <comment>ribbon images</comment>
-  </data>
   <data name="ribDuplicateLineAboveButton_Label" xml:space="preserve">
     <value>Paragraphe en double ci-dessus</value>
     <comment>pallette</comment>
@@ -3501,6 +3497,14 @@ Polaroïd</value>
   <data name="ribPasteTextButton_Screentip" xml:space="preserve">
     <value>Coller et garder le texte uniquement (Ctrl + Maj + V)</value>
     <comment>ribbon item</comment>
+  </data>
+  <data name="ribPlantUmlButton_Label" xml:space="preserve">
+    <value>Dessiner PlantUML</value>
+    <comment>ribbon images</comment>
+  </data>
+  <data name="ribPlantUmlButton_Screentip" xml:space="preserve">
+    <value>Rendre l'image PlantUML ou Graphviz à partir du texte sélectionné</value>
+    <comment>ribbon images</comment>
   </data>
   <data name="ribPluginButton_Label" xml:space="preserve">
     <value>Exécuter le plugin</value>
@@ -4803,6 +4807,9 @@ Dans cette section</value>
   <data name="word_Cancel" xml:space="preserve">
     <value>Annuler</value>
   </data>
+  <data name="word_Caption" xml:space="preserve">
+    <value>Légende</value>
+  </data>
   <data name="word_Close" xml:space="preserve">
     <value>proche</value>
   </data>
@@ -4841,6 +4848,9 @@ Dans cette section</value>
   </data>
   <data name="word_Element" xml:space="preserve">
     <value>Élément</value>
+  </data>
+  <data name="word_Extract" xml:space="preserve">
+    <value>Extrait</value>
   </data>
   <data name="word_Favorites" xml:space="preserve">
     <value>Favoris</value>

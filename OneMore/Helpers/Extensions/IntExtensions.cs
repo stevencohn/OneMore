@@ -43,8 +43,8 @@ namespace River.OneMoreAddIn
 
 
 		/// <summary>
-		/// Format the given value as a string describing the amount of bytes, adjusted 
-		/// for bytes, Kilobytes, Megabytes, Gigabytes, etc.
+		/// OneMore Extension >> Format the given value as a string describing the amount of
+		/// bytes, adjusted for bytes, Kilobytes, Megabytes, Gigabytes, etc.
 		/// </summary>
 		/// <param name="value"></param>
 		/// <param name="decimalPlaces"></param>
@@ -56,8 +56,8 @@ namespace River.OneMoreAddIn
 
 
 		/// <summary>
-		/// Format the given value as a string describing the amount of bytes, adjusted 
-		/// for bytes, Kilobytes, Megabytes, Gigabytes, etc.
+		/// OneMore Extension >> Format the given value as a string describing the amount of
+		/// bytes, adjusted for bytes, Kilobytes, Megabytes, Gigabytes, etc.
 		/// </summary>
 		/// <param name="value"></param>
 		/// <param name="decimalPlaces"></param>
@@ -76,7 +76,7 @@ namespace River.OneMoreAddIn
 		}
 
 
-		// convert int to roman numerals
+		// OneMore Extension >> convert int to roman numerals
 		public static string ToRoman(this int value)
 		{
 			if (value >= 4000)

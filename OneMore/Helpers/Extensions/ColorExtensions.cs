@@ -14,7 +14,7 @@ namespace River.OneMoreAddIn
 	{
 
 		/// <summary>
-		/// Inverts the color to estimate how the color would be presented
+		/// OneMore Extension >> Inverts the color to estimate how the color would be presented
 		/// by OneNote in if shown in dark mode.
 		/// </summary>
 		/// <param name="color">The raw color to invert</param>
@@ -33,8 +33,8 @@ namespace River.OneMoreAddIn
 
 
 		/// <summary>
-		/// Determines if a color is generally "dark" which would imply low constrast
-		/// resulting in readability issues against a dark background
+		/// OneMore Extension >> Determines if a color is generally "dark" which would imply low
+		/// constrast resulting in readability issues against a dark background
 		/// </summary>
 		/// <param name="color"></param>
 		/// <returns></returns>
@@ -46,8 +46,8 @@ namespace River.OneMoreAddIn
 
 
 		/// <summary>
-		/// Determines if a color is generally "light" which would imply low constrast
-		/// resulting in readability issues against a light background
+		/// OneMore Extension >> Determines if a color is generally "light" which would imply low
+		/// constrast resulting in readability issues against a light background
 		/// </summary>
 		/// <param name="color"></param>
 		/// <returns></returns>
@@ -59,7 +59,7 @@ namespace River.OneMoreAddIn
 
 
 		/// <summary>
-		/// Determines if the color describes any shade of gray in where
+		/// OneMore Extension >> Determines if the color describes any shade of gray in where
 		/// all of R, G, and B values are equivalent which includes both white and black.
 		/// Equivalence means within +2/-2
 		/// </summary>
@@ -72,7 +72,7 @@ namespace River.OneMoreAddIn
 
 
 		/// <summary>
-		/// 
+		/// OneMore Extension >> 
 		/// </summary>
 		/// <param name="color"></param>
 		/// <param name="other"></param>
@@ -96,8 +96,8 @@ namespace River.OneMoreAddIn
 
 
 		/// <summary>
-		/// Compare this color with a given color and determines if they are close enough
-		/// to be called the same color
+		/// OneMore Extension >> Compare this color with a given color and determines if they are
+		/// close enough to be called the same color
 		/// </summary>
 		/// <param name="color">The Color value</param>
 		/// <param name="candidate">A candidate color to test</param>
@@ -113,8 +113,8 @@ namespace River.OneMoreAddIn
 
 
 		/// <summary>
-		/// Formats an HTML RGB seven character (without AA) to appease OneNote
-		/// and with all uppercase letters to avoid case-sensitive comparison problems
+		/// OneMore Extension >> Formats an HTML RGB seven character (without AA) to appease
+		/// OneNote and with all uppercase letters to avoid case-sensitive comparison problems
 		/// </summary>
 		/// <param name="color">The Color value</param>
 		/// <returns>A string specifying #RRGGBB</returns>
@@ -125,8 +125,8 @@ namespace River.OneMoreAddIn
 
 
 		/// <summary>
-		/// Gets either the known name of the color or its RGBHtml string value if it is
-		/// not a known color.
+		/// OneMore Extension >> Gets either the known name of the color or its RGBHtml string
+		/// value if it is not a known color.
 		/// </summary>
 		/// <param name="color">The Color value</param>
 		/// <returns>A string specifying either the name or #RRGGBB</returns>

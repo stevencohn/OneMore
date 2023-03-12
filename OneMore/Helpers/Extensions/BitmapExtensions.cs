@@ -15,7 +15,7 @@ namespace River.OneMoreAddIn
 	{
 
 		/// <summary>
-		/// Gets a readonly stream from the given bitmap.
+		/// OneMore Extension >> Gets a readonly stream from the given bitmap.
 		/// </summary>
 		/// <param name="bitmap"></param>
 		/// <returns></returns>

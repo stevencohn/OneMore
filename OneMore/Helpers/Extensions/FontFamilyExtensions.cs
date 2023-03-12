@@ -12,7 +12,8 @@ namespace River.OneMoreAddIn
 	{
 
 		/// <summary>
-		/// Determines if the given font family represents a fixed-width/mono-spaced font.
+		/// OneMore Extension >> Determines if the given font family represents a
+		/// fixed-width/mono-spaced font.
 		/// </summary>
 		/// <param name="family">A FontFamily instance</param>
 		/// <returns>True if the given font familly represents a fixed-width font</returns>

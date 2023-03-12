@@ -901,18 +901,6 @@ OneNote ייסגר אוטומטית</value>
   <data name="DownArrow" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>images\downarrow.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="PlantUml_broken" xml:space="preserve">
-    <value>טקסט PlantUML אינו חוקי או שאינו יכול למצוא קשר בין טקסט לתמונה</value>
-    <comment>error message</comment>
-  </data>
-  <data name="PlantUml_EmptySelection" xml:space="preserve">
-    <value>בחירה ריקה. בחר בלוק חוקי של טקסט PlantUML.</value>
-    <comment>error message</comment>
-  </data>
-  <data name="PlantUml_Error" xml:space="preserve">
-    <value>תחביר לא חוקי או בחירה לא מלאה של PlantUML</value>
-    <comment>error message</comment>
-  </data>
   <data name="EditTableThemesDialog_colorsTab.Text" xml:space="preserve">
     <value>צבעים</value>
     <comment>tab</comment>
@@ -1431,6 +1419,10 @@ Total Row Font
     <value>נושאי מדגיש</value>
     <comment>sheet intro</comment>
   </data>
+  <data name="ImageSheet_plantRemoveBox.Text" xml:space="preserve">
+    <value>הסר טקסט PlantUML והטמיע אותו בתמונה</value>
+    <comment>checkbox</comment>
+  </data>
   <data name="ImagesSheet_imageBrowser" xml:space="preserve">
     <value>צופה תמונה</value>
   </data>
@@ -1443,7 +1435,7 @@ Total Row Font
     <comment>label</comment>
   </data>
   <data name="ImagesSheet_plantAfterBox.Text" xml:space="preserve">
-    <value>הוסף ציור אחרי טקסט PlantUML</value>
+    <value>הוסף ציור אחרי טקסט PlantUML ולא לפני</value>
     <comment>checkbox</comment>
   </data>
   <data name="ImagesSheet_plantCollapseBox.Text" xml:space="preserve">
@@ -2125,6 +2117,18 @@ Total Row Font
   </data>
   <data name="phrase_PathNotFound" xml:space="preserve">
     <value>נתיב לא נמצא</value>
+  </data>
+  <data name="PlantUml_broken" xml:space="preserve">
+    <value>טקסט PlantUML אינו חוקי או שאינו יכול למצוא קשר בין טקסט לתמונה</value>
+    <comment>error message</comment>
+  </data>
+  <data name="PlantUml_EmptySelection" xml:space="preserve">
+    <value>בחירה ריקה. בחר בלוק חוקי של טקסט PlantUML.</value>
+    <comment>error message</comment>
+  </data>
+  <data name="PlantUml_Error" xml:space="preserve">
+    <value>תחביר לא חוקי או בחירה לא מלאה של PlantUML</value>
+    <comment>error message</comment>
   </data>
   <data name="PlantUmlCommand_tooBig" xml:space="preserve">
     <value>קוד PlantUML זה גדול מדי. זה לא יכול לעלות על 2,011 תווים.</value>
@@ -3037,14 +3041,6 @@ ISO-code then comma then language name</comment>
     <value>השבת בדיקת איות בתוכן שנבחר</value>
     <comment>ribbon edit</comment>
   </data>
-  <data name="ribPlantUmlButton_Label" xml:space="preserve">
-    <value>צייר PlantUML</value>
-    <comment>ribbon images</comment>
-  </data>
-  <data name="ribPlantUmlButton_Screentip" xml:space="preserve">
-    <value>עבד את תמונת PlantUML או Graphviz מטקסט שנבחר</value>
-    <comment>ribbon images</comment>
-  </data>
   <data name="ribDuplicateLineAboveButton_Label" xml:space="preserve">
     <value>שכפל פסקה למעלה</value>
     <comment>pallette</comment>
@@ -3579,6 +3575,14 @@ ISO-code then comma then language name</comment>
   <data name="ribPasteTextButton_Screentip" xml:space="preserve">
     <value>הדבק ושמור טקסט בלבד (Ctrl + Shift + V)</value>
     <comment>ribbon item</comment>
+  </data>
+  <data name="ribPlantUmlButton_Label" xml:space="preserve">
+    <value>צייר PlantUML</value>
+    <comment>ribbon images</comment>
+  </data>
+  <data name="ribPlantUmlButton_Screentip" xml:space="preserve">
+    <value>עבד את תמונת PlantUML או Graphviz מטקסט שנבחר</value>
+    <comment>ribbon images</comment>
   </data>
   <data name="ribPluginButton_Label" xml:space="preserve">
     <value>הפעל פלאגין</value>
@@ -4904,6 +4908,9 @@ ISO-code then comma then language name</comment>
   <data name="word_Cancel" xml:space="preserve">
     <value>לְבַטֵל</value>
   </data>
+  <data name="word_Caption" xml:space="preserve">
+    <value>כּוֹתֶרֶת</value>
+  </data>
   <data name="word_Close" xml:space="preserve">
     <value>סגור</value>
   </data>
@@ -4942,6 +4949,9 @@ ISO-code then comma then language name</comment>
   </data>
   <data name="word_Element" xml:space="preserve">
     <value>אֵלֵמֶנט</value>
+  </data>
+  <data name="word_Extract" xml:space="preserve">
+    <value>לחלץ</value>
   </data>
   <data name="word_Favorites" xml:space="preserve">
     <value>מועדפים</value>

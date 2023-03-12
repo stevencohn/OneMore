@@ -16,8 +16,8 @@ namespace River.OneMoreAddIn
 	{
 
 		/// <summary>
-		/// Gets the average brightness of the entire image where 0 is black and
-		/// 100 is white.
+		/// OneMore Extension >> Gets the average brightness of the entire image where 0 is
+		/// black and 100 is white.
 		/// </summary>
 		/// <param name="image">The image to scan</param>
 		/// <returns>A number between 0 and 100.</returns>
@@ -52,8 +52,9 @@ namespace River.OneMoreAddIn
 
 
 		/// <summary>
-		/// Replaces fromColor with toColor in the given image. This can be used to "colorize"
-		/// an image mask such as Notebooks and Sections in the SearchCommand dialog
+		/// OneMore Extension >> Replaces fromColor with toColor in the given image. This can be
+		/// used to "colorize" an image mask such as Notebooks and Sections in the SearchCommand
+		/// dialog
 		/// </summary>
 		/// <param name="image">The image to use as a mask</param>
 		/// <param name="fromColor">The color to replace</param>
@@ -86,8 +87,9 @@ namespace River.OneMoreAddIn
 
 
 		/// <summary>
-		/// Resize the physical storage model of the given image, creating a new Image
-		/// instance with the specified width and height, optionally decreasing the quality level
+		/// OneMore Extension >> Resize the physical storage model of the given image, creating
+		/// a new Image instance with the specified width and height, optionally decreasing the
+		/// quality level
 		/// </summary>
 		/// <param name="image">The image to resize</param>
 		/// <param name="width">The new width in pixels</param>
@@ -120,8 +122,8 @@ namespace River.OneMoreAddIn
 
 
 		/// <summary>
-		/// Render a new image from the given image with the specified brightness and
-		/// contrast adjustments.
+		/// OneMore Extension >> Render a new image from the given image with the specified
+		/// brightness and contrast adjustments.
 		/// </summary>
 		/// <param name="image">The image to edit</param>
 		/// <param name="brightness">Change in brightness where 0.0 is no change</param>
@@ -178,7 +180,8 @@ namespace River.OneMoreAddIn
 
 
 		/// <summary>
-		/// Renders a new image as a copy of the given image with a desired opacity
+		/// OneMore Extension >> Renders a new image as a copy of the given image with a desired
+		/// opacity
 		/// </summary>
 		/// <param name="image">The original image to copy</param>
 		/// <param name="opacity">The desired opacity value as a percentage (0.0 .. 1.0)</param>
@@ -207,7 +210,8 @@ namespace River.OneMoreAddIn
 
 
 		/// <summary>
-		/// Renders a new image by adjusting the quality level of the given image.
+		/// OneMore Extension >> Renders a new image by adjusting the quality level of the given
+		/// image.
 		/// </summary>
 		/// <param name="image"></param>
 		/// <param name="quality">The quality level, 1..100</param>
@@ -239,7 +243,8 @@ namespace River.OneMoreAddIn
 
 
 		/// <summary>
-		/// Renders a new image as a copy of the given image with a desired saturation
+		/// OneMore Extension >> Renders a new image as a copy of the given image with a desired
+		/// saturation
 		/// </summary>
 		/// <param name="image">The original image to copy</param>
 		/// <param name="saturation">The desired saturation value (-1.0 .. 1.0)</param>
@@ -270,7 +275,7 @@ namespace River.OneMoreAddIn
 
 
 		/// <summary>
-		/// Serializes the given image as a base64 string.
+		/// OneMore Extension >> Serializes the given image as a base64 string.
 		/// </summary>
 		/// <param name="image"></param>
 		/// <returns></returns>
@@ -282,7 +287,7 @@ namespace River.OneMoreAddIn
 
 
 		/// <summary>
-		/// Render a new image by converting the given image to gray scale.
+		/// OneMore Extension >> Render a new image by converting the given image to gray scale.
 		/// </summary>
 		/// <param name="image">Colorful image</param>
 		/// <returns></returns>
@@ -306,7 +311,7 @@ namespace River.OneMoreAddIn
 
 
 		/// <summary>
-		/// Render a new image by converting the given image to Polaroid style.
+		/// OneMore Extension >> Render a new image by converting the given image to Polaroid style.
 		/// </summary>
 		/// <param name="image">Colorful image</param>
 		/// <returns></returns>
@@ -332,7 +337,7 @@ namespace River.OneMoreAddIn
 
 
 		/// <summary>
-		/// Render a new image by converting the given image to sepia.
+		/// OneMore Extension >> Render a new image by converting the given image to sepia.
 		/// </summary>
 		/// <param name="image">Colorful image</param>
 		/// <returns></returns>

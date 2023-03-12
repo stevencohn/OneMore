@@ -6,11 +6,7 @@ namespace River.OneMoreAddIn.Commands
 {
 	using River.OneMoreAddIn.Models;
 	using River.OneMoreAddIn.Styles;
-	using System;
-	using System.Drawing;
-	using System.IO;
 	using System.Linq;
-	using System.Security.Policy;
 	using System.Threading.Tasks;
 	using System.Xml.Linq;
 	using Resx = Properties.Resources;
@@ -56,7 +52,7 @@ namespace River.OneMoreAddIn.Commands
 
 			// try to detect PlantuML title...
 
-			string caption = "Caption";
+			string caption = Resx.word_Caption;
 
 			var uml = PlantUmlHelper.ExtractUmlFromImageData(element.Element(ns + "Data").Value);
 			if (uml != null)
@@ -72,9 +68,6 @@ namespace River.OneMoreAddIn.Commands
 			// add caption...
 
 			var table = MakeCaptionTable(ns, element, caption, out var cdata);
-
-			var style = GetStyle();
-			new Stylizer(style).ApplyStyle(cdata);
 
 			if (element.Parent.Name.LocalName.Equals("Page"))
 			{
@@ -124,12 +117,15 @@ namespace River.OneMoreAddIn.Commands
 						new XAttribute("alignment", "center"),
 						new XElement(ns + "Meta",
 							new XAttribute("name", "om"),
-							new XAttribute("content", "caption")),
+							new XAttribute("content", Resx.word_Caption)),
 						new XElement(ns + "T",
 							new XAttribute("selected", "all"),
 							cdata)
 					)
 				));
+
+			var style = GetStyle();
+			new Stylizer(style).ApplyStyle(cdata);
 
 			return table;
 		}
@@ -144,7 +140,7 @@ namespace River.OneMoreAddIn.Commands
 			var styles = new ThemeProvider().Theme.GetStyles();
 			if (styles?.Count > 0)
 			{
-				style = styles.FirstOrDefault(s => s.Name.Equals("Caption"));
+				style = styles.FirstOrDefault(s => s.Name.Equals(Resx.word_Caption));
 			}
 
 			// otherwise use default style
@@ -165,7 +161,7 @@ namespace River.OneMoreAddIn.Commands
 			if (image.Parent.ElementsAfterSelf().FirstOrDefault()?
 				.Elements(ns + "Meta")
 				.Any(e => e.Attribute("name").Value.Equals("om") &&
-					 e.Attribute("content").Value.Equals("caption")) == true)
+					 e.Attribute("content").Value.Equals(Resx.word_Caption)) == true)
 			{
 				UIHelper.ShowInfo(Resx.AddCaptionCommand_Captioned);
 				return true;

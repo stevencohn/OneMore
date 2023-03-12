@@ -12,7 +12,7 @@ namespace River.OneMoreAddIn
 	{
 
 		/// <summary>
-		/// Determines if this Uri is the same logical page as the given Uri
+		/// OneMore Extension >> Determines if this Uri is the same logical page as the given Uri
 		/// </summary>
 		/// <param name="uri">The current Uri instance</param>
 		/// <param name="other">The Uri to compare</param>
