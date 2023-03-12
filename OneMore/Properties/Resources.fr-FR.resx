@@ -560,15 +560,11 @@
     <value>... Statut bleu</value>
     <comment>context menu option</comment>
   </data>
-  <data name="ContextMenuSheet_ribInsertBoxButton" xml:space="preserve">
-    <value>... Zone de texte</value>
-    <comment>context menu option</comment>
-  </data>
   <data name="ContextMenuSheet_ribInsertCalendarButton" xml:space="preserve">
     <value>... Calendrier</value>
     <comment>context menu option</comment>
   </data>
-  <data name="ContextMenuSheet_ribInsertCodeBlockButton" xml:space="preserve">
+  <data name="ContextMenuSheet_ribInsertCodeBoxButton" xml:space="preserve">
     <value>... Bloc de code</value>
     <comment>context menu option</comment>
   </data>
@@ -603,6 +599,10 @@
   <data name="ContextMenuSheet_ribInsertSingleLineButton" xml:space="preserve">
     <value>... Ligne horizontale</value>
     <comment>option</comment>
+  </data>
+  <data name="ContextMenuSheet_ribInsertTextBoxButton" xml:space="preserve">
+    <value>... Zone de texte</value>
+    <comment>context menu option</comment>
   </data>
   <data name="ContextMenuSheet_ribInsertTocButton" xml:space="preserve">
     <value>... Table des matières</value>
@@ -1498,6 +1498,14 @@ Symboles : PI, E</value>
     <value>Importer une page Web</value>
     <comment>dialog title</comment>
   </data>
+  <data name="InsertBoxCommand_Code" xml:space="preserve">
+    <value>Votre code ici...</value>
+    <comment>text</comment>
+  </data>
+  <data name="InsertBoxCommand_Text" xml:space="preserve">
+    <value>Votre contenu ici...</value>
+    <comment>text</comment>
+  </data>
   <data name="InsertCalendarDialog.Text" xml:space="preserve">
     <value>Insérer un calendrier</value>
     <comment>dialog title</comment>
@@ -1557,14 +1565,6 @@ Symboles : PI, E</value>
   <data name="InsertCellsDialog_shiftRightRadio.Text" xml:space="preserve">
     <value>Décaler les cellules vers la droite</value>
     <comment>radio</comment>
-  </data>
-  <data name="InsertCodeBlockCommand_Code" xml:space="preserve">
-    <value>Votre code ici ...</value>
-    <comment>text</comment>
-  </data>
-  <data name="InsertCodeBlockCommand_Text" xml:space="preserve">
-    <value>Votre contenu ici ...</value>
-    <comment>text</comment>
   </data>
   <data name="InsertInfoBox_yourContentHere" xml:space="preserve">
     <value>Votre contenu ici...</value>
@@ -3167,14 +3167,6 @@ Polaroïd</value>
     <value>Insérer une étiquette d'état bleue</value>
     <comment>ribbon snippets</comment>
   </data>
-  <data name="ribInsertBoxButton_Label" xml:space="preserve">
-    <value>Zone de texte</value>
-    <comment>ribbon</comment>
-  </data>
-  <data name="ribInsertBoxButton_Screentip" xml:space="preserve">
-    <value>Insérer un tableau à cellule unique, en enveloppant éventuellement le texte sélectionné</value>
-    <comment>ribbon</comment>
-  </data>
   <data name="ribInsertBreadcrumbButton_Label" xml:space="preserve">
     <value>Miette de pain</value>
     <comment>ribbon snippets menu</comment>
@@ -3199,13 +3191,13 @@ Polaroïd</value>
     <value>Insérer des cellules dans le tableau actuel</value>
     <comment>ribbon table</comment>
   </data>
-  <data name="ribInsertCodeBlockButton_Label" xml:space="preserve">
-    <value>Bloc de code</value>
-    <comment>Ribbon OneMore menu item, Snippets...</comment>
+  <data name="ribInsertCodeBoxButton_Label" xml:space="preserve">
+    <value>Boîte à codes</value>
+    <comment>ribbon snippets</comment>
   </data>
-  <data name="ribInsertCodeBlockButton_Screentip" xml:space="preserve">
-    <value>Insérer un bloc de code (F6)</value>
-    <comment>menu</comment>
+  <data name="ribInsertCodeBoxButton_Screentip" xml:space="preserve">
+    <value>Insérer une zone de code (F6), enveloppant le contenu sélectionné</value>
+    <comment>ribbon snippets</comment>
   </data>
   <data name="ribInsertDateButton_Label" xml:space="preserve">
     <value>Date triable</value>
@@ -3290,6 +3282,14 @@ Polaroïd</value>
   <data name="ribInsertSingleLineButton_Screentip" xml:space="preserve">
     <value>Insérer une seule ligne horizontale (Shift + Alt + Moins)</value>
     <comment>Ribbon OneMore menu item, Extras...</comment>
+  </data>
+  <data name="ribInsertTextBoxButton_Label" xml:space="preserve">
+    <value>Zone de texte</value>
+    <comment>ribbon snippets</comment>
+  </data>
+  <data name="ribInsertTextBoxButton_Screentip" xml:space="preserve">
+    <value>Insérer un tableau à une seule cellule, en enveloppant le texte sélectionné</value>
+    <comment>ribbon snippets</comment>
   </data>
   <data name="ribInsertTimerButton_Label" xml:space="preserve">
     <value>Insérer une minuterie</value>

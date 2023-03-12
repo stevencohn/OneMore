@@ -387,9 +387,9 @@ namespace River.OneMoreAddIn
 			=> await factory.Run<InsertStatusCommand>(StatusColor.Blue);
 
 
-		[Command("ribInsertBoxButton_Label", Keys.Alt | Keys.F6, "Snippets")]
-		public async Task InsertBoxCmd(IRibbonControl control)
-			=> await factory.Run<InsertCodeBlockCommand>(false);
+		[Command("ribInsertTextBoxButton_Label", Keys.Alt | Keys.F6, "Snippets")]
+		public async Task InsertTextBoxCmd(IRibbonControl control)
+			=> await factory.Run<InsertBoxCommand>(false);
 
 
 		[Command("ribInsertBreadcrumbButton_Label", Keys.None, "Snippets")]
@@ -407,9 +407,9 @@ namespace River.OneMoreAddIn
 			=> await factory.Run<InsertCellsCommand>();
 
 
-		[Command("ribInsertCodeBlockButton_Label", Keys.F6, "Snippets")]
-		public async Task InsertCodeBlockCmd(IRibbonControl control)
-			=> await factory.Run<InsertCodeBlockCommand>(true);
+		[Command("ribInsertCodeBoxButton_Label", Keys.F6, "Snippets")]
+		public async Task InsertCodeBoxCmd(IRibbonControl control)
+			=> await factory.Run<InsertBoxCommand>(true);
 
 
 		[Command("ribInsertDateButton_Label", Keys.Control | Keys.Shift | Keys.D, "Snippets")]

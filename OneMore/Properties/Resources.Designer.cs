@@ -1141,15 +1141,6 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ... Text Box.
-        /// </summary>
-        internal static string ContextMenuSheet_ribInsertBoxButton {
-            get {
-                return ResourceManager.GetString("ContextMenuSheet_ribInsertBoxButton", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to ... Calendar.
         /// </summary>
         internal static string ContextMenuSheet_ribInsertCalendarButton {
@@ -1161,9 +1152,9 @@ namespace River.OneMoreAddIn.Properties {
         /// <summary>
         ///   Looks up a localized string similar to ... Code Block.
         /// </summary>
-        internal static string ContextMenuSheet_ribInsertCodeBlockButton {
+        internal static string ContextMenuSheet_ribInsertCodeBoxButton {
             get {
-                return ResourceManager.GetString("ContextMenuSheet_ribInsertCodeBlockButton", resourceCulture);
+                return ResourceManager.GetString("ContextMenuSheet_ribInsertCodeBoxButton", resourceCulture);
             }
         }
         
@@ -1236,6 +1227,15 @@ namespace River.OneMoreAddIn.Properties {
         internal static string ContextMenuSheet_ribInsertSingleLineButton {
             get {
                 return ResourceManager.GetString("ContextMenuSheet_ribInsertSingleLineButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ... Text Box.
+        /// </summary>
+        internal static string ContextMenuSheet_ribInsertTextBoxButton {
+            get {
+                return ResourceManager.GetString("ContextMenuSheet_ribInsertTextBoxButton", resourceCulture);
             }
         }
         
@@ -3458,7 +3458,7 @@ namespace River.OneMoreAddIn.Properties {
         ///   Looks up a localized string similar to {
         ///  &quot;info&quot;: {
         ///    &quot;shading&quot;: &quot;#DEEBF6&quot;,
-        ///    &quot;symbol&quot;: &quot;ðŸ›ˆ&quot;,
+        ///    &quot;symbol&quot;: &quot;1F6C8&quot;,
         ///    &quot;symbolFont&quot;: &quot;Segoe UI Symbol&quot;,
         ///    &quot;symbolSize&quot;: 22,
         ///    &quot;symbolColor&quot;: &quot;#2E75B5&quot;,
@@ -3468,7 +3468,7 @@ namespace River.OneMoreAddIn.Properties {
         ///  },
         ///  &quot;note&quot;: {
         ///    &quot;shading&quot;: &quot;#E5E0EC&quot;,
-        ///    &quot;symbol&quot;: &quot;ðŸ““&quot;,
+        ///    &quot;symbol&quot;: &quot;1F4D3&quot;,
         ///    &quot;symbolFont&quot;: &quot;Segoe UI Symbol&quot;,
         ///    &quot;symbolSize&quot;: 22,
         ///    &quot;symbolColor&quot;: &quot;#5F497A&quot;,
@@ -3476,11 +3476,29 @@ namespace River.OneMoreAddIn.Properties {
         ///    &quot;titleColor&quot;: &quot;#333333&quot;,
         ///    &quot;textColor&quot;: &quot;#333333&quot;
         ///  },
-        ///  &quot;warn [rest of string was truncated]&quot;;.
+        ///  &quot;wa [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string InfoBoxThemes {
             get {
                 return ResourceManager.GetString("InfoBoxThemes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Your code here....
+        /// </summary>
+        internal static string InsertBoxCommand_Code {
+            get {
+                return ResourceManager.GetString("InsertBoxCommand_Code", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Your content here....
+        /// </summary>
+        internal static string InsertBoxCommand_Text {
+            get {
+                return ResourceManager.GetString("InsertBoxCommand_Text", resourceCulture);
             }
         }
         
@@ -3616,24 +3634,6 @@ namespace River.OneMoreAddIn.Properties {
         internal static string InsertCellsDialog_Text {
             get {
                 return ResourceManager.GetString("InsertCellsDialog.Text", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Your code here....
-        /// </summary>
-        internal static string InsertCodeBlockCommand_Code {
-            get {
-                return ResourceManager.GetString("InsertCodeBlockCommand_Code", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Your content here....
-        /// </summary>
-        internal static string InsertCodeBlockCommand_Text {
-            get {
-                return ResourceManager.GetString("InsertCodeBlockCommand_Text", resourceCulture);
             }
         }
         
@@ -7366,24 +7366,6 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Text Box.
-        /// </summary>
-        internal static string ribInsertBoxButton_Label {
-            get {
-                return ResourceManager.GetString("ribInsertBoxButton_Label", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Insert a single-cell table, wrapping selected text.
-        /// </summary>
-        internal static string ribInsertBoxButton_Screentip {
-            get {
-                return ResourceManager.GetString("ribInsertBoxButton_Screentip", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Breadcrumb.
         /// </summary>
         internal static string ribInsertBreadcrumbButton_Label {
@@ -7438,20 +7420,20 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Code block.
+        ///   Looks up a localized string similar to Code box.
         /// </summary>
-        internal static string ribInsertCodeBlockButton_Label {
+        internal static string ribInsertCodeBoxButton_Label {
             get {
-                return ResourceManager.GetString("ribInsertCodeBlockButton_Label", resourceCulture);
+                return ResourceManager.GetString("ribInsertCodeBoxButton_Label", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Insert a code block (F6), wrapping selected content.
+        ///   Looks up a localized string similar to Insert a code box (F6), wrapping selected content.
         /// </summary>
-        internal static string ribInsertCodeBlockButton_Screentip {
+        internal static string ribInsertCodeBoxButton_Screentip {
             get {
-                return ResourceManager.GetString("ribInsertCodeBlockButton_Screentip", resourceCulture);
+                return ResourceManager.GetString("ribInsertCodeBoxButton_Screentip", resourceCulture);
             }
         }
         
@@ -7641,6 +7623,24 @@ namespace River.OneMoreAddIn.Properties {
         internal static string ribInsertSingleLineButton_Screentip {
             get {
                 return ResourceManager.GetString("ribInsertSingleLineButton_Screentip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Text Box.
+        /// </summary>
+        internal static string ribInsertTextBoxButton_Label {
+            get {
+                return ResourceManager.GetString("ribInsertTextBoxButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Insert a single-cell table, wrapping selected text.
+        /// </summary>
+        internal static string ribInsertTextBoxButton_Screentip {
+            get {
+                return ResourceManager.GetString("ribInsertTextBoxButton_Screentip", resourceCulture);
             }
         }
         

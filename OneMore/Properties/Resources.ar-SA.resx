@@ -563,15 +563,11 @@
     <value>... الحالة الزرقاء</value>
     <comment>context menu option</comment>
   </data>
-  <data name="ContextMenuSheet_ribInsertBoxButton" xml:space="preserve">
-    <value>... مربع الكتابة</value>
-    <comment>context menu option</comment>
-  </data>
   <data name="ContextMenuSheet_ribInsertCalendarButton" xml:space="preserve">
     <value>... تقويم</value>
     <comment>context menu option</comment>
   </data>
-  <data name="ContextMenuSheet_ribInsertCodeBlockButton" xml:space="preserve">
+  <data name="ContextMenuSheet_ribInsertCodeBoxButton" xml:space="preserve">
     <value>... كود بلوك</value>
     <comment>context menu option</comment>
   </data>
@@ -606,6 +602,10 @@
   <data name="ContextMenuSheet_ribInsertSingleLineButton" xml:space="preserve">
     <value>... خط أفقي</value>
     <comment>option</comment>
+  </data>
+  <data name="ContextMenuSheet_ribInsertTextBoxButton" xml:space="preserve">
+    <value>... مربع الكتابة</value>
+    <comment>context menu option</comment>
   </data>
   <data name="ContextMenuSheet_ribInsertTocButton" xml:space="preserve">
     <value>... جدول المحتويات</value>
@@ -1501,6 +1501,14 @@
     <value>استيراد صفحة ويب</value>
     <comment>dialog title</comment>
   </data>
+  <data name="InsertBoxCommand_Code" xml:space="preserve">
+    <value>الكود الخاص بك هنا ...</value>
+    <comment>text</comment>
+  </data>
+  <data name="InsertBoxCommand_Text" xml:space="preserve">
+    <value>المحتوى الخاص بك هنا ...</value>
+    <comment>text</comment>
+  </data>
   <data name="InsertCalendarDialog.Text" xml:space="preserve">
     <value>أدخل التقويم</value>
     <comment>dialog title</comment>
@@ -1560,14 +1568,6 @@
   <data name="InsertCellsDialog_shiftRightRadio.Text" xml:space="preserve">
     <value>خلايا تحول الحق</value>
     <comment>radio</comment>
-  </data>
-  <data name="InsertCodeBlockCommand_Code" xml:space="preserve">
-    <value>الكود الخاص بك هنا ...</value>
-    <comment>text</comment>
-  </data>
-  <data name="InsertCodeBlockCommand_Text" xml:space="preserve">
-    <value>المحتوى الخاص بك هنا ...</value>
-    <comment>text</comment>
   </data>
   <data name="InsertInfoBox_yourContentHere" xml:space="preserve">
     <value>المحتوى الخاص بك هنا ...</value>
@@ -3171,14 +3171,6 @@ ISO-code then comma then language name</comment>
     <value>أدخل تسمية الحالة الزرقاء</value>
     <comment>ribbon snippets</comment>
   </data>
-  <data name="ribInsertBoxButton_Label" xml:space="preserve">
-    <value>مربع الكتابة</value>
-    <comment>ribbon</comment>
-  </data>
-  <data name="ribInsertBoxButton_Screentip" xml:space="preserve">
-    <value>قم بإدراج جدول أحادي الخلية ، مع التفاف النص المحدد بشكل اختياري</value>
-    <comment>ribbon</comment>
-  </data>
   <data name="ribInsertBreadcrumbButton_Label" xml:space="preserve">
     <value>مسار التنقل</value>
     <comment>ribbon snippets menu</comment>
@@ -3203,13 +3195,13 @@ ISO-code then comma then language name</comment>
     <value>أدخل الخلايا في الجدول الحالي</value>
     <comment>ribbon table</comment>
   </data>
-  <data name="ribInsertCodeBlockButton_Label" xml:space="preserve">
-    <value>كتلة التعليمات البرمجية</value>
-    <comment>Ribbon OneMore menu item, Snippets...</comment>
+  <data name="ribInsertCodeBoxButton_Label" xml:space="preserve">
+    <value>مربع الكود</value>
+    <comment>ribbon snippets</comment>
   </data>
-  <data name="ribInsertCodeBlockButton_Screentip" xml:space="preserve">
-    <value>أدخل كتلة التعليمات البرمجية (F6)</value>
-    <comment>menu</comment>
+  <data name="ribInsertCodeBoxButton_Screentip" xml:space="preserve">
+    <value>أدخل مربع رمز (F6) ، مع التفاف المحتوى المحدد</value>
+    <comment>ribbon snippets</comment>
   </data>
   <data name="ribInsertDateButton_Label" xml:space="preserve">
     <value>تاريخ قابل للفرز</value>
@@ -3294,6 +3286,14 @@ ISO-code then comma then language name</comment>
   <data name="ribInsertSingleLineButton_Screentip" xml:space="preserve">
     <value>إدراج خط أفقي واحد (Shift + Alt + علامة ناقص)</value>
     <comment>Ribbon OneMore menu item, Extras...</comment>
+  </data>
+  <data name="ribInsertTextBoxButton_Label" xml:space="preserve">
+    <value>مربع الكتابة</value>
+    <comment>ribbon snippets</comment>
+  </data>
+  <data name="ribInsertTextBoxButton_Screentip" xml:space="preserve">
+    <value>قم بإدراج جدول أحادي الخلية ، مع التفاف النص المحدد</value>
+    <comment>ribbon snippets</comment>
   </data>
   <data name="ribInsertTimerButton_Label" xml:space="preserve">
     <value>أدخل الموقت</value>

@@ -17,27 +17,21 @@ namespace River.OneMoreAddIn.Commands
 
 
 	/// <summary>
-	/// Inserts a specialized table to mirror the Code macro of Confluence
+	/// Inserts a single-cell table with starter text or a snippet that resembes the Confluence
+	/// Code macro.
 	/// </summary>
-	internal class InsertCodeBlockCommand : Command
+	internal class InsertBoxCommand : Command
 	{
-		private const string Shading = "#F2F2F2";
-		private const string ShadingDark = "#222A35";
-		private const string ShadingBlack = "#B2D0EB";
+		private const string Shading = "#D0CECE";
 		private const string TitleColor = "#000000";
-		private const string TitleColorDark = "#F2F2F2";
 		private const string TextColor = "#000000";
-		private const string TextColorDark = "#FFFFFF";
 
 		private const float DefaultWidth = 600f;
 
-		private bool dark;
-		private string shading;
-		private string titleColor;
-		private string textColor;
 		private XNamespace ns;
 
-		public InsertCodeBlockCommand()
+
+		public InsertBoxCommand()
 		{
 		}
 
@@ -55,8 +49,6 @@ namespace River.OneMoreAddIn.Commands
 				UIHelper.ShowError(Resx.Error_BodyContext);
 				return;
 			}
-
-			DetermineCellColors(page);
 
 			PageNamespace.Set(ns);
 
@@ -83,9 +75,9 @@ namespace River.OneMoreAddIn.Commands
 
 				cell.SetContent(
 					new Paragraph($"<span style='font-weight:bold'>{Resx.word_Code}</span>")
-						.SetStyle($"font-family:'Segoe UI';font-size:11.0pt;color:{titleColor}"));
+						.SetStyle($"font-family:'Segoe UI';font-size:11.0pt;color:{TitleColor}"));
 
-				cell.ShadingColor = shading;
+				cell.ShadingColor = Shading;
 			}
 
 			// body row...
@@ -108,7 +100,7 @@ namespace River.OneMoreAddIn.Commands
 				var content = page.ExtractSelectedContent(out var firstParent);
 				cell.SetContent(content);
 
-				shading = DetermineShading(content);
+				var shading = DetermineShading(page, content);
 				if (shading != null)
 				{
 					cell.ShadingColor = shading;
@@ -127,27 +119,6 @@ namespace River.OneMoreAddIn.Commands
 			}
 
 			await one.Update(page);
-		}
-
-
-		private void DetermineCellColors(Page page)
-		{
-			dark = page.GetPageColor(out _, out var black).GetBrightness() < 0.5;
-
-			// table...
-
-			if (dark)
-			{
-				shading = ShadingDark;
-				titleColor = TitleColorDark;
-				textColor = TextColorDark;
-			}
-			else
-			{
-				shading = black ? ShadingBlack : Shading;
-				titleColor = TitleColor;
-				textColor = TextColor;
-			}
 		}
 
 
@@ -204,24 +175,24 @@ namespace River.OneMoreAddIn.Commands
 		{
 			if (withTitle)
 			{
-				var css = $"font-family:Consolas;font-size:10.0pt;color:{textColor}";
+				var css = $"font-family:Consolas;font-size:10.0pt;color:{TextColor}";
 
 				return new XElement(ns + "OEChildren",
 					new Paragraph(string.Empty).SetStyle(css),
-					new Paragraph(Resx.InsertCodeBlockCommand_Code).SetStyle(css),
+					new Paragraph(Resx.InsertBoxCommand_Code).SetStyle(css),
 					new Paragraph(string.Empty).SetStyle(css)
 					);
 			}
 
 			return new XElement(ns + "OEChildren",
 				new Paragraph(string.Empty),
-				new Paragraph(Resx.InsertCodeBlockCommand_Text),
+				new Paragraph(Resx.InsertBoxCommand_Text),
 				new Paragraph(string.Empty)
 				);
 		}
 
 
-		private string DetermineShading(XElement content)
+		private string DetermineShading(Page page, XElement content)
 		{
 			string background = null;
 
@@ -246,6 +217,8 @@ namespace River.OneMoreAddIn.Commands
 					grounds.Add(match.Groups[1].Value);
 				}
 			}
+
+			var dark = page.GetPageColor(out _, out var black).GetBrightness() < 0.5;
 
 			// if all runs have background styles (this is an estimate since it is possible
 			// for there to be more backgrounds than runs if there are multiples in each run)
