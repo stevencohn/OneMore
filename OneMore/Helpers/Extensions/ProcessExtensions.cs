@@ -14,7 +14,7 @@ namespace River.OneMoreAddIn
 	{
 
 		/// <summary>
-		/// Returns the command line for the given process.
+		/// OneMore Extension >> Returns the command line for the given process.
 		/// </summary>
 		/// <param name="process">A Process for which to retrieve the command line</param>
 		/// <returns>A string specifying the full command line or null if </returns>
@@ -39,7 +39,7 @@ namespace River.OneMoreAddIn
 
 
 		/// <summary>
-		/// Waits asynchronously for the process to exit.
+		/// OneMore Extension >> Waits asynchronously for the process to exit.
 		/// </summary>
 		/// <param name="process">The process to wait for cancellation.</param>
 		/// <param name="token">A cancellation token. If invoked, the task will return 

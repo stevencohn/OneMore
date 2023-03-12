@@ -865,18 +865,6 @@ OneNote 将自动关闭</value>
   <data name="DownArrow" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>images\downarrow.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="DrawPlantUml_broken" xml:space="preserve">
-    <value>PlantUML 文本无效或找不到文本和图像之间的连接</value>
-    <comment>error message</comment>
-  </data>
-  <data name="DrawPlantUml_EmptySelection" xml:space="preserve">
-    <value>空选择。选择一个有效的 PlantUML 文本块。</value>
-    <comment>error message</comment>
-  </data>
-  <data name="DrawPlantUml_Error" xml:space="preserve">
-    <value>PlantUML 语法无效或选择不完整</value>
-    <comment>error message</comment>
-  </data>
   <data name="EditTableThemesDialog_colorsTab.Text" xml:space="preserve">
     <value>颜色</value>
     <comment>tab</comment>
@@ -1377,6 +1365,10 @@ OneNote 文件 (*.one)</value>
     <value>荧光笔主题</value>
     <comment>sheet intro</comment>
   </data>
+  <data name="ImageSheet_plantRemoveBox.Text" xml:space="preserve">
+    <value>删除 PlantUML 文本并将其嵌入到图像中</value>
+    <comment>checkbox</comment>
+  </data>
   <data name="ImagesSheet_imageBrowser" xml:space="preserve">
     <value>图像查看器</value>
   </data>
@@ -1389,7 +1381,7 @@ OneNote 文件 (*.one)</value>
     <comment>label</comment>
   </data>
   <data name="ImagesSheet_plantAfterBox.Text" xml:space="preserve">
-    <value>在 PlantUML 文本后插入绘图</value>
+    <value>在 PlantUML 文本之后而不是之前插入绘图</value>
     <comment>checkbox</comment>
   </data>
   <data name="ImagesSheet_plantCollapseBox.Text" xml:space="preserve">
@@ -2056,6 +2048,18 @@ OneNote 文件 (*.one)</value>
   </data>
   <data name="phrase_PathNotFound" xml:space="preserve">
     <value>找不到路径</value>
+  </data>
+  <data name="PlantUml_broken" xml:space="preserve">
+    <value>PlantUML 文本无效或找不到文本和图像之间的连接</value>
+    <comment>error message</comment>
+  </data>
+  <data name="PlantUml_EmptySelection" xml:space="preserve">
+    <value>空选择。选择一个有效的 PlantUML 文本块。</value>
+    <comment>error message</comment>
+  </data>
+  <data name="PlantUml_Error" xml:space="preserve">
+    <value>PlantUML 语法无效或选择不完整</value>
+    <comment>error message</comment>
   </data>
   <data name="PlantUmlCommand_tooBig" xml:space="preserve">
     <value>此 PlantUML 代码太大。它不能超过 2,011 个字符。</value>
@@ -2954,14 +2958,6 @@ ISO-code then comma then language name</comment>
     <value>在所选内容中禁用拼写检查</value>
     <comment>ribbon edit</comment>
   </data>
-  <data name="ribDrawPlantUmlButton_Label" xml:space="preserve">
-    <value>画PlantUML</value>
-    <comment>ribbon images</comment>
-  </data>
-  <data name="ribDrawPlantUmlButton_Screentip" xml:space="preserve">
-    <value>从选定文本渲染 PlantUML 或 Graphviz 图像</value>
-    <comment>ribbon images</comment>
-  </data>
   <data name="ribDuplicateLineAboveButton_Label" xml:space="preserve">
     <value>重复以上段落</value>
     <comment>pallette</comment>
@@ -3496,6 +3492,14 @@ ISO-code then comma then language name</comment>
   <data name="ribPasteTextButton_Screentip" xml:space="preserve">
     <value>仅粘贴并保持文本（Ctrl + Shift + V）</value>
     <comment>ribbon item</comment>
+  </data>
+  <data name="ribPlantUmlButton_Label" xml:space="preserve">
+    <value>画PlantUML</value>
+    <comment>ribbon images</comment>
+  </data>
+  <data name="ribPlantUmlButton_Screentip" xml:space="preserve">
+    <value>从选定文本渲染 PlantUML 或 Graphviz 图像</value>
+    <comment>ribbon images</comment>
   </data>
   <data name="ribPluginButton_Label" xml:space="preserve">
     <value>运行插件</value>
@@ -4793,6 +4797,9 @@ ISO-code then comma then language name</comment>
   <data name="word_Cancel" xml:space="preserve">
     <value>取消</value>
   </data>
+  <data name="word_Caption" xml:space="preserve">
+    <value>标题</value>
+  </data>
   <data name="word_Close" xml:space="preserve">
     <value>关</value>
   </data>
@@ -4831,6 +4838,9 @@ ISO-code then comma then language name</comment>
   </data>
   <data name="word_Element" xml:space="preserve">
     <value>元素</value>
+  </data>
+  <data name="word_Extract" xml:space="preserve">
+    <value>提炼</value>
   </data>
   <data name="word_Favorites" xml:space="preserve">
     <value>收藏夹</value>

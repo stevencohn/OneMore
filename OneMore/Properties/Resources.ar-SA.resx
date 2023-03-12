@@ -866,18 +866,6 @@
   <data name="DownArrow" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>images\downarrow.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="DrawPlantUml_broken" xml:space="preserve">
-    <value>نص PlantUML إما غير صالح أو لا يمكنه العثور على اتصال بين النص والصورة</value>
-    <comment>error message</comment>
-  </data>
-  <data name="DrawPlantUml_EmptySelection" xml:space="preserve">
-    <value>اختيار فارغ. حدد كتلة صالحة من نص PlantUML.</value>
-    <comment>error message</comment>
-  </data>
-  <data name="DrawPlantUml_Error" xml:space="preserve">
-    <value>بناء جملة غير صالح أو تحديد غير كامل لـ PlantUML</value>
-    <comment>error message</comment>
-  </data>
   <data name="EditTableThemesDialog_colorsTab.Text" xml:space="preserve">
     <value>الألوان</value>
     <comment>tab</comment>
@@ -1378,6 +1366,10 @@
     <value>سمات تمييز</value>
     <comment>sheet intro</comment>
   </data>
+  <data name="ImageSheet_plantRemoveBox.Text" xml:space="preserve">
+    <value>قم بإزالة نص PlantUML وقم بتضمينه في الصورة</value>
+    <comment>checkbox</comment>
+  </data>
   <data name="ImagesSheet_imageBrowser" xml:space="preserve">
     <value>عارض الصور</value>
   </data>
@@ -1390,7 +1382,7 @@
     <comment>label</comment>
   </data>
   <data name="ImagesSheet_plantAfterBox.Text" xml:space="preserve">
-    <value>أدخل الرسم بعد نص PlantUML</value>
+    <value>أدخل الرسم بعد نص PlantUML وليس قبله</value>
     <comment>checkbox</comment>
   </data>
   <data name="ImagesSheet_plantCollapseBox.Text" xml:space="preserve">
@@ -2060,6 +2052,18 @@
   </data>
   <data name="phrase_PathNotFound" xml:space="preserve">
     <value>المسار مفقود</value>
+  </data>
+  <data name="PlantUml_broken" xml:space="preserve">
+    <value>نص PlantUML إما غير صالح أو لا يمكنه العثور على اتصال بين النص والصورة</value>
+    <comment>error message</comment>
+  </data>
+  <data name="PlantUml_EmptySelection" xml:space="preserve">
+    <value>اختيار فارغ. حدد كتلة صالحة من نص PlantUML.</value>
+    <comment>error message</comment>
+  </data>
+  <data name="PlantUml_Error" xml:space="preserve">
+    <value>بناء جملة غير صالح أو تحديد غير كامل لـ PlantUML</value>
+    <comment>error message</comment>
   </data>
   <data name="PlantUmlCommand_tooBig" xml:space="preserve">
     <value>رمز PlantUML هذا كبير جدًا. لا يمكن أن يتجاوز 2011 حرفًا.</value>
@@ -2956,14 +2960,6 @@ ISO-code then comma then language name</comment>
     <value>تعطيل التدقيق الإملائي داخل المحتوى المحدد</value>
     <comment>ribbon edit</comment>
   </data>
-  <data name="ribDrawPlantUmlButton_Label" xml:space="preserve">
-    <value>رسم النبات</value>
-    <comment>ribbon images</comment>
-  </data>
-  <data name="ribDrawPlantUmlButton_Screentip" xml:space="preserve">
-    <value>عرض صورة PlantUML أو Graphviz من النص المحدد</value>
-    <comment>ribbon images</comment>
-  </data>
   <data name="ribDuplicateLineAboveButton_Label" xml:space="preserve">
     <value>فقرة مكررة أعلاه</value>
     <comment>pallette</comment>
@@ -3506,6 +3502,14 @@ ISO-code then comma then language name</comment>
   <data name="ribPasteTextButton_Screentip" xml:space="preserve">
     <value>لصق والحفاظ على النص فقط (CTRL + SHIFT + V)</value>
     <comment>ribbon item</comment>
+  </data>
+  <data name="ribPlantUmlButton_Label" xml:space="preserve">
+    <value>رسم النبات</value>
+    <comment>ribbon images</comment>
+  </data>
+  <data name="ribPlantUmlButton_Screentip" xml:space="preserve">
+    <value>عرض صورة PlantUML أو Graphviz من النص المحدد</value>
+    <comment>ribbon images</comment>
   </data>
   <data name="ribPluginButton_Label" xml:space="preserve">
     <value>تشغيل البرنامج المساعد</value>
@@ -4809,6 +4813,9 @@ ISO-code then comma then language name</comment>
   <data name="word_Cancel" xml:space="preserve">
     <value>يلغي</value>
   </data>
+  <data name="word_Caption" xml:space="preserve">
+    <value>التسمية التوضيحية</value>
+  </data>
   <data name="word_Close" xml:space="preserve">
     <value>قريب</value>
   </data>
@@ -4847,6 +4854,9 @@ ISO-code then comma then language name</comment>
   </data>
   <data name="word_Element" xml:space="preserve">
     <value>عنصر</value>
+  </data>
+  <data name="word_Extract" xml:space="preserve">
+    <value>يستخرج</value>
   </data>
   <data name="word_Favorites" xml:space="preserve">
     <value>المفضلة</value>

@@ -2,14 +2,8 @@
 // Copyright © 2023 Steven M Cohn.  All rights reserved.
 //************************************************************************************************
 
-#define _PlantUmlNet
-
 namespace River.OneMoreAddIn.Commands
 {
-#if PlantUmlNet
-	using PlantUml.Net;
-	using System.Windows.Forms;
-#endif
 	using River.OneMoreAddIn.Models;
 	using River.OneMoreAddIn.Settings;
 	using River.OneMoreAddIn.UI;
@@ -17,8 +11,8 @@ namespace River.OneMoreAddIn.Commands
 	using System.Drawing;
 	using System.IO;
 	using System.Linq;
-	using System.Net;
 	using System.Text;
+	using System.Text.RegularExpressions;
 	using System.Threading;
 	using System.Threading.Tasks;
 	using System.Web;
@@ -30,17 +24,15 @@ namespace River.OneMoreAddIn.Commands
 	/// <summary>
 	/// Render image from selected PlantUML or Graphviz text
 	/// </summary>
-	internal class DrawPlantUmlCommand : Command
+	internal class PlantUmlCommand : Command
 	{
-		private const int MaxPlantSize = 4096;
-
 		private const string PlantMeta = "omPlant";
 		private const string ImageMeta = "omPlantImage";
 
 		private string errorMessage;
 
 
-		public DrawPlantUmlCommand()
+		public PlantUmlCommand()
 		{
 		}
 
@@ -53,24 +45,36 @@ namespace River.OneMoreAddIn.Commands
 				return;
 			}
 
-
-			if ((args.Length > 0) && (args[0] is string pid))
+			if (args.Length > 0)
 			{
 				// not sure why logger is null here so we have to set it
 				logger = Logger.Current;
-				await RefreshDiagram(pid);
-				return;
+
+				var pid = (string)args[0];
+				if (args.Length > 1)
+				{
+					var cmd = (string)args[1];
+					if ("extract".Equals(cmd, StringComparison.InvariantCultureIgnoreCase))
+					{
+						await ExtractUml(pid);
+						return;
+					}
+				}
+				else
+				{
+					await RefreshDiagram(pid);
+					return;
+				}
 			}
 
 			using var one = new OneNote(out var page, out var ns);
 
-			// get selecte content...
+			// get selected content...
 
-			var runs = page.GetSelectedElements();
-
+			var runs = page.GetSelectedElements().ToList();
 			if (!runs.Any() || page.SelectionScope != SelectionScope.Region)
 			{
-				UIHelper.ShowError(Resx.DrawPlantUml_EmptySelection);
+				UIHelper.ShowError(Resx.PlantUml_EmptySelection);
 				return;
 			}
 
@@ -83,23 +87,15 @@ namespace River.OneMoreAddIn.Commands
 			});
 
 			var text = builder.ToString();
-
 			if (string.IsNullOrWhiteSpace(text))
 			{
-				UIHelper.ShowError(Resx.DrawPlantUml_EmptySelection);
+				UIHelper.ShowError(Resx.PlantUml_EmptySelection);
 				return;
 			}
 
 			// convert...
 
-			var bytes = ConvertToDiagram(text);
-
-			if (bytes.Length == 1)
-			{
-				UIHelper.ShowError(Resx.PlantUmlCommand_tooBig);
-				return;
-			}
-
+			var bytes = Render(text);
 			if (!string.IsNullOrWhiteSpace(errorMessage))
 			{
 				UIHelper.ShowError(errorMessage);
@@ -110,51 +106,57 @@ namespace River.OneMoreAddIn.Commands
 
 			var after = true;
 			var collapse = false;
+			var remove = false;
 			var settings = new SettingsProvider().GetCollection("ImagesSheet");
 			if (settings != null)
 			{
 				after = settings.Get("plantAfter", true);
 				collapse = settings.Get("plantCollapsed", false);
+				remove = settings.Get("plantRemoveText", false);
 			}
 
 			// insert image immediately before or after text...
 
-			var anchor = after
-				? runs.Last().Parent
-				: runs.First().Parent;
-
 			using var stream = new MemoryStream(bytes);
-			var image = (Bitmap)Image.FromStream(stream);
+			using var image = (Bitmap)Image.FromStream(stream);
 
 			var plantID = Guid.NewGuid().ToString("N");
+			var url = $"onemore://PlantUmlCommand/{plantID}";
 			PageNamespace.Set(ns);
 
-			var element = new XElement(ns + "OE",
-				new XAttribute("selected", "partial"),
+			var content = new XElement(ns + "OE",
+				//new XAttribute("selected", "partial"),
 				new Meta(ImageMeta, plantID),
 				new XElement(ns + "Image",
 					new XAttribute("selected", "all"),
 					new XElement(ns + "Size",
-						new XAttribute("width", FormattableString.Invariant($"{image.Width:0.0}")),
+						new XAttribute("width", "0.0"),
 						new XAttribute("height", FormattableString.Invariant($"{image.Height:0.0}"))),
 					new XElement(ns + "Data", Convert.ToBase64String(bytes))
 					));
 
+			var title = PlantUmlHelper.ReadTitle(text);
+			var caption = $"{title} <span style='font-style:italic'>(" +
+				$"<a href=\"{url}/extract\">{Resx.word_Extract}</a>)</span>";
+
+			var table = AddCaptionCommand.MakeCaptionTable(ns, content, caption, out var cdata);
+
+			XElement body;
 			if (after)
 			{
-				anchor.AddAfterSelf(element);
+				body = new Paragraph(table.Root);
+				runs.Last().Parent.AddAfterSelf(body);
 			}
 			else
 			{
-				anchor.AddBeforeSelf(element);
+				body = new Paragraph(table.Root);
+				runs.First().Parent.AddBeforeSelf(body);
 			}
 
 			// collapse text into sub-paragraph...
 
 			if (collapse)
 			{
-				var url = $"onemore://DrawPlantUmlCommand/{plantID}";
-
 				var container = new XElement(ns + "OE",
 					new XAttribute("collapsed", "1"),
 					new Meta(PlantMeta, plantID),
@@ -164,32 +166,48 @@ namespace River.OneMoreAddIn.Commands
 							$"(<a href=\"{url}\">{Resx.word_Refresh}</a>)</span>"))
 					);
 
-				runs.First().Parent.AddBeforeSelf(container);
-
 				var parents = runs.Select(e => e.Parent).Distinct().ToList();
-
-				parents.DescendantsAndSelf()
-					.Attributes("selected")?.Remove();
-
+				parents.DescendantsAndSelf().Attributes("selected")?.Remove();
 				parents.Remove();
-
 				container.Add(new XElement(ns + "OEChildren", parents));
+
+				if (after)
+				{
+					body.AddBeforeSelf(container, new Paragraph(string.Empty));
+				}
+				else
+				{
+					body.AddAfterSelf(new Paragraph(string.Empty), container);
+				}
+			}
+			else if (remove)
+			{
+				runs.Select(e => e.Parent).Distinct().Remove();
+			}
+			else
+			{
+				if (after)
+				{
+					body.AddBeforeSelf(new Paragraph(string.Empty));
+				}
+				else
+				{
+					body.AddAfterSelf(new Paragraph(string.Empty));
+				}
 			}
 
 			await one.Update(page);
 		}
 
 
-		private byte[] ConvertToDiagram(string text)
+		private byte[] Render(string text)
 		{
-			using var progress = new ProgressDialog(15);
+			using var progress = new ProgressDialog(10);
 			progress.Tag = text;
 			progress.SetMessage("Converting using the service http://www.plantuml.com...");
 
 			// text will have gone through wrapping and unwrapping so needs decoding
 			text = HttpUtility.HtmlDecode(text);
-
-#if PlantUmlNet
 			byte[] bytes = null;
 
 			var result = progress.ShowTimedDialog(
@@ -197,62 +215,20 @@ namespace River.OneMoreAddIn.Commands
 				{
 					try
 					{
-						var factory = new RendererFactory();
-						var renderer = factory.CreateRenderer(new PlantUmlSettings());
+						var renderer = new PlantUmlHelper();
+						bytes = await renderer.RenderRemotely(text, token);
 
-						var text = (string)dialog.Tag;
-						logger.WriteLine($"rendering:\n{text}");
-
-						bytes = await renderer.RenderAsync(text, OutputFormat.Png);
-					}
-					catch (Exception exc)
-					{
-						errorMessage = exc.Message;
-						logger.WriteLine($"error rendering plantuml\n{text}", exc);
-						return false;
-					}
-
-					return true;
-				});
-
-			return result == DialogResult.OK ? bytes : new byte[0];
-#else
-			// convert PlantUml text to basic HEX
-			byte[] utf8 = Encoding.UTF8.GetBytes(text);
-			string hex = string.Concat(utf8.Select(c => ((int)c).ToString("X2")));
-			var urx = $"{Resx.PlantUmlCommand_PlantUrl}~h{hex}";
-			logger.WriteLine($"text length = {text.Length}, plantUml HEX length = {urx.Length} bytes");
-
-			if (urx.Length > MaxPlantSize)
-			{
-				return new byte[1];
-			}
-
-			byte[] bytes = null;
-
-			var result = progress.ShowTimedDialog(
-				async (ProgressDialog dialog, CancellationToken token) =>
-				{
-					try
-					{
-						var client = HttpClientFactory.Create();
-						client.DefaultRequestHeaders.Add("user-agent", "OneMore");
-						client.DefaultRequestHeaders.Add("accept", "image/png");
-
-						using var response = await client.GetAsync(urx, token).ConfigureAwait(false);
-						if (response.IsSuccessStatusCode)
+						if (bytes.Length > 0)
 						{
-							bytes = await response.Content.ReadAsByteArrayAsync().ConfigureAwait(false);
-							logger.WriteLine($"received {bytes.Length} bytes");
+							//logger.WriteLine($"received {bytes.Length} bytes");
 							return true;
 						}
 
-						logger.WriteLine($"response.ReasonPhrase = \"{response.ReasonPhrase}\"");
-
-						if (response.StatusCode == HttpStatusCode.BadRequest)
+						if (!string.IsNullOrWhiteSpace(renderer.ErrorMessages))
 						{
-							var messages = response.Headers.GetValues("X-PlantUML-Diagram-Error");
-							logger.WriteLine(string.Join(Environment.NewLine, messages));
+							errorMessage = renderer.ErrorMessages;
+							logger.WriteLine("rendering messages:");
+							logger.WriteLine(renderer.ErrorMessages);
 						}
 
 						return false;
@@ -260,13 +236,12 @@ namespace River.OneMoreAddIn.Commands
 					catch (Exception exc)
 					{
 						errorMessage = exc.Message;
-						logger.WriteLine($"error rendering plantuml\n{text}", exc);
+						logger.WriteLine($"error rendering PlantUml\n{text}", exc);
 						return false;
 					}
 				});
 
 			return result == DialogResult.OK ? bytes : new byte[0];
-#endif
 		}
 
 
@@ -274,16 +249,16 @@ namespace River.OneMoreAddIn.Commands
 		{
 			using var one = new OneNote(out var page, out var ns, OneNote.PageDetail.All);
 
-			var image = page.Root.Descendants(ns + "OE").Elements(ns + "Meta")
+			var element = page.Root.Descendants(ns + "OE").Elements(ns + "Meta")
 				.Where(e =>
 					e.Attribute("name")?.Value == ImageMeta &&
 					e.Attribute("content")?.Value == plantID)
 				.Select(e => e.Parent.Elements(ns + "Image").FirstOrDefault())
 				.FirstOrDefault();
 
-			if (image == null)
+			if (element == null)
 			{
-				UIHelper.ShowError(Resx.DrawPlantUml_broken);
+				UIHelper.ShowError(Resx.PlantUml_broken);
 				return false;
 			}
 
@@ -296,14 +271,14 @@ namespace River.OneMoreAddIn.Commands
 
 			if (plant == null)
 			{
-				UIHelper.ShowError(Resx.DrawPlantUml_broken);
+				UIHelper.ShowError(Resx.PlantUml_broken);
 				return false;
 			}
 
 			var runs = plant.Descendants(ns + "T");
 			if (!runs.Any())
 			{
-				UIHelper.ShowError(Resx.DrawPlantUml_broken);
+				UIHelper.ShowError(Resx.PlantUml_broken);
 				return false;
 			}
 
@@ -318,14 +293,13 @@ namespace River.OneMoreAddIn.Commands
 			var text = builder.ToString();
 			if (string.IsNullOrWhiteSpace(text))
 			{
-				UIHelper.ShowError(Resx.DrawPlantUml_broken);
+				UIHelper.ShowError(Resx.PlantUml_broken);
 				return false;
 			}
 
 			// convert...
 
-			var bytes = ConvertToDiagram(text);
-
+			var bytes = Render(text);
 			if (bytes.Length == 0)
 			{
 				UIHelper.ShowError(Resx.PlantUmlCommand_tooBig);
@@ -333,10 +307,10 @@ namespace River.OneMoreAddIn.Commands
 
 			// update image...
 
-			var data = image.Elements(ns + "Data").FirstOrDefault();
+			var data = element.Elements(ns + "Data").FirstOrDefault();
 			if (data == null)
 			{
-				UIHelper.ShowError(Resx.DrawPlantUml_broken);
+				UIHelper.ShowError(Resx.PlantUml_broken);
 				return false;
 			}
 
@@ -344,7 +318,7 @@ namespace River.OneMoreAddIn.Commands
 
 			// check image size to maintain aspect ratio...
 
-			var size = image.Element(ns + "Size");
+			var size = element.Element(ns + "Size");
 			if (size != null)
 			{
 				var width = size.GetAttributeDouble("width");
@@ -371,6 +345,38 @@ namespace River.OneMoreAddIn.Commands
 			await one.Update(page);
 
 			return true;
+		}
+
+
+		private async Task ExtractUml(string plantID)
+		{
+			using var one = new OneNote(out var page, out var ns, OneNote.PageDetail.All);
+
+			var element = page.Root.Descendants(ns + "OE").Elements(ns + "Meta")
+				.Where(e =>
+					e.Attribute("name")?.Value == ImageMeta &&
+					e.Attribute("content")?.Value == plantID)
+				.Select(e => e.Parent.Elements(ns + "Image").FirstOrDefault())
+				.FirstOrDefault();
+
+			if (element == null)
+			{
+				UIHelper.ShowError(Resx.PlantUml_broken);
+				return;
+			}
+
+			var uml = PlantUmlHelper.ExtractUmlFromImageData(element.Element(ns + "Data").Value);
+
+			var container = element.FirstAncestor(ns + "Table").Parent;
+			PageNamespace.Set(ns);
+
+			var lines = Regex.Split(uml, "\r\n|\r|\n");
+
+			container.AddAfterSelf(
+				new Paragraph(string.Empty),
+				lines.Select(line => new Paragraph(line)));
+
+			await one.Update(page);
 		}
 	}
 }

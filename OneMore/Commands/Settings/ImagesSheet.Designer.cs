@@ -40,6 +40,7 @@ namespace River.OneMoreAddIn.Settings
 			this.imageViewerBox = new System.Windows.Forms.TextBox();
 			this.imageViewerButton = new System.Windows.Forms.Button();
 			this.plantGroup = new System.Windows.Forms.GroupBox();
+			this.plantRemoveBox = new System.Windows.Forms.CheckBox();
 			this.plantCollapseBox = new System.Windows.Forms.CheckBox();
 			this.plantAfterBox = new System.Windows.Forms.CheckBox();
 			this.errorProvider = new System.Windows.Forms.ErrorProvider(this.components);
@@ -162,14 +163,26 @@ namespace River.OneMoreAddIn.Settings
 			// 
 			this.plantGroup.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+			this.plantGroup.Controls.Add(this.plantRemoveBox);
 			this.plantGroup.Controls.Add(this.plantCollapseBox);
 			this.plantGroup.Controls.Add(this.plantAfterBox);
 			this.plantGroup.Location = new System.Drawing.Point(7, 234);
 			this.plantGroup.Name = "plantGroup";
-			this.plantGroup.Size = new System.Drawing.Size(762, 128);
+			this.plantGroup.Size = new System.Drawing.Size(762, 148);
 			this.plantGroup.TabIndex = 0;
 			this.plantGroup.TabStop = false;
 			this.plantGroup.Text = "PlantUML Options";
+			// 
+			// plantRemoveBox
+			// 
+			this.plantRemoveBox.AutoSize = true;
+			this.plantRemoveBox.Location = new System.Drawing.Point(32, 97);
+			this.plantRemoveBox.Name = "plantRemoveBox";
+			this.plantRemoveBox.Size = new System.Drawing.Size(384, 24);
+			this.plantRemoveBox.TabIndex = 2;
+			this.plantRemoveBox.Text = "Remove PlantUML text and embed it in the image";
+			this.plantRemoveBox.UseVisualStyleBackColor = true;
+			this.plantRemoveBox.Click += new System.EventHandler(this.ToggleOnClick);
 			// 
 			// plantCollapseBox
 			// 
@@ -180,15 +193,16 @@ namespace River.OneMoreAddIn.Settings
 			this.plantCollapseBox.TabIndex = 1;
 			this.plantCollapseBox.Text = "Collapse PlantUML text";
 			this.plantCollapseBox.UseVisualStyleBackColor = true;
+			this.plantCollapseBox.Click += new System.EventHandler(this.ToggleOnClick);
 			// 
 			// plantAfterBox
 			// 
 			this.plantAfterBox.AutoSize = true;
 			this.plantAfterBox.Location = new System.Drawing.Point(32, 37);
 			this.plantAfterBox.Name = "plantAfterBox";
-			this.plantAfterBox.Size = new System.Drawing.Size(276, 24);
+			this.plantAfterBox.Size = new System.Drawing.Size(408, 24);
 			this.plantAfterBox.TabIndex = 0;
-			this.plantAfterBox.Text = "Insert drawing after PlantUML text";
+			this.plantAfterBox.Text = "Insert drawing after PlantUML text rather than before";
 			this.plantAfterBox.UseVisualStyleBackColor = true;
 			// 
 			// errorProvider
@@ -234,5 +248,6 @@ namespace River.OneMoreAddIn.Settings
 		private System.Windows.Forms.NumericUpDown widthBox;
 		private System.Windows.Forms.Label widthLabel;
 		private System.Windows.Forms.ErrorProvider errorProvider;
+		private System.Windows.Forms.CheckBox plantRemoveBox;
 	}
 }

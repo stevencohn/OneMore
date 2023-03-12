@@ -31,7 +31,8 @@ namespace River.OneMoreAddIn.Settings
 					"widthLabel",
 					"plantGroup",
 					"plantAfterBox",
-					"plantCollapseBox"
+					"plantCollapseBox",
+					"plantRemoveBox"
 				});
 			}
 
@@ -54,6 +55,7 @@ namespace River.OneMoreAddIn.Settings
 
 			plantAfterBox.Checked = settings.Get("plantAfter", false);
 			plantCollapseBox.Checked = settings.Get("plantCollapsed", false);
+			plantRemoveBox.Checked = settings.Get("plantRemoveText", false);
 		}
 
 
@@ -117,6 +119,23 @@ namespace River.OneMoreAddIn.Settings
 		}
 
 
+		private void ToggleOnClick(object sender, EventArgs e)
+		{
+			if (sender == plantAfterBox && plantAfterBox.Checked)
+			{
+				plantRemoveBox.Checked = false;
+			}
+			else if (sender == plantCollapseBox && plantCollapseBox.Checked)
+			{
+				plantRemoveBox.Checked = false;
+			}
+			else if (sender == plantRemoveBox && plantRemoveBox.Checked)
+			{
+				plantAfterBox.Checked = false;
+				plantCollapseBox.Checked = false;
+			}
+		}
+
 
 
 		public override bool CollectSettings()
@@ -140,6 +159,7 @@ namespace River.OneMoreAddIn.Settings
 
 			settings.Add("plantAfter", plantAfterBox.Checked.ToString());
 			settings.Add("plantCollapsed", plantCollapseBox.Checked.ToString());
+			settings.Add("plantRemoveText", plantRemoveBox.Checked.ToString());
 
 			provider.SetCollection(settings);
 

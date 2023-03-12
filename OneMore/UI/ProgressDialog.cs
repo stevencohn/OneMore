@@ -134,9 +134,12 @@ namespace River.OneMoreAddIn.UI
 				// the OneNote MTA thread environment
 				var thread = new Thread(async () =>
 				{
-					logger.WriteLine("progressing action...");
+					logger.WriteLine("starting action...");
+					logger.StartClock();
+
 					var ok = await action(this, source.Token);
-					logger.WriteLine($"completed action ({ok})");
+
+					logger.WriteTime($"completed action ({(ok ? "OK" : "NOK")})");
 
 					DialogResult = source.IsCancellationRequested
 						? DialogResult.Abort

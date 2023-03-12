@@ -910,18 +910,6 @@ OneNote will close automatically</value>
   <data name="DownArrow" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>images\downarrow.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="DrawPlantUml_broken" xml:space="preserve">
-    <value>PlantUML text is either invalid or cannot find connection between text and image</value>
-    <comment>error message</comment>
-  </data>
-  <data name="DrawPlantUml_EmptySelection" xml:space="preserve">
-    <value>Empty selection. Select a valid block of PlantUML text.</value>
-    <comment>error message</comment>
-  </data>
-  <data name="DrawPlantUml_Error" xml:space="preserve">
-    <value>Invalid syntax or incomplete selection of PlantUML</value>
-    <comment>error message</comment>
-  </data>
   <data name="EditTableThemesDialog_colorsTab.Text" xml:space="preserve">
     <value>Colors</value>
     <comment>tab</comment>
@@ -1446,6 +1434,10 @@ Symbols: PI, E</value>
     <value>Highlighter Themes</value>
     <comment>sheet intro</comment>
   </data>
+  <data name="ImageSheet_plantRemoveBox.Text" xml:space="preserve">
+    <value>Remove PlantUML text and embed it in the image</value>
+    <comment>checkbox</comment>
+  </data>
   <data name="ImagesSheet_imageBrowser" xml:space="preserve">
     <value>Image Viewer</value>
   </data>
@@ -1458,7 +1450,7 @@ Symbols: PI, E</value>
     <comment>label</comment>
   </data>
   <data name="ImagesSheet_plantAfterBox.Text" xml:space="preserve">
-    <value>Insert drawing after PlantUML text</value>
+    <value>Insert drawing after PlantUML text rather than before</value>
     <comment>checkbox</comment>
   </data>
   <data name="ImagesSheet_plantCollapseBox.Text" xml:space="preserve">
@@ -2143,6 +2135,18 @@ Deferred</value>
   </data>
   <data name="phrase_PathNotFound" xml:space="preserve">
     <value>Path not found</value>
+  </data>
+  <data name="PlantUml_broken" xml:space="preserve">
+    <value>PlantUML text is either invalid or cannot find connection between text and image</value>
+    <comment>error message</comment>
+  </data>
+  <data name="PlantUml_EmptySelection" xml:space="preserve">
+    <value>Empty selection. Select a valid block of PlantUML text.</value>
+    <comment>error message</comment>
+  </data>
+  <data name="PlantUml_Error" xml:space="preserve">
+    <value>Invalid syntax or incomplete selection of PlantUML</value>
+    <comment>error message</comment>
   </data>
   <data name="PlantUmlCommand_PlantUrl" xml:space="preserve">
     <value>http://www.plantuml.com/plantuml/png/</value>
@@ -3059,14 +3063,6 @@ Polaroid</value>
     <value>Disable spell checking within selected content</value>
     <comment>ribbon edit</comment>
   </data>
-  <data name="ribDrawPlantUmlButton_Label" xml:space="preserve">
-    <value>Draw PlantUML</value>
-    <comment>ribbon images</comment>
-  </data>
-  <data name="ribDrawPlantUmlButton_Screentip" xml:space="preserve">
-    <value>Render PlantUML or Graphviz image from selected text</value>
-    <comment>ribbon images</comment>
-  </data>
   <data name="ribDuplicateLineAboveButton_Label" xml:space="preserve">
     <value>Duplicate Paragraph Above</value>
     <comment>command</comment>
@@ -3602,6 +3598,14 @@ Polaroid</value>
   <data name="ribPasteTextButton_Screentip" xml:space="preserve">
     <value>Paste and Keep Text Only (Ctrl + Shift + V)</value>
     <comment>ribbon edit</comment>
+  </data>
+  <data name="ribPlantUmlButton_Label" xml:space="preserve">
+    <value>Draw PlantUML</value>
+    <comment>ribbon images</comment>
+  </data>
+  <data name="ribPlantUmlButton_Screentip" xml:space="preserve">
+    <value>Render PlantUML or Graphviz image from selected text</value>
+    <comment>ribbon images</comment>
   </data>
   <data name="ribPluginButton_Label" xml:space="preserve">
     <value>Run Plugin</value>
@@ -4938,6 +4942,9 @@ In this section</value>
   <data name="word_Cancel" xml:space="preserve">
     <value>Cancel</value>
   </data>
+  <data name="word_Caption" xml:space="preserve">
+    <value>Caption</value>
+  </data>
   <data name="word_Close" xml:space="preserve">
     <value>Close</value>
   </data>
@@ -4976,6 +4983,9 @@ In this section</value>
   </data>
   <data name="word_Element" xml:space="preserve">
     <value>Element</value>
+  </data>
+  <data name="word_Extract" xml:space="preserve">
+    <value>Extract</value>
   </data>
   <data name="word_Favorites" xml:space="preserve">
     <value>Favorites</value>

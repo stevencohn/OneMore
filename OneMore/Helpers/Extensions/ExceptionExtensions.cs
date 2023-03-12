@@ -18,7 +18,8 @@ namespace River.OneMoreAddIn
 	{
 
 		/// <summary>
-		/// Generate a detailed report of the given exception and all inner exceptions
+		/// OneMore Extension >> Generate a detailed report of the given exception and all
+		/// inner exceptions
 		/// </summary>
 		/// <param name="exc">The exception to report</param>
 		/// <param name="full">
@@ -103,7 +104,8 @@ namespace River.OneMoreAddIn
 
 
 		/// <summary>
-		/// Get a concatenated string of the exception messages and its inner exceptions.
+		/// OneMore Extension >> Get a concatenated string of the exception messages and its
+		/// inner exceptions.
 		/// </summary>
 		/// <param name="exc">The exception</param>
 		/// <returns>A string with one or more lines</returns>

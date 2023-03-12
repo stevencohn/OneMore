@@ -466,11 +466,11 @@
                 getScreentip="GetRibbonScreentip"
                 onAction="OpenImageWithCmd"/>
               <button
-                id="ribDrawPlantUmlButton"
+                id="ribPlantUmlButton"
                 imageMso="OrganizationChartInsert"
                 getLabel="GetRibbonLabel"
                 getScreentip="GetRibbonScreentip"
-                onAction="DrawPlantUmlCmd"/>
+                onAction="PlantUmlCmd"/>
               <button
                 id="ribResizeImagesButton"
                 imageMso="GroupPictureCompress"

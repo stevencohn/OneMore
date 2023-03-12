@@ -35,14 +35,14 @@ namespace River.OneMoreAddIn
 
 
 		/// <summary>
-		/// Gets the pattern to express a friendly full date time string.
+		/// OneMore Extension >> Gets the pattern to express a friendly full date time string.
 		/// Used to set custom formatting in DateTimePicker
 		/// </summary>
 		public static string FriendlyPattern => friendlyPattern;
 
 
 		/// <summary>
-		/// Gets the number of seconds since 1-Jan-0001
+		/// OneMore Extension >> Gets the number of seconds since 1-Jan-0001
 		/// </summary>
 		/// <param name="dttm"></param>
 		/// <returns></returns>
@@ -53,7 +53,7 @@ namespace River.OneMoreAddIn
 
 
 		/// <summary>
-		/// Gets a friendly full date time string in local time
+		/// OneMore Extension >> Gets a friendly full date time string in local time
 		/// similar to "Friday, October 22, 2021 11:20 AM"
 		/// </summary>
 		/// <param name="dttm">This DateTime to convert</param>
@@ -67,7 +67,8 @@ namespace River.OneMoreAddIn
 
 
 		/// <summary>
-		/// Gets a friendly date time string in local time similar to "October 22, 2021 11:20 AM"
+		/// OneMore Extension >>  Gets a friendly date time string in local time similar
+		/// to "October 22, 2021 11:20 AM"
 		/// </summary>
 		/// <param name="dttm">This DateTime to convert</param>
 		/// <returns>A formatted string</returns>
@@ -80,7 +81,7 @@ namespace River.OneMoreAddIn
 
 
 		/// <summary>
-		/// Gets a string formatted to universal Zulu time appropriate for XML
+		/// OneMore Extension >> Gets a string formatted to universal Zulu time appropriate for XML
 		/// </summary>
 		/// <param name="dttm"></param>
 		/// <returns></returns>

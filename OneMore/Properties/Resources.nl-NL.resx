@@ -867,18 +867,6 @@ OneNote wordt automatisch gesloten</value>
   <data name="DownArrow" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>images\downarrow.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="DrawPlantUml_broken" xml:space="preserve">
-    <value>PlantUML-tekst is ongeldig of kan geen verband vinden tussen tekst en afbeelding</value>
-    <comment>error message</comment>
-  </data>
-  <data name="DrawPlantUml_EmptySelection" xml:space="preserve">
-    <value>Lege selectie. Selecteer een geldig blok PlantUML-tekst.</value>
-    <comment>error message</comment>
-  </data>
-  <data name="DrawPlantUml_Error" xml:space="preserve">
-    <value>Ongeldige syntaxis of onvolledige selectie van PlantUML</value>
-    <comment>error message</comment>
-  </data>
   <data name="EditTableThemesDialog_colorsTab.Text" xml:space="preserve">
     <value>Kleuren</value>
     <comment>tab</comment>
@@ -1379,6 +1367,10 @@ Symbolen: PI, E</value>
     <value>Markeerstift Thema's</value>
     <comment>sheet intro</comment>
   </data>
+  <data name="ImageSheet_plantRemoveBox.Text" xml:space="preserve">
+    <value>Verwijder PlantUML-tekst en sluit deze in de afbeelding in</value>
+    <comment>checkbox</comment>
+  </data>
   <data name="ImagesSheet_imageBrowser" xml:space="preserve">
     <value>Afbeeldingsviewer</value>
   </data>
@@ -1391,7 +1383,7 @@ Symbolen: PI, E</value>
     <comment>label</comment>
   </data>
   <data name="ImagesSheet_plantAfterBox.Text" xml:space="preserve">
-    <value>Tekening invoegen na PlantUML-tekst</value>
+    <value>Tekening invoegen na PlantUML-tekst in plaats van ervoor</value>
     <comment>checkbox</comment>
   </data>
   <data name="ImagesSheet_plantCollapseBox.Text" xml:space="preserve">
@@ -2061,6 +2053,18 @@ Verschoven</value>
   </data>
   <data name="phrase_PathNotFound" xml:space="preserve">
     <value>Pad niet gevonden</value>
+  </data>
+  <data name="PlantUml_broken" xml:space="preserve">
+    <value>PlantUML-tekst is ongeldig of kan geen verband vinden tussen tekst en afbeelding</value>
+    <comment>error message</comment>
+  </data>
+  <data name="PlantUml_EmptySelection" xml:space="preserve">
+    <value>Lege selectie. Selecteer een geldig blok PlantUML-tekst.</value>
+    <comment>error message</comment>
+  </data>
+  <data name="PlantUml_Error" xml:space="preserve">
+    <value>Ongeldige syntaxis of onvolledige selectie van PlantUML</value>
+    <comment>error message</comment>
   </data>
   <data name="PlantUmlCommand_tooBig" xml:space="preserve">
     <value>Deze PlantUML-code is te groot. Het mag niet langer zijn dan 2.011 tekens.</value>
@@ -2957,14 +2961,6 @@ Polaroid</value>
     <value>Spellingcontrole binnen geselecteerde inhoud uitschakelen</value>
     <comment>ribbon edit</comment>
   </data>
-  <data name="ribDrawPlantUmlButton_Label" xml:space="preserve">
-    <value>Teken PlantUML</value>
-    <comment>ribbon images</comment>
-  </data>
-  <data name="ribDrawPlantUmlButton_Screentip" xml:space="preserve">
-    <value>Render PlantUML- of Graphviz-afbeelding uit geselecteerde tekst</value>
-    <comment>ribbon images</comment>
-  </data>
   <data name="ribDuplicateLineAboveButton_Label" xml:space="preserve">
     <value>Dupliceer alinea hierboven</value>
     <comment>pallette</comment>
@@ -3506,6 +3502,14 @@ Polaroid</value>
   <data name="ribPasteTextButton_Screentip" xml:space="preserve">
     <value>Plakken en blijf alleen tekst (Ctrl + Shift + V)</value>
     <comment>ribbon item</comment>
+  </data>
+  <data name="ribPlantUmlButton_Label" xml:space="preserve">
+    <value>Teken PlantUML</value>
+    <comment>ribbon images</comment>
+  </data>
+  <data name="ribPlantUmlButton_Screentip" xml:space="preserve">
+    <value>Render PlantUML- of Graphviz-afbeelding uit geselecteerde tekst</value>
+    <comment>ribbon images</comment>
   </data>
   <data name="ribPluginButton_Label" xml:space="preserve">
     <value>Voer de plug-in uit</value>
@@ -4809,6 +4813,9 @@ In deze sectie</value>
   <data name="word_Cancel" xml:space="preserve">
     <value>Annuleren</value>
   </data>
+  <data name="word_Caption" xml:space="preserve">
+    <value>Ondertiteling</value>
+  </data>
   <data name="word_Close" xml:space="preserve">
     <value>Dichtbij</value>
   </data>
@@ -4847,6 +4854,9 @@ In deze sectie</value>
   </data>
   <data name="word_Element" xml:space="preserve">
     <value>Element</value>
+  </data>
+  <data name="word_Extract" xml:space="preserve">
+    <value>Extract</value>
   </data>
   <data name="word_Favorites" xml:space="preserve">
     <value>Favorieten</value>

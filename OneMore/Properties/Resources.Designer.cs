@@ -1953,33 +1953,6 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to PlantUML text is either invalid or cannot find connection between text and image.
-        /// </summary>
-        internal static string DrawPlantUml_broken {
-            get {
-                return ResourceManager.GetString("DrawPlantUml_broken", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Empty selection. Select a valid block of PlantUML text..
-        /// </summary>
-        internal static string DrawPlantUml_EmptySelection {
-            get {
-                return ResourceManager.GetString("DrawPlantUml_EmptySelection", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Invalid syntax or incomplete selection of PlantUML.
-        /// </summary>
-        internal static string DrawPlantUml_Error {
-            get {
-                return ResourceManager.GetString("DrawPlantUml_Error", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Colors.
         /// </summary>
         internal static string EditTableThemesDialog_colorsTab_Text {
@@ -3176,6 +3149,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Remove PlantUML text and embed it in the image.
+        /// </summary>
+        internal static string ImageSheet_plantRemoveBox_Text {
+            get {
+                return ResourceManager.GetString("ImageSheet_plantRemoveBox.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Image Viewer.
         /// </summary>
         internal static string ImagesSheet_imageBrowser {
@@ -3203,7 +3185,7 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Insert drawing after PlantUML text.
+        ///   Looks up a localized string similar to Insert drawing after PlantUML text rather than before.
         /// </summary>
         internal static string ImagesSheet_plantAfterBox_Text {
             get {
@@ -4804,6 +4786,33 @@ namespace River.OneMoreAddIn.Properties {
         internal static string phrase_PathNotFound {
             get {
                 return ResourceManager.GetString("phrase_PathNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to PlantUML text is either invalid or cannot find connection between text and image.
+        /// </summary>
+        internal static string PlantUml_broken {
+            get {
+                return ResourceManager.GetString("PlantUml_broken", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Empty selection. Select a valid block of PlantUML text..
+        /// </summary>
+        internal static string PlantUml_EmptySelection {
+            get {
+                return ResourceManager.GetString("PlantUml_EmptySelection", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Invalid syntax or incomplete selection of PlantUML.
+        /// </summary>
+        internal static string PlantUml_Error {
+            get {
+                return ResourceManager.GetString("PlantUml_Error", resourceCulture);
             }
         }
         
@@ -6850,24 +6859,6 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Draw PlantUML.
-        /// </summary>
-        internal static string ribDrawPlantUmlButton_Label {
-            get {
-                return ResourceManager.GetString("ribDrawPlantUmlButton_Label", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Render PlantUML or Graphviz image from selected text.
-        /// </summary>
-        internal static string ribDrawPlantUmlButton_Screentip {
-            get {
-                return ResourceManager.GetString("ribDrawPlantUmlButton_Screentip", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Duplicate Paragraph Above.
         /// </summary>
         internal static string ribDuplicateLineAboveButton_Label {
@@ -8070,6 +8061,24 @@ namespace River.OneMoreAddIn.Properties {
         internal static string ribPasteTextButton_Screentip {
             get {
                 return ResourceManager.GetString("ribPasteTextButton_Screentip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Draw PlantUML.
+        /// </summary>
+        internal static string ribPlantUmlButton_Label {
+            get {
+                return ResourceManager.GetString("ribPlantUmlButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Render PlantUML or Graphviz image from selected text.
+        /// </summary>
+        internal static string ribPlantUmlButton_Screentip {
+            get {
+                return ResourceManager.GetString("ribPlantUmlButton_Screentip", resourceCulture);
             }
         }
         
@@ -11164,6 +11173,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Caption.
+        /// </summary>
+        internal static string word_Caption {
+            get {
+                return ResourceManager.GetString("word_Caption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Close.
         /// </summary>
         internal static string word_Close {
@@ -11277,6 +11295,15 @@ namespace River.OneMoreAddIn.Properties {
         internal static string word_Element {
             get {
                 return ResourceManager.GetString("word_Element", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Extract.
+        /// </summary>
+        internal static string word_Extract {
+            get {
+                return ResourceManager.GetString("word_Extract", resourceCulture);
             }
         }
         

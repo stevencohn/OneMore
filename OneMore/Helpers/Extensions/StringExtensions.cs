@@ -20,7 +20,8 @@ namespace River.OneMoreAddIn
 	{
 
 		/// <summary>
-		/// Determines if the given value is contained within the string, ignoring case
+		/// OneMore Extension >> Determines if the given value is contained within the string,
+		/// ignoring case
 		/// </summary>
 		/// <param name="s"></param>
 		/// <param name="value"></param>
@@ -32,7 +33,8 @@ namespace River.OneMoreAddIn
 
 
 		/// <summary>
-		/// Determines if the string ends with whitespace, either chars or HTML escapes
+		/// OneMore Extension >> Determines if the string ends with whitespace, either chars or
+		/// HTML escapes
 		/// </summary>
 		/// <param name="value"></param>
 		/// <returns></returns>
@@ -44,7 +46,8 @@ namespace River.OneMoreAddIn
 
 
 		/// <summary>
-		/// Determines if the string starts with whitespace, either chars or HTML escapes
+		/// OneMore Extension >> Determines if the string starts with whitespace, either chars
+		/// or HTML escapes
 		/// </summary>
 		/// <param name="value"></param>
 		/// <returns></returns>
@@ -56,7 +59,7 @@ namespace River.OneMoreAddIn
 
 
 		/// <summary>
-		/// Compares this string with a given string ignoring case.
+		/// OneMore Extension >> Compares this string with a given string ignoring case.
 		/// </summary>
 		/// <param name="s">The current string</param>
 		/// <param name="value">The comparison string</param>
@@ -69,8 +72,8 @@ namespace River.OneMoreAddIn
 
 
 		/// <summary>
-		/// Escapes only a select few special character in a URL. Needed for the
-		/// Copy Link to Page command so the pasted link can be clicked and properly 
+		/// OneMore Extension >> Escapes only a select few special character in a URL. Needed
+		/// for the Copy Link to Page command so the pasted link can be clicked and properly 
 		/// navigate back to the source page.
 		/// </summary>
 		/// <param name="s"></param>
@@ -97,7 +100,8 @@ namespace River.OneMoreAddIn
 
 
 		/// <summary>
-		/// Determines if the given string starts with a given substring, ignoring case.
+		/// OneMore Extension >> Determines if the given string starts with a given substring,
+		/// ignoring case.
 		/// </summary>
 		/// <param name="s">The current string</param>
 		/// <param name="value">The substring to use as a search</param>
@@ -110,7 +114,7 @@ namespace River.OneMoreAddIn
 
 
 		/// <summary>
-		/// 
+		/// OneMore Extension >> 
 		/// </summary>
 		/// <param name="s"></param>
 		/// <param name="t"></param>
@@ -186,8 +190,8 @@ namespace River.OneMoreAddIn
 
 
 		/// <summary>
-		/// Splits a string into its first word and the remaining characters as delimited by
-		/// the first non-word boundary.
+		/// OneMore Extension >> Splits a string into its first word and the remaining characters
+		/// as delimited by the first non-word boundary.
 		/// </summary>
 		/// <param name="s">A string with one or more words</param>
 		/// <returns>
@@ -215,8 +219,8 @@ namespace River.OneMoreAddIn
 
 
 		/// <summary>
-		/// Splits a string into its last word and the remaining characters as delimited by
-		/// the last non-word boundary.
+		/// OneMore Extension >> Splits a string into its last word and the remaining characters
+		/// as delimited by the last non-word boundary.
 		/// </summary>
 		/// <param name="s">A string with one or more words</param>
 		/// <returns>
@@ -244,8 +248,8 @@ namespace River.OneMoreAddIn
 
 
 		/// <summary>
-		/// Build an XML wrapper with the specified content, ensuring the content
-		/// is propertly formed XML
+		/// OneMore Extension >> Build an XML wrapper with the specified content, ensuring the
+		/// content is propertly formed XML
 		/// </summary>
 		/// <param name="s"></param>
 		/// <returns></returns>
