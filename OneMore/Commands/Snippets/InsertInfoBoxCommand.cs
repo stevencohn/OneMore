@@ -4,37 +4,21 @@
 
 namespace River.OneMoreAddIn.Commands
 {
+	using Newtonsoft.Json.Linq;
 	using River.OneMoreAddIn.Models;
 	using System.Linq;
 	using System.Threading.Tasks;
 	using System.Xml.Linq;
-	using Resx = River.OneMoreAddIn.Properties.Resources;
+	using Resx = Properties.Resources;
 
 
 	/// <summary>
-	/// Inserts a specialized table to mirror the Info or Warning macros of Confluence
+	/// Inserts a snippet that resembles the Confluence Info or Warning macros.
 	/// </summary>
-	internal class InsertInfoBlockCommand : Command
+	internal class InsertInfoBoxCommand : Command
 	{
-		private const string InfoShading = "#F6FAFF";
-		private const string InfoShadingDark = "#323F4F";
-		private const string InfoShadingBlack = "#DEEBF6";
-		private const string InfoSymbolColor = "#2E75B5";
-		private const string InfoSymbolBlack = "#2E75B5";
-		private const string WarnShading = "#FFF8F7";
-		private const string WarnShadingDark = "#78230C";
-		private const string WarnShadingBlack = "#FADBD2";
-		private const string WarnSymbolColor = "#E68C74";
-		private const string WarnSymbolBlack = "#8B3119";
-		private const string TitleColor = "#000000";
-		private const string TItleDark = "#FFFFFF";
-		private const string TItleBlack = "#000000";
-		private const string TextColor = "#333333";
-		private const string TextDark = "#D8D8D8";
-		private const string TextBlack = "#000000";
 
-
-		public InsertInfoBlockCommand()
+		public InsertInfoBoxCommand()
 		{
 		}
 
@@ -42,12 +26,13 @@ namespace River.OneMoreAddIn.Commands
 		/// <summary>
 		/// Insert a new info or warning table with starter content
 		/// </summary>
-		/// <param name="warning">
-		/// True to generate a Warning table; other an Info table is generated
+		/// <param name="keyword">
+		/// The keyword associated wit the type of block to insert: info, note, warn
 		/// </param>
 		public override async Task Execute(params object[] args)
 		{
-			var warning = (bool)args[0];
+			var keyword = (string)args[0];
+			Resx.Culture = AddIn.Culture;
 
 			using var one = new OneNote(out var page, out var ns);
 			if (!page.ConfirmBodyContext())
@@ -56,30 +41,13 @@ namespace River.OneMoreAddIn.Commands
 				return;
 			}
 
-			var dark = page.GetPageColor(out _, out var black).GetBrightness() < 0.5;
+			var theme = JObject.Parse(Resx.InfoBoxThemes)[keyword];
 
-			string title, symbol, titleColor, symbolColor, textColor, shading;
+			var symbolStyle =
+				$"font-family:'{theme["symbolFont"]}';font-size:{theme["symbolSize"]}.0pt;" +
+				$"color:{theme["symbolColor"]};text-align:center";
 
-			if (warning)
-			{
-				title = "Warning";
-				symbol = "\u26a0"; // !-triangle
-				symbolColor = black ? WarnSymbolBlack : (dark ? WarnSymbolBlack : WarnSymbolColor);
-				shading = black ? WarnShadingBlack : (dark ? WarnShadingDark : WarnShading);
-			}
-			else
-			{
-				title = "Information";
-				symbol = "\U0001F6C8"; // i-circle
-				symbolColor = black ? InfoSymbolBlack : InfoSymbolColor;
-				shading = black ? InfoShadingBlack : (dark ? InfoShadingDark : InfoShading);
-			}
-
-			titleColor = black ? TItleBlack : (dark ? TItleDark : TitleColor);
-			textColor = black ? TextBlack : (dark ? TextDark : TextColor);
-
-			var normalStyle = $"font-family:'Segoe UI';font-size:11.0pt;color:{textColor}";
-			var symbolStyle = $"font-family:'Segoe UI Symbol';font-size:22.0pt;color:{symbolColor};text-align:center";
+			var normalStyle = $"font-family:'Segoe UI';font-size:11.0pt;color:{theme["textColor"]}";
 
 			// find anchor and optional selected content...
 
@@ -94,7 +62,7 @@ namespace River.OneMoreAddIn.Commands
 			{
 				content = new XElement(ns + "OE",
 					new XAttribute("style", normalStyle),
-					new XElement(ns + "T", new XCData("Your content here...")
+					new XElement(ns + "T", new XCData(Resx.InsertInfoBox_yourContentHere)
 					));
 			}
 			else
@@ -114,6 +82,9 @@ namespace River.OneMoreAddIn.Commands
 
 			var row = inner.AddRow();
 
+			var symbol = char.ConvertFromUtf32(
+				int.Parse(theme["symbol"].ToString(), System.Globalization.NumberStyles.HexNumber));
+
 			row.Cells.ElementAt(0).SetContent(
 				new XElement(ns + "OE",
 					new XAttribute("alignment", "center"),
@@ -121,6 +92,8 @@ namespace River.OneMoreAddIn.Commands
 					new XElement(ns + "T",
 						new XCData($"<span style='font-weight:bold'>{symbol}</span>"))
 				));
+
+			var title = Resx.ResourceManager.GetString(theme["titlex"].ToString(), AddIn.Culture);
 
 			row.Cells.ElementAt(1).SetContent(
 				new XElement(ns + "OEChildren",
@@ -144,7 +117,7 @@ namespace River.OneMoreAddIn.Commands
 
 			var cell = row.Cells.ElementAt(0);
 
-			cell.ShadingColor = shading;
+			cell.ShadingColor = theme["shading"].ToString();
 			cell.SetContent(inner);
 
 			// update...

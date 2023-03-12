@@ -596,7 +596,7 @@ OneNote wordt automatisch gesloten</value>
     <value>... Groene status</value>
     <comment>context menu option</comment>
   </data>
-  <data name="ContextMenuSheet_ribInsertInfoBlockButton" xml:space="preserve">
+  <data name="ContextMenuSheet_ribInsertInfoBoxButton" xml:space="preserve">
     <value>... Infoblok</value>
     <comment>context menu option</comment>
   </data>
@@ -612,7 +612,7 @@ OneNote wordt automatisch gesloten</value>
     <value>... Inhoudsopgave</value>
     <comment>context menu option</comment>
   </data>
-  <data name="ContextMenuSheet_ribInsertWarnBlockButton" xml:space="preserve">
+  <data name="ContextMenuSheet_ribInsertWarnBoxButton" xml:space="preserve">
     <value>... Waarschuwingsblok</value>
     <comment>context menu option</comment>
   </data>
@@ -1569,6 +1569,9 @@ Symbolen: PI, E</value>
   <data name="InsertCodeBlockCommand_Text" xml:space="preserve">
     <value>Uw inhoud hier ...</value>
     <comment>text</comment>
+  </data>
+  <data name="InsertInfoBox_yourContentHere" xml:space="preserve">
+    <value>Uw inhoud hier...</value>
   </data>
   <data name="InsertQRCommand_MaxLength" xml:space="preserve">
     <value>De geselecteerde tekst mag niet langer zijn dan {0} tekens</value>
@@ -3253,12 +3256,20 @@ Polaroid</value>
     <value>Plaats een groen statuslabel</value>
     <comment>ribbon snippets</comment>
   </data>
-  <data name="ribInsertInfoBlockButton_Label" xml:space="preserve">
-    <value>Infoblok</value>
-    <comment>Ribbon OneMore menu item, Snippets...</comment>
+  <data name="ribInsertInfoBoxButton_Label" xml:space="preserve">
+    <value>Informatie box</value>
+    <comment>ribbon snippets</comment>
   </data>
-  <data name="ribInsertInfoBlockButton_Screentip" xml:space="preserve">
-    <value>Voeg een informatieblok in</value>
+  <data name="ribInsertInfoBoxButton_Screentip" xml:space="preserve">
+    <value>Plaats een informatievak</value>
+    <comment>ribbon snippets</comment>
+  </data>
+  <data name="ribInsertNoteBoxButton_Label" xml:space="preserve">
+    <value>Opmerkingen vak</value>
+    <comment>ribbon snippets</comment>
+  </data>
+  <data name="ribInsertNoteBoxButton_Screentip" xml:space="preserve">
+    <value>Plaats een notitievak</value>
     <comment>ribbon snippets</comment>
   </data>
   <data name="ribInsertQRButton_Label" xml:space="preserve">
@@ -3301,12 +3312,12 @@ Polaroid</value>
     <value>Plaats een inhoudsopgave met koppen bovenaan de pagina</value>
     <comment>ribbon snippets</comment>
   </data>
-  <data name="ribInsertWarnBlockButton_Label" xml:space="preserve">
-    <value>Waarschuwingsblok</value>
-    <comment>Ribbon OneMore menu item, Snippets...</comment>
+  <data name="ribInsertWarnBoxButton_Label" xml:space="preserve">
+    <value>Waarschuwingsvak</value>
+    <comment>ribbon snippets</comment>
   </data>
-  <data name="ribInsertWarnBlockButton_Screentip" xml:space="preserve">
-    <value>Voeg een waarschuwingsblok toe</value>
+  <data name="ribInsertWarnBoxButton_Screentip" xml:space="preserve">
+    <value>Plaats een waarschuwingsvenster</value>
     <comment>ribbon snippets</comment>
   </data>
   <data name="ribInsertYellowStatusButton_Label" xml:space="preserve">
@@ -4879,6 +4890,9 @@ In deze sectie</value>
   <data name="word_History" xml:space="preserve">
     <value>Geschiedenis</value>
   </data>
+  <data name="word_Information" xml:space="preserve">
+    <value>Informatie</value>
+  </data>
   <data name="word_Keyboard" xml:space="preserve">
     <value>Toetsenbord</value>
   </data>
@@ -4902,6 +4916,9 @@ In deze sectie</value>
   </data>
   <data name="word_Notebook" xml:space="preserve">
     <value>Notitieboekje</value>
+  </data>
+  <data name="word_Notes" xml:space="preserve">
+    <value>Notities</value>
   </data>
   <data name="word_OK" xml:space="preserve">
     <value>Oke</value>
@@ -4983,6 +5000,9 @@ In deze sectie</value>
   </data>
   <data name="word_Total" xml:space="preserve">
     <value>Totaal</value>
+  </data>
+  <data name="word_Warning" xml:space="preserve">
+    <value>Waarschuwing</value>
   </data>
   <data name="word_Width" xml:space="preserve">
     <value>Breedte</value>

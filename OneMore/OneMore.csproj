@@ -792,7 +792,7 @@
     <Compile Include="Ribbon\TileFactory.cs" />
     <Compile Include="Commands\Snippets\InsertCodeBlockCommand.cs" />
     <Compile Include="Commands\Snippets\InsertExpandCommand.cs" />
-    <Compile Include="Commands\Snippets\InsertInfoBlockCommand.cs" />
+    <Compile Include="Commands\Snippets\InsertInfoBoxCommand.cs" />
     <Compile Include="Commands\Snippets\InsertLineCommand.cs" />
     <Compile Include="Commands\Snippets\InsertStatusCommand.cs" />
     <Compile Include="Commands\Snippets\InsertTocCommand.cs" />
@@ -1175,6 +1175,7 @@
     <Content Include="Properties\Images\Unlocked.png" />
     <Content Include="Properties\Resources.de-DE-hints.xml" />
     <Content Include="Properties\Resources.zh-CN-hints.xml" />
+    <None Include="Properties\InfoBoxThemes.json" />
     <None Include="Properties\StopOneNote.ps1" />
     <None Include="Ribbon\DefaultTableThemes.json" />
     <Content Include="UI\TagMap.png" />

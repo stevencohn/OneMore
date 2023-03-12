@@ -1215,9 +1215,9 @@ namespace River.OneMoreAddIn.Properties {
         /// <summary>
         ///   Looks up a localized string similar to ... Info Block.
         /// </summary>
-        internal static string ContextMenuSheet_ribInsertInfoBlockButton {
+        internal static string ContextMenuSheet_ribInsertInfoBoxButton {
             get {
-                return ResourceManager.GetString("ContextMenuSheet_ribInsertInfoBlockButton", resourceCulture);
+                return ResourceManager.GetString("ContextMenuSheet_ribInsertInfoBoxButton", resourceCulture);
             }
         }
         
@@ -1251,9 +1251,9 @@ namespace River.OneMoreAddIn.Properties {
         /// <summary>
         ///   Looks up a localized string similar to ... Warning Block.
         /// </summary>
-        internal static string ContextMenuSheet_ribInsertWarnBlockButton {
+        internal static string ContextMenuSheet_ribInsertWarnBoxButton {
             get {
-                return ResourceManager.GetString("ContextMenuSheet_ribInsertWarnBlockButton", resourceCulture);
+                return ResourceManager.GetString("ContextMenuSheet_ribInsertWarnBoxButton", resourceCulture);
             }
         }
         
@@ -3455,6 +3455,36 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to {
+        ///  &quot;info&quot;: {
+        ///    &quot;shading&quot;: &quot;#DEEBF6&quot;,
+        ///    &quot;symbol&quot;: &quot;ðŸ›ˆ&quot;,
+        ///    &quot;symbolFont&quot;: &quot;Segoe UI Symbol&quot;,
+        ///    &quot;symbolSize&quot;: 22,
+        ///    &quot;symbolColor&quot;: &quot;#2E75B5&quot;,
+        ///    &quot;titlex&quot;: &quot;word_Information&quot;,
+        ///    &quot;titleColor&quot;: &quot;#333333&quot;,
+        ///    &quot;textColor&quot;: &quot;#333333&quot;
+        ///  },
+        ///  &quot;note&quot;: {
+        ///    &quot;shading&quot;: &quot;#E5E0EC&quot;,
+        ///    &quot;symbol&quot;: &quot;ðŸ““&quot;,
+        ///    &quot;symbolFont&quot;: &quot;Segoe UI Symbol&quot;,
+        ///    &quot;symbolSize&quot;: 22,
+        ///    &quot;symbolColor&quot;: &quot;#5F497A&quot;,
+        ///    &quot;titlex&quot;: &quot;word_Notes&quot;,
+        ///    &quot;titleColor&quot;: &quot;#333333&quot;,
+        ///    &quot;textColor&quot;: &quot;#333333&quot;
+        ///  },
+        ///  &quot;warn [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string InfoBoxThemes {
+            get {
+                return ResourceManager.GetString("InfoBoxThemes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to click to change.
         /// </summary>
         internal static string InsertCalendarDialog_clickLabel_Text {
@@ -3604,6 +3634,15 @@ namespace River.OneMoreAddIn.Properties {
         internal static string InsertCodeBlockCommand_Text {
             get {
                 return ResourceManager.GetString("InsertCodeBlockCommand_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Your content here....
+        /// </summary>
+        internal static string InsertInfoBox_yourContentHere {
+            get {
+                return ResourceManager.GetString("InsertInfoBox_yourContentHere", resourceCulture);
             }
         }
         
@@ -7516,20 +7555,38 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Info block.
+        ///   Looks up a localized string similar to Info box.
         /// </summary>
-        internal static string ribInsertInfoBlockButton_Label {
+        internal static string ribInsertInfoBoxButton_Label {
             get {
-                return ResourceManager.GetString("ribInsertInfoBlockButton_Label", resourceCulture);
+                return ResourceManager.GetString("ribInsertInfoBoxButton_Label", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Insert an informational block.
+        ///   Looks up a localized string similar to Insert an informational box.
         /// </summary>
-        internal static string ribInsertInfoBlockButton_Screentip {
+        internal static string ribInsertInfoBoxButton_Screentip {
             get {
-                return ResourceManager.GetString("ribInsertInfoBlockButton_Screentip", resourceCulture);
+                return ResourceManager.GetString("ribInsertInfoBoxButton_Screentip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Notes box.
+        /// </summary>
+        internal static string ribInsertNoteBoxButton_Label {
+            get {
+                return ResourceManager.GetString("ribInsertNoteBoxButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Insert a notes box.
+        /// </summary>
+        internal static string ribInsertNoteBoxButton_Screentip {
+            get {
+                return ResourceManager.GetString("ribInsertNoteBoxButton_Screentip", resourceCulture);
             }
         }
         
@@ -7624,20 +7681,20 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Warning block.
+        ///   Looks up a localized string similar to Warning box.
         /// </summary>
-        internal static string ribInsertWarnBlockButton_Label {
+        internal static string ribInsertWarnBoxButton_Label {
             get {
-                return ResourceManager.GetString("ribInsertWarnBlockButton_Label", resourceCulture);
+                return ResourceManager.GetString("ribInsertWarnBoxButton_Label", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Insert a warning block.
+        ///   Looks up a localized string similar to Insert a warning box.
         /// </summary>
-        internal static string ribInsertWarnBlockButton_Screentip {
+        internal static string ribInsertWarnBoxButton_Screentip {
             get {
-                return ResourceManager.GetString("ribInsertWarnBlockButton_Screentip", resourceCulture);
+                return ResourceManager.GetString("ribInsertWarnBoxButton_Screentip", resourceCulture);
             }
         }
         
@@ -11371,6 +11428,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Information.
+        /// </summary>
+        internal static string word_Information {
+            get {
+                return ResourceManager.GetString("word_Information", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Keyboard.
         /// </summary>
         internal static string word_Keyboard {
@@ -11439,6 +11505,15 @@ namespace River.OneMoreAddIn.Properties {
         internal static string word_Notebook {
             get {
                 return ResourceManager.GetString("word_Notebook", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Notes.
+        /// </summary>
+        internal static string word_Notes {
+            get {
+                return ResourceManager.GetString("word_Notes", resourceCulture);
             }
         }
         
@@ -11682,6 +11757,15 @@ namespace River.OneMoreAddIn.Properties {
         internal static string word_Total {
             get {
                 return ResourceManager.GetString("word_Total", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Warning.
+        /// </summary>
+        internal static string word_Warning {
+            get {
+                return ResourceManager.GetString("word_Warning", resourceCulture);
             }
         }
         

@@ -142,19 +142,26 @@
               getEnabled="GetBodyContext"
               onAction="InsertCodeBlockCmd"/>
             <button
-              id="ribInsertInfoBlockButton"
+              id="ribInsertInfoBoxButton"
               imageMso="Info"
               getLabel="GetRibbonLabel"
               getScreentip="GetRibbonScreentip"
               getEnabled="GetBodyContext"
-              onAction="InsertInfoBlockCmd"/>
+              onAction="InsertInfoBoxCmd"/>
             <button
-              id="ribInsertWarnBlockButton"
+              id="ribInsertNoteBoxButton"
+              imageMso="GroupWorkbookViews"
+              getLabel="GetRibbonLabel"
+              getScreentip="GetRibbonScreentip"
+              getEnabled="GetBodyContext"
+              onAction="InsertNoteBoxCmd"/>
+            <button
+              id="ribInsertWarnBoxButton"
               imageMso="HighImportance"
               getLabel="GetRibbonLabel"
               getScreentip="GetRibbonScreentip"
               getEnabled="GetBodyContext"
-              onAction="InsertWarnBlockCmd"/>
+              onAction="InsertWarnBoxCmd"/>
             <button
               id="ribInsertExpandButton"
               imageMso="PivotExpandIndicators"

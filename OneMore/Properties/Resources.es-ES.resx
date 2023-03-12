@@ -595,7 +595,7 @@ OneNote se cerrará automáticamente</value>
     <value>... Estado verde</value>
     <comment>context menu option</comment>
   </data>
-  <data name="ContextMenuSheet_ribInsertInfoBlockButton" xml:space="preserve">
+  <data name="ContextMenuSheet_ribInsertInfoBoxButton" xml:space="preserve">
     <value>... Bloque de información</value>
     <comment>context menu option</comment>
   </data>
@@ -611,7 +611,7 @@ OneNote se cerrará automáticamente</value>
     <value>... Tabla de contenido</value>
     <comment>context menu option</comment>
   </data>
-  <data name="ContextMenuSheet_ribInsertWarnBlockButton" xml:space="preserve">
+  <data name="ContextMenuSheet_ribInsertWarnBoxButton" xml:space="preserve">
     <value>... Bloque de advertencia</value>
     <comment>context menu option</comment>
   </data>
@@ -1568,6 +1568,9 @@ Símbolos: PI, E</value>
   <data name="InsertCodeBlockCommand_Text" xml:space="preserve">
     <value>Tu contenido aquí ...</value>
     <comment>text</comment>
+  </data>
+  <data name="InsertInfoBox_yourContentHere" xml:space="preserve">
+    <value>Tu contenido aquí...</value>
   </data>
   <data name="InsertQRCommand_MaxLength" xml:space="preserve">
     <value>El texto seleccionado no puede superar los {0} caracteres</value>
@@ -3252,12 +3255,20 @@ polaroid</value>
     <value>Insertar una etiqueta de estado verde</value>
     <comment>ribbon snippets</comment>
   </data>
-  <data name="ribInsertInfoBlockButton_Label" xml:space="preserve">
-    <value>Bloque de información</value>
-    <comment>Ribbon OneMore menu item, Snippets...</comment>
+  <data name="ribInsertInfoBoxButton_Label" xml:space="preserve">
+    <value>Caja de información</value>
+    <comment>ribbon snippets</comment>
   </data>
-  <data name="ribInsertInfoBlockButton_Screentip" xml:space="preserve">
-    <value>Insertar un bloque informativo</value>
+  <data name="ribInsertInfoBoxButton_Screentip" xml:space="preserve">
+    <value>Insertar un cuadro informativo</value>
+    <comment>ribbon snippets</comment>
+  </data>
+  <data name="ribInsertNoteBoxButton_Label" xml:space="preserve">
+    <value>Cuadro de notas</value>
+    <comment>ribbon snippets</comment>
+  </data>
+  <data name="ribInsertNoteBoxButton_Screentip" xml:space="preserve">
+    <value>Insertar un cuadro de notas</value>
     <comment>ribbon snippets</comment>
   </data>
   <data name="ribInsertQRButton_Label" xml:space="preserve">
@@ -3300,12 +3311,12 @@ polaroid</value>
     <value>Insertar una tabla de contenido de encabezados en la parte superior de la página</value>
     <comment>ribbon snippets</comment>
   </data>
-  <data name="ribInsertWarnBlockButton_Label" xml:space="preserve">
-    <value>Bloque de advertencia</value>
-    <comment>Ribbon OneMore menu item, Snippets...</comment>
+  <data name="ribInsertWarnBoxButton_Label" xml:space="preserve">
+    <value>Cuadro de advertencia</value>
+    <comment>ribbon snippets</comment>
   </data>
-  <data name="ribInsertWarnBlockButton_Screentip" xml:space="preserve">
-    <value>Insertar un bloque de advertencia</value>
+  <data name="ribInsertWarnBoxButton_Screentip" xml:space="preserve">
+    <value>Insertar un cuadro de advertencia</value>
     <comment>ribbon snippets</comment>
   </data>
   <data name="ribInsertYellowStatusButton_Label" xml:space="preserve">
@@ -4879,6 +4890,9 @@ En esta sección</value>
   <data name="word_History" xml:space="preserve">
     <value>Historia</value>
   </data>
+  <data name="word_Information" xml:space="preserve">
+    <value>Información</value>
+  </data>
   <data name="word_Keyboard" xml:space="preserve">
     <value>Teclado</value>
   </data>
@@ -4902,6 +4916,9 @@ En esta sección</value>
   </data>
   <data name="word_Notebook" xml:space="preserve">
     <value>Computadora portátil</value>
+  </data>
+  <data name="word_Notes" xml:space="preserve">
+    <value>notas</value>
   </data>
   <data name="word_OK" xml:space="preserve">
     <value>OK</value>
@@ -4983,6 +5000,9 @@ En esta sección</value>
   </data>
   <data name="word_Total" xml:space="preserve">
     <value>Total</value>
+  </data>
+  <data name="word_Warning" xml:space="preserve">
+    <value>Advertencia</value>
   </data>
   <data name="word_Width" xml:space="preserve">
     <value>Ancho</value>
