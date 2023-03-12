@@ -26,7 +26,7 @@ namespace River.OneMoreAddIn
 	}
 
 
-	internal class CommandProvider
+	internal class CommandProvider : Loggable
 	{
 		private const string CollectionName = "mru";
 		private const string SettingsName = "commands";
@@ -204,11 +204,11 @@ namespace River.OneMoreAddIn
 				runner = command.GetType().Name.Replace("Command", "Cmd");
 				if (typeof(AddIn).GetMethod(runner) == null)
 				{
-					Logger.Current.WriteLine($"SaveToMRU skipping {runner}");
+					logger.WriteLine($"SaveToMRU skipping {runner}, method not found");
 					return;
 				}
 
-				Logger.Current.WriteLine($"SaveToMRU using derived name {runner}");
+				//logger.WriteLine($"SaveToMRU using derived name {runner}");
 			}
 
 			try
@@ -265,7 +265,7 @@ namespace River.OneMoreAddIn
 			}
 			catch (Exception exc)
 			{
-				Logger.Current.WriteLine("error recording MRU", exc);
+				logger.WriteLine("error recording MRU", exc);
 			}
 		}
 
@@ -280,7 +280,7 @@ namespace River.OneMoreAddIn
 			var runner = command.Method.Name.Replace("Cmd", "Command");
 			var runtype = $"River.OneMoreAddIn.Commands.{runner}";
 
-			Logger.Current.WriteLine($"SaveToMRU using method {command.Method.Name} -> {runtype}");
+			//logger.WriteLine($"SaveToMRU using method {command.Method.Name} -> {runtype}");
 
 			try
 			{
@@ -321,7 +321,7 @@ namespace River.OneMoreAddIn
 			}
 			catch (Exception exc)
 			{
-				Logger.Current.WriteLine("error recording MRU", exc);
+				logger.WriteLine("error recording MRU", exc);
 			}
 		}
 	}
