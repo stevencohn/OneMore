@@ -2133,10 +2133,6 @@ Total Row Font
     <value>תחביר לא חוקי או בחירה לא מלאה של PlantUML</value>
     <comment>error message</comment>
   </data>
-  <data name="PlantUmlCommand_tooBig" xml:space="preserve">
-    <value>קוד PlantUML זה גדול מדי. זה לא יכול לעלות על 2,011 תווים.</value>
-    <comment>error message</comment>
-  </data>
   <data name="Plugin_InvalidSchema" xml:space="preserve">
     <value>זוהה XML לא חוקי. בדוק את קובץ היומן לפרטים</value>
     <comment>error message</comment>

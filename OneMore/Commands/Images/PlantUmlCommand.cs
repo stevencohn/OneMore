@@ -316,9 +316,10 @@ namespace River.OneMoreAddIn.Commands
 			// convert...
 
 			var bytes = Render(text);
-			if (bytes.Length == 0)
+			if (!string.IsNullOrWhiteSpace(errorMessage))
 			{
-				UIHelper.ShowError(Resx.PlantUmlCommand_tooBig);
+				UIHelper.ShowError(errorMessage);
+				return false;
 			}
 
 			// update image...

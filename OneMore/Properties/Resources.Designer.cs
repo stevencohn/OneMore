@@ -4865,15 +4865,6 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to This PlantUML code is too large. It cannot exceed 2,011 characters..
-        /// </summary>
-        internal static string PlantUmlCommand_tooBig {
-            get {
-                return ResourceManager.GetString("PlantUmlCommand_tooBig", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Invalid XML detected. Check log file for details.
         /// </summary>
         internal static string Plugin_InvalidSchema {

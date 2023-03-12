@@ -2063,10 +2063,6 @@ Aufgeschoben</value>
     <value>Ungültige Syntax oder unvollständige Auswahl von PlantUML</value>
     <comment>error message</comment>
   </data>
-  <data name="PlantUmlCommand_tooBig" xml:space="preserve">
-    <value>Dieser PlantUML-Code ist zu groß. Es darf 2.011 Zeichen nicht überschreiten.</value>
-    <comment>error message</comment>
-  </data>
   <data name="Plugin_InvalidSchema" xml:space="preserve">
     <value>Ungültiges XML erkannt. </value>
     <comment>error message</comment>

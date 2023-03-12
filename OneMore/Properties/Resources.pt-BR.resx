@@ -2069,10 +2069,6 @@ Diferido</value>
     <value>Sintaxe inválida ou seleção incompleta de PlantUML</value>
     <comment>error message</comment>
   </data>
-  <data name="PlantUmlCommand_tooBig" xml:space="preserve">
-    <value>Este código PlantUML é muito grande. Não pode exceder 2.011 caracteres.</value>
-    <comment>error message</comment>
-  </data>
   <data name="Plugin_InvalidSchema" xml:space="preserve">
     <value>XML inválido detectado. </value>
     <comment>error message</comment>

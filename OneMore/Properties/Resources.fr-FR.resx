@@ -2065,10 +2065,6 @@ Différé</value>
     <value>Syntaxe invalide ou sélection incomplète de PlantUML</value>
     <comment>error message</comment>
   </data>
-  <data name="PlantUmlCommand_tooBig" xml:space="preserve">
-    <value>Ce code PlantUML est trop volumineux. Il ne peut pas dépasser 2 011 caractères.</value>
-    <comment>error message</comment>
-  </data>
   <data name="Plugin_InvalidSchema" xml:space="preserve">
     <value>XML non valide détecté. </value>
     <comment>error message</comment>
