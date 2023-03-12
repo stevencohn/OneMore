@@ -89,26 +89,6 @@
               imageMso="StarUnratedFull"
               getContent="GetMySnippetsContent"/>
             <button
-              id="ribInsertSingleLineButton"
-              imageMso="HorizontalLineInsert"
-              getLabel="GetRibbonLabel"
-              getScreentip="GetRibbonScreentip"
-              getEnabled="SetBodyContext"
-              onAction="InsertSingleLineCmd"/>
-            <button
-              id="ribInsertDoubleLineButton"
-              image="DoubleLine"
-              getLabel="GetRibbonLabel"
-              getScreentip="GetRibbonScreentip"
-              getEnabled="GetBodyContext"
-              onAction="InsertDoubleLineCmd"/>
-            <button
-              id="ribInsertTocButton"
-              imageMso="WordInsertTableOfContents2"
-              getLabel="GetRibbonLabel"
-              getScreentip="GetRibbonScreentip"
-              onAction="InsertTocCmd"/>
-            <button
               id="ribInsertBreadcrumbButton"
               imageMso="ShapeRightArrow"
               getLabel="GetRibbonLabel"
@@ -122,18 +102,32 @@
               getEnabled="GetBodyContext"
               onAction="InsertCalendarCmd"/>
             <button
+              id="ribInsertDoubleLineButton"
+              image="DoubleLine"
+              getLabel="GetRibbonLabel"
+              getScreentip="GetRibbonScreentip"
+              getEnabled="GetBodyContext"
+              onAction="InsertDoubleLineCmd"/>
+            <button
+              id="ribInsertSingleLineButton"
+              imageMso="HorizontalLineInsert"
+              getLabel="GetRibbonLabel"
+              getScreentip="GetRibbonScreentip"
+              getEnabled="SetBodyContext"
+              onAction="InsertSingleLineCmd"/>
+            <button
               id="ribInsertDateButton"
               imageMso="HeaderFooterCurrentDate"
               getLabel="GetRibbonLabel"
               getScreentip="GetRibbonScreentip"
               onAction="InsertDateCmd"/>
             <button
-              id="ribInsertTextBoxButton"
-              imageMso="TextBoxInsert"
+              id="ribInsertTocButton"
+              imageMso="WordInsertTableOfContents2"
               getLabel="GetRibbonLabel"
               getScreentip="GetRibbonScreentip"
-              getEnabled="GetBodyContext"
-              onAction="InsertTextBoxCmd"/>
+              onAction="InsertTocCmd"/>
+            <menuSeparator id="sepSnipBoxes" />
             <button
               id="ribInsertCodeBoxButton"
               imageMso="CodeEdit"
@@ -141,6 +135,13 @@
               getScreentip="GetRibbonScreentip"
               getEnabled="GetBodyContext"
               onAction="InsertCodeBoxCmd"/>
+            <button
+              id="ribInsertTextBoxButton"
+              imageMso="TextBoxInsert"
+              getLabel="GetRibbonLabel"
+              getScreentip="GetRibbonScreentip"
+              getEnabled="GetBodyContext"
+              onAction="InsertTextBoxCmd"/>
             <button
               id="ribInsertInfoBoxButton"
               imageMso="Info"
@@ -169,6 +170,7 @@
               getScreentip="GetRibbonScreentip"
               getEnabled="GetBodyContext"
               onAction="InsertExpandCmd"/>
+            <menuSeparator id="sepSnipLabels" />
             <button
               id="ribInsertGrayStatusButton"
               imageMso="AppointmentColor4"

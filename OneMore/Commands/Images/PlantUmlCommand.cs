@@ -6,6 +6,7 @@ namespace River.OneMoreAddIn.Commands
 {
 	using River.OneMoreAddIn.Models;
 	using River.OneMoreAddIn.Settings;
+	using River.OneMoreAddIn.Styles;
 	using River.OneMoreAddIn.UI;
 	using System;
 	using System.Drawing;
@@ -173,6 +174,16 @@ namespace River.OneMoreAddIn.Commands
 
 				var parents = runs.Select(e => e.Parent).Distinct().ToList();
 				parents.DescendantsAndSelf().Attributes("selected")?.Remove();
+
+				var stylizer = new Stylizer(new Style
+				{
+					Color = "#7F7F7F",
+					FontFamily = "Lucida Console",
+					FontSize = "9.5pt"
+				});
+
+				parents.ForEach(e => stylizer.ApplyStyle(e));
+
 				parents.Remove();
 				container.Add(new XElement(ns + "OEChildren", parents));
 
