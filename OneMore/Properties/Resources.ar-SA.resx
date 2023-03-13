@@ -118,9 +118,6 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="_0336_OneNoteApplication_2013" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>0336.OneNoteApplication_2013.xsd;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
-  </data>
   <data name="AboutDialog.Text" xml:space="preserve">
     <value>الوظيفة الإضافية OneMore</value>
     <comment>dialog title bar</comment>
@@ -267,9 +264,6 @@
     <value>قد يستغرق التقرير دقائق</value>
     <comment>label</comment>
   </data>
-  <data name="Architecture" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>emoji\architecture.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="ArchiveCommand_archived" xml:space="preserve">
     <value>تم وضع {0} من الصفحات في الأرشيف في {1}</value>
     <comment>message</comment>
@@ -318,9 +312,6 @@
     <value>مستخدم حديثا</value>
     <comment>listview annotation</comment>
   </data>
-  <data name="Automobile" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Emoji\Automobile.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="BiLinkCommand_BadAnchor" xml:space="preserve">
     <value>لا يمكن وضع علامة على نقطة الارتساء. </value>
     <comment>message box</comment>
@@ -349,9 +340,6 @@
     <value>حدد كلمة أو عبارة من فقرة واحدة</value>
     <comment>message box</comment>
   </data>
-  <data name="Bold" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>images\bold.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="BreakingDialog_groupBox.Text" xml:space="preserve">
     <value>تباعد</value>
     <comment>group box</comment>
@@ -367,9 +355,6 @@
   <data name="BreakingDialog_twoButton.Text" xml:space="preserve">
     <value>مسافتان بين الجمل</value>
     <comment>radio</comment>
-  </data>
-  <data name="Bullet" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>emoji\bullet.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Calculator_ErrClosingParenExpected" xml:space="preserve">
     <value>توقع قوس الإغلاق</value>
@@ -414,15 +399,6 @@
   <data name="Calculator_ErrWrongParamCount" xml:space="preserve">
     <value>رقم خاطئ لمعلمات الوظيفة</value>
     <comment>error</comment>
-  </data>
-  <data name="Calendar" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>emoji\calendar.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Camera" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>emoji\camera.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Circle" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>emoji\circle.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="ClearLog_Message" xml:space="preserve">
     <value>مسح ملف السجل الآن؟</value>
@@ -787,9 +763,6 @@
     <value>اختر الكل</value>
     <comment>select all button</comment>
   </data>
-  <data name="Cross" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>emoji\cross.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="ctxCleanMenu_Label" xml:space="preserve">
     <value>نظيف ...</value>
     <comment>Context menu</comment>
@@ -830,12 +803,6 @@
     <value>CustomStyles.xml</value>
     <comment>FILENAME</comment>
   </data>
-  <data name="Cyclist" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>emoji\cyclist.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Delete" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>images\delete.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="DeleteFormulaCommand_Deleted" xml:space="preserve">
     <value>الصيغ المحذوفة من {0} خلية (خلايا)</value>
     <comment>delete command message</comment>
@@ -859,12 +826,6 @@
   <data name="DialogResetSettings_Text" xml:space="preserve">
     <value>اعادة الضبط</value>
     <comment>system menu</comment>
-  </data>
-  <data name="DoubleLine" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>images\doubleline.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="DownArrow" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>images\downarrow.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="EditTableThemesDialog_colorsTab.Text" xml:space="preserve">
     <value>الألوان</value>
@@ -1097,9 +1058,6 @@
     <value>حدد أو أكثر من الرموز التعبيرية لإضافتها إلى عنوان الصفحة</value>
     <comment>instructions</comment>
   </data>
-  <data name="Envelope" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>emoji\envelope.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="Error_BodyContext" xml:space="preserve">
     <value>يجب أن يكون تركيز النص في نص الصفحة</value>
     <comment>error message box</comment>
@@ -1160,9 +1118,6 @@
     <value>استبدال الأحرف الخاصة في اسم الملف مع الشرطة السفلية</value>
     <comment>checkbox</comment>
   </data>
-  <data name="Family" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Emoji\Family.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="Favorites_suspect" xml:space="preserve">
     <value>الصفحة غير موجودة؛ ربما تمت إعادة تسميته أو نقله</value>
     <comment>tooltip</comment>
@@ -1203,9 +1158,6 @@
     <value>عرض صورة الاستيراد المفضل</value>
     <comment>label</comment>
   </data>
-  <data name="Financial" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Emoji\Financial.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="FitGridToTextCommand_noGrid" xml:space="preserve">
     <value>قم بتمكين خطوط الشبكة قبل استخدام هذا الأمر</value>
     <comment>message</comment>
@@ -1233,12 +1185,6 @@
   <data name="FitGridToTextDialog_Text" xml:space="preserve">
     <value>احتواء الشبكة على النص</value>
     <comment>dialog title</comment>
-  </data>
-  <data name="Flag" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>emoji\flag.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="FontColor" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>images\fontcolor.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="FormulaCommand_Exception" xml:space="preserve">
     <value>{0} (العمود {1})</value>
@@ -1331,9 +1277,6 @@
   <data name="GetImagesCommand_Cite" xml:space="preserve">
     <value>هل ترغب في إضافة تعليق توضيحي على الصورة بعنوان URL الخاص بها؟</value>
     <comment>message box</comment>
-  </data>
-  <data name="Hammer" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>emoji\hammer.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="HasActiveMedia" xml:space="preserve">
     <value>لا يمكن استدعاء أوامر OneMore أثناء وجود تسجيل نشط. الرجاء إيقاف التسجيل وحاول مرة أخرى.</value>
@@ -1636,15 +1579,9 @@
     <value>أضف ارتباطًا إلى كل عنوان للانتقال إلى أعلى الصفحة</value>
     <comment>checkbox</comment>
   </data>
-  <data name="Italic" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>images\italic.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="JoinParagraphCommand_Select" xml:space="preserve">
     <value>حدد سطرين أو أكثر للانضمام</value>
     <comment>info message</comment>
-  </data>
-  <data name="Journal" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>emoji\journal.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="KeyboardSheet_clearButton.Text" xml:space="preserve">
     <value>صافي</value>
@@ -1733,9 +1670,6 @@
     <value>تحميل نمط النمط</value>
     <comment>OpenFileDialog title</comment>
   </data>
-  <data name="Logo" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>images\logo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="MapDialog_groupBox.Text" xml:space="preserve">
     <value>الصفحات بتنسيق</value>
     <comment>group box</comment>
@@ -1759,9 +1693,6 @@
   <data name="MapDialog_Text" xml:space="preserve">
     <value>إنشاء خريطة الصفحة</value>
     <comment>dialog title</comment>
-  </data>
-  <data name="Memo" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Emoji\Memo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="NameStyleDialog_errorLabel.Text" xml:space="preserve">
     <value>الاسم موجود. اختر اسمًا مختلفًا.</value>
@@ -1846,15 +1777,6 @@
     <value>اتصال الشبكة غير متوفر</value>
     <comment>error</comment>
   </data>
-  <data name="NewStyle" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>images\newstyle.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="NoSpellCheck" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>images\nospellcheck.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="NotebookMask" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>images\notebookmask.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="NumberingPage_Message" xml:space="preserve">
     <value>صفحة الترقيم {0}</value>
     <comment>progress status dialog</comment>
@@ -1893,9 +1815,6 @@
   <data name="oneNamespace" xml:space="preserve">
     <value>http://schemas.microsoft.com/office/onenote/2013/onenote</value>
     <comment>DO NOT TRANSLATE</comment>
-  </data>
-  <data name="Open" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>images\open.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="OpenImageWithCommand_selectOne" xml:space="preserve">
     <value>حدد صورة واحدة لفتحها</value>
@@ -2030,9 +1949,6 @@
     <value>انقر هنا لتحديد لون محدد مسبقًا</value>
     <comment>label</comment>
   </data>
-  <data name="Passwords" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Emoji\Passwords.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="PasteCellsCommand_NoContent" xml:space="preserve">
     <value>لا يوجد محتوى للصقه ؛ </value>
     <comment>message box</comment>
@@ -2040,9 +1956,6 @@
   <data name="PasteCellsCommand_SelectCell" xml:space="preserve">
     <value>حدد خلية جدول حيث يجب أن تبدأ الخلايا الملصقة في التراكب</value>
     <comment>message box</comment>
-  </data>
-  <data name="Pencil" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>emoji\pencil.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="phrase_AdvancedOptions" xml:space="preserve">
     <value>خيارات متقدمة</value>
@@ -2207,9 +2120,6 @@ zh-CN ، الصينية (المبسطة)</value>
     <comment>Recognized languages, one per line.
 ISO-code then comma then language name</comment>
   </data>
-  <data name="Pushpin" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>emoji\pushpin.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="QuickNotesSheet_groupingBox.Text" xml:space="preserve">
     <value>أسبوع العمل (2023-02-13 W7)
 الشهر (2023-02)
@@ -2273,9 +2183,6 @@ ISO-code then comma then language name</comment>
   <data name="RecalculateFormulaCommand_NoFormula" xml:space="preserve">
     <value>لم يتم العثور على صيغة في الجدول المحدد</value>
     <comment>recalculate command message</comment>
-  </data>
-  <data name="Refresh" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>images\refresh.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="RefreshPageLinksCommand_none" xml:space="preserve">
     <value>لا توجد مراجع وجدت لهذه الصفحة</value>
@@ -2504,9 +2411,6 @@ ISO-code then comma then language name</comment>
     <value>إزالة الرقم من الصفحة {0}</value>
     <comment>progress status dialog</comment>
   </data>
-  <data name="Reorder" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>images\reorder.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="ReorderDialog.Text" xml:space="preserve">
     <value>إعادة ترتيب الأنماط</value>
     <comment>dialog title</comment>
@@ -2718,9 +2622,6 @@ ISO-code then comma then language name</comment>
   <data name="ribArrangeContainersButton_Label" xml:space="preserve">
     <value>ترتيب الحاويات</value>
     <comment>ribbon button</comment>
-  </data>
-  <data name="Ribbon" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\ribbon\ribbon.xml;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
   </data>
   <data name="RibbonBarSheet_editGroup.Text" xml:space="preserve">
     <value>تحرير الأوامر</value>
@@ -3956,9 +3857,6 @@ ISO-code then comma then language name</comment>
     <value>تقرير عدد الكلمات في هذه الصفحة</value>
     <comment>ribbon page</comment>
   </data>
-  <data name="SaveAs" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>images\saveas.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="SaveAs_Error" xml:space="preserve">
     <value>خطأ في حفظ الصفحة باسم {0}</value>
     <comment>Save as dialog error message</comment>
@@ -4119,12 +4017,6 @@ ISO-code then comma then language name</comment>
     <value>لون القسم</value>
     <comment>dialog title</comment>
   </data>
-  <data name="SectionGroup" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>images\sectiongroup.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="SectionMask" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>images\sectionmask.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="SelectStyleCommand_context" xml:space="preserve">
     <value>انقل مؤشر النص إلى موقع واحد على الصفحة. غير مسموح مناطق الاختيار.</value>
     <comment>message box</comment>
@@ -4207,9 +4099,6 @@ ISO-code then comma then language name</comment>
   <data name="SettingsFilename" xml:space="preserve">
     <value>Settings.xml</value>
     <comment>FILENAME</comment>
-  </data>
-  <data name="Shazam" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Emoji\Shazam.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="ShowXmlDialog.Text" xml:space="preserve">
     <value>OneMore XML</value>
@@ -4295,9 +4184,6 @@ ISO-code then comma then language name</comment>
     <value>دوران النص</value>
     <comment>checkbox</comment>
   </data>
-  <data name="Smiley" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>emoji\smiley.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="SnippetsSheet_ConfirmDelete" xml:space="preserve">
     <value>حذف المقتطف "{0}"</value>
     <comment>question</comment>
@@ -4309,9 +4195,6 @@ ISO-code then comma then language name</comment>
   <data name="SnippetsSheet_Text" xml:space="preserve">
     <value>المقتطفات</value>
     <comment>SnippetsSheet</comment>
-  </data>
-  <data name="Software" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Emoji\Software.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="SortDialog.Text" xml:space="preserve">
     <value>فرز</value>
@@ -4441,18 +4324,9 @@ ISO-code then comma then language name</comment>
     <value>قم بتعيين كل الأعمدة على أنها ذات عرض ثابت</value>
     <comment>checkbox</comment>
   </data>
-  <data name="Sports" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Emoji\Sports.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Star" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>emoji\star.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="StartupFailureMessage" xml:space="preserve">
     <value>فشل OneMore في الاتصال بـ OneNote ، راجع ملف السجل للحصول على تفاصيل الاستثناء</value>
     <comment>message box</comment>
-  </data>
-  <data name="Strikethrough" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>images\strikethrough.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="StyleDialog_afterLabel.Text" xml:space="preserve">
     <value>مسافة بعد:</value>
@@ -4580,15 +4454,6 @@ ISO-code then comma then language name</comment>
     <value>تسطير</value>
     <comment>button</comment>
   </data>
-  <data name="Subscript" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>images\subscript.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Summary" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>emoji\summary.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Superscript" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>images\superscript.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="TableTheme_Screentip" xml:space="preserve">
     <value>موضوع جدول OneMore {0}</value>
     <comment>Screentip for table theme gallery tiles</comment>
@@ -4655,12 +4520,6 @@ ISO-code then comma then language name</comment>
   <data name="TaggingDialog_tagLabel.Text" xml:space="preserve">
     <value>علامات الصفحة</value>
     <comment>header label</comment>
-  </data>
-  <data name="Tasks" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Emoji\Tasks.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="TextHighlightColorPicker" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>images\texthighlightcolorpicker.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="TextToTable_NoText" xml:space="preserve">
     <value>لم يتم تحديد نص</value>
@@ -4742,15 +4601,6 @@ ISO-code then comma then language name</comment>
     <value>تبديل</value>
     <comment>group box</comment>
   </data>
-  <data name="Travel" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Emoji\Travel.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Underline" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>images\underline.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="UpArrow" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>images\uparrow.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="UpdateDialog.Text" xml:space="preserve">
     <value>تحقق من وجود تحديثات OneMore</value>
     <comment>dialog title</comment>
@@ -4802,9 +4652,6 @@ ISO-code then comma then language name</comment>
   <data name="UpdateDialog_versionLabel.Text" xml:space="preserve">
     <value>الإصدار المثبت:</value>
     <comment>label</comment>
-  </data>
-  <data name="Watch" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>emoji\watch.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="word_Actual" xml:space="preserve">
     <value>فعلي</value>

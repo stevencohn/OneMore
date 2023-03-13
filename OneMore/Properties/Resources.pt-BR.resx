@@ -118,9 +118,6 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="_0336_OneNoteApplication_2013" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>0336.OneNoteApplication_2013.xsd;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
-  </data>
   <data name="AboutDialog.Text" xml:space="preserve">
     <value>Suplemento OneMore</value>
     <comment>dialog title bar</comment>
@@ -268,9 +265,6 @@ OneNote fechará automaticamente</value>
     <value>Relatório pode levar minutos</value>
     <comment>label</comment>
   </data>
-  <data name="Architecture" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>emoji\architecture.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="ArchiveCommand_archived" xml:space="preserve">
     <value>{0} páginas arquivadas em {1}</value>
     <comment>message</comment>
@@ -319,9 +313,6 @@ OneNote fechará automaticamente</value>
     <value>usado recentemente</value>
     <comment>listview annotation</comment>
   </data>
-  <data name="Automobile" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Emoji\Automobile.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="BiLinkCommand_BadAnchor" xml:space="preserve">
     <value>Não foi possível marcar o ponto de ancoragem. </value>
     <comment>message box</comment>
@@ -350,9 +341,6 @@ OneNote fechará automaticamente</value>
     <value>Selecione uma palavra ou frase de um parágrafo</value>
     <comment>message box</comment>
   </data>
-  <data name="Bold" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>images\bold.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="BreakingDialog_groupBox.Text" xml:space="preserve">
     <value>Espaçamento</value>
     <comment>group box</comment>
@@ -368,9 +356,6 @@ OneNote fechará automaticamente</value>
   <data name="BreakingDialog_twoButton.Text" xml:space="preserve">
     <value>Dois espaços entre as frases</value>
     <comment>radio</comment>
-  </data>
-  <data name="Bullet" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>emoji\bullet.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Calculator_ErrClosingParenExpected" xml:space="preserve">
     <value>Parêntese de fechamento esperado</value>
@@ -415,15 +400,6 @@ OneNote fechará automaticamente</value>
   <data name="Calculator_ErrWrongParamCount" xml:space="preserve">
     <value>Número errado de parâmetros de função</value>
     <comment>error</comment>
-  </data>
-  <data name="Calendar" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>emoji\calendar.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Camera" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>emoji\camera.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Circle" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>emoji\circle.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="ClearLog_Message" xml:space="preserve">
     <value>Limpar o arquivo de log agora?</value>
@@ -788,9 +764,6 @@ OneNote fechará automaticamente</value>
     <value>Selecionar tudo</value>
     <comment>select all button</comment>
   </data>
-  <data name="Cross" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>emoji\cross.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="ctxCleanMenu_Label" xml:space="preserve">
     <value>Limpar \ limpo...</value>
     <comment>Context menu</comment>
@@ -831,12 +804,6 @@ OneNote fechará automaticamente</value>
     <value>CustomStyles.xml</value>
     <comment>SKIP, filename</comment>
   </data>
-  <data name="Cyclist" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>emoji\cyclist.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Delete" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>images\delete.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="DeleteFormulaCommand_Deleted" xml:space="preserve">
     <value>Fórmulas excluídas de {0} célula (s)</value>
     <comment>delete command message</comment>
@@ -860,12 +827,6 @@ OneNote fechará automaticamente</value>
   <data name="DialogResetSettings_Text" xml:space="preserve">
     <value>Redefinir as configurações</value>
     <comment>system menu</comment>
-  </data>
-  <data name="DoubleLine" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>images\doubleline.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="DownArrow" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>images\downarrow.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="EditTableThemesDialog_colorsTab.Text" xml:space="preserve">
     <value>Cores</value>
@@ -1098,9 +1059,6 @@ Fonte da última coluna</value>
     <value>Selecione um ou mais emojis para adicionar ao título da página</value>
     <comment>instructions</comment>
   </data>
-  <data name="Envelope" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>emoji\envelope.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="Error_BodyContext" xml:space="preserve">
     <value>O foco do texto deve estar no corpo da página</value>
     <comment>error message box</comment>
@@ -1161,9 +1119,6 @@ Arquivo OneNote (* .one)</value>
     <value>Substitua caracteres especiais no nome do arquivo com sublinhados</value>
     <comment>checkbox</comment>
   </data>
-  <data name="Family" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Emoji\Family.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="Favorites_suspect" xml:space="preserve">
     <value>Página não encontrada; pode ter sido renomeado ou movido</value>
     <comment>tooltip</comment>
@@ -1204,9 +1159,6 @@ Arquivo OneNote (* .one)</value>
     <value>Largura da imagem de importação preferida</value>
     <comment>label</comment>
   </data>
-  <data name="Financial" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Emoji\Financial.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="FitGridToTextCommand_noGrid" xml:space="preserve">
     <value>Habilite as linhas de grade antes de usar este comando</value>
     <comment>message</comment>
@@ -1234,12 +1186,6 @@ Arquivo OneNote (* .one)</value>
   <data name="FitGridToTextDialog_Text" xml:space="preserve">
     <value>Ajustar grade ao texto</value>
     <comment>dialog title</comment>
-  </data>
-  <data name="Flag" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>emoji\flag.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="FontColor" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>images\fontcolor.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="FormulaCommand_Exception" xml:space="preserve">
     <value>{0} (coluna {1})</value>
@@ -1332,9 +1278,6 @@ Símbolos: PI, E</value>
   <data name="GetImagesCommand_Cite" xml:space="preserve">
     <value>Você gostaria de anotar a imagem com seu URL?</value>
     <comment>message box</comment>
-  </data>
-  <data name="Hammer" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>emoji\hammer.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="HasActiveMedia" xml:space="preserve">
     <value>Não é possível invocar comandos OneMore enquanto houver uma gravação ativa. Pare a gravação e tente novamente.</value>
@@ -1637,15 +1580,9 @@ Símbolos: PI, E</value>
     <value>Adicione um link a cada título para pular para o topo da página</value>
     <comment>checkbox</comment>
   </data>
-  <data name="Italic" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>images\italic.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="JoinParagraphCommand_Select" xml:space="preserve">
     <value>Selecione duas ou mais linhas para unir</value>
     <comment>info message</comment>
-  </data>
-  <data name="Journal" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>emoji\journal.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="KeyboardSheet_clearButton.Text" xml:space="preserve">
     <value>Claro</value>
@@ -1734,9 +1671,6 @@ Símbolos: PI, E</value>
     <value>Carregar tema de estilo</value>
     <comment>OpenFileDialog title</comment>
   </data>
-  <data name="Logo" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>images\logo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="MapDialog_groupBox.Text" xml:space="preserve">
     <value>Páginas em</value>
     <comment>group box</comment>
@@ -1760,9 +1694,6 @@ Símbolos: PI, E</value>
   <data name="MapDialog_Text" xml:space="preserve">
     <value>Criar mapa de página</value>
     <comment>dialog title</comment>
-  </data>
-  <data name="Memo" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Emoji\Memo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="NameStyleDialog_errorLabel.Text" xml:space="preserve">
     <value>Nome existe. Escolha um nome diferente.</value>
@@ -1847,15 +1778,6 @@ Símbolos: PI, E</value>
     <value>A conexão de rede não está disponível</value>
     <comment>error</comment>
   </data>
-  <data name="NewStyle" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>images\newstyle.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="NoSpellCheck" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>images\nospellcheck.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="NotebookMask" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>images\notebookmask.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="NumberingPage_Message" xml:space="preserve">
     <value>Página de numeração {0}</value>
     <comment>progress status dialog</comment>
@@ -1894,9 +1816,6 @@ Símbolos: PI, E</value>
   <data name="oneNamespace" xml:space="preserve">
     <value>http://schemas.microsoft.com/office/onenote/2013/onenote</value>
     <comment>SKIP</comment>
-  </data>
-  <data name="Open" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>images\open.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="OpenImageWithCommand_selectOne" xml:space="preserve">
     <value>Selecione uma imagem para abrir</value>
@@ -2031,9 +1950,6 @@ Diferido</value>
     <value>Clique aqui para selecionar uma cor pré-definida</value>
     <comment>label</comment>
   </data>
-  <data name="Passwords" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Emoji\Passwords.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="PasteCellsCommand_NoContent" xml:space="preserve">
     <value>Nenhum conteúdo para colar; </value>
     <comment>message box</comment>
@@ -2041,9 +1957,6 @@ Diferido</value>
   <data name="PasteCellsCommand_SelectCell" xml:space="preserve">
     <value>Selecione uma célula da tabela onde as células coladas devem começar a se sobrepor</value>
     <comment>message box</comment>
-  </data>
-  <data name="Pencil" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>emoji\pencil.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="phrase_AdvancedOptions" xml:space="preserve">
     <value>Opções avançadas</value>
@@ -2208,9 +2121,6 @@ zh-CN, chinês (simplificado)</value>
     <comment>Recognized languages, one per line.
 ISO-code then comma then language name</comment>
   </data>
-  <data name="Pushpin" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>emoji\pushpin.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="QuickNotesSheet_groupingBox.Text" xml:space="preserve">
     <value>Semana de Trabalho (2023-02-13 W7)
 Mês (2023-02)
@@ -2274,9 +2184,6 @@ Ano (2023)
   <data name="RecalculateFormulaCommand_NoFormula" xml:space="preserve">
     <value>Nenhuma fórmula encontrada na tabela selecionada</value>
     <comment>recalculate command message</comment>
-  </data>
-  <data name="Refresh" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>images\refresh.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="RefreshPageLinksCommand_none" xml:space="preserve">
     <value>Nenhuma referência encontrada para esta página</value>
@@ -2505,9 +2412,6 @@ Selecione Não para manter uma linha vazia entre os parágrafos</value>
     <value>Removendo número da página {0}</value>
     <comment>progress status dialog</comment>
   </data>
-  <data name="Reorder" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>images\reorder.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="ReorderDialog.Text" xml:space="preserve">
     <value>Reordenar estilos</value>
     <comment>dialog title</comment>
@@ -2719,9 +2623,6 @@ Polaroid.</value>
   <data name="ribArrangeContainersButton_Label" xml:space="preserve">
     <value>Organizar recipientes</value>
     <comment>ribbon button</comment>
-  </data>
-  <data name="Ribbon" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\ribbon\ribbon.xml;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
   </data>
   <data name="RibbonBarSheet_editGroup.Text" xml:space="preserve">
     <value>Editar Comandos</value>
@@ -3956,9 +3857,6 @@ Polaroid.</value>
     <value>Informe o número de palavras nesta página</value>
     <comment>ribbon page</comment>
   </data>
-  <data name="SaveAs" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>images\saveas.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="SaveAs_Error" xml:space="preserve">
     <value>Erro ao salvar a página como {0}</value>
     <comment>Save as dialog error message</comment>
@@ -4119,12 +4017,6 @@ Os mecanismos de pesquisa aparecerão no menu de contexto da página, clique com
     <value>Cor da Seção</value>
     <comment>dialog title</comment>
   </data>
-  <data name="SectionGroup" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>images\sectiongroup.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="SectionMask" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>images\sectionmask.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="SelectStyleCommand_context" xml:space="preserve">
     <value>Mova o cursor de texto para uma única posição na página. Regiões de seleção não são permitidas.</value>
     <comment>message box</comment>
@@ -4207,9 +4099,6 @@ Os mecanismos de pesquisa aparecerão no menu de contexto da página, clique com
   <data name="SettingsFilename" xml:space="preserve">
     <value>Settings.xml</value>
     <comment>SKIP, filename</comment>
-  </data>
-  <data name="Shazam" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Emoji\Shazam.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="ShowXmlDialog.Text" xml:space="preserve">
     <value>OneMore XML</value>
@@ -4295,9 +4184,6 @@ Você tem certeza que quer continuar?</value>
     <value>Quebrar texto</value>
     <comment>checkbox</comment>
   </data>
-  <data name="Smiley" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>emoji\smiley.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="SnippetsSheet_ConfirmDelete" xml:space="preserve">
     <value>Excluir snippet "{0}"</value>
     <comment>question</comment>
@@ -4309,9 +4195,6 @@ Você tem certeza que quer continuar?</value>
   <data name="SnippetsSheet_Text" xml:space="preserve">
     <value>Trechos</value>
     <comment>SnippetsSheet</comment>
-  </data>
-  <data name="Software" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Emoji\Software.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="SortDialog.Text" xml:space="preserve">
     <value>Ordenar</value>
@@ -4441,18 +4324,9 @@ Cadernos</value>
     <value>Defina todas as colunas como largura fixa</value>
     <comment>checkbox</comment>
   </data>
-  <data name="Sports" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Emoji\Sports.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Star" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>emoji\star.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="StartupFailureMessage" xml:space="preserve">
     <value>Falha do OneMore ao se conectar ao OneNote, consulte o arquivo de log para obter detalhes da exceção</value>
     <comment>message box</comment>
-  </data>
-  <data name="Strikethrough" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>images\strikethrough.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="StyleDialog_afterLabel.Text" xml:space="preserve">
     <value>Espaço depois:</value>
@@ -4580,15 +4454,6 @@ Título - incluir no TOC</value>
     <value>Sublinhado</value>
     <comment>button</comment>
   </data>
-  <data name="Subscript" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>images\subscript.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Summary" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>emoji\summary.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Superscript" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>images\superscript.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="TableTheme_Screentip" xml:space="preserve">
     <value>Tema de mesa OneMore {0}</value>
     <comment>Screentip for table theme gallery tiles</comment>
@@ -4655,12 +4520,6 @@ Nesta secção</value>
   <data name="TaggingDialog_tagLabel.Text" xml:space="preserve">
     <value>Tags da página.</value>
     <comment>header label</comment>
-  </data>
-  <data name="Tasks" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Emoji\Tasks.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="TextHighlightColorPicker" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>images\texthighlightcolorpicker.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="TextToTable_NoText" xml:space="preserve">
     <value>Nenhum texto foi selecionado</value>
@@ -4742,15 +4601,6 @@ Nesta secção</value>
     <value>Alternancia</value>
     <comment>group box</comment>
   </data>
-  <data name="Travel" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Emoji\Travel.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Underline" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>images\underline.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="UpArrow" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>images\uparrow.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="UpdateDialog.Text" xml:space="preserve">
     <value>Verifique se há atualizações do OneMore</value>
     <comment>dialog title</comment>
@@ -4802,9 +4652,6 @@ Nesta secção</value>
   <data name="UpdateDialog_versionLabel.Text" xml:space="preserve">
     <value>Versão instalada:</value>
     <comment>label</comment>
-  </data>
-  <data name="Watch" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>emoji\watch.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="word_Actual" xml:space="preserve">
     <value>Real</value>

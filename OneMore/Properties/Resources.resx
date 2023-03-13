@@ -118,9 +118,6 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="_0336_OneNoteApplication_2013" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>0336.OneNoteApplication_2013.xsd;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
-  </data>
   <data name="AboutDialog.Text" xml:space="preserve">
     <value>OneMore Add-in</value>
     <comment>dialog title bar</comment>
@@ -278,9 +275,6 @@ OneNote will close automatically</value>
     <value>Report may take minutes</value>
     <comment>label</comment>
   </data>
-  <data name="Architecture" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>emoji\architecture.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="ArchiveCommand_archived" xml:space="preserve">
     <value>{0} pages archive to {1}</value>
     <comment>message</comment>
@@ -329,9 +323,6 @@ OneNote will close automatically</value>
     <value>recently used</value>
     <comment>listview annotation</comment>
   </data>
-  <data name="Automobile" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>emoji\automobile.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="BiLinkCommand_BadAnchor" xml:space="preserve">
     <value>Could not mark anchor point. Select a word or phrase from one paragraph. See log file for details.</value>
     <comment>message box</comment>
@@ -360,9 +351,6 @@ OneNote will close automatically</value>
     <value>Select a word or phrase from one paragraph</value>
     <comment>message box</comment>
   </data>
-  <data name="Bold" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>images\bold.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="BreakingDialog_groupBox.Text" xml:space="preserve">
     <value>Spacing</value>
     <comment>group box</comment>
@@ -378,9 +366,6 @@ OneNote will close automatically</value>
   <data name="BreakingDialog_twoButton.Text" xml:space="preserve">
     <value>Two spaces between sentences</value>
     <comment>radio</comment>
-  </data>
-  <data name="Bullet" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>emoji\bullet.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Calculator_ErrClosingParenExpected" xml:space="preserve">
     <value>Closing parenthesis expected</value>
@@ -426,18 +411,6 @@ OneNote will close automatically</value>
     <value>Wrong number of function parameters</value>
     <comment>error</comment>
   </data>
-  <data name="Calendar" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>emoji\calendar.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Camera" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>emoji\camera.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="CheckMark" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>emoji\checkmark.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Circle" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>emoji\circle.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="ClearLog_Message" xml:space="preserve">
     <value>Clear the log file now?</value>
     <comment>message box message</comment>
@@ -453,9 +426,6 @@ OneNote will close automatically</value>
   <data name="ClearLog_Title" xml:space="preserve">
     <value>Confirm</value>
     <comment>message box title</comment>
-  </data>
-  <data name="Cloud" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>emoji\cloud.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="ColorizeDialog_Title" xml:space="preserve">
     <value>Select Language</value>
@@ -716,9 +686,6 @@ OneNote will close automatically</value>
     <value>Context Menu</value>
     <comment>sheet</comment>
   </data>
-  <data name="Copy" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Images\Copy.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="CopyAsMarkdownCommand_copied" xml:space="preserve">
     <value>Copied markdown</value>
     <comment>message box</comment>
@@ -734,9 +701,6 @@ OneNote will close automatically</value>
   <data name="CopyLinkCommand_LinkToParagraph" xml:space="preserve">
     <value>Copied link to this paragraph</value>
     <comment>message box</comment>
-  </data>
-  <data name="Copyright" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>emoji\copyright.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="CrawlWebCommand_NoHyperlinks" xml:space="preserve">
     <value>No hyperlinks found in range</value>
@@ -810,9 +774,6 @@ OneNote will close automatically</value>
     <value>Select All</value>
     <comment>select all button</comment>
   </data>
-  <data name="Cross" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>emoji\cross.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="ctxCleanMenu_Label" xml:space="preserve">
     <value>Clean...</value>
     <comment>Context menu</comment>
@@ -849,36 +810,9 @@ OneNote will close automatically</value>
     <value>{0} (Ctrl+Alt+Shift + {1})</value>
     <comment>Screentip for My Styles gallery tiles</comment>
   </data>
-  <data name="CustomStyles" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>images\customstyles.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="CustomStylesFilename" xml:space="preserve">
     <value>CustomStyles.xml</value>
     <comment>SKIP, filename</comment>
-  </data>
-  <data name="Cyclist" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>emoji\cyclist.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="DarkCustomStyles" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>images\darkcustomstyles.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="DarkFavorites" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>images\darkfavorites.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="DarkSnippets" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>images\darksnippets.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="DarkTableStyles" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>images\darktablestyles.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="DefaultStyles" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\styles\defaultstyles.xml;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
-  </data>
-  <data name="DefaultTableThemes" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\ribbon\defaulttablethemes.json;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
-  </data>
-  <data name="Delete" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>images\delete.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="DeleteFormulaCommand_Deleted" xml:space="preserve">
     <value>Deleted formulas from {0} cell(s)</value>
@@ -903,12 +837,6 @@ OneNote will close automatically</value>
   <data name="DialogResetSettings_Text" xml:space="preserve">
     <value>Reset Settings</value>
     <comment>system menu</comment>
-  </data>
-  <data name="DoubleLine" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>images\doubleline.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="DownArrow" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>images\downarrow.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="EditTableThemesDialog_colorsTab.Text" xml:space="preserve">
     <value>Colors</value>
@@ -1141,12 +1069,6 @@ Last Column Font</value>
     <value>Select on or more emojis to add to page title</value>
     <comment>instructions</comment>
   </data>
-  <data name="Envelope" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>emoji\envelope.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Equal" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>images\equal.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="Error_BodyContext" xml:space="preserve">
     <value>Text focus must be in the body of the page</value>
     <comment>error message box</comment>
@@ -1161,12 +1083,6 @@ Last Column Font</value>
   <data name="Error_SelectImage" xml:space="preserve">
     <value>Select an image before invoking this command</value>
     <comment>error message box</comment>
-  </data>
-  <data name="Exit" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Images\Exit.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="ExpandArrow" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>images\expandarrow.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="ExpandoCommand_Saved" xml:space="preserve">
     <value>Outline state has been saved for this page</value>
@@ -1213,15 +1129,6 @@ OneNote File (*.one)</value>
     <value>Replace special characters in the file name with underscores</value>
     <comment>checkbox</comment>
   </data>
-  <data name="Eyes" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>emoji\eyes.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Family" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>emoji\family.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Favorites" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>images\favorites.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="Favorites_suspect" xml:space="preserve">
     <value>Page not found; it may have been renamed or moved</value>
     <comment>tooltip</comment>
@@ -1262,9 +1169,6 @@ OneNote File (*.one)</value>
     <value>Preferred import image width</value>
     <comment>label</comment>
   </data>
-  <data name="Financial" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>emoji\financial.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="FitGridToTextCommand_noGrid" xml:space="preserve">
     <value>Enable grid lines before using this command</value>
     <comment>message</comment>
@@ -1292,18 +1196,6 @@ OneNote File (*.one)</value>
   <data name="FitGridToTextDialog_Text" xml:space="preserve">
     <value>Fit Grid to Text</value>
     <comment>dialog title</comment>
-  </data>
-  <data name="Flag" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>emoji\flag.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="FolderClose" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>images\folderclose.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="FolderOpen" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>images\folderopen.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="FontColor" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>images\fontcolor.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="FormulaCommand_Exception" xml:space="preserve">
     <value>{0} (column {1})</value>
@@ -1396,12 +1288,6 @@ Symbols: PI, E</value>
   <data name="GetImagesCommand_Cite" xml:space="preserve">
     <value>Would you like to annotate the image with its URL?</value>
     <comment>message box</comment>
-  </data>
-  <data name="Grid40" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Images\Grid40.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Hammer" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>emoji\hammer.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="HasActiveMedia" xml:space="preserve">
     <value>Cannot invoke OneMore commands while there is an active recording. Please stop the recording and try again.</value>
@@ -1569,9 +1455,6 @@ Symbols: PI, E</value>
     <value>Import Web Page</value>
     <comment>dialog title</comment>
   </data>
-  <data name="InfoBoxThemes" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\commands\snippets\infoboxthemes.json;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
-  </data>
   <data name="InsertBoxCommand_Code" xml:space="preserve">
     <value>Your code here...</value>
     <comment>text</comment>
@@ -1707,15 +1590,9 @@ Symbols: PI, E</value>
     <value>Add link to each heading to jump to top of page</value>
     <comment>checkbox</comment>
   </data>
-  <data name="Italic" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>images\italic.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="JoinParagraphCommand_Select" xml:space="preserve">
     <value>Select two or more lines to join</value>
     <comment>info message</comment>
-  </data>
-  <data name="Journal" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>emoji\journal.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="KeyboardSheet_clearButton.Text" xml:space="preserve">
     <value>Clear</value>
@@ -1732,15 +1609,6 @@ Symbols: PI, E</value>
   <data name="KeyboardSheet_resetAllButton.Text" xml:space="preserve">
     <value>Reset all</value>
     <comment>toolstrip button</comment>
-  </data>
-  <data name="Label" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>images\label.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="LabelSearch" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>images\labelsearch.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="LeftwardsArrow" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>emoji\leftwardsarrow.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="LinesSheet_clickLabel.Text" xml:space="preserve">
     <value>(click to change)</value>
@@ -1813,12 +1681,6 @@ Symbols: PI, E</value>
     <value>Load Styles</value>
     <comment>OpenFileDialog title</comment>
   </data>
-  <data name="Locked" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>images\locked.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Logo" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>images\logo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="MapDialog_groupBox.Text" xml:space="preserve">
     <value>Pages in</value>
     <comment>group box</comment>
@@ -1842,9 +1704,6 @@ Symbols: PI, E</value>
   <data name="MapDialog_Text" xml:space="preserve">
     <value>Create Page Map</value>
     <comment>dialog title</comment>
-  </data>
-  <data name="Memo" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>emoji\memo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="NameStyleDialog_errorLabel.Text" xml:space="preserve">
     <value>Name exists. Choose a different name.</value>
@@ -1929,18 +1788,6 @@ Symbols: PI, E</value>
     <value>Network connection is not available</value>
     <comment>error</comment>
   </data>
-  <data name="NewStyle" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>images\newstyle.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="NoSpellCheck" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>images\nospellcheck.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="NotebookMask" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>images\notebookmask.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="NotEqual" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>images\notequal.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="NumberingPage_Message" xml:space="preserve">
     <value>Numbering page {0}</value>
     <comment>progress status dialog</comment>
@@ -1979,9 +1826,6 @@ Symbols: PI, E</value>
   <data name="oneNamespace" xml:space="preserve">
     <value>http://schemas.microsoft.com/office/onenote/2013/onenote</value>
     <comment>SKIP</comment>
-  </data>
-  <data name="Open" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>images\open.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="OpenImageWithCommand_selectOne" xml:space="preserve">
     <value>Select one image to open</value>
@@ -2116,9 +1960,6 @@ Deferred</value>
     <value>Click here to select a pre-defined color</value>
     <comment>label</comment>
   </data>
-  <data name="Passwords" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>emoji\passwords.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="PasteCellsCommand_NoContent" xml:space="preserve">
     <value>No content to paste; copy one or more table cells to paste</value>
     <comment>message box</comment>
@@ -2126,9 +1967,6 @@ Deferred</value>
   <data name="PasteCellsCommand_SelectCell" xml:space="preserve">
     <value>Select a table cell where pasted cells should start overlaying</value>
     <comment>message box</comment>
-  </data>
-  <data name="Pencil" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>emoji\pencil.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="phrase_AdvancedOptions" xml:space="preserve">
     <value>Advanced Options</value>
@@ -2301,9 +2139,6 @@ zh-CN,Chinese (Simplified)</value>
     <comment>Recognized languages, one per line.
 ISO-code then comma then language name</comment>
   </data>
-  <data name="Pushpin" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>emoji\pushpin.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="QuickNotesSheet_groupingBox.Text" xml:space="preserve">
     <value>Work Week (2023-02-13 W7)
 Month (2023-02)
@@ -2367,9 +2202,6 @@ Year (2023)
   <data name="RecalculateFormulaCommand_NoFormula" xml:space="preserve">
     <value>No formula found in the selected table</value>
     <comment>recalculate command message</comment>
-  </data>
-  <data name="Refresh" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>images\refresh.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="RefreshPageLinksCommand_none" xml:space="preserve">
     <value>No references found to this page</value>
@@ -2602,12 +2434,6 @@ Select No to keep one empty line between paragraphs</value>
     <value>Removing number from page {0}</value>
     <comment>progress status dialog</comment>
   </data>
-  <data name="Rename" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>images\rename.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Reorder" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>images\reorder.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="ReorderDialog.Text" xml:space="preserve">
     <value>Reorder Styles</value>
     <comment>dialog title</comment>
@@ -2711,9 +2537,6 @@ Polaroid</value>
   <data name="ResizeImagesDialog_viewSizeLabel.Text" xml:space="preserve">
     <value>View size</value>
     <comment>label</comment>
-  </data>
-  <data name="Restart" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Images\Restart.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="ribAboutButton_Label" xml:space="preserve">
     <value>About OneMore</value>
@@ -2822,9 +2645,6 @@ Polaroid</value>
   <data name="ribArrangeContainersButton_Label" xml:space="preserve">
     <value>Arrange Containers</value>
     <comment>ribbon button NODUP</comment>
-  </data>
-  <data name="Ribbon" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\ribbon\ribbon.xml;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
   </data>
   <data name="RibbonBarSheet_editGroup.Text" xml:space="preserve">
     <value>Edit Commands</value>
@@ -4057,12 +3877,6 @@ Polaroid</value>
     <value>Report the number of words on this page</value>
     <comment>ribbon page</comment>
   </data>
-  <data name="RightwardsArrow" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>emoji\rightwardsarrow.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="SaveAs" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>images\saveas.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="SaveAs_Error" xml:space="preserve">
     <value>Error saving page as {0}</value>
     <comment>Save as dialog error message</comment>
@@ -4219,18 +4033,9 @@ Search engines will appear in the page context menu, right-click.</value>
     <value>Select Location</value>
     <comment>QuickFiling title</comment>
   </data>
-  <data name="Section" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>emoji\section.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="SectionColor_Title" xml:space="preserve">
     <value>Section Color</value>
     <comment>dialog title</comment>
-  </data>
-  <data name="SectionGroup" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>images\sectiongroup.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="SectionMask" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>images\sectionmask.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="SelectStyleCommand_context" xml:space="preserve">
     <value>Move the text cursor to a single position on the page. Selection regions are not allowed.</value>
@@ -4314,9 +4119,6 @@ Search engines will appear in the page context menu, right-click.</value>
   <data name="SettingsFilename" xml:space="preserve">
     <value>Settings.xml</value>
     <comment>SKIP, filename</comment>
-  </data>
-  <data name="Shazam" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>emoji\shazam.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="ShowXmlDialog.Text" xml:space="preserve">
     <value>OneMore XML</value>
@@ -4402,12 +4204,6 @@ Are you sure you want to continue?</value>
     <value>Wrap text</value>
     <comment>checkbox</comment>
   </data>
-  <data name="Smiley" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>emoji\smiley.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Snippets" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>images\snippets.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="SnippetsSheet_ConfirmDelete" xml:space="preserve">
     <value>Delete snippet "{0}"</value>
     <comment>question</comment>
@@ -4419,9 +4215,6 @@ Are you sure you want to continue?</value>
   <data name="SnippetsSheet_Text" xml:space="preserve">
     <value>Snippets</value>
     <comment>SnippetsSheet</comment>
-  </data>
-  <data name="Software" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>emoji\software.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="SortDialog.Text" xml:space="preserve">
     <value>Sort</value>
@@ -4551,27 +4344,9 @@ Notebooks</value>
     <value>Set all columns as fixed-width</value>
     <comment>checkbox</comment>
   </data>
-  <data name="Sponsor" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>images\sponsor.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="SponsorOver" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>images\sponsorover.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Sports" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>emoji\sports.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Star" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>emoji\star.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="StartupFailureMessage" xml:space="preserve">
     <value>OneMore failed to connect to OneNote, see log file for exception details</value>
     <comment>message box</comment>
-  </data>
-  <data name="StopOneNote" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\commands\tools\updater\stoponenote.ps1;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
-  </data>
-  <data name="Strikethrough" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>images\strikethrough.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="StyleDialog_afterLabel.Text" xml:space="preserve">
     <value>Space After:</value>
@@ -4699,18 +4474,6 @@ Heading - include in TOC</value>
     <value>Underline</value>
     <comment>button</comment>
   </data>
-  <data name="Subscript" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>images\subscript.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Summary" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>emoji\summary.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Superscript" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>images\superscript.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="TableStyles" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>images\tablestyles.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="TableTheme_Screentip" xml:space="preserve">
     <value>OneMore Table Theme {0}</value>
     <comment>Screentip for table theme gallery tiles</comment>
@@ -4777,15 +4540,6 @@ In this section</value>
   <data name="TaggingDialog_tagLabel.Text" xml:space="preserve">
     <value>Page Tags</value>
     <comment>header label</comment>
-  </data>
-  <data name="Task" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>images\task.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Tasks" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>emoji\tasks.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="TextHighlightColorPicker" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>images\texthighlightcolorpicker.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="TextToTable_NoText" xml:space="preserve">
     <value>No text is selected</value>
@@ -4871,18 +4625,6 @@ In this section</value>
     <value>Toggle</value>
     <comment>group box</comment>
   </data>
-  <data name="Travel" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>emoji\travel.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Underline" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>images\underline.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Unlocked" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>images\unlocked.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="UpArrow" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>images\uparrow.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="UpdateDialog.Text" xml:space="preserve">
     <value>Check for OneMore Updates</value>
     <comment>dialog title</comment>
@@ -4934,9 +4676,6 @@ In this section</value>
   <data name="UpdateDialog_versionLabel.Text" xml:space="preserve">
     <value>Installed version:</value>
     <comment>label</comment>
-  </data>
-  <data name="Watch" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>emoji\watch.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="word_Actual" xml:space="preserve">
     <value>Actual</value>
@@ -5179,7 +4918,268 @@ In this section</value>
     <value>Word Counts</value>
     <comment>page title</comment>
   </data>
+  <data name="Architecture" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>emoji\architecture.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Automobile" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>emoji\automobile.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Bullet" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>emoji\bullet.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Calendar" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>emoji\calendar.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Camera" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>emoji\camera.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="CheckMark" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>emoji\checkmark.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Circle" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>emoji\circle.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Cloud" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>emoji\cloud.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Copyright" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>emoji\copyright.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Cross" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>emoji\cross.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Cyclist" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>emoji\cyclist.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Envelope" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>emoji\envelope.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Eyes" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>emoji\eyes.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Family" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>emoji\family.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Financial" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>emoji\financial.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Flag" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>emoji\flag.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Hammer" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>emoji\hammer.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Journal" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>emoji\journal.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="LeftwardsArrow" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>emoji\leftwardsarrow.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Memo" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>emoji\memo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Passwords" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>emoji\passwords.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Pencil" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>emoji\pencil.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Pushpin" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>emoji\pushpin.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="RightwardsArrow" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>emoji\rightwardsarrow.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Section" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>emoji\section.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Shazam" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>emoji\shazam.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Smiley" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>emoji\smiley.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Software" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>emoji\software.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Sports" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>emoji\sports.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Star" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>emoji\star.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Summary" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>emoji\summary.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Tasks" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>emoji\tasks.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Travel" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>emoji\travel.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Watch" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>emoji\watch.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="XMark" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>emoji\xmark.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Bold" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>images\bold.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Copy" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Images\Copy.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="CustomStyles" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>images\customstyles.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="DarkCustomStyles" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>images\darkcustomstyles.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="DarkFavorites" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>images\darkfavorites.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="DarkSnippets" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>images\darksnippets.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="DarkTableStyles" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>images\darktablestyles.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Delete" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>images\delete.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="DoubleLine" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>images\doubleline.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="DownArrow" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>images\downarrow.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Equal" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>images\equal.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Exit" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Images\Exit.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ExpandArrow" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>images\expandarrow.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Favorites" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>images\favorites.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="FolderClose" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>images\folderclose.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="FolderOpen" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>images\folderopen.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="FontColor" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>images\fontcolor.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Grid40" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Images\Grid40.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Italic" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>images\italic.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Label" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>images\label.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="LabelSearch" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>images\labelsearch.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Locked" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>images\locked.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Logo" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>images\logo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="NewStyle" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>images\newstyle.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="NoSpellCheck" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>images\nospellcheck.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="NotebookMask" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>images\notebookmask.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="NotEqual" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>images\notequal.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Open" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>images\open.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Refresh" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>images\refresh.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Rename" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>images\rename.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Reorder" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>images\reorder.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Restart" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Images\Restart.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="SaveAs" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>images\saveas.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="SectionGroup" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>images\sectiongroup.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="SectionMask" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>images\sectionmask.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Snippets" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>images\snippets.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Sponsor" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>images\sponsor.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="SponsorOver" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>images\sponsorover.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Strikethrough" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>images\strikethrough.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Subscript" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>images\subscript.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Superscript" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>images\superscript.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="TableStyles" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>images\tablestyles.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Task" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>images\task.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="TextHighlightColorPicker" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>images\texthighlightcolorpicker.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Underline" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>images\underline.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Unlocked" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>images\unlocked.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="UpArrow" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>images\uparrow.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="InfoBoxThemes" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\commands\snippets\infoboxthemes.json;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
+  </data>
+  <data name="StopOneNote" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\commands\tools\updater\stoponenote.ps1;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="DefaultTableThemes" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ribbon\defaulttablethemes.json;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="Ribbon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ribbon\ribbon.xml;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="DefaultStyles" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\styles\defaultstyles.xml;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="_0336_OneNoteApplication_2013" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>0336.OneNoteApplication_2013.xsd;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
   </data>
 </root>

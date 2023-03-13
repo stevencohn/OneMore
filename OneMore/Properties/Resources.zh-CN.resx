@@ -266,9 +266,6 @@ OneNote 将自动关闭</value>
     <value>报告可能需要几分钟</value>
     <comment>label</comment>
   </data>
-  <data name="Architecture" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>emoji\architecture.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="ArchiveCommand_archived" xml:space="preserve">
     <value>{0}页归档到{1}</value>
     <comment>message</comment>
@@ -317,9 +314,6 @@ OneNote 将自动关闭</value>
     <value>最近使用</value>
     <comment>listview annotation</comment>
   </data>
-  <data name="Automobile" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Emoji\Automobile.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="BiLinkCommand_BadAnchor" xml:space="preserve">
     <value>无法标记锚点。</value>
     <comment>message box</comment>
@@ -348,9 +342,6 @@ OneNote 将自动关闭</value>
     <value>从一个段落中选择一个单词或短语</value>
     <comment>message box</comment>
   </data>
-  <data name="Bold" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>images\bold.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="BreakingDialog_groupBox.Text" xml:space="preserve">
     <value>间距</value>
     <comment>group box</comment>
@@ -366,9 +357,6 @@ OneNote 将自动关闭</value>
   <data name="BreakingDialog_twoButton.Text" xml:space="preserve">
     <value>句子之间有两个空格</value>
     <comment>radio</comment>
-  </data>
-  <data name="Bullet" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>emoji\bullet.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Calculator_ErrClosingParenExpected" xml:space="preserve">
     <value>预计要加上圆括号</value>
@@ -413,15 +401,6 @@ OneNote 将自动关闭</value>
   <data name="Calculator_ErrWrongParamCount" xml:space="preserve">
     <value>功能参数数量错误</value>
     <comment>error</comment>
-  </data>
-  <data name="Calendar" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>emoji\calendar.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Camera" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>emoji\camera.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Circle" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>emoji\circle.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="ClearLog_Message" xml:space="preserve">
     <value>是否现在清除日志文件？</value>
@@ -786,9 +765,6 @@ OneNote 将自动关闭</value>
     <value>全选</value>
     <comment>select all button</comment>
   </data>
-  <data name="Cross" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>emoji\cross.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="ctxCleanMenu_Label" xml:space="preserve">
     <value>清洁...</value>
     <comment>Context menu</comment>
@@ -829,12 +805,6 @@ OneNote 将自动关闭</value>
     <value>CustomStyles.xml</value>
     <comment>FILENAME</comment>
   </data>
-  <data name="Cyclist" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>emoji\cyclist.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Delete" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>images\delete.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="DeleteFormulaCommand_Deleted" xml:space="preserve">
     <value>已从{0}个单元格中删除了公式</value>
     <comment>delete command message</comment>
@@ -858,12 +828,6 @@ OneNote 将自动关闭</value>
   <data name="DialogResetSettings_Text" xml:space="preserve">
     <value>重新设置</value>
     <comment>system menu</comment>
-  </data>
-  <data name="DoubleLine" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>images\doubleline.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="DownArrow" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>images\downarrow.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="EditTableThemesDialog_colorsTab.Text" xml:space="preserve">
     <value>颜色</value>
@@ -1096,9 +1060,6 @@ OneNote 将自动关闭</value>
     <value>选择一个或多个表情符号以添加到页面标题</value>
     <comment>instructions</comment>
   </data>
-  <data name="Envelope" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>emoji\envelope.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="Error_BodyContext" xml:space="preserve">
     <value>文字焦点必须在页面正文中</value>
     <comment>error message box</comment>
@@ -1159,9 +1120,6 @@ OneNote 文件 (*.one)</value>
     <value>用下划线替换文件名中的特殊字符</value>
     <comment>checkbox</comment>
   </data>
-  <data name="Family" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Emoji\Family.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="Favorites_suspect" xml:space="preserve">
     <value>找不到网页;它可能已被重命名或移动</value>
     <comment>tooltip</comment>
@@ -1202,9 +1160,6 @@ OneNote 文件 (*.one)</value>
     <value>首选导入图像宽度</value>
     <comment>label</comment>
   </data>
-  <data name="Financial" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Emoji\Financial.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="FitGridToTextCommand_noGrid" xml:space="preserve">
     <value>使用此命令前启用网格线</value>
     <comment>message</comment>
@@ -1232,12 +1187,6 @@ OneNote 文件 (*.one)</value>
   <data name="FitGridToTextDialog_Text" xml:space="preserve">
     <value>使网格适合文本</value>
     <comment>dialog title</comment>
-  </data>
-  <data name="Flag" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>emoji\flag.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="FontColor" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>images\fontcolor.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="FormulaCommand_Exception" xml:space="preserve">
     <value>{0}（第{1}列）</value>
@@ -1330,9 +1279,6 @@ OneNote 文件 (*.one)</value>
   <data name="GetImagesCommand_Cite" xml:space="preserve">
     <value>你想用它的 URL 注释图像吗？</value>
     <comment>message box</comment>
-  </data>
-  <data name="Hammer" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>emoji\hammer.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="HasActiveMedia" xml:space="preserve">
     <value>存在活动记录时无法调用 OneMore 命令。请停止录制并重试。</value>
@@ -1635,15 +1581,9 @@ OneNote 文件 (*.one)</value>
     <value>将链接添加到每个标题以跳至页面顶部</value>
     <comment>checkbox</comment>
   </data>
-  <data name="Italic" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>images\italic.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="JoinParagraphCommand_Select" xml:space="preserve">
     <value>选择两条或多条线加入</value>
     <comment>info message</comment>
-  </data>
-  <data name="Journal" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>emoji\journal.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="KeyboardSheet_clearButton.Text" xml:space="preserve">
     <value>清除</value>
@@ -1732,9 +1672,6 @@ OneNote 文件 (*.one)</value>
     <value>加载样式主题</value>
     <comment>OpenFileDialog title</comment>
   </data>
-  <data name="Logo" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>images\logo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="MapDialog_groupBox.Text" xml:space="preserve">
     <value>内页</value>
     <comment>group box</comment>
@@ -1758,9 +1695,6 @@ OneNote 文件 (*.one)</value>
   <data name="MapDialog_Text" xml:space="preserve">
     <value>为页面创建链接图谱</value>
     <comment>dialog title</comment>
-  </data>
-  <data name="Memo" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Emoji\Memo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="NameStyleDialog_errorLabel.Text" xml:space="preserve">
     <value>名称存在。选择不同的名称。</value>
@@ -1845,12 +1779,6 @@ OneNote 文件 (*.one)</value>
     <value>网络连接不可用</value>
     <comment>error</comment>
   </data>
-  <data name="NewStyle" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>images\newstyle.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="NoSpellCheck" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>images\nospellcheck.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="NumberingPage_Message" xml:space="preserve">
     <value>编号页{0}</value>
     <comment>progress status dialog</comment>
@@ -1889,9 +1817,6 @@ OneNote 文件 (*.one)</value>
   <data name="oneNamespace" xml:space="preserve">
     <value>http://schemas.microsoft.com/office/onenote/2013/onenote</value>
     <comment>DO NOT TRANSLATE</comment>
-  </data>
-  <data name="Open" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>images\open.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="OpenImageWithCommand_selectOne" xml:space="preserve">
     <value>选择一张图片打开</value>
@@ -2026,9 +1951,6 @@ OneNote 文件 (*.one)</value>
     <value>单击此处选择预定义颜色</value>
     <comment>label</comment>
   </data>
-  <data name="Passwords" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Emoji\Passwords.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="PasteCellsCommand_NoContent" xml:space="preserve">
     <value>没有要粘贴的内容；</value>
     <comment>message box</comment>
@@ -2036,9 +1958,6 @@ OneNote 文件 (*.one)</value>
   <data name="PasteCellsCommand_SelectCell" xml:space="preserve">
     <value>选择一个表格单元格，粘贴的单元格应该开始覆盖</value>
     <comment>message box</comment>
-  </data>
-  <data name="Pencil" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>emoji\pencil.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="phrase_AdvancedOptions" xml:space="preserve">
     <value>高级选项</value>
@@ -2203,9 +2122,6 @@ zh-CN,中文（简体）</value>
     <comment>Recognized languages, one per line.
 ISO-code then comma then language name</comment>
   </data>
-  <data name="Pushpin" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>emoji\pushpin.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="QuickNotesSheet_groupingBox.Text" xml:space="preserve">
     <value>工作周 (2023-02-13 W7)
 月份 (2023-02)
@@ -2269,9 +2185,6 @@ ISO-code then comma then language name</comment>
   <data name="RecalculateFormulaCommand_NoFormula" xml:space="preserve">
     <value>在所选表格中找不到公式</value>
     <comment>recalculate command message</comment>
-  </data>
-  <data name="Refresh" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>images\refresh.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="RefreshPageLinksCommand_none" xml:space="preserve">
     <value>没有找到对本页的引用</value>
@@ -2500,9 +2413,6 @@ ISO-code then comma then language name</comment>
     <value>从页面{0}中删除号码</value>
     <comment>progress status dialog</comment>
   </data>
-  <data name="Reorder" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>images\reorder.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="ReorderDialog.Text" xml:space="preserve">
     <value>重新排序样式</value>
     <comment>dialog title</comment>
@@ -2714,9 +2624,6 @@ ISO-code then comma then language name</comment>
   <data name="ribArrangeContainersButton_Label" xml:space="preserve">
     <value>排列容器</value>
     <comment>ribbon button</comment>
-  </data>
-  <data name="Ribbon" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\ribbon\ribbon.xml;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
   </data>
   <data name="RibbonBarSheet_editGroup.Text" xml:space="preserve">
     <value>编辑指令</value>
@@ -3946,9 +3853,6 @@ ISO-code then comma then language name</comment>
     <value>报告本页的字数</value>
     <comment>ribbon page</comment>
   </data>
-  <data name="SaveAs" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>images\saveas.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="SaveAs_Error" xml:space="preserve">
     <value>将页面另存为{0}时出错</value>
     <comment>Save as dialog error message</comment>
@@ -4192,9 +4096,6 @@ ISO-code then comma then language name</comment>
     <value>Settings.xml</value>
     <comment>FILENAME</comment>
   </data>
-  <data name="Shazam" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Emoji\Shazam.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="ShowXmlDialog.Text" xml:space="preserve">
     <value>OneMore XML</value>
     <comment>dialog title</comment>
@@ -4279,9 +4180,6 @@ ISO-code then comma then language name</comment>
     <value>自动换行</value>
     <comment>checkbox</comment>
   </data>
-  <data name="Smiley" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>emoji\smiley.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="SnippetsSheet_ConfirmDelete" xml:space="preserve">
     <value>删除片段“{0}”</value>
     <comment>question</comment>
@@ -4293,9 +4191,6 @@ ISO-code then comma then language name</comment>
   <data name="SnippetsSheet_Text" xml:space="preserve">
     <value>片段</value>
     <comment>SnippetsSheet</comment>
-  </data>
-  <data name="Software" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Emoji\Software.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="SortDialog.Text" xml:space="preserve">
     <value>分类</value>
@@ -4425,18 +4320,9 @@ ISO-code then comma then language name</comment>
     <value>将所有列设置为固定宽度</value>
     <comment>checkbox</comment>
   </data>
-  <data name="Sports" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Emoji\Sports.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Star" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>emoji\star.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="StartupFailureMessage" xml:space="preserve">
     <value>OneMore无法连接到OneNote，请参阅日志文件以获取异常详细信息</value>
     <comment>message box</comment>
-  </data>
-  <data name="Strikethrough" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>images\strikethrough.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="StyleDialog_afterLabel.Text" xml:space="preserve">
     <value>段后空间:</value>
@@ -4564,15 +4450,6 @@ ISO-code then comma then language name</comment>
     <value>强调</value>
     <comment>button</comment>
   </data>
-  <data name="Subscript" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>images\subscript.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Summary" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>emoji\summary.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Superscript" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>images\superscript.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="TableTheme_Screentip" xml:space="preserve">
     <value>OneMore 表格主题{0}</value>
     <comment>Screentip for table theme gallery tiles</comment>
@@ -4639,12 +4516,6 @@ ISO-code then comma then language name</comment>
   <data name="TaggingDialog_tagLabel.Text" xml:space="preserve">
     <value>页面标签</value>
     <comment>header label</comment>
-  </data>
-  <data name="Tasks" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Emoji\Tasks.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="TextHighlightColorPicker" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>images\texthighlightcolorpicker.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="TextToTable_NoText" xml:space="preserve">
     <value>没有选择文字</value>
@@ -4726,15 +4597,6 @@ ISO-code then comma then language name</comment>
     <value>切换</value>
     <comment>group box</comment>
   </data>
-  <data name="Travel" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Emoji\Travel.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Underline" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>images\underline.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="UpArrow" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>images\uparrow.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="UpdateDialog.Text" xml:space="preserve">
     <value>检查 OneMore 更新</value>
     <comment>dialog title</comment>
@@ -4786,9 +4648,6 @@ ISO-code then comma then language name</comment>
   <data name="UpdateDialog_versionLabel.Text" xml:space="preserve">
     <value>已安装版本：</value>
     <comment>label</comment>
-  </data>
-  <data name="Watch" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>emoji\watch.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="word_Actual" xml:space="preserve">
     <value>实际的</value>
