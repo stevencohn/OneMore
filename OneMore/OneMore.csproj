@@ -1282,7 +1282,9 @@
     <EmbeddedResource Include="Commands\Styles\PageColorSelector.resx">
       <DependentUpon>PageColorSelector.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Properties\Resources.he-IL.resx" />
+    <EmbeddedResource Include="Properties\Resources.he-IL.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="UI\MoreExpander.resx">
       <DependentUpon>MoreExpander.cs</DependentUpon>
     </EmbeddedResource>
