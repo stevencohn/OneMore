@@ -1175,8 +1175,8 @@
     <Content Include="Properties\Images\Unlocked.png" />
     <Content Include="Properties\Resources.de-DE-hints.xml" />
     <Content Include="Properties\Resources.zh-CN-hints.xml" />
-    <None Include="Properties\InfoBoxThemes.json" />
-    <None Include="Properties\StopOneNote.ps1" />
+    <None Include="Commands\Snippets\InfoBoxThemes.json" />
+    <None Include="Commands\Tools\Updater\StopOneNote.ps1" />
     <None Include="Ribbon\DefaultTableThemes.json" />
     <Content Include="UI\TagMap.png" />
     <Content Include="Properties\Images\TextHighlightColorPicker.png" />
@@ -1184,7 +1184,7 @@
     <Content Include="Properties\Images\UpArrow.png" />
     <Content Include="Properties\Images\Logo.png" />
     <Content Include="Properties\Images\NoSpellCheck.png" />
-    <Content Include="Properties\DefaultStyles.xml" />
+    <Content Include="Styles\DefaultStyles.xml" />
     <Content Include="Properties\Images\WrapText.png" />
     <Content Include="Ribbon\Ribbon.xml">
       <SubType>Designer</SubType>
