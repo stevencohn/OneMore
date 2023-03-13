@@ -3797,6 +3797,10 @@ polaroid</value>
     <value>Ordenar</value>
     <comment>Ribbon OneMore menu item</comment>
   </data>
+  <data name="ribSortButton_Screentip" xml:space="preserve">
+    <value>Ordenar páginas, secciones o cuadernos</value>
+    <comment>ribbon extras</comment>
+  </data>
   <data name="ribSortListButton_Label" xml:space="preserve">
     <value>Lista Ordenada</value>
     <comment>ribbon item</comment>

@@ -3897,6 +3897,10 @@ Polaroid</value>
     <value>Sort</value>
     <comment>ribbon extras NODUP</comment>
   </data>
+  <data name="ribSortButton_Screentip" xml:space="preserve">
+    <value>Sort pages, section, or notebooks</value>
+    <comment>ribbon extras</comment>
+  </data>
   <data name="ribSortListButton_Label" xml:space="preserve">
     <value>Sort List</value>
     <comment>ribbon edit</comment>

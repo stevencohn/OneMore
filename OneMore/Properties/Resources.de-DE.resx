@@ -3786,6 +3786,10 @@ Polaroid</value>
     <value>Sortieren</value>
     <comment>Ribbon OneMore menu item</comment>
   </data>
+  <data name="ribSortButton_Screentip" xml:space="preserve">
+    <value>Sortieren Sie Seiten, Abschnitte oder Notizbücher</value>
+    <comment>ribbon extras</comment>
+  </data>
   <data name="ribSortListButton_Label" xml:space="preserve">
     <value>Sortierliste</value>
     <comment>ribbon item</comment>

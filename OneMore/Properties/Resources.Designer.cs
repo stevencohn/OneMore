@@ -8761,6 +8761,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Sort pages, section, or notebooks.
+        /// </summary>
+        internal static string ribSortButton_Screentip {
+            get {
+                return ResourceManager.GetString("ribSortButton_Screentip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Sort List.
         /// </summary>
         internal static string ribSortListButton_Label {

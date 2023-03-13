@@ -3787,6 +3787,10 @@ ISO-code then comma then language name</comment>
     <value>排序</value>
     <comment>Ribbon OneMore menu item</comment>
   </data>
+  <data name="ribSortButton_Screentip" xml:space="preserve">
+    <value>对页面、部分或笔记本进行排序</value>
+    <comment>ribbon extras</comment>
+  </data>
   <data name="ribSortListButton_Label" xml:space="preserve">
     <value>排序列表</value>
     <comment>ribbon item</comment>

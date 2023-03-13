@@ -3870,6 +3870,10 @@ ISO-code then comma then language name</comment>
     <value>סוג</value>
     <comment>Ribbon OneMore menu item NODUP</comment>
   </data>
+  <data name="ribSortButton_Screentip" xml:space="preserve">
+    <value>מיין דפים, קטעים או מחברות</value>
+    <comment>ribbon extras</comment>
+  </data>
   <data name="ribSortListButton_Label" xml:space="preserve">
     <value>רשימת מיון</value>
     <comment>ribbon item</comment>

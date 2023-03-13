@@ -3840,6 +3840,10 @@ Polaroid</value>
     <value>Sortować</value>
     <comment>Ribbon OneMore menu item NODUP</comment>
   </data>
+  <data name="ribSortButton_Screentip" xml:space="preserve">
+    <value>Sortuj strony, sekcje lub notatniki</value>
+    <comment>ribbon extras</comment>
+  </data>
   <data name="ribSortListButton_Label" xml:space="preserve">
     <value>Lista sortowania</value>
     <comment>ribbon item</comment>
