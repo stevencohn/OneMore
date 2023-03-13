@@ -32,6 +32,9 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
+		public static bool TimerActive => window?.IsDisposed != null;
+
+
 		public override async Task Execute(params object[] args)
 		{
 			if (args.Length == 0)

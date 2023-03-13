@@ -885,6 +885,7 @@
                 imageMso="ShowJournalPage"
                 getLabel="GetRibbonLabel"
                 getScreentip="GetRibbonScreentip"
+                getEnabled="GetTimerActive"
                 onAction="InsertTimerCmd"/>
               <button
                 id="ribShowXmlButton"

@@ -9,6 +9,7 @@
 namespace River.OneMoreAddIn
 {
 	using Microsoft.Office.Core;
+	using River.OneMoreAddIn.Commands;
 	using River.OneMoreAddIn.Helpers.Office;
 	using System.Linq;
 
@@ -139,6 +140,19 @@ namespace River.OneMoreAddIn
 			//logger.WriteLine($"GetOfficeInstalled({control.Id})");
 
 			return Office.IsInstalled("Word") || Office.IsInstalled("PowerPoint");
+		}
+
+
+		/// <summary>
+		/// Determines if the Timer Window is currently active
+		/// </summary>
+		/// <param name="control"></param>
+		/// <returns></returns>
+		public bool GetTimerActive(IRibbonControl control)
+		{
+			//logger.WriteLine($"GetTimerActive({control.Id}) active:{TimerWindowCommand.TimerActive}");
+			ribbon.Invalidate();
+			return TimerWindowCommand.TimerActive;
 		}
 	}
 }
