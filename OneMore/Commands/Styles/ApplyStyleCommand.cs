@@ -220,7 +220,10 @@ namespace River.OneMoreAddIn.Commands
 			foreach (var element in elements)
 			{
 				// clear any existing style on or within the paragraph
-				stylizer.Clear(element, style.ApplyColors ? Stylizer.Clearing.All : Stylizer.Clearing.None);
+				// deep:false so we don't affect indented paragraphs and lists
+				stylizer.Clear(element,
+					style.ApplyColors ? Stylizer.Clearing.All : Stylizer.Clearing.None,
+					deep: false);
 
 				SetQuickStyle(page, element, style);
 
