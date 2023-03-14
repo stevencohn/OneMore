@@ -15,6 +15,14 @@ namespace River.OneMoreAddIn
 	internal class CommandAttribute : Attribute
 	{
 
+		public CommandAttribute(string resID, Keys defaultKeys)
+		{
+			ResID = resID;
+			DefaultKeys = defaultKeys;
+			Category = string.Empty;
+		}
+
+
 		public CommandAttribute(string resID, Keys defaultKeys, string category)
 		{
 			ResID = resID;
