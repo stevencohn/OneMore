@@ -1015,29 +1015,23 @@ namespace River.OneMoreAddIn.Models
 			}
 		}
 
+
+		/// <summary>
+		/// Determines the best contract color to apply to text on the page
+		/// </summary>
+		/// <returns></returns>
 		public Color GetBestTextColor()
 		{
 			var back = GetPageColor(out var automatic, out var black);
-			if (black)
-			{
-				if (automatic)
-				{
-					return Color.Black;
-				}
 
-				var dark = back.GetBrightness() < 0.5;
-				return dark ? Color.WhiteSmoke : Color.Black;
-			}
-			else
+			if (automatic)
 			{
-				if (automatic)
-				{
-					return Color.Black;
-				}
-
-				var dark = back.GetBrightness() < 0.5;
-				return dark ? Color.White : Color.Black;
+				// yes, this works in both light and dark cases!
+				return Color.Black;
 			}
+
+			var dark = back.GetBrightness() < 0.5;
+			return dark ? Color.White : Color.Black;
 		}
 
 

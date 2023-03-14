@@ -73,6 +73,7 @@ namespace River.OneMoreAddIn.Commands
 
 			logger.WriteLine($"Page background: {pageColor.ToRGBHtml()}");
 			logger.WriteLine($"Page brightness: {pageColor.GetBrightness()}");
+			logger.WriteLine($"Page bestText..: {page.GetBestTextColor().ToRGBHtml()}");
 			logger.WriteLine($"Page is dark...: {pageColor.IsDark()}");
 
 			(float dpiX, float dpiY) = UIHelper.GetDpiValues();
