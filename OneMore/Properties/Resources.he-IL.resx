@@ -436,15 +436,19 @@ OneNote ייסגר אוטומטית</value>
     <comment>checkbox</comment>
   </data>
   <data name="ColorizeSheet_applyBox.Text" xml:space="preserve">
-    <value>החל תמיד את הגופן הבא בעת צביעה של קוד</value>
+    <value>החל תמיד את הגופנים הבאים בעת צביעה של קוד</value>
     <comment>checkbox</comment>
   </data>
   <data name="ColorizeSheet_font2Label.Text" xml:space="preserve">
-    <value>גופן משני, משמש עבור PlantUML</value>
+    <value>מִשׁנִי</value>
+    <comment>label</comment>
+  </data>
+  <data name="ColorizeSheet_fontLabel.Text" xml:space="preserve">
+    <value>יְסוֹדִי</value>
     <comment>label</comment>
   </data>
   <data name="ColorizeSheet_introBox.Text" xml:space="preserve">
-    <value>התאם אישית את ההתנהגות של הפקודה Colorize</value>
+    <value>התאם אישית את ההתנהגות של הפקודה Colorize. גופן משני חל בעת כיווץ PlantUML</value>
     <comment>label</comment>
   </data>
   <data name="ColorizeSheet_Title" xml:space="preserve">

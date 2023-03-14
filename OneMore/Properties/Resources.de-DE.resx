@@ -422,15 +422,19 @@
     <comment>checkbox</comment>
   </data>
   <data name="ColorizeSheet_applyBox.Text" xml:space="preserve">
-    <value>Wenden Sie beim Einfärben von Code immer die folgende Schriftart an</value>
+    <value>Wenden Sie immer die folgenden Schriftarten an, wenn Sie Code einfärben</value>
     <comment>checkbox</comment>
   </data>
   <data name="ColorizeSheet_font2Label.Text" xml:space="preserve">
-    <value>Sekundäre Schriftart, die für PlantUML verwendet wird</value>
+    <value>Sekundär</value>
+    <comment>label</comment>
+  </data>
+  <data name="ColorizeSheet_fontLabel.Text" xml:space="preserve">
+    <value>Primär</value>
     <comment>label</comment>
   </data>
   <data name="ColorizeSheet_introBox.Text" xml:space="preserve">
-    <value>Passen Sie das Verhalten des Colorize-Befehls an</value>
+    <value>Passen Sie das Verhalten des Colorize-Befehls an. Sekundäre Schriftart gilt beim Reduzieren von PlantUML</value>
     <comment>label</comment>
   </data>
   <data name="ColorizeSheet_Title" xml:space="preserve">

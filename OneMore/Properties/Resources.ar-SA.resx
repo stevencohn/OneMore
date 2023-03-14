@@ -425,15 +425,19 @@
     <comment>checkbox</comment>
   </data>
   <data name="ColorizeSheet_applyBox.Text" xml:space="preserve">
-    <value>قم دائمًا بتطبيق الخط التالي عند تلوين التعليمات البرمجية</value>
+    <value>قم دائمًا بتطبيق الخطوط التالية عند تلوين التعليمات البرمجية</value>
     <comment>checkbox</comment>
   </data>
   <data name="ColorizeSheet_font2Label.Text" xml:space="preserve">
-    <value>الخط الثانوي المستخدم في PlantUML</value>
+    <value>ثانوي</value>
+    <comment>label</comment>
+  </data>
+  <data name="ColorizeSheet_fontLabel.Text" xml:space="preserve">
+    <value>أساسي</value>
     <comment>label</comment>
   </data>
   <data name="ColorizeSheet_introBox.Text" xml:space="preserve">
-    <value>تخصيص سلوك أمر Colorize</value>
+    <value>تخصيص سلوك أمر Colorize. يتم تطبيق الخط الثانوي عند طي PlantUML</value>
     <comment>label</comment>
   </data>
   <data name="ColorizeSheet_Title" xml:space="preserve">

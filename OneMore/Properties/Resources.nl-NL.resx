@@ -426,15 +426,19 @@ OneNote wordt automatisch gesloten</value>
     <comment>checkbox</comment>
   </data>
   <data name="ColorizeSheet_applyBox.Text" xml:space="preserve">
-    <value>Pas altijd het volgende lettertype toe bij het inkleuren van code</value>
+    <value>Pas altijd de volgende lettertypen toe bij het inkleuren van code</value>
     <comment>checkbox</comment>
   </data>
   <data name="ColorizeSheet_font2Label.Text" xml:space="preserve">
-    <value>Secundair lettertype, gebruikt voor PlantUML</value>
+    <value>Ondergeschikt</value>
+    <comment>label</comment>
+  </data>
+  <data name="ColorizeSheet_fontLabel.Text" xml:space="preserve">
+    <value>Primair</value>
     <comment>label</comment>
   </data>
   <data name="ColorizeSheet_introBox.Text" xml:space="preserve">
-    <value>Pas het gedrag van de opdracht Inkleuren aan</value>
+    <value>Pas het gedrag van de opdracht Inkleuren aan. Secundair lettertype is van toepassing bij het samenvouwen van PlantUML</value>
     <comment>label</comment>
   </data>
   <data name="ColorizeSheet_Title" xml:space="preserve">

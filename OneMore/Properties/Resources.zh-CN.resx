@@ -431,11 +431,15 @@ OneNote 将自动关闭</value>
     <comment>checkbox</comment>
   </data>
   <data name="ColorizeSheet_font2Label.Text" xml:space="preserve">
-    <value>辅助字体，用于 PlantUML</value>
+    <value>中学</value>
+    <comment>label</comment>
+  </data>
+  <data name="ColorizeSheet_fontLabel.Text" xml:space="preserve">
+    <value>基本的</value>
     <comment>label</comment>
   </data>
   <data name="ColorizeSheet_introBox.Text" xml:space="preserve">
-    <value>自定义着色命令的行为</value>
+    <value>自定义着色命令的行为。折叠 PlantUML 时应用辅助字体</value>
     <comment>label</comment>
   </data>
   <data name="ColorizeSheet_Title" xml:space="preserve">

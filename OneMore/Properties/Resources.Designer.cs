@@ -880,7 +880,7 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Always apply the following font when colorizing code.
+        ///   Looks up a localized string similar to Always apply the following fonts when colorizing code.
         /// </summary>
         internal static string ColorizeSheet_applyBox_Text {
             get {
@@ -889,7 +889,7 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Secondary font, used for PlantUML.
+        ///   Looks up a localized string similar to Secondary.
         /// </summary>
         internal static string ColorizeSheet_font2Label_Text {
             get {
@@ -898,7 +898,16 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Customize the behavior of the Colorize command.
+        ///   Looks up a localized string similar to Primary.
+        /// </summary>
+        internal static string ColorizeSheet_fontLabel_Text {
+            get {
+                return ResourceManager.GetString("ColorizeSheet_fontLabel.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Customize the behavior of the Colorize command. Secondary font applies when collapsing PlantUML.
         /// </summary>
         internal static string ColorizeSheet_introBox_Text {
             get {

@@ -422,15 +422,19 @@
     <comment>checkbox</comment>
   </data>
   <data name="ColorizeSheet_applyBox.Text" xml:space="preserve">
-    <value>Appliquez toujours la police suivante lors de la colorisation du code</value>
+    <value>Appliquez toujours les polices suivantes lors de la colorisation du code</value>
     <comment>checkbox</comment>
   </data>
   <data name="ColorizeSheet_font2Label.Text" xml:space="preserve">
-    <value>Police secondaire, utilisée pour PlantUML</value>
+    <value>Secondaire</value>
+    <comment>label</comment>
+  </data>
+  <data name="ColorizeSheet_fontLabel.Text" xml:space="preserve">
+    <value>Primaire</value>
     <comment>label</comment>
   </data>
   <data name="ColorizeSheet_introBox.Text" xml:space="preserve">
-    <value>Personnaliser le comportement de la commande Coloriser</value>
+    <value>Personnalisez le comportement de la commande Coloriser. La police secondaire s'applique lors de l'effondrement de PlantUML</value>
     <comment>label</comment>
   </data>
   <data name="ColorizeSheet_Title" xml:space="preserve">

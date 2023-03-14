@@ -23,7 +23,7 @@ namespace River.OneMoreAddIn.Settings
 				{
 					"introBox",
 					"applyBox",
-					"fontLabel=word_Font",
+					"fontLabel",
 					"font2Label",
 					"fixedBox"
 				});

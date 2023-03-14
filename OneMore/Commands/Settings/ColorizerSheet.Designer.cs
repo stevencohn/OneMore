@@ -31,6 +31,7 @@ namespace River.OneMoreAddIn.Settings
 		{
 			this.introBox = new System.Windows.Forms.TextBox();
 			this.layoutPanel = new System.Windows.Forms.Panel();
+			this.family2Box = new River.OneMoreAddIn.UI.FontComboBox();
 			this.size2Box = new System.Windows.Forms.ComboBox();
 			this.font2Label = new System.Windows.Forms.Label();
 			this.fixedBox = new System.Windows.Forms.CheckBox();
@@ -38,7 +39,6 @@ namespace River.OneMoreAddIn.Settings
 			this.sizeBox = new System.Windows.Forms.ComboBox();
 			this.fontLabel = new System.Windows.Forms.Label();
 			this.applyBox = new System.Windows.Forms.CheckBox();
-			this.family2Box = new River.OneMoreAddIn.UI.FontComboBox();
 			this.layoutPanel.SuspendLayout();
 			this.SuspendLayout();
 			// 
@@ -53,7 +53,8 @@ namespace River.OneMoreAddIn.Settings
 			this.introBox.ReadOnly = true;
 			this.introBox.Size = new System.Drawing.Size(772, 66);
 			this.introBox.TabIndex = 3;
-			this.introBox.Text = "Customize the behavior of the Colorize command";
+			this.introBox.Text = "Customize the behavior of the Colorize command. Secondary font applies when colla" +
+    "psing PlantUML";
 			// 
 			// layoutPanel
 			// 
@@ -71,6 +72,20 @@ namespace River.OneMoreAddIn.Settings
 			this.layoutPanel.Name = "layoutPanel";
 			this.layoutPanel.Size = new System.Drawing.Size(772, 416);
 			this.layoutPanel.TabIndex = 4;
+			// 
+			// family2Box
+			// 
+			this.family2Box.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.family2Box.DropDownHeight = 400;
+			this.family2Box.DropDownWidth = 350;
+			this.family2Box.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.family2Box.FormattingEnabled = true;
+			this.family2Box.IntegralHeight = false;
+			this.family2Box.Location = new System.Drawing.Point(135, 122);
+			this.family2Box.Name = "family2Box";
+			this.family2Box.Size = new System.Drawing.Size(355, 32);
+			this.family2Box.TabIndex = 16;
 			// 
 			// size2Box
 			// 
@@ -93,7 +108,7 @@ namespace River.OneMoreAddIn.Settings
             "22",
             "24",
             "26"});
-			this.size2Box.Location = new System.Drawing.Point(491, 208);
+			this.size2Box.Location = new System.Drawing.Point(496, 121);
 			this.size2Box.Name = "size2Box";
 			this.size2Box.Size = new System.Drawing.Size(104, 33);
 			this.size2Box.TabIndex = 15;
@@ -101,16 +116,16 @@ namespace River.OneMoreAddIn.Settings
 			// font2Label
 			// 
 			this.font2Label.AutoSize = true;
-			this.font2Label.Location = new System.Drawing.Point(26, 186);
+			this.font2Label.Location = new System.Drawing.Point(6, 129);
 			this.font2Label.Name = "font2Label";
-			this.font2Label.Size = new System.Drawing.Size(248, 20);
+			this.font2Label.Size = new System.Drawing.Size(85, 20);
 			this.font2Label.TabIndex = 14;
-			this.font2Label.Text = "Seconary font, used for PlantUML";
+			this.font2Label.Text = "Secondary";
 			// 
 			// fixedBox
 			// 
 			this.fixedBox.AutoSize = true;
-			this.fixedBox.Location = new System.Drawing.Point(130, 103);
+			this.fixedBox.Location = new System.Drawing.Point(135, 204);
 			this.fixedBox.Name = "fixedBox";
 			this.fixedBox.Size = new System.Drawing.Size(226, 24);
 			this.fixedBox.TabIndex = 3;
@@ -127,7 +142,7 @@ namespace River.OneMoreAddIn.Settings
 			this.familyBox.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.familyBox.FormattingEnabled = true;
 			this.familyBox.IntegralHeight = false;
-			this.familyBox.Location = new System.Drawing.Point(130, 64);
+			this.familyBox.Location = new System.Drawing.Point(135, 68);
 			this.familyBox.Name = "familyBox";
 			this.familyBox.Size = new System.Drawing.Size(355, 32);
 			this.familyBox.TabIndex = 1;
@@ -153,7 +168,7 @@ namespace River.OneMoreAddIn.Settings
             "22",
             "24",
             "26"});
-			this.sizeBox.Location = new System.Drawing.Point(491, 64);
+			this.sizeBox.Location = new System.Drawing.Point(496, 68);
 			this.sizeBox.Name = "sizeBox";
 			this.sizeBox.Size = new System.Drawing.Size(104, 33);
 			this.sizeBox.TabIndex = 2;
@@ -161,35 +176,21 @@ namespace River.OneMoreAddIn.Settings
 			// fontLabel
 			// 
 			this.fontLabel.AutoSize = true;
-			this.fontLabel.Location = new System.Drawing.Point(26, 71);
+			this.fontLabel.Location = new System.Drawing.Point(6, 75);
 			this.fontLabel.Name = "fontLabel";
-			this.fontLabel.Size = new System.Drawing.Size(46, 20);
+			this.fontLabel.Size = new System.Drawing.Size(61, 20);
 			this.fontLabel.TabIndex = 13;
-			this.fontLabel.Text = "Font:";
+			this.fontLabel.Text = "Primary";
 			// 
 			// applyBox
 			// 
 			this.applyBox.AutoSize = true;
 			this.applyBox.Location = new System.Drawing.Point(3, 6);
 			this.applyBox.Name = "applyBox";
-			this.applyBox.Size = new System.Drawing.Size(400, 24);
+			this.applyBox.Size = new System.Drawing.Size(408, 24);
 			this.applyBox.TabIndex = 0;
-			this.applyBox.Text = "Always apply the following font when colorizing code";
+			this.applyBox.Text = "Always apply the following fonts when colorizing code";
 			this.applyBox.UseVisualStyleBackColor = true;
-			// 
-			// family2Box
-			// 
-			this.family2Box.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-			this.family2Box.DropDownHeight = 400;
-			this.family2Box.DropDownWidth = 350;
-			this.family2Box.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.family2Box.FormattingEnabled = true;
-			this.family2Box.IntegralHeight = false;
-			this.family2Box.Location = new System.Drawing.Point(130, 209);
-			this.family2Box.Name = "family2Box";
-			this.family2Box.Size = new System.Drawing.Size(355, 32);
-			this.family2Box.TabIndex = 16;
 			// 
 			// ColorizerSheet
 			// 

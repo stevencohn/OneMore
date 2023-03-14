@@ -434,15 +434,19 @@ OneNote zamknie się automatycznie</value>
     <comment>checkbox</comment>
   </data>
   <data name="ColorizeSheet_applyBox.Text" xml:space="preserve">
-    <value>Podczas kolorowania kodu zawsze stosuj poniższą czcionkę</value>
+    <value>Podczas kolorowania kodu zawsze stosuj następujące czcionki</value>
     <comment>checkbox</comment>
   </data>
   <data name="ColorizeSheet_font2Label.Text" xml:space="preserve">
-    <value>Czcionka dodatkowa, używana w PlantUML</value>
+    <value>Wtórny</value>
+    <comment>label</comment>
+  </data>
+  <data name="ColorizeSheet_fontLabel.Text" xml:space="preserve">
+    <value>Podstawowy</value>
     <comment>label</comment>
   </data>
   <data name="ColorizeSheet_introBox.Text" xml:space="preserve">
-    <value>Dostosuj zachowanie polecenia Koloruj</value>
+    <value>Dostosuj zachowanie polecenia Koloruj. Dodatkowa czcionka ma zastosowanie podczas zwijania PlantUML</value>
     <comment>label</comment>
   </data>
   <data name="ColorizeSheet_Title" xml:space="preserve">

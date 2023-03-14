@@ -436,15 +436,19 @@ OneNote will close automatically</value>
     <comment>checkbox</comment>
   </data>
   <data name="ColorizeSheet_applyBox.Text" xml:space="preserve">
-    <value>Always apply the following font when colorizing code</value>
+    <value>Always apply the following fonts when colorizing code</value>
     <comment>checkbox</comment>
   </data>
   <data name="ColorizeSheet_font2Label.Text" xml:space="preserve">
-    <value>Secondary font, used for PlantUML</value>
+    <value>Secondary</value>
+    <comment>label</comment>
+  </data>
+  <data name="ColorizeSheet_fontLabel.Text" xml:space="preserve">
+    <value>Primary</value>
     <comment>label</comment>
   </data>
   <data name="ColorizeSheet_introBox.Text" xml:space="preserve">
-    <value>Customize the behavior of the Colorize command</value>
+    <value>Customize the behavior of the Colorize command. Secondary font applies when collapsing PlantUML</value>
     <comment>label</comment>
   </data>
   <data name="ColorizeSheet_Title" xml:space="preserve">
