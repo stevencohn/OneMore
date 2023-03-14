@@ -159,7 +159,8 @@ namespace River.OneMoreAddIn.Styles
 		/// </summary>
 		/// <param name="element">An OE or T node</param>
 		/// <param name="clearing">Exactly which color stylings to remove</param>
-		public bool Clear(XElement element, Clearing clearing)
+		/// <param name="deep">True to clear child elements; false to clear only this element</param>
+		public bool Clear(XElement element, Clearing clearing, bool deep = true)
 		{
 			// if the elements being edited is the child of a hyperlink anchor ("A" element)
 			// then it is 'hyperlinked' and we want to preserve super/subscripting because
@@ -213,7 +214,7 @@ namespace River.OneMoreAddIn.Styles
 				}
 			}
 
-			if (element.HasElements)
+			if (deep && element.HasElements)
 			{
 				foreach (var child in element.Elements())
 				{
