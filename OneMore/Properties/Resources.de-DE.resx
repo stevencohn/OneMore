@@ -425,6 +425,10 @@
     <value>Wenden Sie beim Einfärben von Code immer die folgende Schriftart an</value>
     <comment>checkbox</comment>
   </data>
+  <data name="ColorizeSheet_font2Label.Text" xml:space="preserve">
+    <value>Sekundäre Schriftart, die für PlantUML verwendet wird</value>
+    <comment>label</comment>
+  </data>
   <data name="ColorizeSheet_introBox.Text" xml:space="preserve">
     <value>Passen Sie das Verhalten des Colorize-Befehls an</value>
     <comment>label</comment>

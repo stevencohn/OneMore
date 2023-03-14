@@ -429,6 +429,10 @@ OneNote fechará automaticamente</value>
     <value>Sempre aplique a seguinte fonte ao colorir o código</value>
     <comment>checkbox</comment>
   </data>
+  <data name="ColorizeSheet_font2Label.Text" xml:space="preserve">
+    <value>Fonte secundária, usada para PlantUML</value>
+    <comment>label</comment>
+  </data>
   <data name="ColorizeSheet_introBox.Text" xml:space="preserve">
     <value>Personalize o comportamento do comando Colorize</value>
     <comment>label</comment>

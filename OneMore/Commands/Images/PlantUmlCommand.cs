@@ -6,7 +6,6 @@ namespace River.OneMoreAddIn.Commands
 {
 	using River.OneMoreAddIn.Models;
 	using River.OneMoreAddIn.Settings;
-	using River.OneMoreAddIn.Styles;
 	using River.OneMoreAddIn.UI;
 	using System;
 	using System.Drawing;
@@ -126,12 +125,10 @@ namespace River.OneMoreAddIn.Commands
 			PageNamespace.Set(ns);
 
 			var content = new XElement(ns + "OE",
-				//new XAttribute("selected", "partial"),
 				new Meta(ImageMeta, plantID),
 				new XElement(ns + "Image",
-					new XAttribute("selected", "all"),
 					new XElement(ns + "Size",
-						new XAttribute("width", "0.0"),
+						new XAttribute("width", FormattableString.Invariant($"{image.Width:0.0}")),
 						new XAttribute("height", FormattableString.Invariant($"{image.Height:0.0}"))),
 					new XElement(ns + "Data", Convert.ToBase64String(bytes))
 					));
@@ -158,6 +155,8 @@ namespace River.OneMoreAddIn.Commands
 
 			if (collapse)
 			{
+				new ColorizeCommand(page, true).Colorize("plantuml", runs);
+
 				if (title != "PlantUML")
 				{
 					title = $"{title} PlantUML";
@@ -174,15 +173,6 @@ namespace River.OneMoreAddIn.Commands
 
 				var parents = runs.Select(e => e.Parent).Distinct().ToList();
 				parents.DescendantsAndSelf().Attributes("selected")?.Remove();
-
-				var stylizer = new Stylizer(new Style
-				{
-					Color = "#7F7F7F",
-					FontFamily = "Lucida Console",
-					FontSize = "9.5pt"
-				});
-
-				parents.ForEach(e => stylizer.ApplyStyle(e));
 
 				parents.Remove();
 				container.Add(new XElement(ns + "OEChildren", parents));
@@ -263,7 +253,8 @@ namespace River.OneMoreAddIn.Commands
 
 		private async Task<bool> RefreshDiagram(string plantID)
 		{
-			using var one = new OneNote(out var page, out var ns, OneNote.PageDetail.All);
+			using var one = new OneNote(
+				out var page, out var ns, OneNote.PageDetail.BinaryDataSelection);
 
 			var element = page.Root.Descendants(ns + "OE").Elements(ns + "Meta")
 				.Where(e =>
@@ -338,25 +329,9 @@ namespace River.OneMoreAddIn.Commands
 			var size = element.Element(ns + "Size");
 			if (size != null)
 			{
-				var width = size.GetAttributeDouble("width");
-				var height = size.GetAttributeDouble("height");
-
 				using var bitmap = (Bitmap)new ImageConverter().ConvertFrom(bytes);
-				if (width < height && bitmap.Width < bitmap.Height)
-				{
-					width *= (bitmap.Width / bitmap.Height);
-					size.SetAttributeValue("width", FormattableString.Invariant($"{width:0.0}"));
-				}
-				else if (width > height && bitmap.Width > bitmap.Height)
-				{
-					height *= (bitmap.Height / bitmap.Width);
-					size.SetAttributeValue("height", FormattableString.Invariant($"{height:0.0}"));
-				}
-				else
-				{
-					size.SetAttributeValue("width", FormattableString.Invariant($"{bitmap.Width:0.0}"));
-					size.SetAttributeValue("height", FormattableString.Invariant($"{bitmap.Height:0.0}"));
-				}
+				size.SetAttributeValue("width", FormattableString.Invariant($"{bitmap.Width:0.0}"));
+				size.SetAttributeValue("height", FormattableString.Invariant($"{bitmap.Height:0.0}"));
 			}
 
 			await one.Update(page);
@@ -367,7 +342,8 @@ namespace River.OneMoreAddIn.Commands
 
 		private async Task ExtractUml(string plantID)
 		{
-			using var one = new OneNote(out var page, out var ns, OneNote.PageDetail.All);
+			using var one = new OneNote(
+				out var page, out var ns, OneNote.PageDetail.BinaryDataSelection);
 
 			var element = page.Root.Descendants(ns + "OE").Elements(ns + "Meta")
 				.Where(e =>

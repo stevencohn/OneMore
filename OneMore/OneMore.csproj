@@ -1001,6 +1001,9 @@
     <Content Include="Colorizer\Languages\javascript.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Colorizer\Languages\plantuml.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Colorizer\Languages\powershell.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -1026,6 +1029,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Commands\Search\x.png" />
+    <None Include="Colorizer\Languages\plantuml.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="Properties\Emoji\Architecture.png" />
     <None Include="Colorizer\Languages\golang.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

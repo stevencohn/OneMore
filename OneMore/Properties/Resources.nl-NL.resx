@@ -429,6 +429,10 @@ OneNote wordt automatisch gesloten</value>
     <value>Pas altijd het volgende lettertype toe bij het inkleuren van code</value>
     <comment>checkbox</comment>
   </data>
+  <data name="ColorizeSheet_font2Label.Text" xml:space="preserve">
+    <value>Secundair lettertype, gebruikt voor PlantUML</value>
+    <comment>label</comment>
+  </data>
   <data name="ColorizeSheet_introBox.Text" xml:space="preserve">
     <value>Pas het gedrag van de opdracht Inkleuren aan</value>
     <comment>label</comment>

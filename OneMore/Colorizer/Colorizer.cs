@@ -20,7 +20,7 @@ namespace River.OneMoreAddIn.Colorizer
 	{
 		private readonly Parser parser;
 		private readonly ITheme theme;
-		private readonly string fontStyle;
+		private string fontStyle;
 
 
 		/// <summary>
@@ -57,6 +57,33 @@ namespace River.OneMoreAddIn.Colorizer
 				if (!string.IsNullOrWhiteSpace(size))
 				{
 					var family = settings.Get<string>("family");
+					if (!string.IsNullOrWhiteSpace(family))
+					{
+						if (size.IndexOf('.') < 0)
+						{
+							size = $"{size}.0";
+						}
+
+						fontStyle = $"font-family:{family};font-size:{size}pt";
+					}
+				}
+			}
+		}
+
+
+		/// <summary>
+		/// Use the secondary font from user settings
+		/// </summary>
+		public void EnableSecondaryFont()
+		{
+			var settings = new SettingsProvider().GetCollection(nameof(ColorizerSheet));
+			if (settings.Get("apply", false))
+			{
+				// both must exist to be applied
+				var size = settings.Get<string>("size2");
+				if (!string.IsNullOrWhiteSpace(size))
+				{
+					var family = settings.Get<string>("family2");
 					if (!string.IsNullOrWhiteSpace(family))
 					{
 						if (size.IndexOf('.') < 0)

@@ -1,0 +1,84 @@
+{
+  "name": "PlantUML",
+  "aliases": [
+    "PlantUML",
+    "puml"
+  ],
+  "rules": [
+    {
+      "pattern": "(/'(?:[^']|[\\r\\n]|(?:'+(?:[^'/]|[\\r\\n])))*'+/)",
+      "captures": [
+        "Comment"
+      ]
+    },
+    {
+      "pattern": "(/'[^\\r\\n]*)$",
+      "scope": "Comment",
+      "captures": [
+        "Comment"
+      ]
+    },
+    {
+      "pattern": "^([^\\r\\n]*'/)",
+      "scope": "",
+      "captures": [
+        "Comment"
+      ]
+    },
+    {
+      "pattern": "^\\s*('.*)$",
+      "captures": [
+        "Comment"
+      ]
+    },
+    {
+      "pattern": "('[^\\n]*?(?<!\\\\)')",
+      "captures": [
+        "String"
+      ]
+    },
+    {
+      "pattern": "(?s)(\"[^\\n]*?(?<!\\\\)\")",
+      "captures": [
+        "String"
+      ]
+    },
+    {
+      "pattern": "^\\s*(title|note\\s+over|note\\s+left|note\\s+right)\\:?\\s+(.+)$",
+      "captures": [
+        "Keyword",
+        "StringCSharpVerbatim"
+      ]
+    },
+    {
+      "pattern": "^\\s*((?:@start|@end)(?:board|bpm|creole|cute|def|ditaa|dot|flow|gantt|git|jcckit|json|latex|math|mindmap|nwdiag|project|salt|tree|uml|wbs|wire|yaml))",
+      "captures": [
+        "PsuedoKeyword"
+      ]
+    },
+    {
+      "pattern": "\\b(abstract|actor|agent|annotation|archimate|artifact|boundary|card|cloud|collections|component|control|database|diamond|entity|enum|file|folder|frame|hexagon|label|node|object|package|participant|person|queue|rectangle|stack|state|storage|usecase|class|interface)\\b",
+      "captures": [
+        "Type"
+      ]
+    },
+    {
+      "pattern": "\\b(skin|skinparam|scale|autonumber)\\b",
+      "captures": [
+        "BuiltinFunction"
+      ]
+    },
+    {
+      "pattern": "\\b(across|activate|again|allow_mixing|allowmixing|also|alt|as|bold|bottom|box|break|caption|center|circle|color|create|critical|dashed|deactivate|description|destroy|detach|dotted|down|else|elseif|empty|end|endif|endwhile|false|footbox|footer|fork|group|header|hide|hnote|if|is|italic|kill|left|legend|link|loop|mainframe|map|members|namespace|newpage|normal|note|of|on|opt|order|over|package|page|par|partition|plain|ref|repeat|return|right|rnote|rotate|show|split|sprite|start|stereotype|stop|style|then|title|top|true|up|while)\\b",
+      "captures": [
+        "Keyword"
+      ]
+    },
+    {
+      "pattern": "\\b([0-9]{1,})\\b",
+      "captures": [
+        "Number"
+      ]
+    }
+  ]
+}

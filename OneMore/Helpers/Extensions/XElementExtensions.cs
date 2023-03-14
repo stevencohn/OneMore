@@ -441,8 +441,10 @@ namespace River.OneMoreAddIn
 		{
 			if (deep)
 			{
+				var clone = element.Clone();
+
 				var pattern = new Regex(@"\<[^<]+\>[^<]+\<[^<]+\>", RegexOptions.Compiled);
-				var data = element.DescendantNodes().OfType<XCData>()
+				var data = clone.DescendantNodes().OfType<XCData>()
 					.Where(d => pattern.IsMatch(d.Value));
 
 				foreach (var cdata in data)
@@ -450,7 +452,7 @@ namespace River.OneMoreAddIn
 					cdata.Value = cdata.GetWrapper().Value;
 				}
 
-				return element.Value;
+				return clone.Value;
 			}
 
 			return element.Value.ToXmlWrapper().Value;

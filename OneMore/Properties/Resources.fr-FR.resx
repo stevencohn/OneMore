@@ -425,6 +425,10 @@
     <value>Appliquez toujours la police suivante lors de la colorisation du code</value>
     <comment>checkbox</comment>
   </data>
+  <data name="ColorizeSheet_font2Label.Text" xml:space="preserve">
+    <value>Police secondaire, utilisée pour PlantUML</value>
+    <comment>label</comment>
+  </data>
   <data name="ColorizeSheet_introBox.Text" xml:space="preserve">
     <value>Personnaliser le comportement de la commande Coloriser</value>
     <comment>label</comment>

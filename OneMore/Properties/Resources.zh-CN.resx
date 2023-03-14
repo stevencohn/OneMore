@@ -430,6 +430,10 @@ OneNote 将自动关闭</value>
     <value>为代码着色时始终应用以下字体</value>
     <comment>checkbox</comment>
   </data>
+  <data name="ColorizeSheet_font2Label.Text" xml:space="preserve">
+    <value>辅助字体，用于 PlantUML</value>
+    <comment>label</comment>
+  </data>
   <data name="ColorizeSheet_introBox.Text" xml:space="preserve">
     <value>自定义着色命令的行为</value>
     <comment>label</comment>

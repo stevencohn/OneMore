@@ -428,6 +428,10 @@
     <value>قم دائمًا بتطبيق الخط التالي عند تلوين التعليمات البرمجية</value>
     <comment>checkbox</comment>
   </data>
+  <data name="ColorizeSheet_font2Label.Text" xml:space="preserve">
+    <value>الخط الثانوي المستخدم في PlantUML</value>
+    <comment>label</comment>
+  </data>
   <data name="ColorizeSheet_introBox.Text" xml:space="preserve">
     <value>تخصيص سلوك أمر Colorize</value>
     <comment>label</comment>

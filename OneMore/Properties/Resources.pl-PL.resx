@@ -437,6 +437,10 @@ OneNote zamknie się automatycznie</value>
     <value>Podczas kolorowania kodu zawsze stosuj poniższą czcionkę</value>
     <comment>checkbox</comment>
   </data>
+  <data name="ColorizeSheet_font2Label.Text" xml:space="preserve">
+    <value>Czcionka dodatkowa, używana w PlantUML</value>
+    <comment>label</comment>
+  </data>
   <data name="ColorizeSheet_introBox.Text" xml:space="preserve">
     <value>Dostosuj zachowanie polecenia Koloruj</value>
     <comment>label</comment>

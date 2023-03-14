@@ -31,11 +31,14 @@ namespace River.OneMoreAddIn.Settings
 		{
 			this.introBox = new System.Windows.Forms.TextBox();
 			this.layoutPanel = new System.Windows.Forms.Panel();
+			this.size2Box = new System.Windows.Forms.ComboBox();
+			this.font2Label = new System.Windows.Forms.Label();
 			this.fixedBox = new System.Windows.Forms.CheckBox();
 			this.familyBox = new River.OneMoreAddIn.UI.FontComboBox();
 			this.sizeBox = new System.Windows.Forms.ComboBox();
 			this.fontLabel = new System.Windows.Forms.Label();
 			this.applyBox = new System.Windows.Forms.CheckBox();
+			this.family2Box = new River.OneMoreAddIn.UI.FontComboBox();
 			this.layoutPanel.SuspendLayout();
 			this.SuspendLayout();
 			// 
@@ -54,6 +57,9 @@ namespace River.OneMoreAddIn.Settings
 			// 
 			// layoutPanel
 			// 
+			this.layoutPanel.Controls.Add(this.family2Box);
+			this.layoutPanel.Controls.Add(this.size2Box);
+			this.layoutPanel.Controls.Add(this.font2Label);
 			this.layoutPanel.Controls.Add(this.fixedBox);
 			this.layoutPanel.Controls.Add(this.familyBox);
 			this.layoutPanel.Controls.Add(this.sizeBox);
@@ -65,6 +71,41 @@ namespace River.OneMoreAddIn.Settings
 			this.layoutPanel.Name = "layoutPanel";
 			this.layoutPanel.Size = new System.Drawing.Size(772, 416);
 			this.layoutPanel.TabIndex = 4;
+			// 
+			// size2Box
+			// 
+			this.size2Box.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.size2Box.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.size2Box.FormattingEnabled = true;
+			this.size2Box.Items.AddRange(new object[] {
+            "8",
+            "9",
+            "9.5",
+            "10",
+            "10.5",
+            "11",
+            "11.5",
+            "12",
+            "14",
+            "16",
+            "18",
+            "20",
+            "22",
+            "24",
+            "26"});
+			this.size2Box.Location = new System.Drawing.Point(491, 208);
+			this.size2Box.Name = "size2Box";
+			this.size2Box.Size = new System.Drawing.Size(104, 33);
+			this.size2Box.TabIndex = 15;
+			// 
+			// font2Label
+			// 
+			this.font2Label.AutoSize = true;
+			this.font2Label.Location = new System.Drawing.Point(26, 186);
+			this.font2Label.Name = "font2Label";
+			this.font2Label.Size = new System.Drawing.Size(248, 20);
+			this.font2Label.TabIndex = 14;
+			this.font2Label.Text = "Seconary font, used for PlantUML";
 			// 
 			// fixedBox
 			// 
@@ -136,6 +177,20 @@ namespace River.OneMoreAddIn.Settings
 			this.applyBox.Text = "Always apply the following font when colorizing code";
 			this.applyBox.UseVisualStyleBackColor = true;
 			// 
+			// family2Box
+			// 
+			this.family2Box.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.family2Box.DropDownHeight = 400;
+			this.family2Box.DropDownWidth = 350;
+			this.family2Box.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.family2Box.FormattingEnabled = true;
+			this.family2Box.IntegralHeight = false;
+			this.family2Box.Location = new System.Drawing.Point(130, 209);
+			this.family2Box.Name = "family2Box";
+			this.family2Box.Size = new System.Drawing.Size(355, 32);
+			this.family2Box.TabIndex = 16;
+			// 
 			// ColorizerSheet
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -162,5 +217,8 @@ namespace River.OneMoreAddIn.Settings
 		private System.Windows.Forms.ComboBox sizeBox;
 		private System.Windows.Forms.Label fontLabel;
 		private System.Windows.Forms.CheckBox fixedBox;
+		private System.Windows.Forms.ComboBox size2Box;
+		private System.Windows.Forms.Label font2Label;
+		private UI.FontComboBox family2Box;
 	}
 }

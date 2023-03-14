@@ -889,6 +889,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Secondary font, used for PlantUML.
+        /// </summary>
+        internal static string ColorizeSheet_font2Label_Text {
+            get {
+                return ResourceManager.GetString("ColorizeSheet_font2Label.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Customize the behavior of the Colorize command.
         /// </summary>
         internal static string ColorizeSheet_introBox_Text {

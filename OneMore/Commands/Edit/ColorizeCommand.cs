@@ -5,6 +5,7 @@
 namespace River.OneMoreAddIn.Commands
 {
 	using River.OneMoreAddIn.Colorizer;
+	using River.OneMoreAddIn.Models;
 	using System;
 	using System.Collections.Generic;
 	using System.Linq;
@@ -15,23 +16,33 @@ namespace River.OneMoreAddIn.Commands
 
 	internal class ColorizeCommand : Command
 	{
+		private Page page;
+		private XNamespace ns;
+		private readonly bool fontOverride;
+
+
 		public ColorizeCommand()
 		{
 		}
 
 
+		public ColorizeCommand(Page page, bool fontOverride)
+		{
+			this.page = page;
+			ns = page.Namespace;
+			this.fontOverride = fontOverride;
+		}
+
+
+		/// <summary>
+		/// Execute the colorizer from the command factory
+		/// DO NOT call this from other location; use the method below instead
+		/// </summary>
+		/// <param name="args"></param>
+		/// <returns></returns>
 		public override async Task Execute(params object[] args)
 		{
-			using var one = new OneNote(out var page, out var ns);
-			var pageColor = page.GetPageColor(out var automatic, out var black);
-			var dark = black || pageColor.GetBrightness() < 0.5;
-			var theme = dark ? "dark" : "light";
-			//logger.WriteLine($"theme: {theme} (color:{pageColor} automatic:{automatic} black:{black})");
-
-			var colorizer = new Colorizer(
-				args[0] as string,
-				theme,
-				automatic || (black && theme == "dark"));
+			using var one = new OneNote(out page, out ns);
 
 			var runs = page.Root.Descendants(ns + "T")
 				.Where(e => e.Attributes().Any(a => a.Name == "selected" && a.Value == "all"));
@@ -39,6 +50,38 @@ namespace River.OneMoreAddIn.Commands
 			if (runs == null)
 			{
 				return;
+			}
+
+			var updated = Colorize(args[0] as string, runs);
+
+			if (updated)
+			{
+				await one.Update(page);
+			}
+		}
+
+
+		/// <summary>
+		/// Colorize the given runs using the specified language
+		/// </summary>
+		/// <param name="key"></param>
+		/// <param name="runs"></param>
+		/// <returns></returns>
+		public bool Colorize(string key, IEnumerable<XElement> runs)
+		{
+			var pageColor = page.GetPageColor(out var automatic, out var black);
+			var dark = black || pageColor.GetBrightness() < 0.5;
+			var theme = dark ? "dark" : "light";
+			//logger.WriteLine($"theme: {theme} (color:{pageColor} automatic:{automatic} black:{black})");
+
+			var colorizer = new Colorizer(
+				key,
+				theme,
+				automatic || (black && theme == "dark"));
+
+			if (fontOverride)
+			{
+				colorizer.EnableSecondaryFont();
 			}
 
 			var updated = false;
@@ -88,10 +131,7 @@ namespace River.OneMoreAddIn.Commands
 				}
 			}
 
-			if (updated)
-			{
-				await one.Update(page);
-			}
+			return updated;
 		}
 	}
 }
