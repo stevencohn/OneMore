@@ -59,10 +59,17 @@
       ]
     },
     {
-      "pattern": "^\\s*(title|note\\s+(?:over|left|right))[^:]*\\:?\\s+(.+)$",
+      "pattern": "^\\s*(note\\s+(?:over|left|right))[^:]*\\:?\\s+(.+)$",
       "captures": [
         "Keyword",
         "PlantNote"
+      ]
+    },
+    {
+      "pattern": "^\\s*(title)\\s+(.+)$",
+      "captures": [
+        "Keyword",
+        "PlainText"
       ]
     },
     {
