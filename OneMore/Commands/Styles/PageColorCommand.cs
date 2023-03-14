@@ -46,7 +46,10 @@ namespace River.OneMoreAddIn.Commands
 				if (dialog.ApplyStyle)
 				{
 					ThemeProvider.RecordTheme(dialog.ThemeKey);
-					new ApplyStylesCommand().Apply(page);
+
+					var cmd = new ApplyStylesCommand();
+					cmd.SetLogger(logger);
+					cmd.Apply(page);
 				}
 
 				using var one = new OneNote();

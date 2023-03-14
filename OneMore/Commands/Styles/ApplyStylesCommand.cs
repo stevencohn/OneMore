@@ -250,7 +250,7 @@ namespace River.OneMoreAddIn.Commands
 
 			style ??= new Style
 			{
-				Color = page.GetPageColor(out _, out _).GetBrightness() < 0.5 ? "#FFFFFF" : "#000000"
+				Color = page.GetBestTextColor().ToRGBHtml()
 			};
 
 			var elements = page.Root.Descendants(ns + "Bullet");
