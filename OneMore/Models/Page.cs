@@ -16,6 +16,7 @@ namespace River.OneMoreAddIn.Models
 	using System.Globalization;
 	using System.Linq;
 	using System.Media;
+	using System.Security.Policy;
 	using System.Text;
 	using System.Text.RegularExpressions;
 	using System.Xml;
@@ -1011,6 +1012,31 @@ namespace River.OneMoreAddIn.Models
 			catch
 			{
 				return black ? Color.Black : Color.White;
+			}
+		}
+
+		public Color GetBestTextColor()
+		{
+			var back = GetPageColor(out var automatic, out var black);
+			if (black)
+			{
+				if (automatic)
+				{
+					return Color.Black;
+				}
+
+				var dark = back.GetBrightness() < 0.5;
+				return dark ? Color.WhiteSmoke : Color.Black;
+			}
+			else
+			{
+				if (automatic)
+				{
+					return Color.Black;
+				}
+
+				var dark = back.GetBrightness() < 0.5;
+				return dark ? Color.White : Color.Black;
 			}
 		}
 

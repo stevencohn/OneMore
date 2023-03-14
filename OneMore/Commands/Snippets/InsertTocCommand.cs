@@ -186,21 +186,22 @@ namespace River.OneMoreAddIn.Commands
 
 			// build new TOC...
 
-			var dark = page.GetPageColor(out _, out _).GetBrightness() < 0.5;
-			var textColor = dark ? "#FFFFFF" : "#000000";
-
 			var cmd = "onemore://InsertTocCommand/refresh";
 			if (jumplinks) cmd = $"{cmd}/links";
 			if (alignlinks) cmd = $"{cmd}/align";
 
 			var refresh = $"<a href=\"{cmd}\"><span style='{RefreshStyle}'>{Resx.word_Refresh}</span></a>";
 
+			// be sure to emit this with ToRBGHtml() otherwise OneNote may normalize White/Black
+			// color names, removing them against Dark/Light backgrounds respectively
+			var textColor = page.GetBestTextColor();
+
 			// "Table of Contents" line
 			var toc = new Paragraph(
 				$"<span style='font-weight:bold'>{Resx.InsertTocCommand_TOC}</span> " +
 				$"<span style='{RefreshStyle}'>[{refresh}]</span>"
 				)
-				.SetStyle($"font-size:16.0pt;color:{textColor}");
+				.SetStyle($"font-size:16.0pt;color:{textColor.ToRGBHtml()}");
 
 			// use the minimum intent level
 			var minlevel = headings.Min(e => e.Level);
@@ -208,6 +209,7 @@ namespace River.OneMoreAddIn.Commands
 			var container = new XElement(ns + "OEChildren");
 			var index = 0;
 
+			var dark = page.GetPageColor(out _, out _).GetBrightness() < 0.5;
 			BuildHeadings(container, headings, ref index, minlevel, dark);
 
 			var table = new Table(ns, 3, 1) { BordersVisible = false };
