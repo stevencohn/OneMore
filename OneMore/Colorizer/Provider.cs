@@ -88,6 +88,7 @@ namespace River.OneMoreAddIn.Colorizer
 			}
 			catch (Exception exc)
 			{
+				Logger.Current.WriteLine(exc.Message);
 				Logger.Current.WriteLine($"error loading theme {path}", exc);
 			}
 

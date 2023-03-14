@@ -8,27 +8,27 @@
     {
       "pattern": "(/'(?:[^']|[\\r\\n]|(?:'+(?:[^'/]|[\\r\\n])))*'+/)",
       "captures": [
-        "Comment"
+        "PlantComment"
       ]
     },
     {
       "pattern": "(/'[^\\r\\n]*)$",
       "scope": "Comment",
       "captures": [
-        "Comment"
+        "PlantComment"
       ]
     },
     {
       "pattern": "^([^\\r\\n]*'/)",
       "scope": "",
       "captures": [
-        "Comment"
+        "PlantComment"
       ]
     },
     {
       "pattern": "^\\s*('.*)$",
       "captures": [
-        "Comment"
+        "PlantComment"
       ]
     },
     {
@@ -44,28 +44,50 @@
       ]
     },
     {
-      "pattern": "^\\s*(title|note\\s+over|note\\s+left|note\\s+right)\\:?\\s+(.+)$",
+      "pattern": "^\\s*(note\\s+(?:over|left|right))[^:]*$",
+      "scope": "PlantNote",
+      "captures": [
+        "Keyword"
+      ]
+    },
+    {
+      "pattern": "(^\\s*)(end note)$",
+      "scope": "",
+      "captures": [
+        "PlantComment",
+        "Keyword"
+      ]
+    },
+    {
+      "pattern": "^\\s*(title|note\\s+(?:over|left|right))[^:]*\\:?\\s+(.+)$",
       "captures": [
         "Keyword",
-        "StringCSharpVerbatim"
+        "PlantNote"
       ]
     },
     {
       "pattern": "^\\s*((?:@start|@end)(?:board|bpm|creole|cute|def|ditaa|dot|flow|gantt|git|jcckit|json|latex|math|mindmap|nwdiag|project|salt|tree|uml|wbs|wire|yaml))",
       "captures": [
-        "PsuedoKeyword"
+        "PlantBlock"
       ]
     },
     {
       "pattern": "\\b(abstract|actor|agent|annotation|archimate|artifact|boundary|card|cloud|collections|component|control|database|diamond|entity|enum|file|folder|frame|hexagon|label|node|object|package|participant|person|queue|rectangle|stack|state|storage|usecase|class|interface)\\b",
       "captures": [
-        "Type"
+        "PlantClass"
       ]
     },
     {
-      "pattern": "\\b(skin|skinparam|scale|autonumber)\\b",
+      "pattern": "\\b(autonumber|scale|skin|skinparam|\\!include)\\b",
       "captures": [
-        "BuiltinFunction"
+        "PlantSkin"
+      ]
+    },
+    {
+      "pattern": "\\s((?:-{1,2}(?:>|>>|\\\\|\\/|\\\\\\\\|\\/\\/|\\?|o|x))|(?:<|<<|\\\\|\\/|\\\\\\\\|\\/\\/|\\?|o|x)-{1,2})\\s+[^:]+(?::\\s*(.*))?$",
+      "captures": [
+        "PlantArrow",
+        "String"
       ]
     },
     {

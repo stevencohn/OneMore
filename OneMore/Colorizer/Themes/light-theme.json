@@ -4,9 +4,13 @@
     "Blue": "#0000FF",
     "DarkCyan": "#008B8B",
     "DarkOliveGreen": "#556B2F",
+    "DarkYellow": "#BF9000",
     "DullRed": "#A31515",
     "Gray": "#808080",
     "Green": "#008000",
+    "LightGray": "#A5A5A5",
+    "LightGreen": "#00B050",
+    "LightTeal": "#2EBBB8",
     "Magenta": "#FF00FF",
     "MediumTurqoise": "#48D1CC",
     "Navy": "#000080",
@@ -137,6 +141,31 @@
     },
     {
       "name": "Operator"
+    },
+    {
+      "name": "PlantArrow",
+      "foreground": "CornflowerBlue"
+    },
+    {
+      "name": "PlantBlock",
+      "foreground": "CornflowerBlue",
+      "bold": true
+    },
+    {
+      "name": "PlantClass",
+      "foreground": "LightTeal"
+    },
+    {
+      "name": "PlantComment",
+      "foreground": "LightGreen"
+    },
+    {
+      "name": "PlantNote",
+      "foreground": "DarkYellow"
+    },
+    {
+      "name": "PlantSkin",
+      "foreground": "LightGray"
     },
     {
       "name": "PowerShellAttribute",
