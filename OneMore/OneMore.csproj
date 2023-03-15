@@ -1182,7 +1182,6 @@
     <Content Include="Properties\Resources.de-DE-hints.xml" />
     <Content Include="Properties\Resources.zh-CN-hints.xml" />
     <None Include="Commands\Snippets\InfoBoxThemes.json" />
-    <None Include="Commands\Tools\Updater\StopOneNote.ps1" />
     <None Include="Ribbon\DefaultTableThemes.json" />
     <Content Include="UI\TagMap.png" />
     <Content Include="Properties\Images\TextHighlightColorPicker.png" />
