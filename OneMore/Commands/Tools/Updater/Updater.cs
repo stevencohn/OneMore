@@ -11,11 +11,10 @@ namespace River.OneMoreAddIn.Commands.Tools.Updater
 	using System.Diagnostics;
 	using System.IO;
 	using System.Linq;
-	using System.Runtime.InteropServices;
+	using System.Reflection;
 	using System.Text.RegularExpressions;
 	using System.Threading.Tasks;
 	using System.Web.Script.Serialization;
-	using Resx = Properties.Resources;
 
 
 	internal class Updater : IUpdateReport
@@ -184,17 +183,18 @@ namespace River.OneMoreAddIn.Commands.Tools.Updater
 			// make installer script, which runs as a separate process so we have a chance
 			// to terminate onenote before the msi runs
 
-			var path = Path.Combine(Path.GetTempPath(), "OneMoreInstaller.ps1");
+			var path = Path.Combine(Path.GetTempPath(), "OneMoreInstaller.cmd");
+			Logger.Current.WriteLine($"creating install script {path}");
 
-			var script = Resx.StopOneNote.Replace(
-				"~guid~",
-				(typeof(AddIn).GetCustomAttributes(typeof(GuidAttribute), false)
-					.First() as GuidAttribute).Value
-				);
+			var action = Path.Combine(
+				Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location),
+				"OneMoreSetupAction.exe")
+				+ " --uinstall-shutdown";
 
 			using var writer = new StreamWriter(path, false);
-			writer.WriteLine(script);
+			writer.WriteLine(action);
 			writer.WriteLine(msi);
+			writer.WriteLine("set /p ans=\"continue: \"");
 			writer.Flush();
 			writer.Close();
 
@@ -203,10 +203,10 @@ namespace River.OneMoreAddIn.Commands.Tools.Updater
 			Logger.Current.WriteLine($"starting installation process");
 			Process.Start(new ProcessStartInfo
 			{
-				FileName = "powershell.exe",
-				Arguments = $"-f {path}",
+				FileName = Environment.ExpandEnvironmentVariables("%ComSpec%"),
+				Arguments = path,
 				UseShellExecute = true,
-				WindowStyle = ProcessWindowStyle.Hidden
+				WindowStyle = ProcessWindowStyle.Normal //.Hidden
 			});
 
 			return true;

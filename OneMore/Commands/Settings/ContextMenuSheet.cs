@@ -171,7 +171,7 @@ namespace River.OneMoreAddIn.Settings
 		/// Created in v5.1.0. To be removed a few versions after that.
 		/// </summary>
 		/// <param name="provider"></param>
-		public static void UpgradESettings(SettingsProvider provider)
+		public static void UpgradeSettings(SettingsProvider provider)
 		{
 			var exchange = new System.Collections.Generic.Dictionary<string, string>
 			{

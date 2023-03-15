@@ -8,6 +8,9 @@ Specifies the bitness of the build: 64 or 86, default is 64
 .PARAMETER Both
 Build both x86 and x64 kits.
 
+.PARAMETER Fast
+Build just the OneMore.csproj using default parameters
+
 .PARAMETER Prep
 Run DisableOutOfProcBuild. This only needs to be run once on a machine, or after upgrading
 or reinstalling Visual Studio. It is required to build installer kits from the command line.
@@ -17,6 +20,7 @@ or reinstalling Visual Studio. It is required to build installer kits from the c
 [CmdletBinding(SupportsShouldProcess = $true)]
 param (
     [int] $configbits = 64,
+    [switch] $fast,
     [switch] $both,
     [switch] $prep
     )
@@ -162,6 +166,26 @@ Begin
         }
     }
 
+    function BuildFast
+    {
+        Write-Host "... building x$bitness DLLs" -ForegroundColor Yellow
+        Push-Location OneMore
+
+        # output file cannot exist before build
+        if (Test-Path .\Debug\*)
+        {
+            Remove-Item .\Debug\*.* -Force -Confirm:$false
+        }
+
+        $cmd = "$devenv .\OneMore.csproj /build ""Debug|AnyCPU"" /project OneMore /projectconfig Debug"
+        write-Host $cmd -ForegroundColor DarkGray
+
+        # build
+        . $devenv .\OneMore.csproj /build "Debug|AnyCPU" /project OneMore /projectconfig Debug
+
+        Pop-Location
+    }
+
     function Build ([int]$bitness)
     {
         Write-Host "... building x$bitness MSI" -ForegroundColor Yellow
@@ -196,23 +220,30 @@ Process
         return
     }
 
-    Push-Location OneMoreSetup
-    $script:vdproj = Resolve-Path .\OneMoreSetup.vdproj
-
-    PreserveVdproj
-
-    if ($configbits -eq 86 -or $both)
+    if ($fast)
     {
-        Configure 86
-        Build 86
+        BuildFast
+    }
+    else
+    {
+        Push-Location OneMoreSetup
+        $script:vdproj = Resolve-Path .\OneMoreSetup.vdproj
+        PreserveVdproj
+
+        if ($configbits -eq 86 -or $both)
+        {
+            Configure 86
+            Build 86
+        }
+
+        if ($configBits -eq 64 -or $both)
+        {
+            Configure 64
+            Build 64
+        }
+
+        RestoreVdproj
     }
 
-    if ($configBits -eq 64 -or $both)
-    {
-        Configure 64
-        Build 64
-    }
-
-    RestoreVdproj
     Pop-Location
 }

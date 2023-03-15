@@ -50,7 +50,7 @@ namespace River.OneMoreAddIn.Settings
 			}
 			else
 			{
-				ContextMenuSheet.UpgradESettings(this);
+				ContextMenuSheet.UpgradeSettings(this);
 			}
 		}
 
