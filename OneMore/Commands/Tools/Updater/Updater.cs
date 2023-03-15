@@ -192,7 +192,6 @@ namespace River.OneMoreAddIn.Commands.Tools.Updater
 					.First() as GuidAttribute).Value
 				);
 
-			Logger.Current.WriteLine($"creating install script {path}");
 			using var writer = new StreamWriter(path, false);
 			writer.WriteLine(script);
 			writer.WriteLine(msi);
