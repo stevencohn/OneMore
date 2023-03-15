@@ -3,6 +3,7 @@
 //************************************************************************************************
 
 #pragma warning disable S1075 // URIs should not be hardcoded
+#define xDebugUpdater
 
 namespace River.OneMoreAddIn.Commands.Tools.Updater
 {
@@ -188,13 +189,16 @@ namespace River.OneMoreAddIn.Commands.Tools.Updater
 
 			var action = Path.Combine(
 				Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location),
-				"OneMoreSetupAction.exe")
-				+ " --uinstall-shutdown";
+				"OneMoreSetupActions.exe");
+
+			var shutdown = $"start /b \"\" \"{action}\" --uninstall-shutdown";
 
 			using var writer = new StreamWriter(path, false);
-			writer.WriteLine(action);
+			writer.WriteLine(shutdown);
 			writer.WriteLine(msi);
-			writer.WriteLine("set /p ans=\"continue: \"");
+#if DebugUpdater
+			writer.WriteLine("set /p \"continue: \""); // for debugging
+#endif
 			writer.Flush();
 			writer.Close();
 
@@ -204,9 +208,13 @@ namespace River.OneMoreAddIn.Commands.Tools.Updater
 			Process.Start(new ProcessStartInfo
 			{
 				FileName = Environment.ExpandEnvironmentVariables("%ComSpec%"),
-				Arguments = path,
+				Arguments = $"/c {path}",
 				UseShellExecute = true,
-				WindowStyle = ProcessWindowStyle.Normal //.Hidden
+#if DebugUpdater
+				WindowStyle = ProcessWindowStyle.Normal
+#else
+				WindowStyle = ProcessWindowStyle.Hidden
+#endif
 			});
 
 			return true;
