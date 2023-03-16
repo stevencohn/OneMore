@@ -19,21 +19,157 @@ namespace River.OneMoreAddIn.Settings
 	internal partial class ContextMenuSheet : SheetBase
 	{
 		private const string ProofingResID = "ribProofingMenu_Label";
+		private const string ColorizeResID = "ribColorizeMenu_Label";
 
 		#region Private classes
-		public sealed class CommandMenuItem
+		private sealed class CtxMenu
 		{
 			public string Name { get; set; }
 			public string ResID { get; set; }
-			public IEnumerable<CommandItem> Commands { get; set; }
+			public IEnumerable<CtxMenuItem> Commands { get; set; }
 			public override string ToString() => Name;
 		}
 
-		public sealed class CommandItem
+
+		private sealed class CtxMenuItem
 		{
 			public string Name { get; set; }
 			public string ResID { get; set; }
 			public override string ToString() => Name;
+		}
+
+
+		private sealed class MenuPanel : FlowLayoutPanel
+		{
+			public MenuPanel()
+			{
+				FlowDirection = FlowDirection.LeftToRight;
+				AutoScroll = true;
+				WrapContents = true;
+			}
+
+
+			public void AddMenus(IEnumerable<CtxMenu> menus)
+			{
+				var width = 0;
+
+				foreach (var menu in menus)
+				{
+					var mitem = new MenuItemPanel(menu);
+					Controls.Add(mitem);
+
+					// menu items are not indented but want to have the same right-alignment
+					// as command items so add indent width into this calculation
+					var offset = mitem.Width + SystemInformation.MenuCheckSize.Width;
+					if (width < offset)
+					{
+						width = offset;
+					}
+
+					if (menu.ResID != ColorizeResID)
+					{
+						foreach (var command in menu.Commands)
+						{
+							var citem = new MenuItemPanel(command);
+							Controls.Add(citem);
+							if (width < citem.Width)
+							{
+								width = citem.Width;
+							}
+						}
+					}
+				}
+
+				// a little extra
+				width += 20;
+
+				foreach (MenuItemPanel item in Controls)
+				{
+					SetFlowBreak(item, true);
+					item.Width = item.Indented ? width : width + SystemInformation.MenuCheckSize.Width;
+				}
+			}
+		}
+
+		private sealed class MenuItemPanel : Panel
+		{
+			private readonly HandyCheckBox box;
+			private readonly IntPtr hcursor;
+
+
+			public bool Checked
+			{
+				get => box.Checked;
+				set => box.Checked = value;
+			}
+
+
+			public bool Indented { get; private set; }
+
+
+			public MenuItemPanel(CtxMenu item)
+				: this(item.Name, item.ResID, Color.FromArgb(214, 166, 211))
+			{
+			}
+
+
+			public MenuItemPanel(CtxMenuItem item)
+				: this(item.Name, item.ResID, Color.Transparent)
+			{
+				Margin = new Padding(SystemInformation.MenuCheckSize.Width, 1, 1, 0);
+				Indented = true;
+			}
+
+
+			private MenuItemPanel(string name, string resID, Color color)
+			{
+				using var graphics = Graphics.FromHwnd(IntPtr.Zero);
+				var textSize = graphics.MeasureString(name, Font);
+				Height = (int)(textSize.Height + 4);
+
+				BackColor = color;
+
+				box = new HandyCheckBox
+				{
+					Dock = DockStyle.Fill,
+					Padding = new Padding(4, 2, 10, 2),
+					Text = name
+				};
+
+				hcursor = Native.LoadCursor(IntPtr.Zero, Native.IDC_HAND);
+
+				box.MouseEnter += (s, e) => { Native.SetCursor(hcursor); };
+				box.MouseLeave += (s, e) => { box.Cursor = Cursors.Default; };
+
+				// track by ResID, settings
+				Tag = resID;
+
+				Controls.Add(box);
+			}
+		}
+
+
+		private sealed class HandyCheckBox : CheckBox
+		{
+			private readonly IntPtr hcursor;
+
+			public HandyCheckBox()
+			{
+				Cursor = Cursors.Hand;
+				hcursor = Native.LoadCursor(IntPtr.Zero, Native.IDC_HAND);
+			}
+
+			protected override void WndProc(ref Message m)
+			{
+				if (m.Msg == Native.WM_SETCURSOR && hcursor != IntPtr.Zero)
+				{
+					Native.SetCursor(hcursor);
+					m.Result = IntPtr.Zero; // indicate handled
+					return;
+				}
+
+				base.WndProc(ref m);
+			}
 		}
 		#endregion Private classes
 
@@ -81,7 +217,7 @@ namespace River.OneMoreAddIn.Settings
 		}
 
 
-		IEnumerable<CommandMenuItem> CollectCommandMenus()
+		IEnumerable<CtxMenu> CollectCommandMenus()
 		{
 			var atype = typeof(CommandAttribute);
 
@@ -104,25 +240,25 @@ namespace River.OneMoreAddIn.Settings
 					Category = Resx.ResourceManager.GetString($"{o.Attribute.Category}_Label")
 				})
 				.GroupBy(c => new { Name = c.Category, ResID = c.CategoryResID })
-				.Select(g => new CommandMenuItem
+				.Select(g => new CtxMenu
 				{
 					Name = string.Format(Resx.ContextMenuSheet_menu, g.Key.Name),
 					ResID = g.Key.ResID,
-					Commands = g.Select(c => new CommandItem { Name = c.Name, ResID = c.ResID })
+					Commands = g.Select(c => new CtxMenuItem { Name = c.Name, ResID = c.ResID })
 						.OrderBy(c => c.Name)
 				})
 				.OrderBy(m => m.Name);
 
-			// add Proofing Language menu?
+			// add Proofing Language menu
 			var codes = Office.GetEditingLanguages();
 			if (codes != null && codes.Length > 1)
 			{
 				var list = menus.ToList();
-				list.Add(new CommandMenuItem
+				list.Add(new CtxMenu
 				{
 					Name = Resx.ResourceManager.GetString(ProofingResID),
 					ResID = ProofingResID,
-					Commands = new List<CommandItem>()
+					Commands = new List<CtxMenuItem>()
 				});
 
 				menus = list.OrderBy(m => m.Name);
@@ -202,141 +338,6 @@ namespace River.OneMoreAddIn.Settings
 				provider.SetCollection(collection);
 				provider.Save();
 			}
-		}
-	}
-
-	class MenuPanel : FlowLayoutPanel
-	{
-		private const string ColorizeResID = "ribColorizeMenu_Label";
-
-		public MenuPanel()
-		{
-			FlowDirection = FlowDirection.LeftToRight;
-			AutoScroll = true;
-			WrapContents = true;
-		}
-
-
-		public void AddMenus(IEnumerable<ContextMenuSheet.CommandMenuItem> menus)
-		{
-			var width = 0;
-
-			foreach (var menu in menus)
-			{
-				var mitem = new MenuItemPanel(menu);
-				Controls.Add(mitem);
-
-				// menu items are not indented but want to have the same right-alignment
-				// as command items so add indent width into this calculation
-				var offset = mitem.Width + SystemInformation.MenuCheckSize.Width;
-				if (width < offset)
-				{
-					width = offset;
-				}
-
-				if (menu.ResID != ColorizeResID)
-				{
-					foreach (var command in menu.Commands)
-					{
-						var citem = new MenuItemPanel(command);
-						Controls.Add(citem);
-						if (width < citem.Width)
-						{
-							width = citem.Width;
-						}
-					}
-				}
-			}
-
-			// a little extra
-			width += 20;
-
-			foreach (MenuItemPanel item in Controls)
-			{
-				SetFlowBreak(item, true);
-				item.Width = item.Indented ? width : width + SystemInformation.MenuCheckSize.Width;
-			}
-		}
-	}
-
-	class MenuItemPanel : Panel
-	{
-		private readonly CheckBoxExt box;
-		private readonly IntPtr hcursor;
-
-
-		public bool Checked
-		{
-			get => box.Checked;
-			set => box.Checked = value;
-		}
-
-
-		public bool Indented { get; private set; }
-
-
-		public MenuItemPanel(ContextMenuSheet.CommandMenuItem item)
-			: this(item.Name, item.ResID, Color.FromArgb(214, 166, 211))
-		{
-		}
-
-
-		public MenuItemPanel(ContextMenuSheet.CommandItem item)
-			: this(item.Name, item.ResID, Color.Transparent)
-		{
-			Margin = new Padding(SystemInformation.MenuCheckSize.Width, 1, 1, 0);
-			Indented = true;
-		}
-
-
-		private MenuItemPanel(string name, string resID, Color color)
-		{
-			using var graphics = Graphics.FromHwnd(IntPtr.Zero);
-			var textSize = graphics.MeasureString(name, Font);
-			Height = (int)(textSize.Height + 4);
-
-			BackColor = color;
-
-			box = new CheckBoxExt
-			{
-				Dock = DockStyle.Fill,
-				Padding = new Padding(4, 2, 10, 2),
-				Text = name
-			};
-
-			hcursor = Native.LoadCursor(IntPtr.Zero, Native.IDC_HAND);
-
-			box.MouseEnter += (s, e) => { Native.SetCursor(hcursor); };
-			box.MouseLeave += (s, e) => { box.Cursor = Cursors.Default; };
-
-			// track by ResID, settings
-			Tag = resID;
-
-			Controls.Add(box);
-		}
-	}
-
-
-	class CheckBoxExt : CheckBox
-	{
-		private readonly IntPtr hcursor;
-
-		public CheckBoxExt()
-		{
-			Cursor = Cursors.Hand;
-			hcursor = Native.LoadCursor(IntPtr.Zero, Native.IDC_HAND);
-		}
-
-		protected override void WndProc(ref Message m)
-		{
-			if (m.Msg == Native.WM_SETCURSOR && hcursor != IntPtr.Zero)
-			{
-				Native.SetCursor(hcursor);
-				m.Result = IntPtr.Zero; // indicate handled
-				return;
-			}
-
-			base.WndProc(ref m);
 		}
 	}
 }

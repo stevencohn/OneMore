@@ -169,11 +169,13 @@ namespace River.OneMoreAddIn
 			=> await factory.Run<ExpandoCommand>(Expando.Collapse);
 
 
-		[Command("ribChooseColorizerButton_Label", Keys.Alt | Keys.C, "ribColorizeMenu")]
+		[Command("ribChooseColorizerButton_Label", Keys.Alt | Keys.C)]
 		public async Task ChooseColorizerCmd(IRibbonControl control)
 			=> await factory.Run<ChooseColorizerCommand>();
 
 
+		[IgnorePalette]
+		[Command("ribColorizerButton_Label", Keys.None, "ribColorizeMenu")]
 		public async Task ColorizeCmd(IRibbonControl control)
 			=> await factory.Run<ColorizeCommand>(control.Tag); // tag=language
 
