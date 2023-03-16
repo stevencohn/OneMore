@@ -177,10 +177,18 @@ Begin
             Remove-Item .\Debug\*.* -Force -Confirm:$false
         }
 
+        # restore...
+
+        $cmd = 'nuget restore .\OneMore\OneMore.csproj'
+        write-Host $cmd -ForegroundColor DarkGray
+
+        nuget restore .\OneMore\OneMore.csproj
+
+        # build...
+
         $cmd = "$devenv .\OneMore.csproj /build ""Debug|AnyCPU"" /project OneMore /projectconfig Debug"
         write-Host $cmd -ForegroundColor DarkGray
 
-        # build
         . $devenv .\OneMore.csproj /build "Debug|AnyCPU" /project OneMore /projectconfig Debug
 
         Pop-Location

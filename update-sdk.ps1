@@ -8,10 +8,15 @@ param ()
 
 Begin
 {
+    $script:DOSDevicesKey = 'HKLM:\SYSTEM\CurrentControlSet\Control\Session Manager\DOS Devices'
+
     $script:csproj = $null
     $script:kitsroot = $null
     $script:sdkver = $null
     $script:netpath = $null
+    $script:basePath = $null
+	$script:forceBase = $false
+
 
     function WriteOK
     {
@@ -19,6 +24,29 @@ Begin
         Write-Host 'OK ' -Fore Green -NoNewLine
         Write-Host $text
     }
+
+
+    function GetDriveMapping
+    {
+        # if the current drive is a virtual drive letter (persistent mapping) then the calls to
+        # Resolve-Path will not work, so we need to get the actual target of the drive
+
+        $letter = [System.IO.Path]::GetPathRoot($pwd.path)[0] + ':'
+        $map = Get-ItemProperty $DOSDevicesKey | `
+            Select-Object $letter -Expand $letter -ErrorAction 'SilentlyContinue'
+
+        if ($map -ne $null)
+        {
+            # \??\C:\Development
+            $script:basePath = $map.Substring(4)
+			$script:forceBase = $true
+        }
+        else
+        {
+            $script:basePath = [System.IO.Path]::GetPathRoot($env:SystemRoot)
+        }
+    }
+
 
     function GetSDKVersion
 	{
@@ -45,7 +73,7 @@ Begin
             ForEach-Object { $fullpath = Join-Path $fullpath $_ }
 
         $lines = @(Get-Content $csproj)
-
+		
         for ($i =0; $i -lt $lines.Count; $i++)
         {
             $line = $lines[$i]
@@ -54,8 +82,8 @@ Begin
             # $matches[1]=netpath
             if ($line -match '<HintPath>(.+\\Framework64\\v\d+\.\d+\.\d+\\)System.Runtime.WindowsRuntime.dll</HintPath>')
             {
-                $p = (Resolve-Path $matches[1])
-                if ($p.ToString() -ne $netpath)
+                $p = [System.IO.Path]::GetFullPath($basePath + $matches[1].ToString())
+                if (($p.ToString() -ne $netpath) -or $forceBase)
                 {
                     WriteOK "updating .NET Framework path: $netpath"
                     $lines[$i] = $line.Replace($matches[1], $netpath)
@@ -68,9 +96,9 @@ Begin
             # $matches[1]=sdkpath, $matches[2]==version
             elseif ($line -match '<HintPath>(.+\\)UnionMetadata\\(\d+\.\d+\.\d+\.\d+)\\Windows.winmd</HintPath>')             
             {
-                $p = (Resolve-Path $matches[1])
+                $p = [System.IO.Path]::GetFullPath($basePath + $matches[1])
  
-                if (!(Test-Path $p))
+                if ((!(Test-Path $p)) -or $forceBase)
                 {
                     # replace relative path with absolute path
                     WriteOK "applying full path to Windows SDK: $fullpath"
@@ -109,6 +137,7 @@ Begin
 Process
 {
     Push-Location OneMore
+	GetDriveMapping
     $script:csproj = Resolve-Path .\OneMore.csproj
 
 	$script:sdkver = GetSDKVersion
