@@ -473,7 +473,7 @@ OneNote wordt automatisch gesloten</value>
     <comment>label</comment>
   </data>
   <data name="ContextMenuSheet_introBox.Text" xml:space="preserve">
-    <value>Kies opdrachten om weer te geven in het pagina-contextmenu. </value>
+    <value>Kies opdrachten om weer te geven in het contextmenu Pagina. Menu-items omvatten alle opdrachten in dat menu. Start OneNote opnieuw om de wijzigingen te zien. Als u een van de "menu"-opties kiest, zoals "Menu bewerken", dan wordt dat toegevoegd als een uitvouwmenu en bevat het alle items van het menu Bewerken. Maar als u een van de subitems kiest, zoals "Naar kleine letters", dan wordt dat item toegevoegd als een contextmenu-item op het hoogste niveau. Als u beide selecteert, worden beide weergegeven, mogelijk duplicerende items.</value>
     <comment>intro</comment>
   </data>
   <data name="ContextMenuSheet_menu" xml:space="preserve">

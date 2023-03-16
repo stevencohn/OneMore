@@ -117,4 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="introBox.Text" xml:space="preserve">
+    <value>Choose commands to display in the Page context menu. Menu items include all commands in that menu. Restart OneNote to see changes.
+
+If you choose one of the "menu" options such as "Edit Menu" then that will be added as a fly-out menu and include all Edit Menu items. But if you choose one of the sub-items, such as "To lowercase" then that item will be added as a top-level context menu item. If you happen to select both then both will be shown, possibly duplicating items.</value>
+  </data>
 </root>

@@ -481,7 +481,7 @@ OneNote zamknie się automatycznie</value>
     <comment>label</comment>
   </data>
   <data name="ContextMenuSheet_introBox.Text" xml:space="preserve">
-    <value>Wybierz polecenia, aby wyświetlić w menu kontekstowe strony. Elementy menu obejmują wszystkie polecenia w tym menu. Uruchom ponownie OneNote, aby zobaczyć zmiany.</value>
+    <value>Wybierz polecenia do wyświetlenia w menu kontekstowym strony. Pozycje menu obejmują wszystkie polecenia w tym menu. Uruchom ponownie program OneNote, aby zobaczyć zmiany. Jeśli wybierzesz jedną z opcji „menu”, taką jak „Edytuj menu”, zostanie ona dodana jako wysuwane menu i będzie zawierać wszystkie pozycje menu Edytuj. Ale jeśli wybierzesz jeden z elementów podrzędnych, na przykład „Na małe litery”, element ten zostanie dodany jako element menu kontekstowego najwyższego poziomu. Jeśli zdarzy ci się wybrać oba, oba zostaną pokazane, prawdopodobnie powielając elementy.</value>
     <comment>intro</comment>
   </data>
   <data name="ContextMenuSheet_menu" xml:space="preserve">

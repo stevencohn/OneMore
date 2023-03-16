@@ -988,7 +988,7 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Choose commands to display in the Page context menu. Menu items include all commands in that menu. Restart OneNote to see changes..
+        ///   Looks up a localized string similar to Choose commands to display in the Page context menu. Menu items include all commands in that menu. Restart OneNote to see changes. If you choose one of the &quot;menu&quot; options such as &quot;Edit Menu&quot; then that will be added as a fly-out menu and include all Edit Menu items. But if you choose one of the sub-items, such as &quot;To lowercase&quot; then that item will be added as a top-level context menu item. If you happen to select both then both will be shown, possibly duplicating items..
         /// </summary>
         internal static string ContextMenuSheet_introBox_Text {
             get {

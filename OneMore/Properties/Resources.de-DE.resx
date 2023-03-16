@@ -469,7 +469,7 @@
     <comment>label</comment>
   </data>
   <data name="ContextMenuSheet_introBox.Text" xml:space="preserve">
-    <value>Wähle Befehle aus, die im Kontextmenü Seite angezeigt werden sollen.</value>
+    <value>Wählen Sie Befehle aus, die im Kontextmenü der Seite angezeigt werden sollen. Menüpunkte umfassen alle Befehle in diesem Menü. Starten Sie OneNote neu, um die Änderungen anzuzeigen. Wenn Sie eine der „Menü“-Optionen wie „Menü bearbeiten“ auswählen, wird diese als Flyout-Menü hinzugefügt und enthält alle Elemente des Menüs „Bearbeiten“. Wenn Sie jedoch eines der Unterelemente auswählen, z. B. "In Kleinbuchstaben", wird dieses Element als Kontextmenüelement der obersten Ebene hinzugefügt. Wenn Sie zufällig beide auswählen, werden beide angezeigt, möglicherweise doppelte Elemente.</value>
     <comment>intro</comment>
   </data>
   <data name="ContextMenuSheet_menu" xml:space="preserve">

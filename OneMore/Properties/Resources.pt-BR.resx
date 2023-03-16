@@ -473,7 +473,7 @@ OneNote fechará automaticamente</value>
     <comment>label</comment>
   </data>
   <data name="ContextMenuSheet_introBox.Text" xml:space="preserve">
-    <value>Escolha os comandos a serem exibidos no menu de contexto da página. </value>
+    <value>Escolha os comandos a serem exibidos no menu de contexto da página. Os itens de menu incluem todos os comandos desse menu. Reinicie o OneNote para ver as alterações. Se você escolher uma das opções de "menu", como "Editar menu", isso será adicionado como um menu flutuante e incluirá todos os itens do menu Editar. Mas se você escolher um dos subitens, como "Para letras minúsculas", esse item será adicionado como um item de menu de contexto de nível superior. Se você selecionar ambos, ambos serão exibidos, possivelmente duplicando itens.</value>
     <comment>intro</comment>
   </data>
   <data name="ContextMenuSheet_menu" xml:space="preserve">

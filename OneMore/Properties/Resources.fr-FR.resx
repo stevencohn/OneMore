@@ -469,7 +469,7 @@
     <comment>label</comment>
   </data>
   <data name="ContextMenuSheet_introBox.Text" xml:space="preserve">
-    <value>Choisissez les commandes à afficher dans le menu contextuel de la page. </value>
+    <value>Choisissez les commandes à afficher dans le menu contextuel de la page. Les éléments de menu incluent toutes les commandes de ce menu. Redémarrez OneNote pour voir les modifications. Si vous choisissez l'une des options de "menu" telles que "Menu d'édition", celle-ci sera ajoutée en tant que menu déroulant et inclura tous les éléments du menu d'édition. Mais si vous choisissez l'un des sous-éléments, tels que "En minuscules", cet élément sera ajouté en tant qu'élément de menu contextuel de niveau supérieur. S'il vous arrive de sélectionner les deux, les deux seront affichés, probablement en double.</value>
     <comment>intro</comment>
   </data>
   <data name="ContextMenuSheet_menu" xml:space="preserve">

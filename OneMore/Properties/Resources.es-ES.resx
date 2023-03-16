@@ -472,7 +472,7 @@ OneNote se cerrará automáticamente</value>
     <comment>label</comment>
   </data>
   <data name="ContextMenuSheet_introBox.Text" xml:space="preserve">
-    <value>Elija comandos para mostrar en el menú contextual de la página. </value>
+    <value>Elija comandos para mostrar en el menú contextual de la página. Los elementos del menú incluyen todos los comandos de ese menú. Reinicie OneNote para ver los cambios. Si elige una de las opciones de "menú", como "Menú de edición", se agregará como un menú desplegable e incluirá todos los elementos del Menú de edición. Pero si elige uno de los subelementos, como "A minúsculas", ese elemento se agregará como un elemento del menú contextual de nivel superior. Si selecciona ambos, se mostrarán ambos, posiblemente elementos duplicados.</value>
     <comment>intro</comment>
   </data>
   <data name="ContextMenuSheet_menu" xml:space="preserve">

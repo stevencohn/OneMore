@@ -474,7 +474,7 @@ OneNote 将自动关闭</value>
     <comment>label</comment>
   </data>
   <data name="ContextMenuSheet_introBox.Text" xml:space="preserve">
-    <value>选择要在“页面”上下文菜单中显示的命令。 菜单项包括该菜单中的所有命令。 重新启动OneNote以查看更改。</value>
+    <value>选择要在页面上下文菜单中显示的命令。菜单项包括该菜单中的所有命令。重新启动 OneNote 以查看更改。如果您选择“菜单”选项之一，例如“编辑菜单”，那么它将作为弹出菜单添加并包括所有编辑菜单项。但是，如果您选择其中一个子项，例如“To lowercase”，那么该项将被添加为顶级上下文菜单项。如果您碰巧同时选择了两者，那么两者都会显示，可能是重复的项目。</value>
     <comment>intro</comment>
   </data>
   <data name="ContextMenuSheet_menu" xml:space="preserve">
