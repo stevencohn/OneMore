@@ -472,6 +472,10 @@
     <value>Wähle Befehle aus, die im Kontextmenü Seite angezeigt werden sollen.</value>
     <comment>intro</comment>
   </data>
+  <data name="ContextMenuSheet_menu" xml:space="preserve">
+    <value>{0} Menü</value>
+    <comment>checkbox text replacement</comment>
+  </data>
   <data name="ContextMenuSheet_ribAddFootnoteButton" xml:space="preserve">
     <value>Fußnote hinzufügen</value>
     <comment>context menu option</comment>

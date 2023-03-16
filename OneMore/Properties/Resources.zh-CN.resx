@@ -477,6 +477,10 @@ OneNote 将自动关闭</value>
     <value>选择要在“页面”上下文菜单中显示的命令。 菜单项包括该菜单中的所有命令。 重新启动OneNote以查看更改。</value>
     <comment>intro</comment>
   </data>
+  <data name="ContextMenuSheet_menu" xml:space="preserve">
+    <value>{0} 菜单</value>
+    <comment>checkbox text replacement</comment>
+  </data>
   <data name="ContextMenuSheet_ribAddFootnoteButton" xml:space="preserve">
     <value>添加脚注</value>
     <comment>context menu option</comment>

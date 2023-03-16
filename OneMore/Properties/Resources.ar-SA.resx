@@ -475,6 +475,10 @@
     <value>اختر أوامر لعرضها في قائمة سياق الصفحة. </value>
     <comment>intro</comment>
   </data>
+  <data name="ContextMenuSheet_menu" xml:space="preserve">
+    <value>{0} القائمة</value>
+    <comment>checkbox text replacement</comment>
+  </data>
   <data name="ContextMenuSheet_ribAddFootnoteButton" xml:space="preserve">
     <value>أضف حاشية سفلية</value>
     <comment>context menu option</comment>

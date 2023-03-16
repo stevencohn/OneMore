@@ -29,7 +29,7 @@
 		private void InitializeComponent()
 		{
 			this.introBox = new System.Windows.Forms.TextBox();
-			this.commandsBox = new System.Windows.Forms.CheckedListBox();
+			this.contentPanel = new System.Windows.Forms.Panel();
 			this.SuspendLayout();
 			// 
 			// introBox
@@ -46,23 +46,20 @@
 			this.introBox.Text = "Choose commands to display in the Page context menu. Menu items include all comma" +
     "nds in that menu. Restart OneNote to see changes.\r\n";
 			// 
-			// commandsBox
+			// contentPanel
 			// 
-			this.commandsBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-			this.commandsBox.CheckOnClick = true;
-			this.commandsBox.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.commandsBox.FormattingEnabled = true;
-			this.commandsBox.Location = new System.Drawing.Point(10, 76);
-			this.commandsBox.Name = "commandsBox";
-			this.commandsBox.Size = new System.Drawing.Size(600, 384);
-			this.commandsBox.TabIndex = 3;
+			this.contentPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.contentPanel.Location = new System.Drawing.Point(10, 76);
+			this.contentPanel.Name = "contentPanel";
+			this.contentPanel.Size = new System.Drawing.Size(600, 384);
+			this.contentPanel.TabIndex = 2;
 			// 
 			// ContextMenuSheet
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.BackColor = System.Drawing.SystemColors.ControlLightLight;
-			this.Controls.Add(this.commandsBox);
+			this.Controls.Add(this.contentPanel);
 			this.Controls.Add(this.introBox);
 			this.Name = "ContextMenuSheet";
 			this.Padding = new System.Windows.Forms.Padding(10);
@@ -75,6 +72,6 @@
 		#endregion
 
 		private System.Windows.Forms.TextBox introBox;
-		private System.Windows.Forms.CheckedListBox commandsBox;
+		private System.Windows.Forms.Panel contentPanel;
 	}
 }

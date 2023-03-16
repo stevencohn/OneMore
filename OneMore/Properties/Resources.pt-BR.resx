@@ -476,6 +476,10 @@ OneNote fechará automaticamente</value>
     <value>Escolha os comandos a serem exibidos no menu de contexto da página. </value>
     <comment>intro</comment>
   </data>
+  <data name="ContextMenuSheet_menu" xml:space="preserve">
+    <value>{0} Cardápio</value>
+    <comment>checkbox text replacement</comment>
+  </data>
   <data name="ContextMenuSheet_ribAddFootnoteButton" xml:space="preserve">
     <value>Adicionar nota de rodapé</value>
     <comment>context menu option</comment>
