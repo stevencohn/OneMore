@@ -484,6 +484,10 @@ OneNote zamknie się automatycznie</value>
     <value>Wybierz polecenia, aby wyświetlić w menu kontekstowe strony. Elementy menu obejmują wszystkie polecenia w tym menu. Uruchom ponownie OneNote, aby zobaczyć zmiany.</value>
     <comment>intro</comment>
   </data>
+  <data name="ContextMenuSheet_menu" xml:space="preserve">
+    <value>{0}Menu</value>
+    <comment>checkbox text replacement</comment>
+  </data>
   <data name="ContextMenuSheet_ribAddFootnoteButton" xml:space="preserve">
     <value>Dodaj przypis</value>
     <comment>context menu option</comment>

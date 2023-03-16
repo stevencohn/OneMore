@@ -117,6 +117,7 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="AboutDialog.Text" xml:space="preserve">
     <value>OneMore Add-in</value>
     <comment>dialog title bar</comment>
@@ -484,6 +485,10 @@ OneNote will close automatically</value>
   <data name="ContextMenuSheet_introBox.Text" xml:space="preserve">
     <value>Choose commands to display in the Page context menu. Menu items include all commands in that menu. Restart OneNote to see changes.</value>
     <comment>intro</comment>
+  </data>
+  <data name="ContextMenuSheet_menu" xml:space="preserve">
+    <value>{0} Menu</value>
+    <comment>checkbox text replacement</comment>
   </data>
   <data name="ContextMenuSheet_ribAddFootnoteButton" xml:space="preserve">
     <value>Add Footnote</value>
@@ -4925,7 +4930,6 @@ In this section</value>
     <value>Word Counts</value>
     <comment>page title</comment>
   </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="Architecture" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>emoji\architecture.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>

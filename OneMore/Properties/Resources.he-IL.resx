@@ -486,6 +486,10 @@ OneNote ייסגר אוטומטית</value>
     <value>בחר פקודות להצגה בתפריט ההקשר של העמוד. פריטי התפריט כוללים את כל הפקודות בתפריט זה. הפעל מחדש את OneNote כדי לראות שינויים.</value>
     <comment>intro</comment>
   </data>
+  <data name="ContextMenuSheet_menu" xml:space="preserve">
+    <value>{0} תפריט</value>
+    <comment>checkbox text replacement</comment>
+  </data>
   <data name="ContextMenuSheet_ribAddFootnoteButton" xml:space="preserve">
     <value>הוסף הערת שוליים</value>
     <comment>context menu option</comment>

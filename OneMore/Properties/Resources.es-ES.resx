@@ -475,6 +475,10 @@ OneNote se cerrará automáticamente</value>
     <value>Elija comandos para mostrar en el menú contextual de la página. </value>
     <comment>intro</comment>
   </data>
+  <data name="ContextMenuSheet_menu" xml:space="preserve">
+    <value>Menú {0}</value>
+    <comment>checkbox text replacement</comment>
+  </data>
   <data name="ContextMenuSheet_ribAddFootnoteButton" xml:space="preserve">
     <value>Añadir nota al pie</value>
     <comment>context menu option</comment>

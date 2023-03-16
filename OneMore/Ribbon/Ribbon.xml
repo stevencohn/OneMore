@@ -1156,7 +1156,7 @@
     </contextMenu>
     <contextMenu idMso="ContextMenuSectionArea">
       <button
-        id="ct2ArchiveNotebookButton"
+        id="ctsArchiveNotebookButton"
         imageMso="SaveAttachments"
         getLabel="GetRibbonLabel"
         getScreentip="GetRibbonScreentip"
@@ -1164,21 +1164,21 @@
         tag="notebook"
         insertBeforeMso="SectionInsert"/>
       <button
-        id="ct2NumberSectionsButton"
+        id="ctsNumberSectionsButton"
         imageMso="LineNumbersMenu"
         getLabel="GetRibbonLabel"
         getScreentip="GetRibbonScreentip"
         onAction="NumberSectionsCmd"
         insertBeforeMso="SectionInsert"/>
       <button
-        id="ct2RemoveSectionNumbersButton"
+        id="ctsRemoveSectionNumbersButton"
         imageMso="HeaderFooterRemoveHeaderWord"
         getLabel="GetRibbonLabel"
         getScreentip="GetRibbonScreentip"
         onAction="RemoveSectionNumbersCmd"
         insertBeforeMso="SectionInsert"/>
       <button
-        id="ct2SortNotebookSectionsButton"
+        id="ctsSortNotebookSectionsButton"
         imageMso="SortUp"
         getLabel="GetRibbonLabel"
         getScreentip="GetRibbonScreentip"

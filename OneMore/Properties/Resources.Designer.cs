@@ -997,6 +997,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to {0} Menu.
+        /// </summary>
+        internal static string ContextMenuSheet_menu {
+            get {
+                return ResourceManager.GetString("ContextMenuSheet_menu", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Add Footnote.
         /// </summary>
         internal static string ContextMenuSheet_ribAddFootnoteButton {

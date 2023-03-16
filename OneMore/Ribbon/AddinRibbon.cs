@@ -295,7 +295,8 @@ namespace River.OneMoreAddIn
 					continue;
 				}
 
-				// special case to hide Proofing menu if language set is only 1
+				// special case to hide Proofing menu if language set is only 1; because it
+				// may have changed since last time user added this to the context menu
 				if (key == "ribProofingMenu")
 				{
 					var langs = Office.GetEditingLanguages();
@@ -344,9 +345,13 @@ namespace River.OneMoreAddIn
 					}
 				}
 
+				// fabricate unique IDs to avoid collisions with other items on the ribbon
+				// pcm = page context menu menu item
+				// pcs = page context menu sub item
+
 				if (id.Value.StartsWith("rib"))
 				{
-					id.Value = $"ctx{id.Value.Substring(3)}";
+					id.Value = $"pcm{id.Value.Substring(3)}";
 				}
 
 				item.Attributes().Where(a => a.Name == "getEnabled" || a.Name == "size").Remove();
@@ -356,9 +361,12 @@ namespace River.OneMoreAddIn
 					.Where(e => e.Attributes().Any(a => a.Name == "id")))
 				{
 					id = node.Attribute("id");
-					if (id != null && id.Value.StartsWith("rib"))
+					if (id != null)
 					{
-						id.Value = $"ct2{id.Value.Substring(3)}";
+						if (id.Value.StartsWith("rib") || id.Value.StartsWith("sep"))
+						{
+							id.Value = $"pcs{id.Value.Substring(3)}";
+						}
 					}
 
 					node.Attributes().Where(a => a.Name == "getEnabled" || a.Name == "size").Remove();
@@ -366,7 +374,14 @@ namespace River.OneMoreAddIn
 
 				item.Add(new XAttribute("insertBeforeMso", "Cut"));
 
-				menu.Add(item);
+				if (!menu.Elements().Any(e => e.Attribute("id").Value == item.Attribute("id").Value))
+				{
+					menu.Add(item);
+				}
+				else
+				{
+					logger.WriteLine($"duplicate context menu item {item.Attribute("id").Value}");
+				}
 			}
 		}
 
@@ -637,7 +652,12 @@ namespace River.OneMoreAddIn
 		{
 			// convert ctx items to rib items so they share the same label
 			var id = control.Id;
-			if (id.StartsWith("ctx") || id.StartsWith("ct2") || id.StartsWith("bar"))
+			var key = id.Substring(0, 3);
+
+			if (key == "pcm" || key == "pcs" || // pcm/pcs - fabricated page context menu items
+				key == "ctx" || key == "cts" || // ctx/cts - de-dupping from within ribbon.xml
+				key == "bar" ||					// bar - custom ribbon bar from settings
+				key == "ct2")					// ct2 - used?
 			{
 				id = $"rib{id.Substring(3)}";
 			}

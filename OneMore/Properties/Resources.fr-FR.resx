@@ -472,6 +472,10 @@
     <value>Choisissez les commandes à afficher dans le menu contextuel de la page. </value>
     <comment>intro</comment>
   </data>
+  <data name="ContextMenuSheet_menu" xml:space="preserve">
+    <value>Menu {0}</value>
+    <comment>checkbox text replacement</comment>
+  </data>
   <data name="ContextMenuSheet_ribAddFootnoteButton" xml:space="preserve">
     <value>Ajouter une note de bas de page</value>
     <comment>context menu option</comment>

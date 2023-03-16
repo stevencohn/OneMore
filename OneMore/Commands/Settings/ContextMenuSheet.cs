@@ -2,79 +2,179 @@
 // Copyright © 2020 Steven M. Cohn. All Rights Reserved.
 //************************************************************************************************
 
+#pragma warning disable S3267 // Loops should be simplified with "LINQ" expressions
+
 namespace River.OneMoreAddIn.Settings
 {
 	using River.OneMoreAddIn.Helpers.Office;
+	using System;
+	using System.Collections.Generic;
+	using System.Drawing;
+	using System.Linq;
+	using System.Reflection;
+	using System.Windows.Forms;
 	using Resx = Properties.Resources;
 
 
 	internal partial class ContextMenuSheet : SheetBase
 	{
+		private const string ProofingResID = "ribProofingMenu_Label";
+		private const string ColorizeResID = "ribColorizeMenu_Label";
 
-		private sealed class MenuItem
+		#region Private classes
+		private sealed class CtxMenu
 		{
-			public string Key { get; set; }
-			public string Text { get; set; }
-			public MenuItem(string key, string text) { Key = key; Text = text; }
+			public string Name { get; set; }
+			public string ResID { get; set; }
+			public IEnumerable<CtxMenuItem> Commands { get; set; }
+			public override string ToString() => Name;
 		}
 
 
-		// keys should match existing Ribbon item IDs
-		// and then add ContextMenuSheet_ID values to the Resources.resx
-		public string[] keys = new string[]
+		private sealed class CtxMenuItem
 		{
-			"ribPasteRtfButton",			// Paste Rich Text
-			"ribAddFootnoteButton",			// Add Footnote
-			"ribCleanMenu",					// Clean Menu
-			"ribBreakingButton",			// ... Change Sentence Spacing
-			"ribRemoveAuthorsButton",		// ... Remove Author Information
-			"ribRemoveCitationsButton",		// ... Remove Pasted Citations
-			"ribRemoveEmptyButton",			// ... Remove Empty Paragraphs and Headings
-			"ribRemoveSpacingButton",		// ... Remove Paragraph Spacing
-			"ribRestoreAutosizeButton",		// ... Restore Auto-size Container Widths
-			"ribTrimButton",				// ... Trim Whitespace
-			"ribEditMenu",					// Edit Menu
-			"ribColorizeMenu",				// ... Colorize
-			"ribCopyAsMarkdownButton",		// ... Copy as Markdown
-			"ribProofingMenu",				// ... Proofing Language
-			"ribHighlightButton",			// ... Rotating Highlighter
-			"ribDisableSpellCheckButton",	// ... Disable Spell Check
-			"ribEnableSpellCheckButton",	// ... Enable Spell Check
-			"ribUppercaseButton",			// ... To UPPERCASE
-			"ribLowercaseButton",			// ... To lowercase
-			"ribTitlecaseButton",			// ... To Title Case
-			"ribIncreaseFontSizeButton",	// ... Increase Text Size
-			"ribDecreaseFontSizeButton",	// ... Decrease Text Size
-			"ribJoinParagraphButton",		// ... Join Paragraph
-			"ribCollapseContentButton",		// ... Collapse Outline
-			"ribExpandContentButton",		// ... Expand Outline
-			"ribSaveCollapsedButton",		// ... Save Collapsed Outline
-			"ribRestoreCollapsedButton",	// ... Restore Collapsed Outline
-			"ribWordCountButton",			// ... Word Count
-			"ribCopyLinkToPageButton",		// Copy Linnk To Page
-			"ribCopyLinkToParagraphButton",	// Copy Linnk To Paragraph
-			"ribRemindersMenu",				// Reminders
-			"ribRemindButton",				// ... Add or update reminder
-			"ribCompleteReminderButton",	// ... Complete reminder
-			"ribDeleteReminderButton",		// ... Delete reminder
-			"ribSearchAndReplaceButton",	// Search and Replace
-			"ribSnippetsMenu",				// Snippets Menu
-			"ribInsertSingleLineButton",	// ... Single Line
-			"ribInsertDoubleLineButton",	// ... Double Line
-			"ribInsertTocButton",			// ... Table of Contents
-			"ribInsertCalendarButton",		// ... Calendar
-			"ribInsertDateButton",			// ... Sortable Date
-			"ribInsertCodeBoxButton",		// ... Code Box
-			"ribInsertTextBoxButton",		// ... Text Box
-			"ribInsertInfoBoxButton",		// ... Info Box
-			"ribInsertWarnBoxButton",		// ... Warning Box
-			"ribInsertExpandButton",		// ... Expand/Collapse
-			"ribInsertGrayStatusButton",	// ... Gray Status
-			"ribInsertRedStatusButton",		// ... Red Status
-			"ribInsertYellowStatusButton",	// ... Yellow Status
-			"ribInsertGreenStatusButton",	// ... Green Status
-			"ribInsertBlueStatusButton"		// ... Blue Status
-		};
+			public string Name { get; set; }
+			public string ResID { get; set; }
+			public override string ToString() => Name;
+		}
+
+
+		private sealed class MenuPanel : FlowLayoutPanel
+		{
+			public MenuPanel()
+			{
+				FlowDirection = FlowDirection.LeftToRight;
+				AutoScroll = true;
+				WrapContents = true;
+			}
+
+
+			public void AddMenus(IEnumerable<CtxMenu> menus)
+			{
+				var width = 0;
+
+				foreach (var menu in menus)
+				{
+					var mitem = new MenuItemPanel(menu);
+					Controls.Add(mitem);
+
+					// menu items are not indented but want to have the same right-alignment
+					// as command items so add indent width into this calculation
+					var offset = mitem.Width + SystemInformation.MenuCheckSize.Width;
+					if (width < offset)
+					{
+						width = offset;
+					}
+
+					if (menu.ResID != ColorizeResID)
+					{
+						foreach (var command in menu.Commands)
+						{
+							var citem = new MenuItemPanel(command);
+							Controls.Add(citem);
+							if (width < citem.Width)
+							{
+								width = citem.Width;
+							}
+						}
+					}
+				}
+
+				// a little extra
+				width += 20;
+
+				foreach (MenuItemPanel item in Controls)
+				{
+					SetFlowBreak(item, true);
+					item.Width = item.Indented ? width : width + SystemInformation.MenuCheckSize.Width;
+				}
+			}
+		}
+
+		private sealed class MenuItemPanel : Panel
+		{
+			private readonly HandyCheckBox box;
+			private readonly IntPtr hcursor;
+
+
+			public bool Checked
+			{
+				get => box.Checked;
+				set => box.Checked = value;
+			}
+
+
+			public bool Indented { get; private set; }
+
+
+			public MenuItemPanel(CtxMenu item)
+				: this(item.Name, item.ResID, Color.FromArgb(214, 166, 211))
+			{
+			}
+
+
+			public MenuItemPanel(CtxMenuItem item)
+				: this(item.Name, item.ResID, Color.Transparent)
+			{
+				Margin = new Padding(SystemInformation.MenuCheckSize.Width, 1, 1, 0);
+				Indented = true;
+			}
+
+
+			private MenuItemPanel(string name, string resID, Color color)
+			{
+				using var graphics = Graphics.FromHwnd(IntPtr.Zero);
+				var textSize = graphics.MeasureString(name, Font);
+				Height = (int)(textSize.Height + 4);
+
+				BackColor = color;
+
+				box = new HandyCheckBox
+				{
+					Dock = DockStyle.Fill,
+					Padding = new Padding(4, 2, 10, 2),
+					Text = name
+				};
+
+				hcursor = Native.LoadCursor(IntPtr.Zero, Native.IDC_HAND);
+
+				box.MouseEnter += (s, e) => { Native.SetCursor(hcursor); };
+				box.MouseLeave += (s, e) => { box.Cursor = Cursors.Default; };
+
+				// track by ResID, settings
+				Tag = resID;
+
+				Controls.Add(box);
+			}
+		}
+
+
+		private sealed class HandyCheckBox : CheckBox
+		{
+			private readonly IntPtr hcursor;
+
+			public HandyCheckBox()
+			{
+				Cursor = Cursors.Hand;
+				hcursor = Native.LoadCursor(IntPtr.Zero, Native.IDC_HAND);
+			}
+
+			protected override void WndProc(ref Message m)
+			{
+				if (m.Msg == Native.WM_SETCURSOR && hcursor != IntPtr.Zero)
+				{
+					Native.SetCursor(hcursor);
+					m.Result = IntPtr.Zero; // indicate handled
+					return;
+				}
+
+				base.WndProc(ref m);
+			}
+		}
+		#endregion Private classes
+
+
+		private readonly MenuPanel menuPanel;
 
 
 		public ContextMenuSheet(SettingsProvider provider) : base(provider)
@@ -92,31 +192,79 @@ namespace River.OneMoreAddIn.Settings
 				});
 			}
 
-			var langs = Office.GetEditingLanguages();
-			var noproof = langs == null || langs.Length < 2;
-
-			commandsBox.DisplayMember = "Text";
-
-			commandsBox.Items.Clear();
-			foreach (var key in keys)
+			menuPanel = new MenuPanel
 			{
-				if (key == "ribProofingMenu" && noproof)
-				{
-					continue;
-				}
+				Dock = DockStyle.Fill
+			};
 
-				var text = Resx.ResourceManager.GetString($"{Name}_{key}", AddIn.Culture) ?? key;
-				commandsBox.Items.Add(new MenuItem(key, text));
-			}
+			contentPanel.Controls.Add(menuPanel);
+
+			var menus = CollectCommandMenus();
+			menuPanel.AddMenus(menus);
 
 			var settings = provider.GetCollection(Name);
-			for (var i = 0; i < keys.Length; i++)
+			foreach (MenuItemPanel item in menuPanel.Controls)
 			{
-				if (settings.Get<bool>(keys[i]))
+				if (item.Tag is string key)
 				{
-					commandsBox.SetItemChecked(i, true);
+					key = key.Replace("_Label", string.Empty);
+					if (settings.Get(key, false))
+					{
+						item.Checked = true;
+					}
 				}
 			}
+		}
+
+
+		IEnumerable<CtxMenu> CollectCommandMenus()
+		{
+			var atype = typeof(CommandAttribute);
+
+			var menus = typeof(AddIn).GetMethods()
+				.Select(m => new
+				{
+					Method = m,
+					Attribute = (CommandAttribute)m.GetCustomAttribute(atype)
+				})
+				.Where(o =>
+					o.Method.Name.EndsWith("Cmd") &&
+					o.Attribute != null &&
+					!string.IsNullOrWhiteSpace(o.Attribute.Category)
+				)
+				.Select(o => new
+				{
+					o.Attribute.ResID,
+					CategoryResID = $"{o.Attribute.Category}_Label",
+					Name = Resx.ResourceManager.GetString(o.Attribute.ResID),
+					Category = Resx.ResourceManager.GetString($"{o.Attribute.Category}_Label")
+				})
+				.GroupBy(c => new { Name = c.Category, ResID = c.CategoryResID })
+				.Select(g => new CtxMenu
+				{
+					Name = string.Format(Resx.ContextMenuSheet_menu, g.Key.Name),
+					ResID = g.Key.ResID,
+					Commands = g.Select(c => new CtxMenuItem { Name = c.Name, ResID = c.ResID })
+						.OrderBy(c => c.Name)
+				})
+				.OrderBy(m => m.Name);
+
+			// add Proofing Language menu
+			var codes = Office.GetEditingLanguages();
+			if (codes != null && codes.Length > 1)
+			{
+				var list = menus.ToList();
+				list.Add(new CtxMenu
+				{
+					Name = Resx.ResourceManager.GetString(ProofingResID),
+					ResID = ProofingResID,
+					Commands = new List<CtxMenuItem>()
+				});
+
+				menus = list.OrderBy(m => m.Name);
+			}
+
+			return menus;
 		}
 
 
@@ -125,27 +273,18 @@ namespace River.OneMoreAddIn.Settings
 			var updated = false;
 
 			var settings = provider.GetCollection(Name);
-			for (var i = 0; i < keys.Length; i++)
+			foreach (MenuItemPanel item in menuPanel.Controls)
 			{
-				// index might be greater than count-1 only if the settings collection contains
-				// more items than now are defined in the commandsBox; this is unlikely but...?
+				var key = ((string)item.Tag).Replace("_Label", string.Empty);
 
-				if (i < commandsBox.Items.Count)
+				if (item.Checked)
 				{
-					if (commandsBox.GetItemChecked(i))
-					{
-						if (!settings.Contains(keys[i]) && settings.Add(keys[i], true))
-						{
-							updated = true;
-						}
-					}
-					else
-					{
-						if (settings.Contains(keys[i]) && settings.Remove(keys[i]))
-						{
-							updated = true;
-						}
-					}
+					settings.Add(key, true);
+					updated = true;
+				}
+				else if (settings.Contains(key) && settings.Remove(key))
+				{
+					updated = true;
 				}
 			}
 
@@ -171,9 +310,9 @@ namespace River.OneMoreAddIn.Settings
 		/// Created in v5.1.0. To be removed a few versions after that.
 		/// </summary>
 		/// <param name="provider"></param>
-		public static void UpgradESettings(SettingsProvider provider)
+		public static void UpgradeSettings(SettingsProvider provider)
 		{
-			var exchange = new System.Collections.Generic.Dictionary<string, string>
+			var exchange = new Dictionary<string, string>
 			{
 				{ "ribDrawPlantUmlButton", "ribPlantUmlButton" },
 				{ "ribInsertBoxButton", "ribInsertTextBoxButton" },

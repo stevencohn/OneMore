@@ -476,6 +476,10 @@ OneNote wordt automatisch gesloten</value>
     <value>Kies opdrachten om weer te geven in het pagina-contextmenu. </value>
     <comment>intro</comment>
   </data>
+  <data name="ContextMenuSheet_menu" xml:space="preserve">
+    <value>{0}-menu</value>
+    <comment>checkbox text replacement</comment>
+  </data>
   <data name="ContextMenuSheet_ribAddFootnoteButton" xml:space="preserve">
     <value>Voetnoot toevoegen</value>
     <comment>context menu option</comment>

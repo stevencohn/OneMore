@@ -334,6 +334,8 @@ namespace River.OneMoreAddIn.Commands
 				size.SetAttributeValue("height", FormattableString.Invariant($"{bitmap.Height:0.0}"));
 			}
 
+			new ColorizeCommand(page, true).Colorize("plantuml", runs);
+
 			await one.Update(page);
 
 			return true;
