@@ -61,7 +61,7 @@
 			this.buttonPanel.Controls.Add(this.okButton);
 			this.buttonPanel.Controls.Add(this.cancelButton);
 			this.buttonPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
-			this.buttonPanel.Location = new System.Drawing.Point(15, 561);
+			this.buttonPanel.Location = new System.Drawing.Point(15, 684);
 			this.buttonPanel.Name = "buttonPanel";
 			this.buttonPanel.Size = new System.Drawing.Size(1126, 45);
 			this.buttonPanel.TabIndex = 0;
@@ -101,7 +101,7 @@
 			this.editorPanel.Location = new System.Drawing.Point(333, 18);
 			this.editorPanel.Name = "editorPanel";
 			this.editorPanel.Padding = new System.Windows.Forms.Padding(2);
-			this.editorPanel.Size = new System.Drawing.Size(806, 538);
+			this.editorPanel.Size = new System.Drawing.Size(806, 661);
 			this.editorPanel.TabIndex = 1;
 			// 
 			// contentPanel
@@ -111,7 +111,7 @@
 			this.contentPanel.MinimumSize = new System.Drawing.Size(800, 500);
 			this.contentPanel.Name = "contentPanel";
 			this.contentPanel.Padding = new System.Windows.Forms.Padding(15);
-			this.contentPanel.Size = new System.Drawing.Size(800, 500);
+			this.contentPanel.Size = new System.Drawing.Size(800, 623);
 			this.contentPanel.TabIndex = 1;
 			// 
 			// headerLabel
@@ -183,7 +183,7 @@
             treeNode14,
             treeNode15,
             treeNode16});
-			this.navTree.Size = new System.Drawing.Size(300, 546);
+			this.navTree.Size = new System.Drawing.Size(300, 669);
 			this.navTree.TabIndex = 2;
 			this.navTree.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.Navigate);
 			// 
@@ -193,7 +193,7 @@
 			this.AutoScaleDimensions = new System.Drawing.SizeF(144F, 144F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
 			this.CancelButton = this.cancelButton;
-			this.ClientSize = new System.Drawing.Size(1156, 621);
+			this.ClientSize = new System.Drawing.Size(1156, 744);
 			this.Controls.Add(this.editorPanel);
 			this.Controls.Add(this.navTree);
 			this.Controls.Add(this.buttonPanel);
