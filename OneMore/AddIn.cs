@@ -145,7 +145,7 @@ namespace River.OneMoreAddIn
 
 		private (int, int) GetMachineProps()
 		{
-			uint Query(string field, string table)
+			static uint Query(string field, string table)
 			{
 				uint value = 0;
 				using var searcher = new ManagementObjectSearcher($"select {field} from {table}");
