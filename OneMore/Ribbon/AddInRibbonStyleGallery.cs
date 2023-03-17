@@ -48,12 +48,21 @@ namespace River.OneMoreAddIn
 			}
 			else
 			{
-				using var one = new OneNote(out var page, out _);
-				galleryBack = page.GetPageColor(out _, out var black);
-				if (black)
+				using var one = new OneNote();
+				var section = one.GetSection();
+				if (section.Attribute("locked") == null)
 				{
-					// translate Black into a custom black smoke
-					galleryBack = ColorTranslator.FromHtml("#201F1E");
+					var page = one.GetPage(OneNote.PageDetail.Basic);
+					galleryBack = page.GetPageColor(out _, out var black);
+					if (black)
+					{
+						// translate Black into a custom black smoke
+						galleryBack = ColorTranslator.FromHtml("#201F1E");
+					}
+				}
+				else
+				{
+					galleryBack = Color.White;
 				}
 			}
 

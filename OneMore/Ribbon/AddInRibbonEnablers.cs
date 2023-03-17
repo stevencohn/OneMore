@@ -12,7 +12,7 @@ namespace River.OneMoreAddIn
 	using River.OneMoreAddIn.Commands;
 	using River.OneMoreAddIn.Helpers.Office;
 	using System.Linq;
-
+	using System.Windows.Media;
 
 	public partial class AddIn
 	{
@@ -35,7 +35,19 @@ namespace River.OneMoreAddIn
 		{
 			if (EnablersEnabled)
 			{
-				using var one = new OneNote(out var page, out _);
+				using var one = new OneNote();
+				var section = one.GetSection();
+				if (section.Attribute("locked") != null)
+				{
+					return false;
+				}
+
+				var page = one.GetPage();
+				if (page == null)
+				{
+					return false;
+				}
+
 				// set the context for the getters
 				bodyContext = page.ConfirmBodyContext();
 				imageSelected = page.ConfirmImageSelected();

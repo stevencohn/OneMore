@@ -37,12 +37,19 @@ namespace River.OneMoreAddIn
 		/// <returns></returns>
 		public int GetTableGalleryItemCount(IRibbonControl control)
 		{
-			using var one = new OneNote(out var page, out _, OneNote.PageDetail.Basic);
-			var background = page.GetPageColor(out _, out var black);
-			if (black)
+			var background = Color.White;
+
+			using var one = new OneNote();
+			var section = one.GetSection();
+			if (section.Attribute("locked") == null)
 			{
-				// translate Black into a custom black smoke
-				background = ColorTranslator.FromHtml("#201F1E");
+				var page = one.GetPage(OneNote.PageDetail.Basic);
+				background = page.GetPageColor(out _, out var black);
+				if (black)
+				{
+					// translate Black into a custom black smoke
+					background = ColorTranslator.FromHtml("#201F1E");
+				}
 			}
 
 			if (tableGalleryBackground != background)
