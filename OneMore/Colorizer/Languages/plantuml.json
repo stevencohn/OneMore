@@ -116,7 +116,7 @@
       ]
     },
     {
-      "pattern": "\\b((?:Bi)?Rel(?:_U|_Up|_D|_Down|_L|_Left|_R|_Right|_Back|_Neighbor)?)\\b",
+      "pattern": "\\b((?:Bi)?(?:Rel|Lay)(?:_U|_Up|_D|_Down|_L|_Left|_R|_Right|_Back|_Neighbor)?)\\b",
       "captures": [
         "Keyword"
       ]

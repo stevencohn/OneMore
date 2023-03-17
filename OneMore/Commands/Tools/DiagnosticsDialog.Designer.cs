@@ -28,22 +28,25 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
+			this.components = new System.ComponentModel.Container();
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DiagnosticsDialog));
 			this.okButton = new System.Windows.Forms.Button();
 			this.introLabel = new System.Windows.Forms.Label();
 			this.linkLabel = new River.OneMoreAddIn.UI.MoreLinkLabel();
+			this.timer = new System.Windows.Forms.Timer(this.components);
 			this.SuspendLayout();
 			// 
 			// okButton
 			// 
 			this.okButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.okButton.DialogResult = System.Windows.Forms.DialogResult.OK;
-			this.okButton.Location = new System.Drawing.Point(611, 99);
+			this.okButton.Location = new System.Drawing.Point(575, 99);
 			this.okButton.Name = "okButton";
-			this.okButton.Size = new System.Drawing.Size(104, 42);
+			this.okButton.Size = new System.Drawing.Size(140, 42);
 			this.okButton.TabIndex = 5;
 			this.okButton.Text = "OK";
 			this.okButton.UseVisualStyleBackColor = true;
+			this.okButton.Click += new System.EventHandler(this.CloseWindow);
 			// 
 			// introLabel
 			// 
@@ -65,7 +68,12 @@
 			this.linkLabel.TabIndex = 7;
 			this.linkLabel.TabStop = true;
 			this.linkLabel.Text = "linkLabel1";
-			this.linkLabel.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.ClickPath);
+			this.linkLabel.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.ShowLogOnLinkClicked);
+			// 
+			// timer
+			// 
+			this.timer.Interval = 1000;
+			this.timer.Tick += new System.EventHandler(this.Tick);
 			// 
 			// DiagnosticsDialog
 			// 
@@ -96,5 +104,6 @@
 		private System.Windows.Forms.Button okButton;
 		private System.Windows.Forms.Label introLabel;
 		private UI.MoreLinkLabel linkLabel;
+		private System.Windows.Forms.Timer timer;
 	}
 }
