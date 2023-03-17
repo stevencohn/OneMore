@@ -124,7 +124,7 @@ namespace River.OneMoreAddIn
 		{
 			return Path.Combine(
 				Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData),
-				River.OneMoreAddIn.AssemblyInfo.Product);
+				AssemblyInfo.Product);
 		}
 
 
