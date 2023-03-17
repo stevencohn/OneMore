@@ -13,6 +13,7 @@ namespace River.OneMoreAddIn.Settings
 	using System.Linq;
 	using System.Reflection;
 	using System.Windows.Forms;
+	using System.Xml.Linq;
 	using Resx = Properties.Resources;
 
 
@@ -203,12 +204,14 @@ namespace River.OneMoreAddIn.Settings
 			menuPanel.AddMenus(menus);
 
 			var settings = provider.GetCollection(Name);
+			var items = settings.Get<XElement>("items");
+
 			foreach (MenuItemPanel item in menuPanel.Controls)
 			{
 				if (item.Tag is string key)
 				{
 					key = key.Replace("_Label", string.Empty);
-					if (settings.Get(key, false))
+					if (items.Elements().Any(e => e.Value == key))
 					{
 						item.Checked = true;
 					}
@@ -273,23 +276,39 @@ namespace River.OneMoreAddIn.Settings
 			var updated = false;
 
 			var settings = provider.GetCollection(Name);
-			foreach (MenuItemPanel item in menuPanel.Controls)
+			var items = settings.Get<XElement>("items");
+			if (items == null)
 			{
-				var key = ((string)item.Tag).Replace("_Label", string.Empty);
+				items = new XElement("items");
+			}
 
-				if (item.Checked)
+			foreach (MenuItemPanel control in menuPanel.Controls)
+			{
+				var key = ((string)control.Tag).Replace("_Label", string.Empty);
+
+				if (control.Checked)
 				{
-					settings.Add(key, true);
-					updated = true;
+					if (!items.Elements().Any(e => e.Value == key))
+					{
+						items.Add(new XElement("item", key));
+						updated = true;
+					}
 				}
-				else if (settings.Contains(key) && settings.Remove(key))
+				else
 				{
-					updated = true;
+					var item = items.Elements().FirstOrDefault(e => e.Value == key);
+					if (item != null)
+					{
+						item.Remove();
+						updated = true;
+					}
 				}
 			}
 
 			if (updated)
 			{
+				settings.Add(items);
+
 				if (settings.Count > 0)
 				{
 					provider.SetCollection(settings);
@@ -304,14 +323,14 @@ namespace River.OneMoreAddIn.Settings
 		}
 
 
-
-		/// <summary>
-		/// Temporary upgrade to rename resource IDs in the settings file
-		/// Created in v5.1.0. To be removed a few versions after that.
-		/// </summary>
-		/// <param name="provider"></param>
 		public static void UpgradeSettings(SettingsProvider provider)
 		{
+			/*
+			 * TODO: Temporary
+			 * Reader-makes-right to convert old button names to new names
+			 * Released with 5.1.0
+			 */
+
 			var exchange = new Dictionary<string, string>
 			{
 				{ "ribDrawPlantUmlButton", "ribPlantUmlButton" },
@@ -332,6 +351,34 @@ namespace River.OneMoreAddIn.Settings
 					updated = true;
 				}
 			});
+
+			/*
+			 * TODO: Temporary
+			 * Reader-makes-right to convert from indvidual elements like
+			 * Released with 5.8.3
+			 * 
+			 *		<ribFooButton_Label>true</ribFooButton_Label>
+			 *	
+			 * to a more XML-conforming list of items like
+			 * 
+			 *		<items>
+			 *		  <item>ribFooButton_Label</item>
+			 *		  <item>ribBarButton_Label</item>
+			 *		</items>
+			 */
+
+			if (!collection.Contains("items"))
+			{
+				var items = new XElement("items");
+				collection.Keys.ToList().ForEach(key =>
+				{
+					items.Add(new XElement("item", key));
+					collection.Remove(key);
+				});
+
+				collection.Add(items);
+				updated = true;
+			}
 
 			if (updated)
 			{

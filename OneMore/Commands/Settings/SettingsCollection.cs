@@ -77,6 +77,12 @@ namespace River.OneMoreAddIn.Settings
 		}
 
 
+		public void Add(XElement element)
+		{
+			Add(element.Name.LocalName, element);
+		}
+
+
 		public void Clear()
 		{
 			properties.Clear();

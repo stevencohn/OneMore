@@ -70,7 +70,7 @@ namespace River.OneMoreAddIn.Settings
 			{
 				foreach (var element in elements)
 				{
-					if (element.HasElements)
+					if (element.HasElements || string.IsNullOrEmpty(element.Value))
 					{
 						// has child elements so this must be an XElement
 						settings.Add(element.Name.LocalName, element);

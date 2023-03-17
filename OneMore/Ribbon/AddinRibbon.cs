@@ -288,13 +288,16 @@ namespace River.OneMoreAddIn
 		{
 			logger.WriteLine("building context menu");
 
-			foreach (var key in ccommands.Keys)
+			var keysRoot = ccommands.Get<XElement>("items");
+			if (keysRoot == null)
 			{
-				if (!ccommands.Get<bool>(key))
-				{
-					continue;
-				}
+				return;
+			}
 
+			var keys = keysRoot.Elements("item");
+
+			foreach (var key in keys.Select(e => e.Value))
+			{
 				// special case to hide Proofing menu if language set is only 1; because it
 				// may have changed since last time user added this to the context menu
 				if (key == "ribProofingMenu")
@@ -334,12 +337,12 @@ namespace River.OneMoreAddIn
 
 				if (id.Value == "ribEditMenu")
 				{
-					if (ccommands.Keys.Contains("ribColorizeMenu"))
+					if (keys.Any(k => k.Value == "ribColorizeMenu"))
 					{
 						item.Elements().Where(e => e.Attribute("id")?.Value == "ribColorizeMenu").Remove();
 					}
 
-					if (ccommands.Keys.Contains("ribProofingMenu"))
+					if (keys.Any(k => k.Value == "ribProofingMenu"))
 					{
 						item.Elements().Where(e => e.Attribute("id")?.Value == "ribProofingMenu").Remove();
 					}

@@ -43,7 +43,21 @@ namespace River.OneMoreAddIn.Commands
 				//logger.WriteLine($"invoking command[index:{dialog.Index},recent:{dialog.Recent}] 'method:{command.Method.Name}'");
 				await (Task)command.Method.Invoke(AddIn.Self, new object[] { null });
 
-				new CommandProvider().SaveToMRU(command);
+				// save if not IsCancelled...
+
+				var type = Type.GetType($"River.OneMoreAddIn.Commands.{command.Method.Name}");
+				if (type != null)
+				{
+					var prop = type.GetProperty("IsCancelled");
+					if (prop != null)
+					{
+						if (prop.GetValue(Activator.CreateInstance(type)) is bool isCancelled &&
+							!isCancelled)
+						{
+							new CommandProvider().SaveToMRU(command);
+						}
+					}
+				}
 			}
 
 			// reset focus to OneNote window
