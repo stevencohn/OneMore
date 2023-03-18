@@ -1,5 +1,5 @@
 ﻿
-namespace River.OneMoreAddIn.Commands
+namespace River.OneMoreAddIn.UI
 {
 	partial class MoreBubbleWindow
 	{

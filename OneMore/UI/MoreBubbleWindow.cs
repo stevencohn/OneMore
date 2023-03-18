@@ -2,10 +2,9 @@
 // Copyright © 2022 Steven M Cohn.  All rights reserved.
 //************************************************************************************************
 
-namespace River.OneMoreAddIn.Commands
+namespace River.OneMoreAddIn.UI
 {
 	using River.OneMoreAddIn;
-	using River.OneMoreAddIn.UI;
 	using System;
 	using System.Drawing;
 	using System.Windows.Forms;

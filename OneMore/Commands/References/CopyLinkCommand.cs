@@ -2,15 +2,16 @@
 // Copyright © 2022 Steven M Cohn.  All rights reserved.
 //************************************************************************************************
 
-namespace River.OneMoreAddIn.Commands
+namespace River.OneMoreAddIn
 {
-	using River.OneMoreAddIn.Commands;
 	using River.OneMoreAddIn.Models;
+	using River.OneMoreAddIn.UI;
 	using System.Linq;
 	using System.Text;
 	using System.Threading.Tasks;
 	using System.Xml.Linq;
 	using Resx = Properties.Resources;
+	using Win = System.Windows;
 
 
 	/// <summary>
@@ -100,7 +101,10 @@ namespace River.OneMoreAddIn.Commands
 			var html = ClipboardProvider.WrapWithHtmlPreamble(fragment);
 
 			// copy hyperlink to clipboard
-			await new ClipboardProvider().SetHtml(html);
+			var board = new ClipboardProvider();
+			board.Stash(Win.TextDataFormat.Html, html);
+			board.Stash(Win.TextDataFormat.Text, hyperlink);
+			await board.RestoreState();
 
 			MoreBubbleWindow.Show(specific
 				? Resx.CopyLinkCommand_LinkToParagraph
