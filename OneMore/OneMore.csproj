@@ -1028,6 +1028,12 @@
     <Content Include="Colorizer\Languages\yaml.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Commands\Navigator\Images\Copy-20.png" />
+    <Content Include="Commands\Navigator\Images\Garbage-Closed-20.png" />
+    <Content Include="Commands\Navigator\Images\Reload-20.png" />
+    <Content Include="Commands\Navigator\Images\Student-Read-01-20.png" />
+    <Content Include="Commands\Navigator\Images\Swap-Down-20.png" />
+    <Content Include="Commands\Navigator\Images\Swap-Up-20.png" />
     <Content Include="Commands\Search\x.png" />
     <None Include="Colorizer\Languages\plantuml.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -1228,6 +1234,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Commands\Navigator\NavigatorWindow.resx">
       <DependentUpon>NavigatorWindow.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Commands\Page\ArrangeContainersDialog.resx">
       <DependentUpon>ArrangeContainersDialog.cs</DependentUpon>
