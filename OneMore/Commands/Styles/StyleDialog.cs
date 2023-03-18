@@ -227,6 +227,28 @@ namespace River.OneMoreAddIn.Commands
 			}
 
 			nameBox.Focus();
+			VerifyFontFamilies();
+		}
+
+
+		private void VerifyFontFamilies()
+		{
+			var families = new List<string>();
+			foreach (GraphicStyle style in namesBox.Items)
+			{
+				if (!familyBox.Items.Contains(style.FontFamily))
+				{
+					families.Add(style.FontFamily.Contains(' ')
+						? $"\"{style.FontFamily}\""
+						: style.FontFamily);
+				}
+			}
+
+			if (families.Any())
+			{
+				var names = string.Join(", ", families);
+				UIHelper.ShowInfo(string.Format(Resx.StyleDialog_familyWarning, names));
+			}
 		}
 
 		#endregion Lifecycle
@@ -883,6 +905,8 @@ namespace River.OneMoreAddIn.Commands
 
 					// update dialog title
 					Text = string.Format(Resx.StyleDialog_ThemeText, theme.Name);
+
+					VerifyFontFamilies();
 				}
 				else
 				{
