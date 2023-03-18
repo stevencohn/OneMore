@@ -9948,6 +9948,16 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to These styles include one or more unrecognized font families:
+        ///{0}.
+        /// </summary>
+        internal static string StyleDialog_familyWarning {
+            get {
+                return ResourceManager.GetString("StyleDialog_familyWarning", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to File.
         /// </summary>
         internal static string StyleDialog_FileMenu_Text {
