@@ -143,14 +143,14 @@
 			// refreshButton
 			// 
 			this.refreshButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.refreshButton.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("refreshButton.BackgroundImage")));
+			this.refreshButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
 			this.refreshButton.FlatAppearance.BorderSize = 0;
 			this.refreshButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-			this.refreshButton.Font = new System.Drawing.Font("Segoe UI Emoji", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.refreshButton.Location = new System.Drawing.Point(481, 1);
 			this.refreshButton.Name = "refreshButton";
 			this.refreshButton.Size = new System.Drawing.Size(35, 37);
 			this.refreshButton.TabIndex = 0;
-			this.refreshButton.Text = "↻";
 			this.refreshButton.TextAlign = System.Drawing.ContentAlignment.TopCenter;
 			this.tooltip.SetToolTip(this.refreshButton, "Refresh headings from current page");
 			this.refreshButton.UseVisualStyleBackColor = true;
@@ -231,14 +231,14 @@
 			// copyPinnedButton
 			// 
 			this.copyPinnedButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.copyPinnedButton.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("copyPinnedButton.BackgroundImage")));
+			this.copyPinnedButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
 			this.copyPinnedButton.FlatAppearance.BorderSize = 0;
 			this.copyPinnedButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-			this.copyPinnedButton.Font = new System.Drawing.Font("Segoe UI Emoji", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.copyPinnedButton.Location = new System.Drawing.Point(440, 3);
 			this.copyPinnedButton.Name = "copyPinnedButton";
 			this.copyPinnedButton.Size = new System.Drawing.Size(35, 35);
 			this.copyPinnedButton.TabIndex = 2;
-			this.copyPinnedButton.Text = "🔗";
 			this.copyPinnedButton.TextAlign = System.Drawing.ContentAlignment.TopCenter;
 			this.tooltip.SetToolTip(this.copyPinnedButton, "Copy selected items to the clipboard");
 			this.copyPinnedButton.UseVisualStyleBackColor = true;
@@ -247,14 +247,14 @@
 			// upButton
 			// 
 			this.upButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.upButton.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("upButton.BackgroundImage")));
+			this.upButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
 			this.upButton.FlatAppearance.BorderSize = 0;
 			this.upButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-			this.upButton.Font = new System.Drawing.Font("Segoe UI Emoji", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.upButton.Location = new System.Drawing.Point(358, 2);
 			this.upButton.Name = "upButton";
 			this.upButton.Size = new System.Drawing.Size(35, 37);
 			this.upButton.TabIndex = 0;
-			this.upButton.Text = "↥";
 			this.upButton.TextAlign = System.Drawing.ContentAlignment.TopCenter;
 			this.tooltip.SetToolTip(this.upButton, "Move selected items up");
 			this.upButton.UseVisualStyleBackColor = true;
@@ -263,14 +263,14 @@
 			// downButton
 			// 
 			this.downButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.downButton.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("downButton.BackgroundImage")));
+			this.downButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
 			this.downButton.FlatAppearance.BorderSize = 0;
 			this.downButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-			this.downButton.Font = new System.Drawing.Font("Segoe UI Emoji", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.downButton.Location = new System.Drawing.Point(399, 3);
 			this.downButton.Name = "downButton";
 			this.downButton.Size = new System.Drawing.Size(35, 37);
 			this.downButton.TabIndex = 1;
-			this.downButton.Text = "↧";
 			this.downButton.TextAlign = System.Drawing.ContentAlignment.TopCenter;
 			this.tooltip.SetToolTip(this.downButton, "Move selected items down");
 			this.downButton.UseVisualStyleBackColor = true;
@@ -279,14 +279,14 @@
 			// unpinButton
 			// 
 			this.unpinButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.unpinButton.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("unpinButton.BackgroundImage")));
+			this.unpinButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
 			this.unpinButton.FlatAppearance.BorderSize = 0;
 			this.unpinButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-			this.unpinButton.Font = new System.Drawing.Font("Segoe UI Emoji", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.unpinButton.Location = new System.Drawing.Point(481, 3);
 			this.unpinButton.Name = "unpinButton";
 			this.unpinButton.Size = new System.Drawing.Size(35, 37);
 			this.unpinButton.TabIndex = 3;
-			this.unpinButton.Text = "✘";
 			this.unpinButton.TextAlign = System.Drawing.ContentAlignment.TopCenter;
 			this.tooltip.SetToolTip(this.unpinButton, "Remove selected items from My Reading List");
 			this.unpinButton.UseVisualStyleBackColor = true;
@@ -340,14 +340,14 @@
 			// copyHistoryButton
 			// 
 			this.copyHistoryButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.copyHistoryButton.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("copyHistoryButton.BackgroundImage")));
+			this.copyHistoryButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
 			this.copyHistoryButton.FlatAppearance.BorderSize = 0;
 			this.copyHistoryButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-			this.copyHistoryButton.Font = new System.Drawing.Font("Segoe UI Emoji", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.copyHistoryButton.Location = new System.Drawing.Point(440, 2);
 			this.copyHistoryButton.Name = "copyHistoryButton";
 			this.copyHistoryButton.Size = new System.Drawing.Size(35, 35);
 			this.copyHistoryButton.TabIndex = 0;
-			this.copyHistoryButton.Text = "🔗";
 			this.copyHistoryButton.TextAlign = System.Drawing.ContentAlignment.TopCenter;
 			this.tooltip.SetToolTip(this.copyHistoryButton, "Copy selected items to the clipboard");
 			this.copyHistoryButton.UseVisualStyleBackColor = true;
@@ -356,14 +356,14 @@
 			// pinButton
 			// 
 			this.pinButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.pinButton.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pinButton.BackgroundImage")));
+			this.pinButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
 			this.pinButton.FlatAppearance.BorderSize = 0;
 			this.pinButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-			this.pinButton.Font = new System.Drawing.Font("Segoe UI Emoji", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.pinButton.Location = new System.Drawing.Point(481, 2);
 			this.pinButton.Name = "pinButton";
 			this.pinButton.Size = new System.Drawing.Size(35, 35);
 			this.pinButton.TabIndex = 1;
-			this.pinButton.Text = "📌";
 			this.pinButton.TextAlign = System.Drawing.ContentAlignment.TopCenter;
 			this.tooltip.SetToolTip(this.pinButton, "Add selected items to My Reading List");
 			this.pinButton.UseVisualStyleBackColor = true;
