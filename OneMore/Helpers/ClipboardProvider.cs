@@ -9,6 +9,7 @@ namespace River.OneMoreAddIn
 	using System;
 	using System.Collections.Generic;
 	using System.Text;
+	using System.Text.RegularExpressions;
 	using System.Threading.Tasks;
 	using System.Windows.Media.Imaging;
 	using WindowsInput;
@@ -21,9 +22,8 @@ namespace River.OneMoreAddIn
 	/// </summary>
 	internal class ClipboardProvider
 	{
-		private const char Space = '\u00a0'; // Unicode no-break space
-		private const string StartFragment = "<!--StartFragment-->";
-		private const string EndFragment = "<!--EndFragment-->";
+		private const string StartFragmentLine = "<!--StartFragment-->";
+		private const string EndFragmentLine = "<!--EndFragment-->";
 
 		private readonly object gate;
 		private readonly Dictionary<Win.TextDataFormat, string> stash;
@@ -278,22 +278,23 @@ namespace River.OneMoreAddIn
 
 
 		/// <summary>
-		/// Wraps an HTML fragment in a container including a preamble that describes its
-		/// size. This is a prescribed Clipboard form described by
+		/// Wraps the given HTML into the Windows Clipboard HTML Format CF_HTML, including a
+		/// preamble that describes the size and important offsets needed to transfer HTML.
+		/// Th CF_HTML format is described here
 		/// https://docs.microsoft.com/en-us/windows/win32/dataxchg/html-clipboard-format
 		/// </summary>
 		/// <param name="html">
-		/// The HTML fragment to wrap. Can include HTML/BODY/StartFragment-EndFragment but if not
-		/// then it will be wrapped
+		/// The HTML fragment to wrap. Can include HTML/BODY/StartFragment..EndFragment but,
+		/// if not, then those tags will be added accordingly.
 		/// </param>
-		/// <returns>A new string</returns>
+		/// <returns>A new string in CF_HTML format</returns>
 		public static string WrapWithHtmlPreamble(string html)
 		{
 			/* Version:0.9
 			 * StartHTML:0000000071
 			 * EndHTML:0000000170
-			 * StartFragment:0000000140
-			 * EndFragment:0000000160
+			 * StartFragment:0000000140  (this starts just after the StartFragment comment)
+			 * EndFragment:0000000160	 (this starts just before the EndFragment comment)
 			 * <html>
 			 * <body>
 			 * <!--StartFragment--> ... <!--EndFragment-->
@@ -301,11 +302,29 @@ namespace River.OneMoreAddIn
 			 * </html>
 			 */
 
-			int start = html.IndexOf(StartFragment);
-			if (start < 0)
+			var NLCount = Environment.NewLine.Length;
+			string head;
+
+			// The HTML might come from a Linux (LF) file but by the time it gets to the clipboard
+			// Windows wants it to be in Windows (CRLF) format, so convert Unix file to Windows
+			// file now to properly calculate offsets
+			var body = Regex.Replace(html, @"(?<!\r)\n", "\r\n");
+
+			var index = html.IndexOf(StartFragmentLine);
+			if (index > 0)
 			{
-				html = $"<html>\n<body>\n{StartFragment}\n{html}\n{EndFragment}\n</body>\n</html>";
-				start = html.IndexOf(StartFragment);
+				head = html.Substring(0, index).Trim();
+				body = body.Substring(index + StartFragmentLine.Length).Trim();
+			}
+			else
+			{
+				head = $"<html>{Environment.NewLine}<body>";
+			}
+
+			index = body.IndexOf(EndFragmentLine);
+			if (index > 0)
+			{
+				body = body.Substring(0, index);
 			}
 
 			var builder = new StringBuilder();
@@ -314,34 +333,34 @@ namespace River.OneMoreAddIn
 			builder.AppendLine("EndHTML:1111111111");
 			builder.AppendLine("StartFragment:2222222222");
 			builder.AppendLine("EndFragment:3333333333");
+			var startHtml = builder.Length;
 
-			// calculate offsets, accounting for Unicode no-break space chars
+			builder.AppendLine(head);
 
-			builder.Replace("0000000000", builder.Length.ToString("D10"));
+			// Unicode chars in UTF8 will look like one char in a string but may be mutiple
+			// bytes, so we need to count bytes instead of string lengths. That also include
+			// the Unicode no-break space \u00a0
+			var headLen = Encoding.UTF8.GetByteCount(head) + NLCount;
 
-			int spaces = 0;
-			for (int i = 0; i < start; i++)
-			{
-				if (html[i] == Space)
-				{
-					spaces++;
-				}
-			}
-			builder.Replace("2222222222", (builder.Length + start + 20 + spaces).ToString("D10"));
+			builder.AppendLine(StartFragmentLine);
+			var startFragment = startHtml + headLen + StartFragmentLine.Length;
 
-			int end = html.IndexOf(EndFragment);
-			for (int i = start + 20; i < end; i++)
-			{
-				if (html[i] == Space)
-				{
-					spaces++;
-				}
-			}
-			spaces--;
-			builder.Replace("3333333333", (builder.Length + end + spaces).ToString("D10"));
-			builder.Replace("1111111111", (builder.Length + html.Length + spaces).ToString("D10"));
+			builder.AppendLine(body);
+			var bodyLen = Encoding.UTF8.GetByteCount(body) + NLCount;
+			var endFragment = startFragment + bodyLen;
 
-			builder.AppendLine(html);
+			builder.AppendLine(EndFragmentLine);
+			builder.AppendLine("</body>");
+			builder.AppendLine("</html>");
+
+			// 18 is the length of </body>+NL and </html>+NL
+			var endHtml = endFragment + EndFragmentLine.Length + 18 + NLCount;
+
+			builder.Replace("0000000000", startHtml.ToString("D10"));
+			builder.Replace("1111111111", endHtml.ToString("D10"));
+			builder.Replace("2222222222", startFragment.ToString("D10"));
+			builder.Replace("3333333333", endFragment.ToString("D10"));
+
 			return builder.ToString();
 		}
 	}
