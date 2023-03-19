@@ -84,6 +84,12 @@ namespace River.OneMoreAddIn.Commands
 		public string ObjectId { get; set; }
 
 
+		/// <summary>
+		/// Gets or sets the URI of the tagged paragraph
+		/// </summary>
+		public string ObjectUri { get; set; }
+
+
 		// one:Tag.index
 		[JsonIgnore]
 		public string TagIndex { get; set; }
@@ -186,7 +192,7 @@ namespace River.OneMoreAddIn.Commands
 		{
 			var now = DateTime.UtcNow;
 
-			Version = 1;
+			Version = 2;
 			ObjectId = objectId;
 			Symbol = BellSymbol;
 			Created = now;

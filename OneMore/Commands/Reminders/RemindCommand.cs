@@ -54,7 +54,7 @@ namespace River.OneMoreAddIn.Commands
 				return;
 			}
 
-			var reminder = GetReminder(paragraph);
+			var reminder = GetReminder(one, paragraph);
 
 			using var dialog = new RemindDialog(reminder, false);
 			if (dialog.ShowDialog(owner) == DialogResult.OK)
@@ -83,7 +83,7 @@ namespace River.OneMoreAddIn.Commands
 			var paragraph = page.Root.Descendants(ns + "OE")
 				.FirstOrDefault(e => e.Attribute("objectID").Value == objectId);
 
-			var reminder = GetReminder(paragraph);
+			var reminder = GetReminder(one, paragraph);
 			if (reminder == null)
 			{
 				// TODO: message?
@@ -115,7 +115,7 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private Reminder GetReminder(XElement paragraph)
+		private Reminder GetReminder(OneNote one, XElement paragraph)
 		{
 			Reminder reminder;
 			XElement tag;
@@ -126,6 +126,16 @@ namespace River.OneMoreAddIn.Commands
 			if (reminders.Any())
 			{
 				reminder = reminders.FirstOrDefault(r => r.ObjectId == objectID);
+
+				if (reminder == null)
+				{
+					// second-chance for multi-client users
+					// reminder might be orphaned or we're looking at it from another machine;
+					// object IDs are mutable per client but differ across clients so lookup URI
+
+					var uri = one.GetHyperlink(page.PageId, objectID);
+					reminder = reminders.FirstOrDefault(r => r.ObjectUri == uri);
+				}
 
 				if (reminder != null &&
 					!string.IsNullOrEmpty(reminder.Symbol) && reminder.Symbol != "0")
@@ -148,6 +158,12 @@ namespace River.OneMoreAddIn.Commands
 								reminder.Completed = DateTime.Parse(tag.Attribute("completionDate").Value);
 							}
 
+							if (string.IsNullOrEmpty(reminder.ObjectUri))
+							{
+								// patch old reminders with objectID
+								reminder.ObjectUri = one.GetHyperlink(page.PageId, objectID);
+							}
+
 							return reminder;
 						}
 					}
@@ -156,6 +172,12 @@ namespace River.OneMoreAddIn.Commands
 
 			// either no meta or meta is orphaned from its tag so create a new one...
 
+			return MakeReminder(one, paragraph, objectID);
+		}
+
+
+		private Reminder MakeReminder(OneNote one, XElement paragraph, string objectID)
+		{
 			var text = paragraph.Value;
 
 			// get only raw text without <span> et al. This direct pattern match feels risky but
@@ -166,12 +188,13 @@ namespace River.OneMoreAddIn.Commands
 				text = text.Substring(0, 40) + "...";
 			}
 
-			reminder = new Reminder(objectID)
+			var reminder = new Reminder(objectID)
 			{
+				ObjectUri = one.GetHyperlink(page.PageId, objectID),
 				Subject = text
 			};
 
-			tag = paragraph.Elements(ns + "Tag").FirstOrDefault();
+			var tag = paragraph.Elements(ns + "Tag").FirstOrDefault();
 			if (tag != null)
 			{
 				// use existing tag on paragraph, synchronize reminder with this tag

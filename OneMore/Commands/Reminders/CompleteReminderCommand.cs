@@ -48,6 +48,13 @@ namespace River.OneMoreAddIn.Commands
 			var reminder = reminders.FirstOrDefault(r => r.ObjectId == objectID);
 			if (reminder == null)
 			{
+				// second-chance for multi-client users
+				var uri = one.GetHyperlink(page.PageId, objectID);
+				reminder = reminders.FirstOrDefault(r => r.ObjectUri == uri);
+			}
+
+			if (reminder == null)
+			{
 				UIHelper.ShowError(one.Window, Resx.RemindCommand_noReminder);
 				return;
 			}
