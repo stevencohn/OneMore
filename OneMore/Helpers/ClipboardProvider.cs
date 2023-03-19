@@ -9,6 +9,7 @@ namespace River.OneMoreAddIn
 	using System;
 	using System.Collections.Generic;
 	using System.Text;
+	using System.Text.RegularExpressions;
 	using System.Threading.Tasks;
 	using System.Windows.Media.Imaging;
 	using WindowsInput;
@@ -21,8 +22,8 @@ namespace River.OneMoreAddIn
 	/// </summary>
 	internal class ClipboardProvider
 	{
-		private const string StartFragment = "<!--StartFragment-->";
-		private const string EndFragment = "<!--EndFragment-->";
+		private const string StartFragmentLine = "<!--StartFragment-->";
+		private const string EndFragmentLine = "<!--EndFragment-->";
 
 		private readonly object gate;
 		private readonly Dictionary<Win.TextDataFormat, string> stash;
@@ -303,20 +304,22 @@ namespace River.OneMoreAddIn
 			System.Diagnostics.Debugger.Launch();
 
 			string head;
-			var body = html;
 
-			var index = html.IndexOf(StartFragment);
+			// convert Unix (LF) file to Windows (CRLF) file
+			var body = Regex.Replace(html, @"(?<!\r)\n", "\r\n");
+
+			var index = html.IndexOf(StartFragmentLine);
 			if (index > 0)
 			{
 				head = html.Substring(0, index).Trim();
-				body = body.Substring(index + StartFragment.Length).Trim();
+				body = body.Substring(index + StartFragmentLine.Length).Trim();
 			}
 			else
 			{
 				head = $"<html>{Environment.NewLine}<body>";
 			}
 
-			index = body.IndexOf(EndFragment);
+			index = body.IndexOf(EndFragmentLine);
 			if (index > 0)
 			{
 				body = body.Substring(0, index);
@@ -331,20 +334,19 @@ namespace River.OneMoreAddIn
 			var startHtml = builder.Length;
 
 			builder.AppendLine(head);
-			var headLen = Encoding.UTF8.GetByteCount(head);
+			var headLen = Encoding.UTF8.GetByteCount(head) + 2; // +2 = NL
 
-			builder.AppendLine(StartFragment);
-			var startFragment = startHtml + headLen + StartFragment.Length;
+			builder.AppendLine(StartFragmentLine);
+			var startFragment = startHtml + headLen + StartFragmentLine.Length;
 
-			// convert Unix (LF) file to Windows (CRLF) file
-			//html = Regex.Replace(html, @"(?<!\r)\n", "\r\n");
 			builder.AppendLine(body);
-			var endFragment = startFragment + Encoding.UTF8.GetByteCount(body);
+			var bodyLen = Encoding.UTF8.GetByteCount(body) + 2; // +2 = NL
+			var endFragment = startFragment + bodyLen;
 
-			builder.AppendLine(EndFragment);
+			builder.AppendLine(EndFragmentLine);
 			builder.AppendLine("</body>");
 			builder.AppendLine("</html>");
-			int endHtml = endFragment + EndFragment.Length + 18;
+			int endHtml = endFragment + EndFragmentLine.Length + 18 + 2; // +2 = NL
 
 			builder.Replace("0000000000", startHtml.ToString("D10"));
 			builder.Replace("1111111111", endHtml.ToString("D10"));
