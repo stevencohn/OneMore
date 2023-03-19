@@ -278,15 +278,16 @@ namespace River.OneMoreAddIn
 
 
 		/// <summary>
-		/// Wraps an HTML fragment in a container including a preamble that describes its
-		/// size. This is a prescribed Clipboard form described by
+		/// Wraps the given HTML into the Windows Clipboard HTML Format CF_HTML, including a
+		/// preamble that describes the size and important offsets needed to transfer HTML.
+		/// Th CF_HTML format is described here
 		/// https://docs.microsoft.com/en-us/windows/win32/dataxchg/html-clipboard-format
 		/// </summary>
 		/// <param name="html">
-		/// The HTML fragment to wrap. Can include HTML/BODY/StartFragment-EndFragment but if not
-		/// then it will be wrapped
+		/// The HTML fragment to wrap. Can include HTML/BODY/StartFragment..EndFragment but,
+		/// if not, then those tags will be added accordingly.
 		/// </param>
-		/// <returns>A new string</returns>
+		/// <returns>A new string in CF_HTML format</returns>
 		public static string WrapWithHtmlPreamble(string html)
 		{
 			/* Version:0.9
@@ -301,11 +302,12 @@ namespace River.OneMoreAddIn
 			 * </html>
 			 */
 
-			System.Diagnostics.Debugger.Launch();
-
+			var NLCount = Environment.NewLine.Length;
 			string head;
 
-			// convert Unix (LF) file to Windows (CRLF) file
+			// The HTML might come from a Linux (LF) file but by the time it gets to the clipboard
+			// Windows wants it to be in Windows (CRLF) format, so convert Unix file to Windows
+			// file now to properly calculate offsets
 			var body = Regex.Replace(html, @"(?<!\r)\n", "\r\n");
 
 			var index = html.IndexOf(StartFragmentLine);
@@ -334,19 +336,25 @@ namespace River.OneMoreAddIn
 			var startHtml = builder.Length;
 
 			builder.AppendLine(head);
-			var headLen = Encoding.UTF8.GetByteCount(head) + 2; // +2 = NL
+
+			// Unicode chars in UTF8 will look like one char in a string but may be mutiple
+			// bytes, so we need to count bytes instead of string lengths. That also include
+			// the Unicode no-break space \u00a0
+			var headLen = Encoding.UTF8.GetByteCount(head) + NLCount;
 
 			builder.AppendLine(StartFragmentLine);
 			var startFragment = startHtml + headLen + StartFragmentLine.Length;
 
 			builder.AppendLine(body);
-			var bodyLen = Encoding.UTF8.GetByteCount(body) + 2; // +2 = NL
+			var bodyLen = Encoding.UTF8.GetByteCount(body) + NLCount;
 			var endFragment = startFragment + bodyLen;
 
 			builder.AppendLine(EndFragmentLine);
 			builder.AppendLine("</body>");
 			builder.AppendLine("</html>");
-			int endHtml = endFragment + EndFragmentLine.Length + 18 + 2; // +2 = NL
+
+			// 18 is the length of </body>+NL and </html>+NL
+			var endHtml = endFragment + EndFragmentLine.Length + 18 + NLCount;
 
 			builder.Replace("0000000000", startHtml.ToString("D10"));
 			builder.Replace("1111111111", endHtml.ToString("D10"));
