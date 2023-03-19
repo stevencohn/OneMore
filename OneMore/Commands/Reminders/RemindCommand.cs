@@ -6,6 +6,7 @@ namespace River.OneMoreAddIn.Commands
 {
 	using River.OneMoreAddIn.Models;
 	using System;
+	using System.Collections.Generic;
 	using System.Linq;
 	using System.Text.RegularExpressions;
 	using System.Threading.Tasks;
@@ -282,6 +283,17 @@ namespace River.OneMoreAddIn.Commands
 			logger.WriteLine($"Reminders on current page ({spage.Title})");
 			var reminders = new ReminderSerializer().LoadReminders(spage);
 
+			if (!reminders.Any())
+			{
+				return;
+			}
+
+			var map = new List<string>();
+			spage.Root.Descendants(sns + "OE").ForEach(e =>
+			{
+				map.Add(one.GetHyperlink(spage.PageId, e.Attribute("objectID").Value));
+			});
+
 			foreach (var reminder in reminders)
 			{
 				var subject = reminder.Subject;
@@ -289,12 +301,18 @@ namespace River.OneMoreAddIn.Commands
 				var start = reminder.Start.ToLocalTime().ToString();
 				var due = reminder.Due.ToLocalTime().ToString();
 
-				var anyOid = spage.Root.Descendants(sns + "OE")
-					.Any(e => e.Attribute("objectID").Value == reminder.ObjectId);
+				var status = string.Empty;
+				if (!spage.Root.Descendants(sns + "OE").Any(e => 
+					e.Attribute("objectID").Value == reminder.ObjectId))
+				{
+					if (string.IsNullOrEmpty(reminder.ObjectUri) ||
+						!map.Contains(reminder.ObjectUri))
+					{
+						status = $"(orphaned)";
+					}
+				}
 
-				var orphan = anyOid ? String.Empty : "(orphaned) ";
-
-				logger.WriteLine($"- start:{start,22} due:{due,22} {orphan}\"{subject}\"");
+				logger.WriteLine($"- start:{start,22} due:{due,22} \"{subject}\" {status}");
 			}
 		}
 	}
