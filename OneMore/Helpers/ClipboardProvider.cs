@@ -8,7 +8,9 @@ namespace River.OneMoreAddIn
 {
 	using System;
 	using System.Collections.Generic;
+	using System.Linq;
 	using System.Text;
+	using System.Threading;
 	using System.Threading.Tasks;
 	using System.Windows.Media.Imaging;
 	using WindowsInput;
@@ -21,6 +23,7 @@ namespace River.OneMoreAddIn
 	/// </summary>
 	internal class ClipboardProvider
 	{
+		private const int PreambleSize = 105;
 		private const char Space = '\u00a0'; // Unicode no-break space
 		private const string StartFragment = "<!--StartFragment-->";
 		private const string EndFragment = "<!--EndFragment-->";
@@ -292,8 +295,8 @@ namespace River.OneMoreAddIn
 			/* Version:0.9
 			 * StartHTML:0000000071
 			 * EndHTML:0000000170
-			 * StartFragment:0000000140
-			 * EndFragment:0000000160
+			 * StartFragment:0000000140  (this starts just after the StartFragment comment)
+			 * EndFragment:0000000160	 (this starts just before the EndFragment comment)
 			 * <html>
 			 * <body>
 			 * <!--StartFragment--> ... <!--EndFragment-->
@@ -301,14 +304,9 @@ namespace River.OneMoreAddIn
 			 * </html>
 			 */
 
-			int start = html.IndexOf(StartFragment);
-			if (start < 0)
-			{
-				html = $"<html>\n<body>\n{StartFragment}\n{html}\n{EndFragment}\n</body>\n</html>";
-				start = html.IndexOf(StartFragment);
-			}
+			System.Diagnostics.Debugger.Launch();
 
-			var builder = new StringBuilder();
+			var builder = new StringBuilder(html.Length + PreambleSize);
 			builder.AppendLine("Version:0.9");
 			builder.AppendLine("StartHTML:0000000000");
 			builder.AppendLine("EndHTML:1111111111");
@@ -317,32 +315,76 @@ namespace River.OneMoreAddIn
 
 			// calculate offsets, accounting for Unicode no-break space chars
 
-			builder.Replace("0000000000", builder.Length.ToString("D10"));
+			int startHtml = builder.Length;
+			builder.Replace("0000000000", startHtml.ToString("D10"));
 
-			int spaces = 0;
-			for (int i = 0; i < start; i++)
-			{
-				if (html[i] == Space)
-				{
-					spaces++;
-				}
-			}
-			builder.Replace("2222222222", (builder.Length + start + 20 + spaces).ToString("D10"));
+			var spaces = 0;
 
-			int end = html.IndexOf(EndFragment);
-			for (int i = start + 20; i < end; i++)
+			var start = html.IndexOf(StartFragment);
+			var naked = start < 0;
+			if (naked)
 			{
-				if (html[i] == Space)
+				var len = builder.Length;
+				builder.AppendLine("<html>");
+				builder.AppendLine("<body>");
+
+				if (start < 0)
 				{
-					spaces++;
+					// start is less than 0 when naked
+					start = builder.Length - len;
 				}
+
+				builder.AppendLine(StartFragment);
 			}
-			spaces--;
-			builder.Replace("3333333333", (builder.Length + end + spaces).ToString("D10"));
-			builder.Replace("1111111111", (builder.Length + html.Length + spaces).ToString("D10"));
+			else
+			{
+				// incoming HTML may have no-break spaces
+				spaces = CountNoBreakSpaces(html, 0, start);
+			}
+
+			int startFragment = startHtml + start + StartFragment.Length + spaces;
+			builder.Replace("2222222222", startFragment.ToString("D10"));
 
 			builder.AppendLine(html);
+
+			// fragment content may have no-break spaces
+			var end = html.IndexOf(EndFragment);
+			spaces += CountNoBreakSpaces(html, startFragment, end) - 1;
+
+			int endFragment;
+			if (naked)
+			{
+				endFragment = builder.Length + spaces;
+				builder.AppendLine(EndFragment);
+				builder.AppendLine("</body>");
+				builder.AppendLine("</html>");
+			}
+			else
+			{
+				endFragment = startHtml + end + spaces;
+			}
+
+			builder.Replace("3333333333", endFragment.ToString("D10"));
+
+			int endHtml = builder.Length + spaces;
+			builder.Replace("1111111111", endHtml.ToString("D10"));
+
 			return builder.ToString();
+		}
+
+
+		private static int CountNoBreakSpaces(string html, int start, int end)
+		{
+			var spaces = 0;
+			for (var i = start; i < end; i++)
+			{
+				if (html[i] == Space)
+				{
+					spaces++;
+				}
+			}
+
+			return spaces;
 		}
 	}
 }
