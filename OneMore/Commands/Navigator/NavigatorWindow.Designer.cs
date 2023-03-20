@@ -383,8 +383,8 @@
 			// NavigatorWindow
 			// 
 			this.AcceptButton = this.closeButton;
-			this.AutoScaleDimensions = new System.Drawing.SizeF(144F, 144F);
-			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
+			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(528, 944);
 			this.Controls.Add(this.mainContainer);
 			this.Controls.Add(this.controlPanel);
