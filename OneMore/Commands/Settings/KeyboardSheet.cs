@@ -73,6 +73,8 @@ namespace River.OneMoreAddIn.Settings
 				keyColumn.HeaderText = Resx.KeyboardSheet_keyColumn_HeaderText;
 			}
 
+			toolstrip.Rescale();
+
 			gridView.AutoGenerateColumns = false;
 			gridView.Columns[0].DataPropertyName = "Description";
 			gridView.Columns[1].DataPropertyName = "Hotkey";

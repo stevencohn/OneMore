@@ -33,7 +33,7 @@
 			this.keyColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.introPanel = new System.Windows.Forms.Panel();
 			this.introLabel = new System.Windows.Forms.Label();
-			this.toolstrip = new System.Windows.Forms.ToolStrip();
+			this.toolstrip = new River.OneMoreAddIn.UI.ScaledToolStrip();
 			this.clearButton = new System.Windows.Forms.ToolStripButton();
 			this.resetButton = new System.Windows.Forms.ToolStripButton();
 			this.resetAllButton = new System.Windows.Forms.ToolStripButton();
@@ -170,7 +170,7 @@
 		private System.Windows.Forms.Label introLabel;
 		private System.Windows.Forms.DataGridViewTextBoxColumn cmdColumn;
 		private System.Windows.Forms.DataGridViewTextBoxColumn keyColumn;
-		private System.Windows.Forms.ToolStrip toolstrip;
+		private River.OneMoreAddIn.UI.ScaledToolStrip toolstrip;
 		private System.Windows.Forms.ToolStripButton clearButton;
 		private System.Windows.Forms.ToolStripButton resetButton;
 		private System.Windows.Forms.ToolStripButton resetAllButton;
