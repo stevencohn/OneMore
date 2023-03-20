@@ -47,6 +47,9 @@ namespace River.OneMoreAddIn.Commands
 			InitializeComponent();
 			trash = new List<IDisposable>();
 
+			mainContainer.AutoScaleMode = AutoScaleMode.Inherit;
+			subContainer.AutoScaleMode = AutoScaleMode.Inherit;
+
 			if (NeedsLocalizing())
 			{
 				Text = Resx.NavigatorWindow_Text;

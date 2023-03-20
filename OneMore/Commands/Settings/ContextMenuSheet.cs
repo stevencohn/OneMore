@@ -126,7 +126,7 @@ namespace River.OneMoreAddIn.Settings
 			{
 				using var graphics = Graphics.FromHwnd(IntPtr.Zero);
 				var textSize = graphics.MeasureString(name, Font);
-				Height = (int)(textSize.Height + 4);
+				Height = (int)(textSize.Height + 6);
 
 				BackColor = color;
 
