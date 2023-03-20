@@ -88,30 +88,13 @@ namespace River.OneMoreAddIn.Commands
 			corralled = settings.Get("corralled", false) || Screen.AllScreens.Length == 1;
 			depth = settings.Get("depth", NavigationService.DefaultHistoryDepth);
 
-			Rescale(pageHeadPanel);
-			Rescale(pinnedHeadPanel);
-			Rescale(historyHeadPanel);
-		}
-
-		private void Rescale(Panel panel)
-		{
-			(float dpiX, _) = UIHelper.GetDpiValues();
-			if (dpiX == 96)
-			{
-				(float scaleX, float scaleY) = UIHelper.GetScalingFactors();
-				foreach (Control control in panel.Controls)
-				{
-					if (control is Button button)
-					{
-						button.Left = (int)(button.Left * scaleX);
-						if (button.BackgroundImage != null)
-						{
-							button.BackgroundImage = button.BackgroundImage
-								.Resize((int)(16 * scaleX), (int)(16 * scaleY));
-						}
-					}
-				}
-			}
+			pinButton.Rescale();
+			unpinButton.Rescale();
+			refreshButton.Rescale();
+			upButton.Rescale();
+			downButton.Rescale();
+			copyPinnedButton.Rescale();
+			copyHistoryButton.Rescale();
 		}
 
 

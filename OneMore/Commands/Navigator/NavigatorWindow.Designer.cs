@@ -42,22 +42,24 @@
 			this.mainContainer = new System.Windows.Forms.SplitContainer();
 			this.pageBox = new River.OneMoreAddIn.UI.MoreFlowLayoutPanel();
 			this.pageHeadPanel = new System.Windows.Forms.Panel();
-			this.refreshButton = new System.Windows.Forms.Button();
+			this.refreshButton = new River.OneMoreAddIn.UI.MoreButton();
 			this.pageHeadLabel = new System.Windows.Forms.Label();
 			this.subContainer = new System.Windows.Forms.SplitContainer();
 			this.pinnedBox = new River.OneMoreAddIn.UI.MoreListView();
 			this.pinnedHeadPanel = new System.Windows.Forms.Panel();
-			this.copyPinnedButton = new System.Windows.Forms.Button();
-			this.upButton = new System.Windows.Forms.Button();
-			this.downButton = new System.Windows.Forms.Button();
-			this.unpinButton = new System.Windows.Forms.Button();
+			this.copyPinnedButton = new River.OneMoreAddIn.UI.MoreButton();
+			this.upButton = new River.OneMoreAddIn.UI.MoreButton();
+			this.downButton = new River.OneMoreAddIn.UI.MoreButton();
+			this.unpinButton = new River.OneMoreAddIn.UI.MoreButton();
 			this.pinnedHeadLabel = new System.Windows.Forms.Label();
 			this.historyBox = new River.OneMoreAddIn.UI.MoreListView();
 			this.historyHeadPanel = new System.Windows.Forms.Panel();
-			this.copyHistoryButton = new System.Windows.Forms.Button();
-			this.pinButton = new System.Windows.Forms.Button();
+			this.copyHistoryButton = new River.OneMoreAddIn.UI.MoreButton();
+			this.pinButton = new River.OneMoreAddIn.UI.MoreButton();
 			this.historyHeadLabel = new System.Windows.Forms.Label();
 			this.tooltip = new System.Windows.Forms.ToolTip(this.components);
+			this.historyToolPanel = new System.Windows.Forms.Panel();
+			this.pinnedToolPanel = new System.Windows.Forms.Panel();
 			this.controlPanel.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.mainContainer)).BeginInit();
 			this.mainContainer.Panel1.SuspendLayout();
@@ -70,6 +72,8 @@
 			this.subContainer.SuspendLayout();
 			this.pinnedHeadPanel.SuspendLayout();
 			this.historyHeadPanel.SuspendLayout();
+			this.historyToolPanel.SuspendLayout();
+			this.pinnedToolPanel.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// controlPanel
@@ -214,10 +218,7 @@
 			// pinnedHeadPanel
 			// 
 			this.pinnedHeadPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(205)))), ((int)(((byte)(179)))), ((int)(((byte)(218)))));
-			this.pinnedHeadPanel.Controls.Add(this.copyPinnedButton);
-			this.pinnedHeadPanel.Controls.Add(this.upButton);
-			this.pinnedHeadPanel.Controls.Add(this.downButton);
-			this.pinnedHeadPanel.Controls.Add(this.unpinButton);
+			this.pinnedHeadPanel.Controls.Add(this.pinnedToolPanel);
 			this.pinnedHeadPanel.Controls.Add(this.pinnedHeadLabel);
 			this.pinnedHeadPanel.Dock = System.Windows.Forms.DockStyle.Top;
 			this.pinnedHeadPanel.Location = new System.Drawing.Point(0, 0);
@@ -235,7 +236,7 @@
 			this.copyPinnedButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
 			this.copyPinnedButton.FlatAppearance.BorderSize = 0;
 			this.copyPinnedButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-			this.copyPinnedButton.Location = new System.Drawing.Point(440, 3);
+			this.copyPinnedButton.Location = new System.Drawing.Point(109, 1);
 			this.copyPinnedButton.Name = "copyPinnedButton";
 			this.copyPinnedButton.Size = new System.Drawing.Size(35, 35);
 			this.copyPinnedButton.TabIndex = 2;
@@ -251,7 +252,7 @@
 			this.upButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
 			this.upButton.FlatAppearance.BorderSize = 0;
 			this.upButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-			this.upButton.Location = new System.Drawing.Point(358, 2);
+			this.upButton.Location = new System.Drawing.Point(27, -1);
 			this.upButton.Name = "upButton";
 			this.upButton.Size = new System.Drawing.Size(35, 37);
 			this.upButton.TabIndex = 0;
@@ -267,7 +268,7 @@
 			this.downButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
 			this.downButton.FlatAppearance.BorderSize = 0;
 			this.downButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-			this.downButton.Location = new System.Drawing.Point(399, 3);
+			this.downButton.Location = new System.Drawing.Point(68, 0);
 			this.downButton.Name = "downButton";
 			this.downButton.Size = new System.Drawing.Size(35, 37);
 			this.downButton.TabIndex = 1;
@@ -283,7 +284,7 @@
 			this.unpinButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
 			this.unpinButton.FlatAppearance.BorderSize = 0;
 			this.unpinButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-			this.unpinButton.Location = new System.Drawing.Point(481, 3);
+			this.unpinButton.Location = new System.Drawing.Point(150, -1);
 			this.unpinButton.Name = "unpinButton";
 			this.unpinButton.Size = new System.Drawing.Size(35, 37);
 			this.unpinButton.TabIndex = 3;
@@ -325,8 +326,7 @@
 			// historyHeadPanel
 			// 
 			this.historyHeadPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(205)))), ((int)(((byte)(179)))), ((int)(((byte)(218)))));
-			this.historyHeadPanel.Controls.Add(this.copyHistoryButton);
-			this.historyHeadPanel.Controls.Add(this.pinButton);
+			this.historyHeadPanel.Controls.Add(this.historyToolPanel);
 			this.historyHeadPanel.Controls.Add(this.historyHeadLabel);
 			this.historyHeadPanel.Dock = System.Windows.Forms.DockStyle.Top;
 			this.historyHeadPanel.Location = new System.Drawing.Point(0, 0);
@@ -344,7 +344,7 @@
 			this.copyHistoryButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
 			this.copyHistoryButton.FlatAppearance.BorderSize = 0;
 			this.copyHistoryButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-			this.copyHistoryButton.Location = new System.Drawing.Point(440, 2);
+			this.copyHistoryButton.Location = new System.Drawing.Point(109, 1);
 			this.copyHistoryButton.Name = "copyHistoryButton";
 			this.copyHistoryButton.Size = new System.Drawing.Size(35, 35);
 			this.copyHistoryButton.TabIndex = 0;
@@ -360,7 +360,7 @@
 			this.pinButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
 			this.pinButton.FlatAppearance.BorderSize = 0;
 			this.pinButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-			this.pinButton.Location = new System.Drawing.Point(481, 2);
+			this.pinButton.Location = new System.Drawing.Point(150, 1);
 			this.pinButton.Name = "pinButton";
 			this.pinButton.Size = new System.Drawing.Size(35, 35);
 			this.pinButton.TabIndex = 1;
@@ -379,6 +379,28 @@
 			this.historyHeadLabel.TabIndex = 1;
 			this.historyHeadLabel.Text = "History";
 			this.historyHeadLabel.Click += new System.EventHandler(this.PanelFocusOnClick);
+			// 
+			// historyToolPanel
+			// 
+			this.historyToolPanel.Controls.Add(this.pinButton);
+			this.historyToolPanel.Controls.Add(this.copyHistoryButton);
+			this.historyToolPanel.Dock = System.Windows.Forms.DockStyle.Right;
+			this.historyToolPanel.Location = new System.Drawing.Point(335, 2);
+			this.historyToolPanel.Name = "historyToolPanel";
+			this.historyToolPanel.Size = new System.Drawing.Size(188, 37);
+			this.historyToolPanel.TabIndex = 2;
+			// 
+			// pinnedToolPanel
+			// 
+			this.pinnedToolPanel.Controls.Add(this.copyPinnedButton);
+			this.pinnedToolPanel.Controls.Add(this.upButton);
+			this.pinnedToolPanel.Controls.Add(this.unpinButton);
+			this.pinnedToolPanel.Controls.Add(this.downButton);
+			this.pinnedToolPanel.Dock = System.Windows.Forms.DockStyle.Right;
+			this.pinnedToolPanel.Location = new System.Drawing.Point(335, 2);
+			this.pinnedToolPanel.Name = "pinnedToolPanel";
+			this.pinnedToolPanel.Size = new System.Drawing.Size(188, 37);
+			this.pinnedToolPanel.TabIndex = 2;
 			// 
 			// NavigatorWindow
 			// 
@@ -418,6 +440,8 @@
 			this.pinnedHeadPanel.PerformLayout();
 			this.historyHeadPanel.ResumeLayout(false);
 			this.historyHeadPanel.PerformLayout();
+			this.historyToolPanel.ResumeLayout(false);
+			this.pinnedToolPanel.ResumeLayout(false);
 			this.ResumeLayout(false);
 
 		}
@@ -437,13 +461,15 @@
 		private River.OneMoreAddIn.UI.MoreListView pinnedBox;
 		private River.OneMoreAddIn.UI.MoreListView historyBox;
 		private River.OneMoreAddIn.UI.MoreFlowLayoutPanel pageBox;
-		private System.Windows.Forms.Button pinButton;
-		private System.Windows.Forms.Button unpinButton;
-		private System.Windows.Forms.Button refreshButton;
+		private River.OneMoreAddIn.UI.MoreButton pinButton;
+		private River.OneMoreAddIn.UI.MoreButton unpinButton;
+		private River.OneMoreAddIn.UI.MoreButton refreshButton;
 		private System.Windows.Forms.ToolTip tooltip;
-		private System.Windows.Forms.Button upButton;
-		private System.Windows.Forms.Button downButton;
-		private System.Windows.Forms.Button copyPinnedButton;
-		private System.Windows.Forms.Button copyHistoryButton;
+		private River.OneMoreAddIn.UI.MoreButton upButton;
+		private River.OneMoreAddIn.UI.MoreButton downButton;
+		private River.OneMoreAddIn.UI.MoreButton copyPinnedButton;
+		private River.OneMoreAddIn.UI.MoreButton copyHistoryButton;
+		private System.Windows.Forms.Panel historyToolPanel;
+		private System.Windows.Forms.Panel pinnedToolPanel;
 	}
 }

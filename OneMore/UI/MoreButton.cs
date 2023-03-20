@@ -82,6 +82,22 @@ namespace River.OneMoreAddIn.UI
 		}
 
 
+		public void Rescale()
+		{
+			// special-case handling for 96 DPI monitors
+			(float dpiX, _) = UIHelper.GetDpiValues();
+			if (Math.Floor(dpiX) == 96)
+			{
+				if (BackgroundImage != null)
+				{
+					var img = BackgroundImage;
+					BackgroundImage = BackgroundImage.Resize(16, 16);
+					img.Dispose();
+				}
+			}
+		}
+
+
 		public void SetHandCursor()
 		{
 			Cursor = Cursors.Hand;
