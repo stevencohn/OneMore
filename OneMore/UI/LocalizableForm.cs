@@ -152,5 +152,19 @@ namespace River.OneMoreAddIn.UI
 			// so this forces the dialog to the foreground
 			UIHelper.SetForegroundWindow(this);
 		}
+
+		private void InitializeComponent()
+		{
+			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LocalizableForm));
+			this.SuspendLayout();
+			// 
+			// LocalizableForm
+			// 
+			this.ClientSize = new System.Drawing.Size(278, 244);
+			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+			this.Name = "LocalizableForm";
+			this.ResumeLayout(false);
+
+		}
 	}
 }

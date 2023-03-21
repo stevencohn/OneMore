@@ -89,7 +89,7 @@
 			this.errorLabel.Text = "Name exists. Choose a different name.";
 			this.errorLabel.Visible = false;
 			// 
-			// AddStyleDialog
+			// RenameDialog
 			// 
 			this.AcceptButton = this.okButton;
 			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -104,7 +104,7 @@
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.MaximizeBox = false;
 			this.MinimizeBox = false;
-			this.Name = "NameStyleDialog";
+			this.Name = "RenameDialog";
 			this.Padding = new System.Windows.Forms.Padding(20, 20, 0, 0);
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
 			this.Text = "New Style";

@@ -47,6 +47,7 @@
 			// 
 			// view
 			// 
+			this.view.AllowItemReorder = false;
 			this.view.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
@@ -54,9 +55,12 @@
 			this.view.FullRowSelect = true;
 			this.view.HideSelection = false;
 			this.view.HighlightBackground = System.Drawing.Color.FromArgb(((int)(((byte)(215)))), ((int)(((byte)(193)))), ((int)(((byte)(255)))));
+			this.view.HighlightForeground = System.Drawing.SystemColors.HighlightText;
 			this.view.Location = new System.Drawing.Point(12, 35);
 			this.view.Name = "view";
+			this.view.RowHeight = 29;
 			this.view.Size = new System.Drawing.Size(1054, 503);
+			this.view.SortedBackground = System.Drawing.SystemColors.Window;
 			this.view.TabIndex = 10;
 			this.view.UseCompatibleStateImageBehavior = false;
 			this.view.View = System.Windows.Forms.View.Details;

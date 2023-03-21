@@ -165,6 +165,7 @@ namespace River.OneMoreAddIn.Commands
 			this.clearLabel.AutoSize = true;
 			this.clearLabel.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.clearLabel.Enabled = false;
+			this.clearLabel.HoverColor = System.Drawing.Color.MediumOrchid;
 			this.clearLabel.LinkColor = System.Drawing.Color.DodgerBlue;
 			this.clearLabel.Location = new System.Drawing.Point(790, 228);
 			this.clearLabel.Name = "clearLabel";
@@ -227,6 +228,7 @@ namespace River.OneMoreAddIn.Commands
 			this.clearAllLabel.AutoSize = true;
 			this.clearAllLabel.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.clearAllLabel.Enabled = false;
+			this.clearAllLabel.HoverColor = System.Drawing.Color.MediumOrchid;
 			this.clearAllLabel.LinkColor = System.Drawing.Color.DodgerBlue;
 			this.clearAllLabel.Location = new System.Drawing.Point(715, 10);
 			this.clearAllLabel.Name = "clearAllLabel";
@@ -242,6 +244,7 @@ namespace River.OneMoreAddIn.Commands
 			this.checkAllLabel.AutoSize = true;
 			this.checkAllLabel.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.checkAllLabel.Enabled = false;
+			this.checkAllLabel.HoverColor = System.Drawing.Color.MediumOrchid;
 			this.checkAllLabel.LinkColor = System.Drawing.Color.DodgerBlue;
 			this.checkAllLabel.Location = new System.Drawing.Point(578, 10);
 			this.checkAllLabel.Margin = new System.Windows.Forms.Padding(3, 0, 10, 0);

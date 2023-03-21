@@ -28,6 +28,7 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
+			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PronunciateDialog));
 			this.wordLabel = new System.Windows.Forms.Label();
 			this.wordBox = new System.Windows.Forms.TextBox();
 			this.languageLabel = new System.Windows.Forms.Label();
@@ -124,11 +125,11 @@
 			this.Controls.Add(this.languageLabel);
 			this.Controls.Add(this.wordBox);
 			this.Controls.Add(this.wordLabel);
+			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.MaximizeBox = false;
 			this.MinimizeBox = false;
 			this.Name = "PronunciateDialog";
 			this.Padding = new System.Windows.Forms.Padding(20, 29, 20, 20);
-			this.ShowIcon = false;
 			this.ShowInTaskbar = false;
 			this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
 			this.Text = "Phonetics";

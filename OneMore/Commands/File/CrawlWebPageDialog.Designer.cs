@@ -32,6 +32,7 @@
 			this.okButton = new System.Windows.Forms.Button();
 			this.cancelButton = new System.Windows.Forms.Button();
 			this.buttonPanel = new System.Windows.Forms.Panel();
+			this.rewireBox = new System.Windows.Forms.CheckBox();
 			this.useTextBox = new System.Windows.Forms.CheckBox();
 			this.unselectLabel = new System.Windows.Forms.LinkLabel();
 			this.selectLabel = new System.Windows.Forms.LinkLabel();
@@ -41,7 +42,6 @@
 			this.addressColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.textColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.orderColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.rewireBox = new System.Windows.Forms.CheckBox();
 			this.buttonPanel.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.gridView)).BeginInit();
 			this.SuspendLayout();
@@ -82,6 +82,18 @@
 			this.buttonPanel.Name = "buttonPanel";
 			this.buttonPanel.Size = new System.Drawing.Size(1153, 84);
 			this.buttonPanel.TabIndex = 13;
+			// 
+			// rewireBox
+			// 
+			this.rewireBox.AutoSize = true;
+			this.rewireBox.Checked = true;
+			this.rewireBox.CheckState = System.Windows.Forms.CheckState.Checked;
+			this.rewireBox.Location = new System.Drawing.Point(432, 49);
+			this.rewireBox.Name = "rewireBox";
+			this.rewireBox.Size = new System.Drawing.Size(266, 24);
+			this.rewireBox.TabIndex = 15;
+			this.rewireBox.Text = "Rewire parent links to sub-pages";
+			this.rewireBox.UseVisualStyleBackColor = true;
 			// 
 			// useTextBox
 			// 
@@ -196,18 +208,6 @@
 			this.orderColumn.Name = "orderColumn";
 			this.orderColumn.ReadOnly = true;
 			this.orderColumn.Width = 90;
-			// 
-			// rewireBox
-			// 
-			this.rewireBox.AutoSize = true;
-			this.rewireBox.Checked = true;
-			this.rewireBox.CheckState = System.Windows.Forms.CheckState.Checked;
-			this.rewireBox.Location = new System.Drawing.Point(432, 49);
-			this.rewireBox.Name = "rewireBox";
-			this.rewireBox.Size = new System.Drawing.Size(266, 24);
-			this.rewireBox.TabIndex = 15;
-			this.rewireBox.Text = "Rewire parent links to sub-pages";
-			this.rewireBox.UseVisualStyleBackColor = true;
 			// 
 			// CrawlWebPageDialog
 			// 

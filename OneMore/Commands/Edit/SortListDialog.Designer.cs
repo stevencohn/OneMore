@@ -29,6 +29,7 @@ namespace River.OneMoreAddIn.Commands
 		/// </summary>
 		private void InitializeComponent()
 		{
+			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SortListDialog));
 			this.thisListButton = new System.Windows.Forms.RadioButton();
 			this.allListsButton = new System.Windows.Forms.RadioButton();
 			this.typeBox = new System.Windows.Forms.CheckBox();
@@ -36,8 +37,8 @@ namespace River.OneMoreAddIn.Commands
 			this.okButton = new System.Windows.Forms.Button();
 			this.cancelButton = new System.Windows.Forms.Button();
 			this.optionsBox = new System.Windows.Forms.GroupBox();
-			this.introLabel = new System.Windows.Forms.Label();
 			this.duplicatesBox = new System.Windows.Forms.CheckBox();
+			this.introLabel = new System.Windows.Forms.Label();
 			this.optionsBox.SuspendLayout();
 			this.SuspendLayout();
 			// 
@@ -122,15 +123,6 @@ namespace River.OneMoreAddIn.Commands
 			this.optionsBox.TabStop = false;
 			this.optionsBox.Text = "Options";
 			// 
-			// introLabel
-			// 
-			this.introLabel.AutoSize = true;
-			this.introLabel.Location = new System.Drawing.Point(23, 20);
-			this.introLabel.Name = "introLabel";
-			this.introLabel.Size = new System.Drawing.Size(414, 20);
-			this.introLabel.TabIndex = 9;
-			this.introLabel.Text = "Default is to sort the current list or only top level bullet lists";
-			// 
 			// duplicatesBox
 			// 
 			this.duplicatesBox.AutoSize = true;
@@ -140,6 +132,15 @@ namespace River.OneMoreAddIn.Commands
 			this.duplicatesBox.TabIndex = 4;
 			this.duplicatesBox.Text = "Remove duplicates";
 			this.duplicatesBox.UseVisualStyleBackColor = true;
+			// 
+			// introLabel
+			// 
+			this.introLabel.AutoSize = true;
+			this.introLabel.Location = new System.Drawing.Point(23, 20);
+			this.introLabel.Name = "introLabel";
+			this.introLabel.Size = new System.Drawing.Size(414, 20);
+			this.introLabel.TabIndex = 9;
+			this.introLabel.Text = "Default is to sort the current list or only top level bullet lists";
 			// 
 			// SortListDialog
 			// 
@@ -153,11 +154,11 @@ namespace River.OneMoreAddIn.Commands
 			this.Controls.Add(this.okButton);
 			this.Controls.Add(this.cancelButton);
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.MaximizeBox = false;
 			this.MinimizeBox = false;
 			this.Name = "SortListDialog";
 			this.Padding = new System.Windows.Forms.Padding(20);
-			this.ShowIcon = false;
 			this.ShowInTaskbar = false;
 			this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
 			this.Text = "Sort Lists";

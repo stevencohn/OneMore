@@ -98,7 +98,7 @@ namespace River.OneMoreAddIn.Commands
 			this.MaximizeBox = false;
 			this.MinimizeBox = false;
 			this.Name = "SplitTableDialog";
-			this.Padding = new System.Windows.Forms.Padding(15, 15, 15, 15);
+			this.Padding = new System.Windows.Forms.Padding(15);
 			this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
 			this.Text = "Split Table Options";
 			this.ResumeLayout(false);

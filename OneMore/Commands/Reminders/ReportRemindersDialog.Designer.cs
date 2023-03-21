@@ -28,6 +28,7 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
+			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ReportRemindersDialog));
 			this.introLabel = new System.Windows.Forms.Label();
 			this.groupBox = new System.Windows.Forms.GroupBox();
 			this.notebookRadio = new System.Windows.Forms.RadioButton();
@@ -126,6 +127,7 @@
 			this.Controls.Add(this.cancelButton);
 			this.Controls.Add(this.introLabel);
 			this.Controls.Add(this.groupBox);
+			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.Name = "ReportRemindersDialog";
 			this.Padding = new System.Windows.Forms.Padding(15, 20, 10, 10);
 			this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;

@@ -28,6 +28,7 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
+			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ColorizeDialog));
 			this.controlPanel = new System.Windows.Forms.Panel();
 			this.okButton = new System.Windows.Forms.Button();
 			this.mainPanel = new System.Windows.Forms.Panel();
@@ -99,6 +100,7 @@
 			this.Controls.Add(this.mainPanel);
 			this.Controls.Add(this.controlPanel);
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.Name = "ColorizeDialog";
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
 			this.Text = "Select Language";

@@ -46,7 +46,7 @@
 			this.titleLabel.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.titleLabel.Location = new System.Drawing.Point(156, 26);
 			this.titleLabel.Name = "titleLabel";
-			this.titleLabel.Size = new System.Drawing.Size(329, 25);
+			this.titleLabel.Size = new System.Drawing.Size(284, 25);
 			this.titleLabel.TabIndex = 1;
 			this.titleLabel.Text = "OneMore Calendar for OneNote";
 			// 
@@ -78,6 +78,8 @@
 			this.okButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
 			this.okButton.Location = new System.Drawing.Point(612, 352);
 			this.okButton.Name = "okButton";
+			this.okButton.PreferredBack = System.Drawing.Color.Empty;
+			this.okButton.PreferredFore = System.Drawing.Color.Empty;
 			this.okButton.ShowBorder = true;
 			this.okButton.Size = new System.Drawing.Size(91, 38);
 			this.okButton.TabIndex = 4;
@@ -98,9 +100,9 @@
 			// 
 			// logoBox
 			// 
-			this.logoBox.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+			this.logoBox.Image = ((System.Drawing.Image)(resources.GetObject("logoBox.Image")));
 			this.logoBox.Location = new System.Drawing.Point(12, 12);
-			this.logoBox.Name = "pictureBox1";
+			this.logoBox.Name = "logoBox";
 			this.logoBox.Size = new System.Drawing.Size(124, 125);
 			this.logoBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
 			this.logoBox.TabIndex = 0;
@@ -155,6 +157,7 @@
 			this.Controls.Add(this.versionLabel);
 			this.Controls.Add(this.titleLabel);
 			this.Controls.Add(this.logoBox);
+			this.ForeColor = System.Drawing.Color.LightGray;
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
 			this.MaximizeBox = false;
 			this.MinimizeBox = false;

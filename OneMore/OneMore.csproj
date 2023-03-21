@@ -77,6 +77,9 @@
   <PropertyGroup>
     <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Logo.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="Aga.Controls">
       <HintPath>External\Aga.Controls.dll</HintPath>
@@ -1113,6 +1116,7 @@
     <None Include="Properties\Emoji\RightwardsArrow.png" />
     <None Include="Properties\Emoji\Section.png" />
     <None Include="Properties\Emoji\XMark.png" />
+    <Content Include="Logo.ico" />
     <Content Include="Properties\Images\CustomStyles.png" />
     <Content Include="Properties\Images\DarkCustomStyles.png" />
     <Content Include="Properties\Images\DarkFavorites.png" />
@@ -1295,6 +1299,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.he-IL.resx">
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\LocalizableForm.resx">
+      <DependentUpon>LocalizableForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\MoreExpander.resx">
       <DependentUpon>MoreExpander.cs</DependentUpon>

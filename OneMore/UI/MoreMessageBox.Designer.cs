@@ -71,16 +71,16 @@
 			this.logLink.Visible = false;
 			this.logLink.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.OpenLog);
 			// 
-			// textBox
+			// messageBox
 			// 
-			this.messageBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-			| System.Windows.Forms.AnchorStyles.Right)));
+			this.messageBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
 			this.messageBox.BackColor = System.Drawing.SystemColors.ControlLightLight;
 			this.messageBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
 			this.messageBox.Cursor = System.Windows.Forms.Cursors.Default;
 			this.messageBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.messageBox.Location = new System.Drawing.Point(94, 23);
-			this.messageBox.Name = "textBox";
+			this.messageBox.Name = "messageBox";
 			this.messageBox.ReadOnly = true;
 			this.messageBox.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.Vertical;
 			this.messageBox.Size = new System.Drawing.Size(539, 91);

@@ -56,7 +56,7 @@ namespace River.OneMoreAddIn.Commands
 			this.splitByGroup.Location = new System.Drawing.Point(20, 20);
 			this.splitByGroup.Margin = new System.Windows.Forms.Padding(4, 5, 4, 8);
 			this.splitByGroup.Name = "splitByGroup";
-			this.splitByGroup.Padding = new System.Windows.Forms.Padding(15, 15, 15, 15);
+			this.splitByGroup.Padding = new System.Windows.Forms.Padding(15);
 			this.splitByGroup.Size = new System.Drawing.Size(522, 178);
 			this.splitByGroup.TabIndex = 0;
 			this.splitByGroup.TabStop = false;
@@ -152,7 +152,7 @@ namespace River.OneMoreAddIn.Commands
 			this.filterGroup.Location = new System.Drawing.Point(20, 211);
 			this.filterGroup.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.filterGroup.Name = "filterGroup";
-			this.filterGroup.Padding = new System.Windows.Forms.Padding(15, 15, 15, 15);
+			this.filterGroup.Padding = new System.Windows.Forms.Padding(15);
 			this.filterGroup.Size = new System.Drawing.Size(522, 140);
 			this.filterGroup.TabIndex = 5;
 			this.filterGroup.TabStop = false;
@@ -199,7 +199,7 @@ namespace River.OneMoreAddIn.Commands
 			this.MaximizeBox = false;
 			this.MinimizeBox = false;
 			this.Name = "SplitDialog";
-			this.Padding = new System.Windows.Forms.Padding(15, 15, 15, 15);
+			this.Padding = new System.Windows.Forms.Padding(15);
 			this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
 			this.Text = "Split Page";
 			this.splitByGroup.ResumeLayout(false);

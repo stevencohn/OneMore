@@ -28,6 +28,7 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
+			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ReportRemindersReuseDialog));
 			this.okButton = new System.Windows.Forms.Button();
 			this.cancelButton = new System.Windows.Forms.Button();
 			this.oldRadio = new System.Windows.Forms.RadioButton();
@@ -87,6 +88,7 @@
 			this.Controls.Add(this.oldRadio);
 			this.Controls.Add(this.okButton);
 			this.Controls.Add(this.cancelButton);
+			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.Name = "ReportRemindersReuseDialog";
 			this.Padding = new System.Windows.Forms.Padding(20, 20, 10, 10);
 			this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;

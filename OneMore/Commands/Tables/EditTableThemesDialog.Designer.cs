@@ -129,6 +129,7 @@ namespace River.OneMoreAddIn.Commands
 			// 
 			// elementsBox
 			// 
+			this.elementsBox.AllowItemReorder = false;
 			this.elementsBox.ControlPadding = 2;
 			this.elementsBox.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.elementsBox.FullRowSelect = true;
@@ -493,6 +494,7 @@ namespace River.OneMoreAddIn.Commands
 			// 
 			// colorFontsBox
 			// 
+			this.colorFontsBox.AllowItemReorder = false;
 			this.colorFontsBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));

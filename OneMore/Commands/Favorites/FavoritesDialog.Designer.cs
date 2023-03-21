@@ -174,19 +174,19 @@
             this.checkButton,
             this.manageButton});
 			this.contextMenu.Name = "contextMenu";
-			this.contextMenu.Size = new System.Drawing.Size(241, 101);
+			this.contextMenu.Size = new System.Drawing.Size(224, 68);
 			// 
 			// checkButton
 			// 
 			this.checkButton.Name = "checkButton";
-			this.checkButton.Size = new System.Drawing.Size(240, 32);
+			this.checkButton.Size = new System.Drawing.Size(223, 32);
 			this.checkButton.Text = "Check Favorites";
 			this.checkButton.Click += new System.EventHandler(this.CheckFavorites);
 			// 
 			// manageButton
 			// 
 			this.manageButton.Name = "manageButton";
-			this.manageButton.Size = new System.Drawing.Size(240, 32);
+			this.manageButton.Size = new System.Drawing.Size(223, 32);
 			this.manageButton.Text = "Manage Favorites";
 			this.manageButton.Click += new System.EventHandler(this.ManageFavorites);
 			// 

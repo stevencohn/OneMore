@@ -70,6 +70,7 @@
 			this.dayButton.Image = global::OneMoreCalendar.Properties.Resources.day_32;
 			this.dayButton.Location = new System.Drawing.Point(800, 12);
 			this.dayButton.Name = "dayButton";
+			this.dayButton.Round = false;
 			this.dayButton.Size = new System.Drawing.Size(64, 64);
 			this.dayButton.TabIndex = 11;
 			this.dayButton.TabStop = true;
@@ -84,6 +85,7 @@
 			this.monthButton.Image = global::OneMoreCalendar.Properties.Resources.month_32;
 			this.monthButton.Location = new System.Drawing.Point(730, 12);
 			this.monthButton.Name = "monthButton";
+			this.monthButton.Round = false;
 			this.monthButton.Size = new System.Drawing.Size(64, 64);
 			this.monthButton.TabIndex = 10;
 			this.monthButton.TabStop = true;
@@ -99,6 +101,8 @@
 			this.nextButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(115)))), ((int)(((byte)(53)))), ((int)(((byte)(110)))));
 			this.nextButton.Location = new System.Drawing.Point(50, 12);
 			this.nextButton.Name = "nextButton";
+			this.nextButton.PreferredBack = System.Drawing.Color.Empty;
+			this.nextButton.PreferredFore = System.Drawing.Color.Empty;
 			this.nextButton.ShowBorder = false;
 			this.nextButton.Size = new System.Drawing.Size(32, 54);
 			this.nextButton.TabIndex = 9;
@@ -114,6 +118,8 @@
 			this.prevButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(115)))), ((int)(((byte)(53)))), ((int)(((byte)(110)))));
 			this.prevButton.Location = new System.Drawing.Point(12, 12);
 			this.prevButton.Name = "prevButton";
+			this.prevButton.PreferredBack = System.Drawing.Color.Empty;
+			this.prevButton.PreferredFore = System.Drawing.Color.Empty;
 			this.prevButton.ShowBorder = false;
 			this.prevButton.Size = new System.Drawing.Size(32, 54);
 			this.prevButton.TabIndex = 8;
@@ -127,6 +133,8 @@
 			this.todayButton.Image = global::OneMoreCalendar.Properties.Resources.today_32;
 			this.todayButton.Location = new System.Drawing.Point(612, 12);
 			this.todayButton.Name = "todayButton";
+			this.todayButton.PreferredBack = System.Drawing.Color.Empty;
+			this.todayButton.PreferredFore = System.Drawing.Color.Empty;
 			this.todayButton.ShowBorder = false;
 			this.todayButton.Size = new System.Drawing.Size(64, 64);
 			this.todayButton.TabIndex = 7;
@@ -152,6 +160,7 @@
 			this.dateLabel.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.dateLabel.Font = new System.Drawing.Font("Segoe UI Light", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.dateLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(115)))), ((int)(((byte)(53)))), ((int)(((byte)(110)))));
+			this.dateLabel.HoverColor = System.Drawing.Color.MediumOrchid;
 			this.dateLabel.LinkBehavior = System.Windows.Forms.LinkBehavior.HoverUnderline;
 			this.dateLabel.LinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(115)))), ((int)(((byte)(53)))), ((int)(((byte)(110)))));
 			this.dateLabel.Location = new System.Drawing.Point(88, 12);
@@ -220,6 +229,7 @@
 			this.Controls.Add(this.contentPanel);
 			this.Controls.Add(this.statusStrip);
 			this.Controls.Add(this.topPanel);
+			this.ForeColor = System.Drawing.Color.LightGray;
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.KeyPreview = true;
 			this.MinimumSize = new System.Drawing.Size(935, 625);
