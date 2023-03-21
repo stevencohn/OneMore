@@ -1,4 +1,4 @@
-﻿# ![logo](../../wiki/images/Logo.png "logo") OneMore - a OneNote Add-in
+﻿# ![logo](OneMore/Properties/Images/Logo48.png "logo") OneMore - a OneNote Add-in
 
 OneMore is an add-in for OneNote with simple and powerful features that make OneNote a better OneNote.  
 
