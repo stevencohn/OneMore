@@ -74,11 +74,10 @@
     <AssemblyOriginatorKeyFile>
     </AssemblyOriginatorKeyFile>
   </PropertyGroup>
+  <PropertyGroup />
   <PropertyGroup>
-    <ApplicationManifest>app.manifest</ApplicationManifest>
-  </PropertyGroup>
-  <PropertyGroup>
-    <ApplicationIcon>Logo.ico</ApplicationIcon>
+    <ApplicationIcon>
+    </ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Aga.Controls">
@@ -1116,7 +1115,6 @@
     <None Include="Properties\Emoji\RightwardsArrow.png" />
     <None Include="Properties\Emoji\Section.png" />
     <None Include="Properties\Emoji\XMark.png" />
-    <Content Include="Logo.ico" />
     <Content Include="Properties\Images\CustomStyles.png" />
     <Content Include="Properties\Images\DarkCustomStyles.png" />
     <Content Include="Properties\Images\DarkFavorites.png" />
