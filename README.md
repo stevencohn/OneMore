@@ -25,7 +25,7 @@ OneMore is an add-in for OneNote with simple and powerful features that make One
 
 | Some of the OneMore menus | The OneMore Calendar |
 |---|---|
-| ![screenshot](../../wiki/images/Screenshot.png) | ![Calendar](../../wiki/images/Calendar.png) |
+| ![screenshot](OneMore/Properties/Images/Screenshot.png) | ![Calendar](OneMore/Properties/Images/Calendar.png) |
 _Click an image to enlarge_
 
 ## 💁 Features
