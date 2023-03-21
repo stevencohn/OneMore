@@ -33,6 +33,12 @@ Begin
         Write-Host $text -Fore Yellow
     }
 
+    function WriteValue
+    {
+        param($text)
+        Write-Host "= $text" -Fore DarkGray
+    }
+
     function HasKey
     {
         param($kpath)
@@ -148,7 +154,7 @@ Begin
         $ok = (HasKey $0)
         if ($ok) { $ok = (HasValue $0 '(default)' '\\OneMoreProtocolHandler.exe"? %1 %2 %3 %4 %5' -match) }
         if ($ok) { WriteOK "$0" } else { WriteBad $0 }
-        Write-Verbose $lastvalue
+        WriteValue $lastvalue
     }
 
     function CheckAddIn
@@ -237,10 +243,10 @@ Begin
             Write-Host "skipping $0\InprocServer32\<version>" -Fore Yellow
         }
 
-        Write-Verbose "Assembly = $assembly"
-        Write-Verbose "CodeBase = $codeBase"
-        Write-Verbose "RuntimeVersion = $runtimeVersion"
-        Write-Verbose "Class = $class"
+        WriteValue "Assembly = $assembly"
+        WriteValue "CodeBase = $codeBase"
+        WriteValue "RuntimeVersion = $runtimeVersion"
+        WriteValue "Class = $class"
 
         $1 = "$0\ProgID"
         $ok = (HasKey $1)
@@ -285,7 +291,7 @@ Begin
         else {
             $ok = (HasValue $0 'Path' $codeBase)
             if ($ok) { WriteOK $0 } else { WriteBad $0 }
-            Write-Verbose $lastvalue
+            WriteValue $lastvalue
         }
 
         $0 = "Registry::HKEY_CURRENT_USER\SOFTWARE\Policies\Microsoft\Office\$offVersion\Common\Security\Trusted Protocols\All Applications\onemore:"
@@ -332,8 +338,8 @@ Begin
                     WriteBad $path
                     Write-Host "... location not found $location" -Fore Yellow
                 }
-                Write-Verbose "version = $lastvalue"
-                Write-Verbose "location = $location"
+                WriteValue "version = $lastvalue"
+                WriteValue "location = $location"
             } else {
                 WriteBad $path
                 Write-Host '... has version 0.0.0.0' -Fore Yellow
