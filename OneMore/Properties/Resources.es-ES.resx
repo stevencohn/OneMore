@@ -1062,10 +1062,6 @@ Símbolos: PI, E</value>
     <value>Compruebe si hay nuevas versiones de OneMore cuando se inicia OneNote</value>
     <comment>checkbox</comment>
   </data>
-  <data name="GeneralSheet_enablersBox.Text" xml:space="preserve">
-    <value>Habilite la configuración de contexto del menú dinámico. </value>
-    <comment>checkbox</comment>
-  </data>
   <data name="GeneralSheet_introBox.Text" xml:space="preserve">
     <value>Personalice el comportamiento general de OneMore</value>
     <comment>textbox</comment>
@@ -4167,6 +4163,11 @@ Cuadernos</value>
   <data name="StyleDialog_defaultBlackToolStripMenuItem.Text" xml:space="preserve">
     <value>Por defecto (negro)</value>
     <comment>menu item</comment>
+  </data>
+  <data name="StyleDialog_familyWarning" xml:space="preserve">
+    <value>Estos estilos incluyen una o más familias de fuentes no reconocidas:
+{0}</value>
+    <comment>warning message</comment>
   </data>
   <data name="StyleDialog_FileMenu.Text" xml:space="preserve">
     <value>Archivo</value>

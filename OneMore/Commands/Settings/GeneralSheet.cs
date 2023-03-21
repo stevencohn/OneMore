@@ -29,7 +29,6 @@ namespace River.OneMoreAddIn.Settings
 				Localize(new string[]
 				{
 					"introBox",
-					"enablersBox",
 					"checkUpdatesBox",
 					"langLabel",
 					"advancedGroup=phrase_AdvancedOptions",
@@ -39,7 +38,6 @@ namespace River.OneMoreAddIn.Settings
 
 			var settings = provider.GetCollection(Name);
 
-			enablersBox.Checked = settings.Get("enablers", true);
 			checkUpdatesBox.Checked = settings.Get("checkUpdates", false);
 			verboseBox.Checked = settings.Get("verbose", false);
 
@@ -105,10 +103,6 @@ namespace River.OneMoreAddIn.Settings
 
 			var settings = provider.GetCollection(Name);
 
-			var updated = enablersBox.Checked
-				? settings.Add("enablers", true)
-				: settings.Remove("enablers");
-
 			// does not require a restart
 			if (checkUpdatesBox.Checked)
 				settings.Add("checkUpdates", true);
@@ -116,8 +110,8 @@ namespace River.OneMoreAddIn.Settings
 				settings.Remove("checkUpdates");
 
 			var lang = ((CultureInfo)(langBox.SelectedItem)).Name;
-			updated = settings.Add("language", lang) || updated;
-
+			var updated = settings.Add("language", lang);
+			
 			updated = verboseBox.Checked
 				? settings.Add("verbose", true) || updated
 				: settings.Remove("verbose") || updated;
@@ -128,7 +122,6 @@ namespace River.OneMoreAddIn.Settings
 			if (updated)
 			{
 				provider.SetCollection(settings);
-				AddIn.EnablersEnabled = enablersBox.Checked;
 			}
 
 			return updated;

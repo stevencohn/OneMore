@@ -1063,10 +1063,6 @@ Symbolen: PI, E</value>
     <value>Controleren op nieuwe versies van OneMore wanneer OneNote wordt gestart</value>
     <comment>checkbox</comment>
   </data>
-  <data name="GeneralSheet_enablersBox.Text" xml:space="preserve">
-    <value>Schakel dynamische menucontextinstellingen in. </value>
-    <comment>checkbox</comment>
-  </data>
   <data name="GeneralSheet_introBox.Text" xml:space="preserve">
     <value>Pas het algemene gedrag van OneMore aan</value>
     <comment>textbox</comment>
@@ -4167,6 +4163,11 @@ Notitieboekjes</value>
   <data name="StyleDialog_defaultBlackToolStripMenuItem.Text" xml:space="preserve">
     <value>Standaard (zwart)</value>
     <comment>menu item</comment>
+  </data>
+  <data name="StyleDialog_familyWarning" xml:space="preserve">
+    <value>Deze stijlen bevatten een of meer niet-herkende lettertypefamilies:
+{0}</value>
+    <comment>warning message</comment>
   </data>
   <data name="StyleDialog_FileMenu.Text" xml:space="preserve">
     <value>het dossier</value>

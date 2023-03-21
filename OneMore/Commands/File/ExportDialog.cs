@@ -6,15 +6,19 @@
 
 namespace River.OneMoreAddIn.Commands
 {
+	using River.OneMoreAddIn.Helpers.Office;
 	using River.OneMoreAddIn.Settings;
 	using System;
 	using System.Threading;
 	using System.Windows.Forms;
-	using Resx = River.OneMoreAddIn.Properties.Resources;
+	using Resx = Properties.Resources;
 
 
 	internal partial class ExportDialog : UI.LocalizableForm
 	{
+		private bool wordInstalled;
+
+
 		public ExportDialog(int pageCount)
 		{
 			InitializeComponent();
@@ -34,6 +38,8 @@ namespace River.OneMoreAddIn.Commands
 					"cancelButton=word_Cancel"
 				});
 			}
+
+			wordInstalled = Office.IsInstalled("Word");
 
 			groupBox.Text = pageCount == 1
 				? Resx.ExportDialog_groupBox_OneText
@@ -98,6 +104,9 @@ namespace River.OneMoreAddIn.Commands
 
 		private void ChangeFormat(object sender, EventArgs e)
 		{
+			okButton.Enabled =
+				formatBox.SelectedIndex != 2 || wordInstalled;
+
 			attachmentsBox.Enabled =
 				formatBox.SelectedIndex == 0 ||     // HTML
 				formatBox.SelectedIndex == 2 ||     // Word

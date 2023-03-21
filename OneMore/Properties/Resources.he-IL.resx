@@ -1073,10 +1073,6 @@ Total Row Font
     <value>בדוק אם יש גרסאות חדשות של OneMore כאשר OneNote מתחיל</value>
     <comment>checkbox</comment>
   </data>
-  <data name="GeneralSheet_enablersBox.Text" xml:space="preserve">
-    <value>הפעל את הגדרות ההקשר של התפריט הדינמי. השבת אם הוספת פקודות OneMore לסרגל הכלים של גישה מהירה</value>
-    <comment>checkbox</comment>
-  </data>
   <data name="GeneralSheet_introBox.Text" xml:space="preserve">
     <value>התאם אישית את ההתנהגות הכוללת של OneMore</value>
     <comment>textbox</comment>
@@ -4180,6 +4176,11 @@ ISO-code then comma then language name</comment>
   <data name="StyleDialog_defaultBlackToolStripMenuItem.Text" xml:space="preserve">
     <value>ברירת מחדל (שחור)</value>
     <comment>menu item</comment>
+  </data>
+  <data name="StyleDialog_familyWarning" xml:space="preserve">
+    <value>סגנונות אלה כוללים משפחת גופנים לא מזוהה אחת או יותר:
+{0}</value>
+    <comment>warning message</comment>
   </data>
   <data name="StyleDialog_FileMenu.Text" xml:space="preserve">
     <value>קוֹבֶץ</value>

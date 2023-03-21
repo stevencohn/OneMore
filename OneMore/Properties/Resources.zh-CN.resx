@@ -1064,10 +1064,6 @@ OneNote 文件 (*.one)</value>
     <value>OneNote 启动时检查 OneMore 的新版本</value>
     <comment>checkbox</comment>
   </data>
-  <data name="GeneralSheet_enablersBox.Text" xml:space="preserve">
-    <value>启用动态菜单上下文设置。</value>
-    <comment>checkbox</comment>
-  </data>
   <data name="GeneralSheet_introBox.Text" xml:space="preserve">
     <value>自定义OneMore的整体行为</value>
     <comment>textbox</comment>
@@ -4163,6 +4159,11 @@ ISO-code then comma then language name</comment>
   <data name="StyleDialog_defaultBlackToolStripMenuItem.Text" xml:space="preserve">
     <value>默认值（黑色）</value>
     <comment>menu item</comment>
+  </data>
+  <data name="StyleDialog_familyWarning" xml:space="preserve">
+    <value>这些样式包括一种或多种无法识别的字体系列：
+{0}</value>
+    <comment>warning message</comment>
   </data>
   <data name="StyleDialog_FileMenu.Text" xml:space="preserve">
     <value>文件</value>
