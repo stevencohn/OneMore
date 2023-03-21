@@ -20,8 +20,8 @@
     "OliveDrab": "#6B8E23",
     "OrangeRed": "#FF4500",
     "CornflowerBlue": "#6495ED",
-    "Purple": "#800080",
-    "Red": "#FF0000",
+    "Purple": "#8064A2",
+    "Red": "#E30303",
     "Teal": "#008080",
     "White": "#FFFFFF",
     "Yellow": "#FFFF00"
@@ -176,7 +176,11 @@
     },
     {
       "name": "PowerShellCommand",
-      "foreground": "BlueSteel"
+      "foreground": "Blue"
+    },
+    {
+      "name": "PowerShellKeyword",
+      "foreground": "Purple"
     },
     {
       "name": "PowerShellOperator",
@@ -188,7 +192,7 @@
     },
     {
       "name": "PowerShellVariable",
-      "foreground": "BlueGray"
+      "foreground": "Red"
     },
     {
       "name": "Predefined",
