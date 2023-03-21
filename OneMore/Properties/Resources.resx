@@ -117,6 +117,7 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="AboutDialog.Text" xml:space="preserve">
     <value>OneMore Add-in</value>
     <comment>dialog title bar</comment>
@@ -1070,10 +1071,6 @@ Symbols: PI, E</value>
   </data>
   <data name="GeneralSheet_checkUpdatesBox.Text" xml:space="preserve">
     <value>Check for new versions of OneMore when OneNote starts</value>
-    <comment>checkbox</comment>
-  </data>
-  <data name="GeneralSheet_enablersBox.Text" xml:space="preserve">
-    <value>Enable dynamic menu context settings. Disable if you've added OneMore commands to the Quick Access toolbar</value>
     <comment>checkbox</comment>
   </data>
   <data name="GeneralSheet_introBox.Text" xml:space="preserve">
@@ -4187,6 +4184,11 @@ Notebooks</value>
     <value>Default (Black)</value>
     <comment>menu item</comment>
   </data>
+  <data name="StyleDialog_familyWarning" xml:space="preserve">
+    <value>These styles include one or more unrecognized font families:
+{0}</value>
+    <comment>warning message</comment>
+  </data>
   <data name="StyleDialog_FileMenu.Text" xml:space="preserve">
     <value>File</value>
     <comment>menu item</comment>
@@ -4725,7 +4727,6 @@ In this section</value>
     <value>Word Counts</value>
     <comment>page title</comment>
   </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="Architecture" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>emoji\architecture.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -4986,10 +4987,5 @@ In this section</value>
   </data>
   <data name="_0336_OneNoteApplication_2013" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>0336.OneNoteApplication_2013.xsd;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
-  </data>
-  <data name="StyleDialog_familyWarning" xml:space="preserve">
-    <value>These styles include one or more unrecognized font families:
-{0}</value>
-    <comment>warning message</comment>
   </data>
 </root>

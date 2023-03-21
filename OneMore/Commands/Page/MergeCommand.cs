@@ -64,6 +64,16 @@ namespace River.OneMoreAddIn.Commands
 					return;
 				}
 
+				var count =
+					section.Elements(ns + "Page")
+					.Count(e => e.Attributes("selected").Any(a => a.Value.Equals("all")));
+
+				if (count < 2)
+				{
+					UIHelper.ShowInfo(one.Window, "At least two pages must be selected to merge");
+					return;
+				}
+
 				var selections =
 					section.Elements(ns + "Page")
 					.Where(e =>

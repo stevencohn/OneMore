@@ -228,7 +228,7 @@ namespace River.OneMoreAddIn
 				// navigation listener
 				new Commands.NavigationService().Startup();
 
-				// activate enablers and update check
+				// update check
 				Task.Run(async () => { await SetGeneralOptions(); });
 
 				logger.WriteLine($"ready");
@@ -247,7 +247,6 @@ namespace River.OneMoreAddIn
 		{
 			var provider = new SettingsProvider();
 			var settings = provider.GetCollection(nameof(GeneralSheet));
-			EnablersEnabled = settings.Get("enablers", true);
 
 			if (settings.Get("checkUpdates", false))
 			{

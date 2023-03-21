@@ -2571,15 +2571,6 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Enable dynamic menu context settings. Disable if you&apos;ve added OneMore commands to the Quick Access toolbar.
-        /// </summary>
-        internal static string GeneralSheet_enablersBox_Text {
-            get {
-                return ResourceManager.GetString("GeneralSheet_enablersBox.Text", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Customize the overall behavior of OneMore.
         /// </summary>
         internal static string GeneralSheet_introBox_Text {

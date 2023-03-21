@@ -1062,10 +1062,6 @@
     <value>تحقق من وجود إصدارات جديدة من OneMore عند بدء OneNote</value>
     <comment>checkbox</comment>
   </data>
-  <data name="GeneralSheet_enablersBox.Text" xml:space="preserve">
-    <value>تفعيل إعدادات سياق القائمة الديناميكية. </value>
-    <comment>checkbox</comment>
-  </data>
   <data name="GeneralSheet_introBox.Text" xml:space="preserve">
     <value>تخصيص السلوك العام لـ OneMore</value>
     <comment>textbox</comment>
@@ -4167,6 +4163,11 @@ ISO-code then comma then language name</comment>
   <data name="StyleDialog_defaultBlackToolStripMenuItem.Text" xml:space="preserve">
     <value>افتراضي (أسود)</value>
     <comment>menu item</comment>
+  </data>
+  <data name="StyleDialog_familyWarning" xml:space="preserve">
+    <value>تتضمن هذه الأنماط واحدة أو أكثر من مجموعات الخطوط غير المعروفة:
+{0}</value>
+    <comment>warning message</comment>
   </data>
   <data name="StyleDialog_FileMenu.Text" xml:space="preserve">
     <value>ملف</value>
