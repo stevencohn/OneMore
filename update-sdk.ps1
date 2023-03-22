@@ -15,7 +15,7 @@ Begin
     $script:sdkver = $null
     $script:netpath = $null
     $script:basePath = $null
-	$script:forceBase = $false
+    $script:forceBase = $false
 
 
     function WriteOK
@@ -39,7 +39,7 @@ Begin
         {
             # \??\C:\Development
             $script:basePath = $map.Substring(4)
-			$script:forceBase = $true
+            $script:forceBase = $true
         }
         else
         {
@@ -49,7 +49,7 @@ Begin
 
 
     function GetSDKVersion
-	{
+    {
         $script:netpath = [System.Runtime.InteropServices.RuntimeEnvironment]::GetRuntimeDirectory()
 
         $0 = 'Registry::HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows Kits\Installed Roots'
@@ -73,7 +73,7 @@ Begin
             ForEach-Object { $fullpath = Join-Path $fullpath $_ }
 
         $lines = @(Get-Content $csproj)
-		
+        
         for ($i =0; $i -lt $lines.Count; $i++)
         {
             $line = $lines[$i]
@@ -132,15 +132,15 @@ Begin
         }
 
         return $updated
-	}
+    }
 }
 Process
 {
     Push-Location OneMore
-	GetDriveMapping
+    GetDriveMapping
     $script:csproj = Resolve-Path .\OneMore.csproj
 
-	$script:sdkver = GetSDKVersion
+    $script:sdkver = GetSDKVersion
     if ($sdkver) 
     {
         Write-Host "`nUpdating Windows SDK $sdkver " -NoNewline
