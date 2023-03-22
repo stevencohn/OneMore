@@ -186,24 +186,24 @@ Begin
     function SetRoot
     {
         WriteTitle 'Root'
-	    $0 = (EnsurePath 'Registry::HKEY_CLASSES_ROOT\River.OneMoreAddIn')
-	    Set-ItemProperty $0 -Name '(Default)' -Type String -Value 'River.OneMoreAddIn.AddIn'
+        $0 = (EnsurePath 'Registry::HKEY_CLASSES_ROOT\River.OneMoreAddIn')
+        Set-ItemProperty $0 -Name '(Default)' -Type String -Value 'River.OneMoreAddIn.AddIn'
         WriteOK $0
 
-	    $0 = (EnsurePath 'Registry::HKEY_CLASSES_ROOT\River.OneMoreAddIn\CLSID')
-	    Set-ItemProperty $0 -Name '(Default)' -Type String -Value $guid
+        $0 = (EnsurePath 'Registry::HKEY_CLASSES_ROOT\River.OneMoreAddIn\CLSID')
+        Set-ItemProperty $0 -Name '(Default)' -Type String -Value $guid
         WriteOK $0
 
-	    $0 = (EnsurePath 'Registry::HKEY_CLASSES_ROOT\River.OneMoreAddIn\CurVer')
-	    Set-ItemProperty $0 -Name '(Default)' -Type String -Value 'River.OneMoreAddIn.1'
+        $0 = (EnsurePath 'Registry::HKEY_CLASSES_ROOT\River.OneMoreAddIn\CurVer')
+        Set-ItemProperty $0 -Name '(Default)' -Type String -Value 'River.OneMoreAddIn.1'
         WriteOK $0
 
-	    $0 = (EnsurePath 'Registry::HKEY_CLASSES_ROOT\River.OneMoreAddIn.1')
-	    Set-ItemProperty $0 -Name '(Default)' -Type String -Value 'Addin class'
+        $0 = (EnsurePath 'Registry::HKEY_CLASSES_ROOT\River.OneMoreAddIn.1')
+        Set-ItemProperty $0 -Name '(Default)' -Type String -Value 'Addin class'
         WriteOK $0
 
-	    $0 = (EnsurePath 'Registry::HKEY_CLASSES_ROOT\River.OneMoreAddIn.1\CLSID')
-	    Set-ItemProperty $0 -Name '(Default)' -Type String -Value $guid
+        $0 = (EnsurePath 'Registry::HKEY_CLASSES_ROOT\River.OneMoreAddIn.1\CLSID')
+        Set-ItemProperty $0 -Name '(Default)' -Type String -Value $guid
         WriteOK $0
         return $true
     }
@@ -211,8 +211,8 @@ Begin
     function SetAppID
     {
         WriteTitle 'AppID'
-	    $0 = (EnsurePath "Registry::HKEY_CLASSES_ROOT\AppID\$guid")
-	    Set-ItemProperty $0 -Name 'DllSurrogate' -Type String -Value ''
+        $0 = (EnsurePath "Registry::HKEY_CLASSES_ROOT\AppID\$guid")
+        Set-ItemProperty $0 -Name 'DllSurrogate' -Type String -Value ''
         WriteOK $0
         return $true
     }
@@ -220,14 +220,14 @@ Begin
     function SetProtocolHandler
     {
         WriteTitle 'Protocol handler'
-	    $0 = (EnsurePath 'Registry::HKEY_CLASSES_ROOT\onemore')
-	    Set-ItemProperty $0 -Name '(Default)' -Type String -Value 'URL:OneMore Protocol Handler'
-	    Set-ItemProperty $0 -Name 'URL Protocol' -Type String -Value ''
+        $0 = (EnsurePath 'Registry::HKEY_CLASSES_ROOT\onemore')
+        Set-ItemProperty $0 -Name '(Default)' -Type String -Value 'URL:OneMore Protocol Handler'
+        Set-ItemProperty $0 -Name 'URL Protocol' -Type String -Value ''
         WriteOK $0
 
         # onemore:// protocol handler registration
-	    $0 = (EnsurePath 'Registry::HKEY_CLASSES_ROOT\onemore\shell\open\command')
-	    Set-ItemProperty $0 -Name '(Default)' -Type String -Value "`"$proto`" %1 %2 %3 %4 %5"
+        $0 = (EnsurePath 'Registry::HKEY_CLASSES_ROOT\onemore\shell\open\command')
+        Set-ItemProperty $0 -Name '(Default)' -Type String -Value "`"$proto`" %1 %2 %3 %4 %5"
         WriteOK $0
         WriteValue "`"$proto`" %1 %2 %3 %4 %5"
         return $true
@@ -255,8 +255,8 @@ Begin
         }
 
         $0 = (EnsurePath "Registry::HKEY_CLASSES_ROOT\$clsid\$guid")
-	    Set-ItemProperty $0 -Name '(Default)' -Type String -Value 'River.OneMoreAddIn.AddIn'
-	    Set-ItemProperty $0 -Name 'AppID' -Type String -Value $guid
+        Set-ItemProperty $0 -Name '(Default)' -Type String -Value 'River.OneMoreAddIn.AddIn'
+        Set-ItemProperty $0 -Name 'AppID' -Type String -Value $guid
         WriteOK $0
 
         $0 = (EnsurePath "Registry::HKEY_CLASSES_ROOT\$clsid\Implemented Categories\$catid")
@@ -264,37 +264,37 @@ Begin
 
         $0 = (EnsurePath "Registry::HKEY_CLASSES_ROOT\$clsid\$guid\InprocServer32")
         $asm = "River.OneMoreAddIn, Version=$pv, Culture=neutral, PublicKeyToken=null"
-	    Set-ItemProperty $0 -Name '(Default)' -Type String -Value 'mscoree.dll'
-	    Set-ItemProperty $0 -Name 'Assembly' -Type String -Value $asm
-	    Set-ItemProperty $0 -Name 'Class' -Type String -Value 'River.OneMoreAddIn.AddIn'
-	    Set-ItemProperty $0 -Name 'CodeBase' -Type String -Value $addin
+        Set-ItemProperty $0 -Name '(Default)' -Type String -Value 'mscoree.dll'
+        Set-ItemProperty $0 -Name 'Assembly' -Type String -Value $asm
+        Set-ItemProperty $0 -Name 'Class' -Type String -Value 'River.OneMoreAddIn.AddIn'
+        Set-ItemProperty $0 -Name 'CodeBase' -Type String -Value $addin
         Set-ItemProperty $0 -Name 'RuntimeVersion' -Type String -Value "v$runtime"
-	    Set-ItemProperty $0 -Name 'ThreadingModel' -Type String -Value 'Both'
+        Set-ItemProperty $0 -Name 'ThreadingModel' -Type String -Value 'Both'
         WriteOK $0
 
         $0 = (EnsurePath "Registry::HKEY_CLASSES_ROOT\$clsid\$guid\InprocServer32\$pv")
         $asm = "River.OneMoreAddIn, Version=$pv, Culture=neutral, PublicKeyToken=null"
-	    Set-ItemProperty $0 -Name 'Assembly' -Type String -Value $asm
-	    Set-ItemProperty $0 -Name 'Class' -Type String -Value 'River.OneMoreAddIn.AddIn'
-	    Set-ItemProperty $0 -Name 'CodeBase' -Type String -Value $addin
+        Set-ItemProperty $0 -Name 'Assembly' -Type String -Value $asm
+        Set-ItemProperty $0 -Name 'Class' -Type String -Value 'River.OneMoreAddIn.AddIn'
+        Set-ItemProperty $0 -Name 'CodeBase' -Type String -Value $addin
         Set-ItemProperty $0 -Name 'RuntimeVersion' -Type String -Value "v$runtime"
         WriteOK $0
         WriteValue $addin
 
         $0 = (EnsurePath "Registry::HKEY_CLASSES_ROOT\$clsid\$guid\ProgID")
-	    Set-ItemProperty $0 -Name '(Default)' -Type String -Value 'River.OneMoreAddIn'
+        Set-ItemProperty $0 -Name '(Default)' -Type String -Value 'River.OneMoreAddIn'
         WriteOK $0
 
         $0 = (EnsurePath "Registry::HKEY_CLASSES_ROOT\$clsid\$guid\Programmable")
-	    Set-ItemProperty $0 -Name '(Default)' -Type String -Value ''
+        Set-ItemProperty $0 -Name '(Default)' -Type String -Value ''
         WriteOK $0
 
         $0 = (EnsurePath "Registry::HKEY_CLASSES_ROOT\$clsid\$guid\TypeLib")
-	    Set-ItemProperty $0 -Name '(Default)' -Type String -Value $guid
+        Set-ItemProperty $0 -Name '(Default)' -Type String -Value $guid
         WriteOK $0
 
         $0 = (EnsurePath "Registry::HKEY_CLASSES_ROOT\$clsid\$guid\VersionIndependentProgID")
-	    Set-ItemProperty $0 -Name '(Default)' -Type String -Value 'River.OneMoreAddIn'
+        Set-ItemProperty $0 -Name '(Default)' -Type String -Value 'River.OneMoreAddIn'
         WriteOK $0
 
         return $true
@@ -304,17 +304,17 @@ Begin
     {
         WriteTitle 'User'
         $0 = (EnsurePath "Registry::HKEY_CURRENT_USER\SOFTWARE\Classes\AppID\$guid")
-	    Set-ItemProperty $0 -Name 'DllSurrogate' -Type String -Value ''
+        Set-ItemProperty $0 -Name 'DllSurrogate' -Type String -Value ''
         WriteOK $0
 
         $0 = (EnsurePath 'Registry::HKEY_CURRENT_USER\SOFTWARE\Microsoft\Office\OneNote\AddIns\River.OneMoreAddIn')
-	    Set-ItemProperty $0 -Name 'LoadBehavior' -Type DWord -Value 3
-	    Set-ItemProperty $0 -Name 'Description' -Type String -Value 'Extension for OneNote'
-	    Set-ItemProperty $0 -Name 'FriendlyName' -Type String -Value 'OneMoreAddIn'
+        Set-ItemProperty $0 -Name 'LoadBehavior' -Type DWord -Value 3
+        Set-ItemProperty $0 -Name 'Description' -Type String -Value 'Extension for OneNote'
+        Set-ItemProperty $0 -Name 'FriendlyName' -Type String -Value 'OneMoreAddIn'
         WriteOK $0
 
         $0 = (EnsurePath 'Registry::HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\River.OneMoreAddIn.dll')
-	    Set-ItemProperty $0 -Name Path -Type String -Value $addin
+        Set-ItemProperty $0 -Name Path -Type String -Value $addin
         WriteOK $0
         WriteValue $addin
 
