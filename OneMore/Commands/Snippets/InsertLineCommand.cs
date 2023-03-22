@@ -48,7 +48,7 @@ namespace River.OneMoreAddIn.Commands
 			var current =
 				(from e in page.Root.Descendants(ns + "OE")
 				 where e.Elements(ns + "T").Attributes("selected").Any(a => a.Value.Equals("all"))
-				 select e).FirstOrDefault();
+				 select e).First();
 
 			string line = string.Empty.PadRight(length, c);
 

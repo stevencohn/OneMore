@@ -17,7 +17,7 @@ namespace River.OneMoreAddIn.Commands
 	internal partial class PageColorDialog : UI.LocalizableForm
 	{
 		private Theme theme;
-		private Color pageColor;
+		private readonly Color pageColor;
 		private bool optionsAvailable;
 		private readonly bool darkMode;
 

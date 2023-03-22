@@ -17,7 +17,7 @@ namespace River.OneMoreAddIn.Commands
 			using var writer = new StringWriter();
 			var renderer = new HtmlRenderer(writer)
 			{
-				BaseUrl = new Uri(Path.GetDirectoryName(path) + "/")
+				BaseUrl = new Uri($"{Path.GetDirectoryName(path)}/")
 			};
 
 			var pipeline = new MarkdownPipelineBuilder()

@@ -51,8 +51,8 @@ namespace River.OneMoreAddIn.Commands
 
 			using (one = new OneNote())
 			{
-				scope = args.Length > 0 && args[0] is OneNote.Scope
-					? (OneNote.Scope)args[0]
+				scope = args.Length > 0 && args[0] is OneNote.Scope ascope
+					? ascope
 					: OneNote.Scope.Self;
 
 				if (scope == OneNote.Scope.Self)

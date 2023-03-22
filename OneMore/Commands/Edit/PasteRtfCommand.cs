@@ -227,7 +227,7 @@ namespace River.OneMoreAddIn.Commands
 			using (var outer = new XmlTextReader(new StringReader(xaml)))
 			{
 				// skip outer <Section> to get to subtree
-				while (outer.Read() && outer.NodeType != XmlNodeType.Element) { /**/ }
+				while (outer.Read() && outer.NodeType != XmlNodeType.Element) { /* empty */ }
 				if (!outer.EOF)
 				{
 					using var writer = new XmlTextWriter(new StringWriter(builder));

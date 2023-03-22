@@ -671,10 +671,7 @@ namespace River.OneMoreAddIn
 				label = MakeEditStylesButtonLabel();
 			}
 
-			if (label == null)
-			{
-				label = ReadString($"{id}_Label");
-			}
+			label ??= ReadString($"{id}_Label");
 
 #if LOG_AddInRibbon
 			logger.WriteLine($"GetRibbonLabel({id}_Label) => [{label}]");
@@ -685,20 +682,19 @@ namespace River.OneMoreAddIn
 
 		private string MakeEditStylesButtonLabel()
 		{
-			Theme theme = null;
 			try
 			{
-				theme = new ThemeProvider().Theme;
+				var theme = new ThemeProvider().Theme;
+
+				return theme == null
+					? Resx.ribEditStylesButton_Label
+					: string.Format(Resx.ribEditStylesButton_named, theme.Name);
 			}
 			catch (Exception exc)
 			{
 				logger.WriteLine($"MakeEditStylesButtonLabel cannot load theme", exc);
-				theme = null;
+				return null;
 			}
-
-			return theme == null
-				? Resx.ribEditStylesButton_Label
-				: string.Format(Resx.ribEditStylesButton_named, theme.Name);
 		}
 
 

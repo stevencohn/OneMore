@@ -157,12 +157,10 @@ namespace River.OneMoreAddIn
 		/// <returns>A string specifying the inner XML of the element.</returns>
 		public static string GetInnerXml(this XElement element, bool singleQuote = false)
 		{
-			string xml = null;
-
 			// fastest way to get XElement inner XML
 			using var reader = element.CreateReader();
 			reader.MoveToContent();
-			xml = reader.ReadInnerXml();
+			var xml = reader.ReadInnerXml();
 
 			// undo what XCData.GetWrapper did to <br/> elements
 			xml = Regex.Replace(xml, @"<\s*br\s*/>", "<br>");

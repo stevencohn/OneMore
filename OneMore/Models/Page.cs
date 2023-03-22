@@ -1022,7 +1022,7 @@ namespace River.OneMoreAddIn.Models
 		/// <returns></returns>
 		public Color GetBestTextColor()
 		{
-			var back = GetPageColor(out var automatic, out var black);
+			var back = GetPageColor(out var automatic, out _);
 
 			if (automatic)
 			{

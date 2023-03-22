@@ -16,7 +16,7 @@ namespace River.OneMoreAddIn.Commands
 
 	internal partial class ExportDialog : UI.LocalizableForm
 	{
-		private bool wordInstalled;
+		private readonly bool wordInstalled;
 
 
 		public ExportDialog(int pageCount)

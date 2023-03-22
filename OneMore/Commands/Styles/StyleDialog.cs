@@ -150,7 +150,7 @@ namespace River.OneMoreAddIn.Commands
 				});
 
 				styleTypeBox.Items.Clear();
-				styleTypeBox.Items.AddRange(Resx.StyleDialog_styleTypeBox_Items.Split(new char[] { '\n' }));
+				styleTypeBox.Items.AddRange(Resx.StyleDialog_styleTypeBox_Items.Split('\n'));
 			}
 
 			mainTools.Rescale();

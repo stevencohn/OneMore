@@ -155,7 +155,7 @@ namespace River.OneMoreAddIn.Commands
 		{
 			var cdata = root.Element(ns + "T").GetCData();
 			var wrapper = cdata.GetWrapper();
-			var text = wrapper.DescendantNodes().OfType<XText>().FirstOrDefault();
+			var text = wrapper.DescendantNodes().OfType<XText>().First();
 
 			if (numeric)
 			{

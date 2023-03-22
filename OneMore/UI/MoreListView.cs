@@ -626,25 +626,25 @@ namespace River.OneMoreAddIn.UI
 		}
 
 
-		protected override void OnDragOver(DragEventArgs e)
+		protected override void OnDragOver(DragEventArgs drgevent)
 		{
 			if (!allowItemReorder)
 			{
-				e.Effect = DragDropEffects.None;
+				drgevent.Effect = DragDropEffects.None;
 				return;
 			}
 
-			if (!e.Data.GetDataPresent(DataFormats.Text))
+			if (!drgevent.Data.GetDataPresent(DataFormats.Text))
 			{
-				e.Effect = DragDropEffects.None;
+				drgevent.Effect = DragDropEffects.None;
 				return;
 			}
 
-			var cp = PointToClient(new Point(e.X, e.Y));
+			var cp = PointToClient(new Point(drgevent.X, drgevent.Y));
 			var hoverItem = GetItemAt(cp.X, cp.Y);
 			if (hoverItem == null)
 			{
-				e.Effect = DragDropEffects.None;
+				drgevent.Effect = DragDropEffects.None;
 				return;
 			}
 
@@ -652,29 +652,29 @@ namespace River.OneMoreAddIn.UI
 			{
 				if (moveItem.Index == hoverItem.Index)
 				{
-					e.Effect = DragDropEffects.None;
+					drgevent.Effect = DragDropEffects.None;
 					hoverItem.EnsureVisible();
 					return;
 				}
 			}
 
-			base.OnDragOver(e);
-			var text = (string)e.Data.GetData(typeof(string));
+			base.OnDragOver(drgevent);
+			var text = (string)drgevent.Data.GetData(typeof(string));
 			if (text.CompareTo(nameof(MoreListView)) == 0)
 			{
-				e.Effect = DragDropEffects.Move;
+				drgevent.Effect = DragDropEffects.Move;
 				hoverItem.EnsureVisible();
 			}
 			else
 			{
-				e.Effect = DragDropEffects.None;
+				drgevent.Effect = DragDropEffects.None;
 			}
 		}
 
 
-		protected override void OnDragDrop(DragEventArgs e)
+		protected override void OnDragDrop(DragEventArgs drgevent)
 		{
-			base.OnDragDrop(e);
+			base.OnDragDrop(drgevent);
 			if (!allowItemReorder)
 			{
 				return;
@@ -685,7 +685,7 @@ namespace River.OneMoreAddIn.UI
 				return;
 			}
 
-			var cp = PointToClient(new Point(e.X, e.Y));
+			var cp = PointToClient(new Point(drgevent.X, drgevent.Y));
 			var dragToItem = GetItemAt(cp.X, cp.Y);
 			if (dragToItem == null)
 			{
@@ -717,30 +717,30 @@ namespace River.OneMoreAddIn.UI
 		}
 
 
-		protected override void OnDragEnter(DragEventArgs e)
+		protected override void OnDragEnter(DragEventArgs drgevent)
 		{
-			base.OnDragEnter(e);
+			base.OnDragEnter(drgevent);
 			if (!allowItemReorder)
 			{
-				e.Effect = DragDropEffects.None;
+				drgevent.Effect = DragDropEffects.None;
 				return;
 			}
 
-			if (!e.Data.GetDataPresent(DataFormats.Text))
+			if (!drgevent.Data.GetDataPresent(DataFormats.Text))
 			{
-				e.Effect = DragDropEffects.None;
+				drgevent.Effect = DragDropEffects.None;
 				return;
 			}
 
-			base.OnDragEnter(e);
-			var text = (string)e.Data.GetData(typeof(string));
+			base.OnDragEnter(drgevent);
+			var text = (string)drgevent.Data.GetData(typeof(string));
 			if (text.CompareTo(nameof(MoreListView)) == 0)
 			{
-				e.Effect = DragDropEffects.Move;
+				drgevent.Effect = DragDropEffects.Move;
 			}
 			else
 			{
-				e.Effect = DragDropEffects.None;
+				drgevent.Effect = DragDropEffects.None;
 			}
 		}
 		#endregion DragDrop Overrides

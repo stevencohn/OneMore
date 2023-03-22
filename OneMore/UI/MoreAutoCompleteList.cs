@@ -323,13 +323,13 @@ namespace River.OneMoreAddIn.UI
 				var hadMatches = matches.Any();
 				matches.Clear();
 
-				foreach (var cmd in commands)
+				commands.ForEach(cmd =>
 				{
 					if (cmd.Name.ContainsICIC(text))
 					{
 						matches.Add(cmd);
 					}
-				}
+				});
 
 				if (matches.Any())
 				{

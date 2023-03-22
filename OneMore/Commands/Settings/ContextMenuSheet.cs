@@ -277,10 +277,7 @@ namespace River.OneMoreAddIn.Settings
 
 			var settings = provider.GetCollection(Name);
 			var items = settings.Get<XElement>("items");
-			if (items == null)
-			{
-				items = new XElement("items");
-			}
+			items ??= new XElement("items");
 
 			foreach (MenuItemPanel control in menuPanel.Controls)
 			{

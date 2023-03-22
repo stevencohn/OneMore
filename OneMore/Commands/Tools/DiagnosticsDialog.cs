@@ -14,7 +14,7 @@ namespace River.OneMoreAddIn.Commands
 	{
 		private const int Timeout = 5000;
 		private int time;
-		private string okText;
+		private readonly string okText;
 
 
 		public DiagnosticsDialog()

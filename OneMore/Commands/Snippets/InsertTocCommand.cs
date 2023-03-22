@@ -360,7 +360,7 @@ namespace River.OneMoreAddIn.Commands
 
 			BuildSectionToc(container, elements.ToArray(), ref index, 1, withPreviews);
 
-			var title = page.Root.Elements(ns + "Title").FirstOrDefault();
+			var title = page.Root.Elements(ns + "Title").First();
 			title.AddAfterSelf(new XElement(ns + "Outline", container));
 			await one.Update(page);
 
@@ -370,7 +370,7 @@ namespace River.OneMoreAddIn.Commands
 			section = one.GetSection();
 
 			var entry = section.Elements(ns + "Page")
-				.FirstOrDefault(e => e.Attribute("ID").Value == pageId);
+				.First(e => e.Attribute("ID").Value == pageId);
 
 			entry.Remove();
 			section.AddFirst(entry);
@@ -474,7 +474,7 @@ namespace River.OneMoreAddIn.Commands
 
 			BuildSectionTable(one, ns, container, notebook.Elements(), includePages, withPreviews, 1);
 
-			var title = page.Root.Elements(ns + "Title").FirstOrDefault();
+			var title = page.Root.Elements(ns + "Title").First();
 			title.AddAfterSelf(new XElement(ns + "Outline", container));
 
 			await one.Update(page);
@@ -485,7 +485,7 @@ namespace River.OneMoreAddIn.Commands
 			section = one.GetSection();
 
 			var entry = section.Elements(ns + "Page")
-				.FirstOrDefault(e => e.Attribute("ID").Value == pageId);
+				.First(e => e.Attribute("ID").Value == pageId);
 
 			entry.Remove();
 			section.AddFirst(entry);

@@ -12,8 +12,8 @@ namespace River.OneMoreAddIn.UI
 
 	internal partial class MoreExpander : UserControl
 	{
+		private readonly Image image;
 		private string title;
-		private Image image;
 		private bool expanded;
 		private bool expandedIcon;
 

@@ -171,7 +171,7 @@ namespace River.OneMoreAddIn.Models
 
 			run = new XElement(ns + "T", run.Attributes(), cdata);
 
-			content.Descendants(ns + "OE").FirstOrDefault().ReplaceNodes(run);
+			content.Descendants(ns + "OE").First().ReplaceNodes(run);
 			SetContent(content);
 		}
 

@@ -30,7 +30,7 @@ namespace River.OneMoreAddIn.Commands
 
 		private readonly bool wordInstalled;
 		private readonly bool powerPointInstalled;
-		private bool initialized = false;
+		private readonly bool initialized = false;
 
 
 		public ImportDialog()
@@ -235,7 +235,7 @@ namespace River.OneMoreAddIn.Commands
 				// OpenFileDialog must run in an STA thread
 				var path = await SingleThreaded.Invoke(() =>
 				{
-					using (var dialog = new OpenFileDialog()
+					using var dialog = new OpenFileDialog
 					{
 						AddExtension = true,
 						CheckFileExists = true,
@@ -244,13 +244,12 @@ namespace River.OneMoreAddIn.Commands
 						InitialDirectory = pathBox.Text,
 						Multiselect = false,
 						Title = Resx.ImportDialog_OpenFileTitle
-					})
+					};
+
+					// cannot use owner parameter here or it will hang! cross-threading
+					if (dialog.ShowDialog(/* leave empty */) == DialogResult.OK)
 					{
-						// cannot use owner parameter here or it will hang! cross-threading
-						if (dialog.ShowDialog(/* leave empty */) == DialogResult.OK)
-						{
-							return dialog.FileName;
-						}
+						return dialog.FileName;
 					}
 
 					return null;

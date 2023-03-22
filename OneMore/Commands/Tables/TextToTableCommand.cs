@@ -79,12 +79,12 @@ namespace River.OneMoreAddIn.Commands
 			if (first.Contains('\t'))
 			{
 				dialog.DelimetedBy = TextToTableDialog.Delimeter.Tabs;
-				dialog.Columns = first.Split(new char[] { '\t' }).Length;
+				dialog.Columns = first.Split('\t').Length;
 			}
 			else if (first.Contains(','))
 			{
 				dialog.DelimetedBy = TextToTableDialog.Delimeter.Commas;
-				dialog.Columns = first.Split(new char[] { ',' }).Length;
+				dialog.Columns = first.Split(',').Length;
 			}
 			else if (first.Contains(nbsp))
 			{

@@ -43,7 +43,7 @@ namespace River.OneMoreAddIn.Commands
 				});
 
 				formatBox.Items.Clear();
-				formatBox.Items.AddRange(Resx.FormulaDialog_formatBox_Items.Split(new char[] { '\n' }));
+				formatBox.Items.AddRange(Resx.FormulaDialog_formatBox_Items.Split('\n'));
 
 				validStatusLabel.Text = Resx.FormulaDialog_status_Empty;
 			}

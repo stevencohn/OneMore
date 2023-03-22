@@ -4,11 +4,7 @@
 
 namespace River.OneMoreAddIn.Models
 {
-	using System;
-	using System.Collections.Generic;
 	using System.Linq;
-	using System.Text;
-	using System.Threading.Tasks;
 	using System.Xml.Linq;
 
 	internal class PageReader
@@ -23,8 +19,8 @@ namespace River.OneMoreAddIn.Models
 
 		#endregion Types
 
-		private Page page;
-		private XNamespace ns;
+		private readonly Page page;
+		private readonly XNamespace ns;
 
 
 		/// <summary>
@@ -81,7 +77,7 @@ namespace River.OneMoreAddIn.Models
 				return content;
 			}
 
-			var minDepth = selections.Min(e => e.Depth);
+			//var minDepth = selections.Min(e => e.Depth);
 
 			return content;
 		}

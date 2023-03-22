@@ -181,11 +181,11 @@ namespace River.OneMoreAddIn.Commands
 				var node = model.FindNode(e.Path);
 				if (node != null)
 				{
-					if (node.Tag is OutlookTask task)
+					if (node.Tag is OutlookTask)
 					{
 						CheckFolderState(node.Parent);
 					}
-					else if (node.Tag is OutlookTaskFolder folder)
+					else if (node.Tag is OutlookTaskFolder)
 					{
 						if (node.CheckState != CheckState.Indeterminate)
 						{

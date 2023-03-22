@@ -422,10 +422,10 @@ namespace River.OneMoreAddIn.Commands
 				section = one.GetSection();
 
 				var parentElement = section.Elements(page.Namespace + "Page")
-					.FirstOrDefault(e => e.Attribute("ID").Value == page.PageId);
+					.First(e => e.Attribute("ID").Value == page.PageId);
 
 				var childElement = section.Elements(page.Namespace + "Page")
-					.FirstOrDefault(e => e.Attribute("ID").Value == pageId);
+					.First(e => e.Attribute("ID").Value == pageId);
 
 				if (childElement != parentElement.NextNode)
 				{

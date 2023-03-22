@@ -17,7 +17,10 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		public void Setup(MarkdownPipelineBuilder pipeline) { }
+		public void Setup(MarkdownPipelineBuilder pipeline)
+		{
+			// Intentially empty
+		}
 
 
 		public void Setup(MarkdownPipeline pipeline, IMarkdownRenderer renderer)

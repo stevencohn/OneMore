@@ -155,13 +155,13 @@ namespace River.OneMoreAddIn.UI
 
 		private void InitializeComponent()
 		{
-			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LocalizableForm));
+			System.ComponentModel.ComponentResourceManager resources = new(typeof(LocalizableForm));
 			this.SuspendLayout();
 			// 
 			// LocalizableForm
 			// 
-			this.ClientSize = new System.Drawing.Size(278, 244);
-			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+			this.ClientSize = new Size(278, 244);
+			this.Icon = ((Icon)(resources.GetObject("$this.Icon")));
 			this.Name = "LocalizableForm";
 			this.ResumeLayout(false);
 

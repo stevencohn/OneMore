@@ -42,7 +42,7 @@ namespace River.OneMoreAddIn.UI
 		private bool once;
 		private readonly string title;
 		private int x;
-		private int y;
+		private readonly int y;
 
 		public MoreColorDialog(string title, int x, int y)
 			: base()
