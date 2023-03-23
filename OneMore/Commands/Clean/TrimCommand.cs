@@ -24,68 +24,62 @@ namespace River.OneMoreAddIn.Commands
 		public override async Task Execute(params object[] args)
 		{
 			var leading = (bool)args[0];
+			int count = 0;
 
-			using var one = new OneNote(out var page, out var ns);
+			var regex = leading
+				? new Regex(@"^([\s]|&#160;|&nbsp;)+", RegexOptions.Multiline)
+				: new Regex(@"([\s]|&#160;|&nbsp;)+$", RegexOptions.Multiline);
 
-			var selections =
-				from e in page.Root.Elements(ns + "Outline").Descendants(ns + "T")
-				where e.Attributes("selected").Any(a => a.Value.Equals("all"))
-				select e;
+			using var one = new OneNote(out var page, out _);
 
+			var selections = page.GetSelectedElements();
 			if (selections != null)
 			{
-				if (selections.Count() == 1 &&
-					selections.First().GetCData().Value.Length == 0)
-				{
-					// if zero-length selection then select all content
-					selections = page.Root.Elements(ns + "Outline").Descendants(ns + "T");
-				}
-
-				int count = 0;
-
 				foreach (var selection in selections)
 				{
-					if ((selection == selection.Parent.LastNode) &&
-						(selection.LastNode?.NodeType == XmlNodeType.CDATA))
+					// only include last T in an OE
+					// only include Ts that have a CDATA
+					if ((selection != selection.Parent.LastNode) ||
+						(selection.LastNode?.NodeType != XmlNodeType.CDATA))
 					{
-						var cdata = selection.GetCData();
-						if (cdata.Value.Length > 0)
+						continue;
+					}
+
+					var cdata = selection.GetCData();
+					if (cdata.Value.Length == 0)
+					{
+						continue;
+					}
+
+					var wrapper = cdata.GetWrapper();
+
+					if (leading)
+					{
+						// T may start with an XText or have multiple spans, only need the first
+						var text = wrapper.DescendantNodes().OfType<XText>().FirstOrDefault();
+						if (text?.Value.Length > 0)
 						{
-							var wrapper = cdata.GetWrapper();
-
-							if (leading)
+							var edited = regex.Replace(text.Value, string.Empty);
+							if (edited.Length < text.Value.Length)
 							{
-								var text = wrapper.DescendantNodes().OfType<XText>().FirstOrDefault();
-								if (text?.Value.Length > 0)
-								{
-									var match = Regex.Match(text.Value, @"^([\s]|&#160;|&nbsp;)+");
-									if (match.Success)
-									{
-										text.ReplaceWith(text.Value.Substring(match.Length));
-
-										selection.FirstNode.ReplaceWith(
-											new XCData(wrapper.GetInnerXml()));
-
-										count++;
-									}
-								}
+								text.ReplaceWith(edited);
+								selection.FirstNode.ReplaceWith(new XCData(wrapper.GetInnerXml()));
+								count++;
 							}
-							else
+						}
+					}
+					else
+					{
+						// T may end with an XText or have multiple spans, only need the last
+						var text = wrapper.DescendantNodes().OfType<XText>().LastOrDefault();
+						if (text?.Value.Length > 0)
+						{
+							var edited = regex.Replace(text.Value, string.Empty);
+							if (edited.Length < text.Value.Length)
 							{
-								var text = wrapper.DescendantNodes().OfType<XText>().LastOrDefault();
-								if (text?.Value.Length > 0)
-								{
-									var match = Regex.Match(text.Value, @"([\s]|&#160;|&nbsp;)+$");
-									if (match.Success)
-									{
-										text.ReplaceWith(text.Value.Substring(0, match.Index));
-
-										selection.FirstNode.ReplaceWith(
-											new XCData(wrapper.GetInnerXml()));
-
-										count++;
-									}
-								}
+								text.ReplaceWith(edited);
+								selection.FirstNode.ReplaceWith(new XCData(wrapper.GetInnerXml()));
+								count++;
 							}
 						}
 					}
@@ -95,9 +89,9 @@ namespace River.OneMoreAddIn.Commands
 				{
 					await one.Update(page);
 				}
-
-				logger.WriteLine($"trimmed {count} lines");
 			}
+
+			logger.WriteLine($"trimmed {count} lines");
 		}
 	}
 }

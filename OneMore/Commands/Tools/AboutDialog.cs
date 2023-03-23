@@ -8,7 +8,7 @@ namespace River.OneMoreAddIn.Commands
 	using System.Diagnostics;
 	using System.IO;
 	using System.Windows.Forms;
-	using Resx = River.OneMoreAddIn.Properties.Resources;
+	using Resx = Properties.Resources;
 
 
 	internal partial class AboutDialog : UI.LocalizableForm
@@ -98,16 +98,14 @@ namespace River.OneMoreAddIn.Commands
 
 		private void OpenLog(object sender, LinkLabelLinkClickedEventArgs e)
 		{
-			System.Diagnostics.Process.Start(logLabel.Text);
+			Process.Start(logLabel.Text);
 		}
 
 
 		// async event handlers should be be declared 'async void'
 		private async void ClearLog(object sender, LinkLabelLinkClickedEventArgs e)
 		{
-			var cmd = new ClearLogCommand();
-			cmd.SetLogger(Logger.Current);
-			await cmd.Execute();
+			await factory.Run<ClearLogCommand>();
 		}
 	}
 }

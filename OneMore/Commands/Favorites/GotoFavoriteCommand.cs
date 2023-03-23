@@ -33,7 +33,7 @@ namespace River.OneMoreAddIn.Commands
 
 				if (dialog.Manage)
 				{
-					await new ManageFavoritesCommand().Execute(ribbon);
+					await factory.Run<ManageFavoritesCommand>(ribbon);
 					return;
 				}
 

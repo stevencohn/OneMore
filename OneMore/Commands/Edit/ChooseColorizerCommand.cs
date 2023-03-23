@@ -23,7 +23,7 @@ namespace River.OneMoreAddIn.Commands
 				var key = dialog.LanguageKey;
 				if (key != null)
 				{
-					await new ColorizeCommand().Execute(key);
+					await factory.Run<ColorizeCommand>(key);
 				}
 			}
 		}
