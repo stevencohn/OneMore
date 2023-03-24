@@ -70,14 +70,14 @@ namespace River.OneMoreAddIn.Colorizer
 			if (string.IsNullOrWhiteSpace(rule.Pattern))
 			{
 				throw new LanguageException(
-					$"{language.Name} rule {ruleNum} has an empty pattern",
+					$"{language.Name} rule {ruleNum} has an empty pattern\n{rule.Pattern}",
 					language.Name, ruleNum);
 			}
 
 			if (rule.Captures == null || rule.Captures.Count == 0)
 			{
 				throw new LanguageException(
-					$"{language.Name} rule {ruleNum} does not have defined captures",
+					$"{language.Name} rule {ruleNum} does not have defined captures\n{rule.Pattern}",
 					language.Name, ruleNum);
 			}
 
@@ -85,14 +85,14 @@ namespace River.OneMoreAddIn.Colorizer
 			if (count != rule.Captures.Count)
 			{
 				throw new LanguageException(
-					$"{language.Name} rule {ruleNum} has misalignment captures",
+					$"{language.Name} rule {ruleNum} has misaligned captures\n{rule.Pattern}",
 					language.Name, ruleNum);
 			}
 
 			if (namedPattern.Match(rule.Pattern).Success)
 			{
 				throw new LanguageException(
-					$"{language.Name} rule {ruleNum} cannot contain a named group",
+					$"{language.Name} rule {ruleNum} cannot contain a named group\n{rule.Pattern}",
 					language.Name, ruleNum);
 			}
 		}
