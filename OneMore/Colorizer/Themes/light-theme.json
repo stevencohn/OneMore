@@ -6,6 +6,7 @@
     "CornflowerBlue": "#5B9BD5",
     "DarkCyan": "#008B8B",
     "DarkOliveGreen": "#556B2F",
+    "DarkRed": "#7D180D",
     "DarkYellow": "#BF9000",
     "Firebrick": "#B22222",
     "Gray": "#808080",
@@ -242,7 +243,7 @@
     },
     {
       "name": "XmlAttribute",
-      "foreground": "Salmon"
+      "foreground": "Red"
     },
     {
       "name": "XmlAttributeQuotes",
@@ -274,7 +275,7 @@
     },
     {
       "name": "XmlName",
-      "foreground": "Firebrick"
+      "foreground": "DarkRed"
     }
   ]
 }
