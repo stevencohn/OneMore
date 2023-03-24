@@ -1,5 +1,6 @@
 {
   "colors": {
+    "Auto": "#000000",
     "Black": "#000000",
     "Blue": "#2E75B5",
     "CornflowerBlue": "#5B9BD5",
@@ -21,7 +22,6 @@
     "Red": "#E30303",
     "Salmon": "#F1937A",
     "Teal": "#008080",
-    "White": "#FFFFFF",
     "Yellow": "#FFFF00"
   },
   "styles": [
