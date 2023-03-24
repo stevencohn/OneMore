@@ -19,6 +19,7 @@
     "Orange": "#FF5800",
     "Purple": "#8064A2",
     "Red": "#E30303",
+    "Salmon": "#F1937A",
     "Teal": "#008080",
     "White": "#FFFFFF",
     "Yellow": "#FFFF00"
@@ -241,7 +242,7 @@
     },
     {
       "name": "XmlAttribute",
-      "foreground": "Red"
+      "foreground": "Salmon"
     },
     {
       "name": "XmlAttributeQuotes",
