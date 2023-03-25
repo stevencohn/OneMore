@@ -79,13 +79,13 @@
       ]
     },
     {
-      "pattern": "\\b(abstract|actor|agent|annotation|archimate|artifact|boundary|card|cloud|collections|component|control|database|diamond|entity|enum|file|folder|frame|hexagon|label|node|object|package|participant|person|queue|rectangle|stack|state|storage|usecase|class|interface)\\b",
+      "pattern": "\\b(abstract|actor|agent|annotation|archimate|artifact|boundary|card|cloud|collections|component|control|database|diamond|entity|enum|file|folder|frame|hexagon|json|label|node|object|package|participant|person|queue|rectangle|stack|state|storage|usecase|class|interface)\\b",
       "captures": [
         "PlantClass"
       ]
     },
     {
-      "pattern": "^\\s*(autonumber|scale|skin|skinparam|\\x21include)\\b",
+      "pattern": "^\\s*(allowmixing|autonumber|scale|skin|skinparam|\\x21include)\\b",
       "captures": [
         "PlantSkin"
       ]
