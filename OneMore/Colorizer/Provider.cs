@@ -7,6 +7,8 @@ namespace River.OneMoreAddIn.Colorizer
 	using System;
 	using System.Collections.Generic;
 	using System.IO;
+	using System.Linq;
+	using System.Text.RegularExpressions;
 	using Newtonsoft.Json;
 
 
@@ -24,8 +26,11 @@ namespace River.OneMoreAddIn.Colorizer
 
 			try
 			{
-				var json = File.ReadAllText(path);
-				language = JsonConvert.DeserializeObject<Language>(json);
+				var lines = File.ReadAllLines(path)
+					.Where(line => !Regex.IsMatch(line, @"^\\s*//"));
+
+				language = JsonConvert.DeserializeObject<Language>(
+					string.Join(Environment.NewLine, lines));
 			}
 			catch (Exception exc)
 			{
@@ -82,8 +87,12 @@ namespace River.OneMoreAddIn.Colorizer
 
 			try
 			{
-				var json = File.ReadAllText(path);
-				theme = JsonConvert.DeserializeObject<Theme>(json);
+				var lines = File.ReadAllLines(path)
+					.Where(line => !Regex.IsMatch(line, @"^\\s*//"));
+
+				theme = JsonConvert.DeserializeObject<Theme>(
+					string.Join(Environment.NewLine, lines));
+
 				theme.TranslateColorNames(autoOverride);
 			}
 			catch (Exception exc)

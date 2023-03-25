@@ -1,0 +1,58 @@
+{
+  "name": "Registry",
+  "aliases": [
+    "reg"
+  ],
+  "rules": [
+    {
+      // ;comment
+      "pattern": "^\\s*(;.*?)\\r?$",
+      "captures": [
+        "Comment"
+      ]
+    },
+    {
+      // title: Windows Registry Editor Version 5.00
+      "pattern": "(Windows Registry Editor Version \\d\\.\\d+)",
+      "captures": [
+        "Keyword"
+      ]
+    },
+    {
+      // -[delete]
+      "pattern": "^(\\-\\s*\\[.*)$",
+      "captures": [
+        "RegDelete"
+      ]
+    },
+    {
+      // [key]
+      "pattern": "[^\\-]?(\\[)([^[]+)(])$",
+      "captures": [
+        "PlainText",
+        "PsuedoKeyword",
+        "PlainText"
+      ]
+    },
+    {
+      "pattern": "\\b([0-9]{1,})\\b",
+      "captures": [
+        "Number"
+      ]
+    },
+    {
+      // =dword:
+      "pattern": "=\\s*(hex|hexadecimal|dword)",
+      "captures": [
+        "Type"
+      ]
+    },
+    {
+      // ="string"
+      "pattern": "=\\s*(\"[^\\n]*?(?<!\\\\)\")",
+      "captures": [
+        "String"
+      ]
+    }
+  ]
+}

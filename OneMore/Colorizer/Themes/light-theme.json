@@ -1,29 +1,28 @@
 {
   "colors": {
+    "Auto": "#000000",
     "Black": "#000000",
-    "Blue": "#0000FF",
-    "BlueGray": "#8496B0",
-    "BlueSteel": "#2E75B5",
+    "Blue": "#2E75B5",
+    "CornflowerBlue": "#5B9BD5",
     "DarkCyan": "#008B8B",
     "DarkOliveGreen": "#556B2F",
+    "DarkRed": "#7D180D",
     "DarkYellow": "#BF9000",
-    "DullRed": "#A31515",
-    "Gold": "#BF9000",
+    "Firebrick": "#B22222",
     "Gray": "#808080",
     "Green": "#008000",
     "LightGray": "#A5A5A5",
     "LightGreen": "#00B050",
-    "LightTeal": "#2EBBB8",
-    "Magenta": "#FF00FF",
+    "LightSeaGreen": "#20B2AA",
+    "Magenta": "#CC00FF",
     "MediumTurqoise": "#48D1CC",
     "Navy": "#000080",
     "OliveDrab": "#6B8E23",
-    "OrangeRed": "#FF4500",
-    "CornflowerBlue": "#6495ED",
+    "Orange": "#FF5800",
     "Purple": "#8064A2",
     "Red": "#E30303",
+    "Salmon": "#F1937A",
     "Teal": "#008080",
-    "White": "#FFFFFF",
     "Yellow": "#FFFF00"
   },
   "styles": [
@@ -52,7 +51,7 @@
     },
     {
       "name": "Comment",
-      "foreground": "Green"
+      "foreground": "LightGreen"
     },
     {
       "name": "Constructor",
@@ -72,7 +71,7 @@
     },
     {
       "name": "CssSelector",
-      "foreground": "DullRed"
+      "foreground": "Firebrick"
     },
     {
       "name": "Delimeter"
@@ -83,7 +82,7 @@
     },
     {
       "name": "HtmlComment",
-      "foreground": "Green"
+      "foreground": "LightGreen"
     },
     {
       "name": "HtmlTagDelimeter",
@@ -91,7 +90,7 @@
     },
     {
       "name": "HtmlElementName",
-      "foreground": "DullRed"
+      "foreground": "Firebrick"
     },
     {
       "name": "HtmlAttributeName",
@@ -140,7 +139,7 @@
     },
     {
       "name": "Number",
-      "foreground": "DarkCyan"
+      "foreground": "Purple"
     },
     {
       "name": "Operator"
@@ -156,7 +155,7 @@
     },
     {
       "name": "PlantClass",
-      "foreground": "LightTeal"
+      "foreground": "LightSeaGreen"
     },
     {
       "name": "PlantComment",
@@ -192,7 +191,7 @@
     },
     {
       "name": "PowerShellVariable",
-      "foreground": "Red"
+      "foreground": "Orange"
     },
     {
       "name": "Predefined",
@@ -211,6 +210,10 @@
       "foreground": "Magenta"
     },
     {
+      "name": "RegDelete",
+      "foreground": "Gray"
+    },
+    {
       "name": "SpecialCharacter"
     },
     {
@@ -219,11 +222,11 @@
     },
     {
       "name": "String",
-      "foreground": "DullRed"
+      "foreground": "Firebrick"
     },
     {
       "name": "StringCSharpVerbatim",
-      "foreground": "DullRed"
+      "foreground": "Firebrick"
     },
     {
       "name": "StringEscape",
@@ -256,7 +259,7 @@
     },
     {
       "name": "XmlComment",
-      "foreground": "Green"
+      "foreground": "LightGreen"
     },
     {
       "name": "XmlDelimiter",
@@ -272,7 +275,7 @@
     },
     {
       "name": "XmlName",
-      "foreground": "DullRed"
+      "foreground": "DarkRed"
     }
   ]
 }

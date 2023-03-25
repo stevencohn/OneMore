@@ -9,6 +9,8 @@ namespace River.OneMoreAddIn.Styles
 	using River.OneMoreAddIn.Settings;
 	using System;
 	using System.IO;
+	using System.Linq;
+	using System.Text.RegularExpressions;
 	using System.Xml.Linq;
 	using Resx = Properties.Resources;
 
@@ -98,7 +100,11 @@ namespace River.OneMoreAddIn.Styles
 
 			try
 			{
-				var root = XElement.Load(path);
+				var regex = new Regex(@"^\\s*//");
+				var lines = File.ReadAllLines(path)
+					.Where(line => !regex.IsMatch(line));
+
+				var root = XElement.Parse(string.Join(Environment.NewLine, lines));
 				if (root.Name.LocalName == "CustomStyles" ||
 					root.Name.LocalName == "Theme")
 				{
