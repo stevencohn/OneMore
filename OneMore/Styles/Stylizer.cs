@@ -217,7 +217,7 @@ namespace River.OneMoreAddIn.Styles
 			// clear T children of OE
 			element.Elements().Where(e => e.Name.LocalName == "T").ForEach(e =>
 			{
-				cleared |= Clear(e, clearing);
+				cleared |= Clear(e, clearing, false);
 			});
 
 			if (deep)

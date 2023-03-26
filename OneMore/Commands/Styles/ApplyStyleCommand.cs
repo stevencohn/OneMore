@@ -84,8 +84,6 @@ namespace River.OneMoreAddIn.Commands
 
 			foreach (var selection in selections)
 			{
-				bool empty = true;
-
 				if (selection.Parent.Nodes().Count() == 1)
 				{
 					// OE parent must have only this T
@@ -94,106 +92,105 @@ namespace River.OneMoreAddIn.Commands
 				}
 				else
 				{
-					// OE parent has multiple Ts so test if we need to merge them
-
-					//logger.WriteLine("selection.parent:" + (selection.Parent as XElement).ToString(SaveOptions.None));
-
-					var cdata = selection.GetCData();
-
-					// text cursor is positioned but selection length is 0
-					if (cdata.IsEmpty())
-					{
-						// inside a word, adjacent to a word, or somewhere in whitespace?
-
-						var prev = selection.PreviousNode as XElement;
-						if ((prev != null) && prev.GetCData().EndsWithWhitespace())
-						{
-							prev = null;
-						}
-
-						var next = selection.NextNode as XElement;
-						if ((next != null) && next.GetCData().StartsWithWhitespace())
-						{
-							next = null;
-						}
-
-						if ((prev != null) && (next != null))
-						{
-							empty = false;
-
-							// navigate to closest word
-
-							var word = new StringBuilder();
-
-							if (prev != null)
-							{
-								//logger.WriteLine("prev:" + prev.ToString(SaveOptions.None));
-
-								if (!prev.GetCData().EndsWithWhitespace())
-								{
-									// grab previous part of word
-									word.Append(prev.ExtractLastWord());
-									//logger.WriteLine("word with prev:" + word.ToString());
-									//logger.WriteLine("prev updated:" + prev.ToString(SaveOptions.None));
-									//logger.WriteLine("parent:" + (selection.Parent as XElement).ToString(SaveOptions.None));
-
-									if (prev.GetCData().Value.Length == 0)
-									{
-										prev.Remove();
-									}
-								}
-							}
-
-							if (next != null)
-							{
-								//logger.WriteLine("next:" + next.ToString(SaveOptions.None));
-
-								if (!next.GetCData().StartsWithWhitespace())
-								{
-									// grab following part of word
-									word.Append(next.ExtractFirstWord());
-									//logger.WriteLine("word with next:" + word.ToString());
-									//logger.WriteLine("next updated:" + next.ToString(SaveOptions.None));
-									//logger.WriteLine("parent:" + (selection.Parent as XElement).ToString(SaveOptions.None));
-
-									if (next.GetCData().Value.Length == 0)
-									{
-										next.Remove();
-									}
-								}
-							}
-
-							if (word.Length > 0)
-							{
-								selection.DescendantNodes().OfType<XCData>()
-									.First()
-									.ReplaceWith(new XCData(word.ToString()));
-
-								//logger.WriteLine("parent udpated:" + (selection.Parent as XElement).ToString(SaveOptions.None));
-							}
-							else
-							{
-								empty = true;
-							}
-
-							//logger.WriteLine("parent:" + (selection.Parent as XElement).ToString(SaveOptions.None));
-						}
-					}
-
-					if (empty)
-					{
-						stylizer.ApplyStyle(selection.GetCData());
-						//logger.WriteLine("final empty parent:" + (selection.Parent as XElement).ToString(SaveOptions.None));
-					}
-					else
-					{
-						stylizer.ApplyStyle(selection);
-						//logger.WriteLine("final parent:" + (selection.Parent as XElement).ToString(SaveOptions.None));
-					}
+					StylizeWords(selection);
 				}
 			}
 
 			return true;
+		}
+
+
+		private void StylizeWords(XElement selection)
+		{
+			// OE parent has multiple Ts so test if we need to merge them
+			//logger.WriteLine("selection.parent:" + selection.Parent.ToString(SaveOptions.None));
+
+			bool empty = true;
+
+			var cdata = selection.GetCData();
+
+			// text cursor is positioned but selection length is 0
+			if (cdata.IsEmpty())
+			{
+				// inside a word, adjacent to a word, or somewhere in whitespace?
+
+				var prev = selection.PreviousNode as XElement;
+				if ((prev != null) && prev.GetCData().EndsWithWhitespace())
+				{
+					prev = null;
+				}
+
+				var next = selection.NextNode as XElement;
+				if ((next != null) && next.GetCData().StartsWithWhitespace())
+				{
+					next = null;
+				}
+
+				if ((prev != null) && (next != null))
+				{
+					empty = false;
+
+					// navigate to closest word
+
+					var word = new StringBuilder();
+
+					//logger.WriteLine("prev:" + prev.ToString(SaveOptions.None));
+					if (!prev.GetCData().EndsWithWhitespace())
+					{
+						// grab previous part of word
+						word.Append(prev.ExtractLastWord());
+						//logger.WriteLine("word with prev:" + word.ToString());
+						//logger.WriteLine("prev updated:" + prev.ToString(SaveOptions.None));
+						//logger.WriteLine("parent:" + selection.Parent.ToString(SaveOptions.None));
+
+						if (prev.GetCData().Value.Length == 0)
+						{
+							prev.Remove();
+						}
+					}
+
+					//logger.WriteLine("next:" + next.ToString(SaveOptions.None));
+					if (!next.GetCData().StartsWithWhitespace())
+					{
+						// grab following part of word
+						word.Append(next.ExtractFirstWord());
+						//logger.WriteLine("word with next:" + word.ToString());
+						//logger.WriteLine("next updated:" + next.ToString(SaveOptions.None));
+						//logger.WriteLine("parent:" + selection.Parent.ToString(SaveOptions.None));
+
+						if (next.GetCData().Value.Length == 0)
+						{
+							next.Remove();
+						}
+					}
+
+					if (word.Length > 0)
+					{
+						selection.DescendantNodes().OfType<XCData>()
+							.First()
+							.ReplaceWith(new XCData(word.ToString()));
+
+						//logger.WriteLine("parent udpated:" + selection.Parent.ToString(SaveOptions.None));
+					}
+					else
+					{
+						empty = true;
+					}
+
+					//logger.WriteLine("parent:" + selection.Parent.ToString(SaveOptions.None));
+				}
+			}
+
+			if (empty)
+			{
+				stylizer.ApplyStyle(selection.GetCData());
+				//logger.WriteLine("final empty parent:" + selection.Parent.ToString(SaveOptions.None));
+			}
+			else
+			{
+				stylizer.ApplyStyle(selection);
+				//logger.WriteLine("final parent:" + selection.Parent.ToString(SaveOptions.None));
+			}
 		}
 
 
