@@ -26,6 +26,7 @@ namespace River.OneMoreAddIn.Commands
 	internal partial class ShowXmlDialog : LocalizableForm
 	{
 		private int findIndex = -1;
+		private bool ready = false;
 
 
 		public ShowXmlDialog()
@@ -123,6 +124,9 @@ namespace River.OneMoreAddIn.Commands
 
 			if (Left < 0 || Left > Screen.PrimaryScreen.WorkingArea.Width) Left = 0;
 			if (Top < 0 || Top > Screen.PrimaryScreen.WorkingArea.Height) Top = 0;
+
+			ready = true;
+			RefreshPage(null, EventArgs.Empty);
 		}
 
 
@@ -319,6 +323,11 @@ namespace River.OneMoreAddIn.Commands
 
 		private void RefreshPage(object sender, EventArgs e)
 		{
+			if (!ready)
+			{
+				return;
+			}
+
 			if (!Enum.TryParse<OneNote.PageDetail>(scopeBox.Text, out var scope))
 			{
 				// should never happen!
@@ -340,9 +349,46 @@ namespace River.OneMoreAddIn.Commands
 			pageBox.Clear();
 			pageBox.Text = xml;
 
-			Colorize(pageBox, !hideEditedByBox.Checked);
+			var start = Colorize(pageBox, !hideEditedByBox.Checked);
+
+			ScrollToCenter(pageBox, start);
 
 			logger.WriteLine($"XmlDialog loaded page, scope {scope}, {xml.Length} chars");
+		}
+
+
+		private void ScrollToCenter(RichTextBox box, int offset)
+		{
+			// currently visible top and bottom line indexes
+			var topLine = box.GetLineFromCharIndex(box.GetCharIndexFromPosition(new Point(1, 1)));
+			var botLine = box.GetLineFromCharIndex(box.GetCharIndexFromPosition(new Point(1, box.Height - 1)));
+			// calculate view height in lines and what the middle line should be
+			var visLines = botLine - topLine + 2;
+			var midLine = visLines / 2;
+
+			// the current line
+			var line = box.GetLineFromCharIndex(offset);
+
+			// only scroll if the line to scroll-to, is larger than the 
+			// the number of lines that can be displayed at once.
+			if (line > visLines)
+			{
+				if (line > box.Lines.Length - midLine)
+				{
+					// recalculate top of page so we don't end up with blank whitespace below
+					box.Select(box.GetFirstCharIndexFromLine(box.Lines.Length - visLines + 3), 0);
+					box.ScrollToCaret();
+				}
+				else
+				{
+					// locate line at center of page
+					box.Select(box.GetFirstCharIndexFromLine(line - midLine), 0);
+					box.ScrollToCaret();
+				}
+
+				// reset selection to offset
+				box.Select(offset, 0);
+			}
 		}
 
 
@@ -460,8 +506,10 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private void Colorize(RichTextBox box, bool editedBy)
+		private int Colorize(RichTextBox box, bool editedBy)
 		{
+			var selectionStart = -1;
+
 			var matches = Regex.Matches(box.Text,
 				@"<((?:[a-zA-Z][a-zA-Z0-9]*?:)?[a-zA-Z][a-zA-Z0-9]*?)[^>]+selected=""all""[^\1]*?\1>");
 
@@ -470,6 +518,12 @@ namespace River.OneMoreAddIn.Commands
 				box.SelectionStart = match.Index;
 				box.SelectionLength = match.Length;
 				box.SelectionBackColor = Color.Yellow;
+
+				if (selectionStart < 0)
+				{
+					// mark first selection so we can scroll there
+					selectionStart = match.Index;
+				}
 			}
 
 			if (editedBy)
@@ -525,6 +579,8 @@ namespace River.OneMoreAddIn.Commands
 					box.SelectionColor = Color.Maroon;
 				}
 			}
+
+			return selectionStart < 0 ? 0 : selectionStart;
 		}
 
 
