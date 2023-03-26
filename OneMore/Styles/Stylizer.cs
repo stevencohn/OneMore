@@ -214,12 +214,19 @@ namespace River.OneMoreAddIn.Styles
 				}
 			}
 
-			if (deep && element.HasElements)
+			// clear T children of OE
+			element.Elements().Where(e => e.Name.LocalName == "T").ForEach(e =>
 			{
-				foreach (var child in element.Elements())
+				cleared |= Clear(e, clearing);
+			});
+
+			if (deep)
+			{
+				// clear OEChildren children of OE
+				element.Elements().Where(e => e.Name.LocalName != "T").ForEach(e =>
 				{
-					cleared |= Clear(child, clearing);
-				}
+					cleared |= Clear(e, clearing);
+				});
 			}
 
 			// CData...
