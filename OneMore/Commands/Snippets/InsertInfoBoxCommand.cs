@@ -6,6 +6,7 @@ namespace River.OneMoreAddIn.Commands
 {
 	using Newtonsoft.Json.Linq;
 	using River.OneMoreAddIn.Models;
+	using River.OneMoreAddIn.Styles;
 	using System.Linq;
 	using System.Threading.Tasks;
 	using System.Xml.Linq;
@@ -68,7 +69,7 @@ namespace River.OneMoreAddIn.Commands
 			else
 			{
 				content = page.ExtractSelectedContent(out anchor);
-				
+
 				content.Descendants().Attributes()
 					.Where(a => a.Name == "selected")
 					.Remove();
@@ -89,6 +90,7 @@ namespace River.OneMoreAddIn.Commands
 				new XElement(ns + "OE",
 					new XAttribute("alignment", "center"),
 					new XAttribute("style", symbolStyle),
+					new Meta(ns, Style.HintMeta, "skip"),
 					new XElement(ns + "T",
 						new XCData($"<span style='font-weight:bold'>{symbol}</span>"))
 				));

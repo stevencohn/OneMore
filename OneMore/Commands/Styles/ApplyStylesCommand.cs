@@ -226,10 +226,19 @@ namespace River.OneMoreAddIn.Commands
 		private void ClearInlineStyles(string index, bool paragraph)
 		{
 			var elements = page.Root.Descendants()
-				.Where(e => e.Attribute("quickStyleIndex")?.Value == index &&
-					!e.Elements(ns + "Meta")
-						.Any(a => a.Attribute("name").Value.StartsWith("omfootnote"))
-					);
+				.Where(e => e.Attribute("quickStyleIndex")?.Value == index)
+				.Select(e => new
+				{
+					Element = e,
+					Meta = e.Element(ns + "Meta")
+				})
+				.Where(o =>
+					o.Meta == null ||
+					// filter out omfootnote paragraphs
+					!(o.Meta.Attribute("name").Value.StartsWith("omfootnote") ||
+					// filter out omStyleHint=skip paragraphs; use in InfoBox symbol cells
+					(o.Meta.Attribute("name").Value == Style.HintMeta && o.Meta.Attribute("content").Value == "skip")))
+				.Select(o => o.Element);
 
 			if (elements != null)
 			{
