@@ -325,6 +325,7 @@ namespace River.OneMoreAddIn.Commands
 		{
 			if (!ready)
 			{
+				// prevent initial load on editMode change event before window size is set
 				return;
 			}
 
@@ -346,12 +347,14 @@ namespace River.OneMoreAddIn.Commands
 				page.Root.ToString(SaveOptions.None),
 				hideEditedByBox.Checked, multilineBox.Checked, linefeedBox.Checked);
 
+			pageBox.SuspendLayout();
 			pageBox.Clear();
 			pageBox.Text = xml;
 
 			var start = Colorize(pageBox, !hideEditedByBox.Checked);
 
 			ScrollToCenter(pageBox, start);
+			pageBox.ResumeLayout();
 
 			logger.WriteLine($"XmlDialog loaded page, scope {scope}, {xml.Length} chars");
 		}
@@ -359,30 +362,31 @@ namespace River.OneMoreAddIn.Commands
 
 		private void ScrollToCenter(RichTextBox box, int offset)
 		{
-			// currently visible top and bottom line indexes
-			var topLine = box.GetLineFromCharIndex(box.GetCharIndexFromPosition(new Point(1, 1)));
-			var botLine = box.GetLineFromCharIndex(box.GetCharIndexFromPosition(new Point(1, box.Height - 1)));
-			// calculate view height in lines and what the middle line should be
-			var visLines = botLine - topLine + 2;
-			var midLine = visLines / 2;
+			// calculate visible lines on page based on size of box
+			var visibleLines =
+				box.GetLineFromCharIndex(box.GetCharIndexFromPosition(new Point(1, box.Height - 1))) -
+				box.GetLineFromCharIndex(box.GetCharIndexFromPosition(new Point(1, 1))) + 2;
+
+			// calculate what middle line should be based on size of box
+			var middleLine = visibleLines / 2;
 
 			// the current line
 			var line = box.GetLineFromCharIndex(offset);
 
 			// only scroll if the line to scroll-to, is larger than the 
 			// the number of lines that can be displayed at once.
-			if (line > visLines)
+			if (line > visibleLines)
 			{
-				if (line > box.Lines.Length - midLine)
+				if (line > box.Lines.Length - middleLine)
 				{
 					// recalculate top of page so we don't end up with blank whitespace below
-					box.Select(box.GetFirstCharIndexFromLine(box.Lines.Length - visLines + 3), 0);
+					box.Select(box.GetFirstCharIndexFromLine(box.Lines.Length - visibleLines + 3), 0);
 					box.ScrollToCaret();
 				}
 				else
 				{
 					// locate line at center of page
-					box.Select(box.GetFirstCharIndexFromLine(line - midLine), 0);
+					box.Select(box.GetFirstCharIndexFromLine(line - middleLine), 0);
 					box.ScrollToCaret();
 				}
 
