@@ -19,6 +19,8 @@ namespace River.OneMoreAddIn.Styles
 	/// </summary>
 	public class Style : StyleBase
 	{
+		public const string HintMeta = "omStyleHint";
+
 
 		/// <summary>
 		/// Initialize a new instance; for creating new custom styles
