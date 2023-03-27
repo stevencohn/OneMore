@@ -156,7 +156,7 @@ Begin
         else
         {
             $script:root = Get-Location
-            $script:addin = Join-Path $root 'OneMore\bin\x86\Debug\River.OneMoreAddIn.dll'
+            $script:addin = Join-Path $root 'OneMore\bin\x64\Debug\River.OneMoreAddIn.dll'
             $script:proto = Join-Path $root 'OneMoreProtocolHandler\bin\Debug\OneMoreProtocolHandler.exe'
             if (!(Test-Path $addin))
             {
