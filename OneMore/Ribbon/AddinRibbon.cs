@@ -613,6 +613,30 @@ namespace River.OneMoreAddIn
 		}
 
 
+		public IStream GetSnippetImage(IRibbonControl control)
+		{
+#if LOG_AddInRibbon
+			logger.WriteLine($"GetSnippetImage({control.Id})");
+#endif
+			IStream stream = null;
+			try
+			{
+				if (Resx.ResourceManager.GetObject(control.Id) is Bitmap res)
+				{
+					stream = res.GetReadOnlyStream();
+					trash.Add((IDisposable)stream);
+					return stream;
+				}
+			}
+			catch (Exception exc)
+			{
+				logger.WriteLine(exc);
+			}
+
+			return stream;
+		}
+
+
 		/// <summary>
 		/// Not used? getContent="GetItemContent", per item
 		/// </summary>

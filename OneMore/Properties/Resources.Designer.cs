@@ -7105,6 +7105,16 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap ribInsertNoteBoxButton {
+            get {
+                object obj = ResourceManager.GetObject("ribInsertNoteBoxButton", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Notes box.
         /// </summary>
         internal static string ribInsertNoteBoxButton_Label {
@@ -7227,6 +7237,16 @@ namespace River.OneMoreAddIn.Properties {
         internal static string ribInsertTocButton_Screentip {
             get {
                 return ResourceManager.GetString("ribInsertTocButton_Screentip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap ribInsertWarnBoxButton {
+            get {
+                object obj = ResourceManager.GetObject("ribInsertWarnBoxButton", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
         

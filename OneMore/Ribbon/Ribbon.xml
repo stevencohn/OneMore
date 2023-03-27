@@ -143,13 +143,13 @@
               onAction="InsertInfoBoxCmd"/>
             <button
               id="ribInsertNoteBoxButton"
-              imageMso="GroupWorkbookViews"
+              getImage="GetSnippetImage"
               getLabel="GetRibbonLabel"
               getScreentip="GetRibbonScreentip"
               onAction="InsertNoteBoxCmd"/>
             <button
               id="ribInsertWarnBoxButton"
-              imageMso="HighImportance"
+              getImage="GetSnippetImage"
               getLabel="GetRibbonLabel"
               getScreentip="GetRibbonScreentip"
               onAction="InsertWarnBoxCmd"/>

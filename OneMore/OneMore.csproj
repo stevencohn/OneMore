@@ -231,6 +231,11 @@
     <Compile Include="Models\KnownSchemaAttributes.cs" />
     <Compile Include="Models\PageReader.cs" />
     <Compile Include="AddInHotkeys.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="Ribbon\AddInRibbon.cs" />
     <Compile Include="Ribbon\AddInRibbonStyleGallery.cs" />
     <Compile Include="Colorizer\Colorizer.cs" />
@@ -943,11 +948,6 @@
     <Compile Include="Styles\StyleBase.cs" />
     <Compile Include="Styles\StyleRecord.cs" />
     <Compile Include="Styles\StyleType.cs" />
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
     <Compile Include="Commands\Favorites\FavoritesProvider.cs" />
     <Compile Include="Helpers\Logger.cs" />
     <Compile Include="Helpers\ReadOnlyStream.cs" />
@@ -1196,6 +1196,8 @@
     <Content Include="Properties\Resources.zh-CN-hints.xml" />
     <None Include="Commands\Snippets\InfoBoxThemes.json" />
     <None Include="Ribbon\DefaultTableThemes.json" />
+    <Content Include="Ribbon\Images\ribInsertNoteBoxButton.png" />
+    <Content Include="Ribbon\Images\ribInsertWarnBoxButton.png" />
     <Content Include="UI\TagMap.png" />
     <Content Include="Properties\Images\TextHighlightColorPicker.png" />
     <Content Include="Properties\Images\Underline.png" />
