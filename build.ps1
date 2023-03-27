@@ -182,10 +182,10 @@ Begin
 
         # restore...
 
-        $cmd = 'nuget restore .\OneMore\OneMore.csproj'
+        $cmd = 'nuget restore .\OneMore.csproj'
         write-Host $cmd -ForegroundColor DarkGray
 
-        nuget restore .\OneMore\OneMore.csproj
+        nuget restore .\OneMore.csproj
 
         # build...
 
