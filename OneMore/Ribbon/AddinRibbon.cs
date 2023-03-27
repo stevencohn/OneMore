@@ -587,6 +587,31 @@ namespace River.OneMoreAddIn
 			return null;
 		}
 
+		public IStream GetRibbonImageByID(IRibbonControl control)
+		{
+#if LOG_AddInRibbon
+			logger.WriteLine($"GetRibbonImageByID({control.Id})");
+#endif
+			IStream stream = null;
+			try
+			{
+				if (Resx.ResourceManager.GetObject(control.Id) is Bitmap res)
+				{
+					stream = res.GetReadOnlyStream();
+					trash.Add((IDisposable)stream);
+					return stream;
+				}
+			}
+			catch (Exception exc)
+			{
+				logger.WriteLine(exc);
+			}
+
+			return stream;
+		}
+
+
+
 
 		/*
 		 * Note, while very similar to GetRibbonImage, this is called when the OneNote opens and
@@ -603,30 +628,6 @@ namespace River.OneMoreAddIn
 			{
 				stream = Resx.Logo.GetReadOnlyStream();
 				trash.Add((IDisposable)stream);
-			}
-			catch (Exception exc)
-			{
-				logger.WriteLine(exc);
-			}
-
-			return stream;
-		}
-
-
-		public IStream GetSnippetImage(IRibbonControl control)
-		{
-#if LOG_AddInRibbon
-			logger.WriteLine($"GetSnippetImage({control.Id})");
-#endif
-			IStream stream = null;
-			try
-			{
-				if (Resx.ResourceManager.GetObject(control.Id) is Bitmap res)
-				{
-					stream = res.GetReadOnlyStream();
-					trash.Add((IDisposable)stream);
-					return stream;
-				}
 			}
 			catch (Exception exc)
 			{

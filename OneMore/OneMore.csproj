@@ -1198,6 +1198,7 @@
     <None Include="Ribbon\DefaultTableThemes.json" />
     <Content Include="Ribbon\Images\ribInsertNoteBoxButton.png" />
     <Content Include="Ribbon\Images\ribInsertWarnBoxButton.png" />
+    <Content Include="Ribbon\Images\ribNavigatorButton.png" />
     <Content Include="UI\TagMap.png" />
     <Content Include="Properties\Images\TextHighlightColorPicker.png" />
     <Content Include="Properties\Images\Underline.png" />

@@ -143,13 +143,13 @@
               onAction="InsertInfoBoxCmd"/>
             <button
               id="ribInsertNoteBoxButton"
-              getImage="GetSnippetImage"
+              getImage="GetRibbonImageByID"
               getLabel="GetRibbonLabel"
               getScreentip="GetRibbonScreentip"
               onAction="InsertNoteBoxCmd"/>
             <button
               id="ribInsertWarnBoxButton"
-              getImage="GetSnippetImage"
+              getImage="GetRibbonImageByID"
               getLabel="GetRibbonLabel"
               getScreentip="GetRibbonScreentip"
               onAction="InsertWarnBoxCmd"/>
@@ -862,7 +862,7 @@
               onAction="CommandPaletteCmd"/>
             <button
               id="ribNavigatorButton"
-              imageMso="RmsNavigationBar"
+              getImage="GetRibbonImageByID"
               getLabel="GetRibbonLabel"
               getScreentip="GetRibbonScreentip"
               onAction="NavigatorCmd"/>
