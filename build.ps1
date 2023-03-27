@@ -45,6 +45,7 @@ Begin
         $0 = 'C:\Program Files (x86)\Microsoft Visual Studio\2019'
         return FindVS $0
     }
+
     function FindVS
     {
         param($vsroot)
@@ -98,8 +99,9 @@ Begin
         Remove-Item .\vdproj.tmp -Force
     }
 
-    function Configure ([int]$bitness)
+    function Configure
     {
+        param([int]$bitness)
         $lines = @(Get-Content $vdproj)
 
         $productVersion = $lines | `
@@ -168,6 +170,7 @@ Begin
 
     function BuildFast
     {
+        param([int]$bitness)
         Write-Host "... building x$bitness DLLs" -ForegroundColor Yellow
         Push-Location OneMore
 
@@ -194,8 +197,9 @@ Begin
         Pop-Location
     }
 
-    function Build ([int]$bitness)
+    function Build
     {
+        param([int]$bitness)
         Write-Host "... building x$bitness MSI" -ForegroundColor Yellow
 
         # output file cannot exist before build
@@ -230,7 +234,7 @@ Process
 
     if ($fast)
     {
-        BuildFast
+        BuildFast 64
     }
     else
     {
