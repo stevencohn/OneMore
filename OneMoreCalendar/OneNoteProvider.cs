@@ -5,6 +5,7 @@
 namespace OneMoreCalendar
 {
 	using River.OneMoreAddIn;
+	using River.OneMoreAddIn.Models;
 	using System;
 	using System.Collections.Generic;
 	using System.IO;
@@ -89,7 +90,9 @@ namespace OneMoreCalendar
 					Title = a.Page.Attribute("name").Value,
 					Created = a.Created,
 					Modified = a.Modified,
-					IsDeleted = a.IsDeleted
+					IsDeleted = a.IsDeleted,
+					HasReminders = a.Page.Elements(ns + "Meta")
+						.Any(e => e.Attribute("name").Value == MetaNames.Reminder)
 				}));
 
 			pages.ForEach(page =>
