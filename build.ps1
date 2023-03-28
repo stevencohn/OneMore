@@ -188,13 +188,20 @@ Begin
         nuget restore .\OneMore.csproj
 
         # build...
-
-        $cmd = "$devenv .\OneMore.csproj /build ""Debug|AnyCPU"" /project OneMore /projectconfig Debug"
-        write-Host $cmd -ForegroundColor DarkGray
-
-        . $devenv .\OneMore.csproj /build "Debug|AnyCPU" /project OneMore /projectconfig Debug
-
+        BuildComponent 'OneMore'
         Pop-Location
+
+        Push-Location OneMoreProtocolHandler
+        BuildComponent 'OneMoreProtocolHandler'
+        Pop-Location
+    }
+
+    function BuildComponent
+    {
+        param($name)
+        $cmd = "$devenv .\$name.csproj /build ""Debug|AnyCPU"" /project $name /projectconfig Debug"
+        write-Host $cmd -ForegroundColor DarkGray
+        . $devenv .\$name.csproj /build "Debug|AnyCPU" /project $name /projectconfig Debug
     }
 
     function Build
