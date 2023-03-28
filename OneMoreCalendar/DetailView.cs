@@ -24,6 +24,7 @@ namespace OneMoreCalendar
 
 
 		private const int HeadWidth = 170; // day
+		private const int BellWidth = 40;  // reminders
 		private const int PathWidth = 250; // path
 		private const int DateWidth = 170; // created, modified
 		private const int VPadding = 6;
@@ -121,7 +122,12 @@ namespace OneMoreCalendar
 
 			e.Graphics.DrawString("DATE", font, brush, (HeadWidth - size.Width) / 2, y);
 			e.Graphics.DrawString("SECTION", font, brush, HeadWidth + 20, y);
-			e.Graphics.DrawString("PAGE", font, brush, HeadWidth + PathWidth + 40, y);
+
+			using var gray = Properties.Resources.Reminder_01_24_Y.ToGrayscale();
+			e.Graphics.DrawImage(gray,
+				HeadWidth + PathWidth + 40 + (BellWidth - 15), y + 3, 12f, 12f);
+
+			e.Graphics.DrawString("PAGE", font, brush, HeadWidth + PathWidth + BellWidth + 60, y);
 			e.Graphics.DrawString("CREATED", font, brush, width - DateWidth * 2, y);
 			e.Graphics.DrawString("MODIFIED", font, brush, width - DateWidth, y);
 		}
@@ -188,9 +194,16 @@ namespace OneMoreCalendar
 					e.Graphics.DrawString(page.Path,
 						listbox.Font, color, HeadWidth + 20, top, format);
 
+					// reminder
+					if (page.HasReminders)
+					{
+						e.Graphics.DrawImage(Properties.Resources.Reminder_01_24_Y,
+							HeadWidth + PathWidth + 40 + (BellWidth - 15), top + 3, 12f, 12f);
+					}
+
 					// title
 					var bounds = new Rectangle(
-						HeadWidth + PathWidth + 40, top, (int)size.Width + 2, (int)size.Height);
+						HeadWidth + PathWidth + BellWidth + 60, top, (int)size.Width + 2, (int)size.Height);
 
 					e.Graphics.DrawString(page.Title,
 						page.IsDeleted ? deletedFont : listbox.Font,

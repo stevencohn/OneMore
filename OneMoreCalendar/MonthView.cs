@@ -457,10 +457,18 @@ namespace OneMoreCalendar
 					? box.Width - moreSize.Width
 					: box.Width;
 
+				var left = box.Left;
+				var top = box.Top + (Font.Height * t);
+				if (page.HasReminders)
+				{
+					width -= 14;
+					left += 14;
+					g.DrawImage(Properties.Resources.Reminder_01_24_Y,
+						box.Left, top + 3, 12f, 12f);
+				}
+
 				// max length of string with ellipses
-				var clip = new Rectangle(
-					box.Left, box.Top + (Font.Height * t),
-					width, Font.Height);
+				var clip = new Rectangle(left, top, width, Font.Height);
 
 				var font = page.IsDeleted ? deletedFont : Font;
 				using var brush = new SolidBrush(page.IsDeleted || day.InMonth 

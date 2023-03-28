@@ -68,6 +68,7 @@ namespace OneMoreCalendar.Properties {
         ///    &quot;ForeColor&quot;: &quot;#E6E6E6&quot;,
         ///    &quot;Border&quot;: &quot;DarkOrchid&quot;,
         ///    &quot;Control&quot;: &quot;MediumOrchid&quot;,
+        ///    &quot;IconColor&quot;: &quot;MediumOrchid&quot;,
         ///    &quot;Highlight&quot;: &quot;#D2A1DF&quot;,
         ///    &quot;ButtonBack&quot;: &quot;#363636&quot;,
         ///    &quot;ButtonFore&quot;: &quot;#E6E6E6&quot;,
@@ -78,8 +79,7 @@ namespace OneMoreCalendar.Properties {
         ///    &quot;ButtonPressBorder&quot;: &quot;DarkOrchid&quot;,
         ///    &quot;LinkColor&quot;: &quot;MediumOrchid&quot;,
         ///    &quot;HoverColor&quot;: &quot;Orchid&quot;,
-        ///    &quot;MonthHeader&quot;: &quot;#383838&quot;,
-        ///    [rest of string was truncated]&quot;;.
+        /// [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string DarkTheme {
             get {
@@ -105,6 +105,7 @@ namespace OneMoreCalendar.Properties {
         ///    &quot;ForeColor&quot;: &quot;Black&quot;,
         ///    &quot;Border&quot;: &quot;#D2A1DF&quot;,
         ///    &quot;Control&quot;: &quot;#73356E&quot;,
+        ///    &quot;IconColor&quot;: &quot;#80397B&quot;,
         ///    &quot;Highlight&quot;: &quot;#BC58B6&quot;,
         ///    &quot;ButtonBack&quot;: &quot;#F7EDF7&quot;,
         ///    &quot;ButtonFore&quot;: &quot;#73356E&quot;,
@@ -115,8 +116,7 @@ namespace OneMoreCalendar.Properties {
         ///    &quot;ButtonPressBorder&quot;: &quot;#9E5499&quot;,
         ///    &quot;LinkColor&quot;: &quot;#73356E&quot;,
         ///    &quot;HoverColor&quot;: &quot;MediumOrchid&quot;,
-        ///    &quot;MonthHeader&quot;: &quot;Control&quot;,
-        ///    &quot;MonthPri [rest of string was truncated]&quot;;.
+        ///    &quot;MonthHeade [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string LightTheme {
             get {
@@ -130,6 +130,16 @@ namespace OneMoreCalendar.Properties {
         internal static System.Drawing.Bitmap month_32 {
             get {
                 object obj = ResourceManager.GetObject("month_32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Reminder_01_24_Y {
+            get {
+                object obj = ResourceManager.GetObject("Reminder_01_24_Y", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

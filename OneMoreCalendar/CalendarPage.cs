@@ -39,5 +39,8 @@ namespace OneMoreCalendar
 
 
 		public Rectangle Bounds { get; set; } = Rectangle.Empty;
+
+
+		public bool HasReminders { get; set; }
 	}
 }
