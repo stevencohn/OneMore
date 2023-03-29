@@ -1,0 +1,116 @@
+﻿<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>OneMore</title>
+  <link href="/nav.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+  <link href="/toc.css" rel="stylesheet" crossorigin="anonymous">
+  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+    crossorigin="anonymous"></script>
+  <script src="/helpers.js"></script>
+  <script type="text/javascript">
+    $(document).ready(function () {
+      $('#nav-container').load('/nav.htm', function() { HighlightActive('commands'); });
+      $('#toc-container').load('toc.htm', function() { HighlightActive('reference-commands'); });
+    });
+  </script>
+</head>
+
+<body>
+  <div id="nav-container" class="sticky-top"></div>
+  <div id="toc-container" class="sidenav"></div>
+  <div class="main">
+    <div class="container-xxl bd-gutter mt-3 my-md-4 bd-layout tab-content" id="content">
+      <div class="container-xxl bd-gutter mt-3 my-md-4 bd-layout">
+        <div id="main-content">
+          <DIV style="DIRECTION: ltr">
+<DIV style="WIDTH: 8.437in; MARGIN-TOP: 0in; DIRECTION: ltr; MARGIN-LEFT: 0in">
+<DIV style="WIDTH: 2.995in; MARGIN-TOP: 0in; DIRECTION: ltr; MARGIN-LEFT: 0in">
+<P lang=yo style='FONT-SIZE: 20pt; FONT-FAMILY: "Calibri Light"; MARGIN: 0in'>Reference Commands</P></DIV>
+<DIV style="WIDTH: 2.477in; MARGIN-TOP: 0.042in; DIRECTION: ltr; MARGIN-LEFT: 0in">
+<P style="FONT-SIZE: 10pt; FONT-FAMILY: Calibri; COLOR: #767676; MARGIN: 0in">Monday, February 20, 2023</P>
+<P style="FONT-SIZE: 10pt; FONT-FAMILY: Calibri; COLOR: #767676; MARGIN: 0in">7:46 AM</P></DIV>
+<DIV style="WIDTH: 8.437in; MARGIN-TOP: 0.427in; DIRECTION: ltr; MARGIN-LEFT: 0in">
+<H1 lang=yo style="FONT-SIZE: 16pt; FONT-FAMILY: Calibri; COLOR: #1e4e79; MARGIN: 0in">Bi-Directional Linking</H1>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">Create a bi-directional link between two selected words or phrases, either across pages or on the same page. This makes it easy to navigate back and forth between two points in your content. This is invoked as two commands, the first to mark the first word or phrase and the second to select and create the link with the second words or phrase.</P>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
+<H2 lang=yo style="FONT-SIZE: 14pt; FONT-FAMILY: Calibri; COLOR: #2e75b5; MARGIN: 0in">Start Bidirectional Link</H2>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">Select a word or phrase in a one paragraph as an anchor point and run Start Bidirectional Link. Complete the linking by running the Finish Bidirectional Link command.</P>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
+<H2 lang=yo style="FONT-SIZE: 14pt; FONT-FAMILY: Calibri; COLOR: #2e75b5; MARGIN: 0in">Finish Bidirectional Link</H2>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">Once an anchor is set using the Start Bidirectional Link command, select a second word or phrase within a different paragraph on the same page or a within a paragraph on a different page and run Finish Bidirectional Link. The anchor phrase is hyperlinked to the final phrase and vice versa.</P>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
+<H2 lang=yo style="FONT-SIZE: 14pt; FONT-FAMILY: Calibri; COLOR: #2e75b5; MARGIN: 0in">Link References To This Page</H2>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">This is an automated approach to bidirectional linking based on the title of a page. It discovers all mentions of the title of the current page on other pages and creates bi-directional reference links between the two. Also, a&nbsp;Linked References&nbsp;index is appended to this page with links back to all referring pages. If the current page title is prefaced with emojis or has a date prefix of the form yyyy-mm-dd then those parts are ignored and the remainder of the title is used to search for back references.</P>
+<P lang=yo style="FONT-SIZE: 12pt; MARGIN-BOTTOM: 12pt; FONT-FAMILY: -apple-system; MARGIN-TOP: 0pt">Clicking the [Refresh] link next to the&nbsp;<SPAN style="FONT-STYLE: italic">Linked References</SPAN>&nbsp;index will rescan pages and rebuild the paragraph.</P>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">This uses the built-in OneNote search engine. This engine is notoriously inaccurate. If you know there are pages that reference this page but they are not included in the&nbsp;<SPAN style="FONT-STYLE: italic">Linked References</SPAN>&nbsp;index then consider either using the&nbsp;Include unindexed pages&nbsp;options or&nbsp;<A href="https://github.com/stevencohn/OneMore/wiki/Troubleshooting#search-is-flaky">rebuilding the Windows Search index or deleting the OneNote cache</A>.</P>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
+<H2 lang=yo style="FONT-SIZE: 14pt; FONT-FAMILY: Calibri; COLOR: #2e75b5; MARGIN: 0in">Refresh Page References</H2>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">After changing the name of a page that is referenced by other pages, this command will update the hyperlinked text on those referring pages with the new title of the current page. See the note above about the OneNote search engine.</P>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
+<H2 lang=yo style="FONT-SIZE: 14pt; FONT-FAMILY: Calibri; COLOR: #2e75b5; MARGIN: 0in">Footnotes</H2>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">Footnote are limited to on-page references. OneMore keeps track of footnotes and will automatically reorder them to keep them numbered sequentially from the top of the page. If you delete a footnote, it again will renumber the remaining footnotes so there are no numbering gaps.</P>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
+<H2 lang=yo style="FONT-SIZE: 14pt; FONT-FAMILY: Calibri; COLOR: #2e75b5; MARGIN: 0in">Add Footnote</H2>
+<P><CITE lang=yo style="FONT-SIZE: 9pt; FONT-FAMILY: Calibri; COLOR: #595959; MARGIN: 0in">Default shortcut is Ctrl + Alt + F</CITE></P>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">You can add a footnote anywhere on the page and a reference label is inserted at the current cursor location and a footnote is added to the bottom of the page. You can then edit the text in that footnote to your heart's desire. Text colors are based on the page background color.</P>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
+<P style="MARGIN: 0in 0in 0in 0.375in"><IMG alt=Footnotes src="Reference%20Commands_files/image001.png" width=480 height=136></P>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">Note that footnotes are hyperlinked so you jump from the content body down to the text of a footnote or back up again to the content that references a particular footnote.</P>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">Note also that you cannot use hard carriage returns within the text of a footnote (Enter). Instead, use soft carriage returns (Shift+Enter) to insert line breaks and empty lines.</P>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
+<H2 lang=yo style="FONT-SIZE: 14pt; FONT-FAMILY: Calibri; COLOR: #2e75b5; MARGIN: 0in">Refresh Footnotes</H2>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">Refreshes all footnote references on the page so their numbers are sequential on the page. This is useful when moving content up or down the page.</P>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
+<H2 lang=yo style="FONT-SIZE: 14pt; FONT-FAMILY: Calibri; COLOR: #2e75b5; MARGIN: 0in">Remove Footnote</H2>
+<P><CITE lang=yo style="FONT-SIZE: 9pt; FONT-FAMILY: Calibri; COLOR: #595959; MARGIN: 0in">Default shortcut is Ctrl + Shift + F</CITE></P>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">And if you no longer want a footnote, place the cursor over the label or over the footnote text at the bottom of the page and click the&nbsp;Remove footnote&nbsp;command. Voila!</P>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
+<H1 lang=yo style="FONT-SIZE: 16pt; FONT-FAMILY: Calibri; COLOR: #1e4e79; MARGIN: 0in">Additional Reference Commands</H1>
+<H2 lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; COLOR: #2e75b5; MARGIN: 0in">&nbsp;</H2>
+<H2 lang=yo style="FONT-SIZE: 14pt; FONT-FAMILY: Calibri; COLOR: #2e75b5; MARGIN: 0in">Create Page Map</H2>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">Generates a report showing all pages that contain links to other pages. This can be scope to the current section, current notebook, or all notebooks. The report is produced as a new page in the current section.</P>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">By default, links are scanned within the chosen scope, e.g. just the current section. If you want to include links beyond the current scope, check the&nbsp;Include cross-notebook references&nbsp;checkbox. Depending on the number of pages and notebooks, this can be time consuming.</P>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
+<H2 lang=yo style="FONT-SIZE: 14pt; FONT-FAMILY: Calibri; COLOR: #2e75b5; MARGIN: 0in">Embed Page and Update Embedded Pages</H2>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">There are time when you have a snippet of content that you want to repeat on other pages. The&nbsp;<SPAN style="FONT-STYLE: italic">Embed Page</SPAN>&nbsp;command embeds the contents of a selected page into the current page at the cursor location. The embedded content is wrapped in a single-cell table with a visible border to indicate that it is embedded content. Click the [Refresh] link in the upper right of the table cell to refresh the embedded contents and synchronize with any changes from the source page.</P>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">Note that this will only embed the first outline on the page; outlines are the boxes that appear and let you move content around the page. If you have a large and complex page with multiple outlines, it would be better to simply link to that page rather than embed its contents.</P>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">The&nbsp;<SPAN style="FONT-STYLE: italic">Update Embedded Pages</SPAN>&nbsp;command will refresh and resynchronize the content of all embedded pages on the current page.</P>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
+<H2 lang=yo style="FONT-SIZE: 14pt; FONT-FAMILY: Calibri; COLOR: #2e75b5; MARGIN: 0in">Insert QR Code</H2>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">Converts selected text to a QR code and inserts the QR image into a new paragraph following the selected text. QR codes provide a convenient way to share passwords, Web addresses, any other data (up to 2000 characters).</P>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
+<H2 lang=yo style="FONT-SIZE: 14pt; FONT-FAMILY: Calibri; COLOR: #2e75b5; MARGIN: 0in">Replace URLs with Images</H2>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">Replaces all or selected hyperlinked URLs that reference online images with those referred image. If the image cannot be downloaded, no changes are made. This will only affect URLs where you can read the Web address on the page; it skips URLs where the text differs from the actual address.</P>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
+<H2 lang=yo style="FONT-SIZE: 14pt; FONT-FAMILY: Calibri; COLOR: #2e75b5; MARGIN: 0in">Replace URLs with Web Page Titles</H2>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">Automatically replaces all or selected hyperlinked URLs with the &lt;title&gt; specified on the associated Web pages. This only affects URLs for which the displayed text is the same as the link address, meaning if you've already customized the displayed text, OneMore will not alter your changes.</P>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">For example, given this URL on a OneNote page:&nbsp; <A href="https://github.com/">https://github.com/</A> it would be replaced with its hyperlinked title:&nbsp;<A href="https://github.com/">GitHub</A></P>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
+<P><CITE lang=yo style="FONT-SIZE: 10pt; FONT-FAMILY: Calibri; COLOR: #595959; MARGIN: 0in">© 2020 Steven M Cohn. All rights reserved.</CITE></P>
+<P><CITE lang=yo style="FONT-SIZE: 10pt; FONT-FAMILY: Calibri; COLOR: #595959; MARGIN: 0in">Please consider a <A href="https://github.com/sponsors/stevencohn">sponsorship or one-time donation</A> to support ongoing development</CITE></P>
+<P><CITE lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; COLOR: #595959; MARGIN: 0in">&nbsp;</CITE></P></DIV></DIV></DIV>
+<DIV>
+<P style="MARGIN: 0in">&nbsp;</P>
+<P style="FONT-SIZE: 9pt; FONT-FAMILY: Arial; COLOR: #969696; DIRECTION: ltr; TEXT-ALIGN: left; MARGIN: 0in">Created with OneNote.</P></DIV>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>
+

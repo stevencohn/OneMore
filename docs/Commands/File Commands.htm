@@ -1,0 +1,172 @@
+﻿<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>OneMore</title>
+  <link href="/nav.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+  <link href="/toc.css" rel="stylesheet" crossorigin="anonymous">
+  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+    crossorigin="anonymous"></script>
+  <script src="/helpers.js"></script>
+  <script type="text/javascript">
+    $(document).ready(function () {
+      $('#nav-container').load('/nav.htm', function() { HighlightActive('commands'); });
+      $('#toc-container').load('toc.htm', function() { HighlightActive('file-commands'); });
+    });
+  </script>
+</head>
+
+<body>
+  <div id="nav-container" class="sticky-top"></div>
+  <div id="toc-container" class="sidenav"></div>
+  <div class="main">
+    <div class="container-xxl bd-gutter mt-3 my-md-4 bd-layout tab-content" id="content">
+      <div class="container-xxl bd-gutter mt-3 my-md-4 bd-layout">
+        <div id="main-content">
+          <DIV style="DIRECTION: ltr">
+<DIV style="WIDTH: 8.736in; MARGIN-TOP: 0in; DIRECTION: ltr; MARGIN-LEFT: 0in">
+<DIV style="WIDTH: 2.245in; MARGIN-TOP: 0in; DIRECTION: ltr; MARGIN-LEFT: 0in">
+<P lang=yo style='FONT-SIZE: 20pt; FONT-FAMILY: "Calibri Light"; MARGIN: 0in'>File Commands</P></DIV>
+<DIV style="WIDTH: 2.413in; MARGIN-TOP: 0.042in; DIRECTION: ltr; MARGIN-LEFT: 0in">
+<P style="FONT-SIZE: 10pt; FONT-FAMILY: Calibri; COLOR: #767676; MARGIN: 0in">Sunday, February 19, 2023</P>
+<P style="FONT-SIZE: 10pt; FONT-FAMILY: Calibri; COLOR: #767676; MARGIN: 0in">5:58 PM</P></DIV>
+<DIV style="WIDTH: 8.736in; MARGIN-TOP: 0.427in; DIRECTION: ltr; MARGIN-LEFT: 0in">
+<H1 lang=yo style="FONT-SIZE: 16pt; FONT-FAMILY: Calibri; COLOR: #1e4e79; MARGIN: 0in">Archive</H1>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; COLOR: gray; MARGIN: 0in"><SPAN style="FONT-STYLE: italic">Available only by right-clicking a section or notebook</SPAN></P>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">Creates a zip file of all pages in the section or notebook, including all images and file attachments on each page. Also fixes the hyperlinks between pages within the context of the archive so the archive can stand on its own as a working directory of HTML files with live hyperlinks.</P>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
+<H1 lang=yo style="FONT-SIZE: 16pt; FONT-FAMILY: Calibri; COLOR: #1e4e79; MARGIN: 0in">Export</H1>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">Exports the current page or selected content as HTML, Word, PDF, Markdown, OneNote .one format, or internal OneNote XML.</P>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">If you choose HTML, you will be given the option to export each page as a single .htm file in the specified folder, or to archive each page into its own sub-folder, optionally with copies of the file attachments on each page.</P>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">There are some differences in the way OneMore exports pages from the way OneNote exports pages. If multiple pages are selected, OneMore will create a new file for each page. In comparison, if you choose to export as Word .docx, OneNote will append the content from all pages into a single file.</P>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">Note also that there is a difference between an .mht file and an .htm files, where the former has mime-type headers and footers that are not normally present in an HTML file.</P>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
+<H1 lang=yo style="FONT-SIZE: 16pt; FONT-FAMILY: Calibri; COLOR: #1e4e79; MARGIN: 0in">Import</H1>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">Import Word (.docx), PowerPoint (.pptx), Markdown (.md), OneNote (.one), or XML (.xml) by either appending content to the current page or creating a new page. Additionally, for PowerPoint, each slide can be imported into its own page so you could use OneNote as a PowerPoint presenter by entering full screen mode and using Ctrl-PgDn to move to the next slide.</P>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
+<P style="MARGIN: 0in 0in 0in 0.375in"><IMG alt="Import Dialog" src="File%20Commands_files/image001.png" width=407 height=253></P>
+<P lang=yo style="FONT-SIZE: 12pt; MARGIN-BOTTOM: 12pt; FONT-FAMILY: Calibri; MARGIN-TOP: 0pt">&nbsp;</P>
+<P lang=yo style="MARGIN: 0in"><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">You can import multiple Word, PowerPoint, or Markdown files by using a wildcard in the name, for example&nbsp;</SPAN><SPAN style='FONT-SIZE: 9.5pt; FONT-FAMILY: "Lucida Console"; BACKGROUND: #e8e8e8; COLOR: #172b4d'>C:\docs\January*.md</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">. Each file will be imported as a separate page; the&nbsp;Append&nbsp;option is not available when importing using wildcards.</SPAN></P>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
+<H1 lang=yo style="FONT-SIZE: 16pt; FONT-FAMILY: Calibri; COLOR: #1e4e79; MARGIN: 0in">Import Hyperlinks</H1>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">Discovers all external hyperlinks on the current page, presents a dialog from which you can select one or more link to import. Each hyperlink is imported as a separate page.</P>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
+<H1 lang=yo style="FONT-SIZE: 16pt; FONT-FAMILY: Calibri; COLOR: #1e4e79; MARGIN: 0in">Import Web Page</H1>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">Imports the content of a Web page given its URL. The content can be added as a new page in the current section, as a new child page of the current page, or appended to the content of the current page. This can be run in one of two modes. By default, the page is imported as HTML and "optimized" by OneNote, meaning that styles are generally not preserved due to the inherent limitations of OneNote.</P>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">The second mode is to import the Web page as a series of static images. This will preserve most styling and layout of the page. It does this by internally printing the page to a PDF and then importing each page of the PDF as an image. This can be a time consuming process, taking up to 30 seconds, so give it time.</P>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
+<P lang=yo style='FONT-SIZE: 10pt; FONT-FAMILY: "Courier New"; COLOR: #43577c; MARGIN: 0in'>────────────────────────────────────────────────────────────────────────────────────────────────────</P>
+<P lang=yo style='FONT-SIZE: 10pt; FONT-FAMILY: "Courier New"; COLOR: #43577c; MARGIN: 0in'>&nbsp;</P>
+<H1 lang=yo style="FONT-SIZE: 16pt; FONT-FAMILY: Calibri; COLOR: #1e4e79; MARGIN: 0in">Analyze Data Storage</H1>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">Generates a report, as a new page in the current section, showing how much disk space is consumed by OneNote notebooks and their recycle bins, sections, and pages. It indicates orphaned notebook backups for notebooks that are no longer opened in OneNote. It shows the size of the OneNote internal cache. And it shows a detailed breakdown of image sizes and file attachments embedded on pages along with an indication if the source of a file attachment no longer exists.</P>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">Each OneNote notebook maintains its own recycle bin. This can be cleared from the OneNote History menu.</P>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">Notebooks can be stored locally in the default OneNote data folder. Or they can be stored remotely in the cloud on OneDrive. Local notebooks are reported directly from the default data folder. Remote notebooks can only be analyzed by looking at their local backup copies as configured in the OneNote Options.&nbsp;The backup feature must be enabled in OneNote options and run at least once in order for the report to show useful information for remote notebooks.</P>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; COLOR: gray; MARGIN: 0in"><SPAN style="FONT-STYLE: italic">Note that the detailed page analysis, especially when done over all sections in a notebook, can take some time to generate and result in a very large report page.</SPAN></P>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">For large notebooks or sections with pages containing many images, it is possible that the Analyze command will run out of memory and crash OneMore. To avoid this, set the Thumbnails option to <SPAN style="FONT-STYLE: italic">None</SPAN>. A summary of all images - count and total size - on each page will be reported rather than the size of each individual image.</P>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
+<H1 lang=yo style="FONT-SIZE: 16pt; FONT-FAMILY: Calibri; COLOR: #1e4e79; MARGIN: 0in">File Quick Notes</H1>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">OneNote Quick Notes are intended to capture small thoughts and ideas quickly and easily from <SPAN style="BACKGROUND: #ffff99">Win + Alt + N</SPAN> or the OneNote system tray icon. All Quick Notes are filed into the same special section at the bottom of the OneNote window called, surprisingly, "Quick Notes". If you compile a large collection of Quick Notes, it's very easy for ideas to get lost, especially considering that these do not have Title fields.</P>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">The File Quick Notes command organizes your Quick Notes into a selected section or notebook and collates them using one of several options, set from the Quick Notes page in the Settings Dialog</P>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
+<P style="MARGIN: 0in 0in 0in 0.375in"><IMG src="File%20Commands_files/image002.png" width=540 height=361></P>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">Choose the Notebook option to file your Quick Notes into a chosen notebook. Notes will be collated into new sections, automatically named accordingly to the creation date of the note, or a #keyword in the first line of the note. The #keyword must be a single word (or phrase without spaces) and only the first hashtag #keyword is used.</P>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">Choose the Section option to file your Quick Notes into a chosen section. Each notes is moved as its own page into this section. The Title field is set to the first few words of the note. It's recommended that you also enable the <SPAN style="FONT-STYLE: italic">Prepend the tile with the date that the note was created </SPAN>option.</P>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
+<P lang=yo style='FONT-SIZE: 10pt; FONT-FAMILY: "Courier New"; COLOR: #43577c; MARGIN: 0in'>────────────────────────────────────────────────────────────────────────────────────────────────────</P>
+<H1 lang=yo style='FONT-SIZE: 10pt; FONT-FAMILY: "Courier New"; COLOR: #43577c; MARGIN: 0in'>&nbsp;</H1>
+<H1 lang=yo style="FONT-SIZE: 16pt; FONT-FAMILY: Calibri; COLOR: #1e4e79; MARGIN: 0in">Plugins</H1>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">OneNote can execute plugins that can process a page or hierarchy using a program that you write. This provides a simple way to experiment with page adjustments.</P>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
+<DIV style="DIRECTION: ltr">
+<TABLE title="" style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; BORDER-COLLAPSE: collapse; BORDER-BOTTOM: #a3a3a3 1pt solid; DIRECTION: ltr; MARGIN-LEFT: 0.333in; BORDER-LEFT: #a3a3a3 1pt solid" cellSpacing=0 cellPadding=0 summary="" border=1 valign="top">
+<TBODY>
+<TR>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 7.992in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt; BACKGROUND-COLOR: #fff8f7">
+<DIV style="DIRECTION: ltr">
+<TABLE title="" style="BORDER-TOP: #a3a3a3 0pt solid; BORDER-RIGHT: #a3a3a3 0pt solid; BORDER-COLLAPSE: collapse; BORDER-BOTTOM: #a3a3a3 0pt solid; DIRECTION: ltr; BORDER-LEFT: #a3a3a3 0pt solid" cellSpacing=0 cellPadding=0 summary="" border=0 valign="top">
+<TBODY>
+<TR>
+<TD style="BORDER-LEFT-WIDTH: 0pt; BORDER-RIGHT-WIDTH: 0pt; WIDTH: 0.667in; VERTICAL-ALIGN: top; BORDER-BOTTOM-WIDTH: 0pt; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; PADDING-RIGHT: 3pt; BORDER-TOP-WIDTH: 0pt">
+<P lang=yo style='FONT-SIZE: 22pt; FONT-FAMILY: "Segoe UI Symbol"; COLOR: #e68c74; TEXT-ALIGN: center; MARGIN: 0in'><SPAN style="FONT-WEIGHT: bold">⚠</SPAN></P></TD>
+<TD style="BORDER-LEFT-WIDTH: 0pt; BORDER-RIGHT-WIDTH: 0pt; WIDTH: 2.203in; VERTICAL-ALIGN: top; BORDER-BOTTOM-WIDTH: 0pt; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; PADDING-RIGHT: 3pt; BORDER-TOP-WIDTH: 0pt">
+<P lang=yo style='FONT-SIZE: 11pt; FONT-FAMILY: "Segoe UI"; COLOR: #333333; MARGIN: 0in'><SPAN style="FONT-WEIGHT: bold">Warning</SPAN></P>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">This is an experimental feature.</P></TD></TR></TBODY></TABLE></DIV></TD></TR></TBODY></TABLE></DIV>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
+<DIV style="DIRECTION: ltr">
+<TABLE title="" style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; BORDER-COLLAPSE: collapse; BORDER-BOTTOM: #a3a3a3 1pt solid; DIRECTION: ltr; MARGIN-LEFT: 0.333in; BORDER-LEFT: #a3a3a3 1pt solid" cellSpacing=0 cellPadding=0 summary="" border=1 valign="top">
+<TBODY>
+<TR>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 8.11in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt; BACKGROUND-COLOR: #fff8f7">
+<DIV style="DIRECTION: ltr">
+<TABLE title="" style="BORDER-TOP: #a3a3a3 0pt solid; BORDER-RIGHT: #a3a3a3 0pt solid; BORDER-COLLAPSE: collapse; BORDER-BOTTOM: #a3a3a3 0pt solid; DIRECTION: ltr; BORDER-LEFT: #a3a3a3 0pt solid" cellSpacing=0 cellPadding=0 summary="" border=0 valign="top">
+<TBODY>
+<TR>
+<TD style="BORDER-LEFT-WIDTH: 0pt; BORDER-RIGHT-WIDTH: 0pt; WIDTH: 0.667in; VERTICAL-ALIGN: top; BORDER-BOTTOM-WIDTH: 0pt; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; PADDING-RIGHT: 3pt; BORDER-TOP-WIDTH: 0pt">
+<P lang=yo style='FONT-SIZE: 22pt; FONT-FAMILY: "Segoe UI Symbol"; COLOR: #e68c74; TEXT-ALIGN: center; MARGIN: 0in'><SPAN style="FONT-WEIGHT: bold">⚠</SPAN></P></TD>
+<TD style="BORDER-LEFT-WIDTH: 0pt; BORDER-RIGHT-WIDTH: 0pt; WIDTH: 7.28in; VERTICAL-ALIGN: top; BORDER-BOTTOM-WIDTH: 0pt; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; PADDING-RIGHT: 3pt; BORDER-TOP-WIDTH: 0pt">
+<P lang=yo style='FONT-SIZE: 11pt; FONT-FAMILY: "Segoe UI"; COLOR: #333333; MARGIN: 0in'><SPAN style="FONT-WEIGHT: bold">NOTICE</SPAN></P>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">I provide no guarantee, warranty, or promise that you won't screw it up and loose data! It's in your hands and if you mess up the XML and cause data loss, that's entirely on you. You've been warned.</P></TD></TR></TBODY></TABLE></DIV></TD></TR></TBODY></TABLE></DIV>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
+<P lang=yo style="MARGIN: 0in"><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">Given a plugin written in PowerShell then specify the Plugin Command as powershell.exe and use<BR>the Arguments line to specify the </SPAN><SPAN style='FONT-SIZE: 9.5pt; FONT-FAMILY: "Lucida Console"; BACKGROUND: #e8e8e8; COLOR: #172b4d'>-file</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri"> argument pointing to your plugin script as shown here.</SPAN></P>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
+<P style="MARGIN: 0in 0in 0in 0.375in"><IMG src="File%20Commands_files/image003.png" width=522 height=384></P>
+<P lang=yo style="FONT-SIZE: 12pt; MARGIN-BOTTOM: 12pt; FONT-FAMILY: Calibri; MARGIN-TOP: 0pt; COLOR: #cdd4dc">&nbsp;</P>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">The workflow is very simple.</P>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
+<OL style="FONT-SIZE: 11.5pt; MARGIN-BOTTOM: 0in; FONT-FAMILY: Calibri; unicode-bidi: embed; MARGIN-TOP: 0in; FONT-WEIGHT: normal; DIRECTION: ltr; FONT-STYLE: normal" type=1>
+<LI lang=yo style="MARGIN-BOTTOM: 0px; VERTICAL-ALIGN: middle; MARGIN-TOP: 0px" value=1><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; FONT-WEIGHT: normal; FONT-STYLE: normal">Create a plugin program that accepts one command line argument; the argument will specify the path to a file containing the page XML.</SPAN> 
+<LI lang=yo style="MARGIN-BOTTOM: 0px; VERTICAL-ALIGN: middle; MARGIN-TOP: 0px"><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">Run the Plugin command, specifying the path to the program and any other arguments.</SPAN> 
+<LI lang=yo style="MARGIN-BOTTOM: 0px; VERTICAL-ALIGN: middle; MARGIN-TOP: 0px"><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">The plugin must complete within 20 seconds or it will timeout and be aborted.</SPAN> 
+<LI lang=yo style="MARGIN-BOTTOM: 0px; VERTICAL-ALIGN: middle; MARGIN-TOP: 0px"><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">The plugin must write any desired changes back to the file path it was given.</SPAN> 
+<LI lang=yo style="MARGIN-BOTTOM: 0px; VERTICAL-ALIGN: middle; MARGIN-TOP: 0px"><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">If the plugin completes and&nbsp;has made changes to the XML file on disk&nbsp;then OneMore will update the current page with your updated XML from the file;</SPAN> 
+<LI lang=yo style="MARGIN-BOTTOM: 0px; VERTICAL-ALIGN: middle; MARGIN-TOP: 0px"><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">If the plugin completes and has not made changes to the file then no changes are made to the current page.</SPAN> 
+<LI lang=yo style="MARGIN-BOTTOM: 0px; VERTICAL-ALIGN: middle; MARGIN-TOP: 0px"><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">If you chose to create a new page then it will be created regardless of whether the plugin updated the XML file.</SPAN> </LI></OL>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">Any output that your plugin writes to stdout will be captured in the OneMore log file.</P>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; COLOR: gray; MARGIN: 0in"><SPAN style="FONT-STYLE: italic">Note, if you run the plugin and a Web browser is invoked (IE) showing the XML file contents then you probably forgot to specify the right arguments to powershell.exe or python.exe.</SPAN></P>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
+<P lang=yo style="MARGIN: 0in"><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">You can use the special keyword&nbsp;</SPAN><SPAN style='FONT-SIZE: 9.5pt; FONT-FAMILY: "Lucida Console"; BACKGROUND: #e8e8e8; COLOR: #172b4d'>$name</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">&nbsp;in the Page Name field. This will be replaced with the name of the current page when you invoke the plugin from the Favorites menu or choose it from the drop-down list. For example, if you're on page "Forecasting" and the Page Name is set to "</SPAN><SPAN style='FONT-SIZE: 9.5pt; FONT-FAMILY: "Lucida Console"; BACKGROUND: #e8e8e8; COLOR: #172b4d'>Quarterly $name</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">" then the created page when it will be named "Quarterly Forecasting"</SPAN></P>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">The default timeout - time allotted in which a plugin must complete - is 15 seconds. You can change that by entering the number of seconds into the Timeout field. If set to zero then the timeout is set to one hour.</P>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">The following environment variables are set when calling a plugin.</P>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
+<UL style="MARGIN-BOTTOM: 0in; unicode-bidi: embed; MARGIN-TOP: 0in; DIRECTION: ltr" type=disc>
+<LI lang=yo style="MARGIN-BOTTOM: 0px; VERTICAL-ALIGN: middle; MARGIN-TOP: 0px"><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">PLUGIN_CREATE - set to true when the&nbsp;Create as new page&nbsp;option is checked</SPAN> 
+<LI lang=yo style="MARGIN-BOTTOM: 0px; VERTICAL-ALIGN: middle; MARGIN-TOP: 0px"><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">PLUGIN_PAGENAME - specifies the name of the page to create or update</SPAN> 
+<LI lang=yo style="MARGIN-BOTTOM: 0px; VERTICAL-ALIGN: middle; MARGIN-TOP: 0px"><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">PLUGIN_ASCHILD - set to true when the&nbsp;Create as child&nbsp;option is checked</SPAN> 
+<LI lang=yo style="MARGIN-BOTTOM: 0px; VERTICAL-ALIGN: middle; MARGIN-TOP: 0px"><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">PLUGIN_SKIPLOCK - set to true when the&nbsp;Skip locked sections&nbsp;option is checked</SPAN> </LI></UL>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in 0in 0in 0.375in">&nbsp;</P>
+<P lang=yo style="MARGIN: 0in"><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">The OneNote page schema is defined in the </SPAN><SPAN style='FONT-SIZE: 9.5pt; FONT-FAMILY: "Lucida Console"; BACKGROUND: #e8e8e8; COLOR: #172b4d'>0336.OneNoteApplication_2013.xsd</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri"> file in the Properties folder of the project repo.</SPAN></P>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; COLOR: black; MARGIN: 0in">&nbsp;</P>
+<P><CITE lang=yo style="FONT-SIZE: 9pt; FONT-FAMILY: Calibri; COLOR: #595959; MARGIN: 0in">&nbsp;</CITE></P>
+<P><CITE lang=yo style="FONT-SIZE: 10pt; FONT-FAMILY: Calibri; COLOR: #595959; MARGIN: 0in">© 2020 Steven M Cohn. All rights reserved.</CITE></P>
+<P><CITE lang=yo style="FONT-SIZE: 10pt; FONT-FAMILY: Calibri; COLOR: #595959; MARGIN: 0in">Please consider a <A href="https://github.com/sponsors/stevencohn">sponsorship or one-time donation</A> to support ongoing development</CITE></P></DIV></DIV></DIV>
+<DIV>
+<P style="MARGIN: 0in">&nbsp;</P>
+<P style="FONT-SIZE: 9pt; FONT-FAMILY: Arial; COLOR: #969696; DIRECTION: ltr; TEXT-ALIGN: left; MARGIN: 0in">Created with OneNote.</P></DIV>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>
+

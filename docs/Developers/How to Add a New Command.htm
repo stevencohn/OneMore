@@ -1,0 +1,131 @@
+﻿<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>OneMore</title>
+  <link href="/nav.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+  <link href="/toc.css" rel="stylesheet" crossorigin="anonymous">
+  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+    crossorigin="anonymous"></script>
+  <script src="/helpers.js"></script>
+  <script type="text/javascript">
+    $(document).ready(function () {
+      $('#nav-container').load('/nav.htm', function() { HighlightActive('developers'); });
+      $('#toc-container').load('toc.htm', function() { HighlightActive('how-to-add-a-new-command'); });
+    });
+  </script>
+</head>
+
+<body>
+  <div id="nav-container" class="sticky-top"></div>
+  <div id="toc-container" class="sidenav"></div>
+  <div class="main">
+    <div class="container-xxl bd-gutter mt-3 my-md-4 bd-layout tab-content" id="content">
+      <div class="container-xxl bd-gutter mt-3 my-md-4 bd-layout">
+        <div id="main-content">
+          <DIV style="DIRECTION: ltr">
+<DIV style="WIDTH: 8.524in; MARGIN-TOP: 0in; DIRECTION: ltr; MARGIN-LEFT: 0in">
+<DIV style="WIDTH: 3.833in; MARGIN-TOP: 0in; DIRECTION: ltr; MARGIN-LEFT: 0.075in">
+<P lang=yo style='FONT-SIZE: 20pt; FONT-FAMILY: "Calibri Light"; MARGIN: 0in'>How to Add a New Command</P></DIV>
+<DIV style="WIDTH: 2.484in; MARGIN-TOP: 0.042in; DIRECTION: ltr; MARGIN-LEFT: 0.075in">
+<P style="FONT-SIZE: 10pt; FONT-FAMILY: Calibri; COLOR: #767676; MARGIN: 0in">Sunday, February 19, 2023</P>
+<P style="FONT-SIZE: 10pt; FONT-FAMILY: Calibri; COLOR: #767676; MARGIN: 0in">12:05 PM</P></DIV>
+<DIV style="WIDTH: 8.524in; MARGIN-TOP: 0.427in; DIRECTION: ltr; MARGIN-LEFT: 0in">
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">Commands are categorized into functional domains. These domains are described by the folders beneath the Commands folder, for example Clean, Edit, File, Images, etc. When inventing a new command, it's important to identify the proper domain. If this command doesn't fit an existing domain, consider whether it can be added to the Extras domain, the Tools domain, or if is the beginning of multiple related commands, create a new domain folder to contain this and other related commands.</P>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
+<DIV style="DIRECTION: ltr">
+<TABLE title="" style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; BORDER-COLLAPSE: collapse; BORDER-BOTTOM: #a3a3a3 1pt solid; DIRECTION: ltr; BORDER-LEFT: #a3a3a3 1pt solid" cellSpacing=0 cellPadding=0 summary="" border=1 valign="top">
+<TBODY>
+<TR>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 8.513in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt; BACKGROUND-COLOR: #e5e0ec">
+<DIV style="DIRECTION: ltr">
+<TABLE title="" style="BORDER-TOP: #a3a3a3 0pt solid; BORDER-RIGHT: #a3a3a3 0pt solid; BORDER-COLLAPSE: collapse; BORDER-BOTTOM: #a3a3a3 0pt solid; DIRECTION: ltr; BORDER-LEFT: #a3a3a3 0pt solid" cellSpacing=0 cellPadding=0 summary="" border=0 valign="top">
+<TBODY>
+<TR>
+<TD style="BORDER-LEFT-WIDTH: 0pt; BORDER-RIGHT-WIDTH: 0pt; WIDTH: 0.681in; VERTICAL-ALIGN: top; BORDER-BOTTOM-WIDTH: 0pt; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; PADDING-RIGHT: 3pt; BORDER-TOP-WIDTH: 0pt">
+<P style='FONT-SIZE: 22pt; FONT-FAMILY: "Segoe UI Emoji"; TEXT-ALIGN: center; MARGIN: 0in'>📓</P></TD>
+<TD style="BORDER-LEFT-WIDTH: 0pt; BORDER-RIGHT-WIDTH: 0pt; WIDTH: 7.688in; VERTICAL-ALIGN: top; BORDER-BOTTOM-WIDTH: 0pt; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; PADDING-RIGHT: 3pt; BORDER-TOP-WIDTH: 0pt">
+<P lang=yo style='FONT-SIZE: 11pt; FONT-FAMILY: "Segoe UI"; COLOR: #333333; MARGIN: 0in'><SPAN style="FONT-WEIGHT: bold">Follow the naming conventions</SPAN></P>
+<P lang=yo style='FONT-SIZE: 11pt; FONT-FAMILY: "Segoe UI"; COLOR: #333333; MARGIN: 0in'>The naming conventions described below are very important for consistency but also critical for commands to fit within the OneMore command framework which dynamically enumerates commands, discovers key bindings, and enable other mechanisms that streamline adding a new command.</P></TD></TR></TBODY></TABLE></DIV></TD></TR></TBODY></TABLE></DIV>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">To add a new command to OneMore</P>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
+<OL style="FONT-SIZE: 11.5pt; MARGIN-BOTTOM: 0in; FONT-FAMILY: Calibri; unicode-bidi: embed; MARGIN-TOP: 0in; FONT-WEIGHT: normal; DIRECTION: ltr; FONT-STYLE: normal" type=1>
+<LI lang=yo style="MARGIN-BOTTOM: 0px; VERTICAL-ALIGN: middle; MARGIN-TOP: 0px" value=1><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; FONT-WEIGHT: normal; FONT-STYLE: normal">Add a new class file in the appropriate Commands\</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; FONT-WEIGHT: normal; FONT-STYLE: italic">domain</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; FONT-WEIGHT: normal; FONT-STYLE: normal"> folder.</SPAN> 
+<OL style="FONT-SIZE: 11.5pt; MARGIN-BOTTOM: 0in; FONT-FAMILY: Calibri; unicode-bidi: embed; MARGIN-TOP: 0in; FONT-WEIGHT: normal; DIRECTION: ltr; FONT-STYLE: normal" type=a>
+<LI lang=yo style="MARGIN-BOTTOM: 0px; VERTICAL-ALIGN: middle; MARGIN-TOP: 0px" value=1><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; FONT-WEIGHT: normal; FONT-STYLE: normal">Name the class using form </SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; FONT-WEIGHT: normal; FONT-STYLE: italic">name</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; FONT-WEIGHT: normal; FONT-STYLE: normal">Command such as </SPAN><SPAN style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"; BACKGROUND: #e8e8e8; FONT-WEIGHT: normal; COLOR: #172b4d; FONT-STYLE: normal'>TrimCommand</SPAN> 
+<LI lang=yo style="MARGIN-BOTTOM: 0px; VERTICAL-ALIGN: middle; MARGIN-TOP: 0px"><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">The file name should match the class name such as TrimCommand.cs.</SPAN> </LI></OL></LI></OL>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in 0in 0in 0.375in">&nbsp;</P>
+<OL style="FONT-SIZE: 11.5pt; MARGIN-BOTTOM: 0in; FONT-FAMILY: Calibri; unicode-bidi: embed; MARGIN-TOP: 0in; FONT-WEIGHT: normal; DIRECTION: ltr; FONT-STYLE: normal" type=1>
+<LI lang=yo style="MARGIN-BOTTOM: 0px; VERTICAL-ALIGN: middle; MARGIN-TOP: 0px" value=2><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; FONT-WEIGHT: normal; FONT-STYLE: normal">Keep the namespace as </SPAN><SPAN style='FONT-SIZE: 9.5pt; FONT-FAMILY: "Lucida Console"; BACKGROUND: #e8e8e8; FONT-WEIGHT: normal; COLOR: #172b4d; FONT-STYLE: normal'>River.OneMoreAddIn.Commands</SPAN> 
+<LI lang=yo style="MARGIN-BOTTOM: 0px; VERTICAL-ALIGN: middle; MARGIN-TOP: 0px"><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">Derive the class from the </SPAN><SPAN style='FONT-SIZE: 9.5pt; FONT-FAMILY: "Lucida Console"; BACKGROUND: #e8e8e8; COLOR: #172b4d'>Command</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri"> base class and declare it as </SPAN><SPAN style='FONT-SIZE: 9.5pt; FONT-FAMILY: "Lucida Console"; BACKGROUND: #e8e8e8; COLOR: #172b4d'>internal</SPAN> 
+<LI lang=yo style="MARGIN-BOTTOM: 0px; VERTICAL-ALIGN: middle; MARGIN-TOP: 0px"><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">Add a public constructor, even if its body is blank</SPAN> 
+<LI lang=yo style="MARGIN-BOTTOM: 0px; VERTICAL-ALIGN: middle; MARGIN-TOP: 0px"><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">Override the </SPAN><SPAN style='FONT-SIZE: 9.5pt; FONT-FAMILY: "Lucida Console"; BACKGROUND: #e8e8e8; COLOR: #172b4d'>Command.Execute</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri"> method</SPAN> </LI></OL>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in 0in 0in 0.375in">&nbsp;</P>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in 0in 0in 0.375in">Example:</P>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in 0in 0in 0.75in">&nbsp;</P>
+<P lang=yo style='FONT-SIZE: 10pt; FONT-FAMILY: "Lucida Console"; MARGIN: 0in 0in 0in 0.75in'><SPAN style="COLOR: blue">namespace</SPAN><SPAN style="COLOR: black"> River.OneMoreAddIn.Commands</SPAN></P>
+<P lang=yo style='FONT-SIZE: 10pt; FONT-FAMILY: "Lucida Console"; COLOR: black; MARGIN: 0in 0in 0in 0.75in'>{</P>
+<P lang=yo style='FONT-SIZE: 10pt; FONT-FAMILY: "Lucida Console"; MARGIN: 0in 0in 0in 0.75in'><SPAN style="COLOR: black"><SPAN style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp; </SPAN></SPAN><SPAN style="COLOR: blue">internal class</SPAN><SPAN style="COLOR: black"> TrimCommand : Command</SPAN></P>
+<P lang=yo style='FONT-SIZE: 10pt; FONT-FAMILY: "Lucida Console"; COLOR: black; MARGIN: 0in 0in 0in 0.75in'><SPAN style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp; </SPAN>{</P>
+<P lang=yo style='FONT-SIZE: 10pt; FONT-FAMILY: "Lucida Console"; MARGIN: 0in 0in 0in 0.75in'><SPAN style="COLOR: black"><SPAN style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </SPAN></SPAN><SPAN style="COLOR: blue">public</SPAN><SPAN style="COLOR: black"> TrimCommand()</SPAN></P>
+<P lang=yo style='FONT-SIZE: 10pt; FONT-FAMILY: "Lucida Console"; COLOR: black; MARGIN: 0in 0in 0in 0.75in'><SPAN style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </SPAN>{</P>
+<P lang=yo style='FONT-SIZE: 10pt; FONT-FAMILY: "Lucida Console"; COLOR: black; MARGIN: 0in 0in 0in 0.75in'><SPAN style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </SPAN>}</P>
+<P lang=yo style='FONT-SIZE: 10pt; FONT-FAMILY: "Lucida Console"; COLOR: black; MARGIN: 0in 0in 0in 0.75in'>&nbsp;</P>
+<P lang=yo style='FONT-SIZE: 10pt; FONT-FAMILY: "Lucida Console"; MARGIN: 0in 0in 0in 0.75in'><SPAN style="COLOR: black"><SPAN style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </SPAN></SPAN><SPAN style="COLOR: blue">public override async</SPAN><SPAN style="COLOR: black"> Task Execute(</SPAN><SPAN style="COLOR: blue">params object</SPAN><SPAN style="COLOR: black">[] args)</SPAN></P>
+<P lang=yo style='FONT-SIZE: 10pt; FONT-FAMILY: "Lucida Console"; COLOR: black; MARGIN: 0in 0in 0in 0.75in'><SPAN style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </SPAN>{</P>
+<P lang=yo style='FONT-SIZE: 10pt; FONT-FAMILY: "Lucida Console"; COLOR: black; MARGIN: 0in 0in 0in 0.75in'><SPAN style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </SPAN>}</P>
+<P lang=yo style='FONT-SIZE: 10pt; FONT-FAMILY: "Lucida Console"; COLOR: black; MARGIN: 0in 0in 0in 0.75in'><SPAN style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp; </SPAN>}</P>
+<P lang=yo style='FONT-SIZE: 10pt; FONT-FAMILY: "Lucida Console"; COLOR: black; MARGIN: 0in 0in 0in 0.75in'>}</P>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in 0in 0in 0.375in">&nbsp;</P>
+<OL style="FONT-SIZE: 11.5pt; MARGIN-BOTTOM: 0in; FONT-FAMILY: Calibri; unicode-bidi: embed; MARGIN-TOP: 0in; FONT-WEIGHT: normal; DIRECTION: ltr; FONT-STYLE: normal" type=1>
+<LI lang=yo style="MARGIN-BOTTOM: 0px; VERTICAL-ALIGN: middle; MARGIN-TOP: 0px" value=6><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; FONT-WEIGHT: normal; FONT-STYLE: normal">Add a new method to the AddinCommands.cs file to invoke the command</SPAN> </LI></OL>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in 0in 0in 0.375in">&nbsp;</P>
+<OL style="FONT-SIZE: 11.5pt; MARGIN-BOTTOM: 0in; FONT-FAMILY: Calibri; unicode-bidi: embed; MARGIN-TOP: 0in; FONT-WEIGHT: normal; DIRECTION: ltr; FONT-STYLE: normal" type=a>
+<LI lang=yo style="MARGIN-BOTTOM: 0px; VERTICAL-ALIGN: middle; MARGIN-TOP: 0px" value=1><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; FONT-WEIGHT: normal; FONT-STYLE: normal">The name should be derived from the class, replacing Command with Cmd such as </SPAN><SPAN style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"; BACKGROUND: #e8e8e8; FONT-WEIGHT: normal; COLOR: #172b4d; FONT-STYLE: normal'>TrimCmd</SPAN> 
+<LI lang=yo style="MARGIN-BOTTOM: 0px; VERTICAL-ALIGN: middle; MARGIN-TOP: 0px"><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">It must be declared async and accept an </SPAN><SPAN style='FONT-SIZE: 9.5pt; FONT-FAMILY: "Lucida Console"; BACKGROUND: #e8e8e8; COLOR: #172b4d'>IRibbonControl</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri"> parameter</SPAN> 
+<LI lang=yo style="MARGIN-BOTTOM: 0px; VERTICAL-ALIGN: middle; MARGIN-TOP: 0px"><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">It must invoke the command using </SPAN><SPAN style='FONT-SIZE: 9.5pt; FONT-FAMILY: "Lucida Console"; BACKGROUND: #e8e8e8; COLOR: #172b4d'>factory.Run</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri"> as shown here</SPAN> </LI></OL>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in 0in 0in 0.75in">&nbsp;</P>
+<P lang=yo style='FONT-SIZE: 10pt; FONT-FAMILY: "Lucida Console"; MARGIN: 0in 0in 0in 0.75in'><SPAN style="COLOR: black">[Command(</SPAN><SPAN style="COLOR: #a31515">"ribTrimButton_Label"</SPAN><SPAN style="COLOR: black">, Keys.None, </SPAN><SPAN style="COLOR: #a31515">"ribCleanMenu"</SPAN><SPAN style="COLOR: black">)]</SPAN></P>
+<P lang=yo style='FONT-SIZE: 10pt; FONT-FAMILY: "Lucida Console"; MARGIN: 0in 0in 0in 0.75in'><SPAN style="COLOR: blue">public async</SPAN><SPAN style="COLOR: black"> Task TrimCmd(IRibbonControl control)</SPAN></P>
+<P lang=yo style='FONT-SIZE: 10pt; FONT-FAMILY: "Lucida Console"; MARGIN: 0in 0in 0in 1.125in'><SPAN style="COLOR: black">=&gt; </SPAN><SPAN style="COLOR: blue">await</SPAN><SPAN style="COLOR: black"> factory.Run&lt;TrimCommand&gt;(</SPAN><SPAN style="COLOR: blue">false</SPAN><SPAN style="COLOR: black">);</SPAN></P>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in 0in 0in 0.75in">&nbsp;</P>
+<OL style="FONT-SIZE: 11.5pt; MARGIN-BOTTOM: 0in; FONT-FAMILY: Calibri; unicode-bidi: embed; MARGIN-TOP: 0in; FONT-WEIGHT: normal; DIRECTION: ltr; FONT-STYLE: normal" type=a>
+<LI lang=yo style="MARGIN-BOTTOM: 0px; VERTICAL-ALIGN: middle; MARGIN-TOP: 0px" value=4><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; FONT-WEIGHT: normal; FONT-STYLE: normal">The CommandAttribute first parameter specifies the resource ID used to translate the name of the command. This must be named using the form rib</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; FONT-WEIGHT: normal; FONT-STYLE: italic">Name</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; FONT-WEIGHT: normal; FONT-STYLE: normal">Button_Label</SPAN> 
+<LI lang=yo style="MARGIN-BOTTOM: 0px; VERTICAL-ALIGN: middle; MARGIN-TOP: 0px"><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">The second parameter defines the default key binding; set to </SPAN><SPAN style='FONT-SIZE: 9.5pt; FONT-FAMILY: "Lucida Console"; BACKGROUND: #e8e8e8; COLOR: #172b4d'>Keys.None</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri"> to indicate to binding</SPAN> 
+<LI lang=yo style="MARGIN-BOTTOM: 0px; VERTICAL-ALIGN: middle; MARGIN-TOP: 0px"><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">The third parameter names the functional domain (</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; FONT-STYLE: italic">for future use</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">)</SPAN> </LI></OL>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in 0in 0in 0.375in">&nbsp;</P>
+<OL style="FONT-SIZE: 11.5pt; MARGIN-BOTTOM: 0in; FONT-FAMILY: Calibri; unicode-bidi: embed; MARGIN-TOP: 0in; FONT-WEIGHT: normal; DIRECTION: ltr; FONT-STYLE: normal" type=1>
+<LI lang=yo style="MARGIN-BOTTOM: 0px; VERTICAL-ALIGN: middle; MARGIN-TOP: 0px" value=7><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; FONT-WEIGHT: normal; FONT-STYLE: normal">Add a button control or menu item to the Ribbon\Ribbon.xml file</SPAN> </LI></OL>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in 0in 0in 0.375in">&nbsp;</P>
+<OL style="FONT-SIZE: 11.5pt; MARGIN-BOTTOM: 0in; FONT-FAMILY: Calibri; unicode-bidi: embed; MARGIN-TOP: 0in; FONT-WEIGHT: normal; DIRECTION: ltr; FONT-STYLE: normal" type=a>
+<LI lang=yo style="MARGIN-BOTTOM: 0px; VERTICAL-ALIGN: middle; MARGIN-TOP: 0px" value=1><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; FONT-WEIGHT: normal; FONT-STYLE: normal">Specify a unique id and label property. The id should match the CommandAttribute resource name with the _Label part, for example </SPAN><SPAN style='FONT-SIZE: 9.5pt; FONT-FAMILY: "Lucida Console"; BACKGROUND: #e8e8e8; FONT-WEIGHT: normal; COLOR: #172b4d; FONT-STYLE: normal'>ribTrimButton</SPAN> 
+<LI lang=yo style="MARGIN-BOTTOM: 0px; VERTICAL-ALIGN: middle; MARGIN-TOP: 0px"><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">Choose an appropriate imageMso name from&nbsp;</SPAN><A href="https://bert-toolkit.com/imagemso-list.html"><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">imageMso List</SPAN></A> 
+<LI lang=yo style="MARGIN-BOTTOM: 0px; VERTICAL-ALIGN: middle; MARGIN-TOP: 0px"><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">Set the onAction property to the </SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; FONT-STYLE: italic">name</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">Cmd method added to AddInCommands.cs</SPAN> </LI></OL>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in 0in 0in 0.75in">&nbsp;</P>
+<P lang=yo style='FONT-SIZE: 10pt; FONT-FAMILY: "Lucida Console"; MARGIN: 0in 0in 0in 0.75in'><SPAN style="COLOR: blue">&lt;</SPAN><SPAN style="COLOR: #a31515">button</SPAN></P>
+<P lang=yo style='FONT-SIZE: 10pt; FONT-FAMILY: "Lucida Console"; MARGIN: 0in 0in 0in 0.75in'><SPAN style="COLOR: black"><SPAN style="mso-spacerun: yes">&nbsp; </SPAN></SPAN><SPAN style="COLOR: red">id</SPAN><SPAN style="COLOR: blue">=</SPAN><SPAN style="COLOR: black">"</SPAN><SPAN style="COLOR: blue">ribTrimButton</SPAN><SPAN style="COLOR: black">"</SPAN></P>
+<P lang=yo style='FONT-SIZE: 10pt; FONT-FAMILY: "Lucida Console"; MARGIN: 0in 0in 0in 0.75in'><SPAN style="COLOR: black"><SPAN style="mso-spacerun: yes">&nbsp; </SPAN></SPAN><SPAN style="COLOR: red">imageMso</SPAN><SPAN style="COLOR: blue">=</SPAN><SPAN style="COLOR: black">"</SPAN><SPAN style="COLOR: blue">AutoTextGallery</SPAN><SPAN style="COLOR: black">"</SPAN></P>
+<P lang=yo style='FONT-SIZE: 10pt; FONT-FAMILY: "Lucida Console"; MARGIN: 0in 0in 0in 0.75in'><SPAN style="COLOR: black"><SPAN style="mso-spacerun: yes">&nbsp; </SPAN></SPAN><SPAN style="COLOR: red">getLabel</SPAN><SPAN style="COLOR: blue">=</SPAN><SPAN style="COLOR: black">"</SPAN><SPAN style="COLOR: blue">GetRibbonLabel</SPAN><SPAN style="COLOR: black">"</SPAN></P>
+<P lang=yo style='FONT-SIZE: 10pt; FONT-FAMILY: "Lucida Console"; MARGIN: 0in 0in 0in 0.75in'><SPAN style="COLOR: black"><SPAN style="mso-spacerun: yes">&nbsp; </SPAN></SPAN><SPAN style="COLOR: red">onAction</SPAN><SPAN style="COLOR: blue">=</SPAN><SPAN style="COLOR: black">"</SPAN><SPAN style="COLOR: blue">TrimCmd</SPAN><SPAN style="COLOR: black">"</SPAN><SPAN style="COLOR: blue">/&gt;</SPAN></P>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
+<P><CITE lang=yo style="FONT-SIZE: 10pt; FONT-FAMILY: Calibri; COLOR: #595959; MARGIN: 0in">© 2020 Steven M Cohn. All rights reserved.</CITE></P>
+<P><CITE lang=yo style="FONT-SIZE: 10pt; FONT-FAMILY: Calibri; COLOR: #595959; MARGIN: 0in">Please consider a <A href="https://github.com/sponsors/stevencohn">sponsorship or one-time donation</A> to support ongoing development</CITE></P></DIV></DIV></DIV>
+<DIV>
+<P style="MARGIN: 0in">&nbsp;</P>
+<P style="FONT-SIZE: 9pt; FONT-FAMILY: Arial; COLOR: #969696; DIRECTION: ltr; TEXT-ALIGN: left; MARGIN: 0in">Created with OneNote.</P></DIV>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>
+

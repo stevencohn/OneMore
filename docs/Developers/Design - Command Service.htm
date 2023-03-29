@@ -1,0 +1,143 @@
+﻿<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>OneMore</title>
+  <link href="/nav.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+  <link href="/toc.css" rel="stylesheet" crossorigin="anonymous">
+  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+    crossorigin="anonymous"></script>
+  <script src="/helpers.js"></script>
+  <script type="text/javascript">
+    $(document).ready(function () {
+      $('#nav-container').load('/nav.htm', function() { HighlightActive('developers'); });
+      $('#toc-container').load('toc.htm', function() { HighlightActive('design---command-service'); });
+    });
+  </script>
+</head>
+
+<body>
+  <div id="nav-container" class="sticky-top"></div>
+  <div id="toc-container" class="sidenav"></div>
+  <div class="main">
+    <div class="container-xxl bd-gutter mt-3 my-md-4 bd-layout tab-content" id="content">
+      <div class="container-xxl bd-gutter mt-3 my-md-4 bd-layout">
+        <div id="main-content">
+          <DIV style="DIRECTION: ltr">
+<DIV style="WIDTH: 8.802in; MARGIN-TOP: 0in; DIRECTION: ltr; MARGIN-LEFT: 0in">
+<DIV style="WIDTH: 3.507in; MARGIN-TOP: 0in; DIRECTION: ltr; MARGIN-LEFT: 0.075in">
+<P lang=yo style='FONT-SIZE: 20pt; FONT-FAMILY: "Calibri Light"; MARGIN: 0in'>Design - Command Service</P></DIV>
+<DIV style="WIDTH: 2.216in; MARGIN-TOP: 0.042in; DIRECTION: ltr; MARGIN-LEFT: 0.075in">
+<P style="FONT-SIZE: 10pt; FONT-FAMILY: Calibri; COLOR: #767676; MARGIN: 0in">Friday, March 24, 2023</P>
+<P style="FONT-SIZE: 10pt; FONT-FAMILY: Calibri; COLOR: #767676; MARGIN: 0in">9:47 AM</P></DIV>
+<DIV style="WIDTH: 8.802in; MARGIN-TOP: 0.427in; DIRECTION: ltr; MARGIN-LEFT: 0in">
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">OneNote doesn't share Word's ability to embed UI controls on a page. Sadly, this means that there is no way to create an interactive form or embed any UI controls that can affect page content or invoke actions or commands. But, there's a trick employed by OneMore to create the illusion of interactivity by embedding smart hyperlinks on a page that can indirectly invoke OneMore commands. For example, OneMore emits hyperlinks that let you refresh footnote references or update a PlantUML drawing when you update the associated UML, just like the one at the bottom of this page that update the diagram here.</P>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
+<DIV style="DIRECTION: ltr">
+<TABLE title="" style="BORDER-TOP: #a3a3a3 0pt solid; BORDER-RIGHT: #a3a3a3 0pt solid; BORDER-COLLAPSE: collapse; BORDER-BOTTOM: #a3a3a3 0pt solid; DIRECTION: ltr; BORDER-LEFT: #a3a3a3 0pt solid" cellSpacing=0 cellPadding=0 summary="" border=0 valign="top">
+<TBODY>
+<TR>
+<TD style="BORDER-LEFT-WIDTH: 0pt; BORDER-RIGHT-WIDTH: 0pt; WIDTH: 7.54in; VERTICAL-ALIGN: top; BORDER-BOTTOM-WIDTH: 0pt; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; PADDING-RIGHT: 3pt; BORDER-TOP-WIDTH: 0pt">
+<P style="MARGIN: 0in"><IMG src="Design%20-%20Command%20Service_files/image001.png" width=710 height=282></P>
+<P lang=yo style="FONT-SIZE: 10pt; FONT-FAMILY: Calibri; TEXT-ALIGN: center; MARGIN: 0in"><SPAN style="FONT-WEIGHT: bold; COLOR: #5b9bd5">Trusted Protocol Activation (</SPAN><A href="onemore://PlantUmlCommand/b00e0e8b8dc448de823c0ccd42ded9d4/extract"><SPAN style="FONT-WEIGHT: bold">Extract</SPAN></A><SPAN style="FONT-WEIGHT: bold; COLOR: #5b9bd5">)</SPAN></P></TD></TR></TBODY></TABLE></DIV>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
+<H1 lang=yo style="FONT-SIZE: 16pt; FONT-FAMILY: Calibri; COLOR: #1e4e79; MARGIN: 0in">The Trusted Protocol Scheme</H1>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">This is done by registering a <SPAN style="FONT-STYLE: italic">trusted protocol</SPAN> as an indirection to initiate a Windows shell handler.</P>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">In fact, you use shell handlers every day! When you double-click a file with a known file type, Windows opens a program associated with that file type. How does that happen? There is an entry in the Windows Registry for each known file type that specifies a program to handle shell commands such as <SPAN style="FONT-STYLE: italic">open</SPAN> and <SPAN style="FONT-STYLE: italic">print</SPAN>. OneMore leverages this to associate a handler for a custom URI protocol ("http" and "https" are URI protocols)</P>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
+<H2 lang=yo style="FONT-SIZE: 14pt; FONT-FAMILY: Calibri; COLOR: #2e75b5; MARGIN: 0in">Trusted Protocol Registration</H2>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">Registering a custom scheme protocol handler is demonstrated below, <A href="https://learn.microsoft.com/en-us/previous-versions/windows/internet-explorer/ie-developer/platform-apis/aa767914(v=vs.85)?redirectedfrom=MSDN">as explained in this article</A>.</P>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
+<P lang=yo style="MARGIN: 0in"><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">The first entry declares the protocol. This key declares the "onemore" application; this key name is referenced below when creating the policy for the trusted protocol. The default value must begin with "URL:" and specifies a friendly name for the protocol scheme. The </SPAN><SPAN style='FONT-SIZE: 10pt; FONT-FAMILY: "Lucida Console"; BACKGROUND: #f1f1f1'>URL Protocol</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri"> property is required and must be set to an empty string.</SPAN></P>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
+<P lang=yo style='FONT-SIZE: 10pt; FONT-FAMILY: "Lucida Console"; MARGIN: 0in 0in 0in 0.375in'><SPAN style="COLOR: black">[</SPAN><SPAN style="COLOR: #5b9bd5">HKEY_CLASSES_ROOT\onemore</SPAN><SPAN style="COLOR: black">]</SPAN></P>
+<P lang=yo style='FONT-SIZE: 10pt; FONT-FAMILY: "Lucida Console"; MARGIN: 0in 0in 0in 0.375in'><SPAN style="COLOR: black">@=</SPAN><SPAN style="COLOR: firebrick">"URL:OneMore Protocol Handler"</SPAN></P>
+<P lang=yo style='FONT-SIZE: 10pt; FONT-FAMILY: "Lucida Console"; MARGIN: 0in 0in 0in 0.375in'><SPAN style="COLOR: black">"URL Protocol"=</SPAN><SPAN style="COLOR: firebrick">""</SPAN></P>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
+<P lang=yo style="MARGIN: 0in"><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">This next section declares the application handler for the onemore: protocol scheme. In this case, the </SPAN><SPAN style='FONT-SIZE: 10pt; FONT-FAMILY: "Lucida Console"; BACKGROUND: #f1f1f1'>OneMoreProtocolHandler.exe</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri"> application is specified along with standard CMD input parameters placeholders.</SPAN></P>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
+<P lang=yo style='FONT-SIZE: 10pt; FONT-FAMILY: "Lucida Console"; MARGIN: 0in 0in 0in 0.375in'><SPAN style="COLOR: black">[</SPAN><SPAN style="COLOR: #5b9bd5">HKEY_CLASSES_ROOT\onemore\shell</SPAN><SPAN style="COLOR: black">]</SPAN></P>
+<P lang=yo style='FONT-SIZE: 10pt; FONT-FAMILY: "Lucida Console"; MARGIN: 0in 0in 0in 0.375in'><SPAN style="COLOR: black">[</SPAN><SPAN style="COLOR: #5b9bd5">HKEY_CLASSES_ROOT\onemore\shell\open</SPAN><SPAN style="COLOR: black">]</SPAN></P>
+<P lang=yo style='FONT-SIZE: 10pt; FONT-FAMILY: "Lucida Console"; MARGIN: 0in 0in 0in 0.375in'><SPAN style="COLOR: black">[</SPAN><SPAN style="COLOR: #5b9bd5">HKEY_CLASSES_ROOT\onemore\shell\open\command</SPAN><SPAN style="COLOR: black">]</SPAN></P>
+<P lang=yo style='FONT-SIZE: 10pt; FONT-FAMILY: "Lucida Console"; MARGIN: 0in 0in 0in 0.375in'><SPAN style="COLOR: black">@=</SPAN><SPAN style="COLOR: firebrick">"\"C:\\Program Files\\River\\OneMoreAddIn\\OneMoreProtocolHandler.exe\" %1 %2 %3 %4 %5"</SPAN></P>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">Finally, we have to create a policy that tells Windows to trust the protocol scheme. Noticed that this is per-user. The key must end with the protocol name, including the colon character as demonstrated here.</P>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
+<P lang=yo style='FONT-SIZE: 10pt; FONT-FAMILY: "Lucida Console"; MARGIN: 0in 0in 0in 0.375in'><SPAN style="COLOR: black">[</SPAN><SPAN style="COLOR: #5b9bd5">HKEY_CURRENT_USER\SOFTWARE\Policies\Microsoft\Office\16.0\Common\Security\Trusted Protocols\All Applications\onemore:</SPAN><SPAN style="COLOR: black">]</SPAN></P>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
+<H1 lang=yo style="FONT-SIZE: 16pt; FONT-FAMILY: Calibri; COLOR: #1e4e79; MARGIN: 0in">OneMore Protocol Handler</H1>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">Now we can embed URLs on a page similar to</P>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
+<P lang=yo style='FONT-SIZE: 10pt; FONT-FAMILY: "Lucida Console"; COLOR: black; MARGIN: 0in 0in 0in 0.375in'><SPAN style="BACKGROUND: #f1f1f1">onemore://PlantUmlCommand/object-id</SPAN></P>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">Look at the <SPAN style="FONT-STYLE: italic">Extract</SPAN> URL below the image at the top of this page. It's the same as the <SPAN style="FONT-STYLE: italic">Refresh</SPAN> URL but with an additonal "extract" parameter. When this link is clicked, OneNote passes this to Windows, which looks up the onemore: schema in the Registry and determines its default handler, in this case, <A href="https://github.com/stevencohn/OneMore/tree/main/OneMoreProtocolHandler">the OneMoreProtocolHandler.exe application</A>. The entire URL is passed as the first parameter into this application.</P>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">The handler application is simple in concept: it sends a message to a service listening from within the OneMore <A href="TechNote - COM Surrogate.htm">COM Surrogate process</A>. The transport mechanism is a named pipe. The name of this pipe is derived from the default value on the registered protocol, in this case "URI:OneMore Protocol Handler".</P>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">The named pipe is constructed such that only the logged in user can send messages, as explained below.</P>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
+<H1 lang=yo style="FONT-SIZE: 16pt; FONT-FAMILY: Calibri; COLOR: #1e4e79; MARGIN: 0in">Command Service</H1>
+<P lang=yo style="MARGIN: 0in"><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">In our </SPAN><SPAN style='FONT-SIZE: 10pt; FONT-FAMILY: "Lucida Console"; BACKGROUND: #f1f1f1'>OnStartupComplete </SPAN><A href="Design - Command Framework.htm"><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">handler</SPAN></A><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">, OneMore starts a number of services, one of which is implemented by the </SPAN><SPAN style='FONT-SIZE: 10pt; FONT-FAMILY: "Lucida Console"; BACKGROUND: #f1f1f1'>CommandService</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri"> class. This class spins up a worker thread that listens on the secured named pipe.</SPAN></P>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">When a mesasge is received, the incoming URI is parsed to extract the command name and any necessary parameters. Using the example above, the command name is "PlantUmlCommand" and the parameter is a unique object ID, </P>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">Examining the code, you'll notice that the constructor of the CommandService class accepts a reference to the command factory:</P>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
+<P lang=yo style='FONT-SIZE: 10pt; FONT-FAMILY: "Lucida Console"; MARGIN: 0in 0in 0in 0.375in'><SPAN style="COLOR: #2e75b5">public</SPAN><SPAN style="COLOR: black"> CommandService(CommandFactory factory)</SPAN></P>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">The factory invokes the named command, passing in the provided parameters.</P>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
+<H1 lang=yo style="FONT-SIZE: 16pt; FONT-FAMILY: Calibri; COLOR: #1e4e79; MARGIN: 0in">Command args</H1>
+<P lang=yo style="MARGIN: 0in"><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">All commands must implement the abstract </SPAN><SPAN style='FONT-SIZE: 10pt; FONT-FAMILY: "Lucida Console"; BACKGROUND: #f1f1f1'>Execute</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri"> method declared in the base </SPAN><SPAN style='FONT-SIZE: 10pt; FONT-FAMILY: "Lucida Console"; BACKGROUND: #f1f1f1'>Command</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri"> class. This method accepts an optional array of arguments. Normally, this list would be empty. However, commands that are indirectly re-entrant via the command service must interrogate the </SPAN><SPAN style='FONT-SIZE: 10pt; FONT-FAMILY: "Lucida Console"; BACKGROUND: #f1f1f1'>args</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri"> parameter and decide what to do next. For example, the PlantUmlCommand will redraw the image specified by the object ID parameter.</SPAN></P>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
+<P lang=yo style='FONT-SIZE: 10pt; FONT-FAMILY: "Courier New"; COLOR: #43577c; MARGIN: 0in'>──────────────────────────────────────────────────────────────────────────────────────────────────</P>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in"><SPAN style="FONT-STYLE: italic">PlantUML (</SPAN><A href="onemore://PlantUmlCommand/b00e0e8b8dc448de823c0ccd42ded9d4"><SPAN style="FONT-STYLE: italic">Refresh</SPAN></A><SPAN style="FONT-STYLE: italic">)</SPAN></P>
+<P lang=yo style='FONT-SIZE: 9.5pt; FONT-FAMILY: "Lucida Console"; MARGIN: 0in 0in 0in 0.375in'><SPAN style="FONT-WEIGHT: bold; COLOR: #5b9bd5">@startuml</SPAN><SPAN style="COLOR: black"> Trusted Protocol Activation</SPAN></P>
+<P lang=yo style='FONT-SIZE: 9.5pt; FONT-FAMILY: "Lucida Console"; COLOR: #a5a5a5; MARGIN: 0in 0in 0in 0.375in'>allowmixing</P>
+<P lang=yo style='FONT-SIZE: 9.5pt; FONT-FAMILY: "Lucida Console"; MARGIN: 0in 0in 0in 0.375in'><SPAN style="COLOR: #a5a5a5">skin</SPAN><SPAN style="COLOR: black"> rose</SPAN></P>
+<P lang=yo style='FONT-SIZE: 9.5pt; FONT-FAMILY: "Lucida Console"; MARGIN: 0in 0in 0in 0.375in'><SPAN style="COLOR: #a5a5a5">skinparam</SPAN><SPAN style="COLOR: black"> defaultFontSize </SPAN><SPAN style="COLOR: #8064a2">9</SPAN></P>
+<P lang=yo style='FONT-SIZE: 9.5pt; FONT-FAMILY: "Lucida Console"; MARGIN: 0in 0in 0in 0.375in'><SPAN style="COLOR: lightseagreen">rectangle</SPAN><SPAN style="COLOR: black"> #line:gray;line.</SPAN><SPAN style="COLOR: #2e75b5">dotted</SPAN><SPAN style="COLOR: black"> {</SPAN></P>
+<P lang=yo style='FONT-SIZE: 9.5pt; FONT-FAMILY: "Lucida Console"; MARGIN: 0in 0in 0in 0.375in'><SPAN style="COLOR: black"><SPAN style="mso-spacerun: yes">&nbsp; </SPAN></SPAN><SPAN style="COLOR: lightseagreen">file </SPAN><SPAN style="COLOR: firebrick">"URL Click" </SPAN><SPAN style="COLOR: #2e75b5">as</SPAN><SPAN style="COLOR: black"> URL</SPAN></P>
+<P lang=yo style='FONT-SIZE: 9.5pt; FONT-FAMILY: "Lucida Console"; MARGIN: 0in 0in 0in 0.375in'><SPAN style="COLOR: black"><SPAN style="mso-spacerun: yes">&nbsp; </SPAN></SPAN><SPAN style="COLOR: lightseagreen">component</SPAN><SPAN style="COLOR: black"> Handler</SPAN></P>
+<P lang=yo style='FONT-SIZE: 9.5pt; FONT-FAMILY: "Lucida Console"; COLOR: black; MARGIN: 0in 0in 0in 0.375in'>}</P>
+<P lang=yo style='FONT-SIZE: 9.5pt; FONT-FAMILY: "Lucida Console"; MARGIN: 0in 0in 0in 0.375in'><SPAN style="COLOR: lightseagreen">package </SPAN><SPAN style="COLOR: firebrick">"COM Surrogate"</SPAN><SPAN style="COLOR: black"> {</SPAN></P>
+<P lang=yo style='FONT-SIZE: 9.5pt; FONT-FAMILY: "Lucida Console"; MARGIN: 0in 0in 0in 0.375in'><SPAN style="COLOR: black"><SPAN style="mso-spacerun: yes">&nbsp; </SPAN></SPAN><SPAN style="COLOR: lightseagreen">component</SPAN><SPAN style="COLOR: black"> Service</SPAN></P>
+<P lang=yo style='FONT-SIZE: 9.5pt; FONT-FAMILY: "Lucida Console"; MARGIN: 0in 0in 0in 0.375in'><SPAN style="COLOR: black"><SPAN style="mso-spacerun: yes">&nbsp; </SPAN></SPAN><SPAN style="COLOR: lightseagreen">hexagon</SPAN><SPAN style="COLOR: black"> Command</SPAN></P>
+<P lang=yo style='FONT-SIZE: 9.5pt; FONT-FAMILY: "Lucida Console"; COLOR: black; MARGIN: 0in 0in 0in 0.375in'>}</P>
+<P lang=yo style='FONT-SIZE: 9.5pt; FONT-FAMILY: "Lucida Console"; MARGIN: 0in 0in 0in 0.375in'><SPAN style="COLOR: lightseagreen">json </SPAN><SPAN style="COLOR: firebrick">"Windows Registry" </SPAN><SPAN style="COLOR: #2e75b5">as</SPAN><SPAN style="COLOR: black"> Registry {</SPAN></P>
+<P lang=yo style='FONT-SIZE: 9.5pt; FONT-FAMILY: "Lucida Console"; MARGIN: 0in 0in 0in 0.375in'><SPAN style="COLOR: black"><SPAN style="mso-spacerun: yes">&nbsp;&nbsp; </SPAN></SPAN><SPAN style="COLOR: firebrick">"scheme"</SPAN><SPAN style="COLOR: black">:</SPAN><SPAN style="COLOR: firebrick">"onemore:"</SPAN><SPAN style="COLOR: black">,</SPAN></P>
+<P lang=yo style='FONT-SIZE: 9.5pt; FONT-FAMILY: "Lucida Console"; MARGIN: 0in 0in 0in 0.375in'><SPAN style="COLOR: black"><SPAN style="mso-spacerun: yes">&nbsp;&nbsp; </SPAN></SPAN><SPAN style="COLOR: firebrick">"handler"</SPAN><SPAN style="COLOR: black">:</SPAN><SPAN style="COLOR: firebrick">"OneMoreProtocolHandler.exe"</SPAN><SPAN style="COLOR: black">,</SPAN></P>
+<P lang=yo style='FONT-SIZE: 9.5pt; FONT-FAMILY: "Lucida Console"; MARGIN: 0in 0in 0in 0.375in'><SPAN style="COLOR: black"><SPAN style="mso-spacerun: yes">&nbsp;&nbsp; </SPAN></SPAN><SPAN style="COLOR: firebrick">"trust"</SPAN><SPAN style="COLOR: black">:</SPAN><SPAN style="COLOR: firebrick">"enabled"</SPAN></P>
+<P lang=yo style='FONT-SIZE: 9.5pt; FONT-FAMILY: "Lucida Console"; COLOR: black; MARGIN: 0in 0in 0in 0.375in'>}</P>
+<P lang=yo style='FONT-SIZE: 9.5pt; FONT-FAMILY: "Lucida Console"; MARGIN: 0in 0in 0in 0.375in'><SPAN style="COLOR: black">URL -</SPAN><SPAN style="COLOR: #2e75b5">right</SPAN><SPAN style="COLOR: black">-&gt; Handler</SPAN></P>
+<P lang=yo style='FONT-SIZE: 9.5pt; FONT-FAMILY: "Lucida Console"; MARGIN: 0in 0in 0in 0.375in'><SPAN style="COLOR: black">Handler -</SPAN><SPAN style="COLOR: #2e75b5">right</SPAN><SPAN style="COLOR: black">-&gt; Service: </SPAN><SPAN style="COLOR: firebrick">"&lt;&lt; named pipe &gt;&gt;"</SPAN></P>
+<P lang=yo style='FONT-SIZE: 9.5pt; FONT-FAMILY: "Lucida Console"; MARGIN: 0in 0in 0in 0.375in'><SPAN style="COLOR: black">Registry -</SPAN><SPAN style="COLOR: #2e75b5">up</SPAN><SPAN style="COLOR: black">-&gt; Handler</SPAN></P>
+<P lang=yo style='FONT-SIZE: 9.5pt; FONT-FAMILY: "Lucida Console"; MARGIN: 0in 0in 0in 0.375in'><SPAN style="COLOR: black">Registry -</SPAN><SPAN style="COLOR: #2e75b5">up</SPAN><SPAN style="COLOR: black">-&gt; Service</SPAN></P>
+<P lang=yo style='FONT-SIZE: 9.5pt; FONT-FAMILY: "Lucida Console"; MARGIN: 0in 0in 0in 0.375in'><SPAN style="COLOR: black">Service -</SPAN><SPAN style="COLOR: #2e75b5">right</SPAN><SPAN style="COLOR: black">-&gt; Command</SPAN></P>
+<P lang=yo style='FONT-SIZE: 9.5pt; FONT-FAMILY: "Lucida Console"; COLOR: #5b9bd5; MARGIN: 0in 0in 0in 0.375in'><SPAN style="FONT-WEIGHT: bold">@enduml</SPAN></P>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
+<P><CITE lang=yo style="FONT-SIZE: 10pt; FONT-FAMILY: Calibri; COLOR: #595959; MARGIN: 0in">© 2020 Steven M Cohn. All rights reserved.</CITE></P>
+<P><CITE lang=yo style="FONT-SIZE: 10pt; FONT-FAMILY: Calibri; COLOR: #595959; MARGIN: 0in">Please consider a <A href="https://github.com/sponsors/stevencohn">sponsorship or one-time donation</A> to support ongoing development</CITE></P>
+<P><CITE style="FONT-SIZE: 9pt; FONT-FAMILY: Calibri; COLOR: #595959; MARGIN: 0in">&nbsp;</CITE></P></DIV></DIV></DIV>
+<DIV>
+<P style="MARGIN: 0in">&nbsp;</P>
+<P style="FONT-SIZE: 9pt; FONT-FAMILY: Arial; COLOR: #969696; DIRECTION: ltr; TEXT-ALIGN: left; MARGIN: 0in">Created with OneNote.</P></DIV>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>
+

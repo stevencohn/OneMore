@@ -1,0 +1,141 @@
+﻿<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>OneMore</title>
+  <link href="/nav.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+  <link href="/toc.css" rel="stylesheet" crossorigin="anonymous">
+  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+    crossorigin="anonymous"></script>
+  <script src="/helpers.js"></script>
+  <script type="text/javascript">
+    $(document).ready(function () {
+      $('#nav-container').load('/nav.htm', function() { HighlightActive('commands'); });
+      $('#toc-container').load('toc.htm', function() { HighlightActive('table-commands'); });
+    });
+  </script>
+</head>
+
+<body>
+  <div id="nav-container" class="sticky-top"></div>
+  <div id="toc-container" class="sidenav"></div>
+  <div class="main">
+    <div class="container-xxl bd-gutter mt-3 my-md-4 bd-layout tab-content" id="content">
+      <div class="container-xxl bd-gutter mt-3 my-md-4 bd-layout">
+        <div id="main-content">
+          <DIV style="DIRECTION: ltr">
+<DIV style="WIDTH: 8.736in; MARGIN-TOP: 0in; DIRECTION: ltr; MARGIN-LEFT: 0in">
+<DIV style="WIDTH: 2.465in; MARGIN-TOP: 0in; DIRECTION: ltr; MARGIN-LEFT: 0in">
+<P lang=yo style='FONT-SIZE: 20pt; FONT-FAMILY: "Calibri Light"; MARGIN: 0in'>Table Commands</P></DIV>
+<DIV style="WIDTH: 2.477in; MARGIN-TOP: 0.042in; DIRECTION: ltr; MARGIN-LEFT: 0in">
+<P style="FONT-SIZE: 10pt; FONT-FAMILY: Calibri; COLOR: #767676; MARGIN: 0in">Monday, February 20, 2023</P>
+<P style="FONT-SIZE: 10pt; FONT-FAMILY: Calibri; COLOR: #767676; MARGIN: 0in">7:12 AM</P></DIV>
+<DIV style="WIDTH: 8.736in; MARGIN-TOP: 0.427in; DIRECTION: ltr; MARGIN-LEFT: 0in">
+<H1 lang=yo style="FONT-SIZE: 16pt; FONT-FAMILY: Calibri; COLOR: #1e4e79; MARGIN: 0in">Add, Delete, Highlight, and Recalculate Formula</H1>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">OneNote lets you insert an Excel table on a page or convert a table to an Excel object. This is convenient if you want complicated formulas and charts... and you have Excel installed! But what if you don't?</P>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">OneMore adds Excel-like formula functionality to native OneNote tables. Thanks to the work done by&nbsp;<A href="http://www.blackbeltcoder.com/Articles/algorithms/a-c-expression-evaluator">Jonathan Wood</A>, who created a fantastic expression parser and evaluator, you can apply a formula to one or more selected cells in a table. A formula can consist of basic mathematical operators, parenthesis, and most math functions such as abs, sum, average, sin, etc.</P>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
+<DIV style="DIRECTION: ltr">
+<TABLE title="" style="BORDER-TOP: #a3a3a3 0pt solid; BORDER-RIGHT: #a3a3a3 0pt solid; BORDER-COLLAPSE: collapse; BORDER-BOTTOM: #a3a3a3 0pt solid; DIRECTION: ltr; MARGIN-LEFT: 0.333in; BORDER-LEFT: #a3a3a3 0pt solid" cellSpacing=0 cellPadding=0 summary="" border=0 valign="top">
+<TBODY>
+<TR>
+<TD style="BORDER-LEFT-WIDTH: 0pt; BORDER-RIGHT-WIDTH: 0pt; WIDTH: 5.138in; VERTICAL-ALIGN: top; BORDER-BOTTOM-WIDTH: 0pt; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; PADDING-RIGHT: 3pt; BORDER-TOP-WIDTH: 0pt">
+<P style="MARGIN: 0in"><IMG alt="Formula Dialog" src="Table%20Commands_files/image001.png" width=480 height=344></P>
+<P lang=yo style="FONT-SIZE: 10pt; FONT-FAMILY: Calibri; COLOR: #5b9bd5; TEXT-ALIGN: center; MARGIN: 0in"><SPAN style="FONT-WEIGHT: bold">Formula Dialog</SPAN></P></TD></TR></TBODY></TABLE></DIV>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
+<P lang=yo style="FONT-SIZE: 12pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
+<OL style="FONT-SIZE: 11.5pt; MARGIN-BOTTOM: 0in; FONT-FAMILY: Calibri; unicode-bidi: embed; MARGIN-TOP: 0in; FONT-WEIGHT: normal; DIRECTION: ltr; FONT-STYLE: normal" type=1>
+<LI lang=yo style="MARGIN-BOTTOM: 0px; VERTICAL-ALIGN: middle; MARGIN-TOP: 0px" value=1><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; FONT-WEIGHT: normal; FONT-STYLE: normal">Select the cell or cells into which you want to add a formula; they must be linear and contiguous, meaning in the same row or in the same column.</SPAN> 
+<LI lang=yo style="MARGIN-BOTTOM: 0px; VERTICAL-ALIGN: middle; MARGIN-TOP: 0px"><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">Select the Add Formula command, </SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; BACKGROUND: #ffff99">F5</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">. The Formula dialog is displayed showing the names of the selected cells: A1, A2, A3, etc.</SPAN> 
+<LI lang=yo style="MARGIN-BOTTOM: 0px; VERTICAL-ALIGN: middle; MARGIN-TOP: 0px"><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">Enter the formula. As you type, OneMore validates the syntax in real-time, showing whether the formula is valid or invalid. Only when it is valid will the OK button be enabled.</SPAN> 
+<LI lang=yo style="MARGIN-BOTTOM: 0px; VERTICAL-ALIGN: middle; MARGIN-TOP: 0px"><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">Choose the format of the result: Number, Currency, or Percentage.</SPAN> 
+<LI lang=yo style="MARGIN-BOTTOM: 0px; VERTICAL-ALIGN: middle; MARGIN-TOP: 0px"><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">Choose whether you want to tag the cell with a lightning bolt to make it easy to identify cells with formulas in them.</SPAN> 
+<LI lang=yo style="MARGIN-BOTTOM: 0px; VERTICAL-ALIGN: middle; MARGIN-TOP: 0px"><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">Click OK.</SPAN> </LI></OL>
+<P lang=yo style="FONT-SIZE: 12pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">If you use cell references in your formula and you've selected more than one cell then OneMore will automatically increment the references relative to each seleted cell. For example, if you select cells A10, B10, and C10 and enter the formula sum(A1:A9) then that will apply to A10, sum(B1:B9) will apply to B10, and sum(C1:C9) will apply to C10.</P>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">Formula processing is not recursive. This means that if cell A1 has a formula "A2+1" and cell A2 has a formula "1+1", then when A1 is calculated, it will not force A2 to be recalculated. Instead, each cell is calculated in order, top-down and left-to-right across the table.</P>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">The Recalculate command, <SPAN style="BACKGROUND: #ffff99">Shift + F5</SPAN>, will recalculate all formulas in the selected table(s).</P>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">The Highlight command will select all cells on the page containing formulas so you know where you put them.</P>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">The Delete command will remove a formula from the selected cell(s) but retain the values displayed in those cell.</P>
+<H1 lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; COLOR: #1e4e79; MARGIN: 0in">&nbsp;</H1>
+<H2 lang=yo style="FONT-SIZE: 14pt; FONT-FAMILY: Calibri; COLOR: #2e75b5; MARGIN: 0in">Functions</H2>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">Available functions include abs, acos, asin, atan, atan2, average, ceiling, cos, cosh, exp, floor, log, log10, max, median, min, mode, pow, range, round, sign, sin, sinh, sqrt, stdev, sum, tan, tanh, trunc, and variance.</P>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">Additionally, the following special functions are included.</P>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
+<H3 lang=yo style="FONT-SIZE: 12pt; FONT-FAMILY: Calibri; COLOR: #5b9bd5; MARGIN: 0in">countif(range,&nbsp;criteria)</H3>
+<P lang=yo style="MARGIN: 0in"><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">Counts the number of values in the given range that match the specified criteria. The&nbsp;range&nbsp;can be a simple math formula such as&nbsp;</SPAN><SPAN style='FONT-SIZE: 9.5pt; FONT-FAMILY: "Lucida Console"; BACKGROUND: #e8e8e8; COLOR: #172b4d'>123</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">&nbsp;or&nbsp;</SPAN><SPAN style='FONT-SIZE: 9.5pt; FONT-FAMILY: "Lucida Console"; BACKGROUND: #e8e8e8; COLOR: #172b4d'>22.5 * pi</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">&nbsp;or it could be a cell range such as&nbsp;</SPAN><SPAN style='FONT-SIZE: 9.5pt; FONT-FAMILY: "Lucida Console"; BACKGROUND: #e8e8e8; COLOR: #172b4d'>a2:a7</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">. The&nbsp;criteria&nbsp;can be a numeric value such as&nbsp;</SPAN><SPAN style='FONT-SIZE: 9.5pt; FONT-FAMILY: "Lucida Console"; BACKGROUND: #e8e8e8; COLOR: #172b4d'>123</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">&nbsp;or&nbsp;</SPAN><SPAN style='FONT-SIZE: 9.5pt; FONT-FAMILY: "Lucida Console"; BACKGROUND: #e8e8e8; COLOR: #172b4d'>45.66</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">; it can be a boolean,&nbsp;</SPAN><SPAN style='FONT-SIZE: 9.5pt; FONT-FAMILY: "Lucida Console"; BACKGROUND: #e8e8e8; COLOR: #172b4d'>true</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">&nbsp;or&nbsp;</SPAN><SPAN style='FONT-SIZE: 9.5pt; FONT-FAMILY: "Lucida Console"; BACKGROUND: #e8e8e8; COLOR: #172b4d'>false</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">, in which case it will look for checkbox tags in each cell and will ignore all other content in the cells; or it can be a simple string match such as&nbsp;</SPAN><SPAN style='FONT-SIZE: 9.5pt; FONT-FAMILY: "Lucida Console"; BACKGROUND: #e8e8e8; COLOR: #172b4d'>abc</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">&nbsp;where quotes are not allowed. Additionally, three operators are allowed for numeric and string matches:&nbsp;&lt;,&nbsp;&gt;, and&nbsp;!, again quotes are not allowed.</SPAN></P>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
+<P lang=yo style='FONT-SIZE: 10pt; FONT-FAMILY: "Courier New"; COLOR: #43577c; MARGIN: 0in'>────────────────────────────────────────────────────────────────────────────────────────────────────</P>
+<H1 lang=yo style="FONT-SIZE: 16pt; FONT-FAMILY: Calibri; COLOR: #1e4e79; MARGIN: 0in">Copy Across, Copy Down, Fill Across, and Fill Down</H1>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">The Copy Across and Copy Down commands will duplicate the contents of the lead cells in the selection. For example, if you select one or more cells in the first row and choose Copy Down, the cell values, style, and shading in that row will be copied down the entire table. Restrict the scope by selecting the first cell to copy and subsequent cells to fill, either vertically or horizontally as appropriate.</P>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">The Fill Across and Fill Down commands will increment the values in the lead cells in the selection. For example, if the selected cell contains a number, that number will be incremented and added to all subsequent cells. If the second cell is populated then it will compare the second and first cell, determine the difference, and use that to increment the value. The Fill commands work for:</P>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
+<UL style="MARGIN-BOTTOM: 0in; unicode-bidi: embed; MARGIN-TOP: 0in; DIRECTION: ltr" type=disc>
+<LI lang=yo style="MARGIN-BOTTOM: 0px; VERTICAL-ALIGN: middle; MARGIN-TOP: 0px"><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">Numbers including integers, decimals, and currencies, incrementing by 1 or the integer difference of the first and second cell</SPAN> 
+<LI lang=yo style="MARGIN-BOTTOM: 0px; VERTICAL-ALIGN: middle; MARGIN-TOP: 0px"><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">Counting Strings such as "Person 1" will be incremented to populated "Person 2", "Person 3", "Person 4", etc.</SPAN> 
+<LI lang=yo style="MARGIN-BOTTOM: 0px; VERTICAL-ALIGN: middle; MARGIN-TOP: 0px"><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">Dates of various forms will be recognized and increment by adding 1 day or the different in days between the first and second cell</SPAN> 
+<UL style="MARGIN-BOTTOM: 0in; unicode-bidi: embed; MARGIN-TOP: 0in; DIRECTION: ltr" type=circle>
+<LI lang=yo style="MARGIN-BOTTOM: 0px; VERTICAL-ALIGN: middle; MARGIN-TOP: 0px"><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">Date formats include these culture-specific formats (they change per culture)</SPAN> 
+<UL style="MARGIN-BOTTOM: 0in; unicode-bidi: embed; MARGIN-TOP: 0in; DIRECTION: ltr" type=disc>
+<LI lang=yo style="MARGIN-BOTTOM: 0px; VERTICAL-ALIGN: middle; MARGIN-TOP: 0px"><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">M/d/YYYY</SPAN> 
+<LI lang=yo style="MARGIN-BOTTOM: 0px; VERTICAL-ALIGN: middle; MARGIN-TOP: 0px"><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">MMMM d</SPAN> 
+<LI lang=yo style="MARGIN-BOTTOM: 0px; VERTICAL-ALIGN: middle; MARGIN-TOP: 0px"><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">dddd, MMM d, yyyy</SPAN> </LI></UL>
+<LI lang=yo style="MARGIN-BOTTOM: 0px; VERTICAL-ALIGN: middle; MARGIN-TOP: 0px"><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">And these explicit formats</SPAN> 
+<UL style="MARGIN-BOTTOM: 0in; unicode-bidi: embed; MARGIN-TOP: 0in; DIRECTION: ltr" type=disc>
+<LI lang=yo style="MARGIN-BOTTOM: 0px; VERTICAL-ALIGN: middle; MARGIN-TOP: 0px"><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">d-MMM-yyyy</SPAN> 
+<LI lang=yo style="MARGIN-BOTTOM: 0px; VERTICAL-ALIGN: middle; MARGIN-TOP: 0px"><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">MMM d, yyyy</SPAN> 
+<LI lang=yo style="MARGIN-BOTTOM: 0px; VERTICAL-ALIGN: middle; MARGIN-TOP: 0px"><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">MMM d</SPAN> </LI></UL></LI></UL></LI></UL>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
+<P style="MARGIN: 0in 0in 0in 0.375in"><IMG src="Table%20Commands_files/image002.png" width=480 height=333></P>
+<P style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
+<H1 lang=yo style="FONT-SIZE: 16pt; FONT-FAMILY: Calibri; COLOR: #1e4e79; MARGIN: 0in">Convert Text to Table</H1>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">Converts selected text to a table. Text must be delimited by a comma, space, or other special character so the command can detect columns.</P>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
+<P style="MARGIN: 0in 0in 0in 0.375in"><IMG src="Table%20Commands_files/image003.png" width=336 height=306></P>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
+<H1 lang=yo style="FONT-SIZE: 16pt; FONT-FAMILY: Calibri; COLOR: #1e4e79; MARGIN: 0in">Insert Table Cells</H1>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">Adds the ability to insert cells into a table, shifting existing content down or to the right. This is similar to the Excel functionality with one enhancement - if you select a rectangular region of cells then it will shift just those cells, possibly overwriting other cells. If you select cells from one column or cells from one row then it will insert cells above or to the left and add rows or columns as needed to make room for the new cells.</P>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
+<P style="MARGIN: 0in 0in 0in 0.375in"><IMG src="Table%20Commands_files/image004.png" width=230 height=178></P>
+<P lang=yo style="FONT-SIZE: 12pt; MARGIN-BOTTOM: 12pt; FONT-FAMILY: Calibri; MARGIN-TOP: 0pt">&nbsp;</P>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">Note that if you move cells with formulas, the cell references in those formulas are not updated automatically by this command; you'll need to adjust those manually.</P>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
+<H1 lang=yo style="FONT-SIZE: 16pt; FONT-FAMILY: Calibri; COLOR: #1e4e79; MARGIN: 0in">Paste Table Cells</H1>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">Paste copied cells into a table, overlaying cells rather than inserting a nested table as OneNote does by default. The target table is expanded with extra rows or columns as needed. All cell formatting, including cell shading, is preserved. This is useful for moving cells around within a table or copying cells from one table to another.</P>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">When copying cells with Ctrl-C and pasting back into the same table, the old cells are not erased. If your intention is to&nbsp;move&nbsp;the cells, leaving blank cells behind, then instead use Ctrl-X to copy and cut prior to running this paste command.</P>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">Note, you may notice the OneNote windows flashing once when this command is run. This is because OneMore needs to use a temporary page to do some of its work and you're seeing it navigate to that page and then back to your current page.</P>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
+<H1 lang=yo style="FONT-SIZE: 16pt; FONT-FAMILY: Calibri; COLOR: #1e4e79; MARGIN: 0in">Split Table</H1>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">Splits the current table starting at the row containing the input cursor. Optionally, the header can be duplicated in the new table </P>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">and columns in both can be fixed to their current widths so the two tables remain aligned.</P>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
+<P><CITE lang=yo style="FONT-SIZE: 10pt; FONT-FAMILY: Calibri; COLOR: #595959; MARGIN: 0in">© 2020 Steven M Cohn. All rights reserved.</CITE></P>
+<P><CITE lang=yo style="FONT-SIZE: 10pt; FONT-FAMILY: Calibri; COLOR: #595959; MARGIN: 0in">Please consider a <A href="https://github.com/sponsors/stevencohn">sponsorship or one-time donation</A> to support ongoing development</CITE></P></DIV></DIV></DIV>
+<DIV>
+<P style="MARGIN: 0in">&nbsp;</P>
+<P style="FONT-SIZE: 9pt; FONT-FAMILY: Arial; COLOR: #969696; DIRECTION: ltr; TEXT-ALIGN: left; MARGIN: 0in">Created with OneNote.</P></DIV>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>
+

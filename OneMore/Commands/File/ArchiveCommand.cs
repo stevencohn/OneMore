@@ -7,6 +7,7 @@ namespace River.OneMoreAddIn.Commands
 	using River.OneMoreAddIn.Models;
 	using River.OneMoreAddIn.UI;
 	using System;
+	using System.Collections.Generic;
 	using System.IO;
 	using System.IO.Compression;
 	using System.Linq;
@@ -26,6 +27,8 @@ namespace River.OneMoreAddIn.Commands
 	/// </summary>
 	internal class ArchiveCommand : Command
 	{
+		private const string OrderFile = "__File_Order.txt";
+
 		private OneNote one;
 		private Archivist archivist;
 		private ZipArchive archive;
@@ -77,7 +80,7 @@ namespace River.OneMoreAddIn.Commands
 					return;
 				}
 
-				var progressDialog = new UI.ProgressDialog(Execute);
+				var progressDialog = new ProgressDialog(Execute);
 
 				// report result is needed to show UI after Execute is completed on another thread
 				await progressDialog.RunModeless(ReportResult);
@@ -90,7 +93,7 @@ namespace River.OneMoreAddIn.Commands
 		// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 		// Invoked by the ProgressDialog OnShown callback
-		private async Task Execute(UI.ProgressDialog progress, CancellationToken token)
+		private async Task Execute(ProgressDialog progress, CancellationToken token)
 		{
 			logger.Start();
 			logger.StartClock();
@@ -190,8 +193,11 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private async Task Archive(UI.ProgressDialog progress, XElement root, string path)
+		private async Task Archive(ProgressDialog progress, XElement root, string path)
 		{
+			// keep track of the order of pages and sections
+			var order = new List<string>();
+
 			foreach (var element in root.Elements())
 			{
 				if (element.Name.LocalName == "Page")
@@ -203,6 +209,7 @@ namespace River.OneMoreAddIn.Commands
 					progress.Increment();
 
 					await ArchivePage(element, page, path);
+					order.Add(page.Title);
 
 					CleanupTemp();
 				}
@@ -220,7 +227,13 @@ namespace River.OneMoreAddIn.Commands
 					var name = element.Attribute("name").Value;
 
 					await Archive(progress, element, Path.Combine(path, name));
+					//order.Add(name);
 				}
+			}
+
+			if (order.Any())
+			{
+				await ArchiveOrder(order, path);
 			}
 		}
 
@@ -291,6 +304,22 @@ namespace River.OneMoreAddIn.Commands
 
 				await ArchiveAssets(dir.FullName, dname);
 			}
+		}
+
+
+		private async Task ArchiveOrder(List<string> order, string path)
+		{
+			var filename = Path.Combine(tempdir, OrderFile);
+			File.WriteAllLines(filename, order);
+
+			var name = Path.Combine(path, OrderFile);
+			var entry = archive.CreateEntry(name, CompressionLevel.Optimal);
+			using var writer = new StreamWriter(entry.Open());
+
+			using var reader = new FileStream(
+				filename, FileMode.Open, FileAccess.Read, FileShare.Read);
+
+			await reader.CopyToAsync(writer.BaseStream);
 		}
 
 

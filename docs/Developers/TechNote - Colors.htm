@@ -1,0 +1,765 @@
+﻿<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>OneMore</title>
+  <link href="/nav.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+  <link href="/toc.css" rel="stylesheet" crossorigin="anonymous">
+  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+    crossorigin="anonymous"></script>
+  <script src="/helpers.js"></script>
+  <script type="text/javascript">
+    $(document).ready(function () {
+      $('#nav-container').load('/nav.htm', function() { HighlightActive('developers'); });
+      $('#toc-container').load('toc.htm', function() { HighlightActive('technote---colors'); });
+    });
+  </script>
+</head>
+
+<body>
+  <div id="nav-container" class="sticky-top"></div>
+  <div id="toc-container" class="sidenav"></div>
+  <div class="main">
+    <div class="container-xxl bd-gutter mt-3 my-md-4 bd-layout tab-content" id="content">
+      <div class="container-xxl bd-gutter mt-3 my-md-4 bd-layout">
+        <div id="main-content">
+          <DIV style="DIRECTION: ltr">
+<DIV style="WIDTH: 8.556in; MARGIN-TOP: 0in; DIRECTION: ltr; MARGIN-LEFT: 0in">
+<DIV style="WIDTH: 2.533in; MARGIN-TOP: 0in; DIRECTION: ltr; MARGIN-LEFT: 0.075in">
+<P lang=yo style='FONT-SIZE: 20pt; MARGIN-BOTTOM: 14pt; FONT-FAMILY: "Calibri Light"; MARGIN-TOP: 0pt; COLOR: #464646'>TechNote - Colors</P></DIV>
+<DIV style="WIDTH: 2.484in; MARGIN-TOP: 0.042in; DIRECTION: ltr; MARGIN-LEFT: 0.075in">
+<P style="FONT-SIZE: 10pt; FONT-FAMILY: Calibri; COLOR: #767676; MARGIN: 0in">Sunday, February 19, 2023</P>
+<P style="FONT-SIZE: 10pt; FONT-FAMILY: Calibri; COLOR: #767676; MARGIN: 0in">12:53 PM</P></DIV>
+<DIV style="WIDTH: 8.556in; MARGIN-TOP: 0.427in; DIRECTION: ltr; MARGIN-LEFT: 0in">
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">I'm baffled! I have no idea how OneNote maps colors when you see either a light background or a dark background using the Switch Background button on the View ribbon.</P>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">At a first glance, it seems that if the page background is dark (brightness is less than 50%) then OneNote increases the brightness of all applied colors by 25%; the L of the HSL color value is increased by 25, but not always. </P>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">In another case of Microsoft being "too smart for their own good", OneNote doesn't allow you to override those colors from the COM API. No matter what colors you apply to the XML, OneNote will increase the brightness if the page background is considering "dark". You can, however, still use OneNote's font color button and it will happily apply any color your choose. </P>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
+<DIV style="DIRECTION: ltr">
+<TABLE title="" style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; BORDER-COLLAPSE: collapse; BORDER-BOTTOM: #a3a3a3 1pt solid; DIRECTION: ltr; BORDER-LEFT: #a3a3a3 1pt solid" cellSpacing=0 cellPadding=0 summary="" border=1 valign="top">
+<TBODY>
+<TR>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 8.36in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt; BACKGROUND-COLOR: #e2efd9">
+<DIV style="DIRECTION: ltr">
+<TABLE title="" style="BORDER-TOP: #a3a3a3 0pt solid; BORDER-RIGHT: #a3a3a3 0pt solid; BORDER-COLLAPSE: collapse; BORDER-BOTTOM: #a3a3a3 0pt solid; DIRECTION: ltr; BORDER-LEFT: #a3a3a3 0pt solid" cellSpacing=0 cellPadding=0 summary="" border=0 valign="top">
+<TBODY>
+<TR>
+<TD style="BORDER-LEFT-WIDTH: 0pt; BORDER-RIGHT-WIDTH: 0pt; WIDTH: 0.667in; VERTICAL-ALIGN: top; BORDER-BOTTOM-WIDTH: 0pt; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; PADDING-RIGHT: 3pt; BORDER-TOP-WIDTH: 0pt">
+<P lang=yo style='FONT-SIZE: 22pt; FONT-FAMILY: "Segoe UI Symbol"; COLOR: #375623; TEXT-ALIGN: center; MARGIN: 0in'>?</P></TD>
+<TD style="BORDER-LEFT-WIDTH: 0pt; BORDER-RIGHT-WIDTH: 0pt; WIDTH: 7.48in; VERTICAL-ALIGN: top; BORDER-BOTTOM-WIDTH: 0pt; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; PADDING-RIGHT: 3pt; BORDER-TOP-WIDTH: 0pt">
+<P lang=yo style='FONT-SIZE: 11pt; FONT-FAMILY: "Segoe UI"; COLOR: #333333; MARGIN: 0in'><SPAN style="FONT-WEIGHT: bold">Question</SPAN></P>
+<P lang=yo style="FONT-SIZE: 11pt; FONT-FAMILY: Calibri; MARGIN: 0in">Is there a relationship, a single equation that translates between these palettes? Or is it just a hardcoded mapping? And how about colors that are not explicitly on the color pickers? How does OneNote convert those custom values between dark and light?</P></TD></TR></TBODY></TABLE></DIV></TD></TR></TBODY></TABLE></DIV>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
+<H1 lang=yo style="FONT-SIZE: 16pt; FONT-FAMILY: Calibri; COLOR: #1e4e79; MARGIN: 0in">Registry for Office Themes</H1>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">OneNote follows the Microsoft Office theme. All Office apps are controlled by a single Registry key</P>
+<P lang=yo style="FONT-SIZE: 11pt; FONT-FAMILY: Calibri; COLOR: black; MARGIN: 0in">&nbsp;</P>
+<P lang=yo style='FONT-SIZE: 9.5pt; FONT-FAMILY: "Lucida Console"; COLOR: #172b4d; MARGIN: 0in 0in 0in 0.375in'><SPAN style="BACKGROUND: #e8e8e8">Computer\HKEY_CURRENT_USER\Software\Microsoft\Office\16.0\Common</SPAN></P>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
+<P lang=yo style="MARGIN: 0in"><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">The key has one of two properties based on Office version (I believe). They are </SPAN><SPAN style='FONT-SIZE: 9.5pt; FONT-FAMILY: "Lucida Console"; BACKGROUND: #e8e8e8; COLOR: #172b4d'>Theme</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri"> or </SPAN><SPAN style='FONT-SIZE: 9.5pt; FONT-FAMILY: "Lucida Console"; BACKGROUND: #e8e8e8; COLOR: #172b4d'>UI Theme</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">. </SPAN><SPAN style="FONT-SIZE: 11pt; FONT-FAMILY: Calibri">Valid values for this property are</SPAN></P>
+<P lang=yo style="FONT-SIZE: 11pt; FONT-FAMILY: Calibri; COLOR: black; MARGIN: 0in 0in 0in 0.375in">&nbsp;</P>
+<DIV style="DIRECTION: ltr">
+<TABLE title="" style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; BORDER-COLLAPSE: collapse; BORDER-BOTTOM: #a3a3a3 1pt solid; DIRECTION: ltr; MARGIN-LEFT: 0.333in; BORDER-LEFT: #a3a3a3 1pt solid" cellSpacing=0 cellPadding=0 summary="" border=1 valign="top">
+<TBODY>
+<TR>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 1.25in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt">
+<P lang=yo style="FONT-SIZE: 11pt; FONT-FAMILY: Calibri; COLOR: black; MARGIN: 0in">Colorful</P></TD>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 0.554in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt">
+<P lang=yo style="FONT-SIZE: 11pt; FONT-FAMILY: Calibri; COLOR: black; TEXT-ALIGN: center; MARGIN: 0in">0</P></TD></TR>
+<TR>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 1.25in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt">
+<P lang=yo style="FONT-SIZE: 11pt; FONT-FAMILY: Calibri; COLOR: black; MARGIN: 0in">Dark Gray</P></TD>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 0.554in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt">
+<P lang=yo style="FONT-SIZE: 11pt; FONT-FAMILY: Calibri; COLOR: black; TEXT-ALIGN: center; MARGIN: 0in">3</P></TD></TR>
+<TR>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 1.25in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt">
+<P lang=yo style="FONT-SIZE: 11pt; FONT-FAMILY: Calibri; COLOR: black; MARGIN: 0in">Black</P></TD>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 0.554in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt">
+<P lang=yo style="FONT-SIZE: 11pt; FONT-FAMILY: Calibri; COLOR: black; TEXT-ALIGN: center; MARGIN: 0in">4</P></TD></TR>
+<TR>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 1.25in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt">
+<P lang=yo style="FONT-SIZE: 11pt; FONT-FAMILY: Calibri; COLOR: black; MARGIN: 0in">White</P></TD>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 0.554in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt">
+<P lang=yo style="FONT-SIZE: 11pt; FONT-FAMILY: Calibri; COLOR: black; TEXT-ALIGN: center; MARGIN: 0in">5</P></TD></TR></TBODY></TABLE></DIV>
+<P lang=yo style="FONT-SIZE: 11pt; FONT-FAMILY: Calibri; COLOR: black; MARGIN: 0in">&nbsp;</P>
+<H1 lang=yo style="FONT-SIZE: 16pt; FONT-FAMILY: Calibri; COLOR: #1e4e79; MARGIN: 0in">Light mode vs. Dark mode</H1>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">If we explore the differences between the light mode color picker and the dark mode color picker</P>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
+<DIV style="DIRECTION: ltr">
+<TABLE title="" style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; BORDER-COLLAPSE: collapse; BORDER-BOTTOM: #a3a3a3 1pt solid; DIRECTION: ltr; MARGIN-LEFT: 0.333in; BORDER-LEFT: #a3a3a3 1pt solid" cellSpacing=0 cellPadding=0 summary="" border=1 valign="top">
+<TBODY>
+<TR>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 2.174in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt">
+<P style="MARGIN: 0in"><IMG alt="Machine generated alternative text:&#10;Automatic &#10;Theme Colors &#10;Standard Colors &#10;Recent Colors &#10;More Colors... " src="TechNote%20-%20Colors_files/image001.png" width=190 height=276></P></TD>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 2.127in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt">
+<DIV style="DIRECTION: ltr">
+<TABLE title="" style="BORDER-TOP: #a3a3a3 0pt solid; BORDER-RIGHT: #a3a3a3 0pt solid; BORDER-COLLAPSE: collapse; BORDER-BOTTOM: #a3a3a3 0pt solid; DIRECTION: ltr; BORDER-LEFT: #a3a3a3 0pt solid" cellSpacing=0 cellPadding=0 summary="" border=0 valign="top">
+<TBODY>
+<TR>
+<TD style="BORDER-LEFT-WIDTH: 0pt; BORDER-RIGHT-WIDTH: 0pt; WIDTH: 1.995in; VERTICAL-ALIGN: top; BORDER-BOTTOM-WIDTH: 0pt; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; PADDING-RIGHT: 3pt; BORDER-TOP-WIDTH: 0pt">
+<P style="MARGIN: 0in"><A href="https://github.com"><IMG alt="Machine generated alternative text:&#10;Heal &#10;Automatic &#10;Theme Colors &#10;Standard Colors &#10;Recent Colors &#10;More Colors... " src="TechNote%20-%20Colors_files/image002.png" width=183 height=272></A></P></TD></TR></TBODY></TABLE></DIV></TD></TR></TBODY></TABLE></DIV>
+<P lang=yo style="FONT-SIZE: 11pt; FONT-FAMILY: Calibri; COLOR: black; MARGIN: 0in">&nbsp;</P>
+<P lang=yo style="FONT-SIZE: 11pt; FONT-FAMILY: Calibri; COLOR: black; MARGIN: 0in">Interrogate each color and list its RGB and HSL values</P>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
+<DIV style="DIRECTION: ltr">
+<TABLE title="" style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; BORDER-COLLAPSE: collapse; BORDER-BOTTOM: #a3a3a3 1pt solid; DIRECTION: ltr; BORDER-LEFT: #a3a3a3 1pt solid" cellSpacing=0 cellPadding=0 summary="" border=1 valign="top">
+<TBODY>
+<TR>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 8.534in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt">
+<DIV style="DIRECTION: ltr">
+<TABLE title="" style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; BORDER-COLLAPSE: collapse; BORDER-BOTTOM: #a3a3a3 1pt solid; DIRECTION: ltr; BORDER-LEFT: #a3a3a3 1pt solid" cellSpacing=0 cellPadding=0 summary="" border=1 valign="top">
+<TBODY>
+<TR>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 0.862in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt">
+<H1 lang=yo style="FONT-SIZE: 9.5pt; FONT-FAMILY: Calibri; COLOR: black; MARGIN: 0in">#FFFFFF<BR>0,0,100<BR>White</H1></TD>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 0.882in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt; BACKGROUND-COLOR: black">
+<H1 lang=yo style="FONT-SIZE: 9.5pt; FONT-FAMILY: Calibri; COLOR: white; MARGIN: 0in">#000000<BR>0,0,0<BR>Black</H1></TD>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 0.832in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt; BACKGROUND-COLOR: #e7e6e6">
+<P style="FONT-SIZE: 9.5pt; FONT-FAMILY: Calibri; MARGIN: 0in"><SPAN lang=yo>#</SPAN><SPAN lang=en-US>e7e6e6<BR>0,2,90</SPAN></P>
+<P style="FONT-SIZE: 9.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">Light Gray</P></TD>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 0.831in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt; BACKGROUND-COLOR: #44546a">
+<P style="FONT-SIZE: 9.5pt; FONT-FAMILY: Calibri; COLOR: white; MARGIN: 0in">#44546a</P>
+<P style="FONT-SIZE: 9.5pt; FONT-FAMILY: Calibri; COLOR: white; MARGIN: 0in">215,22,34<BR>Blue Gray</P></TD>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 0.904in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt; BACKGROUND-COLOR: #5b9bd5">
+<P style="FONT-SIZE: 9.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">#5b9bd5</P>
+<P style="FONT-SIZE: 9.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">209,59,60<BR>Blue</P></TD>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 0.823in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt; BACKGROUND-COLOR: #ed7d31">
+<P style="FONT-SIZE: 9.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">#ed7d31</P>
+<P style="FONT-SIZE: 9.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">24,84,56<BR>Orange</P></TD>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 0.759in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt; BACKGROUND-COLOR: #e84c22">
+<P style="FONT-SIZE: 9.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">#e84c22</P>
+<P style="FONT-SIZE: 9.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">13,81,52<BR>Red</P></TD>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 0.851in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt; BACKGROUND-COLOR: #ffc000">
+<P style="FONT-SIZE: 9.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">#ffc000</P>
+<P style="FONT-SIZE: 9.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">45,100,50<BR>Gold</P></TD>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 0.857in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt; BACKGROUND-COLOR: #8064a2">
+<P style="FONT-SIZE: 9.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">#8064a2</P>
+<P style="FONT-SIZE: 9.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">267,25,51<BR>Purple</P></TD>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 0.657in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt; BACKGROUND-COLOR: #70ad47">
+<P style="FONT-SIZE: 9.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">#70ad47</P>
+<P style="FONT-SIZE: 9.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">96,42,48<BR>Green</P></TD></TR>
+<TR>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 0.862in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt">
+<P style="FONT-SIZE: 9pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P></TD>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 0.882in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt">
+<P style="FONT-SIZE: 9pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P></TD>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 0.832in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt">
+<P style="FONT-SIZE: 9pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P></TD>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 0.831in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt">
+<P style="FONT-SIZE: 9pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P></TD>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 0.904in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt">
+<P style="FONT-SIZE: 9pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P></TD>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 0.823in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt">
+<P style="FONT-SIZE: 9pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P></TD>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 0.759in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt">
+<P style="FONT-SIZE: 9pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P></TD>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 0.851in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt">
+<P style="FONT-SIZE: 9pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P></TD>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 0.857in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt">
+<P style="FONT-SIZE: 9pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P></TD>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 0.527in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt">
+<P style="FONT-SIZE: 9pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P></TD></TR>
+<TR>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 0.862in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt; BACKGROUND-COLOR: #f2f2f2">
+<P style="FONT-SIZE: 9pt; FONT-FAMILY: Calibri; MARGIN: 0in">#F2F2F2<BR>0,0,95<BR>White</P></TD>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 0.882in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt; BACKGROUND-COLOR: #7f7f7f">
+<P style="FONT-SIZE: 9pt; FONT-FAMILY: Calibri; COLOR: white; MARGIN: 0in">#7F7F7F<BR>0,0,50<BR>Gray</P></TD>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 0.832in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt; BACKGROUND-COLOR: #d0cece">
+<P style="FONT-SIZE: 9pt; FONT-FAMILY: Calibri; MARGIN: 0in">#D0CECE<BR>0,2,81<BR>Light gray</P></TD>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 0.831in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt; BACKGROUND-COLOR: #d6dce4">
+<P style="FONT-SIZE: 9pt; FONT-FAMILY: Calibri; MARGIN: 0in">#D6DCE4 <BR>214,21,87 <BR>Ice blue</P></TD>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 0.904in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt; BACKGROUND-COLOR: #deebf6">
+<P style="FONT-SIZE: 9pt; FONT-FAMILY: Calibri; MARGIN: 0in">#DEEBF6 <BR>208,57,92 <BR>Light blue</P></TD>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 0.842in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt; BACKGROUND-COLOR: #fbe5d5">
+<P style="FONT-SIZE: 9pt; FONT-FAMILY: Calibri; MARGIN: 0in">#FBE5D5 <BR>25,83,91 <BR>Light orange</P></TD>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 0.759in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt; BACKGROUND-COLOR: #fadbd2">
+<P style="FONT-SIZE: 9pt; FONT-FAMILY: Calibri; MARGIN: 0in">#FADBD2 <BR>14,80,90 <BR>Rose</P></TD>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 0.851in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt; BACKGROUND-COLOR: #fff2cc">
+<P style="FONT-SIZE: 9pt; FONT-FAMILY: Calibri; MARGIN: 0in">#FFF2CC <BR>45,100,90 <BR>Light yellow</P></TD>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 0.857in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt; BACKGROUND-COLOR: #e5e0ec">
+<P style="FONT-SIZE: 9pt; FONT-FAMILY: Calibri; MARGIN: 0in">#E5E0EC <BR>265,24,90 <BR>Lavender</P></TD>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 0.706in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt; BACKGROUND-COLOR: #e2efd9">
+<P style="FONT-SIZE: 9pt; FONT-FAMILY: Calibri; MARGIN: 0in">#E2EFD9 <BR>95,41,89 <BR>Light green</P></TD></TR>
+<TR>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 0.862in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt; BACKGROUND-COLOR: #d8d8d8">
+<P style="FONT-SIZE: 9pt; FONT-FAMILY: Calibri; MARGIN: 0in">#D8D8D8<BR>0,0,85<BR>Light gray</P></TD>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 0.882in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt; BACKGROUND-COLOR: #595959">
+<P style="FONT-SIZE: 9pt; FONT-FAMILY: Calibri; COLOR: white; MARGIN: 0in">#595959<BR>0,0,35<BR>Dark gray</P></TD>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 0.832in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt; BACKGROUND-COLOR: #aeabab">
+<P style="FONT-SIZE: 9pt; FONT-FAMILY: Calibri; MARGIN: 0in">#AEABAB<BR>0,2,68<BR>Light gray</P></TD>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 0.831in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt; BACKGROUND-COLOR: #adb9ca">
+<P style="FONT-SIZE: 9pt; FONT-FAMILY: Calibri; MARGIN: 0in">#ADB9CA<BR>215,21,74<BR>Ice blue</P></TD>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 0.904in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt; BACKGROUND-COLOR: #bdd7ee">
+<P style="FONT-SIZE: 9pt; FONT-FAMILY: Calibri; MARGIN: 0in">#BDD7EE<BR>208,59,84<BR>Light blue</P></TD>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 0.842in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt; BACKGROUND-COLOR: #f7cbac">
+<P style="FONT-SIZE: 9pt; FONT-FAMILY: Calibri; MARGIN: 0in">#F7CBAC<BR>25,82,82<BR>Light orange</P></TD>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 0.759in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt; BACKGROUND-COLOR: #f5b7a6">
+<P style="FONT-SIZE: 9pt; FONT-FAMILY: Calibri; MARGIN: 0in">#F5B7A6<BR>13,80,81<BR>Rose</P></TD>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 0.851in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt; BACKGROUND-COLOR: #fee599">
+<P style="FONT-SIZE: 9pt; FONT-FAMILY: Calibri; MARGIN: 0in">#FEE599<BR>45,98,80<BR>Light yellow</P></TD>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 0.857in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt; BACKGROUND-COLOR: #ccc1d9">
+<P style="FONT-SIZE: 9pt; FONT-FAMILY: Calibri; MARGIN: 0in">#CCC1D9<BR>268,24,80<BR>Lavender</P></TD>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 0.706in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt; BACKGROUND-COLOR: #c5e0b3">
+<P style="FONT-SIZE: 9pt; FONT-FAMILY: Calibri; MARGIN: 0in">#C5E0B3<BR>96,42,79<BR>Light green</P></TD></TR>
+<TR>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 0.862in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt; BACKGROUND-COLOR: #bfbfbf">
+<P style="FONT-SIZE: 9pt; FONT-FAMILY: Calibri; MARGIN: 0in">#BFBFBF<BR>0,0,75<BR>Light gray</P></TD>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 0.882in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt; BACKGROUND-COLOR: #3f3f3f">
+<P style="FONT-SIZE: 9pt; FONT-FAMILY: Calibri; COLOR: white; MARGIN: 0in">#3F3F3F<BR>0,0,25<BR>Dark gray</P></TD>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 0.832in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt; BACKGROUND-COLOR: #757070">
+<P style="FONT-SIZE: 9pt; FONT-FAMILY: Calibri; COLOR: white; MARGIN: 0in">#757070<BR>0,2,45<BR>Gray</P></TD>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 0.831in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt; BACKGROUND-COLOR: #8496b0">
+<P style="FONT-SIZE: 9pt; FONT-FAMILY: Calibri; MARGIN: 0in">#8496B0<BR>215,22,60<BR>Blue gray</P></TD>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 0.904in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt; BACKGROUND-COLOR: #9cc3e5">
+<P style="FONT-SIZE: 9pt; FONT-FAMILY: Calibri; MARGIN: 0in">#9CC3E5<BR>208,58,75<BR>Light blue</P></TD>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 0.823in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt; BACKGROUND-COLOR: #f4b183">
+<P style="FONT-SIZE: 9pt; FONT-FAMILY: Calibri; MARGIN: 0in">#F4B183<BR>24,84,74<BR>Lt orange</P></TD>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 0.759in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt; BACKGROUND-COLOR: #f1937a">
+<P style="FONT-SIZE: 9pt; FONT-FAMILY: Calibri; MARGIN: 0in">#F1937A<BR>13,81,71<BR>Rose</P></TD>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 0.851in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt; BACKGROUND-COLOR: #ffd965">
+<P style="FONT-SIZE: 9pt; FONT-FAMILY: Calibri; MARGIN: 0in">#FFD965<BR>45,100,70<BR>Light yellow</P></TD>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 0.857in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt; BACKGROUND-COLOR: #b2a1c7">
+<P style="FONT-SIZE: 9pt; FONT-FAMILY: Calibri; MARGIN: 0in">#B2A1C7<BR>267,25,71<BR>Lavender</P></TD>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 0.706in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt; BACKGROUND-COLOR: #a8d08d">
+<P style="FONT-SIZE: 9pt; FONT-FAMILY: Calibri; MARGIN: 0in">#A8D08D<BR>96,42,68<BR>Light green</P></TD></TR>
+<TR>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 0.862in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt; BACKGROUND-COLOR: #a5a5a5">
+<P style="FONT-SIZE: 9pt; FONT-FAMILY: Calibri; MARGIN: 0in">#A5A5A5<BR>0,0,65<BR>Gray</P></TD>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 0.882in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt; BACKGROUND-COLOR: #262626">
+<P style="FONT-SIZE: 9pt; FONT-FAMILY: Calibri; COLOR: white; MARGIN: 0in">#262626<BR>0,0,15<BR>Dark gray</P></TD>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 0.832in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt; BACKGROUND-COLOR: #3a3838">
+<P style="FONT-SIZE: 9pt; FONT-FAMILY: Calibri; COLOR: white; MARGIN: 0in">#3A3838<BR>0,2,22<BR>Dark gray</P></TD>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 0.831in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt; BACKGROUND-COLOR: #323f4f">
+<P style="FONT-SIZE: 9pt; FONT-FAMILY: Calibri; COLOR: white; MARGIN: 0in">#323F4F<BR>213,22,25<BR>Blue gray</P></TD>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 0.904in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt; BACKGROUND-COLOR: #2e75b5">
+<P style="FONT-SIZE: 9pt; FONT-FAMILY: Calibri; COLOR: white; MARGIN: 0in">#2E75B5<BR>208,59,45<BR>Blue</P></TD>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 0.823in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt; BACKGROUND-COLOR: #c55a11">
+<P style="FONT-SIZE: 9pt; FONT-FAMILY: Calibri; COLOR: white; MARGIN: 0in">#C55A11<BR>24,84,42<BR>Brown</P></TD>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 0.759in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt; BACKGROUND-COLOR: #b43512">
+<P style="FONT-SIZE: 9pt; FONT-FAMILY: Calibri; COLOR: white; MARGIN: 0in">#B43512<BR>13,82,39<BR>Dark red</P></TD>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 0.851in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt; BACKGROUND-COLOR: #bf9000">
+<P style="FONT-SIZE: 9pt; FONT-FAMILY: Calibri; COLOR: white; MARGIN: 0in">#BF9000<BR>45,100,37<BR>Dark yellow</P></TD>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 0.857in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt; BACKGROUND-COLOR: #5f497a">
+<P style="FONT-SIZE: 9pt; FONT-FAMILY: Calibri; COLOR: white; MARGIN: 0in">#5F497A<BR>267,25,38<BR>Dark purple</P></TD>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 0.696in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt; BACKGROUND-COLOR: #538135">
+<P style="FONT-SIZE: 9pt; FONT-FAMILY: Calibri; COLOR: white; MARGIN: 0in">#538135<BR>96,42,36<BR>Dark green</P></TD></TR>
+<TR>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 0.862in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt; BACKGROUND-COLOR: #7f7f7f">
+<P style="FONT-SIZE: 9pt; FONT-FAMILY: Calibri; COLOR: white; MARGIN: 0in">#7F7F7F<BR>0,0,50<BR>Gray</P></TD>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 0.882in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt; BACKGROUND-COLOR: #0c0c0c">
+<P style="FONT-SIZE: 9pt; FONT-FAMILY: Calibri; COLOR: white; MARGIN: 0in">#0C0C0C<BR>0,0,5<BR>Black</P></TD>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 0.832in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt; BACKGROUND-COLOR: #171616">
+<P style="FONT-SIZE: 9pt; FONT-FAMILY: Calibri; COLOR: white; MARGIN: 0in">#171616<BR>0,2,9<BR>Dark gray</P></TD>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 0.831in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt; BACKGROUND-COLOR: #222a35">
+<P style="FONT-SIZE: 9pt; FONT-FAMILY: Calibri; COLOR: white; MARGIN: 0in">#222A35<BR>215,22,17<BR>Blue gray</P></TD>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 0.904in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt; BACKGROUND-COLOR: #1e4e79">
+<P style="FONT-SIZE: 9pt; FONT-FAMILY: Calibri; COLOR: white; MARGIN: 0in">#1E4E79<BR>208,60,30<BR>Dark blue</P></TD>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 0.823in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt; BACKGROUND-COLOR: #833c0b">
+<P style="FONT-SIZE: 9pt; FONT-FAMILY: Calibri; COLOR: white; MARGIN: 0in">#833C0B<BR>24,85,28<BR>Brown</P></TD>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 0.759in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt; BACKGROUND-COLOR: #78230c">
+<P style="FONT-SIZE: 9pt; FONT-FAMILY: Calibri; COLOR: white; MARGIN: 0in">#78230C<BR>13,82,26<BR>Dark red</P></TD>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 0.851in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt; BACKGROUND-COLOR: #7f6000">
+<P style="FONT-SIZE: 9pt; FONT-FAMILY: Calibri; COLOR: white; MARGIN: 0in">#7F6000<BR>45,100,25<BR>Dark yellow</P></TD>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 0.857in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt; BACKGROUND-COLOR: #3f3151">
+<P style="FONT-SIZE: 9pt; FONT-FAMILY: Calibri; COLOR: white; MARGIN: 0in">#3F3151<BR>266,25,25<BR>Dark purple</P></TD>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 0.696in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt; BACKGROUND-COLOR: #375623">
+<P style="FONT-SIZE: 9pt; FONT-FAMILY: Calibri; COLOR: white; MARGIN: 0in">#375623<BR>96,42,24<BR>Dark green</P></TD></TR>
+<TR>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 0.862in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt">
+<P style="FONT-SIZE: 9pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P></TD>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 0.882in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt">
+<P style="FONT-SIZE: 9pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P></TD>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 0.832in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt">
+<P style="FONT-SIZE: 9pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P></TD>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 0.831in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt">
+<P style="FONT-SIZE: 9pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P></TD>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 0.904in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt">
+<P style="FONT-SIZE: 9pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P></TD>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 0.823in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt">
+<P style="FONT-SIZE: 9pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P></TD>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 0.759in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt">
+<P style="FONT-SIZE: 9pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P></TD>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 0.851in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt">
+<P style="FONT-SIZE: 9pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P></TD>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 0.857in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt">
+<P style="FONT-SIZE: 9pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P></TD>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 0.527in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt">
+<P style="FONT-SIZE: 9pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P></TD></TR>
+<TR>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 0.862in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt; BACKGROUND-COLOR: #c00000">
+<P style="FONT-SIZE: 9pt; FONT-FAMILY: Calibri; MARGIN: 0in">#C00000<BR>0,100,38<BR>Dark red</P></TD>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 0.882in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt; BACKGROUND-COLOR: #fa0000">
+<P style="FONT-SIZE: 9pt; FONT-FAMILY: Calibri; MARGIN: 0in">#FA0000<BR>0,100,49<BR>Red</P></TD>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 0.832in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt; BACKGROUND-COLOR: #ffc001">
+<P style="FONT-SIZE: 9pt; FONT-FAMILY: Calibri; MARGIN: 0in">#FFC001<BR>45,100,50<BR>Gold</P></TD>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 0.831in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt; BACKGROUND-COLOR: yellow">
+<P style="FONT-SIZE: 9pt; FONT-FAMILY: Calibri; MARGIN: 0in">#FFFF00<BR>60,100,50<BR>Yellow</P></TD>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 0.904in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt; BACKGROUND-COLOR: #92d050">
+<P style="FONT-SIZE: 9pt; FONT-FAMILY: Calibri; MARGIN: 0in">#92D050<BR>89,58,56<BR>Lime</P></TD>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 0.823in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt; BACKGROUND-COLOR: #00b050">
+<P style="FONT-SIZE: 9pt; FONT-FAMILY: Calibri; MARGIN: 0in">#00B050<BR>147,100,35<BR>Dark green</P></TD>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 0.779in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt; BACKGROUND-COLOR: #00b0f0">
+<P style="FONT-SIZE: 9pt; FONT-FAMILY: Calibri; MARGIN: 0in">#00B0F0<BR>196,100,47<BR>Turquoise</P></TD>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 0.851in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt; BACKGROUND-COLOR: #0070c0">
+<P style="FONT-SIZE: 9pt; FONT-FAMILY: Calibri; COLOR: white; MARGIN: 0in">#0070C0<BR>205,100,38<BR>Dark blue</P></TD>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 0.857in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt; BACKGROUND-COLOR: #002060">
+<P style="FONT-SIZE: 9pt; FONT-FAMILY: Calibri; COLOR: white; MARGIN: 0in">#002060<BR>220,100,19<BR>Dark blue</P></TD>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 0.657in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt; BACKGROUND-COLOR: #7030a0">
+<P style="FONT-SIZE: 9pt; FONT-FAMILY: Calibri; COLOR: white; MARGIN: 0in">#7030A0<BR>274,54,41<BR>Purple</P></TD></TR>
+<TR>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 0.862in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt">
+<P style="FONT-SIZE: 9pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P></TD>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 0.882in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt">
+<P style="FONT-SIZE: 9pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P></TD>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 0.832in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt">
+<P style="FONT-SIZE: 9pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P></TD>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 0.831in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt">
+<P style="FONT-SIZE: 9pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P></TD>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 0.904in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt">
+<P style="FONT-SIZE: 9pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P></TD>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 0.823in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt">
+<P style="FONT-SIZE: 9pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P></TD>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 0.759in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt">
+<P style="FONT-SIZE: 9pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P></TD>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 0.851in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt">
+<P style="FONT-SIZE: 9pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P></TD>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 0.857in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt">
+<P style="FONT-SIZE: 9pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P></TD>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 0.527in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt">
+<P style="FONT-SIZE: 9pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P></TD></TR></TBODY></TABLE></DIV></TD></TR>
+<TR>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 7.806in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt; BACKGROUND-COLOR: #262626">
+<DIV style="DIRECTION: ltr">
+<TABLE title="" style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; BORDER-COLLAPSE: collapse; BORDER-BOTTOM: #a3a3a3 1pt solid; DIRECTION: ltr; BORDER-LEFT: #a3a3a3 1pt solid" cellSpacing=0 cellPadding=0 summary="" border=1 valign="top">
+<TBODY>
+<TR>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 8.422in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt; BACKGROUND-COLOR: #201f1e">
+<DIV style="DIRECTION: ltr">
+<TABLE title="" style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; BORDER-COLLAPSE: collapse; BORDER-BOTTOM: #a3a3a3 1pt solid; DIRECTION: ltr; BORDER-LEFT: #a3a3a3 1pt solid" cellSpacing=0 cellPadding=0 summary="" border=1 valign="top">
+<TBODY>
+<TR>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 0.79in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt; BACKGROUND-COLOR: #201f1e">
+<P style="FONT-SIZE: 9.5pt; FONT-FAMILY: Calibri; COLOR: white; MARGIN: 0in"><SPAN lang=yo>#</SPAN><SPAN lang=en-US>201f1e<BR>30,3,12<BR>Dark Gray</SPAN></P></TD>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 0.86in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt; BACKGROUND-COLOR: #edebe9">
+<P style="FONT-SIZE: 9.5pt; FONT-FAMILY: Calibri; MARGIN: 0in"><SPAN lang=yo>#</SPAN><SPAN lang=en-US>edebe9<BR>30,10,92<BR>Tan</SPAN></P></TD>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 0.842in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt; BACKGROUND-COLOR: #1c1c1c">
+<P style="FONT-SIZE: 9.5pt; FONT-FAMILY: Calibri; COLOR: white; MARGIN: 0in"><SPAN lang=yo>#</SPAN><SPAN lang=en-US>1c1c1c</SPAN></P>
+<P style="FONT-SIZE: 9.5pt; FONT-FAMILY: Calibri; COLOR: white; MARGIN: 0in">0,0,11<BR>Dark Gray</P></TD>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 0.817in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt; BACKGROUND-COLOR: #bbc7d3">
+<P style="FONT-SIZE: 9.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">#bbc7d3</P>
+<P style="FONT-SIZE: 9.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">210,21,78<BR>Ice Blue</P></TD>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 0.922in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt; BACKGROUND-COLOR: #327dc3">
+<P style="FONT-SIZE: 9.5pt; FONT-FAMILY: Calibri; COLOR: white; MARGIN: 0in">#327dc3</P>
+<P style="FONT-SIZE: 9.5pt; FONT-FAMILY: Calibri; COLOR: white; MARGIN: 0in">209,59,48<BR>Blue</P></TD>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 0.815in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt; BACKGROUND-COLOR: #c15710">
+<P style="FONT-SIZE: 9.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">#c15710</P>
+<P style="FONT-SIZE: 9.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">24,85,41<BR>Brown</P></TD>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 0.772in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt; BACKGROUND-COLOR: #ea5f39">
+<P style="FONT-SIZE: 9.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">#ea5f39</P>
+<P style="FONT-SIZE: 9.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">13,81,57<BR>Red</P></TD>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 0.84in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt; BACKGROUND-COLOR: #664e00">
+<P style="FONT-SIZE: 9.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">#664e00</P>
+<P style="FONT-SIZE: 9.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">46,100,20<BR>Dark Yellow</P></TD>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 0.886in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt; BACKGROUND-COLOR: #ab99c2">
+<P style="FONT-SIZE: 9.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">#ab99c2</P>
+<P style="FONT-SIZE: 9.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">266,25,68<BR>Lavender</P></TD>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 0.726in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt; BACKGROUND-COLOR: #517f34">
+<P style="FONT-SIZE: 9.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">#517f34</P>
+<P style="FONT-SIZE: 9.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">97,42,35<BR>Dark Green</P></TD></TR>
+<TR>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 0.79in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt">
+<P style="FONT-SIZE: 9pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P></TD>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 0.86in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt">
+<P style="FONT-SIZE: 9pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P></TD>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 0.842in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt">
+<P style="FONT-SIZE: 9pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P></TD>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 0.817in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt">
+<P style="FONT-SIZE: 9pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P></TD>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 0.922in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt">
+<P style="FONT-SIZE: 9pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P></TD>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 0.815in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt">
+<P style="FONT-SIZE: 9pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P></TD>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 0.772in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt">
+<P style="FONT-SIZE: 9pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P></TD>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 0.821in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt">
+<P style="FONT-SIZE: 9pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P></TD>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 0.886in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt">
+<P style="FONT-SIZE: 9pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P></TD>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 0.527in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt">
+<P style="FONT-SIZE: 9pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P></TD></TR>
+<TR>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 0.79in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt; BACKGROUND-COLOR: #0d0d0d">
+<P style="FONT-SIZE: 9pt; FONT-FAMILY: Calibri; COLOR: white; MARGIN: 0in">#0D0D0D<BR>0,0,<BR>Black</P></TD>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 0.86in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt; BACKGROUND-COLOR: #8f8f8f">
+<P style="FONT-SIZE: 9pt; FONT-FAMILY: Calibri; COLOR: white; MARGIN: 0in">#8F8F8F<BR>0,0,56<BR>Gray</P></TD>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 0.842in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt; BACKGROUND-COLOR: #544f4f">
+<P style="FONT-SIZE: 9pt; FONT-FAMILY: Calibri; COLOR: white; MARGIN: 0in">#544F4F<BR>0,3,32<BR>Dark gray</P></TD>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 0.817in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt; BACKGROUND-COLOR: #3c465d">
+<P style="FONT-SIZE: 9pt; FONT-FAMILY: Calibri; COLOR: white; MARGIN: 0in">#3C465D<BR>222,22,30<BR>Blue gray</P></TD>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 0.922in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt; BACKGROUND-COLOR: #1a4665">
+<P style="FONT-SIZE: 9pt; FONT-FAMILY: Calibri; COLOR: white; MARGIN: 0in">#1A4665<BR>205,59,25<BR>Dark blue</P></TD>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 0.815in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt; BACKGROUND-COLOR: #69310c">
+<P style="FONT-SIZE: 9pt; FONT-FAMILY: Calibri; COLOR: white; MARGIN: 0in">#69310C<BR>24,79,23<BR>Brown</P></TD>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 0.772in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt; BACKGROUND-COLOR: #7f2a10">
+<P style="FONT-SIZE: 9pt; FONT-FAMILY: Calibri; COLOR: white; MARGIN: 0in">#7F2A10<BR>14,78,28<BR>Dark red</P></TD>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 0.821in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt; BACKGROUND-COLOR: #4d3b00">
+<P style="FONT-SIZE: 9pt; FONT-FAMILY: Calibri; COLOR: white; MARGIN: 0in">#4D3B00<BR>46,100,15<BR>Dark yellow</P></TD>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 0.886in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt; BACKGROUND-COLOR: #4e3c62">
+<P style="FONT-SIZE: 9pt; FONT-FAMILY: Calibri; COLOR: white; MARGIN: 0in">#4E3C62<BR>268,24,31<BR>Dark purple</P></TD>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 0.696in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt; BACKGROUND-COLOR: #27441d">
+<P style="FONT-SIZE: 9pt; FONT-FAMILY: Calibri; COLOR: white; MARGIN: 0in">#27441D<BR>105,40,19<BR>Dark green</P></TD></TR>
+<TR>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 0.79in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt; BACKGROUND-COLOR: #4d4d4d">
+<P style="FONT-SIZE: 9pt; FONT-FAMILY: Calibri; COLOR: white; MARGIN: 0in">#4D4D4D<BR>0,0,30<BR>Dark gray</P></TD>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 0.86in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt; BACKGROUND-COLOR: #b3b0ad">
+<P style="FONT-SIZE: 9pt; FONT-FAMILY: Calibri; MARGIN: 0in">#B3B0AD<BR>30,4,69<BR>Light gray</P></TD>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 0.842in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt; BACKGROUND-COLOR: #6c6565">
+<P style="FONT-SIZE: 9pt; FONT-FAMILY: Calibri; COLOR: white; MARGIN: 0in">#6C6565<BR>0,3,41<BR>Gray</P></TD>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 0.817in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt; BACKGROUND-COLOR: #545783">
+<P style="FONT-SIZE: 9pt; FONT-FAMILY: Calibri; COLOR: white; MARGIN: 0in">#545783<BR>236,22,42<BR>Indigo</P></TD>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 0.922in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt; BACKGROUND-COLOR: #1d5072">
+<P style="FONT-SIZE: 9pt; FONT-FAMILY: Calibri; COLOR: white; MARGIN: 0in">#1D5072<BR>204,59,28<BR>Dark blue</P></TD>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 0.815in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt; BACKGROUND-COLOR: #7b3909">
+<P style="FONT-SIZE: 9pt; FONT-FAMILY: Calibri; COLOR: white; MARGIN: 0in">#7B3909<BR>25,86,26<BR>Brown</P></TD>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 0.772in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt; BACKGROUND-COLOR: #9a3013">
+<P style="FONT-SIZE: 9pt; FONT-FAMILY: Calibri; COLOR: white; MARGIN: 0in">#9A3013<BR>13,78,34<BR>Dark red</P></TD>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 0.821in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt; BACKGROUND-COLOR: #564201">
+<P style="FONT-SIZE: 9pt; FONT-FAMILY: Calibri; COLOR: white; MARGIN: 0in">#564201<BR>46,98,17<BR>Dark yellow</P></TD>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 0.886in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt; BACKGROUND-COLOR: #614f7d">
+<P style="FONT-SIZE: 9pt; FONT-FAMILY: Calibri; COLOR: white; MARGIN: 0in">#614F7D<BR>263,23,40<BR>Purple</P></TD>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 0.696in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt; BACKGROUND-COLOR: #33521e">
+<P style="FONT-SIZE: 9pt; FONT-FAMILY: Calibri; COLOR: white; MARGIN: 0in">#33521E<BR>96,46,22<BR>Dark green</P></TD></TR>
+<TR>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 0.79in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt; BACKGROUND-COLOR: #414140">
+<P style="FONT-SIZE: 9pt; FONT-FAMILY: Calibri; COLOR: white; MARGIN: 0in">#414140<BR>60,1,25<BR>Dark gray</P></TD>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 0.86in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt; BACKGROUND-COLOR: #e8e8e8">
+<P style="FONT-SIZE: 9pt; FONT-FAMILY: Calibri; MARGIN: 0in">#E8E8E8<BR>0,0,91<BR>Light gray</P></TD>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 0.842in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt; BACKGROUND-COLOR: #7c7676">
+<P style="FONT-SIZE: 9pt; FONT-FAMILY: Calibri; COLOR: white; MARGIN: 0in">#7C7676<BR>0,2,47<BR>Gray</P></TD>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 0.817in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt; BACKGROUND-COLOR: #677d9e">
+<P style="FONT-SIZE: 9pt; FONT-FAMILY: Calibri; COLOR: white; MARGIN: 0in">#677D9E<BR>216,22,51<BR>Blue gray</P></TD>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 0.922in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt; BACKGROUND-COLOR: #275f90">
+<P style="FONT-SIZE: 9pt; FONT-FAMILY: Calibri; COLOR: white; MARGIN: 0in">#275F90<BR>208,57,36<BR>Dark blue</P></TD>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 0.815in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt; BACKGROUND-COLOR: #90440e">
+<P style="FONT-SIZE: 9pt; FONT-FAMILY: Calibri; COLOR: white; MARGIN: 0in">#90440E<BR>25,82,31<BR>Brown</P></TD>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 0.772in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt; BACKGROUND-COLOR: #ba3712">
+<P style="FONT-SIZE: 9pt; FONT-FAMILY: Calibri; COLOR: white; MARGIN: 0in">#BA3712<BR>13,82,40<BR>Red</P></TD>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 0.821in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt; BACKGROUND-COLOR: #5c4500">
+<P style="FONT-SIZE: 9pt; FONT-FAMILY: Calibri; COLOR: white; MARGIN: 0in">#5C4500<BR>45,100,18<BR>Dark yellow</P></TD>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 0.886in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt; BACKGROUND-COLOR: #7c5d98">
+<P style="FONT-SIZE: 9pt; FONT-FAMILY: Calibri; COLOR: white; MARGIN: 0in">#7C5D98<BR>272,24,48<BR>Purple</P></TD>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 0.696in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt; BACKGROUND-COLOR: #405e26">
+<P style="FONT-SIZE: 9pt; FONT-FAMILY: Calibri; COLOR: white; MARGIN: 0in">#405E26<BR>92,42,26<BR>Dark green</P></TD></TR>
+<TR>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 0.79in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt; BACKGROUND-COLOR: #5a5a5a">
+<P style="FONT-SIZE: 9pt; FONT-FAMILY: Calibri; COLOR: white; MARGIN: 0in">#5A5A5A<BR>0,0,35<BR>Dark gray</P></TD>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 0.86in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt; BACKGROUND-COLOR: #d9d9d9">
+<P style="FONT-SIZE: 9pt; FONT-FAMILY: Calibri; MARGIN: 0in">#D9D9D9<BR>0,0,85<BR>Light gray</P></TD>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 0.842in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt; BACKGROUND-COLOR: #f2f2f2">
+<P style="FONT-SIZE: 9pt; FONT-FAMILY: Calibri; MARGIN: 0in">#F2F2F2<BR>0,0,95<BR>White</P></TD>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 0.817in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt; BACKGROUND-COLOR: #e6ebef">
+<P style="FONT-SIZE: 9pt; FONT-FAMILY: Calibri; MARGIN: 0in">#E6EBEF<BR>207,22,92<BR>Ice blue</P></TD>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 0.922in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt; BACKGROUND-COLOR: #69a4d8">
+<P style="FONT-SIZE: 9pt; FONT-FAMILY: Calibri; MARGIN: 0in">#69A4D8<BR>208,59,63<BR>Blue</P></TD>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 0.815in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt; BACKGROUND-COLOR: #ec7627">
+<P style="FONT-SIZE: 9pt; FONT-FAMILY: Calibri; MARGIN: 0in">#EC7627<BR>24,84,54<BR>Orange</P></TD>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 0.772in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt; BACKGROUND-COLOR: #f39a81">
+<P style="FONT-SIZE: 9pt; FONT-FAMILY: Calibri; MARGIN: 0in">#F39A81<BR>13,83,73<BR>Rose</P></TD>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 0.821in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt; BACKGROUND-COLOR: #997300">
+<P style="FONT-SIZE: 9pt; FONT-FAMILY: Calibri; MARGIN: 0in">#997300<BR>45,100,30<BR>Dark yellow</P></TD>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 0.886in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt; BACKGROUND-COLOR: #cfc3da">
+<P style="FONT-SIZE: 9pt; FONT-FAMILY: Calibri; MARGIN: 0in">#CFC3DA<BR>271,24,81<BR>Lavender</P></TD>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 0.622in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt; BACKGROUND-COLOR: #6caa46">
+<P style="FONT-SIZE: 9pt; FONT-FAMILY: Calibri; MARGIN: 0in">#6CAA46<BR>97,42,47<BR>Green</P></TD></TR>
+<TR>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 0.79in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt; BACKGROUND-COLOR: #8f8f8f">
+<P style="FONT-SIZE: 9pt; FONT-FAMILY: Calibri; COLOR: white; MARGIN: 0in">#8F8F8F<BR>0,0,56<BR>Gray</P></TD>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 0.86in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt; BACKGROUND-COLOR: #f3f3f3">
+<P style="FONT-SIZE: 9pt; FONT-FAMILY: Calibri; MARGIN: 0in">#F3F3F3<BR>0,0,95<BR>White</P></TD>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 0.842in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt; BACKGROUND-COLOR: white">
+<P style="FONT-SIZE: 9pt; FONT-FAMILY: Calibri; MARGIN: 0in">#FFFFFF<BR>0,0,100<BR>White</P></TD>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 0.817in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt; BACKGROUND-COLOR: #f7f9fb">
+<P style="FONT-SIZE: 9pt; FONT-FAMILY: Calibri; MARGIN: 0in">#F7F9FB<BR>210,33,98<BR>White</P></TD>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 0.922in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt; BACKGROUND-COLOR: #b2d0eb">
+<P style="FONT-SIZE: 9pt; FONT-FAMILY: Calibri; MARGIN: 0in">#B2D0EB|208,59,81<BR>Light blue</P></TD>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 0.815in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt; BACKGROUND-COLOR: #f9c59f">
+<P style="FONT-SIZE: 9pt; FONT-FAMILY: Calibri; MARGIN: 0in">#F9C59F<BR>25,88,80<BR>Lt orange</P></TD>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 0.772in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt; BACKGROUND-COLOR: #fcded9">
+<P style="FONT-SIZE: 9pt; FONT-FAMILY: Calibri; MARGIN: 0in">#FCDED9<BR>9,85,92<BR>Rose</P></TD>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 0.821in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt; BACKGROUND-COLOR: #dba400">
+<P style="FONT-SIZE: 9pt; FONT-FAMILY: Calibri; MARGIN: 0in">#DBA400<BR>45,100,43<BR>Gold</P></TD>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 0.886in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt; BACKGROUND-COLOR: #f6f2f8">
+<P style="FONT-SIZE: 9pt; FONT-FAMILY: Calibri; MARGIN: 0in">#F6F2F8<BR>280,30,96<BR>White</P></TD>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 0.706in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt; BACKGROUND-COLOR: #b6d9a1">
+<P style="FONT-SIZE: 9pt; FONT-FAMILY: Calibri; MARGIN: 0in">#B6D9A1<BR>98,42,74<BR>Light green</P></TD></TR>
+<TR>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 0.79in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt">
+<P style="FONT-SIZE: 9pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P></TD>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 0.86in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt">
+<P style="FONT-SIZE: 9pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P></TD>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 0.842in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt">
+<P style="FONT-SIZE: 9pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P></TD>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 0.817in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt">
+<P style="FONT-SIZE: 9pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P></TD>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 0.922in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt">
+<P style="FONT-SIZE: 9pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P></TD>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 0.815in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt">
+<P style="FONT-SIZE: 9pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P></TD>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 0.772in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt">
+<P style="FONT-SIZE: 9pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P></TD>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 0.821in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt">
+<P style="FONT-SIZE: 9pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P></TD>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 0.886in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt">
+<P style="FONT-SIZE: 9pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P></TD>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 0.527in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt">
+<P style="FONT-SIZE: 9pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P></TD></TR>
+<TR>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 0.79in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt; BACKGROUND-COLOR: #ff6363">
+<P style="FONT-SIZE: 9pt; FONT-FAMILY: Calibri; MARGIN: 0in">#FF6363<BR>0,100,69<BR>Rose</P></TD>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 0.86in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt; BACKGROUND-COLOR: #ff0505">
+<P style="FONT-SIZE: 9pt; FONT-FAMILY: Calibri; MARGIN: 0in">#FF0505<BR>0,100,51<BR>Red</P></TD>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 0.842in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt; BACKGROUND-COLOR: #893a06">
+<P style="FONT-SIZE: 9pt; FONT-FAMILY: Calibri; COLOR: white; MARGIN: 0in">#893A06<BR>24,92,28<BR>Brown</P></TD>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 0.818in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt; BACKGROUND-COLOR: #8a6700">
+<P style="FONT-SIZE: 9pt; FONT-FAMILY: Calibri; COLOR: white; MARGIN: 0in">#8A6700<BR>45,100,27<BR>Dark yellow</P></TD>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 0.922in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt; BACKGROUND-COLOR: #466d1d">
+<P style="FONT-SIZE: 9pt; FONT-FAMILY: Calibri; COLOR: white; MARGIN: 0in">#466D1D<BR>89,58,27<BR>Dark green</P></TD>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 0.815in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt; BACKGROUND-COLOR: #00853c">
+<P style="FONT-SIZE: 9pt; FONT-FAMILY: Calibri; MARGIN: 0in">#00853C<BR>147,100,26<BR>Dark green</P></TD>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 0.772in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt; BACKGROUND-COLOR: #018687">
+<P style="FONT-SIZE: 9pt; FONT-FAMILY: Calibri; MARGIN: 0in">#018687<BR>180,99,27<BR>Dark teal</P></TD>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 0.821in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt; BACKGROUND-COLOR: #3daeff">
+<P style="FONT-SIZE: 9pt; FONT-FAMILY: Calibri; MARGIN: 0in">#3DAEFF<BR>205,100,62<BR>Blue</P></TD>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 0.886in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt; BACKGROUND-COLOR: #76caff">
+<P style="FONT-SIZE: 9pt; FONT-FAMILY: Calibri; MARGIN: 0in">#76CAFF<BR>203,100,7<BR>Light blue</P></TD>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 0.644in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt; BACKGROUND-COLOR: #a76ed4">
+<P style="FONT-SIZE: 9pt; FONT-FAMILY: Calibri; MARGIN: 0in">#A76ED4<BR>274,54,63<BR>Lavender</P></TD></TR>
+<TR>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 0.79in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt">
+<P style="FONT-SIZE: 9pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P></TD>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 0.86in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt">
+<P style="FONT-SIZE: 9pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P></TD>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 0.842in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt">
+<P style="FONT-SIZE: 9pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P></TD>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 0.817in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt">
+<P style="FONT-SIZE: 9pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P></TD>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 0.922in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt">
+<P style="FONT-SIZE: 9pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P></TD>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 0.815in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt">
+<P style="FONT-SIZE: 9pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P></TD>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 0.772in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt">
+<P style="FONT-SIZE: 9pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P></TD>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 0.821in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt">
+<P style="FONT-SIZE: 9pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P></TD>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 0.886in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt">
+<P style="FONT-SIZE: 9pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P></TD>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 0.534in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt">
+<P lang=yo style="FONT-SIZE: 11pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P></TD></TR></TBODY></TABLE></DIV></TD></TR></TBODY></TABLE></DIV></TD></TR></TBODY></TABLE></DIV>
+<P lang=yo style="FONT-SIZE: 11pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
+<H1 lang=yo style="FONT-SIZE: 16pt; FONT-FAMILY: Calibri; COLOR: #1e4e79; MARGIN: 0in">Custom Page Colors</H1>
+<DIV style="DIRECTION: ltr">
+<TABLE title="" style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; BORDER-COLLAPSE: collapse; BORDER-BOTTOM: #a3a3a3 1pt solid; DIRECTION: ltr; BORDER-LEFT: #a3a3a3 1pt solid" cellSpacing=0 cellPadding=0 summary="" border=1 valign="top">
+<TBODY>
+<TR>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 2.042in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt">
+<P lang=yo style="FONT-SIZE: 11pt; FONT-FAMILY: Calibri; COLOR: black; MARGIN: 0in">&nbsp;</P>
+<P style="MARGIN: 0in"><IMG src="TechNote%20-%20Colors_files/image003.png" width=176 height=177></P>
+<P lang=yo style="FONT-SIZE: 11pt; FONT-FAMILY: Calibri; COLOR: black; MARGIN: 0in">&nbsp;</P>
+<P style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
+<P lang=yo style="FONT-SIZE: 11pt; FONT-FAMILY: Calibri; COLOR: black; MARGIN: 0in">&nbsp;</P></TD>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 4.895in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt">
+<H2 lang=yo style="FONT-SIZE: 14pt; FONT-FAMILY: Calibri; COLOR: #2e75b5; MARGIN: 0in">View this table in light mode!</H2>
+<DIV style="DIRECTION: ltr">
+<TABLE title="" style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; BORDER-COLLAPSE: collapse; BORDER-BOTTOM: #a3a3a3 1pt solid; DIRECTION: ltr; BORDER-LEFT: #a3a3a3 1pt solid" cellSpacing=0 cellPadding=0 summary="" border=1 valign="top">
+<TBODY>
+<TR>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 1.25in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt; BACKGROUND-COLOR: #ecf3fa">
+<P lang=yo style="FONT-SIZE: 11pt; FONT-FAMILY: Calibri; COLOR: black; MARGIN: 0in">Blue<BR>#ECF3FA</P></TD>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 1.134in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt; BACKGROUND-COLOR: #eef8f6">
+<P lang=yo style="FONT-SIZE: 11pt; FONT-FAMILY: Calibri; COLOR: black; MARGIN: 0in">Teal<BR>#EEF8F6</P></TD>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 1.27in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt; BACKGROUND-COLOR: #f1f9f3">
+<P lang=yo style="FONT-SIZE: 11pt; FONT-FAMILY: Calibri; COLOR: black; MARGIN: 0in">Green<BR>#F1F9F3</P></TD>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 1.022in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt; BACKGROUND-COLOR: #fceeee">
+<P lang=yo style="FONT-SIZE: 11pt; FONT-FAMILY: Calibri; COLOR: black; MARGIN: 0in">Red<BR>#FCEEEE</P></TD></TR>
+<TR>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 1.25in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt; BACKGROUND-COLOR: #eef1f9">
+<P lang=yo style="FONT-SIZE: 11pt; FONT-FAMILY: Calibri; COLOR: black; MARGIN: 0in">Blue Mist<BR>#EEF1F9</P></TD>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 1.134in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt; BACKGROUND-COLOR: #f0f8fa">
+<P lang=yo style="FONT-SIZE: 11pt; FONT-FAMILY: Calibri; COLOR: black; MARGIN: 0in">Cyan<BR>#F0F8FA</P></TD>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 1.27in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt; BACKGROUND-COLOR: #f2f9ed">
+<P lang=yo style="FONT-SIZE: 11pt; FONT-FAMILY: Calibri; COLOR: black; MARGIN: 0in">Apple<BR>#F2F9ED</P></TD>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 1.022in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt; BACKGROUND-COLOR: #fdf5f5">
+<P lang=yo style="FONT-SIZE: 11pt; FONT-FAMILY: Calibri; COLOR: black; MARGIN: 0in">Red Chalk<BR>#FDF5F5</P></TD></TR>
+<TR>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 1.25in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt; BACKGROUND-COLOR: #f2f1f9">
+<P lang=yo style="FONT-SIZE: 11pt; FONT-FAMILY: Calibri; COLOR: black; MARGIN: 0in">Purple Mist<BR>#F2F1F9</P></TD>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 1.134in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt; BACKGROUND-COLOR: #f5f7f9">
+<P lang=yo style="FONT-SIZE: 11pt; FONT-FAMILY: Calibri; COLOR: black; MARGIN: 0in">Silver<BR>#F5F7F9</P></TD>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 1.27in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt; BACKGROUND-COLOR: #f5f9eb">
+<P lang=yo style="FONT-SIZE: 11pt; FONT-FAMILY: Calibri; COLOR: black; MARGIN: 0in">Lemon Lime<BR>#F5F9EB</P></TD>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 1.022in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt; BACKGROUND-COLOR: #f6ede6">
+<P lang=yo style="FONT-SIZE: 11pt; FONT-FAMILY: Calibri; COLOR: black; MARGIN: 0in">Tan<BR>#F6EDE6</P></TD></TR>
+<TR>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 1.25in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt; BACKGROUND-COLOR: #f9f1f8">
+<P lang=yo style="FONT-SIZE: 11pt; FONT-FAMILY: Calibri; COLOR: black; MARGIN: 0in">Purple<BR>#F9F1F8</P></TD>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 1.134in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt; BACKGROUND-COLOR: #fdeff7">
+<P lang=yo style="FONT-SIZE: 11pt; FONT-FAMILY: Calibri; COLOR: black; MARGIN: 0in">Magenta<BR>#FDEFF7</P></TD>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 1.27in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt; BACKGROUND-COLOR: #fef8e6">
+<P lang=yo style="FONT-SIZE: 11pt; FONT-FAMILY: Calibri; COLOR: black; MARGIN: 0in">Yellow<BR>#FEF8E6</P></TD>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 1.022in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt; BACKGROUND-COLOR: #fcf3ea">
+<P lang=yo style="FONT-SIZE: 11pt; FONT-FAMILY: Calibri; COLOR: black; MARGIN: 0in">Orange<BR>#FCF3EA</P></TD></TR>
+<TR>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 1.25in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt; BACKGROUND-COLOR: #081321">
+<P lang=yo style="FONT-SIZE: 11pt; FONT-FAMILY: Calibri; COLOR: white; MARGIN: 0in">Blue<BR>#081321</P></TD>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 1.134in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt; BACKGROUND-COLOR: #04100f">
+<P lang=yo style="FONT-SIZE: 11pt; FONT-FAMILY: Calibri; COLOR: white; MARGIN: 0in">Teal<BR>#04100F</P></TD>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 1.27in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt; BACKGROUND-COLOR: #0c1c14">
+<P lang=yo style="FONT-SIZE: 11pt; FONT-FAMILY: Calibri; COLOR: white; MARGIN: 0in">Green<BR>#0C1C14</P></TD>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 1.022in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt; BACKGROUND-COLOR: #310808">
+<P lang=yo style="FONT-SIZE: 11pt; FONT-FAMILY: Calibri; COLOR: white; MARGIN: 0in">Red<BR>#310808</P></TD></TR>
+<TR>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 1.25in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt; BACKGROUND-COLOR: #101628">
+<P lang=yo style="FONT-SIZE: 11pt; FONT-FAMILY: Calibri; COLOR: white; MARGIN: 0in">Blue Mist<BR>#101628</P></TD>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 1.134in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt; BACKGROUND-COLOR: #060e0e">
+<P lang=yo style="FONT-SIZE: 11pt; FONT-FAMILY: Calibri; COLOR: white; MARGIN: 0in">Cyan<BR>#060E0E</P></TD>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 1.27in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt; BACKGROUND-COLOR: #0e1708">
+<P lang=yo style="FONT-SIZE: 11pt; FONT-FAMILY: Calibri; COLOR: white; MARGIN: 0in">Apple<BR>#0E1708</P></TD>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 1.022in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt; BACKGROUND-COLOR: #2d0b0b">
+<P lang=yo style="FONT-SIZE: 11pt; FONT-FAMILY: Calibri; COLOR: white; MARGIN: 0in">Red Chalk<BR>#2D0B0B</P></TD></TR>
+<TR>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 1.25in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt; BACKGROUND-COLOR: #14142a">
+<P lang=yo style="FONT-SIZE: 11pt; FONT-FAMILY: Calibri; COLOR: white; MARGIN: 0in">Purple Mist<BR>#14142A</P></TD>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 1.134in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt; BACKGROUND-COLOR: #0e0e16">
+<P lang=yo style="FONT-SIZE: 11pt; FONT-FAMILY: Calibri; COLOR: white; MARGIN: 0in">Silver<BR>#0E0E16</P></TD>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 1.27in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt; BACKGROUND-COLOR: #121306">
+<P lang=yo style="FONT-SIZE: 11pt; FONT-FAMILY: Calibri; COLOR: white; MARGIN: 0in">Lemon Lime<BR>#121306</P></TD>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 1.022in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt; BACKGROUND-COLOR: #231710">
+<P lang=yo style="FONT-SIZE: 11pt; FONT-FAMILY: Calibri; COLOR: white; MARGIN: 0in">Tan<BR>#231710</P></TD></TR>
+<TR>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 1.25in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt; BACKGROUND-COLOR: #1d0c1a">
+<P lang=yo style="FONT-SIZE: 11pt; FONT-FAMILY: Calibri; COLOR: white; MARGIN: 0in">Purple<BR>#1D0C1A</P></TD>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 1.134in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt; BACKGROUND-COLOR: #28061c">
+<P lang=yo style="FONT-SIZE: 11pt; FONT-FAMILY: Calibri; COLOR: white; MARGIN: 0in">Magenta<BR>#28061C</P></TD>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 1.27in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt; BACKGROUND-COLOR: #161104">
+<P lang=yo style="FONT-SIZE: 11pt; FONT-FAMILY: Calibri; COLOR: white; MARGIN: 0in">Yellow<BR>#161104</P></TD>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 1.022in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt; BACKGROUND-COLOR: #1f1205">
+<P lang=yo style="FONT-SIZE: 11pt; FONT-FAMILY: Calibri; COLOR: white; MARGIN: 0in">Orange<BR>#1F1205</P></TD></TR></TBODY></TABLE></DIV>
+<P lang=yo style="FONT-SIZE: 11pt; FONT-FAMILY: Calibri; COLOR: black; MARGIN: 0in">&nbsp;</P></TD></TR>
+<TR>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 2.042in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt">
+<P style="MARGIN: 0in"><IMG src="TechNote%20-%20Colors_files/image004.png" width=177 height=177></P>
+<P style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P></TD>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 4.645in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt">
+<DIV style="DIRECTION: ltr">
+<TABLE title="" style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; BORDER-COLLAPSE: collapse; BORDER-BOTTOM: #a3a3a3 1pt solid; DIRECTION: ltr; BORDER-LEFT: #a3a3a3 1pt solid" cellSpacing=0 cellPadding=0 summary="" border=1 valign="top">
+<TBODY>
+<TR>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 4.865in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt">
+<H2 lang=yo style="FONT-SIZE: 14pt; FONT-FAMILY: Calibri; COLOR: #2e75b5; MARGIN: 0in">View this table in dark mode!</H2>
+<DIV style="DIRECTION: ltr">
+<TABLE title="" style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; BORDER-COLLAPSE: collapse; BORDER-BOTTOM: #a3a3a3 1pt solid; DIRECTION: ltr; BORDER-LEFT: #a3a3a3 1pt solid" cellSpacing=0 cellPadding=0 summary="" border=1 valign="top">
+<TBODY>
+<TR>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 1.225in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt; BACKGROUND-COLOR: #ecf3fa">
+<P lang=yo style="FONT-SIZE: 11pt; FONT-FAMILY: Calibri; COLOR: black; MARGIN: 0in">Blue<BR>#ECF3FA</P></TD>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 1.113in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt; BACKGROUND-COLOR: #eef8f6">
+<P lang=yo style="FONT-SIZE: 11pt; FONT-FAMILY: Calibri; COLOR: black; MARGIN: 0in">Teal<BR>#EEF8F6</P></TD>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 1.22in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt; BACKGROUND-COLOR: #f1f9f3">
+<P lang=yo style="FONT-SIZE: 11pt; FONT-FAMILY: Calibri; COLOR: black; MARGIN: 0in">Green<BR>#F1F9F3</P></TD>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 0.984in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt; BACKGROUND-COLOR: #fceeee">
+<P lang=yo style="FONT-SIZE: 11pt; FONT-FAMILY: Calibri; COLOR: black; MARGIN: 0in">Red<BR>#FCEEEE</P>
+<P style="FONT-SIZE: 11pt; FONT-FAMILY: Calibri; COLOR: black; MARGIN: 0in">0,70,96</P></TD></TR>
+<TR>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 1.225in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt; BACKGROUND-COLOR: #eef1f9">
+<P lang=yo style="FONT-SIZE: 11pt; FONT-FAMILY: Calibri; COLOR: black; MARGIN: 0in">Blue Mist<BR>#EEF1F9</P></TD>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 1.113in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt; BACKGROUND-COLOR: #f0f8fa">
+<P lang=yo style="FONT-SIZE: 11pt; FONT-FAMILY: Calibri; COLOR: black; MARGIN: 0in">Cyan<BR>#F0F8FA</P></TD>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 1.22in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt; BACKGROUND-COLOR: #f2f9ed">
+<P lang=yo style="FONT-SIZE: 11pt; FONT-FAMILY: Calibri; COLOR: black; MARGIN: 0in">Apple<BR>#F2F9ED</P></TD>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 0.984in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt; BACKGROUND-COLOR: #fdf5f5">
+<P lang=yo style="FONT-SIZE: 11pt; FONT-FAMILY: Calibri; COLOR: black; MARGIN: 0in">Red Chalk<BR>#FDF5F5</P></TD></TR>
+<TR>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 1.225in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt; BACKGROUND-COLOR: #f2f1f9">
+<P lang=yo style="FONT-SIZE: 11pt; FONT-FAMILY: Calibri; COLOR: black; MARGIN: 0in">Purple Mist<BR>#F2F1F9</P></TD>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 1.113in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt; BACKGROUND-COLOR: #f5f7f9">
+<P lang=yo style="FONT-SIZE: 11pt; FONT-FAMILY: Calibri; COLOR: black; MARGIN: 0in">Silver<BR>#F5F7F9</P></TD>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 1.22in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt; BACKGROUND-COLOR: #f5f9eb">
+<P lang=yo style="FONT-SIZE: 11pt; FONT-FAMILY: Calibri; COLOR: black; MARGIN: 0in">Lemon Lime<BR>#F5F9EB</P></TD>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 0.984in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt; BACKGROUND-COLOR: #f6ede6">
+<P lang=yo style="FONT-SIZE: 11pt; FONT-FAMILY: Calibri; COLOR: black; MARGIN: 0in">Tan<BR>#F6EDE6</P></TD></TR>
+<TR>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 1.225in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt; BACKGROUND-COLOR: #f9f1f8">
+<P lang=yo style="FONT-SIZE: 11pt; FONT-FAMILY: Calibri; COLOR: black; MARGIN: 0in">Purple<BR>#F9F1F8</P></TD>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 1.113in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt; BACKGROUND-COLOR: #fdeff7">
+<P lang=yo style="FONT-SIZE: 11pt; FONT-FAMILY: Calibri; COLOR: black; MARGIN: 0in">Magenta<BR>#FDEFF7</P></TD>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 1.22in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt; BACKGROUND-COLOR: #fbf6e9">
+<P lang=yo style="FONT-SIZE: 11pt; FONT-FAMILY: Calibri; COLOR: black; MARGIN: 0in">Yellow<BR>#FEF8E6</P></TD>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 0.984in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt; BACKGROUND-COLOR: #faede0">
+<P lang=yo style="FONT-SIZE: 11pt; FONT-FAMILY: Calibri; COLOR: black; MARGIN: 0in">Orange#<BR>1F1205</P></TD></TR>
+<TR>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 1.225in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt; BACKGROUND-COLOR: #081321">
+<P lang=yo style="FONT-SIZE: 11pt; FONT-FAMILY: Calibri; COLOR: white; MARGIN: 0in">Blue<BR>#DEE9F7</P></TD>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 1.113in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt; BACKGROUND-COLOR: #04100f">
+<P lang=yo style="FONT-SIZE: 11pt; FONT-FAMILY: Calibri; COLOR: white; MARGIN: 0in">Teal<BR>#EFFBFA</P></TD>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 1.22in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt; BACKGROUND-COLOR: #0c1c14">
+<P lang=yo style="FONT-SIZE: 11pt; FONT-FAMILY: Calibri; COLOR: white; MARGIN: 0in">Green<BR>#E3F3EB</P></TD>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 0.984in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt; BACKGROUND-COLOR: #310808">
+<P lang=yo style="FONT-SIZE: 11pt; FONT-FAMILY: Calibri; COLOR: white; MARGIN: 0in">Red<BR>#797775</P></TD></TR>
+<TR>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 1.225in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt; BACKGROUND-COLOR: #101628">
+<P lang=yo style="FONT-SIZE: 11pt; FONT-FAMILY: Calibri; COLOR: white; MARGIN: 0in">Blue Mist<BR>#D7DDEF</P></TD>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 1.113in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt; BACKGROUND-COLOR: #060e0e">
+<P lang=yo style="FONT-SIZE: 11pt; FONT-FAMILY: Calibri; COLOR: white; MARGIN: 0in">Cyan<BR>#F1F9F9</P></TD>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 1.22in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt; BACKGROUND-COLOR: #0e1708">
+<P lang=yo style="FONT-SIZE: 11pt; FONT-FAMILY: Calibri; COLOR: white; MARGIN: 0in">Apple<BR>#EEF7E8</P></TD>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 0.984in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt; BACKGROUND-COLOR: #2d0b0b">
+<P lang=yo style="FONT-SIZE: 11pt; FONT-FAMILY: Calibri; COLOR: white; MARGIN: 0in">Red Chalk<BR>#F4D2D2</P></TD></TR>
+<TR>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 1.225in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt; BACKGROUND-COLOR: #14142a">
+<P lang=yo style="FONT-SIZE: 11pt; FONT-FAMILY: Calibri; COLOR: white; MARGIN: 0in">Purple Mist<BR>#D5D5EB</P></TD>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 1.113in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt; BACKGROUND-COLOR: #0e0e16">
+<P lang=yo style="FONT-SIZE: 11pt; FONT-FAMILY: Calibri; COLOR: white; MARGIN: 0in">Silver<BR>#E9E9F1</P></TD>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 1.22in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt; BACKGROUND-COLOR: #121306">
+<P lang=yo style="FONT-SIZE: 11pt; FONT-FAMILY: Calibri; COLOR: white; MARGIN: 0in">Lemon Lime<BR>#F8F9EC</P></TD>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 0.984in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt; BACKGROUND-COLOR: #231710">
+<P lang=yo style="FONT-SIZE: 11pt; FONT-FAMILY: Calibri; COLOR: white; MARGIN: 0in">Tan<BR>#EFE3DC</P></TD></TR>
+<TR>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 1.225in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt; BACKGROUND-COLOR: #1d0c1a">
+<P lang=yo style="FONT-SIZE: 11pt; FONT-FAMILY: Calibri; COLOR: white; MARGIN: 0in">Purple<BR>#F3E2F0</P></TD>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 1.113in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt; BACKGROUND-COLOR: #28061c">
+<P lang=yo style="FONT-SIZE: 11pt; FONT-FAMILY: Calibri; COLOR: white; MARGIN: 0in">Magenta<BR>#F9D7ED</P></TD>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 1.22in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt; BACKGROUND-COLOR: #161104">
+<P lang=yo style="FONT-SIZE: 11pt; FONT-FAMILY: Calibri; COLOR: white; MARGIN: 0in">Yellow<BR>#FBF6E9</P></TD>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 0.984in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt; BACKGROUND-COLOR: #281706">
+<P lang=yo style="FONT-SIZE: 11pt; FONT-FAMILY: Calibri; COLOR: white; MARGIN: 0in">Orange<BR>#F9E8D7</P></TD></TR></TBODY></TABLE></DIV></TD></TR></TBODY></TABLE></DIV></TD></TR></TBODY></TABLE></DIV>
+<P lang=yo style="FONT-SIZE: 11pt; FONT-FAMILY: Calibri; COLOR: black; MARGIN: 0in">&nbsp;</P>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
+<H2 lang=yo style="FONT-SIZE: 14pt; FONT-FAMILY: Calibri; COLOR: #2e75b5; MARGIN: 0in">References</H2>
+<UL style="MARGIN-BOTTOM: 0in; unicode-bidi: embed; MARGIN-TOP: 0in; DIRECTION: ltr" type=disc>
+<LI lang=yo style="MARGIN-BOTTOM: 0px; VERTICAL-ALIGN: middle; MARGIN-TOP: 0px"><A href="https://stackoverflow.com/questions/801406/c-create-a-lighter-darker-color-based-on-a-system-color"><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">https://stackoverflow.com/questions/801406/c-create-a-lighter-darker-color-based-on-a-system-color</SPAN></A> 
+<LI lang=yo style="MARGIN-BOTTOM: 0px; VERTICAL-ALIGN: middle; MARGIN-TOP: 0px"><A href="https://docs.microsoft.com/en-us/dotnet/api/system.windows.forms.controlpaint.light?view=netcore-3.1"><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">https://docs.microsoft.com/en-us/dotnet/api/system.windows.forms.controlpaint.light?view=netcore-3.1</SPAN></A> 
+<LI lang=yo style="MARGIN-BOTTOM: 0px; VERTICAL-ALIGN: middle; MARGIN-TOP: 0px"><A href="https://docs.microsoft.com/en-us/dotnet/api/system.windows.forms.controlpaint.dark?view=netframework-4.8"><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">https://docs.microsoft.com/en-us/dotnet/api/system.windows.forms.controlpaint.dark?view=netframework-4.8</SPAN></A> </LI></UL>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
+<P><CITE lang=yo style="FONT-SIZE: 10pt; FONT-FAMILY: Calibri; COLOR: #595959; MARGIN: 0in">© 2020 Steven M Cohn. All rights reserved.</CITE></P>
+<P><CITE lang=yo style="FONT-SIZE: 10pt; FONT-FAMILY: Calibri; COLOR: #595959; MARGIN: 0in">Please consider a <A href="https://github.com/sponsors/stevencohn">sponsorship or one-time donation</A> to support ongoing development</CITE></P>
+<P><CITE lang=yo style="FONT-SIZE: 9pt; FONT-FAMILY: Calibri; COLOR: #595959; MARGIN: 0in">&nbsp;</CITE></P></DIV></DIV></DIV>
+<DIV>
+<P style="MARGIN: 0in">&nbsp;</P>
+<P style="FONT-SIZE: 9pt; FONT-FAMILY: Arial; COLOR: #969696; DIRECTION: ltr; TEXT-ALIGN: left; MARGIN: 0in">Created with OneNote.</P></DIV>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>
+
