@@ -137,6 +137,8 @@ namespace OneMoreSetupActions
 
 		static void ReportContext()
 		{
+			// current user...
+
 			var sid = WindowsIdentity.GetCurrent().User.Value;
 			var username = new SecurityIdentifier(sid).Translate(typeof(NTAccount)).ToString();
 
@@ -145,6 +147,17 @@ namespace OneMoreSetupActions
 
 			var elve = elevated ? "elevated" : string.Empty;
 			logger.WriteLine($"OneMore installer running as user {username} ({sid}) {elve}");
+
+			// invoking user...
+
+			var domain = Environment.UserDomainName;
+			username = Environment.UserName;
+
+			var userdom = domain != null
+				? $@"{domain.ToUpper()}\{username.ToLower()}"
+				: username.ToLower();
+
+			logger.WriteLine($"on behalf of {userdom}");
 		}
 
 
