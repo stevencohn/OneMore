@@ -15,11 +15,9 @@
     crossorigin="anonymous"></script>
   <script src="/helpers.js"></script>
   <script type="text/javascript">
-    hotLink = 'getting-started';
-    tocLink = 'welcome-to-onemore';
     $(document).ready(function () {
-      $('#nav-container').load('../nav.htm', function() { HighlightActive(hotLink); });
-      $('#toc-container').load('toc.htm', function() { HighlightActive(tocLink); });
+      $('#nav-container').load('../nav.htm', function() { HighlightActive('getting-started'); });
+      $('#toc-container').load('toc.htm', function() { HighlightActive('welcome-to-onemore'); });
     });
   </script>
 </head>
