@@ -25,6 +25,7 @@ Begin
     {
         param($sectionName)
         $sectionID = $sectionName.ToLower().Replace(' ', '-').Replace('.', '-')
+        Write-Host "Section '$sectionName' ($sectionID)"
         if (!(Test-Path $sectionName))
         {
             New-Item $sectionName -Type Directory -Force
@@ -33,7 +34,7 @@ Begin
         $toc = @()
 
         $dir = Join-Path $ZipName $sectionName
-        Get-ChildItem $dir | foreach {
+        Get-ChildItem $dir -File | foreach {
             $id = MakePage $sectionName $sectionID $_.Name $_.FullName
             $toc += "<a id=""$id"" href=""$($_.Name).htm"">$($_.Name)</a>"
         }
@@ -45,6 +46,7 @@ Begin
     {
         param($section, $sectionID, $pageName, $pageFile)
         $pageID = $pageName.ToLower().Replace(' ', '-').Replace('.', '-')
+        Write-Host "Page '$pageName' ($pageID)"
 
         $source = Get-Content -Path $pageFile -Raw
         $html = New-Object -Com 'HTMLFile'
@@ -68,7 +70,7 @@ Process
         Unpack $ZipFile
     }
 
-    Get-ChildItem $ZipName | foreach {
+    Get-ChildItem $ZipName -Directory | foreach {
         MakeSection $_.Name
     }
 }
