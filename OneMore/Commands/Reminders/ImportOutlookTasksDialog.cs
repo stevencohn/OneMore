@@ -288,7 +288,7 @@ namespace River.OneMoreAddIn.Commands
 				{
 					var task = taskNode.Tag as OutlookTask;
 
-					var key = one.GetHyperKey(task.OneNoteURL);
+					var key = one.GetHyperKey(task.OneNoteURL, out _);
 					if (map.ContainsKey(key))
 					{
 						var page = one.GetPage(map[key].PageID, PageDetail.Basic);

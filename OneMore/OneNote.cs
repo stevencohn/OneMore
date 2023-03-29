@@ -119,6 +119,7 @@ namespace River.OneMoreAddIn
 		private bool disposed;
 
 		private Regex pageEx;
+		private Regex sectionEx;
 
 
 		// = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
@@ -399,7 +400,7 @@ namespace River.OneMoreAddIn
 					var ID = element.Attribute("ID").Value;
 					var name = element.Attribute("name").Value;
 					var link = GetHyperlink(ID, string.Empty);
-					var hyperId = GetHyperKey(link);
+					var hyperId = GetHyperKey(link, out var sectionID);
 
 					if (hyperId != null && !hyperlinks.ContainsKey(hyperId))
 					{
@@ -408,7 +409,7 @@ namespace River.OneMoreAddIn
 							new HyperlinkInfo
 							{
 								PageID = ID,
-								SectionID = null,
+								SectionID = sectionID,
 								HyperID = hyperId,
 								Name = name,
 								Path = path,
@@ -468,12 +469,17 @@ namespace River.OneMoreAddIn
 		/// Reads the page-id part of the given onenote:// hyperlink URI
 		/// </summary>
 		/// <param name="uri">A onenote:// hyperlink URI</param>
+		/// <param name="sectionID">Gets the section ID from the URI</param>
 		/// <returns>The page-id value or null if not found</returns>
-		public string GetHyperKey(string uri)
+		public string GetHyperKey(string uri, out string sectionID)
 		{
+			sectionEx ??= new Regex(@"section-id=({[^}]+?})");
+			var match = sectionEx.Match(uri);
+			sectionID = match.Success ? match.Groups[1].Value : null;
+
 			pageEx ??= new Regex(@"page-id=({[^}]+?})");
 
-			var match = pageEx.Match(uri);
+			match = pageEx.Match(uri);
 			return match.Success ? match.Groups[1].Value : null;
 		}
 

@@ -15,7 +15,7 @@ namespace River.OneMoreAddIn.Commands
 	using System.Threading.Tasks;
 	using System.Web;
 	using System.Xml.Linq;
-	using Resx = River.OneMoreAddIn.Properties.Resources;
+	using Resx = Properties.Resources;
 
 
 	internal class Archivist : Loggable
@@ -172,6 +172,11 @@ namespace River.OneMoreAddIn.Commands
 			var index = 0;
 			var builder = new StringBuilder();
 
+			// named group captures:
+			//  <u> = entire URI
+			//  <s> = section ID
+			//  <p> = page ID
+			//  <n> = page name
 			var matches = Regex.Matches(text,
 				@"<a\s+href=""(?<u>onenote:[^;]*?[#;]section-id=(?<s>{[^}]*?})(?:&amp;page-id=(?<p>{[^}]*?}))?[^""]*?)"">(?<n>.*?)</a>",
 				RegexOptions.Singleline);
@@ -189,17 +194,33 @@ namespace River.OneMoreAddIn.Commands
 					var uri = groups["u"];
 					var id = groups["p"].Success ? groups["p"].Value : null;
 
-					if (id != null && map.ContainsKey(id))
+					OneNote.HyperlinkInfo item = null;
+					if (id != null)
 					{
-						var name = groups["n"].Value;
-						if (name.Contains('<'))
+						if (map.ContainsKey(id))
 						{
-							// strip html from the name to get raw text
-							name = name.ToXmlWrapper().Value;
+							// found exact match
+							item = map[id];
 						}
+						else
+						{
+							// URI is in different format so match by section-id and page-id
+							item = map.Values.FirstOrDefault(m =>
+								m.SectionID == groups["s"].Value &&
+								m.PageID == groups["p"].Value);
+						}
+					}
 
-						name = HttpUtility.UrlDecode(PathHelper.CleanFileName(name));
-						var item = map[id];
+					if (item != null)
+					{
+						//var name = groups["n"].Value;
+						//if (name.Contains('<'))
+						//{
+						//	// strip html from the name to get raw text
+						//	name = name.ToXmlWrapper().Value;
+						//}
+
+						var name = HttpUtility.UrlDecode(PathHelper.CleanFileName(item.Name));
 
 						//logger.WriteLine();
 						var fpath = bookScope ? item.FullPath : item.FullPath.Substring(item.FullPath.IndexOf('/') + 1);

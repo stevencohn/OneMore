@@ -80,7 +80,7 @@ namespace River.OneMoreAddIn.Commands
 					return;
 				}
 
-				var progressDialog = new UI.ProgressDialog(Execute);
+				var progressDialog = new ProgressDialog(Execute);
 
 				// report result is needed to show UI after Execute is completed on another thread
 				await progressDialog.RunModeless(ReportResult);
@@ -93,7 +93,7 @@ namespace River.OneMoreAddIn.Commands
 		// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 		// Invoked by the ProgressDialog OnShown callback
-		private async Task Execute(UI.ProgressDialog progress, CancellationToken token)
+		private async Task Execute(ProgressDialog progress, CancellationToken token)
 		{
 			logger.Start();
 			logger.StartClock();
@@ -193,7 +193,7 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private async Task Archive(UI.ProgressDialog progress, XElement root, string path)
+		private async Task Archive(ProgressDialog progress, XElement root, string path)
 		{
 			// keep track of the order of pages and sections
 			var order = new List<string>();
@@ -233,7 +233,7 @@ namespace River.OneMoreAddIn.Commands
 
 			if (order.Any())
 			{
-				ArchiveOrder(order, path);
+				await ArchiveOrder(order, path);
 			}
 		}
 
