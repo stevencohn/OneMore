@@ -59,7 +59,7 @@ Begin
         $toc | Out-File $tocFile -Encoding utf8 -Force -Confirm:$false
         Write-Host "TOC '$tocFile'" -ForegroundColor DarkGray
 
-        $indexFile = Join-Path $dir 'index.htm'
+        $indexFile = Join-Path $dir 'index.html'
         $meta = "<meta http-equiv=""refresh"" content=""0; url=$first"" />"
         $meta | Out-File $indexFile -Encoding utf8 -Force -Confirm:$false
     }
