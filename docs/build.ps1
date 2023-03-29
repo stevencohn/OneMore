@@ -13,19 +13,52 @@ param (
 
 Begin
 {
+    $script:ZipName = 'OneMore Wiki'
+
     function Unpack
     {
         param([string] $file)
         Expand-Archive -Path $file -DestinationPath ./ -Force
     }
 
-    function Rewrap
+    function MakeSection
     {
-        param([string] $file)
-        $source = Get-Content -path $file -raw
+        param($sectionName)
+        $sectionID = $sectionName.ToLower().Replace(' ', '-').Replace('.', '-')
+        if (!(Test-Path $sectionName))
+        {
+            New-Item $sectionName -Type Directory -Force
+        }
+
+        $toc = @()
+
+        $dir = Join-Path $ZipName $sectionName
+        Get-ChildItem $dir | foreach {
+            $id = MakePage $sectionName $sectionID $_.Name $_.FullName
+            $toc += "<a id=""$id"" href=""$($_.Name).htm"">$($_.Name)</a>"
+        }
+
+        $toc | Out-File (Join-Path $dir 'toc.htm') -Force -Confirm:$false
+    }
+
+    function MakePage
+    {
+        param($section, $sectionID, $pageName, $pageFile)
+        $pageID = $pageName.ToLower().Replace(' ', '-').Replace('.', '-')
+
+        $source = Get-Content -Path $pageFile -Raw
         $html = New-Object -Com 'HTMLFile'
         $html.IHTMLDocument2_write($source)
         $body = $html.all.tags('body') | foreach InnerHtml
+
+        $template = Get-Content -Path template.htm -Raw
+        $template = $template.Replace('~sectionID~', $sectionID)
+        $template = $template.Replace('~pageID~', $pageID)
+        $template = $template.Replace('~CONTENT~', $body)
+
+        $template | Out-File $pageFile -Force -Confirm:$false
+
+        return $pageID
     }
 }
 Process
@@ -33,5 +66,9 @@ Process
     if ($ZipFile -and (Test-Path $ZipFile))
     {
         Unpack $ZipFile
+    }
+
+    Get-ChildItem $ZipName | foreach {
+        MakeSection $_.Name
     }
 }
