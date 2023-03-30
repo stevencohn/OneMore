@@ -1,40 +1,44 @@
 .navbar {
-    background-color: #4d1569;
-    z-index: 100;
-  }
+  background-color: #4d1569;
+  z-index: 100;
+}
 
-  .navbar-brand {
-    position: absolute;
-    top: 0px;
-  }
+.navbar-brand {
+  position: absolute;
+  top: 0px;
+}
 
-  .navbar-collapse {
-    margin-left: 115px;
-  }
+.navbar-collapse {
+  margin-left: 115px;
+}
 
-  #navbox {
-    margin-left: 200px;
-  }
+#navbox {
+  margin-left: 200px;
+}
 
-  .navbar .navbar-brand {
-    color: white;
-    margin-right: 100px;
-  }
+.navbar .navbar-brand {
+  color: white;
+  margin-right: 100px;
+}
 
-  .navbar a {
-    color: white;
-  }
+.navbar a {
+  color: white;
+}
 
-  .navbar a.nav-link.active {
-    color: white;
-    text-decoration: underline;
-  }
+.navbar a.nav-link.active {
+  color: white;
+  text-decoration: underline;
+}
 
-  .navbar a:hover {
-    color: #DEACF7;
-  }
+.navbar a:hover {
+  color: #DEACF7;
+}
 
-  .navbar a:focus {
-    color: white;
-  }
-  
+.navbar a:focus {
+  color: white;
+}
+
+td p {
+  margin: 0px !important;
+  line-height: var(--font-size) !important;
+}
