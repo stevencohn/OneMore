@@ -13,13 +13,36 @@ param (
 
 Begin
 {
+    $script:RootUrl = 'https://onemoreaddin.com'
     $script:FileOrder = '__File_Order.txt'
     $script:ZipName = 'OneMore Wiki'
+    $script:sitemap = $null
+
+    function MakeSiteMap
+    {
+        $null = [Reflection.Assembly]::LoadWithPartialName("System.Xml.Linq")
+        $script:sitemap = [XElement]::Parse('<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"/>')
+        AddToSiteMap $RootUrl 1.0
+    }
+
+    function AddToSiteMap
+    {
+        param([string]$url, [decimal]$priority)
+        $date = get-date ((Get-Date).ToUniversalTime()) -format 'yyyy-MM-ddThh:mm:ss+00:00'
+        $sitemap.Add([XElement]::new('url',
+            [XElement]::new('loc', [Uri]::EscapeUriString($url)),
+            [XElement]::new('lastmod', $date),
+            [XElement]::new('priority', $priority.ToString('0.0'))
+            )
+        )
+    }
 
     function Unpack
     {
         param([string] $file)
+        $ProgressPreference = 'SilentlyContinue'
         Expand-Archive -Path $file -DestinationPath ./ -Force
+        $ProgressPreference = 'Continue'
     }
 
     function MakeSection
@@ -83,11 +106,15 @@ Begin
 
         $template | Out-File $pageFile -Encoding utf8 -Force -Confirm:$false
 
+        AddToSiteMap "$RootUrl/$section/$name`.htm" 0.5
+
         return $pageID
     }
 }
 Process
 {
+    MakeSiteMap
+
     if ($ZipFile -and (Test-Path $ZipFile))
     {
         $script:ZipName = (Get-Item $ZipFile).BaseName
@@ -100,11 +127,15 @@ Process
 
         if (Test-Path $name)
         {
+            # delete the old section folder
             Remove-Item $name -Recurse -Force -Confirm:$false
         }
 
+        # move the new section folder up a level
         Move-Item (Join-Path $ZipName $name) . -Force -Confirm:$false
     }
+
+    $sitemap.ToString() | Out-File 'sitemap.xml'
 
     Remove-Item $ZipName -Force -Confirm:$false
 }
