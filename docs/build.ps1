@@ -29,7 +29,7 @@ Begin
     {
         param([string]$url, [decimal]$priority)
         $date = get-date ((Get-Date).ToUniversalTime()) -format 'yyyy-MM-ddThh:mm:ss+00:00'
-        $sitemap.Add([XElement]::new('url',
+        $sitemap.Add([XElement]::new(([XNamespace]'http://www.sitemaps.org/schemas/sitemap/0.9') + 'url',
             [XElement]::new('loc', [Uri]::EscapeUriString($url)),
             [XElement]::new('lastmod', $date),
             [XElement]::new('priority', $priority.ToString('0.0'))
