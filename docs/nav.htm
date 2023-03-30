@@ -1,11 +1,11 @@
-<nav class="navbar navbar-expand-lg">
+<nav class="navbar navbar-expand-lg" style="z-index:10;">
   <div class="container-fluid">
-    <a class="navbar-brand mb-0 h1 py-1" href="/index.html">
-      <img src="/Logo.png" alt="OneMore" height="58" class="d-inline-block align-text-middle" style="z-index:10;">
+    <a class="navbar-brand" href="/index.html">
+      <img src="/Logo.png" alt="OneMore" height="58" class="d-inline-block align-text-middle">
       OneMore
     </a>
     <div class="collapse navbar-collapse" id="navbox">
-      <ul class="nav nav-underline" id="tabs">
+      <ul class="nav nav-underline me-auto mb-2 mb-lg-0" id="tabs">
         <li class="nav-item">
           <a class="nav-link" id="get-started" href="/Get Started/Welcome to OneMore.htm">Get Started</a>
         </li>
@@ -24,7 +24,7 @@
       </ul>
     </div>
     <div>
-      <ul class="nav">
+      <ul class="nav me-auto">
         <li class="nav-item">
           <a class="nav-link py-2 px-0 px-lg-2" href="https://facebook.com/OneMoreAddIn" target="_blank" rel="noopener">
             <svg width="22px" height="22px" viewBox="0 0 512 512" id="fbglyph"
@@ -64,5 +64,9 @@
         </li>
       </ul>
     </div>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" 
+      data-bs-target="#navbox" aria-controls="navbox" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon navbar-dark"></span>
+    </button>
   </div>
 </nav>
