@@ -52,22 +52,30 @@
 <P lang=yo style="MARGIN: 0in"><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">Alternatively, you can attach the Visual Studio debugger directly to the running OneMore process. OneMore runs in a process named </SPAN><SPAN style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"; BACKGROUND: #e8e8e8; COLOR: #172b4d'>dllhost</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">, of which there are many. There are two ways to identify which instance is the OneMore process.</SPAN></P>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
 <H3 lang=yo style="FONT-SIZE: 12pt; FONT-FAMILY: Calibri; COLOR: #5b9bd5; MARGIN: 0in">Use the Log File</H3>
-<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">Look in the OneMore log file. The process ID is stated in the first line of each session in the log; this is the line beginning with "Starting dllhost". Stop the process from Task Manager or use the taskkill command</P>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">Look in the OneMore log file. The process ID is stated in the first line of each session in the log; this is the line beginning with "Starting dllhost".</P>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
-<P lang=yo style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"; COLOR: #172b4d; MARGIN: 0in 0in 0in 0.375in'><SPAN style="BACKGROUND: #e8e8e8">taskkill /pid &lt;pid&gt; /f</SPAN></P>
+<P lang=yo style='FONT-SIZE: 10pt; FONT-FAMILY: "Lucida Console"; COLOR: black; MARGIN: 0in 0in 0in 0.375in'><SPAN style="BACKGROUND: #f1f1f1">Starting dllhost </SPAN><SPAN style="BACKGROUND: #ffff99">19712</SPAN><SPAN style="BACKGROUND: #f1f1f1">, ...</SPAN></P>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
 <H3 lang=yo style="FONT-SIZE: 12pt; FONT-FAMILY: Calibri; COLOR: #5b9bd5; MARGIN: 0in">Use Task Manager</H3>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">Open Task Manager and add the column named "Command Line". Look for the dllhost process with this command line</P>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
 <P lang=yo style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"; COLOR: #172b4d; MARGIN: 0in 0in 0in 0.375in'><SPAN style="BACKGROUND: #e8e8e8">C:\WINDOWS\system32\DllHost.exe /Processid:{88AB88AB-CDFB-4C68-9C3A-F10B75A5BC61}</SPAN></P>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in 0in 0in 0.375in">&nbsp;</P>
+<H1 lang=yo style="FONT-SIZE: 16pt; FONT-FAMILY: Calibri; COLOR: #1e4e79; MARGIN: 0in">Terminate A Running Instance</H1>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">There are times when the COM Surrogate process will not release resources, causing it to hang and remain in-process even if OneNote is stopped. You can terminate this process, dllhost, in one of two ways.</P>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
+<H3 lang=yo style="FONT-SIZE: 12pt; FONT-FAMILY: Calibri; COLOR: #5b9bd5; MARGIN: 0in">Use the Process ID</H3>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">As mentioned above, the process ID is reported in the first line of each session in the log file. Stop the process from Task Manager or use the taskkill command</P>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
+<P lang=yo style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"; COLOR: #172b4d; MARGIN: 0in 0in 0in 0.375in'><SPAN style="BACKGROUND: #e8e8e8">taskkill /pid &lt;pid&gt; /f</SPAN></P>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
 <H3 lang=yo style="FONT-SIZE: 12pt; FONT-FAMILY: Calibri; COLOR: #5b9bd5; MARGIN: 0in">Use the stop.ps1 Script</H3>
-<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">I created a script to forcefully terminate the dllhost process and OneNote. This is located in the OneMore solution directory. Run this from an administrative PowerShell window</P>
+<P lang=yo style="MARGIN: 0in"><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">An easier solution is to use the provided </SPAN><SPAN style='FONT-SIZE: 10pt; FONT-FAMILY: "Lucida Console"; BACKGROUND: #f1f1f1'>stop</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri"> script to forcefully terminate the dllhost process and OneNote. This is located in the OneMore solution directory. Run this from an administrative PowerShell window</SPAN></P>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
 <P lang=yo style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"; COLOR: #172b4d; MARGIN: 0in 0in 0in 0.375in'><SPAN style="BACKGROUND: #e8e8e8">.\stop.ps1</SPAN></P>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
-<H1 style="FONT-SIZE: 16pt; FONT-FAMILY: Calibri; COLOR: #1e4e79; MARGIN: 0in">Enable OneNote Add-in Interface Error Reporting</H1>
+<H1 lang=yo style="FONT-SIZE: 16pt; FONT-FAMILY: Calibri; COLOR: #1e4e79; MARGIN: 0in">Enable OneNote Add-in Interface Error Reporting</H1>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">Normally, OneNote captures and supressed user interface errors from add-ins. This means there may be error in your add-in that are occurring but there is no indication that they are happening. These can be fixed but only if you know about them.</P>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">Open the OneNote options dialog, click the Advanced tab, and scroll to the bottom of the page. Enable the <SPAN style="FONT-STYLE: italic">Show add-in user interface errors</SPAN>. </P>
@@ -77,7 +85,7 @@
 <P style="MARGIN: 0in"><IMG src="Debugging%20OneMore_files/image001.png" width=529 height=255></P>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
-<H1 style="FONT-SIZE: 16pt; FONT-FAMILY: Calibri; COLOR: #1e4e79; MARGIN: 0in">COM Timeouts</H1>
+<H1 lang=yo style="FONT-SIZE: 16pt; FONT-FAMILY: Calibri; COLOR: #1e4e79; MARGIN: 0in">COM Timeouts</H1>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">The OneNote IApplication COM object will timeout if not used within a reasonable window (somewhere around a minute perhaps?) and, regardless of whether you've wrapped the call in a try/catch, OneNote will abort the call, display a dialog, and possibly leave OneNote in an unusable state. This can adversely affect a long-running debugging session. But in normal operations, OneMore makes every effort to minimize how long it holds on to an Application instance.</P>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
