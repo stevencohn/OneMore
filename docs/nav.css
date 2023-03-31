@@ -38,7 +38,12 @@
   color: white;
 }
 
+/* General custom overrides for OneNote/HTML  */
+p { 
+  margin-bottom: 0 !important;
+}
 td p {
-  margin: 0px !important;
+  margin-top: 0px !important;
+  margin-bottom: 0px !important;
   line-height: var(--font-size) !important;
 }
