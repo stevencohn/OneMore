@@ -235,18 +235,25 @@ namespace River.OneMoreAddIn
 
 		private async Task<FavoriteStatus> ConfirmByID(string notebookID, string objectID)
 		{
-			XElement notebook;
+			XElement notebook = null;
 			if (notebooks.ContainsKey(notebookID))
 			{
 				notebook = notebooks[notebookID];
 			}
 			else
 			{
-				notebook = await one.GetNotebook(notebookID, OneNote.Scope.Pages);
-				notebooks.Add(notebookID, notebook);
+				try
+				{
+					notebook = await one.GetNotebook(notebookID, OneNote.Scope.Pages);
+					notebooks.Add(notebookID, notebook);
+				}
+				catch (Exception exc)
+				{
+					logger.WriteLine($"unrecognized notebook {notebookID}", exc);
+				}
 			}
 
-			return notebook.Descendants().Any(e => e.Attribute("ID")?.Value == objectID)
+			return notebook != null && notebook.Descendants().Any(e => e.Attribute("ID")?.Value == objectID)
 				? FavoriteStatus.Known
 				: FavoriteStatus.Unknown;
 		}
