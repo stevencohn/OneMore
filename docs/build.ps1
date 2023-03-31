@@ -1,9 +1,10 @@
 <#
 .SYNOPSIS
-blah
+Generates the OneMoreAddin.com static HTML pages by extracting the archived
+OneMoreWiki.zip file and wrapping each page in the template.htm file
 
 .PARAMETER zipfile
-blah
+The path to the OneMoreWiki.zip file
 #>
 
 [CmdletBinding(SupportsShouldProcess = $true)]
@@ -14,6 +15,7 @@ param (
 Begin
 {
     $script:RootUrl = 'https://onemoreaddin.com'
+    $script:UrlSetSchema = 'http://www.sitemaps.org/schemas/sitemap/0.9'
     $script:FileOrder = '__File_Order.txt'
     $script:ZipName = 'OneMore Wiki'
     $script:sitemap = $null
@@ -21,7 +23,7 @@ Begin
     function MakeSiteMap
     {
         $null = [Reflection.Assembly]::LoadWithPartialName("System.Xml.Linq")
-        $script:sitemap = [XElement]::Parse('<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"/>')
+        $script:sitemap = [XElement]::Parse("<urlset xmlns=""$UrlSetSchema""/>")
         AddToSiteMap $RootUrl 1.0
     }
 
@@ -29,7 +31,7 @@ Begin
     {
         param([string]$url, [decimal]$priority)
         $date = get-date ((Get-Date).ToUniversalTime()) -format 'yyyy-MM-ddThh:mm:ss+00:00'
-        $sitemap.Add([XElement]::new(([XNamespace]'http://www.sitemaps.org/schemas/sitemap/0.9') + 'url',
+        $sitemap.Add([XElement]::new(([XNamespace]$UrlSetSchema) + 'url',
             [XElement]::new('loc', [Uri]::EscapeUriString($url)),
             [XElement]::new('lastmod', $date),
             [XElement]::new('priority', $priority.ToString('0.0'))
@@ -40,16 +42,18 @@ Begin
     function Unpack
     {
         param([string] $file)
-        $ProgressPreference = 'SilentlyContinue'
-        Expand-Archive -Path $file -DestinationPath ./ -Force
-        $ProgressPreference = 'Continue'
+        $pref = $global:ProgressPreference
+        $global:ProgressPreference = 'SilentlyContinue'
+        Write-Host "extracting $file"
+        Expand-Archive -Path $file -DestinationPath ./ -Force | Out-Null
+        $global:ProgressPreference = $pref
     }
 
     function MakeSection
     {
         param($sectionName)
         $sectionID = $sectionName.ToLower().Replace(' ', '-').Replace('.', '-')
-        Write-Host "Section '$sectionName' ($sectionID)" -ForegroundColor Blue
+        Write-Host "section '$sectionName' ($sectionID)" -ForegroundColor Blue
         $toc = @()
         $first = $null
 
@@ -92,7 +96,7 @@ Begin
         param($section, $sectionID, $pageName, $pageFile)
         $name = [System.IO.Path]::GetFileNameWithoutExtension($pageName)
         $pageID = $name.ToLower().Replace(' ', '-').Replace('.', '-')
-        Write-Host "Page '$name' ($pageID)"
+        Write-Host "page '$name' ($pageID)"
 
         $source = Get-Content -Path $pageFile -Encoding utf8 -Raw
         $html = New-Object -Com 'HTMLFile'
@@ -135,6 +139,7 @@ Process
         Move-Item (Join-Path $ZipName $name) . -Force -Confirm:$false
     }
 
+    Write-Host 'saving sitemap.xml'
     $sitemap.ToString() | Out-File 'sitemap.xml'
 
     Remove-Item $ZipName -Force -Confirm:$false
