@@ -1,0 +1,71 @@
+.offcanvasResponsive {
+    height: 100%;
+    width: 300px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: #EBE5E1;
+    overflow-x: hidden;
+    padding-top: 80px;
+}
+
+.offcanvas-body {
+    width: 300px;
+    margin-top: 100px;
+    background-color: #EBE5E1;
+}
+
+.offcanvas-body a {
+    padding: 4px 8px 0px 16px;
+    text-decoration: none;
+    color: #606060;
+    display: block;
+}
+
+.offcanvas-body a:hover {
+    color: #bb89d8;
+}
+
+.offcanvas-body a.active {
+    color: #000000;
+    background-color: #B5B2AF;
+}
+
+.offcanvas-body a:focus {
+    color: #898989;
+}
+
+@media screen and (max-height: 450px) {
+    .offcanvasResponsive {
+        padding-top: 15px;
+    }
+
+    .offcanvasResponsive a {
+        font-size: 18px;
+    }
+}
+
+.wrapper {
+    display: flex;
+    align-items: stretch;
+}
+
+#sidebar {
+    min-width: 300px;
+    max-width: 300px;
+    min-height: 100vh;
+}
+
+@media (max-width: 768px) {
+    #sidebar {
+        margin-left: -300px;
+    }
+
+    #sidebar.active {
+        margin-left: 0;
+    }
+
+    .offcanvas-body {
+        margin-top: 0px;
+    }
+}
