@@ -1,24 +1,50 @@
+.bi {
+  width: 1.5rem;
+  height: 1.5rem
+}
+
 .navbar {
-  background-color: #4d1569;
-  z-index: 100;
+  background-color: #4d1569 !important;
+  /* z-index: 100; */
+  box-shadow: 0px 2px 12px 2px rgba(0, 0, 0, 0.5);
+  height: 60px;
 }
 
-.navbar-brand {
-  position: absolute;
-  top: 0px;
-}
+@media (max-width: 768px) {
+  .navbar {
+    height: auto;
+  }
 
-.navbar-collapse {
-  margin-left: 115px;
+  .navbar-brand .logo {
+    height: 40px !important;
+    margin-top: 0px !important;
+  }
 }
 
 #navbox {
   margin-left: 200px;
 }
 
+.navbar-brand {
+  position: relative;
+  z-index: 2;
+}
+
 .navbar .navbar-brand {
   color: white;
   margin-right: 100px;
+}
+
+.navbar-brand .logo {
+  position: relative !important;
+  z-index: 2 !important;
+  height: 55px !important;
+  margin-top: 15px !important;
+}
+
+.navbar-brand .logo-text {
+  padding-top: 15px;
+  display: inline;
 }
 
 .navbar a {
@@ -38,12 +64,29 @@
   color: white;
 }
 
+.navbar-toggler {
+  border-width: 0px !important;
+}
+
+.nav-link {
+  margin-right: 20px;
+}
+
+.nav-glyph {
+  margin-right: 0px !important;
+}
+
+#content {
+  padding-left: 20px;
+}
+
 /* General custom overrides for OneNote/HTML  */
-p { 
+P {
   margin-bottom: 0 !important;
   line-height: 125% !important;
 }
-td p {
+
+TD P {
   margin-top: 0px !important;
   margin-bottom: 0px !important;
   line-height: var(--font-size) !important;

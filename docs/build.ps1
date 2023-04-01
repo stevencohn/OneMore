@@ -23,7 +23,7 @@ Begin
     function MakeSiteMap
     {
         $null = [Reflection.Assembly]::LoadWithPartialName("System.Xml.Linq")
-        $script:sitemap = [XElement]::Parse("<urlset xmlns=""$UrlSetSchema""/>")
+        $script:sitemap = [System.Xml.Linq.XElement]::Parse("<urlset xmlns=""$UrlSetSchema""/>")
         AddToSiteMap $RootUrl 1.0
     }
 
@@ -31,10 +31,10 @@ Begin
     {
         param([string]$url, [decimal]$priority)
         $date = get-date ((Get-Date).ToUniversalTime()) -format 'yyyy-MM-ddThh:mm:ss+00:00'
-        $sitemap.Add([XElement]::new(([XNamespace]$UrlSetSchema) + 'url',
-            [XElement]::new('loc', [Uri]::EscapeUriString($url)),
-            [XElement]::new('lastmod', $date),
-            [XElement]::new('priority', $priority.ToString('0.0'))
+        $sitemap.Add([System.Xml.Linq.XElement]::new(([System.Xml.Linq.XNamespace]$UrlSetSchema) + 'url',
+            [System.Xml.Linq.XElement]::new('loc', [Uri]::EscapeUriString($url)),
+            [System.Xml.Linq.XElement]::new('lastmod', $date),
+            [System.Xml.Linq.XElement]::new('priority', $priority.ToString('0.0'))
             )
         )
     }
@@ -54,46 +54,58 @@ Begin
         param($sectionName)
         $sectionID = $sectionName.ToLower().Replace(' ', '-').Replace('.', '-')
         Write-Host "section '$sectionName' ($sectionID)" -ForegroundColor Blue
-        $toc = @()
-        $first = $null
 
         $dir = Join-Path $ZipName $sectionName
-        Get-ChildItem $dir -File | foreach {
-            if ($_.Name -ne $FileOrder)
-            {
-                $id = MakePage $sectionName $sectionID $_.Name $_.FullName
-                $toc += "<a id=""$id"" href=""$($_.Name)"">$($_.BaseName)</a>"
-                if (!$first) { $first = $_.Name }
-            }
+        $toc, $first = MakeSectionTOC $sectionID $sectionName
+
+        Get-ChildItem $dir -File *.htm | foreach {
+            $id = MakePage $sectionID $_.Name $_.FullName $toc
         }
-
-        $forder = Join-Path $dir $FileOrder
-        if (Test-Path $forder)
-        {
-            $toc = @()
-            $first = $null
-
-            Get-Content $forder -Encoding utf8 | foreach {
-                $id = $_.ToLower().Replace(' ', '-').Replace('.', '-')
-                $toc += "<a id=""$id"" href=""$($_).htm"">$($_)</a>"
-                if (!$first) { $first = "$($_).htm" }
-            }
-
-            Remove-Item $forder -Force -Confirm:$false
-        }
-
-        $tocFile = Join-Path $dir 'toc.htm'
-        $toc | Out-File $tocFile -Encoding utf8 -Force -Confirm:$false
-        Write-Host "TOC '$tocFile'" -ForegroundColor DarkGray
 
         $indexFile = Join-Path $dir 'index.html'
         $meta = "<meta http-equiv=""refresh"" content=""0; url=$first"" />"
         $meta | Out-File $indexFile -Encoding utf8 -Force -Confirm:$false
+
+        return $dir, $sectionID
+    }
+
+    function MakeSectionTOC
+    {
+        param($sectionID, $sectionName)
+        $toc = @()
+        $first = $null
+        $file = (Join-Path $ZipName (Join-Path $sectionName $FileOrder)) | Resolve-Path
+        if (Test-Path $file)
+        {
+            # use FileOrder.txt
+            Get-Content $file -Encoding utf8 | foreach {
+                $id = $_.ToLower().Replace(' ', '-').Replace('.', '-')
+                $name = "$_`.htm"
+                $toc += "<li><a id=""$id"" href=""$name"">$($_)</a></li>"
+                if (!$first) { $first = "/$sectionID/$name" }
+            }
+
+            Write-Host "deleting $file" -ForegroundColor Yellow
+            Remove-Item $file -Force -Confirm:$false
+        }
+        else
+        {
+            Write-Host "file does not exist $file" -ForegroundColor Red
+            # no FileOrder.txt so discover HTM files instead
+            Get-ChildItem (Join-Path $ZipName $sectionName) -File *.htm | foreach {
+                $id = $_.BaseName.ToLower().Replace(' ', '-').Replace('.', '-')
+                $name = "$($_.BaseName)`.htm"
+                $toc += "<li><a id=""$id"" href=""$name"">$($_)</a></li>"
+                if (!$first) { $first = "/$sectionID/$name" }
+            }
+        }
+
+        return $toc, $first
     }
 
     function MakePage
     {
-        param($section, $sectionID, $pageName, $pageFile)
+        param($sectionID, $pageName, $pageFile, $toc)
         $name = [System.IO.Path]::GetFileNameWithoutExtension($pageName)
         $pageID = $name.ToLower().Replace(' ', '-').Replace('.', '-')
         Write-Host "page '$name' ($pageID)"
@@ -104,13 +116,13 @@ Begin
         $body = $html.all.tags('body') | foreach InnerHtml
 
         $template = Get-Content -Path template.htm -Encoding utf8 -Raw
+        $template = $template.Replace('~TOC~', [string]::join("`n", $toc))
         $template = $template.Replace('~sectionID~', $sectionID)
-        $template = $template.Replace('~pageID~', $pageID)
-        $template = $template.Replace('~CONTENT~', $body)
+        $template = $template.Replace('~content~', $body)
 
         $template | Out-File $pageFile -Encoding utf8 -Force -Confirm:$false
 
-        AddToSiteMap "$RootUrl/$section/$name`.htm" 0.5
+        AddToSiteMap "$RootUrl/$sectionID/$name`.htm" 0.5
 
         return $pageID
     }
@@ -127,7 +139,7 @@ Process
 
     Get-ChildItem $ZipName -Directory | foreach {
         $name = $_.Name
-        MakeSection $name
+        $dir, $sectionID = MakeSection $name
 
         if (Test-Path $name)
         {
@@ -135,8 +147,8 @@ Process
             Remove-Item $name -Recurse -Force -Confirm:$false
         }
 
-        # move the new section folder up a level
-        Move-Item (Join-Path $ZipName $name) . -Force -Confirm:$false
+        # move the new section folder up a level and rename
+        Move-Item $dir ./$sectionID -Force -Confirm:$false
     }
 
     Write-Host 'saving sitemap.xml'
