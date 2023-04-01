@@ -76,8 +76,16 @@
   margin-right: 0px !important;
 }
 
-#content {
-  padding-left: 20px;
+/* main page */
+
+.intro {
+  margin-bottom: 30px;
+  font-style: normal;
+  font-weight: 500;
+}
+
+.card-header {
+  background-color: #EBE5E1;
 }
 
 /* General custom overrides for OneNote/HTML  */
