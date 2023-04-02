@@ -61,7 +61,7 @@ Begin
         $toc, $first = MakeSectionTOC $sectionID $sectionName
 
         Get-ChildItem $dir -File *.htm | foreach {
-            $id = MakePage $sectionID $_.Name $_.FullName $toc
+            $id = MakePage $sectionID (Get-Item $_.FullName) $toc
         }
 
         $indexFile = Join-Path $dir 'index.html'
@@ -82,7 +82,7 @@ Begin
             # use FileOrder.txt
             Get-Content $file -Encoding utf8 | foreach {
                 $id = $_.ToLower() -replace ' |\.|%20','-'
-                $name = "$_`.htm"
+                $name = "$id`.htm"
                 $toc += "<li><a id=""$id"" href=""$name"">$($_)</a></li>"
                 if (!$first) { $first = "/$sectionID/$name" }
             }
@@ -96,7 +96,7 @@ Begin
             # no FileOrder.txt so discover HTM files instead
             Get-ChildItem (Join-Path $ZipName $sectionName) -File *.htm | foreach {
                 $id = $_.BaseName.ToLower() -replace ' |\.|%20','-'
-                $name = "$($_.BaseName)`.htm"
+                $name = "$id`.htm"
                 $toc += "<li><a id=""$id"" href=""$name"">$($_)</a></li>"
                 if (!$first) { $first = "/$sectionID/$name" }
             }
@@ -107,12 +107,11 @@ Begin
 
     function MakePage
     {
-        param($sectionID, $pageName, $pageFile, $toc)
-        $name = [System.IO.Path]::GetFileNameWithoutExtension($pageName)
-        $pageID = $name.ToLower() -replace ' |\.|%20','-'
-        Write-Host "page '$name' ($pageID)"
+        param($sectionID, $file, $toc)
+        $pageID = $file.BaseName.ToLower() -replace ' |\.|%20','-'
+        Write-Host "page '$($file.BaseName)' ($pageID)"
 
-        $source = Get-Content -Path $pageFile -Encoding utf8 -Raw
+        $source = $file | Get-Content -Encoding utf8 -Raw
         $html = New-Object -Com 'HTMLFile'
         $html.IHTMLDocument2_write($source)
         $body = $html.all.tags('body') | foreach InnerHtml
@@ -122,11 +121,34 @@ Begin
         $template = $template.Replace('~sectionID~', $sectionID)
         $template = $template.Replace('~content~', $body)
 
-        $template | Out-File $pageFile -Encoding utf8 -Force -Confirm:$false
+        $folderName = "$($file.BaseName)`_files"
+        $folderPath = Join-Path $file.Directory $folderName
+        if (Test-Path $folderPath)
+        {
+            $filesID = Join-Path $file.Directory "$pageID`_files"
+            CaseRename $folderPath $filesID
 
-        AddToSiteMap "$RootUrl/$sectionID/$name`.htm" 0.5
+            $escaped = $folderName -replace ' ','%20'
+            #Write-Host "replace $escaped ($pageID`_files)" -ForegroundColor Yellow
+            $template = $template.Replace($escaped, "$pageID`_files")
+        }
+
+        $pagePath = Join-Path $file.Directory "$pageID`.htm"
+        $template | Out-File $file.FullName -Encoding utf8 -Force -Confirm:$false
+        Rename-Item $file.FullName $pagePath -Force -Confirm:$false
+
+        AddToSiteMap "$RootUrl/$sectionID/$pageID`.htm" 0.5
 
         return $pageID
+    }
+
+    function CaseRename
+    {
+        param($path1, $path2)
+        $item = Rename-Item $path1 -NewName "$path1`__x" -PassThru -Force -Confirm:$false
+        $fullName = $item.FullName
+        if ($item.FullName -match '(.*)\\') { $fullName = $matches[1] }
+        Rename-Item $fullName -NewName $path2 -Force -Confirm:$false
     }
 }
 Process
