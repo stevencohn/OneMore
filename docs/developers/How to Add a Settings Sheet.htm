@@ -211,9 +211,8 @@
 
   </div>
   <script>
-    let sectionID = '#developers-section';
-    $(sectionID).addClass('active');
-    var pageID = '#' + window.location.pathname.match(/.*\/(.*).htm$/)[1];
+    $('#developers-section').addClass('active');
+    let pageID = '#' + window.location.pathname.match(/.*\/(.*).htm$/)[1];
     pageID = pageID.toLowerCase().replace(/%20| |\./g,'-')
     if ( $(pageID).length > 0) { $(pageID).addClass('active'); }
   </script>
