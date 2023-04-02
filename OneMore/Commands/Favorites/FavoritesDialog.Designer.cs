@@ -141,7 +141,7 @@
 			this.menuButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.menuButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.menuButton.ForeColor = System.Drawing.SystemColors.GrayText;
-			this.menuButton.Location = new System.Drawing.Point(716, 18);
+			this.menuButton.Location = new System.Drawing.Point(710, 18);
 			this.menuButton.Name = "menuButton";
 			this.menuButton.Size = new System.Drawing.Size(50, 38);
 			this.menuButton.TabIndex = 1;
