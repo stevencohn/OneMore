@@ -99,3 +99,7 @@ TD P {
   margin-bottom: 0px !important;
   line-height: var(--font-size) !important;
 }
+
+cite {
+  font-style: normal;
+}
