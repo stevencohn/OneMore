@@ -19,22 +19,24 @@ Begin
     $script:FileOrder = '__File_Order.txt'
     $script:ZipName = 'OneMore Wiki'
     $script:sitemap = $null
+    $script:smns = $null
 
     function MakeSiteMap
     {
         $null = [Reflection.Assembly]::LoadWithPartialName("System.Xml.Linq")
         $script:sitemap = [System.Xml.Linq.XElement]::Parse("<urlset xmlns=""$UrlSetSchema""/>")
+        $script:smns = $sitemap.GetDefaultNamespace()
         AddToSiteMap $RootUrl 1.0
     }
 
     function AddToSiteMap
     {
         param([string]$url, [decimal]$priority)
-        $date = get-date ((Get-Date).ToUniversalTime()) -format 'yyyy-MM-ddThh:mm:ss+00:00'
-        $sitemap.Add([System.Xml.Linq.XElement]::new(([System.Xml.Linq.XNamespace]$UrlSetSchema) + 'url',
-            [System.Xml.Linq.XElement]::new('loc', [Uri]::EscapeUriString($url)),
-            [System.Xml.Linq.XElement]::new('lastmod', $date),
-            [System.Xml.Linq.XElement]::new('priority', $priority.ToString('0.0'))
+        $date = get-date ((Get-Date).ToUniversalTime()) -Format 'yyyy-MM-ddThh:mm:ss+00:00'
+        $sitemap.Add([System.Xml.Linq.XElement]::new($smns + 'url',
+            [System.Xml.Linq.XElement]::new($smns + 'loc', [Uri]::EscapeUriString($url)),
+            [System.Xml.Linq.XElement]::new($smns + 'lastmod', $date),
+            [System.Xml.Linq.XElement]::new($smns + 'priority', $priority.ToString('0.0'))
             )
         )
     }
@@ -145,6 +147,11 @@ Process
         {
             # delete the old section folder
             Remove-Item $name -Recurse -Force -Confirm:$false
+        }
+
+        if (Test-Path ./$sectionID)
+        {
+            Remove-Item ./$sectionID -Recurse -Force -Confirm:$false
         }
 
         # move the new section folder up a level and rename
