@@ -83,6 +83,9 @@
   font-style: normal;
   font-weight: 500;
 }
+.intro .detail {
+  font-weight: normal;
+}
 
 .card-header {
   background-color: #EBE5E1;

@@ -1,0 +1,119 @@
+label.error {
+    color: var(--error-color);
+    margin-left: 10px;
+}
+
+#contactName-error,
+#contactEmail-error,
+#contactMessage-error {
+    vertical-align: top;
+    font-size: 10pt;
+    color: #dc3545;
+}
+
+section.contact {
+    clear: both;
+    height: 320px;
+    background-color: linen;
+    padding: 40px 100px 0px 100px;
+    color: black;
+    /* height: 350px; */
+    font: normal normal normal 20px/1.4em Barlow-Regular, Barlow, sans-serif;
+}
+
+detail.contactLeft {
+    position: relative;
+    font-weight: bold;
+    color: #606060;
+    float: left;
+    width: 30%;
+    text-align: right;
+    margin-right: 20px;
+}
+
+detail.contactRight {
+    position: relative;
+    float: left;
+    font: var(--font-R13);
+}
+
+#contactForm input {
+    font: var(--font-B20R);
+    font-size: 16px;
+    width: 420px;
+    margin-bottom: 25px;
+    border-color: lightgray;
+    border-radius: 4px;
+    border-style: ridge;
+    border-width: 1px;
+    padding-left: 3px;
+}
+
+#contactForm #submit {
+    background-color: #8F20C7;
+    border-radius: 4px;
+    color: white;
+    font-size:11pt;
+    width: 80px;
+}
+
+#contactForm #submit:disabled {
+    background-color:#EBE5E1;
+    color:#808080;
+}
+
+#contactForm #submit:focus {
+    border-style: solid;
+}
+
+#contactForm input:focus:not(#submit),
+#contactForm textarea:focus {
+    border-style: dashed;
+    border-color: darkgray;
+    outline: none;
+}
+
+#contactForm .label {
+    display: block;
+    font-size: .825rem;
+    margin-bottom: 5px;
+    font-weight: 500;
+}
+
+#contactForm CITE {
+    font-size: 10pt;
+    color: #595959;
+}
+
+#contactForm #honey {
+    width: 35px;
+    margin-right: 10px;
+    text-align: center;
+}
+
+#contactForm #honey-error {
+    display: none !important;
+    visibility: collapse;
+}
+
+#contactForm textarea {
+    font: var(--font-B20R);
+    font-size: 16px;
+    border-radius: 4px;
+    width: 60%;
+    height: 100px;
+    max-width: 80%;
+    min-width: 420px;
+    max-height: 400px;
+    min-height: 100px;
+    margin-bottom: 15px;
+    border-color: lightgray;
+    border-width: 1px;
+    border-style: ridge;
+    padding-left: 3px;
+    resize: both;
+}
+
+#contactForm #honeyp {
+    visibility: collapse;
+}
