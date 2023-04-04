@@ -1121,6 +1121,7 @@
     <None Include="Properties\Emoji\RightwardsArrow.png" />
     <None Include="Properties\Emoji\Section.png" />
     <None Include="Properties\Emoji\XMark.png" />
+    <Content Include="Commands\Tools\sponsor-light.png" />
     <Content Include="Properties\Images\CustomStyles.png" />
     <Content Include="Properties\Images\DarkCustomStyles.png" />
     <Content Include="Properties\Images\DarkFavorites.png" />
