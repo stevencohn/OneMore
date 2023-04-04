@@ -146,13 +146,16 @@ Begin
         $body | where { $_.all } | foreach {
             $_.all.tags('a') | foreach {
                 $href = $_.attributes['href']
-                if ($href.textContent -match '\.\./([^/]+)/.+')
+                if ($href.textContent -match '\.\.(/[^/]+/).+')
                 {
                     $m = $matches[1]
-                    if ($secmap.ContainsKey($m))
+                    $deslashed = $m -replace '/',''
+                    if ($secmap.ContainsKey($deslashed))
                     {
-                        write-host "replacing with $($secmap[$m])" -ForegroundColor Green
-                        $href.textContent = $href.textContent -replace $m, $secmap[$m]
+                        $slashed = "/$($secmap[$deslashed])/"
+                        #write-host "uri $($href.textContent)" -ForegroundColor Green
+                        $href.textContent = $href.textContent -replace $m, $slashed
+                        #write-host "uri $($href.textContent)" -ForegroundColor DarkGreen
                     }
                 }
             } }
