@@ -127,8 +127,12 @@
     <comment>hyperlink to clear the log file</comment>
   </data>
   <data name="AboutDialog_copyLabel.Text" xml:space="preserve">
-    <value>版权 @ 2016-{0} Steven M Cohn</value>
+    <value>版权所有 @ 2016-{0} Steven M Cohn。版权所有。</value>
     <comment>copyright to current year</comment>
+  </data>
+  <data name="AboutDialog_githubLink.Text" xml:space="preserve">
+    <value>查看 GitHub 上的项目</value>
+    <comment>button</comment>
   </data>
   <data name="AboutDialog_LatestMessage" xml:space="preserve">
     <value>您拥有最新版本</value>

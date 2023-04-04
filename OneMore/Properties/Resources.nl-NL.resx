@@ -127,8 +127,12 @@
     <comment>hyperlink to clear the log file</comment>
   </data>
   <data name="AboutDialog_copyLabel.Text" xml:space="preserve">
-    <value>Copyright @ 2016- {0} Steven M Cohn</value>
+    <value>Copyright @ 2016-{0} Steven M Cohn. Alle rechten voorbehouden.</value>
     <comment>copyright to current year</comment>
+  </data>
+  <data name="AboutDialog_githubLink.Text" xml:space="preserve">
+    <value>Bekijk het project op GitHub</value>
+    <comment>button</comment>
   </data>
   <data name="AboutDialog_LatestMessage" xml:space="preserve">
     <value>Je hebt de nieuwste versie</value>

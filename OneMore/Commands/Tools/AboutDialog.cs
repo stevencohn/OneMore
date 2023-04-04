@@ -47,11 +47,17 @@ namespace River.OneMoreAddIn.Commands
 				Localize(new string[]
 				{
 					"titleLabel",
-					"okButton=word_OK",
+					"githubLink",
+					"updateLink",
+					"pleaseLabel",
 					"clearLogLabel",
-					"updateLink"
+					"okButton=word_OK"
 				});
 			}
+
+			using var g = pleaseLabel.CreateGraphics();
+			var size = g.MeasureString(pleaseLabel.Text, pleaseLabel.Font);
+			sponsorButton.Left = (int)(pleaseLabel.Left + pleaseLabel.Margin.Right + size.Width);
 		}
 
 
@@ -75,13 +81,19 @@ namespace River.OneMoreAddIn.Commands
 
 		private void GoHome(object sender, LinkLabelLinkClickedEventArgs e)
 		{
-			System.Diagnostics.Process.Start(homeLink.Text);
+			Process.Start(Resx.OneMore_Home);
+		}
+
+
+		private void GoGitHub(object sender, LinkLabelLinkClickedEventArgs e)
+		{
+			Process.Start(Resx.OneMore_GitHub);
 		}
 
 
 		private void GotoSponsorship(object sender, EventArgs e)
 		{
-			System.Diagnostics.Process.Start((string)sponsorButton.Tag);
+			Process.Start(Resx.OneMore_Sponsor);
 		}
 
 

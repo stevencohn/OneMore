@@ -1184,8 +1184,6 @@
     <Content Include="Properties\Images\SelectAll.png" />
     <Content Include="Properties\Images\Snippets.png" />
     <Content Include="Properties\Images\Sort.png" />
-    <Content Include="Properties\Images\Sponsor.png" />
-    <Content Include="Properties\Images\SponsorOver.png" />
     <Content Include="Properties\Images\Strikethrough.png" />
     <Content Include="Properties\Images\Subscript.png" />
     <Content Include="Properties\Images\Superscript.png" />

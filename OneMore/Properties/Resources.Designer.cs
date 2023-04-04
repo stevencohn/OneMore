@@ -92,11 +92,20 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Copyright @ 2016-{0} Steven M Cohn.
+        ///   Looks up a localized string similar to Copyright @ 2016-{0} Steven M Cohn. All rights reserved..
         /// </summary>
         internal static string AboutDialog_copyLabel_Text {
             get {
                 return ResourceManager.GetString("AboutDialog_copyLabel.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to See the project on GitHub.
+        /// </summary>
+        internal static string AboutDialog_githubLink_Text {
+            get {
+                return ResourceManager.GetString("AboutDialog_githubLink.Text", resourceCulture);
             }
         }
         
@@ -3979,6 +3988,33 @@ namespace River.OneMoreAddIn.Properties {
         internal static string NumberPagesDialog_Text {
             get {
                 return ResourceManager.GetString("NumberPagesDialog.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to https://github.com/stevencohn/OneMore.
+        /// </summary>
+        internal static string OneMore_GitHub {
+            get {
+                return ResourceManager.GetString("OneMore_GitHub", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to https://onemoreaddin.com.
+        /// </summary>
+        internal static string OneMore_Home {
+            get {
+                return ResourceManager.GetString("OneMore_Home", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to https://github.com/sponsors/stevencohn.
+        /// </summary>
+        internal static string OneMore_Sponsor {
+            get {
+                return ResourceManager.GetString("OneMore_Sponsor", resourceCulture);
             }
         }
         
