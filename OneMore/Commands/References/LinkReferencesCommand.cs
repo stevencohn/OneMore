@@ -169,7 +169,7 @@ namespace River.OneMoreAddIn.Commands
 
 				// initialize search-and-replace editor...
 
-				var whatText = $@"(?:^|\b|\s)({SearchAndReplaceEditor.EscapeEscapes(title)})(?:$|\b|\s)";
+				var whatText = $@"(?:^|\b|\s)({title.EscapeForRegex()})(?:$|\b|\s)";
 				var pageLink = one.GetHyperlink(page.PageId, string.Empty);
 
 				var withElement = new XElement("A",

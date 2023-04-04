@@ -7,6 +7,7 @@
 namespace River.OneMoreAddIn
 {
 	using System;
+	using System.Linq;
 	using System.Text;
 	using System.Text.RegularExpressions;
 	using System.Xml.Linq;
@@ -55,6 +56,34 @@ namespace River.OneMoreAddIn
 		{
 			// \s includes space, tab, CR, NL, FF, VT, and \u00A0
 			return Regex.IsMatch(value, @"^(\W|&#160;|&nbsp;)");
+		}
+
+
+		/// <summary>
+		/// Escape all control chars in given string. Typically used to escape the search
+		/// string when not using regular expressions
+		/// </summary>
+		/// <param name="plain">The string to treat as plain text</param>
+		/// <returns>A string in which all regular expression control chars are escaped</returns>
+		public static string EscapeForRegex(this string plain)
+		{
+			var codes = new char[] { '\\', '.', '*', '|', '?', '(', ')', '[', '$', '^', '+' };
+
+			var builder = new StringBuilder();
+			for (var i = 0; i < plain.Length; i++)
+			{
+				if (codes.Contains(plain[i]))
+				{
+					if (i == 0 || plain[i - 1] != '\\')
+					{
+						builder.Append('\\');
+					}
+				}
+
+				builder.Append(plain[i]);
+			}
+
+			return builder.ToString();
 		}
 
 

@@ -34,7 +34,7 @@ namespace River.OneMoreAddIn.Commands
 			string pattern, string replacement, bool enableRegex, bool caseSensitive)
 		{
 			regex = new Regex(
-				enableRegex ? pattern : EscapeEscapes(pattern),
+				enableRegex ? pattern : pattern.EscapeForRegex(),
 				caseSensitive ? RegexOptions.None : RegexOptions.IgnoreCase
 				);
 
@@ -53,39 +53,11 @@ namespace River.OneMoreAddIn.Commands
 			string pattern, XElement element, bool enableRegex, bool caseSensitive)
 		{
 			regex = new Regex(
-				enableRegex ? pattern : EscapeEscapes(pattern),
+				enableRegex ? pattern : pattern.EscapeForRegex(),
 				caseSensitive ? RegexOptions.None : RegexOptions.IgnoreCase
 				);
 
 			replaceElement = element;
-		}
-
-
-		/// <summary>
-		/// Escape all control chars in given string. Typically used to escape the search
-		/// string when not using regular expressions
-		/// </summary>
-		/// <param name="plain">The string to treat as plain text</param>
-		/// <returns>A string in which all regular expression control chars are escaped</returns>
-		public static string EscapeEscapes(string plain)
-		{
-			var codes = new char[] { '\\', '.', '*', '|', '?', '(', ')', '[', '$', '^', '+' };
-
-			var builder = new StringBuilder();
-			for (var i = 0; i < plain.Length; i++)
-			{
-				if (codes.Contains(plain[i]))
-				{
-					if (i == 0 || plain[i - 1] != '\\')
-					{
-						builder.Append('\\');
-					}
-				}
-
-				builder.Append(plain[i]);
-			}
-
-			return builder.ToString();
 		}
 
 
