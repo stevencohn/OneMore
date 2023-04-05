@@ -9876,26 +9876,6 @@ namespace River.OneMoreAddIn.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Sponsor {
-            get {
-                object obj = ResourceManager.GetObject("Sponsor", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap SponsorOver {
-            get {
-                object obj = ResourceManager.GetObject("SponsorOver", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
         internal static System.Drawing.Bitmap Sports {
             get {
                 object obj = ResourceManager.GetObject("Sports", resourceCulture);
