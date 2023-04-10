@@ -3551,6 +3551,14 @@ ISO-code then comma then language name</comment>
     <value>מיין דפים בקטע</value>
     <comment>ribbon/context menu NODUP</comment>
   </data>
+  <data name="ribSortSectionsInGroupButton_Label" xml:space="preserve">
+    <value>מיין מקטעים בקבוצה</value>
+    <comment>ribbon SectionGroup context menu</comment>
+  </data>
+  <data name="ribSortSectionsInGroupButton_Screentip" xml:space="preserve">
+    <value>מיין קטעים בקבוצת הקטעים הנוכחית</value>
+    <comment>ribbon SectionGroup context menu</comment>
+  </data>
   <data name="ribSplitButton_Label" xml:space="preserve">
     <value>עמוד מפוצל</value>
     <comment>ribbon item NODUP</comment>
@@ -4047,9 +4055,10 @@ ISO-code then comma then language name</comment>
     <comment>checkbox</comment>
   </data>
   <data name="SortDialog_scopeBox.Items" xml:space="preserve">
-    <value>ילדים בדף הנוכחי
-דפים בסעיף זה
-קטעים במחברת זו
+    <value>ילדי הדף הנוכחי
+דפים בחלק זה
+סעיפים במחברת זו
+חלקים בקבוצה זו
 מחברות</value>
     <comment>scope dropdown, one per line</comment>
   </data>

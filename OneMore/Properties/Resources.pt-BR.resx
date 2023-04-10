@@ -3538,6 +3538,14 @@ Polaroid.</value>
     <value>Classificar páginas na seção</value>
     <comment>ribbon/context menu</comment>
   </data>
+  <data name="ribSortSectionsInGroupButton_Label" xml:space="preserve">
+    <value>Classificar seções no grupo</value>
+    <comment>ribbon SectionGroup context menu</comment>
+  </data>
+  <data name="ribSortSectionsInGroupButton_Screentip" xml:space="preserve">
+    <value>Classificar seções no grupo de seções atual</value>
+    <comment>ribbon SectionGroup context menu</comment>
+  </data>
   <data name="ribSplitButton_Label" xml:space="preserve">
     <value>Página Dividida</value>
     <comment>ribbon item</comment>
@@ -4037,7 +4045,8 @@ Notas rápidas para baixo</value>
     <value>Filhos da página atual
 Páginas nesta seção
 Seções neste caderno
-Cadernos</value>
+Seções neste grupo
+cadernos</value>
     <comment>scope dropdown, one per line</comment>
   </data>
   <data name="SortDialog_scopeLabel.Text" xml:space="preserve">

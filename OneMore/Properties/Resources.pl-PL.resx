@@ -3551,6 +3551,14 @@ Polaroid</value>
     <value>Sortuj strony w sekcji</value>
     <comment>ribbon/context menu NODUP</comment>
   </data>
+  <data name="ribSortSectionsInGroupButton_Label" xml:space="preserve">
+    <value>Sortuj sekcje w grupie</value>
+    <comment>ribbon SectionGroup context menu</comment>
+  </data>
+  <data name="ribSortSectionsInGroupButton_Screentip" xml:space="preserve">
+    <value>Sortuj sekcje w bieżącej grupie sekcji</value>
+    <comment>ribbon SectionGroup context menu</comment>
+  </data>
   <data name="ribSplitButton_Label" xml:space="preserve">
     <value>Split strona</value>
     <comment>ribbon item NODUP</comment>
@@ -4047,10 +4055,11 @@ Szybkie nuty na dole</value>
     <comment>checkbox</comment>
   </data>
   <data name="SortDialog_scopeBox.Items" xml:space="preserve">
-    <value>Dzieci aktualnej strony
+    <value>Dzieci bieżącej strony
 Strony w tej sekcji
-Sekcje w tym notebooku
-Notebooki</value>
+Sekcje w tym notatniku
+Sekcje w tej grupie
+Notatniki</value>
     <comment>scope dropdown, one per line</comment>
   </data>
   <data name="SortDialog_scopeLabel.Text" xml:space="preserve">

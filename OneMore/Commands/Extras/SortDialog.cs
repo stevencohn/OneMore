@@ -1,5 +1,5 @@
 ﻿//************************************************************************************************
-// Copyright © 2019 Steven M Cohn.  All rights reserved.
+// Copyright © 2019 Steven M Cohn. All rights reserved.
 //************************************************************************************************
 
 #pragma warning disable CS3003 // Type is not CLS-compliant
@@ -8,7 +8,7 @@ namespace River.OneMoreAddIn.Commands
 {
 	using System;
 	using System.Windows.Forms;
-	using Resx = River.OneMoreAddIn.Properties.Resources;
+	using Resx = Properties.Resources;
 
 
 	internal partial class SortDialog : UI.LocalizableForm
@@ -61,6 +61,7 @@ namespace River.OneMoreAddIn.Commands
 					0 => OneNote.Scope.Children,
 					1 => OneNote.Scope.Pages,
 					2 => OneNote.Scope.Sections,
+					3 => OneNote.Scope.SectionGroups,
 					_ => OneNote.Scope.Notebooks,
 				};
 			}
@@ -89,7 +90,8 @@ namespace River.OneMoreAddIn.Commands
 				case OneNote.Scope.Children: scopeBox.SelectedIndex = 0; break;
 				case OneNote.Scope.Pages: scopeBox.SelectedIndex = 1; break;
 				case OneNote.Scope.Sections: scopeBox.SelectedIndex = 2; break;
-				case OneNote.Scope.Notebooks: scopeBox.SelectedIndex = 3; break;
+				case OneNote.Scope.SectionGroups: scopeBox.SelectedIndex = 3; break;
+				case OneNote.Scope.Notebooks: scopeBox.SelectedIndex = 4; break;
 				default: return;
 			}
 

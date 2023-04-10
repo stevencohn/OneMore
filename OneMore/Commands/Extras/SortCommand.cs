@@ -1,5 +1,5 @@
 ﻿//************************************************************************************************
-// Copyright © 2019 Steven M Cohn.  All rights reserved.
+// Copyright © 2019 Steven M Cohn. All rights reserved.
 //************************************************************************************************
 
 #pragma warning disable S3241 // Methods should not return values that are never used
@@ -39,7 +39,7 @@ namespace River.OneMoreAddIn.Commands
 				Root = root;
 				Nodes = new List<PageNode>();
 			}
-		};
+		}
 
 
 		public SortCommand()
@@ -76,7 +76,11 @@ namespace River.OneMoreAddIn.Commands
 					break;
 
 				case OneNote.Scope.Sections:
-					await SortSections(sorting, ascending, dialog.PinNotes);
+					await SortSections(sorting, ascending, dialog.PinNotes, false);
+					break;
+
+				case OneNote.Scope.SectionGroups:
+					await SortSections(sorting, ascending, dialog.PinNotes, true);
 					break;
 
 				case OneNote.Scope.Notebooks:
@@ -224,7 +228,8 @@ namespace River.OneMoreAddIn.Commands
 		// = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
 		// Sections
 
-		private async Task SortSections(SortBy sorting, bool ascending, bool pinNotes)
+		private async Task SortSections(
+			SortBy sorting, bool ascending, bool pinNotes, bool groupSort)
 		{
 			#region Notes
 			/*
@@ -258,7 +263,22 @@ namespace River.OneMoreAddIn.Commands
 				? "name"
 				: "lastModifiedTime";
 
-			SortSection(notebook, ns, key, ascending, pinNotes);
+			if (groupSort)
+			{
+				var group = notebook.Descendants(ns + "Section")
+					.Where(e => e.Attribute("isCurrentlyViewed")?.Value == "true")
+					.Select(e => e.Parent)
+					.FirstOrDefault();
+
+				if (group != null)
+				{
+					SortSection(group, ns, key, ascending, pinNotes, true);
+				}
+			}
+			else
+			{
+				SortSection(notebook, ns, key, ascending, pinNotes, false);
+			}
 
 			//logger.WriteLine(notebook);
 			one.UpdateHierarchy(notebook);
@@ -267,7 +287,8 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private void SortSection(XElement parent, XNamespace ns, string key, bool ascending, bool pin)
+		private void SortSection(
+			XElement parent, XNamespace ns, string key, bool ascending, bool pin, bool groupSort)
 		{
 			IEnumerable<XElement> sections;
 			if (ascending)
@@ -332,13 +353,16 @@ namespace River.OneMoreAddIn.Commands
 				}
 			}
 
-			var groups = parent.Elements(ns + "SectionGroup")
-				.Where(e => e.Attribute("isRecycleBin") == null)
-				.ToList();
-
-			foreach (var group in groups)
+			if (!groupSort)
 			{
-				SortSection(group, ns, key, ascending, pin);
+				var groups = parent.Elements(ns + "SectionGroup")
+					.Where(e => e.Attribute("isRecycleBin") == null)
+					.ToList();
+
+				foreach (var group in groups)
+				{
+					SortSection(group, ns, key, ascending, pin, false);
+				}
 			}
 		}
 
