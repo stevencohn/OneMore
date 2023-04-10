@@ -3538,6 +3538,14 @@ polaroid</value>
     <value>Ordenar páginas en la sección</value>
     <comment>ribbon/context menu</comment>
   </data>
+  <data name="ribSortSectionsInGroupButton_Label" xml:space="preserve">
+    <value>Ordenar secciones en grupo</value>
+    <comment>ribbon SectionGroup context menu</comment>
+  </data>
+  <data name="ribSortSectionsInGroupButton_Screentip" xml:space="preserve">
+    <value>Ordenar secciones en el grupo de secciones actual</value>
+    <comment>ribbon SectionGroup context menu</comment>
+  </data>
   <data name="ribSplitButton_Label" xml:space="preserve">
     <value>Página dividida</value>
     <comment>ribbon item</comment>
@@ -4037,6 +4045,7 @@ Notas rápidas al final</value>
     <value>Hijos de la página actual
 Páginas en esta sección
 Secciones en este cuaderno
+Secciones en este grupo
 Cuadernos</value>
     <comment>scope dropdown, one per line</comment>
   </data>

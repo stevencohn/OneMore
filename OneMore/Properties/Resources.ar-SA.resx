@@ -3538,6 +3538,14 @@ ISO-code then comma then language name</comment>
     <value>فرز الصفحات في المقطع</value>
     <comment>ribbon/context menu</comment>
   </data>
+  <data name="ribSortSectionsInGroupButton_Label" xml:space="preserve">
+    <value>فرز الأقسام في المجموعة</value>
+    <comment>ribbon SectionGroup context menu</comment>
+  </data>
+  <data name="ribSortSectionsInGroupButton_Screentip" xml:space="preserve">
+    <value>فرز المقاطع في مجموعة المقاطع الحالية</value>
+    <comment>ribbon SectionGroup context menu</comment>
+  </data>
   <data name="ribSplitButton_Label" xml:space="preserve">
     <value>تقسيم الصفحة</value>
     <comment>ribbon item</comment>
@@ -4037,6 +4045,7 @@ ISO-code then comma then language name</comment>
     <value>أطفال الصفحة الحالية
 صفحات في هذا القسم
 أقسام في هذا دفتر الملاحظات
+الأقسام في هذه المجموعة
 دفاتر الملاحظات</value>
     <comment>scope dropdown, one per line</comment>
   </data>

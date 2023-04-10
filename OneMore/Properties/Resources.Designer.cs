@@ -8458,6 +8458,24 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Sort Sections in Group.
+        /// </summary>
+        internal static string ribSortSectionsInGroupButton_Label {
+            get {
+                return ResourceManager.GetString("ribSortSectionsInGroupButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sort sections in the current section group.
+        /// </summary>
+        internal static string ribSortSectionsInGroupButton_Screentip {
+            get {
+                return ResourceManager.GetString("ribSortSectionsInGroupButton_Screentip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Split Page.
         /// </summary>
         internal static string ribSplitButton_Label {
@@ -9649,6 +9667,7 @@ namespace River.OneMoreAddIn.Properties {
         ///   Looks up a localized string similar to Children of Current Page
         ///Pages in this section
         ///Sections in this notebook
+        ///Sections in this group
         ///Notebooks.
         /// </summary>
         internal static string SortDialog_scopeBox_Items {

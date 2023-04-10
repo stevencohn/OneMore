@@ -51,9 +51,9 @@
 			// 
 			this.cancelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-			this.cancelButton.Location = new System.Drawing.Point(303, 368);
+			this.cancelButton.Location = new System.Drawing.Point(376, 402);
 			this.cancelButton.Name = "cancelButton";
-			this.cancelButton.Size = new System.Drawing.Size(100, 38);
+			this.cancelButton.Size = new System.Drawing.Size(120, 38);
 			this.cancelButton.TabIndex = 0;
 			this.cancelButton.Text = "Cancel";
 			this.cancelButton.UseVisualStyleBackColor = true;
@@ -63,9 +63,9 @@
 			// 
 			this.okButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.okButton.DialogResult = System.Windows.Forms.DialogResult.OK;
-			this.okButton.Location = new System.Drawing.Point(196, 369);
+			this.okButton.Location = new System.Drawing.Point(245, 402);
 			this.okButton.Name = "okButton";
-			this.okButton.Size = new System.Drawing.Size(100, 38);
+			this.okButton.Size = new System.Drawing.Size(120, 38);
 			this.okButton.TabIndex = 1;
 			this.okButton.Text = "OK";
 			this.okButton.UseVisualStyleBackColor = true;
@@ -101,8 +101,10 @@
             "Children of Current Page",
             "Pages in this section",
             "Sections in this notebook",
+            "Sections in this group",
             "Notebooks"});
-			this.scopeBox.Location = new System.Drawing.Point(104, 40);
+			this.scopeBox.Location = new System.Drawing.Point(138, 40);
+			this.scopeBox.Margin = new System.Windows.Forms.Padding(3, 3, 3, 20);
 			this.scopeBox.Name = "scopeBox";
 			this.scopeBox.Size = new System.Drawing.Size(300, 28);
 			this.scopeBox.TabIndex = 4;
@@ -132,15 +134,16 @@
 			this.sortPanel.Controls.Add(this.nameButton);
 			this.sortPanel.Controls.Add(this.modifiedButton);
 			this.sortPanel.Controls.Add(this.createdButton);
-			this.sortPanel.Location = new System.Drawing.Point(104, 91);
+			this.sortPanel.Location = new System.Drawing.Point(138, 91);
+			this.sortPanel.Margin = new System.Windows.Forms.Padding(3, 3, 3, 20);
 			this.sortPanel.Name = "sortPanel";
-			this.sortPanel.Size = new System.Drawing.Size(300, 98);
+			this.sortPanel.Size = new System.Drawing.Size(353, 98);
 			this.sortPanel.TabIndex = 7;
 			// 
 			// sortLabel
 			// 
 			this.sortLabel.AutoSize = true;
-			this.sortLabel.Location = new System.Drawing.Point(18, 91);
+			this.sortLabel.Location = new System.Drawing.Point(18, 96);
 			this.sortLabel.Name = "sortLabel";
 			this.sortLabel.Size = new System.Drawing.Size(63, 20);
 			this.sortLabel.TabIndex = 8;
@@ -159,9 +162,10 @@
 			// 
 			this.directionPanel.Controls.Add(this.desButton);
 			this.directionPanel.Controls.Add(this.ascButton);
-			this.directionPanel.Location = new System.Drawing.Point(104, 212);
+			this.directionPanel.Location = new System.Drawing.Point(138, 212);
+			this.directionPanel.Margin = new System.Windows.Forms.Padding(3, 3, 3, 20);
 			this.directionPanel.Name = "directionPanel";
-			this.directionPanel.Size = new System.Drawing.Size(300, 72);
+			this.directionPanel.Size = new System.Drawing.Size(353, 72);
 			this.directionPanel.TabIndex = 10;
 			// 
 			// desButton
@@ -191,7 +195,7 @@
 			this.pinNotesBox.AutoSize = true;
 			this.pinNotesBox.Checked = true;
 			this.pinNotesBox.CheckState = System.Windows.Forms.CheckState.Checked;
-			this.pinNotesBox.Location = new System.Drawing.Point(104, 298);
+			this.pinNotesBox.Location = new System.Drawing.Point(138, 307);
 			this.pinNotesBox.Name = "pinNotesBox";
 			this.pinNotesBox.Size = new System.Drawing.Size(193, 44);
 			this.pinNotesBox.TabIndex = 11;
@@ -205,7 +209,7 @@
 			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.CancelButton = this.cancelButton;
-			this.ClientSize = new System.Drawing.Size(426, 418);
+			this.ClientSize = new System.Drawing.Size(508, 452);
 			this.Controls.Add(this.pinNotesBox);
 			this.Controls.Add(this.directionPanel);
 			this.Controls.Add(this.directionLabel);

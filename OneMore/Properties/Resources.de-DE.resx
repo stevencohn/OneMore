@@ -3527,6 +3527,14 @@ Polaroid</value>
     <value>Seiten im Abschnitt sortieren</value>
     <comment>ribbon/context menu</comment>
   </data>
+  <data name="ribSortSectionsInGroupButton_Label" xml:space="preserve">
+    <value>Abschnitte in Gruppe sortieren</value>
+    <comment>ribbon SectionGroup context menu</comment>
+  </data>
+  <data name="ribSortSectionsInGroupButton_Screentip" xml:space="preserve">
+    <value>Abschnitte in der aktuellen Abschnittsgruppe sortieren</value>
+    <comment>ribbon SectionGroup context menu</comment>
+  </data>
   <data name="ribSplitButton_Label" xml:space="preserve">
     <value>Seite teilen</value>
     <comment>ribbon item</comment>
@@ -4026,6 +4034,7 @@ Bist du dir sicher, dass du weitermachen willst?</value>
     <value>Kinder der aktuellen Seite
 Seiten in diesem Abschnitt
 Abschnitte in diesem Notizbuch
+Abschnitte in dieser Gruppe
 Notizbücher</value>
     <comment>scope dropdown, one per line</comment>
   </data>

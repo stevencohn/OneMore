@@ -3534,6 +3534,14 @@ ISO-code then comma then language name</comment>
     <value>对部分中的页面进行排序</value>
     <comment>ribbon/context menu</comment>
   </data>
+  <data name="ribSortSectionsInGroupButton_Label" xml:space="preserve">
+    <value>对组中的部分进行排序</value>
+    <comment>ribbon SectionGroup context menu</comment>
+  </data>
+  <data name="ribSortSectionsInGroupButton_Screentip" xml:space="preserve">
+    <value>对当前分区组中的分区进行排序</value>
+    <comment>ribbon SectionGroup context menu</comment>
+  </data>
   <data name="ribSplitButton_Label" xml:space="preserve">
     <value>分页</value>
     <comment>ribbon item</comment>
@@ -4030,9 +4038,10 @@ ISO-code then comma then language name</comment>
     <comment>checkbox</comment>
   </data>
   <data name="SortDialog_scopeBox.Items" xml:space="preserve">
-    <value>当前页面的孩子
+    <value>当前页面的子项
 本节中的页面
 此笔记本中的部分
+该组中的部分
 笔记本</value>
     <comment>scope dropdown, one per line</comment>
   </data>

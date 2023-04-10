@@ -3533,6 +3533,14 @@ Polaroïd</value>
     <value>Trier les pages dans la section</value>
     <comment>ribbon/context menu</comment>
   </data>
+  <data name="ribSortSectionsInGroupButton_Label" xml:space="preserve">
+    <value>Trier les sections dans le groupe</value>
+    <comment>ribbon SectionGroup context menu</comment>
+  </data>
+  <data name="ribSortSectionsInGroupButton_Screentip" xml:space="preserve">
+    <value>Trier les sections dans le groupe de sections actuel</value>
+    <comment>ribbon SectionGroup context menu</comment>
+  </data>
   <data name="ribSplitButton_Label" xml:space="preserve">
     <value>Page divisée</value>
     <comment>ribbon item</comment>
@@ -4031,6 +4039,7 @@ Es-tu sur de vouloir continuer?</value>
     <value>Enfants de la page actuelle
 Pages de cette rubrique
 Sections de ce bloc-notes
+Sections de ce groupe
 Des cahiers</value>
     <comment>scope dropdown, one per line</comment>
   </data>

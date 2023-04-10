@@ -1153,6 +1153,13 @@
         getScreentip="GetRibbonScreentip"
         onAction="CopyFolderCmd"
         insertBeforeMso="FolderRename"/>
+      <button
+        id="ctxSortSectionsInGroupButton"
+        imageMso="SortUp"
+        getLabel="GetRibbonLabel"
+        getScreentip="GetRibbonScreentip"
+        onAction="SortSectionsInGroupCmd"
+        insertBeforeMso="FolderRename"/>
       <menuSeparator
         id="omSectionGroupContextMenuSeparator"
         insertBeforeMso="FolderRename"/>

@@ -3538,6 +3538,14 @@ Polaroid</value>
     <value>Sorteer pagina's in sectie</value>
     <comment>ribbon/context menu</comment>
   </data>
+  <data name="ribSortSectionsInGroupButton_Label" xml:space="preserve">
+    <value>Sorteer secties in groep</value>
+    <comment>ribbon SectionGroup context menu</comment>
+  </data>
+  <data name="ribSortSectionsInGroupButton_Screentip" xml:space="preserve">
+    <value>Sorteer secties in de huidige sectiegroep</value>
+    <comment>ribbon SectionGroup context menu</comment>
+  </data>
   <data name="ribSplitButton_Label" xml:space="preserve">
     <value>Pagina splitsen</value>
     <comment>ribbon item</comment>
@@ -4036,7 +4044,8 @@ Snelle notities onderaan</value>
   <data name="SortDialog_scopeBox.Items" xml:space="preserve">
     <value>Kinderen van huidige pagina
 Pagina's in deze sectie
-Secties in dit notitieboek
+Secties in dit notitieboekje
+Secties in deze groep
 Notitieboekjes</value>
     <comment>scope dropdown, one per line</comment>
   </data>
