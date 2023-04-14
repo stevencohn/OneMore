@@ -6,6 +6,7 @@ namespace River.OneMoreAddIn.Commands
 {
 	using System;
 	using System.Diagnostics;
+	using System.Drawing;
 	using System.IO;
 	using System.Windows.Forms;
 	using Resx = Properties.Resources;
@@ -55,9 +56,21 @@ namespace River.OneMoreAddIn.Commands
 				});
 			}
 
+			// reposition sponsor button based on width of translated label
 			using var g = pleaseLabel.CreateGraphics();
 			var size = g.MeasureString(pleaseLabel.Text, pleaseLabel.Font);
 			sponsorButton.Left = (int)(pleaseLabel.Left + pleaseLabel.Margin.Right + size.Width);
+
+			// resize background image if low-def monitor
+			var img = sponsorButton.BackgroundImage;
+			if (img.Height > sponsorButton.Height || img.Width > sponsorButton.Width)
+			{
+				sponsorButton.BackgroundImage = new Bitmap(img,
+					(int)(img.Width * 0.65),
+					(int)(img.Height * 0.65));
+
+				img.Dispose();
+			}
 		}
 
 
