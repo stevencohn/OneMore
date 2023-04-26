@@ -54,6 +54,10 @@ namespace River.OneMoreAddIn.Commands
 			{
 				logger.WriteLine($"error navigating to {uri}", exc);
 			}
+
+			// reset focus to OneNote window
+			using var onx = new OneNote();
+			Native.SwitchToThisWindow(onx.WindowHandle, false);
 		}
 	}
 }
