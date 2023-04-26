@@ -40,6 +40,7 @@
   z-index: 2 !important;
   height: 55px !important;
   margin-top: 15px !important;
+  filter: drop-shadow(0px 3px 6px #404040);
 }
 
 .navbar-brand .logo-text {
