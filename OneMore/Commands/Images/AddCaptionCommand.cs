@@ -6,6 +6,7 @@ namespace River.OneMoreAddIn.Commands
 {
 	using River.OneMoreAddIn.Models;
 	using River.OneMoreAddIn.Styles;
+	using System;
 	using System.Linq;
 	using System.Threading.Tasks;
 	using System.Xml.Linq;
@@ -54,6 +55,7 @@ namespace River.OneMoreAddIn.Commands
 
 			string caption = Resx.word_Caption;
 
+			string plantID = null;
 			var uml = PlantUmlHelper.ExtractUmlFromImageData(element.Element(ns + "Data").Value);
 			if (uml != null)
 			{
@@ -61,13 +63,13 @@ namespace River.OneMoreAddIn.Commands
 				var title = PlantUmlHelper.ReadTitle(uml);
 				if (!string.IsNullOrWhiteSpace(title))
 				{
-					caption = title;
+					caption = MakeExtractCaption(ns, element, title, out plantID);
 				}
 			}
 
 			// add caption...
 
-			var table = MakeCaptionTable(ns, element, caption, out var cdata);
+			var table = MakeCaptionTable(ns, element, caption, plantID, out var cdata);
 
 			if (element.Parent.Name.LocalName.Equals("Page"))
 			{
@@ -87,8 +89,27 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
+		public string MakeExtractCaption(
+			XNamespace ns, XElement image, string title, out string plantID)
+		{
+			var meta = image.Parent.Elements(ns + "Meta")
+				.FirstOrDefault(e => e.Attribute("name").Value == "omPlantImage");
+
+			plantID = meta == null
+				? Guid.NewGuid().ToString("N")
+				: meta.Attribute("content").Value;
+
+			var url = $"onemore://PlantUmlCommand/{plantID}";
+
+			var caption = $"{title} <span style='font-style:italic'>(" +
+				$"<a href=\"{url}/extract\">{Resx.word_Extract}</a>)</span>";
+
+			return caption;
+		}
+
+
 		public static Table MakeCaptionTable(
-			XNamespace ns, XElement content, string caption, out XCData cdata)
+			XNamespace ns, XElement content, string caption, string plantID, out XCData cdata)
 		{
 			var table = new Table(ns);
 			table.AddColumn(0f); // OneNote will set width accordingly
@@ -105,6 +126,14 @@ namespace River.OneMoreAddIn.Commands
 				content = new XElement(ns + "OE",
 					new XAttribute("alignment", "center"),
 					content
+					);
+			}
+
+			if (plantID != null)
+			{
+				content.AddFirst(new XElement(ns + "Meta",
+					new XAttribute("name", "omPlantImage"),
+					new XAttribute("content", plantID))
 					);
 			}
 

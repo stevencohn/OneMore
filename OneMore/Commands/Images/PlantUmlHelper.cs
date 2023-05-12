@@ -192,26 +192,33 @@ namespace River.OneMoreAddIn.Commands
 		/// </remarks>
 		public static string ExtractUmlFromImageData(string imageData)
 		{
-			var data = Convert.FromBase64String(imageData);
-			using var stream = new MemoryStream(data, 0, data.Length);
-
-			var decoder = new PngBitmapDecoder(stream, 
-				BitmapCreateOptions.PreservePixelFormat, BitmapCacheOption.OnLoad);
-
-			var meta = (BitmapMetadata)decoder.Frames[0].Metadata;
-			var result = meta.GetQuery("/iTXt");
-			if (result != null)
+			try
 			{
-				var keyword = meta.GetQuery("/iTXt/Keyword")?.ToString();
-				if (keyword == "plantuml")
+				var data = Convert.FromBase64String(imageData);
+				using var stream = new MemoryStream(data, 0, data.Length);
+
+				var decoder = new PngBitmapDecoder(stream,
+					BitmapCreateOptions.PreservePixelFormat, BitmapCacheOption.OnLoad);
+
+				var meta = (BitmapMetadata)decoder.Frames[0].Metadata;
+				var result = meta.GetQuery("/iTXt");
+				if (result != null)
 				{
-					var text = meta.GetQuery("/iTXt/TextEntry")?.ToString();
-					if (!string.IsNullOrWhiteSpace(text))
+					var keyword = meta.GetQuery("/iTXt/Keyword")?.ToString();
+					if (keyword == "plantuml")
 					{
-						var uml = text.Substring(0, text.IndexOf("@enduml") + 7);
-						return uml;
+						var text = meta.GetQuery("/iTXt/TextEntry")?.ToString();
+						if (!string.IsNullOrWhiteSpace(text))
+						{
+							var uml = text.Substring(0, text.IndexOf("@enduml") + 7);
+							return uml;
+						}
 					}
 				}
+			}
+			catch (Exception exc)
+			{
+				Logger.Current.WriteLine("cannot read image stream", exc);
 			}
 
 			return null;

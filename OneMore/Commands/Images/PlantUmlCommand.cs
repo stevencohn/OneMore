@@ -137,7 +137,7 @@ namespace River.OneMoreAddIn.Commands
 			var caption = $"{title} <span style='font-style:italic'>(" +
 				$"<a href=\"{url}/extract\">{Resx.word_Extract}</a>)</span>";
 
-			var table = AddCaptionCommand.MakeCaptionTable(ns, content, caption, out var cdata);
+			var table = AddCaptionCommand.MakeCaptionTable(ns, content, caption, null, out var cdata);
 
 			XElement body;
 			if (after)
