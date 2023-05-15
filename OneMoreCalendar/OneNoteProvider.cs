@@ -10,6 +10,7 @@ namespace OneMoreCalendar
 	using System.Collections.Generic;
 	using System.IO;
 	using System.Linq;
+	using System.Runtime.InteropServices;
 	using System.Threading.Tasks;
 	using System.Xml.Linq;
 
@@ -134,14 +135,22 @@ namespace OneMoreCalendar
 				}
 			}
 
-			notebooks.Elements(ns + "Notebook").Remove();
-			foreach (var id in ids)
+			// filter out unknown notebookIDs to avoid uncatchable exception!
+			var nids = notebooks.Elements(ns + "Notebook").Select(e => e.Attribute("ID").Value);
+			var knownIDs = ids.Where(i => nids.Contains(i));
+
+			var books = new XElement(ns + "Notebooks",
+				new XAttribute(XNamespace.Xmlns + OneNote.Prefix, ns)
+				);
+
+			foreach (var id in knownIDs)
 			{
 				var book = await one.GetNotebook(id, OneNote.Scope.Pages);
-				notebooks.Add(book);
+				books.Add(book);
 			}
 
-			return notebooks;
+			// return filtered list; otherwise return all notebooks
+			return books.Elements().Any() ? books : notebooks;
 		}
 
 
