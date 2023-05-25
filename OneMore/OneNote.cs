@@ -1346,7 +1346,18 @@ namespace River.OneMoreAddIn
 				return null;
 			}
 
-			var hierarchy = XElement.Parse(xml);
+			XElement hierarchy;
+			try
+			{
+				hierarchy = XElement.Parse(xml);
+			}
+			catch (Exception exc)
+			{
+				// possible problem with older schema of serialized Reminder
+				logger.WriteLine("error parsing hierarchy XML in SearchMeta()", exc);
+				logger.WriteLine($"XML to parse is [{xml}]");
+				return null;
+			}
 
 			if (includeRecycleBin)
 			{

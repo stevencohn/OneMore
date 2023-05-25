@@ -125,11 +125,14 @@ namespace River.OneMoreAddIn.Commands
 			var parts = content.Split(Delimiter);
 			foreach (var part in parts)
 			{
-				var reminder = Decode(part);
-				// possible deserialization error
-				if (reminder != null)
+				if (!string.IsNullOrWhiteSpace(part))
 				{
-					reminders.Add(reminder);
+					var reminder = Decode(part);
+					// possible deserialization error
+					if (reminder != null)
+					{
+						reminders.Add(reminder);
+					}
 				}
 			}
 
