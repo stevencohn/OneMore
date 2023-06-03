@@ -21,6 +21,7 @@ namespace River.OneMoreAddIn.Commands
 	/// associate with the reminder; it is recommended that you select a checkable tag, but
 	/// any tag will do.
 	/// </summary>
+	[CommandService]
 	internal class RemindCommand : Command
 	{
 		private Page page;

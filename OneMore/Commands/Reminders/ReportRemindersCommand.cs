@@ -17,6 +17,7 @@ namespace River.OneMoreAddIn.Commands
 	/// <summary>
 	/// Generates a detailed report page of all active and inactive reminders.
 	/// </summary>
+	[CommandService]
 	internal class ReportRemindersCommand : Command
 	{
 		private sealed class Item

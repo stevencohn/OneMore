@@ -23,6 +23,7 @@ namespace River.OneMoreAddIn.Commands
 	/// yyyy-mm-dd then that is ignored and the remainder of the title is used to search for back
 	/// references.
 	/// </summary>
+	[CommandService]
 	internal class LinkReferencesCommand : Command
 	{
 		// OE meta for linked references paragraph

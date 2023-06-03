@@ -24,6 +24,7 @@ namespace River.OneMoreAddIn.Commands
 	/// <summary>
 	/// Render image from selected PlantUML or Graphviz text
 	/// </summary>
+	[CommandService]
 	internal class PlantUmlCommand : Command
 	{
 		private const string PlantMeta = "omPlant";

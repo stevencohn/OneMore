@@ -56,6 +56,16 @@ namespace River.OneMoreAddIn
 
 
 	/// <summary>
+	/// When applied to a Command method, allows CommandService to invoke the command
+	/// as response to a onemore:// protocol request.
+	/// </summary>
+	[AttributeUsage(AttributeTargets.Class)]
+	internal class CommandServiceAttribute : Attribute
+	{
+	}
+
+
+	/// <summary>
 	/// When applied to a Cmd method, causes that method to be ignored when build
 	/// the command palette
 	/// </summary>

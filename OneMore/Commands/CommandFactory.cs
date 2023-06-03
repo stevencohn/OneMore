@@ -9,6 +9,7 @@ namespace River.OneMoreAddIn
 	using System;
 	using System.Collections.Generic;
 	using System.Linq;
+	using System.Reflection;
 	using System.Threading.Tasks;
 	using Resx = Properties.Resources;
 
@@ -176,6 +177,12 @@ namespace River.OneMoreAddIn
 			if (type == null)
 			{
 				logger.WriteLine($"factory failed to find command {name}");
+				return;
+			}
+
+			if (type.GetCustomAttribute(typeof(CommandServiceAttribute), false) == null)
+			{
+				logger.WriteLine($"factory failed to invoke {action}; not a protocol service command");
 				return;
 			}
 
