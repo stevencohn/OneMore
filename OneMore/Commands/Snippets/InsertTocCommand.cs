@@ -15,6 +15,7 @@ namespace River.OneMoreAddIn.Commands
 	using Resx = River.OneMoreAddIn.Properties.Resources;
 
 
+	[CommandService]
 	internal class InsertTocCommand : Command
 	{
 		private const string TocMeta = "omToc";

@@ -11,6 +11,7 @@ namespace River.OneMoreAddIn.Commands
 	/// Proxy to EmbedSubpageCommand that accepts string arguments from the
 	/// CommandService named pipe and from OneNoteProtocolHandler
 	/// </summary>
+	[CommandService]
 	internal class EmbedSubpageProxy : Command
 	{
 		public EmbedSubpageProxy()

@@ -24,6 +24,7 @@ namespace River.OneMoreAddIn.Commands
 	/// The task detail table is accompanied by a title with a refresh link.Click this link to
 	/// update the task details from Outlook.
 	/// </remarks>
+	[CommandService]
 	internal class ImportOutlookTasksCommand : Command
 	{
 		private const string TableMeta = "omOutlookTasks";
