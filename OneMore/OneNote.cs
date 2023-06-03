@@ -13,6 +13,7 @@ namespace River.OneMoreAddIn
 	using System.Collections.Generic;
 	using System.IO;
 	using System.Linq;
+	using System.Linq.Expressions;
 	using System.Runtime.InteropServices;
 	using System.Text;
 	using System.Text.RegularExpressions;
@@ -604,18 +605,25 @@ namespace River.OneMoreAddIn
 		/// <returns></returns>
 		public HierarchyNode GetHierarchyNode(string nodeId)
 		{
-			onenote.GetHierarchy(nodeId, HierarchyScope.hsSelf, out var xml, XMLSchema.xs2013);
-			var x = XElement.Parse(xml);
-
-			if (Enum.TryParse(x.Name.LocalName, out NodeType type))
+			try
 			{
-				return new HierarchyNode
+				onenote.GetHierarchy(nodeId, HierarchyScope.hsSelf, out var xml, XMLSchema.xs2013);
+				var x = XElement.Parse(xml);
+
+				if (Enum.TryParse(x.Name.LocalName, out NodeType type))
 				{
-					Id = nodeId,
-					NodeType = type,
-					Name = x.Attribute("name").Value,
-					Link = GetHyperlink(nodeId, string.Empty)
-				};
+					return new HierarchyNode
+					{
+						Id = nodeId,
+						NodeType = type,
+						Name = x.Attribute("name").Value,
+						Link = GetHyperlink(nodeId, string.Empty)
+					};
+				}
+			}
+			catch (Exception exc)
+			{
+				logger.WriteLine($"error getting hierarchy for node {nodeId}", exc);
 			}
 
 			return null;
