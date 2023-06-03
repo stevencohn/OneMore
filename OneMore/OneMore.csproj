@@ -101,6 +101,9 @@
     <Reference Include="Microsoft.Office.Interop.Word, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
       <EmbedInteropTypes>False</EmbedInteropTypes>
     </Reference>
+    <Reference Include="NPinyin">
+      <HintPath>D:\MyProgramProjects\OneFlow\OneFlow\bin\Release\NPinyin.dll</HintPath>
+    </Reference>
     <Reference Include="Office, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
       <EmbedInteropTypes>False</EmbedInteropTypes>
     </Reference>
@@ -133,7 +136,7 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
     <Reference Include="Windows">
-      <HintPath>..\..\..\Program Files (x86)\Windows Kits\10\UnionMetadata\10.0.22621.0\Windows.winmd</HintPath>
+      <HintPath>D:\MyProgramProjects\ImageGlass\Source\ImageGlass\bin\Debug\Windows.winmd</HintPath>
     </Reference>
     <Reference Include="WindowsBase" />
   </ItemGroup>
@@ -169,6 +172,14 @@
     <Compile Include="Commands\Navigator\NavigatorWindow.Designer.cs">
       <DependentUpon>NavigatorWindow.cs</DependentUpon>
     </Compile>
+    <Compile Include="Commands\Navigator\NaviPages.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Commands\Navigator\NaviPages.Designer.cs">
+      <DependentUpon>NaviPages.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Commands\Navigator\NaviPagesCommand.cs" />
+    <Compile Include="Commands\Navigator\NaviPagesService.cs" />
     <Compile Include="Commands\Page\DuplicatePageCommand.cs" />
     <Compile Include="Commands\Page\Emojis.cs" />
     <Compile Include="Commands\Settings\ColorizerSheet.cs">
@@ -1244,6 +1255,9 @@
     <EmbeddedResource Include="Commands\Navigator\NavigatorWindow.resx">
       <DependentUpon>NavigatorWindow.cs</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Commands\Navigator\NaviPages.resx">
+      <DependentUpon>NaviPages.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Commands\Page\ArrangeContainersDialog.resx">
       <DependentUpon>ArrangeContainersDialog.cs</DependentUpon>

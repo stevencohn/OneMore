@@ -3459,6 +3459,10 @@ ISO-code then comma then language name</comment>
     <value>חפש והעתק/הזז</value>
     <comment>ribbon item</comment>
   </data>
+  <data name="ribNaviButton_Label" xml:space="preserve">
+    <value>FastNavi</value>
+    <comment>ribbon navi</comment>
+  </data>
   <data name="ribSearchButton_Screentip" xml:space="preserve">
     <value>חפש בדפים אחר מילות מפתח והעתק/העבר למקטע אחר (Alt + F)</value>
     <comment>ribbon item</comment>

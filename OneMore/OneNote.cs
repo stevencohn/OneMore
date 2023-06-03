@@ -14,7 +14,7 @@ namespace River.OneMoreAddIn
 	using System.IO;
 	using System.Linq;
 	using System.Runtime.InteropServices;
-	using System.Text;
+    using System.Text;
 	using System.Text.RegularExpressions;
 	using System.Threading;
 	using System.Threading.Tasks;
@@ -194,13 +194,30 @@ namespace River.OneMoreAddIn
 		/// </summary>
 		public string CurrentNotebookId => onenote.Windows.CurrentWindow?.CurrentNotebookId;
 
-
 		/// <summary>
-		/// Gets or sets whether exceptions are allowed to fall through back to caller or
-		/// are caught and reported by this class. This is a special case for some consumers
-		/// who wish to handle certain exceptions themselves to serve data management.
+		/// Gets all the page structure
 		/// </summary>
-		public bool FallThrough { get; set; }
+		//public string NotebookXml => GetAllPages(); //onenote.Windows.CurrentWindow?.CurrentNotebookId;
+
+        public XElement GetAllPages()
+        {
+            onenote.GetHierarchy(null, HierarchyScope.hsPages, out string xml, XMLSchema.xs2013);
+            if (!string.IsNullOrEmpty(xml))
+            {
+				return XElement.Parse(xml);
+				//return xml;
+            }
+			else
+				return null;
+        }
+
+
+        /// <summary>
+        /// Gets or sets whether exceptions are allowed to fall through back to caller or
+        /// are caught and reported by this class. This is a special case for some consumers
+        /// who wish to handle certain exceptions themselves to serve data management.
+        /// </summary>
+        public bool FallThrough { get; set; }
 
 
 		/// <summary>
@@ -1295,18 +1312,54 @@ namespace River.OneMoreAddIn
 			});
 		}
 
+        /// <summary>
+        /// Forces OneNote to move a page after one another existed page.
+        /// </summary>
+        /// <param name="CurPageId">Current page ID</param>
+        /// <param name="DestPageId">Destination page ID</param>
+        /// <returns></returns>
+        public async Task MovedAfterPage(string CurPageId, string DestPageId)
+        {
+            var root = GetAllPages();
+            var ns = root.Name.Namespace;
+            var CurSectionId = CurrentSectionId;
+            //var sections = new Dictionary<string, XElement>();
+            var CurSection = GetSection(CurSectionId);
+            var DestSection = GetSection(DestPageId);
+            var DestSectionId = GetParent(DestPageId);
 
-		/// <summary>
-		/// Search pages under the specified hierarchy node using the given query.
-		/// </summary>
-		/// <param name="nodeId">
-		/// Can be String.Empty for all notebooks, CurrentNotebookId, CurrentSectionId,
-		/// or CurrentPageId
-		/// </param>
-		/// <param name="query">The search string</param>
-		/// <param name="unindexed">True to include unindexed pages in query</param>
-		/// <returns>An hierarchy of pages whose content matches the search string</returns>
-		public XElement Search(string nodeId, string query, bool unindexed = false)
+            var CurPageNode = CurSection.Descendants(ns + "Page").Where(n => n.Attribute("ID").Value == CurPageId).FirstOrDefault();
+            var ClonePageNode = CurPageNode;
+            CurPageNode.Remove();
+
+            var DestPageNode = DestSection.Descendants(ns + "Page").Where(n => n.Attribute("ID").Value == DestPageId).FirstOrDefault();
+
+            DestPageNode.AddAfterSelf(ClonePageNode);
+
+
+            // update each source section
+            UpdateHierarchy(CurSection);
+
+            // update target section
+            UpdateHierarchy(DestSection);
+
+            // navigate after progress dialog is closed otherwise it will hang!
+            await NavigateTo(DestSectionId);
+        }
+
+
+
+        /// <summary>
+        /// Search pages under the specified hierarchy node using the given query.
+        /// </summary>
+        /// <param name="nodeId">
+        /// Can be String.Empty for all notebooks, CurrentNotebookId, CurrentSectionId,
+        /// or CurrentPageId
+        /// </param>
+        /// <param name="query">The search string</param>
+        /// <param name="unindexed">True to include unindexed pages in query</param>
+        /// <returns>An hierarchy of pages whose content matches the search string</returns>
+        public XElement Search(string nodeId, string query, bool unindexed = false)
 		{
 			onenote.FindPages(nodeId, query, out var xml, unindexed, false, XMLSchema.xs2013);
 

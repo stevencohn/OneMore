@@ -3459,6 +3459,10 @@ Polaroid</value>
     <value>Wyszukaj i skopiuj / ruszaj</value>
     <comment>ribbon item</comment>
   </data>
+  <data name="ribNaviButton_Label" xml:space="preserve">
+    <value>FastNavi</value>
+    <comment>ribbon navi</comment>
+  </data>
   <data name="ribSearchButton_Screentip" xml:space="preserve">
     <value>Szukaj stron ze słów kluczowych i skopiuj / Przenieś do innej sekcji (ALT + F)</value>
     <comment>ribbon item</comment>

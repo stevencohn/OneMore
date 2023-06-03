@@ -717,11 +717,15 @@ namespace River.OneMoreAddIn
 
 
 		[Command("ribSearchButton_Label", Keys.None, "ribSearchMenu")]
-		public async Task SearchCmd(IRibbonControl control)
+		public async Task SearchCmd(IRibbonControl control)	
 			=> await factory.Run<SearchCommand>();
 
+        [Command("ribNaviButton_Label", Keys.F5, "ribSearchMenu")]
+        public async Task NaviPagesCmd(IRibbonControl control)
+			=> await factory.Run<NaviPagesCommand>();
 
-		[Command("ribSearchAndReplaceButton_Label", Keys.Control | Keys.H, "ribSearchMenu")]
+
+        [Command("ribSearchAndReplaceButton_Label", Keys.Control | Keys.H, "ribSearchMenu")]
 		public async Task SearchAndReplaceCmd(IRibbonControl control)
 			=> await factory.Run<SearchAndReplaceCommand>();
 

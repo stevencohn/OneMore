@@ -3441,6 +3441,10 @@ Polaroïd</value>
     <value>Rechercher et copier / déplacer</value>
     <comment>ribbon item</comment>
   </data>
+  <data name="ribNaviButton_Label" xml:space="preserve">
+    <value>FastNavi</value>
+    <comment>ribbon navi</comment>
+  </data>
   <data name="ribSearchButton_Screentip" xml:space="preserve">
     <value>Rechercher dans les pages des mots-clés et copier / déplacer vers une autre section (Alt + F)</value>
     <comment>ribbon item</comment>

@@ -723,6 +723,12 @@
                 getScreentip="GetRibbonScreentip"
                 onAction="SearchCmd"/>
               <button
+                id="ribNaviButton"
+                imageMso="FileFind"
+                getLabel="GetRibbonLabel"
+                getScreentip="GetRibbonScreentip"
+                onAction="NaviPagesCmd"/>
+              <button
                 id="ribTaggingButton"
                 image="Label"
                 getLabel="GetRibbonLabel"
