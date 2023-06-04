@@ -21,7 +21,6 @@ namespace River.OneMoreAddIn.Commands.Navigator
 
     internal partial class NaviPages : LocalizableForm
     {
-        //private readonly OneNote one;
         public NaviPages()
         {
             InitializeComponent();

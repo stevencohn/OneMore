@@ -179,7 +179,6 @@
       <DependentUpon>NaviPages.cs</DependentUpon>
     </Compile>
     <Compile Include="Commands\Navigator\NaviPagesCommand.cs" />
-    <Compile Include="Commands\Navigator\NaviPagesService.cs" />
     <Compile Include="Commands\Page\DuplicatePageCommand.cs" />
     <Compile Include="Commands\Page\Emojis.cs" />
     <Compile Include="Commands\Settings\ColorizerSheet.cs">
