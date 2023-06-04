@@ -720,7 +720,7 @@ namespace River.OneMoreAddIn
 		public async Task SearchCmd(IRibbonControl control)	
 			=> await factory.Run<SearchCommand>();
 
-        [Command("ribNaviButton_Label", Keys.F5, "ribSearchMenu")]
+        [Command("ribNaviButton_Label", Keys.F7, "ribSearchMenu")]
         public async Task NaviPagesCmd(IRibbonControl control)
 			=> await factory.Run<NaviPagesCommand>();
 

@@ -1323,10 +1323,11 @@ namespace River.OneMoreAddIn
             var root = GetAllPages();
             var ns = root.Name.Namespace;
             var CurSectionId = CurrentSectionId;
+			var DestSectionId = GetParent(DestPageId);
             //var sections = new Dictionary<string, XElement>();
             var CurSection = GetSection(CurSectionId);
-            var DestSection = GetSection(DestPageId);
-            var DestSectionId = GetParent(DestPageId);
+            var DestSection = GetSection(DestSectionId);
+            //var DestSectionId = GetParent(DestPageId);
 
             var CurPageNode = CurSection.Descendants(ns + "Page").Where(n => n.Attribute("ID").Value == CurPageId).FirstOrDefault();
             var ClonePageNode = CurPageNode;
@@ -1344,8 +1345,10 @@ namespace River.OneMoreAddIn
             UpdateHierarchy(DestSection);
 
             // navigate after progress dialog is closed otherwise it will hang!
-            await NavigateTo(DestSectionId);
+            await NavigateTo(CurSectionId);
         }
+
+   
 
 
 

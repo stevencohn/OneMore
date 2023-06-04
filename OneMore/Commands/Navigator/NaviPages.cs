@@ -21,23 +21,27 @@ namespace River.OneMoreAddIn.Commands.Navigator
 
     internal partial class NaviPages : LocalizableForm
     {
-        private readonly OneNote one;
+        //private readonly OneNote one;
         public NaviPages()
         {
             InitializeComponent();
-            one = new OneNote();
+
+        }
+        protected override void OnLoad(EventArgs e)
+        {
+            base.OnLoad(e);
+            using var one = new OneNote();
             var AllPageXML = one.GetAllPages();
             //hierarchyView11.CheckBoxes = false;
             hierarchyView11.Nodes.Clear();
             hierarchyView11.Populate(AllPageXML, one.GetNamespace(AllPageXML));
             logger.WriteLine("pages loaded");
-
         }
         public bool CopySelections { get; private set; }
 
-        public List<string> SelectedPages { get; private set; }
+
         public string CurPageID { get; private set; }
-        public string SelectedID { get; private set; }
+        public string SelectedNodeID; 
 
         /// <summary>
         /// Click the node in TreeView to nvaigate to the clicked page
@@ -49,12 +53,14 @@ namespace River.OneMoreAddIn.Commands.Navigator
         {
             // thanksfully, Bounds specifies bounds of label
             var node = e.Node as HierarchyNode;
+            using var one = new OneNote();
             if (node.Hyperlinked && e.Node.Bounds.Contains(e.Location))
             {
                 var pageId = node.Root.Attribute("ID").Value;
                 if (!pageId.Equals(one.CurrentPageId))
                 {
                     await one.NavigateTo(pageId);
+                    Close();
                 }
             }
         }
@@ -68,27 +74,34 @@ namespace River.OneMoreAddIn.Commands.Navigator
         {
             // only do it if the node became checked:
             var node = e.Node as HierarchyNode;
-            SelectedID = node.Root.Attribute("ID").Value;
+            //SelectedNodeID = node.Root.Attribute("ID").Value;
             if (e.Node.Checked)
             {
-                // for all the nodes in the tree...
-                foreach (TreeNode cur_node in e.Node.TreeView.Nodes)
-                {
-                    // ... which are not the freshly checked one...
-                    if (cur_node != e.Node)
-                    {
-                        // ... uncheck them
-                        cur_node.Checked = false;
-                    }
-                }
+                UncheckNodes(hierarchyView11.Nodes, e.Node);
+            }
+
+            SelectedNodeID = node.Root.Attribute("ID").Value;
+
+        }
+        private void UncheckNodes(TreeNodeCollection nodes, TreeNode except)
+        {
+            foreach (TreeNode inode in nodes)
+            {
+                if (inode != except) inode.Checked = false;
+                UncheckNodes(inode.Nodes, except);
             }
         }
         private async void ClickMoveTo(object sender, EventArgs e)
 
         {
-            var DestPageID = SelectedID;
+            using var one = new OneNote();
+
+            var DestPageID = SelectedNodeID;
             CurPageID = one.CurrentPageId;
-            await one.MovedAfterPage(CurPageID, DestPageID);
+            if(DestPageID!= CurPageID && !String.IsNullOrEmpty(DestPageID))
+            {
+                await one.MovedAfterPage(CurPageID, DestPageID);
+            }
 
         }
         
@@ -169,6 +182,7 @@ namespace River.OneMoreAddIn.Commands.Navigator
              
         private void tBoxKw_TextChanged(object sender, EventArgs e)
         {
+            using var one = new OneNote();
             XElement FilteredPageXml;
             var AllPageXML = one.GetAllPages();
             try
@@ -192,7 +206,15 @@ namespace River.OneMoreAddIn.Commands.Navigator
             }
         }
 
-       
+        protected override bool ProcessDialogKey(Keys keyData)
+        {
+            if (Form.ModifierKeys == Keys.None && keyData == Keys.Escape)
+            {
+                Close();
+                return true;
+            }
+            return base.ProcessDialogKey(keyData);
+        }
     }
 
 }
