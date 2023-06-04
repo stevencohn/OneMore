@@ -11,6 +11,7 @@ namespace River.OneMoreAddIn.Commands
 	/// Resequences the bottom-of-page footnotes in the order in which the reference
 	/// labels appear on the page
 	/// </summary>
+	[CommandService]
 	internal class RefreshFootnotesCommand : Command
 	{
 
