@@ -853,6 +853,28 @@
                 getScreentip="GetRibbonScreentip"
                 onAction="ShowXmlCmd"/>
             </menu>
+			<menu id="ribReviewMenu" getLabel="GetRibbonLabel" imageMso="ReviewTrackChangesMenu" showImage="true">
+				<button
+				id="ribMarkReviewedButton"
+				imageMso="ReviewAcceptChangeMenu"
+				getLabel="GetRibbonLabel"
+				onAction="MarkReviewedCmd"/>
+				<button
+				id="ribSetReviewInfoButton"
+				imageMso="ReviewEditComment"
+				getLabel="GetRibbonLabel"
+				onAction="SetReviewInfoCmd"/>
+				<button
+				id="ribJumpToEarliestReviewButton"
+				imageMso="ReviewNextChange"
+				getLabel="GetRibbonLabel"
+				onAction="JumpToEarliestReviewCmd"/>
+				<button
+				id="ribSummarizeReviewInfoButton"
+				imageMso="ReviewDisplayForReview"
+				getLabel="GetRibbonLabel"
+				onAction="SummarizeReviewInfoCmd"/>
+			</menu>
             <menuSeparator id="sepTools" />
             <button
               id="ribCommandPaletteButton"

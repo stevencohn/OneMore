@@ -5016,4 +5016,24 @@ In this section</value>
   <data name="_0336_OneNoteApplication_2013" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>0336.OneNoteApplication_2013.xsd;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
   </data>
+  <data name="ribMarkReviewedButton_Label" xml:space="preserve">
+    <value>Mark page reviewed</value>
+    <comment>Ribbon button</comment>
+  </data>
+  <data name="ribReviewMenu_Label" xml:space="preserve">
+    <value>Review</value>
+    <comment>Ribbon menu</comment>
+  </data>
+  <data name="ribSetReviewInfoButton_Label" xml:space="preserve">
+    <value>Set page review info</value>
+    <comment>Ribbon button</comment>
+  </data>
+  <data name="ribJumpToEarliestReviewButton_Label" xml:space="preserve">
+    <value>Go to page need review</value>
+    <comment>Ribbon button</comment>
+  </data>
+  <data name="ribSummarizeReviewInfoButton_Label" xml:space="preserve">
+    <value>Summarize pages review info</value>
+    <comment>Ribbon button</comment>
+  </data>
 </root>

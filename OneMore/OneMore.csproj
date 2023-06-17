@@ -389,6 +389,11 @@
     <Compile Include="Commands\Clean\RemoveDuplicatesNavigator.Designer.cs">
       <DependentUpon>RemoveDuplicatesNavigator.cs</DependentUpon>
     </Compile>
+    <Compile Include="Commands\Review\ReviewInfo.cs" />
+    <Compile Include="Commands\Review\JumpToEarliestReviewCommand.cs" />
+    <Compile Include="Commands\Review\SummarizeReviewInfoCommand.cs" />
+    <Compile Include="Commands\Review\SetReviewInfoCommand.cs" />
+    <Compile Include="Commands\Review\MarkReviewedCommand.cs" />
     <Compile Include="Commands\Settings\KeyboardGridView.cs">
       <SubType>Component</SubType>
     </Compile>

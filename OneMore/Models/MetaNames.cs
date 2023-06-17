@@ -37,5 +37,8 @@ namespace River.OneMoreAddIn.Models
 
 		// word count report for section or notebook
 		public static readonly string WordCount = "omWordCounts";
+
+		// page review
+		public static readonly string ReviewInfo = "omReview";
 	}
 }

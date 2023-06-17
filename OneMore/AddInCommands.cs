@@ -872,5 +872,18 @@ namespace River.OneMoreAddIn
 		[Command("ribWordCountButton_Label", Keys.None, "ribPageMenu")]
 		public async Task WordCountCmd(IRibbonControl control)
 			=> await factory.Run<WordCountCommand>();
+
+		public async Task MarkReviewedCmd(IRibbonControl control)
+			=> await factory.Run<MarkReviewedCommand>();
+
+		public async Task SetReviewInfoCmd(IRibbonControl control)
+			=> await factory.Run<SetReviewInfoCommand>();
+
+		[Command("ribJumpToEarliestReviewButton_Label", Keys.Control | Keys.Alt | Keys.Shift | Keys.Q, "omReview")]
+		public async Task JumpToEarliestReviewCmd(IRibbonControl control)
+			=> await factory.Run<JumpToEarliestReviewCommand>();
+
+		public async Task SummarizeReviewInfoCmd(IRibbonControl control)
+			=> await factory.Run<SummarizeReviewInfoCommand>();
 	}
 }
