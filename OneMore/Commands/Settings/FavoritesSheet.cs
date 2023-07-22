@@ -146,7 +146,7 @@ namespace River.OneMoreAddIn.Settings
 			{
 				gridView.Rows[0].Cells[0].Selected = true;
 			}
-			else if (first < gridView.Rows.Count)
+			else if (first < gridView.Rows.Count && first >= 0)
 			{
 				gridView.Rows[first].Cells[0].Selected = true;
 			}
