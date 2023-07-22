@@ -189,6 +189,10 @@ namespace River.OneMoreAddIn.Commands
 			if (!oneImage)
 			{
 				limitsBox.SelectedIndex = collection.Get("limits", 0);
+				if (limitsBox.SelectedIndex < 0)
+				{
+					limitsBox.SelectedIndex = 0;
+				}
 			}
 
 			opacityBox.Value = collection.Get("opacity", 100);
@@ -701,7 +705,7 @@ namespace River.OneMoreAddIn.Commands
 
 			collection.Add("mruWidth", (int)presetBox.Value);
 
-			if (limitsBox.Items.Count > 0)
+			if (limitsBox.Items.Count > 0 && limitsBox.SelectedIndex >= 0)
 			{
 				collection.Add("limits", limitsBox.SelectedIndex);
 			}
