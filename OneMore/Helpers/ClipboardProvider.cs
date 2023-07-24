@@ -8,6 +8,7 @@ namespace River.OneMoreAddIn
 {
 	using System;
 	using System.Collections.Generic;
+	using System.Runtime.InteropServices;
 	using System.Text;
 	using System.Text.RegularExpressions;
 	using System.Threading.Tasks;
@@ -20,10 +21,16 @@ namespace River.OneMoreAddIn
 	/// <summary>
 	/// Provides wrapped STA access to the Windows clipboard for use in OneNote's MTA environment
 	/// </summary>
-	internal class ClipboardProvider
+	internal class ClipboardProvider : Loggable
 	{
 		private const string StartFragmentLine = "<!--StartFragment-->";
 		private const string EndFragmentLine = "<!--EndFragment-->";
+
+		//Message: OpenClipboard Failed (Exception from HRESULT: 0x800401D0 (CLIPBRD_E_CANT_OPEN))
+		//HResult: 0x800401D0 (-2147221040)
+		private const int CLIPBRD_E_CANT_OPEN = -2147221040;
+
+
 
 		private readonly object gate;
 		private readonly Dictionary<Win.TextDataFormat, string> stash;
@@ -156,7 +163,15 @@ namespace River.OneMoreAddIn
 
 					if (something)
 					{
-						Win.Clipboard.SetDataObject(data, true);
+						try
+						{
+							Win.Clipboard.SetDataObject(data, true);
+						}
+						catch (COMException ex)
+							when (ex.ErrorCode == CLIPBRD_E_CANT_OPEN)
+						{
+							logger.WriteLine("clipboard possibly locked by another application", ex);
+						}
 					}
 				}
 			});
