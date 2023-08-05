@@ -1343,7 +1343,7 @@ Symbols: PI, E</value>
     <comment>message</comment>
   </data>
   <data name="InsertSnippets_CouldNotLoad" xml:space="preserve">
-    <value>Cloud not load snippet from "{0}"</value>
+    <value>Could not load snippet from "{0}"</value>
     <comment>error message</comment>
   </data>
   <data name="InsertTocCommand_NoHeadings" xml:space="preserve">

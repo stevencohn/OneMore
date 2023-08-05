@@ -14,7 +14,7 @@
   </hint>
   <hint name="AddFormula_linearMessage">
     <source>Select one or more cells from the same row or the same column</source>
-    <preferred>Wähle  eine oder mehrere Zellen aus derselben Zeile oder derselben Spalte aus</preferred>
+    <preferred>Wähle eine oder mehrere Zellen aus derselben Zeile oder derselben Spalte aus</preferred>
   </hint>
   <hint name="AliasSheet.Text">
     <source>Define command aliases for use in the Command Palette</source>
@@ -34,11 +34,11 @@
   </hint>
   <hint name="CrawlWebPageDialog_introBox.Text">
     <source>Select links to import as sub-pages. These will be relinked to from this page.</source>
-    <preferred>Wähle Links, um als Unterseiten zu importieren. Diese werden von dieser Seite wieder hergestellt.</preferred>
+    <preferred>Wähle Links aus, die als Unterseiten importiert werden sollen. Diese werden dann von dieser Seite aus weiterverlinkt.</preferred>
   </hint>
   <hint name="CrawlWebPageDialog_selectLabel.Text">
     <source>Select all</source>
-    <preferred>Wähle Alle</preferred>
+    <preferred>Alles auswählen</preferred>
   </hint>
   <hint name="CrawlWebPageDialog_useTextBox.Text">
     <source>Apply Text columns to sub-page titles</source>
@@ -154,7 +154,7 @@
   </hint>
   <hint name="InsertTocDialog_rightAlignBox.Text">
     <source>Right-align top of page link</source>
-    <preferred>Richte den Link oben auf der Seite rechts aus</preferred>
+    <preferred>Link zum Seitenanfang rechtsbündig ausrichten</preferred>
   </hint>
   <hint name="InsertTocDialog_topBox.Text">
     <source>Add link to each heading to jump to top of page</source>
@@ -260,7 +260,7 @@ Wähle Nein, um eine leere Zeile zwischen den Absätzen zu halten</preferred>
   </hint>
   <hint name="ReorderDialog_label.Text">
     <source>Reorder how styles appear in the gallery. Also changes the order of headings in a TOC</source>
-    <preferred>Ordne neu, wie Stile in der Galerie angezeigt werden. </preferred>
+    <preferred>Sortierung der Stile in der Galerie ändern. Ändert auch die Reihenfolge der Überschriften in einem Inhaltsverzeichnis</preferred>
   </hint>
   <hint name="ReportRemindersDialog_introLabel.Text">
     <source>Generate report for reminders in this scope</source>
@@ -288,7 +288,7 @@ Vergrößere kleinere Bilder nicht</preferred>
   </hint>
   <hint name="ribApplyStylesButton_Screentip">
     <source>Apply these styles to all content on this page</source>
-    <preferred>Wende diese Stile auf alle Inhalte auf dieser Seite an</preferred>
+    <preferred>Stile auf alle Inhalte auf dieser Seite anwenden</preferred>
   </hint>
   <hint name="RibbonBarSheet_introBox.Text">
     <source>Choose which commands to include in the ribbon bar and whether to display icons or icons and lables. Restart OneNote to see changes.</source>
@@ -296,59 +296,59 @@ Vergrößere kleinere Bilder nicht</preferred>
   </hint>
   <hint name="ribCaptionAttachmentsButton_Screentip">
     <source>Add a caption to each attachment on the page</source>
-    <preferred>Füge jedem Anhang auf der Seite eine Beschriftung hinzu</preferred>
+    <preferred>Fügt jedem Anhang auf der Seite eine Beschriftung hinzu</preferred>
   </hint>
   <hint name="ribChooseFavoriteButton_Label">
     <source>Choose Favorite</source>
-    <preferred>Wähle Favorit</preferred>
+    <preferred>Favorit wählen</preferred>
   </hint>
   <hint name="ribClearBackgroundButton_Screentip">
     <source>Reset the background color of the page</source>
-    <preferred>Setze die Hintergrundfarbe der Seite zurück</preferred>
+    <preferred>Hintergrundfarbe der Seite zurücksetzen</preferred>
   </hint>
   <hint name="ribCopyAcrossButton_Screentip">
     <source>Copy content across the selected rows</source>
-    <preferred>Kopiere Inhalte über die ausgewählten Zeilen</preferred>
+    <preferred>Kopiert Inhalte über die ausgewählten Zeilen</preferred>
   </hint>
   <hint name="ribCopyLinkToParagraphButton_Screentip">
     <source>Copy a hyperlink to the current paragraph</source>
-    <preferred>Kopiere einen Hyperlink zum aktuellen Absatz</preferred>
+    <preferred>Kopiert einen Hyperlink zum aktuellen Absatz</preferred>
   </hint>
   <hint name="ribCreatePagesButton_Screentip">
     <source>Create new pages using list items as titles</source>
-    <preferred>Erstelle neue Seiten mit Listenelementen als Titel</preferred>
+    <preferred>Erstellt neue Seiten mit Listenelementen als Titel</preferred>
   </hint>
   <hint name="ribDecreaseFontSizeButton_Screentip">
     <source>Decrease page font size (Ctrl + Alt + Minus)</source>
-    <preferred>Verringer die Schriftgröße der Seite (Strg + Alt + Minus)</preferred>
+    <preferred>Verringert die Schriftgröße der Seite (Strg + Alt + Minus)</preferred>
   </hint>
   <hint name="ribDisableSpellCheckButton_Screentip">
     <source>Disable spell checking within selected content</source>
-    <preferred>Rechtschreibprüfung innerhalb ausgewählter Inhalte deaktivieren</preferred>
+    <preferred>Rechtschreibprüfung für ausgewählte Inhalte deaktivieren</preferred>
   </hint>
   <hint name="ribDuplicateLineButton_Screentip">
     <source>Duplicate the current paragraph</source>
-    <preferred>Dupliziere den aktuellen Absatz</preferred>
+    <preferred>Dupliziert den aktuellen Absatz</preferred>
   </hint>
   <hint name="ribDuplicatePageButton_Screentip">
     <source>Duplicate the current page</source>
-    <preferred>Dupliziere die aktuelle Seite</preferred>
+    <preferred>Dupliziert die aktuelle Seite</preferred>
   </hint>
   <hint name="ribEditTableThemesButton_Screentip">
     <source>Edit custom custom table styles</source>
-    <preferred>Bearbeite benutzerdefinierte benutzerdefinierte Tabellenstile</preferred>
+    <preferred>Bearbeitet benutzerdefinierte benutzerdefinierte Tabellenstile</preferred>
   </hint>
   <hint name="ribExpandContentButton_Label">
     <source>Expand Outlining</source>
-    <preferred>Erweiter Gliederung</preferred>
+    <preferred>Gliederung erweitern</preferred>
   </hint>
   <hint name="ribExpandContentButton_Screentip">
     <source>Expand all headings with indented content</source>
-    <preferred>Erweiter alle Überschriften mit eingerücktem Inhalt</preferred>
+    <preferred>Erweitere alle Überschriften mit eingerücktem Inhalt</preferred>
   </hint>
   <hint name="ribExpandSnippetButton_Label">
     <source>Expand Snippet From Name</source>
-    <preferred>Erweiter Snippet From Name</preferred>
+    <preferred>Erweitere Snippet From Name</preferred>
   </hint>
   <hint name="ribExportButton_Screentip">
     <source>Export page(s) as HTML, PDF, Word or XML</source>
@@ -376,63 +376,63 @@ Vergrößere kleinere Bilder nicht</preferred>
   </hint>
   <hint name="ribIncreaseFontSizeButton_Screentip">
     <source>Increase page font size (Ctrl + Alt + Plus)</source>
-    <preferred>Erhöhe die Schriftgröße der Seite (Strg + Alt + Plus).</preferred>
+    <preferred>Erhöht die Schriftgröße der Seite (Strg + Alt + Plus).</preferred>
   </hint>
   <hint name="ribInsertBlueStatusButton_Screentip">
     <source>Insert a blue status label</source>
-    <preferred>Füge ein blaues Statusetikett ein</preferred>
+    <preferred>Fügt ein blaues Statusetikett ein</preferred>
   </hint>
   <hint name="ribInsertCalendarButton_Screentip">
     <source>Insert a montly calendar</source>
-    <preferred>Füge einen Monatskalender ein</preferred>
+    <preferred>Fügt einen Monatskalender ein</preferred>
   </hint>
   <hint name="ribInsertDateButton_Screentip">
     <source>Insert the current date (Ctrl + Shift + D)</source>
-    <preferred>Gib das aktuelle Datum ein (Strg + Umschalt + D)</preferred>
+    <preferred>Fügt das aktuelle Datum ein (Strg + Umschalt + D)</preferred>
   </hint>
   <hint name="ribInsertExpandButton_Screentip">
     <source>Insert a collapsible control</source>
-    <preferred>Füge ein reduzierbares Steuerelement ein</preferred>
+    <preferred>Fügt ein reduzierbares Steuerelement ein</preferred>
   </hint>
   <hint name="ribInsertGrayStatusButton_Screentip">
     <source>Insert a gray status label</source>
-    <preferred>Füge ein graues Statusetikett ein</preferred>
+    <preferred>Fügt ein graues Statusetikett ein</preferred>
   </hint>
   <hint name="ribInsertGreenStatusButton_Screentip">
     <source>Insert a green status label</source>
-    <preferred>Füge ein grünes Statusetikett ein</preferred>
+    <preferred>Fügt ein grünes Statusetikett ein</preferred>
   </hint>
   <hint name="ribInsertInfoBoxButton_Screentip">
     <source>Insert an informational block</source>
-    <preferred>Füge einen Informationsblock ein</preferred>
+    <preferred>Fügt einen Informationsblock ein</preferred>
   </hint>
   <hint name="ribInsertQRButton_Screentip">
     <source>Insert a QR Code represented the selected text</source>
-    <preferred>Füge einen QR-Code ein, der den ausgewählten Text darstellt</preferred>
+    <preferred>Fügt einen QR-Code ein, der den ausgewählten Text darstellt</preferred>
   </hint>
   <hint name="ribInsertRedStatusButton_Screentip">
     <source>Insert a red status label</source>
-    <preferred>Füge ein rotes Statuslabel ein</preferred>
+    <preferred>Fügt ein rotes Statuslabel ein</preferred>
   </hint>
   <hint name="ribInsertSingleLineButton_Screentip">
     <source>Insert single horizontal line (Shift + Alt + Minus)</source>
-    <preferred>Füge eine einzelne horizontale Linie ein (Umschalt + Alt + Minus)</preferred>
+    <preferred>Fügt eine einzelne horizontale Linie ein (Umschalt + Alt + Minus)</preferred>
   </hint>
   <hint name="ribInsertTimerButton_Screentip">
     <source>Insert the current timer value</source>
-    <preferred>Füge den aktuellen Timerwert ein</preferred>
+    <preferred>Fügt den aktuellen Timerwert ein</preferred>
   </hint>
   <hint name="ribInsertTocButton_Screentip">
     <source>Insert a headings table of contents at the top of the page</source>
-    <preferred>Füge oben auf der Seite ein Inhaltsverzeichnis für Überschriften ein</preferred>
+    <preferred>Fügt oben auf der Seite ein Inhaltsverzeichnis für Überschriften ein</preferred>
   </hint>
   <hint name="ribInsertWarnBoxButton_Screentip">
     <source>Insert a warning block</source>
-    <preferred>Füge einen Warnblock ein</preferred>
+    <preferred>Fügt einen Warnblock ein</preferred>
   </hint>
   <hint name="ribInsertYellowStatusButton_Screentip">
     <source>Insert a yellow status label</source>
-    <preferred>Füge ein gelbes Statusetikett ein</preferred>
+    <preferred>Fügt ein gelbes Statusetikett ein</preferred>
   </hint>
   <hint name="ribLinkReferencesButton_Label">
     <source>
@@ -444,11 +444,11 @@ Vergrößere kleinere Bilder nicht</preferred>
   </hint>
   <hint name="ribLinkReferencesButton_Screentip">
     <source>Generate bi-directional links to this page based on its title</source>
-    <preferred>Generiere bidirektionale Links zu dieser Seite basierend auf ihrem Titel</preferred>
+    <preferred>Generiert bidirektionale Links zu dieser Seite basierend auf ihrem Titel</preferred>
   </hint>
   <hint name="ribLoadStylesButton_Screentip">
     <source>Load My Styles from a definition file</source>
-    <preferred>Lade benutzerdefinierte Stile aus einer Designdatei</preferred>
+    <preferred>Lädt benutzerdefinierte Stile aus einer Datei</preferred>
   </hint>
   <hint name="ribNameUrlsButton_Label">
     <source>Replace URLs with Titles</source>
@@ -460,23 +460,23 @@ Vergrößere kleinere Bilder nicht</preferred>
   </hint>
   <hint name="ribNewStyleButton_Screentip">
     <source>Create a new style from the current selection</source>
-    <preferred>Erstelle einen neuen Stil aus der aktuellen Auswahl</preferred>
+    <preferred>Erstellt einen neuen Stil aus der aktuellen Auswahl</preferred>
   </hint>
   <hint name="ribNumberPagesButton_Screentip">
     <source>Add or update number of all pages in this section</source>
-    <preferred>Füge die Nummer aller Seiten in diesem Abschnitt hinzu oder aktualisiere sie</preferred>
+    <preferred>Fügt die Nummer aller Seiten in diesem Abschnitt hinzu oder aktualisiere sie</preferred>
   </hint>
   <hint name="ribOpenImageWithButton_Screentip">
     <source>Open the selected image with an external editor</source>
-    <preferred>Öffne das ausgewählte Bild mit einem externen Editor</preferred>
+    <preferred>Öffnet das ausgewählte Bild mit einem externen Editor</preferred>
   </hint>
   <hint name="ribPageColorButton_Screentip">
     <source>Change the background of this page to a custom color</source>
-    <preferred>Änder den Hintergrund dieser Seite in eine benutzerdefinierte Farbe</preferred>
+    <preferred>Ändert den Hintergrund dieser Seite in eine benutzerdefinierte Farbe</preferred>
   </hint>
   <hint name="ribPasteRtfButton_Screentip">
     <source>Paste rich text (Ctrl + Alt + V)</source>
-    <preferred>Füge Rich Text ein (Strg + Alt + V)</preferred>
+    <preferred>Fügt Rich Text ein (Strg + Alt + V)</preferred>
   </hint>
   <hint name="ribPasteTextButton_Label">
     <source>
@@ -488,19 +488,19 @@ Vergrößere kleinere Bilder nicht</preferred>
   </hint>
   <hint name="ribRecalculateFormulaButton_Screentip">
     <source>Recalculate all formula in the current table (Shift + F5)</source>
-    <preferred>Berechne alle Formeln in der aktuellen Tabelle neu (Umschalt + F5).</preferred>
+    <preferred>Berechnet alle Formeln in der aktuellen Tabelle neu (Umschalt + F5).</preferred>
   </hint>
   <hint name="ribRefreshFootnotesButton_Screentip">
     <source>Refresh footnote reference numbers sequentially</source>
-    <preferred>Aktualisiere die Referenznummern der Fußnoten der Reihe nach</preferred>
+    <preferred>Aktualisiert die Referenznummern der Fußnoten der Reihe nach</preferred>
   </hint>
   <hint name="ribRefreshPageLinksButton_Screentip">
     <source>Refresh bi-directional link references</source>
-    <preferred>Aktualisiere bidirektionale Linkreferenzen</preferred>
+    <preferred>Aktualisiert bidirektionale Linkreferenzen</preferred>
   </hint>
   <hint name="ribRemoveAuthorsButton_Screentip">
     <source>Remove information for all authors on this page</source>
-    <preferred>Entferne Informationen für alle Autoren auf dieser Seite</preferred>
+    <preferred>Entfernt Informationen für alle Autoren auf dieser Seite</preferred>
   </hint>
   <hint name="ribRemoveCitationsButton_Label">
     <source>Remove Pasted Citations</source>
@@ -508,59 +508,59 @@ Vergrößere kleinere Bilder nicht</preferred>
   </hint>
   <hint name="ribRemoveCitationsButton_Screentip">
     <source>Remove screen clipping and paste URL citations</source>
-    <preferred>Entferne Bildschirmausschnitte und füge URL-Zitate ein</preferred>
+    <preferred>Entfernt Bildschirmausschnitte und fügt URL-Zitate ein</preferred>
   </hint>
   <hint name="ribRemoveEmptyButton_Screentip">
     <source>Remove extra empty lines between paragraph and remove empty headers</source>
-    <preferred>Entferne zusätzliche leere Zeilen zwischen Absätzen und entferne leere Überschriften</preferred>
+    <preferred>Entfernt zusätzliche leere Zeilen zwischen Absätzen sowie leere Überschriften</preferred>
   </hint>
   <hint name="ribRemoveInkButton_Screentip">
     <source>Remove all pen drawings from this page</source>
-    <preferred>Entferne alle Stiftzeichnungen von dieser Seite</preferred>
+    <preferred>Entfernt alle Stiftzeichnungen von dieser Seite</preferred>
   </hint>
   <hint name="ribRemovePageNumbersButton_Screentip">
     <source>Remove numbers from all pages in this section</source>
-    <preferred>Entferne Zahlen von allen Seiten in diesem Abschnitt</preferred>
+    <preferred>Entfernt Zahlen von allen Seiten in diesem Abschnitt</preferred>
   </hint>
   <hint name="ribRemoveSectionNumbersButton_Screentip">
     <source>Remove numbers from all sectionsin this notebook</source>
-    <preferred>Entferne Zahlen aus allen Abschnitten in diesem Notizbuch</preferred>
+    <preferred>Entfernt Zahlen aus allen Abschnitten in diesem Notizbuch</preferred>
   </hint>
   <hint name="ribRemoveSpacingButton_Screentip">
     <source>Remove paragraph, heading, and line spacing</source>
-    <preferred>Entferne Absatz, Überschrift und Zeilenabstand</preferred>
+    <preferred>Entfernt Absatz-, Überschriften- und Zeilenabstand</preferred>
   </hint>
   <hint name="ribRemoveTagsButton_Screentip">
     <source>Remove tags not associated with reminders</source>
-    <preferred>Entferne Tags, die nicht mit Erinnerungen verknüpft sind</preferred>
+    <preferred>Entfernt Tags, die nicht mit Erinnerungen verknüpft sind</preferred>
   </hint>
   <hint name="ribReportRemindersButton_Screentip">
     <source>Generate a summary report of reminders</source>
-    <preferred>Generiere einen zusammenfassenden Bericht der Erinnerungen</preferred>
+    <preferred>Generiert einen zusammenfassenden Bericht der Erinnerungen</preferred>
   </hint>
   <hint name="ribRestoreCollapsedButton_Screentip">
     <source>Expand headings to recently saved state</source>
-    <preferred>Erweiter die Überschriften auf den zuletzt gespeicherten Zustand</preferred>
+    <preferred>Erweitert die Überschriften auf den zuletzt gespeicherten Zustand</preferred>
   </hint>
   <hint name="ribRunPluginButton_Screentip">
     <source>Run or define a custom plugin</source>
-    <preferred>Führe ein benutzerdefiniertes Plugin aus oder definieren Sie es</preferred>
+    <preferred>Führt ein benutzerdefiniertes Plugin aus oder definieren Sie es</preferred>
   </hint>
   <hint name="ribSaveSnippetButton_Screentip">
     <source>Save a new snippet from the selected content</source>
-    <preferred>Speicher ein neues benutzerdefiniertes Snippet aus dem ausgewählten Inhalt</preferred>
+    <preferred>Speichert ein neues benutzerdefiniertes Snippet aus dem ausgewählten Inhalt</preferred>
   </hint>
   <hint name="ribSearchButton_Screentip">
     <source>Search pages for keywords and copy/move to another section (Alt + F)</source>
-    <preferred>Durchsuche die Seiten nach Schlüsselwörtern und kopieren / verschiebe sie in einen anderen Abschnitt (Alt + F).</preferred>
+    <preferred>Durchsucht die Seiten nach Schlüsselwörtern und kopieren / verschiebe sie in einen anderen Abschnitt (Alt + F).</preferred>
   </hint>
   <hint name="ribSelectImagesButton_Screentip">
     <source>Select all images on the page</source>
-    <preferred>Wähle alle Bilder auf der Seite aus</preferred>
+    <preferred>Wählt alle Bilder auf der Seite aus</preferred>
   </hint>
   <hint name="ribSelectStyleButton_Screentip">
     <source>Select text with similar formatting</source>
-    <preferred>Wähle Text mit ähnlicher Formatierung aus</preferred>
+    <preferred>Wählt Text mit ähnlicher Formatierung aus</preferred>
   </hint>
   <hint name="ribSettingsButton_Label">
     <source>Settings</source>
@@ -568,7 +568,7 @@ Vergrößere kleinere Bilder nicht</preferred>
   </hint>
   <hint name="ribSettingsButton_Screentip">
     <source>Open the OneMore settings window</source>
-    <preferred>Öffne das OneMore-Einstellungsfenster</preferred>
+    <preferred>Öffnet die OneMore Einstellungen</preferred>
   </hint>
   <hint name="ribStrikeoutTasksButton_Screentip">
     <source>Toggle strikethough of text marked with complete or incomplete To Do tags</source>
@@ -576,7 +576,7 @@ Vergrößere kleinere Bilder nicht</preferred>
   </hint>
   <hint name="ribTaggedButton_Label">
     <source>Find Tagged Pages</source>
-    <preferred>Suche nach markierten Seiten</preferred>
+    <preferred>Getaggte Seiten finden</preferred>
   </hint>
   <hint name="ribTitlecaseButton_Screentip">
     <source>Convert text to title case</source>
@@ -584,23 +584,23 @@ Vergrößere kleinere Bilder nicht</preferred>
   </hint>
   <hint name="ribTrimButton_Screentip">
     <source>Trim trailing whitespace from selected text</source>
-    <preferred>Trimme nachgestellte Leerzeichen aus dem ausgewählten Text</preferred>
+    <preferred>Entfernt nachfolgende Leerzeichen aus ausgewähltem Text</preferred>
   </hint>
   <hint name="ribTrimLeadingButton_Label">
     <source>Trim Leading Whitespace</source>
-    <preferred>Trimme führende Leerzeichen</preferred>
+    <preferred>Entfernt führende Leerzeichen</preferred>
   </hint>
   <hint name="ribTrimLeadingButton_Screentip">
     <source>Trim leading whitespace from selected text</source>
-    <preferred>Schneide führende Leerzeichen aus dem ausgewählten Text</preferred>
+    <preferred>Entfernt führende Leerzeichen aus ausgewähltem Text</preferred>
   </hint>
   <hint name="ribUppercaseButton_Screentip">
     <source>Convert text to uppercase (Ctrl + Shift + Alt + U)</source>
-    <preferred>Konvertiere Text in Großbuchstaben (Strg + Umschalt + Alt + U)</preferred>
+    <preferred>Konvertiert Text in Großbuchstaben (Strg + Umschalt + Alt + U)</preferred>
   </hint>
   <hint name="ribWordCountButton_Screentip">
     <source>Report the number of words on this page</source>
-    <preferred>Gib die Anzahl der Wörter auf dieser Seite an</preferred>
+    <preferred>Gibt die Anzahl der Wörter auf dieser Seite an</preferred>
   </hint>
   <hint name="SaveSnippet_NeedSelection">
     <source>Select content to save as a new snippet</source>
@@ -612,11 +612,11 @@ Vergrößere kleinere Bilder nicht</preferred>
   </hint>
   <hint name="SearchDialog_introLabel.Text">
     <source>Enter one or more keywords, "quoted phrases", and use uppercase AND and OR</source>
-    <preferred>Gib ein oder mehrere Schlüsselwörter, \"zitierte Phrasen\", ein und verwende UND und ODER in Großbuchstaben</preferred>
+    <preferred>Gib ein oder mehrere Schlüsselwörter, \"Phrasen in Anführungszeichen\", ein und verwende UND und ODER in Großbuchstaben</preferred>
   </hint>
   <hint name="SearchEngineDialog_upButton.Text">
     <source>Move up</source>
-    <preferred>Bewege nach oben</preferred>
+    <preferred>Nach oben</preferred>
   </hint>
   <hint name="SearchEngineSheet_introLabel.Text">
     <source>URL Patterns must contain a string replacement token, such as &amp;q={0}
@@ -628,7 +628,7 @@ Suchmaschinen werden im Kontextmenü der Seite angezeigt, klicke mit der rechten
   </hint>
   <hint name="SearchEngineSheet_upButton.Text">
     <source>Move up</source>
-    <preferred>Bewege sich nach oben</preferred>
+    <preferred>Nach oben</preferred>
   </hint>
   <hint name="SearchQF_DescriptionCopy">
     <source>Pick the location where selected pages should be copied</source>
@@ -645,14 +645,6 @@ Suchmaschinen werden im Kontextmenü der Seite angezeigt, klicke mit der rechten
   <hint name="ShowXmlDialog_selectButton.Text">
     <source>Select all</source>
     <preferred>Wähle Alle</preferred>
-  </hint>
-  <hint name="SnippetsSheet_Text">
-    <source>
-      Manage My Custom Snippets
-    </source>
-    <preferred>
-      Verwalte Snippets
-    </preferred>
   </hint>
   <hint name="SortListCommand_BadContext">
     <source>Move the text cursor to an item of a list</source>
@@ -680,11 +672,11 @@ Suchmaschinen werden im Kontextmenü der Seite angezeigt, klicke mit der rechten
   </hint>
   <hint name="TaggedDialog_checkAllLabel.Text">
     <source>Check all pages</source>
-    <preferred>Überprüfe alle Seiten</preferred>
+    <preferred>Alle wählen</preferred>
   </hint>
   <hint name="TaggedDialog_clearAllLabel.Text">
     <source>Uncheck all pages</source>
-    <preferred>Deaktiviere alle Seiten</preferred>
+    <preferred>Alle abwählen</preferred>
   </hint>
   <hint name="TaggedDialog_introLabel.Text">
     <source>Enter one or more tags separated by commas. Use the minus operator to exclude individual tags</source>
@@ -692,7 +684,7 @@ Suchmaschinen werden im Kontextmenü der Seite angezeigt, klicke mit der rechten
   </hint>
   <hint name="TaggedDialog_Title">
     <source>Find Tagged Pages</source>
-    <preferred>Suche nach markierten Seiten</preferred>
+    <preferred>Suche nach getaggten Seiten</preferred>
   </hint>
   <hint name="TextToTableDialog_unquoteBox.Text">
     <source>Remove quotes from complete strings</source>
@@ -705,5 +697,61 @@ Suchmaschinen werden im Kontextmenü der Seite angezeigt, klicke mit der rechten
     <preferred>
       Tastatur
     </preferred>
+  </hint>
+  <hint name="StyleDialog_reorderButton.Text">
+    <source>Reorder</source>
+    <preferred>Sortieren</preferred>
+  </hint>
+  <hint name="ribCleanMenu_Label">
+    <source>Clean</source>
+    <preferred>Säubern</preferred>
+  </hint>
+  <hint name="ctxCleanMenu_Label">
+    <source>Clean...</source>
+    <preferred>Säubern...</preferred>
+  </hint>
+  <hint name="ColorizeSheet_Title">
+    <source>Colorizer</source>
+    <preferred>Einfärber</preferred>
+  </hint>
+  <hint name="ribColorizeMenu_Label">
+    <source>Colorize</source>
+    <preferred>Einfärben</preferred>
+  </hint>
+  <hint name="ColorizeSheet_introBox.Text">
+    <source>Customize the behavior of the Colorize command. Secondary font applies when collapsing PlantUML</source>
+    <preferred>Passen Sie das Verhalten des Einfärben-Befehls an. Sekundäre Schriftart gilt beim Reduzieren von PlantUML</preferred>
+  </hint>
+  <hint name="ribPageMenu_Label">
+    <source>Page</source>
+    <preferred>Seite</preferred>
+  </hint>
+  <hint name="InsertSnippets_CouldNotLoad">
+    <source>Could not load snippet from "{0}"</source>
+    <preferred>Snippet konnte nicht aus "{0}" geladen werden</preferred>
+  </hint>
+  <hint name="ribBreakingButton_Screentip">
+    <source>Toggle between one and two spaces between sentences</source>
+    <preferred>Zwischen einem und zwei Leerzeichen zwischen den Sätzen umschalten</preferred>
+  </hint>
+  <hint name="ribCustomSnippetsMenu_Label">
+    <source>My Snippets</source>
+    <preferred>Meine Snippets</preferred>
+  </hint>
+  <hint name="ribSnippetsMenu_Label">
+    <source>Snippets</source>
+    <preferred>Snippets</preferred>
+  </hint>
+  <hint name="SnippetsSheet_Text">
+    <source>Snippets</source>
+    <preferred>Snippets</preferred>
+  </hint>
+  <hint name="SettingsDialog_snippetshNode_Text">
+    <source>Snippets</source>
+    <preferred>Snippets</preferred>
+  </hint>
+  <hint name="SnippetsSheet_introLabel.Text">
+    <source>Manage my snippets</source>
+    <preferred>Meine Snippets verwalten</preferred>
   </hint>
 </hints>
