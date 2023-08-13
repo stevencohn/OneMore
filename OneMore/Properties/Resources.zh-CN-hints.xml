@@ -1,5 +1,341 @@
 <?xml version="1.0" encoding="utf-8"?>
 <hints>
+  <hint name="AboutDialog.Text">
+    <source>
+      OneMore Add-in
+    </source>
+    <preferred>
+      OneMore 加载项
+    </preferred>
+  </hint>
+  <hint name="AboutDialog_LatestTitle">
+    <source>
+      You're good to go!
+    </source>
+    <preferred>
+      您已准备就绪！
+    </preferred>
+  </hint>
+  <hint name="NavigatorSheet_Title">
+    <source>
+      Navigator
+    </source>
+    <preferred>
+      导航
+    </preferred>
+  </hint>
+  <hint name="ribNavigatorButton_Label">
+    <source>
+      Navigator
+    </source>
+    <preferred>
+      导航
+    </preferred>
+  </hint>
+  <hint name="SettingsDialog_navigatorNode.Text">
+    <source>
+      Navigator
+    </source>
+    <preferred>
+      导航
+    </preferred>
+  </hint>
+  <hint name="ribTitlecaseButton_Label">
+    <source>
+      To Title Case
+    </source>
+    <preferred>
+      标题大小写
+    </preferred>
+  </hint>
+  <hint name="word_Yes">
+    <source>
+      Yes
+    </source>
+    <preferred>
+      是
+    </preferred>
+  </hint>
+  <hint name="word_No">
+    <source>
+      No
+    </source>
+    <preferred>
+      否
+    </preferred>
+  </hint>
+  <hint name="word_None">
+    <source>
+      None
+    </source>
+    <preferred>
+      无
+    </preferred>
+  </hint>
+  <hint name="word_Apply">
+    <source>
+      Apply
+    </source>
+    <preferred>
+      应用
+    </preferred>
+  </hint>
+  <hint name="word_OK">
+    <source>
+      OK
+    </source>
+    <preferred>
+      确定
+    </preferred>
+  </hint>
+  <hint name="word_Close">
+    <source>
+      Close
+    </source>
+    <preferred>
+      关闭
+    </preferred>
+  </hint>
+  <hint name="word_Completed">
+    <source>
+      Completed
+    </source>
+    <preferred>
+      已完成
+    </preferred>
+  </hint>
+  <hint name="word_PercentSymbol">
+    <source>
+      %
+    </source>
+    <preferred>
+      %
+    </preferred>
+  </hint>
+  <hint name="ribInsertBreadcrumbButton_Label">
+    <source>
+      Breadcrumb
+    </source>
+    <preferred>
+      页面路径
+    </preferred>
+  </hint>
+  <hint name="ribInsertBreadcrumbButton_Screentip">
+    <source>
+      Insert breadcrumb of page location at top of page
+    </source>
+    <preferred>
+      在页面顶部插入页面路径
+    </preferred>
+  </hint>
+  <hint name="ribRemoveEmptyButton_Label">
+    <source>
+      Remove Empty Lines
+    </source>
+    <preferred>
+      删除空行
+    </preferred>
+  </hint>
+  <hint name="ribFileQuickNotesButton_Label">
+    <source>
+      File Quick Notes
+    </source>
+    <preferred>
+      归档快速笔记
+    </preferred>
+  </hint>
+  <hint name="ribFileQuickNotesButton_Screentip">
+    <source>
+      Organize Quick Notes into a notebook or section
+    </source>
+    <preferred>
+      将快速笔记整理到笔记本或分区中
+    </preferred>
+  </hint>
+  <hint name="word_Caption">
+    <source>
+      Caption
+    </source>
+    <preferred>
+      说明
+    </preferred>
+  </hint>
+  <hint name="AddCaptionCommand_Captioned">
+    <source>
+      Image already has a caption
+    </source>
+    <preferred>
+      图片已有说明
+    </preferred>
+  </hint>
+  <hint name="ribAddCaptionButton_Label">
+    <source>
+      Add Caption
+    </source>
+    <preferred>
+      添加说明
+    </preferred>
+  </hint>
+  <hint name="ribCaptionAttachmentsButton_Label">
+    <source>
+      Caption Attachments
+    </source>
+    <preferred>
+      为附件添加说明
+    </preferred>
+  </hint>
+  <hint name="ribCaptionAttachmentsButton_Screentip">
+    <source>
+      Add a caption to each attachment on the page
+    </source>
+    <preferred>
+      为页面上的每个附件添加说明
+    </preferred>
+  </hint>
+  <hint name="ribClearBackgroundButton_Label">
+    <source>
+      Clear Background Color
+    </source>
+    <preferred>
+      清除背景颜色
+    </preferred>
+  </hint>
+  <hint name="ribPasteTextButton_Label">
+    <source>
+      Paste and Keep Text Only
+    </source>
+    <preferred>
+      粘贴并只保留文本
+    </preferred>
+  </hint>
+  <hint name="ribPasteTextButton_Screentip">
+    <source>
+      Paste and Keep Text Only (Ctrl + Shift + V)
+    </source>
+    <preferred>
+      粘贴并只保留文本（Ctrl + Shift + V）
+    </preferred>
+  </hint>
+  <hint name="ribRemoveSectionNumbersButton_Label">
+    <source>
+      Remove Section Numbers
+    </source>
+    <preferred>
+      删除分区编号
+    </preferred>
+  </hint>
+  <hint name="ribRemoveSectionNumbersButton_Screentip">
+    <source>
+      Remove numbers from all sectionsin this notebook
+    </source>
+    <preferred>
+      删除此笔记本中所有分区的编号
+    </preferred>
+  </hint>
+  <hint name="ribRemovePageNumbersButton_Screentip">
+    <source>
+      Remove numbers from all pages in this section
+    </source>
+    <preferred>
+      删除此分区中所有页面的页码
+    </preferred>
+  </hint>
+  <hint name="ribCompleteReminderButton_Label">
+    <source>
+      Complete Reminder
+    </source>
+    <preferred>
+      完成提醒
+    </preferred>
+  </hint>
+  <hint name="ribCopyAcrossButton_Label">
+    <source>
+      Copy Across
+    </source>
+    <preferred>
+      向右复制
+    </preferred>
+  </hint>
+  <hint name="ribCopyAcrossButton_Screentip">
+    <source>
+      Copy content across the selected rows
+    </source>
+    <preferred>
+      向右复制所选行的内容
+    </preferred>
+  </hint>
+  <hint name="ribCopyDownButton_Label">
+    <source>
+      Copy Down
+    </source>
+    <preferred>
+      向下复制
+    </preferred>
+  </hint>
+  <hint name="ribCopyDownButton_Screentip">
+    <source>
+      Copy content down the selected columns
+    </source>
+    <preferred>
+      向下复制所选列的内容
+    </preferred>
+  </hint>
+  <hint name="ribFillAcrossButton_Label">
+    <source>
+      Fill Across
+    </source>
+    <preferred>
+      向右填充
+    </preferred>
+  </hint>
+  <hint name="ribFillAcrossButton_Screentip">
+    <source>
+      Fill sequence across selected rows
+    </source>
+    <preferred>
+      向右填充所选行的序列
+    </preferred>
+  </hint>
+  <hint name="ribFillDownButton_Label">
+    <source>
+      Fill Down
+    </source>
+    <preferred>
+      向下填充
+    </preferred>
+  </hint>
+  <hint name="ribFillDownButton_Screentip">
+    <source>
+      Fill sequence down selected columns (Ctrl + D)
+    </source>
+    <preferred>
+      向下填充所选列的序列（Ctrl + D）
+    </preferred>
+  </hint>
+  <hint name="ribCopyAsMarkdownButton_Screentip">
+    <source>
+      Copy select content as markdown
+    </source>
+    <preferred>
+      将所选内容复制为 Markdown
+    </preferred>
+  </hint>
+  <hint name="ribSplitButton_Label">
+    <source>
+      Split Page
+    </source>
+    <preferred>
+      拆分页面
+    </preferred>
+  </hint>
+  <hint name="ribInsertCellsButton_Label">
+    <source>
+      Insert Table Cells
+    </source>
+    <preferred>
+      插入表格单元格
+    </preferred>
+  </hint>
   <hint name="ribImportButton_Label">
     <source>
       Import
@@ -21,7 +357,7 @@
       Space After:
     </source>
     <preferred>
-      段后空间:
+      段后空间：
     </preferred>
   </hint>
   <hint name="StyleDialog_beforeLabel.Text">
@@ -29,7 +365,7 @@
       Space Before:
     </source>
     <preferred>
-      段前空间:
+      段前空间：
     </preferred>
   </hint>
   <hint name="StyleDialog_spacingLabel.Text">
@@ -37,7 +373,7 @@
       Spacing:
     </source>
     <preferred>
-      行距:
+      行距：
     </preferred>
   </hint>
 </hints>
