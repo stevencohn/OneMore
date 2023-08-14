@@ -3442,6 +3442,10 @@ ISO-code then comma then language name</comment>
     <value>搜索和复制/移动</value>
     <comment>ribbon item</comment>
   </data>
+  <data name="ribNaviButton_Label" xml:space="preserve">
+    <value>FastNavi</value>
+    <comment>ribbon navi</comment>
+  </data>
   <data name="ribSearchButton_Screentip" xml:space="preserve">
     <value>在页面上搜索关键字，然后将其复制/移动到另一部分（Alt + F）</value>
     <comment>ribbon item</comment>

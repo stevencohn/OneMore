@@ -3446,6 +3446,10 @@ Polaroid.</value>
     <value>Pesquisar e copiar/mover</value>
     <comment>ribbon item</comment>
   </data>
+  <data name="ribNaviButton_Label" xml:space="preserve">
+    <value>FastNavi</value>
+    <comment>ribbon navi</comment>
+  </data>
   <data name="ribSearchButton_Screentip" xml:space="preserve">
     <value>Pesquisar palavras-chave nas páginas e copiar/mover para outra seção (Alt + F)</value>
     <comment>ribbon item</comment>

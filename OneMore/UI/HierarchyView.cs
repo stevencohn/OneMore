@@ -272,17 +272,42 @@ namespace River.OneMoreAddIn.UI
 				case HierarchyLevels.Notebook:
 					{
 						var image = Resx.NotebookMask;
-						image.MapColor(Color.Black, ColorHelper.FromHtml(node.Root.Attribute("color").Value));
-						e.Graphics.DrawImage(image, bounds.Left, bounds.Top);
-					}
+						try
+						{
+							image.MapColor(Color.Black, ColorHelper.FromHtml(node.Root.Attribute("color").Value));
+
+						}
+						catch
+						{
+                            image.MapColor(Color.Black, Color.Blue);
+                        }
+                        finally
+						{
+                            e.Graphics.DrawImage(image, bounds.Left, bounds.Top);
+
+                        }
+                    }
 					break;
 
 				case HierarchyLevels.Section:
 					{
 						var image = Resx.SectionMask;
-						image.MapColor(Color.Black, ColorHelper.FromHtml(node.Root.Attribute("color").Value));
-						e.Graphics.DrawImage(image, bounds.Left, bounds.Top);
-					}
+						try
+						{
+                            image.MapColor(Color.Black, ColorHelper.FromHtml(node.Root.Attribute("color").Value));
+
+                        }
+						catch 
+						{
+                            image.MapColor(Color.Black, Color.Blue);
+
+                        }
+                        finally
+						{
+                            e.Graphics.DrawImage(image, bounds.Left, bounds.Top);
+
+                        }
+                    }
 					break;
 			}
 
