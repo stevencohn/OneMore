@@ -2869,6 +2869,10 @@ Polaroid</value>
     <value>High cells with formula in current table</value>
     <comment>ribbon table</comment>
   </data>
+  <data name="ribHighlightLastButton_Label" xml:space="preserve">
+    <value>Highlight text with most recent highlighter</value>
+    <comment>ribbon edit</comment>
+  </data>
   <data name="ribImagesMenu_Label" xml:space="preserve">
     <value>Images</value>
     <comment>menu NODUP</comment>

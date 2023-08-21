@@ -2832,6 +2832,10 @@ polaroid</value>
     <value>Celdas altas con fórmula en la tabla actual</value>
     <comment>Ribbon OneMore menu item, Formula...</comment>
   </data>
+  <data name="ribHighlightLastButton_Label" xml:space="preserve">
+    <value>Resaltar texto con el resaltador más reciente</value>
+    <comment>ribbon edit</comment>
+  </data>
   <data name="ribImagesMenu_Label" xml:space="preserve">
     <value>Imagenes</value>
     <comment>Ribbon OneMore menu item, Images...</comment>

@@ -2828,6 +2828,10 @@ Polaroïd</value>
     <value>Cellules hautes avec formule dans le tableau actuel</value>
     <comment>Ribbon OneMore menu item, Formula...</comment>
   </data>
+  <data name="ribHighlightLastButton_Label" xml:space="preserve">
+    <value>Surligner le texte avec le surligneur le plus récent</value>
+    <comment>ribbon edit</comment>
+  </data>
   <data name="ribImagesMenu_Label" xml:space="preserve">
     <value>Images</value>
     <comment>Ribbon OneMore menu item, Images...</comment>

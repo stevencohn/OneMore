@@ -6853,6 +6853,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Highlight text with most recent highlighter.
+        /// </summary>
+        internal static string ribHighlightLastButton_Label {
+            get {
+                return ResourceManager.GetString("ribHighlightLastButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Images.
         /// </summary>
         internal static string ribImagesMenu_Label {

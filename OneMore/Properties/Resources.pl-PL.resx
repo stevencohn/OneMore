@@ -2845,6 +2845,10 @@ Polaroid</value>
     <value>Wysokie komórki o wzorze w bieżącej tabeli</value>
     <comment>Ribbon OneMore menu item, Formula...</comment>
   </data>
+  <data name="ribHighlightLastButton_Label" xml:space="preserve">
+    <value>Podświetl tekst najnowszym zakreślaczem</value>
+    <comment>ribbon edit</comment>
+  </data>
   <data name="ribImagesMenu_Label" xml:space="preserve">
     <value>Obrazy</value>
     <comment>Ribbon OneMore menu item, Images... NODUP</comment>

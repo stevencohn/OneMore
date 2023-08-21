@@ -2828,6 +2828,10 @@ Polaroid</value>
     <value>Hohe Zellen mit Formel in der aktuellen Tabelle</value>
     <comment>Ribbon OneMore menu item, Formula...</comment>
   </data>
+  <data name="ribHighlightLastButton_Label" xml:space="preserve">
+    <value>Markieren Sie Text mit dem neuesten Textmarker</value>
+    <comment>ribbon edit</comment>
+  </data>
   <data name="ribImagesMenu_Label" xml:space="preserve">
     <value>Bilder</value>
     <comment>Ribbon OneMore menu item, Images...</comment>
