@@ -2873,6 +2873,10 @@ Polaroid</value>
     <value>Highlight text with most recent highlighter</value>
     <comment>ribbon edit</comment>
   </data>
+  <data name="ribHighlightNoneButton_Label" xml:space="preserve">
+    <value>Remove highlighting</value>
+    <comment>ribbon edit</comment>
+  </data>
   <data name="ribImagesMenu_Label" xml:space="preserve">
     <value>Images</value>
     <comment>menu NODUP</comment>

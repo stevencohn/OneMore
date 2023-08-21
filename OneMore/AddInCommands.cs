@@ -364,6 +364,11 @@ namespace River.OneMoreAddIn
 			=> await factory.Run<HighlightCommand>(0);
 
 
+		[Command("ribHighlightNoneButton_Label", Keys.Control | Keys.Shift | Keys.D0, "ribEditMenu")]
+		public async Task HighlightNoneCmd(IRibbonControl control)
+			=> await factory.Run<HighlightCommand>(-1);
+
+
 		[Command("ribHighlightFormulaButton_Label", Keys.None, "ribTableMenu")]
 		public async Task HighlightFormulaCmd(IRibbonControl control)
 			=> await factory.Run<HighlightFormulaCommand>();

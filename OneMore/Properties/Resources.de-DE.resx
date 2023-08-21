@@ -2832,6 +2832,10 @@ Polaroid</value>
     <value>Markieren Sie Text mit dem neuesten Textmarker</value>
     <comment>ribbon edit</comment>
   </data>
+  <data name="ribHighlightNoneButton_Label" xml:space="preserve">
+    <value>Hervorhebung entfernen</value>
+    <comment>ribbon edit</comment>
+  </data>
   <data name="ribImagesMenu_Label" xml:space="preserve">
     <value>Bilder</value>
     <comment>Ribbon OneMore menu item, Images...</comment>

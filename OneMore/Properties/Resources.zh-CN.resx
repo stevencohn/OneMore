@@ -2840,6 +2840,10 @@ ISO-code then comma then language name</comment>
     <value>使用最新的荧光笔突出显示文本</value>
     <comment>ribbon edit</comment>
   </data>
+  <data name="ribHighlightNoneButton_Label" xml:space="preserve">
+    <value>删除突出显示</value>
+    <comment>ribbon edit</comment>
+  </data>
   <data name="ribImagesMenu_Label" xml:space="preserve">
     <value>图片</value>
     <comment>Ribbon OneMore menu item, Images...</comment>

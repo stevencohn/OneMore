@@ -6,6 +6,7 @@ namespace River.OneMoreAddIn.Commands
 {
 	using River.OneMoreAddIn.Models;
 	using River.OneMoreAddIn.Settings;
+	using River.OneMoreAddIn.Styles;
 	using System.Globalization;
 	using System.Threading.Tasks;
 	using System.Xml.Linq;
@@ -39,8 +40,9 @@ namespace River.OneMoreAddIn.Commands
 				}
 			}
 
-			var dark = page.GetPageColor(out _, out _).GetBrightness() < 0.5;
-			var color = GetColor(index, dark);
+			var color = increment < 0
+				? StyleBase.Transparent
+				: GetColor(index, page.GetPageColor(out _, out _).GetBrightness() < 0.5);
 
 			updated = page.EditSelected((s) =>
 			{

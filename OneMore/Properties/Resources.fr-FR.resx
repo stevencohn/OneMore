@@ -2832,6 +2832,10 @@ Polaroïd</value>
     <value>Surligner le texte avec le surligneur le plus récent</value>
     <comment>ribbon edit</comment>
   </data>
+  <data name="ribHighlightNoneButton_Label" xml:space="preserve">
+    <value>Supprimer la surbrillance</value>
+    <comment>ribbon edit</comment>
+  </data>
   <data name="ribImagesMenu_Label" xml:space="preserve">
     <value>Images</value>
     <comment>Ribbon OneMore menu item, Images...</comment>

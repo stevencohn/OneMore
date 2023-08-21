@@ -2836,6 +2836,10 @@ polaroid</value>
     <value>Resaltar texto con el resaltador más reciente</value>
     <comment>ribbon edit</comment>
   </data>
+  <data name="ribHighlightNoneButton_Label" xml:space="preserve">
+    <value>Eliminar resaltado</value>
+    <comment>ribbon edit</comment>
+  </data>
   <data name="ribImagesMenu_Label" xml:space="preserve">
     <value>Imagenes</value>
     <comment>Ribbon OneMore menu item, Images...</comment>

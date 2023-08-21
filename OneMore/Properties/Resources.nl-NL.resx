@@ -2837,6 +2837,10 @@ Polaroid</value>
     <value>Markeer tekst met de meest recente markeerstift</value>
     <comment>ribbon edit</comment>
   </data>
+  <data name="ribHighlightNoneButton_Label" xml:space="preserve">
+    <value>Markeringen verwijderen</value>
+    <comment>ribbon edit</comment>
+  </data>
   <data name="ribImagesMenu_Label" xml:space="preserve">
     <value>Afbeeldingen</value>
     <comment>Ribbon OneMore menu item, Images...</comment>
