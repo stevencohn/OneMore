@@ -24,6 +24,8 @@ namespace River.OneMoreAddIn.Commands
 
 		public override async Task Execute(params object[] args)
 		{
+			var increment = (int)args[0];
+
 			using var one = new OneNote(out var page, out var ns);
 			var updated = false;
 			var index = 0;
@@ -31,7 +33,7 @@ namespace River.OneMoreAddIn.Commands
 			var meta = page.GetMetaContent(MetaNames.HighlightIndex);
 			if (meta != null)
 			{
-				if (int.TryParse(meta, out index))
+				if (int.TryParse(meta, out index) && increment > 0)
 				{
 					index = index < 4 ? index + 1 : 0;
 				}
@@ -60,7 +62,11 @@ namespace River.OneMoreAddIn.Commands
 
 			if (updated)
 			{
-				page.SetMeta(MetaNames.HighlightIndex, index.ToString(CultureInfo.InvariantCulture));
+				if (increment > 0)
+				{
+					page.SetMeta(MetaNames.HighlightIndex, index.ToString(CultureInfo.InvariantCulture));
+				}
+
 				await one.Update(page);
 			}
 		}

@@ -2832,6 +2832,10 @@ ISO-code then comma then language name</comment>
     <value>خلايا عالية مع صيغة في الجدول الحالي</value>
     <comment>Ribbon OneMore menu item, Formula...</comment>
   </data>
+  <data name="ribHighlightLastButton_Label" xml:space="preserve">
+    <value>قم بتمييز النص بأحدث قلم تمييز</value>
+    <comment>ribbon edit</comment>
+  </data>
   <data name="ribImagesMenu_Label" xml:space="preserve">
     <value>الصور</value>
     <comment>Ribbon OneMore menu item, Images...</comment>

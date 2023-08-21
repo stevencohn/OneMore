@@ -2853,6 +2853,10 @@ ISO-code then comma then language name</comment>
     <value>תאים גבוהים עם נוסחה בטבלה הנוכחית</value>
     <comment>Ribbon OneMore menu item, Formula...</comment>
   </data>
+  <data name="ribHighlightLastButton_Label" xml:space="preserve">
+    <value>הדגש טקסט עם ההדגשה העדכנית ביותר</value>
+    <comment>ribbon edit</comment>
+  </data>
   <data name="ribImagesMenu_Label" xml:space="preserve">
     <value>תמונות</value>
     <comment>Ribbon OneMore menu item, Images... NODUP</comment>

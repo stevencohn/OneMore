@@ -2833,6 +2833,10 @@ Polaroid.</value>
     <value>Células altas com fórmula na tabela atual</value>
     <comment>Ribbon OneMore menu item, Formula...</comment>
   </data>
+  <data name="ribHighlightLastButton_Label" xml:space="preserve">
+    <value>Destaque o texto com o marcador mais recente</value>
+    <comment>ribbon edit</comment>
+  </data>
   <data name="ribImagesMenu_Label" xml:space="preserve">
     <value>Imagens</value>
     <comment>Ribbon OneMore menu item, Images...</comment>
