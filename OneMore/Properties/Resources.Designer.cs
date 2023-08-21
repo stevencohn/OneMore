@@ -3233,7 +3233,7 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Cloud not load snippet from &quot;{0}&quot;.
+        ///   Looks up a localized string similar to Could not load snippet from &quot;{0}&quot;.
         /// </summary>
         internal static string InsertSnippets_CouldNotLoad {
             get {
@@ -6858,6 +6858,15 @@ namespace River.OneMoreAddIn.Properties {
         internal static string ribHighlightLastButton_Label {
             get {
                 return ResourceManager.GetString("ribHighlightLastButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Remove highlighting.
+        /// </summary>
+        internal static string ribHighlightNoneButton_Label {
+            get {
+                return ResourceManager.GetString("ribHighlightNoneButton_Label", resourceCulture);
             }
         }
         

@@ -2849,6 +2849,10 @@ Polaroid</value>
     <value>Podświetl tekst najnowszym zakreślaczem</value>
     <comment>ribbon edit</comment>
   </data>
+  <data name="ribHighlightNoneButton_Label" xml:space="preserve">
+    <value>Usuń zaznaczenie</value>
+    <comment>ribbon edit</comment>
+  </data>
   <data name="ribImagesMenu_Label" xml:space="preserve">
     <value>Obrazy</value>
     <comment>Ribbon OneMore menu item, Images... NODUP</comment>

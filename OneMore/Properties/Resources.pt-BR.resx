@@ -2837,6 +2837,10 @@ Polaroid.</value>
     <value>Destaque o texto com o marcador mais recente</value>
     <comment>ribbon edit</comment>
   </data>
+  <data name="ribHighlightNoneButton_Label" xml:space="preserve">
+    <value>Remover realce</value>
+    <comment>ribbon edit</comment>
+  </data>
   <data name="ribImagesMenu_Label" xml:space="preserve">
     <value>Imagens</value>
     <comment>Ribbon OneMore menu item, Images...</comment>
