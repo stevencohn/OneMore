@@ -2,6 +2,7 @@
   "colors": {
     // Auto=DarkPlainText is near-white
     "Auto": "#F0F0F0",
+    "AutoNative": "#000000",
     "Black": "#000000",
     "Blue": "#2E75B5",
     "CornflowerBlue": "#5B9BD5",
