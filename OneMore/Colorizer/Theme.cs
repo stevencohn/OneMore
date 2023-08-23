@@ -104,9 +104,16 @@ namespace River.OneMoreAddIn.Colorizer
 		{
 			if (autoOverride)
 			{
-				if (Colors.ContainsKey("DarkPlainText") && Colors.ContainsKey("AutoPlainText"))
+				// normally, PlainText=Auto. But in native dark mode (Switch Background) then we
+				// want PlainText to be AutoNative to compensate for OneNote's color witchcraft
+
+				if (Colors.ContainsKey("AutoNative"))
 				{
-					Colors["DarkPlainText"] = Colors["AutoPlainText"];
+					var plain = GetStyle("PlainText");
+					if (plain != null)
+					{
+						plain.Foreground = Colors["AutoNative"];
+					}
 				}
 			}
 
