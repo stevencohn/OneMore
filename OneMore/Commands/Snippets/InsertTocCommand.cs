@@ -25,7 +25,7 @@ namespace River.OneMoreAddIn.Commands
 		private const string LongDash = "\u2015";
 
 		private const string RefreshStyle = "font-style:italic;font-size:9.0pt;color:#808080";
-		private const string Indent8 = "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
+		//private const string Indent8 = "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
 
 		private OneNote one;
 		private Style cite;
@@ -514,6 +514,8 @@ namespace River.OneMoreAddIn.Commands
 
 					indent.Add(new XElement(ns + "OE",
 						new XElement(ns + "T",
+							// this is a Folder icon... but doesn't look great
+							// <span style='font-family:Segoe UI Emoji'>&#128194; </span>
 							new XCData($"<span style='font-weight:bold'>{name}</span>"))
 						));
 
@@ -521,7 +523,6 @@ namespace River.OneMoreAddIn.Commands
 						one, ns, indent, element.Elements(), includePages, withPreviews, level + 1);
 
 					container.Add(
-						new XElement(ns + "OE", new XElement(ns + "T", new XCData(string.Empty))),
 						new XElement(ns + "OE", indent)
 						);
 				}
@@ -541,14 +542,14 @@ namespace River.OneMoreAddIn.Commands
 						BuildSectionToc(indent, pages.ToArray(), ref index, 1, withPreviews);
 
 						container.Add(new XElement(ns + "OE",
-							new XElement(ns + "T", new XCData($"<a href=\"{link}\">{name}</a>")),
+							new XElement(ns + "T", new XCData($"§ <a href=\"{link}\">{name}</a>")),
 							indent
 							));
 					}
 					else
 					{
 						container.Add(new XElement(ns + "OE",
-							new XElement(ns + "T", new XCData($"<a href=\"{link}\">{name}</a>")
+							new XElement(ns + "T", new XCData($"§ <a href=\"{link}\">{name}</a>")
 							)));
 					}
 				}
