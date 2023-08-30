@@ -12,6 +12,7 @@ namespace River.OneMoreAddIn.Commands
 	using System.Text;
 	using System.Threading;
 	using System.Threading.Tasks;
+	using System.Web;
 	using System.Windows.Forms;
 	using System.Xml.Linq;
 
@@ -296,6 +297,16 @@ namespace River.OneMoreAddIn.Commands
 					node.Xml = xml;
 				}
 			}
+
+			// this is a fix added to accomodate HTML embedded within OCR text which otherwise
+			// would interfer with the cdata.GetWrapper innards, breaking internal XML parsing
+			page.Root.Descendants(ns + "OCRText")
+				.DescendantNodes().OfType<XCData>()
+				.ForEach(c =>
+				{
+					// HtmlEncode OCR text
+					c.Value = HttpUtility.HtmlEncode(c.Value);
+				});
 
 			// extract plain text last, otherwise XmlHash will not be correct
 			// because TextValue(true) will change the XML
