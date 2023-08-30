@@ -4,10 +4,13 @@
 
 namespace River.OneMoreAddIn.Commands
 {
+	using Microsoft.Win32;
+	using NStandard;
 	using River.OneMoreAddIn.Models;
 	using River.OneMoreAddIn.Settings;
 	using System;
 	using System.Globalization;
+	using System.IO;
 	using System.Linq;
 	using System.Text.RegularExpressions;
 	using System.Threading.Tasks;
@@ -16,6 +19,9 @@ namespace River.OneMoreAddIn.Commands
 
 	internal class FileQuickNotesCommand : Command
 	{
+		private const string UnfiledNotesPath = @"Software\Microsoft\Office\16.0\OneNote\Options\Paths";
+		private const string UnfiledNotesKey = "UnfiledNotesSection";
+
 		private OneNote one;
 		private bool titled;
 		private bool stamped;
@@ -142,7 +148,7 @@ namespace River.OneMoreAddIn.Commands
 			var ns = notebook.GetNamespaceOfPrefix(OneNote.Prefix);
 			var section = notebook.Elements(ns + "Section")
 				.FirstOrDefault(e => e.Attribute("name").Value == name);
-			
+
 			if (section == null)
 			{
 				section = new XElement(ns + "Section", new XAttribute("name", name));
@@ -213,21 +219,103 @@ namespace River.OneMoreAddIn.Commands
 			var books = await one.GetNotebooks();
 			var ns = books.GetNamespaceOfPrefix(OneNote.Prefix);
 
-			// Quick Notes are stored in the singular one:UnfiledNotes notebook node
+			// default section is stored in the singular one:UnfiledNotes notebook node
+			// check this first since most users likely have not customized it and it's quick...
+
 			var book = books.Elements(ns + "UnfiledNotes").FirstOrDefault();
+			if (book != null)
+			{
+				// get the notebook with pages...
+				book = await one.GetNotebook(book.Attribute("ID").Value, OneNote.Scope.Pages);
+				if (book != null)
+				{
+					var unfiled = book.Elements(ns + "Section").First();
+					if (unfiled != null && unfiled.Elements().Any())
+					{
+						logger.WriteLine($"found {unfiled.Elements().Count()} default UnfiledNotes");
+						// Quick Notes section containing quick note pages
+						return unfiled;
+					}
+				}
+			}
+
+			// This key will contain values similar to one of the following:
+			// - default: UnfiledNotes\OneNote Notebooks\Quick Notes.one
+			// - custom:  https://d.docs.live.net/some-id/Documents/Personal/Quick Notes.one
+			// - subsect: https://d.docs.live.net/6925d0374517d4b4/Documents/Flux/Group A/Group B/Section 3.one
+			// - local:   C:\Users\steve\Documents\Local Notebooks\Local\open.one
+
+			using var key = Registry.CurrentUser.OpenSubKey(UnfiledNotesPath, false);
+			if (key == null)
+			{
+				// this case occurs when there is no registry setting but also the
+				// default one:UnfiledNotes section is empty
+				logger.WriteLine($"unfiled notes is empty");
+				return null;
+			}
+
+			// get user-specified Quick Notes section
+			var path = (string)key.GetValue(UnfiledNotesKey);
+			if (path.IsNullOrWhiteSpace() || path.Length < 3)
+			{
+				return null;
+			}
+
+			path = $"{Path.GetDirectoryName(path)}{Path.DirectorySeparatorChar}{Path.GetFileNameWithoutExtension(path)}";
+			if (path.StartsWith("https:")) path = path.Replace('\\', '/').Replace("https:/", "https://");
+
+			// remove filename from path; this filename is the target section!
+			var shortPath = $"{Path.GetDirectoryName(path)}{Path.DirectorySeparatorChar}";
+			if (shortPath.StartsWith("https:")) shortPath = shortPath.Replace('\\', '/').Replace("https:/", "https://");
+
+			book = books.Elements()
+				// sort desc so we can find best match on longer book/sect/sect paths
+				.OrderByDescending(b => b.Attribute("path").Value)
+				.FirstOrDefault(b => shortPath.StartsWith(b.Attribute("path").Value, StringComparison.InvariantCultureIgnoreCase));
+
 			if (book == null)
 			{
+				logger.WriteLine($"could not find UnfiledNotes notebook path {path}");
 				return null;
 			}
 
-			// get the notebook with pages...
-			var unfiled = await one.GetNotebook(book.Attribute("ID").Value, OneNote.Scope.Pages);
-			if (unfiled == null || !unfiled.Elements().Any())
+			// expand the notebook into sections
+			book = await one.GetNotebook(book.Attribute("ID").Value, OneNote.Scope.Sections);
+
+			var sectionPath = path.Substring(book.Attribute("path").Value.Length).Replace("\\", "/");
+			var sections = sectionPath.Split(new char[] { '/' }, StringSplitOptions.RemoveEmptyEntries);
+
+			foreach (var section in sections)
 			{
+				book = book.Elements()
+					.FirstOrDefault(e =>
+						// one:Section or one:SectionGroup
+						e.Name.LocalName.StartsWith("Section") &&
+						e.Attribute("name").Value == section);
+
+				if (book == null)
+				{
+					break;
+				}
+			}
+
+			if (book == null)
+			{
+				logger.WriteLine($"could not find subsection {sectionPath}");
 				return null;
 			}
 
-			return unfiled;
+			// expand section into pages
+			var unfiledSection = await one.GetNotebook(book.Attribute("ID").Value, OneNote.Scope.Pages);
+			if (unfiledSection == null || !unfiledSection.Elements().Any())
+			{
+				logger.WriteLine($"could not determine UnfiledNotes location");
+				return null;
+			}
+
+			// Quick Notes section containing quick note pages
+			logger.WriteLine($"found {unfiledSection.Elements().Count()} custom UnfiledNotes {unfiledSection.Attribute("name").Value}");
+			return unfiledSection;
 		}
 
 
