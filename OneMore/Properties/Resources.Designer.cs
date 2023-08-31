@@ -5621,6 +5621,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Preview {0}.
+        /// </summary>
+        internal static string ResizeImagesDialog_previewGroup_Text {
+            get {
+                return ResourceManager.GetString("ResizeImagesDialog_previewGroup.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Reset values.
         /// </summary>
         internal static string ResizeImagesDialog_resetLinkLabel_Text {

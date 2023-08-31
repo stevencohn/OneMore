@@ -2300,6 +2300,10 @@ Ne pas agrandir les petites images</value>
     <value>Préréglage</value>
     <comment>radio</comment>
   </data>
+  <data name="ResizeImagesDialog_previewGroup.Text" xml:space="preserve">
+    <value>Aperçu {0}</value>
+    <comment>group box for single image</comment>
+  </data>
   <data name="ResizeImagesDialog_resetLinkLabel.Text" xml:space="preserve">
     <value>Réinitialiser les valeurs</value>
     <comment>link label</comment>
