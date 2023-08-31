@@ -14,11 +14,11 @@ namespace River.OneMoreAddIn.Commands
 
 
 	/// <summary>
-	/// Convert images, mainly PNG, to JPEG to compress storage requirement of page
+	/// Compress images on page without losing quality, by converting PNG to JPEG
 	/// </summary>
-	internal class ConvertImagesCommand : Command
+	internal class CompressImagesCommand : Command
 	{
-		public ConvertImagesCommand()
+		public CompressImagesCommand()
 		{
 		}
 
@@ -36,39 +36,53 @@ namespace River.OneMoreAddIn.Commands
 					elements = page.Root.Descendants(ns + "Image");
 				}
 
+				var count = 0;
+				var delta = 0;
+
 				if (elements.Any())
 				{
-					var count = 0;
 					foreach (var element in elements)
 					{
 						// convert base64 to image
 						var dataElement = element.Element(ns + "Data");
+						var size = dataElement.Value.Length;
+
 						var data = Convert.FromBase64String(dataElement.Value);
 						using var input = new MemoryStream(data, 0, data.Length);
 						using var image = Image.FromStream(input);
 
 						if (image.GetSignature() != ImageSignature.JPG)
 						{
+							// convert to JPG
 							using var output = new MemoryStream();
 							image.Save(output, ImageFormat.Jpeg);
+							using var jpg = Image.FromStream(output);
 
-							dataElement.Value = image.ToBase64String();
+							var value = jpg.ToBase64String();
+							if (value.Length < size)
+							{
+								dataElement.Value = value;
 
-							count++;
+								delta += size - value.Length;
+								count++;
+							}
 						}
 					}
 
 					if (count > 0)
 					{
 						await one.Update(page);
+					}
+				}
 
-						UI.MoreBubbleWindow.Show(string.Format(
-							Resx.ConvertImagesCommand_Converted, count));
-					}
-					else
-					{
-						UI.MoreBubbleWindow.Show(Resx.ConvertImagesCommand_NoImages);
-					}
+				if (count > 0)
+				{
+					UI.MoreBubbleWindow.Show(string.Format(
+						Resx.ConvertImagesCommand_Converted, count, delta));
+				}
+				else
+				{
+					UI.MoreBubbleWindow.Show(Resx.ConvertImagesCommand_NoImages);
 				}
 			}
 		}

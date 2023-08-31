@@ -484,6 +484,14 @@
     <value>Kontextmenü</value>
     <comment>sheet</comment>
   </data>
+  <data name="ConvertImagesCommand_Converted" xml:space="preserve">
+    <value>Komprimieren Sie {0} Bilder und sparen Sie {1} Bytes</value>
+    <comment>messagebox</comment>
+  </data>
+  <data name="ConvertImagesCommand_NoImages" xml:space="preserve">
+    <value>Es wurden keine Bilder zum Komprimieren gefunden</value>
+    <comment>messagebox</comment>
+  </data>
   <data name="CopyAsMarkdownCommand_copied" xml:space="preserve">
     <value>Abschlag kopiert</value>
     <comment>message box</comment>
@@ -2547,6 +2555,14 @@ Polaroid</value>
   <data name="ribCompleteReminderButton_Screentip" xml:space="preserve">
     <value>Markieren Sie die Absatzerinnerung als abgeschlossen</value>
     <comment>ribbon reminders</comment>
+  </data>
+  <data name="ribCompressImagesButton_Label" xml:space="preserve">
+    <value>Bilder komprimieren</value>
+    <comment>ribbon images</comment>
+  </data>
+  <data name="ribCompressImagesButton_Screentip" xml:space="preserve">
+    <value>Komprimieren Sie Bilder, indem Sie PNG in JPG konvertieren</value>
+    <comment>ribbon images</comment>
   </data>
   <data name="ribCopyAcrossButton_Label" xml:space="preserve">
     <value>Kopieren</value>

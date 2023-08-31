@@ -498,6 +498,14 @@ OneNote ייסגר אוטומטית</value>
     <value>תפריט הקשר</value>
     <comment>sheet</comment>
   </data>
+  <data name="ConvertImagesCommand_Converted" xml:space="preserve">
+    <value>דחוס {0} תמונות, שמור {1} בייטים</value>
+    <comment>messagebox</comment>
+  </data>
+  <data name="ConvertImagesCommand_NoImages" xml:space="preserve">
+    <value>לא נמצאו תמונות לדחיסה</value>
+    <comment>messagebox</comment>
+  </data>
   <data name="CopyAsMarkdownCommand_copied" xml:space="preserve">
     <value>סימון מועתק</value>
     <comment>message box</comment>
@@ -2572,6 +2580,14 @@ ISO-code then comma then language name</comment>
   <data name="ribCompleteReminderButton_Screentip" xml:space="preserve">
     <value>סמן את תזכורת הפסקה כשלמה</value>
     <comment>ribbon reminders</comment>
+  </data>
+  <data name="ribCompressImagesButton_Label" xml:space="preserve">
+    <value>דחוס תמונות</value>
+    <comment>ribbon images</comment>
+  </data>
+  <data name="ribCompressImagesButton_Screentip" xml:space="preserve">
+    <value>דחוס תמונות על ידי המרת PNG ל-JPG</value>
+    <comment>ribbon images</comment>
   </data>
   <data name="ribCopyAcrossButton_Label" xml:space="preserve">
     <value>העתק</value>

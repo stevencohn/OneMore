@@ -488,6 +488,14 @@ OneNote fechará automaticamente</value>
     <value>Menu contextual</value>
     <comment>sheet</comment>
   </data>
+  <data name="ConvertImagesCommand_Converted" xml:space="preserve">
+    <value>Compactar {0} imagens, economizando {1} bytes</value>
+    <comment>messagebox</comment>
+  </data>
+  <data name="ConvertImagesCommand_NoImages" xml:space="preserve">
+    <value>Não foram encontradas imagens para compactar</value>
+    <comment>messagebox</comment>
+  </data>
   <data name="CopyAsMarkdownCommand_copied" xml:space="preserve">
     <value>Remarcação copiada</value>
     <comment>message box</comment>
@@ -2552,6 +2560,14 @@ Polaroid.</value>
   <data name="ribCompleteReminderButton_Screentip" xml:space="preserve">
     <value>Marque o lembrete de parágrafo como completo</value>
     <comment>ribbon reminders</comment>
+  </data>
+  <data name="ribCompressImagesButton_Label" xml:space="preserve">
+    <value>Compactar imagens</value>
+    <comment>ribbon images</comment>
+  </data>
+  <data name="ribCompressImagesButton_Screentip" xml:space="preserve">
+    <value>Compacte imagens convertendo PNG em JPG</value>
+    <comment>ribbon images</comment>
   </data>
   <data name="ribCopyAcrossButton_Label" xml:space="preserve">
     <value>Copiar</value>

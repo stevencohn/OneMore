@@ -489,6 +489,14 @@ OneNote 将自动关闭</value>
     <value>上下文菜单</value>
     <comment>sheet</comment>
   </data>
+  <data name="ConvertImagesCommand_Converted" xml:space="preserve">
+    <value>压缩 {0} 个图像，节省 {1} 个字节</value>
+    <comment>messagebox</comment>
+  </data>
+  <data name="ConvertImagesCommand_NoImages" xml:space="preserve">
+    <value>发现没有要压缩的图像</value>
+    <comment>messagebox</comment>
+  </data>
   <data name="CopyAsMarkdownCommand_copied" xml:space="preserve">
     <value>复制降价</value>
     <comment>message box</comment>
@@ -2555,6 +2563,14 @@ ISO-code then comma then language name</comment>
   <data name="ribCompleteReminderButton_Screentip" xml:space="preserve">
     <value>将段落提醒标记为完成</value>
     <comment>ribbon reminders</comment>
+  </data>
+  <data name="ribCompressImagesButton_Label" xml:space="preserve">
+    <value>压缩图像</value>
+    <comment>ribbon images</comment>
+  </data>
+  <data name="ribCompressImagesButton_Screentip" xml:space="preserve">
+    <value>通过将 PNG 转换为 JPG 来压缩图像</value>
+    <comment>ribbon images</comment>
   </data>
   <data name="ribCopyAcrossButton_Label" xml:space="preserve">
     <value>复制</value>

@@ -484,6 +484,14 @@
     <value>Menu contextuel</value>
     <comment>sheet</comment>
   </data>
+  <data name="ConvertImagesCommand_Converted" xml:space="preserve">
+    <value>Compressez {0} images, économisant ainsi {1} octets</value>
+    <comment>messagebox</comment>
+  </data>
+  <data name="ConvertImagesCommand_NoImages" xml:space="preserve">
+    <value>Aucune image à compresser trouvée</value>
+    <comment>messagebox</comment>
+  </data>
   <data name="CopyAsMarkdownCommand_copied" xml:space="preserve">
     <value>Markdown copié</value>
     <comment>message box</comment>
@@ -2547,6 +2555,14 @@ Polaroïd</value>
   <data name="ribCompleteReminderButton_Screentip" xml:space="preserve">
     <value>Marquer le rappel de paragraphe comme terminé</value>
     <comment>ribbon reminders</comment>
+  </data>
+  <data name="ribCompressImagesButton_Label" xml:space="preserve">
+    <value>Compresser les images</value>
+    <comment>ribbon images</comment>
+  </data>
+  <data name="ribCompressImagesButton_Screentip" xml:space="preserve">
+    <value>Compresser les images en convertissant PNG en JPG</value>
+    <comment>ribbon images</comment>
   </data>
   <data name="ribCopyAcrossButton_Label" xml:space="preserve">
     <value>Copier à travers</value>

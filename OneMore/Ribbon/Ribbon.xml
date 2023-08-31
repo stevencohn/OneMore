@@ -443,6 +443,12 @@
                 getScreentip="GetRibbonScreentip"
                 onAction="AddCaptionCmd"/>
               <button
+                id="ribCompressImagesButton"
+                imageMso="PicturesCompress"
+                getLabel="GetRibbonLabel"
+                getScreentip="GetRibbonScreentip"
+                onAction="CompressImagesCmd"/>
+              <button
                 id="ribCropImageButton"
                 imageMso="PictureCrop"
                 getLabel="GetRibbonLabel"
