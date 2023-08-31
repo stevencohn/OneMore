@@ -928,7 +928,7 @@ Arquivo OneNote (* .one)</value>
     <comment>dialog title</comment>
   </data>
   <data name="ExportDialog_underBox.Text" xml:space="preserve">
-    <value>Substitua caracteres especiais no nome do arquivo com sublinhados</value>
+    <value>Substitua espaços no nome do arquivo por sublinhados</value>
     <comment>checkbox</comment>
   </data>
   <data name="Favorites_suspect" xml:space="preserve">

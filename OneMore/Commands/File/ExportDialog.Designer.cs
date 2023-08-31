@@ -126,9 +126,9 @@
 			this.underBox.AutoSize = true;
 			this.underBox.Location = new System.Drawing.Point(82, 186);
 			this.underBox.Name = "underBox";
-			this.underBox.Size = new System.Drawing.Size(457, 24);
+			this.underBox.Size = new System.Drawing.Size(380, 24);
 			this.underBox.TabIndex = 6;
-			this.underBox.Text = "Replace special characters in the filename with underscores";
+			this.underBox.Text = "Replace spaces in the filename with underscores";
 			this.underBox.UseVisualStyleBackColor = true;
 			// 
 			// attachmentsBox

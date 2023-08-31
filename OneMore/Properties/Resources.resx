@@ -938,7 +938,7 @@ OneNote File (*.one)</value>
     <comment>dialog title</comment>
   </data>
   <data name="ExportDialog_underBox.Text" xml:space="preserve">
-    <value>Replace special characters in the file name with underscores</value>
+    <value>Replace spaces in the file name with underscores</value>
     <comment>checkbox</comment>
   </data>
   <data name="Favorites_suspect" xml:space="preserve">

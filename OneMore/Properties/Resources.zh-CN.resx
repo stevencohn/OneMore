@@ -929,7 +929,7 @@ OneNote 文件 (*.one)</value>
     <comment>dialog title</comment>
   </data>
   <data name="ExportDialog_underBox.Text" xml:space="preserve">
-    <value>用下划线替换文件名中的特殊字符</value>
+    <value>将文件名中的空格替换为下划线</value>
     <comment>checkbox</comment>
   </data>
   <data name="Favorites_suspect" xml:space="preserve">

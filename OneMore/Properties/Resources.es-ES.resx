@@ -927,7 +927,7 @@ Archivo de OneNote (* .one)</value>
     <comment>dialog title</comment>
   </data>
   <data name="ExportDialog_underBox.Text" xml:space="preserve">
-    <value>Reemplace los caracteres especiales en el nombre del archivo con los subrosicos</value>
+    <value>Reemplazar espacios en el nombre del archivo con guiones bajos</value>
     <comment>checkbox</comment>
   </data>
   <data name="Favorites_suspect" xml:space="preserve">

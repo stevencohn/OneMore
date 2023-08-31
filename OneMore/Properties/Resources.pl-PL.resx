@@ -936,7 +936,7 @@ Plik OneNote (* .o)</value>
     <comment>dialog title</comment>
   </data>
   <data name="ExportDialog_underBox.Text" xml:space="preserve">
-    <value>Wymień znaki specjalne w nazwie pliku za pomocą podkreśleń</value>
+    <value>Zastąp spacje w nazwie pliku podkreśleniami</value>
     <comment>checkbox</comment>
   </data>
   <data name="Favorites_suspect" xml:space="preserve">

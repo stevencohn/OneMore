@@ -928,7 +928,7 @@ OneNote-bestand (*.one)</value>
     <comment>dialog title</comment>
   </data>
   <data name="ExportDialog_underBox.Text" xml:space="preserve">
-    <value>Vervang speciale tekens in de bestandsnaam met underscores</value>
+    <value>Vervang spaties in de bestandsnaam door onderstrepingstekens</value>
     <comment>checkbox</comment>
   </data>
   <data name="Favorites_suspect" xml:space="preserve">
