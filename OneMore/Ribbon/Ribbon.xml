@@ -444,7 +444,7 @@
                 onAction="AddCaptionCmd"/>
               <button
                 id="ribCompressImagesButton"
-                imageMso="PicturesCompress"
+                imageMso="DrawingCanvasFit"
                 getLabel="GetRibbonLabel"
                 getScreentip="GetRibbonScreentip"
                 onAction="CompressImagesCmd"/>
