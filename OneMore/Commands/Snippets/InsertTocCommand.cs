@@ -4,6 +4,7 @@
 
 namespace River.OneMoreAddIn.Commands
 {
+	using NStandard;
 	using River.OneMoreAddIn.Models;
 	using River.OneMoreAddIn.Styles;
 	using System;
@@ -441,10 +442,31 @@ namespace River.OneMoreAddIn.Commands
 			logger.WriteLine($"page {page.Title}");
 
 			// sanitize the content, extracting only raw text and aggregating lines
-			var preview = outline.Descendants(ns + "T").Nodes().OfType<XCData>()
-				.Select(c => c.GetWrapper().Value).Aggregate((a, b) => $"{a} {b}");
+			var preview = outline.Descendants(ns + "T")?.Nodes().OfType<XCData>()
+				.Select(c => c.GetWrapper().Value).Aggregate(string.Empty, (a, b) => $"{a} {b}");
 
-			if (preview.Length > 80) { preview = preview.Substring(0, 80) + "..."; }
+			if (preview == null || preview.Length == 0)
+			{
+				return string.Empty;
+			}
+
+			if (preview.Length > 80)
+			{
+				preview = preview.Substring(0, 80);
+
+				// cheap HTML encoding...
+				if (preview.IndexOf('<') >= 0)
+				{
+					preview = preview.Replace("<", "&lt;");
+				}
+
+				if (preview.IndexOf('>') >= 0)
+				{
+					preview = preview.Replace(">", "&gt;");
+				}
+
+				preview = $"{preview}...";
+			}
 
 			return $"<span style=\"{css}\">{LongDash} {preview}</span>";
 		}
