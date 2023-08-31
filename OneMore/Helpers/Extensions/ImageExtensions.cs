@@ -12,6 +12,17 @@ namespace River.OneMoreAddIn
 	using System.Linq;
 
 
+	internal enum ImageSignature
+	{
+		Unknown,
+		BMP,
+		GIF,
+		JPG,
+		PNG,
+		TIFF
+	}
+
+
 	internal static class ImageExtensions
 	{
 
@@ -48,6 +59,28 @@ namespace River.OneMoreAddIn
 			}
 
 			return 100;
+		}
+
+		
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="img"></param>
+		/// <returns></returns>
+		public static ImageSignature GetSignature(this Image img)
+		{
+			if (img.RawFormat.Equals(ImageFormat.Jpeg))
+				return ImageSignature.JPG;
+			if (img.RawFormat.Equals(ImageFormat.Bmp))
+				return ImageSignature.BMP;
+			if (img.RawFormat.Equals(ImageFormat.Png))
+				return ImageSignature.PNG;
+			if (img.RawFormat.Equals(ImageFormat.Gif))
+				return ImageSignature.GIF;
+			if (img.RawFormat.Equals(ImageFormat.Tiff))
+				return ImageSignature.TIFF;
+
+			return ImageSignature.Unknown;
 		}
 
 

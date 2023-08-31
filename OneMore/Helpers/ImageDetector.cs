@@ -8,17 +8,6 @@ namespace River.OneMoreAddIn
 	using System.Text;
 
 
-	internal enum ImageSignature
-	{
-		Unknown,
-		BMP,
-		GIF,
-		JPG,
-		PNG,
-		TIFF
-	}
-
-
 	internal class ImageDetector
 	{
 		private readonly byte[] BmpHead;

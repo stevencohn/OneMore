@@ -2306,6 +2306,10 @@ ISO-code then comma then language name</comment>
     <value>预设值</value>
     <comment>radio</comment>
   </data>
+  <data name="ResizeImagesDialog_previewGroup.Text" xml:space="preserve">
+    <value>预览{0}</value>
+    <comment>group box for single image</comment>
+  </data>
   <data name="ResizeImagesDialog_resetLinkLabel.Text" xml:space="preserve">
     <value>重置值</value>
     <comment>link label</comment>

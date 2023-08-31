@@ -108,6 +108,9 @@ namespace River.OneMoreAddIn.Commands
 
 			scaling = new MagicScaling(image.HorizontalResolution, image.VerticalResolution);
 
+			previewGroup.Text = string.Format(
+				Resx.ResizeImagesDialog_previewGroup_Text, image.GetSignature());
+
 			LoadSettings(true);
 			DrawPreview();
 		}

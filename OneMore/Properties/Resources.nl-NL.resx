@@ -2305,6 +2305,10 @@ Kleinere afbeeldingen niet vergroten</value>
     <value>Vooraf ingesteld</value>
     <comment>radio</comment>
   </data>
+  <data name="ResizeImagesDialog_previewGroup.Text" xml:space="preserve">
+    <value>Voorbeeld {0}</value>
+    <comment>group box for single image</comment>
+  </data>
   <data name="ResizeImagesDialog_resetLinkLabel.Text" xml:space="preserve">
     <value>Waarden resetten</value>
     <comment>link label</comment>
