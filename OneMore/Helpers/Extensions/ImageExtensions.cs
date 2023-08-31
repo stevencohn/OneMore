@@ -308,6 +308,20 @@ namespace River.OneMoreAddIn
 
 
 		/// <summary>
+		/// OneMore Extension >> Convert the given (png) image to jpeg format and serialize
+		/// as a base64 string.
+		/// </summary>
+		/// <param name="image"></param>
+		/// <returns></returns>
+		public static string ToBase64Jpeg(this Image image)
+		{
+			using var jstream = new MemoryStream();
+			image.Save(jstream, ImageFormat.Jpeg);
+			return Image.FromStream(jstream).ToBase64String();
+		}
+
+
+		/// <summary>
 		/// OneMore Extension >> Serializes the given image as a base64 string.
 		/// </summary>
 		/// <param name="image"></param>
