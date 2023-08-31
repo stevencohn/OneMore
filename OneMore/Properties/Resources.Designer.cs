@@ -1024,6 +1024,24 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Compress {0} images, saving {1} bytes.
+        /// </summary>
+        internal static string ConvertImagesCommand_Converted {
+            get {
+                return ResourceManager.GetString("ConvertImagesCommand_Converted", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Found no images to compress.
+        /// </summary>
+        internal static string ConvertImagesCommand_NoImages {
+            get {
+                return ResourceManager.GetString("ConvertImagesCommand_NoImages", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap Copy {
@@ -6219,6 +6237,24 @@ namespace River.OneMoreAddIn.Properties {
         internal static string ribCompleteReminderButton_Screentip {
             get {
                 return ResourceManager.GetString("ribCompleteReminderButton_Screentip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Compress Images.
+        /// </summary>
+        internal static string ribCompressImagesButton_Label {
+            get {
+                return ResourceManager.GetString("ribCompressImagesButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Compress images by converting PNG to JPG.
+        /// </summary>
+        internal static string ribCompressImagesButton_Screentip {
+            get {
+                return ResourceManager.GetString("ribCompressImagesButton_Screentip", resourceCulture);
             }
         }
         

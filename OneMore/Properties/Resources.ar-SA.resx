@@ -487,6 +487,14 @@
     <value>قائمة السياق</value>
     <comment>sheet</comment>
   </data>
+  <data name="ConvertImagesCommand_Converted" xml:space="preserve">
+    <value>ضغط {0} صورة، مما يوفر {1} بايت</value>
+    <comment>messagebox</comment>
+  </data>
+  <data name="ConvertImagesCommand_NoImages" xml:space="preserve">
+    <value>لم يتم العثور على صور لضغطها</value>
+    <comment>messagebox</comment>
+  </data>
   <data name="CopyAsMarkdownCommand_copied" xml:space="preserve">
     <value>تخفيض السعر المنسوخ</value>
     <comment>message box</comment>
@@ -2551,6 +2559,14 @@ ISO-code then comma then language name</comment>
   <data name="ribCompleteReminderButton_Screentip" xml:space="preserve">
     <value>ضع علامة على تذكير الفقرة كمكتمل</value>
     <comment>ribbon reminders</comment>
+  </data>
+  <data name="ribCompressImagesButton_Label" xml:space="preserve">
+    <value>ضغط الصور</value>
+    <comment>ribbon images</comment>
+  </data>
+  <data name="ribCompressImagesButton_Screentip" xml:space="preserve">
+    <value>ضغط الصور عن طريق تحويل PNG إلى JPG</value>
+    <comment>ribbon images</comment>
   </data>
   <data name="ribCopyAcrossButton_Label" xml:space="preserve">
     <value>نسخ عبر</value>

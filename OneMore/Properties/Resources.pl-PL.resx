@@ -496,6 +496,14 @@ OneNote zamknie się automatycznie</value>
     <value>Menu kontekstowe</value>
     <comment>sheet</comment>
   </data>
+  <data name="ConvertImagesCommand_Converted" xml:space="preserve">
+    <value>Skompresuj obrazy {0}, oszczędzając {1} bajtów</value>
+    <comment>messagebox</comment>
+  </data>
+  <data name="ConvertImagesCommand_NoImages" xml:space="preserve">
+    <value>Nie znaleziono obrazów do skompresowania</value>
+    <comment>messagebox</comment>
+  </data>
   <data name="CopyAsMarkdownCommand_copied" xml:space="preserve">
     <value>Skopiowane przeceny</value>
     <comment>message box</comment>
@@ -2564,6 +2572,14 @@ Polaroid</value>
   <data name="ribCompleteReminderButton_Screentip" xml:space="preserve">
     <value>Zaznacz przypomnienie akapitu jako zakończone</value>
     <comment>ribbon reminders</comment>
+  </data>
+  <data name="ribCompressImagesButton_Label" xml:space="preserve">
+    <value>Kompresuj obrazy</value>
+    <comment>ribbon images</comment>
+  </data>
+  <data name="ribCompressImagesButton_Screentip" xml:space="preserve">
+    <value>Kompresuj obrazy, konwertując PNG na JPG</value>
+    <comment>ribbon images</comment>
   </data>
   <data name="ribCopyAcrossButton_Label" xml:space="preserve">
     <value>Kopiuj</value>

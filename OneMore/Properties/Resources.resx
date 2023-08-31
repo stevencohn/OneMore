@@ -498,6 +498,14 @@ OneNote will close automatically</value>
     <value>Context Menu</value>
     <comment>sheet</comment>
   </data>
+  <data name="ConvertImagesCommand_Converted" xml:space="preserve">
+    <value>Compress {0} images, saving {1} bytes</value>
+    <comment>messagebox</comment>
+  </data>
+  <data name="ConvertImagesCommand_NoImages" xml:space="preserve">
+    <value>Found no images to compress</value>
+    <comment>messagebox</comment>
+  </data>
   <data name="CopyAsMarkdownCommand_copied" xml:space="preserve">
     <value>Copied markdown</value>
     <comment>message box</comment>
@@ -2588,6 +2596,14 @@ Polaroid</value>
   <data name="ribCompleteReminderButton_Screentip" xml:space="preserve">
     <value>Mark the paragraph reminder as complete</value>
     <comment>ribbon reminders</comment>
+  </data>
+  <data name="ribCompressImagesButton_Label" xml:space="preserve">
+    <value>Compress Images</value>
+    <comment>ribbon images</comment>
+  </data>
+  <data name="ribCompressImagesButton_Screentip" xml:space="preserve">
+    <value>Compress images by converting PNG to JPG</value>
+    <comment>ribbon images</comment>
   </data>
   <data name="ribCopyAcrossButton_Label" xml:space="preserve">
     <value>Copy Across</value>
