@@ -924,7 +924,7 @@ OneNote-Datei (*.one)</value>
     <comment>dialog title</comment>
   </data>
   <data name="ExportDialog_underBox.Text" xml:space="preserve">
-    <value>Ersetze Sonderzeichen in dem Dateinamen mit Unterstrichen</value>
+    <value>Ersetzen Sie Leerzeichen im Dateinamen durch Unterstriche</value>
     <comment>checkbox</comment>
   </data>
   <data name="Favorites_suspect" xml:space="preserve">

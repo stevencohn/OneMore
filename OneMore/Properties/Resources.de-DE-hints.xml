@@ -84,10 +84,6 @@
     <source>Select an image before invoking this command</source>
     <preferred>Wähle ein Bild aus, bevor dieser Befehl aufgerufen wird</preferred>
   </hint>
-  <hint name="ExportDialog_underBox.Text">
-    <source>Replace special characters in the file name with underscores</source>
-    <preferred>Ersetze Sonderzeichen in dem Dateinamen mit Unterstrichen</preferred>
-  </hint>
   <hint name="FitGridToTextCommand_noGrid">
     <source>Enable grid lines before using this command</source>
     <preferred>Aktiviere Rasterlinien, bevor dieser Befehl verwendet wird</preferred>

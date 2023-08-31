@@ -924,7 +924,7 @@ Fichier OneNote (*.one)</value>
     <comment>dialog title</comment>
   </data>
   <data name="ExportDialog_underBox.Text" xml:space="preserve">
-    <value>Remplacez les caractères spéciaux dans le nom du fichier avec des traits de soulignement</value>
+    <value>Remplacez les espaces dans le nom du fichier par des traits de soulignement</value>
     <comment>checkbox</comment>
   </data>
   <data name="Favorites_suspect" xml:space="preserve">

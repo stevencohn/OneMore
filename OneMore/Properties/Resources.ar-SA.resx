@@ -927,7 +927,7 @@
     <comment>dialog title</comment>
   </data>
   <data name="ExportDialog_underBox.Text" xml:space="preserve">
-    <value>استبدال الأحرف الخاصة في اسم الملف مع الشرطة السفلية</value>
+    <value>استبدل المسافات في اسم الملف بشرطات سفلية</value>
     <comment>checkbox</comment>
   </data>
   <data name="Favorites_suspect" xml:space="preserve">

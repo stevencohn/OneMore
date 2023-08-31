@@ -938,7 +938,7 @@ Total Row Font
     <comment>dialog title</comment>
   </data>
   <data name="ExportDialog_underBox.Text" xml:space="preserve">
-    <value>החלף תווים מיוחדים בשם הקובץ בקווים תחתונים</value>
+    <value>החלף רווחים בשם הקובץ בקווים תחתונים</value>
     <comment>checkbox</comment>
   </data>
   <data name="Favorites_suspect" xml:space="preserve">

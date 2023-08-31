@@ -105,7 +105,7 @@ namespace River.OneMoreAddIn.Commands
 
 					var title = useUnderscores
 						? PathHelper.CleanFileName(page.Title).Replace(' ', '_')
-						: page.Title;
+						: PathHelper.CleanFileName(page.Title);
 
 					var filename = Path.Combine(path, title + ext);
 
