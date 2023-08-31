@@ -28,8 +28,11 @@ namespace River.OneMoreAddIn.Commands
 		private const string RefreshStyle = "font-style:italic;font-size:9.0pt;color:#808080";
 		//private const string Indent8 = "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
 
+		private const int MinProgress = 25;
+
 		private OneNote one;
 		private Style cite;
+		private UI.ProgressDialog progress;
 
 
 		public InsertTocCommand()
@@ -360,7 +363,26 @@ namespace River.OneMoreAddIn.Commands
 			var elements = section.Elements(ns + "Page");
 			var index = 0;
 
-			BuildSectionToc(container, elements.ToArray(), ref index, 1, withPreviews);
+			var pageCount = elements.Count();
+			if (pageCount > MinProgress)
+			{
+				progress = new UI.ProgressDialog();
+				progress.SetMaximum(pageCount);
+				progress.Show();
+			}
+
+			try
+			{
+				BuildSectionToc(container, elements.ToArray(), ref index, 1, withPreviews);
+			}
+			finally
+			{
+				if (progress != null)
+				{
+					progress.Close();
+					progress.Dispose();
+				}
+			}
 
 			var title = page.Root.Elements(ns + "Title").First();
 			title.AddAfterSelf(new XElement(ns + "Outline", container));
@@ -408,6 +430,12 @@ namespace River.OneMoreAddIn.Commands
 				{
 					var link = one.GetHyperlink(pageID, string.Empty);
 					var name = element.Attribute("name").Value;
+
+					if (progress != null)
+					{
+						progress.SetMessage(name);
+						progress.Increment();
+					}
 
 					var text = withPreviews
 						? $"<a href=\"{link}\">{name}</a> {GetPagePreview(pageID, css)}"
@@ -495,7 +523,27 @@ namespace River.OneMoreAddIn.Commands
 
 			var container = new XElement(ns + "OEChildren");
 
-			BuildSectionTable(one, ns, container, notebook.Elements(), includePages, withPreviews, 1);
+			var pageCount = notebook.Descendants(ns + "Page").Count();
+			if (pageCount > MinProgress)
+			{
+				progress = new UI.ProgressDialog();
+				progress.SetMaximum(pageCount);
+				progress.Show();
+			}
+
+
+			try
+			{
+				BuildSectionTable(one, ns, container, notebook.Elements(), includePages, withPreviews, 1);
+			}
+			finally
+			{
+				if (progress != null)
+				{
+					progress.Close();
+					progress.Dispose();
+				}
+			}
 
 			var title = page.Root.Elements(ns + "Title").First();
 			title.AddAfterSelf(new XElement(ns + "Outline", container));
