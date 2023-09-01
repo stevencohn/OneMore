@@ -21,6 +21,7 @@ Begin
     $script:secmap = @{}
     $script:sitemap = $null
     $script:smns = $null
+    $script:writable = $true
 
     function MakeSiteMap
     {
@@ -122,7 +123,24 @@ Begin
 
         $source = Get-Content -Path $pageFile -Encoding utf8 -Raw
         $html = New-Object -Com 'HTMLFile'
-        $html.IHTMLDocument2_write($source)
+
+        try
+        {
+            if ($writable)
+            {
+                $html.IHTMLDocument2_write($source)
+            }
+            else
+            {
+                $html.write([System.Text.Encoding]::Unicode.GetBytes($source))
+            }
+        }
+        catch
+        {
+            $html.write([System.Text.Encoding]::Unicode.GetBytes($source))
+            $script:writable = $false
+        }
+
         $body = $html.all.tags('body')
 
         PatchSectionRefs $body
