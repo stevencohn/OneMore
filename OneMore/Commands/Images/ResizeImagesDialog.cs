@@ -370,11 +370,13 @@ namespace River.OneMoreAddIn.Commands
 
 			if (storageSize == 0 || !preserveBox.Checked)
 			{
-				storageSize = ((byte[])new ImageConverter().ConvertTo(preview, typeof(byte[]))).Length;
+				var bytes = ((byte[])new ImageConverter().ConvertTo(preview, typeof(byte[])));
+				storageSize = bytes.Length;
 				var size = storageSize.ToBytes(1);
 				storedSizeLabel.Text = size;
 
-				//logger.WriteTime($"estimated {ImageWidth} x {ImageHeight} = {size}");
+				var s64 = Convert.ToBase64String(bytes).Length;
+				logger.WriteTime($"estimated {ImageWidth} x {ImageHeight} = {size} bytes (base64 = {s64} bytes)");
 			}
 		}
 

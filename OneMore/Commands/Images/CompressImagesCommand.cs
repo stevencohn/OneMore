@@ -6,7 +6,7 @@ namespace River.OneMoreAddIn.Commands
 {
 	using System;
 	using System.Drawing;
-	using System.Drawing.Imaging;
+	using System.Globalization;
 	using System.IO;
 	using System.Linq;
 	using System.Threading.Tasks;
@@ -14,7 +14,8 @@ namespace River.OneMoreAddIn.Commands
 
 
 	/// <summary>
-	/// Compress images on page without losing quality, by converting PNG to JPEG
+	/// Compress images on page by resizing down to view width and height.
+	/// Quality will be compromised.
 	/// </summary>
 	internal class CompressImagesCommand : Command
 	{
@@ -44,26 +45,30 @@ namespace River.OneMoreAddIn.Commands
 					foreach (var element in elements)
 					{
 						// convert base64 to image
-						var dataElement = element.Element(ns + "Data");
-						var size = dataElement.Value.Length;
+						var data = element.Element(ns + "Data");
+						var dataLen = data.Value.Length;
 
-						var data = Convert.FromBase64String(dataElement.Value);
-						using var input = new MemoryStream(data, 0, data.Length);
+						var bytes = Convert.FromBase64String(data.Value);
+						using var input = new MemoryStream(bytes, 0, bytes.Length);
 						using var image = Image.FromStream(input);
 
-						if (image.GetSignature() != ImageSignature.JPG)
+						var size = element.Element(ns + "Size");
+						int viewWidth = (int)decimal.Parse(
+							size.Attribute("width").Value, CultureInfo.InvariantCulture);
+						int viewHeight = (int)decimal.Parse(
+							size.Attribute("height").Value, CultureInfo.InvariantCulture);
+
+						if (image.Width > viewWidth || image.Height > viewHeight)
 						{
-							// convert to JPG
-							using var output = new MemoryStream();
-							image.Save(output, ImageFormat.Jpeg);
-							using var jpg = Image.FromStream(output);
+							using var resized = image.Resize(viewWidth, viewHeight, false);
 
-							var value = jpg.ToBase64String();
-							if (value.Length < size)
+							var value = resized.ToBase64String();
+							if (value.Length < dataLen)
 							{
-								dataElement.Value = value;
+								logger.WriteLine($"compressed {dataLen} to {value.Length}");
+								data.Value = value;
 
-								delta += size - value.Length;
+								delta += dataLen - value.Length;
 								count++;
 							}
 						}

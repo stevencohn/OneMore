@@ -129,17 +129,21 @@ namespace River.OneMoreAddIn
 		/// <param name="height">The new height in pixels</param>
 		/// <param name="quality">The quality level; only applies if it is less than 100</param>
 		/// <returns></returns>
-		public static Image Resize(this Image image, int width, int height)
+		public static Image Resize(this Image image, int width, int height, bool highQuality = true)
 		{
 			var result = new Bitmap(width, height);
 			result.SetResolution(image.HorizontalResolution, image.VerticalResolution);
 
 			using var g = Graphics.FromImage(result);
 			g.CompositingMode = CompositingMode.SourceCopy;
-			g.CompositingQuality = CompositingQuality.HighQuality;
-			g.InterpolationMode = InterpolationMode.HighQualityBicubic;
-			g.SmoothingMode = SmoothingMode.HighQuality;
-			g.PixelOffsetMode = PixelOffsetMode.HighQuality;
+
+			if (highQuality)
+			{
+				g.CompositingQuality = CompositingQuality.HighQuality;
+				g.InterpolationMode = InterpolationMode.HighQualityBicubic;
+				g.SmoothingMode = SmoothingMode.HighQuality;
+				g.PixelOffsetMode = PixelOffsetMode.HighQuality;
+			}
 
 			using var attributes = new ImageAttributes();
 			attributes.SetWrapMode(WrapMode.TileFlipXY);
