@@ -4,6 +4,7 @@
 
 namespace River.OneMoreAddIn.Commands
 {
+	using Microsoft.Win32;
 	using River.OneMoreAddIn.Models;
 	using River.OneMoreAddIn.UI;
 	using System;
@@ -37,6 +38,9 @@ namespace River.OneMoreAddIn.Commands
 	/// </summary>
 	internal class ImportWebCommand : Command
 	{
+		private const string ClientKey = @"SOFTWARE\WOW6432Node\Microsoft\EdgeUpdate\Clients";
+		private const string RuntimeId = "{F3017226-FE2A-4295-8BDF-00C3A9A7E4C5}";
+
 		private sealed class WebPageInfo
 		{
 			public string Content;
@@ -59,6 +63,13 @@ namespace River.OneMoreAddIn.Commands
 			if (!HttpClientFactory.IsNetworkAvailable())
 			{
 				UIHelper.ShowInfo(Resx.NetwordConnectionUnavailable);
+				return;
+			}
+
+			var key = Registry.LocalMachine.OpenSubKey($"{ClientKey}\\{RuntimeId}");
+			if (key == null)
+			{
+				UIHelper.ShowError("Unable to use this command; Edge WebView2 is not installed");
 				return;
 			}
 

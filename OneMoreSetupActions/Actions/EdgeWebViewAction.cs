@@ -12,6 +12,7 @@ namespace OneMoreSetupActions
 	using System.IO;
 	using System.Linq;
 	using System.Net.Http;
+	using System.Net.NetworkInformation;
 	using System.Text.RegularExpressions;
 	using System.Threading;
 
@@ -55,8 +56,15 @@ namespace OneMoreSetupActions
 			Path.GetTempPath(),
 			Path.GetFileNameWithoutExtension(Path.GetRandomFileName()) + ".exe");
 
+			if (!IsNetworkAvailable())
+			{
+				logger.WriteLine("no internet connection; skipping WebView2 installation");
+				return SUCCESS;
+			}
+
 			if (!DownloadBootstrap(bootstrap))
 			{
+				logger.WriteLine("unable to download WebView2 bootstrap installer");
 				return FAILURE;
 			}
 
@@ -88,6 +96,40 @@ namespace OneMoreSetupActions
 			}
 
 			return SUCCESS;
+		}
+
+
+		private static bool IsNetworkAvailable()
+		{
+			// only recognizes changes related to Internet adapters
+			if (NetworkInterface.GetIsNetworkAvailable())
+			{
+				// however, this will include all adapters
+				var interfaces = NetworkInterface.GetAllNetworkInterfaces();
+				foreach (var face in interfaces)
+				{
+					// filter so we see only Internet adapters
+					if (face.OperationalStatus == OperationalStatus.Up)
+					{
+						if ((face.NetworkInterfaceType != NetworkInterfaceType.Tunnel) &&
+							(face.NetworkInterfaceType != NetworkInterfaceType.Loopback))
+						{
+							var statistics = face.GetIPv4Statistics();
+
+							// all testing seems to prove that once an interface comes online
+							// it has already accrued statistics for both received and sent...
+
+							if ((statistics.BytesReceived > 0) &&
+								(statistics.BytesSent > 0))
+							{
+								return true;
+							}
+						}
+					}
+				}
+			}
+
+			return false;
 		}
 
 
