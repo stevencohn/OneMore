@@ -143,15 +143,15 @@ namespace River.OneMoreAddIn
 
 
 
-		private (int, int) GetMachineProps()
+		private (uint, ulong) GetMachineProps()
 		{
-			static uint Query(string field, string table)
+			static T Query<T>(string field, string table)
 			{
-				uint value = 0;
+				T value = default(T);
 				using var searcher = new ManagementObjectSearcher($"select {field} from {table}");
 				foreach (var item in searcher.Get())
 				{
-					value = (uint)item[field];
+					value = (T)item[field];
 					item.Dispose();
 				}
 				return value;
@@ -160,13 +160,13 @@ namespace River.OneMoreAddIn
 			// using this as a means of short-circuiting the Ensure methods for slower machines
 			// to speed up the display of the menus. CurrentClockSpeed will vary depending on
 			// battery capacity and other factors, whereas MaxClockSpeed is a constant
-			var speed = Query("CurrentClockSpeed", "Win32_Processor");
+			var speed = Query<uint>("CurrentClockSpeed", "Win32_Processor");
 			if (speed == 0) speed = ReasonableClockSpeed;
 
-			// returns total RAM across all physical slots
-			var memory = Query("MaxCapacity", "Win32_PhysicalMemoryArray");
+			// returns total RAM across all physical slots; as KB so convert to bytes
+			var memory = Query<ulong>("MaxCapacityEx", "Win32_PhysicalMemoryArray") * 1024;
 
-			return ((int)speed, (int)memory);
+			return (speed, memory);
 		}
 
 

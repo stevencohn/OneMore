@@ -76,6 +76,15 @@ namespace River.OneMoreAddIn
 		}
 
 
+		public static string ToBytes(this ulong value, int decimalPlaces = 0)
+		{
+			var mag = (int)Math.Max(0, Math.Log(value, 1024));
+			var adjusted = Math.Round(value / Math.Pow(1024, mag), decimalPlaces);
+
+			return string.Format("{0} {1}", adjusted, SizeSuffixes[mag]);
+		}
+
+
 		// OneMore Extension >> convert int to roman numerals
 		public static string ToRoman(this int value)
 		{
