@@ -4,6 +4,7 @@
 
 namespace River.OneMoreAddIn.Commands
 {
+	using NStandard;
 	using River.OneMoreAddIn.Models;
 	using River.OneMoreAddIn.Styles;
 	using System;
@@ -25,10 +26,13 @@ namespace River.OneMoreAddIn.Commands
 		private const string LongDash = "\u2015";
 
 		private const string RefreshStyle = "font-style:italic;font-size:9.0pt;color:#808080";
-		private const string Indent8 = "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
+		//private const string Indent8 = "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
+
+		private const int MinProgress = 25;
 
 		private OneNote one;
 		private Style cite;
+		private UI.ProgressDialog progress;
 
 
 		public InsertTocCommand()
@@ -359,7 +363,26 @@ namespace River.OneMoreAddIn.Commands
 			var elements = section.Elements(ns + "Page");
 			var index = 0;
 
-			BuildSectionToc(container, elements.ToArray(), ref index, 1, withPreviews);
+			var pageCount = elements.Count();
+			if (pageCount > MinProgress)
+			{
+				progress = new UI.ProgressDialog();
+				progress.SetMaximum(pageCount);
+				progress.Show();
+			}
+
+			try
+			{
+				BuildSectionToc(container, elements.ToArray(), ref index, 1, withPreviews);
+			}
+			finally
+			{
+				if (progress != null)
+				{
+					progress.Close();
+					progress.Dispose();
+				}
+			}
 
 			var title = page.Root.Elements(ns + "Title").First();
 			title.AddAfterSelf(new XElement(ns + "Outline", container));
@@ -408,6 +431,12 @@ namespace River.OneMoreAddIn.Commands
 					var link = one.GetHyperlink(pageID, string.Empty);
 					var name = element.Attribute("name").Value;
 
+					if (progress != null)
+					{
+						progress.SetMessage(name);
+						progress.Increment();
+					}
+
 					var text = withPreviews
 						? $"<a href=\"{link}\">{name}</a> {GetPagePreview(pageID, css)}"
 						: $"<a href=\"{link}\">{name}</a>";
@@ -441,10 +470,31 @@ namespace River.OneMoreAddIn.Commands
 			logger.WriteLine($"page {page.Title}");
 
 			// sanitize the content, extracting only raw text and aggregating lines
-			var preview = outline.Descendants(ns + "T").Nodes().OfType<XCData>()
-				.Select(c => c.GetWrapper().Value).Aggregate((a, b) => $"{a} {b}");
+			var preview = outline.Descendants(ns + "T")?.Nodes().OfType<XCData>()
+				.Select(c => c.GetWrapper().Value).Aggregate(string.Empty, (a, b) => $"{a} {b}");
 
-			if (preview.Length > 80) { preview = preview.Substring(0, 80) + "..."; }
+			if (preview == null || preview.Length == 0)
+			{
+				return string.Empty;
+			}
+
+			if (preview.Length > 80)
+			{
+				preview = preview.Substring(0, 80);
+
+				// cheap HTML encoding...
+				if (preview.IndexOf('<') >= 0)
+				{
+					preview = preview.Replace("<", "&lt;");
+				}
+
+				if (preview.IndexOf('>') >= 0)
+				{
+					preview = preview.Replace(">", "&gt;");
+				}
+
+				preview = $"{preview}...";
+			}
 
 			return $"<span style=\"{css}\">{LongDash} {preview}</span>";
 		}
@@ -473,7 +523,27 @@ namespace River.OneMoreAddIn.Commands
 
 			var container = new XElement(ns + "OEChildren");
 
-			BuildSectionTable(one, ns, container, notebook.Elements(), includePages, withPreviews, 1);
+			var pageCount = notebook.Descendants(ns + "Page").Count();
+			if (pageCount > MinProgress)
+			{
+				progress = new UI.ProgressDialog();
+				progress.SetMaximum(pageCount);
+				progress.Show();
+			}
+
+
+			try
+			{
+				BuildSectionTable(one, ns, container, notebook.Elements(), includePages, withPreviews, 1);
+			}
+			finally
+			{
+				if (progress != null)
+				{
+					progress.Close();
+					progress.Dispose();
+				}
+			}
 
 			var title = page.Root.Elements(ns + "Title").First();
 			title.AddAfterSelf(new XElement(ns + "Outline", container));
@@ -514,6 +584,8 @@ namespace River.OneMoreAddIn.Commands
 
 					indent.Add(new XElement(ns + "OE",
 						new XElement(ns + "T",
+							// this is a Folder icon... but doesn't look great
+							// <span style='font-family:Segoe UI Emoji'>&#128194; </span>
 							new XCData($"<span style='font-weight:bold'>{name}</span>"))
 						));
 
@@ -521,7 +593,6 @@ namespace River.OneMoreAddIn.Commands
 						one, ns, indent, element.Elements(), includePages, withPreviews, level + 1);
 
 					container.Add(
-						new XElement(ns + "OE", new XElement(ns + "T", new XCData(string.Empty))),
 						new XElement(ns + "OE", indent)
 						);
 				}
@@ -541,14 +612,14 @@ namespace River.OneMoreAddIn.Commands
 						BuildSectionToc(indent, pages.ToArray(), ref index, 1, withPreviews);
 
 						container.Add(new XElement(ns + "OE",
-							new XElement(ns + "T", new XCData($"<a href=\"{link}\">{name}</a>")),
+							new XElement(ns + "T", new XCData($"§ <a href=\"{link}\">{name}</a>")),
 							indent
 							));
 					}
 					else
 					{
 						container.Add(new XElement(ns + "OE",
-							new XElement(ns + "T", new XCData($"<a href=\"{link}\">{name}</a>")
+							new XElement(ns + "T", new XCData($"§ <a href=\"{link}\">{name}</a>")
 							)));
 					}
 				}

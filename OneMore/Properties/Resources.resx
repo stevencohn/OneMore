@@ -498,6 +498,14 @@ OneNote will close automatically</value>
     <value>Context Menu</value>
     <comment>sheet</comment>
   </data>
+  <data name="ConvertImagesCommand_Converted" xml:space="preserve">
+    <value>Compress {0} images, saving {1} bytes</value>
+    <comment>messagebox</comment>
+  </data>
+  <data name="ConvertImagesCommand_NoImages" xml:space="preserve">
+    <value>Found no images to compress</value>
+    <comment>messagebox</comment>
+  </data>
   <data name="CopyAsMarkdownCommand_copied" xml:space="preserve">
     <value>Copied markdown</value>
     <comment>message box</comment>
@@ -938,7 +946,7 @@ OneNote File (*.one)</value>
     <comment>dialog title</comment>
   </data>
   <data name="ExportDialog_underBox.Text" xml:space="preserve">
-    <value>Replace special characters in the file name with underscores</value>
+    <value>Replace spaces in the file name with underscores</value>
     <comment>checkbox</comment>
   </data>
   <data name="Favorites_suspect" xml:space="preserve">
@@ -1343,7 +1351,7 @@ Symbols: PI, E</value>
     <comment>message</comment>
   </data>
   <data name="InsertSnippets_CouldNotLoad" xml:space="preserve">
-    <value>Cloud not load snippet from "{0}"</value>
+    <value>Could not load snippet from "{0}"</value>
     <comment>error message</comment>
   </data>
   <data name="InsertTocCommand_NoHeadings" xml:space="preserve">
@@ -2339,6 +2347,10 @@ Do no enlarge smaller images</value>
     <value>Preset</value>
     <comment>radio</comment>
   </data>
+  <data name="ResizeImagesDialog_previewGroup.Text" xml:space="preserve">
+    <value>Preview {0}</value>
+    <comment>group box for single image</comment>
+  </data>
   <data name="ResizeImagesDialog_resetLinkLabel.Text" xml:space="preserve">
     <value>Reset values</value>
     <comment>link label</comment>
@@ -2584,6 +2596,14 @@ Polaroid</value>
   <data name="ribCompleteReminderButton_Screentip" xml:space="preserve">
     <value>Mark the paragraph reminder as complete</value>
     <comment>ribbon reminders</comment>
+  </data>
+  <data name="ribCompressImagesButton_Label" xml:space="preserve">
+    <value>Compress Images</value>
+    <comment>ribbon images</comment>
+  </data>
+  <data name="ribCompressImagesButton_Screentip" xml:space="preserve">
+    <value>Compress images by converting PNG to JPG</value>
+    <comment>ribbon images</comment>
   </data>
   <data name="ribCopyAcrossButton_Label" xml:space="preserve">
     <value>Copy Across</value>
@@ -2868,6 +2888,14 @@ Polaroid</value>
   <data name="ribHighlightFormulaButton_Screentip" xml:space="preserve">
     <value>High cells with formula in current table</value>
     <comment>ribbon table</comment>
+  </data>
+  <data name="ribHighlightLastButton_Label" xml:space="preserve">
+    <value>Highlight text with most recent highlighter</value>
+    <comment>ribbon edit</comment>
+  </data>
+  <data name="ribHighlightNoneButton_Label" xml:space="preserve">
+    <value>Remove highlighting</value>
+    <comment>ribbon edit</comment>
   </data>
   <data name="ribImagesMenu_Label" xml:space="preserve">
     <value>Images</value>

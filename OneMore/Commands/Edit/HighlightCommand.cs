@@ -6,6 +6,7 @@ namespace River.OneMoreAddIn.Commands
 {
 	using River.OneMoreAddIn.Models;
 	using River.OneMoreAddIn.Settings;
+	using River.OneMoreAddIn.Styles;
 	using System.Globalization;
 	using System.Threading.Tasks;
 	using System.Xml.Linq;
@@ -24,6 +25,8 @@ namespace River.OneMoreAddIn.Commands
 
 		public override async Task Execute(params object[] args)
 		{
+			var increment = (int)args[0];
+
 			using var one = new OneNote(out var page, out var ns);
 			var updated = false;
 			var index = 0;
@@ -31,14 +34,15 @@ namespace River.OneMoreAddIn.Commands
 			var meta = page.GetMetaContent(MetaNames.HighlightIndex);
 			if (meta != null)
 			{
-				if (int.TryParse(meta, out index))
+				if (int.TryParse(meta, out index) && increment > 0)
 				{
 					index = index < 4 ? index + 1 : 0;
 				}
 			}
 
-			var dark = page.GetPageColor(out _, out _).GetBrightness() < 0.5;
-			var color = GetColor(index, dark);
+			var color = increment < 0
+				? StyleBase.Transparent
+				: GetColor(index, page.GetPageColor(out _, out _).GetBrightness() < 0.5);
 
 			updated = page.EditSelected((s) =>
 			{
@@ -60,7 +64,11 @@ namespace River.OneMoreAddIn.Commands
 
 			if (updated)
 			{
-				page.SetMeta(MetaNames.HighlightIndex, index.ToString(CultureInfo.InvariantCulture));
+				if (increment > 0)
+				{
+					page.SetMeta(MetaNames.HighlightIndex, index.ToString(CultureInfo.InvariantCulture));
+				}
+
 				await one.Update(page);
 			}
 		}

@@ -77,7 +77,7 @@ namespace River.OneMoreAddIn.Commands
 			var colorizer = new Colorizer(
 				key,
 				theme,
-				automatic || (black && theme == "dark"));
+				automatic); // || (black && theme == "dark"));
 
 			if (fontOverride)
 			{

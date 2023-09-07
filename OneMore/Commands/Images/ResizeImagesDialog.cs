@@ -108,6 +108,9 @@ namespace River.OneMoreAddIn.Commands
 
 			scaling = new MagicScaling(image.HorizontalResolution, image.VerticalResolution);
 
+			previewGroup.Text = string.Format(
+				Resx.ResizeImagesDialog_previewGroup_Text, image.GetSignature());
+
 			LoadSettings(true);
 			DrawPreview();
 		}
@@ -189,6 +192,10 @@ namespace River.OneMoreAddIn.Commands
 			if (!oneImage)
 			{
 				limitsBox.SelectedIndex = collection.Get("limits", 0);
+				if (limitsBox.SelectedIndex < 0)
+				{
+					limitsBox.SelectedIndex = 0;
+				}
 			}
 
 			opacityBox.Value = collection.Get("opacity", 100);
@@ -363,11 +370,13 @@ namespace River.OneMoreAddIn.Commands
 
 			if (storageSize == 0 || !preserveBox.Checked)
 			{
-				storageSize = ((byte[])new ImageConverter().ConvertTo(preview, typeof(byte[]))).Length;
+				var bytes = ((byte[])new ImageConverter().ConvertTo(preview, typeof(byte[])));
+				storageSize = bytes.Length;
 				var size = storageSize.ToBytes(1);
 				storedSizeLabel.Text = size;
 
-				//logger.WriteTime($"estimated {ImageWidth} x {ImageHeight} = {size}");
+				var s64 = Convert.ToBase64String(bytes).Length;
+				logger.WriteTime($"estimated {ImageWidth} x {ImageHeight} = {size} bytes (base64 = {s64} bytes)");
 			}
 		}
 
@@ -701,7 +710,7 @@ namespace River.OneMoreAddIn.Commands
 
 			collection.Add("mruWidth", (int)presetBox.Value);
 
-			if (limitsBox.Items.Count > 0)
+			if (limitsBox.Items.Count > 0 && limitsBox.SelectedIndex >= 0)
 			{
 				collection.Add("limits", limitsBox.SelectedIndex);
 			}

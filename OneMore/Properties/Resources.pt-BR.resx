@@ -488,6 +488,14 @@ OneNote fechará automaticamente</value>
     <value>Menu contextual</value>
     <comment>sheet</comment>
   </data>
+  <data name="ConvertImagesCommand_Converted" xml:space="preserve">
+    <value>Compactar {0} imagens, economizando {1} bytes</value>
+    <comment>messagebox</comment>
+  </data>
+  <data name="ConvertImagesCommand_NoImages" xml:space="preserve">
+    <value>Não foram encontradas imagens para compactar</value>
+    <comment>messagebox</comment>
+  </data>
   <data name="CopyAsMarkdownCommand_copied" xml:space="preserve">
     <value>Remarcação copiada</value>
     <comment>message box</comment>
@@ -928,7 +936,7 @@ Arquivo OneNote (* .one)</value>
     <comment>dialog title</comment>
   </data>
   <data name="ExportDialog_underBox.Text" xml:space="preserve">
-    <value>Substitua caracteres especiais no nome do arquivo com sublinhados</value>
+    <value>Substitua espaços no nome do arquivo por sublinhados</value>
     <comment>checkbox</comment>
   </data>
   <data name="Favorites_suspect" xml:space="preserve">
@@ -2305,6 +2313,10 @@ Não amplie imagens menores</value>
     <value>Preset</value>
     <comment>radio</comment>
   </data>
+  <data name="ResizeImagesDialog_previewGroup.Text" xml:space="preserve">
+    <value>Pré-visualização {0}</value>
+    <comment>group box for single image</comment>
+  </data>
   <data name="ResizeImagesDialog_resetLinkLabel.Text" xml:space="preserve">
     <value>Redefinir valores</value>
     <comment>link label</comment>
@@ -2548,6 +2560,14 @@ Polaroid.</value>
   <data name="ribCompleteReminderButton_Screentip" xml:space="preserve">
     <value>Marque o lembrete de parágrafo como completo</value>
     <comment>ribbon reminders</comment>
+  </data>
+  <data name="ribCompressImagesButton_Label" xml:space="preserve">
+    <value>Compactar imagens</value>
+    <comment>ribbon images</comment>
+  </data>
+  <data name="ribCompressImagesButton_Screentip" xml:space="preserve">
+    <value>Compacte imagens convertendo PNG em JPG</value>
+    <comment>ribbon images</comment>
   </data>
   <data name="ribCopyAcrossButton_Label" xml:space="preserve">
     <value>Copiar</value>
@@ -2832,6 +2852,14 @@ Polaroid.</value>
   <data name="ribHighlightFormulaButton_Screentip" xml:space="preserve">
     <value>Células altas com fórmula na tabela atual</value>
     <comment>Ribbon OneMore menu item, Formula...</comment>
+  </data>
+  <data name="ribHighlightLastButton_Label" xml:space="preserve">
+    <value>Destaque o texto com o marcador mais recente</value>
+    <comment>ribbon edit</comment>
+  </data>
+  <data name="ribHighlightNoneButton_Label" xml:space="preserve">
+    <value>Remover realce</value>
+    <comment>ribbon edit</comment>
   </data>
   <data name="ribImagesMenu_Label" xml:space="preserve">
     <value>Imagens</value>

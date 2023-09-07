@@ -484,6 +484,14 @@
     <value>Menu contextuel</value>
     <comment>sheet</comment>
   </data>
+  <data name="ConvertImagesCommand_Converted" xml:space="preserve">
+    <value>Compressez {0} images, économisant ainsi {1} octets</value>
+    <comment>messagebox</comment>
+  </data>
+  <data name="ConvertImagesCommand_NoImages" xml:space="preserve">
+    <value>Aucune image à compresser trouvée</value>
+    <comment>messagebox</comment>
+  </data>
   <data name="CopyAsMarkdownCommand_copied" xml:space="preserve">
     <value>Markdown copié</value>
     <comment>message box</comment>
@@ -924,7 +932,7 @@ Fichier OneNote (*.one)</value>
     <comment>dialog title</comment>
   </data>
   <data name="ExportDialog_underBox.Text" xml:space="preserve">
-    <value>Remplacez les caractères spéciaux dans le nom du fichier avec des traits de soulignement</value>
+    <value>Remplacez les espaces dans le nom du fichier par des traits de soulignement</value>
     <comment>checkbox</comment>
   </data>
   <data name="Favorites_suspect" xml:space="preserve">
@@ -2300,6 +2308,10 @@ Ne pas agrandir les petites images</value>
     <value>Préréglage</value>
     <comment>radio</comment>
   </data>
+  <data name="ResizeImagesDialog_previewGroup.Text" xml:space="preserve">
+    <value>Aperçu {0}</value>
+    <comment>group box for single image</comment>
+  </data>
   <data name="ResizeImagesDialog_resetLinkLabel.Text" xml:space="preserve">
     <value>Réinitialiser les valeurs</value>
     <comment>link label</comment>
@@ -2543,6 +2555,14 @@ Polaroïd</value>
   <data name="ribCompleteReminderButton_Screentip" xml:space="preserve">
     <value>Marquer le rappel de paragraphe comme terminé</value>
     <comment>ribbon reminders</comment>
+  </data>
+  <data name="ribCompressImagesButton_Label" xml:space="preserve">
+    <value>Compresser les images</value>
+    <comment>ribbon images</comment>
+  </data>
+  <data name="ribCompressImagesButton_Screentip" xml:space="preserve">
+    <value>Compresser les images en convertissant PNG en JPG</value>
+    <comment>ribbon images</comment>
   </data>
   <data name="ribCopyAcrossButton_Label" xml:space="preserve">
     <value>Copier à travers</value>
@@ -2827,6 +2847,14 @@ Polaroïd</value>
   <data name="ribHighlightFormulaButton_Screentip" xml:space="preserve">
     <value>Cellules hautes avec formule dans le tableau actuel</value>
     <comment>Ribbon OneMore menu item, Formula...</comment>
+  </data>
+  <data name="ribHighlightLastButton_Label" xml:space="preserve">
+    <value>Surligner le texte avec le surligneur le plus récent</value>
+    <comment>ribbon edit</comment>
+  </data>
+  <data name="ribHighlightNoneButton_Label" xml:space="preserve">
+    <value>Supprimer la surbrillance</value>
+    <comment>ribbon edit</comment>
   </data>
   <data name="ribImagesMenu_Label" xml:space="preserve">
     <value>Images</value>

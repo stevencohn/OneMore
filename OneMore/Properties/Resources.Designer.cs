@@ -1024,6 +1024,24 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Compress {0} images, saving {1} bytes.
+        /// </summary>
+        internal static string ConvertImagesCommand_Converted {
+            get {
+                return ResourceManager.GetString("ConvertImagesCommand_Converted", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Found no images to compress.
+        /// </summary>
+        internal static string ConvertImagesCommand_NoImages {
+            get {
+                return ResourceManager.GetString("ConvertImagesCommand_NoImages", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap Copy {
@@ -2194,7 +2212,7 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Replace special characters in the file name with underscores.
+        ///   Looks up a localized string similar to Replace spaces in the file name with underscores.
         /// </summary>
         internal static string ExportDialog_underBox_Text {
             get {
@@ -3233,7 +3251,7 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Cloud not load snippet from &quot;{0}&quot;.
+        ///   Looks up a localized string similar to Could not load snippet from &quot;{0}&quot;.
         /// </summary>
         internal static string InsertSnippets_CouldNotLoad {
             get {
@@ -5621,6 +5639,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Preview {0}.
+        /// </summary>
+        internal static string ResizeImagesDialog_previewGroup_Text {
+            get {
+                return ResourceManager.GetString("ResizeImagesDialog_previewGroup.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Reset values.
         /// </summary>
         internal static string ResizeImagesDialog_resetLinkLabel_Text {
@@ -6210,6 +6237,24 @@ namespace River.OneMoreAddIn.Properties {
         internal static string ribCompleteReminderButton_Screentip {
             get {
                 return ResourceManager.GetString("ribCompleteReminderButton_Screentip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Compress Images.
+        /// </summary>
+        internal static string ribCompressImagesButton_Label {
+            get {
+                return ResourceManager.GetString("ribCompressImagesButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Compress images by converting PNG to JPG.
+        /// </summary>
+        internal static string ribCompressImagesButton_Screentip {
+            get {
+                return ResourceManager.GetString("ribCompressImagesButton_Screentip", resourceCulture);
             }
         }
         
@@ -6849,6 +6894,24 @@ namespace River.OneMoreAddIn.Properties {
         internal static string ribHighlightFormulaButton_Screentip {
             get {
                 return ResourceManager.GetString("ribHighlightFormulaButton_Screentip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Highlight text with most recent highlighter.
+        /// </summary>
+        internal static string ribHighlightLastButton_Label {
+            get {
+                return ResourceManager.GetString("ribHighlightLastButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Remove highlighting.
+        /// </summary>
+        internal static string ribHighlightNoneButton_Label {
+            get {
+                return ResourceManager.GetString("ribHighlightNoneButton_Label", resourceCulture);
             }
         }
         

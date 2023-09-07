@@ -12,6 +12,17 @@ namespace River.OneMoreAddIn
 	using System.Linq;
 
 
+	internal enum ImageSignature
+	{
+		Unknown,
+		BMP,
+		GIF,
+		JPG,
+		PNG,
+		TIFF
+	}
+
+
 	internal static class ImageExtensions
 	{
 
@@ -48,6 +59,28 @@ namespace River.OneMoreAddIn
 			}
 
 			return 100;
+		}
+
+		
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="img"></param>
+		/// <returns></returns>
+		public static ImageSignature GetSignature(this Image img)
+		{
+			if (img.RawFormat.Equals(ImageFormat.Jpeg))
+				return ImageSignature.JPG;
+			if (img.RawFormat.Equals(ImageFormat.Bmp))
+				return ImageSignature.BMP;
+			if (img.RawFormat.Equals(ImageFormat.Png))
+				return ImageSignature.PNG;
+			if (img.RawFormat.Equals(ImageFormat.Gif))
+				return ImageSignature.GIF;
+			if (img.RawFormat.Equals(ImageFormat.Tiff))
+				return ImageSignature.TIFF;
+
+			return ImageSignature.Unknown;
 		}
 
 
@@ -96,17 +129,21 @@ namespace River.OneMoreAddIn
 		/// <param name="height">The new height in pixels</param>
 		/// <param name="quality">The quality level; only applies if it is less than 100</param>
 		/// <returns></returns>
-		public static Image Resize(this Image image, int width, int height)
+		public static Image Resize(this Image image, int width, int height, bool highQuality = true)
 		{
 			var result = new Bitmap(width, height);
 			result.SetResolution(image.HorizontalResolution, image.VerticalResolution);
 
 			using var g = Graphics.FromImage(result);
 			g.CompositingMode = CompositingMode.SourceCopy;
-			g.CompositingQuality = CompositingQuality.HighQuality;
-			g.InterpolationMode = InterpolationMode.HighQualityBicubic;
-			g.SmoothingMode = SmoothingMode.HighQuality;
-			g.PixelOffsetMode = PixelOffsetMode.HighQuality;
+
+			if (highQuality)
+			{
+				g.CompositingQuality = CompositingQuality.HighQuality;
+				g.InterpolationMode = InterpolationMode.HighQualityBicubic;
+				g.SmoothingMode = SmoothingMode.HighQuality;
+				g.PixelOffsetMode = PixelOffsetMode.HighQuality;
+			}
 
 			using var attributes = new ImageAttributes();
 			attributes.SetWrapMode(WrapMode.TileFlipXY);
@@ -271,6 +308,20 @@ namespace River.OneMoreAddIn
 				Matrix33 = 1.0f,
 				Matrix44 = 1.0f
 			});
+		}
+
+
+		/// <summary>
+		/// OneMore Extension >> Convert the given (png) image to jpeg format and serialize
+		/// as a base64 string.
+		/// </summary>
+		/// <param name="image"></param>
+		/// <returns></returns>
+		public static string ToBase64Jpeg(this Image image)
+		{
+			using var jstream = new MemoryStream();
+			image.Save(jstream, ImageFormat.Jpeg);
+			return Image.FromStream(jstream).ToBase64String();
 		}
 
 

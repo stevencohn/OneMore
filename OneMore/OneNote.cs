@@ -13,7 +13,6 @@ namespace River.OneMoreAddIn
 	using System.Collections.Generic;
 	using System.IO;
 	using System.Linq;
-	using System.Linq.Expressions;
 	using System.Runtime.InteropServices;
 	using System.Text;
 	using System.Text.RegularExpressions;
@@ -1316,18 +1315,35 @@ namespace River.OneMoreAddIn
 		/// <returns>An hierarchy of pages whose content matches the search string</returns>
 		public XElement Search(string nodeId, string query, bool unindexed = false)
 		{
-			onenote.FindPages(nodeId, query, out var xml, unindexed, false, XMLSchema.xs2013);
+			// Windows Search doesn't handle symbols well
+			query = Regex.Replace(query, @"[\p{P}<>$^=+]", String.Empty).Trim();
 
-			var results = XElement.Parse(xml);
+			if (query.IsNullOrEmpty())
+			{
+				logger.WriteLine("search string is empty after filtering symbols");
+				return new XElement("empty");
+			}
 
-			// remove recyclebin nodes
-			results.Descendants()
-				.Where(n => n.Name.LocalName == "UnfiledNotes" ||
-							n.Attribute("isRecycleBin") != null ||
-							n.Attribute("isInRecycleBin") != null)
-				.Remove();
+			try
+			{
+				onenote.FindPages(nodeId, query, out var xml, unindexed, false, XMLSchema.xs2013);
 
-			return results;
+				var results = XElement.Parse(xml);
+
+				// remove recyclebin nodes
+				results.Descendants()
+					.Where(n => n.Name.LocalName == "UnfiledNotes" ||
+								n.Attribute("isRecycleBin") != null ||
+								n.Attribute("isInRecycleBin") != null)
+					.Remove();
+
+				return results;
+			}
+			catch (Exception exc)
+			{
+				logger.WriteLine($"error searching for /{query}/", exc);
+				return new XElement("empty");
+			}
 		}
 
 

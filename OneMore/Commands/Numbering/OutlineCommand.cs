@@ -4,6 +4,7 @@
 
 namespace River.OneMoreAddIn.Commands
 {
+	using NStandard;
 	using River.OneMoreAddIn.Models;
 	using System.Collections.Generic;
 	using System.Linq;
@@ -153,7 +154,16 @@ namespace River.OneMoreAddIn.Commands
 
 		private void PrefixHeader(XElement root, bool numeric, int level, int counter, string prefix)
 		{
-			var cdata = root.Element(ns + "T").GetCData();
+			// text cursor might be inside header so find first non-empty text run
+			var cdata = root.Elements(ns + "T")
+				.Select(t => t.GetCData())
+				.FirstOrDefault(c => !string.IsNullOrWhiteSpace(c.Value));
+
+			if (string.IsNullOrWhiteSpace(cdata?.Value))
+			{
+				return;
+			}
+
 			var wrapper = cdata.GetWrapper();
 			var text = wrapper.DescendantNodes().OfType<XText>().First();
 

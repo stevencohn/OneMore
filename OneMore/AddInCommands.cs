@@ -20,7 +20,7 @@ namespace River.OneMoreAddIn
 			=> await factory.Run<AboutCommand>();
 
 
-		[Command("ribAddCaptionButton_Label", Keys.None)]
+		[Command("ribAddCaptionButton_Label", Keys.None, "ribImagesMenu")]
 		public async Task AddCaptionCmd(IRibbonControl control)
 			=> await factory.Run<AddCaptionCommand>();
 
@@ -190,6 +190,11 @@ namespace River.OneMoreAddIn
 			=> await factory.Run<CompleteReminderCommand>();
 
 
+		[Command("ribCompressImagesButton_Label", Keys.None, "ribImagesMenu")]
+		public async Task CompressImagesCmd(IRibbonControl control)
+			=> await factory.Run<CompressImagesCommand>();
+
+
 		[Command("ribCopyAcrossButton_Label", Keys.None, "ribTableMenu")]
 		public async Task CopyAcrossCmd(IRibbonControl control)
 			=> await factory.Run<FillCellsCommand>(FillCells.CopyAcross);
@@ -265,7 +270,7 @@ namespace River.OneMoreAddIn
 			=> await factory.Run<ProofingCommand>(ProofingCommand.NoLang);
 
 
-		[Command("ribPlantUmlButton_Label", Keys.None)]
+		[Command("ribPlantUmlButton_Label", Keys.None, "ribImagesMenu")]
 		public async Task PlantUmlCmd(IRibbonControl control)
 			=> await factory.Run<PlantUmlCommand>();
 
@@ -356,7 +361,17 @@ namespace River.OneMoreAddIn
 
 		[Command("ribHighlightButton_Label", Keys.Control | Keys.Shift | Keys.H, "ribEditMenu")]
 		public async Task HighlightCmd(IRibbonControl control)
-			=> await factory.Run<HighlightCommand>();
+			=> await factory.Run<HighlightCommand>(1);
+
+
+		[Command("ribHighlightLastButton_Label", Keys.Control | Keys.Shift | Keys.J, "ribEditMenu")]
+		public async Task HighlightLastCmd(IRibbonControl control)
+			=> await factory.Run<HighlightCommand>(0);
+
+
+		[Command("ribHighlightNoneButton_Label", Keys.Control | Keys.Shift | Keys.D0, "ribEditMenu")]
+		public async Task HighlightNoneCmd(IRibbonControl control)
+			=> await factory.Run<HighlightCommand>(-1);
 
 
 		[Command("ribHighlightFormulaButton_Label", Keys.None, "ribTableMenu")]
@@ -563,7 +578,7 @@ namespace River.OneMoreAddIn
 			=> await factory.Run<NumberSectionsCommand>();
 
 
-		[Command("ribOpenImageWithButton_Label", Keys.None)]
+		[Command("ribOpenImageWithButton_Label", Keys.None, "ribImagesMenu")]
 		public async Task OpenImageWithCmd(IRibbonControl control)
 			=> await factory.Run<OpenImageWithCommand>();
 
@@ -688,7 +703,7 @@ namespace River.OneMoreAddIn
 			=> await factory.Run<ReportRemindersCommand>();
 
 
-		[Command("ribResizeImagesButton_Label", Keys.None)]
+		[Command("ribResizeImagesButton_Label", Keys.None, "ribImagesMenu")]
 		public async Task ResizeImagesCmd(IRibbonControl control)
 			=> await factory.Run<ResizeImagesCommand>();
 
