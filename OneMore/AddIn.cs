@@ -74,6 +74,8 @@ namespace River.OneMoreAddIn
 				$"Office {Office.GetOfficeVersion()}, " +
 				DateTime.Now.ToString("yyyy-MM-dd HH:mm"));
 
+			logger.WriteLine(Commands.DiagnosticsCommand.GetWindowsProductName());
+
 			var hostproc = Process.GetProcessesByName("ONENOTE");
 			if (hostproc.Length > 0)
 			{
