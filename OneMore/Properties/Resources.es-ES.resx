@@ -2853,7 +2853,7 @@ polaroid</value>
     <comment>Ribbon OneMore menu item, Formula...</comment>
   </data>
   <data name="ribHighlightLastButton_Label" xml:space="preserve">
-    <value>Resaltar texto con el resaltador más reciente</value>
+    <value>Repetir el color del resaltador giratorio</value>
     <comment>ribbon edit</comment>
   </data>
   <data name="ribHighlightNoneButton_Label" xml:space="preserve">

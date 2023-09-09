@@ -2854,11 +2854,11 @@ Polaroid</value>
     <comment>Ribbon OneMore menu item, Formula...</comment>
   </data>
   <data name="ribHighlightLastButton_Label" xml:space="preserve">
-    <value>Markeer tekst met de meest recente markeerstift</value>
+    <value>Herhaal de roterende markeerstiftkleur</value>
     <comment>ribbon edit</comment>
   </data>
   <data name="ribHighlightNoneButton_Label" xml:space="preserve">
-    <value>Markeringen verwijderen</value>
+    <value>Markering verwijderen</value>
     <comment>ribbon edit</comment>
   </data>
   <data name="ribImagesMenu_Label" xml:space="preserve">

@@ -6898,7 +6898,7 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Highlight text with most recent highlighter.
+        ///   Looks up a localized string similar to Repeat Rotating Highlighter Color.
         /// </summary>
         internal static string ribHighlightLastButton_Label {
             get {
@@ -6907,7 +6907,7 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Remove highlighting.
+        ///   Looks up a localized string similar to Remove Highlighting.
         /// </summary>
         internal static string ribHighlightNoneButton_Label {
             get {

@@ -2857,7 +2857,7 @@ ISO-code then comma then language name</comment>
     <comment>Ribbon OneMore menu item, Formula...</comment>
   </data>
   <data name="ribHighlightLastButton_Label" xml:space="preserve">
-    <value>使用最新的荧光笔突出显示文本</value>
+    <value>重复旋转荧光笔颜色</value>
     <comment>ribbon edit</comment>
   </data>
   <data name="ribHighlightNoneButton_Label" xml:space="preserve">

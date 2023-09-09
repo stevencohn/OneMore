@@ -2849,7 +2849,7 @@ Polaroid</value>
     <comment>Ribbon OneMore menu item, Formula...</comment>
   </data>
   <data name="ribHighlightLastButton_Label" xml:space="preserve">
-    <value>Markieren Sie Text mit dem neuesten Textmarker</value>
+    <value>Wiederholen Sie die rotierende Textmarkerfarbe</value>
     <comment>ribbon edit</comment>
   </data>
   <data name="ribHighlightNoneButton_Label" xml:space="preserve">

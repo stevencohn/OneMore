@@ -2853,11 +2853,11 @@ ISO-code then comma then language name</comment>
     <comment>Ribbon OneMore menu item, Formula...</comment>
   </data>
   <data name="ribHighlightLastButton_Label" xml:space="preserve">
-    <value>قم بتمييز النص بأحدث قلم تمييز</value>
+    <value>كرر لون قلم التمييز الدوار</value>
     <comment>ribbon edit</comment>
   </data>
   <data name="ribHighlightNoneButton_Label" xml:space="preserve">
-    <value>إزالة التظليل</value>
+    <value>إزالة التمييز</value>
     <comment>ribbon edit</comment>
   </data>
   <data name="ribImagesMenu_Label" xml:space="preserve">
