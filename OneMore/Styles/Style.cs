@@ -89,38 +89,47 @@ namespace River.OneMoreAddIn.Styles
 				if (key.Equals("font-family") && !found.Contains(key))
 				{
 					FontFamily = FormatFontFamily(val);
+					found.Add(key);
 				}
 				else if (key.Equals("font-size") && !found.Contains(key))
 				{
 					fontSize = ParseFontSize(val);
+					found.Add(key);
 				}
 				else if (key.Equals("color") && !found.Contains(key))
 				{
 					Color = FormatColor(val);
+					found.Add(key);
 				}
 				else if (key.Equals("background") && !found.Contains(key))
 				{
 					Highlight = FormatColor(val);
+					found.Add(key);
 				}
 				else if (key.Equals("spaceBefore") && !found.Contains(key))
 				{
 					spaceBefore = ParseSpace(val);
+					found.Add(key);
 				}
 				else if (key.Equals("spaceAfter") && !found.Contains(key))
 				{
 					spaceAfter = ParseSpace(val);
+					found.Add(key);
 				}
 				else if (key.Equals("spacing") && !found.Contains(key))
 				{
 					spacing = ParseSpace(val);
+					found.Add(key);
 				}
 				else if (key.Equals("font-style") && !found.Contains(key))
 				{
 					IsItalic = true; // presume style is 'italic'
+					found.Add(key);
 				}
 				else if (key.Equals("font-weight") && !found.Contains(key))
 				{
 					IsBold = true; // presume style is 'bold'
+					found.Add(key);
 				}
 				else if (key.Equals("text-decoration"))
 				{
