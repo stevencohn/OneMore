@@ -226,6 +226,10 @@
     </Compile>
     <Compile Include="Commands\Tables\TableThemePainter.cs" />
     <Compile Include="Commands\Tagging\Hashtag.cs" />
+    <Compile Include="Commands\Tagging\HashtagPageScanner.cs" />
+    <Compile Include="Commands\Tagging\HashtagPageScannerFactory.cs" />
+    <Compile Include="Commands\Tagging\HashtagProvider.cs" />
+    <Compile Include="Commands\Tagging\HashtagScanner.cs" />
     <Compile Include="Helpers\ColorHelper.cs" />
     <Compile Include="Helpers\Extensions\FontFamilyExtensions.cs" />
     <Compile Include="Helpers\Extensions\GraphicsExtensions.cs" />
@@ -1538,6 +1542,9 @@
     </PackageReference>
     <PackageReference Include="Newtonsoft.Json">
       <Version>13.0.2</Version>
+    </PackageReference>
+    <PackageReference Include="System.Data.SQLite">
+      <Version>1.0.118</Version>
     </PackageReference>
     <PackageReference Include="System.Net.Http">
       <Version>4.3.4</Version>
