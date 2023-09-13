@@ -225,6 +225,7 @@
       <DependentUpon>EditTableThemesDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="Commands\Tables\TableThemePainter.cs" />
+    <Compile Include="Commands\Tagging\Hashtag.cs" />
     <Compile Include="Helpers\ColorHelper.cs" />
     <Compile Include="Helpers\Extensions\FontFamilyExtensions.cs" />
     <Compile Include="Helpers\Extensions\GraphicsExtensions.cs" />
@@ -483,30 +484,30 @@
       <DependentUpon>SearchDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="Commands\Search\SearchServices.cs" />
-    <Compile Include="Commands\Search\TaggedCommand.cs" />
-    <Compile Include="Commands\Search\TaggedDialog.cs">
+    <Compile Include="Commands\Tagging\TaggedCommand.cs" />
+    <Compile Include="Commands\Tagging\TaggedDialog.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Commands\Search\TaggedDialog.Designer.cs">
+    <Compile Include="Commands\Tagging\TaggedDialog.Designer.cs">
       <DependentUpon>TaggedDialog.cs</DependentUpon>
     </Compile>
-    <Compile Include="Commands\Search\TaggingCommand.cs" />
-    <Compile Include="Commands\Search\TaggingDialog.cs">
+    <Compile Include="Commands\Tagging\TaggingCommand.cs" />
+    <Compile Include="Commands\Tagging\TaggingDialog.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Commands\Search\TaggingDialog.Designer.cs">
+    <Compile Include="Commands\Tagging\TaggingDialog.Designer.cs">
       <DependentUpon>TaggingDialog.cs</DependentUpon>
     </Compile>
-    <Compile Include="Commands\Search\TagControl.cs">
+    <Compile Include="Commands\Tagging\TagControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Commands\Search\TagControl.Designer.cs">
+    <Compile Include="Commands\Tagging\TagControl.Designer.cs">
       <DependentUpon>TagControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="Commands\Search\TagCheckBox.cs">
+    <Compile Include="Commands\Tagging\TagCheckBox.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Commands\Search\TagHelpers.cs" />
+    <Compile Include="Commands\Tagging\TagHelpers.cs" />
     <Compile Include="Commands\Settings\PluginsSheet.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -1039,7 +1040,7 @@
     <Content Include="Commands\Navigator\Images\Student-Read-01-20.png" />
     <Content Include="Commands\Navigator\Images\Swap-Down-20.png" />
     <Content Include="Commands\Navigator\Images\Swap-Up-20.png" />
-    <Content Include="Commands\Search\x.png" />
+    <Content Include="Commands\Tagging\x.png" />
     <None Include="Colorizer\Languages\plantuml.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -1331,13 +1332,13 @@
     <EmbeddedResource Include="Commands\Search\SearchDialog.resx">
       <DependentUpon>SearchDialog.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Commands\Search\TaggedDialog.resx">
+    <EmbeddedResource Include="Commands\Tagging\TaggedDialog.resx">
       <DependentUpon>TaggedDialog.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Commands\Search\TaggingDialog.resx">
+    <EmbeddedResource Include="Commands\Tagging\TaggingDialog.resx">
       <DependentUpon>TaggingDialog.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Commands\Search\TagControl.resx">
+    <EmbeddedResource Include="Commands\Tagging\TagControl.resx">
       <DependentUpon>TagControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Commands\File\ImportDialog.resx">
