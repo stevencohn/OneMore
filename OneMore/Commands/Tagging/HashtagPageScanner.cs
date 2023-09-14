@@ -132,6 +132,27 @@ namespace River.OneMoreAddIn.Commands
 					ScanParagraph(child, tags);
 				}
 			}
+
+			var tables = paragraph.Elements(ns + "Table");
+			if (tables.Any())
+			{
+				foreach (var table in tables)
+				{
+					var toes = table
+						.Elements(ns + "Row")
+						.Elements(ns + "Cell")
+						.Elements(ns + "OEChildren")
+						.Elements(ns + "OE");
+
+					if (toes.Any())
+					{
+						foreach (var toe in toes)
+						{
+							ScanParagraph(toe, tags);
+						}
+					}
+				}
+			}
 		}
 
 
