@@ -111,6 +111,7 @@ namespace River.OneMoreAddIn.Commands
 		{
 			var root = await one.GetNotebook(ownerID);
 
+			// by using Descendants, it will discover Sections nested within SectionGroups
 			return root.Descendants(ns + "Section")
 				.Where(e =>
 					e.Attribute("isRecycleBin") == null &&
@@ -140,15 +141,15 @@ namespace River.OneMoreAddIn.Commands
 
 			foreach (var candidate in candidates)
 			{
-				var same = saved.Find(s => s.Equals(candidate));
-				if (same == null)
+				var found = saved.Find(s => s.Equals(candidate));
+				if (found == null)
 				{
 					discovered.Add(candidate);
 				}
 				else
 				{
-					logger.WriteLine($"found tag {same.Tag}");
-					saved.Remove(same);
+					logger.WriteLine($"found tag {found.Tag}");
+					saved.Remove(found);
 				}
 			}
 

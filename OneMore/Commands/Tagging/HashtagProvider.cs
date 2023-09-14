@@ -46,6 +46,7 @@ namespace River.OneMoreAddIn.Commands
 
 		private void RefreshDatabase()
 		{
+			logger.WriteLine("building hashtag database");
 			using var transaction = con.BeginTransaction();
 
 			var ddl = Regex.Split(Resources.HashtagsDB, @"\r\n|\n\r|\n");
@@ -73,6 +74,7 @@ namespace River.OneMoreAddIn.Commands
 			try
 			{
 				transaction.Commit();
+				logger.WriteLine("hashtag database done");
 			}
 			catch (Exception exc)
 			{
