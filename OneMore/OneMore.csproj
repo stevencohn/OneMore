@@ -230,6 +230,7 @@
     <Compile Include="Commands\Tagging\HashtagPageScannerFactory.cs" />
     <Compile Include="Commands\Tagging\HashtagProvider.cs" />
     <Compile Include="Commands\Tagging\HashtagScanner.cs" />
+    <Compile Include="Commands\Tagging\HashtagService.cs" />
     <Compile Include="Helpers\ColorHelper.cs" />
     <Compile Include="Helpers\Extensions\FontFamilyExtensions.cs" />
     <Compile Include="Helpers\Extensions\GraphicsExtensions.cs" />
@@ -1044,6 +1045,7 @@
     <Content Include="Commands\Navigator\Images\Student-Read-01-20.png" />
     <Content Include="Commands\Navigator\Images\Swap-Down-20.png" />
     <Content Include="Commands\Navigator\Images\Swap-Up-20.png" />
+    <Content Include="Commands\Tagging\HashtagsDB.sql" />
     <Content Include="Commands\Tagging\x.png" />
     <None Include="Colorizer\Languages\plantuml.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

@@ -2681,6 +2681,18 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to CREATE TABLE IF NOT EXISTS hashtag_scanner (scannerID INTEGER PRIMARY KEY UNIQUE NOT NULL, version NUMERIC (12) UNIQUE NOT NULL, lastScan TEXT (25) NOT NULL);
+        ///CREATE UNIQUE INDEX IF NOT EXISTS sqlite_autoindex_scanner_1 ON hashtag_scanner (scannerID COLLATE BINARY);
+        ///CREATE UNIQUE INDEX IF NOT EXISTS sqlite_autoindex_scanner_2 ON hashtag_scanner (version COLLATE BINARY);
+        ///CREATE TABLE IF NOT EXISTS hashtags (tag TEXT (200) NOT NULL, moreID TEXT (32) NOT NULL, pageID TEXT (100) NOT NULL, objectID TEXT (64)  [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string HashtagsDB {
+            get {
+                return ResourceManager.GetString("HashtagsDB", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to No formulas found on this page.
         /// </summary>
         internal static string HighlightFormulaCommand_NoFormulas {

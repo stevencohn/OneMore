@@ -4,10 +4,12 @@
 
 namespace River.OneMoreAddIn.Commands
 {
+	using River.OneMoreAddIn.Properties;
 	using System;
 	using System.Data;
 	using System.Data.SQLite;
 	using System.IO;
+	using System.Text.RegularExpressions;
 
 
 	/// <summary>
@@ -26,13 +28,60 @@ namespace River.OneMoreAddIn.Commands
 		public HashtagProvider()
 		{
 			var path = Path.Combine(
-				PathHelper.GetAppDataPath(), Properties.Resources.DatabaseFilename);
+				PathHelper.GetAppDataPath(), Resources.DatabaseFilename);
+
+			var refresh = !File.Exists(path);
 
 			con = new SQLiteConnection($"Data source={path}");
 			con.Open();
 
+			if (refresh)
+			{
+				RefreshDatabase();
+			}
+
 			timestamp = DateTime.Now.ToZuluString();
 		}
+
+
+		private void RefreshDatabase()
+		{
+			using var transaction = con.BeginTransaction();
+
+			var ddl = Regex.Split(Resources.HashtagsDB, @"\r\n|\n\r|\n");
+			foreach (var line in ddl)
+			{
+				var sql = line.Trim();
+				if (!string.IsNullOrWhiteSpace(sql) && !sql.StartsWith("--"))
+				{
+					try
+					{
+						using var cmd = con.CreateCommand();
+						cmd.CommandText = sql;
+						cmd.CommandType = CommandType.Text;
+						cmd.ExecuteNonQuery();
+					}
+					catch (Exception exc)
+					{
+						logger.WriteLine($"error executing sql {sql}");
+						logger.WriteLine(exc);
+						throw;
+					}
+				}
+			}
+
+			try
+			{
+				transaction.Commit();
+			}
+			catch (Exception exc)
+			{
+				logger.WriteLine("error committing transaction");
+				logger.WriteLine(exc);
+				throw;
+			}
+		}
+
 
 		protected virtual void Dispose(bool disposing)
 		{
@@ -75,10 +124,26 @@ namespace River.OneMoreAddIn.Commands
 				cmd.Parameters["@t"].Value = tag.Tag;
 				cmd.Parameters["@p"].Value = tag.PageID;
 
-				cmd.ExecuteNonQuery();
+				try
+				{
+					cmd.ExecuteNonQuery();
+				}
+				catch (Exception exc)
+				{
+					logger.WriteLine($"error deleting tag {tag.Tag} on {tag.PageID}");
+					logger.WriteLine(exc);
+				}
 			}
 
-			transaction.Commit();
+			try
+			{
+				transaction.Commit();
+			}
+			catch (Exception exc)
+			{
+				logger.WriteLine("error committing transaction");
+				logger.WriteLine(exc);
+			}
 		}
 
 
@@ -91,11 +156,19 @@ namespace River.OneMoreAddIn.Commands
 			using var cmd = con.CreateCommand();
 			cmd.CommandText = "SELECT version, lastScan FROM hashtag_scanner WHERE scannerID = 0";
 
-			using var reader = cmd.ExecuteReader();
-			if (reader.Read())
+			try
 			{
-				// var version = reader.GetInt32(0); // upgrade?
-				return reader.GetString(1);
+				using var reader = cmd.ExecuteReader();
+				if (reader.Read())
+				{
+					// var version = reader.GetInt32(0); // upgrade?
+					return reader.GetString(1);
+				}
+			}
+			catch (Exception exc)
+			{
+				logger.WriteLine("error reading last scan time");
+				logger.WriteLine(exc);
 			}
 
 			return DateTime.MinValue.ToZuluString();
@@ -137,18 +210,26 @@ namespace River.OneMoreAddIn.Commands
 			cmd.CommandText = sql;
 			cmd.Parameters.AddRange(parameters);
 
-			using var reader = cmd.ExecuteReader();
-			while (reader.Read())
+			try
 			{
-				tags.Add(new Hashtag
+				using var reader = cmd.ExecuteReader();
+				while (reader.Read())
 				{
-					RowID = reader.GetInt32(0),
-					Tag = reader.GetString(1),
-					MoreID = reader.GetString(2),
-					PageID = reader.GetString(3),
-					ObjectID = reader.GetString(4),
-					LastScan = reader.GetString(5)
-				});
+					tags.Add(new Hashtag
+					{
+						RowID = reader.GetInt32(0),
+						Tag = reader.GetString(1),
+						MoreID = reader.GetString(2),
+						PageID = reader.GetString(3),
+						ObjectID = reader.GetString(4),
+						LastScan = reader.GetString(5)
+					});
+				}
+			}
+			catch (Exception exc)
+			{
+				logger.WriteLine("error reading tags");
+				logger.WriteLine(exc);
 			}
 
 			return tags;
@@ -164,7 +245,16 @@ namespace River.OneMoreAddIn.Commands
 			using var cmd = con.CreateCommand();
 			cmd.CommandText = "UPDATE hashtag_scanner SET lastScan = @d WHERE scannerID = 0";
 			cmd.Parameters.AddWithValue("@d", timestamp);
-			cmd.ExecuteNonQuery();
+
+			try
+			{
+				cmd.ExecuteNonQuery();
+			}
+			catch (Exception exc)
+			{
+				logger.WriteLine("error writing last scan time");
+				logger.WriteLine(exc);
+			}
 		}
 
 
@@ -196,10 +286,26 @@ namespace River.OneMoreAddIn.Commands
 				cmd.Parameters["@o"].Value = tag.ObjectID;
 				cmd.Parameters["@s"].Value = timestamp;
 
-				cmd.ExecuteNonQuery();
+				try
+				{
+					cmd.ExecuteNonQuery();
+				}
+				catch (Exception exc)
+				{
+					logger.WriteLine($"error writing tag {tag.Tag} on {tag.PageID}");
+					logger.WriteLine(exc);
+				}
 			}
 
-			transaction.Commit();
+			try
+			{
+				transaction.Commit();
+			}
+			catch (Exception exc)
+			{
+				logger.WriteLine("error committing transaction");
+				logger.WriteLine(exc);
+			}
 		}
 	}
 }

@@ -1,0 +1,6 @@
+﻿CREATE TABLE IF NOT EXISTS hashtag_scanner (scannerID INTEGER PRIMARY KEY UNIQUE NOT NULL, version NUMERIC (12) UNIQUE NOT NULL, lastScan TEXT (25) NOT NULL);
+CREATE TABLE IF NOT EXISTS hashtags (tag TEXT (200) NOT NULL, moreID TEXT (32) NOT NULL, pageID TEXT (100) NOT NULL, objectID TEXT (64) NOT NULL, lastScan TEXT (25) NOT NULL, PRIMARY KEY (tag, objectID));
+CREATE INDEX IF NOT EXISTS IDX_moreID ON hashtags (moreID);
+CREATE INDEX IF NOT EXISTS IDX_pageID ON hashtags (pageID);
+CREATE INDEX IF NOT EXISTS IDX_tag ON hashtags (tag);
+REPLACE INTO hashtag_scanner (scannerID, version, lastScan) VALUES (0, 1,'0001-01-01T00:00:00.0000Z');

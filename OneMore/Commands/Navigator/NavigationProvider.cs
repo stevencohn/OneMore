@@ -5,7 +5,6 @@
 namespace River.OneMoreAddIn.Commands
 {
 	using Newtonsoft.Json;
-	using River.OneMoreAddIn.Settings;
 	using System;
 	using System.Collections.Generic;
 	using System.IO;

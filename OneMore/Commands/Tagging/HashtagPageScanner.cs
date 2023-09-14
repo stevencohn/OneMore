@@ -72,9 +72,12 @@ namespace River.OneMoreAddIn.Commands
 				.Elements(ns + "OEChildren")
 				.Elements(ns + "OE");
 
-			foreach (var paragraph in paragraphs)
+			if (paragraphs.Any())
 			{
-				ScanParagraph(paragraph, tags);
+				foreach (var paragraph in paragraphs)
+				{
+					ScanParagraph(paragraph, tags);
+				}
 			}
 
 			return tags;
