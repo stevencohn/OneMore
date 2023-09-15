@@ -9,7 +9,8 @@ The path to the OneMoreWiki.zip file
 
 [CmdletBinding(SupportsShouldProcess = $true)]
 param (
-    [string] $ZipFile
+    [string] $ZipFile,
+	[switch] $Compare
 )
 
 Begin
@@ -178,9 +179,37 @@ Begin
                 }
             } }
     }
+	
+	function CompareFolders
+	{
+		$here = (Get-Location).path
+		if ($here -ne 'C:\GitHub\OneMore\docs')
+		{
+			$ans = 'y'
+			if (-not $Compare)
+			{
+				Write-Host
+				$ans = Read-Host 'compare? (Y/N) [Y]'
+			}
+			if ($ans -ne 'n')
+			{
+				."$($env:ProgramFiles)\Beyond Compare 4\BCompare.exe" $here 'C:\GitHub\OneMore\docs'
+			}
+		}
+		elseif ($Compare)
+		{
+			Write-Host 'cannot compare from source folder'
+		}
+	}
 }
 Process
 {
+	if ($Compare)
+	{
+		CompareFolders
+		return
+	}
+
     MakeSiteMap
 
     if ($ZipFile -and (Test-Path $ZipFile))
@@ -214,4 +243,6 @@ Process
     $sitemap.ToString() | Out-File 'sitemap.xml'
 
     Remove-Item $ZipName -Force -Confirm:$false
+
+	CompareFolders
 }

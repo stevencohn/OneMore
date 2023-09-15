@@ -10,7 +10,7 @@ The path to the OneMoreWiki.zip file
 [CmdletBinding(SupportsShouldProcess = $true)]
 param (
     [string] $ZipFile
-    )
+)
 
 Begin
 {
@@ -18,8 +18,10 @@ Begin
     $script:UrlSetSchema = 'http://www.sitemaps.org/schemas/sitemap/0.9'
     $script:FileOrder = '__File_Order.txt'
     $script:ZipName = 'OneMore Wiki'
+    $script:secmap = @{}
     $script:sitemap = $null
     $script:smns = $null
+    $script:writable = $true
 
     function MakeSiteMap
     {
@@ -34,11 +36,18 @@ Begin
         param([string]$url, [decimal]$priority)
         $date = get-date ((Get-Date).ToUniversalTime()) -Format 'yyyy-MM-ddThh:mm:ss+00:00'
         $sitemap.Add([System.Xml.Linq.XElement]::new($smns + 'url',
-            [System.Xml.Linq.XElement]::new($smns + 'loc', [Uri]::EscapeUriString($url)),
-            [System.Xml.Linq.XElement]::new($smns + 'lastmod', $date),
-            [System.Xml.Linq.XElement]::new($smns + 'priority', $priority.ToString('0.0'))
+                [System.Xml.Linq.XElement]::new($smns + 'loc', [Uri]::EscapeUriString($url)),
+                [System.Xml.Linq.XElement]::new($smns + 'lastmod', $date),
+                [System.Xml.Linq.XElement]::new($smns + 'priority', $priority.ToString('0.0'))
             )
         )
+    }
+
+    function MakeSectionMap
+    {
+        Get-ChildItem $ZipName -Directory | foreach {
+            $secmap.Add($_.BaseName, ($_.BaseName.ToLower() -replace ' |\.|%20', '-'))
+        }
     }
 
     function Unpack
@@ -54,14 +63,14 @@ Begin
     function MakeSection
     {
         param($sectionName)
-        $sectionID = $sectionName.ToLower() -replace ' |\.|%20','-'
+        $sectionID = $sectionName.ToLower() -replace ' |\.|%20', '-'
         Write-Host "section '$sectionName' ($sectionID)" -ForegroundColor Blue
 
         $dir = Join-Path $ZipName $sectionName
         $toc, $first = MakeSectionTOC $sectionID $sectionName
 
         Get-ChildItem $dir -File *.htm | foreach {
-            $id = MakePage $sectionID (Get-Item $_.FullName) $toc
+            $id = MakePage $sectionID $_.Name $_.FullName $toc
         }
 
         $indexFile = Join-Path $dir 'index.html'
@@ -81,8 +90,8 @@ Begin
         {
             # use FileOrder.txt
             Get-Content $file -Encoding utf8 | foreach {
-                $id = $_.ToLower() -replace ' |\.|%20','-'
-                $name = "$id`.htm"
+                $id = $_.ToLower() -replace ' |\.|%20', '-'
+                $name = "$_`.htm"
                 $toc += "<li><a id=""$id"" href=""$name"">$($_)</a></li>"
                 if (!$first) { $first = "/$sectionID/$name" }
             }
@@ -95,8 +104,8 @@ Begin
             Write-Host "file does not exist $file" -ForegroundColor Red
             # no FileOrder.txt so discover HTM files instead
             Get-ChildItem (Join-Path $ZipName $sectionName) -File *.htm | foreach {
-                $id = $_.BaseName.ToLower() -replace ' |\.|%20','-'
-                $name = "$id`.htm"
+                $id = $_.BaseName.ToLower() -replace ' |\.|%20', '-'
+                $name = "$($_.BaseName)`.htm"
                 $toc += "<li><a id=""$id"" href=""$name"">$($_)</a></li>"
                 if (!$first) { $first = "/$sectionID/$name" }
             }
@@ -107,48 +116,67 @@ Begin
 
     function MakePage
     {
-        param($sectionID, $file, $toc)
-        $pageID = $file.BaseName.ToLower() -replace ' |\.|%20','-'
-        Write-Host "page '$($file.BaseName)' ($pageID)"
+        param($sectionID, $pageName, $pageFile, $toc)
+        $name = [System.IO.Path]::GetFileNameWithoutExtension($pageName)
+        $pageID = $name.ToLower() -replace ' |\.|%20', '-'
+        Write-Host "page '$name' ($pageID)"
 
-        $source = $file | Get-Content -Encoding utf8 -Raw
+        $source = Get-Content -Path $pageFile -Encoding utf8 -Raw
         $html = New-Object -Com 'HTMLFile'
-        $html.IHTMLDocument2_write($source)
-        $body = $html.all.tags('body') | foreach InnerHtml
+
+        try
+        {
+            if ($writable)
+            {
+                $html.IHTMLDocument2_write($source)
+            }
+            else
+            {
+                $html.write([System.Text.Encoding]::Unicode.GetBytes($source))
+            }
+        }
+        catch
+        {
+            $html.write([System.Text.Encoding]::Unicode.GetBytes($source))
+            $script:writable = $false
+        }
+
+        $body = $html.all.tags('body')
+
+        PatchSectionRefs $body
+        $inner = $body | foreach InnerHtml
 
         $template = Get-Content -Path template.htm -Encoding utf8 -Raw
         $template = $template.Replace('~TOC~', [string]::join("`n", $toc))
         $template = $template.Replace('~sectionID~', $sectionID)
-        $template = $template.Replace('~content~', $body)
+        $template = $template.Replace('~content~', $inner)
 
-        $folderName = "$($file.BaseName)`_files"
-        $folderPath = Join-Path $file.Directory $folderName
-        if (Test-Path $folderPath)
-        {
-            $filesID = Join-Path $file.Directory "$pageID`_files"
-            CaseRename $folderPath $filesID
+        $template | Out-File $pageFile -Encoding utf8 -Force -Confirm:$false
 
-            $escaped = $folderName -replace ' ','%20'
-            #Write-Host "replace $escaped ($pageID`_files)" -ForegroundColor Yellow
-            $template = $template.Replace($escaped, "$pageID`_files")
-        }
-
-        $pagePath = Join-Path $file.Directory "$pageID`.htm"
-        $template | Out-File $file.FullName -Encoding utf8 -Force -Confirm:$false
-        Rename-Item $file.FullName $pagePath -Force -Confirm:$false
-
-        AddToSiteMap "$RootUrl/$sectionID/$pageID`.htm" 0.5
+        AddToSiteMap "$RootUrl/$sectionID/$name`.htm" 0.5
 
         return $pageID
     }
 
-    function CaseRename
+    function PatchSectionRefs
     {
-        param($path1, $path2)
-        $item = Rename-Item $path1 -NewName "$path1`__x" -PassThru -Force -Confirm:$false
-        $fullName = $item.FullName
-        if ($item.FullName -match '(.*)\\') { $fullName = $matches[1] }
-        Rename-Item $fullName -NewName $path2 -Force -Confirm:$false
+        param($body)
+        $body | where { $_.all } | foreach {
+            $_.all.tags('a') | foreach {
+                $href = $_.attributes['href']
+                if ($href.textContent -match '\.\.(/[^/]+/).+')
+                {
+                    $m = $matches[1]
+                    $deslashed = $m -replace '/',''
+                    if ($secmap.ContainsKey($deslashed))
+                    {
+                        $slashed = "/$($secmap[$deslashed])/"
+                        #write-host "uri $($href.textContent)" -ForegroundColor Green
+                        $href.textContent = $href.textContent -replace $m, $slashed
+                        #write-host "uri $($href.textContent)" -ForegroundColor DarkGreen
+                    }
+                }
+            } }
     }
 }
 Process
@@ -160,6 +188,8 @@ Process
         $script:ZipName = (Get-Item $ZipFile).BaseName
         Unpack $ZipFile
     }
+
+    MakeSectionMap
 
     Get-ChildItem $ZipName -Directory | foreach {
         $name = $_.Name
