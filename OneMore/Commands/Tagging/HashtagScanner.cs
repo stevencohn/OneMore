@@ -35,7 +35,7 @@ namespace River.OneMoreAddIn.Commands
 			factory = new HashtagPageSannerFactory();
 
 			lastTime = provider.ReadLastScanTime();
-			logger.WriteLine($"HashtagScanner lastTime {lastTime}");
+			//logger.WriteLine($"HashtagScanner lastTime {lastTime}");
 		}
 
 
@@ -72,7 +72,7 @@ namespace River.OneMoreAddIn.Commands
 			var notebooks = await GetNotebooks();
 			foreach (var notebook in notebooks)
 			{
-				logger.WriteLine($"scanning notebook {notebook.Attribute("name").Value}");
+				//logger.WriteLine($"scanning notebook {notebook.Attribute("name").Value}");
 
 				var sections = await GetSections(notebook.Attribute("ID").Value);
 				foreach (var section in sections)
@@ -81,7 +81,7 @@ namespace River.OneMoreAddIn.Commands
 					var name = section.Attribute("name").Value;
 					totalPages += pages.Count();
 
-					logger.WriteLine($"scanning section {name} ({pages.Count()} pages)");
+					//logger.WriteLine($"scanning section {name} ({pages.Count()} pages)");
 
 					foreach (var page in pages)
 					{
@@ -148,26 +148,28 @@ namespace River.OneMoreAddIn.Commands
 				}
 				else
 				{
-					logger.WriteLine($"found tag {found.Tag}");
+					//logger.WriteLine($"found tag {found.Tag}");
 					saved.Remove(found);
 				}
 			}
 
-			var updated = false;
+			var updated = saved.Any() || discovered.Any();
+			if (updated)
+			{
+				logger.WriteLine($"updating tags on page {page.Title}");
+			}
 
 			if (saved.Any())
 			{
 				// remaining saved entries were not matched with candidates
 				// on page so should be deleted
 				provider.DeleteTags(saved);
-				updated = true;
 			}
 
 			if (discovered.Any())
 			{
 				// discovered entries are new on the page and not found in saved
 				provider.WriteTags(discovered);
-				updated = true;
 			}
 
 			if (scanner.UpdateMeta && updated)

@@ -74,7 +74,7 @@ namespace River.OneMoreAddIn.Commands
 
 			clock.Stop();
 			var time = clock.ElapsedMilliseconds;
-			logger.WriteLine($"scanned {totalPages} pages in {time}ms");
+			logger.WriteLine($"hashtag service scanned {totalPages} pages in {time}ms");
 		}
 	}
 }
