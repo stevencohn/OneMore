@@ -30,7 +30,7 @@ namespace River.OneMoreAddIn.Commands
 		public HashtagPageScanner(XElement root, Regex pattern)
 		{
 			this.root = root;
-			ns = root.GetNamespaceOfPrefix("one"); // TODO: replace string
+			ns = root.GetNamespaceOfPrefix(OneNote.Prefix);
 			pageID = root.Attribute("ID").Value;
 
 			MoreID = root.Elements(ns + "Meta")

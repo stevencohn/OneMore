@@ -6,14 +6,13 @@ namespace River.OneMoreAddIn.Commands
 {
 	using River.OneMoreAddIn.Models;
 	using System;
-	using System.Collections.Generic;
 	using System.Linq;
 	using System.Threading.Tasks;
 	using System.Xml.Linq;
 
 
 	/// <summary>
-	/// Scans a given page for ##hashtags
+	/// Scans all notebooks for hashtags
 	/// </summary>
 	internal class HashtagScanner : Loggable, IDisposable
 	{
@@ -62,34 +61,25 @@ namespace River.OneMoreAddIn.Commands
 
 
 		/// <summary>
-		/// 
+		/// Scan all notebooks for all hashtags
 		/// </summary>
 		/// <returns></returns>
 		public async Task<int> Scan()
 		{
 			int totalPages = 0;
 
-			var notebooks = await GetNotebooks();
-			foreach (var notebook in notebooks)
+			// get all notebooks
+			var root = await one.GetNotebooks();
+			ns = one.GetNamespace(root);
+
+			var notebooks = root.Elements(ns + "Notebook");
+			if (notebooks.Any())
 			{
-				//logger.WriteLine($"scanning notebook {notebook.Attribute("name").Value}");
-
-				var sections = await GetSections(notebook.Attribute("ID").Value);
-				foreach (var section in sections)
+				foreach (var notebook in notebooks)
 				{
-					var pages = GetPages(section.Attribute("ID").Value);
-					var name = section.Attribute("name").Value;
-					totalPages += pages.Count();
-
-					//logger.WriteLine($"scanning section {name} ({pages.Count()} pages)");
-
-					foreach (var page in pages)
-					{
-						if (page.Attribute("lastModifiedTime").Value.CompareTo(lastTime) > 0)
-						{
-							await ScanPage(page.Attribute("ID").Value);
-						}
-					}
+					// gets sections for this notebook
+					var sections = await one.GetNotebook(notebook.Attribute("ID").Value);
+					totalPages += await Scan(sections, $"/{notebook.Attribute("name").Value}");
 				}
 			}
 
@@ -99,35 +89,59 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private async Task<IEnumerable<XElement>> GetNotebooks()
+		private async Task<int> Scan(XElement parent, string path)
 		{
-			var root = await one.GetNotebooks();
-			ns = one.GetNamespace(root);
-			return root.Elements(ns + "Notebook");
-		}
+			logger.WriteLine($"scanning parent {path}");
 
+			int totalPages = 0;
 
-		private async Task<IEnumerable<XElement>> GetSections(string ownerID)
-		{
-			var root = await one.GetNotebook(ownerID);
-
-			// by using Descendants, it will discover Sections nested within SectionGroups
-			return root.Descendants(ns + "Section")
+			var sectionsRefs = parent.Elements(ns + "Section")
 				.Where(e =>
 					e.Attribute("isRecycleBin") == null &&
 					e.Attribute("isInRecycleBin") == null &&
 					e.Attribute("locked") == null);
+
+			foreach (var sectionRef in sectionsRefs)
+			{
+				// get pages for this sectio
+				var section = one.GetSection(sectionRef.Attribute("ID").Value);
+
+				var pages = section.Elements(ns + "Page")
+					.Where(e => e.Attribute("isInRecycleBin") == null);
+
+				totalPages += pages.Count();
+
+				var sectionPath = $"{path}/{section.Attribute("name").Value}";
+				logger.WriteLine($"scanning section {sectionPath} ({pages.Count()} pages)");
+
+				foreach (var page in pages)
+				{
+					if (page.Attribute("lastModifiedTime").Value.CompareTo(lastTime) > 0)
+					{
+						await ScanPage(page.Attribute("ID").Value, sectionPath);
+					}
+				}
+			}
+
+			var groups = parent.Elements(ns + "SectionGroup")
+				.Where(e =>
+					e.Attribute("isRecycleBin") == null &&
+					e.Attribute("isInRecycleBin") == null &&
+					e.Attribute("locked") == null);
+
+			if (groups.Any())
+			{
+				foreach (var group in groups)
+				{
+					totalPages = await Scan(group, $"{path}/{group.Attribute("name").Value}");
+				}
+			}
+
+			return totalPages;
 		}
 
 
-		private IEnumerable<XElement> GetPages(string ownerID)
-		{
-			var root = one.GetSection(ownerID);
-			return root.Elements(ns + "Page").Where(e => e.Attribute("isInRecycleBin") == null);
-		}
-
-
-		private async Task ScanPage(string pageID)
+		private async Task ScanPage(string pageID, string path)
 		{
 			var page = one.GetPage(pageID, OneNote.PageDetail.Basic);
 
@@ -156,7 +170,7 @@ namespace River.OneMoreAddIn.Commands
 			var updated = saved.Any() || discovered.Any();
 			if (updated)
 			{
-				logger.WriteLine($"updating tags on page {page.Title}");
+				logger.WriteLine($"updating tags on page {path}/{page.Title}");
 			}
 
 			if (saved.Any())
@@ -172,10 +186,20 @@ namespace River.OneMoreAddIn.Commands
 				provider.WriteTags(discovered);
 			}
 
+			// if first time hashtags were discovered on this page then set omPageID
 			if (scanner.UpdateMeta && updated)
 			{
 				page.SetMeta(MetaNames.PageID, scanner.MoreID);
 				await one.Update(page);
+			}
+
+			if (updated)
+			{
+				// will likely rewrite same data but needed in case old page is moved
+				// TODO: could track moreID+pageID to determine if REPLACE is needed; but then
+				// need to read that info first as well; see where the design goes...
+				// TODO: how to clean up deleted pages?
+				provider.WritePageInfo(scanner.MoreID, path, page.Title);
 			}
 		}
 	}

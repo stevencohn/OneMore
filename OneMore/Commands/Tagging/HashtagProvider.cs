@@ -261,6 +261,32 @@ namespace River.OneMoreAddIn.Commands
 
 
 		/// <summary>
+		/// Records given info for the specified page.
+		/// </summary>
+		/// <param name="moreID">The assigned ID to the page</param>
+		/// <param name="path">The hierarchy path of the page</param>
+		/// <param name="title">The title (name) of the page</param>
+		public void WritePageInfo(string moreID, string path, string title)
+		{
+			using var cmd = con.CreateCommand();
+			cmd.CommandText = "REPLACE INTO hashtags_pages (moreID, path, name) VALUES (@m, @p, @n)";
+			cmd.Parameters.AddWithValue("@m", moreID);
+			cmd.Parameters.AddWithValue("@p", path);
+			cmd.Parameters.AddWithValue("@n", title);
+
+			try
+			{
+				cmd.ExecuteNonQuery();
+			}
+			catch (Exception exc)
+			{
+				logger.WriteLine("error writing page info");
+				logger.WriteLine(exc);
+			}
+		}
+
+
+		/// <summary>
 		/// Records the given tags.
 		/// </summary>
 		/// <param name="tags">A collection of Hashtags</param>

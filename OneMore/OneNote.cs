@@ -807,7 +807,7 @@ namespace River.OneMoreAddIn
 
 
 		/// <summary>
-		/// Gets the name, file path, and OneNote hyperlink to the current page;
+		/// Gets the name, hierarchy path, and OneNote hyperlink to the current page;
 		/// used to build up Favorites
 		/// </summary>
 		/// <returns></returns>
@@ -833,10 +833,28 @@ namespace River.OneMoreAddIn
 				info.Size = page.Root.ToString(SaveOptions.DisableFormatting).Length;
 			}
 
+			var hinfo = GetPageHierarchyInfo(page.PageId);
+			info.NotebookId = hinfo.NotebookId;
+			info.SectionId = hinfo.SectionId;
+			info.Color = hinfo.Color;
+			info.Path = $"{hinfo.Path}/{info.Name}";
 
-			// path
+			return info;
+		}
+
+
+		/// <summary>
+		/// Gets the notebook, section, section color, and parent hierarchy path of
+		/// the specified page.
+		/// </summary>
+		/// <param name="pageId">The unique ID of the page</param>
+		/// <returns>An incomplete HierarchyInfo</returns>
+		public HierarchyInfo GetPageHierarchyInfo(string pageId)
+		{
+			var info = new HierarchyInfo();
+
+			// parent path
 			var builder = new StringBuilder();
-			builder.Append($"/{info.Name}");
 
 			var id = GetParent(pageId);
 			while (!string.IsNullOrEmpty(id))
@@ -862,7 +880,6 @@ namespace River.OneMoreAddIn
 			}
 
 			info.Path = builder.ToString();
-
 			return info;
 		}
 
