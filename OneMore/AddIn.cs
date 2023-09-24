@@ -165,8 +165,8 @@ namespace River.OneMoreAddIn
 			var speed = Query<uint>("CurrentClockSpeed", "Win32_Processor");
 			if (speed == 0) speed = ReasonableClockSpeed;
 
-			// returns total RAM across all physical slots; as KB so convert to bytes
-			var memory = Query<ulong>("MaxCapacityEx", "Win32_PhysicalMemoryArray") * 1024;
+			// returns total RAM across all physical slots
+			var memory = Query<ulong>("MaxCapacityEx", "Win32_PhysicalMemoryArray");
 
 			return (speed, memory);
 		}
