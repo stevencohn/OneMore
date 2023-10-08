@@ -50,7 +50,8 @@ Begin
 
     function GetSDKVersion
     {
-        $script:netpath = [System.Runtime.InteropServices.RuntimeEnvironment]::GetRuntimeDirectory()
+        # use powershell explicitly because pwsh will return wrong path
+        $script:netpath = (powershell -c '[System.Runtime.InteropServices.RuntimeEnvironment]::GetRuntimeDirectory()')
 
         $0 = 'Registry::HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows Kits\Installed Roots'
         if (!(Test-Path $0))
@@ -68,9 +69,6 @@ Begin
     function PatchReferences
     {
         $updated = $false
-
-        $fullpath = $kitsroot; 'UnionMetadata', $sdkver, 'Windows.winmd' | `
-            ForEach-Object { $fullpath = Join-Path $fullpath $_ }
 
         $lines = @(Get-Content $csproj)
         
@@ -93,22 +91,18 @@ Begin
                     WriteOK 'NET Framework path is already correct'
                 }
             }
-            # $matches[1]=sdkpath, $matches[2]==version
+            # $matches[1]=sdkpath, $matches[2]=version
             elseif ($line -match '<HintPath>(.+\\)UnionMetadata\\(\d+\.\d+\.\d+\.\d+)\\Windows.winmd</HintPath>')             
             {
-                $p = [System.IO.Path]::GetFullPath($basePath + $matches[1])
- 
-                if ((!(Test-Path $p)) -or $forceBase)
+                $p = "$($matches[1])UnionMetadata\\$($matches[2])\\Windows.winmd"
+                if (($matches[2] -ne $sdkver) -or ![System.IO.Path]::Exists($p))
                 {
-                    # replace relative path with absolute path
-                    WriteOK "applying full path to Windows SDK: $fullpath"
+                    # always forces base
+                    $fullpath = $kitsroot; 'UnionMetadata', $sdkver, 'Windows.winmd' | `
+                        foreach { $fullpath = Join-Path $fullpath $_ }
+
+                    WriteOK "patching Windows SDK path: $fullpath"
                     $lines[$i] = "<HintPath>$fullpath</HintPath>"
-                    $handled = $true
-                }
-                elseif ($matches[2] -ne $sdkver)
-                {
-                    WriteOK "patching Windows SDK version: $sdkver"
-                    $lines[$i] = $line.Replace($matches[2], $sdkver)
                     $handled = $true
                 }
                 else
