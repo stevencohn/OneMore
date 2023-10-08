@@ -91,7 +91,7 @@ namespace River.OneMoreAddIn.Commands
 
 		private async Task<int> Scan(XElement parent, string path)
 		{
-			logger.WriteLine($"scanning parent {path}");
+			//logger.WriteLine($"scanning parent {path}");
 
 			int totalPages = 0;
 
@@ -112,7 +112,7 @@ namespace River.OneMoreAddIn.Commands
 				totalPages += pages.Count();
 
 				var sectionPath = $"{path}/{section.Attribute("name").Value}";
-				logger.WriteLine($"scanning section {sectionPath} ({pages.Count()} pages)");
+				//logger.WriteLine($"scanning section {sectionPath} ({pages.Count()} pages)");
 
 				foreach (var page in pages)
 				{

@@ -4,6 +4,7 @@
 
 namespace River.OneMoreAddIn.Commands
 {
+	using River.OneMoreAddIn.Settings;
 	using System;
 	using System.Diagnostics;
 	using System.Threading;
@@ -23,7 +24,9 @@ namespace River.OneMoreAddIn.Commands
 
 		public HashtagService()
 		{
-			pollingInterval = DefaultPollingInterval;
+			var settings = new SettingsProvider();
+			var collection = settings.GetCollection("HashtagSheet");
+			pollingInterval = collection.Get("interval", DefaultPollingInterval);
 		}
 
 
