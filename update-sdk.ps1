@@ -95,7 +95,7 @@ Begin
             elseif ($line -match '<HintPath>(.+\\)UnionMetadata\\(\d+\.\d+\.\d+\.\d+)\\Windows.winmd</HintPath>')             
             {
                 $p = "$($matches[1])UnionMetadata\\$($matches[2])\\Windows.winmd"
-                if (($matches[2] -ne $sdkver) -or ![System.IO.Path]::Exists($p))
+                if (($matches[2] -ne $sdkver) -or ![System.IO.Directory]::Exists($p))
                 {
                     # always forces base
                     $fullpath = $kitsroot; 'UnionMetadata', $sdkver, 'Windows.winmd' | `
