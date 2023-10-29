@@ -64,8 +64,7 @@ namespace River.OneMoreAddIn.Commands
 					}
 					catch (Exception exc)
 					{
-						logger.WriteLine($"error executing sql {sql}");
-						logger.WriteLine(exc);
+						logger.WriteLine($"error executing sql {sql}", exc);
 						throw;
 					}
 				}
@@ -78,8 +77,7 @@ namespace River.OneMoreAddIn.Commands
 			}
 			catch (Exception exc)
 			{
-				logger.WriteLine("error committing transaction");
-				logger.WriteLine(exc);
+				logger.WriteLine("error committing transaction", exc);
 				throw;
 			}
 		}
@@ -132,19 +130,40 @@ namespace River.OneMoreAddIn.Commands
 				}
 				catch (Exception exc)
 				{
-					logger.WriteLine($"error deleting tag {tag.Tag} on {tag.PageID}");
-					logger.WriteLine(exc);
+					logger.WriteLine($"error deleting tag {tag.Tag} on {tag.PageID}", exc);
 				}
 			}
 
 			try
 			{
 				transaction.Commit();
+
+				CleanupPages();
 			}
 			catch (Exception exc)
 			{
-				logger.WriteLine("error committing transaction");
-				logger.WriteLine(exc);
+				logger.WriteLine("error committing transaction", exc);
+			}
+		}
+
+
+		private void CleanupPages()
+		{
+			// as tags are deleted from a page, that page may be left dangling in the
+			// hashtags_pages table; this cleans up those orphaned records
+
+			using var cmd = con.CreateCommand();
+			cmd.CommandType = CommandType.Text;
+			cmd.CommandText = "DELETE FROM hashtags_pages WHERE moreID IN (SELECT P.moreID FROM " +
+				"hashtags_pages P LEFT OUTER JOIN hashtags T ON T.moreID = P.moreID WHERE T.tag IS NULL)";
+
+			try
+			{
+				cmd.ExecuteNonQuery();
+			}
+			catch (Exception exc)
+			{
+				logger.WriteLine("error committing transaction", exc);
 			}
 		}
 
@@ -169,8 +188,7 @@ namespace River.OneMoreAddIn.Commands
 			}
 			catch (Exception exc)
 			{
-				logger.WriteLine("error reading last scan time");
-				logger.WriteLine(exc);
+				logger.WriteLine("error reading last scan time", exc);
 			}
 
 			return DateTime.MinValue.ToZuluString();
@@ -230,8 +248,7 @@ namespace River.OneMoreAddIn.Commands
 			}
 			catch (Exception exc)
 			{
-				logger.WriteLine("error reading tags");
-				logger.WriteLine(exc);
+				logger.WriteLine("error reading tags", exc);
 			}
 
 			return tags;
@@ -254,8 +271,7 @@ namespace River.OneMoreAddIn.Commands
 			}
 			catch (Exception exc)
 			{
-				logger.WriteLine("error writing last scan time");
-				logger.WriteLine(exc);
+				logger.WriteLine("error writing last scan time", exc);
 			}
 		}
 
@@ -280,8 +296,7 @@ namespace River.OneMoreAddIn.Commands
 			}
 			catch (Exception exc)
 			{
-				logger.WriteLine("error writing page info");
-				logger.WriteLine(exc);
+				logger.WriteLine("error writing page info", exc);
 			}
 		}
 
@@ -320,8 +335,7 @@ namespace River.OneMoreAddIn.Commands
 				}
 				catch (Exception exc)
 				{
-					logger.WriteLine($"error writing tag {tag.Tag} on {tag.PageID}");
-					logger.WriteLine(exc);
+					logger.WriteLine($"error writing tag {tag.Tag} on {tag.PageID}", exc);
 				}
 			}
 
@@ -331,8 +345,7 @@ namespace River.OneMoreAddIn.Commands
 			}
 			catch (Exception exc)
 			{
-				logger.WriteLine("error committing transaction");
-				logger.WriteLine(exc);
+				logger.WriteLine("error committing transaction", exc);
 			}
 		}
 	}
