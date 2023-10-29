@@ -170,15 +170,16 @@ namespace River.OneMoreAddIn.Commands
 				if (index < 0)
 				{
 					record = Resolve(pageID);
-					log.History.Insert(0, record);
-					updated = true;
+					if (record != null)
+					{
+						log.History.Insert(0, record);
+						updated = true;
+					}
 				}
 				else
 				{
 					record = log.History[index];
-					UpdateTitle(record);
-
-					if (index >= 0)
+					if (UpdateTitle(record))
 					{
 						log.History.RemoveAt(index);
 						log.History.Insert(0, record);
@@ -186,7 +187,10 @@ namespace River.OneMoreAddIn.Commands
 					}
 				}
 
-				if (updated)
+				// record might be null if page is still loading after previously
+				// clearing the notebook cache...
+
+				if (updated && (record != null))
 				{
 					record.Visited = DateTime.Now.GetTickSeconds();
 
@@ -215,9 +219,9 @@ namespace River.OneMoreAddIn.Commands
 				using var one = new OneNote { FallThrough = true };
 				return one.GetPageInfo(pageID);
 			}
-			catch (System.Runtime.InteropServices.COMException)
+			catch (System.Runtime.InteropServices.COMException exc)
 			{
-				logger.WriteLine($"navigator resolve skipping broken page {pageID}");
+				logger.WriteLine($"navigator resolve skipping broken or unloaded page {pageID}", exc);
 			}
 			catch (Exception exc)
 			{
@@ -228,22 +232,25 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private void UpdateTitle(HistoryRecord record)
+		private bool UpdateTitle(HistoryRecord record)
 		{
 			try
 			{
 				using var one = new OneNote { FallThrough = true };
 				var page = one.GetPage(record.PageId, OneNote.PageDetail.Basic);
 				record.Name = page.Title;
+				return true;
 			}
-			catch (System.Runtime.InteropServices.COMException)
+			catch (System.Runtime.InteropServices.COMException exc)
 			{
-				logger.WriteLine($"navigator update title skipping broken page {record.PageId}");
+				logger.WriteLine($"navigator update title skipping broken or unloaded page {record.PageId}", exc);
 			}
 			catch (Exception exc)
 			{
 				logger.WriteLine($"navigator can't udpate title for page {record.PageId}", exc);
 			}
+
+			return false;
 		}
 
 

@@ -95,30 +95,33 @@ namespace River.OneMoreAddIn.Commands
 
 			int totalPages = 0;
 
-			var sectionsRefs = parent.Elements(ns + "Section")
+			var sectionRefs = parent.Elements(ns + "Section")
 				.Where(e =>
 					e.Attribute("isRecycleBin") == null &&
 					e.Attribute("isInRecycleBin") == null &&
 					e.Attribute("locked") == null);
 
-			foreach (var sectionRef in sectionsRefs)
+			if (sectionRefs.Any())
 			{
-				// get pages for this sectio
-				var section = one.GetSection(sectionRef.Attribute("ID").Value);
-
-				var pages = section.Elements(ns + "Page")
-					.Where(e => e.Attribute("isInRecycleBin") == null);
-
-				totalPages += pages.Count();
-
-				var sectionPath = $"{path}/{section.Attribute("name").Value}";
-				//logger.WriteLine($"scanning section {sectionPath} ({pages.Count()} pages)");
-
-				foreach (var page in pages)
+				foreach (var sectionRef in sectionRefs)
 				{
-					if (page.Attribute("lastModifiedTime").Value.CompareTo(lastTime) > 0)
+					// get pages for this sectio
+					var section = one.GetSection(sectionRef.Attribute("ID").Value);
+
+					var pages = section.Elements(ns + "Page")
+						.Where(e => e.Attribute("isInRecycleBin") == null);
+
+					totalPages += pages.Count();
+
+					var sectionPath = $"{path}/{section.Attribute("name").Value}";
+					//logger.WriteLine($"scanning section {sectionPath} ({pages.Count()} pages)");
+
+					foreach (var page in pages)
 					{
-						await ScanPage(page.Attribute("ID").Value, sectionPath);
+						if (page.Attribute("lastModifiedTime").Value.CompareTo(lastTime) > 0)
+						{
+							await ScanPage(page.Attribute("ID").Value, sectionPath);
+						}
 					}
 				}
 			}
@@ -143,7 +146,17 @@ namespace River.OneMoreAddIn.Commands
 
 		private async Task ScanPage(string pageID, string path)
 		{
-			var page = one.GetPage(pageID, OneNote.PageDetail.Basic);
+			Page page;
+
+			try
+			{
+				page = one.GetPage(pageID, OneNote.PageDetail.Basic);
+			}
+			catch (Exception exc)
+			{
+				logger.WriteLine("error scanning page, possibly locked", exc);
+				return;
+			}
 
 			var scanner = factory.CreatePageScanner(page.Root);
 			var candidates = scanner.Scan();
