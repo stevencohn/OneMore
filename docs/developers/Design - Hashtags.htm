@@ -234,7 +234,22 @@
 <LI lang=yo style="MARGIN-BOTTOM: 0px; VERTICAL-ALIGN: middle; MARGIN-TOP: 0px"><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">Increases base size of a page, making all OneMore features slower to save through the Interop onenote.UpdatePageContent API.</SPAN> 
 <LI lang=yo style="MARGIN-BOTTOM: 0px; VERTICAL-ALIGN: middle; MARGIN-TOP: 0px"><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">Must store last-scan-time someplace, perhaps in the OneMore settings file or a new file in the app data folder.</SPAN> </LI></UL>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
-<H4 lang=yo style="FONT-SIZE: 12pt; MARGIN: 0in"><SPAN style='FONT-FAMILY: "Segoe UI Emoji"; COLOR: #70ad47; FONT-STYLE: italic'>✓ </SPAN><SPAN style='FONT-FAMILY: "Segoe UI Emoji"; COLOR: #5b9bd5; FONT-STYLE: italic'>- </SPAN><SPAN style="FONT-FAMILY: Calibri; COLOR: #5b9bd5; FONT-STYLE: italic">Alternative 2 - Save to Sqlite</SPAN></H4>
+<H4 lang=yo style="FONT-SIZE: 12pt; MARGIN: 0in"><SPAN style='FONT-FAMILY: "Segoe UI Emoji"; COLOR: #e84c22; FONT-STYLE: italic'>✗ </SPAN><SPAN style='FONT-FAMILY: "Segoe UI Emoji"; COLOR: #5b9bd5; FONT-STYLE: italic'>- </SPAN><SPAN style="FONT-FAMILY: Calibri; COLOR: #5b9bd5; FONT-STYLE: italic">Alternative 2 - Save to File.json</SPAN></H4>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">Serialize a collection of Hashtag models to JSON, either distributed by scope or including a scope property. </P>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in"><SPAN style="FONT-STYLE: italic">Advantages</SPAN></P>
+<UL style="MARGIN-BOTTOM: 0in; unicode-bidi: embed; MARGIN-TOP: 0in; DIRECTION: ltr" type=disc>
+<LI lang=yo style="MARGIN-BOTTOM: 0px; VERTICAL-ALIGN: middle; MARGIN-TOP: 0px"><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">Simple and cheap</SPAN> 
+<LI lang=yo style="MARGIN-BOTTOM: 0px; VERTICAL-ALIGN: middle; MARGIN-TOP: 0px"><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">Could work well for relatively smaller data sets</SPAN> </LI></UL>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in"><SPAN style="FONT-STYLE: italic">Disadvantages</SPAN></P>
+<UL style="MARGIN-BOTTOM: 0in; unicode-bidi: embed; MARGIN-TOP: 0in; DIRECTION: ltr" type=disc>
+<LI lang=yo style="MARGIN-BOTTOM: 0px; VERTICAL-ALIGN: middle; MARGIN-TOP: 0px"><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">Could become a performance bottleneck when the store grows over a certain size.</SPAN> 
+<LI lang=yo style="MARGIN-BOTTOM: 0px; VERTICAL-ALIGN: middle; MARGIN-TOP: 0px"><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">Entire store needs to be read for each query and rewritten for every modification.</SPAN> 
+<LI lang=yo style="MARGIN-BOTTOM: 0px; VERTICAL-ALIGN: middle; MARGIN-TOP: 0px"><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">No built-in searching capabilities, other than LINQ.Where() or similar filtering; not indexed, not performant.</SPAN> 
+<LI lang=yo style="MARGIN-BOTTOM: 0px; VERTICAL-ALIGN: middle; MARGIN-TOP: 0px"><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">Although a user may have less than a couple of hundred tags, those could be duplicated across dozens of pages, quickly multiplying contextual referencing making the stored model quite large and combersome. One solution may be to normalize data into referrenced models but then we're starting to reinvent a DBMS.</SPAN> </LI></UL>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
+<H4 lang=yo style="FONT-SIZE: 12pt; MARGIN: 0in"><SPAN style='FONT-FAMILY: "Segoe UI Emoji"; COLOR: #70ad47; FONT-STYLE: italic'>✓ </SPAN><SPAN style='FONT-FAMILY: "Segoe UI Emoji"; COLOR: #5b9bd5; FONT-STYLE: italic'>- </SPAN><SPAN style="FONT-FAMILY: Calibri; COLOR: #5b9bd5; FONT-STYLE: italic">Alternative 3 - Save to Sqlite</SPAN></H4>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">Record last scan date/time in a separate control table. Use this timestamp to compare against the lastModified timestamp of each page to know whether we need to rescan an updated page.</P>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">Record each hashtag on every page indvidiually. We can capture the hashtag and it's location on the page and when it was recorded. This provides contextual location of each hashtag when searching and displaying to user.</P>
@@ -264,6 +279,7 @@
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in"><SPAN style="FONT-STYLE: italic">Advantages</SPAN></P>
 <UL style="MARGIN-BOTTOM: 0in; unicode-bidi: embed; MARGIN-TOP: 0in; DIRECTION: ltr" type=disc>
+<LI lang=yo style="MARGIN-BOTTOM: 0px; VERTICAL-ALIGN: middle; MARGIN-TOP: 0px"><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">Solved problem; "quick to market!"</SPAN> 
 <LI lang=yo style="MARGIN-BOTTOM: 0px; VERTICAL-ALIGN: middle; MARGIN-TOP: 0px"><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">Can enhance, easier to evolve schema compared to a formatted string stored in a Meta element.</SPAN> </LI></UL>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in"><SPAN style="FONT-STYLE: italic">Disadvantage</SPAN></P>
@@ -276,8 +292,11 @@
 <H4 lang=yo style="FONT-SIZE: 12pt; MARGIN: 0in"><SPAN style='FONT-FAMILY: "Segoe UI Emoji"; COLOR: #e84c22; FONT-STYLE: italic'>✗ </SPAN><SPAN style='FONT-FAMILY: "Segoe UI Emoji"; COLOR: #5b9bd5; FONT-STYLE: italic'>- </SPAN><SPAN style="FONT-FAMILY: Calibri; COLOR: #5b9bd5; FONT-STYLE: italic">Alternative 0 - Build a new window</SPAN></H4>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">Adds complexity and noise, cognitive dissonance.</P>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
-<H4 lang=yo style="FONT-SIZE: 12pt; MARGIN: 0in"><SPAN style='FONT-FAMILY: "Segoe UI Emoji"; COLOR: #70ad47; FONT-STYLE: italic'>✓ </SPAN><SPAN style='FONT-FAMILY: "Segoe UI Emoji"; COLOR: #5b9bd5; FONT-STYLE: italic'>- </SPAN><SPAN style="FONT-FAMILY: Calibri; COLOR: #5b9bd5; FONT-STYLE: italic">Alternative 1 - Integrate with Navigator window</SPAN></H4>
-<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">Introduce a tabbed interface to the window. The primary tab will display history navigation, secondary tab will display hashtag searching</P>
+<H4 lang=yo style="FONT-SIZE: 12pt; MARGIN: 0in"><SPAN style='FONT-FAMILY: "Segoe UI Emoji"; COLOR: #e84c22; FONT-STYLE: italic'>✗ </SPAN><SPAN style='FONT-FAMILY: "Segoe UI Emoji"; COLOR: #5b9bd5; FONT-STYLE: italic'>- </SPAN><SPAN style="FONT-FAMILY: Calibri; COLOR: #5b9bd5; FONT-STYLE: italic">Alternative 1 - Integrate with Navigator window</SPAN></H4>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">Introduce a tabbed interface to the window. The primary tab will display history navigation, secondary tab will display hashtag searching. Although users may not intuitively look here.</P>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
+<H4 lang=yo style="FONT-SIZE: 12pt; MARGIN: 0in"><SPAN style='FONT-FAMILY: "Segoe UI Emoji"; COLOR: #70ad47; FONT-STYLE: italic'>✓ </SPAN><SPAN style='FONT-FAMILY: "Segoe UI Emoji"; COLOR: #5b9bd5; FONT-STYLE: italic'>- </SPAN><SPAN style="FONT-FAMILY: Calibri; COLOR: #5b9bd5; FONT-STYLE: italic">Alternative 2 - Integrate with Search and Find windows</SPAN></H4>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">Both the <SPAN style="FONT-STYLE: italic">Search and Copy/Move</SPAN> dialog and the <SPAN style="FONT-STYLE: italic">Find Tagged Pages</SPAN> dialog are appropriately relevant to also finding hashtags. Although they are burried beneath the Search menu, there is a more intuitive correlation. An additional "Find Hashtags" command could be added that opens/prefers one of these dialogs.</P>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
 <P lang=yo style='FONT-SIZE: 10pt; FONT-FAMILY: "Courier New"; COLOR: #b43512; MARGIN: 0in'>══════════════════════════════════════════════════════════════════════════════════════════════════</P>
@@ -308,7 +327,7 @@
 <P style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
 <P style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
 <P lang=yo style='FONT-SIZE: 10pt; FONT-FAMILY: "Courier New"; COLOR: #b43512; MARGIN: 0in'>──────────────────────────────────────────────────────────────────────────────────────────────────</P>
-<P style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in"><SPAN lang=yo style="FONT-STYLE: italic">Hashtag Scanning PlantUML (</SPAN><A href="onemore://PlantUmlCommand/df397a0035864d33aa17f038bde303e8"><SPAN lang=yo style="FONT-STYLE: italic">Refresh</SPAN></A><SPAN lang=yo style="FONT-STYLE: italic">)</SPAN></P>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in"><SPAN style="FONT-STYLE: italic">Hashtag Scanning PlantUML (</SPAN><A href="onemore://PlantUmlCommand/df397a0035864d33aa17f038bde303e8"><SPAN style="FONT-STYLE: italic">Refresh</SPAN></A><SPAN style="FONT-STYLE: italic">)</SPAN></P>
 <P lang=yo style='FONT-SIZE: 9.5pt; FONT-FAMILY: "Lucida Console"; MARGIN: 0in 0in 0in 0.375in'><SPAN style="FONT-WEIGHT: bold; COLOR: #5b9bd5">@startuml</SPAN><SPAN style="COLOR: black"> Hashtag Scanning</SPAN></P>
 <P lang=yo style='FONT-SIZE: 9.5pt; FONT-FAMILY: "Lucida Console"; MARGIN: 0in 0in 0in 0.375in'><SPAN style="COLOR: #a5a5a5">skin</SPAN><SPAN style="COLOR: black"> rose</SPAN></P>
 <P lang=yo style='FONT-SIZE: 9.5pt; FONT-FAMILY: "Lucida Console"; MARGIN: 0in 0in 0in 0.375in'><SPAN style="COLOR: #a5a5a5">skinparam</SPAN><SPAN style="COLOR: black"> defaultFontSize </SPAN><SPAN style="COLOR: #8064a2">9</SPAN></P>
@@ -354,7 +373,7 @@
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
 <P><CITE lang=yo style="FONT-SIZE: 10pt; FONT-FAMILY: Calibri; COLOR: #595959; MARGIN: 0in">© 2020 Steven M Cohn. All rights reserved.</CITE></P>
 <P><CITE lang=yo style="FONT-SIZE: 10pt; FONT-FAMILY: Calibri; COLOR: #595959; MARGIN: 0in">Please consider a <A href="https://github.com/sponsors/stevencohn">sponsorship or one-time donation</A> to support ongoing development</CITE></P>
-<P><CITE lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</CITE></P></DIV></DIV></DIV>
+<P><CITE lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; COLOR: #595959; MARGIN: 0in">&nbsp;</CITE></P></DIV></DIV></DIV>
 <DIV>
 <P style="MARGIN: 0in">&nbsp;</P>
 <P style="FONT-SIZE: 9pt; FONT-FAMILY: Arial; COLOR: #969696; DIRECTION: ltr; TEXT-ALIGN: left; MARGIN: 0in">Created with OneNote.</P></DIV>
