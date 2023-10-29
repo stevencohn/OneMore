@@ -1092,6 +1092,22 @@ Symbole: PI, E</value>
   <data name="HasActiveMedia" xml:space="preserve">
     <value>OneMore-Befehle können nicht aufgerufen werden, während eine Aufzeichnung aktiv ist. Bitte stoppen Sie die Aufnahme und versuchen Sie es erneut.</value>
   </data>
+  <data name="HashtagSheet_disabledBox" xml:space="preserve">
+    <value>Deaktivieren Sie den Hashtag-Dienst. Dadurch wird auch die Hashtag-Suche deaktiviert.</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="HashtagSheet_intervalLabel" xml:space="preserve">
+    <value>Scannen Sie alle nach Hashtags</value>
+    <comment>label</comment>
+  </data>
+  <data name="HashtagSheet_introTitle" xml:space="preserve">
+    <value>Passen Sie erweiterte Optionen für den Hashtag-Scanner-Dienst an</value>
+    <comment>label</comment>
+  </data>
+  <data name="HashtagSheet_Title" xml:space="preserve">
+    <value>Hashtags</value>
+    <comment>sheet title</comment>
+  </data>
   <data name="HighlightFormulaCommand_NoFormulas" xml:space="preserve">
     <value>Auf dieser Seite wurden keine Formeln gefunden</value>
     <comment>highlight command message</comment>
@@ -3882,6 +3898,10 @@ Suchmaschinen werden im Kontextmenü der Seite angezeigt, klicke mit der rechten
     <value>Allgemeine Optionen</value>
     <comment>tree node</comment>
   </data>
+  <data name="SettingsDialog_hashtagsNode_Text" xml:space="preserve">
+    <value>Hashtags</value>
+    <comment>treenode</comment>
+  </data>
   <data name="SettingsDialog_highlightNode.Text" xml:space="preserve">
     <value>Textmarker-Themen</value>
     <comment>treenode</comment>
@@ -4161,6 +4181,9 @@ Notizbücher</value>
   <data name="StartupFailureMessage" xml:space="preserve">
     <value>OneMore konnte keine Verbindung zu OneNote herstellen. Ausnahmedetails finden Sie in der Protokolldatei</value>
     <comment>message box</comment>
+  </data>
+  <data name="String1" xml:space="preserve">
+    <value />
   </data>
   <data name="StyleDialog_afterLabel.Text" xml:space="preserve">
     <value>Leerzeichen nach:</value>
@@ -4587,6 +4610,9 @@ In diesem Abschnitt</value>
   </data>
   <data name="word_Limit" xml:space="preserve">
     <value>Grenze</value>
+  </data>
+  <data name="word_Minutes" xml:space="preserve">
+    <value>Protokoll</value>
   </data>
   <data name="word_Move" xml:space="preserve">
     <value>Umzug</value>

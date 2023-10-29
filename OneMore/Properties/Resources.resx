@@ -117,6 +117,7 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="AboutDialog.Text" xml:space="preserve">
     <value>OneMore Add-in</value>
     <comment>dialog title bar</comment>
@@ -633,6 +634,10 @@ OneNote will close automatically</value>
     <value>CustomStyles.xml</value>
     <comment>SKIP, filename</comment>
   </data>
+  <data name="DatabaseFilename" xml:space="preserve">
+    <value>OneMore.db</value>
+    <comment>SKIP, Sqlite database file name</comment>
+  </data>
   <data name="DeleteFormulaCommand_Deleted" xml:space="preserve">
     <value>Deleted formulas from {0} cell(s)</value>
     <comment>delete command message</comment>
@@ -1106,6 +1111,22 @@ Symbols: PI, E</value>
   </data>
   <data name="HasActiveMedia" xml:space="preserve">
     <value>Cannot invoke OneMore commands while there is an active recording. Please stop the recording and try again.</value>
+  </data>
+  <data name="HashtagSheet_disabledBox" xml:space="preserve">
+    <value>Disable the hashtag service. This will also disable hashtag searching.</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="HashtagSheet_intervalLabel" xml:space="preserve">
+    <value>Scan for hashtags every</value>
+    <comment>label</comment>
+  </data>
+  <data name="HashtagSheet_introTitle" xml:space="preserve">
+    <value>Customize advanced options for the Hashtag Scanner Service</value>
+    <comment>label</comment>
+  </data>
+  <data name="HashtagSheet_Title" xml:space="preserve">
+    <value>Hashtags</value>
+    <comment>sheet title</comment>
   </data>
   <data name="HighlightFormulaCommand_NoFormulas" xml:space="preserve">
     <value>No formulas found on this page</value>
@@ -3923,6 +3944,10 @@ Search engines will appear in the page context menu, right-click.</value>
     <value>General Options</value>
     <comment>tree node</comment>
   </data>
+  <data name="SettingsDialog_hashtagsNode_Text" xml:space="preserve">
+    <value>Hashtags</value>
+    <comment>treenode</comment>
+  </data>
   <data name="SettingsDialog_highlightNode.Text" xml:space="preserve">
     <value>Highlighter Themes</value>
     <comment>treenode</comment>
@@ -4203,6 +4228,9 @@ Notebooks</value>
   <data name="StartupFailureMessage" xml:space="preserve">
     <value>OneMore failed to connect to OneNote, see log file for exception details</value>
     <comment>message box</comment>
+  </data>
+  <data name="String1" xml:space="preserve">
+    <value />
   </data>
   <data name="StyleDialog_afterLabel.Text" xml:space="preserve">
     <value>Space After:</value>
@@ -4634,6 +4662,9 @@ In this section</value>
   <data name="word_Limit" xml:space="preserve">
     <value>Limit</value>
   </data>
+  <data name="word_Minutes" xml:space="preserve">
+    <value>Minutes</value>
+  </data>
   <data name="word_Move" xml:space="preserve">
     <value>Move</value>
   </data>
@@ -4779,7 +4810,6 @@ In this section</value>
     <value>Word Counts</value>
     <comment>page title</comment>
   </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="ribInsertNoteBoxButton" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\ribbon\images\ribinsertnoteboxbutton.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -5032,6 +5062,9 @@ In this section</value>
   <data name="InfoBoxThemes" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\commands\snippets\infoboxthemes.json;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
   </data>
+  <data name="HashtagsDB" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Commands\Tagging\HashtagsDB.sql;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
   <data name="DefaultTableThemes" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\ribbon\defaulttablethemes.json;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
   </data>
@@ -5043,15 +5076,5 @@ In this section</value>
   </data>
   <data name="_0336_OneNoteApplication_2013" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>0336.OneNoteApplication_2013.xsd;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
-  </data>
-  <data name="DatabaseFilename" xml:space="preserve">
-    <value>OneMore.db</value>
-    <comment>SKIP, Sqlite database file name</comment>
-  </data>
-  <data name="String1" xml:space="preserve">
-    <value />
-  </data>
-  <data name="HashtagsDB" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Commands\Tagging\HashtagsDB.sql;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
   </data>
 </root>

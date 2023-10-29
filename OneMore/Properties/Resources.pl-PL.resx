@@ -1106,6 +1106,22 @@ Symbole: PI, E</value>
   <data name="HasActiveMedia" xml:space="preserve">
     <value>Nie można wywołać poleceń OneMore, gdy aktywne jest nagrywanie. Zatrzymaj nagrywanie i spróbuj ponownie.</value>
   </data>
+  <data name="HashtagSheet_disabledBox" xml:space="preserve">
+    <value>Wyłącz usługę hashtagów. Spowoduje to również wyłączenie wyszukiwania hashtagów.</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="HashtagSheet_intervalLabel" xml:space="preserve">
+    <value>Skanuj hashtagi co</value>
+    <comment>label</comment>
+  </data>
+  <data name="HashtagSheet_introTitle" xml:space="preserve">
+    <value>Dostosuj zaawansowane opcje usługi skanera hashtagów</value>
+    <comment>label</comment>
+  </data>
+  <data name="HashtagSheet_Title" xml:space="preserve">
+    <value>Hashtagi</value>
+    <comment>sheet title</comment>
+  </data>
   <data name="HighlightFormulaCommand_NoFormulas" xml:space="preserve">
     <value>Na tej stronie nie znaleziono formuł</value>
     <comment>highlight command message</comment>
@@ -3905,6 +3921,10 @@ Wyszukiwarki pojawią się w menu kontekstowym strony, kliknij prawym przyciskie
     <value>Ogólne opcje</value>
     <comment>tree node</comment>
   </data>
+  <data name="SettingsDialog_hashtagsNode_Text" xml:space="preserve">
+    <value>Hashtagi</value>
+    <comment>treenode</comment>
+  </data>
   <data name="SettingsDialog_highlightNode.Text" xml:space="preserve">
     <value>Najlepsze motywy</value>
     <comment>treenode</comment>
@@ -4185,6 +4205,9 @@ Notatniki</value>
   <data name="StartupFailureMessage" xml:space="preserve">
     <value>Onemore nie udało się połączyć z OneNote, zobacz plik dziennika dla szczegółów wyjątków</value>
     <comment>message box</comment>
+  </data>
+  <data name="String1" xml:space="preserve">
+    <value />
   </data>
   <data name="StyleDialog_afterLabel.Text" xml:space="preserve">
     <value>Przestrzeń po:</value>
@@ -4615,6 +4638,9 @@ W tej sekcji</value>
   </data>
   <data name="word_Limit" xml:space="preserve">
     <value>Limit</value>
+  </data>
+  <data name="word_Minutes" xml:space="preserve">
+    <value>Minuty</value>
   </data>
   <data name="word_Move" xml:space="preserve">
     <value>Ruszaj się</value>

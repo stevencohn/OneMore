@@ -1108,6 +1108,22 @@ Total Row Font
   <data name="HasActiveMedia" xml:space="preserve">
     <value>לא יכול להפעיל פקודות של OneMore בזמן שיש הקלטה פעילה. אנא הפסק את ההקלטה ונסה שוב.</value>
   </data>
+  <data name="HashtagSheet_disabledBox" xml:space="preserve">
+    <value>השבת את שירות ההאשטאג. זה גם ישבית את חיפוש ההאשטאג.</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="HashtagSheet_intervalLabel" xml:space="preserve">
+    <value>סרוק אחר hashtags כל</value>
+    <comment>label</comment>
+  </data>
+  <data name="HashtagSheet_introTitle" xml:space="preserve">
+    <value>התאם אישית אפשרויות מתקדמות עבור שירות הסורק של Hashtag</value>
+    <comment>label</comment>
+  </data>
+  <data name="HashtagSheet_Title" xml:space="preserve">
+    <value>Hashtags</value>
+    <comment>sheet title</comment>
+  </data>
   <data name="HighlightFormulaCommand_NoFormulas" xml:space="preserve">
     <value>לא נמצאו נוסחאות בדף זה</value>
     <comment>highlight command message</comment>
@@ -3905,6 +3921,10 @@ ISO-code then comma then language name</comment>
     <value>אפשרויות כלליות</value>
     <comment>tree node</comment>
   </data>
+  <data name="SettingsDialog_hashtagsNode_Text" xml:space="preserve">
+    <value>Hashtags</value>
+    <comment>treenode</comment>
+  </data>
   <data name="SettingsDialog_highlightNode.Text" xml:space="preserve">
     <value>נושאי סימון</value>
     <comment>treenode</comment>
@@ -4185,6 +4205,9 @@ ISO-code then comma then language name</comment>
   <data name="StartupFailureMessage" xml:space="preserve">
     <value>OneMore לא הצליח להתחבר ל- OneNote, ראה קובץ יומן לקבלת פרטי חריג</value>
     <comment>message box</comment>
+  </data>
+  <data name="String1" xml:space="preserve">
+    <value />
   </data>
   <data name="StyleDialog_afterLabel.Text" xml:space="preserve">
     <value>מרחב אחרי:</value>
@@ -4615,6 +4638,9 @@ ISO-code then comma then language name</comment>
   </data>
   <data name="word_Limit" xml:space="preserve">
     <value>לְהַגבִּיל</value>
+  </data>
+  <data name="word_Minutes" xml:space="preserve">
+    <value>דקות</value>
   </data>
   <data name="word_Move" xml:space="preserve">
     <value>מהלך \ לזוז \ לעבור</value>

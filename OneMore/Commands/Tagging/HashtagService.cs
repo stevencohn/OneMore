@@ -17,21 +17,31 @@ namespace River.OneMoreAddIn.Commands
 	/// </summary>
 	internal class HashtagService : Loggable
 	{
-		public const int DefaultPollingInterval = 60000 * 2; // 2 minutes
+		public const int DefaultPollingInterval = 2; // 2 minutes
+		private const int Minute = 60000; // ms in 1 minute
 
 		private readonly int pollingInterval;
+		private readonly bool disabled;
 
 
 		public HashtagService()
 		{
 			var settings = new SettingsProvider();
 			var collection = settings.GetCollection("HashtagSheet");
-			pollingInterval = collection.Get("interval", DefaultPollingInterval);
+			pollingInterval = collection.Get("interval", DefaultPollingInterval) * Minute;
+
+			disabled = collection.Get("disabled", false);
 		}
 
 
 		public void Startup()
 		{
+			if (disabled)
+			{
+				logger.WriteLine("hashtag service is disabled");
+				return;
+			}
+
 			logger.WriteLine("starting hashtag service");
 
 			var thread = new Thread(async () =>

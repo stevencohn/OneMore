@@ -2681,14 +2681,51 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to CREATE TABLE IF NOT EXISTS hashtag_scanner (scannerID INTEGER PRIMARY KEY UNIQUE NOT NULL, version NUMERIC (12) UNIQUE NOT NULL, lastScan TEXT (25) NOT NULL);
-        ///CREATE UNIQUE INDEX IF NOT EXISTS sqlite_autoindex_scanner_1 ON hashtag_scanner (scannerID COLLATE BINARY);
-        ///CREATE UNIQUE INDEX IF NOT EXISTS sqlite_autoindex_scanner_2 ON hashtag_scanner (version COLLATE BINARY);
-        ///CREATE TABLE IF NOT EXISTS hashtags (tag TEXT (200) NOT NULL, moreID TEXT (32) NOT NULL, pageID TEXT (100) NOT NULL, objectID TEXT (64)  [rest of string was truncated]&quot;;.
+        ///   Looks up a localized string similar to CREATE TABLE IF NOT EXISTS hashtag_scanner (scannerID INTEGER PRIMARY KEY UNIQUE NOT NULL, version NUMERIC (12) UNIQUE NOT NULL, lastScan TEXT NOT NULL);
+        ///CREATE TABLE IF NOT EXISTS hashtags (tag TEXT NOT NULL, moreID TEXT NOT NULL, pageID TEXT NOT NULL, objectID TEXT NOT NULL, lastScan TEXT NOT NULL, PRIMARY KEY (tag, objectID));
+        ///CREATE TABLE IF NOT EXISTS hashtags_pages (moreID PRIMARY KEY, path TEXT, name TEXT);
+        ///CREATE INDEX IF NOT EXISTS IDX_moreID ON hashtags (moreID);
+        ///CREATE INDEX IF NOT EXISTS IDX [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string HashtagsDB {
             get {
                 return ResourceManager.GetString("HashtagsDB", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Disable the hashtag service. This will also disable hashtag searching..
+        /// </summary>
+        internal static string HashtagSheet_disabledBox {
+            get {
+                return ResourceManager.GetString("HashtagSheet_disabledBox", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Scan for hashtags every.
+        /// </summary>
+        internal static string HashtagSheet_intervalLabel {
+            get {
+                return ResourceManager.GetString("HashtagSheet_intervalLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Customize advanced options for the Hashtag Scanner Service.
+        /// </summary>
+        internal static string HashtagSheet_introTitle {
+            get {
+                return ResourceManager.GetString("HashtagSheet_introTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hashtags.
+        /// </summary>
+        internal static string HashtagSheet_Title {
+            get {
+                return ResourceManager.GetString("HashtagSheet_Title", resourceCulture);
             }
         }
         
@@ -9325,6 +9362,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Hashtags.
+        /// </summary>
+        internal static string SettingsDialog_hashtagsNode_Text {
+            get {
+                return ResourceManager.GetString("SettingsDialog_hashtagsNode_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Highlighter Themes.
         /// </summary>
         internal static string SettingsDialog_highlightNode_Text {
@@ -11173,6 +11219,15 @@ namespace River.OneMoreAddIn.Properties {
         internal static string word_Limit {
             get {
                 return ResourceManager.GetString("word_Limit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Minutes.
+        /// </summary>
+        internal static string word_Minutes {
+            get {
+                return ResourceManager.GetString("word_Minutes", resourceCulture);
             }
         }
         

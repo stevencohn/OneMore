@@ -1097,6 +1097,22 @@
   <data name="HasActiveMedia" xml:space="preserve">
     <value>لا يمكن استدعاء أوامر OneMore أثناء وجود تسجيل نشط. الرجاء إيقاف التسجيل وحاول مرة أخرى.</value>
   </data>
+  <data name="HashtagSheet_disabledBox" xml:space="preserve">
+    <value>تعطيل خدمة الهاشتاج. سيؤدي هذا أيضًا إلى تعطيل البحث عن الهاشتاج.</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="HashtagSheet_intervalLabel" xml:space="preserve">
+    <value>البحث عن علامات التصنيف كل</value>
+    <comment>label</comment>
+  </data>
+  <data name="HashtagSheet_introTitle" xml:space="preserve">
+    <value>تخصيص الخيارات المتقدمة لخدمة Hashtag Scanner</value>
+    <comment>label</comment>
+  </data>
+  <data name="HashtagSheet_Title" xml:space="preserve">
+    <value>علامات التصنيف</value>
+    <comment>sheet title</comment>
+  </data>
   <data name="HighlightFormulaCommand_NoFormulas" xml:space="preserve">
     <value>لا توجد صيغ في هذه الصفحة</value>
     <comment>highlight command message</comment>
@@ -3892,6 +3908,10 @@ ISO-code then comma then language name</comment>
     <value>خيارات عامة</value>
     <comment>tree node</comment>
   </data>
+  <data name="SettingsDialog_hashtagsNode_Text" xml:space="preserve">
+    <value>علامات التصنيف</value>
+    <comment>treenode</comment>
+  </data>
   <data name="SettingsDialog_highlightNode.Text" xml:space="preserve">
     <value>سمات تمييز</value>
     <comment>treenode</comment>
@@ -4172,6 +4192,9 @@ ISO-code then comma then language name</comment>
   <data name="StartupFailureMessage" xml:space="preserve">
     <value>فشل OneMore في الاتصال بـ OneNote ، راجع ملف السجل للحصول على تفاصيل الاستثناء</value>
     <comment>message box</comment>
+  </data>
+  <data name="String1" xml:space="preserve">
+    <value />
   </data>
   <data name="StyleDialog_afterLabel.Text" xml:space="preserve">
     <value>مسافة بعد:</value>
@@ -4598,6 +4621,9 @@ ISO-code then comma then language name</comment>
   </data>
   <data name="word_Limit" xml:space="preserve">
     <value>حد</value>
+  </data>
+  <data name="word_Minutes" xml:space="preserve">
+    <value>دقائق</value>
   </data>
   <data name="word_Move" xml:space="preserve">
     <value>نقل</value>

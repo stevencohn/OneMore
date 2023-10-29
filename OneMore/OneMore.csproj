@@ -184,6 +184,12 @@
     <Compile Include="Commands\Settings\FileImportSheet.Designer.cs">
       <DependentUpon>FileImportSheet.cs</DependentUpon>
     </Compile>
+    <Compile Include="Commands\Settings\HashtagSheet .cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Commands\Settings\HashtagSheet .Designer.cs">
+      <DependentUpon>HashtagSheet .cs</DependentUpon>
+    </Compile>
     <Compile Include="Commands\Settings\NavigatorSheet.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -1286,6 +1292,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Commands\Settings\FileImportSheet.resx">
       <DependentUpon>FileImportSheet.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Commands\Settings\HashtagSheet .resx">
+      <DependentUpon>HashtagSheet .cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Commands\Settings\NavigatorSheet.resx">
       <DependentUpon>NavigatorSheet.cs</DependentUpon>

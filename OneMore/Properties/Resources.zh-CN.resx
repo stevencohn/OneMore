@@ -1099,6 +1099,22 @@ OneNote 文件 (*.one)</value>
   <data name="HasActiveMedia" xml:space="preserve">
     <value>存在活动记录时无法调用 OneMore 命令。请停止录制并重试。</value>
   </data>
+  <data name="HashtagSheet_disabledBox" xml:space="preserve">
+    <value>禁用主题标签服务。这也将禁用主题标签搜索。</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="HashtagSheet_intervalLabel" xml:space="preserve">
+    <value>扫描主题标签的时间间隔</value>
+    <comment>label</comment>
+  </data>
+  <data name="HashtagSheet_introTitle" xml:space="preserve">
+    <value>自定义标签扫描仪服务的高级选项</value>
+    <comment>label</comment>
+  </data>
+  <data name="HashtagSheet_Title" xml:space="preserve">
+    <value>标签</value>
+    <comment>sheet title</comment>
+  </data>
   <data name="HighlightFormulaCommand_NoFormulas" xml:space="preserve">
     <value>在此页面上找不到公式</value>
     <comment>highlight command message</comment>
@@ -3888,6 +3904,10 @@ ISO-code then comma then language name</comment>
     <value>常规选项</value>
     <comment>tree node</comment>
   </data>
+  <data name="SettingsDialog_hashtagsNode_Text" xml:space="preserve">
+    <value>标签</value>
+    <comment>treenode</comment>
+  </data>
   <data name="SettingsDialog_highlightNode.Text" xml:space="preserve">
     <value>荧光笔主题</value>
     <comment>treenode</comment>
@@ -4168,6 +4188,9 @@ ISO-code then comma then language name</comment>
   <data name="StartupFailureMessage" xml:space="preserve">
     <value>OneMore无法连接到OneNote，请参阅日志文件以获取异常详细信息</value>
     <comment>message box</comment>
+  </data>
+  <data name="String1" xml:space="preserve">
+    <value />
   </data>
   <data name="StyleDialog_afterLabel.Text" xml:space="preserve">
     <value>段后空间:</value>
@@ -4594,6 +4617,9 @@ ISO-code then comma then language name</comment>
   </data>
   <data name="word_Limit" xml:space="preserve">
     <value>限制</value>
+  </data>
+  <data name="word_Minutes" xml:space="preserve">
+    <value>分钟</value>
   </data>
   <data name="word_Move" xml:space="preserve">
     <value>移动</value>
