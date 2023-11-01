@@ -1381,11 +1381,13 @@ namespace River.OneMoreAddIn
 				onenote.FindMeta(nodeId, name, out xml, false, XMLSchema.xs2013);
 			});
 
-			if (xml == null)
+#pragma warning disable S2583 // Conditionally executed code should be reachable
+			if (string.IsNullOrWhiteSpace(xml))
 			{
 				// only case was immediately after an Office upgrade but...
 				return null;
 			}
+#pragma warning restore S2583
 
 			XElement hierarchy;
 			try
