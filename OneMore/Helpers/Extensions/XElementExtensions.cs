@@ -428,6 +428,20 @@ namespace River.OneMoreAddIn
 
 
 		/// <summary>
+		/// Determines if the content of the element consists only of a mathML statement
+		/// which is identified when its CDATA specifies an XML comment.
+		/// </summary>
+		/// <param name="element"></param>
+		/// <returns></returns>
+		public static bool IsMathML(this XElement element)
+		{
+			var cdata = element.GetCData();
+			return cdata != null &&
+				Regex.IsMatch(cdata.Value, @"<!--.+?-->", RegexOptions.Singleline);
+		}
+
+
+		/// <summary>
 		/// OneMore Extension >> Extract the sanitized text value of the given element
 		/// </summary>
 		/// <param name="element">The root element from which to extract text</param>
