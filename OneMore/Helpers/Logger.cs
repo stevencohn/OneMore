@@ -26,7 +26,6 @@ namespace River.OneMoreAddIn
 		private readonly bool stdio;
 		private readonly bool longHeader;
 		private readonly bool verbose;
-		private readonly int processId;
 		private string preamble;
 		private bool isNewline;
 		private bool isDisposed;
@@ -38,7 +37,6 @@ namespace River.OneMoreAddIn
 		private Logger()
 		{
 			using var process = Process.GetCurrentProcess();
-			processId = process.Id;
 			stdio = process.ProcessName.StartsWith("LINQPad");
 
 			LogPath = Path.Combine(
@@ -387,8 +385,7 @@ namespace River.OneMoreAddIn
 				if (longHeader)
 				{
 					return
-						$"{DateTime.Now:hh:mm:ss.fff} " +
-						$"[{processId}:{Thread.CurrentThread.ManagedThreadId:00}] {preamble}";
+						$"{Thread.CurrentThread.ManagedThreadId:00}|{DateTime.Now:hh:mm:ss.fff}| {preamble}";
 				}
 
 				return $"{Thread.CurrentThread.ManagedThreadId:00}| {preamble}";
