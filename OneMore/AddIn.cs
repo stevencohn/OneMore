@@ -65,10 +65,11 @@ namespace River.OneMoreAddIn
 			thread.CurrentUICulture = Culture;
 
 			var (cpu, ram) = GetMachineProps();
+			var uram = ram > ulong.MaxValue ? ">GB" : ((ulong)ram).ToBytes();
 
 			logger.WriteLine();
 			logger.Start(
-				$"Starting {process.ProcessName} {process.Id}, {cpu} Mhz, {ram.ToBytes()}, " +
+				$"Starting {process.ProcessName} {process.Id}, {cpu} Mhz, {uram}, " +
 				$"{thread.CurrentCulture.Name}/{thread.CurrentUICulture.Name}, " +
 				$"v{AssemblyInfo.Version}, OneNote {Office.GetOneNoteVersion()}, " +
 				$"Office {Office.GetOfficeVersion()}, " +
@@ -145,28 +146,42 @@ namespace River.OneMoreAddIn
 
 
 
-		private (uint, ulong) GetMachineProps()
+		private (uint, double) GetMachineProps()
 		{
-			static T Query<T>(string field, string table)
-			{
-				T value = default(T);
-				using var searcher = new ManagementObjectSearcher($"select {field} from {table}");
-				foreach (var item in searcher.Get())
-				{
-					value = (T)item[field];
-					item.Dispose();
-				}
-				return value;
-			}
-
 			// using this as a means of short-circuiting the Ensure methods for slower machines
 			// to speed up the display of the menus. CurrentClockSpeed will vary depending on
 			// battery capacity and other factors, whereas MaxClockSpeed is a constant
-			var speed = Query<uint>("CurrentClockSpeed", "Win32_Processor");
+
+			uint speed = ReasonableClockSpeed;
+			using (var searcher = 
+				new ManagementObjectSearcher("select CurrentClockSpeed from Win32_Processor"))
+			{
+				foreach (var item in searcher.Get())
+				{
+					speed = Convert.ToUInt32(item["CurrentClockSpeed"]);
+					item.Dispose();
+				}
+			}
+
 			if (speed == 0) speed = ReasonableClockSpeed;
 
 			// returns total RAM across all physical slots; as KB so convert to bytes
-			var memory = Query<ulong>("MaxCapacityEx", "Win32_PhysicalMemoryArray") * 1024;
+			//var memory = Query<ulong>("MaxCapacityEx", "Win32_PhysicalMemoryArray") * 1024;
+			//var memory = Query<ulong>("Capacity", "Win32_PhysicalMemory") * 1024;
+
+			//var memory = Math.Ceiling(Query<double>(
+			//	"*", "Win32_OperatingSystem", "TotalVisibleMemorySize") * 1024);
+
+			double memory = 0;
+			using (var searcher =
+				new ManagementObjectSearcher("select * from Win32_OperatingSystem"))
+			{
+				foreach (var item in searcher.Get())
+				{
+					memory = Convert.ToDouble(item["TotalVisibleMemorySize"]);
+					item.Dispose();
+				}
+			}
 
 			return (speed, memory);
 		}
