@@ -25,7 +25,7 @@ namespace River.OneMoreAddIn
 			{ "", "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX" };
 
 		// byte size names (only handles up to TB)
-		private static readonly string[] SizeSuffixes = { "bytes", "KB", "MB", "GB", "TB" };
+		private static readonly string[] SizeSuffixes = { "bytes", "KB", "MB", "GB", "TB", "PB" };
 
 
 		// convert int to alphabet string
