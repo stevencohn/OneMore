@@ -71,6 +71,7 @@
 			this.gridView.ShowEditingIcon = false;
 			this.gridView.Size = new System.Drawing.Size(778, 425);
 			this.gridView.TabIndex = 0;
+			this.gridView.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.ChooseByDoubleClick);
 			this.gridView.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.ValidateOnCellFormatting);
 			this.gridView.GotFocus += new System.EventHandler(this.RefocusOnGotFocus);
 			this.gridView.KeyDown += new System.Windows.Forms.KeyEventHandler(this.ChooseByKeyboard);

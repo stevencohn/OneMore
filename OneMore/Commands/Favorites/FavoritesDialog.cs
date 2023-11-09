@@ -423,6 +423,14 @@ namespace River.OneMoreAddIn.Commands.Favorites
 		}
 
 
+		private void ChooseByDoubleClick(object sender, DataGridViewCellEventArgs e)
+		{
+			ChooseByClick(null, null);
+			DialogResult = DialogResult.OK;
+			Close();
+		}
+
+
 		private void ChooseByKeyboard(object sender, KeyEventArgs e)
 		{
 			if (e.KeyCode == Keys.Enter)
