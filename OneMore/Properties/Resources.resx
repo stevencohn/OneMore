@@ -957,6 +957,18 @@ OneNote File (*.one)</value>
     <value>Page no longer found; it may have been deleted</value>
     <comment>tooltip</comment>
   </data>
+  <data name="FavoritesDialog_addButton.Text" xml:space="preserve">
+    <value>Add Current Page</value>
+    <comment>context menu item</comment>
+  </data>
+  <data name="FavoritesDialog_checkButton.Text" xml:space="preserve">
+    <value>Check Favorites</value>
+    <comment>context menu item</comment>
+  </data>
+  <data name="FavoritesDialog_manageButton.Text" xml:space="preserve">
+    <value>Manage Favorites</value>
+    <comment>context menu item</comment>
+  </data>
   <data name="FavoritesFilename" xml:space="preserve">
     <value>Favorites.xml</value>
     <comment>SKIP, filename</comment>
@@ -4697,6 +4709,9 @@ In this section</value>
   </data>
   <data name="word_Scope" xml:space="preserve">
     <value>Scope</value>
+  </data>
+  <data name="word_Search" xml:space="preserve">
+    <value>Search</value>
   </data>
   <data name="word_Seconds" xml:space="preserve">
     <value>Seconds</value>

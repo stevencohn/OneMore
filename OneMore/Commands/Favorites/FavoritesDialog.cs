@@ -27,6 +27,10 @@ namespace River.OneMoreAddIn.Commands.Favorites
 
 				Localize(new string[]
 				{
+					"addButton",
+					"checkButton",
+					"manageButton",
+					"searchLabel=word_Search",
 					"goButton=word_Go",
 					"cancelButton=word_Cancel"
 				});
@@ -406,6 +410,47 @@ namespace River.OneMoreAddIn.Commands.Favorites
 		private void RefocusOnGotFocus(object sender, EventArgs e)
 		{
 			searchBox.Focus();
+		}
+
+
+		private void AddCurrentPage(object sender, EventArgs e)
+		{
+			using var one = new OneNote();
+			var info = one.GetPageInfo();
+			if (info == null)
+			{
+				return;
+			}
+
+			var source = gridView.DataSource as BindingList<Favorite>;
+			var index = 0;
+			Favorite favorite = null;
+			while (index < source.Count && favorite == null)
+			{
+				if (source[index].Location.EqualsICIC(info.Path))
+				{
+					favorite = source[index];
+				}
+				else
+				{
+					index++;
+				}
+			}
+
+			if (favorite == null)
+			{
+				AddIn.Self.AddFavoritePageCmd(null);
+
+				using var provider = new FavoritesProvider(null);
+				var favorites = provider.LoadFavorites();
+				source.Add(favorites[favorites.Count - 1]);
+				MoveBottom();
+			}
+			else
+			{
+				gridView.Rows[index].Cells[0].Selected = true;
+				ShowText();
+			}
 		}
 
 

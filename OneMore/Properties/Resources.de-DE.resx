@@ -943,6 +943,18 @@ OneNote-Datei (*.one)</value>
     <value>Seite nicht mehr gefunden; es wurde möglicherweise gelöscht</value>
     <comment>tooltip</comment>
   </data>
+  <data name="FavoritesDialog_addButton.Text" xml:space="preserve">
+    <value>Aktuelle Seite hinzufügen</value>
+    <comment>context menu item</comment>
+  </data>
+  <data name="FavoritesDialog_checkButton.Text" xml:space="preserve">
+    <value>Überprüfen Sie die Favoriten</value>
+    <comment>context menu item</comment>
+  </data>
+  <data name="FavoritesDialog_manageButton.Text" xml:space="preserve">
+    <value>Favoriten verwalten</value>
+    <comment>context menu item</comment>
+  </data>
   <data name="FavoritesFilename" xml:space="preserve">
     <value>Favorites.xml</value>
     <comment>FILENAME</comment>
@@ -4650,6 +4662,9 @@ In diesem Abschnitt</value>
   </data>
   <data name="word_Scope" xml:space="preserve">
     <value>Zielfernrohr</value>
+  </data>
+  <data name="word_Search" xml:space="preserve">
+    <value>Suchen</value>
   </data>
   <data name="word_Seconds" xml:space="preserve">
     <value>Sekunden</value>

@@ -947,6 +947,18 @@ OneNote-bestand (*.one)</value>
     <value>Pagina niet meer gevonden; het kan zijn verwijderd</value>
     <comment>tooltip</comment>
   </data>
+  <data name="FavoritesDialog_addButton.Text" xml:space="preserve">
+    <value>Huidige pagina toevoegen</value>
+    <comment>context menu item</comment>
+  </data>
+  <data name="FavoritesDialog_checkButton.Text" xml:space="preserve">
+    <value>Controleer Favorieten</value>
+    <comment>context menu item</comment>
+  </data>
+  <data name="FavoritesDialog_manageButton.Text" xml:space="preserve">
+    <value>Beheer favorieten</value>
+    <comment>context menu item</comment>
+  </data>
   <data name="FavoritesFilename" xml:space="preserve">
     <value>Favorites.xml</value>
     <comment>SKIP, filename</comment>
@@ -4661,6 +4673,9 @@ In deze sectie</value>
   </data>
   <data name="word_Scope" xml:space="preserve">
     <value>Domein</value>
+  </data>
+  <data name="word_Search" xml:space="preserve">
+    <value>Zoekopdracht</value>
   </data>
   <data name="word_Seconds" xml:space="preserve">
     <value>seconden</value>

@@ -957,6 +957,18 @@ Total Row Font
     <value>הדף כבר לא נמצא; ייתכן שהוא נמחק</value>
     <comment>tooltip</comment>
   </data>
+  <data name="FavoritesDialog_addButton.Text" xml:space="preserve">
+    <value>הוסף דף נוכחי</value>
+    <comment>context menu item</comment>
+  </data>
+  <data name="FavoritesDialog_checkButton.Text" xml:space="preserve">
+    <value>סמן מועדפים</value>
+    <comment>context menu item</comment>
+  </data>
+  <data name="FavoritesDialog_manageButton.Text" xml:space="preserve">
+    <value>נהל מועדפים</value>
+    <comment>context menu item</comment>
+  </data>
   <data name="FavoritesFilename" xml:space="preserve">
     <value>Favorites.xml</value>
     <comment>SKIP, filename</comment>
@@ -4678,6 +4690,9 @@ ISO-code then comma then language name</comment>
   </data>
   <data name="word_Scope" xml:space="preserve">
     <value>תְחוּם</value>
+  </data>
+  <data name="word_Search" xml:space="preserve">
+    <value>לחפש</value>
   </data>
   <data name="word_Seconds" xml:space="preserve">
     <value>שניות</value>
