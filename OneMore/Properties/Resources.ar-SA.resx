@@ -946,6 +946,18 @@
     <value>لم تعد الصفحة موجودة ؛ قد تم حذفه</value>
     <comment>tooltip</comment>
   </data>
+  <data name="FavoritesDialog_addButton.Text" xml:space="preserve">
+    <value>إضافة الصفحة الحالية</value>
+    <comment>context menu item</comment>
+  </data>
+  <data name="FavoritesDialog_checkButton.Text" xml:space="preserve">
+    <value>تحقق من المفضلة</value>
+    <comment>context menu item</comment>
+  </data>
+  <data name="FavoritesDialog_manageButton.Text" xml:space="preserve">
+    <value>إدارة المفضلة</value>
+    <comment>context menu item</comment>
+  </data>
   <data name="FavoritesFilename" xml:space="preserve">
     <value>Favorites.xml</value>
     <comment>FILENAME</comment>
@@ -4661,6 +4673,9 @@ ISO-code then comma then language name</comment>
   </data>
   <data name="word_Scope" xml:space="preserve">
     <value>نِطَاق</value>
+  </data>
+  <data name="word_Search" xml:space="preserve">
+    <value>يبحث</value>
   </data>
   <data name="word_Seconds" xml:space="preserve">
     <value>ثواني</value>

@@ -955,6 +955,18 @@ Plik OneNote (* .o)</value>
     <value>Strona nie została już znaleziona; mógł zostać usunięty</value>
     <comment>tooltip</comment>
   </data>
+  <data name="FavoritesDialog_addButton.Text" xml:space="preserve">
+    <value>Dodaj bieżącą stronę</value>
+    <comment>context menu item</comment>
+  </data>
+  <data name="FavoritesDialog_checkButton.Text" xml:space="preserve">
+    <value>Sprawdź Ulubione</value>
+    <comment>context menu item</comment>
+  </data>
+  <data name="FavoritesDialog_manageButton.Text" xml:space="preserve">
+    <value>Zarządzaj ulubionymi</value>
+    <comment>context menu item</comment>
+  </data>
   <data name="FavoritesFilename" xml:space="preserve">
     <value>Favorites.xml</value>
     <comment>SKIP, filename</comment>
@@ -4678,6 +4690,9 @@ W tej sekcji</value>
   </data>
   <data name="word_Scope" xml:space="preserve">
     <value>Zakres</value>
+  </data>
+  <data name="word_Search" xml:space="preserve">
+    <value>Szukaj</value>
   </data>
   <data name="word_Seconds" xml:space="preserve">
     <value>sekundy</value>

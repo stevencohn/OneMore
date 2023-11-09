@@ -943,6 +943,18 @@ Fichier OneNote (*.one)</value>
     <value>Page introuvable ; Il a peut-être été supprimé</value>
     <comment>tooltip</comment>
   </data>
+  <data name="FavoritesDialog_addButton.Text" xml:space="preserve">
+    <value>Ajouter la page actuelle</value>
+    <comment>context menu item</comment>
+  </data>
+  <data name="FavoritesDialog_checkButton.Text" xml:space="preserve">
+    <value>Vérifier les favoris</value>
+    <comment>context menu item</comment>
+  </data>
+  <data name="FavoritesDialog_manageButton.Text" xml:space="preserve">
+    <value>Gérer les favoris</value>
+    <comment>context menu item</comment>
+  </data>
   <data name="FavoritesFilename" xml:space="preserve">
     <value>Favorites.xml</value>
     <comment>FILENAME</comment>
@@ -4655,6 +4667,9 @@ Dans cette section</value>
   </data>
   <data name="word_Scope" xml:space="preserve">
     <value>Portée</value>
+  </data>
+  <data name="word_Search" xml:space="preserve">
+    <value>Recherche</value>
   </data>
   <data name="word_Seconds" xml:space="preserve">
     <value>Secondes</value>
