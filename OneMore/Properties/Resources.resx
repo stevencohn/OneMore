@@ -1152,6 +1152,10 @@ Symbols: PI, E</value>
     <value>Remove PlantUML text and embed it in the image</value>
     <comment>checkbox</comment>
   </data>
+  <data name="ImageSheet_plantUriLabel.Text" xml:space="preserve">
+    <value>PlantUML Server Address (leave blank to use default)</value>
+    <comment>label</comment>
+  </data>
   <data name="ImagesSheet_imageBrowser" xml:space="preserve">
     <value>Image Viewer</value>
   </data>

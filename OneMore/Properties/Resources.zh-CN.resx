@@ -1143,6 +1143,10 @@ OneNote 文件 (*.one)</value>
     <value>删除 PlantUML 文本并将其嵌入到图像中</value>
     <comment>checkbox</comment>
   </data>
+  <data name="ImageSheet_plantUriLabel.Text" xml:space="preserve">
+    <value>PlantUML 服务器地址（留空使用默认值）</value>
+    <comment>label</comment>
+  </data>
   <data name="ImagesSheet_imageBrowser" xml:space="preserve">
     <value>图像查看器</value>
   </data>
