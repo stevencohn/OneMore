@@ -1141,6 +1141,10 @@
     <value>قم بإزالة نص PlantUML وقم بتضمينه في الصورة</value>
     <comment>checkbox</comment>
   </data>
+  <data name="ImageSheet_plantUriLabel.Text" xml:space="preserve">
+    <value>عنوان خادم PlantUML (اتركه فارغًا لاستخدامه الافتراضي)</value>
+    <comment>label</comment>
+  </data>
   <data name="ImagesSheet_imageBrowser" xml:space="preserve">
     <value>عارض الصور</value>
   </data>

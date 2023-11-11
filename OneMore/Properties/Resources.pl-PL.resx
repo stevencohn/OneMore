@@ -1150,6 +1150,10 @@ Symbole: PI, E</value>
     <value>Usuń tekst PlantUML i umieść go w obrazie</value>
     <comment>checkbox</comment>
   </data>
+  <data name="ImageSheet_plantUriLabel.Text" xml:space="preserve">
+    <value>Adres serwera PlantUML (pozostaw puste, aby użyć adresu domyślnego)</value>
+    <comment>label</comment>
+  </data>
   <data name="ImagesSheet_imageBrowser" xml:space="preserve">
     <value>Przeglądarka obrazów</value>
   </data>

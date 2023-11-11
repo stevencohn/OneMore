@@ -1142,6 +1142,10 @@ Symbolen: PI, E</value>
     <value>Verwijder PlantUML-tekst en sluit deze in de afbeelding in</value>
     <comment>checkbox</comment>
   </data>
+  <data name="ImageSheet_plantUriLabel.Text" xml:space="preserve">
+    <value>PlantUML-serveradres (leeg laten om standaard te gebruiken)</value>
+    <comment>label</comment>
+  </data>
   <data name="ImagesSheet_imageBrowser" xml:space="preserve">
     <value>Afbeeldingsviewer</value>
   </data>

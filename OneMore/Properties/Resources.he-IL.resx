@@ -1152,6 +1152,10 @@ Total Row Font
     <value>הסר טקסט PlantUML והטמיע אותו בתמונה</value>
     <comment>checkbox</comment>
   </data>
+  <data name="ImageSheet_plantUriLabel.Text" xml:space="preserve">
+    <value>כתובת שרת PlantUML (השאירו ריק כדי להשתמש בברירת המחדל)</value>
+    <comment>label</comment>
+  </data>
   <data name="ImagesSheet_imageBrowser" xml:space="preserve">
     <value>צופה תמונה</value>
   </data>

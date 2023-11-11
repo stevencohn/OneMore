@@ -40,6 +40,8 @@ namespace River.OneMoreAddIn.Settings
 			this.imageViewerBox = new System.Windows.Forms.TextBox();
 			this.imageViewerButton = new System.Windows.Forms.Button();
 			this.plantGroup = new System.Windows.Forms.GroupBox();
+			this.plantUriLabel = new System.Windows.Forms.Label();
+			this.plantUriBox = new System.Windows.Forms.TextBox();
 			this.plantRemoveBox = new System.Windows.Forms.CheckBox();
 			this.plantCollapseBox = new System.Windows.Forms.CheckBox();
 			this.plantAfterBox = new System.Windows.Forms.CheckBox();
@@ -83,9 +85,9 @@ namespace River.OneMoreAddIn.Settings
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.resizeGroup.Controls.Add(this.widthBox);
 			this.resizeGroup.Controls.Add(this.widthLabel);
-			this.resizeGroup.Location = new System.Drawing.Point(7, 128);
+			this.resizeGroup.Location = new System.Drawing.Point(7, 121);
 			this.resizeGroup.Name = "resizeGroup";
-			this.resizeGroup.Size = new System.Drawing.Size(762, 100);
+			this.resizeGroup.Size = new System.Drawing.Size(762, 90);
 			this.resizeGroup.TabIndex = 11;
 			this.resizeGroup.TabStop = false;
 			this.resizeGroup.Text = "Resize Options";
@@ -125,7 +127,7 @@ namespace River.OneMoreAddIn.Settings
 			this.generalGroup.Controls.Add(this.imageViewerButton);
 			this.generalGroup.Location = new System.Drawing.Point(7, 6);
 			this.generalGroup.Name = "generalGroup";
-			this.generalGroup.Size = new System.Drawing.Size(762, 116);
+			this.generalGroup.Size = new System.Drawing.Size(762, 109);
 			this.generalGroup.TabIndex = 10;
 			this.generalGroup.TabStop = false;
 			this.generalGroup.Text = "General";
@@ -163,15 +165,34 @@ namespace River.OneMoreAddIn.Settings
 			// 
 			this.plantGroup.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+			this.plantGroup.Controls.Add(this.plantUriLabel);
+			this.plantGroup.Controls.Add(this.plantUriBox);
 			this.plantGroup.Controls.Add(this.plantRemoveBox);
 			this.plantGroup.Controls.Add(this.plantCollapseBox);
 			this.plantGroup.Controls.Add(this.plantAfterBox);
-			this.plantGroup.Location = new System.Drawing.Point(7, 234);
+			this.plantGroup.Location = new System.Drawing.Point(7, 217);
 			this.plantGroup.Name = "plantGroup";
-			this.plantGroup.Size = new System.Drawing.Size(762, 148);
+			this.plantGroup.Size = new System.Drawing.Size(762, 200);
 			this.plantGroup.TabIndex = 0;
 			this.plantGroup.TabStop = false;
 			this.plantGroup.Text = "PlantUML Options";
+			// 
+			// plantUriLabel
+			// 
+			this.plantUriLabel.AutoSize = true;
+			this.plantUriLabel.Location = new System.Drawing.Point(28, 136);
+			this.plantUriLabel.Margin = new System.Windows.Forms.Padding(3, 10, 3, 0);
+			this.plantUriLabel.Name = "plantUriLabel";
+			this.plantUriLabel.Size = new System.Drawing.Size(386, 20);
+			this.plantUriLabel.TabIndex = 11;
+			this.plantUriLabel.Text = "PlantUML Server Address (leave blank to use default)";
+			// 
+			// plantUriBox
+			// 
+			this.plantUriBox.Location = new System.Drawing.Point(32, 159);
+			this.plantUriBox.Name = "plantUriBox";
+			this.plantUriBox.Size = new System.Drawing.Size(578, 26);
+			this.plantUriBox.TabIndex = 10;
 			// 
 			// plantRemoveBox
 			// 
@@ -250,5 +271,7 @@ namespace River.OneMoreAddIn.Settings
 		private System.Windows.Forms.Label widthLabel;
 		private System.Windows.Forms.ErrorProvider errorProvider;
 		private System.Windows.Forms.CheckBox plantRemoveBox;
+		private System.Windows.Forms.Label plantUriLabel;
+		private System.Windows.Forms.TextBox plantUriBox;
 	}
 }

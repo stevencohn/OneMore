@@ -1141,6 +1141,10 @@ Símbolos: PI, E</value>
     <value>Eliminar el texto de PlantUML e incrustarlo en la imagen</value>
     <comment>checkbox</comment>
   </data>
+  <data name="ImageSheet_plantUriLabel.Text" xml:space="preserve">
+    <value>Dirección del servidor PlantUML (déjelo en blanco para usar el valor predeterminado)</value>
+    <comment>label</comment>
+  </data>
   <data name="ImagesSheet_imageBrowser" xml:space="preserve">
     <value>Visor de imágenes</value>
   </data>
