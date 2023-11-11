@@ -53,6 +53,11 @@ namespace River.OneMoreAddIn.Commands
 
 			var settings = new SettingsProvider().GetCollection(nameof(ImagesSheet));
 			var plantUri = settings.Get("plantUri", Resx.PlantUmlCommand_PlantUrl);
+			if (!plantUri.EndsWith("/"))
+			{
+				plantUri = $"{plantUri}/";
+			}
+
 			var url = $"{plantUri}{encoded}";
 
 			var client = HttpClientFactory.Create();
