@@ -52,7 +52,11 @@ namespace River.OneMoreAddIn.Commands
 			var encoded = Encode64(Deflate(ToUtf8(uml)));
 
 			var settings = new SettingsProvider().GetCollection(nameof(ImagesSheet));
-			var plantUri = settings.Get("plantUri", Resx.PlantUmlCommand_PlantUrl);
+
+			var plantUri = settings == null
+				? Resx.PlantUmlCommand_PlantUrl
+				: settings.Get("plantUri", Resx.PlantUmlCommand_PlantUrl);
+
 			if (!plantUri.EndsWith("/"))
 			{
 				plantUri = $"{plantUri}/";
