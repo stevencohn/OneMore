@@ -132,6 +132,7 @@
 <li><a id="how-to-add-a-new-command" href="How to Add a New Command.htm">How to Add a New Command</a></li>
 <li><a id="how-to-add-a-settings-sheet" href="How to Add a Settings Sheet.htm">How to Add a Settings Sheet</a></li>
 <li><a id="language-translations" href="Language Translations.htm">Language Translations</a></li>
+<li><a id="logging-options" href="Logging Options.htm">Logging Options</a></li>
 <li><a id="scripts" href="Scripts.htm">Scripts</a></li>
 <li><a id="smoke-tests" href="Smoke Tests.htm">Smoke Tests</a></li>
 <li><a id="references" href="References.htm">References</a></li>
@@ -153,15 +154,15 @@
     <div id="content" style="margin-left: 30px; margin-top:100px;">
       <DIV style="DIRECTION: ltr">
 <DIV style="WIDTH: 8.639in; MARGIN-TOP: 0in; DIRECTION: ltr; MARGIN-LEFT: 0in">
-<DIV style="WIDTH: 2.529in; MARGIN-TOP: 0in; DIRECTION: ltr; MARGIN-LEFT: 0.075in">
-<P lang=yo style="FONT-SIZE: 20pt; FONT-FAMILY: Calibri; MARGIN: 0in">Design - Hashtags</P></DIV>
+<DIV style="WIDTH: 2.509in; MARGIN-TOP: 0in; DIRECTION: ltr; MARGIN-LEFT: 0.075in">
+<P lang=yo style='FONT-SIZE: 20pt; FONT-FAMILY: "Calibri Light"; COLOR: #464646; MARGIN: 0in'>Design - Hashtags</P></DIV>
 <DIV style="WIDTH: 2.54in; MARGIN-TOP: 0.042in; DIRECTION: ltr; MARGIN-LEFT: 0.075in">
 <P style="FONT-SIZE: 10pt; FONT-FAMILY: Calibri; COLOR: #767676; MARGIN: 0in">Sunday, September 10, 2023</P>
 <P style="FONT-SIZE: 10pt; FONT-FAMILY: Calibri; COLOR: #767676; MARGIN: 0in">7:51 AM</P></DIV>
 <DIV style="WIDTH: 8.639in; MARGIN-TOP: 0.427in; DIRECTION: ltr; MARGIN-LEFT: 0in">
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">OneNote has a rudimentary tagging system that lets users apply one or more "tags" to a paragraph. Each tag is indicated by a unique icon. Users can customize the name, which shows up as a tooltip over the icon. Users can then list tags within a specified scope. However, the Find Tags function is merely a list of tags within the scope; there is no way to search for a specific tag icon or name. Also, the tag itself doesn't provide any context although the Find Tags feature pulls about the first 50 characters from the related paragraph. Many users have complained about the usefulness of this feature and its implementation.</P>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
-<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">OneMore <SPAN style="FONT-STYLE: italic">Page Tags</SPAN> adds a page-level tagging capability where the user can add one or more tag keywords to a special content box (one:Outline) that appears below the title line, next to the date line. The advantage of this feature is that users can quickly search for one or more tags and navigate through a tree of pages annotated with those tags. The disadvantage is that these page-level tags do not provide a useful context related to the content of the page.</P>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">OneMore <SPAN style="FONT-STYLE: italic">Page Tags</SPAN> adds a page-level tagging capability where the user can add one or more tag keywords to a special content box (one:Outline) that appears below the title line, next to the date line. The advantage of this feature is that users can quickly search for one or more tags and navigate through a tree of pages annotated with those tags. The disadvantages are that these page-level tags do not provide a useful context related to the content of the page and the use of a specially positioned container at the top of the page is fragile to unintended user manipulation, not to mention needing to treat this container exceptionally by OneMore commands intended to process or manage containers in general.</P>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">OneMore <SPAN style="FONT-STYLE: italic">Hashtags</SPAN> is a new feature that provides a more traditional tagging feature using hashtag-keywords within the text of a page. Typing a hashtag within the flow of content is a more natural and intuitive approach. This also lets users search for hashtags within a page, across pages in a section, or even across notebooks, while also providing textual context for each hashtag. Future enhancements could include the ability to highlight specific hashtags.</P>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
@@ -174,8 +175,21 @@
 <UL style="MARGIN-BOTTOM: 0in; unicode-bidi: embed; MARGIN-TOP: 0in; DIRECTION: ltr" type=disc>
 <LI lang=yo style="MARGIN-BOTTOM: 0px; VERTICAL-ALIGN: middle; MARGIN-TOP: 0px"><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">##hashtag</SPAN> 
 <LI lang=yo style="MARGIN-BOTTOM: 0px; VERTICAL-ALIGN: middle; MARGIN-TOP: 0px"><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">##hash-tag</SPAN> 
-<LI lang=yo style="MARGIN-BOTTOM: 0px; VERTICAL-ALIGN: middle; MARGIN-TOP: 0px"><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">##hash_tag_1</SPAN> 
+<LI lang=yo style="MARGIN-BOTTOM: 0px; VERTICAL-ALIGN: middle; MARGIN-TOP: 0px"><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">##hash_tag_12</SPAN> 
 <LI lang=yo style="MARGIN-BOTTOM: 0px; VERTICAL-ALIGN: middle; MARGIN-TOP: 0px"><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">##1234</SPAN> </LI></UL>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
+<H3 lang=yo style="FONT-SIZE: 12pt; FONT-FAMILY: Calibri; COLOR: #5b9bd5; MARGIN: 0in">Out of Scope</H3>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">Nested tags such as those in Obsidian. These ostensibly emulate a categorization hierarchy. OneNote implements this hierarchy as a structure of notebooks, sections, and section groups. So nested tags would be redundant in OneNote.</P>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
+<H3 lang=yo style="FONT-SIZE: 12pt; FONT-FAMILY: Calibri; COLOR: #5b9bd5; MARGIN: 0in">Possible Functionality</H3>
+<UL style="MARGIN-BOTTOM: 0in; unicode-bidi: embed; MARGIN-TOP: 0in; DIRECTION: ltr" type=disc>
+<LI lang=yo style="MARGIN-BOTTOM: 0px; VERTICAL-ALIGN: middle; MARGIN-TOP: 0px"><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">Right-click a tag and find related pages</SPAN> 
+<LI lang=yo style="MARGIN-BOTTOM: 0px; VERTICAL-ALIGN: middle; MARGIN-TOP: 0px"><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">Tag navigator window</SPAN> 
+<UL style="MARGIN-BOTTOM: 0in; unicode-bidi: embed; MARGIN-TOP: 0in; DIRECTION: ltr" type=circle>
+<LI lang=yo style="MARGIN-BOTTOM: 0px; VERTICAL-ALIGN: middle; MARGIN-TOP: 0px"><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">Search for tags, show pages per each tag</SPAN> 
+<LI lang=yo style="MARGIN-BOTTOM: 0px; VERTICAL-ALIGN: middle; MARGIN-TOP: 0px"><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">Click page - navigate to page</SPAN> 
+<LI lang=yo style="MARGIN-BOTTOM: 0px; VERTICAL-ALIGN: middle; MARGIN-TOP: 0px"><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">Click page - find "related" pages, other pages that have the same tags (some, all)</SPAN> </LI></UL>
+<LI lang=yo style="MARGIN-BOTTOM: 0px; VERTICAL-ALIGN: middle; MARGIN-TOP: 0px"><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">Build map of related tags - those that are mentioned on the same page, along with occurance counts, similar to a relative tag cloud</SPAN> </LI></UL>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
 <H2 lang=yo style="FONT-SIZE: 14pt; FONT-FAMILY: Calibri; COLOR: #2e75b5; MARGIN: 0in">Scanning</H2>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">Hashtags are discovered using a scanner class that enumerates notesbooks, sections, and pages. Each page has a lastModifiedTime attribute that we can use to compare against the time of the last scan to optimize each successive scan by skipping pages that haven't changed.</P>
@@ -305,7 +319,9 @@
 <UL style="MARGIN-BOTTOM: 0in; unicode-bidi: embed; MARGIN-TOP: 0in; DIRECTION: ltr" type=disc>
 <LI style="MARGIN-BOTTOM: 0px; VERTICAL-ALIGN: middle; MARGIN-TOP: 0px"><A href="https://www.sqlitetutorial.net/"><SPAN lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">SQLite Tutorial - An Easy Way to Master SQLite Fast</SPAN></A> 
 <UL style="MARGIN-BOTTOM: 0in; unicode-bidi: embed; MARGIN-TOP: 0in; DIRECTION: ltr" type=circle>
-<LI style="MARGIN-BOTTOM: 0px; VERTICAL-ALIGN: middle; MARGIN-TOP: 0px"><A href="https://www.sqlitetutorial.net/sqlite-sample-database/"><SPAN lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">SQLite Sample Database And Its Diagram (in PDF format) (sqlitetutorial.net)</SPAN></A> </LI></UL>
+<LI style="MARGIN-BOTTOM: 0px; VERTICAL-ALIGN: middle; MARGIN-TOP: 0px"><A href="https://www.sqlitetutorial.net/sqlite-sample-database/"><SPAN lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">SQLite Sample Database And Its Diagram (in PDF format) (sqlitetutorial.net)</SPAN></A> </LI></UL></LI></UL>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
+<UL style="MARGIN-BOTTOM: 0in; unicode-bidi: embed; MARGIN-TOP: 0in; DIRECTION: ltr" type=disc>
 <LI lang=yo style="MARGIN-BOTTOM: 0px; VERTICAL-ALIGN: middle; MARGIN-TOP: 0px"><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">sqlite.org</SPAN> 
 <UL style="MARGIN-BOTTOM: 0in; unicode-bidi: embed; MARGIN-TOP: 0in; DIRECTION: ltr" type=circle>
 <LI style="MARGIN-BOTTOM: 0px; VERTICAL-ALIGN: middle; MARGIN-TOP: 0px"><A href="https://sqlite.org/doclist.html"><SPAN lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">Alphabetical List Of SQLite Documents</SPAN></A> </LI></UL>
@@ -372,8 +388,7 @@
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
 <P><CITE lang=yo style="FONT-SIZE: 10pt; FONT-FAMILY: Calibri; COLOR: #595959; MARGIN: 0in">© 2020 Steven M Cohn. All rights reserved.</CITE></P>
-<P><CITE lang=yo style="FONT-SIZE: 10pt; FONT-FAMILY: Calibri; COLOR: #595959; MARGIN: 0in">Please consider a <A href="https://github.com/sponsors/stevencohn">sponsorship or one-time donation</A> to support ongoing development</CITE></P>
-<P><CITE lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; COLOR: #595959; MARGIN: 0in">&nbsp;</CITE></P></DIV></DIV></DIV>
+<P><CITE lang=yo style="FONT-SIZE: 10pt; FONT-FAMILY: Calibri; COLOR: #595959; MARGIN: 0in">Please consider a <A href="https://github.com/sponsors/stevencohn">sponsorship or one-time donation</A> to support ongoing development</CITE></P></DIV></DIV></DIV>
 <DIV>
 <P style="MARGIN: 0in">&nbsp;</P>
 <P style="FONT-SIZE: 9pt; FONT-FAMILY: Arial; COLOR: #969696; DIRECTION: ltr; TEXT-ALIGN: left; MARGIN: 0in">Created with OneNote.</P></DIV>
