@@ -1,0 +1,70 @@
+{
+  "name": "Rust",
+  "aliases": [
+    "rs"
+  ],
+  "rules": [
+    {
+      "pattern": "(/\\*(?:[^*]|[\\r\\n]|(?:\\*+(?:[^*/]|[\\r\\n])))*\\*+/)",
+      "captures": [
+        "Comment"
+      ]
+    },
+    {
+      "pattern": "(/\\*[^\\r\\n]*)$",
+      "scope": "Comment",
+      "captures": [
+        "Comment"
+      ]
+    },
+    {
+      "pattern": "^([^\\r\\n]*\\*/)",
+      "scope": "",
+      "captures": [
+        "Comment"
+      ]
+    },
+    {
+      "pattern": "(//.*?)\\r?$",
+      "captures": [
+        "Comment"
+      ]
+    },
+    {
+      "pattern": "('#[^\\n]*?(?<!\\\\)')",
+      "captures": [
+        "Char"
+      ]
+    },
+    {
+      "pattern": "(?s)(\"[^\\n]*?(?<!\\\\)\")",
+      "captures": [
+        "String"
+      ]
+    },
+    {
+      "pattern": "^\\s*(\\#\\[[^\\]]*\\])",
+      "captures": [
+        "Macro"
+      ]
+    },
+    {
+      "pattern": "\\b(as|break|const|continue|crate|else|enum|extern|false|fn|for|if|impl|in|let|loop|match|mod|move|mut|pub|ref|return|self|Self|static|struct|super|trait|true|type|unsafe|use|where|while)\\b",
+      "captures": [
+        "Keyword"
+      ]
+    },
+    {
+      "pattern": "\\b(_*[a-zA-Z][a-zA-Z0-9_]*!?)\\b",
+      "captures": [
+        "Identifier"
+      ]
+    },
+    {
+      "pattern": "\\b([0-9]+(?:_[0-9]+)*|0[xX][0-9a-fA-F]+(?:_[0-9a-fA-F]+)*|0[oO][0-7]+(?:_[0-7]+)*|0[bB][01]+(?:_[01]+)*)\\b",
+      "captures": [
+        "Number"
+      ]
+    }
+  ]
+}
