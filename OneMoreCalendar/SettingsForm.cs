@@ -15,6 +15,9 @@ namespace OneMoreCalendar
 	internal partial class SettingsForm : RoundedForm
 	{
 
+		private bool validate = true;
+
+
 		public SettingsForm()
 			: base()
 		{
@@ -110,10 +113,25 @@ namespace OneMoreCalendar
 		private void ValidateCheckedItems(object sender, ItemCheckEventArgs e)
 		{
 			// ensure that at least one notebook is checked
-			if (e.NewValue == CheckState.Unchecked && notebooksBox.CheckedItems.Count == 1)
+			if (validate &&
+				e.NewValue == CheckState.Unchecked && notebooksBox.CheckedItems.Count == 1)
 			{
 				e.NewValue = CheckState.Checked;
 			}
+		}
+
+
+		private void ToggleAllNotebooks(object sender, LinkLabelLinkClickedEventArgs e)
+		{
+			var selected = sender == selectAllLink;
+
+			validate = false;
+			for (var i = 0; i < notebooksBox.Items.Count; i++)
+            {
+				notebooksBox.SetItemChecked(i, selected);
+			}
+
+			validate = true;
 		}
 
 
