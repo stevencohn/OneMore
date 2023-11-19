@@ -754,7 +754,9 @@ namespace River.OneMoreAddIn
 		{
 			try
 			{
-				return Resx.ResourceManager.GetString(resId, AddIn.Culture);
+				var s = Resx.ResourceManager.GetString(resId, AddIn.Culture);
+				s ??= $"*{resId}*";
+				return s.Trim();
 			}
 			catch (Exception exc)
 			{
