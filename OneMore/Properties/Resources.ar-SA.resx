@@ -4209,9 +4209,6 @@ ISO-code then comma then language name</comment>
     <value>فشل OneMore في الاتصال بـ OneNote ، راجع ملف السجل للحصول على تفاصيل الاستثناء</value>
     <comment>message box</comment>
   </data>
-  <data name="String1" xml:space="preserve">
-    <value />
-  </data>
   <data name="StyleDialog_afterLabel.Text" xml:space="preserve">
     <value>مسافة بعد:</value>
     <comment>label</comment>

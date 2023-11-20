@@ -4209,9 +4209,6 @@ Cuadernos</value>
     <value>OneMore no pudo conectarse a OneNote, consulte el archivo de registro para obtener detalles de la excepción</value>
     <comment>message box</comment>
   </data>
-  <data name="String1" xml:space="preserve">
-    <value />
-  </data>
   <data name="StyleDialog_afterLabel.Text" xml:space="preserve">
     <value>Espacio después:</value>
     <comment>label</comment>

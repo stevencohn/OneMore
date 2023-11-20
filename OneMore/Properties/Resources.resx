@@ -4245,9 +4245,6 @@ Notebooks</value>
     <value>OneMore failed to connect to OneNote, see log file for exception details</value>
     <comment>message box</comment>
   </data>
-  <data name="String1" xml:space="preserve">
-    <value />
-  </data>
   <data name="StyleDialog_afterLabel.Text" xml:space="preserve">
     <value>Space After:</value>
     <comment>label</comment>

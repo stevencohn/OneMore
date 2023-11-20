@@ -4203,9 +4203,6 @@ Des cahiers</value>
     <value>OneMore n'a pas réussi à se connecter à OneNote, consultez le fichier journal pour les détails de l'exception</value>
     <comment>message box</comment>
   </data>
-  <data name="String1" xml:space="preserve">
-    <value />
-  </data>
   <data name="StyleDialog_afterLabel.Text" xml:space="preserve">
     <value>Espace après:</value>
     <comment>label</comment>

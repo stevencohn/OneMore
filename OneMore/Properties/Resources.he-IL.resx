@@ -4222,9 +4222,6 @@ ISO-code then comma then language name</comment>
     <value>OneMore לא הצליח להתחבר ל- OneNote, ראה קובץ יומן לקבלת פרטי חריג</value>
     <comment>message box</comment>
   </data>
-  <data name="String1" xml:space="preserve">
-    <value />
-  </data>
   <data name="StyleDialog_afterLabel.Text" xml:space="preserve">
     <value>מרחב אחרי:</value>
     <comment>label</comment>

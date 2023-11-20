@@ -4275,9 +4275,6 @@ ISO-code then comma then language name</comment>
     <value>OneMore无法连接到OneNote，请参阅日志文件以获取异常详细信息</value>
     <comment>message box</comment>
   </data>
-  <data name="String1" xml:space="preserve">
-    <value />
-  </data>
   <data name="StyleDialog_afterLabel.Text" xml:space="preserve">
     <value>
       段后空间：

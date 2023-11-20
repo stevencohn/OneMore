@@ -4222,9 +4222,6 @@ Notatniki</value>
     <value>Onemore nie udało się połączyć z OneNote, zobacz plik dziennika dla szczegółów wyjątków</value>
     <comment>message box</comment>
   </data>
-  <data name="String1" xml:space="preserve">
-    <value />
-  </data>
   <data name="StyleDialog_afterLabel.Text" xml:space="preserve">
     <value>Przestrzeń po:</value>
     <comment>label</comment>

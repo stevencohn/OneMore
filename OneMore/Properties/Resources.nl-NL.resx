@@ -4209,9 +4209,6 @@ Notitieboekjes</value>
     <value>OneMore kon geen verbinding maken met OneNote, zie logbestand voor details over uitzonderingen</value>
     <comment>message box</comment>
   </data>
-  <data name="String1" xml:space="preserve">
-    <value />
-  </data>
   <data name="StyleDialog_afterLabel.Text" xml:space="preserve">
     <value>Ruimte na:</value>
     <comment>label</comment>
