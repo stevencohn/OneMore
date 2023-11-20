@@ -257,7 +257,7 @@ namespace River.OneMoreAddIn.Commands
 
 		/// <summary>
 		/// Records the timestamp value that was initialized at construction of this class
-		/// instance.
+		/// instance
 		/// </summary>
 		public void WriteLastScanTime()
 		{
