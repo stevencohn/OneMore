@@ -105,7 +105,7 @@ namespace River.OneMoreAddIn.Commands
 			{
 				foreach (var sectionRef in sectionRefs)
 				{
-					// get pages for this sectio
+					// get pages for this section
 					var section = one.GetSection(sectionRef.Attribute("ID").Value);
 
 					var pages = section.Elements(ns + "Page")
