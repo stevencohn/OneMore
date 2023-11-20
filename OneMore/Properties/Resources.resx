@@ -961,6 +961,18 @@ OneNote File (*.one)</value>
     <value>Page no longer found; it may have been deleted</value>
     <comment>tooltip</comment>
   </data>
+  <data name="FavoritesDialog_addButton.Text" xml:space="preserve">
+    <value>Add Current Page</value>
+    <comment>context menu item</comment>
+  </data>
+  <data name="FavoritesDialog_checkButton.Text" xml:space="preserve">
+    <value>Check Favorites</value>
+    <comment>context menu item</comment>
+  </data>
+  <data name="FavoritesDialog_manageButton.Text" xml:space="preserve">
+    <value>Manage Favorites</value>
+    <comment>context menu item</comment>
+  </data>
   <data name="FavoritesFilename" xml:space="preserve">
     <value>Favorites.xml</value>
     <comment>SKIP, filename</comment>
@@ -1159,6 +1171,10 @@ Symbols: PI, E</value>
   <data name="ImageSheet_plantRemoveBox.Text" xml:space="preserve">
     <value>Remove PlantUML text and embed it in the image</value>
     <comment>checkbox</comment>
+  </data>
+  <data name="ImageSheet_plantUriLabel.Text" xml:space="preserve">
+    <value>PlantUML Server Address (leave blank to use default)</value>
+    <comment>label</comment>
   </data>
   <data name="ImagesSheet_imageBrowser" xml:space="preserve">
     <value>Image Viewer</value>
@@ -4727,6 +4743,9 @@ In this section</value>
   </data>
   <data name="word_Scope" xml:space="preserve">
     <value>Scope</value>
+  </data>
+  <data name="word_Search" xml:space="preserve">
+    <value>Search</value>
   </data>
   <data name="word_Seconds" xml:space="preserve">
     <value>Seconds</value>

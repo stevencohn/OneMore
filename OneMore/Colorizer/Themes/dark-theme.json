@@ -116,6 +116,10 @@
       "foreground": "Blue"
     },
     {
+      "name": "Macro",
+      "foreground": "Purple"
+    },
+    {
       "name": "MarkdownBold",
       "bold": true
     },

@@ -17,7 +17,7 @@ namespace River.OneMoreAddIn.Settings
 		{
 			InitializeComponent();
 
-			Name = "ImagesSheet";
+			Name = nameof(ImagesSheet);
 			Title = Resx.ImagesSheet_Title;
 
 			if (NeedsLocalizing())
@@ -32,7 +32,8 @@ namespace River.OneMoreAddIn.Settings
 					"plantGroup",
 					"plantAfterBox",
 					"plantCollapseBox",
-					"plantRemoveBox"
+					"plantRemoveBox",
+					"plantUriLabel"
 				});
 			}
 
@@ -56,6 +57,7 @@ namespace River.OneMoreAddIn.Settings
 			plantAfterBox.Checked = settings.Get("plantAfter", false);
 			plantCollapseBox.Checked = settings.Get("plantCollapsed", false);
 			plantRemoveBox.Checked = settings.Get("plantRemoveText", false);
+			plantUriBox.Text = settings.Get("plantUri", string.Empty);
 		}
 
 
@@ -160,6 +162,16 @@ namespace River.OneMoreAddIn.Settings
 			settings.Add("plantAfter", plantAfterBox.Checked.ToString());
 			settings.Add("plantCollapsed", plantCollapseBox.Checked.ToString());
 			settings.Add("plantRemoveText", plantRemoveBox.Checked.ToString());
+
+			var plantUri = plantUriBox.Text.Trim();
+			if (string.IsNullOrWhiteSpace(plantUri))
+			{
+				settings.Remove("plantUri");
+			}
+			else
+			{
+				settings.Add("plantUri", plantUriBox.Text);
+			}
 
 			provider.SetCollection(settings);
 

@@ -429,8 +429,15 @@ namespace River.OneMoreAddIn.UI
 					{
 						phrase = text.Substring(0, index);
 
-						e.Graphics.DrawString(phrase, Font, fore, x, e.Bounds.Y, StringFormat.GenericDefault);
-						size = e.Graphics.MeasureString(phrase, Font, new PointF(x, e.Bounds.Y), StringFormat.GenericDefault);
+						// when phrase is substring of word, GenericTypographic doesn't measure
+						// trailing space and when it is prefaced by a space, GenericDefault
+						// removes that space. So choose appropriate format carefully here
+						var format = index < text.Length - 1 && text[index - 1] == ' '
+							? StringFormat.GenericDefault
+							: StringFormat.GenericTypographic;
+
+						e.Graphics.DrawString(phrase, Font, fore, x, e.Bounds.Y, format);
+						size = e.Graphics.MeasureString(phrase, Font, new PointF(x, e.Bounds.Y), format);
 						x += size.Width;
 					}
 

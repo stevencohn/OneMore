@@ -47,6 +47,9 @@ namespace OneMoreCalendar
 			this.systemModeButton = new OneMoreCalendar.MoreRadioButton();
 			this.logLink = new River.OneMoreAddIn.UI.MoreLinkLabel();
 			this.aboutLink = new River.OneMoreAddIn.UI.MoreLinkLabel();
+			this.selectAllLink = new River.OneMoreAddIn.UI.MoreLinkLabel();
+			this.selectNoneLink = new River.OneMoreAddIn.UI.MoreLinkLabel();
+			this.barLabel = new System.Windows.Forms.Label();
 			this.settingsPanel.SuspendLayout();
 			this.SuspendLayout();
 			// 
@@ -87,6 +90,9 @@ namespace OneMoreCalendar
 			// settingsPanel
 			// 
 			this.settingsPanel.BackColor = System.Drawing.Color.Transparent;
+			this.settingsPanel.Controls.Add(this.barLabel);
+			this.settingsPanel.Controls.Add(this.selectNoneLink);
+			this.settingsPanel.Controls.Add(this.selectAllLink);
 			this.settingsPanel.Controls.Add(this.userModeButton);
 			this.settingsPanel.Controls.Add(this.emptyBox);
 			this.settingsPanel.Controls.Add(this.deletedBox);
@@ -295,6 +301,51 @@ namespace OneMoreCalendar
 			this.aboutLink.Text = "About";
 			this.aboutLink.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.ShowAbout);
 			// 
+			// selectAllLink
+			// 
+			this.selectAllLink.ActiveLinkColor = System.Drawing.Color.DarkOrchid;
+			this.selectAllLink.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.selectAllLink.AutoSize = true;
+			this.selectAllLink.Cursor = System.Windows.Forms.Cursors.Hand;
+			this.selectAllLink.HoverColor = System.Drawing.Color.MediumOrchid;
+			this.selectAllLink.LinkColor = System.Drawing.SystemColors.ControlDark;
+			this.selectAllLink.Location = new System.Drawing.Point(221, 364);
+			this.selectAllLink.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+			this.selectAllLink.MaximumSize = new System.Drawing.Size(420, 0);
+			this.selectAllLink.Name = "selectAllLink";
+			this.selectAllLink.Size = new System.Drawing.Size(75, 20);
+			this.selectAllLink.TabIndex = 16;
+			this.selectAllLink.TabStop = true;
+			this.selectAllLink.Text = "Select All";
+			this.selectAllLink.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.ToggleAllNotebooks);
+			// 
+			// selectNoneLink
+			// 
+			this.selectNoneLink.ActiveLinkColor = System.Drawing.Color.DarkOrchid;
+			this.selectNoneLink.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.selectNoneLink.AutoSize = true;
+			this.selectNoneLink.Cursor = System.Windows.Forms.Cursors.Hand;
+			this.selectNoneLink.HoverColor = System.Drawing.Color.MediumOrchid;
+			this.selectNoneLink.LinkColor = System.Drawing.SystemColors.ControlDark;
+			this.selectNoneLink.Location = new System.Drawing.Point(318, 364);
+			this.selectNoneLink.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+			this.selectNoneLink.MaximumSize = new System.Drawing.Size(420, 0);
+			this.selectNoneLink.Name = "selectNoneLink";
+			this.selectNoneLink.Size = new System.Drawing.Size(96, 20);
+			this.selectNoneLink.TabIndex = 17;
+			this.selectNoneLink.TabStop = true;
+			this.selectNoneLink.Text = "Select None";
+			this.selectNoneLink.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.ToggleAllNotebooks);
+			// 
+			// barLabel
+			// 
+			this.barLabel.AutoSize = true;
+			this.barLabel.Location = new System.Drawing.Point(300, 365);
+			this.barLabel.Name = "barLabel";
+			this.barLabel.Size = new System.Drawing.Size(14, 20);
+			this.barLabel.TabIndex = 18;
+			this.barLabel.Text = "|";
+			// 
 			// SettingsForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -339,5 +390,8 @@ namespace OneMoreCalendar
 		private River.OneMoreAddIn.UI.MoreLinkLabel aboutLink;
 		private MoreCheckBox emptyBox;
 		private MoreRadioButton userModeButton;
+		private System.Windows.Forms.Label barLabel;
+		private River.OneMoreAddIn.UI.MoreLinkLabel selectNoneLink;
+		private River.OneMoreAddIn.UI.MoreLinkLabel selectAllLink;
 	}
 }

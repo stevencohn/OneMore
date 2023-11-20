@@ -947,6 +947,18 @@ OneNote-bestand (*.one)</value>
     <value>Pagina niet meer gevonden; het kan zijn verwijderd</value>
     <comment>tooltip</comment>
   </data>
+  <data name="FavoritesDialog_addButton.Text" xml:space="preserve">
+    <value>Huidige pagina toevoegen</value>
+    <comment>context menu item</comment>
+  </data>
+  <data name="FavoritesDialog_checkButton.Text" xml:space="preserve">
+    <value>Controleer Favorieten</value>
+    <comment>context menu item</comment>
+  </data>
+  <data name="FavoritesDialog_manageButton.Text" xml:space="preserve">
+    <value>Beheer favorieten</value>
+    <comment>context menu item</comment>
+  </data>
   <data name="FavoritesFilename" xml:space="preserve">
     <value>Favorites.xml</value>
     <comment>SKIP, filename</comment>
@@ -1145,6 +1157,10 @@ Symbolen: PI, E</value>
   <data name="ImageSheet_plantRemoveBox.Text" xml:space="preserve">
     <value>Verwijder PlantUML-tekst en sluit deze in de afbeelding in</value>
     <comment>checkbox</comment>
+  </data>
+  <data name="ImageSheet_plantUriLabel.Text" xml:space="preserve">
+    <value>PlantUML-serveradres (leeg laten om standaard te gebruiken)</value>
+    <comment>label</comment>
   </data>
   <data name="ImagesSheet_imageBrowser" xml:space="preserve">
     <value>Afbeeldingsviewer</value>
@@ -4687,6 +4703,9 @@ In deze sectie</value>
   </data>
   <data name="word_Scope" xml:space="preserve">
     <value>Domein</value>
+  </data>
+  <data name="word_Search" xml:space="preserve">
+    <value>Zoekopdracht</value>
   </data>
   <data name="word_Seconds" xml:space="preserve">
     <value>seconden</value>
