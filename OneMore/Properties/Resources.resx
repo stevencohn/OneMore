@@ -634,6 +634,10 @@ OneNote will close automatically</value>
     <value>CustomStyles.xml</value>
     <comment>SKIP, filename</comment>
   </data>
+  <data name="DatabaseFilename" xml:space="preserve">
+    <value>OneMore.db</value>
+    <comment>SKIP, Sqlite database file name</comment>
+  </data>
   <data name="DeleteFormulaCommand_Deleted" xml:space="preserve">
     <value>Deleted formulas from {0} cell(s)</value>
     <comment>delete command message</comment>
@@ -1119,6 +1123,22 @@ Symbols: PI, E</value>
   </data>
   <data name="HasActiveMedia" xml:space="preserve">
     <value>Cannot invoke OneMore commands while there is an active recording. Please stop the recording and try again.</value>
+  </data>
+  <data name="HashtagSheet_disabledBox" xml:space="preserve">
+    <value>Disable the hashtag service. This will also disable hashtag searching.</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="HashtagSheet_intervalLabel" xml:space="preserve">
+    <value>Scan for hashtags every</value>
+    <comment>label</comment>
+  </data>
+  <data name="HashtagSheet_introTitle" xml:space="preserve">
+    <value>Customize advanced options for the Hashtag Scanner Service</value>
+    <comment>label</comment>
+  </data>
+  <data name="HashtagSheet_Title" xml:space="preserve">
+    <value>Hashtags</value>
+    <comment>sheet title</comment>
   </data>
   <data name="HighlightFormulaCommand_NoFormulas" xml:space="preserve">
     <value>No formulas found on this page</value>
@@ -3940,6 +3960,10 @@ Search engines will appear in the page context menu, right-click.</value>
     <value>General Options</value>
     <comment>tree node</comment>
   </data>
+  <data name="SettingsDialog_hashtagsNode_Text" xml:space="preserve">
+    <value>Hashtags</value>
+    <comment>treenode</comment>
+  </data>
   <data name="SettingsDialog_highlightNode.Text" xml:space="preserve">
     <value>Highlighter Themes</value>
     <comment>treenode</comment>
@@ -4651,6 +4675,9 @@ In this section</value>
   <data name="word_Limit" xml:space="preserve">
     <value>Limit</value>
   </data>
+  <data name="word_Minutes" xml:space="preserve">
+    <value>Minutes</value>
+  </data>
   <data name="word_Move" xml:space="preserve">
     <value>Move</value>
   </data>
@@ -5050,6 +5077,9 @@ In this section</value>
   </data>
   <data name="InfoBoxThemes" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\commands\snippets\infoboxthemes.json;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
+  </data>
+  <data name="HashtagsDB" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Commands\Tagging\HashtagsDB.sql;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
   </data>
   <data name="DefaultTableThemes" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\ribbon\defaulttablethemes.json;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>

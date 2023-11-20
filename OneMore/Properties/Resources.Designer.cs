@@ -1420,6 +1420,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to OneMore.db.
+        /// </summary>
+        internal static string DatabaseFilename {
+            get {
+                return ResourceManager.GetString("DatabaseFilename", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to &lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
         ///&lt;Theme key=&quot;Orange&quot; name=&quot;Orange&quot; color=&quot;automatic&quot; setColor=&quot;False&quot; dark=&quot;False&quot;&gt;
         ///  &lt;Style index=&quot;0&quot; name=&quot;Heading 1&quot; font=&quot;Calibri Light&quot; fontColor=&quot;Black&quot; fontSize=&quot;20.0&quot; spaceBefore=&quot;14.0&quot; spaceAfter=&quot;0.0&quot; applyColors=&quot;true&quot; styleType=&quot;Heading&quot; /&gt;
@@ -2695,6 +2704,55 @@ namespace River.OneMoreAddIn.Properties {
         internal static string HasActiveMedia {
             get {
                 return ResourceManager.GetString("HasActiveMedia", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to CREATE TABLE IF NOT EXISTS hashtag_scanner (scannerID INTEGER PRIMARY KEY UNIQUE NOT NULL, version NUMERIC (12) UNIQUE NOT NULL, lastScan TEXT NOT NULL);
+        ///CREATE TABLE IF NOT EXISTS hashtags (tag TEXT NOT NULL, moreID TEXT NOT NULL, pageID TEXT NOT NULL, objectID TEXT NOT NULL, lastScan TEXT NOT NULL, PRIMARY KEY (tag, objectID));
+        ///CREATE TABLE IF NOT EXISTS hashtags_pages (moreID PRIMARY KEY, path TEXT, name TEXT);
+        ///CREATE INDEX IF NOT EXISTS IDX_moreID ON hashtags (moreID);
+        ///CREATE INDEX IF NOT EXISTS IDX [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string HashtagsDB {
+            get {
+                return ResourceManager.GetString("HashtagsDB", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Disable the hashtag service. This will also disable hashtag searching..
+        /// </summary>
+        internal static string HashtagSheet_disabledBox {
+            get {
+                return ResourceManager.GetString("HashtagSheet_disabledBox", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Scan for hashtags every.
+        /// </summary>
+        internal static string HashtagSheet_intervalLabel {
+            get {
+                return ResourceManager.GetString("HashtagSheet_intervalLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Customize advanced options for the Hashtag Scanner Service.
+        /// </summary>
+        internal static string HashtagSheet_introTitle {
+            get {
+                return ResourceManager.GetString("HashtagSheet_introTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hashtags.
+        /// </summary>
+        internal static string HashtagSheet_Title {
+            get {
+                return ResourceManager.GetString("HashtagSheet_Title", resourceCulture);
             }
         }
         
@@ -9340,6 +9398,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Hashtags.
+        /// </summary>
+        internal static string SettingsDialog_hashtagsNode_Text {
+            get {
+                return ResourceManager.GetString("SettingsDialog_hashtagsNode_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Highlighter Themes.
         /// </summary>
         internal static string SettingsDialog_highlightNode_Text {
@@ -11179,6 +11246,15 @@ namespace River.OneMoreAddIn.Properties {
         internal static string word_Limit {
             get {
                 return ResourceManager.GetString("word_Limit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Minutes.
+        /// </summary>
+        internal static string word_Minutes {
+            get {
+                return ResourceManager.GetString("word_Minutes", resourceCulture);
             }
         }
         
