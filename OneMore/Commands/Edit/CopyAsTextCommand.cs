@@ -24,6 +24,12 @@ namespace River.OneMoreAddIn.Commands
 			using var one = new OneNote(out var page, out var _);
 			var cursor = page.GetTextCursor();
 
+			/*
+			 * By using the clipboard, we can let OneNote format the text in paragraphs
+			 * and retain tabular layouts. Otherwise, the code becomes very complex.
+			 */
+
+
 			if (// cursor is not null if selection range is empty
 				cursor != null &&
 				// selection range is a single line containing a hyperlink
@@ -60,17 +66,21 @@ namespace River.OneMoreAddIn.Commands
 			var updated = one.GetPage(OneNote.PageDetail.Basic);
 			var ns = updated.Root.GetNamespaceOfPrefix(OneNote.Prefix);
 
+			// temporarily select the entire page
 			updated.Root.Elements(ns + "Outline").ForEach(e =>
 			{
 				e.SetAttributeValue("selected", "all");
 			});
 
+			// save the selected page
 			await one.Update(updated);
 
+			// copy the selected page
 			var clipboard = new ClipboardProvider();
 			await clipboard.Copy();
 			await clipboard.SetText(await clipboard.GetText());
 
+			// restore the previous selection
 			await one.Update(page);
 		}
 	}
