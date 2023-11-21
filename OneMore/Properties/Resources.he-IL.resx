@@ -2637,6 +2637,14 @@ ISO-code then comma then language name</comment>
     <value>העתק בחר תוכן כ- Markdown</value>
     <comment>ribbon edit</comment>
   </data>
+  <data name="ribCopyAsTextButton_Label" xml:space="preserve">
+    <value>העתק כטקסט</value>
+    <comment>ribbon edit</comment>
+  </data>
+  <data name="ribCopyAsTextButton_Screentip" xml:space="preserve">
+    <value>העתק את ההקשר של הבחירה כטקסט רגיל</value>
+    <comment>ribbon edit</comment>
+  </data>
   <data name="ribCopyDownButton_Label" xml:space="preserve">
     <value>העתק למטה</value>
     <comment>ribbon</comment>

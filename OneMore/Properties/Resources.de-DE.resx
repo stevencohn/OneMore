@@ -2620,6 +2620,14 @@ Polaroid</value>
     <value>Kopieren Sie ausgewählte Inhalte als Markdown</value>
     <comment>ribbon edit</comment>
   </data>
+  <data name="ribCopyAsTextButton_Label" xml:space="preserve">
+    <value>Als Text kopieren</value>
+    <comment>ribbon edit</comment>
+  </data>
+  <data name="ribCopyAsTextButton_Screentip" xml:space="preserve">
+    <value>Kopieren Sie den ausgewählten Kontext als einfachen Text</value>
+    <comment>ribbon edit</comment>
+  </data>
   <data name="ribCopyDownButton_Label" xml:space="preserve">
     <value>Abschreiben</value>
     <comment>ribbon</comment>

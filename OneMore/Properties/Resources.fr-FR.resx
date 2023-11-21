@@ -2612,6 +2612,14 @@ Polaroïd</value>
     <value>Copiez le contenu sélectionné en tant que démarquage</value>
     <comment>ribbon edit</comment>
   </data>
+  <data name="ribCopyAsTextButton_Label" xml:space="preserve">
+    <value>Copier sous forme de texte</value>
+    <comment>ribbon edit</comment>
+  </data>
+  <data name="ribCopyAsTextButton_Screentip" xml:space="preserve">
+    <value>Copier le contexte de sélection sous forme de texte brut</value>
+    <comment>ribbon edit</comment>
+  </data>
   <data name="ribCopyDownButton_Label" xml:space="preserve">
     <value>Recopie</value>
     <comment>ribbon</comment>

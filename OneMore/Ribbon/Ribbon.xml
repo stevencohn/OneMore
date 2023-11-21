@@ -294,6 +294,12 @@
                 getScreentip="GetRibbonScreentip"
                 onAction="CopyAsMarkdownCmd"/>
               <button
+                id="ribCopyAsTextButton"
+                imageMso="Copy"
+                getLabel="GetRibbonLabel"
+                getScreentip="GetRibbonScreentip"
+                onAction="CopyAsTextCmd"/>
+              <button
                 id="ribDisableSpellCheckButton"
                 image="NoSpellCheck"
                 getLabel="GetRibbonLabel"

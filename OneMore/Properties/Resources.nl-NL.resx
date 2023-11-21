@@ -2617,6 +2617,14 @@ Polaroid</value>
     <value>Kopieer geselecteerde inhoud als prijsverlaging</value>
     <comment>ribbon edit</comment>
   </data>
+  <data name="ribCopyAsTextButton_Label" xml:space="preserve">
+    <value>Kopieer als tekst</value>
+    <comment>ribbon edit</comment>
+  </data>
+  <data name="ribCopyAsTextButton_Screentip" xml:space="preserve">
+    <value>Kopieer de geselecteerde context als platte tekst</value>
+    <comment>ribbon edit</comment>
+  </data>
   <data name="ribCopyDownButton_Label" xml:space="preserve">
     <value>Naar beneden kopiëren</value>
     <comment>ribbon</comment>

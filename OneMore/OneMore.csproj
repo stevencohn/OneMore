@@ -146,6 +146,7 @@
     <Compile Include="Commands\Edit\ColorizeDialog.Designer.cs">
       <DependentUpon>ColorizeDialog.cs</DependentUpon>
     </Compile>
+    <Compile Include="Commands\Edit\CopyAsTextCommand.cs" />
     <Compile Include="Commands\Edit\DuplicateLineCommand.cs" />
     <Compile Include="Commands\File\FileQuickNotesCommand.cs" />
     <Compile Include="Commands\File\Markdown\MarkdownConverter.cs" />

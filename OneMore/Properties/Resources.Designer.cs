@@ -6389,6 +6389,24 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Copy as Text.
+        /// </summary>
+        internal static string ribCopyAsTextButton_Label {
+            get {
+                return ResourceManager.GetString("ribCopyAsTextButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Copy select context as plain text.
+        /// </summary>
+        internal static string ribCopyAsTextButton_Screentip {
+            get {
+                return ResourceManager.GetString("ribCopyAsTextButton_Screentip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Copy Down.
         /// </summary>
         internal static string ribCopyDownButton_Label {
