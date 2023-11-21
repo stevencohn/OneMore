@@ -2616,6 +2616,14 @@ polaroid</value>
     <value>Copiar contenido seleccionado como descuento</value>
     <comment>ribbon edit</comment>
   </data>
+  <data name="ribCopyAsTextButton_Label" xml:space="preserve">
+    <value>Copiar como texto</value>
+    <comment>ribbon edit</comment>
+  </data>
+  <data name="ribCopyAsTextButton_Screentip" xml:space="preserve">
+    <value>Copiar el contexto seleccionado como texto sin formato</value>
+    <comment>ribbon edit</comment>
+  </data>
   <data name="ribCopyDownButton_Label" xml:space="preserve">
     <value>Copia</value>
     <comment>ribbon</comment>

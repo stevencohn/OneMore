@@ -2616,6 +2616,14 @@ ISO-code then comma then language name</comment>
     <value>نسخ حدد المحتوى باعتباره تخفيض السعر</value>
     <comment>ribbon edit</comment>
   </data>
+  <data name="ribCopyAsTextButton_Label" xml:space="preserve">
+    <value>نسخ كنص</value>
+    <comment>ribbon edit</comment>
+  </data>
+  <data name="ribCopyAsTextButton_Screentip" xml:space="preserve">
+    <value>انسخ السياق المحدد كنص عادي</value>
+    <comment>ribbon edit</comment>
+  </data>
   <data name="ribCopyDownButton_Label" xml:space="preserve">
     <value>انسخ</value>
     <comment>ribbon</comment>

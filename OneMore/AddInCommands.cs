@@ -200,6 +200,12 @@ namespace River.OneMoreAddIn
 			=> await factory.Run<FillCellsCommand>(FillCells.CopyAcross);
 
 
+
+		[Command("ribCopyAsTextButton_Label", Keys.None, "ribEditMenu")]
+		public async Task CopyAsTextCmd(IRibbonControl control)
+			=> await factory.Run<CopyAsTextCommand>();
+
+
 		[Command("ribCopyDownButton_Label", Keys.None, "ribTableMenu")]
 		public async Task CopyDownCmd(IRibbonControl control)
 			=> await factory.Run<FillCellsCommand>(FillCells.CopyDown);

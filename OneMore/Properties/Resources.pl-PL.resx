@@ -2629,6 +2629,14 @@ Polaroid</value>
     <value>Skopiuj wybraną zawartość jako przecenę</value>
     <comment>ribbon edit</comment>
   </data>
+  <data name="ribCopyAsTextButton_Label" xml:space="preserve">
+    <value>Skopiuj jako tekst</value>
+    <comment>ribbon edit</comment>
+  </data>
+  <data name="ribCopyAsTextButton_Screentip" xml:space="preserve">
+    <value>Skopiuj wybrany kontekst jako zwykły tekst</value>
+    <comment>ribbon edit</comment>
+  </data>
   <data name="ribCopyDownButton_Label" xml:space="preserve">
     <value>Skopiować</value>
     <comment>ribbon</comment>

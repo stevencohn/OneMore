@@ -2617,6 +2617,14 @@ Polaroid.</value>
     <value>Copiar conteúdo selecionado como remarcação</value>
     <comment>ribbon edit</comment>
   </data>
+  <data name="ribCopyAsTextButton_Label" xml:space="preserve">
+    <value>Copiar como texto</value>
+    <comment>ribbon edit</comment>
+  </data>
+  <data name="ribCopyAsTextButton_Screentip" xml:space="preserve">
+    <value>Copie o contexto selecionado como texto simples</value>
+    <comment>ribbon edit</comment>
+  </data>
   <data name="ribCopyDownButton_Label" xml:space="preserve">
     <value>Anote</value>
     <comment>ribbon</comment>
