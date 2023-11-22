@@ -5,8 +5,11 @@
 namespace River.OneMoreAddIn.Commands
 {
 	using System.Linq;
+	using System.Text;
+	using System.Text.RegularExpressions;
 	using System.Threading.Tasks;
-	using River.OneMoreAddIn.Models;
+	using System.Web;
+	using System.Xml.Linq;
 
 
 	/// <summary>
@@ -14,6 +17,7 @@ namespace River.OneMoreAddIn.Commands
 	/// </summary>
 	internal class CopyAsTextCommand : Command
 	{
+
 		public CopyAsTextCommand()
 		{
 		}
@@ -21,67 +25,128 @@ namespace River.OneMoreAddIn.Commands
 
 		public override async Task Execute(params object[] args)
 		{
-			using var one = new OneNote(out var page, out var _);
-			var cursor = page.GetTextCursor();
+			logger.StartClock();
 
-			/*
-			 * By using the clipboard, we can let OneNote format the text in paragraphs
-			 * and retain tabular layouts. Otherwise, the code becomes very complex.
-			 */
+			using var one = new OneNote(out var page, out var ns);
 
+			page.GetTextCursor();
+			var all = page.SelectionScope != SelectionScope.Region;
 
-			if (// cursor is not null if selection range is empty
-				cursor != null &&
-				// selection range is a single line containing a hyperlink
-				!(page.SelectionSpecial && page.SelectionScope == SelectionScope.Empty))
+			var builder = new StringBuilder();
+
+			var paragraphs = page.Root
+				.Elements(ns + "Outline")
+				.Elements(ns + "OEChildren")
+				.Elements(ns + "OE");
+
+			if (paragraphs.Any())
 			{
-				await CopyPageAsText(one, page);
-			}
-			else
-			{
-				// if only images are selected and no text content then copy entire page...
-
-				var other = page.Root.Descendants().Where(e =>
-					e.Attribute("selected")?.Value == "all" &&
-					e.Name.LocalName != "Image");
-
-				if (other.Any())
+				foreach (var paragraph in paragraphs)
 				{
-					// some text was found, maybe with one or more images
-					var clipboard = new ClipboardProvider();
-					await clipboard.Copy();
-					await clipboard.SetText(await clipboard.GetText());
+					BuildText(all, ns, paragraph, builder);
+				}
+			}
+
+			await new ClipboardProvider().SetText(builder.ToString());
+
+			logger.WriteTime("copied text");
+		}
+
+
+		private void BuildText(bool all, XNamespace ns, XElement paragraph, StringBuilder builder)
+		{
+			var runs = paragraph.Elements(ns + "T")?
+				.Where(e => all || e.Attribute("selected")?.Value == "all")
+				.DescendantNodes().OfType<XCData>()
+				.Where(c =>
+					c.Value != string.Empty ||
+					c.Parent.Parent.Elements(ns + "T").Count() == 1);
+
+			if (runs.Any())
+			{
+				var text = runs
+					.Select(c => GetPlainText(c.Value))
+					.Aggregate(string.Empty, (x, y) =>
+					{
+						if (string.IsNullOrEmpty(y)) return x;
+						else if (string.IsNullOrEmpty(x)) return y;
+						else return $"{x}{y}";
+					});
+
+
+				var first = paragraph.Elements().First();
+				if (first.Name.LocalName == "List")
+				{
+					var item = first.Elements().First();
+					if (item.Name.LocalName == "Number")
+					{
+						builder.AppendLine($"{item.Attribute("text").Value} {text}");
+					}
+					else
+					{
+						builder.AppendLine($"* {text}");
+					}
 				}
 				else
 				{
-					// no range selection or only an image was selected
-					await CopyPageAsText(one, page);
+					builder.AppendLine(text);
 				}
+			}
+
+			var children = paragraph
+				.Elements(ns + "OEChildren")
+				.Elements(ns + "OE");
+
+			if (children.Any())
+			{
+				foreach (var child in children)
+				{
+					BuildText(all, ns, child, builder);
+				}
+			}
+
+			var tables = paragraph.Elements(ns + "Table");
+			if (tables.Any())
+			{
+				foreach (var table in tables)
+				{
+					var rows = table.Elements(ns + "Row");
+					foreach (var row in rows)
+					{
+						var rot = row.Elements(ns + "Cell")
+							.Elements(ns + "OEChildren")
+							.Elements(ns + "OE")
+							.Where(e => all || e.Attribute("selected") != null)
+							.Select(e => GetPlainText(e.Value))
+							.Aggregate(string.Empty, (x, y) =>
+							{
+								if (string.IsNullOrEmpty(y)) return x;
+								else if (string.IsNullOrEmpty(x)) return y;
+								else return $"{x}\t{y}";
+							});
+
+						builder.AppendLine(rot);
+					}
+				}
+
+				builder.AppendLine();
 			}
 		}
 
 
-		private async Task CopyPageAsText(OneNote one, Page page)
+		private string GetPlainText(string text)
 		{
-			var updated = one.GetPage(OneNote.PageDetail.Basic);
-			var ns = updated.Root.GetNamespaceOfPrefix(OneNote.Prefix);
+			// normalize the text to be XML compliant...
+			var value = text.Replace("&nbsp;", " ");
+			value = Regex.Replace(value, @"\<\s*br\s*\>", "\n");
 
-			// temporarily select the entire page
-			updated.Root.Elements(ns + "Outline").ForEach(e =>
-			{
-				e.SetAttributeValue("selected", "all");
-			});
+			var plain = Regex.Replace(value, @"\<[^>]+>", "");
+			plain = HttpUtility.HtmlDecode(plain);
 
-			// save the selected page
-			await one.Update(updated);
+			// ligatures
+			plain = Regex.Replace(plain, "…", "...");
 
-			// copy the selected page
-			var clipboard = new ClipboardProvider();
-			await clipboard.Copy();
-			await clipboard.SetText(await clipboard.GetText());
-
-			// restore the previous selection
-			await one.Update(page);
+			return plain;
 		}
 	}
 }
