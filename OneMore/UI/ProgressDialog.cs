@@ -58,7 +58,7 @@ namespace River.OneMoreAddIn.UI
 
 
 		/// <summary>
-		/// Initializes a new dialog with message area, progress bar, and cacel button
+		/// Initializes a new dialog with message area, progress bar, and cancel button
 		/// that is used as a time-boxed controller and intended to be combined with the
 		/// ShowTimedDialog method. The given action is responsible for changing the message.
 		/// No need to invoke SetMaximum as this will be done by ShowTimedDialog.
