@@ -7,6 +7,7 @@ namespace River.OneMoreAddIn.Commands
 	using System;
 	using System.Linq;
 	using System.Text.RegularExpressions;
+	using System.Web;
 	using System.Xml.Linq;
 	using Models;
 
@@ -160,14 +161,12 @@ namespace River.OneMoreAddIn.Commands
 		{
 			// normalize the text to be XML compliant...
 			var value = text.Replace("&nbsp;", " ");
-			value = Regex.Replace(value, @"\<\s*br\s*\>", "<br/>");
-			value = Regex.Replace(value, @"(\s)lang=([\w\-]+)([\s/>])", "$1lang=\"$2\"$3");
+			value = Regex.Replace(value, @"\<\s*br\s*\>", "\n");
 
-			// wrap and then extract Text nodes to filter out <spans>
-			return XElement.Parse($"<cdata>{value}</cdata>")
-				.DescendantNodes()
-				.OfType<XText>()
-				.Aggregate(string.Empty, (x, y) => $"{x} {y}");
+			var plain = Regex.Replace(value, @"\<[^>]+>", "");
+			plain = HttpUtility.HtmlDecode(plain);
+
+			return plain;
 		}
 	}
 }
