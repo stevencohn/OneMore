@@ -385,7 +385,9 @@ namespace River.OneMoreAddIn
 		/// </summary>
 		public async Task RefreshLabels(bool updatePage = false)
 		{
-			var refs = FindSelectedReferences(page.Root.Descendants(ns + "T"), true);
+			var refs = FindSelectedReferences(
+				page.Root.Descendants(ns + "T").InDocumentOrder(),
+				true);
 
 			if (refs?.Any() != true)
 			{
@@ -395,7 +397,7 @@ namespace River.OneMoreAddIn
 
 			// find all footnotes
 			var notes = page.Root.Descendants(ns + "Meta")
-				.Where(e => e.Attribute("name").Value.Equals("omfootnote"))
+				.Where(e => e.Attribute("name").Value.Equals(FootnoteMeta))
 				.Select(e => new
 				{
 					Element = e.Parent,
@@ -495,7 +497,7 @@ namespace River.OneMoreAddIn
 		private List<FootnoteReference> FindSelectedReferences(IEnumerable<XElement> roots, bool super)
 		{
 			var pattern = super 
-				? @"vertical-align:super[;'""].*>\[(\d+)\]</span>"
+				? @"vertical-align:super[;'""][^>]*>\[(\d+)\]</span>"
 				: @"\[(\d+)\]";
 
 			var regex = new Regex(pattern);
@@ -598,7 +600,7 @@ namespace River.OneMoreAddIn
 			{
 				// cursor is on a hyperlink, check that it matches the [label] syntax
 				var match = Regex.Match(cursor.Value,
-					@"vertical-align:super[;'""].*>\[(\d+)\]<\/span>");
+					@"vertical-align:super[;'""][^>]*>\[(\d+)\]<\/span>");
 
 				if (match.Success)
 				{
@@ -624,7 +626,7 @@ namespace River.OneMoreAddIn
 					.OfType<XCData>()
 					.FirstOrDefault(c => Regex.IsMatch(
 						c.Value,
-						$@"vertical-align:super[;'""].*>\[{label}\]<\/span>"));
+						$@"vertical-align:super[;'""][^>]*>\[{label}\]<\/span>"));
 
 				if (cdata != null)
 				{
