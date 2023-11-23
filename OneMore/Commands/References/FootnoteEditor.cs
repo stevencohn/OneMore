@@ -12,12 +12,13 @@ namespace River.OneMoreAddIn
 	using System.Text.RegularExpressions;
 	using System.Threading.Tasks;
 	using System.Xml.Linq;
-	using Resx = River.OneMoreAddIn.Properties.Resources;
+	using Resx = Properties.Resources;
 
 
 	internal class FootnoteEditor
 	{
 		private const string FootnotesMeta = "omfootnotes";
+		private const string FootnoteMeta = "omfootnote";
 		private const string DividerContent = "divider";
 		private const string EmptyContent = "empty";
 		private const string RefreshStyle = "font-style:italic;font-size:9.0pt;color:#808080";
@@ -215,7 +216,7 @@ namespace River.OneMoreAddIn
 			// find next footnote label
 			var label = (divider.NodesAfterSelf()
 				.OfType<XElement>().Elements(ns + "Meta")
-				.Where(e => e.Attribute("name").Value.Equals("omfootnote"))
+				.Where(e => e.Attribute("name").Value.Equals(FootnoteMeta))
 				.DefaultIfEmpty()  // avoids null ref exception
 				.Max(e => e == null ? 0 : int.Parse(e.Attribute("content").Value))
 				+ 1).ToString();
@@ -223,7 +224,7 @@ namespace River.OneMoreAddIn
 			// find last footnote (sibling) element after which new note is to be added
 			var last = divider.NodesAfterSelf()
 				.OfType<XElement>().Elements(ns + "Meta")
-				.LastOrDefault(e => e.Attribute("name").Value.Equals("omfootnote"));
+				.LastOrDefault(e => e.Attribute("name").Value.Equals(FootnoteMeta));
 
 			// divider is a valid precedesor sibling; otherwise last's Parent
 			last = last == null ? divider : last.Parent;
@@ -275,7 +276,7 @@ namespace River.OneMoreAddIn
 			var note = new Paragraph(
 				new XAttribute("style", $"color:{color}"),
 				new XElement(ns + "Meta",
-					new XAttribute("name", "omfootnote"),
+					new XAttribute("name", FootnoteMeta),
 					new XAttribute("content", label)
 				),
 				new XElement(ns + "T",
@@ -313,7 +314,7 @@ namespace River.OneMoreAddIn
 			// find the new footer by its label and get its new objectID
 			var noteId = page.Root.Descendants(ns + "Meta")
 				.Where(e =>
-					e.Attribute("name").Value.Equals("omfootnote") &&
+					e.Attribute("name").Value.Equals(FootnoteMeta) &&
 					e.Attribute("content").Value.Equals(label))
 				.Select(e => e.Parent.Attribute("objectID").Value)
 				.FirstOrDefault();
@@ -494,32 +495,43 @@ namespace River.OneMoreAddIn
 
 		private List<FootnoteReference> FindSelectedReferences(IEnumerable<XElement> roots, bool super)
 		{
-			var pattern = super
+			var pattern = super 
 				? @"vertical-align:super[;'""].*>\[(\d+)\]</span>"
 				: @"\[(\d+)\]";
 
-			// find selected "[\d]" labels
-			var list = roots.DescendantNodes().OfType<XCData>()
+			var regex = new Regex(pattern);
+
+			// there could be multiple references in each text run...
+
+			// find selected "[\d]" labels in body of page
+			var data = roots.DescendantNodes().OfType<XCData>()
 				.Select(CData => new
 				{
 					CData,
-					match = Regex.Match(CData.Value, pattern)
+					matches = regex.Matches(CData.Value)
 				})
-				.Where(o => o.match.Success)
-				.Select(o => new FootnoteReference
-				{
-					CData = o.CData,
-					Label = int.Parse(o.match.Groups[1].Value),
-					Index = o.match.Groups[1].Index,
-					Length = o.match.Groups[1].Length
-				})
-				.ToList();
+				.Where(o => o.matches.Count > 0);
 
-			// find selected footnote text lines
+			var list = new List<FootnoteReference>();
+			foreach (var datum in data)
+			{
+				foreach (Match match in datum.matches)
+				{
+					list.Add(new FootnoteReference
+					{
+						CData = datum.CData,
+						Label = int.Parse(match.Groups[1].Value),
+						Index = match.Groups[1].Index,
+						Length = match.Groups[1].Length
+					});
+				}
+			}
+
+			// find selected footnote text lines in footer of page
 			foreach (var root in roots)
 			{
 				var meta = root.Parent.Elements(ns + "Meta")
-					.Where(e => e.Attribute("name").Value.Equals("omfootnote"))
+					.Where(e => e.Attribute("name").Value.Equals(FootnoteMeta))
 					.Select(e => new
 					{
 						CData = e.Parent.Element(ns + "T").DescendantNodes().OfType<XCData>().FirstOrDefault(),
@@ -587,7 +599,7 @@ namespace River.OneMoreAddIn
 				var parent = selection.CData.Parent.Parent; // should be a one:OE
 
 				var found = parent.Elements(ns + "Meta")
-					.Any(e => e.Attributes("name").Any(a => a.Value.Equals("omfootnote")));
+					.Any(e => e.Attributes("name").Any(a => a.Value.Equals(FootnoteMeta)));
 
 				if (found)
 				{
@@ -618,7 +630,7 @@ namespace River.OneMoreAddIn
 					// associated footnote
 					var note = page.Root.Descendants(ns + "Meta")
 						.Where(e =>
-							e.Attribute("name").Value.Equals("omfootnote") &&
+							e.Attribute("name").Value.Equals(FootnoteMeta) &&
 							e.Attribute("content").Value.Equals(selection.Label.ToString()))
 						.Select(e => e.Parent)
 						.FirstOrDefault();
@@ -631,7 +643,7 @@ namespace River.OneMoreAddIn
 			_ = EnsureFootnoteFooter();
 
 			var remaining = divider.NodesAfterSelf().OfType<XElement>().Elements(ns + "Meta")
-				.Any(e => e.Attribute("name").Value.Equals("omfootnote"));
+				.Any(e => e.Attribute("name").Value.Equals(FootnoteMeta));
 
 			if (remaining)
 			{
