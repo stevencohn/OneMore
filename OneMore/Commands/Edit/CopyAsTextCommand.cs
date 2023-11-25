@@ -6,9 +6,7 @@ namespace River.OneMoreAddIn.Commands
 {
 	using System.Linq;
 	using System.Text;
-	using System.Text.RegularExpressions;
 	using System.Threading.Tasks;
-	using System.Web;
 	using System.Xml.Linq;
 
 
@@ -65,7 +63,7 @@ namespace River.OneMoreAddIn.Commands
 			if (runs.Any())
 			{
 				var text = runs
-					.Select(c => GetPlainText(c.Value))
+					.Select(c => c.Value.PlainText())
 					.Aggregate(string.Empty, (x, y) =>
 					{
 						if (string.IsNullOrEmpty(y)) return x;
@@ -108,45 +106,39 @@ namespace River.OneMoreAddIn.Commands
 			var tables = paragraph.Elements(ns + "Table");
 			if (tables.Any())
 			{
+				var content = false;
 				foreach (var table in tables)
 				{
 					var rows = table.Elements(ns + "Row");
 					foreach (var row in rows)
 					{
-						var rot = row.Elements(ns + "Cell")
+						var cells = row.Elements(ns + "Cell")
 							.Elements(ns + "OEChildren")
 							.Elements(ns + "OE")
-							.Where(e => all || e.Attribute("selected") != null)
-							.Select(e => GetPlainText(e.Value))
-							.Aggregate(string.Empty, (x, y) =>
-							{
-								if (string.IsNullOrEmpty(y)) return x;
-								else if (string.IsNullOrEmpty(x)) return y;
-								else return $"{x}\t{y}";
-							});
+							.Where(e => all || e.Attribute("selected") != null);
 
-						builder.AppendLine(rot);
+						if (cells.Any())
+						{
+							var rot = cells
+								.Select(e => e.Value.PlainText())
+								.Aggregate(string.Empty, (x, y) =>
+								{
+									if (string.IsNullOrEmpty(y)) return x;
+									else if (string.IsNullOrEmpty(x)) return y;
+									else return $"{x}\t{y}";
+								});
+
+							builder.AppendLine(rot);
+							content = true;
+						}
 					}
 				}
 
-				builder.AppendLine();
+				if (content)
+				{
+					builder.AppendLine();
+				}
 			}
-		}
-
-
-		private string GetPlainText(string text)
-		{
-			// normalize the text to be XML compliant...
-			var value = text.Replace("&nbsp;", " ");
-			value = Regex.Replace(value, @"\<\s*br\s*\>", "\n");
-
-			var plain = Regex.Replace(value, @"\<[^>]+>", "");
-			plain = HttpUtility.HtmlDecode(plain);
-
-			// ligatures
-			plain = Regex.Replace(plain, "…", "...");
-
-			return plain;
 		}
 	}
 }

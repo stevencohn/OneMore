@@ -10,6 +10,7 @@ namespace River.OneMoreAddIn
 	using System.Linq;
 	using System.Text;
 	using System.Text.RegularExpressions;
+	using System.Web;
 	using System.Xml.Linq;
 
 
@@ -97,6 +98,25 @@ namespace River.OneMoreAddIn
 		public static bool EqualsICIC(this string s, string value)
 		{
 			return s.Equals(value, StringComparison.InvariantCultureIgnoreCase);
+		}
+
+
+		/// <summary>
+		/// Strip all HTML from the given string
+		/// </summary>
+		/// <param name="s"></param>
+		/// <returns></returns>
+		public static string PlainText(this string s)
+		{
+			// remove all HTML
+			var text = Regex.Replace(s, @"\<\s*br\s*\>", "\n");
+			text = Regex.Replace(text, @"\<[^>]+>", string.Empty);
+			text = HttpUtility.HtmlDecode(text);
+
+			// ligatures
+			text = Regex.Replace(text, "…", "...");
+
+			return text;
 		}
 
 

@@ -151,7 +151,7 @@ namespace River.OneMoreAddIn.Commands
 
 				if (run.GetAttributeValue(DepthAttributeName, out int depth, 1) && depth == 0)
 				{
-					var text = run.TextValue();
+					var text = run.Value.PlainText();
 					if (text.Length > 0)
 					{
 						if (text[0] == '+')

@@ -4,12 +4,11 @@
 
 namespace River.OneMoreAddIn.Commands
 {
+	using Models;
 	using System;
 	using System.Linq;
 	using System.Text.RegularExpressions;
-	using System.Web;
 	using System.Xml.Linq;
-	using Models;
 
 
 	/// <summary>
@@ -91,7 +90,7 @@ namespace River.OneMoreAddIn.Commands
 
 			var text = paragraph.Elements(ns + "T")?
 				.DescendantNodes().OfType<XCData>()
-				.Select(c => GetPlainText(c.Value))
+				.Select(c => c.Value.PlainText())
 				.Aggregate(string.Empty, (x, y) => $"{x} {y}");
 
 			if (!string.IsNullOrWhiteSpace(text))
@@ -154,19 +153,6 @@ namespace River.OneMoreAddIn.Commands
 					}
 				}
 			}
-		}
-
-
-		private string GetPlainText(string text)
-		{
-			// normalize the text to be XML compliant...
-			var value = text.Replace("&nbsp;", " ");
-			value = Regex.Replace(value, @"\<\s*br\s*\>", "\n");
-
-			var plain = Regex.Replace(value, @"\<[^>]+>", "");
-			plain = HttpUtility.HtmlDecode(plain);
-
-			return plain;
 		}
 	}
 }
