@@ -9,6 +9,7 @@ namespace River.OneMoreAddIn.Commands
 	using System;
 	using System.Collections.Generic;
 	using System.Linq;
+	using System.Runtime.ExceptionServices;
 	using System.Text.RegularExpressions;
 	using System.Threading.Tasks;
 	using System.Xml.Linq;
@@ -16,6 +17,8 @@ namespace River.OneMoreAddIn.Commands
 
 	internal class ColorizeCommand : Command
 	{
+		private const string DepthAttributeName = "omDepth";
+
 		private Page page;
 		private XNamespace ns;
 		private readonly bool fontOverride;
@@ -44,6 +47,8 @@ namespace River.OneMoreAddIn.Commands
 		{
 			using var one = new OneNote(out page, out ns);
 
+			AddDepth(page.Root);
+
 			var runs = page.Root.Descendants(ns + "T")
 				.Where(e => e.Attributes().Any(a => a.Name == "selected" && a.Value == "all"));
 
@@ -56,8 +61,41 @@ namespace River.OneMoreAddIn.Commands
 
 			if (updated)
 			{
+				RemoveDepth(page.Root);
 				await one.Update(page);
 			}
+		}
+
+
+		private void AddDepth(XElement root)
+		{
+			void AddDepth(XElement parent, int depth)
+			{
+				parent.Elements(ns + "OE").ForEach(e =>
+				{
+					e.Elements(ns + "T").ForEach(t =>
+					{
+						var a = t.Attribute(DepthAttributeName);
+						if (a == null)
+						{
+							t.Add(new XAttribute(DepthAttributeName, depth.ToString()));
+						}
+					});
+
+					e.Elements(ns + "OEChildren").ForEach(e => AddDepth(e, depth + 1));
+				});
+			}
+
+			root.Elements(ns + "Outline")
+				.Elements(ns + "OEChildren")
+				.ForEach(e => AddDepth(e, 0));
+		}
+
+		private void RemoveDepth(XElement root)
+		{
+			root.Descendants(ns + "T")
+				.Attributes(DepthAttributeName)
+				.Remove();
 		}
 
 
@@ -88,7 +126,7 @@ namespace River.OneMoreAddIn.Commands
 
 			foreach (var run in runs.ToList())
 			{
-				run.SetAttributeValue("lang", "yo");
+                run.SetAttributeValue("lang", "yo");
 				run.Parent.Attributes("spaceAfter").Remove();
 				run.Parent.Attributes("spaceBefore").Remove();
 
@@ -128,6 +166,22 @@ namespace River.OneMoreAddIn.Commands
 				{
 					cdata.Value = colorizer.ColorizeOne(cdata.GetWrapper().Value);
 					updated = true;
+				}
+
+				if (run.GetAttributeValue(DepthAttributeName, out int depth, 1) && depth == 0)
+				{
+					var text = run.TextValue();
+					if (text.Length > 0)
+					{
+						if (text[0] == '+')
+						{
+							colorizer.ColorizeDiff(run.Parent, true);
+						}
+						else if (text[0] == '-')
+						{
+							colorizer.ColorizeDiff(run.Parent, false);
+						}
+					}
 				}
 			}
 

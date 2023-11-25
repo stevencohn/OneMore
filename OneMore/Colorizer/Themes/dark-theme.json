@@ -10,6 +10,8 @@
     "DarkOliveGreen": "#556B2F",
     "DarkRed": "#7D180D",
     "DarkYellow": "#BF9000",
+    "DiffGreen": "#E3FAE3",
+    "DiffRed": "#FAECE9",
     "Firebrick": "#B22222",
     "Gray": "#808080",
     "Green": "#008000",
@@ -78,6 +80,14 @@
     },
     {
       "name": "Delimeter"
+    },
+    {
+      "name": "DiffAdd",
+      "background": "DiffGreen"
+    },
+    {
+      "name": "DiffRemove",
+      "background": "DiffRed"
     },
     {
       "name": "HtmlServerSideScript",
