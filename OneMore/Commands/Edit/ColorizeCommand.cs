@@ -156,13 +156,13 @@ namespace River.OneMoreAddIn.Commands
 					{
 						if (text[0] == '+')
 						{
-							colorizer.ColorizeDiff(run.Parent, true);
-							runoffs.ForEach(r => colorizer.ColorizeDiff(r, true));
+							colorizer.ColorizeDiffs(run.Parent, true);
+							runoffs.ForEach(r => colorizer.ColorizeDiffs(r, true));
 						}
 						else if (text[0] == '-')
 						{
-							colorizer.ColorizeDiff(run.Parent, false);
-							runoffs.ForEach(r => colorizer.ColorizeDiff(r, false));
+							colorizer.ColorizeDiffs(run.Parent, false);
+							runoffs.ForEach(r => colorizer.ColorizeDiffs(r, false));
 						}
 					}
 				}

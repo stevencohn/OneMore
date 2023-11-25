@@ -4,7 +4,6 @@
 
 namespace River.OneMoreAddIn.Colorizer
 {
-	using NStandard;
 	using River.OneMoreAddIn.Settings;
 	using System.Collections.Generic;
 	using System.IO;
@@ -225,7 +224,7 @@ namespace River.OneMoreAddIn.Colorizer
 		/// </summary>
 		/// <param name="element">An OE element</param>
 		/// <param name="addition">True if addition, otherwise removal</param>
-		public void ColorizeDiff(XElement element, bool addition)
+		public void ColorizeDiffs(XElement element, bool addition)
 		{
 			var style = theme.GetStyle(addition ? "diffadd" : "diffremove");
 			if (style == null)
