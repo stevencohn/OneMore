@@ -12,7 +12,7 @@ namespace River.OneMoreAddIn.UI
 	using System.Drawing;
 	using System.Linq;
 	using System.Windows.Forms;
-	using Resx = River.OneMoreAddIn.Properties.Resources;
+	using Resx = Properties.Resources;
 
 
 	/// <summary>
@@ -72,7 +72,7 @@ namespace River.OneMoreAddIn.UI
 		public bool HasMatches =>
 			string.IsNullOrWhiteSpace(Owner.Text.Trim()) ||
 			commands.Count == 0 ||
-			commands.Any(c => c.Name.ContainsICIC(Owner.Text.Trim()));
+			commands.Exists(c => c.Name.ContainsICIC(Owner.Text.Trim()));
 
 
 		/// <summary>

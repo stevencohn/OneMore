@@ -16,6 +16,8 @@ namespace River.OneMoreAddIn.Commands
 
 	internal class ColorizeCommand : Command
 	{
+		private const string DepthAttributeName = "omDepth";
+
 		private Page page;
 		private XNamespace ns;
 		private readonly bool fontOverride;
@@ -44,10 +46,12 @@ namespace River.OneMoreAddIn.Commands
 		{
 			using var one = new OneNote(out page, out ns);
 
+			AddDepth(page.Root);
+
 			var runs = page.Root.Descendants(ns + "T")
 				.Where(e => e.Attributes().Any(a => a.Name == "selected" && a.Value == "all"));
 
-			if (runs == null)
+			if (!runs.Any())
 			{
 				return;
 			}
@@ -56,6 +60,7 @@ namespace River.OneMoreAddIn.Commands
 
 			if (updated)
 			{
+				RemoveDepth(page.Root);
 				await one.Update(page);
 			}
 		}
@@ -88,9 +93,10 @@ namespace River.OneMoreAddIn.Commands
 
 			foreach (var run in runs.ToList())
 			{
-				run.SetAttributeValue("lang", "yo");
+                run.SetAttributeValue("lang", "yo");
 				run.Parent.Attributes("spaceAfter").Remove();
 				run.Parent.Attributes("spaceBefore").Remove();
+				var runoffs = new List<XElement>();
 
 				var cdata = run.GetCData();
 
@@ -99,6 +105,13 @@ namespace River.OneMoreAddIn.Commands
 					// special handling to expand soft line breaks (Shift + Enter) into
 					// hard breaks, splitting the line into multiple ines.
 					// presume that br is always followed by newline...
+
+					// need to move children to last runoff to maintain positioning
+					var children = run.Parent.Elements(ns + "OEChildren").ToList();
+					if (children.Any())
+					{
+						children.ForEach(c => c.Remove());
+					}
 
 					var text = cdata.GetWrapper().Value;
 					text = Regex.Replace(text, @"\r\n", "\n");
@@ -109,18 +122,23 @@ namespace River.OneMoreAddIn.Commands
 					cdata.Value = colorizer.ColorizeOne(lines[0]);
 
 					// collect subsequent lines from soft-breaks
-					var elements = new List<XElement>();
 					for (int i = 1; i < lines.Length; i++)
 					{
 						var colorized = colorizer.ColorizeOne(lines[i]);
 
-						elements.Add(new XElement(ns + "OE",
+						runoffs.Add(new XElement(ns + "OE",
 							run.Parent.Attributes(),
 							new XElement(ns + "T", new XCData(colorized)
 							)));
 					}
 
-					run.Parent.AddAfterSelf(elements);
+					run.Parent.AddAfterSelf(runoffs);
+
+					// restore children, appending to last runoff
+					if (children.Any())
+					{
+						runoffs[runoffs.Count - 1].Add(children);
+					}
 
 					updated = true;
 				}
@@ -129,9 +147,61 @@ namespace River.OneMoreAddIn.Commands
 					cdata.Value = colorizer.ColorizeOne(cdata.GetWrapper().Value);
 					updated = true;
 				}
+
+
+				if (run.GetAttributeValue(DepthAttributeName, out int depth, 1) && depth == 0)
+				{
+					var text = run.TextValue();
+					if (text.Length > 0)
+					{
+						if (text[0] == '+')
+						{
+							colorizer.ColorizeDiffs(run.Parent, true);
+							runoffs.ForEach(r => colorizer.ColorizeDiffs(r, true));
+						}
+						else if (text[0] == '-')
+						{
+							colorizer.ColorizeDiffs(run.Parent, false);
+							runoffs.ForEach(r => colorizer.ColorizeDiffs(r, false));
+						}
+					}
+				}
 			}
 
 			return updated;
+		}
+
+
+		private void AddDepth(XElement root)
+		{
+			void AddDepth(XElement parent, int depth)
+			{
+				parent.Elements(ns + "OE").ForEach(e =>
+				{
+					e.Elements(ns + "T").ForEach(t =>
+					{
+						var a = t.Attribute(DepthAttributeName);
+						if (a == null)
+						{
+							t.Add(new XAttribute(DepthAttributeName, depth.ToString()));
+						}
+					});
+
+					e.Elements(ns + "OEChildren").ForEach(e => AddDepth(e, depth + 1));
+				});
+			}
+
+			root.Elements(ns + "Outline")
+				.Elements(ns + "OEChildren")
+				.ForEach(e => AddDepth(e, 0));
+		}
+
+
+		private void RemoveDepth(XElement root)
+		{
+			root.Descendants(ns + "T")
+				.Attributes(DepthAttributeName)
+				.Remove();
 		}
 	}
 }

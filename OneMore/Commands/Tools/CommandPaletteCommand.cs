@@ -37,8 +37,8 @@ namespace River.OneMoreAddIn.Commands
 				dialog.Index >= 0)
 			{
 				var command = dialog.Recent
-					? recent.ElementAt(dialog.Index)
-					: commands.ElementAt(dialog.Index);
+					? recent[dialog.Index]
+					: commands[dialog.Index];
 
 				//logger.WriteLine($"invoking command[index:{dialog.Index},recent:{dialog.Recent}] 'method:{command.Method.Name}'");
 				await (Task)command.Method.Invoke(AddIn.Self, new object[] { null });
