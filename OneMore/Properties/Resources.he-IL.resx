@@ -882,11 +882,11 @@ Total Row Font
     <comment>emoji</comment>
   </data>
   <data name="EmojiDialog.Text" xml:space="preserve">
-    <value>תואר אמוג'ים</value>
+    <value>הכנס אמוג'י</value>
     <comment>dialog title</comment>
   </data>
   <data name="EmojiDialog_introLabel.Text" xml:space="preserve">
-    <value>בחר או יותר אמוג'ים כדי להוסיף לכותרת העמוד</value>
+    <value>בחר באימוג'י או יותר להוספה</value>
     <comment>instructions</comment>
   </data>
   <data name="Error_BodyContext" xml:space="preserve">
@@ -2802,12 +2802,12 @@ ISO-code then comma then language name</comment>
     <comment>ribbon item screentip</comment>
   </data>
   <data name="ribEmojiButton_Label" xml:space="preserve">
-    <value>הוסף אמוג'י כותרת עמוד</value>
-    <comment>ribbon page</comment>
+    <value>הכנס אימוג'י</value>
+    <comment>ribbon edit</comment>
   </data>
   <data name="ribEmojiButton_Screentip" xml:space="preserve">
-    <value>כותרת עמוד מקדימה עם אמוג'ים</value>
-    <comment>ribbon page</comment>
+    <value>הכנס אימוג'י אחד או יותר</value>
+    <comment>ribbon edit</comment>
   </data>
   <data name="ribEnableSpellCheckButton_Label" xml:space="preserve">
     <value>אפשר בדיקת איות</value>

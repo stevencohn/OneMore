@@ -870,11 +870,11 @@ Schriftart der letzten Spalte</value>
     <comment>emoji</comment>
   </data>
   <data name="EmojiDialog.Text" xml:space="preserve">
-    <value>Titel-Emojis</value>
+    <value>Emojis einfügen</value>
     <comment>dialog title</comment>
   </data>
   <data name="EmojiDialog_introLabel.Text" xml:space="preserve">
-    <value>Wählen Sie ein oder mehrere Emojis aus, um sie dem Seitentitel hinzuzufügen</value>
+    <value>Wählen Sie ein oder mehrere Emojis zum Einfügen aus</value>
     <comment>instructions</comment>
   </data>
   <data name="Error_BodyContext" xml:space="preserve">
@@ -2785,12 +2785,12 @@ Polaroid</value>
     <comment>ribbon item screentip</comment>
   </data>
   <data name="ribEmojiButton_Label" xml:space="preserve">
-    <value>Seitentitel Emoji hinzufügen</value>
-    <comment>Ribbon OneMore menu item, Extras... EDIT</comment>
+    <value>Emoji einfügen</value>
+    <comment>ribbon edit</comment>
   </data>
   <data name="ribEmojiButton_Screentip" xml:space="preserve">
-    <value>Seitentitel mit Emojis voranstellen</value>
-    <comment>ribbon page</comment>
+    <value>Fügen Sie ein oder mehrere Emojis ein</value>
+    <comment>ribbon edit</comment>
   </data>
   <data name="ribEnableSpellCheckButton_Label" xml:space="preserve">
     <value>Rechtschreibprüfung aktivieren</value>

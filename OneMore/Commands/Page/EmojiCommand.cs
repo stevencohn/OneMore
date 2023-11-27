@@ -4,18 +4,21 @@
 
 namespace River.OneMoreAddIn.Commands
 {
+	using River.OneMoreAddIn.UI;
 	using System.Collections.Generic;
 	using System.Linq;
+	using System.Text;
 	using System.Threading.Tasks;
 	using System.Windows.Forms;
 	using System.Xml.Linq;
 
 
 	/// <summary>
-	/// Prefix the page title with one or more chosen symbols from the Segoe UI Emoji char set
+	/// Insert one or more selected symbols from the Segoe UI Emoji char set
 	/// </summary>
 	internal class EmojiCommand : Command
 	{
+		private const string ReplayElementName = "symbols";
 		private IEnumerable<IEmoji> emojis;
 
 
@@ -27,8 +30,12 @@ namespace River.OneMoreAddIn.Commands
 		public override async Task Execute(params object[] args)
 		{
 			// check for replay
-			var element = args?.FirstOrDefault(a => 
-				a is XElement e && e.Name.LocalName == "symbols") as XElement;
+			XElement element = null;
+			if (args != null)
+			{
+				element = System.Array.Find(args,
+					a => a is XElement e && e.Name.LocalName == ReplayElementName) as XElement;
+			}
 
 			if (!string.IsNullOrEmpty(element?.Value))
 			{
@@ -55,28 +62,50 @@ namespace River.OneMoreAddIn.Commands
 		private async Task InsertSymbols()
 		{
 			using var one = new OneNote(out var page, out var ns);
+			var elements = page.Root.Descendants(ns + "T")
+				.Where(e => e.Attribute("selected")?.Value == "all");
 
-			var cdata = page.Root
-				.Elements(ns + "Title")
-				.Elements(ns + "OE")    // should have exactly one OE
-				.Elements(ns + "T")     // but may have one or more Ts
-				.DescendantNodes().OfType<XCData>()
-				.FirstOrDefault();
-
-			if (cdata == null)
+			if (!elements.Any())
 			{
-				// no title on page - this shouldn't happen!
+				// empty page so add new content
+				MoreMessageBox.Show(owner, "dummy");
 				return;
 			}
 
-			// blindly prepend title with new span, letting OneNote normalize consecutive spans...
-
+			// collect selected symbols
+			var builder = new StringBuilder();
 			foreach (var emoji in emojis)
 			{
-				var color = emoji.Color == null ? "" : $"color:{emoji.Color}";
+				var color = emoji.Color == null ? string.Empty : $"color:{emoji.Color}";
 
-				cdata.Value = cdata.Value.Insert(0,
-					$"<span style=\"font-family:'Segoe UI Emoji';font-size:16pt;{color}\">{emoji.Symbol}</span>");
+				builder.Append(
+					$"<span style=\"font-family:'Segoe UI Emoji';{color}\">{emoji.Symbol}</span>");
+			}
+
+			var text = builder.ToString();
+			var content = new XElement(ns + "T", text);
+
+			if (elements.Count() > 1)
+			{
+				// selected multiple runs so replace them all
+				page.ReplaceSelectedWithContent(content);
+			}
+			else
+			{
+				var line = elements.First();
+				if (line.Parent.Parent.Name.LocalName == "Title" &&
+					line.Value == line.Parent.Value)
+				{
+					// special case for page titles; if entire title is selected then only
+					// prepend title, do not delete the title
+					var cdata = line.GetCData();
+					cdata.Value = $"{text} {cdata.Value}";
+				}
+				else
+				{
+					// something is selected so replace it
+					page.ReplaceSelectedWithContent(content);
+				}
 			}
 
 			await one.Update(page);
@@ -87,7 +116,10 @@ namespace River.OneMoreAddIn.Commands
 		{
 			if (emojis.Any())
 			{
-				return new XElement("symbols", string.Join(",", emojis.Select(e => e.Symbol)));
+				return new XElement(
+					ReplayElementName,
+					string.Join(",", emojis.Select(e => e.Symbol))
+					);
 			}
 
 			return null;

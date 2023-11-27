@@ -880,11 +880,11 @@ Czcionka ostatniej kolumny</value>
     <comment>emoji</comment>
   </data>
   <data name="EmojiDialog.Text" xml:space="preserve">
-    <value>Tytułowe emotikony</value>
+    <value>Wstaw emotikony</value>
     <comment>dialog title</comment>
   </data>
   <data name="EmojiDialog_introLabel.Text" xml:space="preserve">
-    <value>Wybierz emotikony lub więcej, aby dodać je do tytułu strony</value>
+    <value>Wybierz co najmniej jeden emoji, który chcesz wstawić</value>
     <comment>instructions</comment>
   </data>
   <data name="Error_BodyContext" xml:space="preserve">
@@ -2794,12 +2794,12 @@ Polaroid</value>
     <comment>ribbon item screentip</comment>
   </data>
   <data name="ribEmojiButton_Label" xml:space="preserve">
-    <value>Dodaj emoji tytułu strony</value>
-    <comment>Ribbon OneMore menu item, Extras... EDIT</comment>
+    <value>Wstaw emoji</value>
+    <comment>ribbon edit</comment>
   </data>
   <data name="ribEmojiButton_Screentip" xml:space="preserve">
-    <value>Przygotuj tytuł strony za pomocą emotikonów</value>
-    <comment>ribbon page</comment>
+    <value>Wstaw jeden lub więcej emoji</value>
+    <comment>ribbon edit</comment>
   </data>
   <data name="ribEnableSpellCheckButton_Label" xml:space="preserve">
     <value>Włącz sprawdzanie pisowni</value>
