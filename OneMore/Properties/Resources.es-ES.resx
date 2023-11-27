@@ -432,6 +432,10 @@ OneNote se cerrará automáticamente</value>
     <value>Aplique siempre las siguientes fuentes al colorear el código</value>
     <comment>checkbox</comment>
   </data>
+  <data name="ColorizeSheet_enabledLabel" xml:space="preserve">
+    <value>Idiomas habilitados</value>
+    <comment>label</comment>
+  </data>
   <data name="ColorizeSheet_font2Label.Text" xml:space="preserve">
     <value>Secundario</value>
     <comment>label</comment>
@@ -4555,6 +4559,9 @@ En esta sección</value>
   </data>
   <data name="word_Alias" xml:space="preserve">
     <value>Alias</value>
+  </data>
+  <data name="word_All" xml:space="preserve">
+    <value>Todo</value>
   </data>
   <data name="word_Apply" xml:space="preserve">
     <value>Aplicar</value>

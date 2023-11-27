@@ -440,6 +440,10 @@ OneNote 将自动关闭</value>
     <value>为代码着色时始终应用以下字体</value>
     <comment>checkbox</comment>
   </data>
+  <data name="ColorizeSheet_enabledLabel" xml:space="preserve">
+    <value>启用的语言</value>
+    <comment>label</comment>
+  </data>
   <data name="ColorizeSheet_font2Label.Text" xml:space="preserve">
     <value>中学</value>
     <comment>label</comment>
@@ -4627,6 +4631,9 @@ ISO-code then comma then language name</comment>
   </data>
   <data name="word_Alias" xml:space="preserve">
     <value>别名</value>
+  </data>
+  <data name="word_All" xml:space="preserve">
+    <value>全部</value>
   </data>
   <data name="word_Apply" xml:space="preserve">
     <value>

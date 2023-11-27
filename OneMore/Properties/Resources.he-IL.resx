@@ -443,6 +443,10 @@ OneNote ייסגר אוטומטית</value>
     <value>החל תמיד את הגופנים הבאים בעת צביעה של קוד</value>
     <comment>checkbox</comment>
   </data>
+  <data name="ColorizeSheet_enabledLabel" xml:space="preserve">
+    <value>שפות מופעלות</value>
+    <comment>label</comment>
+  </data>
   <data name="ColorizeSheet_font2Label.Text" xml:space="preserve">
     <value>מִשׁנִי</value>
     <comment>label</comment>
@@ -4572,6 +4576,9 @@ ISO-code then comma then language name</comment>
   </data>
   <data name="word_Alias" xml:space="preserve">
     <value>כינוי</value>
+  </data>
+  <data name="word_All" xml:space="preserve">
+    <value>את כל</value>
   </data>
   <data name="word_Apply" xml:space="preserve">
     <value>להגיש מועמדות</value>

@@ -441,6 +441,10 @@ OneNote zamknie się automatycznie</value>
     <value>Podczas kolorowania kodu zawsze stosuj następujące czcionki</value>
     <comment>checkbox</comment>
   </data>
+  <data name="ColorizeSheet_enabledLabel" xml:space="preserve">
+    <value>Włączone języki</value>
+    <comment>label</comment>
+  </data>
   <data name="ColorizeSheet_font2Label.Text" xml:space="preserve">
     <value>Wtórny</value>
     <comment>label</comment>
@@ -4572,6 +4576,9 @@ W tej sekcji</value>
   </data>
   <data name="word_Alias" xml:space="preserve">
     <value>Alias</value>
+  </data>
+  <data name="word_All" xml:space="preserve">
+    <value>Wszystko</value>
   </data>
   <data name="word_Apply" xml:space="preserve">
     <value>Stosować</value>

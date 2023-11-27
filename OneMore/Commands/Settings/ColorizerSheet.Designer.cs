@@ -31,6 +31,11 @@ namespace River.OneMoreAddIn.Settings
 		{
 			this.introBox = new System.Windows.Forms.TextBox();
 			this.layoutPanel = new System.Windows.Forms.Panel();
+			this.barLabel = new System.Windows.Forms.Label();
+			this.allLink = new System.Windows.Forms.LinkLabel();
+			this.noneLink = new System.Windows.Forms.LinkLabel();
+			this.langView = new System.Windows.Forms.ListView();
+			this.enabledLabel = new System.Windows.Forms.Label();
 			this.family2Box = new River.OneMoreAddIn.UI.FontComboBox();
 			this.size2Box = new System.Windows.Forms.ComboBox();
 			this.font2Label = new System.Windows.Forms.Label();
@@ -58,6 +63,11 @@ namespace River.OneMoreAddIn.Settings
 			// 
 			// layoutPanel
 			// 
+			this.layoutPanel.Controls.Add(this.barLabel);
+			this.layoutPanel.Controls.Add(this.allLink);
+			this.layoutPanel.Controls.Add(this.noneLink);
+			this.layoutPanel.Controls.Add(this.langView);
+			this.layoutPanel.Controls.Add(this.enabledLabel);
 			this.layoutPanel.Controls.Add(this.family2Box);
 			this.layoutPanel.Controls.Add(this.size2Box);
 			this.layoutPanel.Controls.Add(this.font2Label);
@@ -73,6 +83,64 @@ namespace River.OneMoreAddIn.Settings
 			this.layoutPanel.Size = new System.Drawing.Size(772, 416);
 			this.layoutPanel.TabIndex = 4;
 			// 
+			// barLabel
+			// 
+			this.barLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.barLabel.AutoSize = true;
+			this.barLabel.Location = new System.Drawing.Point(533, 217);
+			this.barLabel.Name = "barLabel";
+			this.barLabel.Size = new System.Drawing.Size(14, 20);
+			this.barLabel.TabIndex = 21;
+			this.barLabel.Text = "|";
+			// 
+			// allLink
+			// 
+			this.allLink.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.allLink.AutoSize = true;
+			this.allLink.Location = new System.Drawing.Point(501, 217);
+			this.allLink.Name = "allLink";
+			this.allLink.Size = new System.Drawing.Size(26, 20);
+			this.allLink.TabIndex = 20;
+			this.allLink.TabStop = true;
+			this.allLink.Text = "All";
+			this.allLink.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.ToggleLanguages);
+			// 
+			// noneLink
+			// 
+			this.noneLink.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.noneLink.AutoSize = true;
+			this.noneLink.Location = new System.Drawing.Point(553, 217);
+			this.noneLink.Name = "noneLink";
+			this.noneLink.Size = new System.Drawing.Size(47, 20);
+			this.noneLink.TabIndex = 19;
+			this.noneLink.TabStop = true;
+			this.noneLink.Text = "None";
+			this.noneLink.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.ToggleLanguages);
+			// 
+			// langView
+			// 
+			this.langView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.langView.BackColor = System.Drawing.SystemColors.Window;
+			this.langView.CheckBoxes = true;
+			this.langView.HideSelection = false;
+			this.langView.Location = new System.Drawing.Point(10, 240);
+			this.langView.Name = "langView";
+			this.langView.Size = new System.Drawing.Size(590, 173);
+			this.langView.TabIndex = 18;
+			this.langView.UseCompatibleStateImageBehavior = false;
+			this.langView.View = System.Windows.Forms.View.SmallIcon;
+			// 
+			// enabledLabel
+			// 
+			this.enabledLabel.AutoSize = true;
+			this.enabledLabel.Location = new System.Drawing.Point(6, 217);
+			this.enabledLabel.Name = "enabledLabel";
+			this.enabledLabel.Size = new System.Drawing.Size(146, 20);
+			this.enabledLabel.TabIndex = 17;
+			this.enabledLabel.Text = "Enabled languages";
+			// 
 			// family2Box
 			// 
 			this.family2Box.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -82,7 +150,7 @@ namespace River.OneMoreAddIn.Settings
 			this.family2Box.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.family2Box.FormattingEnabled = true;
 			this.family2Box.IntegralHeight = false;
-			this.family2Box.Location = new System.Drawing.Point(135, 122);
+			this.family2Box.Location = new System.Drawing.Point(135, 106);
 			this.family2Box.Name = "family2Box";
 			this.family2Box.Size = new System.Drawing.Size(355, 32);
 			this.family2Box.TabIndex = 16;
@@ -108,7 +176,7 @@ namespace River.OneMoreAddIn.Settings
             "22",
             "24",
             "26"});
-			this.size2Box.Location = new System.Drawing.Point(496, 121);
+			this.size2Box.Location = new System.Drawing.Point(496, 105);
 			this.size2Box.Name = "size2Box";
 			this.size2Box.Size = new System.Drawing.Size(104, 33);
 			this.size2Box.TabIndex = 15;
@@ -116,7 +184,7 @@ namespace River.OneMoreAddIn.Settings
 			// font2Label
 			// 
 			this.font2Label.AutoSize = true;
-			this.font2Label.Location = new System.Drawing.Point(6, 129);
+			this.font2Label.Location = new System.Drawing.Point(6, 113);
 			this.font2Label.Name = "font2Label";
 			this.font2Label.Size = new System.Drawing.Size(85, 20);
 			this.font2Label.TabIndex = 14;
@@ -125,7 +193,7 @@ namespace River.OneMoreAddIn.Settings
 			// fixedBox
 			// 
 			this.fixedBox.AutoSize = true;
-			this.fixedBox.Location = new System.Drawing.Point(135, 204);
+			this.fixedBox.Location = new System.Drawing.Point(135, 167);
 			this.fixedBox.Name = "fixedBox";
 			this.fixedBox.Size = new System.Drawing.Size(226, 24);
 			this.fixedBox.TabIndex = 3;
@@ -142,7 +210,7 @@ namespace River.OneMoreAddIn.Settings
 			this.familyBox.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.familyBox.FormattingEnabled = true;
 			this.familyBox.IntegralHeight = false;
-			this.familyBox.Location = new System.Drawing.Point(135, 68);
+			this.familyBox.Location = new System.Drawing.Point(135, 57);
 			this.familyBox.Name = "familyBox";
 			this.familyBox.Size = new System.Drawing.Size(355, 32);
 			this.familyBox.TabIndex = 1;
@@ -168,7 +236,7 @@ namespace River.OneMoreAddIn.Settings
             "22",
             "24",
             "26"});
-			this.sizeBox.Location = new System.Drawing.Point(496, 68);
+			this.sizeBox.Location = new System.Drawing.Point(496, 57);
 			this.sizeBox.Name = "sizeBox";
 			this.sizeBox.Size = new System.Drawing.Size(104, 33);
 			this.sizeBox.TabIndex = 2;
@@ -176,7 +244,7 @@ namespace River.OneMoreAddIn.Settings
 			// fontLabel
 			// 
 			this.fontLabel.AutoSize = true;
-			this.fontLabel.Location = new System.Drawing.Point(6, 75);
+			this.fontLabel.Location = new System.Drawing.Point(6, 64);
 			this.fontLabel.Name = "fontLabel";
 			this.fontLabel.Size = new System.Drawing.Size(61, 20);
 			this.fontLabel.TabIndex = 13;
@@ -221,5 +289,10 @@ namespace River.OneMoreAddIn.Settings
 		private System.Windows.Forms.ComboBox size2Box;
 		private System.Windows.Forms.Label font2Label;
 		private UI.FontComboBox family2Box;
+		private System.Windows.Forms.ListView langView;
+		private System.Windows.Forms.Label enabledLabel;
+		private System.Windows.Forms.Label barLabel;
+		private System.Windows.Forms.LinkLabel allLink;
+		private System.Windows.Forms.LinkLabel noneLink;
 	}
 }
