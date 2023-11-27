@@ -2041,7 +2041,7 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Select on or more emojis to add to page title.
+        ///   Looks up a localized string similar to Select on or more emojis to insert.
         /// </summary>
         internal static string EmojiDialog_introLabel_Text {
             get {
@@ -2050,7 +2050,7 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to TItle Emojis.
+        ///   Looks up a localized string similar to Insert Emojis.
         /// </summary>
         internal static string EmojiDialog_Text {
             get {
@@ -6758,7 +6758,7 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Add Page Title Emoji.
+        ///   Looks up a localized string similar to Insert Emoji.
         /// </summary>
         internal static string ribEmojiButton_Label {
             get {
@@ -6767,7 +6767,7 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Prepent page title with emojis.
+        ///   Looks up a localized string similar to Insert one or more emojis.
         /// </summary>
         internal static string ribEmojiButton_Screentip {
             get {

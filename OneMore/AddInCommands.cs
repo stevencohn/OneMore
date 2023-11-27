@@ -51,7 +51,7 @@ namespace River.OneMoreAddIn
 			=> await factory.Run<AddFormulaCommand>();
 
 
-		[Command("ribEmojiButton_Label", Keys.None, "ribPageMenu")]
+		[Command("ribEmojiButton_Label", Keys.None, "ribEditMenu")]
 		public async Task EmojiCmd(IRibbonControl control)
 			=> await factory.Run<EmojiCommand>();
 

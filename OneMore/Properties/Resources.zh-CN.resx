@@ -879,11 +879,11 @@ OneNote 将自动关闭</value>
     <comment>emoji</comment>
   </data>
   <data name="EmojiDialog.Text" xml:space="preserve">
-    <value>标题表情符号</value>
+    <value>插入表情符号</value>
     <comment>dialog title</comment>
   </data>
   <data name="EmojiDialog_introLabel.Text" xml:space="preserve">
-    <value>选择一个或多个表情符号以添加到页面标题</value>
+    <value>选择一个或多个要插入的表情符号</value>
     <comment>instructions</comment>
   </data>
   <data name="Error_BodyContext" xml:space="preserve">
@@ -2813,12 +2813,12 @@ ISO-code then comma then language name</comment>
     <comment>ribbon item screentip</comment>
   </data>
   <data name="ribEmojiButton_Label" xml:space="preserve">
-    <value>添加页面标题表情符号</value>
-    <comment>Ribbon OneMore menu item, Extras... EDIT</comment>
+    <value>插入表情符号</value>
+    <comment>ribbon edit</comment>
   </data>
   <data name="ribEmojiButton_Screentip" xml:space="preserve">
-    <value>带有表情符号的前置页面标题</value>
-    <comment>ribbon page</comment>
+    <value>插入一个或多个表情符号</value>
+    <comment>ribbon edit</comment>
   </data>
   <data name="ribEnableSpellCheckButton_Label" xml:space="preserve">
     <value>启用拼写检查</value>

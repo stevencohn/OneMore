@@ -868,11 +868,11 @@ Police de la dernière colonne</value>
     <comment>emoji</comment>
   </data>
   <data name="EmojiDialog.Text" xml:space="preserve">
-    <value>Titre Emojis</value>
+    <value>Insérer des émojis</value>
     <comment>dialog title</comment>
   </data>
   <data name="EmojiDialog_introLabel.Text" xml:space="preserve">
-    <value>Sélectionnez un ou plusieurs emojis à ajouter au titre de la page</value>
+    <value>Sélectionnez un ou plusieurs emojis à insérer</value>
     <comment>instructions</comment>
   </data>
   <data name="Error_BodyContext" xml:space="preserve">
@@ -2777,12 +2777,12 @@ Polaroïd</value>
     <comment>ribbon item screentip</comment>
   </data>
   <data name="ribEmojiButton_Label" xml:space="preserve">
-    <value>Ajouter un titre de page Emoji</value>
-    <comment>Ribbon OneMore menu item, Extras... EDIT</comment>
+    <value>Insérer un émoji</value>
+    <comment>ribbon edit</comment>
   </data>
   <data name="ribEmojiButton_Screentip" xml:space="preserve">
-    <value>Préparez le titre de la page avec des emojis</value>
-    <comment>ribbon page</comment>
+    <value>Insérez un ou plusieurs emojis</value>
+    <comment>ribbon edit</comment>
   </data>
   <data name="ribEnableSpellCheckButton_Label" xml:space="preserve">
     <value>Activer la vérification orthographique</value>

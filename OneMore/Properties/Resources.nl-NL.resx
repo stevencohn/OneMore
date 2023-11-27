@@ -872,11 +872,11 @@ Lettertype laatste kolom</value>
     <comment>emoji</comment>
   </data>
   <data name="EmojiDialog.Text" xml:space="preserve">
-    <value>Titel Emoji's</value>
+    <value>Emoji's invoegen</value>
     <comment>dialog title</comment>
   </data>
   <data name="EmojiDialog_introLabel.Text" xml:space="preserve">
-    <value>Selecteer een of meer emoji's om toe te voegen aan de paginatitel</value>
+    <value>Selecteer een of meer emoji's om in te voegen</value>
     <comment>instructions</comment>
   </data>
   <data name="Error_BodyContext" xml:space="preserve">
@@ -2782,12 +2782,12 @@ Polaroid</value>
     <comment>ribbon item screentip</comment>
   </data>
   <data name="ribEmojiButton_Label" xml:space="preserve">
-    <value>Paginatitel-emoji toevoegen</value>
-    <comment>Ribbon OneMore menu item, Extras... EDIT</comment>
+    <value>Emoji invoegen</value>
+    <comment>ribbon edit</comment>
   </data>
   <data name="ribEmojiButton_Screentip" xml:space="preserve">
-    <value>Prepent paginatitel met emoji's</value>
-    <comment>ribbon page</comment>
+    <value>Voeg een of meer emoji's in</value>
+    <comment>ribbon edit</comment>
   </data>
   <data name="ribEnableSpellCheckButton_Label" xml:space="preserve">
     <value>Spellingcontrole inschakelen</value>

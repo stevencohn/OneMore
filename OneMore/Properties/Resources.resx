@@ -886,11 +886,11 @@ Last Column Font</value>
     <comment>emoji</comment>
   </data>
   <data name="EmojiDialog.Text" xml:space="preserve">
-    <value>TItle Emojis</value>
+    <value>Insert Emojis</value>
     <comment>dialog title</comment>
   </data>
   <data name="EmojiDialog_introLabel.Text" xml:space="preserve">
-    <value>Select on or more emojis to add to page title</value>
+    <value>Select on or more emojis to insert</value>
     <comment>instructions</comment>
   </data>
   <data name="Error_BodyContext" xml:space="preserve">
@@ -2822,12 +2822,12 @@ Polaroid</value>
     <comment>ribbon references</comment>
   </data>
   <data name="ribEmojiButton_Label" xml:space="preserve">
-    <value>Add Page Title Emoji</value>
-    <comment>ribbon page</comment>
+    <value>Insert Emoji</value>
+    <comment>ribbon edit</comment>
   </data>
   <data name="ribEmojiButton_Screentip" xml:space="preserve">
-    <value>Prepent page title with emojis</value>
-    <comment>ribbon page</comment>
+    <value>Insert one or more emojis</value>
+    <comment>ribbon edit</comment>
   </data>
   <data name="ribEnableSpellCheckButton_Label" xml:space="preserve">
     <value>Enable Spell Check</value>

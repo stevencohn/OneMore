@@ -871,11 +871,11 @@ Fuente de la última columna</value>
     <comment>emoji</comment>
   </data>
   <data name="EmojiDialog.Text" xml:space="preserve">
-    <value>Emojis de títulos</value>
+    <value>Insertar emojis</value>
     <comment>dialog title</comment>
   </data>
   <data name="EmojiDialog_introLabel.Text" xml:space="preserve">
-    <value>Seleccione uno o más emojis para agregar al título de la página</value>
+    <value>Seleccione uno o más emojis para insertar</value>
     <comment>instructions</comment>
   </data>
   <data name="Error_BodyContext" xml:space="preserve">
@@ -2781,12 +2781,12 @@ polaroid</value>
     <comment>ribbon item screentip</comment>
   </data>
   <data name="ribEmojiButton_Label" xml:space="preserve">
-    <value>Añadir emoji de título de página</value>
-    <comment>Ribbon OneMore menu item, Extras... EDIT</comment>
+    <value>Insertar emojis</value>
+    <comment>ribbon edit</comment>
   </data>
   <data name="ribEmojiButton_Screentip" xml:space="preserve">
-    <value>Título de página preestablecido con emojis</value>
-    <comment>ribbon page</comment>
+    <value>Inserta uno o más emojis</value>
+    <comment>ribbon edit</comment>
   </data>
   <data name="ribEnableSpellCheckButton_Label" xml:space="preserve">
     <value>Habilitar el corrector ortográfico</value>
