@@ -429,6 +429,10 @@
     <value>Wenden Sie immer die folgenden Schriftarten an, wenn Sie Code einfärben</value>
     <comment>checkbox</comment>
   </data>
+  <data name="ColorizeSheet_enabledLabel" xml:space="preserve">
+    <value>Aktivierte Sprachen</value>
+    <comment>label</comment>
+  </data>
   <data name="ColorizeSheet_font2Label.Text" xml:space="preserve">
     <value>Sekundär</value>
     <comment>label</comment>
@@ -4556,6 +4560,9 @@ In diesem Abschnitt</value>
   </data>
   <data name="word_Alias" xml:space="preserve">
     <value>Alias</value>
+  </data>
+  <data name="word_All" xml:space="preserve">
+    <value>Alle</value>
   </data>
   <data name="word_Apply" xml:space="preserve">
     <value>Sich bewerben</value>

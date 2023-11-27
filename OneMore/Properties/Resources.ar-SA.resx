@@ -432,6 +432,10 @@
     <value>قم دائمًا بتطبيق الخطوط التالية عند تلوين التعليمات البرمجية</value>
     <comment>checkbox</comment>
   </data>
+  <data name="ColorizeSheet_enabledLabel" xml:space="preserve">
+    <value>اللغات الممكّنة</value>
+    <comment>label</comment>
+  </data>
   <data name="ColorizeSheet_font2Label.Text" xml:space="preserve">
     <value>ثانوي</value>
     <comment>label</comment>
@@ -4555,6 +4559,9 @@ ISO-code then comma then language name</comment>
   </data>
   <data name="word_Alias" xml:space="preserve">
     <value>الاسم المستعار</value>
+  </data>
+  <data name="word_All" xml:space="preserve">
+    <value>الجميع</value>
   </data>
   <data name="word_Apply" xml:space="preserve">
     <value>يتقدم</value>

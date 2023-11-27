@@ -53,7 +53,9 @@ namespace River.OneMoreAddIn
 				var root = XElement.Parse(Resx.Ribbon);
 				ns = root.GetDefaultNamespace();
 
-				AddColorizerCommands(root);
+				var provider = new SettingsProvider();
+
+				AddColorizerCommands(root, provider.GetCollection(nameof(ColorizerSheet)));
 				AddProofingCommands(root);
 
 				var contextMenus = root.Element(ns + "contextMenus");
@@ -62,8 +64,6 @@ namespace River.OneMoreAddIn
 					contextMenus = new XElement(ns + "contextMenus");
 					root.Add(contextMenus);
 				}
-
-				var provider = new SettingsProvider();
 
 				var ribbonbar = provider.GetCollection(nameof(RibbonBarSheet));
 				if (ribbonbar.Count > 0)
@@ -113,7 +113,7 @@ namespace River.OneMoreAddIn
 		}
 
 
-		private void AddColorizerCommands(XElement root)
+		private void AddColorizerCommands(XElement root, SettingsCollection settings)
 		{
 			logger.WriteLine("building ribbon colorizer commands");
 
@@ -127,18 +127,23 @@ namespace River.OneMoreAddIn
 					return;
 				}
 
+				var disabled = settings.Get("disabled", new XElement("disabled"));
+
 				var languages = Colorizer.Colorizer.LoadLanguageNames();
 				foreach (var name in languages.Keys)
 				{
 					var tag = languages[name];
 
-					menu.Add(new XElement(ns + "button",
-						new XAttribute("id", $"ribColorize{tag}Button"),
-						new XAttribute("getImage", "GetColorizeImage"),
-						new XAttribute("label", name),
-						new XAttribute("tag", tag),
-						new XAttribute("onAction", "ColorizeCmd")
-						));
+					if (disabled.Element(tag) == null)
+					{
+						menu.Add(new XElement(ns + "button",
+							new XAttribute("id", $"ribColorize{tag}Button"),
+							new XAttribute("getImage", "GetColorizeImage"),
+							new XAttribute("label", name),
+							new XAttribute("tag", tag),
+							new XAttribute("onAction", "ColorizeCmd")
+							));
+					}
 				}
 			}
 			catch (Exception exc)

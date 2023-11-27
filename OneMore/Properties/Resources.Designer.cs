@@ -898,6 +898,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Enabled Languages.
+        /// </summary>
+        internal static string ColorizeSheet_enabledLabel {
+            get {
+                return ResourceManager.GetString("ColorizeSheet_enabledLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Secondary.
         /// </summary>
         internal static string ColorizeSheet_font2Label_Text {
@@ -11003,6 +11012,15 @@ namespace River.OneMoreAddIn.Properties {
         internal static string word_Alias {
             get {
                 return ResourceManager.GetString("word_Alias", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to All.
+        /// </summary>
+        internal static string word_All {
+            get {
+                return ResourceManager.GetString("word_All", resourceCulture);
             }
         }
         

@@ -443,6 +443,10 @@ OneNote will close automatically</value>
     <value>Always apply the following fonts when colorizing code</value>
     <comment>checkbox</comment>
   </data>
+  <data name="ColorizeSheet_enabledLabel" xml:space="preserve">
+    <value>Enabled Languages</value>
+    <comment>label</comment>
+  </data>
   <data name="ColorizeSheet_font2Label.Text" xml:space="preserve">
     <value>Secondary</value>
     <comment>label</comment>
@@ -4595,6 +4599,9 @@ In this section</value>
   </data>
   <data name="word_Alias" xml:space="preserve">
     <value>Alias</value>
+  </data>
+  <data name="word_All" xml:space="preserve">
+    <value>All</value>
   </data>
   <data name="word_Apply" xml:space="preserve">
     <value>Apply</value>

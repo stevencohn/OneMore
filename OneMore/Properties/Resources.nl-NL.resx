@@ -433,6 +433,10 @@ OneNote wordt automatisch gesloten</value>
     <value>Pas altijd de volgende lettertypen toe bij het inkleuren van code</value>
     <comment>checkbox</comment>
   </data>
+  <data name="ColorizeSheet_enabledLabel" xml:space="preserve">
+    <value>Ingeschakelde talen</value>
+    <comment>label</comment>
+  </data>
   <data name="ColorizeSheet_font2Label.Text" xml:space="preserve">
     <value>Ondergeschikt</value>
     <comment>label</comment>
@@ -4555,6 +4559,9 @@ In deze sectie</value>
   </data>
   <data name="word_Alias" xml:space="preserve">
     <value>Alias</value>
+  </data>
+  <data name="word_All" xml:space="preserve">
+    <value>Alle</value>
   </data>
   <data name="word_Apply" xml:space="preserve">
     <value>Van toepassing zijn</value>

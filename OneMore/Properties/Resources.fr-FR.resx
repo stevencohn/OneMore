@@ -429,6 +429,10 @@
     <value>Appliquez toujours les polices suivantes lors de la colorisation du code</value>
     <comment>checkbox</comment>
   </data>
+  <data name="ColorizeSheet_enabledLabel" xml:space="preserve">
+    <value>Langues activées</value>
+    <comment>label</comment>
+  </data>
   <data name="ColorizeSheet_font2Label.Text" xml:space="preserve">
     <value>Secondaire</value>
     <comment>label</comment>
@@ -4549,6 +4553,9 @@ Dans cette section</value>
   </data>
   <data name="word_Alias" xml:space="preserve">
     <value>Alias</value>
+  </data>
+  <data name="word_All" xml:space="preserve">
+    <value>Tous</value>
   </data>
   <data name="word_Apply" xml:space="preserve">
     <value>Appliquer</value>
