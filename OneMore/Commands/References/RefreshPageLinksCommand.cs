@@ -98,7 +98,7 @@ namespace River.OneMoreAddIn.Commands
 			// OneNote likes to inject \n\r before the href attribute so match any spaces
 			// also the A element may contain an optional SPAN (just one?)
 			var editor = new Regex(
-				$"(.*<a\\s+href=[^>]+{keys}[^>]+>(?:<span[^>]+>))([^<]*)((?:</span>)</a>.*)",
+				$"(.*<a\\s+href=[^>]+{keys}[^>]+>(?:<span[^>]+>)?)([^<]*)((?:</span>)?</a>.*)",
 				RegexOptions.Compiled | RegexOptions.Multiline);
 
 			foreach (var item in pageList)
