@@ -127,14 +127,15 @@ namespace River.OneMoreAddIn
 					return;
 				}
 
-				var disabled = settings.Get("disabled", new XElement("disabled"));
+				var hidden = settings.Get(
+					ColorizerSheet.HiddenKey, new XElement(ColorizerSheet.HiddenKey));
 
 				var languages = Colorizer.Colorizer.LoadLanguageNames();
 				foreach (var name in languages.Keys)
 				{
 					var tag = languages[name];
 
-					if (disabled.Element(tag) == null)
+					if (hidden.Element(tag) == null)
 					{
 						menu.Add(new XElement(ns + "button",
 							new XAttribute("id", $"ribColorize{tag}Button"),

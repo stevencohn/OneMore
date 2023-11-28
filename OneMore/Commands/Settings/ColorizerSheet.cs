@@ -15,6 +15,9 @@ namespace River.OneMoreAddIn.Settings
 
 	internal partial class ColorizerSheet : SheetBase
 	{
+		public const string HiddenKey = "hidden";
+
+
 		public ColorizerSheet(SettingsProvider provider) : base(provider)
 		{
 			InitializeComponent();
@@ -68,13 +71,13 @@ namespace River.OneMoreAddIn.Settings
 			size = settings.Get("size2", StyleBase.DefaultCodeSize);
 			size2Box.SelectedIndex = size2Box.Items.IndexOf(size.ToString());
 
-			LoadLanguages(settings.Get("disabled", new XElement("disabled")));
+			LoadLanguages(settings.Get(HiddenKey, new XElement(HiddenKey)));
 
 			applyBox.Focus();
 		}
 
 
-		private void LoadLanguages(XElement disabled)
+		private void LoadLanguages(XElement hidden)
 		{
 			var languages = Colorizer.Colorizer.LoadLanguageNames();
 			var images = new ImageList();
@@ -85,7 +88,7 @@ namespace River.OneMoreAddIn.Settings
 
 				var item = new ListViewItem(name, images.Images.Count - 1)
 				{
-					Checked = disabled.Element(tag) == null,
+					Checked = hidden.Element(tag) == null,
 					Tag = tag
 				};
 
@@ -163,8 +166,8 @@ namespace River.OneMoreAddIn.Settings
 			}
 
 			var updated = false;
-			var oldset = settings.Get("disabled", new XElement("disabled"));
-			var newset = new XElement("disabled");
+			var oldset = settings.Get(HiddenKey, new XElement(HiddenKey));
+			var newset = new XElement(HiddenKey);
 
 			for (var i = 0; i < langView.Items.Count; i++)
 			{
@@ -187,11 +190,11 @@ namespace River.OneMoreAddIn.Settings
 
 			if (newset.Elements().Any())
 			{
-				settings.Add("disabled", newset);
+				settings.Add(HiddenKey, newset);
 			}
 			else
 			{
-				settings.Remove("disabled");
+				settings.Remove(HiddenKey);
 			}
 
 			updated |= oldset.Elements().Any();
