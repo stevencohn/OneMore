@@ -173,7 +173,7 @@ namespace River.OneMoreAddIn.Commands
 				var whatText = $@"(?:^|\b|\s)({title.EscapeForRegex()})(?:$|\b|\s)";
 				var pageLink = one.GetHyperlink(page.PageId, string.Empty);
 
-				var withElement = new XElement("A",
+				var withElement = new XElement("a",
 					new XAttribute("href", pageLink),
 					title
 					);
