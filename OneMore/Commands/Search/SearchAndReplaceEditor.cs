@@ -129,7 +129,7 @@ namespace River.OneMoreAddIn.Commands
 					}
 					else if (match.Groups.Count > 1)
 					{
-						Replace(wrapper, match.Index, match.Length,
+						Replace(wrapper, match.Groups[1].Index, match.Groups[1].Length,
 							replaceElement == null ? ExpandReplacement(match) : null);
 					}
 				}
