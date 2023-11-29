@@ -65,10 +65,15 @@ namespace River.OneMoreAddIn.Models
 			// 1st generation child elements of the Page
 			foreach (var child in root.Elements())
 			{
-				child.Add(new XAttribute(
-					HashAttributeName,
-					algo.GetHashString(child.ToString(SaveOptions.DisableFormatting))
-					));
+				if (child.Name.LocalName != "TagDef" &&
+					child.Name.LocalName != "QuickStyleDef" &&
+					child.Name.LocalName != "Meta")
+				{
+					child.Add(new XAttribute(
+						HashAttributeName,
+						algo.GetHashString(child.ToString(SaveOptions.DisableFormatting))
+						));
+				}
 			}
 		}
 
