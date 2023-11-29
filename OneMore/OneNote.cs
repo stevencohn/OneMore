@@ -1047,22 +1047,13 @@ namespace River.OneMoreAddIn
 				return;
 			}
 
-			await Update(page.Root);
-		}
+			// must optimize before we can validate schema...
 
+			page.OptimizeForSave();
 
-		/// <summary>
-		/// Updates the given content, with a unique ID, on the current page.
-		/// </summary>
-		/// <param name="element">A page or element within a page with a unique objectID</param>
-		public async Task Update(XElement element)
-		{
-			if (element.Name.LocalName == "Page")
+			if (!ValidateSchema(page.Root))
 			{
-				if (!ValidateSchema(element))
-				{
-					return;
-				}
+				return;
 			}
 
 			// dateExpectedLastModified is merely a pessimistic-locking safeguard to prevent
@@ -1072,7 +1063,7 @@ namespace River.OneMoreAddIn
 			//	? DateTime.Parse(att.Value).ToUniversalTime()
 			//	: DateTime.MinValue;
 
-			var xml = element.ToString(SaveOptions.DisableFormatting);
+			var xml = page.Root.ToString(SaveOptions.DisableFormatting);
 
 			await InvokeWithRetry(() =>
 			{
