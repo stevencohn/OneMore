@@ -9,7 +9,7 @@
   <Style index="6" name="Page Title" font="Calibri Light" fontColor="#464646" fontSize="20.0" spaceBefore="0.0" spaceAfter="14.0" applyColors="true" styleType="Paragraph" />
   <Style index="7" name="Citation" font="Calibri" fontColor="#595959" fontSize="9.0" spaceBefore="0.0" spaceAfter="0.0" applyColors="true" styleType="Paragraph" />
   <Style index="8" name="Quote" font="Calibri" fontColor="#595959" fontSize="11.0" italic="true" spaceBefore="0.0" spaceAfter="0.0" applyColors="true" styleType="Paragraph" />
-  <Style index="9" name="Code" font="Lucida Console" fontColor="Black" fontSize="9.0" spaceBefore="0.0" spaceAfter="0.0" applyColors="false" styleType="Paragraph" />
+  <Style index="9" name="Code" font="Lucida Console" fontColor="Black" fontSize="9.0" spaceBefore="0.0" spaceAfter="0.0" applyColors="false" styleType="Paragraph" ignored="true" />
   <Style index="10" name="Normal" font="Calibri" fontColor="Black" fontSize="11.0" spaceBefore="0.0" spaceAfter="0.0" applyColors="true" styleType="Paragraph" />
   <Style index="11" name="Strong" font="Calibri" fontColor="Black" fontSize="11.0" bold="true" spaceBefore="0.0" spaceAfter="0.0" applyColors="true" styleType="Character" />
   <Style index="12" name="Emphasis" font="Calibri" fontColor="#4F81BD" fontSize="11.0" bold="true" italic="true" spaceBefore="0.0" spaceAfter="0.0" applyColors="true" styleType="Character" />

@@ -4279,6 +4279,10 @@ ISO-code then comma then language name</comment>
     <value>גוֹפָן:</value>
     <comment>label</comment>
   </data>
+  <data name="StyleDialog_ignoredBox.Text" xml:space="preserve">
+    <value>השבת את בדיקת האיות</value>
+    <comment>checkbox</comment>
+  </data>
   <data name="StyleDialog_italicButton.Text" xml:space="preserve">
     <value>נטוי</value>
     <comment>button</comment>

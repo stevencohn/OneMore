@@ -4336,6 +4336,10 @@ ISO-code then comma then language name</comment>
     <value>字型：</value>
     <comment>label</comment>
   </data>
+  <data name="StyleDialog_ignoredBox.Text" xml:space="preserve">
+    <value>禁用拼写检查</value>
+    <comment>checkbox</comment>
+  </data>
   <data name="StyleDialog_italicButton.Text" xml:space="preserve">
     <value>斜体</value>
     <comment>button</comment>

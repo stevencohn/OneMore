@@ -4260,6 +4260,10 @@ Des cahiers</value>
     <value>Police de caractère:</value>
     <comment>label</comment>
   </data>
+  <data name="StyleDialog_ignoredBox.Text" xml:space="preserve">
+    <value>Désactiver la vérification orthographique</value>
+    <comment>checkbox</comment>
+  </data>
   <data name="StyleDialog_italicButton.Text" xml:space="preserve">
     <value>Italique</value>
     <comment>button</comment>

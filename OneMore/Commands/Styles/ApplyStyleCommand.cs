@@ -243,6 +243,11 @@ namespace River.OneMoreAddIn.Commands
 				ApplySpacing(element, "spaceAfter", style.SpaceAfter);
 				ApplySpacing(element, "spaceBetween", style.Spacing);
 
+				if (style.Ignored)
+				{
+					element.SetAttributeValue("lang", "yo");
+				}
+
 				ApplyToList(element, style);
 			}
 

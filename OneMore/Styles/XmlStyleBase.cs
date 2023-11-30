@@ -33,6 +33,7 @@ namespace River.OneMoreAddIn.Styles
 		<xsd:attribute name="subscript" type="xsd:boolean" default="false"/>
 		<xsd:attribute name="spaceBefore" type="xsd:float" default="0"/>
 		<xsd:attribute name="spaceAfter" type="xsd:float" default="0"/>
+		<xsd:attribute name="ignored" type="xsd:boolean" default="false"/>
 	  </xsd:complexType>
 	*/
 
@@ -131,6 +132,9 @@ namespace River.OneMoreAddIn.Styles
 
 			if (reader.MoveToAttribute("spacing") && reader.ReadAttributeValue())
 				Spacing = reader.Value;
+
+			if (reader.MoveToAttribute("ignored") && reader.ReadAttributeValue())
+				Ignored = Convert.ToBoolean(reader.Value);
 		}
 
 		public virtual void WriteXml(XmlWriter writer)
@@ -174,6 +178,7 @@ namespace River.OneMoreAddIn.Styles
 			writer.WriteAttributeString("spaceBefore", SpaceBefore);
 			writer.WriteAttributeString("spaceAfter", SpaceAfter);
 			writer.WriteAttributeString("spacing", Spacing);
+			writer.WriteAttributeString("ignored", Ignored.ToString().ToLower());
 		}
 	}
 }

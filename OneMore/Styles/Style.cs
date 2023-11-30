@@ -300,6 +300,7 @@ namespace River.OneMoreAddIn.Styles
 			SpaceAfter = other.SpaceAfter;
 			SpaceBefore = other.SpaceBefore;
 			Spacing = other.Spacing;
+			Ignored = other.Ignored;
 
 			if (ApplyColors)
 			{

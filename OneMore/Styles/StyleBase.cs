@@ -77,6 +77,7 @@ namespace River.OneMoreAddIn.Styles
 			spaceBefore = other.spaceBefore;
 			spaceAfter = other.spaceAfter;
 			spacing = other.spacing;
+			Ignored = other.Ignored;
 
 			ApplyColors = other.ApplyColors;
 		}
@@ -153,6 +154,11 @@ namespace River.OneMoreAddIn.Styles
 			get { return fontSize.ToString("0.0#", CultureInfo.InvariantCulture); }
 			set { fontSize = Convert.ToDouble(value, CultureInfo.InvariantCulture); }
 		}
+
+		/// <summary>
+		/// Gets or sets a Boolean indicating whether spelling should be ignored in affect text
+		/// </summary>
+		public bool Ignored { get; set; }
 
 		/// <summary>
 		/// Gets or sets a Boolean indicating whether the font style is bold.
@@ -256,7 +262,8 @@ namespace River.OneMoreAddIn.Styles
 				IsSuperscript == style.IsSuperscript &&
 				SpaceBefore == style.SpaceBefore &&
 				SpaceAfter == style.SpaceAfter &&
-				Spacing == style.Spacing;
+				Spacing == style.Spacing &&
+				Ignored == style.Ignored;
 		}
 
 

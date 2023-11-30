@@ -4266,6 +4266,10 @@ cadernos</value>
     <value>Fonte:</value>
     <comment>label</comment>
   </data>
+  <data name="StyleDialog_ignoredBox.Text" xml:space="preserve">
+    <value>Desativar verificação ortográfica</value>
+    <comment>checkbox</comment>
+  </data>
   <data name="StyleDialog_italicButton.Text" xml:space="preserve">
     <value>itálico</value>
     <comment>button</comment>
