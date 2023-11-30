@@ -81,6 +81,9 @@ namespace River.OneMoreAddIn.Styles
 			element.GetAttributeValue("spaceBefore", out spaceBefore, 0.0);
 			element.GetAttributeValue("spaceAfter", out spaceAfter, 0.0);
 			element.GetAttributeValue("spacing", out spacing, 0.0);
+
+			if (element.GetAttributeValue("ignored", out bool ignored, false))
+				Ignored = ignored;
 		}
 
 

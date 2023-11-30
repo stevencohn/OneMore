@@ -151,6 +151,19 @@ namespace River.OneMoreAddIn.Styles
 					span.Value = estyle.ToCss();
 				}
 			}
+
+			var ignored = element.Attribute("lang");
+			if (style.Ignored)
+			{
+				if (ignored == null)
+				{
+					element.Add(new XAttribute("lang", "yo"));
+				}
+			}
+			else if (ignored != null)
+			{
+				ignored.Remove();
+			}
 		}
 
 
@@ -234,7 +247,7 @@ namespace River.OneMoreAddIn.Styles
 			var data = element.Nodes().OfType<XCData>()
 				.Where(c => c.Value.Contains("span"));
 
-			if (data == null || !data.Any())
+			if (!data.Any())
 			{
 				return cleared;
 			}

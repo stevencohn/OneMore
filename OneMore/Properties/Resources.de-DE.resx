@@ -4267,6 +4267,10 @@ Notizbücher</value>
     <value>Schriftart:</value>
     <comment>label</comment>
   </data>
+  <data name="StyleDialog_ignoredBox.Text" xml:space="preserve">
+    <value>Rechtschreibprüfung deaktivieren</value>
+    <comment>checkbox</comment>
+  </data>
   <data name="StyleDialog_italicButton.Text" xml:space="preserve">
     <value>Kursiv</value>
     <comment>button</comment>

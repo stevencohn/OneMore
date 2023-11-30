@@ -90,7 +90,7 @@ namespace River.OneMoreAddIn
 			// gather from style attribute if one exists
 			var sheet = element.Attributes("style").Select(a => a.Value);
 
-			if ((sheet == null) || !sheet.Any()) return props;
+			if (!sheet.Any()) return props;
 
 			foreach (var css in sheet.ToList())
 			{

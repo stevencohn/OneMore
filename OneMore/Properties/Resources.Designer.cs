@@ -10225,6 +10225,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Disable spell check.
+        /// </summary>
+        internal static string StyleDialog_ignoredBox_Text {
+            get {
+                return ResourceManager.GetString("StyleDialog_ignoredBox.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Italic.
         /// </summary>
         internal static string StyleDialog_italicButton_Text {
