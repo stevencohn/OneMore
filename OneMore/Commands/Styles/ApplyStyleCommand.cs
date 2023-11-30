@@ -52,6 +52,7 @@ namespace River.OneMoreAddIn.Commands
 
 				stylizer = new Stylizer(style);
 
+
 				bool success = style.StyleType == StyleType.Character
 					? StylizeWords()
 					: StylizeParagraphs();
@@ -64,6 +65,14 @@ namespace River.OneMoreAddIn.Commands
 
 					logger.WriteTime("saved page");
 				}
+				else
+				{
+					logger.WriteTime("styles not applied");
+				}
+			}
+			else
+			{
+				logger.WriteTime("could not load page");
 			}
 		}
 
@@ -76,9 +85,8 @@ namespace River.OneMoreAddIn.Commands
 			var selections = page.Root.Descendants(ns + "T")
 				.Where(e => e.Attributes("selected").Any(a => a.Value.Equals("all")));
 
-			if (selections == null)
+			if (!selections.Any())
 			{
-				// shouldn't happen, but...
 				return false;
 			}
 
@@ -87,7 +95,6 @@ namespace River.OneMoreAddIn.Commands
 				if (selection.Parent.Nodes().Count() == 1)
 				{
 					// OE parent must have only this T
-
 					stylizer.ApplyStyle(selection);
 				}
 				else
