@@ -103,56 +103,70 @@ namespace River.OneMoreAddIn.Commands
 
 		private bool ApplyStyles(List<Style> styles)
 		{
-			var applied = false;
-
 			var quickStyles = page.Root.Elements(ns + "QuickStyleDef");
-			if (quickStyles?.Any() == true)
+			if (quickStyles == null || !quickStyles.Any())
 			{
-				foreach (var quick in quickStyles)
+				return false;
+			}
+
+			string spacing = null;
+			if (FindStyle(styles, "p") is Style normal)
+			{
+				if (double.TryParse(normal.Spacing, out var spc) && spc > 0.0)
 				{
-					var name = quick.Attribute("name").Value;
-
-					// NOTE previously, affected only the first occurance of the "p" quick style
-					// and ignore all additional "p" occurances defined, QuickStyleDef[@name='p']
-					// I don't remember why but pulled out that logic Feb 7 2022
-
-					if (FindStyle(styles, name) is Style style)
-					{
-						//logger.WriteLine(
-						//	$"~ name:{quick.Attribute("name").Value} style:{style.Name}");
-
-						// could use QuickStyleDef class here but this is faster
-						// than replacing the element...
-
-						quick.Attribute("font").Value = style.FontFamily;
-
-						quick.Attribute("spaceBefore").Value = style.SpaceBefore;
-						quick.Attribute("spaceAfter").Value = style.SpaceAfter;
-						// must also apply to paragraphs otherwise OneNote applies x10 values!
-						SetSpacing(quick.Attribute("index").Value, style.SpaceBefore, style.SpaceAfter);
-
-						quick.Attribute("fontColor").Value = style.Color;
-						quick.Attribute("highlightColor").Value = style.Highlight;
-
-						quick.SetAttributeValue("italic", style.IsItalic.ToString().ToLower());
-						quick.SetAttributeValue("bold", style.IsBold.ToString().ToLower());
-						quick.SetAttributeValue("underline", style.IsUnderline.ToString().ToLower());
-
-						quick.Attribute("fontSize").Value = style.FontSize;
-
-						applied = true;
-					}
-
-					var index = quick.Attribute("index").Value;
-					ClearInlineStyles(index, name == "p");
+					spacing = normal.Spacing;
 				}
+			}
+
+			var applied = false;
+			foreach (var quick in quickStyles)
+			{
+				var name = quick.Attribute("name").Value;
+
+				// NOTE previously, affected only the first occurance of the "p" quick style
+				// and ignore all additional "p" occurances defined, QuickStyleDef[@name='p']
+				// I don't remember why but pulled out that logic Feb 7 2022
+
+				if (FindStyle(styles, name) is Style style)
+				{
+					//logger.WriteLine(
+					//	$"~ name:{quick.Attribute("name").Value} style:{style.Name}");
+
+					// could use QuickStyleDef class here but this is faster
+					// than replacing the element...
+
+					quick.Attribute("font").Value = style.FontFamily;
+
+					quick.Attribute("spaceBefore").Value = style.SpaceBefore;
+					quick.Attribute("spaceAfter").Value = style.SpaceAfter;
+
+					// must also apply to paragraphs otherwise OneNote applies x10 values!
+					SetSpacing(quick.Attribute("index").Value,
+						style.SpaceBefore, style.SpaceAfter,
+						// spaceBetween should only apply to normal paragraphs
+						name == "p" ? spacing : null);
+
+					quick.Attribute("fontColor").Value = style.Color;
+					quick.Attribute("highlightColor").Value = style.Highlight;
+
+					quick.SetAttributeValue("italic", style.IsItalic.ToString().ToLower());
+					quick.SetAttributeValue("bold", style.IsBold.ToString().ToLower());
+					quick.SetAttributeValue("underline", style.IsUnderline.ToString().ToLower());
+
+					quick.Attribute("fontSize").Value = style.FontSize;
+
+					applied = true;
+				}
+
+				var index = quick.Attribute("index").Value;
+				ClearInlineStyles(index, name == "p");
 			}
 
 			return applied;
 		}
 
 
-		private static Style FindStyle(List<Style> styles, string name)
+		private static Style FindStyle(IEnumerable<Style> styles, string name)
 		{
 			Style style = null;
 
@@ -203,18 +217,26 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private void SetSpacing(string index, string spaceBefore, string spaceAfter)
+		private void SetSpacing(string index, string spaceBefore, string spaceAfter, string spacing)
 		{
-			var paragraphs = page.Root.Descendants(ns + "OE")
+			var paragraphs = page.Root
+				.Elements(ns + "Outline")
+				.Descendants(ns + "OE")
 				.Where(e => e.Attribute("quickStyleIndex")?.Value == index &&
-					!e.Elements(ns + "Meta")
-						.Any(a => a.Attribute("name").Value.StartsWith("omfootnote"))
+					!e.Elements(ns + "Meta").Any(a => 
+						a.Attribute("name").Value.StartsWith("omfootnote") ||
+						a.Attribute("name").Value.StartsWith("omtaggingbank"))
 					);
 
 			foreach (var paragraph in paragraphs)
 			{
 				paragraph.SetAttributeValue("spaceBefore", spaceBefore);
 				paragraph.SetAttributeValue("spaceAfter", spaceAfter);
+
+				if (spacing != null)
+				{
+					paragraph.SetAttributeValue("spaceBetween", spacing);
+				}
 			}
 		}
 
@@ -237,20 +259,22 @@ namespace River.OneMoreAddIn.Commands
 					// filter out omfootnote paragraphs
 					!(o.Meta.Attribute("name").Value.StartsWith("omfootnote") ||
 					// filter out omStyleHint=skip paragraphs; use in InfoBox symbol cells
-					(o.Meta.Attribute("name").Value == Style.HintMeta && o.Meta.Attribute("content").Value == "skip")))
+					(o.Meta.Attribute("name").Value == Style.HintMeta &&
+					 o.Meta.Attribute("content").Value == "skip")))
 				.Select(o => o.Element);
 
-			if (elements != null)
+			if (elements.Any())
 			{
 				foreach (var element in elements)
 				{
-					stylizer.Clear(element, paragraph ? Stylizer.Clearing.Gray : Stylizer.Clearing.All);
+					stylizer.Clear(element,
+						paragraph ? Stylizer.Clearing.Gray : Stylizer.Clearing.All);
 				}
 			}
 		}
 
 
-		private void ApplyToLists(List<Style> styles)
+		private void ApplyToLists(IEnumerable<Style> styles)
 		{
 			var style = styles.SingleOrDefault(s =>
 				s.Name.ToLower() == "normal" ||
@@ -274,6 +298,7 @@ namespace River.OneMoreAddIn.Commands
 				ApplyToListItems(elements, style, true);
 			}
 		}
+
 
 		private static void ApplyToListItems(IEnumerable<XElement> elements, Style style, bool withFamily)
 		{
@@ -305,7 +330,7 @@ namespace River.OneMoreAddIn.Commands
 				.Select(e => e.Parent)
 				.ToList();
 
-			if (elements?.Count > 0)
+			if (elements.Count > 0)
 			{
 				foreach (var element in elements)
 				{
