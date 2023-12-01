@@ -328,7 +328,7 @@ namespace River.OneMoreAddIn.Commands
 				.Select(e => e.Parent)
 				.ToList();
 
-			if (elements?.Count > 0)
+			if (elements.Count > 0)
 			{
 				foreach (var element in elements)
 				{
