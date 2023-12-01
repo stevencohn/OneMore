@@ -142,7 +142,9 @@ namespace River.OneMoreAddIn.Commands
 
 					// must also apply to paragraphs otherwise OneNote applies x10 values!
 					SetSpacing(quick.Attribute("index").Value,
-						style.SpaceBefore, style.SpaceAfter, spacing);
+						style.SpaceBefore, style.SpaceAfter,
+						// spaceBetween should only apply to normal paragraphs
+						name == "p" ? spacing : null);
 
 					quick.Attribute("fontColor").Value = style.Color;
 					quick.Attribute("highlightColor").Value = style.Highlight;
@@ -221,9 +223,9 @@ namespace River.OneMoreAddIn.Commands
 				.Elements(ns + "Outline")
 				.Descendants(ns + "OE")
 				.Where(e => e.Attribute("quickStyleIndex")?.Value == index &&
-					!e.Elements(ns + "Meta")
-						.Any(a => a.Attribute("name").Value.StartsWith("omfootnote") ||
-								  a.Attribute("name").Value.StartsWith("omtaggingbank"))
+					!e.Elements(ns + "Meta").Any(a => 
+						a.Attribute("name").Value.StartsWith("omfootnote") ||
+						a.Attribute("name").Value.StartsWith("omtaggingbank"))
 					);
 
 			foreach (var paragraph in paragraphs)
