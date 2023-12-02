@@ -158,11 +158,11 @@ namespace River.OneMoreAddIn.Commands
 
 			if (changed)
 			{
-				logger.WriteLine($"page color set to {color} for {page.Title}");
+				logger.Verbose($"page color set to {color} for {page.Title}");
 			}
 			else
 			{
-				logger.WriteLine($"page color unchanged on {page.Title}");
+				logger.Verbose($"page color unchanged on {page.Title}");
 			}
 
 			return changed;
