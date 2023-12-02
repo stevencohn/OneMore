@@ -4390,7 +4390,7 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Apply styles to this page.
+        ///   Looks up a localized string similar to Apply styles and page color.
         /// </summary>
         internal static string PageColorDialog_applyThemeBox_Text {
             get {
@@ -4458,6 +4458,17 @@ namespace River.OneMoreAddIn.Properties {
         internal static string PageColorDialog_omLabel {
             get {
                 return ResourceManager.GetString("PageColorDialog_omLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Apply to this page
+        ///Apply to this section
+        ///Apply to this notebook.
+        /// </summary>
+        internal static string PageColorDialog_scopeBox_Text {
+            get {
+                return ResourceManager.GetString("PageColorDialog_scopeBox.Text", resourceCulture);
             }
         }
         

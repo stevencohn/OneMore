@@ -1779,7 +1779,7 @@ Odroczony</value>
     <comment>color popup dialog title</comment>
   </data>
   <data name="PageColorDialog_applyThemeBox.Text" xml:space="preserve">
-    <value>Zastosuj style do tej strony</value>
+    <value>Zastosuj style i kolor strony</value>
     <comment>checkbox</comment>
   </data>
   <data name="PageColorDialog_contrastTooltip" xml:space="preserve">
@@ -1809,6 +1809,12 @@ Odroczony</value>
   <data name="PageColorDialog_omLabel" xml:space="preserve">
     <value>Kliknij tutaj, aby wybrać predefiniowany kolor</value>
     <comment>label</comment>
+  </data>
+  <data name="PageColorDialog_scopeBox.Text" xml:space="preserve">
+    <value>Aplikuj na tę stronę
+Zastosuj się do tej sekcji
+Zastosuj do tego notatnika</value>
+    <comment>combobox</comment>
   </data>
   <data name="PasteCellsCommand_NoContent" xml:space="preserve">
     <value>Brak treści do pasty; skopiuj jedną lub więcej komórek tabeli do pasty</value>

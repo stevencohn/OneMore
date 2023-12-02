@@ -1770,7 +1770,7 @@
     <comment>color popup dialog title</comment>
   </data>
   <data name="PageColorDialog_applyThemeBox.Text" xml:space="preserve">
-    <value>تطبيق الأنماط على هذه الصفحة</value>
+    <value>تطبيق الأنماط ولون الصفحة</value>
     <comment>checkbox</comment>
   </data>
   <data name="PageColorDialog_contrastTooltip" xml:space="preserve">
@@ -1800,6 +1800,12 @@
   <data name="PageColorDialog_omLabel" xml:space="preserve">
     <value>انقر هنا لتحديد لون محدد مسبقًا</value>
     <comment>label</comment>
+  </data>
+  <data name="PageColorDialog_scopeBox.Text" xml:space="preserve">
+    <value>تنطبق على هذه الصفحة
+تنطبق على هذا القسم
+تنطبق على هذا دفتر الملاحظات</value>
+    <comment>combobox</comment>
   </data>
   <data name="PasteCellsCommand_NoContent" xml:space="preserve">
     <value>لا يوجد محتوى للصقه ؛ </value>

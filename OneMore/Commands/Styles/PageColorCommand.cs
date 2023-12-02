@@ -20,6 +20,10 @@ namespace River.OneMoreAddIn.Commands
 	/// </summary>
 	internal class PageColorCommand : Command
 	{
+		private string pageColor;
+		private ApplyStylesCommand styler;
+
+
 		public PageColorCommand()
 		{
 		}
@@ -39,22 +43,74 @@ namespace River.OneMoreAddIn.Commands
 			}
 
 			using var dialog = new PageColorDialog(color, new ThemeProvider().Theme.Name);
-			if (dialog.ShowDialog(owner) == DialogResult.OK)
+			if (dialog.ShowDialog(owner) != DialogResult.OK)
 			{
-				UpdatePageColor(page, MakePageColor(dialog.Color));
+				return;
+			}
 
-				if (dialog.ApplyStyle)
-				{
-					ThemeProvider.RecordTheme(dialog.ThemeKey);
+			pageColor = MakePageColor(dialog.Color);
 
-					var cmd = new ApplyStylesCommand();
-					cmd.SetLogger(logger);
-					cmd.Apply(page);
-				}
+			if (dialog.ApplyStyle)
+			{
+				ThemeProvider.RecordTheme(dialog.ThemeKey);
+				styler = new ApplyStylesCommand();
+				styler.SetLogger(logger);
+			}
+
+			if (dialog.Scope == OneNote.Scope.Self)
+			{
+				UpdatePageColor(page, pageColor);
+				styler?.ApplyTheme(page);
 
 				using var one = new OneNote();
 				await one.Update(page);
 			}
+			else
+			{
+				await ColorPages(dialog.Scope, pageColor);
+			}
+		}
+
+
+		private async Task ColorPages(OneNote.Scope scope, string pageColor)
+		{
+
+			using var one = new OneNote();
+
+			var root = scope == OneNote.Scope.Pages
+				? one.GetSection()
+				: await one.GetNotebook(OneNote.Scope.Pages);
+
+			var ns = root.GetNamespaceOfPrefix(OneNote.Prefix);
+
+			var nodes = root.Descendants(ns + "Page")
+				.Where(e => e.Attribute("isInRecycleBin") == null);
+
+			using var progress = new UI.ProgressDialog();
+			progress.SetMaximum(nodes.Count());
+
+			progress.ShowDialogWithCancel(async (dialog, token) =>
+			{
+				foreach (var node in nodes)
+				{
+					var page = one.GetPage(node.Attribute("ID").Value, OneNote.PageDetail.Basic);
+					if (token.IsCancellationRequested) break;
+
+					progress.SetMessage(page.Title);
+
+					UpdatePageColor(page, pageColor);
+					styler?.ApplyTheme(page);
+
+					if (token.IsCancellationRequested) break;
+
+					await one.Update(page);
+
+					progress.Increment();
+					if (token.IsCancellationRequested) break;
+				}
+
+				return true;
+			});
 		}
 
 
@@ -88,36 +144,25 @@ namespace River.OneMoreAddIn.Commands
 
 			var changed = false;
 
-			var attr = element.Attribute("color");
-			if (attr != null)
-			{
-				if (attr.Value != color)
-				{
-					attr.Value = color;
-					changed = true;
-				}
-			}
-			else
+			var attribute = element.Attribute("color");
+			if (attribute == null)
 			{
 				element.Add(new XAttribute("color", color));
+				changed = true;
+			}
+			else if (attribute.Value != color)
+			{
+				attribute.Value = color;
 				changed = true;
 			}
 
 			if (changed)
 			{
-				// if light->dark or dark->light, apply appropriate theme...
-
-				var dark = false;
-				if (color != StyleBase.Automatic)
-				{
-					dark = ColorTranslator.FromHtml(color).IsDark();
-				}
-
-				logger.WriteLine($"color set to {color} (dark:{dark})");
+				logger.WriteLine($"page color set to {color} for {page.Title}");
 			}
 			else
 			{
-				logger.WriteLine($"page color unchanged");
+				logger.WriteLine($"page color unchanged on {page.Title}");
 			}
 
 			return changed;

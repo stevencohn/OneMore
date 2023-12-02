@@ -13,6 +13,7 @@ namespace River.OneMoreAddIn.UI
 	internal partial class MoreExpander : UserControl
 	{
 		private readonly Image image;
+		private readonly Image grayed;
 		private string title;
 		private bool expanded;
 		private bool expandedIcon;
@@ -24,6 +25,7 @@ namespace River.OneMoreAddIn.UI
 
 			header.Image = new Bitmap(header.Width, header.Height);
 			image = (Bitmap)Resx.ExpandArrow.Clone();
+			grayed = image.ToGrayscale();
 			expanded = expandedIcon = false;
 		}
 
@@ -83,17 +85,20 @@ namespace River.OneMoreAddIn.UI
 			if (Expanded != expandedIcon)
 			{
 				image.RotateFlip(RotateFlipType.RotateNoneFlipY);
+				grayed.RotateFlip(RotateFlipType.RotateNoneFlipY);
 				expandedIcon = Expanded;
 			}
 
 			var g = e.Graphics;
 			g.Clear(BackColor);
-			g.DrawImage(image, 5, 5, 30, 30);
+			g.DrawImage(Enabled ? image : grayed, 5, 5, 30, 30);
 
 			using var font = new Font(Font, FontStyle.Bold);
 			var size = g.MeasureString(Title, font);
 
-			g.DrawString(Title, font, new SolidBrush(ForeColor),
+			var fore = Enabled ? ForeColor : Color.Gray;
+
+			g.DrawString(Title, font, new SolidBrush(fore),
 				45, (header.Height / 2) - size.Height + 5);
 
 			var y = header.Height / 2 + 10;

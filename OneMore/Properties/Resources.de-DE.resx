@@ -1767,7 +1767,7 @@ Aufgeschoben</value>
     <comment>color popup dialog title</comment>
   </data>
   <data name="PageColorDialog_applyThemeBox.Text" xml:space="preserve">
-    <value>Wenden Sie Stile auf diese Seite an</value>
+    <value>Wenden Sie Stile und Seitenfarben an</value>
     <comment>checkbox</comment>
   </data>
   <data name="PageColorDialog_contrastTooltip" xml:space="preserve">
@@ -1797,6 +1797,12 @@ Aufgeschoben</value>
   <data name="PageColorDialog_omLabel" xml:space="preserve">
     <value>Klicken Sie hier, um eine vordefinierte Farbe auszuwählen</value>
     <comment>label</comment>
+  </data>
+  <data name="PageColorDialog_scopeBox.Text" xml:space="preserve">
+    <value>Bewerben Sie sich auf dieser Seite
+Bewerben Sie sich für diesen Abschnitt
+Bewerben Sie sich auf dieses Notizbuch</value>
+    <comment>combobox</comment>
   </data>
   <data name="PasteCellsCommand_NoContent" xml:space="preserve">
     <value>Kein Inhalt zum Einfügen; </value>

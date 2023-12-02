@@ -26,6 +26,7 @@ namespace River.OneMoreAddIn.Commands
 
 		private Page page;
 		private XNamespace ns;
+		private readonly Theme theme;
 		private readonly Stylizer stylizer;
 
 
@@ -33,6 +34,7 @@ namespace River.OneMoreAddIn.Commands
 		{
 			// using blank Style just so we have a valid Stylizer
 			stylizer = new Stylizer(new Style());
+			theme = new ThemeProvider().Theme;
 		}
 
 
@@ -44,7 +46,25 @@ namespace River.OneMoreAddIn.Commands
 		public override async Task Execute(params object[] args)
 		{
 			using var one = new OneNote(out page, out ns);
-			if (ApplyCurrentTheme())
+
+			// apply theme page color..
+
+			var changed = false;
+			if (!string.IsNullOrWhiteSpace(theme.Color))
+			{
+				var cmd = new PageColorCommand();
+				cmd.SetLogger(logger);
+				changed = cmd.UpdatePageColor(page, theme.Color);
+			}
+
+			// apply theme styles...
+
+			if (ApplyThemeStyles())
+			{
+				changed = true;
+			}
+
+			if (changed)
 			{
 				await one.Update(page);
 			}
@@ -52,23 +72,20 @@ namespace River.OneMoreAddIn.Commands
 
 
 		/// <summary>
-		/// Invoked from PageColorCommand
+		/// Invoked from PageColorCommand. Sets only the theme styles, presuming
+		/// PageColorCommand has already set the page background color.
 		/// </summary>
-		/// <param name="page"></param>
-		public void Apply(Page page)
+		/// <param name="page">The page to modify</param>
+		public void ApplyTheme(Page page)
 		{
 			this.page = page;
 			ns = page.Namespace;
-			ApplyCurrentTheme();
+			ApplyThemeStyles();
 		}
 
 
-		private bool ApplyCurrentTheme()
+		private bool ApplyThemeStyles()
 		{
-			var theme = new ThemeProvider().Theme;
-
-			var changed = ApplyPageColor(theme.Color);
-
 			var styles = theme.GetStyles();
 			if (ApplyStyles(styles))
 			{
@@ -81,23 +98,10 @@ namespace River.OneMoreAddIn.Commands
 					ApplyToHyperlinks();
 				}
 
-				changed = true;
+				return true;
 			}
 
-			return changed;
-		}
-
-
-		private bool ApplyPageColor(string color)
-		{
-			if (string.IsNullOrWhiteSpace(color))
-			{
-				return false;
-			}
-
-			var cmd = new PageColorCommand();
-			cmd.SetLogger(logger);
-			return cmd.UpdatePageColor(page, color);
+			return false;
 		}
 
 

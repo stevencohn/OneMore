@@ -46,10 +46,13 @@
 			this.noButton = new System.Windows.Forms.RadioButton();
 			this.statusLabel = new System.Windows.Forms.Label();
 			this.tooltip = new System.Windows.Forms.ToolTip(this.components);
+			this.scopeBox = new System.Windows.Forms.ComboBox();
+			this.detailPanel = new System.Windows.Forms.Panel();
 			((System.ComponentModel.ISupportInitialize)(this.omBox)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.customBox)).BeginInit();
 			this.noPanel.SuspendLayout();
 			this.optionsPanel.SuspendLayout();
+			this.detailPanel.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// omBox
@@ -96,7 +99,7 @@
 			// 
 			this.cancelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-			this.cancelButton.Location = new System.Drawing.Point(497, 484);
+			this.cancelButton.Location = new System.Drawing.Point(497, 545);
 			this.cancelButton.Name = "cancelButton";
 			this.cancelButton.Size = new System.Drawing.Size(130, 40);
 			this.cancelButton.TabIndex = 9;
@@ -111,21 +114,21 @@
 			this.expander.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.expander.Expanded = false;
 			this.expander.ForeColor = System.Drawing.SystemColors.ActiveCaption;
-			this.expander.Location = new System.Drawing.Point(67, 289);
+			this.expander.Location = new System.Drawing.Point(23, 65);
 			this.expander.MaxContentHeight = 130;
 			this.expander.Name = "expander";
-			this.expander.Size = new System.Drawing.Size(547, 44);
+			this.expander.Size = new System.Drawing.Size(521, 44);
 			this.expander.TabIndex = 10;
 			this.expander.Title = "Options";
 			// 
 			// optionsPanel
 			// 
-			this.optionsPanel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+			this.optionsPanel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.optionsPanel.Controls.Add(this.loadThemeLink);
 			this.optionsPanel.Controls.Add(this.currentThemeLabel);
 			this.optionsPanel.Controls.Add(this.applyThemeBox);
-			this.optionsPanel.Location = new System.Drawing.Point(33, 341);
+			this.optionsPanel.Location = new System.Drawing.Point(44, 412);
 			this.optionsPanel.Name = "optionsPanel";
 			this.optionsPanel.Padding = new System.Windows.Forms.Padding(4);
 			this.optionsPanel.Size = new System.Drawing.Size(583, 122);
@@ -167,7 +170,7 @@
 			// 
 			this.okButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.okButton.DialogResult = System.Windows.Forms.DialogResult.OK;
-			this.okButton.Location = new System.Drawing.Point(361, 484);
+			this.okButton.Location = new System.Drawing.Point(361, 545);
 			this.okButton.Name = "okButton";
 			this.okButton.Size = new System.Drawing.Size(130, 40);
 			this.okButton.TabIndex = 12;
@@ -210,11 +213,35 @@
 			// 
 			this.statusLabel.AutoSize = true;
 			this.statusLabel.ForeColor = System.Drawing.Color.Brown;
-			this.statusLabel.Location = new System.Drawing.Point(110, 266);
+			this.statusLabel.Location = new System.Drawing.Point(110, 262);
 			this.statusLabel.Name = "statusLabel";
 			this.statusLabel.Size = new System.Drawing.Size(31, 20);
 			this.statusLabel.TabIndex = 16;
 			this.statusLabel.Text = "OK";
+			// 
+			// scopeBox
+			// 
+			this.scopeBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.scopeBox.FormattingEnabled = true;
+			this.scopeBox.Items.AddRange(new object[] {
+            "Apply to this page",
+            "Apply to pages in this section",
+            "Apply to pages in this notebook"});
+			this.scopeBox.Location = new System.Drawing.Point(23, 3);
+			this.scopeBox.Name = "scopeBox";
+			this.scopeBox.Size = new System.Drawing.Size(352, 28);
+			this.scopeBox.TabIndex = 17;
+			// 
+			// detailPanel
+			// 
+			this.detailPanel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.detailPanel.Controls.Add(this.scopeBox);
+			this.detailPanel.Controls.Add(this.expander);
+			this.detailPanel.Location = new System.Drawing.Point(44, 294);
+			this.detailPanel.Name = "detailPanel";
+			this.detailPanel.Size = new System.Drawing.Size(583, 112);
+			this.detailPanel.TabIndex = 18;
 			// 
 			// PageColorDialog
 			// 
@@ -222,14 +249,14 @@
 			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.CancelButton = this.cancelButton;
-			this.ClientSize = new System.Drawing.Size(640, 537);
+			this.ClientSize = new System.Drawing.Size(640, 598);
+			this.Controls.Add(this.detailPanel);
 			this.Controls.Add(this.statusLabel);
+			this.Controls.Add(this.optionsPanel);
 			this.Controls.Add(this.noButton);
 			this.Controls.Add(this.customButton);
 			this.Controls.Add(this.omButton);
 			this.Controls.Add(this.okButton);
-			this.Controls.Add(this.optionsPanel);
-			this.Controls.Add(this.expander);
 			this.Controls.Add(this.cancelButton);
 			this.Controls.Add(this.noPanel);
 			this.Controls.Add(this.omBox);
@@ -250,6 +277,7 @@
 			this.noPanel.PerformLayout();
 			this.optionsPanel.ResumeLayout(false);
 			this.optionsPanel.PerformLayout();
+			this.detailPanel.ResumeLayout(false);
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -273,5 +301,7 @@
 		private System.Windows.Forms.RadioButton noButton;
 		private System.Windows.Forms.Label statusLabel;
 		private System.Windows.Forms.ToolTip tooltip;
+		private System.Windows.Forms.ComboBox scopeBox;
+		private System.Windows.Forms.Panel detailPanel;
 	}
 }

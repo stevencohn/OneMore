@@ -1767,7 +1767,7 @@ Différé</value>
     <comment>color popup dialog title</comment>
   </data>
   <data name="PageColorDialog_applyThemeBox.Text" xml:space="preserve">
-    <value>Appliquer des styles à cette page</value>
+    <value>Appliquer des styles et des couleurs de page</value>
     <comment>checkbox</comment>
   </data>
   <data name="PageColorDialog_contrastTooltip" xml:space="preserve">
@@ -1797,6 +1797,12 @@ Différé</value>
   <data name="PageColorDialog_omLabel" xml:space="preserve">
     <value>Cliquez ici pour sélectionner une couleur prédéfinie</value>
     <comment>label</comment>
+  </data>
+  <data name="PageColorDialog_scopeBox.Text" xml:space="preserve">
+    <value>Postuler sur cette page
+Postuler à cette section
+Postuler à ce carnet</value>
+    <comment>combobox</comment>
   </data>
   <data name="PasteCellsCommand_NoContent" xml:space="preserve">
     <value>Aucun contenu à coller ; </value>

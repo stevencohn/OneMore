@@ -1797,7 +1797,7 @@ Deferred</value>
     <comment>dialog title</comment>
   </data>
   <data name="PageColorDialog_applyThemeBox.Text" xml:space="preserve">
-    <value>Apply styles to this page</value>
+    <value>Apply styles and page color</value>
     <comment>checkbox</comment>
   </data>
   <data name="PageColorDialog_contrastTooltip" xml:space="preserve">
@@ -1827,6 +1827,12 @@ Deferred</value>
   <data name="PageColorDialog_omLabel" xml:space="preserve">
     <value>Click here to select a pre-defined color</value>
     <comment>label</comment>
+  </data>
+  <data name="PageColorDialog_scopeBox.Text" xml:space="preserve">
+    <value>Apply to this page
+Apply to this section
+Apply to this notebook</value>
+    <comment>combobox</comment>
   </data>
   <data name="PasteCellsCommand_NoContent" xml:space="preserve">
     <value>No content to paste; copy one or more table cells to paste</value>

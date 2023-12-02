@@ -1781,7 +1781,7 @@ Total Row Font
     <comment>color popup dialog title</comment>
   </data>
   <data name="PageColorDialog_applyThemeBox.Text" xml:space="preserve">
-    <value>החל סגנונות על דף זה</value>
+    <value>החל סגנונות וצבע עמוד</value>
     <comment>checkbox</comment>
   </data>
   <data name="PageColorDialog_contrastTooltip" xml:space="preserve">
@@ -1811,6 +1811,12 @@ Total Row Font
   <data name="PageColorDialog_omLabel" xml:space="preserve">
     <value>לחץ כאן כדי לבחור צבע מוגדר מראש</value>
     <comment>label</comment>
+  </data>
+  <data name="PageColorDialog_scopeBox.Text" xml:space="preserve">
+    <value>הגש בקשה לדף זה
+הגש על סעיף זה
+החל על מחברת זו</value>
+    <comment>combobox</comment>
   </data>
   <data name="PasteCellsCommand_NoContent" xml:space="preserve">
     <value>אין תוכן להדביק; העתק תא טבלה אחד או יותר להדבקה</value>
