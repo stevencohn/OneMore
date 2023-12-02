@@ -270,6 +270,54 @@ namespace River.OneMoreAddIn.Commands
 
 
 		/// <summary>
+		/// Records the given tags.
+		/// </summary>
+		/// <param name="tags">A collection of Hashtags</param>
+		public void UpdateContext(Hashtags tags)
+		{
+			using var cmd = con.CreateCommand();
+			cmd.CommandText = "UPDATE hashtags " +
+				"SET context = @c, lastScan = @s " +
+				"WHERE tag = @t AND moreID = @m";
+
+			cmd.CommandType = CommandType.Text;
+			cmd.Parameters.Add("@c", DbType.String);
+			cmd.Parameters.Add("@s", DbType.String);
+			cmd.Parameters.Add("@t", DbType.String);
+			cmd.Parameters.Add("@m", DbType.String);
+
+			using var transaction = con.BeginTransaction();
+			foreach (var tag in tags)
+			{
+				logger.Verbose($"updating tag {tag.Tag}");
+
+				cmd.Parameters["@c"].Value = tag.Context;
+				cmd.Parameters["@s"].Value = tag.LastScan;
+				cmd.Parameters["@t"].Value = tag.Tag;
+				cmd.Parameters["@m"].Value = tag.MoreID;
+
+				try
+				{
+					cmd.ExecuteNonQuery();
+				}
+				catch (Exception exc)
+				{
+					logger.WriteLine($"error updating tag {tag.Tag} on {tag.PageID}", exc);
+				}
+			}
+
+			try
+			{
+				transaction.Commit();
+			}
+			catch (Exception exc)
+			{
+				logger.WriteLine("error committing transaction", exc);
+			}
+		}
+
+
+		/// <summary>
 		/// Records the timestamp value that was initialized at construction of this class
 		/// instance
 		/// </summary>

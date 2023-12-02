@@ -91,7 +91,7 @@ namespace River.OneMoreAddIn.Commands
 
 		private async Task<int> Scan(XElement parent, string path)
 		{
-			//logger.WriteLine($"scanning parent {path}");
+			//logger.Verbose($"scanning parent {path}");
 
 			int totalPages = 0;
 
@@ -114,7 +114,7 @@ namespace River.OneMoreAddIn.Commands
 					totalPages += pages.Count();
 
 					var sectionPath = $"{path}/{section.Attribute("name").Value}";
-					//logger.WriteLine($"scanning section {sectionPath} ({pages.Count()} pages)");
+					//logger.Verbose($"scanning section {sectionPath} ({pages.Count()} pages)");
 
 					foreach (var page in pages)
 					{
@@ -166,6 +166,7 @@ namespace River.OneMoreAddIn.Commands
 
 			var saved = provider.ReadPageTags(pageID);
 			var discovered = new Hashtags();
+			var updated = new Hashtags();
 
 			foreach (var candidate in candidates)
 			{
@@ -176,36 +177,47 @@ namespace River.OneMoreAddIn.Commands
 				}
 				else
 				{
-					//logger.WriteLine($"found tag {found.Tag}");
+					if (candidate.LastScan.CompareTo(lastTime) > 0)
+					{
+						updated.Add(candidate);
+					}
+
 					saved.Remove(found);
 				}
 			}
 
-			var updated = false;
+			var updatedAny = false;
 
 			if (saved.Any())
 			{
 				// remaining saved entries were not matched with candidates
 				// on page so should be deleted
 				provider.DeleteTags(saved);
-				updated = true;
+				updatedAny = true;
+			}
+
+			if (updated.Any())
+			{
+				// tag context updated since last scan
+				provider.UpdateContext(updated);
+				updatedAny = true;
 			}
 
 			if (discovered.Any())
 			{
 				// discovered entries are new on the page and not found in saved
 				provider.WriteTags(discovered);
-				updated = true;
+				updatedAny = true;
 			}
 
 			// if first time hashtags were discovered on this page then set omPageID
-			if (scanner.UpdateMeta && updated)
+			if (scanner.UpdateMeta && updatedAny)
 			{
 				page.SetMeta(MetaNames.PageID, scanner.MoreID);
 				await one.Update(page);
 			}
 
-			if (updated)
+			if (updatedAny)
 			{
 				// will likely rewrite same data but needed in case old page is moved
 				// TODO: could track moreID+pageID to determine if REPLACE is needed; but then
