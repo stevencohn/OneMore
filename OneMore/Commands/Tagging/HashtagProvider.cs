@@ -111,18 +111,18 @@ namespace River.OneMoreAddIn.Commands
 		public void DeleteTags(Hashtags tags)
 		{
 			using var cmd = con.CreateCommand();
-			cmd.CommandText = "DELETE FROM hashtags WHERE tag = @t AND pageID = @p";
+			cmd.CommandText = "DELETE FROM hashtags WHERE tag = @t AND moreID = @m";
 			cmd.CommandType = CommandType.Text;
 			cmd.Parameters.Add("@t", DbType.String);
-			cmd.Parameters.Add("@p", DbType.String);
+			cmd.Parameters.Add("@m", DbType.String);
 
 			using var transaction = con.BeginTransaction();
 			foreach (var tag in tags)
 			{
-				logger.WriteLine($"deleting tag {tag.Tag}");
+				logger.Verbose($"deleting tag {tag.Tag}");
 
 				cmd.Parameters["@t"].Value = tag.Tag;
-				cmd.Parameters["@p"].Value = tag.PageID;
+				cmd.Parameters["@m"].Value = tag.MoreID;
 
 				try
 				{
@@ -130,7 +130,7 @@ namespace River.OneMoreAddIn.Commands
 				}
 				catch (Exception exc)
 				{
-					logger.WriteLine($"error deleting tag {tag.Tag} on {tag.PageID}", exc);
+					logger.WriteLine($"error deleting tag {tag.Tag} on {tag.MoreID}", exc);
 				}
 			}
 
@@ -154,8 +154,11 @@ namespace River.OneMoreAddIn.Commands
 
 			using var cmd = con.CreateCommand();
 			cmd.CommandType = CommandType.Text;
-			cmd.CommandText = "DELETE FROM hashtags_pages WHERE moreID IN (SELECT P.moreID FROM " +
-				"hashtags_pages P LEFT OUTER JOIN hashtags T ON T.moreID = P.moreID WHERE T.tag IS NULL)";
+			cmd.CommandText = "DELETE FROM hashtags_pages WHERE moreID IN (" +
+				"SELECT P.moreID " +
+				"FROM hashtags_pages P " +
+				"LEFT OUTER JOIN hashtags T " +
+				"ON T.moreID = P.moreID WHERE T.tag IS NULL)";
 
 			try
 			{
@@ -202,8 +205,13 @@ namespace River.OneMoreAddIn.Commands
 		/// <returns>A collection of Hashtags</returns>
 		public Hashtags ReadPageTags(string pageID)
 		{
-			return ReadTags(
-				"SELECT rowID, tag, moreID, pageID, objectID, lastScan FROM hashtags WHERE pageID = @p",
+			var sql =
+				"SELECT t.rowID, t.tag, t.moreID, p.pageID, t.objectID, t.context, t.lastScan " +
+				"FROM hashtags t " +
+				"JOIN hashtags_pages p ON p.moreID = t.moreID " +
+				"WHERE p.pageID = @p";
+
+			return ReadTags(sql,
 				new SQLiteParameter[] { new SQLiteParameter("@p", pageID) }
 				);
 		}
@@ -216,8 +224,13 @@ namespace River.OneMoreAddIn.Commands
 		/// <returns>A collection of Hashtags</returns>
 		public Hashtags ReadTagsByName(string tag)
 		{
-			return ReadTags(
-				"SELECT rowID, tag, moreID, pageID, objectID, lastScan FROM hashtags WHERE tag = @p",
+			var sql =
+				"SELECT t.rowID, t.tag, t.moreID, p.pageID, t.objectID, t.context, t.lastScan " +
+				"FROM hashtags t " +
+				"JOIN hashtags_pages p ON p.moreID = t.moreID " +
+				"WHERE t.tag = @p";
+
+			return ReadTags(sql,
 				new SQLiteParameter[] { new SQLiteParameter("@p", tag) }
 				);
 		}
@@ -242,7 +255,8 @@ namespace River.OneMoreAddIn.Commands
 						MoreID = reader.GetString(2),
 						PageID = reader.GetString(3),
 						ObjectID = reader.GetString(4),
-						LastScan = reader.GetString(5)
+						Context = reader[5] is DBNull ? null : reader.GetString(5),
+						LastScan = reader.GetString(6)
 					});
 				}
 			}
@@ -280,14 +294,18 @@ namespace River.OneMoreAddIn.Commands
 		/// Records given info for the specified page.
 		/// </summary>
 		/// <param name="moreID">The assigned ID to the page</param>
+		/// <param name="path">The OneNote ID of the page</param>
 		/// <param name="path">The hierarchy path of the page</param>
 		/// <param name="title">The title (name) of the page</param>
-		public void WritePageInfo(string moreID, string path, string title)
+		public void WritePageInfo(string moreID, string pageID, string path, string title)
 		{
 			using var cmd = con.CreateCommand();
-			cmd.CommandText = "REPLACE INTO hashtags_pages (moreID, path, name) VALUES (@m, @p, @n)";
+			cmd.CommandText = "REPLACE INTO hashtags_pages " +
+				"(moreID, pageID, path, name) VALUES (@m, @p, @t, @n)";
+
 			cmd.Parameters.AddWithValue("@m", moreID);
-			cmd.Parameters.AddWithValue("@p", path);
+			cmd.Parameters.AddWithValue("@p", pageID);
+			cmd.Parameters.AddWithValue("@t", path);
 			cmd.Parameters.AddWithValue("@n", title);
 
 			try
@@ -309,24 +327,24 @@ namespace River.OneMoreAddIn.Commands
 		{
 			using var cmd = con.CreateCommand();
 			cmd.CommandText = "INSERT INTO hashtags " +
-				"(tag, moreID, pageID, objectID, lastScan) VALUES (@t, @m, @p, @o, @s)";
+				"(tag, moreID, objectID, context, lastScan) VALUES (@t, @m, @o, @c, @s)";
 
 			cmd.CommandType = CommandType.Text;
 			cmd.Parameters.Add("@t", DbType.String);
 			cmd.Parameters.Add("@m", DbType.String);
-			cmd.Parameters.Add("@p", DbType.String);
 			cmd.Parameters.Add("@o", DbType.String);
+			cmd.Parameters.Add("@c", DbType.String);
 			cmd.Parameters.Add("@s", DbType.String);
 
 			using var transaction = con.BeginTransaction();
 			foreach (var tag in tags)
 			{
-				logger.WriteLine($"writing tag {tag.Tag}");
+				logger.Verbose($"writing tag {tag.Tag}");
 
 				cmd.Parameters["@t"].Value = tag.Tag;
 				cmd.Parameters["@m"].Value = tag.MoreID;
-				cmd.Parameters["@p"].Value = tag.PageID;
 				cmd.Parameters["@o"].Value = tag.ObjectID;
+				cmd.Parameters["@c"].Value = tag.Context;
 				cmd.Parameters["@s"].Value = timestamp;
 
 				try

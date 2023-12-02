@@ -34,7 +34,7 @@ namespace River.OneMoreAddIn.Commands
 			factory = new HashtagPageSannerFactory();
 
 			lastTime = provider.ReadLastScanTime();
-			//logger.WriteLine($"HashtagScanner lastTime {lastTime}");
+			logger.Verbose($"HashtagScanner lastTime {lastTime}");
 		}
 
 
@@ -158,6 +158,7 @@ namespace River.OneMoreAddIn.Commands
 				return;
 			}
 
+			var title = page.Title;
 			var scanner = factory.CreatePageScanner(page.Root);
 			var candidates = scanner.Scan();
 
@@ -180,23 +181,21 @@ namespace River.OneMoreAddIn.Commands
 				}
 			}
 
-			var updated = saved.Any() || discovered.Any();
-			if (updated)
-			{
-				logger.WriteLine($"updating tags on page {path}/{page.Title}");
-			}
+			var updated = false;
 
 			if (saved.Any())
 			{
 				// remaining saved entries were not matched with candidates
 				// on page so should be deleted
 				provider.DeleteTags(saved);
+				updated = true;
 			}
 
 			if (discovered.Any())
 			{
 				// discovered entries are new on the page and not found in saved
 				provider.WriteTags(discovered);
+				updated = true;
 			}
 
 			// if first time hashtags were discovered on this page then set omPageID
@@ -212,9 +211,9 @@ namespace River.OneMoreAddIn.Commands
 				// TODO: could track moreID+pageID to determine if REPLACE is needed; but then
 				// need to read that info first as well; see where the design goes...
 				// TODO: how to clean up deleted pages?
-				provider.WritePageInfo(scanner.MoreID, path, page.Title);
+				provider.WritePageInfo(scanner.MoreID, pageID, path, title);
+				logger.WriteLine($"updating tags on page {path}/{title}");
 			}
 		}
 	}
-
 }

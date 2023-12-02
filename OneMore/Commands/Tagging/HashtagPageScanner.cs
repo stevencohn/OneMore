@@ -16,6 +16,8 @@ namespace River.OneMoreAddIn.Commands
 	/// </summary>
 	internal class HashtagPageScanner
 	{
+		private const int ContextLength = 70;
+
 		private readonly XElement root;
 		private readonly XNamespace ns;
 		private readonly Regex hashPattern;
@@ -99,21 +101,27 @@ namespace River.OneMoreAddIn.Commands
 				if (matches.Count > 0)
 				{
 					var objectID = paragraph.Attribute("objectID").Value;
+					var lastTime = paragraph.Attribute("lastModifiedTime").Value;
 
 					foreach (Match match in matches)
 					{
 						if (match.Success)
 						{
-							var name = match.Captures[0].Value;
+							var capture = match.Captures[0];
+							var name = capture.Value;
 
 							if (!tags.Exists(t => t.Tag == name && t.ObjectID == objectID))
 							{
+								var context = ExtractContext(text, capture.Index, capture.Length);
+
 								tags.Add(new Hashtag
 								{
 									Tag = name,
 									MoreID = MoreID,
 									PageID = pageID,
-									ObjectID = objectID
+									ObjectID = objectID,
+									Context = context,
+									LastScan = lastTime
 								});
 							}
 						}
@@ -153,6 +161,32 @@ namespace River.OneMoreAddIn.Commands
 					}
 				}
 			}
+		}
+
+
+		private string ExtractContext(string text, int capIndex, int capLength)
+		{
+			var stublen = (ContextLength - capLength) / 2;
+			int index, length;
+
+			if (capIndex + capLength + stublen >= text.Length)
+			{
+				index = Math.Max(text.Length - ContextLength, 0);
+				length = Math.Min(index + ContextLength, text.Length - index);
+			}
+			else
+			{
+				index = Math.Max(capIndex - stublen, 0);
+				length = ContextLength;
+				if (index + length > text.Length - 1) length = text.Length - index;
+			}
+
+			var context = text.Substring(index, length);
+
+			if (index > 0) context = $"...{context}";
+			if (index + length < text.Length - 1) context = $"{context}...";
+
+			return context;
 		}
 	}
 }
