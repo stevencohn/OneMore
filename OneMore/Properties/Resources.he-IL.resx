@@ -1812,7 +1812,7 @@ Total Row Font
     <value>לחץ כאן כדי לבחור צבע מוגדר מראש</value>
     <comment>label</comment>
   </data>
-  <data name="PageColorDialog_targetBox.Text" xml:space="preserve">
+  <data name="PageColorDialog_scopeBox.Text" xml:space="preserve">
     <value>הגש בקשה לדף זה
 הגש על סעיף זה
 החל על מחברת זו</value>

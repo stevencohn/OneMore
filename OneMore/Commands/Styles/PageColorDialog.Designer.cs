@@ -46,7 +46,7 @@
 			this.noButton = new System.Windows.Forms.RadioButton();
 			this.statusLabel = new System.Windows.Forms.Label();
 			this.tooltip = new System.Windows.Forms.ToolTip(this.components);
-			this.targetBox = new System.Windows.Forms.ComboBox();
+			this.scopeBox = new System.Windows.Forms.ComboBox();
 			this.detailPanel = new System.Windows.Forms.Panel();
 			((System.ComponentModel.ISupportInitialize)(this.omBox)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.customBox)).BeginInit();
@@ -219,25 +219,25 @@
 			this.statusLabel.TabIndex = 16;
 			this.statusLabel.Text = "OK";
 			// 
-			// targetBox
+			// scopeBox
 			// 
-			this.targetBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-			this.targetBox.FormattingEnabled = true;
-			this.targetBox.Items.AddRange(new object[] {
+			this.scopeBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.scopeBox.FormattingEnabled = true;
+			this.scopeBox.Items.AddRange(new object[] {
             "Apply to this page",
             "Apply to pages in this section",
             "Apply to pages in this notebook"});
-			this.targetBox.Location = new System.Drawing.Point(23, 3);
-			this.targetBox.Name = "targetBox";
-			this.targetBox.Size = new System.Drawing.Size(352, 28);
-			this.targetBox.TabIndex = 17;
-			this.targetBox.SelectedIndexChanged += new System.EventHandler(this.ChangeTarget);
+			this.scopeBox.Location = new System.Drawing.Point(23, 3);
+			this.scopeBox.Name = "scopeBox";
+			this.scopeBox.Size = new System.Drawing.Size(352, 28);
+			this.scopeBox.TabIndex = 17;
+			this.scopeBox.SelectedIndexChanged += new System.EventHandler(this.ChangeScope);
 			// 
 			// detailPanel
 			// 
 			this.detailPanel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-			this.detailPanel.Controls.Add(this.targetBox);
+			this.detailPanel.Controls.Add(this.scopeBox);
 			this.detailPanel.Controls.Add(this.expander);
 			this.detailPanel.Location = new System.Drawing.Point(44, 294);
 			this.detailPanel.Name = "detailPanel";
@@ -302,7 +302,7 @@
 		private System.Windows.Forms.RadioButton noButton;
 		private System.Windows.Forms.Label statusLabel;
 		private System.Windows.Forms.ToolTip tooltip;
-		private System.Windows.Forms.ComboBox targetBox;
+		private System.Windows.Forms.ComboBox scopeBox;
 		private System.Windows.Forms.Panel detailPanel;
 	}
 }

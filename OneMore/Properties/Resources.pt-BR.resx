@@ -1802,7 +1802,7 @@ Diferido</value>
     <value>Clique aqui para selecionar uma cor pré-definida</value>
     <comment>label</comment>
   </data>
-  <data name="PageColorDialog_targetBox.Text" xml:space="preserve">
+  <data name="PageColorDialog_scopeBox.Text" xml:space="preserve">
     <value>Inscreva-se nesta página
 Inscreva-se nesta seção
 Aplicar a este caderno</value>

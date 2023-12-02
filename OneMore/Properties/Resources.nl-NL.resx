@@ -1802,7 +1802,7 @@ Verschoven</value>
     <value>Klik hier om een ​​voorgedefinieerde kleur te selecteren</value>
     <comment>label</comment>
   </data>
-  <data name="PageColorDialog_targetBox.Text" xml:space="preserve">
+  <data name="PageColorDialog_scopeBox.Text" xml:space="preserve">
     <value>Solliciteer op deze pagina
 Toepassen op deze sectie
 Toepassen op dit notitieboekje</value>

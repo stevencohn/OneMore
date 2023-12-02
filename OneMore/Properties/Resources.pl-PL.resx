@@ -1810,7 +1810,7 @@ Odroczony</value>
     <value>Kliknij tutaj, aby wybrać predefiniowany kolor</value>
     <comment>label</comment>
   </data>
-  <data name="PageColorDialog_targetBox.Text" xml:space="preserve">
+  <data name="PageColorDialog_scopeBox.Text" xml:space="preserve">
     <value>Aplikuj na tę stronę
 Zastosuj się do tej sekcji
 Zastosuj do tego notatnika</value>

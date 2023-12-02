@@ -765,7 +765,7 @@ namespace River.OneMoreAddIn
 					return new Page(XElement.Parse(xml));
 				}
 			}
-			catch (Exception exc)
+			catch (Exception exc) when (exc is not ThreadAbortException)
 			{
 				if (FallThrough)
 				{

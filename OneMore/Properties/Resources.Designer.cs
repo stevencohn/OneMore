@@ -4466,9 +4466,9 @@ namespace River.OneMoreAddIn.Properties {
         ///Apply to this section
         ///Apply to this notebook.
         /// </summary>
-        internal static string PageColorDialog_targetBox_Text {
+        internal static string PageColorDialog_scopeBox_Text {
             get {
-                return ResourceManager.GetString("PageColorDialog_targetBox.Text", resourceCulture);
+                return ResourceManager.GetString("PageColorDialog_scopeBox.Text", resourceCulture);
             }
         }
         

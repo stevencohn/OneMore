@@ -1801,7 +1801,7 @@
     <value>انقر هنا لتحديد لون محدد مسبقًا</value>
     <comment>label</comment>
   </data>
-  <data name="PageColorDialog_targetBox.Text" xml:space="preserve">
+  <data name="PageColorDialog_scopeBox.Text" xml:space="preserve">
     <value>تنطبق على هذه الصفحة
 تنطبق على هذا القسم
 تنطبق على هذا دفتر الملاحظات</value>

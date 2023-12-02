@@ -1801,7 +1801,7 @@ Diferido</value>
     <value>Haga clic aquí para seleccionar un color predefinido</value>
     <comment>label</comment>
   </data>
-  <data name="PageColorDialog_targetBox.Text" xml:space="preserve">
+  <data name="PageColorDialog_scopeBox.Text" xml:space="preserve">
     <value>Aplicar a esta página
 Aplicar a esta sección
 Aplicar a este cuaderno</value>

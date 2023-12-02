@@ -35,7 +35,7 @@ namespace River.OneMoreAddIn.Commands
 					"noLabel",
 					"expander.Title=word_Options",
 					"currentThemeLabel",
-					"targetBox",
+					"scopeBox",
 					"loadThemeLink",
 					"applyThemeBox",
 					"okButton=word_OK",
@@ -51,7 +51,7 @@ namespace River.OneMoreAddIn.Commands
 
 			darkMode = Office.IsBlackThemeEnabled();
 			statusLabel.Text = string.Empty;
-			targetBox.SelectedIndex = 0;
+			scopeBox.SelectedIndex = 0;
 		}
 
 
@@ -150,11 +150,11 @@ namespace River.OneMoreAddIn.Commands
 		public Color Color { get; private set; }
 
 
-		public OneNote.NodeType Target => targetBox.SelectedIndex switch
+		public OneNote.Scope Scope => scopeBox.SelectedIndex switch
 		{
-			1 => OneNote.NodeType.Section,
-			2 => OneNote.NodeType.Notebook,
-			_ => OneNote.NodeType.Page
+			1 => OneNote.Scope.Pages,		// Apply to pages in this section
+			2 => OneNote.Scope.Sections,	// Apply to pages in this notebook
+			_ => OneNote.Scope.Self			// Apply to this page
 		};
 
 
@@ -271,9 +271,9 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private void ChangeTarget(object sender, EventArgs e)
+		private void ChangeScope(object sender, EventArgs e)
 		{
-			var enabled = targetBox.SelectedIndex == 0;
+			var enabled = scopeBox.SelectedIndex == 0;
 			expander.Enabled = enabled;
 			currentThemeLabel.Enabled = enabled;
 			loadThemeLink.Enabled = enabled;

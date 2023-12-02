@@ -1828,7 +1828,7 @@ Deferred</value>
     <value>Click here to select a pre-defined color</value>
     <comment>label</comment>
   </data>
-  <data name="PageColorDialog_targetBox.Text" xml:space="preserve">
+  <data name="PageColorDialog_scopeBox.Text" xml:space="preserve">
     <value>Apply to this page
 Apply to this section
 Apply to this notebook</value>
