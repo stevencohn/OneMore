@@ -20,6 +20,10 @@ namespace River.OneMoreAddIn.Commands
 	/// </summary>
 	internal class PageColorCommand : Command
 	{
+		private string pageColor;
+		private ApplyStylesCommand styler;
+
+
 		public PageColorCommand()
 		{
 		}
@@ -44,20 +48,19 @@ namespace River.OneMoreAddIn.Commands
 				return;
 			}
 
-			var pageColor = MakePageColor(dialog.Color);
+			pageColor = MakePageColor(dialog.Color);
+
+			if (dialog.ApplyStyle)
+			{
+				ThemeProvider.RecordTheme(dialog.ThemeKey);
+				styler = new ApplyStylesCommand();
+				styler.SetLogger(logger);
+			}
 
 			if (dialog.Scope == OneNote.Scope.Self)
 			{
 				UpdatePageColor(page, pageColor);
-
-				if (dialog.ApplyStyle)
-				{
-					ThemeProvider.RecordTheme(dialog.ThemeKey);
-
-					var styler = new ApplyStylesCommand();
-					styler.SetLogger(logger);
-					styler.Apply(page);
-				}
+				styler?.ApplyTheme(page);
 
 				using var one = new OneNote();
 				await one.Update(page);
@@ -96,6 +99,8 @@ namespace River.OneMoreAddIn.Commands
 					progress.SetMessage(page.Title);
 
 					UpdatePageColor(page, pageColor);
+					styler?.ApplyTheme(page);
+
 					if (token.IsCancellationRequested) break;
 
 					await one.Update(page);

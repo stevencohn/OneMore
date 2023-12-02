@@ -1780,7 +1780,7 @@ OneNote 文件 (*.one)</value>
     <comment>color popup dialog title</comment>
   </data>
   <data name="PageColorDialog_applyThemeBox.Text" xml:space="preserve">
-    <value>将样式应用于此页面</value>
+    <value>应用样式和页面颜色</value>
     <comment>checkbox</comment>
   </data>
   <data name="PageColorDialog_contrastTooltip" xml:space="preserve">

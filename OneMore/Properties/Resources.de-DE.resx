@@ -1767,7 +1767,7 @@ Aufgeschoben</value>
     <comment>color popup dialog title</comment>
   </data>
   <data name="PageColorDialog_applyThemeBox.Text" xml:space="preserve">
-    <value>Wenden Sie Stile auf diese Seite an</value>
+    <value>Wenden Sie Stile und Seitenfarben an</value>
     <comment>checkbox</comment>
   </data>
   <data name="PageColorDialog_contrastTooltip" xml:space="preserve">

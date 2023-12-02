@@ -1770,7 +1770,7 @@
     <comment>color popup dialog title</comment>
   </data>
   <data name="PageColorDialog_applyThemeBox.Text" xml:space="preserve">
-    <value>تطبيق الأنماط على هذه الصفحة</value>
+    <value>تطبيق الأنماط ولون الصفحة</value>
     <comment>checkbox</comment>
   </data>
   <data name="PageColorDialog_contrastTooltip" xml:space="preserve">

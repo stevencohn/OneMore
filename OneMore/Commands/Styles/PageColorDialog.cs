@@ -271,16 +271,6 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private void ChangeScope(object sender, EventArgs e)
-		{
-			var enabled = scopeBox.SelectedIndex == 0;
-			expander.Enabled = enabled;
-			currentThemeLabel.Enabled = enabled;
-			loadThemeLink.Enabled = enabled;
-			applyThemeBox.Enabled = enabled;
-		}
-
-
 		private void LoadTheme(object sender, LinkLabelLinkClickedEventArgs e)
 		{
 			var candidate = new LoadStylesCommand().LoadTheme();

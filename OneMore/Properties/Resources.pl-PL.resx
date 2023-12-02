@@ -1779,7 +1779,7 @@ Odroczony</value>
     <comment>color popup dialog title</comment>
   </data>
   <data name="PageColorDialog_applyThemeBox.Text" xml:space="preserve">
-    <value>Zastosuj style do tej strony</value>
+    <value>Zastosuj style i kolor strony</value>
     <comment>checkbox</comment>
   </data>
   <data name="PageColorDialog_contrastTooltip" xml:space="preserve">

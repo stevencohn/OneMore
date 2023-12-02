@@ -1771,7 +1771,7 @@ Verschoven</value>
     <comment>color popup dialog title</comment>
   </data>
   <data name="PageColorDialog_applyThemeBox.Text" xml:space="preserve">
-    <value>Pas stijlen toe op deze pagina</value>
+    <value>Pas stijlen en paginakleur toe</value>
     <comment>checkbox</comment>
   </data>
   <data name="PageColorDialog_contrastTooltip" xml:space="preserve">

@@ -231,7 +231,6 @@
 			this.scopeBox.Name = "scopeBox";
 			this.scopeBox.Size = new System.Drawing.Size(352, 28);
 			this.scopeBox.TabIndex = 17;
-			this.scopeBox.SelectedIndexChanged += new System.EventHandler(this.ChangeScope);
 			// 
 			// detailPanel
 			// 

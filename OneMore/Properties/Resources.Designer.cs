@@ -4390,7 +4390,7 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Apply styles to this page.
+        ///   Looks up a localized string similar to Apply styles and page color.
         /// </summary>
         internal static string PageColorDialog_applyThemeBox_Text {
             get {

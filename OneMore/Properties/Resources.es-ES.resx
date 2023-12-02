@@ -1770,7 +1770,7 @@ Diferido</value>
     <comment>color popup dialog title</comment>
   </data>
   <data name="PageColorDialog_applyThemeBox.Text" xml:space="preserve">
-    <value>Aplicar estilos a esta página</value>
+    <value>Aplicar estilos y color de página.</value>
     <comment>checkbox</comment>
   </data>
   <data name="PageColorDialog_contrastTooltip" xml:space="preserve">

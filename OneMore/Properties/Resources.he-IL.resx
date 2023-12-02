@@ -1781,7 +1781,7 @@ Total Row Font
     <comment>color popup dialog title</comment>
   </data>
   <data name="PageColorDialog_applyThemeBox.Text" xml:space="preserve">
-    <value>החל סגנונות על דף זה</value>
+    <value>החל סגנונות וצבע עמוד</value>
     <comment>checkbox</comment>
   </data>
   <data name="PageColorDialog_contrastTooltip" xml:space="preserve">
