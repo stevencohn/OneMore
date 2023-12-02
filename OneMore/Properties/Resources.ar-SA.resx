@@ -1801,6 +1801,12 @@
     <value>انقر هنا لتحديد لون محدد مسبقًا</value>
     <comment>label</comment>
   </data>
+  <data name="PageColorDialog_targetBox.Text" xml:space="preserve">
+    <value>تنطبق على هذه الصفحة
+تنطبق على هذا القسم
+تنطبق على هذا دفتر الملاحظات</value>
+    <comment>combobox</comment>
+  </data>
   <data name="PasteCellsCommand_NoContent" xml:space="preserve">
     <value>لا يوجد محتوى للصقه ؛ </value>
     <comment>message box</comment>

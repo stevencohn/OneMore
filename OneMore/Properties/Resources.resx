@@ -1828,6 +1828,12 @@ Deferred</value>
     <value>Click here to select a pre-defined color</value>
     <comment>label</comment>
   </data>
+  <data name="PageColorDialog_targetBox.Text" xml:space="preserve">
+    <value>Apply to this page
+Apply to this section
+Apply to this notebook</value>
+    <comment>combobox</comment>
+  </data>
   <data name="PasteCellsCommand_NoContent" xml:space="preserve">
     <value>No content to paste; copy one or more table cells to paste</value>
     <comment>message box</comment>

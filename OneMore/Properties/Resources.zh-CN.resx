@@ -1811,6 +1811,12 @@ OneNote 文件 (*.one)</value>
     <value>单击此处选择预定义颜色</value>
     <comment>label</comment>
   </data>
+  <data name="PageColorDialog_targetBox.Text" xml:space="preserve">
+    <value>申请此页面
+适用于本部分
+适用于本笔记本</value>
+    <comment>combobox</comment>
+  </data>
   <data name="PasteCellsCommand_NoContent" xml:space="preserve">
     <value>没有要粘贴的内容；</value>
     <comment>message box</comment>

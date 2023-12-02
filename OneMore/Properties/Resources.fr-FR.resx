@@ -1798,6 +1798,12 @@ Différé</value>
     <value>Cliquez ici pour sélectionner une couleur prédéfinie</value>
     <comment>label</comment>
   </data>
+  <data name="PageColorDialog_targetBox.Text" xml:space="preserve">
+    <value>Postuler sur cette page
+Postuler à cette section
+Postuler à ce carnet</value>
+    <comment>combobox</comment>
+  </data>
   <data name="PasteCellsCommand_NoContent" xml:space="preserve">
     <value>Aucun contenu à coller ; </value>
     <comment>message box</comment>

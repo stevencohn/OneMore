@@ -35,6 +35,7 @@ namespace River.OneMoreAddIn.Commands
 					"noLabel",
 					"expander.Title=word_Options",
 					"currentThemeLabel",
+					"targetBox",
 					"loadThemeLink",
 					"applyThemeBox",
 					"okButton=word_OK",
@@ -44,11 +45,13 @@ namespace River.OneMoreAddIn.Commands
 
 			VerticalOffset = -(Height / 3);
 			Height -= optionsPanel.Height;
+			//detailPanel.Height -= optionsPanel.Height;
 			optionsPanel.Height = 0;
 			optionsAvailable = true;
 
 			darkMode = Office.IsBlackThemeEnabled();
 			statusLabel.Text = string.Empty;
+			targetBox.SelectedIndex = 0;
 		}
 
 
@@ -147,6 +150,14 @@ namespace River.OneMoreAddIn.Commands
 		public Color Color { get; private set; }
 
 
+		public OneNote.NodeType Target => targetBox.SelectedIndex switch
+		{
+			1 => OneNote.NodeType.Section,
+			2 => OneNote.NodeType.Notebook,
+			_ => OneNote.NodeType.Page
+		};
+
+
 		public string ThemeKey => theme.Key;
 
 
@@ -158,10 +169,8 @@ namespace River.OneMoreAddIn.Commands
 
 		public void HideOptions()
 		{
-			Height -= expander.Height - statusLabel.Height;
-			expander.Visible = false;
-			statusLabel.Visible = false;
-			optionsAvailable = false;
+			Height -= detailPanel.Height;
+			detailPanel.Visible = false;
 		}
 
 
@@ -261,6 +270,15 @@ namespace River.OneMoreAddIn.Commands
 			CheckContrast();
 		}
 
+
+		private void ChangeTarget(object sender, EventArgs e)
+		{
+			var enabled = targetBox.SelectedIndex == 0;
+			expander.Enabled = enabled;
+			currentThemeLabel.Enabled = enabled;
+			loadThemeLink.Enabled = enabled;
+			applyThemeBox.Enabled = enabled;
+		}
 
 
 		private void LoadTheme(object sender, LinkLabelLinkClickedEventArgs e)

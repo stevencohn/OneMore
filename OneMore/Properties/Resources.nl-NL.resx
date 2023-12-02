@@ -1802,6 +1802,12 @@ Verschoven</value>
     <value>Klik hier om een ​​voorgedefinieerde kleur te selecteren</value>
     <comment>label</comment>
   </data>
+  <data name="PageColorDialog_targetBox.Text" xml:space="preserve">
+    <value>Solliciteer op deze pagina
+Toepassen op deze sectie
+Toepassen op dit notitieboekje</value>
+    <comment>combobox</comment>
+  </data>
   <data name="PasteCellsCommand_NoContent" xml:space="preserve">
     <value>Geen inhoud om te plakken; </value>
     <comment>message box</comment>

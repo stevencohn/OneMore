@@ -41,19 +41,28 @@ namespace River.OneMoreAddIn.Commands
 			using var dialog = new PageColorDialog(color, new ThemeProvider().Theme.Name);
 			if (dialog.ShowDialog(owner) == DialogResult.OK)
 			{
-				UpdatePageColor(page, MakePageColor(dialog.Color));
+				var pageColor = MakePageColor(dialog.Color);
 
-				if (dialog.ApplyStyle)
+				if (dialog.Target == OneNote.NodeType.Page)
 				{
-					ThemeProvider.RecordTheme(dialog.ThemeKey);
+					UpdatePageColor(page, pageColor);
 
-					var cmd = new ApplyStylesCommand();
-					cmd.SetLogger(logger);
-					cmd.Apply(page);
+					if (dialog.ApplyStyle)
+					{
+						ThemeProvider.RecordTheme(dialog.ThemeKey);
+
+						var cmd = new ApplyStylesCommand();
+						cmd.SetLogger(logger);
+						cmd.Apply(page);
+					}
+
+					using var one = new OneNote();
+					await one.Update(page);
 				}
-
-				using var one = new OneNote();
-				await one.Update(page);
+				else
+				{
+					//
+				}
 			}
 		}
 

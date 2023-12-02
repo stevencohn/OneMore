@@ -4462,6 +4462,17 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Apply to this page
+        ///Apply to this section
+        ///Apply to this notebook.
+        /// </summary>
+        internal static string PageColorDialog_targetBox_Text {
+            get {
+                return ResourceManager.GetString("PageColorDialog_targetBox.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Page Color.
         /// </summary>
         internal static string PageColorDialog_Text {

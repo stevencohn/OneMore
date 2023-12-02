@@ -1802,6 +1802,12 @@ Diferido</value>
     <value>Clique aqui para selecionar uma cor pré-definida</value>
     <comment>label</comment>
   </data>
+  <data name="PageColorDialog_targetBox.Text" xml:space="preserve">
+    <value>Inscreva-se nesta página
+Inscreva-se nesta seção
+Aplicar a este caderno</value>
+    <comment>combobox</comment>
+  </data>
   <data name="PasteCellsCommand_NoContent" xml:space="preserve">
     <value>Nenhum conteúdo para colar; </value>
     <comment>message box</comment>

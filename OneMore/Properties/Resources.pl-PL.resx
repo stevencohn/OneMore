@@ -1810,6 +1810,12 @@ Odroczony</value>
     <value>Kliknij tutaj, aby wybrać predefiniowany kolor</value>
     <comment>label</comment>
   </data>
+  <data name="PageColorDialog_targetBox.Text" xml:space="preserve">
+    <value>Aplikuj na tę stronę
+Zastosuj się do tej sekcji
+Zastosuj do tego notatnika</value>
+    <comment>combobox</comment>
+  </data>
   <data name="PasteCellsCommand_NoContent" xml:space="preserve">
     <value>Brak treści do pasty; skopiuj jedną lub więcej komórek tabeli do pasty</value>
     <comment>message box</comment>

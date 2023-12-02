@@ -1798,6 +1798,12 @@ Aufgeschoben</value>
     <value>Klicken Sie hier, um eine vordefinierte Farbe auszuwählen</value>
     <comment>label</comment>
   </data>
+  <data name="PageColorDialog_targetBox.Text" xml:space="preserve">
+    <value>Bewerben Sie sich auf dieser Seite
+Bewerben Sie sich für diesen Abschnitt
+Bewerben Sie sich auf dieses Notizbuch</value>
+    <comment>combobox</comment>
+  </data>
   <data name="PasteCellsCommand_NoContent" xml:space="preserve">
     <value>Kein Inhalt zum Einfügen; </value>
     <comment>message box</comment>

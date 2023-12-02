@@ -18,6 +18,7 @@
 				components.Dispose();
 
 				image?.Dispose();
+				grayed?.Dispose();
 			}
 			base.Dispose(disposing);
 		}
