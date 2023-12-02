@@ -45,7 +45,6 @@ namespace River.OneMoreAddIn.Commands
 
 			VerticalOffset = -(Height / 3);
 			Height -= optionsPanel.Height;
-			//detailPanel.Height -= optionsPanel.Height;
 			optionsPanel.Height = 0;
 			optionsAvailable = true;
 
