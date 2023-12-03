@@ -940,8 +940,8 @@ namespace River.OneMoreAddIn.Models
 				// a zero-selection link and a partial or fully selected link. Note that XML
 				// comments are used to wrap mathML equations
 				if (cdata.Value.Length == 0 ||
-					Regex.IsMatch(cdata.Value, @"<a\s+href.+?</a>", RegexOptions.Singleline) ||
-					Regex.IsMatch(cdata.Value, @"<!--.+?-->", RegexOptions.Singleline))
+					Regex.IsMatch(cdata.Value, @"^<a\s+href.+?</a>$", RegexOptions.Singleline) ||
+					Regex.IsMatch(cdata.Value, @"^<!--.+?-->$", RegexOptions.Singleline))
 				{
 					SelectionScope = SelectionScope.Empty;
 					SelectionSpecial = cdata.Value.Length > 0;
