@@ -233,6 +233,19 @@
     </Compile>
     <Compile Include="Commands\Tables\TableThemePainter.cs" />
     <Compile Include="Commands\Tagging\Hashtag.cs" />
+    <Compile Include="Commands\Tagging\HashtagCommand.cs" />
+    <Compile Include="Commands\Tagging\HashtagContextControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Commands\Tagging\HashtagContextControl.Designer.cs">
+      <DependentUpon>HashtagContextControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Commands\Tagging\HashtagDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Commands\Tagging\HashtagDialog.Designer.cs">
+      <DependentUpon>HashtagDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="Commands\Tagging\HashtagPageScanner.cs" />
     <Compile Include="Commands\Tagging\HashtagPageScannerFactory.cs" />
     <Compile Include="Commands\Tagging\HashtagProvider.cs" />
@@ -1327,6 +1340,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Commands\Styles\PageColorSelector.resx">
       <DependentUpon>PageColorSelector.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Commands\Tagging\HashtagContextControl.resx">
+      <DependentUpon>HashtagContextControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Commands\Tagging\HashtagDialog.resx">
+      <DependentUpon>HashtagDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.he-IL.resx">
       <SubType>Designer</SubType>

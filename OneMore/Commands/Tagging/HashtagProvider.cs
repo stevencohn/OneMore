@@ -1,11 +1,12 @@
 ﻿//************************************************************************************************
-// Copyright © 2023 Steven M Cohn.  All rights reserved.
+// Copyright © 2023 Steven M Cohn. All rights reserved.
 //************************************************************************************************
 
 namespace River.OneMoreAddIn.Commands
 {
 	using River.OneMoreAddIn.Properties;
 	using System;
+	using System.Collections.Generic;
 	using System.Data;
 	using System.Data.SQLite;
 	using System.IO;
@@ -199,6 +200,33 @@ namespace River.OneMoreAddIn.Commands
 
 
 		/// <summary>
+		/// Returns a collection of the latest tag names.
+		/// </summary>
+		/// <returns>A list of strings</returns>
+		public IEnumerable<string> ReadLatestTagNames()
+		{
+			var tags = new List<string>();
+			using var cmd = con.CreateCommand();
+			cmd.CommandText = "SELECT DISTINCT tag FROM hashtags ORDER BY lastScan LIMIT 5";
+
+			try
+			{
+				using var reader = cmd.ExecuteReader();
+				while (reader.Read())
+				{
+					tags.Add(reader.GetString(0));
+				}
+			}
+			catch (Exception exc)
+			{
+				logger.WriteLine("error reading distinct tags", exc);
+			}
+
+			return tags;
+		}
+
+
+		/// <summary>
 		/// Returns a collection of tags on the specified page
 		/// </summary>
 		/// <param name="pageID">The ID of the page</param>
@@ -212,8 +240,35 @@ namespace River.OneMoreAddIn.Commands
 				"WHERE p.pageID = @p";
 
 			return ReadTags(sql,
-				new SQLiteParameter[] { new SQLiteParameter("@p", pageID) }
+				new SQLiteParameter[] { new("@p", pageID) }
 				);
+		}
+
+
+		/// <summary>
+		/// Returns a collection of all unique tag names.
+		/// </summary>
+		/// <returns>A list of strings</returns>
+		public IEnumerable<string> ReadTagNames()
+		{
+			var tags = new List<string>();
+			using var cmd = con.CreateCommand();
+			cmd.CommandText = "SELECT DISTINCT tag FROM hashtags ORDER BY 1";
+
+			try
+			{
+				using var reader = cmd.ExecuteReader();
+				while (reader.Read())
+				{
+					tags.Add(reader.GetString(0));
+				}
+			}
+			catch (Exception exc)
+			{
+				logger.WriteLine("error reading distinct tags", exc);
+			}
+
+			return tags;
 		}
 
 
@@ -231,17 +286,21 @@ namespace River.OneMoreAddIn.Commands
 				"WHERE t.tag = @p";
 
 			return ReadTags(sql,
-				new SQLiteParameter[] { new SQLiteParameter("@p", tag) }
+				new SQLiteParameter[] { new("@p", tag) }
 				);
 		}
 
 
-		private Hashtags ReadTags(string sql, SQLiteParameter[] parameters)
+		private Hashtags ReadTags(string sql, SQLiteParameter[] parameters = null)
 		{
 			var tags = new Hashtags();
 			using var cmd = con.CreateCommand();
 			cmd.CommandText = sql;
-			cmd.Parameters.AddRange(parameters);
+
+			if (parameters != null && parameters.Length > 0)
+			{
+				cmd.Parameters.AddRange(parameters);
+			}
 
 			try
 			{

@@ -346,6 +346,11 @@ namespace River.OneMoreAddIn
 			=> await factory.Run<FillCellsCommand>(FillCells.FillDown);
 
 
+		[Command("ribFindHashtagsButton_Label", Keys.None, "ribReferencesMenu")]
+		public async Task FindHashtagsCmd(IRibbonControl control)
+			=> await factory.Run<HashtagCommand>();
+
+
 		[Command("ribFinishBiLinkButton_Label", Keys.None, "ribReferencesMenu")]
 		public async Task FinishBiLinkCmd(IRibbonControl control)
 			=> await factory.Run<BiLinkCommand>("link");

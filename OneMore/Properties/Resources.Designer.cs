@@ -2718,10 +2718,10 @@ namespace River.OneMoreAddIn.Properties {
         
         /// <summary>
         ///   Looks up a localized string similar to CREATE TABLE IF NOT EXISTS hashtag_scanner (scannerID INTEGER PRIMARY KEY UNIQUE NOT NULL, version NUMERIC (12) UNIQUE NOT NULL, lastScan TEXT NOT NULL);
-        ///CREATE TABLE IF NOT EXISTS hashtags (tag TEXT NOT NULL, moreID TEXT NOT NULL, pageID TEXT NOT NULL, objectID TEXT NOT NULL, lastScan TEXT NOT NULL, PRIMARY KEY (tag, objectID));
-        ///CREATE TABLE IF NOT EXISTS hashtags_pages (moreID PRIMARY KEY, path TEXT, name TEXT);
+        ///CREATE TABLE IF NOT EXISTS hashtags (tag TEXT NOT NULL, moreID TEXT NOT NULL, objectID TEXT NOT NULL, context TEXT, lastScan TEXT NOT NULL, PRIMARY KEY (tag, objectID));
+        ///CREATE TABLE IF NOT EXISTS hashtags_pages (moreID PRIMARY KEY, pageID TEXT NOT NULL, path TEXT, name TEXT);
         ///CREATE INDEX IF NOT EXISTS IDX_moreID ON hashtags (moreID);
-        ///CREATE INDEX IF NOT EXISTS IDX [rest of string was truncated]&quot;;.
+        ///CREATE INDEX IF  [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string HashtagsDB {
             get {
@@ -6936,6 +6936,15 @@ namespace River.OneMoreAddIn.Properties {
         internal static string ribFillDownButton_Screentip {
             get {
                 return ResourceManager.GetString("ribFillDownButton_Screentip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Find Hashtags.
+        /// </summary>
+        internal static string ribFindHashtagsButton_Label {
+            get {
+                return ResourceManager.GetString("ribFindHashtagsButton_Label", resourceCulture);
             }
         }
         

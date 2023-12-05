@@ -61,6 +61,12 @@ namespace River.OneMoreAddIn.UI
 
 
 		/// <summary>
+		/// Gets or sets whether the popup is hidden when the Esc key is pressed.
+		/// </summary>
+		public bool AllowEscapeToHide { get; set; }
+
+
+		/// <summary>
 		/// Gets or sets a character used to delimit a command's name from its key sequence.
 		/// </summary>
 		public char KeyDivider { get; set; } = '|';
@@ -78,7 +84,7 @@ namespace River.OneMoreAddIn.UI
 		/// <summary>
 		/// Gets a value indicating whether the hosted popup is visible
 		/// </summary>
-		public bool IsVisible => popup?.Visible == true;
+		public bool IsPopupVisible => popup?.Visible == true;
 
 
 		/// <summary>
@@ -91,7 +97,7 @@ namespace River.OneMoreAddIn.UI
 		/// Gets or sets whether the list is shown immediately along with its
 		/// TextBox. The default is to only show the list on the first keypress.
 		/// </summary>
-		public bool VisibleByDefault { get; set; }
+		public bool ShowPopupOnStartup { get; set; }
 
 
 		bool IExtenderProvider.CanExtend(object extendee)
@@ -135,7 +141,7 @@ namespace River.OneMoreAddIn.UI
 				box.TextChanged += DoTextChanged;
 				boxtext = box.Text.Trim();
 
-				if (VisibleByDefault)
+				if (ShowPopupOnStartup)
 				{
 					box.GotFocus += ShowSelf;
 				}
@@ -230,7 +236,15 @@ namespace River.OneMoreAddIn.UI
 					var text = SelectedItems[0].Text;
 					var index = text.IndexOf(KeyDivider);
 					Owner.Text = index < 0 ? text : text.Substring(0, index);
+
+					// needed for dialogs that want to hide the popup on Enter
+					// without closing the dialog, such as FindHashtags
+					HidePopup(sender, e);
 				}
+			}
+			else if (e.KeyCode == Keys.Escape && AllowEscapeToHide)
+			{
+				HidePopup(sender, e);
 			}
 		}
 
