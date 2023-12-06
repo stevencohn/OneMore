@@ -77,19 +77,21 @@ namespace River.OneMoreAddIn.Commands
 
 			if (tags.Any())
 			{
-				contextPanel.SuspendLayout();
-				contextPanel.Controls.Clear();
 				var one = new OneNote();
+				var controls = new HashtagContextControl[tags.Count];
 
-				foreach (var tag in tags)
+				for (var i=0; i < tags.Count; i++)
 				{
+					var tag = tags[i];
 					tag.PageURL = one.GetHyperlink(tag.PageID, string.Empty);
 					tag.ObjectURL= one.GetHyperlink(tag.PageID, tag.ObjectID);
 
-					var context = new HashtagContextControl(tag);
-					contextPanel.Controls.Add(context);
+					controls[i] = new HashtagContextControl(tag);
 				}
 
+				contextPanel.SuspendLayout();
+				contextPanel.Controls.Clear();
+				contextPanel.Controls.AddRange(controls);
 				contextPanel.ResumeLayout();
 			}
 		}
