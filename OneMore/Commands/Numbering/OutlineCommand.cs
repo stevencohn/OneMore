@@ -169,7 +169,7 @@ namespace River.OneMoreAddIn.Commands
 
 			if (numeric)
 			{
-				text.Value = $"{prefix}{counter}. {text.Value} ";
+				text.Value = $"{prefix}{counter}. {text.Value}";
 			}
 			else
 			{
