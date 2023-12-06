@@ -4,6 +4,7 @@
 
 namespace River.OneMoreAddIn.Commands
 {
+	using NStandard;
 	using River.OneMoreAddIn.UI;
 	using System;
 	using System.Collections.Generic;
@@ -23,7 +24,7 @@ namespace River.OneMoreAddIn.Commands
 
 			palette = new MoreAutoCompleteList
 			{
-				AllowEscapeToHide = true
+				HideListOnLostFocus = true
 			};
 
 			palette.SetAutoCompleteList(tagBox, palette);
@@ -40,8 +41,6 @@ namespace River.OneMoreAddIn.Commands
 			palette.LoadCommands(names.ToArray(), recentNames.ToArray());
 			this.names = names;
 			this.recentNames = recentNames;
-
-			//clearLink.Enabled = recentNames?.Length > 0;
 		}
 
 
@@ -56,6 +55,42 @@ namespace River.OneMoreAddIn.Commands
 			if (e.KeyCode == Keys.Escape && !palette.IsPopupVisible)
 			{
 				Close();
+			}
+		}
+
+
+		private void SearchTags(object sender, EventArgs e)
+		{
+			var name = tagBox.Text.Trim();
+			if (name.IsNullOrEmpty())
+			{
+				return;
+			}
+
+			if (!name.StartsWith("##") && !name.StartsWith("%"))
+			{
+				name = $"%{name}";
+			}
+
+			var provider = new HashtagProvider();
+			var tags = provider.SearchTags(name);
+
+			if (tags.Any())
+			{
+				contextPanel.SuspendLayout();
+				contextPanel.Controls.Clear();
+				var one = new OneNote();
+
+				foreach (var tag in tags)
+				{
+					tag.PageURL = one.GetHyperlink(tag.PageID, string.Empty);
+					tag.ObjectURL= one.GetHyperlink(tag.PageID, tag.ObjectID);
+
+					var context = new HashtagContextControl(tag);
+					contextPanel.Controls.Add(context);
+				}
+
+				contextPanel.ResumeLayout();
 			}
 		}
 	}

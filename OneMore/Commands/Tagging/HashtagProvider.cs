@@ -234,7 +234,7 @@ namespace River.OneMoreAddIn.Commands
 		public Hashtags ReadPageTags(string pageID)
 		{
 			var sql =
-				"SELECT t.rowID, t.tag, t.moreID, p.pageID, t.objectID, t.context, t.lastScan " +
+				"SELECT t.tag, t.moreID, p.pageID, t.objectID, t.lastScan " +
 				"FROM hashtags t " +
 				"JOIN hashtags_pages p ON p.moreID = t.moreID " +
 				"WHERE p.pageID = @p";
@@ -275,18 +275,20 @@ namespace River.OneMoreAddIn.Commands
 		/// <summary>
 		/// Returns a collection of Hashtag instances with the specified name across all pages
 		/// </summary>
-		/// <param name="tag">The name of the tag to search for</param>
+		/// <param name="wildcard">The name of the tag to search for, optionally with wildcards</param>
 		/// <returns>A collection of Hashtags</returns>
-		public Hashtags ReadTagsByName(string tag)
+		public Hashtags SearchTags(string wildcard)
 		{
 			var sql =
-				"SELECT t.rowID, t.tag, t.moreID, p.pageID, t.objectID, t.context, t.lastScan " +
+				"SELECT t.tag, t.moreID, p.pageID, t.objectID, t.lastScan, t.context, p.path, p.name " +
 				"FROM hashtags t " +
-				"JOIN hashtags_pages p ON p.moreID = t.moreID " +
-				"WHERE t.tag = @p";
+				"JOIN hashtags_pages p " +
+				"ON t.moreID = p.moreID " +
+				"WHERE t.tag LIKE @t " +
+				"ORDER BY t.tag, p.path, p.name";
 
 			return ReadTags(sql,
-				new SQLiteParameter[] { new("@p", tag) }
+				new SQLiteParameter[] { new("@t", wildcard) }
 				);
 		}
 
@@ -307,16 +309,24 @@ namespace River.OneMoreAddIn.Commands
 				using var reader = cmd.ExecuteReader();
 				while (reader.Read())
 				{
-					tags.Add(new Hashtag
+
+					var tag = new Hashtag
 					{
-						RowID = reader.GetInt32(0),
-						Tag = reader.GetString(1),
-						MoreID = reader.GetString(2),
-						PageID = reader.GetString(3),
-						ObjectID = reader.GetString(4),
-						Context = reader[5] is DBNull ? null : reader.GetString(5),
-						LastScan = reader.GetString(6)
-					});
+						Tag = reader.GetString(0),
+						MoreID = reader.GetString(1),
+						PageID = reader.GetString(2),
+						ObjectID = reader.GetString(3),
+						LastScan = reader.GetString(4)
+					};
+
+					if (reader.FieldCount > 5 && sql.Contains("context"))
+					{
+						tag.Context = reader[5] is DBNull ? null : reader.GetString(5);
+						tag.HierarchyPath = reader[6] is DBNull ? null : reader.GetString(6);
+						tag.PageTitle = reader[7] is DBNull ? null : reader.GetString(7);
+					}
+
+					tags.Add(tag);
 				}
 			}
 			catch (Exception exc)

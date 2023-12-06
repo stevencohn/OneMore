@@ -15,12 +15,6 @@ namespace River.OneMoreAddIn.Commands
 	internal class Hashtag
 	{
 		/// <summary>
-		/// Gets the unique rowID returned by the DB
-		/// </summary>
-		public int RowID { get; set; }
-
-
-		/// <summary>
 		/// The hashtag string including its ## prefix
 		/// </summary>
 		public string Tag { get; set; }
@@ -45,6 +39,18 @@ namespace River.OneMoreAddIn.Commands
 
 
 		/// <summary>
+		/// Gets the hierarchy path of the page
+		/// </summary>
+		public string HierarchyPath { get; set; }
+
+
+		/// <summary>
+		/// Gets the title of the page
+		/// </summary>
+		public string PageTitle { get; set; }
+
+
+		/// <summary>
 		/// The contextual snippet of text surrounding the hashtag
 		/// </summary>
 		public string Context { get; set; }
@@ -54,6 +60,10 @@ namespace River.OneMoreAddIn.Commands
 		/// The time this tag was first captured
 		/// </summary>
 		public string LastScan { get; set; }
+
+
+		public string PageURL { get; set; }
+		public string ObjectURL { get; set; }
 
 
 		public override bool Equals(object obj)

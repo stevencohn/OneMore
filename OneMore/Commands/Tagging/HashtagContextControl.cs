@@ -11,11 +11,25 @@ namespace River.OneMoreAddIn.Commands
 	using System.Windows.Forms;
 
 
-	public partial class HashtagContextControl : UserControl
+	internal partial class HashtagContextControl : UserControl
 	{
+
 		public HashtagContextControl()
 		{
 			InitializeComponent();
+		}
+
+
+		public HashtagContextControl(Hashtag tag)
+			: this()
+		{
+			pageLink.Text = $"{tag.HierarchyPath}/{tag.PageTitle}";
+			pageLink.Links.Clear();
+			pageLink.Links.Add(0, pageLink.Text.Length, tag.PageURL);
+
+			contextLink.Text = tag.Context;
+			contextLink.Links.Clear();
+			contextLink.Links.Add(0, contextLink.Text.Length, tag.ObjectURL);
 		}
 
 

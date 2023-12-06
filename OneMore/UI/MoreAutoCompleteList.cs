@@ -61,9 +61,10 @@ namespace River.OneMoreAddIn.UI
 
 
 		/// <summary>
-		/// Gets or sets whether the popup is hidden when the Esc key is pressed.
+		/// Gets or sets whether the popup is hidden when the Esc key is pressed or focus
+		/// is turned away from the bound input control.
 		/// </summary>
-		public bool AllowEscapeToHide { get; set; }
+		public bool HideListOnLostFocus { get; set; }
 
 
 		/// <summary>
@@ -132,6 +133,7 @@ namespace River.OneMoreAddIn.UI
 				// TODO: tear down?
 			}
 
+			// currently, only allow TextBox as the owner control
 			if (control is TextBox box)
 			{
 				Owner = box;
@@ -139,6 +141,12 @@ namespace River.OneMoreAddIn.UI
 				box.KeyDown += DoKeydown;
 				box.PreviewKeyDown += DoPreviewKeyDown;
 				box.TextChanged += DoTextChanged;
+
+				if (HideListOnLostFocus)
+				{
+					box.LostFocus += HidePopup;
+				}
+
 				boxtext = box.Text.Trim();
 
 				if (ShowPopupOnStartup)
@@ -242,7 +250,7 @@ namespace River.OneMoreAddIn.UI
 					HidePopup(sender, e);
 				}
 			}
-			else if (e.KeyCode == Keys.Escape && AllowEscapeToHide)
+			else if (e.KeyCode == Keys.Escape && HideListOnLostFocus)
 			{
 				HidePopup(sender, e);
 			}
