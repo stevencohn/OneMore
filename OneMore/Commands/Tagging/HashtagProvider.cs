@@ -173,28 +173,6 @@ namespace River.OneMoreAddIn.Commands
 
 
 		/// <summary>
-		/// As tags and pages are deleted, need to clean up associated URLs
-		/// </summary>
-		public void CleanupURIs()
-		{
-			using var cmd = con.CreateCommand();
-			cmd.CommandType = CommandType.Text;
-			cmd.CommandText = "DELETE FROM hashtag_uri " +
-				"WHERE id NOT IN (SELECT DISTINCT objectID FROM hashtag " +
-				"UNION SELECT DISTINCT pageID FROM hashtag_page)";
-
-			try
-			{
-				cmd.ExecuteNonQuery();
-			}
-			catch (Exception exc)
-			{
-				logger.WriteLine("error cleaning up URIs", exc);
-			}
-		}
-
-
-		/// <summary>
 		/// Returns the last saved scan time
 		/// </summary>
 		/// <returns>A collection of Hashtags</returns>
@@ -256,7 +234,7 @@ namespace River.OneMoreAddIn.Commands
 		public Hashtags ReadPageTags(string pageID)
 		{
 			var sql =
-				"SELECT t.tag, t.moreID, p.pageID, t.objectID, t.lastScan " +
+				"SELECT t.tag, t.moreID, p.pageID, p.titleID, t.objectID, t.lastScan " +
 				"FROM hashtag t " +
 				"JOIN hashtag_page p ON p.moreID = t.moreID " +
 				"WHERE p.pageID = @p";
@@ -302,13 +280,11 @@ namespace River.OneMoreAddIn.Commands
 		public Hashtags SearchTags(string wildcard)
 		{
 			var sql =
-				"SELECT t.tag, t.moreID, p.pageID, t.objectID, t.lastScan, t.context, " +
-				"p.path, p.name, up.URI, uo.URI " +
+				"SELECT t.tag, t.moreID, p.pageID, p.titleID, t.objectID, t.lastScan, " +
+				"t.context, p.path, p.name " +
 				"FROM hashtag t " +
 				"JOIN hashtag_page p " +
 				"ON t.moreID = p.moreID " +
-				"LEFT OUTER JOIN hashtag_uri up ON up.ID = p.pageID " +
-				"LEFT OUTER JOIN hashtag_uri uo ON uo.ID = t.objectID " +
 				"WHERE t.tag LIKE @t " +
 				"ORDER BY t.tag, p.path, p.name";
 
@@ -339,17 +315,16 @@ namespace River.OneMoreAddIn.Commands
 						Tag = reader.GetString(0),
 						MoreID = reader.GetString(1),
 						PageID = reader.GetString(2),
-						ObjectID = reader.GetString(3),
-						LastScan = reader.GetString(4)
+						TitleID = reader.GetString(3),
+						ObjectID = reader.GetString(4),
+						LastScan = reader.GetString(5)
 					};
 
-					if (reader.FieldCount > 5 && sql.Contains("context"))
+					if (reader.FieldCount > 6 && sql.Contains("context"))
 					{
-						tag.Context = reader[5] is DBNull ? null : reader.GetString(5);
-						tag.HierarchyPath = reader[6] is DBNull ? null : reader.GetString(6);
-						tag.PageTitle = reader[7] is DBNull ? null : reader.GetString(7);
-						tag.PageURL = reader[8] is DBNull ? null : reader.GetString(8);
-						tag.ObjectURL = reader[9] is DBNull ? null : reader.GetString(9);
+						tag.Context = reader[6] is DBNull ? null : reader.GetString(6);
+						tag.HierarchyPath = reader[7] is DBNull ? null : reader.GetString(7);
+						tag.PageTitle = reader[8] is DBNull ? null : reader.GetString(8);
 					}
 
 					tags.Add(tag);
@@ -440,52 +415,23 @@ namespace River.OneMoreAddIn.Commands
 		/// <param name="path">The OneNote ID of the page</param>
 		/// <param name="path">The hierarchy path of the page</param>
 		/// <param name="title">The title (name) of the page</param>
-		public void WritePageInfo(string moreID, string pageID, string path, string title, string uri)
+		public void WritePageInfo(
+			string moreID, string pageID, string titleID,
+			string path, string title, string uri = null)
 		{
 			using var cmd = con.CreateCommand();
 			cmd.CommandText = "REPLACE INTO hashtag_page " +
-				"(moreID, pageID, path, name) VALUES (@m, @p, @t, @n)";
+				"(moreID, pageID, titleID, path, name) VALUES (@m, @p, @t, @h, @n)";
 
 			cmd.Parameters.AddWithValue("@m", moreID);
 			cmd.Parameters.AddWithValue("@p", pageID);
-			cmd.Parameters.AddWithValue("@t", path);
+			cmd.Parameters.AddWithValue("@t", titleID);
+			cmd.Parameters.AddWithValue("@h", path);
 			cmd.Parameters.AddWithValue("@n", title);
 
-			using var transaction = con.BeginTransaction();
 			try
 			{
 				cmd.ExecuteNonQuery();
-			}
-			catch (Exception exc)
-			{
-				logger.WriteLine("error writing page info", exc);
-				return;
-			}
-
-			if (!string.IsNullOrWhiteSpace(uri))
-			{
-				try
-				{
-					cmd.CommandText = "REPLACE INTO hashtag_uri (ID, uri) VALUES (@i, @u)";
-
-					cmd.Parameters.Clear();
-					cmd.Parameters.AddWithValue("@i", pageID);
-					cmd.Parameters.AddWithValue("@u", uri);
-
-					cmd.ExecuteNonQuery();
-
-				}
-				catch (Exception exc)
-				{
-					logger.WriteLine("error writing page info", exc);
-					transaction.Rollback();
-					return;
-				}
-			}
-
-			try
-			{
-				transaction.Commit();
 			}
 			catch (Exception exc)
 			{
@@ -511,13 +457,6 @@ namespace River.OneMoreAddIn.Commands
 			tagcmd.Parameters.Add("@c", DbType.String);
 			tagcmd.Parameters.Add("@s", DbType.String);
 
-			using var uricmd = con.CreateCommand();
-			uricmd.CommandText = "REPLACE INTO hashtag_uri (ID, uri) VALUES (@i, @u)";
-
-			uricmd.Parameters.Clear();
-			uricmd.Parameters.Add("@i", DbType.String);
-			uricmd.Parameters.Add("@u", DbType.String);
-
 			using var transaction = con.BeginTransaction();
 			foreach (var tag in tags)
 			{
@@ -532,15 +471,6 @@ namespace River.OneMoreAddIn.Commands
 				try
 				{
 					tagcmd.ExecuteNonQuery();
-
-					if (!string.IsNullOrWhiteSpace(tag.ObjectURL))
-					{
-						uricmd.Parameters["@i"].Value = tag.ObjectID;
-						uricmd.Parameters["@u"].Value = tag.ObjectURL;
-
-						uricmd.ExecuteNonQuery();
-					}
-
 				}
 				catch (Exception exc)
 				{

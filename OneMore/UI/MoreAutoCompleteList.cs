@@ -330,7 +330,7 @@ namespace River.OneMoreAddIn.UI
 
 		private void HidePopup(object sender, EventArgs e)
 		{
-			if (popup?.Visible == true)
+			if (popup?.Visible == true && !popup.Focused)
 			{
 				popup.Close();
 			}
@@ -416,7 +416,9 @@ namespace River.OneMoreAddIn.UI
 				high = SystemBrushes.GradientInactiveCaption;
 			}
 
-			e.Graphics.FillRectangle(back, e.Bounds.X, e.Bounds.Y + 1, e.Bounds.Width, e.Bounds.Height - 2);
+			e.Graphics.FillRectangle(back,
+				e.Bounds.X, e.Bounds.Y + 1,
+				e.Bounds.Width, e.Bounds.Height - 2);
 
 			string keys = null;
 
@@ -465,7 +467,8 @@ namespace River.OneMoreAddIn.UI
 
 					// draw matched phrase
 					phrase = text.Substring(index, Owner.Text.Length);
-					e.Graphics.DrawString(phrase, highFont, high, x, e.Bounds.Y, StringFormat.GenericTypographic);
+					e.Graphics.DrawString(phrase, highFont, high,
+						x, e.Bounds.Y, StringFormat.GenericTypographic);
 
 					size = e.Graphics.MeasureString(
 						phrase, highFont, new PointF(x, e.Bounds.Y), StringFormat.GenericTypographic);
@@ -477,7 +480,8 @@ namespace River.OneMoreAddIn.UI
 					if (index < text.Length)
 					{
 						phrase = text.Substring(index);
-						e.Graphics.DrawString(phrase, Font, fore, x, e.Bounds.Y, StringFormat.GenericTypographic);
+						e.Graphics.DrawString(phrase, Font, fore,
+							x, e.Bounds.Y, StringFormat.GenericTypographic);
 					}
 
 					drawn = true;

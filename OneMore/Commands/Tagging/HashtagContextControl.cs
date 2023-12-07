@@ -27,12 +27,14 @@ namespace River.OneMoreAddIn.Commands
 		{
 			pageLink.Text = $"{tag.HierarchyPath}/{tag.PageTitle}";
 			pageLink.Links.Clear();
-			pageLink.Links.Add(0, pageLink.Text.Length, tag.PageURL);
+
+			var oid = string.IsNullOrWhiteSpace(tag.TitleID) ? string.Empty : tag.TitleID;
+			pageLink.Links.Add(0, pageLink.Text.Length, (tag.PageID, oid));
 			tooltip.SetToolTip(pageLink, "Jump to this page");
 
 			contextLink.Text = tag.Context;
 			contextLink.Links.Clear();
-			contextLink.Links.Add(0, contextLink.Text.Length, tag.ObjectURL);
+			contextLink.Links.Add(0, contextLink.Text.Length, (tag.PageID, tag.ObjectID));
 			tooltip.SetToolTip(contextLink, "Jump to this paragraph");
 		}
 
@@ -63,6 +65,27 @@ namespace River.OneMoreAddIn.Commands
 		{
 			base.OnSizeChanged(e);
 			RecreateRegion();
+		}
+
+
+		private async void NavigateTo(object sender, LinkLabelLinkClickedEventArgs e)
+		{
+			if (e.Link.LinkData == null)
+			{
+				Logger.Current.WriteLine("linkData is empty");
+				return;
+			}
+
+			try
+			{
+				var (PageID, ObjectID) = ((string PageID, string ObjectID))e.Link.LinkData;
+				await new OneNote().NavigateTo(PageID, ObjectID);
+			}
+			catch (Exception exc)
+			{
+				Logger.Current.WriteLine(
+					"linkData is bad, possible broken reference to page object", exc);
+			}
 		}
 	}
 }

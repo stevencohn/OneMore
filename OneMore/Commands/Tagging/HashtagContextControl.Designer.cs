@@ -47,6 +47,7 @@
 			this.pageLink.TabStop = true;
 			this.pageLink.Text = "/OneMore Wiki/Context Menus/Notebook Panel Context Menu";
 			this.pageLink.VisitedLinkColor = System.Drawing.Color.MediumOrchid;
+			this.pageLink.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.NavigateTo);
 			// 
 			// contextLink
 			// 
@@ -64,6 +65,7 @@
 			this.contextLink.TabStop = true;
 			this.contextLink.Text = "... to substring search for a complete hashtag name of the form \"##name,\"";
 			this.contextLink.VisitedLinkColor = System.Drawing.SystemColors.GrayText;
+			this.contextLink.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.NavigateTo);
 			// 
 			// HashtagContextControl
 			// 

@@ -33,6 +33,13 @@ namespace River.OneMoreAddIn.Commands
 
 
 		/// <summary>
+		/// The OneNote ID of the page title paragraph.
+		/// Let's us scroll the page to the top.
+		/// </summary>
+		public string TitleID { get; set; }
+
+
+		/// <summary>
 		/// The OneNote owning paragraph object ID
 		/// </summary>
 		public string ObjectID { get; set; }

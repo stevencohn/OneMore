@@ -178,6 +178,24 @@ namespace River.OneMoreAddIn.Models
 
 
 		/// <summary>
+		/// Gets the objectID of the title paragraph
+		/// </summary>
+		public string TitleID
+		{
+			get
+			{
+				var attribute = Root
+					.Elements(Namespace + "Title")
+					.Elements(Namespace + "OE")
+					.Attributes("objectID")
+					.FirstOrDefault();
+
+				return attribute?.Value;
+			}
+		}
+
+
+		/// <summary>
 		/// Appends content to the current page
 		/// </summary>
 		/// <param name="content"></param>

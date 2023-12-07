@@ -83,7 +83,6 @@ namespace River.OneMoreAddIn.Commands
 				}
 			}
 
-			provider.CleanupURIs();
 			provider.WriteLastScanTime();
 
 			return totalPages;
@@ -160,6 +159,7 @@ namespace River.OneMoreAddIn.Commands
 			}
 
 			var title = page.Title;
+			var titleID = page.TitleID;
 			var scanner = factory.CreatePageScanner(page.Root);
 			var candidates = scanner.Scan();
 
@@ -207,7 +207,7 @@ namespace River.OneMoreAddIn.Commands
 			if (discovered.Any())
 			{
 				// discovered entries are new on the page and not found in saved
-				discovered.ForEach(d => d.ObjectURL = one.GetHyperlink(pageID, d.ObjectID));
+
 				provider.WriteTags(discovered);
 				dirtyPage = true;
 			}
@@ -230,8 +230,7 @@ namespace River.OneMoreAddIn.Commands
 
 				// TODO: should this be wrapped in a tx along with the above statements?
 
-				var url = one.GetHyperlink(pageID, string.Empty);
-				provider.WritePageInfo(scanner.MoreID, pageID, path, title, url);
+				provider.WritePageInfo(scanner.MoreID, pageID, titleID, path, title);
 				logger.WriteLine($"updating tags on page {path}/{title}");
 			}
 		}

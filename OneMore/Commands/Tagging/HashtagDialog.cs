@@ -72,6 +72,8 @@ namespace River.OneMoreAddIn.Commands
 				name = $"%{name}";
 			}
 
+			name = name.Replace('*', '%');
+
 			var provider = new HashtagProvider();
 			var tags = provider.SearchTags(name);
 
