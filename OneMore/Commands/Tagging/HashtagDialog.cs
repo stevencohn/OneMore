@@ -77,22 +77,23 @@ namespace River.OneMoreAddIn.Commands
 
 			if (tags.Any())
 			{
-				var one = new OneNote();
+				logger.StartClock();
+
 				var controls = new HashtagContextControl[tags.Count];
 
 				for (var i=0; i < tags.Count; i++)
 				{
-					var tag = tags[i];
-					tag.PageURL = one.GetHyperlink(tag.PageID, string.Empty);
-					tag.ObjectURL= one.GetHyperlink(tag.PageID, tag.ObjectID);
-
-					controls[i] = new HashtagContextControl(tag);
+					controls[i] = new HashtagContextControl(tags[i]);
 				}
+
+				logger.WriteTime($"expanded {tags.Count} hyperlinks", true);
 
 				contextPanel.SuspendLayout();
 				contextPanel.Controls.Clear();
 				contextPanel.Controls.AddRange(controls);
 				contextPanel.ResumeLayout();
+
+				logger.WriteTime("SearchTags done");
 			}
 		}
 	}

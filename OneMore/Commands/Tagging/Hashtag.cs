@@ -62,7 +62,15 @@ namespace River.OneMoreAddIn.Commands
 		public string LastScan { get; set; }
 
 
+		/// <summary>
+		/// Gets or sets the OneNote URL of the page
+		/// </summary>
 		public string PageURL { get; set; }
+
+
+		/// <summary>
+		/// Gets or sets the OneNote URL of the object on the page
+		/// </summary>
 		public string ObjectURL { get; set; }
 
 

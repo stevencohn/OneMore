@@ -78,7 +78,7 @@ namespace River.OneMoreAddIn.Commands
 			}
 			catch (Exception exc)
 			{
-				logger.WriteLine("error committing transaction", exc);
+				logger.WriteLine("error building db", exc);
 				throw;
 			}
 		}
@@ -112,7 +112,7 @@ namespace River.OneMoreAddIn.Commands
 		public void DeleteTags(Hashtags tags)
 		{
 			using var cmd = con.CreateCommand();
-			cmd.CommandText = "DELETE FROM hashtags WHERE tag = @t AND moreID = @m";
+			cmd.CommandText = "DELETE FROM hashtag WHERE tag = @t AND moreID = @m";
 			cmd.CommandType = CommandType.Text;
 			cmd.Parameters.Add("@t", DbType.String);
 			cmd.Parameters.Add("@m", DbType.String);
@@ -143,7 +143,7 @@ namespace River.OneMoreAddIn.Commands
 			}
 			catch (Exception exc)
 			{
-				logger.WriteLine("error committing transaction", exc);
+				logger.WriteLine("error deleting tags", exc);
 			}
 		}
 
@@ -151,14 +151,14 @@ namespace River.OneMoreAddIn.Commands
 		private void CleanupPages()
 		{
 			// as tags are deleted from a page, that page may be left dangling in the
-			// hashtags_pages table; this cleans up those orphaned records
+			// hashtag_page table; this cleans up those orphaned records
 
 			using var cmd = con.CreateCommand();
 			cmd.CommandType = CommandType.Text;
-			cmd.CommandText = "DELETE FROM hashtags_pages WHERE moreID IN (" +
+			cmd.CommandText = "DELETE FROM hashtag_page WHERE moreID IN (" +
 				"SELECT P.moreID " +
-				"FROM hashtags_pages P " +
-				"LEFT OUTER JOIN hashtags T " +
+				"FROM hashtag_page P " +
+				"LEFT OUTER JOIN hashtag T " +
 				"ON T.moreID = P.moreID WHERE T.tag IS NULL)";
 
 			try
@@ -167,7 +167,29 @@ namespace River.OneMoreAddIn.Commands
 			}
 			catch (Exception exc)
 			{
-				logger.WriteLine("error committing transaction", exc);
+				logger.WriteLine("error cleaning up pages", exc);
+			}
+		}
+
+
+		/// <summary>
+		/// As tags and pages are deleted, need to clean up associated URLs
+		/// </summary>
+		public void CleanupURIs()
+		{
+			using var cmd = con.CreateCommand();
+			cmd.CommandType = CommandType.Text;
+			cmd.CommandText = "DELETE FROM hashtag_uri " +
+				"WHERE id NOT IN (SELECT DISTINCT objectID FROM hashtag " +
+				"UNION SELECT DISTINCT pageID FROM hashtag_page)";
+
+			try
+			{
+				cmd.ExecuteNonQuery();
+			}
+			catch (Exception exc)
+			{
+				logger.WriteLine("error cleaning up URIs", exc);
 			}
 		}
 
@@ -207,7 +229,7 @@ namespace River.OneMoreAddIn.Commands
 		{
 			var tags = new List<string>();
 			using var cmd = con.CreateCommand();
-			cmd.CommandText = "SELECT DISTINCT tag FROM hashtags ORDER BY lastScan LIMIT 5";
+			cmd.CommandText = "SELECT DISTINCT tag FROM hashtag ORDER BY lastScan LIMIT 5";
 
 			try
 			{
@@ -235,8 +257,8 @@ namespace River.OneMoreAddIn.Commands
 		{
 			var sql =
 				"SELECT t.tag, t.moreID, p.pageID, t.objectID, t.lastScan " +
-				"FROM hashtags t " +
-				"JOIN hashtags_pages p ON p.moreID = t.moreID " +
+				"FROM hashtag t " +
+				"JOIN hashtag_page p ON p.moreID = t.moreID " +
 				"WHERE p.pageID = @p";
 
 			return ReadTags(sql,
@@ -253,7 +275,7 @@ namespace River.OneMoreAddIn.Commands
 		{
 			var tags = new List<string>();
 			using var cmd = con.CreateCommand();
-			cmd.CommandText = "SELECT DISTINCT tag FROM hashtags ORDER BY 1";
+			cmd.CommandText = "SELECT DISTINCT tag FROM hashtag ORDER BY 1";
 
 			try
 			{
@@ -281,8 +303,8 @@ namespace River.OneMoreAddIn.Commands
 		{
 			var sql =
 				"SELECT t.tag, t.moreID, p.pageID, t.objectID, t.lastScan, t.context, p.path, p.name " +
-				"FROM hashtags t " +
-				"JOIN hashtags_pages p " +
+				"FROM hashtag t " +
+				"JOIN hashtag_page p " +
 				"ON t.moreID = p.moreID " +
 				"WHERE t.tag LIKE @t " +
 				"ORDER BY t.tag, p.path, p.name";
@@ -345,7 +367,7 @@ namespace River.OneMoreAddIn.Commands
 		public void UpdateContext(Hashtags tags)
 		{
 			using var cmd = con.CreateCommand();
-			cmd.CommandText = "UPDATE hashtags " +
+			cmd.CommandText = "UPDATE hashtag " +
 				"SET context = @c, lastScan = @s " +
 				"WHERE tag = @t AND moreID = @m";
 
@@ -381,7 +403,7 @@ namespace River.OneMoreAddIn.Commands
 			}
 			catch (Exception exc)
 			{
-				logger.WriteLine("error committing transaction", exc);
+				logger.WriteLine("error updating contexts", exc);
 			}
 		}
 
@@ -414,10 +436,10 @@ namespace River.OneMoreAddIn.Commands
 		/// <param name="path">The OneNote ID of the page</param>
 		/// <param name="path">The hierarchy path of the page</param>
 		/// <param name="title">The title (name) of the page</param>
-		public void WritePageInfo(string moreID, string pageID, string path, string title)
+		public void WritePageInfo(string moreID, string pageID, string path, string title, string uri)
 		{
 			using var cmd = con.CreateCommand();
-			cmd.CommandText = "REPLACE INTO hashtags_pages " +
+			cmd.CommandText = "REPLACE INTO hashtag_page " +
 				"(moreID, pageID, path, name) VALUES (@m, @p, @t, @n)";
 
 			cmd.Parameters.AddWithValue("@m", moreID);
@@ -425,9 +447,41 @@ namespace River.OneMoreAddIn.Commands
 			cmd.Parameters.AddWithValue("@t", path);
 			cmd.Parameters.AddWithValue("@n", title);
 
+			using var transaction = con.BeginTransaction();
 			try
 			{
 				cmd.ExecuteNonQuery();
+			}
+			catch (Exception exc)
+			{
+				logger.WriteLine("error writing page info", exc);
+				return;
+			}
+
+			if (!string.IsNullOrWhiteSpace(uri))
+			{
+				try
+				{
+					cmd.CommandText = "REPLACE INTO hashtag_uri (ID, uri) VALUES (@i, @u)";
+
+					cmd.Parameters.Clear();
+					cmd.Parameters.AddWithValue("@i", pageID);
+					cmd.Parameters.AddWithValue("@u", uri);
+
+					cmd.ExecuteNonQuery();
+
+				}
+				catch (Exception exc)
+				{
+					logger.WriteLine("error writing page info", exc);
+					transaction.Rollback();
+					return;
+				}
+			}
+
+			try
+			{
+				transaction.Commit();
 			}
 			catch (Exception exc)
 			{
@@ -442,31 +496,47 @@ namespace River.OneMoreAddIn.Commands
 		/// <param name="tags">A collection of Hashtags</param>
 		public void WriteTags(Hashtags tags)
 		{
-			using var cmd = con.CreateCommand();
-			cmd.CommandText = "INSERT INTO hashtags " +
+			using var tagcmd = con.CreateCommand();
+			tagcmd.CommandText = "INSERT INTO hashtag " +
 				"(tag, moreID, objectID, context, lastScan) VALUES (@t, @m, @o, @c, @s)";
 
-			cmd.CommandType = CommandType.Text;
-			cmd.Parameters.Add("@t", DbType.String);
-			cmd.Parameters.Add("@m", DbType.String);
-			cmd.Parameters.Add("@o", DbType.String);
-			cmd.Parameters.Add("@c", DbType.String);
-			cmd.Parameters.Add("@s", DbType.String);
+			tagcmd.CommandType = CommandType.Text;
+			tagcmd.Parameters.Add("@t", DbType.String);
+			tagcmd.Parameters.Add("@m", DbType.String);
+			tagcmd.Parameters.Add("@o", DbType.String);
+			tagcmd.Parameters.Add("@c", DbType.String);
+			tagcmd.Parameters.Add("@s", DbType.String);
+
+			using var uricmd = con.CreateCommand();
+			uricmd.CommandText = "REPLACE INTO hashtag_uri (ID, uri) VALUES (@i, @u)";
+
+			uricmd.Parameters.Clear();
+			uricmd.Parameters.Add("@i", DbType.String);
+			uricmd.Parameters.Add("@u", DbType.String);
 
 			using var transaction = con.BeginTransaction();
 			foreach (var tag in tags)
 			{
 				logger.Verbose($"writing tag {tag.Tag}");
 
-				cmd.Parameters["@t"].Value = tag.Tag;
-				cmd.Parameters["@m"].Value = tag.MoreID;
-				cmd.Parameters["@o"].Value = tag.ObjectID;
-				cmd.Parameters["@c"].Value = tag.Context;
-				cmd.Parameters["@s"].Value = timestamp;
+				tagcmd.Parameters["@t"].Value = tag.Tag;
+				tagcmd.Parameters["@m"].Value = tag.MoreID;
+				tagcmd.Parameters["@o"].Value = tag.ObjectID;
+				tagcmd.Parameters["@c"].Value = tag.Context;
+				tagcmd.Parameters["@s"].Value = timestamp;
 
 				try
 				{
-					cmd.ExecuteNonQuery();
+					tagcmd.ExecuteNonQuery();
+
+					if (!string.IsNullOrWhiteSpace(tag.ObjectURL))
+					{
+						uricmd.Parameters["@i"].Value = tag.ObjectID;
+						uricmd.Parameters["@u"].Value = tag.ObjectURL;
+
+						uricmd.ExecuteNonQuery();
+					}
+
 				}
 				catch (Exception exc)
 				{
@@ -480,7 +550,7 @@ namespace River.OneMoreAddIn.Commands
 			}
 			catch (Exception exc)
 			{
-				logger.WriteLine("error committing transaction", exc);
+				logger.WriteLine("error writing tags", exc);
 			}
 		}
 	}

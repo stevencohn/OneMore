@@ -83,6 +83,7 @@ namespace River.OneMoreAddIn.Commands
 				}
 			}
 
+			provider.CleanupURIs();
 			provider.WriteLastScanTime();
 
 			return totalPages;
@@ -186,44 +187,51 @@ namespace River.OneMoreAddIn.Commands
 				}
 			}
 
-			var updatedAny = false;
+			var dirtyPage = false;
 
 			if (saved.Any())
 			{
 				// remaining saved entries were not matched with candidates
 				// on page so should be deleted
 				provider.DeleteTags(saved);
-				updatedAny = true;
+				dirtyPage = true;
 			}
 
 			if (updated.Any())
 			{
 				// tag context updated since last scan
 				provider.UpdateContext(updated);
-				updatedAny = true;
+				dirtyPage = true;
 			}
 
 			if (discovered.Any())
 			{
 				// discovered entries are new on the page and not found in saved
+				discovered.ForEach(d => d.ObjectURL = one.GetHyperlink(pageID, d.ObjectID));
 				provider.WriteTags(discovered);
-				updatedAny = true;
+				dirtyPage = true;
 			}
 
 			// if first time hashtags were discovered on this page then set omPageID
-			if (scanner.UpdateMeta && updatedAny)
+			if (scanner.UpdateMeta && dirtyPage)
 			{
 				page.SetMeta(MetaNames.PageID, scanner.MoreID);
 				await one.Update(page);
 			}
 
-			if (updatedAny)
+			if (dirtyPage)
 			{
 				// will likely rewrite same data but needed in case old page is moved
+
 				// TODO: could track moreID+pageID to determine if REPLACE is needed; but then
 				// need to read that info first as well; see where the design goes...
+
 				// TODO: how to clean up deleted pages?
-				provider.WritePageInfo(scanner.MoreID, pageID, path, title);
+
+				// TODO: should this be wrapped in a tx along with the above statements?
+
+				var url = one.GetHyperlink(pageID, string.Empty);
+				provider.WritePageInfo(scanner.MoreID, pageID, path, title, url);
 				logger.WriteLine($"updating tags on page {path}/{title}");
 			}
 		}
