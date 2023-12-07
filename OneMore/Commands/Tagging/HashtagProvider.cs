@@ -302,10 +302,13 @@ namespace River.OneMoreAddIn.Commands
 		public Hashtags SearchTags(string wildcard)
 		{
 			var sql =
-				"SELECT t.tag, t.moreID, p.pageID, t.objectID, t.lastScan, t.context, p.path, p.name " +
+				"SELECT t.tag, t.moreID, p.pageID, t.objectID, t.lastScan, t.context, " +
+				"p.path, p.name, up.URI, uo.URI " +
 				"FROM hashtag t " +
 				"JOIN hashtag_page p " +
 				"ON t.moreID = p.moreID " +
+				"LEFT OUTER JOIN hashtag_uri up ON up.ID = p.pageID " +
+				"LEFT OUTER JOIN hashtag_uri uo ON uo.ID = t.objectID " +
 				"WHERE t.tag LIKE @t " +
 				"ORDER BY t.tag, p.path, p.name";
 
@@ -346,6 +349,8 @@ namespace River.OneMoreAddIn.Commands
 						tag.Context = reader[5] is DBNull ? null : reader.GetString(5);
 						tag.HierarchyPath = reader[6] is DBNull ? null : reader.GetString(6);
 						tag.PageTitle = reader[7] is DBNull ? null : reader.GetString(7);
+						tag.PageURL = reader[8] is DBNull ? null : reader.GetString(8);
+						tag.ObjectURL = reader[9] is DBNull ? null : reader.GetString(9);
 					}
 
 					tags.Add(tag);
