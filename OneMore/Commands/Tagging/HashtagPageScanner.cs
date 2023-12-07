@@ -16,7 +16,7 @@ namespace River.OneMoreAddIn.Commands
 	/// </summary>
 	internal class HashtagPageScanner
 	{
-		private const int ContextLength = 70;
+		private const int ContextLength = 100;
 
 		private readonly XElement root;
 		private readonly XNamespace ns;

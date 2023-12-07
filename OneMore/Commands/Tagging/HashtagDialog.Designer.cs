@@ -35,6 +35,7 @@
 			this.searchButton = new System.Windows.Forms.Button();
 			this.tagBox = new System.Windows.Forms.TextBox();
 			this.panel1 = new System.Windows.Forms.Panel();
+			this.introLabel = new System.Windows.Forms.Label();
 			this.topPanel.SuspendLayout();
 			this.panel1.SuspendLayout();
 			this.SuspendLayout();
@@ -66,6 +67,7 @@
 			// topPanel
 			// 
 			this.topPanel.BackColor = System.Drawing.SystemColors.Window;
+			this.topPanel.Controls.Add(this.introLabel);
 			this.topPanel.Controls.Add(this.searchButton);
 			this.topPanel.Controls.Add(this.tagBox);
 			this.topPanel.Dock = System.Windows.Forms.DockStyle.Top;
@@ -79,7 +81,7 @@
 			// searchButton
 			// 
 			this.searchButton.Image = ((System.Drawing.Image)(resources.GetObject("searchButton.Image")));
-			this.searchButton.Location = new System.Drawing.Point(557, 39);
+			this.searchButton.Location = new System.Drawing.Point(557, 37);
 			this.searchButton.Name = "searchButton";
 			this.searchButton.Size = new System.Drawing.Size(60, 32);
 			this.searchButton.TabIndex = 2;
@@ -89,7 +91,7 @@
 			// tagBox
 			// 
 			this.tagBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.tagBox.Location = new System.Drawing.Point(41, 40);
+			this.tagBox.Location = new System.Drawing.Point(41, 38);
 			this.tagBox.Name = "tagBox";
 			this.tagBox.Size = new System.Drawing.Size(510, 28);
 			this.tagBox.TabIndex = 0;
@@ -102,6 +104,18 @@
 			this.panel1.Name = "panel1";
 			this.panel1.Size = new System.Drawing.Size(988, 60);
 			this.panel1.TabIndex = 9;
+			// 
+			// introLabel
+			// 
+			this.introLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.introLabel.AutoSize = true;
+			this.introLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.introLabel.ForeColor = System.Drawing.SystemColors.ControlDark;
+			this.introLabel.Location = new System.Drawing.Point(831, 41);
+			this.introLabel.Name = "introLabel";
+			this.introLabel.Size = new System.Drawing.Size(144, 25);
+			this.introLabel.TabIndex = 3;
+			this.introLabel.Text = "PROTOTYPE";
 			// 
 			// HashtagDialog
 			// 
@@ -132,5 +146,6 @@
 		private System.Windows.Forms.Panel panel1;
 		private System.Windows.Forms.TextBox tagBox;
 		private System.Windows.Forms.Button searchButton;
+		private System.Windows.Forms.Label introLabel;
 	}
 }
