@@ -28,8 +28,10 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
+			this.components = new System.ComponentModel.Container();
 			this.pageLink = new River.OneMoreAddIn.UI.MoreLinkLabel();
 			this.contextLink = new River.OneMoreAddIn.UI.MoreLinkLabel();
+			this.tooltip = new System.Windows.Forms.ToolTip(this.components);
 			this.SuspendLayout();
 			// 
 			// pageLink
@@ -83,5 +85,6 @@
 
 		private UI.MoreLinkLabel pageLink;
 		private UI.MoreLinkLabel contextLink;
+		private System.Windows.Forms.ToolTip tooltip;
 	}
 }

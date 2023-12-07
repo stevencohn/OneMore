@@ -334,7 +334,6 @@ namespace River.OneMoreAddIn.Commands
 				using var reader = cmd.ExecuteReader();
 				while (reader.Read())
 				{
-
 					var tag = new Hashtag
 					{
 						Tag = reader.GetString(0),

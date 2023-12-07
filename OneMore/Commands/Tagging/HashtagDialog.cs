@@ -80,10 +80,15 @@ namespace River.OneMoreAddIn.Commands
 				logger.StartClock();
 
 				var controls = new HashtagContextControl[tags.Count];
+				var width = contextPanel.ClientSize.Width -
+					(contextPanel.Padding.Left + contextPanel.Padding.Right) * 2 - 20;
 
-				for (var i=0; i < tags.Count; i++)
+				for (var i = 0; i < tags.Count; i++)
 				{
-					controls[i] = new HashtagContextControl(tags[i]);
+					controls[i] = new HashtagContextControl(tags[i])
+					{
+						Width = width
+					};
 				}
 
 				logger.WriteTime($"expanded {tags.Count} hyperlinks", true);
@@ -94,6 +99,19 @@ namespace River.OneMoreAddIn.Commands
 				contextPanel.ResumeLayout();
 
 				logger.WriteTime("SearchTags done");
+			}
+		}
+
+		protected override void OnSizeChanged(EventArgs e)
+		{
+			base.OnSizeChanged(e);
+
+			var width = contextPanel.ClientSize.Width -
+				(contextPanel.Padding.Left + contextPanel.Padding.Right) * 2;
+
+			for (var i = 0; i < contextPanel.Controls.Count; i++)
+			{
+				contextPanel.Controls[i].Width = width;
 			}
 		}
 	}

@@ -7,16 +7,18 @@ namespace River.OneMoreAddIn.Commands
 	using System;
 	using System.ComponentModel;
 	using System.Drawing;
-	using System.Runtime.InteropServices;
 	using System.Windows.Forms;
 
 
 	internal partial class HashtagContextControl : UserControl
 	{
+		private int radius = 5;
+
 
 		public HashtagContextControl()
 		{
 			InitializeComponent();
+			Radius = 5;
 		}
 
 
@@ -26,14 +28,15 @@ namespace River.OneMoreAddIn.Commands
 			pageLink.Text = $"{tag.HierarchyPath}/{tag.PageTitle}";
 			pageLink.Links.Clear();
 			pageLink.Links.Add(0, pageLink.Text.Length, tag.PageURL);
+			tooltip.SetToolTip(pageLink, "Jump to this page");
 
 			contextLink.Text = tag.Context;
 			contextLink.Links.Clear();
 			contextLink.Links.Add(0, contextLink.Text.Length, tag.ObjectURL);
+			tooltip.SetToolTip(contextLink, "Jump to this paragraph");
 		}
 
 
-		private int radius = 3;
 		[DefaultValue(5)]
 		public int Radius
 		{
@@ -45,16 +48,13 @@ namespace River.OneMoreAddIn.Commands
 			}
 		}
 
-		[DllImport("gdi32.dll")]
-		private static extern IntPtr CreateRoundRectRgn(int nLeftRect, int nTopRect,
-			int nRightRect, int nBottomRect, int nWidthEllipse, int nHeightEllipse);
-
 
 		private void RecreateRegion()
 		{
-			var bounds = ClientRectangle;
-			Region = Region.FromHrgn(CreateRoundRectRgn(bounds.Left, bounds.Top,
-				bounds.Right, bounds.Bottom, Radius, radius));
+			Region = Region.FromHrgn(Native.CreateRoundRectRgn(
+				ClientRectangle.Left, ClientRectangle.Top,
+				ClientRectangle.Right, ClientRectangle.Bottom,
+				radius, radius));
 
 			Invalidate();
 		}

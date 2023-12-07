@@ -55,14 +55,13 @@
 			// contextPanel
 			// 
 			this.contextPanel.AutoScroll = true;
+			this.contextPanel.BackColor = System.Drawing.SystemColors.AppWorkspace;
 			this.contextPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.contextPanel.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
 			this.contextPanel.Location = new System.Drawing.Point(0, 114);
 			this.contextPanel.Name = "contextPanel";
-			this.contextPanel.Padding = new System.Windows.Forms.Padding(3);
+			this.contextPanel.Padding = new System.Windows.Forms.Padding(6);
 			this.contextPanel.Size = new System.Drawing.Size(988, 396);
 			this.contextPanel.TabIndex = 7;
-			this.contextPanel.WrapContents = false;
 			// 
 			// topPanel
 			// 
@@ -79,7 +78,6 @@
 			// 
 			// searchButton
 			// 
-			this.searchButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.searchButton.Image = ((System.Drawing.Image)(resources.GetObject("searchButton.Image")));
 			this.searchButton.Location = new System.Drawing.Point(557, 39);
 			this.searchButton.Name = "searchButton";
@@ -116,6 +114,7 @@
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.MaximizeBox = false;
 			this.MinimizeBox = false;
+			this.MinimumSize = new System.Drawing.Size(800, 400);
 			this.Name = "HashtagDialog";
 			this.Text = "Find Hashtags";
 			this.topPanel.ResumeLayout(false);
