@@ -7,8 +7,17 @@ namespace River.OneMoreAddIn.Commands
 	using System.Collections.Generic;
 
 
+	/// <summary>
+	/// A container model used to collate all tags on a page into one instance so it
+	/// can be displayed as a search result
+	/// </summary>
 	internal class HashtagContext : Hashtag
 	{
+		/// <summary>
+		/// Initialize a new instance, inferring page details from the given tag
+		/// and initializing the Snippets collection with the tag's snippet
+		/// </summary>
+		/// <param name="tag">The hashtag to clone</param>
 		public HashtagContext(Hashtag tag)
 		{
 			MoreID = tag.MoreID;
@@ -34,6 +43,9 @@ namespace River.OneMoreAddIn.Commands
 	internal class HashtagContexts : List<HashtagContext> { }
 
 
+	/// <summary>
+	/// A paragraph on the page containing at least one tag
+	/// </summary>
 	internal class HashtagSnippet
 	{
 		public HashtagSnippet(string objectID, string snippet, string scanTime)

@@ -8,6 +8,7 @@ namespace River.OneMoreAddIn.Commands
 	using System;
 	using System.ComponentModel;
 	using System.Drawing;
+	using System.Globalization;
 	using System.Windows.Forms;
 
 
@@ -33,7 +34,10 @@ namespace River.OneMoreAddIn.Commands
 
 			// scanTime...
 
-			dateLabel.Text = DateTime.Parse(item.ScanTime).ToShortFriendlyString();
+			dateLabel.Text = DateTime
+				.Parse(item.ScanTime, CultureInfo.InvariantCulture)
+				.ToShortFriendlyString();
+
 			dateLabel.Left = Width - dateLabel.Width - 8;
 
 
@@ -61,7 +65,11 @@ namespace River.OneMoreAddIn.Commands
 
 				link.LinkClicked += NavigateTo;
 				link.Links.Add(0, link.Text.Length, (item.PageID, snippet.ObjectID));
-				var date = DateTime.Parse(snippet.ScanTime).ToShortFriendlyString();
+
+				var date = DateTime
+					.Parse(snippet.ScanTime, CultureInfo.InvariantCulture)
+					.ToShortFriendlyString();
+
 				tooltip.SetToolTip(link, $"Jump to this paragraph; last updated {date}");
 
 				snippetsPanel.Controls.Add(link);

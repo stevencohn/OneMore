@@ -156,6 +156,8 @@ namespace River.OneMoreAddIn.Commands
 
 		private HashtagContexts CollateTags(Hashtags tags)
 		{
+			// transform Hashtags collection to HashtagContexts collection...
+
 			var items = new HashtagContexts();
 
 			// tags should be sorted by p.path, p.name so collate based on that assumption
