@@ -194,12 +194,20 @@ namespace River.OneMoreAddIn.UI
 			}
 
 			// preselect the first item
-			Items[0].Selected = true;
+			if (Items.Count > 0)
+			{
+				Items[0].Selected = true;
+			}
 		}
 
 
 		private void ShowSelf(object sender, EventArgs e)
 		{
+			if (Items.Count == 0)
+			{
+				return;
+			}
+
 			if (sender is TextBox box && !box.Visible)
 			{
 				popup?.Close();
@@ -235,6 +243,11 @@ namespace River.OneMoreAddIn.UI
 
 		private void DoPreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
 		{
+			if (Items.Count == 0)
+			{
+				return;
+			}
+
 			// must catch Enter key in preview event so it's not superseded
 			// by Form.AcceptButton eventing
 			if (e.KeyCode == Keys.Enter)
@@ -259,6 +272,11 @@ namespace River.OneMoreAddIn.UI
 
 		private void DoKeydown(object sender, KeyEventArgs e)
 		{
+			if (Items.Count == 0)
+			{
+				return;
+			}
+
 			if (e.KeyCode == Keys.Escape)
 			{
 				HidePopup(sender, e);
@@ -339,6 +357,11 @@ namespace River.OneMoreAddIn.UI
 
 		private void DoTextChanged(object sender, EventArgs e)
 		{
+			if (Items.Count == 0)
+			{
+				return;
+			}
+
 			var text = Owner.Text.Trim();
 			if (text != boxtext)
 			{

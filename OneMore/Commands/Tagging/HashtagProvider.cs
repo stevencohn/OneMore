@@ -10,9 +10,7 @@ namespace River.OneMoreAddIn.Commands
 	using System.Data;
 	using System.Data.SQLite;
 	using System.IO;
-	using System.Security.Cryptography;
 	using System.Text.RegularExpressions;
-	using Windows.Devices.Bluetooth;
 
 
 	/// <summary>

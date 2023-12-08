@@ -6,7 +6,6 @@ namespace River.OneMoreAddIn.Commands
 {
 	using River.OneMoreAddIn.UI;
 	using System;
-	using System.Collections.Generic;
 	using System.Linq;
 	using System.Windows.Forms;
 
@@ -51,15 +50,15 @@ namespace River.OneMoreAddIn.Commands
 
 			var names = scopeBox.SelectedIndex switch
 			{
-				1 => provider.ReadTagNames(sectionID: sectionID),
-				2 => provider.ReadTagNames(notebookID: notebookID),
+				1 => provider.ReadTagNames(notebookID: notebookID),
+				2 => provider.ReadTagNames(sectionID: sectionID),
 				_ => provider.ReadTagNames(),
 			};
 
 			var recent = scopeBox.SelectedIndex switch
 			{
-				1 => provider.ReadLatestTagNames(sectionID: sectionID),
-				2 => provider.ReadLatestTagNames(notebookID: notebookID),
+				1 => provider.ReadLatestTagNames(notebookID: notebookID),
+				2 => provider.ReadLatestTagNames(sectionID: sectionID),
 				_ => provider.ReadLatestTagNames(),
 			};
 
