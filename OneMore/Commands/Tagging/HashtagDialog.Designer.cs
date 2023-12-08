@@ -31,7 +31,7 @@
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(HashtagDialog));
 			this.cancelButton = new System.Windows.Forms.Button();
 			this.contextPanel = new System.Windows.Forms.FlowLayoutPanel();
-			this.topPanel = new System.Windows.Forms.Panel();
+			this.topPanel = new River.OneMoreAddIn.UI.MorePanel();
 			this.scopeBox = new System.Windows.Forms.ComboBox();
 			this.introLabel = new System.Windows.Forms.Label();
 			this.searchButton = new System.Windows.Forms.Button();
@@ -68,6 +68,8 @@
 			// topPanel
 			// 
 			this.topPanel.BackColor = System.Drawing.SystemColors.Window;
+			this.topPanel.BottomBorderColor = System.Drawing.SystemColors.WindowFrame;
+			this.topPanel.BottomBorderSize = 1;
 			this.topPanel.Controls.Add(this.scopeBox);
 			this.topPanel.Controls.Add(this.introLabel);
 			this.topPanel.Controls.Add(this.searchButton);
@@ -158,7 +160,7 @@
 
 		private System.Windows.Forms.Button cancelButton;
 		private System.Windows.Forms.FlowLayoutPanel contextPanel;
-		private System.Windows.Forms.Panel topPanel;
+		private UI.MorePanel topPanel;
 		private System.Windows.Forms.Panel panel1;
 		private System.Windows.Forms.TextBox tagBox;
 		private System.Windows.Forms.Button searchButton;

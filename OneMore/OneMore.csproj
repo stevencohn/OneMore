@@ -457,6 +457,9 @@
     <Compile Include="UI\MoreFlowLayoutPanel.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="UI\MorePanel.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="UI\RenameDialog.cs">
       <SubType>Form</SubType>
     </Compile>
