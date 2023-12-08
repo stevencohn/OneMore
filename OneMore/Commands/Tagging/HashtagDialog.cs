@@ -28,7 +28,9 @@ namespace River.OneMoreAddIn.Commands
 
 			palette = new MoreAutoCompleteList
 			{
-				HideListOnLostFocus = true
+				HideListOnLostFocus = true,
+				RecentKicker = "recent tags",
+				OtherKicker = "all tags"
 			};
 
 			palette.SetAutoCompleteList(tagBox, palette);
@@ -62,7 +64,7 @@ namespace River.OneMoreAddIn.Commands
 				_ => provider.ReadLatestTagNames(),
 			};
 
-			logger.WriteLine($"discovered {names.Count()} tags, {recent.Count()} mru");
+			logger.Verbose($"discovered {names.Count()} tags, {recent.Count()} mru");
 
 			palette.LoadCommands(names.ToArray(), recent.ToArray());
 		}

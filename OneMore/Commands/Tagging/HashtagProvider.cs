@@ -327,7 +327,7 @@ namespace River.OneMoreAddIn.Commands
 			}
 			else if (!string.IsNullOrWhiteSpace(notebookID))
 			{
-				sql = $"{sql} AND p.sectionID = @nid ";
+				sql = $"{sql} AND p.notebookID = @nid ";
 				parameters.Add(new("nid", notebookID));
 			}
 

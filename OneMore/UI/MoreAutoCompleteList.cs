@@ -57,6 +57,9 @@ namespace River.OneMoreAddIn.UI
 			highFont = new Font(Font, Font.Style | FontStyle.Bold);
 			commands = new List<Cmd>();
 			matches = new List<Cmd>();
+
+			RecentKicker = Resx.AutoComplete_recentlyUsed;
+			OtherKicker = Resx.AutoComplete_otherCommands;
 		}
 
 
@@ -71,6 +74,11 @@ namespace River.OneMoreAddIn.UI
 		/// Gets or sets a character used to delimit a command's name from its key sequence.
 		/// </summary>
 		public char KeyDivider { get; set; } = '|';
+
+
+		public string OtherKicker { private get; set; }
+
+		public string RecentKicker { private get; set; }
 
 
 		/// <summary>
@@ -524,7 +532,7 @@ namespace River.OneMoreAddIn.UI
 			{
 				if (e.ItemIndex == 0)
 				{
-					var annotation = Resx.AutoComplete_recentlyUsed;
+					var annotation = RecentKicker;
 					var size = e.Graphics.MeasureString(annotation, Font);
 					// push key sequence positioning over to the left
 					x -= size.Width;
@@ -547,7 +555,7 @@ namespace River.OneMoreAddIn.UI
 				}
 				else if (common == e.ItemIndex)
 				{
-					var annotation = Resx.AutoComplete_otherCommands;
+					var annotation = OtherKicker;
 					var size = e.Graphics.MeasureString(annotation, Font);
 					// push key sequence positioning over to the left
 					x -= size.Width;
