@@ -4,8 +4,6 @@
 
 namespace River.OneMoreAddIn.Commands
 {
-	using System;
-	using System.Linq;
 	using System.Threading.Tasks;
 
 
@@ -24,24 +22,7 @@ namespace River.OneMoreAddIn.Commands
 			using var one = new OneNote();
 
 			using var dialog = new HashtagDialog(one.CurrentNotebookId, one.CurrentSectionId);
-			PopulateTags(dialog, EventArgs.Empty);
-
 			await dialog.RunModeless(null, 20); 
-			
-			await Task.Yield();
-		}
-
-
-		private void PopulateTags(object sender, EventArgs e)
-		{
-			var dialog = sender as HashtagDialog;
-
-			var provider = new HashtagProvider();
-			var names = provider.ReadTagNames();
-			var recent = provider.ReadLatestTagNames();
-			logger.WriteLine($"discovered {names.Count()} tags, {recent.Count()} mru");
-
-			dialog.PopulateTags(names, recent);
 		}
 	}
 }

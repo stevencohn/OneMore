@@ -82,6 +82,7 @@
 			// 
 			// scopeBox
 			// 
+			this.scopeBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this.scopeBox.FormattingEnabled = true;
 			this.scopeBox.Items.AddRange(new object[] {
             "All",
@@ -91,6 +92,7 @@
 			this.scopeBox.Name = "scopeBox";
 			this.scopeBox.Size = new System.Drawing.Size(164, 28);
 			this.scopeBox.TabIndex = 4;
+			this.scopeBox.SelectedIndexChanged += new System.EventHandler(this.PopulateTags);
 			// 
 			// introLabel
 			// 

@@ -45,9 +45,27 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		public void PopulateTags(IEnumerable<string> names, IEnumerable<string> recentNames)
+		private void PopulateTags(object sender, EventArgs e)
 		{
-			palette.LoadCommands(names.ToArray(), recentNames.ToArray());
+			var provider = new HashtagProvider();
+
+			var names = scopeBox.SelectedIndex switch
+			{
+				1 => provider.ReadTagNames(sectionID: sectionID),
+				2 => provider.ReadTagNames(notebookID: notebookID),
+				_ => provider.ReadTagNames(),
+			};
+
+			var recent = scopeBox.SelectedIndex switch
+			{
+				1 => provider.ReadLatestTagNames(sectionID: sectionID),
+				2 => provider.ReadLatestTagNames(notebookID: notebookID),
+				_ => provider.ReadLatestTagNames(),
+			};
+
+			logger.WriteLine($"discovered {names.Count()} tags, {recent.Count()} mru");
+
+			palette.LoadCommands(names.ToArray(), recent.ToArray());
 		}
 
 
