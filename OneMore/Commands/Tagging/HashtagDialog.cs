@@ -119,6 +119,8 @@ namespace River.OneMoreAddIn.Commands
 				_ => provider.SearchTags(name)
 			};
 
+			logger.Verbose($"found {tags.Count} tags");
+
 			if (tags.Any())
 			{
 				var controls = new HashtagContextControl[tags.Count];
