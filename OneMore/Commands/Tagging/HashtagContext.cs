@@ -18,6 +18,7 @@ namespace River.OneMoreAddIn.Commands
 			SectionID = tag.SectionID;
 			HierarchyPath = tag.HierarchyPath;
 			PageTitle = tag.PageTitle;
+			ScanTime = tag.ScanTime;
 
 			Snippets = new HashtagSnippets
 			{

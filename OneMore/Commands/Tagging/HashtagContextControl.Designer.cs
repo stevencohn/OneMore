@@ -32,17 +32,19 @@
 			this.pageLink = new River.OneMoreAddIn.UI.MoreLinkLabel();
 			this.tooltip = new System.Windows.Forms.ToolTip(this.components);
 			this.snippetsPanel = new System.Windows.Forms.FlowLayoutPanel();
+			this.dateLabel = new System.Windows.Forms.Label();
 			this.SuspendLayout();
 			// 
 			// pageLink
 			// 
 			this.pageLink.AutoSize = true;
 			this.pageLink.Cursor = System.Windows.Forms.Cursors.Hand;
+			this.pageLink.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.pageLink.HoverColor = System.Drawing.Color.MediumOrchid;
 			this.pageLink.LinkColor = System.Drawing.Color.MediumOrchid;
 			this.pageLink.Location = new System.Drawing.Point(13, 10);
 			this.pageLink.Name = "pageLink";
-			this.pageLink.Size = new System.Drawing.Size(443, 20);
+			this.pageLink.Size = new System.Drawing.Size(502, 22);
 			this.pageLink.TabIndex = 0;
 			this.pageLink.TabStop = true;
 			this.pageLink.Text = "/OneMore Wiki/Context Menus/Notebook Panel Context Menu";
@@ -53,23 +55,36 @@
 			// 
 			this.snippetsPanel.AutoSize = true;
 			this.snippetsPanel.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
-			this.snippetsPanel.Location = new System.Drawing.Point(50, 36);
+			this.snippetsPanel.Location = new System.Drawing.Point(50, 38);
 			this.snippetsPanel.Margin = new System.Windows.Forms.Padding(3, 6, 3, 3);
 			this.snippetsPanel.Name = "snippetsPanel";
-			this.snippetsPanel.Size = new System.Drawing.Size(643, 39);
+			this.snippetsPanel.Size = new System.Drawing.Size(643, 41);
 			this.snippetsPanel.TabIndex = 1;
+			// 
+			// dateLabel
+			// 
+			this.dateLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.dateLabel.AutoSize = true;
+			this.dateLabel.ForeColor = System.Drawing.SystemColors.GrayText;
+			this.dateLabel.Location = new System.Drawing.Point(642, 10);
+			this.dateLabel.Name = "dateLabel";
+			this.dateLabel.Size = new System.Drawing.Size(51, 20);
+			this.dateLabel.TabIndex = 2;
+			this.dateLabel.Text = "label1";
+			this.dateLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
 			// 
 			// HashtagContextControl
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.BackColor = System.Drawing.SystemColors.Window;
+			this.Controls.Add(this.dateLabel);
 			this.Controls.Add(this.snippetsPanel);
 			this.Controls.Add(this.pageLink);
 			this.Margin = new System.Windows.Forms.Padding(3, 3, 3, 6);
 			this.Name = "HashtagContextControl";
 			this.Padding = new System.Windows.Forms.Padding(10);
-			this.Size = new System.Drawing.Size(706, 88);
+			this.Size = new System.Drawing.Size(706, 99);
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -80,5 +95,6 @@
 		private UI.MoreLinkLabel pageLink;
 		private System.Windows.Forms.ToolTip tooltip;
 		private System.Windows.Forms.FlowLayoutPanel snippetsPanel;
+		private System.Windows.Forms.Label dateLabel;
 	}
 }

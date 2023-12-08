@@ -99,7 +99,7 @@
 			this.introLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.introLabel.AutoSize = true;
 			this.introLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.introLabel.ForeColor = System.Drawing.SystemColors.ControlDark;
+			this.introLabel.ForeColor = System.Drawing.SystemColors.Highlight;
 			this.introLabel.Location = new System.Drawing.Point(831, 41);
 			this.introLabel.Name = "introLabel";
 			this.introLabel.Size = new System.Drawing.Size(144, 25);
@@ -144,7 +144,7 @@
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.MaximizeBox = false;
 			this.MinimizeBox = false;
-			this.MinimumSize = new System.Drawing.Size(800, 400);
+			this.MinimumSize = new System.Drawing.Size(900, 400);
 			this.Name = "HashtagDialog";
 			this.Text = "Find Hashtags";
 			this.topPanel.ResumeLayout(false);

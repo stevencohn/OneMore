@@ -169,8 +169,12 @@ namespace River.OneMoreAddIn.Commands
 				}
 				else
 				{
-					context.Snippets.Add(new HashtagSnippet(
-						tag.ObjectID, tag.Snippet, tag.ScanTime));
+					// de-dupe the paragraphs; if there are multiple tags in one paragraph
+					if (!context.Snippets.Exists(s => s.ObjectID == tag.ObjectID))
+					{
+						context.Snippets.Add(new HashtagSnippet(
+							tag.ObjectID, tag.Snippet, tag.ScanTime));
+					}
 				}
 			}
 

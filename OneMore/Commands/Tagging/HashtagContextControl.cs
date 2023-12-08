@@ -27,11 +27,17 @@ namespace River.OneMoreAddIn.Commands
 			: this()
 		{
 			pageLink.Text = $"{item.HierarchyPath}/{item.PageTitle}";
-			pageLink.Links.Clear();
-
 			var oid = string.IsNullOrWhiteSpace(item.TitleID) ? string.Empty : item.TitleID;
 			pageLink.Links.Add(0, pageLink.Text.Length, (item.PageID, oid));
 			tooltip.SetToolTip(pageLink, "Jump to this page");
+
+			// scanTime...
+
+			dateLabel.Text = DateTime.Parse(item.ScanTime).ToShortFriendlyString();
+			dateLabel.Left = Width - dateLabel.Width - 8;
+
+
+			// snippets...
 
 			var height = snippetsPanel.Height;
 
@@ -47,7 +53,7 @@ namespace River.OneMoreAddIn.Commands
 					HoverColor = Color.MediumOrchid,
 					LinkColor = SystemColors.GrayText,
 					Location = new Point(30, 40),
-					Margin = new Padding(20, 10, 10, 10),
+					Margin = new Padding(20, 6, 10, 6),
 					Size = new Size(530, 20),
 					TabStop = true,
 					VisitedLinkColor = SystemColors.GrayText
@@ -55,7 +61,8 @@ namespace River.OneMoreAddIn.Commands
 
 				link.LinkClicked += NavigateTo;
 				link.Links.Add(0, link.Text.Length, (item.PageID, snippet.ObjectID));
-				tooltip.SetToolTip(link, "Jump to this paragraph");
+				var date = DateTime.Parse(snippet.ScanTime).ToShortFriendlyString();
+				tooltip.SetToolTip(link, $"Jump to this paragraph; last updated {date}");
 
 				snippetsPanel.Controls.Add(link);
 			}
