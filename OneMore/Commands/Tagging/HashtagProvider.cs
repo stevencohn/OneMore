@@ -176,10 +176,10 @@ namespace River.OneMoreAddIn.Commands
 		/// Returns the last saved scan time
 		/// </summary>
 		/// <returns>A collection of Hashtags</returns>
-		public string ReadLastScanTime()
+		public string ReadScanTime()
 		{
 			using var cmd = con.CreateCommand();
-			cmd.CommandText = "SELECT version, lastScan FROM hashtag_scanner WHERE scannerID = 0";
+			cmd.CommandText = "SELECT version, scanTime FROM hashtag_scanner WHERE scannerID = 0";
 
 			try
 			{
@@ -221,7 +221,7 @@ namespace River.OneMoreAddIn.Commands
 				cmd.Parameters.AddWithValue("@nid", notebookID);
 			}
 
-			sql = $"{sql} ORDER BY lastScan LIMIT 5";
+			sql = $"{sql} ORDER BY scanTime LIMIT 5";
 			cmd.CommandText = sql;
 
 			try
@@ -250,7 +250,7 @@ namespace River.OneMoreAddIn.Commands
 		{
 			var sql =
 				"SELECT t.tag, t.moreID, p.pageID, p.titleID, t.objectID, " +
-				"p.notebookID, p.sectionID, t.lastScan " +
+				"p.notebookID, p.sectionID, t.scanTime " +
 				"FROM hashtag t " +
 				"JOIN hashtag_page p ON p.moreID = t.moreID " +
 				"WHERE p.pageID = @p";
@@ -315,7 +315,7 @@ namespace River.OneMoreAddIn.Commands
 
 			var sql =
 				"SELECT t.tag, t.moreID, p.pageID, p.titleID, t.objectID, " +
-				"p.notebookID, p.sectionID, t.lastScan, t.context, p.path, p.name " +
+				"p.notebookID, p.sectionID, t.scanTime, t.snippet, p.path, p.name " +
 				"FROM hashtag t " +
 				"JOIN hashtag_page p " +
 				"ON t.moreID = p.moreID ";
@@ -334,7 +334,7 @@ namespace River.OneMoreAddIn.Commands
 			parameters.Add(new("@t", wildcard));
 
 			sql = $"{sql} WHERE t.tag LIKE @t " +
-				"ORDER BY t.tag, p.path, p.name";
+				"ORDER BY p.path, p.name, t.tag";
 
 			return ReadTags(sql, parameters.ToArray());
 		}
@@ -365,12 +365,12 @@ namespace River.OneMoreAddIn.Commands
 						ObjectID = reader.GetString(4),
 						NotebookID = reader.GetString(5),
 						SectionID = reader.GetString(6),
-						LastScan = reader.GetString(7)
+						ScanTime = reader.GetString(7)
 					};
 
-					if (reader.FieldCount > 7 && sql.Contains("context"))
+					if (reader.FieldCount > 7 && sql.Contains("snippet"))
 					{
-						tag.Context = reader[8] is DBNull ? null : reader.GetString(8);
+						tag.Snippet = reader[8] is DBNull ? null : reader.GetString(8);
 						tag.HierarchyPath = reader[9] is DBNull ? null : reader.GetString(9);
 						tag.PageTitle = reader[10] is DBNull ? null : reader.GetString(10);
 					}
@@ -391,11 +391,11 @@ namespace River.OneMoreAddIn.Commands
 		/// Records the given tags.
 		/// </summary>
 		/// <param name="tags">A collection of Hashtags</param>
-		public void UpdateContext(Hashtags tags)
+		public void UpdateSnippet(Hashtags tags)
 		{
 			using var cmd = con.CreateCommand();
 			cmd.CommandText = "UPDATE hashtag " +
-				"SET context = @c, lastScan = @s " +
+				"SET snippet = @c, scanTime = @s " +
 				"WHERE tag = @t AND moreID = @m";
 
 			cmd.CommandType = CommandType.Text;
@@ -409,8 +409,8 @@ namespace River.OneMoreAddIn.Commands
 			{
 				logger.Verbose($"updating tag {tag.Tag}");
 
-				cmd.Parameters["@c"].Value = tag.Context;
-				cmd.Parameters["@s"].Value = tag.LastScan;
+				cmd.Parameters["@c"].Value = tag.Snippet;
+				cmd.Parameters["@s"].Value = tag.ScanTime;
 				cmd.Parameters["@t"].Value = tag.Tag;
 				cmd.Parameters["@m"].Value = tag.MoreID;
 
@@ -430,7 +430,7 @@ namespace River.OneMoreAddIn.Commands
 			}
 			catch (Exception exc)
 			{
-				logger.WriteLine("error updating contexts", exc);
+				logger.WriteLine("error updating snippets", exc);
 			}
 		}
 
@@ -439,10 +439,10 @@ namespace River.OneMoreAddIn.Commands
 		/// Records the timestamp value that was initialized at construction of this class
 		/// instance
 		/// </summary>
-		public void WriteLastScanTime()
+		public void WriteScanTime()
 		{
 			using var cmd = con.CreateCommand();
-			cmd.CommandText = "UPDATE hashtag_scanner SET lastScan = @d WHERE scannerID = 0";
+			cmd.CommandText = "UPDATE hashtag_scanner SET scanTime = @d WHERE scannerID = 0";
 			cmd.Parameters.AddWithValue("@d", timestamp);
 
 			try
@@ -502,7 +502,7 @@ namespace River.OneMoreAddIn.Commands
 		{
 			using var tagcmd = con.CreateCommand();
 			tagcmd.CommandText = "INSERT INTO hashtag " +
-				"(tag, moreID, objectID, context, lastScan) VALUES (@t, @m, @o, @c, @s)";
+				"(tag, moreID, objectID, snippet, scanTime) VALUES (@t, @m, @o, @c, @s)";
 
 			tagcmd.CommandType = CommandType.Text;
 			tagcmd.Parameters.Add("@t", DbType.String);
@@ -519,7 +519,7 @@ namespace River.OneMoreAddIn.Commands
 				tagcmd.Parameters["@t"].Value = tag.Tag;
 				tagcmd.Parameters["@m"].Value = tag.MoreID;
 				tagcmd.Parameters["@o"].Value = tag.ObjectID;
-				tagcmd.Parameters["@c"].Value = tag.Context;
+				tagcmd.Parameters["@c"].Value = tag.Snippet;
 				tagcmd.Parameters["@s"].Value = timestamp;
 
 				try

@@ -30,8 +30,8 @@
 		{
 			this.components = new System.ComponentModel.Container();
 			this.pageLink = new River.OneMoreAddIn.UI.MoreLinkLabel();
-			this.contextLink = new River.OneMoreAddIn.UI.MoreLinkLabel();
 			this.tooltip = new System.Windows.Forms.ToolTip(this.components);
+			this.snippetsPanel = new System.Windows.Forms.FlowLayoutPanel();
 			this.SuspendLayout();
 			// 
 			// pageLink
@@ -49,30 +49,22 @@
 			this.pageLink.VisitedLinkColor = System.Drawing.Color.MediumOrchid;
 			this.pageLink.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.NavigateTo);
 			// 
-			// contextLink
+			// snippetsPanel
 			// 
-			this.contextLink.ActiveLinkColor = System.Drawing.SystemColors.GrayText;
-			this.contextLink.AutoSize = true;
-			this.contextLink.Cursor = System.Windows.Forms.Cursors.Hand;
-			this.contextLink.ForeColor = System.Drawing.SystemColors.GrayText;
-			this.contextLink.HoverColor = System.Drawing.Color.MediumOrchid;
-			this.contextLink.LinkColor = System.Drawing.SystemColors.GrayText;
-			this.contextLink.Location = new System.Drawing.Point(30, 40);
-			this.contextLink.Margin = new System.Windows.Forms.Padding(20, 10, 10, 10);
-			this.contextLink.Name = "contextLink";
-			this.contextLink.Size = new System.Drawing.Size(530, 20);
-			this.contextLink.TabIndex = 1;
-			this.contextLink.TabStop = true;
-			this.contextLink.Text = "... to substring search for a complete hashtag name of the form \"##name,\"";
-			this.contextLink.VisitedLinkColor = System.Drawing.SystemColors.GrayText;
-			this.contextLink.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.NavigateTo);
+			this.snippetsPanel.AutoSize = true;
+			this.snippetsPanel.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
+			this.snippetsPanel.Location = new System.Drawing.Point(50, 36);
+			this.snippetsPanel.Margin = new System.Windows.Forms.Padding(3, 6, 3, 3);
+			this.snippetsPanel.Name = "snippetsPanel";
+			this.snippetsPanel.Size = new System.Drawing.Size(643, 39);
+			this.snippetsPanel.TabIndex = 1;
 			// 
 			// HashtagContextControl
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.BackColor = System.Drawing.SystemColors.Window;
-			this.Controls.Add(this.contextLink);
+			this.Controls.Add(this.snippetsPanel);
 			this.Controls.Add(this.pageLink);
 			this.Margin = new System.Windows.Forms.Padding(3, 3, 3, 6);
 			this.Name = "HashtagContextControl";
@@ -86,7 +78,7 @@
 		#endregion
 
 		private UI.MoreLinkLabel pageLink;
-		private UI.MoreLinkLabel contextLink;
 		private System.Windows.Forms.ToolTip tooltip;
+		private System.Windows.Forms.FlowLayoutPanel snippetsPanel;
 	}
 }

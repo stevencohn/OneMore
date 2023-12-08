@@ -4,6 +4,7 @@
 
 namespace River.OneMoreAddIn.Commands
 {
+	using River.OneMoreAddIn.UI;
 	using System;
 	using System.ComponentModel;
 	using System.Drawing;
@@ -22,20 +23,47 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		public HashtagContextControl(Hashtag tag)
+		public HashtagContextControl(HashtagContext item)
 			: this()
 		{
-			pageLink.Text = $"{tag.HierarchyPath}/{tag.PageTitle}";
+			pageLink.Text = $"{item.HierarchyPath}/{item.PageTitle}";
 			pageLink.Links.Clear();
 
-			var oid = string.IsNullOrWhiteSpace(tag.TitleID) ? string.Empty : tag.TitleID;
-			pageLink.Links.Add(0, pageLink.Text.Length, (tag.PageID, oid));
+			var oid = string.IsNullOrWhiteSpace(item.TitleID) ? string.Empty : item.TitleID;
+			pageLink.Links.Add(0, pageLink.Text.Length, (item.PageID, oid));
 			tooltip.SetToolTip(pageLink, "Jump to this page");
 
-			contextLink.Text = tag.Context;
-			contextLink.Links.Clear();
-			contextLink.Links.Add(0, contextLink.Text.Length, (tag.PageID, tag.ObjectID));
-			tooltip.SetToolTip(contextLink, "Jump to this paragraph");
+			var height = snippetsPanel.Height;
+
+			foreach (var snippet in item.Snippets)
+			{
+				var link = new MoreLinkLabel
+				{
+					Text = snippet.Snippet,
+					ActiveLinkColor = SystemColors.GrayText,
+					AutoSize = true,
+					Cursor = Cursors.Hand,
+					ForeColor = SystemColors.GrayText,
+					HoverColor = Color.MediumOrchid,
+					LinkColor = SystemColors.GrayText,
+					Location = new Point(30, 40),
+					Margin = new Padding(20, 10, 10, 10),
+					Size = new Size(530, 20),
+					TabStop = true,
+					VisitedLinkColor = SystemColors.GrayText
+				};
+
+				link.LinkClicked += NavigateTo;
+				link.Links.Add(0, link.Text.Length, (item.PageID, snippet.ObjectID));
+				tooltip.SetToolTip(link, "Jump to this paragraph");
+
+				snippetsPanel.Controls.Add(link);
+			}
+
+			if (snippetsPanel.Height > height)
+			{
+				Height += snippetsPanel.Height - height;
+			}
 		}
 
 

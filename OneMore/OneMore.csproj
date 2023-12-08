@@ -234,6 +234,7 @@
     <Compile Include="Commands\Tables\TableThemePainter.cs" />
     <Compile Include="Commands\Tagging\Hashtag.cs" />
     <Compile Include="Commands\Tagging\HashtagCommand.cs" />
+    <Compile Include="Commands\Tagging\HashtagContext.cs" />
     <Compile Include="Commands\Tagging\HashtagContextControl.cs">
       <SubType>UserControl</SubType>
     </Compile>

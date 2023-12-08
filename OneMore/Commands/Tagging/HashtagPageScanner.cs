@@ -120,8 +120,8 @@ namespace River.OneMoreAddIn.Commands
 									MoreID = MoreID,
 									PageID = pageID,
 									ObjectID = objectID,
-									Context = context,
-									LastScan = lastTime
+									Snippet = context,
+									ScanTime = lastTime
 								});
 							}
 						}

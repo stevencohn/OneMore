@@ -33,7 +33,7 @@ namespace River.OneMoreAddIn.Commands
 			provider = new HashtagProvider();
 			factory = new HashtagPageSannerFactory();
 
-			lastTime = provider.ReadLastScanTime();
+			lastTime = provider.ReadScanTime();
 			logger.Verbose($"HashtagScanner lastTime {lastTime}");
 		}
 
@@ -86,7 +86,7 @@ namespace River.OneMoreAddIn.Commands
 				}
 			}
 
-			provider.WriteLastScanTime();
+			provider.WriteScanTime();
 
 			return totalPages;
 		}
@@ -184,7 +184,7 @@ namespace River.OneMoreAddIn.Commands
 				}
 				else
 				{
-					if (candidate.LastScan.CompareTo(lastTime) > 0)
+					if (candidate.ScanTime.CompareTo(lastTime) > 0)
 					{
 						updated.Add(candidate);
 					}
@@ -206,7 +206,7 @@ namespace River.OneMoreAddIn.Commands
 			if (updated.Any())
 			{
 				// tag context updated since last scan
-				provider.UpdateContext(updated);
+				provider.UpdateSnippet(updated);
 				dirtyPage = true;
 			}
 

@@ -72,13 +72,13 @@ namespace River.OneMoreAddIn.Commands
 		/// <summary>
 		/// The contextual snippet of text surrounding the hashtag
 		/// </summary>
-		public string Context { get; set; }
+		public string Snippet { get; set; }
 
 
 		/// <summary>
 		/// The time this tag was first captured
 		/// </summary>
-		public string LastScan { get; set; }
+		public string ScanTime { get; set; }
 
 
 		public override bool Equals(object obj)

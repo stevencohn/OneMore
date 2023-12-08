@@ -82,6 +82,10 @@ namespace River.OneMoreAddIn.Commands
 			{
 				Close();
 			}
+			else if (e.KeyCode == Keys.Enter)
+			{
+				SearchTags(sender, e);
+			}
 		}
 
 
@@ -123,13 +127,16 @@ namespace River.OneMoreAddIn.Commands
 
 			if (tags.Any())
 			{
-				var controls = new HashtagContextControl[tags.Count];
+				var items = CollateTags(tags);
+				tags.Clear();
+
+				var controls = new HashtagContextControl[items.Count];
 				var width = contextPanel.ClientSize.Width -
 					(contextPanel.Padding.Left + contextPanel.Padding.Right) * 2 - 20;
 
-				for (var i = 0; i < tags.Count; i++)
+				for (var i = 0; i < items.Count; i++)
 				{
-					controls[i] = new HashtagContextControl(tags[i])
+					controls[i] = new HashtagContextControl(items[i])
 					{
 						Width = width
 					};
@@ -145,6 +152,31 @@ namespace River.OneMoreAddIn.Commands
 				contextPanel.Controls.Clear();
 			}
 		}
+
+
+		private HashtagContexts CollateTags(Hashtags tags)
+		{
+			var items = new HashtagContexts();
+
+			// tags should be sorted by p.path, p.name so collate based on that assumption
+			HashtagContext context = null;
+			foreach (var tag in tags)
+			{
+				if (context == null || context.MoreID != tag.MoreID)
+				{
+					context = new HashtagContext(tag);
+					items.Add(context);
+				}
+				else
+				{
+					context.Snippets.Add(new HashtagSnippet(
+						tag.ObjectID, tag.Snippet, tag.ScanTime));
+				}
+			}
+
+			return items;
+		}
+
 
 		protected override void OnSizeChanged(EventArgs e)
 		{
