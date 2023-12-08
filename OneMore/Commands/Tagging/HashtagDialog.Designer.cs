@@ -32,10 +32,11 @@
 			this.cancelButton = new System.Windows.Forms.Button();
 			this.contextPanel = new System.Windows.Forms.FlowLayoutPanel();
 			this.topPanel = new System.Windows.Forms.Panel();
+			this.scopeBox = new System.Windows.Forms.ComboBox();
+			this.introLabel = new System.Windows.Forms.Label();
 			this.searchButton = new System.Windows.Forms.Button();
 			this.tagBox = new System.Windows.Forms.TextBox();
 			this.panel1 = new System.Windows.Forms.Panel();
-			this.introLabel = new System.Windows.Forms.Label();
 			this.topPanel.SuspendLayout();
 			this.panel1.SuspendLayout();
 			this.SuspendLayout();
@@ -67,6 +68,7 @@
 			// topPanel
 			// 
 			this.topPanel.BackColor = System.Drawing.SystemColors.Window;
+			this.topPanel.Controls.Add(this.scopeBox);
 			this.topPanel.Controls.Add(this.introLabel);
 			this.topPanel.Controls.Add(this.searchButton);
 			this.topPanel.Controls.Add(this.tagBox);
@@ -77,6 +79,30 @@
 			this.topPanel.Padding = new System.Windows.Forms.Padding(10);
 			this.topPanel.Size = new System.Drawing.Size(988, 114);
 			this.topPanel.TabIndex = 8;
+			// 
+			// scopeBox
+			// 
+			this.scopeBox.FormattingEnabled = true;
+			this.scopeBox.Items.AddRange(new object[] {
+            "All",
+            "This notebook",
+            "This section"});
+			this.scopeBox.Location = new System.Drawing.Point(387, 38);
+			this.scopeBox.Name = "scopeBox";
+			this.scopeBox.Size = new System.Drawing.Size(164, 28);
+			this.scopeBox.TabIndex = 4;
+			// 
+			// introLabel
+			// 
+			this.introLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.introLabel.AutoSize = true;
+			this.introLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.introLabel.ForeColor = System.Drawing.SystemColors.ControlDark;
+			this.introLabel.Location = new System.Drawing.Point(831, 41);
+			this.introLabel.Name = "introLabel";
+			this.introLabel.Size = new System.Drawing.Size(144, 25);
+			this.introLabel.TabIndex = 3;
+			this.introLabel.Text = "PROTOTYPE";
 			// 
 			// searchButton
 			// 
@@ -93,7 +119,7 @@
 			this.tagBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.tagBox.Location = new System.Drawing.Point(41, 38);
 			this.tagBox.Name = "tagBox";
-			this.tagBox.Size = new System.Drawing.Size(510, 28);
+			this.tagBox.Size = new System.Drawing.Size(340, 28);
 			this.tagBox.TabIndex = 0;
 			// 
 			// panel1
@@ -104,18 +130,6 @@
 			this.panel1.Name = "panel1";
 			this.panel1.Size = new System.Drawing.Size(988, 60);
 			this.panel1.TabIndex = 9;
-			// 
-			// introLabel
-			// 
-			this.introLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.introLabel.AutoSize = true;
-			this.introLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.introLabel.ForeColor = System.Drawing.SystemColors.ControlDark;
-			this.introLabel.Location = new System.Drawing.Point(831, 41);
-			this.introLabel.Name = "introLabel";
-			this.introLabel.Size = new System.Drawing.Size(144, 25);
-			this.introLabel.TabIndex = 3;
-			this.introLabel.Text = "PROTOTYPE";
 			// 
 			// HashtagDialog
 			// 
@@ -147,5 +161,6 @@
 		private System.Windows.Forms.TextBox tagBox;
 		private System.Windows.Forms.Button searchButton;
 		private System.Windows.Forms.Label introLabel;
+		private System.Windows.Forms.ComboBox scopeBox;
 	}
 }

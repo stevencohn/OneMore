@@ -78,8 +78,11 @@ namespace River.OneMoreAddIn.Commands
 				foreach (var notebook in notebooks)
 				{
 					// gets sections for this notebook
-					var sections = await one.GetNotebook(notebook.Attribute("ID").Value);
-					totalPages += await Scan(sections, $"/{notebook.Attribute("name").Value}");
+					var notebookID = notebook.Attribute("ID").Value;
+					var sections = await one.GetNotebook(notebookID);
+
+					totalPages += await Scan(
+						sections, notebookID, $"/{notebook.Attribute("name").Value}");
 				}
 			}
 
@@ -89,7 +92,7 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private async Task<int> Scan(XElement parent, string path)
+		private async Task<int> Scan(XElement parent, string notebookID, string path)
 		{
 			//logger.Verbose($"scanning parent {path}");
 
@@ -113,6 +116,7 @@ namespace River.OneMoreAddIn.Commands
 
 					totalPages += pages.Count();
 
+					var sectionID = section.Attribute("ID").Value;
 					var sectionPath = $"{path}/{section.Attribute("name").Value}";
 					//logger.Verbose($"scanning section {sectionPath} ({pages.Count()} pages)");
 
@@ -120,7 +124,8 @@ namespace River.OneMoreAddIn.Commands
 					{
 						if (page.Attribute("lastModifiedTime").Value.CompareTo(lastTime) > 0)
 						{
-							await ScanPage(page.Attribute("ID").Value, sectionPath);
+							await ScanPage(
+								page.Attribute("ID").Value, notebookID, sectionID, sectionPath);
 						}
 					}
 				}
@@ -136,7 +141,8 @@ namespace River.OneMoreAddIn.Commands
 			{
 				foreach (var group in groups)
 				{
-					totalPages = await Scan(group, $"{path}/{group.Attribute("name").Value}");
+					totalPages = await Scan(
+						group, notebookID, $"{path}/{group.Attribute("name").Value}");
 				}
 			}
 
@@ -144,7 +150,7 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private async Task ScanPage(string pageID, string path)
+		private async Task ScanPage(string pageID, string notebookID, string sectionID, string path)
 		{
 			Page page;
 
@@ -230,7 +236,9 @@ namespace River.OneMoreAddIn.Commands
 
 				// TODO: should this be wrapped in a tx along with the above statements?
 
-				provider.WritePageInfo(scanner.MoreID, pageID, titleID, path, title);
+				provider.WritePageInfo(
+					scanner.MoreID, pageID, titleID, notebookID, sectionID, path, title);
+
 				logger.WriteLine($"updating tags on page {path}/{title}");
 			}
 		}

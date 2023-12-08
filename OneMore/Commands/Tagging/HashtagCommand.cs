@@ -21,7 +21,9 @@ namespace River.OneMoreAddIn.Commands
 
 		public override async Task Execute(params object[] args)
 		{
-			using var dialog = new HashtagDialog();
+			using var one = new OneNote();
+
+			using var dialog = new HashtagDialog(one.CurrentNotebookId, one.CurrentSectionId);
 			PopulateTags(dialog, EventArgs.Empty);
 
 			await dialog.RunModeless(null, 20); 

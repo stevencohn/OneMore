@@ -4,23 +4,28 @@
 
 namespace River.OneMoreAddIn.Commands
 {
-	using NStandard;
 	using River.OneMoreAddIn.UI;
 	using System;
 	using System.Collections.Generic;
 	using System.Linq;
 	using System.Windows.Forms;
 
+
 	internal partial class HashtagDialog : LocalizableForm
 	{
 		private readonly MoreAutoCompleteList palette;
-		private IEnumerable<string> names;
-		private IEnumerable<string> recentNames;
+		private readonly string notebookID;
+		private readonly string sectionID;
 
 
 		public HashtagDialog()
 		{
 			InitializeComponent();
+
+			if (NeedsLocalizing())
+			{
+				// ...
+			}
 
 			palette = new MoreAutoCompleteList
 			{
@@ -28,19 +33,21 @@ namespace River.OneMoreAddIn.Commands
 			};
 
 			palette.SetAutoCompleteList(tagBox, palette);
+			scopeBox.SelectedIndex = 0;
+		}
 
-			if (NeedsLocalizing())
-			{
-				// ...
-			}
+
+		public HashtagDialog(string notebookID, string sectionID)
+			: this()
+		{
+			this.notebookID = notebookID;
+			this.sectionID = sectionID;
 		}
 
 
 		public void PopulateTags(IEnumerable<string> names, IEnumerable<string> recentNames)
 		{
 			palette.LoadCommands(names.ToArray(), recentNames.ToArray());
-			this.names = names;
-			this.recentNames = recentNames;
 		}
 
 
@@ -72,15 +79,29 @@ namespace River.OneMoreAddIn.Commands
 				name = $"%{name}";
 			}
 
+			// allow "abc." to be interpreted as "%abc" but "abc" will be "%abc%"
+			if (name.EndsWith("."))
+			{
+				name = name.Substring(0, name.Length - 1);
+			}
+			else if (!name.EndsWith("%"))
+			{
+				name = $"{name}%";
+			}
+
 			name = name.Replace('*', '%');
 
 			var provider = new HashtagProvider();
-			var tags = provider.SearchTags(name);
+
+			var tags = scopeBox.SelectedIndex switch
+			{
+				1 => provider.SearchTags(name, notebookID: notebookID),
+				2 => provider.SearchTags(name, sectionID: sectionID),
+				_ => provider.SearchTags(name)
+			};
 
 			if (tags.Any())
 			{
-				logger.StartClock();
-
 				var controls = new HashtagContextControl[tags.Count];
 				var width = contextPanel.ClientSize.Width -
 					(contextPanel.Padding.Left + contextPanel.Padding.Right) * 2 - 20;
@@ -93,14 +114,14 @@ namespace River.OneMoreAddIn.Commands
 					};
 				}
 
-				logger.WriteTime($"expanded {tags.Count} hyperlinks", true);
-
 				contextPanel.SuspendLayout();
 				contextPanel.Controls.Clear();
 				contextPanel.Controls.AddRange(controls);
 				contextPanel.ResumeLayout();
-
-				logger.WriteTime("SearchTags done");
+			}
+			else
+			{
+				contextPanel.Controls.Clear();
 			}
 		}
 

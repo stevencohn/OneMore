@@ -46,6 +46,18 @@ namespace River.OneMoreAddIn.Commands
 
 
 		/// <summary>
+		/// Gets the ID of the notebook containing the tag
+		/// </summary>
+		public string NotebookID { get; set; }
+
+
+		/// <summary>
+		/// Gets the ID of the section containing the tag
+		/// </summary>
+		public string SectionID { get; set; }
+
+
+		/// <summary>
 		/// Gets the hierarchy path of the page
 		/// </summary>
 		public string HierarchyPath { get; set; }
@@ -67,18 +79,6 @@ namespace River.OneMoreAddIn.Commands
 		/// The time this tag was first captured
 		/// </summary>
 		public string LastScan { get; set; }
-
-
-		/// <summary>
-		/// Gets or sets the OneNote URL of the page
-		/// </summary>
-		public string PageURL { get; set; }
-
-
-		/// <summary>
-		/// Gets or sets the OneNote URL of the object on the page
-		/// </summary>
-		public string ObjectURL { get; set; }
 
 
 		public override bool Equals(object obj)

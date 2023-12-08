@@ -10,7 +10,9 @@ namespace River.OneMoreAddIn.Commands
 	using System.Data;
 	using System.Data.SQLite;
 	using System.IO;
+	using System.Security.Cryptography;
 	using System.Text.RegularExpressions;
+	using Windows.Devices.Bluetooth;
 
 
 	/// <summary>
@@ -203,11 +205,26 @@ namespace River.OneMoreAddIn.Commands
 		/// Returns a collection of the latest tag names.
 		/// </summary>
 		/// <returns>A list of strings</returns>
-		public IEnumerable<string> ReadLatestTagNames()
+		public IEnumerable<string> ReadLatestTagNames(
+			string notebookID = null, string sectionID = null)
 		{
 			var tags = new List<string>();
 			using var cmd = con.CreateCommand();
-			cmd.CommandText = "SELECT DISTINCT tag FROM hashtag ORDER BY lastScan LIMIT 5";
+
+			var sql = "SELECT DISTINCT t.tag FROM hashtag t";
+			if (!string.IsNullOrWhiteSpace(sectionID))
+			{
+				sql = $"{sql} JOIN hashtag_page p ON p.moreID = t.moreID AND p.sectionID = @sid";
+				cmd.Parameters.AddWithValue("@sid", sectionID);
+			}
+			else if (!string.IsNullOrWhiteSpace(notebookID))
+			{
+				sql = $"{sql} JOIN hashtag_page p ON p.moreID = t.moreID AND p.notebookID = @nid";
+				cmd.Parameters.AddWithValue("@nid", notebookID);
+			}
+
+			sql = $"{sql} ORDER BY lastScan LIMIT 5";
+			cmd.CommandText = sql;
 
 			try
 			{
@@ -234,7 +251,8 @@ namespace River.OneMoreAddIn.Commands
 		public Hashtags ReadPageTags(string pageID)
 		{
 			var sql =
-				"SELECT t.tag, t.moreID, p.pageID, p.titleID, t.objectID, t.lastScan " +
+				"SELECT t.tag, t.moreID, p.pageID, p.titleID, t.objectID, " +
+				"p.notebookID, p.sectionID, t.lastScan " +
 				"FROM hashtag t " +
 				"JOIN hashtag_page p ON p.moreID = t.moreID " +
 				"WHERE p.pageID = @p";
@@ -249,11 +267,26 @@ namespace River.OneMoreAddIn.Commands
 		/// Returns a collection of all unique tag names.
 		/// </summary>
 		/// <returns>A list of strings</returns>
-		public IEnumerable<string> ReadTagNames()
+		public IEnumerable<string> ReadTagNames(string notebookID = null, string sectionID = null)
 		{
 			var tags = new List<string>();
 			using var cmd = con.CreateCommand();
-			cmd.CommandText = "SELECT DISTINCT tag FROM hashtag ORDER BY 1";
+
+			var sql = "SELECT DISTINCT t.tag FROM hashtag t";
+
+			if (!string.IsNullOrWhiteSpace(sectionID))
+			{
+				sql = $"{sql} JOIN hashtag_page p ON p.moreID = t.moreID AND p.sectionID = @sid";
+				cmd.Parameters.AddWithValue("@sid", sectionID);
+			}
+			else if (!string.IsNullOrWhiteSpace(notebookID))
+			{
+				sql = $"{sql} JOIN hashtag_page p ON p.moreID = t.moreID AND p.notebookID = @nid";
+				cmd.Parameters.AddWithValue("@nid", notebookID);
+			}
+
+			sql = $"{sql} ORDER BY 1";
+			cmd.CommandText = sql;
 
 			try
 			{
@@ -277,20 +310,35 @@ namespace River.OneMoreAddIn.Commands
 		/// </summary>
 		/// <param name="wildcard">The name of the tag to search for, optionally with wildcards</param>
 		/// <returns>A collection of Hashtags</returns>
-		public Hashtags SearchTags(string wildcard)
+		public Hashtags SearchTags(
+			string wildcard, string notebookID = null, string sectionID = null)
 		{
+			var parameters = new List<SQLiteParameter>();
+
 			var sql =
-				"SELECT t.tag, t.moreID, p.pageID, p.titleID, t.objectID, t.lastScan, " +
-				"t.context, p.path, p.name " +
+				"SELECT t.tag, t.moreID, p.pageID, p.titleID, t.objectID, " +
+				"p.notebookID, p.sectionID, t.lastScan, t.context, p.path, p.name " +
 				"FROM hashtag t " +
 				"JOIN hashtag_page p " +
-				"ON t.moreID = p.moreID " +
-				"WHERE t.tag LIKE @t " +
+				"ON t.moreID = p.moreID ";
+
+			if (!string.IsNullOrWhiteSpace(sectionID))
+			{
+				sql = $"{sql} AND p.sectionID = @sid ";
+				parameters.Add(new("sid", sectionID));
+			}
+			else if (!string.IsNullOrWhiteSpace(notebookID))
+			{
+				sql = $"{sql} AND p.sectionID = @nid ";
+				parameters.Add(new("nid", notebookID));
+			}
+
+			parameters.Add(new("@t", wildcard));
+
+			sql = $"{sql} WHERE t.tag LIKE @t " +
 				"ORDER BY t.tag, p.path, p.name";
 
-			return ReadTags(sql,
-				new SQLiteParameter[] { new("@t", wildcard) }
-				);
+			return ReadTags(sql, parameters.ToArray());
 		}
 
 
@@ -317,14 +365,16 @@ namespace River.OneMoreAddIn.Commands
 						PageID = reader.GetString(2),
 						TitleID = reader.GetString(3),
 						ObjectID = reader.GetString(4),
-						LastScan = reader.GetString(5)
+						NotebookID = reader.GetString(5),
+						SectionID = reader.GetString(6),
+						LastScan = reader.GetString(7)
 					};
 
-					if (reader.FieldCount > 6 && sql.Contains("context"))
+					if (reader.FieldCount > 7 && sql.Contains("context"))
 					{
-						tag.Context = reader[6] is DBNull ? null : reader.GetString(6);
-						tag.HierarchyPath = reader[7] is DBNull ? null : reader.GetString(7);
-						tag.PageTitle = reader[8] is DBNull ? null : reader.GetString(8);
+						tag.Context = reader[8] is DBNull ? null : reader.GetString(8);
+						tag.HierarchyPath = reader[9] is DBNull ? null : reader.GetString(9);
+						tag.PageTitle = reader[10] is DBNull ? null : reader.GetString(10);
 					}
 
 					tags.Add(tag);
@@ -412,22 +462,28 @@ namespace River.OneMoreAddIn.Commands
 		/// Records given info for the specified page.
 		/// </summary>
 		/// <param name="moreID">The assigned ID to the page</param>
-		/// <param name="path">The OneNote ID of the page</param>
+		/// <param name="pageID">The OneNote ID of the page</param>
+		/// <param name="titleID">The OneNote ID of the title paragraph</param>
+		/// <param name="notebookID">The ID of the notebook</param>
+		/// <param name="sectionID">The ID of the section</param>
 		/// <param name="path">The hierarchy path of the page</param>
 		/// <param name="title">The title (name) of the page</param>
 		public void WritePageInfo(
 			string moreID, string pageID, string titleID,
-			string path, string title, string uri = null)
+			string notebookID, string sectionID, string path, string title)
 		{
 			using var cmd = con.CreateCommand();
 			cmd.CommandText = "REPLACE INTO hashtag_page " +
-				"(moreID, pageID, titleID, path, name) VALUES (@m, @p, @t, @h, @n)";
+				"(moreID, pageID, titleID, notebookID, sectionID, path, name) " +
+				"VALUES (@mid, @pid, @tid, @nid, @sid, @pth, @nam)";
 
-			cmd.Parameters.AddWithValue("@m", moreID);
-			cmd.Parameters.AddWithValue("@p", pageID);
-			cmd.Parameters.AddWithValue("@t", titleID);
-			cmd.Parameters.AddWithValue("@h", path);
-			cmd.Parameters.AddWithValue("@n", title);
+			cmd.Parameters.AddWithValue("@mid", moreID);
+			cmd.Parameters.AddWithValue("@pid", pageID);
+			cmd.Parameters.AddWithValue("@tid", titleID);
+			cmd.Parameters.AddWithValue("@nid", notebookID);
+			cmd.Parameters.AddWithValue("@sid", sectionID);
+			cmd.Parameters.AddWithValue("@pth", path);
+			cmd.Parameters.AddWithValue("@nam", title);
 
 			try
 			{
