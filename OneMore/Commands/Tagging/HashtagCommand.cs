@@ -34,7 +34,7 @@ namespace River.OneMoreAddIn.Commands
 				if (d.DialogResult == DialogResult.OK)
 				{
 					command = d.Command;
-					pageIds = d.SelectedPages;
+					pageIds = d.SelectedPages.ToList();
 
 					var desc = command == HashtagDialog.Commands.Copy
 						? Resx.SearchQF_DescriptionCopy

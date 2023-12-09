@@ -84,10 +84,17 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		public bool Checked
+		public event EventHandler Checked;
+
+
+		public bool IsChecked
 		{
 			get => checkbox.Checked;
-			set => checkbox.Checked = value;
+			set
+			{
+				checkbox.Checked = value;
+				Checked?.Invoke(this, new EventArgs());
+			}
 		}
 
 
@@ -126,7 +133,13 @@ namespace River.OneMoreAddIn.Commands
 		protected override void OnDoubleClick(EventArgs e)
 		{
 			base.OnDoubleClick(e);
-			Checked = !Checked;
+			IsChecked = !IsChecked;
+		}
+
+
+		private void DoCheckChanged(object sender, EventArgs e)
+		{
+			IsChecked = checkbox.Checked;
 		}
 
 

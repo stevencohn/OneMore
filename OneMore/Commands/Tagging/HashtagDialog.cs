@@ -64,12 +64,9 @@ namespace River.OneMoreAddIn.Commands
 			{
 				for (var i = 0; i < contextPanel.Controls.Count; i++)
 				{
-					if (contextPanel.Controls[i] is HashtagContextControl item)
+					if (contextPanel.Controls[i] is HashtagContextControl item && item.IsChecked)
 					{
-						if (item.Checked)
-						{
-							yield return item.PageID;
-						}
+						yield return item.PageID;
 					}
 				}
 			}
@@ -160,10 +157,13 @@ namespace River.OneMoreAddIn.Commands
 
 				for (var i = 0; i < items.Count; i++)
 				{
-					controls[i] = new HashtagContextControl(items[i])
+					var control = new HashtagContextControl(items[i])
 					{
 						Width = width
 					};
+
+					control.Checked += Control_Checked;
+					controls[i] = control;
 				}
 
 				contextPanel.SuspendLayout();
@@ -177,6 +177,25 @@ namespace River.OneMoreAddIn.Commands
 			}
 		}
 
+		private void Control_Checked(object sender, EventArgs e)
+		{
+			var control = sender as HashtagContextControl;
+			var enabled = control.IsChecked;
+
+			if (!enabled)
+			{
+				for (int i = 0; i < contextPanel.Controls.Count; i++)
+				{
+					if (contextPanel.Controls[i] is HashtagContextControl item && item.IsChecked)
+					{
+						enabled = true;
+						break;
+					}
+				}
+			}
+
+			indexButton.Enabled = moveButton.Enabled = copyButton.Enabled = enabled;
+		}
 
 		private HashtagContexts CollateTags(Hashtags tags)
 		{
@@ -229,7 +248,7 @@ namespace River.OneMoreAddIn.Commands
 			{
 				if (contextPanel.Controls[i] is HashtagContextControl item)
 				{
-					item.Checked = ticked;
+					item.IsChecked = ticked;
 				}
 			}
 		}

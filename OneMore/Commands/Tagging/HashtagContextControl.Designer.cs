@@ -82,6 +82,7 @@
 			this.checkbox.Size = new System.Drawing.Size(22, 21);
 			this.checkbox.TabIndex = 3;
 			this.checkbox.UseVisualStyleBackColor = true;
+			this.checkbox.CheckedChanged += new System.EventHandler(this.DoCheckChanged);
 			// 
 			// HashtagContextControl
 			// 
