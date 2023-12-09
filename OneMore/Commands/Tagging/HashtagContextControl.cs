@@ -27,6 +27,8 @@ namespace River.OneMoreAddIn.Commands
 		public HashtagContextControl(HashtagContext item)
 			: this()
 		{
+			PageID = item.PageID;
+
 			pageLink.Text = $"{item.HierarchyPath}/{item.PageTitle}";
 			var oid = string.IsNullOrWhiteSpace(item.TitleID) ? string.Empty : item.TitleID;
 			pageLink.Links.Add(0, pageLink.Text.Length, (item.PageID, oid));
@@ -82,6 +84,16 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
+		public bool Checked
+		{
+			get => checkbox.Checked;
+			set => checkbox.Checked = value;
+		}
+
+
+		public string PageID { get; private set; }
+
+
 		[DefaultValue(5)]
 		public int Radius
 		{
@@ -108,6 +120,13 @@ namespace River.OneMoreAddIn.Commands
 		{
 			base.OnSizeChanged(e);
 			RecreateRegion();
+		}
+
+
+		protected override void OnDoubleClick(EventArgs e)
+		{
+			base.OnDoubleClick(e);
+			Checked = !Checked;
 		}
 
 

@@ -31,8 +31,8 @@ namespace River.OneMoreAddIn.Commands
 				var d = sender as TaggedDialog;
 				if (d.DialogResult == DialogResult.OK)
 				{
-					command = dialog.Command;
-					pageIds = dialog.SelectedPages;
+					command = d.Command;
+					pageIds = d.SelectedPages;
 
 					var desc = command == TaggedDialog.Commands.Copy
 						? Resx.SearchQF_DescriptionCopy
@@ -43,8 +43,6 @@ namespace River.OneMoreAddIn.Commands
 				}
 			},
 			20);
-
-			await Task.Yield();
 		}
 
 

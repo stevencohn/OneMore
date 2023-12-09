@@ -33,6 +33,7 @@
 			this.tooltip = new System.Windows.Forms.ToolTip(this.components);
 			this.snippetsPanel = new System.Windows.Forms.FlowLayoutPanel();
 			this.dateLabel = new System.Windows.Forms.Label();
+			this.checkbox = new System.Windows.Forms.CheckBox();
 			this.SuspendLayout();
 			// 
 			// pageLink
@@ -42,7 +43,7 @@
 			this.pageLink.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.pageLink.HoverColor = System.Drawing.Color.MediumOrchid;
 			this.pageLink.LinkColor = System.Drawing.Color.MediumOrchid;
-			this.pageLink.Location = new System.Drawing.Point(13, 10);
+			this.pageLink.Location = new System.Drawing.Point(41, 10);
 			this.pageLink.Name = "pageLink";
 			this.pageLink.Size = new System.Drawing.Size(502, 22);
 			this.pageLink.TabIndex = 0;
@@ -55,10 +56,10 @@
 			// 
 			this.snippetsPanel.AutoSize = true;
 			this.snippetsPanel.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
-			this.snippetsPanel.Location = new System.Drawing.Point(50, 38);
+			this.snippetsPanel.Location = new System.Drawing.Point(58, 38);
 			this.snippetsPanel.Margin = new System.Windows.Forms.Padding(3, 6, 3, 3);
 			this.snippetsPanel.Name = "snippetsPanel";
-			this.snippetsPanel.Size = new System.Drawing.Size(643, 41);
+			this.snippetsPanel.Size = new System.Drawing.Size(635, 41);
 			this.snippetsPanel.TabIndex = 1;
 			// 
 			// dateLabel
@@ -73,11 +74,21 @@
 			this.dateLabel.Text = "label1";
 			this.dateLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
 			// 
+			// checkbox
+			// 
+			this.checkbox.AutoSize = true;
+			this.checkbox.Location = new System.Drawing.Point(13, 13);
+			this.checkbox.Name = "checkbox";
+			this.checkbox.Size = new System.Drawing.Size(22, 21);
+			this.checkbox.TabIndex = 3;
+			this.checkbox.UseVisualStyleBackColor = true;
+			// 
 			// HashtagContextControl
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.BackColor = System.Drawing.SystemColors.Window;
+			this.Controls.Add(this.checkbox);
 			this.Controls.Add(this.dateLabel);
 			this.Controls.Add(this.snippetsPanel);
 			this.Controls.Add(this.pageLink);
@@ -96,5 +107,6 @@
 		private System.Windows.Forms.ToolTip tooltip;
 		private System.Windows.Forms.FlowLayoutPanel snippetsPanel;
 		private System.Windows.Forms.Label dateLabel;
+		private System.Windows.Forms.CheckBox checkbox;
 	}
 }

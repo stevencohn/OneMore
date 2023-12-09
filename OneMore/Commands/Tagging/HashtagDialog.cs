@@ -6,6 +6,7 @@ namespace River.OneMoreAddIn.Commands
 {
 	using River.OneMoreAddIn.UI;
 	using System;
+	using System.Collections.Generic;
 	using System.Linq;
 	using System.Windows.Forms;
 
@@ -15,6 +16,14 @@ namespace River.OneMoreAddIn.Commands
 		private readonly MoreAutoCompleteList palette;
 		private readonly string notebookID;
 		private readonly string sectionID;
+
+
+		public enum Commands
+		{
+			Index,
+			Copy,
+			Move
+		}
 
 
 		public HashtagDialog()
@@ -46,6 +55,27 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
+		public Commands Command { get; private set; }
+
+
+		public IEnumerable<string> SelectedPages
+		{
+			get
+			{
+				for (var i = 0; i < contextPanel.Controls.Count; i++)
+				{
+					if (contextPanel.Controls[i] is HashtagContextControl item)
+					{
+						if (item.Checked)
+						{
+							yield return item.PageID;
+						}
+					}
+				}
+			}
+		}
+
+
 		private void PopulateTags(object sender, EventArgs e)
 		{
 			var provider = new HashtagProvider();
@@ -67,12 +97,6 @@ namespace River.OneMoreAddIn.Commands
 			logger.Verbose($"discovered {names.Count()} tags, {recent.Count()} mru");
 
 			palette.LoadCommands(names.ToArray(), recent.ToArray());
-		}
-
-
-		private void CancelButton_Click(object sender, EventArgs e)
-		{
-			Close();
 		}
 
 
@@ -195,6 +219,46 @@ namespace River.OneMoreAddIn.Commands
 			{
 				contextPanel.Controls[i].Width = width;
 			}
+		}
+
+
+		private void ToggleAllChecks(object sender, LinkLabelLinkClickedEventArgs e)
+		{
+			var ticked = sender == checkAllLink;
+			for (var i = 0; i < contextPanel.Controls.Count; i++)
+			{
+				if (contextPanel.Controls[i] is HashtagContextControl item)
+				{
+					item.Checked = ticked;
+				}
+			}
+		}
+
+
+		private void DoSomething(object sender, EventArgs e)
+		{
+			if (sender == indexButton)
+			{
+				Command = Commands.Index;
+			}
+			else if (sender == copyButton)
+			{
+				Command = Commands.Copy;
+			}
+			else
+			{
+				Command = Commands.Move;
+			}
+
+			DialogResult = DialogResult.OK;
+			Close();
+		}
+
+
+		private void DoCancel(object sender, EventArgs e)
+		{
+			DialogResult = DialogResult.Cancel;
+			Close();
 		}
 	}
 }
