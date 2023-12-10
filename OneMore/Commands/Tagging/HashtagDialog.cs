@@ -19,8 +19,6 @@ namespace River.OneMoreAddIn.Commands
 		private const string T0 = "0001-01-01T00:00:00.0000Z";
 
 		private readonly MoreAutoCompleteList palette;
-		private readonly string notebookID;
-		private readonly string sectionID;
 
 
 		public enum Commands
@@ -51,14 +49,6 @@ namespace River.OneMoreAddIn.Commands
 			scopeBox.SelectedIndex = 0;
 
 			ShowScanTimes();
-		}
-
-
-		public HashtagDialog(string notebookID, string sectionID)
-			: this()
-		{
-			this.notebookID = notebookID;
-			this.sectionID = sectionID;
 		}
 
 
@@ -97,19 +87,20 @@ namespace River.OneMoreAddIn.Commands
 
 		private void PopulateTags(object sender, EventArgs e)
 		{
+			using var one = new OneNote();
 			var provider = new HashtagProvider();
 
 			var names = scopeBox.SelectedIndex switch
 			{
-				1 => provider.ReadTagNames(notebookID: notebookID),
-				2 => provider.ReadTagNames(sectionID: sectionID),
+				1 => provider.ReadTagNames(notebookID: one.CurrentNotebookId),
+				2 => provider.ReadTagNames(sectionID: one.CurrentSectionId),
 				_ => provider.ReadTagNames(),
 			};
 
 			var recent = scopeBox.SelectedIndex switch
 			{
-				1 => provider.ReadLatestTagNames(notebookID: notebookID),
-				2 => provider.ReadLatestTagNames(sectionID: sectionID),
+				1 => provider.ReadLatestTagNames(notebookID: one.CurrentNotebookId),
+				2 => provider.ReadLatestTagNames(sectionID: one.CurrentSectionId),
 				_ => provider.ReadLatestTagNames(),
 			};
 
@@ -157,12 +148,13 @@ namespace River.OneMoreAddIn.Commands
 
 			name = name.Replace('*', '%');
 
+			using var one = new OneNote();
 			var provider = new HashtagProvider();
 
 			var tags = scopeBox.SelectedIndex switch
 			{
-				1 => provider.SearchTags(name, notebookID: notebookID),
-				2 => provider.SearchTags(name, sectionID: sectionID),
+				1 => provider.SearchTags(name, notebookID: one.CurrentNotebookId),
+				2 => provider.SearchTags(name, sectionID: one.CurrentSectionId),
 				_ => provider.SearchTags(name)
 			};
 
