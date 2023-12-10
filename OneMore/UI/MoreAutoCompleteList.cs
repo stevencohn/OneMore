@@ -57,13 +57,28 @@ namespace River.OneMoreAddIn.UI
 			highFont = new Font(Font, Font.Style | FontStyle.Bold);
 			commands = new List<Cmd>();
 			matches = new List<Cmd>();
+
+			RecentKicker = Resx.AutoComplete_recentlyUsed;
+			OtherKicker = Resx.AutoComplete_otherCommands;
 		}
+
+
+		/// <summary>
+		/// Gets or sets whether the popup is hidden when the Esc key is pressed or focus
+		/// is turned away from the bound input control.
+		/// </summary>
+		public bool HideListOnLostFocus { get; set; }
 
 
 		/// <summary>
 		/// Gets or sets a character used to delimit a command's name from its key sequence.
 		/// </summary>
 		public char KeyDivider { get; set; } = '|';
+
+
+		public string OtherKicker { private get; set; }
+
+		public string RecentKicker { private get; set; }
 
 
 		/// <summary>
@@ -78,7 +93,7 @@ namespace River.OneMoreAddIn.UI
 		/// <summary>
 		/// Gets a value indicating whether the hosted popup is visible
 		/// </summary>
-		public bool IsVisible => popup?.Visible == true;
+		public bool IsPopupVisible => popup?.Visible == true;
 
 
 		/// <summary>
@@ -91,7 +106,7 @@ namespace River.OneMoreAddIn.UI
 		/// Gets or sets whether the list is shown immediately along with its
 		/// TextBox. The default is to only show the list on the first keypress.
 		/// </summary>
-		public bool VisibleByDefault { get; set; }
+		public bool ShowPopupOnStartup { get; set; }
 
 
 		bool IExtenderProvider.CanExtend(object extendee)
@@ -126,6 +141,7 @@ namespace River.OneMoreAddIn.UI
 				// TODO: tear down?
 			}
 
+			// currently, only allow TextBox as the owner control
 			if (control is TextBox box)
 			{
 				Owner = box;
@@ -133,9 +149,15 @@ namespace River.OneMoreAddIn.UI
 				box.KeyDown += DoKeydown;
 				box.PreviewKeyDown += DoPreviewKeyDown;
 				box.TextChanged += DoTextChanged;
+
+				if (HideListOnLostFocus)
+				{
+					box.LostFocus += HidePopup;
+				}
+
 				boxtext = box.Text.Trim();
 
-				if (VisibleByDefault)
+				if (ShowPopupOnStartup)
 				{
 					box.GotFocus += ShowSelf;
 				}
@@ -180,12 +202,20 @@ namespace River.OneMoreAddIn.UI
 			}
 
 			// preselect the first item
-			Items[0].Selected = true;
+			if (Items.Count > 0)
+			{
+				Items[0].Selected = true;
+			}
 		}
 
 
 		private void ShowSelf(object sender, EventArgs e)
 		{
+			if (Items.Count == 0)
+			{
+				return;
+			}
+
 			if (sender is TextBox box && !box.Visible)
 			{
 				popup?.Close();
@@ -221,6 +251,11 @@ namespace River.OneMoreAddIn.UI
 
 		private void DoPreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
 		{
+			if (Items.Count == 0)
+			{
+				return;
+			}
+
 			// must catch Enter key in preview event so it's not superseded
 			// by Form.AcceptButton eventing
 			if (e.KeyCode == Keys.Enter)
@@ -230,13 +265,26 @@ namespace River.OneMoreAddIn.UI
 					var text = SelectedItems[0].Text;
 					var index = text.IndexOf(KeyDivider);
 					Owner.Text = index < 0 ? text : text.Substring(0, index);
+
+					// needed for dialogs that want to hide the popup on Enter
+					// without closing the dialog, such as FindHashtags
+					HidePopup(sender, e);
 				}
+			}
+			else if (e.KeyCode == Keys.Escape && HideListOnLostFocus)
+			{
+				HidePopup(sender, e);
 			}
 		}
 
 
 		private void DoKeydown(object sender, KeyEventArgs e)
 		{
+			if (Items.Count == 0)
+			{
+				return;
+			}
+
 			if (e.KeyCode == Keys.Escape)
 			{
 				HidePopup(sender, e);
@@ -308,7 +356,7 @@ namespace River.OneMoreAddIn.UI
 
 		private void HidePopup(object sender, EventArgs e)
 		{
-			if (popup?.Visible == true)
+			if (popup?.Visible == true && !popup.Focused)
 			{
 				popup.Close();
 			}
@@ -317,6 +365,11 @@ namespace River.OneMoreAddIn.UI
 
 		private void DoTextChanged(object sender, EventArgs e)
 		{
+			if (Items.Count == 0)
+			{
+				return;
+			}
+
 			var text = Owner.Text.Trim();
 			if (text != boxtext)
 			{
@@ -394,7 +447,9 @@ namespace River.OneMoreAddIn.UI
 				high = SystemBrushes.GradientInactiveCaption;
 			}
 
-			e.Graphics.FillRectangle(back, e.Bounds.X, e.Bounds.Y + 1, e.Bounds.Width, e.Bounds.Height - 2);
+			e.Graphics.FillRectangle(back,
+				e.Bounds.X, e.Bounds.Y + 1,
+				e.Bounds.Width, e.Bounds.Height - 2);
 
 			string keys = null;
 
@@ -443,7 +498,8 @@ namespace River.OneMoreAddIn.UI
 
 					// draw matched phrase
 					phrase = text.Substring(index, Owner.Text.Length);
-					e.Graphics.DrawString(phrase, highFont, high, x, e.Bounds.Y, StringFormat.GenericTypographic);
+					e.Graphics.DrawString(phrase, highFont, high,
+						x, e.Bounds.Y, StringFormat.GenericTypographic);
 
 					size = e.Graphics.MeasureString(
 						phrase, highFont, new PointF(x, e.Bounds.Y), StringFormat.GenericTypographic);
@@ -455,7 +511,8 @@ namespace River.OneMoreAddIn.UI
 					if (index < text.Length)
 					{
 						phrase = text.Substring(index);
-						e.Graphics.DrawString(phrase, Font, fore, x, e.Bounds.Y, StringFormat.GenericTypographic);
+						e.Graphics.DrawString(phrase, Font, fore,
+							x, e.Bounds.Y, StringFormat.GenericTypographic);
 					}
 
 					drawn = true;
@@ -475,7 +532,7 @@ namespace River.OneMoreAddIn.UI
 			{
 				if (e.ItemIndex == 0)
 				{
-					var annotation = Resx.AutoComplete_recentlyUsed;
+					var annotation = RecentKicker;
 					var size = e.Graphics.MeasureString(annotation, Font);
 					// push key sequence positioning over to the left
 					x -= size.Width;
@@ -498,7 +555,7 @@ namespace River.OneMoreAddIn.UI
 				}
 				else if (common == e.ItemIndex)
 				{
-					var annotation = Resx.AutoComplete_otherCommands;
+					var annotation = OtherKicker;
 					var size = e.Graphics.MeasureString(annotation, Font);
 					// push key sequence positioning over to the left
 					x -= size.Width;

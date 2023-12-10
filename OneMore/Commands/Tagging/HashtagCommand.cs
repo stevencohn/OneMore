@@ -1,40 +1,41 @@
 ﻿//************************************************************************************************
-// Copyright © 2020 Steven M Cohn.  All rights reserved.
+// Copyright © 2023 Steven M Cohn.  All rights reserved.
 //************************************************************************************************
 
 namespace River.OneMoreAddIn.Commands
 {
 	using System;
 	using System.Collections.Generic;
+	using System.Linq;
 	using System.Threading.Tasks;
 	using System.Windows.Forms;
-	using Resx = River.OneMoreAddIn.Properties.Resources;
+	using Resx = Properties.Resources;
 
-
-	internal class TaggedCommand : Command
+	internal class HashtagCommand : Command
 	{
-		private TaggedDialog.Commands command;
-		private List<string> pageIds;
+		private HashtagDialog.Commands command;
+		private IEnumerable<string> pageIds;
 
-
-		public TaggedCommand()
+		public HashtagCommand()
 		{
+			// prevent replay
+			IsCancelled = true;
 		}
 
 
 		public override async Task Execute(params object[] args)
 		{
-			var dialog = new TaggedDialog();
+			using var dialog = new HashtagDialog();
 
 			await dialog.RunModeless((sender, e) =>
 			{
-				var d = sender as TaggedDialog;
+				var d = sender as HashtagDialog;
 				if (d.DialogResult == DialogResult.OK)
 				{
 					command = d.Command;
-					pageIds = d.SelectedPages;
+					pageIds = d.SelectedPages.ToList();
 
-					var desc = command == TaggedDialog.Commands.Copy
+					var desc = command == HashtagDialog.Commands.Copy
 						? Resx.SearchQF_DescriptionCopy
 						: Resx.SearchQF_DescriptionMove;
 
@@ -54,7 +55,7 @@ namespace River.OneMoreAddIn.Commands
 				return;
 			}
 
-			logger.Start($"..{command} {pageIds.Count} pages");
+			logger.Start($"..{command} {pageIds.Count()} pages");
 
 			try
 			{
@@ -63,15 +64,15 @@ namespace River.OneMoreAddIn.Commands
 
 				switch (command)
 				{
-					case TaggedDialog.Commands.Index:
+					case HashtagDialog.Commands.Index:
 						await service.IndexPages(pageIds);
 						break;
 
-					case TaggedDialog.Commands.Copy:
+					case HashtagDialog.Commands.Copy:
 						await service.CopyPages(pageIds);
 						break;
 
-					case TaggedDialog.Commands.Move:
+					case HashtagDialog.Commands.Move:
 						await service.MovePages(pageIds);
 						break;
 				}

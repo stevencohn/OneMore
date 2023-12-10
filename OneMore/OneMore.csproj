@@ -233,6 +233,20 @@
     </Compile>
     <Compile Include="Commands\Tables\TableThemePainter.cs" />
     <Compile Include="Commands\Tagging\Hashtag.cs" />
+    <Compile Include="Commands\Tagging\HashtagCommand.cs" />
+    <Compile Include="Commands\Tagging\HashtagContext.cs" />
+    <Compile Include="Commands\Tagging\HashtagContextControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Commands\Tagging\HashtagContextControl.Designer.cs">
+      <DependentUpon>HashtagContextControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Commands\Tagging\HashtagDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Commands\Tagging\HashtagDialog.Designer.cs">
+      <DependentUpon>HashtagDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="Commands\Tagging\HashtagPageScanner.cs" />
     <Compile Include="Commands\Tagging\HashtagPageScannerFactory.cs" />
     <Compile Include="Commands\Tagging\HashtagProvider.cs" />
@@ -441,6 +455,9 @@
       <DependentUpon>MoreExpander.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\MoreFlowLayoutPanel.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="UI\MorePanel.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="UI\RenameDialog.cs">
@@ -1159,6 +1176,7 @@
     <Content Include="Properties\Images\FolderClose.png" />
     <Content Include="Properties\Images\FolderOpen.png" />
     <None Include="Properties\Images\Grid40.png" />
+    <Content Include="Ribbon\Images\ribSearchHashtagsButton.png" />
     <Content Include="Properties\Images\Label.png" />
     <Content Include="Properties\Images\LabelSearch.png" />
     <None Include="Properties\Emoji\Pencil.png" />
@@ -1327,6 +1345,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Commands\Styles\PageColorSelector.resx">
       <DependentUpon>PageColorSelector.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Commands\Tagging\HashtagContextControl.resx">
+      <DependentUpon>HashtagContextControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Commands\Tagging\HashtagDialog.resx">
+      <DependentUpon>HashtagDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.he-IL.resx">
       <SubType>Designer</SubType>

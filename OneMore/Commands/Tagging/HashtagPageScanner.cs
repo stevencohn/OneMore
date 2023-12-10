@@ -1,5 +1,5 @@
 ﻿//************************************************************************************************
-// Copyright © 2023 Steven M Cohn.  All rights reserved.
+// Copyright © 2023 Steven M Cohn. All rights reserved.
 //************************************************************************************************
 
 namespace River.OneMoreAddIn.Commands
@@ -16,7 +16,7 @@ namespace River.OneMoreAddIn.Commands
 	/// </summary>
 	internal class HashtagPageScanner
 	{
-		private const int ContextLength = 70;
+		private const int ContextLength = 100;
 
 		private readonly XElement root;
 		private readonly XNamespace ns;
@@ -101,7 +101,7 @@ namespace River.OneMoreAddIn.Commands
 				if (matches.Count > 0)
 				{
 					var objectID = paragraph.Attribute("objectID").Value;
-					var lastTime = paragraph.Attribute("lastModifiedTime").Value;
+					var lastModifiedTime = paragraph.Attribute("lastModifiedTime").Value;
 
 					foreach (Match match in matches)
 					{
@@ -120,8 +120,8 @@ namespace River.OneMoreAddIn.Commands
 									MoreID = MoreID,
 									PageID = pageID,
 									ObjectID = objectID,
-									Context = context,
-									LastScan = lastTime
+									Snippet = context,
+									LastModified = lastModifiedTime
 								});
 							}
 						}

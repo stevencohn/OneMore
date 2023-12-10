@@ -1,5 +1,5 @@
 ﻿//************************************************************************************************
-// Copyright © 2023 Steven M Cohn.  All rights reserved.
+// Copyright © 2023 Steven M Cohn. All rights reserved.
 //************************************************************************************************
 
 #pragma warning disable S3249 // Classes directly extending "object" should not call "base"
@@ -14,12 +14,6 @@ namespace River.OneMoreAddIn.Commands
 	/// </summary>
 	internal class Hashtag
 	{
-		/// <summary>
-		/// Gets the unique rowID returned by the DB
-		/// </summary>
-		public int RowID { get; set; }
-
-
 		/// <summary>
 		/// The hashtag string including its ## prefix
 		/// </summary>
@@ -39,21 +33,52 @@ namespace River.OneMoreAddIn.Commands
 
 
 		/// <summary>
+		/// The OneNote ID of the page title paragraph.
+		/// Let's us scroll the page to the top.
+		/// </summary>
+		public string TitleID { get; set; }
+
+
+		/// <summary>
 		/// The OneNote owning paragraph object ID
 		/// </summary>
 		public string ObjectID { get; set; }
 
 
 		/// <summary>
+		/// Gets the ID of the notebook containing the tag
+		/// </summary>
+		public string NotebookID { get; set; }
+
+
+		/// <summary>
+		/// Gets the ID of the section containing the tag
+		/// </summary>
+		public string SectionID { get; set; }
+
+
+		/// <summary>
+		/// Gets the hierarchy path of the page
+		/// </summary>
+		public string HierarchyPath { get; set; }
+
+
+		/// <summary>
+		/// Gets the title of the page
+		/// </summary>
+		public string PageTitle { get; set; }
+
+
+		/// <summary>
 		/// The contextual snippet of text surrounding the hashtag
 		/// </summary>
-		public string Context { get; set; }
+		public string Snippet { get; set; }
 
 
 		/// <summary>
 		/// The time this tag was first captured
 		/// </summary>
-		public string LastScan { get; set; }
+		public string LastModified { get; set; }
 
 
 		public override bool Equals(object obj)

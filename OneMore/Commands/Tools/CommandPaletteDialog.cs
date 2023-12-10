@@ -9,7 +9,7 @@ namespace River.OneMoreAddIn.Commands
 	using System;
 	using System.Text.RegularExpressions;
 	using System.Windows.Forms;
-	using Resx = River.OneMoreAddIn.Properties.Resources;
+	using Resx = Properties.Resources;
 
 	internal partial class CommandPaletteDialog : UI.LocalizableForm
 	{
@@ -25,7 +25,7 @@ namespace River.OneMoreAddIn.Commands
 
 			palette = new MoreAutoCompleteList
 			{
-				VisibleByDefault = true
+				ShowPopupOnStartup = true
 			};
 
 			palette.SetAutoCompleteList(cmdBox, palette);
@@ -126,7 +126,7 @@ namespace River.OneMoreAddIn.Commands
 		{
 			if (e.KeyCode == Keys.Escape)
 			{
-				escaping = !palette.IsVisible;
+				escaping = !palette.IsPopupVisible;
 			}
 		}
 	}

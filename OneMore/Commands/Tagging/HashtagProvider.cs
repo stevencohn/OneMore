@@ -1,11 +1,12 @@
 ﻿//************************************************************************************************
-// Copyright © 2023 Steven M Cohn.  All rights reserved.
+// Copyright © 2023 Steven M Cohn. All rights reserved.
 //************************************************************************************************
 
 namespace River.OneMoreAddIn.Commands
 {
 	using River.OneMoreAddIn.Properties;
 	using System;
+	using System.Collections.Generic;
 	using System.Data;
 	using System.Data.SQLite;
 	using System.IO;
@@ -77,7 +78,7 @@ namespace River.OneMoreAddIn.Commands
 			}
 			catch (Exception exc)
 			{
-				logger.WriteLine("error committing transaction", exc);
+				logger.WriteLine("error building db", exc);
 				throw;
 			}
 		}
@@ -111,7 +112,7 @@ namespace River.OneMoreAddIn.Commands
 		public void DeleteTags(Hashtags tags)
 		{
 			using var cmd = con.CreateCommand();
-			cmd.CommandText = "DELETE FROM hashtags WHERE tag = @t AND moreID = @m";
+			cmd.CommandText = "DELETE FROM hashtag WHERE tag = @t AND moreID = @m";
 			cmd.CommandType = CommandType.Text;
 			cmd.Parameters.Add("@t", DbType.String);
 			cmd.Parameters.Add("@m", DbType.String);
@@ -142,7 +143,7 @@ namespace River.OneMoreAddIn.Commands
 			}
 			catch (Exception exc)
 			{
-				logger.WriteLine("error committing transaction", exc);
+				logger.WriteLine("error deleting tags", exc);
 			}
 		}
 
@@ -150,14 +151,14 @@ namespace River.OneMoreAddIn.Commands
 		private void CleanupPages()
 		{
 			// as tags are deleted from a page, that page may be left dangling in the
-			// hashtags_pages table; this cleans up those orphaned records
+			// hashtag_page table; this cleans up those orphaned records
 
 			using var cmd = con.CreateCommand();
 			cmd.CommandType = CommandType.Text;
-			cmd.CommandText = "DELETE FROM hashtags_pages WHERE moreID IN (" +
+			cmd.CommandText = "DELETE FROM hashtag_page WHERE moreID IN (" +
 				"SELECT P.moreID " +
-				"FROM hashtags_pages P " +
-				"LEFT OUTER JOIN hashtags T " +
+				"FROM hashtag_page P " +
+				"LEFT OUTER JOIN hashtag T " +
 				"ON T.moreID = P.moreID WHERE T.tag IS NULL)";
 
 			try
@@ -166,7 +167,7 @@ namespace River.OneMoreAddIn.Commands
 			}
 			catch (Exception exc)
 			{
-				logger.WriteLine("error committing transaction", exc);
+				logger.WriteLine("error cleaning up pages", exc);
 			}
 		}
 
@@ -175,10 +176,10 @@ namespace River.OneMoreAddIn.Commands
 		/// Returns the last saved scan time
 		/// </summary>
 		/// <returns>A collection of Hashtags</returns>
-		public string ReadLastScanTime()
+		public string ReadScanTime()
 		{
 			using var cmd = con.CreateCommand();
-			cmd.CommandText = "SELECT version, lastScan FROM hashtag_scanner WHERE scannerID = 0";
+			cmd.CommandText = "SELECT version, scanTime FROM hashtag_scanner WHERE scannerID = 0";
 
 			try
 			{
@@ -199,6 +200,48 @@ namespace River.OneMoreAddIn.Commands
 
 
 		/// <summary>
+		/// Returns a collection of the latest tag names.
+		/// </summary>
+		/// <returns>A list of strings</returns>
+		public IEnumerable<string> ReadLatestTagNames(
+			string notebookID = null, string sectionID = null)
+		{
+			var tags = new List<string>();
+			using var cmd = con.CreateCommand();
+
+			var sql = "SELECT DISTINCT t.tag FROM hashtag t";
+			if (!string.IsNullOrWhiteSpace(sectionID))
+			{
+				sql = $"{sql} JOIN hashtag_page p ON p.moreID = t.moreID AND p.sectionID = @sid";
+				cmd.Parameters.AddWithValue("@sid", sectionID);
+			}
+			else if (!string.IsNullOrWhiteSpace(notebookID))
+			{
+				sql = $"{sql} JOIN hashtag_page p ON p.moreID = t.moreID AND p.notebookID = @nid";
+				cmd.Parameters.AddWithValue("@nid", notebookID);
+			}
+
+			sql = $"{sql} ORDER BY t.lastModified LIMIT 5";
+			cmd.CommandText = sql;
+
+			try
+			{
+				using var reader = cmd.ExecuteReader();
+				while (reader.Read())
+				{
+					tags.Add(reader.GetString(0));
+				}
+			}
+			catch (Exception exc)
+			{
+				logger.WriteLine("error reading distinct tags", exc);
+			}
+
+			return tags;
+		}
+
+
+		/// <summary>
 		/// Returns a collection of tags on the specified page
 		/// </summary>
 		/// <param name="pageID">The ID of the page</param>
@@ -206,58 +249,133 @@ namespace River.OneMoreAddIn.Commands
 		public Hashtags ReadPageTags(string pageID)
 		{
 			var sql =
-				"SELECT t.rowID, t.tag, t.moreID, p.pageID, t.objectID, t.context, t.lastScan " +
-				"FROM hashtags t " +
-				"JOIN hashtags_pages p ON p.moreID = t.moreID " +
+				"SELECT t.tag, t.moreID, p.pageID, p.titleID, t.objectID, " +
+				"p.notebookID, p.sectionID, t.lastModified " +
+				"FROM hashtag t " +
+				"JOIN hashtag_page p ON p.moreID = t.moreID " +
 				"WHERE p.pageID = @p";
 
 			return ReadTags(sql,
-				new SQLiteParameter[] { new SQLiteParameter("@p", pageID) }
+				new SQLiteParameter[] { new("@p", pageID) }
 				);
 		}
 
 
 		/// <summary>
-		/// Returns a collection of Hashtag instances with the specified name across all pages
+		/// Returns a collection of all unique tag names.
 		/// </summary>
-		/// <param name="tag">The name of the tag to search for</param>
-		/// <returns>A collection of Hashtags</returns>
-		public Hashtags ReadTagsByName(string tag)
+		/// <returns>A list of strings</returns>
+		public IEnumerable<string> ReadTagNames(string notebookID = null, string sectionID = null)
 		{
-			var sql =
-				"SELECT t.rowID, t.tag, t.moreID, p.pageID, t.objectID, t.context, t.lastScan " +
-				"FROM hashtags t " +
-				"JOIN hashtags_pages p ON p.moreID = t.moreID " +
-				"WHERE t.tag = @p";
-
-			return ReadTags(sql,
-				new SQLiteParameter[] { new SQLiteParameter("@p", tag) }
-				);
-		}
-
-
-		private Hashtags ReadTags(string sql, SQLiteParameter[] parameters)
-		{
-			var tags = new Hashtags();
+			var tags = new List<string>();
 			using var cmd = con.CreateCommand();
+
+			var sql = "SELECT DISTINCT t.tag FROM hashtag t";
+
+			if (!string.IsNullOrWhiteSpace(sectionID))
+			{
+				sql = $"{sql} JOIN hashtag_page p ON p.moreID = t.moreID AND p.sectionID = @sid";
+				cmd.Parameters.AddWithValue("@sid", sectionID);
+			}
+			else if (!string.IsNullOrWhiteSpace(notebookID))
+			{
+				sql = $"{sql} JOIN hashtag_page p ON p.moreID = t.moreID AND p.notebookID = @nid";
+				cmd.Parameters.AddWithValue("@nid", notebookID);
+			}
+
+			sql = $"{sql} ORDER BY 1";
 			cmd.CommandText = sql;
-			cmd.Parameters.AddRange(parameters);
 
 			try
 			{
 				using var reader = cmd.ExecuteReader();
 				while (reader.Read())
 				{
-					tags.Add(new Hashtag
+					tags.Add(reader.GetString(0));
+				}
+			}
+			catch (Exception exc)
+			{
+				logger.WriteLine("error reading distinct tags", exc);
+			}
+
+			return tags;
+		}
+
+
+		/// <summary>
+		/// Returns a collection of Hashtag instances with the specified name across all pages
+		/// </summary>
+		/// <param name="wildcard">The name of the tag to search for, optionally with wildcards</param>
+		/// <returns>A collection of Hashtags</returns>
+		public Hashtags SearchTags(
+			string wildcard, string notebookID = null, string sectionID = null)
+		{
+			var parameters = new List<SQLiteParameter>();
+
+			var sql =
+				"SELECT t.tag, t.moreID, p.pageID, p.titleID, t.objectID, " +
+				"p.notebookID, p.sectionID, t.lastModified, t.snippet, p.path, p.name " +
+				"FROM hashtag t " +
+				"JOIN hashtag_page p " +
+				"ON t.moreID = p.moreID ";
+
+			if (!string.IsNullOrWhiteSpace(sectionID))
+			{
+				sql = $"{sql} AND p.sectionID = @sid ";
+				parameters.Add(new("sid", sectionID));
+			}
+			else if (!string.IsNullOrWhiteSpace(notebookID))
+			{
+				sql = $"{sql} AND p.notebookID = @nid ";
+				parameters.Add(new("nid", notebookID));
+			}
+
+			parameters.Add(new("@t", wildcard));
+
+			sql = $"{sql} WHERE t.tag LIKE @t " +
+				"ORDER BY p.path, p.name, t.tag";
+
+			return ReadTags(sql, parameters.ToArray());
+		}
+
+
+		private Hashtags ReadTags(string sql, SQLiteParameter[] parameters = null)
+		{
+			var tags = new Hashtags();
+			using var cmd = con.CreateCommand();
+			cmd.CommandText = sql;
+
+			if (parameters != null && parameters.Length > 0)
+			{
+				cmd.Parameters.AddRange(parameters);
+			}
+
+			try
+			{
+				using var reader = cmd.ExecuteReader();
+				while (reader.Read())
+				{
+					var tag = new Hashtag
 					{
-						RowID = reader.GetInt32(0),
-						Tag = reader.GetString(1),
-						MoreID = reader.GetString(2),
-						PageID = reader.GetString(3),
+						Tag = reader.GetString(0),
+						MoreID = reader.GetString(1),
+						PageID = reader.GetString(2),
+						TitleID = reader.GetString(3),
 						ObjectID = reader.GetString(4),
-						Context = reader[5] is DBNull ? null : reader.GetString(5),
-						LastScan = reader.GetString(6)
-					});
+						NotebookID = reader.GetString(5),
+						SectionID = reader.GetString(6),
+						LastModified = reader.GetString(7)
+					};
+
+					if (reader.FieldCount > 7 && sql.Contains("snippet"))
+					{
+						tag.Snippet = reader[8] is DBNull ? null : reader.GetString(8);
+						tag.HierarchyPath = reader[9] is DBNull ? null : reader.GetString(9);
+						tag.PageTitle = reader[10] is DBNull ? null : reader.GetString(10);
+					}
+
+					tags.Add(tag);
 				}
 			}
 			catch (Exception exc)
@@ -273,11 +391,11 @@ namespace River.OneMoreAddIn.Commands
 		/// Records the given tags.
 		/// </summary>
 		/// <param name="tags">A collection of Hashtags</param>
-		public void UpdateContext(Hashtags tags)
+		public void UpdateSnippet(Hashtags tags)
 		{
 			using var cmd = con.CreateCommand();
-			cmd.CommandText = "UPDATE hashtags " +
-				"SET context = @c, lastScan = @s " +
+			cmd.CommandText = "UPDATE hashtag " +
+				"SET snippet = @c, lastModified = @s " +
 				"WHERE tag = @t AND moreID = @m";
 
 			cmd.CommandType = CommandType.Text;
@@ -291,8 +409,8 @@ namespace River.OneMoreAddIn.Commands
 			{
 				logger.Verbose($"updating tag {tag.Tag}");
 
-				cmd.Parameters["@c"].Value = tag.Context;
-				cmd.Parameters["@s"].Value = tag.LastScan;
+				cmd.Parameters["@c"].Value = tag.Snippet;
+				cmd.Parameters["@s"].Value = tag.LastModified;
 				cmd.Parameters["@t"].Value = tag.Tag;
 				cmd.Parameters["@m"].Value = tag.MoreID;
 
@@ -312,7 +430,7 @@ namespace River.OneMoreAddIn.Commands
 			}
 			catch (Exception exc)
 			{
-				logger.WriteLine("error committing transaction", exc);
+				logger.WriteLine("error updating snippets", exc);
 			}
 		}
 
@@ -321,10 +439,10 @@ namespace River.OneMoreAddIn.Commands
 		/// Records the timestamp value that was initialized at construction of this class
 		/// instance
 		/// </summary>
-		public void WriteLastScanTime()
+		public void WriteScanTime()
 		{
 			using var cmd = con.CreateCommand();
-			cmd.CommandText = "UPDATE hashtag_scanner SET lastScan = @d WHERE scannerID = 0";
+			cmd.CommandText = "UPDATE hashtag_scanner SET scanTime = @d WHERE scannerID = 0";
 			cmd.Parameters.AddWithValue("@d", timestamp);
 
 			try
@@ -342,19 +460,28 @@ namespace River.OneMoreAddIn.Commands
 		/// Records given info for the specified page.
 		/// </summary>
 		/// <param name="moreID">The assigned ID to the page</param>
-		/// <param name="path">The OneNote ID of the page</param>
+		/// <param name="pageID">The OneNote ID of the page</param>
+		/// <param name="titleID">The OneNote ID of the title paragraph</param>
+		/// <param name="notebookID">The ID of the notebook</param>
+		/// <param name="sectionID">The ID of the section</param>
 		/// <param name="path">The hierarchy path of the page</param>
 		/// <param name="title">The title (name) of the page</param>
-		public void WritePageInfo(string moreID, string pageID, string path, string title)
+		public void WritePageInfo(
+			string moreID, string pageID, string titleID,
+			string notebookID, string sectionID, string path, string title)
 		{
 			using var cmd = con.CreateCommand();
-			cmd.CommandText = "REPLACE INTO hashtags_pages " +
-				"(moreID, pageID, path, name) VALUES (@m, @p, @t, @n)";
+			cmd.CommandText = "REPLACE INTO hashtag_page " +
+				"(moreID, pageID, titleID, notebookID, sectionID, path, name) " +
+				"VALUES (@mid, @pid, @tid, @nid, @sid, @pth, @nam)";
 
-			cmd.Parameters.AddWithValue("@m", moreID);
-			cmd.Parameters.AddWithValue("@p", pageID);
-			cmd.Parameters.AddWithValue("@t", path);
-			cmd.Parameters.AddWithValue("@n", title);
+			cmd.Parameters.AddWithValue("@mid", moreID);
+			cmd.Parameters.AddWithValue("@pid", pageID);
+			cmd.Parameters.AddWithValue("@tid", titleID);
+			cmd.Parameters.AddWithValue("@nid", notebookID);
+			cmd.Parameters.AddWithValue("@sid", sectionID);
+			cmd.Parameters.AddWithValue("@pth", path);
+			cmd.Parameters.AddWithValue("@nam", title);
 
 			try
 			{
@@ -373,31 +500,31 @@ namespace River.OneMoreAddIn.Commands
 		/// <param name="tags">A collection of Hashtags</param>
 		public void WriteTags(Hashtags tags)
 		{
-			using var cmd = con.CreateCommand();
-			cmd.CommandText = "INSERT INTO hashtags " +
-				"(tag, moreID, objectID, context, lastScan) VALUES (@t, @m, @o, @c, @s)";
+			using var tagcmd = con.CreateCommand();
+			tagcmd.CommandText = "INSERT INTO hashtag " +
+				"(tag, moreID, objectID, snippet, lastModified) VALUES (@t, @m, @o, @c, @s)";
 
-			cmd.CommandType = CommandType.Text;
-			cmd.Parameters.Add("@t", DbType.String);
-			cmd.Parameters.Add("@m", DbType.String);
-			cmd.Parameters.Add("@o", DbType.String);
-			cmd.Parameters.Add("@c", DbType.String);
-			cmd.Parameters.Add("@s", DbType.String);
+			tagcmd.CommandType = CommandType.Text;
+			tagcmd.Parameters.Add("@t", DbType.String);
+			tagcmd.Parameters.Add("@m", DbType.String);
+			tagcmd.Parameters.Add("@o", DbType.String);
+			tagcmd.Parameters.Add("@c", DbType.String);
+			tagcmd.Parameters.Add("@s", DbType.String);
 
 			using var transaction = con.BeginTransaction();
 			foreach (var tag in tags)
 			{
 				logger.Verbose($"writing tag {tag.Tag}");
 
-				cmd.Parameters["@t"].Value = tag.Tag;
-				cmd.Parameters["@m"].Value = tag.MoreID;
-				cmd.Parameters["@o"].Value = tag.ObjectID;
-				cmd.Parameters["@c"].Value = tag.Context;
-				cmd.Parameters["@s"].Value = timestamp;
+				tagcmd.Parameters["@t"].Value = tag.Tag;
+				tagcmd.Parameters["@m"].Value = tag.MoreID;
+				tagcmd.Parameters["@o"].Value = tag.ObjectID;
+				tagcmd.Parameters["@c"].Value = tag.Snippet;
+				tagcmd.Parameters["@s"].Value = tag.LastModified;
 
 				try
 				{
-					cmd.ExecuteNonQuery();
+					tagcmd.ExecuteNonQuery();
 				}
 				catch (Exception exc)
 				{
@@ -411,7 +538,7 @@ namespace River.OneMoreAddIn.Commands
 			}
 			catch (Exception exc)
 			{
-				logger.WriteLine("error committing transaction", exc);
+				logger.WriteLine("error writing tags", exc);
 			}
 		}
 	}

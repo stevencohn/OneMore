@@ -1,5 +1,5 @@
 ﻿//************************************************************************************************
-// Copyright © 2023 Steven M Cohn.  All rights reserved.
+// Copyright © 2023 Steven M Cohn. All rights reserved.
 //************************************************************************************************
 
 namespace River.OneMoreAddIn.Commands
@@ -33,7 +33,7 @@ namespace River.OneMoreAddIn.Commands
 			provider = new HashtagProvider();
 			factory = new HashtagPageSannerFactory();
 
-			lastTime = provider.ReadLastScanTime();
+			lastTime = provider.ReadScanTime();
 			logger.Verbose($"HashtagScanner lastTime {lastTime}");
 		}
 
@@ -78,18 +78,21 @@ namespace River.OneMoreAddIn.Commands
 				foreach (var notebook in notebooks)
 				{
 					// gets sections for this notebook
-					var sections = await one.GetNotebook(notebook.Attribute("ID").Value);
-					totalPages += await Scan(sections, $"/{notebook.Attribute("name").Value}");
+					var notebookID = notebook.Attribute("ID").Value;
+					var sections = await one.GetNotebook(notebookID);
+
+					totalPages += await Scan(
+						sections, notebookID, $"/{notebook.Attribute("name").Value}");
 				}
 			}
 
-			provider.WriteLastScanTime();
+			provider.WriteScanTime();
 
 			return totalPages;
 		}
 
 
-		private async Task<int> Scan(XElement parent, string path)
+		private async Task<int> Scan(XElement parent, string notebookID, string path)
 		{
 			//logger.Verbose($"scanning parent {path}");
 
@@ -113,6 +116,7 @@ namespace River.OneMoreAddIn.Commands
 
 					totalPages += pages.Count();
 
+					var sectionID = section.Attribute("ID").Value;
 					var sectionPath = $"{path}/{section.Attribute("name").Value}";
 					//logger.Verbose($"scanning section {sectionPath} ({pages.Count()} pages)");
 
@@ -120,7 +124,8 @@ namespace River.OneMoreAddIn.Commands
 					{
 						if (page.Attribute("lastModifiedTime").Value.CompareTo(lastTime) > 0)
 						{
-							await ScanPage(page.Attribute("ID").Value, sectionPath);
+							await ScanPage(
+								page.Attribute("ID").Value, notebookID, sectionID, sectionPath);
 						}
 					}
 				}
@@ -136,7 +141,8 @@ namespace River.OneMoreAddIn.Commands
 			{
 				foreach (var group in groups)
 				{
-					totalPages = await Scan(group, $"{path}/{group.Attribute("name").Value}");
+					totalPages = await Scan(
+						group, notebookID, $"{path}/{group.Attribute("name").Value}");
 				}
 			}
 
@@ -144,7 +150,7 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private async Task ScanPage(string pageID, string path)
+		private async Task ScanPage(string pageID, string notebookID, string sectionID, string path)
 		{
 			Page page;
 
@@ -159,6 +165,7 @@ namespace River.OneMoreAddIn.Commands
 			}
 
 			var title = page.Title;
+			var titleID = page.TitleID;
 			var scanner = factory.CreatePageScanner(page.Root);
 			var candidates = scanner.Scan();
 
@@ -177,7 +184,7 @@ namespace River.OneMoreAddIn.Commands
 				}
 				else
 				{
-					if (candidate.LastScan.CompareTo(lastTime) > 0)
+					if (candidate.LastModified.CompareTo(lastTime) > 0)
 					{
 						updated.Add(candidate);
 					}
@@ -186,44 +193,52 @@ namespace River.OneMoreAddIn.Commands
 				}
 			}
 
-			var updatedAny = false;
+			var dirtyPage = false;
 
 			if (saved.Any())
 			{
 				// remaining saved entries were not matched with candidates
 				// on page so should be deleted
 				provider.DeleteTags(saved);
-				updatedAny = true;
+				dirtyPage = true;
 			}
 
 			if (updated.Any())
 			{
 				// tag context updated since last scan
-				provider.UpdateContext(updated);
-				updatedAny = true;
+				provider.UpdateSnippet(updated);
+				dirtyPage = true;
 			}
 
 			if (discovered.Any())
 			{
 				// discovered entries are new on the page and not found in saved
+
 				provider.WriteTags(discovered);
-				updatedAny = true;
+				dirtyPage = true;
 			}
 
 			// if first time hashtags were discovered on this page then set omPageID
-			if (scanner.UpdateMeta && updatedAny)
+			if (scanner.UpdateMeta && dirtyPage)
 			{
 				page.SetMeta(MetaNames.PageID, scanner.MoreID);
 				await one.Update(page);
 			}
 
-			if (updatedAny)
+			if (dirtyPage)
 			{
 				// will likely rewrite same data but needed in case old page is moved
+
 				// TODO: could track moreID+pageID to determine if REPLACE is needed; but then
 				// need to read that info first as well; see where the design goes...
+
 				// TODO: how to clean up deleted pages?
-				provider.WritePageInfo(scanner.MoreID, pageID, path, title);
+
+				// TODO: should this be wrapped in a tx along with the above statements?
+
+				provider.WritePageInfo(
+					scanner.MoreID, pageID, titleID, notebookID, sectionID, path, title);
+
 				logger.WriteLine($"updating tags on page {path}/{title}");
 			}
 		}

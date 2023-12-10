@@ -747,6 +747,10 @@ namespace River.OneMoreAddIn
 			=> await factory.Run<SearchAndReplaceCommand>();
 
 
+		[Command("ribSearchHashtagsButton_Label", Keys.None, "ribSearchMenu")]
+		public async Task SearchHashtagsCmd(IRibbonControl control)
+			=> await factory.Run<HashtagCommand>();
+
 		public async Task SearchWebCmd(IRibbonControl control)
 			=> await factory.Run<SearchWebCommand>(control.Tag); // tag=engine
 
