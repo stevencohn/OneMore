@@ -2717,11 +2717,10 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to CREATE TABLE IF NOT EXISTS hashtag_scanner (scannerID INTEGER PRIMARY KEY UNIQUE NOT NULL, version NUMERIC (12) UNIQUE NOT NULL, lastScan TEXT NOT NULL);
-        ///CREATE TABLE IF NOT EXISTS hashtags (tag TEXT NOT NULL, moreID TEXT NOT NULL, objectID TEXT NOT NULL, context TEXT, lastScan TEXT NOT NULL, PRIMARY KEY (tag, objectID));
-        ///CREATE TABLE IF NOT EXISTS hashtags_pages (moreID PRIMARY KEY, pageID TEXT NOT NULL, path TEXT, name TEXT);
-        ///CREATE INDEX IF NOT EXISTS IDX_moreID ON hashtags (moreID);
-        ///CREATE INDEX IF  [rest of string was truncated]&quot;;.
+        ///   Looks up a localized string similar to CREATE TABLE IF NOT EXISTS hashtag_scanner (scannerID INTEGER PRIMARY KEY UNIQUE NOT NULL, version NUMERIC (12) UNIQUE NOT NULL, scanTime TEXT NOT NULL);
+        ///CREATE TABLE IF NOT EXISTS hashtag (tag TEXT NOT NULL, moreID TEXT NOT NULL, objectID TEXT NOT NULL, snippet TEXT, lastModified TEXT NOT NULL, PRIMARY KEY (tag, objectID));
+        ///CREATE TABLE IF NOT EXISTS hashtag_page (moreID PRIMARY KEY, pageID TEXT NOT NULL, titleID TEXT NOT NULL, notebookID TEXT NOT NULL, sectionID TEXT NOT NULL, path TEXT, name TEXT);
+        ///CR [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string HashtagsDB {
             get {
@@ -8460,6 +8459,34 @@ namespace River.OneMoreAddIn.Properties {
         internal static string ribSearchButton_Screentip {
             get {
                 return ResourceManager.GetString("ribSearchButton_Screentip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap ribSearchHashtagsButton {
+            get {
+                object obj = ResourceManager.GetObject("ribSearchHashtagsButton", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Search Hashtags.
+        /// </summary>
+        internal static string ribSearchHashtagsButton_Label {
+            get {
+                return ResourceManager.GetString("ribSearchHashtagsButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Search for hashtags.
+        /// </summary>
+        internal static string ribSearchHashtagsButton_Screentip {
+            get {
+                return ResourceManager.GetString("ribSearchHashtagsButton_Screentip", resourceCulture);
             }
         }
         

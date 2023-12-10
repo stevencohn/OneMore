@@ -1176,6 +1176,7 @@
     <Content Include="Properties\Images\FolderClose.png" />
     <Content Include="Properties\Images\FolderOpen.png" />
     <None Include="Properties\Images\Grid40.png" />
+    <Content Include="Ribbon\Images\ribSearchHashtagsButton.png" />
     <Content Include="Properties\Images\Label.png" />
     <Content Include="Properties\Images\LabelSearch.png" />
     <None Include="Properties\Emoji\Pencil.png" />

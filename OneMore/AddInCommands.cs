@@ -346,11 +346,6 @@ namespace River.OneMoreAddIn
 			=> await factory.Run<FillCellsCommand>(FillCells.FillDown);
 
 
-		[Command("ribFindHashtagsButton_Label", Keys.None, "ribReferencesMenu")]
-		public async Task FindHashtagsCmd(IRibbonControl control)
-			=> await factory.Run<HashtagCommand>();
-
-
 		[Command("ribFinishBiLinkButton_Label", Keys.None, "ribReferencesMenu")]
 		public async Task FinishBiLinkCmd(IRibbonControl control)
 			=> await factory.Run<BiLinkCommand>("link");
@@ -751,6 +746,10 @@ namespace River.OneMoreAddIn
 		public async Task SearchAndReplaceCmd(IRibbonControl control)
 			=> await factory.Run<SearchAndReplaceCommand>();
 
+
+		[Command("ribSearchHashtagsButton_Label", Keys.None, "ribSearchMenu")]
+		public async Task SearchHashtagsCmd(IRibbonControl control)
+			=> await factory.Run<HashtagCommand>();
 
 		public async Task SearchWebCmd(IRibbonControl control)
 			=> await factory.Run<SearchWebCommand>(control.Tag); // tag=engine

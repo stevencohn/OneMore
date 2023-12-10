@@ -27,16 +27,32 @@ namespace River.OneMoreAddIn.Commands
 			SectionID = tag.SectionID;
 			HierarchyPath = tag.HierarchyPath;
 			PageTitle = tag.PageTitle;
-			ScanTime = tag.ScanTime;
+			LastModified = tag.LastModified;
 
 			Snippets = new HashtagSnippets
 			{
-				new(tag.ObjectID, tag.Snippet, tag.ScanTime)
+				new(tag.ObjectID, tag.Snippet, tag.LastModified)
 			};
 		}
 
 
 		public HashtagSnippets Snippets { get; set; }
+
+
+		public bool HasSnippet(string objectID)
+		{
+			return Snippets.Exists(s => s.ObjectID == objectID);
+		}
+
+
+		public void AddSnippet(Hashtag tag)
+		{
+			Snippets.Add(new HashtagSnippet(tag.ObjectID, tag.Snippet, tag.LastModified));
+			if (tag.LastModified.CompareTo(LastModified) > 0)
+			{
+				LastModified = tag.LastModified;
+			}
+		}
 	}
 
 
@@ -48,16 +64,16 @@ namespace River.OneMoreAddIn.Commands
 	/// </summary>
 	internal class HashtagSnippet
 	{
-		public HashtagSnippet(string objectID, string snippet, string scanTime)
+		public HashtagSnippet(string objectID, string snippet, string lastModified)
 		{
 			ObjectID = objectID;
 			Snippet = snippet;
-			ScanTime = scanTime;
+			LastModified = lastModified;
 		}
 
 		public string ObjectID { get; set; }
 		public string Snippet { get; set; }
-		public string ScanTime { get; set; }
+		public string LastModified { get; set; }
 	}
 
 

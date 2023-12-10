@@ -221,7 +221,7 @@ namespace River.OneMoreAddIn.Commands
 				cmd.Parameters.AddWithValue("@nid", notebookID);
 			}
 
-			sql = $"{sql} ORDER BY scanTime LIMIT 5";
+			sql = $"{sql} ORDER BY t.lastModified LIMIT 5";
 			cmd.CommandText = sql;
 
 			try
@@ -250,7 +250,7 @@ namespace River.OneMoreAddIn.Commands
 		{
 			var sql =
 				"SELECT t.tag, t.moreID, p.pageID, p.titleID, t.objectID, " +
-				"p.notebookID, p.sectionID, t.scanTime " +
+				"p.notebookID, p.sectionID, t.lastModified " +
 				"FROM hashtag t " +
 				"JOIN hashtag_page p ON p.moreID = t.moreID " +
 				"WHERE p.pageID = @p";
@@ -315,7 +315,7 @@ namespace River.OneMoreAddIn.Commands
 
 			var sql =
 				"SELECT t.tag, t.moreID, p.pageID, p.titleID, t.objectID, " +
-				"p.notebookID, p.sectionID, t.scanTime, t.snippet, p.path, p.name " +
+				"p.notebookID, p.sectionID, t.lastModified, t.snippet, p.path, p.name " +
 				"FROM hashtag t " +
 				"JOIN hashtag_page p " +
 				"ON t.moreID = p.moreID ";
@@ -365,7 +365,7 @@ namespace River.OneMoreAddIn.Commands
 						ObjectID = reader.GetString(4),
 						NotebookID = reader.GetString(5),
 						SectionID = reader.GetString(6),
-						ScanTime = reader.GetString(7)
+						LastModified = reader.GetString(7)
 					};
 
 					if (reader.FieldCount > 7 && sql.Contains("snippet"))
@@ -395,7 +395,7 @@ namespace River.OneMoreAddIn.Commands
 		{
 			using var cmd = con.CreateCommand();
 			cmd.CommandText = "UPDATE hashtag " +
-				"SET snippet = @c, scanTime = @s " +
+				"SET snippet = @c, lastModified = @s " +
 				"WHERE tag = @t AND moreID = @m";
 
 			cmd.CommandType = CommandType.Text;
@@ -410,7 +410,7 @@ namespace River.OneMoreAddIn.Commands
 				logger.Verbose($"updating tag {tag.Tag}");
 
 				cmd.Parameters["@c"].Value = tag.Snippet;
-				cmd.Parameters["@s"].Value = tag.ScanTime;
+				cmd.Parameters["@s"].Value = tag.LastModified;
 				cmd.Parameters["@t"].Value = tag.Tag;
 				cmd.Parameters["@m"].Value = tag.MoreID;
 
@@ -502,7 +502,7 @@ namespace River.OneMoreAddIn.Commands
 		{
 			using var tagcmd = con.CreateCommand();
 			tagcmd.CommandText = "INSERT INTO hashtag " +
-				"(tag, moreID, objectID, snippet, scanTime) VALUES (@t, @m, @o, @c, @s)";
+				"(tag, moreID, objectID, snippet, lastModified) VALUES (@t, @m, @o, @c, @s)";
 
 			tagcmd.CommandType = CommandType.Text;
 			tagcmd.Parameters.Add("@t", DbType.String);
@@ -520,7 +520,7 @@ namespace River.OneMoreAddIn.Commands
 				tagcmd.Parameters["@m"].Value = tag.MoreID;
 				tagcmd.Parameters["@o"].Value = tag.ObjectID;
 				tagcmd.Parameters["@c"].Value = tag.Snippet;
-				tagcmd.Parameters["@s"].Value = timestamp;
+				tagcmd.Parameters["@s"].Value = tag.LastModified;
 
 				try
 				{

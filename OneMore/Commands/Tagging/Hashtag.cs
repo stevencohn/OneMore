@@ -78,7 +78,7 @@ namespace River.OneMoreAddIn.Commands
 		/// <summary>
 		/// The time this tag was first captured
 		/// </summary>
-		public string ScanTime { get; set; }
+		public string LastModified { get; set; }
 
 
 		public override bool Equals(object obj)

@@ -184,7 +184,7 @@ namespace River.OneMoreAddIn.Commands
 				}
 				else
 				{
-					if (candidate.ScanTime.CompareTo(lastTime) > 0)
+					if (candidate.LastModified.CompareTo(lastTime) > 0)
 					{
 						updated.Add(candidate);
 					}

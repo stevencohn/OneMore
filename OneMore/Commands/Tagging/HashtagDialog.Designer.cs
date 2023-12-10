@@ -28,10 +28,12 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
+			this.components = new System.ComponentModel.Container();
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(HashtagDialog));
 			this.cancelButton = new System.Windows.Forms.Button();
 			this.contextPanel = new System.Windows.Forms.FlowLayoutPanel();
 			this.topPanel = new River.OneMoreAddIn.UI.MorePanel();
+			this.menuButton = new System.Windows.Forms.Button();
 			this.barLabel = new System.Windows.Forms.Label();
 			this.checkAllLink = new System.Windows.Forms.LinkLabel();
 			this.uncheckAllLink = new System.Windows.Forms.LinkLabel();
@@ -40,11 +42,15 @@
 			this.searchButton = new System.Windows.Forms.Button();
 			this.tagBox = new System.Windows.Forms.TextBox();
 			this.panel1 = new System.Windows.Forms.Panel();
+			this.lastScanLabel = new System.Windows.Forms.Label();
 			this.indexButton = new System.Windows.Forms.Button();
 			this.copyButton = new System.Windows.Forms.Button();
 			this.moveButton = new System.Windows.Forms.Button();
+			this.contextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
+			this.scanButton = new System.Windows.Forms.ToolStripMenuItem();
 			this.topPanel.SuspendLayout();
 			this.panel1.SuspendLayout();
+			this.contextMenu.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// cancelButton
@@ -76,6 +82,7 @@
 			this.topPanel.BackColor = System.Drawing.SystemColors.Window;
 			this.topPanel.BottomBorderColor = System.Drawing.SystemColors.WindowFrame;
 			this.topPanel.BottomBorderSize = 1;
+			this.topPanel.Controls.Add(this.menuButton);
 			this.topPanel.Controls.Add(this.barLabel);
 			this.topPanel.Controls.Add(this.checkAllLink);
 			this.topPanel.Controls.Add(this.uncheckAllLink);
@@ -90,6 +97,21 @@
 			this.topPanel.Padding = new System.Windows.Forms.Padding(10);
 			this.topPanel.Size = new System.Drawing.Size(988, 114);
 			this.topPanel.TabIndex = 8;
+			// 
+			// menuButton
+			// 
+			this.menuButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.menuButton.FlatAppearance.BorderSize = 0;
+			this.menuButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+			this.menuButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.menuButton.ForeColor = System.Drawing.SystemColors.GrayText;
+			this.menuButton.Location = new System.Drawing.Point(925, 38);
+			this.menuButton.Name = "menuButton";
+			this.menuButton.Size = new System.Drawing.Size(50, 38);
+			this.menuButton.TabIndex = 8;
+			this.menuButton.Text = "•••";
+			this.menuButton.UseVisualStyleBackColor = true;
+			this.menuButton.Click += new System.EventHandler(this.ShowMenu);
 			// 
 			// barLabel
 			// 
@@ -133,7 +155,7 @@
             "All",
             "This notebook",
             "This section"});
-			this.scopeBox.Location = new System.Drawing.Point(387, 38);
+			this.scopeBox.Location = new System.Drawing.Point(387, 45);
 			this.scopeBox.Name = "scopeBox";
 			this.scopeBox.Size = new System.Drawing.Size(164, 28);
 			this.scopeBox.TabIndex = 4;
@@ -145,7 +167,7 @@
 			this.introLabel.AutoSize = true;
 			this.introLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.introLabel.ForeColor = System.Drawing.SystemColors.Highlight;
-			this.introLabel.Location = new System.Drawing.Point(831, 41);
+			this.introLabel.Location = new System.Drawing.Point(832, 10);
 			this.introLabel.Name = "introLabel";
 			this.introLabel.Size = new System.Drawing.Size(144, 25);
 			this.introLabel.TabIndex = 3;
@@ -154,7 +176,7 @@
 			// searchButton
 			// 
 			this.searchButton.Image = ((System.Drawing.Image)(resources.GetObject("searchButton.Image")));
-			this.searchButton.Location = new System.Drawing.Point(557, 37);
+			this.searchButton.Location = new System.Drawing.Point(557, 44);
 			this.searchButton.Name = "searchButton";
 			this.searchButton.Size = new System.Drawing.Size(60, 32);
 			this.searchButton.TabIndex = 2;
@@ -164,13 +186,14 @@
 			// tagBox
 			// 
 			this.tagBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.tagBox.Location = new System.Drawing.Point(41, 38);
+			this.tagBox.Location = new System.Drawing.Point(41, 45);
 			this.tagBox.Name = "tagBox";
 			this.tagBox.Size = new System.Drawing.Size(340, 28);
 			this.tagBox.TabIndex = 0;
 			// 
 			// panel1
 			// 
+			this.panel1.Controls.Add(this.lastScanLabel);
 			this.panel1.Controls.Add(this.indexButton);
 			this.panel1.Controls.Add(this.copyButton);
 			this.panel1.Controls.Add(this.moveButton);
@@ -180,6 +203,16 @@
 			this.panel1.Name = "panel1";
 			this.panel1.Size = new System.Drawing.Size(988, 60);
 			this.panel1.TabIndex = 9;
+			// 
+			// lastScanLabel
+			// 
+			this.lastScanLabel.AutoSize = true;
+			this.lastScanLabel.ForeColor = System.Drawing.SystemColors.GrayText;
+			this.lastScanLabel.Location = new System.Drawing.Point(12, 19);
+			this.lastScanLabel.Name = "lastScanLabel";
+			this.lastScanLabel.Size = new System.Drawing.Size(82, 20);
+			this.lastScanLabel.TabIndex = 10;
+			this.lastScanLabel.Text = "Last scan:";
 			// 
 			// indexButton
 			// 
@@ -223,6 +256,21 @@
 			this.moveButton.UseVisualStyleBackColor = true;
 			this.moveButton.Click += new System.EventHandler(this.DoSomething);
 			// 
+			// contextMenu
+			// 
+			this.contextMenu.ImageScalingSize = new System.Drawing.Size(24, 24);
+			this.contextMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.scanButton});
+			this.contextMenu.Name = "contextMenu";
+			this.contextMenu.Size = new System.Drawing.Size(164, 36);
+			// 
+			// scanButton
+			// 
+			this.scanButton.Name = "scanButton";
+			this.scanButton.Size = new System.Drawing.Size(163, 32);
+			this.scanButton.Text = "Scan Now";
+			this.scanButton.Click += new System.EventHandler(this.ScanNow);
+			// 
 			// HashtagDialog
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -240,6 +288,8 @@
 			this.topPanel.ResumeLayout(false);
 			this.topPanel.PerformLayout();
 			this.panel1.ResumeLayout(false);
+			this.panel1.PerformLayout();
+			this.contextMenu.ResumeLayout(false);
 			this.ResumeLayout(false);
 
 		}
@@ -260,5 +310,9 @@
 		private System.Windows.Forms.Button indexButton;
 		private System.Windows.Forms.Button copyButton;
 		private System.Windows.Forms.Button moveButton;
+		private System.Windows.Forms.Label lastScanLabel;
+		private System.Windows.Forms.Button menuButton;
+		private System.Windows.Forms.ContextMenuStrip contextMenu;
+		private System.Windows.Forms.ToolStripMenuItem scanButton;
 	}
 }

@@ -4,15 +4,20 @@
 
 namespace River.OneMoreAddIn.Commands
 {
+	using River.OneMoreAddIn.Settings;
 	using River.OneMoreAddIn.UI;
 	using System;
 	using System.Collections.Generic;
+	using System.Drawing;
+	using System.Globalization;
 	using System.Linq;
 	using System.Windows.Forms;
 
 
 	internal partial class HashtagDialog : LocalizableForm
 	{
+		private const string T0 = "0001-01-01T00:00:00.0000Z";
+
 		private readonly MoreAutoCompleteList palette;
 		private readonly string notebookID;
 		private readonly string sectionID;
@@ -44,6 +49,8 @@ namespace River.OneMoreAddIn.Commands
 
 			palette.SetAutoCompleteList(tagBox, palette);
 			scopeBox.SelectedIndex = 0;
+
+			ShowScanTimes();
 		}
 
 
@@ -70,6 +77,21 @@ namespace River.OneMoreAddIn.Commands
 					}
 				}
 			}
+		}
+
+
+		private void ShowScanTimes()
+		{
+			var scan = new HashtagProvider().ReadScanTime();
+			var lastScanTime = DateTime.Parse(scan, CultureInfo.InvariantCulture);
+			var lastScan = lastScanTime.ToShortTimeString();
+
+			var settings = new SettingsProvider();
+			var collection = settings.GetCollection("HashtagSheet");
+			var interval = collection.Get("interval", 2);
+			var nextScan = lastScanTime.AddMinutes(interval).ToShortTimeString();
+
+			lastScanLabel.Text = $"Last scan: {lastScan}, Next scan: {nextScan}";
 		}
 
 
@@ -215,10 +237,9 @@ namespace River.OneMoreAddIn.Commands
 				else
 				{
 					// de-dupe the paragraphs; if there are multiple tags in one paragraph
-					if (!context.Snippets.Exists(s => s.ObjectID == tag.ObjectID))
+					if (!context.HasSnippet(tag.ObjectID))
 					{
-						context.Snippets.Add(new HashtagSnippet(
-							tag.ObjectID, tag.Snippet, tag.ScanTime));
+						context.AddSnippet(tag);
 					}
 				}
 			}
@@ -271,6 +292,32 @@ namespace River.OneMoreAddIn.Commands
 
 			DialogResult = DialogResult.OK;
 			Close();
+		}
+
+
+		private void ShowMenu(object sender, EventArgs e)
+		{
+			var scanTime = new HashtagProvider().ReadScanTime();
+
+			if (scanTime.CompareTo(T0) > 0)
+			{
+				contextMenu.Show(menuButton, new Point(
+					-(contextMenu.Width - menuButton.Width),
+					menuButton.Height));
+			}
+		}
+
+
+		private async void ScanNow(object sender, EventArgs e)
+		{
+			// update label BEFORE manually scan to reflect best quess when service will run
+			ShowScanTimes();
+
+			using var scanner = new HashtagScanner();
+			var totalPages = await scanner.Scan();
+			logger.WriteLine($"scanned {totalPages} pages");
+
+			PopulateTags(sender, e);
 		}
 
 

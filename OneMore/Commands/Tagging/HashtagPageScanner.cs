@@ -101,7 +101,7 @@ namespace River.OneMoreAddIn.Commands
 				if (matches.Count > 0)
 				{
 					var objectID = paragraph.Attribute("objectID").Value;
-					var lastTime = paragraph.Attribute("lastModifiedTime").Value;
+					var lastModifiedTime = paragraph.Attribute("lastModifiedTime").Value;
 
 					foreach (Match match in matches)
 					{
@@ -121,7 +121,7 @@ namespace River.OneMoreAddIn.Commands
 									PageID = pageID,
 									ObjectID = objectID,
 									Snippet = context,
-									ScanTime = lastTime
+									LastModified = lastModifiedTime
 								});
 							}
 						}

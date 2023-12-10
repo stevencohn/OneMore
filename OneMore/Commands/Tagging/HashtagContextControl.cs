@@ -34,10 +34,10 @@ namespace River.OneMoreAddIn.Commands
 			pageLink.Links.Add(0, pageLink.Text.Length, (item.PageID, oid));
 			tooltip.SetToolTip(pageLink, "Jump to this page");
 
-			// scanTime...
+			// LastModified...
 
 			dateLabel.Text = DateTime
-				.Parse(item.ScanTime, CultureInfo.InvariantCulture)
+				.Parse(item.LastModified, CultureInfo.InvariantCulture)
 				.ToShortFriendlyString();
 
 			dateLabel.Left = Width - dateLabel.Width - 8;
@@ -69,7 +69,7 @@ namespace River.OneMoreAddIn.Commands
 				link.Links.Add(0, link.Text.Length, (item.PageID, snippet.ObjectID));
 
 				var date = DateTime
-					.Parse(snippet.ScanTime, CultureInfo.InvariantCulture)
+					.Parse(snippet.LastModified, CultureInfo.InvariantCulture)
 					.ToShortFriendlyString();
 
 				tooltip.SetToolTip(link, $"Jump to this paragraph; last updated {date}");
