@@ -477,7 +477,7 @@
     <comment>label</comment>
   </data>
   <data name="ContextMenuSheet_introBox.Text" xml:space="preserve">
-    <value>Wähle Befehle aus, die im Kontextmenü Seite angezeigt werden sollen. </value>
+    <value>Wähle Befehle aus, die im Kontextmenü Seite angezeigt werden sollen.</value>
     <comment>intro</comment>
   </data>
   <data name="ContextMenuSheet_menu" xml:space="preserve">
@@ -569,7 +569,7 @@
     <comment>status bar text</comment>
   </data>
   <data name="CropImageDialog_introText.Text" xml:space="preserve">
-    <value>Verwende die Maus, um einen Bereich zum Zuschneiden auszuwählen. </value>
+    <value>Verwende die Maus, um einen Bereich zum Zuschneiden auszuwählen.</value>
     <comment>intro text label</comment>
   </data>
   <data name="CropImageDialog_noSelection" xml:space="preserve">
@@ -732,9 +732,7 @@ Schriftart der letzten Spalte</value>
     <comment>quickdialog intro</comment>
   </data>
   <data name="Emoji_Architecture" xml:space="preserve">
-    <value>
-      Architektur
-    </value>
+    <value>Architektur</value>
     <comment>emoji</comment>
   </data>
   <data name="Emoji_Automobile" xml:space="preserve">
@@ -1242,7 +1240,7 @@ Symbole: PI, E</value>
     <comment>dialog title</comment>
   </data>
   <data name="ImportOutlookTasksDialog_introBox.Text" xml:space="preserve">
-    <value>Wähle einen ganzen Ordner oder einzelne Aufgaben aus, die aus Outlook in OneNote importiert werden soll. </value>
+    <value>Wähle einen ganzen Ordner oder einzelne Aufgaben aus, die aus Outlook in OneNote importiert werden soll.</value>
     <comment>text box</comment>
   </data>
   <data name="ImportOutlookTasksDialog_listButton.Text" xml:space="preserve">
@@ -1400,8 +1398,17 @@ Symbole: PI, E</value>
     <value>Inhaltsverzeichnis</value>
     <comment>dialog title</comment>
   </data>
+  <data name="InsertTocDialog_locationBox.Text" xml:space="preserve">
+    <value>Oben auf der Seite
+Am aktuellen Cursor</value>
+    <comment>combobox</comment>
+  </data>
+  <data name="InsertTocDialog_locationLabel.Text" xml:space="preserve">
+    <value>Ort einfügen</value>
+    <comment>label</comment>
+  </data>
   <data name="InsertTocDialog_notebookRadio.Text" xml:space="preserve">
-    <value>Seite mit Abschnittsübersicht in diesem Notizbuch hinzufügen</value>
+    <value>Neue Seite mit Index der Abschnitte in diesem Notizbuch</value>
     <comment>radio</comment>
   </data>
   <data name="InsertTocDialog_pageRadio.Text" xml:space="preserve">
@@ -1421,8 +1428,23 @@ Symbole: PI, E</value>
     <comment>checkbox</comment>
   </data>
   <data name="InsertTocDialog_sectionRadio.Text" xml:space="preserve">
-    <value>Seite mit Seitentabelle in diesem Abschnitt hinzufügen</value>
+    <value>Neue Seite mit Seitenindex in diesem Abschnitt</value>
     <comment>radio</comment>
+  </data>
+  <data name="InsertTocDialog_styleBox.Text" xml:space="preserve">
+    <value>Standardseitentitel
+Standardüberschrift 1
+Standardüberschrift 2
+Standardüberschrift 3
+Benutzerdefinierter Seitentitel
+Benutzerdefinierte Überschrift 1
+Benutzerdefinierte Überschrift 2
+Benutzerdefinierte Überschrift 3</value>
+    <comment>cobobox</comment>
+  </data>
+  <data name="InsertTocDialog_styleLabel.Text" xml:space="preserve">
+    <value>Titelstil</value>
+    <comment>label</comment>
   </data>
   <data name="InsertTocDialog_topBox.Text" xml:space="preserve">
     <value>Füge jeder Überschrift einen Link hinzu, um zum Seitenanfang zu springen</value>
@@ -1901,9 +1923,7 @@ Bewerben Sie sich auf dieses Notizbuch</value>
     <comment>combobox item</comment>
   </data>
   <data name="PluginDialog_okButton.Text" xml:space="preserve">
-    <value>
-      Áusführen
-    </value>
+    <value>Áusführen</value>
     <comment>ok button</comment>
   </data>
   <data name="PluginDialog_pluginsLabel.Text" xml:space="preserve">
@@ -1932,9 +1952,7 @@ Aktuelles Notizbuch</value>
     <comment>question</comment>
   </data>
   <data name="PluginsSheet_introLabel.Text" xml:space="preserve">
-    <value>
-      Verwalte Plugins
-    </value>
+    <value>Verwalte Plugins</value>
     <comment>label</comment>
   </data>
   <data name="PluginsSheet_Title" xml:space="preserve">
@@ -2205,9 +2223,7 @@ Aufgeschoben</value>
     <comment>Screen clipping citation</comment>
   </data>
   <data name="RemoveCitations_From" xml:space="preserve">
-    <value>
-      Aus
-    </value>
+    <value>Aus</value>
     <comment>prefix word</comment>
   </data>
   <data name="RemoveDuplicatesDialog.Text" xml:space="preserve">
@@ -2504,7 +2520,7 @@ Polaroid</value>
     <comment>settings dialog, ribbon bar options</comment>
   </data>
   <data name="RibbonBarSheet_introBox.Text" xml:space="preserve">
-    <value>Wähle aus, welche Befehle in die Multifunktionsleiste aufgenommen werden sollen und ob Symbole oder Symbole und Etiketten angezeigt werden sollen. </value>
+    <value>Wähle aus, welche Befehle in die Multifunktionsleiste aufgenommen werden sollen und ob Symbole oder Symbole und Etiketten angezeigt werden sollen.</value>
     <comment>settings dialog, ribbon bar options</comment>
   </data>
   <data name="RibbonBarSheet_Title" xml:space="preserve">
@@ -2866,6 +2882,10 @@ Polaroid</value>
     <value>Nach unten ausfüllen (Strg + D)</value>
     <comment>ribbon</comment>
   </data>
+  <data name="ribFindHashtagsButton_Label" xml:space="preserve">
+    <value>Finden Sie Hashtags</value>
+    <comment>ribbon references</comment>
+  </data>
   <data name="ribFinishBiLinkButton_Label" xml:space="preserve">
     <value>Bidirektionale Verbindung beenden</value>
     <comment>ribbon item</comment>
@@ -3131,9 +3151,7 @@ Polaroid</value>
     <comment>ribbon edit</comment>
   </data>
   <data name="ribLinkReferencesButton_Label" xml:space="preserve">
-    <value>
-      Verweise auf diese Seite zuordnen
-    </value>
+    <value>Verweise auf diese Seite zuordnen</value>
     <comment>ribbon button</comment>
   </data>
   <data name="ribLinkReferencesButton_Screentip" xml:space="preserve">
@@ -3288,9 +3306,7 @@ Polaroid</value>
     <comment>ribbon edit</comment>
   </data>
   <data name="ribPasteTextButton_Label" xml:space="preserve">
-    <value>
-      Einfügen und nur Text behalten
-    </value>
+    <value>Einfügen und nur Text behalten</value>
     <comment>ribbon item</comment>
   </data>
   <data name="ribPasteTextButton_Screentip" xml:space="preserve">
@@ -3527,6 +3543,14 @@ Polaroid</value>
   </data>
   <data name="ribSearchButton_Screentip" xml:space="preserve">
     <value>Durchsucht die Seiten nach Schlüsselwörtern und kopieren / verschiebe sie in einen anderen Abschnitt (Alt + F).</value>
+    <comment>ribbon search</comment>
+  </data>
+  <data name="ribSearchHashtagsButton_Label" xml:space="preserve">
+    <value>Suchen Sie nach Hashtags</value>
+    <comment>ribbon search</comment>
+  </data>
+  <data name="ribSearchHashtagsButton_Screentip" xml:space="preserve">
+    <value>Suchen Sie nach Hashtags</value>
     <comment>ribbon search</comment>
   </data>
   <data name="ribSearchMenu_Label" xml:space="preserve">
@@ -4384,7 +4408,7 @@ Absatz - ganzer Absatz
     <comment>index button</comment>
   </data>
   <data name="TaggedDialog_introLabel.Text" xml:space="preserve">
-    <value>Gib ein oder mehrere durch Kommas getrennte Tags ein. </value>
+    <value>Gib ein oder mehrere durch Kommas getrennte Tags ein.</value>
     <comment>label</comment>
   </data>
   <data name="TaggedDialog_opBox.Items" xml:space="preserve">
@@ -4653,9 +4677,7 @@ In diesem Abschnitt</value>
     <value>Information</value>
   </data>
   <data name="word_Keyboard" xml:space="preserve">
-    <value>
-      Tastatur
-    </value>
+    <value>Tastatur</value>
   </data>
   <data name="word_Language" xml:space="preserve">
     <value>Sprache</value>

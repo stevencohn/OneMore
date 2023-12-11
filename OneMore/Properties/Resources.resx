@@ -117,6 +117,7 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="AboutDialog.Text" xml:space="preserve">
     <value>OneMore Add-in</value>
     <comment>dialog title bar</comment>
@@ -1417,8 +1418,17 @@ Symbols: PI, E</value>
     <value>Table of Contents</value>
     <comment>dialog title</comment>
   </data>
+  <data name="InsertTocDialog_locationBox.Text" xml:space="preserve">
+    <value>At top of page
+At current cursor</value>
+    <comment>combobox</comment>
+  </data>
+  <data name="InsertTocDialog_locationLabel.Text" xml:space="preserve">
+    <value>Insert Location</value>
+    <comment>label</comment>
+  </data>
   <data name="InsertTocDialog_notebookRadio.Text" xml:space="preserve">
-    <value>Add page with table of sections in this notebook</value>
+    <value>New page with index of sections in this notebook</value>
     <comment>radio</comment>
   </data>
   <data name="InsertTocDialog_pageRadio.Text" xml:space="preserve">
@@ -1438,8 +1448,23 @@ Symbols: PI, E</value>
     <comment>checkbox</comment>
   </data>
   <data name="InsertTocDialog_sectionRadio.Text" xml:space="preserve">
-    <value>Add page with table of pages in this section</value>
+    <value>New page with index of pages in this section</value>
     <comment>radio</comment>
+  </data>
+  <data name="InsertTocDialog_styleBox.Text" xml:space="preserve">
+    <value>Standard Page Title
+Standard Heading 1
+Standard Heading 2
+Standard Heading 3
+Custom Page Title
+Custom Heading 1
+Custom Heading 2
+Custom Heading 3</value>
+    <comment>cobobox</comment>
+  </data>
+  <data name="InsertTocDialog_styleLabel.Text" xml:space="preserve">
+    <value>Title Style</value>
+    <comment>label</comment>
   </data>
   <data name="InsertTocDialog_topBox.Text" xml:space="preserve">
     <value>Add link to each heading to jump to top of page</value>
@@ -2902,6 +2927,10 @@ Polaroid</value>
     <value>Fill sequence down selected columns (Ctrl + D)</value>
     <comment>ribbon table</comment>
   </data>
+  <data name="ribFindHashtagsButton_Label" xml:space="preserve">
+    <value>Find Hashtags</value>
+    <comment>ribbon references</comment>
+  </data>
   <data name="ribFinishBiLinkButton_Label" xml:space="preserve">
     <value>Finish Bidirectional Link</value>
     <comment>ribbon references </comment>
@@ -3560,6 +3589,14 @@ Polaroid</value>
   </data>
   <data name="ribSearchButton_Screentip" xml:space="preserve">
     <value>Search pages for keywords and copy/move to another section (Alt + F)</value>
+    <comment>ribbon search</comment>
+  </data>
+  <data name="ribSearchHashtagsButton_Label" xml:space="preserve">
+    <value>Search Hashtags</value>
+    <comment>ribbon search</comment>
+  </data>
+  <data name="ribSearchHashtagsButton_Screentip" xml:space="preserve">
+    <value>Search for hashtags</value>
     <comment>ribbon search</comment>
   </data>
   <data name="ribSearchMenu_Label" xml:space="preserve">
@@ -4850,7 +4887,6 @@ In this section</value>
     <value>Word Counts</value>
     <comment>page title</comment>
   </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="ribInsertNoteBoxButton" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\ribbon\images\ribinsertnoteboxbutton.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -4859,6 +4895,9 @@ In this section</value>
   </data>
   <data name="ribNavigatorButton" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\ribbon\images\ribnavigatorbutton.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ribSearchHashtagsButton" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Ribbon\Images\ribSearchHashtagsButton.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Architecture" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>emoji\architecture.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -5117,20 +5156,5 @@ In this section</value>
   </data>
   <data name="_0336_OneNoteApplication_2013" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>0336.OneNoteApplication_2013.xsd;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
-  </data>
-  <data name="ribFindHashtagsButton_Label" xml:space="preserve">
-    <value>Find Hashtags</value>
-    <comment>ribbon references</comment>
-  </data>
-  <data name="ribSearchHashtagsButton" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Ribbon\Images\ribSearchHashtagsButton.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="ribSearchHashtagsButton_Label" xml:space="preserve">
-    <value>Search Hashtags</value>
-    <comment>ribbon search</comment>
-  </data>
-  <data name="ribSearchHashtagsButton_Screentip" xml:space="preserve">
-    <value>Search for hashtags</value>
-    <comment>ribbon search</comment>
   </data>
 </root>

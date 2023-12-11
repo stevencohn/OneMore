@@ -117,11 +117,8 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="AboutDialog.Text" xml:space="preserve">
-    <value>
-      OneMore 加载项
-    </value>
+    <value>OneMore 加载项</value>
     <comment>dialog title bar</comment>
   </data>
   <data name="AboutDialog_clearLogLabel.Text" xml:space="preserve">
@@ -141,9 +138,7 @@
     <comment>message box message</comment>
   </data>
   <data name="AboutDialog_LatestTitle" xml:space="preserve">
-    <value>
-      您已准备就绪！
-    </value>
+    <value>您已准备就绪！</value>
     <comment>message box title</comment>
   </data>
   <data name="AboutDialog_NewVersionMessage" xml:space="preserve">
@@ -176,9 +171,7 @@ OneNote 将自动关闭</value>
     <comment>the version of the add-in</comment>
   </data>
   <data name="AddCaptionCommand_Captioned" xml:space="preserve">
-    <value>
-      图片已有说明
-    </value>
+    <value>图片已有说明</value>
     <comment>info message</comment>
   </data>
   <data name="AddFormula_linearMessage" xml:space="preserve">
@@ -1411,8 +1404,17 @@ OneNote 文件 (*.one)</value>
     <value>目录</value>
     <comment>dialog title</comment>
   </data>
+  <data name="InsertTocDialog_locationBox.Text" xml:space="preserve">
+    <value>在页面顶部
+在当前光标处</value>
+    <comment>combobox</comment>
+  </data>
+  <data name="InsertTocDialog_locationLabel.Text" xml:space="preserve">
+    <value>插入位置</value>
+    <comment>label</comment>
+  </data>
   <data name="InsertTocDialog_notebookRadio.Text" xml:space="preserve">
-    <value>在此笔记本中添加带有部分表的页面</value>
+    <value>包含此笔记本中各部分索引的新页面</value>
     <comment>radio</comment>
   </data>
   <data name="InsertTocDialog_pageRadio.Text" xml:space="preserve">
@@ -1432,8 +1434,23 @@ OneNote 文件 (*.one)</value>
     <comment>checkbox</comment>
   </data>
   <data name="InsertTocDialog_sectionRadio.Text" xml:space="preserve">
-    <value>在此部分中添加带有页表的页面</value>
+    <value>带有本节页面索引的新页面</value>
     <comment>radio</comment>
+  </data>
+  <data name="InsertTocDialog_styleBox.Text" xml:space="preserve">
+    <value>标准页面标题
+标准标题 1
+标准标题 2
+标准标题 3
+自定义页面标题
+自定义标题 1
+自定义标题 2
+自定义标题 3</value>
+    <comment>cobobox</comment>
+  </data>
+  <data name="InsertTocDialog_styleLabel.Text" xml:space="preserve">
+    <value>标题样式</value>
+    <comment>label</comment>
   </data>
   <data name="InsertTocDialog_topBox.Text" xml:space="preserve">
     <value>将链接添加到每个标题以跳至页面顶部</value>
@@ -1595,9 +1612,7 @@ OneNote 文件 (*.one)</value>
     <comment>label</comment>
   </data>
   <data name="NavigatorSheet_Title" xml:space="preserve">
-    <value>
-      导航
-    </value>
+    <value>导航</value>
     <comment>sheet title</comment>
   </data>
   <data name="NavigatorWindow_copyTooltip" xml:space="preserve">
@@ -2392,9 +2407,7 @@ ISO-code then comma then language name</comment>
     <comment>Ribbon OneMore menu item</comment>
   </data>
   <data name="ribAddCaptionButton_Label" xml:space="preserve">
-    <value>
-      添加说明
-    </value>
+    <value>添加说明</value>
     <comment>Ribbon OneMore menu item, Add caption to selected image</comment>
   </data>
   <data name="ribAddCaptionButton_Screentip" xml:space="preserve">
@@ -2538,15 +2551,11 @@ ISO-code then comma then language name</comment>
     <comment>ribbon main NODUP</comment>
   </data>
   <data name="ribCaptionAttachmentsButton_Label" xml:space="preserve">
-    <value>
-      为附件添加说明
-    </value>
+    <value>为附件添加说明</value>
     <comment>ribbon item</comment>
   </data>
   <data name="ribCaptionAttachmentsButton_Screentip" xml:space="preserve">
-    <value>
-      为页面上的每个附件添加说明
-    </value>
+    <value>为页面上的每个附件添加说明</value>
     <comment>ribbon page</comment>
   </data>
   <data name="ribCheckForUpdatesButton_Label" xml:space="preserve">
@@ -2565,9 +2574,7 @@ ISO-code then comma then language name</comment>
     <comment>Ribbon OneMore menu item</comment>
   </data>
   <data name="ribClearBackgroundButton_Label" xml:space="preserve">
-    <value>
-      清除背景颜色
-    </value>
+    <value>清除背景颜色</value>
     <comment>ribbon menu item</comment>
   </data>
   <data name="ribClearBackgroundButton_Screentip" xml:space="preserve">
@@ -2615,9 +2622,7 @@ ISO-code then comma then language name</comment>
     <comment>ribbon main</comment>
   </data>
   <data name="ribCompleteReminderButton_Label" xml:space="preserve">
-    <value>
-      完成提醒
-    </value>
+    <value>完成提醒</value>
     <comment>ribbon button</comment>
   </data>
   <data name="ribCompleteReminderButton_Screentip" xml:space="preserve">
@@ -2633,15 +2638,11 @@ ISO-code then comma then language name</comment>
     <comment>ribbon images</comment>
   </data>
   <data name="ribCopyAcrossButton_Label" xml:space="preserve">
-    <value>
-      向右复制
-    </value>
+    <value>向右复制</value>
     <comment>ribbon table</comment>
   </data>
   <data name="ribCopyAcrossButton_Screentip" xml:space="preserve">
-    <value>
-      向右复制所选行的内容
-    </value>
+    <value>向右复制所选行的内容</value>
     <comment>ribbon table</comment>
   </data>
   <data name="ribCopyAsMarkdownButton_Label" xml:space="preserve">
@@ -2649,9 +2650,7 @@ ISO-code then comma then language name</comment>
     <comment>ribbon item</comment>
   </data>
   <data name="ribCopyAsMarkdownButton_Screentip" xml:space="preserve">
-    <value>
-      将所选内容复制为 Markdown
-    </value>
+    <value>将所选内容复制为 Markdown</value>
     <comment>ribbon edit</comment>
   </data>
   <data name="ribCopyAsTextButton_Label" xml:space="preserve">
@@ -2663,15 +2662,11 @@ ISO-code then comma then language name</comment>
     <comment>ribbon edit</comment>
   </data>
   <data name="ribCopyDownButton_Label" xml:space="preserve">
-    <value>
-      向下复制
-    </value>
+    <value>向下复制</value>
     <comment>ribbon</comment>
   </data>
   <data name="ribCopyDownButton_Screentip" xml:space="preserve">
-    <value>
-      向下复制所选列的内容
-    </value>
+    <value>向下复制所选列的内容</value>
     <comment>ribbon table</comment>
   </data>
   <data name="ribCopyFolderButton_Label" xml:space="preserve">
@@ -2871,40 +2866,32 @@ ISO-code then comma then language name</comment>
     <comment>ribbon menu</comment>
   </data>
   <data name="ribFileQuickNotesButton_Label" xml:space="preserve">
-    <value>
-      归档快速笔记
-    </value>
+    <value>归档快速笔记</value>
     <comment>ribbon file</comment>
   </data>
   <data name="ribFileQuickNotesButton_Screentip" xml:space="preserve">
-    <value>
-      将快速笔记整理到笔记本或分区中
-    </value>
+    <value>将快速笔记整理到笔记本或分区中</value>
     <comment>ribbon file</comment>
   </data>
   <data name="ribFillAcrossButton_Label" xml:space="preserve">
-    <value>
-      向右填充
-    </value>
+    <value>向右填充</value>
     <comment>ribbon</comment>
   </data>
   <data name="ribFillAcrossButton_Screentip" xml:space="preserve">
-    <value>
-      向右填充所选行的序列
-    </value>
+    <value>向右填充所选行的序列</value>
     <comment>ribbon table</comment>
   </data>
   <data name="ribFillDownButton_Label" xml:space="preserve">
-    <value>
-      向下填充
-    </value>
+    <value>向下填充</value>
     <comment>ribbon</comment>
   </data>
   <data name="ribFillDownButton_Screentip" xml:space="preserve">
-    <value>
-      向下填充所选列的序列（Ctrl + D）
-    </value>
+    <value>向下填充所选列的序列（Ctrl + D）</value>
     <comment>ribbon</comment>
+  </data>
+  <data name="ribFindHashtagsButton_Label" xml:space="preserve">
+    <value>查找标签</value>
+    <comment>ribbon references</comment>
   </data>
   <data name="ribFinishBiLinkButton_Label" xml:space="preserve">
     <value>完成双向链接</value>
@@ -2959,9 +2946,7 @@ ISO-code then comma then language name</comment>
     <comment>Ribbon OneMore menu item, Images...</comment>
   </data>
   <data name="ribImportButton_Label" xml:space="preserve">
-    <value>
-      导入
-    </value>
+    <value>导入</value>
     <comment>ribbon item NODUP</comment>
   </data>
   <data name="ribImportButton_Screentip" xml:space="preserve">
@@ -3001,15 +2986,11 @@ ISO-code then comma then language name</comment>
     <comment>ribbon snippets</comment>
   </data>
   <data name="ribInsertBreadcrumbButton_Label" xml:space="preserve">
-    <value>
-      页面路径
-    </value>
+    <value>页面路径</value>
     <comment>ribbon snippets menu</comment>
   </data>
   <data name="ribInsertBreadcrumbButton_Screentip" xml:space="preserve">
-    <value>
-      在页面顶部插入页面路径
-    </value>
+    <value>在页面顶部插入页面路径</value>
     <comment>ribbon snippets</comment>
   </data>
   <data name="ribInsertCalendarButton_Label" xml:space="preserve">
@@ -3021,9 +3002,7 @@ ISO-code then comma then language name</comment>
     <comment>ribbon snippets</comment>
   </data>
   <data name="ribInsertCellsButton_Label" xml:space="preserve">
-    <value>
-      插入表格单元格
-    </value>
+    <value>插入表格单元格</value>
     <comment>ribbon item</comment>
   </data>
   <data name="ribInsertCellsButton_Screentip" xml:space="preserve">
@@ -3239,9 +3218,7 @@ ISO-code then comma then language name</comment>
     <comment>ribbon references</comment>
   </data>
   <data name="ribNavigatorButton_Label" xml:space="preserve">
-    <value>
-      导航
-    </value>
+    <value>导航</value>
     <comment>ribbon main</comment>
   </data>
   <data name="ribNewStyleButton_Label" xml:space="preserve">
@@ -3336,15 +3313,11 @@ ISO-code then comma then language name</comment>
     <comment>Ribbon OneMore menu item, paste rich text</comment>
   </data>
   <data name="ribPasteTextButton_Label" xml:space="preserve">
-    <value>
-      粘贴并只保留文本
-    </value>
+    <value>粘贴并只保留文本</value>
     <comment>ribbon item</comment>
   </data>
   <data name="ribPasteTextButton_Screentip" xml:space="preserve">
-    <value>
-      粘贴并只保留文本（Ctrl + Shift + V）
-    </value>
+    <value>粘贴并只保留文本（Ctrl + Shift + V）</value>
     <comment>ribbon item</comment>
   </data>
   <data name="ribPlantUmlButton_Label" xml:space="preserve">
@@ -3444,9 +3417,7 @@ ISO-code then comma then language name</comment>
     <comment>ribbon clean</comment>
   </data>
   <data name="ribRemoveEmptyButton_Label" xml:space="preserve">
-    <value>
-      删除空行
-    </value>
+    <value>删除空行</value>
     <comment>ribbon clean</comment>
   </data>
   <data name="ribRemoveEmptyButton_Screentip" xml:space="preserve">
@@ -3474,21 +3445,15 @@ ISO-code then comma then language name</comment>
     <comment>Ribbon OneMore menu item</comment>
   </data>
   <data name="ribRemovePageNumbersButton_Screentip" xml:space="preserve">
-    <value>
-      删除此分区中所有页面的页码
-    </value>
+    <value>删除此分区中所有页面的页码</value>
     <comment>Ribbon OneMore menu item</comment>
   </data>
   <data name="ribRemoveSectionNumbersButton_Label" xml:space="preserve">
-    <value>
-      删除分区编号
-    </value>
+    <value>删除分区编号</value>
     <comment>Ribbon OneMore menu item</comment>
   </data>
   <data name="ribRemoveSectionNumbersButton_Screentip" xml:space="preserve">
-    <value>
-      删除此笔记本中所有分区的编号
-    </value>
+    <value>删除此笔记本中所有分区的编号</value>
     <comment>Ribbon OneMore menu item</comment>
   </data>
   <data name="ribRemoveSpacingButton_Label" xml:space="preserve">
@@ -3585,6 +3550,14 @@ ISO-code then comma then language name</comment>
   <data name="ribSearchButton_Screentip" xml:space="preserve">
     <value>在页面上搜索关键字，然后将其复制/移动到另一部分（Alt + F）</value>
     <comment>ribbon item</comment>
+  </data>
+  <data name="ribSearchHashtagsButton_Label" xml:space="preserve">
+    <value>搜索标签</value>
+    <comment>ribbon search</comment>
+  </data>
+  <data name="ribSearchHashtagsButton_Screentip" xml:space="preserve">
+    <value>搜索主题标签</value>
+    <comment>ribbon search</comment>
   </data>
   <data name="ribSearchMenu_Label" xml:space="preserve">
     <value>搜索和标签</value>
@@ -3683,9 +3656,7 @@ ISO-code then comma then language name</comment>
     <comment>ribbon SectionGroup context menu</comment>
   </data>
   <data name="ribSplitButton_Label" xml:space="preserve">
-    <value>
-      拆分页面
-    </value>
+    <value>拆分页面</value>
     <comment>ribbon item</comment>
   </data>
   <data name="ribSplitButton_Screentip" xml:space="preserve">
@@ -3725,9 +3696,7 @@ ISO-code then comma then language name</comment>
     <comment>Ribbon OneMore menu item</comment>
   </data>
   <data name="ribTableMenu_Label" xml:space="preserve">
-    <value>
-      表格
-    </value>
+    <value>表格</value>
     <comment>Ribbon OneMore menu item, Formula...</comment>
   </data>
   <data name="ribTableThemesButton_Label" xml:space="preserve">
@@ -3759,9 +3728,7 @@ ISO-code then comma then language name</comment>
     <comment>ribbon table</comment>
   </data>
   <data name="ribTitlecaseButton_Label" xml:space="preserve">
-    <value>
-      标题大小写
-    </value>
+    <value>标题大小写</value>
     <comment>rib button</comment>
   </data>
   <data name="ribTitlecaseButton_Screentip" xml:space="preserve">
@@ -4027,9 +3994,7 @@ ISO-code then comma then language name</comment>
     <comment>settings dialog</comment>
   </data>
   <data name="SettingsDialog_navigatorNode.Text" xml:space="preserve">
-    <value>
-      导航
-    </value>
+    <value>导航</value>
     <comment>tree node</comment>
   </data>
   <data name="SettingsDialog_pluginsNode.Text" xml:space="preserve">
@@ -4294,9 +4259,7 @@ ISO-code then comma then language name</comment>
     <comment>message box</comment>
   </data>
   <data name="StyleDialog_afterLabel.Text" xml:space="preserve">
-    <value>
-      段后空间：
-    </value>
+    <value>段后空间：</value>
     <comment>label</comment>
   </data>
   <data name="StyleDialog_applyColorsBox.Text" xml:space="preserve">
@@ -4308,9 +4271,7 @@ ISO-code then comma then language name</comment>
     <comment>button tip</comment>
   </data>
   <data name="StyleDialog_beforeLabel.Text" xml:space="preserve">
-    <value>
-      段前空间：
-    </value>
+    <value>段前空间：</value>
     <comment>label</comment>
   </data>
   <data name="StyleDialog_boldButton.Text" xml:space="preserve">
@@ -4391,9 +4352,7 @@ ISO-code then comma then language name</comment>
     <comment>dialog title</comment>
   </data>
   <data name="StyleDialog_spacingLabel.Text" xml:space="preserve">
-    <value>
-      行距：
-    </value>
+    <value>行距：</value>
     <comment>label</comment>
   </data>
   <data name="StyleDialog_strikeButton.Text" xml:space="preserve">
@@ -4646,9 +4605,7 @@ ISO-code then comma then language name</comment>
     <value>全部</value>
   </data>
   <data name="word_Apply" xml:space="preserve">
-    <value>
-      应用
-    </value>
+    <value>应用</value>
   </data>
   <data name="word_Brightness" xml:space="preserve">
     <value>亮度</value>
@@ -4657,14 +4614,10 @@ ISO-code then comma then language name</comment>
     <value>取消</value>
   </data>
   <data name="word_Caption" xml:space="preserve">
-    <value>
-      说明
-    </value>
+    <value>说明</value>
   </data>
   <data name="word_Close" xml:space="preserve">
-    <value>
-      关闭
-    </value>
+    <value>关闭</value>
   </data>
   <data name="word_Code" xml:space="preserve">
     <value>代码</value>
@@ -4676,9 +4629,7 @@ ISO-code then comma then language name</comment>
     <value>命令</value>
   </data>
   <data name="word_Completed" xml:space="preserve">
-    <value>
-      已完成
-    </value>
+    <value>已完成</value>
   </data>
   <data name="word_Contrast" xml:space="preserve">
     <value>对比</value>
@@ -4750,14 +4701,10 @@ ISO-code then comma then language name</comment>
     <value>名称</value>
   </data>
   <data name="word_No" xml:space="preserve">
-    <value>
-      否
-    </value>
+    <value>否</value>
   </data>
   <data name="word_None" xml:space="preserve">
-    <value>
-      无
-    </value>
+    <value>无</value>
   </data>
   <data name="word_Notebook" xml:space="preserve">
     <value>笔记本</value>
@@ -4766,9 +4713,7 @@ ISO-code then comma then language name</comment>
     <value>笔记</value>
   </data>
   <data name="word_OK" xml:space="preserve">
-    <value>
-      确定
-    </value>
+    <value>确定</value>
   </data>
   <data name="word_Opacity" xml:space="preserve">
     <value>不透明度</value>
@@ -4780,9 +4725,7 @@ ISO-code then comma then language name</comment>
     <value>页</value>
   </data>
   <data name="word_PercentSymbol" xml:space="preserve">
-    <value>
-      %
-    </value>
+    <value>%</value>
   </data>
   <data name="word_Planned" xml:space="preserve">
     <value>计划</value>
@@ -4869,9 +4812,7 @@ ISO-code then comma then language name</comment>
     <value>XML</value>
   </data>
   <data name="word_Yes" xml:space="preserve">
-    <value>
-      是
-    </value>
+    <value>是</value>
   </data>
   <data name="WordCountCommand_Count" xml:space="preserve">
     <value>页面总字数：{0}</value>

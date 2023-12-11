@@ -3407,7 +3407,26 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Add page with table of sections in this notebook.
+        ///   Looks up a localized string similar to At top of page
+        ///At current cursor.
+        /// </summary>
+        internal static string InsertTocDialog_locationBox_Text {
+            get {
+                return ResourceManager.GetString("InsertTocDialog_locationBox.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Insert Location.
+        /// </summary>
+        internal static string InsertTocDialog_locationLabel_Text {
+            get {
+                return ResourceManager.GetString("InsertTocDialog_locationLabel.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to New page with index of sections in this notebook.
         /// </summary>
         internal static string InsertTocDialog_notebookRadio_Text {
             get {
@@ -3452,11 +3471,36 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Add page with table of pages in this section.
+        ///   Looks up a localized string similar to New page with index of pages in this section.
         /// </summary>
         internal static string InsertTocDialog_sectionRadio_Text {
             get {
                 return ResourceManager.GetString("InsertTocDialog_sectionRadio.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Standard Page Title
+        ///Standard Heading 1
+        ///Standard Heading 2
+        ///Standard Heading 3
+        ///Custom Page Title
+        ///Custom Heading 1
+        ///Custom Heading 2
+        ///Custom Heading 3.
+        /// </summary>
+        internal static string InsertTocDialog_styleBox_Text {
+            get {
+                return ResourceManager.GetString("InsertTocDialog_styleBox.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Title Style.
+        /// </summary>
+        internal static string InsertTocDialog_styleLabel_Text {
+            get {
+                return ResourceManager.GetString("InsertTocDialog_styleLabel.Text", resourceCulture);
             }
         }
         

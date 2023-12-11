@@ -1414,8 +1414,17 @@ Total Row Font
     <value>תוכן העניינים</value>
     <comment>dialog title</comment>
   </data>
+  <data name="InsertTocDialog_locationBox.Text" xml:space="preserve">
+    <value>בראש העמוד
+בסמן הנוכחי</value>
+    <comment>combobox</comment>
+  </data>
+  <data name="InsertTocDialog_locationLabel.Text" xml:space="preserve">
+    <value>הכנס מיקום</value>
+    <comment>label</comment>
+  </data>
   <data name="InsertTocDialog_notebookRadio.Text" xml:space="preserve">
-    <value>הוסף עמוד עם טבלת סעיפים במחברת זו</value>
+    <value>עמוד חדש עם אינדקס של סעיפים במחברת זו</value>
     <comment>radio</comment>
   </data>
   <data name="InsertTocDialog_pageRadio.Text" xml:space="preserve">
@@ -1435,8 +1444,23 @@ Total Row Font
     <comment>checkbox</comment>
   </data>
   <data name="InsertTocDialog_sectionRadio.Text" xml:space="preserve">
-    <value>הוסף דף עם טבלת דפים בסעיף זה</value>
+    <value>דף חדש עם אינדקס של דפים בחלק זה</value>
     <comment>radio</comment>
+  </data>
+  <data name="InsertTocDialog_styleBox.Text" xml:space="preserve">
+    <value>כותרת עמוד רגילה
+כותרת רגילה 1
+כותרת רגילה 2
+כותרת רגילה 3
+כותרת עמוד מותאמת אישית
+כותרת מותאמת אישית 1
+כותרת מותאמת אישית 2
+כותרת 3 מותאמת אישית</value>
+    <comment>cobobox</comment>
+  </data>
+  <data name="InsertTocDialog_styleLabel.Text" xml:space="preserve">
+    <value>סגנון כותרת</value>
+    <comment>label</comment>
   </data>
   <data name="InsertTocDialog_topBox.Text" xml:space="preserve">
     <value>הוסף קישור לכל כותרת כדי לדלג לראש העמוד</value>
@@ -2883,6 +2907,10 @@ ISO-code then comma then language name</comment>
     <value>מילוי למטה (Ctrl + D)</value>
     <comment>ribbon</comment>
   </data>
+  <data name="ribFindHashtagsButton_Label" xml:space="preserve">
+    <value>מצא Hashtags</value>
+    <comment>ribbon references</comment>
+  </data>
   <data name="ribFinishBiLinkButton_Label" xml:space="preserve">
     <value>סיים קישור דו-כיווני</value>
     <comment>ribbon item</comment>
@@ -3540,6 +3568,14 @@ ISO-code then comma then language name</comment>
   <data name="ribSearchButton_Screentip" xml:space="preserve">
     <value>חפש בדפים אחר מילות מפתח והעתק/העבר למקטע אחר (Alt + F)</value>
     <comment>ribbon item</comment>
+  </data>
+  <data name="ribSearchHashtagsButton_Label" xml:space="preserve">
+    <value>חפש בהתגים</value>
+    <comment>ribbon search</comment>
+  </data>
+  <data name="ribSearchHashtagsButton_Screentip" xml:space="preserve">
+    <value>חפש hashtags</value>
+    <comment>ribbon search</comment>
   </data>
   <data name="ribSearchMenu_Label" xml:space="preserve">
     <value>חפש ותייג</value>
