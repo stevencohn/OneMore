@@ -1412,8 +1412,17 @@ Symbole: PI, E</value>
     <value>Spis treści</value>
     <comment>dialog title</comment>
   </data>
+  <data name="InsertTocDialog_locationBox.Text" xml:space="preserve">
+    <value>Na górze strony
+Przy bieżącym kursorze</value>
+    <comment>combobox</comment>
+  </data>
+  <data name="InsertTocDialog_locationLabel.Text" xml:space="preserve">
+    <value>Wstaw lokalizację</value>
+    <comment>label</comment>
+  </data>
   <data name="InsertTocDialog_notebookRadio.Text" xml:space="preserve">
-    <value>Dodaj stronę z tabelą sekcji w tym notebooku</value>
+    <value>Nowa strona z indeksem działów w tym zeszycie</value>
     <comment>radio</comment>
   </data>
   <data name="InsertTocDialog_pageRadio.Text" xml:space="preserve">
@@ -1433,8 +1442,23 @@ Symbole: PI, E</value>
     <comment>checkbox</comment>
   </data>
   <data name="InsertTocDialog_sectionRadio.Text" xml:space="preserve">
-    <value>Dodaj stronę z tabelą stron w tej sekcji</value>
+    <value>Nowa strona z indeksem stron w tym dziale</value>
     <comment>radio</comment>
+  </data>
+  <data name="InsertTocDialog_styleBox.Text" xml:space="preserve">
+    <value>Standardowy tytuł strony
+Standardowy nagłówek 1
+Standardowy nagłówek 2
+Standardowy nagłówek 3
+Niestandardowy tytuł strony
+Nagłówek niestandardowy 1
+Nagłówek niestandardowy 2
+Nagłówek niestandardowy 3</value>
+    <comment>cobobox</comment>
+  </data>
+  <data name="InsertTocDialog_styleLabel.Text" xml:space="preserve">
+    <value>Styl tytułu</value>
+    <comment>label</comment>
   </data>
   <data name="InsertTocDialog_topBox.Text" xml:space="preserve">
     <value>Dodaj link do każdego nagłówku, aby przejść do góry strony</value>
@@ -2875,6 +2899,10 @@ Polaroid</value>
     <value>Wypełnij (Ctrl + D)</value>
     <comment>ribbon</comment>
   </data>
+  <data name="ribFindHashtagsButton_Label" xml:space="preserve">
+    <value>Znajdź hashtagi</value>
+    <comment>ribbon references</comment>
+  </data>
   <data name="ribFinishBiLinkButton_Label" xml:space="preserve">
     <value>Zakończ połączenie dwukierunkowe.</value>
     <comment>ribbon item</comment>
@@ -3540,6 +3568,14 @@ Polaroid</value>
   <data name="ribSearchButton_Screentip" xml:space="preserve">
     <value>Szukaj stron ze słów kluczowych i skopiuj / Przenieś do innej sekcji (ALT + F)</value>
     <comment>ribbon item</comment>
+  </data>
+  <data name="ribSearchHashtagsButton_Label" xml:space="preserve">
+    <value>Szukaj hashtagów</value>
+    <comment>ribbon search</comment>
+  </data>
+  <data name="ribSearchHashtagsButton_Screentip" xml:space="preserve">
+    <value>Szukaj hashtagów</value>
+    <comment>ribbon search</comment>
   </data>
   <data name="ribSearchMenu_Label" xml:space="preserve">
     <value>Wyszukaj i tag</value>

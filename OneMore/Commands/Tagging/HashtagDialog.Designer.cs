@@ -74,7 +74,7 @@
 			this.contextPanel.Location = new System.Drawing.Point(0, 114);
 			this.contextPanel.Name = "contextPanel";
 			this.contextPanel.Padding = new System.Windows.Forms.Padding(6);
-			this.contextPanel.Size = new System.Drawing.Size(988, 396);
+			this.contextPanel.Size = new System.Drawing.Size(988, 570);
 			this.contextPanel.TabIndex = 7;
 			// 
 			// topPanel
@@ -199,7 +199,7 @@
 			this.panel1.Controls.Add(this.moveButton);
 			this.panel1.Controls.Add(this.cancelButton);
 			this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-			this.panel1.Location = new System.Drawing.Point(0, 510);
+			this.panel1.Location = new System.Drawing.Point(0, 684);
 			this.panel1.Name = "panel1";
 			this.panel1.Size = new System.Drawing.Size(988, 60);
 			this.panel1.TabIndex = 9;
@@ -275,7 +275,7 @@
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(988, 570);
+			this.ClientSize = new System.Drawing.Size(988, 744);
 			this.Controls.Add(this.contextPanel);
 			this.Controls.Add(this.panel1);
 			this.Controls.Add(this.topPanel);

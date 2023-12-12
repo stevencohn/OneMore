@@ -1404,8 +1404,17 @@ Symbolen: PI, E</value>
     <value>Inhoudsopgave</value>
     <comment>dialog title</comment>
   </data>
+  <data name="InsertTocDialog_locationBox.Text" xml:space="preserve">
+    <value>Bovenaan de pagina
+Bij de huidige cursor</value>
+    <comment>combobox</comment>
+  </data>
+  <data name="InsertTocDialog_locationLabel.Text" xml:space="preserve">
+    <value>Locatie invoegen</value>
+    <comment>label</comment>
+  </data>
   <data name="InsertTocDialog_notebookRadio.Text" xml:space="preserve">
-    <value>Voeg een pagina toe met een tabel met secties in dit notitieboekje</value>
+    <value>Nieuwe pagina met index van secties in dit notitieboekje</value>
     <comment>radio</comment>
   </data>
   <data name="InsertTocDialog_pageRadio.Text" xml:space="preserve">
@@ -1425,8 +1434,23 @@ Symbolen: PI, E</value>
     <comment>checkbox</comment>
   </data>
   <data name="InsertTocDialog_sectionRadio.Text" xml:space="preserve">
-    <value>Voeg een pagina met een paginatabel toe in deze sectie</value>
+    <value>Nieuwe pagina met index van pagina's in deze sectie</value>
     <comment>radio</comment>
+  </data>
+  <data name="InsertTocDialog_styleBox.Text" xml:space="preserve">
+    <value>Standaard paginatitel
+Standaardkop 1
+Standaardkop 2
+Standaardkop 3
+Aangepaste paginatitel
+Aangepaste kop 1
+Aangepaste kop 2
+Aangepaste kop 3</value>
+    <comment>cobobox</comment>
+  </data>
+  <data name="InsertTocDialog_styleLabel.Text" xml:space="preserve">
+    <value>Titelstijl</value>
+    <comment>label</comment>
   </data>
   <data name="InsertTocDialog_topBox.Text" xml:space="preserve">
     <value>Voeg een link toe aan elke kop om naar de bovenkant van de pagina te gaan</value>
@@ -2863,6 +2887,10 @@ Polaroid</value>
     <value>Opvullen (Ctrl + D)</value>
     <comment>ribbon</comment>
   </data>
+  <data name="ribFindHashtagsButton_Label" xml:space="preserve">
+    <value>Zoek hashtags</value>
+    <comment>ribbon references</comment>
+  </data>
   <data name="ribFinishBiLinkButton_Label" xml:space="preserve">
     <value>Bidirectionele link voltooien</value>
     <comment>ribbon item</comment>
@@ -3527,6 +3555,14 @@ Polaroid</value>
   <data name="ribSearchButton_Screentip" xml:space="preserve">
     <value>Zoek pagina's op trefwoorden en kopieer / ga naar een andere sectie (Alt + F)</value>
     <comment>ribbon item</comment>
+  </data>
+  <data name="ribSearchHashtagsButton_Label" xml:space="preserve">
+    <value>Zoek hashtags</value>
+    <comment>ribbon search</comment>
+  </data>
+  <data name="ribSearchHashtagsButton_Screentip" xml:space="preserve">
+    <value>Zoek naar hashtags</value>
+    <comment>ribbon search</comment>
   </data>
   <data name="ribSearchMenu_Label" xml:space="preserve">
     <value>Zoeken en tag</value>

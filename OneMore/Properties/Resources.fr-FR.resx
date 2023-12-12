@@ -1400,8 +1400,17 @@ Symboles : PI, E</value>
     <value>Table des matières</value>
     <comment>dialog title</comment>
   </data>
+  <data name="InsertTocDialog_locationBox.Text" xml:space="preserve">
+    <value>En haut de la page
+Au curseur actuel</value>
+    <comment>combobox</comment>
+  </data>
+  <data name="InsertTocDialog_locationLabel.Text" xml:space="preserve">
+    <value>Insérer un emplacement</value>
+    <comment>label</comment>
+  </data>
   <data name="InsertTocDialog_notebookRadio.Text" xml:space="preserve">
-    <value>Ajouter une page avec un tableau des sections dans ce bloc-notes</value>
+    <value>Nouvelle page avec index des sections de ce cahier</value>
     <comment>radio</comment>
   </data>
   <data name="InsertTocDialog_pageRadio.Text" xml:space="preserve">
@@ -1421,8 +1430,23 @@ Symboles : PI, E</value>
     <comment>checkbox</comment>
   </data>
   <data name="InsertTocDialog_sectionRadio.Text" xml:space="preserve">
-    <value>Ajouter une page avec un tableau des pages dans cette section</value>
+    <value>Nouvelle page avec index des pages de cette section</value>
     <comment>radio</comment>
+  </data>
+  <data name="InsertTocDialog_styleBox.Text" xml:space="preserve">
+    <value>Titre de la page standard
+Titre standard 1
+Titre standard 2
+Rubrique standard 3
+Titre de page personnalisé
+Titre personnalisé 1
+Titre personnalisé 2
+Titre personnalisé 3</value>
+    <comment>cobobox</comment>
+  </data>
+  <data name="InsertTocDialog_styleLabel.Text" xml:space="preserve">
+    <value>Style de titre</value>
+    <comment>label</comment>
   </data>
   <data name="InsertTocDialog_topBox.Text" xml:space="preserve">
     <value>Ajoutez un lien à chaque titre pour passer en haut de la page</value>
@@ -2858,6 +2882,10 @@ Polaroïd</value>
     <value>Remplir vers le bas (Ctrl + D)</value>
     <comment>ribbon</comment>
   </data>
+  <data name="ribFindHashtagsButton_Label" xml:space="preserve">
+    <value>Trouver des hashtags</value>
+    <comment>ribbon references</comment>
+  </data>
   <data name="ribFinishBiLinkButton_Label" xml:space="preserve">
     <value>Terminer le lien bidirectionnel</value>
     <comment>ribbon item</comment>
@@ -3522,6 +3550,14 @@ Polaroïd</value>
   <data name="ribSearchButton_Screentip" xml:space="preserve">
     <value>Rechercher dans les pages des mots-clés et copier / déplacer vers une autre section (Alt + F)</value>
     <comment>ribbon item</comment>
+  </data>
+  <data name="ribSearchHashtagsButton_Label" xml:space="preserve">
+    <value>Rechercher des hashtags</value>
+    <comment>ribbon search</comment>
+  </data>
+  <data name="ribSearchHashtagsButton_Screentip" xml:space="preserve">
+    <value>Rechercher des hashtags</value>
+    <comment>ribbon search</comment>
   </data>
   <data name="ribSearchMenu_Label" xml:space="preserve">
     <value>Recherche et balise</value>
