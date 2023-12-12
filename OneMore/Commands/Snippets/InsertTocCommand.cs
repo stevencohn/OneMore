@@ -266,8 +266,12 @@ namespace River.OneMoreAddIn.Commands
 				}
 				else if (insertHere)
 				{
-					container.Remove();
-					page.AddNextParagraph(container);
+					if (page.GetSelectedElements() != null &&
+						page.SelectionScope != SelectionScope.Unknown)
+					{
+						container.Remove();
+						page.AddNextParagraph(container);
+					}
 				}
 			}
 
