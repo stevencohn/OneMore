@@ -75,7 +75,7 @@ namespace River.OneMoreAddIn.Commands
 		public bool SectionPages => pagesBox.Enabled && pagesBox.Checked;
 
 
-		public InsertTocCommand.TitleStyles TitleStyle => 
+		public InsertTocCommand.TitleStyles TitleStyle =>
 			(InsertTocCommand.TitleStyles)styleBox.SelectedIndex;
 
 

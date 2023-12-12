@@ -11,6 +11,7 @@ namespace River.OneMoreAddIn.Commands
 	using System;
 	using System.Collections.Generic;
 	using System.Linq;
+	using System.Runtime.InteropServices.WindowsRuntime;
 	using System.Threading.Tasks;
 	using System.Windows.Forms;
 	using System.Xml.Linq;
@@ -22,20 +23,20 @@ namespace River.OneMoreAddIn.Commands
 	{
 		public enum TitleStyles
 		{
-			StandardPageTitle = 0,
-			StandardHeading1 = 1,
-			StandardHeading2 = 2,
-			StandardHeading3 = 3,
-			CustomPageTitle = 4,
-			CustomHeading1 = 5,
-			CustomHeading2 = 6,
-			CustomHeading3 = 7
+			StandardPageTitle,
+			StandardHeading1,
+			StandardHeading2,
+			StandardHeading3,
+			CustomPageTitle,
+			CustomHeading1,
+			CustomHeading2,
+			CustomHeading3
 		}
 
 
-		private const string TocMeta = "omToc";
+		public const string TocMeta = "omToc";
 		private const string LongDash = "\u2015";
-		private const string RefreshStyle = "font-style:italic;font-size:9.0pt;color:#808080";
+		private const string RefreshStyle = "font-weigth:normal;font-style:italic;font-size:9.0pt;color:#808080";
 		private const int MinProgress = 25;
 
 		private Style cite;
@@ -148,30 +149,11 @@ namespace River.OneMoreAddIn.Commands
 				return;
 			}
 
-			PageNamespace.Set(ns);
-
-			var container = LocateInsertionPoint(page, ns, top, insertHere);
-
 			// build new TOC...
 
-			var cmd = "onemore://InsertTocCommand/refresh";
-			if (addTopLinks) cmd = $"{cmd}/links";
-			if (rightAlign) cmd = $"{cmd}/align";
-			if (insertHere) cmd = $"{cmd}/here";
-			cmd = $"{cmd}/style{(int)titleStyle}";
-
-			var refresh = $"<a href=\"{cmd}\"><span style='{RefreshStyle}'>{Resx.word_Refresh}</span></a>";
-
-			// be sure to emit this with ToRBGHtml() otherwise OneNote may normalize White/Black
-			// color names, removing them against Dark/Light backgrounds respectively
-			var textColor = page.GetBestTextColor();
-
-			// "Table of Contents" line
-			var toc = new Paragraph(
-				$"<span style='font-weight:bold'>{Resx.InsertTocCommand_TOC}</span> " +
-				$"<span style='{RefreshStyle}'>[{refresh}]</span>"
-				)
-				.SetStyle($"font-size:16.0pt;color:{textColor.ToRGBHtml()}");
+			PageNamespace.Set(ns);
+			var container = LocateInsertionPoint(page, ns, top, insertHere);
+			var title = MakeTitle(page, addTopLinks, rightAlign, insertHere, titleStyle);
 
 			var content = new XElement(ns + "OEChildren");
 			var index = 0;
@@ -182,7 +164,7 @@ namespace River.OneMoreAddIn.Commands
 			BuildHeadings(content, headings, ref index, minlevel, dark);
 
 			var table = new Table(ns, 3, 1) { BordersVisible = false };
-			table[0][0].SetContent(toc);
+			table[0][0].SetContent(title);
 			table[1][0].SetContent(content);
 			table[2][0].SetContent(string.Empty);
 
@@ -290,6 +272,79 @@ namespace River.OneMoreAddIn.Commands
 			}
 
 			return container;
+		}
+
+
+		private XElement MakeTitle(
+			Page page,
+			bool addTopLinks, bool rightAlign, bool insertHere, TitleStyles titleStyle)
+		{
+			var cmd = "onemore://InsertTocCommand/refresh";
+			if (addTopLinks) cmd = $"{cmd}/links";
+			if (rightAlign) cmd = $"{cmd}/align";
+			if (insertHere) cmd = $"{cmd}/here";
+			cmd = $"{cmd}/style{(int)titleStyle}";
+
+			var refresh = $"<a href=\"{cmd}\"><span style='{RefreshStyle}'>{Resx.word_Refresh}</span></a>";
+
+			var title = new Paragraph(
+				$"{Resx.InsertTocCommand_TOC} <span style='{RefreshStyle}'>[{refresh}]</span>"
+				);
+
+			if (titleStyle < TitleStyles.CustomPageTitle)
+			{
+				var standard = titleStyle switch
+				{
+					TitleStyles.StandardHeading1 => StandardStyles.Heading1,
+					TitleStyles.StandardHeading2 => StandardStyles.Heading2,
+					TitleStyles.StandardHeading3 => StandardStyles.Heading3,
+					_ => StandardStyles.PageTitle
+				};
+
+				var style = page.GetQuickStyle(standard);
+				title.SetQuickStyle(style.Index);
+			}
+			else
+			{
+				var provider = new ThemeProvider();
+				var styles = provider.Theme.GetStyles();
+				Style style = null;
+				if (titleStyle == TitleStyles.CustomPageTitle)
+				{
+					style = styles.Find(s => s.Name.EqualsICIC("Page Title"));
+				}
+				else
+				{
+					var index = titleStyle switch
+					{
+						TitleStyles.CustomHeading2 => 1,
+						TitleStyles.CustomHeading3 => 2,
+						_ => 0
+					};
+
+					var heads = styles.Where(s => s.StyleType == StyleType.Heading).ToArray();
+					if (index < heads.Length)
+					{
+						style = styles[index];
+					}
+				}
+
+				if (style != null)
+				{
+					title.SetStyle(style.ToCss());
+				}
+				else
+				{
+					// be sure to emit this with ToRBGHtml() otherwise OneNote may normalize White/Black
+					// color names, removing them against Dark/Light backgrounds respectively
+					var bestColor = page.GetBestTextColor();
+
+					title.SetStyle($"font-size:16.0pt;color:{bestColor.ToRGBHtml()}");
+				}
+			}
+
+
+			return title;
 		}
 
 
