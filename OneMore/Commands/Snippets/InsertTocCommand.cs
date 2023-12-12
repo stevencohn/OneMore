@@ -11,6 +11,7 @@ namespace River.OneMoreAddIn.Commands
 	using System;
 	using System.Collections.Generic;
 	using System.Linq;
+	using System.Runtime.CompilerServices;
 	using System.Threading.Tasks;
 	using System.Windows.Forms;
 	using System.Xml.Linq;
@@ -176,7 +177,11 @@ namespace River.OneMoreAddIn.Commands
 
 			if (addTopLinks)
 			{
-				BuildJumpLinks(one, page, titleID, headings, rightAlign);
+				AddTopLinksToHeadings(one, page, titleID, headings, rightAlign);
+			}
+			else
+			{
+				RemoveTopLinksFromHeadings(ns, headings);
 			}
 
 			await one.Update(page);
@@ -407,7 +412,7 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private void BuildJumpLinks(
+		private void AddTopLinksToHeadings(
 			OneNote one, Page page, string titleID,
 			List<Heading> headings, bool alignlinks)
 		{
@@ -416,6 +421,12 @@ namespace River.OneMoreAddIn.Commands
 				$"style='font-style:italic'>{Resx.InsertTocCommand_Top}</span></a>";
 
 			var ns = page.Namespace;
+
+			if ((alignlinks && !headings.Any(h => h.IsRightAligned)) ||
+				(!alignlinks && headings.Any(h => h.IsRightAligned)))
+			{
+				RemoveTopLinksFromHeadings(ns, headings);
+			}
 
 			foreach (var heading in headings)
 			{
@@ -447,6 +458,26 @@ namespace River.OneMoreAddIn.Commands
 							);
 					}
 				}
+			}
+		}
+
+
+		private void RemoveTopLinksFromHeadings(XNamespace ns, List<Heading> headings)
+		{
+			foreach (var heading in headings)
+			{
+				if (heading.IsRightAligned)
+				{
+					var container = heading.Root.Ancestors(ns + "Table").First().Parent;
+					container.ReplaceWith(heading.Root);
+				}
+				else if (heading.HasTopLink)
+				{
+					heading.Root.Elements().Remove();
+					heading.Root.Add(new XElement(ns + "T", new XCData(heading.Text)));
+				}
+
+				heading.IsRightAligned = heading.HasTopLink = false;
 			}
 		}
 		#endregion InsertTableOfContents
