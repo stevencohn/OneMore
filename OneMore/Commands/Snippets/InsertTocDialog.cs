@@ -58,10 +58,18 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		public bool AddTopLinks => topBox.Enabled && topBox.Checked;
+		public bool AddTopLinks
+		{
+			get => topBox.Enabled && topBox.Checked;
+			set => topBox.Checked = value;
+		}
 
 
-		public bool InsertHere => locationBox.SelectedIndex == 1;
+		public bool InsertHere
+		{
+			get => locationBox.SelectedIndex == 1;
+			set => locationBox.SelectedIndex = value ? 1 : 0;
+		}
 
 
 		public bool PreviewPages =>
@@ -69,14 +77,21 @@ namespace River.OneMoreAddIn.Commands
 			(notebookRadio.Checked && preview2Box.Checked);
 
 
-		public bool RightAlign => rightAlignBox.Enabled && rightAlignBox.Checked;
+		public bool RightAlign
+		{
+			get => rightAlignBox.Enabled && rightAlignBox.Checked;
+			set => rightAlignBox.Checked = value;
+		}
 
 
 		public bool SectionPages => pagesBox.Enabled && pagesBox.Checked;
 
 
-		public InsertTocCommand.TitleStyles TitleStyle =>
-			(InsertTocCommand.TitleStyles)styleBox.SelectedIndex;
+		public InsertTocCommand.TitleStyles TitleStyle
+		{
+			get => (InsertTocCommand.TitleStyles)styleBox.SelectedIndex;
+			set => styleBox.SelectedIndex = (int)value;
+		}
 
 
 		private void ToggleRightAlignOption(object sender, EventArgs e)

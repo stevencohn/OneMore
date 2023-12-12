@@ -11,6 +11,7 @@ namespace River.OneMoreAddIn.Commands
 	using System;
 	using System.Collections.Generic;
 	using System.Linq;
+	using System.Text.RegularExpressions;
 	using System.Threading.Tasks;
 	using System.Windows.Forms;
 	using System.Xml.Linq;
@@ -35,6 +36,7 @@ namespace River.OneMoreAddIn.Commands
 
 		public const string TocMeta = "omToc";
 		private const string LongDash = "\u2015";
+		private const string RefreshCmd = "onemore://InsertTocCommand/refresh";
 		private const string RefreshStyle = "font-weigth:normal;font-style:italic;font-size:9.0pt;color:#808080";
 		private const int MinProgress = 25;
 
@@ -55,7 +57,7 @@ namespace River.OneMoreAddIn.Commands
 				return;
 			}
 
-			using var dialog = new InsertTocDialog();
+			using var dialog = MakeDialog();
 			if (dialog.ShowDialog(owner) == DialogResult.Cancel)
 			{
 				return;
@@ -130,6 +132,47 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
+		private InsertTocDialog MakeDialog()
+		{
+			var dialog = new InsertTocDialog();
+
+			using var one = new OneNote(out var page, out var ns, OneNote.PageDetail.Basic);
+			var meta = page.Root.Elements(ns + "Outline")
+				.Descendants(ns + "Meta")
+				.FirstOrDefault(e => e.Attribute("name") is XAttribute attr && attr.Value == TocMeta);
+
+			if (meta != null)
+			{
+				var cdata = meta.Parent.DescendantNodes().OfType<XCData>()
+					.FirstOrDefault(c => c.Value.Contains(RefreshCmd));
+
+				if (cdata != null)
+				{
+					var wrapper = cdata.GetWrapper();
+					var href = wrapper.Elements("a").Attributes("href").FirstOrDefault()?.Value;
+					if (href != null)
+					{
+						href = href.Substring(RefreshCmd.Length);
+						dialog.AddTopLinks = href.Contains("/links");
+						dialog.RightAlign = href.Contains("/align");
+						dialog.InsertHere = href.Contains("/here");
+
+						var match = Regex.Match(href, @"\/style(\d+)");
+						if (match.Success)
+						{
+							if (int.TryParse(match.Groups[1].Value, out var index))
+							{
+								dialog.TitleStyle = (TitleStyles)index;
+							}
+						}
+					}
+				}
+			}
+
+			return dialog;
+		}
+
+
 		/// <summary>
 		/// Inserts a table of contents at the top of the current page,
 		/// of all headings on the page
@@ -163,6 +206,15 @@ namespace River.OneMoreAddIn.Commands
 			BuildHeadings(content, headings, ref index, minlevel, dark);
 
 			var table = new Table(ns, 3, 1) { BordersVisible = false };
+
+			var watt = container.Ancestors(ns + "Outline")
+				.Elements(ns + "Size").Attributes("width").FirstOrDefault();
+
+			if (watt != null && float.TryParse(watt.Value, out var width))
+			{
+				table.SetColumnWidth(0, Math.Max(width, 400) - 40);
+			}
+
 			table[0][0].SetContent(title);
 			table[1][0].SetContent(content);
 			table[2][0].SetContent(string.Empty);
@@ -286,7 +338,7 @@ namespace River.OneMoreAddIn.Commands
 			Page page,
 			bool addTopLinks, bool rightAlign, bool insertHere, TitleStyles titleStyle)
 		{
-			var cmd = "onemore://InsertTocCommand/refresh";
+			var cmd = RefreshCmd;
 			if (addTopLinks) cmd = $"{cmd}/links";
 			if (rightAlign) cmd = $"{cmd}/align";
 			if (insertHere) cmd = $"{cmd}/here";
