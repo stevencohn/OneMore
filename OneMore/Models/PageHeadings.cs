@@ -181,6 +181,7 @@ namespace River.OneMoreAddIn.Models
 					if (text == Resx.InsertTocCommand_Top)
 					{
 						heading.HasTopLink = true;
+						heading.IsRightAligned = true;
 					}
 				}
 			}
