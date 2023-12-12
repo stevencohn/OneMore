@@ -355,6 +355,20 @@ namespace River.OneMoreAddIn.Commands
 		private void BuildHeadings(
 			XElement container, List<Heading> headings, ref int index, int level, bool dark)
 		{
+			static string RemoveHyperlinks(string text)
+			{
+				// removes hyperlinks from the text of a heading so the TOC hyperlink can be applied
+				// clean up illegal directives; can be caused by using "Clip to OneNote" from Edge
+				var wrapper = new XCData(text).GetWrapper();
+				var links = wrapper.Elements("a").ToList();
+				foreach (var link in links)
+				{
+					link.ReplaceWith(link.Value);
+				}
+
+				return wrapper.ToString(SaveOptions.DisableFormatting);
+			}
+
 			while (index < headings.Count)
 			{
 				var heading = headings[index];
@@ -391,22 +405,6 @@ namespace River.OneMoreAddIn.Commands
 
 				index++;
 			}
-		}
-
-
-		private string RemoveHyperlinks(string text)
-		{
-			// removes hyperlinks from the text of a heading so the TOC hyperlink can be applied
-
-			// clean up illegal directives; can be caused by using "Clip to OneNote" from Edge
-			var wrapper = new XCData(text).GetWrapper();
-			var links = wrapper.Elements("a").ToList();
-			foreach (var link in links)
-			{
-				link.ReplaceWith(link.Value);
-			}
-
-			return wrapper.ToString(SaveOptions.DisableFormatting);
 		}
 
 
