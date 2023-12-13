@@ -9,7 +9,8 @@ Specifies the bitness of the build: 64 or 86, default is 64
 Build both x86 and x64 kits.
 
 .PARAMETER Fast
-Build just the OneMore.csproj using default parameters
+Build just the .csproj projects using default parameters.
+This will build OneMore, OneMorCalendar, OneMoreProtocolHandler, and OneMoreSetupActions.
 
 .PARAMETER Prep
 Run DisableOutOfProcBuild. This only needs to be run once on a machine, or after upgrading
@@ -193,8 +194,16 @@ Begin
         BuildComponent 'OneMore'
         Pop-Location
 
+        Push-Location OneMoreCalendar
+        BuildComponent 'OneMoreCalendar'
+        Pop-Location
+
         Push-Location OneMoreProtocolHandler
         BuildComponent 'OneMoreProtocolHandler'
+        Pop-Location
+ 
+        Push-Location OneMoreSetupActions
+        BuildComponent 'OneMoreSetupActions'
         Pop-Location
     }
 
