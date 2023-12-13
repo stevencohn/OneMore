@@ -175,27 +175,15 @@ Begin
     {
         param([int]$bitness)
         Write-Host "... building x$bitness DLLs" -ForegroundColor Yellow
-        Push-Location OneMore
-
-        # output file cannot exist before build
-        if (Test-Path .\Debug\*)
-        {
-            Remove-Item .\Debug\*.* -Force -Confirm:$false
-        }
-
-        # restore...
-
-        $cmd = 'nuget restore .\OneMore.csproj'
-        write-Host $cmd -ForegroundColor DarkGray
-
-        nuget restore .\OneMore.csproj
 
         # build...
-        BuildComponent 'OneMore'
+
+        Push-Location OneMore
+        BuildComponent 'OneMore' $true
         Pop-Location
 
         Push-Location OneMoreCalendar
-        BuildComponent 'OneMoreCalendar'
+        BuildComponent 'OneMoreCalendar' $true
         Pop-Location
 
         Push-Location OneMoreProtocolHandler
@@ -209,7 +197,19 @@ Begin
 
     function BuildComponent
     {
-        param($name)
+        param($name, $restore = $false)
+        # output file cannot exist before build
+        if (Test-Path .\Debug\*)
+        {
+            Remove-Item .\Debug\*.* -Force -Confirm:$false
+        }
+		# nuget restore
+		if ($restore)
+		{
+			$cmd = 'nuget restore .\$name.csproj'
+			write-Host $cmd -ForegroundColor DarkGray
+			nuget restore .\$name.csproj
+		}
         $cmd = "$devenv .\$name.csproj /build ""Debug|AnyCPU"" /project $name /projectconfig Debug"
         write-Host $cmd -ForegroundColor DarkGray
         . $devenv .\$name.csproj /build "Debug|AnyCPU" /project $name /projectconfig Debug
