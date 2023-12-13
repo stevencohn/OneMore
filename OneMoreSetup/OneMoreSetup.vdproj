@@ -4141,7 +4141,7 @@
             }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_111E0B202A4C45EB8CB8B89B7384E6D7"
             {
-            "SourcePath" = "8:..\\OneMore\\bin\\x64\\Debug\\runtimes\\win-x64\\native\\WebView2Loader.dll"
+            "SourcePath" = "8:..\\OneMore\\bin\\x86\\Debug\\runtimes\\win-x86\\native\\WebView2Loader.dll"
             "TargetName" = "8:WebView2Loader.dll"
             "Tag" = "8:"
             "Folder" = "8:_EC2E2C2F86924C5193A1A97D72978FDE"
@@ -5176,7 +5176,7 @@
             }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_37E53614A6D947DF8C6E99882FF99B37"
             {
-            "SourcePath" = "8:..\\OneMore\\bin\\x64\\Debug\\runtimes\\win-x64\\native\\WebView2Loader.dll"
+            "SourcePath" = "8:..\\OneMore\\bin\\x86\\Debug\\runtimes\\win-x86\\native\\WebView2Loader.dll"
             "TargetName" = "8:WebView2Loader.dll"
             "Tag" = "8:"
             "Folder" = "8:_77E5D46F4B734926A1895351E6354E5D"
