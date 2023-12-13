@@ -164,7 +164,7 @@ Begin
                     $_.Replace('x64', 'x86') | Out-File $vdproj -Append
                 }
             }
-            else
+            elseif ($_ -notmatch '^"Scc')
             {
                 $_ | Out-File $vdproj -Append
             }
