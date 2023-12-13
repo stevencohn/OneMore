@@ -226,11 +226,11 @@ Begin
             Remove-Item .\Debug\*.* -Force -Confirm:$false
         }
 
-        $cmd = "$devenv .\OneMoreSetup.vdproj /build ""Debug|x$bitness"" /project Setup /projectconfig Debug"
+        $cmd = "$devenv .\OneMoreSetup.vdproj /build ""Debug|x$bitness"" /project Setup /projectconfig Debug /out `$env:TEMP\OneMoreBuild.log"
         write-Host $cmd -ForegroundColor DarkGray
 
         # build
-        . $devenv .\OneMoreSetup.vdproj /build "Debug|x$bitness" /project Setup /projectconfig Debug
+        . $devenv .\OneMoreSetup.vdproj /build "Debug|x$bitness" /project Setup /projectconfig Debug /out $env:TEMP\OneMorebuild.log
 
         # move msi to Downloads for safe-keeping and to allow next Platform build
         Move-Item .\Debug\*.msi $home\Downloads -Force
