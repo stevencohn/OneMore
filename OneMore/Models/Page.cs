@@ -86,7 +86,8 @@ namespace River.OneMoreAddIn.Models
 		/// Keeps only modified 1st gen child elements of the page to optimize save performance
 		/// especially when the page is loaded with many Ink drawings.
 		/// </summary>
-		public void OptimizeForSave()
+		/// <param name="keep">Keeps all Outlines to force full page update</param>
+		public void OptimizeForSave(bool keep)
 		{
 			// MD5 should be sufficient and performs better than any other algorithm
 			using var algo = MD5.Create();
@@ -98,10 +99,14 @@ namespace River.OneMoreAddIn.Models
 				if (att != null)
 				{
 					att.Remove();
-					var hash = algo.GetHashString(child.ToString(SaveOptions.DisableFormatting));
-					if (hash == att.Value)
+
+					if (!keep)
 					{
-						child.Remove();
+						var hash = algo.GetHashString(child.ToString(SaveOptions.DisableFormatting));
+						if (hash == att.Value)
+						{
+							child.Remove();
+						}
 					}
 				}
 			}

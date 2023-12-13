@@ -105,7 +105,7 @@ namespace River.OneMoreAddIn.Commands
 				page.Root.Element(ns + "Title")?.Add(new XAttribute("lang", cultureName));
 			}
 
-			await one.Update(page);
+			await one.Update(page, true);
 
 			var area = partial ? "selection" : "full page";
 			var abled = cultureName == NoLang ? "disabled" : "enabled";

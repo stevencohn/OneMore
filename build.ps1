@@ -144,14 +144,16 @@ Begin
                     '"TargetPlatform" = "3:0"' | Out-File $vdproj -Append
                 }
             }
-            elseif ($_ -match '"SourcePath" = .*WebView2Loader\.dll"$')
-            {
-                if ($bitness -eq 64) {
-                    $_.Replace('\\x86', '\\x64') | Out-File $vdproj -Append
-                } else {
-                    $_.Replace('\\x64', '\\x86') | Out-File $vdproj -Append
-                }
-            }
+            #elseif ($_ -match '"SourcePath" = .*WebView2Loader\.dll"$')
+            #{
+            #    if ($bitness -eq 64) {
+            #        $_.Replace('\\x86', '\\x64') | Out-File $vdproj -Append
+            #        $_.Replace('win-x86', 'win-x64') | Out-File $vdproj -Append
+            #    } else {
+            #        $_.Replace('\\x64', '\\x86') | Out-File $vdproj -Append
+            #        $_.Replace('win-x64', 'win-x86') | Out-File $vdproj -Append
+            #    }
+            #}
             elseif (($_ -match '"Name" = "8:OneMoreSetupActions --install ') -or `
                     ($_ -match '"Arguments" = "8:--install '))
             {

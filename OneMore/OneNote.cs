@@ -1039,7 +1039,8 @@ namespace River.OneMoreAddIn
 		/// Update the current page.
 		/// </summary>
 		/// <param name="page">A Page</param>
-		public async Task Update(Page page)
+		/// <param name="force">Keep all Outlines to force full page update</param>
+		public async Task Update(Page page, bool force = false)
 		{
 			if (page.HasActiveMedia())
 			{
@@ -1049,7 +1050,7 @@ namespace River.OneMoreAddIn
 
 			// must optimize before we can validate schema...
 
-			page.OptimizeForSave();
+			page.OptimizeForSave(force);
 
 			if (!ValidateSchema(page.Root))
 			{
@@ -1063,6 +1064,7 @@ namespace River.OneMoreAddIn
 			//	? DateTime.Parse(att.Value).ToUniversalTime()
 			//	: DateTime.MinValue;
 
+			//logger.WriteLine(page.Root);
 			var xml = page.Root.ToString(SaveOptions.DisableFormatting);
 
 			await InvokeWithRetry(() =>
