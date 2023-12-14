@@ -46,6 +46,9 @@ namespace River.OneMoreAddIn.Commands
 
 			var thread = new Thread(async () =>
 			{
+				// let OneMore settle before we start
+				await Task.Delay(3000);
+
 				// 'errors' allows repeated consecutive exceptions but limits that to 5 so we
 				// don't fall into an infinite loop. If it somehow miraculously recovers then
 				// errors is reset back to zero and normal processing continues...

@@ -48,7 +48,7 @@ namespace River.OneMoreAddIn
 			if (min < minValue) minValue = min;
 			if (max > maxValue) maxValue = max;
 			var range = maxValue - minValue;
-			margin = range / values.Count() switch { 1 => 0, 2 => 2, 3 => 3, _ => 3 };
+			margin = range / values.Count() switch { 1 => 1, 2 => 2, 3 => 3, _ => 3 };
 		}
 
 
