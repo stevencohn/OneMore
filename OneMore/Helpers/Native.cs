@@ -246,6 +246,11 @@ namespace River.OneMoreAddIn
 			string pszExtra, [Out] StringBuilder pszOut, ref uint pcchOut);
 
 
+		// https://learn.microsoft.com/en-us/windows/win32/api/shlwapi/nf-shlwapi-colorhlstorgb
+		[DllImport("shlwapi.dll")]
+		public static extern int ColorHLSToRGB(int H, int L, int S);
+
+
 		// https://learn.microsoft.com/en-us/windows/win32/api/wingdi/nf-wingdi-deleteobject
 		[DllImport("gdi32.dll", CharSet = CharSet.Auto, SetLastError = true)]
 		public static extern bool DeleteObject(IntPtr hObject);

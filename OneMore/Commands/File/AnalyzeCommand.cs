@@ -188,7 +188,7 @@ namespace River.OneMoreAddIn.Commands
 				BordersVisible = true
 			};
 
-			table.SetColumnWidth(0, 200);
+			table.SetColumnWidth(0, 250);
 			table.SetColumnWidth(1, 70);
 			table.SetColumnWidth(2, 70);
 			table.SetColumnWidth(3, 70);
@@ -256,7 +256,11 @@ namespace River.OneMoreAddIn.Commands
 						dir = new DirectoryInfo(repath);
 						var relength = dir.EnumerateFiles("*.*", SearchOption.AllDirectories).Sum(f => f.Length);
 
-						row[1].SetContent(new Paragraph((size - relength).ToBytes(1)).SetAlignment("right"));
+						row[1].Value = size - relength;
+						row[2].Value = relength;
+						row[3].Value = size;
+
+						row[1].SetContent(new Paragraph(row[1].LongValue.ToBytes(1)).SetAlignment("right"));
 						row[2].SetContent(new Paragraph(relength.ToBytes(1)).SetAlignment("right"));
 						row[3].SetContent(new Paragraph(size.ToBytes(1)).SetAlignment("right"));
 					}
@@ -272,8 +276,35 @@ namespace River.OneMoreAddIn.Commands
 
 			if (total > 0)
 			{
+				// add total row
 				row = table.AddRow();
 				row[3].SetContent(new Paragraph(total.ToBytes(1)).SetAlignment("right"));
+
+				// heatmap
+				var values1 = new List<decimal>();
+				var values2 = new List<decimal>();
+				var values3 = new List<decimal>();
+				table.Rows.ForEach(r =>
+				{
+					if (r[1].Value > 0) values1.Add(r[1].Value);
+					if (r[2].Value > 0) values2.Add(r[2].Value);
+					if (r[3].Value > 0) values3.Add(r[3].Value);
+				});
+
+				var map1 = new Heatmap(values1);
+				var map2 = new Heatmap(values2);
+				var map3 = new Heatmap(values3);
+				table.Rows.ForEach(r =>
+				{
+					if (r[1].Value > 0)
+						r[1].ShadingColor = $"#{map1.MapToRGB(r[1].Value).ToString("x6")}";
+
+					if (r[2].Value > 0)
+						r[2].ShadingColor = $"#{map2.MapToRGB(r[2].Value).ToString("x6")}";
+
+					if (r[3].Value > 0)
+						r[3].ShadingColor = $"#{map3.MapToRGB(r[3].Value).ToString("x6")}";
+				});
 			}
 
 			container.Add(
@@ -365,7 +396,7 @@ namespace River.OneMoreAddIn.Commands
 					BordersVisible = true
 				};
 
-				table.SetColumnWidth(0, 200);
+				table.SetColumnWidth(0, 250);
 				table.SetColumnWidth(1, 70);
 				table.SetColumnWidth(2, 70);
 				table.SetColumnWidth(3, 70);
@@ -383,6 +414,26 @@ namespace River.OneMoreAddIn.Commands
 
 				row = table.AddRow();
 				row[3].SetContent(new Paragraph(total.ToBytes(1)).SetAlignment("right"));
+
+				// heatmap
+				var values1 = new List<decimal>();
+				var values3 = new List<decimal>();
+				table.Rows.ForEach(r =>
+				{
+					if (r[1].Value > 0) values1.Add(r[1].Value);
+					if (r[3].Value > 0) values3.Add(r[1].Value);
+				});
+
+				var map1 = new Heatmap(values1);
+				var map3 = new Heatmap(values3);
+				table.Rows.ForEach(r =>
+				{
+					if (r[1].Value > 0)
+						r[1].ShadingColor = $"#{map1.MapToRGB(r[1].Value).ToString("x6")}";
+
+					if (r[3].Value > 0)
+						r[3].ShadingColor = $"#{map3.MapToRGB(r[3].Value).ToString("x6")}";
+				});
 
 				container.Add(
 					new Paragraph(table.Root),
@@ -450,6 +501,7 @@ namespace River.OneMoreAddIn.Commands
 
 						if (all > 0)
 						{
+							row[1].Value = first;
 							row[1].SetContent(new Paragraph(first.ToBytes(1)).SetAlignment("right"));
 
 							if (remote)
@@ -457,6 +509,7 @@ namespace River.OneMoreAddIn.Commands
 								row[2].SetContent(new Paragraph(files.Count.ToString()).SetAlignment("right"));
 							}
 
+							row[3].Value = all;
 							row[3].SetContent(new Paragraph(all.ToBytes(1)).SetAlignment("right"));
 							total += all;
 						}
@@ -534,7 +587,7 @@ namespace River.OneMoreAddIn.Commands
 				BordersVisible = true
 			};
 
-			table.SetColumnWidth(0, 450);
+			table.SetColumnWidth(0, 500);
 
 			var pages = section.Elements(ns + "Page")
 				.Where(e => e.Attribute("ID").Value != skipId);
@@ -594,7 +647,7 @@ namespace River.OneMoreAddIn.Commands
 				HasHeaderRow = true
 			};
 
-			detail.SetColumnWidth(0, 250);
+			detail.SetColumnWidth(0, 300);
 			detail.SetColumnWidth(1, 70);
 			detail.SetColumnWidth(2, 70);
 

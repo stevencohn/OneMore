@@ -257,6 +257,7 @@
     <Compile Include="Helpers\Extensions\GraphicsExtensions.cs" />
     <Compile Include="Helpers\Extensions\HashAlgorithmExtensions.cs" />
     <Compile Include="Helpers\Extensions\ScreenExtensions.cs" />
+    <Compile Include="Helpers\Heatmap.cs" />
     <Compile Include="Models\KnownSchemaAttributes.cs" />
     <Compile Include="Models\PageReader.cs" />
     <Compile Include="AddInHotkeys.cs" />

@@ -37,6 +37,15 @@ namespace River.OneMoreAddIn.Models
 		public int RowNum { get; set; }
 
 
+		public long LongValue => (long)Value;
+
+
+		/// <summary>
+		/// A decimal value used for heatmaps
+		/// </summary>
+		public decimal Value { get; set; }
+
+
 		/// <summary>
 		/// Gets or sets the background shading color of this cell.
 		/// </summary>
