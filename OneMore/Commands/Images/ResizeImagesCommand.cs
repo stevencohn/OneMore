@@ -1,5 +1,5 @@
 ﻿//************************************************************************************************
-// Copyright © 2020 Steven M Cohn.  All rights reserved.
+// Copyright © 2020 Steven M Cohn. All rights reserved.
 //************************************************************************************************
 
 namespace River.OneMoreAddIn.Commands
@@ -22,8 +22,6 @@ namespace River.OneMoreAddIn.Commands
 	/// </summary>
 	internal class ResizeImagesCommand : Command
 	{
-		private const int ImageMargin = 15;
-
 		private OneNote one;
 		private Page page;
 		private XNamespace ns;
@@ -38,21 +36,26 @@ namespace River.OneMoreAddIn.Commands
 		{
 			using (one = new OneNote(out page, out ns, OneNote.PageDetail.All))
 			{
-				var elements = page.Root.Descendants(ns + "Image")?
-					.Where(e => e.Attribute("selected")?.Value == "all");
+				// starting at Outline should exclude all background images
+				var elements = page.Root
+					.Elements(ns + "Outline")
+					.Descendants(ns + "Image")?
+					.Where(e => e.Attribute("selected")?.Value == "all")
+					.ToList();
 
 				if ((elements == null) || !elements.Any())
 				{
-					// starting at Outline should exclude all background images
-					elements = page.Root.Elements(ns + "Outline").Descendants(ns + "Image");
+					elements = page.Root
+						.Elements(ns + "Outline").Descendants(ns + "Image")
+						.ToList();
 				}
 
-				if (elements != null && elements.Any())
+				if (elements.Any())
 				{
-					if (elements.Count() == 1)
+					if (elements.Count == 1)
 					{
 						// resize single selected image only
-						await ResizeOne(elements.First());
+						await ResizeOne(elements[0]);
 					}
 					else
 					{
@@ -100,11 +103,19 @@ namespace River.OneMoreAddIn.Commands
 				}
 			}
 
-			size.SetAttributeValue("width", dialog.ImageWidth.ToString(CultureInfo.InvariantCulture));
-			size.SetAttributeValue("height", dialog.ImageHeight.ToString(CultureInfo.InvariantCulture));
-			size.SetAttributeValue("isSetByUser", "true");
-
-			logger.WriteLine($"resized from {viewWidth} x {viewHeight} to {dialog.ImageWidth} x {dialog.ImageHeight}");
+			if (dialog.AutoSizeImage)
+			{
+				size.Attribute("isSetByUser").Remove();
+				element.Parent.Attribute("objectID").Remove();
+				logger.WriteLine("auto-size image");
+			}
+			else
+			{
+				size.SetAttributeValue("width", dialog.ImageWidth.ToString(CultureInfo.InvariantCulture));
+				size.SetAttributeValue("height", dialog.ImageHeight.ToString(CultureInfo.InvariantCulture));
+				size.SetAttributeValue("isSetByUser", "true");
+				logger.WriteLine($"resized from {viewWidth} x {viewHeight} to {dialog.ImageWidth} x {dialog.ImageHeight}");
+			}
 
 			await one.Update(page);
 		}
@@ -112,27 +123,18 @@ namespace River.OneMoreAddIn.Commands
 
 		private async Task ResizeMany(IEnumerable<XElement> elements)
 		{
-			var hasBackgroundImages = elements.Any(e => e.Parent.Name.LocalName == "Page");
+			var hasBgImages = page.Root.Elements(ns + "Image").Any();
 
-			using var dialog = new ResizeImagesDialog(hasBackgroundImages);
+			using var dialog = new ResizeImagesDialog(hasBgImages);
 			var result = dialog.ShowDialog(owner);
 			if (result != DialogResult.OK)
 			{
 				return;
 			}
 
-			var top = int.MinValue;
-
 			foreach (var element in elements)
 			{
 				using var image = ReadImage(element);
-
-				var position = element.Element(ns + "Position");
-				if (position != null && dialog.RepositionImages && top == int.MinValue)
-				{
-					top = (int)decimal.Parse(
-						position.Attribute("y").Value, CultureInfo.InvariantCulture);
-				}
 
 				var size = element.Element(ns + "Size");
 
@@ -165,12 +167,6 @@ namespace River.OneMoreAddIn.Commands
 						: (int)dialog.ImageHeight;
 				}
 
-				if (position != null && dialog.RepositionImages)
-				{
-					position.SetAttributeValue("y", top.ToString(CultureInfo.InvariantCulture));
-					top += height + ImageMargin;
-				}
-
 				if (dialog.ResizeOption == ResizeOption.All ||
 					(dialog.ResizeOption == ResizeOption.OnlyShrink && viewWidth > width) ||
 					(dialog.ResizeOption == ResizeOption.OnlyEnlarge && viewWidth < width))
@@ -189,16 +185,29 @@ namespace River.OneMoreAddIn.Commands
 						}
 					}
 
-					size.SetAttributeValue("width", width.ToString(CultureInfo.InvariantCulture));
-					size.SetAttributeValue("height", height.ToString(CultureInfo.InvariantCulture));
-					size.SetAttributeValue("isSetByUser", "true");
-
-					logger.WriteLine($"resized from {viewWidth} x {viewHeight} to {width} x {height}");
+					if (dialog.AutoSizeImage)
+					{
+						size.Attribute("isSetByUser").Remove();
+						element.Parent.Attribute("objectID").Remove();
+						logger.WriteLine("auto-size image");
+					}
+					else
+					{
+						size.SetAttributeValue("width", width.ToString(CultureInfo.InvariantCulture));
+						size.SetAttributeValue("height", height.ToString(CultureInfo.InvariantCulture));
+						size.SetAttributeValue("isSetByUser", "true");
+						logger.WriteLine($"resized from {viewWidth} x {viewHeight} to {width} x {height}");
+					}
 				}
 				else
 				{
 					logger.WriteLine($"skipped image with size {viewWidth} x {viewHeight}");
 				}
+			}
+
+			if (dialog.RepositionImages)
+			{
+				new StackBackgroundImagesCommand().StackImages(page);
 			}
 
 			await one.Update(page);

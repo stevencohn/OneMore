@@ -2387,6 +2387,10 @@ Select No to keep one empty line between paragraphs</value>
     <value>Applies to</value>
     <comment>label override</comment>
   </data>
+  <data name="ResizeImagesDialog_autoSizeRadio.Text" xml:space="preserve">
+    <value>Auto-size</value>
+    <comment>radio</comment>
+  </data>
   <data name="ResizeImagesDialog_heightLabel.Text" xml:space="preserve">
     <value>Height</value>
     <comment>label</comment>
@@ -2420,6 +2424,10 @@ Do no enlarge smaller images</value>
   <data name="ResizeImagesDialog_previewGroup.Text" xml:space="preserve">
     <value>Preview {0}</value>
     <comment>group box for single image</comment>
+  </data>
+  <data name="ResizeImagesDialog_repositionBox.Text" xml:space="preserve">
+    <value>Reposition background images</value>
+    <comment>checkbox</comment>
   </data>
   <data name="ResizeImagesDialog_resetLinkLabel.Text" xml:space="preserve">
     <value>Reset values</value>
@@ -3711,6 +3719,14 @@ Polaroid</value>
     <value>Split table at current row</value>
     <comment>ribbon table</comment>
   </data>
+  <data name="ribStackBackgroundImagesButton_Label" xml:space="preserve">
+    <value>Stack Background Images</value>
+    <comment>ribbon images</comment>
+  </data>
+  <data name="ribStackBackgroundImagesButton_Screentip" xml:space="preserve">
+    <value>Reposition background images top to bottom</value>
+    <comment>ribbon images</comment>
+  </data>
   <data name="ribStartBiLinkButton_Label" xml:space="preserve">
     <value>Start Bidirectional Link</value>
     <comment>ribbon references</comment>
@@ -4294,6 +4310,10 @@ Notebooks</value>
   <data name="SplitTableDialog_fixedColsBox.Text" xml:space="preserve">
     <value>Set all columns as fixed-width</value>
     <comment>checkbox</comment>
+  </data>
+  <data name="StackBackgroundImagesCommand_noImages" xml:space="preserve">
+    <value>The page must contain two or more background images</value>
+    <comment>error message</comment>
   </data>
   <data name="StartupFailureMessage" xml:space="preserve">
     <value>OneMore failed to connect to OneNote, see log file for exception details</value>

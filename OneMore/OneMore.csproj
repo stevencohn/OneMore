@@ -158,6 +158,7 @@
     <Compile Include="Commands\Images\PlantUmlCommand.cs" />
     <Compile Include="Commands\Images\OpenImageWithCommand.cs" />
     <Compile Include="Commands\Images\PlantUmlHelper.cs" />
+    <Compile Include="Commands\Images\StackBackgroundImagesCommand.cs" />
     <Compile Include="Commands\Navigator\HistoryControl.cs">
       <SubType>UserControl</SubType>
     </Compile>

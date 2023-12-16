@@ -2344,6 +2344,10 @@ Sélectionnez Non pour conserver une ligne vide entre les paragraphes</value>
     <value>S'applique à</value>
     <comment>label override</comment>
   </data>
+  <data name="ResizeImagesDialog_autoSizeRadio.Text" xml:space="preserve">
+    <value>Taille automatique</value>
+    <comment>radio</comment>
+  </data>
   <data name="ResizeImagesDialog_heightLabel.Text" xml:space="preserve">
     <value>la taille</value>
     <comment>label</comment>
@@ -2377,6 +2381,10 @@ Ne pas agrandir les petites images</value>
   <data name="ResizeImagesDialog_previewGroup.Text" xml:space="preserve">
     <value>Aperçu {0}</value>
     <comment>group box for single image</comment>
+  </data>
+  <data name="ResizeImagesDialog_repositionBox.Text" xml:space="preserve">
+    <value>Repositionner les images d'arrière-plan</value>
+    <comment>checkbox</comment>
   </data>
   <data name="ResizeImagesDialog_resetLinkLabel.Text" xml:space="preserve">
     <value>Réinitialiser les valeurs</value>
@@ -3671,6 +3679,14 @@ Polaroïd</value>
     <value>Fractionner le tableau à la ligne actuelle</value>
     <comment>ribbon table</comment>
   </data>
+  <data name="ribStackBackgroundImagesButton_Label" xml:space="preserve">
+    <value>Images d'arrière-plan de pile</value>
+    <comment>ribbon images</comment>
+  </data>
+  <data name="ribStackBackgroundImagesButton_Screentip" xml:space="preserve">
+    <value>Repositionner les images d'arrière-plan de haut en bas</value>
+    <comment>ribbon images</comment>
+  </data>
   <data name="ribStartBiLinkButton_Label" xml:space="preserve">
     <value>Démarrer le lien bidirectionnel</value>
     <comment>ribbon item</comment>
@@ -4252,6 +4268,10 @@ Des cahiers</value>
   <data name="SplitTableDialog_fixedColsBox.Text" xml:space="preserve">
     <value>Définir toutes les colonnes sur une largeur fixe</value>
     <comment>checkbox</comment>
+  </data>
+  <data name="StackBackgroundImagesCommand_noImages" xml:space="preserve">
+    <value>La page doit contenir au moins deux images d'arrière-plan</value>
+    <comment>error message</comment>
   </data>
   <data name="StartupFailureMessage" xml:space="preserve">
     <value>OneMore n'a pas réussi à se connecter à OneNote, consultez le fichier journal pour les détails de l'exception</value>

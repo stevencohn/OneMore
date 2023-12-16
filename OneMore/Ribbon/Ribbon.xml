@@ -484,6 +484,12 @@
                 getLabel="GetRibbonLabel"
                 getScreentip="GetRibbonScreentip"
                 onAction="ResizeImagesCmd"/>
+              <button
+                id="ribStackBackgroundImagesButton"
+                imageMso="GroupBorder"
+                getLabel="GetRibbonLabel"
+                getScreentip="GetRibbonScreentip"
+                onAction="StackBackgroundImagesCmd"/>
             </menu>
             <menu id="ribNumberingMenu" getLabel="GetRibbonLabel" imageMso="Numbering" showImage="true">
               <button

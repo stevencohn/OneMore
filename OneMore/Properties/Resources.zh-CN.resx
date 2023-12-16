@@ -2349,6 +2349,10 @@ ISO-code then comma then language name</comment>
     <value>适用于</value>
     <comment>label override</comment>
   </data>
+  <data name="ResizeImagesDialog_autoSizeRadio.Text" xml:space="preserve">
+    <value>自动尺寸</value>
+    <comment>radio</comment>
+  </data>
   <data name="ResizeImagesDialog_heightLabel.Text" xml:space="preserve">
     <value>高度</value>
     <comment>label</comment>
@@ -2382,6 +2386,10 @@ ISO-code then comma then language name</comment>
   <data name="ResizeImagesDialog_previewGroup.Text" xml:space="preserve">
     <value>预览{0}</value>
     <comment>group box for single image</comment>
+  </data>
+  <data name="ResizeImagesDialog_repositionBox.Text" xml:space="preserve">
+    <value>重新定位背景图像</value>
+    <comment>checkbox</comment>
   </data>
   <data name="ResizeImagesDialog_resetLinkLabel.Text" xml:space="preserve">
     <value>重置值</value>
@@ -3671,6 +3679,14 @@ ISO-code then comma then language name</comment>
     <value>在当前行拆分表格</value>
     <comment>ribbon table</comment>
   </data>
+  <data name="ribStackBackgroundImagesButton_Label" xml:space="preserve">
+    <value>堆栈背景图像</value>
+    <comment>ribbon images</comment>
+  </data>
+  <data name="ribStackBackgroundImagesButton_Screentip" xml:space="preserve">
+    <value>从上到下重新定位背景图像</value>
+    <comment>ribbon images</comment>
+  </data>
   <data name="ribStartBiLinkButton_Label" xml:space="preserve">
     <value>启动双向链接</value>
     <comment>ribbon item</comment>
@@ -4253,6 +4269,10 @@ ISO-code then comma then language name</comment>
   <data name="SplitTableDialog_fixedColsBox.Text" xml:space="preserve">
     <value>将所有列设置为固定宽度</value>
     <comment>checkbox</comment>
+  </data>
+  <data name="StackBackgroundImagesCommand_noImages" xml:space="preserve">
+    <value>页面必须包含两个或多个背景图像</value>
+    <comment>error message</comment>
   </data>
   <data name="StartupFailureMessage" xml:space="preserve">
     <value>OneMore无法连接到OneNote，请参阅日志文件以获取异常详细信息</value>
