@@ -233,6 +233,7 @@
 			this.Controls.Add(this.pageRadio);
 			this.Controls.Add(this.cancelButton);
 			this.Controls.Add(this.okButton);
+			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.MaximizeBox = false;
 			this.MinimizeBox = false;
