@@ -1,5 +1,5 @@
 ﻿//************************************************************************************************
-// Copyright © 2020 Steven M Cohn.  All rights reserved.
+// Copyright © 2020 Steven M Cohn. All rights reserved.
 //************************************************************************************************
 
 #pragma warning disable CS3003  // Type is not CLS-compliant
@@ -131,6 +131,7 @@ namespace River.OneMoreAddIn.Commands
 					"storageLabel=word_Storage",
 					"allLabel",
 					"limitsBox",
+					"autoSizeRadio",
 					"pctRadio",
 					"pctLabel=word_PercentSymbol",
 					"absRadio",
@@ -146,6 +147,7 @@ namespace River.OneMoreAddIn.Commands
 					"styleBox",
 					"qualityLabel=word_Quality",
 					"preserveBox",
+					"repositionBox",
 					"previewGroup=word_Preview",
 					"resetLinkLabel",
 					"okButton=word_OK",
@@ -180,10 +182,15 @@ namespace River.OneMoreAddIn.Commands
 				absRadio.Checked = true;
 				RadioClick(absRadio, EventArgs.Empty);
 			}
-			else
+			else if (value == 2)
 			{
 				presetRadio.Checked = true;
 				RadioClick(presetRadio, EventArgs.Empty);
+			}
+			else
+			{
+				autoSizeRadio.Checked = true;
+				RadioClick(autoSizeRadio, EventArgs.Empty);
 			}
 
 			presetBox.Value = collection.Get("mruWidth",
@@ -204,6 +211,7 @@ namespace River.OneMoreAddIn.Commands
 			saturationBox.Value = collection.Get("saturation", 0);
 			qualBox.Value = collection.Get("quality", 100);
 			preserveBox.Checked = collection.Get("preserve", true);
+			repositionBox.Checked = collection.Get("stack", true);
 		}
 
 
@@ -215,6 +223,9 @@ namespace River.OneMoreAddIn.Commands
 
 
 		// = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
+
+		public bool AutoSizeImage => autoSizeRadio.Checked;
+
 
 		public decimal ImageHeight => heightBox.Value;
 
@@ -675,17 +686,15 @@ namespace River.OneMoreAddIn.Commands
 
 		private void OK(object sender, EventArgs e)
 		{
-			if (presetRadio.Checked)
-			{
-				SaveSettings();
+			SaveSettings();
 
-				suspended = true;
-				widthBox.Value = presetBox.Value;
+			// update property values for consumer
+			suspended = true;
+			widthBox.Value = presetBox.Value;
 
-				heightBox.Value = image == null
-					? 0
-					: viewHeight * (widthBox.Value / viewWidth);
-			}
+			heightBox.Value = image == null
+				? 0
+				: viewHeight * (widthBox.Value / viewWidth);
 
 			DialogResult = DialogResult.OK;
 		}
@@ -705,7 +714,8 @@ namespace River.OneMoreAddIn.Commands
 			}
 			else
 			{
-				collection.Add("mruSizeBy", presetRadio.Checked ? "2" : "1");
+				var by = absRadio.Checked ? "1" : presetRadio.Checked ? "2" : "3";
+				collection.Add("mruSizeBy", by);
 			}
 
 			collection.Add("mruWidth", (int)presetBox.Value);
@@ -721,6 +731,7 @@ namespace River.OneMoreAddIn.Commands
 			collection.Add("saturation", (int)saturationBox.Value);
 			collection.Add("quality", (int)qualBox.Value);
 			collection.Add("preserve", preserveBox.Checked);
+			collection.Add("stack", repositionBox.Checked);
 
 			settings.SetCollection(collection);
 			settings.Save();

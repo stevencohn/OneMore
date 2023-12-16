@@ -5731,6 +5731,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Auto-size.
+        /// </summary>
+        internal static string ResizeImagesDialog_autoSizeRadio_Text {
+            get {
+                return ResourceManager.GetString("ResizeImagesDialog_autoSizeRadio.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Height.
         /// </summary>
         internal static string ResizeImagesDialog_heightLabel_Text {
@@ -5801,6 +5810,15 @@ namespace River.OneMoreAddIn.Properties {
         internal static string ResizeImagesDialog_previewGroup_Text {
             get {
                 return ResourceManager.GetString("ResizeImagesDialog_previewGroup.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Reposition background images.
+        /// </summary>
+        internal static string ResizeImagesDialog_repositionBox_Text {
+            get {
+                return ResourceManager.GetString("ResizeImagesDialog_repositionBox.Text", resourceCulture);
             }
         }
         
@@ -8787,6 +8805,24 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Stack Background Images.
+        /// </summary>
+        internal static string ribStackBackgroundImagesButton_Label {
+            get {
+                return ResourceManager.GetString("ribStackBackgroundImagesButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Reposition background images top to bottom.
+        /// </summary>
+        internal static string ribStackBackgroundImagesButton_Screentip {
+            get {
+                return ResourceManager.GetString("ribStackBackgroundImagesButton_Screentip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Start Bidirectional Link.
         /// </summary>
         internal static string ribStartBiLinkButton_Label {
@@ -10183,6 +10219,15 @@ namespace River.OneMoreAddIn.Properties {
             get {
                 object obj = ResourceManager.GetObject("Sports", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The page must contain two or more background images.
+        /// </summary>
+        internal static string StackBackgroundImagesCommand_noImages {
+            get {
+                return ResourceManager.GetString("StackBackgroundImagesCommand_noImages", resourceCulture);
             }
         }
         

@@ -2348,6 +2348,10 @@ ISO-code then comma then language name</comment>
     <value>ينطبق على</value>
     <comment>label override</comment>
   </data>
+  <data name="ResizeImagesDialog_autoSizeRadio.Text" xml:space="preserve">
+    <value>الحجم التلقائي</value>
+    <comment>radio</comment>
+  </data>
   <data name="ResizeImagesDialog_heightLabel.Text" xml:space="preserve">
     <value>ارتفاع</value>
     <comment>label</comment>
@@ -2381,6 +2385,10 @@ ISO-code then comma then language name</comment>
   <data name="ResizeImagesDialog_previewGroup.Text" xml:space="preserve">
     <value>معاينة {0}</value>
     <comment>group box for single image</comment>
+  </data>
+  <data name="ResizeImagesDialog_repositionBox.Text" xml:space="preserve">
+    <value>إعادة وضع صور الخلفية</value>
+    <comment>checkbox</comment>
   </data>
   <data name="ResizeImagesDialog_resetLinkLabel.Text" xml:space="preserve">
     <value>إعادة القيم</value>
@@ -3676,6 +3684,14 @@ ISO-code then comma then language name</comment>
     <value>انقسام الجدول في الصف الحالي</value>
     <comment>ribbon table</comment>
   </data>
+  <data name="ribStackBackgroundImagesButton_Label" xml:space="preserve">
+    <value>كومة صور الخلفية</value>
+    <comment>ribbon images</comment>
+  </data>
+  <data name="ribStackBackgroundImagesButton_Screentip" xml:space="preserve">
+    <value>تغيير موضع صور الخلفية من أعلى إلى أسفل</value>
+    <comment>ribbon images</comment>
+  </data>
   <data name="ribStartBiLinkButton_Label" xml:space="preserve">
     <value>ابدأ رابط ثنائي الاتجاه</value>
     <comment>ribbon item</comment>
@@ -4258,6 +4274,10 @@ ISO-code then comma then language name</comment>
   <data name="SplitTableDialog_fixedColsBox.Text" xml:space="preserve">
     <value>قم بتعيين كل الأعمدة على أنها ذات عرض ثابت</value>
     <comment>checkbox</comment>
+  </data>
+  <data name="StackBackgroundImagesCommand_noImages" xml:space="preserve">
+    <value>يجب أن تحتوي الصفحة على صورتين أو أكثر للخلفية</value>
+    <comment>error message</comment>
   </data>
   <data name="StartupFailureMessage" xml:space="preserve">
     <value>فشل OneMore في الاتصال بـ OneNote ، راجع ملف السجل للحصول على تفاصيل الاستثناء</value>

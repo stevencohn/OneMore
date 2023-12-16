@@ -829,6 +829,11 @@ namespace River.OneMoreAddIn
 			=> await factory.Run<SplitTableCommand>();
 
 
+		[Command("ribStackBackgroundImagesButton_Label", Keys.None, "ribImagesMenu")]
+		public async Task StackBackgroundImagesCmd(IRibbonControl control)
+			=> await factory.Run<StackBackgroundImagesCommand>();
+
+
 		[Command("ribStartBiLinkButton_Label", Keys.None, "ribReferencesMenu")]
 		public async Task StartBiLinkCmd(IRibbonControl control)
 			=> await factory.Run<BiLinkCommand>("mark");
