@@ -1108,6 +1108,10 @@ Symbole: PI, E</value>
   <data name="HasActiveMedia" xml:space="preserve">
     <value>OneMore-Befehle können nicht aufgerufen werden, während eine Aufzeichnung aktiv ist. Bitte stoppen Sie die Aufnahme und versuchen Sie es erneut.</value>
   </data>
+  <data name="HashtagDialogs_introLabel.Text" xml:space="preserve">
+    <value>Beginnen Sie mit der Eingabe eines beliebigen Teils eines Hashtags oder * für alle</value>
+    <comment>label</comment>
+  </data>
   <data name="HashtagSheet_disabledBox" xml:space="preserve">
     <value>Deaktivieren Sie den Hashtag-Dienst. Dadurch wird auch die Hashtag-Suche deaktiviert.</value>
     <comment>checkbox</comment>

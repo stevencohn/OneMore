@@ -33,12 +33,12 @@
 			this.cancelButton = new System.Windows.Forms.Button();
 			this.contextPanel = new System.Windows.Forms.FlowLayoutPanel();
 			this.topPanel = new River.OneMoreAddIn.UI.MorePanel();
+			this.introLabel = new System.Windows.Forms.Label();
 			this.menuButton = new System.Windows.Forms.Button();
 			this.barLabel = new System.Windows.Forms.Label();
 			this.checkAllLink = new System.Windows.Forms.LinkLabel();
 			this.uncheckAllLink = new System.Windows.Forms.LinkLabel();
 			this.scopeBox = new System.Windows.Forms.ComboBox();
-			this.introLabel = new System.Windows.Forms.Label();
 			this.searchButton = new System.Windows.Forms.Button();
 			this.tagBox = new System.Windows.Forms.TextBox();
 			this.panel1 = new System.Windows.Forms.Panel();
@@ -82,12 +82,12 @@
 			this.topPanel.BackColor = System.Drawing.SystemColors.Window;
 			this.topPanel.BottomBorderColor = System.Drawing.SystemColors.WindowFrame;
 			this.topPanel.BottomBorderSize = 1;
+			this.topPanel.Controls.Add(this.introLabel);
 			this.topPanel.Controls.Add(this.menuButton);
 			this.topPanel.Controls.Add(this.barLabel);
 			this.topPanel.Controls.Add(this.checkAllLink);
 			this.topPanel.Controls.Add(this.uncheckAllLink);
 			this.topPanel.Controls.Add(this.scopeBox);
-			this.topPanel.Controls.Add(this.introLabel);
 			this.topPanel.Controls.Add(this.searchButton);
 			this.topPanel.Controls.Add(this.tagBox);
 			this.topPanel.Dock = System.Windows.Forms.DockStyle.Top;
@@ -97,6 +97,15 @@
 			this.topPanel.Padding = new System.Windows.Forms.Padding(10);
 			this.topPanel.Size = new System.Drawing.Size(988, 114);
 			this.topPanel.TabIndex = 8;
+			// 
+			// introLabel
+			// 
+			this.introLabel.AutoSize = true;
+			this.introLabel.Location = new System.Drawing.Point(37, 22);
+			this.introLabel.Name = "introLabel";
+			this.introLabel.Size = new System.Drawing.Size(314, 20);
+			this.introLabel.TabIndex = 9;
+			this.introLabel.Text = "Start typing any part of a hashtag or * for all";
 			// 
 			// menuButton
 			// 
@@ -160,18 +169,6 @@
 			this.scopeBox.Size = new System.Drawing.Size(164, 28);
 			this.scopeBox.TabIndex = 4;
 			this.scopeBox.SelectedIndexChanged += new System.EventHandler(this.PopulateTags);
-			// 
-			// introLabel
-			// 
-			this.introLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.introLabel.AutoSize = true;
-			this.introLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.introLabel.ForeColor = System.Drawing.SystemColors.Highlight;
-			this.introLabel.Location = new System.Drawing.Point(832, 10);
-			this.introLabel.Name = "introLabel";
-			this.introLabel.Size = new System.Drawing.Size(144, 25);
-			this.introLabel.TabIndex = 3;
-			this.introLabel.Text = "PROTOTYPE";
 			// 
 			// searchButton
 			// 
@@ -302,7 +299,6 @@
 		private System.Windows.Forms.Panel panel1;
 		private System.Windows.Forms.TextBox tagBox;
 		private System.Windows.Forms.Button searchButton;
-		private System.Windows.Forms.Label introLabel;
 		private System.Windows.Forms.ComboBox scopeBox;
 		private System.Windows.Forms.Label barLabel;
 		private System.Windows.Forms.LinkLabel checkAllLink;
@@ -314,5 +310,6 @@
 		private System.Windows.Forms.Button menuButton;
 		private System.Windows.Forms.ContextMenuStrip contextMenu;
 		private System.Windows.Forms.ToolStripMenuItem scanButton;
+		private System.Windows.Forms.Label introLabel;
 	}
 }

@@ -1113,6 +1113,10 @@
   <data name="HasActiveMedia" xml:space="preserve">
     <value>لا يمكن استدعاء أوامر OneMore أثناء وجود تسجيل نشط. الرجاء إيقاف التسجيل وحاول مرة أخرى.</value>
   </data>
+  <data name="HashtagDialogs_introLabel.Text" xml:space="preserve">
+    <value>ابدأ بكتابة أي جزء من الهاشتاج أو *للكل</value>
+    <comment>label</comment>
+  </data>
   <data name="HashtagSheet_disabledBox" xml:space="preserve">
     <value>تعطيل خدمة الهاشتاج. سيؤدي هذا أيضًا إلى تعطيل البحث عن الهاشتاج.</value>
     <comment>checkbox</comment>

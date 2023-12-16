@@ -1113,6 +1113,10 @@ Símbolos: PI, E</value>
   <data name="HasActiveMedia" xml:space="preserve">
     <value>No se pueden invocar los comandos de OneMore mientras hay una grabación activa. Detenga la grabación y vuelva a intentarlo.</value>
   </data>
+  <data name="HashtagDialogs_introLabel.Text" xml:space="preserve">
+    <value>Empiece a escribir cualquier parte de un hashtag o * para todos</value>
+    <comment>label</comment>
+  </data>
   <data name="HashtagSheet_disabledBox" xml:space="preserve">
     <value>Deshabilite el servicio de hashtag. Esto también deshabilitará la búsqueda de hashtags.</value>
     <comment>checkbox</comment>

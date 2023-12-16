@@ -1124,6 +1124,10 @@ Total Row Font
   <data name="HasActiveMedia" xml:space="preserve">
     <value>לא יכול להפעיל פקודות של OneMore בזמן שיש הקלטה פעילה. אנא הפסק את ההקלטה ונסה שוב.</value>
   </data>
+  <data name="HashtagDialogs_introLabel.Text" xml:space="preserve">
+    <value>התחל להקליד כל חלק מהאשטאג או * עבור כולם</value>
+    <comment>label</comment>
+  </data>
   <data name="HashtagSheet_disabledBox" xml:space="preserve">
     <value>השבת את שירות ההאשטאג. זה גם ישבית את חיפוש ההאשטאג.</value>
     <comment>checkbox</comment>
