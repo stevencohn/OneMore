@@ -23,6 +23,6 @@ namespace OneMoreProtocolHandler
 {
 	internal static class AssemblyInfo
 	{
-		public const string Version = "5.9.5";
+		public const string Version = "5.9.7";
 	}
 }

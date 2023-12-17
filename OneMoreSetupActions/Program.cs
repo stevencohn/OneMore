@@ -49,7 +49,7 @@ namespace OneMoreSetupActions
 			else
 			{
 				logger.WriteLine(new string('-', 50));
-				logger.WriteLine($"reentry action: {args[0]} .. {DateTime.Now}");
+				logger.WriteLine($"direct action: {args[0]} .. {DateTime.Now}");
 			}
 
 			if (args.Any(a => a == "--x64" || a == "--x86"))

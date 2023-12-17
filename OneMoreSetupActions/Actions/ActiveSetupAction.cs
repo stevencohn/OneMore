@@ -5,12 +5,21 @@
 namespace OneMoreSetupActions
 {
 	using Microsoft.Win32;
+	using System;
 
 
 	/// <summary>
 	/// Patches the Active Setup Version property, replacing dots with commas in the version
 	/// string; this is required due to an historical oddity!
 	/// </summary>
+	/// <remarks>
+	/// Active Setup will run msiexec once per user upon logon. The complete command is
+	/// 
+	///	    msiexec.exe /fu [ProductCode] /qn
+	///
+	/// where /fu is a repair opton (/f) to require all user-specific registry entries
+	///   and /qn is flag to disable all UI for the installer
+	/// </remarks>
 	internal class ActiveSetupAction : CustomAction
 	{
 
@@ -27,22 +36,41 @@ namespace OneMoreSetupActions
 			logger.WriteLine();
 			logger.WriteLine("ActiveSetupAction.Install ---");
 
-			using (var key = Registry.LocalMachine.OpenSubKey(
-				$@"Software\Microsoft\Active Setup\Installed Components\{RegistryHelper.OneNoteID}",
-				RegistryKeyPermissionCheck.ReadWriteSubTree, RegistryHelper.WriteRights))
+			try
 			{
-				var version = (string)key.GetValue("Version");
-				if (!string.IsNullOrEmpty(version))
-				{
-					var commas = version.Replace('.', ',');
+				var p = $@"Software\Microsoft\Active Setup\Installed Components\{RegistryHelper.OneNoteID}";
+				logger.WriteLine($"opening key HKLM:\\{p}");
 
-					logger.WriteLine($"replacing '{version}' with '{commas}'");
-					key.SetValue("Version", commas);
-				}
-				else
+				using (var key = Registry.LocalMachine.OpenSubKey(p,
+					RegistryKeyPermissionCheck.ReadWriteSubTree,
+					RegistryHelper.WriteRights))
 				{
-					logger.WriteLine("active setup version not found");
+					if (key != null)
+					{
+						var version = (string)key.GetValue("Version");
+						if (!string.IsNullOrWhiteSpace(version))
+						{
+							var commas = version.Replace('.', ',');
+
+							logger.WriteLine($"replacing '{version}' with '{commas}'");
+							key.SetValue("Version", commas);
+						}
+						else
+						{
+							logger.WriteLine("active setup version not found");
+						}
+					}
+					else
+					{
+						logger.WriteLine("active setup key not found, skipping version tweak");
+					}
 				}
+			}
+			catch (Exception exc)
+			{
+				logger.WriteLine("error tweaking active setup version");
+				logger.WriteLine(exc);
+				return FAILURE;
 			}
 
 			return SUCCESS;
