@@ -501,7 +501,6 @@ namespace River.OneMoreAddIn.Commands.Favorites
 			var list = ((BindingList<Favorite>)gridView.DataSource).ToList();
 			await provider.ValidateFavorites(list);
 			gridView.DataSource = new BindingList<Favorite>(list);
-
 		}
 
 
@@ -510,6 +509,14 @@ namespace River.OneMoreAddIn.Commands.Favorites
 			Manage = true;
 			DialogResult = DialogResult.OK;
 			Close();
+		}
+
+
+		private void SortFavorites(object sender, EventArgs e)
+		{
+			using var provider = new FavoritesProvider(null);
+			var list = provider.SortFavorites();
+			gridView.DataSource = new BindingList<Favorite>(list);
 		}
 	}
 }

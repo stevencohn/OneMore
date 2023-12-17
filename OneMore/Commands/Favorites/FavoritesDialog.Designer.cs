@@ -41,9 +41,10 @@
 			this.searchBox = new System.Windows.Forms.TextBox();
 			this.searchLabel = new System.Windows.Forms.Label();
 			this.contextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
+			this.addButton = new System.Windows.Forms.ToolStripMenuItem();
 			this.checkButton = new System.Windows.Forms.ToolStripMenuItem();
 			this.manageButton = new System.Windows.Forms.ToolStripMenuItem();
-			this.addButton = new System.Windows.Forms.ToolStripMenuItem();
+			this.sortByNameToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			((System.ComponentModel.ISupportInitialize)(this.gridView)).BeginInit();
 			this.buttonPanel.SuspendLayout();
 			this.searchPanel.SuspendLayout();
@@ -175,30 +176,42 @@
 			this.contextMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.addButton,
             this.checkButton,
+            this.sortByNameToolStripMenuItem,
             this.manageButton});
 			this.contextMenu.Name = "contextMenu";
-			this.contextMenu.Size = new System.Drawing.Size(241, 133);
+			this.contextMenu.Size = new System.Drawing.Size(249, 165);
+			// 
+			// addButton
+			// 
+			this.addButton.Image = global::River.OneMoreAddIn.Properties.Resources.Journal;
+			this.addButton.Name = "addButton";
+			this.addButton.Size = new System.Drawing.Size(248, 32);
+			this.addButton.Text = "Add Current Page";
+			this.addButton.Click += new System.EventHandler(this.AddCurrentPage);
 			// 
 			// checkButton
 			// 
+			this.checkButton.Image = global::River.OneMoreAddIn.Properties.Resources.CheckMark;
 			this.checkButton.Name = "checkButton";
-			this.checkButton.Size = new System.Drawing.Size(240, 32);
+			this.checkButton.Size = new System.Drawing.Size(248, 32);
 			this.checkButton.Text = "Check Favorites";
 			this.checkButton.Click += new System.EventHandler(this.CheckFavorites);
 			// 
 			// manageButton
 			// 
+			this.manageButton.Image = global::River.OneMoreAddIn.Properties.Resources.Hammer;
 			this.manageButton.Name = "manageButton";
-			this.manageButton.Size = new System.Drawing.Size(240, 32);
+			this.manageButton.Size = new System.Drawing.Size(248, 32);
 			this.manageButton.Text = "Manage Favorites";
 			this.manageButton.Click += new System.EventHandler(this.ManageFavorites);
 			// 
-			// addButton
+			// sortByNameToolStripMenuItem
 			// 
-			this.addButton.Name = "addButton";
-			this.addButton.Size = new System.Drawing.Size(240, 32);
-			this.addButton.Text = "Add Current Page";
-			this.addButton.Click += new System.EventHandler(this.AddCurrentPage);
+			this.sortByNameToolStripMenuItem.Image = global::River.OneMoreAddIn.Properties.Resources.DownArrow;
+			this.sortByNameToolStripMenuItem.Name = "sortByNameToolStripMenuItem";
+			this.sortByNameToolStripMenuItem.Size = new System.Drawing.Size(248, 32);
+			this.sortByNameToolStripMenuItem.Text = "Sort By Name";
+			this.sortByNameToolStripMenuItem.Click += new System.EventHandler(this.SortFavorites);
 			// 
 			// FavoritesDialog
 			// 
@@ -243,5 +256,6 @@
 		private System.Windows.Forms.ToolStripMenuItem checkButton;
 		private System.Windows.Forms.ToolStripMenuItem manageButton;
 		private System.Windows.Forms.ToolStripMenuItem addButton;
+		private System.Windows.Forms.ToolStripMenuItem sortByNameToolStripMenuItem;
 	}
 }

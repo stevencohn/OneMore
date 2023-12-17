@@ -174,6 +174,29 @@ namespace River.OneMoreAddIn
 		}
 
 
+		public List<Favorite> SortFavorites()
+		{
+			var list = new List<Favorite>();
+			if (!File.Exists(path))
+			{
+				return list;
+			}
+
+			var root = XElement.Load(path, LoadOptions.None);
+
+			var favorites = root.Elements()
+				.Where(e => e.Attribute("notebookID") != null)
+				.ToList();
+
+			favorites.Remove();
+			root.Add(favorites.OrderBy(e => e.Attribute("label").Value));
+
+			SaveFavorites(root);
+
+			return LoadFavorites();
+		}
+
+
 		public async Task ValidateFavorites(List<Favorite> favorites)
 		{
 			one ??= new OneNote();
