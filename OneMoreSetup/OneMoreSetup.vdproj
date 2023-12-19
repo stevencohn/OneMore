@@ -9958,8 +9958,8 @@
         {
         "Name" = "8:OneMoreAddIn"
         "ProductName" = "8:OneMoreAddIn"
-        "ProductCode" = "8:{FBC18032-D53F-412A-A0AE-6F22AFAAE6C4}"
-        "PackageCode" = "8:{643F900B-6A7F-41B3-95EF-6E9E443C457A}"
+        "ProductCode" = "8:{2FA7FB08-F773-4175-953A-F3B79C57F351}"
+        "PackageCode" = "8:{5F46DD00-F650-47AE-8CF8-D3872F0BBB88}"
         "UpgradeCode" = "8:{058F6D04-E0D0-4984-B6B7-7FE0C581680E}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
