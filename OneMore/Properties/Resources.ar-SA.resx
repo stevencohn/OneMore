@@ -2371,7 +2371,9 @@ ISO-code then comma then language name</comment>
     <comment>combobox</comment>
   </data>
   <data name="ResizeImagesDialog_noImages" xml:space="preserve">
-    <value>لم يتم العثور على صور في هذه الصفحة</value>
+    <value>لم يتم العثور على صور في هذه الصفحة.
+
+يجب أن تكون الصور في حاوية المخطط التفصيلي. لا يمكن تعديل صور الخلفية.</value>
     <comment>message box</comment>
   </data>
   <data name="ResizeImagesDialog_pctRadio.Text" xml:space="preserve">

@@ -2384,7 +2384,9 @@ Nie powiększaj mniejszych obrazów</value>
     <comment>combobox</comment>
   </data>
   <data name="ResizeImagesDialog_noImages" xml:space="preserve">
-    <value>Na tej stronie nie znaleziono żadnych obrazów</value>
+    <value>Na tej stronie nie znaleziono żadnych obrazów.
+
+Obrazy muszą znajdować się w kontenerze konspektu. Nie można regulować obrazów tła.</value>
     <comment>message box</comment>
   </data>
   <data name="ResizeImagesDialog_pctRadio.Text" xml:space="preserve">

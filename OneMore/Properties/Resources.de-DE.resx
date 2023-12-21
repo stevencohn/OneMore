@@ -2365,7 +2365,9 @@ Vergrößere kleinere Bilder nicht</value>
     <comment>combobox</comment>
   </data>
   <data name="ResizeImagesDialog_noImages" xml:space="preserve">
-    <value>Auf dieser Seite wurden keine Bilder gefunden</value>
+    <value>Auf dieser Seite wurden keine Bilder gefunden.
+
+Bilder müssen sich in einem Gliederungscontainer befinden. Hintergrundbilder können nicht angepasst werden.</value>
     <comment>message box</comment>
   </data>
   <data name="ResizeImagesDialog_pctRadio.Text" xml:space="preserve">
