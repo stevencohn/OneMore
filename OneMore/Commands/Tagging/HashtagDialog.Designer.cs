@@ -158,22 +158,24 @@
 			// 
 			// scopeBox
 			// 
+			this.scopeBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.scopeBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this.scopeBox.FormattingEnabled = true;
 			this.scopeBox.Items.AddRange(new object[] {
             "All",
             "This notebook",
             "This section"});
-			this.scopeBox.Location = new System.Drawing.Point(387, 45);
+			this.scopeBox.Location = new System.Drawing.Point(655, 45);
 			this.scopeBox.Name = "scopeBox";
-			this.scopeBox.Size = new System.Drawing.Size(164, 28);
+			this.scopeBox.Size = new System.Drawing.Size(196, 28);
 			this.scopeBox.TabIndex = 4;
 			this.scopeBox.SelectedIndexChanged += new System.EventHandler(this.PopulateTags);
 			// 
 			// searchButton
 			// 
+			this.searchButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.searchButton.Image = ((System.Drawing.Image)(resources.GetObject("searchButton.Image")));
-			this.searchButton.Location = new System.Drawing.Point(557, 44);
+			this.searchButton.Location = new System.Drawing.Point(859, 42);
 			this.searchButton.Name = "searchButton";
 			this.searchButton.Size = new System.Drawing.Size(60, 32);
 			this.searchButton.TabIndex = 2;
@@ -182,10 +184,12 @@
 			// 
 			// tagBox
 			// 
+			this.tagBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
 			this.tagBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.tagBox.Location = new System.Drawing.Point(41, 45);
 			this.tagBox.Name = "tagBox";
-			this.tagBox.Size = new System.Drawing.Size(340, 28);
+			this.tagBox.Size = new System.Drawing.Size(608, 28);
 			this.tagBox.TabIndex = 0;
 			// 
 			// panel1
