@@ -6,6 +6,7 @@ namespace River.OneMoreAddIn.Commands
 {
 	using River.OneMoreAddIn.Models;
 	using System;
+	using System.Collections.Generic;
 	using System.Linq;
 	using System.Threading.Tasks;
 	using System.Xml.Linq;
@@ -114,19 +115,27 @@ namespace River.OneMoreAddIn.Commands
 					var pages = section.Elements(ns + "Page")
 						.Where(e => e.Attribute("isInRecycleBin") == null);
 
-					totalPages += pages.Count();
-
-					var sectionID = section.Attribute("ID").Value;
-					var sectionPath = $"{path}/{section.Attribute("name").Value}";
-					//logger.Verbose($"scanning section {sectionPath} ({pages.Count()} pages)");
-
-					foreach (var page in pages)
+					if (pages.Any())
 					{
-						if (page.Attribute("lastModifiedTime").Value.CompareTo(lastTime) > 0)
+						totalPages += pages.Count();
+						var pids = new List<string>();
+
+						var sectionID = section.Attribute("ID").Value;
+						var sectionPath = $"{path}/{section.Attribute("name").Value}";
+						logger.Verbose($"scanning section {sectionPath} ({pages.Count()} pages)");
+
+						foreach (var page in pages)
 						{
-							await ScanPage(
-								page.Attribute("ID").Value, notebookID, sectionID, sectionPath);
+							var pid = page.Attribute("ID").Value;
+							pids.Add(pid);
+
+							if (page.Attribute("lastModifiedTime").Value.CompareTo(lastTime) > 0)
+							{
+								await ScanPage(pid, notebookID, sectionID, sectionPath);
+							}
 						}
+
+						provider.DeletePhantoms(pids, sectionID, sectionPath);
 					}
 				}
 			}

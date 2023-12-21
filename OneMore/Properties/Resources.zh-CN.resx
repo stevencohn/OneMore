@@ -2372,7 +2372,9 @@ ISO-code then comma then language name</comment>
     <comment>combobox</comment>
   </data>
   <data name="ResizeImagesDialog_noImages" xml:space="preserve">
-    <value>此页面上没有发现图像</value>
+    <value>在此页面上未找到任何图像。
+
+图像必须位于轮廓容器中。背景图像无法调整。</value>
     <comment>message box</comment>
   </data>
   <data name="ResizeImagesDialog_pctRadio.Text" xml:space="preserve">

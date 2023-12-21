@@ -2410,7 +2410,9 @@ Do no enlarge smaller images</value>
     <comment>combobox</comment>
   </data>
   <data name="ResizeImagesDialog_noImages" xml:space="preserve">
-    <value>No images were found on this page</value>
+    <value>No images were found on this page.
+
+Images must be in an outline container. Background images cannot be adjusted.</value>
     <comment>message box</comment>
   </data>
   <data name="ResizeImagesDialog_pctRadio.Text" xml:space="preserve">

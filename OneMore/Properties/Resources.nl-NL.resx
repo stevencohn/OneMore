@@ -2372,7 +2372,9 @@ Kleinere afbeeldingen niet vergroten</value>
     <comment>combobox</comment>
   </data>
   <data name="ResizeImagesDialog_noImages" xml:space="preserve">
-    <value>Er zijn geen afbeeldingen gevonden op deze pagina</value>
+    <value>Er zijn geen afbeeldingen gevonden op deze pagina.
+
+Afbeeldingen moeten zich in een overzichtscontainer bevinden. Achtergrondafbeeldingen kunnen niet worden aangepast.</value>
     <comment>message box</comment>
   </data>
   <data name="ResizeImagesDialog_pctRadio.Text" xml:space="preserve">

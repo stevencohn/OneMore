@@ -2390,7 +2390,9 @@ ISO-code then comma then language name</comment>
     <comment>combobox</comment>
   </data>
   <data name="ResizeImagesDialog_noImages" xml:space="preserve">
-    <value>לא נמצאו תמונות בדף זה</value>
+    <value>לא נמצאו תמונות בדף זה.
+
+התמונות חייבות להיות במיכל מתאר. לא ניתן לכוונן תמונות רקע.</value>
     <comment>message box</comment>
   </data>
   <data name="ResizeImagesDialog_pctRadio.Text" xml:space="preserve">

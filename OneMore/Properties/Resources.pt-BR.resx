@@ -2372,7 +2372,9 @@ Não amplie imagens menores</value>
     <comment>combobox</comment>
   </data>
   <data name="ResizeImagesDialog_noImages" xml:space="preserve">
-    <value>Nenhuma imagem foi encontrada nesta página</value>
+    <value>Nenhuma imagem foi encontrada nesta página.
+
+As imagens devem estar em um contêiner de contorno. As imagens de fundo não podem ser ajustadas.</value>
     <comment>message box</comment>
   </data>
   <data name="ResizeImagesDialog_pctRadio.Text" xml:space="preserve">

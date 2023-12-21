@@ -2,6 +2,8 @@
 // Copyright © 2023 Steven M Cohn. All rights reserved.
 //************************************************************************************************
 
+#define xEnableUpgrade
+
 namespace River.OneMoreAddIn.Commands
 {
 	using River.OneMoreAddIn.Properties;
@@ -18,6 +20,8 @@ namespace River.OneMoreAddIn.Commands
 	/// </summary>
 	internal class HashtagProvider : Loggable, IDisposable
 	{
+		private const int ScannerID = 0;
+
 		private readonly SQLiteConnection con;
 		private readonly string timestamp;
 		private bool disposed;
@@ -40,6 +44,12 @@ namespace River.OneMoreAddIn.Commands
 			{
 				RefreshDatabase();
 			}
+#if EnableUpgrade
+			else
+			{
+				UpgradeDatabase();
+			}
+#endif
 
 			timestamp = DateTime.Now.ToZuluString();
 		}
@@ -84,6 +94,105 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
+		#region UpgradeDatabase
+#if EnableUpgrade
+		private void UpgradeDatabase()
+		{
+			using var cmd = con.CreateCommand();
+			cmd.CommandType = CommandType.Text;
+			cmd.CommandText = $"SELECT version FROM hashtag_scanner WHERE scannerID = {ScannerID}";
+
+			var version = 0;
+			try
+			{
+				using var reader = cmd.ExecuteReader();
+				if (reader.Read())
+				{
+					version = reader.GetInt32(0);
+				}
+			}
+			catch (Exception exc)
+			{
+				logger.WriteLine("error reading scanner version", exc);
+				return;
+			}
+
+			// upgrade incrementally...
+
+			if (version == 1)
+			{
+				version = Upgrade1to2(con);
+			}
+
+			//if (version == 2)
+			//{
+			//	version = Upgrade2to3(con);
+			//}
+		}
+
+
+		private int Upgrade1to2(SQLiteConnection con)
+		{
+			logger.WriteLine("upgrading database to version 2");
+			using var cmd = con.CreateCommand();
+
+			cmd.CommandType = CommandType.Text;
+			cmd.CommandText = "ALTER TABLE hashtag_page ADD COLUMN token NUMBER DEFAULT 0";
+
+			using var transaction = con.BeginTransaction();
+
+			try
+			{
+				cmd.ExecuteNonQuery();
+			}
+			catch (Exception exc)
+			{
+				logger.WriteLine("error upgrading hashtag_page v2", exc);
+				return 0;
+			}
+
+			try
+			{
+				cmd.CommandText = "CREATE INDEX IF NOT EXISTS IDX_token ON hashtag_page (token)";
+				cmd.ExecuteNonQuery();
+			}
+			catch (Exception exc)
+			{
+				logger.WriteLine("error upgrading hashtag_page v2", exc);
+				transaction.Rollback();
+				return 0;
+			}
+
+			try
+			{
+				cmd.CommandText = "UPDATE hashtag_scanner " +
+					$"SET version = 2 WHERE scannerID = {ScannerID}";
+
+				cmd.ExecuteNonQuery();
+			}
+			catch (Exception exc)
+			{
+				logger.WriteLine("error upgrading hashtag_page v2", exc);
+				transaction.Rollback();
+				return 0;
+			}
+
+			try
+			{
+				transaction.Commit();
+			}
+			catch (Exception exc)
+			{
+				logger.WriteLine("error committing hashtag_page v2", exc);
+				return 0;
+			}
+
+			return 2;
+		}
+#endif
+		#endregion UpgradeDatabase
+
+
 		protected virtual void Dispose(bool disposing)
 		{
 			if (!disposed)
@@ -102,6 +211,64 @@ namespace River.OneMoreAddIn.Commands
 		{
 			Dispose(disposing: true);
 			GC.SuppressFinalize(this);
+		}
+
+
+		/// <summary>
+		/// Compares the recorded pages against the list of knownIDs and deletes any
+		/// records no longer in that list.
+		/// </summary>
+		/// <param name="knownIDs"></param>
+		public void DeletePhantoms(List<string> knownIDs, string sectionID, string sectionPath)
+		{
+			using var cmd = con.CreateCommand();
+			cmd.CommandType = CommandType.Text;
+			cmd.CommandText = "SELECT moreID, pageID FROM hashtag_page WHERE sectionID = @sid";
+			cmd.Parameters.AddWithValue("@sid", sectionID);
+
+			using var dtagcmd = con.CreateCommand();
+			dtagcmd.CommandType = CommandType.Text;
+			dtagcmd.CommandText = "DELETE FROM hashtag WHERE moreID = @mid";
+			dtagcmd.Parameters.Add("@mid", DbType.String);
+
+			using var dpagcmd = con.CreateCommand();
+			dpagcmd.CommandType = CommandType.Text;
+			dpagcmd.CommandText = "DELETE FROM hashtag_page WHERE pageID = @pid";
+			dpagcmd.Parameters.Add("@pid", DbType.String);
+
+			using var transaction = con.BeginTransaction();
+			var count = 0;
+
+			try
+			{
+				using var reader = cmd.ExecuteReader();
+				while (reader.Read())
+				{
+					var pageID = reader.GetString(1);
+					if (!knownIDs.Contains(pageID))
+					{
+						var moreID = reader.GetString(0);
+
+						dtagcmd.Parameters["@mid"].Value = moreID;
+						dtagcmd.ExecuteNonQuery();
+
+						dpagcmd.Parameters["@pid"].Value = pageID;
+						dpagcmd.ExecuteNonQuery();
+						count++;
+					}
+				}
+
+				if (count > 0)
+				{
+					transaction.Commit();
+					logger.WriteLine($"deleted {count} phantom pages from {sectionPath}");
+				}
+			}
+			catch (Exception exc)
+			{
+				transaction.Rollback();
+				logger.WriteLine("error deleting phantom pages", exc);
+			}
 		}
 
 
@@ -179,14 +346,14 @@ namespace River.OneMoreAddIn.Commands
 		public string ReadScanTime()
 		{
 			using var cmd = con.CreateCommand();
-			cmd.CommandText = "SELECT version, scanTime FROM hashtag_scanner WHERE scannerID = 0";
+			cmd.CommandText = 
+				$"SELECT version, scanTime FROM hashtag_scanner WHERE scannerID = {ScannerID}";
 
 			try
 			{
 				using var reader = cmd.ExecuteReader();
 				if (reader.Read())
 				{
-					// var version = reader.GetInt32(0); // upgrade?
 					return reader.GetString(1);
 				}
 			}

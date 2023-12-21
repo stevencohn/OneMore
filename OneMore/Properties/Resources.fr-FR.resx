@@ -2367,7 +2367,9 @@ Ne pas agrandir les petites images</value>
     <comment>combobox</comment>
   </data>
   <data name="ResizeImagesDialog_noImages" xml:space="preserve">
-    <value>Aucune image n'a été trouvée sur cette page</value>
+    <value>Aucune image n'a été trouvée sur cette page.
+
+Les images doivent être dans un conteneur de plan. Les images d'arrière-plan ne peuvent pas être ajustées.</value>
     <comment>message box</comment>
   </data>
   <data name="ResizeImagesDialog_pctRadio.Text" xml:space="preserve">

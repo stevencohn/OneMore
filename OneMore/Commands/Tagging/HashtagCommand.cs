@@ -29,7 +29,7 @@ namespace River.OneMoreAddIn.Commands
 		{
 			if (dialog != null)
 			{
-				logger.WriteLine("+++ dialog exists");
+				// single instance
 				dialog.ForceTopMost();
 				dialog.Activate();
 				dialog.TopMost = false;

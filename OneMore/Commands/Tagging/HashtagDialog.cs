@@ -8,6 +8,7 @@ namespace River.OneMoreAddIn.Commands
 	using River.OneMoreAddIn.UI;
 	using System;
 	using System.Collections.Generic;
+	using System.Diagnostics;
 	using System.Drawing;
 	using System.Globalization;
 	using System.Linq;
@@ -306,8 +307,15 @@ namespace River.OneMoreAddIn.Commands
 			ShowScanTimes();
 
 			using var scanner = new HashtagScanner();
+
+			var clock = new Stopwatch();
+			clock.Start();
+
 			var totalPages = await scanner.Scan();
-			logger.WriteLine($"scanned {totalPages} pages");
+
+			clock.Stop();
+			var time = clock.ElapsedMilliseconds;
+			logger.WriteLine($"scanned {totalPages} pages in {time}ms");
 
 			PopulateTags(sender, e);
 		}
