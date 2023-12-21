@@ -16,6 +16,8 @@ namespace River.OneMoreAddIn.Commands
 		private HashtagDialog.Commands command;
 		private IEnumerable<string> pageIds;
 
+		private static HashtagDialog dialog;
+
 		public HashtagCommand()
 		{
 			// prevent replay
@@ -25,7 +27,17 @@ namespace River.OneMoreAddIn.Commands
 
 		public override async Task Execute(params object[] args)
 		{
-			using var dialog = new HashtagDialog();
+			if (dialog != null)
+			{
+				logger.WriteLine("+++ dialog exists");
+				dialog.ForceTopMost();
+				dialog.Activate();
+				dialog.TopMost = false;
+				return;
+			}
+
+			dialog = new HashtagDialog();
+			dialog.FormClosed += Dialog_FormClosed;
 
 			await dialog.RunModeless((sender, e) =>
 			{
@@ -46,6 +58,15 @@ namespace River.OneMoreAddIn.Commands
 			20);
 		}
 
+		private void Dialog_FormClosed(object sender, FormClosedEventArgs e)
+		{
+			if (dialog != null)
+			{
+				dialog.FormClosed -= Dialog_FormClosed;
+				dialog.Dispose();
+				dialog = null;
+			}
+		}
 
 		private async Task Callback(string sectionId)
 		{
