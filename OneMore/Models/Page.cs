@@ -16,7 +16,7 @@ namespace River.OneMoreAddIn.Models
 	using System.Globalization;
 	using System.Linq;
 	using System.Media;
-	using System.Security.Policy;
+	using System.Security.Cryptography;
 	using System.Text;
 	using System.Text.RegularExpressions;
 	using System.Xml;
@@ -30,6 +30,8 @@ namespace River.OneMoreAddIn.Models
 	{
 		public int TopOutlinePosition = 86;
 
+		private const string HashAttributeName = "omHash";
+
 
 		/// <summary>
 		/// Initialize a new instance with the given page XML root
@@ -39,14 +41,77 @@ namespace River.OneMoreAddIn.Models
 		{
 			if (root != null)
 			{
-				Root = root;
 				Namespace = root.GetNamespaceOfPrefix(OneNote.Prefix);
-
 				PageId = root.Attribute("ID")?.Value;
+				ComputeHashes(root);
+
+				Root = root;
 			}
 
 			SelectionScope = SelectionScope.Unknown;
 		}
+
+
+		#region Hashing
+		/// <summary>
+		/// Calculates a hash value for each 1st gen child element on the page, which will
+		/// be used to optimize the page just prior to saving.
+		/// </summary>
+		/// <param name="root">The root element of the page</param>
+		private void ComputeHashes(XElement root)
+		{
+			using var algo = MD5.Create();
+
+			// 1st generation child elements of the Page
+			foreach (var child in root.Elements())
+			{
+				if (child.Name.LocalName != "TagDef" &&
+					child.Name.LocalName != "QuickStyleDef" &&
+					child.Name.LocalName != "Meta")
+				{
+					var att = child.Attribute(HashAttributeName);
+					if (att == null)
+					{
+						child.Add(new XAttribute(
+							HashAttributeName,
+							algo.GetHashString(child.ToString(SaveOptions.DisableFormatting))
+							));
+					}
+				}
+			}
+		}
+
+
+		/// <summary>
+		/// Keeps only modified 1st gen child elements of the page to optimize save performance
+		/// especially when the page is loaded with many Ink drawings.
+		/// </summary>
+		/// <param name="keep">Keeps all Outlines to force full page update</param>
+		public void OptimizeForSave(bool keep)
+		{
+			// MD5 should be sufficient and performs better than any other algorithm
+			using var algo = MD5.Create();
+
+			// 1st generation child elements of the Page
+			foreach (var child in Root.Elements().ToList())
+			{
+				var att = child.Attribute(HashAttributeName);
+				if (att != null)
+				{
+					att.Remove();
+
+					if (!keep)
+					{
+						var hash = algo.GetHashString(child.ToString(SaveOptions.DisableFormatting));
+						if (hash == att.Value)
+						{
+							child.Remove();
+						}
+					}
+				}
+			}
+		}
+		#endregion Hashing
 
 
 		public bool IsValid => Root != null;
@@ -113,6 +178,24 @@ namespace River.OneMoreAddIn.Models
 					.Elements(Namespace + "OE").FirstOrDefault();
 
 				title?.ReplaceNodes(new XElement(Namespace + "T", new XCData(value)));
+			}
+		}
+
+
+		/// <summary>
+		/// Gets the objectID of the title paragraph
+		/// </summary>
+		public string TitleID
+		{
+			get
+			{
+				var attribute = Root
+					.Elements(Namespace + "Title")
+					.Elements(Namespace + "OE")
+					.Attributes("objectID")
+					.FirstOrDefault();
+
+				return attribute?.Value;
 			}
 		}
 
@@ -880,8 +963,8 @@ namespace River.OneMoreAddIn.Models
 				// a zero-selection link and a partial or fully selected link. Note that XML
 				// comments are used to wrap mathML equations
 				if (cdata.Value.Length == 0 ||
-					Regex.IsMatch(cdata.Value, @"<a\s+href.+?</a>", RegexOptions.Singleline) ||
-					Regex.IsMatch(cdata.Value, @"<!--.+?-->", RegexOptions.Singleline))
+					Regex.IsMatch(cdata.Value, @"^<a\s+href.+?</a>$", RegexOptions.Singleline) ||
+					Regex.IsMatch(cdata.Value, @"^<!--.+?-->$", RegexOptions.Singleline))
 				{
 					SelectionScope = SelectionScope.Empty;
 					SelectionSpecial = cdata.Value.Length > 0;
@@ -1346,7 +1429,7 @@ namespace River.OneMoreAddIn.Models
 			if (block == null)
 			{
 				var style = GetQuickStyle(StandardStyles.PageTitle);
-				block = new XElement(ns  + "Title",
+				block = new XElement(ns + "Title",
 					new Paragraph(title).SetQuickStyle(style.Index));
 
 				var outline = Root.Elements(ns + "Outline")

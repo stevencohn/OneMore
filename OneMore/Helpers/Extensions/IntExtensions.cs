@@ -25,7 +25,7 @@ namespace River.OneMoreAddIn
 			{ "", "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX" };
 
 		// byte size names (only handles up to TB)
-		private static readonly string[] SizeSuffixes = { "bytes", "KB", "MB", "GB", "TB" };
+		private static readonly string[] SizeSuffixes = { "bytes", "KB", "MB", "GB", "TB", "PB" };
 
 
 		// convert int to alphabet string
@@ -71,6 +71,15 @@ namespace River.OneMoreAddIn
 			var adjusted = Math.Round(value / Math.Pow(1024, mag), decimalPlaces);
 
 			if (neg) adjusted = -adjusted;
+
+			return string.Format("{0} {1}", adjusted, SizeSuffixes[mag]);
+		}
+
+
+		public static string ToBytes(this ulong value, int decimalPlaces = 0)
+		{
+			var mag = (int)Math.Max(0, Math.Log(value, 1024));
+			var adjusted = Math.Round(value / Math.Pow(1024, mag), decimalPlaces);
 
 			return string.Format("{0} {1}", adjusted, SizeSuffixes[mag]);
 		}

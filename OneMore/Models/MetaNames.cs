@@ -20,6 +20,9 @@ namespace River.OneMoreAddIn.Models
 		// page is reference linked to another page, so don't include it in subsequent links
 		public static readonly string LinkReference = "omLinkReference";
 
+		// onemore-assigned unique page identifier
+		public static readonly string PageID = "omPageID";
+
 		// page is a reference map, so don't include it in subsequent maps
 		public static readonly string PageMap = "omPageMap";
 

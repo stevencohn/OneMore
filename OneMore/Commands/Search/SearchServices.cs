@@ -26,13 +26,13 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		public async Task CopyPages(List<string> pageIds)
+		public async Task CopyPages(IEnumerable<string> pageIds)
 		{
 			string lastId = null;
 
 			using (var progress = new UI.ProgressDialog())
 			{
-				progress.SetMaximum(pageIds.Count);
+				progress.SetMaximum(pageIds.Count());
 				progress.Show();
 
 				foreach (var pageId in pageIds)
@@ -69,13 +69,13 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		public async Task IndexPages(List<string> pageIds)
+		public async Task IndexPages(IEnumerable<string> pageIds)
 		{
 			string indexId = null;
 
 			using (var progress = new UI.ProgressDialog())
 			{
-				progress.SetMaximum(pageIds.Count);
+				progress.SetMaximum(pageIds.Count());
 				progress.Show();
 
 				// create a new page to get a new ID
@@ -114,7 +114,7 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		public async Task MovePages(List<string> pageIds)
+		public async Task MovePages(IEnumerable<string> pageIds)
 		{
 			var sections = new Dictionary<string, XElement>();
 			var section = one.GetSection(sectionId);
@@ -124,7 +124,7 @@ namespace River.OneMoreAddIn.Commands
 
 			using (var progress = new UI.ProgressDialog())
 			{
-				progress.SetMaximum(pageIds.Count);
+				progress.SetMaximum(pageIds.Count());
 				progress.Show();
 
 				foreach (var pageId in pageIds)

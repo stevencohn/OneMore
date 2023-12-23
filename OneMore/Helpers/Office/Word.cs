@@ -8,6 +8,8 @@ namespace River.OneMoreAddIn.Helpers.Office
 	using System.IO;
 	using System.Linq;
 	using System.Runtime.InteropServices;
+	using System.Text;
+	using System.Text.RegularExpressions;
 	using System.Xml.Linq;
 	using MSWord = Microsoft.Office.Interop.Word;
 
@@ -53,7 +55,8 @@ namespace River.OneMoreAddIn.Helpers.Office
 
 			try
 			{
-				target = Path.Combine(Path.GetTempPath(), Path.GetRandomFileName());
+				var tempPath = Path.GetTempPath();
+				target = Path.Combine(tempPath, Path.GetRandomFileName());
 				object format = MSWord.WdSaveFormat.wdFormatHTML;
 
 				// open document
@@ -65,7 +68,27 @@ namespace River.OneMoreAddIn.Helpers.Office
 				doc.Close();
 
 				// read HTML
-				string html = File.ReadAllText(target.ToString());
+				var tarpath = target.ToString();
+				var html = File.ReadAllText(tarpath);
+
+				// patch image paths so images get imported too
+				var subfolder = Path.Combine(
+					tempPath,
+					$"{Path.GetFileNameWithoutExtension(tarpath)}_files");
+
+				if (Directory.Exists(subfolder))
+				{
+					var matches = Regex.Matches(html, @"<img[^>]+src=""([^""]+)""");
+					var builder = new StringBuilder(html);
+					for (var i = matches.Count - 1; i >= 0; i--)
+					{
+						Match match = matches[i];
+						builder.Insert(match.Groups[1].Index, tempPath);
+					}
+
+					html = builder.ToString();
+				}
+
 				return html;
 			}
 			catch (Exception exc)

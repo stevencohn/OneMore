@@ -4,6 +4,7 @@
 
 namespace River.OneMoreAddIn.Commands
 {
+	using River.OneMoreAddIn.Settings;
 	using System;
 	using System.IO;
 	using System.IO.Compression;
@@ -50,7 +51,18 @@ namespace River.OneMoreAddIn.Commands
 		{
 			var encoded = Encode64(Deflate(ToUtf8(uml)));
 
-			var url = $"{Resx.PlantUmlCommand_PlantUrl}{encoded}";
+			var settings = new SettingsProvider().GetCollection(nameof(ImagesSheet));
+
+			var plantUri = settings == null
+				? Resx.PlantUmlCommand_PlantUrl
+				: settings.Get("plantUri", Resx.PlantUmlCommand_PlantUrl);
+
+			if (!plantUri.EndsWith("/"))
+			{
+				plantUri = $"{plantUri}/";
+			}
+
+			var url = $"{plantUri}{encoded}";
 
 			var client = HttpClientFactory.Create();
 			client.DefaultRequestHeaders.Add("user-agent", "OneMore");

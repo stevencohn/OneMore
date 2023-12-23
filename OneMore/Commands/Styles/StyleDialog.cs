@@ -133,6 +133,7 @@ namespace River.OneMoreAddIn.Commands
 					"defaultBlackToolStripMenuItem",
 					"transparentToolStripMenuItem",
 					// labels
+					"ignoredBox",
 					"beforeLabel",
 					"afterLabel",
 					"spacingLabel",
@@ -312,6 +313,7 @@ namespace River.OneMoreAddIn.Commands
 			subButton.Checked = selection.IsSubscript;
 
 			applyColorsBox.Checked = selection.ApplyColors;
+			ignoredBox.Checked = selection.Ignored;
 
 			if (double.TryParse(selection.SpaceAfter, NumberStyles.Any, CultureInfo.InvariantCulture, out var sa))
 			{
@@ -670,6 +672,12 @@ namespace River.OneMoreAddIn.Commands
 				= applyColorsBox.Checked;
 
 			previewBox.Invalidate();
+		}
+
+
+		private void ChangeIgnored(object sender, EventArgs e)
+		{
+			selection.Ignored = ignoredBox.Checked;
 		}
 
 

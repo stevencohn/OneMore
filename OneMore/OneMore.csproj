@@ -146,6 +146,7 @@
     <Compile Include="Commands\Edit\ColorizeDialog.Designer.cs">
       <DependentUpon>ColorizeDialog.cs</DependentUpon>
     </Compile>
+    <Compile Include="Commands\Edit\CopyAsTextCommand.cs" />
     <Compile Include="Commands\Edit\DuplicateLineCommand.cs" />
     <Compile Include="Commands\File\FileQuickNotesCommand.cs" />
     <Compile Include="Commands\File\Markdown\MarkdownConverter.cs" />
@@ -157,6 +158,7 @@
     <Compile Include="Commands\Images\PlantUmlCommand.cs" />
     <Compile Include="Commands\Images\OpenImageWithCommand.cs" />
     <Compile Include="Commands\Images\PlantUmlHelper.cs" />
+    <Compile Include="Commands\Images\StackBackgroundImagesCommand.cs" />
     <Compile Include="Commands\Navigator\HistoryControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -183,6 +185,12 @@
     </Compile>
     <Compile Include="Commands\Settings\FileImportSheet.Designer.cs">
       <DependentUpon>FileImportSheet.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Commands\Settings\HashtagSheet .cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Commands\Settings\HashtagSheet .Designer.cs">
+      <DependentUpon>HashtagSheet .cs</DependentUpon>
     </Compile>
     <Compile Include="Commands\Settings\NavigatorSheet.cs">
       <SubType>UserControl</SubType>
@@ -225,10 +233,32 @@
       <DependentUpon>EditTableThemesDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="Commands\Tables\TableThemePainter.cs" />
+    <Compile Include="Commands\Tagging\Hashtag.cs" />
+    <Compile Include="Commands\Tagging\HashtagCommand.cs" />
+    <Compile Include="Commands\Tagging\HashtagContext.cs" />
+    <Compile Include="Commands\Tagging\HashtagContextControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Commands\Tagging\HashtagContextControl.Designer.cs">
+      <DependentUpon>HashtagContextControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Commands\Tagging\HashtagDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Commands\Tagging\HashtagDialog.Designer.cs">
+      <DependentUpon>HashtagDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Commands\Tagging\HashtagPageScanner.cs" />
+    <Compile Include="Commands\Tagging\HashtagPageScannerFactory.cs" />
+    <Compile Include="Commands\Tagging\HashtagProvider.cs" />
+    <Compile Include="Commands\Tagging\HashtagScanner.cs" />
+    <Compile Include="Commands\Tagging\HashtagService.cs" />
     <Compile Include="Helpers\ColorHelper.cs" />
     <Compile Include="Helpers\Extensions\FontFamilyExtensions.cs" />
     <Compile Include="Helpers\Extensions\GraphicsExtensions.cs" />
+    <Compile Include="Helpers\Extensions\HashAlgorithmExtensions.cs" />
     <Compile Include="Helpers\Extensions\ScreenExtensions.cs" />
+    <Compile Include="Helpers\Heatmap.cs" />
     <Compile Include="Models\KnownSchemaAttributes.cs" />
     <Compile Include="Models\PageReader.cs" />
     <Compile Include="AddInHotkeys.cs" />
@@ -434,6 +464,9 @@
     <Compile Include="UI\MoreFlowLayoutPanel.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="UI\MorePanel.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="UI\RenameDialog.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -488,30 +521,30 @@
       <DependentUpon>SearchDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="Commands\Search\SearchServices.cs" />
-    <Compile Include="Commands\Search\TaggedCommand.cs" />
-    <Compile Include="Commands\Search\TaggedDialog.cs">
+    <Compile Include="Commands\Tagging\TaggedCommand.cs" />
+    <Compile Include="Commands\Tagging\TaggedDialog.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Commands\Search\TaggedDialog.Designer.cs">
+    <Compile Include="Commands\Tagging\TaggedDialog.Designer.cs">
       <DependentUpon>TaggedDialog.cs</DependentUpon>
     </Compile>
-    <Compile Include="Commands\Search\TaggingCommand.cs" />
-    <Compile Include="Commands\Search\TaggingDialog.cs">
+    <Compile Include="Commands\Tagging\TaggingCommand.cs" />
+    <Compile Include="Commands\Tagging\TaggingDialog.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Commands\Search\TaggingDialog.Designer.cs">
+    <Compile Include="Commands\Tagging\TaggingDialog.Designer.cs">
       <DependentUpon>TaggingDialog.cs</DependentUpon>
     </Compile>
-    <Compile Include="Commands\Search\TagControl.cs">
+    <Compile Include="Commands\Tagging\TagControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Commands\Search\TagControl.Designer.cs">
+    <Compile Include="Commands\Tagging\TagControl.Designer.cs">
       <DependentUpon>TagControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="Commands\Search\TagCheckBox.cs">
+    <Compile Include="Commands\Tagging\TagCheckBox.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Commands\Search\TagHelpers.cs" />
+    <Compile Include="Commands\Tagging\TagHelpers.cs" />
     <Compile Include="Commands\Settings\PluginsSheet.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -1020,6 +1053,9 @@
     <Content Include="Colorizer\Languages\registry.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Colorizer\Languages\rust.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Colorizer\Languages\sql.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -1044,11 +1080,15 @@
     <Content Include="Commands\Navigator\Images\Student-Read-01-20.png" />
     <Content Include="Commands\Navigator\Images\Swap-Down-20.png" />
     <Content Include="Commands\Navigator\Images\Swap-Up-20.png" />
-    <Content Include="Commands\Search\x.png" />
+    <Content Include="Commands\Tagging\HashtagsDB.sql" />
+    <Content Include="Commands\Tagging\x.png" />
     <None Include="Colorizer\Languages\plantuml.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Colorizer\Languages\registry.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Colorizer\Languages\rust.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Properties\Emoji\Architecture.png" />
@@ -1143,6 +1183,7 @@
     <Content Include="Properties\Images\FolderClose.png" />
     <Content Include="Properties\Images\FolderOpen.png" />
     <None Include="Properties\Images\Grid40.png" />
+    <Content Include="Ribbon\Images\ribSearchHashtagsButton.png" />
     <Content Include="Properties\Images\Label.png" />
     <Content Include="Properties\Images\LabelSearch.png" />
     <None Include="Properties\Emoji\Pencil.png" />
@@ -1285,6 +1326,9 @@
     <EmbeddedResource Include="Commands\Settings\FileImportSheet.resx">
       <DependentUpon>FileImportSheet.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Commands\Settings\HashtagSheet .resx">
+      <DependentUpon>HashtagSheet .cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Commands\Settings\NavigatorSheet.resx">
       <DependentUpon>NavigatorSheet.cs</DependentUpon>
     </EmbeddedResource>
@@ -1308,6 +1352,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Commands\Styles\PageColorSelector.resx">
       <DependentUpon>PageColorSelector.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Commands\Tagging\HashtagContextControl.resx">
+      <DependentUpon>HashtagContextControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Commands\Tagging\HashtagDialog.resx">
+      <DependentUpon>HashtagDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.he-IL.resx">
       <SubType>Designer</SubType>
@@ -1336,13 +1386,13 @@
     <EmbeddedResource Include="Commands\Search\SearchDialog.resx">
       <DependentUpon>SearchDialog.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Commands\Search\TaggedDialog.resx">
+    <EmbeddedResource Include="Commands\Tagging\TaggedDialog.resx">
       <DependentUpon>TaggedDialog.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Commands\Search\TaggingDialog.resx">
+    <EmbeddedResource Include="Commands\Tagging\TaggingDialog.resx">
       <DependentUpon>TaggingDialog.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Commands\Search\TagControl.resx">
+    <EmbeddedResource Include="Commands\Tagging\TagControl.resx">
       <DependentUpon>TagControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Commands\File\ImportDialog.resx">
@@ -1542,6 +1592,9 @@
     </PackageReference>
     <PackageReference Include="Newtonsoft.Json">
       <Version>13.0.2</Version>
+    </PackageReference>
+    <PackageReference Include="System.Data.SQLite">
+      <Version>1.0.118</Version>
     </PackageReference>
     <PackageReference Include="System.Net.Http">
       <Version>4.3.4</Version>

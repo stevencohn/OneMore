@@ -4,6 +4,7 @@
 
 namespace River.OneMoreAddIn.Models
 {
+	using River.OneMoreAddIn.Commands;
 	using River.OneMoreAddIn.Styles;
 	using System;
 	using System.Collections.Generic;
@@ -41,8 +42,15 @@ namespace River.OneMoreAddIn.Models
 
 			// Find all OE blocks with text, e.g., containing at least one T
 
+			// TODO: this is a terribly inefficient query
+			var candidates = Root
+				.Elements(Namespace + "Outline")
+				.Descendants(Namespace + "OE")
+				.Where(e => !e.Ancestors().Elements(Namespace + "Meta")
+					.Any(m => m.Attribute("name").Value.Equals(InsertTocCommand.TocMeta)));
+
 			var blocks =
-				from e in Root.Elements(Namespace + "Outline").Descendants(Namespace + "OE")
+				from e in candidates
 				// get the first non-empty CDATA
 				let c = e.Elements(Namespace + "T").DescendantNodes()
 					.FirstOrDefault(p => 
@@ -173,6 +181,7 @@ namespace River.OneMoreAddIn.Models
 					if (text == Resx.InsertTocCommand_Top)
 					{
 						heading.HasTopLink = true;
+						heading.IsRightAligned = true;
 					}
 				}
 			}

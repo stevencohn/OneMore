@@ -47,6 +47,11 @@ namespace River.OneMoreAddIn.Models
 
 
 		/// <summary>
+		/// True if the top link is right-aligned (in a table)
+		/// </summary>
+		public bool IsRightAligned;
+
+		/// <summary>
 		/// The logical indent level of the header (1, 2, 3, ...)
 		/// </summary>
 		public int Level;

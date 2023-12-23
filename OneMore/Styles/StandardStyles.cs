@@ -87,6 +87,7 @@ namespace River.OneMoreAddIn.Styles
 
 				case StandardStyles.Code:
 					style.FontFamily = "Consolas";
+					style.Ignored = true;
 					break;
 			}
 

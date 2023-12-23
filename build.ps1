@@ -9,7 +9,8 @@ Specifies the bitness of the build: 64 or 86, default is 64
 Build both x86 and x64 kits.
 
 .PARAMETER Fast
-Build just the OneMore.csproj using default parameters
+Build just the .csproj projects using default parameters.
+This will build OneMore, OneMorCalendar, OneMoreProtocolHandler, and OneMoreSetupActions.
 
 .PARAMETER Prep
 Run DisableOutOfProcBuild. This only needs to be run once on a machine, or after upgrading
@@ -144,14 +145,16 @@ Begin
                     '"TargetPlatform" = "3:0"' | Out-File $vdproj -Append
                 }
             }
-            elseif ($_ -match '"SourcePath" = .*WebView2Loader\.dll"$')
-            {
-                if ($bitness -eq 64) {
-                    $_.Replace('\\x86', '\\x64') | Out-File $vdproj -Append
-                } else {
-                    $_.Replace('\\x64', '\\x86') | Out-File $vdproj -Append
-                }
-            }
+            #elseif ($_ -match '"SourcePath" = .*WebView2Loader\.dll"$')
+            #{
+            #    if ($bitness -eq 64) {
+            #        $_.Replace('\\x86', '\\x64') | Out-File $vdproj -Append
+            #        $_.Replace('win-x86', 'win-x64') | Out-File $vdproj -Append
+            #    } else {
+            #        $_.Replace('\\x64', '\\x86') | Out-File $vdproj -Append
+            #        $_.Replace('win-x64', 'win-x86') | Out-File $vdproj -Append
+            #    }
+            #}
             elseif (($_ -match '"Name" = "8:OneMoreSetupActions --install ') -or `
                     ($_ -match '"Arguments" = "8:--install '))
             {
@@ -161,7 +164,7 @@ Begin
                     $_.Replace('x64', 'x86') | Out-File $vdproj -Append
                 }
             }
-            else
+            elseif ($_ -notmatch '^"Scc')
             {
                 $_ | Out-File $vdproj -Append
             }
@@ -172,33 +175,41 @@ Begin
     {
         param([int]$bitness)
         Write-Host "... building x$bitness DLLs" -ForegroundColor Yellow
-        Push-Location OneMore
-
-        # output file cannot exist before build
-        if (Test-Path .\Debug\*)
-        {
-            Remove-Item .\Debug\*.* -Force -Confirm:$false
-        }
-
-        # restore...
-
-        $cmd = 'nuget restore .\OneMore.csproj'
-        write-Host $cmd -ForegroundColor DarkGray
-
-        nuget restore .\OneMore.csproj
 
         # build...
-        BuildComponent 'OneMore'
+
+        Push-Location OneMore
+        BuildComponent 'OneMore' $true
+        Pop-Location
+
+        Push-Location OneMoreCalendar
+        BuildComponent 'OneMoreCalendar' $true
         Pop-Location
 
         Push-Location OneMoreProtocolHandler
         BuildComponent 'OneMoreProtocolHandler'
         Pop-Location
+ 
+        Push-Location OneMoreSetupActions
+        BuildComponent 'OneMoreSetupActions'
+        Pop-Location
     }
 
     function BuildComponent
     {
-        param($name)
+        param($name, $restore = $false)
+        # output file cannot exist before build
+        if (Test-Path .\Debug\*)
+        {
+            Remove-Item .\Debug\*.* -Force -Confirm:$false
+        }
+		# nuget restore
+		if ($restore)
+		{
+			$cmd = 'nuget restore .\$name.csproj'
+			write-Host $cmd -ForegroundColor DarkGray
+			nuget restore .\$name.csproj
+		}
         $cmd = "$devenv .\$name.csproj /build ""Debug|AnyCPU"" /project $name /projectconfig Debug"
         write-Host $cmd -ForegroundColor DarkGray
         . $devenv .\$name.csproj /build "Debug|AnyCPU" /project $name /projectconfig Debug
@@ -215,11 +226,11 @@ Begin
             Remove-Item .\Debug\*.* -Force -Confirm:$false
         }
 
-        $cmd = "$devenv .\OneMoreSetup.vdproj /build ""Debug|x$bitness"" /project Setup /projectconfig Debug"
+        $cmd = "$devenv .\OneMoreSetup.vdproj /build ""Debug|x$bitness"" /project Setup /projectconfig Debug /out `$env:TEMP\OneMoreBuild.log"
         write-Host $cmd -ForegroundColor DarkGray
 
         # build
-        . $devenv .\OneMoreSetup.vdproj /build "Debug|x$bitness" /project Setup /projectconfig Debug
+        . $devenv .\OneMoreSetup.vdproj /build "Debug|x$bitness" /project Setup /projectconfig Debug /out $env:TEMP\OneMorebuild.log
 
         # move msi to Downloads for safe-keeping and to allow next Platform build
         Move-Item .\Debug\*.msi $home\Downloads -Force

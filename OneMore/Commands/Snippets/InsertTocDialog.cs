@@ -9,6 +9,7 @@ namespace River.OneMoreAddIn.Commands
 
 	internal partial class InsertTocDialog : UI.LocalizableForm
 	{
+
 		public InsertTocDialog()
 		{
 			InitializeComponent();
@@ -22,6 +23,10 @@ namespace River.OneMoreAddIn.Commands
 					"pageRadio",
 					"topBox",
 					"rightAlignBox",
+					"locationLabel",
+					"locationBox",
+					"styleLabel",
+					"styleBox",
 					"sectionRadio",
 					"previewBox",
 					"notebookRadio",
@@ -31,6 +36,9 @@ namespace River.OneMoreAddIn.Commands
 					"cancelButton=word_Cancel"
 				});
 			}
+
+			locationBox.SelectedIndex = 0;
+			styleBox.SelectedIndex = 0;
 		}
 
 
@@ -50,18 +58,40 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
+		public bool AddTopLinks
+		{
+			get => topBox.Enabled && topBox.Checked;
+			set => topBox.Checked = value;
+		}
+
+
+		public bool InsertHere
+		{
+			get => locationBox.SelectedIndex == 1;
+			set => locationBox.SelectedIndex = value ? 1 : 0;
+		}
+
+
 		public bool PreviewPages =>
 			(sectionRadio.Checked && previewBox.Checked) ||
 			(notebookRadio.Checked && preview2Box.Checked);
 
 
-		public bool RightAlignTopLinks => rightAlignBox.Enabled && rightAlignBox.Checked;
+		public bool RightAlign
+		{
+			get => rightAlignBox.Enabled && rightAlignBox.Checked;
+			set => rightAlignBox.Checked = value;
+		}
 
 
 		public bool SectionPages => pagesBox.Enabled && pagesBox.Checked;
 
 
-		public bool TopLinks => topBox.Enabled && topBox.Checked;
+		public InsertTocCommand.TitleStyles TitleStyle
+		{
+			get => (InsertTocCommand.TitleStyles)styleBox.SelectedIndex;
+			set => styleBox.SelectedIndex = (int)value;
+		}
 
 
 		private void ToggleRightAlignOption(object sender, EventArgs e)
@@ -82,6 +112,8 @@ namespace River.OneMoreAddIn.Commands
 			{
 				topBox.Enabled = true;
 				rightAlignBox.Enabled = true;
+				locationBox.Enabled = true;
+				styleBox.Enabled = true;
 				previewBox.Enabled = false;
 				pagesBox.Enabled = false;
 				preview2Box.Enabled = false;
@@ -90,6 +122,8 @@ namespace River.OneMoreAddIn.Commands
 			{
 				topBox.Enabled = pagesBox.Enabled = false;
 				rightAlignBox.Enabled = false;
+				locationBox.Enabled = false;
+				styleBox.Enabled = false;
 				previewBox.Enabled = true;
 				preview2Box.Enabled = false;
 			}
@@ -97,6 +131,8 @@ namespace River.OneMoreAddIn.Commands
 			{
 				topBox.Enabled = false;
 				rightAlignBox.Enabled = false;
+				locationBox.Enabled = false;
+				styleBox.Enabled = false;
 				previewBox.Enabled = false;
 				pagesBox.Enabled = true;
 				preview2Box.Enabled = pagesBox.Checked;

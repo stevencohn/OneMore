@@ -443,6 +443,10 @@ OneNote will close automatically</value>
     <value>Always apply the following fonts when colorizing code</value>
     <comment>checkbox</comment>
   </data>
+  <data name="ColorizeSheet_enabledLabel" xml:space="preserve">
+    <value>Enabled Languages</value>
+    <comment>label</comment>
+  </data>
   <data name="ColorizeSheet_font2Label.Text" xml:space="preserve">
     <value>Secondary</value>
     <comment>label</comment>
@@ -633,6 +637,10 @@ OneNote will close automatically</value>
   <data name="CustomStylesFilename" xml:space="preserve">
     <value>CustomStyles.xml</value>
     <comment>SKIP, filename</comment>
+  </data>
+  <data name="DatabaseFilename" xml:space="preserve">
+    <value>OneMore.db</value>
+    <comment>SKIP, Sqlite database file name</comment>
   </data>
   <data name="DeleteFormulaCommand_Deleted" xml:space="preserve">
     <value>Deleted formulas from {0} cell(s)</value>
@@ -882,11 +890,11 @@ Last Column Font</value>
     <comment>emoji</comment>
   </data>
   <data name="EmojiDialog.Text" xml:space="preserve">
-    <value>TItle Emojis</value>
+    <value>Insert Emojis</value>
     <comment>dialog title</comment>
   </data>
   <data name="EmojiDialog_introLabel.Text" xml:space="preserve">
-    <value>Select on or more emojis to add to page title</value>
+    <value>Select on or more emojis to insert</value>
     <comment>instructions</comment>
   </data>
   <data name="Error_BodyContext" xml:space="preserve">
@@ -956,6 +964,18 @@ OneNote File (*.one)</value>
   <data name="Favorites_unknown" xml:space="preserve">
     <value>Page no longer found; it may have been deleted</value>
     <comment>tooltip</comment>
+  </data>
+  <data name="FavoritesDialog_addButton.Text" xml:space="preserve">
+    <value>Add Current Page</value>
+    <comment>context menu item</comment>
+  </data>
+  <data name="FavoritesDialog_checkButton.Text" xml:space="preserve">
+    <value>Check Favorites</value>
+    <comment>context menu item</comment>
+  </data>
+  <data name="FavoritesDialog_manageButton.Text" xml:space="preserve">
+    <value>Manage Favorites</value>
+    <comment>context menu item</comment>
   </data>
   <data name="FavoritesFilename" xml:space="preserve">
     <value>Favorites.xml</value>
@@ -1108,6 +1128,26 @@ Symbols: PI, E</value>
   <data name="HasActiveMedia" xml:space="preserve">
     <value>Cannot invoke OneMore commands while there is an active recording. Please stop the recording and try again.</value>
   </data>
+  <data name="HashtagDialogs_introLabel.Text" xml:space="preserve">
+    <value>Start typing any part of a hashtag or * for all</value>
+    <comment>label</comment>
+  </data>
+  <data name="HashtagSheet_disabledBox" xml:space="preserve">
+    <value>Disable the hashtag service. This will also disable hashtag searching.</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="HashtagSheet_intervalLabel" xml:space="preserve">
+    <value>Scan for hashtags every</value>
+    <comment>label</comment>
+  </data>
+  <data name="HashtagSheet_introTitle" xml:space="preserve">
+    <value>Customize advanced options for the Hashtag Scanner Service</value>
+    <comment>label</comment>
+  </data>
+  <data name="HashtagSheet_Title" xml:space="preserve">
+    <value>Hashtags</value>
+    <comment>sheet title</comment>
+  </data>
   <data name="HighlightFormulaCommand_NoFormulas" xml:space="preserve">
     <value>No formulas found on this page</value>
     <comment>highlight command message</comment>
@@ -1139,6 +1179,10 @@ Symbols: PI, E</value>
   <data name="ImageSheet_plantRemoveBox.Text" xml:space="preserve">
     <value>Remove PlantUML text and embed it in the image</value>
     <comment>checkbox</comment>
+  </data>
+  <data name="ImageSheet_plantUriLabel.Text" xml:space="preserve">
+    <value>PlantUML Server Address (leave blank to use default)</value>
+    <comment>label</comment>
   </data>
   <data name="ImagesSheet_imageBrowser" xml:space="preserve">
     <value>Image Viewer</value>
@@ -1378,8 +1422,17 @@ Symbols: PI, E</value>
     <value>Table of Contents</value>
     <comment>dialog title</comment>
   </data>
+  <data name="InsertTocDialog_locationBox.Text" xml:space="preserve">
+    <value>At top of page
+At current cursor</value>
+    <comment>combobox</comment>
+  </data>
+  <data name="InsertTocDialog_locationLabel.Text" xml:space="preserve">
+    <value>Insert Location</value>
+    <comment>label</comment>
+  </data>
   <data name="InsertTocDialog_notebookRadio.Text" xml:space="preserve">
-    <value>Add page with table of sections in this notebook</value>
+    <value>New page with index of sections in this notebook</value>
     <comment>radio</comment>
   </data>
   <data name="InsertTocDialog_pageRadio.Text" xml:space="preserve">
@@ -1399,8 +1452,23 @@ Symbols: PI, E</value>
     <comment>checkbox</comment>
   </data>
   <data name="InsertTocDialog_sectionRadio.Text" xml:space="preserve">
-    <value>Add page with table of pages in this section</value>
+    <value>New page with index of pages in this section</value>
     <comment>radio</comment>
+  </data>
+  <data name="InsertTocDialog_styleBox.Text" xml:space="preserve">
+    <value>Standard Page Title
+Standard Heading 1
+Standard Heading 2
+Standard Heading 3
+Custom Page Title
+Custom Heading 1
+Custom Heading 2
+Custom Heading 3</value>
+    <comment>cobobox</comment>
+  </data>
+  <data name="InsertTocDialog_styleLabel.Text" xml:space="preserve">
+    <value>Title Style</value>
+    <comment>label</comment>
   </data>
   <data name="InsertTocDialog_topBox.Text" xml:space="preserve">
     <value>Add link to each heading to jump to top of page</value>
@@ -1757,7 +1825,7 @@ Deferred</value>
     <comment>dialog title</comment>
   </data>
   <data name="PageColorDialog_applyThemeBox.Text" xml:space="preserve">
-    <value>Apply styles to this page</value>
+    <value>Apply styles and page color</value>
     <comment>checkbox</comment>
   </data>
   <data name="PageColorDialog_contrastTooltip" xml:space="preserve">
@@ -1787,6 +1855,12 @@ Deferred</value>
   <data name="PageColorDialog_omLabel" xml:space="preserve">
     <value>Click here to select a pre-defined color</value>
     <comment>label</comment>
+  </data>
+  <data name="PageColorDialog_scopeBox.Text" xml:space="preserve">
+    <value>Apply to this page
+Apply to this section
+Apply to this notebook</value>
+    <comment>combobox</comment>
   </data>
   <data name="PasteCellsCommand_NoContent" xml:space="preserve">
     <value>No content to paste; copy one or more table cells to paste</value>
@@ -2317,6 +2391,10 @@ Select No to keep one empty line between paragraphs</value>
     <value>Applies to</value>
     <comment>label override</comment>
   </data>
+  <data name="ResizeImagesDialog_autoSizeRadio.Text" xml:space="preserve">
+    <value>Auto-size</value>
+    <comment>radio</comment>
+  </data>
   <data name="ResizeImagesDialog_heightLabel.Text" xml:space="preserve">
     <value>Height</value>
     <comment>label</comment>
@@ -2332,7 +2410,9 @@ Do no enlarge smaller images</value>
     <comment>combobox</comment>
   </data>
   <data name="ResizeImagesDialog_noImages" xml:space="preserve">
-    <value>No images were found on this page</value>
+    <value>No images were found on this page.
+
+Images must be in an outline container. Background images cannot be adjusted.</value>
     <comment>message box</comment>
   </data>
   <data name="ResizeImagesDialog_pctRadio.Text" xml:space="preserve">
@@ -2350,6 +2430,10 @@ Do no enlarge smaller images</value>
   <data name="ResizeImagesDialog_previewGroup.Text" xml:space="preserve">
     <value>Preview {0}</value>
     <comment>group box for single image</comment>
+  </data>
+  <data name="ResizeImagesDialog_repositionBox.Text" xml:space="preserve">
+    <value>Reposition background images</value>
+    <comment>checkbox</comment>
   </data>
   <data name="ResizeImagesDialog_resetLinkLabel.Text" xml:space="preserve">
     <value>Reset values</value>
@@ -2621,6 +2705,14 @@ Polaroid</value>
     <value>Copy select content as markdown</value>
     <comment>ribbon edit</comment>
   </data>
+  <data name="ribCopyAsTextButton_Label" xml:space="preserve">
+    <value>Copy as Text</value>
+    <comment>ribbon edit</comment>
+  </data>
+  <data name="ribCopyAsTextButton_Screentip" xml:space="preserve">
+    <value>Copy select context as plain text</value>
+    <comment>ribbon edit</comment>
+  </data>
   <data name="ribCopyDownButton_Label" xml:space="preserve">
     <value>Copy Down</value>
     <comment>ribbon table</comment>
@@ -2778,12 +2870,12 @@ Polaroid</value>
     <comment>ribbon references</comment>
   </data>
   <data name="ribEmojiButton_Label" xml:space="preserve">
-    <value>Add Page Title Emoji</value>
-    <comment>ribbon page</comment>
+    <value>Insert Emoji</value>
+    <comment>ribbon edit</comment>
   </data>
   <data name="ribEmojiButton_Screentip" xml:space="preserve">
-    <value>Prepent page title with emojis</value>
-    <comment>ribbon page</comment>
+    <value>Insert one or more emojis</value>
+    <comment>ribbon edit</comment>
   </data>
   <data name="ribEnableSpellCheckButton_Label" xml:space="preserve">
     <value>Enable Spell Check</value>
@@ -2849,6 +2941,10 @@ Polaroid</value>
     <value>Fill sequence down selected columns (Ctrl + D)</value>
     <comment>ribbon table</comment>
   </data>
+  <data name="ribFindHashtagsButton_Label" xml:space="preserve">
+    <value>Find Hashtags</value>
+    <comment>ribbon references</comment>
+  </data>
   <data name="ribFinishBiLinkButton_Label" xml:space="preserve">
     <value>Finish Bidirectional Link</value>
     <comment>ribbon references </comment>
@@ -2890,11 +2986,11 @@ Polaroid</value>
     <comment>ribbon table</comment>
   </data>
   <data name="ribHighlightLastButton_Label" xml:space="preserve">
-    <value>Highlight text with most recent highlighter</value>
+    <value>Repeat Rotating Highlighter Color</value>
     <comment>ribbon edit</comment>
   </data>
   <data name="ribHighlightNoneButton_Label" xml:space="preserve">
-    <value>Remove highlighting</value>
+    <value>Remove Highlighting</value>
     <comment>ribbon edit</comment>
   </data>
   <data name="ribImagesMenu_Label" xml:space="preserve">
@@ -3509,6 +3605,14 @@ Polaroid</value>
     <value>Search pages for keywords and copy/move to another section (Alt + F)</value>
     <comment>ribbon search</comment>
   </data>
+  <data name="ribSearchHashtagsButton_Label" xml:space="preserve">
+    <value>Search Hashtags</value>
+    <comment>ribbon search</comment>
+  </data>
+  <data name="ribSearchHashtagsButton_Screentip" xml:space="preserve">
+    <value>Search for hashtags</value>
+    <comment>ribbon search</comment>
+  </data>
   <data name="ribSearchMenu_Label" xml:space="preserve">
     <value>Search and Tag</value>
     <comment>ribbon menu</comment>
@@ -3620,6 +3724,14 @@ Polaroid</value>
   <data name="ribSplitTableButton_Screentip" xml:space="preserve">
     <value>Split table at current row</value>
     <comment>ribbon table</comment>
+  </data>
+  <data name="ribStackBackgroundImagesButton_Label" xml:space="preserve">
+    <value>Stack Background Images</value>
+    <comment>ribbon images</comment>
+  </data>
+  <data name="ribStackBackgroundImagesButton_Screentip" xml:space="preserve">
+    <value>Reposition background images top to bottom</value>
+    <comment>ribbon images</comment>
   </data>
   <data name="ribStartBiLinkButton_Label" xml:space="preserve">
     <value>Start Bidirectional Link</value>
@@ -3924,6 +4036,10 @@ Search engines will appear in the page context menu, right-click.</value>
     <value>General Options</value>
     <comment>tree node</comment>
   </data>
+  <data name="SettingsDialog_hashtagsNode_Text" xml:space="preserve">
+    <value>Hashtags</value>
+    <comment>treenode</comment>
+  </data>
   <data name="SettingsDialog_highlightNode.Text" xml:space="preserve">
     <value>Highlighter Themes</value>
     <comment>treenode</comment>
@@ -4201,6 +4317,10 @@ Notebooks</value>
     <value>Set all columns as fixed-width</value>
     <comment>checkbox</comment>
   </data>
+  <data name="StackBackgroundImagesCommand_noImages" xml:space="preserve">
+    <value>The page must contain two or more background images</value>
+    <comment>error message</comment>
+  </data>
   <data name="StartupFailureMessage" xml:space="preserve">
     <value>OneMore failed to connect to OneNote, see log file for exception details</value>
     <comment>message box</comment>
@@ -4249,6 +4369,10 @@ Notebooks</value>
   <data name="StyleDialog_fontLabel.Text" xml:space="preserve">
     <value>Font:</value>
     <comment>label</comment>
+  </data>
+  <data name="StyleDialog_ignoredBox.Text" xml:space="preserve">
+    <value>Disable spell check</value>
+    <comment>checkbox</comment>
   </data>
   <data name="StyleDialog_italicButton.Text" xml:space="preserve">
     <value>Italic</value>
@@ -4548,6 +4672,9 @@ In this section</value>
   <data name="word_Alias" xml:space="preserve">
     <value>Alias</value>
   </data>
+  <data name="word_All" xml:space="preserve">
+    <value>All</value>
+  </data>
   <data name="word_Apply" xml:space="preserve">
     <value>Apply</value>
   </data>
@@ -4635,6 +4762,9 @@ In this section</value>
   <data name="word_Limit" xml:space="preserve">
     <value>Limit</value>
   </data>
+  <data name="word_Minutes" xml:space="preserve">
+    <value>Minutes</value>
+  </data>
   <data name="word_Move" xml:space="preserve">
     <value>Move</value>
   </data>
@@ -4697,6 +4827,9 @@ In this section</value>
   </data>
   <data name="word_Scope" xml:space="preserve">
     <value>Scope</value>
+  </data>
+  <data name="word_Search" xml:space="preserve">
+    <value>Search</value>
   </data>
   <data name="word_Seconds" xml:space="preserve">
     <value>Seconds</value>
@@ -4788,6 +4921,9 @@ In this section</value>
   </data>
   <data name="ribNavigatorButton" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\ribbon\images\ribnavigatorbutton.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ribSearchHashtagsButton" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Ribbon\Images\ribSearchHashtagsButton.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Architecture" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>emoji\architecture.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -5031,6 +5167,9 @@ In this section</value>
   </data>
   <data name="InfoBoxThemes" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\commands\snippets\infoboxthemes.json;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
+  </data>
+  <data name="HashtagsDB" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Commands\Tagging\HashtagsDB.sql;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
   </data>
   <data name="DefaultTableThemes" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\ribbon\defaulttablethemes.json;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>

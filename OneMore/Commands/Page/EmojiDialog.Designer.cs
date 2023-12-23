@@ -78,7 +78,7 @@
 			this.introLabel.Name = "introLabel";
 			this.introLabel.Size = new System.Drawing.Size(328, 20);
 			this.introLabel.TabIndex = 4;
-			this.introLabel.Text = "Select one or more emojis to add to page title";
+			this.introLabel.Text = "Select one or more emojis to insert";
 			// 
 			// EmojiDialog
 			// 
@@ -98,7 +98,7 @@
 			this.Name = "EmojiDialog";
 			this.ShowInTaskbar = false;
 			this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
-			this.Text = "Page Title Emojis";
+			this.Text = "Insert Emojis";
 			this.ResumeLayout(false);
 			this.PerformLayout();
 

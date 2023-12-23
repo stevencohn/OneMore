@@ -5,11 +5,19 @@
 namespace River.OneMoreAddIn.Settings
 {
 	using River.OneMoreAddIn.Styles;
+	using System.Drawing;
+	using System.IO;
+	using System.Linq;
+	using System.Windows.Forms;
+	using System.Xml.Linq;
 	using Resx = Properties.Resources;
 
 
 	internal partial class ColorizerSheet : SheetBase
 	{
+		public const string HiddenKey = "hidden";
+
+
 		public ColorizerSheet(SettingsProvider provider) : base(provider)
 		{
 			InitializeComponent();
@@ -25,7 +33,10 @@ namespace River.OneMoreAddIn.Settings
 					"applyBox",
 					"fontLabel",
 					"font2Label",
-					"fixedBox"
+					"fixedBox",
+					"enabledLabel",
+					"allLink=word_All",
+					"noneLink=word_None"
 				});
 			}
 
@@ -60,7 +71,55 @@ namespace River.OneMoreAddIn.Settings
 			size = settings.Get("size2", StyleBase.DefaultCodeSize);
 			size2Box.SelectedIndex = size2Box.Items.IndexOf(size.ToString());
 
+			LoadLanguages(settings.Get(HiddenKey, new XElement(HiddenKey)));
+
 			applyBox.Focus();
+		}
+
+
+		private void LoadLanguages(XElement hidden)
+		{
+			var languages = Colorizer.Colorizer.LoadLanguageNames();
+			var images = new ImageList();
+			foreach (var name in languages.Keys)
+			{
+				var tag = languages[name];
+				images.Images.Add(LoadColorizeImage(tag));
+
+				var item = new ListViewItem(name, images.Images.Count - 1)
+				{
+					Checked = hidden.Element(tag) == null,
+					Tag = tag
+				};
+
+				langView.Items.Add(item);
+			}
+
+			langView.SmallImageList = images;
+		}
+
+
+		private Image LoadColorizeImage(string tag)
+		{
+			Image image = null;
+			try
+			{
+				var path = Path.Combine(
+					Colorizer.Colorizer.GetColorizerDirectory(),
+					"Languages",
+					$"{tag}.png");
+
+				if (File.Exists(path))
+				{
+					image = Image.FromFile(path);
+				}
+			}
+			catch
+			{
+				// no-op
+			}
+
+			return image;
 		}
 
 
@@ -74,9 +133,20 @@ namespace River.OneMoreAddIn.Settings
 		}
 
 
+		private void ToggleLanguages(object sender, LinkLabelLinkClickedEventArgs e)
+		{
+			var enabled = sender == allLink;
+			for (var i = 0; i < langView.Items.Count; i++)
+			{
+				langView.Items[i].Checked = enabled;
+			}
+		}
+
+
 		public override bool CollectSettings()
 		{
 			var settings = provider.GetCollection(Name);
+			var count = settings.Count;
 
 			if (applyBox.Checked)
 			{
@@ -85,15 +155,61 @@ namespace River.OneMoreAddIn.Settings
 				settings.Add("size", sizeBox.Text);
 				settings.Add("family2", family2Box.Text);
 				settings.Add("size2", size2Box.Text);
+			}
+			else
+			{
+				settings.Remove("apply");
+				settings.Remove("family");
+				settings.Remove("size");
+				settings.Remove("family2");
+				settings.Remove("size2");
+			}
+
+			var updated = false;
+			var oldset = settings.Get(HiddenKey, new XElement(HiddenKey));
+			var newset = new XElement(HiddenKey);
+
+			for (var i = 0; i < langView.Items.Count; i++)
+			{
+				if (!langView.Items[i].Checked)
+				{
+					var tag = langView.Items[i].Tag as string;
+					var old = oldset.Element(tag);
+					if (old == null)
+					{
+						updated = true;
+					}
+					else
+					{
+						old.Remove();
+					}
+
+					newset.Add(new XElement(tag));
+				}
+			}
+
+			if (newset.Elements().Any())
+			{
+				settings.Add(HiddenKey, newset);
+			}
+			else
+			{
+				settings.Remove(HiddenKey);
+			}
+
+			updated |= oldset.Elements().Any();
+
+			if (applyBox.Checked || newset.Elements().Any())
+			{
 				provider.SetCollection(settings);
 			}
 			else
 			{
 				provider.RemoveCollection(Name);
+				updated = count > 0;
 			}
 
-			// does not require a restart
-			return false;
+			return updated;
 		}
 	}
 }

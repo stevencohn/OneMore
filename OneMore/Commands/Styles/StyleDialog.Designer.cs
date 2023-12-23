@@ -44,6 +44,7 @@
 			this.okButton = new System.Windows.Forms.Button();
 			this.namesBox = new System.Windows.Forms.ComboBox();
 			this.panel1 = new System.Windows.Forms.Panel();
+			this.ignoredBox = new System.Windows.Forms.CheckBox();
 			this.optionsGroup = new System.Windows.Forms.GroupBox();
 			this.statusLabel = new System.Windows.Forms.Label();
 			this.pageColorLink = new River.OneMoreAddIn.UI.MoreLinkLabel();
@@ -117,7 +118,7 @@
 			// beforeLabel
 			// 
 			this.beforeLabel.AutoSize = true;
-			this.beforeLabel.Location = new System.Drawing.Point(18, 228);
+			this.beforeLabel.Location = new System.Drawing.Point(18, 242);
 			this.beforeLabel.Name = "beforeLabel";
 			this.beforeLabel.Size = new System.Drawing.Size(111, 20);
 			this.beforeLabel.TabIndex = 6;
@@ -127,7 +128,7 @@
 			// afterLabel
 			// 
 			this.afterLabel.AutoSize = true;
-			this.afterLabel.Location = new System.Drawing.Point(18, 265);
+			this.afterLabel.Location = new System.Drawing.Point(18, 279);
 			this.afterLabel.Name = "afterLabel";
 			this.afterLabel.Size = new System.Drawing.Size(98, 20);
 			this.afterLabel.TabIndex = 7;
@@ -137,7 +138,7 @@
 			// nameLabel
 			// 
 			this.nameLabel.AutoSize = true;
-			this.nameLabel.Location = new System.Drawing.Point(18, 29);
+			this.nameLabel.Location = new System.Drawing.Point(18, 30);
 			this.nameLabel.Name = "nameLabel";
 			this.nameLabel.Size = new System.Drawing.Size(94, 20);
 			this.nameLabel.TabIndex = 8;
@@ -159,7 +160,7 @@
 			// fontLabel
 			// 
 			this.fontLabel.AutoSize = true;
-			this.fontLabel.Location = new System.Drawing.Point(18, 118);
+			this.fontLabel.Location = new System.Drawing.Point(18, 112);
 			this.fontLabel.Name = "fontLabel";
 			this.fontLabel.Size = new System.Drawing.Size(46, 20);
 			this.fontLabel.TabIndex = 10;
@@ -168,7 +169,7 @@
 			// spaceBeforeSpinner
 			// 
 			this.spaceBeforeSpinner.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.spaceBeforeSpinner.Location = new System.Drawing.Point(169, 222);
+			this.spaceBeforeSpinner.Location = new System.Drawing.Point(169, 236);
 			this.spaceBeforeSpinner.Name = "spaceBeforeSpinner";
 			this.spaceBeforeSpinner.Size = new System.Drawing.Size(108, 31);
 			this.spaceBeforeSpinner.TabIndex = 7;
@@ -178,7 +179,7 @@
 			// spaceAfterSpinner
 			// 
 			this.spaceAfterSpinner.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.spaceAfterSpinner.Location = new System.Drawing.Point(169, 258);
+			this.spaceAfterSpinner.Location = new System.Drawing.Point(169, 272);
 			this.spaceAfterSpinner.Name = "spaceAfterSpinner";
 			this.spaceAfterSpinner.Size = new System.Drawing.Size(108, 31);
 			this.spaceAfterSpinner.TabIndex = 8;
@@ -191,7 +192,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.previewBox.BackColor = System.Drawing.Color.White;
 			this.previewBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-			this.previewBox.Location = new System.Drawing.Point(296, 222);
+			this.previewBox.Location = new System.Drawing.Point(296, 236);
 			this.previewBox.Name = "previewBox";
 			this.previewBox.Size = new System.Drawing.Size(346, 107);
 			this.previewBox.TabIndex = 18;
@@ -202,7 +203,7 @@
 			// 
 			this.cancelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-			this.cancelButton.Location = new System.Drawing.Point(526, 510);
+			this.cancelButton.Location = new System.Drawing.Point(526, 540);
 			this.cancelButton.Name = "cancelButton";
 			this.cancelButton.Size = new System.Drawing.Size(116, 38);
 			this.cancelButton.TabIndex = 10;
@@ -213,7 +214,7 @@
 			// 
 			this.okButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.okButton.DialogResult = System.Windows.Forms.DialogResult.OK;
-			this.okButton.Location = new System.Drawing.Point(404, 510);
+			this.okButton.Location = new System.Drawing.Point(404, 540);
 			this.okButton.Name = "okButton";
 			this.okButton.Size = new System.Drawing.Size(116, 38);
 			this.okButton.TabIndex = 9;
@@ -227,7 +228,7 @@
 			this.namesBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this.namesBox.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.namesBox.FormattingEnabled = true;
-			this.namesBox.Location = new System.Drawing.Point(18, 514);
+			this.namesBox.Location = new System.Drawing.Point(18, 544);
 			this.namesBox.Name = "namesBox";
 			this.namesBox.Size = new System.Drawing.Size(121, 33);
 			this.namesBox.TabIndex = 21;
@@ -239,6 +240,7 @@
 			this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+			this.panel1.Controls.Add(this.ignoredBox);
 			this.panel1.Controls.Add(this.optionsGroup);
 			this.panel1.Controls.Add(this.spacingLabel);
 			this.panel1.Controls.Add(this.spacingSpinner);
@@ -262,8 +264,20 @@
 			this.panel1.Location = new System.Drawing.Point(8, 40);
 			this.panel1.Name = "panel1";
 			this.panel1.Padding = new System.Windows.Forms.Padding(15, 20, 15, 9);
-			this.panel1.Size = new System.Drawing.Size(660, 560);
+			this.panel1.Size = new System.Drawing.Size(660, 590);
 			this.panel1.TabIndex = 25;
+			// 
+			// ignoredBox
+			// 
+			this.ignoredBox.AutoSize = true;
+			this.ignoredBox.Location = new System.Drawing.Point(169, 197);
+			this.ignoredBox.Name = "ignoredBox";
+			this.ignoredBox.Size = new System.Drawing.Size(170, 24);
+			this.ignoredBox.TabIndex = 31;
+			this.ignoredBox.Text = "Disable spell check";
+			this.tooltip.SetToolTip(this.ignoredBox, "Disable spell check for selected text");
+			this.ignoredBox.UseVisualStyleBackColor = true;
+			this.ignoredBox.CheckedChanged += new System.EventHandler(this.ChangeIgnored);
 			// 
 			// optionsGroup
 			// 
@@ -273,7 +287,7 @@
 			this.optionsGroup.Controls.Add(this.pageColorLink);
 			this.optionsGroup.Controls.Add(this.darkBox);
 			this.optionsGroup.Controls.Add(this.pageColorBox);
-			this.optionsGroup.Location = new System.Drawing.Point(22, 353);
+			this.optionsGroup.Location = new System.Drawing.Point(22, 383);
 			this.optionsGroup.Name = "optionsGroup";
 			this.optionsGroup.Size = new System.Drawing.Size(619, 151);
 			this.optionsGroup.TabIndex = 30;
@@ -328,7 +342,7 @@
 			// spacingLabel
 			// 
 			this.spacingLabel.AutoSize = true;
-			this.spacingLabel.Location = new System.Drawing.Point(18, 301);
+			this.spacingLabel.Location = new System.Drawing.Point(18, 315);
 			this.spacingLabel.Name = "spacingLabel";
 			this.spacingLabel.Size = new System.Drawing.Size(71, 20);
 			this.spacingLabel.TabIndex = 29;
@@ -338,7 +352,7 @@
 			// spacingSpinner
 			// 
 			this.spacingSpinner.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.spacingSpinner.Location = new System.Drawing.Point(169, 295);
+			this.spacingSpinner.Location = new System.Drawing.Point(169, 309);
 			this.spacingSpinner.Name = "spacingSpinner";
 			this.spacingSpinner.Size = new System.Drawing.Size(108, 31);
 			this.spacingSpinner.TabIndex = 28;
@@ -348,7 +362,7 @@
 			// styleTypeLabel
 			// 
 			this.styleTypeLabel.AutoSize = true;
-			this.styleTypeLabel.Location = new System.Drawing.Point(18, 68);
+			this.styleTypeLabel.Location = new System.Drawing.Point(18, 69);
 			this.styleTypeLabel.Name = "styleTypeLabel";
 			this.styleTypeLabel.Size = new System.Drawing.Size(86, 20);
 			this.styleTypeLabel.TabIndex = 27;
@@ -628,7 +642,7 @@
 			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.CancelButton = this.cancelButton;
-			this.ClientSize = new System.Drawing.Size(675, 608);
+			this.ClientSize = new System.Drawing.Size(675, 638);
 			this.Controls.Add(this.mainTools);
 			this.Controls.Add(this.panel1);
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
@@ -704,5 +718,6 @@
 		private UI.MoreLinkLabel pageColorLink;
 		private System.Windows.Forms.ToolTip tooltip;
 		private System.Windows.Forms.Label statusLabel;
+		private System.Windows.Forms.CheckBox ignoredBox;
 	}
 }

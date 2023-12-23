@@ -51,7 +51,7 @@ namespace River.OneMoreAddIn
 			=> await factory.Run<AddFormulaCommand>();
 
 
-		[Command("ribEmojiButton_Label", Keys.None, "ribPageMenu")]
+		[Command("ribEmojiButton_Label", Keys.None, "ribEditMenu")]
 		public async Task EmojiCmd(IRibbonControl control)
 			=> await factory.Run<EmojiCommand>();
 
@@ -198,6 +198,12 @@ namespace River.OneMoreAddIn
 		[Command("ribCopyAcrossButton_Label", Keys.None, "ribTableMenu")]
 		public async Task CopyAcrossCmd(IRibbonControl control)
 			=> await factory.Run<FillCellsCommand>(FillCells.CopyAcross);
+
+
+
+		[Command("ribCopyAsTextButton_Label", Keys.None, "ribEditMenu")]
+		public async Task CopyAsTextCmd(IRibbonControl control)
+			=> await factory.Run<CopyAsTextCommand>();
 
 
 		[Command("ribCopyDownButton_Label", Keys.None, "ribTableMenu")]
@@ -741,6 +747,10 @@ namespace River.OneMoreAddIn
 			=> await factory.Run<SearchAndReplaceCommand>();
 
 
+		[Command("ribSearchHashtagsButton_Label", Keys.Alt | Keys.F9, "ribSearchMenu")]
+		public async Task SearchHashtagsCmd(IRibbonControl control)
+			=> await factory.Run<HashtagCommand>();
+
 		public async Task SearchWebCmd(IRibbonControl control)
 			=> await factory.Run<SearchWebCommand>(control.Tag); // tag=engine
 
@@ -817,6 +827,11 @@ namespace River.OneMoreAddIn
 		[Command("ribSplitTableButton_Label", Keys.None, "ribTableMenu")]
 		public async Task SplitTableCmd(IRibbonControl control)
 			=> await factory.Run<SplitTableCommand>();
+
+
+		[Command("ribStackBackgroundImagesButton_Label", Keys.None, "ribImagesMenu")]
+		public async Task StackBackgroundImagesCmd(IRibbonControl control)
+			=> await factory.Run<StackBackgroundImagesCommand>();
 
 
 		[Command("ribStartBiLinkButton_Label", Keys.None, "ribReferencesMenu")]

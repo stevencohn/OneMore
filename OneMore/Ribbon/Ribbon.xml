@@ -294,6 +294,12 @@
                 getScreentip="GetRibbonScreentip"
                 onAction="CopyAsMarkdownCmd"/>
               <button
+                id="ribCopyAsTextButton"
+                imageMso="Copy"
+                getLabel="GetRibbonLabel"
+                getScreentip="GetRibbonScreentip"
+                onAction="CopyAsTextCmd"/>
+              <button
                 id="ribDisableSpellCheckButton"
                 image="NoSpellCheck"
                 getLabel="GetRibbonLabel"
@@ -317,6 +323,12 @@
                 getLabel="GetRibbonLabel"
                 getScreentip="GetRibbonScreentip"
                 onAction="IncreaseFontSizeCmd"/>
+              <button
+                id="ribEmojiButton"
+                imageMso="ShapeSmileyFace"
+                getLabel="GetRibbonLabel"
+                getScreentip="GetRibbonScreentip"
+                onAction="EmojiCmd"/>
               <button
                 id="ribDuplicateLineButton"
                 imageMso="PasteDuplicate"
@@ -472,6 +484,12 @@
                 getLabel="GetRibbonLabel"
                 getScreentip="GetRibbonScreentip"
                 onAction="ResizeImagesCmd"/>
+              <button
+                id="ribStackBackgroundImagesButton"
+                imageMso="GroupBorder"
+                getLabel="GetRibbonLabel"
+                getScreentip="GetRibbonScreentip"
+                onAction="StackBackgroundImagesCmd"/>
             </menu>
             <menu id="ribNumberingMenu" getLabel="GetRibbonLabel" imageMso="Numbering" showImage="true">
               <button
@@ -512,12 +530,6 @@
                 getLabel="GetRibbonLabel"
                 getScreentip="GetRibbonScreentip"
                 onAction="ArrangeContainersCmd"/>
-              <button
-                id="ribEmojiButton"
-                imageMso="DataGraphicIconSet"
-                getLabel="GetRibbonLabel"
-                getScreentip="GetRibbonScreentip"
-                onAction="EmojiCmd"/>
               <button
                 id="ribCaptionAttachmentsButton"
                 imageMso="CaptionInsert"
@@ -728,6 +740,12 @@
                 getLabel="GetRibbonLabel"
                 getScreentip="GetRibbonScreentip"
                 onAction="SearchCmd"/>
+              <button
+                id="ribSearchHashtagsButton"
+                getImage="GetRibbonImageByID"
+                getLabel="GetRibbonLabel"
+                getScreentip="GetRibbonScreentip"
+                onAction="SearchHashtagsCmd"/>
               <button
                 id="ribTaggingButton"
                 image="Label"

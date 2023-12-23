@@ -441,6 +441,10 @@ OneNote zamknie się automatycznie</value>
     <value>Podczas kolorowania kodu zawsze stosuj następujące czcionki</value>
     <comment>checkbox</comment>
   </data>
+  <data name="ColorizeSheet_enabledLabel" xml:space="preserve">
+    <value>Włączone języki</value>
+    <comment>label</comment>
+  </data>
   <data name="ColorizeSheet_font2Label.Text" xml:space="preserve">
     <value>Wtórny</value>
     <comment>label</comment>
@@ -880,11 +884,11 @@ Czcionka ostatniej kolumny</value>
     <comment>emoji</comment>
   </data>
   <data name="EmojiDialog.Text" xml:space="preserve">
-    <value>Tytułowe emotikony</value>
+    <value>Wstaw emotikony</value>
     <comment>dialog title</comment>
   </data>
   <data name="EmojiDialog_introLabel.Text" xml:space="preserve">
-    <value>Wybierz emotikony lub więcej, aby dodać je do tytułu strony</value>
+    <value>Wybierz co najmniej jeden emoji, który chcesz wstawić</value>
     <comment>instructions</comment>
   </data>
   <data name="Error_BodyContext" xml:space="preserve">
@@ -954,6 +958,18 @@ Plik OneNote (* .o)</value>
   <data name="Favorites_unknown" xml:space="preserve">
     <value>Strona nie została już znaleziona; mógł zostać usunięty</value>
     <comment>tooltip</comment>
+  </data>
+  <data name="FavoritesDialog_addButton.Text" xml:space="preserve">
+    <value>Dodaj bieżącą stronę</value>
+    <comment>context menu item</comment>
+  </data>
+  <data name="FavoritesDialog_checkButton.Text" xml:space="preserve">
+    <value>Sprawdź Ulubione</value>
+    <comment>context menu item</comment>
+  </data>
+  <data name="FavoritesDialog_manageButton.Text" xml:space="preserve">
+    <value>Zarządzaj ulubionymi</value>
+    <comment>context menu item</comment>
   </data>
   <data name="FavoritesFilename" xml:space="preserve">
     <value>Favorites.xml</value>
@@ -1106,6 +1122,26 @@ Symbole: PI, E</value>
   <data name="HasActiveMedia" xml:space="preserve">
     <value>Nie można wywołać poleceń OneMore, gdy aktywne jest nagrywanie. Zatrzymaj nagrywanie i spróbuj ponownie.</value>
   </data>
+  <data name="HashtagDialogs_introLabel.Text" xml:space="preserve">
+    <value>Zacznij wpisywać dowolną część hashtagu lub * dla wszystkich</value>
+    <comment>label</comment>
+  </data>
+  <data name="HashtagSheet_disabledBox" xml:space="preserve">
+    <value>Wyłącz usługę hashtagów. Spowoduje to również wyłączenie wyszukiwania hashtagów.</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="HashtagSheet_intervalLabel" xml:space="preserve">
+    <value>Skanuj hashtagi co</value>
+    <comment>label</comment>
+  </data>
+  <data name="HashtagSheet_introTitle" xml:space="preserve">
+    <value>Dostosuj zaawansowane opcje usługi skanera hashtagów</value>
+    <comment>label</comment>
+  </data>
+  <data name="HashtagSheet_Title" xml:space="preserve">
+    <value>Hashtagi</value>
+    <comment>sheet title</comment>
+  </data>
   <data name="HighlightFormulaCommand_NoFormulas" xml:space="preserve">
     <value>Na tej stronie nie znaleziono formuł</value>
     <comment>highlight command message</comment>
@@ -1137,6 +1173,10 @@ Symbole: PI, E</value>
   <data name="ImageSheet_plantRemoveBox.Text" xml:space="preserve">
     <value>Usuń tekst PlantUML i umieść go w obrazie</value>
     <comment>checkbox</comment>
+  </data>
+  <data name="ImageSheet_plantUriLabel.Text" xml:space="preserve">
+    <value>Adres serwera PlantUML (pozostaw puste, aby użyć adresu domyślnego)</value>
+    <comment>label</comment>
   </data>
   <data name="ImagesSheet_imageBrowser" xml:space="preserve">
     <value>Przeglądarka obrazów</value>
@@ -1376,8 +1416,17 @@ Symbole: PI, E</value>
     <value>Spis treści</value>
     <comment>dialog title</comment>
   </data>
+  <data name="InsertTocDialog_locationBox.Text" xml:space="preserve">
+    <value>Na górze strony
+Przy bieżącym kursorze</value>
+    <comment>combobox</comment>
+  </data>
+  <data name="InsertTocDialog_locationLabel.Text" xml:space="preserve">
+    <value>Wstaw lokalizację</value>
+    <comment>label</comment>
+  </data>
   <data name="InsertTocDialog_notebookRadio.Text" xml:space="preserve">
-    <value>Dodaj stronę z tabelą sekcji w tym notebooku</value>
+    <value>Nowa strona z indeksem działów w tym zeszycie</value>
     <comment>radio</comment>
   </data>
   <data name="InsertTocDialog_pageRadio.Text" xml:space="preserve">
@@ -1397,8 +1446,23 @@ Symbole: PI, E</value>
     <comment>checkbox</comment>
   </data>
   <data name="InsertTocDialog_sectionRadio.Text" xml:space="preserve">
-    <value>Dodaj stronę z tabelą stron w tej sekcji</value>
+    <value>Nowa strona z indeksem stron w tym dziale</value>
     <comment>radio</comment>
+  </data>
+  <data name="InsertTocDialog_styleBox.Text" xml:space="preserve">
+    <value>Standardowy tytuł strony
+Standardowy nagłówek 1
+Standardowy nagłówek 2
+Standardowy nagłówek 3
+Niestandardowy tytuł strony
+Nagłówek niestandardowy 1
+Nagłówek niestandardowy 2
+Nagłówek niestandardowy 3</value>
+    <comment>cobobox</comment>
+  </data>
+  <data name="InsertTocDialog_styleLabel.Text" xml:space="preserve">
+    <value>Styl tytułu</value>
+    <comment>label</comment>
   </data>
   <data name="InsertTocDialog_topBox.Text" xml:space="preserve">
     <value>Dodaj link do każdego nagłówku, aby przejść do góry strony</value>
@@ -1743,7 +1807,7 @@ Odroczony</value>
     <comment>color popup dialog title</comment>
   </data>
   <data name="PageColorDialog_applyThemeBox.Text" xml:space="preserve">
-    <value>Zastosuj style do tej strony</value>
+    <value>Zastosuj style i kolor strony</value>
     <comment>checkbox</comment>
   </data>
   <data name="PageColorDialog_contrastTooltip" xml:space="preserve">
@@ -1773,6 +1837,12 @@ Odroczony</value>
   <data name="PageColorDialog_omLabel" xml:space="preserve">
     <value>Kliknij tutaj, aby wybrać predefiniowany kolor</value>
     <comment>label</comment>
+  </data>
+  <data name="PageColorDialog_scopeBox.Text" xml:space="preserve">
+    <value>Aplikuj na tę stronę
+Zastosuj się do tej sekcji
+Zastosuj do tego notatnika</value>
+    <comment>combobox</comment>
   </data>
   <data name="PasteCellsCommand_NoContent" xml:space="preserve">
     <value>Brak treści do pasty; skopiuj jedną lub więcej komórek tabeli do pasty</value>
@@ -2295,6 +2365,10 @@ Wybierz Nie, aby zachować jedną pustą linię między akapitami</value>
     <value>Dotyczy</value>
     <comment>label override</comment>
   </data>
+  <data name="ResizeImagesDialog_autoSizeRadio.Text" xml:space="preserve">
+    <value>Rozmiar auta</value>
+    <comment>radio</comment>
+  </data>
   <data name="ResizeImagesDialog_heightLabel.Text" xml:space="preserve">
     <value>Wzrost</value>
     <comment>label</comment>
@@ -2310,7 +2384,9 @@ Nie powiększaj mniejszych obrazów</value>
     <comment>combobox</comment>
   </data>
   <data name="ResizeImagesDialog_noImages" xml:space="preserve">
-    <value>Na tej stronie nie znaleziono żadnych obrazów</value>
+    <value>Na tej stronie nie znaleziono żadnych obrazów.
+
+Obrazy muszą znajdować się w kontenerze konspektu. Nie można regulować obrazów tła.</value>
     <comment>message box</comment>
   </data>
   <data name="ResizeImagesDialog_pctRadio.Text" xml:space="preserve">
@@ -2328,6 +2404,10 @@ Nie powiększaj mniejszych obrazów</value>
   <data name="ResizeImagesDialog_previewGroup.Text" xml:space="preserve">
     <value>Podgląd {0}</value>
     <comment>group box for single image</comment>
+  </data>
+  <data name="ResizeImagesDialog_repositionBox.Text" xml:space="preserve">
+    <value>Zmień położenie obrazów tła</value>
+    <comment>checkbox</comment>
   </data>
   <data name="ResizeImagesDialog_resetLinkLabel.Text" xml:space="preserve">
     <value>Zresetuj wartości</value>
@@ -2597,6 +2677,14 @@ Polaroid</value>
     <value>Skopiuj wybraną zawartość jako przecenę</value>
     <comment>ribbon edit</comment>
   </data>
+  <data name="ribCopyAsTextButton_Label" xml:space="preserve">
+    <value>Skopiuj jako tekst</value>
+    <comment>ribbon edit</comment>
+  </data>
+  <data name="ribCopyAsTextButton_Screentip" xml:space="preserve">
+    <value>Skopiuj wybrany kontekst jako zwykły tekst</value>
+    <comment>ribbon edit</comment>
+  </data>
   <data name="ribCopyDownButton_Label" xml:space="preserve">
     <value>Skopiować</value>
     <comment>ribbon</comment>
@@ -2754,12 +2842,12 @@ Polaroid</value>
     <comment>ribbon item screentip</comment>
   </data>
   <data name="ribEmojiButton_Label" xml:space="preserve">
-    <value>Dodaj emoji tytułu strony</value>
-    <comment>Ribbon OneMore menu item, Extras... EDIT</comment>
+    <value>Wstaw emoji</value>
+    <comment>ribbon edit</comment>
   </data>
   <data name="ribEmojiButton_Screentip" xml:space="preserve">
-    <value>Przygotuj tytuł strony za pomocą emotikonów</value>
-    <comment>ribbon page</comment>
+    <value>Wstaw jeden lub więcej emoji</value>
+    <comment>ribbon edit</comment>
   </data>
   <data name="ribEnableSpellCheckButton_Label" xml:space="preserve">
     <value>Włącz sprawdzanie pisowni</value>
@@ -2825,6 +2913,10 @@ Polaroid</value>
     <value>Wypełnij (Ctrl + D)</value>
     <comment>ribbon</comment>
   </data>
+  <data name="ribFindHashtagsButton_Label" xml:space="preserve">
+    <value>Znajdź hashtagi</value>
+    <comment>ribbon references</comment>
+  </data>
   <data name="ribFinishBiLinkButton_Label" xml:space="preserve">
     <value>Zakończ połączenie dwukierunkowe.</value>
     <comment>ribbon item</comment>
@@ -2866,11 +2958,11 @@ Polaroid</value>
     <comment>Ribbon OneMore menu item, Formula...</comment>
   </data>
   <data name="ribHighlightLastButton_Label" xml:space="preserve">
-    <value>Podświetl tekst najnowszym zakreślaczem</value>
+    <value>Powtórz obracanie koloru zakreślacza</value>
     <comment>ribbon edit</comment>
   </data>
   <data name="ribHighlightNoneButton_Label" xml:space="preserve">
-    <value>Usuń zaznaczenie</value>
+    <value>Usuń wyróżnienie</value>
     <comment>ribbon edit</comment>
   </data>
   <data name="ribImagesMenu_Label" xml:space="preserve">
@@ -3491,6 +3583,14 @@ Polaroid</value>
     <value>Szukaj stron ze słów kluczowych i skopiuj / Przenieś do innej sekcji (ALT + F)</value>
     <comment>ribbon item</comment>
   </data>
+  <data name="ribSearchHashtagsButton_Label" xml:space="preserve">
+    <value>Szukaj hashtagów</value>
+    <comment>ribbon search</comment>
+  </data>
+  <data name="ribSearchHashtagsButton_Screentip" xml:space="preserve">
+    <value>Szukaj hashtagów</value>
+    <comment>ribbon search</comment>
+  </data>
   <data name="ribSearchMenu_Label" xml:space="preserve">
     <value>Wyszukaj i tag</value>
     <comment>ribbon menu item</comment>
@@ -3602,6 +3702,14 @@ Polaroid</value>
   <data name="ribSplitTableButton_Screentip" xml:space="preserve">
     <value>Podziel tabelę w bieżącym wierszu</value>
     <comment>ribbon table</comment>
+  </data>
+  <data name="ribStackBackgroundImagesButton_Label" xml:space="preserve">
+    <value>Stos obrazów tła</value>
+    <comment>ribbon images</comment>
+  </data>
+  <data name="ribStackBackgroundImagesButton_Screentip" xml:space="preserve">
+    <value>Zmień położenie obrazów tła z góry na dół</value>
+    <comment>ribbon images</comment>
   </data>
   <data name="ribStartBiLinkButton_Label" xml:space="preserve">
     <value>Rozpocznij połączenie dwukierunkowe.</value>
@@ -3905,6 +4013,10 @@ Wyszukiwarki pojawią się w menu kontekstowym strony, kliknij prawym przyciskie
     <value>Ogólne opcje</value>
     <comment>tree node</comment>
   </data>
+  <data name="SettingsDialog_hashtagsNode_Text" xml:space="preserve">
+    <value>Hashtagi</value>
+    <comment>treenode</comment>
+  </data>
   <data name="SettingsDialog_highlightNode.Text" xml:space="preserve">
     <value>Najlepsze motywy</value>
     <comment>treenode</comment>
@@ -4182,6 +4294,10 @@ Notatniki</value>
     <value>Ustaw wszystkie kolumny jako stałej szerokości</value>
     <comment>checkbox</comment>
   </data>
+  <data name="StackBackgroundImagesCommand_noImages" xml:space="preserve">
+    <value>Strona musi zawierać dwa lub więcej obrazów tła</value>
+    <comment>error message</comment>
+  </data>
   <data name="StartupFailureMessage" xml:space="preserve">
     <value>Onemore nie udało się połączyć z OneNote, zobacz plik dziennika dla szczegółów wyjątków</value>
     <comment>message box</comment>
@@ -4230,6 +4346,10 @@ Notatniki</value>
   <data name="StyleDialog_fontLabel.Text" xml:space="preserve">
     <value>Czcionka:</value>
     <comment>label</comment>
+  </data>
+  <data name="StyleDialog_ignoredBox.Text" xml:space="preserve">
+    <value>Wyłącz sprawdzanie pisowni</value>
+    <comment>checkbox</comment>
   </data>
   <data name="StyleDialog_italicButton.Text" xml:space="preserve">
     <value>italski</value>
@@ -4529,6 +4649,9 @@ W tej sekcji</value>
   <data name="word_Alias" xml:space="preserve">
     <value>Alias</value>
   </data>
+  <data name="word_All" xml:space="preserve">
+    <value>Wszystko</value>
+  </data>
   <data name="word_Apply" xml:space="preserve">
     <value>Stosować</value>
   </data>
@@ -4616,6 +4739,9 @@ W tej sekcji</value>
   <data name="word_Limit" xml:space="preserve">
     <value>Limit</value>
   </data>
+  <data name="word_Minutes" xml:space="preserve">
+    <value>Minuty</value>
+  </data>
   <data name="word_Move" xml:space="preserve">
     <value>Ruszaj się</value>
   </data>
@@ -4678,6 +4804,9 @@ W tej sekcji</value>
   </data>
   <data name="word_Scope" xml:space="preserve">
     <value>Zakres</value>
+  </data>
+  <data name="word_Search" xml:space="preserve">
+    <value>Szukaj</value>
   </data>
   <data name="word_Seconds" xml:space="preserve">
     <value>sekundy</value>

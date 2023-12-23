@@ -4,8 +4,12 @@
 
 namespace River.OneMoreAddIn.Commands
 {
+	using Microsoft.Win32;
+	using System;
 	using System.Diagnostics;
+	using System.IO;
 	using System.Reflection;
+	using System.Text;
 	using System.Threading.Tasks;
 
 
@@ -32,6 +36,7 @@ namespace River.OneMoreAddIn.Commands
 				moduledesc = $"{module.FileName} ({module.FileVersionInfo.ProductVersion})";
 			}
 
+			logger.WriteLine($"Windows...: {GetWindowsProductName()}");
 			logger.WriteLine($"ONENOTE...: {moduledesc}");
 			logger.WriteLine($"Addin path: {Assembly.GetExecutingAssembly().Location}");
 			logger.WriteLine($"Data path.: {PathHelper.GetAppDataPath()}");
@@ -97,6 +102,70 @@ namespace River.OneMoreAddIn.Commands
 			logger.End();
 
 			await Task.Yield();
+		}
+
+
+		public static string GetWindowsProductName()
+		{
+			var name = new StringBuilder();
+
+			try
+			{
+				// on 32 bit Windows this will read the 32 bit hive instead
+				using var hive = RegistryKey.OpenBaseKey(RegistryHive.LocalMachine, RegistryView.Registry64);
+				using var key = hive.OpenSubKey(@"Software\Microsoft\Windows NT\CurrentVersion", false);
+
+				var kernel = FileVersionInfo.GetVersionInfo(
+					Path.Combine(Environment.SystemDirectory, "Kernel32.dll"));
+
+				// Kernel32.dll on Windows 11 has Product Version >= 10.0.22000.120
+				if (kernel.ProductMajorPart == 10 && kernel.ProductBuildPart >= 22000)
+				{
+					name.Append("Windows 11");
+
+					var editionID = key.GetValue("EditionID"); // e.g. "Professional"
+					if (editionID is string edition && !string.IsNullOrWhiteSpace(edition))
+					{
+						name.Append($" {edition}");
+					}
+				}
+				else
+				{
+					// "Microsoft Windows XP"
+					// "Windows 7 Ultimate"
+					// "Windows 10 Pro"  (same string on Windows 11. Microsoft SUCKS!)
+					name.Append((string)key.GetValue("ProductName"));
+				}
+
+				// see: https://en.wikipedia.org/wiki/Windows_10_version_history
+
+				// Windows 10 latest release --> "21H1"
+				// Windows 11 first  release --> "21H2"
+				var displayVersion = key.GetValue("DisplayVersion");
+				if (displayVersion is string display && !string.IsNullOrWhiteSpace(display))
+				{
+					name.Append($", Version {display}");
+				}
+				else
+				{
+					// Windows 10 older releases --> "2009" (invalid if DisplayVersion exists)
+					var releaseID = key.GetValue("ReleaseId");
+					if (releaseID is string release && !string.IsNullOrWhiteSpace(release))
+					{
+						name.Append($", Version {release}");
+					}
+				}
+
+				name.Append($", Build {kernel.ProductBuildPart}");
+				name.Append(Environment.Is64BitOperatingSystem ? ", 64 bit" : ", 32 bit");
+
+			}
+			catch (Exception exc)
+			{
+				name.Append(exc.Message);
+			}
+
+			return name.ToString();
 		}
 	}
 }

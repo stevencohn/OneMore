@@ -35,6 +35,7 @@ namespace River.OneMoreAddIn.Commands
 					"noLabel",
 					"expander.Title=word_Options",
 					"currentThemeLabel",
+					"scopeBox",
 					"loadThemeLink",
 					"applyThemeBox",
 					"okButton=word_OK",
@@ -49,6 +50,7 @@ namespace River.OneMoreAddIn.Commands
 
 			darkMode = Office.IsBlackThemeEnabled();
 			statusLabel.Text = string.Empty;
+			scopeBox.SelectedIndex = 0;
 		}
 
 
@@ -147,6 +149,14 @@ namespace River.OneMoreAddIn.Commands
 		public Color Color { get; private set; }
 
 
+		public OneNote.Scope Scope => scopeBox.SelectedIndex switch
+		{
+			1 => OneNote.Scope.Pages,		// Apply to pages in this section
+			2 => OneNote.Scope.Sections,	// Apply to pages in this notebook
+			_ => OneNote.Scope.Self			// Apply to this page
+		};
+
+
 		public string ThemeKey => theme.Key;
 
 
@@ -158,10 +168,8 @@ namespace River.OneMoreAddIn.Commands
 
 		public void HideOptions()
 		{
-			Height -= expander.Height - statusLabel.Height;
-			expander.Visible = false;
-			statusLabel.Visible = false;
-			optionsAvailable = false;
+			Height -= detailPanel.Height;
+			detailPanel.Visible = false;
 		}
 
 
@@ -260,7 +268,6 @@ namespace River.OneMoreAddIn.Commands
 		{
 			CheckContrast();
 		}
-
 
 
 		private void LoadTheme(object sender, LinkLabelLinkClickedEventArgs e)

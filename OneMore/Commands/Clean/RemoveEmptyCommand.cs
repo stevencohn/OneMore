@@ -9,6 +9,7 @@ namespace River.OneMoreAddIn.Commands
 	using System.Collections.Generic;
 	using System.Globalization;
 	using System.Linq;
+	using System.Text.RegularExpressions;
 	using System.Threading.Tasks;
 	using System.Windows.Forms;
 	using System.Xml.Linq;
@@ -122,7 +123,7 @@ namespace River.OneMoreAddIn.Commands
 			var elements = range
 				.Select(e => e.Parent)
 				.Distinct()
-				.Where(e => e.TextValue().Trim().Length == 0)
+				.Where(e => e.TextValue().Trim().Length == 0 && !e.IsMathML())
 				.ToList();
 
 			if (elements?.Any() != true)

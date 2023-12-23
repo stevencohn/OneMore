@@ -2,35 +2,44 @@
 // Copyright © 2016 Steven M Cohn.  All rights reserved.
 //************************************************************************************************
 
+#pragma warning disable S6605 // Collection-specific "Exists" method should be used
+
 namespace River.OneMoreAddIn.Commands
 {
-	using NStandard;
 	using River.OneMoreAddIn.Models;
 	using River.OneMoreAddIn.Styles;
 	using System;
 	using System.Collections.Generic;
 	using System.Linq;
+	using System.Text.RegularExpressions;
 	using System.Threading.Tasks;
 	using System.Windows.Forms;
 	using System.Xml.Linq;
-	using Resx = River.OneMoreAddIn.Properties.Resources;
+	using Resx = Properties.Resources;
 
 
 	[CommandService]
 	internal class InsertTocCommand : Command
 	{
-		private const string TocMeta = "omToc";
-		// TODO: deprecated
-		private const string TocOptionsMeta = "omTocOptions";
+		public enum TitleStyles
+		{
+			StandardPageTitle,
+			StandardHeading1,
+			StandardHeading2,
+			StandardHeading3,
+			CustomPageTitle,
+			CustomHeading1,
+			CustomHeading2,
+			CustomHeading3
+		}
 
+
+		public const string TocMeta = "omToc";
 		private const string LongDash = "\u2015";
-
-		private const string RefreshStyle = "font-style:italic;font-size:9.0pt;color:#808080";
-		//private const string Indent8 = "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
-
+		private const string RefreshCmd = "onemore://InsertTocCommand/refresh";
+		private const string RefreshStyle = "font-weigth:normal;font-style:italic;font-size:9.0pt;color:#808080";
 		private const int MinProgress = 25;
 
-		private OneNote one;
 		private Style cite;
 		private UI.ProgressDialog progress;
 
@@ -42,56 +51,32 @@ namespace River.OneMoreAddIn.Commands
 
 		public override async Task Execute(params object[] args)
 		{
-			bool jumplinks;
-			bool alignlinks;
-
 			if (args.Length > 0 && args[0] is string refresh && refresh == "refresh")
 			{
-				jumplinks = args.Any(a => a as string == "links");
-				alignlinks = args.Any(a => a as string == "align");
-
-				if (await RefreshToc(jumplinks, alignlinks))
-				{
-					// successfully updated
-					return;
-				}
+				await RefreshTableOfContents(args);
+				return;
 			}
 
-			OneNote.Scope scope;
-			bool withPreviews;
-			bool withPages;
-
-			using var dialog = new InsertTocDialog();
+			using var dialog = MakeDialog();
 			if (dialog.ShowDialog(owner) == DialogResult.Cancel)
 			{
 				return;
 			}
 
-			scope = dialog.Scope;
-			jumplinks = dialog.TopLinks;
-			alignlinks = dialog.RightAlignTopLinks;
-			withPreviews = dialog.PreviewPages;
-			withPages = dialog.SectionPages;
-
 			try
 			{
-				using (one = new OneNote())
+				await (dialog.Scope switch
 				{
-					switch (scope)
-					{
-						case OneNote.Scope.Self:
-							await InsertToc(one.GetPage(), jumplinks, alignlinks);
-							break;
+					OneNote.Scope.Self =>
+						InsertTableOfContents(
+							dialog.AddTopLinks, dialog.RightAlign,
+							dialog.InsertHere, dialog.TitleStyle),
 
-						case OneNote.Scope.Pages:
-							await InsertPagesTable(withPreviews);
-							break;
+					OneNote.Scope.Pages =>
+						MakePageIndexPage(dialog.PreviewPages),
 
-						case OneNote.Scope.Sections:
-							await InsertSectionsTable(withPages, withPreviews);
-							break;
-					}
-				}
+					_ => MakeSectionIndexPage(dialog.SectionPages, dialog.PreviewPages)
+				});
 			}
 			catch (Exception exc)
 			{
@@ -100,62 +85,168 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		// TODO: deprecated!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-		//       This routine can be removed and just replaced with a direct call to InsertToc
-		//       from the main Execute method
-		private async Task<bool> RefreshToc(bool jumplinks, bool alignlinks)
+		// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+		#region InsertTableOfContents
+		private async Task RefreshTableOfContents(object[] args)
 		{
-			using (one = new OneNote(out var page, out var ns))
+			// expected arguments: [/links[/align][/top]/[/style`n]
+			// need to interpret URL with backwards compatibility...
+
+			var addTopLinks = false;
+			var rightAlign = false;
+			var insertHere = false;
+			var titleStyle = TitleStyles.StandardPageTitle;
+
+			for (var i = 1; i < args.Length; i++)
 			{
-				var meta = page.Root.Descendants(ns + "Meta")
-					.FirstOrDefault(e => e.Attribute("name").Value == TocMeta);
-
-				if (meta != null)
+				if (args[i] is string value)
 				{
-					// remove container OE so it can be regenerated
-					meta.Parent.Remove();
-					// regenerate TOC
-					await InsertToc(page, jumplinks, alignlinks);
-					return true;
+					if (value == "links")
+					{
+						addTopLinks = true;
+					}
+					else if (value == "align")
+					{
+						rightAlign = true;
+					}
+					else if (value == "here")
+					{
+						insertHere = true;
+					}
+					else if (value.StartsWith("style") && value.Length > 5)
+					{
+						Enum.TryParse(value.Substring(5), out titleStyle);
+					}
 				}
+			}
 
-				// TODO: deprecated...
-
-				meta = page.Root.Descendants(ns + "Meta")
-					.FirstOrDefault(e => e.Attribute("name").Value == TocOptionsMeta);
-
-				if (meta != null)
-				{
-					var parts = meta.Attribute("content").Value.Split(';');
-					var options = parts.Select(p => p.Split('=')).ToDictionary(s => s[0], s => s[1]);
-					jumplinks = options.ContainsKey("addTopLinks") && options["addTopLinks"] == "True";
-					alignlinks = options.ContainsKey("rightAlignTopLinks") && options["rightAlignTopLinks"] == "True";
-
-					meta.Parent.Remove();
-					await InsertToc(page, jumplinks, alignlinks);
-					return true;
-				}
-
-				return false;
+			try
+			{
+				await InsertTableOfContents(addTopLinks, rightAlign, insertHere, titleStyle);
+			}
+			catch (Exception exc)
+			{
+				logger.WriteLine($"error refreshing table of contents", exc);
 			}
 		}
 
 
-		// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+		private InsertTocDialog MakeDialog()
+		{
+			var dialog = new InsertTocDialog();
 
-		#region InsertHeadingsTable
+			using var one = new OneNote(out var page, out var ns, OneNote.PageDetail.Basic);
+			var meta = page.Root.Elements(ns + "Outline")
+				.Descendants(ns + "Meta")
+				.FirstOrDefault(e => e.Attribute("name") is XAttribute attr && attr.Value == TocMeta);
+
+			if (meta != null)
+			{
+				var cdata = meta.Parent.DescendantNodes().OfType<XCData>()
+					.FirstOrDefault(c => c.Value.Contains(RefreshCmd));
+
+				if (cdata != null)
+				{
+					var wrapper = cdata.GetWrapper();
+					var href = wrapper.Elements("a").Attributes("href").FirstOrDefault()?.Value;
+					if (href != null)
+					{
+						href = href.Substring(RefreshCmd.Length);
+						dialog.AddTopLinks = href.Contains("/links");
+						dialog.RightAlign = href.Contains("/align");
+						dialog.InsertHere = href.Contains("/here");
+
+						var match = Regex.Match(href, @"\/style(\d+)");
+						if (match.Success)
+						{
+							if (int.TryParse(match.Groups[1].Value, out var index))
+							{
+								dialog.TitleStyle = (TitleStyles)index;
+							}
+						}
+					}
+				}
+			}
+
+			return dialog;
+		}
+
+
 		/// <summary>
 		/// Inserts a table of contents at the top of the current page,
 		/// of all headings on the page
 		/// </summary>
-		/// <param name="jumplinks"></param>
+		/// <param name="addTopLinks"></param>
 		/// <param name="one"></param>
-		private async Task InsertToc(Page page, bool jumplinks, bool alignlinks)
+		private async Task InsertTableOfContents(
+			bool addTopLinks, bool rightAlign, bool insertHere, TitleStyles titleStyle)
 		{
+			using var one = new OneNote();
+			var page = one.GetPage(OneNote.PageDetail.Selection);
 			var ns = page.Namespace;
-			PageNamespace.Set(ns);
 
-			var top = page.Root.Elements(ns + "Outline")
+			if (!ValidatePage(one, page, ns, out var top, out var headings, out var titleID))
+			{
+				return;
+			}
+
+			// build new TOC...
+
+			PageNamespace.Set(ns);
+			var container = LocateInsertionPoint(page, ns, top, insertHere);
+			var title = MakeTitle(page, addTopLinks, rightAlign, insertHere, titleStyle);
+
+			var content = new XElement(ns + "OEChildren");
+			var index = 0;
+			// use the minimum indent level
+			var minlevel = headings.Min(e => e.Level);
+			var dark = page.GetPageColor(out _, out _).GetBrightness() < 0.5;
+
+			BuildHeadings(content, headings, ref index, minlevel, dark);
+
+			var table = new Table(ns, 3, 1) { BordersVisible = false };
+
+			var watt = container.Ancestors(ns + "Outline")
+				.Elements(ns + "Size").Attributes("width").FirstOrDefault();
+
+			if (watt != null && float.TryParse(watt.Value, out var width))
+			{
+				table.SetColumnWidth(0, Math.Max(width, 400) - 40);
+			}
+
+			table[0][0].SetContent(title);
+			table[1][0].SetContent(content);
+			table[2][0].SetContent(string.Empty);
+
+			container.Add(
+				new Meta(TocMeta, string.Empty),
+				table.Root
+				);
+
+			// add top-of-page link to each header...
+
+			if (addTopLinks)
+			{
+				AddTopLinksToHeadings(one, page, titleID, headings, rightAlign);
+			}
+			else
+			{
+				RemoveTopLinksFromHeadings(ns, headings);
+			}
+
+			await one.Update(page);
+		}
+
+
+		private bool ValidatePage(OneNote one, Page page, XNamespace ns,
+			out XElement top, out List<Heading> headings, out string titleID)
+		{
+			headings = null;
+			titleID = null;
+
+			top = page.Root
+				.Elements(ns + "Outline")
 				.FirstOrDefault(e => !e.Elements(ns + "Meta")
 					.Any(m => m.Attribute("name").Value == MetaNames.TaggingBank))?
 				.Element(ns + "OEChildren");
@@ -163,85 +254,176 @@ namespace River.OneMoreAddIn.Commands
 			if (top == null)
 			{
 				UIHelper.ShowError(Resx.InsertTocCommand_NoHeadings);
-				return;
+				return false;
 			}
 
-			var headings = page.GetHeadings(one);
+			headings = page.GetHeadings(one);
 			if (!headings.Any())
 			{
 				UIHelper.ShowError(Resx.InsertTocCommand_NoHeadings);
-				return;
+				return false;
 			}
 
-			// an anchor at the title OE is used in links to jump back to the top of the page...
-			var title = page.Root.Elements(ns + "Title").Elements(ns + "OE").FirstOrDefault();
-			if (title == null)
+			// need the title OE ID to make a link back to the top of the page
+			titleID = page.Root
+				.Elements(ns + "Title")
+				.Elements(ns + "OE")
+				.Attributes("objectID")
+				.FirstOrDefault()?.Value;
+
+			if (titleID == null)
 			{
 				UIHelper.ShowError(Resx.InsertTocCommand_NoHeadings);
-				return;
+				return false;
 			}
 
-			// erase existing TOC...
+			return true;
+		}
 
-			var meta = page.Root.Descendants(ns + "Meta")
-				.FirstOrDefault(e => e.Attribute("name") is XAttribute attr &&
-					(attr.Value == TocMeta || attr.Value == TocOptionsMeta));
 
-			meta?.Parent.Remove();
+		private XElement LocateInsertionPoint(
+			Page page, XNamespace ns, XElement top, bool insertHere)
+		{
+			XElement container;
 
-			// build new TOC...
+			var meta = top
+				.Descendants(ns + "Meta")
+				.FirstOrDefault(e =>
+					e.Attribute("name") is XAttribute attr && attr.Value == TocMeta);
 
-			var cmd = "onemore://InsertTocCommand/refresh";
-			if (jumplinks) cmd = $"{cmd}/links";
-			if (alignlinks) cmd = $"{cmd}/align";
+			if (meta == null)
+			{
+				// make new and add to page...
+
+				container = new XElement(ns + "OE");
+
+				if (insertHere)
+				{
+					page.AddNextParagraph(container);
+				}
+				else
+				{
+					top.AddFirst(container);
+				}
+			}
+			else
+			{
+				// reuse old and clear out to prepare for new table...
+
+				container = meta.Parent;
+				container.Elements().Remove();
+
+				// if user wants it at top of page, make sure that's where it is
+				if (!insertHere && container.ElementsBeforeSelf(ns + "OE").Any())
+				{
+					container.Remove();
+					top.AddFirst(container);
+				}
+				else if (insertHere)
+				{
+					if (page.GetSelectedElements() != null &&
+						page.SelectionScope != SelectionScope.Unknown)
+					{
+						container.Remove();
+						page.AddNextParagraph(container);
+					}
+				}
+			}
+
+			return container;
+		}
+
+
+		private XElement MakeTitle(
+			Page page,
+			bool addTopLinks, bool rightAlign, bool insertHere, TitleStyles titleStyle)
+		{
+			var cmd = RefreshCmd;
+			if (addTopLinks) cmd = $"{cmd}/links";
+			if (rightAlign) cmd = $"{cmd}/align";
+			if (insertHere) cmd = $"{cmd}/here";
+			cmd = $"{cmd}/style{(int)titleStyle}";
 
 			var refresh = $"<a href=\"{cmd}\"><span style='{RefreshStyle}'>{Resx.word_Refresh}</span></a>";
 
-			// be sure to emit this with ToRBGHtml() otherwise OneNote may normalize White/Black
-			// color names, removing them against Dark/Light backgrounds respectively
-			var textColor = page.GetBestTextColor();
-
-			// "Table of Contents" line
-			var toc = new Paragraph(
-				$"<span style='font-weight:bold'>{Resx.InsertTocCommand_TOC}</span> " +
-				$"<span style='{RefreshStyle}'>[{refresh}]</span>"
-				)
-				.SetStyle($"font-size:16.0pt;color:{textColor.ToRGBHtml()}");
-
-			// use the minimum intent level
-			var minlevel = headings.Min(e => e.Level);
-
-			var container = new XElement(ns + "OEChildren");
-			var index = 0;
-
-			var dark = page.GetPageColor(out _, out _).GetBrightness() < 0.5;
-			BuildHeadings(container, headings, ref index, minlevel, dark);
-
-			var table = new Table(ns, 3, 1) { BordersVisible = false };
-			table[0][0].SetContent(toc);
-			table[1][0].SetContent(container);
-			table[2][0].SetContent(string.Empty);
-
-			// insert the TOC at the top of the page
-			top.AddFirst(new XElement(ns + "OE",
-				new Meta(TocMeta, string.Empty),
-				table.Root)
+			var title = new Paragraph(
+				$"{Resx.InsertTocCommand_TOC} <span style='{RefreshStyle}'>[{refresh}]</span>"
 				);
 
-			// add top-of-page link to each header...
-
-			if (jumplinks)
+			if (titleStyle < TitleStyles.CustomPageTitle)
 			{
-				BuildJumpLinks(page, title, headings, alignlinks);
+				var standard = titleStyle switch
+				{
+					TitleStyles.StandardHeading1 => StandardStyles.Heading1,
+					TitleStyles.StandardHeading2 => StandardStyles.Heading2,
+					TitleStyles.StandardHeading3 => StandardStyles.Heading3,
+					_ => StandardStyles.PageTitle
+				};
+
+				var style = page.GetQuickStyle(standard);
+				title.SetQuickStyle(style.Index);
+			}
+			else
+			{
+				var provider = new ThemeProvider();
+				var styles = provider.Theme.GetStyles();
+				Style style = null;
+				if (titleStyle == TitleStyles.CustomPageTitle)
+				{
+					style = styles.Find(s => s.Name.EqualsICIC("Page Title"));
+				}
+				else
+				{
+					var index = titleStyle switch
+					{
+						TitleStyles.CustomHeading2 => 1,
+						TitleStyles.CustomHeading3 => 2,
+						_ => 0
+					};
+
+					var heads = styles.Where(s => s.StyleType == StyleType.Heading).ToArray();
+					if (index < heads.Length)
+					{
+						style = styles[index];
+					}
+				}
+
+				if (style != null)
+				{
+					title.SetStyle(style.ToCss());
+				}
+				else
+				{
+					// be sure to emit this with ToRBGHtml() otherwise OneNote may normalize White/Black
+					// color names, removing them against Dark/Light backgrounds respectively
+					var bestColor = page.GetBestTextColor();
+
+					title.SetStyle($"font-size:16.0pt;color:{bestColor.ToRGBHtml()}");
+				}
 			}
 
-			await one.Update(page);
+
+			return title;
 		}
 
 
 		private void BuildHeadings(
 			XElement container, List<Heading> headings, ref int index, int level, bool dark)
 		{
+			static string RemoveHyperlinks(string text)
+			{
+				// removes hyperlinks from the text of a heading so the TOC hyperlink can be applied
+				// clean up illegal directives; can be caused by using "Clip to OneNote" from Edge
+				var wrapper = new XCData(text).GetWrapper();
+				var links = wrapper.Elements("a").ToList();
+				foreach (var link in links)
+				{
+					link.ReplaceWith(link.Value);
+				}
+
+				return wrapper.ToString(SaveOptions.DisableFormatting);
+			}
+
 			while (index < headings.Count)
 			{
 				var heading = headings[index];
@@ -281,30 +463,21 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private string RemoveHyperlinks(string text)
+		private void AddTopLinksToHeadings(
+			OneNote one, Page page, string titleID,
+			List<Heading> headings, bool alignlinks)
 		{
-			// removes hyperlinks from the text of a heading so the TOC hyperlink can be applied
-
-			// clean up illegal directives; can be caused by using "Clip to OneNote" from Edge
-			var wrapper = new XCData(text).GetWrapper();
-			var links = wrapper.Elements("a").ToList();
-			foreach (var link in links)
-			{
-				link.ReplaceWith(link.Value);
-			}
-
-			return wrapper.ToString(SaveOptions.DisableFormatting);
-		}
-
-
-		private void BuildJumpLinks(
-			Page page, XElement title, List<Heading> headings, bool alignlinks)
-		{
-			var titleLink = one.GetHyperlink(page.PageId, title.Attribute("objectID").Value);
+			var titleLink = one.GetHyperlink(page.PageId, titleID);
 			var titleLinkText = $"<a href=\"{titleLink}\"><span " +
 				$"style='font-style:italic'>{Resx.InsertTocCommand_Top}</span></a>";
 
 			var ns = page.Namespace;
+
+			if ((alignlinks && !headings.Any(h => h.IsRightAligned)) ||
+				(!alignlinks && headings.Any(h => h.IsRightAligned)))
+			{
+				RemoveTopLinksFromHeadings(ns, headings);
+			}
 
 			foreach (var heading in headings)
 			{
@@ -338,14 +511,35 @@ namespace River.OneMoreAddIn.Commands
 				}
 			}
 		}
-		#endregion InsertHeadingsTable
+
+
+		private void RemoveTopLinksFromHeadings(XNamespace ns, List<Heading> headings)
+		{
+			foreach (var heading in headings)
+			{
+				if (heading.IsRightAligned)
+				{
+					var container = heading.Root.Ancestors(ns + "Table").First().Parent;
+					container.ReplaceWith(heading.Root);
+				}
+				else if (heading.HasTopLink)
+				{
+					heading.Root.Elements().Remove();
+					heading.Root.Add(new XElement(ns + "T", new XCData(heading.Text)));
+				}
+
+				heading.IsRightAligned = heading.HasTopLink = false;
+			}
+		}
+		#endregion InsertTableOfContents
 
 
 		// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-		#region InsertPagesTables
-		private async Task InsertPagesTable(bool withPreviews)
+		#region MakePageIndexPage
+		private async Task MakePageIndexPage(bool withPreviews)
 		{
+			using var one = new OneNote();
 			var section = one.GetSection();
 			var sectionId = section.Attribute("ID").Value;
 
@@ -373,7 +567,7 @@ namespace River.OneMoreAddIn.Commands
 
 			try
 			{
-				BuildSectionToc(container, elements.ToArray(), ref index, 1, withPreviews);
+				BuildSectionToc(one, container, elements.ToArray(), ref index, 1, withPreviews);
 			}
 			finally
 			{
@@ -405,7 +599,8 @@ namespace River.OneMoreAddIn.Commands
 
 
 		private void BuildSectionToc(
-			XElement container, XElement[] elements, ref int index, int level, bool withPreviews)
+			OneNote one, XElement container, XElement[] elements,
+			ref int index, int level, bool withPreviews)
 		{
 			string css = null;
 			if (withPreviews)
@@ -423,7 +618,7 @@ namespace River.OneMoreAddIn.Commands
 				if (pageLevel > level)
 				{
 					var children = new XElement(PageNamespace.Value + "OEChildren");
-					BuildSectionToc(children, elements, ref index, pageLevel, withPreviews);
+					BuildSectionToc(one,children, elements, ref index, pageLevel, withPreviews);
 					container.Elements().Last().Add(children);
 				}
 				else if (pageLevel == level)
@@ -438,7 +633,7 @@ namespace River.OneMoreAddIn.Commands
 					}
 
 					var text = withPreviews
-						? $"<a href=\"{link}\">{name}</a> {GetPagePreview(pageID, css)}"
+						? $"<a href=\"{link}\">{name}</a> {GetPagePreview(one, pageID, css)}"
 						: $"<a href=\"{link}\">{name}</a>";
 
 					container.Add(new Paragraph(text));
@@ -453,7 +648,7 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private string GetPagePreview(string pageID, string css)
+		private string GetPagePreview(OneNote one, string pageID, string css)
 		{
 			var page = one.GetPage(pageID, OneNote.PageDetail.Basic);
 			var ns = page.Namespace;
@@ -498,14 +693,15 @@ namespace River.OneMoreAddIn.Commands
 
 			return $"<span style=\"{css}\">{LongDash} {preview}</span>";
 		}
-		#endregion InsertPagesTables
+		#endregion MakePageIndexPage
 
 
 		// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-		#region InsertSectionsTable
-		private async Task InsertSectionsTable(bool includePages, bool withPreviews)
+		#region MakeSectionIndexPage
+		private async Task MakeSectionIndexPage(bool includePages, bool withPreviews)
 		{
+			using var one = new OneNote();
 			var section = one.GetSection();
 			var sectionId = section.Attribute("ID").Value;
 
@@ -609,7 +805,7 @@ namespace River.OneMoreAddIn.Commands
 						var indent = new XElement(ns + "OEChildren");
 						var index = 0;
 
-						BuildSectionToc(indent, pages.ToArray(), ref index, 1, withPreviews);
+						BuildSectionToc(one, indent, pages.ToArray(), ref index, 1, withPreviews);
 
 						container.Add(new XElement(ns + "OE",
 							new XElement(ns + "T", new XCData($"§ <a href=\"{link}\">{name}</a>")),
@@ -625,6 +821,6 @@ namespace River.OneMoreAddIn.Commands
 				}
 			}
 		}
-		#endregion InsertSectionsTable
+		#endregion MakeSectionIndexPage
 	}
 }

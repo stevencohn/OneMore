@@ -765,7 +765,7 @@ namespace River.OneMoreAddIn
 					return new Page(XElement.Parse(xml));
 				}
 			}
-			catch (Exception exc)
+			catch (Exception exc) when (exc is not ThreadAbortException)
 			{
 				if (FallThrough)
 				{
@@ -807,7 +807,7 @@ namespace River.OneMoreAddIn
 
 
 		/// <summary>
-		/// Gets the name, file path, and OneNote hyperlink to the current page;
+		/// Gets the name, hierarchy path, and OneNote hyperlink to the current page;
 		/// used to build up Favorites
 		/// </summary>
 		/// <returns></returns>
@@ -833,10 +833,28 @@ namespace River.OneMoreAddIn
 				info.Size = page.Root.ToString(SaveOptions.DisableFormatting).Length;
 			}
 
+			var hinfo = GetPageHierarchyInfo(page.PageId);
+			info.NotebookId = hinfo.NotebookId;
+			info.SectionId = hinfo.SectionId;
+			info.Color = hinfo.Color;
+			info.Path = $"{hinfo.Path}/{info.Name}";
 
-			// path
+			return info;
+		}
+
+
+		/// <summary>
+		/// Gets the notebook, section, section color, and parent hierarchy path of
+		/// the specified page.
+		/// </summary>
+		/// <param name="pageId">The unique ID of the page</param>
+		/// <returns>An incomplete HierarchyInfo</returns>
+		public HierarchyInfo GetPageHierarchyInfo(string pageId)
+		{
+			var info = new HierarchyInfo();
+
+			// parent path
 			var builder = new StringBuilder();
-			builder.Append($"/{info.Name}");
 
 			var id = GetParent(pageId);
 			while (!string.IsNullOrEmpty(id))
@@ -862,7 +880,6 @@ namespace River.OneMoreAddIn
 			}
 
 			info.Path = builder.ToString();
-
 			return info;
 		}
 
@@ -1022,7 +1039,8 @@ namespace River.OneMoreAddIn
 		/// Update the current page.
 		/// </summary>
 		/// <param name="page">A Page</param>
-		public async Task Update(Page page)
+		/// <param name="force">Keep all Outlines to force full page update</param>
+		public async Task Update(Page page, bool force = false)
 		{
 			if (page.HasActiveMedia())
 			{
@@ -1030,22 +1048,13 @@ namespace River.OneMoreAddIn
 				return;
 			}
 
-			await Update(page.Root);
-		}
+			// must optimize before we can validate schema...
 
+			page.OptimizeForSave(force);
 
-		/// <summary>
-		/// Updates the given content, with a unique ID, on the current page.
-		/// </summary>
-		/// <param name="element">A page or element within a page with a unique objectID</param>
-		public async Task Update(XElement element)
-		{
-			if (element.Name.LocalName == "Page")
+			if (!ValidateSchema(page.Root))
 			{
-				if (!ValidateSchema(element))
-				{
-					return;
-				}
+				return;
 			}
 
 			// dateExpectedLastModified is merely a pessimistic-locking safeguard to prevent
@@ -1055,7 +1064,8 @@ namespace River.OneMoreAddIn
 			//	? DateTime.Parse(att.Value).ToUniversalTime()
 			//	: DateTime.MinValue;
 
-			var xml = element.ToString(SaveOptions.DisableFormatting);
+			//logger.WriteLine(page.Root);
+			var xml = page.Root.ToString(SaveOptions.DisableFormatting);
 
 			await InvokeWithRetry(() =>
 			{
@@ -1364,11 +1374,13 @@ namespace River.OneMoreAddIn
 				onenote.FindMeta(nodeId, name, out xml, false, XMLSchema.xs2013);
 			});
 
-			if (xml == null)
+#pragma warning disable S2583 // Conditionally executed code should be reachable
+			if (string.IsNullOrWhiteSpace(xml))
 			{
 				// only case was immediately after an Office upgrade but...
 				return null;
 			}
+#pragma warning restore S2583
 
 			XElement hierarchy;
 			try
