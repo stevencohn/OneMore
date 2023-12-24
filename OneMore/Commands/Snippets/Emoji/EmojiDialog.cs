@@ -1,5 +1,5 @@
 ﻿//************************************************************************************************
-// Copyright © 2016 Steven M Cohn.  All rights reserved.
+// Copyright © 2016 Steven M Cohn. All rights reserved.
 //************************************************************************************************
 
 #pragma warning disable IDE0042 // variable can be deconstructed
@@ -9,6 +9,7 @@ namespace River.OneMoreAddIn.Commands
 	using System;
 	using System.Collections.Generic;
 	using System.Drawing;
+	using System.Linq;
 	using System.Windows.Forms;
 	using Resx = Properties.Resources;
 
@@ -23,17 +24,12 @@ namespace River.OneMoreAddIn.Commands
 	internal partial class EmojiDialog : UI.LocalizableForm
 	{
 		private readonly Emojis emojis;
+		private readonly List<int> selections;
 
 
 		public EmojiDialog()
 		{
 			InitializeComponent();
-
-			emojis = new Emojis();
-
-			iconBox.ItemHeight = 26;
-			iconBox.Items.AddRange(emojis.GetNames());
-			iconBox.SelectedIndex = 0;
 
 			if (NeedsLocalizing())
 			{
@@ -46,6 +42,16 @@ namespace River.OneMoreAddIn.Commands
 					"cancelButton=word_Cancel"
 				});
 			}
+
+			// must be defined before initializing SelectedIndex
+			selections = new();
+
+			emojis = new Emojis();
+			emojis.LoadImages();
+
+			emojiBox.ItemHeight = 26;
+			emojiBox.Items.AddRange(emojis.GetNames());
+			emojiBox.SelectedIndex = 0;
 		}
 
 
@@ -75,7 +81,7 @@ namespace River.OneMoreAddIn.Commands
 			// pre-dispose images so caller doesn't have to
 			emojis.Dispose();
 
-			foreach (int index in iconBox.SelectedIndices)
+			foreach (int index in selections)
 			{
 				yield return emojis[index];
 			}
@@ -133,6 +139,20 @@ namespace River.OneMoreAddIn.Commands
 		{
 			DialogResult = DialogResult.OK;
 			Close();
+		}
+
+
+		private void DoSelectedIndexChanged(object sender, EventArgs e)
+		{
+			if (emojiBox.SelectedIndex > -1)
+			{
+				// maintains a list of selection in the order in which they are selected...
+				// with one caveat: doesn't know when a user drags across multiple items
+				// with the mouse bottom-up
+
+				selections.AddRange(emojiBox.SelectedIndices.OfType<int>().Except(selections));
+				selections.RemoveRange(0, selections.Count - emojiBox.SelectedItems.Count);
+			}
 		}
 	}
 }

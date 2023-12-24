@@ -226,15 +226,10 @@ namespace River.OneMoreAddIn.Commands
 			cmd.CommandText = "SELECT moreID, pageID FROM hashtag_page WHERE sectionID = @sid";
 			cmd.Parameters.AddWithValue("@sid", sectionID);
 
-			using var dtagcmd = con.CreateCommand();
-			dtagcmd.CommandType = CommandType.Text;
-			dtagcmd.CommandText = "DELETE FROM hashtag WHERE moreID = @mid";
-			dtagcmd.Parameters.Add("@mid", DbType.String);
-
-			using var dpagcmd = con.CreateCommand();
-			dpagcmd.CommandType = CommandType.Text;
-			dpagcmd.CommandText = "DELETE FROM hashtag_page WHERE pageID = @pid";
-			dpagcmd.Parameters.Add("@pid", DbType.String);
+			using var delcmd = con.CreateCommand();
+			delcmd.CommandType = CommandType.Text;
+			delcmd.CommandText = "DELETE FROM hashtag_page WHERE pageID = @pid";
+			delcmd.Parameters.Add("@pid", DbType.String);
 
 			using var transaction = con.BeginTransaction();
 			var count = 0;
@@ -247,13 +242,8 @@ namespace River.OneMoreAddIn.Commands
 					var pageID = reader.GetString(1);
 					if (!knownIDs.Contains(pageID))
 					{
-						var moreID = reader.GetString(0);
-
-						dtagcmd.Parameters["@mid"].Value = moreID;
-						dtagcmd.ExecuteNonQuery();
-
-						dpagcmd.Parameters["@pid"].Value = pageID;
-						dpagcmd.ExecuteNonQuery();
+						delcmd.Parameters["@pid"].Value = pageID;
+						delcmd.ExecuteNonQuery();
 						count++;
 					}
 				}

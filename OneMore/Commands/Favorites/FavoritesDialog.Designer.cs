@@ -43,8 +43,8 @@
 			this.contextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
 			this.addButton = new System.Windows.Forms.ToolStripMenuItem();
 			this.checkButton = new System.Windows.Forms.ToolStripMenuItem();
-			this.manageButton = new System.Windows.Forms.ToolStripMenuItem();
 			this.sortByNameToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.manageButton = new System.Windows.Forms.ToolStripMenuItem();
 			((System.ComponentModel.ISupportInitialize)(this.gridView)).BeginInit();
 			this.buttonPanel.SuspendLayout();
 			this.searchPanel.SuspendLayout();
@@ -71,7 +71,7 @@
 			this.gridView.RowHeadersWidth = 30;
 			this.gridView.RowTemplate.Height = 28;
 			this.gridView.ShowEditingIcon = false;
-			this.gridView.Size = new System.Drawing.Size(778, 425);
+			this.gridView.Size = new System.Drawing.Size(778, 410);
 			this.gridView.TabIndex = 0;
 			this.gridView.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.ChooseByDoubleClick);
 			this.gridView.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.ValidateOnCellFormatting);
@@ -98,16 +98,17 @@
 			this.buttonPanel.Controls.Add(this.goButton);
 			this.buttonPanel.Controls.Add(this.cancelButton);
 			this.buttonPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
-			this.buttonPanel.Location = new System.Drawing.Point(0, 499);
+			this.buttonPanel.Location = new System.Drawing.Point(0, 484);
 			this.buttonPanel.Name = "buttonPanel";
-			this.buttonPanel.Size = new System.Drawing.Size(778, 45);
+			this.buttonPanel.Padding = new System.Windows.Forms.Padding(8);
+			this.buttonPanel.Size = new System.Drawing.Size(778, 60);
 			this.buttonPanel.TabIndex = 4;
 			// 
 			// goButton
 			// 
 			this.goButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.goButton.DialogResult = System.Windows.Forms.DialogResult.OK;
-			this.goButton.Location = new System.Drawing.Point(526, 3);
+			this.goButton.Location = new System.Drawing.Point(518, 11);
 			this.goButton.Name = "goButton";
 			this.goButton.Size = new System.Drawing.Size(120, 38);
 			this.goButton.TabIndex = 0;
@@ -119,7 +120,7 @@
 			// 
 			this.cancelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-			this.cancelButton.Location = new System.Drawing.Point(652, 3);
+			this.cancelButton.Location = new System.Drawing.Point(644, 11);
 			this.cancelButton.Name = "cancelButton";
 			this.cancelButton.Size = new System.Drawing.Size(120, 38);
 			this.cancelButton.TabIndex = 1;
@@ -140,6 +141,7 @@
 			// 
 			// menuButton
 			// 
+			this.menuButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.menuButton.FlatAppearance.BorderSize = 0;
 			this.menuButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.menuButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -154,10 +156,12 @@
 			// 
 			// searchBox
 			// 
+			this.searchBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
 			this.searchBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.searchBox.Location = new System.Drawing.Point(138, 18);
 			this.searchBox.Name = "searchBox";
-			this.searchBox.Size = new System.Drawing.Size(385, 28);
+			this.searchBox.Size = new System.Drawing.Size(566, 28);
 			this.searchBox.TabIndex = 0;
 			this.searchBox.KeyUp += new System.Windows.Forms.KeyEventHandler(this.FilterRowOnKeyUp);
 			// 
@@ -179,13 +183,13 @@
             this.sortByNameToolStripMenuItem,
             this.manageButton});
 			this.contextMenu.Name = "contextMenu";
-			this.contextMenu.Size = new System.Drawing.Size(249, 165);
+			this.contextMenu.Size = new System.Drawing.Size(233, 132);
 			// 
 			// addButton
 			// 
 			this.addButton.Image = global::River.OneMoreAddIn.Properties.Resources.Journal;
 			this.addButton.Name = "addButton";
-			this.addButton.Size = new System.Drawing.Size(248, 32);
+			this.addButton.Size = new System.Drawing.Size(232, 32);
 			this.addButton.Text = "Add Current Page";
 			this.addButton.Click += new System.EventHandler(this.AddCurrentPage);
 			// 
@@ -193,25 +197,25 @@
 			// 
 			this.checkButton.Image = global::River.OneMoreAddIn.Properties.Resources.CheckMark;
 			this.checkButton.Name = "checkButton";
-			this.checkButton.Size = new System.Drawing.Size(248, 32);
+			this.checkButton.Size = new System.Drawing.Size(232, 32);
 			this.checkButton.Text = "Check Favorites";
 			this.checkButton.Click += new System.EventHandler(this.CheckFavorites);
-			// 
-			// manageButton
-			// 
-			this.manageButton.Image = global::River.OneMoreAddIn.Properties.Resources.Hammer;
-			this.manageButton.Name = "manageButton";
-			this.manageButton.Size = new System.Drawing.Size(248, 32);
-			this.manageButton.Text = "Manage Favorites";
-			this.manageButton.Click += new System.EventHandler(this.ManageFavorites);
 			// 
 			// sortByNameToolStripMenuItem
 			// 
 			this.sortByNameToolStripMenuItem.Image = global::River.OneMoreAddIn.Properties.Resources.DownArrow;
 			this.sortByNameToolStripMenuItem.Name = "sortByNameToolStripMenuItem";
-			this.sortByNameToolStripMenuItem.Size = new System.Drawing.Size(248, 32);
+			this.sortByNameToolStripMenuItem.Size = new System.Drawing.Size(232, 32);
 			this.sortByNameToolStripMenuItem.Text = "Sort By Name";
 			this.sortByNameToolStripMenuItem.Click += new System.EventHandler(this.SortFavorites);
+			// 
+			// manageButton
+			// 
+			this.manageButton.Image = global::River.OneMoreAddIn.Properties.Resources.Hammer;
+			this.manageButton.Name = "manageButton";
+			this.manageButton.Size = new System.Drawing.Size(232, 32);
+			this.manageButton.Text = "Manage Favorites";
+			this.manageButton.Click += new System.EventHandler(this.ManageFavorites);
 			// 
 			// FavoritesDialog
 			// 
@@ -223,6 +227,7 @@
 			this.Controls.Add(this.gridView);
 			this.Controls.Add(this.searchPanel);
 			this.Controls.Add(this.buttonPanel);
+			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.MaximizeBox = false;
 			this.MinimizeBox = false;
