@@ -91,6 +91,10 @@
     "resID": "Hammer"
   },
   {
+    "glyph": "♥",
+    "resID": "Heart"
+  },
+  {
     "glyph": "⁉",
     "resID": "Interrobang"
   },
