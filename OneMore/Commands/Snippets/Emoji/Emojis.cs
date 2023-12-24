@@ -29,10 +29,10 @@ namespace River.OneMoreAddIn.Commands
 			ResID = resID;
 			Color = color;
 
-			Name = Resx.ResourceManager.GetString($"Emoji_{resID}");
+			Name = Resx.ResourceManager.GetString($"Emoji_{resID}", AddIn.Culture);
 			if (string.IsNullOrWhiteSpace(Name))
 			{
-				Name = $"Resx.Emoji_{resID}";
+				Name = $"RESX...Emoji_{resID}";
 			}
 		}
 
