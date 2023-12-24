@@ -75,7 +75,9 @@ namespace River.OneMoreAddIn.Commands
 		public Emojis()
 		{
 			// Emojis.json must be stored as UTF-8 Text in Resources.resx
-			map = JsonConvert.DeserializeObject<List<Emoji>>(Resx.Emojis);
+			map = JsonConvert.DeserializeObject<List<Emoji>>(Resx.Emojis)
+				.OrderBy(e => e.Name, StringComparer.Create(AddIn.Culture, true))
+				.ToList();
 		}
 
 
