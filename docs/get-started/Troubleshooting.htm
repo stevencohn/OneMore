@@ -141,13 +141,13 @@
     <!-- Page Content -->
     <div id="content" style="margin-left: 30px; margin-top:100px;">
       <DIV style="DIRECTION: ltr">
-<DIV style="WIDTH: 8.778in; MARGIN-TOP: 0in; DIRECTION: ltr; MARGIN-LEFT: 0in">
-<DIV style="WIDTH: 2.383in; MARGIN-TOP: 0in; DIRECTION: ltr; MARGIN-LEFT: 0.042in">
+<DIV style="WIDTH: 8.761in; MARGIN-TOP: 0in; DIRECTION: ltr; MARGIN-LEFT: 0in">
+<DIV style="WIDTH: 2.365in; MARGIN-TOP: 0in; DIRECTION: ltr; MARGIN-LEFT: 0.025in">
 <P lang=yo style='FONT-SIZE: 20pt; MARGIN-BOTTOM: 14pt; FONT-FAMILY: "Calibri Light"; MARGIN-TOP: 0pt; COLOR: #464646'>Troubleshooting</P></DIV>
-<DIV style="WIDTH: 2.518in; MARGIN-TOP: 0.038in; DIRECTION: ltr; MARGIN-LEFT: 0.042in">
+<DIV style="WIDTH: 2.484in; MARGIN-TOP: 0.042in; DIRECTION: ltr; MARGIN-LEFT: 0.025in">
 <P style="FONT-SIZE: 10pt; FONT-FAMILY: Calibri; COLOR: #767676; MARGIN: 0in">Sunday, February 19, 2023</P>
 <P style="FONT-SIZE: 10pt; FONT-FAMILY: Calibri; COLOR: #767676; MARGIN: 0in">12:14 PM</P></DIV>
-<DIV style="WIDTH: 8.778in; MARGIN-TOP: 0.424in; DIRECTION: ltr; MARGIN-LEFT: 0in">
+<DIV style="WIDTH: 8.761in; MARGIN-TOP: 0.427in; DIRECTION: ltr; MARGIN-LEFT: 0in">
 <UL style="MARGIN-BOTTOM: 0in; unicode-bidi: embed; MARGIN-TOP: 0in; DIRECTION: ltr">
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; COLOR: black; MARGIN: 0in">Software doesn't have defects. Programmers do. And I'm no exception. So what should you do if OneMore doesn't seem to be doing what it should be doing?</P>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; COLOR: black; MARGIN: 0in">&nbsp;</P>
@@ -198,16 +198,11 @@
 <H1 lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; COLOR: black; MARGIN: 0in">&nbsp;</H1>
 <P lang=yo style='FONT-SIZE: 10pt; FONT-FAMILY: "Courier New"; COLOR: #43577c; MARGIN: 0in'>────────────────────────────────────────────────────────────────────────────────────────────────────</P>
 <H1 lang=yo style="FONT-SIZE: 16pt; FONT-FAMILY: Calibri; COLOR: #1e4e79; MARGIN: 0in">Enable Advanced Installer Logging</H1>
-<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">If the installer fails and the cause isn't clearly evident, enable MSI logging as explained in&nbsp;<A href="https://docs.microsoft.com/en-US/troubleshoot/windows-client/application-management/enable-windows-installer-logging#fixit4me">this article</A>. Simply put, open the registry by using Regedit.exe, and then create the following subkey and keys:</P>
+<P lang=yo style="MARGIN: 0in"><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">If the installer fails and the cause isn't clearly evident, run the installer from an administrative console using the following command. This will enable verbose logging and write to the log file named </SPAN><SPAN style='FONT-SIZE: 9.5pt; FONT-FAMILY: "Lucida Console"; BACKGROUND: #e9e9e9'>onemore_setup.log</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">.</SPAN></P>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
+<P lang=yo style='FONT-SIZE: 9.5pt; FONT-FAMILY: "Lucida Console"; COLOR: black; MARGIN: 0in 0in 0in 0.375in'><SPAN style="BACKGROUND: #e9e9e9">msiexec.exe /i OneMore_6.0.1_Setupx64.msi /Lvoicewarmupx onemore_setup.log</SPAN></P>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; COLOR: black; MARGIN: 0in">&nbsp;</P>
-<UL style="MARGIN-BOTTOM: 0in; unicode-bidi: embed; MARGIN-TOP: 0in; DIRECTION: ltr" type=disc>
-<LI lang=yo style="MARGIN-BOTTOM: 0px; VERTICAL-ALIGN: middle; MARGIN-TOP: 0px; COLOR: black"><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">Path:&nbsp;HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows\Installer</SPAN> 
-<LI lang=yo style="MARGIN-BOTTOM: 0px; VERTICAL-ALIGN: middle; MARGIN-TOP: 0px; COLOR: black"><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">Type: Reg_SZ</SPAN> 
-<LI lang=yo style="MARGIN-BOTTOM: 0px; VERTICAL-ALIGN: middle; MARGIN-TOP: 0px; COLOR: black"><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">Value: Logging</SPAN> 
-<LI lang=yo style="MARGIN-BOTTOM: 0px; VERTICAL-ALIGN: middle; MARGIN-TOP: 0px; COLOR: black"><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">Data: voicewarmupx</SPAN> </LI></UL>
-<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; COLOR: black; MARGIN: 0in">&nbsp;</P>
-<P lang=yo style="MARGIN: 0in"><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; COLOR: black">When the installer runs, it will generate a log file in the </SPAN><SPAN style='FONT-SIZE: 9.5pt; FONT-FAMILY: "Lucida Console"; BACKGROUND: #e8e8e8; COLOR: #172b4d'>%TEMP%</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; COLOR: black"> folder named something like MSI1234.log</SPAN></P>
-<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; COLOR: black; MARGIN: 0in">&nbsp;</P>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in"><A href="https://github.com/stevencohn/OneMore/issues/new?assignees=&amp;labels=bug%2C+unread&amp;projects=&amp;template=bug_report.md&amp;title=">Open a new ticket</A> and attach the log file.</P>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; COLOR: black; MARGIN: 0in">&nbsp;</P>
 <P lang=yo style='FONT-SIZE: 10pt; FONT-FAMILY: "Courier New"; COLOR: #43577c; MARGIN: 0in'>────────────────────────────────────────────────────────────────────────────────────────────────────</P>
 <H1 lang=yo style="FONT-SIZE: 16pt; FONT-FAMILY: Calibri; COLOR: #1e4e79; MARGIN: 0in">OneNote Specific Problems</H1>

@@ -154,12 +154,12 @@
     <div id="content" style="margin-left: 30px; margin-top:100px;">
       <DIV style="DIRECTION: ltr">
 <DIV style="WIDTH: 8.556in; MARGIN-TOP: 0in; DIRECTION: ltr; MARGIN-LEFT: 0in">
-<DIV style="WIDTH: 3.571in; MARGIN-TOP: 0in; DIRECTION: ltr; MARGIN-LEFT: 0.075in">
+<DIV style="WIDTH: 3.554in; MARGIN-TOP: 0in; DIRECTION: ltr; MARGIN-LEFT: 0.075in">
 <P lang=yo style='FONT-SIZE: 20pt; FONT-FAMILY: "Calibri Light"; MARGIN: 0in'>TechNote - COM Surrogate</P></DIV>
-<DIV style="WIDTH: 2.382in; MARGIN-TOP: 0.038in; DIRECTION: ltr; MARGIN-LEFT: 0.075in">
+<DIV style="WIDTH: 2.347in; MARGIN-TOP: 0.042in; DIRECTION: ltr; MARGIN-LEFT: 0.075in">
 <P style="FONT-SIZE: 10pt; FONT-FAMILY: Calibri; COLOR: #767676; MARGIN: 0in">Friday, February 24, 2023</P>
 <P style="FONT-SIZE: 10pt; FONT-FAMILY: Calibri; COLOR: #767676; MARGIN: 0in">1:35 PM</P></DIV>
-<DIV style="WIDTH: 8.556in; MARGIN-TOP: 0.424in; DIRECTION: ltr; MARGIN-LEFT: 0in">
+<DIV style="WIDTH: 8.556in; MARGIN-TOP: 0.427in; DIRECTION: ltr; MARGIN-LEFT: 0in">
 <P lang=yo style="MARGIN: 0in"><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">OneNote addins run in separate COM surrogate process to isolate any bad behavior from the main ONENOTE.EXE process. These will appear as instances of the </SPAN><SPAN style='FONT-SIZE: 9.5pt; FONT-FAMILY: "Lucida Console"; BACKGROUND: #e8e8e8; COLOR: #172b4d'>dllhost.exe</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri"> process in Task Manager. In fact, when OneMore does misbehave and you see empty OneMore menus, this is when OneNote has cut off communication because it no longer trusts the add-in for some reason.</SPAN></P>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">This design is important. OneMore runs from within the COM surrogate dllhost.exe process, separate from OneNote's main ONENOTE.EXE process. OneNote still controls the entire ribbon and the OneMore ribbon controls, but OneMore renders all of its own dialogs out of the COM surrogate.</P>
@@ -173,9 +173,9 @@
 <TABLE title="" style="BORDER-TOP: #a3a3a3 0pt solid; BORDER-RIGHT: #a3a3a3 0pt solid; BORDER-COLLAPSE: collapse; BORDER-BOTTOM: #a3a3a3 0pt solid; DIRECTION: ltr; BORDER-LEFT: #a3a3a3 0pt solid" cellSpacing=0 cellPadding=0 summary="" border=0 valign="top">
 <TBODY>
 <TR>
-<TD style="BORDER-LEFT-WIDTH: 0pt; BORDER-RIGHT-WIDTH: 0pt; WIDTH: 0.686in; VERTICAL-ALIGN: top; BORDER-BOTTOM-WIDTH: 0pt; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; PADDING-RIGHT: 3pt; BORDER-TOP-WIDTH: 0pt">
+<TD style="BORDER-LEFT-WIDTH: 0pt; BORDER-RIGHT-WIDTH: 0pt; WIDTH: 0.681in; VERTICAL-ALIGN: top; BORDER-BOTTOM-WIDTH: 0pt; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; PADDING-RIGHT: 3pt; BORDER-TOP-WIDTH: 0pt">
 <P style='FONT-SIZE: 22pt; FONT-FAMILY: "Segoe UI Emoji"; TEXT-ALIGN: center; MARGIN: 0in'>📓</P></TD>
-<TD style="BORDER-LEFT-WIDTH: 0pt; BORDER-RIGHT-WIDTH: 0pt; WIDTH: 7.634in; VERTICAL-ALIGN: top; BORDER-BOTTOM-WIDTH: 0pt; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; PADDING-RIGHT: 3pt; BORDER-TOP-WIDTH: 0pt">
+<TD style="BORDER-LEFT-WIDTH: 0pt; BORDER-RIGHT-WIDTH: 0pt; WIDTH: 7.64in; VERTICAL-ALIGN: top; BORDER-BOTTOM-WIDTH: 0pt; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; PADDING-RIGHT: 3pt; BORDER-TOP-WIDTH: 0pt">
 <P lang=yo style='FONT-SIZE: 11pt; FONT-FAMILY: "Segoe UI"; COLOR: #333333; MARGIN: 0in'><SPAN style="FONT-WEIGHT: bold">Task Manager</SPAN></P>
 <P lang=yo style='FONT-SIZE: 11pt; FONT-FAMILY: "Segoe UI"; COLOR: #333333; MARGIN: 0in'>Open Windows Task Manager, open the Details view, right-click on a column heading, and choose <SPAN style="FONT-STYLE: italic">Select columns</SPAN>. Scroll down and tick the <SPAN style="FONT-STYLE: italic">Command line</SPAN> column. This will add a column to the Details view showing the full command line used to invoke each process. This makes it easy to identify the dllhost.exe process that hosts the OneMore add-in. The OneMore host will have this command line:</P>
 <P lang=yo style='FONT-SIZE: 11pt; FONT-FAMILY: "Segoe UI"; COLOR: #333333; MARGIN: 0in'>&nbsp;</P>
