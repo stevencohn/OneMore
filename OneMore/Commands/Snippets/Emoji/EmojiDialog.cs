@@ -1,5 +1,5 @@
 ﻿//************************************************************************************************
-// Copyright © 2016 Steven M Cohn.  All rights reserved.
+// Copyright © 2016 Steven M Cohn. All rights reserved.
 //************************************************************************************************
 
 #pragma warning disable IDE0042 // variable can be deconstructed
@@ -30,6 +30,7 @@ namespace River.OneMoreAddIn.Commands
 			InitializeComponent();
 
 			emojis = new Emojis();
+			emojis.LoadImages();
 
 			iconBox.ItemHeight = 26;
 			iconBox.Items.AddRange(emojis.GetNames());

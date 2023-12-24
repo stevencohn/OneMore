@@ -743,6 +743,14 @@ Lettertype laatste kolom</value>
     <value>Auto</value>
     <comment>emoji</comment>
   </data>
+  <data name="Emoji_BallotBox" xml:space="preserve">
+    <value>Stembus</value>
+    <comment>emoji</comment>
+  </data>
+  <data name="Emoji_Bell" xml:space="preserve">
+    <value>Klok</value>
+    <comment>emoji</comment>
+  </data>
   <data name="Emoji_Bullet" xml:space="preserve">
     <value>Kogel</value>
     <comment>emoji</comment>
@@ -751,12 +759,20 @@ Lettertype laatste kolom</value>
     <value>Kalender</value>
     <comment>emoji</comment>
   </data>
+  <data name="Emoji_Camera" xml:space="preserve">
+    <value>Camera</value>
+    <comment>emoji</comment>
+  </data>
   <data name="Emoji_CheckMark" xml:space="preserve">
     <value>Vinkje</value>
     <comment>emoji</comment>
   </data>
   <data name="Emoji_Circle" xml:space="preserve">
     <value>Cirkel</value>
+    <comment>emoji</comment>
+  </data>
+  <data name="Emoji_Clipboard" xml:space="preserve">
+    <value>Klembord</value>
     <comment>emoji</comment>
   </data>
   <data name="Emoji_Cloud" xml:space="preserve">
@@ -791,16 +807,32 @@ Lettertype laatste kolom</value>
     <value>Financieel</value>
     <comment>emoji</comment>
   </data>
+  <data name="Emoji_Flag" xml:space="preserve">
+    <value>Vlag</value>
+    <comment>emoji</comment>
+  </data>
+  <data name="Emoji_Folder" xml:space="preserve">
+    <value>Map</value>
+    <comment>emoji</comment>
+  </data>
+  <data name="Emoji_Globe" xml:space="preserve">
+    <value>Wereldbol</value>
+    <comment>emoji</comment>
+  </data>
   <data name="Emoji_Hammer" xml:space="preserve">
     <value>Hamer</value>
+    <comment>emoji</comment>
+  </data>
+  <data name="Emoji_Heart" xml:space="preserve">
+    <value>Hart</value>
     <comment>emoji</comment>
   </data>
   <data name="Emoji_Images" xml:space="preserve">
     <value>Afbeeldingen</value>
     <comment>emoji</comment>
   </data>
-  <data name="Emoji_Important" xml:space="preserve">
-    <value>Belangrijk</value>
+  <data name="Emoji_Interrobrang" xml:space="preserve">
+    <value>Interrobang</value>
     <comment>emoji</comment>
   </data>
   <data name="Emoji_Journal" xml:space="preserve">
@@ -809,6 +841,10 @@ Lettertype laatste kolom</value>
   </data>
   <data name="Emoji_LeftwardsArrow" xml:space="preserve">
     <value>Pijl naar links</value>
+    <comment>emoji</comment>
+  </data>
+  <data name="Emoji_Lock" xml:space="preserve">
+    <value>Slot</value>
     <comment>emoji</comment>
   </data>
   <data name="Emoji_Memo" xml:space="preserve">
@@ -825,6 +861,10 @@ Lettertype laatste kolom</value>
   </data>
   <data name="Emoji_Pushpin" xml:space="preserve">
     <value>Punaise</value>
+    <comment>emoji</comment>
+  </data>
+  <data name="Emoji_Recycle" xml:space="preserve">
+    <value>Recyclen</value>
     <comment>emoji</comment>
   </data>
   <data name="Emoji_RightwardsArrow" xml:space="preserve">
@@ -851,6 +891,10 @@ Lettertype laatste kolom</value>
     <value>Sport</value>
     <comment>emoji</comment>
   </data>
+  <data name="Emoji_SportsEU" xml:space="preserve">
+    <value>Sport EU</value>
+    <comment>emoji</comment>
+  </data>
   <data name="Emoji_Star" xml:space="preserve">
     <value>Ster</value>
     <comment>emoji</comment>
@@ -860,11 +904,23 @@ Lettertype laatste kolom</value>
     <comment>emoji</comment>
   </data>
   <data name="Emoji_Tasks" xml:space="preserve">
-    <value>Taken</value>
+    <value>Taak</value>
+    <comment>emoji</comment>
+  </data>
+  <data name="Emoji_Tools" xml:space="preserve">
+    <value>Hulpmiddelen</value>
     <comment>emoji</comment>
   </data>
   <data name="Emoji_Travel" xml:space="preserve">
     <value>Reizen</value>
+    <comment>emoji</comment>
+  </data>
+  <data name="Emoji_Video" xml:space="preserve">
+    <value>Video</value>
+    <comment>emoji</comment>
+  </data>
+  <data name="Emoji_Warning" xml:space="preserve">
+    <value>Waarschuwing</value>
     <comment>emoji</comment>
   </data>
   <data name="Emoji_Watch" xml:space="preserve">
@@ -2829,14 +2885,6 @@ Polaroid</value>
     <value>Inhoud van een andere pagina insluiten in de huidige pagina</value>
     <comment>ribbon item screentip</comment>
   </data>
-  <data name="ribEmojiButton_Label" xml:space="preserve">
-    <value>Emoji invoegen</value>
-    <comment>ribbon edit</comment>
-  </data>
-  <data name="ribEmojiButton_Screentip" xml:space="preserve">
-    <value>Voeg een of meer emoji's in</value>
-    <comment>ribbon edit</comment>
-  </data>
   <data name="ribEnableSpellCheckButton_Label" xml:space="preserve">
     <value>Spellingcontrole inschakelen</value>
     <comment>Ribbon OneMore menu item, no spell check on this page</comment>
@@ -3048,6 +3096,14 @@ Polaroid</value>
   <data name="ribInsertDoubleLineButton_Screentip" xml:space="preserve">
     <value>Dubbele horizontale lijn invoegen (Shift + Alt + Equals)</value>
     <comment>Ribbon OneMore menu item, Extras...</comment>
+  </data>
+  <data name="ribInsertEmojiButton_Label" xml:space="preserve">
+    <value>Emoji</value>
+    <comment>ribbon snippets</comment>
+  </data>
+  <data name="ribInsertEmojiButton_Screentip" xml:space="preserve">
+    <value>Voeg een of meer emoji's in</value>
+    <comment>ribbon snippets</comment>
   </data>
   <data name="ribInsertExpandButton_Label" xml:space="preserve">
     <value>Uitvouwen/samenvouwen</value>

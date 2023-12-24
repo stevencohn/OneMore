@@ -116,8 +116,10 @@ namespace River.OneMoreAddIn.Commands
 			var tree = new List<PageNode>();
 			MakePageTree(tree, pages, 0, 1);
 
+			using var emojis = new Emojis();
+
 			var cleaner = new Func<XElement, string>((e) => sorting == SortBy.Name
-				? Emojis.RemoveEmojis(e.Attribute("name").Value)
+				? emojis.RemoveEmojis(e.Attribute("name").Value)
 				: sorting == SortBy.Created
 					? e.Attribute("dateTime").Value
 					: e.Attribute("lastModifiedTime").Value

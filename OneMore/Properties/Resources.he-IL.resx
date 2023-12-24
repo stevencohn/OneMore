@@ -753,6 +753,14 @@ Total Row Font
     <value>מְכוֹנִית</value>
     <comment>emoji</comment>
   </data>
+  <data name="Emoji_BallotBox" xml:space="preserve">
+    <value>קלפי</value>
+    <comment>emoji</comment>
+  </data>
+  <data name="Emoji_Bell" xml:space="preserve">
+    <value>פַּעֲמוֹן</value>
+    <comment>emoji</comment>
+  </data>
   <data name="Emoji_Bullet" xml:space="preserve">
     <value>כַּדוּר</value>
     <comment>emoji</comment>
@@ -761,12 +769,20 @@ Total Row Font
     <value>לוּחַ שָׁנָה</value>
     <comment>emoji</comment>
   </data>
+  <data name="Emoji_Camera" xml:space="preserve">
+    <value>מַצלֵמָה</value>
+    <comment>emoji</comment>
+  </data>
   <data name="Emoji_CheckMark" xml:space="preserve">
     <value>בדוק את סימן</value>
     <comment>emoji</comment>
   </data>
   <data name="Emoji_Circle" xml:space="preserve">
     <value>מעגל</value>
+    <comment>emoji</comment>
+  </data>
+  <data name="Emoji_Clipboard" xml:space="preserve">
+    <value>לוח כתיבה</value>
     <comment>emoji</comment>
   </data>
   <data name="Emoji_Cloud" xml:space="preserve">
@@ -801,16 +817,32 @@ Total Row Font
     <value>כַּספִּי</value>
     <comment>emoji</comment>
   </data>
+  <data name="Emoji_Flag" xml:space="preserve">
+    <value>דֶגֶל</value>
+    <comment>emoji</comment>
+  </data>
+  <data name="Emoji_Folder" xml:space="preserve">
+    <value>תיקיה</value>
+    <comment>emoji</comment>
+  </data>
+  <data name="Emoji_Globe" xml:space="preserve">
+    <value>גלוֹבּוּס</value>
+    <comment>emoji</comment>
+  </data>
   <data name="Emoji_Hammer" xml:space="preserve">
     <value>פטיש</value>
+    <comment>emoji</comment>
+  </data>
+  <data name="Emoji_Heart" xml:space="preserve">
+    <value>לֵב</value>
     <comment>emoji</comment>
   </data>
   <data name="Emoji_Images" xml:space="preserve">
     <value>תמונות</value>
     <comment>emoji</comment>
   </data>
-  <data name="Emoji_Important" xml:space="preserve">
-    <value>חָשׁוּב</value>
+  <data name="Emoji_Interrobrang" xml:space="preserve">
+    <value>Interrobang</value>
     <comment>emoji</comment>
   </data>
   <data name="Emoji_Journal" xml:space="preserve">
@@ -819,6 +851,10 @@ Total Row Font
   </data>
   <data name="Emoji_LeftwardsArrow" xml:space="preserve">
     <value>חץ שמאלה</value>
+    <comment>emoji</comment>
+  </data>
+  <data name="Emoji_Lock" xml:space="preserve">
+    <value>לנעול</value>
     <comment>emoji</comment>
   </data>
   <data name="Emoji_Memo" xml:space="preserve">
@@ -835,6 +871,10 @@ Total Row Font
   </data>
   <data name="Emoji_Pushpin" xml:space="preserve">
     <value>יתד דחיפה</value>
+    <comment>emoji</comment>
+  </data>
+  <data name="Emoji_Recycle" xml:space="preserve">
+    <value>לְמַחְזֵר</value>
     <comment>emoji</comment>
   </data>
   <data name="Emoji_RightwardsArrow" xml:space="preserve">
@@ -861,6 +901,10 @@ Total Row Font
     <value>ספורט</value>
     <comment>emoji</comment>
   </data>
+  <data name="Emoji_SportsEU" xml:space="preserve">
+    <value>האיחוד האירופי ספורט</value>
+    <comment>emoji</comment>
+  </data>
   <data name="Emoji_Star" xml:space="preserve">
     <value>כוכב</value>
     <comment>emoji</comment>
@@ -870,11 +914,23 @@ Total Row Font
     <comment>emoji</comment>
   </data>
   <data name="Emoji_Tasks" xml:space="preserve">
-    <value>משימות</value>
+    <value>מְשִׁימָה</value>
+    <comment>emoji</comment>
+  </data>
+  <data name="Emoji_Tools" xml:space="preserve">
+    <value>כלים</value>
     <comment>emoji</comment>
   </data>
   <data name="Emoji_Travel" xml:space="preserve">
     <value>לִנְסוֹעַ</value>
+    <comment>emoji</comment>
+  </data>
+  <data name="Emoji_Video" xml:space="preserve">
+    <value>וִידֵאוֹ</value>
+    <comment>emoji</comment>
+  </data>
+  <data name="Emoji_Warning" xml:space="preserve">
+    <value>אַזהָרָה</value>
     <comment>emoji</comment>
   </data>
   <data name="Emoji_Watch" xml:space="preserve">
@@ -2849,14 +2905,6 @@ ISO-code then comma then language name</comment>
     <value>הטמע תוכן של דף אחר בדף הנוכחי</value>
     <comment>ribbon item screentip</comment>
   </data>
-  <data name="ribEmojiButton_Label" xml:space="preserve">
-    <value>הכנס אימוג'י</value>
-    <comment>ribbon edit</comment>
-  </data>
-  <data name="ribEmojiButton_Screentip" xml:space="preserve">
-    <value>הכנס אימוג'י אחד או יותר</value>
-    <comment>ribbon edit</comment>
-  </data>
   <data name="ribEnableSpellCheckButton_Label" xml:space="preserve">
     <value>אפשר בדיקת איות</value>
     <comment>Ribbon OneMore menu item, no spell check on this page</comment>
@@ -3068,6 +3116,14 @@ ISO-code then comma then language name</comment>
   <data name="ribInsertDoubleLineButton_Screentip" xml:space="preserve">
     <value>הוסף קו אופקי כפול (Shift + Alt + שווה)</value>
     <comment>Ribbon OneMore menu item, Extras...</comment>
+  </data>
+  <data name="ribInsertEmojiButton_Label" xml:space="preserve">
+    <value>אימוג'י</value>
+    <comment>ribbon snippets</comment>
+  </data>
+  <data name="ribInsertEmojiButton_Screentip" xml:space="preserve">
+    <value>הכנס אימוג'י אחד או יותר</value>
+    <comment>ribbon snippets</comment>
   </data>
   <data name="ribInsertExpandButton_Label" xml:space="preserve">
     <value>להרחיב לצמצם</value>

@@ -322,17 +322,20 @@ namespace River.OneMoreAddIn
 
 		// StringBuilder...
 
-		public static int IndexOf(this StringBuilder s, char c)
+		public static int IndexOf(this StringBuilder s, char c, int startAt = 0)
 		{
-			int i = 0;
-			while (i < s.Length)
+			if (startAt >= 0 && startAt < s.Length)
 			{
-				if (s[i] == c)
+				int i = startAt;
+				while (i < s.Length)
 				{
-					return i;
-				}
+					if (s[i] == c)
+					{
+						return i;
+					}
 
-				i++;
+					i++;
+				}
 			}
 
 			return -1;

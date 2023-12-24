@@ -742,6 +742,14 @@
     <value>سيارة</value>
     <comment>emoji</comment>
   </data>
+  <data name="Emoji_BallotBox" xml:space="preserve">
+    <value>صندوق الإقتراع</value>
+    <comment>emoji</comment>
+  </data>
+  <data name="Emoji_Bell" xml:space="preserve">
+    <value>جرس</value>
+    <comment>emoji</comment>
+  </data>
   <data name="Emoji_Bullet" xml:space="preserve">
     <value>رصاصة</value>
     <comment>emoji</comment>
@@ -750,12 +758,20 @@
     <value>التقويم</value>
     <comment>emoji</comment>
   </data>
+  <data name="Emoji_Camera" xml:space="preserve">
+    <value>آلة تصوير</value>
+    <comment>emoji</comment>
+  </data>
   <data name="Emoji_CheckMark" xml:space="preserve">
     <value>علامة الاختيار</value>
     <comment>emoji</comment>
   </data>
   <data name="Emoji_Circle" xml:space="preserve">
     <value>دائرة</value>
+    <comment>emoji</comment>
+  </data>
+  <data name="Emoji_Clipboard" xml:space="preserve">
+    <value>الحافظة</value>
     <comment>emoji</comment>
   </data>
   <data name="Emoji_Cloud" xml:space="preserve">
@@ -790,16 +806,32 @@
     <value>الأمور المالية</value>
     <comment>emoji</comment>
   </data>
+  <data name="Emoji_Flag" xml:space="preserve">
+    <value>علَم</value>
+    <comment>emoji</comment>
+  </data>
+  <data name="Emoji_Folder" xml:space="preserve">
+    <value>مجلد</value>
+    <comment>emoji</comment>
+  </data>
+  <data name="Emoji_Globe" xml:space="preserve">
+    <value>الكرة الأرضية</value>
+    <comment>emoji</comment>
+  </data>
   <data name="Emoji_Hammer" xml:space="preserve">
     <value>شاكوش</value>
+    <comment>emoji</comment>
+  </data>
+  <data name="Emoji_Heart" xml:space="preserve">
+    <value>قلب</value>
     <comment>emoji</comment>
   </data>
   <data name="Emoji_Images" xml:space="preserve">
     <value>الصور</value>
     <comment>emoji</comment>
   </data>
-  <data name="Emoji_Important" xml:space="preserve">
-    <value>مهم</value>
+  <data name="Emoji_Interrobrang" xml:space="preserve">
+    <value>Interrobang</value>
     <comment>emoji</comment>
   </data>
   <data name="Emoji_Journal" xml:space="preserve">
@@ -808,6 +840,10 @@
   </data>
   <data name="Emoji_LeftwardsArrow" xml:space="preserve">
     <value>سهم لليسار</value>
+    <comment>emoji</comment>
+  </data>
+  <data name="Emoji_Lock" xml:space="preserve">
+    <value>قفل</value>
     <comment>emoji</comment>
   </data>
   <data name="Emoji_Memo" xml:space="preserve">
@@ -824,6 +860,10 @@
   </data>
   <data name="Emoji_Pushpin" xml:space="preserve">
     <value>دبوس التثبيت</value>
+    <comment>emoji</comment>
+  </data>
+  <data name="Emoji_Recycle" xml:space="preserve">
+    <value>إعادة التدوير</value>
     <comment>emoji</comment>
   </data>
   <data name="Emoji_RightwardsArrow" xml:space="preserve">
@@ -850,6 +890,10 @@
     <value>رياضات</value>
     <comment>emoji</comment>
   </data>
+  <data name="Emoji_SportsEU" xml:space="preserve">
+    <value>رياضة الاتحاد الأوروبي</value>
+    <comment>emoji</comment>
+  </data>
   <data name="Emoji_Star" xml:space="preserve">
     <value>نجمة</value>
     <comment>emoji</comment>
@@ -859,11 +903,23 @@
     <comment>emoji</comment>
   </data>
   <data name="Emoji_Tasks" xml:space="preserve">
-    <value>مهام</value>
+    <value>مهمة</value>
+    <comment>emoji</comment>
+  </data>
+  <data name="Emoji_Tools" xml:space="preserve">
+    <value>أدوات</value>
     <comment>emoji</comment>
   </data>
   <data name="Emoji_Travel" xml:space="preserve">
     <value>السفر</value>
+    <comment>emoji</comment>
+  </data>
+  <data name="Emoji_Video" xml:space="preserve">
+    <value>فيديو</value>
+    <comment>emoji</comment>
+  </data>
+  <data name="Emoji_Warning" xml:space="preserve">
+    <value>تحذير</value>
     <comment>emoji</comment>
   </data>
   <data name="Emoji_Watch" xml:space="preserve">
@@ -2828,14 +2884,6 @@ ISO-code then comma then language name</comment>
     <value>تضمين محتوى صفحة أخرى في الصفحة الحالية</value>
     <comment>ribbon item screentip</comment>
   </data>
-  <data name="ribEmojiButton_Label" xml:space="preserve">
-    <value>أدخل رمز تعبيري</value>
-    <comment>ribbon edit</comment>
-  </data>
-  <data name="ribEmojiButton_Screentip" xml:space="preserve">
-    <value>أدخل واحدًا أو أكثر من الرموز التعبيرية</value>
-    <comment>ribbon edit</comment>
-  </data>
   <data name="ribEnableSpellCheckButton_Label" xml:space="preserve">
     <value>تمكين التدقيق الإملائي</value>
     <comment>Ribbon OneMore menu item, no spell check on this page</comment>
@@ -3047,6 +3095,14 @@ ISO-code then comma then language name</comment>
   <data name="ribInsertDoubleLineButton_Screentip" xml:space="preserve">
     <value>أدخل خط أفقي مزدوج (Shift + Alt + Equals)</value>
     <comment>Ribbon OneMore menu item, Extras...</comment>
+  </data>
+  <data name="ribInsertEmojiButton_Label" xml:space="preserve">
+    <value>الرموز التعبيرية</value>
+    <comment>ribbon snippets</comment>
+  </data>
+  <data name="ribInsertEmojiButton_Screentip" xml:space="preserve">
+    <value>أدخل واحدًا أو أكثر من الرموز التعبيرية</value>
+    <comment>ribbon snippets</comment>
   </data>
   <data name="ribInsertExpandButton_Label" xml:space="preserve">
     <value>توسيع الانهيار</value>

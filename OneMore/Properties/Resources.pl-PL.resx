@@ -751,6 +751,14 @@ Czcionka ostatniej kolumny</value>
     <value>Samochód</value>
     <comment>emoji</comment>
   </data>
+  <data name="Emoji_BallotBox" xml:space="preserve">
+    <value>Urna wyborcza</value>
+    <comment>emoji</comment>
+  </data>
+  <data name="Emoji_Bell" xml:space="preserve">
+    <value>Dzwonek</value>
+    <comment>emoji</comment>
+  </data>
   <data name="Emoji_Bullet" xml:space="preserve">
     <value>Pocisk</value>
     <comment>emoji</comment>
@@ -759,12 +767,20 @@ Czcionka ostatniej kolumny</value>
     <value>Kalendarz</value>
     <comment>emoji</comment>
   </data>
+  <data name="Emoji_Camera" xml:space="preserve">
+    <value>Kamera</value>
+    <comment>emoji</comment>
+  </data>
   <data name="Emoji_CheckMark" xml:space="preserve">
     <value>Zaznacz</value>
     <comment>emoji</comment>
   </data>
   <data name="Emoji_Circle" xml:space="preserve">
     <value>Koło</value>
+    <comment>emoji</comment>
+  </data>
+  <data name="Emoji_Clipboard" xml:space="preserve">
+    <value>Schowek</value>
     <comment>emoji</comment>
   </data>
   <data name="Emoji_Cloud" xml:space="preserve">
@@ -799,16 +815,32 @@ Czcionka ostatniej kolumny</value>
     <value>Budżetowy</value>
     <comment>emoji</comment>
   </data>
+  <data name="Emoji_Flag" xml:space="preserve">
+    <value>Flaga</value>
+    <comment>emoji</comment>
+  </data>
+  <data name="Emoji_Folder" xml:space="preserve">
+    <value>Teczka</value>
+    <comment>emoji</comment>
+  </data>
+  <data name="Emoji_Globe" xml:space="preserve">
+    <value>Glob</value>
+    <comment>emoji</comment>
+  </data>
   <data name="Emoji_Hammer" xml:space="preserve">
     <value>Młot</value>
+    <comment>emoji</comment>
+  </data>
+  <data name="Emoji_Heart" xml:space="preserve">
+    <value>Serce</value>
     <comment>emoji</comment>
   </data>
   <data name="Emoji_Images" xml:space="preserve">
     <value>Obrazy</value>
     <comment>emoji</comment>
   </data>
-  <data name="Emoji_Important" xml:space="preserve">
-    <value>Ważny</value>
+  <data name="Emoji_Interrobrang" xml:space="preserve">
+    <value>Interrobang</value>
     <comment>emoji</comment>
   </data>
   <data name="Emoji_Journal" xml:space="preserve">
@@ -817,6 +849,10 @@ Czcionka ostatniej kolumny</value>
   </data>
   <data name="Emoji_LeftwardsArrow" xml:space="preserve">
     <value>Strzałka w lewo</value>
+    <comment>emoji</comment>
+  </data>
+  <data name="Emoji_Lock" xml:space="preserve">
+    <value>Zamek</value>
     <comment>emoji</comment>
   </data>
   <data name="Emoji_Memo" xml:space="preserve">
@@ -833,6 +869,10 @@ Czcionka ostatniej kolumny</value>
   </data>
   <data name="Emoji_Pushpin" xml:space="preserve">
     <value>Pushpin.</value>
+    <comment>emoji</comment>
+  </data>
+  <data name="Emoji_Recycle" xml:space="preserve">
+    <value>Recykling</value>
     <comment>emoji</comment>
   </data>
   <data name="Emoji_RightwardsArrow" xml:space="preserve">
@@ -859,6 +899,10 @@ Czcionka ostatniej kolumny</value>
     <value>Sporty</value>
     <comment>emoji</comment>
   </data>
+  <data name="Emoji_SportsEU" xml:space="preserve">
+    <value>Sport UE</value>
+    <comment>emoji</comment>
+  </data>
   <data name="Emoji_Star" xml:space="preserve">
     <value>Gwiazda</value>
     <comment>emoji</comment>
@@ -868,11 +912,23 @@ Czcionka ostatniej kolumny</value>
     <comment>emoji</comment>
   </data>
   <data name="Emoji_Tasks" xml:space="preserve">
-    <value>Zadania</value>
+    <value>Zadanie</value>
+    <comment>emoji</comment>
+  </data>
+  <data name="Emoji_Tools" xml:space="preserve">
+    <value>Narzędzia</value>
     <comment>emoji</comment>
   </data>
   <data name="Emoji_Travel" xml:space="preserve">
     <value>Podróż</value>
+    <comment>emoji</comment>
+  </data>
+  <data name="Emoji_Video" xml:space="preserve">
+    <value>Wideo</value>
+    <comment>emoji</comment>
+  </data>
+  <data name="Emoji_Warning" xml:space="preserve">
+    <value>Ostrzeżenie</value>
     <comment>emoji</comment>
   </data>
   <data name="Emoji_Watch" xml:space="preserve">
@@ -2841,14 +2897,6 @@ Polaroid</value>
     <value>Umieść zawartość innej strony na bieżącą stronę</value>
     <comment>ribbon item screentip</comment>
   </data>
-  <data name="ribEmojiButton_Label" xml:space="preserve">
-    <value>Wstaw emoji</value>
-    <comment>ribbon edit</comment>
-  </data>
-  <data name="ribEmojiButton_Screentip" xml:space="preserve">
-    <value>Wstaw jeden lub więcej emoji</value>
-    <comment>ribbon edit</comment>
-  </data>
   <data name="ribEnableSpellCheckButton_Label" xml:space="preserve">
     <value>Włącz sprawdzanie pisowni</value>
     <comment>Ribbon OneMore menu item, no spell check on this page</comment>
@@ -3060,6 +3108,14 @@ Polaroid</value>
   <data name="ribInsertDoubleLineButton_Screentip" xml:space="preserve">
     <value>Włóż podwójną linię poziomą (Shift + Alt + Equals)</value>
     <comment>Ribbon OneMore menu item, Extras...</comment>
+  </data>
+  <data name="ribInsertEmojiButton_Label" xml:space="preserve">
+    <value>Emoji</value>
+    <comment>ribbon snippets</comment>
+  </data>
+  <data name="ribInsertEmojiButton_Screentip" xml:space="preserve">
+    <value>Wstaw jeden lub więcej emoji</value>
+    <comment>ribbon snippets</comment>
   </data>
   <data name="ribInsertExpandButton_Label" xml:space="preserve">
     <value>Rozwiń/Zwiń</value>

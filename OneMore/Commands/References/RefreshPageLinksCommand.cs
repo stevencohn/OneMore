@@ -161,7 +161,8 @@ namespace River.OneMoreAddIn.Commands
 			}
 
 			// strip emojis (Segoe UI Emoji font)
-			title = Emojis.RemoveEmojis(title);
+			using var emojis = new Emojis();
+			title = emojis.RemoveEmojis(title);
 
 			return title.Trim();
 		}

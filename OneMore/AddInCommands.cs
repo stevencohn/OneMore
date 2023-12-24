@@ -51,11 +51,6 @@ namespace River.OneMoreAddIn
 			=> await factory.Run<AddFormulaCommand>();
 
 
-		[Command("ribEmojiButton_Label", Keys.None, "ribEditMenu")]
-		public async Task EmojiCmd(IRibbonControl control)
-			=> await factory.Run<EmojiCommand>();
-
-
 		public async Task AnalyzeCmd(IRibbonControl control)
 			=> await factory.Run<AnalyzeCommand>();
 
@@ -448,6 +443,11 @@ namespace River.OneMoreAddIn
 		[Command("ribInsertDoubleLineButton_Label", Keys.Alt | Keys.Shift| Keys.F12, "ribSnippetsMenu")]
 		public async Task InsertDoubleLineCmd(IRibbonControl control)
 			=> await factory.Run<InsertLineCommand>('═');
+
+
+		[Command("ribInsertEmojiButton_Label", Keys.Alt | Keys.F12, "ribSnippetsMenu")]
+		public async Task InsertEmojiCmd(IRibbonControl control)
+			=> await factory.Run<InsertEmojiCommand>();
 
 
 		[Command("ribInsertExpandButton_Label", Keys.None, "ribSnippetsMenu")]

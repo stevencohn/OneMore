@@ -173,7 +173,7 @@
       <DependentUpon>NavigatorWindow.cs</DependentUpon>
     </Compile>
     <Compile Include="Commands\Page\DuplicatePageCommand.cs" />
-    <Compile Include="Commands\Page\Emojis.cs" />
+    <Compile Include="Commands\Snippets\Emoji\Emojis.cs" />
     <Compile Include="Commands\Settings\ColorizerSheet.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -696,7 +696,7 @@
     <Compile Include="Commands\Tools\DiagnosticsCommand.cs" />
     <Compile Include="Commands\Styles\EditStylesCommand.cs" />
     <Compile Include="Commands\References\AddFootnoteCommand.cs" />
-    <Compile Include="Commands\Page\EmojiCommand.cs" />
+    <Compile Include="Commands\Snippets\InsertEmojiCommand.cs" />
     <Compile Include="Commands\Edit\AlterSizeCommand.cs" />
     <Compile Include="Commands\Extras\CollapsePagesCommand.cs" />
     <Compile Include="Commands\CommandFactory.cs" />
@@ -945,10 +945,10 @@
     <Compile Include="UI\MoreColorDialog.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Commands\Page\EmojiDialog.cs">
+    <Compile Include="Commands\Snippets\Emoji\EmojiDialog.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Commands\Page\EmojiDialog.Designer.cs">
+    <Compile Include="Commands\Snippets\Emoji\EmojiDialog.Designer.cs">
       <DependentUpon>EmojiDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\FontComboBox.cs">
@@ -1075,6 +1075,19 @@
     <Content Include="Commands\Navigator\Images\Student-Read-01-20.png" />
     <Content Include="Commands\Navigator\Images\Swap-Down-20.png" />
     <Content Include="Commands\Navigator\Images\Swap-Up-20.png" />
+    <Content Include="Commands\Snippets\Emoji\Images\BallotBox.png" />
+    <Content Include="Commands\Snippets\Emoji\Images\Bell.png" />
+    <None Include="Commands\Snippets\Emoji\Images\Clipboard.png" />
+    <None Include="Commands\Snippets\Emoji\Images\Folder.png" />
+    <None Include="Commands\Snippets\Emoji\Images\Globe.png" />
+    <None Include="Commands\Snippets\Emoji\Images\Heart.png" />
+    <None Include="Commands\Snippets\Emoji\Images\Interrobang.png" />
+    <None Include="Commands\Snippets\Emoji\Images\Warning.png" />
+    <None Include="Commands\Snippets\Emoji\Images\Video.png" />
+    <None Include="Commands\Snippets\Emoji\Images\Tools.png" />
+    <None Include="Commands\Snippets\Emoji\Images\Recycle.png" />
+    <None Include="Commands\Snippets\Emoji\Images\Lock.png" />
+    <None Include="Commands\Snippets\Emoji\Images\SportsEU.png" />
     <Content Include="Commands\Tagging\HashtagsDB.sql" />
     <Content Include="Commands\Tagging\x.png" />
     <None Include="Colorizer\Languages\plantuml.json">
@@ -1086,7 +1099,8 @@
     <None Include="Colorizer\Languages\rust.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Properties\Emoji\Architecture.png" />
+    <None Include="Commands\Snippets\Emoji\Emojis.json" />
+    <None Include="Commands\Snippets\Emoji\Images\Architecture.png" />
     <None Include="Colorizer\Languages\golang.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -1138,30 +1152,30 @@
     <None Include="Colorizer\Languages\xml.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Properties\Emoji\Automobile.png" />
-    <None Include="Properties\Emoji\Bullet.png" />
-    <None Include="Properties\Emoji\Calendar.png" />
-    <None Include="Properties\Emoji\Camera.png" />
-    <None Include="Properties\Emoji\CheckMark.png" />
-    <None Include="Properties\Emoji\Circle.png" />
-    <None Include="Properties\Emoji\Cloud.png" />
-    <None Include="Properties\Emoji\Copyright.png" />
-    <None Include="Properties\Emoji\Cross.png" />
-    <None Include="Properties\Emoji\Cyclist.png" />
-    <None Include="Properties\Emoji\Envelope.png" />
-    <None Include="Properties\Emoji\Family.png" />
-    <None Include="Properties\Emoji\Financial.png" />
-    <None Include="Properties\Emoji\Eyes.png" />
-    <None Include="Properties\Emoji\Flag.png" />
-    <None Include="Properties\Emoji\Hammer.png" />
-    <None Include="Properties\Emoji\Journal.png" />
-    <None Include="Properties\Emoji\Memo.png" />
-    <None Include="Properties\Emoji\Passwords.png" />
+    <None Include="Commands\Snippets\Emoji\Images\Automobile.png" />
+    <None Include="Commands\Snippets\Emoji\Images\Bullet.png" />
+    <None Include="Commands\Snippets\Emoji\Images\Calendar.png" />
+    <None Include="Commands\Snippets\Emoji\Images\Camera.png" />
+    <None Include="Commands\Snippets\Emoji\Images\CheckMark.png" />
+    <None Include="Commands\Snippets\Emoji\Images\Circle.png" />
+    <None Include="Commands\Snippets\Emoji\Images\Cloud.png" />
+    <None Include="Commands\Snippets\Emoji\Images\Copyright.png" />
+    <None Include="Commands\Snippets\Emoji\Images\Cross.png" />
+    <None Include="Commands\Snippets\Emoji\Images\Cyclist.png" />
+    <None Include="Commands\Snippets\Emoji\Images\Envelope.png" />
+    <None Include="Commands\Snippets\Emoji\Images\Family.png" />
+    <None Include="Commands\Snippets\Emoji\Images\Financial.png" />
+    <None Include="Commands\Snippets\Emoji\Images\Eyes.png" />
+    <None Include="Commands\Snippets\Emoji\Images\Flag.png" />
+    <None Include="Commands\Snippets\Emoji\Images\Hammer.png" />
+    <None Include="Commands\Snippets\Emoji\Images\Journal.png" />
+    <None Include="Commands\Snippets\Emoji\Images\Memo.png" />
+    <None Include="Commands\Snippets\Emoji\Images\Passwords.png" />
     <None Include="Properties\Images\Copy.png" />
-    <None Include="Properties\Emoji\LeftwardsArrow.png" />
-    <None Include="Properties\Emoji\RightwardsArrow.png" />
-    <None Include="Properties\Emoji\Section.png" />
-    <None Include="Properties\Emoji\XMark.png" />
+    <None Include="Commands\Snippets\Emoji\Images\LeftwardsArrow.png" />
+    <None Include="Commands\Snippets\Emoji\Images\RightwardsArrow.png" />
+    <None Include="Commands\Snippets\Emoji\Images\Section.png" />
+    <None Include="Commands\Snippets\Emoji\Images\XMark.png" />
     <Content Include="Commands\Tools\sponsor-light.png" />
     <Content Include="Properties\Images\CustomStyles.png" />
     <Content Include="Properties\Images\DarkCustomStyles.png" />
@@ -1181,17 +1195,17 @@
     <Content Include="Ribbon\Images\ribSearchHashtagsButton.png" />
     <Content Include="Properties\Images\Label.png" />
     <Content Include="Properties\Images\LabelSearch.png" />
-    <None Include="Properties\Emoji\Pencil.png" />
-    <None Include="Properties\Emoji\Pushpin.png" />
-    <None Include="Properties\Emoji\Shazam.png" />
-    <None Include="Properties\Emoji\Smiley.png" />
-    <None Include="Properties\Emoji\Software.png" />
-    <None Include="Properties\Emoji\Sports.png" />
-    <None Include="Properties\Emoji\Star.png" />
-    <None Include="Properties\Emoji\Summary.png" />
-    <None Include="Properties\Emoji\Tasks.png" />
-    <None Include="Properties\Emoji\Travel.png" />
-    <None Include="Properties\Emoji\Watch.png" />
+    <None Include="Commands\Snippets\Emoji\Images\Pencil.png" />
+    <None Include="Commands\Snippets\Emoji\Images\Pushpin.png" />
+    <None Include="Commands\Snippets\Emoji\Images\Shazam.png" />
+    <None Include="Commands\Snippets\Emoji\Images\Smiley.png" />
+    <None Include="Commands\Snippets\Emoji\Images\Software.png" />
+    <None Include="Commands\Snippets\Emoji\Images\Sports.png" />
+    <None Include="Commands\Snippets\Emoji\Images\Star.png" />
+    <None Include="Commands\Snippets\Emoji\Images\Summary.png" />
+    <None Include="Commands\Snippets\Emoji\Images\Tasks.png" />
+    <None Include="Commands\Snippets\Emoji\Images\Travel.png" />
+    <None Include="Commands\Snippets\Emoji\Images\Watch.png" />
     <Content Include="Properties\Images\Bold.png" />
     <Content Include="Properties\Images\Delete.png" />
     <Content Include="Properties\Images\DoubleLine.png" />
@@ -1276,6 +1290,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Commands\Favorites\FavoritesDialog.resx">
       <DependentUpon>FavoritesDialog.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Commands\File\CrawlWebPageDialog.resx">
       <DependentUpon>CrawlWebPageDialog.cs</DependentUpon>
@@ -1412,7 +1427,7 @@
     <EmbeddedResource Include="Commands\Images\CropImageDialog.resx">
       <DependentUpon>CropImageDialog.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Commands\Page\EmojiDialog.resx">
+    <EmbeddedResource Include="Commands\Snippets\Emoji\EmojiDialog.resx">
       <DependentUpon>EmojiDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Commands\File\ExportDialog.resx">

@@ -1,5 +1,5 @@
 ﻿//************************************************************************************************
-// Copyright © 2016 Steven M Cohn.  All rights reserved.
+// Copyright © 2016 Steven M Cohn. All rights reserved.
 //************************************************************************************************
 
 namespace River.OneMoreAddIn.Commands
@@ -16,13 +16,13 @@ namespace River.OneMoreAddIn.Commands
 	/// <summary>
 	/// Insert one or more selected symbols from the Segoe UI Emoji char set
 	/// </summary>
-	internal class EmojiCommand : Command
+	internal class InsertEmojiCommand : Command
 	{
 		private const string ReplayElementName = "symbols";
 		private IEnumerable<IEmoji> emojis;
 
 
-		public EmojiCommand()
+		public InsertEmojiCommand()
 		{
 		}
 
@@ -79,7 +79,7 @@ namespace River.OneMoreAddIn.Commands
 				var color = emoji.Color == null ? string.Empty : $"color:{emoji.Color}";
 
 				builder.Append(
-					$"<span style=\"font-family:'Segoe UI Emoji';{color}\">{emoji.Symbol}</span>");
+					$"<span style=\"font-family:'Segoe UI Emoji';{color}\">{emoji.Glyph}</span>");
 			}
 
 			var text = builder.ToString();
@@ -118,7 +118,7 @@ namespace River.OneMoreAddIn.Commands
 			{
 				return new XElement(
 					ReplayElementName,
-					string.Join(",", emojis.Select(e => e.Symbol))
+					string.Join(",", emojis.Select(e => e.Glyph))
 					);
 			}
 

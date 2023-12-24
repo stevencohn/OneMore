@@ -743,6 +743,14 @@ OneNote 将自动关闭</value>
     <value>汽车</value>
     <comment>emoji</comment>
   </data>
+  <data name="Emoji_BallotBox" xml:space="preserve">
+    <value>选票箱</value>
+    <comment>emoji</comment>
+  </data>
+  <data name="Emoji_Bell" xml:space="preserve">
+    <value>钟</value>
+    <comment>emoji</comment>
+  </data>
   <data name="Emoji_Bullet" xml:space="preserve">
     <value>子弹</value>
     <comment>emoji</comment>
@@ -751,12 +759,20 @@ OneNote 将自动关闭</value>
     <value>日历</value>
     <comment>emoji</comment>
   </data>
+  <data name="Emoji_Camera" xml:space="preserve">
+    <value>相机</value>
+    <comment>emoji</comment>
+  </data>
   <data name="Emoji_CheckMark" xml:space="preserve">
     <value>复选标记</value>
     <comment>emoji</comment>
   </data>
   <data name="Emoji_Circle" xml:space="preserve">
     <value>圈</value>
+    <comment>emoji</comment>
+  </data>
+  <data name="Emoji_Clipboard" xml:space="preserve">
+    <value>剪贴板</value>
     <comment>emoji</comment>
   </data>
   <data name="Emoji_Cloud" xml:space="preserve">
@@ -791,16 +807,32 @@ OneNote 将自动关闭</value>
     <value>金融</value>
     <comment>emoji</comment>
   </data>
+  <data name="Emoji_Flag" xml:space="preserve">
+    <value>旗帜</value>
+    <comment>emoji</comment>
+  </data>
+  <data name="Emoji_Folder" xml:space="preserve">
+    <value>文件夹</value>
+    <comment>emoji</comment>
+  </data>
+  <data name="Emoji_Globe" xml:space="preserve">
+    <value>地球</value>
+    <comment>emoji</comment>
+  </data>
   <data name="Emoji_Hammer" xml:space="preserve">
     <value>锤子</value>
+    <comment>emoji</comment>
+  </data>
+  <data name="Emoji_Heart" xml:space="preserve">
+    <value>心</value>
     <comment>emoji</comment>
   </data>
   <data name="Emoji_Images" xml:space="preserve">
     <value>图片</value>
     <comment>emoji</comment>
   </data>
-  <data name="Emoji_Important" xml:space="preserve">
-    <value>重要</value>
+  <data name="Emoji_Interrobrang" xml:space="preserve">
+    <value>因特罗邦</value>
     <comment>emoji</comment>
   </data>
   <data name="Emoji_Journal" xml:space="preserve">
@@ -809,6 +841,10 @@ OneNote 将自动关闭</value>
   </data>
   <data name="Emoji_LeftwardsArrow" xml:space="preserve">
     <value>向左箭头</value>
+    <comment>emoji</comment>
+  </data>
+  <data name="Emoji_Lock" xml:space="preserve">
+    <value>锁</value>
     <comment>emoji</comment>
   </data>
   <data name="Emoji_Memo" xml:space="preserve">
@@ -825,6 +861,10 @@ OneNote 将自动关闭</value>
   </data>
   <data name="Emoji_Pushpin" xml:space="preserve">
     <value>销</value>
+    <comment>emoji</comment>
+  </data>
+  <data name="Emoji_Recycle" xml:space="preserve">
+    <value>回收</value>
     <comment>emoji</comment>
   </data>
   <data name="Emoji_RightwardsArrow" xml:space="preserve">
@@ -851,6 +891,10 @@ OneNote 将自动关闭</value>
     <value>体育</value>
     <comment>emoji</comment>
   </data>
+  <data name="Emoji_SportsEU" xml:space="preserve">
+    <value>体育欧盟</value>
+    <comment>emoji</comment>
+  </data>
   <data name="Emoji_Star" xml:space="preserve">
     <value>星</value>
     <comment>emoji</comment>
@@ -863,8 +907,20 @@ OneNote 将自动关闭</value>
     <value>任务</value>
     <comment>emoji</comment>
   </data>
+  <data name="Emoji_Tools" xml:space="preserve">
+    <value>工具</value>
+    <comment>emoji</comment>
+  </data>
   <data name="Emoji_Travel" xml:space="preserve">
     <value>旅行</value>
+    <comment>emoji</comment>
+  </data>
+  <data name="Emoji_Video" xml:space="preserve">
+    <value>视频</value>
+    <comment>emoji</comment>
+  </data>
+  <data name="Emoji_Warning" xml:space="preserve">
+    <value>警告</value>
     <comment>emoji</comment>
   </data>
   <data name="Emoji_Watch" xml:space="preserve">
@@ -2831,14 +2887,6 @@ ISO-code then comma then language name</comment>
     <value>将另一个页面的内容嵌入到当前页面</value>
     <comment>ribbon item screentip</comment>
   </data>
-  <data name="ribEmojiButton_Label" xml:space="preserve">
-    <value>插入表情符号</value>
-    <comment>ribbon edit</comment>
-  </data>
-  <data name="ribEmojiButton_Screentip" xml:space="preserve">
-    <value>插入一个或多个表情符号</value>
-    <comment>ribbon edit</comment>
-  </data>
   <data name="ribEnableSpellCheckButton_Label" xml:space="preserve">
     <value>启用拼写检查</value>
     <comment>Ribbon OneMore menu item, no spell check on this page</comment>
@@ -3050,6 +3098,14 @@ ISO-code then comma then language name</comment>
   <data name="ribInsertDoubleLineButton_Screentip" xml:space="preserve">
     <value>插入双水平线 (Shift + Alt + Equals)</value>
     <comment>Ribbon OneMore menu item, Extras...</comment>
+  </data>
+  <data name="ribInsertEmojiButton_Label" xml:space="preserve">
+    <value>表情符号</value>
+    <comment>ribbon snippets</comment>
+  </data>
+  <data name="ribInsertEmojiButton_Screentip" xml:space="preserve">
+    <value>插入一个或多个表情符号</value>
+    <comment>ribbon snippets</comment>
   </data>
   <data name="ribInsertExpandButton_Label" xml:space="preserve">
     <value>展开/折叠</value>

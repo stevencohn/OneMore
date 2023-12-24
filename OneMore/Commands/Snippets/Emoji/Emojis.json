@@ -1,0 +1,196 @@
+[
+  {
+    "glyph": "📐",
+    "resID": "Architecture"
+  },
+  {
+    "glyph": "🚗",
+    "resID": "Automobile"
+  },
+  {
+    "glyph": "☐",
+    "resID": "BallotBox",
+    "color": "#5B9BD5"
+  },
+  {
+    "glyph": "🔔",
+    "resID": "Bell"
+  },
+  {
+    "glyph": "●",
+    "resID": "Bullet",
+    "color": "#0070C0"
+  },
+  {
+    "glyph": "📆",
+    "resID": "Calendar"
+  },
+  {
+    "glyph": "📷",
+    "resID": "Camera"
+  },
+  {
+    "glyph": "✓",
+    "resID": "CheckMark",
+    "color": "#00B050"
+  },
+  {
+    "glyph": "⭕",
+    "resID": "Circle"
+  },
+  {
+    "glyph": "📋",
+    "resID": "Clipboard"
+  },
+  {
+    "glyph": "☁",
+    "resID": "Cloud"
+  },
+  {
+    "glyph": "©",
+    "resID": "Copyright"
+  },
+  {
+    "glyph": "❌",
+    "resID": "Cross"
+  },
+  {
+    "glyph": "🚴",
+    "resID": "Cycling"
+  },
+  {
+    "glyph": "✉",
+    "resID": "Envelope"
+  },
+  {
+    "glyph": "👀",
+    "resID": "Eyes"
+  },
+  {
+    "glyph": "👪",
+    "resID": "Family"
+  },
+  {
+    "glyph": "💲",
+    "resID": "Financial"
+  },
+  {
+    "glyph": "🚩",
+    "resID": "Flag"
+  },
+  {
+    "glyph": "📁",
+    "resID": "Folder"
+  },
+  {
+    "glyph": "🌐",
+    "resID": "Globe"
+  },
+  {
+    "glyph": "🔨",
+    "resID": "Hammer"
+  },
+  {
+    "glyph": "⁉",
+    "resID": "Interrobang"
+  },
+  {
+    "glyph": "📓",
+    "resID": "Journal"
+  },
+  {
+    "glyph": "←",
+    "resID": "LeftwardsArrow",
+    "color": "#0070C0"
+  },
+  {
+    "glyph": "🔒",
+    "resID": "Lock"
+  },
+  {
+    "glyph": "📝",
+    "resID": "Memo"
+  },
+  {
+    "glyph": "🔑",
+    "resID": "Passwords"
+  },
+  {
+    "glyph": "✏",
+    "resID": "Pencil"
+  },
+  {
+    "glyph": "📌",
+    "resID": "Pushpin"
+  },
+  {
+    "glyph": "♻",
+    "resID": "Recycle"
+  },
+  {
+    "glyph": "→",
+    "resID": "RightwardsArrow",
+    "color": "#0070C0"
+  },
+  {
+    "glyph": "§",
+    "resID": "Section"
+  },
+  {
+    "glyph": "⚡",
+    "resID": "Shazam"
+  },
+  {
+    "glyph": "🙂",
+    "resID": "Smiley"
+  },
+  {
+    "glyph": "💾",
+    "resID": "Software"
+  },
+  {
+    "glyph": "⚾",
+    "resID": "Sports"
+  },
+  {
+    "glyph": "⚽",
+    "resID": "SportsEU"
+  },
+  {
+    "glyph": "⭐",
+    "resID": "Star"
+  },
+  {
+    "glyph": "∑",
+    "resID": "Summary"
+  },
+  {
+    "glyph": "☑",
+    "resID": "Tasks"
+  },
+  {
+    "glyph": "⚒",
+    "resID": "Tools"
+  },
+  {
+    "glyph": "🛩",
+    "resID": "Travel"
+  },
+  {
+    "glyph": "🎥",
+    "resID": "Video"
+  },
+  {
+    "glyph": "⚠",
+    "resID": "Warning"
+  },
+  {
+    "glyph": "⌚",
+    "resID": "Watch"
+  },
+  {
+    "glyph": "✗",
+    "resID": "XMark",
+    "color": "#C00000"
+  }
+]

@@ -117,6 +117,12 @@
               getScreentip="GetRibbonScreentip"
               onAction="InsertDateCmd"/>
             <button
+              id="ribInsertEmojiButton"
+              imageMso="ShapeSmileyFace"
+              getLabel="GetRibbonLabel"
+              getScreentip="GetRibbonScreentip"
+              onAction="InsertEmojiCmd"/>
+            <button
               id="ribInsertTocButton"
               imageMso="WordInsertTableOfContents2"
               getLabel="GetRibbonLabel"
@@ -323,12 +329,6 @@
                 getLabel="GetRibbonLabel"
                 getScreentip="GetRibbonScreentip"
                 onAction="IncreaseFontSizeCmd"/>
-              <button
-                id="ribEmojiButton"
-                imageMso="ShapeSmileyFace"
-                getLabel="GetRibbonLabel"
-                getScreentip="GetRibbonScreentip"
-                onAction="EmojiCmd"/>
               <button
                 id="ribDuplicateLineButton"
                 imageMso="PasteDuplicate"
