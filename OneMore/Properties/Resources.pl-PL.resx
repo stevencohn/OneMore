@@ -791,7 +791,7 @@ Czcionka ostatniej kolumny</value>
     <value>prawa autorskie</value>
     <comment>emoji</comment>
   </data>
-  <data name="Emoji_CrossMark" xml:space="preserve">
+  <data name="Emoji_Cross" xml:space="preserve">
     <value>Znak krzyża</value>
     <comment>emoji</comment>
   </data>
@@ -799,8 +799,8 @@ Czcionka ostatniej kolumny</value>
     <value>Kolarstwo</value>
     <comment>emoji</comment>
   </data>
-  <data name="Emoji_Email" xml:space="preserve">
-    <value>E-mail</value>
+  <data name="Emoji_Envelope" xml:space="preserve">
+    <value>Koperta</value>
     <comment>emoji</comment>
   </data>
   <data name="Emoji_Eyes" xml:space="preserve">
@@ -839,7 +839,7 @@ Czcionka ostatniej kolumny</value>
     <value>Obrazy</value>
     <comment>emoji</comment>
   </data>
-  <data name="Emoji_Interrobrang" xml:space="preserve">
+  <data name="Emoji_Interrobang" xml:space="preserve">
     <value>Interrobang</value>
     <comment>emoji</comment>
   </data>

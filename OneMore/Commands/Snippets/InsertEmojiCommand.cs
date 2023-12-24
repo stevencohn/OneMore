@@ -52,7 +52,7 @@ namespace River.OneMoreAddIn.Commands
 					return;
 				}
 
-				emojis = dialog.GetEmojis().Reverse();
+				emojis = dialog.GetEmojis();
 			}
 
 			await InsertSymbols();

@@ -1875,9 +1875,9 @@ namespace River.OneMoreAddIn.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Cross Mark.
         /// </summary>
-        internal static string Emoji_CrossMark {
+        internal static string Emoji_Cross {
             get {
-                return ResourceManager.GetString("Emoji_CrossMark", resourceCulture);
+                return ResourceManager.GetString("Emoji_Cross", resourceCulture);
             }
         }
         
@@ -1891,11 +1891,11 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Email.
+        ///   Looks up a localized string similar to Envelope.
         /// </summary>
-        internal static string Emoji_Email {
+        internal static string Emoji_Envelope {
             get {
-                return ResourceManager.GetString("Emoji_Email", resourceCulture);
+                return ResourceManager.GetString("Emoji_Envelope", resourceCulture);
             }
         }
         
@@ -1983,9 +1983,9 @@ namespace River.OneMoreAddIn.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Interrobang.
         /// </summary>
-        internal static string Emoji_Interrobrang {
+        internal static string Emoji_Interrobang {
             get {
-                return ResourceManager.GetString("Emoji_Interrobrang", resourceCulture);
+                return ResourceManager.GetString("Emoji_Interrobang", resourceCulture);
             }
         }
         

@@ -783,7 +783,7 @@ Lettertype laatste kolom</value>
     <value>auteursrechten</value>
     <comment>emoji</comment>
   </data>
-  <data name="Emoji_CrossMark" xml:space="preserve">
+  <data name="Emoji_Cross" xml:space="preserve">
     <value>Kruisteken</value>
     <comment>emoji</comment>
   </data>
@@ -791,8 +791,8 @@ Lettertype laatste kolom</value>
     <value>Wielersport</value>
     <comment>emoji</comment>
   </data>
-  <data name="Emoji_Email" xml:space="preserve">
-    <value>E-mail</value>
+  <data name="Emoji_Envelope" xml:space="preserve">
+    <value>Envelop</value>
     <comment>emoji</comment>
   </data>
   <data name="Emoji_Eyes" xml:space="preserve">
@@ -831,7 +831,7 @@ Lettertype laatste kolom</value>
     <value>Afbeeldingen</value>
     <comment>emoji</comment>
   </data>
-  <data name="Emoji_Interrobrang" xml:space="preserve">
+  <data name="Emoji_Interrobang" xml:space="preserve">
     <value>Interrobang</value>
     <comment>emoji</comment>
   </data>

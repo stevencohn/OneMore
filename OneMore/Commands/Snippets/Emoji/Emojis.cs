@@ -8,7 +8,6 @@ namespace River.OneMoreAddIn.Commands
 	using System;
 	using System.Collections.Generic;
 	using System.Drawing;
-	using System.IO;
 	using System.Linq;
 	using System.Text;
 	using Resx = Properties.Resources;
@@ -162,13 +161,17 @@ namespace River.OneMoreAddIn.Commands
 				var index = 0;
 				do
 				{
+					// glyphs are either one char or two char in length
+
 					index = builder.IndexOf(glyph[0], index);
 					if (index >= 0 && glyph.Length == 1)
 					{
+						// found one char glyph, remove it
 						builder.Remove(index, 1);
 					}
 					else if (index >= 0 && index <= builder.Length - 2)
 					{
+						// found first of two chars, test second
 						if (builder[index + 1] == glyph[1])
 						{
 							builder.Remove(index, 2);

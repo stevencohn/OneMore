@@ -782,7 +782,7 @@ Fuente de la última columna</value>
     <value>Derechos de autor</value>
     <comment>emoji</comment>
   </data>
-  <data name="Emoji_CrossMark" xml:space="preserve">
+  <data name="Emoji_Cross" xml:space="preserve">
     <value>Marca de la cruz</value>
     <comment>emoji</comment>
   </data>
@@ -790,8 +790,8 @@ Fuente de la última columna</value>
     <value>Ciclismo</value>
     <comment>emoji</comment>
   </data>
-  <data name="Emoji_Email" xml:space="preserve">
-    <value>Correo electrónico</value>
+  <data name="Emoji_Envelope" xml:space="preserve">
+    <value>Sobre</value>
     <comment>emoji</comment>
   </data>
   <data name="Emoji_Eyes" xml:space="preserve">
@@ -830,7 +830,7 @@ Fuente de la última columna</value>
     <value>Imagenes</value>
     <comment>emoji</comment>
   </data>
-  <data name="Emoji_Interrobrang" xml:space="preserve">
+  <data name="Emoji_Interrobang" xml:space="preserve">
     <value>Interrobang</value>
     <comment>emoji</comment>
   </data>

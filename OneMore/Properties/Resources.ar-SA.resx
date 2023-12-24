@@ -782,7 +782,7 @@
     <value>حقوق النشر</value>
     <comment>emoji</comment>
   </data>
-  <data name="Emoji_CrossMark" xml:space="preserve">
+  <data name="Emoji_Cross" xml:space="preserve">
     <value>علامة تقاطع</value>
     <comment>emoji</comment>
   </data>
@@ -790,8 +790,8 @@
     <value>ركوب الدراجات</value>
     <comment>emoji</comment>
   </data>
-  <data name="Emoji_Email" xml:space="preserve">
-    <value>البريد الإلكتروني</value>
+  <data name="Emoji_Envelope" xml:space="preserve">
+    <value>ظرف</value>
     <comment>emoji</comment>
   </data>
   <data name="Emoji_Eyes" xml:space="preserve">
@@ -830,7 +830,7 @@
     <value>الصور</value>
     <comment>emoji</comment>
   </data>
-  <data name="Emoji_Interrobrang" xml:space="preserve">
+  <data name="Emoji_Interrobang" xml:space="preserve">
     <value>Interrobang</value>
     <comment>emoji</comment>
   </data>

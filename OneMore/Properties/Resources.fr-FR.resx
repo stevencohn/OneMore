@@ -779,16 +779,16 @@ Police de la dernière colonne</value>
     <value>droits d'auteur</value>
     <comment>emoji</comment>
   </data>
-  <data name="Emoji_CrossMark" xml:space="preserve">
-    <value>Marque croisée</value>
+  <data name="Emoji_Cross" xml:space="preserve">
+    <value>Marque de croix</value>
     <comment>emoji</comment>
   </data>
   <data name="Emoji_Cycling" xml:space="preserve">
     <value>Cyclisme</value>
     <comment>emoji</comment>
   </data>
-  <data name="Emoji_Email" xml:space="preserve">
-    <value>Email</value>
+  <data name="Emoji_Envelope" xml:space="preserve">
+    <value>Enveloppe</value>
     <comment>emoji</comment>
   </data>
   <data name="Emoji_Eyes" xml:space="preserve">
@@ -827,7 +827,7 @@ Police de la dernière colonne</value>
     <value>Images</value>
     <comment>emoji</comment>
   </data>
-  <data name="Emoji_Interrobrang" xml:space="preserve">
+  <data name="Emoji_Interrobang" xml:space="preserve">
     <value>Interrobang</value>
     <comment>emoji</comment>
   </data>

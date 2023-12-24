@@ -779,16 +779,16 @@ Schriftart der letzten Spalte</value>
     <value>Urheberrechte ©</value>
     <comment>emoji</comment>
   </data>
-  <data name="Emoji_CrossMark" xml:space="preserve">
-    <value>Kreuzzeichen</value>
+  <data name="Emoji_Cross" xml:space="preserve">
+    <value>Kreuzmarke</value>
     <comment>emoji</comment>
   </data>
   <data name="Emoji_Cycling" xml:space="preserve">
     <value>Radfahren</value>
     <comment>emoji</comment>
   </data>
-  <data name="Emoji_Email" xml:space="preserve">
-    <value>Email</value>
+  <data name="Emoji_Envelope" xml:space="preserve">
+    <value>Umschlag</value>
     <comment>emoji</comment>
   </data>
   <data name="Emoji_Eyes" xml:space="preserve">
@@ -827,7 +827,7 @@ Schriftart der letzten Spalte</value>
     <value>Bilder</value>
     <comment>emoji</comment>
   </data>
-  <data name="Emoji_Interrobrang" xml:space="preserve">
+  <data name="Emoji_Interrobang" xml:space="preserve">
     <value>Interrobang</value>
     <comment>emoji</comment>
   </data>

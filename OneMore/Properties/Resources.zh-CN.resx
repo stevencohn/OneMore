@@ -783,16 +783,16 @@ OneNote 将自动关闭</value>
     <value>版权</value>
     <comment>emoji</comment>
   </data>
-  <data name="Emoji_CrossMark" xml:space="preserve">
-    <value>交叉</value>
+  <data name="Emoji_Cross" xml:space="preserve">
+    <value>十字标记</value>
     <comment>emoji</comment>
   </data>
   <data name="Emoji_Cycling" xml:space="preserve">
     <value>自行车</value>
     <comment>emoji</comment>
   </data>
-  <data name="Emoji_Email" xml:space="preserve">
-    <value>电子邮件</value>
+  <data name="Emoji_Envelope" xml:space="preserve">
+    <value>信封</value>
     <comment>emoji</comment>
   </data>
   <data name="Emoji_Eyes" xml:space="preserve">
@@ -831,7 +831,7 @@ OneNote 将自动关闭</value>
     <value>图片</value>
     <comment>emoji</comment>
   </data>
-  <data name="Emoji_Interrobrang" xml:space="preserve">
+  <data name="Emoji_Interrobang" xml:space="preserve">
     <value>因特罗邦</value>
     <comment>emoji</comment>
   </data>
