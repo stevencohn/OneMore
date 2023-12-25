@@ -3770,6 +3770,10 @@ ISO-code then comma then language name</comment>
     <value>افتح وابدأ نافذة المؤقت</value>
     <comment>ribbon extras</comment>
   </data>
+  <data name="ribStatusMenu_Label" xml:space="preserve">
+    <value>حالة</value>
+    <comment>ribbon snippets</comment>
+  </data>
   <data name="ribStrikeoutTasksButton_Label" xml:space="preserve">
     <value>اكتمل يتوسطه خط مهام المهام</value>
     <comment>Ribbon OneMore menu item</comment>

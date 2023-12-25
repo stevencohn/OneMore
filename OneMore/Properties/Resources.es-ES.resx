@@ -3770,6 +3770,10 @@ polaroid</value>
     <value>Abra e inicie la ventana del temporizador</value>
     <comment>ribbon extras</comment>
   </data>
+  <data name="ribStatusMenu_Label" xml:space="preserve">
+    <value>Estado</value>
+    <comment>ribbon snippets</comment>
+  </data>
   <data name="ribStrikeoutTasksButton_Label" xml:space="preserve">
     <value>Tachado Completado para hacer etiquetas</value>
     <comment>Ribbon OneMore menu item</comment>

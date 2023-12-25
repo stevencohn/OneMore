@@ -3783,6 +3783,10 @@ ISO-code then comma then language name</comment>
     <value>פתח והתחל את חלון הטיימר</value>
     <comment>ribbon extras</comment>
   </data>
+  <data name="ribStatusMenu_Label" xml:space="preserve">
+    <value>סטָטוּס</value>
+    <comment>ribbon snippets</comment>
+  </data>
   <data name="ribStrikeoutTasksButton_Label" xml:space="preserve">
     <value>תגיות מטלות חוצה שהושלמו</value>
     <comment>Ribbon OneMore menu item</comment>

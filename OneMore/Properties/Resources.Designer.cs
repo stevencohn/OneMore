@@ -9128,6 +9128,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Status.
+        /// </summary>
+        internal static string ribStatusMenu_Label {
+            get {
+                return ResourceManager.GetString("ribStatusMenu_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Strikethrough Completed To Do Tags.
         /// </summary>
         internal static string ribStrikeoutTasksButton_Label {

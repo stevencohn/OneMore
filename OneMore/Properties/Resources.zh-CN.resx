@@ -3765,6 +3765,10 @@ ISO-code then comma then language name</comment>
     <value>打开并启动定时器窗口</value>
     <comment>ribbon extras</comment>
   </data>
+  <data name="ribStatusMenu_Label" xml:space="preserve">
+    <value>地位</value>
+    <comment>ribbon snippets</comment>
+  </data>
   <data name="ribStrikeoutTasksButton_Label" xml:space="preserve">
     <value>删除线完成标记</value>
     <comment>Ribbon OneMore menu item</comment>

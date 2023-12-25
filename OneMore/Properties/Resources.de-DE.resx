@@ -3759,6 +3759,10 @@ Polaroid</value>
     <value>Öffnen und starten Sie das Timer-Fenster</value>
     <comment>ribbon extras</comment>
   </data>
+  <data name="ribStatusMenu_Label" xml:space="preserve">
+    <value>Status</value>
+    <comment>ribbon snippets</comment>
+  </data>
   <data name="ribStrikeoutTasksButton_Label" xml:space="preserve">
     <value>Durchgestrichen abgeschlossen, um Tags zu tun</value>
     <comment>Ribbon OneMore menu item</comment>

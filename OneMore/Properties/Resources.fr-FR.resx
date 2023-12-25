@@ -3765,6 +3765,10 @@ Polaroïd</value>
     <value>Ouvrir et démarrer la fenêtre de la minuterie</value>
     <comment>ribbon extras</comment>
   </data>
+  <data name="ribStatusMenu_Label" xml:space="preserve">
+    <value>Statut</value>
+    <comment>ribbon snippets</comment>
+  </data>
   <data name="ribStrikeoutTasksButton_Label" xml:space="preserve">
     <value>Barré terminé pour faire des balises</value>
     <comment>Ribbon OneMore menu item</comment>

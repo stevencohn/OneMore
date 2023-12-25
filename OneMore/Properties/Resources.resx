@@ -3805,6 +3805,10 @@ Polaroid</value>
     <value>Open and start the timer window</value>
     <comment>ribbon extras</comment>
   </data>
+  <data name="ribStatusMenu_Label" xml:space="preserve">
+    <value>Status</value>
+    <comment>ribbon snippets</comment>
+  </data>
   <data name="ribStrikeoutTasksButton_Label" xml:space="preserve">
     <value>Strikethrough Completed To Do Tags</value>
     <comment>ribbon reminders</comment>

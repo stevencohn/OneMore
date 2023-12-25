@@ -3770,6 +3770,10 @@ Polaroid</value>
     <value>Open en start het timervenster</value>
     <comment>ribbon extras</comment>
   </data>
+  <data name="ribStatusMenu_Label" xml:space="preserve">
+    <value>Toestand</value>
+    <comment>ribbon snippets</comment>
+  </data>
   <data name="ribStrikeoutTasksButton_Label" xml:space="preserve">
     <value>Doorhalen voltooid om tags te doen</value>
     <comment>Ribbon OneMore menu item</comment>

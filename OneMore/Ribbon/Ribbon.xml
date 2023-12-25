@@ -86,6 +86,38 @@
               getLabel="GetRibbonLabel"
               imageMso="StarUnratedFull"
               getContent="GetMySnippetsContent"/>
+            <menu id="ribStatusMenu" getLabel="GetRibbonLabel" imageMso="AppointmentColorDialog" showImage ="true">
+              <button
+                id="ribInsertGrayStatusButton"
+                imageMso="AppointmentColor4"
+                getLabel="GetRibbonLabel"
+                getScreentip="GetRibbonScreentip"
+                onAction="InsertGrayStatusCmd"/>
+              <button
+                id="ribInsertRedStatusButton"
+                imageMso="AppointmentColor1"
+                getLabel="GetRibbonLabel"
+                getScreentip="GetRibbonScreentip"
+                onAction="InsertRedStatusCmd"/>
+              <button
+                id="ribInsertYellowStatusButton"
+                imageMso="AppointmentColor10"
+                getLabel="GetRibbonLabel"
+                getScreentip="GetRibbonScreentip"
+                onAction="InsertYellowStatusCmd"/>
+              <button
+                id="ribInsertGreenStatusButton"
+                imageMso="AppointmentColor3"
+                getLabel="GetRibbonLabel"
+                getScreentip="GetRibbonScreentip"
+                onAction="InsertGreenStatusCmd"/>
+              <button
+                id="ribInsertBlueStatusButton"
+                imageMso="AppointmentColor2"
+                getLabel="GetRibbonLabel"
+                getScreentip="GetRibbonScreentip"
+                onAction="InsertBlueStatusCmd"/>
+            </menu>
             <button
               id="ribInsertBreadcrumbButton"
               imageMso="ShapeRightArrow"
@@ -165,37 +197,6 @@
               getLabel="GetRibbonLabel"
               getScreentip="GetRibbonScreentip"
               onAction="InsertExpandCmd"/>
-            <menuSeparator id="sepSnipLabels" />
-            <button
-              id="ribInsertGrayStatusButton"
-              imageMso="AppointmentColor4"
-              getLabel="GetRibbonLabel"
-              getScreentip="GetRibbonScreentip"
-              onAction="InsertGrayStatusCmd"/>
-            <button
-              id="ribInsertRedStatusButton"
-              imageMso="AppointmentColor1"
-              getLabel="GetRibbonLabel"
-              getScreentip="GetRibbonScreentip"
-              onAction="InsertRedStatusCmd"/>
-            <button
-              id="ribInsertYellowStatusButton"
-              imageMso="AppointmentColor10"
-              getLabel="GetRibbonLabel"
-              getScreentip="GetRibbonScreentip"
-              onAction="InsertYellowStatusCmd"/>
-            <button
-              id="ribInsertGreenStatusButton"
-              imageMso="AppointmentColor3"
-              getLabel="GetRibbonLabel"
-              getScreentip="GetRibbonScreentip"
-              onAction="InsertGreenStatusCmd"/>
-            <button
-              id="ribInsertBlueStatusButton"
-              imageMso="AppointmentColor2"
-              getLabel="GetRibbonLabel"
-              getScreentip="GetRibbonScreentip"
-              onAction="InsertBlueStatusCmd"/>
           </menu>
 
           <menu id="ribOneMoreMenu" getLabel="GetRibbonLabel" size="large" showImage="true"

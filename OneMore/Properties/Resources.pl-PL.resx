@@ -3783,6 +3783,10 @@ Polaroid</value>
     <value>Otwórz i uruchom okno timera</value>
     <comment>ribbon extras</comment>
   </data>
+  <data name="ribStatusMenu_Label" xml:space="preserve">
+    <value>Status</value>
+    <comment>ribbon snippets</comment>
+  </data>
   <data name="ribStrikeoutTasksButton_Label" xml:space="preserve">
     <value>Strikethrough zakończył się, aby zrobić znaczniki</value>
     <comment>Ribbon OneMore menu item</comment>

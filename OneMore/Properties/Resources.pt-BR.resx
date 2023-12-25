@@ -3770,6 +3770,10 @@ Polaroid.</value>
     <value>Abra e inicie a janela do temporizador</value>
     <comment>ribbon extras</comment>
   </data>
+  <data name="ribStatusMenu_Label" xml:space="preserve">
+    <value>Status</value>
+    <comment>ribbon snippets</comment>
+  </data>
   <data name="ribStrikeoutTasksButton_Label" xml:space="preserve">
     <value>Tachado preenchido com tags de tarefas pendentes</value>
     <comment>Ribbon OneMore menu item</comment>
