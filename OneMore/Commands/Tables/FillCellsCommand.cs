@@ -22,6 +22,43 @@ namespace River.OneMoreAddIn.Commands
 	}
 
 
+	#region Wrappers
+	internal class CopyAcrossCommand : FillCellsCommand
+	{
+		public CopyAcrossCommand() : base() { }
+		public override Task Execute(params object[] args)
+		{
+			return base.Execute(FillCells.CopyAcross);
+		}
+	}
+	internal class CopyDownCommand : FillCellsCommand
+	{
+		public CopyDownCommand() : base() { }
+		public override Task Execute(params object[] args)
+		{
+			return base.Execute(FillCells.CopyDown);
+		}
+	}
+	internal class FillAcrossCommand : FillCellsCommand
+	{
+		public FillAcrossCommand() : base() { }
+		public override Task Execute(params object[] args)
+		{
+			return base.Execute(FillCells.FillAcross);
+		}
+	}
+	internal class FillDownCommand : FillCellsCommand
+	{
+		public FillDownCommand() : base() { }
+		public override Task Execute(params object[] args)
+		{
+			return base.Execute(FillCells.FillDown);
+		}
+	}
+	#endregion Wrappers
+
+
+
 	/// <summary>
 	/// The Copy Across and Copy Down commands will duplicate the contents of the lead cells in
 	/// the selection. The Fill Across and Fill Down commands will increment the values in the

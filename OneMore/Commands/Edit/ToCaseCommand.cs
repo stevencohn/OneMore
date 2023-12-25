@@ -1,5 +1,5 @@
 ﻿//************************************************************************************************
-// Copyright © 2016 Steven M Cohn.  All rights reserved.
+// Copyright © 2016 Steven M Cohn. All rights reserved.
 //************************************************************************************************
 
 namespace River.OneMoreAddIn.Commands
@@ -12,6 +12,34 @@ namespace River.OneMoreAddIn.Commands
 	using System.Xml.Linq;
 
 
+	#region Wrappers
+	internal class LowercaseCommand : ToCaseCommand
+	{
+		public LowercaseCommand() : base() { }
+		public override Task Execute(params object[] args)
+		{
+			return base.Execute(ToCaseCommand.Lowercase);
+		}
+	}
+	internal class TitlecaseCommand : ToCaseCommand
+	{
+		public TitlecaseCommand() : base() { }
+		public override Task Execute(params object[] args)
+		{
+			return base.Execute(ToCaseCommand.Titlecase);
+		}
+	}
+	internal class UppercaseCommand : ToCaseCommand
+	{
+		public UppercaseCommand() : base() { }
+		public override Task Execute(params object[] args)
+		{
+			return base.Execute(ToCaseCommand.Uppercase);
+		}
+	}
+	#endregion Wrappers
+	
+	
 	/// <summary>
 	/// Converts the selected text to uppercase, lowercase, or titlecase.
 	/// </summary>

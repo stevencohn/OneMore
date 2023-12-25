@@ -1,5 +1,5 @@
 ﻿//************************************************************************************************
-// Copyright © 2016 Steven M Cohn.  All rights reserved.
+// Copyright © 2016 Steven M Cohn. All rights reserved.
 //************************************************************************************************
 
 #pragma warning disable CS3001      // Type is not CLS-compliant
@@ -10,7 +10,6 @@ namespace River.OneMoreAddIn
 {
 	using Microsoft.Office.Core;
 	using River.OneMoreAddIn.Commands;
-	using System.Threading;
 	using System.Threading.Tasks;
 	using System.Windows.Forms;
 
@@ -192,8 +191,7 @@ namespace River.OneMoreAddIn
 
 		[Command("ribCopyAcrossButton_Label", Keys.None, "ribTableMenu")]
 		public async Task CopyAcrossCmd(IRibbonControl control)
-			=> await factory.Run<FillCellsCommand>(FillCells.CopyAcross);
-
+			=> await factory.Run<CopyAcrossCommand>();
 
 
 		[Command("ribCopyAsTextButton_Label", Keys.None, "ribEditMenu")]
@@ -203,7 +201,7 @@ namespace River.OneMoreAddIn
 
 		[Command("ribCopyDownButton_Label", Keys.None, "ribTableMenu")]
 		public async Task CopyDownCmd(IRibbonControl control)
-			=> await factory.Run<FillCellsCommand>(FillCells.CopyDown);
+			=> await factory.Run<CopyDownCommand>();
 
 
 		[Command("ribCopyFolderButton_Label", Keys.None)]
@@ -268,7 +266,7 @@ namespace River.OneMoreAddIn
 
 		[Command("ribDisableSpellCheckButton_Label", Keys.F4, "ribEditMenu")]
 		public async Task DisableSpellCheckCmd(IRibbonControl control)
-			=> await factory.Run<ProofingCommand>(ProofingCommand.NoLang);
+			=> await factory.Run<DisableSpellCheckCommand>();
 
 
 		[Command("ribPlantUmlButton_Label", Keys.None, "ribImagesMenu")]
@@ -308,7 +306,7 @@ namespace River.OneMoreAddIn
 
 		[Command("ribEnableSpellCheckButton_Label", Keys.None, "ribEditMenu")]
 		public async Task EnableSpellCheckCmd(IRibbonControl control)
-			=> await factory.Run<ProofingCommand>(Thread.CurrentThread.CurrentUICulture.Name);
+			=> await factory.Run<EnableSpellCheckCommand>();
 
 
 		[Command("ribExpandContentButton_Label", Keys.None, "ribPageMenu")]
@@ -333,12 +331,12 @@ namespace River.OneMoreAddIn
 
 		[Command("ribFillAcrossButton_Label", Keys.None, "ribTableMenu")]
 		public async Task FillAcrossCmd(IRibbonControl control)
-			=> await factory.Run<FillCellsCommand>(FillCells.FillAcross);
+			=> await factory.Run<FillAcrossCommand>();
 
 
 		[Command("ribFillDownButton_Label", Keys.Control | Keys.D, "ribTableMenu")]
 		public async Task FillDownCmd(IRibbonControl control)
-			=> await factory.Run<FillCellsCommand>(FillCells.FillDown);
+			=> await factory.Run<FillDownCommand>();
 
 
 		[Command("ribFinishBiLinkButton_Label", Keys.None, "ribReferencesMenu")]
@@ -407,7 +405,7 @@ namespace River.OneMoreAddIn
 
 		[Command("ribInsertTextBoxButton_Label", Keys.Alt | Keys.F6, "ribSnippetsMenu")]
 		public async Task InsertTextBoxCmd(IRibbonControl control)
-			=> await factory.Run<InsertBoxCommand>(false);
+			=> await factory.Run<InsertTextBoxCommand>();
 
 
 		[Command("ribInsertBreadcrumbButton_Label", Keys.None, "ribSnippetsMenu")]
@@ -427,7 +425,7 @@ namespace River.OneMoreAddIn
 
 		[Command("ribInsertCodeBoxButton_Label", Keys.F6, "ribSnippetsMenu")]
 		public async Task InsertCodeBoxCmd(IRibbonControl control)
-			=> await factory.Run<InsertBoxCommand>(true);
+			=> await factory.Run<InsertCodeBoxCommand>();
 
 
 		[Command("ribInsertDateButton_Label", Keys.Control | Keys.Shift | Keys.D, "ribSnippetsMenu")]
@@ -442,7 +440,7 @@ namespace River.OneMoreAddIn
 
 		[Command("ribInsertDoubleLineButton_Label", Keys.Alt | Keys.Shift| Keys.F12, "ribSnippetsMenu")]
 		public async Task InsertDoubleLineCmd(IRibbonControl control)
-			=> await factory.Run<InsertLineCommand>('═');
+			=> await factory.Run<InsertDoubleLineCommand>();
 
 
 		[Command("ribInsertEmojiButton_Label", Keys.Alt | Keys.F12, "ribSnippetsMenu")]
@@ -487,7 +485,7 @@ namespace River.OneMoreAddIn
 
 		[Command("ribInsertSingleLineButton_Label", Keys.Alt | Keys.Shift | Keys.F11, "ribSnippetsMenu")]
 		public async Task InsertSingleLineCmd(IRibbonControl control)
-			=> await factory.Run<InsertLineCommand>('─');
+			=> await factory.Run<InsertSingleLineCommand>();
 
 
 		public async Task InsertSnippetCmd(IRibbonControl control)
@@ -774,7 +772,7 @@ namespace River.OneMoreAddIn
 			=> await factory.Run<SelectStyleCommand>();
 
 
-		public async Task SetProofingCmd(IRibbonControl control)
+		public async Task ProofingCmd(IRibbonControl control)
 			=> await factory.Run<ProofingCommand>(control.Tag); // tag=language
 
 
@@ -866,7 +864,7 @@ namespace River.OneMoreAddIn
 
 		[Command("ribLowercaseButton_Label", Keys.Control | Keys.Shift | Keys.U, "ribEditMenu")]
 		public async Task LowercaseCmd(IRibbonControl control)
-			=> await factory.Run<ToCaseCommand>(ToCaseCommand.Lowercase);
+			=> await factory.Run<LowercaseCommand>();
 
 
 		[Command("ribToggleDttmButton_Label", Keys.None, "ribCleanMenu")]
@@ -876,7 +874,7 @@ namespace River.OneMoreAddIn
 
 		[Command("ribTitlecaseButton_Label", Keys.None, "ribEditMenu")]
 		public async Task TitlecaseCmd(IRibbonControl control)
-			=> await factory.Run<ToCaseCommand>(ToCaseCommand.Titlecase);
+			=> await factory.Run<TitlecaseCommand>();
 
 
 		[Command("ribTrimButton_Label", Keys.None, "ribCleanMenu")]
@@ -896,7 +894,7 @@ namespace River.OneMoreAddIn
 
 		[Command("ribUppercaseButton_Label", Keys.Control | Keys.Alt | Keys.Shift | Keys.U, "ribEditMenu")]
 		public async Task UppercaseCmd(IRibbonControl control)
-			=> await factory.Run<ToCaseCommand>(ToCaseCommand.Uppercase);
+			=> await factory.Run<UppercaseCommand>();
 
 
 		[Command("ribWordCountButton_Label", Keys.None, "ribPageMenu")]
