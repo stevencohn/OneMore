@@ -1,5 +1,5 @@
 ﻿//************************************************************************************************
-// Copyright © 2018 Steven M Cohn.  All rights reserved.
+// Copyright © 2018 Steven M Cohn. All rights reserved.
 //************************************************************************************************
 
 namespace River.OneMoreAddIn.Commands
@@ -13,6 +13,26 @@ namespace River.OneMoreAddIn.Commands
 	using System.Text.RegularExpressions;
 	using System.Threading.Tasks;
 	using System.Xml.Linq;
+
+
+	#region Wrapper
+	internal class DecreaseFontSizeCommand : AlterSizeCommand
+	{
+		public DecreaseFontSizeCommand() : base() { }
+		public override Task Execute(params object[] args)
+		{
+			return base.Execute(-1);
+		}
+	}
+	internal class IncreaseFontSizeCommand : AlterSizeCommand
+	{
+		public IncreaseFontSizeCommand() : base() { }
+		public override Task Execute(params object[] args)
+		{
+			return base.Execute(1);
+		}
+	}
+	#endregion Wrapper
 
 
 	/// <summary>

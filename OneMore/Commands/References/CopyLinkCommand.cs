@@ -1,5 +1,5 @@
 ﻿//************************************************************************************************
-// Copyright © 2022 Steven M Cohn.  All rights reserved.
+// Copyright © 2022 Steven M Cohn. All rights reserved.
 //************************************************************************************************
 
 namespace River.OneMoreAddIn
@@ -12,6 +12,26 @@ namespace River.OneMoreAddIn
 	using System.Xml.Linq;
 	using Resx = Properties.Resources;
 	using Win = System.Windows;
+
+
+	#region Wrappers
+	internal class CopyLinkToPageCommand : CopyLinkCommand
+	{
+		public CopyLinkToPageCommand() : base() { }
+		public override Task Execute(params object[] args)
+		{
+			return base.Execute(false);
+		}
+	}
+	internal class CopyLinkToParagraphCommand : CopyLinkCommand
+	{
+		public CopyLinkToParagraphCommand() : base() { }
+		public override Task Execute(params object[] args)
+		{
+			return base.Execute(true);
+		}
+	}
+	#endregion Wrappers
 
 
 	/// <summary>

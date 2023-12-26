@@ -1,5 +1,5 @@
 ﻿//************************************************************************************************
-// Copyright © 2021 Steven M Cohn.  All rights reserved.
+// Copyright © 2021 Steven M Cohn. All rights reserved.
 //************************************************************************************************
 
 namespace River.OneMoreAddIn.Commands
@@ -33,6 +33,7 @@ namespace River.OneMoreAddIn.Commands
 
 		public BiLinkCommand()
 		{
+			IsCancelled = true;
 		}
 
 

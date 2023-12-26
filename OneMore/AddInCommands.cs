@@ -211,12 +211,12 @@ namespace River.OneMoreAddIn
 
 		[Command("ribCopyLinkToPageButton_Label", Keys.None, "ribReferencesMenu")]
 		public async Task CopyLinkToPageCmd(IRibbonControl control)
-			=> await factory.Run<CopyLinkCommand>(false);
+			=> await factory.Run<CopyLinkToPageCommand>();
 
 
 		[Command("ribCopyLinkToParagraphButton_Label", Keys.None, "ribReferencesMenu")]
 		public async Task CopyLinkToParagraphCmd(IRibbonControl control)
-			=> await factory.Run<CopyLinkCommand>(true);
+			=> await factory.Run<CopyLinkToParagraphCommand>();
 
 
 		[Command("ribCopyAsMarkdownButton_Label", Keys.None, "ribEditMenu")]
@@ -246,7 +246,7 @@ namespace River.OneMoreAddIn
 
 		[Command("ribDecreaseFontSizeButton_Label", Keys.Control | Keys.Alt | Keys.OemMinus, "ribEditMenu")]
 		public async Task DecreaseFontSizeCmd(IRibbonControl control)
-			=> await factory.Run<AlterSizeCommand>(-1);
+			=> await factory.Run<DecreaseFontSizeCommand>();
 
 
 		[Command("ribDeleteFormulaButton_Label", Keys.None, "ribTableMenu")]
@@ -395,12 +395,12 @@ namespace River.OneMoreAddIn
 
 		[Command("ribIncreaseFontSizeButton_Label", Keys.Control | Keys.Alt | Keys.Oemplus, "ribEditMenu")]
 		public async Task IncreaseFontSizeCmd(IRibbonControl control)
-			=> await factory.Run<AlterSizeCommand>(1);
+			=> await factory.Run<IncreaseFontSizeCommand>();
 
 
 		[Command("ribInsertBlueStatusButton_Label", Keys.None, "ribSnippetsMenu")]
 		public async Task InsertBlueStatusCmd(IRibbonControl control)
-			=> await factory.Run<InsertStatusCommand>(StatusColor.Blue);
+			=> await factory.Run<InsertBlueStatusCommand>();
 
 
 		[Command("ribInsertTextBoxButton_Label", Keys.Alt | Keys.F6, "ribSnippetsMenu")]
@@ -455,12 +455,12 @@ namespace River.OneMoreAddIn
 
 		[Command("ribInsertGrayStatusButton_Label", Keys.None, "ribSnippetsMenu")]
 		public async Task InsertGrayStatusCmd(IRibbonControl control)
-			=> await factory.Run<InsertStatusCommand>(StatusColor.Gray);
+			=> await factory.Run<InsertGrayStatusCommand>();
 
 
 		[Command("ribInsertGreenStatusButton_Label", Keys.None, "ribSnippetsMenu")]
 		public async Task InsertGreenStatusCmd(IRibbonControl control)
-			=> await factory.Run<InsertStatusCommand>(StatusColor.Green);
+			=> await factory.Run<InsertGreenStatusCommand>();
 
 
 		[Command("ribInsertInfoBoxButton_Label", Keys.None, "ribSnippetsMenu")]
@@ -480,7 +480,7 @@ namespace River.OneMoreAddIn
 
 		[Command("ribInsertRedStatusButton_Label", Keys.None, "ribSnippetsMenu")]
 		public async Task InsertRedStatusCmd(IRibbonControl control)
-			=> await factory.Run<InsertStatusCommand>(StatusColor.Red);
+			=> await factory.Run<InsertRedStatusCommand>();
 
 
 		[Command("ribInsertSingleLineButton_Label", Keys.Alt | Keys.Shift | Keys.F11, "ribSnippetsMenu")]
@@ -509,7 +509,7 @@ namespace River.OneMoreAddIn
 
 		[Command("ribInsertYellowStatusButton_Label", Keys.None, "ribSnippetsMenu")]
 		public async Task InsertYellowStatusCmd(IRibbonControl control)
-			=> await factory.Run<InsertStatusCommand>(StatusColor.Yellow);
+			=> await factory.Run<InsertYellowStatusCommand>();
 
 
 		[Command("ribInvertSelectionButton_Label", Keys.None, "ribEditMenu")]

@@ -1,5 +1,5 @@
 ﻿//************************************************************************************************
-// Copyright © 2020 Steven M Cohn.  All rights reserved.
+// Copyright © 2020 Steven M Cohn. All rights reserved.
 //************************************************************************************************
 
 namespace River.OneMoreAddIn.Commands
@@ -7,7 +7,7 @@ namespace River.OneMoreAddIn.Commands
 	using System.Linq;
 	using System.Threading.Tasks;
 	using System.Xml.Linq;
-	using Resx = River.OneMoreAddIn.Properties.Resources;
+	using Resx = Properties.Resources;
 
 
 	internal enum StatusColor
@@ -18,6 +18,51 @@ namespace River.OneMoreAddIn.Commands
 		Red,
 		Yellow
 	}
+
+
+	#region Wrappers
+	internal class InsertBlueStatusCommand : InsertStatusCommand
+	{
+		public InsertBlueStatusCommand() : base() { }
+		public override Task Execute(params object[] args)
+		{
+			return base.Execute(StatusColor.Blue);
+		}
+	}
+	internal class InsertGrayStatusCommand : InsertStatusCommand
+	{
+		public InsertGrayStatusCommand() : base() { }
+		public override Task Execute(params object[] args)
+		{
+			return base.Execute(StatusColor.Gray);
+		}
+	}
+	internal class InsertGreenStatusCommand : InsertStatusCommand
+	{
+		public InsertGreenStatusCommand() : base() { }
+		public override Task Execute(params object[] args)
+		{
+			return base.Execute(StatusColor.Green);
+		}
+	}
+	internal class InsertRedStatusCommand : InsertStatusCommand
+	{
+		public InsertRedStatusCommand() : base() { }
+		public override Task Execute(params object[] args)
+		{
+			return base.Execute(StatusColor.Red);
+		}
+	}
+	internal class InsertYellowStatusCommand : InsertStatusCommand
+	{
+		public InsertYellowStatusCommand() : base() { }
+		public override Task Execute(params object[] args)
+		{
+			return base.Execute(StatusColor.Yellow);
+		}
+	}
+	#endregion Wrappers
+
 
 	internal class InsertStatusCommand : Command
 	{
