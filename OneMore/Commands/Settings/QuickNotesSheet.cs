@@ -4,6 +4,9 @@
 
 namespace River.OneMoreAddIn.Settings
 {
+	using System;
+	using System.Linq.Expressions;
+	using System.Runtime.InteropServices;
 	using System.Threading.Tasks;
 	using System.Windows.Forms;
 	using Resx = Properties.Resources;
@@ -85,21 +88,29 @@ namespace River.OneMoreAddIn.Settings
 		private void SetLinkName(LinkLabel link, string nodeID)
 		{
 			using var one = new OneNote();
-			if (link == notebookLink)
+
+			try
 			{
-				var node = one.GetHierarchyNode(nodeID);
-				if (node != null)
+				if (link == notebookLink)
 				{
-					link.Text = node.Name;
+					var node = one.GetHierarchyNode(nodeID);
+					if (node != null)
+					{
+						link.Text = node.Name;
+					}
+				}
+				else
+				{
+					var info = one.GetSectionInfo(nodeID);
+					if (info != null)
+					{
+						link.Text = info.Path.Substring(1).Replace("/", $" {RightArrow} ");
+					}
 				}
 			}
-			else
+			catch (COMException exc) when ((uint)exc.ErrorCode == ErrorCodes.hrObjectMissing)
 			{
-				var info = one.GetSectionInfo(nodeID);
-				if (info != null)
-				{
-					link.Text = info.Path.Substring(1).Replace("/", $" {RightArrow} ");
-				}
+				Logger.Current.WriteLine("could not find expected quicknotes target");
 			}
 		}
 
