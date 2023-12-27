@@ -45,9 +45,9 @@ namespace River.OneMoreAddIn.Commands
 
 				whatText = dialog.WhatText;
 				withText = dialog.WithText;
+				withElement = dialog.RawXml;
 				matchCase = dialog.MatchCase;
 				useRegex = dialog.UseRegex;
-				withElement = dialog.RawXml;
 			}
 
 			// let user insert a newline char

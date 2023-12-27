@@ -8,6 +8,7 @@ namespace River.OneMoreAddIn.Commands
 	using System;
 	using System.Linq;
 	using System.Text.RegularExpressions;
+	using System.Web;
 	using System.Xml.Linq;
 	using Resx = Properties.Resources;
 
@@ -70,9 +71,15 @@ namespace River.OneMoreAddIn.Commands
 				var withs = settings.Get<XElement>("withs");
 				if (withs != null)
 				{
-					foreach (var withText in withs.Elements())
+					foreach (var withText in withs.Elements().Select(e => e.Value))
 					{
-						withBox.Items.Add(withText.Value);
+						var text = withText;
+						if (text.StartsWith("&lt;") && text.EndsWith("&gt;"))
+						{
+							text = HttpUtility.HtmlDecode(text);
+						}
+
+						withBox.Items.Add(text);
 					}
 				}
 			}
