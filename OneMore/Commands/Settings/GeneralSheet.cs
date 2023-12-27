@@ -32,7 +32,8 @@ namespace River.OneMoreAddIn.Settings
 					"checkUpdatesBox",
 					"langLabel",
 					"advancedGroup=phrase_AdvancedOptions",
-					"verboseBox"
+					"verboseBox",
+					"experimentalBox"
 				});
 			}
 
@@ -40,6 +41,7 @@ namespace River.OneMoreAddIn.Settings
 
 			checkUpdatesBox.Checked = settings.Get("checkUpdates", false);
 			verboseBox.Checked = settings.Get("verbose", false);
+			experimentalBox.Checked = settings.Get("experimental", false);
 
 			var lang = settings.Get("language", "en-US");
 			foreach (CultureInfo info in langBox.Items)
@@ -111,10 +113,15 @@ namespace River.OneMoreAddIn.Settings
 
 			var lang = ((CultureInfo)(langBox.SelectedItem)).Name;
 			var updated = settings.Add("language", lang);
-			
+
+			// requires a restart
 			updated = verboseBox.Checked
 				? settings.Add("verbose", true) || updated
 				: settings.Remove("verbose") || updated;
+
+			updated = experimentalBox.Checked
+				? settings.Add("experimental", true) || updated
+				: settings.Remove("experimental") || updated;
 
 			// deprecated
 			updated = settings.Remove("imageViewer") || updated;

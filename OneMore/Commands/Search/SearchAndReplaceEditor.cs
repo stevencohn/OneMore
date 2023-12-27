@@ -1,5 +1,5 @@
 ﻿//************************************************************************************************
-// Copyright © 2020 Steven M Cohn.  All rights reserved.
+// Copyright © 2020 Steven M Cohn. All rights reserved.
 //************************************************************************************************
 
 namespace River.OneMoreAddIn.Commands
@@ -7,7 +7,6 @@ namespace River.OneMoreAddIn.Commands
 	using River.OneMoreAddIn.Models;
 	using System;
 	using System.Linq;
-	using System.Text;
 	using System.Text.RegularExpressions;
 	using System.Xml.Linq;
 
@@ -130,7 +129,7 @@ namespace River.OneMoreAddIn.Commands
 					else if (match.Groups.Count > 1)
 					{
 						Replace(wrapper, match.Groups[1].Index, match.Groups[1].Length,
-							replaceElement == null ? ExpandReplacement(match) : null);
+							replaceElement == null ? ExpandSubstitutions(match) : null);
 					}
 				}
 
@@ -144,7 +143,7 @@ namespace River.OneMoreAddIn.Commands
 
 
 		// Substitute $1..$n parameters in replacementString with capture groups
-		private string ExpandReplacement(Match match)
+		private string ExpandSubstitutions(Match match)
 		{
 			if (string.IsNullOrWhiteSpace(replacementString))
 			{

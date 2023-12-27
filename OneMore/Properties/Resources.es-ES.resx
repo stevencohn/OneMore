@@ -1146,6 +1146,10 @@ Símbolos: PI, E</value>
     <value>Compruebe si hay nuevas versiones de OneMore cuando se inicia OneNote</value>
     <comment>checkbox</comment>
   </data>
+  <data name="GeneralSheet_experimentalBox.Text" xml:space="preserve">
+    <value>Habilitar funciones experimentales</value>
+    <comment>checkbox</comment>
+  </data>
   <data name="GeneralSheet_introBox.Text" xml:space="preserve">
     <value>Personalice el comportamiento general de OneMore</value>
     <comment>textbox</comment>
@@ -3919,6 +3923,10 @@ polaroid</value>
   </data>
   <data name="SearchAndReplaceDialog_matchBox.Text" xml:space="preserve">
     <value>Caso de partido</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="SearchAndReplaceDialog_rawBox.Text" xml:space="preserve">
+    <value>Reemplazar con XML sin formato</value>
     <comment>checkbox</comment>
   </data>
   <data name="SearchAndReplaceDialog_regBox.Text" xml:space="preserve">

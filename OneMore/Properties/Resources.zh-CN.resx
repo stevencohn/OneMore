@@ -1147,6 +1147,10 @@ OneNote 文件 (*.one)</value>
     <value>OneNote 启动时检查 OneMore 的新版本</value>
     <comment>checkbox</comment>
   </data>
+  <data name="GeneralSheet_experimentalBox.Text" xml:space="preserve">
+    <value>启用实验性功能</value>
+    <comment>checkbox</comment>
+  </data>
   <data name="GeneralSheet_introBox.Text" xml:space="preserve">
     <value>自定义OneMore的整体行为</value>
     <comment>textbox</comment>
@@ -3914,6 +3918,10 @@ ISO-code then comma then language name</comment>
   </data>
   <data name="SearchAndReplaceDialog_matchBox.Text" xml:space="preserve">
     <value>相符</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="SearchAndReplaceDialog_rawBox.Text" xml:space="preserve">
+    <value>替换为原始 XML</value>
     <comment>checkbox</comment>
   </data>
   <data name="SearchAndReplaceDialog_regBox.Text" xml:space="preserve">

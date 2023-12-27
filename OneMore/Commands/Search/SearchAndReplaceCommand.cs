@@ -26,6 +26,7 @@ namespace River.OneMoreAddIn.Commands
 			string withText;
 			bool matchCase;
 			bool useRegex;
+			XElement withElement;
 
 			using var one = new OneNote(out var page, out _);
 			var text = page.GetSelectedText();
@@ -46,15 +47,27 @@ namespace River.OneMoreAddIn.Commands
 				withText = dialog.WithText;
 				matchCase = dialog.MatchCase;
 				useRegex = dialog.UseRegex;
+				withElement = dialog.RawXml;
 			}
 
 			// let user insert a newline char
 			withText = withText.Replace("\\n", "\n");
 
-			var editor = new SearchAndReplaceEditor(whatText, withText,
-				enableRegex: useRegex,
-				caseSensitive: matchCase
-				);
+			SearchAndReplaceEditor editor;
+			if (withElement == null)
+			{
+				editor = new SearchAndReplaceEditor(whatText, withText,
+					enableRegex: useRegex,
+					caseSensitive: matchCase
+					);
+			}
+			else
+			{
+				editor = new SearchAndReplaceEditor(whatText, withElement,
+					enableRegex: useRegex,
+					caseSensitive: matchCase
+					);
+			}
 
 			var count = editor.SearchAndReplace(page);
 

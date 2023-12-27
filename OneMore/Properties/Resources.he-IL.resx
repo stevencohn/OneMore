@@ -1157,6 +1157,10 @@ Total Row Font
     <value>בדוק אם יש גרסאות חדשות של OneMore כאשר OneNote מתחיל</value>
     <comment>checkbox</comment>
   </data>
+  <data name="GeneralSheet_experimentalBox.Text" xml:space="preserve">
+    <value>אפשר תכונות ניסיוניות</value>
+    <comment>checkbox</comment>
+  </data>
   <data name="GeneralSheet_introBox.Text" xml:space="preserve">
     <value>התאם אישית את ההתנהגות הכוללת של OneMore</value>
     <comment>textbox</comment>
@@ -3932,6 +3936,10 @@ ISO-code then comma then language name</comment>
   </data>
   <data name="SearchAndReplaceDialog_matchBox.Text" xml:space="preserve">
     <value>מקרה התאמה</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="SearchAndReplaceDialog_rawBox.Text" xml:space="preserve">
+    <value>החלף ב-XML גולמי</value>
     <comment>checkbox</comment>
   </data>
   <data name="SearchAndReplaceDialog_regBox.Text" xml:space="preserve">

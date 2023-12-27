@@ -2852,6 +2852,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Enable experimental features.
+        /// </summary>
+        internal static string GeneralSheet_experimentalBox_Text {
+            get {
+                return ResourceManager.GetString("GeneralSheet_experimentalBox.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Customize the overall behavior of OneMore.
         /// </summary>
         internal static string GeneralSheet_introBox_Text {
@@ -9486,6 +9495,15 @@ namespace River.OneMoreAddIn.Properties {
         internal static string SearchAndReplaceDialog_matchBox_Text {
             get {
                 return ResourceManager.GetString("SearchAndReplaceDialog_matchBox.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Replace with raw XML.
+        /// </summary>
+        internal static string SearchAndReplaceDialog_rawBox_Text {
+            get {
+                return ResourceManager.GetString("SearchAndReplaceDialog_rawBox.Text", resourceCulture);
             }
         }
         

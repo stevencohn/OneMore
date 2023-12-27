@@ -39,13 +39,14 @@
 			this.withBox = new System.Windows.Forms.ComboBox();
 			this.whatStatusLabel = new System.Windows.Forms.Label();
 			this.withStatusLabel = new System.Windows.Forms.Label();
+			this.rawBox = new System.Windows.Forms.CheckBox();
 			this.SuspendLayout();
 			// 
 			// cancelButton
 			// 
 			this.cancelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-			this.cancelButton.Location = new System.Drawing.Point(458, 241);
+			this.cancelButton.Location = new System.Drawing.Point(458, 264);
 			this.cancelButton.Name = "cancelButton";
 			this.cancelButton.Size = new System.Drawing.Size(100, 38);
 			this.cancelButton.TabIndex = 5;
@@ -57,7 +58,7 @@
 			this.okButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.okButton.DialogResult = System.Windows.Forms.DialogResult.OK;
 			this.okButton.Enabled = false;
-			this.okButton.Location = new System.Drawing.Point(351, 241);
+			this.okButton.Location = new System.Drawing.Point(351, 264);
 			this.okButton.Name = "okButton";
 			this.okButton.Size = new System.Drawing.Size(100, 38);
 			this.okButton.TabIndex = 4;
@@ -124,6 +125,7 @@
 			this.withBox.Name = "withBox";
 			this.withBox.Size = new System.Drawing.Size(400, 30);
 			this.withBox.TabIndex = 3;
+			this.withBox.TextChanged += new System.EventHandler(this.CheckXmlFormat);
 			// 
 			// whatStatusLabel
 			// 
@@ -145,13 +147,26 @@
 			this.withStatusLabel.TabIndex = 10;
 			this.withStatusLabel.Text = "Valid substitution parameters: $1";
 			// 
+			// rawBox
+			// 
+			this.rawBox.AutoSize = true;
+			this.rawBox.Location = new System.Drawing.Point(160, 215);
+			this.rawBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 3);
+			this.rawBox.Name = "rawBox";
+			this.rawBox.Size = new System.Drawing.Size(192, 24);
+			this.rawBox.TabIndex = 11;
+			this.rawBox.Text = "Replace with raw XML";
+			this.rawBox.UseVisualStyleBackColor = true;
+			this.rawBox.CheckedChanged += new System.EventHandler(this.ToggleRawXml);
+			// 
 			// SearchAndReplaceDialog
 			// 
 			this.AcceptButton = this.okButton;
 			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.CancelButton = this.cancelButton;
-			this.ClientSize = new System.Drawing.Size(574, 297);
+			this.ClientSize = new System.Drawing.Size(574, 320);
+			this.Controls.Add(this.rawBox);
 			this.Controls.Add(this.withStatusLabel);
 			this.Controls.Add(this.whatStatusLabel);
 			this.Controls.Add(this.withBox);
@@ -188,5 +203,6 @@
 		private System.Windows.Forms.ComboBox withBox;
 		private System.Windows.Forms.Label whatStatusLabel;
 		private System.Windows.Forms.Label withStatusLabel;
+		private System.Windows.Forms.CheckBox rawBox;
 	}
 }
