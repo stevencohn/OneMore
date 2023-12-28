@@ -1182,6 +1182,10 @@ Symbolen: PI, E</value>
     <value>Schakel de hashtag-service uit. Hiermee wordt ook het zoeken naar hashtags uitgeschakeld.</value>
     <comment>checkbox</comment>
   </data>
+  <data name="HashtagSheet_filterBox.Text" xml:space="preserve">
+    <value>Sluit HTML Hex-kleuren en C#- en C++-richtlijnen uit</value>
+    <comment>checkbox</comment>
+  </data>
   <data name="HashtagSheet_intervalLabel.Text" xml:space="preserve">
     <value>Scan elke keer op hashtags</value>
     <comment>label</comment>

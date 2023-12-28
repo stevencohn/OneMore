@@ -30,7 +30,9 @@ namespace River.OneMoreAddIn.Commands
 		/// </summary>
 		/// <param name="root">The root element of the page</param>
 		/// <param name="pattern">The compiled regular express used to find ##hashtags</param>
-		public HashtagPageScanner(XElement root, Regex pattern, XElement styleTemplate)
+		/// <param name="styleTemplate">template used to stylize hashtags</param>
+		public HashtagPageScanner(
+			XElement root, Regex pattern, XElement styleTemplate)
 		{
 			this.root = root;
 			ns = root.GetNamespaceOfPrefix(OneNote.Prefix);

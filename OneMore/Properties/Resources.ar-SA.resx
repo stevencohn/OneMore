@@ -1181,6 +1181,10 @@
     <value>تعطيل خدمة الهاشتاج. سيؤدي هذا أيضًا إلى تعطيل البحث عن الهاشتاج.</value>
     <comment>checkbox</comment>
   </data>
+  <data name="HashtagSheet_filterBox.Text" xml:space="preserve">
+    <value>استبعاد ألوان HTML Hex وتوجيهات C# وC++</value>
+    <comment>checkbox</comment>
+  </data>
   <data name="HashtagSheet_intervalLabel.Text" xml:space="preserve">
     <value>البحث عن علامات التصنيف كل</value>
     <comment>label</comment>

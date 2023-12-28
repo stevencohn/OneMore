@@ -1190,6 +1190,10 @@ Symbole: PI, E</value>
     <value>Wyłącz usługę hashtagów. Spowoduje to również wyłączenie wyszukiwania hashtagów.</value>
     <comment>checkbox</comment>
   </data>
+  <data name="HashtagSheet_filterBox.Text" xml:space="preserve">
+    <value>Wyklucz kolory szesnastkowe HTML oraz dyrektywy C# i C++</value>
+    <comment>checkbox</comment>
+  </data>
   <data name="HashtagSheet_intervalLabel.Text" xml:space="preserve">
     <value>Skanuj hashtagi co</value>
     <comment>label</comment>

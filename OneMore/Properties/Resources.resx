@@ -1196,6 +1196,10 @@ Symbols: PI, E</value>
     <value>Disable the hashtag service. This will also disable hashtag searching.</value>
     <comment>checkbox</comment>
   </data>
+  <data name="HashtagSheet_filterBox.Text" xml:space="preserve">
+    <value>Exclude HTML Hex colors and C# and C++ directives</value>
+    <comment>checkbox</comment>
+  </data>
   <data name="HashtagSheet_intervalLabel.Text" xml:space="preserve">
     <value>Scan for hashtags every</value>
     <comment>label</comment>

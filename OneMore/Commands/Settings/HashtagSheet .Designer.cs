@@ -39,6 +39,7 @@ namespace River.OneMoreAddIn.Settings
 			this.minLabel = new System.Windows.Forms.Label();
 			this.intervalBox = new System.Windows.Forms.NumericUpDown();
 			this.intervalLabel = new System.Windows.Forms.Label();
+			this.filterBox = new System.Windows.Forms.CheckBox();
 			this.layoutPanel.SuspendLayout();
 			this.advancedGroup.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.intervalBox)).BeginInit();
@@ -59,6 +60,7 @@ namespace River.OneMoreAddIn.Settings
 			// 
 			// layoutPanel
 			// 
+			this.layoutPanel.Controls.Add(this.filterBox);
 			this.layoutPanel.Controls.Add(this.styleBox);
 			this.layoutPanel.Controls.Add(this.styleLabel);
 			this.layoutPanel.Controls.Add(this.advancedGroup);
@@ -169,6 +171,16 @@ namespace River.OneMoreAddIn.Settings
 			this.intervalLabel.TabIndex = 3;
 			this.intervalLabel.Text = "Scan for hashtags every";
 			// 
+			// filterBox
+			// 
+			this.filterBox.AutoSize = true;
+			this.filterBox.Location = new System.Drawing.Point(11, 134);
+			this.filterBox.Name = "filterBox";
+			this.filterBox.Size = new System.Drawing.Size(405, 24);
+			this.filterBox.TabIndex = 11;
+			this.filterBox.Text = "Exclude HTML Hex colors and C# and C++ directives";
+			this.filterBox.UseVisualStyleBackColor = true;
+			// 
 			// HashtagSheet
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -201,5 +213,6 @@ namespace River.OneMoreAddIn.Settings
 		private System.Windows.Forms.CheckBox rebuildBox;
 		private System.Windows.Forms.ComboBox styleBox;
 		private System.Windows.Forms.Label styleLabel;
+		private System.Windows.Forms.CheckBox filterBox;
 	}
 }

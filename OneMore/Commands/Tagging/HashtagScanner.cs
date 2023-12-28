@@ -22,6 +22,7 @@ namespace River.OneMoreAddIn.Commands
 		private readonly OneNote one;
 		private readonly string lastTime;
 		private readonly HashtagPageSannerFactory factory;
+		private readonly SettingsCollection settings;
 		private HashtagProvider provider;
 		private XNamespace ns;
 		private bool disposed;
@@ -32,9 +33,14 @@ namespace River.OneMoreAddIn.Commands
 		/// </summary>
 		public HashtagScanner()
 		{
+			settings = new SettingsProvider().GetCollection("HashtagSheet");
+
 			one = new OneNote();
 			provider = new HashtagProvider();
-			factory = new HashtagPageSannerFactory(GetStyleTemplate());
+
+			factory = new HashtagPageSannerFactory(
+				GetStyleTemplate(),
+				settings.Get<bool>("filtered"));
 
 			lastTime = provider.ReadScanTime();
 			logger.Verbose($"HashtagScanner lastTime {lastTime}");
@@ -43,7 +49,6 @@ namespace River.OneMoreAddIn.Commands
 
 		private XElement GetStyleTemplate()
 		{
-			var settings = new SettingsProvider().GetCollection("HashtagSheet");
 			var styleIndex = settings.Get("styleIndex", 0);
 
 			if (styleIndex == 1)

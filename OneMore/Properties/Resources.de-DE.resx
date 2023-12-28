@@ -1176,6 +1176,10 @@ Symbole: PI, E</value>
     <value>Deaktivieren Sie den Hashtag-Dienst. Dadurch wird auch die Hashtag-Suche deaktiviert.</value>
     <comment>checkbox</comment>
   </data>
+  <data name="HashtagSheet_filterBox.Text" xml:space="preserve">
+    <value>Schließen Sie HTML-Hex-Farben sowie C#- und C++-Anweisungen aus</value>
+    <comment>checkbox</comment>
+  </data>
   <data name="HashtagSheet_intervalLabel.Text" xml:space="preserve">
     <value>Scannen Sie alle nach Hashtags</value>
     <comment>label</comment>

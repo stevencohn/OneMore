@@ -1192,6 +1192,10 @@ Total Row Font
     <value>השבת את שירות ההאשטאג. זה גם ישבית את חיפוש ההאשטאג.</value>
     <comment>checkbox</comment>
   </data>
+  <data name="HashtagSheet_filterBox.Text" xml:space="preserve">
+    <value>אל תכלול צבעי HTML Hex והנחיות C# ו-C++</value>
+    <comment>checkbox</comment>
+  </data>
   <data name="HashtagSheet_intervalLabel.Text" xml:space="preserve">
     <value>סרוק אחר hashtags כל</value>
     <comment>label</comment>

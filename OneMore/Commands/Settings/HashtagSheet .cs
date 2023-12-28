@@ -31,6 +31,7 @@ namespace River.OneMoreAddIn.Settings
 					"advancedGroup=phrase_AdvancedOptions",
 					"styleLabel",
 					"styleBox",
+					"filterBox",
 					"rebuildBox",
 					"disabledBox"
 				});
@@ -69,6 +70,8 @@ namespace River.OneMoreAddIn.Settings
 					styleBox.SelectedIndex = 0;
 				}
 			}
+
+			filterBox.Checked = settings.Get<bool>("filtered");
 		}
 
 
@@ -99,6 +102,10 @@ namespace River.OneMoreAddIn.Settings
 
 			updated = settings.Add("styleIndex", styleBox.SelectedIndex) || updated;
 			updated = settings.Add("styleName", styleBox.Text) || updated;
+
+			updated = filterBox.Checked
+				? settings.Add("filtered", true) || updated
+				: settings.Remove("filtered") || updated;
 
 			updated = rebuildBox.Checked
 				? settings.Add("rebuild", true) || updated
