@@ -102,6 +102,39 @@ namespace River.OneMoreAddIn.Commands
 				}
 			}
 
+			var children = paragraph
+				.Elements(ns + "OEChildren")
+				.Elements(ns + "OE");
+
+			if (children.Any())
+			{
+				foreach (var child in children)
+				{
+					count += SearchAndReplace(child);
+				}
+			}
+
+			var tables = paragraph.Elements(ns + "Table");
+			if (tables.Any())
+			{
+				foreach (var table in tables)
+				{
+					var toes = table
+						.Elements(ns + "Row")
+						.Elements(ns + "Cell")
+						.Elements(ns + "OEChildren")
+						.Elements(ns + "OE");
+
+					if (toes.Any())
+					{
+						foreach (var toe in toes)
+						{
+							count += SearchAndReplace(toe);
+						}
+					}
+				}
+			}
+
 			return count;
 		}
 
