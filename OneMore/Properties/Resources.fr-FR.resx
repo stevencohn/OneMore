@@ -1174,17 +1174,25 @@ Symboles : PI, E</value>
     <value>Commencez à taper n'importe quelle partie d'un hashtag ou * pour tous</value>
     <comment>label</comment>
   </data>
-  <data name="HashtagSheet_disabledBox" xml:space="preserve">
+  <data name="HashtagSheet_disableBox.Text" xml:space="preserve">
     <value>Désactivez le service hashtag. Cela désactivera également la recherche par hashtag.</value>
     <comment>checkbox</comment>
   </data>
-  <data name="HashtagSheet_intervalLabel" xml:space="preserve">
+  <data name="HashtagSheet_disabledBox.Text" xml:space="preserve">
+    <value>Désactivez le service hashtag. Cela désactivera également la recherche par hashtag.</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="HashtagSheet_intervalLabel.Text" xml:space="preserve">
     <value>Recherchez des hashtags tous les</value>
     <comment>label</comment>
   </data>
-  <data name="HashtagSheet_introTitle" xml:space="preserve">
+  <data name="HashtagSheet_introBox.Text" xml:space="preserve">
     <value>Personnaliser les options avancées du service Hashtag Scanner</value>
     <comment>label</comment>
+  </data>
+  <data name="HashtagSheet_rebuildBox.Text" xml:space="preserve">
+    <value>Reconstruire la base de données de hashtag au redémarrage</value>
+    <comment>checkbox</comment>
   </data>
   <data name="HashtagSheet_styleBox.Text" xml:space="preserve">
     <value>Aucun

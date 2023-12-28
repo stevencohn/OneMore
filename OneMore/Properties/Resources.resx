@@ -1192,17 +1192,25 @@ Symbols: PI, E</value>
     <value>Start typing any part of a hashtag or * for all</value>
     <comment>label</comment>
   </data>
-  <data name="HashtagSheet_disabledBox" xml:space="preserve">
+  <data name="HashtagSheet_disableBox.Text" xml:space="preserve">
     <value>Disable the hashtag service. This will also disable hashtag searching.</value>
     <comment>checkbox</comment>
   </data>
-  <data name="HashtagSheet_intervalLabel" xml:space="preserve">
+  <data name="HashtagSheet_disabledBox.Text" xml:space="preserve">
+    <value>Disable the hashtag service. This will also disable hashtag searching.</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="HashtagSheet_intervalLabel.Text" xml:space="preserve">
     <value>Scan for hashtags every</value>
     <comment>label</comment>
   </data>
-  <data name="HashtagSheet_introTitle" xml:space="preserve">
+  <data name="HashtagSheet_introBox.Text" xml:space="preserve">
     <value>Customize advanced options for the Hashtag Scanner Service</value>
     <comment>label</comment>
+  </data>
+  <data name="HashtagSheet_rebuildBox.Text" xml:space="preserve">
+    <value>Rebuild the hashtag database upon restart</value>
+    <comment>checkbox</comment>
   </data>
   <data name="HashtagSheet_styleBox.Text" xml:space="preserve">
     <value>None

@@ -1172,17 +1172,25 @@ Symbole: PI, E</value>
     <value>Beginnen Sie mit der Eingabe eines beliebigen Teils eines Hashtags oder * für alle</value>
     <comment>label</comment>
   </data>
-  <data name="HashtagSheet_disabledBox" xml:space="preserve">
+  <data name="HashtagSheet_disableBox.Text" xml:space="preserve">
     <value>Deaktivieren Sie den Hashtag-Dienst. Dadurch wird auch die Hashtag-Suche deaktiviert.</value>
     <comment>checkbox</comment>
   </data>
-  <data name="HashtagSheet_intervalLabel" xml:space="preserve">
+  <data name="HashtagSheet_disabledBox.Text" xml:space="preserve">
+    <value>Deaktivieren Sie den Hashtag-Dienst. Dadurch wird auch die Hashtag-Suche deaktiviert.</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="HashtagSheet_intervalLabel.Text" xml:space="preserve">
     <value>Scannen Sie alle nach Hashtags</value>
     <comment>label</comment>
   </data>
-  <data name="HashtagSheet_introTitle" xml:space="preserve">
+  <data name="HashtagSheet_introBox.Text" xml:space="preserve">
     <value>Passen Sie erweiterte Optionen für den Hashtag-Scanner-Dienst an</value>
     <comment>label</comment>
+  </data>
+  <data name="HashtagSheet_rebuildBox.Text" xml:space="preserve">
+    <value>Erstellen Sie die Hashtag-Datenbank beim Neustart neu</value>
+    <comment>checkbox</comment>
   </data>
   <data name="HashtagSheet_styleBox.Text" xml:space="preserve">
     <value>Keiner

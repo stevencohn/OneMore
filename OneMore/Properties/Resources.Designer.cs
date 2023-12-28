@@ -2967,27 +2967,45 @@ namespace River.OneMoreAddIn.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Disable the hashtag service. This will also disable hashtag searching..
         /// </summary>
-        internal static string HashtagSheet_disabledBox {
+        internal static string HashtagSheet_disableBox_Text {
             get {
-                return ResourceManager.GetString("HashtagSheet_disabledBox", resourceCulture);
+                return ResourceManager.GetString("HashtagSheet_disableBox.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Disable the hashtag service. This will also disable hashtag searching..
+        /// </summary>
+        internal static string HashtagSheet_disabledBox_Text {
+            get {
+                return ResourceManager.GetString("HashtagSheet_disabledBox.Text", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Scan for hashtags every.
         /// </summary>
-        internal static string HashtagSheet_intervalLabel {
+        internal static string HashtagSheet_intervalLabel_Text {
             get {
-                return ResourceManager.GetString("HashtagSheet_intervalLabel", resourceCulture);
+                return ResourceManager.GetString("HashtagSheet_intervalLabel.Text", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Customize advanced options for the Hashtag Scanner Service.
         /// </summary>
-        internal static string HashtagSheet_introTitle {
+        internal static string HashtagSheet_introBox_Text {
             get {
-                return ResourceManager.GetString("HashtagSheet_introTitle", resourceCulture);
+                return ResourceManager.GetString("HashtagSheet_introBox.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rebuild the hashtag database upon restart.
+        /// </summary>
+        internal static string HashtagSheet_rebuildBox_Text {
+            get {
+                return ResourceManager.GetString("HashtagSheet_rebuildBox.Text", resourceCulture);
             }
         }
         

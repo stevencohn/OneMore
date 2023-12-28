@@ -1177,17 +1177,25 @@
     <value>ابدأ بكتابة أي جزء من الهاشتاج أو *للكل</value>
     <comment>label</comment>
   </data>
-  <data name="HashtagSheet_disabledBox" xml:space="preserve">
+  <data name="HashtagSheet_disableBox.Text" xml:space="preserve">
     <value>تعطيل خدمة الهاشتاج. سيؤدي هذا أيضًا إلى تعطيل البحث عن الهاشتاج.</value>
     <comment>checkbox</comment>
   </data>
-  <data name="HashtagSheet_intervalLabel" xml:space="preserve">
+  <data name="HashtagSheet_disabledBox.Text" xml:space="preserve">
+    <value>تعطيل خدمة الهاشتاج. سيؤدي هذا أيضًا إلى تعطيل البحث عن الهاشتاج.</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="HashtagSheet_intervalLabel.Text" xml:space="preserve">
     <value>البحث عن علامات التصنيف كل</value>
     <comment>label</comment>
   </data>
-  <data name="HashtagSheet_introTitle" xml:space="preserve">
+  <data name="HashtagSheet_introBox.Text" xml:space="preserve">
     <value>تخصيص الخيارات المتقدمة لخدمة Hashtag Scanner</value>
     <comment>label</comment>
+  </data>
+  <data name="HashtagSheet_rebuildBox.Text" xml:space="preserve">
+    <value>إعادة بناء قاعدة بيانات الهاشتاج عند إعادة التشغيل</value>
+    <comment>checkbox</comment>
   </data>
   <data name="HashtagSheet_styleBox.Text" xml:space="preserve">
     <value>لا أحد
