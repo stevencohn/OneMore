@@ -75,7 +75,7 @@ namespace River.OneMoreAddIn.Commands
 			{
 				foreach (var element in elements)
 				{
-					count += SearchAndReplace(element);
+					count += ScanElement(element);
 				}
 
 				if (count > 0)
@@ -88,8 +88,26 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
+		public int SearchAndReplace(XElement paragraph)
+		{
+			var ns = paragraph.GetNamespaceOfPrefix(OneNote.Prefix);
+			var elements = paragraph.Elements(ns + "T");
+
+			int count = 0;
+			if (elements.Any())
+			{
+				foreach (var element in elements)
+				{
+					count += ScanElement(element);
+				}
+			}
+
+			return count;
+		}
+
+
 		// Replace all matches in the given T run
-		private int SearchAndReplace(XElement element)
+		private int ScanElement(XElement element)
 		{
 			// get a cleaned-up wrapper of the CDATA that we can parse
 			var cdata = element.GetCData();

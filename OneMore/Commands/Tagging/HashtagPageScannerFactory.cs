@@ -9,24 +9,26 @@ namespace River.OneMoreAddIn.Commands
 
 
 	/// <summary>
-	/// Fabricates a new page scanner. This optimizes the construction of a shared
-	/// compiled regular expression that is used for pattern matching across all pages.
+	/// Initialize a new page scanner. This centralizes and optimizes the instantiation
+	/// of shared objects such as a compiled regular expression and style template.
 	/// </summary>
 	internal class HashtagPageSannerFactory
 	{
 		private readonly Regex hashPattern;
+		private readonly XElement styleTemplate;
 
 
 		/// <summary>
 		/// Initialize a new factory and compiles the pattern match expression
 		/// </summary>
-		public HashtagPageSannerFactory()
+		public HashtagPageSannerFactory(XElement styleTemplate)
 		{
 			// TODO: right-to-left languages?
-
 			// Groups[1].Index, Length, Value
 			// matches ##digits or ##word or #word, but not #digits
 			hashPattern = new Regex(@"(##\d[\w-_]+|#{1,2}[^\W\d][\w-_]{0,})");
+
+			this.styleTemplate = styleTemplate;
 		}
 
 
@@ -37,7 +39,7 @@ namespace River.OneMoreAddIn.Commands
 		/// <returns>A HashtagPageScanner instance</returns>
 		public HashtagPageScanner CreatePageScanner(XElement root)
 		{
-			return new HashtagPageScanner(root, hashPattern);
+			return new HashtagPageScanner(root, hashPattern, styleTemplate);
 		}
 	}
 }

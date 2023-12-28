@@ -5,6 +5,8 @@
 namespace River.OneMoreAddIn.Commands
 {
 	using River.OneMoreAddIn.Models;
+	using River.OneMoreAddIn.Settings;
+	using River.OneMoreAddIn.Styles;
 	using System;
 	using System.Collections.Generic;
 	using System.Linq;
@@ -32,10 +34,46 @@ namespace River.OneMoreAddIn.Commands
 		{
 			one = new OneNote();
 			provider = new HashtagProvider();
-			factory = new HashtagPageSannerFactory();
+			factory = new HashtagPageSannerFactory(GetStyleTemplate());
 
 			lastTime = provider.ReadScanTime();
 			logger.Verbose($"HashtagScanner lastTime {lastTime}");
+		}
+
+
+		private XElement GetStyleTemplate()
+		{
+			var settings = new SettingsProvider().GetCollection("HashtagSheet");
+			var styleIndex = settings.Get("styleIndex", 0);
+
+			if (styleIndex == 1)
+			{
+				return new XElement("span",
+					new XAttribute("style", "color:red"),
+					"$1");
+			}
+			else if (styleIndex == 2)
+			{
+				return new XElement("span",
+					new XAttribute("style", "background:#FFFF99"),
+					"$1");
+			}
+			else if (styleIndex > 2)
+			{
+				var styleName = settings.Get<string>("styleName");
+				var theme = new ThemeProvider().Theme;
+				var style = theme.GetStyles().Find(s => s.Name == styleName);
+				if (style != null)
+				{
+					style.ApplyColors = true;
+
+					return new XElement("span",
+						new XAttribute("style", style.ToCss()),
+						"$1");
+				}
+			}
+
+			return null;
 		}
 
 
@@ -228,7 +266,7 @@ namespace River.OneMoreAddIn.Commands
 			}
 
 			// if first time hashtags were discovered on this page then set omPageID
-			if (scanner.UpdateMeta && dirtyPage)
+			if ((scanner.UpdateMeta || scanner.UpdateStyle) && dirtyPage)
 			{
 				page.SetMeta(MetaNames.PageID, scanner.MoreID);
 				await one.Update(page);

@@ -1190,6 +1190,16 @@ Symbolen: PI, E</value>
     <value>Pas geavanceerde opties aan voor de Hashtag Scanner Service</value>
     <comment>label</comment>
   </data>
+  <data name="HashtagSheet_styleBox.Text" xml:space="preserve">
+    <value>Geen
+Rode voorgrond
+Gele achtergrond</value>
+    <comment>combobox</comment>
+  </data>
+  <data name="HashtagSheet_styleLabel.Text" xml:space="preserve">
+    <value>Aangepaste stijl toepassen</value>
+    <comment>label</comment>
+  </data>
   <data name="HashtagSheet_Title" xml:space="preserve">
     <value>Hashtags</value>
     <comment>sheet title</comment>

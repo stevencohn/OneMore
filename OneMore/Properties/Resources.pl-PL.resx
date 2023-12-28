@@ -1198,6 +1198,16 @@ Symbole: PI, E</value>
     <value>Dostosuj zaawansowane opcje usługi skanera hashtagów</value>
     <comment>label</comment>
   </data>
+  <data name="HashtagSheet_styleBox.Text" xml:space="preserve">
+    <value>Nic
+Czerwony pierwszy plan
+Żółte Tło</value>
+    <comment>combobox</comment>
+  </data>
+  <data name="HashtagSheet_styleLabel.Text" xml:space="preserve">
+    <value>Zastosuj niestandardowy styl</value>
+    <comment>label</comment>
+  </data>
   <data name="HashtagSheet_Title" xml:space="preserve">
     <value>Hashtagi</value>
     <comment>sheet title</comment>

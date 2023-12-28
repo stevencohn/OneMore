@@ -1190,6 +1190,16 @@ OneNote 文件 (*.one)</value>
     <value>自定义标签扫描仪服务的高级选项</value>
     <comment>label</comment>
   </data>
+  <data name="HashtagSheet_styleBox.Text" xml:space="preserve">
+    <value>没有任何
+红色前景
+黄色背景</value>
+    <comment>combobox</comment>
+  </data>
+  <data name="HashtagSheet_styleLabel.Text" xml:space="preserve">
+    <value>应用自定义样式</value>
+    <comment>label</comment>
+  </data>
   <data name="HashtagSheet_Title" xml:space="preserve">
     <value>标签</value>
     <comment>sheet title</comment>

@@ -1200,6 +1200,16 @@ Total Row Font
     <value>התאם אישית אפשרויות מתקדמות עבור שירות הסורק של Hashtag</value>
     <comment>label</comment>
   </data>
+  <data name="HashtagSheet_styleBox.Text" xml:space="preserve">
+    <value>אף אחד
+חזית אדומה
+רקע צהוב</value>
+    <comment>combobox</comment>
+  </data>
+  <data name="HashtagSheet_styleLabel.Text" xml:space="preserve">
+    <value>החל סגנון מותאם אישית</value>
+    <comment>label</comment>
+  </data>
   <data name="HashtagSheet_Title" xml:space="preserve">
     <value>Hashtags</value>
     <comment>sheet title</comment>

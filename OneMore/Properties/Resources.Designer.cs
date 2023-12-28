@@ -2992,6 +2992,26 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to None
+        ///Red Foreground
+        ///Yellow Background.
+        /// </summary>
+        internal static string HashtagSheet_styleBox_Text {
+            get {
+                return ResourceManager.GetString("HashtagSheet_styleBox.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Apply custom style.
+        /// </summary>
+        internal static string HashtagSheet_styleLabel_Text {
+            get {
+                return ResourceManager.GetString("HashtagSheet_styleLabel.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Hashtags.
         /// </summary>
         internal static string HashtagSheet_Title {

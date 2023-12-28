@@ -1,5 +1,5 @@
 ﻿//************************************************************************************************
-// Copyright © 2023 Steven M. Cohn. All Rights Reserved.
+// Copyright © 2023 Steven M Cohn. All Rights Reserved.
 //************************************************************************************************
 
 namespace River.OneMoreAddIn.Settings
@@ -30,6 +30,7 @@ namespace River.OneMoreAddIn.Settings
 					"minLabel=word_Minutes",
 					"advancedGroup=phrase_AdvancedOptions",
 					"styleLabel",
+					"styleBox",
 					"rebuildBox",
 					"disabledBox"
 				});
@@ -41,7 +42,7 @@ namespace River.OneMoreAddIn.Settings
 			disabledBox.Checked = settings.Get("disabled", false);
 
 			var theme = new ThemeProvider().Theme;
-			var styles = theme.GetStyles().Where(s => s.StyleType == StyleType.Character);
+			var styles = theme.GetStyles().Where(s => s.StyleType == StyleType.Character).ToList();
 			if (styles.Any())
 			{
 				styleBox.Items.AddRange(styles.ToArray());
@@ -50,15 +51,23 @@ namespace River.OneMoreAddIn.Settings
 			var styleIndex = settings.Get("styleIndex", 0);
 			if (styleIndex < 3)
 			{
-				styleBox.SelectedIndex = styleIndex;
-			}
-			else if (styleIndex < styleBox.Items.Count - 1)
-			{
+				// None, Red FG, Yellow BG
 				styleBox.SelectedIndex = styleIndex;
 			}
 			else
 			{
-				styleBox.SelectedIndex = 0;
+				var styleName = settings.Get("styleName", string.Empty);
+				var index = styles.FindIndex(s => s.Name == styleName);
+				if (index >= 0)
+				{
+					// custom character styles
+					styleBox.SelectedIndex = 3 + index;
+				}
+				else
+				{
+					// default to None
+					styleBox.SelectedIndex = 0;
+				}
 			}
 		}
 
@@ -87,6 +96,9 @@ namespace River.OneMoreAddIn.Settings
 			var settings = provider.GetCollection(Name);
 
 			var updated = settings.Add("interval", (int)intervalBox.Value);
+
+			updated = settings.Add("styleIndex", styleBox.SelectedIndex) || updated;
+			updated = settings.Add("styleName", styleBox.Text) || updated;
 
 			updated = rebuildBox.Checked
 				? settings.Add("rebuild", true) || updated

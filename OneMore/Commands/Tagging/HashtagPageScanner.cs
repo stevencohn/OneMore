@@ -21,6 +21,7 @@ namespace River.OneMoreAddIn.Commands
 		private readonly XElement root;
 		private readonly XNamespace ns;
 		private readonly Regex hashPattern;
+		private readonly SearchAndReplaceEditor editor;
 		private readonly string pageID;
 
 
@@ -29,7 +30,7 @@ namespace River.OneMoreAddIn.Commands
 		/// </summary>
 		/// <param name="root">The root element of the page</param>
 		/// <param name="pattern">The compiled regular express used to find ##hashtags</param>
-		public HashtagPageScanner(XElement root, Regex pattern)
+		public HashtagPageScanner(XElement root, Regex pattern, XElement styleTemplate)
 		{
 			this.root = root;
 			ns = root.GetNamespaceOfPrefix(OneNote.Prefix);
@@ -46,6 +47,12 @@ namespace River.OneMoreAddIn.Commands
 			}
 
 			hashPattern = pattern;
+
+			if (styleTemplate != null)
+			{
+				editor = new SearchAndReplaceEditor(
+					pattern.ToString(), styleTemplate, true, false);
+			}
 		}
 
 
@@ -59,6 +66,12 @@ namespace River.OneMoreAddIn.Commands
 		/// Gest an indication of whether the MoreID needs updating
 		/// </summary>
 		public bool UpdateMeta { get; private set; }
+
+
+		/// <summary>
+		/// Gets an indication of whether hashtags styles were updated
+		/// </summary>
+		public bool UpdateStyle { get; private set; }
 
 
 		/// <summary>
@@ -78,7 +91,15 @@ namespace River.OneMoreAddIn.Commands
 			{
 				foreach (var paragraph in paragraphs)
 				{
+					var count = tags.Count;
+
 					ScanParagraph(paragraph, tags);
+
+					if (editor != null && tags.Count != count)
+					{
+						editor.SearchAndReplace(paragraph);
+						UpdateStyle = true;
+					}
 				}
 			}
 

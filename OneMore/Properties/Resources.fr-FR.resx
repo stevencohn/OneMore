@@ -1186,6 +1186,16 @@ Symboles : PI, E</value>
     <value>Personnaliser les options avancées du service Hashtag Scanner</value>
     <comment>label</comment>
   </data>
+  <data name="HashtagSheet_styleBox.Text" xml:space="preserve">
+    <value>Aucun
+Premier plan rouge
+Fond jaune</value>
+    <comment>combobox</comment>
+  </data>
+  <data name="HashtagSheet_styleLabel.Text" xml:space="preserve">
+    <value>Appliquer un style personnalisé</value>
+    <comment>label</comment>
+  </data>
   <data name="HashtagSheet_Title" xml:space="preserve">
     <value>Hashtags</value>
     <comment>sheet title</comment>
