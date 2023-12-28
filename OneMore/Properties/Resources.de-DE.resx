@@ -1172,10 +1172,6 @@ Symbole: PI, E</value>
     <value>Beginnen Sie mit der Eingabe eines beliebigen Teils eines Hashtags oder * für alle</value>
     <comment>label</comment>
   </data>
-  <data name="HashtagSheet_disableBox.Text" xml:space="preserve">
-    <value>Deaktivieren Sie den Hashtag-Dienst. Dadurch wird auch die Hashtag-Suche deaktiviert.</value>
-    <comment>checkbox</comment>
-  </data>
   <data name="HashtagSheet_disabledBox.Text" xml:space="preserve">
     <value>Deaktivieren Sie den Hashtag-Dienst. Dadurch wird auch die Hashtag-Suche deaktiviert.</value>
     <comment>checkbox</comment>

@@ -1178,10 +1178,6 @@ Symbolen: PI, E</value>
     <value>Begin met het typen van een deel van een hashtag of * voor alles</value>
     <comment>label</comment>
   </data>
-  <data name="HashtagSheet_disableBox.Text" xml:space="preserve">
-    <value>Schakel de hashtag-service uit. Hiermee wordt ook het zoeken naar hashtags uitgeschakeld.</value>
-    <comment>checkbox</comment>
-  </data>
   <data name="HashtagSheet_disabledBox.Text" xml:space="preserve">
     <value>Schakel de hashtag-service uit. Hiermee wordt ook het zoeken naar hashtags uitgeschakeld.</value>
     <comment>checkbox</comment>

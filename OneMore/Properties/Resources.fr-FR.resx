@@ -1174,10 +1174,6 @@ Symboles : PI, E</value>
     <value>Commencez à taper n'importe quelle partie d'un hashtag ou * pour tous</value>
     <comment>label</comment>
   </data>
-  <data name="HashtagSheet_disableBox.Text" xml:space="preserve">
-    <value>Désactivez le service hashtag. Cela désactivera également la recherche par hashtag.</value>
-    <comment>checkbox</comment>
-  </data>
   <data name="HashtagSheet_disabledBox.Text" xml:space="preserve">
     <value>Désactivez le service hashtag. Cela désactivera également la recherche par hashtag.</value>
     <comment>checkbox</comment>

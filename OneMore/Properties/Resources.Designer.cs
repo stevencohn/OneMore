@@ -2967,15 +2967,6 @@ namespace River.OneMoreAddIn.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Disable the hashtag service. This will also disable hashtag searching..
         /// </summary>
-        internal static string HashtagSheet_disableBox_Text {
-            get {
-                return ResourceManager.GetString("HashtagSheet_disableBox.Text", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Disable the hashtag service. This will also disable hashtag searching..
-        /// </summary>
         internal static string HashtagSheet_disabledBox_Text {
             get {
                 return ResourceManager.GetString("HashtagSheet_disabledBox.Text", resourceCulture);

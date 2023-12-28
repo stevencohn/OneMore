@@ -1177,10 +1177,6 @@ Símbolos: PI, E</value>
     <value>Empiece a escribir cualquier parte de un hashtag o * para todos</value>
     <comment>label</comment>
   </data>
-  <data name="HashtagSheet_disableBox.Text" xml:space="preserve">
-    <value>Deshabilite el servicio de hashtag. Esto también deshabilitará la búsqueda de hashtags.</value>
-    <comment>checkbox</comment>
-  </data>
   <data name="HashtagSheet_disabledBox.Text" xml:space="preserve">
     <value>Deshabilite el servicio de hashtag. Esto también deshabilitará la búsqueda de hashtags.</value>
     <comment>checkbox</comment>

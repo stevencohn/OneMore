@@ -1178,10 +1178,6 @@ OneNote 文件 (*.one)</value>
     <value>开始输入主题标签的任何部分或 * 表示全部</value>
     <comment>label</comment>
   </data>
-  <data name="HashtagSheet_disableBox.Text" xml:space="preserve">
-    <value>禁用主题标签服务。这也将禁用主题标签搜索。</value>
-    <comment>checkbox</comment>
-  </data>
   <data name="HashtagSheet_disabledBox.Text" xml:space="preserve">
     <value>禁用主题标签服务。这也将禁用主题标签搜索。</value>
     <comment>checkbox</comment>

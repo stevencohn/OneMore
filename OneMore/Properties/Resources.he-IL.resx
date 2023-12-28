@@ -1188,10 +1188,6 @@ Total Row Font
     <value>התחל להקליד כל חלק מהאשטאג או * עבור כולם</value>
     <comment>label</comment>
   </data>
-  <data name="HashtagSheet_disableBox.Text" xml:space="preserve">
-    <value>השבת את שירות ההאשטאג. זה גם ישבית את חיפוש ההאשטאג.</value>
-    <comment>checkbox</comment>
-  </data>
   <data name="HashtagSheet_disabledBox.Text" xml:space="preserve">
     <value>השבת את שירות ההאשטאג. זה גם ישבית את חיפוש ההאשטאג.</value>
     <comment>checkbox</comment>

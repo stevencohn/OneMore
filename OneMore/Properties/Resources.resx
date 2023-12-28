@@ -1192,10 +1192,6 @@ Symbols: PI, E</value>
     <value>Start typing any part of a hashtag or * for all</value>
     <comment>label</comment>
   </data>
-  <data name="HashtagSheet_disableBox.Text" xml:space="preserve">
-    <value>Disable the hashtag service. This will also disable hashtag searching.</value>
-    <comment>checkbox</comment>
-  </data>
   <data name="HashtagSheet_disabledBox.Text" xml:space="preserve">
     <value>Disable the hashtag service. This will also disable hashtag searching.</value>
     <comment>checkbox</comment>
