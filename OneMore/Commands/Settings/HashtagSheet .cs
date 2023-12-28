@@ -5,6 +5,8 @@
 namespace River.OneMoreAddIn.Settings
 {
 	using River.OneMoreAddIn.Commands;
+	using River.OneMoreAddIn.Styles;
+	using System.Linq;
 	using System.Windows.Forms;
 	using Resx = Properties.Resources;
 
@@ -27,6 +29,7 @@ namespace River.OneMoreAddIn.Settings
 					"intervalLabel",
 					"minLabel=word_Minutes",
 					"advancedGroup=phrase_AdvancedOptions",
+					"styleLabel",
 					"rebuildBox",
 					"disabledBox"
 				});
@@ -36,6 +39,27 @@ namespace River.OneMoreAddIn.Settings
 
 			intervalBox.Value = settings.Get("interval", HashtagService.DefaultPollingInterval);
 			disabledBox.Checked = settings.Get("disabled", false);
+
+			var theme = new ThemeProvider().Theme;
+			var styles = theme.GetStyles().Where(s => s.StyleType == StyleType.Character);
+			if (styles.Any())
+			{
+				styleBox.Items.AddRange(styles.ToArray());
+			}
+
+			var styleIndex = settings.Get("styleIndex", 0);
+			if (styleIndex < 3)
+			{
+				styleBox.SelectedIndex = styleIndex;
+			}
+			else if (styleIndex < styleBox.Items.Count - 1)
+			{
+				styleBox.SelectedIndex = styleIndex;
+			}
+			else
+			{
+				styleBox.SelectedIndex = 0;
+			}
 		}
 
 

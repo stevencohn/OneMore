@@ -31,18 +31,17 @@ namespace River.OneMoreAddIn.Settings
 		{
 			this.introBox = new System.Windows.Forms.TextBox();
 			this.layoutPanel = new System.Windows.Forms.Panel();
-			this.styleBox = new System.Windows.Forms.CheckBox();
+			this.styleBox = new System.Windows.Forms.ComboBox();
+			this.styleLabel = new System.Windows.Forms.Label();
 			this.advancedGroup = new System.Windows.Forms.GroupBox();
 			this.rebuildBox = new System.Windows.Forms.CheckBox();
 			this.disabledBox = new System.Windows.Forms.CheckBox();
 			this.minLabel = new System.Windows.Forms.Label();
 			this.intervalBox = new System.Windows.Forms.NumericUpDown();
 			this.intervalLabel = new System.Windows.Forms.Label();
-			this.styleGroup = new System.Windows.Forms.GroupBox();
 			this.layoutPanel.SuspendLayout();
 			this.advancedGroup.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.intervalBox)).BeginInit();
-			this.styleGroup.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// introBox
@@ -60,7 +59,8 @@ namespace River.OneMoreAddIn.Settings
 			// 
 			// layoutPanel
 			// 
-			this.layoutPanel.Controls.Add(this.styleGroup);
+			this.layoutPanel.Controls.Add(this.styleBox);
+			this.layoutPanel.Controls.Add(this.styleLabel);
 			this.layoutPanel.Controls.Add(this.advancedGroup);
 			this.layoutPanel.Controls.Add(this.minLabel);
 			this.layoutPanel.Controls.Add(this.intervalBox);
@@ -74,13 +74,25 @@ namespace River.OneMoreAddIn.Settings
 			// 
 			// styleBox
 			// 
-			this.styleBox.AutoSize = true;
-			this.styleBox.Location = new System.Drawing.Point(18, 42);
+			this.styleBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.styleBox.FormattingEnabled = true;
+			this.styleBox.Items.AddRange(new object[] {
+            "None",
+            "Red Foreground",
+            "Yellow Background"});
+			this.styleBox.Location = new System.Drawing.Point(304, 70);
 			this.styleBox.Name = "styleBox";
-			this.styleBox.Size = new System.Drawing.Size(206, 24);
+			this.styleBox.Size = new System.Drawing.Size(280, 28);
 			this.styleBox.TabIndex = 8;
-			this.styleBox.Text = "Apply styles to hashtags";
-			this.styleBox.UseVisualStyleBackColor = true;
+			// 
+			// styleLabel
+			// 
+			this.styleLabel.AutoSize = true;
+			this.styleLabel.Location = new System.Drawing.Point(7, 73);
+			this.styleLabel.Name = "styleLabel";
+			this.styleLabel.Size = new System.Drawing.Size(140, 20);
+			this.styleLabel.TabIndex = 7;
+			this.styleLabel.Text = "Apply custom style";
 			// 
 			// advancedGroup
 			// 
@@ -157,19 +169,6 @@ namespace River.OneMoreAddIn.Settings
 			this.intervalLabel.TabIndex = 3;
 			this.intervalLabel.Text = "Scan for hashtags every";
 			// 
-			// styleGroup
-			// 
-			this.styleGroup.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-			this.styleGroup.Controls.Add(this.styleBox);
-			this.styleGroup.Location = new System.Drawing.Point(10, 66);
-			this.styleGroup.Name = "styleGroup";
-			this.styleGroup.Padding = new System.Windows.Forms.Padding(15, 3, 3, 3);
-			this.styleGroup.Size = new System.Drawing.Size(759, 280);
-			this.styleGroup.TabIndex = 11;
-			this.styleGroup.TabStop = false;
-			this.styleGroup.Text = "Styling Options";
-			// 
 			// HashtagSheet
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -185,8 +184,6 @@ namespace River.OneMoreAddIn.Settings
 			this.advancedGroup.ResumeLayout(false);
 			this.advancedGroup.PerformLayout();
 			((System.ComponentModel.ISupportInitialize)(this.intervalBox)).EndInit();
-			this.styleGroup.ResumeLayout(false);
-			this.styleGroup.PerformLayout();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -201,8 +198,8 @@ namespace River.OneMoreAddIn.Settings
 		private System.Windows.Forms.Label minLabel;
 		private System.Windows.Forms.GroupBox advancedGroup;
 		private System.Windows.Forms.CheckBox disabledBox;
-		private System.Windows.Forms.CheckBox styleBox;
 		private System.Windows.Forms.CheckBox rebuildBox;
-		private System.Windows.Forms.GroupBox styleGroup;
+		private System.Windows.Forms.ComboBox styleBox;
+		private System.Windows.Forms.Label styleLabel;
 	}
 }

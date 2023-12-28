@@ -107,6 +107,7 @@ namespace River.OneMoreAddIn.Commands
 					{
 						if (match.Success)
 						{
+							// hashPattern always has at least one capture group
 							var capture = match.Groups[1].Captures[0];
 							var name = capture.Value;
 
