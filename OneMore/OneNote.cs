@@ -620,6 +620,10 @@ namespace River.OneMoreAddIn
 					};
 				}
 			}
+			catch (COMException exc) when ((uint)exc.ErrorCode == ErrorCodes.hrObjectMissing)
+			{
+				logger.WriteLine($"could not find nodeID {nameof(GetHierarchyNode)}({nodeId})");
+			}
 			catch (Exception exc)
 			{
 				logger.WriteLine($"error getting hierarchy for node {nodeId}", exc);

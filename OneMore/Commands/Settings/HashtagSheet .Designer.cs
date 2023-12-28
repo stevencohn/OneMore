@@ -31,7 +31,10 @@ namespace River.OneMoreAddIn.Settings
 		{
 			this.introBox = new System.Windows.Forms.TextBox();
 			this.layoutPanel = new System.Windows.Forms.Panel();
+			this.styleBox = new System.Windows.Forms.ComboBox();
+			this.styleLabel = new System.Windows.Forms.Label();
 			this.advancedGroup = new System.Windows.Forms.GroupBox();
+			this.rebuildBox = new System.Windows.Forms.CheckBox();
 			this.disabledBox = new System.Windows.Forms.CheckBox();
 			this.minLabel = new System.Windows.Forms.Label();
 			this.intervalBox = new System.Windows.Forms.NumericUpDown();
@@ -56,6 +59,8 @@ namespace River.OneMoreAddIn.Settings
 			// 
 			// layoutPanel
 			// 
+			this.layoutPanel.Controls.Add(this.styleBox);
+			this.layoutPanel.Controls.Add(this.styleLabel);
 			this.layoutPanel.Controls.Add(this.advancedGroup);
 			this.layoutPanel.Controls.Add(this.minLabel);
 			this.layoutPanel.Controls.Add(this.intervalBox);
@@ -64,27 +69,62 @@ namespace River.OneMoreAddIn.Settings
 			this.layoutPanel.Location = new System.Drawing.Point(13, 74);
 			this.layoutPanel.Margin = new System.Windows.Forms.Padding(0);
 			this.layoutPanel.Name = "layoutPanel";
-			this.layoutPanel.Size = new System.Drawing.Size(772, 416);
+			this.layoutPanel.Size = new System.Drawing.Size(772, 516);
 			this.layoutPanel.TabIndex = 4;
+			// 
+			// styleBox
+			// 
+			this.styleBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.styleBox.FormattingEnabled = true;
+			this.styleBox.Items.AddRange(new object[] {
+            "None",
+            "Red Foreground",
+            "Yellow Background"});
+			this.styleBox.Location = new System.Drawing.Point(304, 70);
+			this.styleBox.Name = "styleBox";
+			this.styleBox.Size = new System.Drawing.Size(280, 28);
+			this.styleBox.TabIndex = 8;
+			// 
+			// styleLabel
+			// 
+			this.styleLabel.AutoSize = true;
+			this.styleLabel.Location = new System.Drawing.Point(7, 73);
+			this.styleLabel.Name = "styleLabel";
+			this.styleLabel.Size = new System.Drawing.Size(140, 20);
+			this.styleLabel.TabIndex = 7;
+			this.styleLabel.Text = "Apply custom style";
 			// 
 			// advancedGroup
 			// 
 			this.advancedGroup.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+			this.advancedGroup.Controls.Add(this.rebuildBox);
 			this.advancedGroup.Controls.Add(this.disabledBox);
-			this.advancedGroup.Location = new System.Drawing.Point(10, 241);
+			this.advancedGroup.Location = new System.Drawing.Point(10, 352);
 			this.advancedGroup.Name = "advancedGroup";
 			this.advancedGroup.Padding = new System.Windows.Forms.Padding(15, 3, 3, 3);
-			this.advancedGroup.Size = new System.Drawing.Size(762, 106);
+			this.advancedGroup.Size = new System.Drawing.Size(759, 126);
 			this.advancedGroup.TabIndex = 6;
 			this.advancedGroup.TabStop = false;
 			this.advancedGroup.Text = "Advanced Options";
 			// 
+			// rebuildBox
+			// 
+			this.rebuildBox.AutoSize = true;
+			this.rebuildBox.Location = new System.Drawing.Point(18, 41);
+			this.rebuildBox.Name = "rebuildBox";
+			this.rebuildBox.Size = new System.Drawing.Size(339, 24);
+			this.rebuildBox.TabIndex = 10;
+			this.rebuildBox.Text = "Rebuild the hashtag database upon restart";
+			this.rebuildBox.UseVisualStyleBackColor = true;
+			this.rebuildBox.CheckedChanged += new System.EventHandler(this.ConfirmRebuild);
+			// 
 			// disabledBox
 			// 
-			this.disabledBox.Location = new System.Drawing.Point(18, 25);
+			this.disabledBox.AutoSize = true;
+			this.disabledBox.Location = new System.Drawing.Point(18, 71);
 			this.disabledBox.Name = "disabledBox";
-			this.disabledBox.Size = new System.Drawing.Size(716, 62);
+			this.disabledBox.Size = new System.Drawing.Size(517, 24);
 			this.disabledBox.TabIndex = 0;
 			this.disabledBox.Text = "Disable the hashtag service. This will also disable hashtag searching.";
 			this.disabledBox.UseVisualStyleBackColor = true;
@@ -138,10 +178,11 @@ namespace River.OneMoreAddIn.Settings
 			this.Controls.Add(this.introBox);
 			this.Name = "HashtagSheet";
 			this.Padding = new System.Windows.Forms.Padding(13, 8, 15, 10);
-			this.Size = new System.Drawing.Size(800, 500);
+			this.Size = new System.Drawing.Size(800, 600);
 			this.layoutPanel.ResumeLayout(false);
 			this.layoutPanel.PerformLayout();
 			this.advancedGroup.ResumeLayout(false);
+			this.advancedGroup.PerformLayout();
 			((System.ComponentModel.ISupportInitialize)(this.intervalBox)).EndInit();
 			this.ResumeLayout(false);
 			this.PerformLayout();
@@ -157,5 +198,8 @@ namespace River.OneMoreAddIn.Settings
 		private System.Windows.Forms.Label minLabel;
 		private System.Windows.Forms.GroupBox advancedGroup;
 		private System.Windows.Forms.CheckBox disabledBox;
+		private System.Windows.Forms.CheckBox rebuildBox;
+		private System.Windows.Forms.ComboBox styleBox;
+		private System.Windows.Forms.Label styleLabel;
 	}
 }

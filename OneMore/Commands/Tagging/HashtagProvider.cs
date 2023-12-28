@@ -55,6 +55,25 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
+		public static void DeleteDatabase()
+		{
+			var path = Path.Combine(
+				PathHelper.GetAppDataPath(), Resources.DatabaseFilename);
+
+			if (File.Exists(path))
+			{
+				try
+				{
+					File.Delete(path);
+				}
+				catch (Exception exc)
+				{
+					Logger.Current.WriteLine("error deleting hashtag database", exc);
+				}
+			}
+		}
+
+
 		private void RefreshDatabase()
 		{
 			logger.WriteLine("building hashtag database");

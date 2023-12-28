@@ -2852,6 +2852,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Enable experimental features.
+        /// </summary>
+        internal static string GeneralSheet_experimentalBox_Text {
+            get {
+                return ResourceManager.GetString("GeneralSheet_experimentalBox.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Customize the overall behavior of OneMore.
         /// </summary>
         internal static string GeneralSheet_introBox_Text {
@@ -2958,27 +2967,65 @@ namespace River.OneMoreAddIn.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Disable the hashtag service. This will also disable hashtag searching..
         /// </summary>
-        internal static string HashtagSheet_disabledBox {
+        internal static string HashtagSheet_disableBox_Text {
             get {
-                return ResourceManager.GetString("HashtagSheet_disabledBox", resourceCulture);
+                return ResourceManager.GetString("HashtagSheet_disableBox.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Disable the hashtag service. This will also disable hashtag searching..
+        /// </summary>
+        internal static string HashtagSheet_disabledBox_Text {
+            get {
+                return ResourceManager.GetString("HashtagSheet_disabledBox.Text", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Scan for hashtags every.
         /// </summary>
-        internal static string HashtagSheet_intervalLabel {
+        internal static string HashtagSheet_intervalLabel_Text {
             get {
-                return ResourceManager.GetString("HashtagSheet_intervalLabel", resourceCulture);
+                return ResourceManager.GetString("HashtagSheet_intervalLabel.Text", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Customize advanced options for the Hashtag Scanner Service.
         /// </summary>
-        internal static string HashtagSheet_introTitle {
+        internal static string HashtagSheet_introBox_Text {
             get {
-                return ResourceManager.GetString("HashtagSheet_introTitle", resourceCulture);
+                return ResourceManager.GetString("HashtagSheet_introBox.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rebuild the hashtag database upon restart.
+        /// </summary>
+        internal static string HashtagSheet_rebuildBox_Text {
+            get {
+                return ResourceManager.GetString("HashtagSheet_rebuildBox.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to None
+        ///Red Foreground
+        ///Yellow Background.
+        /// </summary>
+        internal static string HashtagSheet_styleBox_Text {
+            get {
+                return ResourceManager.GetString("HashtagSheet_styleBox.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Apply custom style.
+        /// </summary>
+        internal static string HashtagSheet_styleLabel_Text {
+            get {
+                return ResourceManager.GetString("HashtagSheet_styleLabel.Text", resourceCulture);
             }
         }
         
@@ -9486,6 +9533,15 @@ namespace River.OneMoreAddIn.Properties {
         internal static string SearchAndReplaceDialog_matchBox_Text {
             get {
                 return ResourceManager.GetString("SearchAndReplaceDialog_matchBox.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Replace with raw XML.
+        /// </summary>
+        internal static string SearchAndReplaceDialog_rawBox_Text {
+            get {
+                return ResourceManager.GetString("SearchAndReplaceDialog_rawBox.Text", resourceCulture);
             }
         }
         

@@ -30,7 +30,16 @@ namespace River.OneMoreAddIn.Commands
 			var collection = settings.GetCollection("HashtagSheet");
 			pollingInterval = collection.Get("interval", DefaultPollingInterval) * Minute;
 
-			disabled = collection.Get("disabled", false);
+			disabled = collection.Get<bool>("disabled");
+
+			var rebuild = collection.Get<bool>("rebuild");
+			if (rebuild)
+			{
+				HashtagProvider.DeleteDatabase();
+				collection.Remove("rebuild");
+				settings.SetCollection(collection);
+				settings.Save();
+			}
 		}
 
 

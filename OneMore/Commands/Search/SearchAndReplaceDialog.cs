@@ -8,6 +8,7 @@ namespace River.OneMoreAddIn.Commands
 	using System;
 	using System.Linq;
 	using System.Text.RegularExpressions;
+	using System.Web;
 	using System.Xml.Linq;
 	using Resx = Properties.Resources;
 
@@ -31,6 +32,7 @@ namespace River.OneMoreAddIn.Commands
 					"withLabel",
 					"matchBox",
 					"regBox",
+					"rawBox",
 					"okButton=word_OK",
 					"cancelButton=word_Cancel"
 				});
@@ -46,6 +48,14 @@ namespace River.OneMoreAddIn.Commands
 		private void LoadSettings()
 		{
 			var provider = new SettingsProvider();
+
+			var experimental = provider.GetCollection("GeneralSheet").Get<bool>("experimental");
+			if (!experimental)
+			{
+				rawBox.Visible = false;
+				Height -= rawBox.Height;
+			}
+
 			var settings = provider.GetCollection("SearchReplace");
 			if (settings != null)
 			{
@@ -61,9 +71,15 @@ namespace River.OneMoreAddIn.Commands
 				var withs = settings.Get<XElement>("withs");
 				if (withs != null)
 				{
-					foreach (var withText in withs.Elements())
+					foreach (var withText in withs.Elements().Select(e => e.Value))
 					{
-						withBox.Items.Add(withText.Value);
+						var text = withText;
+						if (text.StartsWith("&lt;") && text.EndsWith("&gt;"))
+						{
+							text = HttpUtility.HtmlDecode(text);
+						}
+
+						withBox.Items.Add(text);
 					}
 				}
 			}
@@ -71,6 +87,8 @@ namespace River.OneMoreAddIn.Commands
 
 
 		public bool MatchCase => matchBox.Checked;
+
+		public XElement RawXml { get; private set; }
 
 		public string WithText => withBox.Text;
 
@@ -94,6 +112,12 @@ namespace River.OneMoreAddIn.Commands
 		private void ToggleRegex(object sender, EventArgs e)
 		{
 			CheckPattern(sender, e);
+		}
+
+
+		private void ToggleRawXml(object sender, EventArgs e)
+		{
+			CheckXmlFormat(sender, e);
 		}
 
 
@@ -147,6 +171,32 @@ namespace River.OneMoreAddIn.Commands
 				okButton.Enabled = whatBox.Text.Length > 0;
 			}
 		}
+
+
+		private void CheckXmlFormat(object sender, EventArgs e)
+		{
+			if (rawBox.Checked)
+			{
+				var xml = withBox.Text.Trim();
+				try
+				{
+					RawXml = XElement.Parse(xml);
+				}
+				catch
+				{
+					withStatusLabel.Text = "XML format is not correct";
+					return;
+				}
+			}
+			else
+			{
+				RawXml = null;
+			}
+
+			// ensure whatStatus is restored correctly
+			CheckPattern(sender, e);
+		}
+
 
 
 		private void SelectedWhat(object sender, EventArgs e)

@@ -1,5 +1,5 @@
 ﻿//************************************************************************************************
-// Copyright © 2020 Steven M Cohn.  All rights reserved.
+// Copyright © 2020 Steven M Cohn. All rights reserved.
 //************************************************************************************************
 
 namespace River.OneMoreAddIn.Commands
@@ -7,7 +7,6 @@ namespace River.OneMoreAddIn.Commands
 	using River.OneMoreAddIn.Models;
 	using System;
 	using System.Linq;
-	using System.Text;
 	using System.Text.RegularExpressions;
 	using System.Xml.Linq;
 
@@ -20,7 +19,7 @@ namespace River.OneMoreAddIn.Commands
 	{
 		private readonly Regex regex;
 		private readonly string replacementString;
-		private readonly XElement replaceElement;
+		private readonly XElement replacementElement;
 
 
 		/// <summary>
@@ -57,7 +56,7 @@ namespace River.OneMoreAddIn.Commands
 				caseSensitive ? RegexOptions.None : RegexOptions.IgnoreCase
 				);
 
-			replaceElement = element;
+			replacementElement = element;
 		}
 
 
@@ -76,7 +75,7 @@ namespace River.OneMoreAddIn.Commands
 			{
 				foreach (var element in elements)
 				{
-					count += SearchAndReplace(element);
+					count += ScanElement(element);
 				}
 
 				if (count > 0)
@@ -89,8 +88,26 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
+		public int SearchAndReplace(XElement paragraph)
+		{
+			var ns = paragraph.GetNamespaceOfPrefix(OneNote.Prefix);
+			var elements = paragraph.Elements(ns + "T");
+
+			int count = 0;
+			if (elements.Any())
+			{
+				foreach (var element in elements)
+				{
+					count += ScanElement(element);
+				}
+			}
+
+			return count;
+		}
+
+
 		// Replace all matches in the given T run
-		private int SearchAndReplace(XElement element)
+		private int ScanElement(XElement element)
 		{
 			// get a cleaned-up wrapper of the CDATA that we can parse
 			var cdata = element.GetCData();
@@ -125,12 +142,26 @@ namespace River.OneMoreAddIn.Commands
 					{
 						// regex does not contain any capture or non-capture groups
 						// for example "abc"
-						Replace(wrapper, match.Index, match.Length, replacementString);
+						Replace(wrapper, match.Index, match.Length,
+							stringValue: replacementString,
+							elementValue: replacementElement);
 					}
 					else if (match.Groups.Count > 1)
 					{
-						Replace(wrapper, match.Groups[1].Index, match.Groups[1].Length,
-							replaceElement == null ? ExpandReplacement(match) : null);
+						if (replacementElement != null)
+						{
+							var xml = ExpandSubstitutions(match,
+								replacementElement.ToString(SaveOptions.DisableFormatting));
+
+							Replace(wrapper, match.Groups[1].Index, match.Groups[1].Length,
+								elementValue: XElement.Parse(xml));
+
+						}
+						else
+						{
+							Replace(wrapper, match.Groups[1].Index, match.Groups[1].Length,
+								stringValue: ExpandSubstitutions(match, replacementString));
+						}
 					}
 				}
 
@@ -144,17 +175,16 @@ namespace River.OneMoreAddIn.Commands
 
 
 		// Substitute $1..$n parameters in replacementString with capture groups
-		private string ExpandReplacement(Match match)
+		private string ExpandSubstitutions(Match match, string text)
 		{
-			if (string.IsNullOrWhiteSpace(replacementString))
+			if (string.IsNullOrWhiteSpace(text))
 			{
-				return replacementString;
+				return text;
 			}
 
-			var matches = Regex.Matches(replacementString, @"\$\d+");
+			var matches = Regex.Matches(text, @"\$\d+");
 			if (matches.Count > 0)
 			{
-				var expanded = replacementString;
 				for (int i = matches.Count - 1; i >= 0; i--)
 				{
 					var m = matches[i];
@@ -164,16 +194,14 @@ namespace River.OneMoreAddIn.Commands
 
 					if (index >= 0 && index <= match.Groups.Count)
 					{
-						expanded = expanded
+						text = text
 							.Remove(m.Index, m.Length)
 							.Insert(m.Index, match.Groups[index].Value);
 					}
 				}
-
-				return expanded;
 			}
 
-			return replacementString;
+			return text;
 		}
 
 
@@ -182,10 +210,11 @@ namespace River.OneMoreAddIn.Commands
 		// most likely SPAN or BR tags. This routine ignores the SPAN XElements themsevles
 		// and focuses only on the inner text of the SPAN.
 		private void Replace(
-			XElement wrapper,       // the wrapped CDATA of the run
-			int searchIndex,        // the starting index of the match in the text
-			int searchLength,       // the length of the match
-			string value)           // the capture value, if any
+			XElement wrapper,				// the wrapped CDATA of the run
+			int searchIndex,				// the starting index of the match in the text
+			int searchLength,				// the length of the match
+			string stringValue = null,		// the replacement string value
+			XElement elementValue = null)	// the replacement XML value
 		{
 			// XText and XElement nodes in wrapper
 			var nodes = wrapper.Nodes().ToList();
@@ -214,13 +243,13 @@ namespace River.OneMoreAddIn.Commands
 					var index = searchIndex - nodeStart;
 					var chars = Math.Min(remaining, atom.Length - index);
 
-					if (replaceElement != null)
+					if (elementValue != null)
 					{
-						atom.Replace(index, chars, replaceElement);
+						atom.Replace(index, chars, elementValue);
 					}
 					else
 					{
-						atom.Replace(index, chars, value);
+						atom.Replace(index, chars, stringValue);
 					}
 
 					remaining -= chars;
