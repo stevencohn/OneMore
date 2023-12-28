@@ -24,7 +24,9 @@ namespace River.OneMoreAddIn.Commands
 		{
 			// TODO: right-to-left languages?
 
-			hashPattern = new Regex(@"##[\w\d-_]+\b");
+			// Groups[1].Index, Length, Value
+			// matches ##digits or ##word or #word, but not #digits
+			hashPattern = new Regex(@"(##\d[\w-_]+|#{1,2}[^\W\d][\w-_]{0,})");
 		}
 
 
@@ -38,5 +40,4 @@ namespace River.OneMoreAddIn.Commands
 			return new HashtagPageScanner(root, hashPattern);
 		}
 	}
-
 }

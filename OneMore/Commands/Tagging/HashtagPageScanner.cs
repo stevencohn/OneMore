@@ -107,7 +107,7 @@ namespace River.OneMoreAddIn.Commands
 					{
 						if (match.Success)
 						{
-							var capture = match.Captures[0];
+							var capture = match.Groups[1].Captures[0];
 							var name = capture.Value;
 
 							if (!tags.Exists(t => t.Tag == name && t.ObjectID == objectID))

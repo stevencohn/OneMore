@@ -1,11 +1,9 @@
 ﻿//************************************************************************************************
-// Copyright © 2023 teven M. Cohn. All Rights Reserved.
+// Copyright © 2023 Steven M. Cohn. All Rights Reserved.
 //************************************************************************************************
 
 namespace River.OneMoreAddIn.Settings
 {
-	using System;
-	using System.Linq.Expressions;
 	using System.Runtime.InteropServices;
 	using System.Threading.Tasks;
 	using System.Windows.Forms;
