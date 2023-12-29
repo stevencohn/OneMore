@@ -95,11 +95,16 @@ namespace River.OneMoreAddIn.Commands
 			clock.Start();
 
 			using var scanner = new HashtagScanner();
-			var totalPages = await scanner.Scan();
+			var (dirtyPages, totalPages) = await scanner.Scan();
 
 			clock.Stop();
 			var time = clock.ElapsedMilliseconds;
-			logger.WriteLine($"hashtag service scanned {totalPages} pages in {time}ms");
+
+			if (dirtyPages > 0 || time > 1000)
+			{
+				logger.WriteLine(
+					$"hashtag service scanned {totalPages} pages, updating {dirtyPages}, in {time}ms");
+			}
 		}
 	}
 }

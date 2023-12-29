@@ -108,8 +108,9 @@ namespace River.OneMoreAddIn.Commands
 		/// Scan all notebooks for all hashtags
 		/// </summary>
 		/// <returns></returns>
-		public async Task<int> Scan()
+		public async Task<(int, int)> Scan()
 		{
+			int dirtyPages = 0;
 			int totalPages = 0;
 
 			// get all notebooks
@@ -125,21 +126,25 @@ namespace River.OneMoreAddIn.Commands
 					var notebookID = notebook.Attribute("ID").Value;
 					var sections = await one.GetNotebook(notebookID);
 
-					totalPages += await Scan(
+					var (dp, tp) = await Scan(
 						sections, notebookID, $"/{notebook.Attribute("name").Value}");
+
+					dirtyPages += dp;
+					totalPages += tp;
 				}
 			}
 
 			provider.WriteScanTime();
 
-			return totalPages;
+			return (dirtyPages, totalPages);
 		}
 
 
-		private async Task<int> Scan(XElement parent, string notebookID, string path)
+		private async Task<(int, int)> Scan(XElement parent, string notebookID, string path)
 		{
 			//logger.Verbose($"scanning parent {path}");
 
+			int dirtyPages = 0;
 			int totalPages = 0;
 
 			var sectionRefs = parent.Elements(ns + "Section")
@@ -174,7 +179,10 @@ namespace River.OneMoreAddIn.Commands
 
 							if (page.Attribute("lastModifiedTime").Value.CompareTo(lastTime) > 0)
 							{
-								await ScanPage(pid, notebookID, sectionID, sectionPath);
+								if (await ScanPage(pid, notebookID, sectionID, sectionPath))
+								{
+									dirtyPages++;
+								}
 							}
 						}
 
@@ -193,16 +201,20 @@ namespace River.OneMoreAddIn.Commands
 			{
 				foreach (var group in groups)
 				{
-					totalPages = await Scan(
+					var (dp, tp) = await Scan(
 						group, notebookID, $"{path}/{group.Attribute("name").Value}");
+
+					dirtyPages += dp;
+					totalPages += tp;
 				}
 			}
 
-			return totalPages;
+			return (dirtyPages, totalPages);
 		}
 
 
-		private async Task ScanPage(string pageID, string notebookID, string sectionID, string path)
+		private async Task<bool> ScanPage(
+			string pageID, string notebookID, string sectionID, string path)
 		{
 			Page page;
 
@@ -213,7 +225,7 @@ namespace River.OneMoreAddIn.Commands
 			catch (Exception exc)
 			{
 				logger.WriteLine("error scanning page, possibly locked", exc);
-				return;
+				return false;
 			}
 
 			var title = page.Title;
@@ -284,15 +296,16 @@ namespace River.OneMoreAddIn.Commands
 				// TODO: could track moreID+pageID to determine if REPLACE is needed; but then
 				// need to read that info first as well; see where the design goes...
 
-				// TODO: how to clean up deleted pages?
-
 				// TODO: should this be wrapped in a tx along with the above statements?
 
 				provider.WritePageInfo(
 					scanner.MoreID, pageID, titleID, notebookID, sectionID, path, title);
 
 				logger.WriteLine($"updating tags on page {path}/{title}");
+				return true;
 			}
+
+			return false;
 		}
 	}
 }

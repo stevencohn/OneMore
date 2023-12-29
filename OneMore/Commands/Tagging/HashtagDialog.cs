@@ -311,11 +311,11 @@ namespace River.OneMoreAddIn.Commands
 			var clock = new Stopwatch();
 			clock.Start();
 
-			var totalPages = await scanner.Scan();
+			var (dirtyPages, totalPages) = await scanner.Scan();
 
 			clock.Stop();
 			var time = clock.ElapsedMilliseconds;
-			logger.WriteLine($"scanned {totalPages} pages in {time}ms");
+			logger.WriteLine($"scanned {totalPages} pages, updating {dirtyPages}, in {time}ms");
 
 			PopulateTags(sender, e);
 		}
