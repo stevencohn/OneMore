@@ -3,6 +3,7 @@
 //************************************************************************************************
 
 #pragma warning disable S1118 // Utility classes should not have public constructors
+#pragma warning disable S6605 // "Exists" method should be used instead of the "Any" extension
 
 namespace OneMoreSetupActions
 {
@@ -11,6 +12,7 @@ namespace OneMoreSetupActions
 	using System.Linq;
 	using System.Runtime.InteropServices;
 	using System.Security.Principal;
+	using System.Windows.Forms;
 
 
 	class Program
@@ -52,14 +54,31 @@ namespace OneMoreSetupActions
 				logger.WriteLine($"direct action: {args[0]} .. {DateTime.Now}");
 			}
 
-			if (args.Any(a => a == "--x64" || a == "--x86"))
-			{
-				CheckBitness(args.Any(a => a == "--x64"));
-			}
-
 			ReportContext();
 
 			int status;
+
+			if (args.Any(a => a == "--x64" || a == "--x86"))
+			{
+				var x64 = args.Any(a => a == "--x64");
+				status = new CheckBitnessAction(logger, stepper, x64).Install();
+				if (status != CustomAction.SUCCESS)
+				{
+					Environment.Exit(status);
+				}
+			}
+
+			status = new CheckOneNoteAction(logger, stepper).Install();
+			if (status != CustomAction.SUCCESS)
+			{
+				MessageBox.Show($"The OneNote installation looks to be invalid. OneMore may not appear " +
+					"in the OneNote ribbon until OneNote is repaired. For more information, " +
+					$"check the logs at\n{logger.LogPath}",
+					"OneNote Configuration Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+				// treat as warning for now...
+				//Environment.Exit(status);
+			}
 
 			switch (args[0])
 			{
@@ -75,6 +94,14 @@ namespace OneMoreSetupActions
 
 				case "--install-activesetup":
 					status = new ActiveSetupAction(logger, stepper).Install();
+					break;
+
+				case "--install-checkbitness":
+					status = new CheckBitnessAction(logger, stepper, true).Install();
+					break;
+
+				case "--install-checkonenote":
+					status = new CheckOneNoteAction(logger, stepper).Install();
 					break;
 
 				case "--install-edge":
@@ -116,22 +143,6 @@ namespace OneMoreSetupActions
 			}
 
 			Environment.Exit(status);
-		}
-
-
-		static void CheckBitness(bool x64)
-		{
-			var oarc = Environment.Is64BitOperatingSystem ? "x64" : "x86";
-			var iarc = Environment.Is64BitProcess ? "x64" : "x86";
-			var rarc = x64 ? "x64" : "x86";
-			logger.WriteLine($"Installer architecture ({iarc}), OS architecture ({oarc}), requesting ({rarc})");
-
-			if (Environment.Is64BitOperatingSystem != Environment.Is64BitProcess ||
-				Environment.Is64BitOperatingSystem != x64)
-			{
-				logger.WriteLine($"Installer architecture ({iarc}) does not match OS ({oarc}) or request ({rarc})");
-				Environment.Exit(CustomAction.USEREXIT);
-			}
 		}
 
 
@@ -188,6 +199,10 @@ namespace OneMoreSetupActions
 			{
 				logger.WriteLine("install failed; error registering");
 				logger.WriteLine(exc);
+
+				MessageBox.Show($"Error installing. Check the logs {logger.LogPath}",
+					"Action Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
 				return CustomAction.FAILURE;
 			}
 		}
@@ -223,6 +238,10 @@ namespace OneMoreSetupActions
 			{
 				logger.WriteLine("uninstall failed; error unregistering");
 				logger.WriteLine(exc);
+
+				MessageBox.Show($"Error uninstalling. Check the logs {logger.LogPath}",
+					"Action Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
 				return CustomAction.FAILURE;
 			}
 		}

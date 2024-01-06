@@ -17,9 +17,8 @@ namespace OneMoreSetupActions
 
 		public Logger(string name)
 		{
-			writer = new StreamWriter(
-				Path.Combine(Path.GetTempPath(), $"{name}.log"),
-				true);
+			LogPath = Path.Combine(Path.GetTempPath(), $"{name}.log");
+			writer = new StreamWriter(LogPath, true);
 		}
 
 
@@ -51,6 +50,12 @@ namespace OneMoreSetupActions
 		#endregion Lifecycle
 
 
+		public string LogPath { get; private set; }
+
+
+		public bool Indented { get; set; }
+
+
 		public void WriteLine()
 		{
 			WriteLine(string.Empty);
@@ -59,8 +64,9 @@ namespace OneMoreSetupActions
 
 		public void WriteLine(string message)
 		{
-			Console.WriteLine(message);
-			writer.WriteLine(message);
+			var m = Indented ? $"... {message}" : message;
+			Console.WriteLine(m);
+			writer.WriteLine(m);
 			writer.Flush();
 		}
 

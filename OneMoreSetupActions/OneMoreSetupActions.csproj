@@ -43,6 +43,7 @@
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Management" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -52,6 +53,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Actions\ActiveSetupAction.cs" />
+    <Compile Include="Actions\CheckBitnessAction.cs" />
+    <Compile Include="Actions\CheckOneNoteAction.cs" />
     <Compile Include="Actions\CustomAction.cs" />
     <Compile Include="Actions\EdgeWebViewAction.cs" />
     <Compile Include="Actions\RegistryWowAction.cs" />
