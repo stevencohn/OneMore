@@ -39,8 +39,10 @@ namespace OneMoreSetupActions
 				var msg = $"Installer architecture ({iarc}) does not match OS ({oarc}) or request ({rarc})";
 				logger.WriteLine(msg);
 
-				MessageBox.Show(msg,
-					"Incompatible Installer", MessageBoxButtons.OK, MessageBoxIcon.Error);
+				MessageBox.Show(
+					$"This is a {iarc} bit installer.\nYou must use the OneMore {oarc} bit installer.",
+					"Incompatible Installer",
+					MessageBoxButtons.OK, MessageBoxIcon.Error);
 
 				return FAILURE;
 			}

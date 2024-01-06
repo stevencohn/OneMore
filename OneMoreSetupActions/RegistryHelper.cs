@@ -2,11 +2,14 @@
 // Copyright © 2021 Steven M Cohn.  All rights reserved.
 //************************************************************************************************
 
+#pragma warning disable S6605 // "Exists" method should be used instead of the "Any" extension
+
 namespace OneMoreSetupActions
 {
 	using Microsoft.Win32;
 	using System;
 	using System.IO;
+	using System.Linq;
 	using System.Runtime.InteropServices;
 	using System.Security.AccessControl;
 	using System.Security.Principal;
@@ -96,6 +99,47 @@ namespace OneMoreSetupActions
 						CopyTree(srckey, trgkey);
 					}
 				}
+			}
+		}
+
+
+		/// <summary>
+		/// Safely return the value of a property under the named subkey.
+		/// </summary>
+		/// <param name="key"></param>
+		/// <param name="subkeyName"></param>
+		/// <param name="propName"></param>
+		/// <returns></returns>
+		public static string GetSubKeyPropertyValue(
+			this RegistryKey key, string subkeyName, string propName, bool verbose = true)
+		{
+			try
+			{
+				using (var sub = key.OpenSubKey(subkeyName, false))
+				{
+					if (sub == null)
+					{
+						if (verbose)
+						{
+							logger?.WriteLine($"could not find subkey {key.Name}\\{subkeyName}");
+						}
+						return null;
+					}
+
+					var value = (string)sub.GetValue(propName);
+					if (value == null && verbose)
+					{
+						logger?.WriteLine($"could not find property {key.Name}\\{subkeyName}\\{propName}");
+					}
+
+					return value;
+				}
+			}
+			catch (Exception exc)
+			{
+				logger?.WriteLine($"error reading subkey property {key.Name}\\{subkeyName}\\{propName}");
+				logger?.WriteLine(exc);
+				return null;
 			}
 		}
 
