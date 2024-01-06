@@ -239,7 +239,7 @@ namespace OneMoreSetupActions
 				logger.WriteLine("uninstall failed; error unregistering");
 				logger.WriteLine(exc);
 
-				MessageBox.Show($"Error installing. Check the logs {logger.LogPath}",
+				MessageBox.Show($"Error uninstalling. Check the logs {logger.LogPath}",
 					"Action Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
 				return CustomAction.FAILURE;
