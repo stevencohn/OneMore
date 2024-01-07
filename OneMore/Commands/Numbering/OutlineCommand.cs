@@ -51,11 +51,11 @@ namespace River.OneMoreAddIn.Commands
 
 			if (dialog.NumericNumbering)
 			{
-				AddOutlineNumbering(true, 0, 0, 1, string.Empty);
+				AddOutlineNumbering(true, 0, 1, 1, string.Empty);
 			}
 			else if (dialog.AlphaNumbering)
 			{
-				AddOutlineNumbering(false, 0, 0, 1, string.Empty);
+				AddOutlineNumbering(false, 0, 1, 1, string.Empty);
 			}
 
 			if (dialog.Indent || dialog.IndentTagged)
@@ -121,30 +121,34 @@ namespace River.OneMoreAddIn.Commands
 
 		int AddOutlineNumbering(bool numeric, int index, int level, int counter, string prefix)
 		{
-			if (index > headings.Count)
-			{
-				return index;
-			}
-
 			while (index < headings.Count)
 			{
-				PrefixHeader(headings[index].Root, numeric, level, counter, prefix);
-
-				index++;
-				counter++;
-
-				if (index < headings.Count && headings[index].Level < level)
+				var heading = headings[index];
+				if (heading.Level < level)
 				{
 					break;
 				}
 
-				if (index < headings.Count && headings[index].Level > level)
+				if (heading.Level > level)
 				{
-					index = AddOutlineNumbering(numeric, index, headings[index].Level, 1, $"{prefix}{counter - 1}.");
-					if (index < headings.Count && headings[index].Level < level)
+					// build prefix for next level using a different variable to maintain
+					// value of (prefix) for next H on this level...
+					var nextPrefix = $"{prefix}{counter - 1}.";
+
+					// mark missing headers, e.g. H1 immediately followed by H3
+					for (var i = heading.Level; i > level + 1; i--)
 					{
-						break;
+						nextPrefix = $"{nextPrefix}0.";
 					}
+
+					index = AddOutlineNumbering(numeric, index, heading.Level, 1, nextPrefix);
+				}
+				else
+				{
+					PrefixHeader(heading.Root, numeric, level, counter, prefix);
+
+					index++;
+					counter++;
 				}
 			}
 
@@ -173,7 +177,7 @@ namespace River.OneMoreAddIn.Commands
 			}
 			else
 			{
-				switch (level % 3)
+				switch ((level - 1) % 3)
 				{
 					case 0:
 						text.Value = $"{counter}. {text.Value}";
