@@ -1717,7 +1717,7 @@ Título personalizado 3</value>
     <value>Minha lista de leitura</value>
   </data>
   <data name="NavigatorWindow_refreshButton_Tooltip" xml:space="preserve">
-    <value>Atualizar cabeçalhos da página atual</value>
+    <value>Atualizar títulos da página atual (F5)</value>
     <comment>tooltip</comment>
   </data>
   <data name="NavigatorWindow_Text" xml:space="preserve">
@@ -3308,6 +3308,10 @@ Polaroid.</value>
   </data>
   <data name="ribNavigatorButton_Label" xml:space="preserve">
     <value>Navegador</value>
+    <comment>ribbon main</comment>
+  </data>
+  <data name="ribNavigatorButton_Screentip" xml:space="preserve">
+    <value>Abra a janela do OneMore Navigator</value>
     <comment>ribbon main</comment>
   </data>
   <data name="ribNewStyleButton_Label" xml:space="preserve">

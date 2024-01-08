@@ -157,7 +157,7 @@
 			this.refreshButton.Size = new System.Drawing.Size(35, 37);
 			this.refreshButton.TabIndex = 0;
 			this.refreshButton.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-			this.tooltip.SetToolTip(this.refreshButton, "Refresh headings from current page");
+			this.tooltip.SetToolTip(this.refreshButton, "Refresh headings from current page (F5)");
 			this.refreshButton.UseVisualStyleBackColor = true;
 			this.refreshButton.Click += new System.EventHandler(this.RefreshPageHeadings);
 			// 
@@ -418,6 +418,7 @@
 			this.Controls.Add(this.mainContainer);
 			this.Controls.Add(this.controlPanel);
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+			this.KeyPreview = true;
 			this.MaximizeBox = false;
 			this.MaximumSize = new System.Drawing.Size(1000, 1500);
 			this.MinimumSize = new System.Drawing.Size(400, 300);
@@ -430,6 +431,7 @@
 			this.Shown += new System.EventHandler(this.TopOnShownOnActivate);
 			this.LocationChanged += new System.EventHandler(this.TrackOnLocationChanged);
 			this.SizeChanged += new System.EventHandler(this.SetLimitsOnSizeChanged);
+			this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.DoKeyDown);
 			this.Layout += new System.Windows.Forms.LayoutEventHandler(this.TrackMinimizedOnLayout);
 			this.Move += new System.EventHandler(this.RestrictOnMove);
 			this.controlPanel.ResumeLayout(false);

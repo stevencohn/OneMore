@@ -1716,7 +1716,7 @@
     <value>قائمة القراءة الخاصة بي</value>
   </data>
   <data name="NavigatorWindow_refreshButton_Tooltip" xml:space="preserve">
-    <value>تحديث العناوين من الصفحة الحالية</value>
+    <value>تحديث العناوين من الصفحة الحالية (F5)</value>
     <comment>tooltip</comment>
   </data>
   <data name="NavigatorWindow_Text" xml:space="preserve">
@@ -3308,6 +3308,10 @@ ISO-code then comma then language name</comment>
   </data>
   <data name="ribNavigatorButton_Label" xml:space="preserve">
     <value>الملاح</value>
+    <comment>ribbon main</comment>
+  </data>
+  <data name="ribNavigatorButton_Screentip" xml:space="preserve">
+    <value>افتح نافذة OneMore Navigator</value>
     <comment>ribbon main</comment>
   </data>
   <data name="ribNewStyleButton_Label" xml:space="preserve">

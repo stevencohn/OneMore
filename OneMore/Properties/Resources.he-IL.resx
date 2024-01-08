@@ -1727,7 +1727,7 @@ Total Row Font
     <value>רשימת הקריאה שלי</value>
   </data>
   <data name="NavigatorWindow_refreshButton_Tooltip" xml:space="preserve">
-    <value>רענן כותרות מהדף הנוכחי</value>
+    <value>רענן כותרות מהדף הנוכחי (F5)</value>
     <comment>tooltip</comment>
   </data>
   <data name="NavigatorWindow_Text" xml:space="preserve">
@@ -3329,6 +3329,10 @@ ISO-code then comma then language name</comment>
   </data>
   <data name="ribNavigatorButton_Label" xml:space="preserve">
     <value>נווט</value>
+    <comment>ribbon main</comment>
+  </data>
+  <data name="ribNavigatorButton_Screentip" xml:space="preserve">
+    <value>פתח את חלון OneMore Navigator</value>
     <comment>ribbon main</comment>
   </data>
   <data name="ribNewStyleButton_Label" xml:space="preserve">

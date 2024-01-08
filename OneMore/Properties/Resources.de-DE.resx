@@ -1711,7 +1711,7 @@ Benutzerdefinierte Überschrift 3</value>
     <value>Meine Leseliste</value>
   </data>
   <data name="NavigatorWindow_refreshButton_Tooltip" xml:space="preserve">
-    <value>Überschriften von der aktuellen Seite aktualisieren</value>
+    <value>Überschriften der aktuellen Seite aktualisieren (F5)</value>
     <comment>tooltip</comment>
   </data>
   <data name="NavigatorWindow_Text" xml:space="preserve">
@@ -3304,6 +3304,10 @@ Polaroid</value>
   </data>
   <data name="ribNavigatorButton_Label" xml:space="preserve">
     <value>Navigator</value>
+    <comment>ribbon main</comment>
+  </data>
+  <data name="ribNavigatorButton_Screentip" xml:space="preserve">
+    <value>Öffnen Sie das OneMore Navigator-Fenster</value>
     <comment>ribbon main</comment>
   </data>
   <data name="ribNewStyleButton_Label" xml:space="preserve">
