@@ -7804,7 +7804,7 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Text Box.
+        ///   Looks up a localized string similar to Text box.
         /// </summary>
         internal static string ribInsertTextBoxButton_Label {
             get {
