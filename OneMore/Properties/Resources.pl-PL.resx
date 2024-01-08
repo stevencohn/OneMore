@@ -3104,7 +3104,7 @@ Polaroid</value>
     <comment>ribbon table</comment>
   </data>
   <data name="ribInsertCodeBoxButton_Label" xml:space="preserve">
-    <value>Pudełko na kod</value>
+    <value>Pudełko z kodem</value>
     <comment>ribbon snippets</comment>
   </data>
   <data name="ribInsertCodeBoxButton_Screentip" xml:space="preserve">
@@ -3228,7 +3228,7 @@ Polaroid</value>
     <comment>ribbon snippets</comment>
   </data>
   <data name="ribInsertWarnBoxButton_Label" xml:space="preserve">
-    <value>Pudełko ostrzegawcze</value>
+    <value>Pole ostrzegawcze</value>
     <comment>ribbon snippets</comment>
   </data>
   <data name="ribInsertWarnBoxButton_Screentip" xml:space="preserve">
