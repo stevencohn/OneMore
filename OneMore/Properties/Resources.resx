@@ -3232,7 +3232,7 @@ Polaroid</value>
     <comment>ribbon snippets</comment>
   </data>
   <data name="ribInsertTextBoxButton_Label" xml:space="preserve">
-    <value>Text Box</value>
+    <value>Text box</value>
     <comment>ribbon snippets</comment>
   </data>
   <data name="ribInsertTextBoxButton_Screentip" xml:space="preserve">

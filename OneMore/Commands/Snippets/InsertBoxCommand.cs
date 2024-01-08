@@ -93,9 +93,12 @@ namespace River.OneMoreAddIn.Commands
 				row = table.AddRow();
 				cell = row.Cells.First();
 
+				var normalStyle = page.GetQuickStyle(Styles.StandardStyles.Normal);
+				normalStyle.Color = TitleColor;
+
 				cell.SetContent(
 					new Paragraph($"<span style='font-weight:bold'>{Resx.word_Code}</span>")
-						.SetStyle($"font-family:'Segoe UI';font-size:11.0pt;color:{TitleColor}"));
+						.SetStyle(normalStyle.ToCss()));
 
 				cell.ShadingColor = Shading;
 			}
