@@ -7569,7 +7569,7 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Code box.
+        ///   Looks up a localized string similar to Code Box.
         /// </summary>
         internal static string ribInsertCodeBoxButton_Label {
             get {
@@ -7704,7 +7704,7 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Info box.
+        ///   Looks up a localized string similar to Info Box.
         /// </summary>
         internal static string ribInsertInfoBoxButton_Label {
             get {
@@ -7732,7 +7732,7 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Notes box.
+        ///   Looks up a localized string similar to Notes Box.
         /// </summary>
         internal static string ribInsertNoteBoxButton_Label {
             get {
@@ -7804,7 +7804,7 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Text box.
+        ///   Looks up a localized string similar to Text Box.
         /// </summary>
         internal static string ribInsertTextBoxButton_Label {
             get {
@@ -7868,7 +7868,7 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Warning box.
+        ///   Looks up a localized string similar to Warning Box.
         /// </summary>
         internal static string ribInsertWarnBoxButton_Label {
             get {

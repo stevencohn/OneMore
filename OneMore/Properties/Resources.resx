@@ -3132,7 +3132,7 @@ Polaroid</value>
     <comment>ribbon table</comment>
   </data>
   <data name="ribInsertCodeBoxButton_Label" xml:space="preserve">
-    <value>Code box</value>
+    <value>Code Box</value>
     <comment>ribbon snippets</comment>
   </data>
   <data name="ribInsertCodeBoxButton_Screentip" xml:space="preserve">
@@ -3192,7 +3192,7 @@ Polaroid</value>
     <comment>ribbon snippets</comment>
   </data>
   <data name="ribInsertInfoBoxButton_Label" xml:space="preserve">
-    <value>Info box</value>
+    <value>Info Box</value>
     <comment>ribbon snippets</comment>
   </data>
   <data name="ribInsertInfoBoxButton_Screentip" xml:space="preserve">
@@ -3200,7 +3200,7 @@ Polaroid</value>
     <comment>ribbon snippets</comment>
   </data>
   <data name="ribInsertNoteBoxButton_Label" xml:space="preserve">
-    <value>Notes box</value>
+    <value>Notes Box</value>
     <comment>ribbon snippets</comment>
   </data>
   <data name="ribInsertNoteBoxButton_Screentip" xml:space="preserve">
@@ -3232,7 +3232,7 @@ Polaroid</value>
     <comment>ribbon snippets</comment>
   </data>
   <data name="ribInsertTextBoxButton_Label" xml:space="preserve">
-    <value>Text box</value>
+    <value>Text Box</value>
     <comment>ribbon snippets</comment>
   </data>
   <data name="ribInsertTextBoxButton_Screentip" xml:space="preserve">
@@ -3256,7 +3256,7 @@ Polaroid</value>
     <comment>ribbon snippets</comment>
   </data>
   <data name="ribInsertWarnBoxButton_Label" xml:space="preserve">
-    <value>Warning box</value>
+    <value>Warning Box</value>
     <comment>ribbon snippets</comment>
   </data>
   <data name="ribInsertWarnBoxButton_Screentip" xml:space="preserve">
