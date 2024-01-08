@@ -1731,7 +1731,7 @@ Custom Heading 3</value>
     <value>My Reading List</value>
   </data>
   <data name="NavigatorWindow_refreshButton_Tooltip" xml:space="preserve">
-    <value>Refresh headings from current page</value>
+    <value>Refresh headings from current page (F5)</value>
     <comment>tooltip</comment>
   </data>
   <data name="NavigatorWindow_Text" xml:space="preserve">
@@ -3349,6 +3349,10 @@ Polaroid</value>
   </data>
   <data name="ribNavigatorButton_Label" xml:space="preserve">
     <value>Navigator</value>
+    <comment>ribbon main</comment>
+  </data>
+  <data name="ribNavigatorButton_Screentip" xml:space="preserve">
+    <value>Open the OneMore Navigator window</value>
     <comment>ribbon main</comment>
   </data>
   <data name="ribNewStyleButton_Label" xml:space="preserve">

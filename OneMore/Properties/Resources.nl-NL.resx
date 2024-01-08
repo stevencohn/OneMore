@@ -1717,7 +1717,7 @@ Aangepaste kop 3</value>
     <value>Mijn leeslijst</value>
   </data>
   <data name="NavigatorWindow_refreshButton_Tooltip" xml:space="preserve">
-    <value>Vernieuw de koppen van de huidige pagina</value>
+    <value>Kopteksten vernieuwen vanaf de huidige pagina (F5)</value>
     <comment>tooltip</comment>
   </data>
   <data name="NavigatorWindow_Text" xml:space="preserve">
@@ -3308,6 +3308,10 @@ Polaroid</value>
   </data>
   <data name="ribNavigatorButton_Label" xml:space="preserve">
     <value>Navigator</value>
+    <comment>ribbon main</comment>
+  </data>
+  <data name="ribNavigatorButton_Screentip" xml:space="preserve">
+    <value>Open het OneMore Navigator-venster</value>
     <comment>ribbon main</comment>
   </data>
   <data name="ribNewStyleButton_Label" xml:space="preserve">

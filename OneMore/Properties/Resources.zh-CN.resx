@@ -1717,7 +1717,7 @@ OneNote 文件 (*.one)</value>
     <value>我的阅读清单</value>
   </data>
   <data name="NavigatorWindow_refreshButton_Tooltip" xml:space="preserve">
-    <value>从当前页面刷新标题</value>
+    <value>刷新当前页面的标题 (F5)</value>
     <comment>tooltip</comment>
   </data>
   <data name="NavigatorWindow_Text" xml:space="preserve">
@@ -3311,6 +3311,10 @@ ISO-code then comma then language name</comment>
   </data>
   <data name="ribNavigatorButton_Label" xml:space="preserve">
     <value>导航</value>
+    <comment>ribbon main</comment>
+  </data>
+  <data name="ribNavigatorButton_Screentip" xml:space="preserve">
+    <value>打开 OneMore 导航器窗口</value>
     <comment>ribbon main</comment>
   </data>
   <data name="ribNewStyleButton_Label" xml:space="preserve">

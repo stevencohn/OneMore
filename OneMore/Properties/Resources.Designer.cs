@@ -4312,7 +4312,7 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Refresh headings from current page.
+        ///   Looks up a localized string similar to Refresh headings from current page (F5).
         /// </summary>
         internal static string NavigatorWindow_refreshButton_Tooltip {
             get {
@@ -8090,6 +8090,15 @@ namespace River.OneMoreAddIn.Properties {
         internal static string ribNavigatorButton_Label {
             get {
                 return ResourceManager.GetString("ribNavigatorButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Open the OneMore Navigator window.
+        /// </summary>
+        internal static string ribNavigatorButton_Screentip {
+            get {
+                return ResourceManager.GetString("ribNavigatorButton_Screentip", resourceCulture);
             }
         }
         

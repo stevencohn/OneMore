@@ -340,6 +340,16 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
+		private async void DoKeyDown(object sender, KeyEventArgs e)
+		{
+			if (e.KeyCode == Keys.F5)
+			{
+				await LoadPageHeadings(null);
+				e.Handled = true;
+			}
+		}
+
+
 		private async Task LoadPageHeadings(string pageID)
 		{
 			using var one = new OneNote();
@@ -622,7 +632,6 @@ namespace River.OneMoreAddIn.Commands
 					hbuilder.Append($"<p><a href=\"{record.Link}\">{record.Name}</a></p>");
 					tbuilder.Append($"{record.Link}\n");
 				}
-
 			}
 
 			var board = new ClipboardProvider();

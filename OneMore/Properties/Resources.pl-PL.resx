@@ -1725,7 +1725,7 @@ Nagłówek niestandardowy 3</value>
     <value>Moja lista lektur</value>
   </data>
   <data name="NavigatorWindow_refreshButton_Tooltip" xml:space="preserve">
-    <value>Odśwież nagłówki z bieżącej strony</value>
+    <value>Odśwież nagłówki z bieżącej strony (F5)</value>
     <comment>tooltip</comment>
   </data>
   <data name="NavigatorWindow_Text" xml:space="preserve">
@@ -3321,6 +3321,10 @@ Polaroid</value>
   </data>
   <data name="ribNavigatorButton_Label" xml:space="preserve">
     <value>Nawigator</value>
+    <comment>ribbon main</comment>
+  </data>
+  <data name="ribNavigatorButton_Screentip" xml:space="preserve">
+    <value>Otwórz okno OneMore Navigator</value>
     <comment>ribbon main</comment>
   </data>
   <data name="ribNewStyleButton_Label" xml:space="preserve">
