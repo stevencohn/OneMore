@@ -41,7 +41,7 @@ namespace River.OneMoreAddIn.Commands
 
 			palette = new MoreAutoCompleteList
 			{
-				HideListOnLostFocus = true,
+				FreeText = true,
 				RecentKicker = "recent tags",
 				OtherKicker = "all tags"
 			};
@@ -111,14 +111,16 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private void DoPreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
+		private void DoKeyDown(object sender, KeyEventArgs e)
 		{
 			if (e.KeyCode == Keys.Escape && !palette.IsPopupVisible)
 			{
+				e.Handled = true;
 				Close();
 			}
 			else if (e.KeyCode == Keys.Enter)
 			{
+				e.Handled = true;
 				SearchTags(sender, e);
 			}
 		}

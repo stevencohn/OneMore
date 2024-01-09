@@ -64,7 +64,6 @@
 			this.cancelButton.Text = "Cancel";
 			this.cancelButton.UseVisualStyleBackColor = true;
 			this.cancelButton.Click += new System.EventHandler(this.DoCancel);
-			this.cancelButton.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.DoPreviewKeyDown);
 			// 
 			// contextPanel
 			// 
@@ -281,11 +280,13 @@
 			this.Controls.Add(this.panel1);
 			this.Controls.Add(this.topPanel);
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+			this.KeyPreview = true;
 			this.MaximizeBox = false;
 			this.MinimizeBox = false;
 			this.MinimumSize = new System.Drawing.Size(900, 400);
 			this.Name = "HashtagDialog";
 			this.Text = "Find Hashtags";
+			this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.DoKeyDown);
 			this.topPanel.ResumeLayout(false);
 			this.topPanel.PerformLayout();
 			this.panel1.ResumeLayout(false);

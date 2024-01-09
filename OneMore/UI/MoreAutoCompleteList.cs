@@ -64,10 +64,11 @@ namespace River.OneMoreAddIn.UI
 
 
 		/// <summary>
-		/// Gets or sets whether the popup is hidden when the Esc key is pressed or focus
-		/// is turned away from the bound input control.
+		/// Gets or sets whether the text field takes priority, allowing free text
+		/// beyond the list of known strings in the drop-down. If false, then only
+		/// strings in the drop-down are accepted.
 		/// </summary>
-		public bool HideListOnLostFocus { get; set; }
+		public bool FreeText { get; set; }
 
 
 		/// <summary>
@@ -150,7 +151,7 @@ namespace River.OneMoreAddIn.UI
 				box.PreviewKeyDown += DoPreviewKeyDown;
 				box.TextChanged += DoTextChanged;
 
-				if (HideListOnLostFocus)
+				if (FreeText)
 				{
 					box.LostFocus += HidePopup;
 				}
@@ -260,7 +261,11 @@ namespace River.OneMoreAddIn.UI
 			// by Form.AcceptButton eventing
 			if (e.KeyCode == Keys.Enter)
 			{
-				if (SelectedItems.Count > 0)
+				if (FreeText)
+				{
+					HidePopup(sender, e);
+				}
+				else if (SelectedItems.Count > 0)
 				{
 					var text = SelectedItems[0].Text;
 					var index = text.IndexOf(KeyDivider);
@@ -271,7 +276,7 @@ namespace River.OneMoreAddIn.UI
 					HidePopup(sender, e);
 				}
 			}
-			else if (e.KeyCode == Keys.Escape && HideListOnLostFocus)
+			else if (e.KeyCode == Keys.Escape && FreeText)
 			{
 				HidePopup(sender, e);
 			}
@@ -288,6 +293,7 @@ namespace River.OneMoreAddIn.UI
 			if (e.KeyCode == Keys.Escape)
 			{
 				HidePopup(sender, e);
+				e.Handled = true;
 				return;
 			}
 
@@ -394,7 +400,7 @@ namespace River.OneMoreAddIn.UI
 				{
 					Items.Clear();
 					commands.ForEach(c => Items.Add(c.Name));
-					Items[0].Selected = true;
+					Items[0].Selected = !FreeText;
 				}
 
 				boxtext = text;
