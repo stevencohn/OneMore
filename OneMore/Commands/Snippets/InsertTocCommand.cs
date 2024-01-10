@@ -210,10 +210,11 @@ namespace River.OneMoreAddIn.Commands
 			var watt = container.Ancestors(ns + "Outline")
 				.Elements(ns + "Size").Attributes("width").FirstOrDefault();
 
-			if (watt != null && float.TryParse(watt.Value, out var width))
-			{
-				table.SetColumnWidth(0, Math.Max(width, 400) - 40);
-			}
+			var colwid = watt != null && float.TryParse(watt.Value, out float width)
+				? Math.Max(width, 400) - 40
+				: 360;
+
+			table.SetColumnWidth(0, colwid);
 
 			table[0][0].SetContent(title);
 			table[1][0].SetContent(content);
