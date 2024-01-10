@@ -98,7 +98,7 @@ namespace River.OneMoreAddIn
 
 			if (exc.InnerException != null)
 			{
-				FormatDetails(exc, builder, depth + 1);
+				FormatDetails(exc.InnerException, builder, depth + 1);
 			}
 		}
 
