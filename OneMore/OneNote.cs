@@ -4,6 +4,7 @@
 
 #pragma warning disable S3265 // Non-flags enums should not be used in bitwise operations
 #pragma warning disable S3881 // IDisposable should be implemented correctly
+#pragma warning disable S2583 // Conditionally executed code should be reachable
 
 namespace River.OneMoreAddIn
 {
@@ -1087,9 +1088,12 @@ namespace River.OneMoreAddIn
 			schemas.Add(ns.ToString(),
 				XmlReader.Create(new StringReader(Resx._0336_OneNoteApplication_2013)));
 
-			bool valid = true;
+			var valid = true;
 			document.Validate(schemas, (o, e) =>
 			{
+				logger.WriteLine($"schema error [{o}] ({o.GetType().FullName})");
+				logger.WriteLine(e.Exception);
+
 				if (o is XAttribute attribute &&
 					e.Exception.InnerException?.HResult == MaxInclusiveHResult)
 				{
@@ -1099,18 +1103,23 @@ namespace River.OneMoreAddIn
 						var dot = attribute.Value.IndexOf('.');
 						if (dot < exp - 1)
 						{
-							var correction = attribute.Value.Substring(0, dot + 2);
-							logger.WriteLine($"corrected attribute [{o}] -> [{correction}]");
-							attribute.Value = correction;
+							var fix = attribute.Value.Substring(0, dot + 2);
+							logger.WriteLine($"schema error, correcting [{o}] -> adjusted [{fix}]");
+							attribute.Value = fix;
 							return;
 						}
 					}
 				}
 
-				logger.WriteLine($"schema error [{o}] ({o.GetType().FullName})");
-				logger.WriteLine(e.Exception);
+				logger.WriteLine("schema error, unrecognized");
 				valid = false;
-			});
+			}
+			// uncomment this parameter to collect schema validation info for GetSchemaInfo()
+			// Note that validation info is not available until after Validate() returns so
+			// would need to collect suspect nodes in a List<> and then attempt to correct
+			// outside of the Validate callback...
+			//, true
+			);
 
 			return valid;
 		}
