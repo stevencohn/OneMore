@@ -101,7 +101,7 @@ namespace OneMoreSetupActions
 					break;
 
 				case "--install-checkonenote":
-					status = new CheckOneNoteAction(logger, stepper).Install();
+					// no-op
 					break;
 
 				case "--install-edge":

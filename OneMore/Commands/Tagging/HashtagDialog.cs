@@ -46,7 +46,7 @@ namespace River.OneMoreAddIn.Commands
 				OtherKicker = "all tags"
 			};
 
-			palette.SetAutoCompleteList(tagBox, palette);
+			palette.SetAutoCompleteList(tagBox);
 			scopeBox.SelectedIndex = 0;
 
 			ShowScanTimes();
