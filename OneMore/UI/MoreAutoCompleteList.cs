@@ -133,6 +133,12 @@ namespace River.OneMoreAddIn.UI
 		public bool ShowPopupOnStartup { get; set; }
 
 
+		/// <summary>
+		/// Extra chars to include as Word characters when scanning for words in text
+		/// </summary>
+		public char[] WordChars { private get; set; }
+
+
 		#region IExtenderProvider implementation
 		bool IExtenderProvider.CanExtend(object extendee)
 		{
@@ -524,19 +530,19 @@ namespace River.OneMoreAddIn.UI
 			}
 
 			start = Owner.SelectionStart;
-			while (start > 0 && Owner.Text[start - 1].IsWordCharacter())
+			while (start > 0 && Owner.Text[start - 1].IsWordCharacter(WordChars))
 			{
 				start--;
 			}
 
 			var end = Owner.SelectionStart;
-			while (end < Owner.Text.Length && Owner.Text[end].IsWordCharacter())
+			while (end < Owner.Text.Length && Owner.Text[end].IsWordCharacter(WordChars))
 			{
 				end++;
 			}
 
 			// for inner words, trim off the trailing space
-			if (end < Owner.Text.Length - 1 && !Owner.Text[end].IsWordCharacter())
+			if (end < Owner.Text.Length - 1 && !Owner.Text[end].IsWordCharacter(WordChars))
 			{
 				end--;
 			}
@@ -548,8 +554,6 @@ namespace River.OneMoreAddIn.UI
 			}
 
 			var word = Owner.Text.Substring(start, end - start + 1);
-			//Logger.Current.WriteLine($"closest [{word}] ({word.Length})");
-
 			return word;
 		}
 
@@ -563,8 +567,9 @@ namespace River.OneMoreAddIn.UI
 			{
 				return;
 			}
-			// must catch Enter key in preview event so it's not superseded
-			// by Form.AcceptButton eventing
+
+			// Catch the Enter key here in the preview handler so it's not superseded by
+			// the higher level Form.AcceptButton handler
 			if (e.KeyCode == Keys.Enter)
 			{
 				if (FreeText)
@@ -587,10 +592,6 @@ namespace River.OneMoreAddIn.UI
 					Owner.Text = index < 0 ? text : text.Substring(0, index);
 					HidePopup(sender, e);
 				}
-			}
-			else if (e.KeyCode == Keys.Escape && FreeText)
-			{
-				HidePopup(sender, e);
 			}
 		}
 

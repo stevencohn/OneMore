@@ -26,8 +26,9 @@ namespace River.OneMoreAddIn
 		/// OneMore Extension >> Equivalent to matching with \w pattern.
 		/// </summary>
 		/// <param name="c"></param>
+		/// <param name="extras">Extra char to accept as word characters</param>
 		/// <returns></returns>
-		public static bool IsWordCharacter(this char c)
+		public static bool IsWordCharacter(this char c, params char[] extras)
 		{
 			// Get the Unicode category of the character
 			var category = CharUnicodeInfo.GetUnicodeCategory(c);
@@ -39,7 +40,8 @@ namespace River.OneMoreAddIn
 				   category == UnicodeCategory.OtherLetter ||
 				   category == UnicodeCategory.ModifierLetter ||
 				   category == UnicodeCategory.DecimalDigitNumber ||
-				   category == UnicodeCategory.ConnectorPunctuation;
+				   category == UnicodeCategory.ConnectorPunctuation ||
+				   (extras.Any() && extras.Contains(c));
 		}
 
 

@@ -43,7 +43,8 @@ namespace River.OneMoreAddIn.Commands
 			{
 				FreeText = true,
 				RecentKicker = "recent tags",
-				OtherKicker = "all tags"
+				OtherKicker = "all tags",
+				WordChars = new[] { '#' }
 			};
 
 			palette.SetAutoCompleteList(tagBox);
