@@ -17,6 +17,11 @@ namespace River.OneMoreAddIn.UI
 
 	/// <summary>
 	/// Implements an auto-complete drop-down control that can be attached to a TextBox.
+	/// 
+	/// Can run in either command mode or free mode. In command mode, the available commands
+	/// take priority over the text box; entering a partial command and pressing Enter will
+	/// presume the first matched command. In free mode, the text box takes priority so pressing
+	/// Enter will accept the raw text; the available commands are used to quickly edit the text.
 	/// </summary>
 	/// <remarks>
 	/// The ProvideProperty tells VS to show a AutoCompleteList property for the visual designer
@@ -145,7 +150,7 @@ namespace River.OneMoreAddIn.UI
 		#endregion IExtenderProvider implementation
 
 
-		#region Initialization, Show and Hide
+		#region public SetAutoCompleteList and LoadCommands
 		/// <summary>
 		/// Binds this control to a specified TextBox.
 		/// This is required implementation for ProvideProperty.
@@ -169,10 +174,10 @@ namespace River.OneMoreAddIn.UI
 				// For a free text control like the hashtag search dialog, we want to let the
 				// popup disappear when focus is elsewhere. But for the Command Palette, we
 				// want to keep the popup open unless the Esc key is pressed
-				if (FreeText)
-				{
-					box.LostFocus += HidePopup;
-				}
+				//if (FreeText)
+				//{
+				//	box.LostFocus += HidePopup;
+				//}
 
 				boxtext = box.Text.Trim();
 
@@ -228,8 +233,10 @@ namespace River.OneMoreAddIn.UI
 				Items[0].Selected = true;
 			}
 		}
+		#endregion public SetAutoCompleteList and LoadCommands
 
 
+		#region private HidePopup and ShowPopUp
 		private void HidePopup(object sender, EventArgs e)
 		{
 			if (popup?.Visible == true) // && !popup.Focused)
@@ -241,7 +248,7 @@ namespace River.OneMoreAddIn.UI
 
 		private void ShowPopup(object sender, EventArgs e)
 		{
-			if (Items.Count == 0)
+			if (Items.Count == 0 || popup?.Visible == true)
 			{
 				return;
 			}
@@ -277,21 +284,20 @@ namespace River.OneMoreAddIn.UI
 				popup.Show(Owner, new Point(0, Owner.Height));
 			}
 		}
-		#endregion Initialization, Show and Hide
+		#endregion private HidePopup and ShowPopUp
 
 
-		#region Overrides
+		#region Overrides including OnDrawSubItem
 		protected override void OnMouseClick(MouseEventArgs e)
 		{
 			base.OnMouseClick(e);
 			var info = HitTest(e.Location);
 
+			Logger.Current.WriteLine("mouseclick");
 			if (info?.Item is ListViewItem item)
 			{
-				var text = item.Text;
-				var index = text.IndexOf(KeyDivider);
-				Owner.Text = index < 0 ? text : text.Substring(0, index);
-				Owner.Focus();
+				item.Selected = true;
+				DoPreviewKeyDown(this, new PreviewKeyDownEventArgs(Keys.Enter));
 				SendKeys.Send("{Enter}");
 			}
 		}
@@ -451,17 +457,23 @@ namespace River.OneMoreAddIn.UI
 			base.OnItemSelectionChanged(e);
 			Owner.Focus();
 		}
-		#endregion Overrides
+		#endregion Overrides including OnDrawSubItem
 
+
+		// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+		// Text changed handlers
 
 		private void DoTextChanged(object sender, EventArgs e)
 		{
+			// as the TextBox.Text changes, this finds matches in the command list and
+			// highlights the first one; the TextBox value is not modified here...
+
 			if (Items.Count == 0)
 			{
 				return;
 			}
 
-			var text = FreeText ? ClosestWord() : Owner.Text.Trim();
+			var text = FreeText ? ClosestWord(out _) : Owner.Text.Trim();
 
 			// make sure we're not duplicate effort here
 			if (text == boxtext)
@@ -497,19 +509,21 @@ namespace River.OneMoreAddIn.UI
 		}
 
 
-		private string ClosestWord()
+		private string ClosestWord(out int start)
 		{
 			if (Owner.SelectionLength > 0)
 			{
+				start = Owner.SelectionStart;
 				return Owner.SelectedText.Trim();
 			}
 
 			if (Owner.Text.Length == 0)
 			{
+				start = 0;
 				return string.Empty;
 			}
 
-			var start = Owner.SelectionStart;
+			start = Owner.SelectionStart;
 			while (start > 0 && Owner.Text[start - 1].IsWordCharacter())
 			{
 				start--;
@@ -540,6 +554,9 @@ namespace River.OneMoreAddIn.UI
 		}
 
 
+		// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+		// Keyboard handlers
+
 		private void DoPreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
 		{
 			if (Items.Count == 0)
@@ -552,27 +569,19 @@ namespace River.OneMoreAddIn.UI
 			{
 				if (FreeText)
 				{
-					if (!IsPopupVisible)
+					if (IsPopupVisible)
 					{
+						if (SelectedItems.Count > 0)
+						{
+							EditQuery();
+						}
 
-					}
-					else if (SelectedItems.Count == 0)
-					{
-						HidePopup(sender, e);
-					}
-					else
-					{
-						var text = SelectedItems[0].Text;
-						var index = text.IndexOf(KeyDivider);
-						text = index < 0 ? text : text.Substring(0, index);
-						Owner.Text = $"{Owner.Text} {text}";
-						SelectedItems.Clear();
-						matches.Clear();
 						HidePopup(sender, e);
 					}
 				}
 				else if (SelectedItems.Count > 0)
 				{
+					// command mode so extract name, stripping keys
 					var text = SelectedItems[0].Text;
 					var index = text.IndexOf(KeyDivider);
 					Owner.Text = index < 0 ? text : text.Substring(0, index);
@@ -586,6 +595,34 @@ namespace River.OneMoreAddIn.UI
 		}
 
 
+		private void EditQuery()
+		{
+			var phrase = SelectedItems[0].Text; // presume no |keys
+			var text = Owner.Text;
+
+			var word = ClosestWord(out var start);
+			if (word == string.Empty)
+			{
+				if (Owner.SelectionLength > 0)
+				{
+					text = text.Remove(start, Owner.SelectionLength);
+				}
+			}
+			else
+			{
+				text = text.Remove(start, word.Length);
+			}
+
+			Owner.Text = text.Insert(start, phrase);
+			Owner.SelectionLength = 0;
+			// move caret after inserted phrase
+			Owner.SelectionStart = start + phrase.Length;
+
+			SelectedItems.Clear();
+			matches.Clear();
+		}
+
+
 		private void DoKeydown(object sender, KeyEventArgs e)
 		{
 			if (Items.Count == 0)
@@ -593,8 +630,13 @@ namespace River.OneMoreAddIn.UI
 				return;
 			}
 
-			if (e.KeyCode == Keys.Enter && FreeText && !IsPopupVisible)
+			if (e.KeyCode == Keys.Enter && FreeText)
 			{
+				if (IsPopupVisible)
+				{
+					HidePopup(sender, e);
+					e.Handled = true;
+				}
 				return;
 			}
 
@@ -627,20 +669,21 @@ namespace River.OneMoreAddIn.UI
 				{
 					return;
 				}
+
 				if (SelectedItems.Count == 0)
 				{
 					Items[0].Selected = true;
-					ScrollIntoView();
+					EnsureVisible(SelectedIndices.Count > 0 ? SelectedIndices[0] : 0);
 				}
 				else if (keycode == Keys.Down && SelectedItems[0].Index < Items.Count - 1)
 				{
 					Items[SelectedItems[0].Index + 1].Selected = true;
-					ScrollIntoView();
+					EnsureVisible(SelectedIndices.Count > 0 ? SelectedIndices[0] : 0);
 				}
 				else if (keycode == Keys.Up && SelectedItems[0].Index > 0)
 				{
 					Items[SelectedItems[0].Index - 1].Selected = true;
-					ScrollIntoView();
+					EnsureVisible(SelectedIndices.Count > 0 ? SelectedIndices[0] : 0);
 				}
 				else if (
 					(keycode == Keys.PageDown && SelectedItems[0].IndentCount < Items.Count - 1) ||
@@ -662,15 +705,9 @@ namespace River.OneMoreAddIn.UI
 					}
 
 					Items[selected].Selected = true;
-					ScrollIntoView();
+					EnsureVisible(SelectedIndices.Count > 0 ? SelectedIndices[0] : 0);
 				}
 			}
-		}
-
-
-		private void ScrollIntoView()
-		{
-			EnsureVisible(SelectedIndices.Count > 0 ? SelectedIndices[0] : 0);
 		}
 	}
 }
