@@ -13,6 +13,7 @@ namespace River.OneMoreAddIn.Commands
 	using System.Globalization;
 	using System.Linq;
 	using System.Windows.Forms;
+	using Resx = Properties.Resources;
 
 
 	internal partial class HashtagDialog : LocalizableForm
@@ -20,6 +21,7 @@ namespace River.OneMoreAddIn.Commands
 		private const string T0 = "0001-01-01T00:00:00.0000Z";
 
 		private readonly MoreAutoCompleteList palette;
+		private readonly bool experimental;
 
 
 		public enum Commands
@@ -36,18 +38,36 @@ namespace River.OneMoreAddIn.Commands
 
 			if (NeedsLocalizing())
 			{
-				// ...
+				Text = Resx.HashtagDialog_Title;
+
+				Localize(new string[]
+				{
+					"introLabel",
+					"scopeBox",
+					"checkAllLink",
+					"uncheckAllLink",
+					"scanButton",
+					"indexButton=word_Index",
+					"moveButton=word_Move",
+					"copyButton=word_Copy",
+					"cancelButton=word_Cancel"
+				});
+
 			}
 
 			palette = new MoreAutoCompleteList
 			{
-				HideListOnLostFocus = true,
-				RecentKicker = "recent tags",
-				OtherKicker = "all tags"
+				FreeText = true,
+				RecentKicker = Resx.HashtagDialog_recentTags,
+				OtherKicker = Resx.HashtagDialog_allTags,
+				WordChars = new[] { '#' }
 			};
 
-			palette.SetAutoCompleteList(tagBox, palette);
+			palette.SetAutoCompleteList(tagBox);
 			scopeBox.SelectedIndex = 0;
+
+			experimental = new SettingsProvider()
+				.GetCollection("GeneralSheet").Get<bool>("experimental");
 
 			ShowScanTimes();
 		}
@@ -82,7 +102,8 @@ namespace River.OneMoreAddIn.Commands
 			var interval = collection.Get("interval", 2);
 			var nextScan = lastScanTime.AddMinutes(interval).ToShortTimeString();
 
-			lastScanLabel.Text = $"Last scan: {lastScan}, Next scan: {nextScan}";
+			lastScanLabel.Text = string.Format(
+				Resx.HashtagDialog_lastScanLabel, lastScan, nextScan);
 		}
 
 
@@ -111,14 +132,16 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private void DoPreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
+		private void DoKeyDown(object sender, KeyEventArgs e)
 		{
 			if (e.KeyCode == Keys.Escape && !palette.IsPopupVisible)
 			{
+				e.Handled = true;
 				Close();
 			}
 			else if (e.KeyCode == Keys.Enter)
 			{
+				e.Handled = true;
 				SearchTags(sender, e);
 			}
 		}
@@ -126,40 +149,27 @@ namespace River.OneMoreAddIn.Commands
 
 		private void SearchTags(object sender, EventArgs e)
 		{
-			var name = tagBox.Text.Trim();
-			if (name.IsNullOrEmpty())
+			var where = tagBox.Text.Trim();
+			if (where.IsNullOrEmpty())
 			{
 				return;
 			}
 
-			if (!name.StartsWith("##") && !name.StartsWith("%"))
-			{
-				name = $"%{name}";
-			}
-
-			// allow "abc." to be interpreted as "%abc" but "abc" will be "%abc%"
-			if (name.EndsWith("."))
-			{
-				name = name.Substring(0, name.Length - 1);
-			}
-			else if (!name.EndsWith("%"))
-			{
-				name = $"{name}%";
-			}
-
-			name = name.Replace('*', '%');
-
 			using var one = new OneNote();
 			var provider = new HashtagProvider();
+			string parsed;
 
 			var tags = scopeBox.SelectedIndex switch
 			{
-				1 => provider.SearchTags(name, notebookID: one.CurrentNotebookId),
-				2 => provider.SearchTags(name, sectionID: one.CurrentSectionId),
-				_ => provider.SearchTags(name)
+				1 => provider.SearchTags(where, out parsed, notebookID: one.CurrentNotebookId),
+				2 => provider.SearchTags(where, out parsed, sectionID: one.CurrentSectionId),
+				_ => provider.SearchTags(where, out parsed)
 			};
 
-			logger.Verbose($"found {tags.Count} tags");
+			logger.Verbose($"found {tags.Count} tags using [{parsed}]");
+
+			var width = contextPanel.ClientSize.Width -
+				(contextPanel.Padding.Left + contextPanel.Padding.Right) * 2 - 20;
 
 			if (tags.Any())
 			{
@@ -167,8 +177,6 @@ namespace River.OneMoreAddIn.Commands
 				tags.Clear();
 
 				var controls = new HashtagContextControl[items.Count];
-				var width = contextPanel.ClientSize.Width -
-					(contextPanel.Padding.Left + contextPanel.Padding.Right) * 2 - 20;
 
 				for (var i = 0; i < items.Count; i++)
 				{
@@ -188,9 +196,19 @@ namespace River.OneMoreAddIn.Commands
 			}
 			else
 			{
+				var control = new HashtagErrorControl(
+					Resx.HashtagDialog_noResults, experimental ? parsed : null)
+				{
+					Width = width
+				};
+
+				contextPanel.SuspendLayout();
 				contextPanel.Controls.Clear();
+				contextPanel.Controls.Add(control);
+				contextPanel.ResumeLayout();
 			}
 		}
+
 
 		private void Control_Checked(object sender, EventArgs e)
 		{
@@ -211,6 +229,7 @@ namespace River.OneMoreAddIn.Commands
 
 			indexButton.Enabled = moveButton.Enabled = copyButton.Enabled = enabled;
 		}
+
 
 		private HashtagContexts CollateTags(Hashtags tags)
 		{

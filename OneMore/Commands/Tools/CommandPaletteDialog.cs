@@ -28,7 +28,7 @@ namespace River.OneMoreAddIn.Commands
 				ShowPopupOnStartup = true
 			};
 
-			palette.SetAutoCompleteList(cmdBox, palette);
+			palette.SetAutoCompleteList(cmdBox);
 
 			if (NeedsLocalizing())
 			{

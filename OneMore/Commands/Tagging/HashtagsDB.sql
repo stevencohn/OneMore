@@ -4,4 +4,5 @@ CREATE TABLE IF NOT EXISTS hashtag_page (moreID PRIMARY KEY, pageID TEXT NOT NUL
 CREATE INDEX IF NOT EXISTS IDX_moreID ON hashtag (moreID);
 CREATE INDEX IF NOT EXISTS IDX_pageID ON hashtag_page (pageID);
 CREATE INDEX IF NOT EXISTS IDX_tag ON hashtag (tag);
-REPLACE INTO hashtag_scanner (scannerID, version, scanTime) VALUES (0, 1,'0001-01-01T00:00:00.0000Z');
+CREATE VIEW IF NOT EXISTS page_hashtags (moreID, tags) AS SELECT t.moreID, group_concat(DISTINCT(t.tag)) AS tags FROM hashtag t GROUP BY t.moreID;
+REPLACE INTO hashtag_scanner (scannerID, version, scanTime) VALUES (0, 2,'0001-01-01T00:00:00.0000Z');

@@ -248,9 +248,16 @@
     <Compile Include="Commands\Tagging\HashtagDialog.Designer.cs">
       <DependentUpon>HashtagDialog.cs</DependentUpon>
     </Compile>
+    <Compile Include="Commands\Tagging\HashtagErrorControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Commands\Tagging\HashtagErrorControl.Designer.cs">
+      <DependentUpon>HashtagErrorControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="Commands\Tagging\HashtagPageScanner.cs" />
     <Compile Include="Commands\Tagging\HashtagPageScannerFactory.cs" />
     <Compile Include="Commands\Tagging\HashtagProvider.cs" />
+    <Compile Include="Commands\Tagging\HashtagQueryBuilder.cs" />
     <Compile Include="Commands\Tagging\HashtagScanner.cs" />
     <Compile Include="Commands\Tagging\HashtagService.cs" />
     <Compile Include="Helpers\ColorHelper.cs" />
@@ -1369,6 +1376,9 @@
     <EmbeddedResource Include="Commands\Tagging\HashtagDialog.resx">
       <DependentUpon>HashtagDialog.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Commands\Tagging\HashtagErrorControl.resx">
+      <DependentUpon>HashtagErrorControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.he-IL.resx">
       <SubType>Designer</SubType>
     </EmbeddedResource>
@@ -1580,28 +1590,28 @@
       <Version>0.5.0</Version>
     </PackageReference>
     <PackageReference Include="HtmlAgilityPack">
-      <Version>1.11.46</Version>
+      <Version>1.11.57</Version>
     </PackageReference>
     <PackageReference Include="InputSimulator">
       <Version>1.0.4</Version>
     </PackageReference>
     <PackageReference Include="Markdig.Signed">
-      <Version>0.30.4</Version>
+      <Version>0.34.0</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.AspNetCore.WebUtilities">
       <Version>2.2.0</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.Extensions.Logging">
-      <Version>7.0.0</Version>
+      <Version>8.0.0</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.Net.Http.Headers">
       <Version>2.2.8</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.Web.WebView2">
-      <Version>1.0.1518.46</Version>
+      <Version>1.0.2210.55</Version>
     </PackageReference>
     <PackageReference Include="Newtonsoft.Json">
-      <Version>13.0.2</Version>
+      <Version>13.0.3</Version>
     </PackageReference>
     <PackageReference Include="System.Data.SQLite">
       <Version>1.0.118</Version>
@@ -1619,7 +1629,7 @@
       <Version>4.3.2</Version>
     </PackageReference>
     <PackageReference Include="System.Text.Encodings.Web">
-      <Version>7.0.0</Version>
+      <Version>8.0.0</Version>
     </PackageReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

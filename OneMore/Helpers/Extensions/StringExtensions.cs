@@ -7,6 +7,7 @@
 namespace River.OneMoreAddIn
 {
 	using System;
+	using System.Globalization;
 	using System.Linq;
 	using System.Text;
 	using System.Text.RegularExpressions;
@@ -20,6 +21,29 @@ namespace River.OneMoreAddIn
 
 	internal static class Extensions
 	{
+
+		/// <summary>
+		/// OneMore Extension >> Equivalent to matching with \w pattern.
+		/// </summary>
+		/// <param name="c"></param>
+		/// <param name="extras">Extra char to accept as word characters</param>
+		/// <returns></returns>
+		public static bool IsWordCharacter(this char c, params char[] extras)
+		{
+			// Get the Unicode category of the character
+			var category = CharUnicodeInfo.GetUnicodeCategory(c);
+
+			// Return true if the category is one of the word categories
+			return category == UnicodeCategory.LowercaseLetter ||
+				   category == UnicodeCategory.UppercaseLetter ||
+				   category == UnicodeCategory.TitlecaseLetter ||
+				   category == UnicodeCategory.OtherLetter ||
+				   category == UnicodeCategory.ModifierLetter ||
+				   category == UnicodeCategory.DecimalDigitNumber ||
+				   category == UnicodeCategory.ConnectorPunctuation ||
+				   (extras.Any() && extras.Contains(c));
+		}
+
 
 		/// <summary>
 		/// OneMore Extension >> Determines if the given value is contained within the string,

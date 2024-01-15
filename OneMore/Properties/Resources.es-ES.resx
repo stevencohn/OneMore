@@ -1173,9 +1173,55 @@ Símbolos: PI, E</value>
   <data name="HasActiveMedia" xml:space="preserve">
     <value>No se pueden invocar los comandos de OneMore mientras hay una grabación activa. Detenga la grabación y vuelva a intentarlo.</value>
   </data>
-  <data name="HashtagDialogs_introLabel.Text" xml:space="preserve">
-    <value>Empiece a escribir cualquier parte de un hashtag o * para todos</value>
+  <data name="HashtagContext_jumpParaTip" xml:space="preserve">
+    <value>Salta a este párrafo; Última actualización {0}</value>
+    <comment>tooltip</comment>
+  </data>
+  <data name="HashtagContext_jumpTip" xml:space="preserve">
+    <value>Salta a esta página</value>
+    <comment>tooltip</comment>
+  </data>
+  <data name="HashtagDialog.Title" xml:space="preserve">
+    <value>Buscar hashtags</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="HashtagDialog_allTags" xml:space="preserve">
+    <value>todas las etiquetas</value>
+    <comment>text</comment>
+  </data>
+  <data name="HashtagDialog_checkAllLink.Text" xml:space="preserve">
+    <value>Comprobar todo</value>
+    <comment>link label</comment>
+  </data>
+  <data name="HashtagDialog_introLabel.Text" xml:space="preserve">
+    <value>Escribe cualquier parte de uno o más hashtags. Los comodines están implícitos a menos que una etiqueta termine con un punto. Se permiten paréntesis y operadores lógicos.</value>
     <comment>label</comment>
+  </data>
+  <data name="HashtagDialog_lastScanLabel" xml:space="preserve">
+    <value>Último escaneo: {0}, Siguiente escaneo: {1}</value>
+    <comment>label</comment>
+  </data>
+  <data name="HashtagDialog_noResults" xml:space="preserve">
+    <value>No se han encontrado resultados</value>
+    <comment>message</comment>
+  </data>
+  <data name="HashtagDialog_recentTags" xml:space="preserve">
+    <value>Etiquetas recientes</value>
+    <comment>text</comment>
+  </data>
+  <data name="HashtagDialog_scanButton.Text" xml:space="preserve">
+    <value>Escanear ahora</value>
+    <comment>menu button</comment>
+  </data>
+  <data name="HashtagDialog_scopeBox.Text" xml:space="preserve">
+    <value>Todo
+este cuaderno
+Esta sección</value>
+    <comment>combobox</comment>
+  </data>
+  <data name="HashtagDialog_uncheckAllLink.Text" xml:space="preserve">
+    <value>Desmarcar todo</value>
+    <comment>link label</comment>
   </data>
   <data name="HashtagSheet_disabledBox.Text" xml:space="preserve">
     <value>Deshabilite el servicio de hashtag. Esto también deshabilitará la búsqueda de hashtags.</value>
@@ -4799,6 +4845,9 @@ En esta sección</value>
   </data>
   <data name="word_History" xml:space="preserve">
     <value>Historia</value>
+  </data>
+  <data name="word_Index" xml:space="preserve">
+    <value>índice_palabra</value>
   </data>
   <data name="word_Information" xml:space="preserve">
     <value>Información</value>

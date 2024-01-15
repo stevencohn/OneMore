@@ -2,8 +2,6 @@
 // Copyright © 2023 Steven M Cohn. All rights reserved.
 //************************************************************************************************
 
-#define xEnableUpgrade
-
 namespace River.OneMoreAddIn.Commands
 {
 	using River.OneMoreAddIn.Properties;
@@ -12,6 +10,7 @@ namespace River.OneMoreAddIn.Commands
 	using System.Data;
 	using System.Data.SQLite;
 	using System.IO;
+	using System.Text;
 	using System.Text.RegularExpressions;
 
 
@@ -44,12 +43,10 @@ namespace River.OneMoreAddIn.Commands
 			{
 				RefreshDatabase();
 			}
-#if EnableUpgrade
 			else
 			{
 				UpgradeDatabase();
 			}
-#endif
 
 			timestamp = DateTime.Now.ToZuluString();
 		}
@@ -114,7 +111,6 @@ namespace River.OneMoreAddIn.Commands
 
 
 		#region UpgradeDatabase
-#if EnableUpgrade
 		private void UpgradeDatabase()
 		{
 			using var cmd = con.CreateCommand();
@@ -153,44 +149,39 @@ namespace River.OneMoreAddIn.Commands
 		private int Upgrade1to2(SQLiteConnection con)
 		{
 			logger.WriteLine("upgrading database to version 2");
+			logger.Start();
+
 			using var cmd = con.CreateCommand();
-
-			cmd.CommandType = CommandType.Text;
-			cmd.CommandText = "ALTER TABLE hashtag_page ADD COLUMN token NUMBER DEFAULT 0";
-
 			using var transaction = con.BeginTransaction();
 
 			try
 			{
+				logger.WriteLine("creating view page_hashtags");
+				cmd.CommandType = CommandType.Text;
+				cmd.CommandText =
+					"CREATE VIEW IF NOT EXISTS page_hashtags (moreID, tags) AS SELECT " +
+					"t.moreID, group_concat(DISTINCT(t.tag)) AS tags FROM hashtag t GROUP BY t.moreID;";
+
 				cmd.ExecuteNonQuery();
 			}
 			catch (Exception exc)
 			{
+				logger.End();
 				logger.WriteLine("error upgrading hashtag_page v2", exc);
 				return 0;
 			}
 
 			try
 			{
-				cmd.CommandText = "CREATE INDEX IF NOT EXISTS IDX_token ON hashtag_page (token)";
-				cmd.ExecuteNonQuery();
-			}
-			catch (Exception exc)
-			{
-				logger.WriteLine("error upgrading hashtag_page v2", exc);
-				transaction.Rollback();
-				return 0;
-			}
-
-			try
-			{
-				cmd.CommandText = "UPDATE hashtag_scanner " +
-					$"SET version = 2 WHERE scannerID = {ScannerID}";
+				logger.WriteLine("updating hashtag_scanner version");
+				cmd.CommandText =
+					$"UPDATE hashtag_scanner SET version = 2 WHERE scannerID = {ScannerID}";
 
 				cmd.ExecuteNonQuery();
 			}
 			catch (Exception exc)
 			{
+				logger.End();
 				logger.WriteLine("error upgrading hashtag_page v2", exc);
 				transaction.Rollback();
 				return 0;
@@ -202,13 +193,16 @@ namespace River.OneMoreAddIn.Commands
 			}
 			catch (Exception exc)
 			{
+				logger.End();
 				logger.WriteLine("error committing hashtag_page v2", exc);
 				return 0;
 			}
 
+			logger.End();
+
+			// new version
 			return 2;
 		}
-#endif
 		#endregion UpgradeDatabase
 
 
@@ -482,35 +476,39 @@ namespace River.OneMoreAddIn.Commands
 		/// <summary>
 		/// Returns a collection of Hashtag instances with the specified name across all pages
 		/// </summary>
-		/// <param name="wildcard">The name of the tag to search for, optionally with wildcards</param>
+		/// <param name="where">The user-entered where clause, optionally with wildcards</param>
 		/// <returns>A collection of Hashtags</returns>
 		public Hashtags SearchTags(
-			string wildcard, string notebookID = null, string sectionID = null)
+			string where, out string parsed, string notebookID = null, string sectionID = null)
 		{
 			var parameters = new List<SQLiteParameter>();
 
-			var sql =
-				"SELECT t.tag, t.moreID, p.pageID, p.titleID, t.objectID, " +
-				"p.notebookID, p.sectionID, t.lastModified, t.snippet, p.path, p.name " +
-				"FROM hashtag t " +
-				"JOIN hashtag_page p " +
-				"ON t.moreID = p.moreID ";
+			var builder = new StringBuilder();
+			builder.Append("SELECT t.tag, t.moreID, p.pageID, p.titleID, t.objectID, ");
+			builder.Append("p.notebookID, p.sectionID, t.lastModified, t.snippet, p.path, p.name ");
+			builder.Append("FROM hashtag t ");
+			builder.Append("JOIN hashtag_page p ON t.moreID = p.moreID ");
 
 			if (!string.IsNullOrWhiteSpace(sectionID))
 			{
-				sql = $"{sql} AND p.sectionID = @sid ";
+				builder.Append("AND p.sectionID = @sid ");
 				parameters.Add(new("sid", sectionID));
 			}
 			else if (!string.IsNullOrWhiteSpace(notebookID))
 			{
-				sql = $"{sql} AND p.notebookID = @nid ";
+				builder.Append("AND p.notebookID = @nid ");
 				parameters.Add(new("nid", notebookID));
 			}
 
-			parameters.Add(new("@t", wildcard));
+			builder.Append("JOIN page_hashtags g ON g.moreID = p.moreID ");
 
-			sql = $"{sql} WHERE t.tag LIKE @t " +
-				"ORDER BY p.path, p.name, t.tag";
+			var query = new HashtagQueryBuilder("g.tags");
+			builder.Append(query.BuildFormattedWhereClause(where, out parsed));
+
+			builder.Append(" ORDER BY p.path, p.name, t.tag");
+			var sql = builder.ToString();
+
+			logger.WriteVerbose(sql);
 
 			return ReadTags(sql, parameters.ToArray());
 		}
