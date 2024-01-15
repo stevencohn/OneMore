@@ -33,6 +33,7 @@
 			this.cancelButton = new System.Windows.Forms.Button();
 			this.contextPanel = new System.Windows.Forms.FlowLayoutPanel();
 			this.topPanel = new River.OneMoreAddIn.UI.MorePanel();
+			this.introLabel = new System.Windows.Forms.TextBox();
 			this.menuButton = new System.Windows.Forms.Button();
 			this.barLabel = new System.Windows.Forms.Label();
 			this.checkAllLink = new System.Windows.Forms.LinkLabel();
@@ -47,7 +48,6 @@
 			this.moveButton = new System.Windows.Forms.Button();
 			this.contextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
 			this.scanButton = new System.Windows.Forms.ToolStripMenuItem();
-			this.introLabel = new System.Windows.Forms.TextBox();
 			this.topPanel.SuspendLayout();
 			this.panel1.SuspendLayout();
 			this.contextMenu.SuspendLayout();
@@ -97,6 +97,17 @@
 			this.topPanel.Size = new System.Drawing.Size(988, 144);
 			this.topPanel.TabIndex = 8;
 			// 
+			// introLabel
+			// 
+			this.introLabel.BorderStyle = System.Windows.Forms.BorderStyle.None;
+			this.introLabel.Location = new System.Drawing.Point(41, 13);
+			this.introLabel.Multiline = true;
+			this.introLabel.Name = "introLabel";
+			this.introLabel.Size = new System.Drawing.Size(864, 48);
+			this.introLabel.TabIndex = 10;
+			this.introLabel.Text = "Type any part of one or more hashtags. Wildcards are implied unless a tag is ende" +
+    "d with a period. Parenthesis and logical operators are allowed.";
+			// 
 			// menuButton
 			// 
 			this.menuButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
@@ -116,7 +127,7 @@
 			// 
 			this.barLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.barLabel.AutoSize = true;
-			this.barLabel.Location = new System.Drawing.Point(864, 114);
+			this.barLabel.Location = new System.Drawing.Point(808, 114);
 			this.barLabel.Name = "barLabel";
 			this.barLabel.Size = new System.Drawing.Size(14, 20);
 			this.barLabel.TabIndex = 7;
@@ -126,7 +137,7 @@
 			// 
 			this.checkAllLink.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.checkAllLink.AutoSize = true;
-			this.checkAllLink.Location = new System.Drawing.Point(785, 114);
+			this.checkAllLink.Location = new System.Drawing.Point(729, 114);
 			this.checkAllLink.Name = "checkAllLink";
 			this.checkAllLink.Size = new System.Drawing.Size(73, 20);
 			this.checkAllLink.TabIndex = 6;
@@ -138,7 +149,7 @@
 			// 
 			this.uncheckAllLink.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.uncheckAllLink.AutoSize = true;
-			this.uncheckAllLink.Location = new System.Drawing.Point(884, 114);
+			this.uncheckAllLink.Location = new System.Drawing.Point(828, 114);
 			this.uncheckAllLink.Name = "uncheckAllLink";
 			this.uncheckAllLink.Size = new System.Drawing.Size(91, 20);
 			this.uncheckAllLink.TabIndex = 5;
@@ -261,17 +272,6 @@
 			this.scanButton.Size = new System.Drawing.Size(163, 32);
 			this.scanButton.Text = "Scan Now";
 			this.scanButton.Click += new System.EventHandler(this.ScanNow);
-			// 
-			// introLabel
-			// 
-			this.introLabel.BorderStyle = System.Windows.Forms.BorderStyle.None;
-			this.introLabel.Location = new System.Drawing.Point(41, 13);
-			this.introLabel.Multiline = true;
-			this.introLabel.Name = "introLabel";
-			this.introLabel.Size = new System.Drawing.Size(864, 48);
-			this.introLabel.TabIndex = 10;
-			this.introLabel.Text = "Type any part of one or more hashtags. Wildcards are implied unless a tag is ende" +
-    "d with a period. Parenthesis and logical operators are allowed.";
 			// 
 			// HashtagDialog
 			// 

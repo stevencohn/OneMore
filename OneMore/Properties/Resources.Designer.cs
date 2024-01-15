@@ -2945,11 +2945,112 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Start typing any part of a hashtag or * for all.
+        ///   Looks up a localized string similar to Jump to this paragraph; last updated {0}.
         /// </summary>
-        internal static string HashtagDialogs_introLabel_Text {
+        internal static string HashtagContext_jumpParaTip {
             get {
-                return ResourceManager.GetString("HashtagDialogs_introLabel.Text", resourceCulture);
+                return ResourceManager.GetString("HashtagContext_jumpParaTip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Jump to this page.
+        /// </summary>
+        internal static string HashtagContext_jumpTip {
+            get {
+                return ResourceManager.GetString("HashtagContext_jumpTip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to all tags.
+        /// </summary>
+        internal static string HashtagDialog_allTags {
+            get {
+                return ResourceManager.GetString("HashtagDialog_allTags", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Check all.
+        /// </summary>
+        internal static string HashtagDialog_checkAllLink_Text {
+            get {
+                return ResourceManager.GetString("HashtagDialog_checkAllLink.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Type any part of one or more hashtags. Wildcards are implied unless a tag is ended with a period. Parenthesis and logical operators are allowed..
+        /// </summary>
+        internal static string HashtagDialog_introLabel_Text {
+            get {
+                return ResourceManager.GetString("HashtagDialog_introLabel.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Last scan: {0}, Next scan: {1}.
+        /// </summary>
+        internal static string HashtagDialog_lastScanLabel {
+            get {
+                return ResourceManager.GetString("HashtagDialog_lastScanLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No results found.
+        /// </summary>
+        internal static string HashtagDialog_noResults {
+            get {
+                return ResourceManager.GetString("HashtagDialog_noResults", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to recent tags.
+        /// </summary>
+        internal static string HashtagDialog_recentTags {
+            get {
+                return ResourceManager.GetString("HashtagDialog_recentTags", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Scan Now.
+        /// </summary>
+        internal static string HashtagDialog_scanButton_Text {
+            get {
+                return ResourceManager.GetString("HashtagDialog_scanButton.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to All
+        ///This notebook
+        ///This section.
+        /// </summary>
+        internal static string HashtagDialog_scopeBox_Text {
+            get {
+                return ResourceManager.GetString("HashtagDialog_scopeBox.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Find Hashtags.
+        /// </summary>
+        internal static string HashtagDialog_Title {
+            get {
+                return ResourceManager.GetString("HashtagDialog.Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Uncheck all.
+        /// </summary>
+        internal static string HashtagDialog_uncheckAllLink_Text {
+            get {
+                return ResourceManager.GetString("HashtagDialog_uncheckAllLink.Text", resourceCulture);
             }
         }
         
@@ -11784,6 +11885,15 @@ namespace River.OneMoreAddIn.Properties {
         internal static string word_History {
             get {
                 return ResourceManager.GetString("word_History", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to word_Index.
+        /// </summary>
+        internal static string word_Index {
+            get {
+                return ResourceManager.GetString("word_Index", resourceCulture);
             }
         }
         

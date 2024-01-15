@@ -1173,9 +1173,55 @@
   <data name="HasActiveMedia" xml:space="preserve">
     <value>لا يمكن استدعاء أوامر OneMore أثناء وجود تسجيل نشط. الرجاء إيقاف التسجيل وحاول مرة أخرى.</value>
   </data>
-  <data name="HashtagDialogs_introLabel.Text" xml:space="preserve">
-    <value>ابدأ بكتابة أي جزء من الهاشتاج أو *للكل</value>
+  <data name="HashtagContext_jumpParaTip" xml:space="preserve">
+    <value>القفز إلى هذه الفقرة. آخر تحديث {0}</value>
+    <comment>tooltip</comment>
+  </data>
+  <data name="HashtagContext_jumpTip" xml:space="preserve">
+    <value>قفز إلى هذه الصفحة</value>
+    <comment>tooltip</comment>
+  </data>
+  <data name="HashtagDialog.Title" xml:space="preserve">
+    <value>البحث عن علامات التصنيف</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="HashtagDialog_allTags" xml:space="preserve">
+    <value>جميع العلامات</value>
+    <comment>text</comment>
+  </data>
+  <data name="HashtagDialog_checkAllLink.Text" xml:space="preserve">
+    <value>تحقق من الكل</value>
+    <comment>link label</comment>
+  </data>
+  <data name="HashtagDialog_introLabel.Text" xml:space="preserve">
+    <value>اكتب أي جزء من هاشتاج واحد أو أكثر. يتم تضمين أحرف البدل ما لم تنتهي العلامة بنقطة. يُسمح بالأقواس والعوامل المنطقية.</value>
     <comment>label</comment>
+  </data>
+  <data name="HashtagDialog_lastScanLabel" xml:space="preserve">
+    <value>الفحص الأخير: {0}، الفحص التالي: {1}</value>
+    <comment>label</comment>
+  </data>
+  <data name="HashtagDialog_noResults" xml:space="preserve">
+    <value>لم يتم العثور على نتائج</value>
+    <comment>message</comment>
+  </data>
+  <data name="HashtagDialog_recentTags" xml:space="preserve">
+    <value>العلامات الأخيرة</value>
+    <comment>text</comment>
+  </data>
+  <data name="HashtagDialog_scanButton.Text" xml:space="preserve">
+    <value>إفحص الآن</value>
+    <comment>menu button</comment>
+  </data>
+  <data name="HashtagDialog_scopeBox.Text" xml:space="preserve">
+    <value>الجميع
+هذا دفتر
+هذا القسم</value>
+    <comment>combobox</comment>
+  </data>
+  <data name="HashtagDialog_uncheckAllLink.Text" xml:space="preserve">
+    <value>الغاءالكل</value>
+    <comment>link label</comment>
   </data>
   <data name="HashtagSheet_disabledBox.Text" xml:space="preserve">
     <value>تعطيل خدمة الهاشتاج. سيؤدي هذا أيضًا إلى تعطيل البحث عن الهاشتاج.</value>
@@ -4799,6 +4845,9 @@ ISO-code then comma then language name</comment>
   </data>
   <data name="word_History" xml:space="preserve">
     <value>تاريخ</value>
+  </data>
+  <data name="word_Index" xml:space="preserve">
+    <value>word_Index</value>
   </data>
   <data name="word_Information" xml:space="preserve">
     <value>معلومة</value>

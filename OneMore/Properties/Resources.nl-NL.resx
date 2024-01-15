@@ -1174,9 +1174,55 @@ Symbolen: PI, E</value>
   <data name="HasActiveMedia" xml:space="preserve">
     <value>Kan OneMore-opdrachten niet aanroepen terwijl er een actieve opname is. Stop de opname en probeer het opnieuw.</value>
   </data>
-  <data name="HashtagDialogs_introLabel.Text" xml:space="preserve">
-    <value>Begin met het typen van een deel van een hashtag of * voor alles</value>
+  <data name="HashtagContext_jumpParaTip" xml:space="preserve">
+    <value>Spring naar deze paragraaf; Laatst bijgewerkt {0}</value>
+    <comment>tooltip</comment>
+  </data>
+  <data name="HashtagContext_jumpTip" xml:space="preserve">
+    <value>Spring naar deze pagina</value>
+    <comment>tooltip</comment>
+  </data>
+  <data name="HashtagDialog.Title" xml:space="preserve">
+    <value>Zoek hashtags</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="HashtagDialog_allTags" xml:space="preserve">
+    <value>alle labels</value>
+    <comment>text</comment>
+  </data>
+  <data name="HashtagDialog_checkAllLink.Text" xml:space="preserve">
+    <value>Controleer alles</value>
+    <comment>link label</comment>
+  </data>
+  <data name="HashtagDialog_introLabel.Text" xml:space="preserve">
+    <value>Typ een deel van een of meer hashtags. Wildcards worden geïmpliceerd, tenzij een tag wordt afgesloten met een punt. Haakjes en logische operatoren zijn toegestaan.</value>
     <comment>label</comment>
+  </data>
+  <data name="HashtagDialog_lastScanLabel" xml:space="preserve">
+    <value>Laatste scan: {0}, Volgende scan: {1}</value>
+    <comment>label</comment>
+  </data>
+  <data name="HashtagDialog_noResults" xml:space="preserve">
+    <value>geen resultaten gevonden</value>
+    <comment>message</comment>
+  </data>
+  <data name="HashtagDialog_recentTags" xml:space="preserve">
+    <value>recente tags</value>
+    <comment>text</comment>
+  </data>
+  <data name="HashtagDialog_scanButton.Text" xml:space="preserve">
+    <value>Scan nu</value>
+    <comment>menu button</comment>
+  </data>
+  <data name="HashtagDialog_scopeBox.Text" xml:space="preserve">
+    <value>Alle
+Dit notitieboekje
+Deze sectie</value>
+    <comment>combobox</comment>
+  </data>
+  <data name="HashtagDialog_uncheckAllLink.Text" xml:space="preserve">
+    <value>Schakel alles uit</value>
+    <comment>link label</comment>
   </data>
   <data name="HashtagSheet_disabledBox.Text" xml:space="preserve">
     <value>Schakel de hashtag-service uit. Hiermee wordt ook het zoeken naar hashtags uitgeschakeld.</value>
@@ -4799,6 +4845,9 @@ In deze sectie</value>
   </data>
   <data name="word_History" xml:space="preserve">
     <value>Geschiedenis</value>
+  </data>
+  <data name="word_Index" xml:space="preserve">
+    <value>woord_Index</value>
   </data>
   <data name="word_Information" xml:space="preserve">
     <value>Informatie</value>

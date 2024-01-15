@@ -13,6 +13,7 @@ namespace River.OneMoreAddIn.Commands
 	using System.Globalization;
 	using System.Linq;
 	using System.Windows.Forms;
+	using Resx = Properties.Resources;
 
 
 	internal partial class HashtagDialog : LocalizableForm
@@ -37,14 +38,28 @@ namespace River.OneMoreAddIn.Commands
 
 			if (NeedsLocalizing())
 			{
-				// ...
+				Text = Resx.HashtagDialog_Title;
+
+				Localize(new string[]
+				{
+					"introLabel",
+					"scopeBox",
+					"checkAllLink",
+					"uncheckAllLink",
+					"scanButton",
+					"indexButton=word_Index",
+					"moveButton=word_Move",
+					"copyButton=word_Copy",
+					"cancelButton=word_Cancel"
+				});
+
 			}
 
 			palette = new MoreAutoCompleteList
 			{
 				FreeText = true,
-				RecentKicker = "recent tags",
-				OtherKicker = "all tags",
+				RecentKicker = Resx.HashtagDialog_recentTags,
+				OtherKicker = Resx.HashtagDialog_allTags,
 				WordChars = new[] { '#' }
 			};
 
@@ -87,7 +102,8 @@ namespace River.OneMoreAddIn.Commands
 			var interval = collection.Get("interval", 2);
 			var nextScan = lastScanTime.AddMinutes(interval).ToShortTimeString();
 
-			lastScanLabel.Text = $"Last scan: {lastScan}, Next scan: {nextScan}";
+			lastScanLabel.Text = string.Format(
+				Resx.HashtagDialog_lastScanLabel, lastScan, nextScan);
 		}
 
 
@@ -181,7 +197,7 @@ namespace River.OneMoreAddIn.Commands
 			else
 			{
 				var control = new HashtagErrorControl(
-					"No results found", experimental ? parsed : null)
+					Resx.HashtagDialog_noResults, experimental ? parsed : null)
 				{
 					Width = width
 				};

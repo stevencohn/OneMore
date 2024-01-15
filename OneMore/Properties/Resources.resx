@@ -1188,9 +1188,55 @@ Symbols: PI, E</value>
   <data name="HasActiveMedia" xml:space="preserve">
     <value>Cannot invoke OneMore commands while there is an active recording. Please stop the recording and try again.</value>
   </data>
-  <data name="HashtagDialogs_introLabel.Text" xml:space="preserve">
-    <value>Start typing any part of a hashtag or * for all</value>
+  <data name="HashtagContext_jumpParaTip" xml:space="preserve">
+    <value>Jump to this paragraph; last updated {0}</value>
+    <comment>tooltip</comment>
+  </data>
+  <data name="HashtagContext_jumpTip" xml:space="preserve">
+    <value>Jump to this page</value>
+    <comment>tooltip</comment>
+  </data>
+  <data name="HashtagDialog.Title" xml:space="preserve">
+    <value>Find Hashtags</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="HashtagDialog_allTags" xml:space="preserve">
+    <value>all tags</value>
+    <comment>text</comment>
+  </data>
+  <data name="HashtagDialog_checkAllLink.Text" xml:space="preserve">
+    <value>Check all</value>
+    <comment>link label</comment>
+  </data>
+  <data name="HashtagDialog_introLabel.Text" xml:space="preserve">
+    <value>Type any part of one or more hashtags. Wildcards are implied unless a tag is ended with a period. Parenthesis and logical operators are allowed.</value>
     <comment>label</comment>
+  </data>
+  <data name="HashtagDialog_lastScanLabel" xml:space="preserve">
+    <value>Last scan: {0}, Next scan: {1}</value>
+    <comment>label</comment>
+  </data>
+  <data name="HashtagDialog_noResults" xml:space="preserve">
+    <value>No results found</value>
+    <comment>message</comment>
+  </data>
+  <data name="HashtagDialog_recentTags" xml:space="preserve">
+    <value>recent tags</value>
+    <comment>text</comment>
+  </data>
+  <data name="HashtagDialog_scanButton.Text" xml:space="preserve">
+    <value>Scan Now</value>
+    <comment>menu button</comment>
+  </data>
+  <data name="HashtagDialog_scopeBox.Text" xml:space="preserve">
+    <value>All
+This notebook
+This section</value>
+    <comment>combobox</comment>
+  </data>
+  <data name="HashtagDialog_uncheckAllLink.Text" xml:space="preserve">
+    <value>Uncheck all</value>
+    <comment>link label</comment>
   </data>
   <data name="HashtagSheet_disabledBox.Text" xml:space="preserve">
     <value>Disable the hashtag service. This will also disable hashtag searching.</value>
@@ -4839,6 +4885,9 @@ In this section</value>
   </data>
   <data name="word_History" xml:space="preserve">
     <value>History</value>
+  </data>
+  <data name="word_Index" xml:space="preserve">
+    <value>word_Index</value>
   </data>
   <data name="word_Information" xml:space="preserve">
     <value>Information</value>

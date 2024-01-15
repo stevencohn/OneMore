@@ -1170,9 +1170,55 @@ Symboles : PI, E</value>
   <data name="HasActiveMedia" xml:space="preserve">
     <value>Impossible d'invoquer les commandes OneMore pendant qu'il y a un enregistrement actif. Veuillez arrêter l'enregistrement et réessayer.</value>
   </data>
-  <data name="HashtagDialogs_introLabel.Text" xml:space="preserve">
-    <value>Commencez à taper n'importe quelle partie d'un hashtag ou * pour tous</value>
+  <data name="HashtagContext_jumpParaTip" xml:space="preserve">
+    <value>Sauter à ce paragraphe; Dernière mise à jour {0}</value>
+    <comment>tooltip</comment>
+  </data>
+  <data name="HashtagContext_jumpTip" xml:space="preserve">
+    <value>Sauter à cette page</value>
+    <comment>tooltip</comment>
+  </data>
+  <data name="HashtagDialog.Title" xml:space="preserve">
+    <value>Trouver des hashtags</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="HashtagDialog_allTags" xml:space="preserve">
+    <value>toutes les balises</value>
+    <comment>text</comment>
+  </data>
+  <data name="HashtagDialog_checkAllLink.Text" xml:space="preserve">
+    <value>Vérifie tout</value>
+    <comment>link label</comment>
+  </data>
+  <data name="HashtagDialog_introLabel.Text" xml:space="preserve">
+    <value>Tapez n’importe quelle partie d’un ou plusieurs hashtags. Les caractères génériques sont implicites, sauf si une balise se termine par un point. Les parenthèses et les opérateurs logiques sont autorisés.</value>
     <comment>label</comment>
+  </data>
+  <data name="HashtagDialog_lastScanLabel" xml:space="preserve">
+    <value>Dernière analyse : {0}, Analyse suivante : {1}</value>
+    <comment>label</comment>
+  </data>
+  <data name="HashtagDialog_noResults" xml:space="preserve">
+    <value>Aucun résultat trouvé</value>
+    <comment>message</comment>
+  </data>
+  <data name="HashtagDialog_recentTags" xml:space="preserve">
+    <value>balises récentes</value>
+    <comment>text</comment>
+  </data>
+  <data name="HashtagDialog_scanButton.Text" xml:space="preserve">
+    <value>Scanne maintenant</value>
+    <comment>menu button</comment>
+  </data>
+  <data name="HashtagDialog_scopeBox.Text" xml:space="preserve">
+    <value>Tous
+Ce carnet
+Cette section</value>
+    <comment>combobox</comment>
+  </data>
+  <data name="HashtagDialog_uncheckAllLink.Text" xml:space="preserve">
+    <value>Décocher tout</value>
+    <comment>link label</comment>
   </data>
   <data name="HashtagSheet_disabledBox.Text" xml:space="preserve">
     <value>Désactivez le service hashtag. Cela désactivera également la recherche par hashtag.</value>
@@ -4793,6 +4839,9 @@ Dans cette section</value>
   </data>
   <data name="word_History" xml:space="preserve">
     <value>Histoire</value>
+  </data>
+  <data name="word_Index" xml:space="preserve">
+    <value>mot_Index</value>
   </data>
   <data name="word_Information" xml:space="preserve">
     <value>Information</value>
