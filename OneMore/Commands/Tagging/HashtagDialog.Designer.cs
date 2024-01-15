@@ -99,6 +99,8 @@
 			// 
 			// introLabel
 			// 
+			this.introLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
 			this.introLabel.BorderStyle = System.Windows.Forms.BorderStyle.None;
 			this.introLabel.Location = new System.Drawing.Point(41, 13);
 			this.introLabel.Multiline = true;
