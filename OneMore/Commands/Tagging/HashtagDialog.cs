@@ -129,37 +129,20 @@ namespace River.OneMoreAddIn.Commands
 
 		private void SearchTags(object sender, EventArgs e)
 		{
-			var name = tagBox.Text.Trim();
-			if (name.IsNullOrEmpty())
+			var where = tagBox.Text.Trim();
+			if (where.IsNullOrEmpty())
 			{
 				return;
 			}
-
-			if (!name.StartsWith("##") && !name.StartsWith("%"))
-			{
-				name = $"%{name}";
-			}
-
-			// allow "abc." to be interpreted as "%abc" but "abc" will be "%abc%"
-			if (name.EndsWith("."))
-			{
-				name = name.Substring(0, name.Length - 1);
-			}
-			else if (!name.EndsWith("%"))
-			{
-				name = $"{name}%";
-			}
-
-			name = name.Replace('*', '%');
 
 			using var one = new OneNote();
 			var provider = new HashtagProvider();
 
 			var tags = scopeBox.SelectedIndex switch
 			{
-				1 => provider.SearchTags(name, notebookID: one.CurrentNotebookId),
-				2 => provider.SearchTags(name, sectionID: one.CurrentSectionId),
-				_ => provider.SearchTags(name)
+				1 => provider.SearchTags(where, notebookID: one.CurrentNotebookId),
+				2 => provider.SearchTags(where, sectionID: one.CurrentSectionId),
+				_ => provider.SearchTags(where)
 			};
 
 			logger.Verbose($"found {tags.Count} tags");
@@ -195,6 +178,7 @@ namespace River.OneMoreAddIn.Commands
 			}
 		}
 
+
 		private void Control_Checked(object sender, EventArgs e)
 		{
 			var control = sender as HashtagContextControl;
@@ -214,6 +198,7 @@ namespace River.OneMoreAddIn.Commands
 
 			indexButton.Enabled = moveButton.Enabled = copyButton.Enabled = enabled;
 		}
+
 
 		private HashtagContexts CollateTags(Hashtags tags)
 		{

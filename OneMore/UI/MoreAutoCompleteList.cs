@@ -234,7 +234,7 @@ namespace River.OneMoreAddIn.UI
 			}
 
 			// preselect the first item
-			if (Items.Count > 0)
+			if (Items.Count > 0 && !FreeText)
 			{
 				Items[0].Selected = true;
 			}
