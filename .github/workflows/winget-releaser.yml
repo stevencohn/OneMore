@@ -6,7 +6,7 @@ jobs:
   publish:
     runs-on: windows-latest
     steps:
-      - uses: vedantmgoyal2009/winget-releaser@v2
+      - uses: vedantmgoyal2009/winget-releaser@93fd8b606a1672ec3e5c6c3bb19426be68d1a8b0 #v2
         with:
           identifier: stevencohn.OneMore
           installers-regex: '\.msi$' # Only .msi files
