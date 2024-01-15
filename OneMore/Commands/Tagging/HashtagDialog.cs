@@ -20,6 +20,7 @@ namespace River.OneMoreAddIn.Commands
 		private const string T0 = "0001-01-01T00:00:00.0000Z";
 
 		private readonly MoreAutoCompleteList palette;
+		private readonly bool experimental;
 
 
 		public enum Commands
@@ -49,6 +50,9 @@ namespace River.OneMoreAddIn.Commands
 
 			palette.SetAutoCompleteList(tagBox);
 			scopeBox.SelectedIndex = 0;
+
+			experimental = new SettingsProvider()
+				.GetCollection("GeneralSheet").Get<bool>("experimental");
 
 			ShowScanTimes();
 		}
@@ -137,15 +141,19 @@ namespace River.OneMoreAddIn.Commands
 
 			using var one = new OneNote();
 			var provider = new HashtagProvider();
+			string parsed;
 
 			var tags = scopeBox.SelectedIndex switch
 			{
-				1 => provider.SearchTags(where, notebookID: one.CurrentNotebookId),
-				2 => provider.SearchTags(where, sectionID: one.CurrentSectionId),
-				_ => provider.SearchTags(where)
+				1 => provider.SearchTags(where, out parsed, notebookID: one.CurrentNotebookId),
+				2 => provider.SearchTags(where, out parsed, sectionID: one.CurrentSectionId),
+				_ => provider.SearchTags(where, out parsed)
 			};
 
-			logger.Verbose($"found {tags.Count} tags");
+			logger.Verbose($"found {tags.Count} tags using [{parsed}]");
+
+			var width = contextPanel.ClientSize.Width -
+				(contextPanel.Padding.Left + contextPanel.Padding.Right) * 2 - 20;
 
 			if (tags.Any())
 			{
@@ -153,8 +161,6 @@ namespace River.OneMoreAddIn.Commands
 				tags.Clear();
 
 				var controls = new HashtagContextControl[items.Count];
-				var width = contextPanel.ClientSize.Width -
-					(contextPanel.Padding.Left + contextPanel.Padding.Right) * 2 - 20;
 
 				for (var i = 0; i < items.Count; i++)
 				{
@@ -174,7 +180,16 @@ namespace River.OneMoreAddIn.Commands
 			}
 			else
 			{
+				var control = new HashtagErrorControl(
+					"No results found", experimental ? parsed : null)
+				{
+					Width = width
+				};
+
+				contextPanel.SuspendLayout();
 				contextPanel.Controls.Clear();
+				contextPanel.Controls.Add(control);
+				contextPanel.ResumeLayout();
 			}
 		}
 

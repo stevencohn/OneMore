@@ -7,75 +7,74 @@
 namespace River.OneMoreAddIn.Commands
 {
 	using System.Collections.Generic;
-	using System.Linq.Dynamic.Core;
 	using System.Text;
 	using System.Text.RegularExpressions;
 
 
 	/// <summary>
-	/// Hacky solution to convert user entered query string to proper SQL WHERE clause
+	/// Hacky solution to convert simple user entered query string to proper SQL WHERE clause.
+	/// This lets the user enter something like "a b" and converts it to
+	/// WHERE tag LIKE '%a%' AND tag LIKE '%b%'
+	/// The AND operator is implicit; user must explicitly specify OR operator.
+	/// Parenthesis are allowed.
 	/// </summary>
+	/// <remarks>
+	/// Type any part of one or more hashtags. Wildcards are implied unless a tag is ended
+	/// with a period. Parenthesis and logical operators are allowed.
+	/// </remarks>
 	internal class HashtagQueryBuilder
 	{
-		private sealed class HashtagCriteria
+		private readonly string fieldRef;
+
+
+		public HashtagQueryBuilder(string fieldRef)
 		{
-			public string Tags { get; set; }
+			this.fieldRef = fieldRef;
 		}
 
-		public string BuildFormattedWhereClause(string query)
+
+		public string BuildFormattedWhereClause(string query, out string parsed)
 		{
-			var sql = ExplodeQuery(query);
+			parsed = ExplodeQuery(query);
 
-			var config = new ParsingConfig
-			{
-				IsCaseSensitive = false,
-				RenameParameterExpression = true
-			};
-
-			var lambda = DynamicExpressionParser
-				.ParseLambda<HashtagCriteria, bool>(config, true, sql);
-
-			var code = lambda.ToString();
-
-			// 5 is length of "g => "
-			var where = code.Substring(5)
-				.Replace("==", "LIKE")
-				.Replace("\"", "'")
-				.Replace("AndAlso", "AND")
-				.Replace("OrElse", "OR");
-
-			where = Regex.Replace(where, @"'([^']+)'", (m) =>
+			parsed = Regex.Replace(parsed, @"'([^']+)'", (m) =>
 			{
 				return FormatCriteria(m.Value);
 			});
 
-			where = where.Replace("tags LIKE", "g.tags LIKE");
-			return $"WHERE {where}";
+			return $"WHERE {parsed}";
 		}
 
 
 		private string ExplodeQuery(string query)
 		{
-			var builder = new StringBuilder("g => ");
+			var builder = new StringBuilder();
 
 			var parts = Tokenize(query);
 			for (int i = 0; i < parts.Count; i++)
 			{
-				var part = parts[i].ToUpper();
+				var part = parts[i].Trim().ToUpper();
 
-				if (part == "AND" || part == "OR" || part == "(" || part == ")")
+				if (part == "AND" || part == "&&")
 				{
-					builder.Append(part);
-					builder.Append(" ");
+					builder.Append("AND ");
+				}
+				else if (part == "OR" || part == "||")
+				{
+					builder.Append("OR ");
+				}
+				else if (part == "(" || part == ")")
+				{
+					builder.Append($"{part} ");
 				}
 				else
 				{
-					builder.Append(@$"tags=""{parts[i]}""");
+					builder.Append(@$"{fieldRef} LIKE '{parts[i]}'");
 					if (i < parts.Count - 1)
 					{
 						builder.Append(" ");
-						var next = parts[i + 1].ToUpper();
-						if (next != "AND" && next != "OR" && next != ")")
+						var next = parts[i + 1].Trim().ToUpper();
+						if (next != "AND" && next != "&&" && next != "OR" && next != "||" && next != ")")
 						{
 							builder.Append("AND ");
 						}
@@ -150,7 +149,11 @@ namespace River.OneMoreAddIn.Commands
 			// strip out non-tag characters
 			criteria = Regex.Replace(criteria, @"[^\w\d\-_#]", string.Empty);
 
-			if (criteria[0] != '#' && criteria[0] != '%')
+			if (criteria.Length == 0)
+			{
+				criteria = "%";
+			}
+			else if (criteria[0] != '%')
 			{
 				criteria = $"%{criteria}";
 			}

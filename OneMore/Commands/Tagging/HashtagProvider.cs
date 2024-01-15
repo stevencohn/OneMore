@@ -479,7 +479,7 @@ namespace River.OneMoreAddIn.Commands
 		/// <param name="where">The user-entered where clause, optionally with wildcards</param>
 		/// <returns>A collection of Hashtags</returns>
 		public Hashtags SearchTags(
-			string where, string notebookID = null, string sectionID = null)
+			string where, out string parsed, string notebookID = null, string sectionID = null)
 		{
 			var parameters = new List<SQLiteParameter>();
 
@@ -502,13 +502,13 @@ namespace River.OneMoreAddIn.Commands
 
 			builder.Append("JOIN page_hashtags g ON g.moreID = p.moreID ");
 
-			var query = new HashtagQueryBuilder();
-			builder.Append(query.BuildFormattedWhereClause(where));
+			var query = new HashtagQueryBuilder("g.tags");
+			builder.Append(query.BuildFormattedWhereClause(where, out parsed));
 
 			builder.Append(" ORDER BY p.path, p.name, t.tag");
 			var sql = builder.ToString();
 
-			logger.WriteLine(sql);
+			logger.WriteVerbose(sql);
 
 			return ReadTags(sql, parameters.ToArray());
 		}

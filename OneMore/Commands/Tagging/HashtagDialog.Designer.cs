@@ -33,7 +33,6 @@
 			this.cancelButton = new System.Windows.Forms.Button();
 			this.contextPanel = new System.Windows.Forms.FlowLayoutPanel();
 			this.topPanel = new River.OneMoreAddIn.UI.MorePanel();
-			this.introLabel = new System.Windows.Forms.Label();
 			this.menuButton = new System.Windows.Forms.Button();
 			this.barLabel = new System.Windows.Forms.Label();
 			this.checkAllLink = new System.Windows.Forms.LinkLabel();
@@ -48,6 +47,7 @@
 			this.moveButton = new System.Windows.Forms.Button();
 			this.contextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
 			this.scanButton = new System.Windows.Forms.ToolStripMenuItem();
+			this.introLabel = new System.Windows.Forms.TextBox();
 			this.topPanel.SuspendLayout();
 			this.panel1.SuspendLayout();
 			this.contextMenu.SuspendLayout();
@@ -70,10 +70,10 @@
 			this.contextPanel.AutoScroll = true;
 			this.contextPanel.BackColor = System.Drawing.SystemColors.AppWorkspace;
 			this.contextPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.contextPanel.Location = new System.Drawing.Point(0, 114);
+			this.contextPanel.Location = new System.Drawing.Point(0, 144);
 			this.contextPanel.Name = "contextPanel";
 			this.contextPanel.Padding = new System.Windows.Forms.Padding(6);
-			this.contextPanel.Size = new System.Drawing.Size(988, 570);
+			this.contextPanel.Size = new System.Drawing.Size(988, 540);
 			this.contextPanel.TabIndex = 7;
 			// 
 			// topPanel
@@ -94,26 +94,17 @@
 			this.topPanel.Margin = new System.Windows.Forms.Padding(0);
 			this.topPanel.Name = "topPanel";
 			this.topPanel.Padding = new System.Windows.Forms.Padding(10);
-			this.topPanel.Size = new System.Drawing.Size(988, 114);
+			this.topPanel.Size = new System.Drawing.Size(988, 144);
 			this.topPanel.TabIndex = 8;
-			// 
-			// introLabel
-			// 
-			this.introLabel.AutoSize = true;
-			this.introLabel.Location = new System.Drawing.Point(37, 22);
-			this.introLabel.Name = "introLabel";
-			this.introLabel.Size = new System.Drawing.Size(314, 20);
-			this.introLabel.TabIndex = 9;
-			this.introLabel.Text = "Start typing any part of a hashtag or * for all";
 			// 
 			// menuButton
 			// 
-			this.menuButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.menuButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.menuButton.FlatAppearance.BorderSize = 0;
 			this.menuButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.menuButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.menuButton.ForeColor = System.Drawing.SystemColors.GrayText;
-			this.menuButton.Location = new System.Drawing.Point(925, 38);
+			this.menuButton.Location = new System.Drawing.Point(925, 68);
 			this.menuButton.Name = "menuButton";
 			this.menuButton.Size = new System.Drawing.Size(50, 38);
 			this.menuButton.TabIndex = 8;
@@ -123,9 +114,9 @@
 			// 
 			// barLabel
 			// 
-			this.barLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.barLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.barLabel.AutoSize = true;
-			this.barLabel.Location = new System.Drawing.Point(864, 84);
+			this.barLabel.Location = new System.Drawing.Point(864, 114);
 			this.barLabel.Name = "barLabel";
 			this.barLabel.Size = new System.Drawing.Size(14, 20);
 			this.barLabel.TabIndex = 7;
@@ -133,9 +124,9 @@
 			// 
 			// checkAllLink
 			// 
-			this.checkAllLink.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.checkAllLink.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.checkAllLink.AutoSize = true;
-			this.checkAllLink.Location = new System.Drawing.Point(785, 84);
+			this.checkAllLink.Location = new System.Drawing.Point(785, 114);
 			this.checkAllLink.Name = "checkAllLink";
 			this.checkAllLink.Size = new System.Drawing.Size(73, 20);
 			this.checkAllLink.TabIndex = 6;
@@ -145,9 +136,9 @@
 			// 
 			// uncheckAllLink
 			// 
-			this.uncheckAllLink.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.uncheckAllLink.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.uncheckAllLink.AutoSize = true;
-			this.uncheckAllLink.Location = new System.Drawing.Point(884, 84);
+			this.uncheckAllLink.Location = new System.Drawing.Point(884, 114);
 			this.uncheckAllLink.Name = "uncheckAllLink";
 			this.uncheckAllLink.Size = new System.Drawing.Size(91, 20);
 			this.uncheckAllLink.TabIndex = 5;
@@ -157,14 +148,14 @@
 			// 
 			// scopeBox
 			// 
-			this.scopeBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.scopeBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.scopeBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this.scopeBox.FormattingEnabled = true;
 			this.scopeBox.Items.AddRange(new object[] {
             "All",
             "This notebook",
             "This section"});
-			this.scopeBox.Location = new System.Drawing.Point(655, 45);
+			this.scopeBox.Location = new System.Drawing.Point(655, 75);
 			this.scopeBox.Name = "scopeBox";
 			this.scopeBox.Size = new System.Drawing.Size(196, 28);
 			this.scopeBox.TabIndex = 4;
@@ -172,9 +163,9 @@
 			// 
 			// searchButton
 			// 
-			this.searchButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.searchButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.searchButton.Image = ((System.Drawing.Image)(resources.GetObject("searchButton.Image")));
-			this.searchButton.Location = new System.Drawing.Point(859, 42);
+			this.searchButton.Location = new System.Drawing.Point(859, 72);
 			this.searchButton.Name = "searchButton";
 			this.searchButton.Size = new System.Drawing.Size(60, 32);
 			this.searchButton.TabIndex = 2;
@@ -183,10 +174,10 @@
 			// 
 			// tagBox
 			// 
-			this.tagBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+			this.tagBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.tagBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.tagBox.Location = new System.Drawing.Point(41, 45);
+			this.tagBox.Location = new System.Drawing.Point(41, 75);
 			this.tagBox.Name = "tagBox";
 			this.tagBox.Size = new System.Drawing.Size(608, 28);
 			this.tagBox.TabIndex = 0;
@@ -271,6 +262,17 @@
 			this.scanButton.Text = "Scan Now";
 			this.scanButton.Click += new System.EventHandler(this.ScanNow);
 			// 
+			// introLabel
+			// 
+			this.introLabel.BorderStyle = System.Windows.Forms.BorderStyle.None;
+			this.introLabel.Location = new System.Drawing.Point(41, 13);
+			this.introLabel.Multiline = true;
+			this.introLabel.Name = "introLabel";
+			this.introLabel.Size = new System.Drawing.Size(864, 48);
+			this.introLabel.TabIndex = 10;
+			this.introLabel.Text = "Type any part of one or more hashtags. Wildcards are implied unless a tag is ende" +
+    "d with a period. Parenthesis and logical operators are allowed.";
+			// 
 			// HashtagDialog
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -315,6 +317,6 @@
 		private System.Windows.Forms.Button menuButton;
 		private System.Windows.Forms.ContextMenuStrip contextMenu;
 		private System.Windows.Forms.ToolStripMenuItem scanButton;
-		private System.Windows.Forms.Label introLabel;
+		private System.Windows.Forms.TextBox introLabel;
 	}
 }
