@@ -9,6 +9,7 @@ namespace River.OneMoreAddIn.Commands
 	using System.ComponentModel;
 	using System.Drawing;
 	using System.Globalization;
+	using System.Text.RegularExpressions;
 	using System.Windows.Forms;
 	using Resx = Properties.Resources;
 
@@ -25,7 +26,7 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		public HashtagContextControl(HashtagContext item)
+		public HashtagContextControl(HashtagContext item, Regex pattern)
 			: this()
 		{
 			PageID = item.PageID;
@@ -50,15 +51,19 @@ namespace River.OneMoreAddIn.Commands
 
 			foreach (var snippet in item.Snippets)
 			{
+				var fore = pattern.IsMatch(snippet.Snippet)
+					? SystemColors.WindowText
+					: SystemColors.GrayText;
+
 				var link = new MoreLinkLabel
 				{
 					Text = snippet.Snippet,
 					ActiveLinkColor = SystemColors.GrayText,
 					AutoSize = true,
 					Cursor = Cursors.Hand,
-					ForeColor = SystemColors.GrayText,
+					ForeColor = fore,
 					HoverColor = Color.MediumOrchid,
-					LinkColor = SystemColors.GrayText,
+					LinkColor = fore,
 					Location = new Point(30, 40),
 					Margin = new Padding(20, 6, 10, 6),
 					Size = new Size(530, 20),

@@ -166,5 +166,30 @@ namespace River.OneMoreAddIn.Commands
 
 			return $"'{criteria.Replace('*', '%')}'";
 		}
+
+
+		/// <summary>
+		/// Extract the wildcard tags from a parsed string into a regex expression
+		/// that can be used to highlight context lines.
+		/// </summary>
+		/// <param name="parsed"></param>
+		/// <returns></returns>
+		public static string GetMatchingPattern(string parsed)
+		{
+			var pattern = string.Empty;
+			var matches = Regex.Matches(parsed, @"'([^']+)'");
+			foreach (Match match in matches)
+			{
+				if (pattern.Length > 0)
+				{
+					pattern = $"{pattern}|";
+				}
+
+				var value = match.Groups[1].Value.Replace("%", string.Empty);
+				pattern = $"{pattern}{value}";
+			}
+
+			return pattern;
+		}
 	}
 }

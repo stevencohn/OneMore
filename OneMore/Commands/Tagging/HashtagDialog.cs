@@ -12,6 +12,7 @@ namespace River.OneMoreAddIn.Commands
 	using System.Drawing;
 	using System.Globalization;
 	using System.Linq;
+	using System.Text.RegularExpressions;
 	using System.Windows.Forms;
 	using Resx = Properties.Resources;
 
@@ -167,6 +168,7 @@ namespace River.OneMoreAddIn.Commands
 			};
 
 			logger.Verbose($"found {tags.Count} tags using [{parsed}]");
+			var pattern = new Regex(HashtagQueryBuilder.GetMatchingPattern(parsed));
 
 			var width = contextPanel.ClientSize.Width -
 				(contextPanel.Padding.Left + contextPanel.Padding.Right) * 2 - 20;
@@ -180,7 +182,7 @@ namespace River.OneMoreAddIn.Commands
 
 				for (var i = 0; i < items.Count; i++)
 				{
-					var control = new HashtagContextControl(items[i])
+					var control = new HashtagContextControl(items[i], pattern)
 					{
 						Width = width
 					};
