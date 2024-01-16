@@ -180,13 +180,24 @@ namespace River.OneMoreAddIn.Commands
 			var matches = Regex.Matches(parsed, @"'([^']+)'");
 			foreach (Match match in matches)
 			{
-				if (pattern.Length > 0)
-				{
-					pattern = $"{pattern}|";
-				}
-
 				var value = match.Groups[1].Value.Replace("%", string.Empty);
-				pattern = $"{pattern}{value}";
+
+				// ignore "%" wildcard, from user input "*"
+				if (value.Length > 0)
+				{
+					if (pattern.Length > 0)
+					{
+						pattern = $"{pattern}|";
+					}
+
+					if (value[0] != '#')
+					{
+						// make sure we're looking for a hashtag and not some random text
+						value = $"#[\\w\\d\\-_]*{value}";
+					}
+
+					pattern = $"{pattern}{value}";
+				}
 			}
 
 			return new Regex(pattern);
