@@ -200,7 +200,7 @@ namespace River.OneMoreAddIn.Commands
 				}
 			}
 
-			return new Regex(pattern);
+			return new Regex(pattern, RegexOptions.IgnoreCase);
 		}
 	}
 }

@@ -279,7 +279,7 @@
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(988, 744);
+			this.ClientSize = new System.Drawing.Size(988, 844);
 			this.Controls.Add(this.contextPanel);
 			this.Controls.Add(this.panel1);
 			this.Controls.Add(this.topPanel);

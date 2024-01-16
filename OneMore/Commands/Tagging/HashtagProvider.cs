@@ -476,10 +476,10 @@ namespace River.OneMoreAddIn.Commands
 		/// <summary>
 		/// Returns a collection of Hashtag instances with the specified name across all pages
 		/// </summary>
-		/// <param name="where">The user-entered where clause, optionally with wildcards</param>
+		/// <param name="criteria">The user-entered search criteria, optional wildcards</param>
 		/// <returns>A collection of Hashtags</returns>
 		public Hashtags SearchTags(
-			string where, out string parsed, string notebookID = null, string sectionID = null)
+			string criteria, out string parsed, string notebookID = null, string sectionID = null)
 		{
 			var parameters = new List<SQLiteParameter>();
 
@@ -503,7 +503,8 @@ namespace River.OneMoreAddIn.Commands
 			builder.Append("JOIN page_hashtags g ON g.moreID = p.moreID ");
 
 			var query = new HashtagQueryBuilder("g.tags");
-			builder.Append(query.BuildFormattedWhereClause(where, out parsed));
+			var where = query.BuildFormattedWhereClause(criteria, out parsed);
+			builder.Append(where);
 
 			builder.Append(" ORDER BY p.path, p.name, t.tag");
 			var sql = builder.ToString();
@@ -512,11 +513,15 @@ namespace River.OneMoreAddIn.Commands
 
 			var tags = ReadTags(sql, parameters.ToArray());
 
-			// mark direct hits; others are just additional tags on the page
-			var pattern = query.GetMatchingPattern(parsed);
-			foreach (var tag in tags)
+			// don't highlight everything, otherwise there's no use!
+			if (criteria != "*" && criteria != "%")
 			{
-				tag.DirectHit = pattern.IsMatch(tag.Snippet);
+				// mark direct hits; others are just additional tags on the page
+				var pattern = query.GetMatchingPattern(parsed);
+				foreach (var tag in tags)
+				{
+					tag.DirectHit = pattern.IsMatch(tag.Snippet);
+				}
 			}
 
 			return tags;

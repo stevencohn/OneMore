@@ -12,7 +12,6 @@ namespace River.OneMoreAddIn.Commands
 	using System.Drawing;
 	using System.Globalization;
 	using System.Linq;
-	using System.Text.RegularExpressions;
 	using System.Windows.Forms;
 	using Resx = Properties.Resources;
 
