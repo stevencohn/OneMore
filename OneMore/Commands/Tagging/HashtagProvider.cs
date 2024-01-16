@@ -510,7 +510,16 @@ namespace River.OneMoreAddIn.Commands
 
 			logger.WriteVerbose(sql);
 
-			return ReadTags(sql, parameters.ToArray());
+			var tags = ReadTags(sql, parameters.ToArray());
+
+			// mark direct hits; others are just additional tags on the page
+			var pattern = query.GetMatchingPattern(parsed);
+			foreach (var tag in tags)
+			{
+				tag.DirectHit = pattern.IsMatch(tag.Snippet);
+			}
+
+			return tags;
 		}
 
 

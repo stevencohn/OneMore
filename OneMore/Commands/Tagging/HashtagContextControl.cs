@@ -26,7 +26,7 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		public HashtagContextControl(HashtagContext item, Regex pattern)
+		public HashtagContextControl(HashtagContext item)
 			: this()
 		{
 			PageID = item.PageID;
@@ -51,8 +51,8 @@ namespace River.OneMoreAddIn.Commands
 
 			foreach (var snippet in item.Snippets)
 			{
-				var fore = pattern.IsMatch(snippet.Snippet)
-					? SystemColors.WindowText
+				var fore = snippet.DirectHit
+					? SystemColors.HotTrack
 					: SystemColors.GrayText;
 
 				var link = new MoreLinkLabel

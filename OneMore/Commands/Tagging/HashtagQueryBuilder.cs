@@ -174,7 +174,7 @@ namespace River.OneMoreAddIn.Commands
 		/// </summary>
 		/// <param name="parsed"></param>
 		/// <returns></returns>
-		public static string GetMatchingPattern(string parsed)
+		public Regex GetMatchingPattern(string parsed)
 		{
 			var pattern = string.Empty;
 			var matches = Regex.Matches(parsed, @"'([^']+)'");
@@ -189,7 +189,7 @@ namespace River.OneMoreAddIn.Commands
 				pattern = $"{pattern}{value}";
 			}
 
-			return pattern;
+			return new Regex(pattern);
 		}
 	}
 }
