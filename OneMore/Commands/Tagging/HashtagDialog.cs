@@ -168,10 +168,11 @@ namespace River.OneMoreAddIn.Commands
 			};
 
 			logger.Verbose($"found {tags.Count} tags using [{parsed}]");
-			var pattern = new Regex(HashtagQueryBuilder.GetMatchingPattern(parsed));
 
 			var width = contextPanel.ClientSize.Width -
-				(contextPanel.Padding.Left + contextPanel.Padding.Right) * 2 - 20;
+				(contextPanel.Padding.Left + contextPanel.Padding.Right) * 2 -
+				// make room for scrollbar, expecting it to be drawn
+				SystemInformation.VerticalScrollBarWidth;
 
 			if (tags.Any())
 			{
@@ -182,7 +183,7 @@ namespace River.OneMoreAddIn.Commands
 
 				for (var i = 0; i < items.Count; i++)
 				{
-					var control = new HashtagContextControl(items[i], pattern)
+					var control = new HashtagContextControl(items[i])
 					{
 						Width = width
 					};
@@ -195,6 +196,8 @@ namespace River.OneMoreAddIn.Commands
 				contextPanel.Controls.Clear();
 				contextPanel.Controls.AddRange(controls);
 				contextPanel.ResumeLayout();
+				// resize incase scrollbar isn't needed, use the space
+				OnSizeChanged(e);
 			}
 			else
 			{
@@ -208,6 +211,8 @@ namespace River.OneMoreAddIn.Commands
 				contextPanel.Controls.Clear();
 				contextPanel.Controls.Add(control);
 				contextPanel.ResumeLayout();
+				// resize incase scrollbar isn't needed, use the space
+				OnSizeChanged(e);
 			}
 		}
 
