@@ -17,12 +17,15 @@ namespace River.OneMoreAddIn.Commands
 	internal class HashtagPageScanner
 	{
 		private const int ContextLength = 100;
+		private const string SkipRegion = "#skiphashtags";
+		private const string KeepRegion = "#keephashtags";
 
 		private readonly XElement root;
 		private readonly XNamespace ns;
 		private readonly Regex hashPattern;
 		private readonly SearchAndReplaceEditor editor;
 		private readonly string pageID;
+		private bool keepTags;
 
 
 		/// <summary>
@@ -55,6 +58,8 @@ namespace River.OneMoreAddIn.Commands
 				editor = new SearchAndReplaceEditor(
 					pattern.ToString(), styleTemplate, true, false);
 			}
+
+			keepTags = true;
 		}
 
 
@@ -133,8 +138,19 @@ namespace River.OneMoreAddIn.Commands
 							// hashPattern always has at least one capture group
 							var capture = match.Groups[1].Captures[0];
 							var name = capture.Value;
+							var lower = name.ToLower();
 
-							if (!tags.Exists(t => t.Tag == name && t.ObjectID == objectID))
+							if (lower == SkipRegion)
+							{
+								keepTags = false;
+							}
+							else if (lower == KeepRegion)
+							{
+								keepTags = true;
+							}
+							// this "else" ensures the #Skip and #Keep tags are not captured
+							else if (keepTags && 
+								!tags.Exists(t => t.Tag == name && t.ObjectID == objectID))
 							{
 								var context = ExtractContext(text, capture.Index, capture.Length);
 
