@@ -1081,6 +1081,13 @@
         getScreentip="GetRibbonScreentip"
         onAction="ResizeImagesCmd"
         insertBeforeMso="Cut"/>
+      <button
+        id="ctxStylizeImagesButton"
+        imageMso="GroupPictureStyles"
+        getLabel="GetRibbonLabel"
+        getScreentip="GetRibbonScreentip"
+        onAction="StylizeImagesCmd"
+        insertBeforeMso="Cut"/>
       <menuSeparator
         id="omPictureContextMenuSeparator"
         insertBeforeMso="Cut"/>
