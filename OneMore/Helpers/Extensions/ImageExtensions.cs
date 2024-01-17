@@ -61,7 +61,7 @@ namespace River.OneMoreAddIn
 			return 100;
 		}
 
-		
+
 		/// <summary>
 		/// 
 		/// </summary>
@@ -81,6 +81,27 @@ namespace River.OneMoreAddIn
 				return ImageSignature.TIFF;
 
 			return ImageSignature.Unknown;
+		}
+
+
+		/// <summary>
+		/// OneMore Extension >> Render a new image by inverting the colors in th egiven image.
+		/// </summary>
+		/// <param name="image">Inverted image</param>
+		/// <returns></returns>
+		public static Image Inverted(this Image image)
+		{
+			return Apply(image, new ColorMatrix
+			{
+				Matrix00 = -1,
+				Matrix11 = -1,
+				Matrix22 = -1,
+				Matrix33 = 1,
+				Matrix40 = 1,
+				Matrix41 = 1,
+				Matrix42 = 1,
+				Matrix44 = 1
+			});
 		}
 
 

@@ -2551,7 +2551,8 @@ ISO-code then comma then language name</comment>
     <value>מְקוֹרִי
 סולם אפור
 חוּם כֵּהֶה
-פולארויד</value>
+פולארויד
+לַהֲפוֹך</value>
     <comment>combobox</comment>
   </data>
   <data name="ResizeImagesDialog_viewSizeLabel.Text" xml:space="preserve">
@@ -3867,6 +3868,14 @@ ISO-code then comma then language name</comment>
     <value>החלף את המחיקה למרות של טקסט המסומן בתגי מטלות מלאים או לא שלמים</value>
     <comment>Ribbon OneMore menu item</comment>
   </data>
+  <data name="ribStylizeImagesButton_Label" xml:space="preserve">
+    <value>סגנון תמונות</value>
+    <comment>ribbon images</comment>
+  </data>
+  <data name="ribStylizeImagesButton_Screentip" xml:space="preserve">
+    <value>צבע מחדש תמונות באמצעות סגנון נבחר</value>
+    <comment>ribbon images</comment>
+  </data>
   <data name="ribTableMenu_Label" xml:space="preserve">
     <value>שולחן</value>
     <comment>Ribbon OneMore menu item, Formula...</comment>
@@ -4573,6 +4582,37 @@ ISO-code then comma then language name</comment>
     <value>לָשִׂים דָגֵשׁ</value>
     <comment>button</comment>
   </data>
+  <data name="StylizeImagesCommand_noImages" xml:space="preserve">
+    <value>לא נמצאו תמונות בדף זה</value>
+    <comment>message</comment>
+  </data>
+  <data name="StylizeImagesDialog_backBox.Text" xml:space="preserve">
+    <value>החל על תמונות רקע</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="StylizeImagesDialog_backImagesLabel.Text" xml:space="preserve">
+    <value>תמונות רקע: {0}, נבחרו: {1}</value>
+    <comment>label</comment>
+  </data>
+  <data name="StylizeImagesDialog_foreBox.Text" xml:space="preserve">
+    <value>החל על תמונות חזית</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="StylizeImagesDialog_foreImagesLabel.Text" xml:space="preserve">
+    <value>תמונות קדמה: {0}, נבחרו: {1}</value>
+    <comment>label</comment>
+  </data>
+  <data name="StylizeImagesDialog_styleBox.Text" xml:space="preserve">
+    <value>סולם אפור
+חוּם כֵּהֶה
+פולארויד
+לַהֲפוֹך</value>
+    <comment>combobox</comment>
+  </data>
+  <data name="StylizeImagesDialog_Text" xml:space="preserve">
+    <value>סגנון תמונות</value>
+    <comment>dialog title</comment>
+  </data>
   <data name="TableTheme_Screentip" xml:space="preserve">
     <value>נושא טבלה onemore {0}</value>
     <comment>Screentip for table theme gallery tiles</comment>
@@ -4967,6 +5007,9 @@ ISO-code then comma then language name</comment>
   </data>
   <data name="word_Storage" xml:space="preserve">
     <value>אִחסוּן</value>
+  </data>
+  <data name="word_Style" xml:space="preserve">
+    <value>סִגְנוֹן</value>
   </data>
   <data name="word_Stylize" xml:space="preserve">
     <value>לְסַגְנֵן</value>

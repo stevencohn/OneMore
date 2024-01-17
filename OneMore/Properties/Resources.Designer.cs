@@ -6261,7 +6261,8 @@ namespace River.OneMoreAddIn.Properties {
         ///   Looks up a localized string similar to Original
         ///Gray scale
         ///Sepia
-        ///Polaroid.
+        ///Polaroid
+        ///Invert.
         /// </summary>
         internal static string ResizeImagesDialog_styleBox_Text {
             get {
@@ -9312,6 +9313,24 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Stylize Images.
+        /// </summary>
+        internal static string ribStylizeImagesButton_Label {
+            get {
+                return ResourceManager.GetString("ribStylizeImagesButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Recolor images using selected style.
+        /// </summary>
+        internal static string ribStylizeImagesButton_Screentip {
+            get {
+                return ResourceManager.GetString("ribStylizeImagesButton_Screentip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Table.
         /// </summary>
         internal static string ribTableMenu_Label {
@@ -11025,6 +11044,72 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to No images found on this page.
+        /// </summary>
+        internal static string StylizeImagesCommand_noImages {
+            get {
+                return ResourceManager.GetString("StylizeImagesCommand_noImages", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Apply to background images.
+        /// </summary>
+        internal static string StylizeImagesDialog_backBox_Text {
+            get {
+                return ResourceManager.GetString("StylizeImagesDialog_backBox.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Background images: {0}, selected: {1}.
+        /// </summary>
+        internal static string StylizeImagesDialog_backImagesLabel_Text {
+            get {
+                return ResourceManager.GetString("StylizeImagesDialog_backImagesLabel.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Apply to foreground images.
+        /// </summary>
+        internal static string StylizeImagesDialog_foreBox_Text {
+            get {
+                return ResourceManager.GetString("StylizeImagesDialog_foreBox.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Foreground images: {0}, selected: {1}.
+        /// </summary>
+        internal static string StylizeImagesDialog_foreImagesLabel_Text {
+            get {
+                return ResourceManager.GetString("StylizeImagesDialog_foreImagesLabel.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Gray scale
+        ///Sepia
+        ///Polaroid
+        ///Invert.
+        /// </summary>
+        internal static string StylizeImagesDialog_styleBox_Text {
+            get {
+                return ResourceManager.GetString("StylizeImagesDialog_styleBox.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Stylize Images.
+        /// </summary>
+        internal static string StylizeImagesDialog_Text {
+            get {
+                return ResourceManager.GetString("StylizeImagesDialog_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap Subscript {
@@ -12200,6 +12285,15 @@ namespace River.OneMoreAddIn.Properties {
         internal static string word_Storage {
             get {
                 return ResourceManager.GetString("word_Storage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Style.
+        /// </summary>
+        internal static string word_Style {
+            get {
+                return ResourceManager.GetString("word_Style", resourceCulture);
             }
         }
         

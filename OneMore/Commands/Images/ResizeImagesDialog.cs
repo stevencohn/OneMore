@@ -303,20 +303,16 @@ namespace River.OneMoreAddIn.Commands
 				adjusted = p.SetSaturation((float)saturationBox.Value / 100f);
 			}
 
-			if (styleBox.SelectedIndex == 1)
+			if (styleBox.SelectedIndex > 0)
 			{
 				using var p = adjusted;
-				adjusted = p.ToGrayscale();
-			}
-			else if (styleBox.SelectedIndex == 2)
-			{
-				using var p = adjusted;
-				adjusted = p.ToSepia();
-			}
-			else if (styleBox.SelectedIndex == 3)
-			{
-				using var p = adjusted;
-				adjusted = p.ToPolaroid();
+				adjusted = styleBox.SelectedIndex switch
+				{
+					1 => p.ToGrayscale(),
+					2 => p.ToSepia(),
+					3 => p.ToPolaroid(),
+					_ => p.Inverted()
+				};
 			}
 
 			// opacity must be set last

@@ -2524,9 +2524,10 @@ Bilder m체ssen sich in einem Gliederungscontainer befinden. Hintergrundbilder k�
   </data>
   <data name="ResizeImagesDialog_styleBox.Text" xml:space="preserve">
     <value>Original
-Graue Skala
+Graustufen
 Sepia
-Polaroid</value>
+Polaroid
+Umkehren</value>
     <comment>combobox</comment>
   </data>
   <data name="ResizeImagesDialog_viewSizeLabel.Text" xml:space="preserve">
@@ -3843,6 +3844,14 @@ Polaroid</value>
     <value>Aktiviere das Kontrollk채stchen f체r Text, der mit vollst채ndigen oder unvollst채ndigen Aufgaben-Tags markiert ist</value>
     <comment>ribbon reminders</comment>
   </data>
+  <data name="ribStylizeImagesButton_Label" xml:space="preserve">
+    <value>Bilder stilisieren</value>
+    <comment>ribbon images</comment>
+  </data>
+  <data name="ribStylizeImagesButton_Screentip" xml:space="preserve">
+    <value>F채rben Sie Bilder mit dem ausgew채hlten Stil neu</value>
+    <comment>ribbon images</comment>
+  </data>
   <data name="ribTableMenu_Label" xml:space="preserve">
     <value>Tabelle</value>
     <comment>Ribbon OneMore menu item, Formula...</comment>
@@ -4549,6 +4558,37 @@ Absatz - ganzer Absatz
     <value>Unterstreichen</value>
     <comment>button</comment>
   </data>
+  <data name="StylizeImagesCommand_noImages" xml:space="preserve">
+    <value>Auf dieser Seite wurden keine Bilder gefunden</value>
+    <comment>message</comment>
+  </data>
+  <data name="StylizeImagesDialog_backBox.Text" xml:space="preserve">
+    <value>Auf Hintergrundbilder anwenden</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="StylizeImagesDialog_backImagesLabel.Text" xml:space="preserve">
+    <value>Hintergrundbilder: {0}, ausgew채hlt: {1}</value>
+    <comment>label</comment>
+  </data>
+  <data name="StylizeImagesDialog_foreBox.Text" xml:space="preserve">
+    <value>Auf Vordergrundbilder anwenden</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="StylizeImagesDialog_foreImagesLabel.Text" xml:space="preserve">
+    <value>Vordergrundbilder: {0}, ausgew채hlt: {1}</value>
+    <comment>label</comment>
+  </data>
+  <data name="StylizeImagesDialog_styleBox.Text" xml:space="preserve">
+    <value>Graustufen
+Sepia
+Polaroid
+Umkehren</value>
+    <comment>combobox</comment>
+  </data>
+  <data name="StylizeImagesDialog_Text" xml:space="preserve">
+    <value>Bilder stilisieren</value>
+    <comment>dialog title</comment>
+  </data>
   <data name="TableTheme_Screentip" xml:space="preserve">
     <value>OneMore-Tabellendesign {0}</value>
     <comment>Screentip for table theme gallery tiles</comment>
@@ -4939,6 +4979,9 @@ In diesem Abschnitt</value>
   </data>
   <data name="word_Storage" xml:space="preserve">
     <value>Lager</value>
+  </data>
+  <data name="word_Style" xml:space="preserve">
+    <value>Stil</value>
   </data>
   <data name="word_Stylize" xml:space="preserve">
     <value>Stilisieren</value>

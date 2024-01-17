@@ -544,7 +544,8 @@ namespace River.OneMoreAddIn.Commands
             "Original",
             "Gray scale",
             "Sepia",
-            "Polaroid"});
+            "Polaroid",
+            "Invert"});
 			this.styleBox.Location = new System.Drawing.Point(187, 463);
 			this.styleBox.Name = "styleBox";
 			this.styleBox.Size = new System.Drawing.Size(295, 28);
@@ -631,7 +632,7 @@ namespace River.OneMoreAddIn.Commands
 			this.repositionBox.AutoSize = true;
 			this.repositionBox.Checked = true;
 			this.repositionBox.CheckState = System.Windows.Forms.CheckState.Checked;
-			this.repositionBox.Location = new System.Drawing.Point(41, 594);
+			this.repositionBox.Location = new System.Drawing.Point(39, 594);
 			this.repositionBox.Name = "repositionBox";
 			this.repositionBox.Size = new System.Drawing.Size(254, 24);
 			this.repositionBox.TabIndex = 48;
