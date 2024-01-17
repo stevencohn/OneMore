@@ -105,7 +105,7 @@ namespace River.OneMoreAddIn.Commands
 
 			if (dialog.AutoSizeImage)
 			{
-				size.Attribute("isSetByUser").Remove();
+				size.Attribute("isSetByUser")?.Remove();
 				element.Parent.Attribute("objectID").Remove();
 				logger.WriteLine("auto-size image");
 			}
