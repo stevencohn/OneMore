@@ -2571,7 +2571,8 @@ Images must be in an outline container. Background images cannot be adjusted.</v
     <value>Original
 Gray scale
 Sepia
-Polaroid</value>
+Polaroid
+Invert</value>
     <comment>combobox</comment>
   </data>
   <data name="ResizeImagesDialog_viewSizeLabel.Text" xml:space="preserve">
@@ -3889,6 +3890,14 @@ Polaroid</value>
     <value>Toggle strikethough of text marked with complete or incomplete To Do tags</value>
     <comment>ribbon reminders</comment>
   </data>
+  <data name="ribStylizeImagesButton_Label" xml:space="preserve">
+    <value>Stylize Images</value>
+    <comment>ribbon images</comment>
+  </data>
+  <data name="ribStylizeImagesButton_Screentip" xml:space="preserve">
+    <value>Recolor images using selected style</value>
+    <comment>ribbon images</comment>
+  </data>
   <data name="ribTableMenu_Label" xml:space="preserve">
     <value>Table</value>
     <comment>ribbon menu</comment>
@@ -4596,6 +4605,37 @@ Heading - include in TOC</value>
     <value>Underline</value>
     <comment>button</comment>
   </data>
+  <data name="StylizeImagesCommand_noImages" xml:space="preserve">
+    <value>No images found on this page</value>
+    <comment>message</comment>
+  </data>
+  <data name="StylizeImagesDialog_backBox.Text" xml:space="preserve">
+    <value>Apply to background images</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="StylizeImagesDialog_backImagesLabel.Text" xml:space="preserve">
+    <value>Background images: {0}, selected: {1}</value>
+    <comment>label</comment>
+  </data>
+  <data name="StylizeImagesDialog_foreBox.Text" xml:space="preserve">
+    <value>Apply to foreground images</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="StylizeImagesDialog_foreImagesLabel.Text" xml:space="preserve">
+    <value>Foreground images: {0}, selected: {1}</value>
+    <comment>label</comment>
+  </data>
+  <data name="StylizeImagesDialog_styleBox.Text" xml:space="preserve">
+    <value>Gray scale
+Sepia
+Polaroid
+Invert</value>
+    <comment>combobox</comment>
+  </data>
+  <data name="StylizeImagesDialog_Text" xml:space="preserve">
+    <value>Stylize Images</value>
+    <comment>dialog title</comment>
+  </data>
   <data name="TableTheme_Screentip" xml:space="preserve">
     <value>OneMore Table Theme {0}</value>
     <comment>Screentip for table theme gallery tiles</comment>
@@ -4990,6 +5030,9 @@ In this section</value>
   </data>
   <data name="word_Storage" xml:space="preserve">
     <value>Storage</value>
+  </data>
+  <data name="word_Style" xml:space="preserve">
+    <value>Style</value>
   </data>
   <data name="word_Stylize" xml:space="preserve">
     <value>Stylize</value>

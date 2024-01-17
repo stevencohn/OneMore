@@ -2531,9 +2531,10 @@ Afbeeldingen moeten zich in een overzichtscontainer bevinden. Achtergrondafbeeld
   </data>
   <data name="ResizeImagesDialog_styleBox.Text" xml:space="preserve">
     <value>Origineel
-Grijze schaal
+Grijsschaal
 Sepia
-Polaroid</value>
+Polaroid
+Omkeren</value>
     <comment>combobox</comment>
   </data>
   <data name="ResizeImagesDialog_viewSizeLabel.Text" xml:space="preserve">
@@ -3854,6 +3855,14 @@ Polaroid</value>
     <value>Schakel het doorhalen van tekst die is gemarkeerd met complete of onvolledige Taken-tags in of uit</value>
     <comment>Ribbon OneMore menu item</comment>
   </data>
+  <data name="ribStylizeImagesButton_Label" xml:space="preserve">
+    <value>Stileer afbeeldingen</value>
+    <comment>ribbon images</comment>
+  </data>
+  <data name="ribStylizeImagesButton_Screentip" xml:space="preserve">
+    <value>Kleur afbeeldingen opnieuw met de geselecteerde stijl</value>
+    <comment>ribbon images</comment>
+  </data>
   <data name="ribTableMenu_Label" xml:space="preserve">
     <value>Tafel</value>
     <comment>Ribbon OneMore menu item, Formula...</comment>
@@ -4560,6 +4569,37 @@ Kop - opnemen in inhoudsopgave</value>
     <value>Onderstrepen</value>
     <comment>button</comment>
   </data>
+  <data name="StylizeImagesCommand_noImages" xml:space="preserve">
+    <value>Er zijn geen afbeeldingen gevonden op deze pagina</value>
+    <comment>message</comment>
+  </data>
+  <data name="StylizeImagesDialog_backBox.Text" xml:space="preserve">
+    <value>Toepassen op achtergrondafbeeldingen</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="StylizeImagesDialog_backImagesLabel.Text" xml:space="preserve">
+    <value>Achtergrondafbeeldingen: {0}, geselecteerd: {1}</value>
+    <comment>label</comment>
+  </data>
+  <data name="StylizeImagesDialog_foreBox.Text" xml:space="preserve">
+    <value>Toepassen op voorgrondafbeeldingen</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="StylizeImagesDialog_foreImagesLabel.Text" xml:space="preserve">
+    <value>Voorgrondafbeeldingen: {0}, geselecteerd: {1}</value>
+    <comment>label</comment>
+  </data>
+  <data name="StylizeImagesDialog_styleBox.Text" xml:space="preserve">
+    <value>Grijsschaal
+Sepia
+Polaroid
+Omkeren</value>
+    <comment>combobox</comment>
+  </data>
+  <data name="StylizeImagesDialog_Text" xml:space="preserve">
+    <value>Stileer afbeeldingen</value>
+    <comment>dialog title</comment>
+  </data>
   <data name="TableTheme_Screentip" xml:space="preserve">
     <value>OneMore Table-thema {0}</value>
     <comment>Screentip for table theme gallery tiles</comment>
@@ -4950,6 +4990,9 @@ In deze sectie</value>
   </data>
   <data name="word_Storage" xml:space="preserve">
     <value>Opslag</value>
+  </data>
+  <data name="word_Style" xml:space="preserve">
+    <value>Stijl</value>
   </data>
   <data name="word_Stylize" xml:space="preserve">
     <value>Stileren</value>

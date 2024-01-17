@@ -159,6 +159,13 @@
     <Compile Include="Commands\Images\OpenImageWithCommand.cs" />
     <Compile Include="Commands\Images\PlantUmlHelper.cs" />
     <Compile Include="Commands\Images\StackBackgroundImagesCommand.cs" />
+    <Compile Include="Commands\Images\StylizeImagesCommand.cs" />
+    <Compile Include="Commands\Images\StylizeImagesDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Commands\Images\StylizeImagesDialog.Designer.cs">
+      <DependentUpon>StylizeImagesDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="Commands\Navigator\HistoryControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -1304,6 +1311,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Commands\File\ImportWebDialog.resx">
       <DependentUpon>ImportWebDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Commands\Images\StylizeImagesDialog.resx">
+      <DependentUpon>StylizeImagesDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Commands\Navigator\NavigatorWindow.resx">
       <DependentUpon>NavigatorWindow.cs</DependentUpon>

@@ -2542,10 +2542,11 @@ Obrazy muszą znajdować się w kontenerze konspektu. Nie można regulować obra
     <comment>width x height</comment>
   </data>
   <data name="ResizeImagesDialog_styleBox.Text" xml:space="preserve">
-    <value>Oryginał
-Skala szarości.
+    <value>Oryginalny
+Skala szarości
 Sepia
-Polaroid</value>
+Polaroid
+Odwracać</value>
     <comment>combobox</comment>
   </data>
   <data name="ResizeImagesDialog_viewSizeLabel.Text" xml:space="preserve">
@@ -3867,6 +3868,14 @@ Polaroid</value>
     <value>Przełącz strikethough tekstu oznaczonego kompletnym lub niekompletnym do zrobienia znaczników</value>
     <comment>Ribbon OneMore menu item</comment>
   </data>
+  <data name="ribStylizeImagesButton_Label" xml:space="preserve">
+    <value>Stylizuj obrazy</value>
+    <comment>ribbon images</comment>
+  </data>
+  <data name="ribStylizeImagesButton_Screentip" xml:space="preserve">
+    <value>Pokoloruj ponownie obrazy, używając wybranego stylu</value>
+    <comment>ribbon images</comment>
+  </data>
   <data name="ribTableMenu_Label" xml:space="preserve">
     <value>Tabela</value>
     <comment>Ribbon OneMore menu item, Formula...</comment>
@@ -4573,6 +4582,37 @@ Kierunek - dołącz w TOC</value>
     <value>Podkreślać</value>
     <comment>button</comment>
   </data>
+  <data name="StylizeImagesCommand_noImages" xml:space="preserve">
+    <value>Na tej stronie nie znaleziono żadnych obrazów</value>
+    <comment>message</comment>
+  </data>
+  <data name="StylizeImagesDialog_backBox.Text" xml:space="preserve">
+    <value>Zastosuj do obrazów tła</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="StylizeImagesDialog_backImagesLabel.Text" xml:space="preserve">
+    <value>Obrazy tła: {0}, wybrane: {1}</value>
+    <comment>label</comment>
+  </data>
+  <data name="StylizeImagesDialog_foreBox.Text" xml:space="preserve">
+    <value>Zastosuj do obrazów pierwszego planu</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="StylizeImagesDialog_foreImagesLabel.Text" xml:space="preserve">
+    <value>Obrazy na pierwszym planie: {0}, wybrane: {1}</value>
+    <comment>label</comment>
+  </data>
+  <data name="StylizeImagesDialog_styleBox.Text" xml:space="preserve">
+    <value>Skala szarości
+Sepia
+Polaroid
+Odwracać</value>
+    <comment>combobox</comment>
+  </data>
+  <data name="StylizeImagesDialog_Text" xml:space="preserve">
+    <value>Stylizuj obrazy</value>
+    <comment>dialog title</comment>
+  </data>
   <data name="TableTheme_Screentip" xml:space="preserve">
     <value>Motyw tabeli OneMore {0}</value>
     <comment>Screentip for table theme gallery tiles</comment>
@@ -4967,6 +5007,9 @@ W tej sekcji</value>
   </data>
   <data name="word_Storage" xml:space="preserve">
     <value>Przechowywanie</value>
+  </data>
+  <data name="word_Style" xml:space="preserve">
+    <value>Styl</value>
   </data>
   <data name="word_Stylize" xml:space="preserve">
     <value>Stylizować</value>

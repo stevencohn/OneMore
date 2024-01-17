@@ -2531,9 +2531,10 @@ ISO-code then comma then language name</comment>
   </data>
   <data name="ResizeImagesDialog_styleBox.Text" xml:space="preserve">
     <value>原来的
-灰色刻度
-乌贼
-宝丽来</value>
+灰度
+棕褐色
+宝丽来
+倒置</value>
     <comment>combobox</comment>
   </data>
   <data name="ResizeImagesDialog_viewSizeLabel.Text" xml:space="preserve">
@@ -3849,6 +3850,14 @@ ISO-code then comma then language name</comment>
     <value>切换标记有完整或不完整的待办事项标签的文本的删除线</value>
     <comment>Ribbon OneMore menu item</comment>
   </data>
+  <data name="ribStylizeImagesButton_Label" xml:space="preserve">
+    <value>风格化图像</value>
+    <comment>ribbon images</comment>
+  </data>
+  <data name="ribStylizeImagesButton_Screentip" xml:space="preserve">
+    <value>使用选定的样式重新着色图像</value>
+    <comment>ribbon images</comment>
+  </data>
   <data name="ribTableMenu_Label" xml:space="preserve">
     <value>表格</value>
     <comment>Ribbon OneMore menu item, Formula...</comment>
@@ -4555,6 +4564,37 @@ ISO-code then comma then language name</comment>
     <value>强调</value>
     <comment>button</comment>
   </data>
+  <data name="StylizeImagesCommand_noImages" xml:space="preserve">
+    <value>该页面未找到图片</value>
+    <comment>message</comment>
+  </data>
+  <data name="StylizeImagesDialog_backBox.Text" xml:space="preserve">
+    <value>应用于背景图像</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="StylizeImagesDialog_backImagesLabel.Text" xml:space="preserve">
+    <value>背景图片：{0}，已选择：{1}</value>
+    <comment>label</comment>
+  </data>
+  <data name="StylizeImagesDialog_foreBox.Text" xml:space="preserve">
+    <value>应用于前景图像</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="StylizeImagesDialog_foreImagesLabel.Text" xml:space="preserve">
+    <value>前景图像：{0}，已选择：{1}</value>
+    <comment>label</comment>
+  </data>
+  <data name="StylizeImagesDialog_styleBox.Text" xml:space="preserve">
+    <value>灰度
+棕褐色
+宝丽来
+倒置</value>
+    <comment>combobox</comment>
+  </data>
+  <data name="StylizeImagesDialog_Text" xml:space="preserve">
+    <value>风格化图像</value>
+    <comment>dialog title</comment>
+  </data>
   <data name="TableTheme_Screentip" xml:space="preserve">
     <value>OneMore 表格主题{0}</value>
     <comment>Screentip for table theme gallery tiles</comment>
@@ -4945,6 +4985,9 @@ ISO-code then comma then language name</comment>
   </data>
   <data name="word_Storage" xml:space="preserve">
     <value>贮存</value>
+  </data>
+  <data name="word_Style" xml:space="preserve">
+    <value>风格</value>
   </data>
   <data name="word_Stylize" xml:space="preserve">
     <value>程式化</value>

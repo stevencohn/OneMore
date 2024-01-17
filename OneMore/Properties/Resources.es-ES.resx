@@ -2530,9 +2530,10 @@ Las imágenes deben estar en un contenedor de contorno. Las imágenes de fondo n
   </data>
   <data name="ResizeImagesDialog_styleBox.Text" xml:space="preserve">
     <value>Original
-Escala gris
+escala de grises
 Sepia
-polaroid</value>
+polaroid
+Invertir</value>
     <comment>combobox</comment>
   </data>
   <data name="ResizeImagesDialog_viewSizeLabel.Text" xml:space="preserve">
@@ -3854,6 +3855,14 @@ polaroid</value>
     <value>Alternar tacha en el texto marcado con etiquetas de tareas pendientes completas o incompletas</value>
     <comment>Ribbon OneMore menu item</comment>
   </data>
+  <data name="ribStylizeImagesButton_Label" xml:space="preserve">
+    <value>Estilizar imágenes</value>
+    <comment>ribbon images</comment>
+  </data>
+  <data name="ribStylizeImagesButton_Screentip" xml:space="preserve">
+    <value>Recolorear imágenes usando el estilo seleccionado</value>
+    <comment>ribbon images</comment>
+  </data>
   <data name="ribTableMenu_Label" xml:space="preserve">
     <value>Mesa</value>
     <comment>Ribbon OneMore menu item, Formula...</comment>
@@ -4560,6 +4569,37 @@ Encabezado - incluir en TOC</value>
     <value>Subrayar</value>
     <comment>button</comment>
   </data>
+  <data name="StylizeImagesCommand_noImages" xml:space="preserve">
+    <value>No se encontraron imágenes en esta página.</value>
+    <comment>message</comment>
+  </data>
+  <data name="StylizeImagesDialog_backBox.Text" xml:space="preserve">
+    <value>Aplicar a imágenes de fondo</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="StylizeImagesDialog_backImagesLabel.Text" xml:space="preserve">
+    <value>Imágenes de fondo: {0}, seleccionadas: {1}</value>
+    <comment>label</comment>
+  </data>
+  <data name="StylizeImagesDialog_foreBox.Text" xml:space="preserve">
+    <value>Aplicar a imágenes de primer plano</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="StylizeImagesDialog_foreImagesLabel.Text" xml:space="preserve">
+    <value>Imágenes de primer plano: {0}, seleccionadas: {1}</value>
+    <comment>label</comment>
+  </data>
+  <data name="StylizeImagesDialog_styleBox.Text" xml:space="preserve">
+    <value>escala de grises
+Sepia
+polaroid
+Invertir</value>
+    <comment>combobox</comment>
+  </data>
+  <data name="StylizeImagesDialog_Text" xml:space="preserve">
+    <value>Estilizar imágenes</value>
+    <comment>dialog title</comment>
+  </data>
   <data name="TableTheme_Screentip" xml:space="preserve">
     <value>Tema de mesa OneMore {0}</value>
     <comment>Screentip for table theme gallery tiles</comment>
@@ -4950,6 +4990,9 @@ En esta sección</value>
   </data>
   <data name="word_Storage" xml:space="preserve">
     <value>Almacenamiento</value>
+  </data>
+  <data name="word_Style" xml:space="preserve">
+    <value>Estilo</value>
   </data>
   <data name="word_Stylize" xml:space="preserve">
     <value>Estilizar</value>
