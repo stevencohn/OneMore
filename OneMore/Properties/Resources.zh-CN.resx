@@ -289,6 +289,10 @@ OneNote 将自动关闭</value>
     <value>档案位置</value>
     <comment>archive dialog title</comment>
   </data>
+  <data name="ArrangeContainersCommand_noContainers" xml:space="preserve">
+    <value>该页面未找到容器</value>
+    <comment>message</comment>
+  </data>
   <data name="ArrangeContainersDialog.Text" xml:space="preserve">
     <value>排列容器</value>
     <comment>dialog title</comment>

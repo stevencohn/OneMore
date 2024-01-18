@@ -494,6 +494,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to No containers found on this page.
+        /// </summary>
+        internal static string ArrangeContainersCommand_noContainers {
+            get {
+                return ResourceManager.GetString("ArrangeContainersCommand_noContainers", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Columns.
         /// </summary>
         internal static string ArrangeContainersDialog_columnsLabel_Text {

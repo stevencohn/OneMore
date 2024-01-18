@@ -285,6 +285,10 @@
     <value>Emplacement des archives</value>
     <comment>archive dialog title</comment>
   </data>
+  <data name="ArrangeContainersCommand_noContainers" xml:space="preserve">
+    <value>Aucun conteneur trouvé sur cette page</value>
+    <comment>message</comment>
+  </data>
   <data name="ArrangeContainersDialog.Text" xml:space="preserve">
     <value>Organiser les conteneurs</value>
     <comment>dialog title</comment>
