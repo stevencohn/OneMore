@@ -50,6 +50,10 @@ namespace River.OneMoreAddIn
 			=> await factory.Run<AddFormulaCommand>();
 
 
+		[Command("ribAdjustImagesButton_Label", Keys.None, "ribImagesMenu")]
+		public async Task AdjustImagesCmd(IRibbonControl control)
+			=> await factory.Run<AdjustImagesCommand>();
+
 		public async Task AnalyzeCmd(IRibbonControl control)
 			=> await factory.Run<AnalyzeCommand>();
 
@@ -705,11 +709,6 @@ namespace River.OneMoreAddIn
 		[Command("ribReportRemindersButton_Label", Keys.None, "ribRemindersMenu")]
 		public async Task ReportRemindersCmd(IRibbonControl control)
 			=> await factory.Run<ReportRemindersCommand>();
-
-
-		[Command("ribResizeImagesButton_Label", Keys.None, "ribImagesMenu")]
-		public async Task ResizeImagesCmd(IRibbonControl control)
-			=> await factory.Run<ResizeImagesCommand>();
 
 
 		[Command("ribRestoreAutosizeButton_Label", Keys.None, "ribCleanMenu")]

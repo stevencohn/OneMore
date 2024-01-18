@@ -719,7 +719,7 @@
     <Compile Include="Commands\Tables\AddFormulaCommand.cs" />
     <Compile Include="Commands\Page\MergeCommand.cs" />
     <Compile Include="Commands\Styles\NewStyleCommand.cs" />
-    <Compile Include="Commands\Images\ResizeImagesCommand.cs" />
+    <Compile Include="Commands\Images\AdjustImagesCommand.cs" />
     <Compile Include="Commands\Snippets\InsertCalendarDialog.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -795,11 +795,11 @@
     <Compile Include="Commands\Clean\RemoveSpacingDialog.Designer.cs">
       <DependentUpon>RemoveSpacingDialog.cs</DependentUpon>
     </Compile>
-    <Compile Include="Commands\Images\ResizeImagesDialog.cs">
+    <Compile Include="Commands\Images\AdjustImagesDialog.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Commands\Images\ResizeImagesDialog.Designer.cs">
-      <DependentUpon>ResizeImagesDialog.cs</DependentUpon>
+    <Compile Include="Commands\Images\AdjustImagesDialog.Designer.cs">
+      <DependentUpon>AdjustImagesDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="Commands\File\PluginDialog.cs">
       <SubType>Form</SubType>
@@ -1502,8 +1502,8 @@
     <EmbeddedResource Include="Commands\Styles\ReorderDialog.resx">
       <DependentUpon>ReorderDialog.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Commands\Images\ResizeImagesDialog.resx">
-      <DependentUpon>ResizeImagesDialog.cs</DependentUpon>
+    <EmbeddedResource Include="Commands\Images\AdjustImagesDialog.resx">
+      <DependentUpon>AdjustImagesDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Commands\File\PluginDialog.resx">
       <DependentUpon>PluginDialog.cs</DependentUpon>

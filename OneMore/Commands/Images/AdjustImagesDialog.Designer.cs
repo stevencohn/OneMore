@@ -3,7 +3,7 @@ using System.IO;
 
 namespace River.OneMoreAddIn.Commands
 {
-	partial class ResizeImagesDialog
+	partial class AdjustImagesDialog
 	{
 		/// <summary>
 		/// Required designer variable.
@@ -35,7 +35,7 @@ namespace River.OneMoreAddIn.Commands
 		/// </summary>
 		private void InitializeComponent()
 		{
-			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ResizeImagesDialog));
+			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AdjustImagesDialog));
 			this.cancelButton = new System.Windows.Forms.Button();
 			this.okButton = new System.Windows.Forms.Button();
 			this.pctRadio = new System.Windows.Forms.RadioButton();
@@ -666,7 +666,7 @@ namespace River.OneMoreAddIn.Commands
 			this.autoSizeRadio.Click += new System.EventHandler(this.RadioClick);
 			this.autoSizeRadio.KeyDown += new System.Windows.Forms.KeyEventHandler(this.RadioKeyDown);
 			// 
-			// ResizeImagesDialog
+			// AdjustImagesDialog
 			// 
 			this.AcceptButton = this.okButton;
 			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -719,7 +719,7 @@ namespace River.OneMoreAddIn.Commands
 			this.Controls.Add(this.cancelButton);
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.MinimizeBox = false;
-			this.Name = "ResizeImagesDialog";
+			this.Name = "AdjustImagesDialog";
 			this.Padding = new System.Windows.Forms.Padding(22, 23, 22, 8);
 			this.ShowInTaskbar = false;
 			this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;

@@ -2460,75 +2460,75 @@ Sélectionnez Non pour conserver une ligne vide entre les paragraphes</value>
     <value>Ancien ou nouveau</value>
     <comment>title</comment>
   </data>
-  <data name="ResizeImagesDialog.Text" xml:space="preserve">
+  <data name="AdjustImagesDialog.Text" xml:space="preserve">
     <value>Redimensionner et ajuster l'image</value>
     <comment>dialog title</comment>
   </data>
-  <data name="ResizeImagesDialog_absRadio.Text" xml:space="preserve">
+  <data name="AdjustImagesDialog_absRadio.Text" xml:space="preserve">
     <value>Absolu</value>
     <comment>radio button</comment>
   </data>
-  <data name="ResizeImagesDialog_allLabel.Text" xml:space="preserve">
+  <data name="AdjustImagesDialog_allLabel.Text" xml:space="preserve">
     <value>toutes les images sur cette page</value>
     <comment>info label</comment>
   </data>
-  <data name="ResizeImagesDialog_appliesTo" xml:space="preserve">
+  <data name="AdjustImagesDialog_appliesTo" xml:space="preserve">
     <value>S'applique à</value>
     <comment>label override</comment>
   </data>
-  <data name="ResizeImagesDialog_autoSizeRadio.Text" xml:space="preserve">
+  <data name="AdjustImagesDialog_autoSizeRadio.Text" xml:space="preserve">
     <value>Taille automatique</value>
     <comment>radio</comment>
   </data>
-  <data name="ResizeImagesDialog_heightLabel.Text" xml:space="preserve">
+  <data name="AdjustImagesDialog_heightLabel.Text" xml:space="preserve">
     <value>la taille</value>
     <comment>label</comment>
   </data>
-  <data name="ResizeImagesDialog_imageSizeLabel.Text" xml:space="preserve">
+  <data name="AdjustImagesDialog_imageSizeLabel.Text" xml:space="preserve">
     <value>Taille de l'image</value>
     <comment>label</comment>
   </data>
-  <data name="ResizeImagesDialog_limitsBox.Text" xml:space="preserve">
+  <data name="AdjustImagesDialog_limitsBox.Text" xml:space="preserve">
     <value>Redimensionner toutes les images
 Ne rétrécissez pas les images plus grandes
 Ne pas agrandir les petites images</value>
     <comment>combobox</comment>
   </data>
-  <data name="ResizeImagesDialog_noImages" xml:space="preserve">
+  <data name="AdjustImagesDialog_noImages" xml:space="preserve">
     <value>Aucune image n'a été trouvée sur cette page.
 
 Les images doivent être dans un conteneur de plan. Les images d'arrière-plan ne peuvent pas être ajustées.</value>
     <comment>message box</comment>
   </data>
-  <data name="ResizeImagesDialog_pctRadio.Text" xml:space="preserve">
+  <data name="AdjustImagesDialog_pctRadio.Text" xml:space="preserve">
     <value>Pourcentage</value>
     <comment>radio</comment>
   </data>
-  <data name="ResizeImagesDialog_preserveBox.Text" xml:space="preserve">
+  <data name="AdjustImagesDialog_preserveBox.Text" xml:space="preserve">
     <value>Préserver la taille de stockage</value>
     <comment>checkbox</comment>
   </data>
-  <data name="ResizeImagesDialog_presetRadio.Text" xml:space="preserve">
+  <data name="AdjustImagesDialog_presetRadio.Text" xml:space="preserve">
     <value>Préréglage</value>
     <comment>radio</comment>
   </data>
-  <data name="ResizeImagesDialog_previewGroup.Text" xml:space="preserve">
+  <data name="AdjustImagesDialog_previewGroup.Text" xml:space="preserve">
     <value>Aperçu {0}</value>
     <comment>group box for single image</comment>
   </data>
-  <data name="ResizeImagesDialog_repositionBox.Text" xml:space="preserve">
+  <data name="AdjustImagesDialog_repositionBox.Text" xml:space="preserve">
     <value>Repositionner les images d'arrière-plan</value>
     <comment>checkbox</comment>
   </data>
-  <data name="ResizeImagesDialog_resetLinkLabel.Text" xml:space="preserve">
+  <data name="AdjustImagesDialog_resetLinkLabel.Text" xml:space="preserve">
     <value>Réinitialiser les valeurs</value>
     <comment>link label</comment>
   </data>
-  <data name="ResizeImagesDialog_sizeLink.Text" xml:space="preserve">
+  <data name="AdjustImagesDialog_sizeLink.Text" xml:space="preserve">
     <value>{0} x {1}</value>
     <comment>width x height</comment>
   </data>
-  <data name="ResizeImagesDialog_styleBox.Text" xml:space="preserve">
+  <data name="AdjustImagesDialog_styleBox.Text" xml:space="preserve">
     <value>Original
 Échelle de gris
 Sépia
@@ -2536,7 +2536,7 @@ Polaroïd
 Inverser</value>
     <comment>combobox</comment>
   </data>
-  <data name="ResizeImagesDialog_viewSizeLabel.Text" xml:space="preserve">
+  <data name="AdjustImagesDialog_viewSizeLabel.Text" xml:space="preserve">
     <value>Ta taille de vue</value>
     <comment>label</comment>
   </data>
@@ -3634,11 +3634,11 @@ Inverser</value>
     <value>Générer un rapport récapitulatif des rappels</value>
     <comment>ribbon reminders</comment>
   </data>
-  <data name="ribResizeImagesButton_Label" xml:space="preserve">
+  <data name="ribAdjustImagesButton_Label" xml:space="preserve">
     <value>Redimensionner et ajuster</value>
     <comment>Ribbon OneMore menu item, Resize selected image(s)</comment>
   </data>
-  <data name="ribResizeImagesButton_Screentip" xml:space="preserve">
+  <data name="ribAdjustImagesButton_Screentip" xml:space="preserve">
     <value>Redimensionner et ajuster les images sélectionnées</value>
     <comment>ribbon images</comment>
   </data>

@@ -55,8 +55,12 @@ namespace River.OneMoreAddIn.Commands
 				Resx.StylizeImagesDialog_backImagesLabel_Text,
 				backCount, backSelected);
 
-			foreBox.Enabled = foreCount > 0;
-			backBox.Enabled = backCount > 0;
+			foreBox.Enabled = foreImagesLabel.Enabled = foreCount > 0;
+			backBox.Enabled = backImagesLabel.Enabled = backCount > 0;
+
+			foreBox.Checked = foreCount > 0 && backCount == 0;
+			backBox.Checked = backCount > 0 && foreCount == 0;
+
 			styleBox.SelectedIndex = 0;
 		}
 

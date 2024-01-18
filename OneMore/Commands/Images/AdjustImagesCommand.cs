@@ -20,14 +20,14 @@ namespace River.OneMoreAddIn.Commands
 	/// <summary>
 	/// Resize and adjust images on the page
 	/// </summary>
-	internal class ResizeImagesCommand : Command
+	internal class AdjustImagesCommand : Command
 	{
 		private OneNote one;
 		private Page page;
 		private XNamespace ns;
 
 
-		public ResizeImagesCommand()
+		public AdjustImagesCommand()
 		{
 		}
 
@@ -65,7 +65,7 @@ namespace River.OneMoreAddIn.Commands
 				}
 				else
 				{
-					UIHelper.ShowMessage(Resx.ResizeImagesDialog_noImages);
+					UIHelper.ShowMessage(Resx.AdjustImagesDialog_noImages);
 				}
 			}
 		}
@@ -87,7 +87,7 @@ namespace River.OneMoreAddIn.Commands
 				viewHeight = image.Height;
 			}
 
-			using var dialog = new ResizeImagesDialog(image, viewWidth, viewHeight);
+			using var dialog = new AdjustImagesDialog(image, viewWidth, viewHeight);
 			var result = dialog.ShowDialog(owner);
 			if (result != DialogResult.OK)
 			{
@@ -125,7 +125,7 @@ namespace River.OneMoreAddIn.Commands
 		{
 			var hasBgImages = page.Root.Elements(ns + "Image").Any();
 
-			using var dialog = new ResizeImagesDialog(hasBgImages);
+			using var dialog = new AdjustImagesDialog(hasBgImages);
 			var result = dialog.ShowDialog(owner);
 			if (result != DialogResult.OK)
 			{

@@ -19,6 +19,8 @@ namespace River.OneMoreAddIn.Commands
 	/// </summary>
 	internal class HashtagScanner : Loggable, IDisposable
 	{
+		private const int Throttle = 25;
+
 		private readonly OneNote one;
 		private readonly string lastTime;
 		private readonly HashtagPageSannerFactory factory;
@@ -186,7 +188,7 @@ namespace River.OneMoreAddIn.Commands
 							}
 
 							// throttle the workload to give breathing room to OneNote UI
-							await Task.Delay(100);
+							await Task.Delay(Throttle);
 						}
 
 						provider.DeletePhantoms(pids, sectionID, sectionPath);

@@ -2464,75 +2464,75 @@ ISO-code then comma then language name</comment>
     <value>قديم أو جديد</value>
     <comment>title</comment>
   </data>
-  <data name="ResizeImagesDialog.Text" xml:space="preserve">
+  <data name="AdjustImagesDialog.Text" xml:space="preserve">
     <value>تغيير حجم وتعديل الصورة</value>
     <comment>dialog title</comment>
   </data>
-  <data name="ResizeImagesDialog_absRadio.Text" xml:space="preserve">
+  <data name="AdjustImagesDialog_absRadio.Text" xml:space="preserve">
     <value>مطلق</value>
     <comment>radio button</comment>
   </data>
-  <data name="ResizeImagesDialog_allLabel.Text" xml:space="preserve">
+  <data name="AdjustImagesDialog_allLabel.Text" xml:space="preserve">
     <value>جميع الصور في هذه الصفحة</value>
     <comment>info label</comment>
   </data>
-  <data name="ResizeImagesDialog_appliesTo" xml:space="preserve">
+  <data name="AdjustImagesDialog_appliesTo" xml:space="preserve">
     <value>ينطبق على</value>
     <comment>label override</comment>
   </data>
-  <data name="ResizeImagesDialog_autoSizeRadio.Text" xml:space="preserve">
+  <data name="AdjustImagesDialog_autoSizeRadio.Text" xml:space="preserve">
     <value>الحجم التلقائي</value>
     <comment>radio</comment>
   </data>
-  <data name="ResizeImagesDialog_heightLabel.Text" xml:space="preserve">
+  <data name="AdjustImagesDialog_heightLabel.Text" xml:space="preserve">
     <value>ارتفاع</value>
     <comment>label</comment>
   </data>
-  <data name="ResizeImagesDialog_imageSizeLabel.Text" xml:space="preserve">
+  <data name="AdjustImagesDialog_imageSizeLabel.Text" xml:space="preserve">
     <value>حجم الصورة</value>
     <comment>label</comment>
   </data>
-  <data name="ResizeImagesDialog_limitsBox.Text" xml:space="preserve">
+  <data name="AdjustImagesDialog_limitsBox.Text" xml:space="preserve">
     <value>تغيير حجم كل الصور
 لا تقم بتقليص الصور الكبيرة
 لا تقم بتكبير الصور الأصغر</value>
     <comment>combobox</comment>
   </data>
-  <data name="ResizeImagesDialog_noImages" xml:space="preserve">
+  <data name="AdjustImagesDialog_noImages" xml:space="preserve">
     <value>لم يتم العثور على صور في هذه الصفحة.
 
 يجب أن تكون الصور في حاوية المخطط التفصيلي. لا يمكن تعديل صور الخلفية.</value>
     <comment>message box</comment>
   </data>
-  <data name="ResizeImagesDialog_pctRadio.Text" xml:space="preserve">
+  <data name="AdjustImagesDialog_pctRadio.Text" xml:space="preserve">
     <value>النسبة المئوية</value>
     <comment>radio</comment>
   </data>
-  <data name="ResizeImagesDialog_preserveBox.Text" xml:space="preserve">
+  <data name="AdjustImagesDialog_preserveBox.Text" xml:space="preserve">
     <value>الحفاظ على حجم التخزين</value>
     <comment>checkbox</comment>
   </data>
-  <data name="ResizeImagesDialog_presetRadio.Text" xml:space="preserve">
+  <data name="AdjustImagesDialog_presetRadio.Text" xml:space="preserve">
     <value>المعد مسبقا</value>
     <comment>radio</comment>
   </data>
-  <data name="ResizeImagesDialog_previewGroup.Text" xml:space="preserve">
+  <data name="AdjustImagesDialog_previewGroup.Text" xml:space="preserve">
     <value>معاينة {0}</value>
     <comment>group box for single image</comment>
   </data>
-  <data name="ResizeImagesDialog_repositionBox.Text" xml:space="preserve">
+  <data name="AdjustImagesDialog_repositionBox.Text" xml:space="preserve">
     <value>إعادة وضع صور الخلفية</value>
     <comment>checkbox</comment>
   </data>
-  <data name="ResizeImagesDialog_resetLinkLabel.Text" xml:space="preserve">
+  <data name="AdjustImagesDialog_resetLinkLabel.Text" xml:space="preserve">
     <value>إعادة القيم</value>
     <comment>link label</comment>
   </data>
-  <data name="ResizeImagesDialog_sizeLink.Text" xml:space="preserve">
+  <data name="AdjustImagesDialog_sizeLink.Text" xml:space="preserve">
     <value>{0} × {1}</value>
     <comment>width x height</comment>
   </data>
-  <data name="ResizeImagesDialog_styleBox.Text" xml:space="preserve">
+  <data name="AdjustImagesDialog_styleBox.Text" xml:space="preserve">
     <value>إبداعي
 مقياس رمادي
 بني داكن
@@ -2540,7 +2540,7 @@ ISO-code then comma then language name</comment>
 عكس</value>
     <comment>combobox</comment>
   </data>
-  <data name="ResizeImagesDialog_viewSizeLabel.Text" xml:space="preserve">
+  <data name="AdjustImagesDialog_viewSizeLabel.Text" xml:space="preserve">
     <value>عرض الحجم</value>
     <comment>label</comment>
   </data>
@@ -3639,11 +3639,11 @@ ISO-code then comma then language name</comment>
     <value>قم بإنشاء تقرير موجز للتذكيرات</value>
     <comment>ribbon reminders</comment>
   </data>
-  <data name="ribResizeImagesButton_Label" xml:space="preserve">
+  <data name="ribAdjustImagesButton_Label" xml:space="preserve">
     <value>تغيير حجم وتعديل</value>
     <comment>Ribbon OneMore menu item, Resize selected image(s)</comment>
   </data>
-  <data name="ribResizeImagesButton_Screentip" xml:space="preserve">
+  <data name="ribAdjustImagesButton_Screentip" xml:space="preserve">
     <value>تغيير حجم الصور المحددة وضبطها</value>
     <comment>ribbon images</comment>
   </data>

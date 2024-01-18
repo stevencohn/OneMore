@@ -14,7 +14,7 @@ namespace River.OneMoreAddIn.Commands
 	using Resx = Properties.Resources;
 
 
-	internal partial class ResizeImagesDialog : UI.LocalizableForm
+	internal partial class AdjustImagesDialog : UI.LocalizableForm
 	{
 		private readonly Image image;
 		private readonly int viewWidth;
@@ -33,7 +33,7 @@ namespace River.OneMoreAddIn.Commands
 		/// Initializes a new dialog to resize all images on the page to a standard width
 		/// and height with respective ratio
 		/// </summary>
-		public ResizeImagesDialog(bool hasBackgroundImages)
+		public AdjustImagesDialog(bool hasBackgroundImages)
 		{
 			Initialize();
 
@@ -46,7 +46,7 @@ namespace River.OneMoreAddIn.Commands
 
 			// hide controls that do not apply...
 
-			viewSizeLabel.Text = Resx.ResizeImagesDialog_appliesTo;
+			viewSizeLabel.Text = Resx.AdjustImagesDialog_appliesTo;
 			allLabel.Location = viewSizeLink.Location;
 			allLabel.Visible = true;
 
@@ -83,7 +83,7 @@ namespace River.OneMoreAddIn.Commands
 		/// Initializes a new dialog to resize a selected image
 		/// </summary>
 		/// <param name="image"></param>
-		public ResizeImagesDialog(Image image, int viewWidth, int viewHeight)
+		public AdjustImagesDialog(Image image, int viewWidth, int viewHeight)
 		{
 			Initialize();
 
@@ -95,13 +95,13 @@ namespace River.OneMoreAddIn.Commands
 			this.viewHeight = viewHeight;
 
 			viewSizeLink.Text = string.Format(
-				Resx.ResizeImagesDialog_sizeLink_Text, this.viewWidth, this.viewHeight);
+				Resx.AdjustImagesDialog_sizeLink_Text, this.viewWidth, this.viewHeight);
 
 			originalWidth = image.Width;
 			originalHeight = image.Height;
 
 			imageSizeLink.Text = string.Format(
-				Resx.ResizeImagesDialog_sizeLink_Text, originalWidth, originalHeight);
+				Resx.AdjustImagesDialog_sizeLink_Text, originalWidth, originalHeight);
 
 			widthBox.Value = viewWidth;
 			heightBox.Value = viewHeight;
@@ -109,7 +109,7 @@ namespace River.OneMoreAddIn.Commands
 			scaling = new MagicScaling(image.HorizontalResolution, image.VerticalResolution);
 
 			previewGroup.Text = string.Format(
-				Resx.ResizeImagesDialog_previewGroup_Text, image.GetSignature());
+				Resx.AdjustImagesDialog_previewGroup_Text, image.GetSignature());
 
 			LoadSettings(true);
 			DrawPreview();
@@ -122,7 +122,7 @@ namespace River.OneMoreAddIn.Commands
 
 			if (NeedsLocalizing())
 			{
-				Text = Resx.ResizeImagesDialog_Text;
+				Text = Resx.AdjustImagesDialog_Text;
 
 				Localize(new string[]
 				{

@@ -270,7 +270,7 @@ Wähle Nein, um eine leere Zeile zwischen den Absätzen zu halten</preferred>
     <source>Update this existing report</source>
     <preferred>Aktualisiere diesen vorhandenen Bericht</preferred>
   </hint>
-  <hint name="ResizeImagesDialog_limitsBox.Text">
+  <hint name="AdjustImagesDialog_limitsBox.Text">
     <source>Resize all images
 Do not shrink larger images
 Do no enlarge smaller images</source>

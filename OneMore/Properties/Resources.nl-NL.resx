@@ -2465,75 +2465,75 @@ Selecteer NO om één lege regel tussen paragrafen te behouden</value>
     <value>Oud of nieuw</value>
     <comment>title</comment>
   </data>
-  <data name="ResizeImagesDialog.Text" xml:space="preserve">
+  <data name="AdjustImagesDialog.Text" xml:space="preserve">
     <value>De grootte van het formaat wijzigen en aanpassen</value>
     <comment>dialog title</comment>
   </data>
-  <data name="ResizeImagesDialog_absRadio.Text" xml:space="preserve">
+  <data name="AdjustImagesDialog_absRadio.Text" xml:space="preserve">
     <value>Absoluut</value>
     <comment>radio button</comment>
   </data>
-  <data name="ResizeImagesDialog_allLabel.Text" xml:space="preserve">
+  <data name="AdjustImagesDialog_allLabel.Text" xml:space="preserve">
     <value>alle afbeeldingen op deze pagina</value>
     <comment>info label</comment>
   </data>
-  <data name="ResizeImagesDialog_appliesTo" xml:space="preserve">
+  <data name="AdjustImagesDialog_appliesTo" xml:space="preserve">
     <value>Geldt voor</value>
     <comment>label override</comment>
   </data>
-  <data name="ResizeImagesDialog_autoSizeRadio.Text" xml:space="preserve">
+  <data name="AdjustImagesDialog_autoSizeRadio.Text" xml:space="preserve">
     <value>Automatische grootte</value>
     <comment>radio</comment>
   </data>
-  <data name="ResizeImagesDialog_heightLabel.Text" xml:space="preserve">
+  <data name="AdjustImagesDialog_heightLabel.Text" xml:space="preserve">
     <value>Hoogte</value>
     <comment>label</comment>
   </data>
-  <data name="ResizeImagesDialog_imageSizeLabel.Text" xml:space="preserve">
+  <data name="AdjustImagesDialog_imageSizeLabel.Text" xml:space="preserve">
     <value>Afbeeldingsgrootte</value>
     <comment>label</comment>
   </data>
-  <data name="ResizeImagesDialog_limitsBox.Text" xml:space="preserve">
+  <data name="AdjustImagesDialog_limitsBox.Text" xml:space="preserve">
     <value>Formaat van alle afbeeldingen wijzigen
 Verklein geen grotere afbeeldingen
 Kleinere afbeeldingen niet vergroten</value>
     <comment>combobox</comment>
   </data>
-  <data name="ResizeImagesDialog_noImages" xml:space="preserve">
+  <data name="AdjustImagesDialog_noImages" xml:space="preserve">
     <value>Er zijn geen afbeeldingen gevonden op deze pagina.
 
 Afbeeldingen moeten zich in een overzichtscontainer bevinden. Achtergrondafbeeldingen kunnen niet worden aangepast.</value>
     <comment>message box</comment>
   </data>
-  <data name="ResizeImagesDialog_pctRadio.Text" xml:space="preserve">
+  <data name="AdjustImagesDialog_pctRadio.Text" xml:space="preserve">
     <value>Percentage</value>
     <comment>radio</comment>
   </data>
-  <data name="ResizeImagesDialog_preserveBox.Text" xml:space="preserve">
+  <data name="AdjustImagesDialog_preserveBox.Text" xml:space="preserve">
     <value>Opslaggrootte behouden</value>
     <comment>checkbox</comment>
   </data>
-  <data name="ResizeImagesDialog_presetRadio.Text" xml:space="preserve">
+  <data name="AdjustImagesDialog_presetRadio.Text" xml:space="preserve">
     <value>Vooraf ingesteld</value>
     <comment>radio</comment>
   </data>
-  <data name="ResizeImagesDialog_previewGroup.Text" xml:space="preserve">
+  <data name="AdjustImagesDialog_previewGroup.Text" xml:space="preserve">
     <value>Voorbeeld {0}</value>
     <comment>group box for single image</comment>
   </data>
-  <data name="ResizeImagesDialog_repositionBox.Text" xml:space="preserve">
+  <data name="AdjustImagesDialog_repositionBox.Text" xml:space="preserve">
     <value>Achtergrondafbeeldingen opnieuw positioneren</value>
     <comment>checkbox</comment>
   </data>
-  <data name="ResizeImagesDialog_resetLinkLabel.Text" xml:space="preserve">
+  <data name="AdjustImagesDialog_resetLinkLabel.Text" xml:space="preserve">
     <value>Waarden resetten</value>
     <comment>link label</comment>
   </data>
-  <data name="ResizeImagesDialog_sizeLink.Text" xml:space="preserve">
+  <data name="AdjustImagesDialog_sizeLink.Text" xml:space="preserve">
     <value>{0} x {1}</value>
     <comment>width x height</comment>
   </data>
-  <data name="ResizeImagesDialog_styleBox.Text" xml:space="preserve">
+  <data name="AdjustImagesDialog_styleBox.Text" xml:space="preserve">
     <value>Origineel
 Grijsschaal
 Sepia
@@ -2541,7 +2541,7 @@ Polaroid
 Omkeren</value>
     <comment>combobox</comment>
   </data>
-  <data name="ResizeImagesDialog_viewSizeLabel.Text" xml:space="preserve">
+  <data name="AdjustImagesDialog_viewSizeLabel.Text" xml:space="preserve">
     <value>Bekijk maat</value>
     <comment>label</comment>
   </data>
@@ -3639,11 +3639,11 @@ Omkeren</value>
     <value>Genereer een overzichtsrapport van herinneringen</value>
     <comment>ribbon reminders</comment>
   </data>
-  <data name="ribResizeImagesButton_Label" xml:space="preserve">
+  <data name="ribAdjustImagesButton_Label" xml:space="preserve">
     <value>Formaat wijzigen en aanpassen</value>
     <comment>Ribbon OneMore menu item, Resize selected image(s)</comment>
   </data>
-  <data name="ribResizeImagesButton_Screentip" xml:space="preserve">
+  <data name="ribAdjustImagesButton_Screentip" xml:space="preserve">
     <value>Formaat wijzigen en geselecteerde afbeeldingen aanpassen</value>
     <comment>ribbon images</comment>
   </data>
