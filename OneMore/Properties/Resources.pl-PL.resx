@@ -297,6 +297,10 @@ OneNote zamknie się automatycznie</value>
     <value>Lokalizacja archiwum.</value>
     <comment>archive dialog title</comment>
   </data>
+  <data name="ArrangeContainersCommand_noContainers" xml:space="preserve">
+    <value>Na tej stronie nie znaleziono kontenerów</value>
+    <comment>message</comment>
+  </data>
   <data name="ArrangeContainersDialog.Text" xml:space="preserve">
     <value>Ułóż pojemniki</value>
     <comment>dialog title</comment>

@@ -288,6 +288,10 @@
     <value>أرشفة الموقع</value>
     <comment>archive dialog title</comment>
   </data>
+  <data name="ArrangeContainersCommand_noContainers" xml:space="preserve">
+    <value>لم يتم العثور على حاويات في هذه الصفحة</value>
+    <comment>message</comment>
+  </data>
   <data name="ArrangeContainersDialog.Text" xml:space="preserve">
     <value>ترتيب الحاويات</value>
     <comment>dialog title</comment>

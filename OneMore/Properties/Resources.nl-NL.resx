@@ -289,6 +289,10 @@ OneNote wordt automatisch gesloten</value>
     <value>Archieflocatie</value>
     <comment>archive dialog title</comment>
   </data>
+  <data name="ArrangeContainersCommand_noContainers" xml:space="preserve">
+    <value>Er zijn geen containers gevonden op deze pagina</value>
+    <comment>message</comment>
+  </data>
   <data name="ArrangeContainersDialog.Text" xml:space="preserve">
     <value>Containers schikken</value>
     <comment>dialog title</comment>

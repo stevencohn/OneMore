@@ -11,6 +11,7 @@ namespace River.OneMoreAddIn.Commands
 	using System.Linq;
 	using System.Threading.Tasks;
 	using System.Xml.Linq;
+	using Resx = Properties.Resources;
 
 
 	/// <summary>
@@ -35,26 +36,34 @@ namespace River.OneMoreAddIn.Commands
 
 		public override async Task Execute(params object[] args)
 		{
+			using var one = new OneNote(out page, out ns);
+
+			if (!page.Root.Elements(ns + "Outline").Any())
+			{
+				UIHelper.ShowInfo(Resx.ArrangeContainersCommand_noContainers);
+				return;
+			}
+
 			using var dialog = new ArrangeContainersDialog();
 			if (dialog.ShowDialog(owner) != System.Windows.Forms.DialogResult.OK)
 			{
 				return;
 			}
 
-			using var one = new OneNote(out page, out ns);
-
 			FindTopMargin();
 
-			if (dialog.Vertical)
+			var updated = dialog.Vertical
+				? ArrangeVertical(dialog.PageWidth)
+				: ArrangeFlow(dialog.Columns, dialog.PageWidth);
+
+			if (updated)
 			{
-				ArrangeVertical(dialog.PageWidth);
+				await one.Update(page);
 			}
 			else
 			{
-				ArrangeFlow(dialog.Columns, dialog.PageWidth);
+				UIHelper.ShowInfo(Resx.ArrangeContainersCommand_noContainers);
 			}
-
-			await one.Update(page);
 		}
 
 
@@ -79,9 +88,14 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private void ArrangeVertical(int pageWidth)
+		private bool ArrangeVertical(int pageWidth)
 		{
 			var containers = CollectContainers(page, ns);
+
+			if (!containers.Any())
+			{
+				return false;
+			}
 
 			// find the topmost container position
 			var yoffset = Math.Min(
@@ -106,12 +120,19 @@ namespace River.OneMoreAddIn.Commands
 				var height = size.GetAttributeDouble("height");
 				yoffset += height + BottomMargin;
 			}
+
+			return true;
 		}
 
 
-		private void ArrangeFlow(int columns, int pageWidth)
+		private bool ArrangeFlow(int columns, int pageWidth)
 		{
 			var containers = CollectContainers(page, ns);
+
+			if (!containers.Any())
+			{
+				return false;
+			}
 
 			var xoffset = LeftMargin;
 
@@ -161,6 +182,8 @@ namespace River.OneMoreAddIn.Commands
 				xoffset += Math.Max(width, colwidth) + RightMargin;
 				col++;
 			}
+
+			return true;
 		}
 
 

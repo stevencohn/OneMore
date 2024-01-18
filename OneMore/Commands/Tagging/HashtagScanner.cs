@@ -184,6 +184,9 @@ namespace River.OneMoreAddIn.Commands
 									dirtyPages++;
 								}
 							}
+
+							// throttle the workload to give breathing room to OneNote UI
+							await Task.Delay(100);
 						}
 
 						provider.DeletePhantoms(pids, sectionID, sectionPath);
