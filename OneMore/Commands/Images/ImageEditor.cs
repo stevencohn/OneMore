@@ -126,21 +126,6 @@ namespace River.OneMoreAddIn.Commands
 				edit = ChangeQuality(edit, Quality);
 			}
 
-			// stylize before others, do not combine matrix
-			if (Style != Stylization.None)
-			{
-				var m = Style switch
-				{
-					Stylization.GrayScale => MakeGrayscaleMatrix(),
-					Stylization.Sepia => MakeSepiaMatrix(),
-					Stylization.Polaroid => MakePolaroidMatrix(),
-					_ => MakeInvertedMatrix(),
-				};
-
-				trash.Push(edit);
-				edit = Transform(edit, m);
-			}
-
 			// TODO: is there an optimal way to combine transformations, in other words.
 			// can we use matrix.Multiple(other) so avoid creating interim images
 
@@ -160,6 +145,20 @@ namespace River.OneMoreAddIn.Commands
 			{
 				trash.Push(edit);
 				edit = Transform(edit, MakeSaturationMatrix(Saturation));
+			}
+
+			if (Style != Stylization.None)
+			{
+				var m = Style switch
+				{
+					Stylization.GrayScale => MakeGrayscaleMatrix(),
+					Stylization.Sepia => MakeSepiaMatrix(),
+					Stylization.Polaroid => MakePolaroidMatrix(),
+					_ => MakeInvertedMatrix(),
+				};
+
+				trash.Push(edit);
+				edit = Transform(edit, m);
 			}
 
 			// opacity must be set last, do not combined matrix
