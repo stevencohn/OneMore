@@ -155,6 +155,7 @@
     <Compile Include="Commands\File\Markdown\OneMoreDigExtensions.cs" />
     <Compile Include="Commands\File\Markdown\OneMoreDigRenderer.cs" />
     <Compile Include="Commands\Images\CompressImagesCommand.cs" />
+    <Compile Include="Commands\Images\ImageEditor.cs" />
     <Compile Include="Commands\Images\PlantUmlCommand.cs" />
     <Compile Include="Commands\Images\OpenImageWithCommand.cs" />
     <Compile Include="Commands\Images\PlantUmlHelper.cs" />
@@ -273,6 +274,7 @@
     <Compile Include="Helpers\Extensions\HashAlgorithmExtensions.cs" />
     <Compile Include="Helpers\Extensions\ScreenExtensions.cs" />
     <Compile Include="Helpers\Heatmap.cs" />
+    <Compile Include="Models\OneImage.cs" />
     <Compile Include="Models\KnownSchemaAttributes.cs" />
     <Compile Include="Models\PageReader.cs" />
     <Compile Include="AddInHotkeys.cs" />
@@ -892,7 +894,7 @@
     <Compile Include="Helpers\Hotkeys\HotkeyEventArgs.cs" />
     <Compile Include="Helpers\Hotkeys\HotkeyManager.cs" />
     <Compile Include="Helpers\Hotkeys\HotModifier.cs" />
-    <Compile Include="Helpers\Extensions\IntExtensions.cs" />
+    <Compile Include="Helpers\Extensions\NumericExtensions.cs" />
     <Compile Include="Helpers\ILogger.cs" />
     <Compile Include="Helpers\Native.cs" />
     <Compile Include="Helpers\Office\Office.cs" />

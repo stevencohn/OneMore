@@ -4,10 +4,9 @@
 
 namespace River.OneMoreAddIn.Commands
 {
+	using River.OneMoreAddIn.Models;
 	using System;
 	using System.Drawing;
-	using System.Globalization;
-	using System.IO;
 	using System.Linq;
 	using System.Threading.Tasks;
 	using Resx = Properties.Resources;
@@ -37,51 +36,47 @@ namespace River.OneMoreAddIn.Commands
 					elements = page.Root.Descendants(ns + "Image");
 				}
 
+				if (!elements.Any())
+				{
+					UI.MoreBubbleWindow.Show(Resx.ConvertImagesCommand_NoImages);
+					return;
+				}
+
 				var count = 0;
 				var delta = 0;
 
-				if (elements.Any())
+				foreach (var element in elements)
 				{
-					foreach (var element in elements)
+					var wrapper = new OneImage(element);
+					using var image = wrapper.ReadImage();
+
+					if (image.Width > wrapper.Width || image.Height > wrapper.Height)
 					{
-						// convert base64 to image
-						var data = element.Element(ns + "Data");
-						var dataLen = data.Value.Length;
-
-						var bytes = Convert.FromBase64String(data.Value);
-						using var input = new MemoryStream(bytes, 0, bytes.Length);
-						using var image = Image.FromStream(input);
-
-						var size = element.Element(ns + "Size");
-						int viewWidth = (int)decimal.Parse(
-							size.Attribute("width").Value, CultureInfo.InvariantCulture);
-						int viewHeight = (int)decimal.Parse(
-							size.Attribute("height").Value, CultureInfo.InvariantCulture);
-
-						if (image.Width > viewWidth || image.Height > viewHeight)
+						var editor = new ImageEditor(image)
 						{
-							using var resized = image.Resize(viewWidth, viewHeight, false);
+							Size = new Size(wrapper.Width, wrapper.Height)
+						};
 
-							var value = resized.ToBase64String();
-							if (value.Length < dataLen)
-							{
-								logger.WriteLine($"compressed {dataLen} to {value.Length}");
-								data.Value = value;
+						var datalen = wrapper.Data.Length;
 
-								delta += dataLen - value.Length;
-								count++;
-							}
+						var compressed = editor.Render();
+
+						var data = compressed.ToBase64String();
+						if (data.Length < datalen)
+						{
+							logger.WriteLine($"compressed {datalen} to {data.Length}");
+							wrapper.Data = data;
+
+							delta += datalen - data.Length;
+							count++;
 						}
-					}
-
-					if (count > 0)
-					{
-						await one.Update(page);
 					}
 				}
 
 				if (count > 0)
 				{
+					await one.Update(page);
+
 					UI.MoreBubbleWindow.Show(string.Format(
 						Resx.ConvertImagesCommand_Converted, count, delta));
 				}

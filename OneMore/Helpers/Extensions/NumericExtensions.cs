@@ -3,6 +3,7 @@
 //************************************************************************************************
 
 using System;
+using System.Globalization;
 
 namespace River.OneMoreAddIn
 {
@@ -10,7 +11,7 @@ namespace River.OneMoreAddIn
 	// copied verbatim unashamedly from
 	// http://csharphelper.com/blog/2016/04/convert-to-and-from-roman-numerals-in-c/
 
-	internal static class IntExtensions
+	internal static class NumericExtensions
 	{
 		// Map digits to letters.
 		private static readonly string[] ThouLetters = { "", "M", "MM", "MMM" };
@@ -28,13 +29,17 @@ namespace River.OneMoreAddIn
 		private static readonly string[] SizeSuffixes = { "bytes", "KB", "MB", "GB", "TB", "PB" };
 
 
-		// convert int to alphabet string
+		/// <summary>
+		/// OneMore Extension >> convert int to alphabet string, A, B, C, ...
+		/// </summary>
+		/// <param name="value"></param>
+		/// <returns></returns>
 		public static string ToAlphabetic(this int value)
 		{
 			string result = string.Empty;
 			while (--value >= 0)
 			{
-				result = (char)('A' + value % 26) + result;
+				result = $"{(char)('A' + value % 26)}{result}";
 				value /= 26;
 			}
 
@@ -76,6 +81,11 @@ namespace River.OneMoreAddIn
 		}
 
 
+		/// <summary>
+		/// OneMore Extension >> format as a storage size string, e.g "14 KB"
+		/// </summary>
+		/// <param name="value"></param>
+		/// <returns></returns>
 		public static string ToBytes(this ulong value, int decimalPlaces = 0)
 		{
 			var mag = (int)Math.Max(0, Math.Log(value, 1024));
@@ -85,7 +95,56 @@ namespace River.OneMoreAddIn
 		}
 
 
-		// OneMore Extension >> convert int to roman numerals
+		/// <summary>
+		/// OneMore Extension >> format as invariant string
+		/// </summary>
+		/// <param name="value"></param>
+		/// <returns></returns>
+		public static string ToInvariantString(this decimal value)
+		{
+			return value.ToString("F3", CultureInfo.InvariantCulture);
+		}
+
+
+
+		/// <summary>
+		/// OneMore Extension >> format as invariant string
+		/// </summary>
+		/// <param name="value"></param>
+		/// <returns></returns>
+		public static string ToInvariantString(this double value)
+		{
+			return value.ToString("F3", CultureInfo.InvariantCulture);
+		}
+
+
+		/// <summary>
+		/// OneMore Extension >> format as invariant string
+		/// </summary>
+		/// <param name="value"></param>
+		/// <returns></returns>
+		public static string ToInvariantString(this float value)
+		{
+			return value.ToString("F3", CultureInfo.InvariantCulture);
+		}
+
+
+		/// <summary>
+		/// OneMore Extension >> format as invariant string
+		/// </summary>
+		/// <param name="value"></param>
+		/// <returns></returns>
+		public static string ToInvariantString(this int value)
+		{
+			return value.ToString("F0", CultureInfo.InvariantCulture);
+		}
+
+
+		/// <summary>
+		/// OneMore Extension >> convert int to roman numerals
+		/// </summary>
+		/// <param name="value"></param>
+		/// <returns></returns>
 		public static string ToRoman(this int value)
 		{
 			if (value >= 4000)

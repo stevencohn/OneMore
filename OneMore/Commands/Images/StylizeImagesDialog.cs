@@ -10,14 +10,6 @@ namespace River.OneMoreAddIn.Commands
 
 	internal partial class StylizeImagesDialog : UI.LocalizableForm
 	{
-		public enum ImageStyle
-		{
-			GrayScale,
-			Sepia,
-			Polaroid,
-			Invert
-		}
-
 
 		public StylizeImagesDialog()
 		{
@@ -71,12 +63,12 @@ namespace River.OneMoreAddIn.Commands
 		public bool ApplyBackground => backBox.Checked;
 
 
-		public ImageStyle Style => styleBox.SelectedIndex switch
+		public ImageEditor.Stylization Style => styleBox.SelectedIndex switch
 		{
-			0 => ImageStyle.GrayScale,
-			1 => ImageStyle.Sepia,
-			2 => ImageStyle.Polaroid,
-			_ => ImageStyle.Invert
+			0 => ImageEditor.Stylization.GrayScale,
+			1 => ImageEditor.Stylization.Sepia,
+			2 => ImageEditor.Stylization.Polaroid,
+			_ => ImageEditor.Stylization.Invert
 		};
 
 

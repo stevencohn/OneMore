@@ -281,48 +281,24 @@ namespace River.OneMoreAddIn.Commands
 
 		public Image Adjust(Image image)
 		{
-			var adjusted = image;
-
-			if (qualBar.Value < 100)
-			{
-				using var p = adjusted;
-				adjusted = p.SetQuality(qualBar.Value);
-			}
-
-			if (brightnessBox.Value != 0 || contrastBox.Value != 0)
-			{
-				using var p = adjusted;
-				adjusted = p.SetBrightnessContrast(
-					(float)brightnessBox.Value / 100f,
-					(float)contrastBox.Value / 100f);
-			}
-
-			if (saturationBox.Value != 0)
-			{
-				using var p = adjusted;
-				adjusted = p.SetSaturation((float)saturationBox.Value / 100f);
-			}
+			var editor = new ImageEditor(image);
+			if (qualBar.Value < 100) editor.Quality = qualBar.Value;
+			if (brightnessBar.Value != 0) editor.Brightness = brightnessBar.Value / 100f;
+			if (contrastBar.Value != 0)	editor.Contrast = contrastBar.Value / 100f;
+			if (saturationBar.Value != 0) editor.Saturation = saturationBar.Value / 100f;
 
 			if (styleBox.SelectedIndex > 0)
-			{
-				using var p = adjusted;
-				adjusted = styleBox.SelectedIndex switch
+				editor.Style = styleBox.SelectedIndex switch
 				{
-					1 => p.ToGrayscale(),
-					2 => p.ToSepia(),
-					3 => p.ToPolaroid(),
-					_ => p.Inverted()
+					1 => ImageEditor.Stylization.GrayScale,
+					2 => ImageEditor.Stylization.Sepia,
+					3 => ImageEditor.Stylization.Polaroid,
+					_ => ImageEditor.Stylization.Invert
 				};
-			}
 
-			// opacity must be set last
-			if (opacityBox.Value < 100)
-			{
-				using var p = adjusted;
-				adjusted = p.SetOpacity((float)(opacityBox.Value / 100));
-			}
+			if (opacityBox.Value < 100) editor.Opacity = (float)opacityBox.Value / 100f;
 
-			return adjusted;
+			return editor.Render();
 		}
 
 

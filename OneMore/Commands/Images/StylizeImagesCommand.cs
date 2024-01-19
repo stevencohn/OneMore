@@ -4,10 +4,8 @@
 
 namespace River.OneMoreAddIn.Commands
 {
-	using System;
+	using River.OneMoreAddIn.Models;
 	using System.Collections.Generic;
-	using System.Drawing;
-	using System.IO;
 	using System.Linq;
 	using System.Threading.Tasks;
 	using System.Windows.Forms;
@@ -99,40 +97,17 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private void Stylize(
-			IEnumerable<XElement> elements, StylizeImagesDialog.ImageStyle style)
+		private void Stylize(IEnumerable<XElement> elements, ImageEditor.Stylization style)
 		{
 			foreach (var element in elements)
 			{
-				using var image = ReadImage(element);
-
-				var stylized = style switch
+				var editor = new ImageEditor(new OneImage(element))
 				{
-					StylizeImagesDialog.ImageStyle.GrayScale => image.ToGrayscale(),
-					StylizeImagesDialog.ImageStyle.Sepia => image.ToSepia(),
-					StylizeImagesDialog.ImageStyle.Polaroid => image.ToPolaroid(),
-					_ => image.Inverted()
+					Style = style
 				};
 
-				WriteImage(element, stylized);
+				editor.Render();
 			}
-		}
-
-
-		private Image ReadImage(XElement image)
-		{
-			var data = Convert.FromBase64String(image.Element(ns + "Data").Value);
-			using var stream = new MemoryStream(data, 0, data.Length);
-			return Image.FromStream(stream);
-		}
-
-
-		private void WriteImage(XElement element, Image image)
-		{
-			var bytes = (byte[])new ImageConverter().ConvertTo(image, typeof(byte[]));
-
-			var data = element.Element(ns + "Data");
-			data.Value = Convert.ToBase64String(bytes);
 		}
 	}
 }
