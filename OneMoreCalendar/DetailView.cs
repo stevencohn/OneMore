@@ -124,12 +124,9 @@ namespace OneMoreCalendar
 			e.Graphics.DrawString("DATE", font, brush, (HeadWidth - size.Width) / 2, y);
 			e.Graphics.DrawString("SECTION", font, brush, HeadWidth + 20, y);
 
-			var editor = new ImageEditor(Properties.Resources.Reminder_01_24_Y)
-			{
-				Style = ImageEditor.Stylization.GrayScale
-			};
+			var editor = new ImageEditor { Style = ImageEditor.Stylization.GrayScale };
+			using var gray = editor.Apply(Properties.Resources.Reminder_01_24_Y);
 
-			using var gray = editor.Render();
 			e.Graphics.DrawImage(gray,
 				HeadWidth + PathWidth + 40 + (BellWidth - 15), y + 3, 12f, 12f);
 

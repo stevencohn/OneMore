@@ -11,7 +11,6 @@ namespace River.OneMoreAddIn.Commands
 	using System.Drawing.Imaging;
 	using System.IO;
 	using System.Linq;
-	using System.Xml.Linq;
 
 
 	internal class ImageEditor
@@ -27,11 +26,10 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private readonly OneImage wrapper;
-		private readonly Image image;
+		private bool dirty;
 
 
-		private ImageEditor()
+		public ImageEditor()
 		{
 			Brightness = float.MinValue;
 			Contrast = float.MinValue;
@@ -40,31 +38,13 @@ namespace River.OneMoreAddIn.Commands
 			Saturation = float.MinValue;
 			Style = Stylization.None;
 			Size = Size.Empty;
+			PreserveQualityOnResize = true;
+
+			dirty = false;
 		}
 
 
-		/// <summary>
-		/// Initialize an editor for a one:Image element.
-		/// </summary>
-		/// <param name="root"></param>
-		public ImageEditor(XElement root)
-			: this()
-		{
-			wrapper = new OneImage(root);
-		}
-
-
-		/// <summary>
-		/// Initialize an editor for an image, disconnected from a one:Image element.
-		/// This is used mostly by AdjustImagesDialog.
-		/// </summary>
-		/// <param name="image"></param>
-		public ImageEditor(Image image)
-			: this()
-		{
-			this.image = image;
-		}
-
+		public bool AutoSize { get; set; }
 
 		public float Brightness { private get; set; }
 
@@ -78,20 +58,52 @@ namespace River.OneMoreAddIn.Commands
 
 		public float Saturation { private get; set; }
 
-		public Size Size { private get; set; }
+		public Size Size { get; set; }
 
 		public Stylization Style { private get; set; }
+
+
+		public bool IsReady =>
+			Brightness != float.MinValue ||
+			Contrast != float.MinValue ||
+			Opacity != float.MinValue ||
+			Quality != long.MinValue ||
+			Saturation != float.MinValue ||
+			Size != Size.Empty ||
+			Style != Stylization.None;
+
+
+		public Image Apply(OneImage wrapper)
+		{
+			using var image = wrapper.ReadImage();
+			var edit = Apply(image);
+			if (dirty)
+			{
+				wrapper.WriteImage(edit);
+
+				if (AutoSize)
+				{
+					wrapper.SetAutoSize();
+				}
+				else if (Size != Size.Empty)
+				{
+					wrapper.SetSize(Size.Width, Size.Height);
+				}
+			}
+
+			return edit;
+		}
 
 
 		/// <summary>
 		/// Generate a new image, applying all properties that were explicitly set
 		/// </summary>
+		/// <param name="edit"></param>
 		/// <returns></returns>
-		public Image Render()
+		public Image Apply(Image edit)
 		{
-			var edit = image ?? wrapper.ReadImage();
-
 			var trash = new Stack<Image>();
+			dirty = false;
 
 			// quality first to potentially minimize size of image
 			if (Quality > long.MinValue)
@@ -100,7 +112,7 @@ namespace River.OneMoreAddIn.Commands
 				edit = ChangeQuality(edit, Quality);
 			}
 
-			// stylize before others
+			// stylize before others, do not combine matrix
 			if (Style != Stylization.None)
 			{
 				var m = Style switch
@@ -108,11 +120,11 @@ namespace River.OneMoreAddIn.Commands
 					Stylization.GrayScale => MakeGrayscaleMatrix(),
 					Stylization.Sepia => MakeSepiaMatrix(),
 					Stylization.Polaroid => MakePolaroidMatrix(),
-					_ => MakeInvertedMatrix()
+					_ => MakeInvertedMatrix(),
 				};
 
 				trash.Push(edit);
-				edit = Apply(edit, m);
+				edit = Transform(edit, m);
 			}
 
 			// combine transformations to optimize instantiations...
@@ -139,46 +151,33 @@ namespace River.OneMoreAddIn.Commands
 			if (matrix != null)
 			{
 				trash.Push(edit);
-				edit = Apply(edit, matrix);
+				edit = Transform(edit, matrix);
 			}
 
-			// opacity must be set last
+			// opacity must be set last, do not combined matrix
 			if (Opacity > float.MinValue)
 			{
 				trash.Push(edit);
-				edit = Apply(edit, MakeOpacityMatrix(Opacity));
+				edit = Transform(edit, MakeOpacityMatrix(Opacity));
 			}
 
-			// resize last to attempt to preserve quality
+			// resize last, to attempt to preserve quality
 			if (Size != Size.Empty)
 			{
 				trash.Push(edit);
 				edit = Resize(edit);
 			}
 
-			// update wrapper
-			if (wrapper != null)
+			dirty = trash.Count > 0;
+
+			while (trash.Count > 0)
 			{
+				var popped = trash.Pop();
+				// keep original; let consumer dispose
 				if (trash.Count > 0)
 				{
-					wrapper.WriteImage(edit);
-
-					while (trash.Count > 0)
-					{
-						trash.Pop().Dispose();
-					}
+					popped.Dispose();
 				}
-
-				// optimistic dispose, presuming image is no longer needed
-				edit.Dispose();
-
-				return null;
-			}
-
-			// keep original, presume it may be needed again by consumer
-			while (trash.Count > 1)
-			{
-				trash.Pop().Dispose();
 			}
 
 			return edit;
@@ -354,7 +353,7 @@ namespace River.OneMoreAddIn.Commands
 		#endregion Matrices
 
 
-		private Image Apply(Image original, ColorMatrix matrix)
+		private Image Transform(Image original, ColorMatrix matrix)
 		{
 			var edit = new Bitmap(original.Width, original.Height);
 
@@ -400,13 +399,6 @@ namespace River.OneMoreAddIn.Commands
 				0, 0, original.Width, original.Height,
 				GraphicsUnit.Pixel,
 				attributes);
-
-			// update wrapper
-			if (wrapper != null)
-			{
-				wrapper.Width = Size.Width;
-				wrapper.Height = Size.Height;
-			}
 
 			return edit;
 		}

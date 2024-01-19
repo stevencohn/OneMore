@@ -27,8 +27,8 @@ namespace River.OneMoreAddIn.UI
 			header.Image = new Bitmap(header.Width, header.Height);
 			image = (Bitmap)Resx.ExpandArrow.Clone();
 
-			grayed = new ImageEditor(image) { Style = ImageEditor.Stylization.GrayScale}
-				.Render();
+			grayed = new ImageEditor { Style = ImageEditor.Stylization.GrayScale}
+				.Apply(image);
 
 			expanded = expandedIcon = false;
 		}

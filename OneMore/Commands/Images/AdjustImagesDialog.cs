@@ -29,6 +29,7 @@ namespace River.OneMoreAddIn.Commands
 		private bool mruWidth = true;
 
 
+		#region Lifecycle
 		/// <summary>
 		/// Initializes a new dialog to resize all images on the page to a standard width
 		/// and height with respective ratio
@@ -220,12 +221,10 @@ namespace River.OneMoreAddIn.Commands
 			base.OnLoad(e);
 			suspended = false;
 		}
+		#endregion Lifecycle
 
 
 		// = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
-
-		public bool AutoSizeImage => autoSizeRadio.Checked;
-
 
 		public decimal ImageHeight => heightBox.Value;
 
@@ -245,46 +244,20 @@ namespace River.OneMoreAddIn.Commands
 		public bool LockAspect => lockButton.Checked;
 
 
-		public bool NeedsRewrite =>
-			!preserveBox.Checked ||
-			opacityBox.Value < 100 ||
-			brightnessBox.Value != 0 ||
-			contrastBox.Value != 0 ||
-			saturationBox.Value != 0 ||
-			styleBox.SelectedIndex != 0 ||
-			qualBar.Value < 100;
-
-
 		public decimal Percent => pctRadio.Checked ? percentBox.Value : 0;
 
 
 		public bool RepositionImages => repositionBox.Checked;
 
 
+		// = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
 
-		/// <summary>
-		/// Gets a new image after applying the desired modifications to the source image.
-		/// </summary>
-		/// <returns>A new image</returns>
-		public Image GetImage()
+		public ImageEditor GetImageEditor(Image image)
 		{
-			previewBox.Image = null;
-			preview.Dispose();
-
-			preview = ImageWidth == image.Width && ImageHeight == image.Height
-				? (Image)image.Clone()
-				: image.Resize((int)ImageWidth, (int)ImageHeight);
-
-			return Adjust(preview);
-		}
-
-
-		public Image Adjust(Image image)
-		{
-			var editor = new ImageEditor(image);
+			var editor = new ImageEditor();
 			if (qualBar.Value < 100) editor.Quality = qualBar.Value;
 			if (brightnessBar.Value != 0) editor.Brightness = brightnessBar.Value / 100f;
-			if (contrastBar.Value != 0)	editor.Contrast = contrastBar.Value / 100f;
+			if (contrastBar.Value != 0) editor.Contrast = contrastBar.Value / 100f;
 			if (saturationBar.Value != 0) editor.Saturation = saturationBar.Value / 100f;
 
 			if (styleBox.SelectedIndex > 0)
@@ -298,10 +271,39 @@ namespace River.OneMoreAddIn.Commands
 
 			if (opacityBox.Value < 100) editor.Opacity = (float)opacityBox.Value / 100f;
 
-			return editor.Render();
+			// size...
+
+			if (autoSizeRadio.Checked)
+			{
+				editor.AutoSize = true;
+			}
+			else if (presetRadio.Checked && (int)presetBox.Value != image.Width)
+			{
+				editor.Size = new Size(
+					(int)presetBox.Value,
+					(int)(image.Height * (presetBox.Value / image.Width))
+					);
+			}
+			else if (absRadio.Checked &&
+				(widthBox.Value != image.Width || heightBox.Value != image.Height))
+			{
+				editor.Size = new Size((int)widthBox.Value, (int)heightBox.Value);
+			}
+			else // %
+			{
+				var w = (int)(image.Width * percentBox.Value / 100);
+				var h = (int)(image.Height * percentBox.Value / 100);
+
+				if (w != image.Width || h != image.Height)
+				{
+					editor.Size = new Size(w, h);
+				}
+			}
+
+			return editor;
 		}
 
-
+		#region Internals
 		private void DrawPreview()
 		{
 			previewBox.Image = null;
@@ -348,7 +350,11 @@ namespace River.OneMoreAddIn.Commands
 				}
 			}
 
-			preview = Adjust(image.Resize(w, h));
+			var editor = GetImageEditor(image);
+			// customize size for preview box
+			editor.Size = new Size(w, h);
+
+			preview = editor.Apply(image);
 			previewBox.Image = preview;
 
 			if (storageSize == 0 || !preserveBox.Checked)
@@ -659,15 +665,6 @@ namespace River.OneMoreAddIn.Commands
 		private void OK(object sender, EventArgs e)
 		{
 			SaveSettings();
-
-			// update property values for consumer
-			suspended = true;
-			widthBox.Value = presetBox.Value;
-
-			heightBox.Value = image == null
-				? 0
-				: viewHeight * (widthBox.Value / viewWidth);
-
 			DialogResult = DialogResult.OK;
 		}
 
@@ -715,5 +712,6 @@ namespace River.OneMoreAddIn.Commands
 			DialogResult = DialogResult.Cancel;
 			Close();
 		}
+		#endregion Internals
 	}
 }

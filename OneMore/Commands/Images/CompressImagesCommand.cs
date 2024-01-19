@@ -52,14 +52,17 @@ namespace River.OneMoreAddIn.Commands
 
 					if (image.Width > wrapper.Width || image.Height > wrapper.Height)
 					{
-						var editor = new ImageEditor(image)
+						var editor = new ImageEditor
 						{
+							PreserveQualityOnResize = false,
 							Size = new Size(wrapper.Width, wrapper.Height)
 						};
 
 						var datalen = wrapper.Data.Length;
 
-						var compressed = editor.Render();
+						// work against image rather than wrapper so we can control if we
+						// want to accept changes based on size
+						var compressed = editor.Apply(image);
 
 						var data = compressed.ToBase64String();
 						if (data.Length < datalen)

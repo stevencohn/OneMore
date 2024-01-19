@@ -99,14 +99,11 @@ namespace River.OneMoreAddIn.Commands
 
 		private void Stylize(IEnumerable<XElement> elements, ImageEditor.Stylization style)
 		{
+			var editor = new ImageEditor { Style = style };
+
 			foreach (var element in elements)
 			{
-				var editor = new ImageEditor(new OneImage(element))
-				{
-					Style = style
-				};
-
-				editor.Render();
+				editor.Apply(new OneImage(element));
 			}
 		}
 	}

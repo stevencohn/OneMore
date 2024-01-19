@@ -5,11 +5,7 @@
 namespace River.OneMoreAddIn.Commands
 {
 	using River.OneMoreAddIn.Models;
-	using System;
 	using System.Collections.Generic;
-	using System.Drawing;
-	using System.Globalization;
-	using System.IO;
 	using System.Linq;
 	using System.Threading.Tasks;
 	using System.Windows.Forms;
@@ -22,11 +18,6 @@ namespace River.OneMoreAddIn.Commands
 	/// </summary>
 	internal class AdjustImagesCommand : Command
 	{
-		private OneNote one;
-		private Page page;
-		private XNamespace ns;
-
-
 		public AdjustImagesCommand()
 		{
 		}
@@ -34,200 +25,119 @@ namespace River.OneMoreAddIn.Commands
 
 		public override async Task Execute(params object[] args)
 		{
-			using (one = new OneNote(out page, out ns, OneNote.PageDetail.All))
+			using var one = new OneNote(out var page, out var ns, OneNote.PageDetail.All);
+
+			// starting at Outline should exclude all background images
+			var elements = page.Root
+				.Elements(ns + "Outline")
+				.Descendants(ns + "Image")?
+				.Where(e => e.Attribute("selected")?.Value == "all")
+				.ToList();
+
+			if ((elements == null) || !elements.Any())
 			{
-				// starting at Outline should exclude all background images
-				var elements = page.Root
-					.Elements(ns + "Outline")
-					.Descendants(ns + "Image")?
-					.Where(e => e.Attribute("selected")?.Value == "all")
+				elements = page.Root
+					.Elements(ns + "Outline").Descendants(ns + "Image")
 					.ToList();
+			}
 
-				if ((elements == null) || !elements.Any())
+			if (elements.Any())
+			{
+				var updated = false;
+				if (elements.Count == 1)
 				{
-					elements = page.Root
-						.Elements(ns + "Outline").Descendants(ns + "Image")
-						.ToList();
-				}
-
-				if (elements.Any())
-				{
-					if (elements.Count == 1)
-					{
-						// resize single selected image only
-						await ResizeOne(elements[0]);
-					}
-					else
-					{
-						// select many iamges, or all if none selected
-						await ResizeMany(elements);
-					}
+					// resize single selected image only
+					updated = ResizeOne(elements[0]);
 				}
 				else
 				{
-					UIHelper.ShowMessage(Resx.AdjustImagesDialog_noImages);
+					// select many iamges, or all if none selected
+					updated = ResizeMany(elements, page, page.Root.Elements(ns + "Image").Any());
 				}
-			}
-		}
 
-
-		private async Task ResizeOne(XElement element)
-		{
-			var size = element.Element(ns + "Size");
-			int viewWidth = (int)decimal.Parse(size.Attribute("width").Value, CultureInfo.InvariantCulture);
-			int viewHeight = (int)decimal.Parse(size.Attribute("height").Value, CultureInfo.InvariantCulture);
-
-			using var image = ReadImage(element);
-
-			// when pasting an image onto the page, width or height can be zero
-			// OneNote ignores both if either is zero so we'll do the same...
-			if (viewWidth == 0 || viewHeight == 0)
-			{
-				viewWidth = image.Width;
-				viewHeight = image.Height;
-			}
-
-			using var dialog = new AdjustImagesDialog(image, viewWidth, viewHeight);
-			var result = dialog.ShowDialog(owner);
-			if (result != DialogResult.OK)
-			{
-				return;
-			}
-
-			if (dialog.NeedsRewrite)
-			{
-				using var data = dialog.GetImage();
-				if (data != null)
+				if (updated)
 				{
-					WriteImage(element, data);
+					await one.Update(page);
 				}
-			}
-
-			if (dialog.AutoSizeImage)
-			{
-				size.Attribute("isSetByUser")?.Remove();
-				element.Parent.Attribute("objectID").Remove();
-				logger.WriteLine("auto-size image");
 			}
 			else
 			{
-				size.SetAttributeValue("width", dialog.ImageWidth.ToString(CultureInfo.InvariantCulture));
-				size.SetAttributeValue("height", dialog.ImageHeight.ToString(CultureInfo.InvariantCulture));
-				size.SetAttributeValue("isSetByUser", "true");
-				logger.WriteLine($"resized from {viewWidth} x {viewHeight} to {dialog.ImageWidth} x {dialog.ImageHeight}");
+				UIHelper.ShowMessage(Resx.AdjustImagesDialog_noImages);
 			}
-
-			await one.Update(page);
 		}
 
 
-		private async Task ResizeMany(IEnumerable<XElement> elements)
+		private bool ResizeOne(XElement element)
 		{
-			var hasBgImages = page.Root.Elements(ns + "Image").Any();
+			var wrapper = new OneImage(element);
+			using var image = wrapper.ReadImage();
 
+			using var dialog = new AdjustImagesDialog(image, wrapper.Width, wrapper.Height);
+			var result = dialog.ShowDialog(owner);
+			if (result == DialogResult.OK)
+			{
+				var editor = dialog.GetImageEditor(image);
+				if (editor.IsReady)
+				{
+					editor.Apply(wrapper);
+					return true;
+				}
+			}
+
+			return false;
+		}
+
+
+		private bool ResizeMany(IEnumerable<XElement> elements, Page page, bool hasBgImages)
+		{
 			using var dialog = new AdjustImagesDialog(hasBgImages);
+
 			var result = dialog.ShowDialog(owner);
 			if (result != DialogResult.OK)
 			{
-				return;
+				return false;
 			}
 
+			var updated = false;
 			foreach (var element in elements)
 			{
-				using var image = ReadImage(element);
+				var wrapper = new OneImage(element);
+				using var image = wrapper.ReadImage();
 
-				var size = element.Element(ns + "Size");
-
-				var viewWidth = (int)decimal.Parse(
-					size.Attribute("width").Value, CultureInfo.InvariantCulture);
-
-				var viewHeight = (int)decimal.Parse(
-					size.Attribute("height").Value, CultureInfo.InvariantCulture);
+				var editor = dialog.GetImageEditor(image);
 
 				// when pasting an image onto the page, width or height can be zero
 				// OneNote ignores both if either is zero so we'll do the same...
-				if (viewWidth == 0 || viewHeight == 0)
+				var viewWidth = wrapper.Width;
+				if (viewWidth == 0)
 				{
 					viewWidth = image.Width;
-					viewHeight = image.Height;
 				}
 
-				int width, height;
-				if (dialog.Percent > 0)
+				if (editor.IsReady)
 				{
-					width = (int)(viewWidth * (dialog.Percent / 100));
-					height = (int)(viewHeight * (dialog.Percent / 100));
-				}
-				else
-				{
-					width = (int)dialog.ImageWidth;
-
-					height = dialog.LockAspect
-						? (int)(viewHeight * (dialog.ImageWidth / viewWidth))
-						: (int)dialog.ImageHeight;
-				}
-
-				if (dialog.ResizeOption == ResizeOption.All ||
-					(dialog.ResizeOption == ResizeOption.OnlyShrink && viewWidth > width) ||
-					(dialog.ResizeOption == ResizeOption.OnlyEnlarge && viewWidth < width))
-				{
-					if (dialog.NeedsRewrite)
+					if (editor.AutoSize ||
+						dialog.ResizeOption == ResizeOption.All ||
+						(dialog.ResizeOption == ResizeOption.OnlyShrink && viewWidth > editor.Size.Width) ||
+						(dialog.ResizeOption == ResizeOption.OnlyEnlarge && viewWidth < editor.Size.Width))
 					{
-						Image data = null;
-						try
-						{
-							data = dialog.Adjust(image.Resize(width, height));
-							WriteImage(element, data);
-						}
-						finally
-						{
-							data?.Dispose();
-						}
-					}
-
-					if (dialog.AutoSizeImage)
-					{
-						size.Attribute("isSetByUser").Remove();
-						element.Parent.Attribute("objectID").Remove();
-						logger.WriteLine("auto-size image");
+						using var edit = editor.Apply(wrapper);
+						updated = true;
 					}
 					else
 					{
-						size.SetAttributeValue("width", width.ToString(CultureInfo.InvariantCulture));
-						size.SetAttributeValue("height", height.ToString(CultureInfo.InvariantCulture));
-						size.SetAttributeValue("isSetByUser", "true");
-						logger.WriteLine($"resized from {viewWidth} x {viewHeight} to {width} x {height}");
+						logger.WriteLine($"skipped image, size=[{wrapper.Width} x {wrapper.Width}]");
 					}
-				}
-				else
-				{
-					logger.WriteLine($"skipped image with size {viewWidth} x {viewHeight}");
 				}
 			}
 
 			if (dialog.RepositionImages)
 			{
 				new StackBackgroundImagesCommand().StackImages(page);
+				updated = true;
 			}
 
-			await one.Update(page);
-		}
-
-
-		private Image ReadImage(XElement image)
-		{
-			var data = Convert.FromBase64String(image.Element(ns + "Data").Value);
-			using var stream = new MemoryStream(data, 0, data.Length);
-			return Image.FromStream(stream);
-		}
-
-
-		private void WriteImage(XElement element, Image image)
-		{
-			var bytes = (byte[])new ImageConverter().ConvertTo(image, typeof(byte[]));
-
-			var data = element.Element(ns + "Data");
-			data.Value = Convert.ToBase64String(bytes);
+			return updated;
 		}
 	}
 }

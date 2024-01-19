@@ -45,11 +45,8 @@ namespace River.OneMoreAddIn.Models
 		}
 
 
-		public int Height
-		{
-			get => (int)decimal.Parse(size.Attribute("height").Value, CultureInfo.InvariantCulture);
-			set => size.SetAttributeValue("height", value.ToInvariantString());
-		}
+		public int Height => (int)decimal
+			.Parse(size.Attribute("height").Value, CultureInfo.InvariantCulture);
 
 
 		public bool IsSetByUser
@@ -59,11 +56,8 @@ namespace River.OneMoreAddIn.Models
 		}
 
 
-		public int Width
-		{
-			get => (int)decimal.Parse(size.Attribute("width").Value, CultureInfo.InvariantCulture);
-			set => size.SetAttributeValue("width", value.ToInvariantString());
-		}
+		public int Width => (int)decimal
+			.Parse(size.Attribute("width").Value, CultureInfo.InvariantCulture);
 
 
 		public Image ReadImage()
@@ -71,6 +65,21 @@ namespace River.OneMoreAddIn.Models
 			var data = Convert.FromBase64String(root.Element(ns + "Data").Value);
 			using var stream = new MemoryStream(data, 0, data.Length);
 			return Image.FromStream(stream);
+		}
+
+
+		public void SetAutoSize()
+		{
+			size.Attribute("isSetByUser")?.Remove();
+			root.Parent.Attribute("objectID")?.Remove();
+		}
+
+
+		public void SetSize(int width, int height)
+		{
+			size.SetAttributeValue("width", width.ToInvariantString());
+			size.SetAttributeValue("height", height.ToInvariantString());
+			size.SetAttributeValue("isSetByUser", "true");
 		}
 
 

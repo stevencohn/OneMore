@@ -92,12 +92,8 @@ namespace River.OneMoreAddIn.UI
 				{
 					using var img = BackgroundImage;
 
-					var editor = new Commands.ImageEditor(img)
-					{
-						Size = new Size(16, 16)
-					};
-
-					BackgroundImage = editor.Render();
+					var editor = new Commands.ImageEditor { Size = new Size(16, 16) };
+					BackgroundImage = editor.Apply(img);
 				}
 			}
 		}
