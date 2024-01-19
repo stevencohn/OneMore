@@ -43,17 +43,11 @@ namespace River.OneMoreAddIn.Commands
 
 			if (elements.Any())
 			{
-				var updated = false;
-				if (elements.Count == 1)
-				{
-					// resize single selected image only
-					updated = ResizeOne(elements[0]);
-				}
-				else
-				{
-					// select many iamges, or all if none selected
-					updated = ResizeMany(elements, page, page.Root.Elements(ns + "Image").Any());
-				}
+				var updated = elements.Count == 1
+					// single selected image
+					? ResizeOne(elements[0])
+					// multiple selections or all if none selected
+					: ResizeMany(elements, page, page.Root.Elements(ns + "Image").Any());
 
 				if (updated)
 				{

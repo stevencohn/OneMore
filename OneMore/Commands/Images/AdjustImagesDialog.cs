@@ -2,9 +2,6 @@
 // Copyright © 2020 Steven M Cohn. All rights reserved.
 //************************************************************************************************
 
-#pragma warning disable CS3003  // Type is not CLS-compliant
-#pragma warning disable IDE1006 // must begin with upper case
-
 namespace River.OneMoreAddIn.Commands
 {
 	using River.OneMoreAddIn.Settings;
