@@ -226,31 +226,8 @@ namespace River.OneMoreAddIn.Commands
 
 		// = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
 
-		public decimal ImageHeight => heightBox.Value;
-
-
-		public decimal ImageWidth => widthBox.Value;
-
-
-		public ResizeOption ResizeOption =>
-			// all
-			limitsBox.SelectedIndex == 0 ? ResizeOption.All
-			// do not shrink
-			: limitsBox.SelectedIndex == 1 ? ResizeOption.OnlyEnlarge
-			// do not enlarge
-			: ResizeOption.OnlyShrink;
-
-
-		public bool LockAspect => lockButton.Checked;
-
-
-		public decimal Percent => pctRadio.Checked ? percentBox.Value : 0;
-
-
 		public bool RepositionImages => repositionBox.Checked;
 
-
-		// = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
 
 		public ImageEditor GetImageEditor(Image image)
 		{
@@ -300,6 +277,17 @@ namespace River.OneMoreAddIn.Commands
 				}
 			}
 
+			if (limitsBox.Visible)
+			{
+				// resize constraint
+				editor.Constraint = limitsBox.SelectedIndex switch
+				{
+					1 => ImageEditor.SizeConstraint.OnlyEnlarge,
+					2 => ImageEditor.SizeConstraint.OnlyShrink,
+					_ => ImageEditor.SizeConstraint.All
+				};
+			}
+
 			return editor;
 		}
 
@@ -314,8 +302,8 @@ namespace River.OneMoreAddIn.Commands
 			// of an image at 100% of its size...
 
 			//var ratio = scaling.GetRatio(image, previewBox.Width, previewBox.Height, 0);
-			var width = Math.Round(ImageWidth * (decimal)scaling.FactorX); //(decimal)ratio);
-			var height = Math.Round(ImageHeight * (decimal)scaling.FactorY); // (decimal)ratio);
+			var width = Math.Round(widthBox.Value * (decimal)scaling.FactorX); //(decimal)ratio);
+			var height = Math.Round(heightBox.Value * (decimal)scaling.FactorY); // (decimal)ratio);
 
 			int w;
 			int h;
@@ -364,8 +352,8 @@ namespace River.OneMoreAddIn.Commands
 				var size = storageSize.ToBytes(1);
 				storedSizeLabel.Text = size;
 
-				var s64 = Convert.ToBase64String(bytes).Length;
-				logger.WriteTime($"estimated {ImageWidth} x {ImageHeight} = {size} bytes (base64 = {s64} bytes)");
+				var s64 = Convert.ToBase64String(bytes).Length.ToBytes();
+				logger.WriteTime($"estimated {widthBox.Value} x {heightBox.Value} = {size} bytes (base64 = {s64})");
 			}
 		}
 

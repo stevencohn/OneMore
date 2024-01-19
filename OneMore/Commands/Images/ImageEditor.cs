@@ -26,6 +26,17 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
+		public enum SizeConstraint
+		{
+			// image may grow or shink
+			All,
+			// only grow image if smaller than target; do not shrink images larger than targer
+			OnlyEnlarge,
+			// only shrink image if larger than target; do not grow images smaller than targer
+			OnlyShrink
+		}
+
+
 		private bool dirty;
 
 
@@ -38,6 +49,7 @@ namespace River.OneMoreAddIn.Commands
 			Saturation = float.MinValue;
 			Style = Stylization.None;
 			Size = Size.Empty;
+			Constraint = SizeConstraint.All;
 			PreserveQualityOnResize = true;
 
 			dirty = false;
@@ -59,6 +71,8 @@ namespace River.OneMoreAddIn.Commands
 		public float Saturation { private get; set; }
 
 		public Size Size { get; set; }
+
+		public SizeConstraint Constraint { get; set; }
 
 		public Stylization Style { private get; set; }
 
@@ -127,31 +141,25 @@ namespace River.OneMoreAddIn.Commands
 				edit = Transform(edit, m);
 			}
 
-			// combine transformations to optimize instantiations...
+			// TODO: is there an optimal way to combine transformations, in other words.
+			// can we use matrix.Multiple(other) so avoid creating interim images
 
-			ColorMatrix matrix = null;
 			if (Brightness > float.MinValue)
 			{
-				matrix = MakeBrightnessMatrix(Brightness);
+				trash.Push(edit);
+				edit = Transform(edit, MakeBrightnessMatrix(Brightness));
 			}
 
 			if (Contrast > float.MinValue)
 			{
-				var m = MakeContrastMatrix(Contrast);
-				matrix = matrix == null ? m : m.Multiply(m);
+				trash.Push(edit);
+				edit = Transform(edit, MakeContrastMatrix(Contrast));
 			}
 
 			if (Saturation > float.MinValue)
 			{
-				var m = MakeSaturationMatrix(Saturation);
-				matrix = matrix == null ? m : m.Multiply(m);
-			}
-
-			// apply
-			if (matrix != null)
-			{
 				trash.Push(edit);
-				edit = Transform(edit, matrix);
+				edit = Transform(edit, MakeSaturationMatrix(Saturation));
 			}
 
 			// opacity must be set last, do not combined matrix

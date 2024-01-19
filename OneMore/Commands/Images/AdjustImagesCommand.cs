@@ -117,9 +117,13 @@ namespace River.OneMoreAddIn.Commands
 				if (editor.IsReady)
 				{
 					if (editor.AutoSize ||
-						dialog.ResizeOption == ResizeOption.All ||
-						(dialog.ResizeOption == ResizeOption.OnlyShrink && viewWidth > editor.Size.Width) ||
-						(dialog.ResizeOption == ResizeOption.OnlyEnlarge && viewWidth < editor.Size.Width))
+						editor.Constraint == ImageEditor.SizeConstraint.All ||
+						(
+							editor.Constraint == ImageEditor.SizeConstraint.OnlyShrink &&
+							viewWidth > editor.Size.Width) ||
+						(
+							editor.Constraint == ImageEditor.SizeConstraint.OnlyEnlarge &&
+							viewWidth < editor.Size.Width))
 					{
 						using var edit = editor.Apply(wrapper);
 						updated = true;
