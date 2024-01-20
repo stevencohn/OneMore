@@ -4,7 +4,6 @@
 
 namespace River.OneMoreAddIn.Commands
 {
-	using Newtonsoft.Json;
 	using River.OneMoreAddIn.Models;
 	using System.Collections.Generic;
 	using System.Drawing;
