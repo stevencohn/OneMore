@@ -40,16 +40,21 @@ namespace River.OneMoreAddIn.Commands
 			this.widthLabel = new System.Windows.Forms.Label();
 			this.setWidthCheckBox = new System.Windows.Forms.CheckBox();
 			this.setWidthBox = new System.Windows.Forms.NumericUpDown();
+			this.indentBox = new System.Windows.Forms.NumericUpDown();
+			this.indentLabel = new System.Windows.Forms.Label();
+			this.optionsPanel = new River.OneMoreAddIn.UI.MorePanel();
 			((System.ComponentModel.ISupportInitialize)(this.columnsBox)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.widthBox)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.setWidthBox)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.indentBox)).BeginInit();
+			this.optionsPanel.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// okButton
 			// 
 			this.okButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.okButton.DialogResult = System.Windows.Forms.DialogResult.OK;
-			this.okButton.Location = new System.Drawing.Point(285, 238);
+			this.okButton.Location = new System.Drawing.Point(285, 317);
 			this.okButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.okButton.Name = "okButton";
 			this.okButton.Size = new System.Drawing.Size(112, 35);
@@ -62,7 +67,7 @@ namespace River.OneMoreAddIn.Commands
 			// 
 			this.cancelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-			this.cancelButton.Location = new System.Drawing.Point(406, 238);
+			this.cancelButton.Location = new System.Drawing.Point(406, 317);
 			this.cancelButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.cancelButton.Name = "cancelButton";
 			this.cancelButton.Size = new System.Drawing.Size(112, 35);
@@ -192,13 +197,48 @@ namespace River.OneMoreAddIn.Commands
             0,
             0});
 			// 
+			// indentBox
+			// 
+			this.indentBox.Location = new System.Drawing.Point(185, 20);
+			this.indentBox.Maximum = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
+			this.indentBox.Name = "indentBox";
+			this.indentBox.Size = new System.Drawing.Size(131, 26);
+			this.indentBox.TabIndex = 11;
+			// 
+			// indentLabel
+			// 
+			this.indentLabel.AutoSize = true;
+			this.indentLabel.Location = new System.Drawing.Point(3, 22);
+			this.indentLabel.Name = "indentLabel";
+			this.indentLabel.Size = new System.Drawing.Size(55, 20);
+			this.indentLabel.TabIndex = 12;
+			this.indentLabel.Text = "Indent";
+			// 
+			// optionsPanel
+			// 
+			this.optionsPanel.BottomBorderColor = System.Drawing.SystemColors.Control;
+			this.optionsPanel.BottomBorderSize = 0;
+			this.optionsPanel.Controls.Add(this.indentBox);
+			this.optionsPanel.Controls.Add(this.indentLabel);
+			this.optionsPanel.Location = new System.Drawing.Point(23, 229);
+			this.optionsPanel.Name = "optionsPanel";
+			this.optionsPanel.Size = new System.Drawing.Size(485, 66);
+			this.optionsPanel.TabIndex = 13;
+			this.optionsPanel.TopBorderColor = System.Drawing.SystemColors.ActiveBorder;
+			this.optionsPanel.TopBorderSize = 1;
+			// 
 			// ArrangeContainersDialog
 			// 
 			this.AcceptButton = this.okButton;
 			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.CancelButton = this.cancelButton;
-			this.ClientSize = new System.Drawing.Size(537, 293);
+			this.ClientSize = new System.Drawing.Size(537, 372);
+			this.Controls.Add(this.optionsPanel);
 			this.Controls.Add(this.setWidthBox);
 			this.Controls.Add(this.setWidthCheckBox);
 			this.Controls.Add(this.widthLabel);
@@ -220,6 +260,9 @@ namespace River.OneMoreAddIn.Commands
 			((System.ComponentModel.ISupportInitialize)(this.columnsBox)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.widthBox)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.setWidthBox)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.indentBox)).EndInit();
+			this.optionsPanel.ResumeLayout(false);
+			this.optionsPanel.PerformLayout();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -237,5 +280,8 @@ namespace River.OneMoreAddIn.Commands
 		private System.Windows.Forms.Label widthLabel;
 		private System.Windows.Forms.CheckBox setWidthCheckBox;
 		private System.Windows.Forms.NumericUpDown setWidthBox;
+		private System.Windows.Forms.NumericUpDown indentBox;
+		private System.Windows.Forms.Label indentLabel;
+		private UI.MorePanel optionsPanel;
 	}
 }

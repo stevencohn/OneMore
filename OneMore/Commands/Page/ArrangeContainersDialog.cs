@@ -10,6 +10,9 @@ namespace River.OneMoreAddIn.Commands
 
 	internal partial class ArrangeContainersDialog : UI.LocalizableForm
 	{
+		private const int DefaultWidth = 500;
+
+
 		public ArrangeContainersDialog()
 		{
 			InitializeComponent();
@@ -25,13 +28,26 @@ namespace River.OneMoreAddIn.Commands
 					"flowButton",
 					"columnsLabel",
 					"widthLabel",
+					"indentLabel=word_Indent",
 					"okButton=word_OK",
 					"cancelButton=word_Cancel"
 				});
 			}
 
 			var settings = new SettingsProvider().GetCollection("containers");
-			setWidthBox.Value = settings.Get("width", 500);
+
+			var width = settings.Get("width", 0);
+			if (width > 0)
+			{
+				setWidthCheckBox.Checked = true;
+				setWidthBox.Value = settings.Get("width", width);
+			}
+			else
+			{
+				setWidthBox.Value = DefaultWidth;
+			}
+
+			indentBox.Value = settings.Get("indent", 0);
 		}
 
 
@@ -39,6 +55,9 @@ namespace River.OneMoreAddIn.Commands
 
 
 		public int Columns => (int)columnsBox.Value;
+
+
+		public int Indent => (int)indentBox.Value;
 
 
 		public int PageWidth => verticalButton.Checked
@@ -52,16 +71,20 @@ namespace River.OneMoreAddIn.Commands
 			columnsBox.Enabled = widthBox.Enabled = flowButton.Checked;
 		}
 
+
 		private void SaveSettingsOnClick(object sender, System.EventArgs e)
 		{
+			var provider = new SettingsProvider();
+			var settings = provider.GetCollection("containers");
+
 			if (verticalButton.Checked && setWidthCheckBox.Checked)
 			{
-				var provider = new SettingsProvider();
-				var settings = provider.GetCollection("containers");
 				settings.Add("width", (int)setWidthBox.Value);
-				provider.SetCollection(settings);
-				provider.Save();
 			}
+
+			settings.Add("indent", (int)indentBox.Value);
+			provider.SetCollection(settings);
+			provider.Save();
 		}
 	}
 }

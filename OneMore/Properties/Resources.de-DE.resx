@@ -181,6 +181,86 @@
   <data name="AddInTitle" xml:space="preserve">
     <value>OneMoreAddIn</value>
   </data>
+  <data name="AdjustImagesDialog.Text" xml:space="preserve">
+    <value>Größe ändern und einstellen</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="AdjustImagesDialog_absRadio.Text" xml:space="preserve">
+    <value>Absolut</value>
+    <comment>radio button</comment>
+  </data>
+  <data name="AdjustImagesDialog_allLabel.Text" xml:space="preserve">
+    <value>alle Bilder auf dieser Seite</value>
+    <comment>info label</comment>
+  </data>
+  <data name="AdjustImagesDialog_appliesTo" xml:space="preserve">
+    <value>Gilt für</value>
+    <comment>label override</comment>
+  </data>
+  <data name="AdjustImagesDialog_autoSizeRadio.Text" xml:space="preserve">
+    <value>Automatische Größenanpassung</value>
+    <comment>radio</comment>
+  </data>
+  <data name="AdjustImagesDialog_heightLabel.Text" xml:space="preserve">
+    <value>Höhe</value>
+    <comment>label</comment>
+  </data>
+  <data name="AdjustImagesDialog_imageSizeLabel.Text" xml:space="preserve">
+    <value>Bildgröße</value>
+    <comment>label</comment>
+  </data>
+  <data name="AdjustImagesDialog_limitsBox.Text" xml:space="preserve">
+    <value>Größe aller Bilder ändern
+Größere Bilder nicht verkleinern
+Vergrößere kleinere Bilder nicht</value>
+    <comment>combobox</comment>
+  </data>
+  <data name="AdjustImagesDialog_noImages" xml:space="preserve">
+    <value>Auf dieser Seite wurden keine Bilder gefunden.
+
+Bilder müssen sich in einem Gliederungscontainer befinden. Hintergrundbilder können nicht angepasst werden.</value>
+    <comment>message box</comment>
+  </data>
+  <data name="AdjustImagesDialog_pctRadio.Text" xml:space="preserve">
+    <value>Prozentsatz</value>
+    <comment>radio</comment>
+  </data>
+  <data name="AdjustImagesDialog_preserveBox.Text" xml:space="preserve">
+    <value>Speichergröße beibehalten</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="AdjustImagesDialog_presetRadio.Text" xml:space="preserve">
+    <value>Voreinstellung</value>
+    <comment>radio</comment>
+  </data>
+  <data name="AdjustImagesDialog_previewGroup.Text" xml:space="preserve">
+    <value>Vorschau {0}</value>
+    <comment>group box for single image</comment>
+  </data>
+  <data name="AdjustImagesDialog_repositionBox.Text" xml:space="preserve">
+    <value>Hintergrundbilder neu positionieren</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="AdjustImagesDialog_resetLinkLabel.Text" xml:space="preserve">
+    <value>Werte zurücksetzen</value>
+    <comment>link label</comment>
+  </data>
+  <data name="AdjustImagesDialog_sizeLink.Text" xml:space="preserve">
+    <value>{0} x {1}</value>
+    <comment>width x height</comment>
+  </data>
+  <data name="AdjustImagesDialog_styleBox.Text" xml:space="preserve">
+    <value>Original
+Graustufen
+Sepia
+Polaroid
+Umkehren</value>
+    <comment>combobox</comment>
+  </data>
+  <data name="AdjustImagesDialog_viewSizeLabel.Text" xml:space="preserve">
+    <value>Größe anzeigen</value>
+    <comment>label</comment>
+  </data>
   <data name="AliasSheet.Text" xml:space="preserve">
     <value>Definiere Befehlsaliase zur Verwendung in der Befehlspalette</value>
     <comment>intro box</comment>
@@ -2458,86 +2538,6 @@ Wähle Nein, um eine leere Zeile zwischen den Absätzen zu halten</value>
     <value>Alt oder neu</value>
     <comment>title</comment>
   </data>
-  <data name="AdjustImagesDialog.Text" xml:space="preserve">
-    <value>Größe ändern und einstellen</value>
-    <comment>dialog title</comment>
-  </data>
-  <data name="AdjustImagesDialog_absRadio.Text" xml:space="preserve">
-    <value>Absolut</value>
-    <comment>radio button</comment>
-  </data>
-  <data name="AdjustImagesDialog_allLabel.Text" xml:space="preserve">
-    <value>alle Bilder auf dieser Seite</value>
-    <comment>info label</comment>
-  </data>
-  <data name="AdjustImagesDialog_appliesTo" xml:space="preserve">
-    <value>Gilt für</value>
-    <comment>label override</comment>
-  </data>
-  <data name="AdjustImagesDialog_autoSizeRadio.Text" xml:space="preserve">
-    <value>Automatische Größenanpassung</value>
-    <comment>radio</comment>
-  </data>
-  <data name="AdjustImagesDialog_heightLabel.Text" xml:space="preserve">
-    <value>Höhe</value>
-    <comment>label</comment>
-  </data>
-  <data name="AdjustImagesDialog_imageSizeLabel.Text" xml:space="preserve">
-    <value>Bildgröße</value>
-    <comment>label</comment>
-  </data>
-  <data name="AdjustImagesDialog_limitsBox.Text" xml:space="preserve">
-    <value>Größe aller Bilder ändern
-Größere Bilder nicht verkleinern
-Vergrößere kleinere Bilder nicht</value>
-    <comment>combobox</comment>
-  </data>
-  <data name="AdjustImagesDialog_noImages" xml:space="preserve">
-    <value>Auf dieser Seite wurden keine Bilder gefunden.
-
-Bilder müssen sich in einem Gliederungscontainer befinden. Hintergrundbilder können nicht angepasst werden.</value>
-    <comment>message box</comment>
-  </data>
-  <data name="AdjustImagesDialog_pctRadio.Text" xml:space="preserve">
-    <value>Prozentsatz</value>
-    <comment>radio</comment>
-  </data>
-  <data name="AdjustImagesDialog_preserveBox.Text" xml:space="preserve">
-    <value>Speichergröße beibehalten</value>
-    <comment>checkbox</comment>
-  </data>
-  <data name="AdjustImagesDialog_presetRadio.Text" xml:space="preserve">
-    <value>Voreinstellung</value>
-    <comment>radio</comment>
-  </data>
-  <data name="AdjustImagesDialog_previewGroup.Text" xml:space="preserve">
-    <value>Vorschau {0}</value>
-    <comment>group box for single image</comment>
-  </data>
-  <data name="AdjustImagesDialog_repositionBox.Text" xml:space="preserve">
-    <value>Hintergrundbilder neu positionieren</value>
-    <comment>checkbox</comment>
-  </data>
-  <data name="AdjustImagesDialog_resetLinkLabel.Text" xml:space="preserve">
-    <value>Werte zurücksetzen</value>
-    <comment>link label</comment>
-  </data>
-  <data name="AdjustImagesDialog_sizeLink.Text" xml:space="preserve">
-    <value>{0} x {1}</value>
-    <comment>width x height</comment>
-  </data>
-  <data name="AdjustImagesDialog_styleBox.Text" xml:space="preserve">
-    <value>Original
-Graustufen
-Sepia
-Polaroid
-Umkehren</value>
-    <comment>combobox</comment>
-  </data>
-  <data name="AdjustImagesDialog_viewSizeLabel.Text" xml:space="preserve">
-    <value>Größe anzeigen</value>
-    <comment>label</comment>
-  </data>
   <data name="ribAboutButton_Label" xml:space="preserve">
     <value>Über OneMore</value>
     <comment>Ribbon OneMore menu item</comment>
@@ -2581,6 +2581,14 @@ Umkehren</value>
   <data name="ribAddFormulaButton_Screentip" xml:space="preserve">
     <value>Formel in ausgewählten Tabellenzellen hinzufügen / bearbeiten (F5)</value>
     <comment>Ribbon OneMore menu item, Formula...</comment>
+  </data>
+  <data name="ribAdjustImagesButton_Label" xml:space="preserve">
+    <value>Größe ändern und anpassen</value>
+    <comment>Ribbon OneMore menu item, Resize selected image(s)</comment>
+  </data>
+  <data name="ribAdjustImagesButton_Screentip" xml:space="preserve">
+    <value>Ändern Sie die Größe und passen Sie ausgewählte Bilder an</value>
+    <comment>ribbon images</comment>
   </data>
   <data name="ribAnalyzeButton_Label" xml:space="preserve">
     <value>Datenspeicher analysieren</value>
@@ -3627,14 +3635,6 @@ Umkehren</value>
   <data name="ribReportRemindersButton_Screentip" xml:space="preserve">
     <value>Generiert einen zusammenfassenden Bericht der Erinnerungen</value>
     <comment>ribbon reminders</comment>
-  </data>
-  <data name="ribAdjustImagesButton_Label" xml:space="preserve">
-    <value>Größe ändern und anpassen</value>
-    <comment>Ribbon OneMore menu item, Resize selected image(s)</comment>
-  </data>
-  <data name="ribAdjustImagesButton_Screentip" xml:space="preserve">
-    <value>Ändern Sie die Größe und passen Sie ausgewählte Bilder an</value>
-    <comment>ribbon images</comment>
   </data>
   <data name="ribRestoreAutosizeButton_Label" xml:space="preserve">
     <value>Behälterbreiten wiederherstellen</value>
@@ -4878,6 +4878,9 @@ In diesem Abschnitt</value>
   </data>
   <data name="word_History" xml:space="preserve">
     <value>Geschichte</value>
+  </data>
+  <data name="word_Indent" xml:space="preserve">
+    <value>Einzug</value>
   </data>
   <data name="word_Index" xml:space="preserve">
     <value>word_Index</value>

@@ -23,9 +23,24 @@ namespace River.OneMoreAddIn.UI
 		public int BottomBorderSize { get; set; } = 2;
 
 
+		[Description("Specifies the color of the top border")]
+		public Color TopBorderColor { get; set; } = SystemColors.Control;
+
+
+		[Description("Specifies the thickness of the top border")]
+		public int TopBorderSize { get; set; } = 0;
+
+
+
 		protected override void OnPaintBackground(PaintEventArgs e)
 		{
 			base.OnPaintBackground(e);
+
+			if (TopBorderSize > 0)
+			{
+				using var brush = new SolidBrush(TopBorderColor);
+				e.Graphics.FillRectangle(brush, 0, 0, Width - 1, TopBorderSize);
+			}
 
 			if (BottomBorderSize > 0)
 			{
