@@ -19,6 +19,9 @@ namespace River.OneMoreAddIn.Commands
 	/// </summary>
 	internal class AdjustImagesCommand : Command
 	{
+		private bool scopeFore;
+
+
 		public AdjustImagesCommand()
 		{
 		}
@@ -28,27 +31,57 @@ namespace River.OneMoreAddIn.Commands
 		{
 			using var one = new OneNote(out var page, out var ns, OneNote.PageDetail.All);
 
-			// starting at Outline should exclude all background images
+			// find selected foreground images
 			var elements = page.Root
 				.Elements(ns + "Outline")
 				.Descendants(ns + "Image")?
 				.Where(e => e.Attribute("selected")?.Value == "all")
 				.ToList();
 
-			if ((elements == null) || !elements.Any())
+			if (elements.Any())
 			{
+				scopeFore = true;
+			}
+			else
+			{
+				// else find selected background images
 				elements = page.Root
-					.Elements(ns + "Outline").Descendants(ns + "Image")
+					.Elements(ns + "Image")
+					.Where(e => e.Attribute("selected")?.Value == "all")
 					.ToList();
+
+				if (elements.Any())
+				{
+					scopeFore = false;
+				}
+				else
+				{
+					// else find all foreground images
+					elements = page.Root
+						.Elements(ns + "Outline")
+						.Descendants(ns + "Image")
+						.ToList();
+
+					if (elements.Any())
+					{
+						scopeFore = true;
+					}
+					else
+					{
+						// else find all background images
+						elements = page.Root.Elements(ns + "Image").ToList();
+						scopeFore = false;
+					}
+				}
 			}
 
-			if (elements.Any())
+			if (elements != null && elements.Any())
 			{
 				var updated = elements.Count == 1
 					// single selected image
 					? ResizeOne(elements[0])
 					// multiple selections or all if none selected
-					: ResizeMany(elements, page, page.Root.Elements(ns + "Image").Any());
+					: ResizeMany(elements, page);
 
 				if (updated)
 				{
@@ -83,9 +116,13 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private bool ResizeMany(IEnumerable<XElement> elements, Page page, bool hasBgImages)
+		private bool ResizeMany(List<XElement> elements, Page page)
 		{
-			using var dialog = new AdjustImagesDialog(hasBgImages);
+			using var dialog = new AdjustImagesDialog()
+			{
+				ForegroundImages = scopeFore,
+				ImageCount = elements.Count
+			};
 
 			var result = dialog.ShowDialog(owner);
 			if (result != DialogResult.OK)
