@@ -155,6 +155,7 @@
     <Compile Include="Commands\File\Markdown\OneMoreDigExtensions.cs" />
     <Compile Include="Commands\File\Markdown\OneMoreDigRenderer.cs" />
     <Compile Include="Commands\Images\CompressImagesCommand.cs" />
+    <Compile Include="Commands\Images\ImageEditor.cs" />
     <Compile Include="Commands\Images\PlantUmlCommand.cs" />
     <Compile Include="Commands\Images\OpenImageWithCommand.cs" />
     <Compile Include="Commands\Images\PlantUmlHelper.cs" />
@@ -273,6 +274,7 @@
     <Compile Include="Helpers\Extensions\HashAlgorithmExtensions.cs" />
     <Compile Include="Helpers\Extensions\ScreenExtensions.cs" />
     <Compile Include="Helpers\Heatmap.cs" />
+    <Compile Include="Models\OneImage.cs" />
     <Compile Include="Models\KnownSchemaAttributes.cs" />
     <Compile Include="Models\PageReader.cs" />
     <Compile Include="AddInHotkeys.cs" />
@@ -329,7 +331,6 @@
       <DependentUpon>CrawlWebPageDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="Commands\File\EvernoteReader.cs" />
-    <Compile Include="Commands\Images\ResizeOption.cs" />
     <Compile Include="Commands\Page\ArrangeContainersCommand.cs" />
     <Compile Include="Commands\File\Markdown\MarkdownWriter.cs" />
     <Compile Include="Commands\Page\ArrangeContainersDialog.cs">
@@ -719,7 +720,7 @@
     <Compile Include="Commands\Tables\AddFormulaCommand.cs" />
     <Compile Include="Commands\Page\MergeCommand.cs" />
     <Compile Include="Commands\Styles\NewStyleCommand.cs" />
-    <Compile Include="Commands\Images\ResizeImagesCommand.cs" />
+    <Compile Include="Commands\Images\AdjustImagesCommand.cs" />
     <Compile Include="Commands\Snippets\InsertCalendarDialog.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -795,11 +796,11 @@
     <Compile Include="Commands\Clean\RemoveSpacingDialog.Designer.cs">
       <DependentUpon>RemoveSpacingDialog.cs</DependentUpon>
     </Compile>
-    <Compile Include="Commands\Images\ResizeImagesDialog.cs">
+    <Compile Include="Commands\Images\AdjustImagesDialog.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Commands\Images\ResizeImagesDialog.Designer.cs">
-      <DependentUpon>ResizeImagesDialog.cs</DependentUpon>
+    <Compile Include="Commands\Images\AdjustImagesDialog.Designer.cs">
+      <DependentUpon>AdjustImagesDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="Commands\File\PluginDialog.cs">
       <SubType>Form</SubType>
@@ -892,7 +893,7 @@
     <Compile Include="Helpers\Hotkeys\HotkeyEventArgs.cs" />
     <Compile Include="Helpers\Hotkeys\HotkeyManager.cs" />
     <Compile Include="Helpers\Hotkeys\HotModifier.cs" />
-    <Compile Include="Helpers\Extensions\IntExtensions.cs" />
+    <Compile Include="Helpers\Extensions\NumericExtensions.cs" />
     <Compile Include="Helpers\ILogger.cs" />
     <Compile Include="Helpers\Native.cs" />
     <Compile Include="Helpers\Office\Office.cs" />
@@ -1502,8 +1503,8 @@
     <EmbeddedResource Include="Commands\Styles\ReorderDialog.resx">
       <DependentUpon>ReorderDialog.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Commands\Images\ResizeImagesDialog.resx">
-      <DependentUpon>ResizeImagesDialog.cs</DependentUpon>
+    <EmbeddedResource Include="Commands\Images\AdjustImagesDialog.resx">
+      <DependentUpon>AdjustImagesDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Commands\File\PluginDialog.resx">
       <DependentUpon>PluginDialog.cs</DependentUpon>

@@ -2,9 +2,6 @@
 // Copyright © 2020 Steven M Cohn. All rights reserved.
 //************************************************************************************************
 
-#pragma warning disable CS3003  // Type is not CLS-compliant
-#pragma warning disable IDE1006 // must begin with upper case
-
 namespace River.OneMoreAddIn.Commands
 {
 	using River.OneMoreAddIn.Settings;
@@ -14,7 +11,7 @@ namespace River.OneMoreAddIn.Commands
 	using Resx = Properties.Resources;
 
 
-	internal partial class ResizeImagesDialog : UI.LocalizableForm
+	internal partial class AdjustImagesDialog : UI.LocalizableForm
 	{
 		private readonly Image image;
 		private readonly int viewWidth;
@@ -29,11 +26,12 @@ namespace River.OneMoreAddIn.Commands
 		private bool mruWidth = true;
 
 
+		#region Lifecycle
 		/// <summary>
 		/// Initializes a new dialog to resize all images on the page to a standard width
 		/// and height with respective ratio
 		/// </summary>
-		public ResizeImagesDialog(bool hasBackgroundImages)
+		public AdjustImagesDialog(bool hasBackgroundImages)
 		{
 			Initialize();
 
@@ -46,7 +44,7 @@ namespace River.OneMoreAddIn.Commands
 
 			// hide controls that do not apply...
 
-			viewSizeLabel.Text = Resx.ResizeImagesDialog_appliesTo;
+			viewSizeLabel.Text = Resx.AdjustImagesDialog_appliesTo;
 			allLabel.Location = viewSizeLink.Location;
 			allLabel.Visible = true;
 
@@ -83,7 +81,7 @@ namespace River.OneMoreAddIn.Commands
 		/// Initializes a new dialog to resize a selected image
 		/// </summary>
 		/// <param name="image"></param>
-		public ResizeImagesDialog(Image image, int viewWidth, int viewHeight)
+		public AdjustImagesDialog(Image image, int viewWidth, int viewHeight)
 		{
 			Initialize();
 
@@ -95,13 +93,13 @@ namespace River.OneMoreAddIn.Commands
 			this.viewHeight = viewHeight;
 
 			viewSizeLink.Text = string.Format(
-				Resx.ResizeImagesDialog_sizeLink_Text, this.viewWidth, this.viewHeight);
+				Resx.AdjustImagesDialog_sizeLink_Text, this.viewWidth, this.viewHeight);
 
 			originalWidth = image.Width;
 			originalHeight = image.Height;
 
 			imageSizeLink.Text = string.Format(
-				Resx.ResizeImagesDialog_sizeLink_Text, originalWidth, originalHeight);
+				Resx.AdjustImagesDialog_sizeLink_Text, originalWidth, originalHeight);
 
 			widthBox.Value = viewWidth;
 			heightBox.Value = viewHeight;
@@ -109,7 +107,7 @@ namespace River.OneMoreAddIn.Commands
 			scaling = new MagicScaling(image.HorizontalResolution, image.VerticalResolution);
 
 			previewGroup.Text = string.Format(
-				Resx.ResizeImagesDialog_previewGroup_Text, image.GetSignature());
+				Resx.AdjustImagesDialog_previewGroup_Text, image.GetSignature());
 
 			LoadSettings(true);
 			DrawPreview();
@@ -122,7 +120,7 @@ namespace River.OneMoreAddIn.Commands
 
 			if (NeedsLocalizing())
 			{
-				Text = Resx.ResizeImagesDialog_Text;
+				Text = Resx.AdjustImagesDialog_Text;
 
 				Localize(new string[]
 				{
@@ -220,112 +218,79 @@ namespace River.OneMoreAddIn.Commands
 			base.OnLoad(e);
 			suspended = false;
 		}
+		#endregion Lifecycle
 
 
 		// = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
 
-		public bool AutoSizeImage => autoSizeRadio.Checked;
-
-
-		public decimal ImageHeight => heightBox.Value;
-
-
-		public decimal ImageWidth => widthBox.Value;
-
-
-		public ResizeOption ResizeOption =>
-			// all
-			limitsBox.SelectedIndex == 0 ? ResizeOption.All
-			// do not shrink
-			: limitsBox.SelectedIndex == 1 ? ResizeOption.OnlyEnlarge
-			// do not enlarge
-			: ResizeOption.OnlyShrink;
-
-
-		public bool LockAspect => lockButton.Checked;
-
-
-		public bool NeedsRewrite =>
-			!preserveBox.Checked ||
-			opacityBox.Value < 100 ||
-			brightnessBox.Value != 0 ||
-			contrastBox.Value != 0 ||
-			saturationBox.Value != 0 ||
-			styleBox.SelectedIndex != 0 ||
-			qualBar.Value < 100;
-
-
-		public decimal Percent => pctRadio.Checked ? percentBox.Value : 0;
-
-
 		public bool RepositionImages => repositionBox.Checked;
 
 
-
-		/// <summary>
-		/// Gets a new image after applying the desired modifications to the source image.
-		/// </summary>
-		/// <returns>A new image</returns>
-		public Image GetImage()
+		public ImageEditor GetImageEditor(Image image)
 		{
-			previewBox.Image = null;
-			preview.Dispose();
-
-			preview = ImageWidth == image.Width && ImageHeight == image.Height
-				? (Image)image.Clone()
-				: image.Resize((int)ImageWidth, (int)ImageHeight);
-
-			return Adjust(preview);
-		}
-
-
-		public Image Adjust(Image image)
-		{
-			var adjusted = image;
-
-			if (qualBar.Value < 100)
-			{
-				using var p = adjusted;
-				adjusted = p.SetQuality(qualBar.Value);
-			}
-
-			if (brightnessBox.Value != 0 || contrastBox.Value != 0)
-			{
-				using var p = adjusted;
-				adjusted = p.SetBrightnessContrast(
-					(float)brightnessBox.Value / 100f,
-					(float)contrastBox.Value / 100f);
-			}
-
-			if (saturationBox.Value != 0)
-			{
-				using var p = adjusted;
-				adjusted = p.SetSaturation((float)saturationBox.Value / 100f);
-			}
+			var editor = new ImageEditor();
+			if (qualBar.Value < 100) editor.Quality = qualBar.Value;
+			if (brightnessBar.Value != 0) editor.Brightness = brightnessBar.Value / 100f;
+			if (contrastBar.Value != 0) editor.Contrast = contrastBar.Value / 100f;
+			if (saturationBar.Value != 0) editor.Saturation = saturationBar.Value / 100f;
 
 			if (styleBox.SelectedIndex > 0)
-			{
-				using var p = adjusted;
-				adjusted = styleBox.SelectedIndex switch
+				editor.Style = styleBox.SelectedIndex switch
 				{
-					1 => p.ToGrayscale(),
-					2 => p.ToSepia(),
-					3 => p.ToPolaroid(),
-					_ => p.Inverted()
+					1 => ImageEditor.Stylization.GrayScale,
+					2 => ImageEditor.Stylization.Sepia,
+					3 => ImageEditor.Stylization.Polaroid,
+					_ => ImageEditor.Stylization.Invert
+				};
+
+			if (opacityBox.Value < 100) editor.Opacity = (float)opacityBox.Value / 100f;
+
+			// size...
+
+			if (autoSizeRadio.Checked)
+			{
+				editor.AutoSize = true;
+			}
+			else if (presetRadio.Checked && (int)presetBox.Value != image.Width)
+			{
+				editor.Size = new Size(
+					(int)presetBox.Value,
+					(int)(image.Height * (presetBox.Value / image.Width))
+					);
+			}
+			else if (absRadio.Checked &&
+				(widthBox.Value != image.Width || heightBox.Value != image.Height))
+			{
+				editor.Size = new Size((int)widthBox.Value, (int)heightBox.Value);
+			}
+			else // %
+			{
+				var w = (int)(viewWidth * percentBox.Value / 100);
+				var h = (int)(viewHeight * percentBox.Value / 100);
+
+				if (w != image.Width || h != image.Height)
+				{
+					editor.Size = new Size(w, h);
+				}
+			}
+
+			editor.PreserveStorageSize = preserveBox.Checked;
+
+			if (limitsBox.Visible)
+			{
+				// resize constraint
+				editor.Constraint = limitsBox.SelectedIndex switch
+				{
+					1 => ImageEditor.SizeConstraint.OnlyEnlarge,
+					2 => ImageEditor.SizeConstraint.OnlyShrink,
+					_ => ImageEditor.SizeConstraint.All
 				};
 			}
 
-			// opacity must be set last
-			if (opacityBox.Value < 100)
-			{
-				using var p = adjusted;
-				adjusted = p.SetOpacity((float)(opacityBox.Value / 100));
-			}
-
-			return adjusted;
+			return editor;
 		}
 
-
+		#region Internals
 		private void DrawPreview()
 		{
 			previewBox.Image = null;
@@ -336,8 +301,8 @@ namespace River.OneMoreAddIn.Commands
 			// of an image at 100% of its size...
 
 			//var ratio = scaling.GetRatio(image, previewBox.Width, previewBox.Height, 0);
-			var width = Math.Round(ImageWidth * (decimal)scaling.FactorX); //(decimal)ratio);
-			var height = Math.Round(ImageHeight * (decimal)scaling.FactorY); // (decimal)ratio);
+			var width = Math.Round(widthBox.Value * (decimal)scaling.FactorX); //(decimal)ratio);
+			var height = Math.Round(heightBox.Value * (decimal)scaling.FactorY); // (decimal)ratio);
 
 			int w;
 			int h;
@@ -372,7 +337,13 @@ namespace River.OneMoreAddIn.Commands
 				}
 			}
 
-			preview = Adjust(image.Resize(w, h));
+			var editor = GetImageEditor(image);
+			// customize size for preview box
+			editor.Size = new Size(w, h);
+			// always force create a new image for preview
+			editor.PreserveStorageSize = false;
+
+			preview = editor.Apply(image);
 			previewBox.Image = preview;
 
 			if (storageSize == 0 || !preserveBox.Checked)
@@ -382,8 +353,8 @@ namespace River.OneMoreAddIn.Commands
 				var size = storageSize.ToBytes(1);
 				storedSizeLabel.Text = size;
 
-				var s64 = Convert.ToBase64String(bytes).Length;
-				logger.WriteTime($"estimated {ImageWidth} x {ImageHeight} = {size} bytes (base64 = {s64} bytes)");
+				var s64 = Convert.ToBase64String(bytes).Length.ToBytes();
+				logger.WriteTime($"estimated {widthBox.Value} x {heightBox.Value} = {size} bytes (base64 = {s64})");
 			}
 		}
 
@@ -683,15 +654,6 @@ namespace River.OneMoreAddIn.Commands
 		private void OK(object sender, EventArgs e)
 		{
 			SaveSettings();
-
-			// update property values for consumer
-			suspended = true;
-			widthBox.Value = presetBox.Value;
-
-			heightBox.Value = image == null
-				? 0
-				: viewHeight * (widthBox.Value / viewWidth);
-
 			DialogResult = DialogResult.OK;
 		}
 
@@ -739,5 +701,6 @@ namespace River.OneMoreAddIn.Commands
 			DialogResult = DialogResult.Cancel;
 			Close();
 		}
+		#endregion Internals
 	}
 }

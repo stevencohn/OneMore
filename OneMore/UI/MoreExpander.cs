@@ -4,6 +4,7 @@
 
 namespace River.OneMoreAddIn.UI
 {
+	using River.OneMoreAddIn.Commands;
 	using System.ComponentModel;
 	using System.Drawing;
 	using System.Windows.Forms;
@@ -25,7 +26,10 @@ namespace River.OneMoreAddIn.UI
 
 			header.Image = new Bitmap(header.Width, header.Height);
 			image = (Bitmap)Resx.ExpandArrow.Clone();
-			grayed = image.ToGrayscale();
+
+			grayed = new ImageEditor { Style = ImageEditor.Stylization.GrayScale}
+				.Apply(image);
+
 			expanded = expandedIcon = false;
 		}
 

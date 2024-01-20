@@ -50,7 +50,7 @@ namespace River.OneMoreAddIn.Commands
 
 
 		/// <summary>
-		/// Entry point for ResizeImagesCommand so this functionality can be shared
+		/// Entry point for AdjustImagesCommand so this functionality can be shared
 		/// </summary>
 		/// <param name="page"></param>
 		/// <returns></returns>

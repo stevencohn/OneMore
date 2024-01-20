@@ -480,11 +480,11 @@
                 getScreentip="GetRibbonScreentip"
                 onAction="PlantUmlCmd"/>
               <button
-                id="ribResizeImagesButton"
+                id="ribAdjustImagesButton"
                 imageMso="GroupPictureCompress"
                 getLabel="GetRibbonLabel"
                 getScreentip="GetRibbonScreentip"
-                onAction="ResizeImagesCmd"/>
+                onAction="AdjustImagesCmd"/>
               <button
                 id="ribStylizeImagesButton"
                 imageMso="GroupPictureStyles"
@@ -1075,11 +1075,11 @@
         onAction="OpenImageWithCmd"
         insertBeforeMso="Cut"/>
       <button
-        id="ctxResizeImagesButton"
+        id="ctxAdjustImagesButton"
         imageMso="GroupPictureCompress"
         getLabel="GetRibbonLabel"
         getScreentip="GetRibbonScreentip"
-        onAction="ResizeImagesCmd"
+        onAction="AdjustImagesCmd"
         insertBeforeMso="Cut"/>
       <button
         id="ctxStylizeImagesButton"
