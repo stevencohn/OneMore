@@ -49,7 +49,7 @@ namespace River.OneMoreAddIn.Commands
 			allLabel.Location = viewSizeLink.Location;
 			allLabel.Visible = true;
 
-			storageLabel.Text = Resx.word_Limit;
+			storageLabel.Text = Resx.word_Constraint;
 			storageLabel.Top -= 5;
 			limitsBox.Location = new Point(storedSizeLabel.Location.X, storedSizeLabel.Location.Y - 5);
 			limitsBox.SelectedIndex = 0;

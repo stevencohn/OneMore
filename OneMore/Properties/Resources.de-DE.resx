@@ -4835,6 +4835,9 @@ In diesem Abschnitt</value>
   <data name="word_Completed" xml:space="preserve">
     <value>Vollendet</value>
   </data>
+  <data name="word_Constraint" xml:space="preserve">
+    <value>Zwang</value>
+  </data>
   <data name="word_Contrast" xml:space="preserve">
     <value>Kontrast</value>
   </data>

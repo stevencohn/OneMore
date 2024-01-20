@@ -11848,6 +11848,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Constraint.
+        /// </summary>
+        internal static string word_Constraint {
+            get {
+                return ResourceManager.GetString("word_Constraint", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Contrast.
         /// </summary>
         internal static string word_Contrast {

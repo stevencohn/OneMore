@@ -4840,6 +4840,9 @@ Dans cette section</value>
   <data name="word_Completed" xml:space="preserve">
     <value>Complété</value>
   </data>
+  <data name="word_Constraint" xml:space="preserve">
+    <value>Contrainte</value>
+  </data>
   <data name="word_Contrast" xml:space="preserve">
     <value>Contraste</value>
   </data>

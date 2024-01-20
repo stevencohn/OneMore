@@ -4846,6 +4846,9 @@ In deze sectie</value>
   <data name="word_Completed" xml:space="preserve">
     <value>Voltooid</value>
   </data>
+  <data name="word_Constraint" xml:space="preserve">
+    <value>Beperking</value>
+  </data>
   <data name="word_Contrast" xml:space="preserve">
     <value>Contrast</value>
   </data>

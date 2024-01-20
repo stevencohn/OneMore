@@ -4846,6 +4846,9 @@ ISO-code then comma then language name</comment>
   <data name="word_Completed" xml:space="preserve">
     <value>مكتمل</value>
   </data>
+  <data name="word_Constraint" xml:space="preserve">
+    <value>قيد</value>
+  </data>
   <data name="word_Contrast" xml:space="preserve">
     <value>مقابلة</value>
   </data>

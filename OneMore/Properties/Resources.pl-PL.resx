@@ -4863,6 +4863,9 @@ W tej sekcji</value>
   <data name="word_Completed" xml:space="preserve">
     <value>Zakończony</value>
   </data>
+  <data name="word_Constraint" xml:space="preserve">
+    <value>Ograniczenie</value>
+  </data>
   <data name="word_Contrast" xml:space="preserve">
     <value>Kontrast</value>
   </data>

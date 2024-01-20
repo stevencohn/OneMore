@@ -4863,6 +4863,9 @@ ISO-code then comma then language name</comment>
   <data name="word_Completed" xml:space="preserve">
     <value>הושלם</value>
   </data>
+  <data name="word_Constraint" xml:space="preserve">
+    <value>אילוץ</value>
+  </data>
   <data name="word_Contrast" xml:space="preserve">
     <value>בניגוד</value>
   </data>
