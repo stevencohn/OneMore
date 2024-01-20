@@ -11,6 +11,7 @@ namespace River.OneMoreAddIn.Commands
 	using System.Windows.Forms;
 	using System.Xml.Linq;
 	using Resx = Properties.Resources;
+	using SC = ImageEditor.SizeConstraint;
 
 
 	/// <summary>
@@ -71,7 +72,7 @@ namespace River.OneMoreAddIn.Commands
 			if (result == DialogResult.OK)
 			{
 				var editor = dialog.GetImageEditor(image);
-				if (editor.IsReady)
+				if (editor.IsReady || (editor.AutoSize && wrapper.IsSetByUser))
 				{
 					editor.Apply(wrapper);
 					return true;
@@ -108,16 +109,11 @@ namespace River.OneMoreAddIn.Commands
 					viewWidth = image.Width;
 				}
 
-				if (editor.IsReady)
+				if (editor.IsReady || (editor.AutoSize && wrapper.IsSetByUser))
 				{
-					if (editor.AutoSize ||
-						editor.Constraint == ImageEditor.SizeConstraint.All ||
-						(
-							editor.Constraint == ImageEditor.SizeConstraint.OnlyShrink &&
-							viewWidth > editor.Size.Width) ||
-						(
-							editor.Constraint == ImageEditor.SizeConstraint.OnlyEnlarge &&
-							viewWidth < editor.Size.Width))
+					if (editor.Constraint == SC.All ||
+						(editor.Constraint == SC.OnlyShrink && viewWidth > editor.Size.Width) ||
+						(editor.Constraint == SC.OnlyEnlarge && viewWidth < editor.Size.Width))
 					{
 						using var edit = editor.Apply(wrapper);
 						updated = true;
