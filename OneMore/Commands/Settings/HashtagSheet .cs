@@ -72,6 +72,17 @@ namespace River.OneMoreAddIn.Settings
 			}
 
 			filterBox.Checked = settings.Get<bool>("unfiltered");
+
+			if (provider.GetCollection("GeneralSheet").Get("experimental", false))
+			{
+				delayBox.Value = settings.Get("delay", HashtagScanner.DefaultThrottle);
+			}
+			else
+			{
+				delayLabel.Visible = false;
+				delayBox.Visible = false;
+				msLabel.Visible = false;
+			}
 		}
 
 
@@ -114,6 +125,8 @@ namespace River.OneMoreAddIn.Settings
 			updated = disabledBox.Checked
 				? settings.Add("disabled", true) || updated
 				: settings.Remove("disabled") || updated;
+
+			updated = settings.Add("delay", (int)delayBox.Value) || updated;
 
 			if (updated)
 			{

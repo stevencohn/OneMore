@@ -40,9 +40,13 @@ namespace River.OneMoreAddIn.Settings
 			this.minLabel = new System.Windows.Forms.Label();
 			this.intervalBox = new System.Windows.Forms.NumericUpDown();
 			this.intervalLabel = new System.Windows.Forms.Label();
+			this.delayLabel = new System.Windows.Forms.Label();
+			this.delayBox = new System.Windows.Forms.NumericUpDown();
+			this.msLabel = new System.Windows.Forms.Label();
 			this.layoutPanel.SuspendLayout();
 			this.advancedGroup.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.intervalBox)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.delayBox)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// introBox
@@ -60,6 +64,9 @@ namespace River.OneMoreAddIn.Settings
 			// 
 			// layoutPanel
 			// 
+			this.layoutPanel.Controls.Add(this.msLabel);
+			this.layoutPanel.Controls.Add(this.delayBox);
+			this.layoutPanel.Controls.Add(this.delayLabel);
 			this.layoutPanel.Controls.Add(this.filterBox);
 			this.layoutPanel.Controls.Add(this.styleBox);
 			this.layoutPanel.Controls.Add(this.styleLabel);
@@ -77,7 +84,7 @@ namespace River.OneMoreAddIn.Settings
 			// filterBox
 			// 
 			this.filterBox.AutoSize = true;
-			this.filterBox.Location = new System.Drawing.Point(11, 134);
+			this.filterBox.Location = new System.Drawing.Point(11, 87);
 			this.filterBox.Name = "filterBox";
 			this.filterBox.Size = new System.Drawing.Size(477, 24);
 			this.filterBox.TabIndex = 11;
@@ -92,7 +99,7 @@ namespace River.OneMoreAddIn.Settings
             "None",
             "Red Foreground",
             "Yellow Background"});
-			this.styleBox.Location = new System.Drawing.Point(304, 70);
+			this.styleBox.Location = new System.Drawing.Point(304, 161);
 			this.styleBox.Name = "styleBox";
 			this.styleBox.Size = new System.Drawing.Size(280, 28);
 			this.styleBox.TabIndex = 8;
@@ -100,7 +107,7 @@ namespace River.OneMoreAddIn.Settings
 			// styleLabel
 			// 
 			this.styleLabel.AutoSize = true;
-			this.styleLabel.Location = new System.Drawing.Point(7, 73);
+			this.styleLabel.Location = new System.Drawing.Point(7, 164);
 			this.styleLabel.Name = "styleLabel";
 			this.styleLabel.Size = new System.Drawing.Size(140, 20);
 			this.styleLabel.TabIndex = 7;
@@ -181,6 +188,36 @@ namespace River.OneMoreAddIn.Settings
 			this.intervalLabel.TabIndex = 3;
 			this.intervalLabel.Text = "Scan for hashtags every";
 			// 
+			// delayLabel
+			// 
+			this.delayLabel.AutoSize = true;
+			this.delayLabel.Location = new System.Drawing.Point(7, 40);
+			this.delayLabel.Name = "delayLabel";
+			this.delayLabel.Size = new System.Drawing.Size(162, 20);
+			this.delayLabel.TabIndex = 12;
+			this.delayLabel.Text = "Delay between pages";
+			// 
+			// delayBox
+			// 
+			this.delayBox.Location = new System.Drawing.Point(304, 38);
+			this.delayBox.Maximum = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
+			this.delayBox.Name = "delayBox";
+			this.delayBox.Size = new System.Drawing.Size(120, 26);
+			this.delayBox.TabIndex = 13;
+			// 
+			// msLabel
+			// 
+			this.msLabel.AutoSize = true;
+			this.msLabel.Location = new System.Drawing.Point(430, 40);
+			this.msLabel.Name = "msLabel";
+			this.msLabel.Size = new System.Drawing.Size(30, 20);
+			this.msLabel.TabIndex = 14;
+			this.msLabel.Text = "ms";
+			// 
 			// HashtagSheet
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -196,6 +233,7 @@ namespace River.OneMoreAddIn.Settings
 			this.advancedGroup.ResumeLayout(false);
 			this.advancedGroup.PerformLayout();
 			((System.ComponentModel.ISupportInitialize)(this.intervalBox)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.delayBox)).EndInit();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -214,5 +252,8 @@ namespace River.OneMoreAddIn.Settings
 		private System.Windows.Forms.ComboBox styleBox;
 		private System.Windows.Forms.Label styleLabel;
 		private System.Windows.Forms.CheckBox filterBox;
+		private System.Windows.Forms.Label msLabel;
+		private System.Windows.Forms.NumericUpDown delayBox;
+		private System.Windows.Forms.Label delayLabel;
 	}
 }
