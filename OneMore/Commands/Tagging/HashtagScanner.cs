@@ -19,7 +19,7 @@ namespace River.OneMoreAddIn.Commands
 	/// </summary>
 	internal class HashtagScanner : Loggable, IDisposable
 	{
-		private const int Throttle = 25;
+		private const int Throttle = 40;
 
 		private readonly OneNote one;
 		private readonly string lastTime;
