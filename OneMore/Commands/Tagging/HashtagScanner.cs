@@ -42,7 +42,7 @@ namespace River.OneMoreAddIn.Commands
 
 			factory = new HashtagPageSannerFactory(
 				GetStyleTemplate(),
-				settings.Get<bool>("filtered"));
+				settings.Get<bool>("unfiltered"));
 
 			lastTime = provider.ReadScanTime();
 			logger.Verbose($"HashtagScanner lastTime {lastTime}");

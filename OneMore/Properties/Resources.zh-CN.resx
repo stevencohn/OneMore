@@ -1313,7 +1313,7 @@ OneNote 文件 (*.one)</value>
     <comment>checkbox</comment>
   </data>
   <data name="HashtagSheet_filterBox.Text" xml:space="preserve">
-    <value>排除 HTML 十六进制颜色以及 C# 和 C++ 指令</value>
+    <value>将 HTML Hex 颜色以及 C# 和 C++ 指令视为主题标签</value>
     <comment>checkbox</comment>
   </data>
   <data name="HashtagSheet_intervalLabel.Text" xml:space="preserve">

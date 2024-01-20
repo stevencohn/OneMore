@@ -31,6 +31,7 @@ namespace River.OneMoreAddIn.Settings
 		{
 			this.introBox = new System.Windows.Forms.TextBox();
 			this.layoutPanel = new System.Windows.Forms.Panel();
+			this.filterBox = new System.Windows.Forms.CheckBox();
 			this.styleBox = new System.Windows.Forms.ComboBox();
 			this.styleLabel = new System.Windows.Forms.Label();
 			this.advancedGroup = new System.Windows.Forms.GroupBox();
@@ -39,7 +40,6 @@ namespace River.OneMoreAddIn.Settings
 			this.minLabel = new System.Windows.Forms.Label();
 			this.intervalBox = new System.Windows.Forms.NumericUpDown();
 			this.intervalLabel = new System.Windows.Forms.Label();
-			this.filterBox = new System.Windows.Forms.CheckBox();
 			this.layoutPanel.SuspendLayout();
 			this.advancedGroup.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.intervalBox)).BeginInit();
@@ -73,6 +73,16 @@ namespace River.OneMoreAddIn.Settings
 			this.layoutPanel.Name = "layoutPanel";
 			this.layoutPanel.Size = new System.Drawing.Size(772, 516);
 			this.layoutPanel.TabIndex = 4;
+			// 
+			// filterBox
+			// 
+			this.filterBox.AutoSize = true;
+			this.filterBox.Location = new System.Drawing.Point(11, 134);
+			this.filterBox.Name = "filterBox";
+			this.filterBox.Size = new System.Drawing.Size(477, 24);
+			this.filterBox.TabIndex = 11;
+			this.filterBox.Text = "Treat HTML Hex colors and C# and C++ directives as hashtags";
+			this.filterBox.UseVisualStyleBackColor = true;
 			// 
 			// styleBox
 			// 
@@ -170,16 +180,6 @@ namespace River.OneMoreAddIn.Settings
 			this.intervalLabel.Size = new System.Drawing.Size(180, 20);
 			this.intervalLabel.TabIndex = 3;
 			this.intervalLabel.Text = "Scan for hashtags every";
-			// 
-			// filterBox
-			// 
-			this.filterBox.AutoSize = true;
-			this.filterBox.Location = new System.Drawing.Point(11, 134);
-			this.filterBox.Name = "filterBox";
-			this.filterBox.Size = new System.Drawing.Size(405, 24);
-			this.filterBox.TabIndex = 11;
-			this.filterBox.Text = "Exclude HTML Hex colors and C# and C++ directives";
-			this.filterBox.UseVisualStyleBackColor = true;
 			// 
 			// HashtagSheet
 			// 

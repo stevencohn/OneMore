@@ -1312,7 +1312,7 @@
     <comment>checkbox</comment>
   </data>
   <data name="HashtagSheet_filterBox.Text" xml:space="preserve">
-    <value>استبعاد ألوان HTML Hex وتوجيهات C# وC++</value>
+    <value>تعامل مع ألوان HTML Hex وتوجيهات C# وC++ كعلامات تصنيف</value>
     <comment>checkbox</comment>
   </data>
   <data name="HashtagSheet_intervalLabel.Text" xml:space="preserve">

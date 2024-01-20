@@ -21,14 +21,14 @@ namespace River.OneMoreAddIn.Commands
 		/// <summary>
 		/// Initialize a new factory and compiles the pattern match expression
 		/// </summary>
-		public HashtagPageSannerFactory(XElement styleTemplate, bool filtered)
+		public HashtagPageSannerFactory(XElement styleTemplate, bool unfiltered)
 		{
 			// TODO: right-to-left languages?
 			// Groups[1].Index, Length, Value
 			// matches ##digits or ##word or #word, but not #digits
-			hashPattern = new Regex(filtered
-				? @"(?:^|\s|\[|\(|{)(##\d[\w\-_]+|(?!#(?:[A-Fa-f0-9]{6}|define|else|endif|endregion|error|include|if|ifdef|ifndef|line|pragma|region|undef)(?:\s|$|\)|\]|}|[^\w\d\-_]))#{1,2}[^\W\d][\w\-_]{0,})"
-				: @"(?:^|\s|\[|\(|{)(##\d[\w\-_]+|#{1,2}[^\W\d][\w\-_]{0,})"
+			hashPattern = new Regex(unfiltered
+				? @"(?:^|\s|\[|\(|{)(##\d[\w\-_]+|#{1,2}[^\W\d][\w\-_]{0,})"
+				: @"(?:^|\s|\[|\(|{)(##\d[\w\-_]+|(?!#(?:[A-Fa-f0-9]{6}|define|else|endif|endregion|error|include|if|ifdef|ifndef|line|pragma|region|undef)(?:\s|$|\)|\]|}|[^\w\d\-_]))#{1,2}[^\W\d][\w\-_]{0,})"
 				);
 
 			this.styleTemplate = styleTemplate;

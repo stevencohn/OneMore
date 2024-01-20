@@ -1307,7 +1307,7 @@ Diese Abteilung</value>
     <comment>checkbox</comment>
   </data>
   <data name="HashtagSheet_filterBox.Text" xml:space="preserve">
-    <value>Schließen Sie HTML-Hex-Farben sowie C#- und C++-Anweisungen aus</value>
+    <value>Behandeln Sie HTML-Hex-Farben sowie C#- und C++-Anweisungen als Hashtags</value>
     <comment>checkbox</comment>
   </data>
   <data name="HashtagSheet_intervalLabel.Text" xml:space="preserve">

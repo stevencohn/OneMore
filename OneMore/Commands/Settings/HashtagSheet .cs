@@ -71,7 +71,7 @@ namespace River.OneMoreAddIn.Settings
 				}
 			}
 
-			filterBox.Checked = settings.Get<bool>("filtered");
+			filterBox.Checked = settings.Get<bool>("unfiltered");
 		}
 
 
@@ -104,8 +104,8 @@ namespace River.OneMoreAddIn.Settings
 			updated = settings.Add("styleName", styleBox.Text) || updated;
 
 			updated = filterBox.Checked
-				? settings.Add("filtered", true) || updated
-				: settings.Remove("filtered") || updated;
+				? settings.Add("unfiltered", true) || updated
+				: settings.Remove("unfiltered") || updated;
 
 			updated = rebuildBox.Checked
 				? settings.Add("rebuild", true) || updated

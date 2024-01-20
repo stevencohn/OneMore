@@ -1323,7 +1323,7 @@ Total Row Font
     <comment>checkbox</comment>
   </data>
   <data name="HashtagSheet_filterBox.Text" xml:space="preserve">
-    <value>אל תכלול צבעי HTML Hex והנחיות C# ו-C++</value>
+    <value>התייחס לצבעי HTML Hex ולהנחיות C# ו-C++ כאל תגי hashtag</value>
     <comment>checkbox</comment>
   </data>
   <data name="HashtagSheet_intervalLabel.Text" xml:space="preserve">

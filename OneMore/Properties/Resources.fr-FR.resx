@@ -1309,7 +1309,7 @@ Cette section</value>
     <comment>checkbox</comment>
   </data>
   <data name="HashtagSheet_filterBox.Text" xml:space="preserve">
-    <value>Exclure les couleurs HTML Hex et les directives C# et C++</value>
+    <value>Traitez les couleurs HTML Hex et les directives C# et C++ comme des hashtags</value>
     <comment>checkbox</comment>
   </data>
   <data name="HashtagSheet_intervalLabel.Text" xml:space="preserve">

@@ -3254,7 +3254,7 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Exclude HTML Hex colors and C# and C++ directives.
+        ///   Looks up a localized string similar to Treat HTML Hex colors and C# and C++ directives as hashtags.
         /// </summary>
         internal static string HashtagSheet_filterBox_Text {
             get {
