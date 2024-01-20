@@ -232,6 +232,176 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Absolute.
+        /// </summary>
+        internal static string AdjustImagesDialog_absRadio_Text {
+            get {
+                return ResourceManager.GetString("AdjustImagesDialog_absRadio.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to all images on this page.
+        /// </summary>
+        internal static string AdjustImagesDialog_allLabel_Text {
+            get {
+                return ResourceManager.GetString("AdjustImagesDialog_allLabel.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Applies to.
+        /// </summary>
+        internal static string AdjustImagesDialog_appliesTo {
+            get {
+                return ResourceManager.GetString("AdjustImagesDialog_appliesTo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Auto-size.
+        /// </summary>
+        internal static string AdjustImagesDialog_autoSizeRadio_Text {
+            get {
+                return ResourceManager.GetString("AdjustImagesDialog_autoSizeRadio.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Height.
+        /// </summary>
+        internal static string AdjustImagesDialog_heightLabel_Text {
+            get {
+                return ResourceManager.GetString("AdjustImagesDialog_heightLabel.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Image size.
+        /// </summary>
+        internal static string AdjustImagesDialog_imageSizeLabel_Text {
+            get {
+                return ResourceManager.GetString("AdjustImagesDialog_imageSizeLabel.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Resize all images
+        ///Do not shrink larger images
+        ///Do no enlarge smaller images.
+        /// </summary>
+        internal static string AdjustImagesDialog_limitsBox_Text {
+            get {
+                return ResourceManager.GetString("AdjustImagesDialog_limitsBox.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No images were found on this page.
+        ///
+        ///Images must be in an outline container. Background images cannot be adjusted..
+        /// </summary>
+        internal static string AdjustImagesDialog_noImages {
+            get {
+                return ResourceManager.GetString("AdjustImagesDialog_noImages", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Percentage.
+        /// </summary>
+        internal static string AdjustImagesDialog_pctRadio_Text {
+            get {
+                return ResourceManager.GetString("AdjustImagesDialog_pctRadio.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Preserve storage size.
+        /// </summary>
+        internal static string AdjustImagesDialog_preserveBox_Text {
+            get {
+                return ResourceManager.GetString("AdjustImagesDialog_preserveBox.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Preset.
+        /// </summary>
+        internal static string AdjustImagesDialog_presetRadio_Text {
+            get {
+                return ResourceManager.GetString("AdjustImagesDialog_presetRadio.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Preview {0}.
+        /// </summary>
+        internal static string AdjustImagesDialog_previewGroup_Text {
+            get {
+                return ResourceManager.GetString("AdjustImagesDialog_previewGroup.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Reposition background images.
+        /// </summary>
+        internal static string AdjustImagesDialog_repositionBox_Text {
+            get {
+                return ResourceManager.GetString("AdjustImagesDialog_repositionBox.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Reset values.
+        /// </summary>
+        internal static string AdjustImagesDialog_resetLinkLabel_Text {
+            get {
+                return ResourceManager.GetString("AdjustImagesDialog_resetLinkLabel.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} x {1}.
+        /// </summary>
+        internal static string AdjustImagesDialog_sizeLink_Text {
+            get {
+                return ResourceManager.GetString("AdjustImagesDialog_sizeLink.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Original
+        ///Gray scale
+        ///Sepia
+        ///Polaroid
+        ///Invert.
+        /// </summary>
+        internal static string AdjustImagesDialog_styleBox_Text {
+            get {
+                return ResourceManager.GetString("AdjustImagesDialog_styleBox.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Resize and Adjust Image.
+        /// </summary>
+        internal static string AdjustImagesDialog_Text {
+            get {
+                return ResourceManager.GetString("AdjustImagesDialog.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to View size.
+        /// </summary>
+        internal static string AdjustImagesDialog_viewSizeLabel_Text {
+            get {
+                return ResourceManager.GetString("AdjustImagesDialog_viewSizeLabel.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Define command aliases for use in the Command Palette.
         /// </summary>
         internal static string AliasSheet_Text {
@@ -6128,176 +6298,6 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Absolute.
-        /// </summary>
-        internal static string AdjustImagesDialog_absRadio_Text {
-            get {
-                return ResourceManager.GetString("AdjustImagesDialog_absRadio.Text", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to all images on this page.
-        /// </summary>
-        internal static string AdjustImagesDialog_allLabel_Text {
-            get {
-                return ResourceManager.GetString("AdjustImagesDialog_allLabel.Text", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Applies to.
-        /// </summary>
-        internal static string AdjustImagesDialog_appliesTo {
-            get {
-                return ResourceManager.GetString("AdjustImagesDialog_appliesTo", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Auto-size.
-        /// </summary>
-        internal static string AdjustImagesDialog_autoSizeRadio_Text {
-            get {
-                return ResourceManager.GetString("AdjustImagesDialog_autoSizeRadio.Text", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Height.
-        /// </summary>
-        internal static string AdjustImagesDialog_heightLabel_Text {
-            get {
-                return ResourceManager.GetString("AdjustImagesDialog_heightLabel.Text", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Image size.
-        /// </summary>
-        internal static string AdjustImagesDialog_imageSizeLabel_Text {
-            get {
-                return ResourceManager.GetString("AdjustImagesDialog_imageSizeLabel.Text", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Resize all images
-        ///Do not shrink larger images
-        ///Do no enlarge smaller images.
-        /// </summary>
-        internal static string AdjustImagesDialog_limitsBox_Text {
-            get {
-                return ResourceManager.GetString("AdjustImagesDialog_limitsBox.Text", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to No images were found on this page.
-        ///
-        ///Images must be in an outline container. Background images cannot be adjusted..
-        /// </summary>
-        internal static string AdjustImagesDialog_noImages {
-            get {
-                return ResourceManager.GetString("AdjustImagesDialog_noImages", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Percentage.
-        /// </summary>
-        internal static string AdjustImagesDialog_pctRadio_Text {
-            get {
-                return ResourceManager.GetString("AdjustImagesDialog_pctRadio.Text", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Preserve storage size.
-        /// </summary>
-        internal static string AdjustImagesDialog_preserveBox_Text {
-            get {
-                return ResourceManager.GetString("AdjustImagesDialog_preserveBox.Text", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Preset.
-        /// </summary>
-        internal static string AdjustImagesDialog_presetRadio_Text {
-            get {
-                return ResourceManager.GetString("AdjustImagesDialog_presetRadio.Text", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Preview {0}.
-        /// </summary>
-        internal static string AdjustImagesDialog_previewGroup_Text {
-            get {
-                return ResourceManager.GetString("AdjustImagesDialog_previewGroup.Text", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Reposition background images.
-        /// </summary>
-        internal static string AdjustImagesDialog_repositionBox_Text {
-            get {
-                return ResourceManager.GetString("AdjustImagesDialog_repositionBox.Text", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Reset values.
-        /// </summary>
-        internal static string AdjustImagesDialog_resetLinkLabel_Text {
-            get {
-                return ResourceManager.GetString("AdjustImagesDialog_resetLinkLabel.Text", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to {0} x {1}.
-        /// </summary>
-        internal static string AdjustImagesDialog_sizeLink_Text {
-            get {
-                return ResourceManager.GetString("AdjustImagesDialog_sizeLink.Text", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Original
-        ///Gray scale
-        ///Sepia
-        ///Polaroid
-        ///Invert.
-        /// </summary>
-        internal static string AdjustImagesDialog_styleBox_Text {
-            get {
-                return ResourceManager.GetString("AdjustImagesDialog_styleBox.Text", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Resize and Adjust Image.
-        /// </summary>
-        internal static string AdjustImagesDialog_Text {
-            get {
-                return ResourceManager.GetString("AdjustImagesDialog.Text", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to View size.
-        /// </summary>
-        internal static string AdjustImagesDialog_viewSizeLabel_Text {
-            get {
-                return ResourceManager.GetString("AdjustImagesDialog_viewSizeLabel.Text", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap Restart {
@@ -6403,6 +6403,24 @@ namespace River.OneMoreAddIn.Properties {
         internal static string ribAddFormulaButton_Screentip {
             get {
                 return ResourceManager.GetString("ribAddFormulaButton_Screentip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Resize and Adjust.
+        /// </summary>
+        internal static string ribAdjustImagesButton_Label {
+            get {
+                return ResourceManager.GetString("ribAdjustImagesButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Resize and adjust selected images.
+        /// </summary>
+        internal static string ribAdjustImagesButton_Screentip {
+            get {
+                return ResourceManager.GetString("ribAdjustImagesButton_Screentip", resourceCulture);
             }
         }
         
@@ -8813,24 +8831,6 @@ namespace River.OneMoreAddIn.Properties {
         internal static string ribReportRemindersButton_Screentip {
             get {
                 return ResourceManager.GetString("ribReportRemindersButton_Screentip", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Resize and Adjust.
-        /// </summary>
-        internal static string ribAdjustImagesButton_Label {
-            get {
-                return ResourceManager.GetString("ribAdjustImagesButton_Label", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Resize and adjust selected images.
-        /// </summary>
-        internal static string ribAdjustImagesButton_Screentip {
-            get {
-                return ResourceManager.GetString("ribAdjustImagesButton_Screentip", resourceCulture);
             }
         }
         
@@ -11979,6 +11979,15 @@ namespace River.OneMoreAddIn.Properties {
         internal static string word_History {
             get {
                 return ResourceManager.GetString("word_History", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Indent.
+        /// </summary>
+        internal static string word_Indent {
+            get {
+                return ResourceManager.GetString("word_Indent", resourceCulture);
             }
         }
         

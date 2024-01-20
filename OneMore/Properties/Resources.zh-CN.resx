@@ -185,6 +185,86 @@ OneNote 将自动关闭</value>
   <data name="AddInTitle" xml:space="preserve">
     <value>OneMoreAddIn</value>
   </data>
+  <data name="AdjustImagesDialog.Text" xml:space="preserve">
+    <value>调整和调整图像</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="AdjustImagesDialog_absRadio.Text" xml:space="preserve">
+    <value>绝对</value>
+    <comment>radio button</comment>
+  </data>
+  <data name="AdjustImagesDialog_allLabel.Text" xml:space="preserve">
+    <value>此页面上的所有图像</value>
+    <comment>info label</comment>
+  </data>
+  <data name="AdjustImagesDialog_appliesTo" xml:space="preserve">
+    <value>适用于</value>
+    <comment>label override</comment>
+  </data>
+  <data name="AdjustImagesDialog_autoSizeRadio.Text" xml:space="preserve">
+    <value>自动尺寸</value>
+    <comment>radio</comment>
+  </data>
+  <data name="AdjustImagesDialog_heightLabel.Text" xml:space="preserve">
+    <value>高度</value>
+    <comment>label</comment>
+  </data>
+  <data name="AdjustImagesDialog_imageSizeLabel.Text" xml:space="preserve">
+    <value>图片大小</value>
+    <comment>label</comment>
+  </data>
+  <data name="AdjustImagesDialog_limitsBox.Text" xml:space="preserve">
+    <value>调整所有图像的大小
+不要缩小较大的图像
+不要放大较小的图像</value>
+    <comment>combobox</comment>
+  </data>
+  <data name="AdjustImagesDialog_noImages" xml:space="preserve">
+    <value>在此页面上未找到任何图像。
+
+图像必须位于轮廓容器中。背景图像无法调整。</value>
+    <comment>message box</comment>
+  </data>
+  <data name="AdjustImagesDialog_pctRadio.Text" xml:space="preserve">
+    <value>百分比</value>
+    <comment>radio</comment>
+  </data>
+  <data name="AdjustImagesDialog_preserveBox.Text" xml:space="preserve">
+    <value>保留存储大小</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="AdjustImagesDialog_presetRadio.Text" xml:space="preserve">
+    <value>预设值</value>
+    <comment>radio</comment>
+  </data>
+  <data name="AdjustImagesDialog_previewGroup.Text" xml:space="preserve">
+    <value>预览{0}</value>
+    <comment>group box for single image</comment>
+  </data>
+  <data name="AdjustImagesDialog_repositionBox.Text" xml:space="preserve">
+    <value>重新定位背景图像</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="AdjustImagesDialog_resetLinkLabel.Text" xml:space="preserve">
+    <value>重置值</value>
+    <comment>link label</comment>
+  </data>
+  <data name="AdjustImagesDialog_sizeLink.Text" xml:space="preserve">
+    <value>{0} x {1}</value>
+    <comment>width x height</comment>
+  </data>
+  <data name="AdjustImagesDialog_styleBox.Text" xml:space="preserve">
+    <value>原来的
+灰度
+棕褐色
+宝丽来
+倒置</value>
+    <comment>combobox</comment>
+  </data>
+  <data name="AdjustImagesDialog_viewSizeLabel.Text" xml:space="preserve">
+    <value>查看尺寸</value>
+    <comment>label</comment>
+  </data>
   <data name="AliasSheet.Text" xml:space="preserve">
     <value>定义在命令面板中使用的命令别名</value>
     <comment>intro box</comment>
@@ -2465,86 +2545,6 @@ ISO-code then comma then language name</comment>
     <value>旧的或新的</value>
     <comment>title</comment>
   </data>
-  <data name="AdjustImagesDialog.Text" xml:space="preserve">
-    <value>调整和调整图像</value>
-    <comment>dialog title</comment>
-  </data>
-  <data name="AdjustImagesDialog_absRadio.Text" xml:space="preserve">
-    <value>绝对</value>
-    <comment>radio button</comment>
-  </data>
-  <data name="AdjustImagesDialog_allLabel.Text" xml:space="preserve">
-    <value>此页面上的所有图像</value>
-    <comment>info label</comment>
-  </data>
-  <data name="AdjustImagesDialog_appliesTo" xml:space="preserve">
-    <value>适用于</value>
-    <comment>label override</comment>
-  </data>
-  <data name="AdjustImagesDialog_autoSizeRadio.Text" xml:space="preserve">
-    <value>自动尺寸</value>
-    <comment>radio</comment>
-  </data>
-  <data name="AdjustImagesDialog_heightLabel.Text" xml:space="preserve">
-    <value>高度</value>
-    <comment>label</comment>
-  </data>
-  <data name="AdjustImagesDialog_imageSizeLabel.Text" xml:space="preserve">
-    <value>图片大小</value>
-    <comment>label</comment>
-  </data>
-  <data name="AdjustImagesDialog_limitsBox.Text" xml:space="preserve">
-    <value>调整所有图像的大小
-不要缩小较大的图像
-不要放大较小的图像</value>
-    <comment>combobox</comment>
-  </data>
-  <data name="AdjustImagesDialog_noImages" xml:space="preserve">
-    <value>在此页面上未找到任何图像。
-
-图像必须位于轮廓容器中。背景图像无法调整。</value>
-    <comment>message box</comment>
-  </data>
-  <data name="AdjustImagesDialog_pctRadio.Text" xml:space="preserve">
-    <value>百分比</value>
-    <comment>radio</comment>
-  </data>
-  <data name="AdjustImagesDialog_preserveBox.Text" xml:space="preserve">
-    <value>保留存储大小</value>
-    <comment>checkbox</comment>
-  </data>
-  <data name="AdjustImagesDialog_presetRadio.Text" xml:space="preserve">
-    <value>预设值</value>
-    <comment>radio</comment>
-  </data>
-  <data name="AdjustImagesDialog_previewGroup.Text" xml:space="preserve">
-    <value>预览{0}</value>
-    <comment>group box for single image</comment>
-  </data>
-  <data name="AdjustImagesDialog_repositionBox.Text" xml:space="preserve">
-    <value>重新定位背景图像</value>
-    <comment>checkbox</comment>
-  </data>
-  <data name="AdjustImagesDialog_resetLinkLabel.Text" xml:space="preserve">
-    <value>重置值</value>
-    <comment>link label</comment>
-  </data>
-  <data name="AdjustImagesDialog_sizeLink.Text" xml:space="preserve">
-    <value>{0} x {1}</value>
-    <comment>width x height</comment>
-  </data>
-  <data name="AdjustImagesDialog_styleBox.Text" xml:space="preserve">
-    <value>原来的
-灰度
-棕褐色
-宝丽来
-倒置</value>
-    <comment>combobox</comment>
-  </data>
-  <data name="AdjustImagesDialog_viewSizeLabel.Text" xml:space="preserve">
-    <value>查看尺寸</value>
-    <comment>label</comment>
-  </data>
   <data name="ribAboutButton_Label" xml:space="preserve">
     <value>关于OneMore</value>
     <comment>Ribbon OneMore menu item</comment>
@@ -2588,6 +2588,14 @@ ISO-code then comma then language name</comment>
   <data name="ribAddFormulaButton_Screentip" xml:space="preserve">
     <value>在选定的表格单元格中添加/编辑公式（F5）</value>
     <comment>Ribbon OneMore menu item, Formula...</comment>
+  </data>
+  <data name="ribAdjustImagesButton_Label" xml:space="preserve">
+    <value>调整大小和调整</value>
+    <comment>Ribbon OneMore menu item, Resize selected image(s)</comment>
+  </data>
+  <data name="ribAdjustImagesButton_Screentip" xml:space="preserve">
+    <value>调整大小和调整所选图像</value>
+    <comment>ribbon images</comment>
   </data>
   <data name="ribAnalyzeButton_Label" xml:space="preserve">
     <value>分析数据存储</value>
@@ -3633,14 +3641,6 @@ ISO-code then comma then language name</comment>
   <data name="ribReportRemindersButton_Screentip" xml:space="preserve">
     <value>生成提醒摘要报告</value>
     <comment>ribbon reminders</comment>
-  </data>
-  <data name="ribAdjustImagesButton_Label" xml:space="preserve">
-    <value>调整大小和调整</value>
-    <comment>Ribbon OneMore menu item, Resize selected image(s)</comment>
-  </data>
-  <data name="ribAdjustImagesButton_Screentip" xml:space="preserve">
-    <value>调整大小和调整所选图像</value>
-    <comment>ribbon images</comment>
   </data>
   <data name="ribRestoreAutosizeButton_Label" xml:space="preserve">
     <value>还原容器宽度</value>
@@ -4884,6 +4884,9 @@ ISO-code then comma then language name</comment>
   </data>
   <data name="word_History" xml:space="preserve">
     <value>历史</value>
+  </data>
+  <data name="word_Indent" xml:space="preserve">
+    <value>缩进</value>
   </data>
   <data name="word_Index" xml:space="preserve">
     <value>词索引</value>

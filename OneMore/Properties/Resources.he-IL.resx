@@ -187,6 +187,86 @@ OneNote ייסגר אוטומטית</value>
     <value>OneMoreAddIn</value>
     <comment>SKIP</comment>
   </data>
+  <data name="AdjustImagesDialog.Text" xml:space="preserve">
+    <value>שנה גודל והתאם תמונה</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="AdjustImagesDialog_absRadio.Text" xml:space="preserve">
+    <value>מוּחלָט</value>
+    <comment>radio button</comment>
+  </data>
+  <data name="AdjustImagesDialog_allLabel.Text" xml:space="preserve">
+    <value>כל התמונות בדף זה</value>
+    <comment>info label</comment>
+  </data>
+  <data name="AdjustImagesDialog_appliesTo" xml:space="preserve">
+    <value>חל על</value>
+    <comment>label override</comment>
+  </data>
+  <data name="AdjustImagesDialog_autoSizeRadio.Text" xml:space="preserve">
+    <value>גודל אוטומטי</value>
+    <comment>radio</comment>
+  </data>
+  <data name="AdjustImagesDialog_heightLabel.Text" xml:space="preserve">
+    <value>גוֹבַה</value>
+    <comment>label</comment>
+  </data>
+  <data name="AdjustImagesDialog_imageSizeLabel.Text" xml:space="preserve">
+    <value>גודל תמונה</value>
+    <comment>label</comment>
+  </data>
+  <data name="AdjustImagesDialog_limitsBox.Text" xml:space="preserve">
+    <value>שנה את גודל כל התמונות
+אל תכווץ תמונות גדולות יותר
+אין להגדיל תמונות קטנות יותר</value>
+    <comment>combobox</comment>
+  </data>
+  <data name="AdjustImagesDialog_noImages" xml:space="preserve">
+    <value>לא נמצאו תמונות בדף זה.
+
+התמונות חייבות להיות במיכל מתאר. לא ניתן לכוונן תמונות רקע.</value>
+    <comment>message box</comment>
+  </data>
+  <data name="AdjustImagesDialog_pctRadio.Text" xml:space="preserve">
+    <value>אֲחוּזִים</value>
+    <comment>radio</comment>
+  </data>
+  <data name="AdjustImagesDialog_preserveBox.Text" xml:space="preserve">
+    <value>שמור על גודל האחסון</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="AdjustImagesDialog_presetRadio.Text" xml:space="preserve">
+    <value>מוגדר מראש</value>
+    <comment>radio</comment>
+  </data>
+  <data name="AdjustImagesDialog_previewGroup.Text" xml:space="preserve">
+    <value>תצוגה מקדימה {0}</value>
+    <comment>group box for single image</comment>
+  </data>
+  <data name="AdjustImagesDialog_repositionBox.Text" xml:space="preserve">
+    <value>מיקום מחדש של תמונות רקע</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="AdjustImagesDialog_resetLinkLabel.Text" xml:space="preserve">
+    <value>אפס ערכים</value>
+    <comment>link label</comment>
+  </data>
+  <data name="AdjustImagesDialog_sizeLink.Text" xml:space="preserve">
+    <value>{0} x {1}</value>
+    <comment>width x height</comment>
+  </data>
+  <data name="AdjustImagesDialog_styleBox.Text" xml:space="preserve">
+    <value>מְקוֹרִי
+סולם אפור
+חוּם כֵּהֶה
+פולארויד
+לַהֲפוֹך</value>
+    <comment>combobox</comment>
+  </data>
+  <data name="AdjustImagesDialog_viewSizeLabel.Text" xml:space="preserve">
+    <value>גודל תצוגה</value>
+    <comment>label</comment>
+  </data>
   <data name="AliasSheet.Text" xml:space="preserve">
     <value>הגדר כינויי פקודות לשימוש בלוח הפקודות</value>
     <comment>intro box</comment>
@@ -2483,86 +2563,6 @@ ISO-code then comma then language name</comment>
     <value>ישן או חדש</value>
     <comment>title</comment>
   </data>
-  <data name="AdjustImagesDialog.Text" xml:space="preserve">
-    <value>שנה גודל והתאם תמונה</value>
-    <comment>dialog title</comment>
-  </data>
-  <data name="AdjustImagesDialog_absRadio.Text" xml:space="preserve">
-    <value>מוּחלָט</value>
-    <comment>radio button</comment>
-  </data>
-  <data name="AdjustImagesDialog_allLabel.Text" xml:space="preserve">
-    <value>כל התמונות בדף זה</value>
-    <comment>info label</comment>
-  </data>
-  <data name="AdjustImagesDialog_appliesTo" xml:space="preserve">
-    <value>חל על</value>
-    <comment>label override</comment>
-  </data>
-  <data name="AdjustImagesDialog_autoSizeRadio.Text" xml:space="preserve">
-    <value>גודל אוטומטי</value>
-    <comment>radio</comment>
-  </data>
-  <data name="AdjustImagesDialog_heightLabel.Text" xml:space="preserve">
-    <value>גוֹבַה</value>
-    <comment>label</comment>
-  </data>
-  <data name="AdjustImagesDialog_imageSizeLabel.Text" xml:space="preserve">
-    <value>גודל תמונה</value>
-    <comment>label</comment>
-  </data>
-  <data name="AdjustImagesDialog_limitsBox.Text" xml:space="preserve">
-    <value>שנה את גודל כל התמונות
-אל תכווץ תמונות גדולות יותר
-אין להגדיל תמונות קטנות יותר</value>
-    <comment>combobox</comment>
-  </data>
-  <data name="AdjustImagesDialog_noImages" xml:space="preserve">
-    <value>לא נמצאו תמונות בדף זה.
-
-התמונות חייבות להיות במיכל מתאר. לא ניתן לכוונן תמונות רקע.</value>
-    <comment>message box</comment>
-  </data>
-  <data name="AdjustImagesDialog_pctRadio.Text" xml:space="preserve">
-    <value>אֲחוּזִים</value>
-    <comment>radio</comment>
-  </data>
-  <data name="AdjustImagesDialog_preserveBox.Text" xml:space="preserve">
-    <value>שמור על גודל האחסון</value>
-    <comment>checkbox</comment>
-  </data>
-  <data name="AdjustImagesDialog_presetRadio.Text" xml:space="preserve">
-    <value>מוגדר מראש</value>
-    <comment>radio</comment>
-  </data>
-  <data name="AdjustImagesDialog_previewGroup.Text" xml:space="preserve">
-    <value>תצוגה מקדימה {0}</value>
-    <comment>group box for single image</comment>
-  </data>
-  <data name="AdjustImagesDialog_repositionBox.Text" xml:space="preserve">
-    <value>מיקום מחדש של תמונות רקע</value>
-    <comment>checkbox</comment>
-  </data>
-  <data name="AdjustImagesDialog_resetLinkLabel.Text" xml:space="preserve">
-    <value>אפס ערכים</value>
-    <comment>link label</comment>
-  </data>
-  <data name="AdjustImagesDialog_sizeLink.Text" xml:space="preserve">
-    <value>{0} x {1}</value>
-    <comment>width x height</comment>
-  </data>
-  <data name="AdjustImagesDialog_styleBox.Text" xml:space="preserve">
-    <value>מְקוֹרִי
-סולם אפור
-חוּם כֵּהֶה
-פולארויד
-לַהֲפוֹך</value>
-    <comment>combobox</comment>
-  </data>
-  <data name="AdjustImagesDialog_viewSizeLabel.Text" xml:space="preserve">
-    <value>גודל תצוגה</value>
-    <comment>label</comment>
-  </data>
   <data name="ribAboutButton_Label" xml:space="preserve">
     <value>על OneMore</value>
     <comment>Ribbon OneMore menu item</comment>
@@ -2606,6 +2606,14 @@ ISO-code then comma then language name</comment>
   <data name="ribAddFormulaButton_Screentip" xml:space="preserve">
     <value>הוסף/ערוך נוסחה בתאי טבלה שנבחרו (F5)</value>
     <comment>Ribbon OneMore menu item, Formula...</comment>
+  </data>
+  <data name="ribAdjustImagesButton_Label" xml:space="preserve">
+    <value>שנה גודל והתאם</value>
+    <comment>Ribbon OneMore menu item, Resize selected image(s)</comment>
+  </data>
+  <data name="ribAdjustImagesButton_Screentip" xml:space="preserve">
+    <value>שינוי גודל והתאם תמונות שנבחרו</value>
+    <comment>ribbon images</comment>
   </data>
   <data name="ribAnalyzeButton_Label" xml:space="preserve">
     <value>ניתוח אחסון נתונים</value>
@@ -3651,14 +3659,6 @@ ISO-code then comma then language name</comment>
   <data name="ribReportRemindersButton_Screentip" xml:space="preserve">
     <value>צור דוח סיכום של תזכורות</value>
     <comment>ribbon reminders</comment>
-  </data>
-  <data name="ribAdjustImagesButton_Label" xml:space="preserve">
-    <value>שנה גודל והתאם</value>
-    <comment>Ribbon OneMore menu item, Resize selected image(s)</comment>
-  </data>
-  <data name="ribAdjustImagesButton_Screentip" xml:space="preserve">
-    <value>שינוי גודל והתאם תמונות שנבחרו</value>
-    <comment>ribbon images</comment>
   </data>
   <data name="ribRestoreAutosizeButton_Label" xml:space="preserve">
     <value>שחזור רוחב מיכל</value>
@@ -4906,6 +4906,9 @@ ISO-code then comma then language name</comment>
   </data>
   <data name="word_History" xml:space="preserve">
     <value>הִיסטוֹרִיָה</value>
+  </data>
+  <data name="word_Indent" xml:space="preserve">
+    <value>לְשַׁנֵן</value>
   </data>
   <data name="word_Index" xml:space="preserve">
     <value>word_Index</value>

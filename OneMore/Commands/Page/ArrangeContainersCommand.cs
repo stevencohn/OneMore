@@ -27,6 +27,7 @@ namespace River.OneMoreAddIn.Commands
 		private Page page;
 		private XNamespace ns;
 		private double topMargin;
+		private double indent;
 
 
 		public ArrangeContainersCommand()
@@ -51,6 +52,8 @@ namespace River.OneMoreAddIn.Commands
 			}
 
 			FindTopMargin();
+
+			indent = LeftMargin + dialog.Indent;
 
 			var updated = dialog.Vertical
 				? ArrangeVertical(dialog.PageWidth)
@@ -106,7 +109,7 @@ namespace River.OneMoreAddIn.Commands
 			foreach (var container in containers)
 			{
 				var position = container.Element(ns + "Position");
-				position.SetAttributeValue("x", LeftMargin.ToString(CultureInfo.InvariantCulture));
+				position.SetAttributeValue("x", indent.ToString(CultureInfo.InvariantCulture));
 				position.SetAttributeValue("y", yoffset.ToString(CultureInfo.InvariantCulture));
 
 				var size = container.Element(ns + "Size");
@@ -134,7 +137,7 @@ namespace River.OneMoreAddIn.Commands
 				return false;
 			}
 
-			var xoffset = LeftMargin;
+			var xoffset = indent;
 
 			// find the topmost container position
 			var yoffset = Math.Min(
@@ -145,7 +148,7 @@ namespace River.OneMoreAddIn.Commands
 			int col = 1;
 			double maxHeight = 0;
 			double colwidth = (pageWidth / columns);
-			double maxPageWidth = LeftMargin + pageWidth + (RightMargin * (columns - 1));
+			double maxPageWidth = indent + pageWidth + (RightMargin * (columns - 1));
 
 			foreach (var container in containers)
 			{
@@ -162,7 +165,7 @@ namespace River.OneMoreAddIn.Commands
 				if ((col > columns) ||
 					(col > 1 && (xoffset + width > maxPageWidth)))
 				{
-					xoffset = LeftMargin;
+					xoffset = indent;
 					yoffset += maxHeight + BottomMargin;
 					maxHeight = height;
 					col = 1;
@@ -177,7 +180,7 @@ namespace River.OneMoreAddIn.Commands
 				size.SetAttributeValue("height", (height + 0.001).ToString("N3", CultureInfo.InvariantCulture));
 				size.SetAttributeValue("isSetByUser", "true");
 
-				logger.WriteLine($"moved container to {LeftMargin} x {yoffset:N3}, size {width:N3} x {height:N3}");
+				logger.WriteLine($"moved container to {indent} x {yoffset:N3}, size {width:N3} x {height:N3}");
 
 				xoffset += Math.Max(width, colwidth) + RightMargin;
 				col++;

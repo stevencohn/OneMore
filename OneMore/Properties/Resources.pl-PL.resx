@@ -185,6 +185,86 @@ OneNote zamknie się automatycznie</value>
     <value>OneMoreAddIn</value>
     <comment>SKIP</comment>
   </data>
+  <data name="AdjustImagesDialog.Text" xml:space="preserve">
+    <value>Zmień rozmiar i dostosuj obraz</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="AdjustImagesDialog_absRadio.Text" xml:space="preserve">
+    <value>Absolutny</value>
+    <comment>radio button</comment>
+  </data>
+  <data name="AdjustImagesDialog_allLabel.Text" xml:space="preserve">
+    <value>Wszystkie obrazy na tej stronie</value>
+    <comment>info label</comment>
+  </data>
+  <data name="AdjustImagesDialog_appliesTo" xml:space="preserve">
+    <value>Dotyczy</value>
+    <comment>label override</comment>
+  </data>
+  <data name="AdjustImagesDialog_autoSizeRadio.Text" xml:space="preserve">
+    <value>Rozmiar auta</value>
+    <comment>radio</comment>
+  </data>
+  <data name="AdjustImagesDialog_heightLabel.Text" xml:space="preserve">
+    <value>Wzrost</value>
+    <comment>label</comment>
+  </data>
+  <data name="AdjustImagesDialog_imageSizeLabel.Text" xml:space="preserve">
+    <value>Rozmiar obrazu</value>
+    <comment>label</comment>
+  </data>
+  <data name="AdjustImagesDialog_limitsBox.Text" xml:space="preserve">
+    <value>Zmień rozmiar wszystkich obrazów
+Nie zmniejszaj większych obrazów
+Nie powiększaj mniejszych obrazów</value>
+    <comment>combobox</comment>
+  </data>
+  <data name="AdjustImagesDialog_noImages" xml:space="preserve">
+    <value>Na tej stronie nie znaleziono żadnych obrazów.
+
+Obrazy muszą znajdować się w kontenerze konspektu. Nie można regulować obrazów tła.</value>
+    <comment>message box</comment>
+  </data>
+  <data name="AdjustImagesDialog_pctRadio.Text" xml:space="preserve">
+    <value>Odsetek</value>
+    <comment>radio</comment>
+  </data>
+  <data name="AdjustImagesDialog_preserveBox.Text" xml:space="preserve">
+    <value>Zachowaj rozmiar przechowywania</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="AdjustImagesDialog_presetRadio.Text" xml:space="preserve">
+    <value>Preset.</value>
+    <comment>radio</comment>
+  </data>
+  <data name="AdjustImagesDialog_previewGroup.Text" xml:space="preserve">
+    <value>Podgląd {0}</value>
+    <comment>group box for single image</comment>
+  </data>
+  <data name="AdjustImagesDialog_repositionBox.Text" xml:space="preserve">
+    <value>Zmień położenie obrazów tła</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="AdjustImagesDialog_resetLinkLabel.Text" xml:space="preserve">
+    <value>Zresetuj wartości</value>
+    <comment>link label</comment>
+  </data>
+  <data name="AdjustImagesDialog_sizeLink.Text" xml:space="preserve">
+    <value>{0} x {1}</value>
+    <comment>width x height</comment>
+  </data>
+  <data name="AdjustImagesDialog_styleBox.Text" xml:space="preserve">
+    <value>Oryginalny
+Skala szarości
+Sepia
+Polaroid
+Odwracać</value>
+    <comment>combobox</comment>
+  </data>
+  <data name="AdjustImagesDialog_viewSizeLabel.Text" xml:space="preserve">
+    <value>Zobacz rozmiar</value>
+    <comment>label</comment>
+  </data>
   <data name="AliasSheet.Text" xml:space="preserve">
     <value>Zdefiniuj aliasy poleceń do użycia w palecie poleceń</value>
     <comment>intro box</comment>
@@ -2477,86 +2557,6 @@ Wybierz Nie, aby zachować jedną pustą linię między akapitami</value>
     <value>Stare lub nowe</value>
     <comment>title</comment>
   </data>
-  <data name="AdjustImagesDialog.Text" xml:space="preserve">
-    <value>Zmień rozmiar i dostosuj obraz</value>
-    <comment>dialog title</comment>
-  </data>
-  <data name="AdjustImagesDialog_absRadio.Text" xml:space="preserve">
-    <value>Absolutny</value>
-    <comment>radio button</comment>
-  </data>
-  <data name="AdjustImagesDialog_allLabel.Text" xml:space="preserve">
-    <value>Wszystkie obrazy na tej stronie</value>
-    <comment>info label</comment>
-  </data>
-  <data name="AdjustImagesDialog_appliesTo" xml:space="preserve">
-    <value>Dotyczy</value>
-    <comment>label override</comment>
-  </data>
-  <data name="AdjustImagesDialog_autoSizeRadio.Text" xml:space="preserve">
-    <value>Rozmiar auta</value>
-    <comment>radio</comment>
-  </data>
-  <data name="AdjustImagesDialog_heightLabel.Text" xml:space="preserve">
-    <value>Wzrost</value>
-    <comment>label</comment>
-  </data>
-  <data name="AdjustImagesDialog_imageSizeLabel.Text" xml:space="preserve">
-    <value>Rozmiar obrazu</value>
-    <comment>label</comment>
-  </data>
-  <data name="AdjustImagesDialog_limitsBox.Text" xml:space="preserve">
-    <value>Zmień rozmiar wszystkich obrazów
-Nie zmniejszaj większych obrazów
-Nie powiększaj mniejszych obrazów</value>
-    <comment>combobox</comment>
-  </data>
-  <data name="AdjustImagesDialog_noImages" xml:space="preserve">
-    <value>Na tej stronie nie znaleziono żadnych obrazów.
-
-Obrazy muszą znajdować się w kontenerze konspektu. Nie można regulować obrazów tła.</value>
-    <comment>message box</comment>
-  </data>
-  <data name="AdjustImagesDialog_pctRadio.Text" xml:space="preserve">
-    <value>Odsetek</value>
-    <comment>radio</comment>
-  </data>
-  <data name="AdjustImagesDialog_preserveBox.Text" xml:space="preserve">
-    <value>Zachowaj rozmiar przechowywania</value>
-    <comment>checkbox</comment>
-  </data>
-  <data name="AdjustImagesDialog_presetRadio.Text" xml:space="preserve">
-    <value>Preset.</value>
-    <comment>radio</comment>
-  </data>
-  <data name="AdjustImagesDialog_previewGroup.Text" xml:space="preserve">
-    <value>Podgląd {0}</value>
-    <comment>group box for single image</comment>
-  </data>
-  <data name="AdjustImagesDialog_repositionBox.Text" xml:space="preserve">
-    <value>Zmień położenie obrazów tła</value>
-    <comment>checkbox</comment>
-  </data>
-  <data name="AdjustImagesDialog_resetLinkLabel.Text" xml:space="preserve">
-    <value>Zresetuj wartości</value>
-    <comment>link label</comment>
-  </data>
-  <data name="AdjustImagesDialog_sizeLink.Text" xml:space="preserve">
-    <value>{0} x {1}</value>
-    <comment>width x height</comment>
-  </data>
-  <data name="AdjustImagesDialog_styleBox.Text" xml:space="preserve">
-    <value>Oryginalny
-Skala szarości
-Sepia
-Polaroid
-Odwracać</value>
-    <comment>combobox</comment>
-  </data>
-  <data name="AdjustImagesDialog_viewSizeLabel.Text" xml:space="preserve">
-    <value>Zobacz rozmiar</value>
-    <comment>label</comment>
-  </data>
   <data name="ribAboutButton_Label" xml:space="preserve">
     <value>O ONEMORE.</value>
     <comment>Ribbon OneMore menu item</comment>
@@ -2600,6 +2600,14 @@ Odwracać</value>
   <data name="ribAddFormulaButton_Screentip" xml:space="preserve">
     <value>Dodaj / edytuj wzór w wybranych komórkach tabeli (F5)</value>
     <comment>Ribbon OneMore menu item, Formula...</comment>
+  </data>
+  <data name="ribAdjustImagesButton_Label" xml:space="preserve">
+    <value>Zmień rozmiar i dostosuj</value>
+    <comment>Ribbon OneMore menu item, Resize selected image(s)</comment>
+  </data>
+  <data name="ribAdjustImagesButton_Screentip" xml:space="preserve">
+    <value>Zmień rozmiar i dostosuj wybrane obrazy</value>
+    <comment>ribbon images</comment>
   </data>
   <data name="ribAnalyzeButton_Label" xml:space="preserve">
     <value>Analizuj przechowywanie danych.</value>
@@ -3651,14 +3659,6 @@ Odwracać</value>
   <data name="ribReportRemindersButton_Screentip" xml:space="preserve">
     <value>Wygeneruj raport podsumowujący przypomnienia</value>
     <comment>ribbon reminders</comment>
-  </data>
-  <data name="ribAdjustImagesButton_Label" xml:space="preserve">
-    <value>Zmień rozmiar i dostosuj</value>
-    <comment>Ribbon OneMore menu item, Resize selected image(s)</comment>
-  </data>
-  <data name="ribAdjustImagesButton_Screentip" xml:space="preserve">
-    <value>Zmień rozmiar i dostosuj wybrane obrazy</value>
-    <comment>ribbon images</comment>
   </data>
   <data name="ribRestoreAutosizeButton_Label" xml:space="preserve">
     <value>Przywróć szerokości pojemników</value>
@@ -4906,6 +4906,9 @@ W tej sekcji</value>
   </data>
   <data name="word_History" xml:space="preserve">
     <value>Historia</value>
+  </data>
+  <data name="word_Indent" xml:space="preserve">
+    <value>Akapit</value>
   </data>
   <data name="word_Index" xml:space="preserve">
     <value>słowo_Indeks</value>
