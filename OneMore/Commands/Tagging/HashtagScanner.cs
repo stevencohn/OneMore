@@ -233,6 +233,14 @@ namespace River.OneMoreAddIn.Commands
 				return false;
 			}
 
+			// avoid defect https://github.com/stevencohn/OneMore/issues/1268
+			// GetPage throws generic COM exception and returns null...
+			if (page == null)
+			{
+				logger.WriteLine($"skipping null page {pageID} '{path}'");
+				return false;
+			}
+
 			var title = page.Title;
 			var titleID = page.TitleID;
 			var scanner = factory.CreatePageScanner(page.Root);
