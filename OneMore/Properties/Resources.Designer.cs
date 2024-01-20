@@ -241,11 +241,20 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to all images on this page.
+        ///   Looks up a localized string similar to {0} background images.
         /// </summary>
-        internal static string AdjustImagesDialog_allLabel_Text {
+        internal static string AdjustImagesDialog_allLabelBackground {
             get {
-                return ResourceManager.GetString("AdjustImagesDialog_allLabel.Text", resourceCulture);
+                return ResourceManager.GetString("AdjustImagesDialog_allLabelBackground", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} foreground images.
+        /// </summary>
+        internal static string AdjustImagesDialog_allLabelForeground {
+            get {
+                return ResourceManager.GetString("AdjustImagesDialog_allLabelForeground", resourceCulture);
             }
         }
         

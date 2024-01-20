@@ -31,7 +31,7 @@ namespace River.OneMoreAddIn.Commands
 		/// Initializes a new dialog to resize all images on the page to a standard width
 		/// and height with respective ratio
 		/// </summary>
-		public AdjustImagesDialog(bool hasBackgroundImages)
+		public AdjustImagesDialog()
 		{
 			Initialize();
 
@@ -45,6 +45,7 @@ namespace River.OneMoreAddIn.Commands
 			// hide controls that do not apply...
 
 			viewSizeLabel.Text = Resx.AdjustImagesDialog_appliesTo;
+
 			allLabel.Location = viewSizeLink.Location;
 			allLabel.Visible = true;
 
@@ -69,7 +70,7 @@ namespace River.OneMoreAddIn.Commands
 			presetRadio.Checked = true;
 			RadioClick(presetRadio, null);
 
-			repositionBox.Visible = hasBackgroundImages;
+			repositionBox.Visible = !ForegroundImages;
 
 			scaling = null;
 
@@ -127,7 +128,6 @@ namespace River.OneMoreAddIn.Commands
 					"viewSizeLabel",
 					"imageSizeLabel",
 					"storageLabel=word_Storage",
-					"allLabel",
 					"limitsBox",
 					"autoSizeRadio",
 					"pctRadio",
@@ -216,12 +216,24 @@ namespace River.OneMoreAddIn.Commands
 		protected override void OnLoad(EventArgs e)
 		{
 			base.OnLoad(e);
+
+			if (allLabel.Visible)
+			{
+				allLabel.Text = string.Format(ForegroundImages
+					? Resx.AdjustImagesDialog_allLabelForeground
+					: Resx.AdjustImagesDialog_allLabelBackground, ImageCount);
+			}
+
 			suspended = false;
 		}
 		#endregion Lifecycle
 
 
 		// = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
+
+		public bool ForegroundImages { private get; set; }
+
+		public int ImageCount { private get; set; }
 
 		public bool RepositionImages => repositionBox.Checked;
 

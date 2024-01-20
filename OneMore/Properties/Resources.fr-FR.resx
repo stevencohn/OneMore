@@ -189,8 +189,12 @@
     <value>Absolu</value>
     <comment>radio button</comment>
   </data>
-  <data name="AdjustImagesDialog_allLabel.Text" xml:space="preserve">
-    <value>toutes les images sur cette page</value>
+  <data name="AdjustImagesDialog_allLabelBackground" xml:space="preserve">
+    <value>{0} images d'arrière-plan</value>
+    <comment>info label</comment>
+  </data>
+  <data name="AdjustImagesDialog_allLabelForeground" xml:space="preserve">
+    <value>{0} images de premier plan</value>
     <comment>info label</comment>
   </data>
   <data name="AdjustImagesDialog_appliesTo" xml:space="preserve">
