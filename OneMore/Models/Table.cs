@@ -313,7 +313,7 @@ namespace River.OneMoreAddIn.Models
 			var column = columns.Elements(ns + "Column").Skip(index).FirstOrDefault();
 			if (column != null)
 			{
-				column.SetAttributeValue("width", width.ToString("F03", CultureInfo.InvariantCulture));
+				column.SetAttributeValue("width", width.ToInvariantString());
 				column.SetAttributeValue("isLocked", "true");
 			}
 		}

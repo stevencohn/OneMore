@@ -175,9 +175,9 @@ namespace River.OneMoreAddIn.Commands
 				position.SetAttributeValue("x", xoffset.ToString(CultureInfo.InvariantCulture));
 				position.SetAttributeValue("y", yoffset.ToString(CultureInfo.InvariantCulture));
 
-				size.SetAttributeValue("width", colwidth.ToString("N3", CultureInfo.InvariantCulture));
+				size.SetAttributeValue("width", colwidth.ToInvariantString());
 				// must set both width and height for changes to take effect
-				size.SetAttributeValue("height", (height + 0.001).ToString("N3", CultureInfo.InvariantCulture));
+				size.SetAttributeValue("height", (height + 0.001).ToInvariantString());
 				size.SetAttributeValue("isSetByUser", "true");
 
 				logger.WriteLine($"moved container to {indent} x {yoffset:N3}, size {width:N3} x {height:N3}");
