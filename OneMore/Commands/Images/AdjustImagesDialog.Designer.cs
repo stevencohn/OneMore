@@ -18,7 +18,6 @@ namespace River.OneMoreAddIn.Commands
 		{
 			previewBox.Image = null;
 			previewBox?.Dispose();
-			image?.Dispose();
 
 			if (disposing && (components != null))
 			{

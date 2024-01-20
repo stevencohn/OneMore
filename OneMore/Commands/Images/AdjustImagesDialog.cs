@@ -265,14 +265,16 @@ namespace River.OneMoreAddIn.Commands
 			}
 			else // %
 			{
-				var w = (int)(image.Width * percentBox.Value / 100);
-				var h = (int)(image.Height * percentBox.Value / 100);
+				var w = (int)(viewWidth * percentBox.Value / 100);
+				var h = (int)(viewHeight * percentBox.Value / 100);
 
 				if (w != image.Width || h != image.Height)
 				{
 					editor.Size = new Size(w, h);
 				}
 			}
+
+			editor.PreserveStorageSize = preserveBox.Checked;
 
 			if (limitsBox.Visible)
 			{
@@ -338,6 +340,8 @@ namespace River.OneMoreAddIn.Commands
 			var editor = GetImageEditor(image);
 			// customize size for preview box
 			editor.Size = new Size(w, h);
+			// always force create a new image for preview
+			editor.PreserveStorageSize = false;
 
 			preview = editor.Apply(image);
 			previewBox.Image = preview;

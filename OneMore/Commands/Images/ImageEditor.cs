@@ -4,6 +4,7 @@
 
 namespace River.OneMoreAddIn.Commands
 {
+	using Newtonsoft.Json;
 	using River.OneMoreAddIn.Models;
 	using System.Collections.Generic;
 	using System.Drawing;
@@ -66,6 +67,8 @@ namespace River.OneMoreAddIn.Commands
 
 		public bool PreserveQualityOnResize {  private get; set; }
 
+		public bool PreserveStorageSize { private get; set; }
+
 		public long Quality { private get; set; }
 
 		public float Saturation { private get; set; }
@@ -94,15 +97,15 @@ namespace River.OneMoreAddIn.Commands
 			if (dirty)
 			{
 				wrapper.WriteImage(edit);
+			}
 
-				if (AutoSize)
-				{
-					wrapper.SetAutoSize();
-				}
-				else if (Size != Size.Empty)
-				{
-					wrapper.SetSize(Size.Width, Size.Height);
-				}
+			if (AutoSize)
+			{
+				wrapper.SetAutoSize();
+			}
+			else if (Size != Size.Empty)
+			{
+				wrapper.SetSize(Size.Width, Size.Height);
 			}
 
 			return edit;
@@ -169,7 +172,7 @@ namespace River.OneMoreAddIn.Commands
 			}
 
 			// resize last, to attempt to preserve quality
-			if (Size != Size.Empty)
+			if (Size != Size.Empty && !PreserveStorageSize)
 			{
 				trash.Push(edit);
 				edit = Resize(edit);
