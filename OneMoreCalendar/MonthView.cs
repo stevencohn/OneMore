@@ -121,7 +121,7 @@ namespace OneMoreCalendar
 				runner = runner.AddDays(-dow);
 				for (int i = 0; i < dow; i++)
 				{
-					MakeDay(days, pages, runner, settings.Modified);
+					MakeDay(days, pages, runner, settings.Modified, settings.Created);
 					runner = runner.AddDays(1.0);
 				}
 			}
@@ -129,7 +129,7 @@ namespace OneMoreCalendar
 			// month
 			for (int i = 1; i <= last; i++)
 			{
-				MakeDay(days, pages, runner, settings.Modified, true);
+				MakeDay(days, pages, runner, settings.Modified, settings.Created, true);
 				runner = runner.AddDays(1.0);
 			}
 
@@ -139,7 +139,7 @@ namespace OneMoreCalendar
 			{
 				for (int i = 0; i < rest; i++)
 				{
-					MakeDay(days, pages, runner, settings.Modified);
+					MakeDay(days, pages, runner, settings.Modified, settings.Created);
 					runner = runner.AddDays(1.0);
 				}
 			}
@@ -147,7 +147,7 @@ namespace OneMoreCalendar
 
 		private void MakeDay(
 			CalendarDays days, CalendarPages pages,
-			DateTime date, bool modified, bool inMonth = false)
+			DateTime date, bool modified, bool created, bool inMonth = false)
 		{
 			var day = new CalendarDay { Date = date, InMonth = inMonth };
 
@@ -155,7 +155,7 @@ namespace OneMoreCalendar
 			// displayed twice in the month if both created and modified in the same month
 			var pags = pages.Where(p =>
 				(modified && p.Modified.Date.Equals(date)) ||
-				(!modified && p.Created.Date.Equals(date))
+				(created && p.Created.Date.Equals(date))
 				);
 
 			pags.ForEach(p => day.Pages.Add(p));

@@ -83,7 +83,7 @@ namespace OneMoreCalendar
 				// displayed twice in the month if both created and modified in the same month
 				daypages.AddRange(pages.Where(p =>
 					(settings.Modified && p.Modified.Date.Equals(date)) ||
-					(!settings.Modified && p.Created.Date.Equals(date))
+					(settings.Created && p.Created.Date.Equals(date))
 					));
 
 				if (daypages.Any() || settings.Empty)
