@@ -59,7 +59,7 @@ namespace River.OneMoreAddIn.Commands
 				{
 					// words on the current page...
 
-					var count = WordsOnPage(one.CurrentPageId, out var wholePage);
+					var (count, wholePage) = await WordsOnPage(one.CurrentPageId);
 
 					if (wholePage)
 					{
@@ -80,9 +80,9 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private int WordsOnPage(string pageID, out bool wholePage)
+		private async Task<(int, bool)> WordsOnPage(string pageID)
 		{
-			var page = one.GetPage(pageID,
+			var page = await one.GetPage(pageID,
 				// only use Selection for current page,
 				// otherwise counts might be off for pages other than the current page
 				scope == OneNote.Scope.Self
@@ -115,8 +115,8 @@ namespace River.OneMoreAddIn.Commands
 				}
 			}
 
-			wholePage = page.SelectionScope == SelectionScope.Empty;
-			return count;
+			var wholePage = page.SelectionScope == SelectionScope.Empty;
+			return (count, wholePage);
 		}
 
 
@@ -125,7 +125,7 @@ namespace River.OneMoreAddIn.Commands
 			grandTotal = grandTotalPages = 0;
 
 			one.CreatePage(one.CurrentSectionId, out var pageId);
-			var page = one.GetPage(pageId);
+			var page = await one.GetPage(pageId);
 			page.Title = Resx.WordCountsCommand_Title;
 			page.SetMeta(MetaNames.WordCount, "true");
 			page.Root.SetAttributeValue("lang", "yo");
@@ -144,7 +144,7 @@ namespace River.OneMoreAddIn.Commands
 
 				if (scope == OneNote.Scope.Pages)
 				{
-					var section = one.GetSection();
+					var section = await one.GetSection();
 					progress.SetMaximum(section.Elements().Count());
 
 					var notebook = await one.GetNotebook(one.CurrentNotebookId, OneNote.Scope.Self);
@@ -220,7 +220,7 @@ namespace River.OneMoreAddIn.Commands
 				.Where(e =>
 					e.Attribute("ID").Value != page.PageId &&
 					e.Attribute("isInRecycleBin") == null)
-				.ForEach(child =>
+				.ForEach(async child =>
 			{
 				var row = table.AddRow();
 
@@ -230,7 +230,7 @@ namespace River.OneMoreAddIn.Commands
 
 				row[0].SetContent(new Paragraph(name));
 
-				var count = WordsOnPage(child.Attribute("ID").Value, out _);
+				var (count, _) = await WordsOnPage(child.Attribute("ID").Value);
 
 				pages++;
 				total += count;

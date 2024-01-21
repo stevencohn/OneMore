@@ -86,7 +86,7 @@ namespace River.OneMoreAddIn.Commands
 			var elements = page.Root.Descendants(ns + "T")
 				.Where(e => e.Attribute("selected")?.Value == "all");
 
-			if (elements != null)
+			if (elements.Any())
 			{
 				string color = "black";
 				string background = "yellow";

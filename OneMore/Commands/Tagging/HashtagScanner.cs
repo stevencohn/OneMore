@@ -119,6 +119,12 @@ namespace River.OneMoreAddIn.Commands
 
 			// get all notebooks
 			var root = await one.GetNotebooks();
+			if (root == null)
+			{
+				logger.WriteLine("error HashtagScanner one.GetNotebooks()");
+				return (0, 0);
+			}
+
 			ns = one.GetNamespace(root);
 
 			var notebooks = root.Elements(ns + "Notebook");
@@ -129,12 +135,14 @@ namespace River.OneMoreAddIn.Commands
 					// gets sections for this notebook
 					var notebookID = notebook.Attribute("ID").Value;
 					var sections = await one.GetNotebook(notebookID);
+					if (sections != null)
+					{
+						var (dp, tp) = await Scan(
+							sections, notebookID, $"/{notebook.Attribute("name").Value}");
 
-					var (dp, tp) = await Scan(
-						sections, notebookID, $"/{notebook.Attribute("name").Value}");
-
-					dirtyPages += dp;
-					totalPages += tp;
+						dirtyPages += dp;
+						totalPages += tp;
+					}
 				}
 			}
 
@@ -162,41 +170,43 @@ namespace River.OneMoreAddIn.Commands
 				foreach (var sectionRef in sectionRefs)
 				{
 					// get pages for this section
-					var section = one.GetSection(sectionRef.Attribute("ID").Value);
-
-					var pages = section.Elements(ns + "Page")
-						.Where(e => e.Attribute("isInRecycleBin") == null);
-
-					if (pages.Any())
+					var section = await one.GetSection(sectionRef.Attribute("ID").Value);
+					if (section != null)
 					{
-						totalPages += pages.Count();
-						var pids = new List<string>();
+						var pages = section.Elements(ns + "Page")
+							.Where(e => e.Attribute("isInRecycleBin") == null);
 
-						var sectionID = section.Attribute("ID").Value;
-						var sectionPath = $"{path}/{section.Attribute("name").Value}";
-						logger.Verbose($"scanning section {sectionPath} ({pages.Count()} pages)");
-
-						foreach (var page in pages)
+						if (pages.Any())
 						{
-							var pid = page.Attribute("ID").Value;
-							pids.Add(pid);
+							totalPages += pages.Count();
+							var pids = new List<string>();
 
-							if (page.Attribute("lastModifiedTime").Value.CompareTo(lastTime) > 0)
+							var sectionID = section.Attribute("ID").Value;
+							var sectionPath = $"{path}/{section.Attribute("name").Value}";
+							//logger.Verbose($"scanning section {sectionPath} ({pages.Count()} pages)");
+
+							foreach (var page in pages)
 							{
-								if (await ScanPage(pid, notebookID, sectionID, sectionPath))
+								var pid = page.Attribute("ID").Value;
+								pids.Add(pid);
+
+								if (page.Attribute("lastModifiedTime").Value.CompareTo(lastTime) > 0)
 								{
-									dirtyPages++;
+									if (await ScanPage(pid, notebookID, sectionID, sectionPath))
+									{
+										dirtyPages++;
+									}
+								}
+
+								// throttle the workload to give breathing room to OneNote UI
+								if (throttle > 0)
+								{
+									await Task.Delay(throttle);
 								}
 							}
 
-							// throttle the workload to give breathing room to OneNote UI
-							if (throttle > 0)
-							{
-								await Task.Delay(throttle);
-							}
+							provider.DeletePhantoms(pids, sectionID, sectionPath);
 						}
-
-						provider.DeletePhantoms(pids, sectionID, sectionPath);
 					}
 				}
 			}
@@ -230,7 +240,7 @@ namespace River.OneMoreAddIn.Commands
 
 			try
 			{
-				page = one.GetPage(pageID, OneNote.PageDetail.Basic);
+				page = await one.GetPage(pageID, OneNote.PageDetail.Basic);
 			}
 			catch (Exception exc)
 			{

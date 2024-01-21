@@ -24,7 +24,7 @@ namespace River.OneMoreAddIn.Commands
 		{
 			using var one = new OneNote();
 
-			var section = one.GetSection();
+			var section = await one.GetSection();
 			var ns = one.GetNamespace(section);
 
 			// find all level 1 pages not collapsed and immediately followed by level 2 page

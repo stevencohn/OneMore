@@ -48,12 +48,12 @@ namespace River.OneMoreAddIn.Commands
 			}
 
 			var objectID = paragraph.Attribute("objectID").Value;
-			var reminder = reminders.FirstOrDefault(r => r.ObjectId == objectID);
+			var reminder = reminders.Find(r => r.ObjectId == objectID);
 			if (reminder == null)
 			{
 				// second-chance for multi-client users
 				var uri = one.GetHyperlink(page.PageId, objectID);
-				reminder = reminders.FirstOrDefault(r => r.ObjectUri == uri);
+				reminder = reminders.Find(r => r.ObjectUri == uri);
 			}
 
 			if (reminder == null)

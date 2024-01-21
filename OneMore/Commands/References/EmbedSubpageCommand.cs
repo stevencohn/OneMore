@@ -129,7 +129,7 @@ namespace River.OneMoreAddIn.Commands
 
 		private async Task<SourceInfo> GetSource(string sourceId, string linkId)
 		{
-			var source = one.GetPage(sourceId, OneNote.PageDetail.BinaryData);
+			var source = await one.GetPage(sourceId, OneNote.PageDetail.BinaryData);
 			if (source == null)
 			{
 				if (linkId == null)
@@ -141,15 +141,17 @@ namespace River.OneMoreAddIn.Commands
 
 				logger.WriteLine("recoverying from GetPage by mapping to hyperlink");
 
-				var token = new CancellationTokenSource();
-				var map = await one.BuildHyperlinkMap(OneNote.Scope.Sections, token.Token,
-					async (count) => { await Task.Yield(); },
-					async () => { await Task.Yield(); });
+				using var token = new CancellationTokenSource();
+
+				var map = await new HyperlinkProvider(one)
+					.BuildHyperlinkMap(OneNote.Scope.Sections, token.Token,
+						async (count) => { await Task.Yield(); },
+						async () => { await Task.Yield(); });
 
 				if (map.ContainsKey(linkId))
 				{
 					sourceId = map[linkId].PageID;
-					source = one.GetPage(sourceId, OneNote.PageDetail.BinaryData);
+					source = await one.GetPage(sourceId, OneNote.PageDetail.BinaryData);
 				}
 
 				if (source == null)
@@ -176,7 +178,7 @@ namespace River.OneMoreAddIn.Commands
 				.Where(e => !e.Elements(ns + "OE")
 					.Elements(ns + "Meta").Attributes(EmbeddingsMetaName).Any());
 
-			if (snippets == null || !snippets.Any())
+			if (!snippets.Any())
 			{
 				UIHelper.ShowInfo(one.Window, Resx.EmbedSubpageCommand_NoContent);
 				return null;

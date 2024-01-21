@@ -248,7 +248,7 @@ namespace River.OneMoreAddIn.UI
 		/// <returns></returns>
 		public Bitmap GetGlyph(int symbol)
 		{
-			active = zones.FirstOrDefault(z => z.Symbol == symbol);
+			active = zones.Find(z => z.Symbol == symbol);
 			if (active != null)
 			{
 				return GetGlyph();
@@ -260,7 +260,7 @@ namespace River.OneMoreAddIn.UI
 
 		public void Select(int symbol)
 		{
-			var zone = zones.FirstOrDefault(z => z.Symbol == symbol);
+			var zone = zones.Find(z => z.Symbol == symbol);
 			if (zone != null)
 			{
 				active = preset = zone;
@@ -275,7 +275,7 @@ namespace River.OneMoreAddIn.UI
 			var mouseX = xScalingFactor == 0.0 ? e.X : (int)Math.Round(e.X / xScalingFactor);
 			var mouseY = yScalingFactor == 0.0 ? e.Y : (int)Math.Round(e.Y / yScalingFactor);
 
-			var zone = zones.FirstOrDefault(z =>
+			var zone = zones.Find(z =>
 				mouseX >= z.Bounds.Left && mouseX <= z.Bounds.Right &&
 				mouseY >= z.Bounds.Top && mouseY <= z.Bounds.Bottom);
 
@@ -314,7 +314,7 @@ namespace River.OneMoreAddIn.UI
 			var mouseX = xScalingFactor == 0.0 ? e.X : (int)Math.Round(e.X / xScalingFactor);
 			var mouseY = yScalingFactor == 0.0 ? e.Y : (int)Math.Round(e.Y / yScalingFactor);
 
-			var zone = zones.FirstOrDefault(z =>
+			var zone = zones.Find(z =>
 				mouseX >= z.Bounds.Left && mouseX <= z.Bounds.Right &&
 				mouseY >= z.Bounds.Top && mouseY <= z.Bounds.Bottom);
 

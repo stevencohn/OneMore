@@ -82,7 +82,7 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		protected override void OnLoad(EventArgs e)
+		protected override async void OnLoad(EventArgs e)
 		{
 			base.OnLoad(e);
 
@@ -105,7 +105,7 @@ namespace River.OneMoreAddIn.Commands
 
 			// populate page info...
 			using var one = new OneNote();
-			var info = one.GetPageInfo(sized: true);
+			var info = await one.GetPageInfo(sized: true);
 			pageName.Text = $"{info.Name} ({info.Size.ToBytes()})";
 			pagePath.Text = info.Path;
 			pageLink.Text = info.Link;
@@ -321,7 +321,7 @@ namespace River.OneMoreAddIn.Commands
 		// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 		// Page Editor
 
-		private void RefreshPage(object sender, EventArgs e)
+		private async void RefreshPage(object sender, EventArgs e)
 		{
 			if (!ready)
 			{
@@ -336,7 +336,7 @@ namespace River.OneMoreAddIn.Commands
 			}
 
 			using var one = new OneNote();
-			var page = one.GetPage(scope);
+			var page = await one.GetPage(scope);
 			if (page == null)
 			{
 				// should never happen!
@@ -498,7 +498,7 @@ namespace River.OneMoreAddIn.Commands
 
 		private bool PromoteAttribute(List<XAttribute> attributes, string name)
 		{
-			var att = attributes.FirstOrDefault(a => a.Name == name);
+			var att = attributes.Find(a => a.Name == name);
 			if (att != null)
 			{
 				attributes.Remove(att);
@@ -681,7 +681,7 @@ namespace River.OneMoreAddIn.Commands
 
 				case 1: // Section+Pages
 					await ShowHierarchy(sectionBox, "one.GetSection()",
-						async (one) => { await Task.Yield(); return one.GetSection(); });
+						async (one) => { await Task.Yield(); return await one.GetSection(); });
 					break;
 
 				case 2: // Notebooks
@@ -823,11 +823,11 @@ namespace River.OneMoreAddIn.Commands
 						break;
 
 					case 1:
-						content = one.GetSection(objectIdBox.Text);
+						content = await one.GetSection(objectIdBox.Text);
 						break;
 
 					case 2:
-						content = one.GetPage(objectIdBox.Text, OneNote.PageDetail.BinaryData).Root;
+						content = (await one.GetPage(objectIdBox.Text, OneNote.PageDetail.BinaryData)).Root;
 						break;
 				}
 

@@ -49,7 +49,7 @@ namespace River.OneMoreAddIn.Commands
 			var elements = page.Root.Descendants(ns + "Tag")
 				.Where(e => indexes.Contains(e.Attribute("index").Value));
 
-			if (elements == null || !elements.Any())
+			if (!elements.Any())
 			{
 				return;
 			}

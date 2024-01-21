@@ -332,7 +332,6 @@ namespace River.OneMoreAddIn.Commands.Tables.Formulas
 			double result = default;
 
 			// ask consumer to evaluate function
-			var status = FunctionStatus.UndefinedFunction;
 			if (ProcessFunction != null)
 			{
 				var args = new FunctionEventArgs
@@ -348,10 +347,12 @@ namespace River.OneMoreAddIn.Commands.Tables.Formulas
 				{
 					return new FormulaValue(args.Result);
 				}
-			}
 
-			if (status == FunctionStatus.WrongParameterCount)
-				throw new FormulaException(ErrWrongParamCount, pos);
+				if (args.Status == FunctionStatus.WrongParameterCount)
+				{
+					throw new FormulaException(ErrWrongParamCount, pos);
+				}
+			}
 
 			throw new FormulaException(string.Format(ErrUndefinedFunction, name), pos);
 		}
@@ -510,7 +511,7 @@ namespace River.OneMoreAddIn.Commands.Tables.Formulas
 			while (div > 0)
 			{
 				mod = (div - 1) % 26;
-				letters = (char)(65 + mod) + letters;
+				letters = $"{(char)(65 + mod)}{letters}";
 				div = ((div - mod) / 26);
 			}
 			return letters;

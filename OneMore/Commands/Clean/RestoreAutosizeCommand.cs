@@ -33,7 +33,7 @@ namespace River.OneMoreAddIn.Commands
 					e.Attribute("isSetByUser") != null &&
 					e.Attribute("isSetByUser").Value == "true");
 
-			if (sizes != null)
+			if (sizes.Any())
 			{
 				var modified = false;
 

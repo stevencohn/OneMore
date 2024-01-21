@@ -353,7 +353,7 @@ namespace River.OneMoreAddIn.Commands
 		private async Task LoadPageHeadings(string pageID)
 		{
 			using var one = new OneNote();
-			var page = one.GetPage(pageID ?? one.CurrentPageId, OneNote.PageDetail.Basic);
+			var page = await one.GetPage(pageID ?? one.CurrentPageId, OneNote.PageDetail.Basic);
 			var headings = page.GetHeadings(one);
 
 			pageHeadLabel.Text = page.Title;
@@ -494,7 +494,7 @@ namespace River.OneMoreAddIn.Commands
 
 			if (records.Count > 0)
 			{
-				SetVisited(records.Last().PageId);
+				SetVisited(records[records.Count - 1].PageId);
 				await provider.AddPinned(records);
 				await LoadPinned();
 			}

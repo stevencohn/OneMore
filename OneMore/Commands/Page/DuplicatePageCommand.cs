@@ -39,7 +39,7 @@ namespace River.OneMoreAddIn.Commands
 			page.Root.Descendants().Attributes("objectID").Remove();
 			page = new Page(page.Root); // reparse to refresh PageId
 
-			var section = one.GetSection(sectionId);
+			var section = await one.GetSection(sectionId);
 			SetUniquePageTitle(ns, section, page);
 
 			await one.Update(page);

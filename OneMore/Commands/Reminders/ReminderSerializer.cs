@@ -71,7 +71,7 @@ namespace River.OneMoreAddIn.Commands
 
 			var reminders = DecodeContent(meta.Attribute("content").Value);
 
-			var old = reminders.FirstOrDefault(r => r.ObjectId == reminder.ObjectId);
+			var old = reminders.Find(r => r.ObjectId == reminder.ObjectId);
 			if (old != null)
 			{
 				reminders.Remove(old);

@@ -138,7 +138,7 @@ namespace River.OneMoreAddIn.Commands
 			// parallelize internet access for all hyperlinks on page...
 
 			int count = 0;
-			if (runs?.Count > 0)
+			if (runs.Any())
 			{
 				//<one:Meta name="om" content="caption" />
 

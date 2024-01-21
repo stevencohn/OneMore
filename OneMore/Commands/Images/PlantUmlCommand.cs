@@ -144,12 +144,12 @@ namespace River.OneMoreAddIn.Commands
 			if (after)
 			{
 				body = new Paragraph(table.Root);
-				runs.Last().Parent.AddAfterSelf(body);
+				runs[runs.Count - 1].Parent.AddAfterSelf(body);
 			}
 			else
 			{
 				body = new Paragraph(table.Root);
-				runs.First().Parent.AddBeforeSelf(body);
+				runs[0].Parent.AddBeforeSelf(body);
 			}
 
 			// collapse text into sub-paragraph...

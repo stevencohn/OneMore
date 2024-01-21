@@ -71,7 +71,7 @@ namespace River.OneMoreAddIn.Commands.Tables.Formulas
 
 		public static MathFunc Find(string name)
 		{
-			return functions.FirstOrDefault(f => f.Name == name)?.Fn;
+			return functions.Find(f => f.Name == name)?.Fn;
 		}
 
 

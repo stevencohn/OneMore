@@ -74,7 +74,7 @@ namespace River.OneMoreAddIn.Commands
 
 							//await one.CreatePage(sectionId, name);
 							one.CreatePage(sectionId, out var pageId);
-							var newpage = one.GetPage(pageId);
+							var newpage = await one.GetPage(pageId);
 							newpage.Title = name;
 							await one.Update(newpage);
 
@@ -176,8 +176,7 @@ namespace River.OneMoreAddIn.Commands
 			{
 				var cell = r.Elements(ns + "Cell").ElementAt(index);
 				if (cell != null &&
-					(!onlySelected ||
-					(onlySelected && cell.Attribute("selected") != null)))
+					(!onlySelected || (cell.Attribute("selected") != null)))
 				{
 					logger.WriteLine($"cell: {cell.TextValue()}");
 					names.Add(cell.TextValue());

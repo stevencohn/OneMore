@@ -80,7 +80,7 @@ namespace River.OneMoreAddIn.Commands
 						return;
 					}
 
-					page = one.GetPage();
+					page = await one.GetPage();
 					ns = page.Namespace;
 					pageId = page.PageId;
 					ClearContent();
@@ -109,14 +109,14 @@ namespace River.OneMoreAddIn.Commands
 					if (pageId == null)
 					{
 						one.CreatePage(one.CurrentSectionId, out pageId);
-						page = one.GetPage(pageId);
+						page = await one.GetPage(pageId);
 						ns = page.Namespace;
 						page.SetMeta(MetaNames.ReminderReport, OneNote.Scope.Notebooks.ToString());
 						page.Title = Resx.ReminderReport_Title;
 					}
 					else
 					{
-						page = one.GetPage(pageId);
+						page = await one.GetPage(pageId);
 						ns = page.Namespace;
 						ClearContent();
 					}
@@ -254,7 +254,7 @@ namespace River.OneMoreAddIn.Commands
 				return null;
 			}
 
-			var current = one.GetPageInfo();
+			var current = await one.GetPageInfo();
 
 			await one.NavigateTo(pageId, string.Empty);
 			// absurd but NavigateTo needs time to settle down
@@ -290,7 +290,7 @@ namespace River.OneMoreAddIn.Commands
 				.Where(e => !e.Elements(ns + "Meta")
 					.Any(m => m.Attribute("name").Value == MetaNames.TaggingBank));
 
-			if (chalkOutlines != null)
+			if (chalkOutlines.Any())
 			{
 				// assume the first outline is the report, reuse it as our container
 				chalkOutlines.First().Elements().Remove();

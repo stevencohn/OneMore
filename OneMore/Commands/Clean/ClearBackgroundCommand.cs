@@ -2,6 +2,8 @@
 // Copyright © 2021 Steven M Cohn.  All rights reserved.
 //************************************************************************************************
 
+#pragma warning disable S2583 // Conditionally executed code should be reachable
+
 namespace River.OneMoreAddIn.Commands
 {
 	using River.OneMoreAddIn.Models;
@@ -87,6 +89,7 @@ namespace River.OneMoreAddIn.Commands
 					var wrapper = cdata.GetWrapper();
 					wrapper.Elements("span").ForEach(e => rewrap = CheckContrast(e) || rewrap);
 
+					// #pragma
 					if (rewrap)
 					{
 						cdata.Value = wrapper.GetInnerXml();

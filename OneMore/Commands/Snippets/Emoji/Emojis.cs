@@ -69,7 +69,7 @@ namespace River.OneMoreAddIn.Commands
 
 	internal class Emojis : Loggable, IDisposable
 	{
-		private List<Emoji> map;
+		private readonly List<Emoji> map;
 
 
 		public Emojis()

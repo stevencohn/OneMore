@@ -43,7 +43,7 @@ namespace River.OneMoreAddIn.Commands
 					var objectId = tag.Parent.Attribute("objectID").Value;
 
 					// ensure tag is not a reminder for its paragraph
-					if (!reminders.Any(r =>
+					if (!reminders.Exists(r =>
 						r.Symbol == tagdef.Symbol && r.ObjectId == objectId))
 					{
 						tag.Remove();

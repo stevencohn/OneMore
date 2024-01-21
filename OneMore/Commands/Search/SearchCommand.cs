@@ -9,7 +9,7 @@ namespace River.OneMoreAddIn.Commands
 	using System.Collections.Generic;
 	using System.Threading.Tasks;
 	using System.Windows.Forms;
-	using Resx = River.OneMoreAddIn.Properties.Resources;
+	using Resx = Properties.Resources;
 
 
 	internal class SearchCommand : Command
@@ -64,7 +64,7 @@ namespace River.OneMoreAddIn.Commands
 			try
 			{
 				using var one = new OneNote();
-				var service = new SearchServices(owner, one, sectionId);
+				var service = new SearchServices(one, sectionId);
 
 				if (copying)
 				{

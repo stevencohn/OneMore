@@ -46,7 +46,7 @@ namespace River.OneMoreAddIn.Commands
 			logger.StartClock();
 
 			using var one = new OneNote();
-			page = one.GetPage(OneNote.PageDetail.Selection);
+			page = await one.GetPage(OneNote.PageDetail.Selection);
 			ns = page.Namespace;
 
 			range = page.GetSelectedElements();
@@ -79,7 +79,7 @@ namespace River.OneMoreAddIn.Commands
 			var children = range.Descendants(ns + "OEChildren").ToList();
 			if (children.Any())
 			{
-				return OutdentEmptyLines(children.First().Parent, children);
+				return OutdentEmptyLines(children[0].Parent, children);
 			}
 
 			return false;
@@ -126,7 +126,7 @@ namespace River.OneMoreAddIn.Commands
 				.Where(e => e.TextValue().Trim().Length == 0 && !e.IsMathML())
 				.ToList();
 
-			if (elements?.Any() != true)
+			if (!elements.Any())
 			{
 				//logger.WriteLine("no blank lines found");
 				return false;
@@ -161,7 +161,7 @@ namespace River.OneMoreAddIn.Commands
 
 				// is this a custom Heading style?
 				var style = new Style(element.CollectStyleProperties(true));
-				if (customStyles.Any(s => s.Equals(style)))
+				if (customStyles.Exists(s => s.Equals(style)))
 				{
 					// remove empty custom heading
 					element.Remove();
@@ -228,7 +228,7 @@ namespace River.OneMoreAddIn.Commands
 				.Where(e => e.PreviousNode == null && e.TextValue().Trim().Length == 0)
 				.ToList();
 
-			if (elements?.Any() != true)
+			if (!elements.Any())
 			{
 				return false;
 			}
@@ -237,10 +237,9 @@ namespace River.OneMoreAddIn.Commands
 
 			foreach (var element in elements)
 			{
-				var next = element.NextNode as XElement;
-				if (next?.Name.LocalName == "OEChildren")
+				if (element.NextNode is XElement next && next.Name.LocalName == "OEChildren")
 				{
-					var prev = element?.Parent.PreviousNode as XElement;
+					var prev = element.Parent.PreviousNode as XElement;
 					if (prev?.Name.LocalName == "OE")
 					{
 						// move empty line to its own paragraph

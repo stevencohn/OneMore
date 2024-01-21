@@ -109,7 +109,7 @@ namespace River.OneMoreAddIn.Commands
 			var styles = new ThemeProvider().Theme.GetStyles();
 			if (styles?.Count > 0)
 			{
-				style = styles.FirstOrDefault(s => s.Name.Equals("Caption"));
+				style = styles.Find(s => s.Name.Equals("Caption"));
 			}
 
 			// otherwise use default style

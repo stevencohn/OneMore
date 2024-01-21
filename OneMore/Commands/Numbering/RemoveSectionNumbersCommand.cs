@@ -62,7 +62,7 @@ namespace River.OneMoreAddIn.Commands
 						var stripped = name.Value.Substring(match.Groups[1].Length);
 
 						// only rename if not duplicate
-						if (!sections.Any(s => s.Attribute("name").Value == stripped))
+						if (!sections.Exists(s => s.Attribute("name").Value == stripped))
 						{
 							name.Value = stripped;
 						}

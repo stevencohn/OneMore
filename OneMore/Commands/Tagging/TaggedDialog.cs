@@ -148,7 +148,7 @@ namespace River.OneMoreAddIn.Commands
 					var tags = filterBox.Text.Split(
 						new string[] { separator }, StringSplitOptions.RemoveEmptyEntries).ToList();
 
-					if (!tags.Any(t => t.Equals(box.Text, StringComparison.CurrentCultureIgnoreCase)))
+					if (!tags.Exists(t => t.Equals(box.Text, StringComparison.CurrentCultureIgnoreCase)))
 					{
 						filterBox.Text = $"{FormatFilter(filterBox.Text)}{separator} {box.Text}";
 					}
@@ -276,11 +276,6 @@ namespace River.OneMoreAddIn.Commands
 			var metas = results.Descendants(ns + "Meta")
 				.Where(m => m.Attribute("name").Value == MetaNames.TaggingLabels);
 
-			if (metas == null)
-			{
-				return;
-			}
-
 			// filter out unmatched pages, keep track in separate list because metas can't be
 			// modified while enumerating
 			var dead = new List<XElement>();
@@ -302,15 +297,15 @@ namespace River.OneMoreAddIn.Commands
 
 					if (tags.Count > 0)
 					{
-						if (excludedTags.Count > 0 && tags.Any(t => excludedTags.Contains(t)))
+						if (excludedTags.Count > 0 && tags.Exists(t => excludedTags.Contains(t)))
 						{
 							dead.Add(meta.Parent);
 						}
 						else if (includedTags.Count > 0)
 						{
 							var exclude = opBox.SelectedIndex == 0 // All
-								? !includedTags.All(t => tags.Contains(t))
-								: !includedTags.Any(t => tags.Contains(t));
+								? !includedTags.TrueForAll(t => tags.Contains(t))
+								: !includedTags.Exists(t => tags.Contains(t));
 
 							if (exclude)
 							{

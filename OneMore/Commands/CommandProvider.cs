@@ -103,8 +103,8 @@ namespace River.OneMoreAddIn
 			{
 				foreach (var setting in settings.Elements())
 				{
-					var command = commands
-						.FirstOrDefault(c => c.Method.Name == setting.Attribute("methodName").Value);
+					var command = commands.Find(c => 
+						c.Method.Name == setting.Attribute("methodName").Value);
 
 					if (command != null)
 					{
@@ -165,8 +165,8 @@ namespace River.OneMoreAddIn
 				{
 					foreach (var action in recentActions.Elements())
 					{
-						var command = commands
-							.FirstOrDefault(c => c.Method.Name == action.Attribute("cmd")?.Value);
+						var command = commands.Find(c =>
+							c.Method.Name == action.Attribute("cmd")?.Value);
 
 						if (command != null)
 						{

@@ -9,7 +9,6 @@ namespace River.OneMoreAddIn.Commands
 	using System.ComponentModel;
 	using System.Drawing;
 	using System.Globalization;
-	using System.Text.RegularExpressions;
 	using System.Windows.Forms;
 	using Resx = Properties.Resources;
 
@@ -159,8 +158,8 @@ namespace River.OneMoreAddIn.Commands
 
 			try
 			{
-				var (PageID, ObjectID) = ((string PageID, string ObjectID))e.Link.LinkData;
-				await new OneNote().NavigateTo(PageID, ObjectID);
+				var (pageID, objectID) = ((string pageID, string objectID))e.Link.LinkData;
+				await new OneNote().NavigateTo(pageID, objectID);
 			}
 			catch (Exception exc)
 			{

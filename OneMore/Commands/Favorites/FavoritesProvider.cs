@@ -82,7 +82,7 @@ namespace River.OneMoreAddIn
 
 
 
-		public void AddFavorite(bool addSection = false)
+		public async Task AddFavorite(bool addSection = false)
 		{
 			XElement root = null;
 
@@ -113,7 +113,7 @@ namespace River.OneMoreAddIn
 
 			one ??= new OneNote();
 
-			var info = addSection ? one.GetSectionInfo() : one.GetPageInfo();
+			var info = addSection ? await one.GetSectionInfo() : await one.GetPageInfo();
 			var notebookID = one.CurrentNotebookId;
 
 			var name = info.Name;

@@ -213,7 +213,7 @@ namespace River.OneMoreAddIn.Commands
 
 			await new ClipboardProvider().Paste();
 
-			var page = one.GetPage(pageId);
+			var page = await one.GetPage(pageId);
 			one.DeleteHierarchy(pageId);
 
 			await one.NavigateTo(currentPageId);

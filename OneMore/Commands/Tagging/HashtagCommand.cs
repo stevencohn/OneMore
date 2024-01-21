@@ -81,7 +81,7 @@ namespace River.OneMoreAddIn.Commands
 			try
 			{
 				using var one = new OneNote();
-				var service = new SearchServices(owner, one, sectionId);
+				var service = new SearchServices(one, sectionId);
 
 				switch (command)
 				{

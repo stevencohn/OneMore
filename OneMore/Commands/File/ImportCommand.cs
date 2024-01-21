@@ -192,7 +192,7 @@ namespace River.OneMoreAddIn.Commands
 			{
 				using var one = new OneNote();
 				one.CreatePage(one.CurrentSectionId, out var pageId);
-				var page = one.GetPage(pageId);
+				var page = await one.GetPage(pageId);
 
 				page.Title = Path.GetFileName(filepath);
 				page.AddHtmlContent(html);
@@ -286,7 +286,7 @@ namespace River.OneMoreAddIn.Commands
 				foreach (var file in Directory.GetFiles(outpath, "*.jpg"))
 				{
 					one.CreatePage(sectionId, out var pageId);
-					var page = one.GetPage(pageId);
+					var page = await one.GetPage(pageId);
 					page.Title = $"Slide {i}";
 					var container = page.EnsureContentContainer();
 
@@ -305,12 +305,12 @@ namespace River.OneMoreAddIn.Commands
 				Page page;
 				if (append)
 				{
-					page = one.GetPage();
+					page = await one.GetPage();
 				}
 				else
 				{
 					one.CreatePage(one.CurrentSectionId, out var pageId);
-					page = one.GetPage(pageId);
+					page = await one.GetPage(pageId);
 					page.Title = Path.GetFileName(filepath);
 				}
 
@@ -422,12 +422,12 @@ namespace River.OneMoreAddIn.Commands
 			{
 				if (append)
 				{
-					page = one.GetPage();
+					page = await one.GetPage();
 				}
 				else
 				{
 					one.CreatePage(one.CurrentSectionId, out var pageId);
-					page = one.GetPage(pageId);
+					page = await one.GetPage(pageId);
 					page.Title = Path.GetFileName(filepath);
 				}
 			}
@@ -586,7 +586,7 @@ namespace River.OneMoreAddIn.Commands
 						handle = one.WindowHandle;
 						one.CreatePage(one.CurrentSectionId, out pageId);
 
-						page = one.GetPage(pageId, OneNote.PageDetail.Basic);
+						page = await one.GetPage(pageId, OneNote.PageDetail.Basic);
 						page.Title = Path.GetFileNameWithoutExtension(filepath);
 
 						await one.Update(page);
@@ -602,7 +602,7 @@ namespace River.OneMoreAddIn.Commands
 
 					using (var one = new OneNote())
 					{
-						page = one.GetPage(pageId, OneNote.PageDetail.Basic);
+						page = await one.GetPage(pageId, OneNote.PageDetail.Basic);
 						MarkdownConverter.RewriteHeadings(page);
 						await one.Update(page);
 					}

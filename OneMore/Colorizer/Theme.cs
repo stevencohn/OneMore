@@ -96,7 +96,7 @@ namespace River.OneMoreAddIn.Colorizer
 
 		public Style GetStyle(string name)
 		{
-			return Styles.FirstOrDefault(s => s.Name == name);
+			return Styles.Find(s => s.Name == name);
 		}
 
 

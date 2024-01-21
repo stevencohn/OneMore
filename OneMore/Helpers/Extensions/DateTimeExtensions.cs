@@ -20,7 +20,7 @@ namespace River.OneMoreAddIn
 		/// <returns></returns>
 		public static DateTime FromTicksSeconds(long ticks)
 		{
-			return new DateTime(ticks * TicksInOneSecond);
+			return new DateTime(ticks * TicksInOneSecond, DateTimeKind.Unspecified);
 		}
 	}
 

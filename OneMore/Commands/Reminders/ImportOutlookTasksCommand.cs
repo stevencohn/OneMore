@@ -98,7 +98,7 @@ namespace River.OneMoreAddIn.Commands
 					await GenerateListReport(tasks);
 				}
 
-				BindTasks(tasks);
+				await BindTasks(tasks);
 			}
 		}
 
@@ -365,10 +365,10 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private void BindTasks(IEnumerable<OutlookTask> tasks)
+		private async Task BindTasks(IEnumerable<OutlookTask> tasks)
 		{
 			// re-fetch page to get IDs of new paragraphs...
-			page = one.GetPage(page.PageId, OneNote.PageDetail.Basic);
+			page = await one.GetPage(page.PageId, OneNote.PageDetail.Basic);
 			ns = page.Namespace;
 
 			// find the containing Outline to optimize the lookup loop below

@@ -46,7 +46,7 @@ namespace River.OneMoreAddIn.Commands
 
 			if ((args[0] is string cmd) && (cmd == "mark"))
 			{
-				if (!MarkAnchor(one))
+				if (!await MarkAnchor(one))
 				{
 					UIHelper.ShowError(one.Window, Resx.BiLinkCommand_BadAnchor);
 					return;
@@ -79,9 +79,9 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private bool MarkAnchor(OneNote one)
+		private async Task<bool> MarkAnchor(OneNote one)
 		{
-			var page = one.GetPage();
+			var page = await one.GetPage();
 			var range = new SelectionRange(page.Root);
 
 			// get selected runs but preserve cursor if there is one so we can edit from it later
@@ -113,7 +113,7 @@ namespace River.OneMoreAddIn.Commands
 		{
 			// - - - - anchor...
 
-			var anchorPage = one.GetPage(anchorPageId);
+			var anchorPage = await one.GetPage(anchorPageId);
 			if (anchorPage == null)
 			{
 				logger.WriteLine($"lost anchor page {anchorPageId}");
@@ -145,7 +145,7 @@ namespace River.OneMoreAddIn.Commands
 			var targetPageId = anchorPageId;
 			if (one.CurrentPageId != anchorPageId)
 			{
-				targetPage = one.GetPage();
+				targetPage = await one.GetPage();
 				targetPageId = targetPage.PageId;
 			}
 

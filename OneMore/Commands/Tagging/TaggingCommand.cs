@@ -130,7 +130,7 @@ namespace River.OneMoreAddIn.Commands
 		private int MakeQuickStyle(Page page)
 		{
 			var styles = page.GetQuickStyles();
-			var style = styles.FirstOrDefault(s => s.Name == BankStyleName);
+			var style = styles.Find(s => s.Name == BankStyleName);
 
 			if (style != null)
 			{

@@ -8,6 +8,8 @@ namespace River.OneMoreAddIn
 	{
 		public const uint hrCOMBusy = 0x8001010A;
 		public const uint hrObjectMissing = 0x80042014;
+		public const uint hrRpcFailed = 0x800706BA;
+		public const uint hrRpcUnavailable = 0x800706BE;
 
 
 		public static string GetDescription(int code)

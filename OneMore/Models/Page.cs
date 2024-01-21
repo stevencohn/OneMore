@@ -168,7 +168,7 @@ namespace River.OneMoreAddIn.Models
 					.Elements(Namespace + "T")
 					.Select(e => e.GetCData().GetWrapper().Value);
 
-				return titles == null ? null : string.Concat(titles);
+				return titles.Any() ? string.Concat(titles) : null;
 			}
 
 			set
@@ -337,7 +337,7 @@ namespace River.OneMoreAddIn.Models
 					var elements = outline.Descendants()
 						.Where(e => e.Attribute("quickStyleIndex")?.Value == map.OriginalIndex);
 
-					if (elements?.Any() == true)
+					if (elements.Any())
 					{
 						var index = map.Style.Index.ToString();
 
@@ -367,7 +367,7 @@ namespace River.OneMoreAddIn.Models
 					var elements = outline.Descendants(Namespace + "Tag")
 						.Where(e => e.Attribute("index")?.Value == map.OriginalIndex);
 
-					if (elements?.Any() == true)
+					if (elements.Any())
 					{
 						foreach (var element in elements)
 						{
@@ -617,7 +617,7 @@ namespace River.OneMoreAddIn.Models
 					&& e.FirstNode?.NodeType == XmlNodeType.CDATA)
 				.Select(e => e.FirstNode as XCData);
 
-			if (cdatas?.Any() != true)
+			if (!cdatas.Any())
 			{
 				return false;
 			}
@@ -849,7 +849,7 @@ namespace River.OneMoreAddIn.Models
 				.Descendants(Namespace + "T")
 				.Where(e => e.Attributes().Any(a => a.Name == "selected" && a.Value == "all"));
 
-			if (selected == null || selected.Count() == 0)
+			if (!selected.Any())
 			{
 				SelectionScope = SelectionScope.Unknown;
 

@@ -12,6 +12,7 @@ namespace River.OneMoreAddIn.Commands
 	using System.Drawing;
 	using System.IO;
 	using System.Linq;
+	using System.Runtime.CompilerServices;
 	using System.Threading.Tasks;
 	using System.Windows.Forms;
 	using System.Xml.Linq;
@@ -93,7 +94,7 @@ namespace River.OneMoreAddIn.Commands
 				logger.StartClock();
 
 				one.CreatePage(one.CurrentSectionId, out var pageId);
-				var page = one.GetPage(pageId);
+				var page = await one.GetPage(pageId);
 				page.Title = Resx.AnalyzeCommand_Title;
 				page.SetMeta(MetaNames.AnalysisReport, "true");
 				page.Root.SetAttributeValue("lang", "yo");
@@ -139,7 +140,7 @@ namespace River.OneMoreAddIn.Commands
 							WriteHorizontalLine(page, container);
 						}
 
-						ReportPages(container, one.GetSection(), null, pageId);
+						await ReportPages(container, await one.GetSection(), null, pageId);
 					}
 					else if (pageDetail == AnalysisDetail.All)
 					{
@@ -148,7 +149,7 @@ namespace River.OneMoreAddIn.Commands
 							WriteHorizontalLine(page, container);
 						}
 
-						ReportAllPages(container, await one.GetNotebook(), null, pageId);
+						await ReportAllPages(container, await one.GetNotebook(), null, pageId);
 					}
 
 					progress.SetMessage("Updating report...");
@@ -412,7 +413,7 @@ namespace River.OneMoreAddIn.Commands
 
 				var notebook = await one.GetNotebook(book.Attribute("ID").Value);
 
-				var (totalPages, totalSize) = ReportSections(table, notebook, null);
+				var (totalPages, totalSize) = await ReportSections(table, notebook, null);
 
 				row = table.AddRow();
 				row[1].SetContent(new Paragraph(totalPages.ToString()).SetAlignment("right"));
@@ -445,7 +446,7 @@ namespace River.OneMoreAddIn.Commands
 			}
 		}
 
-		private (int, long) ReportSections(Table table, XElement folder, string folderPath)
+		private async Task<(int, long)> ReportSections(Table table, XElement folder, string folderPath)
 		{
 			int totalPages = 0;
 			long totalSize = 0;
@@ -487,7 +488,7 @@ namespace River.OneMoreAddIn.Commands
 				{
 					row[0].SetContent(new Paragraph(title));
 
-					var expanded = one.GetSection(section.Attribute("ID").Value);
+					var expanded = await one.GetSection(section.Attribute("ID").Value);
 					var count = expanded.Elements().Count();
 					totalPages += count;
 					row[1].Value = count;
@@ -543,7 +544,7 @@ namespace River.OneMoreAddIn.Commands
 			foreach (var group in groups)
 			{
 				var path = folderPath == null ? folderName : Path.Combine(folderPath, folderName);
-				var (p, s) = ReportSections(table, group, path);
+				var (p, s) = await ReportSections(table, group, path);
 				totalPages += p;
 				totalSize += s;
 			}
@@ -554,7 +555,8 @@ namespace River.OneMoreAddIn.Commands
 
 		// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-		private void ReportAllPages(XElement container, XElement folder, string folderPath, string skipId)
+		private async Task ReportAllPages(
+			XElement container, XElement folder, string folderPath, string skipId)
 		{
 			var sections = folder.Elements(ns + "Section")
 				.Where(e => e.Attribute("isInRecycleBin") == null
@@ -562,7 +564,8 @@ namespace River.OneMoreAddIn.Commands
 
 			foreach (var section in sections)
 			{
-				ReportPages(container, one.GetSection(section.Attribute("ID").Value), folderPath, skipId);
+				await ReportPages(
+					container, await one.GetSection(section.Attribute("ID").Value), folderPath, skipId);
 			}
 
 			var groups = folder.Elements(ns + "SectionGroup")
@@ -573,12 +576,13 @@ namespace River.OneMoreAddIn.Commands
 				var name = group.Attribute("name").Value;
 				folderPath = folderPath == null ? name : Path.Combine(folderPath, name);
 
-				ReportAllPages(container, group, folderPath, skipId);
+				await ReportAllPages(container, group, folderPath, skipId);
 			}
 		}
 
 
-		private void ReportPages(XElement container, XElement section, string folderPath, string skipId)
+		private async Task ReportPages(
+			XElement container, XElement section, string folderPath, string skipId)
 		{
 			var name = section.Attribute("name").Value;
 			var title = folderPath == null ? name : Path.Combine(folderPath, name);
@@ -608,7 +612,7 @@ namespace River.OneMoreAddIn.Commands
 
 			foreach (var page in pages)
 			{
-				ReportPage(table, page.Attribute("ID").Value);
+				await ReportPage(table, page.Attribute("ID").Value);
 			}
 
 			container.Add(
@@ -618,9 +622,9 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private void ReportPage(Table table, string pageId)
+		private async Task ReportPage(Table table, string pageId)
 		{
-			var page = one.GetPage(pageId, OneNote.PageDetail.All);
+			var page = await one.GetPage(pageId, OneNote.PageDetail.All);
 
 			if (page.GetMetaContent(MetaNames.AnalysisReport) == "true")
 			{
