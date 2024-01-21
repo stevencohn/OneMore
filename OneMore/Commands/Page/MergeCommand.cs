@@ -49,7 +49,7 @@ namespace River.OneMoreAddIn.Commands
 		{
 			using (one = new OneNote())
 			{
-				var section = one.GetSection();
+				var section = await one.GetSection();
 				ns = one.GetNamespace(section);
 
 				// find first selected - active page
@@ -206,18 +206,29 @@ namespace River.OneMoreAddIn.Commands
 				foreach (var outline in outlines)
 				{
 					// adjust position relative to new parent page outlines
+					double y;
 					var position = outline.Elements(ns + "Position").FirstOrDefault();
-					var y = double.Parse(position.Attribute("y").Value, CultureInfo.InvariantCulture)
-						- topOffset + offset + OutlineMargin;
+					if (position != null)
+					{
+						y = double.Parse(position.Attribute("y").Value, CultureInfo.InvariantCulture)
+							- topOffset + offset + OutlineMargin;
 
-					position.Attribute("y").Value = y.ToString("#0.0", CultureInfo.InvariantCulture);
+						position.Attribute("y").Value = y.ToString("#0.0", CultureInfo.InvariantCulture);
+					}
+					else
+					{
+						y = topOffset + offset + OutlineMargin;
+					}
 
 					// keep track of lowest bottom
 					var size = outline.Elements(ns + "Size").FirstOrDefault();
-					var bottom = y + double.Parse(size.Attribute("height").Value, CultureInfo.InvariantCulture);
-					if (bottom > maxOffset)
+					if (size != null)
 					{
-						maxOffset = bottom;
+						var bottom = y + double.Parse(size.Attribute("height").Value, CultureInfo.InvariantCulture);
+						if (bottom > maxOffset)
+						{
+							maxOffset = bottom;
+						}
 					}
 
 					position.Attribute("z").Value = z.ToString();

@@ -212,7 +212,7 @@ namespace River.OneMoreAddIn.Commands
 			switch (scope)
 			{
 				case UI.SelectorScope.Section:
-					one.GetSection().Descendants(ns + "Page")
+					(await one.GetSection()).Descendants(ns + "Page")
 						.ForEach(p => hierarchy.Add(p));
 					break;
 

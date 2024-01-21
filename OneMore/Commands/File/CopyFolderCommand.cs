@@ -49,7 +49,7 @@ namespace River.OneMoreAddIn.Commands
 			{
 				using var one = new OneNote();
 				// user might choose a sectiongroup or a notebook; GetSection will get either
-				var target = one.GetSection(targetId);
+				var target = await one.GetSection(targetId);
 				if (target == null)
 				{
 					logger.WriteLine("invalid target section");
@@ -97,7 +97,7 @@ namespace River.OneMoreAddIn.Commands
 				one.UpdateHierarchy(target);
 
 				// re-fetch target to find newly assigned ID values
-				var upTarget = one.GetSection(targetId);
+				var upTarget = await one.GetSection(targetId);
 
 				var cloneID = upTarget.Elements()
 					.Where(e => !e.Attributes().Any(a => a.Name == "isRecycleBin"))

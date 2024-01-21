@@ -57,7 +57,7 @@ namespace River.OneMoreAddIn.Commands
 
 				hierarchy = bookScope
 					? await one.GetNotebook(one.CurrentNotebookId, OneNote.Scope.Pages)
-					: one.GetSection(one.CurrentSectionId);
+					: await one.GetSection(one.CurrentSectionId);
 
 				var ns = one.GetNamespace(hierarchy);
 

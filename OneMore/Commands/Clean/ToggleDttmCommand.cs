@@ -43,7 +43,7 @@ namespace River.OneMoreAddIn.Commands
 			}
 			else
 			{
-				var section = one.GetSection();
+				var section = await one.GetSection();
 				if (section != null)
 				{
 					var ns = one.GetNamespace(section);

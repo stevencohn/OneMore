@@ -113,7 +113,7 @@ namespace River.OneMoreAddIn
 
 			one ??= new OneNote();
 
-			var info = addSection ? one.GetSectionInfo() : await one.GetPageInfo();
+			var info = addSection ? await one.GetSectionInfo() : await one.GetPageInfo();
 			var notebookID = one.CurrentNotebookId;
 
 			var name = info.Name;

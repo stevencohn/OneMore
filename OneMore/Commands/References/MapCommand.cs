@@ -195,7 +195,7 @@ namespace River.OneMoreAddIn.Commands
 				// all sectios in current notebook
 				OneNote.Scope.Sections => await one.GetNotebook(OneNote.Scope.Pages),
 				// current section
-				_ => one.GetSection(),
+				_ => await one.GetSection(),
 			};
 
 			ns = one.GetNamespace(hierarchy);
@@ -271,7 +271,7 @@ namespace River.OneMoreAddIn.Commands
 
 		private async Task BuildMapPage(XElement hierarchy)
 		{
-			var section = one.GetSection();
+			var section = await one.GetSection();
 			var sectionId = section.Attribute("ID").Value;
 
 			one.CreatePage(sectionId, out var pageId);

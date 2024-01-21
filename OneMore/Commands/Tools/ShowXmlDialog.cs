@@ -681,7 +681,7 @@ namespace River.OneMoreAddIn.Commands
 
 				case 1: // Section+Pages
 					await ShowHierarchy(sectionBox, "one.GetSection()",
-						async (one) => { await Task.Yield(); return one.GetSection(); });
+						async (one) => { await Task.Yield(); return await one.GetSection(); });
 					break;
 
 				case 2: // Notebooks
@@ -823,7 +823,7 @@ namespace River.OneMoreAddIn.Commands
 						break;
 
 					case 1:
-						content = one.GetSection(objectIdBox.Text);
+						content = await one.GetSection(objectIdBox.Text);
 						break;
 
 					case 2:

@@ -49,7 +49,10 @@ namespace River.OneMoreAddIn
 			else
 			{
 				using var one = new OneNote();
-				var section = one.GetSection();
+
+				// ribbon handlers apparently cannot be async so we need to do this
+				var section = Task.Run(async () => { return await one.GetSection(); }).Result;
+
 				if (section.Attribute("locked") == null)
 				{
 					// ribbon handlers apparently cannot be async so we need to do this

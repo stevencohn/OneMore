@@ -30,7 +30,7 @@ namespace River.OneMoreAddIn.Commands
 		{
 			using (one = new OneNote())
 			{
-				var section = one.GetSection();
+				var section = await one.GetSection();
 				var ns = one.GetNamespace(section);
 
 				var pageIDs = section.Elements(ns + "Page")

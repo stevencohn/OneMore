@@ -252,6 +252,8 @@ namespace River.OneMoreAddIn
 						if ((uint)exc.HResult == ErrorCodes.hrRpcFailed ||
 							(uint)exc.HResult == ErrorCodes.hrRpcUnavailable)
 						{
+							// add extra time for new RPC connection to bind
+							ms += 250;
 							logger.WriteLine($"RPC error, retrying in {ms}ms", exc);
 						}
 						else
@@ -268,7 +270,6 @@ namespace River.OneMoreAddIn
 					catch (Exception exc) when (exc is not ThreadAbortException)
 					{
 						logger.WriteLine("error invoking action, aborting retries", exc);
-						retries = int.MaxValue;
 						return false;
 					}
 				}
@@ -716,9 +717,9 @@ namespace River.OneMoreAddIn
 		/// Gest the current section and its child page hierarchy
 		/// </summary>
 		/// <returns>A Section element with Page children</returns>
-		public XElement GetSection()
+		public async Task<XElement> GetSection()
 		{
-			return GetSection(CurrentSectionId);
+			return await GetSection(CurrentSectionId);
 		}
 
 
@@ -726,15 +727,34 @@ namespace River.OneMoreAddIn
 		/// Gest the specified section and its child page hierarchy
 		/// </summary>
 		/// <returns>A Section element with Page children</returns>
-		public XElement GetSection(string id)
+		public async Task<XElement> GetSection(string id)
 		{
-			if (!string.IsNullOrEmpty(id))
+			if (string.IsNullOrEmpty(id))
 			{
-				onenote.GetHierarchy(id, HierarchyScope.hsPages, out var xml, XMLSchema.xs2013);
+				return null;
+			}
+
+			try
+			{
+				string xml = null;
+				await InvokeWithRetry(() =>
+				{
+					onenote.GetHierarchy(id, HierarchyScope.hsPages, out xml, XMLSchema.xs2013);
+				});
+
 				if (!string.IsNullOrEmpty(xml))
 				{
 					return XElement.Parse(xml);
 				}
+			}
+			catch (Exception exc) when (exc is not ThreadAbortException)
+			{
+				if (FallThrough)
+				{
+					throw;
+				}
+
+				logger.WriteLine($"error getting section {id}", exc);
 			}
 
 			return null;
@@ -746,10 +766,10 @@ namespace River.OneMoreAddIn
 		/// used to build up Favorites
 		/// </summary>
 		/// <returns></returns>
-		public HierarchyInfo GetSectionInfo(string sectionID = null)
+		public async Task<HierarchyInfo> GetSectionInfo(string sectionID = null)
 		{
 			var secID = sectionID ?? CurrentSectionId;
-			var section = GetSection(secID);
+			var section = await GetSection(secID);
 			if (section == null)
 			{
 				return null;
@@ -1053,7 +1073,7 @@ namespace River.OneMoreAddIn
 		/// <returns>The ID of the new hierarchy object (pageId)</returns>
 		public async Task<string> Import(string path)
 		{
-			var start = GetSection();
+			var start = await GetSection();
 
 			// Opening a .one file places its content in the transient OpenSections area
 			// with its own notebook structure; need to dive down to find the page...
@@ -1080,7 +1100,7 @@ namespace River.OneMoreAddIn
 				onenote.MergeSections(openSectionId, CurrentSectionId);
 			});
 
-			var section = GetSection();
+			var section = await GetSection();
 			var ns = GetNamespace(section);
 
 			// determine newly added pageId by comparing new section against what we started with

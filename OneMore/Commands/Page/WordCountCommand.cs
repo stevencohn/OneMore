@@ -144,7 +144,7 @@ namespace River.OneMoreAddIn.Commands
 
 				if (scope == OneNote.Scope.Pages)
 				{
-					var section = one.GetSection();
+					var section = await one.GetSection();
 					progress.SetMaximum(section.Elements().Count());
 
 					var notebook = await one.GetNotebook(one.CurrentNotebookId, OneNote.Scope.Self);

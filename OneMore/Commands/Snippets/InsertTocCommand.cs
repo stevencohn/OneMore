@@ -541,7 +541,7 @@ namespace River.OneMoreAddIn.Commands
 		private async Task MakePageIndexPage(bool withPreviews)
 		{
 			using var one = new OneNote();
-			var section = one.GetSection();
+			var section = await one.GetSection();
 			var sectionId = section.Attribute("ID").Value;
 
 			one.CreatePage(sectionId, out var pageId);
@@ -587,7 +587,7 @@ namespace River.OneMoreAddIn.Commands
 			// move TOC page to top of section...
 
 			// get current section again after new page is created
-			section = one.GetSection();
+			section = await one.GetSection();
 
 			var entry = section.Elements(ns + "Page")
 				.First(e => e.Attribute("ID").Value == pageId);
@@ -705,7 +705,7 @@ namespace River.OneMoreAddIn.Commands
 		private async Task MakeSectionIndexPage(bool includePages, bool withPreviews)
 		{
 			using var one = new OneNote();
-			var section = one.GetSection();
+			var section = await one.GetSection();
 			var sectionId = section.Attribute("ID").Value;
 
 			one.CreatePage(sectionId, out var pageId);
@@ -753,7 +753,7 @@ namespace River.OneMoreAddIn.Commands
 			// move TOC page to top of section...
 
 			// get current section again after new page is created
-			section = one.GetSection();
+			section = await one.GetSection();
 
 			var entry = section.Elements(ns + "Page")
 				.First(e => e.Attribute("ID").Value == pageId);
@@ -809,7 +809,7 @@ namespace River.OneMoreAddIn.Commands
 						var indent = new XElement(ns + "OEChildren");
 						var index = 0;
 
-						index = await BuildSectionToc(one, indent, pages.ToArray(), index, 1, withPreviews);
+						_ = await BuildSectionToc(one, indent, pages.ToArray(), index, 1, withPreviews);
 
 						container.Add(new XElement(ns + "OE",
 							new XElement(ns + "T", new XCData($"§ <a href=\"{link}\">{name}</a>")),

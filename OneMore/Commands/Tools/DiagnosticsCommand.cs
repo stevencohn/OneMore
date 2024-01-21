@@ -57,7 +57,7 @@ namespace River.OneMoreAddIn.Commands
 			logger.WriteLine($"Page link: {info.Link}");
 			logger.WriteLine();
 
-			info = one.GetSectionInfo();
+			info = await one.GetSectionInfo();
 			logger.WriteLine($"Section name: {info.Name}");
 			logger.WriteLine($"Section path: {info.Path}");
 			logger.WriteLine($"Section link: {info.Link}");

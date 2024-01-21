@@ -33,7 +33,7 @@ namespace River.OneMoreAddIn.Commands
 
 			using var one = new OneNote();
 
-			var section = one.GetSection();
+			var section = await one.GetSection();
 			if (section != null)
 			{
 				var ns = one.GetNamespace(section);

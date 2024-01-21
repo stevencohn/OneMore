@@ -144,7 +144,7 @@ namespace River.OneMoreAddIn.Commands
 			{
 				OneNote.Scope.Notebooks => await one.GetNotebooks(OneNote.Scope.Pages),
 				OneNote.Scope.Sections => await one.GetNotebook(OneNote.Scope.Pages),
-				_ => one.GetSection(),
+				_ => await one.GetSection(),
 			};
 		}
 

@@ -91,7 +91,7 @@ namespace River.OneMoreAddIn.Commands
 
 				logger.WriteLine($"moving quick note [{name}] to section [{section.Attribute("name").Value}]");
 				var pageID = await CopyPage(page, sectionID);
-				Timewarp(sectionID, pageID, dateTime, lastModifiedTime);
+				await Timewarp(sectionID, pageID, dateTime, lastModifiedTime);
 				count++;
 			});
 
@@ -188,7 +188,7 @@ namespace River.OneMoreAddIn.Commands
 				return;
 			}
 
-			var section = one.GetSection(sectionID);
+			var section = await one.GetSection(sectionID);
 			var ns = section.GetNamespaceOfPrefix(OneNote.Prefix);
 			var count = 0;
 
@@ -205,7 +205,7 @@ namespace River.OneMoreAddIn.Commands
 				AddHeader(page, name, dateTime);
 				var pageID = await CopyPage(page, sectionID);
 
-				Timewarp(sectionID, pageID, dateTime, lastModifiedTime);
+				await Timewarp(sectionID, pageID, dateTime, lastModifiedTime);
 				count++;
 			});
 
@@ -390,10 +390,10 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private void Timewarp(
+		private async Task Timewarp(
 			string sectionID, string pageID, string dateTime, string lastModifiedTime)
 		{
-			var section = one.GetSection(sectionID);
+			var section = await one.GetSection(sectionID);
 			var ns = section.GetNamespaceOfPrefix(OneNote.Prefix);
 
 			var page = section.Descendants(ns + "Page")

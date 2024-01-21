@@ -78,7 +78,7 @@ namespace River.OneMoreAddIn.Commands
 			using var one = new OneNote();
 
 			var root = scope == OneNote.Scope.Pages
-				? one.GetSection()
+				? await one.GetSection()
 				: await one.GetNotebook(OneNote.Scope.Pages);
 
 			var ns = root.GetNamespaceOfPrefix(OneNote.Prefix);

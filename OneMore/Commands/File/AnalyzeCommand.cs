@@ -140,7 +140,7 @@ namespace River.OneMoreAddIn.Commands
 							WriteHorizontalLine(page, container);
 						}
 
-						await ReportPages(container, one.GetSection(), null, pageId);
+						await ReportPages(container, await one.GetSection(), null, pageId);
 					}
 					else if (pageDetail == AnalysisDetail.All)
 					{
@@ -413,7 +413,7 @@ namespace River.OneMoreAddIn.Commands
 
 				var notebook = await one.GetNotebook(book.Attribute("ID").Value);
 
-				var (totalPages, totalSize) = ReportSections(table, notebook, null);
+				var (totalPages, totalSize) = await ReportSections(table, notebook, null);
 
 				row = table.AddRow();
 				row[1].SetContent(new Paragraph(totalPages.ToString()).SetAlignment("right"));
@@ -446,7 +446,7 @@ namespace River.OneMoreAddIn.Commands
 			}
 		}
 
-		private (int, long) ReportSections(Table table, XElement folder, string folderPath)
+		private async Task<(int, long)> ReportSections(Table table, XElement folder, string folderPath)
 		{
 			int totalPages = 0;
 			long totalSize = 0;
@@ -488,7 +488,7 @@ namespace River.OneMoreAddIn.Commands
 				{
 					row[0].SetContent(new Paragraph(title));
 
-					var expanded = one.GetSection(section.Attribute("ID").Value);
+					var expanded = await one.GetSection(section.Attribute("ID").Value);
 					var count = expanded.Elements().Count();
 					totalPages += count;
 					row[1].Value = count;
@@ -544,7 +544,7 @@ namespace River.OneMoreAddIn.Commands
 			foreach (var group in groups)
 			{
 				var path = folderPath == null ? folderName : Path.Combine(folderPath, folderName);
-				var (p, s) = ReportSections(table, group, path);
+				var (p, s) = await ReportSections(table, group, path);
 				totalPages += p;
 				totalSize += s;
 			}
@@ -565,7 +565,7 @@ namespace River.OneMoreAddIn.Commands
 			foreach (var section in sections)
 			{
 				await ReportPages(
-					container, one.GetSection(section.Attribute("ID").Value), folderPath, skipId);
+					container, await one.GetSection(section.Attribute("ID").Value), folderPath, skipId);
 			}
 
 			var groups = folder.Elements(ns + "SectionGroup")

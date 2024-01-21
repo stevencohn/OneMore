@@ -72,7 +72,7 @@ namespace River.OneMoreAddIn.Commands
 
 			if (headers.Exists(h => Regex.IsMatch(h.Root.GetCData().Value, LinkPattern)))
 			{
-				BuildHyperlinkCache();
+				await BuildHyperlinkCache();
 			}
 
 			for (int i = 0; i < headers.Count; i++)
@@ -206,14 +206,14 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private void BuildHyperlinkCache()
+		private async Task BuildHyperlinkCache()
 		{
 			// there's no direct way to map onenote:http URIs to page IDs so create a cache
 			// of all pages in the current section and lookup the URI for each of them...
 
 			hyperlinks = new Dictionary<string, string>();
 
-			var section = one.GetSection();
+			var section = await one.GetSection();
 			var pageIDs = section.Descendants(ns + "Page")
 				.Select(e => e.Attribute("ID").Value);
 

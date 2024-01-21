@@ -227,7 +227,7 @@ namespace River.OneMoreAddIn.Commands
 
 		private async Task<Page> CreatePage(OneNote one, Page parent, string title)
 		{
-			var section = one.GetSection();
+			var section = await one.GetSection();
 			var sectionId = section.Attribute("ID").Value;
 
 			one.CreatePage(sectionId, out var pageId);
@@ -236,7 +236,7 @@ namespace River.OneMoreAddIn.Commands
 			if (parent != null)
 			{
 				// get current section again after new page is created
-				section = one.GetSection();
+				section = await one.GetSection();
 
 				var parentElement = section.Elements(parent.Namespace + "Page")
 					.First(e => e.Attribute("ID").Value == parent.PageId);

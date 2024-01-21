@@ -7,20 +7,17 @@ namespace River.OneMoreAddIn.Commands
 	using System.Collections.Generic;
 	using System.Linq;
 	using System.Threading.Tasks;
-	using System.Windows.Forms;
 	using System.Xml.Linq;
 
 
 	internal class SearchServices
 	{
-		private readonly IWin32Window owner;
 		private readonly OneNote one;
 		private readonly string sectionId;
 
 
-		public SearchServices(IWin32Window owner, OneNote one, string sectionId)
+		public SearchServices(OneNote one, string sectionId)
 		{
-			this.owner = owner;
 			this.one = one;
 			this.sectionId = sectionId;
 		}
@@ -117,7 +114,7 @@ namespace River.OneMoreAddIn.Commands
 		public async Task MovePages(IEnumerable<string> pageIds)
 		{
 			var sections = new Dictionary<string, XElement>();
-			var section = one.GetSection(sectionId);
+			var section = await one.GetSection(sectionId);
 			var ns = one.GetNamespace(section);
 
 			var updated = false;
@@ -144,7 +141,7 @@ namespace River.OneMoreAddIn.Commands
 					}
 					else
 					{
-						parent = one.GetSection(parentId);
+						parent = await one.GetSection(parentId);
 						sections.Add(parentId, parent);
 					}
 
