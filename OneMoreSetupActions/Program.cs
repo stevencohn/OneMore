@@ -56,7 +56,7 @@ namespace OneMoreSetupActions
 
 			ReportContext();
 
-			int status;
+			var status = CustomAction.SUCCESS;
 
 			if (args.Any(a => a == "--x64" || a == "--x86"))
 			{
@@ -66,18 +66,6 @@ namespace OneMoreSetupActions
 				{
 					Environment.Exit(status);
 				}
-			}
-
-			status = new CheckOneNoteAction(logger, stepper).Install();
-			if (status != CustomAction.SUCCESS)
-			{
-				MessageBox.Show($"The OneNote installation looks to be invalid. OneMore may not appear " +
-					"in the OneNote ribbon until OneNote is repaired. For more information, " +
-					$"check the logs at\n{logger.LogPath}",
-					"OneNote Configuration Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-
-				// treat as warning for now...
-				//Environment.Exit(status);
 			}
 
 			switch (args[0])
@@ -179,6 +167,18 @@ namespace OneMoreSetupActions
 
 			logger.WriteLine();
 			logger.WriteLine($"Register... version {AssemblyInfo.Version}");
+
+			var status = new CheckOneNoteAction(logger, stepper).Install();
+			if (status != CustomAction.SUCCESS)
+			{
+				MessageBox.Show($"The OneNote installation looks to be invalid. OneMore may not appear " +
+					"in the OneNote ribbon until OneNote is repaired. For more information, " +
+					$"check the logs at\n{logger.LogPath}",
+					"OneNote Configuration Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+				// treat as warning for now...
+				//return CustomAction.FAILURE;
+			}
 
 			try
 			{
