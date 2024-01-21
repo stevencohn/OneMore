@@ -209,11 +209,13 @@
 <LI lang=yo style="MARGIN-BOTTOM: 0px; VERTICAL-ALIGN: middle; MARGIN-TOP: 0px"><SPAN style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"; BACKGROUND: #e8e8e8; COLOR: #172b4d'>.\build.ps1 -both</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">&nbsp;- builds both the x86 and the x64 installers</SPAN> </LI></UL>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
 <BLOCKQUOTE lang=yo style="FONT-SIZE: 11pt; FONT-FAMILY: Calibri; COLOR: #595959; MARGIN: 0in"><SPAN style="FONT-STYLE: italic">Note that you wil see warnings while the installer is building. These are harmless and can be ignored.</SPAN></BLOCKQUOTE>
-<BLOCKQUOTE lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</BLOCKQUOTE>
+<BLOCKQUOTE lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; COLOR: #595959; MARGIN: 0in">&nbsp;</BLOCKQUOTE>
 <H2 lang=yo style="FONT-SIZE: 14pt; FONT-FAMILY: Calibri; COLOR: #2e75b5; MARGIN: 0in">Debug The Build</H2>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">To enable msbuild verbose logging, enter this command before runnig build.ps1, where vsregedit is in the same path as devenv.</P>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
 <P lang=yo style='FONT-SIZE: 9.5pt; FONT-FAMILY: "Lucida Console"; COLOR: black; MARGIN: 0in 0in 0in 0.375in'><SPAN style="BACKGROUND: #e9e9e9">VsRegEdit set local HKCU General MSBuildLoggerVerbosity dword 4</SPAN></P>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
+<P lang=yo style="MARGIN: 0in"><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">This can reverted back to a value of </SPAN><SPAN style='FONT-SIZE: 9.5pt; FONT-FAMILY: "Lucida Console"; BACKGROUND: #e9e9e9'>1</SPAN></P>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
 <H3 lang=yo style="FONT-SIZE: 12pt; FONT-FAMILY: Calibri; COLOR: #5b9bd5; MARGIN: 0in">HRESULT</H3>
 <P lang=yo style="MARGIN: 0in"><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">If the output looks similar to this, you may need to r erun the </SPAN><SPAN style='FONT-SIZE: 9.5pt; FONT-FAMILY: "Lucida Console"; BACKGROUND: #e9e9e9'>.\build.ps1 -prep</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri"> command</SPAN></P>
@@ -228,8 +230,10 @@
 <P style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"; MARGIN: 0in 0in 0in 0.375in'>========== Build: 0 succeeded, 1 failed, 4 up-to-date, 0 skipped ==========</P>
 <P style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"; MARGIN: 0in 0in 0in 0.375in'>========== Build completed at 5:04 PM and took 00.201 seconds ==========</P>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">If that doesn't work then reboot. Seriously.</P>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
-<P><CITE lang=yo style="FONT-SIZE: 9pt; FONT-FAMILY: Calibri; COLOR: #595959; MARGIN: 0in">##omwiki ##omdeveloper</CITE></P>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
+<P><CITE lang=yo style="FONT-SIZE: 9pt; FONT-FAMILY: Calibri; COLOR: #595959; MARGIN: 0in">#omwiki #omdeveloper</CITE></P>
 <P><CITE lang=yo style="FONT-SIZE: 9pt; FONT-FAMILY: Calibri; COLOR: #595959; MARGIN: 0in">&nbsp;</CITE></P>
 <P><CITE lang=yo style="FONT-SIZE: 10pt; FONT-FAMILY: Calibri; COLOR: #595959; MARGIN: 0in">© 2020 Steven M Cohn. All rights reserved.</CITE></P>
 <P><CITE lang=yo style="FONT-SIZE: 10pt; FONT-FAMILY: Calibri; COLOR: #595959; MARGIN: 0in">Please consider a <A href="https://github.com/sponsors/stevencohn">sponsorship or one-time donation</A> to support ongoing development</CITE></P>
