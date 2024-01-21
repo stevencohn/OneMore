@@ -16,7 +16,7 @@ Begin
 
 	    $ns = $xml.GetNamespaceOfPrefix('one')
 	    $xml.Element($ns + 'PageSettings').Attribute('color').value = '#ECF3FA'
-	
+
 	    $xml.Save($filePath, [Xml.Linq.SaveOptions]::None)
 	    Write-Host "Saved $filepath"
 	}

@@ -15,7 +15,6 @@ namespace River.OneMoreAddIn
 	using System.IO;
 	using System.Linq;
 	using System.Runtime.InteropServices;
-	using System.Runtime.InteropServices.WindowsRuntime;
 	using System.Text;
 	using System.Text.RegularExpressions;
 	using System.Threading;
@@ -877,7 +876,6 @@ namespace River.OneMoreAddIn
 			}
 
 			// must optimize before we can validate schema...
-
 			page.OptimizeForSave(force);
 
 			if (!ValidateSchema(page.Root))
@@ -902,10 +900,10 @@ namespace River.OneMoreAddIn
 		}
 
 
-		private bool ValidateSchema(XElement root)
+		public static bool ValidateSchema(XElement root)
 		{
 			var document = new XDocument(root);
-			var ns = GetNamespace(root);
+			var ns = root.GetNamespaceOfPrefix(OneNote.Prefix);
 
 			var schemas = new XmlSchemaSet();
 			schemas.Add(ns.ToString(),
@@ -914,8 +912,8 @@ namespace River.OneMoreAddIn
 			var valid = true;
 			document.Validate(schemas, (o, e) =>
 			{
-				logger.WriteLine($"schema error [{o}] ({o.GetType().FullName})");
-				logger.WriteLine(e.Exception);
+				Logger.Current.WriteLine($"schema error [{o}] ({o.GetType().FullName})");
+				Logger.Current.WriteLine(e.Exception);
 
 				if (o is XAttribute attribute &&
 					e.Exception.InnerException?.HResult == MaxInclusiveHResult)
@@ -927,14 +925,14 @@ namespace River.OneMoreAddIn
 						if (dot < exp - 1)
 						{
 							var fix = attribute.Value.Substring(0, dot + 2);
-							logger.WriteLine($"schema error, correcting [{o}] -> adjusted [{fix}]");
+							Logger.Current.WriteLine($"schema error, correcting [{o}] -> adjusted [{fix}]");
 							attribute.Value = fix;
 							return;
 						}
 					}
 				}
 
-				logger.WriteLine("schema error, unrecognized");
+				Logger.Current.WriteLine("schema error, unrecognized");
 				valid = false;
 			}
 			// uncomment this parameter to collect schema validation info for GetSchemaInfo()

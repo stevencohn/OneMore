@@ -14,9 +14,7 @@ namespace River.OneMoreAddIn.Commands
 	using System.Threading;
 	using System.Threading.Tasks;
 	using System.Windows.Forms;
-	using System.Xml;
 	using System.Xml.Linq;
-	using System.Xml.Schema;
 	using Resx = Properties.Resources;
 
 
@@ -80,7 +78,9 @@ namespace River.OneMoreAddIn.Commands
 			// check for replay
 			if (args != null && args.Length > 0)
 			{
-				var element = args.FirstOrDefault(a => a is XElement e && e.Name.LocalName == "path") as XElement;
+				var element = Array.Find(args,
+					a => a is XElement e && e.Name.LocalName == "path") as XElement;
+
 				if (!string.IsNullOrEmpty(element?.Value))
 				{
 					plugin = await new PluginsProvider().Load(element.Value);
@@ -308,18 +308,25 @@ namespace River.OneMoreAddIn.Commands
 			try
 			{
 				var root = XElement.Load(workpath);
-				var updated = root.ToString(SaveOptions.DisableFormatting);
 
+				var updated = root.ToString(SaveOptions.DisableFormatting);
 				if (updated == content && !plugin.CreateNewPage)
 				{
 					UIHelper.ShowInfo(Resx.Plugin_NoChanges);
 					return null;
 				}
 
-				if (plugin.TargetPage && !ValidPageSchema(root))
+				if (plugin.TargetPage)
 				{
-					UIHelper.ShowInfo(Resx.Plugin_InvalidSchema);
-					return null;
+					var candidate = new Page(root);
+					// must optimize before we can validate schema...
+					candidate.OptimizeForSave(true);
+
+					if (!OneNote.ValidateSchema(root))
+					{
+						UIHelper.ShowInfo(Resx.Plugin_InvalidSchema);
+						return null;
+					}
 				}
 
 				return root;
@@ -330,25 +337,6 @@ namespace River.OneMoreAddIn.Commands
 				UIHelper.ShowError(Resx.Plugin_NoUpdate);
 				return null;
 			}
-		}
-
-
-		private bool ValidPageSchema(XElement root)
-		{
-			var schemas = new XmlSchemaSet();
-			var ns = root.GetNamespaceOfPrefix(OneNote.Prefix);
-			schemas.Add(ns.ToString(), XmlReader.Create(new StringReader(Resx._0336_OneNoteApplication_2013)));
-
-			var document = new XDocument(root);
-
-			bool valid = true;
-			document.Validate(schemas, (o, e) =>
-			{
-				logger.WriteLine($"schema validation {e.Severity}", e.Exception);
-				valid = false;
-			});
-
-			return valid;
 		}
 
 
@@ -385,6 +373,9 @@ namespace River.OneMoreAddIn.Commands
 			// set the page ID to the new page's ID
 			childRoot.Attribute("ID").Value = pageId;
 			var child = new Page(childRoot);
+
+			// every new page adds hashes so need to remove them
+			child.OptimizeForSave(true);
 
 			var childTitle = child.Title.Trim();
 			var parentTitle = page.Title.Trim();
