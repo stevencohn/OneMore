@@ -3513,6 +3513,10 @@ ISO-code then comma then language name</comment>
     <value>תוספים</value>
     <comment>favorites menu</comment>
   </data>
+  <data name="ribPluginsMenu_Screentip" xml:space="preserve">
+    <value>הפעל ונהל תוספים מותאמים אישית</value>
+    <comment>ribbon file</comment>
+  </data>
   <data name="ribPronunciateButton_Label" xml:space="preserve">
     <value>הכנס הגייה</value>
     <comment>Ribbon OneMore menu item</comment>

@@ -225,16 +225,16 @@ namespace River.OneMoreAddIn.Commands
 
 			ChangeTarget(null, EventArgs.Empty);
 
-			var read = pluginsBox.SelectedIndex > 0;
-			nameBox.ReadOnly = read;
-			cmdBox.ReadOnly = read;
-			argsBox.ReadOnly = read;
-			timeoutBox.ReadOnly = read;
-			createRadio.Enabled = !read;
-			updateRadio.Enabled = !read;
-			pageNameBox.ReadOnly = read;
-			childBox.Enabled = !read;
-			saveButton.Enabled = !read;
+			//var read = pluginsBox.SelectedIndex > 0;
+			//nameBox.ReadOnly = read;
+			//cmdBox.ReadOnly = read;
+			//argsBox.ReadOnly = read;
+			//timeoutBox.ReadOnly = read;
+			//createRadio.Enabled = !read;
+			//updateRadio.Enabled = !read;
+			//pageNameBox.ReadOnly = read;
+			//childBox.Enabled = !read;
+			//saveButton.Enabled = !read;
 		}
 
 

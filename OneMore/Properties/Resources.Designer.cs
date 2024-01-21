@@ -8502,6 +8502,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Run and manage custom plugins.
+        /// </summary>
+        internal static string ribPluginsMenu_Screentip {
+            get {
+                return ResourceManager.GetString("ribPluginsMenu_Screentip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Insert Pronunciation.
         /// </summary>
         internal static string ribPronunciateButton_Label {

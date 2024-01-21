@@ -3488,6 +3488,10 @@ Wähle Nein, um eine leere Zeile zwischen den Absätzen zu halten</value>
     <value>Plugins</value>
     <comment>favorites menu</comment>
   </data>
+  <data name="ribPluginsMenu_Screentip" xml:space="preserve">
+    <value>Benutzerdefinierte Plugins ausführen und verwalten</value>
+    <comment>ribbon file</comment>
+  </data>
   <data name="ribPronunciateButton_Label" xml:space="preserve">
     <value>Aussprache einfügen</value>
     <comment>Ribbon OneMore menu item</comment>

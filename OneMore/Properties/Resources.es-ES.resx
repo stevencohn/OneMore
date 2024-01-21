@@ -3500,6 +3500,10 @@ Seleccione No para mantener una línea vacía entre los párrafos</value>
     <value>Complementos</value>
     <comment>favorites menu</comment>
   </data>
+  <data name="ribPluginsMenu_Screentip" xml:space="preserve">
+    <value>Ejecute y administre complementos personalizados</value>
+    <comment>ribbon file</comment>
+  </data>
   <data name="ribPronunciateButton_Label" xml:space="preserve">
     <value>Insertar pronunciación</value>
     <comment>Ribbon OneMore menu item</comment>

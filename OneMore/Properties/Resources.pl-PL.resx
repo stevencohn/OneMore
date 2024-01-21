@@ -3513,6 +3513,10 @@ Wybierz Nie, aby zachować jedną pustą linię między akapitami</value>
     <value>Wtyczki</value>
     <comment>favorites menu</comment>
   </data>
+  <data name="ribPluginsMenu_Screentip" xml:space="preserve">
+    <value>Uruchamiaj i zarządzaj niestandardowymi wtyczkami</value>
+    <comment>ribbon file</comment>
+  </data>
   <data name="ribPronunciateButton_Label" xml:space="preserve">
     <value>Wstaw wymowę</value>
     <comment>Ribbon OneMore menu item</comment>

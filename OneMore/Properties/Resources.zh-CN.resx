@@ -3495,6 +3495,10 @@ ISO-code then comma then language name</comment>
     <value>插件</value>
     <comment>favorites menu</comment>
   </data>
+  <data name="ribPluginsMenu_Screentip" xml:space="preserve">
+    <value>运行和管理自定义插件</value>
+    <comment>ribbon file</comment>
+  </data>
   <data name="ribPronunciateButton_Label" xml:space="preserve">
     <value>插入发音</value>
     <comment>Ribbon OneMore menu item</comment>

@@ -3500,6 +3500,10 @@ Selecteer NO om één lege regel tussen paragrafen te behouden</value>
     <value>Plug-ins</value>
     <comment>favorites menu</comment>
   </data>
+  <data name="ribPluginsMenu_Screentip" xml:space="preserve">
+    <value>Aangepaste plug-ins uitvoeren en beheren</value>
+    <comment>ribbon file</comment>
+  </data>
   <data name="ribPronunciateButton_Label" xml:space="preserve">
     <value>Uitspraak invoegen</value>
     <comment>Ribbon OneMore menu item</comment>

@@ -352,7 +352,10 @@ namespace River.OneMoreAddIn.Commands
 				}
 				else
 				{
-					await one.Update(new Page(root));
+					var candidate = new Page(root);
+					candidate.OptimizeForSave(true);
+
+					await one.Update(candidate);
 				}
 			}
 			catch (Exception exc)

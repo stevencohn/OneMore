@@ -3532,7 +3532,11 @@ Select No to keep one empty line between paragraphs</value>
   </data>
   <data name="ribPluginsMenu_Label" xml:space="preserve">
     <value>Plugins</value>
-    <comment>ribbon menu</comment>
+    <comment>ribbon file</comment>
+  </data>
+  <data name="ribPluginsMenu_Screentip" xml:space="preserve">
+    <value>Run and manage custom plugins</value>
+    <comment>ribbon file</comment>
   </data>
   <data name="ribPronunciateButton_Label" xml:space="preserve">
     <value>Insert Pronunciation</value>
