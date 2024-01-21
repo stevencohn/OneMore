@@ -41,11 +41,11 @@ namespace River.OneMoreAddIn.Commands
 				if (pageIDs.Count == 0)
 				{
 					pageIDs.Add(one.CurrentPageId);
-					Export(pageIDs);
+					await Export(pageIDs);
 				}
 				else
 				{
-					Export(pageIDs);
+					await Export(pageIDs);
 				}
 			}
 
@@ -53,7 +53,7 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private void Export(List<string> pageIDs)
+		private async Task Export(List<string> pageIDs)
 		{
 			OneNote.ExportFormat format;
 			string path;
@@ -101,7 +101,7 @@ namespace River.OneMoreAddIn.Commands
 
 				foreach (var pageID in pageIDs)
 				{
-					var page = one.GetPage(pageID, OneNote.PageDetail.BinaryData);
+					var page = await one.GetPage(pageID, OneNote.PageDetail.BinaryData);
 
 					var title = useUnderscores
 						? PathHelper.CleanFileName(page.Title).Replace(' ', '_')
@@ -116,11 +116,11 @@ namespace River.OneMoreAddIn.Commands
 					{
 						if (withAttachments)
 						{
-							archivist.ExportHTML(page, ref filename);
+							_ = await archivist.ExportHTML(page, filename);
 						}
 						else
 						{
-							archivist.Export(page.PageId, filename, OneNote.ExportFormat.HTML);
+							await archivist.Export(page.PageId, filename, OneNote.ExportFormat.HTML);
 						}
 					}
 					else if (format == OneNote.ExportFormat.XML)
@@ -133,7 +133,7 @@ namespace River.OneMoreAddIn.Commands
 					}
 					else
 					{
-						archivist.Export(page.PageId, filename, format, withAttachments, embedded);
+						await archivist.Export(page.PageId, filename, format, withAttachments, embedded);
 					}
 				}
 			}

@@ -79,7 +79,7 @@ namespace River.OneMoreAddIn.Commands
 			Native.SetForegroundWindow(one.WindowHandle);
 			await one.NavigateTo(pageId, objectId);
 
-			page = one.GetPage(pageId);
+			page = await one.GetPage(pageId);
 			ns = page.Namespace;
 
 			var paragraph = page.Root.Descendants(ns + "OE")
@@ -127,7 +127,7 @@ namespace River.OneMoreAddIn.Commands
 			var reminders = new ReminderSerializer().LoadReminders(page);
 			if (reminders.Any())
 			{
-				reminder = reminders.FirstOrDefault(r => r.ObjectId == objectID);
+				reminder = reminders.Find(r => r.ObjectId == objectID);
 
 				if (reminder == null)
 				{
@@ -136,7 +136,7 @@ namespace River.OneMoreAddIn.Commands
 					// object IDs are mutable per client but differ across clients so lookup URI
 
 					var uri = one.GetHyperlink(page.PageId, objectID);
-					reminder = reminders.FirstOrDefault(r => r.ObjectUri == uri);
+					reminder = reminders.Find(r => r.ObjectUri == uri);
 				}
 
 				if (reminder != null &&
@@ -157,7 +157,8 @@ namespace River.OneMoreAddIn.Commands
 							{
 								reminder.Status = ReminderStatus.Completed;
 								reminder.Percent = 100;
-								reminder.Completed = DateTime.Parse(tag.Attribute("completionDate").Value);
+								reminder.Completed = DateTime
+									.Parse(tag.Attribute("completionDate").Value, AddIn.Culture);
 							}
 
 							if (string.IsNullOrEmpty(reminder.ObjectUri))
@@ -203,12 +204,12 @@ namespace River.OneMoreAddIn.Commands
 				reminder.TagIndex = tag.Attribute("index").Value;
 				reminder.Symbol = page.GetTagDefSymbol(reminder.TagIndex);
 
-				reminder.Created = DateTime.Parse(tag.Attribute("creationDate").Value);
+				reminder.Created = DateTime.Parse(tag.Attribute("creationDate").Value, AddIn.Culture);
 
 				var completionDate = tag.Attribute("creationDate");
 				if (completionDate != null)
 				{
-					reminder.Completed = DateTime.Parse(completionDate.Value);
+					reminder.Completed = DateTime.Parse(completionDate.Value, AddIn.Culture);
 				}
 			}
 			else

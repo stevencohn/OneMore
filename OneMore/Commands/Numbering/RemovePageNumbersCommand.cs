@@ -48,7 +48,7 @@ namespace River.OneMoreAddIn.Commands
 
 				foreach (var pageId in pageIds)
 				{
-					var page = one.GetPage(pageId, OneNote.PageDetail.Basic);
+					var page = await one.GetPage(pageId, OneNote.PageDetail.Basic);
 
 					var name = page.Root.Attribute("name").Value;
 					progress.SetMessage(string.Format(

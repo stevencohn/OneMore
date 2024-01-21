@@ -13,6 +13,7 @@ namespace River.OneMoreAddIn.Commands
 	using System.Drawing;
 	using System.Linq;
 	using System.Threading;
+	using System.Threading.Tasks;
 	using System.Windows.Forms;
 	using static River.OneMoreAddIn.OneNote;
 	using Resx = River.OneMoreAddIn.Properties.Resources;
@@ -257,13 +258,15 @@ namespace River.OneMoreAddIn.Commands
 		{
 			using (one = new OneNote())
 			{
-				var source = new CancellationTokenSource();
-				var map = await one.BuildHyperlinkMap(Scope.Sections, source.Token);
+				using var source = new CancellationTokenSource();
+
+				var map = await new HyperlinkProvider(one)
+					.BuildHyperlinkMap(Scope.Sections, source.Token);
 
 				var count = 0;
 				using (outlook = new Outlook())
 				{
-					count = ResetOrphanedTasks(map, model.Root);
+					count = await ResetOrphanedTasks(map, model.Root);
 				}
 
 				resetLabel.Visible = false;
@@ -276,7 +279,7 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private int ResetOrphanedTasks(Dictionary<string, HyperlinkInfo> map, Node node)
+		private async Task<int> ResetOrphanedTasks(Dictionary<string, HyperlinkInfo> map, Node node)
 		{
 			var count = 0;
 			var taskNodes = node.Nodes
@@ -288,10 +291,10 @@ namespace River.OneMoreAddIn.Commands
 				{
 					var task = taskNode.Tag as OutlookTask;
 
-					var key = one.GetHyperKey(task.OneNoteURL, out _);
+					var key = HyperlinkProvider.GetHyperKey(task.OneNoteURL, out _);
 					if (map.ContainsKey(key))
 					{
-						var page = one.GetPage(map[key].PageID, PageDetail.Basic);
+						var page = await one.GetPage(map[key].PageID, PageDetail.Basic);
 						if (page == null)
 						{
 							ResetTask(taskNode, task);
@@ -312,7 +315,7 @@ namespace River.OneMoreAddIn.Commands
 
 			foreach (var child in node.Nodes.Where(n => n.Tag is OutlookTaskFolder))
 			{
-				count += ResetOrphanedTasks(map, child);
+				count += await ResetOrphanedTasks(map, child);
 			}
 
 			return count;

@@ -168,7 +168,7 @@ namespace River.OneMoreAddIn.Commands
 			foreach (var element in root.Elements(ns + "Page"))
 			{
 				// get the page to copy
-				var page = one.GetPage(element.Attribute("ID").Value);
+				var page = await one.GetPage(element.Attribute("ID").Value);
 				progress.SetMessage(page.Title);
 
 				// create a new page to get a new ID

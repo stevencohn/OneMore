@@ -56,7 +56,7 @@ namespace River.OneMoreAddIn.Commands
 					})
 					.ToList();
 
-				if (infos?.Count > 0)
+				if (infos.Any())
 				{
 					logger.StartClock();
 
@@ -97,7 +97,7 @@ namespace River.OneMoreAddIn.Commands
 				return;
 			}
 
-			var page = one.GetPage(info.ID, OneNote.PageDetail.Basic);
+			var page = await one.GetPage(info.ID, OneNote.PageDetail.Basic);
 			page.Title = $"{stamp} {page.Title}";
 
 			await one.Update(page);
@@ -108,7 +108,7 @@ namespace River.OneMoreAddIn.Commands
 		{
 			if (regex.Match(info.Name).Success)
 			{
-				var page = one.GetPage(info.ID, OneNote.PageDetail.Basic);
+				var page = await one.GetPage(info.ID, OneNote.PageDetail.Basic);
 				page.Title = page.Title.Substring(11);
 				await one.Update(page);
 			}

@@ -183,7 +183,7 @@ namespace River.OneMoreAddIn.Commands
 			bool addTopLinks, bool rightAlign, bool insertHere, TitleStyles titleStyle)
 		{
 			using var one = new OneNote();
-			var page = one.GetPage(OneNote.PageDetail.Selection);
+			var page = await one.GetPage(OneNote.PageDetail.Selection);
 			var ns = page.Namespace;
 
 			if (!ValidatePage(one, page, ns, out var top, out var headings, out var titleID))
@@ -546,7 +546,7 @@ namespace River.OneMoreAddIn.Commands
 
 			one.CreatePage(sectionId, out var pageId);
 
-			var page = one.GetPage(pageId);
+			var page = await one.GetPage(pageId);
 			var ns = page.Namespace;
 			PageNamespace.Set(ns);
 
@@ -568,7 +568,8 @@ namespace River.OneMoreAddIn.Commands
 
 			try
 			{
-				BuildSectionToc(one, container, elements.ToArray(), ref index, 1, withPreviews);
+				index = await BuildSectionToc(
+					one, container, elements.ToArray(), index, 1, withPreviews);
 			}
 			finally
 			{
@@ -599,9 +600,8 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private void BuildSectionToc(
-			OneNote one, XElement container, XElement[] elements,
-			ref int index, int level, bool withPreviews)
+		private async Task<int> BuildSectionToc(
+			OneNote one, XElement container, XElement[] elements, int index, int level, bool withPreviews)
 		{
 			string css = null;
 			if (withPreviews)
@@ -619,7 +619,7 @@ namespace River.OneMoreAddIn.Commands
 				if (pageLevel > level)
 				{
 					var children = new XElement(PageNamespace.Value + "OEChildren");
-					BuildSectionToc(one,children, elements, ref index, pageLevel, withPreviews);
+					index = await BuildSectionToc(one,children, elements, index, pageLevel, withPreviews);
 					container.Elements().Last().Add(children);
 				}
 				else if (pageLevel == level)
@@ -634,7 +634,7 @@ namespace River.OneMoreAddIn.Commands
 					}
 
 					var text = withPreviews
-						? $"<a href=\"{link}\">{name}</a> {GetPagePreview(one, pageID, css)}"
+						? $"<a href=\"{link}\">{name}</a> {await GetPagePreview(one, pageID, css)}"
 						: $"<a href=\"{link}\">{name}</a>";
 
 					container.Add(new Paragraph(text));
@@ -646,12 +646,14 @@ namespace River.OneMoreAddIn.Commands
 					break;
 				}
 			}
+
+			return index;
 		}
 
 
-		private string GetPagePreview(OneNote one, string pageID, string css)
+		private async Task<string> GetPagePreview(OneNote one, string pageID, string css)
 		{
-			var page = one.GetPage(pageID, OneNote.PageDetail.Basic);
+			var page =	await one.GetPage(pageID, OneNote.PageDetail.Basic);
 			var ns = page.Namespace;
 
 			var outline = page.Root.Elements(ns + "Outline")
@@ -708,7 +710,7 @@ namespace River.OneMoreAddIn.Commands
 
 			one.CreatePage(sectionId, out var pageId);
 
-			var page = one.GetPage(pageId);
+			var page = await one.GetPage(pageId);
 			var ns = page.Namespace;
 			PageNamespace.Set(ns);
 
@@ -731,7 +733,8 @@ namespace River.OneMoreAddIn.Commands
 
 			try
 			{
-				BuildSectionTable(one, ns, container, notebook.Elements(), includePages, withPreviews, 1);
+				await BuildSectionTable(
+					one, ns, container, notebook.Elements(), includePages, withPreviews, 1);
 			}
 			finally
 			{
@@ -763,7 +766,7 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private void BuildSectionTable(
+		private async Task BuildSectionTable(
 			OneNote one, XNamespace ns, XElement container,
 			IEnumerable<XElement> elements, bool includePages, bool withPreviews, int level)
 		{
@@ -786,7 +789,7 @@ namespace River.OneMoreAddIn.Commands
 							new XCData($"<span style='font-weight:bold'>{name}</span>"))
 						));
 
-					BuildSectionTable(
+					await BuildSectionTable(
 						one, ns, indent, element.Elements(), includePages, withPreviews, level + 1);
 
 					container.Add(
@@ -806,7 +809,7 @@ namespace River.OneMoreAddIn.Commands
 						var indent = new XElement(ns + "OEChildren");
 						var index = 0;
 
-						BuildSectionToc(one, indent, pages.ToArray(), ref index, 1, withPreviews);
+						index = await BuildSectionToc(one, indent, pages.ToArray(), index, 1, withPreviews);
 
 						container.Add(new XElement(ns + "OE",
 							new XElement(ns + "T", new XCData($"§ <a href=\"{link}\">{name}</a>")),

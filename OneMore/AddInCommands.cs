@@ -25,18 +25,18 @@ namespace River.OneMoreAddIn
 
 
 		[IgnorePalette]
-		public void AddFavoritePageCmd(IRibbonControl control)
+		public async Task AddFavoritePageCmd(IRibbonControl control)
 		{
 			using var provider = new FavoritesProvider(ribbon);
-			provider.AddFavorite();
+			await provider.AddFavorite();
 		}
 
 
 		[IgnorePalette]
-		public void AddFavoriteSectionCmd(IRibbonControl control)
+		public async Task AddFavoriteSectionCmd(IRibbonControl control)
 		{
 			using var provider = new FavoritesProvider(ribbon);
-			provider.AddFavorite(true);
+			await provider.AddFavorite(true);
 		}
 
 

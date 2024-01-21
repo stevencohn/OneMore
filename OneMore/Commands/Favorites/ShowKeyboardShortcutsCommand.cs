@@ -51,7 +51,7 @@ namespace River.OneMoreAddIn.Commands
 
 				var ns = one.GetNamespace(results);
 
-				var pageId = results?.Descendants(ns + "Meta")
+				var pageId = results.Descendants(ns + "Meta")
 					.Where(e => e.Attribute("name").Value == "omKeyboardShortcuts")
 					.Select(e => e.Parent.Attribute("ID").Value)
 					.FirstOrDefault();

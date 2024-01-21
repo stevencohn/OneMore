@@ -115,8 +115,10 @@
 			// 
 			// RemoveSpacingDialog
 			// 
+			this.AcceptButton = this.okButton;
 			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+			this.CancelButton = this.cancelButton;
 			this.ClientSize = new System.Drawing.Size(405, 274);
 			this.Controls.Add(this.okButton);
 			this.Controls.Add(this.cancelButton);

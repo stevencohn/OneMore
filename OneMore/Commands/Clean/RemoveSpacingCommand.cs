@@ -95,7 +95,7 @@ namespace River.OneMoreAddIn.Commands
 
 				// is this a custom Heading style?
 				var style = new Style(element.CollectStyleProperties(true));
-				if (customStyles.Any(s => s.Equals(style)))
+				if (customStyles.Exists(s => s.Equals(style)))
 				{
 					if (includeHeadings)
 					{

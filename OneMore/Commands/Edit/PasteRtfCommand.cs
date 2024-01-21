@@ -47,7 +47,7 @@ namespace River.OneMoreAddIn.Commands
 					return;
 				}
 
-				_ = one.GetPage().GetPageColor(out _, out black);
+				_ = (await one.GetPage()).GetPageColor(out _, out black);
 			}
 
 			// transform RTF and Xaml data on clipboard to HTML

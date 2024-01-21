@@ -153,7 +153,7 @@ namespace River.OneMoreAddIn.Commands.Tools.Updater
 			// still fail if the user's computer is 32-bit. But seriously, who still has one?!
 			var key = Environment.Is64BitOperatingSystem ? "x64" : "x86";
 
-			var asset = release.assets.FirstOrDefault(a => a.browser_download_url.Contains(key));
+			var asset = release.assets.Find(a => a.browser_download_url.Contains(key));
 			if (asset == null)
 			{
 				Logger.Current.WriteLine($"did not find installer asset for {key}");

@@ -80,8 +80,11 @@ namespace River.OneMoreAddIn.Commands
 				e.GetAttributeValue("dateTime", out var dateTime);
 				e.GetAttributeValue("lastModifiedTime", out var lastModifiedTime);
 
-				var page = one.GetPage(e.Attribute("ID").Value, OneNote.PageDetail.All);
-				var section = await FindFilingSection(notebook, grouping, page, DateTime.Parse(dateTime));
+				var page = await one.GetPage(e.Attribute("ID").Value, OneNote.PageDetail.All);
+
+				var section = await FindFilingSection(notebook, grouping, page,
+					DateTime.Parse(dateTime, AddIn.Culture));
+
 				sectionID = section.Attribute("ID").Value;
 
 				AddHeader(page, name, dateTime);
@@ -197,7 +200,7 @@ namespace River.OneMoreAddIn.Commands
 
 				logger.WriteLine($"moving quick note [{name}]");
 
-				var page = one.GetPage(e.Attribute("ID").Value, OneNote.PageDetail.All);
+				var page = await one.GetPage(e.Attribute("ID").Value, OneNote.PageDetail.All);
 
 				AddHeader(page, name, dateTime);
 				var pageID = await CopyPage(page, sectionID);

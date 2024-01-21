@@ -202,7 +202,7 @@ namespace River.OneMoreAddIn.Commands
 			{
 				if (element.Name.LocalName == "Page")
 				{
-					var page = one.GetPage(
+					var page = await one.GetPage(
 						element.Attribute("ID").Value, OneNote.PageDetail.BinaryData);
 
 					progress.SetMessage($"Archiving {page.Title}");
@@ -264,7 +264,7 @@ namespace River.OneMoreAddIn.Commands
 
 			filename = PathHelper.FitMaxPath(filename);
 
-			archivist.ExportHTML(page, ref filename, path, bookScope);
+			filename = await archivist.ExportHTML(page, filename, path, bookScope);
 
 			await ArchiveAssets(Path.GetDirectoryName(filename), path);
 

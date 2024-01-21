@@ -72,7 +72,7 @@ namespace River.OneMoreAddIn.Commands
 			// parallelize internet access for all hyperlinks on page...
 
 			int count = 0;
-			if (elements?.Count > 0)
+			if (elements.Any())
 			{
 				// must use a thread-safe collection here
 				var tasks = new ConcurrentBag<Task<int>>();

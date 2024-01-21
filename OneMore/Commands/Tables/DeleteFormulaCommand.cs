@@ -38,7 +38,7 @@ namespace River.OneMoreAddIn.Commands
 				.Where(e => e.Element(ns + "Meta") != null && e.Element(ns + "Meta").Attribute("name").Value == "omfx")
 				.Select(e => e.Element(ns + "Meta"));
 
-			if (metas?.Any() == true)
+			if (metas.Any())
 			{
 				var tagIndex = page.GetTagDefIndex(AddFormulaCommand.BoltSymbol);
 

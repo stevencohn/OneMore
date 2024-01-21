@@ -18,7 +18,7 @@ namespace River.OneMoreAddIn.Commands
 		public LowercaseCommand() : base() { }
 		public override Task Execute(params object[] args)
 		{
-			return base.Execute(ToCaseCommand.Lowercase);
+			return base.Execute(Lowercase);
 		}
 	}
 	internal class TitlecaseCommand : ToCaseCommand
@@ -26,7 +26,7 @@ namespace River.OneMoreAddIn.Commands
 		public TitlecaseCommand() : base() { }
 		public override Task Execute(params object[] args)
 		{
-			return base.Execute(ToCaseCommand.Titlecase);
+			return base.Execute(Titlecase);
 		}
 	}
 	internal class UppercaseCommand : ToCaseCommand
@@ -34,7 +34,7 @@ namespace River.OneMoreAddIn.Commands
 		public UppercaseCommand() : base() { }
 		public override Task Execute(params object[] args)
 		{
-			return base.Execute(ToCaseCommand.Uppercase);
+			return base.Execute(Uppercase);
 		}
 	}
 	#endregion Wrappers

@@ -322,7 +322,7 @@ namespace River.OneMoreAddIn.Models
 			while (div > 0)
 			{
 				mod = (div - 1) % 26;
-				letters = (char)(65 + mod) + letters;
+				letters = $"{(char)(65 + mod)}{letters}";
 				div = ((div - mod) / 26);
 			}
 

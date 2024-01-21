@@ -43,7 +43,7 @@ namespace River.OneMoreAddIn.Commands
 					}
 
 					// get the page to copy
-					var page = one.GetPage(pageId);
+					var page = await one.GetPage(pageId);
 					progress.SetMessage(page.Title);
 
 					// create a new page to get a new ID
@@ -80,7 +80,7 @@ namespace River.OneMoreAddIn.Commands
 
 				// create a new page to get a new ID
 				one.CreatePage(sectionId, out indexId);
-				var indexPage = one.GetPage(indexId);
+				var indexPage = await one.GetPage(indexId);
 
 				indexPage.Title = "Page Index";
 
@@ -89,7 +89,7 @@ namespace River.OneMoreAddIn.Commands
 				foreach (var pageId in pageIds)
 				{
 					// get the page to copy
-					var page = one.GetPage(pageId);
+					var page = await one.GetPage(pageId);
 					var ns = page.Namespace;
 
 					progress.SetMessage(page.Title);

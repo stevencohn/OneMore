@@ -51,7 +51,7 @@ namespace River.OneMoreAddIn.Commands
 			logger.WriteLine($"Unfiled path: {unfiledFolder}");
 			logger.WriteLine();
 
-			var info = one.GetPageInfo();
+			var info = await one.GetPageInfo();
 			logger.WriteLine($"Page name: {info.Name}");
 			logger.WriteLine($"Page path: {info.Path}");
 			logger.WriteLine($"Page link: {info.Link}");
@@ -73,7 +73,7 @@ namespace River.OneMoreAddIn.Commands
 
 			logger.WriteLine();
 
-			var page = one.GetPage();
+			var page = await one.GetPage();
 			var pageColor = page.GetPageColor(out _, out _);
 
 			logger.WriteLine($"Page background: {pageColor.ToRGBHtml()}");

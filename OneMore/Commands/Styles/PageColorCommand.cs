@@ -93,7 +93,7 @@ namespace River.OneMoreAddIn.Commands
 			{
 				foreach (var node in nodes)
 				{
-					var page = one.GetPage(node.Attribute("ID").Value, OneNote.PageDetail.Basic);
+					var page = await one.GetPage(node.Attribute("ID").Value, OneNote.PageDetail.Basic);
 					if (token.IsCancellationRequested) break;
 
 					progress.SetMessage(page.Title);

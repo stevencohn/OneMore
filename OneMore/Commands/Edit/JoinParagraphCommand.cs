@@ -110,7 +110,7 @@ namespace River.OneMoreAddIn.Commands
 
 			if (runs.Any())
 			{
-				var first = runs.First();
+				var first = runs[0];
 				if (runs.Count == 1 && first.GetCData().Value == string.Empty)
 				{
 					caret = first;
@@ -124,7 +124,7 @@ namespace River.OneMoreAddIn.Commands
 				}
 
 				// include siblings after last
-				var after = runs.Last().ElementsAfterSelf(ns + "T");
+				var after = runs[runs.Count - 1].ElementsAfterSelf(ns + "T");
 				if (after.Any())
 				{
 					runs.AddRange(after);

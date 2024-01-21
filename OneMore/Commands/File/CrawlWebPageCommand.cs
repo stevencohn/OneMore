@@ -106,7 +106,7 @@ namespace River.OneMoreAddIn.Commands
 
 				foreach (var anchor in anchors)
 				{
-					var entry = links.FirstOrDefault(e =>
+					var entry = links.Find(e =>
 						e.Address == anchor.Address && e.Text == anchor.Text);
 
 					if (entry == null)

@@ -94,7 +94,7 @@ namespace River.OneMoreAddIn.Commands
 
 			while (index < pages.Count && pages[index].Level == level)
 			{
-				var page = one.GetPage(pages[index].ID, OneNote.PageDetail.Basic);
+				var page = await one.GetPage(pages[index].ID, OneNote.PageDetail.Basic);
 
 				var cdata = page.Root.Element(ns + "Title")
 					.Element(ns + "OE")

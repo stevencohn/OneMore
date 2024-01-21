@@ -83,17 +83,17 @@ namespace River.OneMoreAddIn.Commands
 
 				// get first selected (active) page and reference its quick styles, outline, size
 
-				page = one.GetPage(active.Attribute("ID").Value);
+				page = await one.GetPage(active.Attribute("ID").Value);
 
-				if (page.Root.Elements(ns + "Outline").Count() == 1 && SimplePages(selections))
+				if (page.Root.Elements(ns + "Outline").Count() == 1 && await SimplePages(selections))
 				{
 					// result in a single outline with all content
-					ConcatenateContent(page, selections);
+					await ConcatenateContent(page, selections);
 				}
 				else
 				{
 					// result in multiple outlines preserving relative positioning
-					AppendOutlines(page, selections);
+					await AppendOutlines(page, selections);
 				}
 
 				// update page and section hierarchy
@@ -108,14 +108,14 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private bool SimplePages(List<XElement> selections)
+		private async Task<bool> SimplePages(List<XElement> selections)
 		{
 			// accrues cost of loading every page twice, but limits memory by avoiding
 			// having all pages in memory at once
 
 			foreach (var selection in selections)
 			{
-				var child = one.GetPage(selection.Attribute("ID").Value, OneNote.PageDetail.Basic);
+				var child = await one.GetPage(selection.Attribute("ID").Value, OneNote.PageDetail.Basic);
 				if (child.Root.Elements(ns + "Outline").Count() > 1)
 				{
 					return false;
@@ -126,7 +126,7 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private void ConcatenateContent(Page page, List<XElement> selections)
+		private async Task ConcatenateContent(Page page, List<XElement> selections)
 		{
 			logger.WriteLine("concatenating content into single outline");
 
@@ -135,7 +135,7 @@ namespace River.OneMoreAddIn.Commands
 
 			foreach (var selection in selections)
 			{
-				var child = one.GetPage(
+				var child = await one.GetPage(
 					selection.Attribute("ID").Value, OneNote.PageDetail.BinaryData);
 
 				var outline = child.Root.Elements(ns + "Outline").FirstOrDefault();
@@ -172,7 +172,7 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private void AppendOutlines(Page page, List<XElement> selections)
+		private async Task AppendOutlines(Page page, List<XElement> selections)
 		{
 			logger.WriteLine("appending outlines with relative positioning");
 
@@ -189,7 +189,7 @@ namespace River.OneMoreAddIn.Commands
 
 			foreach (var selection in selections)
 			{
-				var child = one.GetPage(
+				var child = await one.GetPage(
 					selection.Attribute("ID").Value, OneNote.PageDetail.BinaryData);
 
 				var outlines = child.Root.Elements(ns + "Outline");

@@ -15,6 +15,7 @@ namespace River.OneMoreAddIn
 	using System.IO;
 	using System.Linq;
 	using System.Runtime.InteropServices;
+	using System.Runtime.InteropServices.WindowsRuntime;
 	using System.Text;
 	using System.Text.RegularExpressions;
 	using System.Threading;
@@ -85,9 +86,9 @@ namespace River.OneMoreAddIn
 			public string Name;			// name of object
 			public string Path;			// full path including name
 			public string Link;         // onenote: hyperlink to object
-			public string Color;		// node color
-			public int Size;			// size in bytes of page
-			public long Visited;		// last time visited in ms
+			public string Color;        // node color
+			public int Size;            // size in bytes of page
+			public long Visited;        // last time visited in ms
 		}
 
 		public class HierarchyNode
@@ -119,9 +120,6 @@ namespace River.OneMoreAddIn
 		private readonly ILogger logger;
 		private bool disposed;
 
-		private Regex pageEx;
-		private Regex sectionEx;
-
 
 		// = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
 		// Constructors...
@@ -146,7 +144,7 @@ namespace River.OneMoreAddIn
 			: this()
 		{
 			// page may be null if in an empty section
-			page = GetPage(detail);
+			page = Task.Run(async () => { return await GetPage(detail); }).Result;
 			ns = page?.Namespace;
 		}
 
@@ -228,7 +226,7 @@ namespace River.OneMoreAddIn
 		/// Invoke an action with retry
 		/// </summary>
 		/// <param name="work">The action to invoke</param>
-		public async Task InvokeWithRetry(Action work)
+		public async Task<bool> InvokeWithRetry(Action work)
 		{
 			try
 			{
@@ -246,242 +244,42 @@ namespace River.OneMoreAddIn
 
 						retries = int.MaxValue;
 					}
-					catch (COMException exc) when ((uint)exc.ErrorCode == ErrorCodes.hrCOMBusy)
+					catch (COMException exc)
 					{
 						retries++;
 						var ms = 250 * retries;
 
-						logger.WriteLine($"OneNote is busy, retyring in {ms}ms");
-						await Task.Delay(ms);
-					}
-					catch (COMException exc) when ((uint)exc.ErrorCode == ErrorCodes.hrObjectMissing)
-					{
-						retries++;
-						var ms = 250 * retries;
-
-						logger.WriteLine($"{ErrorCodes.GetDescription(exc.ErrorCode)}, retyring in {ms}ms");
-						await Task.Delay(ms);
-					}
-				}
-			}
-			catch (Exception exc)
-			{
-				logger.WriteLine("error invoking action", exc);
-			}
-		}
-
-
-		// = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
-		// Hyperlink map...
-
-		/// <summary>
-		/// Creates a map of pages where the key is built from the page-id of an internal
-		/// onenote: hyperlink and the value is a HyperlinkInfo item
-		/// </summary>
-		/// <param name="scope">Pages in section, Sections in notebook, or all Notebooks</param>
-		/// <param name="countCallback">Called exactly once to report the total count of pages to map</param>
-		/// <param name="stepCallback">Called for each page that is mapped to report progress</param>
-		/// <returns>
-		/// A Dictionary with page IDs as keys as values are HyperlinkInfo items
-		/// </returns>
-		/// <remarks>
-		/// There's no direct way to map onenote:http URIs to page IDs so this creates a cache
-		/// of all pages in the specified scope with their URIs as keys and pageIDs as values
-		/// </remarks>
-		public async Task<Dictionary<string, HyperlinkInfo>> BuildHyperlinkMap(
-			Scope scope,
-			CancellationToken token,
-			Func<int, Task> countCallback = null,
-			Func<Task> stepCallback = null)
-		{
-			var hyperlinks = new Dictionary<string, HyperlinkInfo>();
-
-			XElement container;
-			if (scope == Scope.Notebooks)
-			{
-				container = await GetNotebooks(Scope.Pages);
-			}
-			else if (scope == Scope.Sections || scope == Scope.Pages)
-			{
-				// get the notebook even if scope if Pages so we can infer the full path
-				container = await GetNotebook(Scope.Pages);
-			}
-			else
-			{
-				await Task.FromResult(hyperlinks);
-				return hyperlinks;
-			}
-
-			// ignore the recycle bin
-			container.Elements()
-				.Where(e => e.Attributes().Any(a => a.Name == "isRecycleBin"))
-				.Remove();
-
-			if (token.IsCancellationRequested)
-			{
-				await Task.FromResult(hyperlinks);
-				return hyperlinks;
-			}
-
-			// get root path and trim down to intended scope
-
-			var ns = GetNamespace(container);
-			string rootPath = string.Empty;
-
-			if (scope == Scope.Pages)
-			{
-				var section = container.Descendants(ns + "Section")
-					.FirstOrDefault(e => e.Attribute("isCurrentlyViewed")?.Value == "true");
-
-				if (section != null)
-				{
-					var p = section.Parent;
-					while (p != null)
-					{
-						var a = p.Attribute("name");
-						if (a != null && !string.IsNullOrEmpty(a.Value))
+						if ((uint)exc.HResult == ErrorCodes.hrRpcFailed ||
+							(uint)exc.HResult == ErrorCodes.hrRpcUnavailable)
 						{
-							rootPath = rootPath.Length == 0 ? a.Value : $"{a.Value}/{rootPath}";
+							logger.WriteLine($"RPC error, retrying in {ms}ms", exc);
+						}
+						else
+						{
+							// this will include hrCOMBusy and hrObjectMissing
+							var desc = $"{exc.ErrorCode:X} {ErrorCodes.GetDescription(exc.ErrorCode)}";
+							logger.WriteLine($"error {desc} (HResult {exc.HResult:X}), retyring in {ms}ms");
 						}
 
-						p = p.Parent;
+						onenote = ApplicationFactory.CreateApplication();
+						await Task.Delay(ms);
 					}
-
-					container = section;
-				}
-			}
-			else if (scope != Scope.Notebooks) // <one:Notebooks> doesn't have a name
-			{
-				rootPath = container.Attribute("name").Value;
-			}
-
-			if (token.IsCancellationRequested)
-			{
-				return hyperlinks;
-			}
-
-			// count pages so we can update countCallback and continue
-			var total = container.Descendants(ns + "Page")
-				.Count(e => e.Attribute("isInRecycleBin") == null);
-
-			if (total > 0)
-			{
-				if (countCallback != null)
-					await countCallback(total);
-
-				await BuildHyperlinkMap(hyperlinks, container, rootPath, null, token, stepCallback);
-			}
-
-			await Task.FromResult(hyperlinks);
-			return hyperlinks;
-		}
-
-
-		private async Task BuildHyperlinkMap(
-			Dictionary<string, HyperlinkInfo> hyperlinks,
-			XElement root, string fullPath, string path,
-			CancellationToken token, Func<Task> stepCallback)
-		{
-			if (root.Name.LocalName == "Section")
-			{
-				if (string.IsNullOrEmpty(path))
-				{
-					path = root.Attribute("name").Value;
-				}
-
-				var full = $"{fullPath}/{path}";
-
-				foreach (var element in root.Elements())
-				{
-					if (token.IsCancellationRequested)
+					// cancellation tokens will cause ThreadAbort which is normal
+					catch (Exception exc) when (exc is not ThreadAbortException)
 					{
-						return;
-					}
-
-					var ID = element.Attribute("ID").Value;
-					var name = element.Attribute("name").Value;
-					var link = GetHyperlink(ID, string.Empty);
-					var hyperId = GetHyperKey(link, out var sectionID);
-
-					if (hyperId != null && !hyperlinks.ContainsKey(hyperId))
-					{
-						//logger.WriteLine($"MAP path:{path} fullpath:{full} name:{name}");
-						hyperlinks.Add(hyperId,
-							new HyperlinkInfo
-							{
-								PageID = ID,
-								SectionID = sectionID,
-								HyperID = hyperId,
-								Name = name,
-								Path = path,
-								FullPath = full,
-								Uri = link
-							});
-					}
-
-					if (stepCallback != null)
-						await stepCallback();
-				}
-			}
-			else // SectionGroup or Notebook
-			{
-				foreach (var element in root.Elements())
-				{
-					if (element.Attribute("isRecycleBin") != null ||
-						element.Attribute("isInRecycleBin") != null)
-					{
-						//logger.WriteLine("MAP skip recycle bin");
-						continue;
-					}
-
-					if (element.Name.LocalName == "Notebooks" ||
-						element.Name.LocalName == "UnfiledNotes")
-					{
-						//logger.WriteLine($"MAP skip {element.Name.LocalName} element");
-						continue;
-					}
-
-					var ea = element.Attribute("name");
-					if (ea == null)
-						continue;
-
-					//logger.WriteLine($"MAP root:{root.Name.LocalName}={root.Attribute("name")?.Value} " +
-					//	$"element:{element.Name.LocalName}={ea?.Value} " +
-					//	$"path:{path}");
-
-					var p = string.IsNullOrEmpty(path) ? ea?.Value : $"{path}/{ea?.Value}";
-
-					await BuildHyperlinkMap(
-						hyperlinks, element,
-						fullPath,
-						p,
-						token, stepCallback);
-
-					if (token.IsCancellationRequested)
-					{
-						return;
+						logger.WriteLine("error invoking action, aborting retries", exc);
+						retries = int.MaxValue;
+						return false;
 					}
 				}
 			}
-		}
+			catch (Exception exc) when (exc is not ThreadAbortException)
+			{
+				logger.WriteLine("error recovering from failure while invoking action", exc);
+				return false;
+			}
 
-
-		/// <summary>
-		/// Reads the page-id part of the given onenote:// hyperlink URI
-		/// </summary>
-		/// <param name="uri">A onenote:// hyperlink URI</param>
-		/// <param name="sectionID">Gets the section ID from the URI</param>
-		/// <returns>The page-id value or null if not found</returns>
-		public string GetHyperKey(string uri, out string sectionID)
-		{
-			sectionEx ??= new Regex(@"section-id=({[^}]+?})");
-			var match = sectionEx.Match(uri);
-			sectionID = match.Success ? match.Groups[1].Value : null;
-
-			pageEx ??= new Regex(@"page-id=({[^}]+?})");
-
-			match = pageEx.Match(uri);
-			return match.Success ? match.Groups[1].Value : null;
+			return true;
 		}
 
 
@@ -743,9 +541,9 @@ namespace River.OneMoreAddIn
 		/// </summary>
 		/// <param name="detail">The desired verbosity of the XML</param>
 		/// <returns>A Page containing the root XML of the page</returns>
-		public Page GetPage(PageDetail detail = PageDetail.Selection)
+		public async Task<Page> GetPage(PageDetail detail = PageDetail.Selection)
 		{
-			return GetPage(CurrentPageId, detail);
+			return await GetPage(CurrentPageId, detail);
 		}
 
 
@@ -755,7 +553,7 @@ namespace River.OneMoreAddIn
 		/// <param name="pageId">The unique ID of the page</param>
 		/// <param name="detail">The desired verbosity of the XML</param>
 		/// <returns>A Page containing the root XML of the page</returns>
-		public Page GetPage(string pageId, PageDetail detail = PageDetail.All)
+		public async Task<Page> GetPage(string pageId, PageDetail detail = PageDetail.All)
 		{
 			if (string.IsNullOrEmpty(pageId))
 			{
@@ -764,7 +562,12 @@ namespace River.OneMoreAddIn
 
 			try
 			{
-				onenote.GetPageContent(pageId, out var xml, (PageInfo)detail, XMLSchema.xs2013);
+				string xml = null;
+				await InvokeWithRetry(() =>
+				{
+					onenote.GetPageContent(pageId, out xml, (PageInfo)detail, XMLSchema.xs2013);
+				});
+
 				if (!string.IsNullOrEmpty(xml))
 				{
 					return new Page(XElement.Parse(xml));
@@ -816,11 +619,11 @@ namespace River.OneMoreAddIn
 		/// used to build up Favorites
 		/// </summary>
 		/// <returns></returns>
-		public HierarchyInfo GetPageInfo(string pageId = null, bool sized = false)
+		public async Task<HierarchyInfo> GetPageInfo(string pageId = null, bool sized = false)
 		{
 			pageId ??= CurrentPageId;
 
-			var page = GetPage(pageId, sized ? PageDetail.BinaryData : PageDetail.Basic);
+			var page = await GetPage(pageId, sized ? PageDetail.BinaryData : PageDetail.Basic);
 			if (page == null)
 			{
 				return null;
@@ -1294,11 +1097,11 @@ namespace River.OneMoreAddIn
 		/// Forces OneNote to jump to the specified object, onenote Uri, or Web Uri
 		/// </summary>
 		/// <param name="uri">A pageId, sectionId, notebookId, onenote:URL, or Web URL</param>
-		public async Task NavigateTo(string uri)
+		public async Task<bool> NavigateTo(string uri)
 		{
 			if (uri.StartsWith("onenote:") || uri.StartsWith("http"))
 			{
-				await InvokeWithRetry(() =>
+				return await InvokeWithRetry(() =>
 				{
 					onenote.NavigateToUrl(uri);
 				});
@@ -1306,7 +1109,7 @@ namespace River.OneMoreAddIn
 			else
 			{
 				// must be an ID
-				await NavigateTo(uri, string.Empty);
+				return await NavigateTo(uri, string.Empty);
 			}
 		}
 
@@ -1317,9 +1120,9 @@ namespace River.OneMoreAddIn
 		/// <param name="pageId">The page ID</param>
 		/// <param name="objectId">The object ID</param>
 		/// <returns></returns>
-		public async Task NavigateTo(string pageId, string objectId)
+		public async Task<bool> NavigateTo(string pageId, string objectId)
 		{
-			await InvokeWithRetry(() =>
+			return await InvokeWithRetry(() =>
 			{
 				onenote.NavigateTo(pageId, objectId);
 			});

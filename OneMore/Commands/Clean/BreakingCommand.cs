@@ -58,7 +58,7 @@ namespace River.OneMoreAddIn.Commands
 			var nodes = page.Root.DescendantNodes().OfType<XCData>()
 				.Where(n => n.Value.Contains('.'));
 
-			if (nodes != null && nodes.Any())
+			if (nodes.Any())
 			{
 				var updated = false;
 

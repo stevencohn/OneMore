@@ -126,9 +126,7 @@ namespace River.OneMoreAddIn.Settings
 				? settings.Add("disabled", true) || updated
 				: settings.Remove("disabled") || updated;
 
-			updated = delayBox.Value > 0
-				? settings.Add("delay", (int)delayBox.Value) || updated
-				: settings.Remove("delay") || updated;
+			updated = settings.Add("delay", (int)delayBox.Value) || updated;
 
 			if (updated)
 			{

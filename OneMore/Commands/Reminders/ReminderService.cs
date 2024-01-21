@@ -153,7 +153,7 @@ namespace River.OneMoreAddIn.Commands
 		// so this verifies that the paragraph still exists and clears the Meta if it does not
 		private async Task<bool> ReminderIsValid(Reminder reminder, string pageID, OneNote one)
 		{
-			var page = one.GetPage(pageID, OneNote.PageDetail.Basic);
+			var page = await one.GetPage(pageID, OneNote.PageDetail.Basic);
 			if (page == null)
 			{
 				// must be an error?
@@ -179,7 +179,7 @@ namespace River.OneMoreAddIn.Commands
 				return false;
 			}
 
-			var orphan = reminders.FirstOrDefault(r => r.ObjectId == reminder.ObjectId);
+			var orphan = reminders.Find(r => r.ObjectId == reminder.ObjectId);
 			if (orphan == null)
 			{
 				// must be an error?
