@@ -716,7 +716,12 @@ namespace River.OneMoreAddIn.Commands
 				}
 				catch (Exception exc)
 				{
-					logger.WriteLine($"error writing tag {tag.Tag} on {tag.PageID}", exc);
+					logger.WriteLine($"error writing tag {tag.Tag} on {tag.PageID}");
+					logger.WriteLine($"error moreID=[{tag.MoreID}]");
+					logger.WriteLine($"error objectID=[{tag.ObjectID}]");
+					logger.WriteLine($"error Snippet=[{tag.Snippet}]");
+					logger.WriteLine($"error lastModified=[{tag.LastModified}]");
+					logger.WriteLine(exc);
 				}
 			}
 

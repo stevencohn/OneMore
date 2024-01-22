@@ -13,6 +13,7 @@ Begin
 
 	    $xml = [Xml.Linq.XElement]::Load($filePath)
 	    Write-Host "Loaded $filepath"
+	    Write-Host 'Setting page color to #ECF3FA'
 
 	    $ns = $xml.GetNamespaceOfPrefix('one')
 	    $xml.Element($ns + 'PageSettings').Attribute('color').value = '#ECF3FA'
