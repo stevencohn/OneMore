@@ -827,7 +827,7 @@ namespace River.OneMoreAddIn.Commands
 						break;
 
 					case 2:
-						content = (await one.GetPage(objectIdBox.Text, OneNote.PageDetail.BinaryData)).Root;
+						content = (await one.GetPage(objectIdBox.Text, OneNote.PageDetail.BinaryData))?.Root;
 						break;
 				}
 

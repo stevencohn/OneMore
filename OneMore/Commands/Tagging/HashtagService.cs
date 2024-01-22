@@ -23,6 +23,10 @@ namespace River.OneMoreAddIn.Commands
 		private readonly int pollingInterval;
 		private readonly bool disabled;
 
+		private int hour;
+		private int scanCount;
+		private long scanTime;
+
 
 		public HashtagService()
 		{
@@ -52,6 +56,10 @@ namespace River.OneMoreAddIn.Commands
 			}
 
 			logger.WriteLine("starting hashtag service");
+
+			hour = DateTime.Now.Hour;
+			scanCount = 0;
+			scanTime = 0;
 
 			var thread = new Thread(async () =>
 			{
@@ -99,6 +107,18 @@ namespace River.OneMoreAddIn.Commands
 
 			clock.Stop();
 			var time = clock.ElapsedMilliseconds;
+
+			scanCount++;
+			scanTime += time;
+
+			if (hour != DateTime.Now.Hour)
+			{
+				var avg = scanTime / scanCount;
+				logger.WriteLine($"hashtag service scanned {scanCount} times in the last hour, averaging {avg}ms");
+				hour = DateTime.Now.Hour;
+				scanCount = 0;
+				scanTime = 0;
+			}
 
 			if (dirtyPages > 0 || time > 1000)
 			{

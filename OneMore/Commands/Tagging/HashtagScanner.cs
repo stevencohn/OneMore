@@ -47,7 +47,7 @@ namespace River.OneMoreAddIn.Commands
 				settings.Get<bool>("unfiltered"));
 
 			lastTime = provider.ReadScanTime();
-			logger.Verbose($"HashtagScanner lastTime {lastTime}");
+			//logger.Verbose($"HashtagScanner lastTime {lastTime}");
 		}
 
 
