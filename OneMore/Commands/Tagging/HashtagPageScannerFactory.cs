@@ -4,6 +4,7 @@
 
 namespace River.OneMoreAddIn.Commands
 {
+	using Models;
 	using System.Text.RegularExpressions;
 	using System.Xml.Linq;
 
@@ -40,9 +41,9 @@ namespace River.OneMoreAddIn.Commands
 		/// </summary>
 		/// <param name="root">The root element of the page</param>
 		/// <returns>A HashtagPageScanner instance</returns>
-		public HashtagPageScanner CreatePageScanner(XElement root)
+		public HashtagPageScanner CreatePageScanner(Page page)
 		{
-			return new HashtagPageScanner(root, hashPattern, styleTemplate);
+			return new HashtagPageScanner(page, hashPattern, styleTemplate);
 		}
 	}
 }

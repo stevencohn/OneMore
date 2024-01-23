@@ -1274,6 +1274,10 @@ Symboles : PI, E</value>
     <value>toutes les balises</value>
     <comment>text</comment>
   </data>
+  <data name="HashtagDialog_badLink" xml:space="preserve">
+    <value>Impossible d'accéder à cette page. Il a peut-être été supprimé</value>
+    <comment>info message</comment>
+  </data>
   <data name="HashtagDialog_checkAllLink.Text" xml:space="preserve">
     <value>Vérifie tout</value>
     <comment>link label</comment>

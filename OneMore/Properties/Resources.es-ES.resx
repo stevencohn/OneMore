@@ -1277,6 +1277,10 @@ Símbolos: PI, E</value>
     <value>todas las etiquetas</value>
     <comment>text</comment>
   </data>
+  <data name="HashtagDialog_badLink" xml:space="preserve">
+    <value>No se puede navegar a esta página. Puede haber sido borrada</value>
+    <comment>info message</comment>
+  </data>
   <data name="HashtagDialog_checkAllLink.Text" xml:space="preserve">
     <value>Comprobar todo</value>
     <comment>link label</comment>

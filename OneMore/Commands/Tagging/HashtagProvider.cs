@@ -82,16 +82,17 @@ namespace River.OneMoreAddIn.Commands
 				var sql = line.Trim();
 				if (!string.IsNullOrWhiteSpace(sql) && !sql.StartsWith("--"))
 				{
+					using var cmd = con.CreateCommand();
+
 					try
 					{
-						using var cmd = con.CreateCommand();
 						cmd.CommandText = sql;
 						cmd.CommandType = CommandType.Text;
 						cmd.ExecuteNonQuery();
 					}
 					catch (Exception exc)
 					{
-						logger.WriteLine($"error executing sql {sql}", exc);
+						ReportError("error building database", cmd, exc);
 						throw;
 					}
 				}
@@ -128,7 +129,7 @@ namespace River.OneMoreAddIn.Commands
 			}
 			catch (Exception exc)
 			{
-				logger.WriteLine("error reading scanner version", exc);
+				ReportError("error reading scanner version", cmd, exc);
 				return;
 			}
 
@@ -337,7 +338,7 @@ namespace River.OneMoreAddIn.Commands
 			}
 			catch (Exception exc)
 			{
-				logger.WriteLine("error cleaning up pages", exc);
+				ReportError("error cleaning up pages", cmd, exc);
 			}
 		}
 
@@ -362,7 +363,7 @@ namespace River.OneMoreAddIn.Commands
 			}
 			catch (Exception exc)
 			{
-				logger.WriteLine("error reading last scan time", exc);
+				ReportError("error reading last scan time", cmd, exc);
 			}
 
 			return DateTime.MinValue.ToZuluString();
@@ -404,7 +405,7 @@ namespace River.OneMoreAddIn.Commands
 			}
 			catch (Exception exc)
 			{
-				logger.WriteLine("error reading distinct tags", exc);
+				ReportError("error reading list of tags", cmd, exc);
 			}
 
 			return tags;
@@ -466,7 +467,7 @@ namespace River.OneMoreAddIn.Commands
 			}
 			catch (Exception exc)
 			{
-				logger.WriteLine("error reading distinct tags", exc);
+				ReportError("error reading list of tag names", cmd, exc);
 			}
 
 			return tags;
@@ -568,10 +569,47 @@ namespace River.OneMoreAddIn.Commands
 			}
 			catch (Exception exc)
 			{
-				logger.WriteLine("error reading tags", exc);
+				ReportError("error reading tags", cmd, exc);
 			}
 
 			return tags;
+		}
+
+
+		/// <summary>
+		/// Determines if the moreID matches the pageID, otherwise this might be coming
+		/// from a new duplicate or copy of an existing page so need to generate a new moreID
+		/// </summary>
+		/// <param name="pageID"></param>
+		/// <param name="moreID"></param>
+		/// <returns></returns>
+		public bool UniqueMoreID(string pageID, string moreID)
+		{
+			using var cmd = con.CreateCommand();
+			cmd.CommandText = "SELECT count(1) " +
+				"FROM hashtag_page WHERE moreID = @mid AND pageID <> @pid";
+
+			cmd.CommandType = CommandType.Text;
+			cmd.Parameters.AddWithValue("@mid", moreID);
+			cmd.Parameters.AddWithValue("@pid", pageID);
+
+			var unique = false;
+			try
+			{
+				using var reader = cmd.ExecuteReader();
+				if (reader.Read())
+				{
+					var count = reader.GetInt32(0);
+					unique = count == 0;
+				}
+			}
+			catch (Exception exc)
+			{
+				ReportError("error validating moreID", cmd, exc);
+				return false;
+			}
+
+			return unique;
 		}
 
 
@@ -604,6 +642,7 @@ namespace River.OneMoreAddIn.Commands
 
 				try
 				{
+
 					cmd.ExecuteNonQuery();
 				}
 				catch (Exception exc)
@@ -618,7 +657,7 @@ namespace River.OneMoreAddIn.Commands
 			}
 			catch (Exception exc)
 			{
-				logger.WriteLine("error updating snippets", exc);
+				ReportError("error updating snippets", cmd, exc);
 			}
 		}
 
@@ -639,7 +678,7 @@ namespace River.OneMoreAddIn.Commands
 			}
 			catch (Exception exc)
 			{
-				logger.WriteLine("error writing last scan time", exc);
+				ReportError("error writing scan time", cmd, exc);
 			}
 		}
 
@@ -677,7 +716,7 @@ namespace River.OneMoreAddIn.Commands
 			}
 			catch (Exception exc)
 			{
-				logger.WriteLine("error writing page info", exc);
+				ReportError("error writing page info", cmd, exc);
 			}
 		}
 
@@ -731,8 +770,24 @@ namespace River.OneMoreAddIn.Commands
 			}
 			catch (Exception exc)
 			{
-				logger.WriteLine("error writing tags", exc);
+				ReportError("error writing tags", tagcmd, exc);
 			}
+		}
+
+
+		private void ReportError(string msg, SQLiteCommand cmd, Exception exc)
+		{
+			// provider currently only deals with strings as input so quote everything...
+
+			var sql = Regex.Replace(cmd.CommandText, "@[a-z]+",
+				m => cmd.Parameters.Contains(m.Value)
+					? $"'{cmd.Parameters[m.Value]}'"
+					: m.Value
+			);
+
+			logger.WriteLine("error writing tags");
+			logger.WriteLine(sql);
+			logger.WriteLine(exc);
 		}
 	}
 }

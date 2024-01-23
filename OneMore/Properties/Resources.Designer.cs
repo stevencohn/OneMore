@@ -3160,6 +3160,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Cannot navigate to this page. It may have been deleted.
+        /// </summary>
+        internal static string HashtagDialog_badLink {
+            get {
+                return ResourceManager.GetString("HashtagDialog_badLink", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Check all.
         /// </summary>
         internal static string HashtagDialog_checkAllLink_Text {

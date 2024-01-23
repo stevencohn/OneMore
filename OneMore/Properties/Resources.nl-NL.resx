@@ -1278,6 +1278,10 @@ Symbolen: PI, E</value>
     <value>alle labels</value>
     <comment>text</comment>
   </data>
+  <data name="HashtagDialog_badLink" xml:space="preserve">
+    <value>Kan niet naar deze pagina navigeren. Mogelijk is deze verwijderd</value>
+    <comment>info message</comment>
+  </data>
   <data name="HashtagDialog_checkAllLink.Text" xml:space="preserve">
     <value>Controleer alles</value>
     <comment>link label</comment>

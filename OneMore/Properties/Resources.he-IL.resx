@@ -1288,6 +1288,10 @@ Total Row Font
     <value>כל התגים</value>
     <comment>text</comment>
   </data>
+  <data name="HashtagDialog_badLink" xml:space="preserve">
+    <value>לא ניתן לנווט לדף זה. ייתכן שהוא נמחק</value>
+    <comment>info message</comment>
+  </data>
   <data name="HashtagDialog_checkAllLink.Text" xml:space="preserve">
     <value>סמן הכל</value>
     <comment>link label</comment>
