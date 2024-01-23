@@ -227,9 +227,10 @@ namespace River.OneMoreAddIn
 		/// <param name="work">The action to invoke</param>
 		public async Task<bool> InvokeWithRetry(Action work)
 		{
+			int retries = 0;
+
 			try
 			{
-				int retries = 0;
 				while (retries < 3)
 				{
 					try
@@ -279,7 +280,7 @@ namespace River.OneMoreAddIn
 				return false;
 			}
 
-			return true;
+			return retries == int.MaxValue;
 		}
 
 

@@ -1278,6 +1278,10 @@ OneNote 文件 (*.one)</value>
     <value>所有标签</value>
     <comment>text</comment>
   </data>
+  <data name="HashtagDialog_badLink" xml:space="preserve">
+    <value>无法导航到此页面。可能已被删除</value>
+    <comment>info message</comment>
+  </data>
   <data name="HashtagDialog_checkAllLink.Text" xml:space="preserve">
     <value>选择所有</value>
     <comment>link label</comment>

@@ -258,10 +258,17 @@ namespace River.OneMoreAddIn.Commands
 
 			var title = page.Title;
 			var titleID = page.TitleID;
-			var scanner = factory.CreatePageScanner(page.Root);
-			var candidates = scanner.Scan();
+			var scanner = factory.CreatePageScanner(page);
 
-			// resolve...
+			// validate MoreID, might be duplicate if page is duplicate or copied
+			if (!scanner.UpdateMeta && !provider.UniqueMoreID(page.PageId, scanner.MoreID))
+			{
+				scanner.SetMoreID();
+			}
+
+			// scan and resolve...
+
+			var candidates = scanner.Scan();
 
 			var saved = provider.ReadPageTags(pageID);
 			var discovered = new Hashtags();

@@ -159,7 +159,11 @@ namespace River.OneMoreAddIn.Commands
 			try
 			{
 				var (pageID, objectID) = ((string pageID, string objectID))e.Link.LinkData;
-				await new OneNote().NavigateTo(pageID, objectID);
+				var success = await new OneNote().NavigateTo(pageID, objectID);
+				if (!success)
+				{
+					UIHelper.ShowInfo(Resx.HashtagDialog_badLink);
+				}
 			}
 			catch (Exception exc)
 			{
