@@ -5,7 +5,6 @@
 namespace River.OneMoreAddIn.Settings
 {
 	using River.OneMoreAddIn.Commands;
-	using System.Windows.Forms;
 	using Resx = Properties.Resources;
 
 
@@ -42,16 +41,16 @@ namespace River.OneMoreAddIn.Settings
 			var interval = settings.Get("interval", NavigationService.DefaultPollingInterval);
 			intervalBox.Value = interval / Millisecond * 2;
 
-			if (Screen.AllScreens.Length == 1)
-			{
-				corrallBox.Text = $"{corrallBox.Text} ({Resx.NavigatorSheet_corrallBox_disabled})";
-				corrallBox.Checked = true;
-				corrallBox.Enabled = false;
-			}
-			else
-			{
-				corrallBox.Checked = settings.Get("corralled", false);
-			}
+			//if (Screen.AllScreens.Length == 1)
+			//{
+			//	corrallBox.Text = $"{corrallBox.Text} ({Resx.NavigatorSheet_corrallBox_disabled})";
+			//	corrallBox.Checked = true;
+			//	corrallBox.Enabled = false;
+			//}
+			//else
+			//{
+			corrallBox.Checked = settings.Get("corralled", false);
+			//}
 
 			disabledBox.Checked = settings.Get("disabled", false);
 		}
