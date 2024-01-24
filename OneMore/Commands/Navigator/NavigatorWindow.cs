@@ -12,7 +12,6 @@ namespace River.OneMoreAddIn.Commands
 	using System.Collections.Generic;
 	using System.Drawing;
 	using System.Globalization;
-	using System.Linq;
 	using System.Text;
 	using System.Threading.Tasks;
 	using System.Windows.Forms;
@@ -85,7 +84,7 @@ namespace River.OneMoreAddIn.Commands
 
 			// User settings
 			var settings = new SettingsProvider().GetCollection(nameof(NavigatorSheet));
-			corralled = settings.Get("corralled", false) || Screen.AllScreens.Length == 1;
+			corralled = settings.Get("corralled", false); //|| Screen.AllScreens.Length == 1;
 			depth = settings.Get("depth", NavigationService.DefaultHistoryDepth);
 
 			pinButton.Rescale();
