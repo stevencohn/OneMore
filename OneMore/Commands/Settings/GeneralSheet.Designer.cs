@@ -32,11 +32,11 @@ namespace River.OneMoreAddIn.Settings
 			this.introBox = new System.Windows.Forms.TextBox();
 			this.layoutPanel = new System.Windows.Forms.Panel();
 			this.advancedGroup = new System.Windows.Forms.GroupBox();
+			this.experimentalBox = new System.Windows.Forms.CheckBox();
 			this.verboseBox = new System.Windows.Forms.CheckBox();
 			this.langBox = new System.Windows.Forms.ComboBox();
 			this.langLabel = new System.Windows.Forms.Label();
 			this.checkUpdatesBox = new System.Windows.Forms.CheckBox();
-			this.experimentalBox = new System.Windows.Forms.CheckBox();
 			this.layoutPanel.SuspendLayout();
 			this.advancedGroup.SuspendLayout();
 			this.SuspendLayout();
@@ -69,7 +69,7 @@ namespace River.OneMoreAddIn.Settings
 			// 
 			// advancedGroup
 			// 
-			this.advancedGroup.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+			this.advancedGroup.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.advancedGroup.Controls.Add(this.experimentalBox);
 			this.advancedGroup.Controls.Add(this.verboseBox);
@@ -80,6 +80,16 @@ namespace River.OneMoreAddIn.Settings
 			this.advancedGroup.TabIndex = 4;
 			this.advancedGroup.TabStop = false;
 			this.advancedGroup.Text = "Advanced Options";
+			// 
+			// experimentalBox
+			// 
+			this.experimentalBox.AutoSize = true;
+			this.experimentalBox.Location = new System.Drawing.Point(18, 62);
+			this.experimentalBox.Name = "experimentalBox";
+			this.experimentalBox.Size = new System.Drawing.Size(242, 24);
+			this.experimentalBox.TabIndex = 1;
+			this.experimentalBox.Text = "Enable experimental features";
+			this.experimentalBox.UseVisualStyleBackColor = true;
 			// 
 			// verboseBox
 			// 
@@ -113,23 +123,13 @@ namespace River.OneMoreAddIn.Settings
 			// 
 			this.checkUpdatesBox.Checked = true;
 			this.checkUpdatesBox.CheckState = System.Windows.Forms.CheckState.Checked;
-			this.checkUpdatesBox.Location = new System.Drawing.Point(25, 0);
+			this.checkUpdatesBox.Location = new System.Drawing.Point(25, 2);
 			this.checkUpdatesBox.Margin = new System.Windows.Forms.Padding(0, 10, 0, 0);
 			this.checkUpdatesBox.Name = "checkUpdatesBox";
 			this.checkUpdatesBox.Size = new System.Drawing.Size(744, 43);
 			this.checkUpdatesBox.TabIndex = 1;
 			this.checkUpdatesBox.Text = "Check for new versions of OneMore when OneNote starts";
 			this.checkUpdatesBox.UseVisualStyleBackColor = true;
-			// 
-			// experimentalBox
-			// 
-			this.experimentalBox.AutoSize = true;
-			this.experimentalBox.Location = new System.Drawing.Point(18, 62);
-			this.experimentalBox.Name = "experimentalBox";
-			this.experimentalBox.Size = new System.Drawing.Size(242, 24);
-			this.experimentalBox.TabIndex = 1;
-			this.experimentalBox.Text = "Enable experimental features";
-			this.experimentalBox.UseVisualStyleBackColor = true;
 			// 
 			// GeneralSheet
 			// 

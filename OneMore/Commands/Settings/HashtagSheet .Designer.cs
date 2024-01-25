@@ -31,6 +31,9 @@ namespace River.OneMoreAddIn.Settings
 		{
 			this.introBox = new System.Windows.Forms.TextBox();
 			this.layoutPanel = new System.Windows.Forms.Panel();
+			this.msLabel = new System.Windows.Forms.Label();
+			this.delayBox = new System.Windows.Forms.NumericUpDown();
+			this.delayLabel = new System.Windows.Forms.Label();
 			this.filterBox = new System.Windows.Forms.CheckBox();
 			this.styleBox = new System.Windows.Forms.ComboBox();
 			this.styleLabel = new System.Windows.Forms.Label();
@@ -40,13 +43,10 @@ namespace River.OneMoreAddIn.Settings
 			this.minLabel = new System.Windows.Forms.Label();
 			this.intervalBox = new System.Windows.Forms.NumericUpDown();
 			this.intervalLabel = new System.Windows.Forms.Label();
-			this.delayLabel = new System.Windows.Forms.Label();
-			this.delayBox = new System.Windows.Forms.NumericUpDown();
-			this.msLabel = new System.Windows.Forms.Label();
 			this.layoutPanel.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.delayBox)).BeginInit();
 			this.advancedGroup.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.intervalBox)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.delayBox)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// introBox
@@ -78,8 +78,38 @@ namespace River.OneMoreAddIn.Settings
 			this.layoutPanel.Location = new System.Drawing.Point(13, 74);
 			this.layoutPanel.Margin = new System.Windows.Forms.Padding(0);
 			this.layoutPanel.Name = "layoutPanel";
-			this.layoutPanel.Size = new System.Drawing.Size(772, 516);
+			this.layoutPanel.Size = new System.Drawing.Size(772, 412);
 			this.layoutPanel.TabIndex = 4;
+			// 
+			// msLabel
+			// 
+			this.msLabel.AutoSize = true;
+			this.msLabel.Location = new System.Drawing.Point(430, 40);
+			this.msLabel.Name = "msLabel";
+			this.msLabel.Size = new System.Drawing.Size(30, 20);
+			this.msLabel.TabIndex = 14;
+			this.msLabel.Text = "ms";
+			// 
+			// delayBox
+			// 
+			this.delayBox.Location = new System.Drawing.Point(304, 38);
+			this.delayBox.Maximum = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
+			this.delayBox.Name = "delayBox";
+			this.delayBox.Size = new System.Drawing.Size(120, 26);
+			this.delayBox.TabIndex = 13;
+			// 
+			// delayLabel
+			// 
+			this.delayLabel.AutoSize = true;
+			this.delayLabel.Location = new System.Drawing.Point(7, 40);
+			this.delayLabel.Name = "delayLabel";
+			this.delayLabel.Size = new System.Drawing.Size(162, 20);
+			this.delayLabel.TabIndex = 12;
+			this.delayLabel.Text = "Delay between pages";
 			// 
 			// filterBox
 			// 
@@ -119,10 +149,10 @@ namespace River.OneMoreAddIn.Settings
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.advancedGroup.Controls.Add(this.rebuildBox);
 			this.advancedGroup.Controls.Add(this.disabledBox);
-			this.advancedGroup.Location = new System.Drawing.Point(10, 352);
+			this.advancedGroup.Location = new System.Drawing.Point(10, 274);
 			this.advancedGroup.Name = "advancedGroup";
 			this.advancedGroup.Padding = new System.Windows.Forms.Padding(15, 3, 3, 3);
-			this.advancedGroup.Size = new System.Drawing.Size(759, 126);
+			this.advancedGroup.Size = new System.Drawing.Size(759, 135);
 			this.advancedGroup.TabIndex = 6;
 			this.advancedGroup.TabStop = false;
 			this.advancedGroup.Text = "Advanced Options";
@@ -188,36 +218,6 @@ namespace River.OneMoreAddIn.Settings
 			this.intervalLabel.TabIndex = 3;
 			this.intervalLabel.Text = "Scan for hashtags every";
 			// 
-			// delayLabel
-			// 
-			this.delayLabel.AutoSize = true;
-			this.delayLabel.Location = new System.Drawing.Point(7, 40);
-			this.delayLabel.Name = "delayLabel";
-			this.delayLabel.Size = new System.Drawing.Size(162, 20);
-			this.delayLabel.TabIndex = 12;
-			this.delayLabel.Text = "Delay between pages";
-			// 
-			// delayBox
-			// 
-			this.delayBox.Location = new System.Drawing.Point(304, 38);
-			this.delayBox.Maximum = new decimal(new int[] {
-            1000,
-            0,
-            0,
-            0});
-			this.delayBox.Name = "delayBox";
-			this.delayBox.Size = new System.Drawing.Size(120, 26);
-			this.delayBox.TabIndex = 13;
-			// 
-			// msLabel
-			// 
-			this.msLabel.AutoSize = true;
-			this.msLabel.Location = new System.Drawing.Point(430, 40);
-			this.msLabel.Name = "msLabel";
-			this.msLabel.Size = new System.Drawing.Size(30, 20);
-			this.msLabel.TabIndex = 14;
-			this.msLabel.Text = "ms";
-			// 
 			// HashtagSheet
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -227,13 +227,13 @@ namespace River.OneMoreAddIn.Settings
 			this.Controls.Add(this.introBox);
 			this.Name = "HashtagSheet";
 			this.Padding = new System.Windows.Forms.Padding(13, 8, 15, 10);
-			this.Size = new System.Drawing.Size(800, 600);
+			this.Size = new System.Drawing.Size(800, 496);
 			this.layoutPanel.ResumeLayout(false);
 			this.layoutPanel.PerformLayout();
+			((System.ComponentModel.ISupportInitialize)(this.delayBox)).EndInit();
 			this.advancedGroup.ResumeLayout(false);
 			this.advancedGroup.PerformLayout();
 			((System.ComponentModel.ISupportInitialize)(this.intervalBox)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.delayBox)).EndInit();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
