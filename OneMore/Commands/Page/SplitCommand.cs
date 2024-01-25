@@ -273,26 +273,6 @@ namespace River.OneMoreAddIn.Commands
 			}
 
 			return content;
-			/*
-				if (i < headings.Count - 1) 
-				{
-					// trim content up to the next heading
-					var next = headings[i + 1];
-					var mark = next.Root;
-
-					if (next.Outline == heading.Outline && next.Level > heading.Level)
-					{
-						var level = next.Level;
-						while (level > heading.Level)
-						{
-							mark = mark.Parent;
-							level--;
-						}
-					}
-
-					content = content.TakeWhile(e => e.Name.LocalName != "OEChildren" || e != mark);
-				}
-			 */
 		}
 	}
 }
