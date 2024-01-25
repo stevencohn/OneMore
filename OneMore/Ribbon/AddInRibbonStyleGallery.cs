@@ -12,7 +12,7 @@ namespace River.OneMoreAddIn
 	using River.OneMoreAddIn.Styles;
 	using System.Drawing;
 	using System.Runtime.InteropServices.ComTypes;
-
+	using System.Threading.Tasks;
 
 	public partial class AddIn
 	{
@@ -49,10 +49,16 @@ namespace River.OneMoreAddIn
 			else
 			{
 				using var one = new OneNote();
-				var section = one.GetSection();
+
+				// ribbon handlers apparently cannot be async so we need to do this
+				var section = Task.Run(async () => { return await one.GetSection(); }).Result;
+
 				if (section.Attribute("locked") == null)
 				{
-					var page = one.GetPage(OneNote.PageDetail.Basic);
+					// ribbon handlers apparently cannot be async so we need to do this
+					var page = Task.Run(async () => { 
+						return await one.GetPage(OneNote.PageDetail.Basic); }).Result;
+
 					galleryBack = page.GetPageColor(out _, out var black);
 					if (black)
 					{

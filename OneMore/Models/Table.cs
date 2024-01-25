@@ -310,10 +310,10 @@ namespace River.OneMoreAddIn.Models
 
 		public void SetColumnWidth(int index, float width)
 		{
-			var column = columns.Elements(ns + "Column").Skip(index)?.FirstOrDefault();
+			var column = columns.Elements(ns + "Column").Skip(index).FirstOrDefault();
 			if (column != null)
 			{
-				column.SetAttributeValue("width", width.ToString("0.0#", CultureInfo.InvariantCulture));
+				column.SetAttributeValue("width", width.ToInvariantString());
 				column.SetAttributeValue("isLocked", "true");
 			}
 		}

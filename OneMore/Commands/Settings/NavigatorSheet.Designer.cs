@@ -81,10 +81,10 @@ namespace River.OneMoreAddIn.Settings
 			this.advancedGroup.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.advancedGroup.Controls.Add(this.disabledBox);
-			this.advancedGroup.Location = new System.Drawing.Point(10, 241);
+			this.advancedGroup.Location = new System.Drawing.Point(10, 274);
 			this.advancedGroup.Name = "advancedGroup";
 			this.advancedGroup.Padding = new System.Windows.Forms.Padding(15, 3, 3, 3);
-			this.advancedGroup.Size = new System.Drawing.Size(762, 106);
+			this.advancedGroup.Size = new System.Drawing.Size(759, 139);
 			this.advancedGroup.TabIndex = 6;
 			this.advancedGroup.TabStop = false;
 			this.advancedGroup.Text = "Advanced Options";
@@ -180,7 +180,7 @@ namespace River.OneMoreAddIn.Settings
 			this.corrallBox.Location = new System.Drawing.Point(7, 141);
 			this.corrallBox.Margin = new System.Windows.Forms.Padding(0);
 			this.corrallBox.Name = "corrallBox";
-			this.corrallBox.Size = new System.Drawing.Size(765, 43);
+			this.corrallBox.Size = new System.Drawing.Size(762, 43);
 			this.corrallBox.TabIndex = 0;
 			this.corrallBox.Text = "Restrict the Navigator window to the active screen";
 			this.tooltip.SetToolTip(this.corrallBox, "Enabled only when multiple screens are available");

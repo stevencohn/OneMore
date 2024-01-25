@@ -185,6 +185,90 @@ OneNote 将自动关闭</value>
   <data name="AddInTitle" xml:space="preserve">
     <value>OneMoreAddIn</value>
   </data>
+  <data name="AdjustImagesDialog.Text" xml:space="preserve">
+    <value>调整和调整图像</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="AdjustImagesDialog_absRadio.Text" xml:space="preserve">
+    <value>绝对</value>
+    <comment>radio button</comment>
+  </data>
+  <data name="AdjustImagesDialog_allLabelBackground" xml:space="preserve">
+    <value>{0} 背景图片</value>
+    <comment>info label</comment>
+  </data>
+  <data name="AdjustImagesDialog_allLabelForeground" xml:space="preserve">
+    <value>{0} 前景图像</value>
+    <comment>info label</comment>
+  </data>
+  <data name="AdjustImagesDialog_appliesTo" xml:space="preserve">
+    <value>适用于</value>
+    <comment>label override</comment>
+  </data>
+  <data name="AdjustImagesDialog_autoSizeRadio.Text" xml:space="preserve">
+    <value>自动尺寸</value>
+    <comment>radio</comment>
+  </data>
+  <data name="AdjustImagesDialog_heightLabel.Text" xml:space="preserve">
+    <value>高度</value>
+    <comment>label</comment>
+  </data>
+  <data name="AdjustImagesDialog_imageSizeLabel.Text" xml:space="preserve">
+    <value>图片大小</value>
+    <comment>label</comment>
+  </data>
+  <data name="AdjustImagesDialog_limitsBox.Text" xml:space="preserve">
+    <value>调整所有图像的大小
+不要缩小较大的图像
+不要放大较小的图像</value>
+    <comment>combobox</comment>
+  </data>
+  <data name="AdjustImagesDialog_noImages" xml:space="preserve">
+    <value>在此页面上未找到任何图像。
+
+图像必须位于轮廓容器中。背景图像无法调整。</value>
+    <comment>message box</comment>
+  </data>
+  <data name="AdjustImagesDialog_pctRadio.Text" xml:space="preserve">
+    <value>百分比</value>
+    <comment>radio</comment>
+  </data>
+  <data name="AdjustImagesDialog_preserveBox.Text" xml:space="preserve">
+    <value>保留存储大小</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="AdjustImagesDialog_presetRadio.Text" xml:space="preserve">
+    <value>预设值</value>
+    <comment>radio</comment>
+  </data>
+  <data name="AdjustImagesDialog_previewGroup.Text" xml:space="preserve">
+    <value>预览{0}</value>
+    <comment>group box for single image</comment>
+  </data>
+  <data name="AdjustImagesDialog_repositionBox.Text" xml:space="preserve">
+    <value>重新定位背景图像</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="AdjustImagesDialog_resetLinkLabel.Text" xml:space="preserve">
+    <value>重置值</value>
+    <comment>link label</comment>
+  </data>
+  <data name="AdjustImagesDialog_sizeLink.Text" xml:space="preserve">
+    <value>{0} x {1}</value>
+    <comment>width x height</comment>
+  </data>
+  <data name="AdjustImagesDialog_styleBox.Text" xml:space="preserve">
+    <value>原来的
+灰度
+棕褐色
+宝丽来
+倒置</value>
+    <comment>combobox</comment>
+  </data>
+  <data name="AdjustImagesDialog_viewSizeLabel.Text" xml:space="preserve">
+    <value>查看尺寸</value>
+    <comment>label</comment>
+  </data>
   <data name="AliasSheet.Text" xml:space="preserve">
     <value>定义在命令面板中使用的命令别名</value>
     <comment>intro box</comment>
@@ -288,6 +372,10 @@ OneNote 将自动关闭</value>
   <data name="ArchiveCommand_OpenFileTitle" xml:space="preserve">
     <value>档案位置</value>
     <comment>archive dialog title</comment>
+  </data>
+  <data name="ArrangeContainersCommand_noContainers" xml:space="preserve">
+    <value>该页面未找到容器</value>
+    <comment>message</comment>
   </data>
   <data name="ArrangeContainersDialog.Text" xml:space="preserve">
     <value>排列容器</value>
@@ -743,12 +831,24 @@ OneNote 将自动关闭</value>
     <value>汽车</value>
     <comment>emoji</comment>
   </data>
+  <data name="Emoji_BallotBox" xml:space="preserve">
+    <value>选票箱</value>
+    <comment>emoji</comment>
+  </data>
+  <data name="Emoji_Bell" xml:space="preserve">
+    <value>钟</value>
+    <comment>emoji</comment>
+  </data>
   <data name="Emoji_Bullet" xml:space="preserve">
     <value>子弹</value>
     <comment>emoji</comment>
   </data>
   <data name="Emoji_Calendar" xml:space="preserve">
     <value>日历</value>
+    <comment>emoji</comment>
+  </data>
+  <data name="Emoji_Camera" xml:space="preserve">
+    <value>相机</value>
     <comment>emoji</comment>
   </data>
   <data name="Emoji_CheckMark" xml:space="preserve">
@@ -759,6 +859,10 @@ OneNote 将自动关闭</value>
     <value>圈</value>
     <comment>emoji</comment>
   </data>
+  <data name="Emoji_Clipboard" xml:space="preserve">
+    <value>剪贴板</value>
+    <comment>emoji</comment>
+  </data>
   <data name="Emoji_Cloud" xml:space="preserve">
     <value>云</value>
     <comment>emoji</comment>
@@ -767,16 +871,16 @@ OneNote 将自动关闭</value>
     <value>版权</value>
     <comment>emoji</comment>
   </data>
-  <data name="Emoji_CrossMark" xml:space="preserve">
-    <value>交叉</value>
+  <data name="Emoji_Cross" xml:space="preserve">
+    <value>十字标记</value>
     <comment>emoji</comment>
   </data>
   <data name="Emoji_Cycling" xml:space="preserve">
     <value>自行车</value>
     <comment>emoji</comment>
   </data>
-  <data name="Emoji_Email" xml:space="preserve">
-    <value>电子邮件</value>
+  <data name="Emoji_Envelope" xml:space="preserve">
+    <value>信封</value>
     <comment>emoji</comment>
   </data>
   <data name="Emoji_Eyes" xml:space="preserve">
@@ -791,16 +895,32 @@ OneNote 将自动关闭</value>
     <value>金融</value>
     <comment>emoji</comment>
   </data>
+  <data name="Emoji_Flag" xml:space="preserve">
+    <value>旗帜</value>
+    <comment>emoji</comment>
+  </data>
+  <data name="Emoji_Folder" xml:space="preserve">
+    <value>文件夹</value>
+    <comment>emoji</comment>
+  </data>
+  <data name="Emoji_Globe" xml:space="preserve">
+    <value>地球</value>
+    <comment>emoji</comment>
+  </data>
   <data name="Emoji_Hammer" xml:space="preserve">
     <value>锤子</value>
+    <comment>emoji</comment>
+  </data>
+  <data name="Emoji_Heart" xml:space="preserve">
+    <value>心</value>
     <comment>emoji</comment>
   </data>
   <data name="Emoji_Images" xml:space="preserve">
     <value>图片</value>
     <comment>emoji</comment>
   </data>
-  <data name="Emoji_Important" xml:space="preserve">
-    <value>重要</value>
+  <data name="Emoji_Interrobang" xml:space="preserve">
+    <value>因特罗邦</value>
     <comment>emoji</comment>
   </data>
   <data name="Emoji_Journal" xml:space="preserve">
@@ -809,6 +929,10 @@ OneNote 将自动关闭</value>
   </data>
   <data name="Emoji_LeftwardsArrow" xml:space="preserve">
     <value>向左箭头</value>
+    <comment>emoji</comment>
+  </data>
+  <data name="Emoji_Lock" xml:space="preserve">
+    <value>锁</value>
     <comment>emoji</comment>
   </data>
   <data name="Emoji_Memo" xml:space="preserve">
@@ -825,6 +949,10 @@ OneNote 将自动关闭</value>
   </data>
   <data name="Emoji_Pushpin" xml:space="preserve">
     <value>销</value>
+    <comment>emoji</comment>
+  </data>
+  <data name="Emoji_Recycle" xml:space="preserve">
+    <value>回收</value>
     <comment>emoji</comment>
   </data>
   <data name="Emoji_RightwardsArrow" xml:space="preserve">
@@ -851,6 +979,10 @@ OneNote 将自动关闭</value>
     <value>体育</value>
     <comment>emoji</comment>
   </data>
+  <data name="Emoji_SportsEU" xml:space="preserve">
+    <value>体育欧盟</value>
+    <comment>emoji</comment>
+  </data>
   <data name="Emoji_Star" xml:space="preserve">
     <value>星</value>
     <comment>emoji</comment>
@@ -863,8 +995,20 @@ OneNote 将自动关闭</value>
     <value>任务</value>
     <comment>emoji</comment>
   </data>
+  <data name="Emoji_Tools" xml:space="preserve">
+    <value>工具</value>
+    <comment>emoji</comment>
+  </data>
   <data name="Emoji_Travel" xml:space="preserve">
     <value>旅行</value>
+    <comment>emoji</comment>
+  </data>
+  <data name="Emoji_Video" xml:space="preserve">
+    <value>视频</value>
+    <comment>emoji</comment>
+  </data>
+  <data name="Emoji_Warning" xml:space="preserve">
+    <value>警告</value>
     <comment>emoji</comment>
   </data>
   <data name="Emoji_Watch" xml:space="preserve">
@@ -1091,6 +1235,10 @@ OneNote 文件 (*.one)</value>
     <value>OneNote 启动时检查 OneMore 的新版本</value>
     <comment>checkbox</comment>
   </data>
+  <data name="GeneralSheet_experimentalBox.Text" xml:space="preserve">
+    <value>启用实验性功能</value>
+    <comment>checkbox</comment>
+  </data>
   <data name="GeneralSheet_introBox.Text" xml:space="preserve">
     <value>自定义OneMore的整体行为</value>
     <comment>textbox</comment>
@@ -1114,20 +1262,88 @@ OneNote 文件 (*.one)</value>
   <data name="HasActiveMedia" xml:space="preserve">
     <value>存在活动记录时无法调用 OneMore 命令。请停止录制并重试。</value>
   </data>
-  <data name="HashtagDialogs_introLabel.Text" xml:space="preserve">
-    <value>开始输入主题标签的任何部分或 * 表示全部</value>
+  <data name="HashtagContext_jumpParaTip" xml:space="preserve">
+    <value>跳到本段； 最后更新{0}</value>
+    <comment>tooltip</comment>
+  </data>
+  <data name="HashtagContext_jumpTip" xml:space="preserve">
+    <value>跳到此页面</value>
+    <comment>tooltip</comment>
+  </data>
+  <data name="HashtagDialog.Title" xml:space="preserve">
+    <value>查找标签</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="HashtagDialog_allTags" xml:space="preserve">
+    <value>所有标签</value>
+    <comment>text</comment>
+  </data>
+  <data name="HashtagDialog_badLink" xml:space="preserve">
+    <value>无法导航到此页面。可能已被删除</value>
+    <comment>info message</comment>
+  </data>
+  <data name="HashtagDialog_checkAllLink.Text" xml:space="preserve">
+    <value>选择所有</value>
+    <comment>link label</comment>
+  </data>
+  <data name="HashtagDialog_introLabel.Text" xml:space="preserve">
+    <value>输入一个或多个主题标签的任意部分。除非标签以句点结束，否则隐含通配符。允许使用括号和逻辑运算符。</value>
     <comment>label</comment>
   </data>
-  <data name="HashtagSheet_disabledBox" xml:space="preserve">
+  <data name="HashtagDialog_lastScanLabel" xml:space="preserve">
+    <value>上次扫描：{0}，下次扫描：{1}</value>
+    <comment>label</comment>
+  </data>
+  <data name="HashtagDialog_noResults" xml:space="preserve">
+    <value>未找到结果</value>
+    <comment>message</comment>
+  </data>
+  <data name="HashtagDialog_recentTags" xml:space="preserve">
+    <value>最近的标签</value>
+    <comment>text</comment>
+  </data>
+  <data name="HashtagDialog_scanButton.Text" xml:space="preserve">
+    <value>现在扫描</value>
+    <comment>menu button</comment>
+  </data>
+  <data name="HashtagDialog_scopeBox.Text" xml:space="preserve">
+    <value>全部
+这个笔记本
+本节</value>
+    <comment>combobox</comment>
+  </data>
+  <data name="HashtagDialog_uncheckAllLink.Text" xml:space="preserve">
+    <value>取消所有</value>
+    <comment>link label</comment>
+  </data>
+  <data name="HashtagSheet_disabledBox.Text" xml:space="preserve">
     <value>禁用主题标签服务。这也将禁用主题标签搜索。</value>
     <comment>checkbox</comment>
   </data>
-  <data name="HashtagSheet_intervalLabel" xml:space="preserve">
+  <data name="HashtagSheet_filterBox.Text" xml:space="preserve">
+    <value>将 HTML Hex 颜色以及 C# 和 C++ 指令视为主题标签</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="HashtagSheet_intervalLabel.Text" xml:space="preserve">
     <value>扫描主题标签的时间间隔</value>
     <comment>label</comment>
   </data>
-  <data name="HashtagSheet_introTitle" xml:space="preserve">
+  <data name="HashtagSheet_introBox.Text" xml:space="preserve">
     <value>自定义标签扫描仪服务的高级选项</value>
+    <comment>label</comment>
+  </data>
+  <data name="HashtagSheet_rebuildBox.Text" xml:space="preserve">
+    <value>重新启动时重建主题标签数据库</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="HashtagSheet_styleBox.Text" xml:space="preserve">
+    <value>没有任何
+红色前景
+黄色背景</value>
+    <comment>combobox</comment>
+  </data>
+  <data name="HashtagSheet_styleLabel.Text" xml:space="preserve">
+    <value>应用自定义样式</value>
     <comment>label</comment>
   </data>
   <data name="HashtagSheet_Title" xml:space="preserve">
@@ -1639,7 +1855,7 @@ OneNote 文件 (*.one)</value>
     <value>我的阅读清单</value>
   </data>
   <data name="NavigatorWindow_refreshButton_Tooltip" xml:space="preserve">
-    <value>从当前页面刷新标题</value>
+    <value>刷新当前页面的标题 (F5)</value>
     <comment>tooltip</comment>
   </data>
   <data name="NavigatorWindow_Text" xml:space="preserve">
@@ -2337,88 +2553,13 @@ ISO-code then comma then language name</comment>
     <value>旧的或新的</value>
     <comment>title</comment>
   </data>
-  <data name="ResizeImagesDialog.Text" xml:space="preserve">
-    <value>调整和调整图像</value>
-    <comment>dialog title</comment>
-  </data>
-  <data name="ResizeImagesDialog_absRadio.Text" xml:space="preserve">
-    <value>绝对</value>
-    <comment>radio button</comment>
-  </data>
-  <data name="ResizeImagesDialog_allLabel.Text" xml:space="preserve">
-    <value>此页面上的所有图像</value>
-    <comment>info label</comment>
-  </data>
-  <data name="ResizeImagesDialog_appliesTo" xml:space="preserve">
-    <value>适用于</value>
-    <comment>label override</comment>
-  </data>
-  <data name="ResizeImagesDialog_autoSizeRadio.Text" xml:space="preserve">
-    <value>自动尺寸</value>
-    <comment>radio</comment>
-  </data>
-  <data name="ResizeImagesDialog_heightLabel.Text" xml:space="preserve">
-    <value>高度</value>
-    <comment>label</comment>
-  </data>
-  <data name="ResizeImagesDialog_imageSizeLabel.Text" xml:space="preserve">
-    <value>图片大小</value>
-    <comment>label</comment>
-  </data>
-  <data name="ResizeImagesDialog_limitsBox.Text" xml:space="preserve">
-    <value>调整所有图像的大小
-不要缩小较大的图像
-不要放大较小的图像</value>
-    <comment>combobox</comment>
-  </data>
-  <data name="ResizeImagesDialog_noImages" xml:space="preserve">
-    <value>在此页面上未找到任何图像。
-
-图像必须位于轮廓容器中。背景图像无法调整。</value>
-    <comment>message box</comment>
-  </data>
-  <data name="ResizeImagesDialog_pctRadio.Text" xml:space="preserve">
-    <value>百分比</value>
-    <comment>radio</comment>
-  </data>
-  <data name="ResizeImagesDialog_preserveBox.Text" xml:space="preserve">
-    <value>保留存储大小</value>
-    <comment>checkbox</comment>
-  </data>
-  <data name="ResizeImagesDialog_presetRadio.Text" xml:space="preserve">
-    <value>预设值</value>
-    <comment>radio</comment>
-  </data>
-  <data name="ResizeImagesDialog_previewGroup.Text" xml:space="preserve">
-    <value>预览{0}</value>
-    <comment>group box for single image</comment>
-  </data>
-  <data name="ResizeImagesDialog_repositionBox.Text" xml:space="preserve">
-    <value>重新定位背景图像</value>
-    <comment>checkbox</comment>
-  </data>
-  <data name="ResizeImagesDialog_resetLinkLabel.Text" xml:space="preserve">
-    <value>重置值</value>
-    <comment>link label</comment>
-  </data>
-  <data name="ResizeImagesDialog_sizeLink.Text" xml:space="preserve">
-    <value>{0} x {1}</value>
-    <comment>width x height</comment>
-  </data>
-  <data name="ResizeImagesDialog_styleBox.Text" xml:space="preserve">
-    <value>原来的
-灰色刻度
-乌贼
-宝丽来</value>
-    <comment>combobox</comment>
-  </data>
-  <data name="ResizeImagesDialog_viewSizeLabel.Text" xml:space="preserve">
-    <value>查看尺寸</value>
-    <comment>label</comment>
-  </data>
   <data name="ribAboutButton_Label" xml:space="preserve">
     <value>关于OneMore</value>
     <comment>Ribbon OneMore menu item</comment>
+  </data>
+  <data name="ribAboutButton_Screentip" xml:space="preserve">
+    <value>显示有关 OneMore 的信息</value>
+    <comment>ribbon main</comment>
   </data>
   <data name="ribAddCaptionButton_Label" xml:space="preserve">
     <value>添加说明</value>
@@ -2459,6 +2600,14 @@ ISO-code then comma then language name</comment>
   <data name="ribAddFormulaButton_Screentip" xml:space="preserve">
     <value>在选定的表格单元格中添加/编辑公式（F5）</value>
     <comment>Ribbon OneMore menu item, Formula...</comment>
+  </data>
+  <data name="ribAdjustImagesButton_Label" xml:space="preserve">
+    <value>调整大小和调整</value>
+    <comment>Ribbon OneMore menu item, Resize selected image(s)</comment>
+  </data>
+  <data name="ribAdjustImagesButton_Screentip" xml:space="preserve">
+    <value>调整大小和调整所选图像</value>
+    <comment>ribbon images</comment>
   </data>
   <data name="ribAnalyzeButton_Label" xml:space="preserve">
     <value>分析数据存储</value>
@@ -2831,14 +2980,6 @@ ISO-code then comma then language name</comment>
     <value>将另一个页面的内容嵌入到当前页面</value>
     <comment>ribbon item screentip</comment>
   </data>
-  <data name="ribEmojiButton_Label" xml:space="preserve">
-    <value>插入表情符号</value>
-    <comment>ribbon edit</comment>
-  </data>
-  <data name="ribEmojiButton_Screentip" xml:space="preserve">
-    <value>插入一个或多个表情符号</value>
-    <comment>ribbon edit</comment>
-  </data>
   <data name="ribEnableSpellCheckButton_Label" xml:space="preserve">
     <value>启用拼写检查</value>
     <comment>Ribbon OneMore menu item, no spell check on this page</comment>
@@ -3024,7 +3165,7 @@ ISO-code then comma then language name</comment>
     <comment>ribbon table</comment>
   </data>
   <data name="ribInsertCodeBoxButton_Label" xml:space="preserve">
-    <value>代码框</value>
+    <value>代码盒</value>
     <comment>ribbon snippets</comment>
   </data>
   <data name="ribInsertCodeBoxButton_Screentip" xml:space="preserve">
@@ -3050,6 +3191,14 @@ ISO-code then comma then language name</comment>
   <data name="ribInsertDoubleLineButton_Screentip" xml:space="preserve">
     <value>插入双水平线 (Shift + Alt + Equals)</value>
     <comment>Ribbon OneMore menu item, Extras...</comment>
+  </data>
+  <data name="ribInsertEmojiButton_Label" xml:space="preserve">
+    <value>表情符号</value>
+    <comment>ribbon snippets</comment>
+  </data>
+  <data name="ribInsertEmojiButton_Screentip" xml:space="preserve">
+    <value>插入一个或多个表情符号</value>
+    <comment>ribbon snippets</comment>
   </data>
   <data name="ribInsertExpandButton_Label" xml:space="preserve">
     <value>展开/折叠</value>
@@ -3084,7 +3233,7 @@ ISO-code then comma then language name</comment>
     <comment>ribbon snippets</comment>
   </data>
   <data name="ribInsertNoteBoxButton_Label" xml:space="preserve">
-    <value>笔记框</value>
+    <value>备注箱</value>
     <comment>ribbon snippets</comment>
   </data>
   <data name="ribInsertNoteBoxButton_Screentip" xml:space="preserve">
@@ -3235,6 +3384,10 @@ ISO-code then comma then language name</comment>
     <value>导航</value>
     <comment>ribbon main</comment>
   </data>
+  <data name="ribNavigatorButton_Screentip" xml:space="preserve">
+    <value>打开 OneMore 导航器窗口</value>
+    <comment>ribbon main</comment>
+  </data>
   <data name="ribNewStyleButton_Label" xml:space="preserve">
     <value>从文本创建新样式</value>
     <comment>ribbon styles</comment>
@@ -3349,6 +3502,10 @@ ISO-code then comma then language name</comment>
   <data name="ribPluginsMenu_Label" xml:space="preserve">
     <value>插件</value>
     <comment>favorites menu</comment>
+  </data>
+  <data name="ribPluginsMenu_Screentip" xml:space="preserve">
+    <value>运行和管理自定义插件</value>
+    <comment>ribbon file</comment>
   </data>
   <data name="ribPronunciateButton_Label" xml:space="preserve">
     <value>插入发音</value>
@@ -3500,14 +3657,6 @@ ISO-code then comma then language name</comment>
   <data name="ribReportRemindersButton_Screentip" xml:space="preserve">
     <value>生成提醒摘要报告</value>
     <comment>ribbon reminders</comment>
-  </data>
-  <data name="ribResizeImagesButton_Label" xml:space="preserve">
-    <value>调整大小和调整</value>
-    <comment>Ribbon OneMore menu item, Resize selected image(s)</comment>
-  </data>
-  <data name="ribResizeImagesButton_Screentip" xml:space="preserve">
-    <value>调整大小和调整所选图像</value>
-    <comment>ribbon images</comment>
   </data>
   <data name="ribRestoreAutosizeButton_Label" xml:space="preserve">
     <value>还原容器宽度</value>
@@ -3709,6 +3858,10 @@ ISO-code then comma then language name</comment>
     <value>打开并启动定时器窗口</value>
     <comment>ribbon extras</comment>
   </data>
+  <data name="ribStatusMenu_Label" xml:space="preserve">
+    <value>地位</value>
+    <comment>ribbon snippets</comment>
+  </data>
   <data name="ribStrikeoutTasksButton_Label" xml:space="preserve">
     <value>删除线完成标记</value>
     <comment>Ribbon OneMore menu item</comment>
@@ -3716,6 +3869,14 @@ ISO-code then comma then language name</comment>
   <data name="ribStrikeoutTasksButton_Screentip" xml:space="preserve">
     <value>切换标记有完整或不完整的待办事项标签的文本的删除线</value>
     <comment>Ribbon OneMore menu item</comment>
+  </data>
+  <data name="ribStylizeImagesButton_Label" xml:space="preserve">
+    <value>风格化图像</value>
+    <comment>ribbon images</comment>
+  </data>
+  <data name="ribStylizeImagesButton_Screentip" xml:space="preserve">
+    <value>使用选定的样式重新着色图像</value>
+    <comment>ribbon images</comment>
   </data>
   <data name="ribTableMenu_Label" xml:space="preserve">
     <value>表格</value>
@@ -3854,6 +4015,10 @@ ISO-code then comma then language name</comment>
   </data>
   <data name="SearchAndReplaceDialog_matchBox.Text" xml:space="preserve">
     <value>相符</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="SearchAndReplaceDialog_rawBox.Text" xml:space="preserve">
+    <value>替换为原始 XML</value>
     <comment>checkbox</comment>
   </data>
   <data name="SearchAndReplaceDialog_regBox.Text" xml:space="preserve">
@@ -4419,6 +4584,37 @@ ISO-code then comma then language name</comment>
     <value>强调</value>
     <comment>button</comment>
   </data>
+  <data name="StylizeImagesCommand_noImages" xml:space="preserve">
+    <value>该页面未找到图片</value>
+    <comment>message</comment>
+  </data>
+  <data name="StylizeImagesDialog_backBox.Text" xml:space="preserve">
+    <value>应用于背景图像</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="StylizeImagesDialog_backImagesLabel.Text" xml:space="preserve">
+    <value>背景图片：{0}，已选择：{1}</value>
+    <comment>label</comment>
+  </data>
+  <data name="StylizeImagesDialog_foreBox.Text" xml:space="preserve">
+    <value>应用于前景图像</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="StylizeImagesDialog_foreImagesLabel.Text" xml:space="preserve">
+    <value>前景图像：{0}，已选择：{1}</value>
+    <comment>label</comment>
+  </data>
+  <data name="StylizeImagesDialog_styleBox.Text" xml:space="preserve">
+    <value>灰度
+棕褐色
+宝丽来
+倒置</value>
+    <comment>combobox</comment>
+  </data>
+  <data name="StylizeImagesDialog_Text" xml:space="preserve">
+    <value>风格化图像</value>
+    <comment>dialog title</comment>
+  </data>
   <data name="TableTheme_Screentip" xml:space="preserve">
     <value>OneMore 表格主题{0}</value>
     <comment>Screentip for table theme gallery tiles</comment>
@@ -4657,6 +4853,9 @@ ISO-code then comma then language name</comment>
   <data name="word_Completed" xml:space="preserve">
     <value>已完成</value>
   </data>
+  <data name="word_Constraint" xml:space="preserve">
+    <value>约束</value>
+  </data>
   <data name="word_Contrast" xml:space="preserve">
     <value>对比</value>
   </data>
@@ -4704,6 +4903,12 @@ ISO-code then comma then language name</comment>
   </data>
   <data name="word_History" xml:space="preserve">
     <value>历史</value>
+  </data>
+  <data name="word_Indent" xml:space="preserve">
+    <value>缩进</value>
+  </data>
+  <data name="word_Index" xml:space="preserve">
+    <value>词索引</value>
   </data>
   <data name="word_Information" xml:space="preserve">
     <value>信息</value>
@@ -4806,6 +5011,9 @@ ISO-code then comma then language name</comment>
   </data>
   <data name="word_Storage" xml:space="preserve">
     <value>贮存</value>
+  </data>
+  <data name="word_Style" xml:space="preserve">
+    <value>风格</value>
   </data>
   <data name="word_Stylize" xml:space="preserve">
     <value>程式化</value>

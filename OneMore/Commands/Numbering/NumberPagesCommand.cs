@@ -45,7 +45,7 @@ namespace River.OneMoreAddIn.Commands
 
 			using (one = new OneNote())
 			{
-				var section = one.GetSection();
+				var section = await one.GetSection();
 				ns = one.GetNamespace(section);
 
 				var pages = section.Elements(ns + "Page")
@@ -94,7 +94,7 @@ namespace River.OneMoreAddIn.Commands
 
 			while (index < pages.Count && pages[index].Level == level)
 			{
-				var page = one.GetPage(pages[index].ID, OneNote.PageDetail.Basic);
+				var page = await one.GetPage(pages[index].ID, OneNote.PageDetail.Basic);
 
 				var cdata = page.Root.Element(ns + "Title")
 					.Element(ns + "OE")

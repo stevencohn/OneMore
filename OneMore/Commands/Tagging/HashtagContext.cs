@@ -31,7 +31,7 @@ namespace River.OneMoreAddIn.Commands
 
 			Snippets = new HashtagSnippets
 			{
-				new(tag.ObjectID, tag.Snippet, tag.LastModified)
+				new(tag.ObjectID, tag.Snippet, tag.DirectHit, tag.LastModified)
 			};
 		}
 
@@ -47,7 +47,7 @@ namespace River.OneMoreAddIn.Commands
 
 		public void AddSnippet(Hashtag tag)
 		{
-			Snippets.Add(new HashtagSnippet(tag.ObjectID, tag.Snippet, tag.LastModified));
+			Snippets.Add(new HashtagSnippet(tag.ObjectID, tag.Snippet, tag.DirectHit, tag.LastModified));
 			if (tag.LastModified.CompareTo(LastModified) > 0)
 			{
 				LastModified = tag.LastModified;
@@ -64,13 +64,15 @@ namespace River.OneMoreAddIn.Commands
 	/// </summary>
 	internal class HashtagSnippet
 	{
-		public HashtagSnippet(string objectID, string snippet, string lastModified)
+		public HashtagSnippet(string objectID, string snippet, bool directHit, string lastModified)
 		{
 			ObjectID = objectID;
 			Snippet = snippet;
+			DirectHit = directHit;
 			LastModified = lastModified;
 		}
 
+		public bool DirectHit { get; set; }
 		public string ObjectID { get; set; }
 		public string Snippet { get; set; }
 		public string LastModified { get; set; }

@@ -90,9 +90,10 @@ namespace River.OneMoreAddIn.UI
 			{
 				if (BackgroundImage != null)
 				{
-					var img = BackgroundImage;
-					BackgroundImage = BackgroundImage.Resize(16, 16);
-					img.Dispose();
+					using var img = BackgroundImage;
+
+					var editor = new Commands.ImageEditor { Size = new Size(16, 16) };
+					BackgroundImage = editor.Apply(img);
 				}
 			}
 		}

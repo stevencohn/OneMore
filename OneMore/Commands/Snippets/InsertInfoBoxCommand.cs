@@ -48,7 +48,8 @@ namespace River.OneMoreAddIn.Commands
 				$"font-family:'{theme["symbolFont"]}';font-size:{theme["symbolSize"]}.0pt;" +
 				$"color:{theme["symbolColor"]};text-align:center";
 
-			var normalStyle = $"font-family:'Segoe UI';font-size:11.0pt;color:{theme["textColor"]}";
+			var normalStyle = page.GetQuickStyle(StandardStyles.Normal);
+			normalStyle.Color = theme["textColor"].ToString();
 
 			// find anchor and optional selected content...
 
@@ -62,7 +63,7 @@ namespace River.OneMoreAddIn.Commands
 				!(page.SelectionSpecial && page.SelectionScope == SelectionScope.Empty))
 			{
 				content = new XElement(ns + "OE",
-					new XAttribute("style", normalStyle),
+					new XAttribute("style", normalStyle.ToCss()),
 					new XElement(ns + "T", new XCData(Resx.InsertInfoBox_yourContentHere)
 					));
 			}
@@ -97,10 +98,13 @@ namespace River.OneMoreAddIn.Commands
 
 			var title = Resx.ResourceManager.GetString(theme["titlex"].ToString(), AddIn.Culture);
 
+			normalStyle.Color = theme["titleColor"].ToString();
+			normalStyle.IsBold = true;
+
 			row.Cells.ElementAt(1).SetContent(
 				new XElement(ns + "OEChildren",
 					new XElement(ns + "OE",
-						new XAttribute("style", normalStyle),
+						new XAttribute("style", normalStyle.ToCss()),
 						new XElement(ns + "T",
 							new XCData($"<span style='font-weight:bold'>{title}</span>"))
 						),

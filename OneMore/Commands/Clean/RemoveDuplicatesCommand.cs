@@ -132,7 +132,7 @@ namespace River.OneMoreAddIn.Commands
 						break;
 					}
 
-					var page = one.GetPage(pageRef.Attribute("ID").Value,
+					var page = await one.GetPage(pageRef.Attribute("ID").Value,
 						deep ? OneNote.PageDetail.BinaryData : OneNote.PageDetail.Basic);
 
 					dialog.SetMessage($"Scanning {page.Title}...");
@@ -152,17 +152,17 @@ namespace River.OneMoreAddIn.Commands
 						continue;
 					}
 
-					var sibling = hashes.FirstOrDefault(n =>
+					var sibling = hashes.Find(n =>
 						n.TextHash == node.TextHash || n.XmlHash == node.XmlHash);
 
 					if (sibling != null)
 					{
-						var info = one.GetPageInfo(node.PageID);
+						var info = await one.GetPageInfo(node.PageID);
 						node.Path = info.Path;
 						node.Link = info.Link;
 						if (sibling.Path == null)
 						{
-							info = one.GetPageInfo(sibling.PageID);
+							info = await one.GetPageInfo(sibling.PageID);
 							sibling.Path = info.Path;
 							sibling.Link = info.Link;
 						}
@@ -212,7 +212,7 @@ namespace River.OneMoreAddIn.Commands
 			switch (scope)
 			{
 				case UI.SelectorScope.Section:
-					one.GetSection().Descendants(ns + "Page")
+					(await one.GetSection()).Descendants(ns + "Page")
 						.ForEach(p => hierarchy.Add(p));
 					break;
 

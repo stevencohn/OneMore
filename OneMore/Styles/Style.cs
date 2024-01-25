@@ -429,5 +429,15 @@ namespace River.OneMoreAddIn.Styles
 
 			return builder.ToString();
 		}
+
+
+		/// <summary>
+		/// Required for HashtagSheet combobox to display style name
+		/// </summary>
+		/// <returns></returns>
+		public override string ToString()
+		{
+			return Name; // $"{Name} ({FontFamily} {FontSize})";
+		}
 	}
 }

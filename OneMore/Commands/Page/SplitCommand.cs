@@ -70,9 +70,9 @@ namespace River.OneMoreAddIn.Commands
 				return;
 			}
 
-			if (headers.Any(h => Regex.IsMatch(h.Root.GetCData().Value, LinkPattern)))
+			if (headers.Exists(h => Regex.IsMatch(h.Root.GetCData().Value, LinkPattern)))
 			{
-				BuildHyperlinkCache();
+				await BuildHyperlinkCache();
 			}
 
 			for (int i = 0; i < headers.Count; i++)
@@ -80,7 +80,7 @@ namespace River.OneMoreAddIn.Commands
 				var header = headers[i];
 
 				// find the target page
-				var target = GetTargetPage(header);
+				var target = await GetTargetPage(header);
 
 				// copy content to the target page
 				var content = header.Root.ElementsAfterSelf();
@@ -206,14 +206,14 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private void BuildHyperlinkCache()
+		private async Task BuildHyperlinkCache()
 		{
 			// there's no direct way to map onenote:http URIs to page IDs so create a cache
 			// of all pages in the current section and lookup the URI for each of them...
 
 			hyperlinks = new Dictionary<string, string>();
 
-			var section = one.GetSection();
+			var section = await one.GetSection();
 			var pageIDs = section.Descendants(ns + "Page")
 				.Select(e => e.Attribute("ID").Value);
 
@@ -231,7 +231,7 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private Page GetTargetPage(Heading header)
+		private async Task<Page> GetTargetPage(Heading header)
 		{
 			// first test if heading is a link to a page in this section
 			var cdata = header.Root.GetCData();
@@ -247,14 +247,14 @@ namespace River.OneMoreAddIn.Commands
 
 					if (hyperlinks.ContainsKey(key))
 					{
-						return one.GetPage(hyperlinks[key], OneNote.PageDetail.Basic);
+						return await one.GetPage(hyperlinks[key], OneNote.PageDetail.Basic);
 					}
 				}
 			}
 
 			// create a page in this section to capture heading content
 			one.CreatePage(one.CurrentSectionId, out var pageId);
-			var target = one.GetPage(pageId);
+			var target = await one.GetPage(pageId);
 
 			target.Title = header.Text;
 

@@ -42,7 +42,7 @@ namespace River.OneMoreAddIn.Commands
 		{
 			logger.WriteLine("building hyperlink map");
 
-			map = await one.BuildHyperlinkMap(
+			map = await new HyperlinkProvider(one).BuildHyperlinkMap(
 				scope,
 				token,
 				async (count) =>
@@ -70,7 +70,7 @@ namespace River.OneMoreAddIn.Commands
 		/// <param name="withAttachments">True if copy and relink attachments</param>
 		/// <param name="embedded">True if attachment should be embedded; false to link</param>
 		/// <returns>True if the export was successful</returns>
-		public bool Export(string pageId, string filename,
+		public async Task<bool> Export(string pageId, string filename,
 			OneNote.ExportFormat format,
 			bool withAttachments = false,
 			bool embedded = false)
@@ -91,7 +91,7 @@ namespace River.OneMoreAddIn.Commands
 					if (withAttachments && format == OneNote.ExportFormat.Word)
 					{
 						using var word = new Helpers.Office.Word();
-						var page = one.GetPage(pageId);
+						var page = await one.GetPage(pageId);
 						word.ResolveAttachmentRefs(filename, page.Root, embedded);
 					}
 
@@ -119,8 +119,8 @@ namespace River.OneMoreAddIn.Commands
 		/// <param name="filename"></param>
 		/// <param name="hpath"></param>
 		/// <param name="bookScope"></param>
-		public void ExportHTML(
-			Page page, ref string filename, string hpath = null, bool bookScope = false)
+		public async Task<string> ExportHTML(
+			Page page, string filename, string hpath = null, bool bookScope = false)
 		{
 			// expand C:\folder\name.htm --> C:\folder\name\name.htm
 			var name = Path.GetFileNameWithoutExtension(filename);				// "name"
@@ -136,7 +136,7 @@ namespace River.OneMoreAddIn.Commands
 
 			if (PathHelper.EnsurePathExists(path))
 			{
-				if (Export(page.PageId, filename, OneNote.ExportFormat.HTML))
+				if (await Export(page.PageId, filename, OneNote.ExportFormat.HTML))
 				{
 					if (map != null)
 					{
@@ -146,6 +146,8 @@ namespace River.OneMoreAddIn.Commands
 					ArchiveAttachments(page, filename, path);
 				}
 			}
+
+			return filename;
 		}
 
 

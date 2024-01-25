@@ -185,6 +185,90 @@ OneNote fechará automaticamente</value>
     <value>OneMoreAddIn</value>
     <comment>SKIP</comment>
   </data>
+  <data name="AdjustImagesDialog.Text" xml:space="preserve">
+    <value>Redimensionar e ajustar a imagem</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="AdjustImagesDialog_absRadio.Text" xml:space="preserve">
+    <value>Absoluto</value>
+    <comment>radio button</comment>
+  </data>
+  <data name="AdjustImagesDialog_allLabelBackground" xml:space="preserve">
+    <value>{0} imagens de fundo</value>
+    <comment>info label</comment>
+  </data>
+  <data name="AdjustImagesDialog_allLabelForeground" xml:space="preserve">
+    <value>{0} imagens em primeiro plano</value>
+    <comment>info label</comment>
+  </data>
+  <data name="AdjustImagesDialog_appliesTo" xml:space="preserve">
+    <value>Aplica-se a</value>
+    <comment>label override</comment>
+  </data>
+  <data name="AdjustImagesDialog_autoSizeRadio.Text" xml:space="preserve">
+    <value>Tamanho automático</value>
+    <comment>radio</comment>
+  </data>
+  <data name="AdjustImagesDialog_heightLabel.Text" xml:space="preserve">
+    <value>Altura</value>
+    <comment>label</comment>
+  </data>
+  <data name="AdjustImagesDialog_imageSizeLabel.Text" xml:space="preserve">
+    <value>Tamanho da imagem</value>
+    <comment>label</comment>
+  </data>
+  <data name="AdjustImagesDialog_limitsBox.Text" xml:space="preserve">
+    <value>Redimensionar todas as imagens
+Não reduza imagens maiores
+Não amplie imagens menores</value>
+    <comment>combobox</comment>
+  </data>
+  <data name="AdjustImagesDialog_noImages" xml:space="preserve">
+    <value>Nenhuma imagem foi encontrada nesta página.
+
+As imagens devem estar em um contêiner de contorno. As imagens de fundo não podem ser ajustadas.</value>
+    <comment>message box</comment>
+  </data>
+  <data name="AdjustImagesDialog_pctRadio.Text" xml:space="preserve">
+    <value>Percentagem</value>
+    <comment>radio</comment>
+  </data>
+  <data name="AdjustImagesDialog_preserveBox.Text" xml:space="preserve">
+    <value>Preservar o tamanho do armazenamento</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="AdjustImagesDialog_presetRadio.Text" xml:space="preserve">
+    <value>Preset</value>
+    <comment>radio</comment>
+  </data>
+  <data name="AdjustImagesDialog_previewGroup.Text" xml:space="preserve">
+    <value>Pré-visualização {0}</value>
+    <comment>group box for single image</comment>
+  </data>
+  <data name="AdjustImagesDialog_repositionBox.Text" xml:space="preserve">
+    <value>Reposicionar imagens de fundo</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="AdjustImagesDialog_resetLinkLabel.Text" xml:space="preserve">
+    <value>Redefinir valores</value>
+    <comment>link label</comment>
+  </data>
+  <data name="AdjustImagesDialog_sizeLink.Text" xml:space="preserve">
+    <value>{0} x {1}</value>
+    <comment>width x height</comment>
+  </data>
+  <data name="AdjustImagesDialog_styleBox.Text" xml:space="preserve">
+    <value>Original
+Escala de cinza
+Sépia
+Polaróide
+Invertido</value>
+    <comment>combobox</comment>
+  </data>
+  <data name="AdjustImagesDialog_viewSizeLabel.Text" xml:space="preserve">
+    <value>Ver o tamanho</value>
+    <comment>label</comment>
+  </data>
   <data name="AliasSheet.Text" xml:space="preserve">
     <value>Definir aliases de comando para uso na Paleta de Comandos</value>
     <comment>intro box</comment>
@@ -288,6 +372,10 @@ OneNote fechará automaticamente</value>
   <data name="ArchiveCommand_OpenFileTitle" xml:space="preserve">
     <value>Localização do arquivo</value>
     <comment>archive dialog title</comment>
+  </data>
+  <data name="ArrangeContainersCommand_noContainers" xml:space="preserve">
+    <value>Nenhum contêiner encontrado nesta página</value>
+    <comment>message</comment>
   </data>
   <data name="ArrangeContainersDialog.Text" xml:space="preserve">
     <value>Organizar recipientes</value>
@@ -743,12 +831,24 @@ Fonte da última coluna</value>
     <value>Automóvel</value>
     <comment>emoji</comment>
   </data>
+  <data name="Emoji_BallotBox" xml:space="preserve">
+    <value>Urnas</value>
+    <comment>emoji</comment>
+  </data>
+  <data name="Emoji_Bell" xml:space="preserve">
+    <value>Sino</value>
+    <comment>emoji</comment>
+  </data>
   <data name="Emoji_Bullet" xml:space="preserve">
     <value>Bala</value>
     <comment>emoji</comment>
   </data>
   <data name="Emoji_Calendar" xml:space="preserve">
     <value>Calendário</value>
+    <comment>emoji</comment>
+  </data>
+  <data name="Emoji_Camera" xml:space="preserve">
+    <value>Câmera</value>
     <comment>emoji</comment>
   </data>
   <data name="Emoji_CheckMark" xml:space="preserve">
@@ -759,6 +859,10 @@ Fonte da última coluna</value>
     <value>Círculo</value>
     <comment>emoji</comment>
   </data>
+  <data name="Emoji_Clipboard" xml:space="preserve">
+    <value>Prancheta</value>
+    <comment>emoji</comment>
+  </data>
   <data name="Emoji_Cloud" xml:space="preserve">
     <value>Nuvem</value>
     <comment>emoji</comment>
@@ -767,16 +871,16 @@ Fonte da última coluna</value>
     <value>direito autoral</value>
     <comment>emoji</comment>
   </data>
-  <data name="Emoji_CrossMark" xml:space="preserve">
-    <value>Marca de Cruz</value>
+  <data name="Emoji_Cross" xml:space="preserve">
+    <value>Marca Cruzada</value>
     <comment>emoji</comment>
   </data>
   <data name="Emoji_Cycling" xml:space="preserve">
     <value>Ciclismo</value>
     <comment>emoji</comment>
   </data>
-  <data name="Emoji_Email" xml:space="preserve">
-    <value>O email</value>
+  <data name="Emoji_Envelope" xml:space="preserve">
+    <value>Envelope</value>
     <comment>emoji</comment>
   </data>
   <data name="Emoji_Eyes" xml:space="preserve">
@@ -791,16 +895,32 @@ Fonte da última coluna</value>
     <value>Financeiro</value>
     <comment>emoji</comment>
   </data>
+  <data name="Emoji_Flag" xml:space="preserve">
+    <value>Bandeira</value>
+    <comment>emoji</comment>
+  </data>
+  <data name="Emoji_Folder" xml:space="preserve">
+    <value>Pasta</value>
+    <comment>emoji</comment>
+  </data>
+  <data name="Emoji_Globe" xml:space="preserve">
+    <value>Globo</value>
+    <comment>emoji</comment>
+  </data>
   <data name="Emoji_Hammer" xml:space="preserve">
     <value>Martelo</value>
+    <comment>emoji</comment>
+  </data>
+  <data name="Emoji_Heart" xml:space="preserve">
+    <value>Coração</value>
     <comment>emoji</comment>
   </data>
   <data name="Emoji_Images" xml:space="preserve">
     <value>Imagens</value>
     <comment>emoji</comment>
   </data>
-  <data name="Emoji_Important" xml:space="preserve">
-    <value>Importante</value>
+  <data name="Emoji_Interrobang" xml:space="preserve">
+    <value>Interrobang</value>
     <comment>emoji</comment>
   </data>
   <data name="Emoji_Journal" xml:space="preserve">
@@ -809,6 +929,10 @@ Fonte da última coluna</value>
   </data>
   <data name="Emoji_LeftwardsArrow" xml:space="preserve">
     <value>Seta para a esquerda</value>
+    <comment>emoji</comment>
+  </data>
+  <data name="Emoji_Lock" xml:space="preserve">
+    <value>Trancar</value>
     <comment>emoji</comment>
   </data>
   <data name="Emoji_Memo" xml:space="preserve">
@@ -825,6 +949,10 @@ Fonte da última coluna</value>
   </data>
   <data name="Emoji_Pushpin" xml:space="preserve">
     <value>Alfinete</value>
+    <comment>emoji</comment>
+  </data>
+  <data name="Emoji_Recycle" xml:space="preserve">
+    <value>Reciclar</value>
     <comment>emoji</comment>
   </data>
   <data name="Emoji_RightwardsArrow" xml:space="preserve">
@@ -851,6 +979,10 @@ Fonte da última coluna</value>
     <value>Esportes</value>
     <comment>emoji</comment>
   </data>
+  <data name="Emoji_SportsEU" xml:space="preserve">
+    <value>Desporto UE</value>
+    <comment>emoji</comment>
+  </data>
   <data name="Emoji_Star" xml:space="preserve">
     <value>Estrela</value>
     <comment>emoji</comment>
@@ -860,11 +992,23 @@ Fonte da última coluna</value>
     <comment>emoji</comment>
   </data>
   <data name="Emoji_Tasks" xml:space="preserve">
-    <value>Tarefas</value>
+    <value>Tarefa</value>
+    <comment>emoji</comment>
+  </data>
+  <data name="Emoji_Tools" xml:space="preserve">
+    <value>Ferramentas</value>
     <comment>emoji</comment>
   </data>
   <data name="Emoji_Travel" xml:space="preserve">
     <value>Viagem</value>
+    <comment>emoji</comment>
+  </data>
+  <data name="Emoji_Video" xml:space="preserve">
+    <value>Vídeo</value>
+    <comment>emoji</comment>
+  </data>
+  <data name="Emoji_Warning" xml:space="preserve">
+    <value>Aviso</value>
     <comment>emoji</comment>
   </data>
   <data name="Emoji_Watch" xml:space="preserve">
@@ -1091,6 +1235,10 @@ Símbolos: PI, E</value>
     <value>Verifique se há novas versões do OneMore quando o OneNote é iniciado</value>
     <comment>checkbox</comment>
   </data>
+  <data name="GeneralSheet_experimentalBox.Text" xml:space="preserve">
+    <value>Habilitar recursos experimentais</value>
+    <comment>checkbox</comment>
+  </data>
   <data name="GeneralSheet_introBox.Text" xml:space="preserve">
     <value>Personalize o comportamento geral do OneMore</value>
     <comment>textbox</comment>
@@ -1114,20 +1262,88 @@ Símbolos: PI, E</value>
   <data name="HasActiveMedia" xml:space="preserve">
     <value>Não é possível invocar comandos OneMore enquanto houver uma gravação ativa. Pare a gravação e tente novamente.</value>
   </data>
-  <data name="HashtagDialogs_introLabel.Text" xml:space="preserve">
-    <value>Comece a digitar qualquer parte de uma hashtag ou * para todos</value>
+  <data name="HashtagContext_jumpParaTip" xml:space="preserve">
+    <value>Pule para este parágrafo; Última atualização {0}</value>
+    <comment>tooltip</comment>
+  </data>
+  <data name="HashtagContext_jumpTip" xml:space="preserve">
+    <value>Salte para esta página</value>
+    <comment>tooltip</comment>
+  </data>
+  <data name="HashtagDialog.Title" xml:space="preserve">
+    <value>Encontre hashtags</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="HashtagDialog_allTags" xml:space="preserve">
+    <value>todas as tags</value>
+    <comment>text</comment>
+  </data>
+  <data name="HashtagDialog_badLink" xml:space="preserve">
+    <value>Não é possível navegar para esta página. Pode ter sido excluído</value>
+    <comment>info message</comment>
+  </data>
+  <data name="HashtagDialog_checkAllLink.Text" xml:space="preserve">
+    <value>Verifique tudo</value>
+    <comment>link label</comment>
+  </data>
+  <data name="HashtagDialog_introLabel.Text" xml:space="preserve">
+    <value>Digite qualquer parte de uma ou mais hashtags. Os curingas estão implícitos, a menos que uma tag termine com um ponto final. Parênteses e operadores lógicos são permitidos.</value>
     <comment>label</comment>
   </data>
-  <data name="HashtagSheet_disabledBox" xml:space="preserve">
+  <data name="HashtagDialog_lastScanLabel" xml:space="preserve">
+    <value>Última verificação: {0}, Próxima verificação: {1}</value>
+    <comment>label</comment>
+  </data>
+  <data name="HashtagDialog_noResults" xml:space="preserve">
+    <value>Nenhum resultado encontrado</value>
+    <comment>message</comment>
+  </data>
+  <data name="HashtagDialog_recentTags" xml:space="preserve">
+    <value>tags recentes</value>
+    <comment>text</comment>
+  </data>
+  <data name="HashtagDialog_scanButton.Text" xml:space="preserve">
+    <value>Escaneie agora</value>
+    <comment>menu button</comment>
+  </data>
+  <data name="HashtagDialog_scopeBox.Text" xml:space="preserve">
+    <value>Todos
+Este caderno
+Esta seção</value>
+    <comment>combobox</comment>
+  </data>
+  <data name="HashtagDialog_uncheckAllLink.Text" xml:space="preserve">
+    <value>Desmarcar todos</value>
+    <comment>link label</comment>
+  </data>
+  <data name="HashtagSheet_disabledBox.Text" xml:space="preserve">
     <value>Desative o serviço de hashtag. Isso também desativará a pesquisa de hashtag.</value>
     <comment>checkbox</comment>
   </data>
-  <data name="HashtagSheet_intervalLabel" xml:space="preserve">
+  <data name="HashtagSheet_filterBox.Text" xml:space="preserve">
+    <value>Trate as cores HTML Hex e as diretivas C# e C++ como hashtags</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="HashtagSheet_intervalLabel.Text" xml:space="preserve">
     <value>Procure hashtags a cada</value>
     <comment>label</comment>
   </data>
-  <data name="HashtagSheet_introTitle" xml:space="preserve">
+  <data name="HashtagSheet_introBox.Text" xml:space="preserve">
     <value>Personalize opções avançadas para o serviço Hashtag Scanner</value>
+    <comment>label</comment>
+  </data>
+  <data name="HashtagSheet_rebuildBox.Text" xml:space="preserve">
+    <value>Reconstrua o banco de dados de hashtag ao reiniciar</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="HashtagSheet_styleBox.Text" xml:space="preserve">
+    <value>Nenhum
+Primeiro plano vermelho
+Fundo Amarelo</value>
+    <comment>combobox</comment>
+  </data>
+  <data name="HashtagSheet_styleLabel.Text" xml:space="preserve">
+    <value>Aplicar estilo personalizado</value>
     <comment>label</comment>
   </data>
   <data name="HashtagSheet_Title" xml:space="preserve">
@@ -1639,7 +1855,7 @@ Título personalizado 3</value>
     <value>Minha lista de leitura</value>
   </data>
   <data name="NavigatorWindow_refreshButton_Tooltip" xml:space="preserve">
-    <value>Atualizar cabeçalhos da página atual</value>
+    <value>Atualizar títulos da página atual (F5)</value>
     <comment>tooltip</comment>
   </data>
   <data name="NavigatorWindow_Text" xml:space="preserve">
@@ -2337,88 +2553,13 @@ Selecione Não para manter uma linha vazia entre os parágrafos</value>
     <value>Velho ou novo</value>
     <comment>title</comment>
   </data>
-  <data name="ResizeImagesDialog.Text" xml:space="preserve">
-    <value>Redimensionar e ajustar a imagem</value>
-    <comment>dialog title</comment>
-  </data>
-  <data name="ResizeImagesDialog_absRadio.Text" xml:space="preserve">
-    <value>Absoluto</value>
-    <comment>radio button</comment>
-  </data>
-  <data name="ResizeImagesDialog_allLabel.Text" xml:space="preserve">
-    <value>todas as imagens desta página</value>
-    <comment>info label</comment>
-  </data>
-  <data name="ResizeImagesDialog_appliesTo" xml:space="preserve">
-    <value>Aplica-se a</value>
-    <comment>label override</comment>
-  </data>
-  <data name="ResizeImagesDialog_autoSizeRadio.Text" xml:space="preserve">
-    <value>Tamanho automático</value>
-    <comment>radio</comment>
-  </data>
-  <data name="ResizeImagesDialog_heightLabel.Text" xml:space="preserve">
-    <value>Altura</value>
-    <comment>label</comment>
-  </data>
-  <data name="ResizeImagesDialog_imageSizeLabel.Text" xml:space="preserve">
-    <value>Tamanho da imagem</value>
-    <comment>label</comment>
-  </data>
-  <data name="ResizeImagesDialog_limitsBox.Text" xml:space="preserve">
-    <value>Redimensionar todas as imagens
-Não reduza imagens maiores
-Não amplie imagens menores</value>
-    <comment>combobox</comment>
-  </data>
-  <data name="ResizeImagesDialog_noImages" xml:space="preserve">
-    <value>Nenhuma imagem foi encontrada nesta página.
-
-As imagens devem estar em um contêiner de contorno. As imagens de fundo não podem ser ajustadas.</value>
-    <comment>message box</comment>
-  </data>
-  <data name="ResizeImagesDialog_pctRadio.Text" xml:space="preserve">
-    <value>Percentagem</value>
-    <comment>radio</comment>
-  </data>
-  <data name="ResizeImagesDialog_preserveBox.Text" xml:space="preserve">
-    <value>Preservar o tamanho do armazenamento</value>
-    <comment>checkbox</comment>
-  </data>
-  <data name="ResizeImagesDialog_presetRadio.Text" xml:space="preserve">
-    <value>Preset</value>
-    <comment>radio</comment>
-  </data>
-  <data name="ResizeImagesDialog_previewGroup.Text" xml:space="preserve">
-    <value>Pré-visualização {0}</value>
-    <comment>group box for single image</comment>
-  </data>
-  <data name="ResizeImagesDialog_repositionBox.Text" xml:space="preserve">
-    <value>Reposicionar imagens de fundo</value>
-    <comment>checkbox</comment>
-  </data>
-  <data name="ResizeImagesDialog_resetLinkLabel.Text" xml:space="preserve">
-    <value>Redefinir valores</value>
-    <comment>link label</comment>
-  </data>
-  <data name="ResizeImagesDialog_sizeLink.Text" xml:space="preserve">
-    <value>{0} x {1}</value>
-    <comment>width x height</comment>
-  </data>
-  <data name="ResizeImagesDialog_styleBox.Text" xml:space="preserve">
-    <value>Original
-Escala de cinza
-Sépia
-Polaroid.</value>
-    <comment>combobox</comment>
-  </data>
-  <data name="ResizeImagesDialog_viewSizeLabel.Text" xml:space="preserve">
-    <value>Ver o tamanho</value>
-    <comment>label</comment>
-  </data>
   <data name="ribAboutButton_Label" xml:space="preserve">
     <value>Sobre OneMore</value>
     <comment>Ribbon OneMore menu item</comment>
+  </data>
+  <data name="ribAboutButton_Screentip" xml:space="preserve">
+    <value>Mostrar informações sobre OneMore</value>
+    <comment>ribbon main</comment>
   </data>
   <data name="ribAddCaptionButton_Label" xml:space="preserve">
     <value>Adicionar legenda</value>
@@ -2459,6 +2600,14 @@ Polaroid.</value>
   <data name="ribAddFormulaButton_Screentip" xml:space="preserve">
     <value>Adicionar/editar fórmula nas células selecionadas da tabela (F5)</value>
     <comment>Ribbon OneMore menu item, Formula...</comment>
+  </data>
+  <data name="ribAdjustImagesButton_Label" xml:space="preserve">
+    <value>Redimensionar e ajustar</value>
+    <comment>Ribbon OneMore menu item, Resize selected image(s)</comment>
+  </data>
+  <data name="ribAdjustImagesButton_Screentip" xml:space="preserve">
+    <value>Redimensione e ajuste as imagens selecionadas</value>
+    <comment>ribbon images</comment>
   </data>
   <data name="ribAnalyzeButton_Label" xml:space="preserve">
     <value>Analise o armazenamento de dados</value>
@@ -2829,14 +2978,6 @@ Polaroid.</value>
     <value>Incorporar conteúdo de outra página na página atual</value>
     <comment>ribbon item screentip</comment>
   </data>
-  <data name="ribEmojiButton_Label" xml:space="preserve">
-    <value>Inserir emoji</value>
-    <comment>ribbon edit</comment>
-  </data>
-  <data name="ribEmojiButton_Screentip" xml:space="preserve">
-    <value>Insira um ou mais emojis</value>
-    <comment>ribbon edit</comment>
-  </data>
   <data name="ribEnableSpellCheckButton_Label" xml:space="preserve">
     <value>Ativar verificação ortográfica</value>
     <comment>Ribbon OneMore menu item, no spell check on this page</comment>
@@ -3022,7 +3163,7 @@ Polaroid.</value>
     <comment>ribbon table</comment>
   </data>
   <data name="ribInsertCodeBoxButton_Label" xml:space="preserve">
-    <value>caixa de código</value>
+    <value>Caixa de código</value>
     <comment>ribbon snippets</comment>
   </data>
   <data name="ribInsertCodeBoxButton_Screentip" xml:space="preserve">
@@ -3048,6 +3189,14 @@ Polaroid.</value>
   <data name="ribInsertDoubleLineButton_Screentip" xml:space="preserve">
     <value>Inserir linha horizontal dupla (Shift + Alt + igual)</value>
     <comment>Ribbon OneMore menu item, Extras...</comment>
+  </data>
+  <data name="ribInsertEmojiButton_Label" xml:space="preserve">
+    <value>Emoji</value>
+    <comment>ribbon snippets</comment>
+  </data>
+  <data name="ribInsertEmojiButton_Screentip" xml:space="preserve">
+    <value>Insira um ou mais emojis</value>
+    <comment>ribbon snippets</comment>
   </data>
   <data name="ribInsertExpandButton_Label" xml:space="preserve">
     <value>Expandir/Recolher</value>
@@ -3082,7 +3231,7 @@ Polaroid.</value>
     <comment>ribbon snippets</comment>
   </data>
   <data name="ribInsertNoteBoxButton_Label" xml:space="preserve">
-    <value>caixa de notas</value>
+    <value>Caixa de notas</value>
     <comment>ribbon snippets</comment>
   </data>
   <data name="ribInsertNoteBoxButton_Screentip" xml:space="preserve">
@@ -3138,7 +3287,7 @@ Polaroid.</value>
     <comment>ribbon snippets</comment>
   </data>
   <data name="ribInsertWarnBoxButton_Label" xml:space="preserve">
-    <value>caixa de aviso</value>
+    <value>Caixa de aviso</value>
     <comment>ribbon snippets</comment>
   </data>
   <data name="ribInsertWarnBoxButton_Screentip" xml:space="preserve">
@@ -3230,6 +3379,10 @@ Polaroid.</value>
   </data>
   <data name="ribNavigatorButton_Label" xml:space="preserve">
     <value>Navegador</value>
+    <comment>ribbon main</comment>
+  </data>
+  <data name="ribNavigatorButton_Screentip" xml:space="preserve">
+    <value>Abra a janela do OneMore Navigator</value>
     <comment>ribbon main</comment>
   </data>
   <data name="ribNewStyleButton_Label" xml:space="preserve">
@@ -3354,6 +3507,10 @@ Polaroid.</value>
   <data name="ribPluginsMenu_Label" xml:space="preserve">
     <value>Plug-ins</value>
     <comment>favorites menu</comment>
+  </data>
+  <data name="ribPluginsMenu_Screentip" xml:space="preserve">
+    <value>Execute e gerencie plug-ins personalizados</value>
+    <comment>ribbon file</comment>
   </data>
   <data name="ribPronunciateButton_Label" xml:space="preserve">
     <value>Inserir pronúncia</value>
@@ -3505,14 +3662,6 @@ Polaroid.</value>
   <data name="ribReportRemindersButton_Screentip" xml:space="preserve">
     <value>Gerar um relatório resumido de lembretes</value>
     <comment>ribbon reminders</comment>
-  </data>
-  <data name="ribResizeImagesButton_Label" xml:space="preserve">
-    <value>Redimensionar e ajustar</value>
-    <comment>Ribbon OneMore menu item, Resize selected image(s)</comment>
-  </data>
-  <data name="ribResizeImagesButton_Screentip" xml:space="preserve">
-    <value>Redimensione e ajuste as imagens selecionadas</value>
-    <comment>ribbon images</comment>
   </data>
   <data name="ribRestoreAutosizeButton_Label" xml:space="preserve">
     <value>Restaure as larguras dos contêineres</value>
@@ -3714,6 +3863,10 @@ Polaroid.</value>
     <value>Abra e inicie a janela do temporizador</value>
     <comment>ribbon extras</comment>
   </data>
+  <data name="ribStatusMenu_Label" xml:space="preserve">
+    <value>Status</value>
+    <comment>ribbon snippets</comment>
+  </data>
   <data name="ribStrikeoutTasksButton_Label" xml:space="preserve">
     <value>Tachado preenchido com tags de tarefas pendentes</value>
     <comment>Ribbon OneMore menu item</comment>
@@ -3721,6 +3874,14 @@ Polaroid.</value>
   <data name="ribStrikeoutTasksButton_Screentip" xml:space="preserve">
     <value>Alternar tachado de texto marcado com tags de tarefas pendentes completas ou incompletas</value>
     <comment>Ribbon OneMore menu item</comment>
+  </data>
+  <data name="ribStylizeImagesButton_Label" xml:space="preserve">
+    <value>Estilizar imagens</value>
+    <comment>ribbon images</comment>
+  </data>
+  <data name="ribStylizeImagesButton_Screentip" xml:space="preserve">
+    <value>Recolorir imagens usando o estilo selecionado</value>
+    <comment>ribbon images</comment>
   </data>
   <data name="ribTableMenu_Label" xml:space="preserve">
     <value>Mesa</value>
@@ -3859,6 +4020,10 @@ Polaroid.</value>
   </data>
   <data name="SearchAndReplaceDialog_matchBox.Text" xml:space="preserve">
     <value>Caso de compatibilidade</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="SearchAndReplaceDialog_rawBox.Text" xml:space="preserve">
+    <value>Substitua por XML bruto</value>
     <comment>checkbox</comment>
   </data>
   <data name="SearchAndReplaceDialog_regBox.Text" xml:space="preserve">
@@ -4424,6 +4589,37 @@ Título - incluir no TOC</value>
     <value>Sublinhado</value>
     <comment>button</comment>
   </data>
+  <data name="StylizeImagesCommand_noImages" xml:space="preserve">
+    <value>Nenhuma imagem encontrada nesta página</value>
+    <comment>message</comment>
+  </data>
+  <data name="StylizeImagesDialog_backBox.Text" xml:space="preserve">
+    <value>Aplicar a imagens de fundo</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="StylizeImagesDialog_backImagesLabel.Text" xml:space="preserve">
+    <value>Imagens de fundo: {0}, selecionadas: {1}</value>
+    <comment>label</comment>
+  </data>
+  <data name="StylizeImagesDialog_foreBox.Text" xml:space="preserve">
+    <value>Aplicar a imagens em primeiro plano</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="StylizeImagesDialog_foreImagesLabel.Text" xml:space="preserve">
+    <value>Imagens de primeiro plano: {0}, selecionadas: {1}</value>
+    <comment>label</comment>
+  </data>
+  <data name="StylizeImagesDialog_styleBox.Text" xml:space="preserve">
+    <value>Escala de cinza
+Sépia
+Polaróide
+Invertido</value>
+    <comment>combobox</comment>
+  </data>
+  <data name="StylizeImagesDialog_Text" xml:space="preserve">
+    <value>Estilizar imagens</value>
+    <comment>dialog title</comment>
+  </data>
   <data name="TableTheme_Screentip" xml:space="preserve">
     <value>Tema de mesa OneMore {0}</value>
     <comment>Screentip for table theme gallery tiles</comment>
@@ -4662,6 +4858,9 @@ Nesta secção</value>
   <data name="word_Completed" xml:space="preserve">
     <value>Concluído</value>
   </data>
+  <data name="word_Constraint" xml:space="preserve">
+    <value>Limitação</value>
+  </data>
   <data name="word_Contrast" xml:space="preserve">
     <value>Contraste</value>
   </data>
@@ -4709,6 +4908,12 @@ Nesta secção</value>
   </data>
   <data name="word_History" xml:space="preserve">
     <value>História</value>
+  </data>
+  <data name="word_Indent" xml:space="preserve">
+    <value>Recuar</value>
+  </data>
+  <data name="word_Index" xml:space="preserve">
+    <value>palavra_Índice</value>
   </data>
   <data name="word_Information" xml:space="preserve">
     <value>Informação</value>
@@ -4811,6 +5016,9 @@ Nesta secção</value>
   </data>
   <data name="word_Storage" xml:space="preserve">
     <value>Armazenar</value>
+  </data>
+  <data name="word_Style" xml:space="preserve">
+    <value>Estilo</value>
   </data>
   <data name="word_Stylize" xml:space="preserve">
     <value>Estilizar</value>

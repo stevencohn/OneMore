@@ -187,6 +187,90 @@ OneNote ייסגר אוטומטית</value>
     <value>OneMoreAddIn</value>
     <comment>SKIP</comment>
   </data>
+  <data name="AdjustImagesDialog.Text" xml:space="preserve">
+    <value>שנה גודל והתאם תמונה</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="AdjustImagesDialog_absRadio.Text" xml:space="preserve">
+    <value>מוּחלָט</value>
+    <comment>radio button</comment>
+  </data>
+  <data name="AdjustImagesDialog_allLabelBackground" xml:space="preserve">
+    <value>{0} תמונות רקע</value>
+    <comment>info label</comment>
+  </data>
+  <data name="AdjustImagesDialog_allLabelForeground" xml:space="preserve">
+    <value>{0} תמונות קדמיות</value>
+    <comment>info label</comment>
+  </data>
+  <data name="AdjustImagesDialog_appliesTo" xml:space="preserve">
+    <value>חל על</value>
+    <comment>label override</comment>
+  </data>
+  <data name="AdjustImagesDialog_autoSizeRadio.Text" xml:space="preserve">
+    <value>גודל אוטומטי</value>
+    <comment>radio</comment>
+  </data>
+  <data name="AdjustImagesDialog_heightLabel.Text" xml:space="preserve">
+    <value>גוֹבַה</value>
+    <comment>label</comment>
+  </data>
+  <data name="AdjustImagesDialog_imageSizeLabel.Text" xml:space="preserve">
+    <value>גודל תמונה</value>
+    <comment>label</comment>
+  </data>
+  <data name="AdjustImagesDialog_limitsBox.Text" xml:space="preserve">
+    <value>שנה את גודל כל התמונות
+אל תכווץ תמונות גדולות יותר
+אין להגדיל תמונות קטנות יותר</value>
+    <comment>combobox</comment>
+  </data>
+  <data name="AdjustImagesDialog_noImages" xml:space="preserve">
+    <value>לא נמצאו תמונות בדף זה.
+
+התמונות חייבות להיות במיכל מתאר. לא ניתן לכוונן תמונות רקע.</value>
+    <comment>message box</comment>
+  </data>
+  <data name="AdjustImagesDialog_pctRadio.Text" xml:space="preserve">
+    <value>אֲחוּזִים</value>
+    <comment>radio</comment>
+  </data>
+  <data name="AdjustImagesDialog_preserveBox.Text" xml:space="preserve">
+    <value>שמור על גודל האחסון</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="AdjustImagesDialog_presetRadio.Text" xml:space="preserve">
+    <value>מוגדר מראש</value>
+    <comment>radio</comment>
+  </data>
+  <data name="AdjustImagesDialog_previewGroup.Text" xml:space="preserve">
+    <value>תצוגה מקדימה {0}</value>
+    <comment>group box for single image</comment>
+  </data>
+  <data name="AdjustImagesDialog_repositionBox.Text" xml:space="preserve">
+    <value>מיקום מחדש של תמונות רקע</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="AdjustImagesDialog_resetLinkLabel.Text" xml:space="preserve">
+    <value>אפס ערכים</value>
+    <comment>link label</comment>
+  </data>
+  <data name="AdjustImagesDialog_sizeLink.Text" xml:space="preserve">
+    <value>{0} x {1}</value>
+    <comment>width x height</comment>
+  </data>
+  <data name="AdjustImagesDialog_styleBox.Text" xml:space="preserve">
+    <value>מְקוֹרִי
+סולם אפור
+חוּם כֵּהֶה
+פולארויד
+לַהֲפוֹך</value>
+    <comment>combobox</comment>
+  </data>
+  <data name="AdjustImagesDialog_viewSizeLabel.Text" xml:space="preserve">
+    <value>גודל תצוגה</value>
+    <comment>label</comment>
+  </data>
   <data name="AliasSheet.Text" xml:space="preserve">
     <value>הגדר כינויי פקודות לשימוש בלוח הפקודות</value>
     <comment>intro box</comment>
@@ -298,6 +382,10 @@ OneNote ייסגר אוטומטית</value>
   <data name="ArchiveCommand_OpenFileTitle" xml:space="preserve">
     <value>מיקום ארכיון</value>
     <comment>archive dialog title</comment>
+  </data>
+  <data name="ArrangeContainersCommand_noContainers" xml:space="preserve">
+    <value>לא נמצאו מיכלים בדף זה</value>
+    <comment>message</comment>
   </data>
   <data name="ArrangeContainersDialog.Text" xml:space="preserve">
     <value>מסדרים מיכלים</value>
@@ -753,12 +841,24 @@ Total Row Font
     <value>מְכוֹנִית</value>
     <comment>emoji</comment>
   </data>
+  <data name="Emoji_BallotBox" xml:space="preserve">
+    <value>קלפי</value>
+    <comment>emoji</comment>
+  </data>
+  <data name="Emoji_Bell" xml:space="preserve">
+    <value>פַּעֲמוֹן</value>
+    <comment>emoji</comment>
+  </data>
   <data name="Emoji_Bullet" xml:space="preserve">
     <value>כַּדוּר</value>
     <comment>emoji</comment>
   </data>
   <data name="Emoji_Calendar" xml:space="preserve">
     <value>לוּחַ שָׁנָה</value>
+    <comment>emoji</comment>
+  </data>
+  <data name="Emoji_Camera" xml:space="preserve">
+    <value>מַצלֵמָה</value>
     <comment>emoji</comment>
   </data>
   <data name="Emoji_CheckMark" xml:space="preserve">
@@ -769,6 +869,10 @@ Total Row Font
     <value>מעגל</value>
     <comment>emoji</comment>
   </data>
+  <data name="Emoji_Clipboard" xml:space="preserve">
+    <value>לוח כתיבה</value>
+    <comment>emoji</comment>
+  </data>
   <data name="Emoji_Cloud" xml:space="preserve">
     <value>ענן</value>
     <comment>emoji</comment>
@@ -777,7 +881,7 @@ Total Row Font
     <value>זכויות יוצרים</value>
     <comment>emoji</comment>
   </data>
-  <data name="Emoji_CrossMark" xml:space="preserve">
+  <data name="Emoji_Cross" xml:space="preserve">
     <value>סימן הצלב</value>
     <comment>emoji</comment>
   </data>
@@ -785,8 +889,8 @@ Total Row Font
     <value>רכיבה על אופניים</value>
     <comment>emoji</comment>
   </data>
-  <data name="Emoji_Email" xml:space="preserve">
-    <value>אימייל</value>
+  <data name="Emoji_Envelope" xml:space="preserve">
+    <value>מַעֲטָפָה</value>
     <comment>emoji</comment>
   </data>
   <data name="Emoji_Eyes" xml:space="preserve">
@@ -801,16 +905,32 @@ Total Row Font
     <value>כַּספִּי</value>
     <comment>emoji</comment>
   </data>
+  <data name="Emoji_Flag" xml:space="preserve">
+    <value>דֶגֶל</value>
+    <comment>emoji</comment>
+  </data>
+  <data name="Emoji_Folder" xml:space="preserve">
+    <value>תיקיה</value>
+    <comment>emoji</comment>
+  </data>
+  <data name="Emoji_Globe" xml:space="preserve">
+    <value>גלוֹבּוּס</value>
+    <comment>emoji</comment>
+  </data>
   <data name="Emoji_Hammer" xml:space="preserve">
     <value>פטיש</value>
+    <comment>emoji</comment>
+  </data>
+  <data name="Emoji_Heart" xml:space="preserve">
+    <value>לֵב</value>
     <comment>emoji</comment>
   </data>
   <data name="Emoji_Images" xml:space="preserve">
     <value>תמונות</value>
     <comment>emoji</comment>
   </data>
-  <data name="Emoji_Important" xml:space="preserve">
-    <value>חָשׁוּב</value>
+  <data name="Emoji_Interrobang" xml:space="preserve">
+    <value>Interrobang</value>
     <comment>emoji</comment>
   </data>
   <data name="Emoji_Journal" xml:space="preserve">
@@ -819,6 +939,10 @@ Total Row Font
   </data>
   <data name="Emoji_LeftwardsArrow" xml:space="preserve">
     <value>חץ שמאלה</value>
+    <comment>emoji</comment>
+  </data>
+  <data name="Emoji_Lock" xml:space="preserve">
+    <value>לנעול</value>
     <comment>emoji</comment>
   </data>
   <data name="Emoji_Memo" xml:space="preserve">
@@ -835,6 +959,10 @@ Total Row Font
   </data>
   <data name="Emoji_Pushpin" xml:space="preserve">
     <value>יתד דחיפה</value>
+    <comment>emoji</comment>
+  </data>
+  <data name="Emoji_Recycle" xml:space="preserve">
+    <value>לְמַחְזֵר</value>
     <comment>emoji</comment>
   </data>
   <data name="Emoji_RightwardsArrow" xml:space="preserve">
@@ -861,6 +989,10 @@ Total Row Font
     <value>ספורט</value>
     <comment>emoji</comment>
   </data>
+  <data name="Emoji_SportsEU" xml:space="preserve">
+    <value>האיחוד האירופי ספורט</value>
+    <comment>emoji</comment>
+  </data>
   <data name="Emoji_Star" xml:space="preserve">
     <value>כוכב</value>
     <comment>emoji</comment>
@@ -870,11 +1002,23 @@ Total Row Font
     <comment>emoji</comment>
   </data>
   <data name="Emoji_Tasks" xml:space="preserve">
-    <value>משימות</value>
+    <value>מְשִׁימָה</value>
+    <comment>emoji</comment>
+  </data>
+  <data name="Emoji_Tools" xml:space="preserve">
+    <value>כלים</value>
     <comment>emoji</comment>
   </data>
   <data name="Emoji_Travel" xml:space="preserve">
     <value>לִנְסוֹעַ</value>
+    <comment>emoji</comment>
+  </data>
+  <data name="Emoji_Video" xml:space="preserve">
+    <value>וִידֵאוֹ</value>
+    <comment>emoji</comment>
+  </data>
+  <data name="Emoji_Warning" xml:space="preserve">
+    <value>אַזהָרָה</value>
     <comment>emoji</comment>
   </data>
   <data name="Emoji_Watch" xml:space="preserve">
@@ -1101,6 +1245,10 @@ Total Row Font
     <value>בדוק אם יש גרסאות חדשות של OneMore כאשר OneNote מתחיל</value>
     <comment>checkbox</comment>
   </data>
+  <data name="GeneralSheet_experimentalBox.Text" xml:space="preserve">
+    <value>אפשר תכונות ניסיוניות</value>
+    <comment>checkbox</comment>
+  </data>
   <data name="GeneralSheet_introBox.Text" xml:space="preserve">
     <value>התאם אישית את ההתנהגות הכוללת של OneMore</value>
     <comment>textbox</comment>
@@ -1124,20 +1272,88 @@ Total Row Font
   <data name="HasActiveMedia" xml:space="preserve">
     <value>לא יכול להפעיל פקודות של OneMore בזמן שיש הקלטה פעילה. אנא הפסק את ההקלטה ונסה שוב.</value>
   </data>
-  <data name="HashtagDialogs_introLabel.Text" xml:space="preserve">
-    <value>התחל להקליד כל חלק מהאשטאג או * עבור כולם</value>
+  <data name="HashtagContext_jumpParaTip" xml:space="preserve">
+    <value>לקפוץ לפסקה זו; עודכן אחרון {0}</value>
+    <comment>tooltip</comment>
+  </data>
+  <data name="HashtagContext_jumpTip" xml:space="preserve">
+    <value>קפוץ לדף זה</value>
+    <comment>tooltip</comment>
+  </data>
+  <data name="HashtagDialog.Title" xml:space="preserve">
+    <value>מצא Hashtags</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="HashtagDialog_allTags" xml:space="preserve">
+    <value>כל התגים</value>
+    <comment>text</comment>
+  </data>
+  <data name="HashtagDialog_badLink" xml:space="preserve">
+    <value>לא ניתן לנווט לדף זה. ייתכן שהוא נמחק</value>
+    <comment>info message</comment>
+  </data>
+  <data name="HashtagDialog_checkAllLink.Text" xml:space="preserve">
+    <value>סמן הכל</value>
+    <comment>link label</comment>
+  </data>
+  <data name="HashtagDialog_introLabel.Text" xml:space="preserve">
+    <value>הקלד כל חלק מהאשטאג אחד או יותר. תווים כלליים משתמעים אלא אם כן תג מסתיים בנקודה. מותר להשתמש בסוגריים ואופרטורים לוגיים.</value>
     <comment>label</comment>
   </data>
-  <data name="HashtagSheet_disabledBox" xml:space="preserve">
+  <data name="HashtagDialog_lastScanLabel" xml:space="preserve">
+    <value>סריקה אחרונה: {0}, הסריקה הבאה: {1}</value>
+    <comment>label</comment>
+  </data>
+  <data name="HashtagDialog_noResults" xml:space="preserve">
+    <value>לא נמצאו תוצאות</value>
+    <comment>message</comment>
+  </data>
+  <data name="HashtagDialog_recentTags" xml:space="preserve">
+    <value>תגים אחרונים</value>
+    <comment>text</comment>
+  </data>
+  <data name="HashtagDialog_scanButton.Text" xml:space="preserve">
+    <value>לסרוק עכשיו</value>
+    <comment>menu button</comment>
+  </data>
+  <data name="HashtagDialog_scopeBox.Text" xml:space="preserve">
+    <value>את כל
+המחברת הזו
+הסעיף הזה</value>
+    <comment>combobox</comment>
+  </data>
+  <data name="HashtagDialog_uncheckAllLink.Text" xml:space="preserve">
+    <value>בטל את הסימון של הכל</value>
+    <comment>link label</comment>
+  </data>
+  <data name="HashtagSheet_disabledBox.Text" xml:space="preserve">
     <value>השבת את שירות ההאשטאג. זה גם ישבית את חיפוש ההאשטאג.</value>
     <comment>checkbox</comment>
   </data>
-  <data name="HashtagSheet_intervalLabel" xml:space="preserve">
+  <data name="HashtagSheet_filterBox.Text" xml:space="preserve">
+    <value>התייחס לצבעי HTML Hex ולהנחיות C# ו-C++ כאל תגי hashtag</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="HashtagSheet_intervalLabel.Text" xml:space="preserve">
     <value>סרוק אחר hashtags כל</value>
     <comment>label</comment>
   </data>
-  <data name="HashtagSheet_introTitle" xml:space="preserve">
+  <data name="HashtagSheet_introBox.Text" xml:space="preserve">
     <value>התאם אישית אפשרויות מתקדמות עבור שירות הסורק של Hashtag</value>
+    <comment>label</comment>
+  </data>
+  <data name="HashtagSheet_rebuildBox.Text" xml:space="preserve">
+    <value>בנה מחדש את מסד הנתונים של ההאשטאג עם הפעלה מחדש</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="HashtagSheet_styleBox.Text" xml:space="preserve">
+    <value>אף אחד
+חזית אדומה
+רקע צהוב</value>
+    <comment>combobox</comment>
+  </data>
+  <data name="HashtagSheet_styleLabel.Text" xml:space="preserve">
+    <value>החל סגנון מותאם אישית</value>
     <comment>label</comment>
   </data>
   <data name="HashtagSheet_Title" xml:space="preserve">
@@ -1649,7 +1865,7 @@ Total Row Font
     <value>רשימת הקריאה שלי</value>
   </data>
   <data name="NavigatorWindow_refreshButton_Tooltip" xml:space="preserve">
-    <value>רענן כותרות מהדף הנוכחי</value>
+    <value>רענן כותרות מהדף הנוכחי (F5)</value>
     <comment>tooltip</comment>
   </data>
   <data name="NavigatorWindow_Text" xml:space="preserve">
@@ -2355,88 +2571,13 @@ ISO-code then comma then language name</comment>
     <value>ישן או חדש</value>
     <comment>title</comment>
   </data>
-  <data name="ResizeImagesDialog.Text" xml:space="preserve">
-    <value>שנה גודל והתאם תמונה</value>
-    <comment>dialog title</comment>
-  </data>
-  <data name="ResizeImagesDialog_absRadio.Text" xml:space="preserve">
-    <value>מוּחלָט</value>
-    <comment>radio button</comment>
-  </data>
-  <data name="ResizeImagesDialog_allLabel.Text" xml:space="preserve">
-    <value>כל התמונות בדף זה</value>
-    <comment>info label</comment>
-  </data>
-  <data name="ResizeImagesDialog_appliesTo" xml:space="preserve">
-    <value>חל על</value>
-    <comment>label override</comment>
-  </data>
-  <data name="ResizeImagesDialog_autoSizeRadio.Text" xml:space="preserve">
-    <value>גודל אוטומטי</value>
-    <comment>radio</comment>
-  </data>
-  <data name="ResizeImagesDialog_heightLabel.Text" xml:space="preserve">
-    <value>גוֹבַה</value>
-    <comment>label</comment>
-  </data>
-  <data name="ResizeImagesDialog_imageSizeLabel.Text" xml:space="preserve">
-    <value>גודל תמונה</value>
-    <comment>label</comment>
-  </data>
-  <data name="ResizeImagesDialog_limitsBox.Text" xml:space="preserve">
-    <value>שנה את גודל כל התמונות
-אל תכווץ תמונות גדולות יותר
-אין להגדיל תמונות קטנות יותר</value>
-    <comment>combobox</comment>
-  </data>
-  <data name="ResizeImagesDialog_noImages" xml:space="preserve">
-    <value>לא נמצאו תמונות בדף זה.
-
-התמונות חייבות להיות במיכל מתאר. לא ניתן לכוונן תמונות רקע.</value>
-    <comment>message box</comment>
-  </data>
-  <data name="ResizeImagesDialog_pctRadio.Text" xml:space="preserve">
-    <value>אֲחוּזִים</value>
-    <comment>radio</comment>
-  </data>
-  <data name="ResizeImagesDialog_preserveBox.Text" xml:space="preserve">
-    <value>שמור על גודל האחסון</value>
-    <comment>checkbox</comment>
-  </data>
-  <data name="ResizeImagesDialog_presetRadio.Text" xml:space="preserve">
-    <value>מוגדר מראש</value>
-    <comment>radio</comment>
-  </data>
-  <data name="ResizeImagesDialog_previewGroup.Text" xml:space="preserve">
-    <value>תצוגה מקדימה {0}</value>
-    <comment>group box for single image</comment>
-  </data>
-  <data name="ResizeImagesDialog_repositionBox.Text" xml:space="preserve">
-    <value>מיקום מחדש של תמונות רקע</value>
-    <comment>checkbox</comment>
-  </data>
-  <data name="ResizeImagesDialog_resetLinkLabel.Text" xml:space="preserve">
-    <value>אפס ערכים</value>
-    <comment>link label</comment>
-  </data>
-  <data name="ResizeImagesDialog_sizeLink.Text" xml:space="preserve">
-    <value>{0} x {1}</value>
-    <comment>width x height</comment>
-  </data>
-  <data name="ResizeImagesDialog_styleBox.Text" xml:space="preserve">
-    <value>מְקוֹרִי
-סולם אפור
-חוּם כֵּהֶה
-פולארויד</value>
-    <comment>combobox</comment>
-  </data>
-  <data name="ResizeImagesDialog_viewSizeLabel.Text" xml:space="preserve">
-    <value>גודל תצוגה</value>
-    <comment>label</comment>
-  </data>
   <data name="ribAboutButton_Label" xml:space="preserve">
     <value>על OneMore</value>
     <comment>Ribbon OneMore menu item</comment>
+  </data>
+  <data name="ribAboutButton_Screentip" xml:space="preserve">
+    <value>הצג מידע על OneMore</value>
+    <comment>ribbon main</comment>
   </data>
   <data name="ribAddCaptionButton_Label" xml:space="preserve">
     <value>הוסף כיתוב</value>
@@ -2477,6 +2618,14 @@ ISO-code then comma then language name</comment>
   <data name="ribAddFormulaButton_Screentip" xml:space="preserve">
     <value>הוסף/ערוך נוסחה בתאי טבלה שנבחרו (F5)</value>
     <comment>Ribbon OneMore menu item, Formula...</comment>
+  </data>
+  <data name="ribAdjustImagesButton_Label" xml:space="preserve">
+    <value>שנה גודל והתאם</value>
+    <comment>Ribbon OneMore menu item, Resize selected image(s)</comment>
+  </data>
+  <data name="ribAdjustImagesButton_Screentip" xml:space="preserve">
+    <value>שינוי גודל והתאם תמונות שנבחרו</value>
+    <comment>ribbon images</comment>
   </data>
   <data name="ribAnalyzeButton_Label" xml:space="preserve">
     <value>ניתוח אחסון נתונים</value>
@@ -2849,14 +2998,6 @@ ISO-code then comma then language name</comment>
     <value>הטמע תוכן של דף אחר בדף הנוכחי</value>
     <comment>ribbon item screentip</comment>
   </data>
-  <data name="ribEmojiButton_Label" xml:space="preserve">
-    <value>הכנס אימוג'י</value>
-    <comment>ribbon edit</comment>
-  </data>
-  <data name="ribEmojiButton_Screentip" xml:space="preserve">
-    <value>הכנס אימוג'י אחד או יותר</value>
-    <comment>ribbon edit</comment>
-  </data>
   <data name="ribEnableSpellCheckButton_Label" xml:space="preserve">
     <value>אפשר בדיקת איות</value>
     <comment>Ribbon OneMore menu item, no spell check on this page</comment>
@@ -3069,6 +3210,14 @@ ISO-code then comma then language name</comment>
     <value>הוסף קו אופקי כפול (Shift + Alt + שווה)</value>
     <comment>Ribbon OneMore menu item, Extras...</comment>
   </data>
+  <data name="ribInsertEmojiButton_Label" xml:space="preserve">
+    <value>אימוג'י</value>
+    <comment>ribbon snippets</comment>
+  </data>
+  <data name="ribInsertEmojiButton_Screentip" xml:space="preserve">
+    <value>הכנס אימוג'י אחד או יותר</value>
+    <comment>ribbon snippets</comment>
+  </data>
   <data name="ribInsertExpandButton_Label" xml:space="preserve">
     <value>להרחיב לצמצם</value>
     <comment>Ribbon OneMore menu item, Snippets...</comment>
@@ -3253,6 +3402,10 @@ ISO-code then comma then language name</comment>
     <value>נווט</value>
     <comment>ribbon main</comment>
   </data>
+  <data name="ribNavigatorButton_Screentip" xml:space="preserve">
+    <value>פתח את חלון OneMore Navigator</value>
+    <comment>ribbon main</comment>
+  </data>
   <data name="ribNewStyleButton_Label" xml:space="preserve">
     <value>צור סגנון חדש מטקסט</value>
     <comment>ribbon styles</comment>
@@ -3367,6 +3520,10 @@ ISO-code then comma then language name</comment>
   <data name="ribPluginsMenu_Label" xml:space="preserve">
     <value>תוספים</value>
     <comment>favorites menu</comment>
+  </data>
+  <data name="ribPluginsMenu_Screentip" xml:space="preserve">
+    <value>הפעל ונהל תוספים מותאמים אישית</value>
+    <comment>ribbon file</comment>
   </data>
   <data name="ribPronunciateButton_Label" xml:space="preserve">
     <value>הכנס הגייה</value>
@@ -3518,14 +3675,6 @@ ISO-code then comma then language name</comment>
   <data name="ribReportRemindersButton_Screentip" xml:space="preserve">
     <value>צור דוח סיכום של תזכורות</value>
     <comment>ribbon reminders</comment>
-  </data>
-  <data name="ribResizeImagesButton_Label" xml:space="preserve">
-    <value>שנה גודל והתאם</value>
-    <comment>Ribbon OneMore menu item, Resize selected image(s)</comment>
-  </data>
-  <data name="ribResizeImagesButton_Screentip" xml:space="preserve">
-    <value>שינוי גודל והתאם תמונות שנבחרו</value>
-    <comment>ribbon images</comment>
   </data>
   <data name="ribRestoreAutosizeButton_Label" xml:space="preserve">
     <value>שחזור רוחב מיכל</value>
@@ -3727,6 +3876,10 @@ ISO-code then comma then language name</comment>
     <value>פתח והתחל את חלון הטיימר</value>
     <comment>ribbon extras</comment>
   </data>
+  <data name="ribStatusMenu_Label" xml:space="preserve">
+    <value>סטָטוּס</value>
+    <comment>ribbon snippets</comment>
+  </data>
   <data name="ribStrikeoutTasksButton_Label" xml:space="preserve">
     <value>תגיות מטלות חוצה שהושלמו</value>
     <comment>Ribbon OneMore menu item</comment>
@@ -3734,6 +3887,14 @@ ISO-code then comma then language name</comment>
   <data name="ribStrikeoutTasksButton_Screentip" xml:space="preserve">
     <value>החלף את המחיקה למרות של טקסט המסומן בתגי מטלות מלאים או לא שלמים</value>
     <comment>Ribbon OneMore menu item</comment>
+  </data>
+  <data name="ribStylizeImagesButton_Label" xml:space="preserve">
+    <value>סגנון תמונות</value>
+    <comment>ribbon images</comment>
+  </data>
+  <data name="ribStylizeImagesButton_Screentip" xml:space="preserve">
+    <value>צבע מחדש תמונות באמצעות סגנון נבחר</value>
+    <comment>ribbon images</comment>
   </data>
   <data name="ribTableMenu_Label" xml:space="preserve">
     <value>שולחן</value>
@@ -3872,6 +4033,10 @@ ISO-code then comma then language name</comment>
   </data>
   <data name="SearchAndReplaceDialog_matchBox.Text" xml:space="preserve">
     <value>מקרה התאמה</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="SearchAndReplaceDialog_rawBox.Text" xml:space="preserve">
+    <value>החלף ב-XML גולמי</value>
     <comment>checkbox</comment>
   </data>
   <data name="SearchAndReplaceDialog_regBox.Text" xml:space="preserve">
@@ -4437,6 +4602,37 @@ ISO-code then comma then language name</comment>
     <value>לָשִׂים דָגֵשׁ</value>
     <comment>button</comment>
   </data>
+  <data name="StylizeImagesCommand_noImages" xml:space="preserve">
+    <value>לא נמצאו תמונות בדף זה</value>
+    <comment>message</comment>
+  </data>
+  <data name="StylizeImagesDialog_backBox.Text" xml:space="preserve">
+    <value>החל על תמונות רקע</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="StylizeImagesDialog_backImagesLabel.Text" xml:space="preserve">
+    <value>תמונות רקע: {0}, נבחרו: {1}</value>
+    <comment>label</comment>
+  </data>
+  <data name="StylizeImagesDialog_foreBox.Text" xml:space="preserve">
+    <value>החל על תמונות חזית</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="StylizeImagesDialog_foreImagesLabel.Text" xml:space="preserve">
+    <value>תמונות קדמה: {0}, נבחרו: {1}</value>
+    <comment>label</comment>
+  </data>
+  <data name="StylizeImagesDialog_styleBox.Text" xml:space="preserve">
+    <value>סולם אפור
+חוּם כֵּהֶה
+פולארויד
+לַהֲפוֹך</value>
+    <comment>combobox</comment>
+  </data>
+  <data name="StylizeImagesDialog_Text" xml:space="preserve">
+    <value>סגנון תמונות</value>
+    <comment>dialog title</comment>
+  </data>
   <data name="TableTheme_Screentip" xml:space="preserve">
     <value>נושא טבלה onemore {0}</value>
     <comment>Screentip for table theme gallery tiles</comment>
@@ -4679,6 +4875,9 @@ ISO-code then comma then language name</comment>
   <data name="word_Completed" xml:space="preserve">
     <value>הושלם</value>
   </data>
+  <data name="word_Constraint" xml:space="preserve">
+    <value>אילוץ</value>
+  </data>
   <data name="word_Contrast" xml:space="preserve">
     <value>בניגוד</value>
   </data>
@@ -4726,6 +4925,12 @@ ISO-code then comma then language name</comment>
   </data>
   <data name="word_History" xml:space="preserve">
     <value>הִיסטוֹרִיָה</value>
+  </data>
+  <data name="word_Indent" xml:space="preserve">
+    <value>לְשַׁנֵן</value>
+  </data>
+  <data name="word_Index" xml:space="preserve">
+    <value>word_Index</value>
   </data>
   <data name="word_Information" xml:space="preserve">
     <value>מֵידָע</value>
@@ -4828,6 +5033,9 @@ ISO-code then comma then language name</comment>
   </data>
   <data name="word_Storage" xml:space="preserve">
     <value>אִחסוּן</value>
+  </data>
+  <data name="word_Style" xml:space="preserve">
+    <value>סִגְנוֹן</value>
   </data>
   <data name="word_Stylize" xml:space="preserve">
     <value>לְסַגְנֵן</value>

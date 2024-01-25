@@ -1,5 +1,5 @@
 ﻿//************************************************************************************************
-// Copyright © 2016 Steven M Cohn.  All rights reserved.
+// Copyright © 2016 Steven M Cohn. All rights reserved.
 //************************************************************************************************
 
 namespace River.OneMoreAddIn.Commands
@@ -10,7 +10,27 @@ namespace River.OneMoreAddIn.Commands
 	using System.Linq;
 	using System.Threading.Tasks;
 	using System.Xml.Linq;
-	using Resx = River.OneMoreAddIn.Properties.Resources;
+	using Resx = Properties.Resources;
+
+
+	#region Wrappers
+	internal class InsertDoubleLineCommand : InsertLineCommand
+	{
+		public InsertDoubleLineCommand() : base() { }
+		public override Task Execute(params object[] args)
+		{
+			return base.Execute('═'); // \u2550
+		}
+	}
+	internal class InsertSingleLineCommand : InsertLineCommand
+	{
+		public InsertSingleLineCommand() : base() { }
+		public override Task Execute(params object[] args)
+		{
+			return base.Execute('─'); // \u2500
+		}
+	}
+	#endregion Wrappers
 
 
 	internal class InsertLineCommand : Command

@@ -169,7 +169,7 @@ namespace River.OneMoreAddIn.Commands
 				var index = log.History.FindIndex(r => r.PageId == pageID);
 				if (index < 0)
 				{
-					record = Resolve(pageID);
+					record = await Resolve(pageID);
 					if (record != null)
 					{
 						log.History.Insert(0, record);
@@ -179,7 +179,7 @@ namespace River.OneMoreAddIn.Commands
 				else
 				{
 					record = log.History[index];
-					if (UpdateTitle(record))
+					if (await UpdateTitle(record))
 					{
 						log.History.RemoveAt(index);
 						log.History.Insert(0, record);
@@ -211,13 +211,13 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private HistoryRecord Resolve(string pageID)
+		private async Task<HistoryRecord> Resolve(string pageID)
 		{
 			try
 			{
 				// might be null if the page no longer exits; exception raised in GetPageInfo
 				using var one = new OneNote { FallThrough = true };
-				return one.GetPageInfo(pageID);
+				return await one.GetPageInfo(pageID);
 			}
 			catch (System.Runtime.InteropServices.COMException exc)
 			{
@@ -232,12 +232,12 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private bool UpdateTitle(HistoryRecord record)
+		private async Task<bool> UpdateTitle(HistoryRecord record)
 		{
 			try
 			{
 				using var one = new OneNote { FallThrough = true };
-				var page = one.GetPage(record.PageId, OneNote.PageDetail.Basic);
+				var page = await one.GetPage(record.PageId, OneNote.PageDetail.Basic);
 				record.Name = page.Title;
 				return true;
 			}

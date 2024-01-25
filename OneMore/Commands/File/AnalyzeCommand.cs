@@ -12,6 +12,7 @@ namespace River.OneMoreAddIn.Commands
 	using System.Drawing;
 	using System.IO;
 	using System.Linq;
+	using System.Runtime.CompilerServices;
 	using System.Threading.Tasks;
 	using System.Windows.Forms;
 	using System.Xml.Linq;
@@ -93,7 +94,7 @@ namespace River.OneMoreAddIn.Commands
 				logger.StartClock();
 
 				one.CreatePage(one.CurrentSectionId, out var pageId);
-				var page = one.GetPage(pageId);
+				var page = await one.GetPage(pageId);
 				page.Title = Resx.AnalyzeCommand_Title;
 				page.SetMeta(MetaNames.AnalysisReport, "true");
 				page.Root.SetAttributeValue("lang", "yo");
@@ -139,7 +140,7 @@ namespace River.OneMoreAddIn.Commands
 							WriteHorizontalLine(page, container);
 						}
 
-						ReportPages(container, one.GetSection(), null, pageId);
+						await ReportPages(container, await one.GetSection(), null, pageId);
 					}
 					else if (pageDetail == AnalysisDetail.All)
 					{
@@ -148,7 +149,7 @@ namespace River.OneMoreAddIn.Commands
 							WriteHorizontalLine(page, container);
 						}
 
-						ReportAllPages(container, await one.GetNotebook(), null, pageId);
+						await ReportAllPages(container, await one.GetNotebook(), null, pageId);
 					}
 
 					progress.SetMessage("Updating report...");
@@ -297,13 +298,13 @@ namespace River.OneMoreAddIn.Commands
 				table.Rows.ForEach(r =>
 				{
 					if (r[1].Value > 0)
-						r[1].ShadingColor = $"#{map1.MapToRGB(r[1].Value).ToString("x6")}";
+						r[1].ShadingColor = $"#{map1.MapToRGB(r[1].Value):x6}";
 
 					if (r[2].Value > 0)
-						r[2].ShadingColor = $"#{map2.MapToRGB(r[2].Value).ToString("x6")}";
+						r[2].ShadingColor = $"#{map2.MapToRGB(r[2].Value):x6}";
 
 					if (r[3].Value > 0)
-						r[3].ShadingColor = $"#{map3.MapToRGB(r[3].Value).ToString("x6")}";
+						r[3].ShadingColor = $"#{map3.MapToRGB(r[3].Value):x6}";
 				});
 			}
 
@@ -390,7 +391,7 @@ namespace River.OneMoreAddIn.Commands
 					new Paragraph($"{book.Attribute("name").Value} Notebook")
 						.SetQuickStyle(heading2Index));
 
-				var table = new Table(ns, 1, 4)
+				var table = new Table(ns, 1, 5)
 				{
 					HasHeaderRow = true,
 					BordersVisible = true
@@ -400,39 +401,42 @@ namespace River.OneMoreAddIn.Commands
 				table.SetColumnWidth(1, 70);
 				table.SetColumnWidth(2, 70);
 				table.SetColumnWidth(3, 70);
+				table.SetColumnWidth(4, 70);
 
 				var row = table[0];
 				row.SetShading(HeaderShading);
 				row[0].SetContent(new Paragraph("Section").SetStyle(HeaderCss));
-				row[1].SetContent(new Paragraph("Size on Disk").SetStyle(HeaderCss).SetAlignment("center"));
-				row[2].SetContent(new Paragraph("# of Copies").SetStyle(HeaderCss).SetAlignment("center"));
-				row[3].SetContent(new Paragraph("Total Size").SetStyle(HeaderCss).SetAlignment("center"));
+				row[1].SetContent(new Paragraph("# of Pages").SetStyle(HeaderCss).SetAlignment("center"));
+				row[2].SetContent(new Paragraph("Size on Disk").SetStyle(HeaderCss).SetAlignment("center"));
+				row[3].SetContent(new Paragraph("# of Copies").SetStyle(HeaderCss).SetAlignment("center"));
+				row[4].SetContent(new Paragraph("Total Size").SetStyle(HeaderCss).SetAlignment("center"));
 
 				var notebook = await one.GetNotebook(book.Attribute("ID").Value);
 
-				var total = ReportSections(table, notebook, null);
+				var (totalPages, totalSize) = await ReportSections(table, notebook, null);
 
 				row = table.AddRow();
-				row[3].SetContent(new Paragraph(total.ToBytes(1)).SetAlignment("right"));
+				row[1].SetContent(new Paragraph(totalPages.ToString()).SetAlignment("right"));
+				row[4].SetContent(new Paragraph(totalSize.ToBytes(1)).SetAlignment("right"));
 
 				// heatmap
 				var values1 = new List<decimal>();
 				var values3 = new List<decimal>();
 				table.Rows.ForEach(r =>
 				{
-					if (r[1].Value > 0) values1.Add(r[1].Value);
-					if (r[3].Value > 0) values3.Add(r[1].Value);
+					if (r[2].Value > 0) values1.Add(r[2].Value);
+					if (r[4].Value > 0) values3.Add(r[2].Value);
 				});
 
 				var map1 = new Heatmap(values1);
 				var map3 = new Heatmap(values3);
 				table.Rows.ForEach(r =>
 				{
-					if (r[1].Value > 0)
-						r[1].ShadingColor = $"#{map1.MapToRGB(r[1].Value).ToString("x6")}";
+					if (r[2].Value > 0)
+						r[2].ShadingColor = $"#{map1.MapToRGB(r[2].Value):x6}";
 
-					if (r[3].Value > 0)
-						r[3].ShadingColor = $"#{map3.MapToRGB(r[3].Value).ToString("x6")}";
+					if (r[4].Value > 0)
+						r[4].ShadingColor = $"#{map3.MapToRGB(r[4].Value):x6}";
 				});
 
 				container.Add(
@@ -442,9 +446,10 @@ namespace River.OneMoreAddIn.Commands
 			}
 		}
 
-		private long ReportSections(Table table, XElement folder, string folderPath)
+		private async Task<(int, long)> ReportSections(Table table, XElement folder, string folderPath)
 		{
-			long total = 0;
+			int totalPages = 0;
+			long totalSize = 0;
 			var folderName = folder.Attribute("name").Value;
 
 			var sections = folder.Elements(ns + "Section")
@@ -483,6 +488,12 @@ namespace River.OneMoreAddIn.Commands
 				{
 					row[0].SetContent(new Paragraph(title));
 
+					var expanded = await one.GetSection(section.Attribute("ID").Value);
+					var count = expanded.Elements().Count();
+					totalPages += count;
+					row[1].Value = count;
+					row[1].SetContent(new Paragraph(count.ToString()).SetAlignment("right"));
+
 					var filter = remote ? $"{name}.one (On *).one" : $"{name}.one";
 					var files = Directory.EnumerateFiles(filePath, filter).ToList();
 					if (files.Count > 0)
@@ -501,17 +512,17 @@ namespace River.OneMoreAddIn.Commands
 
 						if (all > 0)
 						{
-							row[1].Value = first;
-							row[1].SetContent(new Paragraph(first.ToBytes(1)).SetAlignment("right"));
+							row[2].Value = first;
+							row[2].SetContent(new Paragraph(first.ToBytes(1)).SetAlignment("right"));
 
 							if (remote)
 							{
-								row[2].SetContent(new Paragraph(files.Count.ToString()).SetAlignment("right"));
+								row[3].SetContent(new Paragraph(files.Count.ToString()).SetAlignment("right"));
 							}
 
-							row[3].Value = all;
-							row[3].SetContent(new Paragraph(all.ToBytes(1)).SetAlignment("right"));
-							total += all;
+							row[4].Value = all;
+							row[4].SetContent(new Paragraph(all.ToBytes(1)).SetAlignment("right"));
+							totalSize += all;
 						}
 					}
 					else
@@ -533,16 +544,19 @@ namespace River.OneMoreAddIn.Commands
 			foreach (var group in groups)
 			{
 				var path = folderPath == null ? folderName : Path.Combine(folderPath, folderName);
-				total += ReportSections(table, group, path);
+				var (p, s) = await ReportSections(table, group, path);
+				totalPages += p;
+				totalSize += s;
 			}
 
-			return total;
+			return (totalPages, totalSize);
 		}
 
 
 		// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-		private void ReportAllPages(XElement container, XElement folder, string folderPath, string skipId)
+		private async Task ReportAllPages(
+			XElement container, XElement folder, string folderPath, string skipId)
 		{
 			var sections = folder.Elements(ns + "Section")
 				.Where(e => e.Attribute("isInRecycleBin") == null
@@ -550,7 +564,8 @@ namespace River.OneMoreAddIn.Commands
 
 			foreach (var section in sections)
 			{
-				ReportPages(container, one.GetSection(section.Attribute("ID").Value), folderPath, skipId);
+				await ReportPages(
+					container, await one.GetSection(section.Attribute("ID").Value), folderPath, skipId);
 			}
 
 			var groups = folder.Elements(ns + "SectionGroup")
@@ -561,12 +576,13 @@ namespace River.OneMoreAddIn.Commands
 				var name = group.Attribute("name").Value;
 				folderPath = folderPath == null ? name : Path.Combine(folderPath, name);
 
-				ReportAllPages(container, group, folderPath, skipId);
+				await ReportAllPages(container, group, folderPath, skipId);
 			}
 		}
 
 
-		private void ReportPages(XElement container, XElement section, string folderPath, string skipId)
+		private async Task ReportPages(
+			XElement container, XElement section, string folderPath, string skipId)
 		{
 			var name = section.Attribute("name").Value;
 			var title = folderPath == null ? name : Path.Combine(folderPath, name);
@@ -596,7 +612,7 @@ namespace River.OneMoreAddIn.Commands
 
 			foreach (var page in pages)
 			{
-				ReportPage(table, page.Attribute("ID").Value);
+				await ReportPage(table, page.Attribute("ID").Value);
 			}
 
 			container.Add(
@@ -606,9 +622,9 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private void ReportPage(Table table, string pageId)
+		private async Task ReportPage(Table table, string pageId)
 		{
-			var page = one.GetPage(pageId, OneNote.PageDetail.All);
+			var page = await one.GetPage(pageId, OneNote.PageDetail.All);
 
 			if (page.GetMetaContent(MetaNames.AnalysisReport) == "true")
 			{

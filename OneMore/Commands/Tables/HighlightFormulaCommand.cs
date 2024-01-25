@@ -39,7 +39,7 @@ namespace River.OneMoreAddIn.Commands
 				.Where(e => e.Attribute("name").Value == "omfx")
 				.Select(e => e.FirstAncestor(ns + "Table"));
 
-			if (tables?.Any() == true)
+			if (tables.Any())
 			{
 				foreach (var table in tables)
 				{

@@ -38,6 +38,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Plugins", "Plugins", "{9D56
 	ProjectSection(SolutionItems) = preProject
 		Plugins\Get-MeetingDate-readme.txt = Plugins\Get-MeetingDate-readme.txt
 		Plugins\Get-MeetingDate.ps1 = Plugins\Get-MeetingDate.ps1
+		Plugins\Set-BlueBackground-readme.txt = Plugins\Set-BlueBackground-readme.txt
+		Plugins\Set-BlueBackground.ps1 = Plugins\Set-BlueBackground.ps1
 		Plugins\Set-RainbowSections-readme.txt = Plugins\Set-RainbowSections-readme.txt
 		Plugins\Set-RainbowSections.ps1 = Plugins\Set-RainbowSections.ps1
 	EndProjectSection

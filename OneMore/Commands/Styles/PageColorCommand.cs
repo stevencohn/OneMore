@@ -78,7 +78,7 @@ namespace River.OneMoreAddIn.Commands
 			using var one = new OneNote();
 
 			var root = scope == OneNote.Scope.Pages
-				? one.GetSection()
+				? await one.GetSection()
 				: await one.GetNotebook(OneNote.Scope.Pages);
 
 			var ns = root.GetNamespaceOfPrefix(OneNote.Prefix);
@@ -93,7 +93,7 @@ namespace River.OneMoreAddIn.Commands
 			{
 				foreach (var node in nodes)
 				{
-					var page = one.GetPage(node.Attribute("ID").Value, OneNote.PageDetail.Basic);
+					var page = await one.GetPage(node.Attribute("ID").Value, OneNote.PageDetail.Basic);
 					if (token.IsCancellationRequested) break;
 
 					progress.SetMessage(page.Title);

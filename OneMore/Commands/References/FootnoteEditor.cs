@@ -41,8 +41,7 @@ namespace River.OneMoreAddIn
 		public FootnoteEditor(OneNote one)
 		{
 			this.one = one;
-
-			page = one.GetPage();
+			page = Task.Run(async () => { return await one.GetPage(); }).Result;
 			ns = page.Namespace;
 			PageNamespace.Set(ns);
 
@@ -295,7 +294,7 @@ namespace River.OneMoreAddIn
 			await one.Update(page);
 
 			// reload the page and reset state variables...
-			page = one.GetPage();
+			page = await one.GetPage();
 			ns = page.Namespace;
 
 			EnsureFootnoteFooter();

@@ -1,12 +1,33 @@
 ﻿//************************************************************************************************
-// Copyright © 2016 Steven M Cohn.  All rights reserved.
+// Copyright © 2016 Steven M Cohn. All rights reserved.
 //************************************************************************************************
 
 namespace River.OneMoreAddIn.Commands
 {
 	using System.Linq;
+	using System.Threading;
 	using System.Threading.Tasks;
 	using System.Xml.Linq;
+
+
+	#region Wrappers
+	internal class DisableSpellCheckCommand : ProofingCommand
+	{
+		public DisableSpellCheckCommand() : base() { }
+		public override Task Execute(params object[] args)
+		{
+			return base.Execute(ProofingCommand.NoLang);
+		}
+	}
+	internal class EnableSpellCheckCommand : ProofingCommand
+	{
+		public EnableSpellCheckCommand() : base() { }
+		public override Task Execute(params object[] args)
+		{
+			return base.Execute(Thread.CurrentThread.CurrentUICulture.Name);
+		}
+	}
+	#endregion Wrappers
 
 
 	/// <summary>

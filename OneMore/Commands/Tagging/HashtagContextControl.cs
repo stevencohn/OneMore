@@ -10,6 +10,7 @@ namespace River.OneMoreAddIn.Commands
 	using System.Drawing;
 	using System.Globalization;
 	using System.Windows.Forms;
+	using Resx = Properties.Resources;
 
 
 	internal partial class HashtagContextControl : UserControl
@@ -32,7 +33,7 @@ namespace River.OneMoreAddIn.Commands
 			pageLink.Text = $"{item.HierarchyPath}/{item.PageTitle}";
 			var oid = string.IsNullOrWhiteSpace(item.TitleID) ? string.Empty : item.TitleID;
 			pageLink.Links.Add(0, pageLink.Text.Length, (item.PageID, oid));
-			tooltip.SetToolTip(pageLink, "Jump to this page");
+			tooltip.SetToolTip(pageLink, Resx.HashtagContext_jumpTip);
 
 			// LastModified...
 
@@ -49,15 +50,19 @@ namespace River.OneMoreAddIn.Commands
 
 			foreach (var snippet in item.Snippets)
 			{
+				var fore = snippet.DirectHit
+					? SystemColors.HotTrack
+					: SystemColors.GrayText;
+
 				var link = new MoreLinkLabel
 				{
 					Text = snippet.Snippet,
 					ActiveLinkColor = SystemColors.GrayText,
 					AutoSize = true,
 					Cursor = Cursors.Hand,
-					ForeColor = SystemColors.GrayText,
+					ForeColor = fore,
 					HoverColor = Color.MediumOrchid,
-					LinkColor = SystemColors.GrayText,
+					LinkColor = fore,
 					Location = new Point(30, 40),
 					Margin = new Padding(20, 6, 10, 6),
 					Size = new Size(530, 20),
@@ -72,7 +77,7 @@ namespace River.OneMoreAddIn.Commands
 					.Parse(snippet.LastModified, CultureInfo.InvariantCulture)
 					.ToShortFriendlyString();
 
-				tooltip.SetToolTip(link, $"Jump to this paragraph; last updated {date}");
+				tooltip.SetToolTip(link, string.Format(Resx.HashtagContext_jumpParaTip, date));
 
 				snippetsPanel.Controls.Add(link);
 			}
@@ -153,8 +158,12 @@ namespace River.OneMoreAddIn.Commands
 
 			try
 			{
-				var (PageID, ObjectID) = ((string PageID, string ObjectID))e.Link.LinkData;
-				await new OneNote().NavigateTo(PageID, ObjectID);
+				var (pageID, objectID) = ((string pageID, string objectID))e.Link.LinkData;
+				var success = await new OneNote().NavigateTo(pageID, objectID);
+				if (!success)
+				{
+					UIHelper.ShowInfo(Resx.HashtagDialog_badLink);
+				}
 			}
 			catch (Exception exc)
 			{

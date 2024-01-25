@@ -23,6 +23,10 @@ namespace River.OneMoreAddIn.Commands
 		private readonly int pollingInterval;
 		private readonly bool disabled;
 
+		private int hour;
+		private int scanCount;
+		private long scanTime;
+
 
 		public HashtagService()
 		{
@@ -30,7 +34,16 @@ namespace River.OneMoreAddIn.Commands
 			var collection = settings.GetCollection("HashtagSheet");
 			pollingInterval = collection.Get("interval", DefaultPollingInterval) * Minute;
 
-			disabled = collection.Get("disabled", false);
+			disabled = collection.Get<bool>("disabled");
+
+			var rebuild = collection.Get<bool>("rebuild");
+			if (rebuild)
+			{
+				HashtagProvider.DeleteDatabase();
+				collection.Remove("rebuild");
+				settings.SetCollection(collection);
+				settings.Save();
+			}
 		}
 
 
@@ -43,6 +56,10 @@ namespace River.OneMoreAddIn.Commands
 			}
 
 			logger.WriteLine("starting hashtag service");
+
+			hour = DateTime.Now.Hour;
+			scanCount = 0;
+			scanTime = 0;
 
 			var thread = new Thread(async () =>
 			{
@@ -75,7 +92,7 @@ namespace River.OneMoreAddIn.Commands
 
 			thread.SetApartmentState(ApartmentState.STA);
 			thread.IsBackground = true;
-			thread.Priority = ThreadPriority.BelowNormal;
+			thread.Priority = ThreadPriority.Lowest;
 			thread.Start();
 		}
 
@@ -86,11 +103,28 @@ namespace River.OneMoreAddIn.Commands
 			clock.Start();
 
 			using var scanner = new HashtagScanner();
-			var totalPages = await scanner.Scan();
+			var (dirtyPages, totalPages) = await scanner.Scan();
 
 			clock.Stop();
 			var time = clock.ElapsedMilliseconds;
-			logger.WriteLine($"hashtag service scanned {totalPages} pages in {time}ms");
+
+			scanCount++;
+			scanTime += time;
+
+			if (hour != DateTime.Now.Hour)
+			{
+				var avg = scanTime / scanCount;
+				logger.WriteLine($"hashtag service scanned {scanCount} times in the last hour, averaging {avg}ms");
+				hour = DateTime.Now.Hour;
+				scanCount = 0;
+				scanTime = 0;
+			}
+
+			if (dirtyPages > 0 || time > 1000)
+			{
+				logger.WriteLine(
+					$"hashtag service scanned {totalPages} pages, updating {dirtyPages}, in {time}ms");
+			}
 		}
 	}
 }

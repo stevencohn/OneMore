@@ -165,9 +165,9 @@ namespace River.OneMoreAddIn.Commands
 				using (var one = new OneNote())
 				{
 					page = target == ImportWebTarget.Append
-						? one.GetPage()
+						? await one.GetPage()
 						: await CreatePage(one,
-							target == ImportWebTarget.ChildPage ? one.GetPage() : null, address);
+							target == ImportWebTarget.ChildPage ? await one.GetPage() : null, address);
 				}
 
 				var ns = page.Namespace;
@@ -227,16 +227,16 @@ namespace River.OneMoreAddIn.Commands
 
 		private async Task<Page> CreatePage(OneNote one, Page parent, string title)
 		{
-			var section = one.GetSection();
+			var section = await one.GetSection();
 			var sectionId = section.Attribute("ID").Value;
 
 			one.CreatePage(sectionId, out var pageId);
-			var page = one.GetPage(pageId);
+			var page = await one.GetPage(pageId);
 
 			if (parent != null)
 			{
 				// get current section again after new page is created
-				section = one.GetSection();
+				section = await one.GetSection();
 
 				var parentElement = section.Elements(parent.Namespace + "Page")
 					.First(e => e.Attribute("ID").Value == parent.PageId);
@@ -342,7 +342,7 @@ namespace River.OneMoreAddIn.Commands
 
 				if (target == ImportWebTarget.Append)
 				{
-					page = one.GetPage();
+					page = await one.GetPage();
 
 					if (token.IsCancellationRequested)
 					{
@@ -370,7 +370,7 @@ namespace River.OneMoreAddIn.Commands
 					}
 
 					page = await CreatePage(one,
-						target == ImportWebTarget.ChildPage ? one.GetPage() : null,
+						target == ImportWebTarget.ChildPage ? await one.GetPage() : null,
 						title
 						);
 				}
@@ -667,7 +667,7 @@ namespace River.OneMoreAddIn.Commands
 				logger.WriteLine("pass 2 patching images and anchors");
 
 				// fetch page again with temp links
-				page = one.GetPage(page.PageId, OneNote.PageDetail.All);
+				page = await one.GetPage(page.PageId, OneNote.PageDetail.All);
 
 				var updated = false;
 				if (hasImages)

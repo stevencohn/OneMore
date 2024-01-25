@@ -28,7 +28,7 @@ namespace River.OneMoreAddIn.Commands
 			logger.StartClock();
 
 			var style = page.GetQuickStyles()
-				.FirstOrDefault(s => s.Name == "cite");
+				.Find(s => s.Name == "cite");
 
 			if (style == null)
 			{
@@ -48,7 +48,7 @@ namespace River.OneMoreAddIn.Commands
 				 select e)
 				.ToList();
 
-			if (elements?.Count > 0)
+			if (elements.Any())
 			{
 				foreach (var element in elements)
 				{

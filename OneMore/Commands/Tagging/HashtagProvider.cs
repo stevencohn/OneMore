@@ -2,8 +2,6 @@
 // Copyright © 2023 Steven M Cohn. All rights reserved.
 //************************************************************************************************
 
-#define xEnableUpgrade
-
 namespace River.OneMoreAddIn.Commands
 {
 	using River.OneMoreAddIn.Properties;
@@ -12,6 +10,7 @@ namespace River.OneMoreAddIn.Commands
 	using System.Data;
 	using System.Data.SQLite;
 	using System.IO;
+	using System.Text;
 	using System.Text.RegularExpressions;
 
 
@@ -44,14 +43,31 @@ namespace River.OneMoreAddIn.Commands
 			{
 				RefreshDatabase();
 			}
-#if EnableUpgrade
 			else
 			{
 				UpgradeDatabase();
 			}
-#endif
 
 			timestamp = DateTime.Now.ToZuluString();
+		}
+
+
+		public static void DeleteDatabase()
+		{
+			var path = Path.Combine(
+				PathHelper.GetAppDataPath(), Resources.DatabaseFilename);
+
+			if (File.Exists(path))
+			{
+				try
+				{
+					File.Delete(path);
+				}
+				catch (Exception exc)
+				{
+					Logger.Current.WriteLine("error deleting hashtag database", exc);
+				}
+			}
 		}
 
 
@@ -66,16 +82,17 @@ namespace River.OneMoreAddIn.Commands
 				var sql = line.Trim();
 				if (!string.IsNullOrWhiteSpace(sql) && !sql.StartsWith("--"))
 				{
+					using var cmd = con.CreateCommand();
+
 					try
 					{
-						using var cmd = con.CreateCommand();
 						cmd.CommandText = sql;
 						cmd.CommandType = CommandType.Text;
 						cmd.ExecuteNonQuery();
 					}
 					catch (Exception exc)
 					{
-						logger.WriteLine($"error executing sql {sql}", exc);
+						ReportError("error building database", cmd, exc);
 						throw;
 					}
 				}
@@ -95,7 +112,6 @@ namespace River.OneMoreAddIn.Commands
 
 
 		#region UpgradeDatabase
-#if EnableUpgrade
 		private void UpgradeDatabase()
 		{
 			using var cmd = con.CreateCommand();
@@ -113,7 +129,7 @@ namespace River.OneMoreAddIn.Commands
 			}
 			catch (Exception exc)
 			{
-				logger.WriteLine("error reading scanner version", exc);
+				ReportError("error reading scanner version", cmd, exc);
 				return;
 			}
 
@@ -134,44 +150,39 @@ namespace River.OneMoreAddIn.Commands
 		private int Upgrade1to2(SQLiteConnection con)
 		{
 			logger.WriteLine("upgrading database to version 2");
+			logger.Start();
+
 			using var cmd = con.CreateCommand();
-
-			cmd.CommandType = CommandType.Text;
-			cmd.CommandText = "ALTER TABLE hashtag_page ADD COLUMN token NUMBER DEFAULT 0";
-
 			using var transaction = con.BeginTransaction();
 
 			try
 			{
+				logger.WriteLine("creating view page_hashtags");
+				cmd.CommandType = CommandType.Text;
+				cmd.CommandText =
+					"CREATE VIEW IF NOT EXISTS page_hashtags (moreID, tags) AS SELECT " +
+					"t.moreID, group_concat(DISTINCT(t.tag)) AS tags FROM hashtag t GROUP BY t.moreID;";
+
 				cmd.ExecuteNonQuery();
 			}
 			catch (Exception exc)
 			{
+				logger.End();
 				logger.WriteLine("error upgrading hashtag_page v2", exc);
 				return 0;
 			}
 
 			try
 			{
-				cmd.CommandText = "CREATE INDEX IF NOT EXISTS IDX_token ON hashtag_page (token)";
-				cmd.ExecuteNonQuery();
-			}
-			catch (Exception exc)
-			{
-				logger.WriteLine("error upgrading hashtag_page v2", exc);
-				transaction.Rollback();
-				return 0;
-			}
-
-			try
-			{
-				cmd.CommandText = "UPDATE hashtag_scanner " +
-					$"SET version = 2 WHERE scannerID = {ScannerID}";
+				logger.WriteLine("updating hashtag_scanner version");
+				cmd.CommandText =
+					$"UPDATE hashtag_scanner SET version = 2 WHERE scannerID = {ScannerID}";
 
 				cmd.ExecuteNonQuery();
 			}
 			catch (Exception exc)
 			{
+				logger.End();
 				logger.WriteLine("error upgrading hashtag_page v2", exc);
 				transaction.Rollback();
 				return 0;
@@ -183,13 +194,16 @@ namespace River.OneMoreAddIn.Commands
 			}
 			catch (Exception exc)
 			{
+				logger.End();
 				logger.WriteLine("error committing hashtag_page v2", exc);
 				return 0;
 			}
 
+			logger.End();
+
+			// new version
 			return 2;
 		}
-#endif
 		#endregion UpgradeDatabase
 
 
@@ -226,15 +240,10 @@ namespace River.OneMoreAddIn.Commands
 			cmd.CommandText = "SELECT moreID, pageID FROM hashtag_page WHERE sectionID = @sid";
 			cmd.Parameters.AddWithValue("@sid", sectionID);
 
-			using var dtagcmd = con.CreateCommand();
-			dtagcmd.CommandType = CommandType.Text;
-			dtagcmd.CommandText = "DELETE FROM hashtag WHERE moreID = @mid";
-			dtagcmd.Parameters.Add("@mid", DbType.String);
-
-			using var dpagcmd = con.CreateCommand();
-			dpagcmd.CommandType = CommandType.Text;
-			dpagcmd.CommandText = "DELETE FROM hashtag_page WHERE pageID = @pid";
-			dpagcmd.Parameters.Add("@pid", DbType.String);
+			using var delcmd = con.CreateCommand();
+			delcmd.CommandType = CommandType.Text;
+			delcmd.CommandText = "DELETE FROM hashtag_page WHERE pageID = @pid";
+			delcmd.Parameters.Add("@pid", DbType.String);
 
 			using var transaction = con.BeginTransaction();
 			var count = 0;
@@ -247,13 +256,8 @@ namespace River.OneMoreAddIn.Commands
 					var pageID = reader.GetString(1);
 					if (!knownIDs.Contains(pageID))
 					{
-						var moreID = reader.GetString(0);
-
-						dtagcmd.Parameters["@mid"].Value = moreID;
-						dtagcmd.ExecuteNonQuery();
-
-						dpagcmd.Parameters["@pid"].Value = pageID;
-						dpagcmd.ExecuteNonQuery();
+						delcmd.Parameters["@pid"].Value = pageID;
+						delcmd.ExecuteNonQuery();
 						count++;
 					}
 				}
@@ -334,7 +338,7 @@ namespace River.OneMoreAddIn.Commands
 			}
 			catch (Exception exc)
 			{
-				logger.WriteLine("error cleaning up pages", exc);
+				ReportError("error cleaning up pages", cmd, exc);
 			}
 		}
 
@@ -359,7 +363,7 @@ namespace River.OneMoreAddIn.Commands
 			}
 			catch (Exception exc)
 			{
-				logger.WriteLine("error reading last scan time", exc);
+				ReportError("error reading last scan time", cmd, exc);
 			}
 
 			return DateTime.MinValue.ToZuluString();
@@ -401,7 +405,7 @@ namespace River.OneMoreAddIn.Commands
 			}
 			catch (Exception exc)
 			{
-				logger.WriteLine("error reading distinct tags", exc);
+				ReportError("error reading list of tags", cmd, exc);
 			}
 
 			return tags;
@@ -463,7 +467,7 @@ namespace River.OneMoreAddIn.Commands
 			}
 			catch (Exception exc)
 			{
-				logger.WriteLine("error reading distinct tags", exc);
+				ReportError("error reading list of tag names", cmd, exc);
 			}
 
 			return tags;
@@ -473,37 +477,55 @@ namespace River.OneMoreAddIn.Commands
 		/// <summary>
 		/// Returns a collection of Hashtag instances with the specified name across all pages
 		/// </summary>
-		/// <param name="wildcard">The name of the tag to search for, optionally with wildcards</param>
+		/// <param name="criteria">The user-entered search criteria, optional wildcards</param>
 		/// <returns>A collection of Hashtags</returns>
 		public Hashtags SearchTags(
-			string wildcard, string notebookID = null, string sectionID = null)
+			string criteria, out string parsed, string notebookID = null, string sectionID = null)
 		{
 			var parameters = new List<SQLiteParameter>();
 
-			var sql =
-				"SELECT t.tag, t.moreID, p.pageID, p.titleID, t.objectID, " +
-				"p.notebookID, p.sectionID, t.lastModified, t.snippet, p.path, p.name " +
-				"FROM hashtag t " +
-				"JOIN hashtag_page p " +
-				"ON t.moreID = p.moreID ";
+			var builder = new StringBuilder();
+			builder.Append("SELECT t.tag, t.moreID, p.pageID, p.titleID, t.objectID, ");
+			builder.Append("p.notebookID, p.sectionID, t.lastModified, t.snippet, p.path, p.name ");
+			builder.Append("FROM hashtag t ");
+			builder.Append("JOIN hashtag_page p ON t.moreID = p.moreID ");
 
 			if (!string.IsNullOrWhiteSpace(sectionID))
 			{
-				sql = $"{sql} AND p.sectionID = @sid ";
+				builder.Append("AND p.sectionID = @sid ");
 				parameters.Add(new("sid", sectionID));
 			}
 			else if (!string.IsNullOrWhiteSpace(notebookID))
 			{
-				sql = $"{sql} AND p.notebookID = @nid ";
+				builder.Append("AND p.notebookID = @nid ");
 				parameters.Add(new("nid", notebookID));
 			}
 
-			parameters.Add(new("@t", wildcard));
+			builder.Append("JOIN page_hashtags g ON g.moreID = p.moreID ");
 
-			sql = $"{sql} WHERE t.tag LIKE @t " +
-				"ORDER BY p.path, p.name, t.tag";
+			var query = new HashtagQueryBuilder("g.tags");
+			var where = query.BuildFormattedWhereClause(criteria, out parsed);
+			builder.Append(where);
 
-			return ReadTags(sql, parameters.ToArray());
+			builder.Append(" ORDER BY p.path, p.name, t.tag");
+			var sql = builder.ToString();
+
+			logger.WriteVerbose(sql);
+
+			var tags = ReadTags(sql, parameters.ToArray());
+
+			// don't highlight everything, otherwise there's no use!
+			if (criteria != "*" && criteria != "%")
+			{
+				// mark direct hits; others are just additional tags on the page
+				var pattern = query.GetMatchingPattern(parsed);
+				foreach (var tag in tags)
+				{
+					tag.DirectHit = pattern.IsMatch(tag.Snippet);
+				}
+			}
+
+			return tags;
 		}
 
 
@@ -547,10 +569,47 @@ namespace River.OneMoreAddIn.Commands
 			}
 			catch (Exception exc)
 			{
-				logger.WriteLine("error reading tags", exc);
+				ReportError("error reading tags", cmd, exc);
 			}
 
 			return tags;
+		}
+
+
+		/// <summary>
+		/// Determines if the moreID matches the pageID, otherwise this might be coming
+		/// from a new duplicate or copy of an existing page so need to generate a new moreID
+		/// </summary>
+		/// <param name="pageID"></param>
+		/// <param name="moreID"></param>
+		/// <returns></returns>
+		public bool UniqueMoreID(string pageID, string moreID)
+		{
+			using var cmd = con.CreateCommand();
+			cmd.CommandText = "SELECT count(1) " +
+				"FROM hashtag_page WHERE moreID = @mid AND pageID <> @pid";
+
+			cmd.CommandType = CommandType.Text;
+			cmd.Parameters.AddWithValue("@mid", moreID);
+			cmd.Parameters.AddWithValue("@pid", pageID);
+
+			var unique = false;
+			try
+			{
+				using var reader = cmd.ExecuteReader();
+				if (reader.Read())
+				{
+					var count = reader.GetInt32(0);
+					unique = count == 0;
+				}
+			}
+			catch (Exception exc)
+			{
+				ReportError("error validating moreID", cmd, exc);
+				return false;
+			}
+
+			return unique;
 		}
 
 
@@ -583,6 +642,7 @@ namespace River.OneMoreAddIn.Commands
 
 				try
 				{
+
 					cmd.ExecuteNonQuery();
 				}
 				catch (Exception exc)
@@ -597,7 +657,7 @@ namespace River.OneMoreAddIn.Commands
 			}
 			catch (Exception exc)
 			{
-				logger.WriteLine("error updating snippets", exc);
+				ReportError("error updating snippets", cmd, exc);
 			}
 		}
 
@@ -618,7 +678,7 @@ namespace River.OneMoreAddIn.Commands
 			}
 			catch (Exception exc)
 			{
-				logger.WriteLine("error writing last scan time", exc);
+				ReportError("error writing scan time", cmd, exc);
 			}
 		}
 
@@ -656,7 +716,7 @@ namespace River.OneMoreAddIn.Commands
 			}
 			catch (Exception exc)
 			{
-				logger.WriteLine("error writing page info", exc);
+				ReportError("error writing page info", cmd, exc);
 			}
 		}
 
@@ -695,7 +755,12 @@ namespace River.OneMoreAddIn.Commands
 				}
 				catch (Exception exc)
 				{
-					logger.WriteLine($"error writing tag {tag.Tag} on {tag.PageID}", exc);
+					logger.WriteLine($"error writing tag {tag.Tag} on {tag.PageID}");
+					logger.WriteLine($"error moreID=[{tag.MoreID}]");
+					logger.WriteLine($"error objectID=[{tag.ObjectID}]");
+					logger.WriteLine($"error Snippet=[{tag.Snippet}]");
+					logger.WriteLine($"error lastModified=[{tag.LastModified}]");
+					logger.WriteLine(exc);
 				}
 			}
 
@@ -705,8 +770,24 @@ namespace River.OneMoreAddIn.Commands
 			}
 			catch (Exception exc)
 			{
-				logger.WriteLine("error writing tags", exc);
+				ReportError("error writing tags", tagcmd, exc);
 			}
+		}
+
+
+		private void ReportError(string msg, SQLiteCommand cmd, Exception exc)
+		{
+			// provider currently only deals with strings as input so quote everything...
+
+			var sql = Regex.Replace(cmd.CommandText, "@[a-z]+",
+				m => cmd.Parameters.Contains(m.Value)
+					? $"'{cmd.Parameters[m.Value]}'"
+					: m.Value
+			);
+
+			logger.WriteLine("error writing tags");
+			logger.WriteLine(sql);
+			logger.WriteLine(exc);
 		}
 	}
 }

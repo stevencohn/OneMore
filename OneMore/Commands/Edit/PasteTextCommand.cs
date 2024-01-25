@@ -34,7 +34,7 @@ namespace River.OneMoreAddIn.Commands
 
 			var content = new XElement(ns + "T", new XCData(text));
 
-			if (elements == null)
+			if (!elements.Any())
 			{
 				// empty page so add new content
 				page.AddNextParagraph(content);

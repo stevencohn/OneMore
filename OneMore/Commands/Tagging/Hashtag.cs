@@ -76,6 +76,13 @@ namespace River.OneMoreAddIn.Commands
 
 
 		/// <summary>
+		/// Gets whether this instance was the result of a direct search hit or is
+		/// just another tag on the same page
+		/// </summary>
+		public bool DirectHit { get; set; }
+
+
+		/// <summary>
 		/// The time this tag was first captured
 		/// </summary>
 		public string LastModified { get; set; }

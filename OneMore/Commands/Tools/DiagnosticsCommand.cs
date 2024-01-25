@@ -51,13 +51,13 @@ namespace River.OneMoreAddIn.Commands
 			logger.WriteLine($"Unfiled path: {unfiledFolder}");
 			logger.WriteLine();
 
-			var info = one.GetPageInfo();
+			var info = await one.GetPageInfo();
 			logger.WriteLine($"Page name: {info.Name}");
 			logger.WriteLine($"Page path: {info.Path}");
 			logger.WriteLine($"Page link: {info.Link}");
 			logger.WriteLine();
 
-			info = one.GetSectionInfo();
+			info = await one.GetSectionInfo();
 			logger.WriteLine($"Section name: {info.Name}");
 			logger.WriteLine($"Section path: {info.Path}");
 			logger.WriteLine($"Section link: {info.Link}");
@@ -73,7 +73,7 @@ namespace River.OneMoreAddIn.Commands
 
 			logger.WriteLine();
 
-			var page = one.GetPage();
+			var page = await one.GetPage();
 			var pageColor = page.GetPageColor(out _, out _);
 
 			logger.WriteLine($"Page background: {pageColor.ToRGBHtml()}");

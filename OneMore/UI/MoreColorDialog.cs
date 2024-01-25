@@ -92,7 +92,7 @@ namespace River.OneMoreAddIn.UI
 
 				var colors = doc.Elements(ns + "color").Select(e => e.Value);
 
-				if (colors?.Count() > 0)
+				if (colors.Any())
 				{
 					var list = new List<int>();
 

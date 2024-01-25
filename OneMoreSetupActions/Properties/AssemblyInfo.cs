@@ -23,6 +23,6 @@ namespace OneMoreSetupActions
 {
 	internal static class AssemblyInfo
 	{
-		public const string Version = "6.0.1";
+		public const string Version = "6.1.0";
 	}
 }

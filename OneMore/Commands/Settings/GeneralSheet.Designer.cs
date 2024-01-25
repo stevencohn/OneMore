@@ -32,6 +32,7 @@ namespace River.OneMoreAddIn.Settings
 			this.introBox = new System.Windows.Forms.TextBox();
 			this.layoutPanel = new System.Windows.Forms.Panel();
 			this.advancedGroup = new System.Windows.Forms.GroupBox();
+			this.experimentalBox = new System.Windows.Forms.CheckBox();
 			this.verboseBox = new System.Windows.Forms.CheckBox();
 			this.langBox = new System.Windows.Forms.ComboBox();
 			this.langLabel = new System.Windows.Forms.Label();
@@ -68,16 +69,27 @@ namespace River.OneMoreAddIn.Settings
 			// 
 			// advancedGroup
 			// 
-			this.advancedGroup.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+			this.advancedGroup.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+			this.advancedGroup.Controls.Add(this.experimentalBox);
 			this.advancedGroup.Controls.Add(this.verboseBox);
-			this.advancedGroup.Location = new System.Drawing.Point(7, 294);
+			this.advancedGroup.Location = new System.Drawing.Point(7, 274);
 			this.advancedGroup.Name = "advancedGroup";
 			this.advancedGroup.Padding = new System.Windows.Forms.Padding(15, 10, 10, 10);
-			this.advancedGroup.Size = new System.Drawing.Size(762, 119);
+			this.advancedGroup.Size = new System.Drawing.Size(762, 139);
 			this.advancedGroup.TabIndex = 4;
 			this.advancedGroup.TabStop = false;
 			this.advancedGroup.Text = "Advanced Options";
+			// 
+			// experimentalBox
+			// 
+			this.experimentalBox.AutoSize = true;
+			this.experimentalBox.Location = new System.Drawing.Point(18, 62);
+			this.experimentalBox.Name = "experimentalBox";
+			this.experimentalBox.Size = new System.Drawing.Size(242, 24);
+			this.experimentalBox.TabIndex = 1;
+			this.experimentalBox.Text = "Enable experimental features";
+			this.experimentalBox.UseVisualStyleBackColor = true;
 			// 
 			// verboseBox
 			// 
@@ -111,7 +123,7 @@ namespace River.OneMoreAddIn.Settings
 			// 
 			this.checkUpdatesBox.Checked = true;
 			this.checkUpdatesBox.CheckState = System.Windows.Forms.CheckState.Checked;
-			this.checkUpdatesBox.Location = new System.Drawing.Point(25, 0);
+			this.checkUpdatesBox.Location = new System.Drawing.Point(25, 2);
 			this.checkUpdatesBox.Margin = new System.Windows.Forms.Padding(0, 10, 0, 0);
 			this.checkUpdatesBox.Name = "checkUpdatesBox";
 			this.checkUpdatesBox.Size = new System.Drawing.Size(744, 43);
@@ -147,5 +159,6 @@ namespace River.OneMoreAddIn.Settings
 		private System.Windows.Forms.Label langLabel;
 		private System.Windows.Forms.GroupBox advancedGroup;
 		private System.Windows.Forms.CheckBox verboseBox;
+		private System.Windows.Forms.CheckBox experimentalBox;
 	}
 }

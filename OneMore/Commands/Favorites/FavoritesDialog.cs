@@ -8,6 +8,7 @@ namespace River.OneMoreAddIn.Commands.Favorites
 	using System.ComponentModel;
 	using System.Drawing;
 	using System.Linq;
+	using System.Threading.Tasks;
 	using System.Windows.Forms;
 	using Favorite = FavoritesProvider.Favorite;
 	using FavoriteStatus = FavoritesProvider.FavoriteStatus;
@@ -413,10 +414,10 @@ namespace River.OneMoreAddIn.Commands.Favorites
 		}
 
 
-		private void AddCurrentPage(object sender, EventArgs e)
+		private async void AddCurrentPage(object sender, EventArgs e)
 		{
 			using var one = new OneNote();
-			var info = one.GetPageInfo();
+			var info = await one.GetPageInfo();
 			if (info == null)
 			{
 				return;
@@ -439,7 +440,7 @@ namespace River.OneMoreAddIn.Commands.Favorites
 
 			if (favorite == null)
 			{
-				AddIn.Self.AddFavoritePageCmd(null);
+				await AddIn.Self.AddFavoritePageCmd(null);
 
 				using var provider = new FavoritesProvider(null);
 				var favorites = provider.LoadFavorites();

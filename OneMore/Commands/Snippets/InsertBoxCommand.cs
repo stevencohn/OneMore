@@ -1,5 +1,5 @@
 ﻿//************************************************************************************************
-// Copyright © 2020 Steven M Cohn.  All rights reserved.
+// Copyright © 2020 Steven M Cohn. All rights reserved.
 //************************************************************************************************
 
 namespace River.OneMoreAddIn.Commands
@@ -14,6 +14,26 @@ namespace River.OneMoreAddIn.Commands
 	using System.Threading.Tasks;
 	using System.Xml.Linq;
 	using Resx = Properties.Resources;
+
+
+	#region Wrappers
+	internal class InsertCodeBoxCommand : InsertBoxCommand
+	{
+		public InsertCodeBoxCommand() : base() { }
+		public override Task Execute(params object[] args)
+		{
+			return base.Execute(true);
+		}
+	}
+	internal class InsertTextBoxCommand : InsertBoxCommand
+	{
+		public InsertTextBoxCommand() : base() { }
+		public override Task Execute(params object[] args)
+		{
+			return base.Execute(false);
+		}
+	}
+	#endregion Wrappers
 
 
 	/// <summary>
@@ -73,9 +93,12 @@ namespace River.OneMoreAddIn.Commands
 				row = table.AddRow();
 				cell = row.Cells.First();
 
+				var normalStyle = page.GetQuickStyle(Styles.StandardStyles.Normal);
+				normalStyle.Color = TitleColor;
+
 				cell.SetContent(
 					new Paragraph($"<span style='font-weight:bold'>{Resx.word_Code}</span>")
-						.SetStyle($"font-family:'Segoe UI';font-size:11.0pt;color:{TitleColor}"));
+						.SetStyle(normalStyle.ToCss()));
 
 				cell.ShadingColor = Shading;
 			}

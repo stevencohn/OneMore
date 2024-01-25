@@ -33,7 +33,7 @@ namespace River.OneMoreAddIn.Commands
 					e.Attribute("isSetByUser") != null &&
 					e.Attribute("isSetByUser").Value == "true");
 
-			if (sizes != null)
+			if (sizes.Any())
 			{
 				var modified = false;
 
@@ -46,7 +46,7 @@ namespace River.OneMoreAddIn.Commands
 					size.SetAttributeValue("width", $"{MaxWidth}.0");
 
 					size.GetAttributeValue("height", out float height);
-					size.SetAttributeValue("height", (height + 1).ToString("F04", CultureInfo.InvariantCulture));
+					size.SetAttributeValue("height", (height + 1).ToInvariantString());
 
 					modified = true;
 				}

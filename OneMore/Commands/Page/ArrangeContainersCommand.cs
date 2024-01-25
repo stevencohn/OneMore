@@ -11,6 +11,7 @@ namespace River.OneMoreAddIn.Commands
 	using System.Linq;
 	using System.Threading.Tasks;
 	using System.Xml.Linq;
+	using Resx = Properties.Resources;
 
 
 	/// <summary>
@@ -26,6 +27,7 @@ namespace River.OneMoreAddIn.Commands
 		private Page page;
 		private XNamespace ns;
 		private double topMargin;
+		private double indent;
 
 
 		public ArrangeContainersCommand()
@@ -35,26 +37,36 @@ namespace River.OneMoreAddIn.Commands
 
 		public override async Task Execute(params object[] args)
 		{
+			using var one = new OneNote(out page, out ns);
+
+			if (!page.Root.Elements(ns + "Outline").Any())
+			{
+				UIHelper.ShowInfo(Resx.ArrangeContainersCommand_noContainers);
+				return;
+			}
+
 			using var dialog = new ArrangeContainersDialog();
 			if (dialog.ShowDialog(owner) != System.Windows.Forms.DialogResult.OK)
 			{
 				return;
 			}
 
-			using var one = new OneNote(out page, out ns);
-
 			FindTopMargin();
 
-			if (dialog.Vertical)
+			indent = LeftMargin + dialog.Indent;
+
+			var updated = dialog.Vertical
+				? ArrangeVertical(dialog.PageWidth)
+				: ArrangeFlow(dialog.Columns, dialog.PageWidth);
+
+			if (updated)
 			{
-				ArrangeVertical(dialog.PageWidth);
+				await one.Update(page);
 			}
 			else
 			{
-				ArrangeFlow(dialog.Columns, dialog.PageWidth);
+				UIHelper.ShowInfo(Resx.ArrangeContainersCommand_noContainers);
 			}
-
-			await one.Update(page);
 		}
 
 
@@ -79,9 +91,14 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private void ArrangeVertical(int pageWidth)
+		private bool ArrangeVertical(int pageWidth)
 		{
 			var containers = CollectContainers(page, ns);
+
+			if (!containers.Any())
+			{
+				return false;
+			}
 
 			// find the topmost container position
 			var yoffset = Math.Min(
@@ -92,7 +109,7 @@ namespace River.OneMoreAddIn.Commands
 			foreach (var container in containers)
 			{
 				var position = container.Element(ns + "Position");
-				position.SetAttributeValue("x", LeftMargin.ToString(CultureInfo.InvariantCulture));
+				position.SetAttributeValue("x", indent.ToString(CultureInfo.InvariantCulture));
 				position.SetAttributeValue("y", yoffset.ToString(CultureInfo.InvariantCulture));
 
 				var size = container.Element(ns + "Size");
@@ -106,14 +123,21 @@ namespace River.OneMoreAddIn.Commands
 				var height = size.GetAttributeDouble("height");
 				yoffset += height + BottomMargin;
 			}
+
+			return true;
 		}
 
 
-		private void ArrangeFlow(int columns, int pageWidth)
+		private bool ArrangeFlow(int columns, int pageWidth)
 		{
 			var containers = CollectContainers(page, ns);
 
-			var xoffset = LeftMargin;
+			if (!containers.Any())
+			{
+				return false;
+			}
+
+			var xoffset = indent;
 
 			// find the topmost container position
 			var yoffset = Math.Min(
@@ -124,7 +148,7 @@ namespace River.OneMoreAddIn.Commands
 			int col = 1;
 			double maxHeight = 0;
 			double colwidth = (pageWidth / columns);
-			double maxPageWidth = LeftMargin + pageWidth + (RightMargin * (columns - 1));
+			double maxPageWidth = indent + pageWidth + (RightMargin * (columns - 1));
 
 			foreach (var container in containers)
 			{
@@ -141,7 +165,7 @@ namespace River.OneMoreAddIn.Commands
 				if ((col > columns) ||
 					(col > 1 && (xoffset + width > maxPageWidth)))
 				{
-					xoffset = LeftMargin;
+					xoffset = indent;
 					yoffset += maxHeight + BottomMargin;
 					maxHeight = height;
 					col = 1;
@@ -151,16 +175,18 @@ namespace River.OneMoreAddIn.Commands
 				position.SetAttributeValue("x", xoffset.ToString(CultureInfo.InvariantCulture));
 				position.SetAttributeValue("y", yoffset.ToString(CultureInfo.InvariantCulture));
 
-				size.SetAttributeValue("width", colwidth.ToString("N3", CultureInfo.InvariantCulture));
+				size.SetAttributeValue("width", colwidth.ToInvariantString());
 				// must set both width and height for changes to take effect
-				size.SetAttributeValue("height", (height + 0.001).ToString("N3", CultureInfo.InvariantCulture));
+				size.SetAttributeValue("height", (height + 0.001).ToInvariantString());
 				size.SetAttributeValue("isSetByUser", "true");
 
-				logger.WriteLine($"moved container to {LeftMargin} x {yoffset:N3}, size {width:N3} x {height:N3}");
+				logger.WriteLine($"moved container to {indent} x {yoffset:N3}, size {width:N3} x {height:N3}");
 
 				xoffset += Math.Max(width, colwidth) + RightMargin;
 				col++;
 			}
+
+			return true;
 		}
 
 

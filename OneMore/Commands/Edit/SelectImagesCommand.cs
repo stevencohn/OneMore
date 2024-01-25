@@ -23,9 +23,24 @@ namespace River.OneMoreAddIn.Commands
 		public override async Task Execute(params object[] args)
 		{
 			using var one = new OneNote(out var page, out var ns);
-			var images = page.Root.Descendants(ns + "Image");
-			if (images.Any())
+
+			// find foreground images
+			var images = page.Root
+				.Elements(ns + "Outline")
+				.Descendants(ns + "Image")?
+				.ToList();
+
+			if (!images.Any())
 			{
+				// else find background images
+				images = page.Root
+					.Elements(ns + "Image")
+					.ToList();
+			}
+
+			if (images != null && images.Any())
+			{
+				// deselect selected images incase collision between back and fore
 				var selections = page.Root.Descendants()
 					.Where(e => e.Attribute("selected")?.Value == "all")
 					.ToList();

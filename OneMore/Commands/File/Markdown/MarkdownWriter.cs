@@ -44,6 +44,8 @@ namespace River.OneMoreAddIn.Commands
 #else
 		private StreamWriter writer;
 		private string path;
+		private string attachmentPath;
+		private string attachmentFolder;
 #endif
 
 
@@ -103,6 +105,9 @@ namespace River.OneMoreAddIn.Commands
 		{
 #if !LOG
 			path = Path.GetDirectoryName(filename);
+			attachmentFolder = Path.GetFileNameWithoutExtension(filename);
+			attachmentPath = Path.Combine(path, attachmentFolder);
+
 			using (writer = File.CreateText(filename))
 #endif
 			{
@@ -366,12 +371,17 @@ namespace River.OneMoreAddIn.Commands
 
 			var prefix = page.Title.Replace(" ", string.Empty);
 			var name = $"{prefix}_{++imageCounter}.png";
-			var filename = Path.Combine(path, name);
+			var filename = Path.Combine(attachmentPath, name);
 #if !LOG
+			if (!Directory.Exists(attachmentPath))
+			{
+				Directory.CreateDirectory(attachmentPath);
+			}
+
 			image.Save(filename, ImageFormat.Png);
 #endif
-
-			writer.Write($"![Image-{imageCounter}]({name})");
+			var imgPath = Path.Combine(attachmentFolder, name);
+			writer.Write($"![Image-{imageCounter}]({imgPath})");
 		}
 
 
@@ -399,11 +409,16 @@ namespace River.OneMoreAddIn.Commands
 
 			if (withAttachments)
 			{
-				var target = Path.Combine(path, name);
+				var target = Path.Combine(attachmentPath, name);
 
 				try
 				{
 #if !LOG
+					if (!Directory.Exists(attachmentPath))
+					{
+						Directory.CreateDirectory(attachmentPath);
+					}
+
 					// copy cached/source file to md output directory
 					File.Copy(source, target, true);
 #endif

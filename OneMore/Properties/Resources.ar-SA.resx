@@ -184,6 +184,90 @@
   <data name="AddInTitle" xml:space="preserve">
     <value>OneMoreAddIn</value>
   </data>
+  <data name="AdjustImagesDialog.Text" xml:space="preserve">
+    <value>تغيير حجم وتعديل الصورة</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="AdjustImagesDialog_absRadio.Text" xml:space="preserve">
+    <value>مطلق</value>
+    <comment>radio button</comment>
+  </data>
+  <data name="AdjustImagesDialog_allLabelBackground" xml:space="preserve">
+    <value>{0} صور خلفية</value>
+    <comment>info label</comment>
+  </data>
+  <data name="AdjustImagesDialog_allLabelForeground" xml:space="preserve">
+    <value>{0} الصور الأمامية</value>
+    <comment>info label</comment>
+  </data>
+  <data name="AdjustImagesDialog_appliesTo" xml:space="preserve">
+    <value>ينطبق على</value>
+    <comment>label override</comment>
+  </data>
+  <data name="AdjustImagesDialog_autoSizeRadio.Text" xml:space="preserve">
+    <value>الحجم التلقائي</value>
+    <comment>radio</comment>
+  </data>
+  <data name="AdjustImagesDialog_heightLabel.Text" xml:space="preserve">
+    <value>ارتفاع</value>
+    <comment>label</comment>
+  </data>
+  <data name="AdjustImagesDialog_imageSizeLabel.Text" xml:space="preserve">
+    <value>حجم الصورة</value>
+    <comment>label</comment>
+  </data>
+  <data name="AdjustImagesDialog_limitsBox.Text" xml:space="preserve">
+    <value>تغيير حجم كل الصور
+لا تقم بتقليص الصور الكبيرة
+لا تقم بتكبير الصور الأصغر</value>
+    <comment>combobox</comment>
+  </data>
+  <data name="AdjustImagesDialog_noImages" xml:space="preserve">
+    <value>لم يتم العثور على صور في هذه الصفحة.
+
+يجب أن تكون الصور في حاوية المخطط التفصيلي. لا يمكن تعديل صور الخلفية.</value>
+    <comment>message box</comment>
+  </data>
+  <data name="AdjustImagesDialog_pctRadio.Text" xml:space="preserve">
+    <value>النسبة المئوية</value>
+    <comment>radio</comment>
+  </data>
+  <data name="AdjustImagesDialog_preserveBox.Text" xml:space="preserve">
+    <value>الحفاظ على حجم التخزين</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="AdjustImagesDialog_presetRadio.Text" xml:space="preserve">
+    <value>المعد مسبقا</value>
+    <comment>radio</comment>
+  </data>
+  <data name="AdjustImagesDialog_previewGroup.Text" xml:space="preserve">
+    <value>معاينة {0}</value>
+    <comment>group box for single image</comment>
+  </data>
+  <data name="AdjustImagesDialog_repositionBox.Text" xml:space="preserve">
+    <value>إعادة وضع صور الخلفية</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="AdjustImagesDialog_resetLinkLabel.Text" xml:space="preserve">
+    <value>إعادة القيم</value>
+    <comment>link label</comment>
+  </data>
+  <data name="AdjustImagesDialog_sizeLink.Text" xml:space="preserve">
+    <value>{0} × {1}</value>
+    <comment>width x height</comment>
+  </data>
+  <data name="AdjustImagesDialog_styleBox.Text" xml:space="preserve">
+    <value>إبداعي
+مقياس رمادي
+بني داكن
+بولارويد
+عكس</value>
+    <comment>combobox</comment>
+  </data>
+  <data name="AdjustImagesDialog_viewSizeLabel.Text" xml:space="preserve">
+    <value>عرض الحجم</value>
+    <comment>label</comment>
+  </data>
   <data name="AliasSheet.Text" xml:space="preserve">
     <value>حدد الأسماء المستعارة للأوامر لاستخدامها في لوحة الأوامر</value>
     <comment>intro box</comment>
@@ -287,6 +371,10 @@
   <data name="ArchiveCommand_OpenFileTitle" xml:space="preserve">
     <value>أرشفة الموقع</value>
     <comment>archive dialog title</comment>
+  </data>
+  <data name="ArrangeContainersCommand_noContainers" xml:space="preserve">
+    <value>لم يتم العثور على حاويات في هذه الصفحة</value>
+    <comment>message</comment>
   </data>
   <data name="ArrangeContainersDialog.Text" xml:space="preserve">
     <value>ترتيب الحاويات</value>
@@ -742,12 +830,24 @@
     <value>سيارة</value>
     <comment>emoji</comment>
   </data>
+  <data name="Emoji_BallotBox" xml:space="preserve">
+    <value>صندوق الإقتراع</value>
+    <comment>emoji</comment>
+  </data>
+  <data name="Emoji_Bell" xml:space="preserve">
+    <value>جرس</value>
+    <comment>emoji</comment>
+  </data>
   <data name="Emoji_Bullet" xml:space="preserve">
     <value>رصاصة</value>
     <comment>emoji</comment>
   </data>
   <data name="Emoji_Calendar" xml:space="preserve">
     <value>التقويم</value>
+    <comment>emoji</comment>
+  </data>
+  <data name="Emoji_Camera" xml:space="preserve">
+    <value>آلة تصوير</value>
     <comment>emoji</comment>
   </data>
   <data name="Emoji_CheckMark" xml:space="preserve">
@@ -758,6 +858,10 @@
     <value>دائرة</value>
     <comment>emoji</comment>
   </data>
+  <data name="Emoji_Clipboard" xml:space="preserve">
+    <value>الحافظة</value>
+    <comment>emoji</comment>
+  </data>
   <data name="Emoji_Cloud" xml:space="preserve">
     <value>سحاب</value>
     <comment>emoji</comment>
@@ -766,7 +870,7 @@
     <value>حقوق النشر</value>
     <comment>emoji</comment>
   </data>
-  <data name="Emoji_CrossMark" xml:space="preserve">
+  <data name="Emoji_Cross" xml:space="preserve">
     <value>علامة تقاطع</value>
     <comment>emoji</comment>
   </data>
@@ -774,8 +878,8 @@
     <value>ركوب الدراجات</value>
     <comment>emoji</comment>
   </data>
-  <data name="Emoji_Email" xml:space="preserve">
-    <value>البريد الإلكتروني</value>
+  <data name="Emoji_Envelope" xml:space="preserve">
+    <value>ظرف</value>
     <comment>emoji</comment>
   </data>
   <data name="Emoji_Eyes" xml:space="preserve">
@@ -790,16 +894,32 @@
     <value>الأمور المالية</value>
     <comment>emoji</comment>
   </data>
+  <data name="Emoji_Flag" xml:space="preserve">
+    <value>علَم</value>
+    <comment>emoji</comment>
+  </data>
+  <data name="Emoji_Folder" xml:space="preserve">
+    <value>مجلد</value>
+    <comment>emoji</comment>
+  </data>
+  <data name="Emoji_Globe" xml:space="preserve">
+    <value>الكرة الأرضية</value>
+    <comment>emoji</comment>
+  </data>
   <data name="Emoji_Hammer" xml:space="preserve">
     <value>شاكوش</value>
+    <comment>emoji</comment>
+  </data>
+  <data name="Emoji_Heart" xml:space="preserve">
+    <value>قلب</value>
     <comment>emoji</comment>
   </data>
   <data name="Emoji_Images" xml:space="preserve">
     <value>الصور</value>
     <comment>emoji</comment>
   </data>
-  <data name="Emoji_Important" xml:space="preserve">
-    <value>مهم</value>
+  <data name="Emoji_Interrobang" xml:space="preserve">
+    <value>Interrobang</value>
     <comment>emoji</comment>
   </data>
   <data name="Emoji_Journal" xml:space="preserve">
@@ -808,6 +928,10 @@
   </data>
   <data name="Emoji_LeftwardsArrow" xml:space="preserve">
     <value>سهم لليسار</value>
+    <comment>emoji</comment>
+  </data>
+  <data name="Emoji_Lock" xml:space="preserve">
+    <value>قفل</value>
     <comment>emoji</comment>
   </data>
   <data name="Emoji_Memo" xml:space="preserve">
@@ -824,6 +948,10 @@
   </data>
   <data name="Emoji_Pushpin" xml:space="preserve">
     <value>دبوس التثبيت</value>
+    <comment>emoji</comment>
+  </data>
+  <data name="Emoji_Recycle" xml:space="preserve">
+    <value>إعادة التدوير</value>
     <comment>emoji</comment>
   </data>
   <data name="Emoji_RightwardsArrow" xml:space="preserve">
@@ -850,6 +978,10 @@
     <value>رياضات</value>
     <comment>emoji</comment>
   </data>
+  <data name="Emoji_SportsEU" xml:space="preserve">
+    <value>رياضة الاتحاد الأوروبي</value>
+    <comment>emoji</comment>
+  </data>
   <data name="Emoji_Star" xml:space="preserve">
     <value>نجمة</value>
     <comment>emoji</comment>
@@ -859,11 +991,23 @@
     <comment>emoji</comment>
   </data>
   <data name="Emoji_Tasks" xml:space="preserve">
-    <value>مهام</value>
+    <value>مهمة</value>
+    <comment>emoji</comment>
+  </data>
+  <data name="Emoji_Tools" xml:space="preserve">
+    <value>أدوات</value>
     <comment>emoji</comment>
   </data>
   <data name="Emoji_Travel" xml:space="preserve">
     <value>السفر</value>
+    <comment>emoji</comment>
+  </data>
+  <data name="Emoji_Video" xml:space="preserve">
+    <value>فيديو</value>
+    <comment>emoji</comment>
+  </data>
+  <data name="Emoji_Warning" xml:space="preserve">
+    <value>تحذير</value>
     <comment>emoji</comment>
   </data>
   <data name="Emoji_Watch" xml:space="preserve">
@@ -1090,6 +1234,10 @@
     <value>تحقق من وجود إصدارات جديدة من OneMore عند بدء OneNote</value>
     <comment>checkbox</comment>
   </data>
+  <data name="GeneralSheet_experimentalBox.Text" xml:space="preserve">
+    <value>تمكين الميزات التجريبية</value>
+    <comment>checkbox</comment>
+  </data>
   <data name="GeneralSheet_introBox.Text" xml:space="preserve">
     <value>تخصيص السلوك العام لـ OneMore</value>
     <comment>textbox</comment>
@@ -1113,20 +1261,88 @@
   <data name="HasActiveMedia" xml:space="preserve">
     <value>لا يمكن استدعاء أوامر OneMore أثناء وجود تسجيل نشط. الرجاء إيقاف التسجيل وحاول مرة أخرى.</value>
   </data>
-  <data name="HashtagDialogs_introLabel.Text" xml:space="preserve">
-    <value>ابدأ بكتابة أي جزء من الهاشتاج أو *للكل</value>
+  <data name="HashtagContext_jumpParaTip" xml:space="preserve">
+    <value>القفز إلى هذه الفقرة. آخر تحديث {0}</value>
+    <comment>tooltip</comment>
+  </data>
+  <data name="HashtagContext_jumpTip" xml:space="preserve">
+    <value>قفز إلى هذه الصفحة</value>
+    <comment>tooltip</comment>
+  </data>
+  <data name="HashtagDialog.Title" xml:space="preserve">
+    <value>البحث عن علامات التصنيف</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="HashtagDialog_allTags" xml:space="preserve">
+    <value>جميع العلامات</value>
+    <comment>text</comment>
+  </data>
+  <data name="HashtagDialog_badLink" xml:space="preserve">
+    <value>لا يمكن الانتقال إلى هذه الصفحة. قد تم حذفه</value>
+    <comment>info message</comment>
+  </data>
+  <data name="HashtagDialog_checkAllLink.Text" xml:space="preserve">
+    <value>تحقق من الكل</value>
+    <comment>link label</comment>
+  </data>
+  <data name="HashtagDialog_introLabel.Text" xml:space="preserve">
+    <value>اكتب أي جزء من هاشتاج واحد أو أكثر. يتم تضمين أحرف البدل ما لم تنتهي العلامة بنقطة. يُسمح بالأقواس والعوامل المنطقية.</value>
     <comment>label</comment>
   </data>
-  <data name="HashtagSheet_disabledBox" xml:space="preserve">
+  <data name="HashtagDialog_lastScanLabel" xml:space="preserve">
+    <value>الفحص الأخير: {0}، الفحص التالي: {1}</value>
+    <comment>label</comment>
+  </data>
+  <data name="HashtagDialog_noResults" xml:space="preserve">
+    <value>لم يتم العثور على نتائج</value>
+    <comment>message</comment>
+  </data>
+  <data name="HashtagDialog_recentTags" xml:space="preserve">
+    <value>العلامات الأخيرة</value>
+    <comment>text</comment>
+  </data>
+  <data name="HashtagDialog_scanButton.Text" xml:space="preserve">
+    <value>إفحص الآن</value>
+    <comment>menu button</comment>
+  </data>
+  <data name="HashtagDialog_scopeBox.Text" xml:space="preserve">
+    <value>الجميع
+هذا دفتر
+هذا القسم</value>
+    <comment>combobox</comment>
+  </data>
+  <data name="HashtagDialog_uncheckAllLink.Text" xml:space="preserve">
+    <value>الغاءالكل</value>
+    <comment>link label</comment>
+  </data>
+  <data name="HashtagSheet_disabledBox.Text" xml:space="preserve">
     <value>تعطيل خدمة الهاشتاج. سيؤدي هذا أيضًا إلى تعطيل البحث عن الهاشتاج.</value>
     <comment>checkbox</comment>
   </data>
-  <data name="HashtagSheet_intervalLabel" xml:space="preserve">
+  <data name="HashtagSheet_filterBox.Text" xml:space="preserve">
+    <value>تعامل مع ألوان HTML Hex وتوجيهات C# وC++ كعلامات تصنيف</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="HashtagSheet_intervalLabel.Text" xml:space="preserve">
     <value>البحث عن علامات التصنيف كل</value>
     <comment>label</comment>
   </data>
-  <data name="HashtagSheet_introTitle" xml:space="preserve">
+  <data name="HashtagSheet_introBox.Text" xml:space="preserve">
     <value>تخصيص الخيارات المتقدمة لخدمة Hashtag Scanner</value>
+    <comment>label</comment>
+  </data>
+  <data name="HashtagSheet_rebuildBox.Text" xml:space="preserve">
+    <value>إعادة بناء قاعدة بيانات الهاشتاج عند إعادة التشغيل</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="HashtagSheet_styleBox.Text" xml:space="preserve">
+    <value>لا أحد
+المقدمة الحمراء
+خلفية صفراء</value>
+    <comment>combobox</comment>
+  </data>
+  <data name="HashtagSheet_styleLabel.Text" xml:space="preserve">
+    <value>تطبيق نمط مخصص</value>
     <comment>label</comment>
   </data>
   <data name="HashtagSheet_Title" xml:space="preserve">
@@ -1638,7 +1854,7 @@
     <value>قائمة القراءة الخاصة بي</value>
   </data>
   <data name="NavigatorWindow_refreshButton_Tooltip" xml:space="preserve">
-    <value>تحديث العناوين من الصفحة الحالية</value>
+    <value>تحديث العناوين من الصفحة الحالية (F5)</value>
     <comment>tooltip</comment>
   </data>
   <data name="NavigatorWindow_Text" xml:space="preserve">
@@ -2336,88 +2552,13 @@ ISO-code then comma then language name</comment>
     <value>قديم أو جديد</value>
     <comment>title</comment>
   </data>
-  <data name="ResizeImagesDialog.Text" xml:space="preserve">
-    <value>تغيير حجم وتعديل الصورة</value>
-    <comment>dialog title</comment>
-  </data>
-  <data name="ResizeImagesDialog_absRadio.Text" xml:space="preserve">
-    <value>مطلق</value>
-    <comment>radio button</comment>
-  </data>
-  <data name="ResizeImagesDialog_allLabel.Text" xml:space="preserve">
-    <value>جميع الصور في هذه الصفحة</value>
-    <comment>info label</comment>
-  </data>
-  <data name="ResizeImagesDialog_appliesTo" xml:space="preserve">
-    <value>ينطبق على</value>
-    <comment>label override</comment>
-  </data>
-  <data name="ResizeImagesDialog_autoSizeRadio.Text" xml:space="preserve">
-    <value>الحجم التلقائي</value>
-    <comment>radio</comment>
-  </data>
-  <data name="ResizeImagesDialog_heightLabel.Text" xml:space="preserve">
-    <value>ارتفاع</value>
-    <comment>label</comment>
-  </data>
-  <data name="ResizeImagesDialog_imageSizeLabel.Text" xml:space="preserve">
-    <value>حجم الصورة</value>
-    <comment>label</comment>
-  </data>
-  <data name="ResizeImagesDialog_limitsBox.Text" xml:space="preserve">
-    <value>تغيير حجم كل الصور
-لا تقم بتقليص الصور الكبيرة
-لا تقم بتكبير الصور الأصغر</value>
-    <comment>combobox</comment>
-  </data>
-  <data name="ResizeImagesDialog_noImages" xml:space="preserve">
-    <value>لم يتم العثور على صور في هذه الصفحة.
-
-يجب أن تكون الصور في حاوية المخطط التفصيلي. لا يمكن تعديل صور الخلفية.</value>
-    <comment>message box</comment>
-  </data>
-  <data name="ResizeImagesDialog_pctRadio.Text" xml:space="preserve">
-    <value>النسبة المئوية</value>
-    <comment>radio</comment>
-  </data>
-  <data name="ResizeImagesDialog_preserveBox.Text" xml:space="preserve">
-    <value>الحفاظ على حجم التخزين</value>
-    <comment>checkbox</comment>
-  </data>
-  <data name="ResizeImagesDialog_presetRadio.Text" xml:space="preserve">
-    <value>المعد مسبقا</value>
-    <comment>radio</comment>
-  </data>
-  <data name="ResizeImagesDialog_previewGroup.Text" xml:space="preserve">
-    <value>معاينة {0}</value>
-    <comment>group box for single image</comment>
-  </data>
-  <data name="ResizeImagesDialog_repositionBox.Text" xml:space="preserve">
-    <value>إعادة وضع صور الخلفية</value>
-    <comment>checkbox</comment>
-  </data>
-  <data name="ResizeImagesDialog_resetLinkLabel.Text" xml:space="preserve">
-    <value>إعادة القيم</value>
-    <comment>link label</comment>
-  </data>
-  <data name="ResizeImagesDialog_sizeLink.Text" xml:space="preserve">
-    <value>{0} × {1}</value>
-    <comment>width x height</comment>
-  </data>
-  <data name="ResizeImagesDialog_styleBox.Text" xml:space="preserve">
-    <value>إبداعي
-مقياس رمادي
-بني داكن
-بولارويد</value>
-    <comment>combobox</comment>
-  </data>
-  <data name="ResizeImagesDialog_viewSizeLabel.Text" xml:space="preserve">
-    <value>عرض الحجم</value>
-    <comment>label</comment>
-  </data>
   <data name="ribAboutButton_Label" xml:space="preserve">
     <value>حول OneMore</value>
     <comment>Ribbon OneMore menu item</comment>
+  </data>
+  <data name="ribAboutButton_Screentip" xml:space="preserve">
+    <value>عرض معلومات حول OneMore</value>
+    <comment>ribbon main</comment>
   </data>
   <data name="ribAddCaptionButton_Label" xml:space="preserve">
     <value>إضافة تعليق</value>
@@ -2458,6 +2599,14 @@ ISO-code then comma then language name</comment>
   <data name="ribAddFormulaButton_Screentip" xml:space="preserve">
     <value>إضافة / تحرير الصيغة في خلايا الجدول المحددة (F5)</value>
     <comment>Ribbon OneMore menu item, Formula...</comment>
+  </data>
+  <data name="ribAdjustImagesButton_Label" xml:space="preserve">
+    <value>تغيير حجم وتعديل</value>
+    <comment>Ribbon OneMore menu item, Resize selected image(s)</comment>
+  </data>
+  <data name="ribAdjustImagesButton_Screentip" xml:space="preserve">
+    <value>تغيير حجم الصور المحددة وضبطها</value>
+    <comment>ribbon images</comment>
   </data>
   <data name="ribAnalyzeButton_Label" xml:space="preserve">
     <value>تحليل تخزين البيانات</value>
@@ -2828,14 +2977,6 @@ ISO-code then comma then language name</comment>
     <value>تضمين محتوى صفحة أخرى في الصفحة الحالية</value>
     <comment>ribbon item screentip</comment>
   </data>
-  <data name="ribEmojiButton_Label" xml:space="preserve">
-    <value>أدخل رمز تعبيري</value>
-    <comment>ribbon edit</comment>
-  </data>
-  <data name="ribEmojiButton_Screentip" xml:space="preserve">
-    <value>أدخل واحدًا أو أكثر من الرموز التعبيرية</value>
-    <comment>ribbon edit</comment>
-  </data>
   <data name="ribEnableSpellCheckButton_Label" xml:space="preserve">
     <value>تمكين التدقيق الإملائي</value>
     <comment>Ribbon OneMore menu item, no spell check on this page</comment>
@@ -3021,7 +3162,7 @@ ISO-code then comma then language name</comment>
     <comment>ribbon table</comment>
   </data>
   <data name="ribInsertCodeBoxButton_Label" xml:space="preserve">
-    <value>مربع الكود</value>
+    <value>صندوق الكود</value>
     <comment>ribbon snippets</comment>
   </data>
   <data name="ribInsertCodeBoxButton_Screentip" xml:space="preserve">
@@ -3047,6 +3188,14 @@ ISO-code then comma then language name</comment>
   <data name="ribInsertDoubleLineButton_Screentip" xml:space="preserve">
     <value>أدخل خط أفقي مزدوج (Shift + Alt + Equals)</value>
     <comment>Ribbon OneMore menu item, Extras...</comment>
+  </data>
+  <data name="ribInsertEmojiButton_Label" xml:space="preserve">
+    <value>الرموز التعبيرية</value>
+    <comment>ribbon snippets</comment>
+  </data>
+  <data name="ribInsertEmojiButton_Screentip" xml:space="preserve">
+    <value>أدخل واحدًا أو أكثر من الرموز التعبيرية</value>
+    <comment>ribbon snippets</comment>
   </data>
   <data name="ribInsertExpandButton_Label" xml:space="preserve">
     <value>توسيع الانهيار</value>
@@ -3081,7 +3230,7 @@ ISO-code then comma then language name</comment>
     <comment>ribbon snippets</comment>
   </data>
   <data name="ribInsertNoteBoxButton_Label" xml:space="preserve">
-    <value>مربع الملاحظات</value>
+    <value>صندوق الملاحظات</value>
     <comment>ribbon snippets</comment>
   </data>
   <data name="ribInsertNoteBoxButton_Screentip" xml:space="preserve">
@@ -3232,6 +3381,10 @@ ISO-code then comma then language name</comment>
     <value>الملاح</value>
     <comment>ribbon main</comment>
   </data>
+  <data name="ribNavigatorButton_Screentip" xml:space="preserve">
+    <value>افتح نافذة OneMore Navigator</value>
+    <comment>ribbon main</comment>
+  </data>
   <data name="ribNewStyleButton_Label" xml:space="preserve">
     <value>إنشاء نمط جديد من النص</value>
     <comment>ribbon styles</comment>
@@ -3354,6 +3507,10 @@ ISO-code then comma then language name</comment>
   <data name="ribPluginsMenu_Label" xml:space="preserve">
     <value>الإضافات</value>
     <comment>favorites menu</comment>
+  </data>
+  <data name="ribPluginsMenu_Screentip" xml:space="preserve">
+    <value>تشغيل وإدارة المكونات الإضافية المخصصة</value>
+    <comment>ribbon file</comment>
   </data>
   <data name="ribPronunciateButton_Label" xml:space="preserve">
     <value>أدخل النطق</value>
@@ -3505,14 +3662,6 @@ ISO-code then comma then language name</comment>
   <data name="ribReportRemindersButton_Screentip" xml:space="preserve">
     <value>قم بإنشاء تقرير موجز للتذكيرات</value>
     <comment>ribbon reminders</comment>
-  </data>
-  <data name="ribResizeImagesButton_Label" xml:space="preserve">
-    <value>تغيير حجم وتعديل</value>
-    <comment>Ribbon OneMore menu item, Resize selected image(s)</comment>
-  </data>
-  <data name="ribResizeImagesButton_Screentip" xml:space="preserve">
-    <value>تغيير حجم الصور المحددة وضبطها</value>
-    <comment>ribbon images</comment>
   </data>
   <data name="ribRestoreAutosizeButton_Label" xml:space="preserve">
     <value>استعادة عرض الحاوية</value>
@@ -3714,6 +3863,10 @@ ISO-code then comma then language name</comment>
     <value>افتح وابدأ نافذة المؤقت</value>
     <comment>ribbon extras</comment>
   </data>
+  <data name="ribStatusMenu_Label" xml:space="preserve">
+    <value>حالة</value>
+    <comment>ribbon snippets</comment>
+  </data>
   <data name="ribStrikeoutTasksButton_Label" xml:space="preserve">
     <value>اكتمل يتوسطه خط مهام المهام</value>
     <comment>Ribbon OneMore menu item</comment>
@@ -3721,6 +3874,14 @@ ISO-code then comma then language name</comment>
   <data name="ribStrikeoutTasksButton_Screentip" xml:space="preserve">
     <value>قم بتبديل خط وسط النص المحدد بعلامات To Do كاملة أو غير كاملة</value>
     <comment>Ribbon OneMore menu item</comment>
+  </data>
+  <data name="ribStylizeImagesButton_Label" xml:space="preserve">
+    <value>تبسيط الصور</value>
+    <comment>ribbon images</comment>
+  </data>
+  <data name="ribStylizeImagesButton_Screentip" xml:space="preserve">
+    <value>إعادة تلوين الصور باستخدام النمط المحدد</value>
+    <comment>ribbon images</comment>
   </data>
   <data name="ribTableMenu_Label" xml:space="preserve">
     <value>الطاولة</value>
@@ -3859,6 +4020,10 @@ ISO-code then comma then language name</comment>
   </data>
   <data name="SearchAndReplaceDialog_matchBox.Text" xml:space="preserve">
     <value>حالة مباراة</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="SearchAndReplaceDialog_rawBox.Text" xml:space="preserve">
+    <value>استبدله بـ XML الخام</value>
     <comment>checkbox</comment>
   </data>
   <data name="SearchAndReplaceDialog_regBox.Text" xml:space="preserve">
@@ -4424,6 +4589,37 @@ ISO-code then comma then language name</comment>
     <value>تسطير</value>
     <comment>button</comment>
   </data>
+  <data name="StylizeImagesCommand_noImages" xml:space="preserve">
+    <value>لم يتم العثور على صور في هذه الصفحة</value>
+    <comment>message</comment>
+  </data>
+  <data name="StylizeImagesDialog_backBox.Text" xml:space="preserve">
+    <value>تنطبق على الصور الخلفية</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="StylizeImagesDialog_backImagesLabel.Text" xml:space="preserve">
+    <value>صور الخلفية: {0}، محددة: {1}</value>
+    <comment>label</comment>
+  </data>
+  <data name="StylizeImagesDialog_foreBox.Text" xml:space="preserve">
+    <value>تنطبق على الصور الأمامية</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="StylizeImagesDialog_foreImagesLabel.Text" xml:space="preserve">
+    <value>الصور الأمامية: {0}، محددة: {1}</value>
+    <comment>label</comment>
+  </data>
+  <data name="StylizeImagesDialog_styleBox.Text" xml:space="preserve">
+    <value>مقياس رمادي
+بني داكن
+بولارويد
+عكس</value>
+    <comment>combobox</comment>
+  </data>
+  <data name="StylizeImagesDialog_Text" xml:space="preserve">
+    <value>تبسيط الصور</value>
+    <comment>dialog title</comment>
+  </data>
   <data name="TableTheme_Screentip" xml:space="preserve">
     <value>موضوع جدول OneMore {0}</value>
     <comment>Screentip for table theme gallery tiles</comment>
@@ -4662,6 +4858,9 @@ ISO-code then comma then language name</comment>
   <data name="word_Completed" xml:space="preserve">
     <value>مكتمل</value>
   </data>
+  <data name="word_Constraint" xml:space="preserve">
+    <value>قيد</value>
+  </data>
   <data name="word_Contrast" xml:space="preserve">
     <value>مقابلة</value>
   </data>
@@ -4709,6 +4908,12 @@ ISO-code then comma then language name</comment>
   </data>
   <data name="word_History" xml:space="preserve">
     <value>تاريخ</value>
+  </data>
+  <data name="word_Indent" xml:space="preserve">
+    <value>مسافة بادئة</value>
+  </data>
+  <data name="word_Index" xml:space="preserve">
+    <value>word_Index</value>
   </data>
   <data name="word_Information" xml:space="preserve">
     <value>معلومة</value>
@@ -4811,6 +5016,9 @@ ISO-code then comma then language name</comment>
   </data>
   <data name="word_Storage" xml:space="preserve">
     <value>تخزين</value>
+  </data>
+  <data name="word_Style" xml:space="preserve">
+    <value>أسلوب</value>
   </data>
   <data name="word_Stylize" xml:space="preserve">
     <value>أسلب</value>

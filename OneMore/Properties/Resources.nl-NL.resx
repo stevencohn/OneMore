@@ -185,6 +185,90 @@ OneNote wordt automatisch gesloten</value>
     <value>OneMoreAddIn</value>
     <comment>SKIP</comment>
   </data>
+  <data name="AdjustImagesDialog.Text" xml:space="preserve">
+    <value>De grootte van het formaat wijzigen en aanpassen</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="AdjustImagesDialog_absRadio.Text" xml:space="preserve">
+    <value>Absoluut</value>
+    <comment>radio button</comment>
+  </data>
+  <data name="AdjustImagesDialog_allLabelBackground" xml:space="preserve">
+    <value>{0} achtergrondafbeeldingen</value>
+    <comment>info label</comment>
+  </data>
+  <data name="AdjustImagesDialog_allLabelForeground" xml:space="preserve">
+    <value>{0} voorgrondafbeeldingen</value>
+    <comment>info label</comment>
+  </data>
+  <data name="AdjustImagesDialog_appliesTo" xml:space="preserve">
+    <value>Geldt voor</value>
+    <comment>label override</comment>
+  </data>
+  <data name="AdjustImagesDialog_autoSizeRadio.Text" xml:space="preserve">
+    <value>Automatische grootte</value>
+    <comment>radio</comment>
+  </data>
+  <data name="AdjustImagesDialog_heightLabel.Text" xml:space="preserve">
+    <value>Hoogte</value>
+    <comment>label</comment>
+  </data>
+  <data name="AdjustImagesDialog_imageSizeLabel.Text" xml:space="preserve">
+    <value>Afbeeldingsgrootte</value>
+    <comment>label</comment>
+  </data>
+  <data name="AdjustImagesDialog_limitsBox.Text" xml:space="preserve">
+    <value>Formaat van alle afbeeldingen wijzigen
+Verklein geen grotere afbeeldingen
+Kleinere afbeeldingen niet vergroten</value>
+    <comment>combobox</comment>
+  </data>
+  <data name="AdjustImagesDialog_noImages" xml:space="preserve">
+    <value>Er zijn geen afbeeldingen gevonden op deze pagina.
+
+Afbeeldingen moeten zich in een overzichtscontainer bevinden. Achtergrondafbeeldingen kunnen niet worden aangepast.</value>
+    <comment>message box</comment>
+  </data>
+  <data name="AdjustImagesDialog_pctRadio.Text" xml:space="preserve">
+    <value>Percentage</value>
+    <comment>radio</comment>
+  </data>
+  <data name="AdjustImagesDialog_preserveBox.Text" xml:space="preserve">
+    <value>Opslaggrootte behouden</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="AdjustImagesDialog_presetRadio.Text" xml:space="preserve">
+    <value>Vooraf ingesteld</value>
+    <comment>radio</comment>
+  </data>
+  <data name="AdjustImagesDialog_previewGroup.Text" xml:space="preserve">
+    <value>Voorbeeld {0}</value>
+    <comment>group box for single image</comment>
+  </data>
+  <data name="AdjustImagesDialog_repositionBox.Text" xml:space="preserve">
+    <value>Achtergrondafbeeldingen opnieuw positioneren</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="AdjustImagesDialog_resetLinkLabel.Text" xml:space="preserve">
+    <value>Waarden resetten</value>
+    <comment>link label</comment>
+  </data>
+  <data name="AdjustImagesDialog_sizeLink.Text" xml:space="preserve">
+    <value>{0} x {1}</value>
+    <comment>width x height</comment>
+  </data>
+  <data name="AdjustImagesDialog_styleBox.Text" xml:space="preserve">
+    <value>Origineel
+Grijsschaal
+Sepia
+Polaroid
+Omkeren</value>
+    <comment>combobox</comment>
+  </data>
+  <data name="AdjustImagesDialog_viewSizeLabel.Text" xml:space="preserve">
+    <value>Bekijk maat</value>
+    <comment>label</comment>
+  </data>
   <data name="AliasSheet.Text" xml:space="preserve">
     <value>Opdrachtaliassen definiëren voor gebruik in het opdrachtenpalet</value>
     <comment>intro box</comment>
@@ -288,6 +372,10 @@ OneNote wordt automatisch gesloten</value>
   <data name="ArchiveCommand_OpenFileTitle" xml:space="preserve">
     <value>Archieflocatie</value>
     <comment>archive dialog title</comment>
+  </data>
+  <data name="ArrangeContainersCommand_noContainers" xml:space="preserve">
+    <value>Er zijn geen containers gevonden op deze pagina</value>
+    <comment>message</comment>
   </data>
   <data name="ArrangeContainersDialog.Text" xml:space="preserve">
     <value>Containers schikken</value>
@@ -743,12 +831,24 @@ Lettertype laatste kolom</value>
     <value>Auto</value>
     <comment>emoji</comment>
   </data>
+  <data name="Emoji_BallotBox" xml:space="preserve">
+    <value>Stembus</value>
+    <comment>emoji</comment>
+  </data>
+  <data name="Emoji_Bell" xml:space="preserve">
+    <value>Klok</value>
+    <comment>emoji</comment>
+  </data>
   <data name="Emoji_Bullet" xml:space="preserve">
     <value>Kogel</value>
     <comment>emoji</comment>
   </data>
   <data name="Emoji_Calendar" xml:space="preserve">
     <value>Kalender</value>
+    <comment>emoji</comment>
+  </data>
+  <data name="Emoji_Camera" xml:space="preserve">
+    <value>Camera</value>
     <comment>emoji</comment>
   </data>
   <data name="Emoji_CheckMark" xml:space="preserve">
@@ -759,6 +859,10 @@ Lettertype laatste kolom</value>
     <value>Cirkel</value>
     <comment>emoji</comment>
   </data>
+  <data name="Emoji_Clipboard" xml:space="preserve">
+    <value>Klembord</value>
+    <comment>emoji</comment>
+  </data>
   <data name="Emoji_Cloud" xml:space="preserve">
     <value>Wolk</value>
     <comment>emoji</comment>
@@ -767,7 +871,7 @@ Lettertype laatste kolom</value>
     <value>auteursrechten</value>
     <comment>emoji</comment>
   </data>
-  <data name="Emoji_CrossMark" xml:space="preserve">
+  <data name="Emoji_Cross" xml:space="preserve">
     <value>Kruisteken</value>
     <comment>emoji</comment>
   </data>
@@ -775,8 +879,8 @@ Lettertype laatste kolom</value>
     <value>Wielersport</value>
     <comment>emoji</comment>
   </data>
-  <data name="Emoji_Email" xml:space="preserve">
-    <value>E-mail</value>
+  <data name="Emoji_Envelope" xml:space="preserve">
+    <value>Envelop</value>
     <comment>emoji</comment>
   </data>
   <data name="Emoji_Eyes" xml:space="preserve">
@@ -791,16 +895,32 @@ Lettertype laatste kolom</value>
     <value>Financieel</value>
     <comment>emoji</comment>
   </data>
+  <data name="Emoji_Flag" xml:space="preserve">
+    <value>Vlag</value>
+    <comment>emoji</comment>
+  </data>
+  <data name="Emoji_Folder" xml:space="preserve">
+    <value>Map</value>
+    <comment>emoji</comment>
+  </data>
+  <data name="Emoji_Globe" xml:space="preserve">
+    <value>Wereldbol</value>
+    <comment>emoji</comment>
+  </data>
   <data name="Emoji_Hammer" xml:space="preserve">
     <value>Hamer</value>
+    <comment>emoji</comment>
+  </data>
+  <data name="Emoji_Heart" xml:space="preserve">
+    <value>Hart</value>
     <comment>emoji</comment>
   </data>
   <data name="Emoji_Images" xml:space="preserve">
     <value>Afbeeldingen</value>
     <comment>emoji</comment>
   </data>
-  <data name="Emoji_Important" xml:space="preserve">
-    <value>Belangrijk</value>
+  <data name="Emoji_Interrobang" xml:space="preserve">
+    <value>Interrobang</value>
     <comment>emoji</comment>
   </data>
   <data name="Emoji_Journal" xml:space="preserve">
@@ -809,6 +929,10 @@ Lettertype laatste kolom</value>
   </data>
   <data name="Emoji_LeftwardsArrow" xml:space="preserve">
     <value>Pijl naar links</value>
+    <comment>emoji</comment>
+  </data>
+  <data name="Emoji_Lock" xml:space="preserve">
+    <value>Slot</value>
     <comment>emoji</comment>
   </data>
   <data name="Emoji_Memo" xml:space="preserve">
@@ -825,6 +949,10 @@ Lettertype laatste kolom</value>
   </data>
   <data name="Emoji_Pushpin" xml:space="preserve">
     <value>Punaise</value>
+    <comment>emoji</comment>
+  </data>
+  <data name="Emoji_Recycle" xml:space="preserve">
+    <value>Recyclen</value>
     <comment>emoji</comment>
   </data>
   <data name="Emoji_RightwardsArrow" xml:space="preserve">
@@ -851,6 +979,10 @@ Lettertype laatste kolom</value>
     <value>Sport</value>
     <comment>emoji</comment>
   </data>
+  <data name="Emoji_SportsEU" xml:space="preserve">
+    <value>Sport EU</value>
+    <comment>emoji</comment>
+  </data>
   <data name="Emoji_Star" xml:space="preserve">
     <value>Ster</value>
     <comment>emoji</comment>
@@ -860,11 +992,23 @@ Lettertype laatste kolom</value>
     <comment>emoji</comment>
   </data>
   <data name="Emoji_Tasks" xml:space="preserve">
-    <value>Taken</value>
+    <value>Taak</value>
+    <comment>emoji</comment>
+  </data>
+  <data name="Emoji_Tools" xml:space="preserve">
+    <value>Hulpmiddelen</value>
     <comment>emoji</comment>
   </data>
   <data name="Emoji_Travel" xml:space="preserve">
     <value>Reizen</value>
+    <comment>emoji</comment>
+  </data>
+  <data name="Emoji_Video" xml:space="preserve">
+    <value>Video</value>
+    <comment>emoji</comment>
+  </data>
+  <data name="Emoji_Warning" xml:space="preserve">
+    <value>Waarschuwing</value>
     <comment>emoji</comment>
   </data>
   <data name="Emoji_Watch" xml:space="preserve">
@@ -1091,6 +1235,10 @@ Symbolen: PI, E</value>
     <value>Controleren op nieuwe versies van OneMore wanneer OneNote wordt gestart</value>
     <comment>checkbox</comment>
   </data>
+  <data name="GeneralSheet_experimentalBox.Text" xml:space="preserve">
+    <value>Schakel experimentele functies in</value>
+    <comment>checkbox</comment>
+  </data>
   <data name="GeneralSheet_introBox.Text" xml:space="preserve">
     <value>Pas het algemene gedrag van OneMore aan</value>
     <comment>textbox</comment>
@@ -1114,20 +1262,88 @@ Symbolen: PI, E</value>
   <data name="HasActiveMedia" xml:space="preserve">
     <value>Kan OneMore-opdrachten niet aanroepen terwijl er een actieve opname is. Stop de opname en probeer het opnieuw.</value>
   </data>
-  <data name="HashtagDialogs_introLabel.Text" xml:space="preserve">
-    <value>Begin met het typen van een deel van een hashtag of * voor alles</value>
+  <data name="HashtagContext_jumpParaTip" xml:space="preserve">
+    <value>Spring naar deze paragraaf; Laatst bijgewerkt {0}</value>
+    <comment>tooltip</comment>
+  </data>
+  <data name="HashtagContext_jumpTip" xml:space="preserve">
+    <value>Spring naar deze pagina</value>
+    <comment>tooltip</comment>
+  </data>
+  <data name="HashtagDialog.Title" xml:space="preserve">
+    <value>Zoek hashtags</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="HashtagDialog_allTags" xml:space="preserve">
+    <value>alle labels</value>
+    <comment>text</comment>
+  </data>
+  <data name="HashtagDialog_badLink" xml:space="preserve">
+    <value>Kan niet naar deze pagina navigeren. Mogelijk is deze verwijderd</value>
+    <comment>info message</comment>
+  </data>
+  <data name="HashtagDialog_checkAllLink.Text" xml:space="preserve">
+    <value>Controleer alles</value>
+    <comment>link label</comment>
+  </data>
+  <data name="HashtagDialog_introLabel.Text" xml:space="preserve">
+    <value>Typ een deel van een of meer hashtags. Wildcards worden geïmpliceerd, tenzij een tag wordt afgesloten met een punt. Haakjes en logische operatoren zijn toegestaan.</value>
     <comment>label</comment>
   </data>
-  <data name="HashtagSheet_disabledBox" xml:space="preserve">
+  <data name="HashtagDialog_lastScanLabel" xml:space="preserve">
+    <value>Laatste scan: {0}, Volgende scan: {1}</value>
+    <comment>label</comment>
+  </data>
+  <data name="HashtagDialog_noResults" xml:space="preserve">
+    <value>geen resultaten gevonden</value>
+    <comment>message</comment>
+  </data>
+  <data name="HashtagDialog_recentTags" xml:space="preserve">
+    <value>recente tags</value>
+    <comment>text</comment>
+  </data>
+  <data name="HashtagDialog_scanButton.Text" xml:space="preserve">
+    <value>Scan nu</value>
+    <comment>menu button</comment>
+  </data>
+  <data name="HashtagDialog_scopeBox.Text" xml:space="preserve">
+    <value>Alle
+Dit notitieboekje
+Deze sectie</value>
+    <comment>combobox</comment>
+  </data>
+  <data name="HashtagDialog_uncheckAllLink.Text" xml:space="preserve">
+    <value>Schakel alles uit</value>
+    <comment>link label</comment>
+  </data>
+  <data name="HashtagSheet_disabledBox.Text" xml:space="preserve">
     <value>Schakel de hashtag-service uit. Hiermee wordt ook het zoeken naar hashtags uitgeschakeld.</value>
     <comment>checkbox</comment>
   </data>
-  <data name="HashtagSheet_intervalLabel" xml:space="preserve">
+  <data name="HashtagSheet_filterBox.Text" xml:space="preserve">
+    <value>Behandel HTML Hex-kleuren en C#- en C++-richtlijnen als hashtags</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="HashtagSheet_intervalLabel.Text" xml:space="preserve">
     <value>Scan elke keer op hashtags</value>
     <comment>label</comment>
   </data>
-  <data name="HashtagSheet_introTitle" xml:space="preserve">
+  <data name="HashtagSheet_introBox.Text" xml:space="preserve">
     <value>Pas geavanceerde opties aan voor de Hashtag Scanner Service</value>
+    <comment>label</comment>
+  </data>
+  <data name="HashtagSheet_rebuildBox.Text" xml:space="preserve">
+    <value>Herbouw de hashtag-database bij het opnieuw opstarten</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="HashtagSheet_styleBox.Text" xml:space="preserve">
+    <value>Geen
+Rode voorgrond
+Gele achtergrond</value>
+    <comment>combobox</comment>
+  </data>
+  <data name="HashtagSheet_styleLabel.Text" xml:space="preserve">
+    <value>Aangepaste stijl toepassen</value>
     <comment>label</comment>
   </data>
   <data name="HashtagSheet_Title" xml:space="preserve">
@@ -1639,7 +1855,7 @@ Aangepaste kop 3</value>
     <value>Mijn leeslijst</value>
   </data>
   <data name="NavigatorWindow_refreshButton_Tooltip" xml:space="preserve">
-    <value>Vernieuw de koppen van de huidige pagina</value>
+    <value>Kopteksten vernieuwen vanaf de huidige pagina (F5)</value>
     <comment>tooltip</comment>
   </data>
   <data name="NavigatorWindow_Text" xml:space="preserve">
@@ -2337,88 +2553,13 @@ Selecteer NO om één lege regel tussen paragrafen te behouden</value>
     <value>Oud of nieuw</value>
     <comment>title</comment>
   </data>
-  <data name="ResizeImagesDialog.Text" xml:space="preserve">
-    <value>De grootte van het formaat wijzigen en aanpassen</value>
-    <comment>dialog title</comment>
-  </data>
-  <data name="ResizeImagesDialog_absRadio.Text" xml:space="preserve">
-    <value>Absoluut</value>
-    <comment>radio button</comment>
-  </data>
-  <data name="ResizeImagesDialog_allLabel.Text" xml:space="preserve">
-    <value>alle afbeeldingen op deze pagina</value>
-    <comment>info label</comment>
-  </data>
-  <data name="ResizeImagesDialog_appliesTo" xml:space="preserve">
-    <value>Geldt voor</value>
-    <comment>label override</comment>
-  </data>
-  <data name="ResizeImagesDialog_autoSizeRadio.Text" xml:space="preserve">
-    <value>Automatische grootte</value>
-    <comment>radio</comment>
-  </data>
-  <data name="ResizeImagesDialog_heightLabel.Text" xml:space="preserve">
-    <value>Hoogte</value>
-    <comment>label</comment>
-  </data>
-  <data name="ResizeImagesDialog_imageSizeLabel.Text" xml:space="preserve">
-    <value>Afbeeldingsgrootte</value>
-    <comment>label</comment>
-  </data>
-  <data name="ResizeImagesDialog_limitsBox.Text" xml:space="preserve">
-    <value>Formaat van alle afbeeldingen wijzigen
-Verklein geen grotere afbeeldingen
-Kleinere afbeeldingen niet vergroten</value>
-    <comment>combobox</comment>
-  </data>
-  <data name="ResizeImagesDialog_noImages" xml:space="preserve">
-    <value>Er zijn geen afbeeldingen gevonden op deze pagina.
-
-Afbeeldingen moeten zich in een overzichtscontainer bevinden. Achtergrondafbeeldingen kunnen niet worden aangepast.</value>
-    <comment>message box</comment>
-  </data>
-  <data name="ResizeImagesDialog_pctRadio.Text" xml:space="preserve">
-    <value>Percentage</value>
-    <comment>radio</comment>
-  </data>
-  <data name="ResizeImagesDialog_preserveBox.Text" xml:space="preserve">
-    <value>Opslaggrootte behouden</value>
-    <comment>checkbox</comment>
-  </data>
-  <data name="ResizeImagesDialog_presetRadio.Text" xml:space="preserve">
-    <value>Vooraf ingesteld</value>
-    <comment>radio</comment>
-  </data>
-  <data name="ResizeImagesDialog_previewGroup.Text" xml:space="preserve">
-    <value>Voorbeeld {0}</value>
-    <comment>group box for single image</comment>
-  </data>
-  <data name="ResizeImagesDialog_repositionBox.Text" xml:space="preserve">
-    <value>Achtergrondafbeeldingen opnieuw positioneren</value>
-    <comment>checkbox</comment>
-  </data>
-  <data name="ResizeImagesDialog_resetLinkLabel.Text" xml:space="preserve">
-    <value>Waarden resetten</value>
-    <comment>link label</comment>
-  </data>
-  <data name="ResizeImagesDialog_sizeLink.Text" xml:space="preserve">
-    <value>{0} x {1}</value>
-    <comment>width x height</comment>
-  </data>
-  <data name="ResizeImagesDialog_styleBox.Text" xml:space="preserve">
-    <value>Origineel
-Grijze schaal
-Sepia
-Polaroid</value>
-    <comment>combobox</comment>
-  </data>
-  <data name="ResizeImagesDialog_viewSizeLabel.Text" xml:space="preserve">
-    <value>Bekijk maat</value>
-    <comment>label</comment>
-  </data>
   <data name="ribAboutButton_Label" xml:space="preserve">
     <value>Over OneMore</value>
     <comment>Ribbon OneMore menu item</comment>
+  </data>
+  <data name="ribAboutButton_Screentip" xml:space="preserve">
+    <value>Toon informatie over OneMore</value>
+    <comment>ribbon main</comment>
   </data>
   <data name="ribAddCaptionButton_Label" xml:space="preserve">
     <value>Bijschrift toevoegen</value>
@@ -2459,6 +2600,14 @@ Polaroid</value>
   <data name="ribAddFormulaButton_Screentip" xml:space="preserve">
     <value>Formule toevoegen/bewerken in geselecteerde tabelcellen (F5)</value>
     <comment>Ribbon OneMore menu item, Formula...</comment>
+  </data>
+  <data name="ribAdjustImagesButton_Label" xml:space="preserve">
+    <value>Formaat wijzigen en aanpassen</value>
+    <comment>Ribbon OneMore menu item, Resize selected image(s)</comment>
+  </data>
+  <data name="ribAdjustImagesButton_Screentip" xml:space="preserve">
+    <value>Formaat wijzigen en geselecteerde afbeeldingen aanpassen</value>
+    <comment>ribbon images</comment>
   </data>
   <data name="ribAnalyzeButton_Label" xml:space="preserve">
     <value>Gegevensopslag analyseren</value>
@@ -2829,14 +2978,6 @@ Polaroid</value>
     <value>Inhoud van een andere pagina insluiten in de huidige pagina</value>
     <comment>ribbon item screentip</comment>
   </data>
-  <data name="ribEmojiButton_Label" xml:space="preserve">
-    <value>Emoji invoegen</value>
-    <comment>ribbon edit</comment>
-  </data>
-  <data name="ribEmojiButton_Screentip" xml:space="preserve">
-    <value>Voeg een of meer emoji's in</value>
-    <comment>ribbon edit</comment>
-  </data>
   <data name="ribEnableSpellCheckButton_Label" xml:space="preserve">
     <value>Spellingcontrole inschakelen</value>
     <comment>Ribbon OneMore menu item, no spell check on this page</comment>
@@ -3022,7 +3163,7 @@ Polaroid</value>
     <comment>ribbon table</comment>
   </data>
   <data name="ribInsertCodeBoxButton_Label" xml:space="preserve">
-    <value>Code vak</value>
+    <value>Codebox</value>
     <comment>ribbon snippets</comment>
   </data>
   <data name="ribInsertCodeBoxButton_Screentip" xml:space="preserve">
@@ -3048,6 +3189,14 @@ Polaroid</value>
   <data name="ribInsertDoubleLineButton_Screentip" xml:space="preserve">
     <value>Dubbele horizontale lijn invoegen (Shift + Alt + Equals)</value>
     <comment>Ribbon OneMore menu item, Extras...</comment>
+  </data>
+  <data name="ribInsertEmojiButton_Label" xml:space="preserve">
+    <value>Emoji</value>
+    <comment>ribbon snippets</comment>
+  </data>
+  <data name="ribInsertEmojiButton_Screentip" xml:space="preserve">
+    <value>Voeg een of meer emoji's in</value>
+    <comment>ribbon snippets</comment>
   </data>
   <data name="ribInsertExpandButton_Label" xml:space="preserve">
     <value>Uitvouwen/samenvouwen</value>
@@ -3082,7 +3231,7 @@ Polaroid</value>
     <comment>ribbon snippets</comment>
   </data>
   <data name="ribInsertNoteBoxButton_Label" xml:space="preserve">
-    <value>Opmerkingen vak</value>
+    <value>Notities vak</value>
     <comment>ribbon snippets</comment>
   </data>
   <data name="ribInsertNoteBoxButton_Screentip" xml:space="preserve">
@@ -3138,7 +3287,7 @@ Polaroid</value>
     <comment>ribbon snippets</comment>
   </data>
   <data name="ribInsertWarnBoxButton_Label" xml:space="preserve">
-    <value>Waarschuwingsvak</value>
+    <value>Waarschuwingsdoos</value>
     <comment>ribbon snippets</comment>
   </data>
   <data name="ribInsertWarnBoxButton_Screentip" xml:space="preserve">
@@ -3230,6 +3379,10 @@ Polaroid</value>
   </data>
   <data name="ribNavigatorButton_Label" xml:space="preserve">
     <value>Navigator</value>
+    <comment>ribbon main</comment>
+  </data>
+  <data name="ribNavigatorButton_Screentip" xml:space="preserve">
+    <value>Open het OneMore Navigator-venster</value>
     <comment>ribbon main</comment>
   </data>
   <data name="ribNewStyleButton_Label" xml:space="preserve">
@@ -3354,6 +3507,10 @@ Polaroid</value>
   <data name="ribPluginsMenu_Label" xml:space="preserve">
     <value>Plug-ins</value>
     <comment>favorites menu</comment>
+  </data>
+  <data name="ribPluginsMenu_Screentip" xml:space="preserve">
+    <value>Aangepaste plug-ins uitvoeren en beheren</value>
+    <comment>ribbon file</comment>
   </data>
   <data name="ribPronunciateButton_Label" xml:space="preserve">
     <value>Uitspraak invoegen</value>
@@ -3505,14 +3662,6 @@ Polaroid</value>
   <data name="ribReportRemindersButton_Screentip" xml:space="preserve">
     <value>Genereer een overzichtsrapport van herinneringen</value>
     <comment>ribbon reminders</comment>
-  </data>
-  <data name="ribResizeImagesButton_Label" xml:space="preserve">
-    <value>Formaat wijzigen en aanpassen</value>
-    <comment>Ribbon OneMore menu item, Resize selected image(s)</comment>
-  </data>
-  <data name="ribResizeImagesButton_Screentip" xml:space="preserve">
-    <value>Formaat wijzigen en geselecteerde afbeeldingen aanpassen</value>
-    <comment>ribbon images</comment>
   </data>
   <data name="ribRestoreAutosizeButton_Label" xml:space="preserve">
     <value>Herstel containerbreedtes</value>
@@ -3714,6 +3863,10 @@ Polaroid</value>
     <value>Open en start het timervenster</value>
     <comment>ribbon extras</comment>
   </data>
+  <data name="ribStatusMenu_Label" xml:space="preserve">
+    <value>Toestand</value>
+    <comment>ribbon snippets</comment>
+  </data>
   <data name="ribStrikeoutTasksButton_Label" xml:space="preserve">
     <value>Doorhalen voltooid om tags te doen</value>
     <comment>Ribbon OneMore menu item</comment>
@@ -3721,6 +3874,14 @@ Polaroid</value>
   <data name="ribStrikeoutTasksButton_Screentip" xml:space="preserve">
     <value>Schakel het doorhalen van tekst die is gemarkeerd met complete of onvolledige Taken-tags in of uit</value>
     <comment>Ribbon OneMore menu item</comment>
+  </data>
+  <data name="ribStylizeImagesButton_Label" xml:space="preserve">
+    <value>Stileer afbeeldingen</value>
+    <comment>ribbon images</comment>
+  </data>
+  <data name="ribStylizeImagesButton_Screentip" xml:space="preserve">
+    <value>Kleur afbeeldingen opnieuw met de geselecteerde stijl</value>
+    <comment>ribbon images</comment>
   </data>
   <data name="ribTableMenu_Label" xml:space="preserve">
     <value>Tafel</value>
@@ -3859,6 +4020,10 @@ Polaroid</value>
   </data>
   <data name="SearchAndReplaceDialog_matchBox.Text" xml:space="preserve">
     <value>Match case</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="SearchAndReplaceDialog_rawBox.Text" xml:space="preserve">
+    <value>Vervangen door onbewerkte XML</value>
     <comment>checkbox</comment>
   </data>
   <data name="SearchAndReplaceDialog_regBox.Text" xml:space="preserve">
@@ -4424,6 +4589,37 @@ Kop - opnemen in inhoudsopgave</value>
     <value>Onderstrepen</value>
     <comment>button</comment>
   </data>
+  <data name="StylizeImagesCommand_noImages" xml:space="preserve">
+    <value>Er zijn geen afbeeldingen gevonden op deze pagina</value>
+    <comment>message</comment>
+  </data>
+  <data name="StylizeImagesDialog_backBox.Text" xml:space="preserve">
+    <value>Toepassen op achtergrondafbeeldingen</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="StylizeImagesDialog_backImagesLabel.Text" xml:space="preserve">
+    <value>Achtergrondafbeeldingen: {0}, geselecteerd: {1}</value>
+    <comment>label</comment>
+  </data>
+  <data name="StylizeImagesDialog_foreBox.Text" xml:space="preserve">
+    <value>Toepassen op voorgrondafbeeldingen</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="StylizeImagesDialog_foreImagesLabel.Text" xml:space="preserve">
+    <value>Voorgrondafbeeldingen: {0}, geselecteerd: {1}</value>
+    <comment>label</comment>
+  </data>
+  <data name="StylizeImagesDialog_styleBox.Text" xml:space="preserve">
+    <value>Grijsschaal
+Sepia
+Polaroid
+Omkeren</value>
+    <comment>combobox</comment>
+  </data>
+  <data name="StylizeImagesDialog_Text" xml:space="preserve">
+    <value>Stileer afbeeldingen</value>
+    <comment>dialog title</comment>
+  </data>
   <data name="TableTheme_Screentip" xml:space="preserve">
     <value>OneMore Table-thema {0}</value>
     <comment>Screentip for table theme gallery tiles</comment>
@@ -4662,6 +4858,9 @@ In deze sectie</value>
   <data name="word_Completed" xml:space="preserve">
     <value>Voltooid</value>
   </data>
+  <data name="word_Constraint" xml:space="preserve">
+    <value>Beperking</value>
+  </data>
   <data name="word_Contrast" xml:space="preserve">
     <value>Contrast</value>
   </data>
@@ -4709,6 +4908,12 @@ In deze sectie</value>
   </data>
   <data name="word_History" xml:space="preserve">
     <value>Geschiedenis</value>
+  </data>
+  <data name="word_Indent" xml:space="preserve">
+    <value>Inspringen</value>
+  </data>
+  <data name="word_Index" xml:space="preserve">
+    <value>woord_Index</value>
   </data>
   <data name="word_Information" xml:space="preserve">
     <value>Informatie</value>
@@ -4811,6 +5016,9 @@ In deze sectie</value>
   </data>
   <data name="word_Storage" xml:space="preserve">
     <value>Opslag</value>
+  </data>
+  <data name="word_Style" xml:space="preserve">
+    <value>Stijl</value>
   </data>
   <data name="word_Stylize" xml:space="preserve">
     <value>Stileren</value>

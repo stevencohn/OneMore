@@ -2,6 +2,8 @@
 // Copyright © 2021 Steven M Cohn.  All rights reserved.
 //************************************************************************************************
 
+#pragma warning disable S6605 // Collection-specific "Exists" method should be used (Array!!)
+
 namespace River.OneMoreAddIn.Commands
 {
 	using River.OneMoreAddIn.Models;
@@ -133,7 +135,7 @@ namespace River.OneMoreAddIn.Commands
 			{
 				if (page == null)
 				{
-					page = one.GetPage();
+					page = await one.GetPage();
 					ns = page.Namespace;
 				}
 
@@ -194,7 +196,7 @@ namespace River.OneMoreAddIn.Commands
 					progress.Increment();
 					progress.SetMessage(referal.Attribute(NameAttr).Value);
 
-					var refpage = one.GetPage(referal.Attribute("ID").Value, OneNote.PageDetail.Basic);
+					var refpage = await one.GetPage(referal.Attribute("ID").Value, OneNote.PageDetail.Basic);
 					var reftitle = Unstamp(refpage.Title);
 
 					logger.WriteLine($"searching for matches on '{reftitle}'");
@@ -252,7 +254,8 @@ namespace River.OneMoreAddIn.Commands
 			}
 
 			// strip emojis (Segoe UI Emoji font)
-			title = Emojis.RemoveEmojis(title);
+			using var emojis = new Emojis();
+			title = emojis.RemoveEmojis(title);
 
 			return title.Trim();
 		}

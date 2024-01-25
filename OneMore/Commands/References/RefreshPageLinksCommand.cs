@@ -144,7 +144,7 @@ namespace River.OneMoreAddIn.Commands
 			{
 				OneNote.Scope.Notebooks => await one.GetNotebooks(OneNote.Scope.Pages),
 				OneNote.Scope.Sections => await one.GetNotebook(OneNote.Scope.Pages),
-				_ => one.GetSection(),
+				_ => await one.GetSection(),
 			};
 		}
 
@@ -161,7 +161,8 @@ namespace River.OneMoreAddIn.Commands
 			}
 
 			// strip emojis (Segoe UI Emoji font)
-			title = Emojis.RemoveEmojis(title);
+			using var emojis = new Emojis();
+			title = emojis.RemoveEmojis(title);
 
 			return title.Trim();
 		}

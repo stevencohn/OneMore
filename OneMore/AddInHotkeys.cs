@@ -36,7 +36,7 @@ namespace River.OneMoreAddIn
 				.Select(m => new
 				{
 					m.Method,
-					Command = (CommandAttribute)m.Attributes.First()
+					Command = (CommandAttribute)m.Attributes[0]
 				});
 
 			// an awful hack to avoid a conflict with Italian keyboard (FIGS and likely UK) that

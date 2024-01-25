@@ -86,6 +86,38 @@
               getLabel="GetRibbonLabel"
               imageMso="StarUnratedFull"
               getContent="GetMySnippetsContent"/>
+            <menu id="ribStatusMenu" getLabel="GetRibbonLabel" imageMso="AppointmentColorDialog" showImage ="true">
+              <button
+                id="ribInsertGrayStatusButton"
+                imageMso="AppointmentColor4"
+                getLabel="GetRibbonLabel"
+                getScreentip="GetRibbonScreentip"
+                onAction="InsertGrayStatusCmd"/>
+              <button
+                id="ribInsertRedStatusButton"
+                imageMso="AppointmentColor1"
+                getLabel="GetRibbonLabel"
+                getScreentip="GetRibbonScreentip"
+                onAction="InsertRedStatusCmd"/>
+              <button
+                id="ribInsertYellowStatusButton"
+                imageMso="AppointmentColor10"
+                getLabel="GetRibbonLabel"
+                getScreentip="GetRibbonScreentip"
+                onAction="InsertYellowStatusCmd"/>
+              <button
+                id="ribInsertGreenStatusButton"
+                imageMso="AppointmentColor3"
+                getLabel="GetRibbonLabel"
+                getScreentip="GetRibbonScreentip"
+                onAction="InsertGreenStatusCmd"/>
+              <button
+                id="ribInsertBlueStatusButton"
+                imageMso="AppointmentColor2"
+                getLabel="GetRibbonLabel"
+                getScreentip="GetRibbonScreentip"
+                onAction="InsertBlueStatusCmd"/>
+            </menu>
             <button
               id="ribInsertBreadcrumbButton"
               imageMso="ShapeRightArrow"
@@ -116,6 +148,12 @@
               getLabel="GetRibbonLabel"
               getScreentip="GetRibbonScreentip"
               onAction="InsertDateCmd"/>
+            <button
+              id="ribInsertEmojiButton"
+              imageMso="ShapeSmileyFace"
+              getLabel="GetRibbonLabel"
+              getScreentip="GetRibbonScreentip"
+              onAction="InsertEmojiCmd"/>
             <button
               id="ribInsertTocButton"
               imageMso="WordInsertTableOfContents2"
@@ -159,37 +197,6 @@
               getLabel="GetRibbonLabel"
               getScreentip="GetRibbonScreentip"
               onAction="InsertExpandCmd"/>
-            <menuSeparator id="sepSnipLabels" />
-            <button
-              id="ribInsertGrayStatusButton"
-              imageMso="AppointmentColor4"
-              getLabel="GetRibbonLabel"
-              getScreentip="GetRibbonScreentip"
-              onAction="InsertGrayStatusCmd"/>
-            <button
-              id="ribInsertRedStatusButton"
-              imageMso="AppointmentColor1"
-              getLabel="GetRibbonLabel"
-              getScreentip="GetRibbonScreentip"
-              onAction="InsertRedStatusCmd"/>
-            <button
-              id="ribInsertYellowStatusButton"
-              imageMso="AppointmentColor10"
-              getLabel="GetRibbonLabel"
-              getScreentip="GetRibbonScreentip"
-              onAction="InsertYellowStatusCmd"/>
-            <button
-              id="ribInsertGreenStatusButton"
-              imageMso="AppointmentColor3"
-              getLabel="GetRibbonLabel"
-              getScreentip="GetRibbonScreentip"
-              onAction="InsertGreenStatusCmd"/>
-            <button
-              id="ribInsertBlueStatusButton"
-              imageMso="AppointmentColor2"
-              getLabel="GetRibbonLabel"
-              getScreentip="GetRibbonScreentip"
-              onAction="InsertBlueStatusCmd"/>
           </menu>
 
           <menu id="ribOneMoreMenu" getLabel="GetRibbonLabel" size="large" showImage="true"
@@ -323,12 +330,6 @@
                 getLabel="GetRibbonLabel"
                 getScreentip="GetRibbonScreentip"
                 onAction="IncreaseFontSizeCmd"/>
-              <button
-                id="ribEmojiButton"
-                imageMso="ShapeSmileyFace"
-                getLabel="GetRibbonLabel"
-                getScreentip="GetRibbonScreentip"
-                onAction="EmojiCmd"/>
               <button
                 id="ribDuplicateLineButton"
                 imageMso="PasteDuplicate"
@@ -479,11 +480,17 @@
                 getScreentip="GetRibbonScreentip"
                 onAction="PlantUmlCmd"/>
               <button
-                id="ribResizeImagesButton"
+                id="ribAdjustImagesButton"
                 imageMso="GroupPictureCompress"
                 getLabel="GetRibbonLabel"
                 getScreentip="GetRibbonScreentip"
-                onAction="ResizeImagesCmd"/>
+                onAction="AdjustImagesCmd"/>
+              <button
+                id="ribStylizeImagesButton"
+                imageMso="GroupPictureStyles"
+                getLabel="GetRibbonLabel"
+                getScreentip="GetRibbonScreentip"
+                onAction="StylizeImagesCmd"/>
               <button
                 id="ribStackBackgroundImagesButton"
                 imageMso="GroupBorder"
@@ -1090,11 +1097,18 @@
         onAction="OpenImageWithCmd"
         insertBeforeMso="Cut"/>
       <button
-        id="ctxResizeImagesButton"
+        id="ctxAdjustImagesButton"
         imageMso="GroupPictureCompress"
         getLabel="GetRibbonLabel"
         getScreentip="GetRibbonScreentip"
-        onAction="ResizeImagesCmd"
+        onAction="AdjustImagesCmd"
+        insertBeforeMso="Cut"/>
+      <button
+        id="ctxStylizeImagesButton"
+        imageMso="GroupPictureStyles"
+        getLabel="GetRibbonLabel"
+        getScreentip="GetRibbonScreentip"
+        onAction="StylizeImagesCmd"
         insertBeforeMso="Cut"/>
       <menuSeparator
         id="omPictureContextMenuSeparator"

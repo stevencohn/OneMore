@@ -12,7 +12,6 @@ namespace River.OneMoreAddIn.Commands
 	using System.Collections.Generic;
 	using System.Drawing;
 	using System.Globalization;
-	using System.Linq;
 	using System.Text;
 	using System.Threading.Tasks;
 	using System.Windows.Forms;
@@ -85,7 +84,7 @@ namespace River.OneMoreAddIn.Commands
 
 			// User settings
 			var settings = new SettingsProvider().GetCollection(nameof(NavigatorSheet));
-			corralled = settings.Get("corralled", false) || Screen.AllScreens.Length == 1;
+			corralled = settings.Get("corralled", false); //|| Screen.AllScreens.Length == 1;
 			depth = settings.Get("depth", NavigationService.DefaultHistoryDepth);
 
 			pinButton.Rescale();
@@ -340,10 +339,20 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
+		private async void DoKeyDown(object sender, KeyEventArgs e)
+		{
+			if (e.KeyCode == Keys.F5)
+			{
+				await LoadPageHeadings(null);
+				e.Handled = true;
+			}
+		}
+
+
 		private async Task LoadPageHeadings(string pageID)
 		{
 			using var one = new OneNote();
-			var page = one.GetPage(pageID ?? one.CurrentPageId, OneNote.PageDetail.Basic);
+			var page = await one.GetPage(pageID ?? one.CurrentPageId, OneNote.PageDetail.Basic);
 			var headings = page.GetHeadings(one);
 
 			pageHeadLabel.Text = page.Title;
@@ -484,7 +493,7 @@ namespace River.OneMoreAddIn.Commands
 
 			if (records.Count > 0)
 			{
-				SetVisited(records.Last().PageId);
+				SetVisited(records[records.Count - 1].PageId);
 				await provider.AddPinned(records);
 				await LoadPinned();
 			}
@@ -622,7 +631,6 @@ namespace River.OneMoreAddIn.Commands
 					hbuilder.Append($"<p><a href=\"{record.Link}\">{record.Name}</a></p>");
 					tbuilder.Append($"{record.Link}\n");
 				}
-
 			}
 
 			var board = new ClipboardProvider();
