@@ -2595,6 +2595,10 @@ Select No to keep one empty line between paragraphs</value>
     <value>About OneMore</value>
     <comment>ribbon main</comment>
   </data>
+  <data name="ribAboutButton_Screentip" xml:space="preserve">
+    <value>Show information about OneMore</value>
+    <comment>ribbon main</comment>
+  </data>
   <data name="ribAddCaptionButton_Label" xml:space="preserve">
     <value>Add Caption</value>
     <comment>ribbon images</comment>

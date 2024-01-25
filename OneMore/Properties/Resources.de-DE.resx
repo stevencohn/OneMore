@@ -2550,6 +2550,10 @@ Wähle Nein, um eine leere Zeile zwischen den Absätzen zu halten</value>
     <value>Über OneMore</value>
     <comment>Ribbon OneMore menu item</comment>
   </data>
+  <data name="ribAboutButton_Screentip" xml:space="preserve">
+    <value>Informationen zu OneMore anzeigen</value>
+    <comment>ribbon main</comment>
+  </data>
   <data name="ribAddCaptionButton_Label" xml:space="preserve">
     <value>Bildunterschrift hinzufügen</value>
     <comment>Ribbon OneMore menu item, Add caption to selected image</comment>

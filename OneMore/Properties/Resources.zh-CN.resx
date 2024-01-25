@@ -2557,6 +2557,10 @@ ISO-code then comma then language name</comment>
     <value>关于OneMore</value>
     <comment>Ribbon OneMore menu item</comment>
   </data>
+  <data name="ribAboutButton_Screentip" xml:space="preserve">
+    <value>显示有关 OneMore 的信息</value>
+    <comment>ribbon main</comment>
+  </data>
   <data name="ribAddCaptionButton_Label" xml:space="preserve">
     <value>添加说明</value>
     <comment>Ribbon OneMore menu item, Add caption to selected image</comment>

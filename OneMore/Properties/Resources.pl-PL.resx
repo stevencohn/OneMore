@@ -2569,6 +2569,10 @@ Wybierz Nie, aby zachować jedną pustą linię między akapitami</value>
     <value>O ONEMORE.</value>
     <comment>Ribbon OneMore menu item</comment>
   </data>
+  <data name="ribAboutButton_Screentip" xml:space="preserve">
+    <value>Pokaż informacje o OneMore</value>
+    <comment>ribbon main</comment>
+  </data>
   <data name="ribAddCaptionButton_Label" xml:space="preserve">
     <value>Dodaj podpis</value>
     <comment>Ribbon OneMore menu item, Add caption to selected image</comment>

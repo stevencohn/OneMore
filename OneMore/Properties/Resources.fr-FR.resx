@@ -2552,6 +2552,10 @@ Sélectionnez Non pour conserver une ligne vide entre les paragraphes</value>
     <value>À propos de OneMore</value>
     <comment>Ribbon OneMore menu item</comment>
   </data>
+  <data name="ribAboutButton_Screentip" xml:space="preserve">
+    <value>Afficher des informations sur OneMore</value>
+    <comment>ribbon main</comment>
+  </data>
   <data name="ribAddCaptionButton_Label" xml:space="preserve">
     <value>Ajouter une légende</value>
     <comment>Ribbon OneMore menu item, Add caption to selected image</comment>

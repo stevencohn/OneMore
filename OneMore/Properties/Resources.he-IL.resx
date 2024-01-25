@@ -2575,6 +2575,10 @@ ISO-code then comma then language name</comment>
     <value>על OneMore</value>
     <comment>Ribbon OneMore menu item</comment>
   </data>
+  <data name="ribAboutButton_Screentip" xml:space="preserve">
+    <value>הצג מידע על OneMore</value>
+    <comment>ribbon main</comment>
+  </data>
   <data name="ribAddCaptionButton_Label" xml:space="preserve">
     <value>הוסף כיתוב</value>
     <comment>Ribbon OneMore menu item, Add caption to selected image</comment>

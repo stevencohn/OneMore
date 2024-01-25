@@ -6335,6 +6335,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Show information about OneMore.
+        /// </summary>
+        internal static string ribAboutButton_Screentip {
+            get {
+                return ResourceManager.GetString("ribAboutButton_Screentip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Add Caption.
         /// </summary>
         internal static string ribAddCaptionButton_Label {

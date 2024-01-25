@@ -2557,6 +2557,10 @@ Selecteer NO om één lege regel tussen paragrafen te behouden</value>
     <value>Over OneMore</value>
     <comment>Ribbon OneMore menu item</comment>
   </data>
+  <data name="ribAboutButton_Screentip" xml:space="preserve">
+    <value>Toon informatie over OneMore</value>
+    <comment>ribbon main</comment>
+  </data>
   <data name="ribAddCaptionButton_Label" xml:space="preserve">
     <value>Bijschrift toevoegen</value>
     <comment>Ribbon OneMore menu item, Add caption to selected image</comment>
