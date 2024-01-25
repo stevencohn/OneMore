@@ -126,7 +126,7 @@ namespace River.OneMoreAddIn.Commands
 					new XCData(
 						new XElement("span",
 							new XAttribute("style",
-								$"font-family:'Segoe UI';font-size:10.0pt;font-weight:bold;{colors}"),
+								$"font-size:10.0pt;font-weight:bold;{colors}"),
 							text
 						).ToString(SaveOptions.DisableFormatting) + "&#160;")
 					);

@@ -519,6 +519,14 @@ Invert</value>
     <value>Confirm</value>
     <comment>message box title</comment>
   </data>
+  <data name="Clipboard_locked" xml:space="preserve">
+    <value>Cannot copy at this time. The clipboard is locked.</value>
+    <comment>error message</comment>
+  </data>
+  <data name="Clipboard_norestore" xml:space="preserve">
+    <value>Unable to restore clipboard state</value>
+    <comment>message</comment>
+  </data>
   <data name="ColorizeDialog_Title" xml:space="preserve">
     <value>Select Language</value>
     <comment>dialog title</comment>

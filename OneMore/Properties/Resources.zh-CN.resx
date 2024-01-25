@@ -509,6 +509,14 @@ OneNote 将自动关闭</value>
     <value>确认</value>
     <comment>message box title</comment>
   </data>
+  <data name="Clipboard_locked" xml:space="preserve">
+    <value>此时无法复制。剪贴板已锁定。</value>
+    <comment>error message</comment>
+  </data>
+  <data name="Clipboard_norestore" xml:space="preserve">
+    <value>无法恢复剪贴板状态</value>
+    <comment>message</comment>
+  </data>
   <data name="ColorizeDialog_Title" xml:space="preserve">
     <value>选择语言</value>
     <comment>dialog title</comment>

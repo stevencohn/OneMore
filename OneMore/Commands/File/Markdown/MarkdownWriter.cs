@@ -16,6 +16,7 @@ namespace River.OneMoreAddIn.Commands
 	using System.Linq;
 	using System.Threading.Tasks;
 	using System.Xml.Linq;
+	using Resx = Properties.Resources;
 
 
 	internal class MarkdownWriter
@@ -92,7 +93,11 @@ namespace River.OneMoreAddIn.Commands
 				using var reader = new StreamReader(stream);
 
 				var clippy = new ClipboardProvider();
-				await clippy.SetText(reader.ReadToEnd());
+				var success = await clippy.SetText(reader.ReadToEnd());
+				if (!success)
+				{
+					UIHelper.ShowInfo(Resx.Clipboard_locked);
+				}
 			}
 		}
 

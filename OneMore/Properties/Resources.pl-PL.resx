@@ -517,6 +517,14 @@ Odwracać</value>
     <value>Potwierdzać</value>
     <comment>message box title</comment>
   </data>
+  <data name="Clipboard_locked" xml:space="preserve">
+    <value>W tej chwili nie można skopiować. Schowek jest zablokowany.</value>
+    <comment>error message</comment>
+  </data>
+  <data name="Clipboard_norestore" xml:space="preserve">
+    <value>Nie można przywrócić stanu schowka</value>
+    <comment>message</comment>
+  </data>
   <data name="ColorizeDialog_Title" xml:space="preserve">
     <value>Wybierz język</value>
     <comment>dialog title</comment>

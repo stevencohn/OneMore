@@ -508,6 +508,14 @@ Invertir</value>
     <value>Confirmar</value>
     <comment>message box title</comment>
   </data>
+  <data name="Clipboard_locked" xml:space="preserve">
+    <value>No se puede copiar en este momento. El portapapeles está bloqueado.</value>
+    <comment>error message</comment>
+  </data>
+  <data name="Clipboard_norestore" xml:space="preserve">
+    <value>No se puede restaurar el estado del portapapeles</value>
+    <comment>message</comment>
+  </data>
   <data name="ColorizeDialog_Title" xml:space="preserve">
     <value>Seleccione el idioma</value>
     <comment>dialog title</comment>

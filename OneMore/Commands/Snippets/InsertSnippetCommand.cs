@@ -84,9 +84,22 @@ namespace River.OneMoreAddIn.Commands
 
 			var clippy = new ClipboardProvider();
 			await clippy.StashState();
-			await clippy.SetHtml(snippet);
-			await clippy.Paste(true);
-			await clippy.RestoreState();
+
+			var success = await clippy.SetHtml(snippet);
+			if (success)
+			{
+				await clippy.Paste(true);
+			}
+			else
+			{
+				UIHelper.ShowInfo(Resx.Clipboard_locked);
+			}
+
+			success = await clippy.RestoreState();
+			if (!success)
+			{
+				UIHelper.ShowInfo(Resx.Clipboard_norestore);
+			}
 		}
 	}
 }

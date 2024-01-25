@@ -505,6 +505,14 @@ Umkehren</value>
     <value>Bestätigen</value>
     <comment>message box title</comment>
   </data>
+  <data name="Clipboard_locked" xml:space="preserve">
+    <value>Das Kopieren ist derzeit nicht möglich. Die Zwischenablage ist gesperrt.</value>
+    <comment>error message</comment>
+  </data>
+  <data name="Clipboard_norestore" xml:space="preserve">
+    <value>Der Zustand der Zwischenablage kann nicht wiederhergestellt werden</value>
+    <comment>message</comment>
+  </data>
   <data name="ColorizeDialog_Title" xml:space="preserve">
     <value>Sprache auswählen</value>
     <comment>dialog title</comment>

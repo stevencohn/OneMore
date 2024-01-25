@@ -1079,6 +1079,24 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Cannot copy at this time. The clipboard is locked..
+        /// </summary>
+        internal static string Clipboard_locked {
+            get {
+                return ResourceManager.GetString("Clipboard_locked", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unable to restore clipboard state.
+        /// </summary>
+        internal static string Clipboard_norestore {
+            get {
+                return ResourceManager.GetString("Clipboard_norestore", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap Cloud {

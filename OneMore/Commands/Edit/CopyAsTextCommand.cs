@@ -8,6 +8,7 @@ namespace River.OneMoreAddIn.Commands
 	using System.Text;
 	using System.Threading.Tasks;
 	using System.Xml.Linq;
+	using Resx = Properties.Resources;
 
 
 	/// <summary>
@@ -45,7 +46,12 @@ namespace River.OneMoreAddIn.Commands
 				}
 			}
 
-			await new ClipboardProvider().SetText(builder.ToString());
+			var success = await new ClipboardProvider().SetText(builder.ToString());
+			if (!success)
+			{
+				UIHelper.ShowInfo(Resx.Clipboard_locked);
+				return;
+			}
 
 			logger.WriteTime("copied text");
 		}

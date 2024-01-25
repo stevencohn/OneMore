@@ -519,6 +519,14 @@ OneNote ייסגר אוטומטית</value>
     <value>לְאַשֵׁר</value>
     <comment>message box title</comment>
   </data>
+  <data name="Clipboard_locked" xml:space="preserve">
+    <value>לא ניתן להעתיק בשלב זה. הלוח נעול.</value>
+    <comment>error message</comment>
+  </data>
+  <data name="Clipboard_norestore" xml:space="preserve">
+    <value>לא ניתן לשחזר את מצב הלוח</value>
+    <comment>message</comment>
+  </data>
   <data name="ColorizeDialog_Title" xml:space="preserve">
     <value>בחר שפה</value>
     <comment>dialog title</comment>
