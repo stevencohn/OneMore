@@ -135,8 +135,9 @@ namespace River.OneMoreAddIn
 		/// Restores the state of the clipboard to the content preserved using StashState()
 		/// </summary>
 		/// <returns></returns>
-		public async Task RestoreState()
+		public async Task<bool> RestoreState()
 		{
+			var success = true;
 			await SingleThreaded.Invoke(() =>
 			{
 				// avoids 0x800401D0/CLIPBRD_E_CANT_OPEN due to thread contentions
@@ -170,13 +171,16 @@ namespace River.OneMoreAddIn
 						catch (COMException ex)
 							when (ex.ErrorCode == CLIPBRD_E_CANT_OPEN)
 						{
-							logger.WriteLine("clipboard possibly locked by another application", ex);
+							success = false;
+							logger.WriteLine(
+								"error in RestoreState; clipboard possibly locked by another application", ex);
 						}
 					}
 				}
 			});
 
 			stash.Clear();
+			return success;
 		}
 
 
@@ -215,16 +219,29 @@ namespace River.OneMoreAddIn
 		/// </summary>
 		/// <param name="text"></param>
 		/// <returns></returns>
-		public async Task SetHtml(string text)
+		public async Task<bool> SetHtml(string text)
 		{
+			var success = true;
 			await SingleThreaded.Invoke(() =>
 			{
 				// avoids 0x800401D0/CLIPBRD_E_CANT_OPEN due to thread contentions
 				lock (gate)
 				{
-					Win.Clipboard.SetText(text, Win.TextDataFormat.Html);
+					try
+					{
+						Win.Clipboard.SetText(text, Win.TextDataFormat.Html);
+					}
+					catch (COMException ex)
+						when (ex.ErrorCode == CLIPBRD_E_CANT_OPEN)
+					{
+						success = false;
+						logger.WriteLine(
+							"error in SetHTML; clipboard possibly locked by another application", ex);
+					}
 				}
 			});
+
+			return success;
 		}
 
 
@@ -233,16 +250,29 @@ namespace River.OneMoreAddIn
 		/// </summary>
 		/// <param name="text"></param>
 		/// <returns></returns>
-		public async Task SetText(string text)
+		public async Task<bool> SetText(string text)
 		{
+			var success = true;
 			await SingleThreaded.Invoke(() =>
 			{
 				// avoids 0x800401D0/CLIPBRD_E_CANT_OPEN due to thread contentions
 				lock (gate)
 				{
-					Win.Clipboard.SetText(text, Win.TextDataFormat.Text);
+					try
+					{
+						Win.Clipboard.SetText(text, Win.TextDataFormat.Text);
+					}
+					catch (COMException ex)
+						when (ex.ErrorCode == CLIPBRD_E_CANT_OPEN)
+					{
+						success = false;
+						logger.WriteLine(
+							"error in SetText; clipboard possibly locked by another application", ex);
+					}
 				}
 			});
+
+			return success;
 		}
 
 

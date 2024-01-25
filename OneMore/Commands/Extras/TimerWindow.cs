@@ -122,7 +122,11 @@ namespace River.OneMoreAddIn.Commands
 		private async void CopyTime(object sender, EventArgs e)
 		{
 			var stamp = TimeSpan.FromSeconds(++Seconds).ToString("c");
-			await new ClipboardProvider().SetText(stamp);
+			var success = await new ClipboardProvider().SetText(stamp);
+			if (!success)
+			{
+				UIHelper.ShowInfo(Resx.Clipboard_locked);
+			}
 		}
 
 

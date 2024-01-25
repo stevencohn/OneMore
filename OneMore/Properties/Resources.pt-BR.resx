@@ -509,6 +509,14 @@ Invertido</value>
     <value>confirme</value>
     <comment>message box title</comment>
   </data>
+  <data name="Clipboard_locked" xml:space="preserve">
+    <value>Não é possível copiar neste momento. A área de transferência está bloqueada.</value>
+    <comment>error message</comment>
+  </data>
+  <data name="Clipboard_norestore" xml:space="preserve">
+    <value>Não foi possível restaurar o estado da área de transferência</value>
+    <comment>message</comment>
+  </data>
   <data name="ColorizeDialog_Title" xml:space="preserve">
     <value>Selecione o idioma</value>
     <comment>dialog title</comment>
