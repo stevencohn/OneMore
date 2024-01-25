@@ -264,7 +264,7 @@ namespace River.OneMoreAddIn.Commands
 			var after = heading.Root.ElementsAfterSelf();
 			if (next != null)
 			{
-				after = after.TakeWhile(e => next == null || e != next.Root);
+				after = after.TakeWhile(e => e != next.Root);
 			}
 
 			if (after.Any())
