@@ -209,7 +209,7 @@ namespace River.OneMoreAddIn.Commands
 				.Where(e => e.Attributes("selected").Any(a => a.Value.Equals("all")))
 				.Select(p => p.Parent);
 
-			if (elements.Any())
+			if (!elements.Any())
 			{
 				return false;
 			}
