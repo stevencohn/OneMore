@@ -73,7 +73,11 @@ namespace River.OneMoreAddIn.UI
 		[JsonIgnore]
 		public Color Highlight => Colors[nameof(Highlight)];
 		[JsonIgnore]
+		public Color HotTrack => Colors[nameof(HotTrack)];
+		[JsonIgnore]
 		public Color Control => Colors[nameof(Control)];
+		[JsonIgnore]
+		public Color ControlLightLight => Colors[nameof(ControlLightLight)];
 		[JsonIgnore]
 		public Color IconColor => Colors[nameof(IconColor)];
 		[JsonIgnore]
@@ -95,9 +99,6 @@ namespace River.OneMoreAddIn.UI
 		public Color LinkColor => Colors[nameof(LinkColor)];
 		[JsonIgnore]
 		public Color HoverColor => Colors[nameof(HoverColor)];
-
-		[JsonIgnore]
-		public Color InfoBack => Colors[nameof(InfoBack)];
 		#endregion Convenience Properties
 
 		#region Native
@@ -129,11 +130,11 @@ namespace River.OneMoreAddIn.UI
 					.GetValue(component);
 			}
 
-			if ((mode != ThemeMode.User) || !LoadColors())
+			if (!LoadColors()) // custom, FUTURE
 			{
 				DarkMode = !designMode &&
 					(mode == ThemeMode.Dark ||
-					(mode == ThemeMode.System && Office.SystemDefaultDarkMode()));
+					(mode == ThemeMode.System && Office.IsBlackThemeEnabled(true)));
 
 				// set colors...
 
@@ -167,7 +168,7 @@ namespace River.OneMoreAddIn.UI
 
 			if (container != null)
 			{
-				container.BackColor = InfoBack;
+				container.BackColor = ControlLightLight;
 				container.ForeColor = ForeColor;
 
 				Colorize(container.Controls);
@@ -223,7 +224,7 @@ namespace River.OneMoreAddIn.UI
 				{
 					foreach (ListViewItem item in view.Items)
 					{
-						item.BackColor = InfoBack;
+						item.BackColor = ControlLightLight;
 						item.ForeColor = ForeColor;
 					}
 				}

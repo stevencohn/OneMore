@@ -5450,4 +5450,10 @@ In this section</value>
   <data name="LightTheme" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\UI\LightTheme.json;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
   </data>
+  <data name="sponsor_dark" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Commands\Tools\sponsor-dark.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="sponsor_light" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Commands\Tools\sponsor-light.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
 </root>

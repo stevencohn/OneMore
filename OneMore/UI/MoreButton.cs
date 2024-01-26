@@ -46,16 +46,6 @@ namespace River.OneMoreAddIn.UI
 		}
 
 
-		//private void InitializeComponent()
-		//{
-		//	var components = new Container();
-		//	timer = new Timer(components);
-		//	SuspendLayout();
-		//	timer.Tick += new EventHandler(Tick);
-		//	ResumeLayout(false);
-		//}
-
-
 		/// <summary>
 		/// Gets the state indicating normal, hover, or pressed.
 		/// </summary>
@@ -147,6 +137,8 @@ namespace River.OneMoreAddIn.UI
 				MouseState |= MouseState.Pushed;
 				downArgs = mevent;
 			}
+
+			base.OnMouseDown(mevent);
 		}
 
 
@@ -160,8 +152,9 @@ namespace River.OneMoreAddIn.UI
 				}
 
 				MouseState |= MouseState.Hover;
-				base.OnMouseEnter(e);
 			}
+
+			base.OnMouseEnter(e);
 		}
 
 
@@ -175,8 +168,9 @@ namespace River.OneMoreAddIn.UI
 				}
 
 				MouseState &= ~MouseState.Hover;
-				base.OnMouseLeave(e);
 			}
+
+			base.OnMouseLeave(e);
 		}
 
 
@@ -185,15 +179,16 @@ namespace River.OneMoreAddIn.UI
 			if (Enabled)
 			{
 				MouseState &= ~MouseState.Pushed;
-				base.OnMouseUp(mevent);
 			}
+
+			base.OnMouseUp(mevent);
 		}
 
 
 		protected override void OnPaint(PaintEventArgs pevent)
 		{
 			var g = pevent.Graphics;
-			g.Clear(PreferredBack.IsEmpty ? Theme.BackColor : PreferredBack);
+			g.Clear(PreferredBack.IsEmpty ? Theme.ButtonBack : PreferredBack);
 
 			if (Enabled && MouseState != MouseState.None)
 			{
@@ -201,39 +196,72 @@ namespace River.OneMoreAddIn.UI
 				g.FillRoundedRectangle(brush, pevent.ClipRectangle, Radius);
 			}
 
-			if (ShowBorder || (Enabled && MouseState != MouseState.None))
+			if (BackgroundImage != null)
 			{
-				using var pen = new Pen(
-					MouseState.HasFlag(MouseState.Pushed) ? Theme.ButtonPressBorder :
-					MouseState.HasFlag(MouseState.Hover) ? Theme.ButtonHotBorder : Theme.ButtonBorder);
-
-				g.DrawRoundedRectangle(pen, pevent.ClipRectangle, Radius);
+				g.DrawImage(BackgroundImage, 0, 0,
+					pevent.ClipRectangle.Width, pevent.ClipRectangle.Height);
 			}
 
-			if (Image != null)
+			if (Image != null && !string.IsNullOrWhiteSpace(Text))
+			{
+				var size = g.MeasureString(Text, Font);
+				var x = (pevent.ClipRectangle.Width - ((int)size.Width + Image.Width)) / 2;
+				var y = (pevent.ClipRectangle.Height - Image.Height) / 2;
+
+				g.DrawImageUnscaled(Image, x, y);
+				PaintText(g, x + Image.Width, y);
+			}
+			else if (Image != null)
 			{
 				g.DrawImageUnscaled(Image,
 					(pevent.ClipRectangle.Width - Image.Width) / 2,
-					(pevent.ClipRectangle.Height - Image.Height) / 2
-					);
+					(pevent.ClipRectangle.Height - Image.Height) / 2);
 			}
-
-			if (!string.IsNullOrEmpty(Text))
+			else if (!string.IsNullOrEmpty(Text))
 			{
 				var size = g.MeasureString(Text, Font);
-				using var brush = new SolidBrush(Enabled
-					? PreferredFore.IsEmpty ? Theme.ButtonFore : PreferredFore
-					: Theme.ButtonDisabled);
 
-				g.DrawString(Text, Font, brush,
-					(pevent.ClipRectangle.Width - size.Width) / 2,
-					(pevent.ClipRectangle.Height - size.Height) / 2,
-					new StringFormat
-					{
-						Trimming = StringTrimming.EllipsisCharacter,
-						FormatFlags = StringFormatFlags.LineLimit | StringFormatFlags.NoWrap
-					});
+				PaintText(g,
+					(int)((pevent.ClipRectangle.Width - size.Width) / 2),
+					(int)((pevent.ClipRectangle.Height - size.Height) / 2));
 			}
+
+			if (ShowBorder || (Enabled && MouseState != MouseState.None))
+			{
+				var color = Theme.ButtonBorder;
+				if (MouseState.HasFlag(MouseState.Pushed))
+				{
+					color = Theme.ButtonPressBorder;
+				}
+				else if (Focused)
+				{
+					color = Theme.HotTrack;
+				}
+				else if (MouseState.HasFlag(MouseState.Hover))
+				{
+					color = Theme.ButtonHotBorder;
+				}
+
+				var width = Focused ? 2 : 1;
+				using var pen = new Pen(color, width);
+
+				g.DrawRoundedRectangle(pen, pevent.ClipRectangle, Radius);
+			}
+		}
+
+
+		private void PaintText(Graphics g, int x, int y)
+		{
+			using var brush = new SolidBrush(Enabled
+				? PreferredFore.IsEmpty ? Theme.ButtonFore : PreferredFore
+				: Theme.ButtonDisabled);
+
+			g.DrawString(Text, Font, brush, x, y,
+				new StringFormat
+				{
+					Trimming = StringTrimming.EllipsisCharacter,
+					FormatFlags = StringFormatFlags.LineLimit | StringFormatFlags.NoWrap
+				});
 		}
 
 
@@ -247,7 +275,7 @@ namespace River.OneMoreAddIn.UI
 				{
 					using var img = BackgroundImage;
 
-					var editor = new Commands.ImageEditor { Size = new Size(16, 16) };
+					var editor = new ImageEditor { Size = new Size(16, 16) };
 					BackgroundImage = editor.Apply(img);
 				}
 			}

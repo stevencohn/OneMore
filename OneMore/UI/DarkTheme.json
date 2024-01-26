@@ -1,21 +1,22 @@
 {
   "DarkMode": true,
   "Colors": {
-    "BackColor": "#383838",
+    "BackColor": "#292929",
     "ForeColor": "#E6E6E6",
     "Border": "DarkOrchid",
     "Control": "MediumOrchid",
+    "ControlLightLight": "#1F1F1F",
     "IconColor": "MediumOrchid",
     "Highlight": "#D2A1DF",
-    "ButtonBack": "#363636",
+    "HotTrack": "MediumOrchid",
+    "ButtonBack": "#323232",
     "ButtonFore": "#E6E6E6",
     "ButtonDisabled": "Gray",
-    "ButtonBorder": "#555555",
+    "ButtonBorder": "#464646",
     "ButtonHotBack": "#505050",
     "ButtonHotBorder": "Gray",
     "ButtonPressBorder": "DarkOrchid",
     "LinkColor": "MediumOrchid",
-    "HoverColor": "Orchid",
-    "InfoBack": "#383838"
+    "HoverColor": "Orchid"
   }
 }

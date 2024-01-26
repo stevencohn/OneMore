@@ -5,6 +5,7 @@
 namespace River.OneMoreAddIn.UI
 {
 	using System;
+	using System.Diagnostics;
 	using System.Drawing;
 	using System.Threading.Tasks;
 	using System.Windows.Forms;
@@ -118,32 +119,42 @@ namespace River.OneMoreAddIn.UI
 		{
 			base.OnLoad(e);
 
-			if (DesignMode)
-			{
-				return;
-			}
-
-			System.Diagnostics.Debugger.Launch();
 			manager.InitializeTheme(this);
 
 			// RunModeless has already set location so don't repeat that here and only set
 			// location if inheritor hasn't declined by setting it to zero. Also, we're doing
 			// this in OnLoad so it doesn't visually "jump" as it would if done in OnShown
-			if (modeless)
+			if (DesignMode || modeless)
 			{
 				return;
 			}
 
 			if (!ManualLocation && StartPosition == FormStartPosition.Manual)
 			{
-				// find the center point of the active OneNote window
-				using var one = new OneNote();
-				var bounds = one.GetCurrentMainWindowBounds();
-				var center = new Point(
-					bounds.Left + (bounds.Right - bounds.Left) / 2,
-					bounds.Top + (bounds.Bottom - bounds.Top) / 2);
+				/***** ********************************************************** *****/
+				/***** ********************************************************** *****/
+				/*****                                                            *****/
+				/*****  DO NOT SET A BREAKPOINT PRIOR TO THIS POINT IN THE CODE   *****/
+				/*****  otherwise the call to new OneNote() will hang!            *****/
+				/*****                                                            *****/
+				/*****  If a breakpoint IS set prior to this, you MUST attach     *****/
+				/*****  the debugger or Debugger.IsAttached will be false and     *****/
+				/*****  the call to new OneNote() will hang!                      *****/
+				/*****                                                            *****/
+				/***** ********************************************************** *****/
+				/***** ********************************************************** *****/
 
-				Location = new Point(center.X - (Width / 2), center.Y - (Height / 2));
+				if (!Debugger.IsAttached)
+				{
+					// find the center point of the active OneNote window
+					using var one = new OneNote();
+					var bounds = one.GetCurrentMainWindowBounds();
+					var center = new Point(
+						bounds.Left + (bounds.Right - bounds.Left) / 2,
+						bounds.Top + (bounds.Bottom - bounds.Top) / 2);
+
+					Location = new Point(center.X - (Width / 2), center.Y - (Height / 2));
+				}
 			}
 
 			if (VerticalOffset != 0)

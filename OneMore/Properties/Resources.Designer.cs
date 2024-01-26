@@ -1668,16 +1668,16 @@ namespace River.OneMoreAddIn.Properties {
         ///   Looks up a localized string similar to {
         ///  &quot;DarkMode&quot;: true,
         ///  &quot;Colors&quot;: {
-        ///    &quot;BackColor&quot;: &quot;#383838&quot;,
+        ///    &quot;BackColor&quot;: &quot;#272727&quot;,
         ///    &quot;ForeColor&quot;: &quot;#E6E6E6&quot;,
         ///    &quot;Border&quot;: &quot;DarkOrchid&quot;,
         ///    &quot;Control&quot;: &quot;MediumOrchid&quot;,
         ///    &quot;IconColor&quot;: &quot;MediumOrchid&quot;,
         ///    &quot;Highlight&quot;: &quot;#D2A1DF&quot;,
-        ///    &quot;ButtonBack&quot;: &quot;#363636&quot;,
+        ///    &quot;ButtonBack&quot;: &quot;#323232&quot;,
         ///    &quot;ButtonFore&quot;: &quot;#E6E6E6&quot;,
         ///    &quot;ButtonDisabled&quot;: &quot;Gray&quot;,
-        ///    &quot;ButtonBorder&quot;: &quot;#555555&quot;,
+        ///    &quot;ButtonBorder&quot;: &quot;#363636&quot;,
         ///    &quot;ButtonHotBack&quot;: &quot;#505050&quot;,
         ///    &quot;ButtonHotBorder&quot;: &quot;Gray&quot;,
         ///    &quot;ButtonPressBorder&quot;: &quot;DarkOrchid&quot;,
@@ -4272,10 +4272,8 @@ namespace River.OneMoreAddIn.Properties {
         ///    &quot;ButtonHotBorder&quot;: &quot;#9E5499&quot;,
         ///    &quot;ButtonPressBorder&quot;: &quot;#9E5499&quot;,
         ///    &quot;LinkColor&quot;: &quot;#73356E&quot;,
-        ///    &quot;HoverColor&quot;: &quot;MediumOrchid&quot;
-        ///  }
-        ///}
-        ///.
+        ///    &quot;HoverColor&quot;: &quot;MediumOrchid&quot;,
+        ///    &quot;InfoBack&quot;: [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string LightTheme {
             get {
@@ -10791,6 +10789,26 @@ namespace River.OneMoreAddIn.Properties {
         internal static string SplitTableDialog_fixedColsBox_Text {
             get {
                 return ResourceManager.GetString("SplitTableDialog_fixedColsBox.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap sponsor_dark {
+            get {
+                object obj = ResourceManager.GetObject("sponsor_dark", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap sponsor_light {
+            get {
+                object obj = ResourceManager.GetObject("sponsor_light", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
         

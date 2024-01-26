@@ -20,7 +20,7 @@ namespace River.OneMoreAddIn.Commands
 		public AboutDialog()
 		{
 			InitializeComponent();
-			//sponsorButton.SetHandCursor();
+			sponsorButton.SetHandCursor();
 
 			Logger.SetDesignMode(DesignMode);
 		}
@@ -60,9 +60,20 @@ namespace River.OneMoreAddIn.Commands
 			using var g = pleaseLabel.CreateGraphics();
 			var size = g.MeasureString(pleaseLabel.Text, pleaseLabel.Font);
 			sponsorButton.Left = (int)(pleaseLabel.Left + pleaseLabel.Margin.Right + size.Width);
+		}
+
+
+		protected override void OnLoad(EventArgs e)
+		{
+			base.OnLoad(e);
+
+			// doing this in OnLoad to ensure we have ThemeManager initialized...
 
 			// resize background image if low-def monitor
-			var img = sponsorButton.BackgroundImage;
+			var img = manager.DarkMode
+				? Resx.sponsor_dark
+				: Resx.sponsor_light;
+
 			if (img.Height > sponsorButton.Height || img.Width > sponsorButton.Width)
 			{
 				sponsorButton.BackgroundImage = new Bitmap(img,
@@ -70,6 +81,10 @@ namespace River.OneMoreAddIn.Commands
 					(int)(img.Height * 0.65));
 
 				img.Dispose();
+			}
+			else
+			{
+				sponsorButton.BackgroundImage = img;
 			}
 		}
 
