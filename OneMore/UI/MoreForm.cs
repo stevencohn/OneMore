@@ -123,15 +123,14 @@ namespace River.OneMoreAddIn.UI
 				return;
 			}
 
-
 			System.Diagnostics.Debugger.Launch();
+			manager.InitializeTheme(this);
 
 			// RunModeless has already set location so don't repeat that here and only set
 			// location if inheritor hasn't declined by setting it to zero. Also, we're doing
 			// this in OnLoad so it doesn't visually "jump" as it would if done in OnShown
 			if (modeless)
 			{
-				manager.InitializeTheme(this);
 				return;
 			}
 
@@ -155,8 +154,6 @@ namespace River.OneMoreAddIn.UI
 
 				Location = new Point(x, y < 0 ? 0 : y);
 			}
-
-			manager.InitializeTheme(this);
 		}
 
 		protected override void OnShown(EventArgs e)

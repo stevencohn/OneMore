@@ -184,7 +184,6 @@
 			this.sponsorButton.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.sponsorButton.FlatAppearance.BorderSize = 0;
 			this.sponsorButton.ImageAlign = System.Drawing.ContentAlignment.BottomRight;
-			//this.sponsorButton.ImageOver = null;
 			this.sponsorButton.Location = new System.Drawing.Point(444, 362);
 			this.sponsorButton.Name = "sponsorButton";
 			this.sponsorButton.Size = new System.Drawing.Size(149, 44);
