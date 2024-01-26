@@ -103,10 +103,14 @@ namespace River.OneMoreAddIn.UI
 
 		#region Native
 		private const int DWMWA_USE_IMMERSIVE_DARK_MODE = 20;
+		private const int DWMWA_MICA_EFFECT = 1029;
 
 		[DllImport("dwmapi.dll", PreserveSig = true)]
 		private static extern int DwmSetWindowAttribute(
 			IntPtr hwnd, int attr, ref bool attrValue, int attrSize);
+
+		[DllImport("uxtheme.dll", CharSet = CharSet.Unicode)]
+		public static extern int SetWindowTheme(IntPtr hWnd, String pszSubAppName, String pszSubIdList);
 		#endregion Native
 
 
@@ -150,8 +154,9 @@ namespace River.OneMoreAddIn.UI
 
 			if (container is MoreForm form)
 			{
-				if (form.FormBorderStyle != FormBorderStyle.None)
+				// ??? if (form.FormBorderStyle != FormBorderStyle.None)
 				{
+					SetThemeRecursively(container, DarkMode);
 					var value = DarkMode; // true=dark, false=normal
 
 					DwmSetWindowAttribute(
@@ -172,6 +177,30 @@ namespace River.OneMoreAddIn.UI
 				container.ForeColor = ForeColor;
 
 				Colorize(container.Controls);
+			}
+		}
+
+
+		private void SetThemeRecursively(Control control, bool dark)
+		{
+			void SetTheme(Control control)
+			{
+				bool trueValue = dark;
+				// DarkMode_Explorer sets radios, checkboxes, scrollbars to dark mode Explorer 
+				SetWindowTheme(control.Handle, "DarkMode_Explorer", null);
+
+				DwmSetWindowAttribute(control.Handle, 
+					DWMWA_USE_IMMERSIVE_DARK_MODE, ref trueValue, Marshal.SizeOf(typeof(bool)));
+
+				DwmSetWindowAttribute(control.Handle,
+					DWMWA_MICA_EFFECT, ref trueValue, Marshal.SizeOf(typeof(bool)));
+			}
+
+			SetTheme(control);
+
+			foreach (Control child in control.Controls)
+			{
+				SetThemeRecursively(child, dark);
 			}
 		}
 
@@ -215,11 +244,6 @@ namespace River.OneMoreAddIn.UI
 				control.BackColor = BackColor;
 				control.ForeColor = ForeColor;
 
-				if (control.Controls.Count > 0)
-				{
-					Colorize(control.Controls);
-				}
-
 				if (control is ListView view)
 				{
 					foreach (ListViewItem item in view.Items)
@@ -233,6 +257,17 @@ namespace River.OneMoreAddIn.UI
 					label.LinkColor = LinkColor;
 					label.HoverColor = HoverColor;
 					label.ActiveLinkColor = LinkColor;
+					label.BackColor = label.Parent.BackColor;
+				}
+				else if (control is TextBox tbox)
+				{
+					tbox.BackColor = ControlLightLight;
+					tbox.ForeColor = ForeColor;
+				}
+
+				if (control.Controls.Count > 0)
+				{
+					Colorize(control.Controls);
 				}
 			}
 		}

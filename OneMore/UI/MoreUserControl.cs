@@ -14,14 +14,20 @@ namespace River.OneMoreAddIn.UI
 	/// </summary>
 	internal class MoreUserControl : UserControl
 	{
-		protected ThemeManager Theme => ThemeManager.Instance;
+		protected readonly ThemeManager manager;
+
+
+		protected MoreUserControl()
+		{
+			manager = ThemeManager.Instance;
+		}
 
 
 		protected override void OnLoad(EventArgs e)
 		{
 			base.OnLoad(e);
 
-			Theme.InitializeTheme(this);
+			manager.InitializeTheme(this);
 		}
 
 

@@ -91,7 +91,9 @@
 			// 
 			// styleBox
 			// 
+			this.styleBox.BackColor = System.Drawing.SystemColors.Window;
 			this.styleBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.styleBox.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
 			this.styleBox.FormattingEnabled = true;
 			this.styleBox.Items.AddRange(new object[] {
             "Gray scale",
@@ -130,6 +132,7 @@
 			this.AcceptButton = this.okButton;
 			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+			this.BackColor = System.Drawing.SystemColors.Control;
 			this.CancelButton = this.cancelButton;
 			this.ClientSize = new System.Drawing.Size(479, 320);
 			this.Controls.Add(this.backBox);
@@ -140,6 +143,7 @@
 			this.Controls.Add(this.foreImagesLabel);
 			this.Controls.Add(this.okButton);
 			this.Controls.Add(this.cancelButton);
+			this.ForeColor = System.Drawing.Color.Black;
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.MaximizeBox = false;
