@@ -1,8 +1,6 @@
 ﻿//************************************************************************************************
-// Copyright © 2016 Steven M Cohn.  All rights reserved.
+// Copyright © 2016 Steven M Cohn. All rights reserved.
 //************************************************************************************************
-
-#pragma warning disable S3011 // Reflection should not be used to increase accessibility of classes, methods, or fields
 
 namespace River.OneMoreAddIn.UI
 {
@@ -12,17 +10,21 @@ namespace River.OneMoreAddIn.UI
 	using System.Windows.Forms;
 
 
-	internal class LocalizableForm : Form, IOneMoreWindow
+	internal class MoreForm : Form, IOneMoreWindow
 	{
 		public event EventHandler ModelessClosed;
 
-		protected ILogger logger = Logger.Current;
+		protected readonly ThemeManager manager;
+		protected readonly ILogger logger;
+
 		private bool modeless = false;
 
 
-		public LocalizableForm()
+		public MoreForm()
 		{
 			Properties.Resources.Culture = AddIn.Culture;
+			manager = ThemeManager.Instance;
+			logger = Logger.Current;
 		}
 
 
@@ -116,11 +118,20 @@ namespace River.OneMoreAddIn.UI
 		{
 			base.OnLoad(e);
 
+			if (DesignMode)
+			{
+				return;
+			}
+
+
+			System.Diagnostics.Debugger.Launch();
+
 			// RunModeless has already set location so don't repeat that here and only set
 			// location if inheritor hasn't declined by setting it to zero. Also, we're doing
 			// this in OnLoad so it doesn't visually "jump" as it would if done in OnShown
-			if (DesignMode || modeless)
+			if (modeless)
 			{
+				manager.InitializeTheme(this);
 				return;
 			}
 
@@ -144,6 +155,8 @@ namespace River.OneMoreAddIn.UI
 
 				Location = new Point(x, y < 0 ? 0 : y);
 			}
+
+			manager.InitializeTheme(this);
 		}
 
 		protected override void OnShown(EventArgs e)
@@ -153,18 +166,9 @@ namespace River.OneMoreAddIn.UI
 			UIHelper.SetForegroundWindow(this);
 		}
 
-		private void InitializeComponent()
-		{
-			System.ComponentModel.ComponentResourceManager resources = new(typeof(LocalizableForm));
-			this.SuspendLayout();
-			// 
-			// LocalizableForm
-			// 
-			this.ClientSize = new Size(278, 244);
-			this.Icon = ((Icon)(resources.GetObject("$this.Icon")));
-			this.Name = "LocalizableForm";
-			this.ResumeLayout(false);
 
+		public virtual void OnThemeChange()
+		{
 		}
 	}
 }

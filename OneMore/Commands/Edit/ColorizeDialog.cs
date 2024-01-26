@@ -13,7 +13,7 @@ namespace River.OneMoreAddIn.Commands
 	using Resx = Properties.Resources;
 
 
-	internal partial class ColorizeDialog : UI.LocalizableForm
+	internal partial class ColorizeDialog : UI.MoreForm
 	{
 		public ColorizeDialog()
 		{

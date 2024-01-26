@@ -478,6 +478,9 @@
     <Compile Include="UI\MorePanel.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="UI\MoreUserControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="UI\RenameDialog.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -746,7 +749,7 @@
     <Compile Include="Commands\Numbering\OutlineDialog.Designer.cs">
       <DependentUpon>OutlineDialog.cs</DependentUpon>
     </Compile>
-    <Compile Include="UI\LocalizableForm.cs">
+    <Compile Include="UI\MoreForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Commands\Numbering\NumberPagesDialog.cs">
@@ -1019,6 +1022,7 @@
     <Compile Include="UI\MoreBubbleWindow.Designer.cs">
       <DependentUpon>MoreBubbleWindow.cs</DependentUpon>
     </Compile>
+    <Compile Include="UI\ThemeManager.cs" />
     <Compile Include="UI\TranslationHelper.cs" />
     <Compile Include="UI\WebViewWorkerDialog.cs">
       <SubType>Form</SubType>
@@ -1284,6 +1288,8 @@
     <None Include="Properties\0336.OneNoteApplication_2013.xsd">
       <SubType>Designer</SubType>
     </None>
+    <None Include="UI\DarkTheme.json" />
+    <None Include="UI\LightTheme.json" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Commands\Clean\BreakingDialog.resx">
@@ -1394,8 +1400,8 @@
     <EmbeddedResource Include="Properties\Resources.he-IL.resx">
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="UI\LocalizableForm.resx">
-      <DependentUpon>LocalizableForm.cs</DependentUpon>
+    <EmbeddedResource Include="UI\MoreForm.resx">
+      <DependentUpon>MoreForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\MoreExpander.resx">
       <DependentUpon>MoreExpander.cs</DependentUpon>

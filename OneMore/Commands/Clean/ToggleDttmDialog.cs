@@ -10,7 +10,7 @@ namespace River.OneMoreAddIn.Commands
 	using Resx = River.OneMoreAddIn.Properties.Resources;
 
 
-	internal partial class ToggleDttmDialog : UI.LocalizableForm
+	internal partial class ToggleDttmDialog : UI.MoreForm
 	{
 		public ToggleDttmDialog()
 		{

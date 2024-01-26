@@ -11,7 +11,7 @@ namespace River.OneMoreAddIn.Commands
 	using Resx = River.OneMoreAddIn.Properties.Resources;
 
 
-	internal partial class UpdateDialog : UI.LocalizableForm
+	internal partial class UpdateDialog : UI.MoreForm
 	{
 		private readonly string url;
 

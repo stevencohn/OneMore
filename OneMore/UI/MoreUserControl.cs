@@ -2,33 +2,26 @@
 // Copyright © 2022 Steven M Cohn. All rights reserved.
 //************************************************************************************************
 
-namespace OneMoreCalendar
+namespace River.OneMoreAddIn.UI
 {
 	using System;
 	using System.Windows.Forms;
 
 
 	/// <summary>
-	/// Changes the theme of the current Form instance to Dark mode if the Windows
+	/// Changes the theme of the current UserControl instance to Dark mode if the Windows
 	/// system default theme is also Dark mode.
 	/// </summary>
-	internal class ThemedForm : Form
+	internal class MoreUserControl : UserControl
 	{
-
-		protected bool StaticColors { get; set; }
-
-
-		protected ThemeProvider Theme => ThemeProvider.Instance;
+		protected ThemeManager Theme => ThemeManager.Instance;
 
 
 		protected override void OnLoad(EventArgs e)
 		{
 			base.OnLoad(e);
 
-			if (!StaticColors)
-			{
-				Theme.InitializeTheme(this);
-			}
+			Theme.InitializeTheme(this);
 		}
 
 

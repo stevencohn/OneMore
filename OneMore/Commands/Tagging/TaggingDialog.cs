@@ -18,7 +18,7 @@ namespace River.OneMoreAddIn.Commands
 	using Resx = River.OneMoreAddIn.Properties.Resources;
 
 
-	internal partial class TaggingDialog : UI.LocalizableForm
+	internal partial class TaggingDialog : UI.MoreForm
 	{
 
 		private static readonly string[] Blacklist = new[]

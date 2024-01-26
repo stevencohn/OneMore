@@ -8,7 +8,7 @@ namespace River.OneMoreAddIn.Commands
 	using Resx = River.OneMoreAddIn.Properties.Resources;
 
 
-	internal partial class ReportRemindersReuseDialog : UI.LocalizableForm
+	internal partial class ReportRemindersReuseDialog : UI.MoreForm
 	{
 		public ReportRemindersReuseDialog()
 		{

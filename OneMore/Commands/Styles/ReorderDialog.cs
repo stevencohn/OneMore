@@ -11,7 +11,7 @@ namespace River.OneMoreAddIn.Commands
 	using Resx = River.OneMoreAddIn.Properties.Resources;
 
 
-	internal partial class ReorderDialog : UI.LocalizableForm
+	internal partial class ReorderDialog : UI.MoreForm
 	{
 
 		public ReorderDialog(ComboBox.ObjectCollection items)

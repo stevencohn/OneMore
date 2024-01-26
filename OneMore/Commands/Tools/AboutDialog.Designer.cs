@@ -39,7 +39,7 @@
 			this.homeLink = new River.OneMoreAddIn.UI.MoreLinkLabel();
 			this.updateLink = new River.OneMoreAddIn.UI.MoreLinkLabel();
 			this.pleaseLabel = new System.Windows.Forms.Label();
-			this.sponsorButton = new River.OneMoreAddIn.UI.MoreButton();
+			this.sponsorButton = new System.Windows.Forms.Button();
 			this.githubLink = new River.OneMoreAddIn.UI.MoreLinkLabel();
 			this.topPanel = new System.Windows.Forms.Panel();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -184,7 +184,7 @@
 			this.sponsorButton.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.sponsorButton.FlatAppearance.BorderSize = 0;
 			this.sponsorButton.ImageAlign = System.Drawing.ContentAlignment.BottomRight;
-			this.sponsorButton.ImageOver = null;
+			//this.sponsorButton.ImageOver = null;
 			this.sponsorButton.Location = new System.Drawing.Point(444, 362);
 			this.sponsorButton.Name = "sponsorButton";
 			this.sponsorButton.Size = new System.Drawing.Size(149, 44);
@@ -267,7 +267,7 @@
 		private UI.MoreLinkLabel homeLink;
 		private UI.MoreLinkLabel updateLink;
 		private System.Windows.Forms.Label pleaseLabel;
-		private UI.MoreButton sponsorButton;
+		private System.Windows.Forms.Button sponsorButton;
 		private UI.MoreLinkLabel githubLink;
 		private System.Windows.Forms.Panel topPanel;
 	}

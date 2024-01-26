@@ -71,7 +71,7 @@ namespace River.OneMoreAddIn.Settings
 
 			var languages = new List<CultureInfo>
 			{
-				new CultureInfo("en-US")
+				new("en-US")
 			};
 
 			foreach (var file in files)

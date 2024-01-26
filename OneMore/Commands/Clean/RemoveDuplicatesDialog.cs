@@ -9,7 +9,7 @@ namespace River.OneMoreAddIn.Commands
 	using Resx = River.OneMoreAddIn.Properties.Resources;
 
 
-	internal partial class RemoveDuplicatesDialog : UI.LocalizableForm
+	internal partial class RemoveDuplicatesDialog : UI.MoreForm
 	{
 		public enum DepthKind
 		{

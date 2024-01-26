@@ -13,7 +13,7 @@ namespace River.OneMoreAddIn.Commands
 	using Resx = River.OneMoreAddIn.Properties.Resources;
 
 
-	internal partial class TimerWindow : LocalizableForm
+	internal partial class TimerWindow : MoreForm
 	{
 
 		private readonly float scalingX;

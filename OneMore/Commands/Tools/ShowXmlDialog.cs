@@ -23,7 +23,7 @@ namespace River.OneMoreAddIn.Commands
 	/// <summary>
 	/// A dialog to view page and hierarchy XML and update page XML if desired.
 	/// </summary>
-	internal partial class ShowXmlDialog : LocalizableForm
+	internal partial class ShowXmlDialog : MoreForm
 	{
 		private int findIndex = -1;
 		private bool ready = false;

@@ -8,7 +8,7 @@ namespace River.OneMoreAddIn.Commands
 	using Resx = Properties.Resources;
 
 
-	internal partial class StylizeImagesDialog : UI.LocalizableForm
+	internal partial class StylizeImagesDialog : UI.MoreForm
 	{
 
 		public StylizeImagesDialog()

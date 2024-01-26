@@ -12,7 +12,7 @@ namespace River.OneMoreAddIn.Commands
 	using Resx = Properties.Resources;
 
 
-	internal partial class AboutDialog : UI.LocalizableForm
+	internal partial class AboutDialog : UI.MoreForm
 	{
 		private readonly CommandFactory factory;
 
@@ -20,7 +20,7 @@ namespace River.OneMoreAddIn.Commands
 		public AboutDialog()
 		{
 			InitializeComponent();
-			sponsorButton.SetHandCursor();
+			//sponsorButton.SetHandCursor();
 
 			Logger.SetDesignMode(DesignMode);
 		}

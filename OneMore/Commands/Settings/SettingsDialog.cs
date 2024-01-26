@@ -13,7 +13,7 @@ namespace River.OneMoreAddIn.Settings
 	using Resx = Properties.Resources;
 
 
-	internal partial class SettingsDialog : UI.LocalizableForm
+	internal partial class SettingsDialog : UI.MoreForm
 	{
 		public enum Sheets
 		{

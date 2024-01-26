@@ -12,7 +12,7 @@ namespace River.OneMoreAddIn.Commands
 	using Resx = River.OneMoreAddIn.Properties.Resources;
 
 
-	internal partial class NumberPagesDialog : UI.LocalizableForm
+	internal partial class NumberPagesDialog : UI.MoreForm
 	{
 		public NumberPagesDialog()
 		{

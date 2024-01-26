@@ -9,7 +9,7 @@ namespace River.OneMoreAddIn.UI
 	using Resx = River.OneMoreAddIn.Properties.Resources;
 
 
-	internal partial class MoreMessageBox : LocalizableForm
+	internal partial class MoreMessageBox : MoreForm
 	{
 
 		public MoreMessageBox()

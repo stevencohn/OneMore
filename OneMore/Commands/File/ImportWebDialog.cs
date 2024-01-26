@@ -18,7 +18,7 @@ namespace River.OneMoreAddIn.Commands
 	}
 
 
-	internal partial class ImportWebDialog : UI.LocalizableForm
+	internal partial class ImportWebDialog : UI.MoreForm
 	{
 		public ImportWebDialog()
 		{

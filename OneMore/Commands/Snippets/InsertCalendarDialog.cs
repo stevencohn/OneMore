@@ -10,7 +10,7 @@ namespace River.OneMoreAddIn.Commands
 	using Resx = River.OneMoreAddIn.Properties.Resources;
 
 
-	internal partial class InsertCalendarDialog : UI.LocalizableForm
+	internal partial class InsertCalendarDialog : UI.MoreForm
 	{
 		public InsertCalendarDialog()
 		{

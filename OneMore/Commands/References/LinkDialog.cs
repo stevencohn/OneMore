@@ -7,7 +7,7 @@ namespace River.OneMoreAddIn.Commands
 	using Resx = River.OneMoreAddIn.Properties.Resources;
 
 
-	internal partial class LinkDialog : UI.LocalizableForm
+	internal partial class LinkDialog : UI.MoreForm
 	{
 		public LinkDialog()
 		{

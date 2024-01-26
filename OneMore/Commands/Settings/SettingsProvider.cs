@@ -56,6 +56,24 @@ namespace River.OneMoreAddIn.Settings
 
 
 		/// <summary>
+		/// Convenience property to get theme name
+		/// </summary>
+		public UI.ThemeMode Theme
+		{
+			get
+			{
+				var name = GetCollection(nameof(GeneralSheet))["theme"];
+				if (!string.IsNullOrWhiteSpace(name))
+				{
+					return (UI.ThemeMode)Enum.Parse(typeof(UI.ThemeMode), name);
+				}
+
+				return UI.ThemeMode.System;
+			}
+		}
+
+
+		/// <summary>
 		/// Get the named collection. If the named element contains child elements then it is
 		/// presumed to be an XElement, otherwise it is presumed to be a simple key/value entry
 		/// </summary>

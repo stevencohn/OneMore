@@ -11,7 +11,7 @@ namespace River.OneMoreAddIn.Commands
 	using Resx = Properties.Resources;
 
 
-	internal partial class SortDialog : UI.LocalizableForm
+	internal partial class SortDialog : UI.MoreForm
 	{
 
 		public enum Directions

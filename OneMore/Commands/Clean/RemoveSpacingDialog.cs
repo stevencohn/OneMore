@@ -7,7 +7,7 @@ namespace River.OneMoreAddIn.Commands
 	using Resx = River.OneMoreAddIn.Properties.Resources;
 
 
-	internal partial class RemoveSpacingDialog : UI.LocalizableForm
+	internal partial class RemoveSpacingDialog : UI.MoreForm
 	{
 		public RemoveSpacingDialog()
 		{

@@ -16,7 +16,7 @@ namespace River.OneMoreAddIn.Commands
 	using Resx = Properties.Resources;
 
 
-	internal partial class HashtagDialog : LocalizableForm
+	internal partial class HashtagDialog : MoreForm
 	{
 		private const string T0 = "0001-01-01T00:00:00.0000Z";
 

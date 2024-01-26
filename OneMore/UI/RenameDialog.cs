@@ -10,7 +10,7 @@ namespace River.OneMoreAddIn.UI
 	using Resx = River.OneMoreAddIn.Properties.Resources;
 
 
-	internal partial class RenameDialog : UI.LocalizableForm
+	internal partial class RenameDialog : UI.MoreForm
 	{
 		private readonly IEnumerable<string> names;
 

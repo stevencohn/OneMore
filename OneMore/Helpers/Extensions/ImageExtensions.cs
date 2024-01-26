@@ -98,8 +98,7 @@ namespace River.OneMoreAddIn
 
 			attributes.SetRemapTable(new ColorMap[]
 				{
-					new ColorMap
-					{
+					new() {
 						OldColor = fromColor,
 						NewColor = toColor,
 					}

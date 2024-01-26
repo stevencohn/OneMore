@@ -11,7 +11,7 @@ namespace River.OneMoreAddIn.Commands
 	using System.Windows.Forms;
 	using Resx = Properties.Resources;
 
-	internal partial class CommandPaletteDialog : UI.LocalizableForm
+	internal partial class CommandPaletteDialog : UI.MoreForm
 	{
 		private readonly MoreAutoCompleteList palette;
 		private string[] commands;

@@ -19,7 +19,7 @@ namespace River.OneMoreAddIn.Commands
 	using Resx = River.OneMoreAddIn.Properties.Resources;
 
 
-	internal partial class ImportOutlookTasksDialog : UI.LocalizableForm
+	internal partial class ImportOutlookTasksDialog : UI.MoreForm
 	{
 		private readonly TreeModel model;
 		private OneNote one;

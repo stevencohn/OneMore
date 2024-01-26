@@ -10,7 +10,7 @@ namespace River.OneMoreAddIn.Commands
 	using Resx = Properties.Resources;
 
 
-	internal partial class DiagnosticsDialog : UI.LocalizableForm
+	internal partial class DiagnosticsDialog : UI.MoreForm
 	{
 		private const int Timeout = 5000;
 		private int time;

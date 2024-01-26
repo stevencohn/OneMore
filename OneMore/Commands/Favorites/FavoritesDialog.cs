@@ -15,7 +15,7 @@ namespace River.OneMoreAddIn.Commands.Favorites
 	using Resx = Properties.Resources;
 
 
-	internal partial class FavoritesDialog : UI.LocalizableForm
+	internal partial class FavoritesDialog : UI.MoreForm
 	{
 
 		public FavoritesDialog()

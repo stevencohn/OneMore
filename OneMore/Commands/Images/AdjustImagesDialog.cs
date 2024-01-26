@@ -11,7 +11,7 @@ namespace River.OneMoreAddIn.Commands
 	using Resx = Properties.Resources;
 
 
-	internal partial class AdjustImagesDialog : UI.LocalizableForm
+	internal partial class AdjustImagesDialog : UI.MoreForm
 	{
 		private readonly Image image;
 		private readonly int viewWidth;

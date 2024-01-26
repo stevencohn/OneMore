@@ -15,7 +15,7 @@ namespace River.OneMoreAddIn.Commands
 	using Resx = Properties.Resources;
 
 
-	internal partial class ImportDialog : UI.LocalizableForm
+	internal partial class ImportDialog : UI.MoreForm
 	{
 		public enum Formats
 		{

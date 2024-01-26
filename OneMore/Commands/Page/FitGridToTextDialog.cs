@@ -8,7 +8,7 @@ namespace River.OneMoreAddIn.Commands
 	using Resx = River.OneMoreAddIn.Properties.Resources;
 
 
-	internal partial class FitGridToTextDialog : UI.LocalizableForm
+	internal partial class FitGridToTextDialog : UI.MoreForm
 	{
 		private readonly double spacing;
 

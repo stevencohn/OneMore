@@ -12,7 +12,7 @@ namespace River.OneMoreAddIn.Commands
 	using Resx = River.OneMoreAddIn.Properties.Resources;
 
 
-	internal partial class CrawlWebPageDialog : UI.LocalizableForm
+	internal partial class CrawlWebPageDialog : UI.MoreForm
 	{
 
 		public CrawlWebPageDialog()

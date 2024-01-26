@@ -20,7 +20,7 @@ namespace River.OneMoreAddIn.Commands
 	using Resx = Properties.Resources;
 
 
-	internal partial class NavigatorWindow : LocalizableForm
+	internal partial class NavigatorWindow : MoreForm
 	{
 		private const int WindowMargin = 20;
 		private const int HeaderIndent = 18;

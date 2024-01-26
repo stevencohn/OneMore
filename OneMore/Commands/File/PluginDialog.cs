@@ -17,7 +17,7 @@ namespace River.OneMoreAddIn.Commands
 	using Resx = River.OneMoreAddIn.Properties.Resources;
 
 
-	internal partial class PluginDialog : UI.LocalizableForm
+	internal partial class PluginDialog : UI.MoreForm
 	{
 		private string[] predefinedNames;
 		private Plugin plugin;

@@ -13,7 +13,7 @@ namespace River.OneMoreAddIn.Commands
 	using Resx = River.OneMoreAddIn.Properties.Resources;
 
 
-	internal partial class OutlineDialog : UI.LocalizableForm
+	internal partial class OutlineDialog : UI.MoreForm
 	{
 		private const int SysMenuId = 1000;
 

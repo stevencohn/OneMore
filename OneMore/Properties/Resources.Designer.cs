@@ -1665,6 +1665,33 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to {
+        ///  &quot;DarkMode&quot;: true,
+        ///  &quot;Colors&quot;: {
+        ///    &quot;BackColor&quot;: &quot;#383838&quot;,
+        ///    &quot;ForeColor&quot;: &quot;#E6E6E6&quot;,
+        ///    &quot;Border&quot;: &quot;DarkOrchid&quot;,
+        ///    &quot;Control&quot;: &quot;MediumOrchid&quot;,
+        ///    &quot;IconColor&quot;: &quot;MediumOrchid&quot;,
+        ///    &quot;Highlight&quot;: &quot;#D2A1DF&quot;,
+        ///    &quot;ButtonBack&quot;: &quot;#363636&quot;,
+        ///    &quot;ButtonFore&quot;: &quot;#E6E6E6&quot;,
+        ///    &quot;ButtonDisabled&quot;: &quot;Gray&quot;,
+        ///    &quot;ButtonBorder&quot;: &quot;#555555&quot;,
+        ///    &quot;ButtonHotBack&quot;: &quot;#505050&quot;,
+        ///    &quot;ButtonHotBorder&quot;: &quot;Gray&quot;,
+        ///    &quot;ButtonPressBorder&quot;: &quot;DarkOrchid&quot;,
+        ///    &quot;LinkColor&quot;: &quot;MediumOrchid&quot;,
+        ///    &quot;HoverColor&quot;: &quot;Orchid&quot;,
+        /// [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string DarkTheme {
+            get {
+                return ResourceManager.GetString("DarkTheme", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to OneMore.db.
         /// </summary>
         internal static string DatabaseFilename {
@@ -4224,6 +4251,35 @@ namespace River.OneMoreAddIn.Properties {
             get {
                 object obj = ResourceManager.GetObject("LeftwardsArrow", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {
+        ///  &quot;DarkMode&quot;: false,
+        ///  &quot;Colors&quot;: {
+        ///    &quot;BackColor&quot;: &quot;White&quot;,
+        ///    &quot;ForeColor&quot;: &quot;Black&quot;,
+        ///    &quot;Border&quot;: &quot;#D2A1DF&quot;,
+        ///    &quot;Control&quot;: &quot;#73356E&quot;,
+        ///    &quot;IconColor&quot;: &quot;#80397B&quot;,
+        ///    &quot;Highlight&quot;: &quot;#BC58B6&quot;,
+        ///    &quot;ButtonBack&quot;: &quot;#F7EDF7&quot;,
+        ///    &quot;ButtonFore&quot;: &quot;#73356E&quot;,
+        ///    &quot;ButtonDisabled&quot;: &quot;Gray&quot;,
+        ///    &quot;ButtonBorder&quot;: &quot;#F0DAEE&quot;,
+        ///    &quot;ButtonHotBack&quot;: &quot;#F0DAEE&quot;,
+        ///    &quot;ButtonHotBorder&quot;: &quot;#9E5499&quot;,
+        ///    &quot;ButtonPressBorder&quot;: &quot;#9E5499&quot;,
+        ///    &quot;LinkColor&quot;: &quot;#73356E&quot;,
+        ///    &quot;HoverColor&quot;: &quot;MediumOrchid&quot;
+        ///  }
+        ///}
+        ///.
+        /// </summary>
+        internal static string LightTheme {
+            get {
+                return ResourceManager.GetString("LightTheme", resourceCulture);
             }
         }
         

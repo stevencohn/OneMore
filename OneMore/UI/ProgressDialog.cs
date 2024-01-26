@@ -33,7 +33,7 @@ namespace River.OneMoreAddIn.UI
 	/// A cancel button is displayed that, when pressed, sets the cancelltion token and returns
 	/// DialogResult.Cancel. If the execute action completes without cancellation OK is returned.
 	/// </remarks>
-	internal partial class ProgressDialog : LocalizableForm
+	internal partial class ProgressDialog : MoreForm
 	{
 		private const int SimpleHeight = 112;
 		private const int CancelHeight = 144;
