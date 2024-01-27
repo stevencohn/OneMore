@@ -478,7 +478,11 @@
     <Compile Include="UI\MorePanel.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="UI\MoreUserControl.cs">
+    <Compile Include="UI\Themed\IThemedControl.cs" />
+    <Compile Include="UI\Themed\MoreTextBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="UI\Themed\MoreUserControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="UI\RenameDialog.cs">
@@ -749,7 +753,7 @@
     <Compile Include="Commands\Numbering\OutlineDialog.Designer.cs">
       <DependentUpon>OutlineDialog.cs</DependentUpon>
     </Compile>
-    <Compile Include="UI\MoreForm.cs">
+    <Compile Include="UI\Themed\MoreForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Commands\Numbering\NumberPagesDialog.cs">
@@ -764,7 +768,7 @@
     <Compile Include="Commands\Edit\PronunciateDialog.Designer.cs">
       <DependentUpon>PronunciateDialog.cs</DependentUpon>
     </Compile>
-    <Compile Include="UI\MoreButton.cs">
+    <Compile Include="UI\Themed\MoreButton.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="UI\MoreAutoCompleteList.cs">
@@ -1022,7 +1026,8 @@
     <Compile Include="UI\MoreBubbleWindow.Designer.cs">
       <DependentUpon>MoreBubbleWindow.cs</DependentUpon>
     </Compile>
-    <Compile Include="UI\ThemeManager.cs" />
+    <Compile Include="UI\Themed\MouseState.cs" />
+    <Compile Include="UI\Themed\ThemeManager.cs" />
     <Compile Include="UI\TranslationHelper.cs" />
     <Compile Include="UI\WebViewWorkerDialog.cs">
       <SubType>Form</SubType>
@@ -1289,8 +1294,8 @@
     <None Include="Properties\0336.OneNoteApplication_2013.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="UI\DarkTheme.json" />
-    <None Include="UI\LightTheme.json" />
+    <None Include="UI\Themed\DarkTheme.json" />
+    <None Include="UI\Themed\LightTheme.json" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Commands\Clean\BreakingDialog.resx">
@@ -1401,7 +1406,7 @@
     <EmbeddedResource Include="Properties\Resources.he-IL.resx">
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="UI\MoreForm.resx">
+    <EmbeddedResource Include="UI\Themed\MoreForm.resx">
       <DependentUpon>MoreForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\MoreExpander.resx">

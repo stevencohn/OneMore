@@ -1,5 +1,5 @@
 ﻿//************************************************************************************************
-// Copyright © 2022 Steven M Cohn.  All rights reserved.
+// Copyright © 2022 Steven M Cohn. All rights reserved.
 //************************************************************************************************
 
 namespace River.OneMoreAddIn.UI
@@ -11,19 +11,10 @@ namespace River.OneMoreAddIn.UI
 	using System.Windows.Forms;
 
 
-	[Flags]
-	internal enum MouseState
-	{
-		None = 0,
-		Hover = 1,
-		Pushed = 2
-	}
-
-
 	/// <summary>
 	/// Extension of Button to allow forced system Hand cursor instead of default Forms Hand cursor.
 	/// </summary>
-	internal class MoreButton : Button
+	internal class MoreButton : Button, IThemedControl
 	{
 		private const int Radius = 4;
 		private IntPtr hcursor;

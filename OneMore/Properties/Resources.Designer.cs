@@ -1668,22 +1668,21 @@ namespace River.OneMoreAddIn.Properties {
         ///   Looks up a localized string similar to {
         ///  &quot;DarkMode&quot;: true,
         ///  &quot;Colors&quot;: {
-        ///    &quot;BackColor&quot;: &quot;#272727&quot;,
+        ///    &quot;BackColor&quot;: &quot;#292929&quot;,
         ///    &quot;ForeColor&quot;: &quot;#E6E6E6&quot;,
         ///    &quot;Border&quot;: &quot;DarkOrchid&quot;,
         ///    &quot;Control&quot;: &quot;MediumOrchid&quot;,
+        ///    &quot;ControlLightLight&quot;: &quot;#1F1F1F&quot;,
         ///    &quot;IconColor&quot;: &quot;MediumOrchid&quot;,
         ///    &quot;Highlight&quot;: &quot;#D2A1DF&quot;,
+        ///    &quot;HotTrack&quot;: &quot;MediumOrchid&quot;,
         ///    &quot;ButtonBack&quot;: &quot;#323232&quot;,
         ///    &quot;ButtonFore&quot;: &quot;#E6E6E6&quot;,
         ///    &quot;ButtonDisabled&quot;: &quot;Gray&quot;,
-        ///    &quot;ButtonBorder&quot;: &quot;#363636&quot;,
+        ///    &quot;ButtonBorder&quot;: &quot;#464646&quot;,
         ///    &quot;ButtonHotBack&quot;: &quot;#505050&quot;,
         ///    &quot;ButtonHotBorder&quot;: &quot;Gray&quot;,
-        ///    &quot;ButtonPressBorder&quot;: &quot;DarkOrchid&quot;,
-        ///    &quot;LinkColor&quot;: &quot;MediumOrchid&quot;,
-        ///    &quot;HoverColor&quot;: &quot;Orchid&quot;,
-        /// [rest of string was truncated]&quot;;.
+        ///    &quot;ButtonPressBorder&quot;: &quot;DarkOrc [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string DarkTheme {
             get {
@@ -4262,8 +4261,10 @@ namespace River.OneMoreAddIn.Properties {
         ///    &quot;ForeColor&quot;: &quot;Black&quot;,
         ///    &quot;Border&quot;: &quot;#D2A1DF&quot;,
         ///    &quot;Control&quot;: &quot;#73356E&quot;,
+        ///    &quot;ControlLightLight&quot;: &quot;#1F1F1F&quot;,
         ///    &quot;IconColor&quot;: &quot;#80397B&quot;,
         ///    &quot;Highlight&quot;: &quot;#BC58B6&quot;,
+        ///    &quot;HotTrack&quot;: &quot;MediumOrchid&quot;,
         ///    &quot;ButtonBack&quot;: &quot;#F7EDF7&quot;,
         ///    &quot;ButtonFore&quot;: &quot;#73356E&quot;,
         ///    &quot;ButtonDisabled&quot;: &quot;Gray&quot;,
@@ -4271,9 +4272,7 @@ namespace River.OneMoreAddIn.Properties {
         ///    &quot;ButtonHotBack&quot;: &quot;#F0DAEE&quot;,
         ///    &quot;ButtonHotBorder&quot;: &quot;#9E5499&quot;,
         ///    &quot;ButtonPressBorder&quot;: &quot;#9E5499&quot;,
-        ///    &quot;LinkColor&quot;: &quot;#73356E&quot;,
-        ///    &quot;HoverColor&quot;: &quot;MediumOrchid&quot;,
-        ///    &quot;InfoBack&quot;: [rest of string was truncated]&quot;;.
+        ///    &quot;Link [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string LightTheme {
             get {

@@ -17,6 +17,7 @@ namespace River.OneMoreAddIn.UI
 	using System.IO;
 	using System.Reflection;
 	using System.Runtime.InteropServices;
+	using System.Text.RegularExpressions;
 	using System.Windows.Forms;
 	using Resx = Properties.Resources;
 
@@ -150,20 +151,16 @@ namespace River.OneMoreAddIn.UI
 				Colors = cache.Colors;
 			}
 
+			if (container == null)
+			{
+				return;
+			}
+
 			// apply colors...
 
 			if (container is MoreForm form)
 			{
-				// ??? if (form.FormBorderStyle != FormBorderStyle.None)
-				{
-					SetThemeRecursively(container, DarkMode);
-					var value = DarkMode; // true=dark, false=normal
-
-					DwmSetWindowAttribute(
-						container.Handle, DWMWA_USE_IMMERSIVE_DARK_MODE,
-						ref value, Marshal.SizeOf(value));
-				}
-
+				SetThemeRecursively(container, DarkMode);
 				form.OnThemeChange();
 			}
 			else if (container is MoreUserControl control)
@@ -171,13 +168,32 @@ namespace River.OneMoreAddIn.UI
 				control.OnThemeChange();
 			}
 
-			if (container != null)
-			{
-				container.BackColor = ControlLightLight;
-				container.ForeColor = ForeColor;
+			Colorize(container);
+		}
 
-				Colorize(container.Controls);
+
+		private bool LoadColors()
+		{
+			var path = Path.Combine(PathHelper.GetAppDataPath(), CustomThemeFile);
+			if (File.Exists(path))
+			{
+				try
+				{
+					var json = File.ReadAllText(path);
+					var cache = JsonConvert.DeserializeObject<ThemeManager>(json, new ColorConverter());
+
+					Colors.Clear();
+					Colors = cache.Colors;
+					DarkMode = cache.DarkMode;
+					return true;
+				}
+				catch (Exception exc)
+				{
+					Logger.Current.WriteLine("error loading custom theme file", exc);
+				}
 			}
+
+			return false;
 		}
 
 
@@ -212,63 +228,56 @@ namespace River.OneMoreAddIn.UI
 		}
 
 
-		private bool LoadColors()
+		private void Colorize(Control control)
 		{
-			var path = Path.Combine(PathHelper.GetAppDataPath(), CustomThemeFile);
-			if (File.Exists(path))
+			if (control is IThemedControl themed)
 			{
-				try
-				{
-					var json = File.ReadAllText(path);
-					var cache = JsonConvert.DeserializeObject<ThemeManager>(json, new ColorConverter());
+				control.BackColor = themed.PreferredBack == Color.Empty
+					? Colors["Control"]
+					: Colors[themed.PreferredBack.Name];
 
-					Colors.Clear();
-					Colors = cache.Colors;
-					DarkMode = cache.DarkMode;
-					return true;
-				}
-				catch (Exception exc)
-				{
-					Logger.Current.WriteLine("error loading custom theme file", exc);
-				}
+				control.ForeColor = themed.PreferredFore == Color.Empty
+					? Colors["ControlText"]
+					: Colors[themed.PreferredFore.Name];
+			}
+			else
+			{
+				control.BackColor = control.BackColor.IsSystemColor
+					? Colors[control.BackColor.Name]
+					: BackColor;
+
+				control.ForeColor = control.ForeColor.IsSystemColor
+					? Colors[control.ForeColor.Name]
+					: ForeColor;
 			}
 
-			return false;
-		}
-
-
-		private void Colorize(Control.ControlCollection controls)
-		{
-			foreach (Control control in controls)
+			if (control is Label label)
 			{
-				control.BackColor = BackColor;
-				control.ForeColor = ForeColor;
+				label.BackColor = label.Parent.BackColor;
+			}
+			else if (control is PictureBox pbox)
+			{
+				pbox.BackColor = pbox.Parent.BackColor;
+			}
+			else if (control is ListView view)
+			{
+				foreach (ListViewItem item in view.Items)
+				{
+					item.BackColor = ControlLightLight;
+					item.ForeColor = ForeColor;
+				}
+			}
+			else if (control is MoreLinkLabel linkLabel)
+			{
+				linkLabel.LinkColor = LinkColor;
+				linkLabel.HoverColor = HoverColor;
+				linkLabel.ActiveLinkColor = LinkColor;
+				linkLabel.BackColor = linkLabel.Parent.BackColor;
+			}
 
-				if (control is ListView view)
-				{
-					foreach (ListViewItem item in view.Items)
-					{
-						item.BackColor = ControlLightLight;
-						item.ForeColor = ForeColor;
-					}
-				}
-				else if (control is MoreLinkLabel label)
-				{
-					label.LinkColor = LinkColor;
-					label.HoverColor = HoverColor;
-					label.ActiveLinkColor = LinkColor;
-					label.BackColor = label.Parent.BackColor;
-				}
-				else if (control is TextBox tbox)
-				{
-					tbox.BackColor = ControlLightLight;
-					tbox.ForeColor = ForeColor;
-				}
-
-				if (control.Controls.Count > 0)
-				{
-					Colorize(control.Controls);
-				}
+			foreach (Control child in control.Controls)
+			{
+				Colorize(child);
 			}
 		}
 

@@ -30,7 +30,7 @@
 		{
 			this.pictureBox1 = new System.Windows.Forms.PictureBox();
 			this.titleLabel = new System.Windows.Forms.Label();
-			this.versionLabel = new System.Windows.Forms.TextBox();
+			this.versionLabel = new River.OneMoreAddIn.UI.MoreTextBox();
 			this.copyLabel = new System.Windows.Forms.Label();
 			this.okButton = new River.OneMoreAddIn.UI.MoreButton();
 			this.logLabel = new River.OneMoreAddIn.UI.MoreLinkLabel();
@@ -73,6 +73,8 @@
 			this.versionLabel.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.versionLabel.Location = new System.Drawing.Point(50, 61);
 			this.versionLabel.Name = "versionLabel";
+			this.versionLabel.PreferredBack = System.Drawing.SystemColors.ControlLightLight;
+			this.versionLabel.PreferredFore = System.Drawing.Color.Empty;
 			this.versionLabel.ReadOnly = true;
 			this.versionLabel.Size = new System.Drawing.Size(534, 30);
 			this.versionLabel.TabIndex = 2;
@@ -265,7 +267,7 @@
 
 		private System.Windows.Forms.PictureBox pictureBox1;
 		private System.Windows.Forms.Label titleLabel;
-		private System.Windows.Forms.TextBox versionLabel;
+		private UI.MoreTextBox versionLabel;
 		private System.Windows.Forms.Label copyLabel;
 		private UI.MoreButton okButton;
 		private UI.MoreLinkLabel logLabel;
