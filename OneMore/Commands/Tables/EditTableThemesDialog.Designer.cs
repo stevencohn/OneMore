@@ -273,15 +273,16 @@ namespace River.OneMoreAddIn.Commands
 			// 
 			// colorsTab
 			// 
+			this.colorsTab.BackColor = System.Drawing.SystemColors.Window;
 			this.colorsTab.Controls.Add(this.elementsGroup);
 			this.colorsTab.Controls.Add(this.previewDockPanel);
+			this.colorsTab.ForeColor = System.Drawing.SystemColors.WindowText;
 			this.colorsTab.Location = new System.Drawing.Point(4, 29);
 			this.colorsTab.Name = "colorsTab";
 			this.colorsTab.Padding = new System.Windows.Forms.Padding(3);
 			this.colorsTab.Size = new System.Drawing.Size(821, 519);
 			this.colorsTab.TabIndex = 0;
 			this.colorsTab.Text = "Colors";
-			this.colorsTab.UseVisualStyleBackColor = true;
 			// 
 			// previewDockPanel
 			// 
@@ -294,15 +295,16 @@ namespace River.OneMoreAddIn.Commands
 			// 
 			// fontsTab
 			// 
+			this.fontsTab.BackColor = System.Drawing.SystemColors.Window;
 			this.fontsTab.Controls.Add(this.fontsGroup);
 			this.fontsTab.Controls.Add(this.fontElementsGroup);
+			this.fontsTab.ForeColor = System.Drawing.SystemColors.WindowText;
 			this.fontsTab.Location = new System.Drawing.Point(4, 29);
 			this.fontsTab.Name = "fontsTab";
 			this.fontsTab.Padding = new System.Windows.Forms.Padding(3);
 			this.fontsTab.Size = new System.Drawing.Size(821, 519);
 			this.fontsTab.TabIndex = 1;
 			this.fontsTab.Text = "Fonts";
-			this.fontsTab.UseVisualStyleBackColor = true;
 			// 
 			// fontsGroup
 			// 
@@ -543,6 +545,7 @@ namespace River.OneMoreAddIn.Commands
 			this.Controls.Add(this.tabs);
 			this.Controls.Add(this.topPanel);
 			this.Controls.Add(this.bottomPanel);
+			this.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.MinimizeBox = false;
 			this.MinimumSize = new System.Drawing.Size(859, 643);

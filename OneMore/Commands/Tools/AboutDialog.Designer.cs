@@ -60,6 +60,7 @@
 			// 
 			this.titleLabel.AutoSize = true;
 			this.titleLabel.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.titleLabel.ForeColor = System.Drawing.SystemColors.ControlText;
 			this.titleLabel.Location = new System.Drawing.Point(43, 20);
 			this.titleLabel.Name = "titleLabel";
 			this.titleLabel.Size = new System.Drawing.Size(411, 38);
@@ -71,6 +72,7 @@
 			this.versionLabel.BackColor = System.Drawing.SystemColors.ControlLightLight;
 			this.versionLabel.BorderStyle = System.Windows.Forms.BorderStyle.None;
 			this.versionLabel.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.versionLabel.ForeColor = System.Drawing.SystemColors.ControlText;
 			this.versionLabel.Location = new System.Drawing.Point(50, 61);
 			this.versionLabel.Name = "versionLabel";
 			this.versionLabel.PreferredBack = System.Drawing.SystemColors.ControlLightLight;
@@ -83,6 +85,7 @@
 			// copyLabel
 			// 
 			this.copyLabel.AutoSize = true;
+			this.copyLabel.ForeColor = System.Drawing.SystemColors.ControlText;
 			this.copyLabel.Location = new System.Drawing.Point(46, 230);
 			this.copyLabel.Margin = new System.Windows.Forms.Padding(3, 20, 3, 0);
 			this.copyLabel.Name = "copyLabel";
@@ -146,8 +149,8 @@
 			this.homeLink.ActiveLinkColor = System.Drawing.Color.DarkOrchid;
 			this.homeLink.AutoSize = true;
 			this.homeLink.Cursor = System.Windows.Forms.Cursors.Hand;
-			this.homeLink.HoverColor = System.Drawing.Color.MediumOrchid;
-			this.homeLink.LinkColor = System.Drawing.SystemColors.HotTrack;
+			this.homeLink.HoverColor = System.Drawing.Color.Orchid;
+			this.homeLink.LinkColor = System.Drawing.Color.MediumOrchid;
 			this.homeLink.Location = new System.Drawing.Point(46, 300);
 			this.homeLink.Margin = new System.Windows.Forms.Padding(3, 15, 3, 0);
 			this.homeLink.Name = "homeLink";
@@ -155,6 +158,7 @@
 			this.homeLink.TabIndex = 3;
 			this.homeLink.TabStop = true;
 			this.homeLink.Text = "https://onemoreaddin.com";
+			this.homeLink.VisitedLinkColor = System.Drawing.Color.MediumOrchid;
 			this.homeLink.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.GoHome);
 			// 
 			// updateLink
@@ -162,8 +166,8 @@
 			this.updateLink.ActiveLinkColor = System.Drawing.Color.DarkOrchid;
 			this.updateLink.AutoSize = true;
 			this.updateLink.Cursor = System.Windows.Forms.Cursors.Hand;
-			this.updateLink.HoverColor = System.Drawing.Color.MediumOrchid;
-			this.updateLink.LinkColor = System.Drawing.SystemColors.HotTrack;
+			this.updateLink.HoverColor = System.Drawing.Color.Orchid;
+			this.updateLink.LinkColor = System.Drawing.Color.MediumOrchid;
 			this.updateLink.Location = new System.Drawing.Point(46, 265);
 			this.updateLink.Margin = new System.Windows.Forms.Padding(3, 15, 3, 0);
 			this.updateLink.Name = "updateLink";
@@ -171,12 +175,14 @@
 			this.updateLink.TabIndex = 2;
 			this.updateLink.TabStop = true;
 			this.updateLink.Text = "Check for Updates";
+			this.updateLink.VisitedLinkColor = System.Drawing.Color.MediumOrchid;
 			this.updateLink.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.CheckForUpdates);
 			// 
 			// pleaseLabel
 			// 
 			this.pleaseLabel.AutoSize = true;
 			this.pleaseLabel.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.pleaseLabel.ForeColor = System.Drawing.SystemColors.ControlText;
 			this.pleaseLabel.Location = new System.Drawing.Point(45, 370);
 			this.pleaseLabel.Margin = new System.Windows.Forms.Padding(3, 15, 3, 0);
 			this.pleaseLabel.Name = "pleaseLabel";
@@ -205,8 +211,8 @@
 			this.githubLink.ActiveLinkColor = System.Drawing.Color.DarkOrchid;
 			this.githubLink.AutoSize = true;
 			this.githubLink.Cursor = System.Windows.Forms.Cursors.Hand;
-			this.githubLink.HoverColor = System.Drawing.Color.MediumOrchid;
-			this.githubLink.LinkColor = System.Drawing.SystemColors.HotTrack;
+			this.githubLink.HoverColor = System.Drawing.Color.Orchid;
+			this.githubLink.LinkColor = System.Drawing.Color.MediumOrchid;
 			this.githubLink.Location = new System.Drawing.Point(46, 335);
 			this.githubLink.Margin = new System.Windows.Forms.Padding(3, 15, 3, 0);
 			this.githubLink.Name = "githubLink";
@@ -214,6 +220,7 @@
 			this.githubLink.TabIndex = 4;
 			this.githubLink.TabStop = true;
 			this.githubLink.Text = "See the project on GitHub";
+			this.githubLink.VisitedLinkColor = System.Drawing.Color.MediumOrchid;
 			this.githubLink.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.GoGitHub);
 			// 
 			// topPanel

@@ -30,7 +30,7 @@
 		{
 			this.components = new System.ComponentModel.Container();
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CommandPaletteDialog));
-			this.cmdBox = new System.Windows.Forms.TextBox();
+			this.cmdBox = new River.OneMoreAddIn.UI.MoreTextBox();
 			this.bodyPanel = new System.Windows.Forms.Panel();
 			this.clearLink = new River.OneMoreAddIn.UI.MoreLinkLabel();
 			this.introPanel = new System.Windows.Forms.Panel();
@@ -45,9 +45,12 @@
 			// 
 			this.cmdBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+			this.cmdBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
 			this.cmdBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.cmdBox.Location = new System.Drawing.Point(27, 46);
 			this.cmdBox.Name = "cmdBox";
+			this.cmdBox.PreferredBack = System.Drawing.Color.Empty;
+			this.cmdBox.PreferredFore = System.Drawing.Color.Empty;
 			this.cmdBox.Size = new System.Drawing.Size(613, 28);
 			this.cmdBox.TabIndex = 0;
 			this.cmdBox.TextChanged += new System.EventHandler(this.ValidateCommand);
@@ -56,6 +59,7 @@
 			// 
 			// bodyPanel
 			// 
+			this.bodyPanel.BackColor = System.Drawing.SystemColors.Control;
 			this.bodyPanel.Controls.Add(this.clearLink);
 			this.bodyPanel.Controls.Add(this.cmdBox);
 			this.bodyPanel.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -68,10 +72,12 @@
 			// 
 			// clearLink
 			// 
+			this.clearLink.ActiveLinkColor = System.Drawing.Color.Orchid;
 			this.clearLink.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.clearLink.AutoSize = true;
 			this.clearLink.Cursor = System.Windows.Forms.Cursors.Hand;
-			this.clearLink.HoverColor = System.Drawing.Color.MediumOrchid;
+			this.clearLink.HoverColor = System.Drawing.Color.Orchid;
+			this.clearLink.LinkColor = System.Drawing.Color.MediumOrchid;
 			this.clearLink.Location = new System.Drawing.Point(463, 20);
 			this.clearLink.Margin = new System.Windows.Forms.Padding(3, 0, 3, 3);
 			this.clearLink.Name = "clearLink";
@@ -84,7 +90,7 @@
 			// 
 			// introPanel
 			// 
-			this.introPanel.BackColor = System.Drawing.SystemColors.Window;
+			this.introPanel.BackColor = System.Drawing.SystemColors.ControlLightLight;
 			this.introPanel.Controls.Add(this.introLabel);
 			this.introPanel.Dock = System.Windows.Forms.DockStyle.Top;
 			this.introPanel.Location = new System.Drawing.Point(0, 0);
@@ -96,6 +102,7 @@
 			// introLabel
 			// 
 			this.introLabel.AutoSize = true;
+			this.introLabel.ForeColor = System.Drawing.SystemColors.ControlText;
 			this.introLabel.Location = new System.Drawing.Point(23, 20);
 			this.introLabel.Name = "introLabel";
 			this.introLabel.Size = new System.Drawing.Size(441, 20);
@@ -114,6 +121,7 @@
 			this.ClientSize = new System.Drawing.Size(693, 185);
 			this.Controls.Add(this.bodyPanel);
 			this.Controls.Add(this.introPanel);
+			this.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.MaximizeBox = false;
@@ -133,7 +141,7 @@
 		}
 
 		#endregion
-		private System.Windows.Forms.TextBox cmdBox;
+		private UI.MoreTextBox cmdBox;
 		private System.Windows.Forms.Panel bodyPanel;
 		private UI.MoreLinkLabel clearLink;
 		private System.Windows.Forms.Panel introPanel;

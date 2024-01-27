@@ -886,6 +886,10 @@
     <value>ركوب الدراجات</value>
     <comment>emoji</comment>
   </data>
+  <data name="Emoji_Delta" xml:space="preserve">
+    <value>دلتا</value>
+    <comment>emoji</comment>
+  </data>
   <data name="Emoji_Envelope" xml:space="preserve">
     <value>ظرف</value>
     <comment>emoji</comment>

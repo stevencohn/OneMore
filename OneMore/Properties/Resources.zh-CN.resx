@@ -887,6 +887,10 @@ OneNote 将自动关闭</value>
     <value>自行车</value>
     <comment>emoji</comment>
   </data>
+  <data name="Emoji_Delta" xml:space="preserve">
+    <value>三角洲</value>
+    <comment>emoji</comment>
+  </data>
   <data name="Emoji_Envelope" xml:space="preserve">
     <value>信封</value>
     <comment>emoji</comment>

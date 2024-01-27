@@ -886,6 +886,10 @@ Fuente de la última columna</value>
     <value>Ciclismo</value>
     <comment>emoji</comment>
   </data>
+  <data name="Emoji_Delta" xml:space="preserve">
+    <value>Delta</value>
+    <comment>emoji</comment>
+  </data>
   <data name="Emoji_Envelope" xml:space="preserve">
     <value>Sobre</value>
     <comment>emoji</comment>

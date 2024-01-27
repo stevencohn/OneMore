@@ -22,6 +22,7 @@ namespace River.OneMoreAddIn.UI
 		private Image imageOver;
 		private Image enabledImage;
 		private MouseEventArgs downArgs = null;
+		private readonly ThemeManager manager;
 
 
 		public MoreButton()
@@ -34,6 +35,8 @@ namespace River.OneMoreAddIn.UI
 			SetStyle(ControlStyles.UserPaint, true);
 			// reduce flickering
 			SetStyle(ControlStyles.AllPaintingInWmPaint, true);
+
+			manager = ThemeManager.Instance;
 		}
 
 
@@ -68,9 +71,6 @@ namespace River.OneMoreAddIn.UI
 		/// when in normal state
 		/// </summary>
 		public bool ShowBorder { get; set; }
-
-
-		private ThemeManager Theme => ThemeManager.Instance;
 
 
 		protected override void OnClientSizeChanged(EventArgs e)
@@ -179,11 +179,11 @@ namespace River.OneMoreAddIn.UI
 		protected override void OnPaint(PaintEventArgs pevent)
 		{
 			var g = pevent.Graphics;
-			g.Clear(PreferredBack.IsEmpty ? Theme.ButtonBack : PreferredBack);
+			g.Clear(PreferredBack.IsEmpty ? manager.ButtonBack : PreferredBack);
 
 			if (Enabled && MouseState != MouseState.None)
 			{
-				using var brush = new SolidBrush(Theme.ButtonHotBack);
+				using var brush = new SolidBrush(manager.ButtonHotBack);
 				g.FillRoundedRectangle(brush, pevent.ClipRectangle, Radius);
 			}
 
@@ -219,18 +219,18 @@ namespace River.OneMoreAddIn.UI
 
 			if (ShowBorder || (Enabled && MouseState != MouseState.None))
 			{
-				var color = Theme.ButtonBorder;
+				var color = manager.ButtonBorder;
 				if (MouseState.HasFlag(MouseState.Pushed))
 				{
-					color = Theme.ButtonPressBorder;
+					color = manager.ButtonPressBorder;
 				}
 				else if (Focused)
 				{
-					color = Theme.HotTrack;
+					color = manager.HotTrack;
 				}
 				else if (MouseState.HasFlag(MouseState.Hover))
 				{
-					color = Theme.ButtonHotBorder;
+					color = manager.ButtonHotBorder;
 				}
 
 				var width = Focused ? 2 : 1;
@@ -244,8 +244,8 @@ namespace River.OneMoreAddIn.UI
 		private void PaintText(Graphics g, int x, int y)
 		{
 			using var brush = new SolidBrush(Enabled
-				? PreferredFore.IsEmpty ? Theme.ButtonFore : PreferredFore
-				: Theme.ButtonDisabled);
+				? PreferredFore.IsEmpty ? manager.ButtonFore : PreferredFore
+				: manager.ButtonDisabled);
 
 			g.DrawString(Text, Font, brush, x, y,
 				new StringFormat

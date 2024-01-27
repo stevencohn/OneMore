@@ -897,6 +897,10 @@ Total Row Font
     <value>רכיבה על אופניים</value>
     <comment>emoji</comment>
   </data>
+  <data name="Emoji_Delta" xml:space="preserve">
+    <value>דֶלתָא</value>
+    <comment>emoji</comment>
+  </data>
   <data name="Emoji_Envelope" xml:space="preserve">
     <value>מַעֲטָפָה</value>
     <comment>emoji</comment>

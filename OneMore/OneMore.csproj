@@ -1113,6 +1113,7 @@
     <None Include="Commands\Snippets\Emoji\Images\Recycle.png" />
     <None Include="Commands\Snippets\Emoji\Images\Lock.png" />
     <None Include="Commands\Snippets\Emoji\Images\SportsEU.png" />
+    <Content Include="Commands\Snippets\Emoji\Images\Delta.png" />
     <Content Include="Commands\Tagging\HashtagsDB.sql" />
     <Content Include="Commands\Tagging\x.png" />
     <None Include="Colorizer\Languages\plantuml.json">

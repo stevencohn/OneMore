@@ -1,5 +1,5 @@
 ﻿//************************************************************************************************
-// Copyright © 2022 Steven M Cohn.  All rights reserved.
+// Copyright © 2022 Steven M Cohn. All rights reserved.
 //************************************************************************************************
 
 #pragma warning disable S3011 // Reflection should not be used to increase accessibility...
@@ -17,7 +17,6 @@ namespace River.OneMoreAddIn.UI
 	using System.IO;
 	using System.Reflection;
 	using System.Runtime.InteropServices;
-	using System.Text.RegularExpressions;
 	using System.Windows.Forms;
 	using Resx = Properties.Resources;
 
@@ -37,16 +36,20 @@ namespace River.OneMoreAddIn.UI
 	/// <summary>
 	/// Defines themes and projects onto UI elements
 	/// </summary>
-	internal class ThemeManager
+	internal class ThemeManager : Loggable
 	{
 
 		private const string CustomThemeFile = "OneMoreTheme.json";
 		private static ThemeManager instance;
+		private static bool loading = false;
 
 
 		private ThemeManager()
 		{
-			Colors = new Dictionary<string, Color>();
+			if (!loading)
+			{
+				LoadColors();
+			}
 		}
 
 
@@ -115,42 +118,13 @@ namespace River.OneMoreAddIn.UI
 		#endregion Native
 
 
+
 		/// <summary>
 		/// 
 		/// </summary>
 		/// <param name="container"></param>
 		public void InitializeTheme(ContainerControl container)
 		{
-			var provider = new SettingsProvider();
-			var mode = provider.Theme;
-
-			var designMode = false;
-			if (container is Component component)
-			{
-				// pull DesignMode protected property from container
-				// so we can support the Visual Studio Forms Designer
-				designMode = (bool)container.GetType()
-					.BaseType
-					.GetProperty("DesignMode", BindingFlags.Instance | BindingFlags.NonPublic)?
-					.GetValue(component);
-			}
-
-			if (!LoadColors()) // custom, FUTURE
-			{
-				DarkMode = !designMode &&
-					(mode == ThemeMode.Dark ||
-					(mode == ThemeMode.System && Office.IsBlackThemeEnabled(true)));
-
-				// set colors...
-
-				var cache = JsonConvert.DeserializeObject<ThemeManager>(
-					DarkMode ? Resx.DarkTheme : Resx.LightTheme,
-					new ColorConverter());
-
-				Colors.Clear();
-				Colors = cache.Colors;
-			}
-
 			if (container == null)
 			{
 				return;
@@ -172,28 +146,48 @@ namespace River.OneMoreAddIn.UI
 		}
 
 
-		private bool LoadColors()
+		private void LoadColors()
 		{
+			ThemeManager cache;
+
+			loading = true;
 			var path = Path.Combine(PathHelper.GetAppDataPath(), CustomThemeFile);
 			if (File.Exists(path))
 			{
 				try
 				{
 					var json = File.ReadAllText(path);
-					var cache = JsonConvert.DeserializeObject<ThemeManager>(json, new ColorConverter());
+					cache = JsonConvert.DeserializeObject<ThemeManager>(json, new ColorConverter());
 
-					Colors.Clear();
 					Colors = cache.Colors;
 					DarkMode = cache.DarkMode;
-					return true;
+					return;
 				}
 				catch (Exception exc)
 				{
-					Logger.Current.WriteLine("error loading custom theme file", exc);
+					logger.WriteLine("error loading custom theme file, using default theme", exc);
 				}
 			}
 
-			return false;
+			var designMode =
+				LicenseManager.UsageMode == LicenseUsageMode.Designtime ||
+				System.Diagnostics.Process.GetCurrentProcess().ProcessName == "devenv";
+
+			var provider = new SettingsProvider();
+			var mode = provider.Theme;
+
+			DarkMode = !designMode &&
+				(mode == ThemeMode.Dark ||
+				(mode == ThemeMode.System && Office.IsBlackThemeEnabled(true)));
+
+			// set colors...
+
+			cache = JsonConvert.DeserializeObject<ThemeManager>(
+				DarkMode ? Resx.DarkTheme : Resx.LightTheme,
+				new ColorConverter());
+
+			Colors = cache.Colors;
+			loading = false;
 		}
 
 
@@ -232,24 +226,16 @@ namespace River.OneMoreAddIn.UI
 		{
 			if (control is IThemedControl themed)
 			{
-				control.BackColor = themed.PreferredBack == Color.Empty
-					? Colors["Control"]
-					: Colors[themed.PreferredBack.Name];
-
-				control.ForeColor = themed.PreferredFore == Color.Empty
-					? Colors["ControlText"]
-					: Colors[themed.PreferredFore.Name];
+				control.BackColor = GetThemedColor("Control", themed.PreferredBack);
+				control.ForeColor = GetThemedColor("ControlText", themed.PreferredFore);
 			}
 			else
 			{
-				control.BackColor = control.BackColor.IsSystemColor
-					? Colors[control.BackColor.Name]
-					: BackColor;
-
-				control.ForeColor = control.ForeColor.IsSystemColor
-					? Colors[control.ForeColor.Name]
-					: ForeColor;
+				control.BackColor = GetThemedColor(control.BackColor);
+				control.ForeColor = GetThemedColor(control.ForeColor);
 			}
+
+			// for each of the following, parent should have already been themed by now...
 
 			if (control is Label label)
 			{
@@ -274,11 +260,42 @@ namespace River.OneMoreAddIn.UI
 				linkLabel.ActiveLinkColor = LinkColor;
 				linkLabel.BackColor = linkLabel.Parent.BackColor;
 			}
+			else if (control is TabControl tabs)
+			{
+				foreach (TabPage page in tabs.TabPages)
+				{
+					Colorize(page);
+				}
+			}
 
 			foreach (Control child in control.Controls)
 			{
 				Colorize(child);
 			}
+		}
+
+
+		public Color GetThemedColor(Color color)
+		{
+			return color.IsSystemColor && Colors.ContainsKey(color.Name)
+				? Colors[color.Name]
+				: color;
+		}
+
+
+		public Color GetThemedColor(string key, Color preferred = default)
+		{
+			if (preferred == Color.Empty)
+			{
+				return Colors[key];
+			}
+
+			if (preferred.IsSystemColor && Colors.ContainsKey(preferred.Name))
+			{
+				return Colors[preferred.Name];
+			}
+
+			return preferred;
 		}
 
 

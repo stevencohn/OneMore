@@ -1671,18 +1671,19 @@ namespace River.OneMoreAddIn.Properties {
         ///    &quot;BackColor&quot;: &quot;#292929&quot;,
         ///    &quot;ForeColor&quot;: &quot;#E6E6E6&quot;,
         ///    &quot;Border&quot;: &quot;DarkOrchid&quot;,
-        ///    &quot;Control&quot;: &quot;MediumOrchid&quot;,
-        ///    &quot;ControlLightLight&quot;: &quot;#1F1F1F&quot;,
         ///    &quot;IconColor&quot;: &quot;MediumOrchid&quot;,
-        ///    &quot;Highlight&quot;: &quot;#D2A1DF&quot;,
-        ///    &quot;HotTrack&quot;: &quot;MediumOrchid&quot;,
         ///    &quot;ButtonBack&quot;: &quot;#323232&quot;,
         ///    &quot;ButtonFore&quot;: &quot;#E6E6E6&quot;,
         ///    &quot;ButtonDisabled&quot;: &quot;Gray&quot;,
         ///    &quot;ButtonBorder&quot;: &quot;#464646&quot;,
         ///    &quot;ButtonHotBack&quot;: &quot;#505050&quot;,
         ///    &quot;ButtonHotBorder&quot;: &quot;Gray&quot;,
-        ///    &quot;ButtonPressBorder&quot;: &quot;DarkOrc [rest of string was truncated]&quot;;.
+        ///    &quot;ButtonPressBorder&quot;: &quot;DarkOrchid&quot;,
+        ///
+        ///    &quot;ActiveBorder&quot;: &quot;#7F7F7F&quot;,
+        ///    &quot;ActiveCaption&quot;: &quot;#C980EE&quot;,
+        ///    &quot;ActiveCaptionText&quot;: &quot;#000000&quot;,
+        ///    &quot;AppWorkspace&quot;:  [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string DarkTheme {
             get {
@@ -1777,6 +1778,16 @@ namespace River.OneMoreAddIn.Properties {
         internal static string DeleteReminderCommand_deleteTag {
             get {
                 return ResourceManager.GetString("DeleteReminderCommand_deleteTag", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Delta {
+            get {
+                object obj = ResourceManager.GetObject("Delta", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
         
@@ -2119,6 +2130,15 @@ namespace River.OneMoreAddIn.Properties {
         internal static string Emoji_Cycling {
             get {
                 return ResourceManager.GetString("Emoji_Cycling", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Delta.
+        /// </summary>
+        internal static string Emoji_Delta {
+            get {
+                return ResourceManager.GetString("Emoji_Delta", resourceCulture);
             }
         }
         
@@ -4260,11 +4280,7 @@ namespace River.OneMoreAddIn.Properties {
         ///    &quot;BackColor&quot;: &quot;White&quot;,
         ///    &quot;ForeColor&quot;: &quot;Black&quot;,
         ///    &quot;Border&quot;: &quot;#D2A1DF&quot;,
-        ///    &quot;Control&quot;: &quot;#73356E&quot;,
-        ///    &quot;ControlLightLight&quot;: &quot;#1F1F1F&quot;,
         ///    &quot;IconColor&quot;: &quot;#80397B&quot;,
-        ///    &quot;Highlight&quot;: &quot;#BC58B6&quot;,
-        ///    &quot;HotTrack&quot;: &quot;MediumOrchid&quot;,
         ///    &quot;ButtonBack&quot;: &quot;#F7EDF7&quot;,
         ///    &quot;ButtonFore&quot;: &quot;#73356E&quot;,
         ///    &quot;ButtonDisabled&quot;: &quot;Gray&quot;,
@@ -4272,7 +4288,11 @@ namespace River.OneMoreAddIn.Properties {
         ///    &quot;ButtonHotBack&quot;: &quot;#F0DAEE&quot;,
         ///    &quot;ButtonHotBorder&quot;: &quot;#9E5499&quot;,
         ///    &quot;ButtonPressBorder&quot;: &quot;#9E5499&quot;,
-        ///    &quot;Link [rest of string was truncated]&quot;;.
+        ///
+        ///    &quot;ActiveBorder&quot;: &quot;#B4B4B4&quot;,
+        ///    &quot;ActiveCaption&quot;: &quot;#C980EE&quot;,
+        ///    &quot;ActiveCaptionText&quot;: &quot;#000000&quot;,
+        ///    &quot;AppWorkspace&quot;: &quot;#ABABAB&quot;,        /// [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string LightTheme {
             get {

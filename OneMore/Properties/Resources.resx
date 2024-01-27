@@ -900,6 +900,10 @@ Last Column Font</value>
     <value>Cycling</value>
     <comment>emoji</comment>
   </data>
+  <data name="Emoji_Delta" xml:space="preserve">
+    <value>Delta</value>
+    <comment>emoji</comment>
+  </data>
   <data name="Emoji_Envelope" xml:space="preserve">
     <value>Envelope</value>
     <comment>emoji</comment>
@@ -5276,6 +5280,12 @@ In this section</value>
   <data name="XMark" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Commands\Snippets\Emoji\Images\xmark.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="sponsor_dark" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Commands\Tools\sponsor-dark.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="sponsor_light" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Commands\Tools\sponsor-light.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="ribInsertNoteBoxButton" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\ribbon\images\ribinsertnoteboxbutton.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -5441,19 +5451,16 @@ In this section</value>
   <data name="DefaultStyles" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\styles\defaultstyles.xml;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
   </data>
-  <data name="_0336_OneNoteApplication_2013" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>0336.OneNoteApplication_2013.xsd;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
-  </data>
-  <data name="sponsor_dark" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Commands\Tools\sponsor-dark.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="sponsor_light" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Commands\Tools\sponsor-light.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="DarkTheme" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\UI\Themed\DarkTheme.json;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
   </data>
   <data name="LightTheme" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\UI\Themed\LightTheme.json;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
+  </data>
+  <data name="_0336_OneNoteApplication_2013" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>0336.OneNoteApplication_2013.xsd;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
+  </data>
+  <data name="Delta" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Commands\Snippets\Emoji\Images\Delta.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>
