@@ -226,7 +226,7 @@ namespace River.OneMoreAddIn.UI
 				}
 				else if (Focused)
 				{
-					color = manager.HotTrack;
+					color = manager.GetThemedColor("HotTrack");
 				}
 				else if (MouseState.HasFlag(MouseState.Hover))
 				{
@@ -244,8 +244,9 @@ namespace River.OneMoreAddIn.UI
 		private void PaintText(Graphics g, int x, int y)
 		{
 			using var brush = new SolidBrush(Enabled
-				? PreferredFore.IsEmpty ? manager.ButtonFore : PreferredFore
-				: manager.ButtonDisabled);
+				? PreferredFore.IsEmpty ? manager.GetThemedColor("ControlText") : PreferredFore
+				: manager.GetThemedColor("GrayText")
+				);
 
 			g.DrawString(Text, Font, brush, x, y,
 				new StringFormat

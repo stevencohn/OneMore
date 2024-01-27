@@ -67,27 +67,8 @@ namespace River.OneMoreAddIn.UI
 		public static ThemeManager Instance => instance ??= new ThemeManager();
 
 
-		#region Convenience Properties
-		[JsonIgnore]
-		public Color BackColor => Colors[nameof(BackColor)];
-		[JsonIgnore]
-		public Color ForeColor => Colors[nameof(ForeColor)];
-		[JsonIgnore]
-		public Color Border => Colors[nameof(Border)];
-		[JsonIgnore]
-		public Color Highlight => Colors[nameof(Highlight)];
-		[JsonIgnore]
-		public Color HotTrack => Colors[nameof(HotTrack)];
-		[JsonIgnore]
-		public Color Control => Colors[nameof(Control)];
-		[JsonIgnore]
-		public Color ControlLightLight => Colors[nameof(ControlLightLight)];
-		[JsonIgnore]
-		public Color IconColor => Colors[nameof(IconColor)];
 		[JsonIgnore]
 		public Color ButtonBack => Colors[nameof(ButtonBack)];
-		[JsonIgnore]
-		public Color ButtonFore => Colors[nameof(ButtonFore)];
 		[JsonIgnore]
 		public Color ButtonDisabled => Colors[nameof(ButtonDisabled)];
 		[JsonIgnore]
@@ -98,12 +79,6 @@ namespace River.OneMoreAddIn.UI
 		public Color ButtonHotBorder => Colors[nameof(ButtonHotBorder)];
 		[JsonIgnore]
 		public Color ButtonPressBorder => Colors[nameof(ButtonPressBorder)];
-
-		[JsonIgnore]
-		public Color LinkColor => Colors[nameof(LinkColor)];
-		[JsonIgnore]
-		public Color HoverColor => Colors[nameof(HoverColor)];
-		#endregion Convenience Properties
 
 		#region Native
 		private const int DWMWA_USE_IMMERSIVE_DARK_MODE = 20;
@@ -118,9 +93,18 @@ namespace River.OneMoreAddIn.UI
 		#endregion Native
 
 
+		/// <summary>
+		/// For individual controls like MoreAutocompleteList...
+		/// </summary>
+		/// <param name="control"></param>
+		public void InitializeTheme(Control control)
+		{
+			SetThemeRecursively(control);
+		}
+
 
 		/// <summary>
-		/// 
+		/// For Forms and UserControls...
 		/// </summary>
 		/// <param name="container"></param>
 		public void InitializeTheme(ContainerControl container)
@@ -134,7 +118,7 @@ namespace River.OneMoreAddIn.UI
 
 			if (container is MoreForm form)
 			{
-				SetThemeRecursively(container, DarkMode);
+				SetThemeRecursively(container);
 				form.OnThemeChange();
 			}
 			else if (container is MoreUserControl control)
@@ -191,11 +175,11 @@ namespace River.OneMoreAddIn.UI
 		}
 
 
-		private void SetThemeRecursively(Control control, bool dark)
+		private void SetThemeRecursively(Control control)
 		{
 			void SetTheme(Control control)
 			{
-				bool trueValue = dark;
+				bool trueValue = DarkMode;
 				// DarkMode_Explorer sets radios, checkboxes, scrollbars to dark mode Explorer 
 				SetWindowTheme(control.Handle, "DarkMode_Explorer", null);
 
@@ -210,7 +194,7 @@ namespace River.OneMoreAddIn.UI
 
 			foreach (Control child in control.Controls)
 			{
-				SetThemeRecursively(child, dark);
+				SetThemeRecursively(child);
 			}
 		}
 
@@ -249,15 +233,15 @@ namespace River.OneMoreAddIn.UI
 			{
 				foreach (ListViewItem item in view.Items)
 				{
-					item.BackColor = ControlLightLight;
-					item.ForeColor = ForeColor;
+					item.BackColor = Colors["ControlLightLight"];
+					item.ForeColor = Colors["ControlText"];
 				}
 			}
 			else if (control is MoreLinkLabel linkLabel)
 			{
-				linkLabel.LinkColor = LinkColor;
-				linkLabel.HoverColor = HoverColor;
-				linkLabel.ActiveLinkColor = LinkColor;
+				linkLabel.LinkColor = Colors["LinkColor"];
+				linkLabel.HoverColor = Colors["HoverColor"];
+				linkLabel.ActiveLinkColor = Colors["LinkColor"];
 				linkLabel.BackColor = linkLabel.Parent.BackColor;
 			}
 			else if (control is TabControl tabs)

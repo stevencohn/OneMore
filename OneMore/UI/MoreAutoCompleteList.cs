@@ -285,6 +285,8 @@ namespace River.OneMoreAddIn.UI
 				});
 
 				Owner.FindForm().Move += HidePopup;
+
+				manager.InitializeTheme(popup);
 			}
 
 			if (!popup.Visible)
@@ -465,7 +467,10 @@ namespace River.OneMoreAddIn.UI
 				var size = e.Graphics.MeasureString(keys, Font);
 				x -= size.Width + 5;
 
-				var cap = new SolidBrush(manager.GetThemedColor("ActiveCaption"));
+				var cap = e.Item.Selected
+					? new SolidBrush(manager.GetThemedColor("GradientInactiveCaption"))
+					: new SolidBrush(manager.GetThemedColor("ActiveCaption"));
+
 				e.Graphics.DrawString(keys, e.Item.Font, cap, x, e.Bounds.Y);
 			}
 		}
