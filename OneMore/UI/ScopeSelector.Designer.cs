@@ -121,6 +121,7 @@
 			// 
 			// listBox
 			// 
+			this.listBox.BackColor = System.Drawing.SystemColors.ControlLightLight;
 			this.listBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
 			this.listBox.CheckOnClick = true;
 			this.listBox.Dock = System.Windows.Forms.DockStyle.Fill;
