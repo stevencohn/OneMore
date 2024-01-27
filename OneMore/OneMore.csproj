@@ -479,6 +479,9 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="UI\Themed\IThemedControl.cs" />
+    <Compile Include="UI\Themed\MoreGroupBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="UI\Themed\MoreTabControl.cs">
       <SubType>Component</SubType>
     </Compile>

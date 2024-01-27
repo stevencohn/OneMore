@@ -10,8 +10,6 @@ namespace River.OneMoreAddIn.UI
 	using System.Windows.Forms;
 
 
-	// https://stackoverflow.com/questions/51504020/how-do-you-make-a-tab-control-look-like-it-does-in-visual-studio
-
 	internal class MoreTabControl : TabControl
 	{
 		private const int Airgap = 4;
