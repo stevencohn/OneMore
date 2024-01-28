@@ -35,10 +35,10 @@ namespace River.OneMoreAddIn.Commands
 		private void InitializeComponent()
 		{
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AdjustImagesDialog));
-			this.cancelButton = new System.Windows.Forms.Button();
-			this.okButton = new System.Windows.Forms.Button();
-			this.pctRadio = new System.Windows.Forms.RadioButton();
-			this.absRadio = new System.Windows.Forms.RadioButton();
+			this.cancelButton = new River.OneMoreAddIn.UI.MoreButton();
+			this.okButton = new River.OneMoreAddIn.UI.MoreButton();
+			this.pctRadio = new River.OneMoreAddIn.UI.MoreRadioButton();
+			this.absRadio = new River.OneMoreAddIn.UI.MoreRadioButton();
 			this.percentBox = new System.Windows.Forms.NumericUpDown();
 			this.pctLabel = new System.Windows.Forms.Label();
 			this.widthBox = new System.Windows.Forms.NumericUpDown();
@@ -46,19 +46,19 @@ namespace River.OneMoreAddIn.Commands
 			this.widthLabel = new System.Windows.Forms.Label();
 			this.heightLabel = new System.Windows.Forms.Label();
 			this.viewSizeLabel = new System.Windows.Forms.Label();
-			this.presetRadio = new System.Windows.Forms.RadioButton();
+			this.presetRadio = new River.OneMoreAddIn.UI.MoreRadioButton();
 			this.presetBox = new System.Windows.Forms.NumericUpDown();
 			this.presetLabel = new System.Windows.Forms.Label();
 			this.imageSizeLabel = new System.Windows.Forms.Label();
 			this.viewSizeLink = new River.OneMoreAddIn.UI.MoreLinkLabel();
 			this.imageSizeLink = new River.OneMoreAddIn.UI.MoreLinkLabel();
 			this.allLabel = new System.Windows.Forms.Label();
-			this.preserveBox = new System.Windows.Forms.CheckBox();
+			this.preserveBox = new River.OneMoreAddIn.UI.MoreCheckBox();
 			this.qualityLabel = new System.Windows.Forms.Label();
 			this.qualBar = new System.Windows.Forms.TrackBar();
 			this.opacityBox = new System.Windows.Forms.NumericUpDown();
 			this.opacityLabel = new System.Windows.Forms.Label();
-			this.previewGroup = new System.Windows.Forms.GroupBox();
+			this.previewGroup = new River.OneMoreAddIn.UI.MoreGroupBox();
 			this.previewBox = new System.Windows.Forms.PictureBox();
 			this.brightnessLabel = new System.Windows.Forms.Label();
 			this.brightnessBox = new System.Windows.Forms.NumericUpDown();
@@ -72,14 +72,14 @@ namespace River.OneMoreAddIn.Commands
 			this.qualBox = new System.Windows.Forms.NumericUpDown();
 			this.styleBox = new System.Windows.Forms.ComboBox();
 			this.styleLabel = new System.Windows.Forms.Label();
-			this.lockButton = new System.Windows.Forms.CheckBox();
+			this.lockButton = new River.OneMoreAddIn.UI.MoreCheckBox();
 			this.saturationBar = new System.Windows.Forms.TrackBar();
 			this.saturationLabel = new System.Windows.Forms.Label();
 			this.saturationBox = new System.Windows.Forms.NumericUpDown();
 			this.limitsBox = new System.Windows.Forms.ComboBox();
-			this.repositionBox = new System.Windows.Forms.CheckBox();
+			this.repositionBox = new River.OneMoreAddIn.UI.MoreCheckBox();
 			this.resetLinkLabel = new River.OneMoreAddIn.UI.MoreLinkLabel();
-			this.autoSizeRadio = new System.Windows.Forms.RadioButton();
+			this.autoSizeRadio = new River.OneMoreAddIn.UI.MoreRadioButton();
 			((System.ComponentModel.ISupportInitialize)(this.percentBox)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.widthBox)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.heightBox)).BeginInit();
@@ -102,8 +102,12 @@ namespace River.OneMoreAddIn.Commands
 			// 
 			this.cancelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-			this.cancelButton.Location = new System.Drawing.Point(996, 665);
+			this.cancelButton.ImageOver = null;
+			this.cancelButton.Location = new System.Drawing.Point(996, 671);
 			this.cancelButton.Name = "cancelButton";
+			this.cancelButton.PreferredBack = System.Drawing.Color.Empty;
+			this.cancelButton.PreferredFore = System.Drawing.Color.Empty;
+			this.cancelButton.ShowBorder = true;
 			this.cancelButton.Size = new System.Drawing.Size(100, 38);
 			this.cancelButton.TabIndex = 24;
 			this.cancelButton.Text = "Cancel";
@@ -113,8 +117,12 @@ namespace River.OneMoreAddIn.Commands
 			// okButton
 			// 
 			this.okButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-			this.okButton.Location = new System.Drawing.Point(890, 665);
+			this.okButton.ImageOver = null;
+			this.okButton.Location = new System.Drawing.Point(890, 671);
 			this.okButton.Name = "okButton";
+			this.okButton.PreferredBack = System.Drawing.Color.Empty;
+			this.okButton.PreferredFore = System.Drawing.Color.Empty;
+			this.okButton.ShowBorder = true;
 			this.okButton.Size = new System.Drawing.Size(100, 38);
 			this.okButton.TabIndex = 23;
 			this.okButton.Text = "OK";
@@ -287,26 +295,30 @@ namespace River.OneMoreAddIn.Commands
 			// 
 			this.viewSizeLink.AutoSize = true;
 			this.viewSizeLink.Cursor = System.Windows.Forms.Cursors.Hand;
-			this.viewSizeLink.HoverColor = System.Drawing.Color.MediumOrchid;
+			this.viewSizeLink.HoverColor = System.Drawing.Color.Orchid;
+			this.viewSizeLink.LinkColor = System.Drawing.Color.MediumOrchid;
 			this.viewSizeLink.Location = new System.Drawing.Point(183, 17);
 			this.viewSizeLink.Name = "viewSizeLink";
 			this.viewSizeLink.Size = new System.Drawing.Size(78, 20);
 			this.viewSizeLink.TabIndex = 21;
 			this.viewSizeLink.TabStop = true;
 			this.viewSizeLink.Text = "100 x 100";
+			this.viewSizeLink.VisitedLinkColor = System.Drawing.Color.MediumOrchid;
 			this.viewSizeLink.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.ViewSizeClicked);
 			// 
 			// imageSizeLink
 			// 
 			this.imageSizeLink.AutoSize = true;
 			this.imageSizeLink.Cursor = System.Windows.Forms.Cursors.Hand;
-			this.imageSizeLink.HoverColor = System.Drawing.Color.MediumOrchid;
+			this.imageSizeLink.HoverColor = System.Drawing.Color.Orchid;
+			this.imageSizeLink.LinkColor = System.Drawing.Color.MediumOrchid;
 			this.imageSizeLink.Location = new System.Drawing.Point(183, 38);
 			this.imageSizeLink.Name = "imageSizeLink";
 			this.imageSizeLink.Size = new System.Drawing.Size(78, 20);
 			this.imageSizeLink.TabIndex = 22;
 			this.imageSizeLink.TabStop = true;
 			this.imageSizeLink.Text = "100 x 100";
+			this.imageSizeLink.VisitedLinkColor = System.Drawing.Color.MediumOrchid;
 			this.imageSizeLink.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.OriginalSizeClicked);
 			// 
 			// allLabel
@@ -321,12 +333,11 @@ namespace River.OneMoreAddIn.Commands
 			// 
 			// preserveBox
 			// 
-			this.preserveBox.AutoSize = true;
 			this.preserveBox.Checked = true;
 			this.preserveBox.CheckState = System.Windows.Forms.CheckState.Checked;
 			this.preserveBox.Location = new System.Drawing.Point(41, 564);
 			this.preserveBox.Name = "preserveBox";
-			this.preserveBox.Size = new System.Drawing.Size(187, 24);
+			this.preserveBox.Size = new System.Drawing.Size(441, 20);
 			this.preserveBox.TabIndex = 20;
 			this.preserveBox.Text = "Preserve storage size";
 			this.preserveBox.UseVisualStyleBackColor = true;
@@ -395,7 +406,7 @@ namespace River.OneMoreAddIn.Commands
 			this.previewGroup.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.previewGroup.Name = "previewGroup";
 			this.previewGroup.Padding = new System.Windows.Forms.Padding(22, 23, 22, 23);
-			this.previewGroup.Size = new System.Drawing.Size(584, 605);
+			this.previewGroup.Size = new System.Drawing.Size(584, 609);
 			this.previewGroup.TabIndex = 25;
 			this.previewGroup.TabStop = false;
 			this.previewGroup.Text = "Preview";
@@ -409,7 +420,7 @@ namespace River.OneMoreAddIn.Commands
 			this.previewBox.Location = new System.Drawing.Point(22, 42);
 			this.previewBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.previewBox.Name = "previewBox";
-			this.previewBox.Size = new System.Drawing.Size(540, 540);
+			this.previewBox.Size = new System.Drawing.Size(540, 544);
 			this.previewBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
 			this.previewBox.TabIndex = 0;
 			this.previewBox.TabStop = false;
@@ -538,6 +549,7 @@ namespace River.OneMoreAddIn.Commands
 			// styleBox
 			// 
 			this.styleBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.styleBox.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
 			this.styleBox.FormattingEnabled = true;
 			this.styleBox.Items.AddRange(new object[] {
             "Original",
@@ -615,6 +627,7 @@ namespace River.OneMoreAddIn.Commands
 			// limitsBox
 			// 
 			this.limitsBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.limitsBox.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
 			this.limitsBox.FormattingEnabled = true;
 			this.limitsBox.Items.AddRange(new object[] {
             "Resize all images",
@@ -628,12 +641,11 @@ namespace River.OneMoreAddIn.Commands
 			// 
 			// repositionBox
 			// 
-			this.repositionBox.AutoSize = true;
 			this.repositionBox.Checked = true;
 			this.repositionBox.CheckState = System.Windows.Forms.CheckState.Checked;
 			this.repositionBox.Location = new System.Drawing.Point(39, 594);
 			this.repositionBox.Name = "repositionBox";
-			this.repositionBox.Size = new System.Drawing.Size(254, 24);
+			this.repositionBox.Size = new System.Drawing.Size(443, 20);
 			this.repositionBox.TabIndex = 48;
 			this.repositionBox.Text = "Reposition background images";
 			this.repositionBox.UseVisualStyleBackColor = true;
@@ -644,13 +656,15 @@ namespace River.OneMoreAddIn.Commands
 			this.resetLinkLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.resetLinkLabel.AutoSize = true;
 			this.resetLinkLabel.Cursor = System.Windows.Forms.Cursors.Hand;
-			this.resetLinkLabel.HoverColor = System.Drawing.Color.MediumOrchid;
-			this.resetLinkLabel.Location = new System.Drawing.Point(642, 674);
+			this.resetLinkLabel.HoverColor = System.Drawing.Color.Orchid;
+			this.resetLinkLabel.LinkColor = System.Drawing.Color.MediumOrchid;
+			this.resetLinkLabel.Location = new System.Drawing.Point(642, 680);
 			this.resetLinkLabel.Name = "resetLinkLabel";
 			this.resetLinkLabel.Size = new System.Drawing.Size(154, 20);
 			this.resetLinkLabel.TabIndex = 49;
 			this.resetLinkLabel.TabStop = true;
 			this.resetLinkLabel.Text = "Reset default values";
+			this.resetLinkLabel.VisitedLinkColor = System.Drawing.Color.MediumOrchid;
 			this.resetLinkLabel.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.ResetDefaultValues);
 			// 
 			// autoSizeRadio
@@ -671,7 +685,7 @@ namespace River.OneMoreAddIn.Commands
 			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.CancelButton = this.cancelButton;
-			this.ClientSize = new System.Drawing.Size(1122, 714);
+			this.ClientSize = new System.Drawing.Size(1122, 728);
 			this.Controls.Add(this.autoSizeRadio);
 			this.Controls.Add(this.resetLinkLabel);
 			this.Controls.Add(this.repositionBox);
@@ -716,6 +730,7 @@ namespace River.OneMoreAddIn.Commands
 			this.Controls.Add(this.pctRadio);
 			this.Controls.Add(this.okButton);
 			this.Controls.Add(this.cancelButton);
+			this.ForeColor = System.Drawing.SystemColors.ControlText;
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.MinimizeBox = false;
 			this.Name = "AdjustImagesDialog";
@@ -746,10 +761,10 @@ namespace River.OneMoreAddIn.Commands
 
 		#endregion
 
-		private System.Windows.Forms.Button cancelButton;
-		private System.Windows.Forms.Button okButton;
-		private System.Windows.Forms.RadioButton pctRadio;
-		private System.Windows.Forms.RadioButton absRadio;
+		private UI.MoreButton cancelButton;
+		private UI.MoreButton okButton;
+		private UI.MoreRadioButton pctRadio;
+		private UI.MoreRadioButton absRadio;
 		private System.Windows.Forms.NumericUpDown percentBox;
 		private System.Windows.Forms.Label pctLabel;
 		private System.Windows.Forms.NumericUpDown widthBox;
@@ -757,7 +772,7 @@ namespace River.OneMoreAddIn.Commands
 		private System.Windows.Forms.Label widthLabel;
 		private System.Windows.Forms.Label heightLabel;
 		private System.Windows.Forms.Label viewSizeLabel;
-		private System.Windows.Forms.RadioButton presetRadio;
+		private UI.MoreRadioButton presetRadio;
 		private System.Windows.Forms.NumericUpDown presetBox;
 		private System.Windows.Forms.Label presetLabel;
 		private System.Windows.Forms.Label imageSizeLabel;
@@ -766,10 +781,10 @@ namespace River.OneMoreAddIn.Commands
 		private System.Windows.Forms.Label allLabel;
 		private System.Windows.Forms.Label qualityLabel;
 		private System.Windows.Forms.TrackBar qualBar;
-		private System.Windows.Forms.CheckBox preserveBox;
+		private UI.MoreCheckBox preserveBox;
 		private System.Windows.Forms.NumericUpDown opacityBox;
 		private System.Windows.Forms.Label opacityLabel;
-		private System.Windows.Forms.GroupBox previewGroup;
+		private UI.MoreGroupBox previewGroup;
 		private System.Windows.Forms.PictureBox previewBox;
 		private System.Windows.Forms.Label brightnessLabel;
 		private System.Windows.Forms.NumericUpDown brightnessBox;
@@ -783,13 +798,13 @@ namespace River.OneMoreAddIn.Commands
 		private System.Windows.Forms.NumericUpDown qualBox;
 		private System.Windows.Forms.ComboBox styleBox;
 		private System.Windows.Forms.Label styleLabel;
-		private System.Windows.Forms.CheckBox lockButton;
+		private UI.MoreCheckBox lockButton;
 		private System.Windows.Forms.TrackBar saturationBar;
 		private System.Windows.Forms.Label saturationLabel;
 		private System.Windows.Forms.NumericUpDown saturationBox;
 		private System.Windows.Forms.ComboBox limitsBox;
-		private System.Windows.Forms.CheckBox repositionBox;
+		private UI.MoreCheckBox repositionBox;
 		private UI.MoreLinkLabel resetLinkLabel;
-		private System.Windows.Forms.RadioButton autoSizeRadio;
+		private UI.MoreRadioButton autoSizeRadio;
 	}
 }

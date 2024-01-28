@@ -58,7 +58,7 @@ namespace River.OneMoreAddIn.Commands
 			this.addressBox.Name = "addressBox";
 			this.addressBox.PreferredBack = System.Drawing.Color.Empty;
 			this.addressBox.PreferredFore = System.Drawing.Color.Empty;
-			this.addressBox.Size = new System.Drawing.Size(548, 26);
+			this.addressBox.Size = new System.Drawing.Size(691, 26);
 			this.addressBox.TabIndex = 1;
 			this.addressBox.TextChanged += new System.EventHandler(this.ConfirmAddress);
 			// 
@@ -68,7 +68,7 @@ namespace River.OneMoreAddIn.Commands
 			this.okButton.DialogResult = System.Windows.Forms.DialogResult.OK;
 			this.okButton.Enabled = false;
 			this.okButton.ImageOver = null;
-			this.okButton.Location = new System.Drawing.Point(434, 210);
+			this.okButton.Location = new System.Drawing.Point(577, 210);
 			this.okButton.Name = "okButton";
 			this.okButton.PreferredBack = System.Drawing.Color.Empty;
 			this.okButton.PreferredFore = System.Drawing.Color.Empty;
@@ -83,7 +83,7 @@ namespace River.OneMoreAddIn.Commands
 			this.cancelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
 			this.cancelButton.ImageOver = null;
-			this.cancelButton.Location = new System.Drawing.Point(540, 210);
+			this.cancelButton.Location = new System.Drawing.Point(683, 210);
 			this.cancelButton.Name = "cancelButton";
 			this.cancelButton.PreferredBack = System.Drawing.Color.Empty;
 			this.cancelButton.PreferredFore = System.Drawing.Color.Empty;
@@ -145,7 +145,7 @@ namespace River.OneMoreAddIn.Commands
 			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.CancelButton = this.cancelButton;
-			this.ClientSize = new System.Drawing.Size(658, 266);
+			this.ClientSize = new System.Drawing.Size(801, 266);
 			this.Controls.Add(this.imagesBox);
 			this.Controls.Add(this.newChildButton);
 			this.Controls.Add(this.newPageButton);

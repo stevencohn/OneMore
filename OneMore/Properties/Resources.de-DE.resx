@@ -4595,20 +4595,14 @@ Absatz - ganzer Absatz
     <comment>message</comment>
   </data>
   <data name="StylizeImagesDialog_backBox.Text" xml:space="preserve">
-    <value>Auf Hintergrundbilder anwenden</value>
+    <value>Auf Hintergrundbilder anwenden
+Hintergrundbilder: {0}, ausgewählt: {1}</value>
     <comment>checkbox</comment>
-  </data>
-  <data name="StylizeImagesDialog_backImagesLabel.Text" xml:space="preserve">
-    <value>Hintergrundbilder: {0}, ausgewählt: {1}</value>
-    <comment>label</comment>
   </data>
   <data name="StylizeImagesDialog_foreBox.Text" xml:space="preserve">
-    <value>Auf Vordergrundbilder anwenden</value>
+    <value>Auf Vordergrundbilder anwenden
+Vordergrundbilder: {0}, ausgewählt: {1}</value>
     <comment>checkbox</comment>
-  </data>
-  <data name="StylizeImagesDialog_foreImagesLabel.Text" xml:space="preserve">
-    <value>Vordergrundbilder: {0}, ausgewählt: {1}</value>
-    <comment>label</comment>
   </data>
   <data name="StylizeImagesDialog_styleBox.Text" xml:space="preserve">
     <value>Graustufen

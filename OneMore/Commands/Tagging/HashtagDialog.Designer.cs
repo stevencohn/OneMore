@@ -30,22 +30,22 @@
 		{
 			this.components = new System.ComponentModel.Container();
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(HashtagDialog));
-			this.cancelButton = new System.Windows.Forms.Button();
+			this.cancelButton = new River.OneMoreAddIn.UI.MoreButton();
 			this.contextPanel = new System.Windows.Forms.FlowLayoutPanel();
 			this.topPanel = new River.OneMoreAddIn.UI.MorePanel();
-			this.introLabel = new System.Windows.Forms.TextBox();
-			this.menuButton = new System.Windows.Forms.Button();
+			this.introLabel = new River.OneMoreAddIn.UI.MoreTextBox();
+			this.menuButton = new River.OneMoreAddIn.UI.MoreButton();
 			this.barLabel = new System.Windows.Forms.Label();
-			this.checkAllLink = new System.Windows.Forms.LinkLabel();
-			this.uncheckAllLink = new System.Windows.Forms.LinkLabel();
+			this.checkAllLink = new River.OneMoreAddIn.UI.MoreLinkLabel();
+			this.uncheckAllLink = new River.OneMoreAddIn.UI.MoreLinkLabel();
 			this.scopeBox = new System.Windows.Forms.ComboBox();
-			this.searchButton = new System.Windows.Forms.Button();
-			this.tagBox = new System.Windows.Forms.TextBox();
+			this.searchButton = new River.OneMoreAddIn.UI.MoreButton();
+			this.tagBox = new River.OneMoreAddIn.UI.MoreTextBox();
 			this.panel1 = new System.Windows.Forms.Panel();
 			this.lastScanLabel = new System.Windows.Forms.Label();
-			this.indexButton = new System.Windows.Forms.Button();
-			this.copyButton = new System.Windows.Forms.Button();
-			this.moveButton = new System.Windows.Forms.Button();
+			this.indexButton = new River.OneMoreAddIn.UI.MoreButton();
+			this.copyButton = new River.OneMoreAddIn.UI.MoreButton();
+			this.moveButton = new River.OneMoreAddIn.UI.MoreButton();
 			this.contextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
 			this.scanButton = new System.Windows.Forms.ToolStripMenuItem();
 			this.topPanel.SuspendLayout();
@@ -57,8 +57,12 @@
 			// 
 			this.cancelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+			this.cancelButton.ImageOver = null;
 			this.cancelButton.Location = new System.Drawing.Point(864, 13);
 			this.cancelButton.Name = "cancelButton";
+			this.cancelButton.PreferredBack = System.Drawing.Color.Empty;
+			this.cancelButton.PreferredFore = System.Drawing.Color.Empty;
+			this.cancelButton.ShowBorder = true;
 			this.cancelButton.Size = new System.Drawing.Size(112, 35);
 			this.cancelButton.TabIndex = 6;
 			this.cancelButton.Text = "Cancel";
@@ -73,7 +77,7 @@
 			this.contextPanel.Location = new System.Drawing.Point(0, 144);
 			this.contextPanel.Name = "contextPanel";
 			this.contextPanel.Padding = new System.Windows.Forms.Padding(6);
-			this.contextPanel.Size = new System.Drawing.Size(988, 540);
+			this.contextPanel.Size = new System.Drawing.Size(988, 640);
 			this.contextPanel.TabIndex = 7;
 			// 
 			// topPanel
@@ -96,6 +100,8 @@
 			this.topPanel.Padding = new System.Windows.Forms.Padding(10);
 			this.topPanel.Size = new System.Drawing.Size(988, 144);
 			this.topPanel.TabIndex = 8;
+			this.topPanel.TopBorderColor = System.Drawing.SystemColors.Control;
+			this.topPanel.TopBorderSize = 0;
 			// 
 			// introLabel
 			// 
@@ -105,6 +111,8 @@
 			this.introLabel.Location = new System.Drawing.Point(41, 13);
 			this.introLabel.Multiline = true;
 			this.introLabel.Name = "introLabel";
+			this.introLabel.PreferredBack = System.Drawing.Color.Empty;
+			this.introLabel.PreferredFore = System.Drawing.Color.Empty;
 			this.introLabel.Size = new System.Drawing.Size(864, 48);
 			this.introLabel.TabIndex = 10;
 			this.introLabel.Text = "Type any part of one or more hashtags. Wildcards are implied unless a tag is ende" +
@@ -117,8 +125,12 @@
 			this.menuButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.menuButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.menuButton.ForeColor = System.Drawing.SystemColors.GrayText;
+			this.menuButton.ImageOver = null;
 			this.menuButton.Location = new System.Drawing.Point(925, 68);
 			this.menuButton.Name = "menuButton";
+			this.menuButton.PreferredBack = System.Drawing.Color.Empty;
+			this.menuButton.PreferredFore = System.Drawing.Color.Empty;
+			this.menuButton.ShowBorder = true;
 			this.menuButton.Size = new System.Drawing.Size(50, 38);
 			this.menuButton.TabIndex = 8;
 			this.menuButton.Text = "•••";
@@ -137,32 +149,43 @@
 			// 
 			// checkAllLink
 			// 
+			this.checkAllLink.ActiveLinkColor = System.Drawing.Color.Orchid;
 			this.checkAllLink.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.checkAllLink.AutoSize = true;
+			this.checkAllLink.Cursor = System.Windows.Forms.Cursors.Hand;
+			this.checkAllLink.HoverColor = System.Drawing.Color.MediumOrchid;
+			this.checkAllLink.LinkColor = System.Drawing.Color.MediumOrchid;
 			this.checkAllLink.Location = new System.Drawing.Point(729, 114);
 			this.checkAllLink.Name = "checkAllLink";
 			this.checkAllLink.Size = new System.Drawing.Size(73, 20);
 			this.checkAllLink.TabIndex = 6;
 			this.checkAllLink.TabStop = true;
 			this.checkAllLink.Text = "Check all";
+			this.checkAllLink.VisitedLinkColor = System.Drawing.Color.MediumOrchid;
 			this.checkAllLink.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.ToggleAllChecks);
 			// 
 			// uncheckAllLink
 			// 
+			this.uncheckAllLink.ActiveLinkColor = System.Drawing.Color.Orchid;
 			this.uncheckAllLink.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.uncheckAllLink.AutoSize = true;
+			this.uncheckAllLink.Cursor = System.Windows.Forms.Cursors.Hand;
+			this.uncheckAllLink.HoverColor = System.Drawing.Color.MediumOrchid;
+			this.uncheckAllLink.LinkColor = System.Drawing.Color.MediumOrchid;
 			this.uncheckAllLink.Location = new System.Drawing.Point(828, 114);
 			this.uncheckAllLink.Name = "uncheckAllLink";
 			this.uncheckAllLink.Size = new System.Drawing.Size(91, 20);
 			this.uncheckAllLink.TabIndex = 5;
 			this.uncheckAllLink.TabStop = true;
 			this.uncheckAllLink.Text = "Uncheck all";
+			this.uncheckAllLink.VisitedLinkColor = System.Drawing.Color.MediumOrchid;
 			this.uncheckAllLink.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.ToggleAllChecks);
 			// 
 			// scopeBox
 			// 
 			this.scopeBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.scopeBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.scopeBox.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
 			this.scopeBox.FormattingEnabled = true;
 			this.scopeBox.Items.AddRange(new object[] {
             "All",
@@ -178,8 +201,12 @@
 			// 
 			this.searchButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.searchButton.Image = ((System.Drawing.Image)(resources.GetObject("searchButton.Image")));
+			this.searchButton.ImageOver = null;
 			this.searchButton.Location = new System.Drawing.Point(859, 72);
 			this.searchButton.Name = "searchButton";
+			this.searchButton.PreferredBack = System.Drawing.Color.Empty;
+			this.searchButton.PreferredFore = System.Drawing.Color.Empty;
+			this.searchButton.ShowBorder = false;
 			this.searchButton.Size = new System.Drawing.Size(60, 32);
 			this.searchButton.TabIndex = 2;
 			this.searchButton.UseVisualStyleBackColor = true;
@@ -189,9 +216,12 @@
 			// 
 			this.tagBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+			this.tagBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
 			this.tagBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.tagBox.Location = new System.Drawing.Point(41, 75);
 			this.tagBox.Name = "tagBox";
+			this.tagBox.PreferredBack = System.Drawing.Color.Empty;
+			this.tagBox.PreferredFore = System.Drawing.Color.Empty;
 			this.tagBox.Size = new System.Drawing.Size(608, 28);
 			this.tagBox.TabIndex = 0;
 			// 
@@ -203,7 +233,7 @@
 			this.panel1.Controls.Add(this.moveButton);
 			this.panel1.Controls.Add(this.cancelButton);
 			this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-			this.panel1.Location = new System.Drawing.Point(0, 684);
+			this.panel1.Location = new System.Drawing.Point(0, 784);
 			this.panel1.Name = "panel1";
 			this.panel1.Size = new System.Drawing.Size(988, 60);
 			this.panel1.TabIndex = 9;
@@ -223,9 +253,13 @@
 			this.indexButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.indexButton.DialogResult = System.Windows.Forms.DialogResult.OK;
 			this.indexButton.Enabled = false;
+			this.indexButton.ImageOver = null;
 			this.indexButton.Location = new System.Drawing.Point(487, 12);
 			this.indexButton.Margin = new System.Windows.Forms.Padding(4, 5, 10, 9);
 			this.indexButton.Name = "indexButton";
+			this.indexButton.PreferredBack = System.Drawing.Color.Empty;
+			this.indexButton.PreferredFore = System.Drawing.Color.Empty;
+			this.indexButton.ShowBorder = true;
 			this.indexButton.Size = new System.Drawing.Size(112, 35);
 			this.indexButton.TabIndex = 7;
 			this.indexButton.Text = "Index";
@@ -237,9 +271,13 @@
 			this.copyButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.copyButton.DialogResult = System.Windows.Forms.DialogResult.OK;
 			this.copyButton.Enabled = false;
+			this.copyButton.ImageOver = null;
 			this.copyButton.Location = new System.Drawing.Point(613, 12);
 			this.copyButton.Margin = new System.Windows.Forms.Padding(4, 5, 10, 9);
 			this.copyButton.Name = "copyButton";
+			this.copyButton.PreferredBack = System.Drawing.Color.Empty;
+			this.copyButton.PreferredFore = System.Drawing.Color.Empty;
+			this.copyButton.ShowBorder = true;
 			this.copyButton.Size = new System.Drawing.Size(112, 35);
 			this.copyButton.TabIndex = 8;
 			this.copyButton.Text = "Copy";
@@ -251,9 +289,13 @@
 			this.moveButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.moveButton.DialogResult = System.Windows.Forms.DialogResult.OK;
 			this.moveButton.Enabled = false;
+			this.moveButton.ImageOver = null;
 			this.moveButton.Location = new System.Drawing.Point(739, 13);
 			this.moveButton.Margin = new System.Windows.Forms.Padding(4, 5, 10, 9);
 			this.moveButton.Name = "moveButton";
+			this.moveButton.PreferredBack = System.Drawing.Color.Empty;
+			this.moveButton.PreferredFore = System.Drawing.Color.Empty;
+			this.moveButton.ShowBorder = true;
 			this.moveButton.Size = new System.Drawing.Size(112, 35);
 			this.moveButton.TabIndex = 9;
 			this.moveButton.Text = "Move";
@@ -283,6 +325,7 @@
 			this.Controls.Add(this.contextPanel);
 			this.Controls.Add(this.panel1);
 			this.Controls.Add(this.topPanel);
+			this.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.KeyPreview = true;
 			this.MaximizeBox = false;
@@ -302,23 +345,23 @@
 
 		#endregion
 
-		private System.Windows.Forms.Button cancelButton;
+		private UI.MoreButton cancelButton;
 		private System.Windows.Forms.FlowLayoutPanel contextPanel;
 		private UI.MorePanel topPanel;
 		private System.Windows.Forms.Panel panel1;
-		private System.Windows.Forms.TextBox tagBox;
-		private System.Windows.Forms.Button searchButton;
+		private UI.MoreTextBox tagBox;
+		private UI.MoreButton searchButton;
 		private System.Windows.Forms.ComboBox scopeBox;
 		private System.Windows.Forms.Label barLabel;
-		private System.Windows.Forms.LinkLabel checkAllLink;
-		private System.Windows.Forms.LinkLabel uncheckAllLink;
-		private System.Windows.Forms.Button indexButton;
-		private System.Windows.Forms.Button copyButton;
-		private System.Windows.Forms.Button moveButton;
+		private UI.MoreLinkLabel checkAllLink;
+		private UI.MoreLinkLabel uncheckAllLink;
+		private UI.MoreButton indexButton;
+		private UI.MoreButton copyButton;
+		private UI.MoreButton moveButton;
 		private System.Windows.Forms.Label lastScanLabel;
-		private System.Windows.Forms.Button menuButton;
+		private UI.MoreButton menuButton;
 		private System.Windows.Forms.ContextMenuStrip contextMenu;
 		private System.Windows.Forms.ToolStripMenuItem scanButton;
-		private System.Windows.Forms.TextBox introLabel;
+		private UI.MoreTextBox introLabel;
 	}
 }

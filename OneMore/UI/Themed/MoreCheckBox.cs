@@ -64,10 +64,13 @@ namespace River.OneMoreAddIn.UI
 					g.DrawRoundedRectangle(pen, pevent.ClipRectangle, Radius);
 				}
 
-				g.DrawImageUnscaled(Image,
-					(pevent.ClipRectangle.Width - Image.Width) / 2,
-					(pevent.ClipRectangle.Height - Image.Height) / 2
-					);
+				var img = Image ?? BackgroundImage;
+				if (img != null)
+				{
+					var r = pevent.ClipRectangle;
+					r.Inflate(-3, -3);
+					g.DrawImage(img, r);
+				}
 			}
 			else
 			{
@@ -75,7 +78,9 @@ namespace River.OneMoreAddIn.UI
 					? manager.GetThemedColor(foreColor)
 					: manager.GetThemedColor("GrayText");
 
-				var size = g.MeasureString(Text, Font);
+				// ensure we have something to measure relatively for box location
+				var text = string.IsNullOrWhiteSpace(Text) ? "M" : Text;
+				var size = g.MeasureString(text, Font);
 
 				using var pen = new Pen(color);
 				var boxY = (int)((size.Height - BoxSize) / 2);

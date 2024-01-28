@@ -4606,20 +4606,14 @@ ISO-code then comma then language name</comment>
     <comment>message</comment>
   </data>
   <data name="StylizeImagesDialog_backBox.Text" xml:space="preserve">
-    <value>تنطبق على الصور الخلفية</value>
+    <value>تنطبق على الصور الخلفية
+صور الخلفية: {0}، محددة: {1}</value>
     <comment>checkbox</comment>
-  </data>
-  <data name="StylizeImagesDialog_backImagesLabel.Text" xml:space="preserve">
-    <value>صور الخلفية: {0}، محددة: {1}</value>
-    <comment>label</comment>
   </data>
   <data name="StylizeImagesDialog_foreBox.Text" xml:space="preserve">
-    <value>تنطبق على الصور الأمامية</value>
+    <value>تنطبق على الصور الأمامية
+الصور الأمامية: {0}، محددة: {1}</value>
     <comment>checkbox</comment>
-  </data>
-  <data name="StylizeImagesDialog_foreImagesLabel.Text" xml:space="preserve">
-    <value>الصور الأمامية: {0}، محددة: {1}</value>
-    <comment>label</comment>
   </data>
   <data name="StylizeImagesDialog_styleBox.Text" xml:space="preserve">
     <value>مقياس رمادي

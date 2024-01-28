@@ -68,7 +68,7 @@
 			this.cancelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
 			this.cancelButton.ImageOver = null;
-			this.cancelButton.Location = new System.Drawing.Point(640, 473);
+			this.cancelButton.Location = new System.Drawing.Point(640, 503);
 			this.cancelButton.Name = "cancelButton";
 			this.cancelButton.PreferredBack = System.Drawing.Color.Empty;
 			this.cancelButton.PreferredFore = System.Drawing.Color.Empty;
@@ -84,7 +84,7 @@
 			this.okButton.DialogResult = System.Windows.Forms.DialogResult.OK;
 			this.okButton.Enabled = false;
 			this.okButton.ImageOver = null;
-			this.okButton.Location = new System.Drawing.Point(514, 473);
+			this.okButton.Location = new System.Drawing.Point(514, 503);
 			this.okButton.Name = "okButton";
 			this.okButton.PreferredBack = System.Drawing.Color.Empty;
 			this.okButton.PreferredFore = System.Drawing.Color.Empty;
@@ -217,7 +217,7 @@
 			this.saveButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.saveButton.Enabled = false;
 			this.saveButton.ImageOver = null;
-			this.saveButton.Location = new System.Drawing.Point(388, 473);
+			this.saveButton.Location = new System.Drawing.Point(388, 503);
 			this.saveButton.Name = "saveButton";
 			this.saveButton.PreferredBack = System.Drawing.Color.Empty;
 			this.saveButton.PreferredFore = System.Drawing.Color.Empty;
@@ -364,7 +364,7 @@
 			this.pageGroup.Controls.Add(this.pageNameBox);
 			this.pageGroup.Controls.Add(this.childBox);
 			this.pageGroup.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-			this.pageGroup.Location = new System.Drawing.Point(140, 290);
+			this.pageGroup.Location = new System.Drawing.Point(140, 302);
 			this.pageGroup.Name = "pageGroup";
 			this.pageGroup.Size = new System.Drawing.Size(620, 159);
 			this.pageGroup.TabIndex = 26;
@@ -388,7 +388,7 @@
 			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.CancelButton = this.cancelButton;
-			this.ClientSize = new System.Drawing.Size(778, 529);
+			this.ClientSize = new System.Drawing.Size(778, 559);
 			this.Controls.Add(this.sectionGroup);
 			this.Controls.Add(this.pageGroup);
 			this.Controls.Add(this.targetLabel);

@@ -29,24 +29,26 @@
 		private void InitializeComponent()
 		{
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(StylizeImagesDialog));
-			this.okButton = new System.Windows.Forms.Button();
-			this.cancelButton = new System.Windows.Forms.Button();
-			this.foreImagesLabel = new System.Windows.Forms.Label();
-			this.backImagesLabel = new System.Windows.Forms.Label();
+			this.okButton = new River.OneMoreAddIn.UI.MoreButton();
+			this.cancelButton = new River.OneMoreAddIn.UI.MoreButton();
 			this.styleLabel = new System.Windows.Forms.Label();
 			this.styleBox = new System.Windows.Forms.ComboBox();
-			this.foreBox = new System.Windows.Forms.CheckBox();
-			this.backBox = new System.Windows.Forms.CheckBox();
+			this.foreBox = new River.OneMoreAddIn.UI.MoreCheckBox();
+			this.backBox = new River.OneMoreAddIn.UI.MoreCheckBox();
 			this.SuspendLayout();
 			// 
 			// okButton
 			// 
 			this.okButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.okButton.Enabled = false;
+			this.okButton.ImageOver = null;
 			this.okButton.Location = new System.Drawing.Point(261, 270);
 			this.okButton.Name = "okButton";
+			this.okButton.PreferredBack = System.Drawing.Color.Empty;
+			this.okButton.PreferredFore = System.Drawing.Color.Empty;
+			this.okButton.ShowBorder = true;
 			this.okButton.Size = new System.Drawing.Size(100, 38);
-			this.okButton.TabIndex = 25;
+			this.okButton.TabIndex = 0;
 			this.okButton.Text = "OK";
 			this.okButton.UseVisualStyleBackColor = true;
 			this.okButton.Click += new System.EventHandler(this.OK);
@@ -55,34 +57,21 @@
 			// 
 			this.cancelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+			this.cancelButton.ImageOver = null;
 			this.cancelButton.Location = new System.Drawing.Point(367, 270);
 			this.cancelButton.Name = "cancelButton";
+			this.cancelButton.PreferredBack = System.Drawing.Color.Empty;
+			this.cancelButton.PreferredFore = System.Drawing.Color.Empty;
+			this.cancelButton.ShowBorder = true;
 			this.cancelButton.Size = new System.Drawing.Size(100, 38);
-			this.cancelButton.TabIndex = 26;
+			this.cancelButton.TabIndex = 1;
 			this.cancelButton.Text = "Cancel";
 			this.cancelButton.UseVisualStyleBackColor = true;
-			// 
-			// foreImagesLabel
-			// 
-			this.foreImagesLabel.AutoSize = true;
-			this.foreImagesLabel.Location = new System.Drawing.Point(69, 67);
-			this.foreImagesLabel.Name = "foreImagesLabel";
-			this.foreImagesLabel.Size = new System.Drawing.Size(249, 20);
-			this.foreImagesLabel.TabIndex = 27;
-			this.foreImagesLabel.Text = "Foreground images: 0, selected: 0";
-			// 
-			// backImagesLabel
-			// 
-			this.backImagesLabel.AutoSize = true;
-			this.backImagesLabel.Location = new System.Drawing.Point(69, 137);
-			this.backImagesLabel.Name = "backImagesLabel";
-			this.backImagesLabel.Size = new System.Drawing.Size(248, 20);
-			this.backImagesLabel.TabIndex = 28;
-			this.backImagesLabel.Text = "Background images: 0, selected 0";
 			// 
 			// styleLabel
 			// 
 			this.styleLabel.AutoSize = true;
+			this.styleLabel.ForeColor = System.Drawing.SystemColors.ControlText;
 			this.styleLabel.Location = new System.Drawing.Point(40, 197);
 			this.styleLabel.Name = "styleLabel";
 			this.styleLabel.Size = new System.Drawing.Size(44, 20);
@@ -103,27 +92,27 @@
 			this.styleBox.Location = new System.Drawing.Point(147, 194);
 			this.styleBox.Name = "styleBox";
 			this.styleBox.Size = new System.Drawing.Size(295, 28);
-			this.styleBox.TabIndex = 44;
+			this.styleBox.TabIndex = 6;
 			// 
 			// foreBox
 			// 
-			this.foreBox.AutoSize = true;
+			this.foreBox.ForeColor = System.Drawing.SystemColors.ControlText;
 			this.foreBox.Location = new System.Drawing.Point(44, 40);
 			this.foreBox.Name = "foreBox";
-			this.foreBox.Size = new System.Drawing.Size(229, 24);
-			this.foreBox.TabIndex = 46;
-			this.foreBox.Text = "Apply to foreground images";
+			this.foreBox.Size = new System.Drawing.Size(398, 44);
+			this.foreBox.TabIndex = 2;
+			this.foreBox.Text = "Apply to foreground images\r\nForeground images: 0, selected: 0";
 			this.foreBox.UseVisualStyleBackColor = true;
 			this.foreBox.CheckedChanged += new System.EventHandler(this.ChangeSelections);
 			// 
 			// backBox
 			// 
-			this.backBox.AutoSize = true;
+			this.backBox.ForeColor = System.Drawing.SystemColors.ControlText;
 			this.backBox.Location = new System.Drawing.Point(44, 110);
 			this.backBox.Name = "backBox";
-			this.backBox.Size = new System.Drawing.Size(235, 24);
-			this.backBox.TabIndex = 47;
-			this.backBox.Text = "Apply to background images";
+			this.backBox.Size = new System.Drawing.Size(398, 44);
+			this.backBox.TabIndex = 4;
+			this.backBox.Text = "Apply to background images\r\nBackground images: 0, selected 0";
 			this.backBox.UseVisualStyleBackColor = true;
 			this.backBox.CheckedChanged += new System.EventHandler(this.ChangeSelections);
 			// 
@@ -139,8 +128,6 @@
 			this.Controls.Add(this.foreBox);
 			this.Controls.Add(this.styleLabel);
 			this.Controls.Add(this.styleBox);
-			this.Controls.Add(this.backImagesLabel);
-			this.Controls.Add(this.foreImagesLabel);
 			this.Controls.Add(this.okButton);
 			this.Controls.Add(this.cancelButton);
 			this.ForeColor = System.Drawing.Color.Black;
@@ -158,13 +145,11 @@
 
 		#endregion
 
-		private System.Windows.Forms.Button okButton;
-		private System.Windows.Forms.Button cancelButton;
-		private System.Windows.Forms.Label foreImagesLabel;
-		private System.Windows.Forms.Label backImagesLabel;
+		private UI.MoreButton okButton;
+		private UI.MoreButton cancelButton;
 		private System.Windows.Forms.Label styleLabel;
 		private System.Windows.Forms.ComboBox styleBox;
-		private System.Windows.Forms.CheckBox foreBox;
-		private System.Windows.Forms.CheckBox backBox;
+		private UI.MoreCheckBox foreBox;
+		private UI.MoreCheckBox backBox;
 	}
 }

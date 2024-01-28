@@ -36,13 +36,13 @@
 			this.marchingTimer = new System.Windows.Forms.Timer(this.components);
 			this.picturePanel = new System.Windows.Forms.Panel();
 			this.introPanel = new System.Windows.Forms.Panel();
-			this.introText = new System.Windows.Forms.TextBox();
+			this.introText = new System.Windows.Forms.Label();
 			this.buttonPanel = new System.Windows.Forms.Panel();
 			this.rotationBox = new System.Windows.Forms.NumericUpDown();
 			this.rotationBar = new System.Windows.Forms.TrackBar();
-			this.selectButton = new System.Windows.Forms.Button();
-			this.cancelButton = new System.Windows.Forms.Button();
-			this.cropButton = new System.Windows.Forms.Button();
+			this.selectButton = new River.OneMoreAddIn.UI.MoreButton();
+			this.cancelButton = new River.OneMoreAddIn.UI.MoreButton();
+			this.cropButton = new River.OneMoreAddIn.UI.MoreButton();
 			this.statusStrip = new System.Windows.Forms.StatusStrip();
 			this.sizeStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
 			this.statusLabel = new System.Windows.Forms.ToolStripStatusLabel();
@@ -106,9 +106,8 @@
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.introText.BackColor = System.Drawing.SystemColors.Control;
 			this.introText.BorderStyle = System.Windows.Forms.BorderStyle.None;
-			this.introText.Enabled = false;
+			this.introText.ForeColor = System.Drawing.SystemColors.ControlText;
 			this.introText.Location = new System.Drawing.Point(13, 12);
-			this.introText.Multiline = true;
 			this.introText.Name = "introText";
 			this.introText.Size = new System.Drawing.Size(1463, 26);
 			this.introText.TabIndex = 0;
@@ -139,7 +138,7 @@
             0});
 			this.rotationBox.Name = "rotationBox";
 			this.rotationBox.Size = new System.Drawing.Size(78, 26);
-			this.rotationBox.TabIndex = 9;
+			this.rotationBox.TabIndex = 3;
 			this.rotationBox.ValueChanged += new System.EventHandler(this.ChangeRotation);
 			// 
 			// rotationBar
@@ -150,17 +149,21 @@
 			this.rotationBar.MinimumSize = new System.Drawing.Size(360, 69);
 			this.rotationBar.Name = "rotationBar";
 			this.rotationBar.Size = new System.Drawing.Size(360, 69);
-			this.rotationBar.TabIndex = 8;
+			this.rotationBar.TabIndex = 2;
 			this.rotationBar.TickFrequency = 10;
 			this.rotationBar.TickStyle = System.Windows.Forms.TickStyle.TopLeft;
 			this.rotationBar.Scroll += new System.EventHandler(this.ChangeRotation);
 			// 
 			// selectButton
 			// 
+			this.selectButton.ImageOver = null;
 			this.selectButton.Location = new System.Drawing.Point(12, 9);
 			this.selectButton.Name = "selectButton";
+			this.selectButton.PreferredBack = System.Drawing.Color.Empty;
+			this.selectButton.PreferredFore = System.Drawing.Color.Empty;
+			this.selectButton.ShowBorder = true;
 			this.selectButton.Size = new System.Drawing.Size(120, 40);
-			this.selectButton.TabIndex = 7;
+			this.selectButton.TabIndex = 4;
 			this.selectButton.Text = "Select All";
 			this.selectButton.UseVisualStyleBackColor = true;
 			this.selectButton.Click += new System.EventHandler(this.SelectButton_Click);
@@ -169,10 +172,14 @@
 			// 
 			this.cancelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+			this.cancelButton.ImageOver = null;
 			this.cancelButton.Location = new System.Drawing.Point(1373, 9);
 			this.cancelButton.Name = "cancelButton";
+			this.cancelButton.PreferredBack = System.Drawing.Color.Empty;
+			this.cancelButton.PreferredFore = System.Drawing.Color.Empty;
+			this.cancelButton.ShowBorder = true;
 			this.cancelButton.Size = new System.Drawing.Size(103, 40);
-			this.cancelButton.TabIndex = 6;
+			this.cancelButton.TabIndex = 1;
 			this.cancelButton.Text = "Cancel";
 			this.cancelButton.UseVisualStyleBackColor = true;
 			// 
@@ -181,10 +188,14 @@
 			this.cropButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.cropButton.DialogResult = System.Windows.Forms.DialogResult.OK;
 			this.cropButton.Enabled = false;
+			this.cropButton.ImageOver = null;
 			this.cropButton.Location = new System.Drawing.Point(1265, 9);
 			this.cropButton.Name = "cropButton";
+			this.cropButton.PreferredBack = System.Drawing.Color.Empty;
+			this.cropButton.PreferredFore = System.Drawing.Color.Empty;
+			this.cropButton.ShowBorder = true;
 			this.cropButton.Size = new System.Drawing.Size(102, 40);
-			this.cropButton.TabIndex = 5;
+			this.cropButton.TabIndex = 0;
 			this.cropButton.Text = "OK";
 			this.cropButton.UseVisualStyleBackColor = true;
 			this.cropButton.Click += new System.EventHandler(this.CropButton_Click);
@@ -205,6 +216,7 @@
 			// 
 			this.sizeStatusLabel.BorderSides = System.Windows.Forms.ToolStripStatusLabelBorderSides.Right;
 			this.sizeStatusLabel.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+			this.sizeStatusLabel.ForeColor = System.Drawing.SystemColors.ControlText;
 			this.sizeStatusLabel.Name = "sizeStatusLabel";
 			this.sizeStatusLabel.Size = new System.Drawing.Size(181, 29);
 			this.sizeStatusLabel.Text = "Image size: 100x100.";
@@ -212,6 +224,7 @@
 			// statusLabel
 			// 
 			this.statusLabel.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+			this.statusLabel.ForeColor = System.Drawing.SystemColors.ControlText;
 			this.statusLabel.Name = "statusLabel";
 			this.statusLabel.Size = new System.Drawing.Size(543, 29);
 			this.statusLabel.Text = "Selection top left: {x}, {y}. Bounding rectangle size: {width} x {height}.";
@@ -227,6 +240,7 @@
 			this.Controls.Add(this.picturePanel);
 			this.Controls.Add(this.buttonPanel);
 			this.Controls.Add(this.statusStrip);
+			this.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.KeyPreview = true;
 			this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
@@ -259,14 +273,14 @@
 		private System.Windows.Forms.Timer marchingTimer;
 		private System.Windows.Forms.Panel picturePanel;
 		private System.Windows.Forms.Panel buttonPanel;
-		private System.Windows.Forms.Button cropButton;
+		private UI.MoreButton cropButton;
 		private System.Windows.Forms.StatusStrip statusStrip;
 		private System.Windows.Forms.ToolStripStatusLabel statusLabel;
 		private System.Windows.Forms.ToolStripStatusLabel sizeStatusLabel;
-		private System.Windows.Forms.Button cancelButton;
-		private System.Windows.Forms.Button selectButton;
+		private UI.MoreButton cancelButton;
+		private UI.MoreButton selectButton;
 		private System.Windows.Forms.Panel introPanel;
-		private System.Windows.Forms.TextBox introText;
+		private System.Windows.Forms.Label introText;
 		private System.Windows.Forms.TrackBar rotationBar;
 		private System.Windows.Forms.NumericUpDown rotationBox;
 	}

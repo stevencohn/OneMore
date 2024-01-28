@@ -11209,7 +11209,8 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Apply to background images.
+        ///   Looks up a localized string similar to Apply to background images
+        ///Background images: {0}, selected: {1}.
         /// </summary>
         internal static string StylizeImagesDialog_backBox_Text {
             get {
@@ -11218,29 +11219,12 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Background images: {0}, selected: {1}.
-        /// </summary>
-        internal static string StylizeImagesDialog_backImagesLabel_Text {
-            get {
-                return ResourceManager.GetString("StylizeImagesDialog_backImagesLabel.Text", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Apply to foreground images.
+        ///   Looks up a localized string similar to Apply to foreground images
+        ///Foreground images: {0}, selected: {1}.
         /// </summary>
         internal static string StylizeImagesDialog_foreBox_Text {
             get {
                 return ResourceManager.GetString("StylizeImagesDialog_foreBox.Text", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Foreground images: {0}, selected: {1}.
-        /// </summary>
-        internal static string StylizeImagesDialog_foreImagesLabel_Text {
-            get {
-                return ResourceManager.GetString("StylizeImagesDialog_foreImagesLabel.Text", resourceCulture);
             }
         }
         

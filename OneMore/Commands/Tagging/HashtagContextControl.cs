@@ -13,7 +13,7 @@ namespace River.OneMoreAddIn.Commands
 	using Resx = Properties.Resources;
 
 
-	internal partial class HashtagContextControl : UserControl
+	internal partial class HashtagContextControl : MoreUserControl
 	{
 		private int radius = 5;
 
@@ -51,7 +51,7 @@ namespace River.OneMoreAddIn.Commands
 			foreach (var snippet in item.Snippets)
 			{
 				var fore = snippet.DirectHit
-					? SystemColors.HotTrack
+					? SystemColors.MenuHighlight
 					: SystemColors.GrayText;
 
 				var link = new MoreLinkLabel

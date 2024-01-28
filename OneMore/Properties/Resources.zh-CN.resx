@@ -4601,20 +4601,14 @@ ISO-code then comma then language name</comment>
     <comment>message</comment>
   </data>
   <data name="StylizeImagesDialog_backBox.Text" xml:space="preserve">
-    <value>应用于背景图像</value>
+    <value>应用于背景图像
+背景图片：{0}，已选择：{1}</value>
     <comment>checkbox</comment>
-  </data>
-  <data name="StylizeImagesDialog_backImagesLabel.Text" xml:space="preserve">
-    <value>背景图片：{0}，已选择：{1}</value>
-    <comment>label</comment>
   </data>
   <data name="StylizeImagesDialog_foreBox.Text" xml:space="preserve">
-    <value>应用于前景图像</value>
+    <value>应用于前景图像
+前景图像：{0}，已选择：{1}</value>
     <comment>checkbox</comment>
-  </data>
-  <data name="StylizeImagesDialog_foreImagesLabel.Text" xml:space="preserve">
-    <value>前景图像：{0}，已选择：{1}</value>
-    <comment>label</comment>
   </data>
   <data name="StylizeImagesDialog_styleBox.Text" xml:space="preserve">
     <value>灰度

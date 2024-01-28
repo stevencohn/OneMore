@@ -4600,20 +4600,14 @@ Titre - inclure dans la table des matières</value>
     <comment>message</comment>
   </data>
   <data name="StylizeImagesDialog_backBox.Text" xml:space="preserve">
-    <value>Appliquer aux images d'arrière-plan</value>
+    <value>Appliquer aux images d'arrière-plan
+Images d'arrière-plan : {0}, sélectionnées : {1}</value>
     <comment>checkbox</comment>
-  </data>
-  <data name="StylizeImagesDialog_backImagesLabel.Text" xml:space="preserve">
-    <value>Images d'arrière-plan : {0}, sélectionnées : {1}</value>
-    <comment>label</comment>
   </data>
   <data name="StylizeImagesDialog_foreBox.Text" xml:space="preserve">
-    <value>Appliquer aux images de premier plan</value>
+    <value>Appliquer aux images de premier plan
+Images de premier plan : {0}, sélectionnées : {1}</value>
     <comment>checkbox</comment>
-  </data>
-  <data name="StylizeImagesDialog_foreImagesLabel.Text" xml:space="preserve">
-    <value>Images de premier plan : {0}, sélectionnées : {1}</value>
-    <comment>label</comment>
   </data>
   <data name="StylizeImagesDialog_styleBox.Text" xml:space="preserve">
     <value>Échelle de gris

@@ -4619,20 +4619,14 @@ Kierunek - dołącz w TOC</value>
     <comment>message</comment>
   </data>
   <data name="StylizeImagesDialog_backBox.Text" xml:space="preserve">
-    <value>Zastosuj do obrazów tła</value>
+    <value>Zastosuj do obrazów tła
+Obrazy tła: {0}, wybrane: {1}</value>
     <comment>checkbox</comment>
-  </data>
-  <data name="StylizeImagesDialog_backImagesLabel.Text" xml:space="preserve">
-    <value>Obrazy tła: {0}, wybrane: {1}</value>
-    <comment>label</comment>
   </data>
   <data name="StylizeImagesDialog_foreBox.Text" xml:space="preserve">
-    <value>Zastosuj do obrazów pierwszego planu</value>
+    <value>Zastosuj do obrazów pierwszego planu
+Obrazy na pierwszym planie: {0}, wybrane: {1}</value>
     <comment>checkbox</comment>
-  </data>
-  <data name="StylizeImagesDialog_foreImagesLabel.Text" xml:space="preserve">
-    <value>Obrazy na pierwszym planie: {0}, wybrane: {1}</value>
-    <comment>label</comment>
   </data>
   <data name="StylizeImagesDialog_styleBox.Text" xml:space="preserve">
     <value>Skala szarości

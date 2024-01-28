@@ -248,6 +248,14 @@ namespace River.OneMoreAddIn.UI
 				linkLabel.ActiveLinkColor = Colors["LinkColor"];
 				linkLabel.BackColor = linkLabel.Parent.BackColor;
 			}
+			else if (control is ToolStrip strip)
+			{
+				foreach (ToolStripItem item in strip.Items)
+				{
+					item.ForeColor = strip.ForeColor;
+					item.BackColor = strip.BackColor;
+				}
+			}
 
 			var children = control.Controls.Cast<Control>()
 				.Where(c => c is not ListView);
@@ -275,7 +283,8 @@ namespace River.OneMoreAddIn.UI
 				return Colors[key];
 			}
 
-			if (preferred.IsSystemColor && Colors.ContainsKey(preferred.Name))
+			// preferred could be a SystemColor like "ControlText" or NamedColor like "Blue"
+			if (Colors.ContainsKey(preferred.Name))
 			{
 				return Colors[preferred.Name];
 			}

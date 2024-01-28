@@ -45,8 +45,8 @@
 			this.pdfCreateButton = new River.OneMoreAddIn.UI.MoreRadioButton();
 			this.pdfAppendButton = new River.OneMoreAddIn.UI.MoreRadioButton();
 			this.introLabel = new System.Windows.Forms.Label();
-			this.notInstalledLabel = new System.Windows.Forms.Label();
-			this.errorLabel = new System.Windows.Forms.Label();
+			this.notInstalledLabel = new UI.MoreLabel();
+			this.errorLabel = new UI.MoreLabel();
 			this.wordGroup.SuspendLayout();
 			this.powerGroup.SuspendLayout();
 			this.pdfGroup.SuspendLayout();
@@ -257,7 +257,8 @@
 			// notInstalledLabel
 			// 
 			this.notInstalledLabel.AutoSize = true;
-			this.notInstalledLabel.ForeColor = System.Drawing.Color.Firebrick;
+			this.notInstalledLabel.ForeColor = System.Drawing.Color.Maroon;
+			this.notInstalledLabel.PreferredFore = System.Drawing.Color.Maroon;
 			this.notInstalledLabel.Location = new System.Drawing.Point(27, 113);
 			this.notInstalledLabel.Name = "notInstalledLabel";
 			this.notInstalledLabel.Size = new System.Drawing.Size(306, 20);
@@ -268,7 +269,8 @@
 			// errorLabel
 			// 
 			this.errorLabel.AutoSize = true;
-			this.errorLabel.ForeColor = System.Drawing.Color.Firebrick;
+			this.errorLabel.ForeColor = System.Drawing.Color.Maroon;
+			this.errorLabel.PreferredFore = System.Drawing.Color.Maroon;
 			this.errorLabel.Location = new System.Drawing.Point(27, 270);
 			this.errorLabel.Name = "errorLabel";
 			this.errorLabel.Size = new System.Drawing.Size(114, 20);
@@ -333,7 +335,7 @@
 		private UI.MoreRadioButton pdfCreateButton;
 		private UI.MoreRadioButton pdfAppendButton;
 		private System.Windows.Forms.Label introLabel;
-		private System.Windows.Forms.Label notInstalledLabel;
-		private System.Windows.Forms.Label errorLabel;
+		private UI.MoreLabel notInstalledLabel;
+		private UI.MoreLabel errorLabel;
 	}
 }

@@ -4606,20 +4606,14 @@ Encabezado - incluir en TOC</value>
     <comment>message</comment>
   </data>
   <data name="StylizeImagesDialog_backBox.Text" xml:space="preserve">
-    <value>Aplicar a imágenes de fondo</value>
+    <value>Aplicar a imágenes de fondo
+Imágenes de fondo: {0}, seleccionadas: {1}</value>
     <comment>checkbox</comment>
-  </data>
-  <data name="StylizeImagesDialog_backImagesLabel.Text" xml:space="preserve">
-    <value>Imágenes de fondo: {0}, seleccionadas: {1}</value>
-    <comment>label</comment>
   </data>
   <data name="StylizeImagesDialog_foreBox.Text" xml:space="preserve">
-    <value>Aplicar a imágenes de primer plano</value>
+    <value>Aplicar a imágenes de primer plano
+Imágenes de primer plano: {0}, seleccionadas: {1}</value>
     <comment>checkbox</comment>
-  </data>
-  <data name="StylizeImagesDialog_foreImagesLabel.Text" xml:space="preserve">
-    <value>Imágenes de primer plano: {0}, seleccionadas: {1}</value>
-    <comment>label</comment>
   </data>
   <data name="StylizeImagesDialog_styleBox.Text" xml:space="preserve">
     <value>escala de grises

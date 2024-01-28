@@ -33,7 +33,7 @@
 			this.tooltip = new System.Windows.Forms.ToolTip(this.components);
 			this.snippetsPanel = new System.Windows.Forms.FlowLayoutPanel();
 			this.dateLabel = new System.Windows.Forms.Label();
-			this.checkbox = new System.Windows.Forms.CheckBox();
+			this.checkbox = new River.OneMoreAddIn.UI.MoreCheckBox();
 			this.SuspendLayout();
 			// 
 			// pageLink
@@ -77,7 +77,7 @@
 			// checkbox
 			// 
 			this.checkbox.AutoSize = true;
-			this.checkbox.Location = new System.Drawing.Point(13, 13);
+			this.checkbox.Location = new System.Drawing.Point(13, 12);
 			this.checkbox.Name = "checkbox";
 			this.checkbox.Size = new System.Drawing.Size(22, 21);
 			this.checkbox.TabIndex = 3;
@@ -88,11 +88,12 @@
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.BackColor = System.Drawing.SystemColors.Window;
+			this.BackColor = System.Drawing.SystemColors.ControlLightLight;
 			this.Controls.Add(this.checkbox);
 			this.Controls.Add(this.dateLabel);
 			this.Controls.Add(this.snippetsPanel);
 			this.Controls.Add(this.pageLink);
+			this.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.Margin = new System.Windows.Forms.Padding(3, 3, 3, 6);
 			this.Name = "HashtagContextControl";
 			this.Padding = new System.Windows.Forms.Padding(10);
@@ -108,6 +109,6 @@
 		private System.Windows.Forms.ToolTip tooltip;
 		private System.Windows.Forms.FlowLayoutPanel snippetsPanel;
 		private System.Windows.Forms.Label dateLabel;
-		private System.Windows.Forms.CheckBox checkbox;
+		private UI.MoreCheckBox checkbox;
 	}
 }

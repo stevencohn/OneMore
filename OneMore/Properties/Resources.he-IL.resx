@@ -4619,20 +4619,14 @@ ISO-code then comma then language name</comment>
     <comment>message</comment>
   </data>
   <data name="StylizeImagesDialog_backBox.Text" xml:space="preserve">
-    <value>החל על תמונות רקע</value>
+    <value>החל על תמונות רקע
+תמונות רקע: {0}, נבחרו: {1}</value>
     <comment>checkbox</comment>
-  </data>
-  <data name="StylizeImagesDialog_backImagesLabel.Text" xml:space="preserve">
-    <value>תמונות רקע: {0}, נבחרו: {1}</value>
-    <comment>label</comment>
   </data>
   <data name="StylizeImagesDialog_foreBox.Text" xml:space="preserve">
-    <value>החל על תמונות חזית</value>
+    <value>החל על תמונות חזית
+תמונות קדמה: {0}, נבחרו: {1}</value>
     <comment>checkbox</comment>
-  </data>
-  <data name="StylizeImagesDialog_foreImagesLabel.Text" xml:space="preserve">
-    <value>תמונות קדמה: {0}, נבחרו: {1}</value>
-    <comment>label</comment>
   </data>
   <data name="StylizeImagesDialog_styleBox.Text" xml:space="preserve">
     <value>סולם אפור

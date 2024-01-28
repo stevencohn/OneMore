@@ -4606,20 +4606,14 @@ Título - incluir no TOC</value>
     <comment>message</comment>
   </data>
   <data name="StylizeImagesDialog_backBox.Text" xml:space="preserve">
-    <value>Aplicar a imagens de fundo</value>
+    <value>Aplicar a imagens de fundo
+Imagens de fundo: {0}, selecionadas: {1}</value>
     <comment>checkbox</comment>
-  </data>
-  <data name="StylizeImagesDialog_backImagesLabel.Text" xml:space="preserve">
-    <value>Imagens de fundo: {0}, selecionadas: {1}</value>
-    <comment>label</comment>
   </data>
   <data name="StylizeImagesDialog_foreBox.Text" xml:space="preserve">
-    <value>Aplicar a imagens em primeiro plano</value>
+    <value>Aplicar a imagens em primeiro plano
+Imagens de primeiro plano: {0}, selecionadas: {1}</value>
     <comment>checkbox</comment>
-  </data>
-  <data name="StylizeImagesDialog_foreImagesLabel.Text" xml:space="preserve">
-    <value>Imagens de primeiro plano: {0}, selecionadas: {1}</value>
-    <comment>label</comment>
   </data>
   <data name="StylizeImagesDialog_styleBox.Text" xml:space="preserve">
     <value>Escala de cinza

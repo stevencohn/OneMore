@@ -28,8 +28,8 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
-			this.messageBox = new System.Windows.Forms.TextBox();
-			this.notesBox = new System.Windows.Forms.TextBox();
+			this.messageBox = new River.OneMoreAddIn.UI.MoreTextBox();
+			this.notesBox = new River.OneMoreAddIn.UI.MoreTextBox();
 			this.SuspendLayout();
 			// 
 			// messageBox
@@ -39,6 +39,8 @@
 			this.messageBox.Location = new System.Drawing.Point(15, 15);
 			this.messageBox.Multiline = true;
 			this.messageBox.Name = "messageBox";
+			this.messageBox.PreferredBack = System.Drawing.Color.Empty;
+			this.messageBox.PreferredFore = System.Drawing.Color.Maroon;
 			this.messageBox.Size = new System.Drawing.Size(670, 52);
 			this.messageBox.TabIndex = 0;
 			this.messageBox.Text = "messageBox";
@@ -51,6 +53,8 @@
 			this.notesBox.Location = new System.Drawing.Point(15, 73);
 			this.notesBox.Multiline = true;
 			this.notesBox.Name = "notesBox";
+			this.notesBox.PreferredBack = System.Drawing.Color.Empty;
+			this.notesBox.PreferredFore = System.Drawing.Color.Empty;
 			this.notesBox.Size = new System.Drawing.Size(670, 52);
 			this.notesBox.TabIndex = 1;
 			this.notesBox.Text = "notesBox";
@@ -62,6 +66,7 @@
 			this.BackColor = System.Drawing.SystemColors.Window;
 			this.Controls.Add(this.notesBox);
 			this.Controls.Add(this.messageBox);
+			this.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.Name = "HashtagErrorControl";
 			this.Padding = new System.Windows.Forms.Padding(12);
 			this.Size = new System.Drawing.Size(700, 153);
@@ -72,7 +77,7 @@
 
 		#endregion
 
-		private System.Windows.Forms.TextBox messageBox;
-		private System.Windows.Forms.TextBox notesBox;
+		private UI.MoreTextBox messageBox;
+		private UI.MoreTextBox notesBox;
 	}
 }
