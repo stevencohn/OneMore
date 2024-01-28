@@ -29,16 +29,16 @@
 		private void InitializeComponent()
 		{
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(InsertTocDialog));
-			this.okButton = new System.Windows.Forms.Button();
-			this.cancelButton = new System.Windows.Forms.Button();
-			this.pageRadio = new System.Windows.Forms.RadioButton();
-			this.sectionRadio = new System.Windows.Forms.RadioButton();
-			this.topBox = new System.Windows.Forms.CheckBox();
-			this.notebookRadio = new System.Windows.Forms.RadioButton();
-			this.pagesBox = new System.Windows.Forms.CheckBox();
-			this.rightAlignBox = new System.Windows.Forms.CheckBox();
-			this.previewBox = new System.Windows.Forms.CheckBox();
-			this.preview2Box = new System.Windows.Forms.CheckBox();
+			this.okButton = new River.OneMoreAddIn.UI.MoreButton();
+			this.cancelButton = new River.OneMoreAddIn.UI.MoreButton();
+			this.pageRadio = new River.OneMoreAddIn.UI.MoreRadioButton();
+			this.sectionRadio = new River.OneMoreAddIn.UI.MoreRadioButton();
+			this.topBox = new River.OneMoreAddIn.UI.MoreCheckBox();
+			this.notebookRadio = new River.OneMoreAddIn.UI.MoreRadioButton();
+			this.pagesBox = new River.OneMoreAddIn.UI.MoreCheckBox();
+			this.rightAlignBox = new River.OneMoreAddIn.UI.MoreCheckBox();
+			this.previewBox = new River.OneMoreAddIn.UI.MoreCheckBox();
+			this.preview2Box = new River.OneMoreAddIn.UI.MoreCheckBox();
 			this.locationBox = new System.Windows.Forms.ComboBox();
 			this.locationLabel = new System.Windows.Forms.Label();
 			this.styleLabel = new System.Windows.Forms.Label();
@@ -49,8 +49,12 @@
 			// 
 			this.okButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.okButton.DialogResult = System.Windows.Forms.DialogResult.OK;
+			this.okButton.ImageOver = null;
 			this.okButton.Location = new System.Drawing.Point(221, 424);
 			this.okButton.Name = "okButton";
+			this.okButton.PreferredBack = System.Drawing.Color.Empty;
+			this.okButton.PreferredFore = System.Drawing.Color.Empty;
+			this.okButton.ShowBorder = true;
 			this.okButton.Size = new System.Drawing.Size(120, 38);
 			this.okButton.TabIndex = 0;
 			this.okButton.Text = "OK";
@@ -60,8 +64,12 @@
 			// 
 			this.cancelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+			this.cancelButton.ImageOver = null;
 			this.cancelButton.Location = new System.Drawing.Point(347, 424);
 			this.cancelButton.Name = "cancelButton";
+			this.cancelButton.PreferredBack = System.Drawing.Color.Empty;
+			this.cancelButton.PreferredFore = System.Drawing.Color.Empty;
+			this.cancelButton.ShowBorder = true;
 			this.cancelButton.Size = new System.Drawing.Size(120, 38);
 			this.cancelButton.TabIndex = 1;
 			this.cancelButton.Text = "Cancel";
@@ -87,7 +95,7 @@
 			this.sectionRadio.Margin = new System.Windows.Forms.Padding(3, 25, 3, 3);
 			this.sectionRadio.Name = "sectionRadio";
 			this.sectionRadio.Size = new System.Drawing.Size(344, 24);
-			this.sectionRadio.TabIndex = 3;
+			this.sectionRadio.TabIndex = 7;
 			this.sectionRadio.Text = "New page with index of pages in this section";
 			this.sectionRadio.UseVisualStyleBackColor = true;
 			this.sectionRadio.CheckedChanged += new System.EventHandler(this.ChangedRadio);
@@ -99,7 +107,7 @@
 			this.topBox.Margin = new System.Windows.Forms.Padding(3, 6, 3, 3);
 			this.topBox.Name = "topBox";
 			this.topBox.Size = new System.Drawing.Size(368, 24);
-			this.topBox.TabIndex = 4;
+			this.topBox.TabIndex = 3;
 			this.topBox.Text = "Add link to each heading to jump to top of page";
 			this.topBox.UseVisualStyleBackColor = true;
 			this.topBox.CheckedChanged += new System.EventHandler(this.ToggleRightAlignOption);
@@ -111,7 +119,7 @@
 			this.notebookRadio.Margin = new System.Windows.Forms.Padding(3, 25, 3, 3);
 			this.notebookRadio.Name = "notebookRadio";
 			this.notebookRadio.Size = new System.Drawing.Size(375, 24);
-			this.notebookRadio.TabIndex = 5;
+			this.notebookRadio.TabIndex = 9;
 			this.notebookRadio.Text = "New page with index of sections in this notebook";
 			this.notebookRadio.UseVisualStyleBackColor = true;
 			this.notebookRadio.CheckedChanged += new System.EventHandler(this.ChangedRadio);
@@ -124,7 +132,7 @@
 			this.pagesBox.Margin = new System.Windows.Forms.Padding(3, 6, 3, 3);
 			this.pagesBox.Name = "pagesBox";
 			this.pagesBox.Size = new System.Drawing.Size(245, 24);
-			this.pagesBox.TabIndex = 6;
+			this.pagesBox.TabIndex = 10;
 			this.pagesBox.Text = "Include pages in each section";
 			this.pagesBox.UseVisualStyleBackColor = true;
 			this.pagesBox.CheckedChanged += new System.EventHandler(this.PagesBoxCheckedChanged);
@@ -136,7 +144,7 @@
 			this.rightAlignBox.Location = new System.Drawing.Point(56, 91);
 			this.rightAlignBox.Name = "rightAlignBox";
 			this.rightAlignBox.Size = new System.Drawing.Size(223, 24);
-			this.rightAlignBox.TabIndex = 7;
+			this.rightAlignBox.TabIndex = 4;
 			this.rightAlignBox.Text = "Right-align top of page link";
 			this.rightAlignBox.UseVisualStyleBackColor = true;
 			// 
@@ -159,13 +167,14 @@
 			this.preview2Box.Location = new System.Drawing.Point(56, 362);
 			this.preview2Box.Name = "preview2Box";
 			this.preview2Box.Size = new System.Drawing.Size(271, 24);
-			this.preview2Box.TabIndex = 9;
+			this.preview2Box.TabIndex = 11;
 			this.preview2Box.Text = "Include text preview of each page";
 			this.preview2Box.UseVisualStyleBackColor = true;
 			// 
 			// locationBox
 			// 
 			this.locationBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.locationBox.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
 			this.locationBox.FormattingEnabled = true;
 			this.locationBox.Items.AddRange(new object[] {
             "At top of page",
@@ -174,7 +183,7 @@
 			this.locationBox.Margin = new System.Windows.Forms.Padding(3, 6, 3, 3);
 			this.locationBox.Name = "locationBox";
 			this.locationBox.Size = new System.Drawing.Size(217, 28);
-			this.locationBox.TabIndex = 10;
+			this.locationBox.TabIndex = 5;
 			// 
 			// locationLabel
 			// 
@@ -197,6 +206,7 @@
 			// styleBox
 			// 
 			this.styleBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.styleBox.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
 			this.styleBox.FormattingEnabled = true;
 			this.styleBox.Items.AddRange(new object[] {
             "Standard Page Title",
@@ -210,7 +220,7 @@
 			this.styleBox.Location = new System.Drawing.Point(227, 158);
 			this.styleBox.Name = "styleBox";
 			this.styleBox.Size = new System.Drawing.Size(217, 28);
-			this.styleBox.TabIndex = 13;
+			this.styleBox.TabIndex = 6;
 			// 
 			// InsertTocDialog
 			// 
@@ -233,6 +243,7 @@
 			this.Controls.Add(this.pageRadio);
 			this.Controls.Add(this.cancelButton);
 			this.Controls.Add(this.okButton);
+			this.ForeColor = System.Drawing.SystemColors.ControlText;
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.MaximizeBox = false;
@@ -249,16 +260,16 @@
 
 		#endregion
 
-		private System.Windows.Forms.Button okButton;
-		private System.Windows.Forms.Button cancelButton;
-		private System.Windows.Forms.RadioButton pageRadio;
-		private System.Windows.Forms.RadioButton sectionRadio;
-		private System.Windows.Forms.CheckBox topBox;
-		private System.Windows.Forms.RadioButton notebookRadio;
-		private System.Windows.Forms.CheckBox pagesBox;
-		private System.Windows.Forms.CheckBox rightAlignBox;
-		private System.Windows.Forms.CheckBox previewBox;
-		private System.Windows.Forms.CheckBox preview2Box;
+		private UI.MoreButton okButton;
+		private UI.MoreButton cancelButton;
+		private UI.MoreRadioButton pageRadio;
+		private UI.MoreRadioButton sectionRadio;
+		private UI.MoreCheckBox topBox;
+		private UI.MoreRadioButton notebookRadio;
+		private UI.MoreCheckBox pagesBox;
+		private UI.MoreCheckBox rightAlignBox;
+		private UI.MoreCheckBox previewBox;
+		private UI.MoreCheckBox preview2Box;
 		private System.Windows.Forms.ComboBox locationBox;
 		private System.Windows.Forms.Label locationLabel;
 		private System.Windows.Forms.Label styleLabel;

@@ -34,14 +34,14 @@
 			this.monthLabel = new System.Windows.Forms.Label();
 			this.formatLabel = new System.Windows.Forms.Label();
 			this.monthBox = new System.Windows.Forms.ComboBox();
-			this.smallRadio = new System.Windows.Forms.RadioButton();
-			this.largeRadio = new System.Windows.Forms.RadioButton();
-			this.cancelButton = new System.Windows.Forms.Button();
-			this.okButton = new System.Windows.Forms.Button();
-			this.indentBox = new System.Windows.Forms.CheckBox();
+			this.smallRadio = new River.OneMoreAddIn.UI.MoreRadioButton();
+			this.largeRadio = new River.OneMoreAddIn.UI.MoreRadioButton();
+			this.cancelButton = new River.OneMoreAddIn.UI.MoreButton();
+			this.okButton = new River.OneMoreAddIn.UI.MoreButton();
+			this.indentBox = new River.OneMoreAddIn.UI.MoreCheckBox();
 			this.firstLabel = new System.Windows.Forms.Label();
-			this.sundayButton = new System.Windows.Forms.RadioButton();
-			this.mondayButton = new System.Windows.Forms.RadioButton();
+			this.sundayButton = new River.OneMoreAddIn.UI.MoreRadioButton();
+			this.mondayButton = new River.OneMoreAddIn.UI.MoreRadioButton();
 			this.firstPanel = new System.Windows.Forms.Panel();
 			this.formatPanel = new System.Windows.Forms.Panel();
 			this.clickLabel = new System.Windows.Forms.Label();
@@ -74,7 +74,7 @@
             0});
 			this.yearBox.Name = "yearBox";
 			this.yearBox.Size = new System.Drawing.Size(266, 26);
-			this.yearBox.TabIndex = 1;
+			this.yearBox.TabIndex = 2;
 			// 
 			// monthLabel
 			// 
@@ -99,6 +99,7 @@
 			// monthBox
 			// 
 			this.monthBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.monthBox.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
 			this.monthBox.FormattingEnabled = true;
 			this.monthBox.Location = new System.Drawing.Point(198, 77);
 			this.monthBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
@@ -113,7 +114,7 @@
 			this.smallRadio.Location = new System.Drawing.Point(184, 91);
 			this.smallRadio.Name = "smallRadio";
 			this.smallRadio.Size = new System.Drawing.Size(73, 24);
-			this.smallRadio.TabIndex = 5;
+			this.smallRadio.TabIndex = 1;
 			this.smallRadio.Text = "Small";
 			this.smallRadio.UseVisualStyleBackColor = true;
 			// 
@@ -124,7 +125,7 @@
 			this.largeRadio.Location = new System.Drawing.Point(182, 61);
 			this.largeRadio.Name = "largeRadio";
 			this.largeRadio.Size = new System.Drawing.Size(75, 24);
-			this.largeRadio.TabIndex = 6;
+			this.largeRadio.TabIndex = 0;
 			this.largeRadio.TabStop = true;
 			this.largeRadio.Text = "Large";
 			this.largeRadio.UseVisualStyleBackColor = true;
@@ -133,11 +134,15 @@
 			// 
 			this.cancelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+			this.cancelButton.ImageOver = null;
 			this.cancelButton.Location = new System.Drawing.Point(376, 388);
 			this.cancelButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.cancelButton.Name = "cancelButton";
+			this.cancelButton.PreferredBack = System.Drawing.Color.Empty;
+			this.cancelButton.PreferredFore = System.Drawing.Color.Empty;
+			this.cancelButton.ShowBorder = true;
 			this.cancelButton.Size = new System.Drawing.Size(112, 35);
-			this.cancelButton.TabIndex = 7;
+			this.cancelButton.TabIndex = 1;
 			this.cancelButton.Text = "Cancel";
 			this.cancelButton.UseVisualStyleBackColor = true;
 			// 
@@ -145,11 +150,15 @@
 			// 
 			this.okButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.okButton.DialogResult = System.Windows.Forms.DialogResult.OK;
+			this.okButton.ImageOver = null;
 			this.okButton.Location = new System.Drawing.Point(254, 388);
 			this.okButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.okButton.Name = "okButton";
+			this.okButton.PreferredBack = System.Drawing.Color.Empty;
+			this.okButton.PreferredFore = System.Drawing.Color.Empty;
+			this.okButton.ShowBorder = true;
 			this.okButton.Size = new System.Drawing.Size(112, 35);
-			this.okButton.TabIndex = 8;
+			this.okButton.TabIndex = 0;
 			this.okButton.Text = "OK";
 			this.okButton.UseVisualStyleBackColor = true;
 			// 
@@ -160,7 +169,7 @@
 			this.indentBox.Margin = new System.Windows.Forms.Padding(3, 8, 3, 3);
 			this.indentBox.Name = "indentBox";
 			this.indentBox.Size = new System.Drawing.Size(146, 24);
-			this.indentBox.TabIndex = 9;
+			this.indentBox.TabIndex = 2;
 			this.indentBox.Text = "Indent calendar";
 			this.indentBox.UseVisualStyleBackColor = true;
 			// 
@@ -181,7 +190,7 @@
 			this.sundayButton.Location = new System.Drawing.Point(182, 8);
 			this.sundayButton.Name = "sundayButton";
 			this.sundayButton.Size = new System.Drawing.Size(88, 24);
-			this.sundayButton.TabIndex = 11;
+			this.sundayButton.TabIndex = 0;
 			this.sundayButton.TabStop = true;
 			this.sundayButton.Text = "Sunday";
 			this.sundayButton.UseVisualStyleBackColor = true;
@@ -192,7 +201,7 @@
 			this.mondayButton.Location = new System.Drawing.Point(182, 38);
 			this.mondayButton.Name = "mondayButton";
 			this.mondayButton.Size = new System.Drawing.Size(90, 24);
-			this.mondayButton.TabIndex = 12;
+			this.mondayButton.TabIndex = 1;
 			this.mondayButton.Text = "Monday";
 			this.mondayButton.UseVisualStyleBackColor = true;
 			// 
@@ -222,7 +231,7 @@
 			this.formatPanel.Location = new System.Drawing.Point(16, 194);
 			this.formatPanel.Name = "formatPanel";
 			this.formatPanel.Size = new System.Drawing.Size(472, 173);
-			this.formatPanel.TabIndex = 14;
+			this.formatPanel.TabIndex = 3;
 			// 
 			// clickLabel
 			// 
@@ -236,7 +245,7 @@
 			// 
 			// shadingBox
 			// 
-			this.shadingBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(235)))), ((int)(((byte)(246)))));
+			this.shadingBox.BackColor = System.Drawing.Color.AliceBlue;
 			this.shadingBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
 			this.shadingBox.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.shadingBox.Location = new System.Drawing.Point(184, 13);
@@ -271,6 +280,7 @@
 			this.Controls.Add(this.monthLabel);
 			this.Controls.Add(this.yearBox);
 			this.Controls.Add(this.yearLabel);
+			this.ForeColor = System.Drawing.SystemColors.ControlText;
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
@@ -299,14 +309,14 @@
 		private System.Windows.Forms.Label monthLabel;
 		private System.Windows.Forms.Label formatLabel;
 		private System.Windows.Forms.ComboBox monthBox;
-		private System.Windows.Forms.RadioButton smallRadio;
-		private System.Windows.Forms.RadioButton largeRadio;
-		private System.Windows.Forms.Button cancelButton;
-		private System.Windows.Forms.Button okButton;
-		private System.Windows.Forms.CheckBox indentBox;
+		private UI.MoreRadioButton smallRadio;
+		private UI.MoreRadioButton largeRadio;
+		private UI.MoreButton cancelButton;
+		private UI.MoreButton okButton;
+		private UI.MoreCheckBox indentBox;
 		private System.Windows.Forms.Label firstLabel;
-		private System.Windows.Forms.RadioButton sundayButton;
-		private System.Windows.Forms.RadioButton mondayButton;
+		private UI.MoreRadioButton sundayButton;
+		private UI.MoreRadioButton mondayButton;
 		private System.Windows.Forms.Panel firstPanel;
 		private System.Windows.Forms.Panel formatPanel;
 		private System.Windows.Forms.Label colorLabel;

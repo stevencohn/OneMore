@@ -1,13 +1,14 @@
 ﻿//************************************************************************************************
-// Copyright © 2020 Steven M Cohn.  All rights reserved.
+// Copyright © 2020 Steven M Cohn. All rights reserved.
 //************************************************************************************************
 
 namespace River.OneMoreAddIn.Commands
 {
 	using System;
+	using System.Drawing;
 	using System.Globalization;
 	using System.Windows.Forms;
-	using Resx = River.OneMoreAddIn.Properties.Resources;
+	using Resx = Properties.Resources;
 
 
 	internal partial class InsertCalendarDialog : UI.MoreForm
@@ -52,9 +53,13 @@ namespace River.OneMoreAddIn.Commands
 			{
 				mondayButton.Checked = true;
 			}
+		}
 
-			// this is set in the forms designer as 222, 235, 246 
-			//colorBox.BackColor = System.Drawing.Color.FromArgb(0, 222, 235, 246); // "#DEEBF6"
+
+		protected override void OnLoad(EventArgs e)
+		{
+			base.OnLoad(e);
+			shadingBox.BackColor = Color.AliceBlue;
 		}
 
 

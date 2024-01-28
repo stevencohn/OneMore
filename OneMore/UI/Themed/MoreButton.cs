@@ -69,7 +69,7 @@ namespace River.OneMoreAddIn.UI
 		/// Gets or sets a value indicating whether or not to draw the button border even
 		/// when in normal state
 		/// </summary>
-		public bool ShowBorder { get; set; }
+		public bool ShowBorder { get; set; } = true;
 
 
 		protected override void OnClientSizeChanged(EventArgs e)
