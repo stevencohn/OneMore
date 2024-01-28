@@ -15,6 +15,7 @@ namespace River.OneMoreAddIn.UI
 	using System.ComponentModel;
 	using System.Drawing;
 	using System.IO;
+	using System.Linq;
 	using System.Runtime.InteropServices;
 	using System.Windows.Forms;
 	using Resx = Properties.Resources;
@@ -210,12 +211,16 @@ namespace River.OneMoreAddIn.UI
 			if (control is IThemedControl themed)
 			{
 				control.BackColor = GetThemedColor("Control", themed.PreferredBack);
-				control.ForeColor = GetThemedColor("ControlText", themed.PreferredFore);
+				control.ForeColor = control.Enabled
+					? GetThemedColor("ControlText", themed.PreferredFore)
+					: GetThemedColor("GrayText");
 			}
 			else
 			{
 				control.BackColor = GetThemedColor(control.BackColor);
-				control.ForeColor = GetThemedColor(control.ForeColor);
+				control.ForeColor = control.Enabled
+					? GetThemedColor(control.ForeColor)
+					: GetThemedColor("GrayText");
 			}
 
 			// for each of the following, parent should have already been themed by now...
@@ -243,15 +248,12 @@ namespace River.OneMoreAddIn.UI
 				linkLabel.ActiveLinkColor = Colors["LinkColor"];
 				linkLabel.BackColor = linkLabel.Parent.BackColor;
 			}
-			else if (control is TabControl tabs)
-			{
-				foreach (TabPage page in tabs.TabPages)
-				{
-					Colorize(page);
-				}
-			}
 
-			foreach (Control child in control.Controls)
+			var children = control.Controls.Cast<Control>()
+				.Where(c => c is not ListView);
+
+			// temp filter for ListView until that one is refactored
+			foreach (var child in children)
 			{
 				Colorize(child);
 			}

@@ -31,18 +31,19 @@ namespace River.OneMoreAddIn.Commands
 		{
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ImportWebDialog));
 			this.addressLabel = new System.Windows.Forms.Label();
-			this.addressBox = new System.Windows.Forms.TextBox();
-			this.okButton = new System.Windows.Forms.Button();
-			this.cancelButton = new System.Windows.Forms.Button();
-			this.appendButton = new System.Windows.Forms.RadioButton();
-			this.newPageButton = new System.Windows.Forms.RadioButton();
-			this.newChildButton = new System.Windows.Forms.RadioButton();
-			this.imagesBox = new System.Windows.Forms.CheckBox();
+			this.addressBox = new River.OneMoreAddIn.UI.MoreTextBox();
+			this.okButton = new River.OneMoreAddIn.UI.MoreButton();
+			this.cancelButton = new River.OneMoreAddIn.UI.MoreButton();
+			this.appendButton = new River.OneMoreAddIn.UI.MoreRadioButton();
+			this.newPageButton = new River.OneMoreAddIn.UI.MoreRadioButton();
+			this.newChildButton = new River.OneMoreAddIn.UI.MoreRadioButton();
+			this.imagesBox = new River.OneMoreAddIn.UI.MoreCheckBox();
 			this.SuspendLayout();
 			// 
 			// addressLabel
 			// 
 			this.addressLabel.AutoSize = true;
+			this.addressLabel.ForeColor = System.Drawing.SystemColors.ControlText;
 			this.addressLabel.Location = new System.Drawing.Point(18, 30);
 			this.addressLabel.Name = "addressLabel";
 			this.addressLabel.Size = new System.Drawing.Size(68, 20);
@@ -51,9 +52,12 @@ namespace River.OneMoreAddIn.Commands
 			// 
 			// addressBox
 			// 
+			this.addressBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
 			this.addressBox.Location = new System.Drawing.Point(92, 27);
 			this.addressBox.Margin = new System.Windows.Forms.Padding(3, 3, 3, 15);
 			this.addressBox.Name = "addressBox";
+			this.addressBox.PreferredBack = System.Drawing.Color.Empty;
+			this.addressBox.PreferredFore = System.Drawing.Color.Empty;
 			this.addressBox.Size = new System.Drawing.Size(548, 26);
 			this.addressBox.TabIndex = 1;
 			this.addressBox.TextChanged += new System.EventHandler(this.ConfirmAddress);
@@ -63,8 +67,12 @@ namespace River.OneMoreAddIn.Commands
 			this.okButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.okButton.DialogResult = System.Windows.Forms.DialogResult.OK;
 			this.okButton.Enabled = false;
+			this.okButton.ImageOver = null;
 			this.okButton.Location = new System.Drawing.Point(434, 210);
 			this.okButton.Name = "okButton";
+			this.okButton.PreferredBack = System.Drawing.Color.Empty;
+			this.okButton.PreferredFore = System.Drawing.Color.Empty;
+			this.okButton.ShowBorder = true;
 			this.okButton.Size = new System.Drawing.Size(100, 38);
 			this.okButton.TabIndex = 9;
 			this.okButton.Text = "OK";
@@ -74,8 +82,12 @@ namespace River.OneMoreAddIn.Commands
 			// 
 			this.cancelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+			this.cancelButton.ImageOver = null;
 			this.cancelButton.Location = new System.Drawing.Point(540, 210);
 			this.cancelButton.Name = "cancelButton";
+			this.cancelButton.PreferredBack = System.Drawing.Color.Empty;
+			this.cancelButton.PreferredFore = System.Drawing.Color.Empty;
+			this.cancelButton.ShowBorder = true;
 			this.cancelButton.Size = new System.Drawing.Size(100, 38);
 			this.cancelButton.TabIndex = 8;
 			this.cancelButton.Text = "Cancel";
@@ -84,6 +96,7 @@ namespace River.OneMoreAddIn.Commands
 			// appendButton
 			// 
 			this.appendButton.AutoSize = true;
+			this.appendButton.ForeColor = System.Drawing.SystemColors.ControlText;
 			this.appendButton.Location = new System.Drawing.Point(92, 171);
 			this.appendButton.Name = "appendButton";
 			this.appendButton.Size = new System.Drawing.Size(202, 24);
@@ -95,6 +108,7 @@ namespace River.OneMoreAddIn.Commands
 			// 
 			this.newPageButton.AutoSize = true;
 			this.newPageButton.Checked = true;
+			this.newPageButton.ForeColor = System.Drawing.SystemColors.ControlText;
 			this.newPageButton.Location = new System.Drawing.Point(92, 111);
 			this.newPageButton.Name = "newPageButton";
 			this.newPageButton.Size = new System.Drawing.Size(176, 24);
@@ -106,6 +120,7 @@ namespace River.OneMoreAddIn.Commands
 			// newChildButton
 			// 
 			this.newChildButton.AutoSize = true;
+			this.newChildButton.ForeColor = System.Drawing.SystemColors.ControlText;
 			this.newChildButton.Location = new System.Drawing.Point(92, 141);
 			this.newChildButton.Name = "newChildButton";
 			this.newChildButton.Size = new System.Drawing.Size(284, 24);
@@ -116,6 +131,7 @@ namespace River.OneMoreAddIn.Commands
 			// imagesBox
 			// 
 			this.imagesBox.AutoSize = true;
+			this.imagesBox.ForeColor = System.Drawing.SystemColors.ControlText;
 			this.imagesBox.Location = new System.Drawing.Point(92, 71);
 			this.imagesBox.Name = "imagesBox";
 			this.imagesBox.Size = new System.Drawing.Size(199, 24);
@@ -138,6 +154,7 @@ namespace River.OneMoreAddIn.Commands
 			this.Controls.Add(this.cancelButton);
 			this.Controls.Add(this.addressBox);
 			this.Controls.Add(this.addressLabel);
+			this.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.MaximizeBox = false;
@@ -156,12 +173,12 @@ namespace River.OneMoreAddIn.Commands
 		#endregion
 
 		private System.Windows.Forms.Label addressLabel;
-		private System.Windows.Forms.TextBox addressBox;
-		private System.Windows.Forms.Button okButton;
-		private System.Windows.Forms.Button cancelButton;
-		private System.Windows.Forms.RadioButton appendButton;
-		private System.Windows.Forms.RadioButton newPageButton;
-		private System.Windows.Forms.RadioButton newChildButton;
-		private System.Windows.Forms.CheckBox imagesBox;
+		private UI.MoreTextBox addressBox;
+		private UI.MoreButton okButton;
+		private UI.MoreButton cancelButton;
+		private UI.MoreRadioButton appendButton;
+		private UI.MoreRadioButton newPageButton;
+		private UI.MoreRadioButton newChildButton;
+		private UI.MoreCheckBox imagesBox;
 	}
 }

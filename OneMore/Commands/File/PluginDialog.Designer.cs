@@ -30,33 +30,33 @@
 		{
 			this.components = new System.ComponentModel.Container();
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PluginDialog));
-			this.cancelButton = new System.Windows.Forms.Button();
-			this.okButton = new System.Windows.Forms.Button();
+			this.cancelButton = new River.OneMoreAddIn.UI.MoreButton();
+			this.okButton = new River.OneMoreAddIn.UI.MoreButton();
 			this.cmdLabel = new System.Windows.Forms.Label();
-			this.cmdBox = new System.Windows.Forms.TextBox();
-			this.browseButton = new System.Windows.Forms.Button();
-			this.updateRadio = new System.Windows.Forms.RadioButton();
-			this.createRadio = new System.Windows.Forms.RadioButton();
-			this.pageNameBox = new System.Windows.Forms.TextBox();
-			this.childBox = new System.Windows.Forms.CheckBox();
-			this.argsBox = new System.Windows.Forms.TextBox();
+			this.cmdBox = new River.OneMoreAddIn.UI.MoreTextBox();
+			this.browseButton = new River.OneMoreAddIn.UI.MoreButton();
+			this.updateRadio = new River.OneMoreAddIn.UI.MoreRadioButton();
+			this.createRadio = new River.OneMoreAddIn.UI.MoreRadioButton();
+			this.pageNameBox = new River.OneMoreAddIn.UI.MoreTextBox();
+			this.childBox = new River.OneMoreAddIn.UI.MoreCheckBox();
+			this.argsBox = new River.OneMoreAddIn.UI.MoreTextBox();
 			this.argsLabel = new System.Windows.Forms.Label();
-			this.browseArgsButton = new System.Windows.Forms.Button();
-			this.saveButton = new System.Windows.Forms.Button();
+			this.browseArgsButton = new River.OneMoreAddIn.UI.MoreButton();
+			this.saveButton = new River.OneMoreAddIn.UI.MoreButton();
 			this.pluginsLabel = new System.Windows.Forms.Label();
 			this.pluginsBox = new System.Windows.Forms.ComboBox();
 			this.nameLabel = new System.Windows.Forms.Label();
-			this.nameBox = new System.Windows.Forms.TextBox();
+			this.nameBox = new River.OneMoreAddIn.UI.MoreTextBox();
 			this.errorBox = new System.Windows.Forms.PictureBox();
 			this.toolTip = new System.Windows.Forms.ToolTip(this.components);
 			this.timeoutBox = new System.Windows.Forms.NumericUpDown();
 			this.timeoutLabel = new System.Windows.Forms.Label();
 			this.targetBox = new System.Windows.Forms.ComboBox();
 			this.targetLabel = new System.Windows.Forms.Label();
-			this.skipLockRadio = new System.Windows.Forms.RadioButton();
-			this.failLockRadio = new System.Windows.Forms.RadioButton();
-			this.pageGroup = new System.Windows.Forms.GroupBox();
-			this.sectionGroup = new System.Windows.Forms.GroupBox();
+			this.skipLockRadio = new River.OneMoreAddIn.UI.MoreRadioButton();
+			this.failLockRadio = new River.OneMoreAddIn.UI.MoreRadioButton();
+			this.pageGroup = new River.OneMoreAddIn.UI.MoreGroupBox();
+			this.sectionGroup = new River.OneMoreAddIn.UI.MoreGroupBox();
 			((System.ComponentModel.ISupportInitialize)(this.errorBox)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.timeoutBox)).BeginInit();
 			this.pageGroup.SuspendLayout();
@@ -67,8 +67,12 @@
 			// 
 			this.cancelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+			this.cancelButton.ImageOver = null;
 			this.cancelButton.Location = new System.Drawing.Point(640, 473);
 			this.cancelButton.Name = "cancelButton";
+			this.cancelButton.PreferredBack = System.Drawing.Color.Empty;
+			this.cancelButton.PreferredFore = System.Drawing.Color.Empty;
+			this.cancelButton.ShowBorder = true;
 			this.cancelButton.Size = new System.Drawing.Size(120, 35);
 			this.cancelButton.TabIndex = 12;
 			this.cancelButton.Text = "Cancel";
@@ -79,8 +83,12 @@
 			this.okButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.okButton.DialogResult = System.Windows.Forms.DialogResult.OK;
 			this.okButton.Enabled = false;
+			this.okButton.ImageOver = null;
 			this.okButton.Location = new System.Drawing.Point(514, 473);
 			this.okButton.Name = "okButton";
+			this.okButton.PreferredBack = System.Drawing.Color.Empty;
+			this.okButton.PreferredFore = System.Drawing.Color.Empty;
+			this.okButton.ShowBorder = true;
 			this.okButton.Size = new System.Drawing.Size(120, 35);
 			this.okButton.TabIndex = 11;
 			this.okButton.Text = "Run";
@@ -90,6 +98,7 @@
 			// cmdLabel
 			// 
 			this.cmdLabel.AutoSize = true;
+			this.cmdLabel.ForeColor = System.Drawing.SystemColors.ControlText;
 			this.cmdLabel.Location = new System.Drawing.Point(18, 126);
 			this.cmdLabel.Name = "cmdLabel";
 			this.cmdLabel.Size = new System.Drawing.Size(82, 20);
@@ -98,16 +107,23 @@
 			// 
 			// cmdBox
 			// 
+			this.cmdBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
 			this.cmdBox.Location = new System.Drawing.Point(140, 123);
 			this.cmdBox.Name = "cmdBox";
+			this.cmdBox.PreferredBack = System.Drawing.Color.Empty;
+			this.cmdBox.PreferredFore = System.Drawing.Color.Empty;
 			this.cmdBox.Size = new System.Drawing.Size(578, 26);
 			this.cmdBox.TabIndex = 2;
 			this.cmdBox.TextChanged += new System.EventHandler(this.ChangeText);
 			// 
 			// browseButton
 			// 
+			this.browseButton.ImageOver = null;
 			this.browseButton.Location = new System.Drawing.Point(724, 122);
 			this.browseButton.Name = "browseButton";
+			this.browseButton.PreferredBack = System.Drawing.Color.Empty;
+			this.browseButton.PreferredFore = System.Drawing.Color.Empty;
+			this.browseButton.ShowBorder = true;
 			this.browseButton.Size = new System.Drawing.Size(36, 31);
 			this.browseButton.TabIndex = 3;
 			this.browseButton.Text = "...";
@@ -139,9 +155,12 @@
 			// 
 			// pageNameBox
 			// 
+			this.pageNameBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
 			this.pageNameBox.Enabled = false;
 			this.pageNameBox.Location = new System.Drawing.Point(31, 85);
 			this.pageNameBox.Name = "pageNameBox";
+			this.pageNameBox.PreferredBack = System.Drawing.Color.Empty;
+			this.pageNameBox.PreferredFore = System.Drawing.Color.Empty;
 			this.pageNameBox.Size = new System.Drawing.Size(469, 26);
 			this.pageNameBox.TabIndex = 8;
 			this.pageNameBox.TextChanged += new System.EventHandler(this.ChangeText);
@@ -160,8 +179,11 @@
 			// 
 			// argsBox
 			// 
+			this.argsBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
 			this.argsBox.Location = new System.Drawing.Point(140, 169);
 			this.argsBox.Name = "argsBox";
+			this.argsBox.PreferredBack = System.Drawing.Color.Empty;
+			this.argsBox.PreferredFore = System.Drawing.Color.Empty;
 			this.argsBox.Size = new System.Drawing.Size(578, 26);
 			this.argsBox.TabIndex = 4;
 			this.argsBox.TextChanged += new System.EventHandler(this.ChangeText);
@@ -169,6 +191,7 @@
 			// argsLabel
 			// 
 			this.argsLabel.AutoSize = true;
+			this.argsLabel.ForeColor = System.Drawing.SystemColors.ControlText;
 			this.argsLabel.Location = new System.Drawing.Point(18, 172);
 			this.argsLabel.Name = "argsLabel";
 			this.argsLabel.Size = new System.Drawing.Size(87, 20);
@@ -177,8 +200,12 @@
 			// 
 			// browseArgsButton
 			// 
+			this.browseArgsButton.ImageOver = null;
 			this.browseArgsButton.Location = new System.Drawing.Point(724, 168);
 			this.browseArgsButton.Name = "browseArgsButton";
+			this.browseArgsButton.PreferredBack = System.Drawing.Color.Empty;
+			this.browseArgsButton.PreferredFore = System.Drawing.Color.Empty;
+			this.browseArgsButton.ShowBorder = true;
 			this.browseArgsButton.Size = new System.Drawing.Size(36, 31);
 			this.browseArgsButton.TabIndex = 5;
 			this.browseArgsButton.Text = "...";
@@ -189,8 +216,12 @@
 			// 
 			this.saveButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.saveButton.Enabled = false;
+			this.saveButton.ImageOver = null;
 			this.saveButton.Location = new System.Drawing.Point(388, 473);
 			this.saveButton.Name = "saveButton";
+			this.saveButton.PreferredBack = System.Drawing.Color.Empty;
+			this.saveButton.PreferredFore = System.Drawing.Color.Empty;
+			this.saveButton.ShowBorder = true;
 			this.saveButton.Size = new System.Drawing.Size(120, 35);
 			this.saveButton.TabIndex = 10;
 			this.saveButton.Text = "Save";
@@ -200,6 +231,7 @@
 			// pluginsLabel
 			// 
 			this.pluginsLabel.AutoSize = true;
+			this.pluginsLabel.ForeColor = System.Drawing.SystemColors.ControlText;
 			this.pluginsLabel.Location = new System.Drawing.Point(18, 35);
 			this.pluginsLabel.Name = "pluginsLabel";
 			this.pluginsLabel.Size = new System.Drawing.Size(60, 20);
@@ -209,6 +241,7 @@
 			// pluginsBox
 			// 
 			this.pluginsBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.pluginsBox.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
 			this.pluginsBox.FormattingEnabled = true;
 			this.pluginsBox.Location = new System.Drawing.Point(140, 31);
 			this.pluginsBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
@@ -220,6 +253,7 @@
 			// nameLabel
 			// 
 			this.nameLabel.AutoSize = true;
+			this.nameLabel.ForeColor = System.Drawing.SystemColors.ControlText;
 			this.nameLabel.Location = new System.Drawing.Point(18, 83);
 			this.nameLabel.Name = "nameLabel";
 			this.nameLabel.Size = new System.Drawing.Size(51, 20);
@@ -228,9 +262,12 @@
 			// 
 			// nameBox
 			// 
+			this.nameBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
 			this.nameBox.Location = new System.Drawing.Point(140, 78);
 			this.nameBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.nameBox.Name = "nameBox";
+			this.nameBox.PreferredBack = System.Drawing.Color.Empty;
+			this.nameBox.PreferredFore = System.Drawing.Color.Empty;
 			this.nameBox.Size = new System.Drawing.Size(578, 26);
 			this.nameBox.TabIndex = 1;
 			this.nameBox.TextChanged += new System.EventHandler(this.ChangeText);
@@ -267,6 +304,7 @@
 			// timeoutLabel
 			// 
 			this.timeoutLabel.AutoSize = true;
+			this.timeoutLabel.ForeColor = System.Drawing.SystemColors.ControlText;
 			this.timeoutLabel.Location = new System.Drawing.Point(18, 215);
 			this.timeoutLabel.Name = "timeoutLabel";
 			this.timeoutLabel.Size = new System.Drawing.Size(66, 20);
@@ -276,6 +314,7 @@
 			// targetBox
 			// 
 			this.targetBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.targetBox.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
 			this.targetBox.FormattingEnabled = true;
 			this.targetBox.Items.AddRange(new object[] {
             "Current page",
@@ -289,6 +328,7 @@
 			// targetLabel
 			// 
 			this.targetLabel.AutoSize = true;
+			this.targetLabel.ForeColor = System.Drawing.SystemColors.ControlText;
 			this.targetLabel.Location = new System.Drawing.Point(18, 259);
 			this.targetLabel.Name = "targetLabel";
 			this.targetLabel.Size = new System.Drawing.Size(55, 20);
@@ -369,6 +409,7 @@
 			this.Controls.Add(this.cmdLabel);
 			this.Controls.Add(this.okButton);
 			this.Controls.Add(this.cancelButton);
+			this.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.MaximizeBox = false;
@@ -391,32 +432,32 @@
 
 		#endregion
 
-		private System.Windows.Forms.Button cancelButton;
-		private System.Windows.Forms.Button okButton;
+		private UI.MoreButton cancelButton;
+		private UI.MoreButton okButton;
 		private System.Windows.Forms.Label cmdLabel;
-		private System.Windows.Forms.TextBox cmdBox;
-		private System.Windows.Forms.Button browseButton;
-		private System.Windows.Forms.RadioButton updateRadio;
-		private System.Windows.Forms.RadioButton createRadio;
-		private System.Windows.Forms.TextBox pageNameBox;
-		private System.Windows.Forms.CheckBox childBox;
-		private System.Windows.Forms.TextBox argsBox;
+		private UI.MoreTextBox cmdBox;
+		private UI.MoreButton browseButton;
+		private UI.MoreRadioButton updateRadio;
+		private UI.MoreRadioButton createRadio;
+		private UI.MoreTextBox pageNameBox;
+		private UI.MoreCheckBox childBox;
+		private UI.MoreTextBox argsBox;
 		private System.Windows.Forms.Label argsLabel;
-		private System.Windows.Forms.Button browseArgsButton;
-		private System.Windows.Forms.Button saveButton;
+		private UI.MoreButton browseArgsButton;
+		private UI.MoreButton saveButton;
 		private System.Windows.Forms.Label pluginsLabel;
 		private System.Windows.Forms.ComboBox pluginsBox;
 		private System.Windows.Forms.Label nameLabel;
-		private System.Windows.Forms.TextBox nameBox;
+		private UI.MoreTextBox nameBox;
 		private System.Windows.Forms.PictureBox errorBox;
 		private System.Windows.Forms.ToolTip toolTip;
 		private System.Windows.Forms.NumericUpDown timeoutBox;
 		private System.Windows.Forms.Label timeoutLabel;
 		private System.Windows.Forms.ComboBox targetBox;
 		private System.Windows.Forms.Label targetLabel;
-		private System.Windows.Forms.RadioButton skipLockRadio;
-		private System.Windows.Forms.RadioButton failLockRadio;
-		private System.Windows.Forms.GroupBox pageGroup;
-		private System.Windows.Forms.GroupBox sectionGroup;
+		private UI.MoreRadioButton skipLockRadio;
+		private UI.MoreRadioButton failLockRadio;
+		private UI.MoreGroupBox pageGroup;
+		private UI.MoreGroupBox sectionGroup;
 	}
 }

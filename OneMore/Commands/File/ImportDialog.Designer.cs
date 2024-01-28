@@ -30,20 +30,20 @@
 		{
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ImportDialog));
 			this.fileLabel = new System.Windows.Forms.Label();
-			this.pathBox = new System.Windows.Forms.TextBox();
-			this.browseButton = new System.Windows.Forms.Button();
-			this.cancelButton = new System.Windows.Forms.Button();
-			this.okButton = new System.Windows.Forms.Button();
-			this.wordGroup = new System.Windows.Forms.GroupBox();
-			this.wordCreateButton = new System.Windows.Forms.RadioButton();
-			this.wordAppendButton = new System.Windows.Forms.RadioButton();
-			this.powerGroup = new System.Windows.Forms.GroupBox();
-			this.powerCreateButton = new System.Windows.Forms.RadioButton();
-			this.powerAppendButton = new System.Windows.Forms.RadioButton();
-			this.powerSectionButton = new System.Windows.Forms.RadioButton();
-			this.pdfGroup = new System.Windows.Forms.GroupBox();
-			this.pdfCreateButton = new System.Windows.Forms.RadioButton();
-			this.pdfAppendButton = new System.Windows.Forms.RadioButton();
+			this.pathBox = new River.OneMoreAddIn.UI.MoreTextBox();
+			this.browseButton = new River.OneMoreAddIn.UI.MoreButton();
+			this.cancelButton = new River.OneMoreAddIn.UI.MoreButton();
+			this.okButton = new River.OneMoreAddIn.UI.MoreButton();
+			this.wordGroup = new River.OneMoreAddIn.UI.MoreGroupBox();
+			this.wordCreateButton = new River.OneMoreAddIn.UI.MoreRadioButton();
+			this.wordAppendButton = new River.OneMoreAddIn.UI.MoreRadioButton();
+			this.powerGroup = new River.OneMoreAddIn.UI.MoreGroupBox();
+			this.powerCreateButton = new River.OneMoreAddIn.UI.MoreRadioButton();
+			this.powerAppendButton = new River.OneMoreAddIn.UI.MoreRadioButton();
+			this.powerSectionButton = new River.OneMoreAddIn.UI.MoreRadioButton();
+			this.pdfGroup = new River.OneMoreAddIn.UI.MoreGroupBox();
+			this.pdfCreateButton = new River.OneMoreAddIn.UI.MoreRadioButton();
+			this.pdfAppendButton = new River.OneMoreAddIn.UI.MoreRadioButton();
 			this.introLabel = new System.Windows.Forms.Label();
 			this.notInstalledLabel = new System.Windows.Forms.Label();
 			this.errorLabel = new System.Windows.Forms.Label();
@@ -55,6 +55,7 @@
 			// fileLabel
 			// 
 			this.fileLabel.AutoSize = true;
+			this.fileLabel.ForeColor = System.Drawing.SystemColors.ControlText;
 			this.fileLabel.Location = new System.Drawing.Point(18, 57);
 			this.fileLabel.Name = "fileLabel";
 			this.fileLabel.Size = new System.Drawing.Size(38, 20);
@@ -63,18 +64,25 @@
 			// 
 			// pathBox
 			// 
+			this.pathBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
 			this.pathBox.Location = new System.Drawing.Point(62, 54);
 			this.pathBox.Margin = new System.Windows.Forms.Padding(3, 3, 3, 15);
 			this.pathBox.Name = "pathBox";
+			this.pathBox.PreferredBack = System.Drawing.Color.Empty;
+			this.pathBox.PreferredFore = System.Drawing.Color.Empty;
 			this.pathBox.Size = new System.Drawing.Size(449, 26);
 			this.pathBox.TabIndex = 1;
 			this.pathBox.TextChanged += new System.EventHandler(this.ChangePath);
 			// 
 			// browseButton
 			// 
-			this.browseButton.Image = global::River.OneMoreAddIn.Properties.Resources.Open;
+			this.browseButton.Image = ((System.Drawing.Image)(resources.GetObject("browseButton.Image")));
+			this.browseButton.ImageOver = null;
 			this.browseButton.Location = new System.Drawing.Point(517, 54);
 			this.browseButton.Name = "browseButton";
+			this.browseButton.PreferredBack = System.Drawing.Color.Empty;
+			this.browseButton.PreferredFore = System.Drawing.Color.Empty;
+			this.browseButton.ShowBorder = false;
 			this.browseButton.Size = new System.Drawing.Size(44, 26);
 			this.browseButton.TabIndex = 4;
 			this.browseButton.UseVisualStyleBackColor = true;
@@ -84,8 +92,12 @@
 			// 
 			this.cancelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+			this.cancelButton.ImageOver = null;
 			this.cancelButton.Location = new System.Drawing.Point(462, 261);
 			this.cancelButton.Name = "cancelButton";
+			this.cancelButton.PreferredBack = System.Drawing.Color.Empty;
+			this.cancelButton.PreferredFore = System.Drawing.Color.Empty;
+			this.cancelButton.ShowBorder = true;
 			this.cancelButton.Size = new System.Drawing.Size(100, 38);
 			this.cancelButton.TabIndex = 6;
 			this.cancelButton.Text = "Cancel";
@@ -96,8 +108,12 @@
 			this.okButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.okButton.DialogResult = System.Windows.Forms.DialogResult.OK;
 			this.okButton.Enabled = false;
+			this.okButton.ImageOver = null;
 			this.okButton.Location = new System.Drawing.Point(356, 261);
 			this.okButton.Name = "okButton";
+			this.okButton.PreferredBack = System.Drawing.Color.Empty;
+			this.okButton.PreferredFore = System.Drawing.Color.Empty;
+			this.okButton.ShowBorder = true;
 			this.okButton.Size = new System.Drawing.Size(100, 38);
 			this.okButton.TabIndex = 7;
 			this.okButton.Text = "OK";
@@ -107,6 +123,7 @@
 			// 
 			this.wordGroup.Controls.Add(this.wordCreateButton);
 			this.wordGroup.Controls.Add(this.wordAppendButton);
+			this.wordGroup.ForeColor = System.Drawing.SystemColors.ControlText;
 			this.wordGroup.Location = new System.Drawing.Point(22, 98);
 			this.wordGroup.Name = "wordGroup";
 			this.wordGroup.Padding = new System.Windows.Forms.Padding(3, 10, 3, 3);
@@ -118,6 +135,7 @@
 			// wordCreateButton
 			// 
 			this.wordCreateButton.AutoSize = true;
+			this.wordCreateButton.ForeColor = System.Drawing.SystemColors.ControlText;
 			this.wordCreateButton.Location = new System.Drawing.Point(40, 67);
 			this.wordCreateButton.Name = "wordCreateButton";
 			this.wordCreateButton.Size = new System.Drawing.Size(155, 24);
@@ -130,6 +148,7 @@
 			// 
 			this.wordAppendButton.AutoSize = true;
 			this.wordAppendButton.Checked = true;
+			this.wordAppendButton.ForeColor = System.Drawing.SystemColors.ControlText;
 			this.wordAppendButton.Location = new System.Drawing.Point(40, 32);
 			this.wordAppendButton.Margin = new System.Windows.Forms.Padding(3, 3, 3, 8);
 			this.wordAppendButton.Name = "wordAppendButton";
@@ -144,6 +163,7 @@
 			this.powerGroup.Controls.Add(this.powerCreateButton);
 			this.powerGroup.Controls.Add(this.powerAppendButton);
 			this.powerGroup.Controls.Add(this.powerSectionButton);
+			this.powerGroup.ForeColor = System.Drawing.SystemColors.ControlText;
 			this.powerGroup.Location = new System.Drawing.Point(22, 98);
 			this.powerGroup.Name = "powerGroup";
 			this.powerGroup.Padding = new System.Windows.Forms.Padding(3, 10, 3, 3);
@@ -227,6 +247,7 @@
 			// introLabel
 			// 
 			this.introLabel.AutoSize = true;
+			this.introLabel.ForeColor = System.Drawing.SystemColors.ControlText;
 			this.introLabel.Location = new System.Drawing.Point(18, 15);
 			this.introLabel.Name = "introLabel";
 			this.introLabel.Size = new System.Drawing.Size(433, 20);
@@ -273,6 +294,7 @@
 			this.Controls.Add(this.pathBox);
 			this.Controls.Add(this.fileLabel);
 			this.Controls.Add(this.cancelButton);
+			this.ForeColor = System.Drawing.SystemColors.ControlText;
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.MaximizeBox = false;
@@ -296,20 +318,20 @@
 		#endregion
 
 		private System.Windows.Forms.Label fileLabel;
-		private System.Windows.Forms.TextBox pathBox;
-		private System.Windows.Forms.Button browseButton;
-		private System.Windows.Forms.Button cancelButton;
-		private System.Windows.Forms.Button okButton;
-		private System.Windows.Forms.GroupBox wordGroup;
-		private System.Windows.Forms.RadioButton wordCreateButton;
-		private System.Windows.Forms.RadioButton wordAppendButton;
-		private System.Windows.Forms.GroupBox powerGroup;
-		private System.Windows.Forms.RadioButton powerCreateButton;
-		private System.Windows.Forms.RadioButton powerAppendButton;
-		private System.Windows.Forms.RadioButton powerSectionButton;
-		private System.Windows.Forms.GroupBox pdfGroup;
-		private System.Windows.Forms.RadioButton pdfCreateButton;
-		private System.Windows.Forms.RadioButton pdfAppendButton;
+		private UI.MoreTextBox pathBox;
+		private UI.MoreButton browseButton;
+		private UI.MoreButton cancelButton;
+		private UI.MoreButton okButton;
+		private UI.MoreGroupBox wordGroup;
+		private UI.MoreRadioButton wordCreateButton;
+		private UI.MoreRadioButton wordAppendButton;
+		private UI.MoreGroupBox powerGroup;
+		private UI.MoreRadioButton powerCreateButton;
+		private UI.MoreRadioButton powerAppendButton;
+		private UI.MoreRadioButton powerSectionButton;
+		private UI.MoreGroupBox pdfGroup;
+		private UI.MoreRadioButton pdfCreateButton;
+		private UI.MoreRadioButton pdfAppendButton;
 		private System.Windows.Forms.Label introLabel;
 		private System.Windows.Forms.Label notInstalledLabel;
 		private System.Windows.Forms.Label errorLabel;

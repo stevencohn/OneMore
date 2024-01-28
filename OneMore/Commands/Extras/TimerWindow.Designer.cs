@@ -46,9 +46,10 @@ namespace River.OneMoreAddIn.Commands
 			// 
 			this.timeLabel.BackColor = System.Drawing.Color.Transparent;
 			this.timeLabel.Font = new System.Drawing.Font("Stencil", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.timeLabel.Location = new System.Drawing.Point(25, 9);
+			this.timeLabel.Location = new System.Drawing.Point(38, 14);
+			this.timeLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
 			this.timeLabel.Name = "timeLabel";
-			this.timeLabel.Size = new System.Drawing.Size(94, 28);
+			this.timeLabel.Size = new System.Drawing.Size(141, 43);
 			this.timeLabel.TabIndex = 0;
 			this.timeLabel.Text = "00:00:00";
 			this.timeLabel.MouseDown += new System.Windows.Forms.MouseEventHandler(this.StartWindowDrag);
@@ -57,16 +58,17 @@ namespace River.OneMoreAddIn.Commands
 			// 
 			this.toolstrip.BackColor = System.Drawing.Color.Transparent;
 			this.toolstrip.Dock = System.Windows.Forms.DockStyle.Bottom;
+			this.toolstrip.ImageScalingSize = new System.Drawing.Size(24, 24);
 			this.toolstrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.copyButton,
             this.spacer1,
             this.resetButton,
             this.spacer2,
             this.closeButton});
-			this.toolstrip.Location = new System.Drawing.Point(0, 38);
+			this.toolstrip.Location = new System.Drawing.Point(0, 59);
 			this.toolstrip.Name = "toolstrip";
-			this.toolstrip.Padding = new System.Windows.Forms.Padding(25, 0, 0, 0);
-			this.toolstrip.Size = new System.Drawing.Size(140, 25);
+			this.toolstrip.Padding = new System.Windows.Forms.Padding(38, 0, 0, 0);
+			this.toolstrip.Size = new System.Drawing.Size(210, 38);
 			this.toolstrip.TabIndex = 1;
 			this.toolstrip.Text = "Close Timer";
 			this.toolstrip.MouseDown += new System.Windows.Forms.MouseEventHandler(this.StartWindowDrag);
@@ -77,14 +79,14 @@ namespace River.OneMoreAddIn.Commands
 			this.copyButton.Image = global::River.OneMoreAddIn.Properties.Resources.Copy;
 			this.copyButton.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.copyButton.Name = "copyButton";
-			this.copyButton.Size = new System.Drawing.Size(23, 22);
+			this.copyButton.Size = new System.Drawing.Size(34, 33);
 			this.copyButton.Text = "Copy Current Time";
 			this.copyButton.Click += new System.EventHandler(this.CopyTime);
 			// 
 			// spacer1
 			// 
 			this.spacer1.Name = "spacer1";
-			this.spacer1.Size = new System.Drawing.Size(10, 22);
+			this.spacer1.Size = new System.Drawing.Size(17, 33);
 			this.spacer1.Text = " ";
 			// 
 			// resetButton
@@ -93,14 +95,14 @@ namespace River.OneMoreAddIn.Commands
 			this.resetButton.Image = global::River.OneMoreAddIn.Properties.Resources.Restart;
 			this.resetButton.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.resetButton.Name = "resetButton";
-			this.resetButton.Size = new System.Drawing.Size(23, 22);
+			this.resetButton.Size = new System.Drawing.Size(34, 33);
 			this.resetButton.Text = "Restart Timer";
 			this.resetButton.Click += new System.EventHandler(this.RestartTimer);
 			// 
 			// spacer2
 			// 
 			this.spacer2.Name = "spacer2";
-			this.spacer2.Size = new System.Drawing.Size(10, 22);
+			this.spacer2.Size = new System.Drawing.Size(17, 33);
 			this.spacer2.Text = " ";
 			// 
 			// closeButton
@@ -109,7 +111,7 @@ namespace River.OneMoreAddIn.Commands
 			this.closeButton.Image = global::River.OneMoreAddIn.Properties.Resources.Exit;
 			this.closeButton.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.closeButton.Name = "closeButton";
-			this.closeButton.Size = new System.Drawing.Size(23, 22);
+			this.closeButton.Size = new System.Drawing.Size(34, 33);
 			this.closeButton.Text = "Close Timer";
 			this.closeButton.Click += new System.EventHandler(this.CloseWindow);
 			// 
@@ -120,21 +122,22 @@ namespace River.OneMoreAddIn.Commands
 			// 
 			// TimerWindow
 			// 
-			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.BackColor = System.Drawing.Color.Thistle;
-			this.ClientSize = new System.Drawing.Size(140, 63);
+			this.ClientSize = new System.Drawing.Size(210, 97);
 			this.Controls.Add(this.toolstrip);
 			this.Controls.Add(this.timeLabel);
+			this.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+			this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.MaximizeBox = false;
 			this.MinimizeBox = false;
 			this.Name = "TimerWindow";
 			this.Opacity = 0.85D;
 			this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
 			this.Text = "OneNote Timer";
-			this.Load += new System.EventHandler(this.TimerWindow_Load);
 			this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.StartWindowDrag);
 			this.Move += new System.EventHandler(this.MoveWindow);
 			this.toolstrip.ResumeLayout(false);

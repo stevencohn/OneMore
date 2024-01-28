@@ -21,7 +21,6 @@ namespace River.OneMoreAddIn.UI
 		private Image image;
 		private Image imageOver;
 		private Image enabledImage;
-		private MouseEventArgs downArgs = null;
 		private readonly ThemeManager manager;
 
 
@@ -126,7 +125,6 @@ namespace River.OneMoreAddIn.UI
 			if (Enabled)
 			{
 				MouseState |= MouseState.Pushed;
-				downArgs = mevent;
 			}
 
 			base.OnMouseDown(mevent);
@@ -224,7 +222,7 @@ namespace River.OneMoreAddIn.UI
 				{
 					color = manager.ButtonPressBorder;
 				}
-				else if (Focused)
+				else if (Focused || IsDefault) // || this == FindForm().AcceptButton)
 				{
 					color = manager.GetThemedColor("HotTrack");
 				}
@@ -233,9 +231,7 @@ namespace River.OneMoreAddIn.UI
 					color = manager.ButtonHotBorder;
 				}
 
-				var width = Focused ? 2 : 1;
-				using var pen = new Pen(color, width);
-
+				using var pen = new Pen(color, 2);
 				g.DrawRoundedRectangle(pen, pevent.ClipRectangle, Radius);
 			}
 		}

@@ -111,6 +111,7 @@ namespace River.OneMoreAddIn.Commands
 			Close();
 		}
 
+
 		private void ChangeSelection(object sender, EventArgs e)
 		{
 			createdButton.Enabled = scopeBox.SelectedIndex <= 1;

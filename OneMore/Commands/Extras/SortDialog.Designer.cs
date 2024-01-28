@@ -29,20 +29,20 @@
 		private void InitializeComponent()
 		{
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SortDialog));
-			this.cancelButton = new System.Windows.Forms.Button();
-			this.okButton = new System.Windows.Forms.Button();
-			this.nameButton = new System.Windows.Forms.RadioButton();
-			this.createdButton = new System.Windows.Forms.RadioButton();
+			this.cancelButton = new River.OneMoreAddIn.UI.MoreButton();
+			this.okButton = new River.OneMoreAddIn.UI.MoreButton();
+			this.nameButton = new River.OneMoreAddIn.UI.MoreRadioButton();
+			this.createdButton = new River.OneMoreAddIn.UI.MoreRadioButton();
 			this.scopeBox = new System.Windows.Forms.ComboBox();
 			this.scopeLabel = new System.Windows.Forms.Label();
-			this.modifiedButton = new System.Windows.Forms.RadioButton();
+			this.modifiedButton = new River.OneMoreAddIn.UI.MoreRadioButton();
 			this.sortPanel = new System.Windows.Forms.Panel();
 			this.sortLabel = new System.Windows.Forms.Label();
 			this.directionLabel = new System.Windows.Forms.Label();
 			this.directionPanel = new System.Windows.Forms.Panel();
-			this.desButton = new System.Windows.Forms.RadioButton();
-			this.ascButton = new System.Windows.Forms.RadioButton();
-			this.pinNotesBox = new System.Windows.Forms.CheckBox();
+			this.desButton = new River.OneMoreAddIn.UI.MoreRadioButton();
+			this.ascButton = new River.OneMoreAddIn.UI.MoreRadioButton();
+			this.pinNotesBox = new River.OneMoreAddIn.UI.MoreCheckBox();
 			this.sortPanel.SuspendLayout();
 			this.directionPanel.SuspendLayout();
 			this.SuspendLayout();
@@ -51,10 +51,14 @@
 			// 
 			this.cancelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+			this.cancelButton.ImageOver = null;
 			this.cancelButton.Location = new System.Drawing.Point(376, 402);
 			this.cancelButton.Name = "cancelButton";
+			this.cancelButton.PreferredBack = System.Drawing.Color.Empty;
+			this.cancelButton.PreferredFore = System.Drawing.Color.Empty;
+			this.cancelButton.ShowBorder = true;
 			this.cancelButton.Size = new System.Drawing.Size(120, 38);
-			this.cancelButton.TabIndex = 0;
+			this.cancelButton.TabIndex = 1;
 			this.cancelButton.Text = "Cancel";
 			this.cancelButton.UseVisualStyleBackColor = true;
 			this.cancelButton.Click += new System.EventHandler(this.Cancel);
@@ -63,10 +67,14 @@
 			// 
 			this.okButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.okButton.DialogResult = System.Windows.Forms.DialogResult.OK;
+			this.okButton.ImageOver = null;
 			this.okButton.Location = new System.Drawing.Point(245, 402);
 			this.okButton.Name = "okButton";
+			this.okButton.PreferredBack = System.Drawing.Color.Empty;
+			this.okButton.PreferredFore = System.Drawing.Color.Empty;
+			this.okButton.ShowBorder = true;
 			this.okButton.Size = new System.Drawing.Size(120, 38);
-			this.okButton.TabIndex = 1;
+			this.okButton.TabIndex = 0;
 			this.okButton.Text = "OK";
 			this.okButton.UseVisualStyleBackColor = true;
 			this.okButton.Click += new System.EventHandler(this.OK);
@@ -78,7 +86,7 @@
 			this.nameButton.Location = new System.Drawing.Point(3, 3);
 			this.nameButton.Name = "nameButton";
 			this.nameButton.Size = new System.Drawing.Size(76, 24);
-			this.nameButton.TabIndex = 2;
+			this.nameButton.TabIndex = 0;
 			this.nameButton.TabStop = true;
 			this.nameButton.Text = "Name";
 			this.nameButton.UseVisualStyleBackColor = true;
@@ -89,13 +97,14 @@
 			this.createdButton.Location = new System.Drawing.Point(3, 32);
 			this.createdButton.Name = "createdButton";
 			this.createdButton.Size = new System.Drawing.Size(130, 24);
-			this.createdButton.TabIndex = 3;
+			this.createdButton.TabIndex = 1;
 			this.createdButton.Text = "Date Created";
 			this.createdButton.UseVisualStyleBackColor = true;
 			// 
 			// scopeBox
 			// 
 			this.scopeBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.scopeBox.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
 			this.scopeBox.FormattingEnabled = true;
 			this.scopeBox.Items.AddRange(new object[] {
             "Children of Current Page",
@@ -107,12 +116,14 @@
 			this.scopeBox.Margin = new System.Windows.Forms.Padding(3, 3, 3, 20);
 			this.scopeBox.Name = "scopeBox";
 			this.scopeBox.Size = new System.Drawing.Size(300, 28);
-			this.scopeBox.TabIndex = 4;
+			this.scopeBox.TabIndex = 2;
 			this.scopeBox.SelectedIndexChanged += new System.EventHandler(this.ChangeSelection);
 			// 
 			// scopeLabel
 			// 
 			this.scopeLabel.AutoSize = true;
+			this.scopeLabel.BackColor = System.Drawing.SystemColors.Control;
+			this.scopeLabel.ForeColor = System.Drawing.SystemColors.ControlText;
 			this.scopeLabel.Location = new System.Drawing.Point(18, 43);
 			this.scopeLabel.Name = "scopeLabel";
 			this.scopeLabel.Size = new System.Drawing.Size(59, 20);
@@ -125,7 +136,7 @@
 			this.modifiedButton.Location = new System.Drawing.Point(3, 63);
 			this.modifiedButton.Name = "modifiedButton";
 			this.modifiedButton.Size = new System.Drawing.Size(133, 24);
-			this.modifiedButton.TabIndex = 6;
+			this.modifiedButton.TabIndex = 2;
 			this.modifiedButton.Text = "Date Modified";
 			this.modifiedButton.UseVisualStyleBackColor = true;
 			// 
@@ -143,6 +154,8 @@
 			// sortLabel
 			// 
 			this.sortLabel.AutoSize = true;
+			this.sortLabel.BackColor = System.Drawing.SystemColors.Control;
+			this.sortLabel.ForeColor = System.Drawing.SystemColors.ControlText;
 			this.sortLabel.Location = new System.Drawing.Point(18, 96);
 			this.sortLabel.Name = "sortLabel";
 			this.sortLabel.Size = new System.Drawing.Size(63, 20);
@@ -152,6 +165,8 @@
 			// directionLabel
 			// 
 			this.directionLabel.AutoSize = true;
+			this.directionLabel.BackColor = System.Drawing.SystemColors.Control;
+			this.directionLabel.ForeColor = System.Drawing.SystemColors.ControlText;
 			this.directionLabel.Location = new System.Drawing.Point(22, 212);
 			this.directionLabel.Name = "directionLabel";
 			this.directionLabel.Size = new System.Drawing.Size(76, 20);
@@ -198,7 +213,7 @@
 			this.pinNotesBox.Location = new System.Drawing.Point(138, 307);
 			this.pinNotesBox.Name = "pinNotesBox";
 			this.pinNotesBox.Size = new System.Drawing.Size(193, 44);
-			this.pinNotesBox.TabIndex = 11;
+			this.pinNotesBox.TabIndex = 3;
 			this.pinNotesBox.Text = "Pin Notes to top and\r\nQuick Notes to bottom";
 			this.pinNotesBox.TextAlign = System.Drawing.ContentAlignment.TopLeft;
 			this.pinNotesBox.UseVisualStyleBackColor = true;
@@ -208,6 +223,7 @@
 			this.AcceptButton = this.okButton;
 			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+			this.BackColor = System.Drawing.SystemColors.Control;
 			this.CancelButton = this.cancelButton;
 			this.ClientSize = new System.Drawing.Size(508, 452);
 			this.Controls.Add(this.pinNotesBox);
@@ -219,6 +235,7 @@
 			this.Controls.Add(this.scopeBox);
 			this.Controls.Add(this.okButton);
 			this.Controls.Add(this.cancelButton);
+			this.ForeColor = System.Drawing.SystemColors.ControlText;
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.MaximizeBox = false;
@@ -238,19 +255,19 @@
 
 		#endregion
 
-		private System.Windows.Forms.Button cancelButton;
-		private System.Windows.Forms.Button okButton;
-		private System.Windows.Forms.RadioButton nameButton;
-		private System.Windows.Forms.RadioButton createdButton;
+		private UI.MoreButton cancelButton;
+		private UI.MoreButton okButton;
+		private UI.MoreRadioButton nameButton;
+		private UI.MoreRadioButton createdButton;
 		private System.Windows.Forms.ComboBox scopeBox;
 		private System.Windows.Forms.Label scopeLabel;
-		private System.Windows.Forms.RadioButton modifiedButton;
+		private UI.MoreRadioButton modifiedButton;
 		private System.Windows.Forms.Panel sortPanel;
 		private System.Windows.Forms.Label sortLabel;
 		private System.Windows.Forms.Label directionLabel;
 		private System.Windows.Forms.Panel directionPanel;
-		private System.Windows.Forms.RadioButton desButton;
-		private System.Windows.Forms.RadioButton ascButton;
-		private System.Windows.Forms.CheckBox pinNotesBox;
+		private UI.MoreRadioButton desButton;
+		private UI.MoreRadioButton ascButton;
+		private UI.MoreCheckBox pinNotesBox;
 	}
 }

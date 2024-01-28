@@ -29,10 +29,10 @@
 		private void InitializeComponent()
 		{
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(RemoveSpacingDialog));
-			this.beforeBox = new System.Windows.Forms.CheckBox();
-			this.afterBox = new System.Windows.Forms.CheckBox();
-			this.betweenBox = new System.Windows.Forms.CheckBox();
-			this.headingsBox = new System.Windows.Forms.CheckBox();
+			this.beforeBox = new UI.MoreCheckBox();
+			this.afterBox = new UI.MoreCheckBox();
+			this.betweenBox = new UI.MoreCheckBox();
+			this.headingsBox = new UI.MoreCheckBox();
 			this.cancelButton = new River.OneMoreAddIn.UI.MoreButton();
 			this.okButton = new River.OneMoreAddIn.UI.MoreButton();
 			this.SuspendLayout();
@@ -157,10 +157,10 @@
 
 		#endregion
 
-		private System.Windows.Forms.CheckBox beforeBox;
-		private System.Windows.Forms.CheckBox afterBox;
-		private System.Windows.Forms.CheckBox betweenBox;
-		private System.Windows.Forms.CheckBox headingsBox;
+		private UI.MoreCheckBox beforeBox;
+		private UI.MoreCheckBox afterBox;
+		private UI.MoreCheckBox betweenBox;
+		private UI.MoreCheckBox headingsBox;
 		private UI.MoreButton cancelButton;
 		private UI.MoreButton okButton;
 	}

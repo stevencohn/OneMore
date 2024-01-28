@@ -29,8 +29,8 @@
 		private void InitializeComponent()
 		{
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ToggleDttmDialog));
-			this.hideRadio = new System.Windows.Forms.RadioButton();
-			this.showRadio = new System.Windows.Forms.RadioButton();
+			this.hideRadio = new UI.MoreRadioButton();
+			this.showRadio = new UI.MoreRadioButton();
 			this.toggleGroup = new River.OneMoreAddIn.UI.MoreGroupBox();
 			this.scopeGroup = new River.OneMoreAddIn.UI.MoreGroupBox();
 			this.scopeSelector = new River.OneMoreAddIn.UI.ScopeSelector();
@@ -163,8 +163,8 @@
 
 		#endregion
 
-		private System.Windows.Forms.RadioButton hideRadio;
-		private System.Windows.Forms.RadioButton showRadio;
+		private UI.MoreRadioButton hideRadio;
+		private UI.MoreRadioButton showRadio;
 		private UI.MoreGroupBox toggleGroup;
 		private UI.MoreGroupBox scopeGroup;
 		private UI.MoreButton cancelButton;

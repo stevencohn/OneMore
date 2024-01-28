@@ -57,7 +57,7 @@
 			this.wordBox.PreferredBack = System.Drawing.Color.Empty;
 			this.wordBox.PreferredFore = System.Drawing.Color.Empty;
 			this.wordBox.Size = new System.Drawing.Size(379, 26);
-			this.wordBox.TabIndex = 1;
+			this.wordBox.TabIndex = 2;
 			// 
 			// languageLabel
 			// 
@@ -94,7 +94,7 @@
 			this.languagesBox.MaxDropDownItems = 13;
 			this.languagesBox.Name = "languagesBox";
 			this.languagesBox.Size = new System.Drawing.Size(379, 28);
-			this.languagesBox.TabIndex = 2;
+			this.languagesBox.TabIndex = 3;
 			// 
 			// cancelButton
 			// 
@@ -107,7 +107,7 @@
 			this.cancelButton.PreferredFore = System.Drawing.Color.Empty;
 			this.cancelButton.ShowBorder = true;
 			this.cancelButton.Size = new System.Drawing.Size(100, 38);
-			this.cancelButton.TabIndex = 3;
+			this.cancelButton.TabIndex = 1;
 			this.cancelButton.Text = "Cancel";
 			this.cancelButton.UseVisualStyleBackColor = true;
 			// 

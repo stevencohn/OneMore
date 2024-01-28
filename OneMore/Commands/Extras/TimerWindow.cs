@@ -1,5 +1,5 @@
 ﻿//************************************************************************************************
-// Copyright © 2021 Steven M Cohn.  All rights reserved.
+// Copyright © 2021 Steven M Cohn. All rights reserved.
 //************************************************************************************************
 
 namespace River.OneMoreAddIn.Commands
@@ -10,7 +10,7 @@ namespace River.OneMoreAddIn.Commands
 	using System.Drawing;
 	using System.Globalization;
 	using System.Windows.Forms;
-	using Resx = River.OneMoreAddIn.Properties.Resources;
+	using Resx = Properties.Resources;
 
 
 	internal partial class TimerWindow : MoreForm
@@ -53,8 +53,13 @@ namespace River.OneMoreAddIn.Commands
 		public int Seconds { get; private set; }
 
 
-		private void TimerWindow_Load(object sender, EventArgs e)
+		protected override void OnLoad(EventArgs e)
 		{
+			// tell ThemeManager to ignore this window
+			ThemeEnabled = false;
+
+			base.OnLoad(e);
+
 			// deal with primary/secondary displays in either duplicate or extended mode...
 			Rectangle area;
 			using var one = new OneNote();

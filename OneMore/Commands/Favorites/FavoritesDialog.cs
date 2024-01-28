@@ -8,7 +8,6 @@ namespace River.OneMoreAddIn.Commands.Favorites
 	using System.ComponentModel;
 	using System.Drawing;
 	using System.Linq;
-	using System.Threading.Tasks;
 	using System.Windows.Forms;
 	using Favorite = FavoritesProvider.Favorite;
 	using FavoriteStatus = FavoritesProvider.FavoriteStatus;

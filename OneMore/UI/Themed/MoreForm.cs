@@ -37,6 +37,12 @@ namespace River.OneMoreAddIn.UI
 
 
 		/// <summary>
+		/// Lets inheritors disable theming for specialized cases like TimerWindow
+		/// </summary>
+		protected bool ThemeEnabled { get; set; } = true;
+
+
+		/// <summary>
 		/// Sets the absolute vertical offset in pixels from "centered" that you want to
 		/// position this window upon load. This can be either a positive or negative value.
 		/// </summary>
@@ -119,7 +125,10 @@ namespace River.OneMoreAddIn.UI
 		{
 			base.OnLoad(e);
 
-			manager.InitializeTheme(this);
+			if (ThemeEnabled)
+			{
+				manager.InitializeTheme(this);
+			}
 
 			// RunModeless has already set location so don't repeat that here and only set
 			// location if inheritor hasn't declined by setting it to zero. Also, we're doing

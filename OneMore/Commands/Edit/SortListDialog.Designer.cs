@@ -30,14 +30,14 @@ namespace River.OneMoreAddIn.Commands
 		private void InitializeComponent()
 		{
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SortListDialog));
-			this.thisListButton = new System.Windows.Forms.RadioButton();
-			this.allListsButton = new System.Windows.Forms.RadioButton();
-			this.typeBox = new System.Windows.Forms.CheckBox();
-			this.deepBox = new System.Windows.Forms.CheckBox();
+			this.thisListButton = new River.OneMoreAddIn.UI.MoreRadioButton();
+			this.allListsButton = new River.OneMoreAddIn.UI.MoreRadioButton();
+			this.typeBox = new River.OneMoreAddIn.UI.MoreCheckBox();
+			this.deepBox = new River.OneMoreAddIn.UI.MoreCheckBox();
 			this.okButton = new River.OneMoreAddIn.UI.MoreButton();
 			this.cancelButton = new River.OneMoreAddIn.UI.MoreButton();
-			this.optionsBox = new UI.MoreGroupBox();
-			this.duplicatesBox = new System.Windows.Forms.CheckBox();
+			this.optionsBox = new River.OneMoreAddIn.UI.MoreGroupBox();
+			this.duplicatesBox = new River.OneMoreAddIn.UI.MoreCheckBox();
 			this.introLabel = new System.Windows.Forms.Label();
 			this.optionsBox.SuspendLayout();
 			this.SuspendLayout();
@@ -70,7 +70,7 @@ namespace River.OneMoreAddIn.Commands
 			this.typeBox.Location = new System.Drawing.Point(23, 148);
 			this.typeBox.Name = "typeBox";
 			this.typeBox.Size = new System.Drawing.Size(280, 24);
-			this.typeBox.TabIndex = 2;
+			this.typeBox.TabIndex = 3;
 			this.typeBox.Text = "Both bullet lists and numbered lists";
 			this.typeBox.UseVisualStyleBackColor = true;
 			// 
@@ -80,7 +80,7 @@ namespace River.OneMoreAddIn.Commands
 			this.deepBox.Location = new System.Drawing.Point(23, 118);
 			this.deepBox.Name = "deepBox";
 			this.deepBox.Size = new System.Drawing.Size(149, 24);
-			this.deepBox.TabIndex = 3;
+			this.deepBox.TabIndex = 2;
 			this.deepBox.Text = "Include sub-lists";
 			this.deepBox.UseVisualStyleBackColor = true;
 			// 
@@ -95,7 +95,7 @@ namespace River.OneMoreAddIn.Commands
 			this.okButton.PreferredFore = System.Drawing.Color.Empty;
 			this.okButton.ShowBorder = true;
 			this.okButton.Size = new System.Drawing.Size(100, 38);
-			this.okButton.TabIndex = 7;
+			this.okButton.TabIndex = 0;
 			this.okButton.Text = "OK";
 			this.okButton.UseVisualStyleBackColor = true;
 			// 
@@ -110,7 +110,7 @@ namespace River.OneMoreAddIn.Commands
 			this.cancelButton.PreferredFore = System.Drawing.Color.Empty;
 			this.cancelButton.ShowBorder = true;
 			this.cancelButton.Size = new System.Drawing.Size(100, 38);
-			this.cancelButton.TabIndex = 6;
+			this.cancelButton.TabIndex = 1;
 			this.cancelButton.Text = "Cancel";
 			this.cancelButton.UseVisualStyleBackColor = true;
 			// 
@@ -182,14 +182,14 @@ namespace River.OneMoreAddIn.Commands
 
 		#endregion
 
-		private System.Windows.Forms.RadioButton thisListButton;
-		private System.Windows.Forms.RadioButton allListsButton;
-		private System.Windows.Forms.CheckBox typeBox;
-		private System.Windows.Forms.CheckBox deepBox;
+		private UI.MoreRadioButton thisListButton;
+		private UI.MoreRadioButton allListsButton;
+		private UI.MoreCheckBox typeBox;
+		private UI.MoreCheckBox deepBox;
 		private UI.MoreButton okButton;
 		private UI.MoreButton cancelButton;
 		private UI.MoreGroupBox optionsBox;
 		private System.Windows.Forms.Label introLabel;
-		private System.Windows.Forms.CheckBox duplicatesBox;
+		private UI.MoreCheckBox duplicatesBox;
 	}
 }

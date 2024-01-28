@@ -34,11 +34,11 @@
 			this.nameColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.locationColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.buttonPanel = new System.Windows.Forms.Panel();
-			this.goButton = new System.Windows.Forms.Button();
-			this.cancelButton = new System.Windows.Forms.Button();
+			this.goButton = new River.OneMoreAddIn.UI.MoreButton();
+			this.cancelButton = new River.OneMoreAddIn.UI.MoreButton();
 			this.searchPanel = new System.Windows.Forms.Panel();
-			this.menuButton = new System.Windows.Forms.Button();
-			this.searchBox = new System.Windows.Forms.TextBox();
+			this.menuButton = new River.OneMoreAddIn.UI.MoreButton();
+			this.searchBox = new River.OneMoreAddIn.UI.MoreTextBox();
 			this.searchLabel = new System.Windows.Forms.Label();
 			this.contextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
 			this.addButton = new System.Windows.Forms.ToolStripMenuItem();
@@ -95,9 +95,11 @@
 			// 
 			// buttonPanel
 			// 
+			this.buttonPanel.BackColor = System.Drawing.SystemColors.Control;
 			this.buttonPanel.Controls.Add(this.goButton);
 			this.buttonPanel.Controls.Add(this.cancelButton);
 			this.buttonPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
+			this.buttonPanel.ForeColor = System.Drawing.SystemColors.ControlText;
 			this.buttonPanel.Location = new System.Drawing.Point(0, 484);
 			this.buttonPanel.Name = "buttonPanel";
 			this.buttonPanel.Padding = new System.Windows.Forms.Padding(8);
@@ -108,8 +110,12 @@
 			// 
 			this.goButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.goButton.DialogResult = System.Windows.Forms.DialogResult.OK;
+			this.goButton.ImageOver = null;
 			this.goButton.Location = new System.Drawing.Point(518, 11);
 			this.goButton.Name = "goButton";
+			this.goButton.PreferredBack = System.Drawing.Color.Empty;
+			this.goButton.PreferredFore = System.Drawing.Color.Empty;
+			this.goButton.ShowBorder = true;
 			this.goButton.Size = new System.Drawing.Size(120, 38);
 			this.goButton.TabIndex = 0;
 			this.goButton.Text = "Go";
@@ -120,8 +126,12 @@
 			// 
 			this.cancelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+			this.cancelButton.ImageOver = null;
 			this.cancelButton.Location = new System.Drawing.Point(644, 11);
 			this.cancelButton.Name = "cancelButton";
+			this.cancelButton.PreferredBack = System.Drawing.Color.Empty;
+			this.cancelButton.PreferredFore = System.Drawing.Color.Empty;
+			this.cancelButton.ShowBorder = true;
 			this.cancelButton.Size = new System.Drawing.Size(120, 38);
 			this.cancelButton.TabIndex = 1;
 			this.cancelButton.Text = "Cancel";
@@ -129,10 +139,12 @@
 			// 
 			// searchPanel
 			// 
+			this.searchPanel.BackColor = System.Drawing.SystemColors.Control;
 			this.searchPanel.Controls.Add(this.menuButton);
 			this.searchPanel.Controls.Add(this.searchBox);
 			this.searchPanel.Controls.Add(this.searchLabel);
 			this.searchPanel.Dock = System.Windows.Forms.DockStyle.Top;
+			this.searchPanel.ForeColor = System.Drawing.SystemColors.ControlText;
 			this.searchPanel.Location = new System.Drawing.Point(0, 0);
 			this.searchPanel.Name = "searchPanel";
 			this.searchPanel.Padding = new System.Windows.Forms.Padding(15);
@@ -146,8 +158,12 @@
 			this.menuButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.menuButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.menuButton.ForeColor = System.Drawing.SystemColors.GrayText;
+			this.menuButton.ImageOver = null;
 			this.menuButton.Location = new System.Drawing.Point(710, 18);
 			this.menuButton.Name = "menuButton";
+			this.menuButton.PreferredBack = System.Drawing.Color.Empty;
+			this.menuButton.PreferredFore = System.Drawing.Color.Empty;
+			this.menuButton.ShowBorder = false;
 			this.menuButton.Size = new System.Drawing.Size(50, 38);
 			this.menuButton.TabIndex = 1;
 			this.menuButton.Text = "•••";
@@ -158,9 +174,12 @@
 			// 
 			this.searchBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+			this.searchBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
 			this.searchBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.searchBox.Location = new System.Drawing.Point(138, 18);
 			this.searchBox.Name = "searchBox";
+			this.searchBox.PreferredBack = System.Drawing.Color.Empty;
+			this.searchBox.PreferredFore = System.Drawing.Color.Empty;
 			this.searchBox.Size = new System.Drawing.Size(566, 28);
 			this.searchBox.TabIndex = 0;
 			this.searchBox.KeyUp += new System.Windows.Forms.KeyEventHandler(this.FilterRowOnKeyUp);
@@ -227,6 +246,7 @@
 			this.Controls.Add(this.gridView);
 			this.Controls.Add(this.searchPanel);
 			this.Controls.Add(this.buttonPanel);
+			this.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.MaximizeBox = false;
@@ -251,12 +271,12 @@
 		private System.Windows.Forms.DataGridViewTextBoxColumn nameColumn;
 		private System.Windows.Forms.DataGridViewTextBoxColumn locationColumn;
 		private System.Windows.Forms.Panel buttonPanel;
-		private System.Windows.Forms.Button goButton;
-		private System.Windows.Forms.Button cancelButton;
+		private UI.MoreButton goButton;
+		private UI.MoreButton cancelButton;
 		private System.Windows.Forms.Panel searchPanel;
-		private System.Windows.Forms.TextBox searchBox;
+		private UI.MoreTextBox searchBox;
 		private System.Windows.Forms.Label searchLabel;
-		private System.Windows.Forms.Button menuButton;
+		private UI.MoreButton menuButton;
 		private System.Windows.Forms.ContextMenuStrip contextMenu;
 		private System.Windows.Forms.ToolStripMenuItem checkButton;
 		private System.Windows.Forms.ToolStripMenuItem manageButton;

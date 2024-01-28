@@ -30,8 +30,8 @@ namespace River.OneMoreAddIn.Commands
 		private void InitializeComponent()
 		{
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(BreakingDialog));
-			this.oneButton = new System.Windows.Forms.RadioButton();
-			this.twoButton = new System.Windows.Forms.RadioButton();
+			this.oneButton = new UI.MoreRadioButton();
+			this.twoButton = new UI.MoreRadioButton();
 			this.okButton = new River.OneMoreAddIn.UI.MoreButton();
 			this.cancelButton = new River.OneMoreAddIn.UI.MoreButton();
 			this.groupBox = new UI.MoreGroupBox();
@@ -135,8 +135,8 @@ namespace River.OneMoreAddIn.Commands
 
 		#endregion
 
-		private System.Windows.Forms.RadioButton oneButton;
-		private System.Windows.Forms.RadioButton twoButton;
+		private UI.MoreRadioButton oneButton;
+		private UI.MoreRadioButton twoButton;
 		private UI.MoreButton okButton;
 		private UI.MoreButton cancelButton;
 		private UI.MoreGroupBox groupBox;

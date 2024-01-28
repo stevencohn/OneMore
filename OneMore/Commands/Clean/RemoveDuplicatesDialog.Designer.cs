@@ -35,9 +35,9 @@
 			this.cancelButton = new River.OneMoreAddIn.UI.MoreButton();
 			this.depthBox = new River.OneMoreAddIn.UI.MoreGroupBox();
 			this.includeTitlesBox = new System.Windows.Forms.CheckBox();
-			this.deepRadio = new System.Windows.Forms.RadioButton();
-			this.basicRadio = new System.Windows.Forms.RadioButton();
-			this.simpleRadio = new System.Windows.Forms.RadioButton();
+			this.deepRadio = new UI.MoreRadioButton();
+			this.basicRadio = new UI.MoreRadioButton();
+			this.simpleRadio = new UI.MoreRadioButton();
 			this.scopeGroupBox.SuspendLayout();
 			this.depthBox.SuspendLayout();
 			this.SuspendLayout();
@@ -189,9 +189,9 @@
 		private UI.MoreButton okButton;
 		private UI.MoreButton cancelButton;
 		private UI.MoreGroupBox depthBox;
-		private System.Windows.Forms.RadioButton deepRadio;
-		private System.Windows.Forms.RadioButton basicRadio;
-		private System.Windows.Forms.RadioButton simpleRadio;
+		private UI.MoreRadioButton deepRadio;
+		private UI.MoreRadioButton basicRadio;
+		private UI.MoreRadioButton simpleRadio;
 		private System.Windows.Forms.CheckBox includeTitlesBox;
 	}
 }

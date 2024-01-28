@@ -29,7 +29,7 @@
 		private void InitializeComponent()
 		{
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(RemoveDuplicatesNavigator));
-			this.cancelButton = new System.Windows.Forms.Button();
+			this.cancelButton = new River.OneMoreAddIn.UI.MoreButton();
 			this.view = new River.OneMoreAddIn.UI.MoreListView();
 			this.SuspendLayout();
 			// 
@@ -37,10 +37,14 @@
 			// 
 			this.cancelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+			this.cancelButton.ImageOver = null;
 			this.cancelButton.Location = new System.Drawing.Point(966, 544);
 			this.cancelButton.Name = "cancelButton";
+			this.cancelButton.PreferredBack = System.Drawing.Color.Empty;
+			this.cancelButton.PreferredFore = System.Drawing.Color.Empty;
+			this.cancelButton.ShowBorder = true;
 			this.cancelButton.Size = new System.Drawing.Size(100, 38);
-			this.cancelButton.TabIndex = 8;
+			this.cancelButton.TabIndex = 0;
 			this.cancelButton.Text = "Cancel";
 			this.cancelButton.UseVisualStyleBackColor = true;
 			this.cancelButton.Click += new System.EventHandler(this.CloseDialog);
@@ -61,7 +65,7 @@
 			this.view.RowHeight = 29;
 			this.view.Size = new System.Drawing.Size(1054, 503);
 			this.view.SortedBackground = System.Drawing.SystemColors.Window;
-			this.view.TabIndex = 10;
+			this.view.TabIndex = 1;
 			this.view.UseCompatibleStateImageBehavior = false;
 			this.view.View = System.Windows.Forms.View.Details;
 			// 
@@ -73,6 +77,7 @@
 			this.ClientSize = new System.Drawing.Size(1078, 594);
 			this.Controls.Add(this.view);
 			this.Controls.Add(this.cancelButton);
+			this.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.MaximizeBox = false;
 			this.MinimizeBox = false;
@@ -84,7 +89,7 @@
 		}
 
 		#endregion
-		private System.Windows.Forms.Button cancelButton;
-		private River.OneMoreAddIn.UI.MoreListView view;
+		private UI.MoreButton cancelButton;
+		private UI.MoreListView view;
 	}
 }

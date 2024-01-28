@@ -163,9 +163,9 @@ namespace River.OneMoreAddIn.UI
 
 			if (top == 0) top = DefaultTabHeight;
 			using var border = new SolidBrush(manager.GetThemedColor(Border));
-			using var pen = new Pen(background, 2);
-			e.Graphics.DrawRectangle(pen, 0, top, Bounds.Width, Bounds.Height - top);
-			e.Graphics.FillRectangle(indicator, 0, top, Bounds.Width, IndicatorSize);
+			using var pen = new Pen(border, 2);
+			e.Graphics.DrawRectangle(pen, 0, top, e.ClipRectangle.Width, e.ClipRectangle.Height - top);
+			e.Graphics.FillRectangle(indicator, 0, top, e.ClipRectangle.Width, IndicatorSize);
 		}
 	}
 }

@@ -30,7 +30,7 @@
 		{
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ColorizeDialog));
 			this.controlPanel = new System.Windows.Forms.Panel();
-			this.okButton = new System.Windows.Forms.Button();
+			this.okButton = new River.OneMoreAddIn.UI.MoreButton();
 			this.mainPanel = new System.Windows.Forms.Panel();
 			this.view = new System.Windows.Forms.ListView();
 			this.nameColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -51,10 +51,14 @@
 			// 
 			this.okButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.okButton.DialogResult = System.Windows.Forms.DialogResult.OK;
+			this.okButton.ImageOver = null;
 			this.okButton.Location = new System.Drawing.Point(253, 13);
 			this.okButton.Name = "okButton";
+			this.okButton.PreferredBack = System.Drawing.Color.Empty;
+			this.okButton.PreferredFore = System.Drawing.Color.Empty;
+			this.okButton.ShowBorder = true;
 			this.okButton.Size = new System.Drawing.Size(108, 38);
-			this.okButton.TabIndex = 1;
+			this.okButton.TabIndex = 0;
 			this.okButton.Text = "OK";
 			this.okButton.UseVisualStyleBackColor = true;
 			this.okButton.KeyUp += new System.Windows.Forms.KeyEventHandler(this.CancelOnKeyUp);
@@ -71,6 +75,7 @@
 			// 
 			// view
 			// 
+			this.view.BackColor = System.Drawing.SystemColors.ControlLightLight;
 			this.view.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.nameColumn});
 			this.view.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -99,6 +104,7 @@
 			this.ClientSize = new System.Drawing.Size(373, 540);
 			this.Controls.Add(this.mainPanel);
 			this.Controls.Add(this.controlPanel);
+			this.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.Name = "ColorizeDialog";
@@ -115,7 +121,7 @@
 		#endregion
 
 		private System.Windows.Forms.Panel controlPanel;
-		private System.Windows.Forms.Button okButton;
+		private UI.MoreButton okButton;
 		private System.Windows.Forms.Panel mainPanel;
 		private System.Windows.Forms.ListView view;
 		private System.Windows.Forms.ColumnHeader nameColumn;
