@@ -37,7 +37,7 @@
 			this.formulaBox = new River.OneMoreAddIn.UI.MoreTextBox();
 			this.selectedLabel = new System.Windows.Forms.Label();
 			this.cellLabel = new System.Windows.Forms.Label();
-			this.helpBox = new River.OneMoreAddIn.UI.MoreTextBox();
+			this.helpBox = new River.OneMoreAddIn.UI.MoreLabel();
 			this.helpPanel = new System.Windows.Forms.Panel();
 			this.helpButton = new River.OneMoreAddIn.UI.MoreCheckBox();
 			this.validStatusLabel = new System.Windows.Forms.Label();
@@ -145,19 +145,17 @@
 			// 
 			// helpBox
 			// 
+			this.helpBox.AutoSize = true;
 			this.helpBox.BackColor = System.Drawing.SystemColors.ControlLightLight;
-			this.helpBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
 			this.helpBox.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.helpBox.Enabled = false;
 			this.helpBox.ForeColor = System.Drawing.SystemColors.ControlText;
 			this.helpBox.Location = new System.Drawing.Point(7, 7);
-			this.helpBox.Multiline = true;
+			this.helpBox.MaximumSize = new System.Drawing.Size(576, 0);
 			this.helpBox.Name = "helpBox";
 			this.helpBox.PreferredBack = "ControlLightLight";
-			this.helpBox.PreferredFore = null;
-			this.helpBox.Size = new System.Drawing.Size(571, 240);
+			this.helpBox.PreferredFore = "ControlText";
+			this.helpBox.Size = new System.Drawing.Size(553, 220);
 			this.helpBox.TabIndex = 12;
-			this.helpBox.TabStop = false;
 			this.helpBox.Text = resources.GetString("helpBox.Text");
 			// 
 			// helpPanel
@@ -210,7 +208,7 @@
 			this.tagBox.Location = new System.Drawing.Point(139, 172);
 			this.tagBox.Margin = new System.Windows.Forms.Padding(3, 3, 3, 20);
 			this.tagBox.Name = "tagBox";
-			this.tagBox.Size = new System.Drawing.Size(159, 24);
+			this.tagBox.Size = new System.Drawing.Size(160, 24);
 			this.tagBox.TabIndex = 3;
 			this.tagBox.Text = "Tag formula cells";
 			this.tagBox.UseVisualStyleBackColor = true;
@@ -288,7 +286,7 @@
 		private UI.MoreTextBox formulaBox;
 		private System.Windows.Forms.Label selectedLabel;
 		private System.Windows.Forms.Label cellLabel;
-		private UI.MoreTextBox helpBox;
+		private UI.MoreLabel helpBox;
 		private System.Windows.Forms.Panel helpPanel;
 		private UI.MoreCheckBox helpButton;
 		private System.Windows.Forms.Label validStatusLabel;

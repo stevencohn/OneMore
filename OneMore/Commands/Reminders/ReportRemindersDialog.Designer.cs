@@ -30,12 +30,12 @@
 		{
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ReportRemindersDialog));
 			this.introLabel = new System.Windows.Forms.Label();
-			this.groupBox = new System.Windows.Forms.GroupBox();
-			this.notebookRadio = new System.Windows.Forms.RadioButton();
-			this.sectionRadio = new System.Windows.Forms.RadioButton();
-			this.notebooksRadio = new System.Windows.Forms.RadioButton();
-			this.cancelButton = new System.Windows.Forms.Button();
-			this.okButton = new System.Windows.Forms.Button();
+			this.groupBox = new River.OneMoreAddIn.UI.MoreGroupBox();
+			this.notebookRadio = new River.OneMoreAddIn.UI.MoreRadioButton();
+			this.sectionRadio = new River.OneMoreAddIn.UI.MoreRadioButton();
+			this.notebooksRadio = new River.OneMoreAddIn.UI.MoreRadioButton();
+			this.cancelButton = new River.OneMoreAddIn.UI.MoreButton();
+			this.okButton = new River.OneMoreAddIn.UI.MoreButton();
 			this.groupBox.SuspendLayout();
 			this.SuspendLayout();
 			// 
@@ -63,35 +63,32 @@
 			// 
 			// notebookRadio
 			// 
-			this.notebookRadio.AutoSize = true;
 			this.notebookRadio.Location = new System.Drawing.Point(23, 79);
 			this.notebookRadio.Margin = new System.Windows.Forms.Padding(3, 3, 3, 10);
 			this.notebookRadio.Name = "notebookRadio";
-			this.notebookRadio.Size = new System.Drawing.Size(282, 24);
-			this.notebookRadio.TabIndex = 3;
+			this.notebookRadio.Size = new System.Drawing.Size(290, 24);
+			this.notebookRadio.TabIndex = 1;
 			this.notebookRadio.Text = "All sections in the current notebook";
 			this.notebookRadio.UseVisualStyleBackColor = true;
 			// 
 			// sectionRadio
 			// 
-			this.sectionRadio.AutoSize = true;
 			this.sectionRadio.Location = new System.Drawing.Point(23, 116);
 			this.sectionRadio.Margin = new System.Windows.Forms.Padding(3, 3, 3, 10);
 			this.sectionRadio.Name = "sectionRadio";
-			this.sectionRadio.Size = new System.Drawing.Size(170, 24);
-			this.sectionRadio.TabIndex = 4;
+			this.sectionRadio.Size = new System.Drawing.Size(175, 24);
+			this.sectionRadio.TabIndex = 2;
 			this.sectionRadio.Text = "The current section";
 			this.sectionRadio.UseVisualStyleBackColor = true;
 			// 
 			// notebooksRadio
 			// 
-			this.notebooksRadio.AutoSize = true;
 			this.notebooksRadio.Checked = true;
 			this.notebooksRadio.Location = new System.Drawing.Point(23, 42);
 			this.notebooksRadio.Margin = new System.Windows.Forms.Padding(3, 3, 3, 10);
 			this.notebooksRadio.Name = "notebooksRadio";
-			this.notebooksRadio.Size = new System.Drawing.Size(130, 24);
-			this.notebooksRadio.TabIndex = 2;
+			this.notebooksRadio.Size = new System.Drawing.Size(133, 24);
+			this.notebooksRadio.TabIndex = 0;
 			this.notebooksRadio.TabStop = true;
 			this.notebooksRadio.Text = "All notebooks";
 			this.notebooksRadio.UseVisualStyleBackColor = true;
@@ -100,10 +97,14 @@
 			// 
 			this.cancelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+			this.cancelButton.ImageOver = null;
 			this.cancelButton.Location = new System.Drawing.Point(441, 241);
 			this.cancelButton.Name = "cancelButton";
+			this.cancelButton.PreferredBack = null;
+			this.cancelButton.PreferredFore = null;
+			this.cancelButton.ShowBorder = true;
 			this.cancelButton.Size = new System.Drawing.Size(120, 38);
-			this.cancelButton.TabIndex = 10;
+			this.cancelButton.TabIndex = 1;
 			this.cancelButton.Text = "Cancel";
 			this.cancelButton.UseVisualStyleBackColor = true;
 			// 
@@ -111,29 +112,36 @@
 			// 
 			this.okButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.okButton.DialogResult = System.Windows.Forms.DialogResult.OK;
+			this.okButton.ImageOver = null;
 			this.okButton.Location = new System.Drawing.Point(315, 241);
 			this.okButton.Name = "okButton";
+			this.okButton.PreferredBack = null;
+			this.okButton.PreferredFore = null;
+			this.okButton.ShowBorder = true;
 			this.okButton.Size = new System.Drawing.Size(120, 38);
-			this.okButton.TabIndex = 9;
+			this.okButton.TabIndex = 0;
 			this.okButton.Text = "OK";
 			this.okButton.UseVisualStyleBackColor = true;
 			// 
 			// ReportRemindersDialog
 			// 
+			this.AcceptButton = this.okButton;
 			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+			this.BackColor = System.Drawing.SystemColors.Control;
+			this.CancelButton = this.cancelButton;
 			this.ClientSize = new System.Drawing.Size(574, 292);
 			this.Controls.Add(this.okButton);
 			this.Controls.Add(this.cancelButton);
 			this.Controls.Add(this.introLabel);
 			this.Controls.Add(this.groupBox);
+			this.ForeColor = System.Drawing.SystemColors.ControlText;
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.Name = "ReportRemindersDialog";
 			this.Padding = new System.Windows.Forms.Padding(15, 20, 10, 10);
 			this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
 			this.Text = "Report Scope";
 			this.groupBox.ResumeLayout(false);
-			this.groupBox.PerformLayout();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -141,11 +149,11 @@
 
 		#endregion
 		private System.Windows.Forms.Label introLabel;
-		private System.Windows.Forms.GroupBox groupBox;
-		private System.Windows.Forms.RadioButton notebookRadio;
-		private System.Windows.Forms.RadioButton sectionRadio;
-		private System.Windows.Forms.RadioButton notebooksRadio;
-		private System.Windows.Forms.Button cancelButton;
-		private System.Windows.Forms.Button okButton;
+		private UI.MoreGroupBox groupBox;
+		private UI.MoreRadioButton notebookRadio;
+		private UI.MoreRadioButton sectionRadio;
+		private UI.MoreRadioButton notebooksRadio;
+		private UI.MoreButton cancelButton;
+		private UI.MoreButton okButton;
 	}
 }

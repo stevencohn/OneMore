@@ -1,5 +1,5 @@
 ﻿//************************************************************************************************
-// Copyright © 2021 Steven M Cohn.  All rights reserved.
+// Copyright © 2021 Steven M Cohn. All rights reserved.
 //************************************************************************************************
 
 #pragma warning disable S3267 // Loops should be simplified with "LINQ" expressions
@@ -9,6 +9,7 @@ namespace River.OneMoreAddIn.Commands
 	using Aga.Controls.Tree;
 	using Aga.Controls.Tree.NodeControls;
 	using River.OneMoreAddIn.Helpers.Office;
+	using System;
 	using System.Collections.Generic;
 	using System.Drawing;
 	using System.Linq;
@@ -16,7 +17,7 @@ namespace River.OneMoreAddIn.Commands
 	using System.Threading.Tasks;
 	using System.Windows.Forms;
 	using static River.OneMoreAddIn.OneNote;
-	using Resx = River.OneMoreAddIn.Properties.Resources;
+	using Resx = Properties.Resources;
 
 
 	internal partial class ImportOutlookTasksDialog : UI.MoreForm
@@ -71,17 +72,8 @@ namespace River.OneMoreAddIn.Commands
 					"cancelButton=word_Cancel"
 				});
 			}
-			else
-			{
-				// customization only for English
-				warningBox.Clear();
-				warningBox.AppendText("Note that OneNote does not bind completely to tasks that " +
-					"are not in the Outlook Tasks folder. Tasks from sub-folders are shown ");
-				warningBox.AppendFormattedText("in red", Color.Firebrick);
-				warningBox.AppendFormattedText(" to indicate that their status flags will not update " +
-					"automatically after importing.", SystemColors.GrayText);
-			}
 
+			introBox.SetMultilineWrapWidth(introBox.Width);
 			resetInfoLabel.Visible = false;
 			resetInfoLabel.Left = resetLabel.Left;
 
@@ -124,6 +116,24 @@ namespace River.OneMoreAddIn.Commands
 		{
 			PopulateTree(folders);
 			tree.ExpandAll();
+		}
+
+
+		protected override void OnLoad(EventArgs e)
+		{
+			base.OnLoad(e);
+
+			warningBox.BackColor = manager.GetThemedColor("Control");
+			var gray = manager.GetThemedColor("GrayText");
+			warningBox.ForeColor = gray;
+
+			// customization only for English
+			warningBox.Clear();
+			warningBox.AppendText("Note that OneNote does not bind completely to tasks that " +
+				"are not in the Outlook Tasks folder. Tasks from sub-folders are shown ");
+			warningBox.AppendFormattedText("in red", manager.GetThemedColor("ErrorText"));
+			warningBox.AppendFormattedText(" to indicate that their status flags will not update " +
+				"automatically after importing.", gray);
 		}
 
 

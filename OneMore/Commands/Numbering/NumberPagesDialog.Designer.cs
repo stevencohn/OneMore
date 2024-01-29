@@ -33,9 +33,9 @@
 			this.numberingGroup = new River.OneMoreAddIn.UI.MoreGroupBox();
 			this.introLabel = new System.Windows.Forms.Label();
 			this.cleanBox = new River.OneMoreAddIn.UI.MoreCheckBox();
-			this.alphaDemoBox = new River.OneMoreAddIn.UI.MoreTextBox();
+			this.alphaDemoBox = new River.OneMoreAddIn.UI.MoreLabel();
 			this.alphaRadio = new River.OneMoreAddIn.UI.MoreRadioButton();
-			this.numDemoBox = new River.OneMoreAddIn.UI.MoreTextBox();
+			this.numDemoBox = new River.OneMoreAddIn.UI.MoreLabel();
 			this.numRadio = new River.OneMoreAddIn.UI.MoreRadioButton();
 			this.numberingGroup.SuspendLayout();
 			this.SuspendLayout();
@@ -51,7 +51,7 @@
 			this.okButton.PreferredFore = null;
 			this.okButton.ShowBorder = true;
 			this.okButton.Size = new System.Drawing.Size(100, 38);
-			this.okButton.TabIndex = 11;
+			this.okButton.TabIndex = 0;
 			this.okButton.Text = "OK";
 			this.okButton.UseVisualStyleBackColor = true;
 			this.okButton.Click += new System.EventHandler(this.okButton_Click);
@@ -67,7 +67,7 @@
 			this.cancelButton.PreferredFore = null;
 			this.cancelButton.ShowBorder = true;
 			this.cancelButton.Size = new System.Drawing.Size(100, 38);
-			this.cancelButton.TabIndex = 10;
+			this.cancelButton.TabIndex = 1;
 			this.cancelButton.Text = "Cancel";
 			this.cancelButton.UseVisualStyleBackColor = true;
 			this.cancelButton.Click += new System.EventHandler(this.cancelButton_Click);
@@ -97,16 +97,16 @@
 			this.introLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
 			this.introLabel.Name = "introLabel";
 			this.introLabel.Size = new System.Drawing.Size(206, 20);
-			this.introLabel.TabIndex = 13;
+			this.introLabel.TabIndex = 0;
 			this.introLabel.Text = "Choose the numbering style";
 			// 
 			// cleanBox
 			// 
-			this.cleanBox.Location = new System.Drawing.Point(26, 172);
+			this.cleanBox.Location = new System.Drawing.Point(25, 180);
 			this.cleanBox.Name = "cleanBox";
 			this.cleanBox.Padding = new System.Windows.Forms.Padding(0, 9, 0, 0);
-			this.cleanBox.Size = new System.Drawing.Size(300, 33);
-			this.cleanBox.TabIndex = 14;
+			this.cleanBox.Size = new System.Drawing.Size(301, 24);
+			this.cleanBox.TabIndex = 3;
 			this.cleanBox.Text = "Remove/cleanup existing numbering";
 			this.cleanBox.UseVisualStyleBackColor = true;
 			// 
@@ -114,17 +114,13 @@
 			// 
 			this.alphaDemoBox.BackColor = System.Drawing.SystemColors.ControlLightLight;
 			this.alphaDemoBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-			this.alphaDemoBox.Enabled = false;
 			this.alphaDemoBox.ForeColor = System.Drawing.SystemColors.ControlText;
 			this.alphaDemoBox.Location = new System.Drawing.Point(82, 98);
-			this.alphaDemoBox.Multiline = true;
 			this.alphaDemoBox.Name = "alphaDemoBox";
 			this.alphaDemoBox.PreferredBack = "ControlLightLight";
-			this.alphaDemoBox.PreferredFore = null;
-			this.alphaDemoBox.ReadOnly = true;
+			this.alphaDemoBox.PreferredFore = "ControlText";
 			this.alphaDemoBox.Size = new System.Drawing.Size(128, 67);
-			this.alphaDemoBox.TabIndex = 12;
-			this.alphaDemoBox.TabStop = false;
+			this.alphaDemoBox.TabIndex = 15;
 			this.alphaDemoBox.Text = "1.\r\n   a.\r\n      i.";
 			// 
 			// alphaRadio
@@ -132,8 +128,8 @@
 			this.alphaRadio.Checked = true;
 			this.alphaRadio.Location = new System.Drawing.Point(56, 69);
 			this.alphaRadio.Name = "alphaRadio";
-			this.alphaRadio.Size = new System.Drawing.Size(138, 24);
-			this.alphaRadio.TabIndex = 0;
+			this.alphaRadio.Size = new System.Drawing.Size(141, 24);
+			this.alphaRadio.TabIndex = 1;
 			this.alphaRadio.TabStop = true;
 			this.alphaRadio.Text = "Alpha-numeric";
 			this.alphaRadio.UseVisualStyleBackColor = true;
@@ -142,25 +138,21 @@
 			// 
 			this.numDemoBox.BackColor = System.Drawing.SystemColors.ControlLightLight;
 			this.numDemoBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-			this.numDemoBox.Enabled = false;
 			this.numDemoBox.ForeColor = System.Drawing.SystemColors.ControlText;
 			this.numDemoBox.Location = new System.Drawing.Point(290, 98);
-			this.numDemoBox.Multiline = true;
 			this.numDemoBox.Name = "numDemoBox";
 			this.numDemoBox.PreferredBack = "ControlLightLight";
-			this.numDemoBox.PreferredFore = null;
-			this.numDemoBox.ReadOnly = true;
+			this.numDemoBox.PreferredFore = "ControlText";
 			this.numDemoBox.Size = new System.Drawing.Size(128, 67);
-			this.numDemoBox.TabIndex = 13;
-			this.numDemoBox.TabStop = false;
+			this.numDemoBox.TabIndex = 16;
 			this.numDemoBox.Text = "1.\r\n   1.1.\r\n      1.1.1.";
 			// 
 			// numRadio
 			// 
 			this.numRadio.Location = new System.Drawing.Point(261, 69);
 			this.numRadio.Name = "numRadio";
-			this.numRadio.Size = new System.Drawing.Size(93, 24);
-			this.numRadio.TabIndex = 1;
+			this.numRadio.Size = new System.Drawing.Size(96, 24);
+			this.numRadio.TabIndex = 2;
 			this.numRadio.Text = "Numeric";
 			this.numRadio.UseVisualStyleBackColor = true;
 			// 
@@ -197,9 +189,9 @@
 		private UI.MoreGroupBox numberingGroup;
 		private System.Windows.Forms.Label introLabel;
 		private UI.MoreCheckBox cleanBox;
-		private UI.MoreTextBox alphaDemoBox;
+		private UI.MoreLabel alphaDemoBox;
 		private UI.MoreRadioButton alphaRadio;
-		private UI.MoreTextBox numDemoBox;
+		private UI.MoreLabel numDemoBox;
 		private UI.MoreRadioButton numRadio;
 	}
 }

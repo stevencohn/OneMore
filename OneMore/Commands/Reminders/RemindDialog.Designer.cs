@@ -30,30 +30,30 @@ namespace River.OneMoreAddIn.Commands
 		private void InitializeComponent()
 		{
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(RemindDialog));
-			this.okButton = new System.Windows.Forms.Button();
-			this.cancelButton = new System.Windows.Forms.Button();
+			this.okButton = new River.OneMoreAddIn.UI.MoreButton();
+			this.cancelButton = new River.OneMoreAddIn.UI.MoreButton();
 			this.startDateBox = new System.Windows.Forms.DateTimePicker();
 			this.dueDateBox = new System.Windows.Forms.DateTimePicker();
 			this.startDateLabel = new System.Windows.Forms.Label();
 			this.dueDateLabel = new System.Windows.Forms.Label();
 			this.subjectLabel = new System.Windows.Forms.Label();
-			this.subjectBox = new System.Windows.Forms.TextBox();
+			this.subjectBox = new River.OneMoreAddIn.UI.MoreTextBox();
 			this.statusLabel = new System.Windows.Forms.Label();
 			this.statusBox = new System.Windows.Forms.ComboBox();
 			this.priorityBox = new System.Windows.Forms.ComboBox();
 			this.priorityLabel = new System.Windows.Forms.Label();
 			this.percentLabel = new System.Windows.Forms.Label();
 			this.percentBox = new System.Windows.Forms.NumericUpDown();
-			this.startedBox = new System.Windows.Forms.TextBox();
+			this.startedBox = new River.OneMoreAddIn.UI.MoreTextBox();
 			this.startedLabel = new System.Windows.Forms.Label();
 			this.completedLabel = new System.Windows.Forms.Label();
-			this.completedBox = new System.Windows.Forms.TextBox();
-			this.tagButton = new System.Windows.Forms.Button();
+			this.completedBox = new River.OneMoreAddIn.UI.MoreTextBox();
+			this.tagButton = new River.OneMoreAddIn.UI.MoreButton();
 			this.tagLabel = new System.Windows.Forms.Label();
 			this.silentBox = new System.Windows.Forms.CheckBox();
-			this.optionsBox = new System.Windows.Forms.GroupBox();
+			this.optionsBox = new River.OneMoreAddIn.UI.MoreGroupBox();
 			this.snoozeTimeLabel = new System.Windows.Forms.Label();
-			this.snoozeButton = new System.Windows.Forms.Button();
+			this.snoozeButton = new River.OneMoreAddIn.UI.MoreButton();
 			this.snoozeBox = new System.Windows.Forms.ComboBox();
 			this.snoozeLabel = new System.Windows.Forms.Label();
 			((System.ComponentModel.ISupportInitialize)(this.percentBox)).BeginInit();
@@ -65,8 +65,12 @@ namespace River.OneMoreAddIn.Commands
 			this.okButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.okButton.DialogResult = System.Windows.Forms.DialogResult.OK;
 			this.okButton.Enabled = false;
+			this.okButton.ImageOver = null;
 			this.okButton.Location = new System.Drawing.Point(624, 563);
 			this.okButton.Name = "okButton";
+			this.okButton.PreferredBack = null;
+			this.okButton.PreferredFore = null;
+			this.okButton.ShowBorder = true;
 			this.okButton.Size = new System.Drawing.Size(100, 38);
 			this.okButton.TabIndex = 7;
 			this.okButton.Text = "OK";
@@ -77,8 +81,12 @@ namespace River.OneMoreAddIn.Commands
 			// 
 			this.cancelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+			this.cancelButton.ImageOver = null;
 			this.cancelButton.Location = new System.Drawing.Point(730, 563);
 			this.cancelButton.Name = "cancelButton";
+			this.cancelButton.PreferredBack = null;
+			this.cancelButton.PreferredFore = null;
+			this.cancelButton.ShowBorder = true;
 			this.cancelButton.Size = new System.Drawing.Size(100, 38);
 			this.cancelButton.TabIndex = 8;
 			this.cancelButton.Text = "Cancel";
@@ -137,10 +145,13 @@ namespace River.OneMoreAddIn.Commands
 			// 
 			this.subjectBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+			this.subjectBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
 			this.subjectBox.Location = new System.Drawing.Point(181, 81);
 			this.subjectBox.Margin = new System.Windows.Forms.Padding(3, 3, 3, 10);
 			this.subjectBox.MaxLength = 200;
 			this.subjectBox.Name = "subjectBox";
+			this.subjectBox.PreferredBack = null;
+			this.subjectBox.PreferredFore = null;
 			this.subjectBox.Size = new System.Drawing.Size(649, 26);
 			this.subjectBox.TabIndex = 1;
 			this.subjectBox.TextChanged += new System.EventHandler(this.ChangeSubject);
@@ -157,6 +168,7 @@ namespace River.OneMoreAddIn.Commands
 			// statusBox
 			// 
 			this.statusBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.statusBox.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
 			this.statusBox.FormattingEnabled = true;
 			this.statusBox.Items.AddRange(new object[] {
             "Not started",
@@ -174,6 +186,7 @@ namespace River.OneMoreAddIn.Commands
 			// priorityBox
 			// 
 			this.priorityBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.priorityBox.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
 			this.priorityBox.FormattingEnabled = true;
 			this.priorityBox.Items.AddRange(new object[] {
             "Low",
@@ -205,6 +218,7 @@ namespace River.OneMoreAddIn.Commands
 			// 
 			// percentBox
 			// 
+			this.percentBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
 			this.percentBox.Increment = new decimal(new int[] {
             25,
             0,
@@ -223,6 +237,8 @@ namespace River.OneMoreAddIn.Commands
 			this.startedBox.Margin = new System.Windows.Forms.Padding(3, 3, 3, 10);
 			this.startedBox.MaxLength = 200;
 			this.startedBox.Name = "startedBox";
+			this.startedBox.PreferredBack = null;
+			this.startedBox.PreferredFore = null;
 			this.startedBox.ReadOnly = true;
 			this.startedBox.Size = new System.Drawing.Size(434, 19);
 			this.startedBox.TabIndex = 22;
@@ -253,6 +269,8 @@ namespace River.OneMoreAddIn.Commands
 			this.completedBox.Margin = new System.Windows.Forms.Padding(3, 3, 3, 10);
 			this.completedBox.MaxLength = 200;
 			this.completedBox.Name = "completedBox";
+			this.completedBox.PreferredBack = null;
+			this.completedBox.PreferredFore = null;
 			this.completedBox.ReadOnly = true;
 			this.completedBox.Size = new System.Drawing.Size(434, 19);
 			this.completedBox.TabIndex = 24;
@@ -261,9 +279,13 @@ namespace River.OneMoreAddIn.Commands
 			// tagButton
 			// 
 			this.tagButton.BackColor = System.Drawing.SystemColors.Window;
+			this.tagButton.ImageOver = null;
 			this.tagButton.Location = new System.Drawing.Point(181, 30);
 			this.tagButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 10);
 			this.tagButton.Name = "tagButton";
+			this.tagButton.PreferredBack = null;
+			this.tagButton.PreferredFore = null;
+			this.tagButton.ShowBorder = true;
 			this.tagButton.Size = new System.Drawing.Size(60, 38);
 			this.tagButton.TabIndex = 0;
 			this.tagButton.Text = "?";
@@ -317,10 +339,14 @@ namespace River.OneMoreAddIn.Commands
 			// snoozeButton
 			// 
 			this.snoozeButton.Enabled = false;
+			this.snoozeButton.ImageOver = null;
 			this.snoozeButton.Location = new System.Drawing.Point(275, 84);
 			this.snoozeButton.Name = "snoozeButton";
+			this.snoozeButton.PreferredBack = null;
+			this.snoozeButton.PreferredFore = null;
+			this.snoozeButton.ShowBorder = true;
 			this.snoozeButton.Size = new System.Drawing.Size(121, 34);
-			this.snoozeButton.TabIndex = 2;
+			this.snoozeButton.TabIndex = 1;
 			this.snoozeButton.Text = "Snooze";
 			this.snoozeButton.UseVisualStyleBackColor = true;
 			this.snoozeButton.Click += new System.EventHandler(this.OK);
@@ -329,6 +355,7 @@ namespace River.OneMoreAddIn.Commands
 			// 
 			this.snoozeBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this.snoozeBox.Enabled = false;
+			this.snoozeBox.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
 			this.snoozeBox.FormattingEnabled = true;
 			this.snoozeBox.Items.AddRange(new object[] {
             "Do not snooze",
@@ -347,7 +374,7 @@ namespace River.OneMoreAddIn.Commands
 			this.snoozeBox.Location = new System.Drawing.Point(19, 88);
 			this.snoozeBox.Name = "snoozeBox";
 			this.snoozeBox.Size = new System.Drawing.Size(250, 28);
-			this.snoozeBox.TabIndex = 1;
+			this.snoozeBox.TabIndex = 0;
 			this.snoozeBox.SelectedIndexChanged += new System.EventHandler(this.SelectSnooze);
 			// 
 			// snoozeLabel
@@ -365,6 +392,7 @@ namespace River.OneMoreAddIn.Commands
 			this.AcceptButton = this.okButton;
 			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+			this.BackColor = System.Drawing.SystemColors.Control;
 			this.CancelButton = this.cancelButton;
 			this.ClientSize = new System.Drawing.Size(853, 624);
 			this.Controls.Add(this.optionsBox);
@@ -388,6 +416,7 @@ namespace River.OneMoreAddIn.Commands
 			this.Controls.Add(this.startDateBox);
 			this.Controls.Add(this.okButton);
 			this.Controls.Add(this.cancelButton);
+			this.ForeColor = System.Drawing.SystemColors.ControlText;
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.MaximizeBox = false;
@@ -406,29 +435,29 @@ namespace River.OneMoreAddIn.Commands
 
 		#endregion
 
-		private System.Windows.Forms.Button okButton;
-		private System.Windows.Forms.Button cancelButton;
+		private UI.MoreButton okButton;
+		private UI.MoreButton cancelButton;
 		private System.Windows.Forms.DateTimePicker startDateBox;
 		private System.Windows.Forms.DateTimePicker dueDateBox;
 		private System.Windows.Forms.Label startDateLabel;
 		private System.Windows.Forms.Label dueDateLabel;
 		private System.Windows.Forms.Label subjectLabel;
-		private System.Windows.Forms.TextBox subjectBox;
+		private UI.MoreTextBox subjectBox;
 		private System.Windows.Forms.Label statusLabel;
 		private System.Windows.Forms.ComboBox statusBox;
 		private System.Windows.Forms.ComboBox priorityBox;
 		private System.Windows.Forms.Label priorityLabel;
 		private System.Windows.Forms.Label percentLabel;
 		private System.Windows.Forms.NumericUpDown percentBox;
-		private System.Windows.Forms.TextBox startedBox;
+		private UI.MoreTextBox startedBox;
 		private System.Windows.Forms.Label startedLabel;
 		private System.Windows.Forms.Label completedLabel;
-		private System.Windows.Forms.TextBox completedBox;
-		private System.Windows.Forms.Button tagButton;
+		private UI.MoreTextBox completedBox;
+		private UI.MoreButton tagButton;
 		private System.Windows.Forms.Label tagLabel;
 		private System.Windows.Forms.CheckBox silentBox;
-		private System.Windows.Forms.GroupBox optionsBox;
-		private System.Windows.Forms.Button snoozeButton;
+		private UI.MoreGroupBox optionsBox;
+		private UI.MoreButton snoozeButton;
 		private System.Windows.Forms.ComboBox snoozeBox;
 		private System.Windows.Forms.Label snoozeLabel;
 		private System.Windows.Forms.Label snoozeTimeLabel;

@@ -6,7 +6,6 @@ namespace River.OneMoreAddIn.Commands
 {
 	using River.OneMoreAddIn.Commands.Tables.Formulas;
 	using System;
-	using System.Drawing;
 	using System.Text.RegularExpressions;
 	using Resx = Properties.Resources;
 
@@ -49,6 +48,8 @@ namespace River.OneMoreAddIn.Commands
 			}
 
 			formatBox.SelectedIndex = 0;
+
+			helpBox.SetMultilineWrapWidth(helpPanel.ClientSize.Width);
 
 			calculator = new Calculator();
 			calculator.ProcessSymbol += ResolveSymbol;

@@ -30,16 +30,16 @@
 		{
 			this.components = new System.ComponentModel.Container();
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ImportOutlookTasksDialog));
-			this.okButton = new System.Windows.Forms.Button();
-			this.cancelButton = new System.Windows.Forms.Button();
-			this.introBox = new System.Windows.Forms.TextBox();
+			this.okButton = new River.OneMoreAddIn.UI.MoreButton();
+			this.cancelButton = new River.OneMoreAddIn.UI.MoreButton();
+			this.introBox = new River.OneMoreAddIn.UI.MoreLabel();
 			this.warningBox = new River.OneMoreAddIn.UI.MoreRichLabel();
 			this.resetLabel = new River.OneMoreAddIn.UI.MoreLinkLabel();
 			this.imageList = new System.Windows.Forms.ImageList(this.components);
 			this.tree = new Aga.Controls.Tree.TreeViewAdv();
 			this.buttonPanel = new System.Windows.Forms.Panel();
-			this.tableButton = new System.Windows.Forms.RadioButton();
-			this.listButton = new System.Windows.Forms.RadioButton();
+			this.tableButton = new River.OneMoreAddIn.UI.MoreRadioButton();
+			this.listButton = new River.OneMoreAddIn.UI.MoreRadioButton();
 			this.optionsPanel = new System.Windows.Forms.Panel();
 			this.resetInfoLabel = new System.Windows.Forms.Label();
 			this.toolTip = new System.Windows.Forms.ToolTip(this.components);
@@ -51,10 +51,14 @@
 			// 
 			this.okButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.okButton.DialogResult = System.Windows.Forms.DialogResult.OK;
-			this.okButton.Location = new System.Drawing.Point(563, 6);
+			this.okButton.ImageOver = null;
+			this.okButton.Location = new System.Drawing.Point(563, 10);
 			this.okButton.Name = "okButton";
+			this.okButton.PreferredBack = null;
+			this.okButton.PreferredFore = null;
+			this.okButton.ShowBorder = true;
 			this.okButton.Size = new System.Drawing.Size(100, 38);
-			this.okButton.TabIndex = 9;
+			this.okButton.TabIndex = 1;
 			this.okButton.Text = "OK";
 			this.okButton.UseVisualStyleBackColor = true;
 			// 
@@ -62,23 +66,26 @@
 			// 
 			this.cancelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-			this.cancelButton.Location = new System.Drawing.Point(669, 6);
+			this.cancelButton.ImageOver = null;
+			this.cancelButton.Location = new System.Drawing.Point(669, 10);
 			this.cancelButton.Name = "cancelButton";
+			this.cancelButton.PreferredBack = null;
+			this.cancelButton.PreferredFore = null;
+			this.cancelButton.ShowBorder = true;
 			this.cancelButton.Size = new System.Drawing.Size(100, 38);
-			this.cancelButton.TabIndex = 10;
+			this.cancelButton.TabIndex = 2;
 			this.cancelButton.Text = "Cancel";
 			this.cancelButton.UseVisualStyleBackColor = true;
 			// 
 			// introBox
 			// 
-			this.introBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
 			this.introBox.Dock = System.Windows.Forms.DockStyle.Top;
-			this.introBox.Enabled = false;
 			this.introBox.Location = new System.Drawing.Point(20, 20);
-			this.introBox.Multiline = true;
 			this.introBox.Name = "introBox";
-			this.introBox.ReadOnly = true;
-			this.introBox.Size = new System.Drawing.Size(772, 51);
+			this.introBox.Padding = new System.Windows.Forms.Padding(0, 0, 0, 12);
+			this.introBox.PreferredBack = "Control";
+			this.introBox.PreferredFore = "ControlText";
+			this.introBox.Size = new System.Drawing.Size(772, 61);
 			this.introBox.TabIndex = 0;
 			this.introBox.Text = "Choose an entire folder or individual tasks to import from Outlook into OneNote. " +
     "Disabled items indicate tasks already linked to OneNote";
@@ -87,16 +94,18 @@
 			// 
 			this.warningBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
 			this.warningBox.Dock = System.Windows.Forms.DockStyle.Top;
-			this.warningBox.Enabled = false;
-			this.warningBox.Location = new System.Drawing.Point(20, 71);
+			this.warningBox.Location = new System.Drawing.Point(20, 81);
+			this.warningBox.Margin = new System.Windows.Forms.Padding(3, 3, 3, 12);
 			this.warningBox.Name = "warningBox";
 			this.warningBox.ReadOnly = true;
 			this.warningBox.Size = new System.Drawing.Size(772, 66);
 			this.warningBox.TabIndex = 0;
+			this.warningBox.TabStop = false;
 			this.warningBox.Text = resources.GetString("warningBox.Text");
 			// 
 			// resetLabel
 			// 
+			this.resetLabel.ActiveLinkColor = System.Drawing.Color.MediumOrchid;
 			this.resetLabel.AutoSize = true;
 			this.resetLabel.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.resetLabel.ForeColor = System.Drawing.SystemColors.GrayText;
@@ -105,11 +114,12 @@
 			this.resetLabel.Location = new System.Drawing.Point(30, 15);
 			this.resetLabel.Name = "resetLabel";
 			this.resetLabel.Size = new System.Drawing.Size(166, 20);
-			this.resetLabel.TabIndex = 11;
+			this.resetLabel.TabIndex = 0;
 			this.resetLabel.TabStop = true;
 			this.resetLabel.Text = "Reset orphaned tasks";
 			this.toolTip.SetToolTip(this.resetLabel, "An orphaned task is one that was imported but its linked paragraph was deleted. T" +
         "his will reset orphaned tasks so they can be imported again.");
+			this.resetLabel.VisitedLinkColor = System.Drawing.Color.MediumOrchid;
 			this.resetLabel.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.ResetOrphanedTasks);
 			// 
 			// imageList
@@ -135,7 +145,7 @@
 			this.tree.FullRowSelectInactiveColor = System.Drawing.Color.Empty;
 			this.tree.LineColor = System.Drawing.SystemColors.ControlDark;
 			this.tree.LoadOnDemand = true;
-			this.tree.Location = new System.Drawing.Point(20, 137);
+			this.tree.Location = new System.Drawing.Point(20, 147);
 			this.tree.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.tree.Model = null;
 			this.tree.Name = "tree";
@@ -143,7 +153,7 @@
 			this.tree.SelectedNode = null;
 			this.tree.SelectionMode = Aga.Controls.Tree.TreeSelectionMode.MultiSameParent;
 			this.tree.ShowPerformance = false;
-			this.tree.Size = new System.Drawing.Size(772, 315);
+			this.tree.Size = new System.Drawing.Size(772, 307);
 			this.tree.TabIndex = 0;
 			// 
 			// buttonPanel
@@ -151,30 +161,28 @@
 			this.buttonPanel.Controls.Add(this.tableButton);
 			this.buttonPanel.Controls.Add(this.listButton);
 			this.buttonPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
-			this.buttonPanel.Location = new System.Drawing.Point(20, 452);
+			this.buttonPanel.Location = new System.Drawing.Point(20, 454);
 			this.buttonPanel.Name = "buttonPanel";
-			this.buttonPanel.Size = new System.Drawing.Size(772, 72);
+			this.buttonPanel.Size = new System.Drawing.Size(772, 78);
 			this.buttonPanel.TabIndex = 13;
 			// 
 			// tableButton
 			// 
-			this.tableButton.AutoSize = true;
 			this.tableButton.Checked = true;
-			this.tableButton.Location = new System.Drawing.Point(3, 8);
+			this.tableButton.Location = new System.Drawing.Point(3, 12);
 			this.tableButton.Name = "tableButton";
-			this.tableButton.Size = new System.Drawing.Size(217, 24);
-			this.tableButton.TabIndex = 1;
+			this.tableButton.Size = new System.Drawing.Size(222, 24);
+			this.tableButton.TabIndex = 0;
 			this.tableButton.TabStop = true;
 			this.tableButton.Text = "Generate task detail table";
 			this.tableButton.UseVisualStyleBackColor = true;
 			// 
 			// listButton
 			// 
-			this.listButton.AutoSize = true;
-			this.listButton.Location = new System.Drawing.Point(3, 38);
+			this.listButton.Location = new System.Drawing.Point(3, 42);
 			this.listButton.Name = "listButton";
-			this.listButton.Size = new System.Drawing.Size(159, 24);
-			this.listButton.TabIndex = 0;
+			this.listButton.Size = new System.Drawing.Size(162, 24);
+			this.listButton.TabIndex = 1;
 			this.listButton.Text = "Generate task list";
 			this.listButton.UseVisualStyleBackColor = true;
 			// 
@@ -185,9 +193,9 @@
 			this.optionsPanel.Controls.Add(this.cancelButton);
 			this.optionsPanel.Controls.Add(this.okButton);
 			this.optionsPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
-			this.optionsPanel.Location = new System.Drawing.Point(20, 524);
+			this.optionsPanel.Location = new System.Drawing.Point(20, 532);
 			this.optionsPanel.Name = "optionsPanel";
-			this.optionsPanel.Size = new System.Drawing.Size(772, 47);
+			this.optionsPanel.Size = new System.Drawing.Size(772, 51);
 			this.optionsPanel.TabIndex = 14;
 			// 
 			// resetInfoLabel
@@ -204,13 +212,15 @@
 			this.AcceptButton = this.okButton;
 			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+			this.BackColor = System.Drawing.SystemColors.Control;
 			this.CancelButton = this.cancelButton;
-			this.ClientSize = new System.Drawing.Size(812, 591);
+			this.ClientSize = new System.Drawing.Size(812, 603);
 			this.Controls.Add(this.tree);
 			this.Controls.Add(this.warningBox);
 			this.Controls.Add(this.introBox);
 			this.Controls.Add(this.buttonPanel);
 			this.Controls.Add(this.optionsPanel);
+			this.ForeColor = System.Drawing.SystemColors.ControlText;
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.MaximizeBox = false;
@@ -220,26 +230,24 @@
 			this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
 			this.Text = "Import Tasks from Outlook";
 			this.buttonPanel.ResumeLayout(false);
-			this.buttonPanel.PerformLayout();
 			this.optionsPanel.ResumeLayout(false);
 			this.optionsPanel.PerformLayout();
 			this.ResumeLayout(false);
-			this.PerformLayout();
 
 		}
 
 		#endregion
 
-		private System.Windows.Forms.Button okButton;
-		private System.Windows.Forms.Button cancelButton;
-		private System.Windows.Forms.TextBox introBox;
+		private UI.MoreButton okButton;
+		private UI.MoreButton cancelButton;
+		private UI.MoreLabel introBox;
 		private River.OneMoreAddIn.UI.MoreRichLabel warningBox;
 		private System.Windows.Forms.Panel optionsPanel;
 		private System.Windows.Forms.Panel buttonPanel;
 		private System.Windows.Forms.ImageList imageList;
 		private Aga.Controls.Tree.TreeViewAdv tree;
-		private System.Windows.Forms.RadioButton tableButton;
-		private System.Windows.Forms.RadioButton listButton;
+		private UI.MoreRadioButton tableButton;
+		private UI.MoreRadioButton listButton;
 		private UI.MoreLinkLabel resetLabel;
 		private System.Windows.Forms.ToolTip toolTip;
 		private System.Windows.Forms.Label resetInfoLabel;

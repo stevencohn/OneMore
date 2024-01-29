@@ -258,7 +258,7 @@ namespace River.OneMoreAddIn.UI
 			}
 
 			var children = control.Controls.Cast<Control>()
-				.Where(c => c is not ListView);
+				.Where(c => c is not ListView && c is not DataGridView);
 
 			// temp filter for ListView until that one is refactored
 			foreach (var child in children)

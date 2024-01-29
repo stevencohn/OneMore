@@ -29,20 +29,24 @@
 		private void InitializeComponent()
 		{
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ReportRemindersReuseDialog));
-			this.okButton = new System.Windows.Forms.Button();
-			this.cancelButton = new System.Windows.Forms.Button();
-			this.oldRadio = new System.Windows.Forms.RadioButton();
-			this.newRadio = new System.Windows.Forms.RadioButton();
+			this.okButton = new River.OneMoreAddIn.UI.MoreButton();
+			this.cancelButton = new River.OneMoreAddIn.UI.MoreButton();
+			this.oldRadio = new River.OneMoreAddIn.UI.MoreRadioButton();
+			this.newRadio = new River.OneMoreAddIn.UI.MoreRadioButton();
 			this.SuspendLayout();
 			// 
 			// okButton
 			// 
 			this.okButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.okButton.DialogResult = System.Windows.Forms.DialogResult.OK;
+			this.okButton.ImageOver = null;
 			this.okButton.Location = new System.Drawing.Point(184, 111);
 			this.okButton.Name = "okButton";
+			this.okButton.PreferredBack = null;
+			this.okButton.PreferredFore = null;
+			this.okButton.ShowBorder = true;
 			this.okButton.Size = new System.Drawing.Size(120, 38);
-			this.okButton.TabIndex = 11;
+			this.okButton.TabIndex = 2;
 			this.okButton.Text = "OK";
 			this.okButton.UseVisualStyleBackColor = true;
 			// 
@@ -50,59 +54,64 @@
 			// 
 			this.cancelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+			this.cancelButton.ImageOver = null;
 			this.cancelButton.Location = new System.Drawing.Point(310, 111);
 			this.cancelButton.Name = "cancelButton";
+			this.cancelButton.PreferredBack = null;
+			this.cancelButton.PreferredFore = null;
+			this.cancelButton.ShowBorder = true;
 			this.cancelButton.Size = new System.Drawing.Size(120, 38);
-			this.cancelButton.TabIndex = 12;
+			this.cancelButton.TabIndex = 3;
 			this.cancelButton.Text = "Cancel";
 			this.cancelButton.UseVisualStyleBackColor = true;
 			// 
 			// oldRadio
 			// 
-			this.oldRadio.AutoSize = true;
 			this.oldRadio.Checked = true;
 			this.oldRadio.Location = new System.Drawing.Point(23, 29);
 			this.oldRadio.Name = "oldRadio";
-			this.oldRadio.Size = new System.Drawing.Size(219, 24);
-			this.oldRadio.TabIndex = 13;
+			this.oldRadio.Size = new System.Drawing.Size(226, 24);
+			this.oldRadio.TabIndex = 0;
 			this.oldRadio.TabStop = true;
 			this.oldRadio.Text = "Update this existing report";
 			this.oldRadio.UseVisualStyleBackColor = true;
 			// 
 			// newRadio
 			// 
-			this.newRadio.AutoSize = true;
 			this.newRadio.Location = new System.Drawing.Point(23, 63);
 			this.newRadio.Name = "newRadio";
-			this.newRadio.Size = new System.Drawing.Size(214, 24);
-			this.newRadio.TabIndex = 14;
+			this.newRadio.Size = new System.Drawing.Size(220, 24);
+			this.newRadio.TabIndex = 1;
 			this.newRadio.Text = "Create a new report page";
 			this.newRadio.UseVisualStyleBackColor = true;
 			// 
 			// ReportRemindersReuseDialog
 			// 
+			this.AcceptButton = this.okButton;
 			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+			this.BackColor = System.Drawing.SystemColors.Control;
+			this.CancelButton = this.cancelButton;
 			this.ClientSize = new System.Drawing.Size(443, 162);
 			this.Controls.Add(this.newRadio);
 			this.Controls.Add(this.oldRadio);
 			this.Controls.Add(this.okButton);
 			this.Controls.Add(this.cancelButton);
+			this.ForeColor = System.Drawing.SystemColors.ControlText;
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.Name = "ReportRemindersReuseDialog";
 			this.Padding = new System.Windows.Forms.Padding(20, 20, 10, 10);
 			this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
 			this.Text = "Old or New";
 			this.ResumeLayout(false);
-			this.PerformLayout();
 
 		}
 
 		#endregion
 
-		private System.Windows.Forms.Button okButton;
-		private System.Windows.Forms.Button cancelButton;
-		private System.Windows.Forms.RadioButton oldRadio;
-		private System.Windows.Forms.RadioButton newRadio;
+		private UI.MoreButton okButton;
+		private UI.MoreButton cancelButton;
+		private UI.MoreRadioButton oldRadio;
+		private UI.MoreRadioButton newRadio;
 	}
 }
