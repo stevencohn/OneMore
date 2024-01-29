@@ -29,10 +29,10 @@
 		private void InitializeComponent()
 		{
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(InsertCellsDialog));
-			this.shiftDownRadio = new System.Windows.Forms.RadioButton();
-			this.shiftRightRadio = new System.Windows.Forms.RadioButton();
-			this.cancelButton = new System.Windows.Forms.Button();
-			this.okButton = new System.Windows.Forms.Button();
+			this.shiftDownRadio = new River.OneMoreAddIn.UI.MoreRadioButton();
+			this.shiftRightRadio = new River.OneMoreAddIn.UI.MoreRadioButton();
+			this.cancelButton = new River.OneMoreAddIn.UI.MoreButton();
+			this.okButton = new River.OneMoreAddIn.UI.MoreButton();
 			this.numLabel = new System.Windows.Forms.Label();
 			this.numCellsBox = new System.Windows.Forms.NumericUpDown();
 			((System.ComponentModel.ISupportInitialize)(this.numCellsBox)).BeginInit();
@@ -40,11 +40,10 @@
 			// 
 			// shiftDownRadio
 			// 
-			this.shiftDownRadio.AutoSize = true;
 			this.shiftDownRadio.Location = new System.Drawing.Point(28, 28);
 			this.shiftDownRadio.Margin = new System.Windows.Forms.Padding(3, 3, 3, 8);
 			this.shiftDownRadio.Name = "shiftDownRadio";
-			this.shiftDownRadio.Size = new System.Drawing.Size(144, 24);
+			this.shiftDownRadio.Size = new System.Drawing.Size(146, 24);
 			this.shiftDownRadio.TabIndex = 0;
 			this.shiftDownRadio.TabStop = true;
 			this.shiftDownRadio.Text = "Shift cells down";
@@ -52,11 +51,10 @@
 			// 
 			// shiftRightRadio
 			// 
-			this.shiftRightRadio.AutoSize = true;
 			this.shiftRightRadio.Location = new System.Drawing.Point(28, 63);
 			this.shiftRightRadio.Margin = new System.Windows.Forms.Padding(3, 3, 3, 15);
 			this.shiftRightRadio.Name = "shiftRightRadio";
-			this.shiftRightRadio.Size = new System.Drawing.Size(137, 24);
+			this.shiftRightRadio.Size = new System.Drawing.Size(139, 24);
 			this.shiftRightRadio.TabIndex = 1;
 			this.shiftRightRadio.TabStop = true;
 			this.shiftRightRadio.Text = "Shift cells right";
@@ -66,8 +64,12 @@
 			// 
 			this.cancelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+			this.cancelButton.ImageOver = null;
 			this.cancelButton.Location = new System.Drawing.Point(213, 167);
 			this.cancelButton.Name = "cancelButton";
+			this.cancelButton.PreferredBack = null;
+			this.cancelButton.PreferredFore = null;
+			this.cancelButton.ShowBorder = true;
 			this.cancelButton.Size = new System.Drawing.Size(110, 34);
 			this.cancelButton.TabIndex = 2;
 			this.cancelButton.Text = "Cancel";
@@ -77,8 +79,12 @@
 			// 
 			this.okButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.okButton.DialogResult = System.Windows.Forms.DialogResult.OK;
+			this.okButton.ImageOver = null;
 			this.okButton.Location = new System.Drawing.Point(87, 167);
 			this.okButton.Name = "okButton";
+			this.okButton.PreferredBack = null;
+			this.okButton.PreferredFore = null;
+			this.okButton.ShowBorder = true;
 			this.okButton.Size = new System.Drawing.Size(110, 34);
 			this.okButton.TabIndex = 3;
 			this.okButton.Text = "OK";
@@ -116,6 +122,7 @@
 			this.AcceptButton = this.okButton;
 			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+			this.BackColor = System.Drawing.SystemColors.Control;
 			this.CancelButton = this.cancelButton;
 			this.ClientSize = new System.Drawing.Size(341, 219);
 			this.Controls.Add(this.numCellsBox);
@@ -124,6 +131,7 @@
 			this.Controls.Add(this.cancelButton);
 			this.Controls.Add(this.shiftRightRadio);
 			this.Controls.Add(this.shiftDownRadio);
+			this.ForeColor = System.Drawing.SystemColors.ControlText;
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.MaximizeBox = false;
@@ -140,10 +148,10 @@
 
 		#endregion
 
-		private System.Windows.Forms.RadioButton shiftDownRadio;
-		private System.Windows.Forms.RadioButton shiftRightRadio;
-		private System.Windows.Forms.Button cancelButton;
-		private System.Windows.Forms.Button okButton;
+		private UI.MoreRadioButton shiftDownRadio;
+		private UI.MoreRadioButton shiftRightRadio;
+		private UI.MoreButton cancelButton;
+		private UI.MoreButton okButton;
 		private System.Windows.Forms.Label numLabel;
 		private System.Windows.Forms.NumericUpDown numCellsBox;
 	}

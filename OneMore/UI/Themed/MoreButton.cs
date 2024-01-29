@@ -228,10 +228,10 @@ namespace River.OneMoreAddIn.UI
 
 		private void PaintBackgroundImage(Graphics g, Rectangle clip)
 		{
-			Image Scale(Image image, int border)
+			Image Scale(Image image)
 			{
-				var scaleHeight = (float)(clip.Height - border) / image.Height;
-				var scaleWidth = (float)(clip.Width - border) / image.Width;
+				var scaleHeight = (float)clip.Height / image.Height;
+				var scaleWidth = (float)clip.Width / image.Width;
 				var scale = Math.Min(scaleHeight, scaleWidth);
 
 				return new Bitmap(image,
@@ -239,26 +239,25 @@ namespace River.OneMoreAddIn.UI
 					 (int)(image.Height * scale));
 			}
 
-			var border = ShowBorder ? 1 : 0;
 			Image scaled = null;
 
 			try
 			{
 				int x, y;
 				if (BackgroundImageLayout == ImageLayout.Stretch &&
-					(BackgroundImage.Width != (clip.Width - border * 2) ||
-					BackgroundImage.Height != (clip.Height - border * 2)))
+					(BackgroundImage.Width != clip.Width ||
+					BackgroundImage.Height != clip.Height))
 				{
-					scaled = Scale(BackgroundImage, border);
-					x = y = border + 1;
+					scaled = Scale(BackgroundImage);
+					x = y = 0;
 				}
 				else
 				{
 					var img = BackgroundImage;
-					if (BackgroundImage.Width > (clip.Width - border * 2) ||
-						BackgroundImage.Height > (clip.Height - border * 2))
+					if (BackgroundImage.Width > clip.Width ||
+						BackgroundImage.Height > clip.Height)
 					{
-						img = scaled = Scale(BackgroundImage, border);
+						img = scaled = Scale(BackgroundImage);
 					}
 
 					x = (clip.Width - img.Width) / 2;

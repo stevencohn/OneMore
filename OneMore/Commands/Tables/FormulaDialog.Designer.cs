@@ -31,18 +31,18 @@
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormulaDialog));
 			this.formatLabel = new System.Windows.Forms.Label();
 			this.formatBox = new System.Windows.Forms.ComboBox();
-			this.cancelButton = new System.Windows.Forms.Button();
-			this.okButton = new System.Windows.Forms.Button();
+			this.cancelButton = new River.OneMoreAddIn.UI.MoreButton();
+			this.okButton = new River.OneMoreAddIn.UI.MoreButton();
 			this.formulaLabel = new System.Windows.Forms.Label();
-			this.formulaBox = new System.Windows.Forms.TextBox();
+			this.formulaBox = new River.OneMoreAddIn.UI.MoreTextBox();
 			this.selectedLabel = new System.Windows.Forms.Label();
 			this.cellLabel = new System.Windows.Forms.Label();
-			this.helpBox = new System.Windows.Forms.TextBox();
+			this.helpBox = new River.OneMoreAddIn.UI.MoreTextBox();
 			this.helpPanel = new System.Windows.Forms.Panel();
-			this.helpButton = new System.Windows.Forms.CheckBox();
+			this.helpButton = new River.OneMoreAddIn.UI.MoreCheckBox();
 			this.validStatusLabel = new System.Windows.Forms.Label();
 			this.statusLabel = new System.Windows.Forms.Label();
-			this.tagBox = new System.Windows.Forms.CheckBox();
+			this.tagBox = new River.OneMoreAddIn.UI.MoreCheckBox();
 			this.decLabel = new System.Windows.Forms.Label();
 			this.decimalBox = new System.Windows.Forms.NumericUpDown();
 			this.helpPanel.SuspendLayout();
@@ -76,8 +76,12 @@
 			// 
 			this.cancelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+			this.cancelButton.ImageOver = null;
 			this.cancelButton.Location = new System.Drawing.Point(504, 209);
 			this.cancelButton.Name = "cancelButton";
+			this.cancelButton.PreferredBack = null;
+			this.cancelButton.PreferredFore = null;
+			this.cancelButton.ShowBorder = true;
 			this.cancelButton.Size = new System.Drawing.Size(100, 38);
 			this.cancelButton.TabIndex = 5;
 			this.cancelButton.Text = "Cancel";
@@ -88,8 +92,12 @@
 			this.okButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.okButton.DialogResult = System.Windows.Forms.DialogResult.OK;
 			this.okButton.Enabled = false;
+			this.okButton.ImageOver = null;
 			this.okButton.Location = new System.Drawing.Point(398, 209);
 			this.okButton.Name = "okButton";
+			this.okButton.PreferredBack = null;
+			this.okButton.PreferredFore = null;
+			this.okButton.ShowBorder = true;
 			this.okButton.Size = new System.Drawing.Size(100, 38);
 			this.okButton.TabIndex = 4;
 			this.okButton.Text = "OK";
@@ -106,9 +114,12 @@
 			// 
 			// formulaBox
 			// 
+			this.formulaBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
 			this.formulaBox.Location = new System.Drawing.Point(139, 53);
 			this.formulaBox.Margin = new System.Windows.Forms.Padding(3, 3, 3, 10);
 			this.formulaBox.Name = "formulaBox";
+			this.formulaBox.PreferredBack = null;
+			this.formulaBox.PreferredFore = null;
 			this.formulaBox.Size = new System.Drawing.Size(382, 26);
 			this.formulaBox.TabIndex = 0;
 			this.formulaBox.TextChanged += new System.EventHandler(this.ChangedFormula);
@@ -138,9 +149,12 @@
 			this.helpBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
 			this.helpBox.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.helpBox.Enabled = false;
+			this.helpBox.ForeColor = System.Drawing.SystemColors.ControlText;
 			this.helpBox.Location = new System.Drawing.Point(7, 7);
 			this.helpBox.Multiline = true;
 			this.helpBox.Name = "helpBox";
+			this.helpBox.PreferredBack = "ControlLightLight";
+			this.helpBox.PreferredFore = null;
 			this.helpBox.Size = new System.Drawing.Size(571, 240);
 			this.helpBox.TabIndex = 12;
 			this.helpBox.TabStop = false;
@@ -164,10 +178,9 @@
 			// helpButton
 			// 
 			this.helpButton.Appearance = System.Windows.Forms.Appearance.Button;
-			this.helpButton.AutoSize = true;
 			this.helpButton.Location = new System.Drawing.Point(17, 213);
 			this.helpButton.Name = "helpButton";
-			this.helpButton.Size = new System.Drawing.Size(52, 30);
+			this.helpButton.Size = new System.Drawing.Size(67, 30);
 			this.helpButton.TabIndex = 6;
 			this.helpButton.TabStop = false;
 			this.helpButton.Text = "Help";
@@ -194,11 +207,10 @@
 			// 
 			// tagBox
 			// 
-			this.tagBox.AutoSize = true;
 			this.tagBox.Location = new System.Drawing.Point(139, 172);
 			this.tagBox.Margin = new System.Windows.Forms.Padding(3, 3, 3, 20);
 			this.tagBox.Name = "tagBox";
-			this.tagBox.Size = new System.Drawing.Size(154, 24);
+			this.tagBox.Size = new System.Drawing.Size(159, 24);
 			this.tagBox.TabIndex = 3;
 			this.tagBox.Text = "Tag formula cells";
 			this.tagBox.UseVisualStyleBackColor = true;
@@ -230,6 +242,7 @@
 			this.AcceptButton = this.okButton;
 			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+			this.BackColor = System.Drawing.SystemColors.Control;
 			this.CancelButton = this.cancelButton;
 			this.ClientSize = new System.Drawing.Size(617, 536);
 			this.Controls.Add(this.decimalBox);
@@ -247,6 +260,7 @@
 			this.Controls.Add(this.cancelButton);
 			this.Controls.Add(this.formatBox);
 			this.Controls.Add(this.formatLabel);
+			this.ForeColor = System.Drawing.SystemColors.ControlText;
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.MaximizeBox = false;
@@ -265,20 +279,21 @@
 		}
 
 		#endregion
+
 		private System.Windows.Forms.Label formatLabel;
 		private System.Windows.Forms.ComboBox formatBox;
-		private System.Windows.Forms.Button cancelButton;
-		private System.Windows.Forms.Button okButton;
+		private UI.MoreButton cancelButton;
+		private UI.MoreButton okButton;
 		private System.Windows.Forms.Label formulaLabel;
-		private System.Windows.Forms.TextBox formulaBox;
+		private UI.MoreTextBox formulaBox;
 		private System.Windows.Forms.Label selectedLabel;
 		private System.Windows.Forms.Label cellLabel;
-		private System.Windows.Forms.TextBox helpBox;
+		private UI.MoreTextBox helpBox;
 		private System.Windows.Forms.Panel helpPanel;
-		private System.Windows.Forms.CheckBox helpButton;
+		private UI.MoreCheckBox helpButton;
 		private System.Windows.Forms.Label validStatusLabel;
 		private System.Windows.Forms.Label statusLabel;
-		private System.Windows.Forms.CheckBox tagBox;
+		private UI.MoreCheckBox tagBox;
 		private System.Windows.Forms.Label decLabel;
 		private System.Windows.Forms.NumericUpDown decimalBox;
 	}

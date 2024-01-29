@@ -73,16 +73,56 @@ namespace River.OneMoreAddIn.UI
 					r.Inflate(-3, -3);
 					g.DrawImage(img, r);
 				}
+
+				if (!string.IsNullOrWhiteSpace(Text))
+				{
+					var color = Enabled
+						? manager.GetThemedColor(foreColor)
+						: manager.GetThemedColor("GrayText");
+
+					var size = g.MeasureString(Text, Font);
+					using var brush = new SolidBrush(color);
+
+					pevent.Graphics.DrawString(Text, Font, brush,
+						(pevent.ClipRectangle.Width - (int)size.Width) / 2f,
+						(pevent.ClipRectangle.Height - (int)size.Height) / 2f,
+						new StringFormat
+						{
+							Trimming = StringTrimming.EllipsisCharacter,
+							FormatFlags = StringFormatFlags.LineLimit | StringFormatFlags.NoWrap
+						});
+				}
+
+				Color border;
+				if (MouseState.HasFlag(MouseState.Pushed))
+				{
+					border = manager.ButtonPressBorder;
+				}
+				else if (Focused || IsDefault) // || this == FindForm().AcceptButton)
+				{
+					border = manager.GetThemedColor("HotTrack");
+				}
+				else if (MouseState.HasFlag(MouseState.Hover))
+				{
+					border = manager.ButtonHotBorder;
+				}
+				else
+				{
+					border = manager.ButtonBorder;
+				}
+
+				using var bpen = new Pen(border, 2);
+				g.DrawRoundedRectangle(bpen, pevent.ClipRectangle, Radius);
 			}
 			else
 			{
-				var color = Enabled
-					? manager.GetThemedColor(foreColor)
-					: manager.GetThemedColor("GrayText");
-
 				// ensure we have something to measure relatively for box location
 				var text = string.IsNullOrWhiteSpace(Text) ? "M" : Text;
 				var size = g.MeasureString(text, Font);
+
+				var color = Enabled
+					? manager.GetThemedColor(foreColor)
+					: manager.GetThemedColor("GrayText");
 
 				using var pen = new Pen(color);
 				var boxY = (int)((size.Height - BoxSize) / 2);
@@ -113,7 +153,7 @@ namespace River.OneMoreAddIn.UI
 
 				using var brush = new SolidBrush(color);
 
-				g.DrawString(Text, Font, brush,
+				pevent.Graphics.DrawString(Text, Font, brush,
 					new Rectangle(BoxSize + Spacing,
 						(pevent.ClipRectangle.Height - (int)size.Height) / 2,
 						pevent.ClipRectangle.Width - (BoxSize + Spacing),
