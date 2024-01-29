@@ -33,7 +33,6 @@
 			this.cancelButton = new River.OneMoreAddIn.UI.MoreButton();
 			this.contextPanel = new System.Windows.Forms.FlowLayoutPanel();
 			this.topPanel = new River.OneMoreAddIn.UI.MorePanel();
-			this.introLabel = new River.OneMoreAddIn.UI.MoreTextBox();
 			this.menuButton = new River.OneMoreAddIn.UI.MoreButton();
 			this.barLabel = new System.Windows.Forms.Label();
 			this.checkAllLink = new River.OneMoreAddIn.UI.MoreLinkLabel();
@@ -41,7 +40,8 @@
 			this.scopeBox = new System.Windows.Forms.ComboBox();
 			this.searchButton = new River.OneMoreAddIn.UI.MoreButton();
 			this.tagBox = new River.OneMoreAddIn.UI.MoreTextBox();
-			this.panel1 = new System.Windows.Forms.Panel();
+			this.introBox = new River.OneMoreAddIn.UI.MoreMultilineLabel();
+			this.controlPanel = new System.Windows.Forms.Panel();
 			this.lastScanLabel = new System.Windows.Forms.Label();
 			this.indexButton = new River.OneMoreAddIn.UI.MoreButton();
 			this.copyButton = new River.OneMoreAddIn.UI.MoreButton();
@@ -49,7 +49,7 @@
 			this.contextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
 			this.scanButton = new System.Windows.Forms.ToolStripMenuItem();
 			this.topPanel.SuspendLayout();
-			this.panel1.SuspendLayout();
+			this.controlPanel.SuspendLayout();
 			this.contextMenu.SuspendLayout();
 			this.SuspendLayout();
 			// 
@@ -74,18 +74,17 @@
 			this.contextPanel.AutoScroll = true;
 			this.contextPanel.BackColor = System.Drawing.SystemColors.AppWorkspace;
 			this.contextPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.contextPanel.Location = new System.Drawing.Point(0, 144);
+			this.contextPanel.Location = new System.Drawing.Point(0, 143);
 			this.contextPanel.Name = "contextPanel";
 			this.contextPanel.Padding = new System.Windows.Forms.Padding(6);
-			this.contextPanel.Size = new System.Drawing.Size(988, 640);
+			this.contextPanel.Size = new System.Drawing.Size(988, 641);
 			this.contextPanel.TabIndex = 7;
 			// 
 			// topPanel
 			// 
-			this.topPanel.BackColor = System.Drawing.SystemColors.Window;
+			this.topPanel.BackColor = System.Drawing.SystemColors.Control;
 			this.topPanel.BottomBorderColor = System.Drawing.SystemColors.WindowFrame;
 			this.topPanel.BottomBorderSize = 1;
-			this.topPanel.Controls.Add(this.introLabel);
 			this.topPanel.Controls.Add(this.menuButton);
 			this.topPanel.Controls.Add(this.barLabel);
 			this.topPanel.Controls.Add(this.checkAllLink);
@@ -94,30 +93,14 @@
 			this.topPanel.Controls.Add(this.searchButton);
 			this.topPanel.Controls.Add(this.tagBox);
 			this.topPanel.Dock = System.Windows.Forms.DockStyle.Top;
-			this.topPanel.Location = new System.Drawing.Point(0, 0);
+			this.topPanel.Location = new System.Drawing.Point(0, 62);
 			this.topPanel.Margin = new System.Windows.Forms.Padding(0);
 			this.topPanel.Name = "topPanel";
 			this.topPanel.Padding = new System.Windows.Forms.Padding(10);
-			this.topPanel.Size = new System.Drawing.Size(988, 144);
+			this.topPanel.Size = new System.Drawing.Size(988, 81);
 			this.topPanel.TabIndex = 8;
 			this.topPanel.TopBorderColor = System.Drawing.SystemColors.Control;
 			this.topPanel.TopBorderSize = 0;
-			// 
-			// introLabel
-			// 
-			this.introLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-			this.introLabel.BorderStyle = System.Windows.Forms.BorderStyle.None;
-			this.introLabel.Location = new System.Drawing.Point(41, 13);
-			this.introLabel.Multiline = true;
-			this.introLabel.Name = "introLabel";
-			this.introLabel.PreferredBack = null;
-			this.introLabel.PreferredFore = null;
-			this.introLabel.Size = new System.Drawing.Size(864, 48);
-			this.introLabel.TabIndex = 10;
-			this.introLabel.TabStop = false;
-			this.introLabel.Text = "Type any part of one or more hashtags. Wildcards are implied unless a tag is ende" +
-    "d with a period. Parenthesis and logical operators are allowed.";
 			// 
 			// menuButton
 			// 
@@ -127,7 +110,7 @@
 			this.menuButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.menuButton.ForeColor = System.Drawing.SystemColors.GrayText;
 			this.menuButton.ImageOver = null;
-			this.menuButton.Location = new System.Drawing.Point(925, 75);
+			this.menuButton.Location = new System.Drawing.Point(925, 12);
 			this.menuButton.Name = "menuButton";
 			this.menuButton.PreferredBack = null;
 			this.menuButton.PreferredFore = null;
@@ -142,7 +125,7 @@
 			// 
 			this.barLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.barLabel.AutoSize = true;
-			this.barLabel.Location = new System.Drawing.Point(808, 114);
+			this.barLabel.Location = new System.Drawing.Point(808, 51);
 			this.barLabel.Name = "barLabel";
 			this.barLabel.Size = new System.Drawing.Size(14, 20);
 			this.barLabel.TabIndex = 7;
@@ -156,7 +139,7 @@
 			this.checkAllLink.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.checkAllLink.HoverColor = System.Drawing.Color.MediumOrchid;
 			this.checkAllLink.LinkColor = System.Drawing.Color.MediumOrchid;
-			this.checkAllLink.Location = new System.Drawing.Point(729, 114);
+			this.checkAllLink.Location = new System.Drawing.Point(729, 51);
 			this.checkAllLink.Name = "checkAllLink";
 			this.checkAllLink.Size = new System.Drawing.Size(73, 20);
 			this.checkAllLink.TabIndex = 2;
@@ -173,7 +156,7 @@
 			this.uncheckAllLink.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.uncheckAllLink.HoverColor = System.Drawing.Color.MediumOrchid;
 			this.uncheckAllLink.LinkColor = System.Drawing.Color.MediumOrchid;
-			this.uncheckAllLink.Location = new System.Drawing.Point(828, 114);
+			this.uncheckAllLink.Location = new System.Drawing.Point(828, 51);
 			this.uncheckAllLink.Name = "uncheckAllLink";
 			this.uncheckAllLink.Size = new System.Drawing.Size(91, 20);
 			this.uncheckAllLink.TabIndex = 3;
@@ -192,7 +175,7 @@
             "All",
             "This notebook",
             "This section"});
-			this.scopeBox.Location = new System.Drawing.Point(655, 75);
+			this.scopeBox.Location = new System.Drawing.Point(655, 12);
 			this.scopeBox.Name = "scopeBox";
 			this.scopeBox.Size = new System.Drawing.Size(196, 28);
 			this.scopeBox.TabIndex = 4;
@@ -203,7 +186,7 @@
 			this.searchButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.searchButton.Image = ((System.Drawing.Image)(resources.GetObject("searchButton.Image")));
 			this.searchButton.ImageOver = null;
-			this.searchButton.Location = new System.Drawing.Point(859, 75);
+			this.searchButton.Location = new System.Drawing.Point(859, 12);
 			this.searchButton.Name = "searchButton";
 			this.searchButton.PreferredBack = null;
 			this.searchButton.PreferredFore = null;
@@ -219,25 +202,39 @@
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.tagBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
 			this.tagBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.tagBox.Location = new System.Drawing.Point(41, 75);
+			this.tagBox.Location = new System.Drawing.Point(41, 12);
 			this.tagBox.Name = "tagBox";
 			this.tagBox.PreferredBack = null;
 			this.tagBox.PreferredFore = null;
 			this.tagBox.Size = new System.Drawing.Size(608, 28);
 			this.tagBox.TabIndex = 0;
 			// 
-			// panel1
+			// introBox
 			// 
-			this.panel1.Controls.Add(this.lastScanLabel);
-			this.panel1.Controls.Add(this.indexButton);
-			this.panel1.Controls.Add(this.copyButton);
-			this.panel1.Controls.Add(this.moveButton);
-			this.panel1.Controls.Add(this.cancelButton);
-			this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-			this.panel1.Location = new System.Drawing.Point(0, 784);
-			this.panel1.Name = "panel1";
-			this.panel1.Size = new System.Drawing.Size(988, 60);
-			this.panel1.TabIndex = 9;
+			this.introBox.Dock = System.Windows.Forms.DockStyle.Top;
+			this.introBox.Location = new System.Drawing.Point(0, 0);
+			this.introBox.Name = "introBox";
+			this.introBox.Padding = new System.Windows.Forms.Padding(12);
+			this.introBox.PreferredBack = "Control";
+			this.introBox.PreferredFore = "ControlText";
+			this.introBox.Size = new System.Drawing.Size(988, 62);
+			this.introBox.TabIndex = 10;
+			this.introBox.Text = "Type any part of one or more hashtags. Wildcards are implied unless a tag is ende" +
+    "d with a period. Parenthesis and logical operators are allowed.";
+			// 
+			// controlPanel
+			// 
+			this.controlPanel.BackColor = System.Drawing.SystemColors.Control;
+			this.controlPanel.Controls.Add(this.lastScanLabel);
+			this.controlPanel.Controls.Add(this.indexButton);
+			this.controlPanel.Controls.Add(this.copyButton);
+			this.controlPanel.Controls.Add(this.moveButton);
+			this.controlPanel.Controls.Add(this.cancelButton);
+			this.controlPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
+			this.controlPanel.Location = new System.Drawing.Point(0, 784);
+			this.controlPanel.Name = "controlPanel";
+			this.controlPanel.Size = new System.Drawing.Size(988, 60);
+			this.controlPanel.TabIndex = 9;
 			// 
 			// lastScanLabel
 			// 
@@ -324,8 +321,9 @@
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(988, 844);
 			this.Controls.Add(this.contextPanel);
-			this.Controls.Add(this.panel1);
+			this.Controls.Add(this.controlPanel);
 			this.Controls.Add(this.topPanel);
+			this.Controls.Add(this.introBox);
 			this.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.KeyPreview = true;
@@ -337,8 +335,8 @@
 			this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.DoKeyDown);
 			this.topPanel.ResumeLayout(false);
 			this.topPanel.PerformLayout();
-			this.panel1.ResumeLayout(false);
-			this.panel1.PerformLayout();
+			this.controlPanel.ResumeLayout(false);
+			this.controlPanel.PerformLayout();
 			this.contextMenu.ResumeLayout(false);
 			this.ResumeLayout(false);
 
@@ -349,7 +347,7 @@
 		private UI.MoreButton cancelButton;
 		private System.Windows.Forms.FlowLayoutPanel contextPanel;
 		private UI.MorePanel topPanel;
-		private System.Windows.Forms.Panel panel1;
+		private System.Windows.Forms.Panel controlPanel;
 		private UI.MoreTextBox tagBox;
 		private UI.MoreButton searchButton;
 		private System.Windows.Forms.ComboBox scopeBox;
@@ -363,6 +361,6 @@
 		private UI.MoreButton menuButton;
 		private System.Windows.Forms.ContextMenuStrip contextMenu;
 		private System.Windows.Forms.ToolStripMenuItem scanButton;
-		private UI.MoreTextBox introLabel;
+		private UI.MoreMultilineLabel introBox;
 	}
 }

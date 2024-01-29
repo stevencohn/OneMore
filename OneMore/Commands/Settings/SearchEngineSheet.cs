@@ -55,6 +55,8 @@ namespace River.OneMoreAddIn.Settings
 				urlColumn.HeaderText = Resx.SearchEngineDialog_urlColumn_HeaderText;
 			}
 
+			introLabel.SetMultilineWrapWidth(introLabel.Width);
+
 			toolStrip.Rescale();
 
 			gridView.AutoGenerateColumns = false;

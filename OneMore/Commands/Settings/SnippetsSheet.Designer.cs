@@ -31,7 +31,7 @@
 			this.gridView = new System.Windows.Forms.DataGridView();
 			this.nameColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.introPanel = new System.Windows.Forms.Panel();
-			this.introLabel = new System.Windows.Forms.Label();
+			this.introLabel = new River.OneMoreAddIn.UI.MoreLabel();
 			this.toolStrip = new River.OneMoreAddIn.UI.ScaledToolStrip();
 			this.renameButton = new System.Windows.Forms.ToolStripButton();
 			this.deleteButton = new System.Windows.Forms.ToolStripButton();
@@ -79,9 +79,12 @@
 			// introLabel
 			// 
 			this.introLabel.AutoSize = true;
-			this.introLabel.Location = new System.Drawing.Point(3, 0);
+			this.introLabel.Location = new System.Drawing.Point(3, 2);
 			this.introLabel.Name = "introLabel";
-			this.introLabel.Size = new System.Drawing.Size(155, 20);
+			this.introLabel.Padding = new System.Windows.Forms.Padding(0, 0, 0, 36);
+			this.introLabel.PreferredBack = null;
+			this.introLabel.PreferredFore = null;
+			this.introLabel.Size = new System.Drawing.Size(155, 56);
 			this.introLabel.TabIndex = 0;
 			this.introLabel.Text = "Manage my snippets";
 			// 
@@ -125,6 +128,7 @@
 			this.Controls.Add(this.gridView);
 			this.Controls.Add(this.toolStrip);
 			this.Controls.Add(this.introPanel);
+			this.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.MinimumSize = new System.Drawing.Size(750, 400);
 			this.Name = "SnippetsSheet";
@@ -145,7 +149,7 @@
 		private System.Windows.Forms.Panel introPanel;
 		private UI.ScaledToolStrip toolStrip;
 		private System.Windows.Forms.ToolStripButton deleteButton;
-		private System.Windows.Forms.Label introLabel;
+		private UI.MoreLabel introLabel;
 		private System.Windows.Forms.DataGridViewTextBoxColumn nameColumn;
 		private System.Windows.Forms.ToolStripButton renameButton;
 	}

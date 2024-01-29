@@ -32,7 +32,7 @@
 			this.cmdColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.keyColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.introPanel = new System.Windows.Forms.Panel();
-			this.introLabel = new System.Windows.Forms.Label();
+			this.introLabel = new River.OneMoreAddIn.UI.MoreLabel();
 			this.toolstrip = new River.OneMoreAddIn.UI.ScaledToolStrip();
 			this.clearButton = new System.Windows.Forms.ToolStripButton();
 			this.resetButton = new System.Windows.Forms.ToolStripButton();
@@ -94,10 +94,14 @@
 			// 
 			// introLabel
 			// 
-			this.introLabel.AutoSize = true;
+			this.introLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
 			this.introLabel.Location = new System.Drawing.Point(3, 0);
 			this.introLabel.Name = "introLabel";
-			this.introLabel.Size = new System.Drawing.Size(619, 20);
+			this.introLabel.Padding = new System.Windows.Forms.Padding(0, 0, 0, 36);
+			this.introLabel.PreferredBack = null;
+			this.introLabel.PreferredFore = null;
+			this.introLabel.Size = new System.Drawing.Size(774, 55);
 			this.introLabel.TabIndex = 0;
 			this.introLabel.Text = "Manage my custom keyboard shortcuts. Select a command and press a key sequence.";
 			// 
@@ -157,7 +161,6 @@
 			this.Size = new System.Drawing.Size(800, 500);
 			((System.ComponentModel.ISupportInitialize)(this.gridView)).EndInit();
 			this.introPanel.ResumeLayout(false);
-			this.introPanel.PerformLayout();
 			this.toolstrip.ResumeLayout(false);
 			this.toolstrip.PerformLayout();
 			this.ResumeLayout(false);
@@ -168,7 +171,7 @@
 		#endregion
 		private KeyboardGridView gridView;
 		private System.Windows.Forms.Panel introPanel;
-		private System.Windows.Forms.Label introLabel;
+		private UI.MoreLabel introLabel;
 		private System.Windows.Forms.DataGridViewTextBoxColumn cmdColumn;
 		private System.Windows.Forms.DataGridViewTextBoxColumn keyColumn;
 		private River.OneMoreAddIn.UI.ScaledToolStrip toolstrip;

@@ -29,7 +29,7 @@ namespace River.OneMoreAddIn.Settings
 		/// </summary>
 		private void InitializeComponent()
 		{
-			this.introBox = new River.OneMoreAddIn.UI.MoreTextBox();
+			this.introBox = new UI.MoreLabel();
 			this.layoutPanel = new System.Windows.Forms.Panel();
 			this.barLabel = new System.Windows.Forms.Label();
 			this.allLink = new River.OneMoreAddIn.UI.MoreLinkLabel();
@@ -53,11 +53,9 @@ namespace River.OneMoreAddIn.Settings
 			this.introBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
 			this.introBox.Dock = System.Windows.Forms.DockStyle.Top;
 			this.introBox.Location = new System.Drawing.Point(13, 8);
-			this.introBox.Multiline = true;
 			this.introBox.Name = "introBox";
 			this.introBox.PreferredBack = "ControlLightLight";
 			this.introBox.PreferredFore = null;
-			this.introBox.ReadOnly = true;
 			this.introBox.Size = new System.Drawing.Size(772, 66);
 			this.introBox.TabIndex = 3;
 			this.introBox.Text = "Customize the behavior of the Colorize command. Secondary font applies when colla" +
@@ -295,7 +293,7 @@ namespace River.OneMoreAddIn.Settings
 
 		#endregion
 
-		private UI.MoreTextBox introBox;
+		private UI.MoreLabel introBox;
 		private System.Windows.Forms.Panel layoutPanel;
 		private UI.MoreCheckBox applyBox;
 		private UI.FontComboBox familyBox;

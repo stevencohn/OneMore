@@ -28,6 +28,7 @@ namespace River.OneMoreAddIn.Settings
 				});
 			}
 
+			introBox.SetMultilineWrapWidth(introBox.Width);
 			widthBox.Value = provider.GetCollection(Name).Get("width", DefaultWidth);
 		}
 

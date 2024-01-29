@@ -225,7 +225,7 @@ namespace River.OneMoreAddIn.UI
 
 			// for each of the following, parent should have already been themed by now...
 
-			if (control is Label label)
+			if (control is Label label && control is not MoreLabel)
 			{
 				label.BackColor = label.Parent.BackColor;
 			}

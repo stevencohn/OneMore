@@ -488,6 +488,9 @@
     <Compile Include="UI\Themed\MoreLabel.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="UI\Themed\MoreMultilineLabel.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="UI\Themed\MoreRadioButton.cs">
       <SubType>Component</SubType>
     </Compile>

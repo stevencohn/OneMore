@@ -37,6 +37,8 @@ namespace River.OneMoreAddIn.Settings
 				});
 			}
 
+			introBox.SetMultilineWrapWidth(introBox.Width);
+
 			var settings = provider.GetCollection(Name);
 
 			// general

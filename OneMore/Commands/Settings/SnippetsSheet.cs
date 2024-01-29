@@ -51,6 +51,8 @@ namespace River.OneMoreAddIn.Settings
 				nameColumn.HeaderText = Resx.word_Name;
 			}
 
+			introLabel.SetMultilineWrapWidth(introLabel.Width);
+
 			toolStrip.Rescale();
 
 			gridView.AutoGenerateColumns = false;

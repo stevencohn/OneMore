@@ -29,7 +29,7 @@ namespace River.OneMoreAddIn.Settings
 		/// </summary>
 		private void InitializeComponent()
 		{
-			this.introBox = new River.OneMoreAddIn.UI.MoreTextBox();
+			this.introBox = new River.OneMoreAddIn.UI.MoreLabel();
 			this.layoutPanel = new System.Windows.Forms.Panel();
 			this.msLabel = new System.Windows.Forms.Label();
 			this.delayBox = new System.Windows.Forms.NumericUpDown();
@@ -52,15 +52,13 @@ namespace River.OneMoreAddIn.Settings
 			// introBox
 			// 
 			this.introBox.BackColor = System.Drawing.SystemColors.ControlLightLight;
-			this.introBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
 			this.introBox.Dock = System.Windows.Forms.DockStyle.Top;
 			this.introBox.ForeColor = System.Drawing.SystemColors.ControlText;
 			this.introBox.Location = new System.Drawing.Point(13, 8);
-			this.introBox.Multiline = true;
 			this.introBox.Name = "introBox";
+			this.introBox.Padding = new System.Windows.Forms.Padding(0, 0, 0, 36);
 			this.introBox.PreferredBack = "ControlLightLight";
 			this.introBox.PreferredFore = "ControlText";
-			this.introBox.ReadOnly = true;
 			this.introBox.Size = new System.Drawing.Size(772, 66);
 			this.introBox.TabIndex = 3;
 			this.introBox.Text = "Customize advanced options for the Hashtag Scanner Service";
@@ -118,7 +116,7 @@ namespace River.OneMoreAddIn.Settings
 			// 
 			this.filterBox.Location = new System.Drawing.Point(11, 87);
 			this.filterBox.Name = "filterBox";
-			this.filterBox.Size = new System.Drawing.Size(495, 24);
+			this.filterBox.Size = new System.Drawing.Size(496, 24);
 			this.filterBox.TabIndex = 11;
 			this.filterBox.Text = "Treat HTML Hex colors and C# and C++ directives as hashtags";
 			this.filterBox.UseVisualStyleBackColor = true;
@@ -164,7 +162,7 @@ namespace River.OneMoreAddIn.Settings
 			// 
 			this.rebuildBox.Location = new System.Drawing.Point(18, 41);
 			this.rebuildBox.Name = "rebuildBox";
-			this.rebuildBox.Size = new System.Drawing.Size(344, 24);
+			this.rebuildBox.Size = new System.Drawing.Size(345, 24);
 			this.rebuildBox.TabIndex = 10;
 			this.rebuildBox.Text = "Rebuild the hashtag database upon restart";
 			this.rebuildBox.UseVisualStyleBackColor = true;
@@ -174,7 +172,7 @@ namespace River.OneMoreAddIn.Settings
 			// 
 			this.disabledBox.Location = new System.Drawing.Point(18, 71);
 			this.disabledBox.Name = "disabledBox";
-			this.disabledBox.Size = new System.Drawing.Size(538, 24);
+			this.disabledBox.Size = new System.Drawing.Size(539, 24);
 			this.disabledBox.TabIndex = 0;
 			this.disabledBox.Text = "Disable the hashtag service. This will also disable hashtag searching.";
 			this.disabledBox.UseVisualStyleBackColor = true;
@@ -236,13 +234,12 @@ namespace River.OneMoreAddIn.Settings
 			this.advancedGroup.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.intervalBox)).EndInit();
 			this.ResumeLayout(false);
-			this.PerformLayout();
 
 		}
 
 		#endregion
 
-		private UI.MoreTextBox introBox;
+		private UI.MoreLabel introBox;
 		private System.Windows.Forms.Panel layoutPanel;
 		private System.Windows.Forms.NumericUpDown intervalBox;
 		private System.Windows.Forms.Label intervalLabel;

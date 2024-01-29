@@ -48,14 +48,14 @@
             this.cmdColumn,
             this.aliasColumn});
 			this.gridView.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.gridView.Location = new System.Drawing.Point(10, 64);
+			this.gridView.Location = new System.Drawing.Point(10, 74);
 			this.gridView.MultiSelect = false;
 			this.gridView.Name = "gridView";
 			this.gridView.RowHeadersVisible = false;
 			this.gridView.RowHeadersWidth = 30;
 			this.gridView.RowTemplate.Height = 28;
 			this.gridView.ShowEditingIcon = false;
-			this.gridView.Size = new System.Drawing.Size(780, 427);
+			this.gridView.Size = new System.Drawing.Size(780, 417);
 			this.gridView.TabIndex = 2;
 			this.gridView.CellValidating += new System.Windows.Forms.DataGridViewCellValidatingEventHandler(this.ValidateAlias);
 			// 
@@ -83,15 +83,17 @@
 			this.introPanel.Dock = System.Windows.Forms.DockStyle.Top;
 			this.introPanel.Location = new System.Drawing.Point(10, 9);
 			this.introPanel.Name = "introPanel";
-			this.introPanel.Size = new System.Drawing.Size(780, 55);
+			this.introPanel.Size = new System.Drawing.Size(780, 65);
 			this.introPanel.TabIndex = 3;
 			// 
 			// introLabel
 			// 
 			this.introLabel.AutoSize = true;
-			this.introLabel.Location = new System.Drawing.Point(3, 0);
+			this.introLabel.ForeColor = System.Drawing.SystemColors.ControlText;
+			this.introLabel.Location = new System.Drawing.Point(3, 6);
 			this.introLabel.Name = "introLabel";
-			this.introLabel.Size = new System.Drawing.Size(410, 20);
+			this.introLabel.Padding = new System.Windows.Forms.Padding(0, 0, 0, 36);
+			this.introLabel.Size = new System.Drawing.Size(410, 56);
 			this.introLabel.TabIndex = 0;
 			this.introLabel.Text = "Define command aliases for use in the Command Palette";
 			// 
@@ -102,6 +104,7 @@
 			this.BackColor = System.Drawing.SystemColors.ControlLightLight;
 			this.Controls.Add(this.gridView);
 			this.Controls.Add(this.introPanel);
+			this.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.MinimumSize = new System.Drawing.Size(750, 400);
 			this.Name = "AliasSheet";

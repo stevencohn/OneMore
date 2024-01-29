@@ -164,6 +164,8 @@ namespace River.OneMoreAddIn.Settings
 				});
 			}
 
+			introBox.SetMultilineWrapWidth(introBox.Width);
+
 			menuPanel = new MenuPanel
 			{
 				Dock = DockStyle.Fill

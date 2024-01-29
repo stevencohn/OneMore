@@ -29,7 +29,7 @@
 		private void InitializeComponent()
 		{
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(RibbonBarSheet));
-			this.introBox = new System.Windows.Forms.TextBox();
+			this.introBox = new River.OneMoreAddIn.UI.MoreLabel();
 			this.editRibbonBox = new River.OneMoreAddIn.UI.MoreCheckBox();
 			this.editIconBox = new River.OneMoreAddIn.UI.MoreCheckBox();
 			this.formulaRibbonBox = new River.OneMoreAddIn.UI.MoreCheckBox();
@@ -46,13 +46,14 @@
 			// 
 			// introBox
 			// 
+			this.introBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
 			this.introBox.BackColor = System.Drawing.SystemColors.ControlLightLight;
-			this.introBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-			this.introBox.Dock = System.Windows.Forms.DockStyle.Top;
 			this.introBox.Location = new System.Drawing.Point(10, 9);
-			this.introBox.Multiline = true;
 			this.introBox.Name = "introBox";
-			this.introBox.ReadOnly = true;
+			this.introBox.Padding = new System.Windows.Forms.Padding(0, 0, 0, 36);
+			this.introBox.PreferredBack = null;
+			this.introBox.PreferredFore = null;
 			this.introBox.Size = new System.Drawing.Size(780, 66);
 			this.introBox.TabIndex = 3;
 			this.introBox.Text = "Choose which commands to include in the ribbon bar and whether to display icons o" +
@@ -168,7 +169,6 @@
 			this.formulaGroup.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.formulaPicture)).EndInit();
 			this.ResumeLayout(false);
-			this.PerformLayout();
 
 		}
 
@@ -181,6 +181,6 @@
 		private UI.MoreGroupBox formulaGroup;
 		private System.Windows.Forms.PictureBox editPicture;
 		private System.Windows.Forms.PictureBox formulaPicture;
-		private System.Windows.Forms.TextBox introBox;
+		private UI.MoreLabel introBox;
 	}
 }

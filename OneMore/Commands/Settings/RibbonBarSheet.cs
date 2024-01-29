@@ -28,6 +28,8 @@ namespace River.OneMoreAddIn.Settings
                 });
             }
 
+			introBox.SetMultilineWrapWidth(introBox.Width);
+			
             var settings = provider.GetCollection(Name);
             editRibbonBox.Checked = settings.Get<bool>("editCommands");
             editIconBox.Checked = settings.Get<bool>("editIconsOnly");

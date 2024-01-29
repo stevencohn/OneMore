@@ -25,6 +25,8 @@ namespace River.OneMoreAddIn.Settings
 				});
 			}
 
+			introBox.SetMultilineWrapWidth(introBox.Width);
+
 			var settings = provider.GetCollection(Name);
 			var theme = settings.Get<string>("theme");
 			if (theme == "Faded")

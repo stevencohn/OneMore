@@ -29,7 +29,7 @@
 		private void InitializeComponent()
 		{
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(HighlightsSheet));
-			this.introBox = new River.OneMoreAddIn.UI.MoreTextBox();
+			this.introBox = new River.OneMoreAddIn.UI.MoreLabel();
 			this.normalRadio = new River.OneMoreAddIn.UI.MoreRadioButton();
 			this.fadedRadio = new River.OneMoreAddIn.UI.MoreRadioButton();
 			this.themesGroup = new River.OneMoreAddIn.UI.MoreGroupBox();
@@ -46,15 +46,13 @@
 			// introBox
 			// 
 			this.introBox.BackColor = System.Drawing.SystemColors.ControlLightLight;
-			this.introBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
 			this.introBox.Dock = System.Windows.Forms.DockStyle.Top;
 			this.introBox.ForeColor = System.Drawing.SystemColors.ControlText;
 			this.introBox.Location = new System.Drawing.Point(10, 9);
-			this.introBox.Multiline = true;
 			this.introBox.Name = "introBox";
+			this.introBox.Padding = new System.Windows.Forms.Padding(0, 0, 0, 36);
 			this.introBox.PreferredBack = "ControlLightLight";
 			this.introBox.PreferredFore = "ControlText";
-			this.introBox.ReadOnly = true;
 			this.introBox.Size = new System.Drawing.Size(780, 66);
 			this.introBox.TabIndex = 2;
 			this.introBox.Text = "The highlighter command will cycle through the colors of the chosen theme. Colors" +
@@ -67,7 +65,7 @@
 			this.normalRadio.Location = new System.Drawing.Point(18, 46);
 			this.normalRadio.Margin = new System.Windows.Forms.Padding(3, 3, 3, 12);
 			this.normalRadio.Name = "normalRadio";
-			this.normalRadio.Size = new System.Drawing.Size(75, 24);
+			this.normalRadio.Size = new System.Drawing.Size(78, 24);
 			this.normalRadio.TabIndex = 3;
 			this.normalRadio.TabStop = true;
 			this.normalRadio.Text = "Bright";
@@ -78,7 +76,7 @@
 			this.fadedRadio.Location = new System.Drawing.Point(18, 104);
 			this.fadedRadio.Margin = new System.Windows.Forms.Padding(3, 3, 3, 12);
 			this.fadedRadio.Name = "fadedRadio";
-			this.fadedRadio.Size = new System.Drawing.Size(78, 24);
+			this.fadedRadio.Size = new System.Drawing.Size(81, 24);
 			this.fadedRadio.TabIndex = 4;
 			this.fadedRadio.Text = "Faded";
 			this.fadedRadio.UseVisualStyleBackColor = true;
@@ -139,11 +137,10 @@
 			// 
 			// deepRadio
 			// 
-			this.deepRadio.AutoSize = true;
 			this.deepRadio.Location = new System.Drawing.Point(18, 161);
 			this.deepRadio.Margin = new System.Windows.Forms.Padding(3, 3, 3, 12);
 			this.deepRadio.Name = "deepRadio";
-			this.deepRadio.Size = new System.Drawing.Size(73, 24);
+			this.deepRadio.Size = new System.Drawing.Size(74, 24);
 			this.deepRadio.TabIndex = 5;
 			this.deepRadio.Text = "Deep";
 			this.deepRadio.UseVisualStyleBackColor = true;
@@ -160,18 +157,16 @@
 			this.Padding = new System.Windows.Forms.Padding(10, 9, 10, 9);
 			this.Size = new System.Drawing.Size(800, 500);
 			this.themesGroup.ResumeLayout(false);
-			this.themesGroup.PerformLayout();
 			((System.ComponentModel.ISupportInitialize)(this.deepPicture)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.fadedPicture)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.normalPicture)).EndInit();
 			this.ResumeLayout(false);
-			this.PerformLayout();
 
 		}
 
 		#endregion
 
-		private UI.MoreTextBox introBox;
+		private UI.MoreLabel introBox;
 		private UI.MoreRadioButton normalRadio;
 		private UI.MoreRadioButton fadedRadio;
 		private UI.MoreGroupBox themesGroup;

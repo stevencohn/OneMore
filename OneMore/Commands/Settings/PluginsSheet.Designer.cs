@@ -33,7 +33,7 @@
 			this.nameColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.cmdColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.introPanel = new System.Windows.Forms.Panel();
-			this.introLabel = new System.Windows.Forms.Label();
+			this.introLabel = new River.OneMoreAddIn.UI.MoreLabel();
 			this.toolStrip = new River.OneMoreAddIn.UI.ScaledToolStrip();
 			this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
 			this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
@@ -88,14 +88,18 @@
 			this.introPanel.Dock = System.Windows.Forms.DockStyle.Top;
 			this.introPanel.Location = new System.Drawing.Point(10, 9);
 			this.introPanel.Name = "introPanel";
+			this.introPanel.Padding = new System.Windows.Forms.Padding(0, 0, 0, 36);
 			this.introPanel.Size = new System.Drawing.Size(780, 55);
 			this.introPanel.TabIndex = 3;
 			// 
 			// introLabel
 			// 
 			this.introLabel.AutoSize = true;
-			this.introLabel.Location = new System.Drawing.Point(3, 5);
+			this.introLabel.Dock = System.Windows.Forms.DockStyle.Top;
+			this.introLabel.Location = new System.Drawing.Point(0, 0);
 			this.introLabel.Name = "introLabel";
+			this.introLabel.PreferredBack = null;
+			this.introLabel.PreferredFore = null;
 			this.introLabel.Size = new System.Drawing.Size(765, 20);
 			this.introLabel.TabIndex = 0;
 			this.introLabel.Text = "Click the edit button to modify a plugin or double-click its name to rename it. C" +
@@ -178,7 +182,7 @@
 		private UI.ScaledToolStrip toolStrip;
 		private System.Windows.Forms.ToolStripButton deleteButton;
 		private System.Windows.Forms.ToolStripLabel deleteLabel;
-		private System.Windows.Forms.Label introLabel;
+		private UI.MoreLabel introLabel;
 		private System.Windows.Forms.ToolStripButton toolStripButton1;
 		private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
 		private System.Windows.Forms.DataGridViewTextBoxColumn nameColumn;

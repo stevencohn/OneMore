@@ -30,7 +30,7 @@ namespace River.OneMoreAddIn.Settings
 		private void InitializeComponent()
 		{
 			this.components = new System.ComponentModel.Container();
-			this.introBox = new River.OneMoreAddIn.UI.MoreTextBox();
+			this.introBox = new River.OneMoreAddIn.UI.MoreLabel();
 			this.layoutPanel = new System.Windows.Forms.Panel();
 			this.resizeGroup = new River.OneMoreAddIn.UI.MoreGroupBox();
 			this.widthBox = new System.Windows.Forms.NumericUpDown();
@@ -57,14 +57,12 @@ namespace River.OneMoreAddIn.Settings
 			// introBox
 			// 
 			this.introBox.BackColor = System.Drawing.SystemColors.ControlLightLight;
-			this.introBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
 			this.introBox.Dock = System.Windows.Forms.DockStyle.Top;
 			this.introBox.Location = new System.Drawing.Point(13, 8);
-			this.introBox.Multiline = true;
 			this.introBox.Name = "introBox";
+			this.introBox.Padding = new System.Windows.Forms.Padding(0, 0, 0, 36);
 			this.introBox.PreferredBack = "ControlLightLight";
 			this.introBox.PreferredFore = "ControlText";
-			this.introBox.ReadOnly = true;
 			this.introBox.Size = new System.Drawing.Size(772, 52);
 			this.introBox.TabIndex = 3;
 			this.introBox.Text = "Customize the defaults for Image commands";
@@ -261,13 +259,12 @@ namespace River.OneMoreAddIn.Settings
 			this.plantGroup.PerformLayout();
 			((System.ComponentModel.ISupportInitialize)(this.errorProvider)).EndInit();
 			this.ResumeLayout(false);
-			this.PerformLayout();
 
 		}
 
 		#endregion
 
-		private UI.MoreTextBox introBox;
+		private UI.MoreLabel introBox;
 		private System.Windows.Forms.Panel layoutPanel;
 		private UI.MoreGroupBox plantGroup;
 		private UI.MoreCheckBox plantCollapseBox;

@@ -33,7 +33,7 @@
 			this.nameColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.urlColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.introPanel = new System.Windows.Forms.Panel();
-			this.introLabel = new System.Windows.Forms.Label();
+			this.introLabel = new River.OneMoreAddIn.UI.MoreLabel();
 			this.toolStrip = new River.OneMoreAddIn.UI.ScaledToolStrip();
 			this.upButton = new System.Windows.Forms.ToolStripButton();
 			this.downButton = new System.Windows.Forms.ToolStripButton();
@@ -101,13 +101,17 @@
 			// 
 			// introLabel
 			// 
-			this.introLabel.AutoSize = true;
+			this.introLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
 			this.introLabel.Location = new System.Drawing.Point(3, 0);
 			this.introLabel.Name = "introLabel";
-			this.introLabel.Size = new System.Drawing.Size(497, 60);
+			this.introLabel.Padding = new System.Windows.Forms.Padding(0, 0, 0, 36);
+			this.introLabel.PreferredBack = null;
+			this.introLabel.PreferredFore = null;
+			this.introLabel.Size = new System.Drawing.Size(774, 81);
 			this.introLabel.TabIndex = 0;
-			this.introLabel.Text = "URL Patterns must contain a string replacement token, such as &q={0}\r\n\r\nSearch en" +
-    "gines will appear in the page context menu, right-click.";
+			this.introLabel.Text = "URL Patterns must contain a string replacement token, such as &q={0}\r\nSearch engi" +
+    "nes will appear in the page context menu, right-click.";
 			// 
 			// toolStrip
 			// 
@@ -185,6 +189,7 @@
 			this.Controls.Add(this.gridView);
 			this.Controls.Add(this.toolStrip);
 			this.Controls.Add(this.introPanel);
+			this.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.MinimumSize = new System.Drawing.Size(750, 400);
 			this.Name = "SearchEngineSheet";
@@ -192,7 +197,6 @@
 			this.Size = new System.Drawing.Size(800, 500);
 			((System.ComponentModel.ISupportInitialize)(this.gridView)).EndInit();
 			this.introPanel.ResumeLayout(false);
-			this.introPanel.PerformLayout();
 			this.toolStrip.ResumeLayout(false);
 			this.toolStrip.PerformLayout();
 			this.ResumeLayout(false);
@@ -203,7 +207,7 @@
 		#endregion
 		private System.Windows.Forms.DataGridView gridView;
 		private System.Windows.Forms.Panel introPanel;
-		private System.Windows.Forms.Label introLabel;
+		private UI.MoreLabel introLabel;
 		private UI.ScaledToolStrip toolStrip;
 		private System.Windows.Forms.ToolStripButton deleteButton;
 		private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;

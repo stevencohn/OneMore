@@ -73,6 +73,8 @@ namespace River.OneMoreAddIn.Settings
 				keyColumn.HeaderText = Resx.KeyboardSheet_keyColumn_HeaderText;
 			}
 
+			introLabel.SetMultilineWrapWidth(introLabel.Width);
+
 			toolstrip.Rescale();
 
 			gridView.AutoGenerateColumns = false;

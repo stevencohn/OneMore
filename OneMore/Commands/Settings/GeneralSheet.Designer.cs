@@ -29,7 +29,7 @@ namespace River.OneMoreAddIn.Settings
 		/// </summary>
 		private void InitializeComponent()
 		{
-			this.introBox = new River.OneMoreAddIn.UI.MoreTextBox();
+			this.introBox = new River.OneMoreAddIn.UI.MoreLabel();
 			this.layoutPanel = new System.Windows.Forms.Panel();
 			this.advancedGroup = new River.OneMoreAddIn.UI.MoreGroupBox();
 			this.experimentalBox = new River.OneMoreAddIn.UI.MoreCheckBox();
@@ -44,15 +44,13 @@ namespace River.OneMoreAddIn.Settings
 			// introBox
 			// 
 			this.introBox.BackColor = System.Drawing.SystemColors.ControlLightLight;
-			this.introBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
 			this.introBox.Dock = System.Windows.Forms.DockStyle.Top;
 			this.introBox.ForeColor = System.Drawing.SystemColors.ControlText;
 			this.introBox.Location = new System.Drawing.Point(13, 8);
-			this.introBox.Multiline = true;
 			this.introBox.Name = "introBox";
+			this.introBox.Padding = new System.Windows.Forms.Padding(0, 0, 0, 36);
 			this.introBox.PreferredBack = "ControlLightLight";
 			this.introBox.PreferredFore = "ControlText";
-			this.introBox.ReadOnly = true;
 			this.introBox.Size = new System.Drawing.Size(772, 66);
 			this.introBox.TabIndex = 3;
 			this.introBox.Text = "Customize the overall behavior of OneMore";
@@ -89,7 +87,7 @@ namespace River.OneMoreAddIn.Settings
 			// 
 			this.experimentalBox.Location = new System.Drawing.Point(18, 62);
 			this.experimentalBox.Name = "experimentalBox";
-			this.experimentalBox.Size = new System.Drawing.Size(248, 24);
+			this.experimentalBox.Size = new System.Drawing.Size(249, 24);
 			this.experimentalBox.TabIndex = 1;
 			this.experimentalBox.Text = "Enable experimental features";
 			this.experimentalBox.UseVisualStyleBackColor = true;
@@ -98,7 +96,7 @@ namespace River.OneMoreAddIn.Settings
 			// 
 			this.verboseBox.Location = new System.Drawing.Point(18, 32);
 			this.verboseBox.Name = "verboseBox";
-			this.verboseBox.Size = new System.Drawing.Size(206, 24);
+			this.verboseBox.Size = new System.Drawing.Size(207, 24);
 			this.verboseBox.TabIndex = 0;
 			this.verboseBox.Text = "Enable verbose logging";
 			this.verboseBox.UseVisualStyleBackColor = true;
@@ -131,7 +129,7 @@ namespace River.OneMoreAddIn.Settings
 			this.checkUpdatesBox.Location = new System.Drawing.Point(25, 5);
 			this.checkUpdatesBox.Margin = new System.Windows.Forms.Padding(0, 10, 0, 0);
 			this.checkUpdatesBox.Name = "checkUpdatesBox";
-			this.checkUpdatesBox.Size = new System.Drawing.Size(454, 24);
+			this.checkUpdatesBox.Size = new System.Drawing.Size(455, 24);
 			this.checkUpdatesBox.TabIndex = 1;
 			this.checkUpdatesBox.Text = "Check for new versions of OneMore when OneNote starts";
 			this.checkUpdatesBox.UseVisualStyleBackColor = true;
@@ -151,13 +149,12 @@ namespace River.OneMoreAddIn.Settings
 			this.layoutPanel.PerformLayout();
 			this.advancedGroup.ResumeLayout(false);
 			this.ResumeLayout(false);
-			this.PerformLayout();
 
 		}
 
 		#endregion
 
-		private UI.MoreTextBox introBox;
+		private UI.MoreLabel introBox;
 		private System.Windows.Forms.Panel layoutPanel;
 		private UI.MoreCheckBox checkUpdatesBox;
 		private System.Windows.Forms.ComboBox langBox;

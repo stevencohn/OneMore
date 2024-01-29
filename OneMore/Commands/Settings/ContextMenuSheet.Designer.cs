@@ -29,7 +29,7 @@
 		private void InitializeComponent()
 		{
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ContextMenuSheet));
-			this.introBox = new River.OneMoreAddIn.UI.MoreTextBox();
+			this.introBox = new UI.MoreLabel();
 			this.contentPanel = new System.Windows.Forms.Panel();
 			this.linePanel = new System.Windows.Forms.Panel();
 			this.SuspendLayout();
@@ -41,11 +41,9 @@
 			this.introBox.Dock = System.Windows.Forms.DockStyle.Top;
 			this.introBox.ForeColor = System.Drawing.SystemColors.ControlText;
 			this.introBox.Location = new System.Drawing.Point(10, 10);
-			this.introBox.Multiline = true;
 			this.introBox.Name = "introBox";
 			this.introBox.PreferredBack = "ControlLightLight";
 			this.introBox.PreferredFore = "ControlText";
-			this.introBox.ReadOnly = true;
 			this.introBox.Size = new System.Drawing.Size(757, 158);
 			this.introBox.TabIndex = 1;
 			this.introBox.Text = resources.GetString("introBox.Text");
@@ -86,7 +84,7 @@
 
 		#endregion
 
-		private UI.MoreTextBox introBox;
+		private UI.MoreLabel introBox;
 		private System.Windows.Forms.Panel contentPanel;
 		private System.Windows.Forms.Panel linePanel;
 	}
