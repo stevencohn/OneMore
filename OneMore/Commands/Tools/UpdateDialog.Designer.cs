@@ -116,8 +116,6 @@ namespace River.OneMoreAddIn.Commands
 			this.okButton.ImageOver = null;
 			this.okButton.Location = new System.Drawing.Point(480, 142);
 			this.okButton.Name = "okButton";
-			this.okButton.PreferredBack = System.Drawing.Color.Empty;
-			this.okButton.PreferredFore = System.Drawing.Color.Empty;
 			this.okButton.ShowBorder = true;
 			this.okButton.Size = new System.Drawing.Size(104, 42);
 			this.okButton.TabIndex = 0;
@@ -131,8 +129,6 @@ namespace River.OneMoreAddIn.Commands
 			this.cancelButton.ImageOver = null;
 			this.cancelButton.Location = new System.Drawing.Point(480, 254);
 			this.cancelButton.Name = "cancelButton";
-			this.cancelButton.PreferredBack = System.Drawing.Color.Empty;
-			this.cancelButton.PreferredFore = System.Drawing.Color.Empty;
 			this.cancelButton.ShowBorder = true;
 			this.cancelButton.Size = new System.Drawing.Size(104, 42);
 			this.cancelButton.TabIndex = 2;
@@ -350,8 +346,6 @@ namespace River.OneMoreAddIn.Commands
 			this.upOKButton.ImageOver = null;
 			this.upOKButton.Location = new System.Drawing.Point(370, 254);
 			this.upOKButton.Name = "upOKButton";
-			this.upOKButton.PreferredBack = System.Drawing.Color.Empty;
-			this.upOKButton.PreferredFore = System.Drawing.Color.Empty;
 			this.upOKButton.ShowBorder = true;
 			this.upOKButton.Size = new System.Drawing.Size(104, 42);
 			this.upOKButton.TabIndex = 0;

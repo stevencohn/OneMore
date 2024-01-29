@@ -801,7 +801,7 @@
     <Compile Include="UI\MorePictureBox.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="UI\MoreLinkLabel.cs">
+    <Compile Include="UI\Themed\MoreLinkLabel.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="UI\MoreRichLabel.cs">
@@ -1518,7 +1518,7 @@
     <EmbeddedResource Include="Properties\Resources.pl-PL.resx">
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="UI\MoreLinkLabel.resx">
+    <EmbeddedResource Include="UI\Themed\MoreLinkLabel.resx">
       <DependentUpon>MoreLinkLabel.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\MoreMessageBox.resx">

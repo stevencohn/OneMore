@@ -113,8 +113,6 @@
 			this.goButton.ImageOver = null;
 			this.goButton.Location = new System.Drawing.Point(518, 11);
 			this.goButton.Name = "goButton";
-			this.goButton.PreferredBack = System.Drawing.Color.Empty;
-			this.goButton.PreferredFore = System.Drawing.Color.Empty;
 			this.goButton.ShowBorder = true;
 			this.goButton.Size = new System.Drawing.Size(120, 38);
 			this.goButton.TabIndex = 0;
@@ -129,8 +127,6 @@
 			this.cancelButton.ImageOver = null;
 			this.cancelButton.Location = new System.Drawing.Point(644, 11);
 			this.cancelButton.Name = "cancelButton";
-			this.cancelButton.PreferredBack = System.Drawing.Color.Empty;
-			this.cancelButton.PreferredFore = System.Drawing.Color.Empty;
 			this.cancelButton.ShowBorder = true;
 			this.cancelButton.Size = new System.Drawing.Size(120, 38);
 			this.cancelButton.TabIndex = 1;
@@ -161,8 +157,6 @@
 			this.menuButton.ImageOver = null;
 			this.menuButton.Location = new System.Drawing.Point(710, 18);
 			this.menuButton.Name = "menuButton";
-			this.menuButton.PreferredBack = System.Drawing.Color.Empty;
-			this.menuButton.PreferredFore = System.Drawing.Color.Empty;
 			this.menuButton.ShowBorder = false;
 			this.menuButton.Size = new System.Drawing.Size(50, 38);
 			this.menuButton.TabIndex = 1;
@@ -178,8 +172,6 @@
 			this.searchBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.searchBox.Location = new System.Drawing.Point(138, 18);
 			this.searchBox.Name = "searchBox";
-			this.searchBox.PreferredBack = System.Drawing.Color.Empty;
-			this.searchBox.PreferredFore = System.Drawing.Color.Empty;
 			this.searchBox.Size = new System.Drawing.Size(566, 28);
 			this.searchBox.TabIndex = 0;
 			this.searchBox.KeyUp += new System.Windows.Forms.KeyEventHandler(this.FilterRowOnKeyUp);

@@ -54,8 +54,6 @@
 			this.cancelButton.ImageOver = null;
 			this.cancelButton.Location = new System.Drawing.Point(376, 402);
 			this.cancelButton.Name = "cancelButton";
-			this.cancelButton.PreferredBack = System.Drawing.Color.Empty;
-			this.cancelButton.PreferredFore = System.Drawing.Color.Empty;
 			this.cancelButton.ShowBorder = true;
 			this.cancelButton.Size = new System.Drawing.Size(120, 38);
 			this.cancelButton.TabIndex = 1;
@@ -70,8 +68,6 @@
 			this.okButton.ImageOver = null;
 			this.okButton.Location = new System.Drawing.Point(245, 402);
 			this.okButton.Name = "okButton";
-			this.okButton.PreferredBack = System.Drawing.Color.Empty;
-			this.okButton.PreferredFore = System.Drawing.Color.Empty;
 			this.okButton.ShowBorder = true;
 			this.okButton.Size = new System.Drawing.Size(120, 38);
 			this.okButton.TabIndex = 0;

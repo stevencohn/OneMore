@@ -35,26 +35,26 @@
 			this.beforeLabel = new System.Windows.Forms.Label();
 			this.afterLabel = new System.Windows.Forms.Label();
 			this.nameLabel = new System.Windows.Forms.Label();
-			this.nameBox = new System.Windows.Forms.TextBox();
+			this.nameBox = new River.OneMoreAddIn.UI.MoreTextBox();
 			this.fontLabel = new System.Windows.Forms.Label();
 			this.spaceBeforeSpinner = new System.Windows.Forms.NumericUpDown();
 			this.spaceAfterSpinner = new System.Windows.Forms.NumericUpDown();
 			this.previewBox = new System.Windows.Forms.PictureBox();
-			this.cancelButton = new System.Windows.Forms.Button();
-			this.okButton = new System.Windows.Forms.Button();
+			this.cancelButton = new River.OneMoreAddIn.UI.MoreButton();
+			this.okButton = new River.OneMoreAddIn.UI.MoreButton();
 			this.namesBox = new System.Windows.Forms.ComboBox();
 			this.panel1 = new System.Windows.Forms.Panel();
-			this.ignoredBox = new System.Windows.Forms.CheckBox();
-			this.optionsGroup = new System.Windows.Forms.GroupBox();
-			this.statusLabel = new System.Windows.Forms.Label();
+			this.ignoredBox = new River.OneMoreAddIn.UI.MoreCheckBox();
+			this.optionsGroup = new River.OneMoreAddIn.UI.MoreGroupBox();
+			this.statusLabel = new River.OneMoreAddIn.UI.MoreLabel();
 			this.pageColorLink = new River.OneMoreAddIn.UI.MoreLinkLabel();
-			this.darkBox = new System.Windows.Forms.CheckBox();
-			this.pageColorBox = new System.Windows.Forms.CheckBox();
+			this.darkBox = new River.OneMoreAddIn.UI.MoreCheckBox();
+			this.pageColorBox = new River.OneMoreAddIn.UI.MoreCheckBox();
 			this.spacingLabel = new System.Windows.Forms.Label();
 			this.spacingSpinner = new System.Windows.Forms.NumericUpDown();
 			this.styleTypeLabel = new System.Windows.Forms.Label();
 			this.styleTypeBox = new System.Windows.Forms.ComboBox();
-			this.applyColorsBox = new System.Windows.Forms.CheckBox();
+			this.applyColorsBox = new River.OneMoreAddIn.UI.MoreCheckBox();
 			this.familyBox = new River.OneMoreAddIn.UI.FontComboBox();
 			this.toolStrip = new River.OneMoreAddIn.UI.ScaledToolStrip();
 			this.boldButton = new System.Windows.Forms.ToolStripButton();
@@ -90,6 +90,7 @@
 			// sizeBox
 			// 
 			this.sizeBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.sizeBox.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
 			this.sizeBox.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.sizeBox.FormattingEnabled = true;
 			this.sizeBox.Items.AddRange(new object[] {
@@ -149,9 +150,12 @@
 			// 
 			this.nameBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+			this.nameBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
 			this.nameBox.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.nameBox.Location = new System.Drawing.Point(169, 23);
 			this.nameBox.Name = "nameBox";
+			this.nameBox.PreferredBack = null;
+			this.nameBox.PreferredFore = null;
 			this.nameBox.Size = new System.Drawing.Size(475, 31);
 			this.nameBox.TabIndex = 1;
 			this.nameBox.TextChanged += new System.EventHandler(this.ChangeStyleName);
@@ -203,8 +207,12 @@
 			// 
 			this.cancelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+			this.cancelButton.ImageOver = null;
 			this.cancelButton.Location = new System.Drawing.Point(526, 540);
 			this.cancelButton.Name = "cancelButton";
+			this.cancelButton.PreferredBack = null;
+			this.cancelButton.PreferredFore = null;
+			this.cancelButton.ShowBorder = true;
 			this.cancelButton.Size = new System.Drawing.Size(116, 38);
 			this.cancelButton.TabIndex = 10;
 			this.cancelButton.Text = "Cancel";
@@ -214,8 +222,12 @@
 			// 
 			this.okButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.okButton.DialogResult = System.Windows.Forms.DialogResult.OK;
+			this.okButton.ImageOver = null;
 			this.okButton.Location = new System.Drawing.Point(404, 540);
 			this.okButton.Name = "okButton";
+			this.okButton.PreferredBack = null;
+			this.okButton.PreferredFore = null;
+			this.okButton.ShowBorder = true;
 			this.okButton.Size = new System.Drawing.Size(116, 38);
 			this.okButton.TabIndex = 9;
 			this.okButton.Text = "OK";
@@ -226,6 +238,7 @@
 			// 
 			this.namesBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
 			this.namesBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.namesBox.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
 			this.namesBox.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.namesBox.FormattingEnabled = true;
 			this.namesBox.Location = new System.Drawing.Point(18, 544);
@@ -240,6 +253,7 @@
 			this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+			this.panel1.BackColor = System.Drawing.SystemColors.Control;
 			this.panel1.Controls.Add(this.ignoredBox);
 			this.panel1.Controls.Add(this.optionsGroup);
 			this.panel1.Controls.Add(this.spacingLabel);
@@ -269,10 +283,9 @@
 			// 
 			// ignoredBox
 			// 
-			this.ignoredBox.AutoSize = true;
 			this.ignoredBox.Location = new System.Drawing.Point(169, 197);
 			this.ignoredBox.Name = "ignoredBox";
-			this.ignoredBox.Size = new System.Drawing.Size(170, 24);
+			this.ignoredBox.Size = new System.Drawing.Size(366, 24);
 			this.ignoredBox.TabIndex = 31;
 			this.ignoredBox.Text = "Disable spell check";
 			this.tooltip.SetToolTip(this.ignoredBox, "Disable spell check for selected text");
@@ -300,29 +313,33 @@
 			this.statusLabel.ForeColor = System.Drawing.Color.Maroon;
 			this.statusLabel.Location = new System.Drawing.Point(46, 117);
 			this.statusLabel.Name = "statusLabel";
+			this.statusLabel.PreferredBack = null;
+			this.statusLabel.PreferredFore = "ErrorText";
 			this.statusLabel.Size = new System.Drawing.Size(31, 20);
 			this.statusLabel.TabIndex = 3;
 			this.statusLabel.Text = "OK";
 			// 
 			// pageColorLink
 			// 
+			this.pageColorLink.ActiveLinkColor = System.Drawing.Color.MediumOrchid;
 			this.pageColorLink.AutoSize = true;
 			this.pageColorLink.Cursor = System.Windows.Forms.Cursors.Hand;
-			this.pageColorLink.HoverColor = System.Drawing.Color.MediumOrchid;
+			this.pageColorLink.HoverColor = System.Drawing.Color.Orchid;
+			this.pageColorLink.LinkColor = System.Drawing.Color.MediumOrchid;
 			this.pageColorLink.Location = new System.Drawing.Point(46, 90);
 			this.pageColorLink.Name = "pageColorLink";
 			this.pageColorLink.Size = new System.Drawing.Size(247, 20);
 			this.pageColorLink.TabIndex = 2;
 			this.pageColorLink.TabStop = true;
 			this.pageColorLink.Text = "Click here to select the page color";
+			this.pageColorLink.VisitedLinkColor = System.Drawing.Color.MediumOrchid;
 			this.pageColorLink.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.SelectPageColor);
 			// 
 			// darkBox
 			// 
-			this.darkBox.AutoSize = true;
 			this.darkBox.Location = new System.Drawing.Point(22, 33);
 			this.darkBox.Name = "darkBox";
-			this.darkBox.Size = new System.Drawing.Size(341, 24);
+			this.darkBox.Size = new System.Drawing.Size(591, 24);
 			this.darkBox.TabIndex = 1;
 			this.darkBox.Text = "Intended for pages with dark bakckgrounds";
 			this.tooltip.SetToolTip(this.darkBox, "Used in Page Color dialog to warn about non-readable text");
@@ -330,10 +347,9 @@
 			// 
 			// pageColorBox
 			// 
-			this.pageColorBox.AutoSize = true;
 			this.pageColorBox.Location = new System.Drawing.Point(22, 63);
 			this.pageColorBox.Name = "pageColorBox";
-			this.pageColorBox.Size = new System.Drawing.Size(388, 24);
+			this.pageColorBox.Size = new System.Drawing.Size(591, 24);
 			this.pageColorBox.TabIndex = 0;
 			this.pageColorBox.Text = "Change the page color when applying these styles";
 			this.pageColorBox.UseVisualStyleBackColor = true;
@@ -374,6 +390,7 @@
 			this.styleTypeBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.styleTypeBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.styleTypeBox.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
 			this.styleTypeBox.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.styleTypeBox.FormattingEnabled = true;
 			this.styleTypeBox.Items.AddRange(new object[] {
@@ -405,6 +422,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.familyBox.DropDownHeight = 400;
 			this.familyBox.DropDownWidth = 350;
+			this.familyBox.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
 			this.familyBox.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.familyBox.FormattingEnabled = true;
 			this.familyBox.IntegralHeight = false;
@@ -433,7 +451,7 @@
 			this.toolStrip.Location = new System.Drawing.Point(169, 149);
 			this.toolStrip.Name = "toolStrip";
 			this.toolStrip.Padding = new System.Windows.Forms.Padding(0);
-			this.toolStrip.Size = new System.Drawing.Size(304, 33);
+			this.toolStrip.Size = new System.Drawing.Size(304, 38);
 			this.toolStrip.TabIndex = 5;
 			// 
 			// boldButton
@@ -444,7 +462,7 @@
 			this.boldButton.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.boldButton.Margin = new System.Windows.Forms.Padding(0, 2, 1, 3);
 			this.boldButton.Name = "boldButton";
-			this.boldButton.Size = new System.Drawing.Size(34, 28);
+			this.boldButton.Size = new System.Drawing.Size(34, 33);
 			this.boldButton.Text = "Bold";
 			this.boldButton.CheckStateChanged += new System.EventHandler(this.ChangeFontStyle);
 			// 
@@ -563,7 +581,7 @@
 			this.mainTools.Location = new System.Drawing.Point(4, 5);
 			this.mainTools.Name = "mainTools";
 			this.mainTools.Padding = new System.Windows.Forms.Padding(0, 0, 4, 0);
-			this.mainTools.Size = new System.Drawing.Size(671, 34);
+			this.mainTools.Size = new System.Drawing.Size(671, 38);
 			this.mainTools.TabIndex = 0;
 			// 
 			// FileMenu
@@ -645,6 +663,7 @@
 			this.ClientSize = new System.Drawing.Size(675, 638);
 			this.Controls.Add(this.mainTools);
 			this.Controls.Add(this.panel1);
+			this.ForeColor = System.Drawing.SystemColors.ControlText;
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.MaximizeBox = false;
@@ -678,7 +697,7 @@
 		private System.Windows.Forms.Label beforeLabel;
 		private System.Windows.Forms.Label afterLabel;
 		private System.Windows.Forms.Label nameLabel;
-		private System.Windows.Forms.TextBox nameBox;
+		private UI.MoreTextBox nameBox;
 		private System.Windows.Forms.Label fontLabel;
 		private UI.ScaledToolStrip toolStrip;
 		private System.Windows.Forms.ToolStripSplitButton colorButton;
@@ -686,8 +705,8 @@
 		private System.Windows.Forms.NumericUpDown spaceAfterSpinner;
 		private System.Windows.Forms.ToolStripSplitButton backColorButton;
 		private System.Windows.Forms.PictureBox previewBox;
-		private System.Windows.Forms.Button cancelButton;
-		private System.Windows.Forms.Button okButton;
+		private UI.MoreButton cancelButton;
+		private UI.MoreButton okButton;
 		private System.Windows.Forms.ComboBox namesBox;
 		private System.Windows.Forms.ToolStripMenuItem transparentToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem defaultBlackToolStripMenuItem;
@@ -698,7 +717,7 @@
 		private System.Windows.Forms.ToolStripButton boldButton;
 		private System.Windows.Forms.ToolStripButton italicButton;
 		private System.Windows.Forms.ToolStripButton underlineButton;
-		private System.Windows.Forms.CheckBox applyColorsBox;
+		private UI.MoreCheckBox applyColorsBox;
 		private System.Windows.Forms.Label styleTypeLabel;
 		private System.Windows.Forms.ComboBox styleTypeBox;
 		private System.Windows.Forms.ToolStripButton strikeButton;
@@ -712,12 +731,12 @@
 		private System.Windows.Forms.NumericUpDown spacingSpinner;
 		private System.Windows.Forms.ToolStripButton renameButton;
 		private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
-		private System.Windows.Forms.GroupBox optionsGroup;
-		private System.Windows.Forms.CheckBox pageColorBox;
-		private System.Windows.Forms.CheckBox darkBox;
+		private UI.MoreGroupBox optionsGroup;
+		private UI.MoreCheckBox pageColorBox;
+		private UI.MoreCheckBox darkBox;
 		private UI.MoreLinkLabel pageColorLink;
 		private System.Windows.Forms.ToolTip tooltip;
-		private System.Windows.Forms.Label statusLabel;
-		private System.Windows.Forms.CheckBox ignoredBox;
+		private UI.MoreLabel statusLabel;
+		private UI.MoreCheckBox ignoredBox;
 	}
 }

@@ -75,7 +75,8 @@ namespace River.OneMoreAddIn.UI
 					? manager.GetThemedColor(foreColor)
 					: manager.GetThemedColor("GrayText");
 
-				var size = g.MeasureString(Text, Font);
+				var text = string.IsNullOrWhiteSpace(Text) ? "M" : Text;
+				var size = g.MeasureString(text, Font);
 
 				g.SmoothingMode = SmoothingMode.HighQuality;
 

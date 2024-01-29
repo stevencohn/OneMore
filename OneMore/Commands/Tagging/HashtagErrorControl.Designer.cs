@@ -34,39 +34,47 @@
 			// 
 			// messageBox
 			// 
+			this.messageBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.messageBox.BackColor = System.Drawing.SystemColors.ControlLightLight;
 			this.messageBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
 			this.messageBox.ForeColor = System.Drawing.Color.Brown;
 			this.messageBox.Location = new System.Drawing.Point(15, 15);
 			this.messageBox.Multiline = true;
 			this.messageBox.Name = "messageBox";
-			this.messageBox.PreferredBack = System.Drawing.Color.Empty;
-			this.messageBox.PreferredFore = System.Drawing.Color.Maroon;
+			this.messageBox.PreferredBack = null;
+			this.messageBox.PreferredFore = "ErrorText";
 			this.messageBox.Size = new System.Drawing.Size(670, 52);
 			this.messageBox.TabIndex = 0;
+			this.messageBox.TabStop = false;
 			this.messageBox.Text = "messageBox";
 			// 
 			// notesBox
 			// 
+			this.notesBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.notesBox.BackColor = System.Drawing.SystemColors.ControlLightLight;
 			this.notesBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
 			this.notesBox.Font = new System.Drawing.Font("Lucida Console", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.notesBox.ForeColor = System.Drawing.SystemColors.GrayText;
 			this.notesBox.Location = new System.Drawing.Point(15, 73);
 			this.notesBox.Multiline = true;
 			this.notesBox.Name = "notesBox";
-			this.notesBox.PreferredBack = System.Drawing.Color.Empty;
-			this.notesBox.PreferredFore = System.Drawing.Color.Empty;
+			this.notesBox.PreferredBack = null;
+			this.notesBox.PreferredFore = null;
 			this.notesBox.Size = new System.Drawing.Size(670, 52);
 			this.notesBox.TabIndex = 1;
+			this.notesBox.TabStop = false;
 			this.notesBox.Text = "notesBox";
 			// 
 			// HashtagErrorControl
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.BackColor = System.Drawing.SystemColors.Window;
+			this.BackColor = System.Drawing.SystemColors.ControlLightLight;
 			this.Controls.Add(this.notesBox);
 			this.Controls.Add(this.messageBox);
-			this.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+			this.ForeColor = System.Drawing.SystemColors.ControlText;
 			this.Name = "HashtagErrorControl";
 			this.Padding = new System.Windows.Forms.Padding(12);
 			this.Size = new System.Drawing.Size(700, 153);

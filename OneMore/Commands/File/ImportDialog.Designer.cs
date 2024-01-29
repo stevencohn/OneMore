@@ -68,8 +68,6 @@
 			this.pathBox.Location = new System.Drawing.Point(62, 54);
 			this.pathBox.Margin = new System.Windows.Forms.Padding(3, 3, 3, 15);
 			this.pathBox.Name = "pathBox";
-			this.pathBox.PreferredBack = System.Drawing.Color.Empty;
-			this.pathBox.PreferredFore = System.Drawing.Color.Empty;
 			this.pathBox.Size = new System.Drawing.Size(449, 26);
 			this.pathBox.TabIndex = 1;
 			this.pathBox.TextChanged += new System.EventHandler(this.ChangePath);
@@ -80,8 +78,6 @@
 			this.browseButton.ImageOver = null;
 			this.browseButton.Location = new System.Drawing.Point(517, 54);
 			this.browseButton.Name = "browseButton";
-			this.browseButton.PreferredBack = System.Drawing.Color.Empty;
-			this.browseButton.PreferredFore = System.Drawing.Color.Empty;
 			this.browseButton.ShowBorder = false;
 			this.browseButton.Size = new System.Drawing.Size(44, 26);
 			this.browseButton.TabIndex = 4;
@@ -95,8 +91,6 @@
 			this.cancelButton.ImageOver = null;
 			this.cancelButton.Location = new System.Drawing.Point(462, 261);
 			this.cancelButton.Name = "cancelButton";
-			this.cancelButton.PreferredBack = System.Drawing.Color.Empty;
-			this.cancelButton.PreferredFore = System.Drawing.Color.Empty;
 			this.cancelButton.ShowBorder = true;
 			this.cancelButton.Size = new System.Drawing.Size(100, 38);
 			this.cancelButton.TabIndex = 6;
@@ -111,8 +105,6 @@
 			this.okButton.ImageOver = null;
 			this.okButton.Location = new System.Drawing.Point(356, 261);
 			this.okButton.Name = "okButton";
-			this.okButton.PreferredBack = System.Drawing.Color.Empty;
-			this.okButton.PreferredFore = System.Drawing.Color.Empty;
 			this.okButton.ShowBorder = true;
 			this.okButton.Size = new System.Drawing.Size(100, 38);
 			this.okButton.TabIndex = 7;
@@ -258,7 +250,7 @@
 			// 
 			this.notInstalledLabel.AutoSize = true;
 			this.notInstalledLabel.ForeColor = System.Drawing.Color.Maroon;
-			this.notInstalledLabel.PreferredFore = System.Drawing.Color.Maroon;
+			this.notInstalledLabel.PreferredFore = "ErrorText";
 			this.notInstalledLabel.Location = new System.Drawing.Point(27, 113);
 			this.notInstalledLabel.Name = "notInstalledLabel";
 			this.notInstalledLabel.Size = new System.Drawing.Size(306, 20);
@@ -270,7 +262,7 @@
 			// 
 			this.errorLabel.AutoSize = true;
 			this.errorLabel.ForeColor = System.Drawing.Color.Maroon;
-			this.errorLabel.PreferredFore = System.Drawing.Color.Maroon;
+			this.errorLabel.PreferredFore = "ErrorText";
 			this.errorLabel.Location = new System.Drawing.Point(27, 270);
 			this.errorLabel.Name = "errorLabel";
 			this.errorLabel.Size = new System.Drawing.Size(114, 20);

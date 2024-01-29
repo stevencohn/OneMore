@@ -66,6 +66,8 @@ namespace River.OneMoreAddIn.Commands
 			palette.SetAutoCompleteList(tagBox);
 			scopeBox.SelectedIndex = 0;
 
+			searchButton.NotifyDefault(true);
+
 			experimental = new SettingsProvider()
 				.GetCollection("GeneralSheet").Get<bool>("experimental");
 

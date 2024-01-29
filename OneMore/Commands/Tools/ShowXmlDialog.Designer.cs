@@ -374,8 +374,6 @@
 			this.queryButton.ImageOver = null;
 			this.queryButton.Location = new System.Drawing.Point(623, 50);
 			this.queryButton.Name = "queryButton";
-			this.queryButton.PreferredBack = System.Drawing.Color.Empty;
-			this.queryButton.PreferredFore = System.Drawing.Color.Empty;
 			this.queryButton.ShowBorder = false;
 			this.queryButton.Size = new System.Drawing.Size(47, 32);
 			this.queryButton.TabIndex = 9;
@@ -406,8 +404,6 @@
 			this.objectIdBox.Location = new System.Drawing.Point(416, 15);
 			this.objectIdBox.Margin = new System.Windows.Forms.Padding(3, 6, 3, 3);
 			this.objectIdBox.Name = "objectIdBox";
-			this.objectIdBox.PreferredBack = System.Drawing.Color.Empty;
-			this.objectIdBox.PreferredFore = System.Drawing.Color.Empty;
 			this.objectIdBox.Size = new System.Drawing.Size(509, 29);
 			this.objectIdBox.TabIndex = 7;
 			this.objectIdBox.TextChanged += new System.EventHandler(this.ManualInputChanged);
@@ -431,8 +427,6 @@
 			this.cancelButton.Location = new System.Drawing.Point(2301, 23);
 			this.cancelButton.Margin = new System.Windows.Forms.Padding(2);
 			this.cancelButton.Name = "cancelButton";
-			this.cancelButton.PreferredBack = System.Drawing.Color.Empty;
-			this.cancelButton.PreferredFore = System.Drawing.Color.Empty;
 			this.cancelButton.ShowBorder = false;
 			this.cancelButton.Size = new System.Drawing.Size(124, 35);
 			this.cancelButton.TabIndex = 9;
@@ -465,8 +459,6 @@
 			this.okButton.Location = new System.Drawing.Point(2169, 23);
 			this.okButton.Margin = new System.Windows.Forms.Padding(2);
 			this.okButton.Name = "okButton";
-			this.okButton.PreferredBack = System.Drawing.Color.Empty;
-			this.okButton.PreferredFore = System.Drawing.Color.Empty;
 			this.okButton.ShowBorder = false;
 			this.okButton.Size = new System.Drawing.Size(124, 35);
 			this.okButton.TabIndex = 8;
@@ -666,8 +658,6 @@
 			this.selectButton.Margin = new System.Windows.Forms.Padding(2);
 			this.selectButton.Name = "selectButton";
 			this.selectButton.Padding = new System.Windows.Forms.Padding(4, 0, 0, 0);
-			this.selectButton.PreferredBack = System.Drawing.Color.Empty;
-			this.selectButton.PreferredFore = System.Drawing.Color.Empty;
 			this.selectButton.ShowBorder = false;
 			this.selectButton.Size = new System.Drawing.Size(140, 35);
 			this.selectButton.TabIndex = 3;
@@ -710,8 +700,6 @@
 			this.findBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.findBox.Location = new System.Drawing.Point(10, 11);
 			this.findBox.Name = "findBox";
-			this.findBox.PreferredBack = System.Drawing.Color.Empty;
-			this.findBox.PreferredFore = System.Drawing.Color.Empty;
 			this.findBox.Size = new System.Drawing.Size(270, 28);
 			this.findBox.TabIndex = 0;
 			this.findBox.TextChanged += new System.EventHandler(this.FindOptionsOnTextChanged);
@@ -724,8 +712,6 @@
 			this.findButton.ImageOver = null;
 			this.findButton.Location = new System.Drawing.Point(288, 9);
 			this.findButton.Name = "findButton";
-			this.findButton.PreferredBack = System.Drawing.Color.Empty;
-			this.findButton.PreferredFore = System.Drawing.Color.Empty;
 			this.findButton.ShowBorder = false;
 			this.findButton.Size = new System.Drawing.Size(58, 35);
 			this.findButton.TabIndex = 1;

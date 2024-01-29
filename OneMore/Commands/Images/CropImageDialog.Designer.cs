@@ -159,8 +159,6 @@
 			this.selectButton.ImageOver = null;
 			this.selectButton.Location = new System.Drawing.Point(12, 9);
 			this.selectButton.Name = "selectButton";
-			this.selectButton.PreferredBack = System.Drawing.Color.Empty;
-			this.selectButton.PreferredFore = System.Drawing.Color.Empty;
 			this.selectButton.ShowBorder = true;
 			this.selectButton.Size = new System.Drawing.Size(120, 40);
 			this.selectButton.TabIndex = 4;
@@ -175,8 +173,6 @@
 			this.cancelButton.ImageOver = null;
 			this.cancelButton.Location = new System.Drawing.Point(1373, 9);
 			this.cancelButton.Name = "cancelButton";
-			this.cancelButton.PreferredBack = System.Drawing.Color.Empty;
-			this.cancelButton.PreferredFore = System.Drawing.Color.Empty;
 			this.cancelButton.ShowBorder = true;
 			this.cancelButton.Size = new System.Drawing.Size(103, 40);
 			this.cancelButton.TabIndex = 1;
@@ -191,8 +187,6 @@
 			this.cropButton.ImageOver = null;
 			this.cropButton.Location = new System.Drawing.Point(1265, 9);
 			this.cropButton.Name = "cropButton";
-			this.cropButton.PreferredBack = System.Drawing.Color.Empty;
-			this.cropButton.PreferredFore = System.Drawing.Color.Empty;
 			this.cropButton.ShowBorder = true;
 			this.cropButton.Size = new System.Drawing.Size(102, 40);
 			this.cropButton.TabIndex = 0;

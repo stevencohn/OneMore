@@ -34,17 +34,17 @@
 			this.customBox = new River.OneMoreAddIn.UI.MorePictureBox();
 			this.noLabel = new System.Windows.Forms.Label();
 			this.noPanel = new System.Windows.Forms.Panel();
-			this.cancelButton = new System.Windows.Forms.Button();
+			this.cancelButton = new River.OneMoreAddIn.UI.MoreButton();
 			this.expander = new River.OneMoreAddIn.UI.MoreExpander();
 			this.optionsPanel = new System.Windows.Forms.Panel();
 			this.loadThemeLink = new River.OneMoreAddIn.UI.MoreLinkLabel();
 			this.currentThemeLabel = new System.Windows.Forms.Label();
-			this.applyThemeBox = new System.Windows.Forms.CheckBox();
-			this.okButton = new System.Windows.Forms.Button();
-			this.omButton = new System.Windows.Forms.RadioButton();
-			this.customButton = new System.Windows.Forms.RadioButton();
-			this.noButton = new System.Windows.Forms.RadioButton();
-			this.statusLabel = new System.Windows.Forms.Label();
+			this.applyThemeBox = new River.OneMoreAddIn.UI.MoreCheckBox();
+			this.okButton = new River.OneMoreAddIn.UI.MoreButton();
+			this.omButton = new River.OneMoreAddIn.UI.MoreRadioButton();
+			this.customButton = new River.OneMoreAddIn.UI.MoreRadioButton();
+			this.noButton = new River.OneMoreAddIn.UI.MoreRadioButton();
+			this.statusLabel = new River.OneMoreAddIn.UI.MoreLabel();
 			this.tooltip = new System.Windows.Forms.ToolTip(this.components);
 			this.scopeBox = new System.Windows.Forms.ComboBox();
 			this.detailPanel = new System.Windows.Forms.Panel();
@@ -78,6 +78,7 @@
 			// noLabel
 			// 
 			this.noLabel.AutoSize = true;
+			this.noLabel.ForeColor = System.Drawing.SystemColors.ControlText;
 			this.noLabel.Location = new System.Drawing.Point(15, 19);
 			this.noLabel.Name = "noLabel";
 			this.noLabel.Size = new System.Drawing.Size(179, 20);
@@ -99,8 +100,12 @@
 			// 
 			this.cancelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+			this.cancelButton.ImageOver = null;
 			this.cancelButton.Location = new System.Drawing.Point(497, 545);
 			this.cancelButton.Name = "cancelButton";
+			this.cancelButton.PreferredBack = null;
+			this.cancelButton.PreferredFore = null;
+			this.cancelButton.ShowBorder = true;
 			this.cancelButton.Size = new System.Drawing.Size(130, 40);
 			this.cancelButton.TabIndex = 9;
 			this.cancelButton.Text = "Cancel";
@@ -136,15 +141,18 @@
 			// 
 			// loadThemeLink
 			// 
+			this.loadThemeLink.ActiveLinkColor = System.Drawing.Color.MediumOrchid;
 			this.loadThemeLink.AutoSize = true;
 			this.loadThemeLink.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.loadThemeLink.HoverColor = System.Drawing.Color.MediumOrchid;
+			this.loadThemeLink.LinkColor = System.Drawing.Color.MediumOrchid;
 			this.loadThemeLink.Location = new System.Drawing.Point(50, 37);
 			this.loadThemeLink.Name = "loadThemeLink";
 			this.loadThemeLink.Size = new System.Drawing.Size(152, 20);
 			this.loadThemeLink.TabIndex = 2;
 			this.loadThemeLink.TabStop = true;
 			this.loadThemeLink.Text = "Load different styles";
+			this.loadThemeLink.VisitedLinkColor = System.Drawing.Color.MediumOrchid;
 			this.loadThemeLink.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.LoadTheme);
 			// 
 			// currentThemeLabel
@@ -158,10 +166,9 @@
 			// 
 			// applyThemeBox
 			// 
-			this.applyThemeBox.AutoSize = true;
 			this.applyThemeBox.Location = new System.Drawing.Point(51, 82);
 			this.applyThemeBox.Name = "applyThemeBox";
-			this.applyThemeBox.Size = new System.Drawing.Size(205, 24);
+			this.applyThemeBox.Size = new System.Drawing.Size(522, 24);
 			this.applyThemeBox.TabIndex = 0;
 			this.applyThemeBox.Text = "Apply styles to this page";
 			this.applyThemeBox.UseVisualStyleBackColor = true;
@@ -170,8 +177,12 @@
 			// 
 			this.okButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.okButton.DialogResult = System.Windows.Forms.DialogResult.OK;
+			this.okButton.ImageOver = null;
 			this.okButton.Location = new System.Drawing.Point(361, 545);
 			this.okButton.Name = "okButton";
+			this.okButton.PreferredBack = null;
+			this.okButton.PreferredFore = null;
+			this.okButton.ShowBorder = true;
 			this.okButton.Size = new System.Drawing.Size(130, 40);
 			this.okButton.TabIndex = 12;
 			this.okButton.Text = "OK";
@@ -192,7 +203,7 @@
 			// customButton
 			// 
 			this.customButton.AutoSize = true;
-			this.customButton.Location = new System.Drawing.Point(33, 117);
+			this.customButton.Location = new System.Drawing.Point(33, 122);
 			this.customButton.Name = "customButton";
 			this.customButton.Size = new System.Drawing.Size(21, 20);
 			this.customButton.TabIndex = 14;
@@ -202,7 +213,7 @@
 			// noButton
 			// 
 			this.noButton.AutoSize = true;
-			this.noButton.Location = new System.Drawing.Point(33, 202);
+			this.noButton.Location = new System.Drawing.Point(33, 203);
 			this.noButton.Name = "noButton";
 			this.noButton.Size = new System.Drawing.Size(21, 20);
 			this.noButton.TabIndex = 15;
@@ -213,8 +224,10 @@
 			// 
 			this.statusLabel.AutoSize = true;
 			this.statusLabel.ForeColor = System.Drawing.Color.Brown;
-			this.statusLabel.Location = new System.Drawing.Point(110, 262);
+			this.statusLabel.Location = new System.Drawing.Point(83, 262);
 			this.statusLabel.Name = "statusLabel";
+			this.statusLabel.PreferredBack = null;
+			this.statusLabel.PreferredFore = "ErrorText";
 			this.statusLabel.Size = new System.Drawing.Size(31, 20);
 			this.statusLabel.TabIndex = 16;
 			this.statusLabel.Text = "OK";
@@ -222,6 +235,7 @@
 			// scopeBox
 			// 
 			this.scopeBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.scopeBox.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
 			this.scopeBox.FormattingEnabled = true;
 			this.scopeBox.Items.AddRange(new object[] {
             "Apply to this page",
@@ -248,6 +262,7 @@
 			this.AcceptButton = this.okButton;
 			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+			this.BackColor = System.Drawing.SystemColors.Control;
 			this.CancelButton = this.cancelButton;
 			this.ClientSize = new System.Drawing.Size(640, 598);
 			this.Controls.Add(this.detailPanel);
@@ -261,6 +276,7 @@
 			this.Controls.Add(this.noPanel);
 			this.Controls.Add(this.omBox);
 			this.Controls.Add(this.customBox);
+			this.ForeColor = System.Drawing.SystemColors.ControlText;
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.MaximizeBox = false;
@@ -289,17 +305,17 @@
 		private River.OneMoreAddIn.UI.MorePictureBox customBox;
 		private System.Windows.Forms.Label noLabel;
 		private System.Windows.Forms.Panel noPanel;
-		private System.Windows.Forms.Button cancelButton;
+		private UI.MoreButton cancelButton;
 		private UI.MoreExpander expander;
 		private System.Windows.Forms.Panel optionsPanel;
 		private UI.MoreLinkLabel loadThemeLink;
 		private System.Windows.Forms.Label currentThemeLabel;
-		private System.Windows.Forms.CheckBox applyThemeBox;
-		private System.Windows.Forms.Button okButton;
-		private System.Windows.Forms.RadioButton omButton;
-		private System.Windows.Forms.RadioButton customButton;
-		private System.Windows.Forms.RadioButton noButton;
-		private System.Windows.Forms.Label statusLabel;
+		private UI.MoreCheckBox applyThemeBox;
+		private UI.MoreButton okButton;
+		private UI.MoreRadioButton omButton;
+		private UI.MoreRadioButton customButton;
+		private UI.MoreRadioButton noButton;
+		private UI.MoreLabel statusLabel;
 		private System.Windows.Forms.ToolTip tooltip;
 		private System.Windows.Forms.ComboBox scopeBox;
 		private System.Windows.Forms.Panel detailPanel;

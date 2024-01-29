@@ -24,6 +24,10 @@ namespace River.OneMoreAddIn.UI
 			Cursor = Cursors.Hand;
 			hcursor = Native.LoadCursor(IntPtr.Zero, Native.IDC_HAND);
 			fore = Color.Empty;
+
+			ActiveLinkColor = Color.MediumOrchid;
+			LinkColor = Color.MediumOrchid;
+			VisitedLinkColor = Color.MediumOrchid;
 		}
 
 
@@ -32,7 +36,7 @@ namespace River.OneMoreAddIn.UI
 		{
 			get;
 			set;
-		} = Color.MediumOrchid;
+		} = Color.Orchid;
 
 
 

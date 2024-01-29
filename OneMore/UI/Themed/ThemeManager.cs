@@ -123,7 +123,7 @@ namespace River.OneMoreAddIn.UI
 			}
 			else if (container is MoreUserControl control)
 			{
-				control.OnThemeChange();
+				Colorize(control);
 			}
 
 			Colorize(container);
@@ -276,20 +276,20 @@ namespace River.OneMoreAddIn.UI
 		}
 
 
-		public Color GetThemedColor(string key, Color preferred = default)
+		public Color GetThemedColor(string key, string preferred = null)
 		{
-			if (preferred == Color.Empty)
+			if (string.IsNullOrWhiteSpace(preferred))
 			{
 				return Colors[key];
 			}
 
 			// preferred could be a SystemColor like "ControlText" or NamedColor like "Blue"
-			if (Colors.ContainsKey(preferred.Name))
+			if (Colors.ContainsKey(preferred))
 			{
-				return Colors[preferred.Name];
+				return Colors[preferred];
 			}
 
-			return preferred;
+			return Color.Magenta;
 		}
 
 

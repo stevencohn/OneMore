@@ -48,13 +48,13 @@ namespace River.OneMoreAddIn.UI
 		/// <summary>
 		/// Gets or sets the preferred background color
 		/// </summary>
-		public Color PreferredBack { get; set; } = Color.Empty;
+		public string PreferredBack { get; set; }
 
 
 		/// <summary>
 		/// Gets or sets the preferred foreground color
 		/// </summary>
-		public Color PreferredFore { get; set; } = Color.Empty;
+		public string PreferredFore { get; set; }
 
 
 		[Description("Specifies the image to show when the mouse is over the button")]
@@ -72,6 +72,7 @@ namespace River.OneMoreAddIn.UI
 		public bool ShowBorder { get; set; } = true;
 
 
+		/*
 		protected override void OnClientSizeChanged(EventArgs e)
 		{
 			base.OnClientSizeChanged(e);
@@ -95,6 +96,7 @@ namespace River.OneMoreAddIn.UI
 				imageOver = new Bitmap(ImageOver, size);
 			}
 		}
+		*/
 
 
 		protected override void OnEnabledChanged(EventArgs e)
@@ -177,7 +179,9 @@ namespace River.OneMoreAddIn.UI
 		protected override void OnPaint(PaintEventArgs pevent)
 		{
 			var g = pevent.Graphics;
-			g.Clear(PreferredBack.IsEmpty ? manager.ButtonBack : PreferredBack);
+			g.Clear(string.IsNullOrEmpty(PreferredBack)
+				? manager.ButtonBack
+				: manager.GetThemedColor(PreferredBack));
 
 			if (Enabled && MouseState != MouseState.None)
 			{
@@ -187,8 +191,11 @@ namespace River.OneMoreAddIn.UI
 
 			if (BackgroundImage != null)
 			{
-				g.DrawImage(BackgroundImage, 0, 0,
-					pevent.ClipRectangle.Width, pevent.ClipRectangle.Height);
+				g.DrawImageUnscaled(BackgroundImage,
+					(pevent.ClipRectangle.Width - BackgroundImage.Width) / 2,
+					(pevent.ClipRectangle.Height - BackgroundImage.Height) / 2);
+				//g.DrawImage(BackgroundImage, 0, 0,
+				//	pevent.ClipRectangle.Width, pevent.ClipRectangle.Height);
 			}
 
 			if (Image != null && !string.IsNullOrWhiteSpace(Text))
@@ -240,7 +247,9 @@ namespace River.OneMoreAddIn.UI
 		private void PaintText(Graphics g, int x, int y)
 		{
 			using var brush = new SolidBrush(Enabled
-				? PreferredFore.IsEmpty ? manager.GetThemedColor("ControlText") : PreferredFore
+				? string.IsNullOrWhiteSpace(PreferredFore)
+					? manager.GetThemedColor("ControlText")
+					: manager.GetThemedColor(PreferredFore)
 				: manager.GetThemedColor("GrayText")
 				);
 

@@ -59,8 +59,6 @@
 			this.pathBox.Location = new System.Drawing.Point(82, 42);
 			this.pathBox.Margin = new System.Windows.Forms.Padding(3, 3, 3, 9);
 			this.pathBox.Name = "pathBox";
-			this.pathBox.PreferredBack = System.Drawing.Color.Empty;
-			this.pathBox.PreferredFore = System.Drawing.Color.Empty;
 			this.pathBox.Size = new System.Drawing.Size(400, 26);
 			this.pathBox.TabIndex = 1;
 			this.pathBox.TextChanged += new System.EventHandler(this.ChangePath);
@@ -160,8 +158,6 @@
 			this.browseButton.ImageOver = null;
 			this.browseButton.Location = new System.Drawing.Point(489, 40);
 			this.browseButton.Name = "browseButton";
-			this.browseButton.PreferredBack = System.Drawing.Color.Empty;
-			this.browseButton.PreferredFore = System.Drawing.Color.Empty;
 			this.browseButton.ShowBorder = false;
 			this.browseButton.Size = new System.Drawing.Size(44, 34);
 			this.browseButton.TabIndex = 4;
@@ -175,8 +171,6 @@
 			this.cancelButton.ImageOver = null;
 			this.cancelButton.Location = new System.Drawing.Point(554, 270);
 			this.cancelButton.Name = "cancelButton";
-			this.cancelButton.PreferredBack = System.Drawing.Color.Empty;
-			this.cancelButton.PreferredFore = System.Drawing.Color.Empty;
 			this.cancelButton.ShowBorder = true;
 			this.cancelButton.Size = new System.Drawing.Size(100, 38);
 			this.cancelButton.TabIndex = 6;
@@ -191,8 +185,6 @@
 			this.okButton.ImageOver = null;
 			this.okButton.Location = new System.Drawing.Point(447, 270);
 			this.okButton.Name = "okButton";
-			this.okButton.PreferredBack = System.Drawing.Color.Empty;
-			this.okButton.PreferredFore = System.Drawing.Color.Empty;
 			this.okButton.ShowBorder = true;
 			this.okButton.Size = new System.Drawing.Size(100, 38);
 			this.okButton.TabIndex = 7;

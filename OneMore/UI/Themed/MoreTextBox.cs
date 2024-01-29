@@ -4,21 +4,26 @@
 
 namespace River.OneMoreAddIn.UI
 {
-	using System.Drawing;
 	using System.Windows.Forms;
 
 
 	internal class MoreTextBox : TextBox, IThemedControl
 	{
+		public MoreTextBox()
+		{
+			BorderStyle = BorderStyle.FixedSingle;
+		}
+
+
 		/// <summary>
 		/// Gets or sets the preferred background color
 		/// </summary>
-		public Color PreferredBack { get; set; } = Color.Empty;
+		public string PreferredBack { get; set; }
 
 
 		/// <summary>
 		/// Gets or sets the preferred foreground color
 		/// </summary>
-		public Color PreferredFore { get; set; } = Color.Empty;
+		public string PreferredFore { get; set; }
 	}
 }

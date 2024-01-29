@@ -45,8 +45,6 @@ namespace River.OneMoreAddIn.Commands
 			this.okButton.ImageOver = null;
 			this.okButton.Location = new System.Drawing.Point(388, 94);
 			this.okButton.Name = "okButton";
-			this.okButton.PreferredBack = System.Drawing.Color.Empty;
-			this.okButton.PreferredFore = System.Drawing.Color.Empty;
 			this.okButton.ShowBorder = true;
 			this.okButton.Size = new System.Drawing.Size(112, 35);
 			this.okButton.TabIndex = 0;
@@ -61,8 +59,6 @@ namespace River.OneMoreAddIn.Commands
 			this.cancelButton.ImageOver = null;
 			this.cancelButton.Location = new System.Drawing.Point(506, 94);
 			this.cancelButton.Name = "cancelButton";
-			this.cancelButton.PreferredBack = System.Drawing.Color.Empty;
-			this.cancelButton.PreferredFore = System.Drawing.Color.Empty;
 			this.cancelButton.ShowBorder = true;
 			this.cancelButton.Size = new System.Drawing.Size(112, 35);
 			this.cancelButton.TabIndex = 1;
@@ -84,8 +80,6 @@ namespace River.OneMoreAddIn.Commands
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.nameBox.Location = new System.Drawing.Point(141, 28);
 			this.nameBox.Name = "nameBox";
-			this.nameBox.PreferredBack = System.Drawing.Color.Empty;
-			this.nameBox.PreferredFore = System.Drawing.Color.Empty;
 			this.nameBox.Size = new System.Drawing.Size(477, 26);
 			this.nameBox.TabIndex = 2;
 			this.nameBox.TextChanged += new System.EventHandler(this.ValidateName);
@@ -94,7 +88,7 @@ namespace River.OneMoreAddIn.Commands
 			// 
 			this.errorLabel.AutoSize = true;
 			this.errorLabel.ForeColor = System.Drawing.Color.Maroon;
-			this.errorLabel.PreferredFore = System.Drawing.Color.Maroon;
+			this.errorLabel.PreferredFore = "ErrorText";
 			this.errorLabel.Location = new System.Drawing.Point(137, 57);
 			this.errorLabel.Name = "errorLabel";
 			this.errorLabel.Size = new System.Drawing.Size(167, 20);

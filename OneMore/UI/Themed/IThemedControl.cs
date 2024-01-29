@@ -4,21 +4,18 @@
 
 namespace River.OneMoreAddIn.UI
 {
-	using System.Drawing;
-
-
 	internal interface IThemedControl
 	{
 
 		/// <summary>
 		/// Gets or sets the preferred background color
 		/// </summary>
-		Color PreferredBack { get; set; }
+		string PreferredBack { get; set; }
 
 
 		/// <summary>
 		/// Gets or sets the preferred foreground color, the text color
 		/// </summary>
-		Color PreferredFore { get; set; }
+		string PreferredFore { get; set; }
 	}
 }

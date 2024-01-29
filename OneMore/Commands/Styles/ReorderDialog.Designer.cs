@@ -28,11 +28,11 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
-			this.okButton = new System.Windows.Forms.Button();
-			this.cancelButton = new System.Windows.Forms.Button();
+			this.okButton = new River.OneMoreAddIn.UI.MoreButton();
+			this.cancelButton = new River.OneMoreAddIn.UI.MoreButton();
 			this.listBox = new System.Windows.Forms.ListBox();
-			this.upButton = new System.Windows.Forms.Button();
-			this.downButton = new System.Windows.Forms.Button();
+			this.upButton = new River.OneMoreAddIn.UI.MoreButton();
+			this.downButton = new River.OneMoreAddIn.UI.MoreButton();
 			this.label = new System.Windows.Forms.Label();
 			this.SuspendLayout();
 			// 
@@ -40,8 +40,12 @@
 			// 
 			this.okButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.okButton.DialogResult = System.Windows.Forms.DialogResult.OK;
+			this.okButton.ImageOver = null;
 			this.okButton.Location = new System.Drawing.Point(120, 497);
 			this.okButton.Name = "okButton";
+			this.okButton.PreferredBack = null;
+			this.okButton.PreferredFore = null;
+			this.okButton.ShowBorder = true;
 			this.okButton.Size = new System.Drawing.Size(116, 38);
 			this.okButton.TabIndex = 0;
 			this.okButton.Text = "OK";
@@ -51,8 +55,12 @@
 			// 
 			this.cancelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+			this.cancelButton.ImageOver = null;
 			this.cancelButton.Location = new System.Drawing.Point(242, 497);
 			this.cancelButton.Name = "cancelButton";
+			this.cancelButton.PreferredBack = null;
+			this.cancelButton.PreferredFore = null;
+			this.cancelButton.ShowBorder = true;
 			this.cancelButton.Size = new System.Drawing.Size(116, 38);
 			this.cancelButton.TabIndex = 1;
 			this.cancelButton.Text = "Cancel";
@@ -77,8 +85,12 @@
 			// 
 			this.upButton.AutoSize = true;
 			this.upButton.Image = global::River.OneMoreAddIn.Properties.Resources.UpArrow;
+			this.upButton.ImageOver = null;
 			this.upButton.Location = new System.Drawing.Point(363, 169);
 			this.upButton.Name = "upButton";
+			this.upButton.PreferredBack = null;
+			this.upButton.PreferredFore = null;
+			this.upButton.ShowBorder = true;
 			this.upButton.Size = new System.Drawing.Size(42, 42);
 			this.upButton.TabIndex = 3;
 			this.upButton.UseVisualStyleBackColor = true;
@@ -88,8 +100,12 @@
 			// 
 			this.downButton.AutoSize = true;
 			this.downButton.Image = global::River.OneMoreAddIn.Properties.Resources.DownArrow;
+			this.downButton.ImageOver = null;
 			this.downButton.Location = new System.Drawing.Point(363, 217);
 			this.downButton.Name = "downButton";
+			this.downButton.PreferredBack = null;
+			this.downButton.PreferredFore = null;
+			this.downButton.ShowBorder = true;
 			this.downButton.Size = new System.Drawing.Size(42, 42);
 			this.downButton.TabIndex = 4;
 			this.downButton.UseVisualStyleBackColor = true;
@@ -110,6 +126,7 @@
 			this.AcceptButton = this.okButton;
 			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+			this.BackColor = System.Drawing.SystemColors.ControlLightLight;
 			this.CancelButton = this.cancelButton;
 			this.ClientSize = new System.Drawing.Size(417, 557);
 			this.Controls.Add(this.label);
@@ -118,6 +135,7 @@
 			this.Controls.Add(this.listBox);
 			this.Controls.Add(this.cancelButton);
 			this.Controls.Add(this.okButton);
+			this.ForeColor = System.Drawing.SystemColors.ControlText;
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
 			this.Name = "ReorderDialog";
 			this.Padding = new System.Windows.Forms.Padding(20, 20, 10, 20);
@@ -131,11 +149,11 @@
 
 		#endregion
 
-		private System.Windows.Forms.Button okButton;
-		private System.Windows.Forms.Button cancelButton;
+		private UI.MoreButton okButton;
+		private UI.MoreButton cancelButton;
 		private System.Windows.Forms.ListBox listBox;
-		private System.Windows.Forms.Button upButton;
-		private System.Windows.Forms.Button downButton;
+		private UI.MoreButton upButton;
+		private UI.MoreButton downButton;
 		private System.Windows.Forms.Label label;
 	}
 }

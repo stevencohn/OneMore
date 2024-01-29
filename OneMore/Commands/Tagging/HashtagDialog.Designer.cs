@@ -60,11 +60,11 @@
 			this.cancelButton.ImageOver = null;
 			this.cancelButton.Location = new System.Drawing.Point(864, 13);
 			this.cancelButton.Name = "cancelButton";
-			this.cancelButton.PreferredBack = System.Drawing.Color.Empty;
-			this.cancelButton.PreferredFore = System.Drawing.Color.Empty;
+			this.cancelButton.PreferredBack = null;
+			this.cancelButton.PreferredFore = null;
 			this.cancelButton.ShowBorder = true;
 			this.cancelButton.Size = new System.Drawing.Size(112, 35);
-			this.cancelButton.TabIndex = 6;
+			this.cancelButton.TabIndex = 0;
 			this.cancelButton.Text = "Cancel";
 			this.cancelButton.UseVisualStyleBackColor = true;
 			this.cancelButton.Click += new System.EventHandler(this.DoCancel);
@@ -111,10 +111,11 @@
 			this.introLabel.Location = new System.Drawing.Point(41, 13);
 			this.introLabel.Multiline = true;
 			this.introLabel.Name = "introLabel";
-			this.introLabel.PreferredBack = System.Drawing.Color.Empty;
-			this.introLabel.PreferredFore = System.Drawing.Color.Empty;
+			this.introLabel.PreferredBack = null;
+			this.introLabel.PreferredFore = null;
 			this.introLabel.Size = new System.Drawing.Size(864, 48);
 			this.introLabel.TabIndex = 10;
+			this.introLabel.TabStop = false;
 			this.introLabel.Text = "Type any part of one or more hashtags. Wildcards are implied unless a tag is ende" +
     "d with a period. Parenthesis and logical operators are allowed.";
 			// 
@@ -126,13 +127,13 @@
 			this.menuButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.menuButton.ForeColor = System.Drawing.SystemColors.GrayText;
 			this.menuButton.ImageOver = null;
-			this.menuButton.Location = new System.Drawing.Point(925, 68);
+			this.menuButton.Location = new System.Drawing.Point(925, 75);
 			this.menuButton.Name = "menuButton";
-			this.menuButton.PreferredBack = System.Drawing.Color.Empty;
-			this.menuButton.PreferredFore = System.Drawing.Color.Empty;
+			this.menuButton.PreferredBack = null;
+			this.menuButton.PreferredFore = null;
 			this.menuButton.ShowBorder = true;
-			this.menuButton.Size = new System.Drawing.Size(50, 38);
-			this.menuButton.TabIndex = 8;
+			this.menuButton.Size = new System.Drawing.Size(50, 31);
+			this.menuButton.TabIndex = 4;
 			this.menuButton.Text = "•••";
 			this.menuButton.UseVisualStyleBackColor = true;
 			this.menuButton.Click += new System.EventHandler(this.ShowMenu);
@@ -158,7 +159,7 @@
 			this.checkAllLink.Location = new System.Drawing.Point(729, 114);
 			this.checkAllLink.Name = "checkAllLink";
 			this.checkAllLink.Size = new System.Drawing.Size(73, 20);
-			this.checkAllLink.TabIndex = 6;
+			this.checkAllLink.TabIndex = 2;
 			this.checkAllLink.TabStop = true;
 			this.checkAllLink.Text = "Check all";
 			this.checkAllLink.VisitedLinkColor = System.Drawing.Color.MediumOrchid;
@@ -175,7 +176,7 @@
 			this.uncheckAllLink.Location = new System.Drawing.Point(828, 114);
 			this.uncheckAllLink.Name = "uncheckAllLink";
 			this.uncheckAllLink.Size = new System.Drawing.Size(91, 20);
-			this.uncheckAllLink.TabIndex = 5;
+			this.uncheckAllLink.TabIndex = 3;
 			this.uncheckAllLink.TabStop = true;
 			this.uncheckAllLink.Text = "Uncheck all";
 			this.uncheckAllLink.VisitedLinkColor = System.Drawing.Color.MediumOrchid;
@@ -202,13 +203,13 @@
 			this.searchButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.searchButton.Image = ((System.Drawing.Image)(resources.GetObject("searchButton.Image")));
 			this.searchButton.ImageOver = null;
-			this.searchButton.Location = new System.Drawing.Point(859, 72);
+			this.searchButton.Location = new System.Drawing.Point(859, 75);
 			this.searchButton.Name = "searchButton";
-			this.searchButton.PreferredBack = System.Drawing.Color.Empty;
-			this.searchButton.PreferredFore = System.Drawing.Color.Empty;
-			this.searchButton.ShowBorder = false;
-			this.searchButton.Size = new System.Drawing.Size(60, 32);
-			this.searchButton.TabIndex = 2;
+			this.searchButton.PreferredBack = null;
+			this.searchButton.PreferredFore = null;
+			this.searchButton.ShowBorder = true;
+			this.searchButton.Size = new System.Drawing.Size(60, 31);
+			this.searchButton.TabIndex = 1;
 			this.searchButton.UseVisualStyleBackColor = true;
 			this.searchButton.Click += new System.EventHandler(this.SearchTags);
 			// 
@@ -220,8 +221,8 @@
 			this.tagBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.tagBox.Location = new System.Drawing.Point(41, 75);
 			this.tagBox.Name = "tagBox";
-			this.tagBox.PreferredBack = System.Drawing.Color.Empty;
-			this.tagBox.PreferredFore = System.Drawing.Color.Empty;
+			this.tagBox.PreferredBack = null;
+			this.tagBox.PreferredFore = null;
 			this.tagBox.Size = new System.Drawing.Size(608, 28);
 			this.tagBox.TabIndex = 0;
 			// 
@@ -257,11 +258,11 @@
 			this.indexButton.Location = new System.Drawing.Point(487, 12);
 			this.indexButton.Margin = new System.Windows.Forms.Padding(4, 5, 10, 9);
 			this.indexButton.Name = "indexButton";
-			this.indexButton.PreferredBack = System.Drawing.Color.Empty;
-			this.indexButton.PreferredFore = System.Drawing.Color.Empty;
+			this.indexButton.PreferredBack = null;
+			this.indexButton.PreferredFore = null;
 			this.indexButton.ShowBorder = true;
 			this.indexButton.Size = new System.Drawing.Size(112, 35);
-			this.indexButton.TabIndex = 7;
+			this.indexButton.TabIndex = 1;
 			this.indexButton.Text = "Index";
 			this.indexButton.UseVisualStyleBackColor = true;
 			this.indexButton.Click += new System.EventHandler(this.DoSomething);
@@ -275,11 +276,11 @@
 			this.copyButton.Location = new System.Drawing.Point(613, 12);
 			this.copyButton.Margin = new System.Windows.Forms.Padding(4, 5, 10, 9);
 			this.copyButton.Name = "copyButton";
-			this.copyButton.PreferredBack = System.Drawing.Color.Empty;
-			this.copyButton.PreferredFore = System.Drawing.Color.Empty;
+			this.copyButton.PreferredBack = null;
+			this.copyButton.PreferredFore = null;
 			this.copyButton.ShowBorder = true;
 			this.copyButton.Size = new System.Drawing.Size(112, 35);
-			this.copyButton.TabIndex = 8;
+			this.copyButton.TabIndex = 2;
 			this.copyButton.Text = "Copy";
 			this.copyButton.UseVisualStyleBackColor = true;
 			this.copyButton.Click += new System.EventHandler(this.DoSomething);
@@ -293,11 +294,11 @@
 			this.moveButton.Location = new System.Drawing.Point(739, 13);
 			this.moveButton.Margin = new System.Windows.Forms.Padding(4, 5, 10, 9);
 			this.moveButton.Name = "moveButton";
-			this.moveButton.PreferredBack = System.Drawing.Color.Empty;
-			this.moveButton.PreferredFore = System.Drawing.Color.Empty;
+			this.moveButton.PreferredBack = null;
+			this.moveButton.PreferredFore = null;
 			this.moveButton.ShowBorder = true;
 			this.moveButton.Size = new System.Drawing.Size(112, 35);
-			this.moveButton.TabIndex = 9;
+			this.moveButton.TabIndex = 3;
 			this.moveButton.Text = "Move";
 			this.moveButton.UseVisualStyleBackColor = true;
 			this.moveButton.Click += new System.EventHandler(this.DoSomething);

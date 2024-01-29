@@ -54,6 +54,8 @@
 			// 
 			// snippetsPanel
 			// 
+			this.snippetsPanel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
 			this.snippetsPanel.AutoSize = true;
 			this.snippetsPanel.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
 			this.snippetsPanel.Location = new System.Drawing.Point(58, 38);

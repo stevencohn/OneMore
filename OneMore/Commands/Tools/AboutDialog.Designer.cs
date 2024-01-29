@@ -75,8 +75,7 @@
 			this.versionLabel.ForeColor = System.Drawing.SystemColors.ControlText;
 			this.versionLabel.Location = new System.Drawing.Point(50, 61);
 			this.versionLabel.Name = "versionLabel";
-			this.versionLabel.PreferredBack = System.Drawing.SystemColors.ControlLightLight;
-			this.versionLabel.PreferredFore = System.Drawing.Color.Empty;
+			this.versionLabel.PreferredBack = "ControlLightLight";
 			this.versionLabel.ReadOnly = true;
 			this.versionLabel.Size = new System.Drawing.Size(534, 30);
 			this.versionLabel.TabIndex = 2;
@@ -100,8 +99,6 @@
 			this.okButton.ImageOver = null;
 			this.okButton.Location = new System.Drawing.Point(748, 502);
 			this.okButton.Name = "okButton";
-			this.okButton.PreferredBack = System.Drawing.Color.Empty;
-			this.okButton.PreferredFore = System.Drawing.Color.Empty;
 			this.okButton.ShowBorder = true;
 			this.okButton.Size = new System.Drawing.Size(130, 42);
 			this.okButton.TabIndex = 0;
@@ -198,8 +195,6 @@
 			this.sponsorButton.ImageOver = null;
 			this.sponsorButton.Location = new System.Drawing.Point(444, 362);
 			this.sponsorButton.Name = "sponsorButton";
-			this.sponsorButton.PreferredBack = System.Drawing.Color.Empty;
-			this.sponsorButton.PreferredFore = System.Drawing.Color.Empty;
 			this.sponsorButton.ShowBorder = true;
 			this.sponsorButton.Size = new System.Drawing.Size(149, 44);
 			this.sponsorButton.TabIndex = 1;

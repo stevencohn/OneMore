@@ -4,14 +4,13 @@
 
 namespace River.OneMoreAddIn.UI
 {
-	using System.Drawing;
 	using System.Windows.Forms;
 
 
 	internal class MoreLabel : Label, IThemedControl
 	{
-		public Color PreferredBack { get; set; }
+		public string PreferredBack { get; set; }
 
-		public Color PreferredFore { get; set; }
+		public string PreferredFore { get; set; }
 	}
 }

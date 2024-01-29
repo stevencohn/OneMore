@@ -45,6 +45,6 @@
     "WindowFrame": "#7F7F7F",
     "WindowText": "#E6E6E6",
 
-    "Maroon": "#FF6347"
+    "ErrorText": "#FF6347"
   }
 }
