@@ -48,6 +48,7 @@
 			// pictureBox1
 			// 
 			this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
 			this.pictureBox1.Image = global::River.OneMoreAddIn.Properties.Resources.Logo;
 			this.pictureBox1.Location = new System.Drawing.Point(590, 0);
 			this.pictureBox1.Name = "pictureBox1";

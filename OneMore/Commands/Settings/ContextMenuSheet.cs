@@ -94,9 +94,7 @@ namespace River.OneMoreAddIn.Settings
 
 		private sealed class MenuItemPanel : Panel
 		{
-			private readonly HandyCheckBox box;
-			private readonly IntPtr hcursor;
-
+			private readonly UI.MoreCheckBox box;
 
 			public bool Checked
 			{
@@ -130,46 +128,19 @@ namespace River.OneMoreAddIn.Settings
 
 				BackColor = color;
 
-				box = new HandyCheckBox
+				box = new UI.MoreCheckBox
 				{
 					Dock = DockStyle.Fill,
 					Padding = new Padding(4, 2, 10, 2),
 					Text = name
 				};
 
-				hcursor = Native.LoadCursor(IntPtr.Zero, Native.IDC_HAND);
-
-				box.MouseEnter += (s, e) => { Native.SetCursor(hcursor); };
-				box.MouseLeave += (s, e) => { box.Cursor = Cursors.Default; };
+				box.UseHandCursor();
 
 				// track by ResID, settings
 				Tag = resID;
 
 				Controls.Add(box);
-			}
-		}
-
-
-		private sealed class HandyCheckBox : CheckBox
-		{
-			private readonly IntPtr hcursor;
-
-			public HandyCheckBox()
-			{
-				Cursor = Cursors.Hand;
-				hcursor = Native.LoadCursor(IntPtr.Zero, Native.IDC_HAND);
-			}
-
-			protected override void WndProc(ref Message m)
-			{
-				if (m.Msg == Native.WM_SETCURSOR && hcursor != IntPtr.Zero)
-				{
-					Native.SetCursor(hcursor);
-					m.Result = IntPtr.Zero; // indicate handled
-					return;
-				}
-
-				base.WndProc(ref m);
 			}
 		}
 		#endregion Private classes
@@ -220,7 +191,30 @@ namespace River.OneMoreAddIn.Settings
 		}
 
 
-		IEnumerable<CtxMenu> CollectCommandMenus()
+		//protected override void OnLoad(EventArgs e)
+		//{
+		//	// after ThemeManager is initialized
+		//	foreach (Control item in menuPanel.Controls)
+		//	{
+		//		if (item.Controls[0] is UI.MoreCheckBox box)
+		//		{
+		//			if (item.Margin.Left == SystemInformation.MenuCheckSize.Width)
+		//			{
+		//				box.BackColor = SystemColors.ControlLightLight;
+		//				box.ForeColor = SystemColors.ControlText;
+		//			}
+		//			else
+		//			{
+		//				box.ForeColor = SystemColors.ActiveCaptionText;
+		//			}
+		//		}
+		//	}
+
+		//	base.OnLoad(e);
+		//}
+
+
+		private IEnumerable<CtxMenu> CollectCommandMenus()
 		{
 			var atype = typeof(CommandAttribute);
 

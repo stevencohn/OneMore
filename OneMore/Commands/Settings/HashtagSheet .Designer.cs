@@ -29,17 +29,17 @@ namespace River.OneMoreAddIn.Settings
 		/// </summary>
 		private void InitializeComponent()
 		{
-			this.introBox = new System.Windows.Forms.TextBox();
+			this.introBox = new River.OneMoreAddIn.UI.MoreTextBox();
 			this.layoutPanel = new System.Windows.Forms.Panel();
 			this.msLabel = new System.Windows.Forms.Label();
 			this.delayBox = new System.Windows.Forms.NumericUpDown();
 			this.delayLabel = new System.Windows.Forms.Label();
-			this.filterBox = new System.Windows.Forms.CheckBox();
+			this.filterBox = new River.OneMoreAddIn.UI.MoreCheckBox();
 			this.styleBox = new System.Windows.Forms.ComboBox();
 			this.styleLabel = new System.Windows.Forms.Label();
-			this.advancedGroup = new System.Windows.Forms.GroupBox();
-			this.rebuildBox = new System.Windows.Forms.CheckBox();
-			this.disabledBox = new System.Windows.Forms.CheckBox();
+			this.advancedGroup = new River.OneMoreAddIn.UI.MoreGroupBox();
+			this.rebuildBox = new River.OneMoreAddIn.UI.MoreCheckBox();
+			this.disabledBox = new River.OneMoreAddIn.UI.MoreCheckBox();
 			this.minLabel = new System.Windows.Forms.Label();
 			this.intervalBox = new System.Windows.Forms.NumericUpDown();
 			this.intervalLabel = new System.Windows.Forms.Label();
@@ -54,9 +54,12 @@ namespace River.OneMoreAddIn.Settings
 			this.introBox.BackColor = System.Drawing.SystemColors.ControlLightLight;
 			this.introBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
 			this.introBox.Dock = System.Windows.Forms.DockStyle.Top;
+			this.introBox.ForeColor = System.Drawing.SystemColors.ControlText;
 			this.introBox.Location = new System.Drawing.Point(13, 8);
 			this.introBox.Multiline = true;
 			this.introBox.Name = "introBox";
+			this.introBox.PreferredBack = "ControlLightLight";
+			this.introBox.PreferredFore = "ControlText";
 			this.introBox.ReadOnly = true;
 			this.introBox.Size = new System.Drawing.Size(772, 66);
 			this.introBox.TabIndex = 3;
@@ -113,10 +116,9 @@ namespace River.OneMoreAddIn.Settings
 			// 
 			// filterBox
 			// 
-			this.filterBox.AutoSize = true;
 			this.filterBox.Location = new System.Drawing.Point(11, 87);
 			this.filterBox.Name = "filterBox";
-			this.filterBox.Size = new System.Drawing.Size(477, 24);
+			this.filterBox.Size = new System.Drawing.Size(495, 24);
 			this.filterBox.TabIndex = 11;
 			this.filterBox.Text = "Treat HTML Hex colors and C# and C++ directives as hashtags";
 			this.filterBox.UseVisualStyleBackColor = true;
@@ -124,6 +126,7 @@ namespace River.OneMoreAddIn.Settings
 			// styleBox
 			// 
 			this.styleBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.styleBox.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
 			this.styleBox.FormattingEnabled = true;
 			this.styleBox.Items.AddRange(new object[] {
             "None",
@@ -159,10 +162,9 @@ namespace River.OneMoreAddIn.Settings
 			// 
 			// rebuildBox
 			// 
-			this.rebuildBox.AutoSize = true;
 			this.rebuildBox.Location = new System.Drawing.Point(18, 41);
 			this.rebuildBox.Name = "rebuildBox";
-			this.rebuildBox.Size = new System.Drawing.Size(339, 24);
+			this.rebuildBox.Size = new System.Drawing.Size(344, 24);
 			this.rebuildBox.TabIndex = 10;
 			this.rebuildBox.Text = "Rebuild the hashtag database upon restart";
 			this.rebuildBox.UseVisualStyleBackColor = true;
@@ -170,10 +172,9 @@ namespace River.OneMoreAddIn.Settings
 			// 
 			// disabledBox
 			// 
-			this.disabledBox.AutoSize = true;
 			this.disabledBox.Location = new System.Drawing.Point(18, 71);
 			this.disabledBox.Name = "disabledBox";
-			this.disabledBox.Size = new System.Drawing.Size(517, 24);
+			this.disabledBox.Size = new System.Drawing.Size(538, 24);
 			this.disabledBox.TabIndex = 0;
 			this.disabledBox.Text = "Disable the hashtag service. This will also disable hashtag searching.";
 			this.disabledBox.UseVisualStyleBackColor = true;
@@ -225,6 +226,7 @@ namespace River.OneMoreAddIn.Settings
 			this.BackColor = System.Drawing.SystemColors.ControlLightLight;
 			this.Controls.Add(this.layoutPanel);
 			this.Controls.Add(this.introBox);
+			this.ForeColor = System.Drawing.SystemColors.ControlText;
 			this.Name = "HashtagSheet";
 			this.Padding = new System.Windows.Forms.Padding(13, 8, 15, 10);
 			this.Size = new System.Drawing.Size(800, 496);
@@ -232,7 +234,6 @@ namespace River.OneMoreAddIn.Settings
 			this.layoutPanel.PerformLayout();
 			((System.ComponentModel.ISupportInitialize)(this.delayBox)).EndInit();
 			this.advancedGroup.ResumeLayout(false);
-			this.advancedGroup.PerformLayout();
 			((System.ComponentModel.ISupportInitialize)(this.intervalBox)).EndInit();
 			this.ResumeLayout(false);
 			this.PerformLayout();
@@ -241,17 +242,17 @@ namespace River.OneMoreAddIn.Settings
 
 		#endregion
 
-		private System.Windows.Forms.TextBox introBox;
+		private UI.MoreTextBox introBox;
 		private System.Windows.Forms.Panel layoutPanel;
 		private System.Windows.Forms.NumericUpDown intervalBox;
 		private System.Windows.Forms.Label intervalLabel;
 		private System.Windows.Forms.Label minLabel;
-		private System.Windows.Forms.GroupBox advancedGroup;
-		private System.Windows.Forms.CheckBox disabledBox;
-		private System.Windows.Forms.CheckBox rebuildBox;
+		private UI.MoreGroupBox advancedGroup;
+		private UI.MoreCheckBox disabledBox;
+		private UI.MoreCheckBox rebuildBox;
 		private System.Windows.Forms.ComboBox styleBox;
 		private System.Windows.Forms.Label styleLabel;
-		private System.Windows.Forms.CheckBox filterBox;
+		private UI.MoreCheckBox filterBox;
 		private System.Windows.Forms.Label msLabel;
 		private System.Windows.Forms.NumericUpDown delayBox;
 		private System.Windows.Forms.Label delayLabel;

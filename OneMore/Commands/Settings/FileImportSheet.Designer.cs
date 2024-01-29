@@ -29,7 +29,7 @@ namespace River.OneMoreAddIn.Settings
 		/// </summary>
 		private void InitializeComponent()
 		{
-			this.introBox = new System.Windows.Forms.TextBox();
+			this.introBox = new River.OneMoreAddIn.UI.MoreTextBox();
 			this.layoutPanel = new System.Windows.Forms.Panel();
 			this.widthBox = new System.Windows.Forms.NumericUpDown();
 			this.widthLabel = new System.Windows.Forms.Label();
@@ -42,9 +42,12 @@ namespace River.OneMoreAddIn.Settings
 			this.introBox.BackColor = System.Drawing.SystemColors.ControlLightLight;
 			this.introBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
 			this.introBox.Dock = System.Windows.Forms.DockStyle.Top;
+			this.introBox.ForeColor = System.Drawing.SystemColors.ControlText;
 			this.introBox.Location = new System.Drawing.Point(13, 8);
 			this.introBox.Multiline = true;
 			this.introBox.Name = "introBox";
+			this.introBox.PreferredBack = "ControlLightLight";
+			this.introBox.PreferredFore = "ControlText";
 			this.introBox.ReadOnly = true;
 			this.introBox.Size = new System.Drawing.Size(772, 66);
 			this.introBox.TabIndex = 3;
@@ -99,6 +102,7 @@ namespace River.OneMoreAddIn.Settings
 			this.BackColor = System.Drawing.SystemColors.ControlLightLight;
 			this.Controls.Add(this.layoutPanel);
 			this.Controls.Add(this.introBox);
+			this.ForeColor = System.Drawing.SystemColors.ControlText;
 			this.Name = "FileImportSheet";
 			this.Padding = new System.Windows.Forms.Padding(13, 8, 15, 10);
 			this.Size = new System.Drawing.Size(800, 500);
@@ -112,7 +116,7 @@ namespace River.OneMoreAddIn.Settings
 
 		#endregion
 
-		private System.Windows.Forms.TextBox introBox;
+		private UI.MoreTextBox introBox;
 		private System.Windows.Forms.Panel layoutPanel;
 		private System.Windows.Forms.NumericUpDown widthBox;
 		private System.Windows.Forms.Label widthLabel;

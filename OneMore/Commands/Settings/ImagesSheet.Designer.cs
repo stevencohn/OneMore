@@ -30,21 +30,21 @@ namespace River.OneMoreAddIn.Settings
 		private void InitializeComponent()
 		{
 			this.components = new System.ComponentModel.Container();
-			this.introBox = new System.Windows.Forms.TextBox();
+			this.introBox = new River.OneMoreAddIn.UI.MoreTextBox();
 			this.layoutPanel = new System.Windows.Forms.Panel();
-			this.resizeGroup = new System.Windows.Forms.GroupBox();
+			this.resizeGroup = new River.OneMoreAddIn.UI.MoreGroupBox();
 			this.widthBox = new System.Windows.Forms.NumericUpDown();
 			this.widthLabel = new System.Windows.Forms.Label();
-			this.generalGroup = new System.Windows.Forms.GroupBox();
+			this.generalGroup = new River.OneMoreAddIn.UI.MoreGroupBox();
 			this.imageViewerLabel = new System.Windows.Forms.Label();
-			this.imageViewerBox = new System.Windows.Forms.TextBox();
-			this.imageViewerButton = new System.Windows.Forms.Button();
-			this.plantGroup = new System.Windows.Forms.GroupBox();
+			this.imageViewerBox = new River.OneMoreAddIn.UI.MoreTextBox();
+			this.imageViewerButton = new River.OneMoreAddIn.UI.MoreButton();
+			this.plantGroup = new River.OneMoreAddIn.UI.MoreGroupBox();
 			this.plantUriLabel = new System.Windows.Forms.Label();
-			this.plantUriBox = new System.Windows.Forms.TextBox();
-			this.plantRemoveBox = new System.Windows.Forms.CheckBox();
-			this.plantCollapseBox = new System.Windows.Forms.CheckBox();
-			this.plantAfterBox = new System.Windows.Forms.CheckBox();
+			this.plantUriBox = new River.OneMoreAddIn.UI.MoreTextBox();
+			this.plantRemoveBox = new River.OneMoreAddIn.UI.MoreCheckBox();
+			this.plantCollapseBox = new River.OneMoreAddIn.UI.MoreCheckBox();
+			this.plantAfterBox = new River.OneMoreAddIn.UI.MoreCheckBox();
 			this.errorProvider = new System.Windows.Forms.ErrorProvider(this.components);
 			this.layoutPanel.SuspendLayout();
 			this.resizeGroup.SuspendLayout();
@@ -62,6 +62,8 @@ namespace River.OneMoreAddIn.Settings
 			this.introBox.Location = new System.Drawing.Point(13, 8);
 			this.introBox.Multiline = true;
 			this.introBox.Name = "introBox";
+			this.introBox.PreferredBack = "ControlLightLight";
+			this.introBox.PreferredFore = "ControlText";
 			this.introBox.ReadOnly = true;
 			this.introBox.Size = new System.Drawing.Size(772, 52);
 			this.introBox.TabIndex = 3;
@@ -144,8 +146,11 @@ namespace River.OneMoreAddIn.Settings
 			// 
 			// imageViewerBox
 			// 
+			this.imageViewerBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
 			this.imageViewerBox.Location = new System.Drawing.Point(32, 55);
 			this.imageViewerBox.Name = "imageViewerBox";
+			this.imageViewerBox.PreferredBack = null;
+			this.imageViewerBox.PreferredFore = null;
 			this.imageViewerBox.Size = new System.Drawing.Size(578, 26);
 			this.imageViewerBox.TabIndex = 7;
 			this.imageViewerBox.Text = "mspaint";
@@ -153,8 +158,12 @@ namespace River.OneMoreAddIn.Settings
 			// 
 			// imageViewerButton
 			// 
+			this.imageViewerButton.ImageOver = null;
 			this.imageViewerButton.Location = new System.Drawing.Point(616, 54);
 			this.imageViewerButton.Name = "imageViewerButton";
+			this.imageViewerButton.PreferredBack = null;
+			this.imageViewerButton.PreferredFore = null;
+			this.imageViewerButton.ShowBorder = true;
 			this.imageViewerButton.Size = new System.Drawing.Size(36, 31);
 			this.imageViewerButton.TabIndex = 8;
 			this.imageViewerButton.Text = "...";
@@ -189,17 +198,19 @@ namespace River.OneMoreAddIn.Settings
 			// 
 			// plantUriBox
 			// 
+			this.plantUriBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
 			this.plantUriBox.Location = new System.Drawing.Point(32, 159);
 			this.plantUriBox.Name = "plantUriBox";
+			this.plantUriBox.PreferredBack = null;
+			this.plantUriBox.PreferredFore = null;
 			this.plantUriBox.Size = new System.Drawing.Size(578, 26);
 			this.plantUriBox.TabIndex = 10;
 			// 
 			// plantRemoveBox
 			// 
-			this.plantRemoveBox.AutoSize = true;
 			this.plantRemoveBox.Location = new System.Drawing.Point(32, 97);
 			this.plantRemoveBox.Name = "plantRemoveBox";
-			this.plantRemoveBox.Size = new System.Drawing.Size(384, 24);
+			this.plantRemoveBox.Size = new System.Drawing.Size(397, 24);
 			this.plantRemoveBox.TabIndex = 2;
 			this.plantRemoveBox.Text = "Remove PlantUML text and embed it in the image";
 			this.plantRemoveBox.UseVisualStyleBackColor = true;
@@ -207,10 +218,9 @@ namespace River.OneMoreAddIn.Settings
 			// 
 			// plantCollapseBox
 			// 
-			this.plantCollapseBox.AutoSize = true;
 			this.plantCollapseBox.Location = new System.Drawing.Point(32, 67);
 			this.plantCollapseBox.Name = "plantCollapseBox";
-			this.plantCollapseBox.Size = new System.Drawing.Size(200, 24);
+			this.plantCollapseBox.Size = new System.Drawing.Size(206, 24);
 			this.plantCollapseBox.TabIndex = 1;
 			this.plantCollapseBox.Text = "Collapse PlantUML text";
 			this.plantCollapseBox.UseVisualStyleBackColor = true;
@@ -218,10 +228,9 @@ namespace River.OneMoreAddIn.Settings
 			// 
 			// plantAfterBox
 			// 
-			this.plantAfterBox.AutoSize = true;
 			this.plantAfterBox.Location = new System.Drawing.Point(32, 37);
 			this.plantAfterBox.Name = "plantAfterBox";
-			this.plantAfterBox.Size = new System.Drawing.Size(408, 24);
+			this.plantAfterBox.Size = new System.Drawing.Size(418, 24);
 			this.plantAfterBox.TabIndex = 0;
 			this.plantAfterBox.Text = "Insert drawing after PlantUML text rather than before";
 			this.plantAfterBox.UseVisualStyleBackColor = true;
@@ -238,6 +247,7 @@ namespace River.OneMoreAddIn.Settings
 			this.BackColor = System.Drawing.SystemColors.ControlLightLight;
 			this.Controls.Add(this.layoutPanel);
 			this.Controls.Add(this.introBox);
+			this.ForeColor = System.Drawing.SystemColors.ControlText;
 			this.Name = "ImagesSheet";
 			this.Padding = new System.Windows.Forms.Padding(13, 8, 15, 10);
 			this.Size = new System.Drawing.Size(800, 500);
@@ -257,21 +267,21 @@ namespace River.OneMoreAddIn.Settings
 
 		#endregion
 
-		private System.Windows.Forms.TextBox introBox;
+		private UI.MoreTextBox introBox;
 		private System.Windows.Forms.Panel layoutPanel;
-		private System.Windows.Forms.GroupBox plantGroup;
-		private System.Windows.Forms.CheckBox plantCollapseBox;
-		private System.Windows.Forms.CheckBox plantAfterBox;
-		private System.Windows.Forms.GroupBox generalGroup;
+		private UI.MoreGroupBox plantGroup;
+		private UI.MoreCheckBox plantCollapseBox;
+		private UI.MoreCheckBox plantAfterBox;
+		private UI.MoreGroupBox generalGroup;
 		private System.Windows.Forms.Label imageViewerLabel;
-		private System.Windows.Forms.TextBox imageViewerBox;
-		private System.Windows.Forms.Button imageViewerButton;
-		private System.Windows.Forms.GroupBox resizeGroup;
+		private UI.MoreTextBox imageViewerBox;
+		private UI.MoreButton imageViewerButton;
+		private UI.MoreGroupBox resizeGroup;
 		private System.Windows.Forms.NumericUpDown widthBox;
 		private System.Windows.Forms.Label widthLabel;
 		private System.Windows.Forms.ErrorProvider errorProvider;
-		private System.Windows.Forms.CheckBox plantRemoveBox;
+		private UI.MoreCheckBox plantRemoveBox;
 		private System.Windows.Forms.Label plantUriLabel;
-		private System.Windows.Forms.TextBox plantUriBox;
+		private UI.MoreTextBox plantUriBox;
 	}
 }

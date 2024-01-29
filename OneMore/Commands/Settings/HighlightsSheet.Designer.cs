@@ -29,14 +29,14 @@
 		private void InitializeComponent()
 		{
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(HighlightsSheet));
-			this.introBox = new System.Windows.Forms.TextBox();
-			this.normalRadio = new System.Windows.Forms.RadioButton();
-			this.fadedRadio = new System.Windows.Forms.RadioButton();
-			this.themesGroup = new System.Windows.Forms.GroupBox();
+			this.introBox = new River.OneMoreAddIn.UI.MoreTextBox();
+			this.normalRadio = new River.OneMoreAddIn.UI.MoreRadioButton();
+			this.fadedRadio = new River.OneMoreAddIn.UI.MoreRadioButton();
+			this.themesGroup = new River.OneMoreAddIn.UI.MoreGroupBox();
 			this.deepPicture = new System.Windows.Forms.PictureBox();
 			this.fadedPicture = new System.Windows.Forms.PictureBox();
 			this.normalPicture = new System.Windows.Forms.PictureBox();
-			this.deepRadio = new System.Windows.Forms.RadioButton();
+			this.deepRadio = new River.OneMoreAddIn.UI.MoreRadioButton();
 			this.themesGroup.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.deepPicture)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.fadedPicture)).BeginInit();
@@ -48,12 +48,14 @@
 			this.introBox.BackColor = System.Drawing.SystemColors.ControlLightLight;
 			this.introBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
 			this.introBox.Dock = System.Windows.Forms.DockStyle.Top;
-			this.introBox.Location = new System.Drawing.Point(7, 6);
-			this.introBox.Margin = new System.Windows.Forms.Padding(2);
+			this.introBox.ForeColor = System.Drawing.SystemColors.ControlText;
+			this.introBox.Location = new System.Drawing.Point(10, 9);
 			this.introBox.Multiline = true;
 			this.introBox.Name = "introBox";
+			this.introBox.PreferredBack = "ControlLightLight";
+			this.introBox.PreferredFore = "ControlText";
 			this.introBox.ReadOnly = true;
-			this.introBox.Size = new System.Drawing.Size(519, 43);
+			this.introBox.Size = new System.Drawing.Size(780, 66);
 			this.introBox.TabIndex = 2;
 			this.introBox.Text = "The highlighter command will cycle through the colors of the chosen theme. Colors" +
     " shown here are for light background pages. Dark background pages use automatic " +
@@ -62,10 +64,10 @@
 			// normalRadio
 			// 
 			this.normalRadio.Checked = true;
-			this.normalRadio.Location = new System.Drawing.Point(12, 24);
-			this.normalRadio.Margin = new System.Windows.Forms.Padding(2, 2, 2, 8);
+			this.normalRadio.Location = new System.Drawing.Point(18, 46);
+			this.normalRadio.Margin = new System.Windows.Forms.Padding(3, 3, 3, 12);
 			this.normalRadio.Name = "normalRadio";
-			this.normalRadio.Size = new System.Drawing.Size(65, 27);
+			this.normalRadio.Size = new System.Drawing.Size(75, 24);
 			this.normalRadio.TabIndex = 3;
 			this.normalRadio.TabStop = true;
 			this.normalRadio.Text = "Bright";
@@ -73,10 +75,10 @@
 			// 
 			// fadedRadio
 			// 
-			this.fadedRadio.Location = new System.Drawing.Point(12, 61);
-			this.fadedRadio.Margin = new System.Windows.Forms.Padding(2, 2, 2, 8);
+			this.fadedRadio.Location = new System.Drawing.Point(18, 104);
+			this.fadedRadio.Margin = new System.Windows.Forms.Padding(3, 3, 3, 12);
 			this.fadedRadio.Name = "fadedRadio";
-			this.fadedRadio.Size = new System.Drawing.Size(65, 27);
+			this.fadedRadio.Size = new System.Drawing.Size(78, 24);
 			this.fadedRadio.TabIndex = 4;
 			this.fadedRadio.Text = "Faded";
 			this.fadedRadio.UseVisualStyleBackColor = true;
@@ -91,11 +93,10 @@
 			this.themesGroup.Controls.Add(this.deepRadio);
 			this.themesGroup.Controls.Add(this.normalRadio);
 			this.themesGroup.Controls.Add(this.fadedRadio);
-			this.themesGroup.Location = new System.Drawing.Point(9, 53);
-			this.themesGroup.Margin = new System.Windows.Forms.Padding(2);
+			this.themesGroup.Location = new System.Drawing.Point(14, 82);
 			this.themesGroup.Name = "themesGroup";
-			this.themesGroup.Padding = new System.Windows.Forms.Padding(10, 10, 2, 2);
-			this.themesGroup.Size = new System.Drawing.Size(516, 183);
+			this.themesGroup.Padding = new System.Windows.Forms.Padding(15, 15, 3, 3);
+			this.themesGroup.Size = new System.Drawing.Size(774, 282);
 			this.themesGroup.TabIndex = 5;
 			this.themesGroup.TabStop = false;
 			this.themesGroup.Text = "Themes";
@@ -103,9 +104,10 @@
 			// deepPicture
 			// 
 			this.deepPicture.Image = ((System.Drawing.Image)(resources.GetObject("deepPicture.Image")));
-			this.deepPicture.Location = new System.Drawing.Point(82, 98);
+			this.deepPicture.Location = new System.Drawing.Point(148, 151);
+			this.deepPicture.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.deepPicture.Name = "deepPicture";
-			this.deepPicture.Size = new System.Drawing.Size(160, 27);
+			this.deepPicture.Size = new System.Drawing.Size(240, 42);
 			this.deepPicture.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
 			this.deepPicture.TabIndex = 8;
 			this.deepPicture.TabStop = false;
@@ -114,9 +116,10 @@
 			// fadedPicture
 			// 
 			this.fadedPicture.Image = ((System.Drawing.Image)(resources.GetObject("fadedPicture.Image")));
-			this.fadedPicture.Location = new System.Drawing.Point(82, 61);
+			this.fadedPicture.Location = new System.Drawing.Point(148, 94);
+			this.fadedPicture.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.fadedPicture.Name = "fadedPicture";
-			this.fadedPicture.Size = new System.Drawing.Size(160, 27);
+			this.fadedPicture.Size = new System.Drawing.Size(240, 42);
 			this.fadedPicture.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
 			this.fadedPicture.TabIndex = 7;
 			this.fadedPicture.TabStop = false;
@@ -125,9 +128,10 @@
 			// normalPicture
 			// 
 			this.normalPicture.Image = ((System.Drawing.Image)(resources.GetObject("normalPicture.Image")));
-			this.normalPicture.Location = new System.Drawing.Point(82, 24);
+			this.normalPicture.Location = new System.Drawing.Point(148, 37);
+			this.normalPicture.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.normalPicture.Name = "normalPicture";
-			this.normalPicture.Size = new System.Drawing.Size(160, 27);
+			this.normalPicture.Size = new System.Drawing.Size(240, 42);
 			this.normalPicture.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
 			this.normalPicture.TabIndex = 6;
 			this.normalPicture.TabStop = false;
@@ -135,26 +139,28 @@
 			// 
 			// deepRadio
 			// 
-			this.deepRadio.Location = new System.Drawing.Point(12, 98);
-			this.deepRadio.Margin = new System.Windows.Forms.Padding(2, 2, 2, 8);
+			this.deepRadio.AutoSize = true;
+			this.deepRadio.Location = new System.Drawing.Point(18, 161);
+			this.deepRadio.Margin = new System.Windows.Forms.Padding(3, 3, 3, 12);
 			this.deepRadio.Name = "deepRadio";
-			this.deepRadio.Size = new System.Drawing.Size(65, 27);
+			this.deepRadio.Size = new System.Drawing.Size(73, 24);
 			this.deepRadio.TabIndex = 5;
 			this.deepRadio.Text = "Deep";
 			this.deepRadio.UseVisualStyleBackColor = true;
 			// 
 			// HighlightsSheet
 			// 
-			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.BackColor = System.Drawing.SystemColors.ControlLightLight;
 			this.Controls.Add(this.themesGroup);
 			this.Controls.Add(this.introBox);
-			this.Margin = new System.Windows.Forms.Padding(2);
+			this.ForeColor = System.Drawing.SystemColors.ControlText;
 			this.Name = "HighlightsSheet";
-			this.Padding = new System.Windows.Forms.Padding(7, 6, 7, 6);
-			this.Size = new System.Drawing.Size(533, 325);
+			this.Padding = new System.Windows.Forms.Padding(10, 9, 10, 9);
+			this.Size = new System.Drawing.Size(800, 500);
 			this.themesGroup.ResumeLayout(false);
+			this.themesGroup.PerformLayout();
 			((System.ComponentModel.ISupportInitialize)(this.deepPicture)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.fadedPicture)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.normalPicture)).EndInit();
@@ -165,11 +171,11 @@
 
 		#endregion
 
-		private System.Windows.Forms.TextBox introBox;
-		private System.Windows.Forms.RadioButton normalRadio;
-		private System.Windows.Forms.RadioButton fadedRadio;
-		private System.Windows.Forms.GroupBox themesGroup;
-		private System.Windows.Forms.RadioButton deepRadio;
+		private UI.MoreTextBox introBox;
+		private UI.MoreRadioButton normalRadio;
+		private UI.MoreRadioButton fadedRadio;
+		private UI.MoreGroupBox themesGroup;
+		private UI.MoreRadioButton deepRadio;
 		private System.Windows.Forms.PictureBox deepPicture;
 		private System.Windows.Forms.PictureBox fadedPicture;
 		private System.Windows.Forms.PictureBox normalPicture;

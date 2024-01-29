@@ -54,13 +54,12 @@
             this.nameColumn,
             this.cmdColumn});
 			this.gridView.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.gridView.Location = new System.Drawing.Point(7, 73);
-			this.gridView.Margin = new System.Windows.Forms.Padding(2);
+			this.gridView.Location = new System.Drawing.Point(10, 97);
 			this.gridView.MultiSelect = false;
 			this.gridView.Name = "gridView";
 			this.gridView.RowHeadersWidth = 30;
 			this.gridView.RowTemplate.Height = 28;
-			this.gridView.Size = new System.Drawing.Size(519, 246);
+			this.gridView.Size = new System.Drawing.Size(780, 394);
 			this.gridView.TabIndex = 2;
 			this.gridView.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.EditOnDoubleClick);
 			this.gridView.RowHeaderMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.EditOnDoubleClickRow);
@@ -87,19 +86,17 @@
 			// 
 			this.introPanel.Controls.Add(this.introLabel);
 			this.introPanel.Dock = System.Windows.Forms.DockStyle.Top;
-			this.introPanel.Location = new System.Drawing.Point(7, 6);
-			this.introPanel.Margin = new System.Windows.Forms.Padding(2);
+			this.introPanel.Location = new System.Drawing.Point(10, 9);
 			this.introPanel.Name = "introPanel";
-			this.introPanel.Size = new System.Drawing.Size(519, 36);
+			this.introPanel.Size = new System.Drawing.Size(780, 55);
 			this.introPanel.TabIndex = 3;
 			// 
 			// introLabel
 			// 
 			this.introLabel.AutoSize = true;
-			this.introLabel.Location = new System.Drawing.Point(2, 3);
-			this.introLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+			this.introLabel.Location = new System.Drawing.Point(3, 5);
 			this.introLabel.Name = "introLabel";
-			this.introLabel.Size = new System.Drawing.Size(513, 13);
+			this.introLabel.Size = new System.Drawing.Size(765, 20);
 			this.introLabel.TabIndex = 0;
 			this.introLabel.Text = "Click the edit button to modify a plugin or double-click its name to rename it. C" +
     "hanges are saved immediately";
@@ -112,10 +109,10 @@
             this.toolStripSeparator1,
             this.deleteLabel,
             this.deleteButton});
-			this.toolStrip.Location = new System.Drawing.Point(7, 42);
+			this.toolStrip.Location = new System.Drawing.Point(10, 64);
 			this.toolStrip.Name = "toolStrip";
-			this.toolStrip.Padding = new System.Windows.Forms.Padding(0, 0, 2, 0);
-			this.toolStrip.Size = new System.Drawing.Size(519, 31);
+			this.toolStrip.Padding = new System.Windows.Forms.Padding(0, 0, 3, 0);
+			this.toolStrip.Size = new System.Drawing.Size(780, 33);
 			this.toolStrip.Stretch = true;
 			this.toolStrip.TabIndex = 4;
 			this.toolStrip.Text = "Tool Strip";
@@ -126,19 +123,19 @@
 			this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
 			this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.toolStripButton1.Name = "toolStripButton1";
-			this.toolStripButton1.Size = new System.Drawing.Size(28, 28);
+			this.toolStripButton1.Size = new System.Drawing.Size(34, 28);
 			this.toolStripButton1.Text = "editButton";
 			this.toolStripButton1.Click += new System.EventHandler(this.EditSelection);
 			// 
 			// toolStripSeparator1
 			// 
 			this.toolStripSeparator1.Name = "toolStripSeparator1";
-			this.toolStripSeparator1.Size = new System.Drawing.Size(6, 31);
+			this.toolStripSeparator1.Size = new System.Drawing.Size(6, 33);
 			// 
 			// deleteLabel
 			// 
 			this.deleteLabel.Name = "deleteLabel";
-			this.deleteLabel.Size = new System.Drawing.Size(43, 28);
+			this.deleteLabel.Size = new System.Drawing.Size(66, 28);
 			this.deleteLabel.Text = "Delete:";
 			// 
 			// deleteButton
@@ -147,22 +144,24 @@
 			this.deleteButton.Image = global::River.OneMoreAddIn.Properties.Resources.Delete;
 			this.deleteButton.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.deleteButton.Name = "deleteButton";
-			this.deleteButton.Size = new System.Drawing.Size(28, 28);
+			this.deleteButton.Size = new System.Drawing.Size(34, 28);
 			this.deleteButton.Text = "Delete";
 			this.deleteButton.Click += new System.EventHandler(this.DeleteItem);
 			// 
 			// PluginsSheet
 			// 
-			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.BackColor = System.Drawing.SystemColors.ControlLightLight;
 			this.Controls.Add(this.gridView);
 			this.Controls.Add(this.toolStrip);
 			this.Controls.Add(this.introPanel);
-			this.MinimumSize = new System.Drawing.Size(500, 260);
+			this.ForeColor = System.Drawing.SystemColors.ControlText;
+			this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+			this.MinimumSize = new System.Drawing.Size(750, 400);
 			this.Name = "PluginsSheet";
-			this.Padding = new System.Windows.Forms.Padding(7, 6, 7, 6);
-			this.Size = new System.Drawing.Size(533, 325);
+			this.Padding = new System.Windows.Forms.Padding(10, 9, 10, 9);
+			this.Size = new System.Drawing.Size(800, 500);
 			((System.ComponentModel.ISupportInitialize)(this.gridView)).EndInit();
 			this.introPanel.ResumeLayout(false);
 			this.introPanel.PerformLayout();

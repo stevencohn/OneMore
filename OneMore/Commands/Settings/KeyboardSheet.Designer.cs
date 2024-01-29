@@ -149,6 +149,7 @@
 			this.Controls.Add(this.gridView);
 			this.Controls.Add(this.toolstrip);
 			this.Controls.Add(this.introPanel);
+			this.ForeColor = System.Drawing.SystemColors.ControlText;
 			this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.MinimumSize = new System.Drawing.Size(750, 400);
 			this.Name = "KeyboardSheet";

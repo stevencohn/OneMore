@@ -29,14 +29,14 @@ namespace River.OneMoreAddIn.Settings
 		/// </summary>
 		private void InitializeComponent()
 		{
-			this.introBox = new System.Windows.Forms.TextBox();
+			this.introBox = new River.OneMoreAddIn.UI.MoreTextBox();
 			this.layoutPanel = new System.Windows.Forms.Panel();
-			this.advancedGroup = new System.Windows.Forms.GroupBox();
-			this.experimentalBox = new System.Windows.Forms.CheckBox();
-			this.verboseBox = new System.Windows.Forms.CheckBox();
+			this.advancedGroup = new River.OneMoreAddIn.UI.MoreGroupBox();
+			this.experimentalBox = new River.OneMoreAddIn.UI.MoreCheckBox();
+			this.verboseBox = new River.OneMoreAddIn.UI.MoreCheckBox();
 			this.langBox = new System.Windows.Forms.ComboBox();
 			this.langLabel = new System.Windows.Forms.Label();
-			this.checkUpdatesBox = new System.Windows.Forms.CheckBox();
+			this.checkUpdatesBox = new River.OneMoreAddIn.UI.MoreCheckBox();
 			this.layoutPanel.SuspendLayout();
 			this.advancedGroup.SuspendLayout();
 			this.SuspendLayout();
@@ -46,9 +46,12 @@ namespace River.OneMoreAddIn.Settings
 			this.introBox.BackColor = System.Drawing.SystemColors.ControlLightLight;
 			this.introBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
 			this.introBox.Dock = System.Windows.Forms.DockStyle.Top;
+			this.introBox.ForeColor = System.Drawing.SystemColors.ControlText;
 			this.introBox.Location = new System.Drawing.Point(13, 8);
 			this.introBox.Multiline = true;
 			this.introBox.Name = "introBox";
+			this.introBox.PreferredBack = "ControlLightLight";
+			this.introBox.PreferredFore = "ControlText";
 			this.introBox.ReadOnly = true;
 			this.introBox.Size = new System.Drawing.Size(772, 66);
 			this.introBox.TabIndex = 3;
@@ -73,6 +76,7 @@ namespace River.OneMoreAddIn.Settings
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.advancedGroup.Controls.Add(this.experimentalBox);
 			this.advancedGroup.Controls.Add(this.verboseBox);
+			this.advancedGroup.ForeColor = System.Drawing.SystemColors.ControlText;
 			this.advancedGroup.Location = new System.Drawing.Point(7, 274);
 			this.advancedGroup.Name = "advancedGroup";
 			this.advancedGroup.Padding = new System.Windows.Forms.Padding(15, 10, 10, 10);
@@ -83,20 +87,18 @@ namespace River.OneMoreAddIn.Settings
 			// 
 			// experimentalBox
 			// 
-			this.experimentalBox.AutoSize = true;
 			this.experimentalBox.Location = new System.Drawing.Point(18, 62);
 			this.experimentalBox.Name = "experimentalBox";
-			this.experimentalBox.Size = new System.Drawing.Size(242, 24);
+			this.experimentalBox.Size = new System.Drawing.Size(248, 24);
 			this.experimentalBox.TabIndex = 1;
 			this.experimentalBox.Text = "Enable experimental features";
 			this.experimentalBox.UseVisualStyleBackColor = true;
 			// 
 			// verboseBox
 			// 
-			this.verboseBox.AutoSize = true;
 			this.verboseBox.Location = new System.Drawing.Point(18, 32);
 			this.verboseBox.Name = "verboseBox";
-			this.verboseBox.Size = new System.Drawing.Size(200, 24);
+			this.verboseBox.Size = new System.Drawing.Size(206, 24);
 			this.verboseBox.TabIndex = 0;
 			this.verboseBox.Text = "Enable verbose logging";
 			this.verboseBox.UseVisualStyleBackColor = true;
@@ -104,6 +106,7 @@ namespace River.OneMoreAddIn.Settings
 			// langBox
 			// 
 			this.langBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.langBox.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
 			this.langBox.FormattingEnabled = true;
 			this.langBox.Location = new System.Drawing.Point(25, 101);
 			this.langBox.Name = "langBox";
@@ -113,6 +116,7 @@ namespace River.OneMoreAddIn.Settings
 			// langLabel
 			// 
 			this.langLabel.AutoSize = true;
+			this.langLabel.ForeColor = System.Drawing.SystemColors.ControlText;
 			this.langLabel.Location = new System.Drawing.Point(21, 78);
 			this.langLabel.Name = "langLabel";
 			this.langLabel.Size = new System.Drawing.Size(297, 20);
@@ -123,10 +127,11 @@ namespace River.OneMoreAddIn.Settings
 			// 
 			this.checkUpdatesBox.Checked = true;
 			this.checkUpdatesBox.CheckState = System.Windows.Forms.CheckState.Checked;
-			this.checkUpdatesBox.Location = new System.Drawing.Point(25, 2);
+			this.checkUpdatesBox.ForeColor = System.Drawing.SystemColors.ControlText;
+			this.checkUpdatesBox.Location = new System.Drawing.Point(25, 5);
 			this.checkUpdatesBox.Margin = new System.Windows.Forms.Padding(0, 10, 0, 0);
 			this.checkUpdatesBox.Name = "checkUpdatesBox";
-			this.checkUpdatesBox.Size = new System.Drawing.Size(744, 43);
+			this.checkUpdatesBox.Size = new System.Drawing.Size(454, 24);
 			this.checkUpdatesBox.TabIndex = 1;
 			this.checkUpdatesBox.Text = "Check for new versions of OneMore when OneNote starts";
 			this.checkUpdatesBox.UseVisualStyleBackColor = true;
@@ -138,13 +143,13 @@ namespace River.OneMoreAddIn.Settings
 			this.BackColor = System.Drawing.SystemColors.ControlLightLight;
 			this.Controls.Add(this.layoutPanel);
 			this.Controls.Add(this.introBox);
+			this.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.Name = "GeneralSheet";
 			this.Padding = new System.Windows.Forms.Padding(13, 8, 15, 10);
 			this.Size = new System.Drawing.Size(800, 500);
 			this.layoutPanel.ResumeLayout(false);
 			this.layoutPanel.PerformLayout();
 			this.advancedGroup.ResumeLayout(false);
-			this.advancedGroup.PerformLayout();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -152,13 +157,13 @@ namespace River.OneMoreAddIn.Settings
 
 		#endregion
 
-		private System.Windows.Forms.TextBox introBox;
+		private UI.MoreTextBox introBox;
 		private System.Windows.Forms.Panel layoutPanel;
-		private System.Windows.Forms.CheckBox checkUpdatesBox;
+		private UI.MoreCheckBox checkUpdatesBox;
 		private System.Windows.Forms.ComboBox langBox;
 		private System.Windows.Forms.Label langLabel;
-		private System.Windows.Forms.GroupBox advancedGroup;
-		private System.Windows.Forms.CheckBox verboseBox;
-		private System.Windows.Forms.CheckBox experimentalBox;
+		private UI.MoreGroupBox advancedGroup;
+		private UI.MoreCheckBox verboseBox;
+		private UI.MoreCheckBox experimentalBox;
 	}
 }

@@ -229,7 +229,7 @@ namespace River.OneMoreAddIn.UI
 			{
 				label.BackColor = label.Parent.BackColor;
 			}
-			else if (control is PictureBox pbox)
+			else if (control is PictureBox pbox && pbox.BackColor.Equals(Color.Transparent))
 			{
 				pbox.BackColor = pbox.Parent.BackColor;
 			}

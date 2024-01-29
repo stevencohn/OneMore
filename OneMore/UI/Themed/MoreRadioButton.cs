@@ -13,11 +13,11 @@ namespace River.OneMoreAddIn.UI
 
 	internal class MoreRadioButton : RadioButton
 	{
-		private const int BoxSize = 18;
 		private const int Radius = 4;
 		private const int Spacing = 4;
 		private readonly ThemeManager manager;
 		private readonly Color foreColor;
+		private int boxSize;
 
 
 		/// <summary>
@@ -45,6 +45,12 @@ namespace River.OneMoreAddIn.UI
 		{
 			var g = pevent.Graphics;
 			g.Clear(BackColor);
+
+			boxSize = SystemInformation.MenuCheckSize.Width;
+			if (boxSize > pevent.ClipRectangle.Height - 3)
+			{
+				boxSize = pevent.ClipRectangle.Height - 3;
+			}
 
 			if (Appearance == Appearance.Button)
 			{
@@ -76,36 +82,39 @@ namespace River.OneMoreAddIn.UI
 					? manager.GetThemedColor(foreColor)
 					: manager.GetThemedColor("GrayText");
 
-				var text = string.IsNullOrWhiteSpace(Text) ? "M" : Text;
-				var size = g.MeasureString(text, Font);
+				var size = AdjustToTextWidth(g);
 
 				g.SmoothingMode = SmoothingMode.HighQuality;
 
-				using var pen = new Pen(color);
-				var boxY = (size.Height - BoxSize) / 2;
+				var boxY = (size.Height - boxSize) / 2;
 
 				if (Checked)
 				{
-					using var fillBrush = new SolidBrush(Enabled
+					var c = Enabled
 						? manager.GetThemedColor("Highlight")
-						: color);
+						: color;
 
-					g.FillEllipse(fillBrush, 0, boxY, BoxSize, BoxSize);
+					using var pen = new Pen(c);
+					g.DrawEllipse(pen, 0, boxY, boxSize, boxSize);
+
+					using var fillBrush = new SolidBrush(c);
+					g.FillEllipse(fillBrush, 0, boxY, boxSize, boxSize);
 
 					using var dotbrush = new SolidBrush(BackColor);
-					g.FillEllipse(dotbrush, 5, boxY + 5, BoxSize - 10, BoxSize - 10);
+					g.FillEllipse(dotbrush, 4, boxY + 4, boxSize - 8, boxSize - 8);
 				}
 				else
 				{
-					g.DrawEllipse(pen, 0, boxY, BoxSize, BoxSize);
+					using var pen = new Pen(color);
+					g.DrawEllipse(pen, 0, boxY, boxSize, boxSize);
 				}
 
 				using var brush = new SolidBrush(color);
 
 				g.DrawString(Text, Font, brush,
-					new Rectangle(BoxSize + Spacing,
+					new Rectangle(boxSize + Spacing,
 						(pevent.ClipRectangle.Height - (int)size.Height) / 2,
-						pevent.ClipRectangle.Width - (BoxSize + Spacing),
+						pevent.ClipRectangle.Width - (boxSize + Spacing),
 						(int)size.Height),
 					new StringFormat
 					{
@@ -116,10 +125,8 @@ namespace River.OneMoreAddIn.UI
 		}
 
 
-		protected override void OnTextChanged(EventArgs e)
+		private SizeF AdjustToTextWidth(Graphics g)
 		{
-			base.OnTextChanged(e);
-
 			// ensure we have something to measure and add fudge factor
 			var text = string.IsNullOrWhiteSpace(Text) ? "M" : $"{Text}.";
 			if (text.Contains(Environment.NewLine))
@@ -131,13 +138,26 @@ namespace River.OneMoreAddIn.UI
 				text = $"{parts.First(p => p.Length == max)}.";
 			}
 
-			using var g = CreateGraphics();
 			var size = g.MeasureString(text, Font);
-			var w = (int)(size.Width + Spacing + BoxSize);
+			var w = (int)(size.Width + Spacing + boxSize);
 			if (Width != w)
 			{
 				AutoSize = false;
 				Width = w;
+			}
+
+			return size;
+		}
+
+
+		protected override void OnTextChanged(EventArgs e)
+		{
+			base.OnTextChanged(e);
+
+			if (Appearance == Appearance.Normal)
+			{
+				using var g = CreateGraphics();
+				AdjustToTextWidth(g);
 			}
 		}
 

@@ -30,16 +30,16 @@ namespace River.OneMoreAddIn.Settings
 		private void InitializeComponent()
 		{
 			this.components = new System.ComponentModel.Container();
-			this.introBox = new System.Windows.Forms.TextBox();
+			this.introBox = new River.OneMoreAddIn.UI.MoreTextBox();
 			this.layoutPanel = new System.Windows.Forms.Panel();
-			this.advancedGroup = new System.Windows.Forms.GroupBox();
-			this.disabledBox = new System.Windows.Forms.CheckBox();
+			this.advancedGroup = new River.OneMoreAddIn.UI.MoreGroupBox();
+			this.disabledBox = new River.OneMoreAddIn.UI.MoreCheckBox();
 			this.secLabel = new System.Windows.Forms.Label();
 			this.intervalBox = new System.Windows.Forms.NumericUpDown();
 			this.intervalLabel = new System.Windows.Forms.Label();
 			this.depthBox = new System.Windows.Forms.NumericUpDown();
 			this.depthLabel = new System.Windows.Forms.Label();
-			this.corrallBox = new System.Windows.Forms.CheckBox();
+			this.corrallBox = new River.OneMoreAddIn.UI.MoreCheckBox();
 			this.tooltip = new System.Windows.Forms.ToolTip(this.components);
 			this.layoutPanel.SuspendLayout();
 			this.advancedGroup.SuspendLayout();
@@ -55,6 +55,8 @@ namespace River.OneMoreAddIn.Settings
 			this.introBox.Location = new System.Drawing.Point(13, 8);
 			this.introBox.Multiline = true;
 			this.introBox.Name = "introBox";
+			this.introBox.PreferredBack = "ControlLightLight";
+			this.introBox.PreferredFore = "ControlText";
 			this.introBox.ReadOnly = true;
 			this.introBox.Size = new System.Drawing.Size(772, 66);
 			this.introBox.TabIndex = 3;
@@ -91,9 +93,9 @@ namespace River.OneMoreAddIn.Settings
 			// 
 			// disabledBox
 			// 
-			this.disabledBox.Location = new System.Drawing.Point(18, 25);
+			this.disabledBox.Location = new System.Drawing.Point(18, 26);
 			this.disabledBox.Name = "disabledBox";
-			this.disabledBox.Size = new System.Drawing.Size(716, 62);
+			this.disabledBox.Size = new System.Drawing.Size(630, 24);
 			this.disabledBox.TabIndex = 0;
 			this.disabledBox.Text = "Disable the navigation service. This will render the Navigator window inoperaable" +
     ".";
@@ -177,10 +179,10 @@ namespace River.OneMoreAddIn.Settings
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.corrallBox.Checked = true;
 			this.corrallBox.CheckState = System.Windows.Forms.CheckState.Checked;
-			this.corrallBox.Location = new System.Drawing.Point(7, 141);
+			this.corrallBox.Location = new System.Drawing.Point(7, 155);
 			this.corrallBox.Margin = new System.Windows.Forms.Padding(0);
 			this.corrallBox.Name = "corrallBox";
-			this.corrallBox.Size = new System.Drawing.Size(762, 43);
+			this.corrallBox.Size = new System.Drawing.Size(399, 24);
 			this.corrallBox.TabIndex = 0;
 			this.corrallBox.Text = "Restrict the Navigator window to the active screen";
 			this.tooltip.SetToolTip(this.corrallBox, "Enabled only when multiple screens are available");
@@ -193,6 +195,7 @@ namespace River.OneMoreAddIn.Settings
 			this.BackColor = System.Drawing.SystemColors.ControlLightLight;
 			this.Controls.Add(this.layoutPanel);
 			this.Controls.Add(this.introBox);
+			this.ForeColor = System.Drawing.SystemColors.ControlText;
 			this.Name = "NavigatorSheet";
 			this.Padding = new System.Windows.Forms.Padding(13, 8, 15, 10);
 			this.Size = new System.Drawing.Size(800, 500);
@@ -208,16 +211,16 @@ namespace River.OneMoreAddIn.Settings
 
 		#endregion
 
-		private System.Windows.Forms.TextBox introBox;
+		private UI.MoreTextBox introBox;
 		private System.Windows.Forms.Panel layoutPanel;
-		private System.Windows.Forms.CheckBox corrallBox;
+		private UI.MoreCheckBox corrallBox;
 		private System.Windows.Forms.NumericUpDown depthBox;
 		private System.Windows.Forms.Label depthLabel;
 		private System.Windows.Forms.NumericUpDown intervalBox;
 		private System.Windows.Forms.Label intervalLabel;
 		private System.Windows.Forms.ToolTip tooltip;
 		private System.Windows.Forms.Label secLabel;
-		private System.Windows.Forms.GroupBox advancedGroup;
-		private System.Windows.Forms.CheckBox disabledBox;
+		private UI.MoreGroupBox advancedGroup;
+		private UI.MoreCheckBox disabledBox;
 	}
 }
