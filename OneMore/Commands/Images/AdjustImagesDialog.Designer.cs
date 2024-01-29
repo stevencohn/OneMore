@@ -105,6 +105,8 @@ namespace River.OneMoreAddIn.Commands
 			this.cancelButton.ImageOver = null;
 			this.cancelButton.Location = new System.Drawing.Point(996, 671);
 			this.cancelButton.Name = "cancelButton";
+			this.cancelButton.PreferredBack = null;
+			this.cancelButton.PreferredFore = null;
 			this.cancelButton.ShowBorder = true;
 			this.cancelButton.Size = new System.Drawing.Size(100, 38);
 			this.cancelButton.TabIndex = 24;
@@ -118,6 +120,8 @@ namespace River.OneMoreAddIn.Commands
 			this.okButton.ImageOver = null;
 			this.okButton.Location = new System.Drawing.Point(890, 671);
 			this.okButton.Name = "okButton";
+			this.okButton.PreferredBack = null;
+			this.okButton.PreferredFore = null;
 			this.okButton.ShowBorder = true;
 			this.okButton.Size = new System.Drawing.Size(100, 38);
 			this.okButton.TabIndex = 23;
@@ -289,6 +293,7 @@ namespace River.OneMoreAddIn.Commands
 			// 
 			// viewSizeLink
 			// 
+			this.viewSizeLink.ActiveLinkColor = System.Drawing.Color.MediumOrchid;
 			this.viewSizeLink.AutoSize = true;
 			this.viewSizeLink.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.viewSizeLink.HoverColor = System.Drawing.Color.Orchid;
@@ -304,6 +309,7 @@ namespace River.OneMoreAddIn.Commands
 			// 
 			// imageSizeLink
 			// 
+			this.imageSizeLink.ActiveLinkColor = System.Drawing.Color.MediumOrchid;
 			this.imageSizeLink.AutoSize = true;
 			this.imageSizeLink.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.imageSizeLink.HoverColor = System.Drawing.Color.Orchid;
@@ -329,11 +335,12 @@ namespace River.OneMoreAddIn.Commands
 			// 
 			// preserveBox
 			// 
+			this.preserveBox.AutoSize = true;
 			this.preserveBox.Checked = true;
 			this.preserveBox.CheckState = System.Windows.Forms.CheckState.Checked;
 			this.preserveBox.Location = new System.Drawing.Point(41, 564);
 			this.preserveBox.Name = "preserveBox";
-			this.preserveBox.Size = new System.Drawing.Size(441, 20);
+			this.preserveBox.Size = new System.Drawing.Size(187, 24);
 			this.preserveBox.TabIndex = 20;
 			this.preserveBox.Text = "Preserve storage size";
 			this.preserveBox.UseVisualStyleBackColor = true;
@@ -637,11 +644,12 @@ namespace River.OneMoreAddIn.Commands
 			// 
 			// repositionBox
 			// 
+			this.repositionBox.AutoSize = true;
 			this.repositionBox.Checked = true;
 			this.repositionBox.CheckState = System.Windows.Forms.CheckState.Checked;
 			this.repositionBox.Location = new System.Drawing.Point(39, 594);
 			this.repositionBox.Name = "repositionBox";
-			this.repositionBox.Size = new System.Drawing.Size(443, 20);
+			this.repositionBox.Size = new System.Drawing.Size(254, 24);
 			this.repositionBox.TabIndex = 48;
 			this.repositionBox.Text = "Reposition background images";
 			this.repositionBox.UseVisualStyleBackColor = true;
@@ -649,6 +657,7 @@ namespace River.OneMoreAddIn.Commands
 			// 
 			// resetLinkLabel
 			// 
+			this.resetLinkLabel.ActiveLinkColor = System.Drawing.Color.MediumOrchid;
 			this.resetLinkLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.resetLinkLabel.AutoSize = true;
 			this.resetLinkLabel.Cursor = System.Windows.Forms.Cursors.Hand;

@@ -19,8 +19,8 @@ namespace River.OneMoreAddIn.UI
 		private const int Radius = 4;
 		private IntPtr hcursor;
 		private Image image;
-		private Image imageOver;
 		private Image enabledImage;
+		private Image grayImage;
 		private readonly ThemeManager manager;
 
 
@@ -36,6 +36,15 @@ namespace River.OneMoreAddIn.UI
 			SetStyle(ControlStyles.AllPaintingInWmPaint, true);
 
 			manager = ThemeManager.Instance;
+		}
+
+
+		protected override void Dispose(bool disposing)
+		{
+			image?.Dispose();
+			ImageOver?.Dispose();
+			enabledImage?.Dispose();
+			grayImage?.Dispose();
 		}
 
 
@@ -72,47 +81,23 @@ namespace River.OneMoreAddIn.UI
 		public bool ShowBorder { get; set; } = true;
 
 
-		/*
-		protected override void OnClientSizeChanged(EventArgs e)
-		{
-			base.OnClientSizeChanged(e);
-
-			if (Image == null && ImageOver == null)
-			{
-				return;
-			}
-
-			var size = new Size(
-				ClientSize.Width - Padding.Left - Padding.Right - 5,
-				ClientSize.Height - Padding.Top - Padding.Bottom - 5);
-
-			if (Image != null)
-			{
-				Image = image = new Bitmap(Image, size);
-			}
-
-			if (ImageOver != null)
-			{
-				imageOver = new Bitmap(ImageOver, size);
-			}
-		}
-		*/
-
-
 		protected override void OnEnabledChanged(EventArgs e)
 		{
 			if (Image != null)
 			{
 				if (Enabled)
 				{
-					Image.Dispose();
 					Image = enabledImage;
 				}
 				else
 				{
-					enabledImage = Image;
-					var editor = new ImageEditor { Style = ImageEditor.Stylization.GrayScale };
-					Image = editor.Apply(Image);
+					if (enabledImage == null || grayImage == null)
+					{
+						enabledImage = Image;
+						grayImage = manager.GetGrayImage(Image);
+					}
+
+					Image = grayImage;
 				}
 			}
 
@@ -137,9 +122,10 @@ namespace River.OneMoreAddIn.UI
 		{
 			if (Enabled)
 			{
-				if (imageOver != null)
+				if (ImageOver != null)
 				{
-					Image = imageOver;
+					image = Image;
+					Image = ImageOver;
 				}
 
 				MouseState |= MouseState.Hover;
@@ -191,11 +177,7 @@ namespace River.OneMoreAddIn.UI
 
 			if (BackgroundImage != null)
 			{
-				g.DrawImageUnscaled(BackgroundImage,
-					(pevent.ClipRectangle.Width - BackgroundImage.Width) / 2,
-					(pevent.ClipRectangle.Height - BackgroundImage.Height) / 2);
-				//g.DrawImage(BackgroundImage, 0, 0,
-				//	pevent.ClipRectangle.Width, pevent.ClipRectangle.Height);
+				PaintBackgroundImage(g, pevent.ClipRectangle);
 			}
 
 			if (Image != null && !string.IsNullOrWhiteSpace(Text))
@@ -204,12 +186,12 @@ namespace River.OneMoreAddIn.UI
 				var x = (pevent.ClipRectangle.Width - ((int)size.Width + Image.Width)) / 2;
 				var y = (pevent.ClipRectangle.Height - Image.Height) / 2;
 
-				g.DrawImageUnscaled(Image, x, y);
+				g.DrawImage(Image, x, y);
 				PaintText(g, x + Image.Width, y);
 			}
 			else if (Image != null)
 			{
-				g.DrawImageUnscaled(Image,
+				g.DrawImage(Image,
 					(pevent.ClipRectangle.Width - Image.Width) / 2,
 					(pevent.ClipRectangle.Height - Image.Height) / 2);
 			}
@@ -240,6 +222,54 @@ namespace River.OneMoreAddIn.UI
 
 				using var pen = new Pen(color, 2);
 				g.DrawRoundedRectangle(pen, pevent.ClipRectangle, Radius);
+			}
+		}
+
+
+		private void PaintBackgroundImage(Graphics g, Rectangle clip)
+		{
+			Image Scale(Image image, int border)
+			{
+				var scaleHeight = (float)(clip.Height - border) / image.Height;
+				var scaleWidth = (float)(clip.Width - border) / image.Width;
+				var scale = Math.Min(scaleHeight, scaleWidth);
+
+				return new Bitmap(image,
+					 (int)(image.Width * scale),
+					 (int)(image.Height * scale));
+			}
+
+			var border = ShowBorder ? 1 : 0;
+			Image scaled = null;
+
+			try
+			{
+				int x, y;
+				if (BackgroundImageLayout == ImageLayout.Stretch &&
+					(BackgroundImage.Width != (clip.Width - border * 2) ||
+					BackgroundImage.Height != (clip.Height - border * 2)))
+				{
+					scaled = Scale(BackgroundImage, border);
+					x = y = border + 1;
+				}
+				else
+				{
+					var img = BackgroundImage;
+					if (BackgroundImage.Width > (clip.Width - border * 2) ||
+						BackgroundImage.Height > (clip.Height - border * 2))
+					{
+						img = scaled = Scale(BackgroundImage, border);
+					}
+
+					x = (clip.Width - img.Width) / 2;
+					y = (clip.Height - img.Width) / 2;
+				}
+
+				g.DrawImage(scaled ?? BackgroundImage, x, y);
+			}
+			finally
+			{
+				scaled?.Dispose();
 			}
 		}
 

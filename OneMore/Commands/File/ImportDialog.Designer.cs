@@ -45,8 +45,8 @@
 			this.pdfCreateButton = new River.OneMoreAddIn.UI.MoreRadioButton();
 			this.pdfAppendButton = new River.OneMoreAddIn.UI.MoreRadioButton();
 			this.introLabel = new System.Windows.Forms.Label();
-			this.notInstalledLabel = new UI.MoreLabel();
-			this.errorLabel = new UI.MoreLabel();
+			this.notInstalledLabel = new River.OneMoreAddIn.UI.MoreLabel();
+			this.errorLabel = new River.OneMoreAddIn.UI.MoreLabel();
 			this.wordGroup.SuspendLayout();
 			this.powerGroup.SuspendLayout();
 			this.pdfGroup.SuspendLayout();
@@ -68,6 +68,8 @@
 			this.pathBox.Location = new System.Drawing.Point(62, 54);
 			this.pathBox.Margin = new System.Windows.Forms.Padding(3, 3, 3, 15);
 			this.pathBox.Name = "pathBox";
+			this.pathBox.PreferredBack = null;
+			this.pathBox.PreferredFore = null;
 			this.pathBox.Size = new System.Drawing.Size(449, 26);
 			this.pathBox.TabIndex = 1;
 			this.pathBox.TextChanged += new System.EventHandler(this.ChangePath);
@@ -78,6 +80,8 @@
 			this.browseButton.ImageOver = null;
 			this.browseButton.Location = new System.Drawing.Point(517, 54);
 			this.browseButton.Name = "browseButton";
+			this.browseButton.PreferredBack = null;
+			this.browseButton.PreferredFore = null;
 			this.browseButton.ShowBorder = false;
 			this.browseButton.Size = new System.Drawing.Size(44, 26);
 			this.browseButton.TabIndex = 4;
@@ -91,6 +95,8 @@
 			this.cancelButton.ImageOver = null;
 			this.cancelButton.Location = new System.Drawing.Point(462, 261);
 			this.cancelButton.Name = "cancelButton";
+			this.cancelButton.PreferredBack = null;
+			this.cancelButton.PreferredFore = null;
 			this.cancelButton.ShowBorder = true;
 			this.cancelButton.Size = new System.Drawing.Size(100, 38);
 			this.cancelButton.TabIndex = 6;
@@ -105,6 +111,8 @@
 			this.okButton.ImageOver = null;
 			this.okButton.Location = new System.Drawing.Point(356, 261);
 			this.okButton.Name = "okButton";
+			this.okButton.PreferredBack = null;
+			this.okButton.PreferredFore = null;
 			this.okButton.ShowBorder = true;
 			this.okButton.Size = new System.Drawing.Size(100, 38);
 			this.okButton.TabIndex = 7;
@@ -126,11 +134,10 @@
 			// 
 			// wordCreateButton
 			// 
-			this.wordCreateButton.AutoSize = true;
 			this.wordCreateButton.ForeColor = System.Drawing.SystemColors.ControlText;
 			this.wordCreateButton.Location = new System.Drawing.Point(40, 67);
 			this.wordCreateButton.Name = "wordCreateButton";
-			this.wordCreateButton.Size = new System.Drawing.Size(155, 24);
+			this.wordCreateButton.Size = new System.Drawing.Size(156, 24);
 			this.wordCreateButton.TabIndex = 10;
 			this.wordCreateButton.TabStop = true;
 			this.wordCreateButton.Text = "Create new page";
@@ -166,11 +173,10 @@
 			// 
 			// powerCreateButton
 			// 
-			this.powerCreateButton.AutoSize = true;
 			this.powerCreateButton.Location = new System.Drawing.Point(40, 67);
 			this.powerCreateButton.Margin = new System.Windows.Forms.Padding(3, 3, 3, 8);
 			this.powerCreateButton.Name = "powerCreateButton";
-			this.powerCreateButton.Size = new System.Drawing.Size(155, 24);
+			this.powerCreateButton.Size = new System.Drawing.Size(156, 24);
 			this.powerCreateButton.TabIndex = 1;
 			this.powerCreateButton.TabStop = true;
 			this.powerCreateButton.Text = "Create new page";
@@ -178,7 +184,6 @@
 			// 
 			// powerAppendButton
 			// 
-			this.powerAppendButton.AutoSize = true;
 			this.powerAppendButton.Checked = true;
 			this.powerAppendButton.Location = new System.Drawing.Point(40, 32);
 			this.powerAppendButton.Margin = new System.Windows.Forms.Padding(3, 3, 3, 8);
@@ -191,10 +196,9 @@
 			// 
 			// powerSectionButton
 			// 
-			this.powerSectionButton.AutoSize = true;
 			this.powerSectionButton.Location = new System.Drawing.Point(40, 101);
 			this.powerSectionButton.Name = "powerSectionButton";
-			this.powerSectionButton.Size = new System.Drawing.Size(343, 24);
+			this.powerSectionButton.Size = new System.Drawing.Size(353, 24);
 			this.powerSectionButton.TabIndex = 2;
 			this.powerSectionButton.TabStop = true;
 			this.powerSectionButton.Text = "Create a new section with a page each slide";
@@ -214,11 +218,10 @@
 			// 
 			// pdfCreateButton
 			// 
-			this.pdfCreateButton.AutoSize = true;
 			this.pdfCreateButton.Checked = true;
 			this.pdfCreateButton.Location = new System.Drawing.Point(40, 67);
 			this.pdfCreateButton.Name = "pdfCreateButton";
-			this.pdfCreateButton.Size = new System.Drawing.Size(155, 24);
+			this.pdfCreateButton.Size = new System.Drawing.Size(156, 24);
 			this.pdfCreateButton.TabIndex = 10;
 			this.pdfCreateButton.TabStop = true;
 			this.pdfCreateButton.Text = "Create new page";
@@ -226,7 +229,6 @@
 			// 
 			// pdfAppendButton
 			// 
-			this.pdfAppendButton.AutoSize = true;
 			this.pdfAppendButton.Location = new System.Drawing.Point(40, 32);
 			this.pdfAppendButton.Margin = new System.Windows.Forms.Padding(3, 3, 3, 8);
 			this.pdfAppendButton.Name = "pdfAppendButton";
@@ -250,9 +252,10 @@
 			// 
 			this.notInstalledLabel.AutoSize = true;
 			this.notInstalledLabel.ForeColor = System.Drawing.Color.Maroon;
-			this.notInstalledLabel.PreferredFore = "ErrorText";
 			this.notInstalledLabel.Location = new System.Drawing.Point(27, 113);
 			this.notInstalledLabel.Name = "notInstalledLabel";
+			this.notInstalledLabel.PreferredBack = null;
+			this.notInstalledLabel.PreferredFore = "ErrorText";
 			this.notInstalledLabel.Size = new System.Drawing.Size(306, 20);
 			this.notInstalledLabel.TabIndex = 10;
 			this.notInstalledLabel.Text = "The required Office product is not installed";
@@ -262,9 +265,10 @@
 			// 
 			this.errorLabel.AutoSize = true;
 			this.errorLabel.ForeColor = System.Drawing.Color.Maroon;
-			this.errorLabel.PreferredFore = "ErrorText";
 			this.errorLabel.Location = new System.Drawing.Point(27, 270);
 			this.errorLabel.Name = "errorLabel";
+			this.errorLabel.PreferredBack = null;
+			this.errorLabel.PreferredFore = "ErrorText";
 			this.errorLabel.Size = new System.Drawing.Size(114, 20);
 			this.errorLabel.TabIndex = 11;
 			this.errorLabel.Text = "Path not found";
@@ -301,9 +305,7 @@
 			this.wordGroup.ResumeLayout(false);
 			this.wordGroup.PerformLayout();
 			this.powerGroup.ResumeLayout(false);
-			this.powerGroup.PerformLayout();
 			this.pdfGroup.ResumeLayout(false);
-			this.pdfGroup.PerformLayout();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 

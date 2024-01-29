@@ -29,10 +29,10 @@
 		private void InitializeComponent()
 		{
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(RemoveSpacingDialog));
-			this.beforeBox = new UI.MoreCheckBox();
-			this.afterBox = new UI.MoreCheckBox();
-			this.betweenBox = new UI.MoreCheckBox();
-			this.headingsBox = new UI.MoreCheckBox();
+			this.beforeBox = new River.OneMoreAddIn.UI.MoreCheckBox();
+			this.afterBox = new River.OneMoreAddIn.UI.MoreCheckBox();
+			this.betweenBox = new River.OneMoreAddIn.UI.MoreCheckBox();
+			this.headingsBox = new River.OneMoreAddIn.UI.MoreCheckBox();
 			this.cancelButton = new River.OneMoreAddIn.UI.MoreButton();
 			this.okButton = new River.OneMoreAddIn.UI.MoreButton();
 			this.SuspendLayout();
@@ -101,6 +101,8 @@
 			this.cancelButton.Location = new System.Drawing.Point(325, 230);
 			this.cancelButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.cancelButton.Name = "cancelButton";
+			this.cancelButton.PreferredBack = null;
+			this.cancelButton.PreferredFore = null;
 			this.cancelButton.ShowBorder = true;
 			this.cancelButton.Size = new System.Drawing.Size(112, 35);
 			this.cancelButton.TabIndex = 5;
@@ -115,6 +117,8 @@
 			this.okButton.Location = new System.Drawing.Point(205, 230);
 			this.okButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.okButton.Name = "okButton";
+			this.okButton.PreferredBack = null;
+			this.okButton.PreferredFore = null;
 			this.okButton.ShowBorder = true;
 			this.okButton.Size = new System.Drawing.Size(112, 35);
 			this.okButton.TabIndex = 0;

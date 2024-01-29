@@ -29,13 +29,13 @@
 		private void InitializeComponent()
 		{
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FitGridToTextDialog));
-			this.okButton = new System.Windows.Forms.Button();
-			this.cancelButton = new System.Windows.Forms.Button();
-			this.autoButton = new System.Windows.Forms.RadioButton();
-			this.customButton = new System.Windows.Forms.RadioButton();
+			this.okButton = new River.OneMoreAddIn.UI.MoreButton();
+			this.cancelButton = new River.OneMoreAddIn.UI.MoreButton();
+			this.autoButton = new River.OneMoreAddIn.UI.MoreRadioButton();
+			this.customButton = new River.OneMoreAddIn.UI.MoreRadioButton();
 			this.sizeLabel = new System.Windows.Forms.Label();
 			this.sizeBox = new System.Windows.Forms.NumericUpDown();
-			this.recommendBox = new System.Windows.Forms.TextBox();
+			this.recommendBox = new River.OneMoreAddIn.UI.MoreTextBox();
 			((System.ComponentModel.ISupportInitialize)(this.sizeBox)).BeginInit();
 			this.SuspendLayout();
 			// 
@@ -43,9 +43,13 @@
 			// 
 			this.okButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.okButton.DialogResult = System.Windows.Forms.DialogResult.OK;
+			this.okButton.ImageOver = null;
 			this.okButton.Location = new System.Drawing.Point(264, 204);
 			this.okButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.okButton.Name = "okButton";
+			this.okButton.PreferredBack = null;
+			this.okButton.PreferredFore = null;
+			this.okButton.ShowBorder = true;
 			this.okButton.Size = new System.Drawing.Size(112, 35);
 			this.okButton.TabIndex = 4;
 			this.okButton.Text = "OK";
@@ -55,9 +59,13 @@
 			// 
 			this.cancelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+			this.cancelButton.ImageOver = null;
 			this.cancelButton.Location = new System.Drawing.Point(385, 204);
 			this.cancelButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.cancelButton.Name = "cancelButton";
+			this.cancelButton.PreferredBack = null;
+			this.cancelButton.PreferredFore = null;
+			this.cancelButton.ShowBorder = true;
 			this.cancelButton.Size = new System.Drawing.Size(112, 35);
 			this.cancelButton.TabIndex = 3;
 			this.cancelButton.Text = "Cancel";
@@ -120,9 +128,12 @@
 			// recommendBox
 			// 
 			this.recommendBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+			this.recommendBox.ForeColor = System.Drawing.SystemColors.ControlText;
 			this.recommendBox.Location = new System.Drawing.Point(62, 138);
 			this.recommendBox.Multiline = true;
 			this.recommendBox.Name = "recommendBox";
+			this.recommendBox.PreferredBack = null;
+			this.recommendBox.PreferredFore = null;
 			this.recommendBox.ReadOnly = true;
 			this.recommendBox.Size = new System.Drawing.Size(432, 52);
 			this.recommendBox.TabIndex = 10;
@@ -133,6 +144,7 @@
 			this.AcceptButton = this.okButton;
 			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+			this.BackColor = System.Drawing.SystemColors.Control;
 			this.CancelButton = this.cancelButton;
 			this.ClientSize = new System.Drawing.Size(509, 252);
 			this.Controls.Add(this.recommendBox);
@@ -142,6 +154,7 @@
 			this.Controls.Add(this.autoButton);
 			this.Controls.Add(this.okButton);
 			this.Controls.Add(this.cancelButton);
+			this.ForeColor = System.Drawing.SystemColors.ControlText;
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.MaximizeBox = false;
@@ -158,12 +171,12 @@
 
 		#endregion
 
-		private System.Windows.Forms.Button okButton;
-		private System.Windows.Forms.Button cancelButton;
-		private System.Windows.Forms.RadioButton autoButton;
-		private System.Windows.Forms.RadioButton customButton;
+		private UI.MoreButton okButton;
+		private UI.MoreButton cancelButton;
+		private UI.MoreRadioButton autoButton;
+		private UI.MoreRadioButton customButton;
 		private System.Windows.Forms.Label sizeLabel;
 		private System.Windows.Forms.NumericUpDown sizeBox;
-		private System.Windows.Forms.TextBox recommendBox;
+		private UI.MoreTextBox recommendBox;
 	}
 }

@@ -44,6 +44,8 @@
 			this.okButton.ImageOver = null;
 			this.okButton.Location = new System.Drawing.Point(261, 270);
 			this.okButton.Name = "okButton";
+			this.okButton.PreferredBack = null;
+			this.okButton.PreferredFore = null;
 			this.okButton.ShowBorder = true;
 			this.okButton.Size = new System.Drawing.Size(100, 38);
 			this.okButton.TabIndex = 0;
@@ -58,6 +60,8 @@
 			this.cancelButton.ImageOver = null;
 			this.cancelButton.Location = new System.Drawing.Point(367, 270);
 			this.cancelButton.Name = "cancelButton";
+			this.cancelButton.PreferredBack = null;
+			this.cancelButton.PreferredFore = null;
 			this.cancelButton.ShowBorder = true;
 			this.cancelButton.Size = new System.Drawing.Size(100, 38);
 			this.cancelButton.TabIndex = 1;
@@ -92,10 +96,11 @@
 			// 
 			// foreBox
 			// 
+			this.foreBox.AutoSize = true;
 			this.foreBox.ForeColor = System.Drawing.SystemColors.ControlText;
 			this.foreBox.Location = new System.Drawing.Point(44, 40);
 			this.foreBox.Name = "foreBox";
-			this.foreBox.Size = new System.Drawing.Size(398, 44);
+			this.foreBox.Size = new System.Drawing.Size(275, 44);
 			this.foreBox.TabIndex = 2;
 			this.foreBox.Text = "Apply to foreground images\r\nForeground images: 0, selected: 0";
 			this.foreBox.UseVisualStyleBackColor = true;
@@ -103,10 +108,11 @@
 			// 
 			// backBox
 			// 
+			this.backBox.AutoSize = true;
 			this.backBox.ForeColor = System.Drawing.SystemColors.ControlText;
 			this.backBox.Location = new System.Drawing.Point(44, 110);
 			this.backBox.Name = "backBox";
-			this.backBox.Size = new System.Drawing.Size(398, 44);
+			this.backBox.Size = new System.Drawing.Size(274, 44);
 			this.backBox.TabIndex = 4;
 			this.backBox.Text = "Apply to background images\r\nBackground images: 0, selected 0";
 			this.backBox.UseVisualStyleBackColor = true;

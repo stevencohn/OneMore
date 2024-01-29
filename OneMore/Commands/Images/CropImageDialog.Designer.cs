@@ -105,7 +105,6 @@
 			this.introText.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.introText.BackColor = System.Drawing.SystemColors.Control;
-			this.introText.BorderStyle = System.Windows.Forms.BorderStyle.None;
 			this.introText.ForeColor = System.Drawing.SystemColors.ControlText;
 			this.introText.Location = new System.Drawing.Point(13, 12);
 			this.introText.Name = "introText";
@@ -159,6 +158,8 @@
 			this.selectButton.ImageOver = null;
 			this.selectButton.Location = new System.Drawing.Point(12, 9);
 			this.selectButton.Name = "selectButton";
+			this.selectButton.PreferredBack = null;
+			this.selectButton.PreferredFore = null;
 			this.selectButton.ShowBorder = true;
 			this.selectButton.Size = new System.Drawing.Size(120, 40);
 			this.selectButton.TabIndex = 4;
@@ -173,6 +174,8 @@
 			this.cancelButton.ImageOver = null;
 			this.cancelButton.Location = new System.Drawing.Point(1373, 9);
 			this.cancelButton.Name = "cancelButton";
+			this.cancelButton.PreferredBack = null;
+			this.cancelButton.PreferredFore = null;
 			this.cancelButton.ShowBorder = true;
 			this.cancelButton.Size = new System.Drawing.Size(103, 40);
 			this.cancelButton.TabIndex = 1;
@@ -187,6 +190,8 @@
 			this.cropButton.ImageOver = null;
 			this.cropButton.Location = new System.Drawing.Point(1265, 9);
 			this.cropButton.Name = "cropButton";
+			this.cropButton.PreferredBack = null;
+			this.cropButton.PreferredFore = null;
 			this.cropButton.ShowBorder = true;
 			this.cropButton.Size = new System.Drawing.Size(102, 40);
 			this.cropButton.TabIndex = 0;
@@ -196,6 +201,8 @@
 			// 
 			// statusStrip
 			// 
+			this.statusStrip.BackColor = System.Drawing.SystemColors.Control;
+			this.statusStrip.ForeColor = System.Drawing.SystemColors.ControlText;
 			this.statusStrip.ImageScalingSize = new System.Drawing.Size(24, 24);
 			this.statusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.sizeStatusLabel,
@@ -249,7 +256,6 @@
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox)).EndInit();
 			this.picturePanel.ResumeLayout(false);
 			this.introPanel.ResumeLayout(false);
-			this.introPanel.PerformLayout();
 			this.buttonPanel.ResumeLayout(false);
 			this.buttonPanel.PerformLayout();
 			((System.ComponentModel.ISupportInitialize)(this.rotationBox)).EndInit();

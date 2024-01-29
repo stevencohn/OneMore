@@ -30,17 +30,17 @@ namespace River.OneMoreAddIn.Commands
 		private void InitializeComponent()
 		{
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SplitDialog));
-			this.splitByGroup = new System.Windows.Forms.GroupBox();
+			this.splitByGroup = new River.OneMoreAddIn.UI.MoreGroupBox();
 			this.byLinksLabel = new System.Windows.Forms.Label();
 			this.byHeading1Label = new System.Windows.Forms.Label();
-			this.byLinksBox = new System.Windows.Forms.RadioButton();
-			this.byHeading1Box = new System.Windows.Forms.RadioButton();
-			this.cancelButton = new System.Windows.Forms.Button();
-			this.okButton = new System.Windows.Forms.Button();
-			this.taggedBox = new System.Windows.Forms.CheckBox();
-			this.filterGroup = new System.Windows.Forms.GroupBox();
+			this.byLinksBox = new River.OneMoreAddIn.UI.MoreRadioButton();
+			this.byHeading1Box = new River.OneMoreAddIn.UI.MoreRadioButton();
+			this.cancelButton = new River.OneMoreAddIn.UI.MoreButton();
+			this.okButton = new River.OneMoreAddIn.UI.MoreButton();
+			this.taggedBox = new River.OneMoreAddIn.UI.MoreCheckBox();
+			this.filterGroup = new River.OneMoreAddIn.UI.MoreGroupBox();
 			this.tagLabel = new System.Windows.Forms.Label();
-			this.tagButton = new System.Windows.Forms.Button();
+			this.tagButton = new River.OneMoreAddIn.UI.MoreButton();
 			this.splitByGroup.SuspendLayout();
 			this.filterGroup.SuspendLayout();
 			this.SuspendLayout();
@@ -110,9 +110,13 @@ namespace River.OneMoreAddIn.Commands
 			// 
 			this.cancelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+			this.cancelButton.ImageOver = null;
 			this.cancelButton.Location = new System.Drawing.Point(429, 372);
 			this.cancelButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.cancelButton.Name = "cancelButton";
+			this.cancelButton.PreferredBack = null;
+			this.cancelButton.PreferredFore = null;
+			this.cancelButton.ShowBorder = true;
 			this.cancelButton.Size = new System.Drawing.Size(112, 35);
 			this.cancelButton.TabIndex = 1;
 			this.cancelButton.Text = "Cancel";
@@ -122,9 +126,13 @@ namespace River.OneMoreAddIn.Commands
 			// 
 			this.okButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.okButton.DialogResult = System.Windows.Forms.DialogResult.OK;
+			this.okButton.ImageOver = null;
 			this.okButton.Location = new System.Drawing.Point(308, 372);
 			this.okButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.okButton.Name = "okButton";
+			this.okButton.PreferredBack = null;
+			this.okButton.PreferredFore = null;
+			this.okButton.ShowBorder = true;
 			this.okButton.Size = new System.Drawing.Size(112, 35);
 			this.okButton.TabIndex = 2;
 			this.okButton.Text = "OK";
@@ -172,9 +180,13 @@ namespace River.OneMoreAddIn.Commands
 			// 
 			this.tagButton.BackColor = System.Drawing.SystemColors.Window;
 			this.tagButton.Enabled = false;
+			this.tagButton.ImageOver = null;
 			this.tagButton.Location = new System.Drawing.Point(100, 75);
 			this.tagButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.tagButton.Name = "tagButton";
+			this.tagButton.PreferredBack = null;
+			this.tagButton.PreferredFore = null;
+			this.tagButton.ShowBorder = true;
 			this.tagButton.Size = new System.Drawing.Size(60, 38);
 			this.tagButton.TabIndex = 19;
 			this.tagButton.Text = "?";
@@ -187,12 +199,14 @@ namespace River.OneMoreAddIn.Commands
 			this.AcceptButton = this.okButton;
 			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+			this.BackColor = System.Drawing.SystemColors.Control;
 			this.CancelButton = this.cancelButton;
 			this.ClientSize = new System.Drawing.Size(561, 428);
 			this.Controls.Add(this.filterGroup);
 			this.Controls.Add(this.okButton);
 			this.Controls.Add(this.cancelButton);
 			this.Controls.Add(this.splitByGroup);
+			this.ForeColor = System.Drawing.SystemColors.ControlText;
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
@@ -212,16 +226,16 @@ namespace River.OneMoreAddIn.Commands
 
 		#endregion
 
-		private System.Windows.Forms.GroupBox splitByGroup;
+		private UI.MoreGroupBox splitByGroup;
 		private System.Windows.Forms.Label byLinksLabel;
 		private System.Windows.Forms.Label byHeading1Label;
-		private System.Windows.Forms.RadioButton byLinksBox;
-		private System.Windows.Forms.RadioButton byHeading1Box;
-		private System.Windows.Forms.Button cancelButton;
-		private System.Windows.Forms.Button okButton;
-		private System.Windows.Forms.CheckBox taggedBox;
-		private System.Windows.Forms.GroupBox filterGroup;
+		private UI.MoreRadioButton byLinksBox;
+		private UI.MoreRadioButton byHeading1Box;
+		private UI.MoreButton cancelButton;
+		private UI.MoreButton okButton;
+		private UI.MoreCheckBox taggedBox;
+		private UI.MoreGroupBox filterGroup;
 		private System.Windows.Forms.Label tagLabel;
-		private System.Windows.Forms.Button tagButton;
+		private UI.MoreButton tagButton;
 	}
 }

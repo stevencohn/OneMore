@@ -47,7 +47,7 @@
 			this.cancelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
 			this.cancelButton.ImageOver = null;
-			this.cancelButton.Location = new System.Drawing.Point(458, 264);
+			this.cancelButton.Location = new System.Drawing.Point(513, 262);
 			this.cancelButton.Name = "cancelButton";
 			this.cancelButton.PreferredBack = null;
 			this.cancelButton.PreferredFore = null;
@@ -63,7 +63,7 @@
 			this.okButton.DialogResult = System.Windows.Forms.DialogResult.OK;
 			this.okButton.Enabled = false;
 			this.okButton.ImageOver = null;
-			this.okButton.Location = new System.Drawing.Point(351, 264);
+			this.okButton.Location = new System.Drawing.Point(406, 262);
 			this.okButton.Name = "okButton";
 			this.okButton.PreferredBack = null;
 			this.okButton.PreferredFore = null;
@@ -96,7 +96,7 @@
 			this.matchBox.Location = new System.Drawing.Point(160, 79);
 			this.matchBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 3);
 			this.matchBox.Name = "matchBox";
-			this.matchBox.Size = new System.Drawing.Size(394, 24);
+			this.matchBox.Size = new System.Drawing.Size(117, 24);
 			this.matchBox.TabIndex = 1;
 			this.matchBox.Text = "Match case";
 			this.matchBox.UseVisualStyleBackColor = true;
@@ -106,7 +106,7 @@
 			this.regBox.Location = new System.Drawing.Point(160, 107);
 			this.regBox.Margin = new System.Windows.Forms.Padding(4, 1, 4, 3);
 			this.regBox.Name = "regBox";
-			this.regBox.Size = new System.Drawing.Size(394, 24);
+			this.regBox.Size = new System.Drawing.Size(211, 24);
 			this.regBox.TabIndex = 2;
 			this.regBox.Text = "Use regular expressions";
 			this.regBox.UseVisualStyleBackColor = true;
@@ -114,44 +114,54 @@
 			// 
 			// whatBox
 			// 
+			this.whatBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.whatBox.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
 			this.whatBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.whatBox.FormattingEnabled = true;
 			this.whatBox.Location = new System.Drawing.Point(154, 21);
 			this.whatBox.Name = "whatBox";
-			this.whatBox.Size = new System.Drawing.Size(400, 30);
+			this.whatBox.Size = new System.Drawing.Size(455, 30);
 			this.whatBox.TabIndex = 0;
 			this.whatBox.SelectedIndexChanged += new System.EventHandler(this.SelectedWhat);
 			this.whatBox.TextChanged += new System.EventHandler(this.CheckPattern);
 			// 
 			// withBox
 			// 
+			this.withBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.withBox.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
 			this.withBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.withBox.FormattingEnabled = true;
 			this.withBox.Location = new System.Drawing.Point(154, 157);
 			this.withBox.Name = "withBox";
-			this.withBox.Size = new System.Drawing.Size(400, 30);
+			this.withBox.Size = new System.Drawing.Size(455, 30);
 			this.withBox.TabIndex = 3;
 			this.withBox.TextChanged += new System.EventHandler(this.CheckXmlFormat);
 			// 
 			// whatStatusLabel
 			// 
+			this.whatStatusLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
 			this.whatStatusLabel.ForeColor = System.Drawing.Color.Brown;
 			this.whatStatusLabel.Location = new System.Drawing.Point(156, 54);
 			this.whatStatusLabel.Name = "whatStatusLabel";
 			this.whatStatusLabel.PreferredBack = null;
 			this.whatStatusLabel.PreferredFore = "ErrorText";
-			this.whatStatusLabel.Size = new System.Drawing.Size(398, 20);
+			this.whatStatusLabel.Size = new System.Drawing.Size(453, 20);
 			this.whatStatusLabel.TabIndex = 9;
 			this.whatStatusLabel.Text = "Invalid regular expression";
 			// 
 			// withStatusLabel
 			// 
+			this.withStatusLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
 			this.withStatusLabel.ForeColor = System.Drawing.SystemColors.MenuHighlight;
 			this.withStatusLabel.Location = new System.Drawing.Point(156, 190);
 			this.withStatusLabel.Name = "withStatusLabel";
 			this.withStatusLabel.PreferredBack = null;
-			this.withStatusLabel.PreferredFore = "MenuHighlight";
-			this.withStatusLabel.Size = new System.Drawing.Size(398, 20);
+			this.withStatusLabel.PreferredFore = "HintText";
+			this.withStatusLabel.Size = new System.Drawing.Size(453, 20);
 			this.withStatusLabel.TabIndex = 10;
 			this.withStatusLabel.Text = "Valid substitution parameters: $1";
 			// 
@@ -160,7 +170,7 @@
 			this.rawBox.Location = new System.Drawing.Point(160, 215);
 			this.rawBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 3);
 			this.rawBox.Name = "rawBox";
-			this.rawBox.Size = new System.Drawing.Size(394, 24);
+			this.rawBox.Size = new System.Drawing.Size(197, 24);
 			this.rawBox.TabIndex = 11;
 			this.rawBox.Text = "Replace with raw XML";
 			this.rawBox.UseVisualStyleBackColor = true;
@@ -171,8 +181,9 @@
 			this.AcceptButton = this.okButton;
 			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+			this.BackColor = System.Drawing.SystemColors.Control;
 			this.CancelButton = this.cancelButton;
-			this.ClientSize = new System.Drawing.Size(574, 320);
+			this.ClientSize = new System.Drawing.Size(629, 318);
 			this.Controls.Add(this.rawBox);
 			this.Controls.Add(this.withStatusLabel);
 			this.Controls.Add(this.whatStatusLabel);

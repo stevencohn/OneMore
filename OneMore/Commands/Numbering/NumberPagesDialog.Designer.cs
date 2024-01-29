@@ -28,15 +28,15 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
-			this.okButton = new System.Windows.Forms.Button();
-			this.cancelButton = new System.Windows.Forms.Button();
-			this.numberingGroup = new System.Windows.Forms.GroupBox();
+			this.okButton = new River.OneMoreAddIn.UI.MoreButton();
+			this.cancelButton = new River.OneMoreAddIn.UI.MoreButton();
+			this.numberingGroup = new River.OneMoreAddIn.UI.MoreGroupBox();
 			this.introLabel = new System.Windows.Forms.Label();
-			this.cleanBox = new System.Windows.Forms.CheckBox();
-			this.alphaDemoBox = new System.Windows.Forms.TextBox();
-			this.alphaRadio = new System.Windows.Forms.RadioButton();
-			this.numDemoBox = new System.Windows.Forms.TextBox();
-			this.numRadio = new System.Windows.Forms.RadioButton();
+			this.cleanBox = new River.OneMoreAddIn.UI.MoreCheckBox();
+			this.alphaDemoBox = new River.OneMoreAddIn.UI.MoreTextBox();
+			this.alphaRadio = new River.OneMoreAddIn.UI.MoreRadioButton();
+			this.numDemoBox = new River.OneMoreAddIn.UI.MoreTextBox();
+			this.numRadio = new River.OneMoreAddIn.UI.MoreRadioButton();
 			this.numberingGroup.SuspendLayout();
 			this.SuspendLayout();
 			// 
@@ -44,8 +44,12 @@
 			// 
 			this.okButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.okButton.DialogResult = System.Windows.Forms.DialogResult.OK;
+			this.okButton.ImageOver = null;
 			this.okButton.Location = new System.Drawing.Point(264, 269);
 			this.okButton.Name = "okButton";
+			this.okButton.PreferredBack = null;
+			this.okButton.PreferredFore = null;
+			this.okButton.ShowBorder = true;
 			this.okButton.Size = new System.Drawing.Size(100, 38);
 			this.okButton.TabIndex = 11;
 			this.okButton.Text = "OK";
@@ -56,8 +60,12 @@
 			// 
 			this.cancelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+			this.cancelButton.ImageOver = null;
 			this.cancelButton.Location = new System.Drawing.Point(370, 269);
 			this.cancelButton.Name = "cancelButton";
+			this.cancelButton.PreferredBack = null;
+			this.cancelButton.PreferredFore = null;
+			this.cancelButton.ShowBorder = true;
 			this.cancelButton.Size = new System.Drawing.Size(100, 38);
 			this.cancelButton.TabIndex = 10;
 			this.cancelButton.Text = "Cancel";
@@ -94,22 +102,25 @@
 			// 
 			// cleanBox
 			// 
-			this.cleanBox.AutoSize = true;
 			this.cleanBox.Location = new System.Drawing.Point(26, 172);
 			this.cleanBox.Name = "cleanBox";
 			this.cleanBox.Padding = new System.Windows.Forms.Padding(0, 9, 0, 0);
-			this.cleanBox.Size = new System.Drawing.Size(290, 33);
+			this.cleanBox.Size = new System.Drawing.Size(300, 33);
 			this.cleanBox.TabIndex = 14;
 			this.cleanBox.Text = "Remove/cleanup existing numbering";
 			this.cleanBox.UseVisualStyleBackColor = true;
 			// 
 			// alphaDemoBox
 			// 
-			this.alphaDemoBox.BackColor = System.Drawing.SystemColors.Window;
+			this.alphaDemoBox.BackColor = System.Drawing.SystemColors.ControlLightLight;
+			this.alphaDemoBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
 			this.alphaDemoBox.Enabled = false;
+			this.alphaDemoBox.ForeColor = System.Drawing.SystemColors.ControlText;
 			this.alphaDemoBox.Location = new System.Drawing.Point(82, 98);
 			this.alphaDemoBox.Multiline = true;
 			this.alphaDemoBox.Name = "alphaDemoBox";
+			this.alphaDemoBox.PreferredBack = "ControlLightLight";
+			this.alphaDemoBox.PreferredFore = null;
 			this.alphaDemoBox.ReadOnly = true;
 			this.alphaDemoBox.Size = new System.Drawing.Size(128, 67);
 			this.alphaDemoBox.TabIndex = 12;
@@ -118,11 +129,10 @@
 			// 
 			// alphaRadio
 			// 
-			this.alphaRadio.AutoSize = true;
 			this.alphaRadio.Checked = true;
 			this.alphaRadio.Location = new System.Drawing.Point(56, 69);
 			this.alphaRadio.Name = "alphaRadio";
-			this.alphaRadio.Size = new System.Drawing.Size(136, 24);
+			this.alphaRadio.Size = new System.Drawing.Size(138, 24);
 			this.alphaRadio.TabIndex = 0;
 			this.alphaRadio.TabStop = true;
 			this.alphaRadio.Text = "Alpha-numeric";
@@ -130,11 +140,15 @@
 			// 
 			// numDemoBox
 			// 
-			this.numDemoBox.BackColor = System.Drawing.SystemColors.Window;
+			this.numDemoBox.BackColor = System.Drawing.SystemColors.ControlLightLight;
+			this.numDemoBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
 			this.numDemoBox.Enabled = false;
+			this.numDemoBox.ForeColor = System.Drawing.SystemColors.ControlText;
 			this.numDemoBox.Location = new System.Drawing.Point(290, 98);
 			this.numDemoBox.Multiline = true;
 			this.numDemoBox.Name = "numDemoBox";
+			this.numDemoBox.PreferredBack = "ControlLightLight";
+			this.numDemoBox.PreferredFore = null;
 			this.numDemoBox.ReadOnly = true;
 			this.numDemoBox.Size = new System.Drawing.Size(128, 67);
 			this.numDemoBox.TabIndex = 13;
@@ -143,10 +157,9 @@
 			// 
 			// numRadio
 			// 
-			this.numRadio.AutoSize = true;
 			this.numRadio.Location = new System.Drawing.Point(261, 69);
 			this.numRadio.Name = "numRadio";
-			this.numRadio.Size = new System.Drawing.Size(92, 24);
+			this.numRadio.Size = new System.Drawing.Size(93, 24);
 			this.numRadio.TabIndex = 1;
 			this.numRadio.Text = "Numeric";
 			this.numRadio.UseVisualStyleBackColor = true;
@@ -156,11 +169,13 @@
 			this.AcceptButton = this.okButton;
 			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+			this.BackColor = System.Drawing.SystemColors.Control;
 			this.CancelButton = this.cancelButton;
 			this.ClientSize = new System.Drawing.Size(488, 325);
 			this.Controls.Add(this.numberingGroup);
 			this.Controls.Add(this.okButton);
 			this.Controls.Add(this.cancelButton);
+			this.ForeColor = System.Drawing.SystemColors.ControlText;
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
 			this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.MaximizeBox = false;
@@ -177,14 +192,14 @@
 
 		#endregion
 
-		private System.Windows.Forms.Button okButton;
-		private System.Windows.Forms.Button cancelButton;
-		private System.Windows.Forms.GroupBox numberingGroup;
+		private UI.MoreButton okButton;
+		private UI.MoreButton cancelButton;
+		private UI.MoreGroupBox numberingGroup;
 		private System.Windows.Forms.Label introLabel;
-		private System.Windows.Forms.CheckBox cleanBox;
-		private System.Windows.Forms.TextBox alphaDemoBox;
-		private System.Windows.Forms.RadioButton alphaRadio;
-		private System.Windows.Forms.TextBox numDemoBox;
-		private System.Windows.Forms.RadioButton numRadio;
+		private UI.MoreCheckBox cleanBox;
+		private UI.MoreTextBox alphaDemoBox;
+		private UI.MoreRadioButton alphaRadio;
+		private UI.MoreTextBox numDemoBox;
+		private UI.MoreRadioButton numRadio;
 	}
 }

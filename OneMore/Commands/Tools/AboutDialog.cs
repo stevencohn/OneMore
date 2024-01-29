@@ -80,6 +80,8 @@ namespace River.OneMoreAddIn.Commands
 					(int)(img.Width * 0.60),
 					(int)(img.Height * 0.60));
 
+				sponsorButton.BackgroundImageLayout = ImageLayout.Stretch;
+
 				img.Dispose();
 			}
 			else

@@ -7,6 +7,8 @@ namespace River.OneMoreAddIn.UI
 	using System;
 	using System.Drawing;
 	using System.Drawing.Drawing2D;
+	using System.Linq;
+	using System.Text.RegularExpressions;
 	using System.Windows.Forms;
 
 
@@ -121,6 +123,32 @@ namespace River.OneMoreAddIn.UI
 						Trimming = StringTrimming.EllipsisCharacter,
 						FormatFlags = StringFormatFlags.LineLimit | StringFormatFlags.NoWrap
 					});
+			}
+		}
+
+
+		protected override void OnTextChanged(EventArgs e)
+		{
+			base.OnTextChanged(e);
+
+			// ensure we have something to measure and add fudge factor
+			var text = string.IsNullOrWhiteSpace(Text) ? "M" : $"{Text}.";
+			if (text.Contains(Environment.NewLine))
+			{
+				var parts = text.Split(
+					new string[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries);
+
+				var max = parts.Max(p => p.Length);
+				text = $"{parts.First(p => p.Length == max)}.";
+			}
+
+			using var g = CreateGraphics();
+			var size = g.MeasureString(text, Font);
+			var w = (int)(size.Width + Spacing + BoxSize);
+			if (Width != w)
+			{
+				AutoSize = false;
+				Width = w;
 			}
 		}
 

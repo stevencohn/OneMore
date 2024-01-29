@@ -54,6 +54,8 @@
 			this.okButton.ImageOver = null;
 			this.okButton.Location = new System.Drawing.Point(944, 43);
 			this.okButton.Name = "okButton";
+			this.okButton.PreferredBack = null;
+			this.okButton.PreferredFore = null;
 			this.okButton.ShowBorder = true;
 			this.okButton.Size = new System.Drawing.Size(100, 38);
 			this.okButton.TabIndex = 0;
@@ -67,6 +69,8 @@
 			this.cancelButton.ImageOver = null;
 			this.cancelButton.Location = new System.Drawing.Point(1050, 43);
 			this.cancelButton.Name = "cancelButton";
+			this.cancelButton.PreferredBack = null;
+			this.cancelButton.PreferredFore = null;
 			this.cancelButton.ShowBorder = true;
 			this.cancelButton.Size = new System.Drawing.Size(100, 38);
 			this.cancelButton.TabIndex = 1;
@@ -126,6 +130,7 @@
 			this.unselectLabel.TabIndex = 5;
 			this.unselectLabel.TabStop = true;
 			this.unselectLabel.Text = "Select none";
+			this.unselectLabel.VisitedLinkColor = System.Drawing.Color.MediumOrchid;
 			this.unselectLabel.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.SelectNoneItems);
 			// 
 			// selectLabel
@@ -141,6 +146,7 @@
 			this.selectLabel.TabIndex = 4;
 			this.selectLabel.TabStop = true;
 			this.selectLabel.Text = "Select all";
+			this.selectLabel.VisitedLinkColor = System.Drawing.Color.MediumOrchid;
 			this.selectLabel.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.SelectAllItems);
 			// 
 			// introBox
@@ -150,6 +156,8 @@
 			this.introBox.Location = new System.Drawing.Point(20, 20);
 			this.introBox.Multiline = true;
 			this.introBox.Name = "introBox";
+			this.introBox.PreferredBack = null;
+			this.introBox.PreferredFore = null;
 			this.introBox.ReadOnly = true;
 			this.introBox.Size = new System.Drawing.Size(1153, 62);
 			this.introBox.TabIndex = 15;

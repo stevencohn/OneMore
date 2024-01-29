@@ -35,9 +35,9 @@
 			this.cancelButton = new River.OneMoreAddIn.UI.MoreButton();
 			this.depthBox = new River.OneMoreAddIn.UI.MoreGroupBox();
 			this.includeTitlesBox = new System.Windows.Forms.CheckBox();
-			this.deepRadio = new UI.MoreRadioButton();
-			this.basicRadio = new UI.MoreRadioButton();
-			this.simpleRadio = new UI.MoreRadioButton();
+			this.deepRadio = new River.OneMoreAddIn.UI.MoreRadioButton();
+			this.basicRadio = new River.OneMoreAddIn.UI.MoreRadioButton();
+			this.simpleRadio = new River.OneMoreAddIn.UI.MoreRadioButton();
 			this.scopeGroupBox.SuspendLayout();
 			this.depthBox.SuspendLayout();
 			this.SuspendLayout();
@@ -75,6 +75,8 @@
 			this.okButton.ImageOver = null;
 			this.okButton.Location = new System.Drawing.Point(379, 534);
 			this.okButton.Name = "okButton";
+			this.okButton.PreferredBack = null;
+			this.okButton.PreferredFore = null;
 			this.okButton.ShowBorder = true;
 			this.okButton.Size = new System.Drawing.Size(100, 38);
 			this.okButton.TabIndex = 0;
@@ -88,6 +90,8 @@
 			this.cancelButton.ImageOver = null;
 			this.cancelButton.Location = new System.Drawing.Point(485, 534);
 			this.cancelButton.Name = "cancelButton";
+			this.cancelButton.PreferredBack = null;
+			this.cancelButton.PreferredFore = null;
 			this.cancelButton.ShowBorder = true;
 			this.cancelButton.Size = new System.Drawing.Size(100, 38);
 			this.cancelButton.TabIndex = 1;
@@ -120,31 +124,28 @@
 			// 
 			// deepRadio
 			// 
-			this.deepRadio.AutoSize = true;
 			this.deepRadio.Location = new System.Drawing.Point(20, 85);
 			this.deepRadio.Name = "deepRadio";
-			this.deepRadio.Size = new System.Drawing.Size(319, 24);
+			this.deepRadio.Size = new System.Drawing.Size(330, 24);
 			this.deepRadio.TabIndex = 2;
 			this.deepRadio.Text = "Deep XML with binary comparison (slow)";
 			this.deepRadio.UseVisualStyleBackColor = true;
 			// 
 			// basicRadio
 			// 
-			this.basicRadio.AutoSize = true;
 			this.basicRadio.Location = new System.Drawing.Point(20, 55);
 			this.basicRadio.Name = "basicRadio";
-			this.basicRadio.Size = new System.Drawing.Size(177, 24);
+			this.basicRadio.Size = new System.Drawing.Size(178, 24);
 			this.basicRadio.TabIndex = 1;
 			this.basicRadio.Text = "Basic XML structure";
 			this.basicRadio.UseVisualStyleBackColor = true;
 			// 
 			// simpleRadio
 			// 
-			this.simpleRadio.AutoSize = true;
 			this.simpleRadio.Checked = true;
 			this.simpleRadio.Location = new System.Drawing.Point(20, 25);
 			this.simpleRadio.Name = "simpleRadio";
-			this.simpleRadio.Size = new System.Drawing.Size(163, 24);
+			this.simpleRadio.Size = new System.Drawing.Size(166, 24);
 			this.simpleRadio.TabIndex = 0;
 			this.simpleRadio.TabStop = true;
 			this.simpleRadio.Text = "Simple text (quick)";

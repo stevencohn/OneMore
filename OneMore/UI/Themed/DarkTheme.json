@@ -45,6 +45,7 @@
     "WindowFrame": "#7F7F7F",
     "WindowText": "#E6E6E6",
 
-    "ErrorText": "#FF6347"
+    "ErrorText": "#FF6347",
+    "HintText": "#87CEFA"
   }
 }

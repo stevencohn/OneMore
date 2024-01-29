@@ -70,6 +70,8 @@
 			this.cancelButton.ImageOver = null;
 			this.cancelButton.Location = new System.Drawing.Point(640, 503);
 			this.cancelButton.Name = "cancelButton";
+			this.cancelButton.PreferredBack = null;
+			this.cancelButton.PreferredFore = null;
 			this.cancelButton.ShowBorder = true;
 			this.cancelButton.Size = new System.Drawing.Size(120, 35);
 			this.cancelButton.TabIndex = 12;
@@ -84,6 +86,8 @@
 			this.okButton.ImageOver = null;
 			this.okButton.Location = new System.Drawing.Point(514, 503);
 			this.okButton.Name = "okButton";
+			this.okButton.PreferredBack = null;
+			this.okButton.PreferredFore = null;
 			this.okButton.ShowBorder = true;
 			this.okButton.Size = new System.Drawing.Size(120, 35);
 			this.okButton.TabIndex = 11;
@@ -106,6 +110,8 @@
 			this.cmdBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
 			this.cmdBox.Location = new System.Drawing.Point(140, 123);
 			this.cmdBox.Name = "cmdBox";
+			this.cmdBox.PreferredBack = null;
+			this.cmdBox.PreferredFore = null;
 			this.cmdBox.Size = new System.Drawing.Size(578, 26);
 			this.cmdBox.TabIndex = 2;
 			this.cmdBox.TextChanged += new System.EventHandler(this.ChangeText);
@@ -115,6 +121,8 @@
 			this.browseButton.ImageOver = null;
 			this.browseButton.Location = new System.Drawing.Point(724, 122);
 			this.browseButton.Name = "browseButton";
+			this.browseButton.PreferredBack = null;
+			this.browseButton.PreferredFore = null;
 			this.browseButton.ShowBorder = true;
 			this.browseButton.Size = new System.Drawing.Size(36, 31);
 			this.browseButton.TabIndex = 3;
@@ -151,6 +159,8 @@
 			this.pageNameBox.Enabled = false;
 			this.pageNameBox.Location = new System.Drawing.Point(31, 85);
 			this.pageNameBox.Name = "pageNameBox";
+			this.pageNameBox.PreferredBack = null;
+			this.pageNameBox.PreferredFore = null;
 			this.pageNameBox.Size = new System.Drawing.Size(469, 26);
 			this.pageNameBox.TabIndex = 8;
 			this.pageNameBox.TextChanged += new System.EventHandler(this.ChangeText);
@@ -172,6 +182,8 @@
 			this.argsBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
 			this.argsBox.Location = new System.Drawing.Point(140, 169);
 			this.argsBox.Name = "argsBox";
+			this.argsBox.PreferredBack = null;
+			this.argsBox.PreferredFore = null;
 			this.argsBox.Size = new System.Drawing.Size(578, 26);
 			this.argsBox.TabIndex = 4;
 			this.argsBox.TextChanged += new System.EventHandler(this.ChangeText);
@@ -191,6 +203,8 @@
 			this.browseArgsButton.ImageOver = null;
 			this.browseArgsButton.Location = new System.Drawing.Point(724, 168);
 			this.browseArgsButton.Name = "browseArgsButton";
+			this.browseArgsButton.PreferredBack = null;
+			this.browseArgsButton.PreferredFore = null;
 			this.browseArgsButton.ShowBorder = true;
 			this.browseArgsButton.Size = new System.Drawing.Size(36, 31);
 			this.browseArgsButton.TabIndex = 5;
@@ -205,6 +219,8 @@
 			this.saveButton.ImageOver = null;
 			this.saveButton.Location = new System.Drawing.Point(388, 503);
 			this.saveButton.Name = "saveButton";
+			this.saveButton.PreferredBack = null;
+			this.saveButton.PreferredFore = null;
 			this.saveButton.ShowBorder = true;
 			this.saveButton.Size = new System.Drawing.Size(120, 35);
 			this.saveButton.TabIndex = 10;
@@ -250,6 +266,8 @@
 			this.nameBox.Location = new System.Drawing.Point(140, 78);
 			this.nameBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.nameBox.Name = "nameBox";
+			this.nameBox.PreferredBack = null;
+			this.nameBox.PreferredFore = null;
 			this.nameBox.Size = new System.Drawing.Size(578, 26);
 			this.nameBox.TabIndex = 1;
 			this.nameBox.TextChanged += new System.EventHandler(this.ChangeText);

@@ -39,7 +39,7 @@ namespace River.OneMoreAddIn.Commands
 			this.noDetailsBox = new River.OneMoreAddIn.UI.MoreRadioButton();
 			this.thumbnailLabel = new System.Windows.Forms.Label();
 			this.sizeBox = new System.Windows.Forms.ComboBox();
-			this.warningLabel = new UI.MoreLabel();
+			this.warningLabel = new River.OneMoreAddIn.UI.MoreLabel();
 			this.SuspendLayout();
 			// 
 			// okButton
@@ -50,6 +50,8 @@ namespace River.OneMoreAddIn.Commands
 			this.okButton.Location = new System.Drawing.Point(270, 307);
 			this.okButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.okButton.Name = "okButton";
+			this.okButton.PreferredBack = null;
+			this.okButton.PreferredFore = null;
 			this.okButton.ShowBorder = true;
 			this.okButton.Size = new System.Drawing.Size(112, 35);
 			this.okButton.TabIndex = 0;
@@ -64,6 +66,8 @@ namespace River.OneMoreAddIn.Commands
 			this.cancelButton.Location = new System.Drawing.Point(390, 307);
 			this.cancelButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.cancelButton.Name = "cancelButton";
+			this.cancelButton.PreferredBack = null;
+			this.cancelButton.PreferredFore = null;
 			this.cancelButton.ShowBorder = true;
 			this.cancelButton.Size = new System.Drawing.Size(112, 35);
 			this.cancelButton.TabIndex = 1;
@@ -161,9 +165,10 @@ namespace River.OneMoreAddIn.Commands
 			// 
 			this.warningLabel.AutoSize = true;
 			this.warningLabel.ForeColor = System.Drawing.Color.Maroon;
-			this.warningLabel.PreferredFore = "ErrorText";
 			this.warningLabel.Location = new System.Drawing.Point(152, 259);
 			this.warningLabel.Name = "warningLabel";
+			this.warningLabel.PreferredBack = null;
+			this.warningLabel.PreferredFore = "ErrorText";
 			this.warningLabel.Size = new System.Drawing.Size(186, 20);
 			this.warningLabel.TabIndex = 14;
 			this.warningLabel.Text = "Report may take minutes";

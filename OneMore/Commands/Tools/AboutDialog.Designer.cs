@@ -76,6 +76,7 @@
 			this.versionLabel.Location = new System.Drawing.Point(50, 61);
 			this.versionLabel.Name = "versionLabel";
 			this.versionLabel.PreferredBack = "ControlLightLight";
+			this.versionLabel.PreferredFore = null;
 			this.versionLabel.ReadOnly = true;
 			this.versionLabel.Size = new System.Drawing.Size(534, 30);
 			this.versionLabel.TabIndex = 2;
@@ -99,6 +100,8 @@
 			this.okButton.ImageOver = null;
 			this.okButton.Location = new System.Drawing.Point(748, 502);
 			this.okButton.Name = "okButton";
+			this.okButton.PreferredBack = null;
+			this.okButton.PreferredFore = null;
 			this.okButton.ShowBorder = true;
 			this.okButton.Size = new System.Drawing.Size(130, 42);
 			this.okButton.TabIndex = 0;
@@ -122,6 +125,7 @@
 			this.logLabel.TabIndex = 5;
 			this.logLabel.TabStop = true;
 			this.logLabel.Text = "tempfile";
+			this.logLabel.VisitedLinkColor = System.Drawing.Color.MediumOrchid;
 			this.logLabel.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.OpenLog);
 			// 
 			// clearLogLabel
@@ -139,6 +143,7 @@
 			this.clearLogLabel.TabIndex = 6;
 			this.clearLogLabel.TabStop = true;
 			this.clearLogLabel.Text = "Clear the log file";
+			this.clearLogLabel.VisitedLinkColor = System.Drawing.Color.MediumOrchid;
 			this.clearLogLabel.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.ClearLog);
 			// 
 			// homeLink
@@ -195,8 +200,10 @@
 			this.sponsorButton.ImageOver = null;
 			this.sponsorButton.Location = new System.Drawing.Point(444, 362);
 			this.sponsorButton.Name = "sponsorButton";
+			this.sponsorButton.PreferredBack = null;
+			this.sponsorButton.PreferredFore = null;
 			this.sponsorButton.ShowBorder = true;
-			this.sponsorButton.Size = new System.Drawing.Size(149, 44);
+			this.sponsorButton.Size = new System.Drawing.Size(141, 45);
 			this.sponsorButton.TabIndex = 1;
 			this.sponsorButton.UseVisualStyleBackColor = true;
 			this.sponsorButton.Click += new System.EventHandler(this.GotoSponsorship);

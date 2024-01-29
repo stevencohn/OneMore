@@ -68,8 +68,10 @@
 			// 
 			// listBox
 			// 
+			this.listBox.BackColor = System.Drawing.SystemColors.ControlLightLight;
 			this.listBox.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
 			this.listBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.listBox.ForeColor = System.Drawing.SystemColors.ControlText;
 			this.listBox.FormattingEnabled = true;
 			this.listBox.ItemHeight = 22;
 			this.listBox.Location = new System.Drawing.Point(30, 88);
@@ -84,7 +86,8 @@
 			// upButton
 			// 
 			this.upButton.AutoSize = true;
-			this.upButton.Image = global::River.OneMoreAddIn.Properties.Resources.UpArrow;
+			this.upButton.BackgroundImage = global::River.OneMoreAddIn.Properties.Resources.UpArrow;
+			this.upButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
 			this.upButton.ImageOver = null;
 			this.upButton.Location = new System.Drawing.Point(363, 169);
 			this.upButton.Name = "upButton";
@@ -99,6 +102,7 @@
 			// downButton
 			// 
 			this.downButton.AutoSize = true;
+			this.downButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
 			this.downButton.Image = global::River.OneMoreAddIn.Properties.Resources.DownArrow;
 			this.downButton.ImageOver = null;
 			this.downButton.Location = new System.Drawing.Point(363, 217);

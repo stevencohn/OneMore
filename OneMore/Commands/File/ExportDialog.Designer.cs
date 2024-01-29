@@ -33,7 +33,7 @@
 			this.pathBox = new River.OneMoreAddIn.UI.MoreTextBox();
 			this.formatLabel = new System.Windows.Forms.Label();
 			this.formatBox = new System.Windows.Forms.ComboBox();
-			this.groupBox = new UI.MoreGroupBox();
+			this.groupBox = new River.OneMoreAddIn.UI.MoreGroupBox();
 			this.embeddedBox = new River.OneMoreAddIn.UI.MoreCheckBox();
 			this.underBox = new River.OneMoreAddIn.UI.MoreCheckBox();
 			this.attachmentsBox = new River.OneMoreAddIn.UI.MoreCheckBox();
@@ -59,6 +59,8 @@
 			this.pathBox.Location = new System.Drawing.Point(82, 42);
 			this.pathBox.Margin = new System.Windows.Forms.Padding(3, 3, 3, 9);
 			this.pathBox.Name = "pathBox";
+			this.pathBox.PreferredBack = null;
+			this.pathBox.PreferredFore = null;
 			this.pathBox.Size = new System.Drawing.Size(400, 26);
 			this.pathBox.TabIndex = 1;
 			this.pathBox.TextChanged += new System.EventHandler(this.ChangePath);
@@ -116,37 +118,34 @@
 			// 
 			// embeddedBox
 			// 
-			this.embeddedBox.AutoSize = true;
 			this.embeddedBox.Enabled = false;
 			this.embeddedBox.ForeColor = System.Drawing.SystemColors.ControlText;
 			this.embeddedBox.Location = new System.Drawing.Point(82, 154);
 			this.embeddedBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.embeddedBox.Name = "embeddedBox";
-			this.embeddedBox.Size = new System.Drawing.Size(179, 24);
+			this.embeddedBox.Size = new System.Drawing.Size(180, 24);
 			this.embeddedBox.TabIndex = 7;
 			this.embeddedBox.Text = "Embed attachments";
 			this.embeddedBox.UseVisualStyleBackColor = true;
 			// 
 			// underBox
 			// 
-			this.underBox.AutoSize = true;
 			this.underBox.ForeColor = System.Drawing.SystemColors.ControlText;
 			this.underBox.Location = new System.Drawing.Point(82, 186);
 			this.underBox.Name = "underBox";
-			this.underBox.Size = new System.Drawing.Size(380, 24);
+			this.underBox.Size = new System.Drawing.Size(391, 24);
 			this.underBox.TabIndex = 6;
 			this.underBox.Text = "Replace spaces in the filename with underscores";
 			this.underBox.UseVisualStyleBackColor = true;
 			// 
 			// attachmentsBox
 			// 
-			this.attachmentsBox.AutoSize = true;
 			this.attachmentsBox.Enabled = false;
 			this.attachmentsBox.ForeColor = System.Drawing.SystemColors.ControlText;
 			this.attachmentsBox.Location = new System.Drawing.Point(82, 120);
 			this.attachmentsBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.attachmentsBox.Name = "attachmentsBox";
-			this.attachmentsBox.Size = new System.Drawing.Size(180, 24);
+			this.attachmentsBox.Size = new System.Drawing.Size(181, 24);
 			this.attachmentsBox.TabIndex = 5;
 			this.attachmentsBox.Text = "Include attachments";
 			this.attachmentsBox.UseVisualStyleBackColor = true;
@@ -158,6 +157,8 @@
 			this.browseButton.ImageOver = null;
 			this.browseButton.Location = new System.Drawing.Point(489, 40);
 			this.browseButton.Name = "browseButton";
+			this.browseButton.PreferredBack = null;
+			this.browseButton.PreferredFore = null;
 			this.browseButton.ShowBorder = false;
 			this.browseButton.Size = new System.Drawing.Size(44, 34);
 			this.browseButton.TabIndex = 4;
@@ -171,6 +172,8 @@
 			this.cancelButton.ImageOver = null;
 			this.cancelButton.Location = new System.Drawing.Point(554, 270);
 			this.cancelButton.Name = "cancelButton";
+			this.cancelButton.PreferredBack = null;
+			this.cancelButton.PreferredFore = null;
 			this.cancelButton.ShowBorder = true;
 			this.cancelButton.Size = new System.Drawing.Size(100, 38);
 			this.cancelButton.TabIndex = 6;
@@ -185,6 +188,8 @@
 			this.okButton.ImageOver = null;
 			this.okButton.Location = new System.Drawing.Point(447, 270);
 			this.okButton.Name = "okButton";
+			this.okButton.PreferredBack = null;
+			this.okButton.PreferredFore = null;
 			this.okButton.ShowBorder = true;
 			this.okButton.Size = new System.Drawing.Size(100, 38);
 			this.okButton.TabIndex = 7;
@@ -196,12 +201,13 @@
 			this.AcceptButton = this.okButton;
 			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+			this.BackColor = System.Drawing.SystemColors.Control;
 			this.CancelButton = this.cancelButton;
 			this.ClientSize = new System.Drawing.Size(670, 327);
 			this.Controls.Add(this.okButton);
 			this.Controls.Add(this.cancelButton);
 			this.Controls.Add(this.groupBox);
-			this.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+			this.ForeColor = System.Drawing.SystemColors.ControlText;
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.MaximizeBox = false;

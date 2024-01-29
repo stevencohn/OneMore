@@ -112,7 +112,7 @@
 			this.sizeBox.Location = new System.Drawing.Point(537, 105);
 			this.sizeBox.Name = "sizeBox";
 			this.sizeBox.Size = new System.Drawing.Size(104, 33);
-			this.sizeBox.TabIndex = 4;
+			this.sizeBox.TabIndex = 3;
 			this.sizeBox.SelectedIndexChanged += new System.EventHandler(this.ChangeFontSize);
 			this.sizeBox.Enter += new System.EventHandler(this.SetActiveFocus);
 			// 
@@ -157,7 +157,7 @@
 			this.nameBox.PreferredBack = null;
 			this.nameBox.PreferredFore = null;
 			this.nameBox.Size = new System.Drawing.Size(475, 31);
-			this.nameBox.TabIndex = 1;
+			this.nameBox.TabIndex = 0;
 			this.nameBox.TextChanged += new System.EventHandler(this.ChangeStyleName);
 			this.nameBox.Enter += new System.EventHandler(this.SetActiveFocus);
 			// 
@@ -214,7 +214,7 @@
 			this.cancelButton.PreferredFore = null;
 			this.cancelButton.ShowBorder = true;
 			this.cancelButton.Size = new System.Drawing.Size(116, 38);
-			this.cancelButton.TabIndex = 10;
+			this.cancelButton.TabIndex = 12;
 			this.cancelButton.Text = "Cancel";
 			this.cancelButton.UseVisualStyleBackColor = true;
 			// 
@@ -229,7 +229,7 @@
 			this.okButton.PreferredFore = null;
 			this.okButton.ShowBorder = true;
 			this.okButton.Size = new System.Drawing.Size(116, 38);
-			this.okButton.TabIndex = 9;
+			this.okButton.TabIndex = 11;
 			this.okButton.Text = "OK";
 			this.okButton.UseVisualStyleBackColor = true;
 			this.okButton.Click += new System.EventHandler(this.SaveStyle);
@@ -244,7 +244,7 @@
 			this.namesBox.Location = new System.Drawing.Point(18, 544);
 			this.namesBox.Name = "namesBox";
 			this.namesBox.Size = new System.Drawing.Size(121, 33);
-			this.namesBox.TabIndex = 21;
+			this.namesBox.TabIndex = 10;
 			this.namesBox.Visible = false;
 			this.namesBox.SelectedIndexChanged += new System.EventHandler(this.ChangeStyleListSelection);
 			// 
@@ -285,8 +285,8 @@
 			// 
 			this.ignoredBox.Location = new System.Drawing.Point(169, 197);
 			this.ignoredBox.Name = "ignoredBox";
-			this.ignoredBox.Size = new System.Drawing.Size(366, 24);
-			this.ignoredBox.TabIndex = 31;
+			this.ignoredBox.Size = new System.Drawing.Size(174, 24);
+			this.ignoredBox.TabIndex = 6;
 			this.ignoredBox.Text = "Disable spell check";
 			this.tooltip.SetToolTip(this.ignoredBox, "Disable spell check for selected text");
 			this.ignoredBox.UseVisualStyleBackColor = true;
@@ -339,8 +339,8 @@
 			// 
 			this.darkBox.Location = new System.Drawing.Point(22, 33);
 			this.darkBox.Name = "darkBox";
-			this.darkBox.Size = new System.Drawing.Size(591, 24);
-			this.darkBox.TabIndex = 1;
+			this.darkBox.Size = new System.Drawing.Size(348, 24);
+			this.darkBox.TabIndex = 0;
 			this.darkBox.Text = "Intended for pages with dark bakckgrounds";
 			this.tooltip.SetToolTip(this.darkBox, "Used in Page Color dialog to warn about non-readable text");
 			this.darkBox.UseVisualStyleBackColor = true;
@@ -349,8 +349,8 @@
 			// 
 			this.pageColorBox.Location = new System.Drawing.Point(22, 63);
 			this.pageColorBox.Name = "pageColorBox";
-			this.pageColorBox.Size = new System.Drawing.Size(591, 24);
-			this.pageColorBox.TabIndex = 0;
+			this.pageColorBox.Size = new System.Drawing.Size(401, 24);
+			this.pageColorBox.TabIndex = 1;
 			this.pageColorBox.Text = "Change the page color when applying these styles";
 			this.pageColorBox.UseVisualStyleBackColor = true;
 			this.pageColorBox.CheckedChanged += new System.EventHandler(this.ChangePageColorOption);
@@ -371,7 +371,7 @@
 			this.spacingSpinner.Location = new System.Drawing.Point(169, 309);
 			this.spacingSpinner.Name = "spacingSpinner";
 			this.spacingSpinner.Size = new System.Drawing.Size(108, 31);
-			this.spacingSpinner.TabIndex = 28;
+			this.spacingSpinner.TabIndex = 9;
 			this.spacingSpinner.ValueChanged += new System.EventHandler(this.ChangeSpacing);
 			this.spacingSpinner.Enter += new System.EventHandler(this.SetActiveFocus);
 			// 
@@ -400,18 +400,17 @@
 			this.styleTypeBox.Location = new System.Drawing.Point(169, 62);
 			this.styleTypeBox.Name = "styleTypeBox";
 			this.styleTypeBox.Size = new System.Drawing.Size(475, 33);
-			this.styleTypeBox.TabIndex = 2;
+			this.styleTypeBox.TabIndex = 1;
 			this.styleTypeBox.SelectedIndexChanged += new System.EventHandler(this.ChangeStyleType);
 			// 
 			// applyColorsBox
 			// 
-			this.applyColorsBox.AutoSize = true;
 			this.applyColorsBox.Checked = true;
 			this.applyColorsBox.CheckState = System.Windows.Forms.CheckState.Checked;
 			this.applyColorsBox.Location = new System.Drawing.Point(499, 158);
 			this.applyColorsBox.Name = "applyColorsBox";
-			this.applyColorsBox.Size = new System.Drawing.Size(120, 24);
-			this.applyColorsBox.TabIndex = 6;
+			this.applyColorsBox.Size = new System.Drawing.Size(123, 24);
+			this.applyColorsBox.TabIndex = 5;
 			this.applyColorsBox.Text = "Apply colors";
 			this.applyColorsBox.UseVisualStyleBackColor = true;
 			this.applyColorsBox.CheckedChanged += new System.EventHandler(this.ChangeApplyColorsOption);
@@ -429,13 +428,13 @@
 			this.familyBox.Location = new System.Drawing.Point(169, 105);
 			this.familyBox.Name = "familyBox";
 			this.familyBox.Size = new System.Drawing.Size(355, 32);
-			this.familyBox.TabIndex = 3;
+			this.familyBox.TabIndex = 2;
 			this.familyBox.SelectedIndexChanged += new System.EventHandler(this.ChangeFontFamily);
 			this.familyBox.Enter += new System.EventHandler(this.SetActiveFocus);
 			// 
 			// toolStrip
 			// 
-			this.toolStrip.BackColor = System.Drawing.Color.Transparent;
+			this.toolStrip.BackColor = System.Drawing.SystemColors.Control;
 			this.toolStrip.Dock = System.Windows.Forms.DockStyle.None;
 			this.toolStrip.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
 			this.toolStrip.ImageScalingSize = new System.Drawing.Size(24, 24);
@@ -451,8 +450,8 @@
 			this.toolStrip.Location = new System.Drawing.Point(169, 149);
 			this.toolStrip.Name = "toolStrip";
 			this.toolStrip.Padding = new System.Windows.Forms.Padding(0);
-			this.toolStrip.Size = new System.Drawing.Size(304, 38);
-			this.toolStrip.TabIndex = 5;
+			this.toolStrip.Size = new System.Drawing.Size(304, 33);
+			this.toolStrip.TabIndex = 4;
 			// 
 			// boldButton
 			// 
@@ -462,7 +461,7 @@
 			this.boldButton.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.boldButton.Margin = new System.Windows.Forms.Padding(0, 2, 1, 3);
 			this.boldButton.Name = "boldButton";
-			this.boldButton.Size = new System.Drawing.Size(34, 33);
+			this.boldButton.Size = new System.Drawing.Size(34, 28);
 			this.boldButton.Text = "Bold";
 			this.boldButton.CheckStateChanged += new System.EventHandler(this.ChangeFontStyle);
 			// 
@@ -581,7 +580,7 @@
 			this.mainTools.Location = new System.Drawing.Point(4, 5);
 			this.mainTools.Name = "mainTools";
 			this.mainTools.Padding = new System.Windows.Forms.Padding(0, 0, 4, 0);
-			this.mainTools.Size = new System.Drawing.Size(671, 38);
+			this.mainTools.Size = new System.Drawing.Size(671, 34);
 			this.mainTools.TabIndex = 0;
 			// 
 			// FileMenu

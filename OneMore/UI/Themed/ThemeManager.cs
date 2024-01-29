@@ -248,7 +248,7 @@ namespace River.OneMoreAddIn.UI
 				linkLabel.ActiveLinkColor = Colors["LinkColor"];
 				linkLabel.BackColor = linkLabel.Parent.BackColor;
 			}
-			else if (control is ToolStrip strip)
+			else if (control is ToolStrip strip) // StatusStrip
 			{
 				foreach (ToolStripItem item in strip.Items)
 				{
@@ -265,6 +265,13 @@ namespace River.OneMoreAddIn.UI
 			{
 				Colorize(child);
 			}
+		}
+
+
+		public Image GetGrayImage(Image image)
+		{
+			var editor = new Commands.ImageEditor { Style = Commands.ImageEditor.Stylization.GrayScale };
+			return editor.Apply(image);
 		}
 
 
