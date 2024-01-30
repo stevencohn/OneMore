@@ -205,7 +205,7 @@ namespace River.OneMoreAddIn.UI
 		{
 			if (control is ListView ||
 				control is DataGridView ||
-				control is ToolStrip)
+				(control is ToolStrip && control is not StatusStrip))
 			{
 				//logger.WriteLine($"skipping {control.Name} {control.GetType()}");
 				return;
@@ -265,7 +265,7 @@ namespace River.OneMoreAddIn.UI
 				.Where(c =>
 					c is not ListView &&
 					c is not DataGridView &&
-					c is not ToolStrip))
+					(c is StatusStrip || c is not ToolStrip)))
 			{
 				//logger.WriteLine($"Colorize {child.Name} {child.GetType()}");
 				Colorize(child);

@@ -19,6 +19,7 @@ namespace River.OneMoreAddIn.Commands
 		private readonly MagicScaling scaling;
 		private readonly int originalWidth;
 		private readonly int originalHeight;
+		private readonly bool singleImage;
 		private SettingsProvider settings;
 		private Image preview;
 		private int storageSize;
@@ -41,6 +42,8 @@ namespace River.OneMoreAddIn.Commands
 			MaximizeBox = false;
 
 			originalWidth = originalHeight = 1;
+
+			singleImage = false;
 
 			// hide controls that do not apply...
 
@@ -73,8 +76,6 @@ namespace River.OneMoreAddIn.Commands
 			repositionBox.Visible = !ForegroundImages;
 
 			scaling = null;
-
-			LoadSettings(false);
 		}
 
 
@@ -87,6 +88,8 @@ namespace River.OneMoreAddIn.Commands
 			Initialize();
 
 			MinimumSize = new Size(Width, Height);
+
+			singleImage = true;
 
 			this.image = image;
 
@@ -109,9 +112,6 @@ namespace River.OneMoreAddIn.Commands
 
 			previewGroup.Text = string.Format(
 				Resx.AdjustImagesDialog_previewGroup_Text, image.GetSignature());
-
-			LoadSettings(true);
-			DrawPreview();
 		}
 
 
@@ -163,12 +163,29 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private void LoadSettings(bool oneImage)
+		protected override void OnLoad(EventArgs e)
+		{
+			base.OnLoad(e);
+
+			LoadSettings();
+
+			if (allLabel.Visible)
+			{
+				allLabel.Text = string.Format(ForegroundImages
+					? Resx.AdjustImagesDialog_allLabelForeground
+					: Resx.AdjustImagesDialog_allLabelBackground, ImageCount);
+			}
+
+			suspended = false;
+		}
+
+
+		private void LoadSettings()
 		{
 			settings = new SettingsProvider();
 			var collection = settings.GetCollection("images");
 
-			int value = collection.Get("mruSizeBy", oneImage ? 0 : 2);
+			int value = collection.Get("mruSizeBy", singleImage ? 0 : 2);
 			if (value == 0)
 			{
 				pctRadio.Checked = true;
@@ -194,7 +211,11 @@ namespace River.OneMoreAddIn.Commands
 			presetBox.Value = collection.Get("mruWidth",
 				settings.GetCollection(nameof(ImagesSheet)).Get("presetWidth", 500));
 
-			if (!oneImage)
+			if (singleImage)
+			{
+				DrawPreview();
+			}
+			else
 			{
 				limitsBox.SelectedIndex = collection.Get("limits", 0);
 				if (limitsBox.SelectedIndex < 0)
@@ -210,21 +231,6 @@ namespace River.OneMoreAddIn.Commands
 			qualBox.Value = collection.Get("quality", 100);
 			preserveBox.Checked = collection.Get("preserve", true);
 			repositionBox.Checked = collection.Get("stack", true);
-		}
-
-
-		protected override void OnLoad(EventArgs e)
-		{
-			base.OnLoad(e);
-
-			if (allLabel.Visible)
-			{
-				allLabel.Text = string.Format(ForegroundImages
-					? Resx.AdjustImagesDialog_allLabelForeground
-					: Resx.AdjustImagesDialog_allLabelBackground, ImageCount);
-			}
-
-			suspended = false;
 		}
 		#endregion Lifecycle
 
@@ -417,6 +423,7 @@ namespace River.OneMoreAddIn.Commands
 			lockButton.Enabled = abs;
 			widthBox.Enabled = abs;
 			heightBox.Enabled = abs && image != null;
+
 			presetBox.Enabled = sender == presetRadio;
 			mruWidth = true;
 		}

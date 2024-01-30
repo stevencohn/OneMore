@@ -39,15 +39,15 @@ namespace River.OneMoreAddIn.Commands
 			this.okButton = new River.OneMoreAddIn.UI.MoreButton();
 			this.pctRadio = new River.OneMoreAddIn.UI.MoreRadioButton();
 			this.absRadio = new River.OneMoreAddIn.UI.MoreRadioButton();
-			this.percentBox = new System.Windows.Forms.NumericUpDown();
+			this.percentBox = new River.OneMoreAddIn.UI.MoreNumericUpDown();
 			this.pctLabel = new System.Windows.Forms.Label();
-			this.widthBox = new System.Windows.Forms.NumericUpDown();
-			this.heightBox = new System.Windows.Forms.NumericUpDown();
+			this.widthBox = new River.OneMoreAddIn.UI.MoreNumericUpDown();
+			this.heightBox = new River.OneMoreAddIn.UI.MoreNumericUpDown();
 			this.widthLabel = new System.Windows.Forms.Label();
 			this.heightLabel = new System.Windows.Forms.Label();
 			this.viewSizeLabel = new System.Windows.Forms.Label();
 			this.presetRadio = new River.OneMoreAddIn.UI.MoreRadioButton();
-			this.presetBox = new System.Windows.Forms.NumericUpDown();
+			this.presetBox = new River.OneMoreAddIn.UI.MoreNumericUpDown();
 			this.presetLabel = new System.Windows.Forms.Label();
 			this.imageSizeLabel = new System.Windows.Forms.Label();
 			this.viewSizeLink = new River.OneMoreAddIn.UI.MoreLinkLabel();
@@ -56,26 +56,26 @@ namespace River.OneMoreAddIn.Commands
 			this.preserveBox = new River.OneMoreAddIn.UI.MoreCheckBox();
 			this.qualityLabel = new System.Windows.Forms.Label();
 			this.qualBar = new System.Windows.Forms.TrackBar();
-			this.opacityBox = new System.Windows.Forms.NumericUpDown();
+			this.opacityBox = new River.OneMoreAddIn.UI.MoreNumericUpDown();
 			this.opacityLabel = new System.Windows.Forms.Label();
 			this.previewGroup = new River.OneMoreAddIn.UI.MoreGroupBox();
 			this.previewBox = new System.Windows.Forms.PictureBox();
 			this.brightnessLabel = new System.Windows.Forms.Label();
-			this.brightnessBox = new System.Windows.Forms.NumericUpDown();
+			this.brightnessBox = new River.OneMoreAddIn.UI.MoreNumericUpDown();
 			this.contrastLabel = new System.Windows.Forms.Label();
-			this.contrastBox = new System.Windows.Forms.NumericUpDown();
+			this.contrastBox = new River.OneMoreAddIn.UI.MoreNumericUpDown();
 			this.brightnessBar = new System.Windows.Forms.TrackBar();
 			this.contrastBar = new System.Windows.Forms.TrackBar();
 			this.opacityBar = new System.Windows.Forms.TrackBar();
 			this.storageLabel = new System.Windows.Forms.Label();
 			this.storedSizeLabel = new System.Windows.Forms.Label();
-			this.qualBox = new System.Windows.Forms.NumericUpDown();
+			this.qualBox = new River.OneMoreAddIn.UI.MoreNumericUpDown();
 			this.styleBox = new System.Windows.Forms.ComboBox();
 			this.styleLabel = new System.Windows.Forms.Label();
 			this.lockButton = new River.OneMoreAddIn.UI.MoreCheckBox();
 			this.saturationBar = new System.Windows.Forms.TrackBar();
 			this.saturationLabel = new System.Windows.Forms.Label();
-			this.saturationBox = new System.Windows.Forms.NumericUpDown();
+			this.saturationBox = new River.OneMoreAddIn.UI.MoreNumericUpDown();
 			this.limitsBox = new System.Windows.Forms.ComboBox();
 			this.repositionBox = new River.OneMoreAddIn.UI.MoreCheckBox();
 			this.resetLinkLabel = new River.OneMoreAddIn.UI.MoreLinkLabel();
@@ -101,7 +101,9 @@ namespace River.OneMoreAddIn.Commands
 			// cancelButton
 			// 
 			this.cancelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+			this.cancelButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
 			this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+			this.cancelButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.cancelButton.ImageOver = null;
 			this.cancelButton.Location = new System.Drawing.Point(996, 671);
 			this.cancelButton.Name = "cancelButton";
@@ -117,6 +119,8 @@ namespace River.OneMoreAddIn.Commands
 			// okButton
 			// 
 			this.okButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+			this.okButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
+			this.okButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.okButton.ImageOver = null;
 			this.okButton.Location = new System.Drawing.Point(890, 671);
 			this.okButton.Name = "okButton";
@@ -131,11 +135,11 @@ namespace River.OneMoreAddIn.Commands
 			// 
 			// pctRadio
 			// 
-			this.pctRadio.AutoSize = true;
 			this.pctRadio.Checked = true;
+			this.pctRadio.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.pctRadio.Location = new System.Drawing.Point(39, 118);
 			this.pctRadio.Name = "pctRadio";
-			this.pctRadio.Size = new System.Drawing.Size(116, 24);
+			this.pctRadio.Size = new System.Drawing.Size(120, 25);
 			this.pctRadio.TabIndex = 1;
 			this.pctRadio.TabStop = true;
 			this.pctRadio.Text = "Percentage";
@@ -145,10 +149,10 @@ namespace River.OneMoreAddIn.Commands
 			// 
 			// absRadio
 			// 
-			this.absRadio.AutoSize = true;
+			this.absRadio.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.absRadio.Location = new System.Drawing.Point(39, 158);
 			this.absRadio.Name = "absRadio";
-			this.absRadio.Size = new System.Drawing.Size(97, 24);
+			this.absRadio.Size = new System.Drawing.Size(100, 25);
 			this.absRadio.TabIndex = 3;
 			this.absRadio.Text = "Absolute";
 			this.absRadio.UseVisualStyleBackColor = true;
@@ -157,6 +161,8 @@ namespace River.OneMoreAddIn.Commands
 			// 
 			// percentBox
 			// 
+			this.percentBox.BackColor = System.Drawing.SystemColors.Window;
+			this.percentBox.ForeColor = System.Drawing.SystemColors.ControlText;
 			this.percentBox.Location = new System.Drawing.Point(188, 118);
 			this.percentBox.Maximum = new decimal(new int[] {
             6000,
@@ -169,6 +175,8 @@ namespace River.OneMoreAddIn.Commands
             0,
             0});
 			this.percentBox.Name = "percentBox";
+			this.percentBox.PreferredBack = null;
+			this.percentBox.PreferredFore = null;
 			this.percentBox.Size = new System.Drawing.Size(94, 26);
 			this.percentBox.TabIndex = 2;
 			this.percentBox.Value = new decimal(new int[] {
@@ -189,7 +197,9 @@ namespace River.OneMoreAddIn.Commands
 			// 
 			// widthBox
 			// 
+			this.widthBox.BackColor = System.Drawing.SystemColors.Window;
 			this.widthBox.Enabled = false;
+			this.widthBox.ForeColor = System.Drawing.SystemColors.ControlText;
 			this.widthBox.Location = new System.Drawing.Point(188, 158);
 			this.widthBox.Maximum = new decimal(new int[] {
             10000000,
@@ -197,13 +207,17 @@ namespace River.OneMoreAddIn.Commands
             0,
             0});
 			this.widthBox.Name = "widthBox";
+			this.widthBox.PreferredBack = null;
+			this.widthBox.PreferredFore = null;
 			this.widthBox.Size = new System.Drawing.Size(123, 26);
 			this.widthBox.TabIndex = 4;
 			this.widthBox.ValueChanged += new System.EventHandler(this.WidthValueChanged);
 			// 
 			// heightBox
 			// 
+			this.heightBox.BackColor = System.Drawing.SystemColors.Window;
 			this.heightBox.Enabled = false;
+			this.heightBox.ForeColor = System.Drawing.SystemColors.ControlText;
 			this.heightBox.Location = new System.Drawing.Point(188, 189);
 			this.heightBox.Maximum = new decimal(new int[] {
             10000000,
@@ -211,6 +225,8 @@ namespace River.OneMoreAddIn.Commands
             0,
             0});
 			this.heightBox.Name = "heightBox";
+			this.heightBox.PreferredBack = null;
+			this.heightBox.PreferredFore = null;
 			this.heightBox.Size = new System.Drawing.Size(123, 26);
 			this.heightBox.TabIndex = 5;
 			this.heightBox.ValueChanged += new System.EventHandler(this.HeightValueChanged);
@@ -244,10 +260,10 @@ namespace River.OneMoreAddIn.Commands
 			// 
 			// presetRadio
 			// 
-			this.presetRadio.AutoSize = true;
+			this.presetRadio.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.presetRadio.Location = new System.Drawing.Point(39, 230);
 			this.presetRadio.Name = "presetRadio";
-			this.presetRadio.Size = new System.Drawing.Size(80, 24);
+			this.presetRadio.Size = new System.Drawing.Size(83, 25);
 			this.presetRadio.TabIndex = 7;
 			this.presetRadio.Text = "Preset";
 			this.presetRadio.UseVisualStyleBackColor = true;
@@ -256,7 +272,9 @@ namespace River.OneMoreAddIn.Commands
 			// 
 			// presetBox
 			// 
+			this.presetBox.BackColor = System.Drawing.SystemColors.Window;
 			this.presetBox.Enabled = false;
+			this.presetBox.ForeColor = System.Drawing.SystemColors.ControlText;
 			this.presetBox.Location = new System.Drawing.Point(188, 232);
 			this.presetBox.Maximum = new decimal(new int[] {
             10000000,
@@ -264,6 +282,8 @@ namespace River.OneMoreAddIn.Commands
             0,
             0});
 			this.presetBox.Name = "presetBox";
+			this.presetBox.PreferredBack = null;
+			this.presetBox.PreferredFore = null;
 			this.presetBox.Size = new System.Drawing.Size(123, 26);
 			this.presetBox.TabIndex = 8;
 			this.presetBox.Value = new decimal(new int[] {
@@ -335,12 +355,14 @@ namespace River.OneMoreAddIn.Commands
 			// 
 			// preserveBox
 			// 
-			this.preserveBox.AutoSize = true;
+			this.preserveBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
 			this.preserveBox.Checked = true;
 			this.preserveBox.CheckState = System.Windows.Forms.CheckState.Checked;
+			this.preserveBox.Cursor = System.Windows.Forms.Cursors.Hand;
+			this.preserveBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.preserveBox.Location = new System.Drawing.Point(41, 564);
 			this.preserveBox.Name = "preserveBox";
-			this.preserveBox.Size = new System.Drawing.Size(187, 24);
+			this.preserveBox.Size = new System.Drawing.Size(194, 25);
 			this.preserveBox.TabIndex = 20;
 			this.preserveBox.Text = "Preserve storage size";
 			this.preserveBox.UseVisualStyleBackColor = true;
@@ -373,6 +395,8 @@ namespace River.OneMoreAddIn.Commands
 			// 
 			// opacityBox
 			// 
+			this.opacityBox.BackColor = System.Drawing.SystemColors.Window;
+			this.opacityBox.ForeColor = System.Drawing.SystemColors.ControlText;
 			this.opacityBox.Location = new System.Drawing.Point(187, 323);
 			this.opacityBox.Minimum = new decimal(new int[] {
             1,
@@ -380,6 +404,8 @@ namespace River.OneMoreAddIn.Commands
             0,
             0});
 			this.opacityBox.Name = "opacityBox";
+			this.opacityBox.PreferredBack = null;
+			this.opacityBox.PreferredFore = null;
 			this.opacityBox.Size = new System.Drawing.Size(94, 26);
 			this.opacityBox.TabIndex = 9;
 			this.opacityBox.Value = new decimal(new int[] {
@@ -441,6 +467,8 @@ namespace River.OneMoreAddIn.Commands
 			// 
 			// brightnessBox
 			// 
+			this.brightnessBox.BackColor = System.Drawing.SystemColors.Window;
+			this.brightnessBox.ForeColor = System.Drawing.SystemColors.ControlText;
 			this.brightnessBox.Location = new System.Drawing.Point(187, 355);
 			this.brightnessBox.Minimum = new decimal(new int[] {
             100,
@@ -448,6 +476,8 @@ namespace River.OneMoreAddIn.Commands
             0,
             -2147483648});
 			this.brightnessBox.Name = "brightnessBox";
+			this.brightnessBox.PreferredBack = null;
+			this.brightnessBox.PreferredFore = null;
 			this.brightnessBox.Size = new System.Drawing.Size(94, 26);
 			this.brightnessBox.TabIndex = 11;
 			this.brightnessBox.ValueChanged += new System.EventHandler(this.SlideValueChanged);
@@ -464,6 +494,8 @@ namespace River.OneMoreAddIn.Commands
 			// 
 			// contrastBox
 			// 
+			this.contrastBox.BackColor = System.Drawing.SystemColors.Window;
+			this.contrastBox.ForeColor = System.Drawing.SystemColors.ControlText;
 			this.contrastBox.Location = new System.Drawing.Point(187, 387);
 			this.contrastBox.Minimum = new decimal(new int[] {
             100,
@@ -471,6 +503,8 @@ namespace River.OneMoreAddIn.Commands
             0,
             -2147483648});
 			this.contrastBox.Name = "contrastBox";
+			this.contrastBox.PreferredBack = null;
+			this.contrastBox.PreferredFore = null;
 			this.contrastBox.Size = new System.Drawing.Size(94, 26);
 			this.contrastBox.TabIndex = 13;
 			this.contrastBox.ValueChanged += new System.EventHandler(this.SlideValueChanged);
@@ -538,8 +572,12 @@ namespace River.OneMoreAddIn.Commands
 			// 
 			// qualBox
 			// 
+			this.qualBox.BackColor = System.Drawing.SystemColors.Window;
+			this.qualBox.ForeColor = System.Drawing.SystemColors.ControlText;
 			this.qualBox.Location = new System.Drawing.Point(187, 514);
 			this.qualBox.Name = "qualBox";
+			this.qualBox.PreferredBack = null;
+			this.qualBox.PreferredFore = null;
 			this.qualBox.Size = new System.Drawing.Size(94, 26);
 			this.qualBox.TabIndex = 18;
 			this.qualBox.Value = new decimal(new int[] {
@@ -551,6 +589,7 @@ namespace River.OneMoreAddIn.Commands
 			// 
 			// styleBox
 			// 
+			this.styleBox.BackColor = System.Drawing.SystemColors.Window;
 			this.styleBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this.styleBox.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
 			this.styleBox.FormattingEnabled = true;
@@ -578,11 +617,14 @@ namespace River.OneMoreAddIn.Commands
 			// lockButton
 			// 
 			this.lockButton.Appearance = System.Windows.Forms.Appearance.Button;
+			this.lockButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
 			this.lockButton.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("lockButton.BackgroundImage")));
 			this.lockButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
 			this.lockButton.Checked = true;
 			this.lockButton.CheckState = System.Windows.Forms.CheckState.Checked;
+			this.lockButton.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.lockButton.Enabled = false;
+			this.lockButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.lockButton.Location = new System.Drawing.Point(403, 167);
 			this.lockButton.Name = "lockButton";
 			this.lockButton.Size = new System.Drawing.Size(33, 33);
@@ -616,6 +658,8 @@ namespace River.OneMoreAddIn.Commands
 			// 
 			// saturationBox
 			// 
+			this.saturationBox.BackColor = System.Drawing.SystemColors.Window;
+			this.saturationBox.ForeColor = System.Drawing.SystemColors.ControlText;
 			this.saturationBox.Location = new System.Drawing.Point(187, 419);
 			this.saturationBox.Minimum = new decimal(new int[] {
             100,
@@ -623,6 +667,8 @@ namespace River.OneMoreAddIn.Commands
             0,
             -2147483648});
 			this.saturationBox.Name = "saturationBox";
+			this.saturationBox.PreferredBack = null;
+			this.saturationBox.PreferredFore = null;
 			this.saturationBox.Size = new System.Drawing.Size(94, 26);
 			this.saturationBox.TabIndex = 15;
 			this.saturationBox.ValueChanged += new System.EventHandler(this.SlideValueChanged);
@@ -644,12 +690,14 @@ namespace River.OneMoreAddIn.Commands
 			// 
 			// repositionBox
 			// 
-			this.repositionBox.AutoSize = true;
+			this.repositionBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
 			this.repositionBox.Checked = true;
 			this.repositionBox.CheckState = System.Windows.Forms.CheckState.Checked;
+			this.repositionBox.Cursor = System.Windows.Forms.Cursors.Hand;
+			this.repositionBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.repositionBox.Location = new System.Drawing.Point(39, 594);
 			this.repositionBox.Name = "repositionBox";
-			this.repositionBox.Size = new System.Drawing.Size(254, 24);
+			this.repositionBox.Size = new System.Drawing.Size(262, 25);
 			this.repositionBox.TabIndex = 48;
 			this.repositionBox.Text = "Reposition background images";
 			this.repositionBox.UseVisualStyleBackColor = true;
@@ -674,10 +722,10 @@ namespace River.OneMoreAddIn.Commands
 			// 
 			// autoSizeRadio
 			// 
-			this.autoSizeRadio.AutoSize = true;
+			this.autoSizeRadio.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.autoSizeRadio.Location = new System.Drawing.Point(39, 270);
 			this.autoSizeRadio.Name = "autoSizeRadio";
-			this.autoSizeRadio.Size = new System.Drawing.Size(101, 24);
+			this.autoSizeRadio.Size = new System.Drawing.Size(104, 25);
 			this.autoSizeRadio.TabIndex = 50;
 			this.autoSizeRadio.Text = "Auto-size";
 			this.autoSizeRadio.UseVisualStyleBackColor = true;
@@ -689,6 +737,7 @@ namespace River.OneMoreAddIn.Commands
 			this.AcceptButton = this.okButton;
 			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+			this.BackColor = System.Drawing.SystemColors.Window;
 			this.CancelButton = this.cancelButton;
 			this.ClientSize = new System.Drawing.Size(1122, 728);
 			this.Controls.Add(this.autoSizeRadio);
@@ -770,15 +819,15 @@ namespace River.OneMoreAddIn.Commands
 		private UI.MoreButton okButton;
 		private UI.MoreRadioButton pctRadio;
 		private UI.MoreRadioButton absRadio;
-		private System.Windows.Forms.NumericUpDown percentBox;
+		private UI.MoreNumericUpDown percentBox;
 		private System.Windows.Forms.Label pctLabel;
-		private System.Windows.Forms.NumericUpDown widthBox;
-		private System.Windows.Forms.NumericUpDown heightBox;
+		private UI.MoreNumericUpDown widthBox;
+		private UI.MoreNumericUpDown heightBox;
 		private System.Windows.Forms.Label widthLabel;
 		private System.Windows.Forms.Label heightLabel;
 		private System.Windows.Forms.Label viewSizeLabel;
 		private UI.MoreRadioButton presetRadio;
-		private System.Windows.Forms.NumericUpDown presetBox;
+		private UI.MoreNumericUpDown presetBox;
 		private System.Windows.Forms.Label presetLabel;
 		private System.Windows.Forms.Label imageSizeLabel;
 		private UI.MoreLinkLabel viewSizeLink;
@@ -787,26 +836,26 @@ namespace River.OneMoreAddIn.Commands
 		private System.Windows.Forms.Label qualityLabel;
 		private System.Windows.Forms.TrackBar qualBar;
 		private UI.MoreCheckBox preserveBox;
-		private System.Windows.Forms.NumericUpDown opacityBox;
+		private UI.MoreNumericUpDown opacityBox;
 		private System.Windows.Forms.Label opacityLabel;
 		private UI.MoreGroupBox previewGroup;
 		private System.Windows.Forms.PictureBox previewBox;
 		private System.Windows.Forms.Label brightnessLabel;
-		private System.Windows.Forms.NumericUpDown brightnessBox;
+		private UI.MoreNumericUpDown brightnessBox;
 		private System.Windows.Forms.Label contrastLabel;
-		private System.Windows.Forms.NumericUpDown contrastBox;
+		private UI.MoreNumericUpDown contrastBox;
 		private System.Windows.Forms.TrackBar brightnessBar;
 		private System.Windows.Forms.TrackBar contrastBar;
 		private System.Windows.Forms.TrackBar opacityBar;
 		private System.Windows.Forms.Label storageLabel;
 		private System.Windows.Forms.Label storedSizeLabel;
-		private System.Windows.Forms.NumericUpDown qualBox;
+		private UI.MoreNumericUpDown qualBox;
 		private System.Windows.Forms.ComboBox styleBox;
 		private System.Windows.Forms.Label styleLabel;
 		private UI.MoreCheckBox lockButton;
 		private System.Windows.Forms.TrackBar saturationBar;
 		private System.Windows.Forms.Label saturationLabel;
-		private System.Windows.Forms.NumericUpDown saturationBox;
+		private UI.MoreNumericUpDown saturationBox;
 		private System.Windows.Forms.ComboBox limitsBox;
 		private UI.MoreCheckBox repositionBox;
 		private UI.MoreLinkLabel resetLinkLabel;
