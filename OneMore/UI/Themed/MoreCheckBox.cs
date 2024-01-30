@@ -54,6 +54,7 @@ namespace River.OneMoreAddIn.UI
 		protected override void OnPaint(PaintEventArgs pevent)
 		{
 			var g = pevent.Graphics;
+			g.SmoothingMode = SmoothingMode.HighQuality;
 			g.Clear(Parent.BackColor);
 
 			if (Appearance == Appearance.Button)
@@ -70,6 +71,8 @@ namespace River.OneMoreAddIn.UI
 		private void PaintButton(PaintEventArgs pevent)
 		{
 			var g = pevent.Graphics;
+			var clip = pevent.ClipRectangle;
+
 			if (Enabled && (MouseState != MouseState.None || Checked))
 			{
 				using var brush = new SolidBrush(
@@ -77,20 +80,20 @@ namespace River.OneMoreAddIn.UI
 						? manager.GetThemedColor("ButtonDown")
 						: MouseState.HasFlag(MouseState.Hover) ? hoverColor : backColor);
 
-				g.FillRoundedRectangle(brush, pevent.ClipRectangle, Radius);
+				g.FillRoundedRectangle(brush, clip, Radius);
 
 				using var pen = new Pen(
 					MouseState.HasFlag(MouseState.Pushed) || Checked
 					? manager.ButtonPressBorder
 					: manager.ButtonBorder);
 
-				g.DrawRoundedRectangle(pen, pevent.ClipRectangle, Radius);
+				g.DrawRoundedRectangle(pen, clip, Radius);
 			}
 
 			var img = Image ?? BackgroundImage;
 			if (img != null)
 			{
-				var r = pevent.ClipRectangle;
+				var r = clip;
 				r.Inflate(-3, -3);
 				g.DrawImage(img, r);
 			}
@@ -103,8 +106,8 @@ namespace River.OneMoreAddIn.UI
 					Enabled ? foreColor : manager.GetThemedColor("GrayText"));
 
 				pevent.Graphics.DrawString(Text, Font, brush,
-					(pevent.ClipRectangle.Width - (int)size.Width) / 2f,
-					(pevent.ClipRectangle.Height - (int)size.Height) / 2f,
+					(clip.Width - (int)size.Width) / 2f,
+					(clip.Height - (int)size.Height) / 2f,
 					new StringFormat
 					{
 						Trimming = StringTrimming.EllipsisCharacter,
@@ -131,51 +134,40 @@ namespace River.OneMoreAddIn.UI
 			}
 
 			using var bpen = new Pen(border, 2);
-			g.DrawRoundedRectangle(bpen, pevent.ClipRectangle, Radius);
+			g.DrawRoundedRectangle(bpen,
+				new Rectangle(clip.X, clip.Y, clip.Width - 1, clip.Height - 1),
+				Radius);
 		}
 
 
 		private void PaintNormal(PaintEventArgs pevent)
 		{
-			// ensure we have something to measure relatively for box location
+			var g = pevent.Graphics;
 
 			var color = Enabled
 				? manager.GetThemedColor(foreColor)
 				: manager.GetThemedColor("GrayText");
 
-			using var pen = new Pen(color);
+			var boxColor = Enabled ? manager.GetThemedColor("Highlight") : color;
+
 			var boxY = (Size.Height - boxSize) / 2;
 
-			var g = pevent.Graphics;
-			g.SmoothingMode = SmoothingMode.HighQuality;
+			using var boxPen = new Pen(boxColor);
+			g.DrawRoundedRectangle(boxPen, new Rectangle(0, boxY, boxSize, boxSize), Radius);
 
 			if (Checked)
 			{
-				using var fillBrush = new SolidBrush(Enabled
-					? manager.GetThemedColor("Highlight")
-					: color);
-
-				g.FillRoundedRectangle(fillBrush, new Rectangle(0, boxY, boxSize, boxSize), Radius);
-
-				var path = new GraphicsPath();
-				var x = boxSize / 4;
-				var y = boxY + (boxSize / 2);
-				path.AddLine(x, y, x + 3, y + 3);
-				path.AddLine(x + 3, y + 3, x + 9, y - 3);
-
-				using var checkPen = new Pen(BackColor, 2);
-				g.DrawPath(checkPen, path);
-			}
-			else
-			{
-				g.DrawRoundedRectangle(pen, new Rectangle(0, boxY, boxSize, boxSize), Radius);
+				using var fillBrush = new SolidBrush(boxColor);
+				g.FillRoundedRectangle(fillBrush,
+					new Rectangle(2, boxY + 2, boxSize - 4, boxSize - 4), Radius);
 			}
 
 			using var brush = new SolidBrush(color);
+			var textsize = g.MeasureString(Text, Font);
 
 			pevent.Graphics.DrawString(Text, Font, brush,
 				new Rectangle(boxSize + Spacing,
-					(pevent.ClipRectangle.Height - Size.Height) / 2,
+					(int)((pevent.ClipRectangle.Height - textsize.Height) / 2),
 					pevent.ClipRectangle.Width - (boxSize + Spacing),
 					Size.Height),
 				new StringFormat

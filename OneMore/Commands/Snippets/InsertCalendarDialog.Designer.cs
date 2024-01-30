@@ -110,21 +110,21 @@
 			// 
 			// smallRadio
 			// 
-			this.smallRadio.AutoSize = true;
-			this.smallRadio.Location = new System.Drawing.Point(184, 91);
+			this.smallRadio.Cursor = System.Windows.Forms.Cursors.Hand;
+			this.smallRadio.Location = new System.Drawing.Point(182, 92);
 			this.smallRadio.Name = "smallRadio";
-			this.smallRadio.Size = new System.Drawing.Size(73, 24);
+			this.smallRadio.Size = new System.Drawing.Size(77, 25);
 			this.smallRadio.TabIndex = 1;
 			this.smallRadio.Text = "Small";
 			this.smallRadio.UseVisualStyleBackColor = true;
 			// 
 			// largeRadio
 			// 
-			this.largeRadio.AutoSize = true;
 			this.largeRadio.Checked = true;
-			this.largeRadio.Location = new System.Drawing.Point(182, 61);
+			this.largeRadio.Cursor = System.Windows.Forms.Cursors.Hand;
+			this.largeRadio.Location = new System.Drawing.Point(182, 58);
 			this.largeRadio.Name = "largeRadio";
-			this.largeRadio.Size = new System.Drawing.Size(75, 24);
+			this.largeRadio.Size = new System.Drawing.Size(78, 25);
 			this.largeRadio.TabIndex = 0;
 			this.largeRadio.TabStop = true;
 			this.largeRadio.Text = "Large";
@@ -133,11 +133,15 @@
 			// cancelButton
 			// 
 			this.cancelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+			this.cancelButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
 			this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+			this.cancelButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.cancelButton.ImageOver = null;
 			this.cancelButton.Location = new System.Drawing.Point(376, 388);
 			this.cancelButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.cancelButton.Name = "cancelButton";
+			this.cancelButton.PreferredBack = null;
+			this.cancelButton.PreferredFore = null;
 			this.cancelButton.ShowBorder = true;
 			this.cancelButton.Size = new System.Drawing.Size(112, 35);
 			this.cancelButton.TabIndex = 1;
@@ -147,11 +151,15 @@
 			// okButton
 			// 
 			this.okButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+			this.okButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
 			this.okButton.DialogResult = System.Windows.Forms.DialogResult.OK;
+			this.okButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.okButton.ImageOver = null;
 			this.okButton.Location = new System.Drawing.Point(254, 388);
 			this.okButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.okButton.Name = "okButton";
+			this.okButton.PreferredBack = null;
+			this.okButton.PreferredFore = null;
 			this.okButton.ShowBorder = true;
 			this.okButton.Size = new System.Drawing.Size(112, 35);
 			this.okButton.TabIndex = 0;
@@ -160,11 +168,13 @@
 			// 
 			// indentBox
 			// 
-			this.indentBox.AutoSize = true;
-			this.indentBox.Location = new System.Drawing.Point(184, 141);
+			this.indentBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
+			this.indentBox.Cursor = System.Windows.Forms.Cursors.Hand;
+			this.indentBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+			this.indentBox.Location = new System.Drawing.Point(182, 136);
 			this.indentBox.Margin = new System.Windows.Forms.Padding(3, 8, 3, 3);
 			this.indentBox.Name = "indentBox";
-			this.indentBox.Size = new System.Drawing.Size(146, 24);
+			this.indentBox.Size = new System.Drawing.Size(149, 25);
 			this.indentBox.TabIndex = 2;
 			this.indentBox.Text = "Indent calendar";
 			this.indentBox.UseVisualStyleBackColor = true;
@@ -181,11 +191,11 @@
 			// 
 			// sundayButton
 			// 
-			this.sundayButton.AutoSize = true;
 			this.sundayButton.Checked = true;
+			this.sundayButton.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.sundayButton.Location = new System.Drawing.Point(182, 8);
 			this.sundayButton.Name = "sundayButton";
-			this.sundayButton.Size = new System.Drawing.Size(88, 24);
+			this.sundayButton.Size = new System.Drawing.Size(91, 25);
 			this.sundayButton.TabIndex = 0;
 			this.sundayButton.TabStop = true;
 			this.sundayButton.Text = "Sunday";
@@ -193,10 +203,10 @@
 			// 
 			// mondayButton
 			// 
-			this.mondayButton.AutoSize = true;
+			this.mondayButton.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.mondayButton.Location = new System.Drawing.Point(182, 38);
 			this.mondayButton.Name = "mondayButton";
-			this.mondayButton.Size = new System.Drawing.Size(90, 24);
+			this.mondayButton.Size = new System.Drawing.Size(94, 25);
 			this.mondayButton.TabIndex = 1;
 			this.mondayButton.Text = "Monday";
 			this.mondayButton.UseVisualStyleBackColor = true;

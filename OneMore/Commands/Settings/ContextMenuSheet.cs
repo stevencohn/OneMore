@@ -96,7 +96,7 @@ namespace River.OneMoreAddIn.Settings
 				}
 
 				// a little extra
-				width += 20;
+				width = Math.Min(width + 100, Parent.Width);
 
 				foreach (MenuItemPanel item in Controls)
 				{
@@ -187,10 +187,11 @@ namespace River.OneMoreAddIn.Settings
 		protected override void OnLoad(EventArgs e)
 		{
 			// after ThemeManager is initialized
-			menuPanel.MenuColor = manager.GetThemedColor("ActiveCaption");
+			menuPanel.MenuColor = manager.GetThemedColor("Control");
 			menuPanel.MenuTextColor = manager.GetThemedColor("ActiveCaptionText");
 			menuPanel.ItemColor = manager.GetThemedColor("ControlLightLight");
 			menuPanel.ItemTextColor = manager.GetThemedColor("ControlText");
+			manager.InitializeTheme(menuPanel);
 
 			var menus = CollectCommandMenus();
 			menuPanel.AddMenus(menus);

@@ -10,11 +10,13 @@ namespace River.OneMoreAddIn.UI
 	using System;
 	using System.ComponentModel;
 	using System.Drawing;
+	using System.Drawing.Drawing2D;
 	using System.Windows.Forms;
 
 
 	/// <summary>
-	/// Extension of Button to allow forced system Hand cursor instead of default Forms Hand cursor.
+	/// Extension of Button to allow forced system Hand cursor instead of
+	/// default Forms Hand cursor.
 	/// </summary>
 	internal class MoreButton : Button, IThemedControl
 	{
@@ -176,6 +178,8 @@ namespace River.OneMoreAddIn.UI
 		protected override void OnPaint(PaintEventArgs pevent)
 		{
 			var g = pevent.Graphics;
+			g.SmoothingMode = SmoothingMode.HighQuality;
+
 			g.Clear(Parent.BackColor);
 
 			var back = string.IsNullOrEmpty(PreferredBack)
@@ -190,19 +194,21 @@ namespace River.OneMoreAddIn.UI
 					back = downColor;
 			}
 
+			var clip = pevent.ClipRectangle;
+
 			using var brush = new SolidBrush(back);
-			g.FillRoundedRectangle(brush, pevent.ClipRectangle, Radius);
+			g.FillRoundedRectangle(brush, clip, Radius);
 
 			if (BackgroundImage != null)
 			{
-				PaintBackgroundImage(g, pevent.ClipRectangle);
+				PaintBackgroundImage(g, clip);
 			}
 
 			if (Image != null && !string.IsNullOrWhiteSpace(Text))
 			{
 				var size = g.MeasureString(Text, Font);
-				var x = (pevent.ClipRectangle.Width - ((int)size.Width + Image.Width)) / 2;
-				var y = (pevent.ClipRectangle.Height - Image.Height) / 2;
+				var x = (clip.Width - ((int)size.Width + Image.Width)) / 2;
+				var y = (clip.Height - Image.Height) / 2;
 
 				g.DrawImage(Image, x, y);
 				PaintText(g, x + Image.Width, y);
@@ -210,16 +216,16 @@ namespace River.OneMoreAddIn.UI
 			else if (Image != null)
 			{
 				g.DrawImage(Image,
-					(pevent.ClipRectangle.Width - Image.Width) / 2,
-					(pevent.ClipRectangle.Height - Image.Height) / 2);
+					(clip.Width - Image.Width) / 2,
+					(clip.Height - Image.Height) / 2);
 			}
 			else if (!string.IsNullOrEmpty(Text))
 			{
 				var size = g.MeasureString(Text, Font);
 
 				PaintText(g,
-					(int)((pevent.ClipRectangle.Width - size.Width) / 2),
-					(int)((pevent.ClipRectangle.Height - size.Height) / 2));
+					(int)((clip.Width - size.Width) / 2),
+					(int)((clip.Height - size.Height) / 2));
 			}
 
 			if (ShowBorder || (Enabled && MouseState != MouseState.None))
@@ -238,8 +244,10 @@ namespace River.OneMoreAddIn.UI
 					color = manager.ButtonHotBorder;
 				}
 
-				using var pen = new Pen(color, 2);
-				g.DrawRoundedRectangle(pen, pevent.ClipRectangle, Radius);
+				using var pen = new Pen(color);
+				g.DrawRoundedRectangle(pen,
+					new Rectangle(clip.X, clip.Y, clip.Width - 1, clip.Height - 1),
+					Radius);
 			}
 		}
 

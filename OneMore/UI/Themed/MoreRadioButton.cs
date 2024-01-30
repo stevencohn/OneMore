@@ -9,7 +9,7 @@ namespace River.OneMoreAddIn.UI
 	using System.Drawing.Drawing2D;
 	using System.Linq;
 	using System.Windows.Forms;
-
+	using Windows.ApplicationModel.VoiceCommands;
 
 	internal class MoreRadioButton : RadioButton
 	{
@@ -49,76 +49,84 @@ namespace River.OneMoreAddIn.UI
 		protected override void OnPaint(PaintEventArgs pevent)
 		{
 			var g = pevent.Graphics;
+			g.SmoothingMode = SmoothingMode.HighQuality;
 			g.Clear(BackColor);
 
 			if (Appearance == Appearance.Button)
 			{
-				if (Enabled && (MouseState != MouseState.None || Checked))
-				{
-					using var brush = new SolidBrush(
-						MouseState.HasFlag(MouseState.Pushed) || Checked
-						? manager.ButtonHotBack
-						: manager.ButtonBack);
-
-					g.FillRoundedRectangle(brush, pevent.ClipRectangle, Radius);
-
-					using var pen = new Pen(
-						MouseState.HasFlag(MouseState.Pushed) || Checked
-						? manager.ButtonPressBorder
-						: manager.ButtonBorder);
-
-					g.DrawRoundedRectangle(pen, pevent.ClipRectangle, Radius);
-				}
-
-				g.DrawImageUnscaled(Image,
-					(pevent.ClipRectangle.Width - Image.Width) / 2,
-					(pevent.ClipRectangle.Height - Image.Height) / 2
-					);
+				PaintButton(pevent);
 			}
 			else
 			{
-				var color = Enabled
-					? manager.GetThemedColor(foreColor)
-					: manager.GetThemedColor("GrayText");
-
-				g.SmoothingMode = SmoothingMode.HighQuality;
-
-				var boxY = (Size.Height - boxSize) / 2;
-
-				if (Checked)
-				{
-					var c = Enabled
-						? manager.GetThemedColor("Highlight")
-						: color;
-
-					using var pen = new Pen(c);
-					g.DrawEllipse(pen, 0, boxY, boxSize, boxSize);
-
-					using var fillBrush = new SolidBrush(c);
-					g.FillEllipse(fillBrush, 0, boxY, boxSize, boxSize);
-
-					using var dotbrush = new SolidBrush(BackColor);
-					g.FillEllipse(dotbrush, 4, boxY + 4, boxSize - 8, boxSize - 8);
-				}
-				else
-				{
-					using var pen = new Pen(color);
-					g.DrawEllipse(pen, 0, boxY, boxSize, boxSize);
-				}
-
-				using var brush = new SolidBrush(color);
-
-				g.DrawString(Text, Font, brush,
-					new Rectangle(boxSize + Spacing,
-						(pevent.ClipRectangle.Height - Size.Height) / 2,
-						pevent.ClipRectangle.Width - (boxSize + Spacing),
-						Size.Height),
-					new StringFormat
-					{
-						Trimming = StringTrimming.EllipsisCharacter,
-						FormatFlags = StringFormatFlags.LineLimit | StringFormatFlags.NoWrap
-					});
+				PaintNormal(pevent);
 			}
+		}
+
+
+		private void PaintButton(PaintEventArgs pevent)
+		{
+			var g = pevent.Graphics;
+
+			if (Enabled && (MouseState != MouseState.None || Checked))
+			{
+				using var brush = new SolidBrush(
+					MouseState.HasFlag(MouseState.Pushed) || Checked
+					? manager.ButtonHotBack
+					: manager.ButtonBack);
+
+				g.FillRoundedRectangle(brush, pevent.ClipRectangle, Radius);
+
+				using var pen = new Pen(
+					MouseState.HasFlag(MouseState.Pushed) || Checked
+					? manager.ButtonPressBorder
+					: manager.ButtonBorder);
+
+				g.DrawRoundedRectangle(pen, pevent.ClipRectangle, Radius);
+			}
+
+			g.DrawImageUnscaled(Image,
+				(pevent.ClipRectangle.Width - Image.Width) / 2,
+				(pevent.ClipRectangle.Height - Image.Height) / 2
+				);
+
+		}
+
+
+		private void PaintNormal(PaintEventArgs pevent)
+		{
+			var g = pevent.Graphics;
+
+			var color = Enabled
+				? manager.GetThemedColor(foreColor)
+				: manager.GetThemedColor("GrayText");
+
+			var radioColor = Enabled
+				? manager.GetThemedColor("Highlight")
+				: color;
+
+			var boxY = (Size.Height - boxSize) / 2;
+
+			using var radioPen = new Pen(radioColor);
+			g.DrawEllipse(radioPen, 0, boxY, boxSize, boxSize);
+
+			if (Checked)
+			{
+				using var fillBrush = new SolidBrush(radioColor);
+				g.FillEllipse(fillBrush, 2, boxY + 2, boxSize - 4, boxSize - 4);
+			}
+
+			using var brush = new SolidBrush(color);
+
+			g.DrawString(Text, Font, brush,
+				new Rectangle(boxSize + Spacing,
+					(pevent.ClipRectangle.Height - Size.Height) / 2,
+					pevent.ClipRectangle.Width - (boxSize + Spacing),
+					Size.Height),
+				new StringFormat
+				{
+					Trimming = StringTrimming.EllipsisCharacter,
+					FormatFlags = StringFormatFlags.LineLimit | StringFormatFlags.NoWrap
+				});
 		}
 
 
