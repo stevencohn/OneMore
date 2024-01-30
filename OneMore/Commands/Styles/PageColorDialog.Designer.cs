@@ -168,7 +168,7 @@
 			// 
 			this.applyThemeBox.Location = new System.Drawing.Point(51, 82);
 			this.applyThemeBox.Name = "applyThemeBox";
-			this.applyThemeBox.Size = new System.Drawing.Size(522, 24);
+			this.applyThemeBox.Size = new System.Drawing.Size(212, 24);
 			this.applyThemeBox.TabIndex = 0;
 			this.applyThemeBox.Text = "Apply styles to this page";
 			this.applyThemeBox.UseVisualStyleBackColor = true;
@@ -191,10 +191,9 @@
 			// 
 			// omButton
 			// 
-			this.omButton.AutoSize = true;
 			this.omButton.Location = new System.Drawing.Point(33, 39);
 			this.omButton.Name = "omButton";
-			this.omButton.Size = new System.Drawing.Size(21, 20);
+			this.omButton.Size = new System.Drawing.Size(30, 24);
 			this.omButton.TabIndex = 13;
 			this.omButton.TabStop = true;
 			this.omButton.UseVisualStyleBackColor = true;
@@ -202,20 +201,18 @@
 			// 
 			// customButton
 			// 
-			this.customButton.AutoSize = true;
 			this.customButton.Location = new System.Drawing.Point(33, 122);
 			this.customButton.Name = "customButton";
-			this.customButton.Size = new System.Drawing.Size(21, 20);
+			this.customButton.Size = new System.Drawing.Size(25, 24);
 			this.customButton.TabIndex = 14;
 			this.customButton.TabStop = true;
 			this.customButton.UseVisualStyleBackColor = true;
 			// 
 			// noButton
 			// 
-			this.noButton.AutoSize = true;
 			this.noButton.Location = new System.Drawing.Point(33, 203);
 			this.noButton.Name = "noButton";
-			this.noButton.Size = new System.Drawing.Size(21, 20);
+			this.noButton.Size = new System.Drawing.Size(25, 24);
 			this.noButton.TabIndex = 15;
 			this.noButton.TabStop = true;
 			this.noButton.UseVisualStyleBackColor = true;

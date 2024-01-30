@@ -138,6 +138,7 @@ namespace River.OneMoreAddIn.Settings
 					15 => new SearchEngineSheet(provider),
 					_ => new SnippetsSheet(provider, ribbon),
 				};
+
 				sheets.Add(e.Node.Index, sheet);
 			}
 

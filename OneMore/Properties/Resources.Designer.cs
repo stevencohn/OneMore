@@ -9975,15 +9975,6 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Delete:.
-        /// </summary>
-        internal static string SearchEngineSheet_deleteLabel_Text {
-            get {
-                return ResourceManager.GetString("SearchEngineSheet_deleteLabel.Text", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Move down.
         /// </summary>
         internal static string SearchEngineSheet_downButton_Text {

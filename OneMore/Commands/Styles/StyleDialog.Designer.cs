@@ -285,7 +285,7 @@
 			// 
 			this.ignoredBox.Location = new System.Drawing.Point(169, 197);
 			this.ignoredBox.Name = "ignoredBox";
-			this.ignoredBox.Size = new System.Drawing.Size(174, 24);
+			this.ignoredBox.Size = new System.Drawing.Size(175, 24);
 			this.ignoredBox.TabIndex = 6;
 			this.ignoredBox.Text = "Disable spell check";
 			this.tooltip.SetToolTip(this.ignoredBox, "Disable spell check for selected text");
@@ -339,7 +339,7 @@
 			// 
 			this.darkBox.Location = new System.Drawing.Point(22, 33);
 			this.darkBox.Name = "darkBox";
-			this.darkBox.Size = new System.Drawing.Size(348, 24);
+			this.darkBox.Size = new System.Drawing.Size(349, 24);
 			this.darkBox.TabIndex = 0;
 			this.darkBox.Text = "Intended for pages with dark bakckgrounds";
 			this.tooltip.SetToolTip(this.darkBox, "Used in Page Color dialog to warn about non-readable text");
@@ -349,7 +349,7 @@
 			// 
 			this.pageColorBox.Location = new System.Drawing.Point(22, 63);
 			this.pageColorBox.Name = "pageColorBox";
-			this.pageColorBox.Size = new System.Drawing.Size(401, 24);
+			this.pageColorBox.Size = new System.Drawing.Size(402, 24);
 			this.pageColorBox.TabIndex = 1;
 			this.pageColorBox.Text = "Change the page color when applying these styles";
 			this.pageColorBox.UseVisualStyleBackColor = true;
@@ -409,7 +409,7 @@
 			this.applyColorsBox.CheckState = System.Windows.Forms.CheckState.Checked;
 			this.applyColorsBox.Location = new System.Drawing.Point(499, 158);
 			this.applyColorsBox.Name = "applyColorsBox";
-			this.applyColorsBox.Size = new System.Drawing.Size(123, 24);
+			this.applyColorsBox.Size = new System.Drawing.Size(124, 24);
 			this.applyColorsBox.TabIndex = 5;
 			this.applyColorsBox.Text = "Apply colors";
 			this.applyColorsBox.UseVisualStyleBackColor = true;
@@ -589,6 +589,7 @@
 			this.FileMenu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.loadButton,
             this.saveButton});
+			this.FileMenu.ForeColor = System.Drawing.Color.Black;
 			this.FileMenu.Image = ((System.Drawing.Image)(resources.GetObject("FileMenu.Image")));
 			this.FileMenu.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.FileMenu.Name = "FileMenu";
@@ -597,22 +598,25 @@
 			// 
 			// loadButton
 			// 
+			this.loadButton.ForeColor = System.Drawing.Color.Black;
 			this.loadButton.Image = global::River.OneMoreAddIn.Properties.Resources.Open;
 			this.loadButton.Name = "loadButton";
-			this.loadButton.Size = new System.Drawing.Size(185, 34);
+			this.loadButton.Size = new System.Drawing.Size(270, 34);
 			this.loadButton.Text = "Open...";
 			this.loadButton.Click += new System.EventHandler(this.LoadTheme);
 			// 
 			// saveButton
 			// 
+			this.saveButton.ForeColor = System.Drawing.Color.Black;
 			this.saveButton.Image = global::River.OneMoreAddIn.Properties.Resources.SaveAs;
 			this.saveButton.Name = "saveButton";
-			this.saveButton.Size = new System.Drawing.Size(185, 34);
+			this.saveButton.Size = new System.Drawing.Size(270, 34);
 			this.saveButton.Text = "Save as...";
 			this.saveButton.Click += new System.EventHandler(this.SaveTheme);
 			// 
 			// newStyleButton
 			// 
+			this.newStyleButton.ForeColor = System.Drawing.Color.Black;
 			this.newStyleButton.Image = global::River.OneMoreAddIn.Properties.Resources.NewStyle;
 			this.newStyleButton.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.newStyleButton.Name = "newStyleButton";
@@ -622,6 +626,7 @@
 			// 
 			// renameButton
 			// 
+			this.renameButton.ForeColor = System.Drawing.Color.Black;
 			this.renameButton.Image = ((System.Drawing.Image)(resources.GetObject("renameButton.Image")));
 			this.renameButton.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.renameButton.Name = "renameButton";
@@ -631,6 +636,7 @@
 			// 
 			// deleteButton
 			// 
+			this.deleteButton.ForeColor = System.Drawing.Color.Black;
 			this.deleteButton.Image = ((System.Drawing.Image)(resources.GetObject("deleteButton.Image")));
 			this.deleteButton.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.deleteButton.Margin = new System.Windows.Forms.Padding(5, 1, 0, 2);
@@ -646,6 +652,7 @@
 			// 
 			// reorderButton
 			// 
+			this.reorderButton.ForeColor = System.Drawing.Color.Black;
 			this.reorderButton.Image = ((System.Drawing.Image)(resources.GetObject("reorderButton.Image")));
 			this.reorderButton.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.reorderButton.Name = "reorderButton";

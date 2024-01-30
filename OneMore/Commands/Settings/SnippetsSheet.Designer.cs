@@ -28,12 +28,13 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
 			this.gridView = new System.Windows.Forms.DataGridView();
-			this.nameColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.introBox = new River.OneMoreAddIn.UI.MoreMultilineLabel();
 			this.toolStrip = new River.OneMoreAddIn.UI.ScaledToolStrip();
 			this.renameButton = new System.Windows.Forms.ToolStripButton();
 			this.deleteButton = new System.Windows.Forms.ToolStripButton();
+			this.nameColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			((System.ComponentModel.ISupportInitialize)(this.gridView)).BeginInit();
 			this.toolStrip.SuspendLayout();
 			this.SuspendLayout();
@@ -57,13 +58,6 @@
 			this.gridView.ShowEditingIcon = false;
 			this.gridView.Size = new System.Drawing.Size(780, 392);
 			this.gridView.TabIndex = 2;
-			// 
-			// nameColumn
-			// 
-			this.nameColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-			this.nameColumn.HeaderText = "Name";
-			this.nameColumn.MinimumWidth = 100;
-			this.nameColumn.Name = "nameColumn";
 			// 
 			// introBox
 			// 
@@ -94,6 +88,7 @@
 			// 
 			// renameButton
 			// 
+			this.renameButton.ForeColor = System.Drawing.Color.Black;
 			this.renameButton.Image = global::River.OneMoreAddIn.Properties.Resources.Rename;
 			this.renameButton.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.renameButton.Name = "renameButton";
@@ -103,12 +98,22 @@
 			// 
 			// deleteButton
 			// 
+			this.deleteButton.ForeColor = System.Drawing.Color.Black;
 			this.deleteButton.Image = global::River.OneMoreAddIn.Properties.Resources.Delete;
 			this.deleteButton.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.deleteButton.Name = "deleteButton";
 			this.deleteButton.Size = new System.Drawing.Size(90, 29);
 			this.deleteButton.Text = "Delete";
 			this.deleteButton.Click += new System.EventHandler(this.DeleteItem);
+			// 
+			// nameColumn
+			// 
+			this.nameColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+			dataGridViewCellStyle1.ForeColor = System.Drawing.Color.Black;
+			this.nameColumn.DefaultCellStyle = dataGridViewCellStyle1;
+			this.nameColumn.HeaderText = "Name";
+			this.nameColumn.MinimumWidth = 100;
+			this.nameColumn.Name = "nameColumn";
 			// 
 			// SnippetsSheet
 			// 
@@ -138,7 +143,7 @@
 		private UI.ScaledToolStrip toolStrip;
 		private System.Windows.Forms.ToolStripButton deleteButton;
 		private UI.MoreMultilineLabel introBox;
-		private System.Windows.Forms.DataGridViewTextBoxColumn nameColumn;
 		private System.Windows.Forms.ToolStripButton renameButton;
+		private System.Windows.Forms.DataGridViewTextBoxColumn nameColumn;
 	}
 }

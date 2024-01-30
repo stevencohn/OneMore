@@ -27,9 +27,9 @@ namespace River.OneMoreAddIn.Settings
 
 
 		protected SheetBase(SettingsProvider provider)
+			: base()
 		{
 			SuspendLayout();
-			//BackColor = System.Drawing.SystemColors.ControlLightLight;
 			Name = "SheetBase";
 			Size = new System.Drawing.Size(800, 500);
 			Dock = DockStyle.Fill;
@@ -71,19 +71,6 @@ namespace River.OneMoreAddIn.Settings
 		protected static bool NeedsLocalizing()
 		{
 			return AddIn.Culture.TwoLetterISOLanguageName != "en";
-		}
-
-		private void InitializeComponent()
-		{
-			this.SuspendLayout();
-			// 
-			// SheetBase
-			// 
-			this.BackColor = System.Drawing.SystemColors.ControlLightLight;
-			this.ForeColor = System.Drawing.SystemColors.ControlText;
-			this.Name = "SheetBase";
-			this.ResumeLayout(false);
-
 		}
 	}
 }

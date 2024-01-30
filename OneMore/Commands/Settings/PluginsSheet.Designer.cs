@@ -29,15 +29,17 @@
 		private void InitializeComponent()
 		{
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PluginsSheet));
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
 			this.gridView = new System.Windows.Forms.DataGridView();
-			this.nameColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.cmdColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.introBox = new River.OneMoreAddIn.UI.MoreMultilineLabel();
 			this.toolStrip = new River.OneMoreAddIn.UI.ScaledToolStrip();
 			this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
 			this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
 			this.deleteLabel = new System.Windows.Forms.ToolStripLabel();
 			this.deleteButton = new System.Windows.Forms.ToolStripButton();
+			this.nameColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.cmdColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			((System.ComponentModel.ISupportInitialize)(this.gridView)).BeginInit();
 			this.toolStrip.SuspendLayout();
 			this.SuspendLayout();
@@ -61,24 +63,6 @@
 			this.gridView.TabIndex = 2;
 			this.gridView.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.EditOnDoubleClick);
 			this.gridView.RowHeaderMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.EditOnDoubleClickRow);
-			// 
-			// nameColumn
-			// 
-			this.nameColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-			this.nameColumn.DataPropertyName = "Name";
-			this.nameColumn.HeaderText = "Name";
-			this.nameColumn.MinimumWidth = 100;
-			this.nameColumn.Name = "nameColumn";
-			this.nameColumn.ReadOnly = true;
-			// 
-			// cmdColumn
-			// 
-			this.cmdColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-			this.cmdColumn.DataPropertyName = "FullCommand";
-			this.cmdColumn.HeaderText = "Command";
-			this.cmdColumn.MinimumWidth = 8;
-			this.cmdColumn.Name = "cmdColumn";
-			this.cmdColumn.ReadOnly = true;
 			// 
 			// introBox
 			// 
@@ -127,6 +111,7 @@
 			// 
 			// deleteLabel
 			// 
+			this.deleteLabel.ForeColor = System.Drawing.Color.Black;
 			this.deleteLabel.Name = "deleteLabel";
 			this.deleteLabel.Size = new System.Drawing.Size(66, 28);
 			this.deleteLabel.Text = "Delete:";
@@ -140,6 +125,28 @@
 			this.deleteButton.Size = new System.Drawing.Size(34, 28);
 			this.deleteButton.Text = "Delete";
 			this.deleteButton.Click += new System.EventHandler(this.DeleteItem);
+			// 
+			// nameColumn
+			// 
+			this.nameColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+			this.nameColumn.DataPropertyName = "Name";
+			dataGridViewCellStyle1.ForeColor = System.Drawing.Color.Black;
+			this.nameColumn.DefaultCellStyle = dataGridViewCellStyle1;
+			this.nameColumn.HeaderText = "Name";
+			this.nameColumn.MinimumWidth = 100;
+			this.nameColumn.Name = "nameColumn";
+			this.nameColumn.ReadOnly = true;
+			// 
+			// cmdColumn
+			// 
+			this.cmdColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+			this.cmdColumn.DataPropertyName = "FullCommand";
+			dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Black;
+			this.cmdColumn.DefaultCellStyle = dataGridViewCellStyle2;
+			this.cmdColumn.HeaderText = "Command";
+			this.cmdColumn.MinimumWidth = 8;
+			this.cmdColumn.Name = "cmdColumn";
+			this.cmdColumn.ReadOnly = true;
 			// 
 			// PluginsSheet
 			// 

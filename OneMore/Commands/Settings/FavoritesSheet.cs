@@ -44,7 +44,6 @@ namespace River.OneMoreAddIn.Settings
 					"sortButton",
 					"upButton",
 					"downButton",
-					"deleteLabel",
 					"deleteButton"
 				});
 

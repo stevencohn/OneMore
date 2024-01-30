@@ -15,7 +15,7 @@ namespace River.OneMoreAddIn.Settings
 	using System.Linq;
 	using System.Threading.Tasks;
 	using System.Windows.Forms;
-	using Resx = River.OneMoreAddIn.Properties.Resources;
+	using Resx = Properties.Resources;
 
 
 	internal partial class PluginsSheet : SheetBase
