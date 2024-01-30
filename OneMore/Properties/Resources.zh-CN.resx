@@ -1151,6 +1151,18 @@ OneNote 文件 (*.one)</value>
     <value>首选导入图像宽度</value>
     <comment>label</comment>
   </data>
+  <data name="FileQuickNotesCommand_noQuickNotes" xml:space="preserve">
+    <value>无法加载快速笔记。检查 OneNote 选项中的位置。</value>
+    <comment>message</comment>
+  </data>
+  <data name="FileQuickNotesCommand_noTargetNotebook" xml:space="preserve">
+    <value>找不到目标笔记本。打开 OneMore 设置以指定目标。</value>
+    <comment>message</comment>
+  </data>
+  <data name="FileQuickNotesCommand_noTargetSection" xml:space="preserve">
+    <value>找不到目标部分。打开 OneMore 设置以指定目标。</value>
+    <comment>message</comment>
+  </data>
   <data name="FitGridToTextCommand_noGrid" xml:space="preserve">
     <value>使用此命令前启用网格线</value>
     <comment>message</comment>
@@ -4106,10 +4118,6 @@ ISO-code then comma then language name</comment>
   <data name="SearchEngineDialog_urlColumn.HeaderText" xml:space="preserve">
     <value>网址格式</value>
     <comment>url col</comment>
-  </data>
-  <data name="SearchEngineSheet_deleteLabel.Text" xml:space="preserve">
-    <value>删除：</value>
-    <comment>label</comment>
   </data>
   <data name="SearchEngineSheet_downButton.Text" xml:space="preserve">
     <value>下移</value>

@@ -1151,6 +1151,18 @@ Arquivo OneNote (* .one)</value>
     <value>Largura da imagem de importação preferida</value>
     <comment>label</comment>
   </data>
+  <data name="FileQuickNotesCommand_noQuickNotes" xml:space="preserve">
+    <value>Não foi possível carregar as Notas Rápidas. Verifique a localização nas opções do OneNote.</value>
+    <comment>message</comment>
+  </data>
+  <data name="FileQuickNotesCommand_noTargetNotebook" xml:space="preserve">
+    <value>Não é possível encontrar o notebook de destino. Abra Configurações do OneMore para especificar um alvo.</value>
+    <comment>message</comment>
+  </data>
+  <data name="FileQuickNotesCommand_noTargetSection" xml:space="preserve">
+    <value>Não foi possível encontrar a seção de destino. Abra Configurações do OneMore para especificar um alvo.</value>
+    <comment>message</comment>
+  </data>
   <data name="FitGridToTextCommand_noGrid" xml:space="preserve">
     <value>Habilite as linhas de grade antes de usar este comando</value>
     <comment>message</comment>
@@ -4111,10 +4123,6 @@ Nesta secção</value>
   <data name="SearchEngineDialog_urlColumn.HeaderText" xml:space="preserve">
     <value>Padrão de URL</value>
     <comment>url col</comment>
-  </data>
-  <data name="SearchEngineSheet_deleteLabel.Text" xml:space="preserve">
-    <value>Excluir:</value>
-    <comment>label</comment>
   </data>
   <data name="SearchEngineSheet_downButton.Text" xml:space="preserve">
     <value>Mova para baixo</value>

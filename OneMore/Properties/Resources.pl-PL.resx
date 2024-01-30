@@ -1159,6 +1159,18 @@ Plik OneNote (* .o)</value>
     <value>Preferowana szerokość importowanego obrazu</value>
     <comment>label</comment>
   </data>
+  <data name="FileQuickNotesCommand_noQuickNotes" xml:space="preserve">
+    <value>Nie można wczytać szybkich notatek. Sprawdź lokalizację w opcjach programu OneNote.</value>
+    <comment>message</comment>
+  </data>
+  <data name="FileQuickNotesCommand_noTargetNotebook" xml:space="preserve">
+    <value>Nie można znaleźć docelowego notatnika. Otwórz ustawienia OneMore, aby określić cel.</value>
+    <comment>message</comment>
+  </data>
+  <data name="FileQuickNotesCommand_noTargetSection" xml:space="preserve">
+    <value>Nie można znaleźć sekcji docelowej. Otwórz ustawienia OneMore, aby określić cel.</value>
+    <comment>message</comment>
+  </data>
   <data name="FitGridToTextCommand_noGrid" xml:space="preserve">
     <value>Włącz linie siatki przed użyciem tego polecenia</value>
     <comment>message</comment>
@@ -4124,10 +4136,6 @@ W tej sekcji</value>
   <data name="SearchEngineDialog_urlColumn.HeaderText" xml:space="preserve">
     <value>Wzór adresu URL.</value>
     <comment>url col</comment>
-  </data>
-  <data name="SearchEngineSheet_deleteLabel.Text" xml:space="preserve">
-    <value>Kasować:</value>
-    <comment>label</comment>
   </data>
   <data name="SearchEngineSheet_downButton.Text" xml:space="preserve">
     <value>Padnij</value>

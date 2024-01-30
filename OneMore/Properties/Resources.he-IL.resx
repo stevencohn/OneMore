@@ -1161,6 +1161,18 @@ Total Row Font
     <value>רוחב תמונת ייבוא ​​מועדף</value>
     <comment>label</comment>
   </data>
+  <data name="FileQuickNotesCommand_noQuickNotes" xml:space="preserve">
+    <value>לא ניתן לטעון הערות מהירות. בדוק את המיקום באפשרויות OneNote.</value>
+    <comment>message</comment>
+  </data>
+  <data name="FileQuickNotesCommand_noTargetNotebook" xml:space="preserve">
+    <value>לא ניתן למצוא את מחברת היעד. פתח את הגדרות OneMore כדי לציין יעד.</value>
+    <comment>message</comment>
+  </data>
+  <data name="FileQuickNotesCommand_noTargetSection" xml:space="preserve">
+    <value>לא ניתן למצוא את קטע היעד. פתח את הגדרות OneMore כדי לציין יעד.</value>
+    <comment>message</comment>
+  </data>
   <data name="FitGridToTextCommand_noGrid" xml:space="preserve">
     <value>אפשר קווי רשת לפני השימוש בפקודה זו</value>
     <comment>message</comment>
@@ -4124,10 +4136,6 @@ ISO-code then comma then language name</comment>
   <data name="SearchEngineDialog_urlColumn.HeaderText" xml:space="preserve">
     <value>דפוס כתובת אתר</value>
     <comment>url col</comment>
-  </data>
-  <data name="SearchEngineSheet_deleteLabel.Text" xml:space="preserve">
-    <value>לִמְחוֹק:</value>
-    <comment>label NODUP</comment>
   </data>
   <data name="SearchEngineSheet_downButton.Text" xml:space="preserve">
     <value>לרדת</value>

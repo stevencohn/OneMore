@@ -1151,6 +1151,18 @@ OneNote-bestand (*.one)</value>
     <value>Gewenste import afbeeldingsbreedte</value>
     <comment>label</comment>
   </data>
+  <data name="FileQuickNotesCommand_noQuickNotes" xml:space="preserve">
+    <value>Kan Snelle notities niet laden. Controleer de locatie in OneNote-opties.</value>
+    <comment>message</comment>
+  </data>
+  <data name="FileQuickNotesCommand_noTargetNotebook" xml:space="preserve">
+    <value>Kan doelnotitieboekje niet vinden. Open OneMore Instellingen om een ​​doel op te geven.</value>
+    <comment>message</comment>
+  </data>
+  <data name="FileQuickNotesCommand_noTargetSection" xml:space="preserve">
+    <value>Kan doelsectie niet vinden. Open OneMore Instellingen om een ​​doel op te geven.</value>
+    <comment>message</comment>
+  </data>
   <data name="FitGridToTextCommand_noGrid" xml:space="preserve">
     <value>Rasterlijnen inschakelen voordat u deze opdracht gebruikt</value>
     <comment>message</comment>
@@ -4111,10 +4123,6 @@ In deze sectie</value>
   <data name="SearchEngineDialog_urlColumn.HeaderText" xml:space="preserve">
     <value>URL-patroon</value>
     <comment>url col</comment>
-  </data>
-  <data name="SearchEngineSheet_deleteLabel.Text" xml:space="preserve">
-    <value>Verwijderen:</value>
-    <comment>label</comment>
   </data>
   <data name="SearchEngineSheet_downButton.Text" xml:space="preserve">
     <value>Naar beneden verplaatsen</value>

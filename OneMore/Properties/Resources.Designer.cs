@@ -2837,6 +2837,33 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Could not load Quick Notes. Check the location in OneNote Options..
+        /// </summary>
+        internal static string FileQuickNotesCommand_noQuickNotes {
+            get {
+                return ResourceManager.GetString("FileQuickNotesCommand_noQuickNotes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cannot find target notebook. Open OneMore Settings to specify a target..
+        /// </summary>
+        internal static string FileQuickNotesCommand_noTargetNotebook {
+            get {
+                return ResourceManager.GetString("FileQuickNotesCommand_noTargetNotebook", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cannot find target section. Open OneMore Settings to specify a target..
+        /// </summary>
+        internal static string FileQuickNotesCommand_noTargetSection {
+            get {
+                return ResourceManager.GetString("FileQuickNotesCommand_noTargetSection", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap Financial {

@@ -1150,6 +1150,18 @@
     <value>عرض صورة الاستيراد المفضل</value>
     <comment>label</comment>
   </data>
+  <data name="FileQuickNotesCommand_noQuickNotes" xml:space="preserve">
+    <value>تعذر تحميل الملاحظات السريعة. تحقق من الموقع في خيارات OneNote.</value>
+    <comment>message</comment>
+  </data>
+  <data name="FileQuickNotesCommand_noTargetNotebook" xml:space="preserve">
+    <value>لا يمكن العثور على دفتر الملاحظات الهدف. افتح إعدادات OneMore لتحديد هدف.</value>
+    <comment>message</comment>
+  </data>
+  <data name="FileQuickNotesCommand_noTargetSection" xml:space="preserve">
+    <value>لا يمكن العثور على القسم المستهدف. افتح إعدادات OneMore لتحديد هدف.</value>
+    <comment>message</comment>
+  </data>
   <data name="FitGridToTextCommand_noGrid" xml:space="preserve">
     <value>قم بتمكين خطوط الشبكة قبل استخدام هذا الأمر</value>
     <comment>message</comment>
@@ -4111,10 +4123,6 @@ ISO-code then comma then language name</comment>
   <data name="SearchEngineDialog_urlColumn.HeaderText" xml:space="preserve">
     <value>نمط URL</value>
     <comment>url col</comment>
-  </data>
-  <data name="SearchEngineSheet_deleteLabel.Text" xml:space="preserve">
-    <value>حذف:</value>
-    <comment>label</comment>
   </data>
   <data name="SearchEngineSheet_downButton.Text" xml:space="preserve">
     <value>تحرك لأسفل</value>

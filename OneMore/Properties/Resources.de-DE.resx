@@ -1147,6 +1147,18 @@ OneNote-Datei (*.one)</value>
     <value>Bevorzugte Importbildbreite</value>
     <comment>label</comment>
   </data>
+  <data name="FileQuickNotesCommand_noQuickNotes" xml:space="preserve">
+    <value>Quick Notes konnten nicht geladen werden. Überprüfen Sie den Speicherort in den OneNote-Optionen.</value>
+    <comment>message</comment>
+  </data>
+  <data name="FileQuickNotesCommand_noTargetNotebook" xml:space="preserve">
+    <value>Zielnotizbuch kann nicht gefunden werden. Öffnen Sie OneMore Settings, um ein Ziel anzugeben.</value>
+    <comment>message</comment>
+  </data>
+  <data name="FileQuickNotesCommand_noTargetSection" xml:space="preserve">
+    <value>Zielabschnitt kann nicht gefunden werden. Öffnen Sie OneMore Settings, um ein Ziel anzugeben.</value>
+    <comment>message</comment>
+  </data>
   <data name="FitGridToTextCommand_noGrid" xml:space="preserve">
     <value>Aktiviere Rasterlinien, bevor dieser Befehl verwendet wird</value>
     <comment>message</comment>
@@ -4101,10 +4113,6 @@ In diesem Abschnitt</value>
   <data name="SearchEngineDialog_urlColumn.HeaderText" xml:space="preserve">
     <value>URL-Muster</value>
     <comment>url col</comment>
-  </data>
-  <data name="SearchEngineSheet_deleteLabel.Text" xml:space="preserve">
-    <value>Löschen:</value>
-    <comment>label</comment>
   </data>
   <data name="SearchEngineSheet_downButton.Text" xml:space="preserve">
     <value>Sich abwärts bewegen</value>
