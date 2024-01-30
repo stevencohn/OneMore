@@ -17,7 +17,7 @@ namespace River.OneMoreAddIn.UI
 		private const int Spacing = 4;
 		private readonly ThemeManager manager;
 		private readonly Color foreColor;
-		private int boxSize;
+		private readonly int boxSize;
 		private IntPtr hcursor;
 
 
@@ -26,13 +26,13 @@ namespace River.OneMoreAddIn.UI
 		/// </summary>
 		public MoreCheckBox()
 		{
-			//// force Paint event to fire
+			// force Paint event to fire, and reduce flickering
 			SetStyle(ControlStyles.UserPaint, true);
-			//// reduce flickering
 			SetStyle(ControlStyles.AllPaintingInWmPaint, true);
 
 			foreColor = ForeColor;
 			manager = ThemeManager.Instance;
+			boxSize = SystemInformation.MenuCheckSize.Width - 3;
 		}
 
 
@@ -54,165 +54,174 @@ namespace River.OneMoreAddIn.UI
 			var g = pevent.Graphics;
 			g.Clear(BackColor);
 
-			boxSize = SystemInformation.MenuCheckSize.Width;
-			if (boxSize > pevent.ClipRectangle.Height - 3)
-			{
-				boxSize = pevent.ClipRectangle.Height - 3;
-			}
-
 			if (Appearance == Appearance.Button)
 			{
-				if (Enabled && (MouseState != MouseState.None || Checked))
-				{
-					using var brush = new SolidBrush(
-						MouseState.HasFlag(MouseState.Pushed) || Checked
-						? manager.ButtonHotBack
-						: manager.ButtonBack);
-
-					g.FillRoundedRectangle(brush, pevent.ClipRectangle, Radius);
-
-					using var pen = new Pen(
-						MouseState.HasFlag(MouseState.Pushed) || Checked
-						? manager.ButtonPressBorder
-						: manager.ButtonBorder);
-
-					g.DrawRoundedRectangle(pen, pevent.ClipRectangle, Radius);
-				}
-
-				var img = Image ?? BackgroundImage;
-				if (img != null)
-				{
-					var r = pevent.ClipRectangle;
-					r.Inflate(-3, -3);
-					g.DrawImage(img, r);
-				}
-
-				if (!string.IsNullOrWhiteSpace(Text))
-				{
-					var color = Enabled
-						? manager.GetThemedColor(foreColor)
-						: manager.GetThemedColor("GrayText");
-
-					var size = g.MeasureString(Text, Font);
-					using var brush = new SolidBrush(color);
-
-					pevent.Graphics.DrawString(Text, Font, brush,
-						(pevent.ClipRectangle.Width - (int)size.Width) / 2f,
-						(pevent.ClipRectangle.Height - (int)size.Height) / 2f,
-						new StringFormat
-						{
-							Trimming = StringTrimming.EllipsisCharacter,
-							FormatFlags = StringFormatFlags.LineLimit | StringFormatFlags.NoWrap
-						});
-				}
-
-				Color border;
-				if (MouseState.HasFlag(MouseState.Pushed))
-				{
-					border = manager.ButtonPressBorder;
-				}
-				else if (Focused || IsDefault) // || this == FindForm().AcceptButton)
-				{
-					border = manager.GetThemedColor("HotTrack");
-				}
-				else if (MouseState.HasFlag(MouseState.Hover))
-				{
-					border = manager.ButtonHotBorder;
-				}
-				else
-				{
-					border = manager.ButtonBorder;
-				}
-
-				using var bpen = new Pen(border, 2);
-				g.DrawRoundedRectangle(bpen, pevent.ClipRectangle, Radius);
+				PaintButton(pevent);
 			}
 			else
 			{
-				// ensure we have something to measure relatively for box location
-				var size = AdjustToTextWidth(g);
+				PaintNormal(pevent);
+			}
+		}
 
+
+		private void PaintButton(PaintEventArgs pevent)
+		{
+			var g = pevent.Graphics;
+			if (Enabled && (MouseState != MouseState.None || Checked))
+			{
+				using var brush = new SolidBrush(
+					MouseState.HasFlag(MouseState.Pushed) || Checked
+					? manager.ButtonHotBack
+					: manager.ButtonBack);
+
+				g.FillRoundedRectangle(brush, pevent.ClipRectangle, Radius);
+
+				using var pen = new Pen(
+					MouseState.HasFlag(MouseState.Pushed) || Checked
+					? manager.ButtonPressBorder
+					: manager.ButtonBorder);
+
+				g.DrawRoundedRectangle(pen, pevent.ClipRectangle, Radius);
+			}
+
+			var img = Image ?? BackgroundImage;
+			if (img != null)
+			{
+				var r = pevent.ClipRectangle;
+				r.Inflate(-3, -3);
+				g.DrawImage(img, r);
+			}
+
+			if (!string.IsNullOrWhiteSpace(Text))
+			{
 				var color = Enabled
 					? manager.GetThemedColor(foreColor)
 					: manager.GetThemedColor("GrayText");
 
-				using var pen = new Pen(color);
-				var boxY = (int)((size.Height - boxSize) / 2);
-
-				g.SmoothingMode = SmoothingMode.HighQuality;
-
-				if (Checked)
-				{
-					using var fillBrush = new SolidBrush(Enabled
-						? manager.GetThemedColor("Highlight")
-						: color);
-
-					g.FillRoundedRectangle(fillBrush, new Rectangle(0, boxY, boxSize, boxSize), Radius);
-
-					var path = new GraphicsPath();
-					var x = boxSize / 4;
-					var y = boxY + (boxSize / 2);
-					path.AddLine(x, y, x + 3, y + 3);
-					path.AddLine(x + 3, y + 3, x + 9, y - 3);
-
-					using var checkPen = new Pen(BackColor, 2);
-					g.DrawPath(checkPen, path);
-				}
-				else
-				{
-					g.DrawRoundedRectangle(pen, new Rectangle(0, boxY, boxSize, boxSize), Radius);
-				}
-
+				var size = g.MeasureString(Text, Font);
 				using var brush = new SolidBrush(color);
 
 				pevent.Graphics.DrawString(Text, Font, brush,
-					new Rectangle(boxSize + Spacing,
-						(pevent.ClipRectangle.Height - (int)size.Height) / 2,
-						pevent.ClipRectangle.Width - (boxSize + Spacing),
-						(int)size.Height),
+					(pevent.ClipRectangle.Width - (int)size.Width) / 2f,
+					(pevent.ClipRectangle.Height - (int)size.Height) / 2f,
 					new StringFormat
 					{
 						Trimming = StringTrimming.EllipsisCharacter,
 						FormatFlags = StringFormatFlags.LineLimit | StringFormatFlags.NoWrap
 					});
 			}
+
+			Color border;
+			if (MouseState.HasFlag(MouseState.Pushed))
+			{
+				border = manager.ButtonPressBorder;
+			}
+			else if (Focused || IsDefault) // || this == FindForm().AcceptButton)
+			{
+				border = manager.GetThemedColor("HotTrack");
+			}
+			else if (MouseState.HasFlag(MouseState.Hover))
+			{
+				border = manager.ButtonHotBorder;
+			}
+			else
+			{
+				border = manager.ButtonBorder;
+			}
+
+			using var bpen = new Pen(border, 2);
+			g.DrawRoundedRectangle(bpen, pevent.ClipRectangle, Radius);
 		}
 
 
-		private SizeF AdjustToTextWidth(Graphics g)
+		private void PaintNormal(PaintEventArgs pevent)
 		{
-			// ensure we have something to measure and add fudge factor
-			var text = string.IsNullOrWhiteSpace(Text) ? "M" : $"{Text}.";
-			if (text.Contains(Environment.NewLine))
-			{
-				var parts = text.Split(
-					new string[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries);
+			// ensure we have something to measure relatively for box location
 
-				var max = parts.Max(p => p.Length);
-				text = $"{parts.First(p => p.Length == max)}.";
+			var color = Enabled
+				? manager.GetThemedColor(foreColor)
+				: manager.GetThemedColor("GrayText");
+
+			using var pen = new Pen(color);
+			var boxY = (Size.Height - boxSize) / 2;
+
+			var g = pevent.Graphics;
+			g.SmoothingMode = SmoothingMode.HighQuality;
+
+			if (Checked)
+			{
+				using var fillBrush = new SolidBrush(Enabled
+					? manager.GetThemedColor("Highlight")
+					: color);
+
+				g.FillRoundedRectangle(fillBrush, new Rectangle(0, boxY, boxSize, boxSize), Radius);
+
+				var path = new GraphicsPath();
+				var x = boxSize / 4;
+				var y = boxY + (boxSize / 2);
+				path.AddLine(x, y, x + 3, y + 3);
+				path.AddLine(x + 3, y + 3, x + 9, y - 3);
+
+				using var checkPen = new Pen(BackColor, 2);
+				g.DrawPath(checkPen, path);
+			}
+			else
+			{
+				g.DrawRoundedRectangle(pen, new Rectangle(0, boxY, boxSize, boxSize), Radius);
 			}
 
-			var size = g.MeasureString(text, Font);
-			var w = (int)(size.Width + Spacing + boxSize);
-			if (Width != w)
-			{
-				AutoSize = false;
-				Width = w;
-			}
+			using var brush = new SolidBrush(color);
 
-			return size;
+			pevent.Graphics.DrawString(Text, Font, brush,
+				new Rectangle(boxSize + Spacing,
+					(pevent.ClipRectangle.Height - Size.Height) / 2,
+					pevent.ClipRectangle.Width - (boxSize + Spacing),
+					Size.Height),
+				new StringFormat
+				{
+					Trimming = StringTrimming.EllipsisCharacter,
+					FormatFlags = StringFormatFlags.LineLimit | StringFormatFlags.NoWrap
+				});
 		}
 
 
 		protected override void OnTextChanged(EventArgs e)
 		{
-			base.OnTextChanged(e);
-
 			if (Appearance == Appearance.Normal)
 			{
+				var size = SystemInformation.MenuCheckSize;
+				if (string.IsNullOrWhiteSpace(Text) && Width != size.Width)
+				{
+					AutoSize = false;
+					Width = size.Width;
+					Height = size.Height;
+					return;
+				}
+
+				// add fudge factor
+				var text = $"{Text}.";
+				if (Text.Contains(Environment.NewLine))
+				{
+					var parts = Text.Split(
+						new string[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries);
+
+					var max = parts.Max(p => p.Length);
+					text = $"{parts.First(p => p.Length == max)}.";
+				}
+
 				using var g = CreateGraphics();
-				AdjustToTextWidth(g);
+				size = g.MeasureString(text, Font).ToSize();
+				var w = boxSize + Spacing + size.Width;
+				if (Width != w)
+				{
+					AutoSize = false;
+					Width = w;
+					Height = Math.Max(size.Height, SystemInformation.MenuCheckSize.Height);
+				}
 			}
+
+			base.OnTextChanged(e);
 		}
 
 

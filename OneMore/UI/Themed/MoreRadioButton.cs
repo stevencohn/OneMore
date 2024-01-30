@@ -17,7 +17,7 @@ namespace River.OneMoreAddIn.UI
 		private const int Spacing = 4;
 		private readonly ThemeManager manager;
 		private readonly Color foreColor;
-		private int boxSize;
+		private readonly int boxSize;
 
 
 		/// <summary>
@@ -25,13 +25,13 @@ namespace River.OneMoreAddIn.UI
 		/// </summary>
 		public MoreRadioButton()
 		{
-			//// force Paint event to fire
+			// force Paint event to fire, and reduce flickering
 			SetStyle(ControlStyles.UserPaint, true);
-			//// reduce flickering
 			SetStyle(ControlStyles.AllPaintingInWmPaint, true);
 
 			foreColor = ForeColor;
 			manager = ThemeManager.Instance;
+			boxSize = SystemInformation.MenuCheckSize.Width - 3;
 		}
 
 
@@ -45,12 +45,6 @@ namespace River.OneMoreAddIn.UI
 		{
 			var g = pevent.Graphics;
 			g.Clear(BackColor);
-
-			boxSize = SystemInformation.MenuCheckSize.Width;
-			if (boxSize > pevent.ClipRectangle.Height - 3)
-			{
-				boxSize = pevent.ClipRectangle.Height - 3;
-			}
 
 			if (Appearance == Appearance.Button)
 			{
@@ -82,11 +76,9 @@ namespace River.OneMoreAddIn.UI
 					? manager.GetThemedColor(foreColor)
 					: manager.GetThemedColor("GrayText");
 
-				var size = AdjustToTextWidth(g);
-
 				g.SmoothingMode = SmoothingMode.HighQuality;
 
-				var boxY = (size.Height - boxSize) / 2;
+				var boxY = (Size.Height - boxSize) / 2;
 
 				if (Checked)
 				{
@@ -113,9 +105,9 @@ namespace River.OneMoreAddIn.UI
 
 				g.DrawString(Text, Font, brush,
 					new Rectangle(boxSize + Spacing,
-						(pevent.ClipRectangle.Height - (int)size.Height) / 2,
+						(pevent.ClipRectangle.Height - Size.Height) / 2,
 						pevent.ClipRectangle.Width - (boxSize + Spacing),
-						(int)size.Height),
+						Size.Height),
 					new StringFormat
 					{
 						Trimming = StringTrimming.EllipsisCharacter,
@@ -125,40 +117,42 @@ namespace River.OneMoreAddIn.UI
 		}
 
 
-		private SizeF AdjustToTextWidth(Graphics g)
-		{
-			// ensure we have something to measure and add fudge factor
-			var text = string.IsNullOrWhiteSpace(Text) ? "M" : $"{Text}.";
-			if (text.Contains(Environment.NewLine))
-			{
-				var parts = text.Split(
-					new string[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries);
-
-				var max = parts.Max(p => p.Length);
-				text = $"{parts.First(p => p.Length == max)}.";
-			}
-
-			var size = g.MeasureString(text, Font);
-			var w = (int)(size.Width + Spacing + boxSize);
-			if (Width != w)
-			{
-				AutoSize = false;
-				Width = w;
-			}
-
-			return size;
-		}
-
-
 		protected override void OnTextChanged(EventArgs e)
 		{
-			base.OnTextChanged(e);
-
 			if (Appearance == Appearance.Normal)
 			{
+				var size = SystemInformation.MenuCheckSize;
+				if (string.IsNullOrWhiteSpace(Text) && Width != size.Width)
+				{
+					AutoSize = false;
+					Width = size.Width;
+					Height = size.Height;
+					return;
+				}
+
+				// add fudge factor
+				var text = $"{Text}.";
+				if (Text.Contains(Environment.NewLine))
+				{
+					var parts = Text.Split(
+						new string[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries);
+
+					var max = parts.Max(p => p.Length);
+					text = $"{parts.First(p => p.Length == max)}.";
+				}
+
 				using var g = CreateGraphics();
-				AdjustToTextWidth(g);
+				size = g.MeasureString(text, Font).ToSize();
+				var w = boxSize + Spacing + size.Width;
+				if (Width != w)
+				{
+					AutoSize = false;
+					Width = w;
+					Height = Math.Max(size.Height, SystemInformation.MenuCheckSize.Height);
+				}
 			}
+
+			base.OnTextChanged(e);
 		}
 
 

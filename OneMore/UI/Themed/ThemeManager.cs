@@ -97,7 +97,7 @@ namespace River.OneMoreAddIn.UI
 		/// <param name="control"></param>
 		public void InitializeTheme(Control control)
 		{
-			SetThemeRecursively(control);
+			SetWindowTheme(control);
 		}
 
 
@@ -116,12 +116,8 @@ namespace River.OneMoreAddIn.UI
 
 			if (container is MoreForm form)
 			{
-				SetThemeRecursively(container);
+				SetWindowTheme(container);
 				form.OnThemeChange();
-			}
-			else if (container is MoreUserControl control)
-			{
-				Colorize(control);
 			}
 
 			Colorize(container);
@@ -173,30 +169,31 @@ namespace River.OneMoreAddIn.UI
 		}
 
 
-		private void SetThemeRecursively(Control control)
+		private void SetWindowTheme(Control control)
 		{
-			void SetTheme(Control control)
-			{
-				bool trueValue = DarkMode;
-				// DarkMode_Explorer sets radios, checkboxes, scrollbars to dark mode Explorer 
-				SetWindowTheme(control.Handle, "DarkMode_Explorer", null);
+			//logger.WriteLine($"SetWindowTheme {control.Name} {control.GetType()}");
 
-				DwmSetWindowAttribute(control.Handle, 
-					DWMWA_USE_IMMERSIVE_DARK_MODE, ref trueValue, Marshal.SizeOf(typeof(bool)));
+			bool trueValue = DarkMode;
 
-				DwmSetWindowAttribute(control.Handle,
-					DWMWA_MICA_EFFECT, ref trueValue, Marshal.SizeOf(typeof(bool)));
-			}
+			// DarkMode_Explorer sets radios, checkboxes, scrollbars to dark mode Explorer 
+			SetWindowTheme(control.Handle, "DarkMode_Explorer", null);
 
-			SetTheme(control);
+			DwmSetWindowAttribute(control.Handle,
+				DWMWA_USE_IMMERSIVE_DARK_MODE, ref trueValue, Marshal.SizeOf(typeof(bool)));
 
-			foreach (Control child in control.Controls.Cast<Control>()
+			DwmSetWindowAttribute(control.Handle,
+				DWMWA_MICA_EFFECT, ref trueValue, Marshal.SizeOf(typeof(bool)));
+
+			// now its children...
+
+			foreach (Control child in control.Controls.OfType<Control>()
 				.Where(c =>
 					c is not ListView &&
 					c is not DataGridView &&
 					c is not ToolStrip))
 			{
-				SetThemeRecursively(child);
+				//logger.WriteLine($"SetWindowTheme >> {child.Name} {child.GetType()}");
+				SetWindowTheme(child);
 			}
 		}
 
@@ -210,6 +207,14 @@ namespace River.OneMoreAddIn.UI
 
 		private void Colorize(Control control)
 		{
+			if (control is ListView ||
+				control is DataGridView ||
+				control is ToolStrip)
+			{
+				//logger.WriteLine($"skipping {control.Name} {control.GetType()}");
+				return;
+			}
+
 			if (control is IThemedControl themed)
 			{
 				control.BackColor = GetThemedColor("Control", themed.PreferredBack);
@@ -259,15 +264,14 @@ namespace River.OneMoreAddIn.UI
 				}
 			}
 
-			var children = control.Controls.Cast<Control>()
-				.Where(c => 
+			// temp filter for ListView until that one is refactored
+			foreach (var child in control.Controls.OfType<Control>()
+				.Where(c =>
 					c is not ListView &&
 					c is not DataGridView &&
-					c is not ToolStrip);
-
-			// temp filter for ListView until that one is refactored
-			foreach (var child in children)
+					c is not ToolStrip))
 			{
+				//logger.WriteLine($"Colorize {child.Name} {child.GetType()}");
 				Colorize(child);
 			}
 		}

@@ -52,6 +52,8 @@
 			this.okButton.ImageOver = null;
 			this.okButton.Location = new System.Drawing.Point(221, 424);
 			this.okButton.Name = "okButton";
+			this.okButton.PreferredBack = null;
+			this.okButton.PreferredFore = null;
 			this.okButton.ShowBorder = true;
 			this.okButton.Size = new System.Drawing.Size(120, 38);
 			this.okButton.TabIndex = 0;
@@ -65,6 +67,8 @@
 			this.cancelButton.ImageOver = null;
 			this.cancelButton.Location = new System.Drawing.Point(347, 424);
 			this.cancelButton.Name = "cancelButton";
+			this.cancelButton.PreferredBack = null;
+			this.cancelButton.PreferredFore = null;
 			this.cancelButton.ShowBorder = true;
 			this.cancelButton.Size = new System.Drawing.Size(120, 38);
 			this.cancelButton.TabIndex = 1;
@@ -73,11 +77,10 @@
 			// 
 			// pageRadio
 			// 
-			this.pageRadio.AutoSize = true;
 			this.pageRadio.Checked = true;
 			this.pageRadio.Location = new System.Drawing.Point(28, 28);
 			this.pageRadio.Name = "pageRadio";
-			this.pageRadio.Size = new System.Drawing.Size(292, 24);
+			this.pageRadio.Size = new System.Drawing.Size(278, 24);
 			this.pageRadio.TabIndex = 2;
 			this.pageRadio.TabStop = true;
 			this.pageRadio.Text = "Insert table of headings on this page";
@@ -86,11 +89,10 @@
 			// 
 			// sectionRadio
 			// 
-			this.sectionRadio.AutoSize = true;
 			this.sectionRadio.Location = new System.Drawing.Point(28, 214);
 			this.sectionRadio.Margin = new System.Windows.Forms.Padding(3, 25, 3, 3);
 			this.sectionRadio.Name = "sectionRadio";
-			this.sectionRadio.Size = new System.Drawing.Size(344, 24);
+			this.sectionRadio.Size = new System.Drawing.Size(337, 24);
 			this.sectionRadio.TabIndex = 7;
 			this.sectionRadio.Text = "New page with index of pages in this section";
 			this.sectionRadio.UseVisualStyleBackColor = true;
@@ -98,11 +100,10 @@
 			// 
 			// topBox
 			// 
-			this.topBox.AutoSize = true;
 			this.topBox.Location = new System.Drawing.Point(56, 61);
 			this.topBox.Margin = new System.Windows.Forms.Padding(3, 6, 3, 3);
 			this.topBox.Name = "topBox";
-			this.topBox.Size = new System.Drawing.Size(368, 24);
+			this.topBox.Size = new System.Drawing.Size(381, 24);
 			this.topBox.TabIndex = 3;
 			this.topBox.Text = "Add link to each heading to jump to top of page";
 			this.topBox.UseVisualStyleBackColor = true;
@@ -110,11 +111,10 @@
 			// 
 			// notebookRadio
 			// 
-			this.notebookRadio.AutoSize = true;
 			this.notebookRadio.Location = new System.Drawing.Point(28, 299);
 			this.notebookRadio.Margin = new System.Windows.Forms.Padding(3, 25, 3, 3);
 			this.notebookRadio.Name = "notebookRadio";
-			this.notebookRadio.Size = new System.Drawing.Size(375, 24);
+			this.notebookRadio.Size = new System.Drawing.Size(368, 24);
 			this.notebookRadio.TabIndex = 9;
 			this.notebookRadio.Text = "New page with index of sections in this notebook";
 			this.notebookRadio.UseVisualStyleBackColor = true;
@@ -122,12 +122,11 @@
 			// 
 			// pagesBox
 			// 
-			this.pagesBox.AutoSize = true;
 			this.pagesBox.Enabled = false;
 			this.pagesBox.Location = new System.Drawing.Point(56, 332);
 			this.pagesBox.Margin = new System.Windows.Forms.Padding(3, 6, 3, 3);
 			this.pagesBox.Name = "pagesBox";
-			this.pagesBox.Size = new System.Drawing.Size(245, 24);
+			this.pagesBox.Size = new System.Drawing.Size(255, 24);
 			this.pagesBox.TabIndex = 10;
 			this.pagesBox.Text = "Include pages in each section";
 			this.pagesBox.UseVisualStyleBackColor = true;
@@ -135,34 +134,31 @@
 			// 
 			// rightAlignBox
 			// 
-			this.rightAlignBox.AutoSize = true;
 			this.rightAlignBox.Enabled = false;
 			this.rightAlignBox.Location = new System.Drawing.Point(56, 91);
 			this.rightAlignBox.Name = "rightAlignBox";
-			this.rightAlignBox.Size = new System.Drawing.Size(223, 24);
+			this.rightAlignBox.Size = new System.Drawing.Size(233, 24);
 			this.rightAlignBox.TabIndex = 4;
 			this.rightAlignBox.Text = "Right-align top of page link";
 			this.rightAlignBox.UseVisualStyleBackColor = true;
 			// 
 			// previewBox
 			// 
-			this.previewBox.AutoSize = true;
 			this.previewBox.Enabled = false;
 			this.previewBox.Location = new System.Drawing.Point(56, 247);
 			this.previewBox.Margin = new System.Windows.Forms.Padding(3, 6, 3, 3);
 			this.previewBox.Name = "previewBox";
-			this.previewBox.Size = new System.Drawing.Size(271, 24);
+			this.previewBox.Size = new System.Drawing.Size(283, 24);
 			this.previewBox.TabIndex = 8;
 			this.previewBox.Text = "Include text preview of each page";
 			this.previewBox.UseVisualStyleBackColor = true;
 			// 
 			// preview2Box
 			// 
-			this.preview2Box.AutoSize = true;
 			this.preview2Box.Enabled = false;
-			this.preview2Box.Location = new System.Drawing.Point(56, 362);
+			this.preview2Box.Location = new System.Drawing.Point(56, 364);
 			this.preview2Box.Name = "preview2Box";
-			this.preview2Box.Size = new System.Drawing.Size(271, 24);
+			this.preview2Box.Size = new System.Drawing.Size(283, 24);
 			this.preview2Box.TabIndex = 11;
 			this.preview2Box.Text = "Include text preview of each page";
 			this.preview2Box.UseVisualStyleBackColor = true;
