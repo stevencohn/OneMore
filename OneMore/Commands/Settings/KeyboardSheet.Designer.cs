@@ -31,14 +31,12 @@
 			this.gridView = new River.OneMoreAddIn.Settings.KeyboardGridView();
 			this.cmdColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.keyColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.introPanel = new System.Windows.Forms.Panel();
-			this.introLabel = new River.OneMoreAddIn.UI.MoreLabel();
+			this.introBox = new River.OneMoreAddIn.UI.MoreMultilineLabel();
 			this.toolstrip = new River.OneMoreAddIn.UI.ScaledToolStrip();
 			this.clearButton = new System.Windows.Forms.ToolStripButton();
 			this.resetButton = new System.Windows.Forms.ToolStripButton();
 			this.resetAllButton = new System.Windows.Forms.ToolStripButton();
 			((System.ComponentModel.ISupportInitialize)(this.gridView)).BeginInit();
-			this.introPanel.SuspendLayout();
 			this.toolstrip.SuspendLayout();
 			this.SuspendLayout();
 			// 
@@ -83,27 +81,17 @@
 			this.keyColumn.Name = "keyColumn";
 			this.keyColumn.Width = 300;
 			// 
-			// introPanel
+			// introBox
 			// 
-			this.introPanel.Controls.Add(this.introLabel);
-			this.introPanel.Dock = System.Windows.Forms.DockStyle.Top;
-			this.introPanel.Location = new System.Drawing.Point(10, 9);
-			this.introPanel.Name = "introPanel";
-			this.introPanel.Size = new System.Drawing.Size(780, 55);
-			this.introPanel.TabIndex = 3;
-			// 
-			// introLabel
-			// 
-			this.introLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-			this.introLabel.Location = new System.Drawing.Point(3, 0);
-			this.introLabel.Name = "introLabel";
-			this.introLabel.Padding = new System.Windows.Forms.Padding(0, 0, 0, 36);
-			this.introLabel.PreferredBack = null;
-			this.introLabel.PreferredFore = null;
-			this.introLabel.Size = new System.Drawing.Size(774, 55);
-			this.introLabel.TabIndex = 0;
-			this.introLabel.Text = "Manage my custom keyboard shortcuts. Select a command and press a key sequence.";
+			this.introBox.Dock = System.Windows.Forms.DockStyle.Top;
+			this.introBox.Location = new System.Drawing.Point(10, 9);
+			this.introBox.Name = "introBox";
+			this.introBox.Padding = new System.Windows.Forms.Padding(0, 0, 0, 36);
+			this.introBox.PreferredBack = "ControlLightLight";
+			this.introBox.PreferredFore = null;
+			this.introBox.Size = new System.Drawing.Size(780, 55);
+			this.introBox.TabIndex = 0;
+			this.introBox.Text = "Manage my custom keyboard shortcuts. Select a command and press a key sequence.";
 			// 
 			// toolstrip
 			// 
@@ -152,7 +140,7 @@
 			this.BackColor = System.Drawing.SystemColors.ControlLightLight;
 			this.Controls.Add(this.gridView);
 			this.Controls.Add(this.toolstrip);
-			this.Controls.Add(this.introPanel);
+			this.Controls.Add(this.introBox);
 			this.ForeColor = System.Drawing.SystemColors.ControlText;
 			this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.MinimumSize = new System.Drawing.Size(750, 400);
@@ -160,7 +148,6 @@
 			this.Padding = new System.Windows.Forms.Padding(10, 9, 10, 9);
 			this.Size = new System.Drawing.Size(800, 500);
 			((System.ComponentModel.ISupportInitialize)(this.gridView)).EndInit();
-			this.introPanel.ResumeLayout(false);
 			this.toolstrip.ResumeLayout(false);
 			this.toolstrip.PerformLayout();
 			this.ResumeLayout(false);
@@ -169,9 +156,9 @@
 		}
 
 		#endregion
+
 		private KeyboardGridView gridView;
-		private System.Windows.Forms.Panel introPanel;
-		private UI.MoreLabel introLabel;
+		private UI.MoreMultilineLabel introBox;
 		private System.Windows.Forms.DataGridViewTextBoxColumn cmdColumn;
 		private System.Windows.Forms.DataGridViewTextBoxColumn keyColumn;
 		private River.OneMoreAddIn.UI.ScaledToolStrip toolstrip;

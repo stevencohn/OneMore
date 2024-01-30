@@ -32,15 +32,13 @@
 			this.gridView = new System.Windows.Forms.DataGridView();
 			this.nameColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.cmdColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.introPanel = new System.Windows.Forms.Panel();
-			this.introLabel = new River.OneMoreAddIn.UI.MoreLabel();
+			this.introBox = new River.OneMoreAddIn.UI.MoreMultilineLabel();
 			this.toolStrip = new River.OneMoreAddIn.UI.ScaledToolStrip();
 			this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
 			this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
 			this.deleteLabel = new System.Windows.Forms.ToolStripLabel();
 			this.deleteButton = new System.Windows.Forms.ToolStripButton();
 			((System.ComponentModel.ISupportInitialize)(this.gridView)).BeginInit();
-			this.introPanel.SuspendLayout();
 			this.toolStrip.SuspendLayout();
 			this.SuspendLayout();
 			// 
@@ -54,12 +52,12 @@
             this.nameColumn,
             this.cmdColumn});
 			this.gridView.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.gridView.Location = new System.Drawing.Point(10, 97);
+			this.gridView.Location = new System.Drawing.Point(10, 98);
 			this.gridView.MultiSelect = false;
 			this.gridView.Name = "gridView";
 			this.gridView.RowHeadersWidth = 30;
 			this.gridView.RowTemplate.Height = 28;
-			this.gridView.Size = new System.Drawing.Size(780, 394);
+			this.gridView.Size = new System.Drawing.Size(780, 393);
 			this.gridView.TabIndex = 2;
 			this.gridView.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.EditOnDoubleClick);
 			this.gridView.RowHeaderMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.EditOnDoubleClickRow);
@@ -82,27 +80,18 @@
 			this.cmdColumn.Name = "cmdColumn";
 			this.cmdColumn.ReadOnly = true;
 			// 
-			// introPanel
+			// introBox
 			// 
-			this.introPanel.Controls.Add(this.introLabel);
-			this.introPanel.Dock = System.Windows.Forms.DockStyle.Top;
-			this.introPanel.Location = new System.Drawing.Point(10, 9);
-			this.introPanel.Name = "introPanel";
-			this.introPanel.Padding = new System.Windows.Forms.Padding(0, 0, 0, 36);
-			this.introPanel.Size = new System.Drawing.Size(780, 55);
-			this.introPanel.TabIndex = 3;
-			// 
-			// introLabel
-			// 
-			this.introLabel.AutoSize = true;
-			this.introLabel.Dock = System.Windows.Forms.DockStyle.Top;
-			this.introLabel.Location = new System.Drawing.Point(0, 0);
-			this.introLabel.Name = "introLabel";
-			this.introLabel.PreferredBack = null;
-			this.introLabel.PreferredFore = null;
-			this.introLabel.Size = new System.Drawing.Size(765, 20);
-			this.introLabel.TabIndex = 0;
-			this.introLabel.Text = "Click the edit button to modify a plugin or double-click its name to rename it. C" +
+			this.introBox.AutoSize = true;
+			this.introBox.Dock = System.Windows.Forms.DockStyle.Top;
+			this.introBox.Location = new System.Drawing.Point(10, 9);
+			this.introBox.Name = "introBox";
+			this.introBox.Padding = new System.Windows.Forms.Padding(0, 0, 0, 36);
+			this.introBox.PreferredBack = "ControlLightLight";
+			this.introBox.PreferredFore = null;
+			this.introBox.Size = new System.Drawing.Size(780, 56);
+			this.introBox.TabIndex = 0;
+			this.introBox.Text = "Click the edit button to modify a plugin or double-click its name to rename it. C" +
     "hanges are saved immediately";
 			// 
 			// toolStrip
@@ -113,7 +102,7 @@
             this.toolStripSeparator1,
             this.deleteLabel,
             this.deleteButton});
-			this.toolStrip.Location = new System.Drawing.Point(10, 64);
+			this.toolStrip.Location = new System.Drawing.Point(10, 65);
 			this.toolStrip.Name = "toolStrip";
 			this.toolStrip.Padding = new System.Windows.Forms.Padding(0, 0, 3, 0);
 			this.toolStrip.Size = new System.Drawing.Size(780, 33);
@@ -159,7 +148,7 @@
 			this.BackColor = System.Drawing.SystemColors.ControlLightLight;
 			this.Controls.Add(this.gridView);
 			this.Controls.Add(this.toolStrip);
-			this.Controls.Add(this.introPanel);
+			this.Controls.Add(this.introBox);
 			this.ForeColor = System.Drawing.SystemColors.ControlText;
 			this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.MinimumSize = new System.Drawing.Size(750, 400);
@@ -167,8 +156,6 @@
 			this.Padding = new System.Windows.Forms.Padding(10, 9, 10, 9);
 			this.Size = new System.Drawing.Size(800, 500);
 			((System.ComponentModel.ISupportInitialize)(this.gridView)).EndInit();
-			this.introPanel.ResumeLayout(false);
-			this.introPanel.PerformLayout();
 			this.toolStrip.ResumeLayout(false);
 			this.toolStrip.PerformLayout();
 			this.ResumeLayout(false);
@@ -177,12 +164,12 @@
 		}
 
 		#endregion
+
 		private System.Windows.Forms.DataGridView gridView;
-		private System.Windows.Forms.Panel introPanel;
 		private UI.ScaledToolStrip toolStrip;
 		private System.Windows.Forms.ToolStripButton deleteButton;
 		private System.Windows.Forms.ToolStripLabel deleteLabel;
-		private UI.MoreLabel introLabel;
+		private UI.MoreMultilineLabel introBox;
 		private System.Windows.Forms.ToolStripButton toolStripButton1;
 		private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
 		private System.Windows.Forms.DataGridViewTextBoxColumn nameColumn;

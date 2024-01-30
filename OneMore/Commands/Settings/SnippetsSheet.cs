@@ -13,7 +13,7 @@ namespace River.OneMoreAddIn.Settings
 	using System.ComponentModel;
 	using System.IO;
 	using System.Windows.Forms;
-	using Resx = River.OneMoreAddIn.Properties.Resources;
+	using Resx = Properties.Resources;
 
 
 	internal partial class SnippetsSheet : SheetBase
@@ -50,8 +50,6 @@ namespace River.OneMoreAddIn.Settings
 
 				nameColumn.HeaderText = Resx.word_Name;
 			}
-
-			introLabel.SetMultilineWrapWidth(introLabel.Width);
 
 			toolStrip.Rescale();
 

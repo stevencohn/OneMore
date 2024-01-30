@@ -70,8 +70,6 @@ namespace River.OneMoreAddIn.UI
 		[JsonIgnore]
 		public Color ButtonBack => Colors[nameof(ButtonBack)];
 		[JsonIgnore]
-		public Color ButtonDisabled => Colors[nameof(ButtonDisabled)];
-		[JsonIgnore]
 		public Color ButtonBorder => Colors[nameof(ButtonBorder)];
 		[JsonIgnore]
 		public Color ButtonHotBack => Colors[nameof(ButtonHotBack)];
@@ -192,7 +190,11 @@ namespace River.OneMoreAddIn.UI
 
 			SetTheme(control);
 
-			foreach (Control child in control.Controls)
+			foreach (Control child in control.Controls.Cast<Control>()
+				.Where(c =>
+					c is not ListView &&
+					c is not DataGridView &&
+					c is not ToolStrip))
 			{
 				SetThemeRecursively(child);
 			}
@@ -258,7 +260,10 @@ namespace River.OneMoreAddIn.UI
 			}
 
 			var children = control.Controls.Cast<Control>()
-				.Where(c => c is not ListView && c is not DataGridView);
+				.Where(c => 
+					c is not ListView &&
+					c is not DataGridView &&
+					c is not ToolStrip);
 
 			// temp filter for ListView until that one is refactored
 			foreach (var child in children)

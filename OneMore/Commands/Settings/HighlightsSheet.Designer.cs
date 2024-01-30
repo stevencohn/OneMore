@@ -29,7 +29,7 @@
 		private void InitializeComponent()
 		{
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(HighlightsSheet));
-			this.introBox = new River.OneMoreAddIn.UI.MoreLabel();
+			this.introBox = new River.OneMoreAddIn.UI.MoreMultilineLabel();
 			this.normalRadio = new River.OneMoreAddIn.UI.MoreRadioButton();
 			this.fadedRadio = new River.OneMoreAddIn.UI.MoreRadioButton();
 			this.themesGroup = new River.OneMoreAddIn.UI.MoreGroupBox();
@@ -166,7 +166,7 @@
 
 		#endregion
 
-		private UI.MoreLabel introBox;
+		private UI.MoreMultilineLabel introBox;
 		private UI.MoreRadioButton normalRadio;
 		private UI.MoreRadioButton fadedRadio;
 		private UI.MoreGroupBox themesGroup;

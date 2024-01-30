@@ -1,5 +1,5 @@
 ﻿//************************************************************************************************
-// Copyright © 2021 Steven M. Cohn. All Rights Reserved.
+// Copyright © 2021 Steven M Cohn. All Rights Reserved.
 //************************************************************************************************
 
 namespace River.OneMoreAddIn.Settings
@@ -36,8 +36,6 @@ namespace River.OneMoreAddIn.Settings
 					"experimentalBox"
 				});
 			}
-
-			introBox.SetMultilineWrapWidth(introBox.Width);
 
 			var settings = provider.GetCollection(Name);
 

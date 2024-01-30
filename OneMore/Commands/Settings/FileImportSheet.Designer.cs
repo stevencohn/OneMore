@@ -29,7 +29,7 @@ namespace River.OneMoreAddIn.Settings
 		/// </summary>
 		private void InitializeComponent()
 		{
-			this.introBox = new River.OneMoreAddIn.UI.MoreLabel();
+			this.introBox = new River.OneMoreAddIn.UI.MoreMultilineLabel();
 			this.layoutPanel = new System.Windows.Forms.Panel();
 			this.widthBox = new System.Windows.Forms.NumericUpDown();
 			this.widthLabel = new System.Windows.Forms.Label();
@@ -113,7 +113,7 @@ namespace River.OneMoreAddIn.Settings
 
 		#endregion
 
-		private UI.MoreLabel introBox;
+		private UI.MoreMultilineLabel introBox;
 		private System.Windows.Forms.Panel layoutPanel;
 		private System.Windows.Forms.NumericUpDown widthBox;
 		private System.Windows.Forms.Label widthLabel;

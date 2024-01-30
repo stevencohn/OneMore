@@ -47,8 +47,6 @@ namespace River.OneMoreAddIn.Settings
 				cmdColumn.HeaderText = Resx.word_Command;
 			}
 
-			introLabel.SetMultilineWrapWidth(introLabel.Width);
-
 			toolStrip.Rescale();
 
 			gridView.AutoGenerateColumns = false;

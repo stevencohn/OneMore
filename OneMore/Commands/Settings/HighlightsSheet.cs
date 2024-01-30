@@ -1,10 +1,10 @@
 ﻿//************************************************************************************************
-// Copyright © 2020 Steven M. Cohn. All Rights Reserved.
+// Copyright © 2020 Steven M Cohn. All Rights Reserved.
 //************************************************************************************************
 
 namespace River.OneMoreAddIn.Settings
 {
-	using Resx = River.OneMoreAddIn.Properties.Resources;
+	using Resx = Properties.Resources;
 
 
 	internal partial class HighlightsSheet : SheetBase
@@ -24,8 +24,6 @@ namespace River.OneMoreAddIn.Settings
 					"themeGroup"
 				});
 			}
-
-			introBox.SetMultilineWrapWidth(introBox.Width);
 
 			var settings = provider.GetCollection(Name);
 			var theme = settings.Get<string>("theme");

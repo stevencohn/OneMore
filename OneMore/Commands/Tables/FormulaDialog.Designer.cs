@@ -37,7 +37,7 @@
 			this.formulaBox = new River.OneMoreAddIn.UI.MoreTextBox();
 			this.selectedLabel = new System.Windows.Forms.Label();
 			this.cellLabel = new System.Windows.Forms.Label();
-			this.helpBox = new River.OneMoreAddIn.UI.MoreLabel();
+			this.helpBox = new UI.MoreMultilineLabel();
 			this.helpPanel = new System.Windows.Forms.Panel();
 			this.helpButton = new River.OneMoreAddIn.UI.MoreCheckBox();
 			this.validStatusLabel = new System.Windows.Forms.Label();
@@ -287,7 +287,7 @@
 		private UI.MoreTextBox formulaBox;
 		private System.Windows.Forms.Label selectedLabel;
 		private System.Windows.Forms.Label cellLabel;
-		private UI.MoreLabel helpBox;
+		private UI.MoreMultilineLabel helpBox;
 		private System.Windows.Forms.Panel helpPanel;
 		private UI.MoreCheckBox helpButton;
 		private System.Windows.Forms.Label validStatusLabel;

@@ -31,10 +31,8 @@
 			this.gridView = new River.OneMoreAddIn.Settings.KeyboardGridView();
 			this.cmdColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.aliasColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.introPanel = new System.Windows.Forms.Panel();
-			this.introLabel = new System.Windows.Forms.Label();
+			this.introBox = new River.OneMoreAddIn.UI.MoreMultilineLabel();
 			((System.ComponentModel.ISupportInitialize)(this.gridView)).BeginInit();
-			this.introPanel.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// gridView
@@ -48,14 +46,14 @@
             this.cmdColumn,
             this.aliasColumn});
 			this.gridView.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.gridView.Location = new System.Drawing.Point(10, 74);
+			this.gridView.Location = new System.Drawing.Point(10, 65);
 			this.gridView.MultiSelect = false;
 			this.gridView.Name = "gridView";
 			this.gridView.RowHeadersVisible = false;
 			this.gridView.RowHeadersWidth = 30;
 			this.gridView.RowTemplate.Height = 28;
 			this.gridView.ShowEditingIcon = false;
-			this.gridView.Size = new System.Drawing.Size(780, 417);
+			this.gridView.Size = new System.Drawing.Size(780, 426);
 			this.gridView.TabIndex = 2;
 			this.gridView.CellValidating += new System.Windows.Forms.DataGridViewCellValidatingEventHandler(this.ValidateAlias);
 			// 
@@ -77,25 +75,19 @@
 			this.aliasColumn.Name = "aliasColumn";
 			this.aliasColumn.Width = 300;
 			// 
-			// introPanel
+			// introBox
 			// 
-			this.introPanel.Controls.Add(this.introLabel);
-			this.introPanel.Dock = System.Windows.Forms.DockStyle.Top;
-			this.introPanel.Location = new System.Drawing.Point(10, 9);
-			this.introPanel.Name = "introPanel";
-			this.introPanel.Size = new System.Drawing.Size(780, 65);
-			this.introPanel.TabIndex = 3;
-			// 
-			// introLabel
-			// 
-			this.introLabel.AutoSize = true;
-			this.introLabel.ForeColor = System.Drawing.SystemColors.ControlText;
-			this.introLabel.Location = new System.Drawing.Point(3, 6);
-			this.introLabel.Name = "introLabel";
-			this.introLabel.Padding = new System.Windows.Forms.Padding(0, 0, 0, 36);
-			this.introLabel.Size = new System.Drawing.Size(410, 56);
-			this.introLabel.TabIndex = 0;
-			this.introLabel.Text = "Define command aliases for use in the Command Palette";
+			this.introBox.AutoSize = true;
+			this.introBox.Dock = System.Windows.Forms.DockStyle.Top;
+			this.introBox.ForeColor = System.Drawing.SystemColors.ControlText;
+			this.introBox.Location = new System.Drawing.Point(10, 9);
+			this.introBox.Name = "introBox";
+			this.introBox.Padding = new System.Windows.Forms.Padding(0, 0, 0, 36);
+			this.introBox.PreferredBack = "ControlLightLight";
+			this.introBox.PreferredFore = null;
+			this.introBox.Size = new System.Drawing.Size(780, 56);
+			this.introBox.TabIndex = 0;
+			this.introBox.Text = "Define command aliases for use in the Command Palette";
 			// 
 			// AliasSheet
 			// 
@@ -103,7 +95,7 @@
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.BackColor = System.Drawing.SystemColors.ControlLightLight;
 			this.Controls.Add(this.gridView);
-			this.Controls.Add(this.introPanel);
+			this.Controls.Add(this.introBox);
 			this.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.MinimumSize = new System.Drawing.Size(750, 400);
@@ -111,16 +103,14 @@
 			this.Padding = new System.Windows.Forms.Padding(10, 9, 10, 9);
 			this.Size = new System.Drawing.Size(800, 500);
 			((System.ComponentModel.ISupportInitialize)(this.gridView)).EndInit();
-			this.introPanel.ResumeLayout(false);
-			this.introPanel.PerformLayout();
 			this.ResumeLayout(false);
+			this.PerformLayout();
 
 		}
 
 		#endregion
 		private KeyboardGridView gridView;
-		private System.Windows.Forms.Panel introPanel;
-		private System.Windows.Forms.Label introLabel;
+		private UI.MoreMultilineLabel introBox;
 		private System.Windows.Forms.DataGridViewTextBoxColumn cmdColumn;
 		private System.Windows.Forms.DataGridViewTextBoxColumn aliasColumn;
 	}

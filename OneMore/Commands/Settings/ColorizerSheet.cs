@@ -1,10 +1,11 @@
 ﻿//************************************************************************************************
-// Copyright © 2023 Steven M. Cohn. All Rights Reserved.
+// Copyright © 2023 Steven M Cohn. All Rights Reserved.
 //************************************************************************************************
 
 namespace River.OneMoreAddIn.Settings
 {
 	using River.OneMoreAddIn.Styles;
+	using System;
 	using System.Drawing;
 	using System.IO;
 	using System.Linq;
@@ -72,8 +73,6 @@ namespace River.OneMoreAddIn.Settings
 			size2Box.SelectedIndex = size2Box.Items.IndexOf(size.ToString());
 
 			LoadLanguages(settings.Get(HiddenKey, new XElement(HiddenKey)));
-
-			applyBox.Focus();
 		}
 
 
@@ -120,6 +119,13 @@ namespace River.OneMoreAddIn.Settings
 			}
 
 			return image;
+		}
+
+
+		protected override void OnLoad(EventArgs e)
+		{
+			base.OnLoad(e);
+			langView.Focus();
 		}
 
 

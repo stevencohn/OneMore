@@ -32,7 +32,7 @@
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ImportOutlookTasksDialog));
 			this.okButton = new River.OneMoreAddIn.UI.MoreButton();
 			this.cancelButton = new River.OneMoreAddIn.UI.MoreButton();
-			this.introBox = new River.OneMoreAddIn.UI.MoreLabel();
+			this.introBox = new UI.MoreMultilineLabel();
 			this.warningBox = new River.OneMoreAddIn.UI.MoreRichLabel();
 			this.resetLabel = new River.OneMoreAddIn.UI.MoreLinkLabel();
 			this.imageList = new System.Windows.Forms.ImageList(this.components);
@@ -240,7 +240,7 @@
 
 		private UI.MoreButton okButton;
 		private UI.MoreButton cancelButton;
-		private UI.MoreLabel introBox;
+		private UI.MoreMultilineLabel introBox;
 		private River.OneMoreAddIn.UI.MoreRichLabel warningBox;
 		private System.Windows.Forms.Panel optionsPanel;
 		private System.Windows.Forms.Panel buttonPanel;

@@ -1,5 +1,5 @@
 ﻿//************************************************************************************************
-// Copyright © 2023 Steven M. Cohn. All Rights Reserved.
+// Copyright © 2023 Steven M Cohn. All Rights Reserved.
 //************************************************************************************************
 
 namespace River.OneMoreAddIn.Settings
@@ -28,7 +28,6 @@ namespace River.OneMoreAddIn.Settings
 				});
 			}
 
-			introBox.SetMultilineWrapWidth(introBox.Width);
 			widthBox.Value = provider.GetCollection(Name).Get("width", DefaultWidth);
 		}
 

@@ -73,7 +73,6 @@ namespace River.OneMoreAddIn.Commands
 				});
 			}
 
-			introBox.SetMultilineWrapWidth(introBox.Width);
 			resetInfoLabel.Visible = false;
 			resetInfoLabel.Left = resetLabel.Left;
 

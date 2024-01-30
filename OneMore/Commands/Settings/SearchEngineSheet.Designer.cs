@@ -32,8 +32,7 @@
 			this.iconColumn = new System.Windows.Forms.DataGridViewImageColumn();
 			this.nameColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.urlColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.introPanel = new System.Windows.Forms.Panel();
-			this.introLabel = new River.OneMoreAddIn.UI.MoreLabel();
+			this.introBox = new River.OneMoreAddIn.UI.MoreMultilineLabel();
 			this.toolStrip = new River.OneMoreAddIn.UI.ScaledToolStrip();
 			this.upButton = new System.Windows.Forms.ToolStripButton();
 			this.downButton = new System.Windows.Forms.ToolStripButton();
@@ -42,7 +41,6 @@
 			this.deleteLabel = new System.Windows.Forms.ToolStripLabel();
 			this.deleteButton = new System.Windows.Forms.ToolStripButton();
 			((System.ComponentModel.ISupportInitialize)(this.gridView)).BeginInit();
-			this.introPanel.SuspendLayout();
 			this.toolStrip.SuspendLayout();
 			this.SuspendLayout();
 			// 
@@ -90,27 +88,17 @@
 			this.urlColumn.MinimumWidth = 8;
 			this.urlColumn.Name = "urlColumn";
 			// 
-			// introPanel
+			// introBox
 			// 
-			this.introPanel.Controls.Add(this.introLabel);
-			this.introPanel.Dock = System.Windows.Forms.DockStyle.Top;
-			this.introPanel.Location = new System.Drawing.Point(10, 9);
-			this.introPanel.Name = "introPanel";
-			this.introPanel.Size = new System.Drawing.Size(780, 81);
-			this.introPanel.TabIndex = 3;
-			// 
-			// introLabel
-			// 
-			this.introLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-			this.introLabel.Location = new System.Drawing.Point(3, 0);
-			this.introLabel.Name = "introLabel";
-			this.introLabel.Padding = new System.Windows.Forms.Padding(0, 0, 0, 36);
-			this.introLabel.PreferredBack = null;
-			this.introLabel.PreferredFore = null;
-			this.introLabel.Size = new System.Drawing.Size(774, 81);
-			this.introLabel.TabIndex = 0;
-			this.introLabel.Text = "URL Patterns must contain a string replacement token, such as &q={0}\r\nSearch engi" +
+			this.introBox.Dock = System.Windows.Forms.DockStyle.Top;
+			this.introBox.Location = new System.Drawing.Point(10, 9);
+			this.introBox.Name = "introBox";
+			this.introBox.Padding = new System.Windows.Forms.Padding(0, 0, 0, 36);
+			this.introBox.PreferredBack = "ControlLightLight";
+			this.introBox.PreferredFore = null;
+			this.introBox.Size = new System.Drawing.Size(780, 81);
+			this.introBox.TabIndex = 0;
+			this.introBox.Text = "URL Patterns must contain a string replacement token, such as &q={0}\r\nSearch engi" +
     "nes will appear in the page context menu, right-click.";
 			// 
 			// toolStrip
@@ -188,7 +176,7 @@
 			this.BackColor = System.Drawing.SystemColors.ControlLightLight;
 			this.Controls.Add(this.gridView);
 			this.Controls.Add(this.toolStrip);
-			this.Controls.Add(this.introPanel);
+			this.Controls.Add(this.introBox);
 			this.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.MinimumSize = new System.Drawing.Size(750, 400);
@@ -196,7 +184,6 @@
 			this.Padding = new System.Windows.Forms.Padding(10, 9, 10, 9);
 			this.Size = new System.Drawing.Size(800, 500);
 			((System.ComponentModel.ISupportInitialize)(this.gridView)).EndInit();
-			this.introPanel.ResumeLayout(false);
 			this.toolStrip.ResumeLayout(false);
 			this.toolStrip.PerformLayout();
 			this.ResumeLayout(false);
@@ -205,9 +192,9 @@
 		}
 
 		#endregion
+
 		private System.Windows.Forms.DataGridView gridView;
-		private System.Windows.Forms.Panel introPanel;
-		private UI.MoreLabel introLabel;
+		private UI.MoreMultilineLabel introBox;
 		private UI.ScaledToolStrip toolStrip;
 		private System.Windows.Forms.ToolStripButton deleteButton;
 		private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;

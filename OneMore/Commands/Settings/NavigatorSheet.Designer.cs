@@ -30,7 +30,7 @@ namespace River.OneMoreAddIn.Settings
 		private void InitializeComponent()
 		{
 			this.components = new System.ComponentModel.Container();
-			this.introBox = new River.OneMoreAddIn.UI.MoreLabel();
+			this.introBox = new UI.MoreMultilineLabel();
 			this.layoutPanel = new System.Windows.Forms.Panel();
 			this.advancedGroup = new River.OneMoreAddIn.UI.MoreGroupBox();
 			this.disabledBox = new River.OneMoreAddIn.UI.MoreCheckBox();
@@ -208,7 +208,7 @@ namespace River.OneMoreAddIn.Settings
 
 		#endregion
 
-		private UI.MoreLabel introBox;
+		private UI.MoreMultilineLabel introBox;
 		private System.Windows.Forms.Panel layoutPanel;
 		private UI.MoreCheckBox corrallBox;
 		private System.Windows.Forms.NumericUpDown depthBox;

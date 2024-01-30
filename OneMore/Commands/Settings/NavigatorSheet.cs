@@ -34,8 +34,6 @@ namespace River.OneMoreAddIn.Settings
 				});
 			}
 
-			introBox.SetMultilineWrapWidth(introBox.Width);
-
 			var settings = provider.GetCollection(Name);
 
 			depthBox.Value = settings.Get("depth", NavigationService.DefaultHistoryDepth);

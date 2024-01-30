@@ -15,13 +15,15 @@ namespace River.OneMoreAddIn.UI
 	/// </summary>
 	internal class MoreMultilineLabel : Panel, IThemedControl
 	{
-		private readonly Label label;
+		private readonly MoreLabel label;
+		private string preferredBack;
+		private string preferredFore;
 
 
 		public MoreMultilineLabel()
 			: base()
 		{
-			label = new Label
+			label = new MoreLabel
 			{
 				AutoSize = true,
 				Dock = DockStyle.Fill
@@ -31,9 +33,18 @@ namespace River.OneMoreAddIn.UI
 		}
 
 
-		public string PreferredBack { get; set; }
+		public string PreferredBack
+		{
+			get => preferredBack;
+			set => preferredBack = label.PreferredBack = value;
+		}
 
-		public string PreferredFore { get; set; }
+
+		public string PreferredFore
+		{
+			get => preferredFore;
+			set => preferredFore = label.PreferredFore = value;
+		}
 
 
 		public override string Text

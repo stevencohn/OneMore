@@ -29,7 +29,7 @@
 		private void InitializeComponent()
 		{
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ContextMenuSheet));
-			this.introBox = new UI.MoreLabel();
+			this.introBox = new UI.MoreMultilineLabel();
 			this.contentPanel = new System.Windows.Forms.Panel();
 			this.linePanel = new System.Windows.Forms.Panel();
 			this.SuspendLayout();
@@ -84,7 +84,7 @@
 
 		#endregion
 
-		private UI.MoreLabel introBox;
+		private UI.MoreMultilineLabel introBox;
 		private System.Windows.Forms.Panel contentPanel;
 		private System.Windows.Forms.Panel linePanel;
 	}

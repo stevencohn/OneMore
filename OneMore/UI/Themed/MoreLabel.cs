@@ -14,12 +14,5 @@ namespace River.OneMoreAddIn.UI
 		public string PreferredBack { get; set; }
 
 		public string PreferredFore { get; set; }
-
-
-		public void SetMultilineWrapWidth(int width)
-		{
-			MaximumSize = new Size(width, 0);
-			AutoSize = true;
-		}
 	}
 }

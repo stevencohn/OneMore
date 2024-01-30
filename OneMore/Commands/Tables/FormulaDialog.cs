@@ -49,8 +49,6 @@ namespace River.OneMoreAddIn.Commands
 
 			formatBox.SelectedIndex = 0;
 
-			helpBox.SetMultilineWrapWidth(helpPanel.ClientSize.Width);
-
 			calculator = new Calculator();
 			calculator.ProcessSymbol += ResolveSymbol;
 		}

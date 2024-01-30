@@ -29,7 +29,7 @@
 		private void InitializeComponent()
 		{
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(RibbonBarSheet));
-			this.introBox = new River.OneMoreAddIn.UI.MoreLabel();
+			this.introBox = new River.OneMoreAddIn.UI.MoreMultilineLabel();
 			this.editRibbonBox = new River.OneMoreAddIn.UI.MoreCheckBox();
 			this.editIconBox = new River.OneMoreAddIn.UI.MoreCheckBox();
 			this.formulaRibbonBox = new River.OneMoreAddIn.UI.MoreCheckBox();
@@ -46,13 +46,12 @@
 			// 
 			// introBox
 			// 
-			this.introBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
 			this.introBox.BackColor = System.Drawing.SystemColors.ControlLightLight;
+			this.introBox.Dock = System.Windows.Forms.DockStyle.Top;
 			this.introBox.Location = new System.Drawing.Point(10, 9);
 			this.introBox.Name = "introBox";
 			this.introBox.Padding = new System.Windows.Forms.Padding(0, 0, 0, 36);
-			this.introBox.PreferredBack = null;
+			this.introBox.PreferredBack = "ControlLightLight";
 			this.introBox.PreferredFore = null;
 			this.introBox.Size = new System.Drawing.Size(780, 66);
 			this.introBox.TabIndex = 3;
@@ -173,6 +172,7 @@
 		}
 
 		#endregion
+
 		private UI.MoreCheckBox editRibbonBox;
 		private UI.MoreCheckBox editIconBox;
 		private UI.MoreCheckBox formulaRibbonBox;
@@ -181,6 +181,6 @@
 		private UI.MoreGroupBox formulaGroup;
 		private System.Windows.Forms.PictureBox editPicture;
 		private System.Windows.Forms.PictureBox formulaPicture;
-		private UI.MoreLabel introBox;
+		private UI.MoreMultilineLabel introBox;
 	}
 }

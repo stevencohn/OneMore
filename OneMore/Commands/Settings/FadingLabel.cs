@@ -1,5 +1,5 @@
 ﻿//************************************************************************************************
-// Copyright © 2002 Steven M. Cohn. All Rights Reserved.
+// Copyright © 2002 Steven M Cohn. All Rights Reserved.
 // Originally from my own Orqa project
 //************************************************************************************************
 

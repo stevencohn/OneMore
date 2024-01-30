@@ -30,8 +30,6 @@ namespace River.OneMoreAddIn.Settings
 					"lengthLabel"
 				});
 			}
-
-			introBox.SetMultilineWrapWidth(introBox.Width);
 		}
 
 

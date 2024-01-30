@@ -46,8 +46,6 @@ namespace River.OneMoreAddIn.Settings
 				});
 			}
 
-			introBox.SetMultilineWrapWidth(introBox.Width);
-
 			var settings = provider.GetCollection(Name);
 			var organization = settings.Get("organization", "notebook");
 			if (organization == "notebook")

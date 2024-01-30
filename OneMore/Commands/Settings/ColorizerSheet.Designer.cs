@@ -29,7 +29,7 @@ namespace River.OneMoreAddIn.Settings
 		/// </summary>
 		private void InitializeComponent()
 		{
-			this.introBox = new UI.MoreLabel();
+			this.introBox = new UI.MoreMultilineLabel();
 			this.layoutPanel = new System.Windows.Forms.Panel();
 			this.barLabel = new System.Windows.Forms.Label();
 			this.allLink = new River.OneMoreAddIn.UI.MoreLinkLabel();
@@ -293,7 +293,7 @@ namespace River.OneMoreAddIn.Settings
 
 		#endregion
 
-		private UI.MoreLabel introBox;
+		private UI.MoreMultilineLabel introBox;
 		private System.Windows.Forms.Panel layoutPanel;
 		private UI.MoreCheckBox applyBox;
 		private UI.FontComboBox familyBox;
