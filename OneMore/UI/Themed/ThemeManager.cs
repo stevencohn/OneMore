@@ -186,11 +186,7 @@ namespace River.OneMoreAddIn.UI
 
 			// now its children...
 
-			foreach (Control child in control.Controls.OfType<Control>()
-				.Where(c =>
-					c is not ListView &&
-					c is not DataGridView &&
-					c is not ToolStrip))
+			foreach (Control child in control.Controls)
 			{
 				//logger.WriteLine($"SetWindowTheme >> {child.Name} {child.GetType()}");
 				SetWindowTheme(child);
