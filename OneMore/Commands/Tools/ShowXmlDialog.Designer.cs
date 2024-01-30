@@ -369,11 +369,15 @@
 			// 
 			// queryButton
 			// 
+			this.queryButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
 			this.queryButton.Enabled = false;
+			this.queryButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.queryButton.Image = ((System.Drawing.Image)(resources.GetObject("queryButton.Image")));
 			this.queryButton.ImageOver = null;
 			this.queryButton.Location = new System.Drawing.Point(623, 50);
 			this.queryButton.Name = "queryButton";
+			this.queryButton.PreferredBack = null;
+			this.queryButton.PreferredFore = null;
 			this.queryButton.ShowBorder = false;
 			this.queryButton.Size = new System.Drawing.Size(47, 32);
 			this.queryButton.TabIndex = 9;
@@ -404,6 +408,8 @@
 			this.objectIdBox.Location = new System.Drawing.Point(416, 15);
 			this.objectIdBox.Margin = new System.Windows.Forms.Padding(3, 6, 3, 3);
 			this.objectIdBox.Name = "objectIdBox";
+			this.objectIdBox.PreferredBack = null;
+			this.objectIdBox.PreferredFore = null;
 			this.objectIdBox.Size = new System.Drawing.Size(509, 29);
 			this.objectIdBox.TabIndex = 7;
 			this.objectIdBox.TextChanged += new System.EventHandler(this.ManualInputChanged);
@@ -422,15 +428,20 @@
 			// cancelButton
 			// 
 			this.cancelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+			this.cancelButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
 			this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+			this.cancelButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.cancelButton.ImageOver = null;
 			this.cancelButton.Location = new System.Drawing.Point(2301, 23);
 			this.cancelButton.Margin = new System.Windows.Forms.Padding(2);
 			this.cancelButton.Name = "cancelButton";
+			this.cancelButton.PreferredBack = null;
+			this.cancelButton.PreferredFore = null;
 			this.cancelButton.ShowBorder = false;
 			this.cancelButton.Size = new System.Drawing.Size(124, 35);
 			this.cancelButton.TabIndex = 9;
 			this.cancelButton.Text = "Close";
+			this.cancelButton.UseVisualStyleBackColor = false;
 			this.cancelButton.Click += new System.EventHandler(this.Close);
 			// 
 			// editByBox2
@@ -454,15 +465,20 @@
 			// okButton
 			// 
 			this.okButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+			this.okButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
 			this.okButton.Enabled = false;
+			this.okButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.okButton.ImageOver = null;
 			this.okButton.Location = new System.Drawing.Point(2169, 23);
 			this.okButton.Margin = new System.Windows.Forms.Padding(2);
 			this.okButton.Name = "okButton";
+			this.okButton.PreferredBack = null;
+			this.okButton.PreferredFore = null;
 			this.okButton.ShowBorder = false;
 			this.okButton.Size = new System.Drawing.Size(124, 35);
 			this.okButton.TabIndex = 8;
 			this.okButton.Text = "Update Page";
+			this.okButton.UseVisualStyleBackColor = false;
 			this.okButton.Click += new System.EventHandler(this.UpdatePage);
 			// 
 			// pageLink
@@ -650,6 +666,7 @@
 			// 
 			// selectButton
 			// 
+			this.selectButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
 			this.selectButton.ForeColor = System.Drawing.SystemColors.ControlText;
 			this.selectButton.Image = ((System.Drawing.Image)(resources.GetObject("selectButton.Image")));
 			this.selectButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -658,11 +675,14 @@
 			this.selectButton.Margin = new System.Windows.Forms.Padding(2);
 			this.selectButton.Name = "selectButton";
 			this.selectButton.Padding = new System.Windows.Forms.Padding(4, 0, 0, 0);
+			this.selectButton.PreferredBack = null;
+			this.selectButton.PreferredFore = null;
 			this.selectButton.ShowBorder = false;
 			this.selectButton.Size = new System.Drawing.Size(140, 35);
 			this.selectButton.TabIndex = 3;
 			this.selectButton.Text = "Select All";
 			this.selectButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+			this.selectButton.UseVisualStyleBackColor = false;
 			this.selectButton.Click += new System.EventHandler(this.SelectAll);
 			// 
 			// topPanel
@@ -700,6 +720,8 @@
 			this.findBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.findBox.Location = new System.Drawing.Point(10, 11);
 			this.findBox.Name = "findBox";
+			this.findBox.PreferredBack = null;
+			this.findBox.PreferredFore = null;
 			this.findBox.Size = new System.Drawing.Size(270, 28);
 			this.findBox.TabIndex = 0;
 			this.findBox.TextChanged += new System.EventHandler(this.FindOptionsOnTextChanged);
@@ -707,11 +729,15 @@
 			// 
 			// findButton
 			// 
+			this.findButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
 			this.findButton.Enabled = false;
+			this.findButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.findButton.Image = ((System.Drawing.Image)(resources.GetObject("findButton.Image")));
 			this.findButton.ImageOver = null;
 			this.findButton.Location = new System.Drawing.Point(288, 9);
 			this.findButton.Name = "findButton";
+			this.findButton.PreferredBack = null;
+			this.findButton.PreferredFore = null;
 			this.findButton.ShowBorder = false;
 			this.findButton.Size = new System.Drawing.Size(58, 35);
 			this.findButton.TabIndex = 1;

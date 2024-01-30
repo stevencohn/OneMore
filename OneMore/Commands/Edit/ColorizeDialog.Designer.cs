@@ -50,10 +50,14 @@
 			// okButton
 			// 
 			this.okButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+			this.okButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
 			this.okButton.DialogResult = System.Windows.Forms.DialogResult.OK;
+			this.okButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.okButton.ImageOver = null;
 			this.okButton.Location = new System.Drawing.Point(253, 13);
 			this.okButton.Name = "okButton";
+			this.okButton.PreferredBack = null;
+			this.okButton.PreferredFore = null;
 			this.okButton.ShowBorder = true;
 			this.okButton.Size = new System.Drawing.Size(108, 38);
 			this.okButton.TabIndex = 0;
@@ -73,7 +77,7 @@
 			// 
 			// view
 			// 
-			this.view.BackColor = System.Drawing.SystemColors.ControlLightLight;
+			this.view.BackColor = System.Drawing.SystemColors.Window;
 			this.view.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.nameColumn});
 			this.view.Dock = System.Windows.Forms.DockStyle.Fill;

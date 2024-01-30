@@ -48,6 +48,17 @@
 
     "ButtonDown": "#3D2F45",
     "ErrorText": "#FF6347",
-    "HintText": "#87CEFA"
+    "HintText": "#87CEFA",
+
+    "XmlComment": "LimeGreen",
+    "XmlEditedBy": "MediumTurquoise",
+    "XmlEditMode": "#323232",
+    "XmlHighlight": "#CD853F",
+    "XmlHighlightText": "#000000",
+    "XmlMatch": "DarkGray",
+    "XmlReadMode": "#2A2A2A",
+    "XmlString": "#E84C22",
+    "XmlText": "#E6E6E6",
+    "XmlTrash": "#C09B76"
   }
 }

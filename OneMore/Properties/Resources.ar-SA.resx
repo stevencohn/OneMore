@@ -432,10 +432,6 @@
     <value>حدد كلمة أو عبارة من فقرة واحدة</value>
     <comment>message box</comment>
   </data>
-  <data name="BreakingDialog_groupBox.Text" xml:space="preserve">
-    <value>تباعد</value>
-    <comment>group box</comment>
-  </data>
   <data name="BreakingDialog_oneButton.Text" xml:space="preserve">
     <value>مسافة واحدة بين الجمل</value>
     <comment>radio</comment>

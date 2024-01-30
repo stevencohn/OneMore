@@ -432,10 +432,6 @@ Invertir</value>
     <value>Seleccione una palabra o frase de un párrafo</value>
     <comment>message box</comment>
   </data>
-  <data name="BreakingDialog_groupBox.Text" xml:space="preserve">
-    <value>Espaciado</value>
-    <comment>group box</comment>
-  </data>
   <data name="BreakingDialog_oneButton.Text" xml:space="preserve">
     <value>Un espacio entre oraciones</value>
     <comment>radio</comment>

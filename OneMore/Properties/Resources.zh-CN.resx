@@ -433,10 +433,6 @@ OneNote 将自动关闭</value>
     <value>从一个段落中选择一个单词或短语</value>
     <comment>message box</comment>
   </data>
-  <data name="BreakingDialog_groupBox.Text" xml:space="preserve">
-    <value>间距</value>
-    <comment>group box</comment>
-  </data>
   <data name="BreakingDialog_oneButton.Text" xml:space="preserve">
     <value>句子之间有一个空格</value>
     <comment>radio</comment>

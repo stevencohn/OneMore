@@ -34,17 +34,21 @@ namespace River.OneMoreAddIn.Commands
 			this.cancelButton = new River.OneMoreAddIn.UI.MoreButton();
 			this.nameLabel = new System.Windows.Forms.Label();
 			this.nameBox = new River.OneMoreAddIn.UI.MoreTextBox();
-			this.errorLabel = new UI.MoreLabel();
+			this.errorLabel = new River.OneMoreAddIn.UI.MoreLabel();
 			this.SuspendLayout();
 			// 
 			// okButton
 			// 
 			this.okButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+			this.okButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
 			this.okButton.DialogResult = System.Windows.Forms.DialogResult.OK;
 			this.okButton.Enabled = false;
+			this.okButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.okButton.ImageOver = null;
 			this.okButton.Location = new System.Drawing.Point(388, 94);
 			this.okButton.Name = "okButton";
+			this.okButton.PreferredBack = null;
+			this.okButton.PreferredFore = null;
 			this.okButton.ShowBorder = true;
 			this.okButton.Size = new System.Drawing.Size(112, 35);
 			this.okButton.TabIndex = 0;
@@ -55,10 +59,14 @@ namespace River.OneMoreAddIn.Commands
 			// cancelButton
 			// 
 			this.cancelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+			this.cancelButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
 			this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+			this.cancelButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.cancelButton.ImageOver = null;
 			this.cancelButton.Location = new System.Drawing.Point(506, 94);
 			this.cancelButton.Name = "cancelButton";
+			this.cancelButton.PreferredBack = null;
+			this.cancelButton.PreferredFore = null;
 			this.cancelButton.ShowBorder = true;
 			this.cancelButton.Size = new System.Drawing.Size(112, 35);
 			this.cancelButton.TabIndex = 1;
@@ -78,8 +86,11 @@ namespace River.OneMoreAddIn.Commands
 			// 
 			this.nameBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+			this.nameBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
 			this.nameBox.Location = new System.Drawing.Point(141, 28);
 			this.nameBox.Name = "nameBox";
+			this.nameBox.PreferredBack = null;
+			this.nameBox.PreferredFore = null;
 			this.nameBox.Size = new System.Drawing.Size(477, 26);
 			this.nameBox.TabIndex = 2;
 			this.nameBox.TextChanged += new System.EventHandler(this.ValidateName);
@@ -88,9 +99,10 @@ namespace River.OneMoreAddIn.Commands
 			// 
 			this.errorLabel.AutoSize = true;
 			this.errorLabel.ForeColor = System.Drawing.Color.Maroon;
-			this.errorLabel.PreferredFore = "ErrorText";
 			this.errorLabel.Location = new System.Drawing.Point(137, 57);
 			this.errorLabel.Name = "errorLabel";
+			this.errorLabel.PreferredBack = null;
+			this.errorLabel.PreferredFore = "ErrorText";
 			this.errorLabel.Size = new System.Drawing.Size(167, 20);
 			this.errorLabel.TabIndex = 13;
 			this.errorLabel.Text = "Name is already in use";
@@ -100,6 +112,7 @@ namespace River.OneMoreAddIn.Commands
 			this.AcceptButton = this.okButton;
 			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+			this.BackColor = System.Drawing.SystemColors.Control;
 			this.CancelButton = this.cancelButton;
 			this.ClientSize = new System.Drawing.Size(641, 152);
 			this.Controls.Add(this.errorLabel);

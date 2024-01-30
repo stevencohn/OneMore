@@ -521,7 +521,8 @@ namespace River.OneMoreAddIn.Commands
 			{
 				box.SelectionStart = match.Index;
 				box.SelectionLength = match.Length;
-				box.SelectionBackColor = Color.Yellow;
+				box.SelectionColor= manager.GetThemedColor("XmlHighlightText");
+				box.SelectionBackColor = manager.GetThemedColor("XmlHighlight");
 
 				if (selectionStart < 0)
 				{
@@ -543,7 +544,7 @@ namespace River.OneMoreAddIn.Commands
 				{
 					box.SelectionStart = m.Index;
 					box.SelectionLength = m.Length;
-					box.SelectionColor = Color.Silver;
+					box.SelectionColor = manager.GetThemedColor("XmlMatch");
 				}
 
 				// objectID
@@ -553,7 +554,7 @@ namespace River.OneMoreAddIn.Commands
 				{
 					box.SelectionStart = m.Index;
 					box.SelectionLength = m.Length;
-					box.SelectionColor = Color.CornflowerBlue;
+					box.SelectionColor = manager.GetThemedColor("XmlEditedBy");
 				}
 			}
 
@@ -568,7 +569,7 @@ namespace River.OneMoreAddIn.Commands
 				{
 					box.SelectionStart = m.Groups[1].Index;
 					box.SelectionLength = m.Groups[1].Length;
-					box.SelectionColor = Color.Maroon;
+					box.SelectionColor = manager.GetThemedColor("XmlString");
 				}
 			}
 			else
@@ -580,7 +581,7 @@ namespace River.OneMoreAddIn.Commands
 				{
 					box.SelectionStart = m.Index;
 					box.SelectionLength = m.Length;
-					box.SelectionColor = Color.Maroon;
+					box.SelectionColor = manager.GetThemedColor("XmlTrash");
 				}
 			}
 
@@ -592,7 +593,7 @@ namespace River.OneMoreAddIn.Commands
 		{
 			if (editModeBox.Checked)
 			{
-				pageBox.BackColor = Color.White;
+				pageBox.BackColor = manager.GetThemedColor("XmlEditMode");
 				pageBox.ReadOnly = false;
 				okButton.Enabled = true;
 				hideEditedByBox.Checked = false;
@@ -606,7 +607,7 @@ namespace River.OneMoreAddIn.Commands
 			}
 			else
 			{
-				pageBox.BackColor = SystemColors.Control;
+				pageBox.BackColor = manager.GetThemedColor("XmlReadMode");
 				pageBox.ReadOnly = true;
 				okButton.Enabled = false;
 				hideEditedByBox.Enabled = true;
@@ -758,10 +759,10 @@ namespace River.OneMoreAddIn.Commands
 
 					box.Clear();
 					box.WordWrap = wrapBox.Checked;
-					box.SelectionColor = Color.Black;
+					box.SelectionColor = manager.GetThemedColor("XmlText");
 					box.Text = $"<!-- {comment} -->\n{xml}";
 					box.Select(0, comment.Length + 9);
-					box.SelectionColor = Color.Green;
+					box.SelectionColor = manager.GetThemedColor("XmlComment");
 
 					Colorize(box, !hideEditedByBox2.Checked);
 
@@ -845,7 +846,7 @@ namespace River.OneMoreAddIn.Commands
 				var eventMask = Native.SendMessage(manualBox.Handle, Native.EM_GETEVENTMASK, 0, 0);
 
 				manualBox.Clear();
-				manualBox.SelectionColor = Color.Black;
+				manualBox.SelectionColor = manager.GetThemedColor("XmlText");
 
 				await ShowHierarchy(manualBox,
 					$"{(string)functionBox.SelectedItem}(\"{objectIdBox.Text}\")",
@@ -868,10 +869,10 @@ namespace River.OneMoreAddIn.Commands
 					}
 				}
 
-				manualBox.SelectionColor = Color.Black;
+				manualBox.SelectionColor = manager.GetThemedColor("XmlText");
 				manualBox.Text = exc.FormatDetails();
 				manualBox.SelectAll();
-				manualBox.SelectionColor = Color.Red;
+				manualBox.SelectionColor = manager.GetThemedColor("XmlTrash");
 
 				logger.WriteLine(exc);
 			}

@@ -433,10 +433,6 @@ Omkeren</value>
     <value>Selecteer een woord of zin uit één alinea</value>
     <comment>message box</comment>
   </data>
-  <data name="BreakingDialog_groupBox.Text" xml:space="preserve">
-    <value>Spatiëring</value>
-    <comment>group box</comment>
-  </data>
   <data name="BreakingDialog_oneButton.Text" xml:space="preserve">
     <value>Een spatie tussen zinnen</value>
     <comment>radio</comment>

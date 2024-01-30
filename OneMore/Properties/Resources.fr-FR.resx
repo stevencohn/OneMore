@@ -429,10 +429,6 @@ Inverser</value>
     <value>Sélectionnez un mot ou une phrase dans un paragraphe</value>
     <comment>message box</comment>
   </data>
-  <data name="BreakingDialog_groupBox.Text" xml:space="preserve">
-    <value>Espacement</value>
-    <comment>group box</comment>
-  </data>
   <data name="BreakingDialog_oneButton.Text" xml:space="preserve">
     <value>Un espace entre les phrases</value>
     <comment>radio</comment>

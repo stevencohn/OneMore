@@ -441,10 +441,6 @@ Odwracać</value>
     <value>Wybierz słowo lub frazę z jednego akapitu</value>
     <comment>message box</comment>
   </data>
-  <data name="BreakingDialog_groupBox.Text" xml:space="preserve">
-    <value>Rozstaw</value>
-    <comment>group box</comment>
-  </data>
   <data name="BreakingDialog_oneButton.Text" xml:space="preserve">
     <value>Jedna przestrzeń między zdaniami</value>
     <comment>radio</comment>

@@ -443,10 +443,6 @@ Invert</value>
     <value>Select a word or phrase from one paragraph</value>
     <comment>message box</comment>
   </data>
-  <data name="BreakingDialog_groupBox.Text" xml:space="preserve">
-    <value>Spacing</value>
-    <comment>group box</comment>
-  </data>
   <data name="BreakingDialog_oneButton.Text" xml:space="preserve">
     <value>One space between sentences</value>
     <comment>radio</comment>

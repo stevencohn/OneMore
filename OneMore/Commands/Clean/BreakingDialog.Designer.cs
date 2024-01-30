@@ -34,18 +34,16 @@ namespace River.OneMoreAddIn.Commands
 			this.twoButton = new River.OneMoreAddIn.UI.MoreRadioButton();
 			this.okButton = new River.OneMoreAddIn.UI.MoreButton();
 			this.cancelButton = new River.OneMoreAddIn.UI.MoreButton();
-			this.groupBox = new River.OneMoreAddIn.UI.MoreGroupBox();
-			this.groupBox.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// oneButton
 			// 
-			this.oneButton.AutoSize = true;
 			this.oneButton.Checked = true;
-			this.oneButton.Location = new System.Drawing.Point(13, 32);
+			this.oneButton.Cursor = System.Windows.Forms.Cursors.Hand;
+			this.oneButton.Location = new System.Drawing.Point(28, 28);
 			this.oneButton.Margin = new System.Windows.Forms.Padding(3, 3, 3, 15);
 			this.oneButton.Name = "oneButton";
-			this.oneButton.Size = new System.Drawing.Size(254, 24);
+			this.oneButton.Size = new System.Drawing.Size(261, 25);
 			this.oneButton.TabIndex = 0;
 			this.oneButton.TabStop = true;
 			this.oneButton.Text = "One space between sentences";
@@ -53,10 +51,10 @@ namespace River.OneMoreAddIn.Commands
 			// 
 			// twoButton
 			// 
-			this.twoButton.AutoSize = true;
-			this.twoButton.Location = new System.Drawing.Point(13, 74);
+			this.twoButton.Cursor = System.Windows.Forms.Cursors.Hand;
+			this.twoButton.Location = new System.Drawing.Point(28, 71);
 			this.twoButton.Name = "twoButton";
-			this.twoButton.Size = new System.Drawing.Size(261, 24);
+			this.twoButton.Size = new System.Drawing.Size(269, 25);
 			this.twoButton.TabIndex = 1;
 			this.twoButton.Text = "Two spaces between sentences";
 			this.twoButton.UseVisualStyleBackColor = true;
@@ -64,9 +62,11 @@ namespace River.OneMoreAddIn.Commands
 			// okButton
 			// 
 			this.okButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+			this.okButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
 			this.okButton.DialogResult = System.Windows.Forms.DialogResult.OK;
+			this.okButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.okButton.ImageOver = null;
-			this.okButton.Location = new System.Drawing.Point(246, 176);
+			this.okButton.Location = new System.Drawing.Point(246, 142);
 			this.okButton.Name = "okButton";
 			this.okButton.PreferredBack = null;
 			this.okButton.PreferredFore = null;
@@ -79,9 +79,11 @@ namespace River.OneMoreAddIn.Commands
 			// cancelButton
 			// 
 			this.cancelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+			this.cancelButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
 			this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+			this.cancelButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.cancelButton.ImageOver = null;
-			this.cancelButton.Location = new System.Drawing.Point(352, 176);
+			this.cancelButton.Location = new System.Drawing.Point(352, 142);
 			this.cancelButton.Name = "cancelButton";
 			this.cancelButton.PreferredBack = null;
 			this.cancelButton.PreferredFore = null;
@@ -91,22 +93,6 @@ namespace River.OneMoreAddIn.Commands
 			this.cancelButton.Text = "Cancel";
 			this.cancelButton.UseVisualStyleBackColor = true;
 			// 
-			// groupBox
-			// 
-			this.groupBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-			this.groupBox.Controls.Add(this.oneButton);
-			this.groupBox.Controls.Add(this.twoButton);
-			this.groupBox.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-			this.groupBox.Location = new System.Drawing.Point(23, 23);
-			this.groupBox.Name = "groupBox";
-			this.groupBox.Padding = new System.Windows.Forms.Padding(10, 10, 3, 3);
-			this.groupBox.Size = new System.Drawing.Size(429, 134);
-			this.groupBox.TabIndex = 8;
-			this.groupBox.TabStop = false;
-			this.groupBox.Text = "Spacing";
-			// 
 			// BreakingDialog
 			// 
 			this.AcceptButton = this.okButton;
@@ -114,8 +100,9 @@ namespace River.OneMoreAddIn.Commands
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.BackColor = System.Drawing.SystemColors.Control;
 			this.CancelButton = this.cancelButton;
-			this.ClientSize = new System.Drawing.Size(465, 227);
-			this.Controls.Add(this.groupBox);
+			this.ClientSize = new System.Drawing.Size(465, 193);
+			this.Controls.Add(this.oneButton);
+			this.Controls.Add(this.twoButton);
 			this.Controls.Add(this.okButton);
 			this.Controls.Add(this.cancelButton);
 			this.ForeColor = System.Drawing.SystemColors.ControlText;
@@ -124,11 +111,9 @@ namespace River.OneMoreAddIn.Commands
 			this.MaximizeBox = false;
 			this.MinimizeBox = false;
 			this.Name = "BreakingDialog";
-			this.Padding = new System.Windows.Forms.Padding(20, 20, 10, 10);
+			this.Padding = new System.Windows.Forms.Padding(25, 25, 10, 10);
 			this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
 			this.Text = "Change Sentence Spacing";
-			this.groupBox.ResumeLayout(false);
-			this.groupBox.PerformLayout();
 			this.ResumeLayout(false);
 
 		}
@@ -139,6 +124,5 @@ namespace River.OneMoreAddIn.Commands
 		private UI.MoreRadioButton twoButton;
 		private UI.MoreButton okButton;
 		private UI.MoreButton cancelButton;
-		private UI.MoreGroupBox groupBox;
 	}
 }

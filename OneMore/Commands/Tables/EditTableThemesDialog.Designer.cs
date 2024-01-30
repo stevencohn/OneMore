@@ -87,7 +87,9 @@ namespace River.OneMoreAddIn.Commands
 			// cancelButton
 			// 
 			this.cancelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+			this.cancelButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
 			this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+			this.cancelButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.cancelButton.ImageOver = null;
 			this.cancelButton.Location = new System.Drawing.Point(710, 10);
 			this.cancelButton.Name = "cancelButton";
@@ -162,7 +164,9 @@ namespace River.OneMoreAddIn.Commands
 			// resetButton
 			// 
 			this.resetButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.resetButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
 			this.resetButton.Enabled = false;
+			this.resetButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.resetButton.ImageOver = null;
 			this.resetButton.Location = new System.Drawing.Point(3, 12);
 			this.resetButton.Name = "resetButton";
@@ -207,7 +211,7 @@ namespace River.OneMoreAddIn.Commands
             this.deleteButton});
 			this.toolstrip.Location = new System.Drawing.Point(505, 5);
 			this.toolstrip.Name = "toolstrip";
-			this.toolstrip.Size = new System.Drawing.Size(160, 33);
+			this.toolstrip.Size = new System.Drawing.Size(160, 38);
 			this.toolstrip.TabIndex = 10;
 			this.toolstrip.Text = "toolstrip";
 			// 
@@ -217,7 +221,7 @@ namespace River.OneMoreAddIn.Commands
 			this.newButton.Image = global::River.OneMoreAddIn.Properties.Resources.NewStyle;
 			this.newButton.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.newButton.Name = "newButton";
-			this.newButton.Size = new System.Drawing.Size(34, 28);
+			this.newButton.Size = new System.Drawing.Size(34, 33);
 			this.newButton.Text = "New Style";
 			this.newButton.Click += new System.EventHandler(this.CreateNewTheme);
 			// 
@@ -227,7 +231,7 @@ namespace River.OneMoreAddIn.Commands
 			this.renameButton.Image = global::River.OneMoreAddIn.Properties.Resources.Rename;
 			this.renameButton.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.renameButton.Name = "renameButton";
-			this.renameButton.Size = new System.Drawing.Size(34, 28);
+			this.renameButton.Size = new System.Drawing.Size(34, 33);
 			this.renameButton.Text = "Rename";
 			this.renameButton.Click += new System.EventHandler(this.RenameTheme);
 			// 
@@ -238,14 +242,14 @@ namespace River.OneMoreAddIn.Commands
 			this.saveButton.Image = global::River.OneMoreAddIn.Properties.Resources.SaveAs;
 			this.saveButton.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.saveButton.Name = "saveButton";
-			this.saveButton.Size = new System.Drawing.Size(34, 28);
+			this.saveButton.Size = new System.Drawing.Size(34, 33);
 			this.saveButton.Text = "Save";
 			this.saveButton.Click += new System.EventHandler(this.SaveTheme);
 			// 
 			// toolsep1
 			// 
 			this.toolsep1.Name = "toolsep1";
-			this.toolsep1.Size = new System.Drawing.Size(6, 33);
+			this.toolsep1.Size = new System.Drawing.Size(6, 38);
 			// 
 			// deleteButton
 			// 
@@ -253,7 +257,7 @@ namespace River.OneMoreAddIn.Commands
 			this.deleteButton.Image = global::River.OneMoreAddIn.Properties.Resources.Delete;
 			this.deleteButton.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.deleteButton.Name = "deleteButton";
-			this.deleteButton.Size = new System.Drawing.Size(34, 28);
+			this.deleteButton.Size = new System.Drawing.Size(34, 33);
 			this.deleteButton.Text = "Delete";
 			this.deleteButton.Click += new System.EventHandler(this.DeleteTheme);
 			// 
@@ -274,6 +278,7 @@ namespace River.OneMoreAddIn.Commands
 			this.tabs.Controls.Add(this.colorsTab);
 			this.tabs.Controls.Add(this.fontsTab);
 			this.tabs.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.tabs.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
 			this.tabs.Location = new System.Drawing.Point(20, 86);
 			this.tabs.Margin = new System.Windows.Forms.Padding(0);
 			this.tabs.Name = "tabs";
@@ -287,6 +292,7 @@ namespace River.OneMoreAddIn.Commands
 			this.colorsTab.BackColor = System.Drawing.SystemColors.Window;
 			this.colorsTab.Controls.Add(this.elementsGroup);
 			this.colorsTab.Controls.Add(this.previewDockPanel);
+			this.colorsTab.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F);
 			this.colorsTab.ForeColor = System.Drawing.SystemColors.WindowText;
 			this.colorsTab.Location = new System.Drawing.Point(4, 29);
 			this.colorsTab.Name = "colorsTab";
@@ -309,6 +315,7 @@ namespace River.OneMoreAddIn.Commands
 			this.fontsTab.BackColor = System.Drawing.SystemColors.Window;
 			this.fontsTab.Controls.Add(this.fontsGroup);
 			this.fontsTab.Controls.Add(this.fontElementsGroup);
+			this.fontsTab.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F);
 			this.fontsTab.ForeColor = System.Drawing.SystemColors.WindowText;
 			this.fontsTab.Location = new System.Drawing.Point(4, 29);
 			this.fontsTab.Name = "fontsTab";
@@ -335,6 +342,8 @@ namespace River.OneMoreAddIn.Commands
 			// 
 			// applyFontButton
 			// 
+			this.applyFontButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
+			this.applyFontButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.applyFontButton.ImageOver = null;
 			this.applyFontButton.Location = new System.Drawing.Point(512, 25);
 			this.applyFontButton.Name = "applyFontButton";
@@ -482,6 +491,8 @@ namespace River.OneMoreAddIn.Commands
 			// defaultFontButton
 			// 
 			this.defaultFontButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.defaultFontButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
+			this.defaultFontButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.defaultFontButton.ImageOver = null;
 			this.defaultFontButton.Location = new System.Drawing.Point(231, 206);
 			this.defaultFontButton.Name = "defaultFontButton";
@@ -507,6 +518,8 @@ namespace River.OneMoreAddIn.Commands
 			// resetFontButton
 			// 
 			this.resetFontButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.resetFontButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
+			this.resetFontButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.resetFontButton.ImageOver = null;
 			this.resetFontButton.Location = new System.Drawing.Point(115, 205);
 			this.resetFontButton.Name = "resetFontButton";
@@ -553,7 +566,9 @@ namespace River.OneMoreAddIn.Commands
 			// button1
 			// 
 			this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
 			this.button1.Enabled = false;
+			this.button1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.button1.ImageOver = null;
 			this.button1.Location = new System.Drawing.Point(13, 209);
 			this.button1.Name = "button1";

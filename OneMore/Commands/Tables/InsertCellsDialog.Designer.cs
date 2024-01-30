@@ -40,10 +40,11 @@
 			// 
 			// shiftDownRadio
 			// 
+			this.shiftDownRadio.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.shiftDownRadio.Location = new System.Drawing.Point(28, 28);
 			this.shiftDownRadio.Margin = new System.Windows.Forms.Padding(3, 3, 3, 8);
 			this.shiftDownRadio.Name = "shiftDownRadio";
-			this.shiftDownRadio.Size = new System.Drawing.Size(146, 24);
+			this.shiftDownRadio.Size = new System.Drawing.Size(150, 25);
 			this.shiftDownRadio.TabIndex = 0;
 			this.shiftDownRadio.TabStop = true;
 			this.shiftDownRadio.Text = "Shift cells down";
@@ -51,10 +52,11 @@
 			// 
 			// shiftRightRadio
 			// 
+			this.shiftRightRadio.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.shiftRightRadio.Location = new System.Drawing.Point(28, 63);
 			this.shiftRightRadio.Margin = new System.Windows.Forms.Padding(3, 3, 3, 15);
 			this.shiftRightRadio.Name = "shiftRightRadio";
-			this.shiftRightRadio.Size = new System.Drawing.Size(139, 24);
+			this.shiftRightRadio.Size = new System.Drawing.Size(143, 25);
 			this.shiftRightRadio.TabIndex = 1;
 			this.shiftRightRadio.TabStop = true;
 			this.shiftRightRadio.Text = "Shift cells right";
@@ -63,9 +65,11 @@
 			// cancelButton
 			// 
 			this.cancelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+			this.cancelButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
 			this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+			this.cancelButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.cancelButton.ImageOver = null;
-			this.cancelButton.Location = new System.Drawing.Point(213, 167);
+			this.cancelButton.Location = new System.Drawing.Point(258, 167);
 			this.cancelButton.Name = "cancelButton";
 			this.cancelButton.PreferredBack = null;
 			this.cancelButton.PreferredFore = null;
@@ -78,9 +82,11 @@
 			// okButton
 			// 
 			this.okButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+			this.okButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
 			this.okButton.DialogResult = System.Windows.Forms.DialogResult.OK;
+			this.okButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.okButton.ImageOver = null;
-			this.okButton.Location = new System.Drawing.Point(87, 167);
+			this.okButton.Location = new System.Drawing.Point(132, 167);
 			this.okButton.Name = "okButton";
 			this.okButton.PreferredBack = null;
 			this.okButton.PreferredFore = null;
@@ -124,7 +130,7 @@
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.BackColor = System.Drawing.SystemColors.Control;
 			this.CancelButton = this.cancelButton;
-			this.ClientSize = new System.Drawing.Size(341, 219);
+			this.ClientSize = new System.Drawing.Size(386, 219);
 			this.Controls.Add(this.numCellsBox);
 			this.Controls.Add(this.numLabel);
 			this.Controls.Add(this.okButton);

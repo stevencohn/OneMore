@@ -848,15 +848,6 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Spacing.
-        /// </summary>
-        internal static string BreakingDialog_groupBox_Text {
-            get {
-                return ResourceManager.GetString("BreakingDialog_groupBox.Text", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to One space between sentences.
         /// </summary>
         internal static string BreakingDialog_oneButton_Text {

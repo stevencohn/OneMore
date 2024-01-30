@@ -443,10 +443,6 @@ OneNote ייסגר אוטומטית</value>
     <value>בחר מילה או ביטוי מפסקה אחת</value>
     <comment>message box</comment>
   </data>
-  <data name="BreakingDialog_groupBox.Text" xml:space="preserve">
-    <value>מרווחים</value>
-    <comment>group box</comment>
-  </data>
   <data name="BreakingDialog_oneButton.Text" xml:space="preserve">
     <value>רווח אחד בין משפטים</value>
     <comment>radio</comment>
