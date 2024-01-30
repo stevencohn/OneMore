@@ -38,7 +38,7 @@
 			this.components = new System.ComponentModel.Container();
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(NavigatorWindow));
 			this.controlPanel = new System.Windows.Forms.Panel();
-			this.closeButton = new System.Windows.Forms.Button();
+			this.closeButton = new River.OneMoreAddIn.UI.MoreButton();
 			this.mainContainer = new System.Windows.Forms.SplitContainer();
 			this.pageBox = new River.OneMoreAddIn.UI.MoreFlowLayoutPanel();
 			this.pageHeadPanel = new System.Windows.Forms.Panel();
@@ -78,8 +78,10 @@
 			// 
 			// controlPanel
 			// 
+			this.controlPanel.BackColor = System.Drawing.SystemColors.Control;
 			this.controlPanel.Controls.Add(this.closeButton);
 			this.controlPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
+			this.controlPanel.ForeColor = System.Drawing.SystemColors.ControlText;
 			this.controlPanel.Location = new System.Drawing.Point(0, 880);
 			this.controlPanel.Name = "controlPanel";
 			this.controlPanel.Padding = new System.Windows.Forms.Padding(0, 5, 10, 10);
@@ -90,8 +92,12 @@
 			// 
 			this.closeButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.closeButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+			this.closeButton.ImageOver = null;
 			this.closeButton.Location = new System.Drawing.Point(407, 13);
 			this.closeButton.Name = "closeButton";
+			this.closeButton.PreferredBack = null;
+			this.closeButton.PreferredFore = null;
+			this.closeButton.ShowBorder = true;
 			this.closeButton.Size = new System.Drawing.Size(108, 38);
 			this.closeButton.TabIndex = 0;
 			this.closeButton.Text = "Close";
@@ -154,6 +160,9 @@
 			this.refreshButton.ImageOver = null;
 			this.refreshButton.Location = new System.Drawing.Point(481, 1);
 			this.refreshButton.Name = "refreshButton";
+			this.refreshButton.PreferredBack = null;
+			this.refreshButton.PreferredFore = null;
+			this.refreshButton.ShowBorder = true;
 			this.refreshButton.Size = new System.Drawing.Size(35, 37);
 			this.refreshButton.TabIndex = 0;
 			this.refreshButton.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -204,6 +213,7 @@
 			this.pinnedBox.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.pinnedBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.pinnedBox.FullRowSelect = true;
+			this.pinnedBox.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
 			this.pinnedBox.HideSelection = false;
 			this.pinnedBox.HighlightBackground = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(213)))), ((int)(((byte)(228)))));
 			this.pinnedBox.HighlightForeground = System.Drawing.SystemColors.HighlightText;
@@ -252,6 +262,9 @@
 			this.copyPinnedButton.ImageOver = null;
 			this.copyPinnedButton.Location = new System.Drawing.Point(109, 1);
 			this.copyPinnedButton.Name = "copyPinnedButton";
+			this.copyPinnedButton.PreferredBack = null;
+			this.copyPinnedButton.PreferredFore = null;
+			this.copyPinnedButton.ShowBorder = true;
 			this.copyPinnedButton.Size = new System.Drawing.Size(35, 35);
 			this.copyPinnedButton.TabIndex = 2;
 			this.copyPinnedButton.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -269,6 +282,9 @@
 			this.upButton.ImageOver = null;
 			this.upButton.Location = new System.Drawing.Point(27, -1);
 			this.upButton.Name = "upButton";
+			this.upButton.PreferredBack = null;
+			this.upButton.PreferredFore = null;
+			this.upButton.ShowBorder = true;
 			this.upButton.Size = new System.Drawing.Size(35, 37);
 			this.upButton.TabIndex = 0;
 			this.upButton.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -286,6 +302,9 @@
 			this.unpinButton.ImageOver = null;
 			this.unpinButton.Location = new System.Drawing.Point(150, -1);
 			this.unpinButton.Name = "unpinButton";
+			this.unpinButton.PreferredBack = null;
+			this.unpinButton.PreferredFore = null;
+			this.unpinButton.ShowBorder = true;
 			this.unpinButton.Size = new System.Drawing.Size(35, 37);
 			this.unpinButton.TabIndex = 3;
 			this.unpinButton.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -303,6 +322,9 @@
 			this.downButton.ImageOver = null;
 			this.downButton.Location = new System.Drawing.Point(68, 0);
 			this.downButton.Name = "downButton";
+			this.downButton.PreferredBack = null;
+			this.downButton.PreferredFore = null;
+			this.downButton.ShowBorder = true;
 			this.downButton.Size = new System.Drawing.Size(35, 37);
 			this.downButton.TabIndex = 1;
 			this.downButton.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -328,6 +350,7 @@
 			this.historyBox.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.historyBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.historyBox.FullRowSelect = true;
+			this.historyBox.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
 			this.historyBox.HideSelection = false;
 			this.historyBox.HighlightBackground = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(213)))), ((int)(((byte)(228)))));
 			this.historyBox.HighlightForeground = System.Drawing.SystemColors.HighlightText;
@@ -374,6 +397,9 @@
 			this.pinButton.ImageOver = null;
 			this.pinButton.Location = new System.Drawing.Point(150, 1);
 			this.pinButton.Name = "pinButton";
+			this.pinButton.PreferredBack = null;
+			this.pinButton.PreferredFore = null;
+			this.pinButton.ShowBorder = true;
 			this.pinButton.Size = new System.Drawing.Size(35, 35);
 			this.pinButton.TabIndex = 1;
 			this.pinButton.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -391,6 +417,9 @@
 			this.copyHistoryButton.ImageOver = null;
 			this.copyHistoryButton.Location = new System.Drawing.Point(109, 1);
 			this.copyHistoryButton.Name = "copyHistoryButton";
+			this.copyHistoryButton.PreferredBack = null;
+			this.copyHistoryButton.PreferredFore = null;
+			this.copyHistoryButton.ShowBorder = true;
 			this.copyHistoryButton.Size = new System.Drawing.Size(35, 35);
 			this.copyHistoryButton.TabIndex = 0;
 			this.copyHistoryButton.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -417,6 +446,7 @@
 			this.ClientSize = new System.Drawing.Size(528, 944);
 			this.Controls.Add(this.mainContainer);
 			this.Controls.Add(this.controlPanel);
+			this.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.KeyPreview = true;
 			this.MaximizeBox = false;
@@ -458,7 +488,7 @@
 		#endregion
 
 		private System.Windows.Forms.Panel controlPanel;
-		private System.Windows.Forms.Button closeButton;
+		private UI.MoreButton closeButton;
 		private System.Windows.Forms.SplitContainer mainContainer;
 		private System.Windows.Forms.Panel pageHeadPanel;
 		private System.Windows.Forms.SplitContainer subContainer;

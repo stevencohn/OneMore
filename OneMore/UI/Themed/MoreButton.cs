@@ -2,6 +2,8 @@
 // Copyright © 2022 Steven M Cohn. All rights reserved.
 //************************************************************************************************
 
+#pragma warning disable S3881 // "IDisposable" should be implemented correctly
+
 namespace River.OneMoreAddIn.UI
 {
 	using River.OneMoreAddIn.Commands;
@@ -22,6 +24,10 @@ namespace River.OneMoreAddIn.UI
 		private Image enabledImage;
 		private Image grayImage;
 		private readonly ThemeManager manager;
+		private readonly Color backColor;
+		private readonly Color foreColor;
+		private readonly Color downColor;
+		private readonly Color hoverColor;
 
 
 		public MoreButton()
@@ -36,6 +42,11 @@ namespace River.OneMoreAddIn.UI
 			SetStyle(ControlStyles.AllPaintingInWmPaint, true);
 
 			manager = ThemeManager.Instance;
+
+			BackColor = backColor = manager.GetThemedColor("ButtonFace");
+			ForeColor = foreColor = manager.GetThemedColor("ControlText");
+			downColor = manager.GetThemedColor("ButtonHighlight");
+			hoverColor = manager.GetThemedColor("ButtonHighlight");
 		}
 
 
@@ -165,15 +176,22 @@ namespace River.OneMoreAddIn.UI
 		protected override void OnPaint(PaintEventArgs pevent)
 		{
 			var g = pevent.Graphics;
-			g.Clear(string.IsNullOrEmpty(PreferredBack)
-				? manager.ButtonBack
-				: manager.GetThemedColor(PreferredBack));
+			g.Clear(Parent.BackColor);
 
-			if (Enabled && MouseState != MouseState.None)
+			var back = string.IsNullOrEmpty(PreferredBack)
+				? backColor
+				: manager.GetThemedColor(PreferredBack);
+
+			if (Enabled)
 			{
-				using var brush = new SolidBrush(manager.ButtonHotBack);
-				g.FillRoundedRectangle(brush, pevent.ClipRectangle, Radius);
+				if (MouseState.HasFlag(MouseState.Hover))
+					back = hoverColor;
+				else if (MouseState.HasFlag(MouseState.Pushed))
+					back = downColor;
 			}
+
+			using var brush = new SolidBrush(back);
+			g.FillRoundedRectangle(brush, pevent.ClipRectangle, Radius);
 
 			if (BackgroundImage != null)
 			{
@@ -277,7 +295,7 @@ namespace River.OneMoreAddIn.UI
 		{
 			using var brush = new SolidBrush(Enabled
 				? string.IsNullOrWhiteSpace(PreferredFore)
-					? manager.GetThemedColor("ControlText")
+					? foreColor
 					: manager.GetThemedColor(PreferredFore)
 				: manager.GetThemedColor("GrayText")
 				);

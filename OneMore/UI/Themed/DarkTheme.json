@@ -18,7 +18,7 @@
     "ActiveCaptionText": "#000000",
     "AppWorkspace": "#1F1F1F",
     "ButtonFace": "#323232",
-    "ButtonHighlight": "#E6E6E6",
+    "ButtonHighlight": "#3D2F45",
     "ButtonShadow": "#A0A0A0",
     "Control": "#292929",
     "ControlDark": "#2A2A2A",
@@ -37,6 +37,7 @@
     "InactiveBorder": "#7F7F7F",
     "Info": "#644C00",
     "InfoText": "#E6E6E6",
+    "LinkColor": "#BA55D3",
     "Menu": "#292929",
     "MenuBar": "#292929",
     "MenuHighlight": "#8F20C7",
@@ -45,6 +46,7 @@
     "WindowFrame": "#7F7F7F",
     "WindowText": "#E6E6E6",
 
+    "ButtonDown": "#3D2F45",
     "ErrorText": "#FF6347",
     "HintText": "#87CEFA"
   }

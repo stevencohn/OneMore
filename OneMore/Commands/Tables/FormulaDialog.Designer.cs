@@ -37,7 +37,7 @@
 			this.formulaBox = new River.OneMoreAddIn.UI.MoreTextBox();
 			this.selectedLabel = new System.Windows.Forms.Label();
 			this.cellLabel = new System.Windows.Forms.Label();
-			this.helpBox = new UI.MoreMultilineLabel();
+			this.helpBox = new River.OneMoreAddIn.UI.MoreMultilineLabel();
 			this.helpPanel = new System.Windows.Forms.Panel();
 			this.helpButton = new River.OneMoreAddIn.UI.MoreCheckBox();
 			this.validStatusLabel = new System.Windows.Forms.Label();
@@ -76,7 +76,9 @@
 			// cancelButton
 			// 
 			this.cancelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.cancelButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
 			this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+			this.cancelButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.cancelButton.ImageOver = null;
 			this.cancelButton.Location = new System.Drawing.Point(504, 209);
 			this.cancelButton.Name = "cancelButton";
@@ -91,8 +93,10 @@
 			// okButton
 			// 
 			this.okButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.okButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
 			this.okButton.DialogResult = System.Windows.Forms.DialogResult.OK;
 			this.okButton.Enabled = false;
+			this.okButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.okButton.ImageOver = null;
 			this.okButton.Location = new System.Drawing.Point(398, 209);
 			this.okButton.Name = "okButton";
@@ -155,7 +159,7 @@
 			this.helpBox.Name = "helpBox";
 			this.helpBox.PreferredBack = "ControlLightLight";
 			this.helpBox.PreferredFore = "ControlText";
-			this.helpBox.Size = new System.Drawing.Size(553, 220);
+			this.helpBox.Size = new System.Drawing.Size(571, 240);
 			this.helpBox.TabIndex = 12;
 			this.helpBox.Text = resources.GetString("helpBox.Text");
 			// 
@@ -177,13 +181,16 @@
 			// helpButton
 			// 
 			this.helpButton.Appearance = System.Windows.Forms.Appearance.Button;
+			this.helpButton.BackColor = System.Drawing.SystemColors.ButtonFace;
+			this.helpButton.Cursor = System.Windows.Forms.Cursors.Hand;
+			this.helpButton.ForeColor = System.Drawing.SystemColors.ControlText;
 			this.helpButton.Location = new System.Drawing.Point(17, 213);
 			this.helpButton.Name = "helpButton";
 			this.helpButton.Size = new System.Drawing.Size(67, 30);
 			this.helpButton.TabIndex = 6;
 			this.helpButton.TabStop = false;
 			this.helpButton.Text = "Help";
-			this.helpButton.UseVisualStyleBackColor = true;
+			this.helpButton.UseVisualStyleBackColor = false;
 			this.helpButton.CheckedChanged += new System.EventHandler(this.ToggleHelp);
 			// 
 			// validStatusLabel
@@ -206,10 +213,13 @@
 			// 
 			// tagBox
 			// 
+			this.tagBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
+			this.tagBox.Cursor = System.Windows.Forms.Cursors.Hand;
+			this.tagBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.tagBox.Location = new System.Drawing.Point(139, 172);
 			this.tagBox.Margin = new System.Windows.Forms.Padding(3, 3, 3, 20);
 			this.tagBox.Name = "tagBox";
-			this.tagBox.Size = new System.Drawing.Size(160, 24);
+			this.tagBox.Size = new System.Drawing.Size(161, 25);
 			this.tagBox.TabIndex = 3;
 			this.tagBox.Text = "Tag formula cells";
 			this.tagBox.UseVisualStyleBackColor = true;

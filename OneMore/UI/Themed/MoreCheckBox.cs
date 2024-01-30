@@ -16,9 +16,11 @@ namespace River.OneMoreAddIn.UI
 		private const int Radius = 4;
 		private const int Spacing = 4;
 		private readonly ThemeManager manager;
-		private readonly Color foreColor;
 		private readonly int boxSize;
-		private IntPtr hcursor;
+		private readonly IntPtr hcursor;
+		private readonly Color backColor;
+		private readonly Color foreColor;
+		private readonly Color hoverColor;
 
 
 		/// <summary>
@@ -30,9 +32,16 @@ namespace River.OneMoreAddIn.UI
 			SetStyle(ControlStyles.UserPaint, true);
 			SetStyle(ControlStyles.AllPaintingInWmPaint, true);
 
-			foreColor = ForeColor;
-			manager = ThemeManager.Instance;
+			// force Hand cursor
+			Cursor = Cursors.Hand;
+			hcursor = Native.LoadCursor(IntPtr.Zero, Native.IDC_HAND);
+
 			boxSize = SystemInformation.MenuCheckSize.Width - 3;
+
+			manager = ThemeManager.Instance;
+			BackColor = backColor = manager.GetThemedColor("ButtonFace");
+			ForeColor = foreColor = manager.GetThemedColor("ControlText");
+			hoverColor = manager.GetThemedColor("ButtonHighlight");
 		}
 
 
@@ -42,17 +51,10 @@ namespace River.OneMoreAddIn.UI
 		public MouseState MouseState { get; private set; }
 
 
-		public void UseHandCursor()
-		{
-			Cursor = Cursors.Hand;
-			hcursor = Native.LoadCursor(IntPtr.Zero, Native.IDC_HAND);
-		}
-
-
 		protected override void OnPaint(PaintEventArgs pevent)
 		{
 			var g = pevent.Graphics;
-			g.Clear(BackColor);
+			g.Clear(Parent.BackColor);
 
 			if (Appearance == Appearance.Button)
 			{
@@ -71,9 +73,9 @@ namespace River.OneMoreAddIn.UI
 			if (Enabled && (MouseState != MouseState.None || Checked))
 			{
 				using var brush = new SolidBrush(
-					MouseState.HasFlag(MouseState.Pushed) || Checked
-					? manager.ButtonHotBack
-					: manager.ButtonBack);
+					Checked
+						? manager.GetThemedColor("ButtonDown")
+						: MouseState.HasFlag(MouseState.Hover) ? hoverColor : backColor);
 
 				g.FillRoundedRectangle(brush, pevent.ClipRectangle, Radius);
 
@@ -95,12 +97,10 @@ namespace River.OneMoreAddIn.UI
 
 			if (!string.IsNullOrWhiteSpace(Text))
 			{
-				var color = Enabled
-					? manager.GetThemedColor(foreColor)
-					: manager.GetThemedColor("GrayText");
-
 				var size = g.MeasureString(Text, Font);
-				using var brush = new SolidBrush(color);
+
+				using var brush = new SolidBrush(
+					Enabled ? foreColor : manager.GetThemedColor("GrayText"));
 
 				pevent.Graphics.DrawString(Text, Font, brush,
 					(pevent.ClipRectangle.Width - (int)size.Width) / 2f,

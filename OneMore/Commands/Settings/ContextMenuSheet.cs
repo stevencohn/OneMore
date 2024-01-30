@@ -148,8 +148,6 @@ namespace River.OneMoreAddIn.Settings
 					Text = name
 				};
 
-				box.UseHandCursor();
-
 				// track by ResID, settings
 				Tag = resID;
 

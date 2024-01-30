@@ -18,6 +18,7 @@ namespace River.OneMoreAddIn.UI
 		private readonly ThemeManager manager;
 		private readonly Color foreColor;
 		private readonly int boxSize;
+		private readonly IntPtr hcursor;
 
 
 		/// <summary>
@@ -28,6 +29,10 @@ namespace River.OneMoreAddIn.UI
 			// force Paint event to fire, and reduce flickering
 			SetStyle(ControlStyles.UserPaint, true);
 			SetStyle(ControlStyles.AllPaintingInWmPaint, true);
+
+			// force Hand cursor
+			Cursor = Cursors.Hand;
+			hcursor = Native.LoadCursor(IntPtr.Zero, Native.IDC_HAND);
 
 			foreColor = ForeColor;
 			manager = ThemeManager.Instance;
@@ -193,6 +198,19 @@ namespace River.OneMoreAddIn.UI
 				MouseState |= MouseState.Hover;
 				base.OnMouseEnter(eventargs);
 			}
+		}
+
+
+		protected override void WndProc(ref Message m)
+		{
+			if (m.Msg == Native.WM_SETCURSOR && hcursor != IntPtr.Zero)
+			{
+				Native.SetCursor(hcursor);
+				m.Result = IntPtr.Zero; // indicate handled
+				return;
+			}
+
+			base.WndProc(ref m);
 		}
 	}
 }

@@ -97,7 +97,9 @@
 			// okButton
 			// 
 			this.okButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+			this.okButton.BackColor = System.Drawing.SystemColors.ButtonFace;
 			this.okButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+			this.okButton.ForeColor = System.Drawing.SystemColors.ControlText;
 			this.okButton.ImageOver = null;
 			this.okButton.Location = new System.Drawing.Point(748, 502);
 			this.okButton.Name = "okButton";
@@ -107,7 +109,7 @@
 			this.okButton.Size = new System.Drawing.Size(130, 42);
 			this.okButton.TabIndex = 0;
 			this.okButton.Text = "OK";
-			this.okButton.UseVisualStyleBackColor = true;
+			this.okButton.UseVisualStyleBackColor = false;
 			this.okButton.Click += new System.EventHandler(this.OK);
 			// 
 			// logLabel
@@ -195,9 +197,11 @@
 			// 
 			// sponsorButton
 			// 
+			this.sponsorButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
 			this.sponsorButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
 			this.sponsorButton.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.sponsorButton.FlatAppearance.BorderSize = 0;
+			this.sponsorButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.sponsorButton.ImageOver = null;
 			this.sponsorButton.Location = new System.Drawing.Point(444, 362);
 			this.sponsorButton.Name = "sponsorButton";
