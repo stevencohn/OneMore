@@ -50,13 +50,22 @@ namespace River.OneMoreAddIn.Settings
 			}
 
 
+			public Color MenuColor { get; set; }
+			public Color MenuTextColor { get; set; }
+			public Color ItemColor { get; set; }
+			public Color ItemTextColor { get; set; }
+
+
 			public void AddMenus(IEnumerable<CtxMenu> menus)
 			{
 				var width = 0;
 
+				SuspendLayout();
 				foreach (var menu in menus)
 				{
-					var mitem = new MenuItemPanel(menu);
+					var mitem = new MenuItemPanel(menu) { BackColor = MenuColor };
+					mitem.Controls[0].ForeColor = MenuTextColor;
+
 					Controls.Add(mitem);
 
 					// menu items are not indented but want to have the same right-alignment
@@ -71,7 +80,12 @@ namespace River.OneMoreAddIn.Settings
 					{
 						foreach (var command in menu.Commands)
 						{
-							var citem = new MenuItemPanel(command);
+							var citem = new MenuItemPanel(command)
+							{
+								BackColor = ItemColor,
+								ForeColor = ItemTextColor
+							};
+
 							Controls.Add(citem);
 							if (width < citem.Width)
 							{
@@ -89,6 +103,7 @@ namespace River.OneMoreAddIn.Settings
 					SetFlowBreak(item, true);
 					item.Width = item.Indented ? width : width + SystemInformation.MenuCheckSize.Width;
 				}
+				ResumeLayout();
 			}
 		}
 
@@ -107,26 +122,24 @@ namespace River.OneMoreAddIn.Settings
 
 
 			public MenuItemPanel(CtxMenu item)
-				: this(item.Name, item.ResID, Color.FromArgb(214, 166, 211))
+				: this(item.Name, item.ResID)
 			{
 			}
 
 
 			public MenuItemPanel(CtxMenuItem item)
-				: this(item.Name, item.ResID, Color.Transparent)
+				: this(item.Name, item.ResID)
 			{
 				Margin = new Padding(SystemInformation.MenuCheckSize.Width, 1, 1, 0);
 				Indented = true;
 			}
 
 
-			private MenuItemPanel(string name, string resID, Color color)
+			private MenuItemPanel(string name, string resID)
 			{
 				using var graphics = Graphics.FromHwnd(IntPtr.Zero);
 				var textSize = graphics.MeasureString(name, Font);
 				Height = (int)(textSize.Height + 6);
-
-				BackColor = color;
 
 				box = new UI.MoreCheckBox
 				{
@@ -170,6 +183,16 @@ namespace River.OneMoreAddIn.Settings
 			};
 
 			contentPanel.Controls.Add(menuPanel);
+		}
+
+
+		protected override void OnLoad(EventArgs e)
+		{
+			// after ThemeManager is initialized
+			menuPanel.MenuColor = manager.GetThemedColor("ActiveCaption");
+			menuPanel.MenuTextColor = manager.GetThemedColor("ActiveCaptionText");
+			menuPanel.ItemColor = manager.GetThemedColor("ControlLightLight");
+			menuPanel.ItemTextColor = manager.GetThemedColor("ControlText");
 
 			var menus = CollectCommandMenus();
 			menuPanel.AddMenus(menus);
@@ -188,30 +211,9 @@ namespace River.OneMoreAddIn.Settings
 					}
 				}
 			}
+
+			base.OnLoad(e);
 		}
-
-
-		//protected override void OnLoad(EventArgs e)
-		//{
-		//	// after ThemeManager is initialized
-		//	foreach (Control item in menuPanel.Controls)
-		//	{
-		//		if (item.Controls[0] is UI.MoreCheckBox box)
-		//		{
-		//			if (item.Margin.Left == SystemInformation.MenuCheckSize.Width)
-		//			{
-		//				box.BackColor = SystemColors.ControlLightLight;
-		//				box.ForeColor = SystemColors.ControlText;
-		//			}
-		//			else
-		//			{
-		//				box.ForeColor = SystemColors.ActiveCaptionText;
-		//			}
-		//		}
-		//	}
-
-		//	base.OnLoad(e);
-		//}
 
 
 		private IEnumerable<CtxMenu> CollectCommandMenus()
