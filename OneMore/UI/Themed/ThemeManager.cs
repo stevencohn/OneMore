@@ -97,7 +97,10 @@ namespace River.OneMoreAddIn.UI
 		/// <param name="control"></param>
 		public void InitializeTheme(Control control)
 		{
-			SetWindowTheme(control);
+			if (DarkMode)
+			{
+				SetWindowTheme(control);
+			}
 		}
 
 
@@ -114,7 +117,7 @@ namespace River.OneMoreAddIn.UI
 
 			// apply colors...
 
-			if (container is MoreForm form)
+			if (DarkMode && container is MoreForm form)
 			{
 				SetWindowTheme(container);
 				form.OnThemeChange();
