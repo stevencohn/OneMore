@@ -272,6 +272,10 @@ Invertir</value>
     <value>Definir alias de comando para usar en la Paleta de comandos</value>
     <comment>intro box</comment>
   </data>
+  <data name="AliasSheet_introBox.Text" xml:space="preserve">
+    <value>Definir alias de comando para su uso en la paleta de comando.</value>
+    <comment>label</comment>
+  </data>
   <data name="AliasSheet_Title" xml:space="preserve">
     <value>Alias ​​de comando</value>
     <comment>sheet</comment>
@@ -516,31 +520,31 @@ Invertir</value>
     <value>Seleccione el idioma</value>
     <comment>dialog title</comment>
   </data>
+  <data name="ColorizerSheet_applyBox.Text" xml:space="preserve">
+    <value>Aplique siempre las siguientes fuentes al colorear el código</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="ColorizerSheet_enabledLabel.Text" xml:space="preserve">
+    <value>Idiomas habilitados</value>
+    <comment>label</comment>
+  </data>
   <data name="ColorizerSheet_fixedBox.Text" xml:space="preserve">
     <value>Mostrar solo fuentes de ancho fijo</value>
     <comment>checkbox</comment>
   </data>
-  <data name="ColorizeSheet_applyBox.Text" xml:space="preserve">
-    <value>Aplique siempre las siguientes fuentes al colorear el código</value>
-    <comment>checkbox</comment>
-  </data>
-  <data name="ColorizeSheet_enabledLabel" xml:space="preserve">
-    <value>Idiomas habilitados</value>
+  <data name="ColorizerSheet_font2Label.Text" xml:space="preserve">
+    <value>Secundaria</value>
     <comment>label</comment>
   </data>
-  <data name="ColorizeSheet_font2Label.Text" xml:space="preserve">
-    <value>Secundario</value>
+  <data name="ColorizerSheet_fontLabel.Text" xml:space="preserve">
+    <value>Primaria</value>
     <comment>label</comment>
   </data>
-  <data name="ColorizeSheet_fontLabel.Text" xml:space="preserve">
-    <value>Primario</value>
+  <data name="ColorizerSheet_introBox.Text" xml:space="preserve">
+    <value>Personaliza el comportamiento del comando Colorize. Se aplica una fuente secundaria al colapsar plantuml</value>
     <comment>label</comment>
   </data>
-  <data name="ColorizeSheet_introBox.Text" xml:space="preserve">
-    <value>Personaliza el comportamiento del comando Colorear. La fuente secundaria se aplica al colapsar PlantUML</value>
-    <comment>label</comment>
-  </data>
-  <data name="ColorizeSheet_Title" xml:space="preserve">
+  <data name="ColorizerSheet_Title" xml:space="preserve">
     <value>Colorizador</value>
   </data>
   <data name="Command_Error" xml:space="preserve">
@@ -1374,11 +1378,11 @@ Fondo amarillo</value>
     <comment>highlight command message</comment>
   </data>
   <data name="HighlightsSheet_deepRadio.Text" xml:space="preserve">
-    <value>Profundo:</value>
+    <value>Profundo</value>
     <comment>radio</comment>
   </data>
   <data name="HighlightsSheet_fadedRadio.Text" xml:space="preserve">
-    <value>Descolorido:</value>
+    <value>Desteñido</value>
     <comment>radio</comment>
   </data>
   <data name="HighlightsSheet_introBox.Text" xml:space="preserve">
@@ -1386,10 +1390,10 @@ Fondo amarillo</value>
     <comment>textbox</comment>
   </data>
   <data name="HighlightsSheet_normalRadio.Text" xml:space="preserve">
-    <value>Brillante:</value>
+    <value>Brillante</value>
     <comment>radio</comment>
   </data>
-  <data name="HighlightsSheet_themeGroup.Text" xml:space="preserve">
+  <data name="HighlightsSheet_themesGroup.Text" xml:space="preserve">
     <value>Temas</value>
     <comment>group</comment>
   </data>
@@ -1427,6 +1431,14 @@ Fondo amarillo</value>
   <data name="ImagesSheet_plantGroup.Text" xml:space="preserve">
     <value>Opciones de PlantUML</value>
     <comment>groupbox</comment>
+  </data>
+  <data name="ImagesSheet_plantRemoveBox.Text" xml:space="preserve">
+    <value>Retire el texto de plantuml y lo incruste en la imagen</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="ImagesSheet_plantUriLabel.Text" xml:space="preserve">
+    <value>Dirección del servidor de Plantuml (deje en blanco para usar el valor predeterminado)</value>
+    <comment>label</comment>
   </data>
   <data name="ImagesSheet_resizeGroup.Text" xml:space="preserve">
     <value>Opciones de cambio de tamaño</value>
@@ -1703,8 +1715,8 @@ Título personalizado 3</value>
     <value>Claro</value>
     <comment>toolstrip button</comment>
   </data>
-  <data name="KeyboardSheet_introLabel.Text" xml:space="preserve">
-    <value>Administrar mis métodos abreviados de teclado personalizados. Seleccione un comando y presione una secuencia de teclas.</value>
+  <data name="KeyboardSheet_introBox.Text" xml:space="preserve">
+    <value>Administre mis atajos de teclado personalizados. Seleccione un comando y presione una secuencia de teclas.</value>
     <comment>label</comment>
   </data>
   <data name="KeyboardSheet_keyColumn.HeaderText" xml:space="preserve">
@@ -2196,7 +2208,7 @@ Cuaderno actual</value>
     <value>Eliminar el complemento "{0}"</value>
     <comment>question</comment>
   </data>
-  <data name="PluginsSheet_introLabel.Text" xml:space="preserve">
+  <data name="PluginsSheet_introBox.Text" xml:space="preserve">
     <value>Administrar mis complementos</value>
     <comment>label</comment>
   </data>
@@ -4150,8 +4162,8 @@ En esta sección</value>
     <value>Mover hacia abajo</value>
     <comment>button</comment>
   </data>
-  <data name="SearchEngineSheet_introLabel.Text" xml:space="preserve">
-    <value>Los patrones de URL deben contener un token de reemplazo de cadena, como &amp;q={0}
+  <data name="SearchEngineSheet_introBox.Text" xml:space="preserve">
+    <value>Los patrones de URL deben contener un token de reemplazo de cadena, como &amp; q = {0}
 
 Los motores de búsqueda aparecerán en el menú contextual de la página, haga clic con el botón derecho.</value>
     <comment>label</comment>
@@ -4351,8 +4363,8 @@ Estás seguro de que quieres continuar?</value>
     <value>Eliminar el fragmento "{0}"</value>
     <comment>question</comment>
   </data>
-  <data name="SnippetsSheet_introLabel.Text" xml:space="preserve">
-    <value>Administrar mis fragmentos</value>
+  <data name="SnippetsSheet_introBox.Text" xml:space="preserve">
+    <value>Administre mis fragmentos</value>
     <comment>label</comment>
   </data>
   <data name="SnippetsSheet_Text" xml:space="preserve">

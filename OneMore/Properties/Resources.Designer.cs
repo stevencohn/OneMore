@@ -411,6 +411,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Define command aliases for use in the Command Palette..
+        /// </summary>
+        internal static string AliasSheet_introBox_Text {
+            get {
+                return ResourceManager.GetString("AliasSheet_introBox.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Define command aliases for use in the Command Palette.
         /// </summary>
         internal static string AliasSheet_Text {
@@ -1107,6 +1116,24 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Always apply the following fonts when colorizing code.
+        /// </summary>
+        internal static string ColorizerSheet_applyBox_Text {
+            get {
+                return ResourceManager.GetString("ColorizerSheet_applyBox.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enabled Languages.
+        /// </summary>
+        internal static string ColorizerSheet_enabledLabel_Text {
+            get {
+                return ResourceManager.GetString("ColorizerSheet_enabledLabel.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Show only fixed-width fonts.
         /// </summary>
         internal static string ColorizerSheet_fixedBox_Text {
@@ -1116,56 +1143,38 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Always apply the following fonts when colorizing code.
-        /// </summary>
-        internal static string ColorizeSheet_applyBox_Text {
-            get {
-                return ResourceManager.GetString("ColorizeSheet_applyBox.Text", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Enabled Languages.
-        /// </summary>
-        internal static string ColorizeSheet_enabledLabel {
-            get {
-                return ResourceManager.GetString("ColorizeSheet_enabledLabel", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Secondary.
         /// </summary>
-        internal static string ColorizeSheet_font2Label_Text {
+        internal static string ColorizerSheet_font2Label_Text {
             get {
-                return ResourceManager.GetString("ColorizeSheet_font2Label.Text", resourceCulture);
+                return ResourceManager.GetString("ColorizerSheet_font2Label.Text", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Primary.
         /// </summary>
-        internal static string ColorizeSheet_fontLabel_Text {
+        internal static string ColorizerSheet_fontLabel_Text {
             get {
-                return ResourceManager.GetString("ColorizeSheet_fontLabel.Text", resourceCulture);
+                return ResourceManager.GetString("ColorizerSheet_fontLabel.Text", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Customize the behavior of the Colorize command. Secondary font applies when collapsing PlantUML.
         /// </summary>
-        internal static string ColorizeSheet_introBox_Text {
+        internal static string ColorizerSheet_introBox_Text {
             get {
-                return ResourceManager.GetString("ColorizeSheet_introBox.Text", resourceCulture);
+                return ResourceManager.GetString("ColorizerSheet_introBox.Text", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Colorizer.
         /// </summary>
-        internal static string ColorizeSheet_Title {
+        internal static string ColorizerSheet_Title {
             get {
-                return ResourceManager.GetString("ColorizeSheet_Title", resourceCulture);
+                return ResourceManager.GetString("ColorizerSheet_Title", resourceCulture);
             }
         }
         
@@ -3438,7 +3447,7 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Deep:.
+        ///   Looks up a localized string similar to Deep.
         /// </summary>
         internal static string HighlightsSheet_deepRadio_Text {
             get {
@@ -3447,7 +3456,7 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Faded:.
+        ///   Looks up a localized string similar to Faded.
         /// </summary>
         internal static string HighlightsSheet_fadedRadio_Text {
             get {
@@ -3465,7 +3474,7 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Bright:.
+        ///   Looks up a localized string similar to Bright.
         /// </summary>
         internal static string HighlightsSheet_normalRadio_Text {
             get {
@@ -3476,9 +3485,9 @@ namespace River.OneMoreAddIn.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Themes.
         /// </summary>
-        internal static string HighlightsSheet_themeGroup_Text {
+        internal static string HighlightsSheet_themesGroup_Text {
             get {
-                return ResourceManager.GetString("HighlightsSheet_themeGroup.Text", resourceCulture);
+                return ResourceManager.GetString("HighlightsSheet_themesGroup.Text", resourceCulture);
             }
         }
         
@@ -3560,6 +3569,24 @@ namespace River.OneMoreAddIn.Properties {
         internal static string ImagesSheet_plantGroup_Text {
             get {
                 return ResourceManager.GetString("ImagesSheet_plantGroup.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Remove PlantUML text and embed it in the image.
+        /// </summary>
+        internal static string ImagesSheet_plantRemoveBox_Text {
+            get {
+                return ResourceManager.GetString("ImagesSheet_plantRemoveBox.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to PlantUML Server Address (leave blank to use default).
+        /// </summary>
+        internal static string ImagesSheet_plantUriLabel_Text {
+            get {
+                return ResourceManager.GetString("ImagesSheet_plantUriLabel.Text", resourceCulture);
             }
         }
         
@@ -4237,9 +4264,9 @@ namespace River.OneMoreAddIn.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Manage my custom keyboard shortcuts. Select a command and press a key sequence..
         /// </summary>
-        internal static string KeyboardSheet_introLabel_Text {
+        internal static string KeyboardSheet_introBox_Text {
             get {
-                return ResourceManager.GetString("KeyboardSheet_introLabel.Text", resourceCulture);
+                return ResourceManager.GetString("KeyboardSheet_introBox.Text", resourceCulture);
             }
         }
         
@@ -5556,9 +5583,9 @@ namespace River.OneMoreAddIn.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Manage my plugins.
         /// </summary>
-        internal static string PluginsSheet_introLabel_Text {
+        internal static string PluginsSheet_introBox_Text {
             get {
-                return ResourceManager.GetString("PluginsSheet_introLabel.Text", resourceCulture);
+                return ResourceManager.GetString("PluginsSheet_introBox.Text", resourceCulture);
             }
         }
         
@@ -10057,9 +10084,9 @@ namespace River.OneMoreAddIn.Properties {
         ///
         ///Search engines will appear in the page context menu, right-click..
         /// </summary>
-        internal static string SearchEngineSheet_introLabel_Text {
+        internal static string SearchEngineSheet_introBox_Text {
             get {
-                return ResourceManager.GetString("SearchEngineSheet_introLabel.Text", resourceCulture);
+                return ResourceManager.GetString("SearchEngineSheet_introBox.Text", resourceCulture);
             }
         }
         
@@ -10562,9 +10589,9 @@ namespace River.OneMoreAddIn.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Manage my snippets.
         /// </summary>
-        internal static string SnippetsSheet_introLabel_Text {
+        internal static string SnippetsSheet_introBox_Text {
             get {
-                return ResourceManager.GetString("SnippetsSheet_introLabel.Text", resourceCulture);
+                return ResourceManager.GetString("SnippetsSheet_introBox.Text", resourceCulture);
             }
         }
         

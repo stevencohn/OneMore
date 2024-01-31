@@ -57,7 +57,7 @@ namespace River.OneMoreAddIn.Settings
 				});
 
 				navTree.Nodes["generalNode"].Text = Resx.SettingsDialog_generalNode_Text;
-				navTree.Nodes["colorizerNode"].Text = Resx.ColorizeSheet_Title;
+				navTree.Nodes["colorizerNode"].Text = Resx.ColorizerSheet_Title;
 				navTree.Nodes["aliasNode"].Text = Resx.SettingsDialog_aliasNode_Text;
 				navTree.Nodes["contextNode"].Text = Resx.SettingsDialog_contextNode_Text;
 				navTree.Nodes["favoritesNode"].Text = Resx.word_Favorites;

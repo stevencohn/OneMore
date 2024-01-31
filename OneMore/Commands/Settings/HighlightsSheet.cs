@@ -21,7 +21,10 @@ namespace River.OneMoreAddIn.Settings
 				Localize(new string[]
 				{
 					"introBox",
-					"themeGroup"
+					"themesGroup",
+					"normalRadio",
+					"fadedRadio",
+					"deepRadio"
 				});
 			}
 

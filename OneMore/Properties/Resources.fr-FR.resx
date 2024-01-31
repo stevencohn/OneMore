@@ -269,6 +269,10 @@ Inverser</value>
     <value>Définir les alias de commande à utiliser dans la palette de commandes</value>
     <comment>intro box</comment>
   </data>
+  <data name="AliasSheet_introBox.Text" xml:space="preserve">
+    <value>Définissez les alias de commande à utiliser dans la palette de commande.</value>
+    <comment>label</comment>
+  </data>
   <data name="AliasSheet_Title" xml:space="preserve">
     <value>Alias ​​de commande</value>
     <comment>sheet</comment>
@@ -513,31 +517,31 @@ Inverser</value>
     <value>Choisir la langue</value>
     <comment>dialog title</comment>
   </data>
+  <data name="ColorizerSheet_applyBox.Text" xml:space="preserve">
+    <value>Appliquez toujours les polices suivantes lors du code colorisant</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="ColorizerSheet_enabledLabel.Text" xml:space="preserve">
+    <value>Langues activées</value>
+    <comment>label</comment>
+  </data>
   <data name="ColorizerSheet_fixedBox.Text" xml:space="preserve">
     <value>Afficher uniquement les polices à largeur fixe</value>
     <comment>checkbox</comment>
   </data>
-  <data name="ColorizeSheet_applyBox.Text" xml:space="preserve">
-    <value>Appliquez toujours les polices suivantes lors de la colorisation du code</value>
-    <comment>checkbox</comment>
-  </data>
-  <data name="ColorizeSheet_enabledLabel" xml:space="preserve">
-    <value>Langues activées</value>
-    <comment>label</comment>
-  </data>
-  <data name="ColorizeSheet_font2Label.Text" xml:space="preserve">
+  <data name="ColorizerSheet_font2Label.Text" xml:space="preserve">
     <value>Secondaire</value>
     <comment>label</comment>
   </data>
-  <data name="ColorizeSheet_fontLabel.Text" xml:space="preserve">
+  <data name="ColorizerSheet_fontLabel.Text" xml:space="preserve">
     <value>Primaire</value>
     <comment>label</comment>
   </data>
-  <data name="ColorizeSheet_introBox.Text" xml:space="preserve">
-    <value>Personnalisez le comportement de la commande Coloriser. La police secondaire s'applique lors de l'effondrement de PlantUML</value>
+  <data name="ColorizerSheet_introBox.Text" xml:space="preserve">
+    <value>Personnalisez le comportement de la commande colorize. La police secondaire s'applique lors de l'effondrement de Plantuml</value>
     <comment>label</comment>
   </data>
-  <data name="ColorizeSheet_Title" xml:space="preserve">
+  <data name="ColorizerSheet_Title" xml:space="preserve">
     <value>Coloriser</value>
   </data>
   <data name="Command_Error" xml:space="preserve">
@@ -1371,11 +1375,11 @@ Fond jaune</value>
     <comment>highlight command message</comment>
   </data>
   <data name="HighlightsSheet_deepRadio.Text" xml:space="preserve">
-    <value>Profond:</value>
+    <value>Profond</value>
     <comment>radio</comment>
   </data>
   <data name="HighlightsSheet_fadedRadio.Text" xml:space="preserve">
-    <value>Délavé:</value>
+    <value>Délavé</value>
     <comment>radio</comment>
   </data>
   <data name="HighlightsSheet_introBox.Text" xml:space="preserve">
@@ -1383,10 +1387,10 @@ Fond jaune</value>
     <comment>textbox</comment>
   </data>
   <data name="HighlightsSheet_normalRadio.Text" xml:space="preserve">
-    <value>Brillant:</value>
+    <value>Lumineux</value>
     <comment>radio</comment>
   </data>
-  <data name="HighlightsSheet_themeGroup.Text" xml:space="preserve">
+  <data name="HighlightsSheet_themesGroup.Text" xml:space="preserve">
     <value>Thèmes</value>
     <comment>group</comment>
   </data>
@@ -1424,6 +1428,14 @@ Fond jaune</value>
   <data name="ImagesSheet_plantGroup.Text" xml:space="preserve">
     <value>Options PlantUML</value>
     <comment>groupbox</comment>
+  </data>
+  <data name="ImagesSheet_plantRemoveBox.Text" xml:space="preserve">
+    <value>Retirez le texte Plantuml et intégrez-le dans l'image</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="ImagesSheet_plantUriLabel.Text" xml:space="preserve">
+    <value>Adresse du serveur Plantuml (laissez en blanc pour utiliser par défaut)</value>
+    <comment>label</comment>
   </data>
   <data name="ImagesSheet_resizeGroup.Text" xml:space="preserve">
     <value>Options de redimensionnement</value>
@@ -1700,8 +1712,8 @@ Titre personnalisé 3</value>
     <value>Dégager</value>
     <comment>toolstrip button</comment>
   </data>
-  <data name="KeyboardSheet_introLabel.Text" xml:space="preserve">
-    <value>Gérer mes raccourcis clavier personnalisés. Sélectionnez une commande et appuyez sur une séquence de touches.</value>
+  <data name="KeyboardSheet_introBox.Text" xml:space="preserve">
+    <value>Gérez mes raccourcis clavier personnalisés. Sélectionnez une commande et appuyez sur une séquence de touches.</value>
     <comment>label</comment>
   </data>
   <data name="KeyboardSheet_keyColumn.HeaderText" xml:space="preserve">
@@ -2193,7 +2205,7 @@ Carnet actuel</value>
     <value>Supprimer le plug-in "{0}"</value>
     <comment>question</comment>
   </data>
-  <data name="PluginsSheet_introLabel.Text" xml:space="preserve">
+  <data name="PluginsSheet_introBox.Text" xml:space="preserve">
     <value>Gérer mes plugins</value>
     <comment>label</comment>
   </data>
@@ -4145,10 +4157,10 @@ Dans cette section</value>
     <value>Descendre</value>
     <comment>button</comment>
   </data>
-  <data name="SearchEngineSheet_introLabel.Text" xml:space="preserve">
-    <value>Les modèles d'URL doivent contenir un jeton de remplacement de chaîne, tel que &amp;q={0}
+  <data name="SearchEngineSheet_introBox.Text" xml:space="preserve">
+    <value>Les modèles d'URL doivent contenir un jeton de remplacement de chaîne, tel que &amp; q = {0}
 
-Les moteurs de recherche apparaîtront dans le menu contextuel de la page, faites un clic droit.</value>
+Les moteurs de recherche apparaîtront dans le menu du contexte de la page, cliquez avec le bouton droit.</value>
     <comment>label</comment>
   </data>
   <data name="SearchEngineSheet_upButton.Text" xml:space="preserve">
@@ -4346,7 +4358,7 @@ Es-tu sur de vouloir continuer?</value>
     <value>Supprimer l'extrait "{0}"</value>
     <comment>question</comment>
   </data>
-  <data name="SnippetsSheet_introLabel.Text" xml:space="preserve">
+  <data name="SnippetsSheet_introBox.Text" xml:space="preserve">
     <value>Gérer mes extraits</value>
     <comment>label</comment>
   </data>

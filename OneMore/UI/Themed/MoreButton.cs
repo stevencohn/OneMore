@@ -38,10 +38,10 @@ namespace River.OneMoreAddIn.UI
 			//InitializeComponent();
 			hcursor = IntPtr.Zero;
 
-			// force Paint event to fire
-			SetStyle(ControlStyles.UserPaint, true);
-			// reduce flickering
-			SetStyle(ControlStyles.AllPaintingInWmPaint, true);
+			SetStyle(
+				ControlStyles.AllPaintingInWmPaint | ControlStyles.OptimizedDoubleBuffer |
+				ControlStyles.UserPaint | ControlStyles.ResizeRedraw | ControlStyles.CacheText,
+				true);
 
 			manager = ThemeManager.Instance;
 

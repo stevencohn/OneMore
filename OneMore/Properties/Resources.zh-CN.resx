@@ -273,6 +273,10 @@ OneNote 将自动关闭</value>
     <value>定义在命令面板中使用的命令别名</value>
     <comment>intro box</comment>
   </data>
+  <data name="AliasSheet_introBox.Text" xml:space="preserve">
+    <value>定义命令别名在命令调色板中使用。</value>
+    <comment>label</comment>
+  </data>
   <data name="AliasSheet_Title" xml:space="preserve">
     <value>命令别名</value>
     <comment>sheet</comment>
@@ -517,32 +521,32 @@ OneNote 将自动关闭</value>
     <value>选择语言</value>
     <comment>dialog title</comment>
   </data>
+  <data name="ColorizerSheet_applyBox.Text" xml:space="preserve">
+    <value>着色代码时始终应用以下字体</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="ColorizerSheet_enabledLabel.Text" xml:space="preserve">
+    <value>启用语言</value>
+    <comment>label</comment>
+  </data>
   <data name="ColorizerSheet_fixedBox.Text" xml:space="preserve">
     <value>仅显示固定宽度的字体</value>
     <comment>checkbox</comment>
   </data>
-  <data name="ColorizeSheet_applyBox.Text" xml:space="preserve">
-    <value>为代码着色时始终应用以下字体</value>
-    <comment>checkbox</comment>
-  </data>
-  <data name="ColorizeSheet_enabledLabel" xml:space="preserve">
-    <value>启用的语言</value>
+  <data name="ColorizerSheet_font2Label.Text" xml:space="preserve">
+    <value>次要</value>
     <comment>label</comment>
   </data>
-  <data name="ColorizeSheet_font2Label.Text" xml:space="preserve">
-    <value>中学</value>
-    <comment>label</comment>
-  </data>
-  <data name="ColorizeSheet_fontLabel.Text" xml:space="preserve">
+  <data name="ColorizerSheet_fontLabel.Text" xml:space="preserve">
     <value>基本的</value>
     <comment>label</comment>
   </data>
-  <data name="ColorizeSheet_introBox.Text" xml:space="preserve">
-    <value>自定义着色命令的行为。折叠 PlantUML 时应用辅助字体</value>
+  <data name="ColorizerSheet_introBox.Text" xml:space="preserve">
+    <value>自定义colorize命令的行为。 倒数plantuml时次要字体适用</value>
     <comment>label</comment>
   </data>
-  <data name="ColorizeSheet_Title" xml:space="preserve">
-    <value>着色剂</value>
+  <data name="ColorizerSheet_Title" xml:space="preserve">
+    <value>着色器</value>
   </data>
   <data name="Command_Error" xml:space="preserve">
     <value>运行命令{0}时出错</value>
@@ -1375,11 +1379,11 @@ OneNote 文件 (*.one)</value>
     <comment>highlight command message</comment>
   </data>
   <data name="HighlightsSheet_deepRadio.Text" xml:space="preserve">
-    <value>深：</value>
+    <value>深的</value>
     <comment>radio</comment>
   </data>
   <data name="HighlightsSheet_fadedRadio.Text" xml:space="preserve">
-    <value>褪色：</value>
+    <value>褪色</value>
     <comment>radio</comment>
   </data>
   <data name="HighlightsSheet_introBox.Text" xml:space="preserve">
@@ -1387,10 +1391,10 @@ OneNote 文件 (*.one)</value>
     <comment>textbox</comment>
   </data>
   <data name="HighlightsSheet_normalRadio.Text" xml:space="preserve">
-    <value>亮：</value>
+    <value>明亮的</value>
     <comment>radio</comment>
   </data>
-  <data name="HighlightsSheet_themeGroup.Text" xml:space="preserve">
+  <data name="HighlightsSheet_themesGroup.Text" xml:space="preserve">
     <value>主题</value>
     <comment>group</comment>
   </data>
@@ -1428,6 +1432,14 @@ OneNote 文件 (*.one)</value>
   <data name="ImagesSheet_plantGroup.Text" xml:space="preserve">
     <value>PlantUML 选项</value>
     <comment>groupbox</comment>
+  </data>
+  <data name="ImagesSheet_plantRemoveBox.Text" xml:space="preserve">
+    <value>删除Plantuml文本并将其嵌入图像</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="ImagesSheet_plantUriLabel.Text" xml:space="preserve">
+    <value>Plantuml Server地址（留空以使用默认）</value>
+    <comment>label</comment>
   </data>
   <data name="ImagesSheet_resizeGroup.Text" xml:space="preserve">
     <value>调整大小选项</value>
@@ -1704,8 +1716,8 @@ OneNote 文件 (*.one)</value>
     <value>清除</value>
     <comment>toolstrip button</comment>
   </data>
-  <data name="KeyboardSheet_introLabel.Text" xml:space="preserve">
-    <value>管理我的自定义键盘快捷键。选择一个命令并按下一个按键序列。</value>
+  <data name="KeyboardSheet_introBox.Text" xml:space="preserve">
+    <value>管理我的自定义键盘快捷键。 选择一个命令，然后按键序列。</value>
     <comment>label</comment>
   </data>
   <data name="KeyboardSheet_keyColumn.HeaderText" xml:space="preserve">
@@ -2197,7 +2209,7 @@ OneNote 文件 (*.one)</value>
     <value>删除插件“ {0}”</value>
     <comment>question</comment>
   </data>
-  <data name="PluginsSheet_introLabel.Text" xml:space="preserve">
+  <data name="PluginsSheet_introBox.Text" xml:space="preserve">
     <value>管理我的插件</value>
     <comment>label</comment>
   </data>
@@ -4145,10 +4157,10 @@ ISO-code then comma then language name</comment>
     <value>下移</value>
     <comment>button</comment>
   </data>
-  <data name="SearchEngineSheet_introLabel.Text" xml:space="preserve">
-    <value>URL 模式必须包含字符串替换标记，例如 &amp;q={0}
+  <data name="SearchEngineSheet_introBox.Text" xml:space="preserve">
+    <value>URL模式必须包含一个字符串更换令牌，例如＆q = {0}
 
-搜索引擎将出现在页面上下文菜单中，单击鼠标右键。</value>
+搜索引擎将出现在“页面上下文”菜单中，右键单击。</value>
     <comment>label</comment>
   </data>
   <data name="SearchEngineSheet_upButton.Text" xml:space="preserve">
@@ -4346,7 +4358,7 @@ ISO-code then comma then language name</comment>
     <value>删除片段“{0}”</value>
     <comment>question</comment>
   </data>
-  <data name="SnippetsSheet_introLabel.Text" xml:space="preserve">
+  <data name="SnippetsSheet_introBox.Text" xml:space="preserve">
     <value>管理我的片段</value>
     <comment>label</comment>
   </data>

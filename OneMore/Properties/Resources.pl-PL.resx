@@ -273,6 +273,10 @@ Odwracać</value>
     <value>Zdefiniuj aliasy poleceń do użycia w palecie poleceń</value>
     <comment>intro box</comment>
   </data>
+  <data name="AliasSheet_introBox.Text" xml:space="preserve">
+    <value>Zdefiniuj aliasy poleceń do użycia w palecie poleceń.</value>
+    <comment>label</comment>
+  </data>
   <data name="AliasSheet_Title" xml:space="preserve">
     <value>Aliasy poleceń</value>
     <comment>sheet</comment>
@@ -525,32 +529,32 @@ Odwracać</value>
     <value>Wybierz język</value>
     <comment>dialog title</comment>
   </data>
+  <data name="ColorizerSheet_applyBox.Text" xml:space="preserve">
+    <value>Zawsze stosuj następujące czcionki podczas kolorowania kodu</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="ColorizerSheet_enabledLabel.Text" xml:space="preserve">
+    <value>Włączone języki</value>
+    <comment>label</comment>
+  </data>
   <data name="ColorizerSheet_fixedBox.Text" xml:space="preserve">
     <value>Pokaż tylko czcionki o stałej szerokości</value>
     <comment>checkbox</comment>
   </data>
-  <data name="ColorizeSheet_applyBox.Text" xml:space="preserve">
-    <value>Podczas kolorowania kodu zawsze stosuj następujące czcionki</value>
-    <comment>checkbox</comment>
-  </data>
-  <data name="ColorizeSheet_enabledLabel" xml:space="preserve">
-    <value>Włączone języki</value>
-    <comment>label</comment>
-  </data>
-  <data name="ColorizeSheet_font2Label.Text" xml:space="preserve">
+  <data name="ColorizerSheet_font2Label.Text" xml:space="preserve">
     <value>Wtórny</value>
     <comment>label</comment>
   </data>
-  <data name="ColorizeSheet_fontLabel.Text" xml:space="preserve">
+  <data name="ColorizerSheet_fontLabel.Text" xml:space="preserve">
     <value>Podstawowy</value>
     <comment>label</comment>
   </data>
-  <data name="ColorizeSheet_introBox.Text" xml:space="preserve">
-    <value>Dostosuj zachowanie polecenia Koloruj. Dodatkowa czcionka ma zastosowanie podczas zwijania PlantUML</value>
+  <data name="ColorizerSheet_introBox.Text" xml:space="preserve">
+    <value>Dostosuj zachowanie polecenia COLORIZE. Czcionka wtórna obowiązuje podczas upadku Plantuml</value>
     <comment>label</comment>
   </data>
-  <data name="ColorizeSheet_Title" xml:space="preserve">
-    <value>Koloryzator</value>
+  <data name="ColorizerSheet_Title" xml:space="preserve">
+    <value>Kolorator</value>
   </data>
   <data name="Command_Error" xml:space="preserve">
     <value>Błąd uruchomiony polecenie {0}</value>
@@ -1383,11 +1387,11 @@ Czerwony pierwszy plan
     <comment>highlight command message</comment>
   </data>
   <data name="HighlightsSheet_deepRadio.Text" xml:space="preserve">
-    <value>Głęboki:</value>
+    <value>Głęboko</value>
     <comment>radio</comment>
   </data>
   <data name="HighlightsSheet_fadedRadio.Text" xml:space="preserve">
-    <value>Wyblakły:</value>
+    <value>Wyblakły</value>
     <comment>radio</comment>
   </data>
   <data name="HighlightsSheet_introBox.Text" xml:space="preserve">
@@ -1395,10 +1399,10 @@ Czerwony pierwszy plan
     <comment>textbox</comment>
   </data>
   <data name="HighlightsSheet_normalRadio.Text" xml:space="preserve">
-    <value>Jasny:</value>
+    <value>Jasny</value>
     <comment>radio</comment>
   </data>
-  <data name="HighlightsSheet_themeGroup.Text" xml:space="preserve">
+  <data name="HighlightsSheet_themesGroup.Text" xml:space="preserve">
     <value>Tematy</value>
     <comment>group</comment>
   </data>
@@ -1436,6 +1440,14 @@ Czerwony pierwszy plan
   <data name="ImagesSheet_plantGroup.Text" xml:space="preserve">
     <value>Opcje PlantUML</value>
     <comment>groupbox</comment>
+  </data>
+  <data name="ImagesSheet_plantRemoveBox.Text" xml:space="preserve">
+    <value>Usuń tekst Plantuml i osadzić go na obrazie</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="ImagesSheet_plantUriLabel.Text" xml:space="preserve">
+    <value>Adres Plantuml Server (pozostaw pusty, aby użyć domyślnie)</value>
+    <comment>label</comment>
   </data>
   <data name="ImagesSheet_resizeGroup.Text" xml:space="preserve">
     <value>Opcje zmiany rozmiaru</value>
@@ -1712,8 +1724,8 @@ Nagłówek niestandardowy 3</value>
     <value>Jasne</value>
     <comment>toolstrip button</comment>
   </data>
-  <data name="KeyboardSheet_introLabel.Text" xml:space="preserve">
-    <value>Zarządzaj moją niestandardową skrótów klawiaturowych. Wybierz polecenie i naciśnij sekwencję klawiszy.</value>
+  <data name="KeyboardSheet_introBox.Text" xml:space="preserve">
+    <value>Zarządzaj moimi niestandardowymi skrótami klawiatury. Wybierz polecenie i naciśnij sekwencję klucza.</value>
     <comment>label</comment>
   </data>
   <data name="KeyboardSheet_keyColumn.HeaderText" xml:space="preserve">
@@ -2205,7 +2217,7 @@ Bieżący notatnik</value>
     <value>Usuń wtyczkę "{0}"</value>
     <comment>question</comment>
   </data>
-  <data name="PluginsSheet_introLabel.Text" xml:space="preserve">
+  <data name="PluginsSheet_introBox.Text" xml:space="preserve">
     <value>Zarządzaj moimi wtyczkami</value>
     <comment>label</comment>
   </data>
@@ -4163,8 +4175,8 @@ W tej sekcji</value>
     <value>Padnij</value>
     <comment>button</comment>
   </data>
-  <data name="SearchEngineSheet_introLabel.Text" xml:space="preserve">
-    <value>Wzorce adresów URL muszą zawierać token zastępujący ciąg, taki jak &amp;q={0}
+  <data name="SearchEngineSheet_introBox.Text" xml:space="preserve">
+    <value>Wzory adresów URL muszą zawierać token zastępujący ciąg, taki jak i q = {0}
 
 Wyszukiwarki pojawią się w menu kontekstowym strony, kliknij prawym przyciskiem myszy.</value>
     <comment>label</comment>
@@ -4364,7 +4376,7 @@ Jesteś pewien, że chcesz kontynuować?</value>
     <value>Usuń fragment "{0}"</value>
     <comment>question</comment>
   </data>
-  <data name="SnippetsSheet_introLabel.Text" xml:space="preserve">
+  <data name="SnippetsSheet_introBox.Text" xml:space="preserve">
     <value>Zarządzaj moimi fragmentami</value>
     <comment>label</comment>
   </data>

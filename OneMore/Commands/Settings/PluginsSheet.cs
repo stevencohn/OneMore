@@ -39,7 +39,7 @@ namespace River.OneMoreAddIn.Settings
 			{
 				Localize(new string[]
 				{
-					"introLabel",
+					"introBox",
 					"deleteLabel=word_Delete"
 				});
 

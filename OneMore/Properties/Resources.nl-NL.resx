@@ -273,6 +273,10 @@ Omkeren</value>
     <value>Opdrachtaliassen definiëren voor gebruik in het opdrachtenpalet</value>
     <comment>intro box</comment>
   </data>
+  <data name="AliasSheet_introBox.Text" xml:space="preserve">
+    <value>Definieer opdrachtaliassen voor gebruik in het opdrachtpalet.</value>
+    <comment>label</comment>
+  </data>
   <data name="AliasSheet_Title" xml:space="preserve">
     <value>Commando aliassen</value>
     <comment>sheet</comment>
@@ -517,31 +521,31 @@ Omkeren</value>
     <value>Selecteer Taal</value>
     <comment>dialog title</comment>
   </data>
+  <data name="ColorizerSheet_applyBox.Text" xml:space="preserve">
+    <value>Pas altijd de volgende lettertypen toe bij het kleuren van code</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="ColorizerSheet_enabledLabel.Text" xml:space="preserve">
+    <value>Ingeschakelde talen</value>
+    <comment>label</comment>
+  </data>
   <data name="ColorizerSheet_fixedBox.Text" xml:space="preserve">
     <value>Toon alleen lettertypen met een vaste breedte</value>
     <comment>checkbox</comment>
   </data>
-  <data name="ColorizeSheet_applyBox.Text" xml:space="preserve">
-    <value>Pas altijd de volgende lettertypen toe bij het inkleuren van code</value>
-    <comment>checkbox</comment>
-  </data>
-  <data name="ColorizeSheet_enabledLabel" xml:space="preserve">
-    <value>Ingeschakelde talen</value>
-    <comment>label</comment>
-  </data>
-  <data name="ColorizeSheet_font2Label.Text" xml:space="preserve">
+  <data name="ColorizerSheet_font2Label.Text" xml:space="preserve">
     <value>Ondergeschikt</value>
     <comment>label</comment>
   </data>
-  <data name="ColorizeSheet_fontLabel.Text" xml:space="preserve">
+  <data name="ColorizerSheet_fontLabel.Text" xml:space="preserve">
     <value>Primair</value>
     <comment>label</comment>
   </data>
-  <data name="ColorizeSheet_introBox.Text" xml:space="preserve">
-    <value>Pas het gedrag van de opdracht Inkleuren aan. Secundair lettertype is van toepassing bij het samenvouwen van PlantUML</value>
+  <data name="ColorizerSheet_introBox.Text" xml:space="preserve">
+    <value>Pas het gedrag van de opdracht Colorize aan. Secundair lettertype is van toepassing bij het instorten van Plantuml</value>
     <comment>label</comment>
   </data>
-  <data name="ColorizeSheet_Title" xml:space="preserve">
+  <data name="ColorizerSheet_Title" xml:space="preserve">
     <value>Kleurmaker</value>
   </data>
   <data name="Command_Error" xml:space="preserve">
@@ -1375,11 +1379,11 @@ Gele achtergrond</value>
     <comment>highlight command message</comment>
   </data>
   <data name="HighlightsSheet_deepRadio.Text" xml:space="preserve">
-    <value>Diep:</value>
+    <value>Diep</value>
     <comment>radio</comment>
   </data>
   <data name="HighlightsSheet_fadedRadio.Text" xml:space="preserve">
-    <value>Vervaagd:</value>
+    <value>Bleek</value>
     <comment>radio</comment>
   </data>
   <data name="HighlightsSheet_introBox.Text" xml:space="preserve">
@@ -1387,10 +1391,10 @@ Gele achtergrond</value>
     <comment>textbox</comment>
   </data>
   <data name="HighlightsSheet_normalRadio.Text" xml:space="preserve">
-    <value>Helder:</value>
+    <value>Helder</value>
     <comment>radio</comment>
   </data>
-  <data name="HighlightsSheet_themeGroup.Text" xml:space="preserve">
+  <data name="HighlightsSheet_themesGroup.Text" xml:space="preserve">
     <value>Thema's</value>
     <comment>group</comment>
   </data>
@@ -1428,6 +1432,14 @@ Gele achtergrond</value>
   <data name="ImagesSheet_plantGroup.Text" xml:space="preserve">
     <value>PlantUML-opties</value>
     <comment>groupbox</comment>
+  </data>
+  <data name="ImagesSheet_plantRemoveBox.Text" xml:space="preserve">
+    <value>Verwijder Plantuml -tekst en sluit deze in de afbeelding in</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="ImagesSheet_plantUriLabel.Text" xml:space="preserve">
+    <value>Plantuml Server -adres (laat leeg staan om standaard te gebruiken)</value>
+    <comment>label</comment>
   </data>
   <data name="ImagesSheet_resizeGroup.Text" xml:space="preserve">
     <value>Formaat wijzigen</value>
@@ -1704,8 +1716,8 @@ Aangepaste kop 3</value>
     <value>Duidelijk</value>
     <comment>toolstrip button</comment>
   </data>
-  <data name="KeyboardSheet_introLabel.Text" xml:space="preserve">
-    <value>Beheer mijn aangepaste sneltoetsen. Selecteer een opdracht en druk op een toetsenreeks.</value>
+  <data name="KeyboardSheet_introBox.Text" xml:space="preserve">
+    <value>Beheer mijn aangepaste sneltoetsen. Selecteer een opdracht en druk op een sleutelreeks.</value>
     <comment>label</comment>
   </data>
   <data name="KeyboardSheet_keyColumn.HeaderText" xml:space="preserve">
@@ -2197,8 +2209,8 @@ Huidig ​​notitieboek</value>
     <value>Verwijder plug-in "{0}"</value>
     <comment>question</comment>
   </data>
-  <data name="PluginsSheet_introLabel.Text" xml:space="preserve">
-    <value>Beheer mijn plug-ins</value>
+  <data name="PluginsSheet_introBox.Text" xml:space="preserve">
+    <value>Beheer mijn plug -ins</value>
     <comment>label</comment>
   </data>
   <data name="PluginsSheet_Title" xml:space="preserve">
@@ -4150,10 +4162,10 @@ In deze sectie</value>
     <value>Naar beneden verplaatsen</value>
     <comment>button</comment>
   </data>
-  <data name="SearchEngineSheet_introLabel.Text" xml:space="preserve">
-    <value>URL-patronen moeten een tekenreeksvervangingstoken bevatten, zoals &amp;q={0}
+  <data name="SearchEngineSheet_introBox.Text" xml:space="preserve">
+    <value>URL -patronen moeten een stringvervangingstoken bevatten, zoals &amp; q = {0}
 
-Zoekmachines verschijnen in het contextmenu van de pagina, klik met de rechtermuisknop.</value>
+Zoekmachines verschijnen in het pagina Pagina contextmenu, klik met de rechtermuisknop.</value>
     <comment>label</comment>
   </data>
   <data name="SearchEngineSheet_upButton.Text" xml:space="preserve">
@@ -4351,7 +4363,7 @@ Weet je zeker dat je door wilt gaan?</value>
     <value>Fragment "{0}" verwijderen</value>
     <comment>question</comment>
   </data>
-  <data name="SnippetsSheet_introLabel.Text" xml:space="preserve">
+  <data name="SnippetsSheet_introBox.Text" xml:space="preserve">
     <value>Beheer mijn fragmenten</value>
     <comment>label</comment>
   </data>

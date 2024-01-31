@@ -5,7 +5,6 @@
 namespace River.OneMoreAddIn.Settings
 {
 	using River.OneMoreAddIn.Styles;
-	using System;
 	using System.Drawing;
 	using System.IO;
 	using System.Linq;
@@ -24,7 +23,7 @@ namespace River.OneMoreAddIn.Settings
 			InitializeComponent();
 
 			Name = nameof(ColorizerSheet);
-			Title = Resx.ColorizeSheet_Title;
+			Title = Resx.ColorizerSheet_Title;
 
 			if (NeedsLocalizing())
 			{

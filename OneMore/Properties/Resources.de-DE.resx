@@ -269,6 +269,10 @@ Umkehren</value>
     <value>Definiere Befehlsaliase zur Verwendung in der Befehlspalette</value>
     <comment>intro box</comment>
   </data>
+  <data name="AliasSheet_introBox.Text" xml:space="preserve">
+    <value>Definieren Sie die Kommando -Aliase für die Verwendung in der Befehlspalette.</value>
+    <comment>label</comment>
+  </data>
   <data name="AliasSheet_Title" xml:space="preserve">
     <value>Befehlsaliase</value>
     <comment>sheet</comment>
@@ -513,32 +517,32 @@ Umkehren</value>
     <value>Sprache auswählen</value>
     <comment>dialog title</comment>
   </data>
+  <data name="ColorizerSheet_applyBox.Text" xml:space="preserve">
+    <value>Wenden Sie immer die folgenden Schriftarten an, wenn Sie den Code färben</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="ColorizerSheet_enabledLabel.Text" xml:space="preserve">
+    <value>Aktivierte Sprachen</value>
+    <comment>label</comment>
+  </data>
   <data name="ColorizerSheet_fixedBox.Text" xml:space="preserve">
     <value>Nur Schriftarten mit fester Breite anzeigen</value>
     <comment>checkbox</comment>
   </data>
-  <data name="ColorizeSheet_applyBox.Text" xml:space="preserve">
-    <value>Wenden Sie immer die folgenden Schriftarten an, wenn Sie Code einfärben</value>
-    <comment>checkbox</comment>
-  </data>
-  <data name="ColorizeSheet_enabledLabel" xml:space="preserve">
-    <value>Aktivierte Sprachen</value>
-    <comment>label</comment>
-  </data>
-  <data name="ColorizeSheet_font2Label.Text" xml:space="preserve">
+  <data name="ColorizerSheet_font2Label.Text" xml:space="preserve">
     <value>Sekundär</value>
     <comment>label</comment>
   </data>
-  <data name="ColorizeSheet_fontLabel.Text" xml:space="preserve">
+  <data name="ColorizerSheet_fontLabel.Text" xml:space="preserve">
     <value>Primär</value>
     <comment>label</comment>
   </data>
-  <data name="ColorizeSheet_introBox.Text" xml:space="preserve">
-    <value>Passen Sie das Verhalten des Einfärben-Befehls an. Sekundäre Schriftart gilt beim Reduzieren von PlantUML</value>
+  <data name="ColorizerSheet_introBox.Text" xml:space="preserve">
+    <value>Passen Sie das Verhalten des Colorize -Befehls an. Die sekundäre Schriftart gilt beim Zusammenbruch von Plantuml</value>
     <comment>label</comment>
   </data>
-  <data name="ColorizeSheet_Title" xml:space="preserve">
-    <value>Einfärber</value>
+  <data name="ColorizerSheet_Title" xml:space="preserve">
+    <value>Colorizer</value>
   </data>
   <data name="Command_Error" xml:space="preserve">
     <value>Fehler beim Ausführen des Befehls {0}</value>
@@ -1369,11 +1373,11 @@ Gelber Hintergrund</value>
     <comment>highlight command message</comment>
   </data>
   <data name="HighlightsSheet_deepRadio.Text" xml:space="preserve">
-    <value>Tief:</value>
+    <value>Tief</value>
     <comment>radio</comment>
   </data>
   <data name="HighlightsSheet_fadedRadio.Text" xml:space="preserve">
-    <value>Verblasst:</value>
+    <value>Verblasst</value>
     <comment>radio</comment>
   </data>
   <data name="HighlightsSheet_introBox.Text" xml:space="preserve">
@@ -1381,10 +1385,10 @@ Gelber Hintergrund</value>
     <comment>textbox</comment>
   </data>
   <data name="HighlightsSheet_normalRadio.Text" xml:space="preserve">
-    <value>Hell:</value>
+    <value>Hell</value>
     <comment>radio</comment>
   </data>
-  <data name="HighlightsSheet_themeGroup.Text" xml:space="preserve">
+  <data name="HighlightsSheet_themesGroup.Text" xml:space="preserve">
     <value>Themen</value>
     <comment>group</comment>
   </data>
@@ -1422,6 +1426,14 @@ Gelber Hintergrund</value>
   <data name="ImagesSheet_plantGroup.Text" xml:space="preserve">
     <value>PlantUML-Optionen</value>
     <comment>groupbox</comment>
+  </data>
+  <data name="ImagesSheet_plantRemoveBox.Text" xml:space="preserve">
+    <value>Entfernen Sie den pflanzlichen Text und setzen Sie ihn in das Bild ein</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="ImagesSheet_plantUriLabel.Text" xml:space="preserve">
+    <value>Plantuml Server -Adresse (leer lassen, um die Standardeinstellung zu verwenden)</value>
+    <comment>label</comment>
   </data>
   <data name="ImagesSheet_resizeGroup.Text" xml:space="preserve">
     <value>Optionen zur Größenänderung</value>
@@ -1698,8 +1710,8 @@ Benutzerdefinierte Überschrift 3</value>
     <value>Klar</value>
     <comment>toolstrip button</comment>
   </data>
-  <data name="KeyboardSheet_introLabel.Text" xml:space="preserve">
-    <value>Verwaltee meine benutzerdefinierten Tastenkombinationen. Wähle einen Befehl aus und drücke eine Tastenfolge.</value>
+  <data name="KeyboardSheet_introBox.Text" xml:space="preserve">
+    <value>Verwalten Sie meine benutzerdefinierten Tastaturverknüpfungen. Wählen Sie einen Befehl aus und drücken Sie eine Schlüsselsequenz.</value>
     <comment>label</comment>
   </data>
   <data name="KeyboardSheet_keyColumn.HeaderText" xml:space="preserve">
@@ -2191,8 +2203,8 @@ Aktuelles Notizbuch</value>
     <value>Plugin "{0}" löschen</value>
     <comment>question</comment>
   </data>
-  <data name="PluginsSheet_introLabel.Text" xml:space="preserve">
-    <value>Verwalte Plugins</value>
+  <data name="PluginsSheet_introBox.Text" xml:space="preserve">
+    <value>Verwalten Sie meine Plugins</value>
     <comment>label</comment>
   </data>
   <data name="PluginsSheet_Title" xml:space="preserve">
@@ -4140,10 +4152,10 @@ In diesem Abschnitt</value>
     <value>Sich abwärts bewegen</value>
     <comment>button</comment>
   </data>
-  <data name="SearchEngineSheet_introLabel.Text" xml:space="preserve">
-    <value>URL-Muster müssen ein Zeichenketten-Ersetzungstoken enthalten, z. B. &amp;q={0}
+  <data name="SearchEngineSheet_introBox.Text" xml:space="preserve">
+    <value>URL -Muster müssen einen String -Ersatztoken enthalten, wie &amp; q = {0}
 
-Suchmaschinen werden im Kontextmenü der Seite angezeigt, klicke mit der rechten Maustaste.</value>
+Suchmaschinen werden im Seit-Kontextmenü mit der rechten Maustaste angezeigt.</value>
     <comment>label</comment>
   </data>
   <data name="SearchEngineSheet_upButton.Text" xml:space="preserve">
@@ -4341,8 +4353,8 @@ Bist du dir sicher, dass du weitermachen willst?</value>
     <value>Snippet "{0}" löschen</value>
     <comment>question</comment>
   </data>
-  <data name="SnippetsSheet_introLabel.Text" xml:space="preserve">
-    <value>Meine Snippets verwalten</value>
+  <data name="SnippetsSheet_introBox.Text" xml:space="preserve">
+    <value>Verwalten Sie meine Ausschnitte</value>
     <comment>label</comment>
   </data>
   <data name="SnippetsSheet_Text" xml:space="preserve">

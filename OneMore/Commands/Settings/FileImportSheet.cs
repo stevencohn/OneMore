@@ -23,8 +23,7 @@ namespace River.OneMoreAddIn.Settings
 				Localize(new string[]
 				{
 					"introBox",
-					"widthLabel",
-					"widthBox"
+					"widthLabel"
 				});
 			}
 

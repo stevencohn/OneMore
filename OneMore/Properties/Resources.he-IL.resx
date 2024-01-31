@@ -275,6 +275,10 @@ OneNote ייסגר אוטומטית</value>
     <value>הגדר כינויי פקודות לשימוש בלוח הפקודות</value>
     <comment>intro box</comment>
   </data>
+  <data name="AliasSheet_introBox.Text" xml:space="preserve">
+    <value>הגדר כינויי פקודה לשימוש בלוח הפקודה.</value>
+    <comment>label</comment>
+  </data>
   <data name="AliasSheet_Title" xml:space="preserve">
     <value>כינויי פיקוד</value>
     <comment>sheet</comment>
@@ -527,32 +531,32 @@ OneNote ייסגר אוטומטית</value>
     <value>בחר שפה</value>
     <comment>dialog title</comment>
   </data>
+  <data name="ColorizerSheet_applyBox.Text" xml:space="preserve">
+    <value>החל תמיד את הגופנים הבאים בעת הצביעה של קוד</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="ColorizerSheet_enabledLabel.Text" xml:space="preserve">
+    <value>שפות מופעלות</value>
+    <comment>label</comment>
+  </data>
   <data name="ColorizerSheet_fixedBox.Text" xml:space="preserve">
     <value>הצג רק גופנים ברוחב קבוע</value>
     <comment>checkbox</comment>
   </data>
-  <data name="ColorizeSheet_applyBox.Text" xml:space="preserve">
-    <value>החל תמיד את הגופנים הבאים בעת צביעה של קוד</value>
-    <comment>checkbox</comment>
-  </data>
-  <data name="ColorizeSheet_enabledLabel" xml:space="preserve">
-    <value>שפות מופעלות</value>
-    <comment>label</comment>
-  </data>
-  <data name="ColorizeSheet_font2Label.Text" xml:space="preserve">
+  <data name="ColorizerSheet_font2Label.Text" xml:space="preserve">
     <value>מִשׁנִי</value>
     <comment>label</comment>
   </data>
-  <data name="ColorizeSheet_fontLabel.Text" xml:space="preserve">
+  <data name="ColorizerSheet_fontLabel.Text" xml:space="preserve">
     <value>יְסוֹדִי</value>
     <comment>label</comment>
   </data>
-  <data name="ColorizeSheet_introBox.Text" xml:space="preserve">
-    <value>התאם אישית את ההתנהגות של הפקודה Colorize. גופן משני חל בעת כיווץ PlantUML</value>
+  <data name="ColorizerSheet_introBox.Text" xml:space="preserve">
+    <value>התאם אישית את התנהגות הפקודה Colorize. גופן משני חל כאשר מתמוטטת פלנטומל</value>
     <comment>label</comment>
   </data>
-  <data name="ColorizeSheet_Title" xml:space="preserve">
-    <value>צבעוניות</value>
+  <data name="ColorizerSheet_Title" xml:space="preserve">
+    <value>צבעוני</value>
   </data>
   <data name="Command_Error" xml:space="preserve">
     <value>שגיאה בהפעלת הפקודה {0}</value>
@@ -1385,11 +1389,11 @@ Total Row Font
     <comment>highlight command message</comment>
   </data>
   <data name="HighlightsSheet_deepRadio.Text" xml:space="preserve">
-    <value>עָמוֹק:</value>
+    <value>עָמוֹק</value>
     <comment>radio</comment>
   </data>
   <data name="HighlightsSheet_fadedRadio.Text" xml:space="preserve">
-    <value>דהה:</value>
+    <value>דהה</value>
     <comment>radio</comment>
   </data>
   <data name="HighlightsSheet_introBox.Text" xml:space="preserve">
@@ -1397,10 +1401,10 @@ Total Row Font
     <comment>textbox</comment>
   </data>
   <data name="HighlightsSheet_normalRadio.Text" xml:space="preserve">
-    <value>בָּהִיר:</value>
+    <value>בָּהִיר</value>
     <comment>radio</comment>
   </data>
-  <data name="HighlightsSheet_themeGroup.Text" xml:space="preserve">
+  <data name="HighlightsSheet_themesGroup.Text" xml:space="preserve">
     <value>ערכות נושא</value>
     <comment>group</comment>
   </data>
@@ -1438,6 +1442,14 @@ Total Row Font
   <data name="ImagesSheet_plantGroup.Text" xml:space="preserve">
     <value>אפשרויות PlantUML</value>
     <comment>groupbox</comment>
+  </data>
+  <data name="ImagesSheet_plantRemoveBox.Text" xml:space="preserve">
+    <value>הסר טקסט Plantuml והטמיע אותו בתמונה</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="ImagesSheet_plantUriLabel.Text" xml:space="preserve">
+    <value>כתובת שרת Plantuml (השאר ריק לשימוש ברירת מחדל)</value>
+    <comment>label</comment>
   </data>
   <data name="ImagesSheet_resizeGroup.Text" xml:space="preserve">
     <value>שינוי גודל אפשרויות</value>
@@ -1714,8 +1726,8 @@ Total Row Font
     <value>ברור</value>
     <comment>toolstrip button</comment>
   </data>
-  <data name="KeyboardSheet_introLabel.Text" xml:space="preserve">
-    <value>נהל את קיצורי המקלדת המותאמים אישית שלי. בחר פקודה ולחץ על רצף מקשים.</value>
+  <data name="KeyboardSheet_introBox.Text" xml:space="preserve">
+    <value>נהל את קיצורי המקשים המותאמים אישית שלי. בחר פקודה ולחץ על רצף מקשים.</value>
     <comment>label</comment>
   </data>
   <data name="KeyboardSheet_keyColumn.HeaderText" xml:space="preserve">
@@ -2207,7 +2219,7 @@ Total Row Font
     <value>מחק את הפלאגין "{0}"</value>
     <comment>question</comment>
   </data>
-  <data name="PluginsSheet_introLabel.Text" xml:space="preserve">
+  <data name="PluginsSheet_introBox.Text" xml:space="preserve">
     <value>נהל את התוספים שלי</value>
     <comment>label</comment>
   </data>
@@ -4163,7 +4175,7 @@ ISO-code then comma then language name</comment>
     <value>לרדת</value>
     <comment>button</comment>
   </data>
-  <data name="SearchEngineSheet_introLabel.Text" xml:space="preserve">
+  <data name="SearchEngineSheet_introBox.Text" xml:space="preserve">
     <value>דפוסי URL חייבים להכיל אסימון להחלפת מחרוזת, כגון &amp; q = {0}
 
 מנועי חיפוש יופיעו בתפריט ההקשר של הדף, לחץ באמצעות לחצן העכבר הימני.</value>
@@ -4364,7 +4376,7 @@ ISO-code then comma then language name</comment>
     <value>מחק את קטע "{0}"</value>
     <comment>question</comment>
   </data>
-  <data name="SnippetsSheet_introLabel.Text" xml:space="preserve">
+  <data name="SnippetsSheet_introBox.Text" xml:space="preserve">
     <value>נהל את הקטעים שלי</value>
     <comment>label</comment>
   </data>

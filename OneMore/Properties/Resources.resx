@@ -275,6 +275,10 @@ Invert</value>
     <value>Define command aliases for use in the Command Palette</value>
     <comment>intro box</comment>
   </data>
+  <data name="AliasSheet_introBox.Text" xml:space="preserve">
+    <value>Define command aliases for use in the Command Palette.</value>
+    <comment>label</comment>
+  </data>
   <data name="AliasSheet_Title" xml:space="preserve">
     <value>Command Aliases</value>
     <comment>sheet</comment>
@@ -527,31 +531,31 @@ Invert</value>
     <value>Select Language</value>
     <comment>dialog title</comment>
   </data>
+  <data name="ColorizerSheet_applyBox.Text" xml:space="preserve">
+    <value>Always apply the following fonts when colorizing code</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="ColorizerSheet_enabledLabel.Text" xml:space="preserve">
+    <value>Enabled Languages</value>
+    <comment>label</comment>
+  </data>
   <data name="ColorizerSheet_fixedBox.Text" xml:space="preserve">
     <value>Show only fixed-width fonts</value>
     <comment>checkbox</comment>
   </data>
-  <data name="ColorizeSheet_applyBox.Text" xml:space="preserve">
-    <value>Always apply the following fonts when colorizing code</value>
-    <comment>checkbox</comment>
-  </data>
-  <data name="ColorizeSheet_enabledLabel" xml:space="preserve">
-    <value>Enabled Languages</value>
-    <comment>label</comment>
-  </data>
-  <data name="ColorizeSheet_font2Label.Text" xml:space="preserve">
+  <data name="ColorizerSheet_font2Label.Text" xml:space="preserve">
     <value>Secondary</value>
     <comment>label</comment>
   </data>
-  <data name="ColorizeSheet_fontLabel.Text" xml:space="preserve">
+  <data name="ColorizerSheet_fontLabel.Text" xml:space="preserve">
     <value>Primary</value>
     <comment>label</comment>
   </data>
-  <data name="ColorizeSheet_introBox.Text" xml:space="preserve">
+  <data name="ColorizerSheet_introBox.Text" xml:space="preserve">
     <value>Customize the behavior of the Colorize command. Secondary font applies when collapsing PlantUML</value>
     <comment>label</comment>
   </data>
-  <data name="ColorizeSheet_Title" xml:space="preserve">
+  <data name="ColorizerSheet_Title" xml:space="preserve">
     <value>Colorizer</value>
   </data>
   <data name="Command_Error" xml:space="preserve">
@@ -1389,11 +1393,11 @@ Yellow Background</value>
     <comment>highlight command message</comment>
   </data>
   <data name="HighlightsSheet_deepRadio.Text" xml:space="preserve">
-    <value>Deep:</value>
+    <value>Deep</value>
     <comment>radio</comment>
   </data>
   <data name="HighlightsSheet_fadedRadio.Text" xml:space="preserve">
-    <value>Faded:</value>
+    <value>Faded</value>
     <comment>radio</comment>
   </data>
   <data name="HighlightsSheet_introBox.Text" xml:space="preserve">
@@ -1401,10 +1405,10 @@ Yellow Background</value>
     <comment>textbox</comment>
   </data>
   <data name="HighlightsSheet_normalRadio.Text" xml:space="preserve">
-    <value>Bright:</value>
+    <value>Bright</value>
     <comment>radio</comment>
   </data>
-  <data name="HighlightsSheet_themeGroup.Text" xml:space="preserve">
+  <data name="HighlightsSheet_themesGroup.Text" xml:space="preserve">
     <value>Themes</value>
     <comment>group</comment>
   </data>
@@ -1442,6 +1446,14 @@ Yellow Background</value>
   <data name="ImagesSheet_plantGroup.Text" xml:space="preserve">
     <value>PlantUML Options</value>
     <comment>groupbox</comment>
+  </data>
+  <data name="ImagesSheet_plantRemoveBox.Text" xml:space="preserve">
+    <value>Remove PlantUML text and embed it in the image</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="ImagesSheet_plantUriLabel.Text" xml:space="preserve">
+    <value>PlantUML Server Address (leave blank to use default)</value>
+    <comment>label</comment>
   </data>
   <data name="ImagesSheet_resizeGroup.Text" xml:space="preserve">
     <value>Resize Options</value>
@@ -1718,7 +1730,7 @@ Custom Heading 3</value>
     <value>Clear</value>
     <comment>toolstrip button</comment>
   </data>
-  <data name="KeyboardSheet_introLabel.Text" xml:space="preserve">
+  <data name="KeyboardSheet_introBox.Text" xml:space="preserve">
     <value>Manage my custom keyboard shortcuts. Select a command and press a key sequence.</value>
     <comment>label</comment>
   </data>
@@ -2227,7 +2239,7 @@ Current notebook</value>
     <value>Delete plugin "{0}"</value>
     <comment>question</comment>
   </data>
-  <data name="PluginsSheet_introLabel.Text" xml:space="preserve">
+  <data name="PluginsSheet_introBox.Text" xml:space="preserve">
     <value>Manage my plugins</value>
     <comment>label</comment>
   </data>
@@ -4186,7 +4198,7 @@ In this section</value>
     <value>Move down</value>
     <comment>button</comment>
   </data>
-  <data name="SearchEngineSheet_introLabel.Text" xml:space="preserve">
+  <data name="SearchEngineSheet_introBox.Text" xml:space="preserve">
     <value>URL Patterns must contain a string replacement token, such as &amp;q={0}
 
 Search engines will appear in the page context menu, right-click.</value>
@@ -4387,7 +4399,7 @@ Are you sure you want to continue?</value>
     <value>Delete snippet "{0}"</value>
     <comment>question</comment>
   </data>
-  <data name="SnippetsSheet_introLabel.Text" xml:space="preserve">
+  <data name="SnippetsSheet_introBox.Text" xml:space="preserve">
     <value>Manage my snippets</value>
     <comment>label</comment>
   </data>

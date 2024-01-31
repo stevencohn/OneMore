@@ -28,10 +28,12 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
-			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FavoritesSheet));
 			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
 			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FavoritesSheet));
 			this.gridView = new System.Windows.Forms.DataGridView();
+			this.nameColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.locationColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.introPanel = new System.Windows.Forms.Panel();
 			this.optionsBox = new River.OneMoreAddIn.UI.MoreGroupBox();
 			this.shortcutsBox = new River.OneMoreAddIn.UI.MoreCheckBox();
@@ -42,8 +44,6 @@
 			this.downButton = new System.Windows.Forms.ToolStripButton();
 			this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
 			this.deleteButton = new System.Windows.Forms.ToolStripButton();
-			this.nameColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.locationColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			((System.ComponentModel.ISupportInitialize)(this.gridView)).BeginInit();
 			this.introPanel.SuspendLayout();
 			this.optionsBox.SuspendLayout();
@@ -74,6 +74,25 @@
 			this.gridView.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.FormatCell);
 			this.gridView.KeyUp += new System.Windows.Forms.KeyEventHandler(this.DeleteOnKeyUp);
 			// 
+			// nameColumn
+			// 
+			dataGridViewCellStyle1.ForeColor = System.Drawing.Color.Black;
+			this.nameColumn.DefaultCellStyle = dataGridViewCellStyle1;
+			this.nameColumn.HeaderText = "Name";
+			this.nameColumn.MinimumWidth = 100;
+			this.nameColumn.Name = "nameColumn";
+			this.nameColumn.Width = 250;
+			// 
+			// locationColumn
+			// 
+			this.locationColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+			dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Black;
+			this.locationColumn.DefaultCellStyle = dataGridViewCellStyle2;
+			this.locationColumn.FillWeight = 1000F;
+			this.locationColumn.HeaderText = "Location";
+			this.locationColumn.MinimumWidth = 8;
+			this.locationColumn.Name = "locationColumn";
+			// 
 			// introPanel
 			// 
 			this.introPanel.Controls.Add(this.optionsBox);
@@ -97,10 +116,13 @@
 			// 
 			// shortcutsBox
 			// 
+			this.shortcutsBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
+			this.shortcutsBox.Cursor = System.Windows.Forms.Cursors.Hand;
+			this.shortcutsBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.shortcutsBox.Location = new System.Drawing.Point(23, 32);
 			this.shortcutsBox.Margin = new System.Windows.Forms.Padding(20, 10, 3, 3);
 			this.shortcutsBox.Name = "shortcutsBox";
-			this.shortcutsBox.Size = new System.Drawing.Size(364, 24);
+			this.shortcutsBox.Size = new System.Drawing.Size(365, 25);
 			this.shortcutsBox.TabIndex = 0;
 			this.shortcutsBox.Text = "Include reference to keyboard shortcuts page";
 			this.shortcutsBox.UseVisualStyleBackColor = true;
@@ -129,7 +151,7 @@
 			this.sortButton.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.sortButton.Name = "sortButton";
 			this.sortButton.Size = new System.Drawing.Size(34, 29);
-			this.sortButton.Text = "toolStripButton1";
+			this.sortButton.Text = "Sort";
 			this.sortButton.ToolTipText = "Sort by Name";
 			this.sortButton.Click += new System.EventHandler(this.SortItems);
 			// 
@@ -172,25 +194,6 @@
 			this.deleteButton.Size = new System.Drawing.Size(90, 29);
 			this.deleteButton.Text = "Delete";
 			this.deleteButton.Click += new System.EventHandler(this.DeleteItems);
-			// 
-			// nameColumn
-			// 
-			dataGridViewCellStyle1.ForeColor = System.Drawing.Color.Black;
-			this.nameColumn.DefaultCellStyle = dataGridViewCellStyle1;
-			this.nameColumn.HeaderText = "Name";
-			this.nameColumn.MinimumWidth = 100;
-			this.nameColumn.Name = "nameColumn";
-			this.nameColumn.Width = 250;
-			// 
-			// locationColumn
-			// 
-			this.locationColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-			dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Black;
-			this.locationColumn.DefaultCellStyle = dataGridViewCellStyle2;
-			this.locationColumn.FillWeight = 1000F;
-			this.locationColumn.HeaderText = "Location";
-			this.locationColumn.MinimumWidth = 8;
-			this.locationColumn.Name = "locationColumn";
 			// 
 			// FavoritesSheet
 			// 

@@ -38,13 +38,9 @@ namespace River.OneMoreAddIn.Settings
 			{
 				Localize(new string[]
 				{
-					"introLabel",
 					"optionsBox=word_Options",
 					"shortcutsBox",
-					"sortButton",
-					"upButton",
-					"downButton",
-					"deleteButton"
+					"deleteButton=word_Delete"
 				});
 
 				nameColumn.HeaderText = Resx.word_Name;

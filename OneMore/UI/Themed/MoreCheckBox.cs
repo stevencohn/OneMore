@@ -28,9 +28,10 @@ namespace River.OneMoreAddIn.UI
 		/// </summary>
 		public MoreCheckBox()
 		{
-			// force Paint event to fire, and reduce flickering
-			SetStyle(ControlStyles.UserPaint, true);
-			SetStyle(ControlStyles.AllPaintingInWmPaint, true);
+			SetStyle(
+				ControlStyles.AllPaintingInWmPaint | ControlStyles.OptimizedDoubleBuffer |
+				ControlStyles.UserPaint | ControlStyles.ResizeRedraw | ControlStyles.CacheText,
+				true);
 
 			// force Hand cursor
 			Cursor = Cursors.Hand;
