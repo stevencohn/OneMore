@@ -35,9 +35,8 @@
 			this.formulaRibbonBox = new River.OneMoreAddIn.UI.MoreCheckBox();
 			this.formulaIconBox = new River.OneMoreAddIn.UI.MoreCheckBox();
 			this.quickGroup = new River.OneMoreAddIn.UI.MoreGroupBox();
-			this.formulaPicture = new UI.MorePictureBox();
-			this.editPicture = new UI.MorePictureBox();
-			this.flowPanel = new System.Windows.Forms.FlowLayoutPanel();
+			this.formulaPicture = new River.OneMoreAddIn.UI.MorePictureBox();
+			this.editPicture = new River.OneMoreAddIn.UI.MorePictureBox();
 			this.positionIntroLabel = new River.OneMoreAddIn.UI.MoreMultilineLabel();
 			this.positionGroup = new River.OneMoreAddIn.UI.MoreGroupBox();
 			this.positionBox = new System.Windows.Forms.ComboBox();
@@ -45,7 +44,6 @@
 			this.quickGroup.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.formulaPicture)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.editPicture)).BeginInit();
-			this.flowPanel.SuspendLayout();
 			this.positionGroup.SuspendLayout();
 			this.SuspendLayout();
 			// 
@@ -54,7 +52,7 @@
 			this.introBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.introBox.BackColor = System.Drawing.SystemColors.ControlLightLight;
-			this.introBox.Location = new System.Drawing.Point(3, 173);
+			this.introBox.Location = new System.Drawing.Point(13, 182);
 			this.introBox.Name = "introBox";
 			this.introBox.PreferredBack = "ControlLightLight";
 			this.introBox.PreferredFore = null;
@@ -126,7 +124,7 @@
 			this.quickGroup.Controls.Add(this.editPicture);
 			this.quickGroup.Controls.Add(this.editRibbonBox);
 			this.quickGroup.Controls.Add(this.editIconBox);
-			this.quickGroup.Location = new System.Drawing.Point(3, 245);
+			this.quickGroup.Location = new System.Drawing.Point(13, 254);
 			this.quickGroup.Name = "quickGroup";
 			this.quickGroup.Padding = new System.Windows.Forms.Padding(20, 15, 3, 3);
 			this.quickGroup.Size = new System.Drawing.Size(774, 265);
@@ -137,6 +135,7 @@
 			// formulaPicture
 			// 
 			this.formulaPicture.BackColor = System.Drawing.Color.White;
+			this.formulaPicture.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.formulaPicture.Image = ((System.Drawing.Image)(resources.GetObject("formulaPicture.Image")));
 			this.formulaPicture.Location = new System.Drawing.Point(24, 149);
 			this.formulaPicture.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
@@ -150,6 +149,7 @@
 			// editPicture
 			// 
 			this.editPicture.BackColor = System.Drawing.Color.White;
+			this.editPicture.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.editPicture.Image = ((System.Drawing.Image)(resources.GetObject("editPicture.Image")));
 			this.editPicture.Location = new System.Drawing.Point(24, 39);
 			this.editPicture.Margin = new System.Windows.Forms.Padding(4, 5, 4, 10);
@@ -160,24 +160,12 @@
 			this.editPicture.TabStop = false;
 			this.editPicture.Click += new System.EventHandler(this.ClickPicture);
 			// 
-			// flowPanel
-			// 
-			this.flowPanel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-			this.flowPanel.Controls.Add(this.positionIntroLabel);
-			this.flowPanel.Controls.Add(this.positionGroup);
-			this.flowPanel.Controls.Add(this.introBox);
-			this.flowPanel.Controls.Add(this.quickGroup);
-			this.flowPanel.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
-			this.flowPanel.Location = new System.Drawing.Point(10, 9);
-			this.flowPanel.Name = "flowPanel";
-			this.flowPanel.Size = new System.Drawing.Size(780, 519);
-			this.flowPanel.TabIndex = 11;
-			// 
 			// positionIntroLabel
 			// 
+			this.positionIntroLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
 			this.positionIntroLabel.BackColor = System.Drawing.SystemColors.ControlLightLight;
-			this.positionIntroLabel.Location = new System.Drawing.Point(3, 3);
+			this.positionIntroLabel.Location = new System.Drawing.Point(13, 12);
 			this.positionIntroLabel.Name = "positionIntroLabel";
 			this.positionIntroLabel.Padding = new System.Windows.Forms.Padding(0, 0, 0, 36);
 			this.positionIntroLabel.PreferredBack = "ControlLightLight";
@@ -192,7 +180,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.positionGroup.Controls.Add(this.positionBox);
 			this.positionGroup.Controls.Add(this.positionLabel);
-			this.positionGroup.Location = new System.Drawing.Point(3, 62);
+			this.positionGroup.Location = new System.Drawing.Point(13, 71);
 			this.positionGroup.Margin = new System.Windows.Forms.Padding(3, 3, 3, 15);
 			this.positionGroup.Name = "positionGroup";
 			this.positionGroup.Padding = new System.Windows.Forms.Padding(20, 20, 3, 3);
@@ -233,7 +221,10 @@
 			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.BackColor = System.Drawing.SystemColors.ControlLightLight;
-			this.Controls.Add(this.flowPanel);
+			this.Controls.Add(this.positionIntroLabel);
+			this.Controls.Add(this.positionGroup);
+			this.Controls.Add(this.quickGroup);
+			this.Controls.Add(this.introBox);
 			this.ForeColor = System.Drawing.SystemColors.ControlText;
 			this.Name = "RibbonBarSheet";
 			this.Padding = new System.Windows.Forms.Padding(10, 9, 10, 9);
@@ -241,7 +232,6 @@
 			this.quickGroup.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.formulaPicture)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.editPicture)).EndInit();
-			this.flowPanel.ResumeLayout(false);
 			this.positionGroup.ResumeLayout(false);
 			this.positionGroup.PerformLayout();
 			this.ResumeLayout(false);
@@ -258,7 +248,6 @@
 		private UI.MorePictureBox editPicture;
 		private UI.MorePictureBox formulaPicture;
 		private UI.MoreMultilineLabel introBox;
-		private System.Windows.Forms.FlowLayoutPanel flowPanel;
 		private UI.MoreGroupBox positionGroup;
 		private UI.MoreMultilineLabel positionIntroLabel;
 		private System.Windows.Forms.Label positionLabel;
