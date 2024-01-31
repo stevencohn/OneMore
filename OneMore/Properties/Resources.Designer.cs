@@ -6727,15 +6727,6 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Edit Commands.
-        /// </summary>
-        internal static string RibbonBarSheet_editGroup_Text {
-            get {
-                return ResourceManager.GetString("RibbonBarSheet_editGroup.Text", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Show only icons for edit commands.
         /// </summary>
         internal static string RibbonBarSheet_editIconBox_Text {
@@ -6745,11 +6736,11 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Formula Commands.
+        ///   Looks up a localized string similar to Edit Commands.
         /// </summary>
-        internal static string RibbonBarSheet_formulaGroup_Text {
+        internal static string RibbonBarSheet_editRibbonBox_Text {
             get {
-                return ResourceManager.GetString("RibbonBarSheet_formulaGroup.Text", resourceCulture);
+                return ResourceManager.GetString("RibbonBarSheet_editRibbonBox.Text", resourceCulture);
             }
         }
         
@@ -6763,11 +6754,71 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Formula Commands.
+        /// </summary>
+        internal static string RibbonBarSheet_formulaRibbonBox_Text {
+            get {
+                return ResourceManager.GetString("RibbonBarSheet_formulaRibbonBox.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Choose which commands to include in the ribbon bar and whether to display icons or icons and lables. Restart OneNote to see changes..
         /// </summary>
         internal static string RibbonBarSheet_introBox_Text {
             get {
                 return ResourceManager.GetString("RibbonBarSheet_introBox.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Clipboard Group
+        ///Basic Text Group
+        ///Styles Group
+        ///Tags Group
+        ///Email Group
+        ///Meetings Group
+        ///After last group.
+        /// </summary>
+        internal static string RibbonBarSheet_positionBox_Text {
+            get {
+                return ResourceManager.GetString("RibbonBarSheet_positionBox.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Position.
+        /// </summary>
+        internal static string RibbonBarSheet_positionGroup_Text {
+            get {
+                return ResourceManager.GetString("RibbonBarSheet_positionGroup.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select the location of the OneMore ribbon group..
+        /// </summary>
+        internal static string RibbonBarSheet_positionIntroLabel_Text {
+            get {
+                return ResourceManager.GetString("RibbonBarSheet_positionIntroLabel.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to After OneMore Group.
+        /// </summary>
+        internal static string RibbonBarSheet_positionLabel_Text {
+            get {
+                return ResourceManager.GetString("RibbonBarSheet_positionLabel.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Quick Commands.
+        /// </summary>
+        internal static string RibbonBarSheet_quickGroup_Text {
+            get {
+                return ResourceManager.GetString("RibbonBarSheet_quickGroup.Text", resourceCulture);
             }
         }
         

@@ -2705,24 +2705,50 @@ Wybierz Nie, aby zachować jedną pustą linię między akapitami</value>
     <value>Ułóż pojemniki</value>
     <comment>ribbon button NODUP</comment>
   </data>
-  <data name="RibbonBarSheet_editGroup.Text" xml:space="preserve">
-    <value>Edytuj polecenia.</value>
-    <comment>settings dialog, ribbon bar options</comment>
-  </data>
   <data name="RibbonBarSheet_editIconBox.Text" xml:space="preserve">
     <value>Pokaż tylko ikony dla poleceń edycji</value>
     <comment>settings dialog, ribbon bar options</comment>
   </data>
-  <data name="RibbonBarSheet_formulaGroup.Text" xml:space="preserve">
-    <value>Polecenia formuły.</value>
-    <comment>settings dialog, ribbon bar options</comment>
+  <data name="RibbonBarSheet_editRibbonBox.Text" xml:space="preserve">
+    <value>Edytuj polecenia</value>
+    <comment>checkbox</comment>
   </data>
   <data name="RibbonBarSheet_formulaIconBox.Text" xml:space="preserve">
     <value>Pokaż tylko ikony dla poleceń formuły</value>
     <comment>settings dialog, ribbon bar options</comment>
   </data>
+  <data name="RibbonBarSheet_formulaRibbonBox.Text" xml:space="preserve">
+    <value>Polecenia formuł</value>
+    <comment>checkbox</comment>
+  </data>
   <data name="RibbonBarSheet_introBox.Text" xml:space="preserve">
     <value>Wybierz polecenia, aby uwzględnić w barze wstążki i czy wyświetlić ikony, ikony i labory. Uruchom ponownie OneNote, aby zobaczyć zmiany.</value>
+    <comment>settings dialog, ribbon bar options</comment>
+  </data>
+  <data name="RibbonBarSheet_positionBox.Text" xml:space="preserve">
+    <value>Grupa schowka
+Podstawowa grupa tekstowa
+Grupa Style
+Grupa Tagi
+Grupa e-mailowa
+Grupa Spotkań
+Po ostatniej grupie</value>
+    <comment>combobox</comment>
+  </data>
+  <data name="RibbonBarSheet_positionGroup.Text" xml:space="preserve">
+    <value>Pozycja</value>
+    <comment>groupbox</comment>
+  </data>
+  <data name="RibbonBarSheet_positionIntroLabel.Text" xml:space="preserve">
+    <value>Wybierz lokalizację grupy wstążki OneMore.</value>
+    <comment>intro label</comment>
+  </data>
+  <data name="RibbonBarSheet_positionLabel.Text" xml:space="preserve">
+    <value>Po grupie OneMore</value>
+    <comment>label</comment>
+  </data>
+  <data name="RibbonBarSheet_quickGroup.Text" xml:space="preserve">
+    <value>Szybkie polecenia</value>
     <comment>settings dialog, ribbon bar options</comment>
   </data>
   <data name="RibbonBarSheet_Title" xml:space="preserve">

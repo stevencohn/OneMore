@@ -2686,24 +2686,50 @@ Wähle Nein, um eine leere Zeile zwischen den Absätzen zu halten</value>
     <value>Container anordnen</value>
     <comment>ribbon button</comment>
   </data>
-  <data name="RibbonBarSheet_editGroup.Text" xml:space="preserve">
-    <value>Befehle bearbeiten</value>
-    <comment>settings dialog, ribbon bar options</comment>
-  </data>
   <data name="RibbonBarSheet_editIconBox.Text" xml:space="preserve">
     <value>Nur Symbole für Bearbeitungsbefehle anzeigen</value>
     <comment>settings dialog, ribbon bar options</comment>
   </data>
-  <data name="RibbonBarSheet_formulaGroup.Text" xml:space="preserve">
-    <value>Formelbefehle</value>
-    <comment>settings dialog, ribbon bar options</comment>
+  <data name="RibbonBarSheet_editRibbonBox.Text" xml:space="preserve">
+    <value>Befehle bearbeiten</value>
+    <comment>checkbox</comment>
   </data>
   <data name="RibbonBarSheet_formulaIconBox.Text" xml:space="preserve">
     <value>Nur Symbole für Formelbefehle anzeigen</value>
     <comment>settings dialog, ribbon bar options</comment>
   </data>
+  <data name="RibbonBarSheet_formulaRibbonBox.Text" xml:space="preserve">
+    <value>Formelbefehle</value>
+    <comment>checkbox</comment>
+  </data>
   <data name="RibbonBarSheet_introBox.Text" xml:space="preserve">
     <value>Wähle aus, welche Befehle in die Multifunktionsleiste aufgenommen werden sollen und ob Symbole oder Symbole und Etiketten angezeigt werden sollen.</value>
+    <comment>settings dialog, ribbon bar options</comment>
+  </data>
+  <data name="RibbonBarSheet_positionBox.Text" xml:space="preserve">
+    <value>Zwischenablagegruppe
+Grundlegende Textgruppe
+Stilgruppe
+Tags-Gruppe
+E-Mail-Gruppe
+Meetings-Gruppe
+Nach der letzten Gruppe</value>
+    <comment>combobox</comment>
+  </data>
+  <data name="RibbonBarSheet_positionGroup.Text" xml:space="preserve">
+    <value>Position</value>
+    <comment>groupbox</comment>
+  </data>
+  <data name="RibbonBarSheet_positionIntroLabel.Text" xml:space="preserve">
+    <value>Wählen Sie den Speicherort der OneMore-Menübandgruppe aus.</value>
+    <comment>intro label</comment>
+  </data>
+  <data name="RibbonBarSheet_positionLabel.Text" xml:space="preserve">
+    <value>Nach OneMore Group</value>
+    <comment>label</comment>
+  </data>
+  <data name="RibbonBarSheet_quickGroup.Text" xml:space="preserve">
+    <value>Schnellbefehle</value>
     <comment>settings dialog, ribbon bar options</comment>
   </data>
   <data name="RibbonBarSheet_Title" xml:space="preserve">

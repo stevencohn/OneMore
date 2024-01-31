@@ -2693,24 +2693,50 @@ Selecteer NO om één lege regel tussen paragrafen te behouden</value>
     <value>Containers schikken</value>
     <comment>ribbon button</comment>
   </data>
-  <data name="RibbonBarSheet_editGroup.Text" xml:space="preserve">
-    <value>Bewerk commando's</value>
-    <comment>settings dialog, ribbon bar options</comment>
-  </data>
   <data name="RibbonBarSheet_editIconBox.Text" xml:space="preserve">
     <value>Alleen pictogrammen weergeven voor bewerkingsopdrachten</value>
     <comment>settings dialog, ribbon bar options</comment>
   </data>
-  <data name="RibbonBarSheet_formulaGroup.Text" xml:space="preserve">
-    <value>Formuleopdrachten</value>
-    <comment>settings dialog, ribbon bar options</comment>
+  <data name="RibbonBarSheet_editRibbonBox.Text" xml:space="preserve">
+    <value>Bewerk opdrachten</value>
+    <comment>checkbox</comment>
   </data>
   <data name="RibbonBarSheet_formulaIconBox.Text" xml:space="preserve">
     <value>Alleen pictogrammen weergeven voor formuleopdrachten</value>
     <comment>settings dialog, ribbon bar options</comment>
   </data>
+  <data name="RibbonBarSheet_formulaRibbonBox.Text" xml:space="preserve">
+    <value>Formule-opdrachten</value>
+    <comment>checkbox</comment>
+  </data>
   <data name="RibbonBarSheet_introBox.Text" xml:space="preserve">
     <value>Kies welke opdrachten u in de lintbalk wilt opnemen en of u pictogrammen of pictogrammen en labels wilt weergeven. </value>
+    <comment>settings dialog, ribbon bar options</comment>
+  </data>
+  <data name="RibbonBarSheet_positionBox.Text" xml:space="preserve">
+    <value>Klembordgroep
+Basistekstgroep
+Stijlen groep
+Tagsgroep
+E-mailgroep
+Vergaderingen groep
+Na de laatste groep</value>
+    <comment>combobox</comment>
+  </data>
+  <data name="RibbonBarSheet_positionGroup.Text" xml:space="preserve">
+    <value>Positie</value>
+    <comment>groupbox</comment>
+  </data>
+  <data name="RibbonBarSheet_positionIntroLabel.Text" xml:space="preserve">
+    <value>Selecteer de locatie van de OneMore-lintgroep.</value>
+    <comment>intro label</comment>
+  </data>
+  <data name="RibbonBarSheet_positionLabel.Text" xml:space="preserve">
+    <value>Na OneMore Group</value>
+    <comment>label</comment>
+  </data>
+  <data name="RibbonBarSheet_quickGroup.Text" xml:space="preserve">
+    <value>Snelle opdrachten</value>
     <comment>settings dialog, ribbon bar options</comment>
   </data>
   <data name="RibbonBarSheet_Title" xml:space="preserve">

@@ -98,20 +98,14 @@ namespace River.OneMoreAddIn.UI
 		{
 			if (Image != null)
 			{
-				if (Enabled)
+				// this should work whether the button starts out enabled or disabled
+				if (enabledImage == null || grayImage == null)
 				{
-					Image = enabledImage;
+					enabledImage = Image;
+					grayImage = manager.GetGrayImage(Image);
 				}
-				else
-				{
-					if (enabledImage == null || grayImage == null)
-					{
-						enabledImage = Image;
-						grayImage = manager.GetGrayImage(Image);
-					}
 
-					Image = grayImage;
-				}
+				Image = Enabled ? enabledImage : grayImage;
 			}
 
 			MouseState = MouseState.None;

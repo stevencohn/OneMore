@@ -5,6 +5,7 @@
 namespace River.OneMoreAddIn.UI
 {
 	using System;
+	using System.ComponentModel;
 	using System.Drawing;
 	using System.Windows.Forms;
 
@@ -47,9 +48,10 @@ namespace River.OneMoreAddIn.UI
 		}
 
 
+		[Category("OneMore"), Description("Text to display")]
 		public override string Text
 		{
-			get => base.Text;
+			get => label.Text;
 			set => label.Text = base.Text = value;
 		}
 

@@ -2692,24 +2692,50 @@ Seleccione No para mantener una línea vacía entre los párrafos</value>
     <value>Organizar contenedores</value>
     <comment>ribbon button</comment>
   </data>
-  <data name="RibbonBarSheet_editGroup.Text" xml:space="preserve">
-    <value>Editar comandos</value>
-    <comment>settings dialog, ribbon bar options</comment>
-  </data>
   <data name="RibbonBarSheet_editIconBox.Text" xml:space="preserve">
     <value>Mostrar solo iconos para los comandos de edición</value>
     <comment>settings dialog, ribbon bar options</comment>
   </data>
-  <data name="RibbonBarSheet_formulaGroup.Text" xml:space="preserve">
-    <value>Comandos de fórmula</value>
-    <comment>settings dialog, ribbon bar options</comment>
+  <data name="RibbonBarSheet_editRibbonBox.Text" xml:space="preserve">
+    <value>Editar comandos</value>
+    <comment>checkbox</comment>
   </data>
   <data name="RibbonBarSheet_formulaIconBox.Text" xml:space="preserve">
     <value>Mostrar solo iconos para comandos de fórmula</value>
     <comment>settings dialog, ribbon bar options</comment>
   </data>
+  <data name="RibbonBarSheet_formulaRibbonBox.Text" xml:space="preserve">
+    <value>Comandos de fórmula</value>
+    <comment>checkbox</comment>
+  </data>
   <data name="RibbonBarSheet_introBox.Text" xml:space="preserve">
     <value>Elija qué comandos incluir en la barra de la cinta y si mostrar iconos o iconos y etiquetas. </value>
+    <comment>settings dialog, ribbon bar options</comment>
+  </data>
+  <data name="RibbonBarSheet_positionBox.Text" xml:space="preserve">
+    <value>Grupo de portapapeles
+Grupo de texto básico
+Grupo de estilos
+Grupo de etiquetas
+Grupo de correo electrónico
+Grupo de Reuniones
+Después del último grupo</value>
+    <comment>combobox</comment>
+  </data>
+  <data name="RibbonBarSheet_positionGroup.Text" xml:space="preserve">
+    <value>Posición</value>
+    <comment>groupbox</comment>
+  </data>
+  <data name="RibbonBarSheet_positionIntroLabel.Text" xml:space="preserve">
+    <value>Seleccione la ubicación del grupo de cinta OneMore.</value>
+    <comment>intro label</comment>
+  </data>
+  <data name="RibbonBarSheet_positionLabel.Text" xml:space="preserve">
+    <value>Después del grupo OneMore</value>
+    <comment>label</comment>
+  </data>
+  <data name="RibbonBarSheet_quickGroup.Text" xml:space="preserve">
+    <value>Comandos rápidos</value>
     <comment>settings dialog, ribbon bar options</comment>
   </data>
   <data name="RibbonBarSheet_Title" xml:space="preserve">

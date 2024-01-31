@@ -2693,24 +2693,50 @@ ISO-code then comma then language name</comment>
     <value>排列容器</value>
     <comment>ribbon button</comment>
   </data>
-  <data name="RibbonBarSheet_editGroup.Text" xml:space="preserve">
-    <value>编辑指令</value>
-    <comment>settings dialog, ribbon bar options</comment>
-  </data>
   <data name="RibbonBarSheet_editIconBox.Text" xml:space="preserve">
     <value>仅显示用于编辑命令的图标</value>
     <comment>settings dialog, ribbon bar options</comment>
   </data>
-  <data name="RibbonBarSheet_formulaGroup.Text" xml:space="preserve">
-    <value>公式命令</value>
-    <comment>settings dialog, ribbon bar options</comment>
+  <data name="RibbonBarSheet_editRibbonBox.Text" xml:space="preserve">
+    <value>编辑命令</value>
+    <comment>checkbox</comment>
   </data>
   <data name="RibbonBarSheet_formulaIconBox.Text" xml:space="preserve">
     <value>仅显示公式命令的图标</value>
     <comment>settings dialog, ribbon bar options</comment>
   </data>
+  <data name="RibbonBarSheet_formulaRibbonBox.Text" xml:space="preserve">
+    <value>公式命令</value>
+    <comment>checkbox</comment>
+  </data>
   <data name="RibbonBarSheet_introBox.Text" xml:space="preserve">
     <value>选择要包含在功能区栏中的命令，以及显示图标还是显示图标和标签。 重新启动OneNote以查看更改。</value>
+    <comment>settings dialog, ribbon bar options</comment>
+  </data>
+  <data name="RibbonBarSheet_positionBox.Text" xml:space="preserve">
+    <value>剪贴板组
+基本文本组
+风格组
+标签组
+电子邮件组
+会议组
+最后一组之后</value>
+    <comment>combobox</comment>
+  </data>
+  <data name="RibbonBarSheet_positionGroup.Text" xml:space="preserve">
+    <value>位置</value>
+    <comment>groupbox</comment>
+  </data>
+  <data name="RibbonBarSheet_positionIntroLabel.Text" xml:space="preserve">
+    <value>选择 OneMore 功能区组的位置。</value>
+    <comment>intro label</comment>
+  </data>
+  <data name="RibbonBarSheet_positionLabel.Text" xml:space="preserve">
+    <value>继OneMore集团之后</value>
+    <comment>label</comment>
+  </data>
+  <data name="RibbonBarSheet_quickGroup.Text" xml:space="preserve">
+    <value>快速命令</value>
     <comment>settings dialog, ribbon bar options</comment>
   </data>
   <data name="RibbonBarSheet_Title" xml:space="preserve">

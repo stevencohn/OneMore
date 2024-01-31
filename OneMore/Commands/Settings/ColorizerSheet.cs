@@ -122,13 +122,6 @@ namespace River.OneMoreAddIn.Settings
 		}
 
 
-		protected override void OnLoad(EventArgs e)
-		{
-			base.OnLoad(e);
-			langView.Focus();
-		}
-
-
 		private void FilterFontsOnCheckedChanged(object sender, System.EventArgs e)
 		{
 			familyBox.Items.Clear();

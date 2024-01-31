@@ -231,7 +231,11 @@ namespace River.OneMoreAddIn.UI
 
 			// for each of the following, parent should have already been themed by now...
 
-			if (control is Label label && control is not MoreLabel)
+			if (control is ComboBox combo)
+			{
+				combo.FlatStyle = DarkMode ? FlatStyle.Popup : FlatStyle.Standard;
+			}
+			else if (control is Label label && control is not MoreLabel)
 			{
 				label.BackColor = label.Parent.BackColor;
 			}
