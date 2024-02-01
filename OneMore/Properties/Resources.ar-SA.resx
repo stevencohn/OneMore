@@ -1267,7 +1267,17 @@
     <comment>textbox</comment>
   </data>
   <data name="GeneralSheet_langLabel.Text" xml:space="preserve">
-    <value>لغة العرض (يجب إعادة تشغيل OneNote)</value>
+    <value>لغة</value>
+    <comment>label</comment>
+  </data>
+  <data name="GeneralSheet_themeBox.Text" xml:space="preserve">
+    <value>نظام
+ضوء
+مظلم</value>
+    <comment>combobox</comment>
+  </data>
+  <data name="GeneralSheet_themeLabel.Text" xml:space="preserve">
+    <value>سمة</value>
     <comment>label</comment>
   </data>
   <data name="GeneralSheet_Title" xml:space="preserve">

@@ -1262,7 +1262,17 @@ Symbole: PI, E</value>
     <comment>textbox</comment>
   </data>
   <data name="GeneralSheet_langLabel.Text" xml:space="preserve">
-    <value>Anzeigesprache (OneNote muss neu gestartet werden)</value>
+    <value>Sprache</value>
+    <comment>label</comment>
+  </data>
+  <data name="GeneralSheet_themeBox.Text" xml:space="preserve">
+    <value>System
+Licht
+Dunkel</value>
+    <comment>combobox</comment>
+  </data>
+  <data name="GeneralSheet_themeLabel.Text" xml:space="preserve">
+    <value>Thema</value>
     <comment>label</comment>
   </data>
   <data name="GeneralSheet_Title" xml:space="preserve">

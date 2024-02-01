@@ -1268,7 +1268,17 @@ OneNote 文件 (*.one)</value>
     <comment>textbox</comment>
   </data>
   <data name="GeneralSheet_langLabel.Text" xml:space="preserve">
-    <value>显示语言（必须重启 OneNote）</value>
+    <value>语言</value>
+    <comment>label</comment>
+  </data>
+  <data name="GeneralSheet_themeBox.Text" xml:space="preserve">
+    <value>系统
+光
+黑暗的</value>
+    <comment>combobox</comment>
+  </data>
+  <data name="GeneralSheet_themeLabel.Text" xml:space="preserve">
+    <value>主题</value>
     <comment>label</comment>
   </data>
   <data name="GeneralSheet_Title" xml:space="preserve">

@@ -62,13 +62,8 @@ namespace River.OneMoreAddIn.Settings
 		{
 			get
 			{
-				var name = GetCollection(nameof(GeneralSheet))["theme"];
-				if (!string.IsNullOrWhiteSpace(name))
-				{
-					return (UI.ThemeMode)Enum.Parse(typeof(UI.ThemeMode), name);
-				}
-
-				return UI.ThemeMode.System;
+				var theme = GetCollection(nameof(GeneralSheet)).Get("theme", 0);
+				return (UI.ThemeMode)theme;
 			}
 		}
 

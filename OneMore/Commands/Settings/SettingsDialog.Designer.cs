@@ -62,17 +62,20 @@
 			this.buttonPanel.Controls.Add(this.okButton);
 			this.buttonPanel.Controls.Add(this.cancelButton);
 			this.buttonPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
-			this.buttonPanel.Location = new System.Drawing.Point(15, 684);
+			this.buttonPanel.Location = new System.Drawing.Point(15, 672);
 			this.buttonPanel.Name = "buttonPanel";
-			this.buttonPanel.Size = new System.Drawing.Size(1126, 45);
+			this.buttonPanel.Padding = new System.Windows.Forms.Padding(0, 10, 0, 0);
+			this.buttonPanel.Size = new System.Drawing.Size(1126, 57);
 			this.buttonPanel.TabIndex = 0;
 			// 
 			// okButton
 			// 
 			this.okButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.okButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
 			this.okButton.DialogResult = System.Windows.Forms.DialogResult.OK;
+			this.okButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.okButton.ImageOver = null;
-			this.okButton.Location = new System.Drawing.Point(874, 3);
+			this.okButton.Location = new System.Drawing.Point(874, 13);
 			this.okButton.Name = "okButton";
 			this.okButton.PreferredBack = null;
 			this.okButton.PreferredFore = null;
@@ -86,9 +89,11 @@
 			// cancelButton
 			// 
 			this.cancelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.cancelButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
 			this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+			this.cancelButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.cancelButton.ImageOver = null;
-			this.cancelButton.Location = new System.Drawing.Point(1000, 3);
+			this.cancelButton.Location = new System.Drawing.Point(1000, 13);
 			this.cancelButton.Name = "cancelButton";
 			this.cancelButton.PreferredBack = null;
 			this.cancelButton.PreferredFore = null;
@@ -107,10 +112,10 @@
 			this.editorPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
 			this.editorPanel.Controls.Add(this.contentPanel);
 			this.editorPanel.Controls.Add(this.headerLabel);
-			this.editorPanel.Location = new System.Drawing.Point(333, 18);
+			this.editorPanel.Location = new System.Drawing.Point(333, 15);
 			this.editorPanel.Name = "editorPanel";
 			this.editorPanel.Padding = new System.Windows.Forms.Padding(2);
-			this.editorPanel.Size = new System.Drawing.Size(806, 661);
+			this.editorPanel.Size = new System.Drawing.Size(806, 657);
 			this.editorPanel.TabIndex = 1;
 			// 
 			// contentPanel
@@ -120,7 +125,7 @@
 			this.contentPanel.MinimumSize = new System.Drawing.Size(800, 500);
 			this.contentPanel.Name = "contentPanel";
 			this.contentPanel.Padding = new System.Windows.Forms.Padding(15);
-			this.contentPanel.Size = new System.Drawing.Size(800, 623);
+			this.contentPanel.Size = new System.Drawing.Size(800, 619);
 			this.contentPanel.TabIndex = 1;
 			// 
 			// headerLabel
@@ -197,7 +202,7 @@
             treeNode15,
             treeNode16,
             treeNode17});
-			this.navTree.Size = new System.Drawing.Size(300, 669);
+			this.navTree.Size = new System.Drawing.Size(300, 657);
 			this.navTree.TabIndex = 2;
 			this.navTree.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.Navigate);
 			// 

@@ -3149,11 +3149,31 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Display language (must restart OneNote).
+        ///   Looks up a localized string similar to Language.
         /// </summary>
         internal static string GeneralSheet_langLabel_Text {
             get {
                 return ResourceManager.GetString("GeneralSheet_langLabel.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to System
+        ///Light
+        ///Dark.
+        /// </summary>
+        internal static string GeneralSheet_themeBox_Text {
+            get {
+                return ResourceManager.GetString("GeneralSheet_themeBox.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Theme.
+        /// </summary>
+        internal static string GeneralSheet_themeLabel_Text {
+            get {
+                return ResourceManager.GetString("GeneralSheet_themeLabel.Text", resourceCulture);
             }
         }
         

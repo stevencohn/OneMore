@@ -258,7 +258,7 @@ namespace River.OneMoreAddIn.UI
 				linkLabel.ActiveLinkColor = Colors["LinkColor"];
 				linkLabel.BackColor = linkLabel.Parent.BackColor;
 			}
-			else if (control is ToolStrip strip) // StatusStrip
+			else if (control is StatusStrip strip)
 			{
 				foreach (ToolStripItem item in strip.Items)
 				{

@@ -95,6 +95,7 @@ namespace River.OneMoreAddIn.UI
 			}
 		}
 
+
 		protected override void OnFontChanged(EventArgs e)
 		{
 			base.OnFontChanged(e);

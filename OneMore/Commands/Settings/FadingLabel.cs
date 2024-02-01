@@ -5,6 +5,7 @@
 
 namespace River.OneMoreAddIn.Settings
 {
+	using River.OneMoreAddIn.UI;
 	using System.Drawing;
 	using System.Drawing.Drawing2D;
 	using System.Windows.Forms;
@@ -12,9 +13,6 @@ namespace River.OneMoreAddIn.Settings
 
 	internal class FadingLabel : Label
 	{
-		private readonly Color startColor;
-		private readonly Color endColor;
-
 
 		public FadingLabel()
 			: base()
@@ -22,16 +20,17 @@ namespace River.OneMoreAddIn.Settings
 			AutoSize = false;
 			TextAlign = ContentAlignment.MiddleLeft;
 
-			startColor = ColorTranslator.FromHtml("#80397B"); // SystemColors.GradientActiveCaption;
-			endColor = ColorTranslator.FromHtml("#F4E8F3"); // SystemColors.ControlLightLight;
 			ForeColor = Color.White;
-
 			Font = new Font("Tahoma", 9F); //, FontStyle.Bold);
 		}
 
 
 		protected override void OnPaint(PaintEventArgs e)
 		{
+			var manager = ThemeManager.Instance;
+			var startColor = manager.GetThemedColor("GradientActiveCaption");
+			var endColor = manager.GetThemedColor("GradientInactiveCaption");
+
 			// linear gradient brush for background fill
 			var gradient = new LinearGradientBrush(
 				new Point(0, 0),

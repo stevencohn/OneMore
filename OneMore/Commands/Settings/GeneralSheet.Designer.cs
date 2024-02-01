@@ -29,7 +29,7 @@ namespace River.OneMoreAddIn.Settings
 		/// </summary>
 		private void InitializeComponent()
 		{
-			this.introBox = new UI.MoreMultilineLabel();
+			this.introBox = new River.OneMoreAddIn.UI.MoreMultilineLabel();
 			this.layoutPanel = new System.Windows.Forms.Panel();
 			this.advancedGroup = new River.OneMoreAddIn.UI.MoreGroupBox();
 			this.experimentalBox = new River.OneMoreAddIn.UI.MoreCheckBox();
@@ -37,6 +37,8 @@ namespace River.OneMoreAddIn.Settings
 			this.langBox = new System.Windows.Forms.ComboBox();
 			this.langLabel = new System.Windows.Forms.Label();
 			this.checkUpdatesBox = new River.OneMoreAddIn.UI.MoreCheckBox();
+			this.themeLabel = new System.Windows.Forms.Label();
+			this.themeBox = new System.Windows.Forms.ComboBox();
 			this.layoutPanel.SuspendLayout();
 			this.advancedGroup.SuspendLayout();
 			this.SuspendLayout();
@@ -57,6 +59,8 @@ namespace River.OneMoreAddIn.Settings
 			// 
 			// layoutPanel
 			// 
+			this.layoutPanel.Controls.Add(this.themeBox);
+			this.layoutPanel.Controls.Add(this.themeLabel);
 			this.layoutPanel.Controls.Add(this.advancedGroup);
 			this.layoutPanel.Controls.Add(this.langBox);
 			this.layoutPanel.Controls.Add(this.langLabel);
@@ -85,18 +89,24 @@ namespace River.OneMoreAddIn.Settings
 			// 
 			// experimentalBox
 			// 
+			this.experimentalBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
+			this.experimentalBox.Cursor = System.Windows.Forms.Cursors.Hand;
+			this.experimentalBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.experimentalBox.Location = new System.Drawing.Point(18, 62);
 			this.experimentalBox.Name = "experimentalBox";
-			this.experimentalBox.Size = new System.Drawing.Size(249, 24);
+			this.experimentalBox.Size = new System.Drawing.Size(250, 25);
 			this.experimentalBox.TabIndex = 1;
 			this.experimentalBox.Text = "Enable experimental features";
 			this.experimentalBox.UseVisualStyleBackColor = true;
 			// 
 			// verboseBox
 			// 
+			this.verboseBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
+			this.verboseBox.Cursor = System.Windows.Forms.Cursors.Hand;
+			this.verboseBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.verboseBox.Location = new System.Drawing.Point(18, 32);
 			this.verboseBox.Name = "verboseBox";
-			this.verboseBox.Size = new System.Drawing.Size(207, 24);
+			this.verboseBox.Size = new System.Drawing.Size(208, 25);
 			this.verboseBox.TabIndex = 0;
 			this.verboseBox.Text = "Enable verbose logging";
 			this.verboseBox.UseVisualStyleBackColor = true;
@@ -104,35 +114,59 @@ namespace River.OneMoreAddIn.Settings
 			// langBox
 			// 
 			this.langBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-			this.langBox.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
 			this.langBox.FormattingEnabled = true;
-			this.langBox.Location = new System.Drawing.Point(25, 101);
+			this.langBox.Location = new System.Drawing.Point(186, 83);
 			this.langBox.Name = "langBox";
-			this.langBox.Size = new System.Drawing.Size(345, 28);
+			this.langBox.Size = new System.Drawing.Size(300, 28);
 			this.langBox.TabIndex = 3;
 			// 
 			// langLabel
 			// 
 			this.langLabel.AutoSize = true;
 			this.langLabel.ForeColor = System.Drawing.SystemColors.ControlText;
-			this.langLabel.Location = new System.Drawing.Point(21, 78);
+			this.langLabel.Location = new System.Drawing.Point(21, 86);
 			this.langLabel.Name = "langLabel";
-			this.langLabel.Size = new System.Drawing.Size(297, 20);
+			this.langLabel.Size = new System.Drawing.Size(81, 20);
 			this.langLabel.TabIndex = 2;
-			this.langLabel.Text = "Display language (must restart OneNote)";
+			this.langLabel.Text = "Language";
 			// 
 			// checkUpdatesBox
 			// 
+			this.checkUpdatesBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
 			this.checkUpdatesBox.Checked = true;
 			this.checkUpdatesBox.CheckState = System.Windows.Forms.CheckState.Checked;
+			this.checkUpdatesBox.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.checkUpdatesBox.ForeColor = System.Drawing.SystemColors.ControlText;
-			this.checkUpdatesBox.Location = new System.Drawing.Point(25, 5);
+			this.checkUpdatesBox.Location = new System.Drawing.Point(25, 176);
 			this.checkUpdatesBox.Margin = new System.Windows.Forms.Padding(0, 10, 0, 0);
 			this.checkUpdatesBox.Name = "checkUpdatesBox";
-			this.checkUpdatesBox.Size = new System.Drawing.Size(455, 24);
+			this.checkUpdatesBox.Size = new System.Drawing.Size(456, 25);
 			this.checkUpdatesBox.TabIndex = 1;
 			this.checkUpdatesBox.Text = "Check for new versions of OneMore when OneNote starts";
 			this.checkUpdatesBox.UseVisualStyleBackColor = true;
+			// 
+			// themeLabel
+			// 
+			this.themeLabel.AutoSize = true;
+			this.themeLabel.ForeColor = System.Drawing.SystemColors.ControlText;
+			this.themeLabel.Location = new System.Drawing.Point(21, 23);
+			this.themeLabel.Name = "themeLabel";
+			this.themeLabel.Size = new System.Drawing.Size(58, 20);
+			this.themeLabel.TabIndex = 5;
+			this.themeLabel.Text = "Theme";
+			// 
+			// themeBox
+			// 
+			this.themeBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.themeBox.FormattingEnabled = true;
+			this.themeBox.Items.AddRange(new object[] {
+            "System",
+			"Light",
+            "Dark"});
+			this.themeBox.Location = new System.Drawing.Point(186, 20);
+			this.themeBox.Name = "themeBox";
+			this.themeBox.Size = new System.Drawing.Size(300, 28);
+			this.themeBox.TabIndex = 6;
 			// 
 			// GeneralSheet
 			// 
@@ -162,5 +196,7 @@ namespace River.OneMoreAddIn.Settings
 		private UI.MoreGroupBox advancedGroup;
 		private UI.MoreCheckBox verboseBox;
 		private UI.MoreCheckBox experimentalBox;
+		private System.Windows.Forms.ComboBox themeBox;
+		private System.Windows.Forms.Label themeLabel;
 	}
 }
