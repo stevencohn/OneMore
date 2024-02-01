@@ -135,6 +135,7 @@
 			// formulaPicture
 			// 
 			this.formulaPicture.BackColor = System.Drawing.Color.White;
+			this.formulaPicture.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
 			this.formulaPicture.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.formulaPicture.Image = ((System.Drawing.Image)(resources.GetObject("formulaPicture.Image")));
 			this.formulaPicture.Location = new System.Drawing.Point(24, 149);
@@ -149,6 +150,7 @@
 			// editPicture
 			// 
 			this.editPicture.BackColor = System.Drawing.Color.White;
+			this.editPicture.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
 			this.editPicture.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.editPicture.Image = ((System.Drawing.Image)(resources.GetObject("editPicture.Image")));
 			this.editPicture.Location = new System.Drawing.Point(24, 39);
