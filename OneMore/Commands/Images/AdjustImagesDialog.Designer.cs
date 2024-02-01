@@ -107,8 +107,8 @@ namespace River.OneMoreAddIn.Commands
 			this.cancelButton.ImageOver = null;
 			this.cancelButton.Location = new System.Drawing.Point(996, 671);
 			this.cancelButton.Name = "cancelButton";
-			this.cancelButton.PreferredBack = null;
-			this.cancelButton.PreferredFore = null;
+			this.cancelButton.ThemedBack = null;
+			this.cancelButton.ThemedFore = null;
 			this.cancelButton.ShowBorder = true;
 			this.cancelButton.Size = new System.Drawing.Size(100, 38);
 			this.cancelButton.TabIndex = 24;
@@ -124,8 +124,8 @@ namespace River.OneMoreAddIn.Commands
 			this.okButton.ImageOver = null;
 			this.okButton.Location = new System.Drawing.Point(890, 671);
 			this.okButton.Name = "okButton";
-			this.okButton.PreferredBack = null;
-			this.okButton.PreferredFore = null;
+			this.okButton.ThemedBack = null;
+			this.okButton.ThemedFore = null;
 			this.okButton.ShowBorder = true;
 			this.okButton.Size = new System.Drawing.Size(100, 38);
 			this.okButton.TabIndex = 23;
@@ -175,8 +175,8 @@ namespace River.OneMoreAddIn.Commands
             0,
             0});
 			this.percentBox.Name = "percentBox";
-			this.percentBox.PreferredBack = null;
-			this.percentBox.PreferredFore = null;
+			this.percentBox.ThemedBack = null;
+			this.percentBox.ThemedFore = null;
 			this.percentBox.Size = new System.Drawing.Size(94, 26);
 			this.percentBox.TabIndex = 2;
 			this.percentBox.Value = new decimal(new int[] {
@@ -207,8 +207,8 @@ namespace River.OneMoreAddIn.Commands
             0,
             0});
 			this.widthBox.Name = "widthBox";
-			this.widthBox.PreferredBack = null;
-			this.widthBox.PreferredFore = null;
+			this.widthBox.ThemedBack = null;
+			this.widthBox.ThemedFore = null;
 			this.widthBox.Size = new System.Drawing.Size(123, 26);
 			this.widthBox.TabIndex = 4;
 			this.widthBox.ValueChanged += new System.EventHandler(this.WidthValueChanged);
@@ -225,8 +225,8 @@ namespace River.OneMoreAddIn.Commands
             0,
             0});
 			this.heightBox.Name = "heightBox";
-			this.heightBox.PreferredBack = null;
-			this.heightBox.PreferredFore = null;
+			this.heightBox.ThemedBack = null;
+			this.heightBox.ThemedFore = null;
 			this.heightBox.Size = new System.Drawing.Size(123, 26);
 			this.heightBox.TabIndex = 5;
 			this.heightBox.ValueChanged += new System.EventHandler(this.HeightValueChanged);
@@ -282,8 +282,8 @@ namespace River.OneMoreAddIn.Commands
             0,
             0});
 			this.presetBox.Name = "presetBox";
-			this.presetBox.PreferredBack = null;
-			this.presetBox.PreferredFore = null;
+			this.presetBox.ThemedBack = null;
+			this.presetBox.ThemedFore = null;
 			this.presetBox.Size = new System.Drawing.Size(123, 26);
 			this.presetBox.TabIndex = 8;
 			this.presetBox.Value = new decimal(new int[] {
@@ -404,8 +404,8 @@ namespace River.OneMoreAddIn.Commands
             0,
             0});
 			this.opacityBox.Name = "opacityBox";
-			this.opacityBox.PreferredBack = null;
-			this.opacityBox.PreferredFore = null;
+			this.opacityBox.ThemedBack = null;
+			this.opacityBox.ThemedFore = null;
 			this.opacityBox.Size = new System.Drawing.Size(94, 26);
 			this.opacityBox.TabIndex = 9;
 			this.opacityBox.Value = new decimal(new int[] {
@@ -476,8 +476,8 @@ namespace River.OneMoreAddIn.Commands
             0,
             -2147483648});
 			this.brightnessBox.Name = "brightnessBox";
-			this.brightnessBox.PreferredBack = null;
-			this.brightnessBox.PreferredFore = null;
+			this.brightnessBox.ThemedBack = null;
+			this.brightnessBox.ThemedFore = null;
 			this.brightnessBox.Size = new System.Drawing.Size(94, 26);
 			this.brightnessBox.TabIndex = 11;
 			this.brightnessBox.ValueChanged += new System.EventHandler(this.SlideValueChanged);
@@ -503,8 +503,8 @@ namespace River.OneMoreAddIn.Commands
             0,
             -2147483648});
 			this.contrastBox.Name = "contrastBox";
-			this.contrastBox.PreferredBack = null;
-			this.contrastBox.PreferredFore = null;
+			this.contrastBox.ThemedBack = null;
+			this.contrastBox.ThemedFore = null;
 			this.contrastBox.Size = new System.Drawing.Size(94, 26);
 			this.contrastBox.TabIndex = 13;
 			this.contrastBox.ValueChanged += new System.EventHandler(this.SlideValueChanged);
@@ -576,8 +576,8 @@ namespace River.OneMoreAddIn.Commands
 			this.qualBox.ForeColor = System.Drawing.SystemColors.ControlText;
 			this.qualBox.Location = new System.Drawing.Point(187, 514);
 			this.qualBox.Name = "qualBox";
-			this.qualBox.PreferredBack = null;
-			this.qualBox.PreferredFore = null;
+			this.qualBox.ThemedBack = null;
+			this.qualBox.ThemedFore = null;
 			this.qualBox.Size = new System.Drawing.Size(94, 26);
 			this.qualBox.TabIndex = 18;
 			this.qualBox.Value = new decimal(new int[] {
@@ -591,7 +591,6 @@ namespace River.OneMoreAddIn.Commands
 			// 
 			this.styleBox.BackColor = System.Drawing.SystemColors.Window;
 			this.styleBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-			this.styleBox.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
 			this.styleBox.FormattingEnabled = true;
 			this.styleBox.Items.AddRange(new object[] {
             "Original",
@@ -667,8 +666,8 @@ namespace River.OneMoreAddIn.Commands
             0,
             -2147483648});
 			this.saturationBox.Name = "saturationBox";
-			this.saturationBox.PreferredBack = null;
-			this.saturationBox.PreferredFore = null;
+			this.saturationBox.ThemedBack = null;
+			this.saturationBox.ThemedFore = null;
 			this.saturationBox.Size = new System.Drawing.Size(94, 26);
 			this.saturationBox.TabIndex = 15;
 			this.saturationBox.ValueChanged += new System.EventHandler(this.SlideValueChanged);
@@ -676,7 +675,6 @@ namespace River.OneMoreAddIn.Commands
 			// limitsBox
 			// 
 			this.limitsBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-			this.limitsBox.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
 			this.limitsBox.FormattingEnabled = true;
 			this.limitsBox.Items.AddRange(new object[] {
             "Resize all images",

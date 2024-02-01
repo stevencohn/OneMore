@@ -76,8 +76,8 @@
 			this.otherBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.otherBox.MaxLength = 10;
 			this.otherBox.Name = "otherBox";
-			this.otherBox.PreferredBack = null;
-			this.otherBox.PreferredFore = null;
+			this.otherBox.ThemedBack = "Window";
+			this.otherBox.ThemedFore = null;
 			this.otherBox.Size = new System.Drawing.Size(139, 26);
 			this.otherBox.TabIndex = 4;
 			this.otherBox.Text = "~";
@@ -85,10 +85,11 @@
 			// 
 			// otherRadio
 			// 
+			this.otherRadio.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.otherRadio.Location = new System.Drawing.Point(218, 65);
 			this.otherRadio.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.otherRadio.Name = "otherRadio";
-			this.otherRadio.Size = new System.Drawing.Size(73, 24);
+			this.otherRadio.Size = new System.Drawing.Size(77, 25);
 			this.otherRadio.TabIndex = 3;
 			this.otherRadio.Text = "Other";
 			this.otherRadio.UseVisualStyleBackColor = true;
@@ -96,12 +97,12 @@
 			// 
 			// commasRadio
 			// 
-			this.commasRadio.AutoSize = true;
 			this.commasRadio.Checked = true;
+			this.commasRadio.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.commasRadio.Location = new System.Drawing.Point(218, 29);
 			this.commasRadio.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.commasRadio.Name = "commasRadio";
-			this.commasRadio.Size = new System.Drawing.Size(97, 24);
+			this.commasRadio.Size = new System.Drawing.Size(101, 25);
 			this.commasRadio.TabIndex = 2;
 			this.commasRadio.TabStop = true;
 			this.commasRadio.Text = "Commas";
@@ -110,10 +111,11 @@
 			// 
 			// tabsRadio
 			// 
+			this.tabsRadio.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.tabsRadio.Location = new System.Drawing.Point(24, 65);
 			this.tabsRadio.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.tabsRadio.Name = "tabsRadio";
-			this.tabsRadio.Size = new System.Drawing.Size(68, 24);
+			this.tabsRadio.Size = new System.Drawing.Size(72, 25);
 			this.tabsRadio.TabIndex = 1;
 			this.tabsRadio.Text = "Tabs";
 			this.tabsRadio.UseVisualStyleBackColor = true;
@@ -121,10 +123,11 @@
 			// 
 			// paragraphsRadio
 			// 
+			this.paragraphsRadio.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.paragraphsRadio.Location = new System.Drawing.Point(24, 29);
 			this.paragraphsRadio.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.paragraphsRadio.Name = "paragraphsRadio";
-			this.paragraphsRadio.Size = new System.Drawing.Size(117, 24);
+			this.paragraphsRadio.Size = new System.Drawing.Size(121, 25);
 			this.paragraphsRadio.TabIndex = 0;
 			this.paragraphsRadio.Text = "Paragraphs";
 			this.paragraphsRadio.UseVisualStyleBackColor = true;
@@ -133,13 +136,15 @@
 			// cancelButton
 			// 
 			this.cancelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+			this.cancelButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(231)))), ((int)(((byte)(231)))));
 			this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+			this.cancelButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.cancelButton.ImageOver = null;
 			this.cancelButton.Location = new System.Drawing.Point(369, 359);
 			this.cancelButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.cancelButton.Name = "cancelButton";
-			this.cancelButton.PreferredBack = null;
-			this.cancelButton.PreferredFore = null;
+			this.cancelButton.ThemedBack = null;
+			this.cancelButton.ThemedFore = null;
 			this.cancelButton.ShowBorder = true;
 			this.cancelButton.Size = new System.Drawing.Size(112, 35);
 			this.cancelButton.TabIndex = 1;
@@ -149,13 +154,15 @@
 			// okButton
 			// 
 			this.okButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+			this.okButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(231)))), ((int)(((byte)(231)))));
 			this.okButton.DialogResult = System.Windows.Forms.DialogResult.OK;
+			this.okButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.okButton.ImageOver = null;
 			this.okButton.Location = new System.Drawing.Point(248, 359);
 			this.okButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.okButton.Name = "okButton";
-			this.okButton.PreferredBack = null;
-			this.okButton.PreferredFore = null;
+			this.okButton.ThemedBack = null;
+			this.okButton.ThemedFore = null;
 			this.okButton.ShowBorder = true;
 			this.okButton.Size = new System.Drawing.Size(112, 35);
 			this.okButton.TabIndex = 2;
@@ -247,18 +254,24 @@
 			// 
 			// headerBox
 			// 
+			this.headerBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(231)))), ((int)(((byte)(231)))));
+			this.headerBox.Cursor = System.Windows.Forms.Cursors.Hand;
+			this.headerBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.headerBox.Location = new System.Drawing.Point(18, 286);
 			this.headerBox.Name = "headerBox";
-			this.headerBox.Size = new System.Drawing.Size(182, 24);
+			this.headerBox.Size = new System.Drawing.Size(184, 25);
 			this.headerBox.TabIndex = 5;
 			this.headerBox.Text = "First row is a header";
 			this.headerBox.UseVisualStyleBackColor = true;
 			// 
 			// unquoteBox
 			// 
+			this.unquoteBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(231)))), ((int)(((byte)(231)))));
+			this.unquoteBox.Cursor = System.Windows.Forms.Cursors.Hand;
+			this.unquoteBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.unquoteBox.Location = new System.Drawing.Point(18, 316);
 			this.unquoteBox.Name = "unquoteBox";
-			this.unquoteBox.Size = new System.Drawing.Size(310, 24);
+			this.unquoteBox.Size = new System.Drawing.Size(312, 25);
 			this.unquoteBox.TabIndex = 6;
 			this.unquoteBox.Text = "Remove quotes from complete strings";
 			this.unquoteBox.UseVisualStyleBackColor = true;

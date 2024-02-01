@@ -67,7 +67,8 @@ namespace River.OneMoreAddIn.Commands
 					Margin = new Padding(20, 6, 10, 6),
 					Size = new Size(530, 20),
 					TabStop = true,
-					VisitedLinkColor = SystemColors.GrayText
+					VisitedLinkColor = SystemColors.GrayText,
+					StrictColors = true
 				};
 
 				link.LinkClicked += NavigateTo;

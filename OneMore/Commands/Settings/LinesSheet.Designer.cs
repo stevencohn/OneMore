@@ -49,8 +49,8 @@ namespace River.OneMoreAddIn.Settings
 			this.introBox.Location = new System.Drawing.Point(13, 8);
 			this.introBox.Name = "introBox";
 			this.introBox.Padding = new System.Windows.Forms.Padding(0, 0, 0, 36);
-			this.introBox.PreferredBack = "ControlLightLight";
-			this.introBox.PreferredFore = "ControlText";
+			this.introBox.ThemedBack = "ControlLightLight";
+			this.introBox.ThemedFore = "ControlText";
 			this.introBox.Size = new System.Drawing.Size(772, 66);
 			this.introBox.TabIndex = 3;
 			this.introBox.Text = "Customize the default style for horizontal line snippets";

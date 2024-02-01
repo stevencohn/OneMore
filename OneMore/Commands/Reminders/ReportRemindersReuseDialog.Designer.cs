@@ -42,8 +42,8 @@
 			this.okButton.ImageOver = null;
 			this.okButton.Location = new System.Drawing.Point(184, 111);
 			this.okButton.Name = "okButton";
-			this.okButton.PreferredBack = null;
-			this.okButton.PreferredFore = null;
+			this.okButton.ThemedBack = null;
+			this.okButton.ThemedFore = null;
 			this.okButton.ShowBorder = true;
 			this.okButton.Size = new System.Drawing.Size(120, 38);
 			this.okButton.TabIndex = 2;
@@ -57,8 +57,8 @@
 			this.cancelButton.ImageOver = null;
 			this.cancelButton.Location = new System.Drawing.Point(310, 111);
 			this.cancelButton.Name = "cancelButton";
-			this.cancelButton.PreferredBack = null;
-			this.cancelButton.PreferredFore = null;
+			this.cancelButton.ThemedBack = null;
+			this.cancelButton.ThemedFore = null;
 			this.cancelButton.ShowBorder = true;
 			this.cancelButton.Size = new System.Drawing.Size(120, 38);
 			this.cancelButton.TabIndex = 3;

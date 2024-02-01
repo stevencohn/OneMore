@@ -45,9 +45,9 @@
 			this.manualBox = new System.Windows.Forms.RichTextBox();
 			this.tabIcons = new System.Windows.Forms.ImageList(this.components);
 			this.manualPanel = new System.Windows.Forms.Panel();
-			this.hideEditedByBox2 = new UI.MoreCheckBox();
-			this.pidBox = new UI.MoreCheckBox();
-			this.multilineBox2 = new UI.MoreCheckBox();
+			this.hideEditedByBox2 = new River.OneMoreAddIn.UI.MoreCheckBox();
+			this.pidBox = new River.OneMoreAddIn.UI.MoreCheckBox();
+			this.multilineBox2 = new River.OneMoreAddIn.UI.MoreCheckBox();
 			this.fnLabel = new System.Windows.Forms.Label();
 			this.queryButton = new River.OneMoreAddIn.UI.MoreButton();
 			this.functionBox = new System.Windows.Forms.ComboBox();
@@ -63,16 +63,16 @@
 			this.pagePathLabel = new System.Windows.Forms.Label();
 			this.pageNameLabel = new System.Windows.Forms.Label();
 			this.pageOptionsPanel = new System.Windows.Forms.Panel();
-			this.editModeBox = new UI.MoreCheckBox();
-			this.saveWindowBox = new UI.MoreCheckBox();
-			this.multilineBox = new UI.MoreCheckBox();
+			this.editModeBox = new River.OneMoreAddIn.UI.MoreCheckBox();
+			this.saveWindowBox = new River.OneMoreAddIn.UI.MoreCheckBox();
+			this.multilineBox = new River.OneMoreAddIn.UI.MoreCheckBox();
 			this.scopeBox = new System.Windows.Forms.ListBox();
-			this.hideEditedByBox = new UI.MoreCheckBox();
-			this.linefeedBox = new UI.MoreCheckBox();
+			this.hideEditedByBox = new River.OneMoreAddIn.UI.MoreCheckBox();
+			this.linefeedBox = new River.OneMoreAddIn.UI.MoreCheckBox();
 			this.pageInfoLabel = new System.Windows.Forms.Label();
 			this.selectButton = new River.OneMoreAddIn.UI.MoreButton();
 			this.topPanel = new System.Windows.Forms.Panel();
-			this.wrapBox = new UI.MoreCheckBox();
+			this.wrapBox = new River.OneMoreAddIn.UI.MoreCheckBox();
 			this.findBox = new River.OneMoreAddIn.UI.MoreTextBox();
 			this.findButton = new River.OneMoreAddIn.UI.MoreButton();
 			this.masterPanel = new System.Windows.Forms.Panel();
@@ -315,13 +315,14 @@
 			// 
 			// hideEditedByBox2
 			// 
-			this.hideEditedByBox2.AutoSize = true;
+			this.hideEditedByBox2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(231)))), ((int)(((byte)(231)))));
 			this.hideEditedByBox2.Checked = true;
 			this.hideEditedByBox2.CheckState = System.Windows.Forms.CheckState.Checked;
+			this.hideEditedByBox2.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.hideEditedByBox2.ForeColor = System.Drawing.SystemColors.ControlText;
 			this.hideEditedByBox2.Location = new System.Drawing.Point(3, 18);
 			this.hideEditedByBox2.Name = "hideEditedByBox2";
-			this.hideEditedByBox2.Size = new System.Drawing.Size(208, 24);
+			this.hideEditedByBox2.Size = new System.Drawing.Size(214, 25);
 			this.hideEditedByBox2.TabIndex = 10;
 			this.hideEditedByBox2.Text = "Hide edited-by attributes";
 			this.tooltip.SetToolTip(this.hideEditedByBox2, "Enable to hide ID and timestamp attributes");
@@ -330,13 +331,14 @@
 			// 
 			// pidBox
 			// 
-			this.pidBox.AutoSize = true;
+			this.pidBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(231)))), ((int)(((byte)(231)))));
 			this.pidBox.Checked = true;
 			this.pidBox.CheckState = System.Windows.Forms.CheckState.Checked;
+			this.pidBox.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.pidBox.ForeColor = System.Drawing.SystemColors.ControlText;
 			this.pidBox.Location = new System.Drawing.Point(3, 78);
 			this.pidBox.Name = "pidBox";
-			this.pidBox.Size = new System.Drawing.Size(99, 24);
+			this.pidBox.Size = new System.Drawing.Size(101, 25);
 			this.pidBox.TabIndex = 10;
 			this.pidBox.Text = "Hide PID";
 			this.tooltip.SetToolTip(this.pidBox, "Enable to hide personal identifying information");
@@ -345,11 +347,12 @@
 			// 
 			// multilineBox2
 			// 
-			this.multilineBox2.AutoSize = true;
+			this.multilineBox2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(231)))), ((int)(((byte)(231)))));
+			this.multilineBox2.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.multilineBox2.ForeColor = System.Drawing.SystemColors.ControlText;
 			this.multilineBox2.Location = new System.Drawing.Point(3, 48);
 			this.multilineBox2.Name = "multilineBox2";
-			this.multilineBox2.Size = new System.Drawing.Size(195, 24);
+			this.multilineBox2.Size = new System.Drawing.Size(201, 25);
 			this.multilineBox2.TabIndex = 8;
 			this.multilineBox2.Text = "Attributes on new lines";
 			this.tooltip.SetToolTip(this.multilineBox2, "Enable to show each attribute on its own line");
@@ -376,8 +379,8 @@
 			this.queryButton.ImageOver = null;
 			this.queryButton.Location = new System.Drawing.Point(623, 50);
 			this.queryButton.Name = "queryButton";
-			this.queryButton.PreferredBack = null;
-			this.queryButton.PreferredFore = null;
+			this.queryButton.ThemedBack = null;
+			this.queryButton.ThemedFore = null;
 			this.queryButton.ShowBorder = true;
 			this.queryButton.Size = new System.Drawing.Size(47, 32);
 			this.queryButton.TabIndex = 9;
@@ -387,7 +390,6 @@
 			// functionBox
 			// 
 			this.functionBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-			this.functionBox.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
 			this.functionBox.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.functionBox.FormattingEnabled = true;
 			this.functionBox.Items.AddRange(new object[] {
@@ -408,8 +410,8 @@
 			this.objectIdBox.Location = new System.Drawing.Point(416, 15);
 			this.objectIdBox.Margin = new System.Windows.Forms.Padding(3, 6, 3, 3);
 			this.objectIdBox.Name = "objectIdBox";
-			this.objectIdBox.PreferredBack = null;
-			this.objectIdBox.PreferredFore = null;
+			this.objectIdBox.ThemedBack = null;
+			this.objectIdBox.ThemedFore = null;
 			this.objectIdBox.Size = new System.Drawing.Size(509, 29);
 			this.objectIdBox.TabIndex = 7;
 			this.objectIdBox.TextChanged += new System.EventHandler(this.ManualInputChanged);
@@ -435,8 +437,8 @@
 			this.cancelButton.Location = new System.Drawing.Point(2301, 23);
 			this.cancelButton.Margin = new System.Windows.Forms.Padding(2);
 			this.cancelButton.Name = "cancelButton";
-			this.cancelButton.PreferredBack = null;
-			this.cancelButton.PreferredFore = null;
+			this.cancelButton.ThemedBack = null;
+			this.cancelButton.ThemedFore = null;
 			this.cancelButton.ShowBorder = true;
 			this.cancelButton.Size = new System.Drawing.Size(124, 35);
 			this.cancelButton.TabIndex = 9;
@@ -472,8 +474,8 @@
 			this.okButton.Location = new System.Drawing.Point(2169, 23);
 			this.okButton.Margin = new System.Windows.Forms.Padding(2);
 			this.okButton.Name = "okButton";
-			this.okButton.PreferredBack = null;
-			this.okButton.PreferredFore = null;
+			this.okButton.ThemedBack = null;
+			this.okButton.ThemedFore = null;
 			this.okButton.ShowBorder = true;
 			this.okButton.Size = new System.Drawing.Size(124, 35);
 			this.okButton.TabIndex = 8;
@@ -569,12 +571,13 @@
 			// 
 			// editModeBox
 			// 
-			this.editModeBox.AutoSize = true;
+			this.editModeBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(231)))), ((int)(((byte)(231)))));
+			this.editModeBox.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.editModeBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.editModeBox.ForeColor = System.Drawing.SystemColors.ControlText;
 			this.editModeBox.Location = new System.Drawing.Point(330, 18);
 			this.editModeBox.Name = "editModeBox";
-			this.editModeBox.Size = new System.Drawing.Size(159, 24);
+			this.editModeBox.Size = new System.Drawing.Size(163, 25);
 			this.editModeBox.TabIndex = 9;
 			this.editModeBox.Text = "Enable edit mode";
 			this.tooltip.SetToolTip(this.editModeBox, "Enable to edit this page");
@@ -584,11 +587,12 @@
 			// 
 			// saveWindowBox
 			// 
-			this.saveWindowBox.AutoSize = true;
+			this.saveWindowBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(231)))), ((int)(((byte)(231)))));
+			this.saveWindowBox.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.saveWindowBox.ForeColor = System.Drawing.SystemColors.ControlText;
 			this.saveWindowBox.Location = new System.Drawing.Point(330, 48);
 			this.saveWindowBox.Name = "saveWindowBox";
-			this.saveWindowBox.Size = new System.Drawing.Size(186, 24);
+			this.saveWindowBox.Size = new System.Drawing.Size(194, 25);
 			this.saveWindowBox.TabIndex = 7;
 			this.saveWindowBox.Text = "Save window location";
 			this.tooltip.SetToolTip(this.saveWindowBox, "Enable to save window position and size on close");
@@ -597,11 +601,12 @@
 			// 
 			// multilineBox
 			// 
-			this.multilineBox.AutoSize = true;
+			this.multilineBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(231)))), ((int)(((byte)(231)))));
+			this.multilineBox.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.multilineBox.ForeColor = System.Drawing.SystemColors.ControlText;
 			this.multilineBox.Location = new System.Drawing.Point(3, 48);
 			this.multilineBox.Name = "multilineBox";
-			this.multilineBox.Size = new System.Drawing.Size(195, 24);
+			this.multilineBox.Size = new System.Drawing.Size(201, 25);
 			this.multilineBox.TabIndex = 8;
 			this.multilineBox.Text = "Attributes on new lines";
 			this.tooltip.SetToolTip(this.multilineBox, "Enable to show each attribute on its own line");
@@ -624,13 +629,14 @@
 			// 
 			// hideEditedByBox
 			// 
-			this.hideEditedByBox.AutoSize = true;
+			this.hideEditedByBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(231)))), ((int)(((byte)(231)))));
 			this.hideEditedByBox.Checked = true;
 			this.hideEditedByBox.CheckState = System.Windows.Forms.CheckState.Checked;
+			this.hideEditedByBox.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.hideEditedByBox.ForeColor = System.Drawing.SystemColors.ControlText;
 			this.hideEditedByBox.Location = new System.Drawing.Point(3, 18);
 			this.hideEditedByBox.Name = "hideEditedByBox";
-			this.hideEditedByBox.Size = new System.Drawing.Size(208, 24);
+			this.hideEditedByBox.Size = new System.Drawing.Size(214, 25);
 			this.hideEditedByBox.TabIndex = 5;
 			this.hideEditedByBox.Text = "Hide edited-by attributes";
 			this.tooltip.SetToolTip(this.hideEditedByBox, "Enable to hide ID and timestamp attributes");
@@ -640,13 +646,14 @@
 			// 
 			// linefeedBox
 			// 
-			this.linefeedBox.AutoSize = true;
+			this.linefeedBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(231)))), ((int)(((byte)(231)))));
 			this.linefeedBox.Checked = true;
 			this.linefeedBox.CheckState = System.Windows.Forms.CheckState.Checked;
+			this.linefeedBox.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.linefeedBox.ForeColor = System.Drawing.SystemColors.ControlText;
 			this.linefeedBox.Location = new System.Drawing.Point(3, 78);
 			this.linefeedBox.Name = "linefeedBox";
-			this.linefeedBox.Size = new System.Drawing.Size(211, 24);
+			this.linefeedBox.Size = new System.Drawing.Size(218, 25);
 			this.linefeedBox.TabIndex = 6;
 			this.linefeedBox.Text = "Remove LF from CDATA";
 			this.tooltip.SetToolTip(this.linefeedBox, "Enable to remove LF/CR from CDATA <spans>");
@@ -675,8 +682,8 @@
 			this.selectButton.Margin = new System.Windows.Forms.Padding(2);
 			this.selectButton.Name = "selectButton";
 			this.selectButton.Padding = new System.Windows.Forms.Padding(4, 0, 0, 0);
-			this.selectButton.PreferredBack = null;
-			this.selectButton.PreferredFore = null;
+			this.selectButton.ThemedBack = null;
+			this.selectButton.ThemedFore = null;
 			this.selectButton.ShowBorder = true;
 			this.selectButton.Size = new System.Drawing.Size(140, 35);
 			this.selectButton.TabIndex = 3;
@@ -704,11 +711,12 @@
 			// 
 			// wrapBox
 			// 
-			this.wrapBox.AutoSize = true;
+			this.wrapBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(231)))), ((int)(((byte)(231)))));
+			this.wrapBox.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.wrapBox.ForeColor = System.Drawing.SystemColors.ControlText;
 			this.wrapBox.Location = new System.Drawing.Point(177, 59);
 			this.wrapBox.Name = "wrapBox";
-			this.wrapBox.Size = new System.Drawing.Size(103, 24);
+			this.wrapBox.Size = new System.Drawing.Size(106, 25);
 			this.wrapBox.TabIndex = 2;
 			this.wrapBox.Text = "Wrap text";
 			this.wrapBox.UseVisualStyleBackColor = true;
@@ -720,8 +728,8 @@
 			this.findBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.findBox.Location = new System.Drawing.Point(10, 11);
 			this.findBox.Name = "findBox";
-			this.findBox.PreferredBack = null;
-			this.findBox.PreferredFore = null;
+			this.findBox.ThemedBack = null;
+			this.findBox.ThemedFore = null;
 			this.findBox.Size = new System.Drawing.Size(270, 28);
 			this.findBox.TabIndex = 0;
 			this.findBox.TextChanged += new System.EventHandler(this.FindOptionsOnTextChanged);
@@ -736,8 +744,8 @@
 			this.findButton.ImageOver = null;
 			this.findButton.Location = new System.Drawing.Point(288, 9);
 			this.findButton.Name = "findButton";
-			this.findButton.PreferredBack = null;
-			this.findButton.PreferredFore = null;
+			this.findButton.ThemedBack = null;
+			this.findButton.ThemedFore = null;
 			this.findButton.ShowBorder = true;
 			this.findButton.Size = new System.Drawing.Size(58, 35);
 			this.findButton.TabIndex = 1;

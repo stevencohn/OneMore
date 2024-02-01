@@ -49,6 +49,7 @@
     "ButtonDown": "#F0F0F0",
     "ErrorText": "#A52A2A",
     "HintText": "#1E90FF",
+    "InactiveWindow": "#EBEBEB",
 
     "XmlComment": "Green",
     "XmlEditedBy": "CornflowerBlue",

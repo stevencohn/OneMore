@@ -71,8 +71,8 @@
 			this.introBox.Location = new System.Drawing.Point(10, 9);
 			this.introBox.Name = "introBox";
 			this.introBox.Padding = new System.Windows.Forms.Padding(0, 0, 0, 36);
-			this.introBox.PreferredBack = "ControlLightLight";
-			this.introBox.PreferredFore = null;
+			this.introBox.ThemedBack = "ControlLightLight";
+			this.introBox.ThemedFore = null;
 			this.introBox.Size = new System.Drawing.Size(780, 56);
 			this.introBox.TabIndex = 0;
 			this.introBox.Text = "Click the edit button to modify a plugin or double-click its name to rename it. C" +

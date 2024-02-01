@@ -95,8 +95,8 @@
 			this.closeButton.ImageOver = null;
 			this.closeButton.Location = new System.Drawing.Point(407, 13);
 			this.closeButton.Name = "closeButton";
-			this.closeButton.PreferredBack = null;
-			this.closeButton.PreferredFore = null;
+			this.closeButton.ThemedBack = null;
+			this.closeButton.ThemedFore = null;
 			this.closeButton.ShowBorder = true;
 			this.closeButton.Size = new System.Drawing.Size(108, 38);
 			this.closeButton.TabIndex = 0;
@@ -160,8 +160,8 @@
 			this.refreshButton.ImageOver = null;
 			this.refreshButton.Location = new System.Drawing.Point(481, 1);
 			this.refreshButton.Name = "refreshButton";
-			this.refreshButton.PreferredBack = null;
-			this.refreshButton.PreferredFore = null;
+			this.refreshButton.ThemedBack = null;
+			this.refreshButton.ThemedFore = null;
 			this.refreshButton.ShowBorder = true;
 			this.refreshButton.Size = new System.Drawing.Size(35, 37);
 			this.refreshButton.TabIndex = 0;
@@ -262,8 +262,8 @@
 			this.copyPinnedButton.ImageOver = null;
 			this.copyPinnedButton.Location = new System.Drawing.Point(109, 1);
 			this.copyPinnedButton.Name = "copyPinnedButton";
-			this.copyPinnedButton.PreferredBack = null;
-			this.copyPinnedButton.PreferredFore = null;
+			this.copyPinnedButton.ThemedBack = null;
+			this.copyPinnedButton.ThemedFore = null;
 			this.copyPinnedButton.ShowBorder = true;
 			this.copyPinnedButton.Size = new System.Drawing.Size(35, 35);
 			this.copyPinnedButton.TabIndex = 2;
@@ -282,8 +282,8 @@
 			this.upButton.ImageOver = null;
 			this.upButton.Location = new System.Drawing.Point(27, -1);
 			this.upButton.Name = "upButton";
-			this.upButton.PreferredBack = null;
-			this.upButton.PreferredFore = null;
+			this.upButton.ThemedBack = null;
+			this.upButton.ThemedFore = null;
 			this.upButton.ShowBorder = true;
 			this.upButton.Size = new System.Drawing.Size(35, 37);
 			this.upButton.TabIndex = 0;
@@ -302,8 +302,8 @@
 			this.unpinButton.ImageOver = null;
 			this.unpinButton.Location = new System.Drawing.Point(150, -1);
 			this.unpinButton.Name = "unpinButton";
-			this.unpinButton.PreferredBack = null;
-			this.unpinButton.PreferredFore = null;
+			this.unpinButton.ThemedBack = null;
+			this.unpinButton.ThemedFore = null;
 			this.unpinButton.ShowBorder = true;
 			this.unpinButton.Size = new System.Drawing.Size(35, 37);
 			this.unpinButton.TabIndex = 3;
@@ -322,8 +322,8 @@
 			this.downButton.ImageOver = null;
 			this.downButton.Location = new System.Drawing.Point(68, 0);
 			this.downButton.Name = "downButton";
-			this.downButton.PreferredBack = null;
-			this.downButton.PreferredFore = null;
+			this.downButton.ThemedBack = null;
+			this.downButton.ThemedFore = null;
 			this.downButton.ShowBorder = true;
 			this.downButton.Size = new System.Drawing.Size(35, 37);
 			this.downButton.TabIndex = 1;
@@ -397,8 +397,8 @@
 			this.pinButton.ImageOver = null;
 			this.pinButton.Location = new System.Drawing.Point(150, 1);
 			this.pinButton.Name = "pinButton";
-			this.pinButton.PreferredBack = null;
-			this.pinButton.PreferredFore = null;
+			this.pinButton.ThemedBack = null;
+			this.pinButton.ThemedFore = null;
 			this.pinButton.ShowBorder = true;
 			this.pinButton.Size = new System.Drawing.Size(35, 35);
 			this.pinButton.TabIndex = 1;
@@ -417,8 +417,8 @@
 			this.copyHistoryButton.ImageOver = null;
 			this.copyHistoryButton.Location = new System.Drawing.Point(109, 1);
 			this.copyHistoryButton.Name = "copyHistoryButton";
-			this.copyHistoryButton.PreferredBack = null;
-			this.copyHistoryButton.PreferredFore = null;
+			this.copyHistoryButton.ThemedBack = null;
+			this.copyHistoryButton.ThemedFore = null;
 			this.copyHistoryButton.ShowBorder = true;
 			this.copyHistoryButton.Size = new System.Drawing.Size(35, 35);
 			this.copyHistoryButton.TabIndex = 0;

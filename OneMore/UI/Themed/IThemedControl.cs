@@ -8,14 +8,19 @@ namespace River.OneMoreAddIn.UI
 	{
 
 		/// <summary>
-		/// Gets or sets the preferred background color
+		/// Gets or sets the preferred theme background color.
+		/// This is required for special theme-only named colors, like ErrorText
 		/// </summary>
-		string PreferredBack { get; set; }
+		string ThemedBack { get; set; }
 
 
 		/// <summary>
-		/// Gets or sets the preferred foreground color, the text color
+		/// Gets or sets the preferred theme foreground (text) color.
+		/// This is required for special theme-only named colors, like ErrorText
 		/// </summary>
-		string PreferredFore { get; set; }
+		string ThemedFore { get; set; }
+
+
+		void ApplyTheme(ThemeManager manager);
 	}
 }

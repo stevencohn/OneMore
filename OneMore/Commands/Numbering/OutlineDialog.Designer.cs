@@ -58,8 +58,8 @@
 			this.okButton.ImageOver = null;
 			this.okButton.Location = new System.Drawing.Point(262, 432);
 			this.okButton.Name = "okButton";
-			this.okButton.PreferredBack = null;
-			this.okButton.PreferredFore = null;
+			this.okButton.ThemedBack = null;
+			this.okButton.ThemedFore = null;
 			this.okButton.ShowBorder = true;
 			this.okButton.Size = new System.Drawing.Size(100, 38);
 			this.okButton.TabIndex = 0;
@@ -74,8 +74,8 @@
 			this.cancelButton.ImageOver = null;
 			this.cancelButton.Location = new System.Drawing.Point(368, 432);
 			this.cancelButton.Name = "cancelButton";
-			this.cancelButton.PreferredBack = null;
-			this.cancelButton.PreferredFore = null;
+			this.cancelButton.ThemedBack = null;
+			this.cancelButton.ThemedFore = null;
 			this.cancelButton.ShowBorder = true;
 			this.cancelButton.Size = new System.Drawing.Size(100, 38);
 			this.cancelButton.TabIndex = 1;
@@ -118,8 +118,8 @@
 			this.alphaDemoBox.ForeColor = System.Drawing.SystemColors.ControlText;
 			this.alphaDemoBox.Location = new System.Drawing.Point(82, 98);
 			this.alphaDemoBox.Name = "alphaDemoBox";
-			this.alphaDemoBox.PreferredBack = "ControlLightLight";
-			this.alphaDemoBox.PreferredFore = "ControlText";
+			this.alphaDemoBox.ThemedBack = "ControlLightLight";
+			this.alphaDemoBox.ThemedFore = "ControlText";
 			this.alphaDemoBox.Size = new System.Drawing.Size(128, 67);
 			this.alphaDemoBox.TabIndex = 15;
 			this.alphaDemoBox.Text = "1.\r\n   a.\r\n      i.";
@@ -143,8 +143,8 @@
 			this.numDemoBox.ForeColor = System.Drawing.SystemColors.ControlText;
 			this.numDemoBox.Location = new System.Drawing.Point(290, 98);
 			this.numDemoBox.Name = "numDemoBox";
-			this.numDemoBox.PreferredBack = "ControlLightLight";
-			this.numDemoBox.PreferredFore = "ControlText";
+			this.numDemoBox.ThemedBack = "ControlLightLight";
+			this.numDemoBox.ThemedFore = "ControlText";
 			this.numDemoBox.Size = new System.Drawing.Size(128, 67);
 			this.numDemoBox.TabIndex = 13;
 			this.numDemoBox.Text = "1.\r\n   1.1.\r\n      1.1.1.";
@@ -215,8 +215,8 @@
 			this.tagButton.Location = new System.Drawing.Point(104, 108);
 			this.tagButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.tagButton.Name = "tagButton";
-			this.tagButton.PreferredBack = null;
-			this.tagButton.PreferredFore = null;
+			this.tagButton.ThemedBack = null;
+			this.tagButton.ThemedFore = null;
 			this.tagButton.ShowBorder = true;
 			this.tagButton.Size = new System.Drawing.Size(60, 38);
 			this.tagButton.TabIndex = 2;

@@ -46,8 +46,8 @@
 			this.okButton.ImageOver = null;
 			this.okButton.Location = new System.Drawing.Point(344, 100);
 			this.okButton.Name = "okButton";
-			this.okButton.PreferredBack = null;
-			this.okButton.PreferredFore = null;
+			this.okButton.ThemedBack = null;
+			this.okButton.ThemedFore = null;
 			this.okButton.ShowBorder = true;
 			this.okButton.Size = new System.Drawing.Size(116, 38);
 			this.okButton.TabIndex = 11;
@@ -63,8 +63,8 @@
 			this.cancelButton.ImageOver = null;
 			this.cancelButton.Location = new System.Drawing.Point(464, 100);
 			this.cancelButton.Name = "cancelButton";
-			this.cancelButton.PreferredBack = null;
-			this.cancelButton.PreferredFore = null;
+			this.cancelButton.ThemedBack = null;
+			this.cancelButton.ThemedFore = null;
 			this.cancelButton.ShowBorder = true;
 			this.cancelButton.Size = new System.Drawing.Size(116, 38);
 			this.cancelButton.TabIndex = 12;
@@ -87,8 +87,8 @@
 			this.nameBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
 			this.nameBox.Location = new System.Drawing.Point(118, 23);
 			this.nameBox.Name = "nameBox";
-			this.nameBox.PreferredBack = null;
-			this.nameBox.PreferredFore = null;
+			this.nameBox.ThemedBack = null;
+			this.nameBox.ThemedFore = null;
 			this.nameBox.Size = new System.Drawing.Size(462, 26);
 			this.nameBox.TabIndex = 14;
 			this.nameBox.TextChanged += new System.EventHandler(this.NameBoxTextChanged);
@@ -100,8 +100,8 @@
 			this.errorLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.errorLabel.Location = new System.Drawing.Point(114, 52);
 			this.errorLabel.Name = "errorLabel";
-			this.errorLabel.PreferredBack = "ControlLightLight";
-			this.errorLabel.PreferredFore = "ErrorText";
+			this.errorLabel.ThemedBack = "ControlLightLight";
+			this.errorLabel.ThemedFore = "ErrorText";
 			this.errorLabel.Size = new System.Drawing.Size(282, 20);
 			this.errorLabel.TabIndex = 15;
 			this.errorLabel.Text = "Name exists. Choose a different name.";

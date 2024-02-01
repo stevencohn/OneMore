@@ -47,8 +47,8 @@
 			this.okButton.Location = new System.Drawing.Point(264, 204);
 			this.okButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.okButton.Name = "okButton";
-			this.okButton.PreferredBack = null;
-			this.okButton.PreferredFore = null;
+			this.okButton.ThemedBack = null;
+			this.okButton.ThemedFore = null;
 			this.okButton.ShowBorder = true;
 			this.okButton.Size = new System.Drawing.Size(112, 35);
 			this.okButton.TabIndex = 4;
@@ -63,8 +63,8 @@
 			this.cancelButton.Location = new System.Drawing.Point(385, 204);
 			this.cancelButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.cancelButton.Name = "cancelButton";
-			this.cancelButton.PreferredBack = null;
-			this.cancelButton.PreferredFore = null;
+			this.cancelButton.ThemedBack = null;
+			this.cancelButton.ThemedFore = null;
 			this.cancelButton.ShowBorder = true;
 			this.cancelButton.Size = new System.Drawing.Size(112, 35);
 			this.cancelButton.TabIndex = 3;
@@ -132,8 +132,8 @@
 			this.recommendBox.Location = new System.Drawing.Point(62, 138);
 			this.recommendBox.Multiline = true;
 			this.recommendBox.Name = "recommendBox";
-			this.recommendBox.PreferredBack = null;
-			this.recommendBox.PreferredFore = null;
+			this.recommendBox.ThemedBack = null;
+			this.recommendBox.ThemedFore = null;
 			this.recommendBox.ReadOnly = true;
 			this.recommendBox.Size = new System.Drawing.Size(432, 52);
 			this.recommendBox.TabIndex = 10;

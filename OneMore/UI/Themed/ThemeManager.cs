@@ -4,10 +4,13 @@
 
 #pragma warning disable S3011 // Reflection should not be used to increase accessibility...
 
+#define notBETTER
+
 namespace River.OneMoreAddIn.UI
 {
 	using Newtonsoft.Json;
 	using River.OneMoreAddIn;
+	using River.OneMoreAddIn.Commands;
 	using River.OneMoreAddIn.Helpers.Office;
 	using River.OneMoreAddIn.Settings;
 	using System;
@@ -213,13 +216,24 @@ namespace River.OneMoreAddIn.UI
 				//logger.WriteLine($"skipping {control.Name} {control.GetType()}");
 				return;
 			}
+#if BETTER
+			control.BackColor = GetBestColor(
+				control is IThemedControl tb ? tb.ThemedBack : null,
+				control.BackColor,
+				control.Parent != null ? control.Parent.BackColor : Color.Empty,
+				"Control");
 
+			control.ForeColor = control.Enabled
+				? GetBestColor(
+					control is IThemedControl tf ? tf.ThemedBack : null,
+					control.ForeColor,
+					control.Parent != null ? control.Parent.ForeColor : Color.Empty,
+					"ControlText")
+				: GetThemedColor("GrayText");
+#else
 			if (control is IThemedControl themed)
 			{
-				control.BackColor = GetThemedColor("Control", themed.PreferredBack);
-				control.ForeColor = control.Enabled
-					? GetThemedColor("ControlText", themed.PreferredFore)
-					: GetThemedColor("GrayText");
+				themed.ApplyTheme(this);
 			}
 			else
 			{
@@ -228,12 +242,12 @@ namespace River.OneMoreAddIn.UI
 					? GetThemedColor(control.ForeColor)
 					: GetThemedColor("GrayText");
 			}
-
+#endif
 			// for each of the following, parent should have already been themed by now...
 
-			if (control is ComboBox combo)
+			if (control is ComboBox combo && DarkMode)
 			{
-				combo.FlatStyle = DarkMode ? FlatStyle.Popup : FlatStyle.Standard;
+				combo.FlatStyle = FlatStyle.Popup;
 			}
 			else if (control is Label label && control is not MoreLabel)
 			{
@@ -250,13 +264,6 @@ namespace River.OneMoreAddIn.UI
 					item.BackColor = Colors["ControlLightLight"];
 					item.ForeColor = Colors["ControlText"];
 				}
-			}
-			else if (control is MoreLinkLabel linkLabel)
-			{
-				linkLabel.LinkColor = Colors["LinkColor"];
-				linkLabel.HoverColor = Colors["HoverColor"];
-				linkLabel.ActiveLinkColor = Colors["LinkColor"];
-				linkLabel.BackColor = linkLabel.Parent.BackColor;
 			}
 			else if (control is StatusStrip strip)
 			{
@@ -279,6 +286,28 @@ namespace River.OneMoreAddIn.UI
 			}
 		}
 
+#if BETTER
+		private Color GetBestColor(
+			string themed, Color property, Color parentProperty, string defaultName)
+		{
+			if (!string.IsNullOrWhiteSpace(themed))
+			{
+				return GetThemedColor(themed);
+			}
+
+			if (property != Color.Empty && property != Color.Transparent)
+			{
+				return GetThemedColor(property);
+			}
+
+			if (parentProperty != Color.Empty && parentProperty != Color.Transparent)
+			{
+				return GetThemedColor(parentProperty);
+			}
+
+			return GetThemedColor(defaultName);
+		}
+#endif
 
 		public Image GetGrayImage(Image image)
 		{
@@ -295,17 +324,17 @@ namespace River.OneMoreAddIn.UI
 		}
 
 
-		public Color GetThemedColor(string key, string preferred = null)
+		public Color GetThemedColor(string key, string themed = null)
 		{
-			if (string.IsNullOrWhiteSpace(preferred))
+			// preferred could be a SystemColor like "ControlText" or NamedColor like "Blue"
+			if (!string.IsNullOrWhiteSpace(themed) && Colors.ContainsKey(themed))
 			{
-				return Colors[key];
+				return Colors[themed];
 			}
 
-			// preferred could be a SystemColor like "ControlText" or NamedColor like "Blue"
-			if (Colors.ContainsKey(preferred))
+			if (!string.IsNullOrWhiteSpace(key) && Colors.ContainsKey(key))
 			{
-				return Colors[preferred];
+				return Colors[key];
 			}
 
 			return Color.Magenta;

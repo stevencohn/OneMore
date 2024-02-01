@@ -23,9 +23,9 @@ namespace River.OneMoreAddIn.UI
 		}
 
 
-		public string PreferredBack { get; set; }
+		public string ThemedBack { get; set; }
 
-		public string PreferredFore { get; set; } = "ControlText";
+		public string ThemedFore { get; set; } = "ControlText";
 
 
 		protected override void OnEnabledChanged(EventArgs e)
@@ -40,9 +40,9 @@ namespace River.OneMoreAddIn.UI
 			{
 				if (grayColor == Color.Empty)
 				{
-					foreColor = string.IsNullOrEmpty(PreferredFore)
+					foreColor = string.IsNullOrEmpty(ThemedFore)
 						? ForeColor
-						: manager.GetThemedColor(PreferredFore);
+						: manager.GetThemedColor(ThemedFore);
 
 					grayColor = manager.GetThemedColor("GrayText");
 				}

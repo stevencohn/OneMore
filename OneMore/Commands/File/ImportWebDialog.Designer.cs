@@ -56,8 +56,8 @@ namespace River.OneMoreAddIn.Commands
 			this.addressBox.Location = new System.Drawing.Point(92, 27);
 			this.addressBox.Margin = new System.Windows.Forms.Padding(3, 3, 3, 15);
 			this.addressBox.Name = "addressBox";
-			this.addressBox.PreferredBack = null;
-			this.addressBox.PreferredFore = null;
+			this.addressBox.ThemedBack = null;
+			this.addressBox.ThemedFore = null;
 			this.addressBox.Size = new System.Drawing.Size(691, 26);
 			this.addressBox.TabIndex = 1;
 			this.addressBox.TextChanged += new System.EventHandler(this.ConfirmAddress);
@@ -70,8 +70,8 @@ namespace River.OneMoreAddIn.Commands
 			this.okButton.ImageOver = null;
 			this.okButton.Location = new System.Drawing.Point(577, 210);
 			this.okButton.Name = "okButton";
-			this.okButton.PreferredBack = null;
-			this.okButton.PreferredFore = null;
+			this.okButton.ThemedBack = null;
+			this.okButton.ThemedFore = null;
 			this.okButton.ShowBorder = true;
 			this.okButton.Size = new System.Drawing.Size(100, 38);
 			this.okButton.TabIndex = 9;
@@ -85,8 +85,8 @@ namespace River.OneMoreAddIn.Commands
 			this.cancelButton.ImageOver = null;
 			this.cancelButton.Location = new System.Drawing.Point(683, 210);
 			this.cancelButton.Name = "cancelButton";
-			this.cancelButton.PreferredBack = null;
-			this.cancelButton.PreferredFore = null;
+			this.cancelButton.ThemedBack = null;
+			this.cancelButton.ThemedFore = null;
 			this.cancelButton.ShowBorder = true;
 			this.cancelButton.Size = new System.Drawing.Size(100, 38);
 			this.cancelButton.TabIndex = 8;

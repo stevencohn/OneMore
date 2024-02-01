@@ -54,8 +54,8 @@
 			this.introBox.BackColor = System.Drawing.SystemColors.ControlLightLight;
 			this.introBox.Location = new System.Drawing.Point(13, 182);
 			this.introBox.Name = "introBox";
-			this.introBox.PreferredBack = "ControlLightLight";
-			this.introBox.PreferredFore = null;
+			this.introBox.ThemedBack = "ControlLightLight";
+			this.introBox.ThemedFore = null;
 			this.introBox.Size = new System.Drawing.Size(774, 66);
 			this.introBox.TabIndex = 3;
 			this.introBox.Text = "Choose which commands to include in the ribbon bar and whether to display icons o" +
@@ -170,8 +170,8 @@
 			this.positionIntroLabel.Location = new System.Drawing.Point(13, 12);
 			this.positionIntroLabel.Name = "positionIntroLabel";
 			this.positionIntroLabel.Padding = new System.Windows.Forms.Padding(0, 0, 0, 36);
-			this.positionIntroLabel.PreferredBack = "ControlLightLight";
-			this.positionIntroLabel.PreferredFore = null;
+			this.positionIntroLabel.ThemedBack = "ControlLightLight";
+			this.positionIntroLabel.ThemedFore = null;
 			this.positionIntroLabel.Size = new System.Drawing.Size(774, 53);
 			this.positionIntroLabel.TabIndex = 4;
 			this.positionIntroLabel.Text = "Select the location of the OneMore ribbon group.";
@@ -194,7 +194,6 @@
 			// positionBox
 			// 
 			this.positionBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-			this.positionBox.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
 			this.positionBox.FormattingEnabled = true;
 			this.positionBox.Items.AddRange(new object[] {
             "Clipboard Group",

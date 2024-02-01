@@ -103,7 +103,7 @@ namespace River.OneMoreAddIn.Commands
 				}
 				catch
 				{
-					validStatusLabel.ForeColor = manager.GetThemedColor("ControlText");
+					validStatusLabel.ForeColor = manager.GetThemedColor("ErrorText");
 					validStatusLabel.Text = Resx.FormulaDialog_status_Invalid;
 					okButton.Enabled = false;
 				}

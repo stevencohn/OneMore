@@ -56,12 +56,14 @@
 			// cancelButton
 			// 
 			this.cancelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+			this.cancelButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(231)))), ((int)(((byte)(231)))));
 			this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+			this.cancelButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.cancelButton.ImageOver = null;
 			this.cancelButton.Location = new System.Drawing.Point(864, 13);
 			this.cancelButton.Name = "cancelButton";
-			this.cancelButton.PreferredBack = null;
-			this.cancelButton.PreferredFore = null;
+			this.cancelButton.ThemedBack = null;
+			this.cancelButton.ThemedFore = null;
 			this.cancelButton.ShowBorder = true;
 			this.cancelButton.Size = new System.Drawing.Size(112, 35);
 			this.cancelButton.TabIndex = 0;
@@ -105,6 +107,7 @@
 			// menuButton
 			// 
 			this.menuButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+			this.menuButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(231)))), ((int)(((byte)(231)))));
 			this.menuButton.FlatAppearance.BorderSize = 0;
 			this.menuButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.menuButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -112,8 +115,8 @@
 			this.menuButton.ImageOver = null;
 			this.menuButton.Location = new System.Drawing.Point(925, 12);
 			this.menuButton.Name = "menuButton";
-			this.menuButton.PreferredBack = null;
-			this.menuButton.PreferredFore = null;
+			this.menuButton.ThemedBack = null;
+			this.menuButton.ThemedFore = null;
 			this.menuButton.ShowBorder = true;
 			this.menuButton.Size = new System.Drawing.Size(50, 31);
 			this.menuButton.TabIndex = 4;
@@ -169,7 +172,6 @@
 			// 
 			this.scopeBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.scopeBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-			this.scopeBox.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
 			this.scopeBox.FormattingEnabled = true;
 			this.scopeBox.Items.AddRange(new object[] {
             "All",
@@ -184,12 +186,14 @@
 			// searchButton
 			// 
 			this.searchButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+			this.searchButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(231)))), ((int)(((byte)(231)))));
+			this.searchButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.searchButton.Image = ((System.Drawing.Image)(resources.GetObject("searchButton.Image")));
 			this.searchButton.ImageOver = null;
 			this.searchButton.Location = new System.Drawing.Point(859, 12);
 			this.searchButton.Name = "searchButton";
-			this.searchButton.PreferredBack = null;
-			this.searchButton.PreferredFore = null;
+			this.searchButton.ThemedBack = null;
+			this.searchButton.ThemedFore = null;
 			this.searchButton.ShowBorder = true;
 			this.searchButton.Size = new System.Drawing.Size(60, 31);
 			this.searchButton.TabIndex = 1;
@@ -204,8 +208,8 @@
 			this.tagBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.tagBox.Location = new System.Drawing.Point(41, 12);
 			this.tagBox.Name = "tagBox";
-			this.tagBox.PreferredBack = null;
-			this.tagBox.PreferredFore = null;
+			this.tagBox.ThemedBack = null;
+			this.tagBox.ThemedFore = null;
 			this.tagBox.Size = new System.Drawing.Size(608, 28);
 			this.tagBox.TabIndex = 0;
 			// 
@@ -215,8 +219,8 @@
 			this.introBox.Location = new System.Drawing.Point(0, 0);
 			this.introBox.Name = "introBox";
 			this.introBox.Padding = new System.Windows.Forms.Padding(12);
-			this.introBox.PreferredBack = "Control";
-			this.introBox.PreferredFore = "ControlText";
+			this.introBox.ThemedBack = "Control";
+			this.introBox.ThemedFore = "ControlText";
 			this.introBox.Size = new System.Drawing.Size(988, 62);
 			this.introBox.TabIndex = 10;
 			this.introBox.Text = "Type any part of one or more hashtags. Wildcards are implied unless a tag is ende" +
@@ -249,14 +253,16 @@
 			// indexButton
 			// 
 			this.indexButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+			this.indexButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(231)))), ((int)(((byte)(231)))));
 			this.indexButton.DialogResult = System.Windows.Forms.DialogResult.OK;
 			this.indexButton.Enabled = false;
+			this.indexButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.indexButton.ImageOver = null;
 			this.indexButton.Location = new System.Drawing.Point(487, 12);
 			this.indexButton.Margin = new System.Windows.Forms.Padding(4, 5, 10, 9);
 			this.indexButton.Name = "indexButton";
-			this.indexButton.PreferredBack = null;
-			this.indexButton.PreferredFore = null;
+			this.indexButton.ThemedBack = null;
+			this.indexButton.ThemedFore = null;
 			this.indexButton.ShowBorder = true;
 			this.indexButton.Size = new System.Drawing.Size(112, 35);
 			this.indexButton.TabIndex = 1;
@@ -267,14 +273,16 @@
 			// copyButton
 			// 
 			this.copyButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+			this.copyButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(231)))), ((int)(((byte)(231)))));
 			this.copyButton.DialogResult = System.Windows.Forms.DialogResult.OK;
 			this.copyButton.Enabled = false;
+			this.copyButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.copyButton.ImageOver = null;
 			this.copyButton.Location = new System.Drawing.Point(613, 12);
 			this.copyButton.Margin = new System.Windows.Forms.Padding(4, 5, 10, 9);
 			this.copyButton.Name = "copyButton";
-			this.copyButton.PreferredBack = null;
-			this.copyButton.PreferredFore = null;
+			this.copyButton.ThemedBack = null;
+			this.copyButton.ThemedFore = null;
 			this.copyButton.ShowBorder = true;
 			this.copyButton.Size = new System.Drawing.Size(112, 35);
 			this.copyButton.TabIndex = 2;
@@ -285,14 +293,16 @@
 			// moveButton
 			// 
 			this.moveButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+			this.moveButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(231)))), ((int)(((byte)(231)))));
 			this.moveButton.DialogResult = System.Windows.Forms.DialogResult.OK;
 			this.moveButton.Enabled = false;
+			this.moveButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.moveButton.ImageOver = null;
 			this.moveButton.Location = new System.Drawing.Point(739, 13);
 			this.moveButton.Margin = new System.Windows.Forms.Padding(4, 5, 10, 9);
 			this.moveButton.Name = "moveButton";
-			this.moveButton.PreferredBack = null;
-			this.moveButton.PreferredFore = null;
+			this.moveButton.ThemedBack = null;
+			this.moveButton.ThemedFore = null;
 			this.moveButton.ShowBorder = true;
 			this.moveButton.Size = new System.Drawing.Size(112, 35);
 			this.moveButton.TabIndex = 3;

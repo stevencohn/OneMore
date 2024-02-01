@@ -51,8 +51,8 @@
 			this.introBox.Location = new System.Drawing.Point(10, 9);
 			this.introBox.Name = "introBox";
 			this.introBox.Padding = new System.Windows.Forms.Padding(0, 0, 0, 36);
-			this.introBox.PreferredBack = "ControlLightLight";
-			this.introBox.PreferredFore = "ControlText";
+			this.introBox.ThemedBack = "ControlLightLight";
+			this.introBox.ThemedFore = "ControlText";
 			this.introBox.Size = new System.Drawing.Size(780, 66);
 			this.introBox.TabIndex = 2;
 			this.introBox.Text = "The highlighter command will cycle through the colors of the chosen theme. Colors" +

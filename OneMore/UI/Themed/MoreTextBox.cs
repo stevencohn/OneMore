@@ -4,6 +4,7 @@
 
 namespace River.OneMoreAddIn.UI
 {
+	using System;
 	using System.Windows.Forms;
 
 
@@ -15,15 +16,23 @@ namespace River.OneMoreAddIn.UI
 		}
 
 
-		/// <summary>
-		/// Gets or sets the preferred background color
-		/// </summary>
-		public string PreferredBack { get; set; }
+		public string ThemedBack { get; set; }
 
 
-		/// <summary>
-		/// Gets or sets the preferred foreground color
-		/// </summary>
-		public string PreferredFore { get; set; }
+		public string ThemedFore { get; set; }
+
+
+		public void ApplyTheme(ThemeManager manager)
+		{
+			ForeColor = manager.GetThemedColor(ThemedFore ?? "WindowText");
+			BackColor = manager.GetThemedColor(Enabled ? (ThemedBack ?? "Window") : "InactiveWindow");
+		}
+
+
+		protected override void OnEnabledChanged(EventArgs e)
+		{
+			base.OnEnabledChanged(e);
+			ApplyTheme(ThemeManager.Instance);
+		}
 	}
 }

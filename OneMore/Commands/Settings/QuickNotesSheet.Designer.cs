@@ -30,7 +30,7 @@ namespace River.OneMoreAddIn.Settings
 		private void InitializeComponent()
 		{
 			this.components = new System.ComponentModel.Container();
-			this.introBox = new UI.MoreMultilineLabel();
+			this.introBox = new River.OneMoreAddIn.UI.MoreMultilineLabel();
 			this.layoutPanel = new System.Windows.Forms.Panel();
 			this.optionsGroup = new River.OneMoreAddIn.UI.MoreGroupBox();
 			this.titleBox = new River.OneMoreAddIn.UI.MoreCheckBox();
@@ -58,8 +58,8 @@ namespace River.OneMoreAddIn.Settings
 			this.introBox.Location = new System.Drawing.Point(13, 8);
 			this.introBox.Name = "introBox";
 			this.introBox.Padding = new System.Windows.Forms.Padding(0, 0, 0, 36);
-			this.introBox.PreferredBack = "ControlLightLight";
-			this.introBox.PreferredFore = "ControlText";
+			this.introBox.ThemedBack = "ControlLightLight";
+			this.introBox.ThemedFore = "ControlText";
 			this.introBox.Size = new System.Drawing.Size(772, 60);
 			this.introBox.TabIndex = 3;
 			this.introBox.Text = "Customize the behavior of the Organize Quick Notes command";
@@ -92,20 +92,26 @@ namespace River.OneMoreAddIn.Settings
 			// 
 			// titleBox
 			// 
+			this.titleBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(231)))), ((int)(((byte)(231)))));
 			this.titleBox.Checked = true;
 			this.titleBox.CheckState = System.Windows.Forms.CheckState.Checked;
+			this.titleBox.Cursor = System.Windows.Forms.Cursors.Hand;
+			this.titleBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.titleBox.Location = new System.Drawing.Point(13, 27);
 			this.titleBox.Name = "titleBox";
-			this.titleBox.Size = new System.Drawing.Size(398, 24);
+			this.titleBox.Size = new System.Drawing.Size(399, 25);
 			this.titleBox.TabIndex = 3;
 			this.titleBox.Text = "Set the page title to the first fiew words of the note";
 			this.titleBox.UseVisualStyleBackColor = true;
 			// 
 			// stampBox
 			// 
+			this.stampBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(231)))), ((int)(((byte)(231)))));
+			this.stampBox.Cursor = System.Windows.Forms.Cursors.Hand;
+			this.stampBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.stampBox.Location = new System.Drawing.Point(13, 57);
 			this.stampBox.Name = "stampBox";
-			this.stampBox.Size = new System.Drawing.Size(440, 24);
+			this.stampBox.Size = new System.Drawing.Size(441, 25);
 			this.stampBox.TabIndex = 2;
 			this.stampBox.Text = "Prepend the title with the date that the note was created";
 			this.stampBox.UseVisualStyleBackColor = true;
@@ -126,9 +132,10 @@ namespace River.OneMoreAddIn.Settings
 			// 
 			// sectionButton
 			// 
+			this.sectionButton.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.sectionButton.Location = new System.Drawing.Point(13, 27);
 			this.sectionButton.Name = "sectionButton";
-			this.sectionButton.Size = new System.Drawing.Size(287, 24);
+			this.sectionButton.Size = new System.Drawing.Size(288, 25);
 			this.sectionButton.TabIndex = 1;
 			this.sectionButton.TabStop = true;
 			this.sectionButton.Text = "Move Quick Notes into this section";
@@ -171,7 +178,6 @@ namespace River.OneMoreAddIn.Settings
 			// 
 			this.groupingBox.BackColor = System.Drawing.SystemColors.Control;
 			this.groupingBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-			this.groupingBox.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
 			this.groupingBox.ForeColor = System.Drawing.SystemColors.ControlText;
 			this.groupingBox.FormattingEnabled = true;
 			this.groupingBox.Items.AddRange(new object[] {
@@ -197,9 +203,10 @@ namespace River.OneMoreAddIn.Settings
 			// notebookButton
 			// 
 			this.notebookButton.Checked = true;
+			this.notebookButton.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.notebookButton.Location = new System.Drawing.Point(13, 27);
 			this.notebookButton.Name = "notebookButton";
-			this.notebookButton.Size = new System.Drawing.Size(302, 24);
+			this.notebookButton.Size = new System.Drawing.Size(303, 25);
 			this.notebookButton.TabIndex = 0;
 			this.notebookButton.TabStop = true;
 			this.notebookButton.Text = "Move Quick Notes into this notebook";

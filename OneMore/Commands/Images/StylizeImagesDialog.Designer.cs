@@ -40,12 +40,14 @@
 			// okButton
 			// 
 			this.okButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+			this.okButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(231)))), ((int)(((byte)(231)))));
 			this.okButton.Enabled = false;
+			this.okButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.okButton.ImageOver = null;
 			this.okButton.Location = new System.Drawing.Point(261, 270);
 			this.okButton.Name = "okButton";
-			this.okButton.PreferredBack = null;
-			this.okButton.PreferredFore = null;
+			this.okButton.ThemedBack = null;
+			this.okButton.ThemedFore = null;
 			this.okButton.ShowBorder = true;
 			this.okButton.Size = new System.Drawing.Size(100, 38);
 			this.okButton.TabIndex = 0;
@@ -56,12 +58,14 @@
 			// cancelButton
 			// 
 			this.cancelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+			this.cancelButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(231)))), ((int)(((byte)(231)))));
 			this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+			this.cancelButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.cancelButton.ImageOver = null;
 			this.cancelButton.Location = new System.Drawing.Point(367, 270);
 			this.cancelButton.Name = "cancelButton";
-			this.cancelButton.PreferredBack = null;
-			this.cancelButton.PreferredFore = null;
+			this.cancelButton.ThemedBack = null;
+			this.cancelButton.ThemedFore = null;
 			this.cancelButton.ShowBorder = true;
 			this.cancelButton.Size = new System.Drawing.Size(100, 38);
 			this.cancelButton.TabIndex = 1;
@@ -82,7 +86,6 @@
 			// 
 			this.styleBox.BackColor = System.Drawing.SystemColors.Window;
 			this.styleBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-			this.styleBox.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
 			this.styleBox.FormattingEnabled = true;
 			this.styleBox.Items.AddRange(new object[] {
             "Gray scale",
@@ -96,11 +99,13 @@
 			// 
 			// foreBox
 			// 
-			this.foreBox.AutoSize = true;
+			this.foreBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(231)))), ((int)(((byte)(231)))));
+			this.foreBox.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.foreBox.ForeColor = System.Drawing.SystemColors.ControlText;
-			this.foreBox.Location = new System.Drawing.Point(44, 40);
+			this.foreBox.Location = new System.Drawing.Point(44, 24);
+			this.foreBox.MinimumSize = new System.Drawing.Size(285, 64);
 			this.foreBox.Name = "foreBox";
-			this.foreBox.Size = new System.Drawing.Size(275, 44);
+			this.foreBox.Size = new System.Drawing.Size(285, 64);
 			this.foreBox.TabIndex = 2;
 			this.foreBox.Text = "Apply to foreground images\r\nForeground images: 0, selected: 0";
 			this.foreBox.UseVisualStyleBackColor = true;
@@ -108,11 +113,13 @@
 			// 
 			// backBox
 			// 
-			this.backBox.AutoSize = true;
+			this.backBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(231)))), ((int)(((byte)(231)))));
+			this.backBox.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.backBox.ForeColor = System.Drawing.SystemColors.ControlText;
-			this.backBox.Location = new System.Drawing.Point(44, 110);
+			this.backBox.Location = new System.Drawing.Point(44, 103);
+			this.backBox.MinimumSize = new System.Drawing.Size(283, 66);
 			this.backBox.Name = "backBox";
-			this.backBox.Size = new System.Drawing.Size(274, 44);
+			this.backBox.Size = new System.Drawing.Size(283, 66);
 			this.backBox.TabIndex = 4;
 			this.backBox.Text = "Apply to background images\r\nBackground images: 0, selected 0";
 			this.backBox.UseVisualStyleBackColor = true;

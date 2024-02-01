@@ -48,12 +48,14 @@
 			// okButton
 			// 
 			this.okButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+			this.okButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(231)))), ((int)(((byte)(231)))));
 			this.okButton.DialogResult = System.Windows.Forms.DialogResult.OK;
+			this.okButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.okButton.ImageOver = null;
 			this.okButton.Location = new System.Drawing.Point(221, 424);
 			this.okButton.Name = "okButton";
-			this.okButton.PreferredBack = null;
-			this.okButton.PreferredFore = null;
+			this.okButton.ThemedBack = null;
+			this.okButton.ThemedFore = null;
 			this.okButton.ShowBorder = true;
 			this.okButton.Size = new System.Drawing.Size(120, 38);
 			this.okButton.TabIndex = 0;
@@ -63,12 +65,14 @@
 			// cancelButton
 			// 
 			this.cancelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+			this.cancelButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(231)))), ((int)(((byte)(231)))));
 			this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+			this.cancelButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.cancelButton.ImageOver = null;
 			this.cancelButton.Location = new System.Drawing.Point(347, 424);
 			this.cancelButton.Name = "cancelButton";
-			this.cancelButton.PreferredBack = null;
-			this.cancelButton.PreferredFore = null;
+			this.cancelButton.ThemedBack = null;
+			this.cancelButton.ThemedFore = null;
 			this.cancelButton.ShowBorder = true;
 			this.cancelButton.Size = new System.Drawing.Size(120, 38);
 			this.cancelButton.TabIndex = 1;
@@ -78,9 +82,10 @@
 			// pageRadio
 			// 
 			this.pageRadio.Checked = true;
+			this.pageRadio.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.pageRadio.Location = new System.Drawing.Point(28, 28);
 			this.pageRadio.Name = "pageRadio";
-			this.pageRadio.Size = new System.Drawing.Size(278, 24);
+			this.pageRadio.Size = new System.Drawing.Size(300, 25);
 			this.pageRadio.TabIndex = 2;
 			this.pageRadio.TabStop = true;
 			this.pageRadio.Text = "Insert table of headings on this page";
@@ -89,10 +94,11 @@
 			// 
 			// sectionRadio
 			// 
+			this.sectionRadio.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.sectionRadio.Location = new System.Drawing.Point(28, 214);
 			this.sectionRadio.Margin = new System.Windows.Forms.Padding(3, 25, 3, 3);
 			this.sectionRadio.Name = "sectionRadio";
-			this.sectionRadio.Size = new System.Drawing.Size(337, 24);
+			this.sectionRadio.Size = new System.Drawing.Size(359, 25);
 			this.sectionRadio.TabIndex = 7;
 			this.sectionRadio.Text = "New page with index of pages in this section";
 			this.sectionRadio.UseVisualStyleBackColor = true;
@@ -100,10 +106,13 @@
 			// 
 			// topBox
 			// 
+			this.topBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(231)))), ((int)(((byte)(231)))));
+			this.topBox.Cursor = System.Windows.Forms.Cursors.Hand;
+			this.topBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.topBox.Location = new System.Drawing.Point(56, 61);
 			this.topBox.Margin = new System.Windows.Forms.Padding(3, 6, 3, 3);
 			this.topBox.Name = "topBox";
-			this.topBox.Size = new System.Drawing.Size(381, 24);
+			this.topBox.Size = new System.Drawing.Size(378, 25);
 			this.topBox.TabIndex = 3;
 			this.topBox.Text = "Add link to each heading to jump to top of page";
 			this.topBox.UseVisualStyleBackColor = true;
@@ -111,10 +120,11 @@
 			// 
 			// notebookRadio
 			// 
+			this.notebookRadio.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.notebookRadio.Location = new System.Drawing.Point(28, 299);
 			this.notebookRadio.Margin = new System.Windows.Forms.Padding(3, 25, 3, 3);
 			this.notebookRadio.Name = "notebookRadio";
-			this.notebookRadio.Size = new System.Drawing.Size(368, 24);
+			this.notebookRadio.Size = new System.Drawing.Size(390, 25);
 			this.notebookRadio.TabIndex = 9;
 			this.notebookRadio.Text = "New page with index of sections in this notebook";
 			this.notebookRadio.UseVisualStyleBackColor = true;
@@ -122,11 +132,14 @@
 			// 
 			// pagesBox
 			// 
+			this.pagesBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(231)))), ((int)(((byte)(231)))));
+			this.pagesBox.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.pagesBox.Enabled = false;
+			this.pagesBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.pagesBox.Location = new System.Drawing.Point(56, 332);
 			this.pagesBox.Margin = new System.Windows.Forms.Padding(3, 6, 3, 3);
 			this.pagesBox.Name = "pagesBox";
-			this.pagesBox.Size = new System.Drawing.Size(255, 24);
+			this.pagesBox.Size = new System.Drawing.Size(252, 25);
 			this.pagesBox.TabIndex = 10;
 			this.pagesBox.Text = "Include pages in each section";
 			this.pagesBox.UseVisualStyleBackColor = true;
@@ -134,31 +147,40 @@
 			// 
 			// rightAlignBox
 			// 
+			this.rightAlignBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(231)))), ((int)(((byte)(231)))));
+			this.rightAlignBox.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.rightAlignBox.Enabled = false;
+			this.rightAlignBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.rightAlignBox.Location = new System.Drawing.Point(56, 91);
 			this.rightAlignBox.Name = "rightAlignBox";
-			this.rightAlignBox.Size = new System.Drawing.Size(233, 24);
+			this.rightAlignBox.Size = new System.Drawing.Size(230, 25);
 			this.rightAlignBox.TabIndex = 4;
 			this.rightAlignBox.Text = "Right-align top of page link";
 			this.rightAlignBox.UseVisualStyleBackColor = true;
 			// 
 			// previewBox
 			// 
+			this.previewBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(231)))), ((int)(((byte)(231)))));
+			this.previewBox.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.previewBox.Enabled = false;
+			this.previewBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.previewBox.Location = new System.Drawing.Point(56, 247);
 			this.previewBox.Margin = new System.Windows.Forms.Padding(3, 6, 3, 3);
 			this.previewBox.Name = "previewBox";
-			this.previewBox.Size = new System.Drawing.Size(283, 24);
+			this.previewBox.Size = new System.Drawing.Size(280, 25);
 			this.previewBox.TabIndex = 8;
 			this.previewBox.Text = "Include text preview of each page";
 			this.previewBox.UseVisualStyleBackColor = true;
 			// 
 			// preview2Box
 			// 
+			this.preview2Box.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(231)))), ((int)(((byte)(231)))));
+			this.preview2Box.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.preview2Box.Enabled = false;
+			this.preview2Box.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.preview2Box.Location = new System.Drawing.Point(56, 364);
 			this.preview2Box.Name = "preview2Box";
-			this.preview2Box.Size = new System.Drawing.Size(283, 24);
+			this.preview2Box.Size = new System.Drawing.Size(280, 25);
 			this.preview2Box.TabIndex = 11;
 			this.preview2Box.Text = "Include text preview of each page";
 			this.preview2Box.UseVisualStyleBackColor = true;
@@ -166,7 +188,6 @@
 			// locationBox
 			// 
 			this.locationBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-			this.locationBox.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
 			this.locationBox.FormattingEnabled = true;
 			this.locationBox.Items.AddRange(new object[] {
             "At top of page",
@@ -198,7 +219,6 @@
 			// styleBox
 			// 
 			this.styleBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-			this.styleBox.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
 			this.styleBox.FormattingEnabled = true;
 			this.styleBox.Items.AddRange(new object[] {
             "Standard Page Title",
@@ -219,6 +239,7 @@
 			this.AcceptButton = this.okButton;
 			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+			this.BackColor = System.Drawing.SystemColors.ControlLightLight;
 			this.CancelButton = this.cancelButton;
 			this.ClientSize = new System.Drawing.Size(479, 474);
 			this.Controls.Add(this.styleBox);

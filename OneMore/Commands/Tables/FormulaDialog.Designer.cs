@@ -61,7 +61,6 @@
 			// formatBox
 			// 
 			this.formatBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-			this.formatBox.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
 			this.formatBox.FormattingEnabled = true;
 			this.formatBox.Items.AddRange(new object[] {
             "Number",
@@ -82,8 +81,8 @@
 			this.cancelButton.ImageOver = null;
 			this.cancelButton.Location = new System.Drawing.Point(504, 209);
 			this.cancelButton.Name = "cancelButton";
-			this.cancelButton.PreferredBack = null;
-			this.cancelButton.PreferredFore = null;
+			this.cancelButton.ThemedBack = null;
+			this.cancelButton.ThemedFore = null;
 			this.cancelButton.ShowBorder = true;
 			this.cancelButton.Size = new System.Drawing.Size(100, 38);
 			this.cancelButton.TabIndex = 5;
@@ -100,8 +99,8 @@
 			this.okButton.ImageOver = null;
 			this.okButton.Location = new System.Drawing.Point(398, 209);
 			this.okButton.Name = "okButton";
-			this.okButton.PreferredBack = null;
-			this.okButton.PreferredFore = null;
+			this.okButton.ThemedBack = null;
+			this.okButton.ThemedFore = null;
 			this.okButton.ShowBorder = true;
 			this.okButton.Size = new System.Drawing.Size(100, 38);
 			this.okButton.TabIndex = 4;
@@ -123,8 +122,8 @@
 			this.formulaBox.Location = new System.Drawing.Point(139, 53);
 			this.formulaBox.Margin = new System.Windows.Forms.Padding(3, 3, 3, 10);
 			this.formulaBox.Name = "formulaBox";
-			this.formulaBox.PreferredBack = null;
-			this.formulaBox.PreferredFore = null;
+			this.formulaBox.ThemedBack = null;
+			this.formulaBox.ThemedFore = null;
 			this.formulaBox.Size = new System.Drawing.Size(382, 26);
 			this.formulaBox.TabIndex = 0;
 			this.formulaBox.TextChanged += new System.EventHandler(this.ChangedFormula);
@@ -157,8 +156,8 @@
 			this.helpBox.Location = new System.Drawing.Point(7, 7);
 			this.helpBox.MaximumSize = new System.Drawing.Size(576, 0);
 			this.helpBox.Name = "helpBox";
-			this.helpBox.PreferredBack = "ControlLightLight";
-			this.helpBox.PreferredFore = "ControlText";
+			this.helpBox.ThemedBack = "ControlLightLight";
+			this.helpBox.ThemedFore = "ControlText";
 			this.helpBox.Size = new System.Drawing.Size(571, 240);
 			this.helpBox.TabIndex = 12;
 			this.helpBox.Text = resources.GetString("helpBox.Text");

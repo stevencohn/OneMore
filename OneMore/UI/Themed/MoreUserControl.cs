@@ -27,7 +27,9 @@ namespace River.OneMoreAddIn.UI
 		{
 			base.OnLoad(e);
 
+			SuspendLayout();
 			manager.InitializeTheme(this);
+			ResumeLayout();
 		}
 
 

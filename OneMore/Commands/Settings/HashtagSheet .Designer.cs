@@ -29,7 +29,7 @@ namespace River.OneMoreAddIn.Settings
 		/// </summary>
 		private void InitializeComponent()
 		{
-			this.introBox = new UI.MoreMultilineLabel();
+			this.introBox = new River.OneMoreAddIn.UI.MoreMultilineLabel();
 			this.layoutPanel = new System.Windows.Forms.Panel();
 			this.msLabel = new System.Windows.Forms.Label();
 			this.delayBox = new System.Windows.Forms.NumericUpDown();
@@ -57,8 +57,8 @@ namespace River.OneMoreAddIn.Settings
 			this.introBox.Location = new System.Drawing.Point(13, 8);
 			this.introBox.Name = "introBox";
 			this.introBox.Padding = new System.Windows.Forms.Padding(0, 0, 0, 36);
-			this.introBox.PreferredBack = "ControlLightLight";
-			this.introBox.PreferredFore = "ControlText";
+			this.introBox.ThemedBack = "ControlLightLight";
+			this.introBox.ThemedFore = "ControlText";
 			this.introBox.Size = new System.Drawing.Size(772, 66);
 			this.introBox.TabIndex = 3;
 			this.introBox.Text = "Customize advanced options for the Hashtag Scanner Service";
@@ -114,9 +114,12 @@ namespace River.OneMoreAddIn.Settings
 			// 
 			// filterBox
 			// 
+			this.filterBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(231)))), ((int)(((byte)(231)))));
+			this.filterBox.Cursor = System.Windows.Forms.Cursors.Hand;
+			this.filterBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.filterBox.Location = new System.Drawing.Point(11, 87);
 			this.filterBox.Name = "filterBox";
-			this.filterBox.Size = new System.Drawing.Size(496, 24);
+			this.filterBox.Size = new System.Drawing.Size(497, 25);
 			this.filterBox.TabIndex = 11;
 			this.filterBox.Text = "Treat HTML Hex colors and C# and C++ directives as hashtags";
 			this.filterBox.UseVisualStyleBackColor = true;
@@ -124,7 +127,6 @@ namespace River.OneMoreAddIn.Settings
 			// styleBox
 			// 
 			this.styleBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-			this.styleBox.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
 			this.styleBox.FormattingEnabled = true;
 			this.styleBox.Items.AddRange(new object[] {
             "None",
@@ -160,9 +162,12 @@ namespace River.OneMoreAddIn.Settings
 			// 
 			// rebuildBox
 			// 
+			this.rebuildBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(231)))), ((int)(((byte)(231)))));
+			this.rebuildBox.Cursor = System.Windows.Forms.Cursors.Hand;
+			this.rebuildBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.rebuildBox.Location = new System.Drawing.Point(18, 41);
 			this.rebuildBox.Name = "rebuildBox";
-			this.rebuildBox.Size = new System.Drawing.Size(345, 24);
+			this.rebuildBox.Size = new System.Drawing.Size(346, 25);
 			this.rebuildBox.TabIndex = 10;
 			this.rebuildBox.Text = "Rebuild the hashtag database upon restart";
 			this.rebuildBox.UseVisualStyleBackColor = true;
@@ -170,9 +175,12 @@ namespace River.OneMoreAddIn.Settings
 			// 
 			// disabledBox
 			// 
+			this.disabledBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(231)))), ((int)(((byte)(231)))));
+			this.disabledBox.Cursor = System.Windows.Forms.Cursors.Hand;
+			this.disabledBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.disabledBox.Location = new System.Drawing.Point(18, 71);
 			this.disabledBox.Name = "disabledBox";
-			this.disabledBox.Size = new System.Drawing.Size(539, 24);
+			this.disabledBox.Size = new System.Drawing.Size(540, 25);
 			this.disabledBox.TabIndex = 0;
 			this.disabledBox.Text = "Disable the hashtag service. This will also disable hashtag searching.";
 			this.disabledBox.UseVisualStyleBackColor = true;

@@ -99,7 +99,6 @@
 			// monthBox
 			// 
 			this.monthBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-			this.monthBox.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
 			this.monthBox.FormattingEnabled = true;
 			this.monthBox.Location = new System.Drawing.Point(198, 77);
 			this.monthBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
@@ -133,42 +132,41 @@
 			// cancelButton
 			// 
 			this.cancelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-			this.cancelButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
+			this.cancelButton.BackColor = System.Drawing.SystemColors.ButtonFace;
 			this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-			this.cancelButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+			this.cancelButton.ForeColor = System.Drawing.SystemColors.ControlText;
 			this.cancelButton.ImageOver = null;
-			this.cancelButton.Location = new System.Drawing.Point(376, 388);
+			this.cancelButton.Location = new System.Drawing.Point(376, 392);
 			this.cancelButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.cancelButton.Name = "cancelButton";
-			this.cancelButton.PreferredBack = null;
-			this.cancelButton.PreferredFore = null;
+			this.cancelButton.ThemedBack = null;
+			this.cancelButton.ThemedFore = null;
 			this.cancelButton.ShowBorder = true;
 			this.cancelButton.Size = new System.Drawing.Size(112, 35);
 			this.cancelButton.TabIndex = 1;
 			this.cancelButton.Text = "Cancel";
-			this.cancelButton.UseVisualStyleBackColor = true;
+			this.cancelButton.UseVisualStyleBackColor = false;
 			// 
 			// okButton
 			// 
 			this.okButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-			this.okButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
+			this.okButton.BackColor = System.Drawing.SystemColors.ButtonFace;
 			this.okButton.DialogResult = System.Windows.Forms.DialogResult.OK;
-			this.okButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+			this.okButton.ForeColor = System.Drawing.SystemColors.ControlText;
 			this.okButton.ImageOver = null;
-			this.okButton.Location = new System.Drawing.Point(254, 388);
+			this.okButton.Location = new System.Drawing.Point(254, 392);
 			this.okButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.okButton.Name = "okButton";
-			this.okButton.PreferredBack = null;
-			this.okButton.PreferredFore = null;
+			this.okButton.ThemedBack = null;
+			this.okButton.ThemedFore = null;
 			this.okButton.ShowBorder = true;
 			this.okButton.Size = new System.Drawing.Size(112, 35);
 			this.okButton.TabIndex = 0;
 			this.okButton.Text = "OK";
-			this.okButton.UseVisualStyleBackColor = true;
+			this.okButton.UseVisualStyleBackColor = false;
 			// 
 			// indentBox
 			// 
-			this.indentBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
 			this.indentBox.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.indentBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.indentBox.Location = new System.Drawing.Point(182, 136);
@@ -177,7 +175,7 @@
 			this.indentBox.Size = new System.Drawing.Size(149, 25);
 			this.indentBox.TabIndex = 2;
 			this.indentBox.Text = "Indent calendar";
-			this.indentBox.UseVisualStyleBackColor = true;
+			this.indentBox.UseVisualStyleBackColor = false;
 			// 
 			// firstLabel
 			// 
@@ -204,7 +202,7 @@
 			// mondayButton
 			// 
 			this.mondayButton.Cursor = System.Windows.Forms.Cursors.Hand;
-			this.mondayButton.Location = new System.Drawing.Point(182, 38);
+			this.mondayButton.Location = new System.Drawing.Point(182, 40);
 			this.mondayButton.Name = "mondayButton";
 			this.mondayButton.Size = new System.Drawing.Size(94, 25);
 			this.mondayButton.TabIndex = 1;
@@ -220,7 +218,7 @@
 			this.firstPanel.Controls.Add(this.sundayButton);
 			this.firstPanel.Location = new System.Drawing.Point(16, 122);
 			this.firstPanel.Name = "firstPanel";
-			this.firstPanel.Size = new System.Drawing.Size(474, 66);
+			this.firstPanel.Size = new System.Drawing.Size(474, 74);
 			this.firstPanel.TabIndex = 13;
 			// 
 			// formatPanel
@@ -234,7 +232,7 @@
 			this.formatPanel.Controls.Add(this.smallRadio);
 			this.formatPanel.Controls.Add(this.indentBox);
 			this.formatPanel.Controls.Add(this.largeRadio);
-			this.formatPanel.Location = new System.Drawing.Point(16, 194);
+			this.formatPanel.Location = new System.Drawing.Point(16, 202);
 			this.formatPanel.Name = "formatPanel";
 			this.formatPanel.Size = new System.Drawing.Size(472, 173);
 			this.formatPanel.TabIndex = 3;
@@ -276,8 +274,9 @@
 			this.AcceptButton = this.okButton;
 			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+			this.BackColor = System.Drawing.SystemColors.ControlLightLight;
 			this.CancelButton = this.cancelButton;
-			this.ClientSize = new System.Drawing.Size(508, 443);
+			this.ClientSize = new System.Drawing.Size(508, 447);
 			this.Controls.Add(this.formatPanel);
 			this.Controls.Add(this.firstPanel);
 			this.Controls.Add(this.okButton);

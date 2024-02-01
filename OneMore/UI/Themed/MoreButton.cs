@@ -67,16 +67,10 @@ namespace River.OneMoreAddIn.UI
 		public MouseState MouseState { get; private set; }
 
 
-		/// <summary>
-		/// Gets or sets the preferred background color
-		/// </summary>
-		public string PreferredBack { get; set; }
+		public string ThemedBack { get; set; }
 
 
-		/// <summary>
-		/// Gets or sets the preferred foreground color
-		/// </summary>
-		public string PreferredFore { get; set; }
+		public string ThemedFore { get; set; }
 
 
 		[Description("Specifies the image to show when the mouse is over the button")]
@@ -92,6 +86,15 @@ namespace River.OneMoreAddIn.UI
 		/// when in normal state
 		/// </summary>
 		public bool ShowBorder { get; set; } = true;
+
+
+		public void ApplyTheme(ThemeManager manager)
+		{
+			BackColor = manager.GetThemedColor("ButtonFace", ThemedBack);
+			ForeColor = Enabled
+				? manager.GetThemedColor("ControlText", ThemedFore)
+				: manager.GetThemedColor("GrayText");
+		}
 
 
 		protected override void OnEnabledChanged(EventArgs e)
@@ -176,9 +179,9 @@ namespace River.OneMoreAddIn.UI
 
 			g.Clear(Parent.BackColor);
 
-			var back = string.IsNullOrEmpty(PreferredBack)
+			var back = string.IsNullOrEmpty(ThemedBack)
 				? backColor
-				: manager.GetThemedColor(PreferredBack);
+				: manager.GetThemedColor(ThemedBack);
 
 			if (Enabled)
 			{
@@ -296,9 +299,9 @@ namespace River.OneMoreAddIn.UI
 		private void PaintText(Graphics g, int x, int y)
 		{
 			using var brush = new SolidBrush(Enabled
-				? string.IsNullOrWhiteSpace(PreferredFore)
+				? string.IsNullOrWhiteSpace(ThemedFore)
 					? foreColor
-					: manager.GetThemedColor(PreferredFore)
+					: manager.GetThemedColor(ThemedFore)
 				: manager.GetThemedColor("GrayText")
 				);
 

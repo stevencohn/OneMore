@@ -17,8 +17,8 @@ namespace River.OneMoreAddIn.UI
 	internal class MoreMultilineLabel : Panel, IThemedControl
 	{
 		private readonly MoreLabel label;
-		private string preferredBack;
-		private string preferredFore;
+		private string themedBack;
+		private string themedFore;
 
 
 		public MoreMultilineLabel()
@@ -34,17 +34,29 @@ namespace River.OneMoreAddIn.UI
 		}
 
 
-		public string PreferredBack
+		public string ThemedBack
 		{
-			get => preferredBack;
-			set => preferredBack = label.PreferredBack = value;
+			get => themedBack;
+			set => themedBack = label.ThemedBack = value;
 		}
 
 
-		public string PreferredFore
+		public string ThemedFore
 		{
-			get => preferredFore;
-			set => preferredFore = label.PreferredFore = value;
+			get => themedFore;
+			set => themedFore = label.ThemedFore = value;
+		}
+
+
+		public void ApplyTheme(ThemeManager manager)
+		{
+			BackColor = Parent != null
+				? Parent.BackColor
+				: manager.GetThemedColor("Control", ThemedBack);
+
+			ForeColor = Enabled
+				? manager.GetThemedColor("ControlText", ThemedFore)
+				: manager.GetThemedColor("GrayText");
 		}
 
 

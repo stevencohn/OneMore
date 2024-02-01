@@ -43,14 +43,14 @@ namespace River.OneMoreAddIn.Commands
 			this.priorityBox = new System.Windows.Forms.ComboBox();
 			this.priorityLabel = new System.Windows.Forms.Label();
 			this.percentLabel = new System.Windows.Forms.Label();
-			this.percentBox = new UI.MoreNumericUpDown();
+			this.percentBox = new River.OneMoreAddIn.UI.MoreNumericUpDown();
 			this.startedBox = new River.OneMoreAddIn.UI.MoreTextBox();
 			this.startedLabel = new System.Windows.Forms.Label();
 			this.completedLabel = new System.Windows.Forms.Label();
 			this.completedBox = new River.OneMoreAddIn.UI.MoreTextBox();
 			this.tagButton = new River.OneMoreAddIn.UI.MoreButton();
 			this.tagLabel = new System.Windows.Forms.Label();
-			this.silentBox = new UI.MoreCheckBox();
+			this.silentBox = new River.OneMoreAddIn.UI.MoreCheckBox();
 			this.optionsBox = new River.OneMoreAddIn.UI.MoreGroupBox();
 			this.snoozeTimeLabel = new System.Windows.Forms.Label();
 			this.snoozeButton = new River.OneMoreAddIn.UI.MoreButton();
@@ -63,13 +63,15 @@ namespace River.OneMoreAddIn.Commands
 			// okButton
 			// 
 			this.okButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+			this.okButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(231)))), ((int)(((byte)(231)))));
 			this.okButton.DialogResult = System.Windows.Forms.DialogResult.OK;
 			this.okButton.Enabled = false;
+			this.okButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.okButton.ImageOver = null;
 			this.okButton.Location = new System.Drawing.Point(624, 563);
 			this.okButton.Name = "okButton";
-			this.okButton.PreferredBack = null;
-			this.okButton.PreferredFore = null;
+			this.okButton.ThemedBack = null;
+			this.okButton.ThemedFore = null;
 			this.okButton.ShowBorder = true;
 			this.okButton.Size = new System.Drawing.Size(100, 38);
 			this.okButton.TabIndex = 7;
@@ -80,12 +82,14 @@ namespace River.OneMoreAddIn.Commands
 			// cancelButton
 			// 
 			this.cancelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+			this.cancelButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(231)))), ((int)(((byte)(231)))));
 			this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+			this.cancelButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.cancelButton.ImageOver = null;
 			this.cancelButton.Location = new System.Drawing.Point(730, 563);
 			this.cancelButton.Name = "cancelButton";
-			this.cancelButton.PreferredBack = null;
-			this.cancelButton.PreferredFore = null;
+			this.cancelButton.ThemedBack = null;
+			this.cancelButton.ThemedFore = null;
 			this.cancelButton.ShowBorder = true;
 			this.cancelButton.Size = new System.Drawing.Size(100, 38);
 			this.cancelButton.TabIndex = 8;
@@ -150,8 +154,8 @@ namespace River.OneMoreAddIn.Commands
 			this.subjectBox.Margin = new System.Windows.Forms.Padding(3, 3, 3, 10);
 			this.subjectBox.MaxLength = 200;
 			this.subjectBox.Name = "subjectBox";
-			this.subjectBox.PreferredBack = null;
-			this.subjectBox.PreferredFore = null;
+			this.subjectBox.ThemedBack = null;
+			this.subjectBox.ThemedFore = null;
 			this.subjectBox.Size = new System.Drawing.Size(649, 26);
 			this.subjectBox.TabIndex = 1;
 			this.subjectBox.TextChanged += new System.EventHandler(this.ChangeSubject);
@@ -168,7 +172,6 @@ namespace River.OneMoreAddIn.Commands
 			// statusBox
 			// 
 			this.statusBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-			this.statusBox.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
 			this.statusBox.FormattingEnabled = true;
 			this.statusBox.Items.AddRange(new object[] {
             "Not started",
@@ -186,7 +189,6 @@ namespace River.OneMoreAddIn.Commands
 			// priorityBox
 			// 
 			this.priorityBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-			this.priorityBox.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
 			this.priorityBox.FormattingEnabled = true;
 			this.priorityBox.Items.AddRange(new object[] {
             "Low",
@@ -226,6 +228,8 @@ namespace River.OneMoreAddIn.Commands
             0});
 			this.percentBox.Location = new System.Drawing.Point(181, 358);
 			this.percentBox.Name = "percentBox";
+			this.percentBox.ThemedBack = null;
+			this.percentBox.ThemedFore = "ControlText";
 			this.percentBox.Size = new System.Drawing.Size(92, 26);
 			this.percentBox.TabIndex = 6;
 			this.percentBox.ValueChanged += new System.EventHandler(this.ChangePercent);
@@ -237,8 +241,8 @@ namespace River.OneMoreAddIn.Commands
 			this.startedBox.Margin = new System.Windows.Forms.Padding(3, 3, 3, 10);
 			this.startedBox.MaxLength = 200;
 			this.startedBox.Name = "startedBox";
-			this.startedBox.PreferredBack = null;
-			this.startedBox.PreferredFore = null;
+			this.startedBox.ThemedBack = null;
+			this.startedBox.ThemedFore = null;
 			this.startedBox.ReadOnly = true;
 			this.startedBox.Size = new System.Drawing.Size(434, 19);
 			this.startedBox.TabIndex = 22;
@@ -269,8 +273,8 @@ namespace River.OneMoreAddIn.Commands
 			this.completedBox.Margin = new System.Windows.Forms.Padding(3, 3, 3, 10);
 			this.completedBox.MaxLength = 200;
 			this.completedBox.Name = "completedBox";
-			this.completedBox.PreferredBack = null;
-			this.completedBox.PreferredFore = null;
+			this.completedBox.ThemedBack = null;
+			this.completedBox.ThemedFore = null;
 			this.completedBox.ReadOnly = true;
 			this.completedBox.Size = new System.Drawing.Size(434, 19);
 			this.completedBox.TabIndex = 24;
@@ -279,12 +283,13 @@ namespace River.OneMoreAddIn.Commands
 			// tagButton
 			// 
 			this.tagButton.BackColor = System.Drawing.SystemColors.Window;
+			this.tagButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.tagButton.ImageOver = null;
 			this.tagButton.Location = new System.Drawing.Point(181, 30);
 			this.tagButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 10);
 			this.tagButton.Name = "tagButton";
-			this.tagButton.PreferredBack = null;
-			this.tagButton.PreferredFore = null;
+			this.tagButton.ThemedBack = null;
+			this.tagButton.ThemedFore = null;
 			this.tagButton.ShowBorder = true;
 			this.tagButton.Size = new System.Drawing.Size(60, 38);
 			this.tagButton.TabIndex = 0;
@@ -304,10 +309,12 @@ namespace River.OneMoreAddIn.Commands
 			// 
 			// silentBox
 			// 
-			this.silentBox.AutoSize = true;
+			this.silentBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(231)))), ((int)(((byte)(231)))));
+			this.silentBox.Cursor = System.Windows.Forms.Cursors.Hand;
+			this.silentBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.silentBox.Location = new System.Drawing.Point(19, 28);
 			this.silentBox.Name = "silentBox";
-			this.silentBox.Size = new System.Drawing.Size(182, 24);
+			this.silentBox.Size = new System.Drawing.Size(189, 25);
 			this.silentBox.TabIndex = 0;
 			this.silentBox.Text = "Silence this reminder";
 			this.silentBox.UseVisualStyleBackColor = true;
@@ -338,12 +345,14 @@ namespace River.OneMoreAddIn.Commands
 			// 
 			// snoozeButton
 			// 
+			this.snoozeButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(231)))), ((int)(((byte)(231)))));
 			this.snoozeButton.Enabled = false;
+			this.snoozeButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.snoozeButton.ImageOver = null;
 			this.snoozeButton.Location = new System.Drawing.Point(275, 84);
 			this.snoozeButton.Name = "snoozeButton";
-			this.snoozeButton.PreferredBack = null;
-			this.snoozeButton.PreferredFore = null;
+			this.snoozeButton.ThemedBack = null;
+			this.snoozeButton.ThemedFore = null;
 			this.snoozeButton.ShowBorder = true;
 			this.snoozeButton.Size = new System.Drawing.Size(121, 34);
 			this.snoozeButton.TabIndex = 1;
@@ -355,7 +364,6 @@ namespace River.OneMoreAddIn.Commands
 			// 
 			this.snoozeBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this.snoozeBox.Enabled = false;
-			this.snoozeBox.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
 			this.snoozeBox.FormattingEnabled = true;
 			this.snoozeBox.Items.AddRange(new object[] {
             "Do not snooze",

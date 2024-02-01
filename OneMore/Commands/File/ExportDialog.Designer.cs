@@ -59,8 +59,8 @@
 			this.pathBox.Location = new System.Drawing.Point(82, 42);
 			this.pathBox.Margin = new System.Windows.Forms.Padding(3, 3, 3, 9);
 			this.pathBox.Name = "pathBox";
-			this.pathBox.PreferredBack = null;
-			this.pathBox.PreferredFore = null;
+			this.pathBox.ThemedBack = null;
+			this.pathBox.ThemedFore = null;
 			this.pathBox.Size = new System.Drawing.Size(400, 26);
 			this.pathBox.TabIndex = 1;
 			this.pathBox.TextChanged += new System.EventHandler(this.ChangePath);
@@ -79,7 +79,6 @@
 			// 
 			this.formatBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this.formatBox.DropDownWidth = 250;
-			this.formatBox.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
 			this.formatBox.FormattingEnabled = true;
 			this.formatBox.Items.AddRange(new object[] {
             "HTML File (*.htm)",
@@ -118,34 +117,40 @@
 			// 
 			// embeddedBox
 			// 
+			this.embeddedBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(231)))), ((int)(((byte)(231)))));
+			this.embeddedBox.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.embeddedBox.Enabled = false;
 			this.embeddedBox.ForeColor = System.Drawing.SystemColors.ControlText;
 			this.embeddedBox.Location = new System.Drawing.Point(82, 154);
 			this.embeddedBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.embeddedBox.Name = "embeddedBox";
-			this.embeddedBox.Size = new System.Drawing.Size(180, 24);
+			this.embeddedBox.Size = new System.Drawing.Size(182, 25);
 			this.embeddedBox.TabIndex = 7;
 			this.embeddedBox.Text = "Embed attachments";
 			this.embeddedBox.UseVisualStyleBackColor = true;
 			// 
 			// underBox
 			// 
+			this.underBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(231)))), ((int)(((byte)(231)))));
+			this.underBox.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.underBox.ForeColor = System.Drawing.SystemColors.ControlText;
 			this.underBox.Location = new System.Drawing.Point(82, 186);
 			this.underBox.Name = "underBox";
-			this.underBox.Size = new System.Drawing.Size(391, 24);
+			this.underBox.Size = new System.Drawing.Size(393, 25);
 			this.underBox.TabIndex = 6;
 			this.underBox.Text = "Replace spaces in the filename with underscores";
 			this.underBox.UseVisualStyleBackColor = true;
 			// 
 			// attachmentsBox
 			// 
+			this.attachmentsBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(231)))), ((int)(((byte)(231)))));
+			this.attachmentsBox.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.attachmentsBox.Enabled = false;
 			this.attachmentsBox.ForeColor = System.Drawing.SystemColors.ControlText;
 			this.attachmentsBox.Location = new System.Drawing.Point(82, 120);
 			this.attachmentsBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.attachmentsBox.Name = "attachmentsBox";
-			this.attachmentsBox.Size = new System.Drawing.Size(181, 24);
+			this.attachmentsBox.Size = new System.Drawing.Size(183, 25);
 			this.attachmentsBox.TabIndex = 5;
 			this.attachmentsBox.Text = "Include attachments";
 			this.attachmentsBox.UseVisualStyleBackColor = true;
@@ -153,12 +158,14 @@
 			// 
 			// browseButton
 			// 
+			this.browseButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(231)))), ((int)(((byte)(231)))));
+			this.browseButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.browseButton.Image = ((System.Drawing.Image)(resources.GetObject("browseButton.Image")));
 			this.browseButton.ImageOver = null;
 			this.browseButton.Location = new System.Drawing.Point(489, 40);
 			this.browseButton.Name = "browseButton";
-			this.browseButton.PreferredBack = null;
-			this.browseButton.PreferredFore = null;
+			this.browseButton.ThemedBack = null;
+			this.browseButton.ThemedFore = null;
 			this.browseButton.ShowBorder = false;
 			this.browseButton.Size = new System.Drawing.Size(44, 34);
 			this.browseButton.TabIndex = 4;
@@ -168,12 +175,14 @@
 			// cancelButton
 			// 
 			this.cancelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+			this.cancelButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(231)))), ((int)(((byte)(231)))));
 			this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+			this.cancelButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.cancelButton.ImageOver = null;
 			this.cancelButton.Location = new System.Drawing.Point(554, 270);
 			this.cancelButton.Name = "cancelButton";
-			this.cancelButton.PreferredBack = null;
-			this.cancelButton.PreferredFore = null;
+			this.cancelButton.ThemedBack = null;
+			this.cancelButton.ThemedFore = null;
 			this.cancelButton.ShowBorder = true;
 			this.cancelButton.Size = new System.Drawing.Size(100, 38);
 			this.cancelButton.TabIndex = 6;
@@ -183,13 +192,15 @@
 			// okButton
 			// 
 			this.okButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+			this.okButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(231)))), ((int)(((byte)(231)))));
 			this.okButton.DialogResult = System.Windows.Forms.DialogResult.OK;
 			this.okButton.Enabled = false;
+			this.okButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.okButton.ImageOver = null;
 			this.okButton.Location = new System.Drawing.Point(447, 270);
 			this.okButton.Name = "okButton";
-			this.okButton.PreferredBack = null;
-			this.okButton.PreferredFore = null;
+			this.okButton.ThemedBack = null;
+			this.okButton.ThemedFore = null;
 			this.okButton.ShowBorder = true;
 			this.okButton.Size = new System.Drawing.Size(100, 38);
 			this.okButton.TabIndex = 7;

@@ -54,6 +54,8 @@
 			this.wordBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
 			this.wordBox.Location = new System.Drawing.Point(110, 32);
 			this.wordBox.Name = "wordBox";
+			this.wordBox.ThemedBack = null;
+			this.wordBox.ThemedFore = null;
 			this.wordBox.Size = new System.Drawing.Size(379, 26);
 			this.wordBox.TabIndex = 2;
 			// 
@@ -72,7 +74,6 @@
 			this.languagesBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.languagesBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-			this.languagesBox.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
 			this.languagesBox.FormattingEnabled = true;
 			this.languagesBox.Items.AddRange(new object[] {
             "English",
@@ -97,10 +98,14 @@
 			// cancelButton
 			// 
 			this.cancelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+			this.cancelButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(231)))), ((int)(((byte)(231)))));
 			this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+			this.cancelButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.cancelButton.ImageOver = null;
 			this.cancelButton.Location = new System.Drawing.Point(389, 141);
 			this.cancelButton.Name = "cancelButton";
+			this.cancelButton.ThemedBack = null;
+			this.cancelButton.ThemedFore = null;
 			this.cancelButton.ShowBorder = true;
 			this.cancelButton.Size = new System.Drawing.Size(100, 38);
 			this.cancelButton.TabIndex = 1;
@@ -110,10 +115,14 @@
 			// okButton
 			// 
 			this.okButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+			this.okButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(231)))), ((int)(((byte)(231)))));
 			this.okButton.DialogResult = System.Windows.Forms.DialogResult.OK;
+			this.okButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.okButton.ImageOver = null;
 			this.okButton.Location = new System.Drawing.Point(283, 141);
 			this.okButton.Name = "okButton";
+			this.okButton.ThemedBack = null;
+			this.okButton.ThemedFore = null;
 			this.okButton.ShowBorder = true;
 			this.okButton.Size = new System.Drawing.Size(100, 38);
 			this.okButton.TabIndex = 0;

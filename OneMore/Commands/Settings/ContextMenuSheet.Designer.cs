@@ -42,8 +42,8 @@
 			this.introBox.ForeColor = System.Drawing.SystemColors.ControlText;
 			this.introBox.Location = new System.Drawing.Point(10, 10);
 			this.introBox.Name = "introBox";
-			this.introBox.PreferredBack = "ControlLightLight";
-			this.introBox.PreferredFore = "ControlText";
+			this.introBox.ThemedBack = "ControlLightLight";
+			this.introBox.ThemedFore = "ControlText";
 			this.introBox.Size = new System.Drawing.Size(757, 158);
 			this.introBox.TabIndex = 1;
 			this.introBox.Text = resources.GetString("introBox.Text");

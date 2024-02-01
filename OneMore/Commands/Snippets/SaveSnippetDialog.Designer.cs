@@ -47,8 +47,8 @@ namespace River.OneMoreAddIn.Commands
 			this.okButton.ImageOver = null;
 			this.okButton.Location = new System.Drawing.Point(388, 94);
 			this.okButton.Name = "okButton";
-			this.okButton.PreferredBack = null;
-			this.okButton.PreferredFore = null;
+			this.okButton.ThemedBack = null;
+			this.okButton.ThemedFore = null;
 			this.okButton.ShowBorder = true;
 			this.okButton.Size = new System.Drawing.Size(112, 35);
 			this.okButton.TabIndex = 0;
@@ -65,8 +65,8 @@ namespace River.OneMoreAddIn.Commands
 			this.cancelButton.ImageOver = null;
 			this.cancelButton.Location = new System.Drawing.Point(506, 94);
 			this.cancelButton.Name = "cancelButton";
-			this.cancelButton.PreferredBack = null;
-			this.cancelButton.PreferredFore = null;
+			this.cancelButton.ThemedBack = null;
+			this.cancelButton.ThemedFore = null;
 			this.cancelButton.ShowBorder = true;
 			this.cancelButton.Size = new System.Drawing.Size(112, 35);
 			this.cancelButton.TabIndex = 1;
@@ -89,8 +89,8 @@ namespace River.OneMoreAddIn.Commands
 			this.nameBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
 			this.nameBox.Location = new System.Drawing.Point(141, 28);
 			this.nameBox.Name = "nameBox";
-			this.nameBox.PreferredBack = null;
-			this.nameBox.PreferredFore = null;
+			this.nameBox.ThemedBack = null;
+			this.nameBox.ThemedFore = null;
 			this.nameBox.Size = new System.Drawing.Size(477, 26);
 			this.nameBox.TabIndex = 2;
 			this.nameBox.TextChanged += new System.EventHandler(this.ValidateName);
@@ -101,8 +101,8 @@ namespace River.OneMoreAddIn.Commands
 			this.errorLabel.ForeColor = System.Drawing.Color.Maroon;
 			this.errorLabel.Location = new System.Drawing.Point(137, 57);
 			this.errorLabel.Name = "errorLabel";
-			this.errorLabel.PreferredBack = null;
-			this.errorLabel.PreferredFore = "ErrorText";
+			this.errorLabel.ThemedBack = null;
+			this.errorLabel.ThemedFore = "ErrorText";
 			this.errorLabel.Size = new System.Drawing.Size(167, 20);
 			this.errorLabel.TabIndex = 13;
 			this.errorLabel.Text = "Name is already in use";

@@ -43,8 +43,8 @@
 			this.okButton.ImageOver = null;
 			this.okButton.Location = new System.Drawing.Point(120, 497);
 			this.okButton.Name = "okButton";
-			this.okButton.PreferredBack = null;
-			this.okButton.PreferredFore = null;
+			this.okButton.ThemedBack = null;
+			this.okButton.ThemedFore = null;
 			this.okButton.ShowBorder = true;
 			this.okButton.Size = new System.Drawing.Size(116, 38);
 			this.okButton.TabIndex = 0;
@@ -58,8 +58,8 @@
 			this.cancelButton.ImageOver = null;
 			this.cancelButton.Location = new System.Drawing.Point(242, 497);
 			this.cancelButton.Name = "cancelButton";
-			this.cancelButton.PreferredBack = null;
-			this.cancelButton.PreferredFore = null;
+			this.cancelButton.ThemedBack = null;
+			this.cancelButton.ThemedFore = null;
 			this.cancelButton.ShowBorder = true;
 			this.cancelButton.Size = new System.Drawing.Size(116, 38);
 			this.cancelButton.TabIndex = 1;
@@ -91,8 +91,8 @@
 			this.upButton.ImageOver = null;
 			this.upButton.Location = new System.Drawing.Point(363, 169);
 			this.upButton.Name = "upButton";
-			this.upButton.PreferredBack = null;
-			this.upButton.PreferredFore = null;
+			this.upButton.ThemedBack = null;
+			this.upButton.ThemedFore = null;
 			this.upButton.ShowBorder = true;
 			this.upButton.Size = new System.Drawing.Size(42, 42);
 			this.upButton.TabIndex = 3;
@@ -107,8 +107,8 @@
 			this.downButton.ImageOver = null;
 			this.downButton.Location = new System.Drawing.Point(363, 217);
 			this.downButton.Name = "downButton";
-			this.downButton.PreferredBack = null;
-			this.downButton.PreferredFore = null;
+			this.downButton.ThemedBack = null;
+			this.downButton.ThemedFore = null;
 			this.downButton.ShowBorder = true;
 			this.downButton.Size = new System.Drawing.Size(42, 42);
 			this.downButton.TabIndex = 4;

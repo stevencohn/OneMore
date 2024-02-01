@@ -45,12 +45,14 @@
 			// cancelButton
 			// 
 			this.cancelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+			this.cancelButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(231)))), ((int)(((byte)(231)))));
 			this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+			this.cancelButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.cancelButton.ImageOver = null;
 			this.cancelButton.Location = new System.Drawing.Point(513, 262);
 			this.cancelButton.Name = "cancelButton";
-			this.cancelButton.PreferredBack = null;
-			this.cancelButton.PreferredFore = null;
+			this.cancelButton.ThemedBack = null;
+			this.cancelButton.ThemedFore = null;
 			this.cancelButton.ShowBorder = true;
 			this.cancelButton.Size = new System.Drawing.Size(100, 38);
 			this.cancelButton.TabIndex = 5;
@@ -60,13 +62,15 @@
 			// okButton
 			// 
 			this.okButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+			this.okButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(231)))), ((int)(((byte)(231)))));
 			this.okButton.DialogResult = System.Windows.Forms.DialogResult.OK;
 			this.okButton.Enabled = false;
+			this.okButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.okButton.ImageOver = null;
 			this.okButton.Location = new System.Drawing.Point(406, 262);
 			this.okButton.Name = "okButton";
-			this.okButton.PreferredBack = null;
-			this.okButton.PreferredFore = null;
+			this.okButton.ThemedBack = null;
+			this.okButton.ThemedFore = null;
 			this.okButton.ShowBorder = true;
 			this.okButton.Size = new System.Drawing.Size(100, 38);
 			this.okButton.TabIndex = 4;
@@ -93,20 +97,26 @@
 			// 
 			// matchBox
 			// 
+			this.matchBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(231)))), ((int)(((byte)(231)))));
+			this.matchBox.Cursor = System.Windows.Forms.Cursors.Hand;
+			this.matchBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.matchBox.Location = new System.Drawing.Point(160, 79);
 			this.matchBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 3);
 			this.matchBox.Name = "matchBox";
-			this.matchBox.Size = new System.Drawing.Size(117, 24);
+			this.matchBox.Size = new System.Drawing.Size(119, 25);
 			this.matchBox.TabIndex = 1;
 			this.matchBox.Text = "Match case";
 			this.matchBox.UseVisualStyleBackColor = true;
 			// 
 			// regBox
 			// 
+			this.regBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(231)))), ((int)(((byte)(231)))));
+			this.regBox.Cursor = System.Windows.Forms.Cursors.Hand;
+			this.regBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.regBox.Location = new System.Drawing.Point(160, 107);
 			this.regBox.Margin = new System.Windows.Forms.Padding(4, 1, 4, 3);
 			this.regBox.Name = "regBox";
-			this.regBox.Size = new System.Drawing.Size(211, 24);
+			this.regBox.Size = new System.Drawing.Size(213, 25);
 			this.regBox.TabIndex = 2;
 			this.regBox.Text = "Use regular expressions";
 			this.regBox.UseVisualStyleBackColor = true;
@@ -116,7 +126,6 @@
 			// 
 			this.whatBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-			this.whatBox.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
 			this.whatBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.whatBox.FormattingEnabled = true;
 			this.whatBox.Location = new System.Drawing.Point(154, 21);
@@ -130,7 +139,6 @@
 			// 
 			this.withBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-			this.withBox.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
 			this.withBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.withBox.FormattingEnabled = true;
 			this.withBox.Location = new System.Drawing.Point(154, 157);
@@ -146,8 +154,8 @@
 			this.whatStatusLabel.ForeColor = System.Drawing.Color.Brown;
 			this.whatStatusLabel.Location = new System.Drawing.Point(156, 54);
 			this.whatStatusLabel.Name = "whatStatusLabel";
-			this.whatStatusLabel.PreferredBack = null;
-			this.whatStatusLabel.PreferredFore = "ErrorText";
+			this.whatStatusLabel.ThemedBack = null;
+			this.whatStatusLabel.ThemedFore = "ErrorText";
 			this.whatStatusLabel.Size = new System.Drawing.Size(453, 20);
 			this.whatStatusLabel.TabIndex = 9;
 			this.whatStatusLabel.Text = "Invalid regular expression";
@@ -159,18 +167,21 @@
 			this.withStatusLabel.ForeColor = System.Drawing.SystemColors.MenuHighlight;
 			this.withStatusLabel.Location = new System.Drawing.Point(156, 190);
 			this.withStatusLabel.Name = "withStatusLabel";
-			this.withStatusLabel.PreferredBack = null;
-			this.withStatusLabel.PreferredFore = "HintText";
+			this.withStatusLabel.ThemedBack = null;
+			this.withStatusLabel.ThemedFore = "HintText";
 			this.withStatusLabel.Size = new System.Drawing.Size(453, 20);
 			this.withStatusLabel.TabIndex = 10;
 			this.withStatusLabel.Text = "Valid substitution parameters: $1";
 			// 
 			// rawBox
 			// 
+			this.rawBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(231)))), ((int)(((byte)(231)))));
+			this.rawBox.Cursor = System.Windows.Forms.Cursors.Hand;
+			this.rawBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.rawBox.Location = new System.Drawing.Point(160, 215);
 			this.rawBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 3);
 			this.rawBox.Name = "rawBox";
-			this.rawBox.Size = new System.Drawing.Size(197, 24);
+			this.rawBox.Size = new System.Drawing.Size(199, 25);
 			this.rawBox.TabIndex = 11;
 			this.rawBox.Text = "Replace with raw XML";
 			this.rawBox.UseVisualStyleBackColor = true;

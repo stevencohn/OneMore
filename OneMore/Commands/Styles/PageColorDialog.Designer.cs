@@ -99,12 +99,14 @@
 			// cancelButton
 			// 
 			this.cancelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+			this.cancelButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(231)))), ((int)(((byte)(231)))));
 			this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+			this.cancelButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.cancelButton.ImageOver = null;
 			this.cancelButton.Location = new System.Drawing.Point(497, 545);
 			this.cancelButton.Name = "cancelButton";
-			this.cancelButton.PreferredBack = null;
-			this.cancelButton.PreferredFore = null;
+			this.cancelButton.ThemedBack = null;
+			this.cancelButton.ThemedFore = null;
 			this.cancelButton.ShowBorder = true;
 			this.cancelButton.Size = new System.Drawing.Size(130, 40);
 			this.cancelButton.TabIndex = 9;
@@ -166,9 +168,12 @@
 			// 
 			// applyThemeBox
 			// 
+			this.applyThemeBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(231)))), ((int)(((byte)(231)))));
+			this.applyThemeBox.Cursor = System.Windows.Forms.Cursors.Hand;
+			this.applyThemeBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.applyThemeBox.Location = new System.Drawing.Point(51, 82);
 			this.applyThemeBox.Name = "applyThemeBox";
-			this.applyThemeBox.Size = new System.Drawing.Size(212, 24);
+			this.applyThemeBox.Size = new System.Drawing.Size(213, 25);
 			this.applyThemeBox.TabIndex = 0;
 			this.applyThemeBox.Text = "Apply styles to this page";
 			this.applyThemeBox.UseVisualStyleBackColor = true;
@@ -176,12 +181,14 @@
 			// okButton
 			// 
 			this.okButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+			this.okButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(231)))), ((int)(((byte)(231)))));
 			this.okButton.DialogResult = System.Windows.Forms.DialogResult.OK;
+			this.okButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.okButton.ImageOver = null;
 			this.okButton.Location = new System.Drawing.Point(361, 545);
 			this.okButton.Name = "okButton";
-			this.okButton.PreferredBack = null;
-			this.okButton.PreferredFore = null;
+			this.okButton.ThemedBack = null;
+			this.okButton.ThemedFore = null;
 			this.okButton.ShowBorder = true;
 			this.okButton.Size = new System.Drawing.Size(130, 40);
 			this.okButton.TabIndex = 12;
@@ -191,6 +198,7 @@
 			// 
 			// omButton
 			// 
+			this.omButton.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.omButton.Location = new System.Drawing.Point(33, 39);
 			this.omButton.Name = "omButton";
 			this.omButton.Size = new System.Drawing.Size(30, 24);
@@ -201,6 +209,7 @@
 			// 
 			// customButton
 			// 
+			this.customButton.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.customButton.Location = new System.Drawing.Point(33, 122);
 			this.customButton.Name = "customButton";
 			this.customButton.Size = new System.Drawing.Size(25, 24);
@@ -210,6 +219,7 @@
 			// 
 			// noButton
 			// 
+			this.noButton.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.noButton.Location = new System.Drawing.Point(33, 203);
 			this.noButton.Name = "noButton";
 			this.noButton.Size = new System.Drawing.Size(25, 24);
@@ -223,8 +233,8 @@
 			this.statusLabel.ForeColor = System.Drawing.Color.Brown;
 			this.statusLabel.Location = new System.Drawing.Point(83, 262);
 			this.statusLabel.Name = "statusLabel";
-			this.statusLabel.PreferredBack = null;
-			this.statusLabel.PreferredFore = "ErrorText";
+			this.statusLabel.ThemedBack = null;
+			this.statusLabel.ThemedFore = "ErrorText";
 			this.statusLabel.Size = new System.Drawing.Size(31, 20);
 			this.statusLabel.TabIndex = 16;
 			this.statusLabel.Text = "OK";
@@ -232,7 +242,6 @@
 			// scopeBox
 			// 
 			this.scopeBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-			this.scopeBox.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
 			this.scopeBox.FormattingEnabled = true;
 			this.scopeBox.Items.AddRange(new object[] {
             "Apply to this page",

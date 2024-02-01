@@ -45,13 +45,15 @@ namespace River.OneMoreAddIn.Commands
 			// okButton
 			// 
 			this.okButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+			this.okButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(231)))), ((int)(((byte)(231)))));
 			this.okButton.DialogResult = System.Windows.Forms.DialogResult.OK;
+			this.okButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.okButton.ImageOver = null;
 			this.okButton.Location = new System.Drawing.Point(270, 307);
 			this.okButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.okButton.Name = "okButton";
-			this.okButton.PreferredBack = null;
-			this.okButton.PreferredFore = null;
+			this.okButton.ThemedBack = null;
+			this.okButton.ThemedFore = null;
 			this.okButton.ShowBorder = true;
 			this.okButton.Size = new System.Drawing.Size(112, 35);
 			this.okButton.TabIndex = 0;
@@ -61,13 +63,15 @@ namespace River.OneMoreAddIn.Commands
 			// cancelButton
 			// 
 			this.cancelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+			this.cancelButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(231)))), ((int)(((byte)(231)))));
 			this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+			this.cancelButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.cancelButton.ImageOver = null;
 			this.cancelButton.Location = new System.Drawing.Point(390, 307);
 			this.cancelButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.cancelButton.Name = "cancelButton";
-			this.cancelButton.PreferredBack = null;
-			this.cancelButton.PreferredFore = null;
+			this.cancelButton.ThemedBack = null;
+			this.cancelButton.ThemedFore = null;
 			this.cancelButton.ShowBorder = true;
 			this.cancelButton.Size = new System.Drawing.Size(112, 35);
 			this.cancelButton.TabIndex = 1;
@@ -76,12 +80,14 @@ namespace River.OneMoreAddIn.Commands
 			// 
 			// notebookBox
 			// 
-			this.notebookBox.AutoSize = true;
+			this.notebookBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(231)))), ((int)(((byte)(231)))));
 			this.notebookBox.Checked = true;
 			this.notebookBox.CheckState = System.Windows.Forms.CheckState.Checked;
+			this.notebookBox.Cursor = System.Windows.Forms.Cursors.Hand;
+			this.notebookBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.notebookBox.Location = new System.Drawing.Point(33, 39);
 			this.notebookBox.Name = "notebookBox";
-			this.notebookBox.Size = new System.Drawing.Size(282, 24);
+			this.notebookBox.Size = new System.Drawing.Size(290, 25);
 			this.notebookBox.TabIndex = 2;
 			this.notebookBox.Text = "Include notebook backup summary";
 			this.notebookBox.UseVisualStyleBackColor = true;
@@ -89,12 +95,14 @@ namespace River.OneMoreAddIn.Commands
 			// 
 			// sectionBox
 			// 
-			this.sectionBox.AutoSize = true;
+			this.sectionBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(231)))), ((int)(((byte)(231)))));
 			this.sectionBox.Checked = true;
 			this.sectionBox.CheckState = System.Windows.Forms.CheckState.Checked;
+			this.sectionBox.Cursor = System.Windows.Forms.Cursors.Hand;
+			this.sectionBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.sectionBox.Location = new System.Drawing.Point(33, 69);
 			this.sectionBox.Name = "sectionBox";
-			this.sectionBox.Size = new System.Drawing.Size(210, 24);
+			this.sectionBox.Size = new System.Drawing.Size(217, 25);
 			this.sectionBox.TabIndex = 3;
 			this.sectionBox.Text = "Include section summary";
 			this.sectionBox.UseVisualStyleBackColor = true;
@@ -102,11 +110,11 @@ namespace River.OneMoreAddIn.Commands
 			// 
 			// sectionDetailBox
 			// 
-			this.sectionDetailBox.AutoSize = true;
 			this.sectionDetailBox.Checked = true;
+			this.sectionDetailBox.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.sectionDetailBox.Location = new System.Drawing.Point(33, 123);
 			this.sectionDetailBox.Name = "sectionDetailBox";
-			this.sectionDetailBox.Size = new System.Drawing.Size(308, 24);
+			this.sectionDetailBox.Size = new System.Drawing.Size(318, 25);
 			this.sectionDetailBox.TabIndex = 4;
 			this.sectionDetailBox.TabStop = true;
 			this.sectionDetailBox.Text = "Include page details for current section";
@@ -115,10 +123,10 @@ namespace River.OneMoreAddIn.Commands
 			// 
 			// allDetailsBox
 			// 
-			this.allDetailsBox.AutoSize = true;
+			this.allDetailsBox.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.allDetailsBox.Location = new System.Drawing.Point(33, 153);
 			this.allDetailsBox.Name = "allDetailsBox";
-			this.allDetailsBox.Size = new System.Drawing.Size(397, 24);
+			this.allDetailsBox.Size = new System.Drawing.Size(411, 25);
 			this.allDetailsBox.TabIndex = 5;
 			this.allDetailsBox.Text = "Include page details for all sections in this notebook";
 			this.allDetailsBox.UseVisualStyleBackColor = true;
@@ -126,10 +134,10 @@ namespace River.OneMoreAddIn.Commands
 			// 
 			// noDetailsBox
 			// 
-			this.noDetailsBox.AutoSize = true;
+			this.noDetailsBox.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.noDetailsBox.Location = new System.Drawing.Point(33, 183);
 			this.noDetailsBox.Name = "noDetailsBox";
-			this.noDetailsBox.Size = new System.Drawing.Size(144, 24);
+			this.noDetailsBox.Size = new System.Drawing.Size(150, 25);
 			this.noDetailsBox.TabIndex = 6;
 			this.noDetailsBox.Text = "No page details";
 			this.noDetailsBox.UseVisualStyleBackColor = true;
@@ -148,7 +156,6 @@ namespace River.OneMoreAddIn.Commands
 			// sizeBox
 			// 
 			this.sizeBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-			this.sizeBox.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
 			this.sizeBox.FormattingEnabled = true;
 			this.sizeBox.Items.AddRange(new object[] {
             "20 x 20",
@@ -167,8 +174,8 @@ namespace River.OneMoreAddIn.Commands
 			this.warningLabel.ForeColor = System.Drawing.Color.Maroon;
 			this.warningLabel.Location = new System.Drawing.Point(152, 259);
 			this.warningLabel.Name = "warningLabel";
-			this.warningLabel.PreferredBack = null;
-			this.warningLabel.PreferredFore = "ErrorText";
+			this.warningLabel.ThemedBack = null;
+			this.warningLabel.ThemedFore = "ErrorText";
 			this.warningLabel.Size = new System.Drawing.Size(186, 20);
 			this.warningLabel.TabIndex = 14;
 			this.warningLabel.Text = "Report may take minutes";

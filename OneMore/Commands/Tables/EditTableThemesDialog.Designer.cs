@@ -93,8 +93,8 @@ namespace River.OneMoreAddIn.Commands
 			this.cancelButton.ImageOver = null;
 			this.cancelButton.Location = new System.Drawing.Point(710, 10);
 			this.cancelButton.Name = "cancelButton";
-			this.cancelButton.PreferredBack = null;
-			this.cancelButton.PreferredFore = null;
+			this.cancelButton.ThemedBack = null;
+			this.cancelButton.ThemedFore = null;
 			this.cancelButton.ShowBorder = true;
 			this.cancelButton.Size = new System.Drawing.Size(110, 34);
 			this.cancelButton.TabIndex = 2;
@@ -104,7 +104,6 @@ namespace River.OneMoreAddIn.Commands
 			// combo
 			// 
 			this.combo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-			this.combo.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
 			this.combo.FormattingEnabled = true;
 			this.combo.Location = new System.Drawing.Point(93, 7);
 			this.combo.Name = "combo";
@@ -170,8 +169,8 @@ namespace River.OneMoreAddIn.Commands
 			this.resetButton.ImageOver = null;
 			this.resetButton.Location = new System.Drawing.Point(3, 12);
 			this.resetButton.Name = "resetButton";
-			this.resetButton.PreferredBack = null;
-			this.resetButton.PreferredFore = null;
+			this.resetButton.ThemedBack = null;
+			this.resetButton.ThemedFore = null;
 			this.resetButton.ShowBorder = true;
 			this.resetButton.Size = new System.Drawing.Size(110, 34);
 			this.resetButton.TabIndex = 1;
@@ -211,7 +210,7 @@ namespace River.OneMoreAddIn.Commands
             this.deleteButton});
 			this.toolstrip.Location = new System.Drawing.Point(505, 5);
 			this.toolstrip.Name = "toolstrip";
-			this.toolstrip.Size = new System.Drawing.Size(160, 38);
+			this.toolstrip.Size = new System.Drawing.Size(160, 33);
 			this.toolstrip.TabIndex = 10;
 			this.toolstrip.Text = "toolstrip";
 			// 
@@ -221,7 +220,7 @@ namespace River.OneMoreAddIn.Commands
 			this.newButton.Image = global::River.OneMoreAddIn.Properties.Resources.NewStyle;
 			this.newButton.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.newButton.Name = "newButton";
-			this.newButton.Size = new System.Drawing.Size(34, 33);
+			this.newButton.Size = new System.Drawing.Size(34, 28);
 			this.newButton.Text = "New Style";
 			this.newButton.Click += new System.EventHandler(this.CreateNewTheme);
 			// 
@@ -231,7 +230,7 @@ namespace River.OneMoreAddIn.Commands
 			this.renameButton.Image = global::River.OneMoreAddIn.Properties.Resources.Rename;
 			this.renameButton.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.renameButton.Name = "renameButton";
-			this.renameButton.Size = new System.Drawing.Size(34, 33);
+			this.renameButton.Size = new System.Drawing.Size(34, 28);
 			this.renameButton.Text = "Rename";
 			this.renameButton.Click += new System.EventHandler(this.RenameTheme);
 			// 
@@ -242,14 +241,14 @@ namespace River.OneMoreAddIn.Commands
 			this.saveButton.Image = global::River.OneMoreAddIn.Properties.Resources.SaveAs;
 			this.saveButton.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.saveButton.Name = "saveButton";
-			this.saveButton.Size = new System.Drawing.Size(34, 33);
+			this.saveButton.Size = new System.Drawing.Size(34, 28);
 			this.saveButton.Text = "Save";
 			this.saveButton.Click += new System.EventHandler(this.SaveTheme);
 			// 
 			// toolsep1
 			// 
 			this.toolsep1.Name = "toolsep1";
-			this.toolsep1.Size = new System.Drawing.Size(6, 38);
+			this.toolsep1.Size = new System.Drawing.Size(6, 33);
 			// 
 			// deleteButton
 			// 
@@ -257,7 +256,7 @@ namespace River.OneMoreAddIn.Commands
 			this.deleteButton.Image = global::River.OneMoreAddIn.Properties.Resources.Delete;
 			this.deleteButton.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.deleteButton.Name = "deleteButton";
-			this.deleteButton.Size = new System.Drawing.Size(34, 33);
+			this.deleteButton.Size = new System.Drawing.Size(34, 28);
 			this.deleteButton.Text = "Delete";
 			this.deleteButton.Click += new System.EventHandler(this.DeleteTheme);
 			// 
@@ -347,8 +346,8 @@ namespace River.OneMoreAddIn.Commands
 			this.applyFontButton.ImageOver = null;
 			this.applyFontButton.Location = new System.Drawing.Point(512, 25);
 			this.applyFontButton.Name = "applyFontButton";
-			this.applyFontButton.PreferredBack = null;
-			this.applyFontButton.PreferredFore = null;
+			this.applyFontButton.ThemedBack = null;
+			this.applyFontButton.ThemedFore = null;
 			this.applyFontButton.ShowBorder = true;
 			this.applyFontButton.Size = new System.Drawing.Size(110, 34);
 			this.applyFontButton.TabIndex = 15;
@@ -360,7 +359,6 @@ namespace River.OneMoreAddIn.Commands
 			// 
 			this.familyBox.DropDownHeight = 400;
 			this.familyBox.DropDownWidth = 350;
-			this.familyBox.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
 			this.familyBox.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.familyBox.FormattingEnabled = true;
 			this.familyBox.IntegralHeight = false;
@@ -372,7 +370,6 @@ namespace River.OneMoreAddIn.Commands
 			// 
 			// sizeBox
 			// 
-			this.sizeBox.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
 			this.sizeBox.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.sizeBox.FormattingEnabled = true;
 			this.sizeBox.Items.AddRange(new object[] {
@@ -496,8 +493,8 @@ namespace River.OneMoreAddIn.Commands
 			this.defaultFontButton.ImageOver = null;
 			this.defaultFontButton.Location = new System.Drawing.Point(231, 206);
 			this.defaultFontButton.Name = "defaultFontButton";
-			this.defaultFontButton.PreferredBack = null;
-			this.defaultFontButton.PreferredFore = null;
+			this.defaultFontButton.ThemedBack = null;
+			this.defaultFontButton.ThemedFore = null;
 			this.defaultFontButton.ShowBorder = true;
 			this.defaultFontButton.Size = new System.Drawing.Size(110, 34);
 			this.defaultFontButton.TabIndex = 3;
@@ -523,8 +520,8 @@ namespace River.OneMoreAddIn.Commands
 			this.resetFontButton.ImageOver = null;
 			this.resetFontButton.Location = new System.Drawing.Point(115, 205);
 			this.resetFontButton.Name = "resetFontButton";
-			this.resetFontButton.PreferredBack = null;
-			this.resetFontButton.PreferredFore = null;
+			this.resetFontButton.ThemedBack = null;
+			this.resetFontButton.ThemedFore = null;
 			this.resetFontButton.ShowBorder = true;
 			this.resetFontButton.Size = new System.Drawing.Size(110, 34);
 			this.resetFontButton.TabIndex = 1;
@@ -572,8 +569,8 @@ namespace River.OneMoreAddIn.Commands
 			this.button1.ImageOver = null;
 			this.button1.Location = new System.Drawing.Point(13, 209);
 			this.button1.Name = "button1";
-			this.button1.PreferredBack = null;
-			this.button1.PreferredFore = null;
+			this.button1.ThemedBack = null;
+			this.button1.ThemedFore = null;
 			this.button1.ShowBorder = true;
 			this.button1.Size = new System.Drawing.Size(110, 34);
 			this.button1.TabIndex = 1;

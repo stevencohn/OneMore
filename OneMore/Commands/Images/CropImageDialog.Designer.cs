@@ -158,8 +158,8 @@
 			this.selectButton.ImageOver = null;
 			this.selectButton.Location = new System.Drawing.Point(12, 9);
 			this.selectButton.Name = "selectButton";
-			this.selectButton.PreferredBack = null;
-			this.selectButton.PreferredFore = null;
+			this.selectButton.ThemedBack = null;
+			this.selectButton.ThemedFore = null;
 			this.selectButton.ShowBorder = true;
 			this.selectButton.Size = new System.Drawing.Size(120, 40);
 			this.selectButton.TabIndex = 4;
@@ -174,8 +174,8 @@
 			this.cancelButton.ImageOver = null;
 			this.cancelButton.Location = new System.Drawing.Point(1373, 9);
 			this.cancelButton.Name = "cancelButton";
-			this.cancelButton.PreferredBack = null;
-			this.cancelButton.PreferredFore = null;
+			this.cancelButton.ThemedBack = null;
+			this.cancelButton.ThemedFore = null;
 			this.cancelButton.ShowBorder = true;
 			this.cancelButton.Size = new System.Drawing.Size(103, 40);
 			this.cancelButton.TabIndex = 1;
@@ -190,8 +190,8 @@
 			this.cropButton.ImageOver = null;
 			this.cropButton.Location = new System.Drawing.Point(1265, 9);
 			this.cropButton.Name = "cropButton";
-			this.cropButton.PreferredBack = null;
-			this.cropButton.PreferredFore = null;
+			this.cropButton.ThemedBack = null;
+			this.cropButton.ThemedFore = null;
 			this.cropButton.ShowBorder = true;
 			this.cropButton.Size = new System.Drawing.Size(102, 40);
 			this.cropButton.TabIndex = 0;

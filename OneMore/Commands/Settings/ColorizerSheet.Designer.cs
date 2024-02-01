@@ -29,7 +29,7 @@ namespace River.OneMoreAddIn.Settings
 		/// </summary>
 		private void InitializeComponent()
 		{
-			this.introBox = new UI.MoreMultilineLabel();
+			this.introBox = new River.OneMoreAddIn.UI.MoreMultilineLabel();
 			this.layoutPanel = new System.Windows.Forms.Panel();
 			this.barLabel = new System.Windows.Forms.Label();
 			this.allLink = new River.OneMoreAddIn.UI.MoreLinkLabel();
@@ -50,12 +50,11 @@ namespace River.OneMoreAddIn.Settings
 			// introBox
 			// 
 			this.introBox.BackColor = System.Drawing.SystemColors.ControlLightLight;
-			this.introBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
 			this.introBox.Dock = System.Windows.Forms.DockStyle.Top;
 			this.introBox.Location = new System.Drawing.Point(13, 8);
 			this.introBox.Name = "introBox";
-			this.introBox.PreferredBack = "ControlLightLight";
-			this.introBox.PreferredFore = null;
+			this.introBox.ThemedBack = "ControlLightLight";
+			this.introBox.ThemedFore = null;
 			this.introBox.Size = new System.Drawing.Size(772, 66);
 			this.introBox.TabIndex = 3;
 			this.introBox.Text = "Customize the behavior of the Colorize command. Secondary font applies when colla" +
@@ -158,7 +157,6 @@ namespace River.OneMoreAddIn.Settings
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.family2Box.DropDownHeight = 400;
 			this.family2Box.DropDownWidth = 350;
-			this.family2Box.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
 			this.family2Box.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.family2Box.FormattingEnabled = true;
 			this.family2Box.IntegralHeight = false;
@@ -170,7 +168,6 @@ namespace River.OneMoreAddIn.Settings
 			// size2Box
 			// 
 			this.size2Box.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.size2Box.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
 			this.size2Box.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.size2Box.FormattingEnabled = true;
 			this.size2Box.Items.AddRange(new object[] {
@@ -205,9 +202,12 @@ namespace River.OneMoreAddIn.Settings
 			// 
 			// fixedBox
 			// 
+			this.fixedBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(231)))), ((int)(((byte)(231)))));
+			this.fixedBox.Cursor = System.Windows.Forms.Cursors.Hand;
+			this.fixedBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.fixedBox.Location = new System.Drawing.Point(135, 167);
 			this.fixedBox.Name = "fixedBox";
-			this.fixedBox.Size = new System.Drawing.Size(233, 24);
+			this.fixedBox.Size = new System.Drawing.Size(235, 25);
 			this.fixedBox.TabIndex = 3;
 			this.fixedBox.Text = "Show only fixed-width fonts";
 			this.fixedBox.UseVisualStyleBackColor = true;
@@ -219,7 +219,6 @@ namespace River.OneMoreAddIn.Settings
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.familyBox.DropDownHeight = 400;
 			this.familyBox.DropDownWidth = 350;
-			this.familyBox.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
 			this.familyBox.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.familyBox.FormattingEnabled = true;
 			this.familyBox.IntegralHeight = false;
@@ -231,7 +230,6 @@ namespace River.OneMoreAddIn.Settings
 			// sizeBox
 			// 
 			this.sizeBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.sizeBox.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
 			this.sizeBox.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.sizeBox.FormattingEnabled = true;
 			this.sizeBox.Items.AddRange(new object[] {
@@ -266,9 +264,12 @@ namespace River.OneMoreAddIn.Settings
 			// 
 			// applyBox
 			// 
+			this.applyBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(231)))), ((int)(((byte)(231)))));
+			this.applyBox.Cursor = System.Windows.Forms.Cursors.Hand;
+			this.applyBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.applyBox.Location = new System.Drawing.Point(3, 6);
 			this.applyBox.Name = "applyBox";
-			this.applyBox.Size = new System.Drawing.Size(424, 24);
+			this.applyBox.Size = new System.Drawing.Size(426, 25);
 			this.applyBox.TabIndex = 0;
 			this.applyBox.Text = "Always apply the following fonts when colorizing code";
 			this.applyBox.UseVisualStyleBackColor = true;
@@ -287,7 +288,6 @@ namespace River.OneMoreAddIn.Settings
 			this.layoutPanel.ResumeLayout(false);
 			this.layoutPanel.PerformLayout();
 			this.ResumeLayout(false);
-			this.PerformLayout();
 
 		}
 

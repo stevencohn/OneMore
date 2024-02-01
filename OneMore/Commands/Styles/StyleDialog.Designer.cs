@@ -90,7 +90,6 @@
 			// sizeBox
 			// 
 			this.sizeBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.sizeBox.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
 			this.sizeBox.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.sizeBox.FormattingEnabled = true;
 			this.sizeBox.Items.AddRange(new object[] {
@@ -154,8 +153,8 @@
 			this.nameBox.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.nameBox.Location = new System.Drawing.Point(169, 23);
 			this.nameBox.Name = "nameBox";
-			this.nameBox.PreferredBack = null;
-			this.nameBox.PreferredFore = null;
+			this.nameBox.ThemedBack = null;
+			this.nameBox.ThemedFore = null;
 			this.nameBox.Size = new System.Drawing.Size(475, 31);
 			this.nameBox.TabIndex = 0;
 			this.nameBox.TextChanged += new System.EventHandler(this.ChangeStyleName);
@@ -206,12 +205,14 @@
 			// cancelButton
 			// 
 			this.cancelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+			this.cancelButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(231)))), ((int)(((byte)(231)))));
 			this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+			this.cancelButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.cancelButton.ImageOver = null;
 			this.cancelButton.Location = new System.Drawing.Point(526, 540);
 			this.cancelButton.Name = "cancelButton";
-			this.cancelButton.PreferredBack = null;
-			this.cancelButton.PreferredFore = null;
+			this.cancelButton.ThemedBack = null;
+			this.cancelButton.ThemedFore = null;
 			this.cancelButton.ShowBorder = true;
 			this.cancelButton.Size = new System.Drawing.Size(116, 38);
 			this.cancelButton.TabIndex = 12;
@@ -221,12 +222,14 @@
 			// okButton
 			// 
 			this.okButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+			this.okButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(231)))), ((int)(((byte)(231)))));
 			this.okButton.DialogResult = System.Windows.Forms.DialogResult.OK;
+			this.okButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.okButton.ImageOver = null;
 			this.okButton.Location = new System.Drawing.Point(404, 540);
 			this.okButton.Name = "okButton";
-			this.okButton.PreferredBack = null;
-			this.okButton.PreferredFore = null;
+			this.okButton.ThemedBack = null;
+			this.okButton.ThemedFore = null;
 			this.okButton.ShowBorder = true;
 			this.okButton.Size = new System.Drawing.Size(116, 38);
 			this.okButton.TabIndex = 11;
@@ -238,7 +241,6 @@
 			// 
 			this.namesBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
 			this.namesBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-			this.namesBox.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
 			this.namesBox.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.namesBox.FormattingEnabled = true;
 			this.namesBox.Location = new System.Drawing.Point(18, 544);
@@ -283,9 +285,12 @@
 			// 
 			// ignoredBox
 			// 
+			this.ignoredBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(231)))), ((int)(((byte)(231)))));
+			this.ignoredBox.Cursor = System.Windows.Forms.Cursors.Hand;
+			this.ignoredBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.ignoredBox.Location = new System.Drawing.Point(169, 197);
 			this.ignoredBox.Name = "ignoredBox";
-			this.ignoredBox.Size = new System.Drawing.Size(175, 24);
+			this.ignoredBox.Size = new System.Drawing.Size(176, 25);
 			this.ignoredBox.TabIndex = 6;
 			this.ignoredBox.Text = "Disable spell check";
 			this.tooltip.SetToolTip(this.ignoredBox, "Disable spell check for selected text");
@@ -313,8 +318,8 @@
 			this.statusLabel.ForeColor = System.Drawing.Color.Maroon;
 			this.statusLabel.Location = new System.Drawing.Point(46, 117);
 			this.statusLabel.Name = "statusLabel";
-			this.statusLabel.PreferredBack = null;
-			this.statusLabel.PreferredFore = "ErrorText";
+			this.statusLabel.ThemedBack = null;
+			this.statusLabel.ThemedFore = "ErrorText";
 			this.statusLabel.Size = new System.Drawing.Size(31, 20);
 			this.statusLabel.TabIndex = 3;
 			this.statusLabel.Text = "OK";
@@ -337,9 +342,12 @@
 			// 
 			// darkBox
 			// 
+			this.darkBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(231)))), ((int)(((byte)(231)))));
+			this.darkBox.Cursor = System.Windows.Forms.Cursors.Hand;
+			this.darkBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.darkBox.Location = new System.Drawing.Point(22, 33);
 			this.darkBox.Name = "darkBox";
-			this.darkBox.Size = new System.Drawing.Size(349, 24);
+			this.darkBox.Size = new System.Drawing.Size(350, 25);
 			this.darkBox.TabIndex = 0;
 			this.darkBox.Text = "Intended for pages with dark bakckgrounds";
 			this.tooltip.SetToolTip(this.darkBox, "Used in Page Color dialog to warn about non-readable text");
@@ -347,9 +355,12 @@
 			// 
 			// pageColorBox
 			// 
+			this.pageColorBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(231)))), ((int)(((byte)(231)))));
+			this.pageColorBox.Cursor = System.Windows.Forms.Cursors.Hand;
+			this.pageColorBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.pageColorBox.Location = new System.Drawing.Point(22, 63);
 			this.pageColorBox.Name = "pageColorBox";
-			this.pageColorBox.Size = new System.Drawing.Size(402, 24);
+			this.pageColorBox.Size = new System.Drawing.Size(403, 25);
 			this.pageColorBox.TabIndex = 1;
 			this.pageColorBox.Text = "Change the page color when applying these styles";
 			this.pageColorBox.UseVisualStyleBackColor = true;
@@ -390,7 +401,6 @@
 			this.styleTypeBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.styleTypeBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-			this.styleTypeBox.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
 			this.styleTypeBox.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.styleTypeBox.FormattingEnabled = true;
 			this.styleTypeBox.Items.AddRange(new object[] {
@@ -405,11 +415,14 @@
 			// 
 			// applyColorsBox
 			// 
+			this.applyColorsBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(231)))), ((int)(((byte)(231)))));
 			this.applyColorsBox.Checked = true;
 			this.applyColorsBox.CheckState = System.Windows.Forms.CheckState.Checked;
+			this.applyColorsBox.Cursor = System.Windows.Forms.Cursors.Hand;
+			this.applyColorsBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.applyColorsBox.Location = new System.Drawing.Point(499, 158);
 			this.applyColorsBox.Name = "applyColorsBox";
-			this.applyColorsBox.Size = new System.Drawing.Size(124, 24);
+			this.applyColorsBox.Size = new System.Drawing.Size(125, 25);
 			this.applyColorsBox.TabIndex = 5;
 			this.applyColorsBox.Text = "Apply colors";
 			this.applyColorsBox.UseVisualStyleBackColor = true;
@@ -421,7 +434,6 @@
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.familyBox.DropDownHeight = 400;
 			this.familyBox.DropDownWidth = 350;
-			this.familyBox.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
 			this.familyBox.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.familyBox.FormattingEnabled = true;
 			this.familyBox.IntegralHeight = false;
@@ -601,7 +613,7 @@
 			this.loadButton.ForeColor = System.Drawing.Color.Black;
 			this.loadButton.Image = global::River.OneMoreAddIn.Properties.Resources.Open;
 			this.loadButton.Name = "loadButton";
-			this.loadButton.Size = new System.Drawing.Size(270, 34);
+			this.loadButton.Size = new System.Drawing.Size(185, 34);
 			this.loadButton.Text = "Open...";
 			this.loadButton.Click += new System.EventHandler(this.LoadTheme);
 			// 
@@ -610,7 +622,7 @@
 			this.saveButton.ForeColor = System.Drawing.Color.Black;
 			this.saveButton.Image = global::River.OneMoreAddIn.Properties.Resources.SaveAs;
 			this.saveButton.Name = "saveButton";
-			this.saveButton.Size = new System.Drawing.Size(270, 34);
+			this.saveButton.Size = new System.Drawing.Size(185, 34);
 			this.saveButton.Text = "Save as...";
 			this.saveButton.Click += new System.EventHandler(this.SaveTheme);
 			// 

@@ -23,7 +23,7 @@
     "Control": "#2B2B2B",
     "ControlDark": "#2A2A2A",
     "ControlDarkDark": "#000000",
-    "ControlLight": "#303030",
+    "ControlLight": "#393939",
     "ControlLightLight": "#404040",
     "ControlText": "#E6E6E6",
     "Desktop": "#000000",
@@ -49,6 +49,7 @@
     "ButtonDown": "#3D2F45",
     "ErrorText": "#FF6347",
     "HintText": "#87CEFA",
+    "InactiveWindow": "#212121",
 
     "XmlComment": "LimeGreen",
     "XmlEditedBy": "MediumTurquoise",

@@ -50,12 +50,14 @@
 			// cancelButton
 			// 
 			this.cancelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+			this.cancelButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(231)))), ((int)(((byte)(231)))));
 			this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+			this.cancelButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.cancelButton.ImageOver = null;
 			this.cancelButton.Location = new System.Drawing.Point(376, 402);
 			this.cancelButton.Name = "cancelButton";
-			this.cancelButton.PreferredBack = null;
-			this.cancelButton.PreferredFore = null;
+			this.cancelButton.ThemedBack = null;
+			this.cancelButton.ThemedFore = null;
 			this.cancelButton.ShowBorder = true;
 			this.cancelButton.Size = new System.Drawing.Size(120, 38);
 			this.cancelButton.TabIndex = 1;
@@ -66,12 +68,14 @@
 			// okButton
 			// 
 			this.okButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+			this.okButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(231)))), ((int)(((byte)(231)))));
 			this.okButton.DialogResult = System.Windows.Forms.DialogResult.OK;
+			this.okButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.okButton.ImageOver = null;
 			this.okButton.Location = new System.Drawing.Point(245, 402);
 			this.okButton.Name = "okButton";
-			this.okButton.PreferredBack = null;
-			this.okButton.PreferredFore = null;
+			this.okButton.ThemedBack = null;
+			this.okButton.ThemedFore = null;
 			this.okButton.ShowBorder = true;
 			this.okButton.Size = new System.Drawing.Size(120, 38);
 			this.okButton.TabIndex = 0;
@@ -81,11 +85,11 @@
 			// 
 			// nameButton
 			// 
-			this.nameButton.AutoSize = true;
 			this.nameButton.Checked = true;
+			this.nameButton.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.nameButton.Location = new System.Drawing.Point(3, 3);
 			this.nameButton.Name = "nameButton";
-			this.nameButton.Size = new System.Drawing.Size(76, 24);
+			this.nameButton.Size = new System.Drawing.Size(79, 25);
 			this.nameButton.TabIndex = 0;
 			this.nameButton.TabStop = true;
 			this.nameButton.Text = "Name";
@@ -93,10 +97,10 @@
 			// 
 			// createdButton
 			// 
-			this.createdButton.AutoSize = true;
+			this.createdButton.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.createdButton.Location = new System.Drawing.Point(3, 32);
 			this.createdButton.Name = "createdButton";
-			this.createdButton.Size = new System.Drawing.Size(130, 24);
+			this.createdButton.Size = new System.Drawing.Size(133, 25);
 			this.createdButton.TabIndex = 1;
 			this.createdButton.Text = "Date Created";
 			this.createdButton.UseVisualStyleBackColor = true;
@@ -104,7 +108,6 @@
 			// scopeBox
 			// 
 			this.scopeBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-			this.scopeBox.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
 			this.scopeBox.FormattingEnabled = true;
 			this.scopeBox.Items.AddRange(new object[] {
             "Children of Current Page",
@@ -132,10 +135,10 @@
 			// 
 			// modifiedButton
 			// 
-			this.modifiedButton.AutoSize = true;
+			this.modifiedButton.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.modifiedButton.Location = new System.Drawing.Point(3, 63);
 			this.modifiedButton.Name = "modifiedButton";
-			this.modifiedButton.Size = new System.Drawing.Size(133, 24);
+			this.modifiedButton.Size = new System.Drawing.Size(137, 25);
 			this.modifiedButton.TabIndex = 2;
 			this.modifiedButton.Text = "Date Modified";
 			this.modifiedButton.UseVisualStyleBackColor = true;
@@ -185,21 +188,21 @@
 			// 
 			// desButton
 			// 
-			this.desButton.AutoSize = true;
+			this.desButton.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.desButton.Location = new System.Drawing.Point(3, 32);
 			this.desButton.Name = "desButton";
-			this.desButton.Size = new System.Drawing.Size(119, 24);
+			this.desButton.Size = new System.Drawing.Size(123, 25);
 			this.desButton.TabIndex = 1;
 			this.desButton.Text = "Descending";
 			this.desButton.UseVisualStyleBackColor = true;
 			// 
 			// ascButton
 			// 
-			this.ascButton.AutoSize = true;
 			this.ascButton.Checked = true;
+			this.ascButton.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.ascButton.Location = new System.Drawing.Point(3, 3);
 			this.ascButton.Name = "ascButton";
-			this.ascButton.Size = new System.Drawing.Size(109, 24);
+			this.ascButton.Size = new System.Drawing.Size(112, 25);
 			this.ascButton.TabIndex = 0;
 			this.ascButton.TabStop = true;
 			this.ascButton.Text = "Ascending";
@@ -207,15 +210,16 @@
 			// 
 			// pinNotesBox
 			// 
-			this.pinNotesBox.AutoSize = true;
+			this.pinNotesBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(231)))), ((int)(((byte)(231)))));
 			this.pinNotesBox.Checked = true;
 			this.pinNotesBox.CheckState = System.Windows.Forms.CheckState.Checked;
+			this.pinNotesBox.Cursor = System.Windows.Forms.Cursors.Hand;
+			this.pinNotesBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.pinNotesBox.Location = new System.Drawing.Point(138, 307);
 			this.pinNotesBox.Name = "pinNotesBox";
-			this.pinNotesBox.Size = new System.Drawing.Size(193, 44);
+			this.pinNotesBox.Size = new System.Drawing.Size(198, 47);
 			this.pinNotesBox.TabIndex = 3;
 			this.pinNotesBox.Text = "Pin Notes to top and\r\nQuick Notes to bottom";
-			this.pinNotesBox.TextAlign = System.Drawing.ContentAlignment.TopLeft;
 			this.pinNotesBox.UseVisualStyleBackColor = true;
 			// 
 			// SortDialog
@@ -245,9 +249,7 @@
 			this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
 			this.Text = "Sort";
 			this.sortPanel.ResumeLayout(false);
-			this.sortPanel.PerformLayout();
 			this.directionPanel.ResumeLayout(false);
-			this.directionPanel.PerformLayout();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 

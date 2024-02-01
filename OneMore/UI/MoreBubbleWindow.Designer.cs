@@ -87,8 +87,8 @@ namespace River.OneMoreAddIn.UI
 			this.okButton.Location = new System.Drawing.Point(659, 137);
 			this.okButton.Margin = new System.Windows.Forms.Padding(3, 3, 10, 10);
 			this.okButton.Name = "okButton";
-			this.okButton.PreferredBack = null;
-			this.okButton.PreferredFore = null;
+			this.okButton.ThemedBack = null;
+			this.okButton.ThemedFore = null;
 			this.okButton.ShowBorder = true;
 			this.okButton.Size = new System.Drawing.Size(115, 36);
 			this.okButton.TabIndex = 3;

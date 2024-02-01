@@ -61,8 +61,8 @@ namespace River.OneMoreAddIn.Settings
 			this.introBox.Location = new System.Drawing.Point(13, 8);
 			this.introBox.Name = "introBox";
 			this.introBox.Padding = new System.Windows.Forms.Padding(0, 0, 0, 36);
-			this.introBox.PreferredBack = "ControlLightLight";
-			this.introBox.PreferredFore = "ControlText";
+			this.introBox.ThemedBack = "ControlLightLight";
+			this.introBox.ThemedFore = "ControlText";
 			this.introBox.Size = new System.Drawing.Size(772, 52);
 			this.introBox.TabIndex = 3;
 			this.introBox.Text = "Customize the defaults for Image commands";
@@ -147,8 +147,8 @@ namespace River.OneMoreAddIn.Settings
 			this.imageViewerBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
 			this.imageViewerBox.Location = new System.Drawing.Point(32, 55);
 			this.imageViewerBox.Name = "imageViewerBox";
-			this.imageViewerBox.PreferredBack = null;
-			this.imageViewerBox.PreferredFore = null;
+			this.imageViewerBox.ThemedBack = null;
+			this.imageViewerBox.ThemedFore = null;
 			this.imageViewerBox.Size = new System.Drawing.Size(578, 26);
 			this.imageViewerBox.TabIndex = 7;
 			this.imageViewerBox.Text = "mspaint";
@@ -159,8 +159,8 @@ namespace River.OneMoreAddIn.Settings
 			this.imageViewerButton.ImageOver = null;
 			this.imageViewerButton.Location = new System.Drawing.Point(616, 54);
 			this.imageViewerButton.Name = "imageViewerButton";
-			this.imageViewerButton.PreferredBack = null;
-			this.imageViewerButton.PreferredFore = null;
+			this.imageViewerButton.ThemedBack = null;
+			this.imageViewerButton.ThemedFore = null;
 			this.imageViewerButton.ShowBorder = true;
 			this.imageViewerButton.Size = new System.Drawing.Size(36, 31);
 			this.imageViewerButton.TabIndex = 8;
@@ -199,8 +199,8 @@ namespace River.OneMoreAddIn.Settings
 			this.plantUriBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
 			this.plantUriBox.Location = new System.Drawing.Point(32, 159);
 			this.plantUriBox.Name = "plantUriBox";
-			this.plantUriBox.PreferredBack = null;
-			this.plantUriBox.PreferredFore = null;
+			this.plantUriBox.ThemedBack = null;
+			this.plantUriBox.ThemedFore = null;
 			this.plantUriBox.Size = new System.Drawing.Size(578, 26);
 			this.plantUriBox.TabIndex = 10;
 			// 

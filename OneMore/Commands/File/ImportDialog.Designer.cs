@@ -68,8 +68,8 @@
 			this.pathBox.Location = new System.Drawing.Point(62, 54);
 			this.pathBox.Margin = new System.Windows.Forms.Padding(3, 3, 3, 15);
 			this.pathBox.Name = "pathBox";
-			this.pathBox.PreferredBack = null;
-			this.pathBox.PreferredFore = null;
+			this.pathBox.ThemedBack = null;
+			this.pathBox.ThemedFore = null;
 			this.pathBox.Size = new System.Drawing.Size(449, 26);
 			this.pathBox.TabIndex = 1;
 			this.pathBox.TextChanged += new System.EventHandler(this.ChangePath);
@@ -80,8 +80,8 @@
 			this.browseButton.ImageOver = null;
 			this.browseButton.Location = new System.Drawing.Point(517, 54);
 			this.browseButton.Name = "browseButton";
-			this.browseButton.PreferredBack = null;
-			this.browseButton.PreferredFore = null;
+			this.browseButton.ThemedBack = null;
+			this.browseButton.ThemedFore = null;
 			this.browseButton.ShowBorder = false;
 			this.browseButton.Size = new System.Drawing.Size(44, 26);
 			this.browseButton.TabIndex = 4;
@@ -95,8 +95,8 @@
 			this.cancelButton.ImageOver = null;
 			this.cancelButton.Location = new System.Drawing.Point(462, 261);
 			this.cancelButton.Name = "cancelButton";
-			this.cancelButton.PreferredBack = null;
-			this.cancelButton.PreferredFore = null;
+			this.cancelButton.ThemedBack = null;
+			this.cancelButton.ThemedFore = null;
 			this.cancelButton.ShowBorder = true;
 			this.cancelButton.Size = new System.Drawing.Size(100, 38);
 			this.cancelButton.TabIndex = 6;
@@ -111,8 +111,8 @@
 			this.okButton.ImageOver = null;
 			this.okButton.Location = new System.Drawing.Point(356, 261);
 			this.okButton.Name = "okButton";
-			this.okButton.PreferredBack = null;
-			this.okButton.PreferredFore = null;
+			this.okButton.ThemedBack = null;
+			this.okButton.ThemedFore = null;
 			this.okButton.ShowBorder = true;
 			this.okButton.Size = new System.Drawing.Size(100, 38);
 			this.okButton.TabIndex = 7;
@@ -254,8 +254,8 @@
 			this.notInstalledLabel.ForeColor = System.Drawing.Color.Maroon;
 			this.notInstalledLabel.Location = new System.Drawing.Point(27, 113);
 			this.notInstalledLabel.Name = "notInstalledLabel";
-			this.notInstalledLabel.PreferredBack = null;
-			this.notInstalledLabel.PreferredFore = "ErrorText";
+			this.notInstalledLabel.ThemedBack = null;
+			this.notInstalledLabel.ThemedFore = "ErrorText";
 			this.notInstalledLabel.Size = new System.Drawing.Size(306, 20);
 			this.notInstalledLabel.TabIndex = 10;
 			this.notInstalledLabel.Text = "The required Office product is not installed";
@@ -267,8 +267,8 @@
 			this.errorLabel.ForeColor = System.Drawing.Color.Maroon;
 			this.errorLabel.Location = new System.Drawing.Point(27, 270);
 			this.errorLabel.Name = "errorLabel";
-			this.errorLabel.PreferredBack = null;
-			this.errorLabel.PreferredFore = "ErrorText";
+			this.errorLabel.ThemedBack = null;
+			this.errorLabel.ThemedFore = "ErrorText";
 			this.errorLabel.Size = new System.Drawing.Size(114, 20);
 			this.errorLabel.TabIndex = 11;
 			this.errorLabel.Text = "Path not found";

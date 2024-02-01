@@ -40,8 +40,8 @@
 			this.messageBox.ForeColor = System.Drawing.Color.Brown;
 			this.messageBox.Location = new System.Drawing.Point(15, 15);
 			this.messageBox.Name = "messageBox";
-			this.messageBox.PreferredBack = "ControlLightLight";
-			this.messageBox.PreferredFore = "ErrorText";
+			this.messageBox.ThemedBack = "ControlLightLight";
+			this.messageBox.ThemedFore = "ErrorText";
 			this.messageBox.Size = new System.Drawing.Size(670, 52);
 			this.messageBox.TabIndex = 0;
 			this.messageBox.Text = "messageBox";
@@ -55,8 +55,8 @@
 			this.notesBox.ForeColor = System.Drawing.SystemColors.GrayText;
 			this.notesBox.Location = new System.Drawing.Point(15, 73);
 			this.notesBox.Name = "notesBox";
-			this.notesBox.PreferredBack = "ControlLightLight";
-			this.notesBox.PreferredFore = "GrayText";
+			this.notesBox.ThemedBack = "ControlLightLight";
+			this.notesBox.ThemedFore = "GrayText";
 			this.notesBox.Size = new System.Drawing.Size(670, 52);
 			this.notesBox.TabIndex = 1;
 			this.notesBox.Text = "notesBox";
