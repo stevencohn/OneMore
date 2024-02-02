@@ -76,12 +76,12 @@
 			this.versionLabel.ForeColor = System.Drawing.SystemColors.ControlText;
 			this.versionLabel.Location = new System.Drawing.Point(50, 61);
 			this.versionLabel.Name = "versionLabel";
-			this.versionLabel.ThemedBack = "ControlLightLight";
-			this.versionLabel.ThemedFore = null;
 			this.versionLabel.ReadOnly = true;
 			this.versionLabel.Size = new System.Drawing.Size(534, 30);
 			this.versionLabel.TabIndex = 2;
 			this.versionLabel.Text = "Version 1.0";
+			this.versionLabel.ThemedBack = "ControlLightLight";
+			this.versionLabel.ThemedFore = null;
 			// 
 			// copyLabel
 			// 
@@ -103,12 +103,12 @@
 			this.okButton.ImageOver = null;
 			this.okButton.Location = new System.Drawing.Point(748, 502);
 			this.okButton.Name = "okButton";
-			this.okButton.ThemedBack = null;
-			this.okButton.ThemedFore = null;
 			this.okButton.ShowBorder = true;
 			this.okButton.Size = new System.Drawing.Size(130, 42);
 			this.okButton.TabIndex = 0;
 			this.okButton.Text = "OK";
+			this.okButton.ThemedBack = null;
+			this.okButton.ThemedFore = null;
 			this.okButton.UseVisualStyleBackColor = false;
 			this.okButton.Click += new System.EventHandler(this.OK);
 			// 
@@ -125,9 +125,12 @@
 			this.logLabel.MaximumSize = new System.Drawing.Size(420, 0);
 			this.logLabel.Name = "logLabel";
 			this.logLabel.Size = new System.Drawing.Size(65, 20);
+			this.logLabel.StrictColors = false;
 			this.logLabel.TabIndex = 5;
 			this.logLabel.TabStop = true;
 			this.logLabel.Text = "tempfile";
+			this.logLabel.ThemedBack = null;
+			this.logLabel.ThemedFore = "GrayText";
 			this.logLabel.VisitedLinkColor = System.Drawing.Color.MediumOrchid;
 			this.logLabel.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.OpenLog);
 			// 
@@ -143,9 +146,12 @@
 			this.clearLogLabel.Margin = new System.Windows.Forms.Padding(3, 15, 3, 0);
 			this.clearLogLabel.Name = "clearLogLabel";
 			this.clearLogLabel.Size = new System.Drawing.Size(122, 20);
+			this.clearLogLabel.StrictColors = false;
 			this.clearLogLabel.TabIndex = 6;
 			this.clearLogLabel.TabStop = true;
 			this.clearLogLabel.Text = "Clear the log file";
+			this.clearLogLabel.ThemedBack = null;
+			this.clearLogLabel.ThemedFore = "GrayText";
 			this.clearLogLabel.VisitedLinkColor = System.Drawing.Color.MediumOrchid;
 			this.clearLogLabel.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.ClearLog);
 			// 
@@ -160,9 +166,12 @@
 			this.homeLink.Margin = new System.Windows.Forms.Padding(3, 15, 3, 0);
 			this.homeLink.Name = "homeLink";
 			this.homeLink.Size = new System.Drawing.Size(193, 20);
+			this.homeLink.StrictColors = false;
 			this.homeLink.TabIndex = 3;
 			this.homeLink.TabStop = true;
 			this.homeLink.Text = "https://onemoreaddin.com";
+			this.homeLink.ThemedBack = null;
+			this.homeLink.ThemedFore = null;
 			this.homeLink.VisitedLinkColor = System.Drawing.Color.MediumOrchid;
 			this.homeLink.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.GoHome);
 			// 
@@ -177,9 +186,12 @@
 			this.updateLink.Margin = new System.Windows.Forms.Padding(3, 15, 3, 0);
 			this.updateLink.Name = "updateLink";
 			this.updateLink.Size = new System.Drawing.Size(142, 20);
+			this.updateLink.StrictColors = false;
 			this.updateLink.TabIndex = 2;
 			this.updateLink.TabStop = true;
 			this.updateLink.Text = "Check for Updates";
+			this.updateLink.ThemedBack = null;
+			this.updateLink.ThemedFore = null;
 			this.updateLink.VisitedLinkColor = System.Drawing.Color.MediumOrchid;
 			this.updateLink.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.CheckForUpdates);
 			// 
@@ -205,11 +217,11 @@
 			this.sponsorButton.ImageOver = null;
 			this.sponsorButton.Location = new System.Drawing.Point(444, 362);
 			this.sponsorButton.Name = "sponsorButton";
-			this.sponsorButton.ThemedBack = null;
-			this.sponsorButton.ThemedFore = null;
 			this.sponsorButton.ShowBorder = true;
 			this.sponsorButton.Size = new System.Drawing.Size(141, 45);
 			this.sponsorButton.TabIndex = 1;
+			this.sponsorButton.ThemedBack = null;
+			this.sponsorButton.ThemedFore = null;
 			this.sponsorButton.UseVisualStyleBackColor = true;
 			this.sponsorButton.Click += new System.EventHandler(this.GotoSponsorship);
 			// 
@@ -224,9 +236,12 @@
 			this.githubLink.Margin = new System.Windows.Forms.Padding(3, 15, 3, 0);
 			this.githubLink.Name = "githubLink";
 			this.githubLink.Size = new System.Drawing.Size(194, 20);
+			this.githubLink.StrictColors = false;
 			this.githubLink.TabIndex = 4;
 			this.githubLink.TabStop = true;
 			this.githubLink.Text = "See the project on GitHub";
+			this.githubLink.ThemedBack = null;
+			this.githubLink.ThemedFore = null;
 			this.githubLink.VisitedLinkColor = System.Drawing.Color.MediumOrchid;
 			this.githubLink.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.GoGitHub);
 			// 

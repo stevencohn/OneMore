@@ -30,7 +30,7 @@ namespace River.OneMoreAddIn.Settings
 		private void InitializeComponent()
 		{
 			this.components = new System.ComponentModel.Container();
-			this.introBox = new UI.MoreMultilineLabel();
+			this.introBox = new River.OneMoreAddIn.UI.MoreMultilineLabel();
 			this.layoutPanel = new System.Windows.Forms.Panel();
 			this.advancedGroup = new River.OneMoreAddIn.UI.MoreGroupBox();
 			this.disabledBox = new River.OneMoreAddIn.UI.MoreCheckBox();
@@ -54,11 +54,11 @@ namespace River.OneMoreAddIn.Settings
 			this.introBox.Location = new System.Drawing.Point(13, 8);
 			this.introBox.Name = "introBox";
 			this.introBox.Padding = new System.Windows.Forms.Padding(0, 0, 0, 36);
-			this.introBox.ThemedBack = "ControlLightLight";
-			this.introBox.ThemedFore = "ControlText";
 			this.introBox.Size = new System.Drawing.Size(772, 66);
 			this.introBox.TabIndex = 3;
 			this.introBox.Text = "Customize advanced options for the Navigator Service";
+			this.introBox.ThemedBack = "ControlLightLight";
+			this.introBox.ThemedFore = "ControlText";
 			// 
 			// layoutPanel
 			// 
@@ -91,9 +91,12 @@ namespace River.OneMoreAddIn.Settings
 			// 
 			// disabledBox
 			// 
+			this.disabledBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(231)))), ((int)(((byte)(231)))));
+			this.disabledBox.Cursor = System.Windows.Forms.Cursors.Hand;
+			this.disabledBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.disabledBox.Location = new System.Drawing.Point(18, 26);
 			this.disabledBox.Name = "disabledBox";
-			this.disabledBox.Size = new System.Drawing.Size(630, 24);
+			this.disabledBox.Size = new System.Drawing.Size(631, 25);
 			this.disabledBox.TabIndex = 0;
 			this.disabledBox.Text = "Disable the navigation service. This will render the Navigator window inoperaable" +
     ".";
@@ -175,12 +178,15 @@ namespace River.OneMoreAddIn.Settings
 			// 
 			this.corrallBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+			this.corrallBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(231)))), ((int)(((byte)(231)))));
 			this.corrallBox.Checked = true;
 			this.corrallBox.CheckState = System.Windows.Forms.CheckState.Checked;
+			this.corrallBox.Cursor = System.Windows.Forms.Cursors.Hand;
+			this.corrallBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.corrallBox.Location = new System.Drawing.Point(7, 155);
 			this.corrallBox.Margin = new System.Windows.Forms.Padding(0);
 			this.corrallBox.Name = "corrallBox";
-			this.corrallBox.Size = new System.Drawing.Size(399, 24);
+			this.corrallBox.Size = new System.Drawing.Size(686, 25);
 			this.corrallBox.TabIndex = 0;
 			this.corrallBox.Text = "Restrict the Navigator window to the active screen";
 			this.tooltip.SetToolTip(this.corrallBox, "Enabled only when multiple screens are available");
