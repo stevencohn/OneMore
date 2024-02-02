@@ -294,15 +294,16 @@ namespace River.OneMoreAddIn.Commands
 
 			editor.PreserveStorageSize = preserveBox.Checked;
 
-			if (limitsBox.Visible)
+			// limitsBox is Visible=false by now, but check if selected index is not default=0
+			// and, if so, update editor; note that the default editor.Constraint=All
+
+			if (limitsBox.SelectedIndex == 1)
 			{
-				// resize constraint
-				editor.Constraint = limitsBox.SelectedIndex switch
-				{
-					1 => ImageEditor.SizeConstraint.OnlyEnlarge,
-					2 => ImageEditor.SizeConstraint.OnlyShrink,
-					_ => ImageEditor.SizeConstraint.All
-				};
+				editor.Constraint = ImageEditor.SizeConstraint.OnlyEnlarge;
+			}
+			else if (limitsBox.SelectedIndex == 2)
+			{
+				editor.Constraint = ImageEditor.SizeConstraint.OnlyShrink;
 			}
 
 			return editor;
