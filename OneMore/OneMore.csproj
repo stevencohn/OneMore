@@ -476,7 +476,7 @@
     <Compile Include="UI\MoreFlowLayoutPanel.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="UI\MorePanel.cs">
+    <Compile Include="UI\Themed\MorePanel.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="UI\Themed\IThemedControl.cs" />

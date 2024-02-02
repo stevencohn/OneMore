@@ -47,9 +47,11 @@
     "WindowText": "#000000",
 
     "ButtonDown": "#F0F0F0",
+    "DarkText": "#FFFFFF",
     "ErrorText": "#A52A2A",
     "HintText": "#1E90FF",
     "InactiveWindow": "#EBEBEB",
+    "LinkHighlight": "#E5E0EC",
 
     "XmlComment": "Green",
     "XmlEditedBy": "CornflowerBlue",

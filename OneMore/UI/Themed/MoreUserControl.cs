@@ -25,9 +25,8 @@ namespace River.OneMoreAddIn.UI
 
 		protected override void OnLoad(EventArgs e)
 		{
-			base.OnLoad(e);
-
 			SuspendLayout();
+			base.OnLoad(e);
 			manager.InitializeTheme(this);
 			ResumeLayout();
 		}

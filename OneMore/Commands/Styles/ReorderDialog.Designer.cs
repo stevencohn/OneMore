@@ -39,31 +39,35 @@
 			// okButton
 			// 
 			this.okButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+			this.okButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(231)))), ((int)(((byte)(231)))));
 			this.okButton.DialogResult = System.Windows.Forms.DialogResult.OK;
+			this.okButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.okButton.ImageOver = null;
 			this.okButton.Location = new System.Drawing.Point(120, 497);
 			this.okButton.Name = "okButton";
-			this.okButton.ThemedBack = null;
-			this.okButton.ThemedFore = null;
 			this.okButton.ShowBorder = true;
 			this.okButton.Size = new System.Drawing.Size(116, 38);
 			this.okButton.TabIndex = 0;
 			this.okButton.Text = "OK";
+			this.okButton.ThemedBack = null;
+			this.okButton.ThemedFore = null;
 			this.okButton.UseVisualStyleBackColor = true;
 			// 
 			// cancelButton
 			// 
 			this.cancelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+			this.cancelButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(231)))), ((int)(((byte)(231)))));
 			this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+			this.cancelButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.cancelButton.ImageOver = null;
 			this.cancelButton.Location = new System.Drawing.Point(242, 497);
 			this.cancelButton.Name = "cancelButton";
-			this.cancelButton.ThemedBack = null;
-			this.cancelButton.ThemedFore = null;
 			this.cancelButton.ShowBorder = true;
 			this.cancelButton.Size = new System.Drawing.Size(116, 38);
 			this.cancelButton.TabIndex = 1;
 			this.cancelButton.Text = "Cancel";
+			this.cancelButton.ThemedBack = null;
+			this.cancelButton.ThemedFore = null;
 			this.cancelButton.UseVisualStyleBackColor = true;
 			// 
 			// listBox
@@ -86,33 +90,39 @@
 			// upButton
 			// 
 			this.upButton.AutoSize = true;
-			this.upButton.BackgroundImage = global::River.OneMoreAddIn.Properties.Resources.UpArrow;
+			this.upButton.BackColor = System.Drawing.SystemColors.ButtonFace;
 			this.upButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+			this.upButton.Font = new System.Drawing.Font("Segoe UI Symbol", 10F);
+			this.upButton.ForeColor = System.Drawing.SystemColors.ControlText;
 			this.upButton.ImageOver = null;
 			this.upButton.Location = new System.Drawing.Point(363, 169);
 			this.upButton.Name = "upButton";
-			this.upButton.ThemedBack = null;
-			this.upButton.ThemedFore = null;
 			this.upButton.ShowBorder = true;
 			this.upButton.Size = new System.Drawing.Size(42, 42);
 			this.upButton.TabIndex = 3;
-			this.upButton.UseVisualStyleBackColor = true;
+			this.upButton.Text = "▲";
+			this.upButton.ThemedBack = null;
+			this.upButton.ThemedFore = null;
+			this.upButton.UseVisualStyleBackColor = false;
 			this.upButton.Click += new System.EventHandler(this.MoveUp);
 			// 
 			// downButton
 			// 
 			this.downButton.AutoSize = true;
+			this.downButton.BackColor = System.Drawing.SystemColors.ButtonFace;
 			this.downButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-			this.downButton.Image = global::River.OneMoreAddIn.Properties.Resources.DownArrow;
+			this.downButton.Font = new System.Drawing.Font("Segoe UI Symbol", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.downButton.ForeColor = System.Drawing.SystemColors.ControlText;
 			this.downButton.ImageOver = null;
 			this.downButton.Location = new System.Drawing.Point(363, 217);
 			this.downButton.Name = "downButton";
-			this.downButton.ThemedBack = null;
-			this.downButton.ThemedFore = null;
 			this.downButton.ShowBorder = true;
 			this.downButton.Size = new System.Drawing.Size(42, 42);
 			this.downButton.TabIndex = 4;
-			this.downButton.UseVisualStyleBackColor = true;
+			this.downButton.Text = "▼";
+			this.downButton.ThemedBack = null;
+			this.downButton.ThemedFore = null;
+			this.downButton.UseVisualStyleBackColor = false;
 			this.downButton.Click += new System.EventHandler(this.MoveDown);
 			// 
 			// label

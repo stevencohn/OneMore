@@ -97,6 +97,19 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
+		protected override void OnLoad(EventArgs e)
+		{
+			base.OnLoad(e);
+			BackColor = manager.GetThemedColor("Control");
+
+			pinnedBox.BackColor = BackColor;
+			pinnedBox.HighlightBackground = manager.GetThemedColor("LinkHighlight");
+
+			historyBox.BackColor = BackColor;
+			historyBox.HighlightBackground = manager.GetThemedColor("LinkHighlight");
+		}
+
+
 		#region Window Management
 		private async void PositionOnLoad(object sender, EventArgs e)
 		{
@@ -307,6 +320,8 @@ namespace River.OneMoreAddIn.Commands
 				e.ForEach(record =>
 				{
 					var control = new HistoryControl(record);
+					control.BackColor = BackColor;
+					control.ApplyTheme(manager);
 					var item = historyBox.AddHostedItem(control);
 					item.Tag = record;
 				});
@@ -379,10 +394,6 @@ namespace River.OneMoreAddIn.Commands
 
 				var link = new MoreLinkLabel
 				{
-					BackColor = Color.Transparent,
-					ForeColor = SystemColors.WindowText,
-					LinkColor = SystemColors.WindowText,
-					VisitedLinkColor = SystemColors.WindowText,
 					Text = text,
 					Tag = heading,
 					Font = font,
@@ -407,6 +418,7 @@ namespace River.OneMoreAddIn.Commands
 
 				pageBox.Controls.Add(link);
 				pageBox.SetFlowBreak(link, true);
+				link.ApplyTheme(manager);
 			}
 
 			await UpdateTitles(page);
@@ -464,13 +476,14 @@ namespace River.OneMoreAddIn.Commands
 			pinned.ForEach(record =>
 			{
 				var control = new HistoryControl(record);
+				control.BackColor = BackColor;
+				control.ApplyTheme(manager);
 				var item = pinnedBox.AddHostedItem(control);
 				item.Tag = record;
 			});
 
 			pinnedBox.EndUpdate();
 			pinnedBox.Invalidate();
-
 			pinnedBox.EnableItemEventBubbling();
 		}
 
