@@ -550,7 +550,7 @@ namespace River.OneMoreAddIn.Commands
 						Tag = reader.GetString(0),
 						MoreID = reader.GetString(1),
 						PageID = reader.GetString(2),
-						TitleID = reader.GetString(3),
+						TitleID = reader[3] is DBNull ? null : reader.GetString(3),
 						ObjectID = reader.GetString(4),
 						NotebookID = reader.GetString(5),
 						SectionID = reader.GetString(6),

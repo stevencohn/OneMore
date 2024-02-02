@@ -35,6 +35,7 @@ namespace River.OneMoreAddIn.Commands
 		/// <summary>
 		/// The OneNote ID of the page title paragraph.
 		/// Let's us scroll the page to the top.
+		/// This might be null if the page is a Quick Note and doesn't have a one:Title
 		/// </summary>
 		public string TitleID { get; set; }
 
