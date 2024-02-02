@@ -78,6 +78,9 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
+		public override string Text { get => link.Text; set => link.Text = value; }
+
+
 		public string ThemedBack { get; set; }
 
 

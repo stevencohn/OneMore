@@ -366,6 +366,12 @@ namespace River.OneMoreAddIn.Commands
 
 		private async Task LoadPageHeadings(string pageID)
 		{
+			if (pageBox.InvokeRequired)
+			{
+				pageBox.Invoke(new Action(async () => await LoadPageHeadings(pageID)));
+				return;
+			}
+
 			using var one = new OneNote();
 			var page = await one.GetPage(pageID ?? one.CurrentPageId, OneNote.PageDetail.Basic);
 			var headings = page.GetHeadings(one);
