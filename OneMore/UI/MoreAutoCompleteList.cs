@@ -39,6 +39,7 @@ namespace River.OneMoreAddIn.UI
 		private readonly Font highFont;         // font of matched substring
 		private readonly List<Cmd> commands;    // original list of commands
 		private readonly List<Cmd> matches;     // dynamic list of matched commands
+		private readonly ThemeManager manager;	// color manager
 		private string boxtext;                 // the current/previous text in the Owner TextBox
 
 		// each command name is described by a Cmd entry
@@ -56,6 +57,10 @@ namespace River.OneMoreAddIn.UI
 		public MoreAutoCompleteList()
 		{
 			OwnerDraw = true;
+			manager = ThemeManager.Instance;
+
+			BackColor = manager.GetThemedColor("ControlLight");
+			ForeColor = manager.GetThemedColor("ControlText");
 
 			// detail view with default headless column so all drawing is done by DrawSubItem
 			View = View.Details;
@@ -280,6 +285,8 @@ namespace River.OneMoreAddIn.UI
 				});
 
 				Owner.FindForm().Move += HidePopup;
+
+				manager.InitializeTheme(popup);
 			}
 
 			if (!popup.Visible)
@@ -321,15 +328,21 @@ namespace River.OneMoreAddIn.UI
 
 		protected override void OnDrawSubItem(DrawListViewSubItemEventArgs e)
 		{
-			var back = SystemBrushes.Window;
-			var fore = SystemBrushes.WindowText;
-			var high = SystemBrushes.Highlight;
-
+			Brush back;
+			Brush fore;
+			Brush high;
+			
 			if (e.Item.Selected)
 			{
-				back = SystemBrushes.Highlight;
-				fore = SystemBrushes.HighlightText;
-				high = SystemBrushes.GradientInactiveCaption;
+				back = new SolidBrush(manager.GetThemedColor("Highlight"));
+				fore = new SolidBrush(manager.GetThemedColor("HighlightText"));
+				high = new SolidBrush(manager.GetThemedColor("GradientInactiveCaption"));
+			}
+			else
+			{
+				back = new SolidBrush(manager.GetThemedColor("ControlLight"));
+				fore = new SolidBrush(manager.GetThemedColor("ControlText"));
+				high = new SolidBrush(manager.GetThemedColor("Highlight"));
 			}
 
 			e.Graphics.FillRectangle(back,
@@ -453,7 +466,12 @@ namespace River.OneMoreAddIn.UI
 			{
 				var size = e.Graphics.MeasureString(keys, Font);
 				x -= size.Width + 5;
-				e.Graphics.DrawString(keys, e.Item.Font, SystemBrushes.ActiveCaption, x, e.Bounds.Y);
+
+				var cap = e.Item.Selected
+					? new SolidBrush(manager.GetThemedColor("GradientInactiveCaption"))
+					: new SolidBrush(manager.GetThemedColor("ActiveCaption"));
+
+				e.Graphics.DrawString(keys, e.Item.Font, cap, x, e.Bounds.Y);
 			}
 		}
 

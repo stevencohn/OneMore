@@ -12,7 +12,7 @@ namespace River.OneMoreAddIn.UI
 	/// <summary>
 	/// Extends the standard Panel control by adding a bottom border line.
 	/// </summary>
-	internal class MorePanel : Panel
+	internal class MorePanel : Panel, IThemedControl
 	{
 
 		[Description("Specifies the color of the bottom border")]
@@ -30,6 +30,26 @@ namespace River.OneMoreAddIn.UI
 		[Description("Specifies the thickness of the top border")]
 		public int TopBorderSize { get; set; } = 0;
 
+
+		[Description("Specifies the themed background color")]
+		public string ThemedBack { get; set; }
+
+
+		[Description("Specifies the themed foreground color")]
+		public string ThemedFore { get; set; }
+
+
+		public void ApplyTheme(ThemeManager manager)
+		{
+			BackColor = manager.GetThemedColor("Control", ThemedBack);
+
+			ForeColor = Enabled
+				? manager.GetThemedColor("ControlText", ThemedFore)
+				: manager.GetThemedColor("GrayText");
+
+			BottomBorderColor = manager.GetThemedColor(BottomBorderColor);
+			TopBorderColor = manager.GetThemedColor(TopBorderColor);
+		}
 
 
 		protected override void OnPaintBackground(PaintEventArgs e)

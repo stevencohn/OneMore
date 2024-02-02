@@ -13,7 +13,7 @@ namespace River.OneMoreAddIn.Settings
 	using Resx = Properties.Resources;
 
 
-	internal partial class SettingsDialog : UI.LocalizableForm
+	internal partial class SettingsDialog : UI.MoreForm
 	{
 		public enum Sheets
 		{
@@ -57,7 +57,7 @@ namespace River.OneMoreAddIn.Settings
 				});
 
 				navTree.Nodes["generalNode"].Text = Resx.SettingsDialog_generalNode_Text;
-				navTree.Nodes["colorizerNode"].Text = Resx.ColorizeSheet_Title;
+				navTree.Nodes["colorizerNode"].Text = Resx.ColorizerSheet_Title;
 				navTree.Nodes["aliasNode"].Text = Resx.SettingsDialog_aliasNode_Text;
 				navTree.Nodes["contextNode"].Text = Resx.SettingsDialog_contextNode_Text;
 				navTree.Nodes["favoritesNode"].Text = Resx.word_Favorites;
@@ -138,6 +138,7 @@ namespace River.OneMoreAddIn.Settings
 					15 => new SearchEngineSheet(provider),
 					_ => new SnippetsSheet(provider, ribbon),
 				};
+
 				sheets.Add(e.Node.Index, sheet);
 			}
 

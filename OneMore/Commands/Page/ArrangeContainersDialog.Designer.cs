@@ -30,15 +30,15 @@ namespace River.OneMoreAddIn.Commands
 		private void InitializeComponent()
 		{
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ArrangeContainersDialog));
-			this.okButton = new System.Windows.Forms.Button();
-			this.cancelButton = new System.Windows.Forms.Button();
-			this.verticalButton = new System.Windows.Forms.RadioButton();
-			this.flowButton = new System.Windows.Forms.RadioButton();
+			this.okButton = new River.OneMoreAddIn.UI.MoreButton();
+			this.cancelButton = new River.OneMoreAddIn.UI.MoreButton();
+			this.verticalButton = new River.OneMoreAddIn.UI.MoreRadioButton();
+			this.flowButton = new River.OneMoreAddIn.UI.MoreRadioButton();
 			this.columnsLabel = new System.Windows.Forms.Label();
 			this.columnsBox = new System.Windows.Forms.NumericUpDown();
 			this.widthBox = new System.Windows.Forms.NumericUpDown();
 			this.widthLabel = new System.Windows.Forms.Label();
-			this.setWidthCheckBox = new System.Windows.Forms.CheckBox();
+			this.setWidthCheckBox = new River.OneMoreAddIn.UI.MoreCheckBox();
 			this.setWidthBox = new System.Windows.Forms.NumericUpDown();
 			this.indentBox = new System.Windows.Forms.NumericUpDown();
 			this.indentLabel = new System.Windows.Forms.Label();
@@ -54,9 +54,13 @@ namespace River.OneMoreAddIn.Commands
 			// 
 			this.okButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.okButton.DialogResult = System.Windows.Forms.DialogResult.OK;
+			this.okButton.ImageOver = null;
 			this.okButton.Location = new System.Drawing.Point(285, 317);
 			this.okButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.okButton.Name = "okButton";
+			this.okButton.ThemedBack = null;
+			this.okButton.ThemedFore = null;
+			this.okButton.ShowBorder = true;
 			this.okButton.Size = new System.Drawing.Size(112, 35);
 			this.okButton.TabIndex = 6;
 			this.okButton.Text = "OK";
@@ -67,9 +71,13 @@ namespace River.OneMoreAddIn.Commands
 			// 
 			this.cancelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+			this.cancelButton.ImageOver = null;
 			this.cancelButton.Location = new System.Drawing.Point(406, 317);
 			this.cancelButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.cancelButton.Name = "cancelButton";
+			this.cancelButton.ThemedBack = null;
+			this.cancelButton.ThemedFore = null;
+			this.cancelButton.ShowBorder = true;
 			this.cancelButton.Size = new System.Drawing.Size(112, 35);
 			this.cancelButton.TabIndex = 7;
 			this.cancelButton.Text = "Cancel";
@@ -236,6 +244,7 @@ namespace River.OneMoreAddIn.Commands
 			this.AcceptButton = this.okButton;
 			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+			this.BackColor = System.Drawing.SystemColors.Control;
 			this.CancelButton = this.cancelButton;
 			this.ClientSize = new System.Drawing.Size(537, 372);
 			this.Controls.Add(this.optionsPanel);
@@ -249,6 +258,7 @@ namespace River.OneMoreAddIn.Commands
 			this.Controls.Add(this.verticalButton);
 			this.Controls.Add(this.okButton);
 			this.Controls.Add(this.cancelButton);
+			this.ForeColor = System.Drawing.SystemColors.ControlText;
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.MaximizeBox = false;
@@ -270,15 +280,15 @@ namespace River.OneMoreAddIn.Commands
 
 		#endregion
 
-		private System.Windows.Forms.Button okButton;
-		private System.Windows.Forms.Button cancelButton;
-		private System.Windows.Forms.RadioButton verticalButton;
-		private System.Windows.Forms.RadioButton flowButton;
+		private UI.MoreButton okButton;
+		private UI.MoreButton cancelButton;
+		private UI.MoreRadioButton verticalButton;
+		private UI.MoreRadioButton flowButton;
 		private System.Windows.Forms.Label columnsLabel;
 		private System.Windows.Forms.NumericUpDown columnsBox;
 		private System.Windows.Forms.NumericUpDown widthBox;
 		private System.Windows.Forms.Label widthLabel;
-		private System.Windows.Forms.CheckBox setWidthCheckBox;
+		private UI.MoreCheckBox setWidthCheckBox;
 		private System.Windows.Forms.NumericUpDown setWidthBox;
 		private System.Windows.Forms.NumericUpDown indentBox;
 		private System.Windows.Forms.Label indentLabel;

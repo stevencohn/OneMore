@@ -16,7 +16,7 @@ namespace River.OneMoreAddIn.Commands
 	using Resx = Properties.Resources;
 
 
-	internal partial class EditTableThemesDialog : UI.LocalizableForm
+	internal partial class EditTableThemesDialog : UI.MoreForm
 	{
 		private const int PreviewMargin = 15;
 

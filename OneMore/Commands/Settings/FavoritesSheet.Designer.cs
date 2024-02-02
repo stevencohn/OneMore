@@ -28,20 +28,21 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FavoritesSheet));
 			this.gridView = new System.Windows.Forms.DataGridView();
 			this.nameColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.locationColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.introPanel = new System.Windows.Forms.Panel();
-			this.optionsBox = new System.Windows.Forms.GroupBox();
-			this.shortcutsBox = new System.Windows.Forms.CheckBox();
+			this.optionsBox = new River.OneMoreAddIn.UI.MoreGroupBox();
+			this.shortcutsBox = new River.OneMoreAddIn.UI.MoreCheckBox();
 			this.toolStrip = new River.OneMoreAddIn.UI.ScaledToolStrip();
 			this.sortButton = new System.Windows.Forms.ToolStripButton();
 			this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
 			this.upButton = new System.Windows.Forms.ToolStripButton();
 			this.downButton = new System.Windows.Forms.ToolStripButton();
 			this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-			this.deleteLabel = new System.Windows.Forms.ToolStripLabel();
 			this.deleteButton = new System.Windows.Forms.ToolStripButton();
 			((System.ComponentModel.ISupportInitialize)(this.gridView)).BeginInit();
 			this.introPanel.SuspendLayout();
@@ -61,20 +62,22 @@
             this.locationColumn});
 			this.gridView.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.gridView.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
-			this.gridView.Location = new System.Drawing.Point(10, 137);
+			this.gridView.Location = new System.Drawing.Point(10, 133);
 			this.gridView.Name = "gridView";
 			this.gridView.RowHeadersVisible = false;
 			this.gridView.RowHeadersWidth = 30;
 			this.gridView.RowTemplate.Height = 28;
 			this.gridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
 			this.gridView.ShowEditingIcon = false;
-			this.gridView.Size = new System.Drawing.Size(780, 354);
+			this.gridView.Size = new System.Drawing.Size(780, 358);
 			this.gridView.TabIndex = 2;
 			this.gridView.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.FormatCell);
 			this.gridView.KeyUp += new System.Windows.Forms.KeyEventHandler(this.DeleteOnKeyUp);
 			// 
 			// nameColumn
 			// 
+			dataGridViewCellStyle1.ForeColor = System.Drawing.Color.Black;
+			this.nameColumn.DefaultCellStyle = dataGridViewCellStyle1;
 			this.nameColumn.HeaderText = "Name";
 			this.nameColumn.MinimumWidth = 100;
 			this.nameColumn.Name = "nameColumn";
@@ -83,6 +86,8 @@
 			// locationColumn
 			// 
 			this.locationColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+			dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Black;
+			this.locationColumn.DefaultCellStyle = dataGridViewCellStyle2;
 			this.locationColumn.FillWeight = 1000F;
 			this.locationColumn.HeaderText = "Location";
 			this.locationColumn.MinimumWidth = 8;
@@ -111,11 +116,13 @@
 			// 
 			// shortcutsBox
 			// 
-			this.shortcutsBox.AutoSize = true;
+			this.shortcutsBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
+			this.shortcutsBox.Cursor = System.Windows.Forms.Cursors.Hand;
+			this.shortcutsBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.shortcutsBox.Location = new System.Drawing.Point(23, 32);
 			this.shortcutsBox.Margin = new System.Windows.Forms.Padding(20, 10, 3, 3);
 			this.shortcutsBox.Name = "shortcutsBox";
-			this.shortcutsBox.Size = new System.Drawing.Size(356, 24);
+			this.shortcutsBox.Size = new System.Drawing.Size(365, 25);
 			this.shortcutsBox.TabIndex = 0;
 			this.shortcutsBox.Text = "Include reference to keyboard shortcuts page";
 			this.shortcutsBox.UseVisualStyleBackColor = true;
@@ -129,12 +136,11 @@
             this.upButton,
             this.downButton,
             this.toolStripSeparator1,
-            this.deleteLabel,
             this.deleteButton});
 			this.toolStrip.Location = new System.Drawing.Point(10, 99);
 			this.toolStrip.Name = "toolStrip";
 			this.toolStrip.Padding = new System.Windows.Forms.Padding(0, 0, 3, 0);
-			this.toolStrip.Size = new System.Drawing.Size(780, 38);
+			this.toolStrip.Size = new System.Drawing.Size(780, 34);
 			this.toolStrip.TabIndex = 4;
 			this.toolStrip.Text = "Tool Strip";
 			// 
@@ -144,15 +150,15 @@
 			this.sortButton.Image = ((System.Drawing.Image)(resources.GetObject("sortButton.Image")));
 			this.sortButton.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.sortButton.Name = "sortButton";
-			this.sortButton.Size = new System.Drawing.Size(34, 33);
-			this.sortButton.Text = "toolStripButton1";
+			this.sortButton.Size = new System.Drawing.Size(34, 29);
+			this.sortButton.Text = "Sort";
 			this.sortButton.ToolTipText = "Sort by Name";
 			this.sortButton.Click += new System.EventHandler(this.SortItems);
 			// 
 			// toolStripSeparator2
 			// 
 			this.toolStripSeparator2.Name = "toolStripSeparator2";
-			this.toolStripSeparator2.Size = new System.Drawing.Size(6, 38);
+			this.toolStripSeparator2.Size = new System.Drawing.Size(6, 34);
 			// 
 			// upButton
 			// 
@@ -160,7 +166,7 @@
 			this.upButton.Image = global::River.OneMoreAddIn.Properties.Resources.UpArrow;
 			this.upButton.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.upButton.Name = "upButton";
-			this.upButton.Size = new System.Drawing.Size(34, 33);
+			this.upButton.Size = new System.Drawing.Size(34, 29);
 			this.upButton.Text = "Move up";
 			this.upButton.Click += new System.EventHandler(this.MoveItemUp);
 			// 
@@ -170,28 +176,22 @@
 			this.downButton.Image = global::River.OneMoreAddIn.Properties.Resources.DownArrow;
 			this.downButton.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.downButton.Name = "downButton";
-			this.downButton.Size = new System.Drawing.Size(34, 33);
+			this.downButton.Size = new System.Drawing.Size(34, 29);
 			this.downButton.Text = "Move down";
 			this.downButton.Click += new System.EventHandler(this.MoveItemDown);
 			// 
 			// toolStripSeparator1
 			// 
 			this.toolStripSeparator1.Name = "toolStripSeparator1";
-			this.toolStripSeparator1.Size = new System.Drawing.Size(6, 38);
-			// 
-			// deleteLabel
-			// 
-			this.deleteLabel.Name = "deleteLabel";
-			this.deleteLabel.Size = new System.Drawing.Size(66, 33);
-			this.deleteLabel.Text = "Delete:";
+			this.toolStripSeparator1.Size = new System.Drawing.Size(6, 34);
 			// 
 			// deleteButton
 			// 
-			this.deleteButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+			this.deleteButton.ForeColor = System.Drawing.Color.Black;
 			this.deleteButton.Image = global::River.OneMoreAddIn.Properties.Resources.Delete;
 			this.deleteButton.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.deleteButton.Name = "deleteButton";
-			this.deleteButton.Size = new System.Drawing.Size(34, 33);
+			this.deleteButton.Size = new System.Drawing.Size(90, 29);
 			this.deleteButton.Text = "Delete";
 			this.deleteButton.Click += new System.EventHandler(this.DeleteItems);
 			// 
@@ -203,6 +203,7 @@
 			this.Controls.Add(this.gridView);
 			this.Controls.Add(this.toolStrip);
 			this.Controls.Add(this.introPanel);
+			this.ForeColor = System.Drawing.SystemColors.ControlText;
 			this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.MinimumSize = new System.Drawing.Size(750, 400);
 			this.Name = "FavoritesSheet";
@@ -212,7 +213,6 @@
 			((System.ComponentModel.ISupportInitialize)(this.gridView)).EndInit();
 			this.introPanel.ResumeLayout(false);
 			this.optionsBox.ResumeLayout(false);
-			this.optionsBox.PerformLayout();
 			this.toolStrip.ResumeLayout(false);
 			this.toolStrip.PerformLayout();
 			this.ResumeLayout(false);
@@ -228,12 +228,11 @@
 		private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
 		private System.Windows.Forms.ToolStripButton upButton;
 		private System.Windows.Forms.ToolStripButton downButton;
-		private System.Windows.Forms.ToolStripLabel deleteLabel;
-		private System.Windows.Forms.DataGridViewTextBoxColumn nameColumn;
-		private System.Windows.Forms.DataGridViewTextBoxColumn locationColumn;
 		private System.Windows.Forms.ToolStripButton sortButton;
 		private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
-		private System.Windows.Forms.GroupBox optionsBox;
-		private System.Windows.Forms.CheckBox shortcutsBox;
+		private UI.MoreGroupBox optionsBox;
+		private UI.MoreCheckBox shortcutsBox;
+		private System.Windows.Forms.DataGridViewTextBoxColumn nameColumn;
+		private System.Windows.Forms.DataGridViewTextBoxColumn locationColumn;
 	}
 }

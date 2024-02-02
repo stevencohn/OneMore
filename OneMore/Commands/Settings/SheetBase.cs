@@ -14,21 +14,22 @@ namespace River.OneMoreAddIn.Settings
 	/// <remarks>
 	/// Preferred this to be abstract but that screws up VS Designer
 	/// </remarks>
-	internal class SheetBase : UserControl
+	internal class SheetBase : MoreUserControl
 	{
 		protected readonly SettingsProvider provider;
 
 
 		protected SheetBase()
+			: base()
 		{
 			// required for VS Designer
 		}
 
 
 		protected SheetBase(SettingsProvider provider)
+			: base()
 		{
 			SuspendLayout();
-			BackColor = System.Drawing.SystemColors.ControlLightLight;
 			Name = "SheetBase";
 			Size = new System.Drawing.Size(800, 500);
 			Dock = DockStyle.Fill;

@@ -13,7 +13,7 @@ namespace River.OneMoreAddIn.Commands.Search
 	using Resx = River.OneMoreAddIn.Properties.Resources;
 
 
-	internal partial class SearchDialog : LocalizableForm
+	internal partial class SearchDialog : MoreForm
 	{
 		private readonly OneNote one;
 

@@ -8,7 +8,7 @@ namespace River.OneMoreAddIn.Commands
 	using Resx = Properties.Resources;
 
 
-	internal partial class ArrangeContainersDialog : UI.LocalizableForm
+	internal partial class ArrangeContainersDialog : UI.MoreForm
 	{
 		private const int DefaultWidth = 500;
 

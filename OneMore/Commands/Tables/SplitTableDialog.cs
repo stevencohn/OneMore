@@ -7,7 +7,7 @@ namespace River.OneMoreAddIn.Commands
 	using Resx = River.OneMoreAddIn.Properties.Resources;
 
 
-	internal partial class SplitTableDialog : UI.LocalizableForm
+	internal partial class SplitTableDialog : UI.MoreForm
 	{
 
 		public SplitTableDialog()

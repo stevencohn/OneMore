@@ -13,7 +13,7 @@ namespace River.OneMoreAddIn.Commands
 	using Resx = Properties.Resources;
 
 
-	internal partial class SearchAndReplaceDialog : UI.LocalizableForm
+	internal partial class SearchAndReplaceDialog : UI.MoreForm
 	{
 		private XElement whats;
 

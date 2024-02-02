@@ -465,6 +465,7 @@
     </Compile>
     <Compile Include="Commands\Snippets\InsertBreadcrumbCommand.cs" />
     <Compile Include="Commands\References\EmbedSubpageCommand.cs" />
+    <Compile Include="Ribbon\RibbonGroups.cs" />
     <Compile Include="UI\EventRouter.cs" />
     <Compile Include="UI\MoreExpander.cs">
       <SubType>UserControl</SubType>
@@ -475,8 +476,36 @@
     <Compile Include="UI\MoreFlowLayoutPanel.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="UI\MorePanel.cs">
+    <Compile Include="UI\Themed\MorePanel.cs">
       <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="UI\Themed\IThemedControl.cs" />
+    <Compile Include="UI\Themed\MoreCheckBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="UI\Themed\MoreGroupBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="UI\Themed\MoreLabel.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="UI\Themed\MoreMultilineLabel.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="UI\Themed\MoreNumericUpDown.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="UI\Themed\MoreRadioButton.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="UI\Themed\MoreTabControl.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="UI\Themed\MoreTextBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="UI\Themed\MoreUserControl.cs">
+      <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="UI\RenameDialog.cs">
       <SubType>Form</SubType>
@@ -746,7 +775,7 @@
     <Compile Include="Commands\Numbering\OutlineDialog.Designer.cs">
       <DependentUpon>OutlineDialog.cs</DependentUpon>
     </Compile>
-    <Compile Include="UI\LocalizableForm.cs">
+    <Compile Include="UI\Themed\MoreForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Commands\Numbering\NumberPagesDialog.cs">
@@ -761,7 +790,7 @@
     <Compile Include="Commands\Edit\PronunciateDialog.Designer.cs">
       <DependentUpon>PronunciateDialog.cs</DependentUpon>
     </Compile>
-    <Compile Include="UI\MoreButton.cs">
+    <Compile Include="UI\Themed\MoreButton.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="UI\MoreAutoCompleteList.cs">
@@ -779,7 +808,7 @@
     <Compile Include="UI\MorePictureBox.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="UI\MoreLinkLabel.cs">
+    <Compile Include="UI\Themed\MoreLinkLabel.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="UI\MoreRichLabel.cs">
@@ -1019,6 +1048,8 @@
     <Compile Include="UI\MoreBubbleWindow.Designer.cs">
       <DependentUpon>MoreBubbleWindow.cs</DependentUpon>
     </Compile>
+    <Compile Include="UI\Themed\MouseState.cs" />
+    <Compile Include="UI\Themed\ThemeManager.cs" />
     <Compile Include="UI\TranslationHelper.cs" />
     <Compile Include="UI\WebViewWorkerDialog.cs">
       <SubType>Form</SubType>
@@ -1104,6 +1135,7 @@
     <None Include="Commands\Snippets\Emoji\Images\Recycle.png" />
     <None Include="Commands\Snippets\Emoji\Images\Lock.png" />
     <None Include="Commands\Snippets\Emoji\Images\SportsEU.png" />
+    <Content Include="Commands\Snippets\Emoji\Images\Delta.png" />
     <Content Include="Commands\Tagging\HashtagsDB.sql" />
     <Content Include="Commands\Tagging\x.png" />
     <None Include="Colorizer\Languages\plantuml.json">
@@ -1193,6 +1225,7 @@
     <None Include="Commands\Snippets\Emoji\Images\Section.png" />
     <None Include="Commands\Snippets\Emoji\Images\XMark.png" />
     <Content Include="Commands\Tools\sponsor-light.png" />
+    <EmbeddedResource Include="Commands\Tools\sponsor-dark.png" />
     <Content Include="Properties\Images\CustomStyles.png" />
     <Content Include="Properties\Images\DarkCustomStyles.png" />
     <Content Include="Properties\Images\DarkFavorites.png" />
@@ -1284,6 +1317,8 @@
     <None Include="Properties\0336.OneNoteApplication_2013.xsd">
       <SubType>Designer</SubType>
     </None>
+    <None Include="UI\Themed\DarkTheme.json" />
+    <None Include="UI\Themed\LightTheme.json" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Commands\Clean\BreakingDialog.resx">
@@ -1394,8 +1429,8 @@
     <EmbeddedResource Include="Properties\Resources.he-IL.resx">
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="UI\LocalizableForm.resx">
-      <DependentUpon>LocalizableForm.cs</DependentUpon>
+    <EmbeddedResource Include="UI\Themed\MoreForm.resx">
+      <DependentUpon>MoreForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\MoreExpander.resx">
       <DependentUpon>MoreExpander.cs</DependentUpon>
@@ -1442,6 +1477,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Commands\Tools\AboutDialog.resx">
       <DependentUpon>AboutDialog.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Commands\Snippets\InsertCalendarDialog.resx">
       <DependentUpon>InsertCalendarDialog.cs</DependentUpon>
@@ -1454,6 +1490,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Commands\File\ExportDialog.resx">
       <DependentUpon>ExportDialog.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Commands\Tables\FormulaDialog.resx">
       <DependentUpon>FormulaDialog.cs</DependentUpon>
@@ -1489,7 +1526,7 @@
     <EmbeddedResource Include="Properties\Resources.pl-PL.resx">
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="UI\MoreLinkLabel.resx">
+    <EmbeddedResource Include="UI\Themed\MoreLinkLabel.resx">
       <DependentUpon>MoreLinkLabel.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\MoreMessageBox.resx">

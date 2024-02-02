@@ -1,5 +1,5 @@
 ﻿//************************************************************************************************
-// Copyright © 2022 Steven M Cohn.  Yada yada...
+// Copyright © 2022 Steven M Cohn. All rights reserved.
 //************************************************************************************************
 
 namespace River.OneMoreAddIn.UI
@@ -9,7 +9,7 @@ namespace River.OneMoreAddIn.UI
 	using Resx = River.OneMoreAddIn.Properties.Resources;
 
 
-	internal partial class MoreMessageBox : LocalizableForm
+	internal partial class MoreMessageBox : MoreForm
 	{
 
 		public MoreMessageBox()

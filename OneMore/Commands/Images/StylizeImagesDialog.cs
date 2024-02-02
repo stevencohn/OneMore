@@ -8,7 +8,7 @@ namespace River.OneMoreAddIn.Commands
 	using Resx = Properties.Resources;
 
 
-	internal partial class StylizeImagesDialog : UI.LocalizableForm
+	internal partial class StylizeImagesDialog : UI.MoreForm
 	{
 
 		public StylizeImagesDialog()
@@ -39,16 +39,16 @@ namespace River.OneMoreAddIn.Commands
 			foreBox.Enabled = foreCount > 0 || foreSelected > 0;
 			backBox.Enabled = backCount > 0 || backSelected > 0;
 
-			foreImagesLabel.Text = string.Format(
-				Resx.StylizeImagesDialog_foreImagesLabel_Text,
+			foreBox.Text = string.Format(
+				Resx.StylizeImagesDialog_foreBox_Text,
 				foreCount, foreSelected);
 
-			backImagesLabel.Text = string.Format(
-				Resx.StylizeImagesDialog_backImagesLabel_Text,
+			backBox.Text = string.Format(
+				Resx.StylizeImagesDialog_backBox_Text,
 				backCount, backSelected);
 
-			foreBox.Enabled = foreImagesLabel.Enabled = foreCount > 0;
-			backBox.Enabled = backImagesLabel.Enabled = backCount > 0;
+			foreBox.Enabled = foreCount > 0;
+			backBox.Enabled = backCount > 0;
 
 			foreBox.Checked = foreCount > 0 && backCount == 0;
 			backBox.Checked = backCount > 0 && foreCount == 0;

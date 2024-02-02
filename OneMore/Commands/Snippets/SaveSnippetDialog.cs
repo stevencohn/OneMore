@@ -11,7 +11,7 @@ namespace River.OneMoreAddIn.Commands
 	using Resx = River.OneMoreAddIn.Properties.Resources;
 
 
-	internal partial class SaveSnippetDialog : LocalizableForm
+	internal partial class SaveSnippetDialog : MoreForm
 	{
 		private List<string> names;
 		private char[] invalidChars;

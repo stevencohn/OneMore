@@ -4,13 +4,13 @@
 
 namespace River.OneMoreAddIn.Commands
 {
+	using River.OneMoreAddIn.UI;
 	using System;
 	using System.ComponentModel;
 	using System.Drawing;
-	using System.Windows.Forms;
 
 
-	internal partial class HashtagErrorControl : UserControl
+	internal partial class HashtagErrorControl : MoreUserControl
 	{
 		private int radius = 5;
 

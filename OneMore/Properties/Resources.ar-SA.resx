@@ -272,6 +272,10 @@
     <value>حدد الأسماء المستعارة للأوامر لاستخدامها في لوحة الأوامر</value>
     <comment>intro box</comment>
   </data>
+  <data name="AliasSheet_introBox.Text" xml:space="preserve">
+    <value>تحديد الاسم المستعار أمر للاستخدام في لوحة الأوامر.</value>
+    <comment>label</comment>
+  </data>
   <data name="AliasSheet_Title" xml:space="preserve">
     <value>قيادة الأسماء المستعارة</value>
     <comment>sheet</comment>
@@ -432,10 +436,6 @@
     <value>حدد كلمة أو عبارة من فقرة واحدة</value>
     <comment>message box</comment>
   </data>
-  <data name="BreakingDialog_groupBox.Text" xml:space="preserve">
-    <value>تباعد</value>
-    <comment>group box</comment>
-  </data>
   <data name="BreakingDialog_oneButton.Text" xml:space="preserve">
     <value>مسافة واحدة بين الجمل</value>
     <comment>radio</comment>
@@ -520,32 +520,32 @@
     <value>اختار اللغة</value>
     <comment>dialog title</comment>
   </data>
+  <data name="ColorizerSheet_applyBox.Text" xml:space="preserve">
+    <value>قم دائمًا بتطبيق الخطوط التالية عند تلوين رمز</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="ColorizerSheet_enabledLabel.Text" xml:space="preserve">
+    <value>ممكّن اللغات</value>
+    <comment>label</comment>
+  </data>
   <data name="ColorizerSheet_fixedBox.Text" xml:space="preserve">
     <value>إظهار الخطوط ذات العرض الثابت فقط</value>
     <comment>checkbox</comment>
   </data>
-  <data name="ColorizeSheet_applyBox.Text" xml:space="preserve">
-    <value>قم دائمًا بتطبيق الخطوط التالية عند تلوين التعليمات البرمجية</value>
-    <comment>checkbox</comment>
-  </data>
-  <data name="ColorizeSheet_enabledLabel" xml:space="preserve">
-    <value>اللغات الممكّنة</value>
-    <comment>label</comment>
-  </data>
-  <data name="ColorizeSheet_font2Label.Text" xml:space="preserve">
+  <data name="ColorizerSheet_font2Label.Text" xml:space="preserve">
     <value>ثانوي</value>
     <comment>label</comment>
   </data>
-  <data name="ColorizeSheet_fontLabel.Text" xml:space="preserve">
+  <data name="ColorizerSheet_fontLabel.Text" xml:space="preserve">
     <value>أساسي</value>
     <comment>label</comment>
   </data>
-  <data name="ColorizeSheet_introBox.Text" xml:space="preserve">
-    <value>تخصيص سلوك أمر Colorize. يتم تطبيق الخط الثانوي عند طي PlantUML</value>
+  <data name="ColorizerSheet_introBox.Text" xml:space="preserve">
+    <value>تخصيص سلوك الأمر الملون. ينطبق الخط الثانوي عند انهيار Plantuml</value>
     <comment>label</comment>
   </data>
-  <data name="ColorizeSheet_Title" xml:space="preserve">
-    <value>تلوين</value>
+  <data name="ColorizerSheet_Title" xml:space="preserve">
+    <value>ملون</value>
   </data>
   <data name="Command_Error" xml:space="preserve">
     <value>خطأ في تشغيل الأمر {0}</value>
@@ -886,6 +886,10 @@
     <value>ركوب الدراجات</value>
     <comment>emoji</comment>
   </data>
+  <data name="Emoji_Delta" xml:space="preserve">
+    <value>دلتا</value>
+    <comment>emoji</comment>
+  </data>
   <data name="Emoji_Envelope" xml:space="preserve">
     <value>ظرف</value>
     <comment>emoji</comment>
@@ -1146,6 +1150,18 @@
     <value>عرض صورة الاستيراد المفضل</value>
     <comment>label</comment>
   </data>
+  <data name="FileQuickNotesCommand_noQuickNotes" xml:space="preserve">
+    <value>تعذر تحميل الملاحظات السريعة. تحقق من الموقع في خيارات OneNote.</value>
+    <comment>message</comment>
+  </data>
+  <data name="FileQuickNotesCommand_noTargetNotebook" xml:space="preserve">
+    <value>لا يمكن العثور على دفتر الملاحظات الهدف. افتح إعدادات OneMore لتحديد هدف.</value>
+    <comment>message</comment>
+  </data>
+  <data name="FileQuickNotesCommand_noTargetSection" xml:space="preserve">
+    <value>لا يمكن العثور على القسم المستهدف. افتح إعدادات OneMore لتحديد هدف.</value>
+    <comment>message</comment>
+  </data>
   <data name="FitGridToTextCommand_noGrid" xml:space="preserve">
     <value>قم بتمكين خطوط الشبكة قبل استخدام هذا الأمر</value>
     <comment>message</comment>
@@ -1251,7 +1267,17 @@
     <comment>textbox</comment>
   </data>
   <data name="GeneralSheet_langLabel.Text" xml:space="preserve">
-    <value>لغة العرض (يجب إعادة تشغيل OneNote)</value>
+    <value>لغة</value>
+    <comment>label</comment>
+  </data>
+  <data name="GeneralSheet_themeBox.Text" xml:space="preserve">
+    <value>نظام
+ضوء
+مظلم</value>
+    <comment>combobox</comment>
+  </data>
+  <data name="GeneralSheet_themeLabel.Text" xml:space="preserve">
+    <value>سمة</value>
     <comment>label</comment>
   </data>
   <data name="GeneralSheet_Title" xml:space="preserve">
@@ -1362,11 +1388,11 @@
     <comment>highlight command message</comment>
   </data>
   <data name="HighlightsSheet_deepRadio.Text" xml:space="preserve">
-    <value>عميق:</value>
+    <value>عميق</value>
     <comment>radio</comment>
   </data>
   <data name="HighlightsSheet_fadedRadio.Text" xml:space="preserve">
-    <value>تلاشى:</value>
+    <value>تلاشى</value>
     <comment>radio</comment>
   </data>
   <data name="HighlightsSheet_introBox.Text" xml:space="preserve">
@@ -1374,11 +1400,11 @@
     <comment>textbox</comment>
   </data>
   <data name="HighlightsSheet_normalRadio.Text" xml:space="preserve">
-    <value>مشرق:</value>
+    <value>ساطع</value>
     <comment>radio</comment>
   </data>
-  <data name="HighlightsSheet_themeGroup.Text" xml:space="preserve">
-    <value>ثيمات</value>
+  <data name="HighlightsSheet_themesGroup.Text" xml:space="preserve">
+    <value>موضوعات</value>
     <comment>group</comment>
   </data>
   <data name="HighlightsSheet_Title" xml:space="preserve">
@@ -1415,6 +1441,14 @@
   <data name="ImagesSheet_plantGroup.Text" xml:space="preserve">
     <value>خيارات PlantUML</value>
     <comment>groupbox</comment>
+  </data>
+  <data name="ImagesSheet_plantRemoveBox.Text" xml:space="preserve">
+    <value>قم بإزالة نص Plantuml وتضمينه في الصورة</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="ImagesSheet_plantUriLabel.Text" xml:space="preserve">
+    <value>عنوان خادم Plantuml (ترك فارغًا لاستخدام الافتراضي)</value>
+    <comment>label</comment>
   </data>
   <data name="ImagesSheet_resizeGroup.Text" xml:space="preserve">
     <value>خيارات تغيير الحجم</value>
@@ -1691,8 +1725,8 @@
     <value>صافي</value>
     <comment>toolstrip button</comment>
   </data>
-  <data name="KeyboardSheet_introLabel.Text" xml:space="preserve">
-    <value>إدارة اختصارات لوحة المفاتيح المخصصة الخاصة بي. حدد أمرًا واضغط على تسلسل المفاتيح.</value>
+  <data name="KeyboardSheet_introBox.Text" xml:space="preserve">
+    <value>إدارة اختصارات لوحة المفاتيح المخصصة. حدد أمرًا واضغط على تسلسل مفتاح.</value>
     <comment>label</comment>
   </data>
   <data name="KeyboardSheet_keyColumn.HeaderText" xml:space="preserve">
@@ -2184,8 +2218,8 @@
     <value>حذف المكون الإضافي "{0}"</value>
     <comment>question</comment>
   </data>
-  <data name="PluginsSheet_introLabel.Text" xml:space="preserve">
-    <value>إدارة ملحقاتي</value>
+  <data name="PluginsSheet_introBox.Text" xml:space="preserve">
+    <value>إدارة المكونات الإضافية الخاصة بي</value>
     <comment>label</comment>
   </data>
   <data name="PluginsSheet_Title" xml:space="preserve">
@@ -2680,24 +2714,50 @@ ISO-code then comma then language name</comment>
     <value>ترتيب الحاويات</value>
     <comment>ribbon button</comment>
   </data>
-  <data name="RibbonBarSheet_editGroup.Text" xml:space="preserve">
-    <value>تحرير الأوامر</value>
-    <comment>settings dialog, ribbon bar options</comment>
-  </data>
   <data name="RibbonBarSheet_editIconBox.Text" xml:space="preserve">
     <value>إظهار الرموز لأوامر التحرير فقط</value>
     <comment>settings dialog, ribbon bar options</comment>
   </data>
-  <data name="RibbonBarSheet_formulaGroup.Text" xml:space="preserve">
-    <value>أوامر الصيغة</value>
-    <comment>settings dialog, ribbon bar options</comment>
+  <data name="RibbonBarSheet_editRibbonBox.Text" xml:space="preserve">
+    <value>تحرير الأوامر</value>
+    <comment>checkbox</comment>
   </data>
   <data name="RibbonBarSheet_formulaIconBox.Text" xml:space="preserve">
     <value>إظهار الرموز لأوامر الصيغ فقط</value>
     <comment>settings dialog, ribbon bar options</comment>
   </data>
+  <data name="RibbonBarSheet_formulaRibbonBox.Text" xml:space="preserve">
+    <value>أوامر الصيغة</value>
+    <comment>checkbox</comment>
+  </data>
   <data name="RibbonBarSheet_introBox.Text" xml:space="preserve">
     <value>اختر الأوامر المراد تضمينها في شريط الشريط وما إذا كنت تريد عرض الرموز أو الرموز والتسميات. </value>
+    <comment>settings dialog, ribbon bar options</comment>
+  </data>
+  <data name="RibbonBarSheet_positionBox.Text" xml:space="preserve">
+    <value>مجموعة الحافظة
+مجموعة النص الأساسية
+مجموعة الأنماط
+مجموعة العلامات
+مجموعة البريد الإلكتروني
+مجموعة الاجتماعات
+بعد المجموعة الأخيرة</value>
+    <comment>combobox</comment>
+  </data>
+  <data name="RibbonBarSheet_positionGroup.Text" xml:space="preserve">
+    <value>موضع</value>
+    <comment>groupbox</comment>
+  </data>
+  <data name="RibbonBarSheet_positionIntroLabel.Text" xml:space="preserve">
+    <value>حدد موقع مجموعة شريط OneMore.</value>
+    <comment>intro label</comment>
+  </data>
+  <data name="RibbonBarSheet_positionLabel.Text" xml:space="preserve">
+    <value>بعد مجموعة OneMore</value>
+    <comment>label</comment>
+  </data>
+  <data name="RibbonBarSheet_quickGroup.Text" xml:space="preserve">
+    <value>أوامر سريعة</value>
     <comment>settings dialog, ribbon bar options</comment>
   </data>
   <data name="RibbonBarSheet_Title" xml:space="preserve">
@@ -4108,18 +4168,14 @@ ISO-code then comma then language name</comment>
     <value>نمط URL</value>
     <comment>url col</comment>
   </data>
-  <data name="SearchEngineSheet_deleteLabel.Text" xml:space="preserve">
-    <value>حذف:</value>
-    <comment>label</comment>
-  </data>
   <data name="SearchEngineSheet_downButton.Text" xml:space="preserve">
     <value>تحرك لأسفل</value>
     <comment>button</comment>
   </data>
-  <data name="SearchEngineSheet_introLabel.Text" xml:space="preserve">
-    <value>يجب أن تحتوي أنماط عناوين URL على رمز مميز لاستبدال السلسلة ، مثل &amp; q = {0}
+  <data name="SearchEngineSheet_introBox.Text" xml:space="preserve">
+    <value>يجب أن تحتوي أنماط عنوان URL على رمز استبدال السلسلة ، مثل &amp; q = {0}
 
-ستظهر محركات البحث في قائمة سياق الصفحة ، انقر بزر الماوس الأيمن.</value>
+ستظهر محركات البحث في قائمة سياق الصفحة ، النقر بزر الماوس الأيمن.</value>
     <comment>label</comment>
   </data>
   <data name="SearchEngineSheet_upButton.Text" xml:space="preserve">
@@ -4317,8 +4373,8 @@ ISO-code then comma then language name</comment>
     <value>حذف المقتطف "{0}"</value>
     <comment>question</comment>
   </data>
-  <data name="SnippetsSheet_introLabel.Text" xml:space="preserve">
-    <value>إدارة مقتطفاتي</value>
+  <data name="SnippetsSheet_introBox.Text" xml:space="preserve">
+    <value>إدارة المقتطفات الخاصة بي</value>
     <comment>label</comment>
   </data>
   <data name="SnippetsSheet_Text" xml:space="preserve">
@@ -4602,20 +4658,14 @@ ISO-code then comma then language name</comment>
     <comment>message</comment>
   </data>
   <data name="StylizeImagesDialog_backBox.Text" xml:space="preserve">
-    <value>تنطبق على الصور الخلفية</value>
+    <value>تنطبق على الصور الخلفية
+صور الخلفية: {0}، محددة: {1}</value>
     <comment>checkbox</comment>
-  </data>
-  <data name="StylizeImagesDialog_backImagesLabel.Text" xml:space="preserve">
-    <value>صور الخلفية: {0}، محددة: {1}</value>
-    <comment>label</comment>
   </data>
   <data name="StylizeImagesDialog_foreBox.Text" xml:space="preserve">
-    <value>تنطبق على الصور الأمامية</value>
+    <value>تنطبق على الصور الأمامية
+الصور الأمامية: {0}، محددة: {1}</value>
     <comment>checkbox</comment>
-  </data>
-  <data name="StylizeImagesDialog_foreImagesLabel.Text" xml:space="preserve">
-    <value>الصور الأمامية: {0}، محددة: {1}</value>
-    <comment>label</comment>
   </data>
   <data name="StylizeImagesDialog_styleBox.Text" xml:space="preserve">
     <value>مقياس رمادي

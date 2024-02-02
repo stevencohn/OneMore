@@ -7,7 +7,7 @@ namespace River.OneMoreAddIn.Commands
 	using System;
 
 
-	internal partial class InsertTocDialog : UI.LocalizableForm
+	internal partial class InsertTocDialog : UI.MoreForm
 	{
 
 		public InsertTocDialog()

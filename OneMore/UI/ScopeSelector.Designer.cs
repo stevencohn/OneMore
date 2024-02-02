@@ -28,11 +28,11 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
-			this.pageButton = new System.Windows.Forms.RadioButton();
-			this.sectionButton = new System.Windows.Forms.RadioButton();
-			this.notebookButton = new System.Windows.Forms.RadioButton();
-			this.notebooksButton = new System.Windows.Forms.RadioButton();
-			this.selectedButton = new System.Windows.Forms.RadioButton();
+			this.pageButton = new UI.MoreRadioButton();
+			this.sectionButton = new UI.MoreRadioButton();
+			this.notebookButton = new UI.MoreRadioButton();
+			this.notebooksButton = new UI.MoreRadioButton();
+			this.selectedButton = new UI.MoreRadioButton();
 			this.choiceBox = new System.Windows.Forms.Panel();
 			this.selectionPanel = new System.Windows.Forms.Panel();
 			this.listBox = new System.Windows.Forms.CheckedListBox();
@@ -121,6 +121,7 @@
 			// 
 			// listBox
 			// 
+			this.listBox.BackColor = System.Drawing.SystemColors.ControlLightLight;
 			this.listBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
 			this.listBox.CheckOnClick = true;
 			this.listBox.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -147,11 +148,11 @@
 
 		#endregion
 
-		private System.Windows.Forms.RadioButton pageButton;
-		private System.Windows.Forms.RadioButton sectionButton;
-		private System.Windows.Forms.RadioButton notebookButton;
-		private System.Windows.Forms.RadioButton notebooksButton;
-		private System.Windows.Forms.RadioButton selectedButton;
+		private UI.MoreRadioButton pageButton;
+		private UI.MoreRadioButton sectionButton;
+		private UI.MoreRadioButton notebookButton;
+		private UI.MoreRadioButton notebooksButton;
+		private UI.MoreRadioButton selectedButton;
 		private System.Windows.Forms.Panel choiceBox;
 		private System.Windows.Forms.Panel selectionPanel;
 		private System.Windows.Forms.CheckedListBox listBox;

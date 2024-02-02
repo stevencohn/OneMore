@@ -34,7 +34,7 @@
 			this.components = new System.ComponentModel.Container();
 			this.paletteBox = new System.Windows.Forms.PictureBox();
 			this.buttonPanel = new System.Windows.Forms.Panel();
-			this.autoButton = new System.Windows.Forms.CheckBox();
+			this.autoButton = new UI.MoreCheckBox();
 			this.tooltip = new System.Windows.Forms.ToolTip(this.components);
 			this.borderPanel = new System.Windows.Forms.Panel();
 			((System.ComponentModel.ISupportInitialize)(this.paletteBox)).BeginInit();
@@ -118,7 +118,7 @@
 
 		private System.Windows.Forms.PictureBox paletteBox;
 		private System.Windows.Forms.Panel buttonPanel;
-		private System.Windows.Forms.CheckBox autoButton;
+		private UI.MoreCheckBox autoButton;
 		private System.Windows.Forms.ToolTip tooltip;
 		private System.Windows.Forms.Panel borderPanel;
 	}

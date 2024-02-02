@@ -7,7 +7,7 @@ namespace River.OneMoreAddIn.Commands
 	using Resx = River.OneMoreAddIn.Properties.Resources;
 
 
-	internal partial class MapDialog : UI.LocalizableForm
+	internal partial class MapDialog : UI.MoreForm
 	{
 		public MapDialog()
 		{

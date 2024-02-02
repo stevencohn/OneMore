@@ -21,7 +21,7 @@ namespace River.OneMoreAddIn.Commands
 	/// Disposables taken care of in OnClosed.
 	/// </remarks>
 
-	internal partial class EmojiDialog : UI.LocalizableForm
+	internal partial class EmojiDialog : UI.MoreForm
 	{
 		private readonly Emojis emojis;
 		private readonly List<int> selections;

@@ -14,7 +14,7 @@ namespace River.OneMoreAddIn.Commands
 	using Resx = Properties.Resources;
 
 
-	internal partial class ExportDialog : UI.LocalizableForm
+	internal partial class ExportDialog : UI.MoreForm
 	{
 		private readonly bool wordInstalled;
 

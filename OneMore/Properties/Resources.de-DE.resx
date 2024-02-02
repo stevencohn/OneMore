@@ -269,6 +269,10 @@ Umkehren</value>
     <value>Definiere Befehlsaliase zur Verwendung in der Befehlspalette</value>
     <comment>intro box</comment>
   </data>
+  <data name="AliasSheet_introBox.Text" xml:space="preserve">
+    <value>Definieren Sie die Kommando -Aliase für die Verwendung in der Befehlspalette.</value>
+    <comment>label</comment>
+  </data>
   <data name="AliasSheet_Title" xml:space="preserve">
     <value>Befehlsaliase</value>
     <comment>sheet</comment>
@@ -429,10 +433,6 @@ Umkehren</value>
     <value>Wähle ein Wort oder einen Satz aus einem Absatz</value>
     <comment>message box</comment>
   </data>
-  <data name="BreakingDialog_groupBox.Text" xml:space="preserve">
-    <value>Abstand</value>
-    <comment>group box</comment>
-  </data>
   <data name="BreakingDialog_oneButton.Text" xml:space="preserve">
     <value>Ein Leerzeichen zwischen Sätzen</value>
     <comment>radio</comment>
@@ -517,32 +517,32 @@ Umkehren</value>
     <value>Sprache auswählen</value>
     <comment>dialog title</comment>
   </data>
+  <data name="ColorizerSheet_applyBox.Text" xml:space="preserve">
+    <value>Wenden Sie immer die folgenden Schriftarten an, wenn Sie den Code färben</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="ColorizerSheet_enabledLabel.Text" xml:space="preserve">
+    <value>Aktivierte Sprachen</value>
+    <comment>label</comment>
+  </data>
   <data name="ColorizerSheet_fixedBox.Text" xml:space="preserve">
     <value>Nur Schriftarten mit fester Breite anzeigen</value>
     <comment>checkbox</comment>
   </data>
-  <data name="ColorizeSheet_applyBox.Text" xml:space="preserve">
-    <value>Wenden Sie immer die folgenden Schriftarten an, wenn Sie Code einfärben</value>
-    <comment>checkbox</comment>
-  </data>
-  <data name="ColorizeSheet_enabledLabel" xml:space="preserve">
-    <value>Aktivierte Sprachen</value>
-    <comment>label</comment>
-  </data>
-  <data name="ColorizeSheet_font2Label.Text" xml:space="preserve">
+  <data name="ColorizerSheet_font2Label.Text" xml:space="preserve">
     <value>Sekundär</value>
     <comment>label</comment>
   </data>
-  <data name="ColorizeSheet_fontLabel.Text" xml:space="preserve">
+  <data name="ColorizerSheet_fontLabel.Text" xml:space="preserve">
     <value>Primär</value>
     <comment>label</comment>
   </data>
-  <data name="ColorizeSheet_introBox.Text" xml:space="preserve">
-    <value>Passen Sie das Verhalten des Einfärben-Befehls an. Sekundäre Schriftart gilt beim Reduzieren von PlantUML</value>
+  <data name="ColorizerSheet_introBox.Text" xml:space="preserve">
+    <value>Passen Sie das Verhalten des Colorize -Befehls an. Die sekundäre Schriftart gilt beim Zusammenbruch von Plantuml</value>
     <comment>label</comment>
   </data>
-  <data name="ColorizeSheet_Title" xml:space="preserve">
-    <value>Einfärber</value>
+  <data name="ColorizerSheet_Title" xml:space="preserve">
+    <value>Colorizer</value>
   </data>
   <data name="Command_Error" xml:space="preserve">
     <value>Fehler beim Ausführen des Befehls {0}</value>
@@ -883,6 +883,10 @@ Schriftart der letzten Spalte</value>
     <value>Radfahren</value>
     <comment>emoji</comment>
   </data>
+  <data name="Emoji_Delta" xml:space="preserve">
+    <value>Delta</value>
+    <comment>emoji</comment>
+  </data>
   <data name="Emoji_Envelope" xml:space="preserve">
     <value>Umschlag</value>
     <comment>emoji</comment>
@@ -1143,6 +1147,18 @@ OneNote-Datei (*.one)</value>
     <value>Bevorzugte Importbildbreite</value>
     <comment>label</comment>
   </data>
+  <data name="FileQuickNotesCommand_noQuickNotes" xml:space="preserve">
+    <value>Quick Notes konnten nicht geladen werden. Überprüfen Sie den Speicherort in den OneNote-Optionen.</value>
+    <comment>message</comment>
+  </data>
+  <data name="FileQuickNotesCommand_noTargetNotebook" xml:space="preserve">
+    <value>Zielnotizbuch kann nicht gefunden werden. Öffnen Sie OneMore Settings, um ein Ziel anzugeben.</value>
+    <comment>message</comment>
+  </data>
+  <data name="FileQuickNotesCommand_noTargetSection" xml:space="preserve">
+    <value>Zielabschnitt kann nicht gefunden werden. Öffnen Sie OneMore Settings, um ein Ziel anzugeben.</value>
+    <comment>message</comment>
+  </data>
   <data name="FitGridToTextCommand_noGrid" xml:space="preserve">
     <value>Aktiviere Rasterlinien, bevor dieser Befehl verwendet wird</value>
     <comment>message</comment>
@@ -1246,7 +1262,17 @@ Symbole: PI, E</value>
     <comment>textbox</comment>
   </data>
   <data name="GeneralSheet_langLabel.Text" xml:space="preserve">
-    <value>Anzeigesprache (OneNote muss neu gestartet werden)</value>
+    <value>Sprache</value>
+    <comment>label</comment>
+  </data>
+  <data name="GeneralSheet_themeBox.Text" xml:space="preserve">
+    <value>System
+Licht
+Dunkel</value>
+    <comment>combobox</comment>
+  </data>
+  <data name="GeneralSheet_themeLabel.Text" xml:space="preserve">
+    <value>Thema</value>
     <comment>label</comment>
   </data>
   <data name="GeneralSheet_Title" xml:space="preserve">
@@ -1357,11 +1383,11 @@ Gelber Hintergrund</value>
     <comment>highlight command message</comment>
   </data>
   <data name="HighlightsSheet_deepRadio.Text" xml:space="preserve">
-    <value>Tief:</value>
+    <value>Tief</value>
     <comment>radio</comment>
   </data>
   <data name="HighlightsSheet_fadedRadio.Text" xml:space="preserve">
-    <value>Verblasst:</value>
+    <value>Verblasst</value>
     <comment>radio</comment>
   </data>
   <data name="HighlightsSheet_introBox.Text" xml:space="preserve">
@@ -1369,10 +1395,10 @@ Gelber Hintergrund</value>
     <comment>textbox</comment>
   </data>
   <data name="HighlightsSheet_normalRadio.Text" xml:space="preserve">
-    <value>Hell:</value>
+    <value>Hell</value>
     <comment>radio</comment>
   </data>
-  <data name="HighlightsSheet_themeGroup.Text" xml:space="preserve">
+  <data name="HighlightsSheet_themesGroup.Text" xml:space="preserve">
     <value>Themen</value>
     <comment>group</comment>
   </data>
@@ -1410,6 +1436,14 @@ Gelber Hintergrund</value>
   <data name="ImagesSheet_plantGroup.Text" xml:space="preserve">
     <value>PlantUML-Optionen</value>
     <comment>groupbox</comment>
+  </data>
+  <data name="ImagesSheet_plantRemoveBox.Text" xml:space="preserve">
+    <value>Entfernen Sie den pflanzlichen Text und setzen Sie ihn in das Bild ein</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="ImagesSheet_plantUriLabel.Text" xml:space="preserve">
+    <value>Plantuml Server -Adresse (leer lassen, um die Standardeinstellung zu verwenden)</value>
+    <comment>label</comment>
   </data>
   <data name="ImagesSheet_resizeGroup.Text" xml:space="preserve">
     <value>Optionen zur Größenänderung</value>
@@ -1686,8 +1720,8 @@ Benutzerdefinierte Überschrift 3</value>
     <value>Klar</value>
     <comment>toolstrip button</comment>
   </data>
-  <data name="KeyboardSheet_introLabel.Text" xml:space="preserve">
-    <value>Verwaltee meine benutzerdefinierten Tastenkombinationen. Wähle einen Befehl aus und drücke eine Tastenfolge.</value>
+  <data name="KeyboardSheet_introBox.Text" xml:space="preserve">
+    <value>Verwalten Sie meine benutzerdefinierten Tastaturverknüpfungen. Wählen Sie einen Befehl aus und drücken Sie eine Schlüsselsequenz.</value>
     <comment>label</comment>
   </data>
   <data name="KeyboardSheet_keyColumn.HeaderText" xml:space="preserve">
@@ -2179,8 +2213,8 @@ Aktuelles Notizbuch</value>
     <value>Plugin "{0}" löschen</value>
     <comment>question</comment>
   </data>
-  <data name="PluginsSheet_introLabel.Text" xml:space="preserve">
-    <value>Verwalte Plugins</value>
+  <data name="PluginsSheet_introBox.Text" xml:space="preserve">
+    <value>Verwalten Sie meine Plugins</value>
     <comment>label</comment>
   </data>
   <data name="PluginsSheet_Title" xml:space="preserve">
@@ -2674,24 +2708,50 @@ Wähle Nein, um eine leere Zeile zwischen den Absätzen zu halten</value>
     <value>Container anordnen</value>
     <comment>ribbon button</comment>
   </data>
-  <data name="RibbonBarSheet_editGroup.Text" xml:space="preserve">
-    <value>Befehle bearbeiten</value>
-    <comment>settings dialog, ribbon bar options</comment>
-  </data>
   <data name="RibbonBarSheet_editIconBox.Text" xml:space="preserve">
     <value>Nur Symbole für Bearbeitungsbefehle anzeigen</value>
     <comment>settings dialog, ribbon bar options</comment>
   </data>
-  <data name="RibbonBarSheet_formulaGroup.Text" xml:space="preserve">
-    <value>Formelbefehle</value>
-    <comment>settings dialog, ribbon bar options</comment>
+  <data name="RibbonBarSheet_editRibbonBox.Text" xml:space="preserve">
+    <value>Befehle bearbeiten</value>
+    <comment>checkbox</comment>
   </data>
   <data name="RibbonBarSheet_formulaIconBox.Text" xml:space="preserve">
     <value>Nur Symbole für Formelbefehle anzeigen</value>
     <comment>settings dialog, ribbon bar options</comment>
   </data>
+  <data name="RibbonBarSheet_formulaRibbonBox.Text" xml:space="preserve">
+    <value>Formelbefehle</value>
+    <comment>checkbox</comment>
+  </data>
   <data name="RibbonBarSheet_introBox.Text" xml:space="preserve">
     <value>Wähle aus, welche Befehle in die Multifunktionsleiste aufgenommen werden sollen und ob Symbole oder Symbole und Etiketten angezeigt werden sollen.</value>
+    <comment>settings dialog, ribbon bar options</comment>
+  </data>
+  <data name="RibbonBarSheet_positionBox.Text" xml:space="preserve">
+    <value>Zwischenablagegruppe
+Grundlegende Textgruppe
+Stilgruppe
+Tags-Gruppe
+E-Mail-Gruppe
+Meetings-Gruppe
+Nach der letzten Gruppe</value>
+    <comment>combobox</comment>
+  </data>
+  <data name="RibbonBarSheet_positionGroup.Text" xml:space="preserve">
+    <value>Position</value>
+    <comment>groupbox</comment>
+  </data>
+  <data name="RibbonBarSheet_positionIntroLabel.Text" xml:space="preserve">
+    <value>Wählen Sie den Speicherort der OneMore-Menübandgruppe aus.</value>
+    <comment>intro label</comment>
+  </data>
+  <data name="RibbonBarSheet_positionLabel.Text" xml:space="preserve">
+    <value>Nach OneMore Group</value>
+    <comment>label</comment>
+  </data>
+  <data name="RibbonBarSheet_quickGroup.Text" xml:space="preserve">
+    <value>Schnellbefehle</value>
     <comment>settings dialog, ribbon bar options</comment>
   </data>
   <data name="RibbonBarSheet_Title" xml:space="preserve">
@@ -4098,18 +4158,14 @@ In diesem Abschnitt</value>
     <value>URL-Muster</value>
     <comment>url col</comment>
   </data>
-  <data name="SearchEngineSheet_deleteLabel.Text" xml:space="preserve">
-    <value>Löschen:</value>
-    <comment>label</comment>
-  </data>
   <data name="SearchEngineSheet_downButton.Text" xml:space="preserve">
     <value>Sich abwärts bewegen</value>
     <comment>button</comment>
   </data>
-  <data name="SearchEngineSheet_introLabel.Text" xml:space="preserve">
-    <value>URL-Muster müssen ein Zeichenketten-Ersetzungstoken enthalten, z. B. &amp;q={0}
+  <data name="SearchEngineSheet_introBox.Text" xml:space="preserve">
+    <value>URL -Muster müssen einen String -Ersatztoken enthalten, wie &amp; q = {0}
 
-Suchmaschinen werden im Kontextmenü der Seite angezeigt, klicke mit der rechten Maustaste.</value>
+Suchmaschinen werden im Seit-Kontextmenü mit der rechten Maustaste angezeigt.</value>
     <comment>label</comment>
   </data>
   <data name="SearchEngineSheet_upButton.Text" xml:space="preserve">
@@ -4307,8 +4363,8 @@ Bist du dir sicher, dass du weitermachen willst?</value>
     <value>Snippet "{0}" löschen</value>
     <comment>question</comment>
   </data>
-  <data name="SnippetsSheet_introLabel.Text" xml:space="preserve">
-    <value>Meine Snippets verwalten</value>
+  <data name="SnippetsSheet_introBox.Text" xml:space="preserve">
+    <value>Verwalten Sie meine Ausschnitte</value>
     <comment>label</comment>
   </data>
   <data name="SnippetsSheet_Text" xml:space="preserve">
@@ -4591,20 +4647,14 @@ Absatz - ganzer Absatz
     <comment>message</comment>
   </data>
   <data name="StylizeImagesDialog_backBox.Text" xml:space="preserve">
-    <value>Auf Hintergrundbilder anwenden</value>
+    <value>Auf Hintergrundbilder anwenden
+Hintergrundbilder: {0}, ausgewählt: {1}</value>
     <comment>checkbox</comment>
-  </data>
-  <data name="StylizeImagesDialog_backImagesLabel.Text" xml:space="preserve">
-    <value>Hintergrundbilder: {0}, ausgewählt: {1}</value>
-    <comment>label</comment>
   </data>
   <data name="StylizeImagesDialog_foreBox.Text" xml:space="preserve">
-    <value>Auf Vordergrundbilder anwenden</value>
+    <value>Auf Vordergrundbilder anwenden
+Vordergrundbilder: {0}, ausgewählt: {1}</value>
     <comment>checkbox</comment>
-  </data>
-  <data name="StylizeImagesDialog_foreImagesLabel.Text" xml:space="preserve">
-    <value>Vordergrundbilder: {0}, ausgewählt: {1}</value>
-    <comment>label</comment>
   </data>
   <data name="StylizeImagesDialog_styleBox.Text" xml:space="preserve">
     <value>Graustufen

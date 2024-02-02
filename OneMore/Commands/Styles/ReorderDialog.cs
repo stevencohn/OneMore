@@ -1,5 +1,5 @@
 ﻿//************************************************************************************************
-// Copyright © 2018 Steven M Cohn.  Yada yada...
+// Copyright © 2018 Steven M Cohn. All rights reserved.
 //************************************************************************************************
 
 namespace River.OneMoreAddIn.Commands
@@ -8,10 +8,10 @@ namespace River.OneMoreAddIn.Commands
 	using System.Drawing;
 	using System.Linq;
 	using System.Windows.Forms;
-	using Resx = River.OneMoreAddIn.Properties.Resources;
+	using Resx = Properties.Resources;
 
 
-	internal partial class ReorderDialog : UI.LocalizableForm
+	internal partial class ReorderDialog : UI.MoreForm
 	{
 
 		public ReorderDialog(ComboBox.ObjectCollection items)

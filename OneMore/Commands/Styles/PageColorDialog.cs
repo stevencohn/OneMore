@@ -14,7 +14,7 @@ namespace River.OneMoreAddIn.Commands
 	using Resx = Properties.Resources;
 
 
-	internal partial class PageColorDialog : UI.LocalizableForm
+	internal partial class PageColorDialog : UI.MoreForm
 	{
 		private Theme theme;
 		private readonly Color pageColor;

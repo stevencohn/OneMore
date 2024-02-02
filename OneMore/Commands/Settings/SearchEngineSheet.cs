@@ -15,7 +15,7 @@ namespace River.OneMoreAddIn.Settings
 	using System.Net;
 	using System.Windows.Forms;
 	using System.Xml.Linq;
-	using Resx = River.OneMoreAddIn.Properties.Resources;
+	using Resx = Properties.Resources;
 
 
 	internal partial class SearchEngineSheet : SheetBase
@@ -42,11 +42,10 @@ namespace River.OneMoreAddIn.Settings
 			{
 				Localize(new string[]
 				{
-					"introLabel",
+					"introBox",
 					"upButton",
 					"downButton",
 					"refreshButton=word_Refresh",
-					"deleteLabel",
 					"deleteButton=word_Delete"
 				});
 

@@ -1,5 +1,5 @@
 ﻿//************************************************************************************************
-// Copyright © 2022 Steven M Cohn.  All rights reserved.
+// Copyright © 2022 Steven M Cohn. All rights reserved.
 //************************************************************************************************
 
 namespace River.OneMoreAddIn.UI
@@ -7,10 +7,10 @@ namespace River.OneMoreAddIn.UI
 	using System;
 	using System.Collections.Generic;
 	using System.Linq;
-	using Resx = River.OneMoreAddIn.Properties.Resources;
+	using Resx = Properties.Resources;
 
 
-	internal partial class RenameDialog : UI.LocalizableForm
+	internal partial class RenameDialog : UI.MoreForm
 	{
 		private readonly IEnumerable<string> names;
 

@@ -1,5 +1,5 @@
 ﻿//************************************************************************************************
-// Copyright © 2023 Steven M. Cohn. All Rights Reserved.
+// Copyright © 2023 Steven M Cohn. All Rights Reserved.
 //************************************************************************************************
 
 namespace River.OneMoreAddIn.Settings
@@ -23,8 +23,7 @@ namespace River.OneMoreAddIn.Settings
 				Localize(new string[]
 				{
 					"introBox",
-					"widthLabel",
-					"widthBox"
+					"widthLabel"
 				});
 			}
 

@@ -15,7 +15,7 @@ namespace River.OneMoreAddIn.Commands
 	using Resx = River.OneMoreAddIn.Properties.Resources;
 
 
-	internal partial class TaggedDialog : LocalizableForm
+	internal partial class TaggedDialog : MoreForm
 	{
 		public enum Commands
 		{

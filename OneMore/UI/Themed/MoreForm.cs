@@ -1,28 +1,31 @@
 ﻿//************************************************************************************************
-// Copyright © 2016 Steven M Cohn.  All rights reserved.
+// Copyright © 2016 Steven M Cohn. All rights reserved.
 //************************************************************************************************
-
-#pragma warning disable S3011 // Reflection should not be used to increase accessibility of classes, methods, or fields
 
 namespace River.OneMoreAddIn.UI
 {
 	using System;
+	using System.Diagnostics;
 	using System.Drawing;
 	using System.Threading.Tasks;
 	using System.Windows.Forms;
 
 
-	internal class LocalizableForm : Form, IOneMoreWindow
+	internal class MoreForm : Form, IOneMoreWindow
 	{
 		public event EventHandler ModelessClosed;
 
-		protected ILogger logger = Logger.Current;
+		protected readonly ThemeManager manager;
+		protected readonly ILogger logger;
+
 		private bool modeless = false;
 
 
-		public LocalizableForm()
+		public MoreForm()
 		{
 			Properties.Resources.Culture = AddIn.Culture;
+			manager = ThemeManager.Instance;
+			logger = Logger.Current;
 		}
 
 
@@ -31,6 +34,12 @@ namespace River.OneMoreAddIn.UI
 		/// overriden by the OnLoad method below...
 		/// </summary>
 		public bool ManualLocation { get; set; } = false;
+
+
+		/// <summary>
+		/// Lets inheritors disable theming for specialized cases like TimerWindow
+		/// </summary>
+		protected bool ThemeEnabled { get; set; } = true;
 
 
 		/// <summary>
@@ -116,6 +125,11 @@ namespace River.OneMoreAddIn.UI
 		{
 			base.OnLoad(e);
 
+			if (ThemeEnabled)
+			{
+				manager.InitializeTheme(this);
+			}
+
 			// RunModeless has already set location so don't repeat that here and only set
 			// location if inheritor hasn't declined by setting it to zero. Also, we're doing
 			// this in OnLoad so it doesn't visually "jump" as it would if done in OnShown
@@ -126,14 +140,30 @@ namespace River.OneMoreAddIn.UI
 
 			if (!ManualLocation && StartPosition == FormStartPosition.Manual)
 			{
-				// find the center point of the active OneNote window
-				using var one = new OneNote();
-				var bounds = one.GetCurrentMainWindowBounds();
-				var center = new Point(
-					bounds.Left + (bounds.Right - bounds.Left) / 2,
-					bounds.Top + (bounds.Bottom - bounds.Top) / 2);
+				/***** ********************************************************** *****/
+				/***** ********************************************************** *****/
+				/*****                                                            *****/
+				/*****  DO NOT SET A BREAKPOINT PRIOR TO THIS POINT IN THE CODE   *****/
+				/*****  otherwise the call to new OneNote() will hang!            *****/
+				/*****                                                            *****/
+				/*****  If a breakpoint IS set prior to this, you MUST attach     *****/
+				/*****  the debugger or Debugger.IsAttached will be false and     *****/
+				/*****  the call to new OneNote() will hang!                      *****/
+				/*****                                                            *****/
+				/***** ********************************************************** *****/
+				/***** ********************************************************** *****/
 
-				Location = new Point(center.X - (Width / 2), center.Y - (Height / 2));
+				if (!Debugger.IsAttached)
+				{
+					// find the center point of the active OneNote window
+					using var one = new OneNote();
+					var bounds = one.GetCurrentMainWindowBounds();
+					var center = new Point(
+						bounds.Left + (bounds.Right - bounds.Left) / 2,
+						bounds.Top + (bounds.Bottom - bounds.Top) / 2);
+
+					Location = new Point(center.X - (Width / 2), center.Y - (Height / 2));
+				}
 			}
 
 			if (VerticalOffset != 0)
@@ -153,18 +183,9 @@ namespace River.OneMoreAddIn.UI
 			UIHelper.SetForegroundWindow(this);
 		}
 
-		private void InitializeComponent()
-		{
-			System.ComponentModel.ComponentResourceManager resources = new(typeof(LocalizableForm));
-			this.SuspendLayout();
-			// 
-			// LocalizableForm
-			// 
-			this.ClientSize = new Size(278, 244);
-			this.Icon = ((Icon)(resources.GetObject("$this.Icon")));
-			this.Name = "LocalizableForm";
-			this.ResumeLayout(false);
 
+		public virtual void OnThemeChange()
+		{
 		}
 	}
 }

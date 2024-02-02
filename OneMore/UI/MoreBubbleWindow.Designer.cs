@@ -34,8 +34,10 @@ namespace River.OneMoreAddIn.UI
 			this.timer = new System.Windows.Forms.Timer(this.components);
 			this.iconBox = new System.Windows.Forms.PictureBox();
 			this.messageBox = new River.OneMoreAddIn.UI.MoreRichLabel();
-			this.okButton = new System.Windows.Forms.Button();
+			this.okButton = new River.OneMoreAddIn.UI.MoreButton();
+			this.panel1 = new System.Windows.Forms.Panel();
 			((System.ComponentModel.ISupportInitialize)(this.iconBox)).BeginInit();
+			this.panel1.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// timer
@@ -47,7 +49,7 @@ namespace River.OneMoreAddIn.UI
 			// 
 			this.iconBox.BackgroundImage = global::River.OneMoreAddIn.Properties.Resources.Logo;
 			this.iconBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-			this.iconBox.Location = new System.Drawing.Point(23, 23);
+			this.iconBox.Location = new System.Drawing.Point(27, 29);
 			this.iconBox.Name = "iconBox";
 			this.iconBox.Size = new System.Drawing.Size(48, 48);
 			this.iconBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
@@ -63,11 +65,12 @@ namespace River.OneMoreAddIn.UI
 			this.messageBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
 			this.messageBox.Cursor = System.Windows.Forms.Cursors.Default;
 			this.messageBox.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.messageBox.Location = new System.Drawing.Point(93, 23);
+			this.messageBox.ForeColor = System.Drawing.Color.Black;
+			this.messageBox.Location = new System.Drawing.Point(94, 29);
 			this.messageBox.Name = "messageBox";
 			this.messageBox.ReadOnly = true;
 			this.messageBox.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.Vertical;
-			this.messageBox.Size = new System.Drawing.Size(510, 71);
+			this.messageBox.Size = new System.Drawing.Size(680, 71);
 			this.messageBox.TabIndex = 2;
 			this.messageBox.TabStop = false;
 			this.messageBox.Text = "This is the message";
@@ -77,9 +80,16 @@ namespace River.OneMoreAddIn.UI
 			// okButton
 			// 
 			this.okButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+			this.okButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
 			this.okButton.DialogResult = System.Windows.Forms.DialogResult.OK;
-			this.okButton.Location = new System.Drawing.Point(488, 105);
+			this.okButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+			this.okButton.ImageOver = null;
+			this.okButton.Location = new System.Drawing.Point(659, 137);
+			this.okButton.Margin = new System.Windows.Forms.Padding(3, 3, 10, 10);
 			this.okButton.Name = "okButton";
+			this.okButton.ThemedBack = null;
+			this.okButton.ThemedFore = null;
+			this.okButton.ShowBorder = true;
 			this.okButton.Size = new System.Drawing.Size(115, 36);
 			this.okButton.TabIndex = 3;
 			this.okButton.Text = "OK";
@@ -87,26 +97,39 @@ namespace River.OneMoreAddIn.UI
 			this.okButton.Click += new System.EventHandler(this.CloseWindow);
 			this.okButton.MouseEnter += new System.EventHandler(this.PauseTimer);
 			// 
+			// panel1
+			// 
+			this.panel1.BackColor = System.Drawing.Color.Thistle;
+			this.panel1.Controls.Add(this.iconBox);
+			this.panel1.Controls.Add(this.messageBox);
+			this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
+			this.panel1.Location = new System.Drawing.Point(0, 0);
+			this.panel1.Margin = new System.Windows.Forms.Padding(0);
+			this.panel1.Name = "panel1";
+			this.panel1.Padding = new System.Windows.Forms.Padding(8);
+			this.panel1.Size = new System.Drawing.Size(796, 119);
+			this.panel1.TabIndex = 4;
+			// 
 			// MoreBubbleWindow
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.BackColor = System.Drawing.Color.Thistle;
+			this.BackColor = System.Drawing.SystemColors.ControlDarkDark;
 			this.CancelButton = this.okButton;
-			this.ClientSize = new System.Drawing.Size(626, 164);
+			this.ClientSize = new System.Drawing.Size(796, 192);
+			this.Controls.Add(this.panel1);
 			this.Controls.Add(this.okButton);
-			this.Controls.Add(this.messageBox);
-			this.Controls.Add(this.iconBox);
+			this.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.MaximizeBox = false;
 			this.MinimizeBox = false;
 			this.Name = "MoreBubbleWindow";
-			this.Padding = new System.Windows.Forms.Padding(20);
 			this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
 			this.Text = "OneNote";
 			((System.ComponentModel.ISupportInitialize)(this.iconBox)).EndInit();
+			this.panel1.ResumeLayout(false);
 			this.ResumeLayout(false);
 
 		}
@@ -115,6 +138,7 @@ namespace River.OneMoreAddIn.UI
 		private System.Windows.Forms.Timer timer;
 		private System.Windows.Forms.PictureBox iconBox;
 		private River.OneMoreAddIn.UI.MoreRichLabel messageBox;
-		private System.Windows.Forms.Button okButton;
+		private UI.MoreButton okButton;
+		private System.Windows.Forms.Panel panel1;
 	}
 }

@@ -10,7 +10,7 @@ namespace River.OneMoreAddIn.Commands
 	using Resx = River.OneMoreAddIn.Properties.Resources;
 
 
-	internal partial class BreakingDialog : UI.LocalizableForm
+	internal partial class BreakingDialog : UI.MoreForm
 	{
 		public BreakingDialog()
 		{

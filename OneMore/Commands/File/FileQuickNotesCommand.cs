@@ -15,6 +15,7 @@ namespace River.OneMoreAddIn.Commands
 	using System.Text.RegularExpressions;
 	using System.Threading.Tasks;
 	using System.Xml.Linq;
+	using Resx = Properties.Resources;
 
 
 	internal class FileQuickNotesCommand : Command
@@ -47,6 +48,10 @@ namespace River.OneMoreAddIn.Commands
 					var grouping = collection.Get("grouping", 0);
 					await FileIntoNotebook(notebookID, grouping);
 				}
+				else
+				{
+					UIHelper.ShowInfo(Resx.FileQuickNotesCommand_noTargetNotebook);
+				}
 			}
 			else
 			{
@@ -54,6 +59,10 @@ namespace River.OneMoreAddIn.Commands
 				if (!string.IsNullOrWhiteSpace(sectionID))
 				{
 					await FileIntoSection(sectionID);
+				}
+				else
+				{
+					UIHelper.ShowInfo(Resx.FileQuickNotesCommand_noTargetSection);
 				}
 			}
 		}
@@ -70,6 +79,12 @@ namespace River.OneMoreAddIn.Commands
 			}
 
 			var notebook = await one.GetNotebook(notebookID, OneNote.Scope.Sections);
+			if (notebook == null)
+			{
+				UIHelper.ShowInfo(Resx.FileQuickNotesCommand_noTargetNotebook);
+				return;
+			}
+
 			var ns = notebook.GetNamespaceOfPrefix(OneNote.Prefix);
 			var count = 0;
 			string sectionID = null; // keep track of last section used
@@ -189,6 +204,12 @@ namespace River.OneMoreAddIn.Commands
 			}
 
 			var section = await one.GetSection(sectionID);
+			if (section == null)
+			{
+				UIHelper.ShowInfo(Resx.FileQuickNotesCommand_noTargetSection);
+				return;
+			}
+
 			var ns = section.GetNamespaceOfPrefix(OneNote.Prefix);
 			var count = 0;
 
@@ -209,11 +230,14 @@ namespace River.OneMoreAddIn.Commands
 				count++;
 			});
 
+			// disabled because Sonar can't see the update inside lambdas
+#pragma warning disable S2583 // Conditionally executed code should be reachable
 			if (count > 0)
 			{
 				EmptyQuickNotes(unfiled);
 				await one.NavigateTo(sectionID);
 			}
+#pragma warning restore S2583 // Conditionally executed code should be reachable
 		}
 
 
@@ -253,6 +277,7 @@ namespace River.OneMoreAddIn.Commands
 			{
 				// this case occurs when there is no registry setting but also the
 				// default one:UnfiledNotes section is empty
+				UIHelper.ShowInfo(Resx.FileQuickNotesCommand_noQuickNotes);
 				logger.WriteLine($"unfiled notes is empty");
 				return null;
 			}
@@ -261,6 +286,7 @@ namespace River.OneMoreAddIn.Commands
 			var path = (string)key.GetValue(UnfiledNotesKey);
 			if (path.IsNullOrWhiteSpace() || path.Length < 3)
 			{
+				UIHelper.ShowInfo(Resx.FileQuickNotesCommand_noQuickNotes);
 				return null;
 			}
 
@@ -272,12 +298,14 @@ namespace River.OneMoreAddIn.Commands
 			if (shortPath.StartsWith("https:")) shortPath = shortPath.Replace('\\', '/').Replace("https:/", "https://");
 
 			book = books.Elements()
+				.Where(b => b.Attribute("path") != null)
 				// sort desc so we can find best match on longer book/sect/sect paths
 				.OrderByDescending(b => b.Attribute("path").Value)
 				.FirstOrDefault(b => shortPath.StartsWith(b.Attribute("path").Value, StringComparison.InvariantCultureIgnoreCase));
 
 			if (book == null)
 			{
+				UIHelper.ShowInfo(Resx.FileQuickNotesCommand_noQuickNotes);
 				logger.WriteLine($"could not find UnfiledNotes notebook path {path}");
 				return null;
 			}
@@ -304,6 +332,7 @@ namespace River.OneMoreAddIn.Commands
 
 			if (book == null)
 			{
+				UIHelper.ShowInfo(Resx.FileQuickNotesCommand_noQuickNotes);
 				logger.WriteLine($"could not find subsection {sectionPath}");
 				return null;
 			}
@@ -312,6 +341,7 @@ namespace River.OneMoreAddIn.Commands
 			var unfiledSection = await one.GetNotebook(book.Attribute("ID").Value, OneNote.Scope.Pages);
 			if (unfiledSection == null || !unfiledSection.Elements().Any())
 			{
+				UIHelper.ShowInfo(Resx.FileQuickNotesCommand_noQuickNotes);
 				logger.WriteLine($"could not determine UnfiledNotes location");
 				return null;
 			}

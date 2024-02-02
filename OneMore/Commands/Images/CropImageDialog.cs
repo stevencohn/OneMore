@@ -21,7 +21,7 @@ namespace River.OneMoreAddIn.Commands
 	/// and crops the image to that region
 	/// </summary>
 	/// <seealso cref="https://www.codeproject.com/articles/27748/marching-ants"/>
-	internal partial class CropImageDialog : UI.LocalizableForm
+	internal partial class CropImageDialog : UI.MoreForm
 	{
 
 		#region Supporting classes
@@ -798,10 +798,10 @@ namespace River.OneMoreAddIn.Commands
 			// return the larger ratio, horizontal or vertical of the image
 			var points = new PointF[]
 			{
-				new PointF(0, 0),
-				new PointF(bitmap.Width, 0),
-				new PointF(bitmap.Width, bitmap.Height),
-				new PointF(0, bitmap.Height),
+				new(0, 0),
+				new(bitmap.Width, 0),
+				new(bitmap.Width, bitmap.Height),
+				new(0, bitmap.Height),
 			};
 
 			using (var matrix = new Matrix())

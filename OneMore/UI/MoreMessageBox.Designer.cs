@@ -33,8 +33,8 @@
 			this.logLink = new River.OneMoreAddIn.UI.MoreLinkLabel();
 			this.messageBox = new River.OneMoreAddIn.UI.MoreRichLabel();
 			this.iconBox = new System.Windows.Forms.PictureBox();
-			this.okButton = new System.Windows.Forms.Button();
-			this.cancelButton = new System.Windows.Forms.Button();
+			this.okButton = new River.OneMoreAddIn.UI.MoreButton();
+			this.cancelButton = new River.OneMoreAddIn.UI.MoreButton();
 			this.panel1 = new System.Windows.Forms.Panel();
 			this.topPanel.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.iconBox)).BeginInit();
@@ -48,6 +48,7 @@
 			this.topPanel.Controls.Add(this.messageBox);
 			this.topPanel.Controls.Add(this.iconBox);
 			this.topPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.topPanel.ForeColor = System.Drawing.SystemColors.ControlText;
 			this.topPanel.Location = new System.Drawing.Point(0, 0);
 			this.topPanel.Margin = new System.Windows.Forms.Padding(0);
 			this.topPanel.Name = "topPanel";
@@ -60,8 +61,8 @@
 			this.logLink.ActiveLinkColor = System.Drawing.Color.DarkOrchid;
 			this.logLink.AutoSize = true;
 			this.logLink.Cursor = System.Windows.Forms.Cursors.Hand;
-			this.logLink.HoverColor = System.Drawing.Color.MediumOrchid;
-			this.logLink.LinkColor = System.Drawing.Color.DarkOrchid;
+			this.logLink.HoverColor = System.Drawing.Color.Orchid;
+			this.logLink.LinkColor = System.Drawing.Color.MediumOrchid;
 			this.logLink.Location = new System.Drawing.Point(90, 117);
 			this.logLink.Name = "logLink";
 			this.logLink.Size = new System.Drawing.Size(246, 20);
@@ -69,6 +70,7 @@
 			this.logLink.TabStop = true;
 			this.logLink.Text = "Click to open the OneMore log file";
 			this.logLink.Visible = false;
+			this.logLink.VisitedLinkColor = System.Drawing.Color.MediumOrchid;
 			this.logLink.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.OpenLog);
 			// 
 			// messageBox
@@ -79,6 +81,7 @@
 			this.messageBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
 			this.messageBox.Cursor = System.Windows.Forms.Cursors.Default;
 			this.messageBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.messageBox.ForeColor = System.Drawing.SystemColors.ControlText;
 			this.messageBox.Location = new System.Drawing.Point(94, 23);
 			this.messageBox.Name = "messageBox";
 			this.messageBox.ReadOnly = true;
@@ -102,8 +105,12 @@
 			// 
 			this.okButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.okButton.DialogResult = System.Windows.Forms.DialogResult.OK;
+			this.okButton.ImageOver = null;
 			this.okButton.Location = new System.Drawing.Point(551, 13);
 			this.okButton.Name = "okButton";
+			this.okButton.ThemedBack = null;
+			this.okButton.ThemedFore = null;
+			this.okButton.ShowBorder = true;
 			this.okButton.Size = new System.Drawing.Size(115, 36);
 			this.okButton.TabIndex = 0;
 			this.okButton.Text = "OK";
@@ -114,8 +121,12 @@
 			// 
 			this.cancelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+			this.cancelButton.ImageOver = null;
 			this.cancelButton.Location = new System.Drawing.Point(430, 13);
 			this.cancelButton.Name = "cancelButton";
+			this.cancelButton.ThemedBack = null;
+			this.cancelButton.ThemedFore = null;
+			this.cancelButton.ShowBorder = true;
 			this.cancelButton.Size = new System.Drawing.Size(115, 36);
 			this.cancelButton.TabIndex = 1;
 			this.cancelButton.Text = "Cancel";
@@ -124,9 +135,11 @@
 			// 
 			// panel1
 			// 
+			this.panel1.BackColor = System.Drawing.SystemColors.Control;
 			this.panel1.Controls.Add(this.cancelButton);
 			this.panel1.Controls.Add(this.okButton);
 			this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
+			this.panel1.ForeColor = System.Drawing.SystemColors.ControlText;
 			this.panel1.Location = new System.Drawing.Point(0, 157);
 			this.panel1.Name = "panel1";
 			this.panel1.Size = new System.Drawing.Size(678, 61);
@@ -139,6 +152,7 @@
 			this.ClientSize = new System.Drawing.Size(678, 218);
 			this.Controls.Add(this.topPanel);
 			this.Controls.Add(this.panel1);
+			this.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.MaximizeBox = false;
@@ -159,8 +173,8 @@
 		#endregion
 
 		private System.Windows.Forms.Panel topPanel;
-		private System.Windows.Forms.Button okButton;
-		private System.Windows.Forms.Button cancelButton;
+		private UI.MoreButton okButton;
+		private UI.MoreButton cancelButton;
 		private System.Windows.Forms.Panel panel1;
 		private System.Windows.Forms.PictureBox iconBox;
 		private River.OneMoreAddIn.UI.MoreRichLabel messageBox;

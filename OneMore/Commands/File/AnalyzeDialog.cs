@@ -17,7 +17,7 @@ namespace River.OneMoreAddIn.Commands
 	}
 
 
-	internal partial class AnalyzeDialog : UI.LocalizableForm
+	internal partial class AnalyzeDialog : UI.MoreForm
 	{
 		public AnalyzeDialog()
 		{

@@ -1,5 +1,5 @@
 ﻿//************************************************************************************************
-// Copyright © 2023 Steven M. Cohn. All Rights Reserved.
+// Copyright © 2023 Steven M Cohn. All Rights Reserved.
 //************************************************************************************************
 
 namespace River.OneMoreAddIn.Commands
@@ -13,7 +13,7 @@ namespace River.OneMoreAddIn.Commands
 	using Resx = Properties.Resources;
 
 
-	internal partial class ColorizeDialog : UI.LocalizableForm
+	internal partial class ColorizeDialog : UI.MoreForm
 	{
 		public ColorizeDialog()
 		{

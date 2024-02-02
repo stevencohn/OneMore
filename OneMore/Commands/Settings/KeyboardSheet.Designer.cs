@@ -28,17 +28,17 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
 			this.gridView = new River.OneMoreAddIn.Settings.KeyboardGridView();
-			this.cmdColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.keyColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.introPanel = new System.Windows.Forms.Panel();
-			this.introLabel = new System.Windows.Forms.Label();
+			this.introBox = new River.OneMoreAddIn.UI.MoreMultilineLabel();
 			this.toolstrip = new River.OneMoreAddIn.UI.ScaledToolStrip();
 			this.clearButton = new System.Windows.Forms.ToolStripButton();
 			this.resetButton = new System.Windows.Forms.ToolStripButton();
 			this.resetAllButton = new System.Windows.Forms.ToolStripButton();
+			this.cmdColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.keyColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			((System.ComponentModel.ISupportInitialize)(this.gridView)).BeginInit();
-			this.introPanel.SuspendLayout();
 			this.toolstrip.SuspendLayout();
 			this.SuspendLayout();
 			// 
@@ -65,41 +65,17 @@
 			this.gridView.TabIndex = 2;
 			this.gridView.KeyDown += new System.Windows.Forms.KeyEventHandler(this.AssignOnKeyDown);
 			// 
-			// cmdColumn
+			// introBox
 			// 
-			this.cmdColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-			this.cmdColumn.HeaderText = "Command";
-			this.cmdColumn.MinimumWidth = 200;
-			this.cmdColumn.Name = "cmdColumn";
-			this.cmdColumn.ReadOnly = true;
-			this.cmdColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-			// 
-			// keyColumn
-			// 
-			this.keyColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-			this.keyColumn.FillWeight = 200F;
-			this.keyColumn.HeaderText = "Key Sequence";
-			this.keyColumn.MinimumWidth = 300;
-			this.keyColumn.Name = "keyColumn";
-			this.keyColumn.Width = 300;
-			// 
-			// introPanel
-			// 
-			this.introPanel.Controls.Add(this.introLabel);
-			this.introPanel.Dock = System.Windows.Forms.DockStyle.Top;
-			this.introPanel.Location = new System.Drawing.Point(10, 9);
-			this.introPanel.Name = "introPanel";
-			this.introPanel.Size = new System.Drawing.Size(780, 55);
-			this.introPanel.TabIndex = 3;
-			// 
-			// introLabel
-			// 
-			this.introLabel.AutoSize = true;
-			this.introLabel.Location = new System.Drawing.Point(3, 0);
-			this.introLabel.Name = "introLabel";
-			this.introLabel.Size = new System.Drawing.Size(619, 20);
-			this.introLabel.TabIndex = 0;
-			this.introLabel.Text = "Manage my custom keyboard shortcuts. Select a command and press a key sequence.";
+			this.introBox.Dock = System.Windows.Forms.DockStyle.Top;
+			this.introBox.Location = new System.Drawing.Point(10, 9);
+			this.introBox.Name = "introBox";
+			this.introBox.Padding = new System.Windows.Forms.Padding(0, 0, 0, 36);
+			this.introBox.ThemedBack = "ControlLightLight";
+			this.introBox.ThemedFore = null;
+			this.introBox.Size = new System.Drawing.Size(780, 55);
+			this.introBox.TabIndex = 0;
+			this.introBox.Text = "Manage my custom keyboard shortcuts. Select a command and press a key sequence.";
 			// 
 			// toolstrip
 			// 
@@ -116,6 +92,7 @@
 			// 
 			// clearButton
 			// 
+			this.clearButton.ForeColor = System.Drawing.Color.Black;
 			this.clearButton.Image = global::River.OneMoreAddIn.Properties.Resources.Delete;
 			this.clearButton.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.clearButton.Name = "clearButton";
@@ -125,6 +102,7 @@
 			// 
 			// resetButton
 			// 
+			this.resetButton.ForeColor = System.Drawing.Color.Black;
 			this.resetButton.Image = global::River.OneMoreAddIn.Properties.Resources.Bullet;
 			this.resetButton.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.resetButton.Name = "resetButton";
@@ -134,12 +112,35 @@
 			// 
 			// resetAllButton
 			// 
+			this.resetAllButton.ForeColor = System.Drawing.Color.Black;
 			this.resetAllButton.Image = global::River.OneMoreAddIn.Properties.Resources.Refresh;
 			this.resetAllButton.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.resetAllButton.Name = "resetAllButton";
 			this.resetAllButton.Size = new System.Drawing.Size(107, 29);
 			this.resetAllButton.Text = "Reset All";
 			this.resetAllButton.Click += new System.EventHandler(this.ResetAllDefaults);
+			// 
+			// cmdColumn
+			// 
+			this.cmdColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+			dataGridViewCellStyle1.ForeColor = System.Drawing.Color.Black;
+			this.cmdColumn.DefaultCellStyle = dataGridViewCellStyle1;
+			this.cmdColumn.HeaderText = "Command";
+			this.cmdColumn.MinimumWidth = 200;
+			this.cmdColumn.Name = "cmdColumn";
+			this.cmdColumn.ReadOnly = true;
+			this.cmdColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+			// 
+			// keyColumn
+			// 
+			this.keyColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+			dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Black;
+			this.keyColumn.DefaultCellStyle = dataGridViewCellStyle2;
+			this.keyColumn.FillWeight = 200F;
+			this.keyColumn.HeaderText = "Key Sequence";
+			this.keyColumn.MinimumWidth = 300;
+			this.keyColumn.Name = "keyColumn";
+			this.keyColumn.Width = 300;
 			// 
 			// KeyboardSheet
 			// 
@@ -148,15 +149,14 @@
 			this.BackColor = System.Drawing.SystemColors.ControlLightLight;
 			this.Controls.Add(this.gridView);
 			this.Controls.Add(this.toolstrip);
-			this.Controls.Add(this.introPanel);
+			this.Controls.Add(this.introBox);
+			this.ForeColor = System.Drawing.SystemColors.ControlText;
 			this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.MinimumSize = new System.Drawing.Size(750, 400);
 			this.Name = "KeyboardSheet";
 			this.Padding = new System.Windows.Forms.Padding(10, 9, 10, 9);
 			this.Size = new System.Drawing.Size(800, 500);
 			((System.ComponentModel.ISupportInitialize)(this.gridView)).EndInit();
-			this.introPanel.ResumeLayout(false);
-			this.introPanel.PerformLayout();
 			this.toolstrip.ResumeLayout(false);
 			this.toolstrip.PerformLayout();
 			this.ResumeLayout(false);
@@ -165,14 +165,14 @@
 		}
 
 		#endregion
+
 		private KeyboardGridView gridView;
-		private System.Windows.Forms.Panel introPanel;
-		private System.Windows.Forms.Label introLabel;
-		private System.Windows.Forms.DataGridViewTextBoxColumn cmdColumn;
-		private System.Windows.Forms.DataGridViewTextBoxColumn keyColumn;
+		private UI.MoreMultilineLabel introBox;
 		private River.OneMoreAddIn.UI.ScaledToolStrip toolstrip;
 		private System.Windows.Forms.ToolStripButton clearButton;
 		private System.Windows.Forms.ToolStripButton resetButton;
 		private System.Windows.Forms.ToolStripButton resetAllButton;
+		private System.Windows.Forms.DataGridViewTextBoxColumn cmdColumn;
+		private System.Windows.Forms.DataGridViewTextBoxColumn keyColumn;
 	}
 }

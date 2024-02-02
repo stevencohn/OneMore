@@ -59,6 +59,10 @@
     "resID": "Cycling"
   },
   {
+    "glyph": "Δ",
+    "resID": "Delta"
+  },
+  {
     "glyph": "✉",
     "resID": "Envelope"
   },

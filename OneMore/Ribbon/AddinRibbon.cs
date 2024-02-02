@@ -12,6 +12,7 @@ namespace River.OneMoreAddIn
 	using Microsoft.Office.Core;
 	using River.OneMoreAddIn.Commands;
 	using River.OneMoreAddIn.Helpers.Office;
+	using River.OneMoreAddIn.Ribbon;
 	using River.OneMoreAddIn.Settings;
 	using River.OneMoreAddIn.Styles;
 	using System;
@@ -54,6 +55,8 @@ namespace River.OneMoreAddIn
 				ns = root.GetDefaultNamespace();
 
 				var provider = new SettingsProvider();
+
+				SetGroupPosition(root, ns, provider);
 
 				AddColorizerCommands(root, provider.GetCollection(nameof(ColorizerSheet)));
 				AddProofingCommands(root);
@@ -109,6 +112,29 @@ namespace River.OneMoreAddIn
 			{
 				logger.WriteLine("error building custom UI", exc);
 				return XElement.Parse(Resx.Ribbon).ToString(SaveOptions.DisableFormatting);
+			}
+		}
+
+
+		private void SetGroupPosition(XElement root, XNamespace ns, SettingsProvider provider)
+		{
+			var position = provider
+				.GetCollection(nameof(RibbonBarSheet))
+				.Get("position", (int)RibbonGroups.End);
+
+			if (position < (int)RibbonGroups.End)
+			{
+				var group = root.Element(ns + "ribbon")
+					.Element(ns + "tabs")
+					.Elements(ns + "tab")
+					.Where(e => e.Attribute("idMso").Value == "TabHome")
+					.Elements(ns + "group")
+					.FirstOrDefault(e => e.Attribute("id").Value == "ribOneMoreGroup");
+
+				if (group != null)
+				{
+					group.SetAttributeValue("insertAfterMso", ((RibbonGroups)position).ToString());
+				}
 			}
 		}
 

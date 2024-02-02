@@ -1,10 +1,9 @@
 ﻿//************************************************************************************************
-// Copyright © 2022 Steven M. Cohn. All Rights Reserved.
+// Copyright © 2022 Steven M Cohn. All Rights Reserved.
 //************************************************************************************************
 
 namespace OneMoreCalendar
 {
-	using River.OneMoreAddIn;
 	using System;
 	using System.ComponentModel;
 	using System.Drawing;

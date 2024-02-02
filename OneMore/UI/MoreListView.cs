@@ -107,7 +107,6 @@ namespace River.OneMoreAddIn.UI
 			router.Register(this, "Click");
 		}
 
-
 		protected override void Dispose(bool disposing)
 		{
 			base.Dispose(disposing);
@@ -240,6 +239,30 @@ namespace River.OneMoreAddIn.UI
 			{
 				router.Register(this, Items, "MouseDown");
 				router.Register(this, Items, "DragDrop");
+			}
+		}
+
+
+		/// <summary>
+		/// Returns a collection of selected T objects from the specified column in the list view.
+		/// </summary>
+		/// <typeparam name="T"></typeparam>
+		/// <param name="columnIndex"></param>
+		/// <returns></returns>
+		public IEnumerable<T> GetSelectedItems<T>(int columnIndex)
+		{
+			if (SelectedItems.Count == 0)
+			{
+				yield return default;
+			}
+
+			for (int i = 0; i < SelectedItems.Count; i++)
+			{
+				if (SelectedItems[i] is MoreHostedListViewItem item &&
+					item.Control is T thing)
+				{
+					yield return thing;
+				}
 			}
 		}
 
@@ -426,17 +449,6 @@ namespace River.OneMoreAddIn.UI
 			}
 
 			base.OnColumnWidthChanging(e);
-		}
-
-
-		protected override void OnDrawColumnHeader(DrawListViewColumnHeaderEventArgs e)
-		{
-			//e.Graphics.DrawLine(Pens.DarkOrchid,
-			//	e.Bounds.X, e.Bounds.Y + e.Bounds.Height - 1,
-			//	e.Bounds.Width, e.Bounds.Y + e.Bounds.Height - 1);
-
-			//base.OnDrawColumnHeader(e);
-			e.DrawDefault = true;
 		}
 
 

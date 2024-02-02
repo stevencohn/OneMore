@@ -30,14 +30,14 @@ namespace River.OneMoreAddIn.Commands
 		private void InitializeComponent()
 		{
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SortListDialog));
-			this.thisListButton = new System.Windows.Forms.RadioButton();
-			this.allListsButton = new System.Windows.Forms.RadioButton();
-			this.typeBox = new System.Windows.Forms.CheckBox();
-			this.deepBox = new System.Windows.Forms.CheckBox();
-			this.okButton = new System.Windows.Forms.Button();
-			this.cancelButton = new System.Windows.Forms.Button();
-			this.optionsBox = new System.Windows.Forms.GroupBox();
-			this.duplicatesBox = new System.Windows.Forms.CheckBox();
+			this.thisListButton = new River.OneMoreAddIn.UI.MoreRadioButton();
+			this.allListsButton = new River.OneMoreAddIn.UI.MoreRadioButton();
+			this.typeBox = new River.OneMoreAddIn.UI.MoreCheckBox();
+			this.deepBox = new River.OneMoreAddIn.UI.MoreCheckBox();
+			this.okButton = new River.OneMoreAddIn.UI.MoreButton();
+			this.cancelButton = new River.OneMoreAddIn.UI.MoreButton();
+			this.optionsBox = new River.OneMoreAddIn.UI.MoreGroupBox();
+			this.duplicatesBox = new River.OneMoreAddIn.UI.MoreCheckBox();
 			this.introLabel = new System.Windows.Forms.Label();
 			this.optionsBox.SuspendLayout();
 			this.SuspendLayout();
@@ -70,7 +70,7 @@ namespace River.OneMoreAddIn.Commands
 			this.typeBox.Location = new System.Drawing.Point(23, 148);
 			this.typeBox.Name = "typeBox";
 			this.typeBox.Size = new System.Drawing.Size(280, 24);
-			this.typeBox.TabIndex = 2;
+			this.typeBox.TabIndex = 3;
 			this.typeBox.Text = "Both bullet lists and numbered lists";
 			this.typeBox.UseVisualStyleBackColor = true;
 			// 
@@ -80,7 +80,7 @@ namespace River.OneMoreAddIn.Commands
 			this.deepBox.Location = new System.Drawing.Point(23, 118);
 			this.deepBox.Name = "deepBox";
 			this.deepBox.Size = new System.Drawing.Size(149, 24);
-			this.deepBox.TabIndex = 3;
+			this.deepBox.TabIndex = 2;
 			this.deepBox.Text = "Include sub-lists";
 			this.deepBox.UseVisualStyleBackColor = true;
 			// 
@@ -88,10 +88,14 @@ namespace River.OneMoreAddIn.Commands
 			// 
 			this.okButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.okButton.DialogResult = System.Windows.Forms.DialogResult.OK;
+			this.okButton.ImageOver = null;
 			this.okButton.Location = new System.Drawing.Point(391, 312);
 			this.okButton.Name = "okButton";
+			this.okButton.ThemedBack = null;
+			this.okButton.ThemedFore = null;
+			this.okButton.ShowBorder = true;
 			this.okButton.Size = new System.Drawing.Size(100, 38);
-			this.okButton.TabIndex = 7;
+			this.okButton.TabIndex = 0;
 			this.okButton.Text = "OK";
 			this.okButton.UseVisualStyleBackColor = true;
 			// 
@@ -99,10 +103,14 @@ namespace River.OneMoreAddIn.Commands
 			// 
 			this.cancelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+			this.cancelButton.ImageOver = null;
 			this.cancelButton.Location = new System.Drawing.Point(497, 312);
 			this.cancelButton.Name = "cancelButton";
+			this.cancelButton.ThemedBack = null;
+			this.cancelButton.ThemedFore = null;
+			this.cancelButton.ShowBorder = true;
 			this.cancelButton.Size = new System.Drawing.Size(100, 38);
-			this.cancelButton.TabIndex = 6;
+			this.cancelButton.TabIndex = 1;
 			this.cancelButton.Text = "Cancel";
 			this.cancelButton.UseVisualStyleBackColor = true;
 			// 
@@ -147,12 +155,14 @@ namespace River.OneMoreAddIn.Commands
 			this.AcceptButton = this.okButton;
 			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+			this.BackColor = System.Drawing.SystemColors.Control;
 			this.CancelButton = this.cancelButton;
 			this.ClientSize = new System.Drawing.Size(620, 373);
 			this.Controls.Add(this.introLabel);
 			this.Controls.Add(this.optionsBox);
 			this.Controls.Add(this.okButton);
 			this.Controls.Add(this.cancelButton);
+			this.ForeColor = System.Drawing.SystemColors.ControlText;
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.MaximizeBox = false;
@@ -172,14 +182,14 @@ namespace River.OneMoreAddIn.Commands
 
 		#endregion
 
-		private System.Windows.Forms.RadioButton thisListButton;
-		private System.Windows.Forms.RadioButton allListsButton;
-		private System.Windows.Forms.CheckBox typeBox;
-		private System.Windows.Forms.CheckBox deepBox;
-		private System.Windows.Forms.Button okButton;
-		private System.Windows.Forms.Button cancelButton;
-		private System.Windows.Forms.GroupBox optionsBox;
+		private UI.MoreRadioButton thisListButton;
+		private UI.MoreRadioButton allListsButton;
+		private UI.MoreCheckBox typeBox;
+		private UI.MoreCheckBox deepBox;
+		private UI.MoreButton okButton;
+		private UI.MoreButton cancelButton;
+		private UI.MoreGroupBox optionsBox;
 		private System.Windows.Forms.Label introLabel;
-		private System.Windows.Forms.CheckBox duplicatesBox;
+		private UI.MoreCheckBox duplicatesBox;
 	}
 }

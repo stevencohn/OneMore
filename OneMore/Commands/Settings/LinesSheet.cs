@@ -4,6 +4,7 @@
 
 namespace River.OneMoreAddIn.Settings
 {
+	using System;
 	using System.Drawing;
 	using System.Windows.Forms;
 	using Resx = River.OneMoreAddIn.Properties.Resources;
@@ -29,11 +30,18 @@ namespace River.OneMoreAddIn.Settings
 					"lengthLabel"
 				});
 			}
+		}
 
+
+		protected override void OnLoad(EventArgs e)
+		{
+			base.OnLoad(e);
+
+			// set these after ThemeManager does its thing
 			var settings = provider.GetCollection(Name);
 
-			colorBox.BackColor = settings.Get<Color>("color", Color.Black);
 			lengthBox.Value = settings.Get<decimal>("length", 100);
+			colorBox.BackColor = settings.Get("color", Color.Black);
 		}
 
 

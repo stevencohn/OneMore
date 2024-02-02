@@ -1,5 +1,5 @@
 ﻿//************************************************************************************************
-// Copyright © 2021 Steven M. Cohn. All Rights Reserved.
+// Copyright © 2021 Steven M Cohn. All Rights Reserved.
 //************************************************************************************************
 
 namespace River.OneMoreAddIn.Settings
@@ -29,8 +29,10 @@ namespace River.OneMoreAddIn.Settings
 				Localize(new string[]
 				{
 					"introBox",
-					"checkUpdatesBox",
+					"themeLabel",
+					"themeBox",
 					"langLabel",
+					"checkUpdatesBox",
 					"advancedGroup=phrase_AdvancedOptions",
 					"verboseBox",
 					"experimentalBox"
@@ -39,9 +41,7 @@ namespace River.OneMoreAddIn.Settings
 
 			var settings = provider.GetCollection(Name);
 
-			checkUpdatesBox.Checked = settings.Get("checkUpdates", false);
-			verboseBox.Checked = settings.Get("verbose", false);
-			experimentalBox.Checked = settings.Get("experimental", false);
+			themeBox.SelectedIndex = settings.Get("theme", 0);
 
 			var lang = settings.Get("language", "en-US");
 			foreach (CultureInfo info in langBox.Items)
@@ -52,6 +52,10 @@ namespace River.OneMoreAddIn.Settings
 					break;
 				}
 			}
+
+			checkUpdatesBox.Checked = settings.Get("checkUpdates", false);
+			verboseBox.Checked = settings.Get("verbose", false);
+			experimentalBox.Checked = settings.Get("experimental", false);
 		}
 
 
@@ -71,7 +75,7 @@ namespace River.OneMoreAddIn.Settings
 
 			var languages = new List<CultureInfo>
 			{
-				new CultureInfo("en-US")
+				new("en-US")
 			};
 
 			foreach (var file in files)
@@ -105,14 +109,16 @@ namespace River.OneMoreAddIn.Settings
 
 			var settings = provider.GetCollection(Name);
 
+			var updated = settings.Add("theme", themeBox.SelectedIndex);
+
+			var lang = ((CultureInfo)(langBox.SelectedItem)).Name;
+			updated = settings.Add("language", lang) || updated;
+
 			// does not require a restart
 			if (checkUpdatesBox.Checked)
 				settings.Add("checkUpdates", true);
 			else
 				settings.Remove("checkUpdates");
-
-			var lang = ((CultureInfo)(langBox.SelectedItem)).Name;
-			var updated = settings.Add("language", lang);
 
 			// requires a restart
 			updated = verboseBox.Checked
@@ -122,9 +128,6 @@ namespace River.OneMoreAddIn.Settings
 			updated = experimentalBox.Checked
 				? settings.Add("experimental", true) || updated
 				: settings.Remove("experimental") || updated;
-
-			// deprecated
-			updated = settings.Remove("imageViewer") || updated;
 
 			if (updated)
 			{

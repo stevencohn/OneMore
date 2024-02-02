@@ -1,17 +1,16 @@
 ﻿//************************************************************************************************
-// Copyright © 2020 Steven M Cohn.  All rights reserved.
+// Copyright © 2020 Steven M Cohn. All rights reserved.
 //************************************************************************************************
 
 namespace River.OneMoreAddIn.Commands
 {
 	using River.OneMoreAddIn.Commands.Tables.Formulas;
 	using System;
-	using System.Drawing;
 	using System.Text.RegularExpressions;
-	using Resx = River.OneMoreAddIn.Properties.Resources;
+	using Resx = Properties.Resources;
 
 
-	internal partial class FormulaDialog : UI.LocalizableForm
+	internal partial class FormulaDialog : UI.MoreForm
 	{
 		private readonly int helpHeight;
 		private readonly Calculator calculator;
@@ -98,20 +97,20 @@ namespace River.OneMoreAddIn.Commands
 				try
 				{
 					calculator.Execute(formula);
-					validStatusLabel.ForeColor = SystemColors.WindowText;
+					validStatusLabel.ForeColor = manager.GetThemedColor("ControlText");
 					validStatusLabel.Text = Resx.word_OK;
 					okButton.Enabled = true;
 				}
 				catch
 				{
-					validStatusLabel.ForeColor = Color.Red;
+					validStatusLabel.ForeColor = manager.GetThemedColor("ErrorText");
 					validStatusLabel.Text = Resx.FormulaDialog_status_Invalid;
 					okButton.Enabled = false;
 				}
 			}
 			else
 			{
-				validStatusLabel.ForeColor = SystemColors.WindowText;
+				validStatusLabel.ForeColor = manager.GetThemedColor("ControlText");
 				validStatusLabel.Text = Resx.FormulaDialog_status_Empty;
 				okButton.Enabled = false;
 			}

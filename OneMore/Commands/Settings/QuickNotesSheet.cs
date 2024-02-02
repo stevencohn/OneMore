@@ -41,8 +41,7 @@ namespace River.OneMoreAddIn.Settings
 					"sectionLink",
 					"optionsGroup=word_Options",
 					"titleBox",
-					"stampBox",
-					"langLabel"
+					"stampBox"
 				});
 			}
 

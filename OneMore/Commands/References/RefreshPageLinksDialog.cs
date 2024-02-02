@@ -7,7 +7,7 @@ namespace River.OneMoreAddIn.Commands
 	using Resx = River.OneMoreAddIn.Properties.Resources;
 
 
-	internal partial class RefreshPageLinksDialog : UI.LocalizableForm
+	internal partial class RefreshPageLinksDialog : UI.MoreForm
 	{
 		public RefreshPageLinksDialog()
 		{

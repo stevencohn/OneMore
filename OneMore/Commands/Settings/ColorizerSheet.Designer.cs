@@ -29,33 +29,32 @@ namespace River.OneMoreAddIn.Settings
 		/// </summary>
 		private void InitializeComponent()
 		{
-			this.introBox = new System.Windows.Forms.TextBox();
+			this.introBox = new River.OneMoreAddIn.UI.MoreMultilineLabel();
 			this.layoutPanel = new System.Windows.Forms.Panel();
 			this.barLabel = new System.Windows.Forms.Label();
-			this.allLink = new System.Windows.Forms.LinkLabel();
-			this.noneLink = new System.Windows.Forms.LinkLabel();
+			this.allLink = new River.OneMoreAddIn.UI.MoreLinkLabel();
+			this.noneLink = new River.OneMoreAddIn.UI.MoreLinkLabel();
 			this.langView = new System.Windows.Forms.ListView();
 			this.enabledLabel = new System.Windows.Forms.Label();
 			this.family2Box = new River.OneMoreAddIn.UI.FontComboBox();
 			this.size2Box = new System.Windows.Forms.ComboBox();
 			this.font2Label = new System.Windows.Forms.Label();
-			this.fixedBox = new System.Windows.Forms.CheckBox();
+			this.fixedBox = new River.OneMoreAddIn.UI.MoreCheckBox();
 			this.familyBox = new River.OneMoreAddIn.UI.FontComboBox();
 			this.sizeBox = new System.Windows.Forms.ComboBox();
 			this.fontLabel = new System.Windows.Forms.Label();
-			this.applyBox = new System.Windows.Forms.CheckBox();
+			this.applyBox = new River.OneMoreAddIn.UI.MoreCheckBox();
 			this.layoutPanel.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// introBox
 			// 
 			this.introBox.BackColor = System.Drawing.SystemColors.ControlLightLight;
-			this.introBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
 			this.introBox.Dock = System.Windows.Forms.DockStyle.Top;
 			this.introBox.Location = new System.Drawing.Point(13, 8);
-			this.introBox.Multiline = true;
 			this.introBox.Name = "introBox";
-			this.introBox.ReadOnly = true;
+			this.introBox.ThemedBack = "ControlLightLight";
+			this.introBox.ThemedFore = null;
 			this.introBox.Size = new System.Drawing.Size(772, 66);
 			this.introBox.TabIndex = 3;
 			this.introBox.Text = "Customize the behavior of the Colorize command. Secondary font applies when colla" +
@@ -77,6 +76,7 @@ namespace River.OneMoreAddIn.Settings
 			this.layoutPanel.Controls.Add(this.fontLabel);
 			this.layoutPanel.Controls.Add(this.applyBox);
 			this.layoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.layoutPanel.ForeColor = System.Drawing.SystemColors.ControlText;
 			this.layoutPanel.Location = new System.Drawing.Point(13, 74);
 			this.layoutPanel.Margin = new System.Windows.Forms.Padding(0);
 			this.layoutPanel.Name = "layoutPanel";
@@ -95,26 +95,36 @@ namespace River.OneMoreAddIn.Settings
 			// 
 			// allLink
 			// 
+			this.allLink.ActiveLinkColor = System.Drawing.Color.MediumOrchid;
 			this.allLink.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.allLink.AutoSize = true;
+			this.allLink.Cursor = System.Windows.Forms.Cursors.Hand;
+			this.allLink.HoverColor = System.Drawing.Color.Orchid;
+			this.allLink.LinkColor = System.Drawing.Color.MediumOrchid;
 			this.allLink.Location = new System.Drawing.Point(501, 217);
 			this.allLink.Name = "allLink";
 			this.allLink.Size = new System.Drawing.Size(26, 20);
 			this.allLink.TabIndex = 20;
 			this.allLink.TabStop = true;
 			this.allLink.Text = "All";
+			this.allLink.VisitedLinkColor = System.Drawing.Color.MediumOrchid;
 			this.allLink.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.ToggleLanguages);
 			// 
 			// noneLink
 			// 
+			this.noneLink.ActiveLinkColor = System.Drawing.Color.MediumOrchid;
 			this.noneLink.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.noneLink.AutoSize = true;
+			this.noneLink.Cursor = System.Windows.Forms.Cursors.Hand;
+			this.noneLink.HoverColor = System.Drawing.Color.Orchid;
+			this.noneLink.LinkColor = System.Drawing.Color.MediumOrchid;
 			this.noneLink.Location = new System.Drawing.Point(553, 217);
 			this.noneLink.Name = "noneLink";
 			this.noneLink.Size = new System.Drawing.Size(47, 20);
 			this.noneLink.TabIndex = 19;
 			this.noneLink.TabStop = true;
 			this.noneLink.Text = "None";
+			this.noneLink.VisitedLinkColor = System.Drawing.Color.MediumOrchid;
 			this.noneLink.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.ToggleLanguages);
 			// 
 			// langView
@@ -192,10 +202,12 @@ namespace River.OneMoreAddIn.Settings
 			// 
 			// fixedBox
 			// 
-			this.fixedBox.AutoSize = true;
+			this.fixedBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(231)))), ((int)(((byte)(231)))));
+			this.fixedBox.Cursor = System.Windows.Forms.Cursors.Hand;
+			this.fixedBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.fixedBox.Location = new System.Drawing.Point(135, 167);
 			this.fixedBox.Name = "fixedBox";
-			this.fixedBox.Size = new System.Drawing.Size(226, 24);
+			this.fixedBox.Size = new System.Drawing.Size(235, 25);
 			this.fixedBox.TabIndex = 3;
 			this.fixedBox.Text = "Show only fixed-width fonts";
 			this.fixedBox.UseVisualStyleBackColor = true;
@@ -252,10 +264,12 @@ namespace River.OneMoreAddIn.Settings
 			// 
 			// applyBox
 			// 
-			this.applyBox.AutoSize = true;
+			this.applyBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(231)))), ((int)(((byte)(231)))));
+			this.applyBox.Cursor = System.Windows.Forms.Cursors.Hand;
+			this.applyBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.applyBox.Location = new System.Drawing.Point(3, 6);
 			this.applyBox.Name = "applyBox";
-			this.applyBox.Size = new System.Drawing.Size(408, 24);
+			this.applyBox.Size = new System.Drawing.Size(426, 25);
 			this.applyBox.TabIndex = 0;
 			this.applyBox.Text = "Always apply the following fonts when colorizing code";
 			this.applyBox.UseVisualStyleBackColor = true;
@@ -267,32 +281,32 @@ namespace River.OneMoreAddIn.Settings
 			this.BackColor = System.Drawing.SystemColors.ControlLightLight;
 			this.Controls.Add(this.layoutPanel);
 			this.Controls.Add(this.introBox);
+			this.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.Name = "ColorizerSheet";
 			this.Padding = new System.Windows.Forms.Padding(13, 8, 15, 10);
 			this.Size = new System.Drawing.Size(800, 500);
 			this.layoutPanel.ResumeLayout(false);
 			this.layoutPanel.PerformLayout();
 			this.ResumeLayout(false);
-			this.PerformLayout();
 
 		}
 
 		#endregion
 
-		private System.Windows.Forms.TextBox introBox;
+		private UI.MoreMultilineLabel introBox;
 		private System.Windows.Forms.Panel layoutPanel;
-		private System.Windows.Forms.CheckBox applyBox;
+		private UI.MoreCheckBox applyBox;
 		private UI.FontComboBox familyBox;
 		private System.Windows.Forms.ComboBox sizeBox;
 		private System.Windows.Forms.Label fontLabel;
-		private System.Windows.Forms.CheckBox fixedBox;
+		private UI.MoreCheckBox fixedBox;
 		private System.Windows.Forms.ComboBox size2Box;
 		private System.Windows.Forms.Label font2Label;
 		private UI.FontComboBox family2Box;
 		private System.Windows.Forms.ListView langView;
 		private System.Windows.Forms.Label enabledLabel;
 		private System.Windows.Forms.Label barLabel;
-		private System.Windows.Forms.LinkLabel allLink;
-		private System.Windows.Forms.LinkLabel noneLink;
+		private UI.MoreLinkLabel allLink;
+		private UI.MoreLinkLabel noneLink;
 	}
 }

@@ -6,6 +6,7 @@ namespace River.OneMoreAddIn.Commands
 {
 	using Chinese;
 	using River.OneMoreAddIn.Models;
+	using River.OneMoreAddIn.UI;
 	using System.Linq;
 	using System.Text.RegularExpressions;
 	using System.Threading.Tasks;
@@ -63,11 +64,13 @@ namespace River.OneMoreAddIn.Commands
 
 					if (wholePage)
 					{
-						UIHelper.ShowMessage(string.Format(Resx.WordCountCommand_Count, count));
+						MoreMessageBox.Show(owner,
+							string.Format(Resx.WordCountCommand_Count, count));
 					}
 					else
 					{
-						UIHelper.ShowMessage(string.Format(Resx.WordCountCommand_Selected, count));
+						MoreMessageBox.Show(owner,
+							string.Format(Resx.WordCountCommand_Selected, count));
 					}
 				}
 				else

@@ -9,7 +9,7 @@ namespace River.OneMoreAddIn.Commands
 	using Resx = River.OneMoreAddIn.Properties.Resources;
 
 
-	internal partial class RemindDialog : UI.LocalizableForm
+	internal partial class RemindDialog : UI.MoreForm
 	{
 		private readonly Reminder reminder;
 		private string symbol;

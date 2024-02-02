@@ -10,7 +10,7 @@ namespace River.OneMoreAddIn.UI
 	using System.Windows.Forms;
 
 
-	internal partial class MoreBubbleWindow : LocalizableForm
+	internal partial class MoreBubbleWindow : MoreForm
 	{
 		private const int SolidTime = 500;
 		private const int FadeoutTime = 750;

@@ -47,8 +47,8 @@
 			System.Windows.Forms.TreeNode treeNode17 = new System.Windows.Forms.TreeNode("Snippets");
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SettingsDialog));
 			this.buttonPanel = new System.Windows.Forms.Panel();
-			this.okButton = new System.Windows.Forms.Button();
-			this.cancelButton = new System.Windows.Forms.Button();
+			this.okButton = new River.OneMoreAddIn.UI.MoreButton();
+			this.cancelButton = new River.OneMoreAddIn.UI.MoreButton();
 			this.editorPanel = new System.Windows.Forms.Panel();
 			this.contentPanel = new System.Windows.Forms.Panel();
 			this.headerLabel = new River.OneMoreAddIn.Settings.FadingLabel();
@@ -62,17 +62,24 @@
 			this.buttonPanel.Controls.Add(this.okButton);
 			this.buttonPanel.Controls.Add(this.cancelButton);
 			this.buttonPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
-			this.buttonPanel.Location = new System.Drawing.Point(15, 684);
+			this.buttonPanel.Location = new System.Drawing.Point(15, 672);
 			this.buttonPanel.Name = "buttonPanel";
-			this.buttonPanel.Size = new System.Drawing.Size(1126, 45);
+			this.buttonPanel.Padding = new System.Windows.Forms.Padding(0, 10, 0, 0);
+			this.buttonPanel.Size = new System.Drawing.Size(1126, 57);
 			this.buttonPanel.TabIndex = 0;
 			// 
 			// okButton
 			// 
 			this.okButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.okButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
 			this.okButton.DialogResult = System.Windows.Forms.DialogResult.OK;
-			this.okButton.Location = new System.Drawing.Point(874, 3);
+			this.okButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+			this.okButton.ImageOver = null;
+			this.okButton.Location = new System.Drawing.Point(874, 13);
 			this.okButton.Name = "okButton";
+			this.okButton.ThemedBack = null;
+			this.okButton.ThemedFore = null;
+			this.okButton.ShowBorder = true;
 			this.okButton.Size = new System.Drawing.Size(120, 38);
 			this.okButton.TabIndex = 1;
 			this.okButton.Text = "OK";
@@ -82,9 +89,15 @@
 			// cancelButton
 			// 
 			this.cancelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.cancelButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
 			this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-			this.cancelButton.Location = new System.Drawing.Point(1000, 3);
+			this.cancelButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+			this.cancelButton.ImageOver = null;
+			this.cancelButton.Location = new System.Drawing.Point(1000, 13);
 			this.cancelButton.Name = "cancelButton";
+			this.cancelButton.ThemedBack = null;
+			this.cancelButton.ThemedFore = null;
+			this.cancelButton.ShowBorder = true;
 			this.cancelButton.Size = new System.Drawing.Size(120, 38);
 			this.cancelButton.TabIndex = 0;
 			this.cancelButton.Text = "Cancel";
@@ -99,10 +112,10 @@
 			this.editorPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
 			this.editorPanel.Controls.Add(this.contentPanel);
 			this.editorPanel.Controls.Add(this.headerLabel);
-			this.editorPanel.Location = new System.Drawing.Point(333, 18);
+			this.editorPanel.Location = new System.Drawing.Point(333, 15);
 			this.editorPanel.Name = "editorPanel";
 			this.editorPanel.Padding = new System.Windows.Forms.Padding(2);
-			this.editorPanel.Size = new System.Drawing.Size(806, 661);
+			this.editorPanel.Size = new System.Drawing.Size(806, 657);
 			this.editorPanel.TabIndex = 1;
 			// 
 			// contentPanel
@@ -112,7 +125,7 @@
 			this.contentPanel.MinimumSize = new System.Drawing.Size(800, 500);
 			this.contentPanel.Name = "contentPanel";
 			this.contentPanel.Padding = new System.Windows.Forms.Padding(15);
-			this.contentPanel.Size = new System.Drawing.Size(800, 623);
+			this.contentPanel.Size = new System.Drawing.Size(800, 619);
 			this.contentPanel.TabIndex = 1;
 			// 
 			// headerLabel
@@ -129,7 +142,9 @@
 			// 
 			// navTree
 			// 
+			this.navTree.BackColor = System.Drawing.SystemColors.Window;
 			this.navTree.Dock = System.Windows.Forms.DockStyle.Left;
+			this.navTree.ForeColor = System.Drawing.SystemColors.ControlText;
 			this.navTree.FullRowSelect = true;
 			this.navTree.HideSelection = false;
 			this.navTree.Location = new System.Drawing.Point(15, 15);
@@ -187,7 +202,7 @@
             treeNode15,
             treeNode16,
             treeNode17});
-			this.navTree.Size = new System.Drawing.Size(300, 669);
+			this.navTree.Size = new System.Drawing.Size(300, 657);
 			this.navTree.TabIndex = 2;
 			this.navTree.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.Navigate);
 			// 
@@ -196,11 +211,13 @@
 			this.AcceptButton = this.okButton;
 			this.AutoScaleDimensions = new System.Drawing.SizeF(144F, 144F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
+			this.BackColor = System.Drawing.SystemColors.Control;
 			this.CancelButton = this.cancelButton;
 			this.ClientSize = new System.Drawing.Size(1156, 744);
 			this.Controls.Add(this.editorPanel);
 			this.Controls.Add(this.navTree);
 			this.Controls.Add(this.buttonPanel);
+			this.ForeColor = System.Drawing.SystemColors.ControlText;
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.MaximizeBox = false;
@@ -220,8 +237,8 @@
 		#endregion
 
 		private System.Windows.Forms.Panel buttonPanel;
-		private System.Windows.Forms.Button okButton;
-		private System.Windows.Forms.Button cancelButton;
+		private UI.MoreButton okButton;
+		private UI.MoreButton cancelButton;
 		private System.Windows.Forms.Panel editorPanel;
 		private System.Windows.Forms.Panel contentPanel;
 		private FadingLabel headerLabel;

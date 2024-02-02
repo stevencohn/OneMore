@@ -12,6 +12,7 @@ namespace River.OneMoreAddIn
 	using System.Text;
 	using System.Text.RegularExpressions;
 	using System.Threading.Tasks;
+	using System.Windows.Forms;
 	using System.Windows.Media.Imaging;
 	using WindowsInput;
 	using WindowsInput.Native;
@@ -29,6 +30,9 @@ namespace River.OneMoreAddIn
 		//Message: OpenClipboard Failed (Exception from HRESULT: 0x800401D0 (CLIPBRD_E_CANT_OPEN))
 		//HResult: 0x800401D0 (-2147221040)
 		private const int CLIPBRD_E_CANT_OPEN = -2147221040;
+
+		private const int RetryTimes = 5;
+		private const int RetryDelay = 200;
 
 
 
@@ -166,6 +170,7 @@ namespace River.OneMoreAddIn
 					{
 						try
 						{
+							Clipboard.SetDataObject(data, true, RetryTimes, RetryDelay);
 							Win.Clipboard.SetDataObject(data, true);
 						}
 						catch (COMException ex)
@@ -229,7 +234,10 @@ namespace River.OneMoreAddIn
 				{
 					try
 					{
-						Win.Clipboard.SetText(text, Win.TextDataFormat.Html);
+						var data = new Win.DataObject();
+						data.SetText(text, Win.TextDataFormat.Html);
+						Clipboard.SetDataObject(data, false, RetryTimes, RetryDelay);
+						//Win.Clipboard.SetText(text, Win.TextDataFormat.Html);
 					}
 					catch (COMException ex)
 						when (ex.ErrorCode == CLIPBRD_E_CANT_OPEN)
@@ -260,7 +268,10 @@ namespace River.OneMoreAddIn
 				{
 					try
 					{
-						Win.Clipboard.SetText(text, Win.TextDataFormat.Text);
+						var data = new Win.DataObject();
+						data.SetText(text, Win.TextDataFormat.Text);
+						Clipboard.SetDataObject(data, false, RetryTimes, RetryDelay);
+						//Win.Clipboard.SetText(text, Win.TextDataFormat.Text);
 					}
 					catch (COMException ex)
 						when (ex.ErrorCode == CLIPBRD_E_CANT_OPEN)

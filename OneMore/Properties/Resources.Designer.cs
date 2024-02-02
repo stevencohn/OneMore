@@ -411,6 +411,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Define command aliases for use in the Command Palette..
+        /// </summary>
+        internal static string AliasSheet_introBox_Text {
+            get {
+                return ResourceManager.GetString("AliasSheet_introBox.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Define command aliases for use in the Command Palette.
         /// </summary>
         internal static string AliasSheet_Text {
@@ -848,15 +857,6 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Spacing.
-        /// </summary>
-        internal static string BreakingDialog_groupBox_Text {
-            get {
-                return ResourceManager.GetString("BreakingDialog_groupBox.Text", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to One space between sentences.
         /// </summary>
         internal static string BreakingDialog_oneButton_Text {
@@ -1116,6 +1116,24 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Always apply the following fonts when colorizing code.
+        /// </summary>
+        internal static string ColorizerSheet_applyBox_Text {
+            get {
+                return ResourceManager.GetString("ColorizerSheet_applyBox.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enabled Languages.
+        /// </summary>
+        internal static string ColorizerSheet_enabledLabel_Text {
+            get {
+                return ResourceManager.GetString("ColorizerSheet_enabledLabel.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Show only fixed-width fonts.
         /// </summary>
         internal static string ColorizerSheet_fixedBox_Text {
@@ -1125,56 +1143,38 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Always apply the following fonts when colorizing code.
-        /// </summary>
-        internal static string ColorizeSheet_applyBox_Text {
-            get {
-                return ResourceManager.GetString("ColorizeSheet_applyBox.Text", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Enabled Languages.
-        /// </summary>
-        internal static string ColorizeSheet_enabledLabel {
-            get {
-                return ResourceManager.GetString("ColorizeSheet_enabledLabel", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Secondary.
         /// </summary>
-        internal static string ColorizeSheet_font2Label_Text {
+        internal static string ColorizerSheet_font2Label_Text {
             get {
-                return ResourceManager.GetString("ColorizeSheet_font2Label.Text", resourceCulture);
+                return ResourceManager.GetString("ColorizerSheet_font2Label.Text", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Primary.
         /// </summary>
-        internal static string ColorizeSheet_fontLabel_Text {
+        internal static string ColorizerSheet_fontLabel_Text {
             get {
-                return ResourceManager.GetString("ColorizeSheet_fontLabel.Text", resourceCulture);
+                return ResourceManager.GetString("ColorizerSheet_fontLabel.Text", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Customize the behavior of the Colorize command. Secondary font applies when collapsing PlantUML.
         /// </summary>
-        internal static string ColorizeSheet_introBox_Text {
+        internal static string ColorizerSheet_introBox_Text {
             get {
-                return ResourceManager.GetString("ColorizeSheet_introBox.Text", resourceCulture);
+                return ResourceManager.GetString("ColorizerSheet_introBox.Text", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Colorizer.
         /// </summary>
-        internal static string ColorizeSheet_Title {
+        internal static string ColorizerSheet_Title {
             get {
-                return ResourceManager.GetString("ColorizeSheet_Title", resourceCulture);
+                return ResourceManager.GetString("ColorizerSheet_Title", resourceCulture);
             }
         }
         
@@ -1665,6 +1665,33 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to {
+        ///  &quot;DarkMode&quot;: true,
+        ///  &quot;Colors&quot;: {
+        ///    &quot;BackColor&quot;: &quot;#292929&quot;,
+        ///    &quot;ForeColor&quot;: &quot;#E6E6E6&quot;,
+        ///    &quot;Border&quot;: &quot;DarkOrchid&quot;,
+        ///    &quot;IconColor&quot;: &quot;MediumOrchid&quot;,
+        ///    &quot;ButtonBack&quot;: &quot;#323232&quot;,
+        ///    &quot;ButtonFore&quot;: &quot;#E6E6E6&quot;,
+        ///    &quot;ButtonDisabled&quot;: &quot;Gray&quot;,
+        ///    &quot;ButtonBorder&quot;: &quot;#464646&quot;,
+        ///    &quot;ButtonHotBack&quot;: &quot;#505050&quot;,
+        ///    &quot;ButtonHotBorder&quot;: &quot;Gray&quot;,
+        ///    &quot;ButtonPressBorder&quot;: &quot;DarkOrchid&quot;,
+        ///
+        ///    &quot;ActiveBorder&quot;: &quot;#7F7F7F&quot;,
+        ///    &quot;ActiveCaption&quot;: &quot;#C980EE&quot;,
+        ///    &quot;ActiveCaptionText&quot;: &quot;#000000&quot;,
+        ///    &quot;AppWorkspace&quot;:  [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string DarkTheme {
+            get {
+                return ResourceManager.GetString("DarkTheme", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to OneMore.db.
         /// </summary>
         internal static string DatabaseFilename {
@@ -1751,6 +1778,16 @@ namespace River.OneMoreAddIn.Properties {
         internal static string DeleteReminderCommand_deleteTag {
             get {
                 return ResourceManager.GetString("DeleteReminderCommand_deleteTag", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Delta {
+            get {
+                object obj = ResourceManager.GetObject("Delta", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
         
@@ -2093,6 +2130,15 @@ namespace River.OneMoreAddIn.Properties {
         internal static string Emoji_Cycling {
             get {
                 return ResourceManager.GetString("Emoji_Cycling", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Delta.
+        /// </summary>
+        internal static string Emoji_Delta {
+            get {
+                return ResourceManager.GetString("Emoji_Delta", resourceCulture);
             }
         }
         
@@ -2791,6 +2837,33 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Could not load Quick Notes. Check the location in OneNote Options..
+        /// </summary>
+        internal static string FileQuickNotesCommand_noQuickNotes {
+            get {
+                return ResourceManager.GetString("FileQuickNotesCommand_noQuickNotes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cannot find target notebook. Open OneMore Settings to specify a target..
+        /// </summary>
+        internal static string FileQuickNotesCommand_noTargetNotebook {
+            get {
+                return ResourceManager.GetString("FileQuickNotesCommand_noTargetNotebook", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cannot find target section. Open OneMore Settings to specify a target..
+        /// </summary>
+        internal static string FileQuickNotesCommand_noTargetSection {
+            get {
+                return ResourceManager.GetString("FileQuickNotesCommand_noTargetSection", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap Financial {
@@ -3076,11 +3149,31 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Display language (must restart OneNote).
+        ///   Looks up a localized string similar to Language.
         /// </summary>
         internal static string GeneralSheet_langLabel_Text {
             get {
                 return ResourceManager.GetString("GeneralSheet_langLabel.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to System
+        ///Light
+        ///Dark.
+        /// </summary>
+        internal static string GeneralSheet_themeBox_Text {
+            get {
+                return ResourceManager.GetString("GeneralSheet_themeBox.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Theme.
+        /// </summary>
+        internal static string GeneralSheet_themeLabel_Text {
+            get {
+                return ResourceManager.GetString("GeneralSheet_themeLabel.Text", resourceCulture);
             }
         }
         
@@ -3374,7 +3467,7 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Deep:.
+        ///   Looks up a localized string similar to Deep.
         /// </summary>
         internal static string HighlightsSheet_deepRadio_Text {
             get {
@@ -3383,7 +3476,7 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Faded:.
+        ///   Looks up a localized string similar to Faded.
         /// </summary>
         internal static string HighlightsSheet_fadedRadio_Text {
             get {
@@ -3401,7 +3494,7 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Bright:.
+        ///   Looks up a localized string similar to Bright.
         /// </summary>
         internal static string HighlightsSheet_normalRadio_Text {
             get {
@@ -3412,9 +3505,9 @@ namespace River.OneMoreAddIn.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Themes.
         /// </summary>
-        internal static string HighlightsSheet_themeGroup_Text {
+        internal static string HighlightsSheet_themesGroup_Text {
             get {
-                return ResourceManager.GetString("HighlightsSheet_themeGroup.Text", resourceCulture);
+                return ResourceManager.GetString("HighlightsSheet_themesGroup.Text", resourceCulture);
             }
         }
         
@@ -3496,6 +3589,24 @@ namespace River.OneMoreAddIn.Properties {
         internal static string ImagesSheet_plantGroup_Text {
             get {
                 return ResourceManager.GetString("ImagesSheet_plantGroup.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Remove PlantUML text and embed it in the image.
+        /// </summary>
+        internal static string ImagesSheet_plantRemoveBox_Text {
+            get {
+                return ResourceManager.GetString("ImagesSheet_plantRemoveBox.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to PlantUML Server Address (leave blank to use default).
+        /// </summary>
+        internal static string ImagesSheet_plantUriLabel_Text {
+            get {
+                return ResourceManager.GetString("ImagesSheet_plantUriLabel.Text", resourceCulture);
             }
         }
         
@@ -4173,9 +4284,9 @@ namespace River.OneMoreAddIn.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Manage my custom keyboard shortcuts. Select a command and press a key sequence..
         /// </summary>
-        internal static string KeyboardSheet_introLabel_Text {
+        internal static string KeyboardSheet_introBox_Text {
             get {
-                return ResourceManager.GetString("KeyboardSheet_introLabel.Text", resourceCulture);
+                return ResourceManager.GetString("KeyboardSheet_introBox.Text", resourceCulture);
             }
         }
         
@@ -4224,6 +4335,33 @@ namespace River.OneMoreAddIn.Properties {
             get {
                 object obj = ResourceManager.GetObject("LeftwardsArrow", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {
+        ///  &quot;DarkMode&quot;: false,
+        ///  &quot;Colors&quot;: {
+        ///    &quot;BackColor&quot;: &quot;White&quot;,
+        ///    &quot;ForeColor&quot;: &quot;Black&quot;,
+        ///    &quot;Border&quot;: &quot;#D2A1DF&quot;,
+        ///    &quot;IconColor&quot;: &quot;#80397B&quot;,
+        ///    &quot;ButtonBack&quot;: &quot;#F7EDF7&quot;,
+        ///    &quot;ButtonFore&quot;: &quot;#73356E&quot;,
+        ///    &quot;ButtonDisabled&quot;: &quot;Gray&quot;,
+        ///    &quot;ButtonBorder&quot;: &quot;#F0DAEE&quot;,
+        ///    &quot;ButtonHotBack&quot;: &quot;#F0DAEE&quot;,
+        ///    &quot;ButtonHotBorder&quot;: &quot;#9E5499&quot;,
+        ///    &quot;ButtonPressBorder&quot;: &quot;#9E5499&quot;,
+        ///
+        ///    &quot;ActiveBorder&quot;: &quot;#B4B4B4&quot;,
+        ///    &quot;ActiveCaption&quot;: &quot;#C980EE&quot;,
+        ///    &quot;ActiveCaptionText&quot;: &quot;#000000&quot;,
+        ///    &quot;AppWorkspace&quot;: &quot;#ABABAB&quot;,        /// [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string LightTheme {
+            get {
+                return ResourceManager.GetString("LightTheme", resourceCulture);
             }
         }
         
@@ -5465,9 +5603,9 @@ namespace River.OneMoreAddIn.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Manage my plugins.
         /// </summary>
-        internal static string PluginsSheet_introLabel_Text {
+        internal static string PluginsSheet_introBox_Text {
             get {
-                return ResourceManager.GetString("PluginsSheet_introLabel.Text", resourceCulture);
+                return ResourceManager.GetString("PluginsSheet_introBox.Text", resourceCulture);
             }
         }
         
@@ -6636,15 +6774,6 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Edit Commands.
-        /// </summary>
-        internal static string RibbonBarSheet_editGroup_Text {
-            get {
-                return ResourceManager.GetString("RibbonBarSheet_editGroup.Text", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Show only icons for edit commands.
         /// </summary>
         internal static string RibbonBarSheet_editIconBox_Text {
@@ -6654,11 +6783,11 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Formula Commands.
+        ///   Looks up a localized string similar to Edit Commands.
         /// </summary>
-        internal static string RibbonBarSheet_formulaGroup_Text {
+        internal static string RibbonBarSheet_editRibbonBox_Text {
             get {
-                return ResourceManager.GetString("RibbonBarSheet_formulaGroup.Text", resourceCulture);
+                return ResourceManager.GetString("RibbonBarSheet_editRibbonBox.Text", resourceCulture);
             }
         }
         
@@ -6672,11 +6801,71 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Formula Commands.
+        /// </summary>
+        internal static string RibbonBarSheet_formulaRibbonBox_Text {
+            get {
+                return ResourceManager.GetString("RibbonBarSheet_formulaRibbonBox.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Choose which commands to include in the ribbon bar and whether to display icons or icons and lables. Restart OneNote to see changes..
         /// </summary>
         internal static string RibbonBarSheet_introBox_Text {
             get {
                 return ResourceManager.GetString("RibbonBarSheet_introBox.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Clipboard Group
+        ///Basic Text Group
+        ///Styles Group
+        ///Tags Group
+        ///Email Group
+        ///Meetings Group
+        ///After last group.
+        /// </summary>
+        internal static string RibbonBarSheet_positionBox_Text {
+            get {
+                return ResourceManager.GetString("RibbonBarSheet_positionBox.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Position.
+        /// </summary>
+        internal static string RibbonBarSheet_positionGroup_Text {
+            get {
+                return ResourceManager.GetString("RibbonBarSheet_positionGroup.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select the location of the OneMore ribbon group..
+        /// </summary>
+        internal static string RibbonBarSheet_positionIntroLabel_Text {
+            get {
+                return ResourceManager.GetString("RibbonBarSheet_positionIntroLabel.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to After OneMore Group.
+        /// </summary>
+        internal static string RibbonBarSheet_positionLabel_Text {
+            get {
+                return ResourceManager.GetString("RibbonBarSheet_positionLabel.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Quick Commands.
+        /// </summary>
+        internal static string RibbonBarSheet_quickGroup_Text {
+            get {
+                return ResourceManager.GetString("RibbonBarSheet_quickGroup.Text", resourceCulture);
             }
         }
         
@@ -9902,15 +10091,6 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Delete:.
-        /// </summary>
-        internal static string SearchEngineSheet_deleteLabel_Text {
-            get {
-                return ResourceManager.GetString("SearchEngineSheet_deleteLabel.Text", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Move down.
         /// </summary>
         internal static string SearchEngineSheet_downButton_Text {
@@ -9924,9 +10104,9 @@ namespace River.OneMoreAddIn.Properties {
         ///
         ///Search engines will appear in the page context menu, right-click..
         /// </summary>
-        internal static string SearchEngineSheet_introLabel_Text {
+        internal static string SearchEngineSheet_introBox_Text {
             get {
-                return ResourceManager.GetString("SearchEngineSheet_introLabel.Text", resourceCulture);
+                return ResourceManager.GetString("SearchEngineSheet_introBox.Text", resourceCulture);
             }
         }
         
@@ -10429,9 +10609,9 @@ namespace River.OneMoreAddIn.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Manage my snippets.
         /// </summary>
-        internal static string SnippetsSheet_introLabel_Text {
+        internal static string SnippetsSheet_introBox_Text {
             get {
-                return ResourceManager.GetString("SnippetsSheet_introLabel.Text", resourceCulture);
+                return ResourceManager.GetString("SnippetsSheet_introBox.Text", resourceCulture);
             }
         }
         
@@ -10735,6 +10915,26 @@ namespace River.OneMoreAddIn.Properties {
         internal static string SplitTableDialog_fixedColsBox_Text {
             get {
                 return ResourceManager.GetString("SplitTableDialog_fixedColsBox.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap sponsor_dark {
+            get {
+                object obj = ResourceManager.GetObject("sponsor_dark", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap sponsor_light {
+            get {
+                object obj = ResourceManager.GetObject("sponsor_light", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
         
@@ -11116,7 +11316,8 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Apply to background images.
+        ///   Looks up a localized string similar to Apply to background images
+        ///Background images: {0}, selected: {1}.
         /// </summary>
         internal static string StylizeImagesDialog_backBox_Text {
             get {
@@ -11125,29 +11326,12 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Background images: {0}, selected: {1}.
-        /// </summary>
-        internal static string StylizeImagesDialog_backImagesLabel_Text {
-            get {
-                return ResourceManager.GetString("StylizeImagesDialog_backImagesLabel.Text", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Apply to foreground images.
+        ///   Looks up a localized string similar to Apply to foreground images
+        ///Foreground images: {0}, selected: {1}.
         /// </summary>
         internal static string StylizeImagesDialog_foreBox_Text {
             get {
                 return ResourceManager.GetString("StylizeImagesDialog_foreBox.Text", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Foreground images: {0}, selected: {1}.
-        /// </summary>
-        internal static string StylizeImagesDialog_foreImagesLabel_Text {
-            get {
-                return ResourceManager.GetString("StylizeImagesDialog_foreImagesLabel.Text", resourceCulture);
             }
         }
         

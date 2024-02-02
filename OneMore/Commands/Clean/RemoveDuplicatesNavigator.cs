@@ -15,7 +15,7 @@ namespace River.OneMoreAddIn.Commands
 	using Resx = River.OneMoreAddIn.Properties.Resources;
 
 
-	internal partial class RemoveDuplicatesNavigator : UI.LocalizableForm
+	internal partial class RemoveDuplicatesNavigator : UI.MoreForm
 	{
 		private readonly OneNote one;
 

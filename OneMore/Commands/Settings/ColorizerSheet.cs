@@ -1,5 +1,5 @@
 ﻿//************************************************************************************************
-// Copyright © 2023 Steven M. Cohn. All Rights Reserved.
+// Copyright © 2023 Steven M Cohn. All Rights Reserved.
 //************************************************************************************************
 
 namespace River.OneMoreAddIn.Settings
@@ -23,7 +23,7 @@ namespace River.OneMoreAddIn.Settings
 			InitializeComponent();
 
 			Name = nameof(ColorizerSheet);
-			Title = Resx.ColorizeSheet_Title;
+			Title = Resx.ColorizerSheet_Title;
 
 			if (NeedsLocalizing())
 			{
@@ -72,8 +72,6 @@ namespace River.OneMoreAddIn.Settings
 			size2Box.SelectedIndex = size2Box.Items.IndexOf(size.ToString());
 
 			LoadLanguages(settings.Get(HiddenKey, new XElement(HiddenKey)));
-
-			applyBox.Focus();
 		}
 
 

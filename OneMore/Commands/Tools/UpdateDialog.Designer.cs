@@ -35,8 +35,8 @@ namespace River.OneMoreAddIn.Commands
 			this.versionLabel = new System.Windows.Forms.Label();
 			this.lastUpdatedLabel = new System.Windows.Forms.Label();
 			this.releaseNotesLink = new River.OneMoreAddIn.UI.MoreLinkLabel();
-			this.okButton = new System.Windows.Forms.Button();
-			this.cancelButton = new System.Windows.Forms.Button();
+			this.okButton = new River.OneMoreAddIn.UI.MoreButton();
+			this.cancelButton = new River.OneMoreAddIn.UI.MoreButton();
 			this.versionBox = new System.Windows.Forms.Label();
 			this.lastUpdatedBox = new System.Windows.Forms.Label();
 			this.readyPanel = new System.Windows.Forms.Panel();
@@ -54,7 +54,7 @@ namespace River.OneMoreAddIn.Commands
 			this.upDescriptionLabel = new System.Windows.Forms.Label();
 			this.upReleaseNotesLink = new River.OneMoreAddIn.UI.MoreLinkLabel();
 			this.upIntroLabel = new System.Windows.Forms.Label();
-			this.upOKButton = new System.Windows.Forms.Button();
+			this.upOKButton = new River.OneMoreAddIn.UI.MoreButton();
 			this.timer = new System.Windows.Forms.Timer(this.components);
 			this.readyPanel.SuspendLayout();
 			this.updatePanel.SuspendLayout();
@@ -64,6 +64,7 @@ namespace River.OneMoreAddIn.Commands
 			// 
 			this.currentLabel.AutoSize = true;
 			this.currentLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.currentLabel.ForeColor = System.Drawing.SystemColors.ControlText;
 			this.currentLabel.Location = new System.Drawing.Point(3, 1);
 			this.currentLabel.Name = "currentLabel";
 			this.currentLabel.Size = new System.Drawing.Size(205, 25);
@@ -74,6 +75,7 @@ namespace River.OneMoreAddIn.Commands
 			// 
 			this.versionLabel.AutoSize = true;
 			this.versionLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.versionLabel.ForeColor = System.Drawing.SystemColors.ControlText;
 			this.versionLabel.Location = new System.Drawing.Point(31, 46);
 			this.versionLabel.Name = "versionLabel";
 			this.versionLabel.Size = new System.Drawing.Size(145, 20);
@@ -84,6 +86,7 @@ namespace River.OneMoreAddIn.Commands
 			// 
 			this.lastUpdatedLabel.AutoSize = true;
 			this.lastUpdatedLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.lastUpdatedLabel.ForeColor = System.Drawing.SystemColors.ControlText;
 			this.lastUpdatedLabel.Location = new System.Drawing.Point(31, 74);
 			this.lastUpdatedLabel.Name = "lastUpdatedLabel";
 			this.lastUpdatedLabel.Size = new System.Drawing.Size(120, 20);
@@ -93,24 +96,29 @@ namespace River.OneMoreAddIn.Commands
 			// releaseNotesLink
 			// 
 			this.releaseNotesLink.AutoSize = true;
+			this.releaseNotesLink.BackColor = System.Drawing.SystemColors.Window;
 			this.releaseNotesLink.Cursor = System.Windows.Forms.Cursors.Hand;
-			this.releaseNotesLink.HoverColor = System.Drawing.Color.MediumOrchid;
+			this.releaseNotesLink.HoverColor = System.Drawing.Color.Orchid;
+			this.releaseNotesLink.LinkColor = System.Drawing.Color.MediumOrchid;
 			this.releaseNotesLink.Location = new System.Drawing.Point(31, 104);
 			this.releaseNotesLink.Name = "releaseNotesLink";
 			this.releaseNotesLink.Size = new System.Drawing.Size(112, 20);
-			this.releaseNotesLink.TabIndex = 5;
+			this.releaseNotesLink.TabIndex = 1;
 			this.releaseNotesLink.TabStop = true;
 			this.releaseNotesLink.Text = "Release notes";
+			this.releaseNotesLink.VisitedLinkColor = System.Drawing.Color.MediumOrchid;
 			this.releaseNotesLink.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.GotoReleaseNotes);
 			// 
 			// okButton
 			// 
 			this.okButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.okButton.DialogResult = System.Windows.Forms.DialogResult.OK;
+			this.okButton.ImageOver = null;
 			this.okButton.Location = new System.Drawing.Point(480, 142);
 			this.okButton.Name = "okButton";
+			this.okButton.ShowBorder = true;
 			this.okButton.Size = new System.Drawing.Size(104, 42);
-			this.okButton.TabIndex = 6;
+			this.okButton.TabIndex = 0;
 			this.okButton.Text = "OK";
 			this.okButton.UseVisualStyleBackColor = true;
 			// 
@@ -118,16 +126,19 @@ namespace River.OneMoreAddIn.Commands
 			// 
 			this.cancelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+			this.cancelButton.ImageOver = null;
 			this.cancelButton.Location = new System.Drawing.Point(480, 254);
 			this.cancelButton.Name = "cancelButton";
+			this.cancelButton.ShowBorder = true;
 			this.cancelButton.Size = new System.Drawing.Size(104, 42);
-			this.cancelButton.TabIndex = 7;
+			this.cancelButton.TabIndex = 2;
 			this.cancelButton.Text = "Cancel";
 			this.cancelButton.UseVisualStyleBackColor = true;
 			// 
 			// versionBox
 			// 
 			this.versionBox.AutoSize = true;
+			this.versionBox.ForeColor = System.Drawing.SystemColors.ControlText;
 			this.versionBox.Location = new System.Drawing.Point(204, 46);
 			this.versionBox.Name = "versionBox";
 			this.versionBox.Size = new System.Drawing.Size(59, 20);
@@ -137,6 +148,7 @@ namespace River.OneMoreAddIn.Commands
 			// lastUpdatedBox
 			// 
 			this.lastUpdatedBox.AutoSize = true;
+			this.lastUpdatedBox.ForeColor = System.Drawing.SystemColors.ControlText;
 			this.lastUpdatedBox.Location = new System.Drawing.Point(204, 74);
 			this.lastUpdatedBox.Name = "lastUpdatedBox";
 			this.lastUpdatedBox.Size = new System.Drawing.Size(41, 20);
@@ -147,6 +159,7 @@ namespace River.OneMoreAddIn.Commands
 			// 
 			this.readyPanel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+			this.readyPanel.BackColor = System.Drawing.SystemColors.Window;
 			this.readyPanel.Controls.Add(this.currentLabel);
 			this.readyPanel.Controls.Add(this.lastUpdatedBox);
 			this.readyPanel.Controls.Add(this.okButton);
@@ -163,6 +176,7 @@ namespace River.OneMoreAddIn.Commands
 			// 
 			this.updatePanel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+			this.updatePanel.BackColor = System.Drawing.SystemColors.Window;
 			this.updatePanel.Controls.Add(this.upReleaseDateBox);
 			this.updatePanel.Controls.Add(this.releaseDateLabel);
 			this.updatePanel.Controls.Add(this.upLastUpdatedBox);
@@ -186,6 +200,7 @@ namespace River.OneMoreAddIn.Commands
 			// upReleaseDateBox
 			// 
 			this.upReleaseDateBox.AutoSize = true;
+			this.upReleaseDateBox.ForeColor = System.Drawing.SystemColors.ControlText;
 			this.upReleaseDateBox.Location = new System.Drawing.Point(204, 101);
 			this.upReleaseDateBox.Name = "upReleaseDateBox";
 			this.upReleaseDateBox.Size = new System.Drawing.Size(41, 20);
@@ -196,6 +211,7 @@ namespace River.OneMoreAddIn.Commands
 			// 
 			this.releaseDateLabel.AutoSize = true;
 			this.releaseDateLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.releaseDateLabel.ForeColor = System.Drawing.SystemColors.ControlText;
 			this.releaseDateLabel.Location = new System.Drawing.Point(31, 101);
 			this.releaseDateLabel.Name = "releaseDateLabel";
 			this.releaseDateLabel.Size = new System.Drawing.Size(121, 20);
@@ -205,6 +221,7 @@ namespace River.OneMoreAddIn.Commands
 			// upLastUpdatedBox
 			// 
 			this.upLastUpdatedBox.AutoSize = true;
+			this.upLastUpdatedBox.ForeColor = System.Drawing.SystemColors.ControlText;
 			this.upLastUpdatedBox.Location = new System.Drawing.Point(204, 215);
 			this.upLastUpdatedBox.Name = "upLastUpdatedBox";
 			this.upLastUpdatedBox.Size = new System.Drawing.Size(41, 20);
@@ -215,6 +232,7 @@ namespace River.OneMoreAddIn.Commands
 			// 
 			this.upLastUpdatedLabel.AutoSize = true;
 			this.upLastUpdatedLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.upLastUpdatedLabel.ForeColor = System.Drawing.SystemColors.ControlText;
 			this.upLastUpdatedLabel.Location = new System.Drawing.Point(31, 215);
 			this.upLastUpdatedLabel.Name = "upLastUpdatedLabel";
 			this.upLastUpdatedLabel.Size = new System.Drawing.Size(120, 20);
@@ -225,6 +243,7 @@ namespace River.OneMoreAddIn.Commands
 			// 
 			this.upCurrentVersionLabel.AutoSize = true;
 			this.upCurrentVersionLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.upCurrentVersionLabel.ForeColor = System.Drawing.SystemColors.ControlText;
 			this.upCurrentVersionLabel.Location = new System.Drawing.Point(31, 188);
 			this.upCurrentVersionLabel.Name = "upCurrentVersionLabel";
 			this.upCurrentVersionLabel.Size = new System.Drawing.Size(136, 20);
@@ -234,6 +253,7 @@ namespace River.OneMoreAddIn.Commands
 			// upCurrentVersionBox
 			// 
 			this.upCurrentVersionBox.AutoSize = true;
+			this.upCurrentVersionBox.ForeColor = System.Drawing.SystemColors.ControlText;
 			this.upCurrentVersionBox.Location = new System.Drawing.Point(204, 188);
 			this.upCurrentVersionBox.Name = "upCurrentVersionBox";
 			this.upCurrentVersionBox.Size = new System.Drawing.Size(59, 20);
@@ -243,6 +263,7 @@ namespace River.OneMoreAddIn.Commands
 			// lineLabel
 			// 
 			this.lineLabel.AutoSize = true;
+			this.lineLabel.ForeColor = System.Drawing.SystemColors.ControlText;
 			this.lineLabel.Location = new System.Drawing.Point(31, 152);
 			this.lineLabel.Name = "lineLabel";
 			this.lineLabel.Size = new System.Drawing.Size(342, 20);
@@ -252,6 +273,7 @@ namespace River.OneMoreAddIn.Commands
 			// upDescriptionBox
 			// 
 			this.upDescriptionBox.AutoSize = true;
+			this.upDescriptionBox.ForeColor = System.Drawing.SystemColors.ControlText;
 			this.upDescriptionBox.Location = new System.Drawing.Point(204, 70);
 			this.upDescriptionBox.Name = "upDescriptionBox";
 			this.upDescriptionBox.Size = new System.Drawing.Size(86, 20);
@@ -262,6 +284,7 @@ namespace River.OneMoreAddIn.Commands
 			// 
 			this.upVersionLabel.AutoSize = true;
 			this.upVersionLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.upVersionLabel.ForeColor = System.Drawing.SystemColors.ControlText;
 			this.upVersionLabel.Location = new System.Drawing.Point(31, 41);
 			this.upVersionLabel.Name = "upVersionLabel";
 			this.upVersionLabel.Size = new System.Drawing.Size(135, 20);
@@ -271,6 +294,7 @@ namespace River.OneMoreAddIn.Commands
 			// upVersionBox
 			// 
 			this.upVersionBox.AutoSize = true;
+			this.upVersionBox.ForeColor = System.Drawing.SystemColors.ControlText;
 			this.upVersionBox.Location = new System.Drawing.Point(204, 41);
 			this.upVersionBox.Name = "upVersionBox";
 			this.upVersionBox.Size = new System.Drawing.Size(59, 20);
@@ -281,6 +305,7 @@ namespace River.OneMoreAddIn.Commands
 			// 
 			this.upDescriptionLabel.AutoSize = true;
 			this.upDescriptionLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.upDescriptionLabel.ForeColor = System.Drawing.SystemColors.ControlText;
 			this.upDescriptionLabel.Location = new System.Drawing.Point(31, 70);
 			this.upDescriptionLabel.Name = "upDescriptionLabel";
 			this.upDescriptionLabel.Size = new System.Drawing.Size(105, 20);
@@ -290,20 +315,24 @@ namespace River.OneMoreAddIn.Commands
 			// upReleaseNotesLink
 			// 
 			this.upReleaseNotesLink.AutoSize = true;
+			this.upReleaseNotesLink.BackColor = System.Drawing.SystemColors.Window;
 			this.upReleaseNotesLink.Cursor = System.Windows.Forms.Cursors.Hand;
-			this.upReleaseNotesLink.HoverColor = System.Drawing.Color.MediumOrchid;
+			this.upReleaseNotesLink.HoverColor = System.Drawing.Color.Orchid;
+			this.upReleaseNotesLink.LinkColor = System.Drawing.Color.MediumOrchid;
 			this.upReleaseNotesLink.Location = new System.Drawing.Point(31, 132);
 			this.upReleaseNotesLink.Name = "upReleaseNotesLink";
 			this.upReleaseNotesLink.Size = new System.Drawing.Size(112, 20);
-			this.upReleaseNotesLink.TabIndex = 12;
+			this.upReleaseNotesLink.TabIndex = 1;
 			this.upReleaseNotesLink.TabStop = true;
 			this.upReleaseNotesLink.Text = "Release notes";
+			this.upReleaseNotesLink.VisitedLinkColor = System.Drawing.Color.MediumOrchid;
 			this.upReleaseNotesLink.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.GotoReleaseNotes);
 			// 
 			// upIntroLabel
 			// 
 			this.upIntroLabel.AutoSize = true;
 			this.upIntroLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.upIntroLabel.ForeColor = System.Drawing.SystemColors.ControlText;
 			this.upIntroLabel.Location = new System.Drawing.Point(3, 1);
 			this.upIntroLabel.Name = "upIntroLabel";
 			this.upIntroLabel.Size = new System.Drawing.Size(242, 25);
@@ -314,10 +343,12 @@ namespace River.OneMoreAddIn.Commands
 			// 
 			this.upOKButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.upOKButton.DialogResult = System.Windows.Forms.DialogResult.OK;
+			this.upOKButton.ImageOver = null;
 			this.upOKButton.Location = new System.Drawing.Point(370, 254);
 			this.upOKButton.Name = "upOKButton";
+			this.upOKButton.ShowBorder = true;
 			this.upOKButton.Size = new System.Drawing.Size(104, 42);
-			this.upOKButton.TabIndex = 7;
+			this.upOKButton.TabIndex = 0;
 			this.upOKButton.Text = "Update";
 			this.upOKButton.UseVisualStyleBackColor = true;
 			// 
@@ -328,12 +359,14 @@ namespace River.OneMoreAddIn.Commands
 			// 
 			// UpdateDialog
 			// 
+			this.AcceptButton = this.okButton;
 			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.BackColor = System.Drawing.Color.White;
+			this.BackColor = System.Drawing.SystemColors.Window;
 			this.ClientSize = new System.Drawing.Size(633, 543);
 			this.Controls.Add(this.updatePanel);
 			this.Controls.Add(this.readyPanel);
+			this.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.MaximizeBox = false;
@@ -356,13 +389,13 @@ namespace River.OneMoreAddIn.Commands
 		private System.Windows.Forms.Label versionLabel;
 		private System.Windows.Forms.Label lastUpdatedLabel;
 		private UI.MoreLinkLabel releaseNotesLink;
-		private System.Windows.Forms.Button okButton;
-		private System.Windows.Forms.Button cancelButton;
+		private UI.MoreButton okButton;
+		private UI.MoreButton cancelButton;
 		private System.Windows.Forms.Label versionBox;
 		private System.Windows.Forms.Label lastUpdatedBox;
 		private System.Windows.Forms.Panel readyPanel;
 		private System.Windows.Forms.Panel updatePanel;
-		private System.Windows.Forms.Button upOKButton;
+		private UI.MoreButton upOKButton;
 		private System.Windows.Forms.Label upDescriptionBox;
 		private System.Windows.Forms.Label upVersionLabel;
 		private System.Windows.Forms.Label upVersionBox;

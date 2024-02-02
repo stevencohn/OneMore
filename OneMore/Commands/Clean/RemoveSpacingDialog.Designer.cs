@@ -29,87 +29,107 @@
 		private void InitializeComponent()
 		{
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(RemoveSpacingDialog));
-			this.beforeBox = new System.Windows.Forms.CheckBox();
-			this.afterBox = new System.Windows.Forms.CheckBox();
-			this.betweenBox = new System.Windows.Forms.CheckBox();
-			this.headingsBox = new System.Windows.Forms.CheckBox();
-			this.cancelButton = new System.Windows.Forms.Button();
-			this.okButton = new System.Windows.Forms.Button();
+			this.beforeBox = new River.OneMoreAddIn.UI.MoreCheckBox();
+			this.afterBox = new River.OneMoreAddIn.UI.MoreCheckBox();
+			this.betweenBox = new River.OneMoreAddIn.UI.MoreCheckBox();
+			this.headingsBox = new River.OneMoreAddIn.UI.MoreCheckBox();
+			this.cancelButton = new River.OneMoreAddIn.UI.MoreButton();
+			this.okButton = new River.OneMoreAddIn.UI.MoreButton();
 			this.SuspendLayout();
 			// 
 			// beforeBox
 			// 
-			this.beforeBox.AutoSize = true;
+			this.beforeBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
 			this.beforeBox.Checked = true;
 			this.beforeBox.CheckState = System.Windows.Forms.CheckState.Checked;
-			this.beforeBox.Location = new System.Drawing.Point(22, 23);
+			this.beforeBox.Cursor = System.Windows.Forms.Cursors.Hand;
+			this.beforeBox.ForeColor = System.Drawing.SystemColors.ControlText;
+			this.beforeBox.Location = new System.Drawing.Point(29, 30);
 			this.beforeBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.beforeBox.Name = "beforeBox";
-			this.beforeBox.Size = new System.Drawing.Size(288, 24);
-			this.beforeBox.TabIndex = 0;
+			this.beforeBox.Size = new System.Drawing.Size(297, 25);
+			this.beforeBox.TabIndex = 1;
 			this.beforeBox.Text = "Remove spacing before paragraphs";
 			this.beforeBox.UseVisualStyleBackColor = true;
 			// 
 			// afterBox
 			// 
-			this.afterBox.AutoSize = true;
+			this.afterBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
 			this.afterBox.Checked = true;
 			this.afterBox.CheckState = System.Windows.Forms.CheckState.Checked;
-			this.afterBox.Location = new System.Drawing.Point(22, 58);
+			this.afterBox.Cursor = System.Windows.Forms.Cursors.Hand;
+			this.afterBox.ForeColor = System.Drawing.SystemColors.ControlText;
+			this.afterBox.Location = new System.Drawing.Point(29, 65);
 			this.afterBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.afterBox.Name = "afterBox";
-			this.afterBox.Size = new System.Drawing.Size(275, 24);
-			this.afterBox.TabIndex = 1;
+			this.afterBox.Size = new System.Drawing.Size(283, 25);
+			this.afterBox.TabIndex = 2;
 			this.afterBox.Text = "Remove spacing after paragraphs";
 			this.afterBox.UseVisualStyleBackColor = true;
 			// 
 			// betweenBox
 			// 
-			this.betweenBox.AutoSize = true;
+			this.betweenBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
 			this.betweenBox.Checked = true;
 			this.betweenBox.CheckState = System.Windows.Forms.CheckState.Checked;
-			this.betweenBox.Location = new System.Drawing.Point(22, 94);
+			this.betweenBox.Cursor = System.Windows.Forms.Cursors.Hand;
+			this.betweenBox.ForeColor = System.Drawing.SystemColors.ControlText;
+			this.betweenBox.Location = new System.Drawing.Point(29, 101);
 			this.betweenBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.betweenBox.Name = "betweenBox";
-			this.betweenBox.Size = new System.Drawing.Size(254, 24);
-			this.betweenBox.TabIndex = 2;
+			this.betweenBox.Size = new System.Drawing.Size(263, 25);
+			this.betweenBox.TabIndex = 3;
 			this.betweenBox.Text = "Remove spacing between lines";
 			this.betweenBox.UseVisualStyleBackColor = true;
 			// 
 			// headingsBox
 			// 
-			this.headingsBox.AutoSize = true;
+			this.headingsBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
 			this.headingsBox.Checked = true;
 			this.headingsBox.CheckState = System.Windows.Forms.CheckState.Checked;
-			this.headingsBox.Location = new System.Drawing.Point(22, 155);
+			this.headingsBox.Cursor = System.Windows.Forms.Cursors.Hand;
+			this.headingsBox.ForeColor = System.Drawing.SystemColors.ControlText;
+			this.headingsBox.Location = new System.Drawing.Point(29, 162);
 			this.headingsBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.headingsBox.Name = "headingsBox";
-			this.headingsBox.Size = new System.Drawing.Size(156, 24);
-			this.headingsBox.TabIndex = 3;
+			this.headingsBox.Size = new System.Drawing.Size(160, 25);
+			this.headingsBox.TabIndex = 4;
 			this.headingsBox.Text = "Include headings";
 			this.headingsBox.UseVisualStyleBackColor = true;
 			// 
 			// cancelButton
 			// 
 			this.cancelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+			this.cancelButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
 			this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-			this.cancelButton.Location = new System.Drawing.Point(270, 215);
+			this.cancelButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+			this.cancelButton.ImageOver = null;
+			this.cancelButton.Location = new System.Drawing.Point(325, 230);
 			this.cancelButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.cancelButton.Name = "cancelButton";
+			this.cancelButton.ThemedBack = null;
+			this.cancelButton.ThemedFore = null;
+			this.cancelButton.ShowBorder = true;
 			this.cancelButton.Size = new System.Drawing.Size(112, 35);
-			this.cancelButton.TabIndex = 4;
+			this.cancelButton.TabIndex = 5;
 			this.cancelButton.Text = "Cancel";
 			this.cancelButton.UseVisualStyleBackColor = true;
 			// 
 			// okButton
 			// 
 			this.okButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+			this.okButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
 			this.okButton.DialogResult = System.Windows.Forms.DialogResult.OK;
-			this.okButton.Location = new System.Drawing.Point(148, 215);
+			this.okButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+			this.okButton.ImageOver = null;
+			this.okButton.Location = new System.Drawing.Point(205, 230);
 			this.okButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.okButton.Name = "okButton";
+			this.okButton.ThemedBack = null;
+			this.okButton.ThemedFore = null;
+			this.okButton.ShowBorder = true;
 			this.okButton.Size = new System.Drawing.Size(112, 35);
-			this.okButton.TabIndex = 5;
+			this.okButton.TabIndex = 0;
 			this.okButton.Text = "OK";
 			this.okButton.UseVisualStyleBackColor = true;
 			// 
@@ -118,36 +138,37 @@
 			this.AcceptButton = this.okButton;
 			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+			this.BackColor = System.Drawing.SystemColors.Control;
 			this.CancelButton = this.cancelButton;
-			this.ClientSize = new System.Drawing.Size(405, 274);
+			this.ClientSize = new System.Drawing.Size(451, 280);
 			this.Controls.Add(this.okButton);
 			this.Controls.Add(this.cancelButton);
 			this.Controls.Add(this.headingsBox);
 			this.Controls.Add(this.betweenBox);
 			this.Controls.Add(this.afterBox);
 			this.Controls.Add(this.beforeBox);
+			this.ForeColor = System.Drawing.SystemColors.ControlText;
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.MaximizeBox = false;
 			this.MinimizeBox = false;
 			this.Name = "RemoveSpacingDialog";
-			this.Padding = new System.Windows.Forms.Padding(18);
+			this.Padding = new System.Windows.Forms.Padding(25, 25, 10, 10);
 			this.ShowInTaskbar = false;
 			this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
 			this.Text = "Remove Spacing";
 			this.ResumeLayout(false);
-			this.PerformLayout();
 
 		}
 
 		#endregion
 
-		private System.Windows.Forms.CheckBox beforeBox;
-		private System.Windows.Forms.CheckBox afterBox;
-		private System.Windows.Forms.CheckBox betweenBox;
-		private System.Windows.Forms.CheckBox headingsBox;
-		private System.Windows.Forms.Button cancelButton;
-		private System.Windows.Forms.Button okButton;
+		private UI.MoreCheckBox beforeBox;
+		private UI.MoreCheckBox afterBox;
+		private UI.MoreCheckBox betweenBox;
+		private UI.MoreCheckBox headingsBox;
+		private UI.MoreButton cancelButton;
+		private UI.MoreButton okButton;
 	}
 }

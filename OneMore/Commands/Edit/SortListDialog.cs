@@ -7,7 +7,7 @@ namespace River.OneMoreAddIn.Commands
 	using Resx = River.OneMoreAddIn.Properties.Resources;
 
 
-	internal partial class SortListDialog : UI.LocalizableForm
+	internal partial class SortListDialog : UI.MoreForm
 	{
 		public SortListDialog()
 		{

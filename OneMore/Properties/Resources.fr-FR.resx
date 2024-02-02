@@ -269,6 +269,10 @@ Inverser</value>
     <value>Définir les alias de commande à utiliser dans la palette de commandes</value>
     <comment>intro box</comment>
   </data>
+  <data name="AliasSheet_introBox.Text" xml:space="preserve">
+    <value>Définissez les alias de commande à utiliser dans la palette de commande.</value>
+    <comment>label</comment>
+  </data>
   <data name="AliasSheet_Title" xml:space="preserve">
     <value>Alias ​​de commande</value>
     <comment>sheet</comment>
@@ -429,10 +433,6 @@ Inverser</value>
     <value>Sélectionnez un mot ou une phrase dans un paragraphe</value>
     <comment>message box</comment>
   </data>
-  <data name="BreakingDialog_groupBox.Text" xml:space="preserve">
-    <value>Espacement</value>
-    <comment>group box</comment>
-  </data>
   <data name="BreakingDialog_oneButton.Text" xml:space="preserve">
     <value>Un espace entre les phrases</value>
     <comment>radio</comment>
@@ -517,31 +517,31 @@ Inverser</value>
     <value>Choisir la langue</value>
     <comment>dialog title</comment>
   </data>
+  <data name="ColorizerSheet_applyBox.Text" xml:space="preserve">
+    <value>Appliquez toujours les polices suivantes lors du code colorisant</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="ColorizerSheet_enabledLabel.Text" xml:space="preserve">
+    <value>Langues activées</value>
+    <comment>label</comment>
+  </data>
   <data name="ColorizerSheet_fixedBox.Text" xml:space="preserve">
     <value>Afficher uniquement les polices à largeur fixe</value>
     <comment>checkbox</comment>
   </data>
-  <data name="ColorizeSheet_applyBox.Text" xml:space="preserve">
-    <value>Appliquez toujours les polices suivantes lors de la colorisation du code</value>
-    <comment>checkbox</comment>
-  </data>
-  <data name="ColorizeSheet_enabledLabel" xml:space="preserve">
-    <value>Langues activées</value>
-    <comment>label</comment>
-  </data>
-  <data name="ColorizeSheet_font2Label.Text" xml:space="preserve">
+  <data name="ColorizerSheet_font2Label.Text" xml:space="preserve">
     <value>Secondaire</value>
     <comment>label</comment>
   </data>
-  <data name="ColorizeSheet_fontLabel.Text" xml:space="preserve">
+  <data name="ColorizerSheet_fontLabel.Text" xml:space="preserve">
     <value>Primaire</value>
     <comment>label</comment>
   </data>
-  <data name="ColorizeSheet_introBox.Text" xml:space="preserve">
-    <value>Personnalisez le comportement de la commande Coloriser. La police secondaire s'applique lors de l'effondrement de PlantUML</value>
+  <data name="ColorizerSheet_introBox.Text" xml:space="preserve">
+    <value>Personnalisez le comportement de la commande colorize. La police secondaire s'applique lors de l'effondrement de Plantuml</value>
     <comment>label</comment>
   </data>
-  <data name="ColorizeSheet_Title" xml:space="preserve">
+  <data name="ColorizerSheet_Title" xml:space="preserve">
     <value>Coloriser</value>
   </data>
   <data name="Command_Error" xml:space="preserve">
@@ -883,6 +883,10 @@ Police de la dernière colonne</value>
     <value>Cyclisme</value>
     <comment>emoji</comment>
   </data>
+  <data name="Emoji_Delta" xml:space="preserve">
+    <value>Delta</value>
+    <comment>emoji</comment>
+  </data>
   <data name="Emoji_Envelope" xml:space="preserve">
     <value>Enveloppe</value>
     <comment>emoji</comment>
@@ -1143,6 +1147,18 @@ Fichier OneNote (*.one)</value>
     <value>Largeur d'image d'importation préférée</value>
     <comment>label</comment>
   </data>
+  <data name="FileQuickNotesCommand_noQuickNotes" xml:space="preserve">
+    <value>Impossible de charger les notes rapides. Vérifiez l'emplacement dans les options OneNote.</value>
+    <comment>message</comment>
+  </data>
+  <data name="FileQuickNotesCommand_noTargetNotebook" xml:space="preserve">
+    <value>Impossible de trouver le bloc-notes cible. Ouvrez les paramètres OneMore pour spécifier une cible.</value>
+    <comment>message</comment>
+  </data>
+  <data name="FileQuickNotesCommand_noTargetSection" xml:space="preserve">
+    <value>Impossible de trouver la section cible. Ouvrez les paramètres OneMore pour spécifier une cible.</value>
+    <comment>message</comment>
+  </data>
   <data name="FitGridToTextCommand_noGrid" xml:space="preserve">
     <value>Activer les lignes de quadrillage avant d'utiliser cette commande</value>
     <comment>message</comment>
@@ -1248,7 +1264,17 @@ Symboles : PI, E</value>
     <comment>textbox</comment>
   </data>
   <data name="GeneralSheet_langLabel.Text" xml:space="preserve">
-    <value>Langue d'affichage (doit redémarrer OneNote)</value>
+    <value>Langue</value>
+    <comment>label</comment>
+  </data>
+  <data name="GeneralSheet_themeBox.Text" xml:space="preserve">
+    <value>Système
+Lumière
+Sombre</value>
+    <comment>combobox</comment>
+  </data>
+  <data name="GeneralSheet_themeLabel.Text" xml:space="preserve">
+    <value>Thème</value>
     <comment>label</comment>
   </data>
   <data name="GeneralSheet_Title" xml:space="preserve">
@@ -1359,11 +1385,11 @@ Fond jaune</value>
     <comment>highlight command message</comment>
   </data>
   <data name="HighlightsSheet_deepRadio.Text" xml:space="preserve">
-    <value>Profond:</value>
+    <value>Profond</value>
     <comment>radio</comment>
   </data>
   <data name="HighlightsSheet_fadedRadio.Text" xml:space="preserve">
-    <value>Délavé:</value>
+    <value>Délavé</value>
     <comment>radio</comment>
   </data>
   <data name="HighlightsSheet_introBox.Text" xml:space="preserve">
@@ -1371,10 +1397,10 @@ Fond jaune</value>
     <comment>textbox</comment>
   </data>
   <data name="HighlightsSheet_normalRadio.Text" xml:space="preserve">
-    <value>Brillant:</value>
+    <value>Lumineux</value>
     <comment>radio</comment>
   </data>
-  <data name="HighlightsSheet_themeGroup.Text" xml:space="preserve">
+  <data name="HighlightsSheet_themesGroup.Text" xml:space="preserve">
     <value>Thèmes</value>
     <comment>group</comment>
   </data>
@@ -1412,6 +1438,14 @@ Fond jaune</value>
   <data name="ImagesSheet_plantGroup.Text" xml:space="preserve">
     <value>Options PlantUML</value>
     <comment>groupbox</comment>
+  </data>
+  <data name="ImagesSheet_plantRemoveBox.Text" xml:space="preserve">
+    <value>Retirez le texte Plantuml et intégrez-le dans l'image</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="ImagesSheet_plantUriLabel.Text" xml:space="preserve">
+    <value>Adresse du serveur Plantuml (laissez en blanc pour utiliser par défaut)</value>
+    <comment>label</comment>
   </data>
   <data name="ImagesSheet_resizeGroup.Text" xml:space="preserve">
     <value>Options de redimensionnement</value>
@@ -1688,8 +1722,8 @@ Titre personnalisé 3</value>
     <value>Dégager</value>
     <comment>toolstrip button</comment>
   </data>
-  <data name="KeyboardSheet_introLabel.Text" xml:space="preserve">
-    <value>Gérer mes raccourcis clavier personnalisés. Sélectionnez une commande et appuyez sur une séquence de touches.</value>
+  <data name="KeyboardSheet_introBox.Text" xml:space="preserve">
+    <value>Gérez mes raccourcis clavier personnalisés. Sélectionnez une commande et appuyez sur une séquence de touches.</value>
     <comment>label</comment>
   </data>
   <data name="KeyboardSheet_keyColumn.HeaderText" xml:space="preserve">
@@ -2181,7 +2215,7 @@ Carnet actuel</value>
     <value>Supprimer le plug-in "{0}"</value>
     <comment>question</comment>
   </data>
-  <data name="PluginsSheet_introLabel.Text" xml:space="preserve">
+  <data name="PluginsSheet_introBox.Text" xml:space="preserve">
     <value>Gérer mes plugins</value>
     <comment>label</comment>
   </data>
@@ -2676,24 +2710,50 @@ Sélectionnez Non pour conserver une ligne vide entre les paragraphes</value>
     <value>Organiser les conteneurs</value>
     <comment>ribbon button</comment>
   </data>
-  <data name="RibbonBarSheet_editGroup.Text" xml:space="preserve">
-    <value>Modifier les commandes</value>
-    <comment>settings dialog, ribbon bar options</comment>
-  </data>
   <data name="RibbonBarSheet_editIconBox.Text" xml:space="preserve">
     <value>Afficher uniquement les icônes pour les commandes d'édition</value>
     <comment>settings dialog, ribbon bar options</comment>
   </data>
-  <data name="RibbonBarSheet_formulaGroup.Text" xml:space="preserve">
-    <value>Commandes de formule</value>
-    <comment>settings dialog, ribbon bar options</comment>
+  <data name="RibbonBarSheet_editRibbonBox.Text" xml:space="preserve">
+    <value>Modifier les commandes</value>
+    <comment>checkbox</comment>
   </data>
   <data name="RibbonBarSheet_formulaIconBox.Text" xml:space="preserve">
     <value>Afficher uniquement les icônes des commandes de formule</value>
     <comment>settings dialog, ribbon bar options</comment>
   </data>
+  <data name="RibbonBarSheet_formulaRibbonBox.Text" xml:space="preserve">
+    <value>Commandes de formule</value>
+    <comment>checkbox</comment>
+  </data>
   <data name="RibbonBarSheet_introBox.Text" xml:space="preserve">
     <value>Choisissez les commandes à inclure dans la barre de ruban et si vous souhaitez afficher des icônes ou des icônes et des étiquettes. </value>
+    <comment>settings dialog, ribbon bar options</comment>
+  </data>
+  <data name="RibbonBarSheet_positionBox.Text" xml:space="preserve">
+    <value>Groupe Presse-papiers
+Groupe de texte de base
+Groupe de styles
+Groupe de balises
+Groupe de messagerie
+Groupe de réunions
+Après le dernier groupe</value>
+    <comment>combobox</comment>
+  </data>
+  <data name="RibbonBarSheet_positionGroup.Text" xml:space="preserve">
+    <value>Position</value>
+    <comment>groupbox</comment>
+  </data>
+  <data name="RibbonBarSheet_positionIntroLabel.Text" xml:space="preserve">
+    <value>Sélectionnez l'emplacement du groupe de ruban OneMore.</value>
+    <comment>intro label</comment>
+  </data>
+  <data name="RibbonBarSheet_positionLabel.Text" xml:space="preserve">
+    <value>Après le groupe OneMore</value>
+    <comment>label</comment>
+  </data>
+  <data name="RibbonBarSheet_quickGroup.Text" xml:space="preserve">
+    <value>Commandes rapides</value>
     <comment>settings dialog, ribbon bar options</comment>
   </data>
   <data name="RibbonBarSheet_Title" xml:space="preserve">
@@ -4103,18 +4163,14 @@ Dans cette section</value>
     <value>Modèle d'URL</value>
     <comment>url col</comment>
   </data>
-  <data name="SearchEngineSheet_deleteLabel.Text" xml:space="preserve">
-    <value>Supprimer:</value>
-    <comment>label</comment>
-  </data>
   <data name="SearchEngineSheet_downButton.Text" xml:space="preserve">
     <value>Descendre</value>
     <comment>button</comment>
   </data>
-  <data name="SearchEngineSheet_introLabel.Text" xml:space="preserve">
-    <value>Les modèles d'URL doivent contenir un jeton de remplacement de chaîne, tel que &amp;q={0}
+  <data name="SearchEngineSheet_introBox.Text" xml:space="preserve">
+    <value>Les modèles d'URL doivent contenir un jeton de remplacement de chaîne, tel que &amp; q = {0}
 
-Les moteurs de recherche apparaîtront dans le menu contextuel de la page, faites un clic droit.</value>
+Les moteurs de recherche apparaîtront dans le menu du contexte de la page, cliquez avec le bouton droit.</value>
     <comment>label</comment>
   </data>
   <data name="SearchEngineSheet_upButton.Text" xml:space="preserve">
@@ -4312,7 +4368,7 @@ Es-tu sur de vouloir continuer?</value>
     <value>Supprimer l'extrait "{0}"</value>
     <comment>question</comment>
   </data>
-  <data name="SnippetsSheet_introLabel.Text" xml:space="preserve">
+  <data name="SnippetsSheet_introBox.Text" xml:space="preserve">
     <value>Gérer mes extraits</value>
     <comment>label</comment>
   </data>
@@ -4596,20 +4652,14 @@ Titre - inclure dans la table des matières</value>
     <comment>message</comment>
   </data>
   <data name="StylizeImagesDialog_backBox.Text" xml:space="preserve">
-    <value>Appliquer aux images d'arrière-plan</value>
+    <value>Appliquer aux images d'arrière-plan
+Images d'arrière-plan : {0}, sélectionnées : {1}</value>
     <comment>checkbox</comment>
-  </data>
-  <data name="StylizeImagesDialog_backImagesLabel.Text" xml:space="preserve">
-    <value>Images d'arrière-plan : {0}, sélectionnées : {1}</value>
-    <comment>label</comment>
   </data>
   <data name="StylizeImagesDialog_foreBox.Text" xml:space="preserve">
-    <value>Appliquer aux images de premier plan</value>
+    <value>Appliquer aux images de premier plan
+Images de premier plan : {0}, sélectionnées : {1}</value>
     <comment>checkbox</comment>
-  </data>
-  <data name="StylizeImagesDialog_foreImagesLabel.Text" xml:space="preserve">
-    <value>Images de premier plan : {0}, sélectionnées : {1}</value>
-    <comment>label</comment>
   </data>
   <data name="StylizeImagesDialog_styleBox.Text" xml:space="preserve">
     <value>Échelle de gris

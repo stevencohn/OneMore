@@ -1,5 +1,5 @@
 ﻿//************************************************************************************************
-// Copyright © 2016 Steven M Cohn.  Yada yada...
+// Copyright © 2016 Steven M Cohn. All rights reserved.
 //************************************************************************************************
 
 namespace River.OneMoreAddIn.Commands
@@ -24,7 +24,7 @@ namespace River.OneMoreAddIn.Commands
 	/// All other local disposables are handled.
 	/// </remarks>
 
-	internal partial class StyleDialog : LocalizableForm
+	internal partial class StyleDialog : MoreForm
 	{
 		private Color pageColor;
 		private readonly Color originalColor;

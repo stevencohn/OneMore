@@ -1,5 +1,5 @@
 ﻿//************************************************************************************************
-// Copyright © 2020 Steven M. Cohn. All Rights Reserved.
+// Copyright © 2020 Steven M Cohn. All Rights Reserved.
 //************************************************************************************************
 
 #pragma warning disable S3267 // Loops should be simplified with "LINQ" expressions
@@ -50,13 +50,22 @@ namespace River.OneMoreAddIn.Settings
 			}
 
 
+			public Color MenuColor { get; set; }
+			public Color MenuTextColor { get; set; }
+			public Color ItemColor { get; set; }
+			public Color ItemTextColor { get; set; }
+
+
 			public void AddMenus(IEnumerable<CtxMenu> menus)
 			{
 				var width = 0;
 
+				SuspendLayout();
 				foreach (var menu in menus)
 				{
-					var mitem = new MenuItemPanel(menu);
+					var mitem = new MenuItemPanel(menu) { BackColor = MenuColor };
+					mitem.Controls[0].ForeColor = MenuTextColor;
+
 					Controls.Add(mitem);
 
 					// menu items are not indented but want to have the same right-alignment
@@ -71,7 +80,12 @@ namespace River.OneMoreAddIn.Settings
 					{
 						foreach (var command in menu.Commands)
 						{
-							var citem = new MenuItemPanel(command);
+							var citem = new MenuItemPanel(command)
+							{
+								BackColor = ItemColor,
+								ForeColor = ItemTextColor
+							};
+
 							Controls.Add(citem);
 							if (width < citem.Width)
 							{
@@ -82,21 +96,20 @@ namespace River.OneMoreAddIn.Settings
 				}
 
 				// a little extra
-				width += 20;
+				width = Math.Min(width + 100, Parent.Width);
 
 				foreach (MenuItemPanel item in Controls)
 				{
 					SetFlowBreak(item, true);
 					item.Width = item.Indented ? width : width + SystemInformation.MenuCheckSize.Width;
 				}
+				ResumeLayout();
 			}
 		}
 
 		private sealed class MenuItemPanel : Panel
 		{
-			private readonly HandyCheckBox box;
-			private readonly IntPtr hcursor;
-
+			private readonly UI.MoreCheckBox box;
 
 			public bool Checked
 			{
@@ -109,67 +122,36 @@ namespace River.OneMoreAddIn.Settings
 
 
 			public MenuItemPanel(CtxMenu item)
-				: this(item.Name, item.ResID, Color.FromArgb(214, 166, 211))
+				: this(item.Name, item.ResID)
 			{
 			}
 
 
 			public MenuItemPanel(CtxMenuItem item)
-				: this(item.Name, item.ResID, Color.Transparent)
+				: this(item.Name, item.ResID)
 			{
 				Margin = new Padding(SystemInformation.MenuCheckSize.Width, 1, 1, 0);
 				Indented = true;
 			}
 
 
-			private MenuItemPanel(string name, string resID, Color color)
+			private MenuItemPanel(string name, string resID)
 			{
 				using var graphics = Graphics.FromHwnd(IntPtr.Zero);
 				var textSize = graphics.MeasureString(name, Font);
 				Height = (int)(textSize.Height + 6);
 
-				BackColor = color;
-
-				box = new HandyCheckBox
+				box = new UI.MoreCheckBox
 				{
 					Dock = DockStyle.Fill,
 					Padding = new Padding(4, 2, 10, 2),
 					Text = name
 				};
 
-				hcursor = Native.LoadCursor(IntPtr.Zero, Native.IDC_HAND);
-
-				box.MouseEnter += (s, e) => { Native.SetCursor(hcursor); };
-				box.MouseLeave += (s, e) => { box.Cursor = Cursors.Default; };
-
 				// track by ResID, settings
 				Tag = resID;
 
 				Controls.Add(box);
-			}
-		}
-
-
-		private sealed class HandyCheckBox : CheckBox
-		{
-			private readonly IntPtr hcursor;
-
-			public HandyCheckBox()
-			{
-				Cursor = Cursors.Hand;
-				hcursor = Native.LoadCursor(IntPtr.Zero, Native.IDC_HAND);
-			}
-
-			protected override void WndProc(ref Message m)
-			{
-				if (m.Msg == Native.WM_SETCURSOR && hcursor != IntPtr.Zero)
-				{
-					Native.SetCursor(hcursor);
-					m.Result = IntPtr.Zero; // indicate handled
-					return;
-				}
-
-				base.WndProc(ref m);
 			}
 		}
 		#endregion Private classes
@@ -199,6 +181,17 @@ namespace River.OneMoreAddIn.Settings
 			};
 
 			contentPanel.Controls.Add(menuPanel);
+		}
+
+
+		protected override void OnLoad(EventArgs e)
+		{
+			// after ThemeManager is initialized
+			menuPanel.MenuColor = manager.GetThemedColor("Control");
+			menuPanel.MenuTextColor = manager.GetThemedColor("ActiveCaptionText");
+			menuPanel.ItemColor = manager.GetThemedColor("ControlLightLight");
+			menuPanel.ItemTextColor = manager.GetThemedColor("ControlText");
+			manager.InitializeTheme(menuPanel);
 
 			var menus = CollectCommandMenus();
 			menuPanel.AddMenus(menus);
@@ -217,10 +210,12 @@ namespace River.OneMoreAddIn.Settings
 					}
 				}
 			}
+
+			base.OnLoad(e);
 		}
 
 
-		IEnumerable<CtxMenu> CollectCommandMenus()
+		private IEnumerable<CtxMenu> CollectCommandMenus()
 		{
 			var atype = typeof(CommandAttribute);
 

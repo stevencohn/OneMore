@@ -83,10 +83,17 @@ namespace River.OneMoreAddIn.Commands
 			using var dialog = new FormulaDialog();
 
 			// display selected cell names
-			dialog.SetCellNames(
-				string.Join(", ", cells.Select(c => c.Coordinates))); // + $" ({rangeType})");
+			if (cells.Count == 1)
+			{
+				dialog.SetCellNames(cells[0].Coordinates);
+			}
+			else
+			{
+				dialog.SetCellNames(
+					$"{cells[0].Coordinates} - {cells[cells.Count - 1].Coordinates}");
+			}
 
-			var cell = cells.First();
+			var cell = cells[0];
 
 			// display formula of first cell if any
 			var formula = new Formula(cell);

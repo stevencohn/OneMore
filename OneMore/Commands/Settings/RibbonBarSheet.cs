@@ -1,10 +1,10 @@
 ﻿//************************************************************************************************
-// Copyright © 2020 Steven M. Cohn. All Rights Reserved.
+// Copyright © 2020 Steven M Cohn. All Rights Reserved.
 //************************************************************************************************
 
 namespace River.OneMoreAddIn.Settings
 {
-	using Resx = River.OneMoreAddIn.Properties.Resources;
+	using Resx = Properties.Resources;
 
 
 	internal partial class RibbonBarSheet : SheetBase
@@ -20,16 +20,22 @@ namespace River.OneMoreAddIn.Settings
             {
                 Localize(new string[]
                 {
+                    "positionIntroLabel",
+                    "positionGroup",
+                    "positionLabel",
+                    "positionBox",
                     "introBox",
-                    "editGroup",
+                    "quickGroup",
+                    "editRibbonBox",
                     "editIconBox",
-                    "formulaGroup",
+                    "formulaRibbonBox",
                     "formulaIconBox"
                 });
             }
-
+			
             var settings = provider.GetCollection(Name);
-            editRibbonBox.Checked = settings.Get<bool>("editCommands");
+			positionBox.SelectedIndex = settings.Get("position", positionBox.Items.Count - 1);
+			editRibbonBox.Checked = settings.Get<bool>("editCommands");
             editIconBox.Checked = settings.Get<bool>("editIconsOnly");
             formulaRibbonBox.Checked = settings.Get<bool>("formulaCommands");
             formulaIconBox.Checked = settings.Get<bool>("formulaIconsOnly");
@@ -64,7 +70,8 @@ namespace River.OneMoreAddIn.Settings
 
         public override bool CollectSettings()
         {
-            if (!editRibbonBox.Checked && !formulaRibbonBox.Checked)
+            if (!editRibbonBox.Checked && !formulaRibbonBox.Checked && 
+                positionBox.SelectedIndex == positionBox.Items.Count)
 			{
                 provider.RemoveCollection(Name);
                 return true;
@@ -73,8 +80,13 @@ namespace River.OneMoreAddIn.Settings
             var settings = provider.GetCollection(Name);
             var updated = false;
 
-            if (settings.Add("editCommands", editRibbonBox.Checked)) updated = true;
-            if (settings.Add("editIconsOnly", editIconBox.Checked)) updated = true;
+            // NOTE that the indexes MUST match RibbonGroups enum or it will break user's
+            // established settings so may need migration if changed...
+
+			if (settings.Add("position", positionBox.SelectedIndex)) updated = true;
+
+			if (settings.Add("editCommands", editRibbonBox.Checked)) updated = true;
+			if (settings.Add("editIconsOnly", editIconBox.Checked)) updated = true;
             if (settings.Add("formulaCommands", formulaRibbonBox.Checked)) updated = true;
             if (settings.Add("formulaIconsOnly", formulaIconBox.Checked)) updated = true;
 

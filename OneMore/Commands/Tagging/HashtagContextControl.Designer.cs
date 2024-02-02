@@ -33,30 +33,35 @@
 			this.tooltip = new System.Windows.Forms.ToolTip(this.components);
 			this.snippetsPanel = new System.Windows.Forms.FlowLayoutPanel();
 			this.dateLabel = new System.Windows.Forms.Label();
-			this.checkbox = new System.Windows.Forms.CheckBox();
+			this.checkbox = new River.OneMoreAddIn.UI.MoreCheckBox();
 			this.SuspendLayout();
 			// 
 			// pageLink
 			// 
+			this.pageLink.ActiveLinkColor = System.Drawing.Color.MediumOrchid;
 			this.pageLink.AutoSize = true;
 			this.pageLink.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.pageLink.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.pageLink.HoverColor = System.Drawing.Color.MediumOrchid;
 			this.pageLink.LinkColor = System.Drawing.Color.MediumOrchid;
-			this.pageLink.Location = new System.Drawing.Point(41, 10);
+			this.pageLink.Location = new System.Drawing.Point(41, 13);
 			this.pageLink.Name = "pageLink";
-			this.pageLink.Size = new System.Drawing.Size(502, 22);
+			this.pageLink.Size = new System.Drawing.Size(23, 22);
 			this.pageLink.TabIndex = 0;
 			this.pageLink.TabStop = true;
-			this.pageLink.Text = "/OneMore Wiki/Context Menus/Notebook Panel Context Menu";
+			this.pageLink.Text = "w";
+			this.pageLink.ThemedBack = null;
+			this.pageLink.ThemedFore = "LinkColor";
 			this.pageLink.VisitedLinkColor = System.Drawing.Color.MediumOrchid;
 			this.pageLink.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.NavigateTo);
 			// 
 			// snippetsPanel
 			// 
+			this.snippetsPanel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
 			this.snippetsPanel.AutoSize = true;
 			this.snippetsPanel.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
-			this.snippetsPanel.Location = new System.Drawing.Point(58, 38);
+			this.snippetsPanel.Location = new System.Drawing.Point(58, 41);
 			this.snippetsPanel.Margin = new System.Windows.Forms.Padding(3, 6, 3, 3);
 			this.snippetsPanel.Name = "snippetsPanel";
 			this.snippetsPanel.Size = new System.Drawing.Size(635, 41);
@@ -77,9 +82,13 @@
 			// checkbox
 			// 
 			this.checkbox.AutoSize = true;
-			this.checkbox.Location = new System.Drawing.Point(13, 13);
+			this.checkbox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(231)))), ((int)(((byte)(231)))));
+			this.checkbox.Cursor = System.Windows.Forms.Cursors.Hand;
+			this.checkbox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+			this.checkbox.Location = new System.Drawing.Point(13, 12);
+			this.checkbox.MinimumSize = new System.Drawing.Size(24, 24);
 			this.checkbox.Name = "checkbox";
-			this.checkbox.Size = new System.Drawing.Size(22, 21);
+			this.checkbox.Size = new System.Drawing.Size(24, 24);
 			this.checkbox.TabIndex = 3;
 			this.checkbox.UseVisualStyleBackColor = true;
 			this.checkbox.CheckedChanged += new System.EventHandler(this.DoCheckChanged);
@@ -88,11 +97,12 @@
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.BackColor = System.Drawing.SystemColors.Window;
+			this.BackColor = System.Drawing.SystemColors.ControlLightLight;
 			this.Controls.Add(this.checkbox);
 			this.Controls.Add(this.dateLabel);
 			this.Controls.Add(this.snippetsPanel);
 			this.Controls.Add(this.pageLink);
+			this.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.Margin = new System.Windows.Forms.Padding(3, 3, 3, 6);
 			this.Name = "HashtagContextControl";
 			this.Padding = new System.Windows.Forms.Padding(10);
@@ -108,6 +118,6 @@
 		private System.Windows.Forms.ToolTip tooltip;
 		private System.Windows.Forms.FlowLayoutPanel snippetsPanel;
 		private System.Windows.Forms.Label dateLabel;
-		private System.Windows.Forms.CheckBox checkbox;
+		private UI.MoreCheckBox checkbox;
 	}
 }
