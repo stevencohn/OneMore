@@ -80,8 +80,6 @@ namespace River.OneMoreAddIn.Settings
 			// 
 			// quickBox
 			// 
-			this.quickBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
 			this.quickBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(231)))), ((int)(((byte)(231)))));
 			this.quickBox.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.quickBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
@@ -194,8 +192,6 @@ namespace River.OneMoreAddIn.Settings
 			// 
 			// corrallBox
 			// 
-			this.corrallBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
 			this.corrallBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(231)))), ((int)(((byte)(231)))));
 			this.corrallBox.Checked = true;
 			this.corrallBox.CheckState = System.Windows.Forms.CheckState.Checked;
