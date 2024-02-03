@@ -2108,6 +2108,9 @@ Bewerben Sie sich auf dieses Notizbuch</value>
   <data name="phrase_PathNotFound" xml:space="preserve">
     <value>Pfad nicht gefunden</value>
   </data>
+  <data name="phrase_QuickNote" xml:space="preserve">
+    <value>Schnelle Notiz</value>
+  </data>
   <data name="PlantUml_broken" xml:space="preserve">
     <value>PlantUML-Text ist entweder ungültig oder kann keine Verbindung zwischen Text und Bild finden</value>
     <comment>error message</comment>

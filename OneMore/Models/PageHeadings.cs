@@ -1,5 +1,5 @@
 ﻿//************************************************************************************************
-// Copyright © 2020 Steven M Cohn.  All rights reserved.
+// Copyright © 2020 Steven M Cohn. All rights reserved.
 //************************************************************************************************
 
 namespace River.OneMoreAddIn.Models
@@ -13,7 +13,7 @@ namespace River.OneMoreAddIn.Models
 	using System.Xml;
 	using System.Xml.Linq;
 	using Hap = HtmlAgilityPack;
-	using Resx = River.OneMoreAddIn.Properties.Resources;
+	using Resx = Properties.Resources;
 
 
 	internal partial class Page
@@ -188,7 +188,7 @@ namespace River.OneMoreAddIn.Models
 		}
 
 
-		private string GetHyperlink(XElement element, OneNote one)
+		public string GetHyperlink(XElement element, OneNote one)
 		{
 			var attr = element.Attribute("objectID");
 			if (!string.IsNullOrEmpty(attr?.Value))

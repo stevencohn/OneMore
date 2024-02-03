@@ -12,6 +12,7 @@ namespace River.OneMoreAddIn.Commands
 	using System.Collections.Generic;
 	using System.Drawing;
 	using System.Globalization;
+	using System.Linq;
 	using System.Text;
 	using System.Threading.Tasks;
 	using System.Windows.Forms;
@@ -102,10 +103,14 @@ namespace River.OneMoreAddIn.Commands
 			base.OnLoad(e);
 			BackColor = manager.GetThemedColor("Control");
 
-			pinnedBox.BackColor = BackColor;
+			var viewColor = manager.GetThemedColor("ListView");
+
+			pageBox.BackColor = viewColor;
+
+			pinnedBox.BackColor = viewColor;
 			pinnedBox.HighlightBackground = manager.GetThemedColor("LinkHighlight");
 
-			historyBox.BackColor = BackColor;
+			historyBox.BackColor = viewColor;
 			historyBox.HighlightBackground = manager.GetThemedColor("LinkHighlight");
 		}
 
@@ -289,28 +294,6 @@ namespace River.OneMoreAddIn.Commands
 		// Page headings...
 
 		#region Page headings
-		private async Task ShowPageOutline(HistoryRecord info)
-		{
-			await LoadPageHeadings(info.PageId);
-		}
-
-
-		private async void RefreshPageHeadings(object sender, EventArgs e)
-		{
-			await LoadPageHeadings(null);
-		}
-
-
-		private async void DoKeyDown(object sender, KeyEventArgs e)
-		{
-			if (e.KeyCode == Keys.F5)
-			{
-				await LoadPageHeadings(null);
-				e.Handled = true;
-			}
-		}
-
-
 		private async Task LoadPageHeadings(string pageID)
 		{
 			if (pageBox.InvokeRequired)
@@ -323,9 +306,30 @@ namespace River.OneMoreAddIn.Commands
 			var page = await one.GetPage(pageID ?? one.CurrentPageId, OneNote.PageDetail.Basic);
 			var headings = page.GetHeadings(one);
 
-			pageHeadLabel.Text = page.Title;
+			pageHeadLabel.Text = page.TitleID == null
+				? Resx.phrase_QuickNote
+				: page.Title;
 
 			pageBox.Controls.Clear();
+
+			if (page.TitleID != null)
+			{
+				var ns = page.Root.GetNamespaceOfPrefix(OneNote.Prefix);
+				var root = page.Root
+						.Elements(ns + "Title")
+						.Elements(ns + "OE")
+						.FirstOrDefault();
+
+				if (root != null)
+				{
+					headings.Insert(0, new()
+					{
+						Link = page.GetHyperlink(root, one),
+						Root = root,
+						Text = page.Title
+					});
+				}
+			}
 
 			if (headings.Count == 0)
 			{
@@ -403,6 +407,28 @@ namespace River.OneMoreAddIn.Commands
 
 			return false;
 		}
+
+
+		private async Task ShowPageOutline(HistoryRecord info)
+		{
+			await LoadPageHeadings(info.PageId);
+		}
+
+
+		private async void RefreshPageHeadings(object sender, EventArgs e)
+		{
+			await LoadPageHeadings(null);
+		}
+
+
+		private async void DoKeyDown(object sender, KeyEventArgs e)
+		{
+			if (e.KeyCode == Keys.F5)
+			{
+				await LoadPageHeadings(null);
+				e.Handled = true;
+			}
+		}
 		#endregion Page headings
 
 
@@ -427,11 +453,12 @@ namespace River.OneMoreAddIn.Commands
 			pinnedBox.BeginUpdate();
 			pinnedBox.Items.Clear();
 
+			var viewColor = manager.GetThemedColor("ListView");
 			pinned.ForEach(record =>
 			{
 				var control = new HistoryControl(record)
 				{
-					BackColor = BackColor
+					BackColor = viewColor
 				};
 
 				control.ApplyTheme(manager);
@@ -599,12 +626,13 @@ namespace River.OneMoreAddIn.Commands
 
 				historyBox.BeginUpdate();
 				historyBox.Items.Clear();
+				var viewColor = manager.GetThemedColor("ListView");
 
 				e.ForEach(record =>
 				{
 					var control = new HistoryControl(record)
 					{
-						BackColor = BackColor
+						BackColor = viewColor
 					};
 
 					control.ApplyTheme(manager);

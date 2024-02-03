@@ -2114,6 +2114,9 @@ OneNote 文件 (*.one)</value>
   <data name="phrase_PathNotFound" xml:space="preserve">
     <value>找不到路径</value>
   </data>
+  <data name="phrase_QuickNote" xml:space="preserve">
+    <value>快速注释</value>
+  </data>
   <data name="PlantUml_broken" xml:space="preserve">
     <value>PlantUML 文本无效或找不到文本和图像之间的连接</value>
     <comment>error message</comment>

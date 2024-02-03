@@ -2114,6 +2114,9 @@ Toepassen op dit notitieboekje</value>
   <data name="phrase_PathNotFound" xml:space="preserve">
     <value>Pad niet gevonden</value>
   </data>
+  <data name="phrase_QuickNote" xml:space="preserve">
+    <value>Snelle notitie</value>
+  </data>
   <data name="PlantUml_broken" xml:space="preserve">
     <value>PlantUML-tekst is ongeldig of kan geen verband vinden tussen tekst en afbeelding</value>
     <comment>error message</comment>

@@ -52,6 +52,7 @@
     "HintText": "#87CEFA",
     "InactiveWindow": "#212121",
     "LinkHighlight": "#323F4F",
+    "ListView": "#2B2B2B",
 
     "XmlComment": "LimeGreen",
     "XmlEditedBy": "#56B1E4",

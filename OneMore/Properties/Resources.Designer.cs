@@ -5357,6 +5357,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Quick Note.
+        /// </summary>
+        internal static string phrase_QuickNote {
+            get {
+                return ResourceManager.GetString("phrase_QuickNote", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to PlantUML text is either invalid or cannot find connection between text and image.
         /// </summary>
         internal static string PlantUml_broken {

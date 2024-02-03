@@ -2113,6 +2113,9 @@
   <data name="phrase_PathNotFound" xml:space="preserve">
     <value>المسار مفقود</value>
   </data>
+  <data name="phrase_QuickNote" xml:space="preserve">
+    <value>ملاحظة سريعة</value>
+  </data>
   <data name="PlantUml_broken" xml:space="preserve">
     <value>نص PlantUML إما غير صالح أو لا يمكنه العثور على اتصال بين النص والصورة</value>
     <comment>error message</comment>

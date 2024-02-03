@@ -2114,6 +2114,9 @@ Aplicar a este caderno</value>
   <data name="phrase_PathNotFound" xml:space="preserve">
     <value>Caminho não encontrado</value>
   </data>
+  <data name="phrase_QuickNote" xml:space="preserve">
+    <value>Nota rápida</value>
+  </data>
   <data name="PlantUml_broken" xml:space="preserve">
     <value>O texto PlantUML é inválido ou não consegue encontrar a conexão entre o texto e a imagem</value>
     <comment>error message</comment>

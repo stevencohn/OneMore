@@ -2140,6 +2140,9 @@ Apply to this notebook</value>
   <data name="phrase_PathNotFound" xml:space="preserve">
     <value>Path not found</value>
   </data>
+  <data name="phrase_QuickNote" xml:space="preserve">
+    <value>Quick Note</value>
+  </data>
   <data name="PlantUml_broken" xml:space="preserve">
     <value>PlantUML text is either invalid or cannot find connection between text and image</value>
     <comment>error message</comment>

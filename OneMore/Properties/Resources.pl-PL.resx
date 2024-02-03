@@ -2122,6 +2122,9 @@ Zastosuj do tego notatnika</value>
   <data name="phrase_PathNotFound" xml:space="preserve">
     <value>Droga nie znaleziona</value>
   </data>
+  <data name="phrase_QuickNote" xml:space="preserve">
+    <value>Krótka notatka</value>
+  </data>
   <data name="PlantUml_broken" xml:space="preserve">
     <value>Tekst PlantUML jest nieprawidłowy lub nie może znaleźć połączenia między tekstem a obrazem</value>
     <comment>error message</comment>

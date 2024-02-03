@@ -2124,6 +2124,9 @@ Total Row Font
   <data name="phrase_PathNotFound" xml:space="preserve">
     <value>נתיב לא נמצא</value>
   </data>
+  <data name="phrase_QuickNote" xml:space="preserve">
+    <value>הערה מהירה</value>
+  </data>
   <data name="PlantUml_broken" xml:space="preserve">
     <value>טקסט PlantUML אינו חוקי או שאינו יכול למצוא קשר בין טקסט לתמונה</value>
     <comment>error message</comment>
