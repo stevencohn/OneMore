@@ -514,15 +514,20 @@ namespace River.OneMoreAddIn.Commands
 		{
 			var selectionStart = -1;
 
+			// XML...
+
 			var matches = Regex.Matches(box.Text,
 				@"<((?:[a-zA-Z][a-zA-Z0-9]*?:)?[a-zA-Z][a-zA-Z0-9]*?)[^>]+selected=""all""[^\1]*?\1>");
+
+			var backColor = manager.GetThemedColor("XmlHighlight");
+			var foreColor = manager.GetThemedColor("XmlHighlightText");
 
 			foreach (Match match in matches)
 			{
 				box.SelectionStart = match.Index;
 				box.SelectionLength = match.Length;
-				box.SelectionColor= manager.GetThemedColor("XmlHighlightText");
-				box.SelectionBackColor = manager.GetThemedColor("XmlHighlight");
+				box.SelectionBackColor = backColor;
+				box.SelectionColor = foreColor;
 
 				if (selectionStart < 0)
 				{
@@ -540,21 +545,24 @@ namespace River.OneMoreAddIn.Commands
 					"lastModifiedTime|dateTime)=\"[^\"]*\""
 					);
 
+				foreColor = manager.GetThemedColor("XmlMatch");
+
 				foreach (Match m in matches)
 				{
 					box.SelectionStart = m.Index;
 					box.SelectionLength = m.Length;
-					box.SelectionColor = manager.GetThemedColor("XmlMatch");
+					box.SelectionColor = foreColor;
 				}
 
 				// objectID
-				matches = Regex.Matches(box.Text, "(?:objectID|ID)=\"[^\"]*\"");
+				matches = Regex.Matches(box.Text, "(?:objectID|[^\\w]ID)=\"[^\"]*\"");
+				foreColor = manager.GetThemedColor("XmlEditedBy");
 
 				foreach (Match m in matches)
 				{
 					box.SelectionStart = m.Index;
 					box.SelectionLength = m.Length;
-					box.SelectionColor = manager.GetThemedColor("XmlEditedBy");
+					box.SelectionColor = foreColor;
 				}
 			}
 
@@ -564,24 +572,26 @@ namespace River.OneMoreAddIn.Commands
 				//<one:T><![CDATA[A]]></one:T>
 
 				matches = Regex.Matches(box.Text, @"(?:\<!\[CDATA\[)([^\]]*)(?:\]]>)");
+				foreColor = manager.GetThemedColor("XmlString");
 
 				foreach (Match m in matches)
 				{
 					box.SelectionStart = m.Groups[1].Index;
 					box.SelectionLength = m.Groups[1].Length;
-					box.SelectionColor = manager.GetThemedColor("XmlString");
+					box.SelectionColor = foreColor;
 				}
 			}
 			else
 			{
 				// recycleBin
 				matches = Regex.Matches(box.Text, "(?:isRecycleBin|isInRecycleBin|isDeletedPages)=\"[^\"]*\"");
+				foreColor = manager.GetThemedColor("XmlTrash");
 
 				foreach (Match m in matches)
 				{
 					box.SelectionStart = m.Index;
 					box.SelectionLength = m.Length;
-					box.SelectionColor = manager.GetThemedColor("XmlTrash");
+					box.SelectionColor = foreColor;
 				}
 			}
 

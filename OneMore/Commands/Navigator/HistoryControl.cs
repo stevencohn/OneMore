@@ -27,6 +27,7 @@ namespace River.OneMoreAddIn.Commands
 			{
 				Image = Resx.SectionMask.MapColor(Color.Black, ColorHelper.FromHtml(info.Color)),
 				Dock = DockStyle.Left,
+				Padding = new(5, 0, 0, 0),
 				Width = 30
 			};
 
@@ -35,9 +36,9 @@ namespace River.OneMoreAddIn.Commands
 				Dock = DockStyle.Fill,
 				Text = info.Name,
 				Tag = info,
-				Font = new Font("Segoe UI", 8.5f, FontStyle.Regular, GraphicsUnit.Point),
-				Padding = new Padding(0),
-				Margin = new Padding(4, 0, 0, 0)
+				Font = new("Segoe UI", 8.5f, FontStyle.Regular, GraphicsUnit.Point),
+				Padding = new(0),
+				Margin = new(4, 0, 0, 0)
 			};
 
 			link.LinkClicked += new LinkLabelLinkClickedEventHandler(async (s, e) =>

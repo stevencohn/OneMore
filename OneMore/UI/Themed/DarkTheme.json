@@ -54,13 +54,13 @@
     "LinkHighlight": "#323F4F",
 
     "XmlComment": "LimeGreen",
-    "XmlEditedBy": "MediumTurquoise",
+    "XmlEditedBy": "#56B1E4",
     "XmlEditMode": "#323232",
     "XmlHighlight": "#CD853F",
     "XmlHighlightText": "#000000",
     "XmlMatch": "DarkGray",
     "XmlReadMode": "#2A2A2A",
-    "XmlString": "#E84C22",
+    "XmlString": "#DF603D",
     "XmlText": "#E6E6E6",
     "XmlTrash": "#C09B76"
   }
