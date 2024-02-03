@@ -1887,6 +1887,10 @@ Custom Heading 3</value>
     <value>Customize advanced options for the Navigator Service</value>
     <comment>label</comment>
   </data>
+  <data name="NavigatorSheet_quickBox.Text" xml:space="preserve">
+    <value>Track Quick Notes</value>
+    <comment>checkbox</comment>
+  </data>
   <data name="NavigatorSheet_Title" xml:space="preserve">
     <value>Navigator</value>
     <comment>sheet title</comment>

@@ -1873,6 +1873,10 @@ Título personalizado 3</value>
     <value>Personalizar opções avançadas para o serviço Navigator</value>
     <comment>label</comment>
   </data>
+  <data name="NavigatorSheet_quickBox.Text" xml:space="preserve">
+    <value>Acompanhe notas rápidas</value>
+    <comment>checkbox</comment>
+  </data>
   <data name="NavigatorSheet_Title" xml:space="preserve">
     <value>Navegador</value>
     <comment>sheet title</comment>

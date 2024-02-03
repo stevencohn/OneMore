@@ -1867,6 +1867,10 @@ Benutzerdefinierte Überschrift 3</value>
     <value>Passen Sie erweiterte Optionen für den Navigator-Dienst an</value>
     <comment>label</comment>
   </data>
+  <data name="NavigatorSheet_quickBox.Text" xml:space="preserve">
+    <value>Verfolgen Sie schnelle Notizen</value>
+    <comment>checkbox</comment>
+  </data>
   <data name="NavigatorSheet_Title" xml:space="preserve">
     <value>Navigator</value>
     <comment>sheet title</comment>

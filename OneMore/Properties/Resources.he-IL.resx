@@ -1883,6 +1883,10 @@ Total Row Font
     <value>התאם אישית אפשרויות מתקדמות עבור שירות הניווט</value>
     <comment>label</comment>
   </data>
+  <data name="NavigatorSheet_quickBox.Text" xml:space="preserve">
+    <value>עקוב אחר הערות מהירות</value>
+    <comment>checkbox</comment>
+  </data>
   <data name="NavigatorSheet_Title" xml:space="preserve">
     <value>נווט</value>
     <comment>sheet title</comment>

@@ -1869,6 +1869,10 @@ Titre personnalisé 3</value>
     <value>Personnaliser les options avancées du service Navigator</value>
     <comment>label</comment>
   </data>
+  <data name="NavigatorSheet_quickBox.Text" xml:space="preserve">
+    <value>Suivre les notes rapides</value>
+    <comment>checkbox</comment>
+  </data>
   <data name="NavigatorSheet_Title" xml:space="preserve">
     <value>Navigateur</value>
     <comment>sheet title</comment>

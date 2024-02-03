@@ -1873,6 +1873,10 @@ OneNote 文件 (*.one)</value>
     <value>自定义 Navigator 服务的高级选项</value>
     <comment>label</comment>
   </data>
+  <data name="NavigatorSheet_quickBox.Text" xml:space="preserve">
+    <value>追踪快速笔记</value>
+    <comment>checkbox</comment>
+  </data>
   <data name="NavigatorSheet_Title" xml:space="preserve">
     <value>导航</value>
     <comment>sheet title</comment>

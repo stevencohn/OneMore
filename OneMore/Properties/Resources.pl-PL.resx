@@ -1881,6 +1881,10 @@ Nagłówek niestandardowy 3</value>
     <value>Dostosuj zaawansowane opcje usługi Navigator</value>
     <comment>label</comment>
   </data>
+  <data name="NavigatorSheet_quickBox.Text" xml:space="preserve">
+    <value>Śledź szybkie notatki</value>
+    <comment>checkbox</comment>
+  </data>
   <data name="NavigatorSheet_Title" xml:space="preserve">
     <value>Nawigator</value>
     <comment>sheet title</comment>

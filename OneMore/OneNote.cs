@@ -79,7 +79,8 @@ namespace River.OneMoreAddIn
 
 		public class HierarchyInfo
 		{
-			public string PageId;		// ID of page if this is a page
+			public string PageId;       // ID of page if this is a page
+			public string TitleId;      // ID of page title OE if not a quick note
 			public string SectionId;	// immediate owner regardless of depth (e.g. SectionGroups)
 			public string NotebookId;	// ID of owning notebook
 			public string Name;			// name of object
@@ -633,6 +634,7 @@ namespace River.OneMoreAddIn
 			var info = new HierarchyInfo
 			{
 				PageId = pageId,
+				TitleId = page.TitleID,
 				Name = page.Root.Attribute("name")?.Value,
 				Link = GetHyperlink(page.PageId, string.Empty)
 			};

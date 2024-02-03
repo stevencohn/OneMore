@@ -4712,6 +4712,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Track Quick Notes.
+        /// </summary>
+        internal static string NavigatorSheet_quickBox_Text {
+            get {
+                return ResourceManager.GetString("NavigatorSheet_quickBox.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Navigator.
         /// </summary>
         internal static string NavigatorSheet_Title {

@@ -4,6 +4,7 @@
 
 namespace River.OneMoreAddIn.Commands
 {
+	using River.OneMoreAddIn.Settings;
 	using Newtonsoft.Json;
 	using System;
 	using System.Collections.Generic;
@@ -11,6 +12,7 @@ namespace River.OneMoreAddIn.Commands
 	using System.Threading;
 	using System.Threading.Tasks;
 	using HistoryRecord = OneNote.HierarchyInfo;
+	using Resx = Properties.Resources;
 
 
 	/// <summary>
@@ -23,6 +25,7 @@ namespace River.OneMoreAddIn.Commands
 		private static readonly SemaphoreSlim semapub = new(1);
 
 		private readonly string path;
+		private readonly bool quickNotes;
 		private FileSystemWatcher watcher;
 		private EventHandler<List<HistoryRecord>> navigated;
 		private DateTime lastWrite;
@@ -33,6 +36,10 @@ namespace River.OneMoreAddIn.Commands
 		{
 			path = Path.Combine(PathHelper.GetAppDataPath(), "Navigator.json");
 			lastWrite = DateTime.MinValue;
+
+			var settings = new SettingsProvider();
+			var collection = settings.GetCollection("NavigatorSheet");
+			quickNotes = collection.Get("quickNotes", false);
 		}
 
 
@@ -172,8 +179,21 @@ namespace River.OneMoreAddIn.Commands
 					record = await Resolve(pageID);
 					if (record != null)
 					{
-						log.History.Insert(0, record);
-						updated = true;
+						// tracking Quick Notes?
+						if (record.TitleId == null)
+						{
+							if (quickNotes)
+							{
+								record.Name = Resx.phrase_QuickNote;
+								log.History.Insert(0, record);
+								updated = true;
+							}
+						}
+						else
+						{
+							log.History.Insert(0, record);
+							updated = true;
+						}
 					}
 				}
 				else
@@ -238,7 +258,12 @@ namespace River.OneMoreAddIn.Commands
 			{
 				using var one = new OneNote { FallThrough = true };
 				var page = await one.GetPage(record.PageId, OneNote.PageDetail.Basic);
-				record.Name = page.Title;
+
+				if (page.TitleID != null)
+				{
+					record.Name = page.Title;
+				}
+
 				return true;
 			}
 			catch (System.Runtime.InteropServices.COMException exc)

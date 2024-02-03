@@ -41,6 +41,8 @@ namespace River.OneMoreAddIn.Settings
 			var interval = settings.Get("interval", NavigationService.DefaultPollingInterval);
 			intervalBox.Value = interval / Millisecond * 2;
 
+			quickBox.Checked = settings.Get("quickNotes", false);
+
 			//if (Screen.AllScreens.Length == 1)
 			//{
 			//	corrallBox.Text = $"{corrallBox.Text} ({Resx.NavigatorSheet_corrallBox_disabled})";
@@ -65,6 +67,10 @@ namespace River.OneMoreAddIn.Settings
 			var updated = settings.Add("depth", (int)depthBox.Value);
 
 			updated = settings.Add("interval", (int)(intervalBox.Value * Millisecond / 2)) || updated;
+
+			updated = quickBox.Checked
+				? settings.Add("quickNotes", true) || updated
+				: settings.Remove("quickNotes") || updated;
 
 			updated = corrallBox.Checked
 				? settings.Add("corralled", true) || updated

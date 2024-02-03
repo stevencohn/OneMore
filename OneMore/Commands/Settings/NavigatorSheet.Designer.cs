@@ -32,6 +32,7 @@ namespace River.OneMoreAddIn.Settings
 			this.components = new System.ComponentModel.Container();
 			this.introBox = new River.OneMoreAddIn.UI.MoreMultilineLabel();
 			this.layoutPanel = new System.Windows.Forms.Panel();
+			this.quickBox = new River.OneMoreAddIn.UI.MoreCheckBox();
 			this.advancedGroup = new River.OneMoreAddIn.UI.MoreGroupBox();
 			this.disabledBox = new River.OneMoreAddIn.UI.MoreCheckBox();
 			this.secLabel = new System.Windows.Forms.Label();
@@ -62,6 +63,7 @@ namespace River.OneMoreAddIn.Settings
 			// 
 			// layoutPanel
 			// 
+			this.layoutPanel.Controls.Add(this.quickBox);
 			this.layoutPanel.Controls.Add(this.advancedGroup);
 			this.layoutPanel.Controls.Add(this.secLabel);
 			this.layoutPanel.Controls.Add(this.intervalBox);
@@ -75,6 +77,22 @@ namespace River.OneMoreAddIn.Settings
 			this.layoutPanel.Name = "layoutPanel";
 			this.layoutPanel.Size = new System.Drawing.Size(772, 416);
 			this.layoutPanel.TabIndex = 4;
+			// 
+			// quickBox
+			// 
+			this.quickBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.quickBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(231)))), ((int)(((byte)(231)))));
+			this.quickBox.Cursor = System.Windows.Forms.Cursors.Hand;
+			this.quickBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+			this.quickBox.Location = new System.Drawing.Point(7, 137);
+			this.quickBox.Margin = new System.Windows.Forms.Padding(0, 0, 0, 5);
+			this.quickBox.Name = "quickBox";
+			this.quickBox.Size = new System.Drawing.Size(171, 25);
+			this.quickBox.TabIndex = 7;
+			this.quickBox.Text = "Track Quick Notes";
+			this.tooltip.SetToolTip(this.quickBox, "Enabled only when multiple screens are available");
+			this.quickBox.UseVisualStyleBackColor = true;
 			// 
 			// advancedGroup
 			// 
@@ -183,10 +201,10 @@ namespace River.OneMoreAddIn.Settings
 			this.corrallBox.CheckState = System.Windows.Forms.CheckState.Checked;
 			this.corrallBox.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.corrallBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-			this.corrallBox.Location = new System.Drawing.Point(7, 155);
+			this.corrallBox.Location = new System.Drawing.Point(7, 167);
 			this.corrallBox.Margin = new System.Windows.Forms.Padding(0);
 			this.corrallBox.Name = "corrallBox";
-			this.corrallBox.Size = new System.Drawing.Size(686, 25);
+			this.corrallBox.Size = new System.Drawing.Size(400, 25);
 			this.corrallBox.TabIndex = 0;
 			this.corrallBox.Text = "Restrict the Navigator window to the active screen";
 			this.tooltip.SetToolTip(this.corrallBox, "Enabled only when multiple screens are available");
@@ -225,5 +243,6 @@ namespace River.OneMoreAddIn.Settings
 		private System.Windows.Forms.Label secLabel;
 		private UI.MoreGroupBox advancedGroup;
 		private UI.MoreCheckBox disabledBox;
+		private UI.MoreCheckBox quickBox;
 	}
 }
