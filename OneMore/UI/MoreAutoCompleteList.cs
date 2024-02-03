@@ -59,7 +59,7 @@ namespace River.OneMoreAddIn.UI
 			OwnerDraw = true;
 			manager = ThemeManager.Instance;
 
-			BackColor = manager.GetThemedColor("ControlLight");
+			BackColor = manager.GetThemedColor("ListView");
 			ForeColor = manager.GetThemedColor("ControlText");
 
 			// detail view with default headless column so all drawing is done by DrawSubItem
@@ -340,7 +340,7 @@ namespace River.OneMoreAddIn.UI
 			}
 			else
 			{
-				back = new SolidBrush(manager.GetThemedColor("ControlLight"));
+				back = new SolidBrush(manager.GetThemedColor("ListView"));
 				fore = new SolidBrush(manager.GetThemedColor("ControlText"));
 				high = new SolidBrush(manager.GetThemedColor("Highlight"));
 			}
