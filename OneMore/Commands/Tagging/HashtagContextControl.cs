@@ -47,27 +47,28 @@ namespace River.OneMoreAddIn.Commands
 			// snippets...
 
 			var height = snippetsPanel.Height;
+			var hintColor = manager.GetThemedColor("HintText");
+			var grayColor = manager.GetThemedColor("GrayText");
+			var hoverColor = manager.GetThemedColor("HoverColor");
 
 			foreach (var snippet in item.Snippets)
 			{
-				var fore = snippet.DirectHit
-					? SystemColors.MenuHighlight
-					: SystemColors.GrayText;
+				var fore = snippet.DirectHit ? hintColor : grayColor;
 
 				var link = new MoreLinkLabel
 				{
 					Text = snippet.Snippet,
-					ActiveLinkColor = SystemColors.GrayText,
+					ActiveLinkColor = grayColor,
 					AutoSize = true,
 					Cursor = Cursors.Hand,
 					ForeColor = fore,
-					HoverColor = Color.MediumOrchid,
+					HoverColor = hoverColor,
 					LinkColor = fore,
 					Location = new Point(30, 40),
 					Margin = new Padding(20, 6, 10, 6),
 					Size = new Size(530, 20),
 					TabStop = true,
-					VisitedLinkColor = SystemColors.GrayText,
+					VisitedLinkColor = grayColor,
 					StrictColors = true
 				};
 

@@ -47,6 +47,7 @@
 			this.pageLink.Location = new System.Drawing.Point(41, 13);
 			this.pageLink.Name = "pageLink";
 			this.pageLink.Size = new System.Drawing.Size(23, 22);
+			this.pageLink.StrictColors = false;
 			this.pageLink.TabIndex = 0;
 			this.pageLink.TabStop = true;
 			this.pageLink.Text = "w";
@@ -90,7 +91,7 @@
 			this.checkbox.Name = "checkbox";
 			this.checkbox.Size = new System.Drawing.Size(24, 24);
 			this.checkbox.TabIndex = 3;
-			this.checkbox.UseVisualStyleBackColor = true;
+			this.checkbox.UseVisualStyleBackColor = false;
 			this.checkbox.CheckedChanged += new System.EventHandler(this.DoCheckChanged);
 			// 
 			// HashtagContextControl
