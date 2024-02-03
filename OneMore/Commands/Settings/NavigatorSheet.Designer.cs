@@ -89,7 +89,7 @@ namespace River.OneMoreAddIn.Settings
 			this.quickBox.Margin = new System.Windows.Forms.Padding(0, 0, 0, 5);
 			this.quickBox.Name = "quickBox";
 			this.quickBox.Size = new System.Drawing.Size(171, 25);
-			this.quickBox.TabIndex = 7;
+			this.quickBox.TabIndex = 2;
 			this.quickBox.Text = "Track Quick Notes";
 			this.tooltip.SetToolTip(this.quickBox, "Enabled only when multiple screens are available");
 			this.quickBox.UseVisualStyleBackColor = true;
@@ -150,7 +150,7 @@ namespace River.OneMoreAddIn.Settings
             65536});
 			this.intervalBox.Name = "intervalBox";
 			this.intervalBox.Size = new System.Drawing.Size(120, 26);
-			this.intervalBox.TabIndex = 4;
+			this.intervalBox.TabIndex = 1;
 			this.intervalBox.Value = new decimal(new int[] {
             20,
             0,
@@ -176,7 +176,7 @@ namespace River.OneMoreAddIn.Settings
             0});
 			this.depthBox.Name = "depthBox";
 			this.depthBox.Size = new System.Drawing.Size(120, 26);
-			this.depthBox.TabIndex = 2;
+			this.depthBox.TabIndex = 0;
 			this.depthBox.Value = new decimal(new int[] {
             5,
             0,
@@ -205,7 +205,7 @@ namespace River.OneMoreAddIn.Settings
 			this.corrallBox.Margin = new System.Windows.Forms.Padding(0);
 			this.corrallBox.Name = "corrallBox";
 			this.corrallBox.Size = new System.Drawing.Size(400, 25);
-			this.corrallBox.TabIndex = 0;
+			this.corrallBox.TabIndex = 3;
 			this.corrallBox.Text = "Restrict the Navigator window to the active screen";
 			this.tooltip.SetToolTip(this.corrallBox, "Enabled only when multiple screens are available");
 			this.corrallBox.UseVisualStyleBackColor = true;
