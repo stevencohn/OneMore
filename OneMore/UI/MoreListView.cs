@@ -4,12 +4,14 @@
 
 namespace River.OneMoreAddIn.UI
 {
+	using River.OneMoreAddIn.Commands;
 	using System;
 	using System.Collections;
 	using System.Collections.Generic;
 	using System.ComponentModel;
 	using System.Diagnostics;
 	using System.Drawing;
+	using System.Linq;
 	using System.Runtime.InteropServices;
 	using System.Windows.Forms;
 
@@ -361,14 +363,14 @@ namespace River.OneMoreAddIn.UI
 
 		private void RouteMouseDown(object sender, MouseEventArgs e)
 		{
-			Logger.Current.WriteLine($"drag start for {sender.GetType().FullName}");
+			Logger.Current.Verbose($"drag start for {sender.GetType().FullName}");
 			DoDragDrop(sender, DragDropEffects.Move);
 		}
 
 
 		private void RouteDragDrop(object sender, DragEventArgs e)
 		{
-			Logger.Current.WriteLine($"drop");
+			Logger.Current.Verbose($"drop");
 		}
 		#endregion Routed events
 
@@ -506,116 +508,16 @@ namespace River.OneMoreAddIn.UI
 			// called for each ListViewItem to be drawn
 			else if (m.Msg == Native.WM_REFLECT + Native.WM_DRAWITEM)
 			{
-				var draw = (Native.DrawItemStruct)m.GetLParam(typeof(Native.DrawItemStruct));
-				var item = Items[draw.itemID];
-
-				using var g = Graphics.FromHdc(draw.hDC);
-
-				var backColor = item.BackColor;
-				if (item.Selected)
-				{
-					backColor = highBackBrush.Color;
-				}
-				else if (!Enabled)
-				{
-					backColor = SystemColors.Control;
-				}
-
-				// erase the background of the entire row
-				using var backBrush = new SolidBrush(backColor);
-				g.FillRectangle(backBrush, item.Bounds);
-
-				for (int i = 0; i < item.SubItems.Count; i++)
-				{
-					var subitem = item.SubItems[i];
-
-					if (string.IsNullOrWhiteSpace(subitem.Text))
-					{
-						// nothing to see here
-						continue;
-					}
-
-					if (subitem is IMoreHostItem host && host.Control != null)
-					{
-						// presume hosted control overlays text, is prioritized over text
-						continue;
-					}
-
-					// SubItems[0].Bounds contains the entire row, rather than the first column only
-					var bounds = (i > 0) ? subitem.Bounds : item.GetBounds(ItemBoundsPortion.Label);
-
-					// can use item.ForeColor instead of subitem.ForeColor to
-					// get the same behaviour as without OwnerDraw
-					var foreColor = subitem.ForeColor;
-					if (!Enabled)
-					{
-						foreColor = SystemColors.ControlText;
-					}
-					else if (item.Selected)
-					{
-						foreColor = HighlightForeground;
-					}
-
-					var flags = TextFormatFlags.NoPrefix | TextFormatFlags.EndEllipsis |
-						TextFormatFlags.VerticalCenter | TextFormatFlags.SingleLine;
-
-					switch (Columns[i].TextAlign)
-					{
-						case HorizontalAlignment.Center: flags |= TextFormatFlags.HorizontalCenter; break;
-						case HorizontalAlignment.Right: flags |= TextFormatFlags.Right; break;
-					}
-
-					TextRenderer.DrawText(g, subitem.Text, subitem.Font, bounds, foreColor, flags);
-				}
+				PaintItem(ref m);
 			}
 			else if (m.Msg == Native.WM_PAINT)
 			{
-				foreach (var hosted in hostedControls)
-				{
-					var bounds = hosted.Host.Bounds;
-
-					var header = Columns[hosted.ColumnIndex] as MoreColumnHeader;
-					if (header != null)
-						bounds.Width = header.Width;
-
-					if (bounds.Y > 0 && bounds.Y < ClientRectangle.Height)
-					{
-						hosted.Control.Visible = true;
-						if (header != null && header.AutoSizeItems)
-						{
-							hosted.Control.Bounds = new Rectangle(
-								bounds.X + ControlPadding,
-								bounds.Y + ControlPadding,
-								bounds.Width - (2 * ControlPadding),
-								bounds.Height - (2 * ControlPadding));
-						}
-						else
-						{
-							var x = bounds.X + ControlPadding;
-							if (hosted.Host.Alignment == ContentAlignment.BottomCenter ||
-								hosted.Host.Alignment == ContentAlignment.MiddleCenter ||
-								hosted.Host.Alignment == ContentAlignment.TopCenter)
-							{
-								x += (bounds.Width - hosted.Control.Width) / 2;
-							}
-							else if (
-								hosted.Host.Alignment == ContentAlignment.BottomRight ||
-								hosted.Host.Alignment == ContentAlignment.MiddleRight ||
-								hosted.Host.Alignment == ContentAlignment.TopRight)
-							{
-								x = bounds.X + bounds.Width - ControlPadding - hosted.Control.Width;
-							}
-
-							hosted.Control.Location = new Point(x, bounds.Y + ControlPadding);
-						}
-					}
-					else
-					{
-						hosted.Control.Visible = false;
-					}
-				}
+				BoundHostedControls();
 			}
-			else if (m.Msg == Native.WM_HSCROLL || m.Msg == Native.WM_VSCROLL || m.Msg == Native.WM_MOUSEWHEEL)
+			else if (
+				m.Msg == Native.WM_HSCROLL ||
+				m.Msg == Native.WM_VSCROLL ||
+				m.Msg == Native.WM_MOUSEWHEEL)
 			{
 				Focus();
 			}
@@ -623,6 +525,144 @@ namespace River.OneMoreAddIn.UI
 			base.WndProc(ref m);
 		}
 
+
+		private void PaintItem(ref Message m)
+		{
+			var draw = (Native.DrawItemStruct)m.GetLParam(typeof(Native.DrawItemStruct));
+			var item = Items[draw.itemID];
+
+			if (!item.SubItems.Cast<object>().Any(e => e is IMoreHostItem mhi && mhi.Control != null))
+			{
+				//Logger.Current.Verbose($"PaintItem {draw.itemID} unhosted");
+				return;
+			}
+
+			//Logger.Current.Verbose($"PaintItem {draw.itemID}...");
+
+			using var g = Graphics.FromHdc(draw.hDC);
+
+			var backColor = item.BackColor;
+			if (item.Selected)
+			{
+				backColor = highBackBrush.Color;
+			}
+			else if (!Enabled)
+			{
+				backColor = SystemColors.Control;
+			}
+
+			// erase the background of the entire row
+			using var backBrush = new SolidBrush(backColor);
+			g.FillRectangle(backBrush, item.Bounds);
+
+			for (int i = 0; i < item.SubItems.Count; i++)
+			{
+				var subitem = item.SubItems[i];
+
+				//Logger.Current.Verbose($".. subitem {i} subitem.text=[{subitem.Text}] " +
+				//	$"hosted={subitem is IMoreHostItem hx && hx.Control != null}");
+
+				if (string.IsNullOrWhiteSpace(subitem.Text))
+				{
+					// nothing to see here
+					continue;
+				}
+
+				if (subitem is IMoreHostItem host && host.Control != null)
+				{
+					// presume hosted control overlays text, is prioritized over text
+					continue;
+				}
+
+				// SubItems[0].Bounds contains the entire row, rather than the first column only
+				var bounds = (i > 0) ? subitem.Bounds : item.GetBounds(ItemBoundsPortion.Label);
+
+				// can use item.ForeColor instead of subitem.ForeColor to
+				// get the same behaviour as without OwnerDraw
+				var foreColor = subitem.ForeColor;
+				if (!Enabled)
+				{
+					foreColor = SystemColors.ControlText;
+				}
+				else if (item.Selected)
+				{
+					foreColor = HighlightForeground;
+				}
+
+				var flags = TextFormatFlags.NoPrefix | TextFormatFlags.EndEllipsis |
+					TextFormatFlags.VerticalCenter | TextFormatFlags.SingleLine;
+
+				switch (Columns[i].TextAlign)
+				{
+					case HorizontalAlignment.Center: flags |= TextFormatFlags.HorizontalCenter; break;
+					case HorizontalAlignment.Right: flags |= TextFormatFlags.Right; break;
+				}
+
+				TextRenderer.DrawText(g, subitem.Text, subitem.Font, bounds, foreColor, flags);
+			}
+		}
+
+
+		private void BoundHostedControls()
+		{
+			//Logger.Current.Verbose($"PaintHostedControls [{Name}]");
+
+			foreach (var hosted in hostedControls)
+			{
+				var bounds = hosted.Host.Bounds;
+
+				var header = Columns[hosted.ColumnIndex] as MoreColumnHeader;
+				if (header != null)
+					bounds.Width = header.Width;
+
+				// is control within viewing client rectangle
+				// could be <0 if scrolled up or >0 if scrolled down out of sight
+				if (bounds.Y >= 0 && bounds.Y < ClientRectangle.Height)
+				{
+					//Logger.Current.Verbose($".. header visible name={header?.Name}");
+
+					hosted.Control.Visible = true;
+					if (header != null && header.AutoSizeItems)
+					{
+						hosted.Control.Bounds = new Rectangle(
+							bounds.X + ControlPadding,
+							bounds.Y + ControlPadding,
+							bounds.Width - (2 * ControlPadding),
+							bounds.Height - (2 * ControlPadding));
+
+						//var text = hosted.Control is HistoryControl hist ? hist.Text : string.Empty;
+						//Logger.Current.Verbose($".. bounds={hosted.Control.Bounds} client={ClientRectangle} [{text}]");
+					}
+					else
+					{
+						var x = bounds.X + ControlPadding;
+						if (hosted.Host.Alignment == ContentAlignment.BottomCenter ||
+							hosted.Host.Alignment == ContentAlignment.MiddleCenter ||
+							hosted.Host.Alignment == ContentAlignment.TopCenter)
+						{
+							x += (bounds.Width - hosted.Control.Width) / 2;
+						}
+						else if (
+							hosted.Host.Alignment == ContentAlignment.BottomRight ||
+							hosted.Host.Alignment == ContentAlignment.MiddleRight ||
+							hosted.Host.Alignment == ContentAlignment.TopRight)
+						{
+							x = bounds.X + bounds.Width - ControlPadding - hosted.Control.Width;
+						}
+
+						hosted.Control.Location = new Point(x, bounds.Y + ControlPadding);
+
+						//var text = hosted.Control is HistoryControl hist ? hist.Text : string.Empty;
+						//Logger.Current.Verbose($".. headless bounds={hosted.Control.Bounds} client={ClientRectangle} [{text}]");
+					}
+				}
+				else
+				{
+					//Logger.Current.Verbose($".. header invisible");
+					hosted.Control.Visible = false;
+				}
+			}
+		}
 		#endregion Overrides
 
 		#region DragDrop Overrides

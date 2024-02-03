@@ -8,6 +8,7 @@ namespace River.OneMoreAddIn.UI
 {
 	using System;
 	using System.Collections.Generic;
+	using System.Linq;
 	using System.Reflection;
 	using System.Windows.Forms;
 
@@ -94,7 +95,10 @@ namespace River.OneMoreAddIn.UI
 				// special case for our MoreListView and hosted controls
 				if (item is IMoreHostItem child)
 				{
-					Register(control, child.Control, eventName);
+					if (!trash.Exists(t => t.Control == child.Control && t.EventName == eventName))
+					{
+						Register(control, child.Control, eventName);
+					}
 				}
 			}
 		}

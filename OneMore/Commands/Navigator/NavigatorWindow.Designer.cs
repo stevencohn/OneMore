@@ -293,7 +293,7 @@
 			this.copyPinnedButton.ThemedFore = null;
 			this.tooltip.SetToolTip(this.copyPinnedButton, "Copy selected items to the clipboard");
 			this.copyPinnedButton.UseVisualStyleBackColor = false;
-			this.copyPinnedButton.Click += new System.EventHandler(this.CopyLinksOnClick);
+			this.copyPinnedButton.Click += new System.EventHandler(this.CopyLinks);
 			// 
 			// upButton
 			// 
@@ -468,7 +468,7 @@
 			this.copyHistoryButton.ThemedFore = null;
 			this.tooltip.SetToolTip(this.copyHistoryButton, "Copy selected items to the clipboard");
 			this.copyHistoryButton.UseVisualStyleBackColor = false;
-			this.copyHistoryButton.Click += new System.EventHandler(this.CopyLinksOnClick);
+			this.copyHistoryButton.Click += new System.EventHandler(this.CopyLinks);
 			// 
 			// historyHeadLabel
 			// 

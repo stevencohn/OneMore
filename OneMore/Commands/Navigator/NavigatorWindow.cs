@@ -69,7 +69,7 @@ namespace River.OneMoreAddIn.Commands
 			ManualLocation = true;
 
 			provider = new NavigationProvider();
-			provider.Navigated += UpdateViewOnNavigated;
+			provider.Navigated += ShowHistory;
 			trash.Add(provider);
 
 			var rowWidth = Width - SystemInformation.VerticalScrollBarWidth * 2;
@@ -161,7 +161,7 @@ namespace River.OneMoreAddIn.Commands
 
 			// load data
 			await LoadPinned();
-			UpdateViewOnNavigated(null, await provider.ReadHistory());
+			ShowHistory(null, await provider.ReadHistory());
 		}
 
 
@@ -283,65 +283,12 @@ namespace River.OneMoreAddIn.Commands
 
 		// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-		public static void SetVisited(string ID)
-		{
-			// called from HistoryControl!
-			// need to lock?
-			visitedID = ID;
-		}
-
-
-		private async void UpdateViewOnNavigated(object sender, List<HistoryRecord> e)
-		{
-			if (historyBox.InvokeRequired)
-			{
-				historyBox.Invoke(new Action(() => UpdateViewOnNavigated(sender, e)));
-				return;
-			}
-
-			try
-			{
-				if (e.Count > 0 && e[0].PageId == visitedID)
-				{
-					// user clicked ths page in navigator; don't reorder the list or they'll lose
-					// their context and get confused, but refresh the headings pane
-					await LoadPageHeadings(e[0].PageId);
-					visitedID = null;
-					return;
-				}
-
-				visitedID = null;
-
-				await ShowPageOutline(e[0]);
-
-				historyBox.BeginUpdate();
-				historyBox.Items.Clear();
-
-				e.ForEach(record =>
-				{
-					var control = new HistoryControl(record);
-					control.BackColor = BackColor;
-					control.ApplyTheme(manager);
-					var item = historyBox.AddHostedItem(control);
-					item.Tag = record;
-				});
-
-				historyBox.Items[0].Selected = true;
-				historyBox.EndUpdate();
-				historyBox.Invalidate();
-
-				historyBox.EnableItemEventBubbling();
-			}
-			catch (Exception exc)
-			{
-				logger.WriteLine($"error navigating", exc);
-			}
-		}
 
 
 		// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-		// Page...
+		// Page headings...
 
+		#region Page headings
 		private async Task ShowPageOutline(HistoryRecord info)
 		{
 			await LoadPageHeadings(info.PageId);
@@ -368,7 +315,7 @@ namespace River.OneMoreAddIn.Commands
 		{
 			if (pageBox.InvokeRequired)
 			{
-				pageBox.Invoke(new Action(async () => await LoadPageHeadings(pageID)));
+				pageBox.BeginInvoke(new Action(async () => await LoadPageHeadings(pageID)));
 				return;
 			}
 
@@ -456,10 +403,11 @@ namespace River.OneMoreAddIn.Commands
 
 			return false;
 		}
+		#endregion Page headings
 
 
 		// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-		// Pinned...
+		// Pinned reading list...
 
 		private async Task LoadPinned()
 		{
@@ -472,7 +420,7 @@ namespace River.OneMoreAddIn.Commands
 		{
 			if (pinnedBox.InvokeRequired)
 			{
-				pinnedBox.Invoke(new Action(() => ShowPins(pinned)));
+				pinnedBox.BeginInvoke(new Action(() => ShowPins(pinned)));
 				return;
 			}
 
@@ -481,19 +429,22 @@ namespace River.OneMoreAddIn.Commands
 
 			pinned.ForEach(record =>
 			{
-				var control = new HistoryControl(record);
-				control.BackColor = BackColor;
+				var control = new HistoryControl(record)
+				{
+					BackColor = BackColor
+				};
+
 				control.ApplyTheme(manager);
+
 				var item = pinnedBox.AddHostedItem(control);
 				item.Tag = record;
 			});
 
 			pinnedBox.EndUpdate();
-			pinnedBox.Invalidate();
 			pinnedBox.EnableItemEventBubbling();
 		}
 
-
+		#region Pin control
 		private async void PinOnClick(object sender, EventArgs e)
 		{
 			if (historyBox.SelectedItems.Count == 0)
@@ -617,11 +568,71 @@ namespace River.OneMoreAddIn.Commands
 
 			await provider.SavePinned(records);
 		}
+		#endregion Pin control
+
+
+		// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+		// History list...
+
+		private async void ShowHistory(object sender, List<HistoryRecord> e)
+		{
+			if (historyBox.InvokeRequired)
+			{
+				historyBox.BeginInvoke(new Action(() => ShowHistory(sender, e)));
+				return;
+			}
+
+			try
+			{
+				if (e.Count > 0 && e[0].PageId == visitedID)
+				{
+					// user clicked ths page in navigator; don't reorder the list or they'll lose
+					// their context and get confused, but refresh the headings pane
+					await LoadPageHeadings(e[0].PageId);
+					visitedID = null;
+					return;
+				}
+
+				visitedID = null;
+
+				await ShowPageOutline(e[0]);
+
+				historyBox.BeginUpdate();
+				historyBox.Items.Clear();
+
+				e.ForEach(record =>
+				{
+					var control = new HistoryControl(record)
+					{
+						BackColor = BackColor
+					};
+
+					control.ApplyTheme(manager);
+
+					var item = historyBox.AddHostedItem(control);
+					item.Tag = record;
+				});
+
+				historyBox.Items[0].Selected = true;
+				historyBox.EndUpdate();
+				historyBox.EnableItemEventBubbling();
+			}
+			catch (Exception exc)
+			{
+				logger.WriteLine($"error navigating", exc);
+			}
+		}
+
+		private void Control_DoubleClick(object sender, EventArgs e)
+		{
+			logger.WriteLine("double");
+		}
 
 
 		// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-		private async void CopyLinksOnClick(object sender, EventArgs e)
+		#region Control
+		private async void CopyLinks(object sender, EventArgs e)
 		{
 			var box = sender == copyPinnedButton ? pinnedBox : historyBox;
 
@@ -663,5 +674,14 @@ namespace River.OneMoreAddIn.Commands
 
 			await board.RestoreState();
 		}
+
+
+		public static void SetVisited(string ID)
+		{
+			// called from HistoryControl!
+			// need to lock?
+			visitedID = ID;
+		}
+		#endregion Control
 	}
 }

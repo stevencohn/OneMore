@@ -1225,6 +1225,9 @@
     <None Include="Commands\Snippets\Emoji\Images\Section.png" />
     <None Include="Commands\Snippets\Emoji\Images\XMark.png" />
     <Content Include="Commands\Tools\sponsor-light.png" />
+    <EmbeddedResource Include="Commands\Navigator\HistoryControl.resx">
+      <DependentUpon>HistoryControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Commands\Tools\sponsor-dark.png" />
     <Content Include="Properties\Images\CustomStyles.png" />
     <Content Include="Properties\Images\DarkCustomStyles.png" />

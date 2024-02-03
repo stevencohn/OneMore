@@ -107,12 +107,12 @@ namespace River.OneMoreAddIn.Commands
 			this.cancelButton.ImageOver = null;
 			this.cancelButton.Location = new System.Drawing.Point(996, 671);
 			this.cancelButton.Name = "cancelButton";
-			this.cancelButton.ThemedBack = null;
-			this.cancelButton.ThemedFore = null;
 			this.cancelButton.ShowBorder = true;
 			this.cancelButton.Size = new System.Drawing.Size(100, 38);
 			this.cancelButton.TabIndex = 24;
 			this.cancelButton.Text = "Cancel";
+			this.cancelButton.ThemedBack = null;
+			this.cancelButton.ThemedFore = null;
 			this.cancelButton.UseVisualStyleBackColor = true;
 			this.cancelButton.Click += new System.EventHandler(this.Cancel);
 			// 
@@ -124,12 +124,12 @@ namespace River.OneMoreAddIn.Commands
 			this.okButton.ImageOver = null;
 			this.okButton.Location = new System.Drawing.Point(890, 671);
 			this.okButton.Name = "okButton";
-			this.okButton.ThemedBack = null;
-			this.okButton.ThemedFore = null;
 			this.okButton.ShowBorder = true;
 			this.okButton.Size = new System.Drawing.Size(100, 38);
 			this.okButton.TabIndex = 23;
 			this.okButton.Text = "OK";
+			this.okButton.ThemedBack = null;
+			this.okButton.ThemedFore = null;
 			this.okButton.UseVisualStyleBackColor = true;
 			this.okButton.Click += new System.EventHandler(this.OK);
 			// 
@@ -175,10 +175,10 @@ namespace River.OneMoreAddIn.Commands
             0,
             0});
 			this.percentBox.Name = "percentBox";
-			this.percentBox.ThemedBack = null;
-			this.percentBox.ThemedFore = null;
 			this.percentBox.Size = new System.Drawing.Size(94, 26);
 			this.percentBox.TabIndex = 2;
+			this.percentBox.ThemedBack = null;
+			this.percentBox.ThemedFore = null;
 			this.percentBox.Value = new decimal(new int[] {
             100,
             0,
@@ -207,10 +207,10 @@ namespace River.OneMoreAddIn.Commands
             0,
             0});
 			this.widthBox.Name = "widthBox";
-			this.widthBox.ThemedBack = null;
-			this.widthBox.ThemedFore = null;
 			this.widthBox.Size = new System.Drawing.Size(123, 26);
 			this.widthBox.TabIndex = 4;
+			this.widthBox.ThemedBack = null;
+			this.widthBox.ThemedFore = null;
 			this.widthBox.ValueChanged += new System.EventHandler(this.WidthValueChanged);
 			// 
 			// heightBox
@@ -225,10 +225,10 @@ namespace River.OneMoreAddIn.Commands
             0,
             0});
 			this.heightBox.Name = "heightBox";
-			this.heightBox.ThemedBack = null;
-			this.heightBox.ThemedFore = null;
 			this.heightBox.Size = new System.Drawing.Size(123, 26);
 			this.heightBox.TabIndex = 5;
+			this.heightBox.ThemedBack = null;
+			this.heightBox.ThemedFore = null;
 			this.heightBox.ValueChanged += new System.EventHandler(this.HeightValueChanged);
 			// 
 			// widthLabel
@@ -282,10 +282,10 @@ namespace River.OneMoreAddIn.Commands
             0,
             0});
 			this.presetBox.Name = "presetBox";
-			this.presetBox.ThemedBack = null;
-			this.presetBox.ThemedFore = null;
 			this.presetBox.Size = new System.Drawing.Size(123, 26);
 			this.presetBox.TabIndex = 8;
+			this.presetBox.ThemedBack = null;
+			this.presetBox.ThemedFore = null;
 			this.presetBox.Value = new decimal(new int[] {
             500,
             0,
@@ -321,9 +321,12 @@ namespace River.OneMoreAddIn.Commands
 			this.viewSizeLink.Location = new System.Drawing.Point(183, 17);
 			this.viewSizeLink.Name = "viewSizeLink";
 			this.viewSizeLink.Size = new System.Drawing.Size(78, 20);
+			this.viewSizeLink.StrictColors = false;
 			this.viewSizeLink.TabIndex = 21;
 			this.viewSizeLink.TabStop = true;
 			this.viewSizeLink.Text = "100 x 100";
+			this.viewSizeLink.ThemedBack = null;
+			this.viewSizeLink.ThemedFore = null;
 			this.viewSizeLink.VisitedLinkColor = System.Drawing.Color.MediumOrchid;
 			this.viewSizeLink.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.ViewSizeClicked);
 			// 
@@ -337,9 +340,12 @@ namespace River.OneMoreAddIn.Commands
 			this.imageSizeLink.Location = new System.Drawing.Point(183, 38);
 			this.imageSizeLink.Name = "imageSizeLink";
 			this.imageSizeLink.Size = new System.Drawing.Size(78, 20);
+			this.imageSizeLink.StrictColors = false;
 			this.imageSizeLink.TabIndex = 22;
 			this.imageSizeLink.TabStop = true;
 			this.imageSizeLink.Text = "100 x 100";
+			this.imageSizeLink.ThemedBack = null;
+			this.imageSizeLink.ThemedFore = null;
 			this.imageSizeLink.VisitedLinkColor = System.Drawing.Color.MediumOrchid;
 			this.imageSizeLink.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.OriginalSizeClicked);
 			// 
@@ -360,7 +366,7 @@ namespace River.OneMoreAddIn.Commands
 			this.preserveBox.CheckState = System.Windows.Forms.CheckState.Checked;
 			this.preserveBox.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.preserveBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-			this.preserveBox.Location = new System.Drawing.Point(41, 564);
+			this.preserveBox.Location = new System.Drawing.Point(39, 563);
 			this.preserveBox.Name = "preserveBox";
 			this.preserveBox.Size = new System.Drawing.Size(194, 25);
 			this.preserveBox.TabIndex = 20;
@@ -404,10 +410,10 @@ namespace River.OneMoreAddIn.Commands
             0,
             0});
 			this.opacityBox.Name = "opacityBox";
-			this.opacityBox.ThemedBack = null;
-			this.opacityBox.ThemedFore = null;
 			this.opacityBox.Size = new System.Drawing.Size(94, 26);
 			this.opacityBox.TabIndex = 9;
+			this.opacityBox.ThemedBack = null;
+			this.opacityBox.ThemedFore = null;
 			this.opacityBox.Value = new decimal(new int[] {
             100,
             0,
@@ -476,10 +482,10 @@ namespace River.OneMoreAddIn.Commands
             0,
             -2147483648});
 			this.brightnessBox.Name = "brightnessBox";
-			this.brightnessBox.ThemedBack = null;
-			this.brightnessBox.ThemedFore = null;
 			this.brightnessBox.Size = new System.Drawing.Size(94, 26);
 			this.brightnessBox.TabIndex = 11;
+			this.brightnessBox.ThemedBack = null;
+			this.brightnessBox.ThemedFore = null;
 			this.brightnessBox.ValueChanged += new System.EventHandler(this.SlideValueChanged);
 			// 
 			// contrastLabel
@@ -503,10 +509,10 @@ namespace River.OneMoreAddIn.Commands
             0,
             -2147483648});
 			this.contrastBox.Name = "contrastBox";
-			this.contrastBox.ThemedBack = null;
-			this.contrastBox.ThemedFore = null;
 			this.contrastBox.Size = new System.Drawing.Size(94, 26);
 			this.contrastBox.TabIndex = 13;
+			this.contrastBox.ThemedBack = null;
+			this.contrastBox.ThemedFore = null;
 			this.contrastBox.ValueChanged += new System.EventHandler(this.SlideValueChanged);
 			// 
 			// brightnessBar
@@ -576,10 +582,10 @@ namespace River.OneMoreAddIn.Commands
 			this.qualBox.ForeColor = System.Drawing.SystemColors.ControlText;
 			this.qualBox.Location = new System.Drawing.Point(187, 514);
 			this.qualBox.Name = "qualBox";
-			this.qualBox.ThemedBack = null;
-			this.qualBox.ThemedFore = null;
 			this.qualBox.Size = new System.Drawing.Size(94, 26);
 			this.qualBox.TabIndex = 18;
+			this.qualBox.ThemedBack = null;
+			this.qualBox.ThemedFore = null;
 			this.qualBox.Value = new decimal(new int[] {
             100,
             0,
@@ -666,10 +672,10 @@ namespace River.OneMoreAddIn.Commands
             0,
             -2147483648});
 			this.saturationBox.Name = "saturationBox";
-			this.saturationBox.ThemedBack = null;
-			this.saturationBox.ThemedFore = null;
 			this.saturationBox.Size = new System.Drawing.Size(94, 26);
 			this.saturationBox.TabIndex = 15;
+			this.saturationBox.ThemedBack = null;
+			this.saturationBox.ThemedFore = null;
 			this.saturationBox.ValueChanged += new System.EventHandler(this.SlideValueChanged);
 			// 
 			// limitsBox
@@ -712,9 +718,12 @@ namespace River.OneMoreAddIn.Commands
 			this.resetLinkLabel.Location = new System.Drawing.Point(642, 680);
 			this.resetLinkLabel.Name = "resetLinkLabel";
 			this.resetLinkLabel.Size = new System.Drawing.Size(154, 20);
+			this.resetLinkLabel.StrictColors = false;
 			this.resetLinkLabel.TabIndex = 49;
 			this.resetLinkLabel.TabStop = true;
 			this.resetLinkLabel.Text = "Reset default values";
+			this.resetLinkLabel.ThemedBack = null;
+			this.resetLinkLabel.ThemedFore = null;
 			this.resetLinkLabel.VisitedLinkColor = System.Drawing.Color.MediumOrchid;
 			this.resetLinkLabel.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.ResetDefaultValues);
 			// 
