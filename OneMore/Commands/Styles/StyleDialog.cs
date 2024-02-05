@@ -88,6 +88,8 @@ namespace River.OneMoreAddIn.Commands
 
 			this.darkMode = darkMode;
 
+			toolPanel.BottomBorderColor = manager.GetThemedColor("WindowFrame");
+
 			this.pageColor = theme.SetColor
 				? theme.Color.Equals(StyleBase.Automatic) ? originalColor : ColorTranslator.FromHtml(theme.Color)
 				: pageColor;
@@ -154,8 +156,7 @@ namespace River.OneMoreAddIn.Commands
 				styleTypeBox.Items.AddRange(Resx.StyleDialog_styleTypeBox_Items.Split('\n'));
 			}
 
-			mainTools.Rescale();
-			toolStrip.Rescale();
+			//toolStrip.Rescale();
 
 			if (AddIn.Culture.NumberFormat.NumberDecimalSeparator != ".")
 			{

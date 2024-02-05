@@ -117,7 +117,6 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="AboutDialog.Text" xml:space="preserve">
     <value>OneMore Add-in</value>
     <comment>dialog title bar</comment>
@@ -5186,6 +5185,7 @@ In this section</value>
     <value>Word Counts</value>
     <comment>page title</comment>
   </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="Architecture" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Commands\Snippets\Emoji\Images\Architecture.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -5515,5 +5515,47 @@ In this section</value>
   </data>
   <data name="_0336_OneNoteApplication_2013" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>0336.OneNoteApplication_2013.xsd;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
+  </data>
+  <data name="m_Bold" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Menu\m_Bold.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="m_Delete" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Menu\m_Delete.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="m_FileOpen" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Menu\m_FileOpen.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="m_FontColor" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Menu\m_FontColor.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="m_Highlighter" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Menu\m_Highlighter.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="m_Italic" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Menu\m_Italic.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="m_NewStyle" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Menu\m_NewStyle.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="m_Rename" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Menu\m_Rename.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="m_Reorder" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Menu\m_Reorder.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="m_SaveAs" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Menu\m_SaveAs.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="m_Strikethrough" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Menu\m_Strikethrough.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="m_Subscript" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Menu\m_Subscript.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="m_Superscript" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Menu\m_Superscript.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="m_Underline" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Menu\m_Underline.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

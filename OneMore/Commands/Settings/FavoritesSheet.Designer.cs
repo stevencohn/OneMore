@@ -37,7 +37,7 @@
 			this.introPanel = new System.Windows.Forms.Panel();
 			this.optionsBox = new River.OneMoreAddIn.UI.MoreGroupBox();
 			this.shortcutsBox = new River.OneMoreAddIn.UI.MoreCheckBox();
-			this.toolStrip = new River.OneMoreAddIn.UI.ScaledToolStrip();
+			this.toolStrip = new River.OneMoreAddIn.UI.MoreToolStrip();
 			this.sortButton = new System.Windows.Forms.ToolStripButton();
 			this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
 			this.upButton = new System.Windows.Forms.ToolStripButton();
@@ -223,7 +223,7 @@
 		#endregion
 		private System.Windows.Forms.DataGridView gridView;
 		private System.Windows.Forms.Panel introPanel;
-		private UI.ScaledToolStrip toolStrip;
+		private UI.MoreToolStrip toolStrip;
 		private System.Windows.Forms.ToolStripButton deleteButton;
 		private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
 		private System.Windows.Forms.ToolStripButton upButton;

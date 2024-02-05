@@ -31,7 +31,7 @@
 			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
 			this.gridView = new System.Windows.Forms.DataGridView();
 			this.introBox = new River.OneMoreAddIn.UI.MoreMultilineLabel();
-			this.toolStrip = new River.OneMoreAddIn.UI.ScaledToolStrip();
+			this.toolStrip = new River.OneMoreAddIn.UI.MoreToolStrip();
 			this.renameButton = new System.Windows.Forms.ToolStripButton();
 			this.deleteButton = new System.Windows.Forms.ToolStripButton();
 			this.nameColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -140,7 +140,7 @@
 		#endregion
 
 		private System.Windows.Forms.DataGridView gridView;
-		private UI.ScaledToolStrip toolStrip;
+		private UI.MoreToolStrip toolStrip;
 		private System.Windows.Forms.ToolStripButton deleteButton;
 		private UI.MoreMultilineLabel introBox;
 		private System.Windows.Forms.ToolStripButton renameButton;

@@ -40,7 +40,7 @@ namespace River.OneMoreAddIn.Commands
 			this.resetButton = new River.OneMoreAddIn.UI.MoreButton();
 			this.previewGroup = new River.OneMoreAddIn.UI.MoreGroupBox();
 			this.previewBox = new System.Windows.Forms.PictureBox();
-			this.toolstrip = new River.OneMoreAddIn.UI.ScaledToolStrip();
+			this.toolstrip = new River.OneMoreAddIn.UI.MoreToolStrip();
 			this.newButton = new System.Windows.Forms.ToolStripButton();
 			this.renameButton = new System.Windows.Forms.ToolStripButton();
 			this.saveButton = new System.Windows.Forms.ToolStripButton();
@@ -55,7 +55,7 @@ namespace River.OneMoreAddIn.Commands
 			this.applyFontButton = new River.OneMoreAddIn.UI.MoreButton();
 			this.familyBox = new River.OneMoreAddIn.UI.FontComboBox();
 			this.sizeBox = new System.Windows.Forms.ComboBox();
-			this.fontToolstrip = new River.OneMoreAddIn.UI.ScaledToolStrip();
+			this.fontToolstrip = new River.OneMoreAddIn.UI.MoreToolStrip();
 			this.boldButton = new System.Windows.Forms.ToolStripButton();
 			this.italicButton = new System.Windows.Forms.ToolStripButton();
 			this.underlineButton = new System.Windows.Forms.ToolStripButton();
@@ -628,7 +628,7 @@ namespace River.OneMoreAddIn.Commands
 		private UI.MoreGroupBox elementsGroup;
 		private River.OneMoreAddIn.UI.MoreListView elementsBox;
 		private UI.MoreGroupBox previewGroup;
-		private River.OneMoreAddIn.UI.ScaledToolStrip toolstrip;
+		private River.OneMoreAddIn.UI.MoreToolStrip toolstrip;
 		private System.Windows.Forms.ToolStripButton deleteButton;
 		private UI.MoreButton resetButton;
 		private System.Windows.Forms.PictureBox previewBox;
@@ -643,7 +643,7 @@ namespace River.OneMoreAddIn.Commands
 		private System.Windows.Forms.Panel bottomPanel;
 		private UI.FontComboBox familyBox;
 		private System.Windows.Forms.ComboBox sizeBox;
-		private UI.ScaledToolStrip fontToolstrip;
+		private UI.MoreToolStrip fontToolstrip;
 		private System.Windows.Forms.ToolStripButton boldButton;
 		private System.Windows.Forms.ToolStripButton italicButton;
 		private System.Windows.Forms.ToolStripButton underlineButton;

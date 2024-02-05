@@ -32,7 +32,7 @@
 			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
 			this.gridView = new River.OneMoreAddIn.Settings.KeyboardGridView();
 			this.introBox = new River.OneMoreAddIn.UI.MoreMultilineLabel();
-			this.toolstrip = new River.OneMoreAddIn.UI.ScaledToolStrip();
+			this.toolstrip = new River.OneMoreAddIn.UI.MoreToolStrip();
 			this.clearButton = new System.Windows.Forms.ToolStripButton();
 			this.resetButton = new System.Windows.Forms.ToolStripButton();
 			this.resetAllButton = new System.Windows.Forms.ToolStripButton();
@@ -168,7 +168,7 @@
 
 		private KeyboardGridView gridView;
 		private UI.MoreMultilineLabel introBox;
-		private River.OneMoreAddIn.UI.ScaledToolStrip toolstrip;
+		private River.OneMoreAddIn.UI.MoreToolStrip toolstrip;
 		private System.Windows.Forms.ToolStripButton clearButton;
 		private System.Windows.Forms.ToolStripButton resetButton;
 		private System.Windows.Forms.ToolStripButton resetAllButton;

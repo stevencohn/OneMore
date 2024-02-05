@@ -32,7 +32,7 @@ namespace River.OneMoreAddIn.Commands
 			this.components = new System.ComponentModel.Container();
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TimerWindow));
 			this.timeLabel = new System.Windows.Forms.Label();
-			this.toolstrip = new River.OneMoreAddIn.UI.ScaledToolStrip();
+			this.toolstrip = new River.OneMoreAddIn.UI.MoreToolStrip();
 			this.copyButton = new System.Windows.Forms.ToolStripButton();
 			this.spacer1 = new System.Windows.Forms.ToolStripLabel();
 			this.resetButton = new System.Windows.Forms.ToolStripButton();
@@ -150,7 +150,7 @@ namespace River.OneMoreAddIn.Commands
 		#endregion
 
 		private System.Windows.Forms.Label timeLabel;
-		private UI.ScaledToolStrip toolstrip;
+		private UI.MoreToolStrip toolstrip;
 		private System.Windows.Forms.ToolStripButton copyButton;
 		private System.Windows.Forms.ToolStripButton resetButton;
 		private System.Windows.Forms.ToolStripButton closeButton;

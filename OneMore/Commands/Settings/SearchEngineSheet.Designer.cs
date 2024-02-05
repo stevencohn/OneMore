@@ -34,7 +34,7 @@
 			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
 			this.gridView = new System.Windows.Forms.DataGridView();
 			this.introBox = new River.OneMoreAddIn.UI.MoreMultilineLabel();
-			this.toolStrip = new River.OneMoreAddIn.UI.ScaledToolStrip();
+			this.toolStrip = new River.OneMoreAddIn.UI.MoreToolStrip();
 			this.upButton = new System.Windows.Forms.ToolStripButton();
 			this.downButton = new System.Windows.Forms.ToolStripButton();
 			this.refreshButton = new System.Windows.Forms.ToolStripButton();
@@ -199,7 +199,7 @@
 
 		private System.Windows.Forms.DataGridView gridView;
 		private UI.MoreMultilineLabel introBox;
-		private UI.ScaledToolStrip toolStrip;
+		private UI.MoreToolStrip toolStrip;
 		private System.Windows.Forms.ToolStripButton deleteButton;
 		private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
 		private System.Windows.Forms.ToolStripButton upButton;

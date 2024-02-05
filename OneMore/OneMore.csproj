@@ -504,6 +504,9 @@
     <Compile Include="UI\Themed\MoreTextBox.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="UI\Themed\MoreMenuStrip.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="UI\Themed\MoreUserControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -902,7 +905,7 @@
     <Compile Include="Commands\Styles\ReorderDialog.Designer.cs">
       <DependentUpon>ReorderDialog.cs</DependentUpon>
     </Compile>
-    <Compile Include="UI\ScaledToolStrip.cs">
+    <Compile Include="UI\Themed\MoreToolStrip.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Commands\Search\SearchAndReplaceDialog.cs">
@@ -1049,6 +1052,7 @@
       <DependentUpon>MoreBubbleWindow.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\Themed\MouseState.cs" />
+    <Compile Include="UI\Themed\ThemedColorTable.cs" />
     <Compile Include="UI\Themed\ThemeManager.cs" />
     <Compile Include="UI\TranslationHelper.cs" />
     <Compile Include="UI\WebViewWorkerDialog.cs">
@@ -1244,6 +1248,20 @@
     <Content Include="Properties\Images\FolderClose.png" />
     <Content Include="Properties\Images\FolderOpen.png" />
     <None Include="Properties\Images\Grid40.png" />
+    <Content Include="Properties\Menu\m_Bold.png" />
+    <Content Include="Properties\Menu\m_Delete.png" />
+    <Content Include="Properties\Menu\m_FileOpen.png" />
+    <Content Include="Properties\Menu\m_FontColor.png" />
+    <Content Include="Properties\Menu\m_Highlighter.png" />
+    <Content Include="Properties\Menu\m_Italic.png" />
+    <Content Include="Properties\Menu\m_NewStyle.png" />
+    <Content Include="Properties\Menu\m_Rename.png" />
+    <Content Include="Properties\Menu\m_Reorder.png" />
+    <Content Include="Properties\Menu\m_SaveAs.png" />
+    <Content Include="Properties\Menu\m_Strikethrough.png" />
+    <Content Include="Properties\Menu\m_Subscript.png" />
+    <Content Include="Properties\Menu\m_Superscript.png" />
+    <Content Include="Properties\Menu\m_Underline.png" />
     <Content Include="Ribbon\Images\ribSearchHashtagsButton.png" />
     <Content Include="Properties\Images\Label.png" />
     <Content Include="Properties\Images\LabelSearch.png" />
