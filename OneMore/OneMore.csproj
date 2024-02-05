@@ -1275,6 +1275,7 @@
     <Content Include="Properties\Menu\m_Subscript.png" />
     <Content Include="Properties\Menu\m_Superscript.png" />
     <Content Include="Properties\Menu\m_Underline.png" />
+    <Content Include="Properties\Menu\m_WrapText.png" />
     <Content Include="Ribbon\Images\ribSearchHashtagsButton.png" />
     <Content Include="Properties\Images\Label.png" />
     <Content Include="Properties\Images\LabelSearch.png" />
