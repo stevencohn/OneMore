@@ -1266,6 +1266,9 @@
     <Content Include="Properties\Menu\m_Reset.png" />
     <Content Include="Properties\Menu\m_Restart.png" />
     <Content Include="Properties\Menu\m_SaveAs.png" />
+    <Content Include="Properties\Menu\m_Search.png" />
+    <Content Include="Properties\Menu\m_SearchTags.png" />
+    <Content Include="Properties\Menu\m_SelectAll.png" />
     <Content Include="Properties\Menu\m_Sort.png" />
     <Content Include="Properties\Menu\m_Stop.png" />
     <Content Include="Properties\Menu\m_Strikethrough.png" />
