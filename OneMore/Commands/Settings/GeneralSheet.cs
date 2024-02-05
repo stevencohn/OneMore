@@ -109,10 +109,12 @@ namespace River.OneMoreAddIn.Settings
 			// general...
 
 			var settings = provider.GetCollection(Name);
+			var save = false;
 
 			if (settings.Add("theme", themeBox.SelectedIndex))
 			{
-				ThemeManager.Instance.LoadColors();
+				ThemeManager.Instance.LoadColors(themeBox.SelectedIndex);
+				save = true;
 			}
 
 			var lang = ((CultureInfo)(langBox.SelectedItem)).Name;
@@ -133,7 +135,7 @@ namespace River.OneMoreAddIn.Settings
 				? settings.Add("experimental", true) || updated
 				: settings.Remove("experimental") || updated;
 
-			if (updated)
+			if (updated || save)
 			{
 				provider.SetCollection(settings);
 			}

@@ -1254,10 +1254,15 @@
     <Content Include="Properties\Menu\m_FontColor.png" />
     <Content Include="Properties\Menu\m_Highlighter.png" />
     <Content Include="Properties\Menu\m_Italic.png" />
+    <Content Include="Properties\Menu\m_MoveDown.png" />
+    <Content Include="Properties\Menu\m_MoveUp.png" />
     <Content Include="Properties\Menu\m_NewStyle.png" />
+    <Content Include="Properties\Menu\m_Refresh.png" />
     <Content Include="Properties\Menu\m_Rename.png" />
     <Content Include="Properties\Menu\m_Reorder.png" />
+    <Content Include="Properties\Menu\m_Reset.png" />
     <Content Include="Properties\Menu\m_SaveAs.png" />
+    <Content Include="Properties\Menu\m_Sort.png" />
     <Content Include="Properties\Menu\m_Strikethrough.png" />
     <Content Include="Properties\Menu\m_Subscript.png" />
     <Content Include="Properties\Menu\m_Superscript.png" />

@@ -129,15 +129,4 @@
   <metadata name="toolStrip.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="toolStripButton1.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAAFiUAABYlAUlSJPAAAADgSURBVDhPzVIxDsIwDPTQH+Ut/ULfwdSZqZI3BoTEwB86
-        o+x9QLdO9AUmZ9miIgllYOCkU1Xr7mwnof/A6XSWGqdpEpPVAWEJqIfQ7Yd4AMROAPUYo/7ja/IcexM4
-        oR3HUbhLgcyvwNoEAHNUooYpYE4FORDlASWs6yqX+0PNt+tRUms1FwO2E4Awg1tz5CBdIMEqZifiNFIJ
-        X5mBYRjU8D7Bsix6kB/NgAc40BnmeZ6l73tp21bN1fcAkcP3hhmGpmm0KyYyeQ4PwGkzrgq06wP9PZg8
-        B1bY7l6jyX8JoieWYrTiLPI8ugAAAABJRU5ErkJggg==
-</value>
-  </data>
 </root>

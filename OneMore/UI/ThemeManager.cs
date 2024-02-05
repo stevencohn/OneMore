@@ -127,7 +127,7 @@ namespace River.OneMoreAddIn.UI
 		}
 
 
-		public void LoadColors()
+		public void LoadColors(int modeIndex = -1)
 		{
 			ThemeManager cache;
 
@@ -154,8 +154,9 @@ namespace River.OneMoreAddIn.UI
 				LicenseManager.UsageMode == LicenseUsageMode.Designtime ||
 				System.Diagnostics.Process.GetCurrentProcess().ProcessName == "devenv";
 
-			var provider = new SettingsProvider();
-			var mode = provider.Theme;
+			var mode = modeIndex >= 0
+				? (ThemeMode)modeIndex
+				: new SettingsProvider().Theme;
 
 			DarkMode = !designMode &&
 				(mode == ThemeMode.Dark ||
