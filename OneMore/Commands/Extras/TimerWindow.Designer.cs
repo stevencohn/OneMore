@@ -33,11 +33,11 @@ namespace River.OneMoreAddIn.Commands
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TimerWindow));
 			this.timeLabel = new System.Windows.Forms.Label();
 			this.toolstrip = new River.OneMoreAddIn.UI.MoreToolStrip();
-			this.copyButton = new System.Windows.Forms.ToolStripButton();
+			this.copyButton = new River.OneMoreAddIn.UI.MoreMenuItem();
 			this.spacer1 = new System.Windows.Forms.ToolStripLabel();
-			this.resetButton = new System.Windows.Forms.ToolStripButton();
+			this.resetButton = new River.OneMoreAddIn.UI.MoreMenuItem();
 			this.spacer2 = new System.Windows.Forms.ToolStripLabel();
-			this.closeButton = new System.Windows.Forms.ToolStripButton();
+			this.closeButton = new River.OneMoreAddIn.UI.MoreMenuItem();
 			this.timer = new System.Windows.Forms.Timer(this.components);
 			this.toolstrip.SuspendLayout();
 			this.SuspendLayout();
@@ -56,8 +56,9 @@ namespace River.OneMoreAddIn.Commands
 			// 
 			// toolstrip
 			// 
-			this.toolstrip.BackColor = System.Drawing.Color.Transparent;
+			this.toolstrip.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
 			this.toolstrip.Dock = System.Windows.Forms.DockStyle.Bottom;
+			this.toolstrip.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
 			this.toolstrip.ImageScalingSize = new System.Drawing.Size(24, 24);
 			this.toolstrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.copyButton,
@@ -76,10 +77,10 @@ namespace River.OneMoreAddIn.Commands
 			// copyButton
 			// 
 			this.copyButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-			this.copyButton.Image = global::River.OneMoreAddIn.Properties.Resources.Copy;
+			this.copyButton.Image = global::River.OneMoreAddIn.Properties.Resources.m_Copy;
 			this.copyButton.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.copyButton.Name = "copyButton";
-			this.copyButton.Size = new System.Drawing.Size(34, 33);
+			this.copyButton.Size = new System.Drawing.Size(40, 38);
 			this.copyButton.Text = "Copy Current Time";
 			this.copyButton.Click += new System.EventHandler(this.CopyTime);
 			// 
@@ -92,26 +93,26 @@ namespace River.OneMoreAddIn.Commands
 			// resetButton
 			// 
 			this.resetButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-			this.resetButton.Image = global::River.OneMoreAddIn.Properties.Resources.Restart;
+			this.resetButton.Image = global::River.OneMoreAddIn.Properties.Resources.m_Restart;
 			this.resetButton.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.resetButton.Name = "resetButton";
-			this.resetButton.Size = new System.Drawing.Size(34, 33);
+			this.resetButton.Size = new System.Drawing.Size(40, 38);
 			this.resetButton.Text = "Restart Timer";
 			this.resetButton.Click += new System.EventHandler(this.RestartTimer);
 			// 
 			// spacer2
 			// 
 			this.spacer2.Name = "spacer2";
-			this.spacer2.Size = new System.Drawing.Size(17, 33);
+			this.spacer2.Size = new System.Drawing.Size(17, 25);
 			this.spacer2.Text = " ";
 			// 
 			// closeButton
 			// 
 			this.closeButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-			this.closeButton.Image = global::River.OneMoreAddIn.Properties.Resources.Exit;
+			this.closeButton.Image = global::River.OneMoreAddIn.Properties.Resources.m_Stop;
 			this.closeButton.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.closeButton.Name = "closeButton";
-			this.closeButton.Size = new System.Drawing.Size(34, 33);
+			this.closeButton.Size = new System.Drawing.Size(40, 38);
 			this.closeButton.Text = "Close Timer";
 			this.closeButton.Click += new System.EventHandler(this.CloseWindow);
 			// 
@@ -151,9 +152,9 @@ namespace River.OneMoreAddIn.Commands
 
 		private System.Windows.Forms.Label timeLabel;
 		private UI.MoreToolStrip toolstrip;
-		private System.Windows.Forms.ToolStripButton copyButton;
-		private System.Windows.Forms.ToolStripButton resetButton;
-		private System.Windows.Forms.ToolStripButton closeButton;
+		private UI.MoreMenuItem copyButton;
+		private UI.MoreMenuItem resetButton;
+		private UI.MoreMenuItem closeButton;
 		private System.Windows.Forms.Timer timer;
 		private System.Windows.Forms.ToolStripLabel spacer1;
 		private System.Windows.Forms.ToolStripLabel spacer2;

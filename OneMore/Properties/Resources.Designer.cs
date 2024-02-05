@@ -4570,6 +4570,16 @@ namespace River.OneMoreAddIn.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap m_Copy {
+            get {
+                object obj = ResourceManager.GetObject("m_Copy", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap m_Delete {
             get {
                 object obj = ResourceManager.GetObject("m_Delete", resourceCulture);
@@ -4583,6 +4593,26 @@ namespace River.OneMoreAddIn.Properties {
         internal static System.Drawing.Bitmap m_FileOpen {
             get {
                 object obj = ResourceManager.GetObject("m_FileOpen", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap m_FolderClose {
+            get {
+                object obj = ResourceManager.GetObject("m_FolderClose", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap m_FolderOpen {
+            get {
+                object obj = ResourceManager.GetObject("m_FolderOpen", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -4690,6 +4720,16 @@ namespace River.OneMoreAddIn.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap m_Restart {
+            get {
+                object obj = ResourceManager.GetObject("m_Restart", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap m_SaveAs {
             get {
                 object obj = ResourceManager.GetObject("m_SaveAs", resourceCulture);
@@ -4703,6 +4743,16 @@ namespace River.OneMoreAddIn.Properties {
         internal static System.Drawing.Bitmap m_Sort {
             get {
                 object obj = ResourceManager.GetObject("m_Sort", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap m_Stop {
+            get {
+                object obj = ResourceManager.GetObject("m_Stop", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
