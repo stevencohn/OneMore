@@ -53,6 +53,9 @@
     "InactiveWindow": "#EBEBEB",
     "LinkHighlight": "#E5E0EC",
     "ListView": "#FFFFFF",
+    "MenuItemBorder": "#DA70D6",
+    "MenuMargin": "#E3E3E3",
+    "MenuSeparator": "#989898",
 
     "XmlComment": "Green",
     "XmlEditedBy": "CornflowerBlue",

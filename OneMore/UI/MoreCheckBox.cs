@@ -40,9 +40,9 @@ namespace River.OneMoreAddIn.UI
 			boxSize = SystemInformation.MenuCheckSize.Width - 3;
 
 			manager = ThemeManager.Instance;
-			BackColor = backColor = manager.GetThemedColor("ButtonFace");
-			ForeColor = foreColor = manager.GetThemedColor("ControlText");
-			hoverColor = manager.GetThemedColor("ButtonHighlight");
+			BackColor = backColor = manager.GetColor("ButtonFace");
+			ForeColor = foreColor = manager.GetColor("ControlText");
+			hoverColor = manager.GetColor("ButtonHighlight");
 		}
 
 
@@ -78,7 +78,7 @@ namespace River.OneMoreAddIn.UI
 			{
 				using var brush = new SolidBrush(
 					Checked
-						? manager.GetThemedColor("ButtonDown")
+						? manager.GetColor("ButtonDown")
 						: MouseState.HasFlag(MouseState.Hover) ? hoverColor : backColor);
 
 				g.FillRoundedRectangle(brush, clip, Radius);
@@ -104,7 +104,7 @@ namespace River.OneMoreAddIn.UI
 				var size = g.MeasureString(Text, Font);
 
 				using var brush = new SolidBrush(
-					Enabled ? foreColor : manager.GetThemedColor("GrayText"));
+					Enabled ? foreColor : manager.GetColor("GrayText"));
 
 				pevent.Graphics.DrawString(Text, Font, brush,
 					(clip.Width - (int)size.Width) / 2f,
@@ -123,7 +123,7 @@ namespace River.OneMoreAddIn.UI
 			}
 			else if (Focused || IsDefault) // || this == FindForm().AcceptButton)
 			{
-				border = manager.GetThemedColor("HotTrack");
+				border = manager.GetColor("HotTrack");
 			}
 			else if (MouseState.HasFlag(MouseState.Hover))
 			{
@@ -146,10 +146,10 @@ namespace River.OneMoreAddIn.UI
 			var g = pevent.Graphics;
 
 			var color = Enabled
-				? manager.GetThemedColor(foreColor)
-				: manager.GetThemedColor("GrayText");
+				? manager.GetColor(foreColor)
+				: manager.GetColor("GrayText");
 
-			var boxColor = Enabled ? manager.GetThemedColor("Highlight") : color;
+			var boxColor = Enabled ? manager.GetColor("Highlight") : color;
 
 			var boxY = (Size.Height - boxSize) / 2;
 

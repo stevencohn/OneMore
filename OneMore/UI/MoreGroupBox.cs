@@ -32,14 +32,14 @@ namespace River.OneMoreAddIn.UI
 
 		protected override void OnPaint(PaintEventArgs e)
 		{
-			var backColor = manager.GetThemedColor(BackColor);
+			var backColor = manager.GetColor(BackColor);
 			e.Graphics.Clear(backColor);
 
 			var size = e.Graphics.MeasureString(Text ?? "M", Font).ToSize();
 			var clip = e.Graphics.ClipBounds;
 			var half = size.Height / 2;
 
-			using var pen = new Pen(manager.GetThemedColor(Border), 2);
+			using var pen = new Pen(manager.GetColor(Border), 2);
 			var bounds = new Rectangle((int)clip.X, half, (int)clip.Width, (int)clip.Height - half);
 			e.Graphics.DrawRoundedRectangle(pen, bounds, 4);
 
@@ -51,7 +51,7 @@ namespace River.OneMoreAddIn.UI
 					clip.X + TextOffset + size.Width, clip.Y + size.Height
 					);
 
-				using var brush = new SolidBrush(manager.GetThemedColor(ForeColor));
+				using var brush = new SolidBrush(manager.GetColor(ForeColor));
 				e.Graphics.DrawString(Text, Font, brush, clip.X + TextOffset, clip.Y);
 			}
 		}

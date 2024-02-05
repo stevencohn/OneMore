@@ -31,15 +31,15 @@ namespace River.OneMoreAddIn.Commands
 		{
 			this.components = new System.ComponentModel.Container();
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LinkDialog));
-			this.okButton = new System.Windows.Forms.Button();
-			this.cancelButton = new System.Windows.Forms.Button();
-			this.notebooksRadio = new System.Windows.Forms.RadioButton();
-			this.notebookRadio = new System.Windows.Forms.RadioButton();
-			this.sectionRadio = new System.Windows.Forms.RadioButton();
-			this.groupBox = new System.Windows.Forms.GroupBox();
+			this.okButton = new UI.MoreButton();
+			this.cancelButton = new UI.MoreButton();
+			this.notebooksRadio = new UI.MoreRadioButton();
+			this.notebookRadio = new UI.MoreRadioButton();
+			this.sectionRadio = new UI.MoreRadioButton();
+			this.groupBox = new UI.MoreGroupBox();
 			this.introLabel = new System.Windows.Forms.Label();
-			this.synopsisBox = new System.Windows.Forms.CheckBox();
-			this.unindexedBox = new System.Windows.Forms.CheckBox();
+			this.synopsisBox = new UI.MoreCheckBox();
+			this.unindexedBox = new UI.MoreCheckBox();
 			this.tooltip = new System.Windows.Forms.ToolTip(this.components);
 			this.groupBox.SuspendLayout();
 			this.SuspendLayout();
@@ -177,15 +177,15 @@ namespace River.OneMoreAddIn.Commands
 
 		#endregion
 
-		private System.Windows.Forms.Button okButton;
-		private System.Windows.Forms.Button cancelButton;
-		private System.Windows.Forms.RadioButton notebooksRadio;
-		private System.Windows.Forms.RadioButton notebookRadio;
-		private System.Windows.Forms.RadioButton sectionRadio;
-		private System.Windows.Forms.GroupBox groupBox;
+		private UI.MoreButton okButton;
+		private UI.MoreButton cancelButton;
+		private UI.MoreRadioButton notebooksRadio;
+		private UI.MoreRadioButton notebookRadio;
+		private UI.MoreRadioButton sectionRadio;
+		private UI.MoreGroupBox groupBox;
 		private System.Windows.Forms.Label introLabel;
-		private System.Windows.Forms.CheckBox synopsisBox;
-		private System.Windows.Forms.CheckBox unindexedBox;
+		private UI.MoreCheckBox synopsisBox;
+		private UI.MoreCheckBox unindexedBox;
 		private System.Windows.Forms.ToolTip tooltip;
 	}
 }

@@ -4,6 +4,7 @@
 
 namespace River.OneMoreAddIn.Settings
 {
+	using River.OneMoreAddIn.UI;
 	using System.Collections.Generic;
 	using System.Globalization;
 	using System.IO;
@@ -108,11 +109,16 @@ namespace River.OneMoreAddIn.Settings
 			// general...
 
 			var settings = provider.GetCollection(Name);
+			var save = false;
 
-			var updated = settings.Add("theme", themeBox.SelectedIndex);
+			if (settings.Add("theme", themeBox.SelectedIndex))
+			{
+				ThemeManager.Instance.LoadColors(themeBox.SelectedIndex);
+				save = true;
+			}
 
 			var lang = ((CultureInfo)(langBox.SelectedItem)).Name;
-			updated = settings.Add("language", lang) || updated;
+			var updated = settings.Add("language", lang);
 
 			// does not require a restart
 			if (checkUpdatesBox.Checked)
@@ -129,7 +135,7 @@ namespace River.OneMoreAddIn.Settings
 				? settings.Add("experimental", true) || updated
 				: settings.Remove("experimental") || updated;
 
-			if (updated)
+			if (updated || save)
 			{
 				provider.SetCollection(settings);
 			}

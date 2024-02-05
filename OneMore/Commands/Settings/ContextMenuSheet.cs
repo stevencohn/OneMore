@@ -187,10 +187,10 @@ namespace River.OneMoreAddIn.Settings
 		protected override void OnLoad(EventArgs e)
 		{
 			// after ThemeManager is initialized
-			menuPanel.MenuColor = manager.GetThemedColor("Control");
-			menuPanel.MenuTextColor = manager.GetThemedColor("ActiveCaptionText");
-			menuPanel.ItemColor = manager.GetThemedColor("ControlLightLight");
-			menuPanel.ItemTextColor = manager.GetThemedColor("ControlText");
+			menuPanel.MenuColor = manager.GetColor("Control");
+			menuPanel.MenuTextColor = manager.GetColor("ActiveCaptionText");
+			menuPanel.ItemColor = manager.GetColor("ControlLightLight");
+			menuPanel.ItemTextColor = manager.GetColor("ControlText");
 			manager.InitializeTheme(menuPanel);
 
 			var menus = CollectCommandMenus();

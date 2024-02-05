@@ -41,14 +41,14 @@ namespace River.OneMoreAddIn.UI
 
 		public void ApplyTheme(ThemeManager manager)
 		{
-			BackColor = manager.GetThemedColor("Control", ThemedBack);
+			BackColor = manager.GetColor("Control", ThemedBack);
 
 			ForeColor = Enabled
-				? manager.GetThemedColor("ControlText", ThemedFore)
-				: manager.GetThemedColor("GrayText");
+				? manager.GetColor("ControlText", ThemedFore)
+				: manager.GetColor("GrayText");
 
-			BottomBorderColor = manager.GetThemedColor(BottomBorderColor);
-			TopBorderColor = manager.GetThemedColor(TopBorderColor);
+			BottomBorderColor = manager.GetColor(BottomBorderColor);
+			TopBorderColor = manager.GetColor(TopBorderColor);
 		}
 
 

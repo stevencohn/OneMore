@@ -154,8 +154,7 @@ namespace River.OneMoreAddIn.Commands
 				styleTypeBox.Items.AddRange(Resx.StyleDialog_styleTypeBox_Items.Split('\n'));
 			}
 
-			mainTools.Rescale();
-			toolStrip.Rescale();
+			//toolStrip.Rescale();
 
 			if (AddIn.Culture.NumberFormat.NumberDecimalSeparator != ".")
 			{

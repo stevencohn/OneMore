@@ -4,13 +4,10 @@
 
 #pragma warning disable S3011 // Reflection should not be used to increase accessibility...
 
-#define notBETTER
-
 namespace River.OneMoreAddIn.UI
 {
 	using Newtonsoft.Json;
 	using River.OneMoreAddIn;
-	using River.OneMoreAddIn.Commands;
 	using River.OneMoreAddIn.Helpers.Office;
 	using River.OneMoreAddIn.Settings;
 	using System;
@@ -130,7 +127,7 @@ namespace River.OneMoreAddIn.UI
 		}
 
 
-		private void LoadColors()
+		public void LoadColors(int modeIndex = -1)
 		{
 			ThemeManager cache;
 
@@ -157,8 +154,9 @@ namespace River.OneMoreAddIn.UI
 				LicenseManager.UsageMode == LicenseUsageMode.Designtime ||
 				System.Diagnostics.Process.GetCurrentProcess().ProcessName == "devenv";
 
-			var provider = new SettingsProvider();
-			var mode = provider.Theme;
+			var mode = modeIndex >= 0
+				? (ThemeMode)modeIndex
+				: new SettingsProvider().Theme;
 
 			DarkMode = !designMode &&
 				(mode == ThemeMode.Dark ||
@@ -177,6 +175,11 @@ namespace River.OneMoreAddIn.UI
 
 		private void SetWindowTheme(Control control)
 		{
+			if (control is MenuStrip)
+			{
+				return;
+			}
+
 			//logger.WriteLine($"SetWindowTheme {control.Name} {control.GetType()}");
 
 			bool trueValue = DarkMode;
@@ -194,8 +197,11 @@ namespace River.OneMoreAddIn.UI
 
 			foreach (Control child in control.Controls)
 			{
-				//logger.WriteLine($"SetWindowTheme >> {child.Name} {child.GetType()}");
-				SetWindowTheme(child);
+				if (child is StatusStrip || child is not ToolStrip)
+				{
+					//logger.WriteLine($"SetWindowTheme >> {child.Name} {child.GetType()}");
+					SetWindowTheme(child);
+				}
 			}
 		}
 
@@ -211,38 +217,25 @@ namespace River.OneMoreAddIn.UI
 		{
 			if (control is ListView ||
 				control is DataGridView ||
+				control is MenuStrip ||
 				(control is ToolStrip && control is not StatusStrip))
 			{
 				//logger.WriteLine($"skipping {control.Name} {control.GetType()}");
 				return;
 			}
-#if BETTER
-			control.BackColor = GetBestColor(
-				control is IThemedControl tb ? tb.ThemedBack : null,
-				control.BackColor,
-				control.Parent != null ? control.Parent.BackColor : Color.Empty,
-				"Control");
 
-			control.ForeColor = control.Enabled
-				? GetBestColor(
-					control is IThemedControl tf ? tf.ThemedBack : null,
-					control.ForeColor,
-					control.Parent != null ? control.Parent.ForeColor : Color.Empty,
-					"ControlText")
-				: GetThemedColor("GrayText");
-#else
 			if (control is IThemedControl themed)
 			{
 				themed.ApplyTheme(this);
 			}
 			else
 			{
-				control.BackColor = GetThemedColor(control.BackColor);
+				control.BackColor = GetColor(control.BackColor);
 				control.ForeColor = control.Enabled
-					? GetThemedColor(control.ForeColor)
-					: GetThemedColor("GrayText");
+					? GetColor(control.ForeColor)
+					: GetColor("GrayText");
 			}
-#endif
+
 			// for each of the following, parent should have already been themed by now...
 
 			if (control is ComboBox combo && DarkMode)
@@ -286,28 +279,6 @@ namespace River.OneMoreAddIn.UI
 			}
 		}
 
-#if BETTER
-		private Color GetBestColor(
-			string themed, Color property, Color parentProperty, string defaultName)
-		{
-			if (!string.IsNullOrWhiteSpace(themed))
-			{
-				return GetThemedColor(themed);
-			}
-
-			if (property != Color.Empty && property != Color.Transparent)
-			{
-				return GetThemedColor(property);
-			}
-
-			if (parentProperty != Color.Empty && parentProperty != Color.Transparent)
-			{
-				return GetThemedColor(parentProperty);
-			}
-
-			return GetThemedColor(defaultName);
-		}
-#endif
 
 		public Image GetGrayImage(Image image)
 		{
@@ -316,7 +287,7 @@ namespace River.OneMoreAddIn.UI
 		}
 
 
-		public Color GetThemedColor(Color color)
+		public Color GetColor(Color color)
 		{
 			return color.IsSystemColor && Colors.ContainsKey(color.Name)
 				? Colors[color.Name]
@@ -324,7 +295,7 @@ namespace River.OneMoreAddIn.UI
 		}
 
 
-		public Color GetThemedColor(string key, string themed = null)
+		public Color GetColor(string key, string themed = null)
 		{
 			// preferred could be a SystemColor like "ControlText" or NamedColor like "Blue"
 			if (!string.IsNullOrWhiteSpace(themed) && Colors.ContainsKey(themed))

@@ -24,8 +24,8 @@ namespace River.OneMoreAddIn.UI
 
 		public void ApplyTheme(ThemeManager manager)
 		{
-			ForeColor = manager.GetThemedColor(ThemedFore ?? "WindowText");
-			BackColor = manager.GetThemedColor(Enabled ? (ThemedBack ?? "Window") : "InactiveWindow");
+			ForeColor = manager.GetColor(ThemedFore ?? "WindowText");
+			BackColor = manager.GetColor(Enabled ? (ThemedBack ?? "Window") : "InactiveWindow");
 		}
 
 

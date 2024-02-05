@@ -47,9 +47,9 @@ namespace River.OneMoreAddIn.Commands
 			// snippets...
 
 			var height = snippetsPanel.Height;
-			var hintColor = manager.GetThemedColor("HintText");
-			var grayColor = manager.GetThemedColor("GrayText");
-			var hoverColor = manager.GetThemedColor("HoverColor");
+			var hintColor = manager.GetColor("HintText");
+			var grayColor = manager.GetColor("GrayText");
+			var hoverColor = manager.GetColor("HoverColor");
 
 			foreach (var snippet in item.Snippets)
 			{

@@ -53,15 +53,15 @@ namespace River.OneMoreAddIn.UI
 			if (!StrictColors)
 			{
 				var foreColor = !string.IsNullOrWhiteSpace(ThemedFore)
-					? manager.GetThemedColor(ThemedFore)
-					: manager.GetThemedColor("LinkColor");
+					? manager.GetColor(ThemedFore)
+					: manager.GetColor("LinkColor");
 
 				LinkColor = foreColor;
 				ActiveLinkColor = foreColor;
-				HoverColor = manager.GetThemedColor("HoverColor");
+				HoverColor = manager.GetColor("HoverColor");
 
 				BackColor = !string.IsNullOrWhiteSpace(ThemedBack)
-					? manager.GetThemedColor(ThemedBack)
+					? manager.GetColor(ThemedBack)
 					: Parent.BackColor;
 			}
 		}

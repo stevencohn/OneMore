@@ -30,11 +30,11 @@
 		{
 			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
 			this.gridView = new System.Windows.Forms.DataGridView();
-			this.introBox = new River.OneMoreAddIn.UI.MoreMultilineLabel();
-			this.toolStrip = new River.OneMoreAddIn.UI.ScaledToolStrip();
-			this.renameButton = new System.Windows.Forms.ToolStripButton();
-			this.deleteButton = new System.Windows.Forms.ToolStripButton();
 			this.nameColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.introBox = new River.OneMoreAddIn.UI.MoreMultilineLabel();
+			this.toolStrip = new River.OneMoreAddIn.UI.MoreToolStrip();
+			this.renameButton = new River.OneMoreAddIn.UI.MoreMenuItem();
+			this.deleteButton = new River.OneMoreAddIn.UI.MoreMenuItem();
 			((System.ComponentModel.ISupportInitialize)(this.gridView)).BeginInit();
 			this.toolStrip.SuspendLayout();
 			this.SuspendLayout();
@@ -49,62 +49,15 @@
             this.nameColumn});
 			this.gridView.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.gridView.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
-			this.gridView.Location = new System.Drawing.Point(10, 99);
+			this.gridView.Location = new System.Drawing.Point(10, 103);
 			this.gridView.MultiSelect = false;
 			this.gridView.Name = "gridView";
 			this.gridView.RowHeadersVisible = false;
 			this.gridView.RowHeadersWidth = 30;
 			this.gridView.RowTemplate.Height = 28;
 			this.gridView.ShowEditingIcon = false;
-			this.gridView.Size = new System.Drawing.Size(780, 392);
+			this.gridView.Size = new System.Drawing.Size(780, 388);
 			this.gridView.TabIndex = 2;
-			// 
-			// introBox
-			// 
-			this.introBox.AutoSize = true;
-			this.introBox.Dock = System.Windows.Forms.DockStyle.Top;
-			this.introBox.Location = new System.Drawing.Point(10, 9);
-			this.introBox.Name = "introBox";
-			this.introBox.Padding = new System.Windows.Forms.Padding(0, 0, 0, 36);
-			this.introBox.ThemedBack = "ControlLightLight";
-			this.introBox.ThemedFore = null;
-			this.introBox.Size = new System.Drawing.Size(780, 56);
-			this.introBox.TabIndex = 0;
-			this.introBox.Text = "Manage my snippets";
-			// 
-			// toolStrip
-			// 
-			this.toolStrip.ImageScalingSize = new System.Drawing.Size(24, 24);
-			this.toolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.renameButton,
-            this.deleteButton});
-			this.toolStrip.Location = new System.Drawing.Point(10, 65);
-			this.toolStrip.Name = "toolStrip";
-			this.toolStrip.Padding = new System.Windows.Forms.Padding(0, 0, 3, 0);
-			this.toolStrip.Size = new System.Drawing.Size(780, 34);
-			this.toolStrip.Stretch = true;
-			this.toolStrip.TabIndex = 4;
-			this.toolStrip.Text = "Tool Strip";
-			// 
-			// renameButton
-			// 
-			this.renameButton.ForeColor = System.Drawing.Color.Black;
-			this.renameButton.Image = global::River.OneMoreAddIn.Properties.Resources.Rename;
-			this.renameButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-			this.renameButton.Name = "renameButton";
-			this.renameButton.Size = new System.Drawing.Size(103, 29);
-			this.renameButton.Text = "Rename";
-			this.renameButton.Click += new System.EventHandler(this.RenameItem);
-			// 
-			// deleteButton
-			// 
-			this.deleteButton.ForeColor = System.Drawing.Color.Black;
-			this.deleteButton.Image = global::River.OneMoreAddIn.Properties.Resources.Delete;
-			this.deleteButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-			this.deleteButton.Name = "deleteButton";
-			this.deleteButton.Size = new System.Drawing.Size(90, 29);
-			this.deleteButton.Text = "Delete";
-			this.deleteButton.Click += new System.EventHandler(this.DeleteItem);
 			// 
 			// nameColumn
 			// 
@@ -114,6 +67,55 @@
 			this.nameColumn.HeaderText = "Name";
 			this.nameColumn.MinimumWidth = 100;
 			this.nameColumn.Name = "nameColumn";
+			// 
+			// introBox
+			// 
+			this.introBox.AutoSize = true;
+			this.introBox.Dock = System.Windows.Forms.DockStyle.Top;
+			this.introBox.Location = new System.Drawing.Point(10, 9);
+			this.introBox.Name = "introBox";
+			this.introBox.Padding = new System.Windows.Forms.Padding(0, 0, 0, 36);
+			this.introBox.Size = new System.Drawing.Size(780, 56);
+			this.introBox.TabIndex = 0;
+			this.introBox.Text = "Manage my snippets";
+			this.introBox.ThemedBack = "ControlLightLight";
+			this.introBox.ThemedFore = null;
+			// 
+			// toolStrip
+			// 
+			this.toolStrip.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
+			this.toolStrip.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
+			this.toolStrip.ImageScalingSize = new System.Drawing.Size(18, 18);
+			this.toolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.renameButton,
+            this.deleteButton});
+			this.toolStrip.Location = new System.Drawing.Point(10, 65);
+			this.toolStrip.Name = "toolStrip";
+			this.toolStrip.Padding = new System.Windows.Forms.Padding(0, 0, 3, 0);
+			this.toolStrip.Size = new System.Drawing.Size(780, 38);
+			this.toolStrip.Stretch = true;
+			this.toolStrip.TabIndex = 4;
+			this.toolStrip.Text = "Tool Strip";
+			// 
+			// renameButton
+			// 
+			this.renameButton.ForeColor = System.Drawing.Color.Black;
+			this.renameButton.Image = global::River.OneMoreAddIn.Properties.Resources.m_Rename;
+			this.renameButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+			this.renameButton.Name = "renameButton";
+			this.renameButton.Size = new System.Drawing.Size(115, 38);
+			this.renameButton.Text = "Rename";
+			this.renameButton.Click += new System.EventHandler(this.RenameItem);
+			// 
+			// deleteButton
+			// 
+			this.deleteButton.ForeColor = System.Drawing.Color.Black;
+			this.deleteButton.Image = global::River.OneMoreAddIn.Properties.Resources.m_Delete;
+			this.deleteButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+			this.deleteButton.Name = "deleteButton";
+			this.deleteButton.Size = new System.Drawing.Size(102, 38);
+			this.deleteButton.Text = "Delete";
+			this.deleteButton.Click += new System.EventHandler(this.DeleteItem);
 			// 
 			// SnippetsSheet
 			// 
@@ -140,10 +142,10 @@
 		#endregion
 
 		private System.Windows.Forms.DataGridView gridView;
-		private UI.ScaledToolStrip toolStrip;
-		private System.Windows.Forms.ToolStripButton deleteButton;
+		private UI.MoreToolStrip toolStrip;
+		private UI.MoreMenuItem deleteButton;
 		private UI.MoreMultilineLabel introBox;
-		private System.Windows.Forms.ToolStripButton renameButton;
+		private UI.MoreMenuItem renameButton;
 		private System.Windows.Forms.DataGridViewTextBoxColumn nameColumn;
 	}
 }

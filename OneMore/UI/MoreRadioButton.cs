@@ -97,11 +97,11 @@ namespace River.OneMoreAddIn.UI
 			var g = pevent.Graphics;
 
 			var color = Enabled
-				? manager.GetThemedColor(foreColor)
-				: manager.GetThemedColor("GrayText");
+				? manager.GetColor(foreColor)
+				: manager.GetColor("GrayText");
 
 			var radioColor = Enabled
-				? manager.GetThemedColor("Highlight")
+				? manager.GetColor("Highlight")
 				: color;
 
 			var boxY = (Size.Height - boxSize) / 2;

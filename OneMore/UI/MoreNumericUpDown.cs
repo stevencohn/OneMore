@@ -42,9 +42,9 @@ namespace River.OneMoreAddIn.UI
 				{
 					foreColor = string.IsNullOrEmpty(ThemedFore)
 						? ForeColor
-						: manager.GetThemedColor(ThemedFore);
+						: manager.GetColor(ThemedFore);
 
-					grayColor = manager.GetThemedColor("GrayText");
+					grayColor = manager.GetColor("GrayText");
 				}
 
 				ForeColor = grayColor;

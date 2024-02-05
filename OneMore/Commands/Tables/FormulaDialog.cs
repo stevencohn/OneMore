@@ -97,20 +97,20 @@ namespace River.OneMoreAddIn.Commands
 				try
 				{
 					calculator.Execute(formula);
-					validStatusLabel.ForeColor = manager.GetThemedColor("ControlText");
+					validStatusLabel.ForeColor = manager.GetColor("ControlText");
 					validStatusLabel.Text = Resx.word_OK;
 					okButton.Enabled = true;
 				}
 				catch
 				{
-					validStatusLabel.ForeColor = manager.GetThemedColor("ErrorText");
+					validStatusLabel.ForeColor = manager.GetColor("ErrorText");
 					validStatusLabel.Text = Resx.FormulaDialog_status_Invalid;
 					okButton.Enabled = false;
 				}
 			}
 			else
 			{
-				validStatusLabel.ForeColor = manager.GetThemedColor("ControlText");
+				validStatusLabel.ForeColor = manager.GetColor("ControlText");
 				validStatusLabel.Text = Resx.FormulaDialog_status_Empty;
 				okButton.Enabled = false;
 			}

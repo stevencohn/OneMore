@@ -90,14 +90,14 @@ namespace River.OneMoreAddIn.UI
 		protected override void OnPaint(PaintEventArgs e)
 		{
 			// background will become the Tabs Well bg as well as the internal bg
-			var background = manager.GetThemedColor(Background);
+			var background = manager.GetColor(Background);
 			e.Graphics.Clear(background);
 
-			using var activeBack = new SolidBrush(manager.GetThemedColor(ActiveTabBack));
-			using var activeFore = new SolidBrush(manager.GetThemedColor(ActiveTabFore));
-			using var inactiveBack = new SolidBrush(manager.GetThemedColor(InactiveTabBack));
-			using var inactiveFore = new SolidBrush(manager.GetThemedColor(InactiveTabFore));
-			using var indicator = new SolidBrush(manager.GetThemedColor(ActiveIndicator));
+			using var activeBack = new SolidBrush(manager.GetColor(ActiveTabBack));
+			using var activeFore = new SolidBrush(manager.GetColor(ActiveTabFore));
+			using var inactiveBack = new SolidBrush(manager.GetColor(InactiveTabBack));
+			using var inactiveFore = new SolidBrush(manager.GetColor(InactiveTabFore));
+			using var indicator = new SolidBrush(manager.GetColor(ActiveIndicator));
 
 			var format = new StringFormat
 			{
@@ -162,7 +162,7 @@ namespace River.OneMoreAddIn.UI
 			}
 
 			if (top == 0) top = DefaultTabHeight;
-			using var border = new SolidBrush(manager.GetThemedColor(Border));
+			using var border = new SolidBrush(manager.GetColor(Border));
 			using var pen = new Pen(border, 2);
 			e.Graphics.DrawRectangle(pen, 0, top, e.ClipRectangle.Width, e.ClipRectangle.Height - top);
 			e.Graphics.FillRectangle(indicator, 0, top, e.ClipRectangle.Width, IndicatorSize);

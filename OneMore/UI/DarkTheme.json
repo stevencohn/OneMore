@@ -39,7 +39,7 @@
     "InfoText": "#E6E6E6",
     "LinkColor": "#DA70D6",
     "Menu": "#292929",
-    "MenuBar": "#292929",
+    "MenuBar": "#393939",
     "MenuHighlight": "#8F20C7",
     "MenuText": "#E6E6E6",
     "Window": "#272727",
@@ -53,6 +53,9 @@
     "InactiveWindow": "#212121",
     "LinkHighlight": "#323F4F",
     "ListView": "#2B2B2B",
+    "MenuItemBorder": "#DA70D6",
+    "MenuMargin": "#515151",
+    "MenuSeparator": "#989898",
 
     "XmlComment": "LimeGreen",
     "XmlEditedBy": "#56B1E4",

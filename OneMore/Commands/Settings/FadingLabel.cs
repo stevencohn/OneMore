@@ -28,8 +28,8 @@ namespace River.OneMoreAddIn.Settings
 		protected override void OnPaint(PaintEventArgs e)
 		{
 			var manager = ThemeManager.Instance;
-			var startColor = manager.GetThemedColor("GradientActiveCaption");
-			var endColor = manager.GetThemedColor("GradientInactiveCaption");
+			var startColor = manager.GetColor("GradientActiveCaption");
+			var endColor = manager.GetColor("GradientInactiveCaption");
 
 			// linear gradient brush for background fill
 			var gradient = new LinearGradientBrush(
