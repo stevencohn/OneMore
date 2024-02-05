@@ -44,7 +44,7 @@
 			this.okButton = new River.OneMoreAddIn.UI.MoreButton();
 			this.namesBox = new System.Windows.Forms.ComboBox();
 			this.bodyPanel = new System.Windows.Forms.Panel();
-			this.toolStrip = new River.OneMoreAddIn.UI.MoreMenuStrip();
+			this.toolStrip = new River.OneMoreAddIn.UI.MoreToolStrip();
 			this.boldButton = new River.OneMoreAddIn.UI.MoreMenuItem();
 			this.italicButton = new River.OneMoreAddIn.UI.MoreMenuItem();
 			this.underlineButton = new River.OneMoreAddIn.UI.MoreMenuItem();
@@ -287,6 +287,7 @@
 			this.toolStrip.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
 			this.toolStrip.Dock = System.Windows.Forms.DockStyle.None;
 			this.toolStrip.GripMargin = new System.Windows.Forms.Padding(2, 2, 0, 2);
+			this.toolStrip.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
 			this.toolStrip.ImageScalingSize = new System.Drawing.Size(18, 18);
 			this.toolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.boldButton,
@@ -300,8 +301,8 @@
 			this.toolStrip.Location = new System.Drawing.Point(169, 150);
 			this.toolStrip.Name = "toolStrip";
 			this.toolStrip.Padding = new System.Windows.Forms.Padding(0);
-			this.toolStrip.ShowItemToolTips = true;
-			this.toolStrip.Size = new System.Drawing.Size(292, 27);
+			this.toolStrip.Size = new System.Drawing.Size(386, 38);
+			this.toolStrip.Stretch = true;
 			this.toolStrip.TabIndex = 4;
 			// 
 			// boldButton
@@ -312,7 +313,7 @@
 			this.boldButton.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.boldButton.Margin = new System.Windows.Forms.Padding(0, 2, 1, 3);
 			this.boldButton.Name = "boldButton";
-			this.boldButton.Size = new System.Drawing.Size(34, 22);
+			this.boldButton.Size = new System.Drawing.Size(34, 33);
 			this.boldButton.Text = "Bold";
 			this.boldButton.CheckStateChanged += new System.EventHandler(this.ChangeFontStyle);
 			// 
@@ -324,7 +325,7 @@
 			this.italicButton.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.italicButton.Margin = new System.Windows.Forms.Padding(0, 2, 1, 3);
 			this.italicButton.Name = "italicButton";
-			this.italicButton.Size = new System.Drawing.Size(34, 22);
+			this.italicButton.Size = new System.Drawing.Size(34, 33);
 			this.italicButton.Text = "Italic";
 			this.italicButton.CheckStateChanged += new System.EventHandler(this.ChangeFontStyle);
 			// 
@@ -336,7 +337,7 @@
 			this.underlineButton.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.underlineButton.Margin = new System.Windows.Forms.Padding(0, 2, 1, 3);
 			this.underlineButton.Name = "underlineButton";
-			this.underlineButton.Size = new System.Drawing.Size(34, 22);
+			this.underlineButton.Size = new System.Drawing.Size(34, 33);
 			this.underlineButton.Text = "Underline";
 			this.underlineButton.CheckStateChanged += new System.EventHandler(this.ChangeFontStyle);
 			// 
@@ -348,7 +349,7 @@
 			this.strikeButton.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.strikeButton.Margin = new System.Windows.Forms.Padding(0, 2, 1, 3);
 			this.strikeButton.Name = "strikeButton";
-			this.strikeButton.Size = new System.Drawing.Size(34, 22);
+			this.strikeButton.Size = new System.Drawing.Size(34, 33);
 			this.strikeButton.Text = "Strikethrough";
 			this.strikeButton.CheckStateChanged += new System.EventHandler(this.ChangeFontStyle);
 			// 
@@ -360,7 +361,7 @@
 			this.superButton.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.superButton.Margin = new System.Windows.Forms.Padding(0, 2, 1, 3);
 			this.superButton.Name = "superButton";
-			this.superButton.Size = new System.Drawing.Size(34, 22);
+			this.superButton.Size = new System.Drawing.Size(34, 33);
 			this.superButton.Text = "Superscript";
 			this.superButton.CheckStateChanged += new System.EventHandler(this.ChangeFontStyle);
 			this.superButton.Click += new System.EventHandler(this.ToggleSuperSub);
@@ -373,7 +374,7 @@
 			this.subButton.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.subButton.Margin = new System.Windows.Forms.Padding(0, 2, 1, 3);
 			this.subButton.Name = "subButton";
-			this.subButton.Size = new System.Drawing.Size(34, 22);
+			this.subButton.Size = new System.Drawing.Size(34, 33);
 			this.subButton.Text = "Subscript";
 			this.subButton.CheckStateChanged += new System.EventHandler(this.ChangeFontStyle);
 			this.subButton.Click += new System.EventHandler(this.ToggleSuperSub);
@@ -387,7 +388,7 @@
 			this.backColorButton.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.backColorButton.Margin = new System.Windows.Forms.Padding(0, 2, 1, 3);
 			this.backColorButton.Name = "backColorButton";
-			this.backColorButton.Size = new System.Drawing.Size(39, 22);
+			this.backColorButton.Size = new System.Drawing.Size(39, 33);
 			this.backColorButton.ToolTipText = "Highlight Color";
 			this.backColorButton.ButtonClick += new System.EventHandler(this.ChangeHighlightColor);
 			// 
@@ -407,7 +408,7 @@
 			this.colorButton.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.colorButton.Margin = new System.Windows.Forms.Padding(0, 2, 1, 3);
 			this.colorButton.Name = "colorButton";
-			this.colorButton.Size = new System.Drawing.Size(39, 22);
+			this.colorButton.Size = new System.Drawing.Size(39, 33);
 			this.colorButton.ToolTipText = "Text Color";
 			this.colorButton.ButtonClick += new System.EventHandler(this.ChangeColor);
 			// 
@@ -715,7 +716,7 @@
 		private System.Windows.Forms.Label nameLabel;
 		private UI.MoreTextBox nameBox;
 		private System.Windows.Forms.Label fontLabel;
-		private UI.MoreMenuStrip toolStrip;
+		private UI.MoreToolStrip toolStrip;
 		private UI.MoreSplitButton colorButton;
 		private System.Windows.Forms.NumericUpDown spaceBeforeSpinner;
 		private System.Windows.Forms.NumericUpDown spaceAfterSpinner;

@@ -174,7 +174,7 @@ namespace River.OneMoreAddIn.UI
 				new StringFormat
 				{
 					Trimming = StringTrimming.EllipsisCharacter,
-					FormatFlags = StringFormatFlags.LineLimit | StringFormatFlags.NoWrap
+					FormatFlags = StringFormatFlags.NoWrap
 				});
 		}
 

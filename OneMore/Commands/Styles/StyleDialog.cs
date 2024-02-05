@@ -215,6 +215,13 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
+		protected override void OnLoad(EventArgs e)
+		{
+			base.OnLoad(e);
+			toolStrip.Rescale();
+		}
+
+
 		protected override void OnShown(EventArgs e)
 		{
 			base.OnShown(e);
