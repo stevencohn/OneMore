@@ -122,15 +122,15 @@ namespace River.OneMoreAddIn.Commands
 		{
 			base.OnLoad(e);
 
-			warningBox.BackColor = manager.GetThemedColor("Control");
-			var gray = manager.GetThemedColor("GrayText");
+			warningBox.BackColor = manager.GetColor("Control");
+			var gray = manager.GetColor("GrayText");
 			warningBox.ForeColor = gray;
 
 			// customization only for English
 			warningBox.Clear();
 			warningBox.AppendText("Note that OneNote does not bind completely to tasks that " +
 				"are not in the Outlook Tasks folder. Tasks from sub-folders are shown ");
-			warningBox.AppendFormattedText("in red", manager.GetThemedColor("ErrorText"));
+			warningBox.AppendFormattedText("in red", manager.GetColor("ErrorText"));
 			warningBox.AppendFormattedText(" to indicate that their status flags will not update " +
 				"automatically after importing.", gray);
 		}

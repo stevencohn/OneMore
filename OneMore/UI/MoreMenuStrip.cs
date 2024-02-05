@@ -31,8 +31,8 @@ namespace River.OneMoreAddIn.UI
 				: base(colorTable)
 			{
 				var manager = ThemeManager.Instance;
-				menuBarColor = manager.GetThemedColor("MenuBar");
-				menuTextColor = manager.GetThemedColor("MenuText");
+				menuBarColor = manager.GetColor("MenuBar");
+				menuTextColor = manager.GetColor("MenuText");
 			}
 
 			protected override void OnRenderToolStripBackground(ToolStripRenderEventArgs e)
@@ -112,11 +112,11 @@ namespace River.OneMoreAddIn.UI
 			base.OnCheckStateChanged(e);
 			if (this.Checked)
 			{
-				BackColor = manager.GetThemedColor("MenuHighlight");
+				BackColor = manager.GetColor("MenuHighlight");
 			}
 			else
 			{
-				BackColor = manager.GetThemedColor("MenuBar");
+				BackColor = manager.GetColor("MenuBar");
 			}
 		}
 	}

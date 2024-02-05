@@ -17,9 +17,9 @@ namespace River.OneMoreAddIn.UI
 		public ThemedColorTable()
 		{
 			manager = ThemeManager.Instance;
-			menuColor = manager.GetThemedColor("MenuBar");
-			menuHighlightColor = manager.GetThemedColor("MenuHighlight");
-			menuMarginColor = manager.GetThemedColor("MenuMargin");
+			menuColor = manager.GetColor("MenuBar");
+			menuHighlightColor = manager.GetColor("MenuHighlight");
+			menuMarginColor = manager.GetColor("MenuMargin");
 		}
 
 		// split button
@@ -29,17 +29,17 @@ namespace River.OneMoreAddIn.UI
 		public override Color ImageMarginGradientBegin => menuMarginColor;
 		public override Color ImageMarginGradientMiddle => menuMarginColor;
 		public override Color ImageMarginGradientEnd => menuMarginColor;
-		public override Color MenuBorder => manager.GetThemedColor("WindowFrame");
-		public override Color MenuItemBorder => manager.GetThemedColor("MenuItemBorder");
+		public override Color MenuBorder => manager.GetColor("WindowFrame");
+		public override Color MenuItemBorder => manager.GetColor("MenuItemBorder");
 		public override Color MenuItemPressedGradientBegin => menuHighlightColor;
 		public override Color MenuItemPressedGradientEnd => menuHighlightColor;
 		public override Color MenuItemSelectedGradientBegin => menuHighlightColor;
 		public override Color MenuItemSelectedGradientEnd => menuHighlightColor;
 		public override Color MenuStripGradientBegin => menuColor;
 		public override Color MenuStripGradientEnd => menuColor;
-		public override Color SeparatorLight => manager.GetThemedColor("MenuSeparator");
-		public override Color SeparatorDark => manager.GetThemedColor("MenuSeparator");
-		public override Color ToolStripBorder => manager.GetThemedColor("WindowFrame");
+		public override Color SeparatorLight => manager.GetColor("MenuSeparator");
+		public override Color SeparatorDark => manager.GetColor("MenuSeparator");
+		public override Color ToolStripBorder => manager.GetColor("WindowFrame");
 		public override Color ToolStripContentPanelGradientBegin => menuColor;
 		public override Color ToolStripContentPanelGradientEnd => menuColor;
 		public override Color ToolStripDropDownBackground => menuColor;

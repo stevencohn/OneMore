@@ -19,11 +19,11 @@ namespace River.OneMoreAddIn.UI
 		{
 			BackColor = Parent != null
 				? Parent.BackColor
-				: manager.GetThemedColor("Control", ThemedBack);
+				: manager.GetColor("Control", ThemedBack);
 
 			ForeColor = Enabled
-				? manager.GetThemedColor("ControlText", ThemedFore)
-				: manager.GetThemedColor("GrayText");
+				? manager.GetColor("ControlText", ThemedFore)
+				: manager.GetColor("GrayText");
 		}
 	}
 }

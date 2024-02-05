@@ -59,12 +59,12 @@ namespace River.OneMoreAddIn.UI
 				: base(colorTable)
 			{
 				var manager = ThemeManager.Instance;
-				textColor = manager.GetThemedColor("MenuText");
+				textColor = manager.GetColor("MenuText");
 			}
 
 			protected override void OnRenderToolStripBackground(ToolStripRenderEventArgs e)
 			{
-				e.ToolStrip.BackColor = ThemeManager.Instance.GetThemedColor("MenuBar");
+				e.ToolStrip.BackColor = ThemeManager.Instance.GetColor("MenuBar");
 				base.OnRenderToolStripBackground(e);
 			}
 

@@ -45,10 +45,10 @@ namespace River.OneMoreAddIn.UI
 
 			manager = ThemeManager.Instance;
 
-			BackColor = backColor = manager.GetThemedColor("ButtonFace");
-			ForeColor = foreColor = manager.GetThemedColor("ControlText");
-			downColor = manager.GetThemedColor("ButtonHighlight");
-			hoverColor = manager.GetThemedColor("ButtonHighlight");
+			BackColor = backColor = manager.GetColor("ButtonFace");
+			ForeColor = foreColor = manager.GetColor("ControlText");
+			downColor = manager.GetColor("ButtonHighlight");
+			hoverColor = manager.GetColor("ButtonHighlight");
 		}
 
 
@@ -90,10 +90,10 @@ namespace River.OneMoreAddIn.UI
 
 		public void ApplyTheme(ThemeManager manager)
 		{
-			BackColor = manager.GetThemedColor("ButtonFace", ThemedBack);
+			BackColor = manager.GetColor("ButtonFace", ThemedBack);
 			ForeColor = Enabled
-				? manager.GetThemedColor("ControlText", ThemedFore)
-				: manager.GetThemedColor("GrayText");
+				? manager.GetColor("ControlText", ThemedFore)
+				: manager.GetColor("GrayText");
 		}
 
 
@@ -181,7 +181,7 @@ namespace River.OneMoreAddIn.UI
 
 			var back = string.IsNullOrEmpty(ThemedBack)
 				? backColor
-				: manager.GetThemedColor(ThemedBack);
+				: manager.GetColor(ThemedBack);
 
 			if (Enabled)
 			{
@@ -234,7 +234,7 @@ namespace River.OneMoreAddIn.UI
 				}
 				else if (Focused || IsDefault) // || this == FindForm().AcceptButton)
 				{
-					color = manager.GetThemedColor("HotTrack");
+					color = manager.GetColor("HotTrack");
 				}
 				else if (MouseState.HasFlag(MouseState.Hover))
 				{
@@ -301,8 +301,8 @@ namespace River.OneMoreAddIn.UI
 			using var brush = new SolidBrush(Enabled
 				? string.IsNullOrWhiteSpace(ThemedFore)
 					? foreColor
-					: manager.GetThemedColor(ThemedFore)
-				: manager.GetThemedColor("GrayText")
+					: manager.GetColor(ThemedFore)
+				: manager.GetColor("GrayText")
 				);
 
 			g.DrawString(Text, Font, brush, x, y,

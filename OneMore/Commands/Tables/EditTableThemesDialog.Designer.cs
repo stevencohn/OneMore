@@ -41,11 +41,11 @@ namespace River.OneMoreAddIn.Commands
 			this.previewGroup = new River.OneMoreAddIn.UI.MoreGroupBox();
 			this.previewBox = new System.Windows.Forms.PictureBox();
 			this.toolstrip = new River.OneMoreAddIn.UI.MoreToolStrip();
-			this.newButton = new System.Windows.Forms.ToolStripButton();
-			this.renameButton = new System.Windows.Forms.ToolStripButton();
-			this.saveButton = new System.Windows.Forms.ToolStripButton();
+			this.newButton = new River.OneMoreAddIn.UI.MoreMenuItem();
+			this.renameButton = new River.OneMoreAddIn.UI.MoreMenuItem();
+			this.saveButton = new River.OneMoreAddIn.UI.MoreMenuItem();
 			this.toolsep1 = new System.Windows.Forms.ToolStripSeparator();
-			this.deleteButton = new System.Windows.Forms.ToolStripButton();
+			this.deleteButton = new River.OneMoreAddIn.UI.MoreMenuItem();
 			this.topPanel = new System.Windows.Forms.Panel();
 			this.tabs = new River.OneMoreAddIn.UI.MoreTabControl();
 			this.colorsTab = new System.Windows.Forms.TabPage();
@@ -56,11 +56,11 @@ namespace River.OneMoreAddIn.Commands
 			this.familyBox = new River.OneMoreAddIn.UI.FontComboBox();
 			this.sizeBox = new System.Windows.Forms.ComboBox();
 			this.fontToolstrip = new River.OneMoreAddIn.UI.MoreToolStrip();
-			this.boldButton = new System.Windows.Forms.ToolStripButton();
-			this.italicButton = new System.Windows.Forms.ToolStripButton();
-			this.underlineButton = new System.Windows.Forms.ToolStripButton();
-			this.colorButton = new System.Windows.Forms.ToolStripSplitButton();
-			this.defaultBlackToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.boldButton = new River.OneMoreAddIn.UI.MoreMenuItem();
+			this.italicButton = new River.OneMoreAddIn.UI.MoreMenuItem();
+			this.underlineButton = new River.OneMoreAddIn.UI.MoreMenuItem();
+			this.colorButton = new River.OneMoreAddIn.UI.MoreSplitButton();
+			this.defaultBlackToolStripMenuItem = new River.OneMoreAddIn.UI.MoreMenuItem();
 			this.fontElementsGroup = new River.OneMoreAddIn.UI.MoreGroupBox();
 			this.defaultFontButton = new River.OneMoreAddIn.UI.MoreButton();
 			this.selectedFontLabel = new System.Windows.Forms.Label();
@@ -93,12 +93,12 @@ namespace River.OneMoreAddIn.Commands
 			this.cancelButton.ImageOver = null;
 			this.cancelButton.Location = new System.Drawing.Point(710, 10);
 			this.cancelButton.Name = "cancelButton";
-			this.cancelButton.ThemedBack = null;
-			this.cancelButton.ThemedFore = null;
 			this.cancelButton.ShowBorder = true;
 			this.cancelButton.Size = new System.Drawing.Size(110, 34);
 			this.cancelButton.TabIndex = 2;
 			this.cancelButton.Text = "Close";
+			this.cancelButton.ThemedBack = null;
+			this.cancelButton.ThemedFore = null;
 			this.cancelButton.UseVisualStyleBackColor = true;
 			// 
 			// combo
@@ -169,12 +169,12 @@ namespace River.OneMoreAddIn.Commands
 			this.resetButton.ImageOver = null;
 			this.resetButton.Location = new System.Drawing.Point(3, 12);
 			this.resetButton.Name = "resetButton";
-			this.resetButton.ThemedBack = null;
-			this.resetButton.ThemedFore = null;
 			this.resetButton.ShowBorder = true;
 			this.resetButton.Size = new System.Drawing.Size(110, 34);
 			this.resetButton.TabIndex = 1;
 			this.resetButton.Text = "Reset all";
+			this.resetButton.ThemedBack = null;
+			this.resetButton.ThemedFore = null;
 			this.resetButton.UseVisualStyleBackColor = true;
 			this.resetButton.Click += new System.EventHandler(this.ResetTheme);
 			// 
@@ -200,7 +200,9 @@ namespace River.OneMoreAddIn.Commands
 			// 
 			// toolstrip
 			// 
+			this.toolstrip.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
 			this.toolstrip.Dock = System.Windows.Forms.DockStyle.None;
+			this.toolstrip.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
 			this.toolstrip.ImageScalingSize = new System.Drawing.Size(24, 24);
 			this.toolstrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.newButton,
@@ -210,27 +212,27 @@ namespace River.OneMoreAddIn.Commands
             this.deleteButton});
 			this.toolstrip.Location = new System.Drawing.Point(505, 5);
 			this.toolstrip.Name = "toolstrip";
-			this.toolstrip.Size = new System.Drawing.Size(160, 33);
+			this.toolstrip.Size = new System.Drawing.Size(192, 38);
 			this.toolstrip.TabIndex = 10;
 			this.toolstrip.Text = "toolstrip";
 			// 
 			// newButton
 			// 
 			this.newButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-			this.newButton.Image = global::River.OneMoreAddIn.Properties.Resources.NewStyle;
+			this.newButton.Image = global::River.OneMoreAddIn.Properties.Resources.m_NewStyle;
 			this.newButton.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.newButton.Name = "newButton";
-			this.newButton.Size = new System.Drawing.Size(34, 28);
+			this.newButton.Size = new System.Drawing.Size(40, 38);
 			this.newButton.Text = "New Style";
 			this.newButton.Click += new System.EventHandler(this.CreateNewTheme);
 			// 
 			// renameButton
 			// 
 			this.renameButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-			this.renameButton.Image = global::River.OneMoreAddIn.Properties.Resources.Rename;
+			this.renameButton.Image = global::River.OneMoreAddIn.Properties.Resources.m_Rename;
 			this.renameButton.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.renameButton.Name = "renameButton";
-			this.renameButton.Size = new System.Drawing.Size(34, 28);
+			this.renameButton.Size = new System.Drawing.Size(40, 38);
 			this.renameButton.Text = "Rename";
 			this.renameButton.Click += new System.EventHandler(this.RenameTheme);
 			// 
@@ -238,25 +240,25 @@ namespace River.OneMoreAddIn.Commands
 			// 
 			this.saveButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
 			this.saveButton.Enabled = false;
-			this.saveButton.Image = global::River.OneMoreAddIn.Properties.Resources.SaveAs;
+			this.saveButton.Image = global::River.OneMoreAddIn.Properties.Resources.m_SaveAs;
 			this.saveButton.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.saveButton.Name = "saveButton";
-			this.saveButton.Size = new System.Drawing.Size(34, 28);
+			this.saveButton.Size = new System.Drawing.Size(40, 38);
 			this.saveButton.Text = "Save";
 			this.saveButton.Click += new System.EventHandler(this.SaveTheme);
 			// 
 			// toolsep1
 			// 
 			this.toolsep1.Name = "toolsep1";
-			this.toolsep1.Size = new System.Drawing.Size(6, 33);
+			this.toolsep1.Size = new System.Drawing.Size(6, 38);
 			// 
 			// deleteButton
 			// 
 			this.deleteButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-			this.deleteButton.Image = global::River.OneMoreAddIn.Properties.Resources.Delete;
+			this.deleteButton.Image = global::River.OneMoreAddIn.Properties.Resources.m_Delete;
 			this.deleteButton.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.deleteButton.Name = "deleteButton";
-			this.deleteButton.Size = new System.Drawing.Size(34, 28);
+			this.deleteButton.Size = new System.Drawing.Size(40, 38);
 			this.deleteButton.Text = "Delete";
 			this.deleteButton.Click += new System.EventHandler(this.DeleteTheme);
 			// 
@@ -346,12 +348,12 @@ namespace River.OneMoreAddIn.Commands
 			this.applyFontButton.ImageOver = null;
 			this.applyFontButton.Location = new System.Drawing.Point(512, 25);
 			this.applyFontButton.Name = "applyFontButton";
-			this.applyFontButton.ThemedBack = null;
-			this.applyFontButton.ThemedFore = null;
 			this.applyFontButton.ShowBorder = true;
 			this.applyFontButton.Size = new System.Drawing.Size(110, 34);
 			this.applyFontButton.TabIndex = 15;
 			this.applyFontButton.Text = "Apply";
+			this.applyFontButton.ThemedBack = null;
+			this.applyFontButton.ThemedFore = null;
 			this.applyFontButton.UseVisualStyleBackColor = true;
 			this.applyFontButton.Click += new System.EventHandler(this.ApplyFont);
 			// 
@@ -396,10 +398,10 @@ namespace River.OneMoreAddIn.Commands
 			// 
 			// fontToolstrip
 			// 
-			this.fontToolstrip.BackColor = System.Drawing.Color.Transparent;
+			this.fontToolstrip.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
 			this.fontToolstrip.Dock = System.Windows.Forms.DockStyle.None;
 			this.fontToolstrip.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
-			this.fontToolstrip.ImageScalingSize = new System.Drawing.Size(24, 24);
+			this.fontToolstrip.ImageScalingSize = new System.Drawing.Size(18, 18);
 			this.fontToolstrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.boldButton,
             this.italicButton,
@@ -408,18 +410,18 @@ namespace River.OneMoreAddIn.Commands
 			this.fontToolstrip.Location = new System.Drawing.Point(13, 60);
 			this.fontToolstrip.Name = "fontToolstrip";
 			this.fontToolstrip.Padding = new System.Windows.Forms.Padding(0);
-			this.fontToolstrip.Size = new System.Drawing.Size(153, 33);
+			this.fontToolstrip.Size = new System.Drawing.Size(147, 27);
 			this.fontToolstrip.TabIndex = 14;
 			// 
 			// boldButton
 			// 
 			this.boldButton.CheckOnClick = true;
 			this.boldButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-			this.boldButton.Image = ((System.Drawing.Image)(resources.GetObject("boldButton.Image")));
+			this.boldButton.Image = global::River.OneMoreAddIn.Properties.Resources.m_Bold;
 			this.boldButton.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.boldButton.Margin = new System.Windows.Forms.Padding(0, 2, 1, 3);
 			this.boldButton.Name = "boldButton";
-			this.boldButton.Size = new System.Drawing.Size(34, 28);
+			this.boldButton.Size = new System.Drawing.Size(34, 22);
 			this.boldButton.Text = "Bold";
 			this.boldButton.CheckStateChanged += new System.EventHandler(this.ChangeFontFont);
 			// 
@@ -427,11 +429,11 @@ namespace River.OneMoreAddIn.Commands
 			// 
 			this.italicButton.CheckOnClick = true;
 			this.italicButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-			this.italicButton.Image = ((System.Drawing.Image)(resources.GetObject("italicButton.Image")));
+			this.italicButton.Image = global::River.OneMoreAddIn.Properties.Resources.m_Italic;
 			this.italicButton.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.italicButton.Margin = new System.Windows.Forms.Padding(0, 2, 1, 3);
 			this.italicButton.Name = "italicButton";
-			this.italicButton.Size = new System.Drawing.Size(34, 28);
+			this.italicButton.Size = new System.Drawing.Size(34, 22);
 			this.italicButton.Text = "Italic";
 			this.italicButton.CheckStateChanged += new System.EventHandler(this.ChangeFontFont);
 			// 
@@ -439,11 +441,11 @@ namespace River.OneMoreAddIn.Commands
 			// 
 			this.underlineButton.CheckOnClick = true;
 			this.underlineButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-			this.underlineButton.Image = ((System.Drawing.Image)(resources.GetObject("underlineButton.Image")));
+			this.underlineButton.Image = global::River.OneMoreAddIn.Properties.Resources.m_Underline;
 			this.underlineButton.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.underlineButton.Margin = new System.Windows.Forms.Padding(0, 2, 1, 3);
 			this.underlineButton.Name = "underlineButton";
-			this.underlineButton.Size = new System.Drawing.Size(34, 28);
+			this.underlineButton.Size = new System.Drawing.Size(34, 22);
 			this.underlineButton.Text = "Underline";
 			this.underlineButton.CheckStateChanged += new System.EventHandler(this.ChangeFontFont);
 			// 
@@ -452,18 +454,19 @@ namespace River.OneMoreAddIn.Commands
 			this.colorButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
 			this.colorButton.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.defaultBlackToolStripMenuItem});
-			this.colorButton.Image = ((System.Drawing.Image)(resources.GetObject("colorButton.Image")));
+			this.colorButton.Image = global::River.OneMoreAddIn.Properties.Resources.m_FontColor;
 			this.colorButton.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.colorButton.Margin = new System.Windows.Forms.Padding(0, 2, 1, 3);
 			this.colorButton.Name = "colorButton";
-			this.colorButton.Size = new System.Drawing.Size(45, 28);
+			this.colorButton.Size = new System.Drawing.Size(39, 22);
 			this.colorButton.ToolTipText = "Text Color";
 			this.colorButton.ButtonClick += new System.EventHandler(this.ChangeFontColor);
 			// 
 			// defaultBlackToolStripMenuItem
 			// 
+			this.defaultBlackToolStripMenuItem.Image = null;
 			this.defaultBlackToolStripMenuItem.Name = "defaultBlackToolStripMenuItem";
-			this.defaultBlackToolStripMenuItem.Size = new System.Drawing.Size(226, 34);
+			this.defaultBlackToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
 			this.defaultBlackToolStripMenuItem.Text = "Default (Black)";
 			this.defaultBlackToolStripMenuItem.Click += new System.EventHandler(this.SetFontColorDefault);
 			// 
@@ -493,12 +496,12 @@ namespace River.OneMoreAddIn.Commands
 			this.defaultFontButton.ImageOver = null;
 			this.defaultFontButton.Location = new System.Drawing.Point(231, 206);
 			this.defaultFontButton.Name = "defaultFontButton";
-			this.defaultFontButton.ThemedBack = null;
-			this.defaultFontButton.ThemedFore = null;
 			this.defaultFontButton.ShowBorder = true;
 			this.defaultFontButton.Size = new System.Drawing.Size(110, 34);
 			this.defaultFontButton.TabIndex = 3;
 			this.defaultFontButton.Text = "Default";
+			this.defaultFontButton.ThemedBack = null;
+			this.defaultFontButton.ThemedFore = null;
 			this.defaultFontButton.UseVisualStyleBackColor = true;
 			this.defaultFontButton.Click += new System.EventHandler(this.DefaultSelectedFont);
 			// 
@@ -520,12 +523,12 @@ namespace River.OneMoreAddIn.Commands
 			this.resetFontButton.ImageOver = null;
 			this.resetFontButton.Location = new System.Drawing.Point(115, 205);
 			this.resetFontButton.Name = "resetFontButton";
-			this.resetFontButton.ThemedBack = null;
-			this.resetFontButton.ThemedFore = null;
 			this.resetFontButton.ShowBorder = true;
 			this.resetFontButton.Size = new System.Drawing.Size(110, 34);
 			this.resetFontButton.TabIndex = 1;
 			this.resetFontButton.Text = "Reset";
+			this.resetFontButton.ThemedBack = null;
+			this.resetFontButton.ThemedFore = null;
 			this.resetFontButton.UseVisualStyleBackColor = true;
 			this.resetFontButton.Click += new System.EventHandler(this.ResetSelectedFont);
 			// 
@@ -569,12 +572,12 @@ namespace River.OneMoreAddIn.Commands
 			this.button1.ImageOver = null;
 			this.button1.Location = new System.Drawing.Point(13, 209);
 			this.button1.Name = "button1";
-			this.button1.ThemedBack = null;
-			this.button1.ThemedFore = null;
 			this.button1.ShowBorder = true;
 			this.button1.Size = new System.Drawing.Size(110, 34);
 			this.button1.TabIndex = 1;
 			this.button1.Text = "Reset";
+			this.button1.ThemedBack = null;
+			this.button1.ThemedFore = null;
 			this.button1.UseVisualStyleBackColor = true;
 			// 
 			// EditTableThemesDialog
@@ -629,12 +632,12 @@ namespace River.OneMoreAddIn.Commands
 		private River.OneMoreAddIn.UI.MoreListView elementsBox;
 		private UI.MoreGroupBox previewGroup;
 		private River.OneMoreAddIn.UI.MoreToolStrip toolstrip;
-		private System.Windows.Forms.ToolStripButton deleteButton;
+		private UI.MoreMenuItem deleteButton;
 		private UI.MoreButton resetButton;
 		private System.Windows.Forms.PictureBox previewBox;
-		private System.Windows.Forms.ToolStripButton saveButton;
-		private System.Windows.Forms.ToolStripButton newButton;
-		private System.Windows.Forms.ToolStripButton renameButton;
+		private UI.MoreMenuItem saveButton;
+		private UI.MoreMenuItem newButton;
+		private UI.MoreMenuItem renameButton;
 		private System.Windows.Forms.ToolStripSeparator toolsep1;
 		private System.Windows.Forms.Panel topPanel;
 		private UI.MoreTabControl tabs;
@@ -644,11 +647,11 @@ namespace River.OneMoreAddIn.Commands
 		private UI.FontComboBox familyBox;
 		private System.Windows.Forms.ComboBox sizeBox;
 		private UI.MoreToolStrip fontToolstrip;
-		private System.Windows.Forms.ToolStripButton boldButton;
-		private System.Windows.Forms.ToolStripButton italicButton;
-		private System.Windows.Forms.ToolStripButton underlineButton;
-		private System.Windows.Forms.ToolStripSplitButton colorButton;
-		private System.Windows.Forms.ToolStripMenuItem defaultBlackToolStripMenuItem;
+		private UI.MoreMenuItem boldButton;
+		private UI.MoreMenuItem italicButton;
+		private UI.MoreMenuItem underlineButton;
+		private UI.MoreSplitButton colorButton;
+		private UI.MoreMenuItem defaultBlackToolStripMenuItem;
 		private UI.MoreButton resetFontButton;
 		private UI.MoreListView colorFontsBox;
 		private UI.MoreGroupBox fontsGroup;

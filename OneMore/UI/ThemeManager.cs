@@ -127,7 +127,7 @@ namespace River.OneMoreAddIn.UI
 		}
 
 
-		private void LoadColors()
+		public void LoadColors()
 		{
 			ThemeManager cache;
 
@@ -174,7 +174,7 @@ namespace River.OneMoreAddIn.UI
 
 		private void SetWindowTheme(Control control)
 		{
-			if (control is MenuStrip || control is ToolStripMenuItem)
+			if (control is MenuStrip)
 			{
 				return;
 			}
@@ -229,10 +229,10 @@ namespace River.OneMoreAddIn.UI
 			}
 			else
 			{
-				control.BackColor = GetThemedColor(control.BackColor);
+				control.BackColor = GetColor(control.BackColor);
 				control.ForeColor = control.Enabled
-					? GetThemedColor(control.ForeColor)
-					: GetThemedColor("GrayText");
+					? GetColor(control.ForeColor)
+					: GetColor("GrayText");
 			}
 
 			// for each of the following, parent should have already been themed by now...
@@ -286,7 +286,7 @@ namespace River.OneMoreAddIn.UI
 		}
 
 
-		public Color GetThemedColor(Color color)
+		public Color GetColor(Color color)
 		{
 			return color.IsSystemColor && Colors.ContainsKey(color.Name)
 				? Colors[color.Name]
@@ -294,7 +294,7 @@ namespace River.OneMoreAddIn.UI
 		}
 
 
-		public Color GetThemedColor(string key, string themed = null)
+		public Color GetColor(string key, string themed = null)
 		{
 			// preferred could be a SystemColor like "ControlText" or NamedColor like "Blue"
 			if (!string.IsNullOrWhiteSpace(themed) && Colors.ContainsKey(themed))

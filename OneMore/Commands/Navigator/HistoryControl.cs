@@ -100,12 +100,12 @@ namespace River.OneMoreAddIn.Commands
 			picture.BackColor = BackColor;
 			link.BackColor = BackColor;
 
-			var color = manager.GetThemedColor("LinkColor");
+			var color = manager.GetColor("LinkColor");
 			link.ForeColor = color;
 			link.LinkColor = color;
 			link.VisitedLinkColor = color;
 
-			link.HoverColor = manager.GetThemedColor("HoverColor");
+			link.HoverColor = manager.GetColor("HoverColor");
 		}
 
 

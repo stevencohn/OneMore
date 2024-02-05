@@ -4,6 +4,7 @@
 
 namespace River.OneMoreAddIn.Settings
 {
+	using River.OneMoreAddIn.UI;
 	using System.Collections.Generic;
 	using System.Globalization;
 	using System.IO;
@@ -109,10 +110,13 @@ namespace River.OneMoreAddIn.Settings
 
 			var settings = provider.GetCollection(Name);
 
-			var updated = settings.Add("theme", themeBox.SelectedIndex);
+			if (settings.Add("theme", themeBox.SelectedIndex))
+			{
+				ThemeManager.Instance.LoadColors();
+			}
 
 			var lang = ((CultureInfo)(langBox.SelectedItem)).Name;
-			updated = settings.Add("language", lang) || updated;
+			var updated = settings.Add("language", lang);
 
 			// does not require a restart
 			if (checkUpdatesBox.Checked)

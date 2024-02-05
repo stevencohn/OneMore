@@ -59,8 +59,8 @@ namespace River.OneMoreAddIn.UI
 			OwnerDraw = true;
 			manager = ThemeManager.Instance;
 
-			BackColor = manager.GetThemedColor("ListView");
-			ForeColor = manager.GetThemedColor("ControlText");
+			BackColor = manager.GetColor("ListView");
+			ForeColor = manager.GetColor("ControlText");
 
 			// detail view with default headless column so all drawing is done by DrawSubItem
 			View = View.Details;
@@ -334,15 +334,15 @@ namespace River.OneMoreAddIn.UI
 			
 			if (e.Item.Selected)
 			{
-				back = new SolidBrush(manager.GetThemedColor("Highlight"));
-				fore = new SolidBrush(manager.GetThemedColor("HighlightText"));
-				high = new SolidBrush(manager.GetThemedColor("GradientInactiveCaption"));
+				back = new SolidBrush(manager.GetColor("Highlight"));
+				fore = new SolidBrush(manager.GetColor("HighlightText"));
+				high = new SolidBrush(manager.GetColor("GradientInactiveCaption"));
 			}
 			else
 			{
-				back = new SolidBrush(manager.GetThemedColor("ListView"));
-				fore = new SolidBrush(manager.GetThemedColor("ControlText"));
-				high = new SolidBrush(manager.GetThemedColor("Highlight"));
+				back = new SolidBrush(manager.GetColor("ListView"));
+				fore = new SolidBrush(manager.GetColor("ControlText"));
+				high = new SolidBrush(manager.GetColor("Highlight"));
 			}
 
 			e.Graphics.FillRectangle(back,
@@ -468,8 +468,8 @@ namespace River.OneMoreAddIn.UI
 				x -= size.Width + 5;
 
 				var cap = e.Item.Selected
-					? new SolidBrush(manager.GetThemedColor("GradientInactiveCaption"))
-					: new SolidBrush(manager.GetThemedColor("ActiveCaption"));
+					? new SolidBrush(manager.GetColor("GradientInactiveCaption"))
+					: new SolidBrush(manager.GetColor("ActiveCaption"));
 
 				e.Graphics.DrawString(keys, e.Item.Font, cap, x, e.Bounds.Y);
 			}

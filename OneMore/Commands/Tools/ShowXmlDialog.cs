@@ -519,8 +519,8 @@ namespace River.OneMoreAddIn.Commands
 			var matches = Regex.Matches(box.Text,
 				@"<((?:[a-zA-Z][a-zA-Z0-9]*?:)?[a-zA-Z][a-zA-Z0-9]*?)[^>]+selected=""all""[^\1]*?\1>");
 
-			var backColor = manager.GetThemedColor("XmlHighlight");
-			var foreColor = manager.GetThemedColor("XmlHighlightText");
+			var backColor = manager.GetColor("XmlHighlight");
+			var foreColor = manager.GetColor("XmlHighlightText");
 
 			foreach (Match match in matches)
 			{
@@ -545,7 +545,7 @@ namespace River.OneMoreAddIn.Commands
 					"lastModifiedTime|dateTime)=\"[^\"]*\""
 					);
 
-				foreColor = manager.GetThemedColor("XmlMatch");
+				foreColor = manager.GetColor("XmlMatch");
 
 				foreach (Match m in matches)
 				{
@@ -556,7 +556,7 @@ namespace River.OneMoreAddIn.Commands
 
 				// objectID
 				matches = Regex.Matches(box.Text, "(?:objectID|[^\\w]ID)=\"[^\"]*\"");
-				foreColor = manager.GetThemedColor("XmlEditedBy");
+				foreColor = manager.GetColor("XmlEditedBy");
 
 				foreach (Match m in matches)
 				{
@@ -572,7 +572,7 @@ namespace River.OneMoreAddIn.Commands
 				//<one:T><![CDATA[A]]></one:T>
 
 				matches = Regex.Matches(box.Text, @"(?:\<!\[CDATA\[)([^\]]*)(?:\]]>)");
-				foreColor = manager.GetThemedColor("XmlString");
+				foreColor = manager.GetColor("XmlString");
 
 				foreach (Match m in matches)
 				{
@@ -585,7 +585,7 @@ namespace River.OneMoreAddIn.Commands
 			{
 				// recycleBin
 				matches = Regex.Matches(box.Text, "(?:isRecycleBin|isInRecycleBin|isDeletedPages)=\"[^\"]*\"");
-				foreColor = manager.GetThemedColor("XmlTrash");
+				foreColor = manager.GetColor("XmlTrash");
 
 				foreach (Match m in matches)
 				{
@@ -603,7 +603,7 @@ namespace River.OneMoreAddIn.Commands
 		{
 			if (editModeBox.Checked)
 			{
-				pageBox.BackColor = manager.GetThemedColor("XmlEditMode");
+				pageBox.BackColor = manager.GetColor("XmlEditMode");
 				pageBox.ReadOnly = false;
 				okButton.Enabled = true;
 				hideEditedByBox.Checked = false;
@@ -617,7 +617,7 @@ namespace River.OneMoreAddIn.Commands
 			}
 			else
 			{
-				pageBox.BackColor = manager.GetThemedColor("XmlReadMode");
+				pageBox.BackColor = manager.GetColor("XmlReadMode");
 				pageBox.ReadOnly = true;
 				okButton.Enabled = false;
 				hideEditedByBox.Enabled = true;
@@ -769,10 +769,10 @@ namespace River.OneMoreAddIn.Commands
 
 					box.Clear();
 					box.WordWrap = wrapBox.Checked;
-					box.SelectionColor = manager.GetThemedColor("XmlText");
+					box.SelectionColor = manager.GetColor("XmlText");
 					box.Text = $"<!-- {comment} -->\n{xml}";
 					box.Select(0, comment.Length + 9);
-					box.SelectionColor = manager.GetThemedColor("XmlComment");
+					box.SelectionColor = manager.GetColor("XmlComment");
 
 					Colorize(box, !hideEditedByBox2.Checked);
 
@@ -856,7 +856,7 @@ namespace River.OneMoreAddIn.Commands
 				var eventMask = Native.SendMessage(manualBox.Handle, Native.EM_GETEVENTMASK, 0, 0);
 
 				manualBox.Clear();
-				manualBox.SelectionColor = manager.GetThemedColor("XmlText");
+				manualBox.SelectionColor = manager.GetColor("XmlText");
 
 				await ShowHierarchy(manualBox,
 					$"{(string)functionBox.SelectedItem}(\"{objectIdBox.Text}\")",
@@ -879,10 +879,10 @@ namespace River.OneMoreAddIn.Commands
 					}
 				}
 
-				manualBox.SelectionColor = manager.GetThemedColor("XmlText");
+				manualBox.SelectionColor = manager.GetColor("XmlText");
 				manualBox.Text = exc.FormatDetails();
 				manualBox.SelectAll();
-				manualBox.SelectionColor = manager.GetThemedColor("XmlTrash");
+				manualBox.SelectionColor = manager.GetColor("XmlTrash");
 
 				logger.WriteLine(exc);
 			}

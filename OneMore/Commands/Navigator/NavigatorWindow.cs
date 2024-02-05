@@ -101,17 +101,17 @@ namespace River.OneMoreAddIn.Commands
 		protected override void OnLoad(EventArgs e)
 		{
 			base.OnLoad(e);
-			BackColor = manager.GetThemedColor("Control");
+			BackColor = manager.GetColor("Control");
 
-			var viewColor = manager.GetThemedColor("ListView");
+			var viewColor = manager.GetColor("ListView");
 
 			pageBox.BackColor = viewColor;
 
 			pinnedBox.BackColor = viewColor;
-			pinnedBox.HighlightBackground = manager.GetThemedColor("LinkHighlight");
+			pinnedBox.HighlightBackground = manager.GetColor("LinkHighlight");
 
 			historyBox.BackColor = viewColor;
-			historyBox.HighlightBackground = manager.GetThemedColor("LinkHighlight");
+			historyBox.HighlightBackground = manager.GetColor("LinkHighlight");
 		}
 
 
@@ -453,7 +453,7 @@ namespace River.OneMoreAddIn.Commands
 			pinnedBox.BeginUpdate();
 			pinnedBox.Items.Clear();
 
-			var viewColor = manager.GetThemedColor("ListView");
+			var viewColor = manager.GetColor("ListView");
 			pinned.ForEach(record =>
 			{
 				var control = new HistoryControl(record)
@@ -626,7 +626,7 @@ namespace River.OneMoreAddIn.Commands
 
 				historyBox.BeginUpdate();
 				historyBox.Items.Clear();
-				var viewColor = manager.GetThemedColor("ListView");
+				var viewColor = manager.GetColor("ListView");
 
 				e.ForEach(record =>
 				{

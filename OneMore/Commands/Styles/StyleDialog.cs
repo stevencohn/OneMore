@@ -88,8 +88,6 @@ namespace River.OneMoreAddIn.Commands
 
 			this.darkMode = darkMode;
 
-			toolPanel.BottomBorderColor = manager.GetThemedColor("WindowFrame");
-
 			this.pageColor = theme.SetColor
 				? theme.Color.Equals(StyleBase.Automatic) ? originalColor : ColorTranslator.FromHtml(theme.Color)
 				: pageColor;
