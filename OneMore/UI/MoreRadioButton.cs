@@ -135,7 +135,8 @@ namespace River.OneMoreAddIn.UI
 			if (Appearance == Appearance.Normal)
 			{
 				var size = SystemInformation.MenuCheckSize;
-				if (string.IsNullOrWhiteSpace(Text) && Width != size.Width)
+				if (string.IsNullOrWhiteSpace(Text) && 
+					(Width < size.Width || Height < size.Height))
 				{
 					AutoSize = false;
 					Width = size.Width;
@@ -157,11 +158,12 @@ namespace River.OneMoreAddIn.UI
 				using var g = CreateGraphics();
 				size = g.MeasureString(text, Font).ToSize();
 				var w = boxSize + Spacing + size.Width;
-				if (Width != w)
+				var h = Math.Max(size.Height, SystemInformation.MenuCheckSize.Height);
+				if (Width < w | Height < h)
 				{
 					AutoSize = false;
 					Width = w;
-					Height = Math.Max(size.Height, SystemInformation.MenuCheckSize.Height);
+					Height = h;
 				}
 			}
 
