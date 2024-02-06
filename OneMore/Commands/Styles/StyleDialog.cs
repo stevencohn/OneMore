@@ -154,7 +154,11 @@ namespace River.OneMoreAddIn.Commands
 				styleTypeBox.Items.AddRange(Resx.StyleDialog_styleTypeBox_Items.Split('\n'));
 			}
 
-			//toolStrip.Rescale();
+			// ensure designer doesn't change these on us!
+			var iconSize = new Size(16, 16);
+			mainTools.ImageScalingSize = iconSize;
+			styleTools.ImageScalingSize = iconSize;
+			fontTools.ImageScalingSize = iconSize;
 
 			if (AddIn.Culture.NumberFormat.NumberDecimalSeparator != ".")
 			{
@@ -218,7 +222,7 @@ namespace River.OneMoreAddIn.Commands
 		protected override void OnLoad(EventArgs e)
 		{
 			base.OnLoad(e);
-			toolStrip.Rescale();
+			fontTools.Rescale();
 		}
 
 
@@ -653,7 +657,7 @@ namespace River.OneMoreAddIn.Commands
 
 		private Color SelectColor(string title, Rectangle bounds, Color color)
 		{
-			var location = PointToScreen(toolStrip.Location);
+			var location = PointToScreen(fontTools.Location);
 
 			using var dialog = new UI.MoreColorDialog(title,
 				location.X + bounds.Location.X,

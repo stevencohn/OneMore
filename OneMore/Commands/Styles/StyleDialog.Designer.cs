@@ -44,10 +44,10 @@
 			this.okButton = new River.OneMoreAddIn.UI.MoreButton();
 			this.namesBox = new System.Windows.Forms.ComboBox();
 			this.bodyPanel = new System.Windows.Forms.Panel();
-			this.styleToolStrip = new River.OneMoreAddIn.UI.MoreToolStrip();
+			this.styleTools = new River.OneMoreAddIn.UI.MoreToolStrip();
 			this.renameButton = new River.OneMoreAddIn.UI.MoreMenuItem();
 			this.deleteButton = new River.OneMoreAddIn.UI.MoreMenuItem();
-			this.toolStrip = new River.OneMoreAddIn.UI.MoreToolStrip();
+			this.fontTools = new River.OneMoreAddIn.UI.MoreToolStrip();
 			this.boldButton = new River.OneMoreAddIn.UI.MoreMenuItem();
 			this.italicButton = new River.OneMoreAddIn.UI.MoreMenuItem();
 			this.underlineButton = new River.OneMoreAddIn.UI.MoreMenuItem();
@@ -81,8 +81,8 @@
 			((System.ComponentModel.ISupportInitialize)(this.spaceAfterSpinner)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.previewBox)).BeginInit();
 			this.bodyPanel.SuspendLayout();
-			this.styleToolStrip.SuspendLayout();
-			this.toolStrip.SuspendLayout();
+			this.styleTools.SuspendLayout();
+			this.fontTools.SuspendLayout();
 			this.optionsGroup.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.spacingSpinner)).BeginInit();
 			this.mainTools.SuspendLayout();
@@ -257,8 +257,8 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.bodyPanel.BackColor = System.Drawing.SystemColors.Control;
-			this.bodyPanel.Controls.Add(this.styleToolStrip);
-			this.bodyPanel.Controls.Add(this.toolStrip);
+			this.bodyPanel.Controls.Add(this.styleTools);
+			this.bodyPanel.Controls.Add(this.fontTools);
 			this.bodyPanel.Controls.Add(this.ignoredBox);
 			this.bodyPanel.Controls.Add(this.optionsGroup);
 			this.bodyPanel.Controls.Add(this.spacingLabel);
@@ -287,19 +287,19 @@
 			// 
 			// styleToolStrip
 			// 
-			this.styleToolStrip.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.styleToolStrip.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
-			this.styleToolStrip.Dock = System.Windows.Forms.DockStyle.None;
-			this.styleToolStrip.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
-			this.styleToolStrip.ImageScalingSize = new System.Drawing.Size(24, 24);
-			this.styleToolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+			this.styleTools.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.styleTools.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
+			this.styleTools.Dock = System.Windows.Forms.DockStyle.None;
+			this.styleTools.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
+			this.styleTools.ImageScalingSize = new System.Drawing.Size(16, 16);
+			this.styleTools.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.renameButton,
             this.deleteButton});
-			this.styleToolStrip.Location = new System.Drawing.Point(533, 29);
-			this.styleToolStrip.Name = "styleToolStrip";
-			this.styleToolStrip.Size = new System.Drawing.Size(89, 31);
-			this.styleToolStrip.TabIndex = 31;
-			this.styleToolStrip.Text = "moreToolStrip1";
+			this.styleTools.Location = new System.Drawing.Point(533, 29);
+			this.styleTools.Name = "styleToolStrip";
+			this.styleTools.Size = new System.Drawing.Size(89, 31);
+			this.styleTools.TabIndex = 31;
+			this.styleTools.Text = "moreToolStrip1";
 			// 
 			// renameButton
 			// 
@@ -330,12 +330,12 @@
 			// 
 			// toolStrip
 			// 
-			this.toolStrip.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
-			this.toolStrip.Dock = System.Windows.Forms.DockStyle.None;
-			this.toolStrip.GripMargin = new System.Windows.Forms.Padding(2, 2, 0, 2);
-			this.toolStrip.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
-			this.toolStrip.ImageScalingSize = new System.Drawing.Size(24, 24);
-			this.toolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+			this.fontTools.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
+			this.fontTools.Dock = System.Windows.Forms.DockStyle.None;
+			this.fontTools.GripMargin = new System.Windows.Forms.Padding(2, 2, 0, 2);
+			this.fontTools.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
+			this.fontTools.ImageScalingSize = new System.Drawing.Size(16, 16);
+			this.fontTools.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.boldButton,
             this.italicButton,
             this.underlineButton,
@@ -344,12 +344,12 @@
             this.subButton,
             this.backColorButton,
             this.colorButton});
-			this.toolStrip.Location = new System.Drawing.Point(169, 158);
-			this.toolStrip.Name = "toolStrip";
-			this.toolStrip.Padding = new System.Windows.Forms.Padding(0);
-			this.toolStrip.Size = new System.Drawing.Size(340, 33);
-			this.toolStrip.Stretch = true;
-			this.toolStrip.TabIndex = 4;
+			this.fontTools.Location = new System.Drawing.Point(169, 158);
+			this.fontTools.Name = "toolStrip";
+			this.fontTools.Padding = new System.Windows.Forms.Padding(0);
+			this.fontTools.Size = new System.Drawing.Size(340, 33);
+			this.fontTools.Stretch = true;
+			this.fontTools.TabIndex = 4;
 			// 
 			// boldButton
 			// 
@@ -633,7 +633,7 @@
 			// 
 			this.mainTools.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
 			this.mainTools.GripMargin = new System.Windows.Forms.Padding(3);
-			this.mainTools.ImageScalingSize = new System.Drawing.Size(24, 24);
+			this.mainTools.ImageScalingSize = new System.Drawing.Size(16, 16);
 			this.mainTools.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.loadButton,
             this.saveButton,
@@ -716,10 +716,10 @@
 			((System.ComponentModel.ISupportInitialize)(this.previewBox)).EndInit();
 			this.bodyPanel.ResumeLayout(false);
 			this.bodyPanel.PerformLayout();
-			this.styleToolStrip.ResumeLayout(false);
-			this.styleToolStrip.PerformLayout();
-			this.toolStrip.ResumeLayout(false);
-			this.toolStrip.PerformLayout();
+			this.styleTools.ResumeLayout(false);
+			this.styleTools.PerformLayout();
+			this.fontTools.ResumeLayout(false);
+			this.fontTools.PerformLayout();
 			this.optionsGroup.ResumeLayout(false);
 			this.optionsGroup.PerformLayout();
 			((System.ComponentModel.ISupportInitialize)(this.spacingSpinner)).EndInit();
@@ -739,7 +739,7 @@
 		private System.Windows.Forms.Label nameLabel;
 		private UI.MoreTextBox nameBox;
 		private System.Windows.Forms.Label fontLabel;
-		private UI.MoreToolStrip toolStrip;
+		private UI.MoreToolStrip fontTools;
 		private UI.MoreSplitButton colorButton;
 		private System.Windows.Forms.NumericUpDown spaceBeforeSpinner;
 		private System.Windows.Forms.NumericUpDown spaceAfterSpinner;
@@ -777,6 +777,6 @@
 		private UI.MoreMenuItem strikeButton;
 		private UI.MoreMenuItem superButton;
 		private UI.MoreMenuItem subButton;
-		private UI.MoreToolStrip styleToolStrip;
+		private UI.MoreToolStrip styleTools;
 	}
 }
