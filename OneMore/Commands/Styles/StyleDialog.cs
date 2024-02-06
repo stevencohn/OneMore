@@ -118,8 +118,8 @@ namespace River.OneMoreAddIn.Commands
 					"loadButton",
 					"saveButton",
 					"newStyleButton",
-					"renameButton=word_Rename",
-					"deleteButton=word_Delete",
+					"renameButton.ToolTipText=word_Rename",
+					"deleteButton.ToolTipText=word_Delete",
 					"reorderButton",
 					// toolstrip
 					"boldButton",

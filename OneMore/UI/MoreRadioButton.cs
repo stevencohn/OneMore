@@ -9,7 +9,6 @@ namespace River.OneMoreAddIn.UI
 	using System.Drawing.Drawing2D;
 	using System.Linq;
 	using System.Windows.Forms;
-	using Windows.ApplicationModel.VoiceCommands;
 
 	internal class MoreRadioButton : RadioButton
 	{
@@ -124,7 +123,7 @@ namespace River.OneMoreAddIn.UI
 					Size.Height),
 				new StringFormat
 				{
-					Trimming = StringTrimming.EllipsisCharacter,
+					Trimming = StringTrimming.None,
 					FormatFlags = StringFormatFlags.NoWrap
 				});
 		}

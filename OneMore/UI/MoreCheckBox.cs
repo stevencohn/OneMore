@@ -13,7 +13,6 @@ namespace River.OneMoreAddIn.UI
 
 	internal class MoreCheckBox : CheckBox
 	{
-		private const int Radius = 4;
 		private const int Spacing = 4;
 		private readonly ThemeManager manager;
 		private readonly int boxSize;
@@ -73,6 +72,7 @@ namespace River.OneMoreAddIn.UI
 		{
 			var g = pevent.Graphics;
 			var clip = pevent.ClipRectangle;
+			var radius = g.DpiX == 96 ? 2 : 4;
 
 			if (Enabled && (MouseState != MouseState.None || Checked))
 			{
@@ -81,14 +81,14 @@ namespace River.OneMoreAddIn.UI
 						? manager.GetColor("ButtonDown")
 						: MouseState.HasFlag(MouseState.Hover) ? hoverColor : backColor);
 
-				g.FillRoundedRectangle(brush, clip, Radius);
+				g.FillRoundedRectangle(brush, clip, radius);
 
 				using var pen = new Pen(
 					MouseState.HasFlag(MouseState.Pushed) || Checked
 					? manager.ButtonPressBorder
 					: manager.ButtonBorder);
 
-				g.DrawRoundedRectangle(pen, clip, Radius);
+				g.DrawRoundedRectangle(pen, clip, radius);
 			}
 
 			var img = Image ?? BackgroundImage;
@@ -111,7 +111,7 @@ namespace River.OneMoreAddIn.UI
 					(clip.Height - (int)size.Height) / 2f,
 					new StringFormat
 					{
-						Trimming = StringTrimming.EllipsisCharacter,
+						Trimming = StringTrimming.None,
 						FormatFlags = StringFormatFlags.LineLimit | StringFormatFlags.NoWrap
 					});
 			}
@@ -137,7 +137,7 @@ namespace River.OneMoreAddIn.UI
 			using var bpen = new Pen(border, 2);
 			g.DrawRoundedRectangle(bpen,
 				new Rectangle(clip.X, clip.Y, clip.Width - 1, clip.Height - 1),
-				Radius);
+				radius);
 		}
 
 
@@ -154,13 +154,14 @@ namespace River.OneMoreAddIn.UI
 			var boxY = (Size.Height - boxSize) / 2;
 
 			using var boxPen = new Pen(boxColor);
-			g.DrawRoundedRectangle(boxPen, new Rectangle(0, boxY, boxSize, boxSize), Radius);
+			var radius = g.DpiX == 96 ? 2 : 4;
+			g.DrawRoundedRectangle(boxPen, new Rectangle(0, boxY, boxSize, boxSize), radius);
 
 			if (Checked)
 			{
 				using var fillBrush = new SolidBrush(boxColor);
 				g.FillRoundedRectangle(fillBrush,
-					new Rectangle(2, boxY + 2, boxSize - 4, boxSize - 4), Radius);
+					new Rectangle(2, boxY + 2, boxSize - 4, boxSize - 4), radius);
 			}
 
 			using var brush = new SolidBrush(color);
@@ -173,7 +174,7 @@ namespace River.OneMoreAddIn.UI
 					Size.Height),
 				new StringFormat
 				{
-					Trimming = StringTrimming.EllipsisCharacter,
+					Trimming = StringTrimming.None,
 					FormatFlags = StringFormatFlags.NoWrap
 				});
 		}

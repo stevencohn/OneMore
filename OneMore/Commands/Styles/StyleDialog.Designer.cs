@@ -44,6 +44,9 @@
 			this.okButton = new River.OneMoreAddIn.UI.MoreButton();
 			this.namesBox = new System.Windows.Forms.ComboBox();
 			this.bodyPanel = new System.Windows.Forms.Panel();
+			this.styleToolStrip = new River.OneMoreAddIn.UI.MoreToolStrip();
+			this.renameButton = new River.OneMoreAddIn.UI.MoreMenuItem();
+			this.deleteButton = new River.OneMoreAddIn.UI.MoreMenuItem();
 			this.toolStrip = new River.OneMoreAddIn.UI.MoreToolStrip();
 			this.boldButton = new River.OneMoreAddIn.UI.MoreMenuItem();
 			this.italicButton = new River.OneMoreAddIn.UI.MoreMenuItem();
@@ -71,15 +74,14 @@
 			this.loadButton = new River.OneMoreAddIn.UI.MoreMenuItem();
 			this.saveButton = new River.OneMoreAddIn.UI.MoreMenuItem();
 			this.newStyleButton = new River.OneMoreAddIn.UI.MoreMenuItem();
-			this.renameButton = new River.OneMoreAddIn.UI.MoreMenuItem();
-			this.deleteButton = new River.OneMoreAddIn.UI.MoreMenuItem();
-			this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+			this.mainSep = new System.Windows.Forms.ToolStripSeparator();
 			this.reorderButton = new River.OneMoreAddIn.UI.MoreMenuItem();
 			this.tooltip = new System.Windows.Forms.ToolTip(this.components);
 			((System.ComponentModel.ISupportInitialize)(this.spaceBeforeSpinner)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.spaceAfterSpinner)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.previewBox)).BeginInit();
 			this.bodyPanel.SuspendLayout();
+			this.styleToolStrip.SuspendLayout();
 			this.toolStrip.SuspendLayout();
 			this.optionsGroup.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.spacingSpinner)).BeginInit();
@@ -107,7 +109,7 @@
             "22",
             "24",
             "26"});
-			this.sizeBox.Location = new System.Drawing.Point(590, 105);
+			this.sizeBox.Location = new System.Drawing.Point(538, 113);
 			this.sizeBox.Name = "sizeBox";
 			this.sizeBox.Size = new System.Drawing.Size(104, 33);
 			this.sizeBox.TabIndex = 3;
@@ -117,7 +119,7 @@
 			// beforeLabel
 			// 
 			this.beforeLabel.AutoSize = true;
-			this.beforeLabel.Location = new System.Drawing.Point(18, 242);
+			this.beforeLabel.Location = new System.Drawing.Point(18, 276);
 			this.beforeLabel.Name = "beforeLabel";
 			this.beforeLabel.Size = new System.Drawing.Size(111, 20);
 			this.beforeLabel.TabIndex = 6;
@@ -127,7 +129,7 @@
 			// afterLabel
 			// 
 			this.afterLabel.AutoSize = true;
-			this.afterLabel.Location = new System.Drawing.Point(18, 279);
+			this.afterLabel.Location = new System.Drawing.Point(18, 313);
 			this.afterLabel.Name = "afterLabel";
 			this.afterLabel.Size = new System.Drawing.Size(98, 20);
 			this.afterLabel.TabIndex = 7;
@@ -137,7 +139,7 @@
 			// nameLabel
 			// 
 			this.nameLabel.AutoSize = true;
-			this.nameLabel.Location = new System.Drawing.Point(18, 30);
+			this.nameLabel.Location = new System.Drawing.Point(18, 38);
 			this.nameLabel.Name = "nameLabel";
 			this.nameLabel.Size = new System.Drawing.Size(94, 20);
 			this.nameLabel.TabIndex = 8;
@@ -150,9 +152,9 @@
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.nameBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
 			this.nameBox.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.nameBox.Location = new System.Drawing.Point(169, 23);
+			this.nameBox.Location = new System.Drawing.Point(169, 31);
 			this.nameBox.Name = "nameBox";
-			this.nameBox.Size = new System.Drawing.Size(528, 31);
+			this.nameBox.Size = new System.Drawing.Size(356, 31);
 			this.nameBox.TabIndex = 0;
 			this.nameBox.ThemedBack = null;
 			this.nameBox.ThemedFore = null;
@@ -162,7 +164,7 @@
 			// fontLabel
 			// 
 			this.fontLabel.AutoSize = true;
-			this.fontLabel.Location = new System.Drawing.Point(18, 112);
+			this.fontLabel.Location = new System.Drawing.Point(18, 120);
 			this.fontLabel.Name = "fontLabel";
 			this.fontLabel.Size = new System.Drawing.Size(46, 20);
 			this.fontLabel.TabIndex = 10;
@@ -171,7 +173,7 @@
 			// spaceBeforeSpinner
 			// 
 			this.spaceBeforeSpinner.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.spaceBeforeSpinner.Location = new System.Drawing.Point(169, 236);
+			this.spaceBeforeSpinner.Location = new System.Drawing.Point(169, 270);
 			this.spaceBeforeSpinner.Name = "spaceBeforeSpinner";
 			this.spaceBeforeSpinner.Size = new System.Drawing.Size(108, 31);
 			this.spaceBeforeSpinner.TabIndex = 7;
@@ -181,7 +183,7 @@
 			// spaceAfterSpinner
 			// 
 			this.spaceAfterSpinner.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.spaceAfterSpinner.Location = new System.Drawing.Point(169, 272);
+			this.spaceAfterSpinner.Location = new System.Drawing.Point(169, 306);
 			this.spaceAfterSpinner.Name = "spaceAfterSpinner";
 			this.spaceAfterSpinner.Size = new System.Drawing.Size(108, 31);
 			this.spaceAfterSpinner.TabIndex = 8;
@@ -194,9 +196,9 @@
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.previewBox.BackColor = System.Drawing.Color.White;
 			this.previewBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-			this.previewBox.Location = new System.Drawing.Point(296, 236);
+			this.previewBox.Location = new System.Drawing.Point(296, 270);
 			this.previewBox.Name = "previewBox";
-			this.previewBox.Size = new System.Drawing.Size(399, 107);
+			this.previewBox.Size = new System.Drawing.Size(347, 107);
 			this.previewBox.TabIndex = 18;
 			this.previewBox.TabStop = false;
 			this.previewBox.Paint += new System.Windows.Forms.PaintEventHandler(this.RepaintSample);
@@ -208,7 +210,7 @@
 			this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
 			this.cancelButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.cancelButton.ImageOver = null;
-			this.cancelButton.Location = new System.Drawing.Point(579, 545);
+			this.cancelButton.Location = new System.Drawing.Point(527, 568);
 			this.cancelButton.Name = "cancelButton";
 			this.cancelButton.ShowBorder = true;
 			this.cancelButton.Size = new System.Drawing.Size(116, 38);
@@ -225,7 +227,7 @@
 			this.okButton.DialogResult = System.Windows.Forms.DialogResult.OK;
 			this.okButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.okButton.ImageOver = null;
-			this.okButton.Location = new System.Drawing.Point(457, 545);
+			this.okButton.Location = new System.Drawing.Point(405, 568);
 			this.okButton.Name = "okButton";
 			this.okButton.ShowBorder = true;
 			this.okButton.Size = new System.Drawing.Size(116, 38);
@@ -242,7 +244,7 @@
 			this.namesBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this.namesBox.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.namesBox.FormattingEnabled = true;
-			this.namesBox.Location = new System.Drawing.Point(18, 549);
+			this.namesBox.Location = new System.Drawing.Point(18, 572);
 			this.namesBox.Name = "namesBox";
 			this.namesBox.Size = new System.Drawing.Size(121, 33);
 			this.namesBox.TabIndex = 10;
@@ -255,6 +257,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.bodyPanel.BackColor = System.Drawing.SystemColors.Control;
+			this.bodyPanel.Controls.Add(this.styleToolStrip);
 			this.bodyPanel.Controls.Add(this.toolStrip);
 			this.bodyPanel.Controls.Add(this.ignoredBox);
 			this.bodyPanel.Controls.Add(this.optionsGroup);
@@ -279,8 +282,51 @@
 			this.bodyPanel.Location = new System.Drawing.Point(8, 35);
 			this.bodyPanel.Name = "bodyPanel";
 			this.bodyPanel.Padding = new System.Windows.Forms.Padding(15, 20, 15, 9);
-			this.bodyPanel.Size = new System.Drawing.Size(713, 595);
+			this.bodyPanel.Size = new System.Drawing.Size(661, 618);
 			this.bodyPanel.TabIndex = 25;
+			// 
+			// styleToolStrip
+			// 
+			this.styleToolStrip.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.styleToolStrip.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
+			this.styleToolStrip.Dock = System.Windows.Forms.DockStyle.None;
+			this.styleToolStrip.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
+			this.styleToolStrip.ImageScalingSize = new System.Drawing.Size(24, 24);
+			this.styleToolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.renameButton,
+            this.deleteButton});
+			this.styleToolStrip.Location = new System.Drawing.Point(533, 29);
+			this.styleToolStrip.Name = "styleToolStrip";
+			this.styleToolStrip.Size = new System.Drawing.Size(89, 31);
+			this.styleToolStrip.TabIndex = 31;
+			this.styleToolStrip.Text = "moreToolStrip1";
+			// 
+			// renameButton
+			// 
+			this.renameButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+			this.renameButton.Font = new System.Drawing.Font("Segoe UI", 9F);
+			this.renameButton.ForeColor = System.Drawing.Color.Black;
+			this.renameButton.Image = global::River.OneMoreAddIn.Properties.Resources.m_Rename;
+			this.renameButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+			this.renameButton.Name = "renameButton";
+			this.renameButton.Size = new System.Drawing.Size(40, 31);
+			this.renameButton.Text = "Rename";
+			this.renameButton.ToolTipText = "Rename this style";
+			this.renameButton.Click += new System.EventHandler(this.RenameStyle);
+			// 
+			// deleteButton
+			// 
+			this.deleteButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+			this.deleteButton.Font = new System.Drawing.Font("Segoe UI", 9F);
+			this.deleteButton.ForeColor = System.Drawing.Color.Black;
+			this.deleteButton.Image = global::River.OneMoreAddIn.Properties.Resources.m_Delete;
+			this.deleteButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+			this.deleteButton.Margin = new System.Windows.Forms.Padding(5, 1, 0, 2);
+			this.deleteButton.Name = "deleteButton";
+			this.deleteButton.Size = new System.Drawing.Size(40, 28);
+			this.deleteButton.Text = "Delete";
+			this.deleteButton.ToolTipText = "Delete this style";
+			this.deleteButton.Click += new System.EventHandler(this.DeleteStyle);
 			// 
 			// toolStrip
 			// 
@@ -288,7 +334,7 @@
 			this.toolStrip.Dock = System.Windows.Forms.DockStyle.None;
 			this.toolStrip.GripMargin = new System.Windows.Forms.Padding(2, 2, 0, 2);
 			this.toolStrip.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
-			this.toolStrip.ImageScalingSize = new System.Drawing.Size(18, 18);
+			this.toolStrip.ImageScalingSize = new System.Drawing.Size(24, 24);
 			this.toolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.boldButton,
             this.italicButton,
@@ -298,10 +344,10 @@
             this.subButton,
             this.backColorButton,
             this.colorButton});
-			this.toolStrip.Location = new System.Drawing.Point(169, 150);
+			this.toolStrip.Location = new System.Drawing.Point(169, 158);
 			this.toolStrip.Name = "toolStrip";
 			this.toolStrip.Padding = new System.Windows.Forms.Padding(0);
-			this.toolStrip.Size = new System.Drawing.Size(386, 38);
+			this.toolStrip.Size = new System.Drawing.Size(340, 33);
 			this.toolStrip.Stretch = true;
 			this.toolStrip.TabIndex = 4;
 			// 
@@ -313,7 +359,7 @@
 			this.boldButton.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.boldButton.Margin = new System.Windows.Forms.Padding(0, 2, 1, 3);
 			this.boldButton.Name = "boldButton";
-			this.boldButton.Size = new System.Drawing.Size(34, 33);
+			this.boldButton.Size = new System.Drawing.Size(40, 28);
 			this.boldButton.Text = "Bold";
 			this.boldButton.CheckStateChanged += new System.EventHandler(this.ChangeFontStyle);
 			// 
@@ -325,7 +371,7 @@
 			this.italicButton.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.italicButton.Margin = new System.Windows.Forms.Padding(0, 2, 1, 3);
 			this.italicButton.Name = "italicButton";
-			this.italicButton.Size = new System.Drawing.Size(34, 33);
+			this.italicButton.Size = new System.Drawing.Size(40, 28);
 			this.italicButton.Text = "Italic";
 			this.italicButton.CheckStateChanged += new System.EventHandler(this.ChangeFontStyle);
 			// 
@@ -337,7 +383,7 @@
 			this.underlineButton.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.underlineButton.Margin = new System.Windows.Forms.Padding(0, 2, 1, 3);
 			this.underlineButton.Name = "underlineButton";
-			this.underlineButton.Size = new System.Drawing.Size(34, 33);
+			this.underlineButton.Size = new System.Drawing.Size(40, 28);
 			this.underlineButton.Text = "Underline";
 			this.underlineButton.CheckStateChanged += new System.EventHandler(this.ChangeFontStyle);
 			// 
@@ -349,7 +395,7 @@
 			this.strikeButton.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.strikeButton.Margin = new System.Windows.Forms.Padding(0, 2, 1, 3);
 			this.strikeButton.Name = "strikeButton";
-			this.strikeButton.Size = new System.Drawing.Size(34, 33);
+			this.strikeButton.Size = new System.Drawing.Size(40, 28);
 			this.strikeButton.Text = "Strikethrough";
 			this.strikeButton.CheckStateChanged += new System.EventHandler(this.ChangeFontStyle);
 			// 
@@ -361,7 +407,7 @@
 			this.superButton.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.superButton.Margin = new System.Windows.Forms.Padding(0, 2, 1, 3);
 			this.superButton.Name = "superButton";
-			this.superButton.Size = new System.Drawing.Size(34, 33);
+			this.superButton.Size = new System.Drawing.Size(40, 28);
 			this.superButton.Text = "Superscript";
 			this.superButton.CheckStateChanged += new System.EventHandler(this.ChangeFontStyle);
 			this.superButton.Click += new System.EventHandler(this.ToggleSuperSub);
@@ -374,7 +420,7 @@
 			this.subButton.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.subButton.Margin = new System.Windows.Forms.Padding(0, 2, 1, 3);
 			this.subButton.Name = "subButton";
-			this.subButton.Size = new System.Drawing.Size(34, 33);
+			this.subButton.Size = new System.Drawing.Size(40, 28);
 			this.subButton.Text = "Subscript";
 			this.subButton.CheckStateChanged += new System.EventHandler(this.ChangeFontStyle);
 			this.subButton.Click += new System.EventHandler(this.ToggleSuperSub);
@@ -388,7 +434,7 @@
 			this.backColorButton.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.backColorButton.Margin = new System.Windows.Forms.Padding(0, 2, 1, 3);
 			this.backColorButton.Name = "backColorButton";
-			this.backColorButton.Size = new System.Drawing.Size(39, 33);
+			this.backColorButton.Size = new System.Drawing.Size(45, 28);
 			this.backColorButton.ToolTipText = "Highlight Color";
 			this.backColorButton.ButtonClick += new System.EventHandler(this.ChangeHighlightColor);
 			// 
@@ -408,7 +454,7 @@
 			this.colorButton.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.colorButton.Margin = new System.Windows.Forms.Padding(0, 2, 1, 3);
 			this.colorButton.Name = "colorButton";
-			this.colorButton.Size = new System.Drawing.Size(39, 33);
+			this.colorButton.Size = new System.Drawing.Size(45, 28);
 			this.colorButton.ToolTipText = "Text Color";
 			this.colorButton.ButtonClick += new System.EventHandler(this.ChangeColor);
 			// 
@@ -424,7 +470,7 @@
 			this.ignoredBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(231)))), ((int)(((byte)(231)))));
 			this.ignoredBox.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.ignoredBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-			this.ignoredBox.Location = new System.Drawing.Point(169, 197);
+			this.ignoredBox.Location = new System.Drawing.Point(169, 231);
 			this.ignoredBox.Name = "ignoredBox";
 			this.ignoredBox.Size = new System.Drawing.Size(176, 25);
 			this.ignoredBox.TabIndex = 6;
@@ -441,9 +487,9 @@
 			this.optionsGroup.Controls.Add(this.pageColorLink);
 			this.optionsGroup.Controls.Add(this.darkBox);
 			this.optionsGroup.Controls.Add(this.pageColorBox);
-			this.optionsGroup.Location = new System.Drawing.Point(22, 388);
+			this.optionsGroup.Location = new System.Drawing.Point(22, 403);
 			this.optionsGroup.Name = "optionsGroup";
-			this.optionsGroup.Size = new System.Drawing.Size(672, 151);
+			this.optionsGroup.Size = new System.Drawing.Size(620, 150);
 			this.optionsGroup.TabIndex = 30;
 			this.optionsGroup.TabStop = false;
 			this.optionsGroup.Text = "Options";
@@ -508,7 +554,7 @@
 			// spacingLabel
 			// 
 			this.spacingLabel.AutoSize = true;
-			this.spacingLabel.Location = new System.Drawing.Point(18, 315);
+			this.spacingLabel.Location = new System.Drawing.Point(18, 349);
 			this.spacingLabel.Name = "spacingLabel";
 			this.spacingLabel.Size = new System.Drawing.Size(71, 20);
 			this.spacingLabel.TabIndex = 29;
@@ -518,7 +564,7 @@
 			// spacingSpinner
 			// 
 			this.spacingSpinner.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.spacingSpinner.Location = new System.Drawing.Point(169, 309);
+			this.spacingSpinner.Location = new System.Drawing.Point(169, 343);
 			this.spacingSpinner.Name = "spacingSpinner";
 			this.spacingSpinner.Size = new System.Drawing.Size(108, 31);
 			this.spacingSpinner.TabIndex = 9;
@@ -528,7 +574,7 @@
 			// styleTypeLabel
 			// 
 			this.styleTypeLabel.AutoSize = true;
-			this.styleTypeLabel.Location = new System.Drawing.Point(18, 69);
+			this.styleTypeLabel.Location = new System.Drawing.Point(18, 77);
 			this.styleTypeLabel.Name = "styleTypeLabel";
 			this.styleTypeLabel.Size = new System.Drawing.Size(86, 20);
 			this.styleTypeLabel.TabIndex = 27;
@@ -546,9 +592,9 @@
             "Character - words in paragraph",
             "Paragraph - entire paragraph",
             "Heading - include in TOC"});
-			this.styleTypeBox.Location = new System.Drawing.Point(169, 62);
+			this.styleTypeBox.Location = new System.Drawing.Point(169, 70);
 			this.styleTypeBox.Name = "styleTypeBox";
-			this.styleTypeBox.Size = new System.Drawing.Size(528, 33);
+			this.styleTypeBox.Size = new System.Drawing.Size(476, 33);
 			this.styleTypeBox.TabIndex = 1;
 			this.styleTypeBox.SelectedIndexChanged += new System.EventHandler(this.ChangeStyleType);
 			// 
@@ -559,7 +605,7 @@
 			this.applyColorsBox.CheckState = System.Windows.Forms.CheckState.Checked;
 			this.applyColorsBox.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.applyColorsBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-			this.applyColorsBox.Location = new System.Drawing.Point(457, 197);
+			this.applyColorsBox.Location = new System.Drawing.Point(169, 200);
 			this.applyColorsBox.Name = "applyColorsBox";
 			this.applyColorsBox.Size = new System.Drawing.Size(125, 25);
 			this.applyColorsBox.TabIndex = 5;
@@ -576,9 +622,9 @@
 			this.familyBox.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.familyBox.FormattingEnabled = true;
 			this.familyBox.IntegralHeight = false;
-			this.familyBox.Location = new System.Drawing.Point(169, 105);
+			this.familyBox.Location = new System.Drawing.Point(169, 113);
 			this.familyBox.Name = "familyBox";
-			this.familyBox.Size = new System.Drawing.Size(408, 32);
+			this.familyBox.Size = new System.Drawing.Size(356, 32);
 			this.familyBox.TabIndex = 2;
 			this.familyBox.SelectedIndexChanged += new System.EventHandler(this.ChangeFontFamily);
 			this.familyBox.Enter += new System.EventHandler(this.SetActiveFocus);
@@ -592,14 +638,12 @@
             this.loadButton,
             this.saveButton,
             this.newStyleButton,
-            this.renameButton,
-            this.deleteButton,
-            this.toolStripSeparator1,
+            this.mainSep,
             this.reorderButton});
 			this.mainTools.Location = new System.Drawing.Point(4, 0);
 			this.mainTools.Name = "mainTools";
 			this.mainTools.Padding = new System.Windows.Forms.Padding(0, 0, 4, 0);
-			this.mainTools.Size = new System.Drawing.Size(724, 32);
+			this.mainTools.Size = new System.Drawing.Size(672, 36);
 			this.mainTools.TabIndex = 0;
 			// 
 			// loadButton
@@ -608,7 +652,7 @@
 			this.loadButton.Image = global::River.OneMoreAddIn.Properties.Resources.m_FileOpen;
 			this.loadButton.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.loadButton.Name = "loadButton";
-			this.loadButton.Size = new System.Drawing.Size(96, 32);
+			this.loadButton.Size = new System.Drawing.Size(96, 36);
 			this.loadButton.Text = "Open";
 			this.loadButton.Click += new System.EventHandler(this.LoadTheme);
 			// 
@@ -618,7 +662,7 @@
 			this.saveButton.Image = global::River.OneMoreAddIn.Properties.Resources.m_SaveAs;
 			this.saveButton.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.saveButton.Name = "saveButton";
-			this.saveButton.Size = new System.Drawing.Size(111, 32);
+			this.saveButton.Size = new System.Drawing.Size(111, 36);
 			this.saveButton.Text = "Save as";
 			this.saveButton.Click += new System.EventHandler(this.SaveTheme);
 			// 
@@ -629,37 +673,14 @@
 			this.newStyleButton.Image = global::River.OneMoreAddIn.Properties.Resources.m_NewStyle;
 			this.newStyleButton.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.newStyleButton.Name = "newStyleButton";
-			this.newStyleButton.Size = new System.Drawing.Size(87, 32);
+			this.newStyleButton.Size = new System.Drawing.Size(87, 36);
 			this.newStyleButton.Text = "New";
 			this.newStyleButton.Click += new System.EventHandler(this.AddStyle);
 			// 
-			// renameButton
+			// mainSep
 			// 
-			this.renameButton.Font = new System.Drawing.Font("Segoe UI", 9F);
-			this.renameButton.ForeColor = System.Drawing.Color.Black;
-			this.renameButton.Image = global::River.OneMoreAddIn.Properties.Resources.m_Rename;
-			this.renameButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-			this.renameButton.Name = "renameButton";
-			this.renameButton.Size = new System.Drawing.Size(115, 32);
-			this.renameButton.Text = "Rename";
-			this.renameButton.Click += new System.EventHandler(this.RenameStyle);
-			// 
-			// deleteButton
-			// 
-			this.deleteButton.Font = new System.Drawing.Font("Segoe UI", 9F);
-			this.deleteButton.ForeColor = System.Drawing.Color.Black;
-			this.deleteButton.Image = global::River.OneMoreAddIn.Properties.Resources.m_Delete;
-			this.deleteButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-			this.deleteButton.Margin = new System.Windows.Forms.Padding(5, 1, 0, 2);
-			this.deleteButton.Name = "deleteButton";
-			this.deleteButton.Size = new System.Drawing.Size(102, 29);
-			this.deleteButton.Text = "Delete";
-			this.deleteButton.Click += new System.EventHandler(this.DeleteStyle);
-			// 
-			// toolStripSeparator1
-			// 
-			this.toolStripSeparator1.Name = "toolStripSeparator1";
-			this.toolStripSeparator1.Size = new System.Drawing.Size(6, 32);
+			this.mainSep.Name = "mainSep";
+			this.mainSep.Size = new System.Drawing.Size(6, 36);
 			// 
 			// reorderButton
 			// 
@@ -667,7 +688,7 @@
 			this.reorderButton.ForeColor = System.Drawing.Color.Black;
 			this.reorderButton.Image = global::River.OneMoreAddIn.Properties.Resources.m_Reorder;
 			this.reorderButton.Name = "reorderButton";
-			this.reorderButton.Size = new System.Drawing.Size(114, 32);
+			this.reorderButton.Size = new System.Drawing.Size(114, 36);
 			this.reorderButton.Text = "Reorder";
 			this.reorderButton.Click += new System.EventHandler(this.ReorderStyles);
 			// 
@@ -677,7 +698,7 @@
 			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.CancelButton = this.cancelButton;
-			this.ClientSize = new System.Drawing.Size(728, 638);
+			this.ClientSize = new System.Drawing.Size(676, 661);
 			this.Controls.Add(this.mainTools);
 			this.Controls.Add(this.bodyPanel);
 			this.ForeColor = System.Drawing.SystemColors.ControlText;
@@ -695,6 +716,8 @@
 			((System.ComponentModel.ISupportInitialize)(this.previewBox)).EndInit();
 			this.bodyPanel.ResumeLayout(false);
 			this.bodyPanel.PerformLayout();
+			this.styleToolStrip.ResumeLayout(false);
+			this.styleToolStrip.PerformLayout();
 			this.toolStrip.ResumeLayout(false);
 			this.toolStrip.PerformLayout();
 			this.optionsGroup.ResumeLayout(false);
@@ -747,12 +770,13 @@
 		private System.Windows.Forms.ToolTip tooltip;
 		private UI.MoreLabel statusLabel;
 		private UI.MoreCheckBox ignoredBox;
-		private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+		private System.Windows.Forms.ToolStripSeparator mainSep;
 		private UI.MoreMenuItem boldButton;
 		private UI.MoreMenuItem italicButton;
 		private UI.MoreMenuItem underlineButton;
 		private UI.MoreMenuItem strikeButton;
 		private UI.MoreMenuItem superButton;
 		private UI.MoreMenuItem subButton;
+		private UI.MoreToolStrip styleToolStrip;
 	}
 }
