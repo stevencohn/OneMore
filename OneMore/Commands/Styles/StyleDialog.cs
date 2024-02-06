@@ -155,7 +155,7 @@ namespace River.OneMoreAddIn.Commands
 			}
 
 			// ensure designer doesn't change these on us!
-			var iconSize = new Size(16, 16);
+			var iconSize = SystemInformation.SmallIconSize;
 			mainTools.ImageScalingSize = iconSize;
 			styleTools.ImageScalingSize = iconSize;
 			fontTools.ImageScalingSize = iconSize;
