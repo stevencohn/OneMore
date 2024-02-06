@@ -47,8 +47,6 @@ namespace River.OneMoreAddIn.Settings
 				locationColumn.HeaderText = Resx.FavoritesSheet_locationColumn_HeaderText;
 			}
 
-			toolStrip.Rescale();
-
 			gridView.AutoGenerateColumns = false;
 			gridView.Columns[0].DataPropertyName = "Name";
 			gridView.Columns[1].DataPropertyName = "Location";
@@ -62,6 +60,9 @@ namespace River.OneMoreAddIn.Settings
 
 		private async void LoadData(object sender, EventArgs e)
 		{
+			(_, float scaleY) = UIHelper.GetScalingFactors();
+			gridView.RowTemplate.Height = (int)(16 * scaleY);
+
 			using var provider = new FavoritesProvider(null);
 			var list = provider.LoadFavorites();
 			await provider.ValidateFavorites(list);

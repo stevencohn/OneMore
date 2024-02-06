@@ -7,6 +7,7 @@ namespace River.OneMoreAddIn.UI
 	using System;
 	using System.Diagnostics;
 	using System.Drawing;
+	using System.Linq;
 	using System.Threading.Tasks;
 	using System.Windows.Forms;
 
@@ -138,6 +139,8 @@ namespace River.OneMoreAddIn.UI
 				return;
 			}
 
+			LoadControls(Controls);
+
 			if (!ManualLocation && StartPosition == FormStartPosition.Manual)
 			{
 				/***** ********************************************************** *****/
@@ -175,6 +178,24 @@ namespace River.OneMoreAddIn.UI
 				Location = new Point(x, y < 0 ? 0 : y);
 			}
 		}
+
+
+		private void LoadControls(Control.ControlCollection controls)
+		{
+			foreach (Control child in controls)
+			{
+				if (child is ILoadControl loader)
+				{
+					loader.OnLoad();
+				}
+
+				if (child.Controls.Count > 0)
+				{
+					LoadControls(child.Controls);
+				}
+			}
+		}
+
 
 		protected override void OnShown(EventArgs e)
 		{

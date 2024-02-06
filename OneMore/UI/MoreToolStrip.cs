@@ -7,6 +7,7 @@ namespace River.OneMoreAddIn.UI
 	using River.OneMoreAddIn.Commands;
 	using System;
 	using System.Drawing;
+	using System.Linq;
 	using System.Windows.Forms;
 
 
@@ -15,23 +16,23 @@ namespace River.OneMoreAddIn.UI
 	/// to ImageScalingSize so button icons are drawn to correct size for the device.
 	/// </summary>
 
-	internal class MoreToolStrip : ToolStrip
+	internal class MoreToolStrip : ToolStrip, ILoadControl
 	{
 		public MoreToolStrip()
 		{
-			Renderer = new CustomRenderer(new ThemedColorTable());
 			GripStyle = ToolStripGripStyle.Hidden;
+			Renderer = new CustomRenderer(new ThemedColorTable());
 		}
 
-
-		/// <summary>
-		/// Call this after InitializeComponent for the Form using the ScaledToolStrip
-		/// </summary>
-		public void Rescale()
+		void ILoadControl.OnLoad()
 		{
+			AutoSize = false;
+
 			(float scaleX, float scaleY) = UIHelper.GetScalingFactors();
 			ImageScalingSize = new Size((int)(16 * scaleX), (int)(16 * scaleY));
 			Height = (int)(24 * scaleY);
+
+			Width = Items.OfType<ToolStripItem>().Sum(i => i.Width) + 16;
 		}
 
 

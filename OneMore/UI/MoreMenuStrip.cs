@@ -14,11 +14,18 @@ namespace River.OneMoreAddIn.UI
 	/// A MenuStrip that provides a themed view
 	/// </summary>
 
-	internal class MoreMenuStrip : MenuStrip
+	internal class MoreMenuStrip : MenuStrip, ILoadControl
 	{
 		public MoreMenuStrip()
 		{
 			Renderer = new CustomRenderer(new ThemedColorTable());
+		}
+
+
+		void ILoadControl.OnLoad()
+		{
+			AutoSize = false;
+			ImageScalingSize = SystemInformation.SmallIconSize;
 		}
 
 

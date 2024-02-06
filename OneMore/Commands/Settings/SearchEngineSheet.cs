@@ -54,12 +54,13 @@ namespace River.OneMoreAddIn.Settings
 				urlColumn.HeaderText = Resx.SearchEngineDialog_urlColumn_HeaderText;
 			}
 
-			toolStrip.Rescale();
-
 			gridView.AutoGenerateColumns = false;
 			gridView.Columns[0].DataPropertyName = "Image";
 			gridView.Columns[1].DataPropertyName = "Name";
 			gridView.Columns[2].DataPropertyName = "Uri";
+
+			(_, float scaleY) = UIHelper.GetScalingFactors();
+			gridView.RowTemplate.Height = (int)(16 * scaleY);
 
 			engines = new BindingList<SearchEngine>(LoadSettings());
 

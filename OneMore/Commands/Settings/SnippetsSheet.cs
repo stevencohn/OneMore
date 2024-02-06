@@ -51,10 +51,11 @@ namespace River.OneMoreAddIn.Settings
 				nameColumn.HeaderText = Resx.word_Name;
 			}
 
-			toolStrip.Rescale();
-
 			gridView.AutoGenerateColumns = false;
 			gridView.Columns[0].DataPropertyName = "Name";
+
+			(_, float scaleY) = UIHelper.GetScalingFactors();
+			gridView.RowTemplate.Height = (int)(16 * scaleY);
 
 			this.ribbon = ribbon;
 			snipsProvider = new SnippetsProvider();

@@ -4,7 +4,6 @@
 
 namespace River.OneMoreAddIn.UI
 {
-	using River.OneMoreAddIn.Commands;
 	using System;
 	using System.Collections;
 	using System.Collections.Generic;
@@ -102,7 +101,7 @@ namespace River.OneMoreAddIn.UI
 				ControlStyles.AllPaintingInWmPaint, true);
 
 			var (_, yScaling) = UIHelper.GetScalingFactors();
-			RowHeight = (int)(Font.Height * yScaling);
+			RowHeight = (int)(16 * yScaling);
 
 			Click += RouteClick;
 

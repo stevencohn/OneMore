@@ -467,6 +467,7 @@
     <Compile Include="Commands\References\EmbedSubpageCommand.cs" />
     <Compile Include="Ribbon\RibbonGroups.cs" />
     <Compile Include="UI\EventRouter.cs" />
+    <Compile Include="UI\ILoadControl.cs" />
     <Compile Include="UI\MoreExpander.cs">
       <SubType>UserControl</SubType>
     </Compile>

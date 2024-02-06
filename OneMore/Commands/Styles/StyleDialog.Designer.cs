@@ -349,7 +349,7 @@
 			this.fontTools.Location = new System.Drawing.Point(169, 168);
 			this.fontTools.Name = "fontTools";
 			this.fontTools.Padding = new System.Windows.Forms.Padding(0);
-			this.fontTools.Size = new System.Drawing.Size(352, 31);
+			this.fontTools.Size = new System.Drawing.Size(350, 31);
 			this.fontTools.Stretch = true;
 			this.fontTools.TabIndex = 4;
 			// 
@@ -463,7 +463,7 @@
 			// defaultBlackToolStripMenuItem
 			// 
 			this.defaultBlackToolStripMenuItem.Name = "defaultBlackToolStripMenuItem";
-			this.defaultBlackToolStripMenuItem.Size = new System.Drawing.Size(226, 34);
+			this.defaultBlackToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
 			this.defaultBlackToolStripMenuItem.Text = "Default (Black)";
 			this.defaultBlackToolStripMenuItem.Click += new System.EventHandler(this.ChangeColorToDefault);
 			// 

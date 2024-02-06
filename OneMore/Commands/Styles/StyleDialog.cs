@@ -154,12 +154,6 @@ namespace River.OneMoreAddIn.Commands
 				styleTypeBox.Items.AddRange(Resx.StyleDialog_styleTypeBox_Items.Split('\n'));
 			}
 
-			// ensure designer doesn't change these on us!
-			var iconSize = SystemInformation.SmallIconSize;
-			mainTools.ImageScalingSize = iconSize;
-			styleTools.ImageScalingSize = iconSize;
-			fontTools.ImageScalingSize = iconSize;
-
 			if (AddIn.Culture.NumberFormat.NumberDecimalSeparator != ".")
 			{
 				for (int i = 0; i < sizeBox.Items.Count; i++)
@@ -216,13 +210,6 @@ namespace River.OneMoreAddIn.Commands
 			nameBox.Visible = false;
 
 			namesBox.SelectedIndex = 0;
-		}
-
-
-		protected override void OnLoad(EventArgs e)
-		{
-			base.OnLoad(e);
-			fontTools.Rescale();
 		}
 
 

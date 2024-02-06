@@ -167,8 +167,6 @@ namespace River.OneMoreAddIn.Commands
 				});
 			}
 
-			toolstrip.Rescale();
-
 			previewBox.Image = new Bitmap(previewBox.Width, previewBox.Height);
 
 			var bounds = new Rectangle(

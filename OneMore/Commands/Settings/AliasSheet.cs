@@ -53,6 +53,9 @@ namespace River.OneMoreAddIn.Settings
 			gridView.Columns[0].DataPropertyName = "Command";
 			gridView.Columns[1].DataPropertyName = "Alias";
 
+			(_, float scaleY) = UIHelper.GetScalingFactors();
+			gridView.RowTemplate.Height = (int)(16 * scaleY);
+
 			map = new BindingList<CommandAlias>(
 				DiscoverCommands().OrderBy(c => c.Command).ToList());
 
