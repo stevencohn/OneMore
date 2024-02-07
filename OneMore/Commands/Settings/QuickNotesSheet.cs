@@ -107,7 +107,7 @@ namespace River.OneMoreAddIn.Settings
 			}
 			catch (COMException exc) when ((uint)exc.ErrorCode == ErrorCodes.hrObjectMissing)
 			{
-				Logger.Current.WriteLine("could not find expected quicknotes target");
+				logger.WriteLine("could not find expected quicknotes target");
 			}
 		}
 

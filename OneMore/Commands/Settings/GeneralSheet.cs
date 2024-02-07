@@ -95,7 +95,7 @@ namespace River.OneMoreAddIn.Settings
 				catch
 				{
 					// an exception is thrown if the culture name is a bad form
-					Logger.Current.WriteLine($"{file} is an unrecognized culture directory");
+					logger.WriteLine($"{file} is an unrecognized culture directory");
 				}
 			}
 

@@ -136,7 +136,7 @@ namespace River.OneMoreAddIn.Commands
 			var hasRealDpi = (image.Flags & (int)ImageFlags.HasRealDpi) > 0;
 			var hasRealPixelSize = (image.Flags & (int)ImageFlags.HasRealPixelSize) > 0;
 
-			Logger.Current.WriteLine(
+			logger.WriteLine(
 				$"IMAG hasRealDpi:{hasRealDpi} hasRealPixelSize:{hasRealPixelSize} | " +
 				$"hRes:{image.HorizontalResolution} vRes:{image.VerticalResolution} | " +
 				$"size:{image.Width}x{image.Height} " +
@@ -872,7 +872,7 @@ namespace River.OneMoreAddIn.Commands
 				(int)Math.Round(selectionBounds.Width * ratio),
 				(int)Math.Round(selectionBounds.Height * ratio));
 #if Logging
-			Logger.Current.WriteLine(
+			logger.WriteLine(
 				$"CROP selectionBounds xy:{selectionBounds.X}x{selectionBounds.Y} " +
 				$"siz:{selectionBounds.Width}x{selectionBounds.Height} | " +
 				$"bounds xy:{bounds.X}x{bounds.Y} siz:{bounds.Width}x{bounds.Height}");

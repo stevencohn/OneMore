@@ -18,7 +18,7 @@ namespace River.OneMoreAddIn.UI
 	/// Extension of Button to allow forced system Hand cursor instead of
 	/// default Forms Hand cursor.
 	/// </summary>
-	internal class MoreButton : Button, IThemedControl
+	internal class MoreButton : Button, ILoadControl
 	{
 		private const int Radius = 4;
 		private IntPtr hcursor;
@@ -45,6 +45,7 @@ namespace River.OneMoreAddIn.UI
 
 			manager = ThemeManager.Instance;
 
+			// default value, maybe overriden by ILoadControl.Onload
 			BackColor = backColor = manager.GetColor("ButtonFace");
 			ForeColor = foreColor = manager.GetColor("ControlText");
 			downColor = manager.GetColor("ButtonHighlight");
@@ -88,7 +89,7 @@ namespace River.OneMoreAddIn.UI
 		public bool ShowBorder { get; set; } = true;
 
 
-		public void ApplyTheme(ThemeManager manager)
+		void ILoadControl.OnLoad()
 		{
 			BackColor = manager.GetColor("ButtonFace", ThemedBack);
 			ForeColor = Enabled
@@ -251,48 +252,33 @@ namespace River.OneMoreAddIn.UI
 
 		private void PaintBackgroundImage(Graphics g, Rectangle clip)
 		{
-			Image Scale(Image image)
+			static Image Scale(Image image, Rectangle clip)
 			{
-				var scaleHeight = (float)clip.Height / image.Height;
-				var scaleWidth = (float)clip.Width / image.Width;
-				var scale = Math.Min(scaleHeight, scaleWidth);
-
-				return new Bitmap(image,
-					 (int)(image.Width * scale),
-					 (int)(image.Height * scale));
+				var hscale = (float)clip.Height / image.Height;
+				var wscale = (float)clip.Width / image.Width;
+				var scale = Math.Min(hscale, wscale);
+				var size = new SizeF(image.Width * scale, image.Height * scale).ToSize();
+				return new ImageEditor { Size = size }.Apply(image);
 			}
 
-			Image scaled = null;
-
-			try
+			if (BackgroundImageLayout == ImageLayout.Stretch &&
+				(BackgroundImage.Width != clip.Width ||
+				BackgroundImage.Height != clip.Height))
 			{
-				int x, y;
-				if (BackgroundImageLayout == ImageLayout.Stretch &&
-					(BackgroundImage.Width != clip.Width ||
-					BackgroundImage.Height != clip.Height))
+				using var img = BackgroundImage;
+				BackgroundImage = Scale(BackgroundImage, clip);
+			}
+			else
+			{
+				if (BackgroundImage.Width > clip.Width ||
+					BackgroundImage.Height > clip.Height)
 				{
-					scaled = Scale(BackgroundImage);
-					x = y = 0;
+					using var img = BackgroundImage;
+					BackgroundImage = Scale(BackgroundImage, clip);
 				}
-				else
-				{
-					var img = BackgroundImage;
-					if (BackgroundImage.Width > clip.Width ||
-						BackgroundImage.Height > clip.Height)
-					{
-						img = scaled = Scale(BackgroundImage);
-					}
-
-					x = (clip.Width - img.Width) / 2;
-					y = (clip.Height - img.Width) / 2;
-				}
-
-				g.DrawImage(scaled ?? BackgroundImage, x, y);
 			}
-			finally
-			{
-				scaled?.Dispose();
-			}
+
+			g.DrawImage(BackgroundImage, clip);
 		}
 
 

@@ -158,7 +158,7 @@ namespace River.OneMoreAddIn.Commands
 			}
 			catch (Exception exc)
 			{
-				Logger.Current.WriteLine("error running FolderBrowserDialog", exc);
+				logger.WriteLine("error running FolderBrowserDialog", exc);
 			}
 		}
 	}

@@ -4,6 +4,7 @@
 
 namespace River.OneMoreAddIn
 {
+	using Newtonsoft.Json;
 	using System;
 	using System.Diagnostics;
 	using System.IO;
@@ -24,10 +25,10 @@ namespace River.OneMoreAddIn
 		private static string appname = "OneMore";
 
 		private readonly bool stdio;
-		private readonly bool longHeader;
 		private readonly bool verbose;
 		private string preamble;
 		private bool isNewline;
+		private bool isVerbose;
 		private bool isDisposed;
 		private bool writeHeader;
 		private TextWriter writer;
@@ -46,6 +47,7 @@ namespace River.OneMoreAddIn
 			preamble = string.Empty;
 			writer = null;
 			isNewline = true;
+			isVerbose = false;
 			isDisposed = false;
 			writeHeader = true;
 
@@ -65,7 +67,6 @@ namespace River.OneMoreAddIn
 
 					if (settings != null)
 					{
-						longHeader = "true".EqualsICIC(settings.Element("longHeader")?.Value);
 						verbose = "true".EqualsICIC(settings.Element("verbose")?.Value);
 					}
 				}
@@ -228,6 +229,17 @@ namespace River.OneMoreAddIn
 		}
 
 
+		public void Dump(object obj)
+		{
+			var frame = new StackTrace(true).GetFrame(1);
+			WriteLine($"DUMP {obj.GetType().FullName} " +
+				$"from ({Path.GetFileName(frame.GetFileName())} " +
+				$"@line {frame.GetFileLineNumber()})");
+
+			WriteLine(JsonConvert.SerializeObject(obj, Formatting.Indented));
+		}
+
+
 		public void Write(string message)
 		{
 			if (EnsureWriter())
@@ -328,7 +340,9 @@ namespace River.OneMoreAddIn
 		{
 			if (verbose)
 			{
+				isVerbose = true;
 				Write(message);
+				isVerbose = false;
 			}
 		}
 
@@ -337,7 +351,9 @@ namespace River.OneMoreAddIn
 		{
 			if (verbose)
 			{
+				isVerbose = true;
 				WriteLine();
+				isVerbose = false;
 			}
 		}
 
@@ -346,7 +362,9 @@ namespace River.OneMoreAddIn
 		{
 			if (verbose)
 			{
+				isVerbose = true;
 				WriteLine(message);
+				isVerbose = false;
 			}
 		}
 
@@ -355,7 +373,9 @@ namespace River.OneMoreAddIn
 		{
 			if (verbose)
 			{
+				isVerbose = true;
 				WriteLine(element);
+				isVerbose = false;
 			}
 		}
 
@@ -382,13 +402,8 @@ namespace River.OneMoreAddIn
 		{
 			if (!stdio)
 			{
-				if (longHeader)
-				{
-					return
-						$"{Thread.CurrentThread.ManagedThreadId:00}|{DateTime.Now:hh:mm:ss.fff}| {preamble}";
-				}
-
-				return $"{Thread.CurrentThread.ManagedThreadId:00}| {preamble}";
+				var bar = isVerbose ? "{" : "|";
+				return $"{Thread.CurrentThread.ManagedThreadId:00}|{DateTime.Now:hh:mm:ss.fff}{bar} {preamble}";
 			}
 
 			return string.Empty;

@@ -8,7 +8,7 @@ namespace River.OneMoreAddIn.UI
 	using System.Windows.Forms;
 
 
-	internal class MoreTextBox : TextBox, IThemedControl
+	internal class MoreTextBox : TextBox, ILoadControl
 	{
 		public MoreTextBox()
 		{
@@ -22,8 +22,9 @@ namespace River.OneMoreAddIn.UI
 		public string ThemedFore { get; set; }
 
 
-		public void ApplyTheme(ThemeManager manager)
+		void ILoadControl.OnLoad()
 		{
+			var manager = ThemeManager.Instance;
 			ForeColor = manager.GetColor(ThemedFore ?? "WindowText");
 			BackColor = manager.GetColor(Enabled ? (ThemedBack ?? "Window") : "InactiveWindow");
 		}
@@ -32,7 +33,7 @@ namespace River.OneMoreAddIn.UI
 		protected override void OnEnabledChanged(EventArgs e)
 		{
 			base.OnEnabledChanged(e);
-			ApplyTheme(ThemeManager.Instance);
+			((ILoadControl)this).OnLoad();
 		}
 	}
 }

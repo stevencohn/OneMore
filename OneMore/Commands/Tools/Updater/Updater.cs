@@ -11,14 +11,13 @@ namespace River.OneMoreAddIn.Commands.Tools.Updater
 	using System;
 	using System.Diagnostics;
 	using System.IO;
-	using System.Linq;
 	using System.Reflection;
 	using System.Text.RegularExpressions;
 	using System.Threading.Tasks;
 	using System.Web.Script.Serialization;
 
 
-	internal class Updater : IUpdateReport
+	internal class Updater : Loggable, IUpdateReport
 	{
 		private const string LatestUrl = "https://api.github.com/repos/stevencohn/onemore/releases/latest";
 		private const string TagUrl = "https://github.com/stevencohn/OneMore/releases/tag";
@@ -80,7 +79,7 @@ namespace River.OneMoreAddIn.Commands.Tools.Updater
 			}
 			else
 			{
-				Logger.Current.WriteLine($"updater: Registry key not found HKLM::{path}");
+				logger.WriteLine($"updater: Registry key not found HKLM::{path}");
 			}
 
 			InstalledVersion = AssemblyInfo.Version;
@@ -104,13 +103,13 @@ namespace River.OneMoreAddIn.Commands.Tools.Updater
 			}
 			catch (AggregateException exc)
 			{
-				Logger.Current.WriteLine("aggregate exception...");
+				logger.WriteLine("aggregate exception...");
 
 				exc.Handle(e =>
 				{
 					// called for each exception in AggregateException...
 
-					Logger.Current.WriteLine("error(s) fetching latest release", e);
+					logger.WriteLine("error(s) fetching latest release", e);
 					return true; // true=handled, don't rethrow
 				});
 
@@ -118,7 +117,7 @@ namespace River.OneMoreAddIn.Commands.Tools.Updater
 			}
 			catch (Exception exc)
 			{
-				Logger.Current.WriteLine($"error fetching latest release {exc.Message}", exc);
+				logger.WriteLine($"error fetching latest release {exc.Message}", exc);
 				return false;
 			}
 
@@ -144,7 +143,7 @@ namespace River.OneMoreAddIn.Commands.Tools.Updater
 		{
 			if (string.IsNullOrEmpty(productCode))
 			{
-				Logger.Current.WriteLine("missing product code");
+				logger.WriteLine("missing product code");
 				return false;
 			}
 
@@ -156,7 +155,7 @@ namespace River.OneMoreAddIn.Commands.Tools.Updater
 			var asset = release.assets.Find(a => a.browser_download_url.Contains(key));
 			if (asset == null)
 			{
-				Logger.Current.WriteLine($"did not find installer asset for {key}");
+				logger.WriteLine($"did not find installer asset for {key}");
 				return false;
 			}
 
@@ -164,7 +163,7 @@ namespace River.OneMoreAddIn.Commands.Tools.Updater
 
 			try
 			{
-				Logger.Current.WriteLine($"downloading MSI from {asset.browser_download_url}");
+				logger.WriteLine($"downloading MSI from {asset.browser_download_url}");
 
 				var client = HttpClientFactory.Create();
 				using var response = await client.GetAsync(asset.browser_download_url);
@@ -174,7 +173,7 @@ namespace River.OneMoreAddIn.Commands.Tools.Updater
 			}
 			catch (Exception exc)
 			{
-				Logger.Current.WriteLine($"error downloading {asset.browser_download_url}", exc);
+				logger.WriteLine($"error downloading {asset.browser_download_url}", exc);
 				return false;
 			}
 
@@ -185,7 +184,7 @@ namespace River.OneMoreAddIn.Commands.Tools.Updater
 			// to terminate onenote before the msi runs
 
 			var path = Path.Combine(Path.GetTempPath(), "OneMoreInstaller.cmd");
-			Logger.Current.WriteLine($"creating install script {path}");
+			logger.WriteLine($"creating install script {path}");
 
 			var action = Path.Combine(
 				Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location),
@@ -204,7 +203,7 @@ namespace River.OneMoreAddIn.Commands.Tools.Updater
 
 			// run installer script
 
-			Logger.Current.WriteLine($"starting installation process");
+			logger.WriteLine($"starting installation process");
 			Process.Start(new ProcessStartInfo
 			{
 				FileName = Environment.ExpandEnvironmentVariables("%ComSpec%"),

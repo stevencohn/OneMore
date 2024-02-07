@@ -53,6 +53,13 @@ namespace River.OneMoreAddIn
 
 
 		/// <summary>
+		/// Dumps all accessible properties of the given object to JSON
+		/// </summary>
+		/// <param name="obj"></param>
+		void Dump(object obj);
+
+
+		/// <summary>
 		/// Writes a new text message without a newline, can be used to 
 		/// append text to an already-started log entry
 		/// </summary>
@@ -94,14 +101,6 @@ namespace River.OneMoreAddIn
 		/// </summary>
 		/// <param name="element"></param>
 		void WriteLine(XElement element);
-
-
-		/// <summary>
-		/// If verbose logging is enabled, writes a new text message without a newline.
-		/// This can be used to append text to an already-started log entry.
-		/// </summary>
-		/// <param name="message"></param>
-		void WriteVerbose(string message);
 
 
 		/// <summary>

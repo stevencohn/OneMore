@@ -161,7 +161,7 @@ namespace River.OneMoreAddIn.Settings
 
 			provider.Save();
 
-			Logger.Current.WriteLine($"user settings saved, restart:{restart}");
+			logger.WriteLine($"user settings saved, restart:{restart}");
 		}
 	}
 }

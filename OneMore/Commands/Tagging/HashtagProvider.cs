@@ -510,7 +510,7 @@ namespace River.OneMoreAddIn.Commands
 			builder.Append(" ORDER BY p.path, p.name, t.tag");
 			var sql = builder.ToString();
 
-			logger.WriteVerbose(sql);
+			logger.Verbose(sql);
 
 			var tags = ReadTags(sql, parameters.ToArray());
 

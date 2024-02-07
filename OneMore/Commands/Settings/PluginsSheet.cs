@@ -40,7 +40,8 @@ namespace River.OneMoreAddIn.Settings
 				Localize(new string[]
 				{
 					"introBox",
-					"deleteLabel=word_Delete"
+					"renameButton=word_Rename",
+					"deleteButton=word_Delete"
 				});
 
 				nameColumn.HeaderText = Resx.word_Name;
@@ -209,7 +210,7 @@ namespace River.OneMoreAddIn.Settings
 
 			if (pinProvider.Delete(plugin.Path))
 			{
-				Logger.Current.WriteLine($"Deleted {plugin.Name} plugin");
+				logger.WriteLine($"Deleted {plugin.Name} plugin");
 
 				plugins.RemoveAt(rowIndex);
 				updated = true;
@@ -222,7 +223,7 @@ namespace River.OneMoreAddIn.Settings
 			}
 			else
 			{
-				Logger.Current.WriteLine($"Could not delete {plugin.Name} plugin");
+				logger.WriteLine($"Could not delete {plugin.Name} plugin");
 			}
 		}
 

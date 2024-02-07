@@ -15,7 +15,7 @@ namespace River.OneMoreAddIn
 	using Resx = Properties.Resources;
 
 
-	internal class FootnoteEditor
+	internal class FootnoteEditor : Loggable
 	{
 		private const string FootnotesMeta = "omfootnotes";
 		private const string FootnoteMeta = "omfootnote";
@@ -24,7 +24,6 @@ namespace River.OneMoreAddIn
 		private const string RefreshStyle = "font-style:italic;font-size:9.0pt;color:#808080";
 
 		private readonly OneNote one;
-		private readonly ILogger logger;
 		private readonly bool dark;
 
 		private Page page;
@@ -46,8 +45,6 @@ namespace River.OneMoreAddIn
 			PageNamespace.Set(ns);
 
 			dark = page.GetPageColor(out _, out _).GetBrightness() < 0.5;
-
-			logger = Logger.Current;
 		}
 
 

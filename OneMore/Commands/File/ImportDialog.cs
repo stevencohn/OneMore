@@ -262,7 +262,7 @@ namespace River.OneMoreAddIn.Commands
 			}
 			catch (Exception exc)
 			{
-				Logger.Current.WriteLine("error running OpenFileDialog", exc);
+				logger.WriteLine("error running OpenFileDialog", exc);
 			}
 		}
 

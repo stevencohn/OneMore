@@ -13,7 +13,7 @@ namespace River.OneMoreAddIn.UI
 	/// <summary>
 	/// Extension of LinkLabel to force system Hand cursor instead of default Forms Hand cursor.
 	/// </summary>
-	internal class MoreLinkLabel : LinkLabel, IThemedControl
+	internal class MoreLinkLabel : LinkLabel, ILoadControl
 	{
 		private readonly IntPtr hcursor;
 		private Color fore;
@@ -48,10 +48,12 @@ namespace River.OneMoreAddIn.UI
 		public string ThemedFore { get; set; }
 
 
-		public void ApplyTheme(ThemeManager manager)
+		void ILoadControl.OnLoad()
 		{
 			if (!StrictColors)
 			{
+				var manager = ThemeManager.Instance;
+
 				var foreColor = !string.IsNullOrWhiteSpace(ThemedFore)
 					? manager.GetColor(ThemedFore)
 					: manager.GetColor("LinkColor");

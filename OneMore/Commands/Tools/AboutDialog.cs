@@ -6,7 +6,6 @@ namespace River.OneMoreAddIn.Commands
 {
 	using System;
 	using System.Diagnostics;
-	using System.Drawing;
 	using System.IO;
 	using System.Windows.Forms;
 	using Resx = Properties.Resources;
@@ -69,25 +68,9 @@ namespace River.OneMoreAddIn.Commands
 
 			// doing this in OnLoad to ensure we have ThemeManager initialized...
 
-			// resize background image if low-def monitor
-			var img = manager.DarkMode
+			sponsorButton.BackgroundImage = manager.DarkMode
 				? Resx.sponsor_dark
 				: Resx.sponsor_light;
-
-			if (img.Height > sponsorButton.Height - 1 || img.Width > sponsorButton.Width - 1)
-			{
-				sponsorButton.BackgroundImage = new Bitmap(img,
-					(int)(img.Width * 0.60),
-					(int)(img.Height * 0.60));
-
-				sponsorButton.BackgroundImageLayout = ImageLayout.Stretch;
-
-				img.Dispose();
-			}
-			else
-			{
-				sponsorButton.BackgroundImage = img;
-			}
 		}
 
 

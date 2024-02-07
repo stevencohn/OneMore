@@ -28,11 +28,16 @@ namespace River.OneMoreAddIn.Commands
 		public HashtagContextControl(HashtagContext item)
 			: this()
 		{
+			var hintColor = manager.GetColor("HintText");
+			var grayColor = manager.GetColor("GrayText");
+			var hoverColor = manager.GetColor("HoverColor");
+
 			PageID = item.PageID;
 
 			pageLink.Text = $"{item.HierarchyPath}/{item.PageTitle}";
 			var oid = string.IsNullOrWhiteSpace(item.TitleID) ? string.Empty : item.TitleID;
 			pageLink.Links.Add(0, pageLink.Text.Length, (item.PageID, oid));
+			pageLink.HoverColor = hoverColor;
 			tooltip.SetToolTip(pageLink, Resx.HashtagContext_jumpTip);
 
 			// LastModified...
@@ -47,9 +52,6 @@ namespace River.OneMoreAddIn.Commands
 			// snippets...
 
 			var height = snippetsPanel.Height;
-			var hintColor = manager.GetColor("HintText");
-			var grayColor = manager.GetColor("GrayText");
-			var hoverColor = manager.GetColor("HoverColor");
 
 			foreach (var snippet in item.Snippets)
 			{

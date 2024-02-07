@@ -14,7 +14,7 @@ namespace River.OneMoreAddIn.UI
 	/// Manages a multi-line label with auto-wrapping. It must be Docked to its parent
 	/// with Fill mode or left/right anchored.
 	/// </summary>
-	internal class MoreMultilineLabel : Panel, IThemedControl
+	internal class MoreMultilineLabel : Panel, ILoadControl
 	{
 		private readonly MoreLabel label;
 		private string themedBack;
@@ -48,8 +48,10 @@ namespace River.OneMoreAddIn.UI
 		}
 
 
-		public void ApplyTheme(ThemeManager manager)
+		void ILoadControl.OnLoad()
 		{
+			var manager = ThemeManager.Instance;
+
 			BackColor = Parent != null
 				? Parent.BackColor
 				: manager.GetColor("Control", ThemedBack);

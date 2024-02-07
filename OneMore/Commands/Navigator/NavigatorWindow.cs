@@ -375,7 +375,7 @@ namespace River.OneMoreAddIn.Commands
 
 				pageBox.Controls.Add(link);
 				pageBox.SetFlowBreak(link, true);
-				link.ApplyTheme(manager);
+				((ILoadControl)link).OnLoad();
 			}
 
 			await UpdateTitles(page);

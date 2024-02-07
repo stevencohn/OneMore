@@ -7,7 +7,7 @@ namespace River.OneMoreAddIn.UI
 	using System.Windows.Forms;
 
 
-	internal class MoreLabel : Label, IThemedControl
+	internal class MoreLabel : Label, ILoadControl
 	{
 
 		public string ThemedBack { get; set; }
@@ -15,8 +15,10 @@ namespace River.OneMoreAddIn.UI
 		public string ThemedFore { get; set; }
 
 
-		public void ApplyTheme(ThemeManager manager)
+		void ILoadControl.OnLoad()
 		{
+			var manager = ThemeManager.Instance;
+
 			BackColor = Parent != null
 				? Parent.BackColor
 				: manager.GetColor("Control", ThemedBack);

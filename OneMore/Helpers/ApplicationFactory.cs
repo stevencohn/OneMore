@@ -28,6 +28,7 @@ namespace River.OneMoreAddIn
 		{
 			IApplication app = null;
 			int retries = 0;
+			var logger = Logger.Current;
 
 			try
 			{
@@ -41,7 +42,7 @@ namespace River.OneMoreAddIn
 
 						if (retries > 0)
 						{
-							Logger.Current.WriteLine(
+							logger.WriteLine(
 								$"completed successfully after {retries} retries");
 						}
 
@@ -52,14 +53,14 @@ namespace River.OneMoreAddIn
 						retries++;
 						var ms = 250 * retries;
 
-						Logger.Current.WriteLine($"OneNote is busy, retyring in {ms}ms");
+						logger.WriteLine($"OneNote is busy, retyring in {ms}ms");
 						System.Threading.Thread.Sleep(ms);
 					}
 				}
 			}
 			catch (Exception exc)
 			{
-				Logger.Current.WriteLine($"error instantiating OneNote IApplication after {retries} retries", exc);
+				logger.WriteLine($"error instantiating OneNote IApplication after {retries} retries", exc);
 			}
 
 			return app;

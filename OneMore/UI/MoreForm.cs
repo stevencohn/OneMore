@@ -7,7 +7,6 @@ namespace River.OneMoreAddIn.UI
 	using System;
 	using System.Diagnostics;
 	using System.Drawing;
-	using System.Linq;
 	using System.Threading.Tasks;
 	using System.Windows.Forms;
 
@@ -131,6 +130,8 @@ namespace River.OneMoreAddIn.UI
 				manager.InitializeTheme(this);
 			}
 
+			LoadControls(Controls);
+
 			// RunModeless has already set location so don't repeat that here and only set
 			// location if inheritor hasn't declined by setting it to zero. Also, we're doing
 			// this in OnLoad so it doesn't visually "jump" as it would if done in OnShown
@@ -138,8 +139,6 @@ namespace River.OneMoreAddIn.UI
 			{
 				return;
 			}
-
-			LoadControls(Controls);
 
 			if (!ManualLocation && StartPosition == FormStartPosition.Manual)
 			{

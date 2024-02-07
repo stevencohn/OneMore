@@ -18,17 +18,20 @@ namespace River.OneMoreAddIn.Settings
 	internal class SheetBase : MoreUserControl
 	{
 		protected readonly SettingsProvider provider;
+		protected readonly ILogger logger;
 
 
 		protected SheetBase()
 			: base()
 		{
-			// required for VS Designer
+			// default constructor required for VS Designer
+
+			logger = Logger.Current;
 		}
 
 
 		protected SheetBase(SettingsProvider provider)
-			: base()
+			: this()
 		{
 			SuspendLayout();
 			Name = "SheetBase";

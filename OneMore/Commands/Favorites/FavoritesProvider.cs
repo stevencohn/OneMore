@@ -15,7 +15,7 @@ namespace River.OneMoreAddIn
 	using Resx = Properties.Resources;
 
 
-	internal sealed class FavoritesProvider : IDisposable
+	internal sealed class FavoritesProvider : Loggable, IDisposable
 	{
 		public enum FavoriteStatus
 		{
@@ -55,7 +55,6 @@ namespace River.OneMoreAddIn
 
 		private readonly string path;
 		private readonly IRibbonUI ribbon;
-		private readonly ILogger logger;
 
 		private OneNote one;
 		private XElement books;
@@ -65,7 +64,6 @@ namespace River.OneMoreAddIn
 
 		public FavoritesProvider(IRibbonUI ribbon)
 		{
-			logger = Logger.Current;
 			path = Path.Combine(PathHelper.GetAppDataPath(), Resx.FavoritesFilename);
 			this.ribbon = ribbon;
 		}
