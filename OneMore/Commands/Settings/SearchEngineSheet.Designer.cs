@@ -74,7 +74,7 @@
 			dataGridViewCellStyle1.NullValue = ((object)(resources.GetObject("dataGridViewCellStyle1.NullValue")));
 			this.iconColumn.DefaultCellStyle = dataGridViewCellStyle1;
 			this.iconColumn.HeaderText = "Icon";
-			this.iconColumn.Image = global::River.OneMoreAddIn.Properties.Resources.NewStyle;
+			this.iconColumn.Image = global::River.OneMoreAddIn.Properties.Resources.m_NewStyle;
 			this.iconColumn.MinimumWidth = 36;
 			this.iconColumn.Name = "iconColumn";
 			this.iconColumn.ReadOnly = true;

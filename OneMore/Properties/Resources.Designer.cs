@@ -847,16 +847,6 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap Bold {
-            get {
-                object obj = ResourceManager.GetObject("Bold", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to One space between sentences.
         /// </summary>
         internal static string BreakingDialog_oneButton_Text {
@@ -1283,16 +1273,6 @@ namespace River.OneMoreAddIn.Properties {
         internal static string ConvertImagesCommand_NoImages {
             get {
                 return ResourceManager.GetString("ConvertImagesCommand_NoImages", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap Copy {
-            get {
-                object obj = ResourceManager.GetObject("Copy", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
             }
         }
         
@@ -1741,16 +1721,6 @@ namespace River.OneMoreAddIn.Properties {
         internal static string DefaultTableThemes {
             get {
                 return ResourceManager.GetString("DefaultTableThemes", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap Delete {
-            get {
-                object obj = ResourceManager.GetObject("Delete", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
             }
         }
         
@@ -2577,16 +2547,6 @@ namespace River.OneMoreAddIn.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Exit {
-            get {
-                object obj = ResourceManager.GetObject("Exit", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
         internal static System.Drawing.Bitmap ExpandArrow {
             get {
                 object obj = ResourceManager.GetObject("ExpandArrow", resourceCulture);
@@ -2972,16 +2932,6 @@ namespace River.OneMoreAddIn.Properties {
         internal static System.Drawing.Bitmap FolderOpen {
             get {
                 object obj = ResourceManager.GetObject("FolderOpen", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap FontColor {
-            get {
-                object obj = ResourceManager.GetObject("FontColor", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -4244,16 +4194,6 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap Italic {
-            get {
-                object obj = ResourceManager.GetObject("Italic", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Select two or more lines to join.
         /// </summary>
         internal static string JoinParagraphCommand_Select {
@@ -5056,16 +4996,6 @@ namespace River.OneMoreAddIn.Properties {
         internal static string NetwordConnectionUnavailable {
             get {
                 return ResourceManager.GetString("NetwordConnectionUnavailable", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap NewStyle {
-            get {
-                object obj = ResourceManager.GetObject("NewStyle", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
             }
         }
         
@@ -6112,16 +6042,6 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap Refresh {
-            get {
-                object obj = ResourceManager.GetObject("Refresh", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to No references found to this page.
         /// </summary>
         internal static string RefreshPageLinksCommand_none {
@@ -6620,26 +6540,6 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap Rename {
-            get {
-                object obj = ResourceManager.GetObject("Rename", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap Reorder {
-            get {
-                object obj = ResourceManager.GetObject("Reorder", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Reorder how styles appear in the gallery. Also changes the order of headings in a TOC.
         /// </summary>
         internal static string ReorderDialog_label_Text {
@@ -6726,16 +6626,6 @@ namespace River.OneMoreAddIn.Properties {
         internal static string ReportRemindersReuseDialog_Text {
             get {
                 return ResourceManager.GetString("ReportRemindersReuseDialog_Text", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap Restart {
-            get {
-                object obj = ResourceManager.GetObject("Restart", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
             }
         }
         
@@ -10049,16 +9939,6 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap SaveAs {
-            get {
-                object obj = ResourceManager.GetObject("SaveAs", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Error saving page as {0}.
         /// </summary>
         internal static string SaveAs_Error {
@@ -11255,16 +11135,6 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap Strikethrough {
-            get {
-                object obj = ResourceManager.GetObject("Strikethrough", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Space After:.
         /// </summary>
         internal static string StyleDialog_afterLabel_Text {
@@ -11617,29 +11487,9 @@ namespace River.OneMoreAddIn.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Subscript {
-            get {
-                object obj = ResourceManager.GetObject("Subscript", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
         internal static System.Drawing.Bitmap Summary {
             get {
                 object obj = ResourceManager.GetObject("Summary", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap Superscript {
-            get {
-                object obj = ResourceManager.GetObject("Superscript", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -12036,16 +11886,6 @@ namespace River.OneMoreAddIn.Properties {
         internal static System.Drawing.Bitmap Travel {
             get {
                 object obj = ResourceManager.GetObject("Travel", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap Underline {
-            get {
-                object obj = ResourceManager.GetObject("Underline", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

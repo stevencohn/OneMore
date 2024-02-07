@@ -151,7 +151,7 @@ namespace River.OneMoreAddIn.Commands
 		{
 			var button = new Button
 			{
-				Image = Resx.Delete,
+				Image = Resx.m_Delete,
 				Padding = new Padding(0),
 				Margin = new Padding(0),
 				FlatStyle = FlatStyle.Flat,
