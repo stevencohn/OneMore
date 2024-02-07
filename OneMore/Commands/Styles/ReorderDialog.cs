@@ -18,9 +18,11 @@ namespace River.OneMoreAddIn.Commands
 		{
 			InitializeComponent();
 
+			(_, float scaleY) = UIHelper.GetScalingFactors();
+			listBox.ItemHeight = (int)(16 * scaleY);
+
 			var list = items.Cast<GraphicStyle>().ToArray();
 			listBox.Items.AddRange(list);
-
 			listBox.SelectedIndex = 0;
 
 			if (NeedsLocalizing())

@@ -43,7 +43,7 @@
 			this.okButton.DialogResult = System.Windows.Forms.DialogResult.OK;
 			this.okButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.okButton.ImageOver = null;
-			this.okButton.Location = new System.Drawing.Point(120, 497);
+			this.okButton.Location = new System.Drawing.Point(120, 486);
 			this.okButton.Name = "okButton";
 			this.okButton.ShowBorder = true;
 			this.okButton.Size = new System.Drawing.Size(116, 38);
@@ -60,7 +60,7 @@
 			this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
 			this.cancelButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.cancelButton.ImageOver = null;
-			this.cancelButton.Location = new System.Drawing.Point(242, 497);
+			this.cancelButton.Location = new System.Drawing.Point(242, 486);
 			this.cancelButton.Name = "cancelButton";
 			this.cancelButton.ShowBorder = true;
 			this.cancelButton.Size = new System.Drawing.Size(116, 38);
@@ -98,7 +98,7 @@
 			this.upButton.Location = new System.Drawing.Point(363, 169);
 			this.upButton.Name = "upButton";
 			this.upButton.ShowBorder = true;
-			this.upButton.Size = new System.Drawing.Size(42, 42);
+			this.upButton.Size = new System.Drawing.Size(39, 38);
 			this.upButton.TabIndex = 3;
 			this.upButton.Text = "▲";
 			this.upButton.ThemedBack = null;
@@ -117,7 +117,7 @@
 			this.downButton.Location = new System.Drawing.Point(363, 217);
 			this.downButton.Name = "downButton";
 			this.downButton.ShowBorder = true;
-			this.downButton.Size = new System.Drawing.Size(42, 42);
+			this.downButton.Size = new System.Drawing.Size(39, 38);
 			this.downButton.TabIndex = 4;
 			this.downButton.Text = "▼";
 			this.downButton.ThemedBack = null;
@@ -142,7 +142,7 @@
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.BackColor = System.Drawing.SystemColors.ControlLightLight;
 			this.CancelButton = this.cancelButton;
-			this.ClientSize = new System.Drawing.Size(417, 557);
+			this.ClientSize = new System.Drawing.Size(417, 546);
 			this.Controls.Add(this.label);
 			this.Controls.Add(this.downButton);
 			this.Controls.Add(this.upButton);
