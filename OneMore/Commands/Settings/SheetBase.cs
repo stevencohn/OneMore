@@ -5,6 +5,7 @@
 namespace River.OneMoreAddIn.Settings
 {
 	using River.OneMoreAddIn.UI;
+	using System;
 	using System.Windows.Forms;
 
 
@@ -36,6 +37,30 @@ namespace River.OneMoreAddIn.Settings
 			ResumeLayout(false);
 
 			this.provider = provider;
+		}
+
+
+		protected override void OnLoad(EventArgs e)
+		{
+			base.OnLoad(e);
+			LoadControls(Controls);
+		}
+
+
+		private void LoadControls(Control.ControlCollection controls)
+		{
+			foreach (Control child in controls)
+			{
+				if (child is ILoadControl loader)
+				{
+					loader.OnLoad();
+				}
+
+				if (child.Controls.Count > 0)
+				{
+					LoadControls(child.Controls);
+				}
+			}
 		}
 
 
