@@ -627,16 +627,6 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap Architecture {
-            get {
-                object obj = ResourceManager.GetObject("Architecture", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to {0} pages archive to {1}.
         /// </summary>
         internal static string ArchiveCommand_archived {
@@ -754,36 +744,6 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap Automobile {
-            get {
-                object obj = ResourceManager.GetObject("Automobile", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap BallotBox {
-            get {
-                object obj = ResourceManager.GetObject("BallotBox", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap Bell {
-            get {
-                object obj = ResourceManager.GetObject("Bell", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Could not mark anchor point. Select a word or phrase from one paragraph. See log file for details..
         /// </summary>
         internal static string BiLinkCommand_BadAnchor {
@@ -870,16 +830,6 @@ namespace River.OneMoreAddIn.Properties {
         internal static string BreakingDialog_twoButton_Text {
             get {
                 return ResourceManager.GetString("BreakingDialog_twoButton.Text", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap Bullet {
-            get {
-                object obj = ResourceManager.GetObject("Bullet", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
             }
         }
         
@@ -983,46 +933,6 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap Calendar {
-            get {
-                object obj = ResourceManager.GetObject("Calendar", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap Camera {
-            get {
-                object obj = ResourceManager.GetObject("Camera", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap CheckMark {
-            get {
-                object obj = ResourceManager.GetObject("CheckMark", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap Circle {
-            get {
-                object obj = ResourceManager.GetObject("Circle", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Clear the log file now?.
         /// </summary>
         internal static string ClearLog_Message {
@@ -1059,16 +969,6 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap Clipboard {
-            get {
-                object obj = ResourceManager.GetObject("Clipboard", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Cannot copy at this time. The clipboard is locked..
         /// </summary>
         internal static string Clipboard_locked {
@@ -1083,16 +983,6 @@ namespace River.OneMoreAddIn.Properties {
         internal static string Clipboard_norestore {
             get {
                 return ResourceManager.GetString("Clipboard_norestore", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap Cloud {
-            get {
-                object obj = ResourceManager.GetObject("Cloud", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
             }
         }
         
@@ -1313,16 +1203,6 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap Copyright {
-            get {
-                object obj = ResourceManager.GetObject("Copyright", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to No hyperlinks found in range.
         /// </summary>
         internal static string CrawlWebCommand_NoHyperlinks {
@@ -1485,16 +1365,6 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap Cross {
-            get {
-                object obj = ResourceManager.GetObject("Cross", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Clean....
         /// </summary>
         internal static string ctxCleanMenu_Label {
@@ -1591,16 +1461,6 @@ namespace River.OneMoreAddIn.Properties {
         internal static string CustomStylesFilename {
             get {
                 return ResourceManager.GetString("CustomStylesFilename", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap Cycling {
-            get {
-                object obj = ResourceManager.GetObject("Cycling", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
             }
         }
         
@@ -1752,16 +1612,6 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap Delta {
-            get {
-                object obj = ResourceManager.GetObject("Delta", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Diagnostics written to.
         /// </summary>
         internal static string DiagnosticsDialog_introLabel_Text {
@@ -1804,6 +1654,496 @@ namespace River.OneMoreAddIn.Properties {
         internal static System.Drawing.Bitmap DownArrow {
             get {
                 object obj = ResourceManager.GetObject("DownArrow", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap e_Architecture {
+            get {
+                object obj = ResourceManager.GetObject("e_Architecture", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap e_Automobile {
+            get {
+                object obj = ResourceManager.GetObject("e_Automobile", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap e_BallotBox {
+            get {
+                object obj = ResourceManager.GetObject("e_BallotBox", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap e_Bell {
+            get {
+                object obj = ResourceManager.GetObject("e_Bell", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap e_Bullet {
+            get {
+                object obj = ResourceManager.GetObject("e_Bullet", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap e_Calendar {
+            get {
+                object obj = ResourceManager.GetObject("e_Calendar", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap e_Camera {
+            get {
+                object obj = ResourceManager.GetObject("e_Camera", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap e_CheckMark {
+            get {
+                object obj = ResourceManager.GetObject("e_CheckMark", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap e_Circle {
+            get {
+                object obj = ResourceManager.GetObject("e_Circle", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap e_Clipboard {
+            get {
+                object obj = ResourceManager.GetObject("e_Clipboard", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap e_Cloud {
+            get {
+                object obj = ResourceManager.GetObject("e_Cloud", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap e_Copyright {
+            get {
+                object obj = ResourceManager.GetObject("e_Copyright", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap e_Cross {
+            get {
+                object obj = ResourceManager.GetObject("e_Cross", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap e_Cycling {
+            get {
+                object obj = ResourceManager.GetObject("e_Cycling", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap e_Delta {
+            get {
+                object obj = ResourceManager.GetObject("e_Delta", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap e_Envelope {
+            get {
+                object obj = ResourceManager.GetObject("e_Envelope", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap e_Eyes {
+            get {
+                object obj = ResourceManager.GetObject("e_Eyes", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap e_Family {
+            get {
+                object obj = ResourceManager.GetObject("e_Family", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap e_Financial {
+            get {
+                object obj = ResourceManager.GetObject("e_Financial", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap e_Flag {
+            get {
+                object obj = ResourceManager.GetObject("e_Flag", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap e_Folder {
+            get {
+                object obj = ResourceManager.GetObject("e_Folder", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap e_Globe {
+            get {
+                object obj = ResourceManager.GetObject("e_Globe", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap e_Hammer {
+            get {
+                object obj = ResourceManager.GetObject("e_Hammer", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap e_Heart {
+            get {
+                object obj = ResourceManager.GetObject("e_Heart", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap e_Interrobang {
+            get {
+                object obj = ResourceManager.GetObject("e_Interrobang", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap e_Journal {
+            get {
+                object obj = ResourceManager.GetObject("e_Journal", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap e_LeftwardsArrow {
+            get {
+                object obj = ResourceManager.GetObject("e_LeftwardsArrow", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap e_Lock {
+            get {
+                object obj = ResourceManager.GetObject("e_Lock", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap e_Memo {
+            get {
+                object obj = ResourceManager.GetObject("e_Memo", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap e_Passwords {
+            get {
+                object obj = ResourceManager.GetObject("e_Passwords", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap e_Pencil {
+            get {
+                object obj = ResourceManager.GetObject("e_Pencil", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap e_Pushpin {
+            get {
+                object obj = ResourceManager.GetObject("e_Pushpin", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap e_Recycle {
+            get {
+                object obj = ResourceManager.GetObject("e_Recycle", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap e_RightwardsArrow {
+            get {
+                object obj = ResourceManager.GetObject("e_RightwardsArrow", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap e_Section {
+            get {
+                object obj = ResourceManager.GetObject("e_Section", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap e_Shazam {
+            get {
+                object obj = ResourceManager.GetObject("e_Shazam", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap e_Smiley {
+            get {
+                object obj = ResourceManager.GetObject("e_Smiley", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap e_Software {
+            get {
+                object obj = ResourceManager.GetObject("e_Software", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap e_Sports {
+            get {
+                object obj = ResourceManager.GetObject("e_Sports", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap e_SportsEU {
+            get {
+                object obj = ResourceManager.GetObject("e_SportsEU", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap e_Star {
+            get {
+                object obj = ResourceManager.GetObject("e_Star", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap e_Summary {
+            get {
+                object obj = ResourceManager.GetObject("e_Summary", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap e_Tasks {
+            get {
+                object obj = ResourceManager.GetObject("e_Tasks", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap e_Tools {
+            get {
+                object obj = ResourceManager.GetObject("e_Tools", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap e_Travel {
+            get {
+                object obj = ResourceManager.GetObject("e_Travel", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap e_Video {
+            get {
+                object obj = ResourceManager.GetObject("e_Video", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap e_Warning {
+            get {
+                object obj = ResourceManager.GetObject("e_Warning", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap e_Watch {
+            get {
+                object obj = ResourceManager.GetObject("e_Watch", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap e_XMark {
+            get {
+                object obj = ResourceManager.GetObject("e_XMark", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -2449,52 +2789,42 @@ namespace River.OneMoreAddIn.Properties {
         ///   Looks up a localized string similar to [
         ///  {
         ///    &quot;glyph&quot;: &quot;📐&quot;,
-        ///    &quot;resID&quot;: &quot;Architecture&quot;
+        ///    &quot;resID&quot;: &quot;e_Architecture&quot;
         ///  },
         ///  {
         ///    &quot;glyph&quot;: &quot;🚗&quot;,
-        ///    &quot;resID&quot;: &quot;Automobile&quot;
+        ///    &quot;resID&quot;: &quot;e_Automobile&quot;
         ///  },
         ///  {
         ///    &quot;glyph&quot;: &quot;☐&quot;,
-        ///    &quot;resID&quot;: &quot;BallotBox&quot;,
+        ///    &quot;resID&quot;: &quot;e_BallotBox&quot;,
         ///    &quot;color&quot;: &quot;#5B9BD5&quot;
         ///  },
         ///  {
         ///    &quot;glyph&quot;: &quot;🔔&quot;,
-        ///    &quot;resID&quot;: &quot;Bell&quot;
+        ///    &quot;resID&quot;: &quot;e_Bell&quot;
         ///  },
         ///  {
         ///    &quot;glyph&quot;: &quot;●&quot;,
-        ///    &quot;resID&quot;: &quot;Bullet&quot;,
+        ///    &quot;resID&quot;: &quot;e_Bullet&quot;,
         ///    &quot;color&quot;: &quot;#0070C0&quot;
         ///  },
         ///  {
         ///    &quot;glyph&quot;: &quot;📆&quot;,
-        ///    &quot;resID&quot;: &quot;Calendar&quot;
+        ///    &quot;resID&quot;: &quot;e_Calendar&quot;
         ///  },
         ///  {
         ///    &quot;glyph&quot;: &quot;📷&quot;,
-        ///    &quot;resID&quot;: &quot;Camera&quot;
+        ///    &quot;resID&quot;: &quot;e_Camera&quot;
         ///  },
         ///  {
         ///    &quot;glyph&quot;: &quot;✓&quot;,
-        ///    &quot;resID&quot;: &quot;CheckMark&quot;,
-        ///    &quot;color&quot;: &quot;#00B0 [rest of string was truncated]&quot;;.
+        ///    &quot;resID&quot;: &quot;e_CheckMark&quot;,
+        ///    [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string Emojis {
             get {
                 return ResourceManager.GetString("Emojis", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap Envelope {
-            get {
-                object obj = ResourceManager.GetObject("Envelope", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
             }
         }
         
@@ -2646,26 +2976,6 @@ namespace River.OneMoreAddIn.Properties {
         internal static string ExportDialog_underBox_Text {
             get {
                 return ResourceManager.GetString("ExportDialog_underBox.Text", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap Eyes {
-            get {
-                object obj = ResourceManager.GetObject("Eyes", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap Family {
-            get {
-                object obj = ResourceManager.GetObject("Family", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
             }
         }
         
@@ -2824,16 +3134,6 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap Financial {
-            get {
-                object obj = ResourceManager.GetObject("Financial", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Enable grid lines before using this command.
         /// </summary>
         internal static string FitGridToTextCommand_noGrid {
@@ -2893,26 +3193,6 @@ namespace River.OneMoreAddIn.Properties {
         internal static string FitGridToTextDialog_Text {
             get {
                 return ResourceManager.GetString("FitGridToTextDialog_Text", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap Flag {
-            get {
-                object obj = ResourceManager.GetObject("Flag", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap Folder {
-            get {
-                object obj = ResourceManager.GetObject("Folder", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
             }
         }
         
@@ -3157,29 +3437,9 @@ namespace River.OneMoreAddIn.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Globe {
-            get {
-                object obj = ResourceManager.GetObject("Globe", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
         internal static System.Drawing.Bitmap Grid40 {
             get {
                 object obj = ResourceManager.GetObject("Grid40", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap Hammer {
-            get {
-                object obj = ResourceManager.GetObject("Hammer", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -3394,16 +3654,6 @@ namespace River.OneMoreAddIn.Properties {
         internal static string HashtagSheet_Title {
             get {
                 return ResourceManager.GetString("HashtagSheet_Title", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap Heart {
-            get {
-                object obj = ResourceManager.GetObject("Heart", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
             }
         }
         
@@ -4184,31 +4434,11 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap Interrobang {
-            get {
-                object obj = ResourceManager.GetObject("Interrobang", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Select two or more lines to join.
         /// </summary>
         internal static string JoinParagraphCommand_Select {
             get {
                 return ResourceManager.GetString("JoinParagraphCommand_Select", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap Journal {
-            get {
-                object obj = ResourceManager.GetObject("Journal", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
             }
         }
         
@@ -4264,16 +4494,6 @@ namespace River.OneMoreAddIn.Properties {
         internal static System.Drawing.Bitmap LabelSearch {
             get {
                 object obj = ResourceManager.GetObject("LabelSearch", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap LeftwardsArrow {
-            get {
-                object obj = ResourceManager.GetObject("LeftwardsArrow", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -4464,16 +4684,6 @@ namespace River.OneMoreAddIn.Properties {
         internal static string LoadStyleTheme_Title {
             get {
                 return ResourceManager.GetString("LoadStyleTheme_Title", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap Lock {
-            get {
-                object obj = ResourceManager.GetObject("Lock", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
             }
         }
         
@@ -4788,16 +4998,6 @@ namespace River.OneMoreAddIn.Properties {
         internal static string MapDialog_Text {
             get {
                 return ResourceManager.GetString("MapDialog_Text", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap Memo {
-            get {
-                object obj = ResourceManager.GetObject("Memo", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
             }
         }
         
@@ -5462,16 +5662,6 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap Passwords {
-            get {
-                object obj = ResourceManager.GetObject("Passwords", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to No content to paste; copy one or more table cells to paste.
         /// </summary>
         internal static string PasteCellsCommand_NoContent {
@@ -5486,16 +5676,6 @@ namespace River.OneMoreAddIn.Properties {
         internal static string PasteCellsCommand_SelectCell {
             get {
                 return ResourceManager.GetString("PasteCellsCommand_SelectCell", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap Pencil {
-            get {
-                object obj = ResourceManager.GetObject("Pencil", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
             }
         }
         
@@ -5883,16 +6063,6 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap Pushpin {
-            get {
-                object obj = ResourceManager.GetObject("Pushpin", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Work Week (2023-02-13 W7)
         ///Month (2023-02)
         ///Quarter (2023 Q1)
@@ -6028,16 +6198,6 @@ namespace River.OneMoreAddIn.Properties {
         internal static string RecalculateFormulaCommand_NoFormula {
             get {
                 return ResourceManager.GetString("RecalculateFormulaCommand_NoFormula", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap Recycle {
-            get {
-                object obj = ResourceManager.GetObject("Recycle", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
             }
         }
         
@@ -9929,16 +10089,6 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap RightwardsArrow {
-            get {
-                object obj = ResourceManager.GetObject("RightwardsArrow", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Error saving page as {0}.
         /// </summary>
         internal static string SaveAs_Error {
@@ -10285,16 +10435,6 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap Section {
-            get {
-                object obj = ResourceManager.GetObject("Section", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Section Color.
         /// </summary>
         internal static string SectionColor_Title {
@@ -10522,16 +10662,6 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap Shazam {
-            get {
-                object obj = ResourceManager.GetObject("Shazam", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Enable edit mode.
         /// </summary>
         internal static string ShowXmlDialog_editModeBox_Text {
@@ -10718,16 +10848,6 @@ namespace River.OneMoreAddIn.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Smiley {
-            get {
-                object obj = ResourceManager.GetObject("Smiley", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
         internal static System.Drawing.Bitmap Snippets {
             get {
                 object obj = ResourceManager.GetObject("Snippets", resourceCulture);
@@ -10759,16 +10879,6 @@ namespace River.OneMoreAddIn.Properties {
         internal static string SnippetsSheet_Text {
             get {
                 return ResourceManager.GetString("SnippetsSheet_Text", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap Software {
-            get {
-                object obj = ResourceManager.GetObject("Software", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
             }
         }
         
@@ -11077,51 +11187,11 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap Sports {
-            get {
-                object obj = ResourceManager.GetObject("Sports", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap Sports1 {
-            get {
-                object obj = ResourceManager.GetObject("Sports1", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap SportsEU {
-            get {
-                object obj = ResourceManager.GetObject("SportsEU", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to The page must contain two or more background images.
         /// </summary>
         internal static string StackBackgroundImagesCommand_noImages {
             get {
                 return ResourceManager.GetString("StackBackgroundImagesCommand_noImages", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap Star {
-            get {
-                object obj = ResourceManager.GetObject("Star", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
             }
         }
         
@@ -11487,16 +11557,6 @@ namespace River.OneMoreAddIn.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Summary {
-            get {
-                object obj = ResourceManager.GetObject("Summary", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
         internal static System.Drawing.Bitmap TableStyles {
             get {
                 object obj = ResourceManager.GetObject("TableStyles", resourceCulture);
@@ -11657,16 +11717,6 @@ namespace River.OneMoreAddIn.Properties {
         internal static System.Drawing.Bitmap Task {
             get {
                 object obj = ResourceManager.GetObject("Task", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap Tasks {
-            get {
-                object obj = ResourceManager.GetObject("Tasks", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -11873,26 +11923,6 @@ namespace River.OneMoreAddIn.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Tools {
-            get {
-                object obj = ResourceManager.GetObject("Tools", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap Travel {
-            get {
-                object obj = ResourceManager.GetObject("Travel", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
         internal static System.Drawing.Bitmap Unlocked {
             get {
                 object obj = ResourceManager.GetObject("Unlocked", resourceCulture);
@@ -12024,36 +12054,6 @@ namespace River.OneMoreAddIn.Properties {
         internal static string UpdateDialog_versionLabel_Text {
             get {
                 return ResourceManager.GetString("UpdateDialog_versionLabel.Text", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap Video {
-            get {
-                object obj = ResourceManager.GetObject("Video", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap Warning {
-            get {
-                object obj = ResourceManager.GetObject("Warning", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap Watch {
-            get {
-                object obj = ResourceManager.GetObject("Watch", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
             }
         }
         
@@ -12819,16 +12819,6 @@ namespace River.OneMoreAddIn.Properties {
         internal static string WordCountsCommand_Title {
             get {
                 return ResourceManager.GetString("WordCountsCommand_Title", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap XMark {
-            get {
-                object obj = ResourceManager.GetObject("XMark", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
             }
         }
     }

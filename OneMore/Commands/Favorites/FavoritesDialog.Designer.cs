@@ -198,7 +198,7 @@
 			// 
 			// addButton
 			// 
-			this.addButton.Image = global::River.OneMoreAddIn.Properties.Resources.Journal;
+			this.addButton.Image = global::River.OneMoreAddIn.Properties.Resources.e_Journal;
 			this.addButton.Name = "addButton";
 			this.addButton.Size = new System.Drawing.Size(232, 32);
 			this.addButton.Text = "Add Current Page";
@@ -206,7 +206,7 @@
 			// 
 			// checkButton
 			// 
-			this.checkButton.Image = global::River.OneMoreAddIn.Properties.Resources.CheckMark;
+			this.checkButton.Image = global::River.OneMoreAddIn.Properties.Resources.e_CheckMark;
 			this.checkButton.Name = "checkButton";
 			this.checkButton.Size = new System.Drawing.Size(232, 32);
 			this.checkButton.Text = "Check Favorites";
@@ -222,7 +222,7 @@
 			// 
 			// manageButton
 			// 
-			this.manageButton.Image = global::River.OneMoreAddIn.Properties.Resources.Hammer;
+			this.manageButton.Image = global::River.OneMoreAddIn.Properties.Resources.e_Hammer;
 			this.manageButton.Name = "manageButton";
 			this.manageButton.Size = new System.Drawing.Size(232, 32);
 			this.manageButton.Text = "Manage Favorites";

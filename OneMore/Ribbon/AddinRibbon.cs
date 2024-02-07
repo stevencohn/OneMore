@@ -824,7 +824,7 @@ namespace River.OneMoreAddIn
 				}
 			}
 
-			return Resx.Smiley.GetReadOnlyStream();
+			return Resx.e_Smiley.GetReadOnlyStream();
 		}
 	}
 }
