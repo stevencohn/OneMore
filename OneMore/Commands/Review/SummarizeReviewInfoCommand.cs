@@ -1,4 +1,4 @@
-﻿//************************************************************************************************
+//************************************************************************************************
 // Copyright © 2020 Steven M Cohn.  All rights reserved.
 //************************************************************************************************
 
@@ -33,7 +33,7 @@ namespace River.OneMoreAddIn.Commands
                 var order_info_list = GetOrderedReviewInfos(hierarchy, ns);
 
                 one.CreatePage(one.CurrentSectionId, out var review_page_id);
-                var review_page = ReviewPageInit(review_page_id);
+                var review_page = await ReviewPageInit(review_page_id);
 
                 using (progress = new UI.ProgressDialog())
                 {
@@ -77,9 +77,9 @@ namespace River.OneMoreAddIn.Commands
             return order_info_list;
         }
 
-        private Page ReviewPageInit(string pageID)
+        private async Task<Page> ReviewPageInit(string pageID)
         {
-            var review_page = one.GetPage(pageID);
+            var review_page = await one.GetPage(pageID);
 
             review_page.Title = "Pages Reivew Info";
             review_page.SetMeta(MetaNames.AnalysisReport, "true");
@@ -129,9 +129,9 @@ namespace River.OneMoreAddIn.Commands
             return table;
         }
 
-        private void AddPageInfo(Table table, ReviewInfo page_info)
+        private async void AddPageInfo(Table table, ReviewInfo page_info)
         {
-            var page = one.GetPage(page_info.page_id);
+            var page = await one.GetPage(page_info.page_id);
 
             if (page.GetMetaContent(MetaNames.AnalysisReport) == "true")
             {

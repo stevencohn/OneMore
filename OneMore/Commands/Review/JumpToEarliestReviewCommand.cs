@@ -1,4 +1,4 @@
-﻿//************************************************************************************************
+//************************************************************************************************
 // Copyright © 2020 Steven M Cohn.  All rights reserved.
 //************************************************************************************************
 
@@ -65,7 +65,7 @@ namespace River.OneMoreAddIn.Commands
                     }
                 }
 
-                Page one_page = one.GetPage(ret_page);
+                Page one_page = await one.GetPage(ret_page);
                 if (has_review_info)
                 {
                     (new ReviewInfo(one_page)).MakeReviewBank(one_page, ns);
