@@ -28,6 +28,7 @@ namespace River.OneMoreAddIn.Settings
 					"depthLabel",
 					"intervalLabel",
 					"secLabel=word_Seconds",
+					"quickBox",
 					"corrallBox",
 					"advancedGroup=phrase_AdvancedOptions",
 					"disabledBox"

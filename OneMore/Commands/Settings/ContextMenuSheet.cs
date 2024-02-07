@@ -137,6 +137,8 @@ namespace River.OneMoreAddIn.Settings
 
 			private MenuItemPanel(string name, string resID)
 			{
+				name = Resx.ResourceManager.GetString(resID, AddIn.Culture) ?? name;
+
 				using var graphics = Graphics.FromHwnd(IntPtr.Zero);
 				var textSize = graphics.MeasureString(name, Font);
 				Height = (int)(textSize.Height + 6);
