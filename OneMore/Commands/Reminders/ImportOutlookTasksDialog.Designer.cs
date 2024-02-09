@@ -32,7 +32,7 @@
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ImportOutlookTasksDialog));
 			this.okButton = new River.OneMoreAddIn.UI.MoreButton();
 			this.cancelButton = new River.OneMoreAddIn.UI.MoreButton();
-			this.introBox = new UI.MoreMultilineLabel();
+			this.introBox = new River.OneMoreAddIn.UI.MoreMultilineLabel();
 			this.warningBox = new River.OneMoreAddIn.UI.MoreRichLabel();
 			this.resetLabel = new River.OneMoreAddIn.UI.MoreLinkLabel();
 			this.imageList = new System.Windows.Forms.ImageList(this.components);
@@ -50,31 +50,35 @@
 			// okButton
 			// 
 			this.okButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+			this.okButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(231)))), ((int)(((byte)(231)))));
 			this.okButton.DialogResult = System.Windows.Forms.DialogResult.OK;
+			this.okButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.okButton.ImageOver = null;
 			this.okButton.Location = new System.Drawing.Point(563, 10);
 			this.okButton.Name = "okButton";
-			this.okButton.ThemedBack = null;
-			this.okButton.ThemedFore = null;
 			this.okButton.ShowBorder = true;
 			this.okButton.Size = new System.Drawing.Size(100, 38);
 			this.okButton.TabIndex = 1;
 			this.okButton.Text = "OK";
+			this.okButton.ThemedBack = null;
+			this.okButton.ThemedFore = null;
 			this.okButton.UseVisualStyleBackColor = true;
 			// 
 			// cancelButton
 			// 
 			this.cancelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+			this.cancelButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(231)))), ((int)(((byte)(231)))));
 			this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+			this.cancelButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.cancelButton.ImageOver = null;
 			this.cancelButton.Location = new System.Drawing.Point(669, 10);
 			this.cancelButton.Name = "cancelButton";
-			this.cancelButton.ThemedBack = null;
-			this.cancelButton.ThemedFore = null;
 			this.cancelButton.ShowBorder = true;
 			this.cancelButton.Size = new System.Drawing.Size(100, 38);
 			this.cancelButton.TabIndex = 2;
 			this.cancelButton.Text = "Cancel";
+			this.cancelButton.ThemedBack = null;
+			this.cancelButton.ThemedFore = null;
 			this.cancelButton.UseVisualStyleBackColor = true;
 			// 
 			// introBox
@@ -83,12 +87,12 @@
 			this.introBox.Location = new System.Drawing.Point(20, 20);
 			this.introBox.Name = "introBox";
 			this.introBox.Padding = new System.Windows.Forms.Padding(0, 0, 0, 12);
-			this.introBox.ThemedBack = "Control";
-			this.introBox.ThemedFore = "ControlText";
 			this.introBox.Size = new System.Drawing.Size(772, 61);
 			this.introBox.TabIndex = 0;
 			this.introBox.Text = "Choose an entire folder or individual tasks to import from Outlook into OneNote. " +
     "Disabled items indicate tasks already linked to OneNote";
+			this.introBox.ThemedBack = "ControlLight";
+			this.introBox.ThemedFore = "ControlText";
 			// 
 			// warningBox
 			// 
@@ -114,9 +118,12 @@
 			this.resetLabel.Location = new System.Drawing.Point(30, 15);
 			this.resetLabel.Name = "resetLabel";
 			this.resetLabel.Size = new System.Drawing.Size(166, 20);
+			this.resetLabel.StrictColors = false;
 			this.resetLabel.TabIndex = 0;
 			this.resetLabel.TabStop = true;
 			this.resetLabel.Text = "Reset orphaned tasks";
+			this.resetLabel.ThemedBack = null;
+			this.resetLabel.ThemedFore = null;
 			this.toolTip.SetToolTip(this.resetLabel, "An orphaned task is one that was imported but its linked paragraph was deleted. T" +
         "his will reset orphaned tasks so they can be imported again.");
 			this.resetLabel.VisitedLinkColor = System.Drawing.Color.MediumOrchid;
@@ -169,9 +176,10 @@
 			// tableButton
 			// 
 			this.tableButton.Checked = true;
+			this.tableButton.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.tableButton.Location = new System.Drawing.Point(3, 12);
 			this.tableButton.Name = "tableButton";
-			this.tableButton.Size = new System.Drawing.Size(222, 24);
+			this.tableButton.Size = new System.Drawing.Size(223, 25);
 			this.tableButton.TabIndex = 0;
 			this.tableButton.TabStop = true;
 			this.tableButton.Text = "Generate task detail table";
@@ -179,9 +187,10 @@
 			// 
 			// listButton
 			// 
+			this.listButton.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.listButton.Location = new System.Drawing.Point(3, 42);
 			this.listButton.Name = "listButton";
-			this.listButton.Size = new System.Drawing.Size(162, 24);
+			this.listButton.Size = new System.Drawing.Size(163, 25);
 			this.listButton.TabIndex = 1;
 			this.listButton.Text = "Generate task list";
 			this.listButton.UseVisualStyleBackColor = true;
@@ -212,7 +221,7 @@
 			this.AcceptButton = this.okButton;
 			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.BackColor = System.Drawing.SystemColors.Control;
+			this.BackColor = System.Drawing.SystemColors.ControlLight;
 			this.CancelButton = this.cancelButton;
 			this.ClientSize = new System.Drawing.Size(812, 603);
 			this.Controls.Add(this.tree);

@@ -43,32 +43,36 @@
 			// okButton
 			// 
 			this.okButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+			this.okButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(231)))), ((int)(((byte)(231)))));
 			this.okButton.DialogResult = System.Windows.Forms.DialogResult.OK;
+			this.okButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.okButton.ImageOver = null;
 			this.okButton.Location = new System.Drawing.Point(264, 269);
 			this.okButton.Name = "okButton";
-			this.okButton.ThemedBack = null;
-			this.okButton.ThemedFore = null;
 			this.okButton.ShowBorder = true;
 			this.okButton.Size = new System.Drawing.Size(100, 38);
 			this.okButton.TabIndex = 0;
 			this.okButton.Text = "OK";
+			this.okButton.ThemedBack = null;
+			this.okButton.ThemedFore = null;
 			this.okButton.UseVisualStyleBackColor = true;
 			this.okButton.Click += new System.EventHandler(this.okButton_Click);
 			// 
 			// cancelButton
 			// 
 			this.cancelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+			this.cancelButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(231)))), ((int)(((byte)(231)))));
 			this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+			this.cancelButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.cancelButton.ImageOver = null;
 			this.cancelButton.Location = new System.Drawing.Point(370, 269);
 			this.cancelButton.Name = "cancelButton";
-			this.cancelButton.ThemedBack = null;
-			this.cancelButton.ThemedFore = null;
 			this.cancelButton.ShowBorder = true;
 			this.cancelButton.Size = new System.Drawing.Size(100, 38);
 			this.cancelButton.TabIndex = 1;
 			this.cancelButton.Text = "Cancel";
+			this.cancelButton.ThemedBack = null;
+			this.cancelButton.ThemedFore = null;
 			this.cancelButton.UseVisualStyleBackColor = true;
 			this.cancelButton.Click += new System.EventHandler(this.cancelButton_Click);
 			// 
@@ -102,33 +106,37 @@
 			// 
 			// cleanBox
 			// 
+			this.cleanBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(231)))), ((int)(((byte)(231)))));
+			this.cleanBox.Cursor = System.Windows.Forms.Cursors.Hand;
+			this.cleanBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.cleanBox.Location = new System.Drawing.Point(25, 180);
 			this.cleanBox.Name = "cleanBox";
 			this.cleanBox.Padding = new System.Windows.Forms.Padding(0, 9, 0, 0);
-			this.cleanBox.Size = new System.Drawing.Size(301, 24);
+			this.cleanBox.Size = new System.Drawing.Size(302, 25);
 			this.cleanBox.TabIndex = 3;
 			this.cleanBox.Text = "Remove/cleanup existing numbering";
 			this.cleanBox.UseVisualStyleBackColor = true;
 			// 
 			// alphaDemoBox
 			// 
-			this.alphaDemoBox.BackColor = System.Drawing.SystemColors.ControlLightLight;
+			this.alphaDemoBox.BackColor = System.Drawing.SystemColors.Window;
 			this.alphaDemoBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
 			this.alphaDemoBox.ForeColor = System.Drawing.SystemColors.ControlText;
 			this.alphaDemoBox.Location = new System.Drawing.Point(82, 98);
 			this.alphaDemoBox.Name = "alphaDemoBox";
-			this.alphaDemoBox.ThemedBack = "ControlLightLight";
-			this.alphaDemoBox.ThemedFore = "ControlText";
 			this.alphaDemoBox.Size = new System.Drawing.Size(128, 67);
 			this.alphaDemoBox.TabIndex = 15;
 			this.alphaDemoBox.Text = "1.\r\n   a.\r\n      i.";
+			this.alphaDemoBox.ThemedBack = "ControlLightLight";
+			this.alphaDemoBox.ThemedFore = "ControlText";
 			// 
 			// alphaRadio
 			// 
 			this.alphaRadio.Checked = true;
+			this.alphaRadio.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.alphaRadio.Location = new System.Drawing.Point(56, 69);
 			this.alphaRadio.Name = "alphaRadio";
-			this.alphaRadio.Size = new System.Drawing.Size(141, 24);
+			this.alphaRadio.Size = new System.Drawing.Size(142, 25);
 			this.alphaRadio.TabIndex = 1;
 			this.alphaRadio.TabStop = true;
 			this.alphaRadio.Text = "Alpha-numeric";
@@ -136,22 +144,23 @@
 			// 
 			// numDemoBox
 			// 
-			this.numDemoBox.BackColor = System.Drawing.SystemColors.ControlLightLight;
+			this.numDemoBox.BackColor = System.Drawing.SystemColors.Window;
 			this.numDemoBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
 			this.numDemoBox.ForeColor = System.Drawing.SystemColors.ControlText;
 			this.numDemoBox.Location = new System.Drawing.Point(290, 98);
 			this.numDemoBox.Name = "numDemoBox";
-			this.numDemoBox.ThemedBack = "ControlLightLight";
-			this.numDemoBox.ThemedFore = "ControlText";
 			this.numDemoBox.Size = new System.Drawing.Size(128, 67);
 			this.numDemoBox.TabIndex = 16;
 			this.numDemoBox.Text = "1.\r\n   1.1.\r\n      1.1.1.";
+			this.numDemoBox.ThemedBack = "ControlLightLight";
+			this.numDemoBox.ThemedFore = "ControlText";
 			// 
 			// numRadio
 			// 
+			this.numRadio.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.numRadio.Location = new System.Drawing.Point(261, 69);
 			this.numRadio.Name = "numRadio";
-			this.numRadio.Size = new System.Drawing.Size(96, 24);
+			this.numRadio.Size = new System.Drawing.Size(97, 25);
 			this.numRadio.TabIndex = 2;
 			this.numRadio.Text = "Numeric";
 			this.numRadio.UseVisualStyleBackColor = true;
@@ -161,7 +170,7 @@
 			this.AcceptButton = this.okButton;
 			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.BackColor = System.Drawing.SystemColors.Control;
+			this.BackColor = System.Drawing.SystemColors.ControlLight;
 			this.CancelButton = this.cancelButton;
 			this.ClientSize = new System.Drawing.Size(488, 325);
 			this.Controls.Add(this.numberingGroup);

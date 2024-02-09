@@ -68,55 +68,61 @@
 			this.pathBox.Location = new System.Drawing.Point(62, 54);
 			this.pathBox.Margin = new System.Windows.Forms.Padding(3, 3, 3, 15);
 			this.pathBox.Name = "pathBox";
-			this.pathBox.ThemedBack = null;
-			this.pathBox.ThemedFore = null;
 			this.pathBox.Size = new System.Drawing.Size(449, 26);
 			this.pathBox.TabIndex = 1;
+			this.pathBox.ThemedBack = null;
+			this.pathBox.ThemedFore = null;
 			this.pathBox.TextChanged += new System.EventHandler(this.ChangePath);
 			// 
 			// browseButton
 			// 
-			this.browseButton.Image = ((System.Drawing.Image)(resources.GetObject("browseButton.Image")));
+			this.browseButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(231)))), ((int)(((byte)(231)))));
+			this.browseButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+			this.browseButton.Image = global::River.OneMoreAddIn.Properties.Resources.m_FileOpen;
 			this.browseButton.ImageOver = null;
 			this.browseButton.Location = new System.Drawing.Point(517, 54);
 			this.browseButton.Name = "browseButton";
-			this.browseButton.ThemedBack = null;
-			this.browseButton.ThemedFore = null;
 			this.browseButton.ShowBorder = false;
 			this.browseButton.Size = new System.Drawing.Size(44, 26);
 			this.browseButton.TabIndex = 4;
+			this.browseButton.ThemedBack = null;
+			this.browseButton.ThemedFore = null;
 			this.browseButton.UseVisualStyleBackColor = true;
 			this.browseButton.Click += new System.EventHandler(this.BrowseFile);
 			// 
 			// cancelButton
 			// 
 			this.cancelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+			this.cancelButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(231)))), ((int)(((byte)(231)))));
 			this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+			this.cancelButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.cancelButton.ImageOver = null;
 			this.cancelButton.Location = new System.Drawing.Point(462, 261);
 			this.cancelButton.Name = "cancelButton";
-			this.cancelButton.ThemedBack = null;
-			this.cancelButton.ThemedFore = null;
 			this.cancelButton.ShowBorder = true;
 			this.cancelButton.Size = new System.Drawing.Size(100, 38);
 			this.cancelButton.TabIndex = 6;
 			this.cancelButton.Text = "Cancel";
+			this.cancelButton.ThemedBack = null;
+			this.cancelButton.ThemedFore = null;
 			this.cancelButton.UseVisualStyleBackColor = true;
 			// 
 			// okButton
 			// 
 			this.okButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+			this.okButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(231)))), ((int)(((byte)(231)))));
 			this.okButton.DialogResult = System.Windows.Forms.DialogResult.OK;
 			this.okButton.Enabled = false;
+			this.okButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.okButton.ImageOver = null;
 			this.okButton.Location = new System.Drawing.Point(356, 261);
 			this.okButton.Name = "okButton";
-			this.okButton.ThemedBack = null;
-			this.okButton.ThemedFore = null;
 			this.okButton.ShowBorder = true;
 			this.okButton.Size = new System.Drawing.Size(100, 38);
 			this.okButton.TabIndex = 7;
 			this.okButton.Text = "OK";
+			this.okButton.ThemedBack = null;
+			this.okButton.ThemedFore = null;
 			this.okButton.UseVisualStyleBackColor = true;
 			// 
 			// wordGroup
@@ -134,10 +140,11 @@
 			// 
 			// wordCreateButton
 			// 
+			this.wordCreateButton.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.wordCreateButton.ForeColor = System.Drawing.SystemColors.ControlText;
 			this.wordCreateButton.Location = new System.Drawing.Point(40, 67);
 			this.wordCreateButton.Name = "wordCreateButton";
-			this.wordCreateButton.Size = new System.Drawing.Size(156, 24);
+			this.wordCreateButton.Size = new System.Drawing.Size(160, 25);
 			this.wordCreateButton.TabIndex = 10;
 			this.wordCreateButton.TabStop = true;
 			this.wordCreateButton.Text = "Create new page";
@@ -145,13 +152,13 @@
 			// 
 			// wordAppendButton
 			// 
-			this.wordAppendButton.AutoSize = true;
 			this.wordAppendButton.Checked = true;
+			this.wordAppendButton.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.wordAppendButton.ForeColor = System.Drawing.SystemColors.ControlText;
 			this.wordAppendButton.Location = new System.Drawing.Point(40, 32);
 			this.wordAppendButton.Margin = new System.Windows.Forms.Padding(3, 3, 3, 8);
 			this.wordAppendButton.Name = "wordAppendButton";
-			this.wordAppendButton.Size = new System.Drawing.Size(177, 24);
+			this.wordAppendButton.Size = new System.Drawing.Size(181, 25);
 			this.wordAppendButton.TabIndex = 9;
 			this.wordAppendButton.TabStop = true;
 			this.wordAppendButton.Text = "Append to this page";
@@ -173,10 +180,11 @@
 			// 
 			// powerCreateButton
 			// 
+			this.powerCreateButton.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.powerCreateButton.Location = new System.Drawing.Point(40, 67);
 			this.powerCreateButton.Margin = new System.Windows.Forms.Padding(3, 3, 3, 8);
 			this.powerCreateButton.Name = "powerCreateButton";
-			this.powerCreateButton.Size = new System.Drawing.Size(156, 24);
+			this.powerCreateButton.Size = new System.Drawing.Size(160, 25);
 			this.powerCreateButton.TabIndex = 1;
 			this.powerCreateButton.TabStop = true;
 			this.powerCreateButton.Text = "Create new page";
@@ -185,10 +193,11 @@
 			// powerAppendButton
 			// 
 			this.powerAppendButton.Checked = true;
+			this.powerAppendButton.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.powerAppendButton.Location = new System.Drawing.Point(40, 32);
 			this.powerAppendButton.Margin = new System.Windows.Forms.Padding(3, 3, 3, 8);
 			this.powerAppendButton.Name = "powerAppendButton";
-			this.powerAppendButton.Size = new System.Drawing.Size(177, 24);
+			this.powerAppendButton.Size = new System.Drawing.Size(181, 25);
 			this.powerAppendButton.TabIndex = 0;
 			this.powerAppendButton.TabStop = true;
 			this.powerAppendButton.Text = "Append to this page";
@@ -196,9 +205,10 @@
 			// 
 			// powerSectionButton
 			// 
+			this.powerSectionButton.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.powerSectionButton.Location = new System.Drawing.Point(40, 101);
 			this.powerSectionButton.Name = "powerSectionButton";
-			this.powerSectionButton.Size = new System.Drawing.Size(353, 24);
+			this.powerSectionButton.Size = new System.Drawing.Size(357, 25);
 			this.powerSectionButton.TabIndex = 2;
 			this.powerSectionButton.TabStop = true;
 			this.powerSectionButton.Text = "Create a new section with a page each slide";
@@ -219,9 +229,10 @@
 			// pdfCreateButton
 			// 
 			this.pdfCreateButton.Checked = true;
+			this.pdfCreateButton.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.pdfCreateButton.Location = new System.Drawing.Point(40, 67);
 			this.pdfCreateButton.Name = "pdfCreateButton";
-			this.pdfCreateButton.Size = new System.Drawing.Size(156, 24);
+			this.pdfCreateButton.Size = new System.Drawing.Size(160, 25);
 			this.pdfCreateButton.TabIndex = 10;
 			this.pdfCreateButton.TabStop = true;
 			this.pdfCreateButton.Text = "Create new page";
@@ -229,10 +240,11 @@
 			// 
 			// pdfAppendButton
 			// 
+			this.pdfAppendButton.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.pdfAppendButton.Location = new System.Drawing.Point(40, 32);
 			this.pdfAppendButton.Margin = new System.Windows.Forms.Padding(3, 3, 3, 8);
 			this.pdfAppendButton.Name = "pdfAppendButton";
-			this.pdfAppendButton.Size = new System.Drawing.Size(177, 24);
+			this.pdfAppendButton.Size = new System.Drawing.Size(181, 25);
 			this.pdfAppendButton.TabIndex = 9;
 			this.pdfAppendButton.TabStop = true;
 			this.pdfAppendButton.Text = "Append to this page";
@@ -254,11 +266,11 @@
 			this.notInstalledLabel.ForeColor = System.Drawing.Color.Maroon;
 			this.notInstalledLabel.Location = new System.Drawing.Point(27, 113);
 			this.notInstalledLabel.Name = "notInstalledLabel";
-			this.notInstalledLabel.ThemedBack = null;
-			this.notInstalledLabel.ThemedFore = "ErrorText";
 			this.notInstalledLabel.Size = new System.Drawing.Size(306, 20);
 			this.notInstalledLabel.TabIndex = 10;
 			this.notInstalledLabel.Text = "The required Office product is not installed";
+			this.notInstalledLabel.ThemedBack = null;
+			this.notInstalledLabel.ThemedFore = "ErrorText";
 			this.notInstalledLabel.Visible = false;
 			// 
 			// errorLabel
@@ -267,11 +279,11 @@
 			this.errorLabel.ForeColor = System.Drawing.Color.Maroon;
 			this.errorLabel.Location = new System.Drawing.Point(27, 270);
 			this.errorLabel.Name = "errorLabel";
-			this.errorLabel.ThemedBack = null;
-			this.errorLabel.ThemedFore = "ErrorText";
 			this.errorLabel.Size = new System.Drawing.Size(114, 20);
 			this.errorLabel.TabIndex = 11;
 			this.errorLabel.Text = "Path not found";
+			this.errorLabel.ThemedBack = null;
+			this.errorLabel.ThemedFore = "ErrorText";
 			this.errorLabel.Visible = false;
 			// 
 			// ImportDialog
@@ -279,6 +291,7 @@
 			this.AcceptButton = this.okButton;
 			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+			this.BackColor = System.Drawing.SystemColors.ControlLight;
 			this.CancelButton = this.cancelButton;
 			this.ClientSize = new System.Drawing.Size(579, 317);
 			this.Controls.Add(this.errorLabel);
@@ -303,7 +316,6 @@
 			this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
 			this.Text = "Import";
 			this.wordGroup.ResumeLayout(false);
-			this.wordGroup.PerformLayout();
 			this.powerGroup.ResumeLayout(false);
 			this.pdfGroup.ResumeLayout(false);
 			this.ResumeLayout(false);

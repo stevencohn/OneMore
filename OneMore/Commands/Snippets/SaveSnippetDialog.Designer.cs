@@ -47,12 +47,12 @@ namespace River.OneMoreAddIn.Commands
 			this.okButton.ImageOver = null;
 			this.okButton.Location = new System.Drawing.Point(388, 94);
 			this.okButton.Name = "okButton";
-			this.okButton.ThemedBack = null;
-			this.okButton.ThemedFore = null;
 			this.okButton.ShowBorder = true;
 			this.okButton.Size = new System.Drawing.Size(112, 35);
 			this.okButton.TabIndex = 0;
 			this.okButton.Text = "OK";
+			this.okButton.ThemedBack = null;
+			this.okButton.ThemedFore = null;
 			this.okButton.UseVisualStyleBackColor = true;
 			this.okButton.Click += new System.EventHandler(this.OK);
 			// 
@@ -65,12 +65,12 @@ namespace River.OneMoreAddIn.Commands
 			this.cancelButton.ImageOver = null;
 			this.cancelButton.Location = new System.Drawing.Point(506, 94);
 			this.cancelButton.Name = "cancelButton";
-			this.cancelButton.ThemedBack = null;
-			this.cancelButton.ThemedFore = null;
 			this.cancelButton.ShowBorder = true;
 			this.cancelButton.Size = new System.Drawing.Size(112, 35);
 			this.cancelButton.TabIndex = 1;
 			this.cancelButton.Text = "Cancel";
+			this.cancelButton.ThemedBack = null;
+			this.cancelButton.ThemedFore = null;
 			this.cancelButton.UseVisualStyleBackColor = true;
 			// 
 			// nameLabel
@@ -89,10 +89,10 @@ namespace River.OneMoreAddIn.Commands
 			this.nameBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
 			this.nameBox.Location = new System.Drawing.Point(141, 28);
 			this.nameBox.Name = "nameBox";
-			this.nameBox.ThemedBack = null;
-			this.nameBox.ThemedFore = null;
 			this.nameBox.Size = new System.Drawing.Size(477, 26);
 			this.nameBox.TabIndex = 2;
+			this.nameBox.ThemedBack = null;
+			this.nameBox.ThemedFore = null;
 			this.nameBox.TextChanged += new System.EventHandler(this.ValidateName);
 			// 
 			// errorLabel
@@ -101,18 +101,18 @@ namespace River.OneMoreAddIn.Commands
 			this.errorLabel.ForeColor = System.Drawing.Color.Maroon;
 			this.errorLabel.Location = new System.Drawing.Point(137, 57);
 			this.errorLabel.Name = "errorLabel";
-			this.errorLabel.ThemedBack = null;
-			this.errorLabel.ThemedFore = "ErrorText";
 			this.errorLabel.Size = new System.Drawing.Size(167, 20);
 			this.errorLabel.TabIndex = 13;
 			this.errorLabel.Text = "Name is already in use";
+			this.errorLabel.ThemedBack = null;
+			this.errorLabel.ThemedFore = "ErrorText";
 			// 
 			// SaveSnippetDialog
 			// 
 			this.AcceptButton = this.okButton;
 			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.BackColor = System.Drawing.SystemColors.Control;
+			this.BackColor = System.Drawing.SystemColors.ControlLight;
 			this.CancelButton = this.cancelButton;
 			this.ClientSize = new System.Drawing.Size(641, 152);
 			this.Controls.Add(this.errorLabel);

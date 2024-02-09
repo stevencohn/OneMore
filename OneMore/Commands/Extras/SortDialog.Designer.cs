@@ -56,12 +56,12 @@
 			this.cancelButton.ImageOver = null;
 			this.cancelButton.Location = new System.Drawing.Point(376, 402);
 			this.cancelButton.Name = "cancelButton";
-			this.cancelButton.ThemedBack = null;
-			this.cancelButton.ThemedFore = null;
 			this.cancelButton.ShowBorder = true;
 			this.cancelButton.Size = new System.Drawing.Size(120, 38);
 			this.cancelButton.TabIndex = 1;
 			this.cancelButton.Text = "Cancel";
+			this.cancelButton.ThemedBack = null;
+			this.cancelButton.ThemedFore = null;
 			this.cancelButton.UseVisualStyleBackColor = true;
 			this.cancelButton.Click += new System.EventHandler(this.Cancel);
 			// 
@@ -74,12 +74,12 @@
 			this.okButton.ImageOver = null;
 			this.okButton.Location = new System.Drawing.Point(245, 402);
 			this.okButton.Name = "okButton";
-			this.okButton.ThemedBack = null;
-			this.okButton.ThemedFore = null;
 			this.okButton.ShowBorder = true;
 			this.okButton.Size = new System.Drawing.Size(120, 38);
 			this.okButton.TabIndex = 0;
 			this.okButton.Text = "OK";
+			this.okButton.ThemedBack = null;
+			this.okButton.ThemedFore = null;
 			this.okButton.UseVisualStyleBackColor = true;
 			this.okButton.Click += new System.EventHandler(this.OK);
 			// 
@@ -125,7 +125,6 @@
 			// scopeLabel
 			// 
 			this.scopeLabel.AutoSize = true;
-			this.scopeLabel.BackColor = System.Drawing.SystemColors.Control;
 			this.scopeLabel.ForeColor = System.Drawing.SystemColors.ControlText;
 			this.scopeLabel.Location = new System.Drawing.Point(18, 43);
 			this.scopeLabel.Name = "scopeLabel";
@@ -157,7 +156,6 @@
 			// sortLabel
 			// 
 			this.sortLabel.AutoSize = true;
-			this.sortLabel.BackColor = System.Drawing.SystemColors.Control;
 			this.sortLabel.ForeColor = System.Drawing.SystemColors.ControlText;
 			this.sortLabel.Location = new System.Drawing.Point(18, 96);
 			this.sortLabel.Name = "sortLabel";
@@ -168,7 +166,6 @@
 			// directionLabel
 			// 
 			this.directionLabel.AutoSize = true;
-			this.directionLabel.BackColor = System.Drawing.SystemColors.Control;
 			this.directionLabel.ForeColor = System.Drawing.SystemColors.ControlText;
 			this.directionLabel.Location = new System.Drawing.Point(22, 212);
 			this.directionLabel.Name = "directionLabel";
@@ -210,7 +207,6 @@
 			// 
 			// pinNotesBox
 			// 
-			this.pinNotesBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(231)))), ((int)(((byte)(231)))));
 			this.pinNotesBox.Checked = true;
 			this.pinNotesBox.CheckState = System.Windows.Forms.CheckState.Checked;
 			this.pinNotesBox.Cursor = System.Windows.Forms.Cursors.Hand;
@@ -227,7 +223,7 @@
 			this.AcceptButton = this.okButton;
 			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.BackColor = System.Drawing.SystemColors.Control;
+			this.BackColor = System.Drawing.SystemColors.ControlLight;
 			this.CancelButton = this.cancelButton;
 			this.ClientSize = new System.Drawing.Size(508, 452);
 			this.Controls.Add(this.pinNotesBox);

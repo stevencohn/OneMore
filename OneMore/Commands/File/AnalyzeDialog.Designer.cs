@@ -52,12 +52,12 @@ namespace River.OneMoreAddIn.Commands
 			this.okButton.Location = new System.Drawing.Point(270, 307);
 			this.okButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.okButton.Name = "okButton";
-			this.okButton.ThemedBack = null;
-			this.okButton.ThemedFore = null;
 			this.okButton.ShowBorder = true;
 			this.okButton.Size = new System.Drawing.Size(112, 35);
 			this.okButton.TabIndex = 0;
 			this.okButton.Text = "OK";
+			this.okButton.ThemedBack = null;
+			this.okButton.ThemedFore = null;
 			this.okButton.UseVisualStyleBackColor = true;
 			// 
 			// cancelButton
@@ -70,17 +70,16 @@ namespace River.OneMoreAddIn.Commands
 			this.cancelButton.Location = new System.Drawing.Point(390, 307);
 			this.cancelButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.cancelButton.Name = "cancelButton";
-			this.cancelButton.ThemedBack = null;
-			this.cancelButton.ThemedFore = null;
 			this.cancelButton.ShowBorder = true;
 			this.cancelButton.Size = new System.Drawing.Size(112, 35);
 			this.cancelButton.TabIndex = 1;
 			this.cancelButton.Text = "Cancel";
+			this.cancelButton.ThemedBack = null;
+			this.cancelButton.ThemedFore = null;
 			this.cancelButton.UseVisualStyleBackColor = true;
 			// 
 			// notebookBox
 			// 
-			this.notebookBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(231)))), ((int)(((byte)(231)))));
 			this.notebookBox.Checked = true;
 			this.notebookBox.CheckState = System.Windows.Forms.CheckState.Checked;
 			this.notebookBox.Cursor = System.Windows.Forms.Cursors.Hand;
@@ -95,7 +94,6 @@ namespace River.OneMoreAddIn.Commands
 			// 
 			// sectionBox
 			// 
-			this.sectionBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(231)))), ((int)(((byte)(231)))));
 			this.sectionBox.Checked = true;
 			this.sectionBox.CheckState = System.Windows.Forms.CheckState.Checked;
 			this.sectionBox.Cursor = System.Windows.Forms.Cursors.Hand;
@@ -174,11 +172,11 @@ namespace River.OneMoreAddIn.Commands
 			this.warningLabel.ForeColor = System.Drawing.Color.Maroon;
 			this.warningLabel.Location = new System.Drawing.Point(152, 259);
 			this.warningLabel.Name = "warningLabel";
-			this.warningLabel.ThemedBack = null;
-			this.warningLabel.ThemedFore = "ErrorText";
 			this.warningLabel.Size = new System.Drawing.Size(186, 20);
 			this.warningLabel.TabIndex = 14;
 			this.warningLabel.Text = "Report may take minutes";
+			this.warningLabel.ThemedBack = null;
+			this.warningLabel.ThemedFore = "ErrorText";
 			this.warningLabel.Visible = false;
 			// 
 			// AnalyzeDialog
@@ -186,6 +184,7 @@ namespace River.OneMoreAddIn.Commands
 			this.AcceptButton = this.okButton;
 			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+			this.BackColor = System.Drawing.SystemColors.ControlLight;
 			this.CancelButton = this.cancelButton;
 			this.ClientSize = new System.Drawing.Size(521, 362);
 			this.Controls.Add(this.warningLabel);

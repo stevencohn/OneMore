@@ -8,6 +8,7 @@ namespace River.OneMoreAddIn.Commands
 	using System;
 	using System.ComponentModel;
 	using System.Drawing;
+	using System.Windows.Forms;
 
 
 	internal partial class HashtagErrorControl : MoreUserControl
@@ -35,6 +36,8 @@ namespace River.OneMoreAddIn.Commands
 			{
 				notesBox.Text = notes;
 			}
+
+			LoadControls(Controls);
 		}
 
 
@@ -46,6 +49,23 @@ namespace River.OneMoreAddIn.Commands
 			{
 				radius = value;
 				RecreateRegion();
+			}
+		}
+
+
+		private void LoadControls(Control.ControlCollection controls)
+		{
+			foreach (Control child in controls)
+			{
+				if (child is ILoadControl loader)
+				{
+					loader.OnLoad();
+				}
+
+				if (child.Controls.Count > 0)
+				{
+					LoadControls(child.Controls);
+				}
 			}
 		}
 

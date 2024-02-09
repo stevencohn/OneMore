@@ -68,10 +68,10 @@
 			this.findBox.Location = new System.Drawing.Point(81, 63);
 			this.findBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.findBox.Name = "findBox";
-			this.findBox.ThemedBack = null;
-			this.findBox.ThemedFore = null;
 			this.findBox.Size = new System.Drawing.Size(406, 26);
 			this.findBox.TabIndex = 0;
+			this.findBox.ThemedBack = null;
+			this.findBox.ThemedFore = null;
 			this.findBox.TextChanged += new System.EventHandler(this.ChangeQuery);
 			this.findBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.SearchOnKeydown);
 			// 
@@ -85,12 +85,12 @@
 			this.cancelButton.Location = new System.Drawing.Point(641, 538);
 			this.cancelButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 15);
 			this.cancelButton.Name = "cancelButton";
-			this.cancelButton.ThemedBack = null;
-			this.cancelButton.ThemedFore = null;
 			this.cancelButton.ShowBorder = true;
 			this.cancelButton.Size = new System.Drawing.Size(112, 35);
 			this.cancelButton.TabIndex = 6;
 			this.cancelButton.Text = "Cancel";
+			this.cancelButton.ThemedBack = null;
+			this.cancelButton.ThemedFore = null;
 			this.cancelButton.UseVisualStyleBackColor = true;
 			this.cancelButton.Click += new System.EventHandler(this.Nevermind);
 			// 
@@ -100,16 +100,16 @@
 			this.searchButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(231)))), ((int)(((byte)(231)))));
 			this.searchButton.Enabled = false;
 			this.searchButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-			this.searchButton.Image = ((System.Drawing.Image)(resources.GetObject("searchButton.Image")));
+			this.searchButton.Image = global::River.OneMoreAddIn.Properties.Resources.m_Search;
 			this.searchButton.ImageOver = null;
 			this.searchButton.Location = new System.Drawing.Point(495, 62);
 			this.searchButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 15);
 			this.searchButton.Name = "searchButton";
-			this.searchButton.ThemedBack = null;
-			this.searchButton.ThemedFore = null;
 			this.searchButton.ShowBorder = true;
 			this.searchButton.Size = new System.Drawing.Size(68, 32);
 			this.searchButton.TabIndex = 1;
+			this.searchButton.ThemedBack = null;
+			this.searchButton.ThemedFore = null;
 			this.searchButton.UseVisualStyleBackColor = true;
 			this.searchButton.Click += new System.EventHandler(this.Search);
 			// 
@@ -124,12 +124,12 @@
 			this.copyButton.Location = new System.Drawing.Point(401, 538);
 			this.copyButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.copyButton.Name = "copyButton";
-			this.copyButton.ThemedBack = null;
-			this.copyButton.ThemedFore = null;
 			this.copyButton.ShowBorder = true;
 			this.copyButton.Size = new System.Drawing.Size(112, 35);
 			this.copyButton.TabIndex = 4;
 			this.copyButton.Text = "Copy";
+			this.copyButton.ThemedBack = null;
+			this.copyButton.ThemedFore = null;
 			this.copyButton.UseVisualStyleBackColor = true;
 			this.copyButton.Click += new System.EventHandler(this.CopyPressed);
 			// 
@@ -144,12 +144,12 @@
 			this.moveButton.Location = new System.Drawing.Point(521, 538);
 			this.moveButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.moveButton.Name = "moveButton";
-			this.moveButton.ThemedBack = null;
-			this.moveButton.ThemedFore = null;
 			this.moveButton.ShowBorder = true;
 			this.moveButton.Size = new System.Drawing.Size(112, 35);
 			this.moveButton.TabIndex = 5;
 			this.moveButton.Text = "Move";
+			this.moveButton.ThemedBack = null;
+			this.moveButton.ThemedFore = null;
 			this.moveButton.UseVisualStyleBackColor = true;
 			this.moveButton.Click += new System.EventHandler(this.MovePressed);
 			// 
@@ -190,7 +190,7 @@
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.BackColor = System.Drawing.SystemColors.Control;
+			this.BackColor = System.Drawing.SystemColors.ControlLight;
 			this.CancelButton = this.cancelButton;
 			this.ClientSize = new System.Drawing.Size(778, 594);
 			this.Controls.Add(this.scopeBox);

@@ -160,7 +160,7 @@
 			// 
 			this.browseButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(231)))), ((int)(((byte)(231)))));
 			this.browseButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-			this.browseButton.Image = ((System.Drawing.Image)(resources.GetObject("browseButton.Image")));
+			this.browseButton.Image = global::River.OneMoreAddIn.Properties.Resources.m_FileOpen;
 			this.browseButton.ImageOver = null;
 			this.browseButton.Location = new System.Drawing.Point(512, 40);
 			this.browseButton.Name = "browseButton";
@@ -212,7 +212,7 @@
 			this.AcceptButton = this.okButton;
 			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.BackColor = System.Drawing.SystemColors.Control;
+			this.BackColor = System.Drawing.SystemColors.ControlLight;
 			this.CancelButton = this.cancelButton;
 			this.ClientSize = new System.Drawing.Size(715, 327);
 			this.Controls.Add(this.okButton);

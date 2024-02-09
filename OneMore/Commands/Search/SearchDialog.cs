@@ -1,5 +1,5 @@
 ﻿//************************************************************************************************
-// Copyright © 2020 Steven M Cohn.  All rights reserved.
+// Copyright © 2020 Steven M Cohn. All rights reserved.
 //************************************************************************************************
 
 namespace River.OneMoreAddIn.Commands.Search
@@ -7,10 +7,9 @@ namespace River.OneMoreAddIn.Commands.Search
 	using River.OneMoreAddIn.UI;
 	using System;
 	using System.Collections.Generic;
-	using System.Linq;
+	using System.Drawing;
 	using System.Windows.Forms;
-	using System.Xml.Linq;
-	using Resx = River.OneMoreAddIn.Properties.Resources;
+	using Resx = Properties.Resources;
 
 
 	internal partial class SearchDialog : MoreForm
@@ -50,6 +49,26 @@ namespace River.OneMoreAddIn.Commands.Search
 
 
 		public List<string> SelectedPages { get; private set; }
+
+
+		protected override void OnLoad(EventArgs e)
+		{
+			base.OnLoad(e);
+
+			var editor = new ImageEditor
+			{
+				// shrink from 24x24 to 16x16
+				Size = new Size(16, 16)
+			};
+
+			if (manager.DarkMode)
+			{
+				editor.Style = ImageEditor.Stylization.Invert;
+			}
+
+			using var img = searchButton.Image;
+			searchButton.Image = editor.Apply(img);
+		}
 
 
 		private void ChangeQuery(object sender, EventArgs e)

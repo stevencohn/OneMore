@@ -79,6 +79,21 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
+		protected override void OnLoad(EventArgs e)
+		{
+			base.OnLoad(e);
+
+			var editor = new ImageEditor { Size = new System.Drawing.Size(16, 16) };
+			if (manager.DarkMode)
+			{
+				editor.Style = ImageEditor.Stylization.Invert;
+			}
+
+			using var img = browseButton.Image;
+			browseButton.Image = editor.Apply(img);
+		}
+
+
 		private string LoadDefaultPath()
 		{
 			var provider = new SettingsProvider();

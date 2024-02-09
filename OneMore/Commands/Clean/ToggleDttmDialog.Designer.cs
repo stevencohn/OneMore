@@ -29,8 +29,8 @@
 		private void InitializeComponent()
 		{
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ToggleDttmDialog));
-			this.hideRadio = new UI.MoreRadioButton();
-			this.showRadio = new UI.MoreRadioButton();
+			this.hideRadio = new River.OneMoreAddIn.UI.MoreRadioButton();
+			this.showRadio = new River.OneMoreAddIn.UI.MoreRadioButton();
 			this.toggleGroup = new River.OneMoreAddIn.UI.MoreGroupBox();
 			this.scopeGroup = new River.OneMoreAddIn.UI.MoreGroupBox();
 			this.scopeSelector = new River.OneMoreAddIn.UI.ScopeSelector();
@@ -42,11 +42,11 @@
 			// 
 			// hideRadio
 			// 
-			this.hideRadio.AutoSize = true;
 			this.hideRadio.Checked = true;
+			this.hideRadio.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.hideRadio.Location = new System.Drawing.Point(18, 37);
 			this.hideRadio.Name = "hideRadio";
-			this.hideRadio.Size = new System.Drawing.Size(168, 24);
+			this.hideRadio.Size = new System.Drawing.Size(173, 25);
 			this.hideRadio.TabIndex = 0;
 			this.hideRadio.TabStop = true;
 			this.hideRadio.Text = "Hide date and time";
@@ -54,10 +54,10 @@
 			// 
 			// showRadio
 			// 
-			this.showRadio.AutoSize = true;
+			this.showRadio.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.showRadio.Location = new System.Drawing.Point(18, 67);
 			this.showRadio.Name = "showRadio";
-			this.showRadio.Size = new System.Drawing.Size(175, 24);
+			this.showRadio.Size = new System.Drawing.Size(181, 25);
 			this.showRadio.TabIndex = 1;
 			this.showRadio.Text = "Show date and time";
 			this.showRadio.UseVisualStyleBackColor = true;
@@ -66,7 +66,6 @@
 			// 
 			this.toggleGroup.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-			this.toggleGroup.BackColor = System.Drawing.SystemColors.Control;
 			this.toggleGroup.Controls.Add(this.hideRadio);
 			this.toggleGroup.Controls.Add(this.showRadio);
 			this.toggleGroup.ForeColor = System.Drawing.SystemColors.ControlText;
@@ -82,7 +81,6 @@
 			// 
 			this.scopeGroup.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-			this.scopeGroup.BackColor = System.Drawing.SystemColors.Control;
 			this.scopeGroup.Controls.Add(this.scopeSelector);
 			this.scopeGroup.ForeColor = System.Drawing.SystemColors.ControlText;
 			this.scopeGroup.Location = new System.Drawing.Point(18, 159);
@@ -95,7 +93,7 @@
 			// 
 			// scopeSelector
 			// 
-			this.scopeSelector.Location = new System.Drawing.Point(31, 34);
+			this.scopeSelector.Location = new System.Drawing.Point(18, 34);
 			this.scopeSelector.Margin = new System.Windows.Forms.Padding(0);
 			this.scopeSelector.Name = "scopeSelector";
 			this.scopeSelector.Scopes = ((River.OneMoreAddIn.UI.SelectorScope)((River.OneMoreAddIn.UI.SelectorScope.Page | River.OneMoreAddIn.UI.SelectorScope.Section)));
@@ -105,7 +103,9 @@
 			// cancelButton
 			// 
 			this.cancelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+			this.cancelButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(231)))), ((int)(((byte)(231)))));
 			this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+			this.cancelButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.cancelButton.ImageOver = null;
 			this.cancelButton.Location = new System.Drawing.Point(342, 305);
 			this.cancelButton.Name = "cancelButton";
@@ -113,12 +113,16 @@
 			this.cancelButton.Size = new System.Drawing.Size(100, 38);
 			this.cancelButton.TabIndex = 1;
 			this.cancelButton.Text = "Cancel";
+			this.cancelButton.ThemedBack = null;
+			this.cancelButton.ThemedFore = null;
 			this.cancelButton.UseVisualStyleBackColor = true;
 			// 
 			// okButton
 			// 
 			this.okButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+			this.okButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(231)))), ((int)(((byte)(231)))));
 			this.okButton.DialogResult = System.Windows.Forms.DialogResult.OK;
+			this.okButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.okButton.ImageOver = null;
 			this.okButton.Location = new System.Drawing.Point(236, 305);
 			this.okButton.Name = "okButton";
@@ -126,6 +130,8 @@
 			this.okButton.Size = new System.Drawing.Size(100, 38);
 			this.okButton.TabIndex = 0;
 			this.okButton.Text = "OK";
+			this.okButton.ThemedBack = null;
+			this.okButton.ThemedFore = null;
 			this.okButton.UseVisualStyleBackColor = true;
 			// 
 			// ToggleDttmDialog
@@ -133,7 +139,7 @@
 			this.AcceptButton = this.okButton;
 			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.BackColor = System.Drawing.SystemColors.Control;
+			this.BackColor = System.Drawing.SystemColors.ControlLight;
 			this.CancelButton = this.cancelButton;
 			this.ClientSize = new System.Drawing.Size(460, 361);
 			this.Controls.Add(this.okButton);
@@ -151,7 +157,6 @@
 			this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
 			this.Text = "Show/Hide Date and Time";
 			this.toggleGroup.ResumeLayout(false);
-			this.toggleGroup.PerformLayout();
 			this.scopeGroup.ResumeLayout(false);
 			this.ResumeLayout(false);
 

@@ -51,12 +51,12 @@
 			this.cancelButton.ImageOver = null;
 			this.cancelButton.Location = new System.Drawing.Point(513, 262);
 			this.cancelButton.Name = "cancelButton";
-			this.cancelButton.ThemedBack = null;
-			this.cancelButton.ThemedFore = null;
 			this.cancelButton.ShowBorder = true;
 			this.cancelButton.Size = new System.Drawing.Size(100, 38);
 			this.cancelButton.TabIndex = 5;
 			this.cancelButton.Text = "Cancel";
+			this.cancelButton.ThemedBack = null;
+			this.cancelButton.ThemedFore = null;
 			this.cancelButton.UseVisualStyleBackColor = true;
 			// 
 			// okButton
@@ -69,12 +69,12 @@
 			this.okButton.ImageOver = null;
 			this.okButton.Location = new System.Drawing.Point(406, 262);
 			this.okButton.Name = "okButton";
-			this.okButton.ThemedBack = null;
-			this.okButton.ThemedFore = null;
 			this.okButton.ShowBorder = true;
 			this.okButton.Size = new System.Drawing.Size(100, 38);
 			this.okButton.TabIndex = 4;
 			this.okButton.Text = "OK";
+			this.okButton.ThemedBack = null;
+			this.okButton.ThemedFore = null;
 			this.okButton.UseVisualStyleBackColor = true;
 			// 
 			// whatLabel
@@ -154,11 +154,11 @@
 			this.whatStatusLabel.ForeColor = System.Drawing.Color.Brown;
 			this.whatStatusLabel.Location = new System.Drawing.Point(156, 54);
 			this.whatStatusLabel.Name = "whatStatusLabel";
-			this.whatStatusLabel.ThemedBack = null;
-			this.whatStatusLabel.ThemedFore = "ErrorText";
 			this.whatStatusLabel.Size = new System.Drawing.Size(453, 20);
 			this.whatStatusLabel.TabIndex = 9;
 			this.whatStatusLabel.Text = "Invalid regular expression";
+			this.whatStatusLabel.ThemedBack = null;
+			this.whatStatusLabel.ThemedFore = "ErrorText";
 			// 
 			// withStatusLabel
 			// 
@@ -167,15 +167,14 @@
 			this.withStatusLabel.ForeColor = System.Drawing.SystemColors.MenuHighlight;
 			this.withStatusLabel.Location = new System.Drawing.Point(156, 190);
 			this.withStatusLabel.Name = "withStatusLabel";
-			this.withStatusLabel.ThemedBack = null;
-			this.withStatusLabel.ThemedFore = "HintText";
 			this.withStatusLabel.Size = new System.Drawing.Size(453, 20);
 			this.withStatusLabel.TabIndex = 10;
 			this.withStatusLabel.Text = "Valid substitution parameters: $1";
+			this.withStatusLabel.ThemedBack = null;
+			this.withStatusLabel.ThemedFore = "HintText";
 			// 
 			// rawBox
 			// 
-			this.rawBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(231)))), ((int)(((byte)(231)))));
 			this.rawBox.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.rawBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.rawBox.Location = new System.Drawing.Point(160, 215);
@@ -192,7 +191,7 @@
 			this.AcceptButton = this.okButton;
 			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.BackColor = System.Drawing.SystemColors.Control;
+			this.BackColor = System.Drawing.SystemColors.ControlLight;
 			this.CancelButton = this.cancelButton;
 			this.ClientSize = new System.Drawing.Size(629, 318);
 			this.Controls.Add(this.rawBox);
