@@ -28,7 +28,7 @@ namespace River.OneMoreAddIn.Commands
 					"firstLabel",
 					"colorLabel",
 					"clickLabel",
-					"formatLabel",
+					"formatLabel=word_Format",
 					"smallRadio",
 					"largeRadio",
 					"indentBox",

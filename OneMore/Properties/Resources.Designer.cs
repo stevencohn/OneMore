@@ -2912,15 +2912,6 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Folder:.
-        /// </summary>
-        internal static string ExportDialog_folderLabel_Text {
-            get {
-                return ResourceManager.GetString("ExportDialog_folderLabel.Text", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to HTML File (*.htm)
         ///PDF File (*.pdf)
         ///Word File (*.docx)
@@ -2931,15 +2922,6 @@ namespace River.OneMoreAddIn.Properties {
         internal static string ExportDialog_formatBox_Text {
             get {
                 return ResourceManager.GetString("ExportDialog_formatBox.Text", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Format:.
-        /// </summary>
-        internal static string ExportDialog_formatLabel_Text {
-            get {
-                return ResourceManager.GetString("ExportDialog_formatLabel.Text", resourceCulture);
             }
         }
         
@@ -4125,15 +4107,6 @@ namespace River.OneMoreAddIn.Properties {
         internal static string InsertCalendarDialog_firstLabel_Text {
             get {
                 return ResourceManager.GetString("InsertCalendarDialog_firstLabel.Text", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Format.
-        /// </summary>
-        internal static string InsertCalendarDialog_formatLabel_Text {
-            get {
-                return ResourceManager.GetString("InsertCalendarDialog_formatLabel.Text", resourceCulture);
             }
         }
         
@@ -12274,11 +12247,29 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Folder.
+        /// </summary>
+        internal static string word_Folder {
+            get {
+                return ResourceManager.GetString("word_Folder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Font.
         /// </summary>
         internal static string word_Font {
             get {
                 return ResourceManager.GetString("word_Font", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Format.
+        /// </summary>
+        internal static string word_Format {
+            get {
+                return ResourceManager.GetString("word_Format", resourceCulture);
             }
         }
         

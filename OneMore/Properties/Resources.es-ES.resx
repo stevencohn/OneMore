@@ -1065,10 +1065,6 @@ Fuente de la última columna</value>
     <value>Incrustaciones de accesorios</value>
     <comment>checkbox</comment>
   </data>
-  <data name="ExportDialog_folderLabel.Text" xml:space="preserve">
-    <value>Carpeta:</value>
-    <comment>label</comment>
-  </data>
   <data name="ExportDialog_formatBox.Text" xml:space="preserve">
     <value>Archivo HTML (* .htm)
 Archivo PDF (* .pdf)
@@ -1077,10 +1073,6 @@ Archivo XML (* .xml)
 Archivo de Markdown (* .md)
 Archivo de OneNote (* .one)</value>
     <comment>combo box</comment>
-  </data>
-  <data name="ExportDialog_formatLabel.Text" xml:space="preserve">
-    <value>Formato:</value>
-    <comment>label</comment>
   </data>
   <data name="ExportDialog_groupBox.Text" xml:space="preserve">
     <value>Exportar {0} páginas</value>
@@ -1580,10 +1572,6 @@ Fondo amarillo</value>
   </data>
   <data name="InsertCalendarDialog_firstLabel.Text" xml:space="preserve">
     <value>Primer dia de la semana</value>
-    <comment>label</comment>
-  </data>
-  <data name="InsertCalendarDialog_formatLabel.Text" xml:space="preserve">
-    <value>Formato</value>
     <comment>label</comment>
   </data>
   <data name="InsertCalendarDialog_indentBox.Text" xml:space="preserve">
@@ -4956,8 +4944,14 @@ En esta sección</value>
   <data name="word_Favorites" xml:space="preserve">
     <value>Favoritos</value>
   </data>
+  <data name="word_Folder" xml:space="preserve">
+    <value>Carpeta</value>
+  </data>
   <data name="word_Font" xml:space="preserve">
     <value>Fuente</value>
+  </data>
+  <data name="word_Format" xml:space="preserve">
+    <value>Formato</value>
   </data>
   <data name="word_Function" xml:space="preserve">
     <value>Función</value>

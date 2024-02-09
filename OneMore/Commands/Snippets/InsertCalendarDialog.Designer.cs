@@ -59,9 +59,9 @@
 			this.yearLabel.Location = new System.Drawing.Point(20, 38);
 			this.yearLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
 			this.yearLabel.Name = "yearLabel";
-			this.yearLabel.Size = new System.Drawing.Size(47, 20);
+			this.yearLabel.Size = new System.Drawing.Size(43, 20);
 			this.yearLabel.TabIndex = 0;
-			this.yearLabel.Text = "Year:";
+			this.yearLabel.Text = "Year";
 			// 
 			// yearBox
 			// 
@@ -82,9 +82,9 @@
 			this.monthLabel.Location = new System.Drawing.Point(20, 80);
 			this.monthLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
 			this.monthLabel.Name = "monthLabel";
-			this.monthLabel.Size = new System.Drawing.Size(58, 20);
+			this.monthLabel.Size = new System.Drawing.Size(54, 20);
 			this.monthLabel.TabIndex = 2;
-			this.monthLabel.Text = "Month:";
+			this.monthLabel.Text = "Month";
 			// 
 			// formatLabel
 			// 
@@ -92,9 +92,9 @@
 			this.formatLabel.Location = new System.Drawing.Point(4, 63);
 			this.formatLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
 			this.formatLabel.Name = "formatLabel";
-			this.formatLabel.Size = new System.Drawing.Size(64, 20);
+			this.formatLabel.Size = new System.Drawing.Size(60, 20);
 			this.formatLabel.TabIndex = 3;
-			this.formatLabel.Text = "Format:";
+			this.formatLabel.Text = "Format";
 			// 
 			// monthBox
 			// 
@@ -139,12 +139,12 @@
 			this.cancelButton.Location = new System.Drawing.Point(376, 392);
 			this.cancelButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.cancelButton.Name = "cancelButton";
-			this.cancelButton.ThemedBack = null;
-			this.cancelButton.ThemedFore = null;
 			this.cancelButton.ShowBorder = true;
 			this.cancelButton.Size = new System.Drawing.Size(112, 35);
 			this.cancelButton.TabIndex = 1;
 			this.cancelButton.Text = "Cancel";
+			this.cancelButton.ThemedBack = null;
+			this.cancelButton.ThemedFore = null;
 			this.cancelButton.UseVisualStyleBackColor = false;
 			// 
 			// okButton
@@ -157,16 +157,17 @@
 			this.okButton.Location = new System.Drawing.Point(254, 392);
 			this.okButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.okButton.Name = "okButton";
-			this.okButton.ThemedBack = null;
-			this.okButton.ThemedFore = null;
 			this.okButton.ShowBorder = true;
 			this.okButton.Size = new System.Drawing.Size(112, 35);
 			this.okButton.TabIndex = 0;
 			this.okButton.Text = "OK";
+			this.okButton.ThemedBack = null;
+			this.okButton.ThemedFore = null;
 			this.okButton.UseVisualStyleBackColor = false;
 			// 
 			// indentBox
 			// 
+			this.indentBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(231)))), ((int)(((byte)(231)))));
 			this.indentBox.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.indentBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.indentBox.Location = new System.Drawing.Point(182, 136);
@@ -183,9 +184,9 @@
 			this.firstLabel.Location = new System.Drawing.Point(4, 10);
 			this.firstLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
 			this.firstLabel.Name = "firstLabel";
-			this.firstLabel.Size = new System.Drawing.Size(132, 20);
+			this.firstLabel.Size = new System.Drawing.Size(128, 20);
 			this.firstLabel.TabIndex = 10;
-			this.firstLabel.Text = "First day of week:";
+			this.firstLabel.Text = "First day of week";
 			// 
 			// sundayButton
 			// 
@@ -265,9 +266,9 @@
 			this.colorLabel.Location = new System.Drawing.Point(4, 13);
 			this.colorLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
 			this.colorLabel.Name = "colorLabel";
-			this.colorLabel.Size = new System.Drawing.Size(111, 20);
+			this.colorLabel.Size = new System.Drawing.Size(107, 20);
 			this.colorLabel.TabIndex = 10;
-			this.colorLabel.Text = "Heading color:";
+			this.colorLabel.Text = "Heading color";
 			// 
 			// InsertCalendarDialog
 			// 

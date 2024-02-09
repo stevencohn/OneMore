@@ -117,6 +117,7 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="AboutDialog.Text" xml:space="preserve">
     <value>OneMore Add-in</value>
     <comment>dialog title bar</comment>
@@ -1079,10 +1080,6 @@ Last Column Font</value>
     <value>Embed attachments</value>
     <comment>checkbox</comment>
   </data>
-  <data name="ExportDialog_folderLabel.Text" xml:space="preserve">
-    <value>Folder:</value>
-    <comment>label</comment>
-  </data>
   <data name="ExportDialog_formatBox.Text" xml:space="preserve">
     <value>HTML File (*.htm)
 PDF File (*.pdf)
@@ -1091,10 +1088,6 @@ XML File (*.xml)
 Markdown File (*.md)
 OneNote File (*.one)</value>
     <comment>combo box</comment>
-  </data>
-  <data name="ExportDialog_formatLabel.Text" xml:space="preserve">
-    <value>Format:</value>
-    <comment>label</comment>
   </data>
   <data name="ExportDialog_groupBox.Text" xml:space="preserve">
     <value>Export {0} Pages</value>
@@ -1594,10 +1587,6 @@ Yellow Background</value>
   </data>
   <data name="InsertCalendarDialog_firstLabel.Text" xml:space="preserve">
     <value>First day of week</value>
-    <comment>label</comment>
-  </data>
-  <data name="InsertCalendarDialog_formatLabel.Text" xml:space="preserve">
-    <value>Format</value>
     <comment>label</comment>
   </data>
   <data name="InsertCalendarDialog_indentBox.Text" xml:space="preserve">
@@ -4995,8 +4984,14 @@ In this section</value>
   <data name="word_Favorites" xml:space="preserve">
     <value>Favorites</value>
   </data>
+  <data name="word_Folder" xml:space="preserve">
+    <value>Folder</value>
+  </data>
   <data name="word_Font" xml:space="preserve">
     <value>Font</value>
+  </data>
+  <data name="word_Format" xml:space="preserve">
+    <value>Format</value>
   </data>
   <data name="word_Function" xml:space="preserve">
     <value>Function</value>
@@ -5185,7 +5180,6 @@ In this section</value>
     <value>Word Counts</value>
     <comment>page title</comment>
   </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="sponsor_dark" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Commands\Tools\sponsor-dark.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -5203,6 +5197,153 @@ In this section</value>
   </data>
   <data name="ribSearchHashtagsButton" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Ribbon\Images\ribSearchHashtagsButton.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="e_Architecture" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Emoji\e_Architecture.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="e_Automobile" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Emoji\e_Automobile.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="e_BallotBox" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Emoji\e_BallotBox.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="e_Bell" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Emoji\e_Bell.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="e_Bullet" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Emoji\e_Bullet.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="e_Calendar" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Emoji\e_Calendar.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="e_Camera" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Emoji\e_Camera.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="e_CheckMark" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Emoji\e_CheckMark.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="e_Circle" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Emoji\e_Circle.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="e_Clipboard" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Emoji\e_Clipboard.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="e_Cloud" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Emoji\e_Cloud.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="e_Copyright" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Emoji\e_Copyright.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="e_Cross" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Emoji\e_Cross.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="e_Cycling" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Emoji\e_Cycling.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="e_Delta" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Emoji\e_Delta.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="e_Envelope" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Emoji\e_Envelope.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="e_Eyes" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Emoji\e_Eyes.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="e_Family" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Emoji\e_Family.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="e_Financial" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Emoji\e_Financial.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="e_Flag" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Emoji\e_Flag.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="e_Folder" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Emoji\e_Folder.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="e_Globe" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Emoji\e_Globe.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="e_Hammer" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Emoji\e_Hammer.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="e_Heart" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Emoji\e_Heart.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="e_Interrobang" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Emoji\e_Interrobang.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="e_Journal" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Emoji\e_Journal.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="e_LeftwardsArrow" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Emoji\e_LeftwardsArrow.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="e_Lock" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Emoji\e_Lock.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="e_Memo" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Emoji\e_Memo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="e_Passwords" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Emoji\e_Passwords.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="e_Pencil" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Emoji\e_Pencil.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="e_Pushpin" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Emoji\e_Pushpin.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="e_Recycle" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Emoji\e_Recycle.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="e_RightwardsArrow" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Emoji\e_RightwardsArrow.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="e_Section" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Emoji\e_Section.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="e_Shazam" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Emoji\e_Shazam.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="e_Smiley" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Emoji\e_Smiley.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="e_Software" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Emoji\e_Software.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="e_Sports" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Emoji\e_Sports.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="e_SportsEU" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Emoji\e_SportsEU.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="e_Star" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Emoji\e_Star.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="e_Summary" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Emoji\e_Summary.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="e_Tasks" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Emoji\e_Tasks.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="e_Tools" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Emoji\e_Tools.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="e_Travel" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Emoji\e_Travel.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="e_Video" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Emoji\e_Video.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="e_Warning" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Emoji\e_Warning.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="e_Watch" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Emoji\e_Watch.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="e_XMark" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Emoji\e_XMark.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="CustomStyles" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>images\customstyles.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -5389,152 +5530,5 @@ In this section</value>
   </data>
   <data name="_0336_OneNoteApplication_2013" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>0336.OneNoteApplication_2013.xsd;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
-  </data>
-  <data name="e_Architecture" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Emoji\e_Architecture.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="e_Automobile" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Emoji\e_Automobile.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="e_BallotBox" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Emoji\e_BallotBox.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="e_Bell" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Emoji\e_Bell.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="e_Bullet" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Emoji\e_Bullet.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="e_Calendar" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Emoji\e_Calendar.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="e_Camera" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Emoji\e_Camera.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="e_CheckMark" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Emoji\e_CheckMark.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="e_Circle" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Emoji\e_Circle.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="e_Clipboard" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Emoji\e_Clipboard.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="e_Cloud" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Emoji\e_Cloud.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="e_Copyright" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Emoji\e_Copyright.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="e_Cross" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Emoji\e_Cross.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="e_Delta" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Emoji\e_Delta.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="e_Envelope" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Emoji\e_Envelope.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="e_Eyes" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Emoji\e_Eyes.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="e_Family" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Emoji\e_Family.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="e_Financial" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Emoji\e_Financial.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="e_Flag" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Emoji\e_Flag.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="e_Folder" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Emoji\e_Folder.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="e_Globe" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Emoji\e_Globe.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="e_Hammer" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Emoji\e_Hammer.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="e_Heart" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Emoji\e_Heart.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="e_Interrobang" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Emoji\e_Interrobang.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="e_Journal" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Emoji\e_Journal.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="e_LeftwardsArrow" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Emoji\e_LeftwardsArrow.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="e_Lock" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Emoji\e_Lock.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="e_Memo" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Emoji\e_Memo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="e_Passwords" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Emoji\e_Passwords.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="e_Pencil" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Emoji\e_Pencil.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="e_Pushpin" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Emoji\e_Pushpin.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="e_Recycle" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Emoji\e_Recycle.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="e_RightwardsArrow" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Emoji\e_RightwardsArrow.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="e_Section" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Emoji\e_Section.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="e_Shazam" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Emoji\e_Shazam.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="e_Smiley" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Emoji\e_Smiley.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="e_Software" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Emoji\e_Software.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="e_Sports" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Emoji\e_Sports.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="e_SportsEU" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Emoji\e_SportsEU.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="e_Star" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Emoji\e_Star.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="e_Summary" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Emoji\e_Summary.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="e_Tasks" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Emoji\e_Tasks.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="e_Tools" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Emoji\e_Tools.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="e_Travel" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Emoji\e_Travel.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="e_Video" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Emoji\e_Video.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="e_Warning" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Emoji\e_Warning.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="e_Watch" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Emoji\e_Watch.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="e_XMark" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Emoji\e_XMark.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="e_Cycling" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Emoji\e_Cycling.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

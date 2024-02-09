@@ -54,9 +54,9 @@
 			this.formatLabel.AutoSize = true;
 			this.formatLabel.Location = new System.Drawing.Point(30, 103);
 			this.formatLabel.Name = "formatLabel";
-			this.formatLabel.Size = new System.Drawing.Size(64, 20);
+			this.formatLabel.Size = new System.Drawing.Size(60, 20);
 			this.formatLabel.TabIndex = 2;
-			this.formatLabel.Text = "Format:";
+			this.formatLabel.Text = "Format";
 			// 
 			// formatBox
 			// 
@@ -66,7 +66,7 @@
             "Number",
             "Currency",
             "Percentage"});
-			this.formatBox.Location = new System.Drawing.Point(151, 100);
+			this.formatBox.Location = new System.Drawing.Point(166, 100);
 			this.formatBox.Margin = new System.Windows.Forms.Padding(3, 3, 3, 10);
 			this.formatBox.Name = "formatBox";
 			this.formatBox.Size = new System.Drawing.Size(261, 28);
@@ -112,14 +112,14 @@
 			this.formulaLabel.AutoSize = true;
 			this.formulaLabel.Location = new System.Drawing.Point(30, 64);
 			this.formulaLabel.Name = "formulaLabel";
-			this.formulaLabel.Size = new System.Drawing.Size(71, 20);
+			this.formulaLabel.Size = new System.Drawing.Size(67, 20);
 			this.formulaLabel.TabIndex = 8;
-			this.formulaLabel.Text = "Formula:";
+			this.formulaLabel.Text = "Formula";
 			// 
 			// formulaBox
 			// 
 			this.formulaBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-			this.formulaBox.Location = new System.Drawing.Point(151, 61);
+			this.formulaBox.Location = new System.Drawing.Point(166, 61);
 			this.formulaBox.Margin = new System.Windows.Forms.Padding(3, 3, 3, 10);
 			this.formulaBox.Name = "formulaBox";
 			this.formulaBox.Size = new System.Drawing.Size(382, 26);
@@ -140,7 +140,7 @@
 			// cellLabel
 			// 
 			this.cellLabel.AutoSize = true;
-			this.cellLabel.Location = new System.Drawing.Point(152, 28);
+			this.cellLabel.Location = new System.Drawing.Point(167, 28);
 			this.cellLabel.Name = "cellLabel";
 			this.cellLabel.Padding = new System.Windows.Forms.Padding(0, 0, 0, 10);
 			this.cellLabel.Size = new System.Drawing.Size(29, 30);
@@ -194,7 +194,7 @@
 			// validStatusLabel
 			// 
 			this.validStatusLabel.AutoSize = true;
-			this.validStatusLabel.Location = new System.Drawing.Point(228, 226);
+			this.validStatusLabel.Location = new System.Drawing.Point(238, 226);
 			this.validStatusLabel.Name = "validStatusLabel";
 			this.validStatusLabel.Size = new System.Drawing.Size(70, 20);
 			this.validStatusLabel.TabIndex = 16;
@@ -203,7 +203,7 @@
 			// statusLabel
 			// 
 			this.statusLabel.AutoSize = true;
-			this.statusLabel.Location = new System.Drawing.Point(152, 226);
+			this.statusLabel.Location = new System.Drawing.Point(162, 226);
 			this.statusLabel.Name = "statusLabel";
 			this.statusLabel.Size = new System.Drawing.Size(60, 20);
 			this.statusLabel.TabIndex = 17;
@@ -214,7 +214,7 @@
 			this.tagBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
 			this.tagBox.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.tagBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-			this.tagBox.Location = new System.Drawing.Point(151, 180);
+			this.tagBox.Location = new System.Drawing.Point(166, 180);
 			this.tagBox.Margin = new System.Windows.Forms.Padding(3, 3, 3, 20);
 			this.tagBox.Name = "tagBox";
 			this.tagBox.Size = new System.Drawing.Size(161, 25);
@@ -227,13 +227,13 @@
 			this.decLabel.AutoSize = true;
 			this.decLabel.Location = new System.Drawing.Point(30, 143);
 			this.decLabel.Name = "decLabel";
-			this.decLabel.Size = new System.Drawing.Size(120, 20);
+			this.decLabel.Size = new System.Drawing.Size(116, 20);
 			this.decLabel.TabIndex = 18;
-			this.decLabel.Text = "Decimal places:";
+			this.decLabel.Text = "Decimal places";
 			// 
 			// decimalBox
 			// 
-			this.decimalBox.Location = new System.Drawing.Point(151, 141);
+			this.decimalBox.Location = new System.Drawing.Point(166, 141);
 			this.decimalBox.Margin = new System.Windows.Forms.Padding(3, 3, 3, 10);
 			this.decimalBox.Maximum = new decimal(new int[] {
             15,

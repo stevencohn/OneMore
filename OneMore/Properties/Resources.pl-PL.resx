@@ -1074,10 +1074,6 @@ Czcionka ostatniej kolumny</value>
     <value>Osadzone załączniki</value>
     <comment>checkbox</comment>
   </data>
-  <data name="ExportDialog_folderLabel.Text" xml:space="preserve">
-    <value>Teczka:</value>
-    <comment>label</comment>
-  </data>
   <data name="ExportDialog_formatBox.Text" xml:space="preserve">
     <value>Plik HTML (* .HTM)
 Plik PDF (* .pdf)
@@ -1086,10 +1082,6 @@ Plik XML (* .xml)
 Markdown plik (* .md)
 Plik OneNote (* .o)</value>
     <comment>combo box</comment>
-  </data>
-  <data name="ExportDialog_formatLabel.Text" xml:space="preserve">
-    <value>Format:</value>
-    <comment>label</comment>
   </data>
   <data name="ExportDialog_groupBox.Text" xml:space="preserve">
     <value>Eksportuj strony {0}</value>
@@ -1589,10 +1581,6 @@ Czerwony pierwszy plan
   </data>
   <data name="InsertCalendarDialog_firstLabel.Text" xml:space="preserve">
     <value>Pierwszy dzień tygodnia</value>
-    <comment>label</comment>
-  </data>
-  <data name="InsertCalendarDialog_formatLabel.Text" xml:space="preserve">
-    <value>Format</value>
     <comment>label</comment>
   </data>
   <data name="InsertCalendarDialog_indentBox.Text" xml:space="preserve">
@@ -4973,8 +4961,14 @@ W tej sekcji</value>
   <data name="word_Favorites" xml:space="preserve">
     <value>Ulubione</value>
   </data>
+  <data name="word_Folder" xml:space="preserve">
+    <value>Teczka</value>
+  </data>
   <data name="word_Font" xml:space="preserve">
     <value>Czcionka</value>
+  </data>
+  <data name="word_Format" xml:space="preserve">
+    <value>Format</value>
   </data>
   <data name="word_Function" xml:space="preserve">
     <value>Funkcjonować</value>

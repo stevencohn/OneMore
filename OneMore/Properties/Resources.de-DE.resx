@@ -1062,10 +1062,6 @@ Schriftart der letzten Spalte</value>
     <value>Einbettungsanhänge</value>
     <comment>checkbox</comment>
   </data>
-  <data name="ExportDialog_folderLabel.Text" xml:space="preserve">
-    <value>Ordner:</value>
-    <comment>label</comment>
-  </data>
   <data name="ExportDialog_formatBox.Text" xml:space="preserve">
     <value>HTML-Datei (*.htm)
 PDF-Datei (*.pdf)
@@ -1074,10 +1070,6 @@ XML-Datei (*.xml)
 Markdown-Datei (*.md)
 OneNote-Datei (*.one)</value>
     <comment>combo box</comment>
-  </data>
-  <data name="ExportDialog_formatLabel.Text" xml:space="preserve">
-    <value>Format:</value>
-    <comment>label</comment>
   </data>
   <data name="ExportDialog_groupBox.Text" xml:space="preserve">
     <value>{0} Seiten exportieren</value>
@@ -1575,10 +1567,6 @@ Gelber Hintergrund</value>
   </data>
   <data name="InsertCalendarDialog_firstLabel.Text" xml:space="preserve">
     <value>Erster Tag der Woche</value>
-    <comment>label</comment>
-  </data>
-  <data name="InsertCalendarDialog_formatLabel.Text" xml:space="preserve">
-    <value>Format</value>
     <comment>label</comment>
   </data>
   <data name="InsertCalendarDialog_indentBox.Text" xml:space="preserve">
@@ -4945,8 +4933,14 @@ In diesem Abschnitt</value>
   <data name="word_Favorites" xml:space="preserve">
     <value>Favoriten</value>
   </data>
+  <data name="word_Folder" xml:space="preserve">
+    <value>Ordner</value>
+  </data>
   <data name="word_Font" xml:space="preserve">
     <value>Schriftart</value>
+  </data>
+  <data name="word_Format" xml:space="preserve">
+    <value>Format</value>
   </data>
   <data name="word_Function" xml:space="preserve">
     <value>Funktion</value>

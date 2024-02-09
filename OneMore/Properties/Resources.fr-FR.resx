@@ -1062,10 +1062,6 @@ Police de la dernière colonne</value>
     <value>Attachements d'intégration</value>
     <comment>checkbox</comment>
   </data>
-  <data name="ExportDialog_folderLabel.Text" xml:space="preserve">
-    <value>Dossier:</value>
-    <comment>label</comment>
-  </data>
   <data name="ExportDialog_formatBox.Text" xml:space="preserve">
     <value>Fichier HTML (*.htm)
 Fichier PDF (*.pdf)
@@ -1074,10 +1070,6 @@ Fichier XML (*.xml)
 Fichier de démarques (*.md)
 Fichier OneNote (*.one)</value>
     <comment>combo box</comment>
-  </data>
-  <data name="ExportDialog_formatLabel.Text" xml:space="preserve">
-    <value>Format:</value>
-    <comment>label</comment>
   </data>
   <data name="ExportDialog_groupBox.Text" xml:space="preserve">
     <value>Exporter {0} pages</value>
@@ -1577,10 +1569,6 @@ Fond jaune</value>
   </data>
   <data name="InsertCalendarDialog_firstLabel.Text" xml:space="preserve">
     <value>Premier jour de la semaine</value>
-    <comment>label</comment>
-  </data>
-  <data name="InsertCalendarDialog_formatLabel.Text" xml:space="preserve">
-    <value>Format</value>
     <comment>label</comment>
   </data>
   <data name="InsertCalendarDialog_indentBox.Text" xml:space="preserve">
@@ -4950,8 +4938,14 @@ Dans cette section</value>
   <data name="word_Favorites" xml:space="preserve">
     <value>Favoris</value>
   </data>
+  <data name="word_Folder" xml:space="preserve">
+    <value>Dossier</value>
+  </data>
   <data name="word_Font" xml:space="preserve">
     <value>Police de caractère</value>
+  </data>
+  <data name="word_Format" xml:space="preserve">
+    <value>Format</value>
   </data>
   <data name="word_Function" xml:space="preserve">
     <value>Fonction</value>

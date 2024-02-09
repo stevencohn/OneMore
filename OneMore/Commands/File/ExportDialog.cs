@@ -29,8 +29,8 @@ namespace River.OneMoreAddIn.Commands
 
 				Localize(new string[]
 				{
-					"folderLabel",
-					"formatLabel",
+					"folderLabel=word_Folder",
+					"formatLabel=word_Format",
 					"formatBox",
 					"underBox",
 					"attachmentsBox",

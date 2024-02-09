@@ -1065,10 +1065,6 @@
     <value>التضمين المرفقات</value>
     <comment>checkbox</comment>
   </data>
-  <data name="ExportDialog_folderLabel.Text" xml:space="preserve">
-    <value>مجلد:</value>
-    <comment>label</comment>
-  </data>
   <data name="ExportDialog_formatBox.Text" xml:space="preserve">
     <value>ملف HTML (* .htm)
 ملف PDF (* .pdf)
@@ -1077,10 +1073,6 @@
 ملف Markdown (* .md)
 ملف OneNote (* .one)</value>
     <comment>combo box</comment>
-  </data>
-  <data name="ExportDialog_formatLabel.Text" xml:space="preserve">
-    <value>شكل:</value>
-    <comment>label</comment>
   </data>
   <data name="ExportDialog_groupBox.Text" xml:space="preserve">
     <value>تصدير صفحات {0}</value>
@@ -1580,10 +1572,6 @@
   </data>
   <data name="InsertCalendarDialog_firstLabel.Text" xml:space="preserve">
     <value>اليوم الأول من الأسبوع</value>
-    <comment>label</comment>
-  </data>
-  <data name="InsertCalendarDialog_formatLabel.Text" xml:space="preserve">
-    <value>شكل</value>
     <comment>label</comment>
   </data>
   <data name="InsertCalendarDialog_indentBox.Text" xml:space="preserve">
@@ -4956,8 +4944,14 @@ ISO-code then comma then language name</comment>
   <data name="word_Favorites" xml:space="preserve">
     <value>المفضلة</value>
   </data>
+  <data name="word_Folder" xml:space="preserve">
+    <value>مجلد</value>
+  </data>
   <data name="word_Font" xml:space="preserve">
     <value>الخط</value>
+  </data>
+  <data name="word_Format" xml:space="preserve">
+    <value>شكل</value>
   </data>
   <data name="word_Function" xml:space="preserve">
     <value>وظيفة</value>

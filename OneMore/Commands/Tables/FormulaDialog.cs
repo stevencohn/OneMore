@@ -32,7 +32,7 @@ namespace River.OneMoreAddIn.Commands
 				{
 					"selectedLabel",
 					"formulaLabel",
-					"formatLabel",
+					"formatLabel=word_Format",
 					"decLabel",
 					"helpButton",
 					"helpBox",

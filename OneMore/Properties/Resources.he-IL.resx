@@ -1076,10 +1076,6 @@ Total Row Font
     <value>הטמע קבצים מצורפים</value>
     <comment>checkbox</comment>
   </data>
-  <data name="ExportDialog_folderLabel.Text" xml:space="preserve">
-    <value>תיקיה:</value>
-    <comment>label</comment>
-  </data>
   <data name="ExportDialog_formatBox.Text" xml:space="preserve">
     <value>קובץ HTML (*.htm)
 קובץ PDF (*.pdf)
@@ -1088,10 +1084,6 @@ Total Row Font
 קובץ Markdown (*.md)
 קובץ OneNote (*.one)</value>
     <comment>combo box</comment>
-  </data>
-  <data name="ExportDialog_formatLabel.Text" xml:space="preserve">
-    <value>פוּרמָט:</value>
-    <comment>label</comment>
   </data>
   <data name="ExportDialog_groupBox.Text" xml:space="preserve">
     <value>ייצא {0} דפים</value>
@@ -1591,10 +1583,6 @@ Total Row Font
   </data>
   <data name="InsertCalendarDialog_firstLabel.Text" xml:space="preserve">
     <value>היום הראשון בשבוע</value>
-    <comment>label</comment>
-  </data>
-  <data name="InsertCalendarDialog_formatLabel.Text" xml:space="preserve">
-    <value>פוּרמָט</value>
     <comment>label</comment>
   </data>
   <data name="InsertCalendarDialog_indentBox.Text" xml:space="preserve">
@@ -4973,8 +4961,14 @@ ISO-code then comma then language name</comment>
   <data name="word_Favorites" xml:space="preserve">
     <value>מועדפים</value>
   </data>
+  <data name="word_Folder" xml:space="preserve">
+    <value>תיקיה</value>
+  </data>
   <data name="word_Font" xml:space="preserve">
     <value>גוֹפָן</value>
+  </data>
+  <data name="word_Format" xml:space="preserve">
+    <value>פוּרמָט</value>
   </data>
   <data name="word_Function" xml:space="preserve">
     <value>פוּנקצִיָה</value>

@@ -49,20 +49,20 @@
 			this.folderLabel.ForeColor = System.Drawing.SystemColors.ControlText;
 			this.folderLabel.Location = new System.Drawing.Point(14, 45);
 			this.folderLabel.Name = "folderLabel";
-			this.folderLabel.Size = new System.Drawing.Size(58, 20);
+			this.folderLabel.Size = new System.Drawing.Size(54, 20);
 			this.folderLabel.TabIndex = 0;
-			this.folderLabel.Text = "Folder:";
+			this.folderLabel.Text = "Folder";
 			// 
 			// pathBox
 			// 
 			this.pathBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-			this.pathBox.Location = new System.Drawing.Point(82, 42);
+			this.pathBox.Location = new System.Drawing.Point(105, 42);
 			this.pathBox.Margin = new System.Windows.Forms.Padding(3, 3, 3, 9);
 			this.pathBox.Name = "pathBox";
-			this.pathBox.ThemedBack = null;
-			this.pathBox.ThemedFore = null;
 			this.pathBox.Size = new System.Drawing.Size(400, 26);
 			this.pathBox.TabIndex = 1;
+			this.pathBox.ThemedBack = null;
+			this.pathBox.ThemedFore = null;
 			this.pathBox.TextChanged += new System.EventHandler(this.ChangePath);
 			// 
 			// formatLabel
@@ -71,9 +71,9 @@
 			this.formatLabel.ForeColor = System.Drawing.SystemColors.ControlText;
 			this.formatLabel.Location = new System.Drawing.Point(14, 83);
 			this.formatLabel.Name = "formatLabel";
-			this.formatLabel.Size = new System.Drawing.Size(64, 20);
+			this.formatLabel.Size = new System.Drawing.Size(60, 20);
 			this.formatLabel.TabIndex = 2;
-			this.formatLabel.Text = "Format:";
+			this.formatLabel.Text = "Format";
 			// 
 			// formatBox
 			// 
@@ -87,7 +87,7 @@
             "XML File (*.xml)",
             "Markdown File (*.md)",
             "OneNote File (*.one)"});
-			this.formatBox.Location = new System.Drawing.Point(82, 80);
+			this.formatBox.Location = new System.Drawing.Point(105, 80);
 			this.formatBox.Name = "formatBox";
 			this.formatBox.Size = new System.Drawing.Size(250, 28);
 			this.formatBox.TabIndex = 3;
@@ -110,7 +110,7 @@
 			this.groupBox.Location = new System.Drawing.Point(18, 18);
 			this.groupBox.Name = "groupBox";
 			this.groupBox.Padding = new System.Windows.Forms.Padding(10, 9, 10, 9);
-			this.groupBox.Size = new System.Drawing.Size(634, 236);
+			this.groupBox.Size = new System.Drawing.Size(679, 236);
 			this.groupBox.TabIndex = 5;
 			this.groupBox.TabStop = false;
 			this.groupBox.Text = "Export 2 Pages";
@@ -121,7 +121,7 @@
 			this.embeddedBox.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.embeddedBox.Enabled = false;
 			this.embeddedBox.ForeColor = System.Drawing.SystemColors.ControlText;
-			this.embeddedBox.Location = new System.Drawing.Point(82, 154);
+			this.embeddedBox.Location = new System.Drawing.Point(105, 154);
 			this.embeddedBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.embeddedBox.Name = "embeddedBox";
 			this.embeddedBox.Size = new System.Drawing.Size(182, 25);
@@ -134,7 +134,7 @@
 			this.underBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(231)))), ((int)(((byte)(231)))));
 			this.underBox.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.underBox.ForeColor = System.Drawing.SystemColors.ControlText;
-			this.underBox.Location = new System.Drawing.Point(82, 186);
+			this.underBox.Location = new System.Drawing.Point(105, 186);
 			this.underBox.Name = "underBox";
 			this.underBox.Size = new System.Drawing.Size(393, 25);
 			this.underBox.TabIndex = 6;
@@ -147,7 +147,7 @@
 			this.attachmentsBox.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.attachmentsBox.Enabled = false;
 			this.attachmentsBox.ForeColor = System.Drawing.SystemColors.ControlText;
-			this.attachmentsBox.Location = new System.Drawing.Point(82, 120);
+			this.attachmentsBox.Location = new System.Drawing.Point(105, 120);
 			this.attachmentsBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.attachmentsBox.Name = "attachmentsBox";
 			this.attachmentsBox.Size = new System.Drawing.Size(183, 25);
@@ -162,13 +162,13 @@
 			this.browseButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.browseButton.Image = ((System.Drawing.Image)(resources.GetObject("browseButton.Image")));
 			this.browseButton.ImageOver = null;
-			this.browseButton.Location = new System.Drawing.Point(489, 40);
+			this.browseButton.Location = new System.Drawing.Point(512, 40);
 			this.browseButton.Name = "browseButton";
-			this.browseButton.ThemedBack = null;
-			this.browseButton.ThemedFore = null;
 			this.browseButton.ShowBorder = false;
 			this.browseButton.Size = new System.Drawing.Size(44, 34);
 			this.browseButton.TabIndex = 4;
+			this.browseButton.ThemedBack = null;
+			this.browseButton.ThemedFore = null;
 			this.browseButton.UseVisualStyleBackColor = true;
 			this.browseButton.Click += new System.EventHandler(this.BrowseFolders);
 			// 
@@ -179,14 +179,14 @@
 			this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
 			this.cancelButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.cancelButton.ImageOver = null;
-			this.cancelButton.Location = new System.Drawing.Point(554, 270);
+			this.cancelButton.Location = new System.Drawing.Point(599, 270);
 			this.cancelButton.Name = "cancelButton";
-			this.cancelButton.ThemedBack = null;
-			this.cancelButton.ThemedFore = null;
 			this.cancelButton.ShowBorder = true;
 			this.cancelButton.Size = new System.Drawing.Size(100, 38);
 			this.cancelButton.TabIndex = 6;
 			this.cancelButton.Text = "Cancel";
+			this.cancelButton.ThemedBack = null;
+			this.cancelButton.ThemedFore = null;
 			this.cancelButton.UseVisualStyleBackColor = true;
 			// 
 			// okButton
@@ -197,14 +197,14 @@
 			this.okButton.Enabled = false;
 			this.okButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.okButton.ImageOver = null;
-			this.okButton.Location = new System.Drawing.Point(447, 270);
+			this.okButton.Location = new System.Drawing.Point(492, 270);
 			this.okButton.Name = "okButton";
-			this.okButton.ThemedBack = null;
-			this.okButton.ThemedFore = null;
 			this.okButton.ShowBorder = true;
 			this.okButton.Size = new System.Drawing.Size(100, 38);
 			this.okButton.TabIndex = 7;
 			this.okButton.Text = "OK";
+			this.okButton.ThemedBack = null;
+			this.okButton.ThemedFore = null;
 			this.okButton.UseVisualStyleBackColor = true;
 			// 
 			// ExportDialog
@@ -214,7 +214,7 @@
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.BackColor = System.Drawing.SystemColors.Control;
 			this.CancelButton = this.cancelButton;
-			this.ClientSize = new System.Drawing.Size(670, 327);
+			this.ClientSize = new System.Drawing.Size(715, 327);
 			this.Controls.Add(this.okButton);
 			this.Controls.Add(this.cancelButton);
 			this.Controls.Add(this.groupBox);

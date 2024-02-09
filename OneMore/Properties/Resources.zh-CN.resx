@@ -1066,10 +1066,6 @@ OneNote 将自动关闭</value>
     <value>嵌入附件</value>
     <comment>checkbox</comment>
   </data>
-  <data name="ExportDialog_folderLabel.Text" xml:space="preserve">
-    <value>夹：</value>
-    <comment>label</comment>
-  </data>
   <data name="ExportDialog_formatBox.Text" xml:space="preserve">
     <value>HTML 文件 (*.htm)
 PDF 文件 (*.pdf)
@@ -1078,10 +1074,6 @@ XML 文件 (*.xml)
 降价文件 (*.md)
 OneNote 文件 (*.one)</value>
     <comment>combo box</comment>
-  </data>
-  <data name="ExportDialog_formatLabel.Text" xml:space="preserve">
-    <value>格式：</value>
-    <comment>label</comment>
   </data>
   <data name="ExportDialog_groupBox.Text" xml:space="preserve">
     <value>导出{0}页</value>
@@ -1581,10 +1573,6 @@ OneNote 文件 (*.one)</value>
   </data>
   <data name="InsertCalendarDialog_firstLabel.Text" xml:space="preserve">
     <value>一周的第一天</value>
-    <comment>label</comment>
-  </data>
-  <data name="InsertCalendarDialog_formatLabel.Text" xml:space="preserve">
-    <value>格式</value>
     <comment>label</comment>
   </data>
   <data name="InsertCalendarDialog_indentBox.Text" xml:space="preserve">
@@ -4951,8 +4939,14 @@ ISO-code then comma then language name</comment>
   <data name="word_Favorites" xml:space="preserve">
     <value>收藏夹</value>
   </data>
+  <data name="word_Folder" xml:space="preserve">
+    <value>文件夹</value>
+  </data>
   <data name="word_Font" xml:space="preserve">
     <value>字体</value>
+  </data>
+  <data name="word_Format" xml:space="preserve">
+    <value>格式</value>
   </data>
   <data name="word_Function" xml:space="preserve">
     <value>功能</value>
