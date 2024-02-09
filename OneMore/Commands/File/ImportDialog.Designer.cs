@@ -84,6 +84,7 @@
 			this.browseButton.Name = "browseButton";
 			this.browseButton.ShowBorder = false;
 			this.browseButton.Size = new System.Drawing.Size(44, 26);
+			this.browseButton.StylizeImage = true;
 			this.browseButton.TabIndex = 4;
 			this.browseButton.ThemedBack = null;
 			this.browseButton.ThemedFore = null;
@@ -101,6 +102,7 @@
 			this.cancelButton.Name = "cancelButton";
 			this.cancelButton.ShowBorder = true;
 			this.cancelButton.Size = new System.Drawing.Size(100, 38);
+			this.cancelButton.StylizeImage = false;
 			this.cancelButton.TabIndex = 6;
 			this.cancelButton.Text = "Cancel";
 			this.cancelButton.ThemedBack = null;
@@ -119,6 +121,7 @@
 			this.okButton.Name = "okButton";
 			this.okButton.ShowBorder = true;
 			this.okButton.Size = new System.Drawing.Size(100, 38);
+			this.okButton.StylizeImage = false;
 			this.okButton.TabIndex = 7;
 			this.okButton.Text = "OK";
 			this.okButton.ThemedBack = null;

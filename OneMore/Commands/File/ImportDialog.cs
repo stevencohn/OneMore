@@ -110,21 +110,6 @@ namespace River.OneMoreAddIn.Commands
 		public bool CreateSection => powerSectionButton.Checked;
 
 
-		protected override void OnLoad(EventArgs e)
-		{
-			base.OnLoad(e);
-
-			var editor = new ImageEditor { Size = new System.Drawing.Size(16, 16) };
-			if (manager.DarkMode)
-			{
-				editor.Style = ImageEditor.Stylization.Invert;
-			}
-
-			using var img = browseButton.Image;
-			browseButton.Image = editor.Apply(img);
-		}
-
-
 		private void ChangePath(object sender, EventArgs e)
 		{
 			try

@@ -74,12 +74,18 @@ namespace River.OneMoreAddIn.UI
 		public string ThemedFore { get; set; }
 
 
-		[Description("Specifies the image to show when the mouse is over the button")]
+		[Category("OneMore"),
+		Description("Specifies the image to show when the mouse is over the button")]
 		public Image ImageOver
 		{
 			get;
 			set;
 		}
+
+
+		[Category("OneMore"),
+		Description("Indicate that the Image should be set for dark mode and resized")]
+		public bool StylizeImage { get; set; }
 
 
 		/// <summary>
@@ -95,6 +101,23 @@ namespace River.OneMoreAddIn.UI
 			ForeColor = Enabled
 				? manager.GetColor("ControlText", ThemedFore)
 				: manager.GetColor("GrayText");
+
+			if (StylizeImage)
+			{
+				var editor = new ImageEditor();
+				if (manager.DarkMode)
+				{
+					editor.Style = ImageEditor.Stylization.Invert;
+				}
+
+				if (Image.Height > 16)
+				{
+					editor.Size = new Size(16, 16);
+				}
+
+				using var img = Image;
+				Image = editor.Apply(img);
+			}
 		}
 
 
