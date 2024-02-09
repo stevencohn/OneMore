@@ -31,24 +31,24 @@ namespace River.OneMoreAddIn.Commands
 		{
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TaggingDialog));
 			this.buttonPanel = new System.Windows.Forms.Panel();
-			this.okButton = new System.Windows.Forms.Button();
-			this.cancelButton = new System.Windows.Forms.Button();
+			this.okButton = new River.OneMoreAddIn.UI.MoreButton();
+			this.cancelButton = new River.OneMoreAddIn.UI.MoreButton();
 			this.controlPanel = new System.Windows.Forms.Panel();
-			this.tagLabel = new System.Windows.Forms.Label();
-			this.introLabel = new System.Windows.Forms.Label();
-			this.addButton = new System.Windows.Forms.Button();
-			this.tagBox = new River.OneMoreAddIn.UI.FormTextBox();
+			this.tagLabel = new River.OneMoreAddIn.UI.MoreLabel();
+			this.introLabel = new River.OneMoreAddIn.UI.MoreLabel();
+			this.addButton = new River.OneMoreAddIn.UI.MoreButton();
+			this.tagBox = new River.OneMoreAddIn.UI.MoreTextBox();
 			this.splitter = new System.Windows.Forms.SplitContainer();
 			this.tagsFlow = new System.Windows.Forms.FlowLayoutPanel();
 			this.clearPanel = new System.Windows.Forms.Panel();
 			this.clearLabel = new River.OneMoreAddIn.UI.MoreLinkLabel();
 			this.suggestionPanel = new System.Windows.Forms.Panel();
 			this.suggestionsFlow = new System.Windows.Forms.FlowLayoutPanel();
-			this.recentGroup = new System.Windows.Forms.GroupBox();
+			this.recentGroup = new River.OneMoreAddIn.UI.MoreGroupBox();
 			this.recentFlow = new System.Windows.Forms.FlowLayoutPanel();
-			this.commonGroup = new System.Windows.Forms.GroupBox();
+			this.commonGroup = new River.OneMoreAddIn.UI.MoreGroupBox();
 			this.commonFlow = new System.Windows.Forms.FlowLayoutPanel();
-			this.suggestionsLabel = new System.Windows.Forms.Label();
+			this.suggestionsLabel = new River.OneMoreAddIn.UI.MoreLabel();
 			this.buttonPanel.SuspendLayout();
 			this.controlPanel.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.splitter)).BeginInit();
@@ -64,6 +64,7 @@ namespace River.OneMoreAddIn.Commands
 			// 
 			// buttonPanel
 			// 
+			this.buttonPanel.BackColor = System.Drawing.SystemColors.ControlLight;
 			this.buttonPanel.Controls.Add(this.okButton);
 			this.buttonPanel.Controls.Add(this.cancelButton);
 			this.buttonPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
@@ -77,27 +78,42 @@ namespace River.OneMoreAddIn.Commands
 			// okButton
 			// 
 			this.okButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+			this.okButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(231)))), ((int)(((byte)(231)))));
 			this.okButton.DialogResult = System.Windows.Forms.DialogResult.OK;
+			this.okButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+			this.okButton.ImageOver = null;
 			this.okButton.Location = new System.Drawing.Point(722, 11);
 			this.okButton.Name = "okButton";
+			this.okButton.ShowBorder = true;
 			this.okButton.Size = new System.Drawing.Size(100, 30);
+			this.okButton.StylizeImage = false;
 			this.okButton.TabIndex = 0;
 			this.okButton.Text = "OK";
+			this.okButton.ThemedBack = null;
+			this.okButton.ThemedFore = null;
 			this.okButton.UseVisualStyleBackColor = true;
 			// 
 			// cancelButton
 			// 
 			this.cancelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+			this.cancelButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(231)))), ((int)(((byte)(231)))));
 			this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+			this.cancelButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+			this.cancelButton.ImageOver = null;
 			this.cancelButton.Location = new System.Drawing.Point(828, 11);
 			this.cancelButton.Name = "cancelButton";
+			this.cancelButton.ShowBorder = true;
 			this.cancelButton.Size = new System.Drawing.Size(100, 30);
+			this.cancelButton.StylizeImage = false;
 			this.cancelButton.TabIndex = 1;
 			this.cancelButton.Text = "Cancel";
+			this.cancelButton.ThemedBack = null;
+			this.cancelButton.ThemedFore = null;
 			this.cancelButton.UseVisualStyleBackColor = true;
 			// 
 			// controlPanel
 			// 
+			this.controlPanel.BackColor = System.Drawing.SystemColors.Control;
 			this.controlPanel.Controls.Add(this.tagLabel);
 			this.controlPanel.Controls.Add(this.introLabel);
 			this.controlPanel.Controls.Add(this.addButton);
@@ -105,7 +121,7 @@ namespace River.OneMoreAddIn.Commands
 			this.controlPanel.Dock = System.Windows.Forms.DockStyle.Top;
 			this.controlPanel.Location = new System.Drawing.Point(0, 0);
 			this.controlPanel.Name = "controlPanel";
-			this.controlPanel.Size = new System.Drawing.Size(941, 106);
+			this.controlPanel.Size = new System.Drawing.Size(941, 116);
 			this.controlPanel.TabIndex = 9;
 			// 
 			// tagLabel
@@ -119,24 +135,36 @@ namespace River.OneMoreAddIn.Commands
 			this.tagLabel.Size = new System.Drawing.Size(107, 22);
 			this.tagLabel.TabIndex = 0;
 			this.tagLabel.Text = "Page Tags";
+			this.tagLabel.ThemedBack = null;
+			this.tagLabel.ThemedFore = null;
 			// 
 			// introLabel
 			// 
 			this.introLabel.AutoSize = true;
-			this.introLabel.Location = new System.Drawing.Point(9, 29);
+			this.introLabel.ForeColor = System.Drawing.SystemColors.ControlText;
+			this.introLabel.Location = new System.Drawing.Point(32, 40);
 			this.introLabel.Name = "introLabel";
 			this.introLabel.Size = new System.Drawing.Size(206, 20);
 			this.introLabel.TabIndex = 1;
 			this.introLabel.Text = "Separate tags with commas";
+			this.introLabel.ThemedBack = null;
+			this.introLabel.ThemedFore = null;
 			// 
 			// addButton
 			// 
 			this.addButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.addButton.Location = new System.Drawing.Point(828, 50);
+			this.addButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(231)))), ((int)(((byte)(231)))));
+			this.addButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+			this.addButton.ImageOver = null;
+			this.addButton.Location = new System.Drawing.Point(828, 61);
 			this.addButton.Name = "addButton";
+			this.addButton.ShowBorder = true;
 			this.addButton.Size = new System.Drawing.Size(100, 30);
+			this.addButton.StylizeImage = false;
 			this.addButton.TabIndex = 1;
 			this.addButton.Text = "Add";
+			this.addButton.ThemedBack = null;
+			this.addButton.ThemedFore = null;
 			this.addButton.UseVisualStyleBackColor = true;
 			this.addButton.Click += new System.EventHandler(this.AcceptInput);
 			// 
@@ -144,24 +172,28 @@ namespace River.OneMoreAddIn.Commands
 			// 
 			this.tagBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-			this.tagBox.BackColor = System.Drawing.SystemColors.Info;
-			this.tagBox.Location = new System.Drawing.Point(18, 52);
+			this.tagBox.BackColor = System.Drawing.SystemColors.Window;
+			this.tagBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.tagBox.Location = new System.Drawing.Point(36, 63);
 			this.tagBox.Name = "tagBox";
-			this.tagBox.Size = new System.Drawing.Size(804, 26);
+			this.tagBox.ProcessEnterKey = true;
+			this.tagBox.Size = new System.Drawing.Size(786, 26);
 			this.tagBox.TabIndex = 0;
+			this.tagBox.ThemedBack = null;
+			this.tagBox.ThemedFore = null;
 			// 
 			// splitter
 			// 
 			this.splitter.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
 			this.splitter.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.splitter.Location = new System.Drawing.Point(0, 106);
+			this.splitter.Location = new System.Drawing.Point(0, 116);
 			this.splitter.Margin = new System.Windows.Forms.Padding(3, 4, 3, 3);
 			this.splitter.Name = "splitter";
 			this.splitter.Orientation = System.Windows.Forms.Orientation.Horizontal;
 			// 
 			// splitter.Panel1
 			// 
-			this.splitter.Panel1.BackColor = System.Drawing.SystemColors.ControlLightLight;
+			this.splitter.Panel1.BackColor = System.Drawing.SystemColors.ControlLight;
 			this.splitter.Panel1.Controls.Add(this.tagsFlow);
 			this.splitter.Panel1.Controls.Add(this.clearPanel);
 			this.splitter.Panel1.Padding = new System.Windows.Forms.Padding(15, 0, 15, 0);
@@ -173,62 +205,69 @@ namespace River.OneMoreAddIn.Commands
 			this.splitter.Panel2.Controls.Add(this.suggestionPanel);
 			this.splitter.Panel2.Margin = new System.Windows.Forms.Padding(0, 0, 15, 0);
 			this.splitter.Panel2MinSize = 300;
-			this.splitter.Size = new System.Drawing.Size(941, 532);
-			this.splitter.SplitterDistance = 180;
+			this.splitter.Size = new System.Drawing.Size(941, 522);
+			this.splitter.SplitterDistance = 201;
 			this.splitter.SplitterWidth = 8;
 			this.splitter.TabIndex = 8;
 			// 
 			// tagsFlow
 			// 
 			this.tagsFlow.AutoScroll = true;
-			this.tagsFlow.BackColor = System.Drawing.SystemColors.ControlLightLight;
+			this.tagsFlow.BackColor = System.Drawing.SystemColors.ControlLight;
 			this.tagsFlow.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.tagsFlow.Location = new System.Drawing.Point(15, 0);
 			this.tagsFlow.MinimumSize = new System.Drawing.Size(0, 100);
 			this.tagsFlow.Name = "tagsFlow";
-			this.tagsFlow.Size = new System.Drawing.Size(911, 145);
+			this.tagsFlow.Size = new System.Drawing.Size(911, 166);
 			this.tagsFlow.TabIndex = 4;
 			// 
 			// clearPanel
 			// 
-			this.clearPanel.BackColor = System.Drawing.SystemColors.ControlLightLight;
+			this.clearPanel.BackColor = System.Drawing.SystemColors.ControlLight;
 			this.clearPanel.Controls.Add(this.clearLabel);
 			this.clearPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
-			this.clearPanel.Location = new System.Drawing.Point(15, 145);
+			this.clearPanel.Location = new System.Drawing.Point(15, 166);
 			this.clearPanel.Name = "clearPanel";
 			this.clearPanel.Size = new System.Drawing.Size(911, 35);
 			this.clearPanel.TabIndex = 6;
 			// 
 			// clearLabel
 			// 
+			this.clearLabel.ActiveLinkColor = System.Drawing.Color.Orchid;
 			this.clearLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.clearLabel.AutoSize = true;
 			this.clearLabel.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.clearLabel.Enabled = false;
+			this.clearLabel.ForeColor = System.Drawing.SystemColors.ControlText;
 			this.clearLabel.HoverColor = System.Drawing.Color.MediumOrchid;
-			this.clearLabel.LinkColor = System.Drawing.Color.DodgerBlue;
+			this.clearLabel.LinkColor = System.Drawing.Color.MediumOrchid;
 			this.clearLabel.Location = new System.Drawing.Point(822, 7);
 			this.clearLabel.Margin = new System.Windows.Forms.Padding(3, 8, 8, 8);
 			this.clearLabel.Name = "clearLabel";
 			this.clearLabel.Size = new System.Drawing.Size(87, 20);
+			this.clearLabel.StrictColors = false;
 			this.clearLabel.TabIndex = 5;
 			this.clearLabel.TabStop = true;
 			this.clearLabel.Text = "Remove all";
+			this.clearLabel.ThemedBack = null;
+			this.clearLabel.ThemedFore = null;
+			this.clearLabel.VisitedLinkColor = System.Drawing.Color.MediumOrchid;
 			this.clearLabel.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.RemoveAllTags);
 			// 
 			// suggestionPanel
 			// 
 			this.suggestionPanel.AutoSize = true;
 			this.suggestionPanel.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-			this.suggestionPanel.BackColor = System.Drawing.SystemColors.ControlLightLight;
+			this.suggestionPanel.BackColor = System.Drawing.SystemColors.Control;
 			this.suggestionPanel.Controls.Add(this.suggestionsFlow);
 			this.suggestionPanel.Controls.Add(this.suggestionsLabel);
 			this.suggestionPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.suggestionPanel.ForeColor = System.Drawing.SystemColors.ControlText;
 			this.suggestionPanel.Location = new System.Drawing.Point(0, 0);
 			this.suggestionPanel.MinimumSize = new System.Drawing.Size(0, 200);
 			this.suggestionPanel.Name = "suggestionPanel";
 			this.suggestionPanel.Padding = new System.Windows.Forms.Padding(10);
-			this.suggestionPanel.Size = new System.Drawing.Size(941, 344);
+			this.suggestionPanel.Size = new System.Drawing.Size(941, 313);
 			this.suggestionPanel.TabIndex = 2;
 			// 
 			// suggestionsFlow
@@ -236,22 +275,23 @@ namespace River.OneMoreAddIn.Commands
 			this.suggestionsFlow.AutoScroll = true;
 			this.suggestionsFlow.AutoSize = true;
 			this.suggestionsFlow.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+			this.suggestionsFlow.BackColor = System.Drawing.SystemColors.ControlLight;
 			this.suggestionsFlow.Controls.Add(this.recentGroup);
 			this.suggestionsFlow.Controls.Add(this.commonGroup);
 			this.suggestionsFlow.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.suggestionsFlow.Location = new System.Drawing.Point(10, 38);
 			this.suggestionsFlow.MinimumSize = new System.Drawing.Size(400, 170);
 			this.suggestionsFlow.Name = "suggestionsFlow";
-			this.suggestionsFlow.Size = new System.Drawing.Size(921, 296);
+			this.suggestionsFlow.Padding = new System.Windows.Forms.Padding(15, 15, 0, 0);
+			this.suggestionsFlow.Size = new System.Drawing.Size(921, 265);
 			this.suggestionsFlow.TabIndex = 5;
 			this.suggestionsFlow.Resize += new System.EventHandler(this.SuggestionsResize);
 			// 
 			// recentGroup
 			// 
-			this.recentGroup.BackColor = System.Drawing.SystemColors.ControlLightLight;
 			this.recentGroup.Controls.Add(this.recentFlow);
 			this.suggestionsFlow.SetFlowBreak(this.recentGroup, true);
-			this.recentGroup.Location = new System.Drawing.Point(3, 3);
+			this.recentGroup.Location = new System.Drawing.Point(18, 18);
 			this.recentGroup.MinimumSize = new System.Drawing.Size(400, 80);
 			this.recentGroup.Name = "recentGroup";
 			this.recentGroup.Padding = new System.Windows.Forms.Padding(5);
@@ -272,10 +312,9 @@ namespace River.OneMoreAddIn.Commands
 			// 
 			// commonGroup
 			// 
-			this.commonGroup.BackColor = System.Drawing.SystemColors.ControlLightLight;
 			this.commonGroup.Controls.Add(this.commonFlow);
 			this.suggestionsFlow.SetFlowBreak(this.commonGroup, true);
-			this.commonGroup.Location = new System.Drawing.Point(3, 89);
+			this.commonGroup.Location = new System.Drawing.Point(18, 104);
 			this.commonGroup.MinimumSize = new System.Drawing.Size(400, 80);
 			this.commonGroup.Name = "commonGroup";
 			this.commonGroup.Padding = new System.Windows.Forms.Padding(5);
@@ -307,6 +346,8 @@ namespace River.OneMoreAddIn.Commands
 			this.suggestionsLabel.Size = new System.Drawing.Size(120, 28);
 			this.suggestionsLabel.TabIndex = 1;
 			this.suggestionsLabel.Text = "Suggestions";
+			this.suggestionsLabel.ThemedBack = null;
+			this.suggestionsLabel.ThemedFore = null;
 			// 
 			// TaggingDialog
 			// 
@@ -319,6 +360,7 @@ namespace River.OneMoreAddIn.Commands
 			this.Controls.Add(this.splitter);
 			this.Controls.Add(this.controlPanel);
 			this.Controls.Add(this.buttonPanel);
+			this.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.MaximizeBox = false;
 			this.MinimizeBox = false;
@@ -349,23 +391,23 @@ namespace River.OneMoreAddIn.Commands
 
 		#endregion
 		private System.Windows.Forms.Panel buttonPanel;
-		private System.Windows.Forms.Button okButton;
-		private System.Windows.Forms.Button cancelButton;
+		private UI.MoreButton okButton;
+		private UI.MoreButton cancelButton;
 		private System.Windows.Forms.Panel controlPanel;
-		private System.Windows.Forms.Label tagLabel;
-		private System.Windows.Forms.Label introLabel;
-		private System.Windows.Forms.Button addButton;
-		private UI.FormTextBox tagBox;
+		private UI.MoreLabel tagLabel;
+		private UI.MoreLabel introLabel;
+		private UI.MoreButton addButton;
+		private UI.MoreTextBox tagBox;
 		private System.Windows.Forms.SplitContainer splitter;
 		private System.Windows.Forms.FlowLayoutPanel tagsFlow;
 		private System.Windows.Forms.Panel clearPanel;
 		private UI.MoreLinkLabel clearLabel;
 		private System.Windows.Forms.Panel suggestionPanel;
 		private System.Windows.Forms.FlowLayoutPanel suggestionsFlow;
-		private System.Windows.Forms.GroupBox recentGroup;
+		private UI.MoreGroupBox recentGroup;
 		private System.Windows.Forms.FlowLayoutPanel recentFlow;
-		private System.Windows.Forms.GroupBox commonGroup;
+		private UI.MoreGroupBox commonGroup;
 		private System.Windows.Forms.FlowLayoutPanel commonFlow;
-		private System.Windows.Forms.Label suggestionsLabel;
+		private UI.MoreLabel suggestionsLabel;
 	}
 }

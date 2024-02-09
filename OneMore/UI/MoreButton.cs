@@ -104,15 +104,10 @@ namespace River.OneMoreAddIn.UI
 
 			if (StylizeImage)
 			{
-				var editor = new ImageEditor();
+				var editor = new ImageEditor { Size = new Size(16, 16) };
 				if (manager.DarkMode)
 				{
 					editor.Style = ImageEditor.Stylization.Invert;
-				}
-
-				if (Image.Height > 16)
-				{
-					editor.Size = new Size(16, 16);
 				}
 
 				using var img = Image;

@@ -12,7 +12,7 @@ namespace River.OneMoreAddIn.Commands
 	/// Displays a tag label with its own Delete button. Used in the TaggingDialog for adding
 	/// and removing tags to a page.
 	/// </summary>
-	internal partial class TagControl : UserControl
+	internal partial class TagControl : UI.MoreUserControl
 	{
 
 		public TagControl()
