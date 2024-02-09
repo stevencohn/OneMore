@@ -43,7 +43,7 @@
 			this.okButton.DialogResult = System.Windows.Forms.DialogResult.OK;
 			this.okButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.okButton.ImageOver = null;
-			this.okButton.Location = new System.Drawing.Point(120, 538);
+			this.okButton.Location = new System.Drawing.Point(120, 526);
 			this.okButton.Name = "okButton";
 			this.okButton.ShowBorder = true;
 			this.okButton.Size = new System.Drawing.Size(116, 38);
@@ -60,7 +60,7 @@
 			this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
 			this.cancelButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.cancelButton.ImageOver = null;
-			this.cancelButton.Location = new System.Drawing.Point(242, 538);
+			this.cancelButton.Location = new System.Drawing.Point(242, 526);
 			this.cancelButton.Name = "cancelButton";
 			this.cancelButton.ShowBorder = true;
 			this.cancelButton.Size = new System.Drawing.Size(116, 38);
@@ -83,7 +83,7 @@
 			this.listBox.Location = new System.Drawing.Point(30, 88);
 			this.listBox.Margin = new System.Windows.Forms.Padding(3, 3, 3, 12);
 			this.listBox.Name = "listBox";
-			this.listBox.Size = new System.Drawing.Size(325, 422);
+			this.listBox.Size = new System.Drawing.Size(325, 400);
 			this.listBox.TabIndex = 2;
 			this.listBox.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.DrawItem);
 			this.listBox.MeasureItem += new System.Windows.Forms.MeasureItemEventHandler(this.MeasureItem);
@@ -144,7 +144,7 @@
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.BackColor = System.Drawing.SystemColors.ControlLight;
 			this.CancelButton = this.cancelButton;
-			this.ClientSize = new System.Drawing.Size(417, 598);
+			this.ClientSize = new System.Drawing.Size(417, 586);
 			this.Controls.Add(this.label);
 			this.Controls.Add(this.downButton);
 			this.Controls.Add(this.upButton);
