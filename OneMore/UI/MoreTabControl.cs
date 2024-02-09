@@ -156,7 +156,7 @@ namespace River.OneMoreAddIn.UI
 				{
 					e.Graphics.DrawString(page.Text, Font, fore,
 						bounds.X + 2 + (bounds.Width - size.Width) / 2f,
-						(bounds.Height - size.Height),
+						(bounds.Height - size.Height) - 2,
 						format);
 				}
 			}
