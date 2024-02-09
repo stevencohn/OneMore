@@ -32,7 +32,7 @@
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SearchEngineSheet));
 			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
 			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-			this.gridView = new System.Windows.Forms.DataGridView();
+			this.gridView = new UI.MoreDataGridView();
 			this.iconColumn = new System.Windows.Forms.DataGridViewImageColumn();
 			this.nameColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.urlColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -199,7 +199,7 @@
 
 		#endregion
 
-		private System.Windows.Forms.DataGridView gridView;
+		private UI.MoreDataGridView gridView;
 		private UI.MoreMultilineLabel introBox;
 		private UI.MoreToolStrip toolStrip;
 		private UI.MoreMenuItem deleteButton;

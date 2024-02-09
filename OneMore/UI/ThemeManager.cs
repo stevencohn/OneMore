@@ -216,7 +216,6 @@ namespace River.OneMoreAddIn.UI
 		private void Colorize(Control control)
 		{
 			if (control is ListView ||
-				control is DataGridView ||
 				control is MenuStrip ||
 				(control is ToolStrip && control is not StatusStrip))
 			{
@@ -271,7 +270,6 @@ namespace River.OneMoreAddIn.UI
 			foreach (var child in control.Controls.OfType<Control>()
 				.Where(c =>
 					c is not ListView &&
-					c is not DataGridView &&
 					(c is StatusStrip || c is not ToolStrip)))
 			{
 				//logger.WriteLine($"Colorize {child.Name} {child.GetType()}");

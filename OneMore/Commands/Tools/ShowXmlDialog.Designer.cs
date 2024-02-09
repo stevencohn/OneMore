@@ -676,7 +676,7 @@
 			// 
 			this.selectButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
 			this.selectButton.ForeColor = System.Drawing.SystemColors.ControlText;
-			this.selectButton.Image = ((System.Drawing.Image)(resources.GetObject("selectButton.Image")));
+			this.selectButton.Image = global::River.OneMoreAddIn.Properties.Resources.m_SelectAll;
 			this.selectButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
 			this.selectButton.ImageOver = null;
 			this.selectButton.Location = new System.Drawing.Point(10, 53);

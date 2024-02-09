@@ -7,6 +7,7 @@
 
 namespace River.OneMoreAddIn.Settings
 {
+	using River.OneMoreAddIn.Commands;
 	using System;
 	using System.Collections.Generic;
 	using System.ComponentModel;
@@ -103,6 +104,24 @@ namespace River.OneMoreAddIn.Settings
 					RefreshImage(engine);
 				}
 			}
+		}
+
+
+		protected override void OnLoad(EventArgs e)
+		{
+			if (manager.DarkMode)
+			{
+				using var img = iconColumn.Image;
+
+				iconColumn.Image = new ImageEditor
+				{
+					Size = new Size(16, 16),
+					Style = ImageEditor.Stylization.Invert
+				}
+				.Apply(img);
+			}
+
+			base.OnLoad(e);
 		}
 
 

@@ -30,7 +30,7 @@
 		{
 			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
 			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-			this.gridView = new River.OneMoreAddIn.Settings.KeyboardGridView();
+			this.gridView = new UI.MoreDataGridView();
 			this.cmdColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.keyColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.introBox = new River.OneMoreAddIn.UI.MoreMultilineLabel();
@@ -168,7 +168,7 @@
 
 		#endregion
 
-		private KeyboardGridView gridView;
+		private UI.MoreDataGridView gridView;
 		private UI.MoreMultilineLabel introBox;
 		private River.OneMoreAddIn.UI.MoreToolStrip toolstrip;
 		private UI.MoreMenuItem clearButton;

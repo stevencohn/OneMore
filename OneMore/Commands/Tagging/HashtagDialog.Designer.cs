@@ -62,12 +62,12 @@
 			this.cancelButton.ImageOver = null;
 			this.cancelButton.Location = new System.Drawing.Point(864, 13);
 			this.cancelButton.Name = "cancelButton";
-			this.cancelButton.ThemedBack = null;
-			this.cancelButton.ThemedFore = null;
 			this.cancelButton.ShowBorder = true;
 			this.cancelButton.Size = new System.Drawing.Size(112, 35);
 			this.cancelButton.TabIndex = 0;
 			this.cancelButton.Text = "Cancel";
+			this.cancelButton.ThemedBack = null;
+			this.cancelButton.ThemedFore = null;
 			this.cancelButton.UseVisualStyleBackColor = true;
 			this.cancelButton.Click += new System.EventHandler(this.DoCancel);
 			// 
@@ -101,6 +101,8 @@
 			this.topPanel.Padding = new System.Windows.Forms.Padding(10);
 			this.topPanel.Size = new System.Drawing.Size(988, 81);
 			this.topPanel.TabIndex = 8;
+			this.topPanel.ThemedBack = null;
+			this.topPanel.ThemedFore = null;
 			this.topPanel.TopBorderColor = System.Drawing.SystemColors.Control;
 			this.topPanel.TopBorderSize = 0;
 			// 
@@ -115,12 +117,12 @@
 			this.menuButton.ImageOver = null;
 			this.menuButton.Location = new System.Drawing.Point(925, 12);
 			this.menuButton.Name = "menuButton";
-			this.menuButton.ThemedBack = null;
-			this.menuButton.ThemedFore = null;
 			this.menuButton.ShowBorder = true;
 			this.menuButton.Size = new System.Drawing.Size(50, 31);
 			this.menuButton.TabIndex = 4;
 			this.menuButton.Text = "•••";
+			this.menuButton.ThemedBack = null;
+			this.menuButton.ThemedFore = null;
 			this.menuButton.UseVisualStyleBackColor = true;
 			this.menuButton.Click += new System.EventHandler(this.ShowMenu);
 			// 
@@ -145,9 +147,12 @@
 			this.checkAllLink.Location = new System.Drawing.Point(729, 51);
 			this.checkAllLink.Name = "checkAllLink";
 			this.checkAllLink.Size = new System.Drawing.Size(73, 20);
+			this.checkAllLink.StrictColors = false;
 			this.checkAllLink.TabIndex = 2;
 			this.checkAllLink.TabStop = true;
 			this.checkAllLink.Text = "Check all";
+			this.checkAllLink.ThemedBack = null;
+			this.checkAllLink.ThemedFore = null;
 			this.checkAllLink.VisitedLinkColor = System.Drawing.Color.MediumOrchid;
 			this.checkAllLink.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.ToggleAllChecks);
 			// 
@@ -162,9 +167,12 @@
 			this.uncheckAllLink.Location = new System.Drawing.Point(828, 51);
 			this.uncheckAllLink.Name = "uncheckAllLink";
 			this.uncheckAllLink.Size = new System.Drawing.Size(91, 20);
+			this.uncheckAllLink.StrictColors = false;
 			this.uncheckAllLink.TabIndex = 3;
 			this.uncheckAllLink.TabStop = true;
 			this.uncheckAllLink.Text = "Uncheck all";
+			this.uncheckAllLink.ThemedBack = null;
+			this.uncheckAllLink.ThemedFore = null;
 			this.uncheckAllLink.VisitedLinkColor = System.Drawing.Color.MediumOrchid;
 			this.uncheckAllLink.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.ToggleAllChecks);
 			// 
@@ -187,16 +195,17 @@
 			// 
 			this.searchButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.searchButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(231)))), ((int)(((byte)(231)))));
+			this.searchButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
 			this.searchButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-			this.searchButton.Image = ((System.Drawing.Image)(resources.GetObject("searchButton.Image")));
+			this.searchButton.Image = global::River.OneMoreAddIn.Properties.Resources.m_Search;
 			this.searchButton.ImageOver = null;
 			this.searchButton.Location = new System.Drawing.Point(859, 12);
 			this.searchButton.Name = "searchButton";
-			this.searchButton.ThemedBack = null;
-			this.searchButton.ThemedFore = null;
 			this.searchButton.ShowBorder = true;
 			this.searchButton.Size = new System.Drawing.Size(60, 31);
 			this.searchButton.TabIndex = 1;
+			this.searchButton.ThemedBack = null;
+			this.searchButton.ThemedFore = null;
 			this.searchButton.UseVisualStyleBackColor = true;
 			this.searchButton.Click += new System.EventHandler(this.SearchTags);
 			// 
@@ -208,10 +217,10 @@
 			this.tagBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.tagBox.Location = new System.Drawing.Point(41, 12);
 			this.tagBox.Name = "tagBox";
-			this.tagBox.ThemedBack = null;
-			this.tagBox.ThemedFore = null;
 			this.tagBox.Size = new System.Drawing.Size(608, 28);
 			this.tagBox.TabIndex = 0;
+			this.tagBox.ThemedBack = null;
+			this.tagBox.ThemedFore = null;
 			// 
 			// introBox
 			// 
@@ -219,12 +228,12 @@
 			this.introBox.Location = new System.Drawing.Point(0, 0);
 			this.introBox.Name = "introBox";
 			this.introBox.Padding = new System.Windows.Forms.Padding(12);
-			this.introBox.ThemedBack = "Control";
-			this.introBox.ThemedFore = "ControlText";
 			this.introBox.Size = new System.Drawing.Size(988, 62);
 			this.introBox.TabIndex = 10;
 			this.introBox.Text = "Type any part of one or more hashtags. Wildcards are implied unless a tag is ende" +
     "d with a period. Parenthesis and logical operators are allowed.";
+			this.introBox.ThemedBack = "Control";
+			this.introBox.ThemedFore = "ControlText";
 			// 
 			// controlPanel
 			// 
@@ -261,12 +270,12 @@
 			this.indexButton.Location = new System.Drawing.Point(487, 12);
 			this.indexButton.Margin = new System.Windows.Forms.Padding(4, 5, 10, 9);
 			this.indexButton.Name = "indexButton";
-			this.indexButton.ThemedBack = null;
-			this.indexButton.ThemedFore = null;
 			this.indexButton.ShowBorder = true;
 			this.indexButton.Size = new System.Drawing.Size(112, 35);
 			this.indexButton.TabIndex = 1;
 			this.indexButton.Text = "Index";
+			this.indexButton.ThemedBack = null;
+			this.indexButton.ThemedFore = null;
 			this.indexButton.UseVisualStyleBackColor = true;
 			this.indexButton.Click += new System.EventHandler(this.DoSomething);
 			// 
@@ -281,12 +290,12 @@
 			this.copyButton.Location = new System.Drawing.Point(613, 12);
 			this.copyButton.Margin = new System.Windows.Forms.Padding(4, 5, 10, 9);
 			this.copyButton.Name = "copyButton";
-			this.copyButton.ThemedBack = null;
-			this.copyButton.ThemedFore = null;
 			this.copyButton.ShowBorder = true;
 			this.copyButton.Size = new System.Drawing.Size(112, 35);
 			this.copyButton.TabIndex = 2;
 			this.copyButton.Text = "Copy";
+			this.copyButton.ThemedBack = null;
+			this.copyButton.ThemedFore = null;
 			this.copyButton.UseVisualStyleBackColor = true;
 			this.copyButton.Click += new System.EventHandler(this.DoSomething);
 			// 
@@ -301,12 +310,12 @@
 			this.moveButton.Location = new System.Drawing.Point(739, 13);
 			this.moveButton.Margin = new System.Windows.Forms.Padding(4, 5, 10, 9);
 			this.moveButton.Name = "moveButton";
-			this.moveButton.ThemedBack = null;
-			this.moveButton.ThemedFore = null;
 			this.moveButton.ShowBorder = true;
 			this.moveButton.Size = new System.Drawing.Size(112, 35);
 			this.moveButton.TabIndex = 3;
 			this.moveButton.Text = "Move";
+			this.moveButton.ThemedBack = null;
+			this.moveButton.ThemedFore = null;
 			this.moveButton.UseVisualStyleBackColor = true;
 			this.moveButton.Click += new System.EventHandler(this.DoSomething);
 			// 

@@ -436,9 +436,6 @@
     <Compile Include="Commands\Clean\RemoveDuplicatesNavigator.Designer.cs">
       <DependentUpon>RemoveDuplicatesNavigator.cs</DependentUpon>
     </Compile>
-    <Compile Include="Commands\Settings\KeyboardGridView.cs">
-      <SubType>Component</SubType>
-    </Compile>
     <Compile Include="Commands\Settings\AliasSheet.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -468,6 +465,9 @@
     <Compile Include="Ribbon\RibbonGroups.cs" />
     <Compile Include="UI\EventRouter.cs" />
     <Compile Include="UI\ILoadControl.cs" />
+    <Compile Include="UI\MoreDataGridView.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="UI\MoreExpander.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -1310,7 +1310,6 @@
     <Content Include="Properties\Images\Section.png" />
     <Content Include="Properties\Images\SectionGroup.png" />
     <Content Include="Properties\Images\SectionMask.png" />
-    <Content Include="Properties\Images\SelectAll.png" />
     <Content Include="Properties\Images\Snippets.png" />
     <Content Include="Properties\Images\Sort.png" />
     <Content Include="Properties\Images\TableStyles.png" />

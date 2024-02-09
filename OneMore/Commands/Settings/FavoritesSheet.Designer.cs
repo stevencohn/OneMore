@@ -30,7 +30,7 @@
 		{
 			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
 			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-			this.gridView = new System.Windows.Forms.DataGridView();
+			this.gridView = new UI.MoreDataGridView();
 			this.nameColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.locationColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.introPanel = new System.Windows.Forms.Panel();
@@ -222,7 +222,7 @@
 		}
 
 		#endregion
-		private System.Windows.Forms.DataGridView gridView;
+		private UI.MoreDataGridView gridView;
 		private System.Windows.Forms.Panel introPanel;
 		private UI.MoreToolStrip toolStrip;
 		private UI.MoreMenuItem deleteButton;

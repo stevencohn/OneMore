@@ -28,7 +28,7 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
-			this.gridView = new River.OneMoreAddIn.Settings.KeyboardGridView();
+			this.gridView = new UI.MoreDataGridView();
 			this.cmdColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.aliasColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.introBox = new River.OneMoreAddIn.UI.MoreMultilineLabel();
@@ -109,7 +109,7 @@
 		}
 
 		#endregion
-		private KeyboardGridView gridView;
+		private UI.MoreDataGridView gridView;
 		private UI.MoreMultilineLabel introBox;
 		private System.Windows.Forms.DataGridViewTextBoxColumn cmdColumn;
 		private System.Windows.Forms.DataGridViewTextBoxColumn aliasColumn;

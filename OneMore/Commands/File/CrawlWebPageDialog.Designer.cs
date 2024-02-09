@@ -37,7 +37,7 @@
 			this.unselectLabel = new River.OneMoreAddIn.UI.MoreLinkLabel();
 			this.selectLabel = new River.OneMoreAddIn.UI.MoreLinkLabel();
 			this.introBox = new River.OneMoreAddIn.UI.MoreTextBox();
-			this.gridView = new River.OneMoreAddIn.Settings.KeyboardGridView();
+			this.gridView = new River.OneMoreAddIn.UI.MoreDataGridView();
 			this.selectedColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
 			this.addressColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.textColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -49,32 +49,36 @@
 			// okButton
 			// 
 			this.okButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+			this.okButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(231)))), ((int)(((byte)(231)))));
 			this.okButton.DialogResult = System.Windows.Forms.DialogResult.OK;
 			this.okButton.Enabled = false;
+			this.okButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.okButton.ImageOver = null;
 			this.okButton.Location = new System.Drawing.Point(944, 43);
 			this.okButton.Name = "okButton";
-			this.okButton.ThemedBack = null;
-			this.okButton.ThemedFore = null;
 			this.okButton.ShowBorder = true;
 			this.okButton.Size = new System.Drawing.Size(100, 38);
 			this.okButton.TabIndex = 0;
 			this.okButton.Text = "OK";
+			this.okButton.ThemedBack = null;
+			this.okButton.ThemedFore = null;
 			this.okButton.UseVisualStyleBackColor = true;
 			// 
 			// cancelButton
 			// 
 			this.cancelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+			this.cancelButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(231)))), ((int)(((byte)(231)))));
 			this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+			this.cancelButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.cancelButton.ImageOver = null;
 			this.cancelButton.Location = new System.Drawing.Point(1050, 43);
 			this.cancelButton.Name = "cancelButton";
-			this.cancelButton.ThemedBack = null;
-			this.cancelButton.ThemedFore = null;
 			this.cancelButton.ShowBorder = true;
 			this.cancelButton.Size = new System.Drawing.Size(100, 38);
 			this.cancelButton.TabIndex = 1;
 			this.cancelButton.Text = "Cancel";
+			this.cancelButton.ThemedBack = null;
+			this.cancelButton.ThemedFore = null;
 			this.cancelButton.UseVisualStyleBackColor = true;
 			// 
 			// buttonPanel
@@ -93,26 +97,28 @@
 			// 
 			// rewireBox
 			// 
-			this.rewireBox.AutoSize = true;
+			this.rewireBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(231)))), ((int)(((byte)(231)))));
 			this.rewireBox.Checked = true;
 			this.rewireBox.CheckState = System.Windows.Forms.CheckState.Checked;
+			this.rewireBox.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.rewireBox.ForeColor = System.Drawing.SystemColors.ControlText;
 			this.rewireBox.Location = new System.Drawing.Point(432, 49);
 			this.rewireBox.Name = "rewireBox";
-			this.rewireBox.Size = new System.Drawing.Size(266, 24);
+			this.rewireBox.Size = new System.Drawing.Size(275, 25);
 			this.rewireBox.TabIndex = 3;
 			this.rewireBox.Text = "Rewire parent links to sub-pages";
 			this.rewireBox.UseVisualStyleBackColor = true;
 			// 
 			// useTextBox
 			// 
-			this.useTextBox.AutoSize = true;
+			this.useTextBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(231)))), ((int)(((byte)(231)))));
 			this.useTextBox.Checked = true;
 			this.useTextBox.CheckState = System.Windows.Forms.CheckState.Checked;
+			this.useTextBox.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.useTextBox.ForeColor = System.Drawing.SystemColors.ControlText;
 			this.useTextBox.Location = new System.Drawing.Point(432, 19);
 			this.useTextBox.Name = "useTextBox";
-			this.useTextBox.Size = new System.Drawing.Size(297, 24);
+			this.useTextBox.Size = new System.Drawing.Size(309, 25);
 			this.useTextBox.TabIndex = 2;
 			this.useTextBox.Text = "Apply Text columns to sub-page titles";
 			this.useTextBox.UseVisualStyleBackColor = true;
@@ -127,9 +133,12 @@
 			this.unselectLabel.Location = new System.Drawing.Point(32, 50);
 			this.unselectLabel.Name = "unselectLabel";
 			this.unselectLabel.Size = new System.Drawing.Size(94, 20);
+			this.unselectLabel.StrictColors = false;
 			this.unselectLabel.TabIndex = 5;
 			this.unselectLabel.TabStop = true;
 			this.unselectLabel.Text = "Select none";
+			this.unselectLabel.ThemedBack = null;
+			this.unselectLabel.ThemedFore = null;
 			this.unselectLabel.VisitedLinkColor = System.Drawing.Color.MediumOrchid;
 			this.unselectLabel.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.SelectNoneItems);
 			// 
@@ -143,9 +152,12 @@
 			this.selectLabel.Location = new System.Drawing.Point(32, 20);
 			this.selectLabel.Name = "selectLabel";
 			this.selectLabel.Size = new System.Drawing.Size(73, 20);
+			this.selectLabel.StrictColors = false;
 			this.selectLabel.TabIndex = 4;
 			this.selectLabel.TabStop = true;
 			this.selectLabel.Text = "Select all";
+			this.selectLabel.ThemedBack = null;
+			this.selectLabel.ThemedFore = null;
 			this.selectLabel.VisitedLinkColor = System.Drawing.Color.MediumOrchid;
 			this.selectLabel.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.SelectAllItems);
 			// 
@@ -156,12 +168,12 @@
 			this.introBox.Location = new System.Drawing.Point(20, 20);
 			this.introBox.Multiline = true;
 			this.introBox.Name = "introBox";
-			this.introBox.ThemedBack = null;
-			this.introBox.ThemedFore = null;
 			this.introBox.ReadOnly = true;
 			this.introBox.Size = new System.Drawing.Size(1153, 62);
 			this.introBox.TabIndex = 15;
 			this.introBox.Text = "Select links to import as sub-pages. These will be relinked to from this page.";
+			this.introBox.ThemedBack = null;
+			this.introBox.ThemedFore = null;
 			// 
 			// gridView
 			// 
@@ -188,6 +200,8 @@
 			this.gridView.ShowEditingIcon = false;
 			this.gridView.Size = new System.Drawing.Size(1153, 363);
 			this.gridView.TabIndex = 0;
+			this.gridView.ThemedBack = "ControlLightLight";
+			this.gridView.ThemedFore = "ControlText";
 			this.gridView.CurrentCellDirtyStateChanged += new System.EventHandler(this.DirtyStateChanged);
 			this.gridView.Resize += new System.EventHandler(this.GridResize);
 			// 
@@ -264,7 +278,7 @@
 		private UI.MoreButton cancelButton;
 		private System.Windows.Forms.Panel buttonPanel;
 		private UI.MoreTextBox introBox;
-		private Settings.KeyboardGridView gridView;
+		private UI.MoreDataGridView gridView;
 		private System.Windows.Forms.DataGridViewCheckBoxColumn selectedColumn;
 		private System.Windows.Forms.DataGridViewTextBoxColumn addressColumn;
 		private System.Windows.Forms.DataGridViewTextBoxColumn textColumn;

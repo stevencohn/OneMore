@@ -86,6 +86,14 @@ namespace River.OneMoreAddIn.Commands
 		{
 			base.OnLoad(e);
 
+			var editor = new ImageEditor { Size = new Size(16, 16) };
+			if (manager.DarkMode)
+			{
+				editor.Style = ImageEditor.Stylization.Invert;
+			}
+			using var img = selectButton.Image;
+			selectButton.Image = editor.Apply(img);
+
 			// build scopeBox with custom order
 			var type = typeof(OneNote.PageDetail);
 			var names = new List<string>

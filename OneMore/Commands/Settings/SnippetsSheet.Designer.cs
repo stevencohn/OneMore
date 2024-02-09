@@ -29,7 +29,7 @@
 		private void InitializeComponent()
 		{
 			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-			this.gridView = new System.Windows.Forms.DataGridView();
+			this.gridView = new UI.MoreDataGridView();
 			this.nameColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.introBox = new River.OneMoreAddIn.UI.MoreMultilineLabel();
 			this.toolStrip = new River.OneMoreAddIn.UI.MoreToolStrip();
@@ -141,7 +141,7 @@
 
 		#endregion
 
-		private System.Windows.Forms.DataGridView gridView;
+		private UI.MoreDataGridView gridView;
 		private UI.MoreToolStrip toolStrip;
 		private UI.MoreMenuItem deleteButton;
 		private UI.MoreMultilineLabel introBox;

@@ -93,6 +93,26 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
+		protected override void OnLoad(EventArgs e)
+		{
+			base.OnLoad(e);
+
+			var editor = new ImageEditor
+			{
+				// shrink from 24x24 to 16x16
+				Size = new Size(16, 16)
+			};
+
+			if (manager.DarkMode)
+			{
+				editor.Style = ImageEditor.Stylization.Invert;
+			}
+
+			using var img = searchButton.Image;
+			searchButton.Image = editor.Apply(img);
+		}
+
+
 		private void ShowScanTimes()
 		{
 			var scan = new HashtagProvider().ReadScanTime();
