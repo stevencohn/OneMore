@@ -30,7 +30,7 @@
 		{
 			this.components = new System.ComponentModel.Container();
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FavoritesDialog));
-			this.gridView = new System.Windows.Forms.DataGridView();
+			this.gridView = new UI.MoreDataGridView();
 			this.nameColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.locationColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.buttonPanel = new System.Windows.Forms.Panel();
@@ -272,7 +272,7 @@
 		}
 		#endregion
 
-		private System.Windows.Forms.DataGridView gridView;
+		private UI.MoreDataGridView gridView;
 		private System.Windows.Forms.DataGridViewTextBoxColumn nameColumn;
 		private System.Windows.Forms.DataGridViewTextBoxColumn locationColumn;
 		private System.Windows.Forms.Panel buttonPanel;
