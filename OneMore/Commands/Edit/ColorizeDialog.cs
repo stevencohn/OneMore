@@ -81,6 +81,13 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
+		protected override void OnLoad(EventArgs e)
+		{
+			base.OnLoad(e);
+			nameColumn.Width = view.ClientSize.Width;
+		}
+
+
 		private void FocusOnActivated(object sender, EventArgs e)
 		{
 			view.Focus();

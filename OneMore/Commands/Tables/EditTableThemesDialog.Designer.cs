@@ -185,7 +185,7 @@ namespace River.OneMoreAddIn.Commands
 			// previewGroup
 			// 
 			this.previewGroup.Controls.Add(this.previewBox);
-			this.previewGroup.Location = new System.Drawing.Point(6, 3);
+			this.previewGroup.Location = new System.Drawing.Point(17, 3);
 			this.previewGroup.Name = "previewGroup";
 			this.previewGroup.Padding = new System.Windows.Forms.Padding(10);
 			this.previewGroup.Size = new System.Drawing.Size(217, 199);
