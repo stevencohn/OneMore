@@ -6,7 +6,7 @@ namespace River.OneMoreAddIn.UI
 {
 	using System.Drawing;
 	using System.Windows.Forms;
-	using Resx = River.OneMoreAddIn.Properties.Resources;
+	using Resx = Properties.Resources;
 
 
 	internal partial class MoreMessageBox : MoreForm
@@ -19,11 +19,6 @@ namespace River.OneMoreAddIn.UI
 			if (NeedsLocalizing())
 			{
 				Text = Resx.ProgramName;
-
-				Localize(new string[]
-				{
-					"noButton=word_No"
-				});
 			}
 
 			messageBox.Clear();
