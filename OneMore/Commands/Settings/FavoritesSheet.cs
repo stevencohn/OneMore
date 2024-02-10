@@ -118,12 +118,9 @@ namespace River.OneMoreAddIn.Settings
 				? favorites[first].Name
 				: $"({gridView.SelectedRows.Count})";
 
-			var result = MessageBox.Show(
+			var result = UI.MoreMessageBox.Show(this,
 				string.Format(Resx.FavoritesSheet_DeleteMessage, text),
-				"OneMore",
-				MessageBoxButtons.YesNo, MessageBoxIcon.Question,
-				MessageBoxDefaultButton.Button2,
-				MessageBoxOptions.DefaultDesktopOnly);
+				MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
 			if (result != DialogResult.Yes)
 				return;

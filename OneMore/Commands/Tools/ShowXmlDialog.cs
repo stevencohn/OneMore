@@ -86,14 +86,6 @@ namespace River.OneMoreAddIn.Commands
 		{
 			base.OnLoad(e);
 
-			var editor = new ImageEditor { Size = new Size(16, 16) };
-			if (manager.DarkMode)
-			{
-				editor.Style = ImageEditor.Stylization.Invert;
-			}
-			using var img = selectButton.Image;
-			selectButton.Image = editor.Apply(img);
-
 			// build scopeBox with custom order
 			var type = typeof(OneNote.PageDetail);
 			var names = new List<string>
@@ -140,8 +132,7 @@ namespace River.OneMoreAddIn.Commands
 
 		protected override void OnShown(EventArgs e)
 		{
-			//Location = new System.Drawing.Point(30, 30);
-			UIHelper.SetForegroundWindow(this);
+			base.OnShown(e);
 			findBox.Focus();
 		}
 
@@ -902,7 +893,10 @@ namespace River.OneMoreAddIn.Commands
 
 		private async void UpdatePage(object sender, EventArgs e)
 		{
-			var result = UIHelper.ShowQuestion(Resx.ShowXmlDialog_WARNING);
+			//var result = UIHelper.ShowQuestion(Resx.ShowXmlDialog_WARNING);
+			var result = UI.MoreMessageBox.Show(this,
+				Resx.ShowXmlDialog_WARNING, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
 			if (result == DialogResult.Yes)
 			{
 				try

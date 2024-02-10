@@ -206,12 +206,9 @@ namespace River.OneMoreAddIn.Settings
 
 			var engine = engines[rowIndex];
 
-			var result = MessageBox.Show(
+			var result = UI.MoreMessageBox.Show(this,
 				string.Format(Resx.SearchEngineDialog_DeleteMessage, engine.Name),
-				"OneMore",
-				MessageBoxButtons.YesNo, MessageBoxIcon.Question,
-				MessageBoxDefaultButton.Button2,
-				MessageBoxOptions.DefaultDesktopOnly);
+				MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
 			if (result != DialogResult.Yes)
 				return;

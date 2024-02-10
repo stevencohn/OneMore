@@ -92,6 +92,7 @@
 			// 
 			// introPanel
 			// 
+			this.introPanel.BackColor = System.Drawing.SystemColors.ControlLight;
 			this.introPanel.Controls.Add(this.introText);
 			this.introPanel.Dock = System.Windows.Forms.DockStyle.Top;
 			this.introPanel.Location = new System.Drawing.Point(0, 0);
@@ -104,7 +105,6 @@
 			// 
 			this.introText.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-			this.introText.BackColor = System.Drawing.SystemColors.Control;
 			this.introText.ForeColor = System.Drawing.SystemColors.ControlText;
 			this.introText.Location = new System.Drawing.Point(13, 12);
 			this.introText.Name = "introText";
@@ -115,6 +115,7 @@
 			// 
 			// buttonPanel
 			// 
+			this.buttonPanel.BackColor = System.Drawing.SystemColors.ControlLight;
 			this.buttonPanel.Controls.Add(this.rotationBox);
 			this.buttonPanel.Controls.Add(this.rotationBar);
 			this.buttonPanel.Controls.Add(this.selectButton);
@@ -155,47 +156,53 @@
 			// 
 			// selectButton
 			// 
+			this.selectButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(231)))), ((int)(((byte)(231)))));
+			this.selectButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.selectButton.ImageOver = null;
 			this.selectButton.Location = new System.Drawing.Point(12, 9);
 			this.selectButton.Name = "selectButton";
-			this.selectButton.ThemedBack = null;
-			this.selectButton.ThemedFore = null;
 			this.selectButton.ShowBorder = true;
 			this.selectButton.Size = new System.Drawing.Size(120, 40);
 			this.selectButton.TabIndex = 4;
 			this.selectButton.Text = "Select All";
+			this.selectButton.ThemedBack = null;
+			this.selectButton.ThemedFore = null;
 			this.selectButton.UseVisualStyleBackColor = true;
 			this.selectButton.Click += new System.EventHandler(this.SelectButton_Click);
 			// 
 			// cancelButton
 			// 
 			this.cancelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.cancelButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(231)))), ((int)(((byte)(231)))));
 			this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+			this.cancelButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.cancelButton.ImageOver = null;
 			this.cancelButton.Location = new System.Drawing.Point(1373, 9);
 			this.cancelButton.Name = "cancelButton";
-			this.cancelButton.ThemedBack = null;
-			this.cancelButton.ThemedFore = null;
 			this.cancelButton.ShowBorder = true;
 			this.cancelButton.Size = new System.Drawing.Size(103, 40);
 			this.cancelButton.TabIndex = 1;
 			this.cancelButton.Text = "Cancel";
+			this.cancelButton.ThemedBack = null;
+			this.cancelButton.ThemedFore = null;
 			this.cancelButton.UseVisualStyleBackColor = true;
 			// 
 			// cropButton
 			// 
 			this.cropButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.cropButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(231)))), ((int)(((byte)(231)))));
 			this.cropButton.DialogResult = System.Windows.Forms.DialogResult.OK;
 			this.cropButton.Enabled = false;
+			this.cropButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.cropButton.ImageOver = null;
 			this.cropButton.Location = new System.Drawing.Point(1265, 9);
 			this.cropButton.Name = "cropButton";
-			this.cropButton.ThemedBack = null;
-			this.cropButton.ThemedFore = null;
 			this.cropButton.ShowBorder = true;
 			this.cropButton.Size = new System.Drawing.Size(102, 40);
 			this.cropButton.TabIndex = 0;
 			this.cropButton.Text = "OK";
+			this.cropButton.ThemedBack = null;
+			this.cropButton.ThemedFore = null;
 			this.cropButton.UseVisualStyleBackColor = true;
 			this.cropButton.Click += new System.EventHandler(this.CropButton_Click);
 			// 

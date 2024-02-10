@@ -54,10 +54,10 @@
 			this.wordBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
 			this.wordBox.Location = new System.Drawing.Point(110, 32);
 			this.wordBox.Name = "wordBox";
-			this.wordBox.ThemedBack = null;
-			this.wordBox.ThemedFore = null;
 			this.wordBox.Size = new System.Drawing.Size(379, 26);
 			this.wordBox.TabIndex = 2;
+			this.wordBox.ThemedBack = null;
+			this.wordBox.ThemedFore = null;
 			// 
 			// languageLabel
 			// 
@@ -104,12 +104,12 @@
 			this.cancelButton.ImageOver = null;
 			this.cancelButton.Location = new System.Drawing.Point(389, 141);
 			this.cancelButton.Name = "cancelButton";
-			this.cancelButton.ThemedBack = null;
-			this.cancelButton.ThemedFore = null;
 			this.cancelButton.ShowBorder = true;
 			this.cancelButton.Size = new System.Drawing.Size(100, 38);
 			this.cancelButton.TabIndex = 1;
 			this.cancelButton.Text = "Cancel";
+			this.cancelButton.ThemedBack = null;
+			this.cancelButton.ThemedFore = null;
 			this.cancelButton.UseVisualStyleBackColor = true;
 			// 
 			// okButton
@@ -121,12 +121,12 @@
 			this.okButton.ImageOver = null;
 			this.okButton.Location = new System.Drawing.Point(283, 141);
 			this.okButton.Name = "okButton";
-			this.okButton.ThemedBack = null;
-			this.okButton.ThemedFore = null;
 			this.okButton.ShowBorder = true;
 			this.okButton.Size = new System.Drawing.Size(100, 38);
 			this.okButton.TabIndex = 0;
 			this.okButton.Text = "OK";
+			this.okButton.ThemedBack = null;
+			this.okButton.ThemedFore = null;
 			this.okButton.UseVisualStyleBackColor = true;
 			// 
 			// PronunciateDialog
@@ -134,6 +134,7 @@
 			this.AcceptButton = this.okButton;
 			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+			this.BackColor = System.Drawing.SystemColors.ControlLight;
 			this.CancelButton = this.cancelButton;
 			this.ClientSize = new System.Drawing.Size(513, 202);
 			this.Controls.Add(this.okButton);

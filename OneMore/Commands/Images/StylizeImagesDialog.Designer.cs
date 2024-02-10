@@ -46,12 +46,12 @@
 			this.okButton.ImageOver = null;
 			this.okButton.Location = new System.Drawing.Point(261, 270);
 			this.okButton.Name = "okButton";
-			this.okButton.ThemedBack = null;
-			this.okButton.ThemedFore = null;
 			this.okButton.ShowBorder = true;
 			this.okButton.Size = new System.Drawing.Size(100, 38);
 			this.okButton.TabIndex = 0;
 			this.okButton.Text = "OK";
+			this.okButton.ThemedBack = null;
+			this.okButton.ThemedFore = null;
 			this.okButton.UseVisualStyleBackColor = true;
 			this.okButton.Click += new System.EventHandler(this.OK);
 			// 
@@ -64,12 +64,12 @@
 			this.cancelButton.ImageOver = null;
 			this.cancelButton.Location = new System.Drawing.Point(367, 270);
 			this.cancelButton.Name = "cancelButton";
-			this.cancelButton.ThemedBack = null;
-			this.cancelButton.ThemedFore = null;
 			this.cancelButton.ShowBorder = true;
 			this.cancelButton.Size = new System.Drawing.Size(100, 38);
 			this.cancelButton.TabIndex = 1;
 			this.cancelButton.Text = "Cancel";
+			this.cancelButton.ThemedBack = null;
+			this.cancelButton.ThemedFore = null;
 			this.cancelButton.UseVisualStyleBackColor = true;
 			// 
 			// styleLabel
@@ -99,7 +99,6 @@
 			// 
 			// foreBox
 			// 
-			this.foreBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(231)))), ((int)(((byte)(231)))));
 			this.foreBox.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.foreBox.ForeColor = System.Drawing.SystemColors.ControlText;
 			this.foreBox.Location = new System.Drawing.Point(44, 24);
@@ -113,7 +112,6 @@
 			// 
 			// backBox
 			// 
-			this.backBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(231)))), ((int)(((byte)(231)))));
 			this.backBox.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.backBox.ForeColor = System.Drawing.SystemColors.ControlText;
 			this.backBox.Location = new System.Drawing.Point(44, 103);
@@ -130,7 +128,7 @@
 			this.AcceptButton = this.okButton;
 			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.BackColor = System.Drawing.SystemColors.Control;
+			this.BackColor = System.Drawing.SystemColors.ControlLight;
 			this.CancelButton = this.cancelButton;
 			this.ClientSize = new System.Drawing.Size(479, 320);
 			this.Controls.Add(this.backBox);

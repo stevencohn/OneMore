@@ -163,6 +163,7 @@
 			// 
 			// introBox
 			// 
+			this.introBox.BackColor = System.Drawing.SystemColors.ControlLight;
 			this.introBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
 			this.introBox.Dock = System.Windows.Forms.DockStyle.Top;
 			this.introBox.Location = new System.Drawing.Point(20, 20);
@@ -172,7 +173,7 @@
 			this.introBox.Size = new System.Drawing.Size(1153, 62);
 			this.introBox.TabIndex = 15;
 			this.introBox.Text = "Select links to import as sub-pages. These will be relinked to from this page.";
-			this.introBox.ThemedBack = null;
+			this.introBox.ThemedBack = "ControlLight";
 			this.introBox.ThemedFore = null;
 			// 
 			// gridView
@@ -250,6 +251,7 @@
 			this.AcceptButton = this.okButton;
 			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+			this.BackColor = System.Drawing.SystemColors.ControlLight;
 			this.CancelButton = this.cancelButton;
 			this.ClientSize = new System.Drawing.Size(1188, 544);
 			this.Controls.Add(this.gridView);

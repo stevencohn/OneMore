@@ -64,6 +64,7 @@
 			this.cancelButton.Name = "cancelButton";
 			this.cancelButton.ShowBorder = true;
 			this.cancelButton.Size = new System.Drawing.Size(112, 35);
+			this.cancelButton.StylizeImage = false;
 			this.cancelButton.TabIndex = 0;
 			this.cancelButton.Text = "Cancel";
 			this.cancelButton.ThemedBack = null;
@@ -119,6 +120,7 @@
 			this.menuButton.Name = "menuButton";
 			this.menuButton.ShowBorder = true;
 			this.menuButton.Size = new System.Drawing.Size(50, 31);
+			this.menuButton.StylizeImage = false;
 			this.menuButton.TabIndex = 4;
 			this.menuButton.Text = "•••";
 			this.menuButton.ThemedBack = null;
@@ -203,6 +205,7 @@
 			this.searchButton.Name = "searchButton";
 			this.searchButton.ShowBorder = true;
 			this.searchButton.Size = new System.Drawing.Size(60, 31);
+			this.searchButton.StylizeImage = true;
 			this.searchButton.TabIndex = 1;
 			this.searchButton.ThemedBack = null;
 			this.searchButton.ThemedFore = null;
@@ -272,6 +275,7 @@
 			this.indexButton.Name = "indexButton";
 			this.indexButton.ShowBorder = true;
 			this.indexButton.Size = new System.Drawing.Size(112, 35);
+			this.indexButton.StylizeImage = false;
 			this.indexButton.TabIndex = 1;
 			this.indexButton.Text = "Index";
 			this.indexButton.ThemedBack = null;
@@ -292,6 +296,7 @@
 			this.copyButton.Name = "copyButton";
 			this.copyButton.ShowBorder = true;
 			this.copyButton.Size = new System.Drawing.Size(112, 35);
+			this.copyButton.StylizeImage = false;
 			this.copyButton.TabIndex = 2;
 			this.copyButton.Text = "Copy";
 			this.copyButton.ThemedBack = null;
@@ -312,6 +317,7 @@
 			this.moveButton.Name = "moveButton";
 			this.moveButton.ShowBorder = true;
 			this.moveButton.Size = new System.Drawing.Size(112, 35);
+			this.moveButton.StylizeImage = false;
 			this.moveButton.TabIndex = 3;
 			this.moveButton.Text = "Move";
 			this.moveButton.ThemedBack = null;

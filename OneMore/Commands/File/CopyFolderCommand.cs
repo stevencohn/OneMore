@@ -75,12 +75,9 @@ namespace River.OneMoreAddIn.Commands
 				{
 					logger.WriteLine("cannot copy a folder into itself or one of its children");
 
-					MessageBox.Show(
+					UI.MoreMessageBox.Show(owner,
 						Resx.CopyFolderCommand_InvalidTarget,
-						Resx.OneMoreTab_Label,
-						MessageBoxButtons.OK, MessageBoxIcon.Information,
-						MessageBoxDefaultButton.Button1,
-						MessageBoxOptions.DefaultDesktopOnly);
+						MessageBoxButtons.OK, MessageBoxIcon.Information);
 
 					return;
 				}

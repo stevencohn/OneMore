@@ -1,10 +1,11 @@
 ﻿//************************************************************************************************
-// Copyright © 2020 Steven M Cohn.  All rights reserved.
+// Copyright © 2020 Steven M Cohn. All rights reserved.
 //************************************************************************************************
 
 namespace River.OneMoreAddIn.Commands
 {
 	using River.OneMoreAddIn.Models;
+	using River.OneMoreAddIn.UI;
 	using System;
 	using System.Collections.Generic;
 	using System.Drawing;
@@ -15,7 +16,7 @@ namespace River.OneMoreAddIn.Commands
 	using System.Web;
 	using System.Windows.Forms;
 	using System.Xml.Linq;
-	using Resx = River.OneMoreAddIn.Properties.Resources;
+	using Resx = Properties.Resources;
 
 
 	internal partial class TaggingDialog : UI.MoreForm
@@ -562,16 +563,22 @@ namespace River.OneMoreAddIn.Commands
 
 		private Label MakeLabel(string value, string text)
 		{
-			var label = new Label
+			var manager = ThemeManager.Instance;
+
+			var label = new MoreLabel
 			{
 				Name = value,
 				Tag = value,
 				AutoSize = true,
+				BorderStyle = BorderStyle.FixedSingle,
+				Cursor = Cursors.Hand,
 				Margin = new Padding(4),
 				Padding = new Padding(4, 5, 4, 5),
 				Text = text,
-				BackColor = SystemColors.ControlLight,
-				Cursor = Cursors.Hand
+				BackColor = manager.GetColor("Control"),
+				ForeColor = manager.GetColor("ControlText"),
+				ThemedBack = "Control",
+				ThemedFore = "ControlText"
 			};
 
 			label.Click += (sender, e) =>
@@ -581,12 +588,12 @@ namespace River.OneMoreAddIn.Commands
 
 			label.MouseEnter += (sender, e) =>
 			{
-				((Label)sender).BackColor = Color.FromKnownColor(KnownColor.LightSkyBlue);
+				((Label)sender).BackColor = ThemeManager.Instance.GetColor("ButtonHighlight");
 			};
 
 			label.MouseLeave += (sender, e) =>
 			{
-				((Label)sender).BackColor = SystemColors.ControlLight;
+				((Label)sender).BackColor = ThemeManager.Instance.GetColor("Control");
 			};
 
 			return label;
@@ -634,10 +641,9 @@ namespace River.OneMoreAddIn.Commands
 
 		private void RemoveAllTags(object sender, LinkLabelLinkClickedEventArgs e)
 		{
-			var result = MessageBox.Show(this,
+			var result = UI.MoreMessageBox.Show(this,
 				"Remove all tags from the current page?",
-				"Confirm",
-				MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
+				MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
 			if (result == DialogResult.Yes)
 			{

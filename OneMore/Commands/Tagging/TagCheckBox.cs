@@ -8,7 +8,7 @@ namespace River.OneMoreAddIn.Commands
 	using System.Windows.Forms;
 
 
-	internal class TagCheckBox : CheckBox
+	internal class TagCheckBox : UI.MoreCheckBox
 	{
 		private readonly IntPtr hcursor;
 

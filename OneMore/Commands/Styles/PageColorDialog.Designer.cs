@@ -105,12 +105,12 @@
 			this.cancelButton.ImageOver = null;
 			this.cancelButton.Location = new System.Drawing.Point(497, 545);
 			this.cancelButton.Name = "cancelButton";
-			this.cancelButton.ThemedBack = null;
-			this.cancelButton.ThemedFore = null;
 			this.cancelButton.ShowBorder = true;
 			this.cancelButton.Size = new System.Drawing.Size(130, 40);
 			this.cancelButton.TabIndex = 9;
 			this.cancelButton.Text = "Cancel";
+			this.cancelButton.ThemedBack = null;
+			this.cancelButton.ThemedFore = null;
 			this.cancelButton.UseVisualStyleBackColor = true;
 			// 
 			// expander
@@ -151,9 +151,12 @@
 			this.loadThemeLink.Location = new System.Drawing.Point(50, 37);
 			this.loadThemeLink.Name = "loadThemeLink";
 			this.loadThemeLink.Size = new System.Drawing.Size(152, 20);
+			this.loadThemeLink.StrictColors = false;
 			this.loadThemeLink.TabIndex = 2;
 			this.loadThemeLink.TabStop = true;
 			this.loadThemeLink.Text = "Load different styles";
+			this.loadThemeLink.ThemedBack = null;
+			this.loadThemeLink.ThemedFore = null;
 			this.loadThemeLink.VisitedLinkColor = System.Drawing.Color.MediumOrchid;
 			this.loadThemeLink.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.LoadTheme);
 			// 
@@ -168,7 +171,6 @@
 			// 
 			// applyThemeBox
 			// 
-			this.applyThemeBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(231)))), ((int)(((byte)(231)))));
 			this.applyThemeBox.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.applyThemeBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.applyThemeBox.Location = new System.Drawing.Point(51, 82);
@@ -187,12 +189,12 @@
 			this.okButton.ImageOver = null;
 			this.okButton.Location = new System.Drawing.Point(361, 545);
 			this.okButton.Name = "okButton";
-			this.okButton.ThemedBack = null;
-			this.okButton.ThemedFore = null;
 			this.okButton.ShowBorder = true;
 			this.okButton.Size = new System.Drawing.Size(130, 40);
 			this.okButton.TabIndex = 12;
 			this.okButton.Text = "OK";
+			this.okButton.ThemedBack = null;
+			this.okButton.ThemedFore = null;
 			this.okButton.UseVisualStyleBackColor = true;
 			this.okButton.Click += new System.EventHandler(this.Apply);
 			// 
@@ -233,11 +235,11 @@
 			this.statusLabel.ForeColor = System.Drawing.Color.Brown;
 			this.statusLabel.Location = new System.Drawing.Point(83, 262);
 			this.statusLabel.Name = "statusLabel";
-			this.statusLabel.ThemedBack = null;
-			this.statusLabel.ThemedFore = "ErrorText";
 			this.statusLabel.Size = new System.Drawing.Size(31, 20);
 			this.statusLabel.TabIndex = 16;
 			this.statusLabel.Text = "OK";
+			this.statusLabel.ThemedBack = null;
+			this.statusLabel.ThemedFore = "ErrorText";
 			// 
 			// scopeBox
 			// 
@@ -268,7 +270,7 @@
 			this.AcceptButton = this.okButton;
 			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.BackColor = System.Drawing.SystemColors.Control;
+			this.BackColor = System.Drawing.SystemColors.ControlLight;
 			this.CancelButton = this.cancelButton;
 			this.ClientSize = new System.Drawing.Size(640, 598);
 			this.Controls.Add(this.detailPanel);

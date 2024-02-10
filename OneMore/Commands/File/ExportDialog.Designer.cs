@@ -160,12 +160,13 @@
 			// 
 			this.browseButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(231)))), ((int)(((byte)(231)))));
 			this.browseButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-			this.browseButton.Image = ((System.Drawing.Image)(resources.GetObject("browseButton.Image")));
+			this.browseButton.Image = global::River.OneMoreAddIn.Properties.Resources.m_FileOpen;
 			this.browseButton.ImageOver = null;
 			this.browseButton.Location = new System.Drawing.Point(512, 40);
 			this.browseButton.Name = "browseButton";
 			this.browseButton.ShowBorder = false;
 			this.browseButton.Size = new System.Drawing.Size(44, 34);
+			this.browseButton.StylizeImage = true;
 			this.browseButton.TabIndex = 4;
 			this.browseButton.ThemedBack = null;
 			this.browseButton.ThemedFore = null;
@@ -183,6 +184,7 @@
 			this.cancelButton.Name = "cancelButton";
 			this.cancelButton.ShowBorder = true;
 			this.cancelButton.Size = new System.Drawing.Size(100, 38);
+			this.cancelButton.StylizeImage = false;
 			this.cancelButton.TabIndex = 6;
 			this.cancelButton.Text = "Cancel";
 			this.cancelButton.ThemedBack = null;
@@ -201,6 +203,7 @@
 			this.okButton.Name = "okButton";
 			this.okButton.ShowBorder = true;
 			this.okButton.Size = new System.Drawing.Size(100, 38);
+			this.okButton.StylizeImage = false;
 			this.okButton.TabIndex = 7;
 			this.okButton.Text = "OK";
 			this.okButton.ThemedBack = null;
@@ -212,7 +215,7 @@
 			this.AcceptButton = this.okButton;
 			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.BackColor = System.Drawing.SystemColors.Control;
+			this.BackColor = System.Drawing.SystemColors.ControlLight;
 			this.CancelButton = this.cancelButton;
 			this.ClientSize = new System.Drawing.Size(715, 327);
 			this.Controls.Add(this.okButton);

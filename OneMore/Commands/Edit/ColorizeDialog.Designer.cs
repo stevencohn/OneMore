@@ -40,9 +40,10 @@
 			// 
 			// controlPanel
 			// 
+			this.controlPanel.BackColor = System.Drawing.SystemColors.ControlLight;
 			this.controlPanel.Controls.Add(this.okButton);
 			this.controlPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
-			this.controlPanel.Location = new System.Drawing.Point(0, 478);
+			this.controlPanel.Location = new System.Drawing.Point(0, 516);
 			this.controlPanel.Name = "controlPanel";
 			this.controlPanel.Size = new System.Drawing.Size(373, 62);
 			this.controlPanel.TabIndex = 0;
@@ -56,23 +57,25 @@
 			this.okButton.ImageOver = null;
 			this.okButton.Location = new System.Drawing.Point(253, 13);
 			this.okButton.Name = "okButton";
-			this.okButton.ThemedBack = null;
-			this.okButton.ThemedFore = null;
 			this.okButton.ShowBorder = true;
 			this.okButton.Size = new System.Drawing.Size(108, 38);
+			this.okButton.StylizeImage = false;
 			this.okButton.TabIndex = 0;
 			this.okButton.Text = "OK";
+			this.okButton.ThemedBack = null;
+			this.okButton.ThemedFore = null;
 			this.okButton.UseVisualStyleBackColor = true;
 			this.okButton.KeyUp += new System.Windows.Forms.KeyEventHandler(this.CancelOnKeyUp);
 			// 
 			// mainPanel
 			// 
+			this.mainPanel.BackColor = System.Drawing.SystemColors.ControlLight;
 			this.mainPanel.Controls.Add(this.view);
 			this.mainPanel.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.mainPanel.Location = new System.Drawing.Point(0, 0);
 			this.mainPanel.Name = "mainPanel";
 			this.mainPanel.Padding = new System.Windows.Forms.Padding(10);
-			this.mainPanel.Size = new System.Drawing.Size(373, 478);
+			this.mainPanel.Size = new System.Drawing.Size(373, 516);
 			this.mainPanel.TabIndex = 1;
 			// 
 			// view
@@ -87,7 +90,7 @@
 			this.view.HideSelection = false;
 			this.view.Location = new System.Drawing.Point(10, 10);
 			this.view.Name = "view";
-			this.view.Size = new System.Drawing.Size(353, 458);
+			this.view.Size = new System.Drawing.Size(353, 496);
 			this.view.TabIndex = 0;
 			this.view.UseCompatibleStateImageBehavior = false;
 			this.view.View = System.Windows.Forms.View.Details;
@@ -103,7 +106,7 @@
 			this.AcceptButton = this.okButton;
 			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(373, 540);
+			this.ClientSize = new System.Drawing.Size(373, 578);
 			this.Controls.Add(this.mainPanel);
 			this.Controls.Add(this.controlPanel);
 			this.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));

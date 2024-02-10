@@ -53,44 +53,48 @@ namespace River.OneMoreAddIn.Commands
 			// okButton
 			// 
 			this.okButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+			this.okButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(231)))), ((int)(((byte)(231)))));
 			this.okButton.DialogResult = System.Windows.Forms.DialogResult.OK;
+			this.okButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.okButton.ImageOver = null;
 			this.okButton.Location = new System.Drawing.Point(285, 317);
 			this.okButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.okButton.Name = "okButton";
-			this.okButton.ThemedBack = null;
-			this.okButton.ThemedFore = null;
 			this.okButton.ShowBorder = true;
 			this.okButton.Size = new System.Drawing.Size(112, 35);
 			this.okButton.TabIndex = 6;
 			this.okButton.Text = "OK";
+			this.okButton.ThemedBack = null;
+			this.okButton.ThemedFore = null;
 			this.okButton.UseVisualStyleBackColor = true;
 			this.okButton.Click += new System.EventHandler(this.SaveSettingsOnClick);
 			// 
 			// cancelButton
 			// 
 			this.cancelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+			this.cancelButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(231)))), ((int)(((byte)(231)))));
 			this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+			this.cancelButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.cancelButton.ImageOver = null;
 			this.cancelButton.Location = new System.Drawing.Point(406, 317);
 			this.cancelButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.cancelButton.Name = "cancelButton";
-			this.cancelButton.ThemedBack = null;
-			this.cancelButton.ThemedFore = null;
 			this.cancelButton.ShowBorder = true;
 			this.cancelButton.Size = new System.Drawing.Size(112, 35);
 			this.cancelButton.TabIndex = 7;
 			this.cancelButton.Text = "Cancel";
+			this.cancelButton.ThemedBack = null;
+			this.cancelButton.ThemedFore = null;
 			this.cancelButton.UseVisualStyleBackColor = true;
 			// 
 			// verticalButton
 			// 
-			this.verticalButton.AutoSize = true;
 			this.verticalButton.Checked = true;
-			this.verticalButton.Location = new System.Drawing.Point(23, 23);
+			this.verticalButton.Cursor = System.Windows.Forms.Cursors.Hand;
+			this.verticalButton.Location = new System.Drawing.Point(33, 23);
 			this.verticalButton.Margin = new System.Windows.Forms.Padding(3, 3, 3, 10);
 			this.verticalButton.Name = "verticalButton";
-			this.verticalButton.Size = new System.Drawing.Size(354, 24);
+			this.verticalButton.Size = new System.Drawing.Size(369, 25);
 			this.verticalButton.TabIndex = 0;
 			this.verticalButton.TabStop = true;
 			this.verticalButton.Text = "Arrange all containers vertically, top to bottom";
@@ -99,11 +103,11 @@ namespace River.OneMoreAddIn.Commands
 			// 
 			// flowButton
 			// 
-			this.flowButton.AutoSize = true;
-			this.flowButton.Location = new System.Drawing.Point(23, 115);
+			this.flowButton.Cursor = System.Windows.Forms.Cursors.Hand;
+			this.flowButton.Location = new System.Drawing.Point(33, 115);
 			this.flowButton.Margin = new System.Windows.Forms.Padding(3, 3, 3, 8);
 			this.flowButton.Name = "flowButton";
-			this.flowButton.Size = new System.Drawing.Size(394, 24);
+			this.flowButton.Size = new System.Drawing.Size(409, 25);
 			this.flowButton.TabIndex = 3;
 			this.flowButton.Text = "Arrange in columns and then rows, fit to page width";
 			this.flowButton.UseVisualStyleBackColor = true;
@@ -175,10 +179,12 @@ namespace River.OneMoreAddIn.Commands
 			// 
 			// setWidthCheckBox
 			// 
-			this.setWidthCheckBox.AutoSize = true;
+			this.setWidthCheckBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(231)))), ((int)(((byte)(231)))));
+			this.setWidthCheckBox.Cursor = System.Windows.Forms.Cursors.Hand;
+			this.setWidthCheckBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.setWidthCheckBox.Location = new System.Drawing.Point(72, 60);
 			this.setWidthCheckBox.Name = "setWidthCheckBox";
-			this.setWidthCheckBox.Size = new System.Drawing.Size(76, 24);
+			this.setWidthCheckBox.Size = new System.Drawing.Size(78, 25);
 			this.setWidthCheckBox.TabIndex = 1;
 			this.setWidthCheckBox.Text = "Width";
 			this.setWidthCheckBox.UseVisualStyleBackColor = true;
@@ -220,7 +226,7 @@ namespace River.OneMoreAddIn.Commands
 			// indentLabel
 			// 
 			this.indentLabel.AutoSize = true;
-			this.indentLabel.Location = new System.Drawing.Point(3, 22);
+			this.indentLabel.Location = new System.Drawing.Point(6, 22);
 			this.indentLabel.Name = "indentLabel";
 			this.indentLabel.Size = new System.Drawing.Size(55, 20);
 			this.indentLabel.TabIndex = 12;
@@ -236,6 +242,8 @@ namespace River.OneMoreAddIn.Commands
 			this.optionsPanel.Name = "optionsPanel";
 			this.optionsPanel.Size = new System.Drawing.Size(485, 66);
 			this.optionsPanel.TabIndex = 13;
+			this.optionsPanel.ThemedBack = "ControlLight";
+			this.optionsPanel.ThemedFore = null;
 			this.optionsPanel.TopBorderColor = System.Drawing.SystemColors.ActiveBorder;
 			this.optionsPanel.TopBorderSize = 1;
 			// 
@@ -244,7 +252,7 @@ namespace River.OneMoreAddIn.Commands
 			this.AcceptButton = this.okButton;
 			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.BackColor = System.Drawing.SystemColors.Control;
+			this.BackColor = System.Drawing.SystemColors.ControlLight;
 			this.CancelButton = this.cancelButton;
 			this.ClientSize = new System.Drawing.Size(537, 372);
 			this.Controls.Add(this.optionsPanel);

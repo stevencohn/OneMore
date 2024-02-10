@@ -361,7 +361,6 @@ namespace River.OneMoreAddIn.Commands
 			// 
 			// preserveBox
 			// 
-			this.preserveBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
 			this.preserveBox.Checked = true;
 			this.preserveBox.CheckState = System.Windows.Forms.CheckState.Checked;
 			this.preserveBox.Cursor = System.Windows.Forms.Cursors.Hand;
@@ -694,7 +693,6 @@ namespace River.OneMoreAddIn.Commands
 			// 
 			// repositionBox
 			// 
-			this.repositionBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
 			this.repositionBox.Checked = true;
 			this.repositionBox.CheckState = System.Windows.Forms.CheckState.Checked;
 			this.repositionBox.Cursor = System.Windows.Forms.Cursors.Hand;
@@ -744,7 +742,7 @@ namespace River.OneMoreAddIn.Commands
 			this.AcceptButton = this.okButton;
 			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.BackColor = System.Drawing.SystemColors.Window;
+			this.BackColor = System.Drawing.SystemColors.ControlLight;
 			this.CancelButton = this.cancelButton;
 			this.ClientSize = new System.Drawing.Size(1122, 728);
 			this.Controls.Add(this.autoSizeRadio);

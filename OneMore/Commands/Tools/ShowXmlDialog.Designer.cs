@@ -381,6 +381,7 @@
 			this.queryButton.Name = "queryButton";
 			this.queryButton.ShowBorder = true;
 			this.queryButton.Size = new System.Drawing.Size(47, 32);
+			this.queryButton.StylizeImage = false;
 			this.queryButton.TabIndex = 9;
 			this.queryButton.Text = "▶";
 			this.queryButton.ThemedBack = null;
@@ -440,6 +441,7 @@
 			this.cancelButton.Name = "cancelButton";
 			this.cancelButton.ShowBorder = true;
 			this.cancelButton.Size = new System.Drawing.Size(124, 35);
+			this.cancelButton.StylizeImage = false;
 			this.cancelButton.TabIndex = 9;
 			this.cancelButton.Text = "Close";
 			this.cancelButton.ThemedBack = null;
@@ -477,6 +479,7 @@
 			this.okButton.Name = "okButton";
 			this.okButton.ShowBorder = true;
 			this.okButton.Size = new System.Drawing.Size(124, 35);
+			this.okButton.StylizeImage = false;
 			this.okButton.TabIndex = 8;
 			this.okButton.Text = "Update Page";
 			this.okButton.ThemedBack = null;
@@ -685,6 +688,7 @@
 			this.selectButton.Padding = new System.Windows.Forms.Padding(4, 0, 0, 0);
 			this.selectButton.ShowBorder = true;
 			this.selectButton.Size = new System.Drawing.Size(140, 35);
+			this.selectButton.StylizeImage = true;
 			this.selectButton.TabIndex = 3;
 			this.selectButton.Text = "Select All";
 			this.selectButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -749,6 +753,7 @@
 			this.findButton.Name = "findButton";
 			this.findButton.ShowBorder = true;
 			this.findButton.Size = new System.Drawing.Size(66, 35);
+			this.findButton.StylizeImage = false;
 			this.findButton.TabIndex = 1;
 			this.findButton.Text = "🔎";
 			this.findButton.ThemedBack = null;

@@ -39,51 +39,59 @@ namespace River.OneMoreAddIn.Commands
 			// okButton
 			// 
 			this.okButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+			this.okButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(231)))), ((int)(((byte)(231)))));
 			this.okButton.DialogResult = System.Windows.Forms.DialogResult.OK;
+			this.okButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.okButton.ImageOver = null;
 			this.okButton.Location = new System.Drawing.Point(186, 152);
 			this.okButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.okButton.Name = "okButton";
-			this.okButton.ThemedBack = null;
-			this.okButton.ThemedFore = null;
 			this.okButton.ShowBorder = true;
 			this.okButton.Size = new System.Drawing.Size(112, 35);
 			this.okButton.TabIndex = 4;
 			this.okButton.Text = "OK";
+			this.okButton.ThemedBack = null;
+			this.okButton.ThemedFore = null;
 			this.okButton.UseVisualStyleBackColor = true;
 			// 
 			// cancelButton
 			// 
 			this.cancelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+			this.cancelButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(231)))), ((int)(((byte)(231)))));
 			this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+			this.cancelButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.cancelButton.ImageOver = null;
 			this.cancelButton.Location = new System.Drawing.Point(308, 152);
 			this.cancelButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.cancelButton.Name = "cancelButton";
-			this.cancelButton.ThemedBack = null;
-			this.cancelButton.ThemedFore = null;
 			this.cancelButton.ShowBorder = true;
 			this.cancelButton.Size = new System.Drawing.Size(112, 35);
 			this.cancelButton.TabIndex = 3;
 			this.cancelButton.Text = "Cancel";
+			this.cancelButton.ThemedBack = null;
+			this.cancelButton.ThemedFore = null;
 			this.cancelButton.UseVisualStyleBackColor = true;
 			// 
 			// copyHeaderBox
 			// 
-			this.copyHeaderBox.Location = new System.Drawing.Point(20, 37);
+			this.copyHeaderBox.Cursor = System.Windows.Forms.Cursors.Hand;
+			this.copyHeaderBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+			this.copyHeaderBox.Location = new System.Drawing.Point(27, 37);
 			this.copyHeaderBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.copyHeaderBox.Name = "copyHeaderBox";
-			this.copyHeaderBox.Size = new System.Drawing.Size(229, 24);
+			this.copyHeaderBox.Size = new System.Drawing.Size(231, 25);
 			this.copyHeaderBox.TabIndex = 5;
 			this.copyHeaderBox.Text = "Duplicate table header row";
 			this.copyHeaderBox.UseVisualStyleBackColor = true;
 			// 
 			// fixedColsBox
 			// 
-			this.fixedColsBox.Location = new System.Drawing.Point(20, 72);
+			this.fixedColsBox.Cursor = System.Windows.Forms.Cursors.Hand;
+			this.fixedColsBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+			this.fixedColsBox.Location = new System.Drawing.Point(27, 72);
 			this.fixedColsBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.fixedColsBox.Name = "fixedColsBox";
-			this.fixedColsBox.Size = new System.Drawing.Size(250, 24);
+			this.fixedColsBox.Size = new System.Drawing.Size(252, 25);
 			this.fixedColsBox.TabIndex = 6;
 			this.fixedColsBox.Text = "Set all columns as fixed-width";
 			this.fixedColsBox.UseVisualStyleBackColor = true;
@@ -93,7 +101,7 @@ namespace River.OneMoreAddIn.Commands
 			this.AcceptButton = this.okButton;
 			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.BackColor = System.Drawing.SystemColors.Control;
+			this.BackColor = System.Drawing.SystemColors.ControlLight;
 			this.CancelButton = this.cancelButton;
 			this.ClientSize = new System.Drawing.Size(440, 208);
 			this.Controls.Add(this.fixedColsBox);

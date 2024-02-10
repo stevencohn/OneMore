@@ -53,33 +53,37 @@
 			// okButton
 			// 
 			this.okButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+			this.okButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(231)))), ((int)(((byte)(231)))));
 			this.okButton.DialogResult = System.Windows.Forms.DialogResult.OK;
 			this.okButton.Enabled = false;
+			this.okButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.okButton.ImageOver = null;
 			this.okButton.Location = new System.Drawing.Point(262, 432);
 			this.okButton.Name = "okButton";
-			this.okButton.ThemedBack = null;
-			this.okButton.ThemedFore = null;
 			this.okButton.ShowBorder = true;
 			this.okButton.Size = new System.Drawing.Size(100, 38);
 			this.okButton.TabIndex = 0;
 			this.okButton.Text = "OK";
+			this.okButton.ThemedBack = null;
+			this.okButton.ThemedFore = null;
 			this.okButton.UseVisualStyleBackColor = true;
 			this.okButton.Click += new System.EventHandler(this.okButton_Click);
 			// 
 			// cancelButton
 			// 
 			this.cancelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+			this.cancelButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(231)))), ((int)(((byte)(231)))));
 			this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+			this.cancelButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.cancelButton.ImageOver = null;
 			this.cancelButton.Location = new System.Drawing.Point(368, 432);
 			this.cancelButton.Name = "cancelButton";
-			this.cancelButton.ThemedBack = null;
-			this.cancelButton.ThemedFore = null;
 			this.cancelButton.ShowBorder = true;
 			this.cancelButton.Size = new System.Drawing.Size(100, 38);
 			this.cancelButton.TabIndex = 1;
 			this.cancelButton.Text = "Cancel";
+			this.cancelButton.ThemedBack = null;
+			this.cancelButton.ThemedFore = null;
 			this.cancelButton.UseVisualStyleBackColor = true;
 			// 
 			// numberingGroup
@@ -102,10 +106,13 @@
 			// 
 			// cleanBox
 			// 
+			this.cleanBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(231)))), ((int)(((byte)(231)))));
+			this.cleanBox.Cursor = System.Windows.Forms.Cursors.Hand;
+			this.cleanBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.cleanBox.Location = new System.Drawing.Point(26, 178);
 			this.cleanBox.Name = "cleanBox";
 			this.cleanBox.Padding = new System.Windows.Forms.Padding(0, 9, 0, 0);
-			this.cleanBox.Size = new System.Drawing.Size(301, 24);
+			this.cleanBox.Size = new System.Drawing.Size(302, 25);
 			this.cleanBox.TabIndex = 3;
 			this.cleanBox.Text = "Remove/cleanup existing numbering";
 			this.cleanBox.UseVisualStyleBackColor = true;
@@ -118,19 +125,20 @@
 			this.alphaDemoBox.ForeColor = System.Drawing.SystemColors.ControlText;
 			this.alphaDemoBox.Location = new System.Drawing.Point(82, 98);
 			this.alphaDemoBox.Name = "alphaDemoBox";
-			this.alphaDemoBox.ThemedBack = "ControlLightLight";
-			this.alphaDemoBox.ThemedFore = "ControlText";
 			this.alphaDemoBox.Size = new System.Drawing.Size(128, 67);
 			this.alphaDemoBox.TabIndex = 15;
 			this.alphaDemoBox.Text = "1.\r\n   a.\r\n      i.";
+			this.alphaDemoBox.ThemedBack = "ControlLightLight";
+			this.alphaDemoBox.ThemedFore = "ControlText";
 			// 
 			// alphaRadio
 			// 
 			this.alphaRadio.Checked = true;
+			this.alphaRadio.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.alphaRadio.Enabled = false;
 			this.alphaRadio.Location = new System.Drawing.Point(56, 69);
 			this.alphaRadio.Name = "alphaRadio";
-			this.alphaRadio.Size = new System.Drawing.Size(141, 24);
+			this.alphaRadio.Size = new System.Drawing.Size(142, 25);
 			this.alphaRadio.TabIndex = 1;
 			this.alphaRadio.TabStop = true;
 			this.alphaRadio.Text = "Alpha-numeric";
@@ -143,28 +151,32 @@
 			this.numDemoBox.ForeColor = System.Drawing.SystemColors.ControlText;
 			this.numDemoBox.Location = new System.Drawing.Point(290, 98);
 			this.numDemoBox.Name = "numDemoBox";
-			this.numDemoBox.ThemedBack = "ControlLightLight";
-			this.numDemoBox.ThemedFore = "ControlText";
 			this.numDemoBox.Size = new System.Drawing.Size(128, 67);
 			this.numDemoBox.TabIndex = 13;
 			this.numDemoBox.Text = "1.\r\n   1.1.\r\n      1.1.1.";
+			this.numDemoBox.ThemedBack = "ControlLightLight";
+			this.numDemoBox.ThemedFore = "ControlText";
 			// 
 			// numRadio
 			// 
+			this.numRadio.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.numRadio.Enabled = false;
 			this.numRadio.Location = new System.Drawing.Point(261, 69);
 			this.numRadio.Name = "numRadio";
-			this.numRadio.Size = new System.Drawing.Size(96, 24);
+			this.numRadio.Size = new System.Drawing.Size(97, 25);
 			this.numRadio.TabIndex = 2;
 			this.numRadio.Text = "Numeric";
 			this.numRadio.UseVisualStyleBackColor = true;
 			// 
 			// numberingBox
 			// 
+			this.numberingBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(231)))), ((int)(((byte)(231)))));
+			this.numberingBox.Cursor = System.Windows.Forms.Cursors.Hand;
+			this.numberingBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.numberingBox.Location = new System.Drawing.Point(26, 34);
 			this.numberingBox.Name = "numberingBox";
 			this.numberingBox.Padding = new System.Windows.Forms.Padding(0, 5, 0, 0);
-			this.numberingBox.Size = new System.Drawing.Size(149, 24);
+			this.numberingBox.Size = new System.Drawing.Size(150, 25);
 			this.numberingBox.TabIndex = 0;
 			this.numberingBox.Text = "Add Numbering";
 			this.tooltip.SetToolTip(this.numberingBox, "Applies to both standard and custom Headings");
@@ -189,10 +201,13 @@
 			// 
 			// removeTagsBox
 			// 
+			this.removeTagsBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(231)))), ((int)(((byte)(231)))));
+			this.removeTagsBox.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.removeTagsBox.Enabled = false;
+			this.removeTagsBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.removeTagsBox.Location = new System.Drawing.Point(190, 114);
 			this.removeTagsBox.Name = "removeTagsBox";
-			this.removeTagsBox.Size = new System.Drawing.Size(131, 24);
+			this.removeTagsBox.Size = new System.Drawing.Size(132, 25);
 			this.removeTagsBox.TabIndex = 3;
 			this.removeTagsBox.Text = "Remove tags";
 			this.removeTagsBox.UseVisualStyleBackColor = true;
@@ -211,25 +226,29 @@
 			// 
 			this.tagButton.BackColor = System.Drawing.SystemColors.Window;
 			this.tagButton.Enabled = false;
+			this.tagButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.tagButton.ImageOver = null;
 			this.tagButton.Location = new System.Drawing.Point(104, 108);
 			this.tagButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.tagButton.Name = "tagButton";
-			this.tagButton.ThemedBack = null;
-			this.tagButton.ThemedFore = null;
 			this.tagButton.ShowBorder = true;
 			this.tagButton.Size = new System.Drawing.Size(60, 38);
 			this.tagButton.TabIndex = 2;
 			this.tagButton.Text = "?";
 			this.tagButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+			this.tagButton.ThemedBack = null;
+			this.tagButton.ThemedFore = null;
 			this.tagButton.UseVisualStyleBackColor = false;
 			this.tagButton.Click += new System.EventHandler(this.tagButton_Click);
 			// 
 			// indentTagBox
 			// 
+			this.indentTagBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(231)))), ((int)(((byte)(231)))));
+			this.indentTagBox.Cursor = System.Windows.Forms.Cursors.Hand;
+			this.indentTagBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.indentTagBox.Location = new System.Drawing.Point(26, 74);
 			this.indentTagBox.Name = "indentTagBox";
-			this.indentTagBox.Size = new System.Drawing.Size(377, 24);
+			this.indentTagBox.Size = new System.Drawing.Size(378, 25);
 			this.indentTagBox.TabIndex = 1;
 			this.indentTagBox.Text = "Indent only below tagged headings/paragraphs";
 			this.tooltip.SetToolTip(this.indentTagBox, "Indents content below only tagged headings or non-heading paragraphs");
@@ -238,10 +257,13 @@
 			// 
 			// indentBox
 			// 
+			this.indentBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(231)))), ((int)(((byte)(231)))));
+			this.indentBox.Cursor = System.Windows.Forms.Cursors.Hand;
+			this.indentBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.indentBox.Location = new System.Drawing.Point(26, 33);
 			this.indentBox.Name = "indentBox";
 			this.indentBox.Padding = new System.Windows.Forms.Padding(0, 9, 0, 0);
-			this.indentBox.Size = new System.Drawing.Size(258, 24);
+			this.indentBox.Size = new System.Drawing.Size(259, 25);
 			this.indentBox.TabIndex = 0;
 			this.indentBox.Text = "Indent content below headings";
 			this.indentBox.UseVisualStyleBackColor = true;
@@ -252,7 +274,7 @@
 			this.AcceptButton = this.okButton;
 			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.BackColor = System.Drawing.SystemColors.Control;
+			this.BackColor = System.Drawing.SystemColors.ControlLight;
 			this.CancelButton = this.cancelButton;
 			this.ClientSize = new System.Drawing.Size(482, 483);
 			this.Controls.Add(this.indentationsGroup);

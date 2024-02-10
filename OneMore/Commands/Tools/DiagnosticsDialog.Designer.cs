@@ -39,6 +39,7 @@
 			// okButton
 			// 
 			this.okButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+			this.okButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(231)))), ((int)(((byte)(231)))));
 			this.okButton.DialogResult = System.Windows.Forms.DialogResult.OK;
 			this.okButton.ForeColor = System.Drawing.SystemColors.ControlText;
 			this.okButton.ImageOver = null;
@@ -48,6 +49,8 @@
 			this.okButton.Size = new System.Drawing.Size(140, 42);
 			this.okButton.TabIndex = 5;
 			this.okButton.Text = "OK";
+			this.okButton.ThemedBack = null;
+			this.okButton.ThemedFore = null;
 			this.okButton.UseVisualStyleBackColor = true;
 			this.okButton.Click += new System.EventHandler(this.CloseWindow);
 			// 
@@ -71,9 +74,13 @@
 			this.linkLabel.Location = new System.Drawing.Point(28, 57);
 			this.linkLabel.Name = "linkLabel";
 			this.linkLabel.Size = new System.Drawing.Size(80, 20);
+			this.linkLabel.StrictColors = false;
 			this.linkLabel.TabIndex = 7;
 			this.linkLabel.TabStop = true;
 			this.linkLabel.Text = "linkLabel1";
+			this.linkLabel.ThemedBack = null;
+			this.linkLabel.ThemedFore = null;
+			this.linkLabel.VisitedLinkColor = System.Drawing.Color.MediumOrchid;
 			this.linkLabel.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.ShowLogOnLinkClicked);
 			// 
 			// timer
@@ -86,7 +93,7 @@
 			this.AcceptButton = this.okButton;
 			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.BackColor = System.Drawing.SystemColors.Control;
+			this.BackColor = System.Drawing.SystemColors.ControlLight;
 			this.CancelButton = this.okButton;
 			this.ClientSize = new System.Drawing.Size(728, 154);
 			this.Controls.Add(this.linkLabel);

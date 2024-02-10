@@ -30,7 +30,7 @@
 		{
 			this.components = new System.ComponentModel.Container();
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FavoritesDialog));
-			this.gridView = new System.Windows.Forms.DataGridView();
+			this.gridView = new UI.MoreDataGridView();
 			this.nameColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.locationColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.buttonPanel = new System.Windows.Forms.Panel();
@@ -95,7 +95,7 @@
 			// 
 			// buttonPanel
 			// 
-			this.buttonPanel.BackColor = System.Drawing.SystemColors.Control;
+			this.buttonPanel.BackColor = System.Drawing.SystemColors.ControlLight;
 			this.buttonPanel.Controls.Add(this.goButton);
 			this.buttonPanel.Controls.Add(this.cancelButton);
 			this.buttonPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
@@ -109,7 +109,9 @@
 			// goButton
 			// 
 			this.goButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.goButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(231)))), ((int)(((byte)(231)))));
 			this.goButton.DialogResult = System.Windows.Forms.DialogResult.OK;
+			this.goButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.goButton.ImageOver = null;
 			this.goButton.Location = new System.Drawing.Point(518, 11);
 			this.goButton.Name = "goButton";
@@ -117,13 +119,17 @@
 			this.goButton.Size = new System.Drawing.Size(120, 38);
 			this.goButton.TabIndex = 0;
 			this.goButton.Text = "Go";
+			this.goButton.ThemedBack = null;
+			this.goButton.ThemedFore = null;
 			this.goButton.UseVisualStyleBackColor = true;
 			this.goButton.Click += new System.EventHandler(this.ChooseByClick);
 			// 
 			// cancelButton
 			// 
 			this.cancelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.cancelButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(231)))), ((int)(((byte)(231)))));
 			this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+			this.cancelButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.cancelButton.ImageOver = null;
 			this.cancelButton.Location = new System.Drawing.Point(644, 11);
 			this.cancelButton.Name = "cancelButton";
@@ -131,11 +137,13 @@
 			this.cancelButton.Size = new System.Drawing.Size(120, 38);
 			this.cancelButton.TabIndex = 1;
 			this.cancelButton.Text = "Cancel";
+			this.cancelButton.ThemedBack = null;
+			this.cancelButton.ThemedFore = null;
 			this.cancelButton.UseVisualStyleBackColor = true;
 			// 
 			// searchPanel
 			// 
-			this.searchPanel.BackColor = System.Drawing.SystemColors.Control;
+			this.searchPanel.BackColor = System.Drawing.SystemColors.ControlLight;
 			this.searchPanel.Controls.Add(this.menuButton);
 			this.searchPanel.Controls.Add(this.searchBox);
 			this.searchPanel.Controls.Add(this.searchLabel);
@@ -150,6 +158,7 @@
 			// menuButton
 			// 
 			this.menuButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.menuButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(231)))), ((int)(((byte)(231)))));
 			this.menuButton.FlatAppearance.BorderSize = 0;
 			this.menuButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.menuButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -161,6 +170,8 @@
 			this.menuButton.Size = new System.Drawing.Size(50, 38);
 			this.menuButton.TabIndex = 1;
 			this.menuButton.Text = "•••";
+			this.menuButton.ThemedBack = null;
+			this.menuButton.ThemedFore = null;
 			this.menuButton.UseVisualStyleBackColor = true;
 			this.menuButton.Click += new System.EventHandler(this.ShowMenu);
 			// 
@@ -174,6 +185,8 @@
 			this.searchBox.Name = "searchBox";
 			this.searchBox.Size = new System.Drawing.Size(566, 28);
 			this.searchBox.TabIndex = 0;
+			this.searchBox.ThemedBack = null;
+			this.searchBox.ThemedFore = null;
 			this.searchBox.KeyUp += new System.Windows.Forms.KeyEventHandler(this.FilterRowOnKeyUp);
 			// 
 			// searchLabel
@@ -259,7 +272,7 @@
 		}
 		#endregion
 
-		private System.Windows.Forms.DataGridView gridView;
+		private UI.MoreDataGridView gridView;
 		private System.Windows.Forms.DataGridViewTextBoxColumn nameColumn;
 		private System.Windows.Forms.DataGridViewTextBoxColumn locationColumn;
 		private System.Windows.Forms.Panel buttonPanel;

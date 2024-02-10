@@ -1,5 +1,5 @@
 ﻿//************************************************************************************************
-// Copyright © 2020 Steven M Cohn.  All rights reserved.
+// Copyright © 2020 Steven M Cohn. All rights reserved.
 //************************************************************************************************
 
 namespace River.OneMoreAddIn.UI
@@ -9,7 +9,7 @@ namespace River.OneMoreAddIn.UI
 	using System.Runtime.InteropServices;
 	using System.Windows.Forms;
 	using System.Xml.Linq;
-	using Resx = River.OneMoreAddIn.Properties.Resources;
+	using Resx = Properties.Resources;
 
 
 	/// <summary>
@@ -17,13 +17,16 @@ namespace River.OneMoreAddIn.UI
 	/// notebooks, section groups, and sections, and possibly checkboxes for pages. Pages can also
 	/// be hyperlinked.
 	/// </summary>
-	internal class HierarchyView : TreeView
+	internal class HierarchyView : TreeView, ILoadControl
 	{
 		private const int CheckboxMargin = 4;   // space between checkbox and label
 		private const int ImageWidth = 28;      // width of image plus margins
 
 		private readonly IntPtr hcursor;
 		private readonly IntPtr pcursor;
+		private Color backColor;
+		private Color foreColor;
+		private Color hotColor;
 
 
 		/// <summary>
@@ -84,7 +87,9 @@ namespace River.OneMoreAddIn.UI
 			{
 				node = new HierarchyNode(root.Attribute("name").Value, root)
 				{
-					Hyperlinked = true
+					Hyperlinked = true,
+					BackColor = backColor,
+					ForeColor = foreColor
 				};
 
 				nodes.Add(node);
@@ -100,7 +105,12 @@ namespace River.OneMoreAddIn.UI
 				return;
 			}
 
-			node = new HierarchyNode(root.Attribute("name")?.Value, root);
+			node = new HierarchyNode(root.Attribute("name")?.Value, root)
+			{
+				BackColor = backColor,
+				ForeColor = foreColor
+			};
+
 			nodes.Add(node);
 
 			foreach (var element in root.Elements())
@@ -108,6 +118,16 @@ namespace River.OneMoreAddIn.UI
 				DisplayResults(element, ns, node.Nodes);
 			}
 		}
+
+
+		void ILoadControl.OnLoad()
+		{
+			var manager = ThemeManager.Instance;
+			backColor = manager.GetColor("ControlLight");
+			foreColor = manager.GetColor("ControlText");
+			hotColor = manager.GetColor("HotTrack");
+		}
+
 
 		#region Results XML
 		/*
@@ -257,7 +277,8 @@ namespace River.OneMoreAddIn.UI
 			// done regardless of selection since mousedown on unselected will still draw background
 
 			// expand bounds to fill gap between checkbox and label
-			e.Graphics.FillRectangle(SystemBrushes.Window,
+			using var fillBrush = new SolidBrush(e.Node.BackColor);
+			e.Graphics.FillRectangle(fillBrush,
 				bounds.Left - CheckboxMargin, bounds.Top,
 				bounds.Width + CheckboxMargin, bounds.Height);
 
@@ -288,24 +309,34 @@ namespace River.OneMoreAddIn.UI
 
 			// draw the label...
 
-			Brush brush;
-			Font font;
+			Brush brush = null;
+			Font font = null;
+			var hot = ((e.State & TreeNodeStates.Hot) != 0) && (node?.Hyperlinked == true);
 
-			if (((e.State & TreeNodeStates.Hot) != 0) && (node?.Hyperlinked == true))
+			try
 			{
-				brush = SystemBrushes.HotTrack;
-				font = new Font(e.Node.NodeFont ?? Font, FontStyle.Underline);
-				//Cursor = Cursors.Hand;
-			}
-			else
-			{
-				brush = SystemBrushes.ControlText;
-				font = e.Node.NodeFont ?? Font;
-				//Cursor = Cursors.Default;
-			}
+				if (hot)
+				{
+					brush = new SolidBrush(hotColor);
+					font = new Font(e.Node.NodeFont ?? Font, FontStyle.Underline);
+				}
+				else
+				{
+					brush = new SolidBrush(e.Node.ForeColor);
+					font = e.Node.NodeFont ?? Font;
+				}
 
-			var left = node?.HierarchyLevel < HierarchyLevels.Page ? bounds.Left + 20 : bounds.Left;
-			e.Graphics.DrawString(e.Node.Text, font, brush, left, bounds.Top);
+				var left = node?.HierarchyLevel < HierarchyLevels.Page ? bounds.Left + 20 : bounds.Left;
+				e.Graphics.DrawString(e.Node.Text, font, brush, left, bounds.Top);
+			}
+			finally
+			{
+				brush?.Dispose();
+				if (hot)
+				{
+					font?.Dispose();
+				}
+			}
 		}
 
 

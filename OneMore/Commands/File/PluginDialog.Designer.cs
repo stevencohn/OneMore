@@ -72,12 +72,12 @@
 			this.cancelButton.ImageOver = null;
 			this.cancelButton.Location = new System.Drawing.Point(640, 503);
 			this.cancelButton.Name = "cancelButton";
-			this.cancelButton.ThemedBack = null;
-			this.cancelButton.ThemedFore = null;
 			this.cancelButton.ShowBorder = true;
 			this.cancelButton.Size = new System.Drawing.Size(120, 35);
 			this.cancelButton.TabIndex = 12;
 			this.cancelButton.Text = "Cancel";
+			this.cancelButton.ThemedBack = null;
+			this.cancelButton.ThemedFore = null;
 			this.cancelButton.UseVisualStyleBackColor = true;
 			// 
 			// okButton
@@ -90,12 +90,12 @@
 			this.okButton.ImageOver = null;
 			this.okButton.Location = new System.Drawing.Point(514, 503);
 			this.okButton.Name = "okButton";
-			this.okButton.ThemedBack = null;
-			this.okButton.ThemedFore = null;
 			this.okButton.ShowBorder = true;
 			this.okButton.Size = new System.Drawing.Size(120, 35);
 			this.okButton.TabIndex = 11;
 			this.okButton.Text = "Run";
+			this.okButton.ThemedBack = null;
+			this.okButton.ThemedFore = null;
 			this.okButton.UseVisualStyleBackColor = true;
 			this.okButton.Click += new System.EventHandler(this.OK);
 			// 
@@ -114,10 +114,10 @@
 			this.cmdBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
 			this.cmdBox.Location = new System.Drawing.Point(140, 123);
 			this.cmdBox.Name = "cmdBox";
-			this.cmdBox.ThemedBack = null;
-			this.cmdBox.ThemedFore = null;
 			this.cmdBox.Size = new System.Drawing.Size(578, 26);
 			this.cmdBox.TabIndex = 2;
+			this.cmdBox.ThemedBack = null;
+			this.cmdBox.ThemedFore = null;
 			this.cmdBox.TextChanged += new System.EventHandler(this.ChangeText);
 			// 
 			// browseButton
@@ -127,12 +127,12 @@
 			this.browseButton.ImageOver = null;
 			this.browseButton.Location = new System.Drawing.Point(724, 122);
 			this.browseButton.Name = "browseButton";
-			this.browseButton.ThemedBack = null;
-			this.browseButton.ThemedFore = null;
 			this.browseButton.ShowBorder = true;
 			this.browseButton.Size = new System.Drawing.Size(36, 31);
 			this.browseButton.TabIndex = 3;
 			this.browseButton.Text = "...";
+			this.browseButton.ThemedBack = null;
+			this.browseButton.ThemedFore = null;
 			this.browseButton.UseVisualStyleBackColor = true;
 			this.browseButton.Click += new System.EventHandler(this.BrowsePath);
 			// 
@@ -165,10 +165,10 @@
 			this.pageNameBox.Enabled = false;
 			this.pageNameBox.Location = new System.Drawing.Point(31, 85);
 			this.pageNameBox.Name = "pageNameBox";
-			this.pageNameBox.ThemedBack = null;
-			this.pageNameBox.ThemedFore = null;
 			this.pageNameBox.Size = new System.Drawing.Size(469, 26);
 			this.pageNameBox.TabIndex = 8;
+			this.pageNameBox.ThemedBack = null;
+			this.pageNameBox.ThemedFore = null;
 			this.pageNameBox.TextChanged += new System.EventHandler(this.ChangeText);
 			// 
 			// childBox
@@ -190,10 +190,10 @@
 			this.argsBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
 			this.argsBox.Location = new System.Drawing.Point(140, 169);
 			this.argsBox.Name = "argsBox";
-			this.argsBox.ThemedBack = null;
-			this.argsBox.ThemedFore = null;
 			this.argsBox.Size = new System.Drawing.Size(578, 26);
 			this.argsBox.TabIndex = 4;
+			this.argsBox.ThemedBack = null;
+			this.argsBox.ThemedFore = null;
 			this.argsBox.TextChanged += new System.EventHandler(this.ChangeText);
 			// 
 			// argsLabel
@@ -213,12 +213,12 @@
 			this.browseArgsButton.ImageOver = null;
 			this.browseArgsButton.Location = new System.Drawing.Point(724, 168);
 			this.browseArgsButton.Name = "browseArgsButton";
-			this.browseArgsButton.ThemedBack = null;
-			this.browseArgsButton.ThemedFore = null;
 			this.browseArgsButton.ShowBorder = true;
 			this.browseArgsButton.Size = new System.Drawing.Size(36, 31);
 			this.browseArgsButton.TabIndex = 5;
 			this.browseArgsButton.Text = "...";
+			this.browseArgsButton.ThemedBack = null;
+			this.browseArgsButton.ThemedFore = null;
 			this.browseArgsButton.UseVisualStyleBackColor = true;
 			this.browseArgsButton.Click += new System.EventHandler(this.BrowsePath);
 			// 
@@ -231,12 +231,12 @@
 			this.saveButton.ImageOver = null;
 			this.saveButton.Location = new System.Drawing.Point(388, 503);
 			this.saveButton.Name = "saveButton";
-			this.saveButton.ThemedBack = null;
-			this.saveButton.ThemedFore = null;
 			this.saveButton.ShowBorder = true;
 			this.saveButton.Size = new System.Drawing.Size(120, 35);
 			this.saveButton.TabIndex = 10;
 			this.saveButton.Text = "Save";
+			this.saveButton.ThemedBack = null;
+			this.saveButton.ThemedFore = null;
 			this.saveButton.UseVisualStyleBackColor = true;
 			this.saveButton.Click += new System.EventHandler(this.SavePlugin);
 			// 
@@ -277,10 +277,10 @@
 			this.nameBox.Location = new System.Drawing.Point(140, 78);
 			this.nameBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.nameBox.Name = "nameBox";
-			this.nameBox.ThemedBack = null;
-			this.nameBox.ThemedFore = null;
 			this.nameBox.Size = new System.Drawing.Size(578, 26);
 			this.nameBox.TabIndex = 1;
+			this.nameBox.ThemedBack = null;
+			this.nameBox.ThemedFore = null;
 			this.nameBox.TextChanged += new System.EventHandler(this.ChangeText);
 			// 
 			// errorBox
@@ -397,6 +397,7 @@
 			this.AcceptButton = this.okButton;
 			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+			this.BackColor = System.Drawing.SystemColors.ControlLight;
 			this.CancelButton = this.cancelButton;
 			this.ClientSize = new System.Drawing.Size(778, 559);
 			this.Controls.Add(this.sectionGroup);

@@ -117,10 +117,17 @@ namespace River.OneMoreAddIn.UI
 
 			// apply colors...
 
-			if (DarkMode && container is MoreForm form)
+			if (DarkMode && (container is MoreForm || container is MoreUserControl))
 			{
 				SetWindowTheme(container);
-				form.OnThemeChange();
+				if (container is MoreForm form)
+				{
+					form.OnThemeChange();
+				}
+				else
+				{
+					((MoreUserControl)container).OnThemeChange();
+				}
 			}
 
 			Colorize(container);

@@ -64,12 +64,9 @@ namespace River.OneMoreAddIn.Commands
 				return;
 			}
 
-			var result = MessageBox.Show(
+			var result = UI.MoreMessageBox.Show(owner,
 				Resx.GetImagesCommand_Cite,
-				Resx.OneMoreTab_Label,
-				MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question,
-				MessageBoxDefaultButton.Button2,
-				MessageBoxOptions.DefaultDesktopOnly);
+				MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
 
 			if (result == DialogResult.Cancel)
 			{

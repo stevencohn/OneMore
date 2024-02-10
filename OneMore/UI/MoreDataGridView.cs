@@ -46,7 +46,7 @@ namespace River.OneMoreAddIn.UI
 
 			EnableHeadersVisualStyles = false;
 			ColumnHeadersDefaultCellStyle.BackColor = manager.GetColor("ControlDarkDark");
-			ColumnHeadersDefaultCellStyle.ForeColor = fore;
+			ColumnHeadersDefaultCellStyle.ForeColor = manager.GetColor("DarkText");
 
 			RowsDefaultCellStyle.BackColor = back;
 			RowsDefaultCellStyle.ForeColor = fore;

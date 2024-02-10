@@ -84,23 +84,23 @@ namespace River.OneMoreAddIn.Commands
 			// 
 			// byLinksBox
 			// 
-			this.byLinksBox.AutoSize = true;
+			this.byLinksBox.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.byLinksBox.Location = new System.Drawing.Point(20, 111);
 			this.byLinksBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.byLinksBox.Name = "byLinksBox";
-			this.byLinksBox.Size = new System.Drawing.Size(145, 24);
+			this.byLinksBox.Size = new System.Drawing.Size(154, 25);
 			this.byLinksBox.TabIndex = 1;
 			this.byLinksBox.Text = "Page (wiki) links";
 			this.byLinksBox.UseVisualStyleBackColor = true;
 			// 
 			// byHeading1Box
 			// 
-			this.byHeading1Box.AutoSize = true;
 			this.byHeading1Box.Checked = true;
+			this.byHeading1Box.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.byHeading1Box.Location = new System.Drawing.Point(20, 40);
 			this.byHeading1Box.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.byHeading1Box.Name = "byHeading1Box";
-			this.byHeading1Box.Size = new System.Drawing.Size(107, 24);
+			this.byHeading1Box.Size = new System.Drawing.Size(110, 25);
 			this.byHeading1Box.TabIndex = 0;
 			this.byHeading1Box.TabStop = true;
 			this.byHeading1Box.Text = "Heading 1";
@@ -109,42 +109,48 @@ namespace River.OneMoreAddIn.Commands
 			// cancelButton
 			// 
 			this.cancelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+			this.cancelButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(231)))), ((int)(((byte)(231)))));
 			this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+			this.cancelButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.cancelButton.ImageOver = null;
 			this.cancelButton.Location = new System.Drawing.Point(429, 372);
 			this.cancelButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.cancelButton.Name = "cancelButton";
-			this.cancelButton.ThemedBack = null;
-			this.cancelButton.ThemedFore = null;
 			this.cancelButton.ShowBorder = true;
 			this.cancelButton.Size = new System.Drawing.Size(112, 35);
 			this.cancelButton.TabIndex = 1;
 			this.cancelButton.Text = "Cancel";
+			this.cancelButton.ThemedBack = null;
+			this.cancelButton.ThemedFore = null;
 			this.cancelButton.UseVisualStyleBackColor = true;
 			// 
 			// okButton
 			// 
 			this.okButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+			this.okButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(231)))), ((int)(((byte)(231)))));
 			this.okButton.DialogResult = System.Windows.Forms.DialogResult.OK;
+			this.okButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.okButton.ImageOver = null;
 			this.okButton.Location = new System.Drawing.Point(308, 372);
 			this.okButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.okButton.Name = "okButton";
-			this.okButton.ThemedBack = null;
-			this.okButton.ThemedFore = null;
 			this.okButton.ShowBorder = true;
 			this.okButton.Size = new System.Drawing.Size(112, 35);
 			this.okButton.TabIndex = 2;
 			this.okButton.Text = "OK";
+			this.okButton.ThemedBack = null;
+			this.okButton.ThemedFore = null;
 			this.okButton.UseVisualStyleBackColor = true;
 			// 
 			// taggedBox
 			// 
-			this.taggedBox.AutoSize = true;
+			this.taggedBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(231)))), ((int)(((byte)(231)))));
+			this.taggedBox.Cursor = System.Windows.Forms.Cursors.Hand;
+			this.taggedBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.taggedBox.Location = new System.Drawing.Point(20, 40);
 			this.taggedBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.taggedBox.Name = "taggedBox";
-			this.taggedBox.Size = new System.Drawing.Size(310, 24);
+			this.taggedBox.Size = new System.Drawing.Size(321, 25);
 			this.taggedBox.TabIndex = 4;
 			this.taggedBox.Text = "Apply only to tagged headings and lnks";
 			this.taggedBox.UseVisualStyleBackColor = true;
@@ -180,17 +186,18 @@ namespace River.OneMoreAddIn.Commands
 			// 
 			this.tagButton.BackColor = System.Drawing.SystemColors.Window;
 			this.tagButton.Enabled = false;
+			this.tagButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.tagButton.ImageOver = null;
 			this.tagButton.Location = new System.Drawing.Point(100, 75);
 			this.tagButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.tagButton.Name = "tagButton";
-			this.tagButton.ThemedBack = null;
-			this.tagButton.ThemedFore = null;
 			this.tagButton.ShowBorder = true;
 			this.tagButton.Size = new System.Drawing.Size(60, 38);
 			this.tagButton.TabIndex = 19;
 			this.tagButton.Text = "?";
 			this.tagButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+			this.tagButton.ThemedBack = null;
+			this.tagButton.ThemedFore = null;
 			this.tagButton.UseVisualStyleBackColor = false;
 			this.tagButton.Click += new System.EventHandler(this.SetTag);
 			// 
@@ -199,7 +206,7 @@ namespace River.OneMoreAddIn.Commands
 			this.AcceptButton = this.okButton;
 			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.BackColor = System.Drawing.SystemColors.Control;
+			this.BackColor = System.Drawing.SystemColors.ControlLight;
 			this.CancelButton = this.cancelButton;
 			this.ClientSize = new System.Drawing.Size(561, 428);
 			this.Controls.Add(this.filterGroup);

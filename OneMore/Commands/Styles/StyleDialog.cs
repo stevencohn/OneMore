@@ -808,8 +808,9 @@ namespace River.OneMoreAddIn.Commands
 
 		private void DeleteStyle(object sender, EventArgs e)
 		{
-			var result = MessageBox.Show(this, "Delete this custom style?", "Confirm",
-				MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
+			var result = UI.MoreMessageBox.Show(this,
+				"Delete this custom style?",
+				MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
 			if (result == DialogResult.Yes)
 			{
