@@ -1,4 +1,8 @@
-﻿namespace River.OneMoreAddIn.UI
+﻿//************************************************************************************************
+// Copyright © 2017 Steven M Cohn. All rights reserved.
+//************************************************************************************************	
+
+namespace River.OneMoreAddIn.UI
 {
 	using System.Windows.Forms;
 

@@ -1011,7 +1011,6 @@
     </Compile>
     <Compile Include="Helpers\Extensions\ExceptionExtensions.cs" />
     <Compile Include="Helpers\Extensions\BitmapExtensions.cs" />
-    <Compile Include="Helpers\Extensions\FormExtensions.cs" />
     <Compile Include="Helpers\Extensions\StringExtensions.cs" />
     <Compile Include="Commands\Tools\ShowXmlCommand.cs" />
     <Compile Include="Models\TableProperties.cs" />

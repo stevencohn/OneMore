@@ -1,5 +1,5 @@
 ﻿//************************************************************************************************
-// Copyright © 2020 Steven M Cohn.  All rights reserved.
+// Copyright © 2020 Steven M Cohn. All rights reserved.
 //************************************************************************************************
 
 namespace River.OneMoreAddIn
@@ -55,6 +55,9 @@ namespace River.OneMoreAddIn
 		public const int IDC_ARROW = 32512;
 		public const int IDC_HAND = 32649;
 		public const int IDC_SIZENS = 32645;
+
+		public const uint SWP_NOSIZE = 0x0001;
+		public const uint SWP_NOMOVE = 0x0002;
 
 		public const int TVIF_STATE = 0x8;
 		public const int TVIS_STATEIMAGEMASK = 0xF000;
@@ -318,6 +321,7 @@ namespace River.OneMoreAddIn
 			IntPtr hMenu, int wPosition, int wFlags, int wIDNewItem, string lpNewItem);
 
 
+		// https://learn.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-releasecapture
 		[DllImport("user32.dll")]
 		public static extern bool ReleaseCapture();
 
@@ -357,6 +361,12 @@ namespace River.OneMoreAddIn
 		// https://docs.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-setprocessdpiaware
 		[DllImport("user32.dll")]
 		public static extern bool SetProcessDPIAware();
+
+
+		// https://learn.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-setwindowpos
+		[DllImport("user32.dll")]
+		public static extern bool SetWindowPos(
+			IntPtr hWnd, IntPtr hWndInsertAfter, int X, int Y, int cx, int cy, uint uFlags);
 
 
 		// https://docs.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-setwineventhook

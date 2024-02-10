@@ -214,12 +214,24 @@ namespace River.OneMoreAddIn.UI
 
 			Native.SetForegroundWindow(form.Handle);
 			form.BringToFront();
+
+			// this is the trick needed to elevate a dialog to TopMost
+			form.TopMost = false;
 			form.TopMost = true;
+
 			form.Activate();
 			form.TopMost = false;
 
 			form.Location = location;
 			form.Focus();
+		}
+
+
+		public void ForceTopMost()
+		{
+			IntPtr HWND_TOPMOST = new(-1);
+			Native.SetWindowPos(Handle, HWND_TOPMOST, 0, 0, 0, 0,
+				Native.SWP_NOMOVE | Native.SWP_NOSIZE);
 		}
 
 
