@@ -104,7 +104,6 @@ namespace River.OneMoreAddIn.Commands
 
 		private void FocusOnWhat(object sender, EventArgs e)
 		{
-			UIHelper.SetForegroundWindow(this);
 			whatBox.Focus();
 		}
 

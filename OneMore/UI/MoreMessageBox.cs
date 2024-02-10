@@ -19,6 +19,11 @@ namespace River.OneMoreAddIn.UI
 			if (NeedsLocalizing())
 			{
 				Text = Resx.ProgramName;
+
+				Localize(new string[]
+				{
+					"noButton=word_No"
+				});
 			}
 
 			messageBox.Clear();
@@ -45,21 +50,33 @@ namespace River.OneMoreAddIn.UI
 
 		public void SetMessage(string message)
 		{
+			using var g = messageBox.CreateGraphics();
+			var size = g.MeasureString(message, Font).ToSize();
+			if (size.Height + Font.Height > messageBox.Height)
+			{
+				Height += Font.Height + (size.Height - messageBox.Height);
+			}
+
 			messageBox.Text = message;
 		}
 
 
 		public void SetButtons(MessageBoxButtons buttons)
 		{
+			// OK | No | Cancel ...
+
 			if (buttons == MessageBoxButtons.OK)
 			{
+				cancelButton.Visible = false;
+				noButton.Visible = false;
+				okButton.Left = cancelButton.Left;
 				okButton.Text = Resx.word_OK;
 				okButton.DialogResult = DialogResult.OK;
-				cancelButton.Visible = false;
 			}
 			else if (buttons == MessageBoxButtons.OKCancel)
 			{
-				(cancelButton.Left, okButton.Left) = (okButton.Left, cancelButton.Left);
+				noButton.Visible = false;
+				okButton.Left = noButton.Left;
 				okButton.Text = Resx.word_OK;
 				okButton.DialogResult = DialogResult.OK;
 				cancelButton.Text = Resx.word_Cancel;
@@ -67,11 +84,22 @@ namespace River.OneMoreAddIn.UI
 			}
 			else if (buttons == MessageBoxButtons.YesNo)
 			{
-				(cancelButton.Left, okButton.Left) = (okButton.Left, cancelButton.Left);
+				cancelButton.Visible = false;
+				okButton.Left = noButton.Left;
 				okButton.Text = Resx.word_Yes;
 				okButton.DialogResult = DialogResult.Yes;
-				cancelButton.Text = Resx.word_No;
-				cancelButton.DialogResult = DialogResult.No;
+				noButton.Left = cancelButton.Left;
+				noButton.Text = Resx.word_No;
+				noButton.DialogResult = DialogResult.No;
+			}
+			else if (buttons == MessageBoxButtons.YesNoCancel)
+			{
+				okButton.Text = Resx.word_Yes;
+				okButton.DialogResult = DialogResult.Yes;
+				noButton.Text = Resx.word_No;
+				noButton.DialogResult = DialogResult.No;
+				cancelButton.Text = Resx.word_Cancel;
+				cancelButton.DialogResult = DialogResult.Cancel;
 			}
 		}
 

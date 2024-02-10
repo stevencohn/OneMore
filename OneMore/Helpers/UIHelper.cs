@@ -117,21 +117,6 @@ namespace River.OneMoreAddIn
 		}
 
 
-		public static void SetForegroundWindow (Form form)
-		{
-			var location = form.Location;
-
-			Native.SetForegroundWindow(form.Handle);
-			form.BringToFront();
-			form.TopMost = true;
-			form.Activate();
-			form.TopMost = false;
-
-			form.Location = location;
-			form.Focus();
-		}
-
-
 		public static void ShowInfo(IWin32Window window, string message)
 		{
 			MessageBox.Show(window, message, Resx.ProgramName,
@@ -156,15 +141,6 @@ namespace River.OneMoreAddIn
 		/// </summary>
 		/// <param name="window">The OneNote window, from ApplicationManager.Window</param>
 		/// <param name="message">The caption message to display</param>
-		public static void ShowMessage(IWin32Window window, string message)
-		{
-			MessageBox.Show(window, message, Resx.ProgramName,
-				MessageBoxButtons.OK, MessageBoxIcon.None,
-				MessageBoxDefaultButton.Button1,
-				MessageBoxOptions.DefaultDesktopOnly);
-		}
-
-
 		public static void ShowMessage(string message)
 		{
 			MessageBox.Show(message, Resx.ProgramName,

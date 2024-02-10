@@ -198,9 +198,28 @@ namespace River.OneMoreAddIn.UI
 
 		protected override void OnShown(EventArgs e)
 		{
+			base.OnShown(e);
+
 			// modeless dialogs would appear behind the OneNote window by default
 			// so this forces the dialog to the foreground
-			UIHelper.SetForegroundWindow(this);
+			SetForegroundWindow(this);
+		}
+
+
+		private void SetForegroundWindow(Form form)
+		{
+			// a bunch of hocus-pocus to force the form to the foreground...
+
+			var location = form.Location;
+
+			Native.SetForegroundWindow(form.Handle);
+			form.BringToFront();
+			form.TopMost = true;
+			form.Activate();
+			form.TopMost = false;
+
+			form.Location = location;
+			form.Focus();
 		}
 
 

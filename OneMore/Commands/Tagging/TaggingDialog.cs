@@ -641,10 +641,9 @@ namespace River.OneMoreAddIn.Commands
 
 		private void RemoveAllTags(object sender, LinkLabelLinkClickedEventArgs e)
 		{
-			var result = MessageBox.Show(this,
+			var result = UI.MoreMessageBox.Show(this,
 				"Remove all tags from the current page?",
-				"Confirm",
-				MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
+				MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
 			if (result == DialogResult.Yes)
 			{

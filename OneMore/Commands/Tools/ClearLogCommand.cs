@@ -23,12 +23,8 @@ namespace River.OneMoreAddIn.Commands
 		{
 			if (File.Exists(logger.LogPath))
 			{
-				var result = MessageBox.Show(
-					Resx.ClearLog_Message,
-					Resx.ClearLog_Title,
-					MessageBoxButtons.YesNo, MessageBoxIcon.Question,
-					MessageBoxDefaultButton.Button1,
-					MessageBoxOptions.DefaultDesktopOnly);
+				var result = UI.MoreMessageBox.Show(owner,
+					Resx.ClearLog_Message, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
 				if (result == DialogResult.Yes)
 				{

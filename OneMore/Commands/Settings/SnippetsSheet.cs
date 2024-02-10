@@ -94,12 +94,9 @@ namespace River.OneMoreAddIn.Settings
 
 			var snippet = snippets[rowIndex];
 
-			var result = MessageBox.Show(
+			var result = UI.MoreMessageBox.Show(this,
 				string.Format(Resx.SnippetsSheet_ConfirmDelete, snippet.Name),
-				"OneMore",
-				MessageBoxButtons.YesNo, MessageBoxIcon.Question,
-				MessageBoxDefaultButton.Button2,
-				MessageBoxOptions.DefaultDesktopOnly);
+				MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
 			if (result != DialogResult.Yes)
 				return;
