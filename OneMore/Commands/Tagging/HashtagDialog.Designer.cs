@@ -220,6 +220,7 @@
 			this.tagBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.tagBox.Location = new System.Drawing.Point(41, 12);
 			this.tagBox.Name = "tagBox";
+			this.tagBox.ProcessEnterKey = false;
 			this.tagBox.Size = new System.Drawing.Size(608, 28);
 			this.tagBox.TabIndex = 0;
 			this.tagBox.ThemedBack = null;
@@ -352,8 +353,6 @@
 			this.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.KeyPreview = true;
-			this.MaximizeBox = false;
-			this.MinimizeBox = false;
 			this.MinimumSize = new System.Drawing.Size(900, 400);
 			this.Name = "HashtagDialog";
 			this.Text = "Find Hashtags";

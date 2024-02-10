@@ -144,8 +144,10 @@ namespace River.OneMoreAddIn.Settings
 
 			headerLabel.Text = sheet.Title;
 
+			contentPanel.SuspendLayout();
 			contentPanel.Controls.Clear();
 			contentPanel.Controls.Add(sheet);
+			contentPanel.ResumeLayout();
 		}
 
 

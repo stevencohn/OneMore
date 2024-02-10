@@ -65,7 +65,7 @@ namespace River.OneMoreAddIn.Commands
 			}
 			else
 			{
-				UIHelper.ShowInfo(Resx.DeleteFormulaCommand_NoFormulas);
+				UI.MoreMessageBox.Show(owner, Resx.DeleteFormulaCommand_NoFormulas);
 			}
 		}
 	}

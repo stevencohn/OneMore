@@ -2086,10 +2086,6 @@ Aplicar a este caderno</value>
     <value>Seleção vazia. Selecione um bloco válido de texto PlantUML.</value>
     <comment>error message</comment>
   </data>
-  <data name="PlantUml_Error" xml:space="preserve">
-    <value>Sintaxe inválida ou seleção incompleta de PlantUML</value>
-    <comment>error message</comment>
-  </data>
   <data name="Plugin_InvalidSchema" xml:space="preserve">
     <value>XML inválido detectado. </value>
     <comment>error message</comment>
@@ -2331,10 +2327,6 @@ Ano (2023)
   </data>
   <data name="RemindCommand_noReminder" xml:space="preserve">
     <value>Não há lembrete neste parágrafo</value>
-    <comment>message box</comment>
-  </data>
-  <data name="RemindCommand_Reuse" xml:space="preserve">
-    <value>Clique em Sim para atualizar este relatório existente, Não para criar um novo relatório ou Cancelar</value>
     <comment>message box</comment>
   </data>
   <data name="RemindDialog_dueDateLabel.Text" xml:space="preserve">

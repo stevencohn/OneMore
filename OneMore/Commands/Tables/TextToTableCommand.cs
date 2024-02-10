@@ -39,7 +39,7 @@ namespace River.OneMoreAddIn.Commands
 
 			if (selections.Count == 0 || (selections.Count == 1 && selections[0].Value == string.Empty))
 			{
-				UIHelper.ShowInfo(one.Window, Resx.TextToTable_NoText);
+				UI.MoreMessageBox.Show(owner, Resx.TextToTable_NoText);
 				return;
 			}
 

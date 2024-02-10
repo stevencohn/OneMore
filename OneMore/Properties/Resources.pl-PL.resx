@@ -2094,10 +2094,6 @@ Zastosuj do tego notatnika</value>
     <value>Pusty wybór. Wybierz prawidłowy blok tekstu PlantUML.</value>
     <comment>error message</comment>
   </data>
-  <data name="PlantUml_Error" xml:space="preserve">
-    <value>Niepoprawna składnia lub niepełny wybór PlantUML</value>
-    <comment>error message</comment>
-  </data>
   <data name="Plugin_InvalidSchema" xml:space="preserve">
     <value>Nieprawidłowy wykryty XML. Szczegółowe informacje można znaleźć w pliku dziennika</value>
     <comment>error message</comment>
@@ -2343,10 +2339,6 @@ Rok (2023)
   </data>
   <data name="RemindCommand_noReminder" xml:space="preserve">
     <value>Nie ma przypomnienia na tym akapicie</value>
-    <comment>message box</comment>
-  </data>
-  <data name="RemindCommand_Reuse" xml:space="preserve">
-    <value>Kliknij Tak, aby zaktualizować ten istniejący raport, nie do utworzenia nowego raportu lub anuluj</value>
     <comment>message box</comment>
   </data>
   <data name="RemindDialog_dueDateLabel.Text" xml:space="preserve">

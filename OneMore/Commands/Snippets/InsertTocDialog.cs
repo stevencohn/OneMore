@@ -111,7 +111,7 @@ namespace River.OneMoreAddIn.Commands
 			if (sender == pageRadio)
 			{
 				topBox.Enabled = true;
-				rightAlignBox.Enabled = true;
+				rightAlignBox.Enabled = topBox.Checked;
 				locationBox.Enabled = true;
 				styleBox.Enabled = true;
 				previewBox.Enabled = false;

@@ -93,7 +93,7 @@ namespace River.OneMoreAddIn.Commands
 
 			if (anchor == null)
 			{
-				UIHelper.ShowInfo(one.Window, Resx.InsertCellsCommand_NoSelection);
+				UI.MoreMessageBox.Show(owner, Resx.InsertCellsCommand_NoSelection);
 				return;
 			}
 

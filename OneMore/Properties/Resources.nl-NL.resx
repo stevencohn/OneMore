@@ -2086,10 +2086,6 @@ Toepassen op dit notitieboekje</value>
     <value>Lege selectie. Selecteer een geldig blok PlantUML-tekst.</value>
     <comment>error message</comment>
   </data>
-  <data name="PlantUml_Error" xml:space="preserve">
-    <value>Ongeldige syntaxis of onvolledige selectie van PlantUML</value>
-    <comment>error message</comment>
-  </data>
   <data name="Plugin_InvalidSchema" xml:space="preserve">
     <value>Ongeldige XML gedetecteerd. </value>
     <comment>error message</comment>
@@ -2331,10 +2327,6 @@ Jaar (2023)
   </data>
   <data name="RemindCommand_noReminder" xml:space="preserve">
     <value>Er is geen herinnering in deze paragraaf</value>
-    <comment>message box</comment>
-  </data>
-  <data name="RemindCommand_Reuse" xml:space="preserve">
-    <value>Klik op Ja om dit bestaande rapport bij te werken, op Nee om een ​​nieuw rapport te maken of op Annuleren</value>
     <comment>message box</comment>
   </data>
   <data name="RemindDialog_dueDateLabel.Text" xml:space="preserve">

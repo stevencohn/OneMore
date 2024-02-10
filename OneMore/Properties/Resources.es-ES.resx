@@ -2085,10 +2085,6 @@ Aplicar a este cuaderno</value>
     <value>Selección vacía. Seleccione un bloque válido de texto PlantUML.</value>
     <comment>error message</comment>
   </data>
-  <data name="PlantUml_Error" xml:space="preserve">
-    <value>Sintaxis no válida o selección incompleta de PlantUML</value>
-    <comment>error message</comment>
-  </data>
   <data name="Plugin_InvalidSchema" xml:space="preserve">
     <value>XML no válido detectado. </value>
     <comment>error message</comment>
@@ -2330,10 +2326,6 @@ Año (2023)
   </data>
   <data name="RemindCommand_noReminder" xml:space="preserve">
     <value>No hay recordatorio en este párrafo</value>
-    <comment>message box</comment>
-  </data>
-  <data name="RemindCommand_Reuse" xml:space="preserve">
-    <value>Haga clic en Sí para actualizar este informe existente, No para crear un nuevo informe o Cancelar</value>
     <comment>message box</comment>
   </data>
   <data name="RemindDialog_dueDateLabel.Text" xml:space="preserve">

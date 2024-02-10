@@ -2085,10 +2085,6 @@ Postuler à ce carnet</value>
     <value>Sélection vide. Sélectionnez un bloc valide de texte PlantUML.</value>
     <comment>error message</comment>
   </data>
-  <data name="PlantUml_Error" xml:space="preserve">
-    <value>Syntaxe invalide ou sélection incomplète de PlantUML</value>
-    <comment>error message</comment>
-  </data>
   <data name="Plugin_InvalidSchema" xml:space="preserve">
     <value>XML non valide détecté. </value>
     <comment>error message</comment>
@@ -2329,10 +2325,6 @@ Année (2023)
   </data>
   <data name="RemindCommand_noReminder" xml:space="preserve">
     <value>Il n'y a pas de rappel sur ce paragraphe</value>
-    <comment>message box</comment>
-  </data>
-  <data name="RemindCommand_Reuse" xml:space="preserve">
-    <value>Cliquez sur Oui pour mettre à jour ce rapport existant, Non pour créer un nouveau rapport ou Annuler</value>
     <comment>message box</comment>
   </data>
   <data name="RemindDialog_dueDateLabel.Text" xml:space="preserve">

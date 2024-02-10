@@ -5678,15 +5678,6 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Invalid syntax or incomplete selection of PlantUML.
-        /// </summary>
-        internal static string PlantUml_Error {
-            get {
-                return ResourceManager.GetString("PlantUml_Error", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to http://www.plantuml.com/plantuml/png/.
         /// </summary>
         internal static string PlantUmlCommand_PlantUrl {
@@ -6223,15 +6214,6 @@ namespace River.OneMoreAddIn.Properties {
         internal static string RemindCommand_noReminder {
             get {
                 return ResourceManager.GetString("RemindCommand_noReminder", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Click Yes to update this existing report, No to create a new report, or Cancel.
-        /// </summary>
-        internal static string RemindCommand_Reuse {
-            get {
-                return ResourceManager.GetString("RemindCommand_Reuse", resourceCulture);
             }
         }
         

@@ -2094,10 +2094,6 @@ Total Row Font
     <value>בחירה ריקה. בחר בלוק חוקי של טקסט PlantUML.</value>
     <comment>error message</comment>
   </data>
-  <data name="PlantUml_Error" xml:space="preserve">
-    <value>תחביר לא חוקי או בחירה לא מלאה של PlantUML</value>
-    <comment>error message</comment>
-  </data>
   <data name="Plugin_InvalidSchema" xml:space="preserve">
     <value>זוהה XML לא חוקי. בדוק את קובץ היומן לפרטים</value>
     <comment>error message</comment>
@@ -2343,10 +2339,6 @@ ISO-code then comma then language name</comment>
   </data>
   <data name="RemindCommand_noReminder" xml:space="preserve">
     <value>אין תזכורת בפסקה זו</value>
-    <comment>message box</comment>
-  </data>
-  <data name="RemindCommand_Reuse" xml:space="preserve">
-    <value>לחץ על כן כדי לעדכן דוח קיים זה, לא כדי ליצור דוח חדש, או בטל</value>
     <comment>message box</comment>
   </data>
   <data name="RemindDialog_dueDateLabel.Text" xml:space="preserve">

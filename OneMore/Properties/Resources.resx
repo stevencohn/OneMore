@@ -2110,10 +2110,6 @@ Apply to this notebook</value>
     <value>Empty selection. Select a valid block of PlantUML text.</value>
     <comment>error message</comment>
   </data>
-  <data name="PlantUml_Error" xml:space="preserve">
-    <value>Invalid syntax or incomplete selection of PlantUML</value>
-    <comment>error message</comment>
-  </data>
   <data name="PlantUmlCommand_PlantUrl" xml:space="preserve">
     <value>http://www.plantuml.com/plantuml/png/</value>
     <comment>PlantUML Remote servier SKIP</comment>
@@ -2363,10 +2359,6 @@ Year (2023)
   </data>
   <data name="RemindCommand_noReminder" xml:space="preserve">
     <value>There is no reminder on this paragraph</value>
-    <comment>message box</comment>
-  </data>
-  <data name="RemindCommand_Reuse" xml:space="preserve">
-    <value>Click Yes to update this existing report, No to create a new report, or Cancel</value>
     <comment>message box</comment>
   </data>
   <data name="RemindDialog_dueDateLabel.Text" xml:space="preserve">

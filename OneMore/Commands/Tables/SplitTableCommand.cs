@@ -45,14 +45,14 @@ namespace River.OneMoreAddIn.Commands
 
 			if (anchor == null)
 			{
-				UIHelper.ShowInfo(one.Window, Resx.SplitTableCommand_NoSelection);
+				UI.MoreMessageBox.Show(owner, Resx.SplitTableCommand_NoSelection);
 				return;
 			}
 
 			var row = anchor.FirstAncestor(ns + "Row");
 			if (!row.ElementsBeforeSelf(ns + "Row").Any())
 			{
-				UIHelper.ShowInfo(one.Window, Resx.SplitTableCommand_FirstRow);
+				UI.MoreMessageBox.Show(owner, Resx.SplitTableCommand_FirstRow);
 				return;
 			}
 

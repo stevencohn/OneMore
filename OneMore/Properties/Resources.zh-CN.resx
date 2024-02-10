@@ -2084,10 +2084,6 @@ OneNote 文件 (*.one)</value>
     <value>空选择。选择一个有效的 PlantUML 文本块。</value>
     <comment>error message</comment>
   </data>
-  <data name="PlantUml_Error" xml:space="preserve">
-    <value>PlantUML 语法无效或选择不完整</value>
-    <comment>error message</comment>
-  </data>
   <data name="Plugin_InvalidSchema" xml:space="preserve">
     <value>检测到无效的XML。 检查日志文件以获取详细信息</value>
     <comment>error message</comment>
@@ -2329,10 +2325,6 @@ ISO-code then comma then language name</comment>
   </data>
   <data name="RemindCommand_noReminder" xml:space="preserve">
     <value>这一段没有提醒</value>
-    <comment>message box</comment>
-  </data>
-  <data name="RemindCommand_Reuse" xml:space="preserve">
-    <value>单击是更新此现有报告，单击否创建新报告，或单击取消</value>
     <comment>message box</comment>
   </data>
   <data name="RemindDialog_dueDateLabel.Text" xml:space="preserve">

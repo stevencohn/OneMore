@@ -1,5 +1,5 @@
 ﻿//************************************************************************************************
-// Copyright © 2020 Steven M Cohn.  All rights reserved.
+// Copyright © 2020 Steven M Cohn. All rights reserved.
 //************************************************************************************************
 
 namespace River.OneMoreAddIn.Commands
@@ -48,7 +48,7 @@ namespace River.OneMoreAddIn.Commands
 
 			if (!page.ConfirmBodyContext())
 			{
-				UIHelper.ShowInfo(one.Window, Resx.FormulaCommand_SelectOne);
+				UI.MoreMessageBox.Show(owner, Resx.FormulaCommand_SelectOne);
 				return;
 			}
 
@@ -67,7 +67,7 @@ namespace River.OneMoreAddIn.Commands
 
 			if (anchor == null)
 			{
-				UIHelper.ShowInfo(one.Window, Resx.FormulaCommand_SelectOne);
+				UI.MoreMessageBox.Show(owner, Resx.FormulaCommand_SelectOne);
 				return;
 			}
 
@@ -76,7 +76,7 @@ namespace River.OneMoreAddIn.Commands
 
 			if (range == TableSelectionRange.Rectangular)
 			{
-				UIHelper.ShowInfo(one.Window, Resx.FormulaCommand_Linear);
+				UI.MoreMessageBox.Show(owner, Resx.FormulaCommand_Linear);
 				return;
 			}
 

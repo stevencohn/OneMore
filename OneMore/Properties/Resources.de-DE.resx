@@ -2083,10 +2083,6 @@ Bewerben Sie sich auf dieses Notizbuch</value>
     <value>Leere Auswahl. Wählen Sie einen gültigen Block von PlantUML-Text aus.</value>
     <comment>error message</comment>
   </data>
-  <data name="PlantUml_Error" xml:space="preserve">
-    <value>Ungültige Syntax oder unvollständige Auswahl von PlantUML</value>
-    <comment>error message</comment>
-  </data>
   <data name="Plugin_InvalidSchema" xml:space="preserve">
     <value>Ungültiges XML erkannt. </value>
     <comment>error message</comment>
@@ -2327,10 +2323,6 @@ Jahr (2023)
   </data>
   <data name="RemindCommand_noReminder" xml:space="preserve">
     <value>Es gibt keine Erinnerung zu diesem Absatz</value>
-    <comment>message box</comment>
-  </data>
-  <data name="RemindCommand_Reuse" xml:space="preserve">
-    <value>Klicke auf Ja, um diesen vorhandenen Bericht zu aktualisieren, auf Nein, um einen neuen Bericht zu erstellen, oder auf Abbrechen</value>
     <comment>message box</comment>
   </data>
   <data name="RemindDialog_dueDateLabel.Text" xml:space="preserve">
