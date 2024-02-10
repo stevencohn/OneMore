@@ -166,27 +166,5 @@ namespace River.OneMoreAddIn
 				MessageBoxDefaultButton.Button1,
 				MessageBoxOptions.DefaultDesktopOnly);
 		}
-
-
-		public static DialogResult ShowQuestion(
-			string message, bool defaultYes = false, bool canCancel = false)
-		{
-			var defaultButton = defaultYes 
-				? MessageBoxDefaultButton.Button1 
-				: MessageBoxDefaultButton.Button2;
-
-			return MessageBox.Show(
-				message, Resx.ProgramName,
-				canCancel ? MessageBoxButtons.YesNoCancel : MessageBoxButtons.YesNo,
-				MessageBoxIcon.Question,
-				defaultButton,
-				MessageBoxOptions.DefaultDesktopOnly);
-		}
-
-
-		public static void Shutdown ()
-		{
-			Application.Exit();
-		}
 	}
 }

@@ -90,7 +90,7 @@ namespace River.OneMoreAddIn.Settings
 		{
 			if (rebuildBox.Checked)
 			{
-				var result = UIHelper.ShowQuestion(
+				var result = UI.MoreMessageBox.ShowQuestion(this,
 					"This will delete your hashtag database and create a new one.\n" +
 					"That requires OneNote to restart and then can take quite some time.\n\n" +
 					"Are you sure you want to rebuild the database?");

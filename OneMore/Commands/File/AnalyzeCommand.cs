@@ -767,9 +767,18 @@ namespace River.OneMoreAddIn.Commands
 			var estimate = ((int)(total * 0.733)).ToBytes(1);
 
 			var row = detail.AddRow();
-			row[0].SetContent(new Paragraph($"{images.Count} images").SetStyle("font-style:italic"));
-			row[1].SetContent(new Paragraph($"{data} total").SetAlignment("right"));
-			row[2].SetContent(new Paragraph($"{estimate} est").SetAlignment("right"));
+
+			row[0].SetContent(new Paragraph(
+				string.Format(Resx.AnalyzeCommand_totalImages, images.Count))
+				.SetStyle("font-style:italic"));
+
+			row[1].SetContent(new Paragraph(
+				string.Format(Resx.AnalyzeCommand_total, data))
+				.SetAlignment("right"));
+
+			row[2].SetContent(new Paragraph(
+				string.Format(Resx.AnalyzeCommand_est, estimate))
+				.SetAlignment("right"));
 		}
 
 

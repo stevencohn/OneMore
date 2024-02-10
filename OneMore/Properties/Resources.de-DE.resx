@@ -134,22 +134,6 @@
     <value>Sehen Sie sich das Projekt auf GitHub an</value>
     <comment>button</comment>
   </data>
-  <data name="AboutDialog_LatestMessage" xml:space="preserve">
-    <value>Du hast die aktuelle Version</value>
-    <comment>message box message</comment>
-  </data>
-  <data name="AboutDialog_LatestTitle" xml:space="preserve">
-    <value>Du bist gut zu gehen!</value>
-    <comment>message box title</comment>
-  </data>
-  <data name="AboutDialog_NewVersionMessage" xml:space="preserve">
-    <value>Eine neue Version ist verfügbar:\n\n    </value>
-    <comment>message box message showing verison tag and name</comment>
-  </data>
-  <data name="AboutDialog_NewVersionTitle" xml:space="preserve">
-    <value>Aktualisiere OneMore</value>
-    <comment>message box title</comment>
-  </data>
   <data name="AboutDialog_pleaseLabel.Text" xml:space="preserve">
     <value>Bitte unterstütze die zukünftige Entwicklung von OneMore</value>
     <comment>label</comment>
@@ -169,10 +153,6 @@
   <data name="AddCaptionCommand_Captioned" xml:space="preserve">
     <value>Das Bild hat bereits eine Beschriftung</value>
     <comment>info message</comment>
-  </data>
-  <data name="AddFormula_linearMessage" xml:space="preserve">
-    <value>Wähle eine oder mehrere Zellen aus derselben Zeile oder derselben Spalte aus</value>
-    <comment>message box</comment>
   </data>
   <data name="AddFormulaCommand_Calculated" xml:space="preserve">
     <value>Berechnet</value>
@@ -353,6 +333,10 @@ Umkehren</value>
     <value>Der Bericht kann Minuten dauern</value>
     <comment>label</comment>
   </data>
+  <data name="ApplyTableTheme_SelectTable" xml:space="preserve">
+    <value>Bewegen Sie den Textcursor in eine Tabellenzelle</value>
+    <comment>message</comment>
+  </data>
   <data name="ArchiveCommand_archived" xml:space="preserve">
     <value>{0} Seiten archivieren auf {1}</value>
     <comment>message</comment>
@@ -497,10 +481,6 @@ Umkehren</value>
     <value>Es ist keine Protokolldatei verfügbar</value>
     <comment>message box message</comment>
   </data>
-  <data name="ClearLog_NoneTitle" xml:space="preserve">
-    <value>Es ist alles gut</value>
-    <comment>message box title</comment>
-  </data>
   <data name="ClearLog_Title" xml:space="preserve">
     <value>Bestätigen</value>
     <comment>message box title</comment>
@@ -640,10 +620,6 @@ Umkehren</value>
     <value>Sollen {0} Seiten erstellt werden?</value>
     <comment>message box</comment>
   </data>
-  <data name="CreatePagesCommand_Done" xml:space="preserve">
-    <value>Erstellte Seiten. OneNote wird in Kürze aktualisiert</value>
-    <comment>message box</comment>
-  </data>
   <data name="CreatePagesCommand_NoNamesFound" xml:space="preserve">
     <value>Eine Namensliste wurde auf der Seite nicht gefunden</value>
     <comment>message box</comment>
@@ -667,10 +643,6 @@ Umkehren</value>
   <data name="CropImageDialog_introText.Text" xml:space="preserve">
     <value>Verwende die Maus, um einen Bereich zum Zuschneiden auszuwählen.</value>
     <comment>intro text label</comment>
-  </data>
-  <data name="CropImageDialog_noSelection" xml:space="preserve">
-    <value>Keine Auswahl</value>
-    <comment>status bar text</comment>
   </data>
   <data name="CropImageDialog_printout" xml:space="preserve">
     <value>Dieses Bild stammt von einem Ausdruck. Wenn es beschnitten wird, ist es nicht mehr mit dieser Originaldatei verknüpft. Mit dem Zuschneiden fortfahren?</value>

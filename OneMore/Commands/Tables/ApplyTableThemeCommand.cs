@@ -9,6 +9,7 @@ namespace River.OneMoreAddIn.Commands
 	using System.Linq;
 	using System.Threading.Tasks;
 	using System.Xml.Linq;
+	using Resx = Properties.Resources;
 
 
 	/// <summary>
@@ -41,7 +42,7 @@ namespace River.OneMoreAddIn.Commands
 
 			if (anchor == null)
 			{
-				UIHelper.ShowInfo(one.Window, "Set cursor in a table"); // Resx.ApplyTableTheme_SelectTable);
+				UI.MoreMessageBox.Show(owner, Resx.ApplyTableTheme_SelectTable);
 				return;
 			}
 
@@ -57,7 +58,7 @@ namespace River.OneMoreAddIn.Commands
 				var provider = new TableThemeProvider();
 				if (selectedIndex < 0 || selectedIndex >= provider.Count)
 				{
-					UIHelper.ShowInfo(one.Window, "Invalid theme index"); // Resx.ApplyTableTheme_SelectTable);
+					UI.MoreMessageBox.Show(owner, "Invalid theme index"); // Resx.ApplyTableTheme_SelectTable);
 					return;
 				}
 

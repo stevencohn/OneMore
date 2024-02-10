@@ -134,25 +134,6 @@
     <value>Bekijk het project op GitHub</value>
     <comment>button</comment>
   </data>
-  <data name="AboutDialog_LatestMessage" xml:space="preserve">
-    <value>Je hebt de nieuwste versie</value>
-    <comment>message box message</comment>
-  </data>
-  <data name="AboutDialog_LatestTitle" xml:space="preserve">
-    <value>Je bent klaar om te gaan!</value>
-    <comment>message box title</comment>
-  </data>
-  <data name="AboutDialog_NewVersionMessage" xml:space="preserve">
-    <value>Er is een nieuwe versie beschikbaar:
-{0} - "{1}"
-Wil je nu updaten?
-OneNote wordt automatisch gesloten</value>
-    <comment>message box message showing verison tag and name</comment>
-  </data>
-  <data name="AboutDialog_NewVersionTitle" xml:space="preserve">
-    <value>Update OneMore</value>
-    <comment>message box title</comment>
-  </data>
   <data name="AboutDialog_pleaseLabel.Text" xml:space="preserve">
     <value>Steun de toekomstige ontwikkeling van OneMore</value>
     <comment>label</comment>
@@ -172,10 +153,6 @@ OneNote wordt automatisch gesloten</value>
   <data name="AddCaptionCommand_Captioned" xml:space="preserve">
     <value>Afbeelding heeft al een bijschrift</value>
     <comment>info message</comment>
-  </data>
-  <data name="AddFormula_linearMessage" xml:space="preserve">
-    <value>Selecteer een of meer cellen uit dezelfde rij of dezelfde kolom</value>
-    <comment>message box</comment>
   </data>
   <data name="AddFormulaCommand_Calculated" xml:space="preserve">
     <value>Berekend</value>
@@ -357,6 +334,10 @@ Omkeren</value>
     <value>Rapportage kan minuten duren</value>
     <comment>label</comment>
   </data>
+  <data name="ApplyTableTheme_SelectTable" xml:space="preserve">
+    <value>Verplaats de tekstcursor naar een tabelcel</value>
+    <comment>message</comment>
+  </data>
   <data name="ArchiveCommand_archived" xml:space="preserve">
     <value>{0} pagina's archiveren naar {1}</value>
     <comment>message</comment>
@@ -501,10 +482,6 @@ Omkeren</value>
     <value>Er is geen logboekbestand beschikbaar</value>
     <comment>message box message</comment>
   </data>
-  <data name="ClearLog_NoneTitle" xml:space="preserve">
-    <value>Het is al goed</value>
-    <comment>message box title</comment>
-  </data>
   <data name="ClearLog_Title" xml:space="preserve">
     <value>Bevestigen</value>
     <comment>message box title</comment>
@@ -644,10 +621,6 @@ Omkeren</value>
     <value>Wilt u {0} pagina's maken?</value>
     <comment>message box</comment>
   </data>
-  <data name="CreatePagesCommand_Done" xml:space="preserve">
-    <value>Gemaakte pagina's. OneNote wordt tijdelijk bijgewerkt</value>
-    <comment>message box</comment>
-  </data>
   <data name="CreatePagesCommand_NoNamesFound" xml:space="preserve">
     <value>Er is geen namenlijst gevonden op de pagina</value>
     <comment>message box</comment>
@@ -671,10 +644,6 @@ Omkeren</value>
   <data name="CropImageDialog_introText.Text" xml:space="preserve">
     <value>Gebruik de muis om een ​​gebied te selecteren dat u wilt bijsnijden. </value>
     <comment>intro text label</comment>
-  </data>
-  <data name="CropImageDialog_noSelection" xml:space="preserve">
-    <value>Geen selectie</value>
-    <comment>status bar text</comment>
   </data>
   <data name="CropImageDialog_printout" xml:space="preserve">
     <value>Deze afbeelding is van een afdruk. Als het wordt bijgesneden, wordt het niet langer gekoppeld aan dat originele bestand. Wil je doorgaan met croppen?</value>

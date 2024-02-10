@@ -37,14 +37,14 @@ namespace River.OneMoreAddIn.Commands
 
 			if (!images.Any())
 			{
-				UIHelper.ShowError(Resx.CropImage_oneImage);
+				UI.MoreMessageBox.ShowError(owner, Resx.CropImage_oneImage);
 				return;
 			}
 
 			var image = images.First();
 			if (image.Attributes().Any(a => a.Name == "isPrintOut"))
 			{
-				if (UIHelper.ShowQuestion(Resx.CropImageDialog_printout) != DialogResult.Yes)
+				if (UI.MoreMessageBox.ShowQuestion(owner, Resx.CropImageDialog_printout) != DialogResult.Yes)
 				{
 					return;
 				}

@@ -134,25 +134,6 @@
     <value>Zobacz projekt na GitHub</value>
     <comment>button</comment>
   </data>
-  <data name="AboutDialog_LatestMessage" xml:space="preserve">
-    <value>masz ostatnią wersję</value>
-    <comment>message box message</comment>
-  </data>
-  <data name="AboutDialog_LatestTitle" xml:space="preserve">
-    <value>Jesteś dobry!</value>
-    <comment>message box title</comment>
-  </data>
-  <data name="AboutDialog_NewVersionMessage" xml:space="preserve">
-    <value>Dostępna jest nowa wersja:
-{0} - "{1}"
-Czy chcesz teraz zaktualizować?
-OneNote zamknie się automatycznie</value>
-    <comment>message box message showing verison tag and name</comment>
-  </data>
-  <data name="AboutDialog_NewVersionTitle" xml:space="preserve">
-    <value>Zaktualizuj OneMore.</value>
-    <comment>message box title</comment>
-  </data>
   <data name="AboutDialog_pleaseLabel.Text" xml:space="preserve">
     <value>Prosimy o wsparcie przyszłego rozwoju OneMore</value>
     <comment>label</comment>
@@ -172,10 +153,6 @@ OneNote zamknie się automatycznie</value>
   <data name="AddCaptionCommand_Captioned" xml:space="preserve">
     <value>Obraz ma już podpis</value>
     <comment>info message</comment>
-  </data>
-  <data name="AddFormula_linearMessage" xml:space="preserve">
-    <value>Wybierz jedną lub więcej komórek z tego samego wiersza lub tej samej kolumny</value>
-    <comment>message box</comment>
   </data>
   <data name="AddFormulaCommand_Calculated" xml:space="preserve">
     <value>Obliczony</value>
@@ -365,6 +342,10 @@ Odwracać</value>
     <value>Raport może zająć kilka minut</value>
     <comment>label</comment>
   </data>
+  <data name="ApplyTableTheme_SelectTable" xml:space="preserve">
+    <value>Przesuń kursor tekstowy do komórki tabeli</value>
+    <comment>message</comment>
+  </data>
   <data name="ArchiveCommand_archived" xml:space="preserve">
     <value>{0} Strony Archiwum do {1}</value>
     <comment>message</comment>
@@ -509,10 +490,6 @@ Odwracać</value>
     <value>Nie jest dostępny plik dziennika</value>
     <comment>message box message</comment>
   </data>
-  <data name="ClearLog_NoneTitle" xml:space="preserve">
-    <value>Wszystko jest dobrze</value>
-    <comment>message box title</comment>
-  </data>
   <data name="ClearLog_Title" xml:space="preserve">
     <value>Potwierdzać</value>
     <comment>message box title</comment>
@@ -652,10 +629,6 @@ Odwracać</value>
     <value>Czy chcesz utworzyć {0} strony?</value>
     <comment>message box</comment>
   </data>
-  <data name="CreatePagesCommand_Done" xml:space="preserve">
-    <value>Utworzone strony. OneNote zaktualizuje się za chwilę</value>
-    <comment>message box</comment>
-  </data>
   <data name="CreatePagesCommand_NoNamesFound" xml:space="preserve">
     <value>Na stronie nie znaleziono listy nazwisk</value>
     <comment>message box</comment>
@@ -679,10 +652,6 @@ Odwracać</value>
   <data name="CropImageDialog_introText.Text" xml:space="preserve">
     <value>Użyj myszy, aby wybrać obszar do uprawy. Ctrl + D, aby odznaczyć. Użyj suwaka, aby obrócić obraz. Kliknij OK, aby zakończyć.</value>
     <comment>intro text label</comment>
-  </data>
-  <data name="CropImageDialog_noSelection" xml:space="preserve">
-    <value>Brak wyboru</value>
-    <comment>status bar text</comment>
   </data>
   <data name="CropImageDialog_printout" xml:space="preserve">
     <value>Ten obraz pochodzi z wydruku. Jeśli zostanie przycięte, nie będzie już powiązany z tym oryginalnym plikiem. Czy chcesz kontynuować przycinanie?</value>

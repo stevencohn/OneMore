@@ -35,7 +35,9 @@ namespace River.OneMoreAddIn.Commands
 
 		public override async Task Execute(params object[] args)
 		{
-			var result = UIHelper.ShowQuestion(Resx.RemoveEmptyCommand_option, false, true);
+			var result = UI.MoreMessageBox.ShowQuestion(owner,
+				Resx.RemoveEmptyCommand_option, cancel: true);
+
 			if (result == DialogResult.Cancel)
 			{
 				return;

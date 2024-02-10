@@ -104,8 +104,8 @@ namespace River.OneMoreAddIn.UI
 			Icon icon = mbicon switch
 			{
 				MessageBoxIcon.Error => SystemIcons.Error,
-				MessageBoxIcon.Exclamation => SystemIcons.Exclamation,
 				MessageBoxIcon.Question => SystemIcons.Question,
+				MessageBoxIcon.Warning => SystemIcons.Warning, // same as Exclamation
 				_ => SystemIcons.Information,
 			};
 
@@ -149,6 +149,17 @@ namespace River.OneMoreAddIn.UI
 			box.SetIcon(MessageBoxIcon.Error);
 			box.SetButtons(MessageBoxButtons.OK);
 			return box.ShowDialog(owner);
+		}
+
+
+		public static DialogResult ShowQuestion(
+			IWin32Window owner, string text, bool cancel = false)
+		{
+			var buttons = cancel
+				? MessageBoxButtons.YesNoCancel
+				: MessageBoxButtons.YesNo;
+
+			return Show(owner, text, buttons, MessageBoxIcon.Question);
 		}
 
 

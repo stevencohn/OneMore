@@ -39,19 +39,19 @@ namespace River.OneMoreAddIn.Commands
 			var cursor = GetContextCursor(out var onlySelected);
 			if (cursor == null)
 			{
-				UIHelper.ShowError(Resx.Error_BodyContext);
+				UI.MoreMessageBox.ShowError(owner, Resx.Error_BodyContext);
 				return;
 			}
 
 			ReadNamesFromContext(cursor, onlySelected);
 			if (!names.Any())
 			{
-				UIHelper.ShowError(Resx.CreatePagesCommand_NoNamesFound);
+				UI.MoreMessageBox.ShowError(owner, Resx.CreatePagesCommand_NoNamesFound);
 				return;
 			}
 
 			var msg = string.Format(Resx.CreatePagesCommand_CreatePages, names.Count);
-			if (UIHelper.ShowQuestion(msg) != DialogResult.Yes)
+			if (UI.MoreMessageBox.ShowQuestion(owner, msg) != DialogResult.Yes)
 			{
 				return;
 			}

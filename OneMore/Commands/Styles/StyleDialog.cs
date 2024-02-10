@@ -916,7 +916,8 @@ namespace River.OneMoreAddIn.Commands
 				}
 				else
 				{
-					MessageBox.Show(this, "Could not load this theme file?", "Error",
+					MoreMessageBox.Show(this,
+						"Could not load this theme file?",
 						MessageBoxButtons.OK, MessageBoxIcon.Error);
 				}
 			}

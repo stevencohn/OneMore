@@ -117,6 +117,7 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="AboutDialog.Text" xml:space="preserve">
     <value>OneMore Add-in</value>
     <comment>dialog title bar</comment>
@@ -132,27 +133,6 @@
   <data name="AboutDialog_githubLink.Text" xml:space="preserve">
     <value>See the project on GitHub</value>
     <comment>button</comment>
-  </data>
-  <data name="AboutDialog_LatestMessage" xml:space="preserve">
-    <value>You have the latest version</value>
-    <comment>message box message</comment>
-  </data>
-  <data name="AboutDialog_LatestTitle" xml:space="preserve">
-    <value>You're good to go!</value>
-    <comment>message box title</comment>
-  </data>
-  <data name="AboutDialog_NewVersionMessage" xml:space="preserve">
-    <value>A new version is available:
-
-    {0} - "{1}"
-
-Do you want to update now?
-OneNote will close automatically</value>
-    <comment>message box message showing verison tag and name</comment>
-  </data>
-  <data name="AboutDialog_NewVersionTitle" xml:space="preserve">
-    <value>Update OneMore</value>
-    <comment>message box title</comment>
   </data>
   <data name="AboutDialog_pleaseLabel.Text" xml:space="preserve">
     <value>Please support future development of OneMore</value>
@@ -173,10 +153,6 @@ OneNote will close automatically</value>
   <data name="AddCaptionCommand_Captioned" xml:space="preserve">
     <value>Image already has a caption</value>
     <comment>info message</comment>
-  </data>
-  <data name="AddFormula_linearMessage" xml:space="preserve">
-    <value>Select one or more cells from the same row or the same column</value>
-    <comment>message box</comment>
   </data>
   <data name="AddFormulaCommand_Calculated" xml:space="preserve">
     <value>Calculated</value>
@@ -366,6 +342,10 @@ Invert</value>
     <value>Report may take minutes</value>
     <comment>label</comment>
   </data>
+  <data name="ApplyTableTheme_SelectTable" xml:space="preserve">
+    <value>Move the text cursor into a table cell</value>
+    <comment>message</comment>
+  </data>
   <data name="ArchiveCommand_archived" xml:space="preserve">
     <value>{0} pages archive to {1}</value>
     <comment>message</comment>
@@ -510,10 +490,6 @@ Invert</value>
     <value>No log file is available</value>
     <comment>message box message</comment>
   </data>
-  <data name="ClearLog_NoneTitle" xml:space="preserve">
-    <value>It's all good</value>
-    <comment>message box title</comment>
-  </data>
   <data name="ClearLog_Title" xml:space="preserve">
     <value>Confirm</value>
     <comment>message box title</comment>
@@ -653,10 +629,6 @@ Invert</value>
     <value>Would you like to create {0} pages?</value>
     <comment>message box</comment>
   </data>
-  <data name="CreatePagesCommand_Done" xml:space="preserve">
-    <value>Created pages. OneNote will update momentarily</value>
-    <comment>message box</comment>
-  </data>
   <data name="CreatePagesCommand_NoNamesFound" xml:space="preserve">
     <value>A name list was not found on the page</value>
     <comment>message box</comment>
@@ -680,10 +652,6 @@ Invert</value>
   <data name="CropImageDialog_introText.Text" xml:space="preserve">
     <value>Use the mouse to select an area to crop. Ctrl+D to deselect. Use the slider to rotate the image. Click OK to finish.</value>
     <comment>intro text label</comment>
-  </data>
-  <data name="CropImageDialog_noSelection" xml:space="preserve">
-    <value>No selection</value>
-    <comment>status bar text</comment>
   </data>
   <data name="CropImageDialog_printout" xml:space="preserve">
     <value>This image is from a printout. If it is cropped, it will no longer be associated with that original file. Do you want to continue cropping?</value>
@@ -5179,7 +5147,6 @@ In this section</value>
     <value>Word Counts</value>
     <comment>page title</comment>
   </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="sponsor_dark" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Commands\Tools\sponsor-dark.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -5486,6 +5453,15 @@ In this section</value>
   <data name="m_SaveAs" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Menu\m_SaveAs.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="m_Search" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Menu\m_Search.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="m_SearchTags" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Menu\m_SearchTags.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="m_SelectAll" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Menu\m_SelectAll.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="m_Sort" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Menu\m_Sort.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -5530,14 +5506,5 @@ In this section</value>
   </data>
   <data name="_0336_OneNoteApplication_2013" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>0336.OneNoteApplication_2013.xsd;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
-  </data>
-  <data name="m_Search" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Menu\m_Search.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="m_SearchTags" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Menu\m_SearchTags.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="m_SelectAll" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Menu\m_SelectAll.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

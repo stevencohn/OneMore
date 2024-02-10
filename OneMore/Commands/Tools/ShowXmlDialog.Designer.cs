@@ -161,7 +161,7 @@
 			// 
 			// sectionBox
 			// 
-			this.sectionBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.sectionBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
 			this.sectionBox.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.sectionBox.Font = new System.Drawing.Font("Lucida Console", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.sectionBox.Location = new System.Drawing.Point(2, 2);
@@ -189,7 +189,7 @@
 			// 
 			// notebookBox
 			// 
-			this.notebookBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.notebookBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
 			this.notebookBox.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.notebookBox.Font = new System.Drawing.Font("Lucida Console", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.notebookBox.Location = new System.Drawing.Point(2, 2);
@@ -217,7 +217,7 @@
 			// 
 			// nbSectionBox
 			// 
-			this.nbSectionBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.nbSectionBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
 			this.nbSectionBox.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.nbSectionBox.Font = new System.Drawing.Font("Lucida Console", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.nbSectionBox.Location = new System.Drawing.Point(2, 2);
@@ -245,7 +245,7 @@
 			// 
 			// nbPagesBox
 			// 
-			this.nbPagesBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.nbPagesBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
 			this.nbPagesBox.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.nbPagesBox.Font = new System.Drawing.Font("Lucida Console", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.nbPagesBox.Location = new System.Drawing.Point(2, 2);
@@ -273,7 +273,7 @@
 			// 
 			// manualBox
 			// 
-			this.manualBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.manualBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
 			this.manualBox.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.manualBox.Font = new System.Drawing.Font("Lucida Console", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.manualBox.Location = new System.Drawing.Point(2, 2);
@@ -412,6 +412,7 @@
 			this.objectIdBox.Location = new System.Drawing.Point(416, 15);
 			this.objectIdBox.Margin = new System.Windows.Forms.Padding(3, 6, 3, 3);
 			this.objectIdBox.Name = "objectIdBox";
+			this.objectIdBox.ProcessEnterKey = false;
 			this.objectIdBox.Size = new System.Drawing.Size(509, 29);
 			this.objectIdBox.TabIndex = 7;
 			this.objectIdBox.ThemedBack = null;
@@ -735,6 +736,7 @@
 			this.findBox.ForeColor = System.Drawing.SystemColors.ControlText;
 			this.findBox.Location = new System.Drawing.Point(10, 11);
 			this.findBox.Name = "findBox";
+			this.findBox.ProcessEnterKey = false;
 			this.findBox.Size = new System.Drawing.Size(270, 28);
 			this.findBox.TabIndex = 0;
 			this.findBox.ThemedBack = null;

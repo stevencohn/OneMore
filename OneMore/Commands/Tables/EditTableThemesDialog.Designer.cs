@@ -285,7 +285,6 @@ namespace River.OneMoreAddIn.Commands
 			this.tabs.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.tabs.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
 			this.tabs.Location = new System.Drawing.Point(20, 86);
-			this.tabs.Margin = new System.Windows.Forms.Padding(0);
 			this.tabs.Name = "tabs";
 			this.tabs.Padding = new System.Drawing.Point(0, 0);
 			this.tabs.SelectedIndex = 0;

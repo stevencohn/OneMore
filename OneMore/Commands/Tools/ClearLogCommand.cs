@@ -33,13 +33,8 @@ namespace River.OneMoreAddIn.Commands
 			}
 			else
 			{
-				MessageBox.Show(
-					Resx.ClearLog_NoneMessage,
-					Resx.ClearLog_NoneTitle,
-					MessageBoxButtons.OK,
-					MessageBoxIcon.Information,
-					MessageBoxDefaultButton.Button1,
-					MessageBoxOptions.DefaultDesktopOnly);
+				UI.MoreMessageBox.Show(owner,
+					Resx.ClearLog_NoneMessage, MessageBoxButtons.OK, MessageBoxIcon.Information);
 			}
 
 			await Task.Yield();

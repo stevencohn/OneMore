@@ -133,27 +133,6 @@
     <value>查看 GitHub 上的项目</value>
     <comment>button</comment>
   </data>
-  <data name="AboutDialog_LatestMessage" xml:space="preserve">
-    <value>您拥有最新版本</value>
-    <comment>message box message</comment>
-  </data>
-  <data name="AboutDialog_LatestTitle" xml:space="preserve">
-    <value>您已准备就绪！</value>
-    <comment>message box title</comment>
-  </data>
-  <data name="AboutDialog_NewVersionMessage" xml:space="preserve">
-    <value>新版本可用:
-
-    {0} - "{1}"
-
-是否立即更新?
-OneNote 将自动关闭</value>
-    <comment>message box message showing verison tag and name</comment>
-  </data>
-  <data name="AboutDialog_NewVersionTitle" xml:space="preserve">
-    <value>更新 OneMore</value>
-    <comment>message box title</comment>
-  </data>
   <data name="AboutDialog_pleaseLabel.Text" xml:space="preserve">
     <value>请支持OneMore的未来发展</value>
     <comment>label</comment>
@@ -173,10 +152,6 @@ OneNote 将自动关闭</value>
   <data name="AddCaptionCommand_Captioned" xml:space="preserve">
     <value>图片已有说明</value>
     <comment>info message</comment>
-  </data>
-  <data name="AddFormula_linearMessage" xml:space="preserve">
-    <value>从同一行或列中选择一个或多个单元格</value>
-    <comment>message box</comment>
   </data>
   <data name="AddFormulaCommand_Calculated" xml:space="preserve">
     <value>已计算</value>
@@ -357,6 +332,10 @@ OneNote 将自动关闭</value>
     <value>报告可能需要几分钟</value>
     <comment>label</comment>
   </data>
+  <data name="ApplyTableTheme_SelectTable" xml:space="preserve">
+    <value>将文本光标移动到表格单元格中</value>
+    <comment>message</comment>
+  </data>
   <data name="ArchiveCommand_archived" xml:space="preserve">
     <value>{0}页归档到{1}</value>
     <comment>message</comment>
@@ -501,10 +480,6 @@ OneNote 将自动关闭</value>
     <value>没有可用的日志文件</value>
     <comment>message box message</comment>
   </data>
-  <data name="ClearLog_NoneTitle" xml:space="preserve">
-    <value>一切都很好</value>
-    <comment>message box title</comment>
-  </data>
   <data name="ClearLog_Title" xml:space="preserve">
     <value>确认</value>
     <comment>message box title</comment>
@@ -644,10 +619,6 @@ OneNote 将自动关闭</value>
     <value>您想创建 {0} 个页面吗？</value>
     <comment>message box</comment>
   </data>
-  <data name="CreatePagesCommand_Done" xml:space="preserve">
-    <value>创建的页面。 OneNote 将立即更新</value>
-    <comment>message box</comment>
-  </data>
   <data name="CreatePagesCommand_NoNamesFound" xml:space="preserve">
     <value>未在页面上找到姓名列表</value>
     <comment>message box</comment>
@@ -671,10 +642,6 @@ OneNote 将自动关闭</value>
   <data name="CropImageDialog_introText.Text" xml:space="preserve">
     <value>使用鼠标选择要裁剪的区域。 </value>
     <comment>intro text label</comment>
-  </data>
-  <data name="CropImageDialog_noSelection" xml:space="preserve">
-    <value>没有选择</value>
-    <comment>status bar text</comment>
   </data>
   <data name="CropImageDialog_printout" xml:space="preserve">
     <value>This image is from a printout. If it is cropped, it will no longer be associated with that original file. Do you want to continue cropping?</value>

@@ -300,7 +300,7 @@ namespace River.OneMoreAddIn
 
 				HotkeyManager.Unregister();
 
-				UIHelper.Shutdown();
+				System.Windows.Forms.Application.Exit();
 			}
 			catch (Exception exc)
 			{

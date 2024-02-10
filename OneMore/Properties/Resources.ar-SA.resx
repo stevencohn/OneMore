@@ -134,25 +134,6 @@
     <value>شاهد المشروع على جيثب</value>
     <comment>button</comment>
   </data>
-  <data name="AboutDialog_LatestMessage" xml:space="preserve">
-    <value>لديك أحدث نسخة</value>
-    <comment>message box message</comment>
-  </data>
-  <data name="AboutDialog_LatestTitle" xml:space="preserve">
-    <value>أنت على ما يرام!</value>
-    <comment>message box title</comment>
-  </data>
-  <data name="AboutDialog_NewVersionMessage" xml:space="preserve">
-    <value>إصدار جديد متوفر:
-{0} - "{1}"
-هل تريد التحديث الآن؟
-سيتم إغلاق OneNote تلقائيًا</value>
-    <comment>message box message showing verison tag and name</comment>
-  </data>
-  <data name="AboutDialog_NewVersionTitle" xml:space="preserve">
-    <value>تحديث OneMore</value>
-    <comment>message box title</comment>
-  </data>
   <data name="AboutDialog_pleaseLabel.Text" xml:space="preserve">
     <value>الرجاء دعم التطوير المستقبلي لـ OneMore</value>
     <comment>label</comment>
@@ -172,10 +153,6 @@
   <data name="AddCaptionCommand_Captioned" xml:space="preserve">
     <value>الصورة لديها بالفعل تسمية توضيحية</value>
     <comment>info message</comment>
-  </data>
-  <data name="AddFormula_linearMessage" xml:space="preserve">
-    <value>حدد خلية واحدة أو أكثر من نفس الصف أو نفس العمود</value>
-    <comment>message box</comment>
   </data>
   <data name="AddFormulaCommand_Calculated" xml:space="preserve">
     <value>محسوب</value>
@@ -356,6 +333,10 @@
     <value>قد يستغرق التقرير دقائق</value>
     <comment>label</comment>
   </data>
+  <data name="ApplyTableTheme_SelectTable" xml:space="preserve">
+    <value>حرك مؤشر النص إلى خلية جدول</value>
+    <comment>message</comment>
+  </data>
   <data name="ArchiveCommand_archived" xml:space="preserve">
     <value>تم وضع {0} من الصفحات في الأرشيف في {1}</value>
     <comment>message</comment>
@@ -500,10 +481,6 @@
     <value>لا يوجد ملف سجل متاح</value>
     <comment>message box message</comment>
   </data>
-  <data name="ClearLog_NoneTitle" xml:space="preserve">
-    <value>كل شيء جيد</value>
-    <comment>message box title</comment>
-  </data>
   <data name="ClearLog_Title" xml:space="preserve">
     <value>تؤكد</value>
     <comment>message box title</comment>
@@ -643,10 +620,6 @@
     <value>هل ترغب في إنشاء صفحات {0}؟</value>
     <comment>message box</comment>
   </data>
-  <data name="CreatePagesCommand_Done" xml:space="preserve">
-    <value>الصفحات التي تم إنشاؤها. سيتم تحديث OneNote للحظات</value>
-    <comment>message box</comment>
-  </data>
   <data name="CreatePagesCommand_NoNamesFound" xml:space="preserve">
     <value>لم يتم العثور على قائمة الأسماء على الصفحة</value>
     <comment>message box</comment>
@@ -670,10 +643,6 @@
   <data name="CropImageDialog_introText.Text" xml:space="preserve">
     <value>استخدم الماوس لتحديد منطقة لاقتصاصها. </value>
     <comment>intro text label</comment>
-  </data>
-  <data name="CropImageDialog_noSelection" xml:space="preserve">
-    <value>لا اختيار</value>
-    <comment>status bar text</comment>
   </data>
   <data name="CropImageDialog_printout" xml:space="preserve">
     <value>This image is from a printout. If it is cropped, it will no longer be associated with that original file. Do you want to continue cropping?</value>

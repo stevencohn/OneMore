@@ -134,25 +134,6 @@
     <value>Veja o projeto no GitHub</value>
     <comment>button</comment>
   </data>
-  <data name="AboutDialog_LatestMessage" xml:space="preserve">
-    <value>Você tem a última versão</value>
-    <comment>message box message</comment>
-  </data>
-  <data name="AboutDialog_LatestTitle" xml:space="preserve">
-    <value>Você está pronto para ir!</value>
-    <comment>message box title</comment>
-  </data>
-  <data name="AboutDialog_NewVersionMessage" xml:space="preserve">
-    <value>Uma nova versão está disponível:
-{0} - "{1}"
-Você quer atualizar agora?
-OneNote fechará automaticamente</value>
-    <comment>message box message showing verison tag and name</comment>
-  </data>
-  <data name="AboutDialog_NewVersionTitle" xml:space="preserve">
-    <value>Atualizar OneMore</value>
-    <comment>message box title</comment>
-  </data>
   <data name="AboutDialog_pleaseLabel.Text" xml:space="preserve">
     <value>Por favor, apoie o desenvolvimento futuro do OneMore</value>
     <comment>label</comment>
@@ -172,10 +153,6 @@ OneNote fechará automaticamente</value>
   <data name="AddCaptionCommand_Captioned" xml:space="preserve">
     <value>A imagem já tem uma legenda</value>
     <comment>info message</comment>
-  </data>
-  <data name="AddFormula_linearMessage" xml:space="preserve">
-    <value>Selecione uma ou mais células da mesma linha ou coluna</value>
-    <comment>message box</comment>
   </data>
   <data name="AddFormulaCommand_Calculated" xml:space="preserve">
     <value>Calculado</value>
@@ -357,6 +334,10 @@ Invertido</value>
     <value>Relatório pode levar minutos</value>
     <comment>label</comment>
   </data>
+  <data name="ApplyTableTheme_SelectTable" xml:space="preserve">
+    <value>Mova o cursor de texto para uma célula da tabela</value>
+    <comment>message</comment>
+  </data>
   <data name="ArchiveCommand_archived" xml:space="preserve">
     <value>{0} páginas arquivadas em {1}</value>
     <comment>message</comment>
@@ -501,10 +482,6 @@ Invertido</value>
     <value>Nenhum arquivo de log está disponível</value>
     <comment>message box message</comment>
   </data>
-  <data name="ClearLog_NoneTitle" xml:space="preserve">
-    <value>É tudo de bom</value>
-    <comment>message box title</comment>
-  </data>
   <data name="ClearLog_Title" xml:space="preserve">
     <value>confirme</value>
     <comment>message box title</comment>
@@ -644,10 +621,6 @@ Invertido</value>
     <value>Deseja criar {0} páginas?</value>
     <comment>message box</comment>
   </data>
-  <data name="CreatePagesCommand_Done" xml:space="preserve">
-    <value>Páginas criadas. O OneNote será atualizado momentaneamente</value>
-    <comment>message box</comment>
-  </data>
   <data name="CreatePagesCommand_NoNamesFound" xml:space="preserve">
     <value>Uma lista de nomes não foi encontrada na página</value>
     <comment>message box</comment>
@@ -671,10 +644,6 @@ Invertido</value>
   <data name="CropImageDialog_introText.Text" xml:space="preserve">
     <value>Use o mouse para selecionar uma área a ser cortada. </value>
     <comment>intro text label</comment>
-  </data>
-  <data name="CropImageDialog_noSelection" xml:space="preserve">
-    <value>Nenhuma seleção</value>
-    <comment>status bar text</comment>
   </data>
   <data name="CropImageDialog_printout" xml:space="preserve">
     <value>Esta imagem é de uma impressão. Se for cortado, não será mais associado a esse arquivo original. Deseja continuar cortando?</value>

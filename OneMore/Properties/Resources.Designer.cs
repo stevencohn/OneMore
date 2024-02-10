@@ -110,47 +110,6 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to You have the latest version.
-        /// </summary>
-        internal static string AboutDialog_LatestMessage {
-            get {
-                return ResourceManager.GetString("AboutDialog_LatestMessage", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to You&apos;re good to go!.
-        /// </summary>
-        internal static string AboutDialog_LatestTitle {
-            get {
-                return ResourceManager.GetString("AboutDialog_LatestTitle", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to A new version is available:
-        ///
-        ///    {0} - &quot;{1}&quot;
-        ///
-        ///Do you want to update now?
-        ///OneNote will close automatically.
-        /// </summary>
-        internal static string AboutDialog_NewVersionMessage {
-            get {
-                return ResourceManager.GetString("AboutDialog_NewVersionMessage", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Update OneMore.
-        /// </summary>
-        internal static string AboutDialog_NewVersionTitle {
-            get {
-                return ResourceManager.GetString("AboutDialog_NewVersionTitle", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Please support future development of OneMore.
         /// </summary>
         internal static string AboutDialog_pleaseLabel_Text {
@@ -201,15 +160,6 @@ namespace River.OneMoreAddIn.Properties {
         internal static string AddCaptionCommand_Captioned {
             get {
                 return ResourceManager.GetString("AddCaptionCommand_Captioned", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Select one or more cells from the same row or the same column.
-        /// </summary>
-        internal static string AddFormula_linearMessage {
-            get {
-                return ResourceManager.GetString("AddFormula_linearMessage", resourceCulture);
             }
         }
         
@@ -627,6 +577,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Move the text cursor into a table cell.
+        /// </summary>
+        internal static string ApplyTableTheme_SelectTable {
+            get {
+                return ResourceManager.GetString("ApplyTableTheme_SelectTable", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to {0} pages archive to {1}.
         /// </summary>
         internal static string ArchiveCommand_archived {
@@ -951,15 +910,6 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to It&apos;s all good.
-        /// </summary>
-        internal static string ClearLog_NoneTitle {
-            get {
-                return ResourceManager.GetString("ClearLog_NoneTitle", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Confirm.
         /// </summary>
         internal static string ClearLog_Title {
@@ -1275,15 +1225,6 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Created pages. OneNote will update momentarily.
-        /// </summary>
-        internal static string CreatePagesCommand_Done {
-            get {
-                return ResourceManager.GetString("CreatePagesCommand_Done", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to A name list was not found on the page.
         /// </summary>
         internal static string CreatePagesCommand_NoNamesFound {
@@ -1325,15 +1266,6 @@ namespace River.OneMoreAddIn.Properties {
         internal static string CropImageDialog_introText_Text {
             get {
                 return ResourceManager.GetString("CropImageDialog_introText.Text", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to No selection.
-        /// </summary>
-        internal static string CropImageDialog_noSelection {
-            get {
-                return ResourceManager.GetString("CropImageDialog_noSelection", resourceCulture);
             }
         }
         

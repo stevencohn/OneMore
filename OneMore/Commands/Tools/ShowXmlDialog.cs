@@ -895,7 +895,7 @@ namespace River.OneMoreAddIn.Commands
 		{
 			//var result = UIHelper.ShowQuestion(Resx.ShowXmlDialog_WARNING);
 			var result = UI.MoreMessageBox.Show(this,
-				Resx.ShowXmlDialog_WARNING, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+				Resx.ShowXmlDialog_WARNING, MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
 
 			if (result == DialogResult.Yes)
 			{

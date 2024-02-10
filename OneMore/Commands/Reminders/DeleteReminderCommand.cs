@@ -84,8 +84,8 @@ namespace River.OneMoreAddIn.Commands
 				return;
 			}
 
-			var result = UIHelper.ShowQuestion(
-				Resx.DeleteReminderCommand_deleteTag, canCancel: true);
+			var result = UI.MoreMessageBox.ShowQuestion(owner,
+				Resx.DeleteReminderCommand_deleteTag, cancel: true);
 
 			if (result == DialogResult.Cancel)
 			{

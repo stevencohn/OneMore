@@ -134,22 +134,6 @@
     <value>Voir le projet sur GitHub</value>
     <comment>button</comment>
   </data>
-  <data name="AboutDialog_LatestMessage" xml:space="preserve">
-    <value>Vous avez la dernière version</value>
-    <comment>message box message</comment>
-  </data>
-  <data name="AboutDialog_LatestTitle" xml:space="preserve">
-    <value>Vous êtes prêt à partir!</value>
-    <comment>message box title</comment>
-  </data>
-  <data name="AboutDialog_NewVersionMessage" xml:space="preserve">
-    <value>Une nouvelle version est disponible:\n\n    </value>
-    <comment>message box message showing verison tag and name</comment>
-  </data>
-  <data name="AboutDialog_NewVersionTitle" xml:space="preserve">
-    <value>Mettre à jour OneMore</value>
-    <comment>message box title</comment>
-  </data>
   <data name="AboutDialog_pleaseLabel.Text" xml:space="preserve">
     <value>Veuillez soutenir le développement futur de OneMore</value>
     <comment>label</comment>
@@ -169,10 +153,6 @@
   <data name="AddCaptionCommand_Captioned" xml:space="preserve">
     <value>L'image a déjà une légende</value>
     <comment>info message</comment>
-  </data>
-  <data name="AddFormula_linearMessage" xml:space="preserve">
-    <value>Sélectionnez une ou plusieurs cellules de la même ligne ou de la même colonne</value>
-    <comment>message box</comment>
   </data>
   <data name="AddFormulaCommand_Calculated" xml:space="preserve">
     <value>Calculé</value>
@@ -353,6 +333,10 @@ Inverser</value>
     <value>Le rapport peut prendre quelques minutes</value>
     <comment>label</comment>
   </data>
+  <data name="ApplyTableTheme_SelectTable" xml:space="preserve">
+    <value>Déplacez le curseur de texte dans une cellule du tableau</value>
+    <comment>message</comment>
+  </data>
   <data name="ArchiveCommand_archived" xml:space="preserve">
     <value>{0} pages archivées dans {1}</value>
     <comment>message</comment>
@@ -497,10 +481,6 @@ Inverser</value>
     <value>Aucun fichier journal n'est disponible</value>
     <comment>message box message</comment>
   </data>
-  <data name="ClearLog_NoneTitle" xml:space="preserve">
-    <value>C'est parfait</value>
-    <comment>message box title</comment>
-  </data>
   <data name="ClearLog_Title" xml:space="preserve">
     <value>Confirmer</value>
     <comment>message box title</comment>
@@ -640,10 +620,6 @@ Inverser</value>
     <value>Souhaitez-vous créer {0} pages ?</value>
     <comment>message box</comment>
   </data>
-  <data name="CreatePagesCommand_Done" xml:space="preserve">
-    <value>Pages créées. OneNote sera mis à jour momentanément</value>
-    <comment>message box</comment>
-  </data>
   <data name="CreatePagesCommand_NoNamesFound" xml:space="preserve">
     <value>Une liste de noms n'a pas été trouvée sur la page</value>
     <comment>message box</comment>
@@ -667,10 +643,6 @@ Inverser</value>
   <data name="CropImageDialog_introText.Text" xml:space="preserve">
     <value>Utilisez la souris pour sélectionner une zone à recadrer. </value>
     <comment>intro text label</comment>
-  </data>
-  <data name="CropImageDialog_noSelection" xml:space="preserve">
-    <value>Pas de choix</value>
-    <comment>status bar text</comment>
   </data>
   <data name="CropImageDialog_printout" xml:space="preserve">
     <value>Cette image provient d'une impression. S'il est recadré, il ne sera plus associé à ce fichier d'origine. Voulez-vous continuer à recadrer ?</value>

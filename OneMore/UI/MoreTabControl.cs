@@ -106,6 +106,7 @@ namespace River.OneMoreAddIn.UI
 			};
 
 			var top = 0;
+
 			for (var i = 0; i < TabPages.Count; i++)
 			{
 				var page = TabPages[i];				
@@ -149,22 +150,26 @@ namespace River.OneMoreAddIn.UI
 
 					e.Graphics.DrawString(page.Text, Font, fore,
 						(bounds.X + 2 + ImageList.ImageSize.Width) + 3,
-						(bounds.Height - size.Height) - 2,
+						(bounds.Height - size.Height) - 3,
 						format);
 				}
 				else
 				{
 					e.Graphics.DrawString(page.Text, Font, fore,
 						bounds.X + 2 + (bounds.Width - size.Width) / 2f,
-						(bounds.Height - size.Height) - 2,
+						(bounds.Height - size.Height) - 3,
 						format);
 				}
 			}
 
-			if (top == 0) top = DefaultTabHeight;
-			using var border = new SolidBrush(manager.GetColor(Border));
-			using var pen = new Pen(border, 2);
-			e.Graphics.DrawRectangle(pen, 0, top, e.ClipRectangle.Width, e.ClipRectangle.Height - top);
+			top = top == 0 ? DefaultTabHeight - 2 : top - 2;
+			using var pen = new Pen(manager.GetColor(Border), 2);
+
+			// outline: left, bottom, right
+			e.Graphics.DrawLine(pen, 0, top, 0, e.ClipRectangle.Bottom);
+			e.Graphics.DrawLine(pen, 0, e.ClipRectangle.Bottom, e.ClipRectangle.Right, e.ClipRectangle.Bottom);
+			e.Graphics.DrawLine(pen, e.ClipRectangle.Right, e.ClipRectangle.Bottom, e.ClipRectangle.Right, top);
+
 			e.Graphics.FillRectangle(indicator, 0, top, e.ClipRectangle.Width, IndicatorSize);
 		}
 	}
