@@ -74,7 +74,7 @@ namespace River.OneMoreAddIn.UI
 		public string ThemedFore { get; set; }
 
 
-		[Category("OneMore"),
+		[Category("More"),
 		Description("Specifies the image to show when the mouse is over the button")]
 		public Image ImageOver
 		{
@@ -83,7 +83,7 @@ namespace River.OneMoreAddIn.UI
 		}
 
 
-		[Category("OneMore"),
+		[Category("More"),
 		Description("Indicate that the Image should be set for dark mode and resized")]
 		public bool StylizeImage { get; set; }
 

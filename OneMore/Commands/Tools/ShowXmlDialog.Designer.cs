@@ -102,7 +102,8 @@
 			this.tabs.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.tabs.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.tabs.ImageList = this.tabIcons;
-			this.tabs.InactiveTabBack = System.Drawing.SystemColors.ControlDarkDark;
+			this.tabs.InactiveTabBack = "ControlDarkDark";
+			this.tabs.InactiveTabFore = "DarkText";
 			this.tabs.Location = new System.Drawing.Point(0, 152);
 			this.tabs.Margin = new System.Windows.Forms.Padding(1);
 			this.tabs.Name = "tabs";

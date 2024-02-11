@@ -62,7 +62,7 @@ namespace River.OneMoreAddIn.UI
 		}
 
 
-		[Category("OneMore"), Description("Text to display")]
+		[Category("More"), Description("Text to display")]
 		public override string Text
 		{
 			get => label.Text;

@@ -33,32 +33,39 @@ namespace River.OneMoreAddIn.UI
 		}
 
 
-		[Category("More"), Description("Active tab indicator"), DefaultValue(typeof(Color), "MenuHighlight")]
-		public Color ActiveIndicator{ get; set; } = SystemColors.MenuHighlight;
+		[Category("More"),
+		 Description("Active tab indicator"), DefaultValue(typeof(string), "MenuHighlight")]
+		public string ActiveIndicator { get; set; } = "MenuHighlight";
 
 
-		[Category("More"), Description("Active tab background"), DefaultValue(typeof(Color), "ControlLight")]
-		public Color ActiveTabBack { get; set; } = SystemColors.ControlLight;
+		[Category("More"),
+		 Description("Active tab background"), DefaultValue(typeof(string), "ControlLight")]
+		public string ActiveTabBack { get; set; } = "ControlLight";
 
 
-		[Category("More"), Description("Active tab foreground"), DefaultValue(typeof(Color), "ControlText")]
-		public Color ActiveTabFore { get; set; } = SystemColors.ControlText;
+		[Category("More"),
+		 Description("Active tab foreground"), DefaultValue(typeof(string), "ControlText")]
+		public string ActiveTabFore { get; set; } = "ControlText";
 
 
-		[Category("More"), Description("Background color, tab well"), DefaultValue(typeof(Color), "Control")]
-		public Color Background { get; set; } = SystemColors.Control;
+		[Category("More"),
+		 Description("Background color, tab well"), DefaultValue(typeof(string), "Control")]
+		public string Background { get; set; } = "Control";
 
 
-		[Category("More"), Description("Border color"), DefaultValue(typeof(Color), "ActiveBorder")]
-		public Color Border { get; set; } = SystemColors.ActiveBorder;
+		[Category("More"),
+		 Description("Border color"), DefaultValue(typeof(string), "ActiveBorder")]
+		public string Border { get; set; } = "ActiveBorder";
 
 
-		[Category("More"), Description("Inactive tab background"), DefaultValue(typeof(Color), "Control")]
-		public Color InactiveTabBack { get; set; } = SystemColors.Control;
+		[Category("More"),
+		 Description("Inactive tab background"), DefaultValue(typeof(string), "Control")]
+		public string InactiveTabBack { get; set; } = "Control";
 
 
-		[Category("More"), Description("Inactive tab foreground"), DefaultValue(typeof(Color), "ControlText")]
-		public Color InactiveTabFore { get; set; } = SystemColors.ControlText;
+		[Category("More"),
+		 Description("Inactive tab foreground"), DefaultValue(typeof(string), "ControlText")]
+		public string InactiveTabFore { get; set; } = "ControlText";
 
 
 
@@ -109,7 +116,7 @@ namespace River.OneMoreAddIn.UI
 
 			for (var i = 0; i < TabPages.Count; i++)
 			{
-				var page = TabPages[i];				
+				var page = TabPages[i];
 				var bounds = GetTabRect(i);
 				bounds.Inflate(0, 2);
 

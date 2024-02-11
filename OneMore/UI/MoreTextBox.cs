@@ -31,7 +31,7 @@ namespace River.OneMoreAddIn.UI
 		public event EventHandler PressedEnter;
 
 
-		[Category("OneMore"),
+		[Category("More"),
 		Description("Catch and process Enter key with ProcessedEnter event")]
 		public bool ProcessEnterKey { get; set; }
 
