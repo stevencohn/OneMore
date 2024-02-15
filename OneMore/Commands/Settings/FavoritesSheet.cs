@@ -9,7 +9,6 @@ namespace River.OneMoreAddIn.Settings
 	using Microsoft.Office.Core;
 	using System;
 	using System.ComponentModel;
-	using System.Drawing;
 	using System.Linq;
 	using System.Windows.Forms;
 	using Favorite = FavoritesProvider.Favorite;
@@ -81,7 +80,7 @@ namespace River.OneMoreAddIn.Settings
 					gridView.Rows[e.RowIndex].Cells[e.ColumnIndex].ToolTipText =
 						Resx.Favorites_unknown;
 
-					e.CellStyle.BackColor = Color.Pink;
+					e.CellStyle.ForeColor = manager.GetColor("ErrorText");
 					e.FormattingApplied = true;
 				}
 				else if (favorite.Status == FavoriteStatus.Suspect)
@@ -89,7 +88,8 @@ namespace River.OneMoreAddIn.Settings
 					gridView.Rows[e.RowIndex].Cells[e.ColumnIndex].ToolTipText =
 						Resx.Favorites_suspect;
 
-					e.CellStyle.BackColor = Color.LightGoldenrodYellow;
+					e.CellStyle.BackColor = manager.GetColor("Info");
+					e.CellStyle.ForeColor = manager.GetColor("InfoText");
 					e.FormattingApplied = true;
 				}
 			}

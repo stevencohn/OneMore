@@ -162,7 +162,7 @@ namespace River.OneMoreAddIn.Commands
 				using var box = new MoreMessageBox();
 				box.SetIcon(MessageBoxIcon.Warning);
 				box.SetButtons(MessageBoxButtons.YesNo);
-				box.AppendMessage("This notebook contains locked sections.", Color.Firebrick);
+				box.AppendMessage("This notebook contains locked sections.", ThemeManager.Instance.GetColor("ErrorText"));
 
 				box.AppendMessage(plugin.SkipLocked
 					? " These sections may be skipped by the plugin."
