@@ -24,7 +24,6 @@ namespace River.OneMoreAddIn
 		private static bool designMode;
 		private static string appname = "OneMore";
 
-		private readonly bool stdio;
 		private readonly bool verbose;
 		private string preamble;
 		private bool isNewline;
@@ -37,8 +36,11 @@ namespace River.OneMoreAddIn
 
 		private Logger()
 		{
-			using var process = Process.GetCurrentProcess();
-			stdio = process.ProcessName.StartsWith("LINQPad");
+			if (!StdIO)
+			{
+				using var process = Process.GetCurrentProcess();
+				StdIO = process.ProcessName.StartsWith("LINQPad");
+			}
 
 			LogPath = Path.Combine(
 				Path.GetTempPath(),
@@ -122,9 +124,12 @@ namespace River.OneMoreAddIn
 		public string LogPath { get; private set; }
 
 
+		public static bool StdIO { get; set; }
+
+
 		private bool EnsureWriter()
 		{
-			if (stdio)
+			if (StdIO)
 				return true;
 
 			if (writer == null)
@@ -249,7 +254,7 @@ namespace River.OneMoreAddIn
 					writer.Write(MakeHeader());
 				}
 
-				if (stdio)
+				if (StdIO)
 					Console.Write(message);
 				else
 					writer.Write(message);
@@ -263,7 +268,7 @@ namespace River.OneMoreAddIn
 		{
 			if (EnsureWriter())
 			{
-				if (stdio)
+				if (StdIO)
 				{
 					Console.WriteLine();
 				}
@@ -284,7 +289,7 @@ namespace River.OneMoreAddIn
 					writer.Write(MakeHeader());
 				}
 
-				if (stdio)
+				if (StdIO)
 				{
 					Console.WriteLine(message);
 				}
@@ -308,7 +313,7 @@ namespace River.OneMoreAddIn
 					writer.Write(MakeHeader());
 				}
 
-				if (stdio)
+				if (StdIO)
 				{
 					Console.WriteLine(exc.FormatDetails());
 				}
@@ -400,13 +405,8 @@ namespace River.OneMoreAddIn
 
 		private string MakeHeader()
 		{
-			if (!stdio)
-			{
-				var bar = isVerbose ? "{" : "|";
-				return $"{Thread.CurrentThread.ManagedThreadId:00}|{DateTime.Now:hh:mm:ss.fff}{bar} {preamble}";
-			}
-
-			return string.Empty;
+			var bar = isVerbose ? "{" : "|";
+			return $"{Thread.CurrentThread.ManagedThreadId:00}|{DateTime.Now:hh:mm:ss.fff}{bar} {preamble}";
 		}
 	}
 }

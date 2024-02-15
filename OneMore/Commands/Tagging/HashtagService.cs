@@ -36,13 +36,16 @@ namespace River.OneMoreAddIn.Commands
 
 			disabled = collection.Get<bool>("disabled");
 
-			var rebuild = collection.Get<bool>("rebuild");
-			if (rebuild)
+			if (!disabled)
 			{
-				HashtagProvider.DeleteDatabase();
-				collection.Remove("rebuild");
-				settings.SetCollection(collection);
-				settings.Save();
+				var rebuild = collection.Get<bool>("rebuild");
+				if (rebuild)
+				{
+					HashtagProvider.DeleteDatabase();
+					collection.Remove("rebuild");
+					settings.SetCollection(collection);
+					settings.Save();
+				}
 			}
 		}
 

@@ -4,6 +4,7 @@
 
 namespace OneMoreService
 {
+	using River.OneMoreAddIn;
 	using System;
 	using System.Diagnostics;
 	using System.Management;
@@ -20,9 +21,13 @@ namespace OneMoreService
 
 		static void Main(string[] args)
 		{
+			Logger.SetApplication(Resx.ServiceName);
+
 			var pid = GetServicePid();
 			if (pid == 0)
 			{
+				Logger.StdIO = true;
+
 				// this process running in a console
 				StartFromConsole();
 			}
@@ -34,7 +39,7 @@ namespace OneMoreService
 			else
 			{
 				// other service process already running
-				Logger.Instance.WriteLine("Service process is already running");
+				Logger.Current.WriteLine("Service process is already running");
 			}
 		}
 
@@ -42,16 +47,23 @@ namespace OneMoreService
 		private static int GetServicePid()
 		{
 			var pid = 0;
-			var controller = new ServiceController(Resx.ServiceName);
-			if (controller.Status == ServiceControllerStatus.Running)
+			try
 			{
-				var searcher = new ManagementObjectSearcher(
-					$"SELECT * FROM Win32_Service WHERE Name = '{Resx.ServiceName}'");
-
-				foreach (ManagementBaseObject result in searcher.Get())
+				var controller = new ServiceController(Resx.ServiceName);
+				if (controller.Status == ServiceControllerStatus.Running)
 				{
-					pid = (int)result["ProcessId"];
+					var searcher = new ManagementObjectSearcher(
+						$"SELECT * FROM Win32_Service WHERE Name = '{Resx.ServiceName}'");
+
+					foreach (ManagementBaseObject result in searcher.Get())
+					{
+						pid = (int)result["ProcessId"];
+					}
 				}
+			}
+			catch (InvalidOperationException)
+			{
+				Logger.Current.WriteLine($"{Resx.ServiceName} service not found");
 			}
 
 			// 0=console, pid=service, -1=duplicate
@@ -61,7 +73,7 @@ namespace OneMoreService
 
 		private static void StartFromConsole()
 		{
-			Logger.Instance.WriteLine("Starting from console");
+			Logger.Current.WriteLine("Starting from console");
 
 			var host = new OneMoreService
 			{
@@ -79,7 +91,7 @@ namespace OneMoreService
 
 		private static void StartFromService()
 		{
-			Logger.Instance.WriteLine("Starting service");
+			Logger.Current.WriteLine("Starting service");
 
 			var host = new OneMoreService
 			{
@@ -91,23 +103,25 @@ namespace OneMoreService
 		}
 
 
+		// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
 		protected override void OnContinue()
 		{
-			Logger.Instance.WriteLine("OnContinue()");
+			Logger.Current.WriteLine("OnContinue()");
 			base.OnContinue();
 		}
 
 
 		protected override void OnPause()
 		{
-			Logger.Instance.WriteLine("OnPause()");
+			Logger.Current.WriteLine("OnPause()");
 			base.OnPause();
 		}
 
 
 		protected override void OnShutdown()
 		{
-			Logger.Instance.WriteLine("OnShutdown()");
+			Logger.Current.WriteLine("OnShutdown()");
 
 			// 10 seconds is arbitrary but should provide sufficient time for services to
 			// wind down gracefully
@@ -127,11 +141,11 @@ namespace OneMoreService
 			AppDomain.CurrentDomain.UnhandledException +=
 				(object s, UnhandledExceptionEventArgs e) =>
 				{
-					Logger.Instance.WriteLine("*** UNHANDLED EXCEPTION ***");
-					Logger.Instance.WriteLine((Exception)e.ExceptionObject);
+					Logger.Current.WriteLine("*** UNHANDLED EXCEPTION ***");
+					Logger.Current.WriteLine((Exception)e.ExceptionObject);
 				};
 
-			//StartServices();
+			new River.OneMoreAddIn.Commands.HashtagService().Startup();
 		}
 	}
 }
