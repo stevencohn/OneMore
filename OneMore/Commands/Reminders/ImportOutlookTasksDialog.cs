@@ -101,7 +101,7 @@ namespace River.OneMoreAddIn.Commands
 			treeNodeTextBox.DrawText += (sender, args) =>
 			{
 				if (args.Node.Level > 2)
-					args.TextColor = Color.Firebrick;
+					args.TextColor = manager.GetColor("ErrorText");
 			};
 			tree.NodeControls.Add(treeNodeTextBox);
 
