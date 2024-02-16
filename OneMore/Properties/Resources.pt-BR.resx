@@ -1196,10 +1196,6 @@ Referência da célula: A1, A2, ... ZZZ999
 Alcance da célula: A1:A22
 Símbolos: PI, E</value>
   <comment></comment></data>
-  <data name="FormulaDialog_helpButton.Text" xml:space="preserve">
-    <value>Socorro</value>
-    <comment>help checkbox button</comment>
-  </data>
   <data name="FormulaDialog_selectedLabel.Text" xml:space="preserve">
     <value>Células selecionadas:</value>
     <comment>label</comment>

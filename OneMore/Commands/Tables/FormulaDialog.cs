@@ -34,7 +34,6 @@ namespace River.OneMoreAddIn.Commands
 					"formulaLabel",
 					"formatLabel=word_Format",
 					"decLabel",
-					"helpButton",
 					"helpBox",
 					"statusLabel",
 					"okButton=word_OK",

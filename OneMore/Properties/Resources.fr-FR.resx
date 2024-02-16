@@ -1195,10 +1195,6 @@ Référence cellule : A1, A2, ... ZZZ999
 Gamme de cellules : A1 : A22
 Symboles : PI, E</value>
   <comment></comment></data>
-  <data name="FormulaDialog_helpButton.Text" xml:space="preserve">
-    <value>Aidez-moi</value>
-    <comment>help checkbox button</comment>
-  </data>
   <data name="FormulaDialog_selectedLabel.Text" xml:space="preserve">
     <value>Cellules sélectionnées:</value>
     <comment>label</comment>

@@ -1196,10 +1196,6 @@ Celverwijzing: A1, A2, ... ZZZ999
 Celbereik: A1:A22
 Symbolen: PI, E</value>
   <comment></comment></data>
-  <data name="FormulaDialog_helpButton.Text" xml:space="preserve">
-    <value>Helpen</value>
-    <comment>help checkbox button</comment>
-  </data>
   <data name="FormulaDialog_selectedLabel.Text" xml:space="preserve">
     <value>Geselecteerde cellen:</value>
     <comment>label</comment>

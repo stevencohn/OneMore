@@ -83,6 +83,7 @@
 			this.cancelButton.Name = "cancelButton";
 			this.cancelButton.ShowBorder = true;
 			this.cancelButton.Size = new System.Drawing.Size(100, 38);
+			this.cancelButton.StylizeImage = false;
 			this.cancelButton.TabIndex = 5;
 			this.cancelButton.Text = "Cancel";
 			this.cancelButton.ThemedBack = null;
@@ -101,6 +102,7 @@
 			this.okButton.Name = "okButton";
 			this.okButton.ShowBorder = true;
 			this.okButton.Size = new System.Drawing.Size(100, 38);
+			this.okButton.StylizeImage = false;
 			this.okButton.TabIndex = 4;
 			this.okButton.Text = "OK";
 			this.okButton.ThemedBack = null;
@@ -122,6 +124,7 @@
 			this.formulaBox.Location = new System.Drawing.Point(166, 61);
 			this.formulaBox.Margin = new System.Windows.Forms.Padding(3, 3, 3, 10);
 			this.formulaBox.Name = "formulaBox";
+			this.formulaBox.ProcessEnterKey = false;
 			this.formulaBox.Size = new System.Drawing.Size(382, 26);
 			this.formulaBox.TabIndex = 0;
 			this.formulaBox.ThemedBack = null;
@@ -182,12 +185,15 @@
 			this.helpButton.BackColor = System.Drawing.SystemColors.ButtonFace;
 			this.helpButton.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.helpButton.ForeColor = System.Drawing.SystemColors.ControlText;
+			this.helpButton.Image = global::River.OneMoreAddIn.Properties.Resources.m_Help;
 			this.helpButton.Location = new System.Drawing.Point(29, 221);
 			this.helpButton.Name = "helpButton";
-			this.helpButton.Size = new System.Drawing.Size(67, 30);
+			this.helpButton.Size = new System.Drawing.Size(44, 30);
+			this.helpButton.StylizeImage = true;
 			this.helpButton.TabIndex = 6;
 			this.helpButton.TabStop = false;
-			this.helpButton.Text = "Help";
+			this.helpButton.ThemedBack = null;
+			this.helpButton.ThemedFore = null;
 			this.helpButton.UseVisualStyleBackColor = false;
 			this.helpButton.CheckedChanged += new System.EventHandler(this.ToggleHelp);
 			// 
@@ -211,14 +217,18 @@
 			// 
 			// tagBox
 			// 
+			this.tagBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(231)))), ((int)(((byte)(231)))));
 			this.tagBox.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.tagBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.tagBox.Location = new System.Drawing.Point(166, 180);
 			this.tagBox.Margin = new System.Windows.Forms.Padding(3, 3, 3, 20);
 			this.tagBox.Name = "tagBox";
 			this.tagBox.Size = new System.Drawing.Size(161, 25);
+			this.tagBox.StylizeImage = false;
 			this.tagBox.TabIndex = 3;
 			this.tagBox.Text = "Tag formula cells";
+			this.tagBox.ThemedBack = null;
+			this.tagBox.ThemedFore = null;
 			this.tagBox.UseVisualStyleBackColor = true;
 			// 
 			// decLabel

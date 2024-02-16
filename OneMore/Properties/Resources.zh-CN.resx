@@ -1194,10 +1194,6 @@ OneNote 文件 (*.one)</value>
 单元格范围：A1:A22
 符号：PI、E</value>
   </data>
-  <data name="FormulaDialog_helpButton.Text" xml:space="preserve">
-    <value>帮帮我</value>
-    <comment>help checkbox button</comment>
-  </data>
   <data name="FormulaDialog_selectedLabel.Text" xml:space="preserve">
     <value>选定的单元格：</value>
     <comment>label</comment>

@@ -465,7 +465,7 @@ namespace River.OneMoreAddIn.Commands
 
 		private void LockAspectCheckedChanged(object sender, EventArgs e)
 		{
-			lockButton.BackgroundImage = lockButton.Checked ? Resx.Locked : Resx.Unlocked;
+			lockButton.Image = lockButton.Checked ? Resx.Locked : Resx.Unlocked;
 
 			if (image == null)
 			{

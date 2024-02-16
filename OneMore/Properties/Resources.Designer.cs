@@ -3212,15 +3212,6 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Help.
-        /// </summary>
-        internal static string FormulaDialog_helpButton_Text {
-            get {
-                return ResourceManager.GetString("FormulaDialog_helpButton.Text", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Selected cells:.
         /// </summary>
         internal static string FormulaDialog_selectedLabel_Text {
@@ -4678,6 +4669,16 @@ namespace River.OneMoreAddIn.Properties {
         internal static System.Drawing.Bitmap m_FontColor {
             get {
                 object obj = ResourceManager.GetObject("m_FontColor", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap m_Help {
+            get {
+                object obj = ResourceManager.GetObject("m_Help", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

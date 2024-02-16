@@ -109,6 +109,7 @@ namespace River.OneMoreAddIn.Commands
 			this.cancelButton.Name = "cancelButton";
 			this.cancelButton.ShowBorder = true;
 			this.cancelButton.Size = new System.Drawing.Size(100, 38);
+			this.cancelButton.StylizeImage = false;
 			this.cancelButton.TabIndex = 24;
 			this.cancelButton.Text = "Cancel";
 			this.cancelButton.ThemedBack = null;
@@ -126,6 +127,7 @@ namespace River.OneMoreAddIn.Commands
 			this.okButton.Name = "okButton";
 			this.okButton.ShowBorder = true;
 			this.okButton.Size = new System.Drawing.Size(100, 38);
+			this.okButton.StylizeImage = false;
 			this.okButton.TabIndex = 23;
 			this.okButton.Text = "OK";
 			this.okButton.ThemedBack = null;
@@ -361,6 +363,7 @@ namespace River.OneMoreAddIn.Commands
 			// 
 			// preserveBox
 			// 
+			this.preserveBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(231)))), ((int)(((byte)(231)))));
 			this.preserveBox.Checked = true;
 			this.preserveBox.CheckState = System.Windows.Forms.CheckState.Checked;
 			this.preserveBox.Cursor = System.Windows.Forms.Cursors.Hand;
@@ -368,8 +371,11 @@ namespace River.OneMoreAddIn.Commands
 			this.preserveBox.Location = new System.Drawing.Point(39, 563);
 			this.preserveBox.Name = "preserveBox";
 			this.preserveBox.Size = new System.Drawing.Size(194, 25);
+			this.preserveBox.StylizeImage = false;
 			this.preserveBox.TabIndex = 20;
 			this.preserveBox.Text = "Preserve storage size";
+			this.preserveBox.ThemedBack = null;
+			this.preserveBox.ThemedFore = null;
 			this.preserveBox.UseVisualStyleBackColor = true;
 			this.preserveBox.CheckedChanged += new System.EventHandler(this.EstimateStorage);
 			// 
@@ -622,17 +628,19 @@ namespace River.OneMoreAddIn.Commands
 			// 
 			this.lockButton.Appearance = System.Windows.Forms.Appearance.Button;
 			this.lockButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
-			this.lockButton.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("lockButton.BackgroundImage")));
-			this.lockButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
 			this.lockButton.Checked = true;
 			this.lockButton.CheckState = System.Windows.Forms.CheckState.Checked;
 			this.lockButton.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.lockButton.Enabled = false;
 			this.lockButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+			this.lockButton.Image = global::River.OneMoreAddIn.Properties.Resources.Locked;
 			this.lockButton.Location = new System.Drawing.Point(403, 167);
 			this.lockButton.Name = "lockButton";
 			this.lockButton.Size = new System.Drawing.Size(33, 33);
+			this.lockButton.StylizeImage = false;
 			this.lockButton.TabIndex = 6;
+			this.lockButton.ThemedBack = null;
+			this.lockButton.ThemedFore = null;
 			this.lockButton.UseVisualStyleBackColor = true;
 			this.lockButton.CheckedChanged += new System.EventHandler(this.LockAspectCheckedChanged);
 			// 
@@ -693,6 +701,7 @@ namespace River.OneMoreAddIn.Commands
 			// 
 			// repositionBox
 			// 
+			this.repositionBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(231)))), ((int)(((byte)(231)))));
 			this.repositionBox.Checked = true;
 			this.repositionBox.CheckState = System.Windows.Forms.CheckState.Checked;
 			this.repositionBox.Cursor = System.Windows.Forms.Cursors.Hand;
@@ -700,8 +709,11 @@ namespace River.OneMoreAddIn.Commands
 			this.repositionBox.Location = new System.Drawing.Point(39, 594);
 			this.repositionBox.Name = "repositionBox";
 			this.repositionBox.Size = new System.Drawing.Size(262, 25);
+			this.repositionBox.StylizeImage = false;
 			this.repositionBox.TabIndex = 48;
 			this.repositionBox.Text = "Reposition background images";
+			this.repositionBox.ThemedBack = null;
+			this.repositionBox.ThemedFore = null;
 			this.repositionBox.UseVisualStyleBackColor = true;
 			this.repositionBox.Visible = false;
 			// 

@@ -4,14 +4,16 @@
 
 namespace River.OneMoreAddIn.UI
 {
+	using River.OneMoreAddIn.Commands;
 	using System;
+	using System.ComponentModel;
 	using System.Drawing;
 	using System.Drawing.Drawing2D;
 	using System.Linq;
 	using System.Windows.Forms;
 
 
-	internal class MoreCheckBox : CheckBox
+	internal class MoreCheckBox : CheckBox, ILoadControl
 	{
 		private const int Spacing = 4;
 		private readonly ThemeManager manager;
@@ -51,6 +53,39 @@ namespace River.OneMoreAddIn.UI
 		public MouseState MouseState { get; private set; }
 
 
+		[Category("More"),
+		 Description("Indicate that the Image should be set for dark mode and resized")]
+		public bool StylizeImage { get; set; }
+
+
+		public string ThemedBack { get; set; }
+
+
+		public string ThemedFore { get; set; }
+
+
+
+		void ILoadControl.OnLoad()
+		{
+			BackColor = manager.GetColor("ButtonFace", ThemedBack);
+			ForeColor = Enabled
+				? manager.GetColor("ControlText", ThemedFore)
+				: manager.GetColor("GrayText");
+
+			if (StylizeImage)
+			{
+				var editor = new ImageEditor { Size = new Size(16, 16) };
+				if (manager.DarkMode)
+				{
+					editor.Style = ImageEditor.Stylization.Invert;
+				}
+
+				using var img = Image;
+				Image = editor.Apply(img);
+			}
+		}
+
+
 		protected override void OnPaint(PaintEventArgs pevent)
 		{
 			var g = pevent.Graphics;
@@ -71,6 +106,7 @@ namespace River.OneMoreAddIn.UI
 		private void PaintButton(PaintEventArgs pevent)
 		{
 			var g = pevent.Graphics;
+
 			var clip = pevent.ClipRectangle;
 			var radius = g.DpiX == 96 ? 2 : 4;
 
@@ -82,62 +118,106 @@ namespace River.OneMoreAddIn.UI
 						: MouseState.HasFlag(MouseState.Hover) ? hoverColor : backColor);
 
 				g.FillRoundedRectangle(brush, clip, radius);
-
-				using var pen = new Pen(
-					MouseState.HasFlag(MouseState.Pushed) || Checked
-					? manager.ButtonPressBorder
-					: manager.ButtonBorder);
-
-				g.DrawRoundedRectangle(pen, clip, radius);
 			}
 
-			var img = Image ?? BackgroundImage;
-			if (img != null)
+			if (BackgroundImage != null)
 			{
-				var r = clip;
-				r.Inflate(-3, -3);
-				g.DrawImage(img, r);
+				PaintBackgroundImage(g, clip);
 			}
 
-			if (!string.IsNullOrWhiteSpace(Text))
+			if (Image != null && !string.IsNullOrWhiteSpace(Text))
+			{
+				var size = g.MeasureString(Text, Font);
+				var x = (clip.Width - ((int)size.Width + Image.Width)) / 2;
+				var y = (clip.Height - Image.Height) / 2;
+
+				g.DrawImage(Image, x - 3, y - 3);
+				PaintText(g, x + Image.Width - 3, y - 3);
+			}
+			else if (Image != null)
+			{
+				var x = (clip.Width - Image.Width) / 2;
+				var y = (clip.Height - Image.Height) / 2;
+				Logger.Current.WriteLine($"drawlock {clip} -- {Image.Width}x{Image.Height} == {x}x{y}");
+				g.DrawImage(Image, x - 3, y - 3);
+			}
+			else if (!string.IsNullOrEmpty(Text))
 			{
 				var size = g.MeasureString(Text, Font);
 
-				using var brush = new SolidBrush(
-					Enabled ? foreColor : manager.GetColor("GrayText"));
-
-				pevent.Graphics.DrawString(Text, Font, brush,
-					(clip.Width - (int)size.Width) / 2f,
-					(clip.Height - (int)size.Height) / 2f,
-					new StringFormat
-					{
-						Trimming = StringTrimming.None,
-						FormatFlags = StringFormatFlags.LineLimit | StringFormatFlags.NoWrap
-					});
+				PaintText(g,
+					(int)((clip.Width - size.Width) / 2),
+					(int)((clip.Height - size.Height) / 2));
 			}
 
-			Color border;
+			var color = manager.ButtonBorder;
 			if (MouseState.HasFlag(MouseState.Pushed))
 			{
-				border = manager.ButtonPressBorder;
+				color = manager.ButtonPressBorder;
 			}
 			else if (Focused || IsDefault) // || this == FindForm().AcceptButton)
 			{
-				border = manager.GetColor("HotTrack");
+				color = manager.GetColor("HotTrack");
 			}
 			else if (MouseState.HasFlag(MouseState.Hover))
 			{
-				border = manager.ButtonHotBorder;
+				color = manager.ButtonHotBorder;
+			}
+
+			using var pen = new Pen(color);
+			g.DrawRoundedRectangle(pen,
+				new Rectangle(clip.X, clip.Y, clip.Width - 1, clip.Height - 1),
+				radius);
+		}
+
+
+		private void PaintBackgroundImage(Graphics g, Rectangle clip)
+		{
+			static Image Scale(Image image, Rectangle clip)
+			{
+				var hscale = (float)clip.Height / image.Height;
+				var wscale = (float)clip.Width / image.Width;
+				var scale = Math.Min(hscale, wscale);
+				var size = new SizeF(image.Width * scale, image.Height * scale).ToSize();
+				return new ImageEditor { Size = size }.Apply(image);
+			}
+
+			if (BackgroundImageLayout == ImageLayout.Stretch &&
+				(BackgroundImage.Width != clip.Width ||
+				BackgroundImage.Height != clip.Height))
+			{
+				using var img = BackgroundImage;
+				BackgroundImage = Scale(BackgroundImage, clip);
 			}
 			else
 			{
-				border = manager.ButtonBorder;
+				if (BackgroundImage.Width > clip.Width ||
+					BackgroundImage.Height > clip.Height)
+				{
+					using var img = BackgroundImage;
+					BackgroundImage = Scale(BackgroundImage, clip);
+				}
 			}
 
-			using var bpen = new Pen(border, 2);
-			g.DrawRoundedRectangle(bpen,
-				new Rectangle(clip.X, clip.Y, clip.Width - 1, clip.Height - 1),
-				radius);
+			g.DrawImage(BackgroundImage, clip);
+		}
+
+
+		private void PaintText(Graphics g, int x, int y)
+		{
+			using var brush = new SolidBrush(Enabled
+				? string.IsNullOrWhiteSpace(ThemedFore)
+					? foreColor
+					: manager.GetColor(ThemedFore)
+				: manager.GetColor("GrayText")
+				);
+
+			g.DrawString(Text, Font, brush, x, y,
+				new StringFormat
+				{
+					Trimming = StringTrimming.EllipsisCharacter,
+					FormatFlags = StringFormatFlags.LineLimit | StringFormatFlags.NoWrap
+				});
 		}
 
 
@@ -185,7 +265,7 @@ namespace River.OneMoreAddIn.UI
 			if (Appearance == Appearance.Normal)
 			{
 				var size = SystemInformation.MenuCheckSize;
-				if (string.IsNullOrWhiteSpace(Text) && 
+				if (string.IsNullOrWhiteSpace(Text) &&
 					(Width < size.Width || Height < size.Height))
 				{
 					AutoSize = false;
