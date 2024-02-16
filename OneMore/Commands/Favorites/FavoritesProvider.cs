@@ -318,7 +318,7 @@ namespace River.OneMoreAddIn
 			var node = notebook;
 			for (int i = 1; i < parts.Length; i++)
 			{
-				node = node.Elements().FirstOrDefault(n => n.Attribute("name").Value == parts[i]);
+				node = node.Elements().FirstOrDefault(n => n.Attribute("name")?.Value == parts[i]);
 				if (node == null)
 				{
 					logger.WriteLine($"broken link to favorite parts[{i}] {favorite.Location}");
