@@ -138,7 +138,6 @@ namespace River.OneMoreAddIn.UI
 			{
 				var x = (clip.Width - Image.Width) / 2;
 				var y = (clip.Height - Image.Height) / 2;
-				Logger.Current.WriteLine($"drawlock {clip} -- {Image.Width}x{Image.Height} == {x}x{y}");
 				g.DrawImage(Image, x - 3, y - 3);
 			}
 			else if (!string.IsNullOrEmpty(Text))
