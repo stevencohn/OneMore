@@ -1195,10 +1195,6 @@
 نطاق الخلايا: A1: A22
 الرموز: PI، E</value>
   <comment></comment></data>
-  <data name="FormulaDialog_helpButton.Text" xml:space="preserve">
-    <value>مساعدة</value>
-    <comment>help checkbox button</comment>
-  </data>
   <data name="FormulaDialog_selectedLabel.Text" xml:space="preserve">
     <value>الخلايا المحددة:</value>
     <comment>label</comment>

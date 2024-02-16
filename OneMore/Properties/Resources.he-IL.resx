@@ -1204,10 +1204,6 @@ Total Row Font
 טווח תאים: A1:A22
 סמלים: PI, E</value>
   </data>
-  <data name="FormulaDialog_helpButton.Text" xml:space="preserve">
-    <value>עֶזרָה</value>
-    <comment>help checkbox button</comment>
-  </data>
   <data name="FormulaDialog_selectedLabel.Text" xml:space="preserve">
     <value>תאים שנבחרו:</value>
     <comment>label</comment>

@@ -1195,10 +1195,6 @@ Referencia de celda: A1, A2, ... ZZZ999
 Rango de celdas: A1:A22
 Símbolos: PI, E</value>
   <comment></comment></data>
-  <data name="FormulaDialog_helpButton.Text" xml:space="preserve">
-    <value>Ayuda</value>
-    <comment>help checkbox button</comment>
-  </data>
   <data name="FormulaDialog_selectedLabel.Text" xml:space="preserve">
     <value>Celdas seleccionadas:</value>
     <comment>label</comment>

@@ -1208,10 +1208,6 @@ Cell reference: A1, A2, ... ZZZ999
 Cell range: A1:A22
 Symbols: PI, E</value>
   </data>
-  <data name="FormulaDialog_helpButton.Text" xml:space="preserve">
-    <value>Help</value>
-    <comment>help checkbox button</comment>
-  </data>
   <data name="FormulaDialog_selectedLabel.Text" xml:space="preserve">
     <value>Selected cells:</value>
     <comment>label</comment>
@@ -5411,6 +5407,9 @@ In this section</value>
   </data>
   <data name="m_FontColor" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Menu\m_FontColor.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="m_Help" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Menu\m_Help.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="m_Highlighter" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Menu\m_Highlighter.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>

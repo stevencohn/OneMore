@@ -1264,6 +1264,7 @@
     <Content Include="Properties\Menu\m_FolderClose.png" />
     <Content Include="Properties\Menu\m_FolderOpen.png" />
     <Content Include="Properties\Menu\m_FontColor.png" />
+    <Content Include="Properties\Menu\m_Help.png" />
     <Content Include="Properties\Menu\m_Highlighter.png" />
     <Content Include="Properties\Menu\m_Italic.png" />
     <Content Include="Properties\Menu\m_MoveDown.png" />

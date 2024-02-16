@@ -1204,10 +1204,6 @@ Odwołanie do komórki: A1, A2, ... ZZZ999
 Zakres komórek: A1:A22
 Symbole: PI, E</value>
   <comment></comment></data>
-  <data name="FormulaDialog_helpButton.Text" xml:space="preserve">
-    <value>Pomoc</value>
-    <comment>help checkbox button</comment>
-  </data>
   <data name="FormulaDialog_selectedLabel.Text" xml:space="preserve">
     <value>Wybrane komórki:</value>
     <comment>label</comment>

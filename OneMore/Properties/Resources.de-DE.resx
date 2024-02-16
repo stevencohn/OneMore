@@ -1193,10 +1193,6 @@ Zellreferenz: A1, A2, ... ZZZ999
 Zellbereich: A1:A22
 Symbole: PI, E</value>
   </data>
-  <data name="FormulaDialog_helpButton.Text" xml:space="preserve">
-    <value>Hilfe</value>
-    <comment>help checkbox button</comment>
-  </data>
   <data name="FormulaDialog_selectedLabel.Text" xml:space="preserve">
     <value>Ausgewählte Zellen:</value>
     <comment>label</comment>
