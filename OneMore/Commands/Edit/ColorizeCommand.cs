@@ -75,7 +75,11 @@ namespace River.OneMoreAddIn.Commands
 		public bool Colorize(string key, IEnumerable<XElement> runs)
 		{
 			var pageColor = page.GetPageColor(out var automatic, out var black);
-			var dark = black || pageColor.GetBrightness() < 0.5;
+
+			var dark =
+				(black || pageColor.GetBrightness() < 0.5) &&
+				!(black && pageColor.GetBrightness() >= 0.5);
+
 			var theme = dark ? "dark" : "light";
 			//logger.WriteLine($"theme: {theme} (color:{pageColor} automatic:{automatic} black:{black})");
 
