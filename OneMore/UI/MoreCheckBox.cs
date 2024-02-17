@@ -131,14 +131,14 @@ namespace River.OneMoreAddIn.UI
 				var x = (clip.Width - ((int)size.Width + Image.Width)) / 2;
 				var y = (clip.Height - Image.Height) / 2;
 
-				g.DrawImage(Image, x - 3, y - 3);
-				PaintText(g, x + Image.Width - 3, y - 3);
+				g.DrawImage(Image, x, y);
+				PaintText(g, x + Image.Width, y);
 			}
 			else if (Image != null)
 			{
 				var x = (clip.Width - Image.Width) / 2;
 				var y = (clip.Height - Image.Height) / 2;
-				g.DrawImage(Image, x - 3, y - 3);
+				g.DrawImage(Image, x, y);
 			}
 			else if (!string.IsNullOrEmpty(Text))
 			{
