@@ -57,7 +57,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CommandService.cs" />
+    <None Include="CommandService.cs" />
     <Compile Include="Program.cs">
       <SubType>Component</SubType>
     </Compile>

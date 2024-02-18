@@ -1,7 +1,7 @@
 ﻿//************************************************************************************************
 // Copyright © 2024 Steven M Cohn. All rights reserved.
 //************************************************************************************************
-
+/*
 namespace OneMoreService
 {
 	using Microsoft.Win32;
@@ -153,24 +153,23 @@ namespace OneMoreService
 
 			logger.WriteLine($"..invoking {action}({string.Join(", ", arguments)})");
 
-			/*
-			try
-			{
-				await factory.Invoke(action, arguments)
-					.ContinueWith((t) =>
-					{
-						//logger.WriteLine($"continuation status is {t.Status}");
-						if (t.IsFaulted)
-						{
-							logger.WriteLine("continuation fault", t.Exception);
-						}
-					});
-			}
-			catch (Exception exc)
-			{
-				logger.WriteLine("error invoking command", exc);
-			}
-			*/
+			//try
+			//{
+			//	await factory.Invoke(action, arguments)
+			//		.ContinueWith((t) =>
+			//		{
+			//			//logger.WriteLine($"continuation status is {t.Status}");
+			//			if (t.IsFaulted)
+			//			{
+			//				logger.WriteLine("continuation fault", t.Exception);
+			//			}
+			//		});
+			//}
+			//catch (Exception exc)
+			//{
+			//	logger.WriteLine("error invoking command", exc);
+			//}
 		}
 	}
 }
+*/

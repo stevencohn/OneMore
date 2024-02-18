@@ -48,13 +48,13 @@ namespace River.OneMoreAddIn
 		/// </summary>
 		public AddIn()
 		{
-			//System.Diagnostics.Debugger.Launch();
-
 			logger = Logger.Current;
 			trash = new List<IDisposable>();
 			process = Process.GetCurrentProcess();
 
 			UIHelper.PrepareUI();
+
+			AppDomain.CurrentDomain.UnhandledException += CatchUnhandledException;
 
 			var thread = System.Threading.Thread.CurrentThread;
 
@@ -87,7 +87,6 @@ namespace River.OneMoreAddIn
 			Self = this;
 
 			AppDomain.CurrentDomain.AssemblyResolve += CustomAssemblyResolve;
-			AppDomain.CurrentDomain.UnhandledException += CatchUnhandledException;
 		}
 
 
@@ -128,6 +127,11 @@ namespace River.OneMoreAddIn
 		/// <param name="e"></param>
 		private void CatchUnhandledException(object sender, UnhandledExceptionEventArgs e)
 		{
+			System.Diagnostics.Debugger.Launch();
+
+			var entry = new EventLog("Application") { Source = "OneMore" };
+			entry.WriteEntry("shit", EventLogEntryType.Error, 881);
+
 			logger.WriteLine("Unhandled appdomain exception", (Exception)e.ExceptionObject);
 		}
 

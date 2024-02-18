@@ -11,6 +11,15 @@ namespace OneMoreService
 	using System.ServiceProcess;
 	using Resx = Properties.Resources;
 
+	/*
+	 * Articles:
+	 * 
+	 * https://micahvandeusen.com/the-power-of-seimpersonation/#:~:text=We%20can%20add%20or%20remove%20SeImpersonatePrivilege%20for%20a,privilege%2C%20and%20then%20import%20the%20modified%20security%20policy.
+	 * https://www.codeproject.com/Articles/125810/A-Complete-Impersonation-Demo-in-Csharp-NET
+	 * https://learn.microsoft.com/en-us/windows/win32/api/userenv/nf-userenv-loaduserprofilea?redirectedfrom=MSDN
+	 * https://learn.microsoft.com/en-us/windows/win32/api/lmaccess/ns-lmaccess-user_info_11
+	 * 
+	 */
 
 	internal class OneMoreService : ServiceBase
 	{
