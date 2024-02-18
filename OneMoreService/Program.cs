@@ -22,6 +22,7 @@ namespace OneMoreService
 		static void Main(string[] args)
 		{
 			Logger.SetApplication(Resx.ServiceName);
+			Logger.SetServiceMode();
 
 			var pid = GetServicePid();
 			if (pid == 0)
@@ -46,18 +47,25 @@ namespace OneMoreService
 
 		private static int GetServicePid()
 		{
+			var parent = ServiceNative.ParentProcessUtilities.GetParentProcess();
+			if (parent != null && parent.ProcessName == "services")
+			{
+				return Process.GetCurrentProcess().Id;
+			}
+			
 			var pid = 0;
 			try
 			{
 				var controller = new ServiceController(Resx.ServiceName);
-				if (controller.Status == ServiceControllerStatus.Running)
+				if (controller.Status == ServiceControllerStatus.Running ||
+					controller.Status == ServiceControllerStatus.StartPending)
 				{
 					var searcher = new ManagementObjectSearcher(
-						$"SELECT * FROM Win32_Service WHERE Name = '{Resx.ServiceName}'");
+						$"SELECT ProcessId FROM Win32_Service WHERE Name='{Resx.ServiceName}'");
 
 					foreach (ManagementBaseObject result in searcher.Get())
 					{
-						pid = (int)result["ProcessId"];
+						pid = (int)(uint)result["ProcessId"];
 					}
 				}
 			}
@@ -145,7 +153,8 @@ namespace OneMoreService
 					Logger.Current.WriteLine((Exception)e.ExceptionObject);
 				};
 
-			new River.OneMoreAddIn.Commands.HashtagService().Startup();
+			var listener = new ServiceListener();
+			listener.Startup();
 		}
 	}
 }

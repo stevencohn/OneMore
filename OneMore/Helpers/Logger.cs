@@ -22,6 +22,7 @@ namespace River.OneMoreAddIn
 	{
 		private static ILogger instance;
 		private static bool designMode;
+		private static bool serviceMode;
 		private static string appname = "OneMore";
 
 		private readonly bool verbose;
@@ -42,9 +43,18 @@ namespace River.OneMoreAddIn
 				StdIO = process.ProcessName.StartsWith("LINQPad");
 			}
 
-			LogPath = Path.Combine(
-				Path.GetTempPath(),
-				designMode ? $"{appname}-design.log" : $"{appname}.log");
+			if (serviceMode)
+			{
+				LogPath = Path.Combine(
+					Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData),
+					designMode ? $"{appname}-design.log" : $"{appname}.log");
+			}
+			else
+			{
+				LogPath = Path.Combine(
+					Path.GetTempPath(),
+					designMode ? $"{appname}-design.log" : $"{appname}.log");
+			}
 
 			preamble = string.Empty;
 			writer = null;
@@ -192,6 +202,12 @@ namespace River.OneMoreAddIn
 		public static void SetDesignMode(bool mode)
 		{
 			designMode = mode;
+		}
+
+
+		public static void SetServiceMode()
+		{
+			serviceMode = true;
 		}
 
 
