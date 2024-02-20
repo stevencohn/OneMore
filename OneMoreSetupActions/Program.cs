@@ -56,7 +56,7 @@ namespace OneMoreSetupActions
 
 			ReportContext();
 
-			var status = CustomAction.SUCCESS;
+			int status;
 
 			if (args.Any(a => a == "--x64" || a == "--x86"))
 			{
@@ -89,7 +89,7 @@ namespace OneMoreSetupActions
 					break;
 
 				case "--install-checkonenote":
-					// no-op
+					status = new CheckOneNoteAction(logger, stepper).Install();
 					break;
 
 				case "--install-edge":
@@ -171,9 +171,10 @@ namespace OneMoreSetupActions
 			var status = new CheckOneNoteAction(logger, stepper).Install();
 			if (status != CustomAction.SUCCESS)
 			{
-				MessageBox.Show($"The OneNote installation looks to be invalid. OneMore may not appear " +
-					"in the OneNote ribbon until OneNote is repaired. For more information, " +
-					$"check the logs at\n{logger.LogPath}",
+				MessageBox.Show(
+					"The OneNote installation looks to be invalid. OneMore may not appear in the" +
+					"OneNote ribbon until OneNote is repaired. For more information, check the logs at\n" +
+					logger.LogPath,
 					"OneNote Configuration Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
 
 				// treat as warning for now...
