@@ -48,7 +48,7 @@ namespace River.OneMoreAddIn.Commands
 			var success = true;
 			try
 			{
-				using var one = new OneNote();
+				await using var one = new OneNote();
 				success = await one.NavigateTo(uri);
 			}
 			catch (Exception exc)
@@ -58,7 +58,7 @@ namespace River.OneMoreAddIn.Commands
 			}
 
 			// reset focus to OneNote window
-			using var onx = new OneNote();
+			await using var onx = new OneNote();
 			Native.SwitchToThisWindow(onx.WindowHandle, false);
 
 			if (!success)

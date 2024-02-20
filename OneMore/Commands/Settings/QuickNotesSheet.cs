@@ -84,7 +84,7 @@ namespace River.OneMoreAddIn.Settings
 
 		private async Task SetLinkName(LinkLabel link, string nodeID)
 		{
-			using var one = new OneNote();
+			await using var one = new OneNote();
 
 			try
 			{
@@ -138,9 +138,9 @@ namespace River.OneMoreAddIn.Settings
 
 		private async void SelectNotebook(object sender, System.EventArgs e)
 		{
-			await SingleThreaded.Invoke(() =>
+			await SingleThreaded.Invoke(async () =>
 			{
-				using var one = new OneNote();
+				await using var one = new OneNote();
 				one.SelectLocation(
 					Resx.QuickNotesSheet_SelectNotebookTitle,
 					Resx.QuickNotesSheet_SelectNotebookIntro,
@@ -160,9 +160,9 @@ namespace River.OneMoreAddIn.Settings
 
 		private async void SelectSection(object sender, System.EventArgs e)
 		{
-			await SingleThreaded.Invoke(() =>
+			await SingleThreaded.Invoke(async () =>
 			{
-				using var one = new OneNote();
+				await using var one = new OneNote();
 				one.SelectLocation(
 					Resx.QuickNotesSheet_SelectSectionTitle,
 					Resx.QuickNotesSheet_SelectSectionIntro,

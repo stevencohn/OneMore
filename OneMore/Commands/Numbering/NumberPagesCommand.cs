@@ -43,7 +43,7 @@ namespace River.OneMoreAddIn.Commands
 				return;
 			}
 
-			using (one = new OneNote())
+			await using (one = new OneNote())
 			{
 				var section = await one.GetSection();
 				ns = one.GetNamespace(section);

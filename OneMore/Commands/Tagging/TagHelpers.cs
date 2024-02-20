@@ -16,7 +16,8 @@ namespace River.OneMoreAddIn.Commands
 
 		public static async Task<Dictionary<string, string>> FetchRecentTags(OneNote.Scope scope, int poolSize)
 		{
-			using var one = new OneNote();
+			await using var one = new OneNote();
+
 			// builds a hierarchy of all notebooks with notebook/section/page nodes
 			// and each Page has a Meta of tags
 

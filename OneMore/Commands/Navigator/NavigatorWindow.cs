@@ -121,7 +121,7 @@ namespace River.OneMoreAddIn.Commands
 			// deal with primary/secondary displays in either duplicate or extended mode...
 			// Load is invoked prior to SizeChanged
 
-			using var one = new OneNote();
+			await using var one = new OneNote();
 			screen = Screen.FromHandle(one.WindowHandle);
 
 			// move this window into the coordinate space of the active screen
@@ -302,7 +302,7 @@ namespace River.OneMoreAddIn.Commands
 				return;
 			}
 
-			using var one = new OneNote();
+			await using var one = new OneNote();
 			var page = await one.GetPage(pageID ?? one.CurrentPageId, OneNote.PageDetail.Basic);
 			var headings = page.GetHeadings(one);
 
@@ -367,7 +367,7 @@ namespace River.OneMoreAddIn.Commands
 				{
 					if (s is MoreLinkLabel label)
 					{
-						using var one = new OneNote();
+						await using var one = new OneNote();
 						var heading = (Models.Heading)label.Tag;
 						await one.NavigateTo(heading.Link);
 					}

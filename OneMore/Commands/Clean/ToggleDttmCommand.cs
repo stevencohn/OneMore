@@ -35,7 +35,7 @@ namespace River.OneMoreAddIn.Commands
 
 		private async Task Toggle(bool pageOnly, bool showTimestamps)
 		{
-			using var one = new OneNote();
+			await using var one = new OneNote();
 			if (pageOnly)
 			{
 				var page = await one.GetPage();

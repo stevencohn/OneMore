@@ -406,7 +406,7 @@ namespace River.OneMoreAddIn.Commands
 		private async void DialogLoad(object sender, EventArgs e)
 		{
 			await FetchRecentTags();
-			FetchCommonWords();
+			await FetchCommonWords();
 			SuggestionsResize(sender, e);
 		}
 
@@ -488,9 +488,9 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private void FetchCommonWords()
+		private async Task FetchCommonWords()
 		{
-			using var one = new OneNote(out var page, out var ns, OneNote.PageDetail.Basic);
+			await using var one = new OneNote(out var page, out var ns, OneNote.PageDetail.Basic);
 			var builder = new StringBuilder();
 
 			// collect all visible text into one StringBuilder

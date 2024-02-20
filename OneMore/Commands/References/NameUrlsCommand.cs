@@ -33,7 +33,7 @@ namespace River.OneMoreAddIn.Commands
 				return;
 			}
 
-			using var one = new OneNote(out var page, out _);
+			await using var one = new OneNote(out var page, out _);
 			if (await NameUrls(page))
 			{
 				await one.Update(page);

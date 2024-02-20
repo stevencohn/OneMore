@@ -26,7 +26,7 @@ namespace River.OneMoreAddIn.Commands
 		{
 			logger.StartClock();
 
-			using var one = new OneNote(out var page, out var ns);
+			await using var one = new OneNote(out var page, out var ns);
 
 			page.GetTextCursor();
 			var all = page.SelectionScope != SelectionScope.Region;

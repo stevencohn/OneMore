@@ -265,7 +265,7 @@ namespace River.OneMoreAddIn.Commands
 
 		private async void ResetOrphanedTasks(object sender, LinkLabelLinkClickedEventArgs e)
 		{
-			using (one = new OneNote())
+			await using (one = new OneNote())
 			{
 				using var source = new CancellationTokenSource();
 

@@ -34,7 +34,7 @@ namespace River.OneMoreAddIn.Commands
 
 		public override async Task Execute(params object[] args)
 		{
-			using var one = new OneNote(out var page, out var ns, OneNote.PageDetail.Basic);
+			await using var one = new OneNote(out var page, out var ns, OneNote.PageDetail.Basic);
 			var rule = page.Root
 				.Elements(ns + "PageSettings")
 				.Elements(ns + "RuleLines")

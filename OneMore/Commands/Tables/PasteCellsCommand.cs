@@ -36,7 +36,7 @@ namespace River.OneMoreAddIn.Commands
 
 		public override async Task Execute(params object[] args)
 		{
-			using (one = new OneNote(out var page, out var ns))
+			await using (one = new OneNote(out var page, out var ns))
 			{
 				// make sure cursor is positioned in a target table...
 

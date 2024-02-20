@@ -25,7 +25,7 @@ namespace River.OneMoreAddIn.Commands
 		{
 			logger.StartClock();
 
-			using var one = new OneNote(out var page, out var ns);
+			await using var one = new OneNote(out var page, out var ns);
 
 			// deselect any selected content in the page
 			page.Root.Descendants().Attributes("selected").Remove();

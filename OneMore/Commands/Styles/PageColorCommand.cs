@@ -33,7 +33,7 @@ namespace River.OneMoreAddIn.Commands
 		{
 			Color color;
 			Page page;
-			using (var one = new OneNote(out page, out _))
+			await using (var one = new OneNote(out page, out _))
 			{
 				color = page.GetPageColor(out var automatic, out _);
 				if (automatic)
@@ -62,7 +62,7 @@ namespace River.OneMoreAddIn.Commands
 				UpdatePageColor(page, pageColor);
 				styler?.ApplyTheme(page);
 
-				using var one = new OneNote();
+				await using var one = new OneNote();
 				await one.Update(page);
 			}
 			else
@@ -75,7 +75,7 @@ namespace River.OneMoreAddIn.Commands
 		private async Task ColorPages(OneNote.Scope scope, string pageColor)
 		{
 
-			using var one = new OneNote();
+			await using var one = new OneNote();
 
 			var root = scope == OneNote.Scope.Pages
 				? await one.GetSection()

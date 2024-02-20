@@ -4,8 +4,10 @@
 
 namespace OneMoreTray
 {
+	using River.OneMoreAddIn;
 	using System;
 	using System.Windows.Forms;
+
 
 	internal static class Program
     {
@@ -22,7 +24,7 @@ namespace OneMoreTray
     }
 
 
-    public class App : ApplicationContext
+    internal class App : ApplicationContext
     {
         private readonly NotifyIcon trayIcon;
 
@@ -33,14 +35,20 @@ namespace OneMoreTray
             {
                 Icon = Properties.Resources.Logo,
                 ContextMenu = new ContextMenu(new MenuItem[] {
-                    new MenuItem("Exit", Exit)
+                    new("Exit", DoExit)
                 }),
                 Visible = true
             };
-        }
 
-        void Exit(object sender, EventArgs e)
+            Logger.SetApplication("OneMoreTray");
+
+			// hashtags scanner
+			new River.OneMoreAddIn.Commands.HashtagService().Startup();
+		}
+
+		void DoExit(object sender, EventArgs e)
         {
+            Logger.Current.WriteLine("shutting down tray");
             // hide tray icon, otherwise it will remain shown until user mouses over it
             trayIcon.Visible = false;
             Application.Exit();

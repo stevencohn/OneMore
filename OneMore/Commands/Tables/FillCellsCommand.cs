@@ -77,7 +77,7 @@ namespace River.OneMoreAddIn.Commands
 
 		public override async Task Execute(params object[] args)
 		{
-			using var one = new OneNote(out var page, out var ns);
+			await using var one = new OneNote(out var page, out var ns);
 			// Find first selected cell as anchor point to locate table; by filtering on
 			// selected=all, we avoid including the parent table of a selected nested table.
 
@@ -113,8 +113,8 @@ namespace River.OneMoreAddIn.Commands
 			{
 				case FillCells.CopyAcross: updated = CopyAcross(table); break;
 				case FillCells.CopyDown: updated = CopyDown(table); break;
-				case FillCells.FillAcross: updated = FillAcross(table, cells); break;
-				case FillCells.FillDown: updated = FillDown(table, cells); break;
+				case FillCells.FillAcross: updated = FillAcross(table); break;
+				case FillCells.FillDown: updated = FillDown(table); break;
 			}
 
 			if (updated)
@@ -168,7 +168,7 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private bool FillAcross(Table table, List<TableCell> cells)
+		private bool FillAcross(Table table)
 		{
 			if (maxCol == minCol)
 			{
@@ -213,7 +213,7 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private bool FillDown(Table table, List<TableCell> cells)
+		private bool FillDown(Table table)
 		{
 			if (maxRow == minRow)
 			{

@@ -12,6 +12,7 @@ namespace River.OneMoreAddIn
 	using System.Linq;
 	using System.Runtime.InteropServices;
 	using System.Threading;
+	using System.Threading.Tasks;
 	using System.Windows.Forms;
 
 
@@ -58,9 +59,9 @@ namespace River.OneMoreAddIn
 		/// <summary>
 		/// Initializes the background message pump used to filter our own registered key sequences
 		/// </summary>
-		public static void Initialize()
+		public static async Task Initialize()
 		{
-			using var one = new OneNote();
+			await using var one = new OneNote();
 			Native.GetWindowThreadProcessId(one.WindowHandle, out oneNotePID);
 
 			var mthread = new Thread(delegate () { Application.Run(new MessageWindow()); })

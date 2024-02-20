@@ -69,7 +69,7 @@ namespace River.OneMoreAddIn.Commands
 			logger.Start();
 			logger.StartClock();
 
-			using (one = new OneNote())
+			await using (one = new OneNote())
 			{
 				var hierarchy = await GetHierarchy();
 

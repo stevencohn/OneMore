@@ -235,7 +235,12 @@ namespace OneMoreCalendar
 		private SnapshotForm snapForm;
 		private void SnappedPage(object sender, CalendarSnapshotEventArgs e)
 		{
-			var path = new OneNoteProvider().Export(e.Page.PageID);
+			var path = Task.Run(async () =>
+			{
+				return await new OneNoteProvider().Export(e.Page.PageID);
+			}
+			).Result;
+
 			Logger.Current.WriteLine($"exported page '{e.Page.Title}' to {path}");
 
 			var location = PointToScreen(e.Bounds.Location);

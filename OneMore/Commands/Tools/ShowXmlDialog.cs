@@ -104,7 +104,7 @@ namespace River.OneMoreAddIn.Commands
 			scopeBox.SelectedIndex = names.IndexOf("Selection");
 
 			// populate page info...
-			using var one = new OneNote();
+			await using var one = new OneNote();
 			var info = await one.GetPageInfo(sized: true);
 			pageName.Text = $"{info.Name} ({info.Size.ToBytes()})";
 			pagePath.Text = info.Path;
@@ -334,7 +334,7 @@ namespace River.OneMoreAddIn.Commands
 				return;
 			}
 
-			using var one = new OneNote();
+			await using var one = new OneNote();
 			var page = await one.GetPage(scope);
 			if (page == null)
 			{
@@ -750,7 +750,7 @@ namespace River.OneMoreAddIn.Commands
 		{
 			if (box.TextLength == 0)
 			{
-				using var one = new OneNote();
+				await using var one = new OneNote();
 				var root = await action(one);
 
 				if (root != null)
@@ -824,7 +824,7 @@ namespace River.OneMoreAddIn.Commands
 			{
 				XElement content = null;
 
-				using var one = new OneNote();
+				await using var one = new OneNote();
 
 				switch (functionBox.SelectedIndex)
 				{
@@ -901,7 +901,7 @@ namespace River.OneMoreAddIn.Commands
 			{
 				try
 				{
-					using var one = new OneNote();
+					await using var one = new OneNote();
 					await one.Update(new Models.Page(XElement.Parse(pageBox.Text)));
 
 					Close();

@@ -22,7 +22,7 @@ namespace River.OneMoreAddIn.Commands
 
 		public override async Task Execute(params object[] args)
 		{
-			using var one = new OneNote();
+			await using var one = new OneNote();
 			var notebook = await one.GetNotebook();
 			if (notebook != null)
 			{

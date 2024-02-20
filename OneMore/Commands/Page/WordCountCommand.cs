@@ -50,7 +50,7 @@ namespace River.OneMoreAddIn.Commands
 		{
 			regex = new Regex(CJKPattern);
 
-			using (one = new OneNote())
+			await using (one = new OneNote())
 			{
 				scope = args.Length > 0 && args[0] is OneNote.Scope ascope
 					? ascope

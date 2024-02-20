@@ -34,7 +34,7 @@ namespace River.OneMoreAddIn.Commands
 
 		public override async Task Execute(params object[] args)
 		{
-			using var one = new OneNote(out var page, out ns, OneNote.PageDetail.All);
+			await using var one = new OneNote(out var page, out ns, OneNote.PageDetail.All);
 			var element = page.Root.Descendants(ns + "Image")?
 				.FirstOrDefault(e => e.Attribute("selected")?.Value == "all");
 

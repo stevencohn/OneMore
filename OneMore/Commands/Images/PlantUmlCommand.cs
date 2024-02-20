@@ -68,7 +68,7 @@ namespace River.OneMoreAddIn.Commands
 				}
 			}
 
-			using var one = new OneNote(out var page, out var ns);
+			await using var one = new OneNote(out var page, out var ns);
 
 			// get selected content...
 
@@ -254,7 +254,7 @@ namespace River.OneMoreAddIn.Commands
 
 		private async Task<bool> RefreshDiagram(string plantID)
 		{
-			using var one = new OneNote(
+			await using var one = new OneNote(
 				out var page, out var ns, OneNote.PageDetail.BinaryDataSelection);
 
 			var element = page.Root.Descendants(ns + "OE").Elements(ns + "Meta")
@@ -345,7 +345,7 @@ namespace River.OneMoreAddIn.Commands
 
 		private async Task ExtractUml(string plantID)
 		{
-			using var one = new OneNote(
+			await using var one = new OneNote(
 				out var page, out var ns, OneNote.PageDetail.BinaryDataSelection);
 
 			var element = page.Root.Descendants(ns + "OE").Elements(ns + "Meta")

@@ -9,6 +9,7 @@
 namespace River.OneMoreAddIn
 {
 	using Microsoft.Office.Core;
+	using NStandard;
 	using River.OneMoreAddIn.Commands;
 	using System.Drawing;
 	using System.Runtime.InteropServices.ComTypes;
@@ -37,26 +38,26 @@ namespace River.OneMoreAddIn
 		/// <returns></returns>
 		public int GetTableGalleryItemCount(IRibbonControl control)
 		{
-			var background = Color.White;
-
-			using var one = new OneNote();
-
-			// ribbon handlers apparently cannot be async so we need to do this
-			var section = Task.Run(async () => { return await one.GetSection(); }).Result;
-
-			if (section.Attribute("locked") == null)
+			var background = Task.Run(async () =>
 			{
-				// ribbon handlers apparently cannot be async so we need to do this
-				var page = Task.Run(async () => {
-					return await one.GetPage(OneNote.PageDetail.Basic); }).Result;
+				await using var one = new OneNote();
 
-				background = page.GetPageColor(out _, out var black);
-				if (black)
+				// ribbon handlers apparently cannot be async so we need to do this
+				var section = await one.GetSection();
+				if (section.Attribute("locked") == null)
 				{
-					// translate Black into a custom black smoke
-					background = ColorTranslator.FromHtml("#201F1E");
+					// ribbon handlers apparently cannot be async so we need to do this
+					var page = await one.GetPage(OneNote.PageDetail.Basic);
+					var color = page.GetPageColor(out _, out var black);
+					return black
+						? ColorTranslator.FromHtml("#201F1E")
+						: color;
 				}
-			}
+
+				return Color.White;
+
+			}).Result;
+
 
 			if (tableGalleryBackground != background)
 			{

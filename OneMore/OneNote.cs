@@ -30,7 +30,7 @@ namespace River.OneMoreAddIn
 	/// Wraps the OneNote interop API
 	/// </summary>
 	/// <see cref="https://docs.microsoft.com/en-us/office/client-developer/onenote/application-interface-onenote"/>
-	internal class OneNote : IDisposable
+	internal class OneNote : IAsyncDisposable
 	{
 		public enum ExportFormat
 		{
@@ -118,7 +118,6 @@ namespace River.OneMoreAddIn
 
 		private IApplication onenote;
 		private readonly ILogger logger;
-		private bool disposed;
 
 
 		// = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
@@ -149,28 +148,24 @@ namespace River.OneMoreAddIn
 		}
 
 
-		#region Lifecycle
-		protected virtual void Dispose(bool disposing)
+		public async ValueTask DisposeAsync()
 		{
-			if (!disposed)
-			{
-				if (disposing)
-				{
-					onenote = null;
-				}
-
-				disposed = true;
-			}
-		}
-
-
-		public void Dispose()
-		{
-			Dispose(disposing: true);
+			await DisposeAsyncCore().ConfigureAwait(false);
 			// DO NOT call this otherwise OneNote will not shutdown properly
 			//GC.SuppressFinalize(this);
 		}
-		#endregion Lifecycle
+
+
+		protected virtual async ValueTask DisposeAsyncCore()
+		{
+			if (onenote is not null)
+			{
+				Marshal.ReleaseComObject(onenote);
+			}
+
+			onenote = null;
+			await Task.Yield();
+		}
 
 
 		// = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =

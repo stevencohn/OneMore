@@ -32,7 +32,7 @@ namespace River.OneMoreAddIn.Commands
 
 		public override async Task Execute(params object[] args)
 		{
-			using (one = new OneNote(out var page, out var ns, OneNote.PageDetail.All))
+			await using (one = new OneNote(out var page, out var ns, OneNote.PageDetail.All))
 			{
 				images = page.Root.Elements(ns + "Image");
 				if ((!images.Any() || images.Count() < 2))

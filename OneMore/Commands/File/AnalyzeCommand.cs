@@ -68,7 +68,7 @@ namespace River.OneMoreAddIn.Commands
 
 		public override async Task Execute(params object[] args)
 		{
-			using (one = new OneNote())
+			await using (one = new OneNote())
 			{
 				(backupPath, defaultPath, _) = one.GetFolders();
 

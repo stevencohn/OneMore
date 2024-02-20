@@ -35,7 +35,7 @@ namespace River.OneMoreAddIn.Commands
 
 		public override async Task Execute(params object[] args)
 		{
-			using var one = new OneNote(out page, out ns);
+			await using var one = new OneNote(out page, out ns);
 			pageColor = page.GetPageColor(out var _, out var _);
 			pcolor = page.GetQuickStyle(StandardStyles.Normal).Color;
 

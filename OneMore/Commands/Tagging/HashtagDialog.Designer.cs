@@ -191,7 +191,7 @@
 			this.scopeBox.Name = "scopeBox";
 			this.scopeBox.Size = new System.Drawing.Size(196, 28);
 			this.scopeBox.TabIndex = 4;
-			this.scopeBox.SelectedIndexChanged += new System.EventHandler(this.PopulateTags);
+			this.scopeBox.SelectedIndexChanged += new System.EventHandler(this.DoPopulateTags);
 			// 
 			// searchButton
 			// 
@@ -210,7 +210,7 @@
 			this.searchButton.ThemedBack = null;
 			this.searchButton.ThemedFore = null;
 			this.searchButton.UseVisualStyleBackColor = true;
-			this.searchButton.Click += new System.EventHandler(this.SearchTags);
+			this.searchButton.Click += new System.EventHandler(this.DoSearchTags);
 			// 
 			// tagBox
 			// 

@@ -21,6 +21,7 @@ namespace River.OneMoreAddIn
 	using System.IO;
 	using System.Linq;
 	using System.Runtime.InteropServices.ComTypes;
+	using System.Threading.Tasks;
 	using System.Xml.Linq;
 	using Resx = Properties.Resources;
 
@@ -131,10 +132,7 @@ namespace River.OneMoreAddIn
 					.Elements(ns + "group")
 					.FirstOrDefault(e => e.Attribute("id").Value == "ribOneMoreGroup");
 
-				if (group != null)
-				{
-					group.SetAttributeValue("insertAfterMso", ((RibbonGroups)position).ToString());
-				}
+				group?.SetAttributeValue("insertAfterMso", ((RibbonGroups)position).ToString());
 			}
 		}
 
@@ -494,10 +492,13 @@ namespace River.OneMoreAddIn
 			System.Threading.Thread.CurrentThread.CurrentCulture = AddIn.Culture;
 			System.Threading.Thread.CurrentThread.CurrentUICulture = AddIn.Culture;
 
-			using var provider = new FavoritesProvider(ribbon);
-			var favorites = provider.LoadFavoritesMenu();
+			return Task.Run(async () =>
+			{
+				await using var provider = new FavoritesProvider(ribbon);
+				var favorites = provider.LoadFavoritesMenu();
+				return favorites.ToString(SaveOptions.DisableFormatting);
 
-			return favorites.ToString(SaveOptions.DisableFormatting);
+			}).Result;
 		}
 
 

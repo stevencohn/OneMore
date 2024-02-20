@@ -41,7 +41,7 @@ namespace River.OneMoreAddIn.Commands
 
 			scope = dialog.Scope;
 
-			using var one = new OneNote(out var page, out _);
+			await using var one = new OneNote(out var page, out _);
 
 			// cleaned page title
 			title = Unstamp(page.Title);
@@ -83,7 +83,7 @@ namespace River.OneMoreAddIn.Commands
 			logger.Start();
 			logger.StartClock();
 
-			using var one = new OneNote();
+			await using var one = new OneNote();
 
 			var hierarchy = await GetHierarchy(one);
 			var ns = one.GetNamespace(hierarchy);

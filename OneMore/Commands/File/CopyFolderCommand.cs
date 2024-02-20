@@ -26,7 +26,7 @@ namespace River.OneMoreAddIn.Commands
 
 		public override async Task Execute(params object[] args)
 		{
-			using var one = new OneNote();
+			await using var one = new OneNote();
 			one.SelectLocation(
 				Resx.SearchQF_Title, Resx.SearchQF_DescriptionCopy,
 				OneNote.Scope.SectionGroups, Callback);
@@ -47,7 +47,7 @@ namespace River.OneMoreAddIn.Commands
 
 			try
 			{
-				using var one = new OneNote();
+				await using var one = new OneNote();
 				// user might choose a sectiongroup or a notebook; GetSection will get either
 				var target = await one.GetSection(targetId);
 				if (target == null)

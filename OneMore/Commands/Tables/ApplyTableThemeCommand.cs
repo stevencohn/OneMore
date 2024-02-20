@@ -26,7 +26,7 @@ namespace River.OneMoreAddIn.Commands
 		{
 			var selectedIndex = (int)args[0];
 
-			using var one = new OneNote(out var page, out var ns);
+			await using var one = new OneNote(out var page, out var ns);
 
 			// Find first selected cell as anchor point to locate table to stylize; by filtering
 			// on selected=all, we avoid including the parent table of a selected nested table

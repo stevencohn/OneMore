@@ -38,7 +38,7 @@ namespace River.OneMoreAddIn.Commands
 				return;
 			}
 
-			using (one = new OneNote())
+			await using (one = new OneNote())
 			{
 				var context = SynchronizationContext.Current;
 

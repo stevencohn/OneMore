@@ -76,7 +76,7 @@ namespace River.OneMoreAddIn.Commands
 		{
 			var statusColor = (StatusColor)args[0];
 
-			using var one = new OneNote(out var page, out var ns);
+			await using var one = new OneNote(out var page, out var ns);
 			if (!page.ConfirmBodyContext())
 			{
 				UIHelper.ShowError(Resx.Error_BodyContext);

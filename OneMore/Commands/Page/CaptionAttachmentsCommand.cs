@@ -34,7 +34,7 @@ namespace River.OneMoreAddIn.Commands
 
 		public override async Task Execute(params object[] args)
 		{
-			using var one = new OneNote(out var page, out ns, OneNote.PageDetail.Selection);
+			await using var one = new OneNote(out var page, out ns, OneNote.PageDetail.Selection);
 
 			var files = page.Root.Descendants(ns + "InsertedFile")
 				.Where(e => e.Attribute("selected")?.Value == "all");

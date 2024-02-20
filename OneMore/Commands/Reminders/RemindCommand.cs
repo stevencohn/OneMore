@@ -42,7 +42,7 @@ namespace River.OneMoreAddIn.Commands
 				return;
 			}
 
-			using var one = new OneNote(out page, out ns);
+			await using var one = new OneNote(out page, out ns);
 			PageNamespace.Set(ns);
 
 			var paragraph = page.Root.Descendants(ns + "T")
@@ -75,7 +75,7 @@ namespace River.OneMoreAddIn.Commands
 			var pageId = parts[0];
 			var objectId = parts[1];
 
-			using var one = new OneNote();
+			await using var one = new OneNote();
 			Native.SetForegroundWindow(one.WindowHandle);
 			await one.NavigateTo(pageId, objectId);
 
@@ -277,9 +277,9 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		internal static void ReportDiagnostics(ILogger logger)
+		internal static async Task ReportDiagnostics(ILogger logger)
 		{
-			using var one = new OneNote(out var spage, out var sns);
+			await using var one = new OneNote(out var spage, out var sns);
 
 			logger.WriteLine();
 			logger.WriteLine($"Reminders on current page ({spage.Title})");

@@ -25,68 +25,66 @@ namespace River.OneMoreAddIn.Commands
 
 		public override async Task Execute(params object[] args)
 		{
-			using (var one = new OneNote(out var page, out var ns, OneNote.PageDetail.All))
+			await using var one = new OneNote(out var page, out var ns, OneNote.PageDetail.All);
+			var elements = page.Root.Descendants(ns + "Image")?
+				.Where(e => e.Attribute("selected")?.Value == "all");
+
+			if ((elements == null) || !elements.Any())
 			{
-				var elements = page.Root.Descendants(ns + "Image")?
-					.Where(e => e.Attribute("selected")?.Value == "all");
+				// include background images
+				elements = page.Root.Descendants(ns + "Image");
+			}
 
-				if ((elements == null) || !elements.Any())
+			if (!elements.Any())
+			{
+				UI.MoreBubbleWindow.Show(Resx.ConvertImagesCommand_NoImages);
+				return;
+			}
+
+			var count = 0;
+			var delta = 0;
+
+			foreach (var element in elements)
+			{
+				var wrapper = new OneImage(element);
+				using var image = wrapper.ReadImage();
+
+				if (image.Width > wrapper.Width || image.Height > wrapper.Height)
 				{
-					// include background images
-					elements = page.Root.Descendants(ns + "Image");
-				}
-
-				if (!elements.Any())
-				{
-					UI.MoreBubbleWindow.Show(Resx.ConvertImagesCommand_NoImages);
-					return;
-				}
-
-				var count = 0;
-				var delta = 0;
-
-				foreach (var element in elements)
-				{
-					var wrapper = new OneImage(element);
-					using var image = wrapper.ReadImage();
-
-					if (image.Width > wrapper.Width || image.Height > wrapper.Height)
+					var editor = new ImageEditor
 					{
-						var editor = new ImageEditor
-						{
-							PreserveQualityOnResize = false,
-							Size = new Size(wrapper.Width, wrapper.Height)
-						};
+						PreserveQualityOnResize = false,
+						Size = new Size(wrapper.Width, wrapper.Height)
+					};
 
-						var datalen = wrapper.Data.Length;
+					var datalen = wrapper.Data.Length;
 
-						// work against image rather than wrapper so we can control if we
-						// want to accept changes based on size
-						var compressed = editor.Apply(image);
+					// work against image rather than wrapper so we can control if we
+					// want to accept changes based on size
+					var compressed = editor.Apply(image);
 
-						var data = compressed.ToBase64String();
-						if (data.Length < datalen)
-						{
-							logger.WriteLine($"compressed {datalen} to {data.Length}");
-							wrapper.Data = data;
+					var data = compressed.ToBase64String();
+					if (data.Length < datalen)
+					{
+						logger.WriteLine($"compressed {datalen} to {data.Length}");
+						wrapper.Data = data;
 
-							delta += datalen - data.Length;
-							count++;
-						}
+						delta += datalen - data.Length;
+						count++;
 					}
 				}
+			}
 
-				if (count > 0)
-				{
-					await one.Update(page);
+			if (count > 0)
+			{
+				await one.Update(page);
 
-					UI.MoreBubbleWindow.Show(string.Format(
-						Resx.ConvertImagesCommand_Converted, count, delta));
-				}
-				else
-				{
-					UI.MoreBubbleWindow.Show(Resx.ConvertImagesCommand_NoImages);
-				}
+				UI.MoreBubbleWindow.Show(string.Format(
+					Resx.ConvertImagesCommand_Converted, count, delta));
+			}
+			else
+			{
+				UI.MoreBubbleWindow.Show(Resx.ConvertImagesCommand_NoImages);
 			}
 		}
 	}

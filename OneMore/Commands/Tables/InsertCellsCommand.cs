@@ -31,7 +31,7 @@ namespace River.OneMoreAddIn.Commands
 
 		public override async Task Execute(params object[] args)
 		{
-			using var one = new OneNote(out var page, out var ns);
+			await using var one = new OneNote(out var page, out var ns);
 
 			// Find first selected cell as anchor point to locate table ; By filtering on
 			// selected=all, we avoid including the parent table of a selected nested table.

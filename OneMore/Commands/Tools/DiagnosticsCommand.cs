@@ -43,7 +43,7 @@ namespace River.OneMoreAddIn.Commands
 			logger.WriteLine($"Log path..: {logger.LogPath}");
 			logger.WriteLine();
 
-			using var one = new OneNote();
+			await using var one = new OneNote();
 
 			var (backupFolder, defaultFolder, unfiledFolder) = one.GetFolders();
 			logger.WriteLine($"Default path: {defaultFolder}");
@@ -97,7 +97,7 @@ namespace River.OneMoreAddIn.Commands
 			var magic = new MagicScaling(100f, 100f);
 			logger.WriteLine($"Magic scaling..: ScalingX:{magic.ScalingX} ScalingY:{magic.ScalingY}");
 
-			RemindCommand.ReportDiagnostics(logger);
+			await RemindCommand.ReportDiagnostics(logger);
 			RemindScheduler.ReportDiagnostics(logger);
 
 			logger.WriteLine(new string('-', 80));
