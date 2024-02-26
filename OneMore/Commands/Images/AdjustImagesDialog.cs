@@ -312,6 +312,8 @@ namespace River.OneMoreAddIn.Commands
 		#region Internals
 		private void DrawPreview()
 		{
+			//logger.StartClock();
+
 			previewBox.Image = null;
 			preview?.Dispose();
 
@@ -372,9 +374,11 @@ namespace River.OneMoreAddIn.Commands
 				var size = storageSize.ToBytes(1);
 				storedSizeLabel.Text = size;
 
-				var s64 = Convert.ToBase64String(bytes).Length.ToBytes();
-				logger.WriteTime($"estimated {widthBox.Value} x {heightBox.Value} = {size} bytes (base64 = {s64})");
+				//var s64 = Convert.ToBase64String(bytes).Length.ToBytes();
+				//logger.WriteTime($"estimated {widthBox.Value} x {heightBox.Value} = {size} bytes (base64 = {s64})");
 			}
+
+			//logger.StopClock();
 		}
 
 

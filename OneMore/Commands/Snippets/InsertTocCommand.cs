@@ -134,9 +134,17 @@ namespace River.OneMoreAddIn.Commands
 
 		private async Task<InsertTocDialog> MakeDialog()
 		{
+			Page page;
+			XNamespace ns;
+			await using (var one = new OneNote(out page, out ns, OneNote.PageDetail.Basic))
+			{
+				// There is a wierd async issue here where the OneNote instance must be
+				// fully disposed before InsertTocDialog is instantiated and returned.
+				// I don't understand...
+			}
+
 			var dialog = new InsertTocDialog();
 
-			await using var one = new OneNote(out var page, out var ns, OneNote.PageDetail.Basic);
 			var meta = page.Root.Elements(ns + "Outline")
 				.Descendants(ns + "Meta")
 				.FirstOrDefault(e => e.Attribute("name") is XAttribute attr && attr.Value == TocMeta);
