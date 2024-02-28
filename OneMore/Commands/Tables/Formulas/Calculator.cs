@@ -243,7 +243,7 @@ namespace River.OneMoreAddIn.Commands.Tables.Formulas
 					if (result.Type == FormulaValueType.Double && result.DoubleValue < 0)
 					{
 						stack.Push(UnaryMinus);
-						result = new FormulaValue(Math.Abs(Math.Floor(result.DoubleValue)));
+						result = new FormulaValue(Math.Abs(result.DoubleValue));
 					}
 
 					tokens.Add(result.ToString());
