@@ -21,6 +21,7 @@ namespace River.OneMoreAddIn.Commands
 		private const int Minute = 60000; // ms in 1 minute
 
 		private readonly int pollingInterval;
+		private readonly bool forcedRebuild;
 		private readonly bool disabled;
 
 		private int hour;
@@ -28,23 +29,36 @@ namespace River.OneMoreAddIn.Commands
 		private long scanTime;
 
 
-		public HashtagService()
+		public delegate void HashtagScannedHandler(object sender, HashtagScannedEventArgs e);
+
+
+		public HashtagService(bool forcedRebuild = false)
 		{
+			this.forcedRebuild = forcedRebuild;
+
 			var settings = new SettingsProvider();
 			var collection = settings.GetCollection("HashtagSheet");
 			pollingInterval = collection.Get("interval", DefaultPollingInterval) * Minute;
 
-			disabled = collection.Get<bool>("disabled");
+			disabled = !forcedRebuild && collection.Get<bool>("disabled");
 
-			var rebuild = collection.Get<bool>("rebuild");
+			var rebuild = forcedRebuild || collection.Get<bool>("rebuild");
 			if (rebuild)
 			{
 				HashtagProvider.DeleteDatabase();
-				collection.Remove("rebuild");
-				settings.SetCollection(collection);
-				settings.Save();
+				if (collection.Remove("rebuild"))
+				{
+					settings.SetCollection(collection);
+					settings.Save();
+				}
 			}
 		}
+
+
+		/// <summary>
+		/// Fired upon the completion of each full scan
+		/// </summary>
+		public event HashtagScannedHandler OnHashtagScanned;
 
 
 		public void Startup()
@@ -84,10 +98,18 @@ namespace River.OneMoreAddIn.Commands
 						errors++;
 					}
 
+					if (forcedRebuild)
+					{
+						break;
+					}
+
 					await Task.Delay(pollingInterval);
 				}
 
-				logger.WriteLine("hashtag service has stopped; check for exceptions above");
+				if (errors > 0)
+				{
+					logger.WriteLine("hashtag service has stopped; check for exceptions above");
+				}
 			});
 
 			thread.SetApartmentState(ApartmentState.STA);
@@ -111,9 +133,13 @@ namespace River.OneMoreAddIn.Commands
 			scanCount++;
 			scanTime += time;
 
+			var avg = scanTime / scanCount;
+
+			OnHashtagScanned?.Invoke(this,
+				new HashtagScannedEventArgs(totalPages, dirtyPages, time, scanCount, avg));
+
 			if (hour != DateTime.Now.Hour)
 			{
-				var avg = scanTime / scanCount;
 				logger.WriteLine($"hashtag service scanned {scanCount} times in the last hour, averaging {avg}ms");
 				hour = DateTime.Now.Hour;
 				scanCount = 0;

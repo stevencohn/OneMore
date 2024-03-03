@@ -267,6 +267,8 @@
     <Compile Include="Commands\Tagging\HashtagPageScannerFactory.cs" />
     <Compile Include="Commands\Tagging\HashtagProvider.cs" />
     <Compile Include="Commands\Tagging\HashtagQueryBuilder.cs" />
+    <Compile Include="Commands\Tagging\HashtagRequest.cs" />
+    <Compile Include="Commands\Tagging\HashtagScannedEventArgs.cs" />
     <Compile Include="Commands\Tagging\HashtagScanner.cs" />
     <Compile Include="Commands\Tagging\HashtagService.cs" />
     <Compile Include="Helpers\ColorHelper.cs" />
