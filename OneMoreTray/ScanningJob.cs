@@ -137,11 +137,12 @@ namespace OneMoreTray
 			{
 				if (scanTime > DateTime.Now)
 				{
-					logger.WriteLine($"waiting until {scanTime.ToString(Resx.ScheduleTimeFormat)}");
+					var time = scanTime.ToString(Resx.ScheduleTimeFormat);
+					logger.WriteLine($"waiting until {time}");
 
 					trayIcon.ShowBalloonTip(0,
 						Resx.ScannerTitle,
-						Resx.ScannerScheduled,
+						string.Format(Resx.ScannerScheduled, time),
 						ToolTipIcon.Error);
 
 					var delay = scanTime - DateTime.Now;
