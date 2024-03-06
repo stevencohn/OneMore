@@ -47,12 +47,15 @@ namespace River.OneMoreAddIn.Commands
 					command = d.Command;
 					pageIds = d.SelectedPages.ToList();
 
-					var desc = command == HashtagDialog.Commands.Copy
-						? Resx.SearchQF_DescriptionCopy
-						: Resx.SearchQF_DescriptionMove;
+					var msg = command switch
+					{
+						HashtagDialog.Commands.Copy => Resx.SearchQF_DescriptionCopy,
+						HashtagDialog.Commands.Move => Resx.SearchQF_DescriptionMove,
+						_ => Resx.SearchQF_DescriptionIndex
+					};
 
 					await using var one = new OneNote();
-					one.SelectLocation(Resx.SearchQF_Title, desc, OneNote.Scope.Sections, Callback);
+					one.SelectLocation(Resx.SearchQF_Title, msg, OneNote.Scope.Sections, Callback);
 				}
 			},
 			20);

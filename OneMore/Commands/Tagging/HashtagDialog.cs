@@ -23,6 +23,7 @@ namespace River.OneMoreAddIn.Commands
 
 		private readonly MoreAutoCompleteList palette;
 		private readonly bool experimental;
+		private readonly List<string> selections;
 
 
 		public enum Commands
@@ -56,6 +57,8 @@ namespace River.OneMoreAddIn.Commands
 
 			}
 
+			selections = new List<string>();
+
 			palette = new MoreAutoCompleteList
 			{
 				FreeText = true,
@@ -79,19 +82,7 @@ namespace River.OneMoreAddIn.Commands
 		public Commands Command { get; private set; }
 
 
-		public IEnumerable<string> SelectedPages
-		{
-			get
-			{
-				for (var i = 0; i < contextPanel.Controls.Count; i++)
-				{
-					if (contextPanel.Controls[i] is HashtagContextControl item && item.IsChecked)
-					{
-						yield return item.PageID;
-					}
-				}
-			}
-		}
+		public IEnumerable<string> SelectedPages => selections;
 
 
 		private void ShowScanTimes()
@@ -238,6 +229,11 @@ namespace River.OneMoreAddIn.Commands
 
 			if (!enabled)
 			{
+				if (selections.Contains(control.PageID))
+				{
+					selections.Remove(control.PageID);
+				}
+
 				for (int i = 0; i < contextPanel.Controls.Count; i++)
 				{
 					if (contextPanel.Controls[i] is HashtagContextControl item && item.IsChecked)
@@ -246,6 +242,10 @@ namespace River.OneMoreAddIn.Commands
 						break;
 					}
 				}
+			}
+			else if (!selections.Contains(control.PageID))
+			{
+				selections.Add(control.PageID);
 			}
 
 			indexButton.Enabled = moveButton.Enabled = copyButton.Enabled = enabled;

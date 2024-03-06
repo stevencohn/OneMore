@@ -4136,6 +4136,10 @@ Les moteurs de recherche apparaîtront dans le menu du contexte de la page, cliq
     <value>Choisissez l'emplacement où les pages sélectionnées doivent être copiées</value>
     <comment>QuickFiling description</comment>
   </data>
+  <data name="SearchQF_DescriptionIndex" xml:space="preserve">
+    <value>Choisissez l'emplacement pour créer la page d'index</value>
+    <comment>QuickFiling description</comment>
+  </data>
   <data name="SearchQF_DescriptionMove" xml:space="preserve">
     <value>Choisissez l'emplacement où les pages sélectionnées doivent être déplacées</value>
     <comment>QuickFiling description</comment>

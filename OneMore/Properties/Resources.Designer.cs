@@ -10335,6 +10335,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Pick the location to create the index page.
+        /// </summary>
+        internal static string SearchQF_DescriptionIndex {
+            get {
+                return ResourceManager.GetString("SearchQF_DescriptionIndex", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Pick the location where selected pages should be moved.
         /// </summary>
         internal static string SearchQF_DescriptionMove {
