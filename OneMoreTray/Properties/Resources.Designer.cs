@@ -70,6 +70,33 @@ namespace OneMoreTray.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to OneMoreTray was not started correctly and will close now.
+        /// </summary>
+        internal static string BadArguments {
+            get {
+                return ResourceManager.GetString("BadArguments", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bad Arguments.
+        /// </summary>
+        internal static string BadArgumentsTitle {
+            get {
+                return ResourceManager.GetString("BadArgumentsTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Are you sure you want to close the tray application?.
+        /// </summary>
+        internal static string CloseConfirm {
+            get {
+                return ResourceManager.GetString("CloseConfirm", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
         /// </summary>
         internal static System.Drawing.Icon Logo {
@@ -80,7 +107,16 @@ namespace OneMoreTray.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Scan currently scheduled for {0}.
+        ///   Looks up a localized string similar to Scanning....
+        /// </summary>
+        internal static string phrase_Scanning {
+            get {
+                return ResourceManager.GetString("phrase_Scanning", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to A scan is scheduled to run on {0}.
         /// </summary>
         internal static string RescheduleDialog_currentLabel_Text {
             get {
@@ -116,6 +152,60 @@ namespace OneMoreTray.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to OneMore Hashtag scanning is complete and ready to use!.
+        /// </summary>
+        internal static string ScanComplete {
+            get {
+                return ResourceManager.GetString("ScanComplete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Scan Complete.
+        /// </summary>
+        internal static string ScanCompleteTitle {
+            get {
+                return ResourceManager.GetString("ScanCompleteTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hashtag Scanner is scheduled for {0}. This can be adjusted from the OneMore Tray application..
+        /// </summary>
+        internal static string ScannerScheduled {
+            get {
+                return ResourceManager.GetString("ScannerScheduled", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hashtag Scanner.
+        /// </summary>
+        internal static string ScannerTitle {
+            get {
+                return ResourceManager.GetString("ScannerTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to A scan is currently running.
+        /// </summary>
+        internal static string ScanRunning {
+            get {
+                return ResourceManager.GetString("ScanRunning", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Scheduled for {0}.
+        /// </summary>
+        internal static string ScheduledFor {
+            get {
+                return ResourceManager.GetString("ScheduledFor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to ddd, MMMM d, yyyy h:mm tt.
         /// </summary>
         internal static string ScheduleTimeFormat {
@@ -134,11 +224,29 @@ namespace OneMoreTray.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Exit.
+        /// </summary>
+        internal static string word_Exit {
+            get {
+                return ResourceManager.GetString("word_Exit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to OK.
         /// </summary>
         internal static string word_OK {
             get {
                 return ResourceManager.GetString("word_OK", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Reschedule.
+        /// </summary>
+        internal static string word_Reschedule {
+            get {
+                return ResourceManager.GetString("word_Reschedule", resourceCulture);
             }
         }
     }

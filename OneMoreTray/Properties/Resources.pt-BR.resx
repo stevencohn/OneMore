@@ -122,6 +122,18 @@
     <value>OneMoreTray</value>
     <comment>SKIP</comment>
   </data>
+  <data name="BadArguments" xml:space="preserve">
+    <value>OneMoreTray não foi iniciado corretamente e será fechado agora</value>
+  </data>
+  <data name="BadArgumentsTitle" xml:space="preserve">
+    <value>Argumentos ruins</value>
+  </data>
+  <data name="CloseConfirm" xml:space="preserve">
+    <value>Tem certeza de que deseja fechar o aplicativo da bandeja?</value>
+  </data>
+  <data name="phrase_Scanning" xml:space="preserve">
+    <value>Digitalizando...</value>
+  </data>
   <data name="RescheduleDialog_currentLabel.Text" xml:space="preserve">
     <value>Verificação atualmente agendada para {0}</value>
     <comment>label</comment>
@@ -137,6 +149,24 @@
     <value>Reprogramar verificação</value>
     <comment>dialog title</comment>
   </data>
+  <data name="ScanComplete" xml:space="preserve">
+    <value>A digitalização do OneMore Hashtag está completa e pronta para uso!</value>
+  </data>
+  <data name="ScanCompleteTitle" xml:space="preserve">
+    <value>Verificação concluída</value>
+  </data>
+  <data name="ScannerScheduled" xml:space="preserve">
+    <value>O Hashtag Scanner está agendado para {0}. Isso pode ser ajustado no aplicativo OneMore Tray.</value>
+  </data>
+  <data name="ScannerTitle" xml:space="preserve">
+    <value>Scanner de hashtag</value>
+  </data>
+  <data name="ScanRunning" xml:space="preserve">
+    <value>Uma verificação está em execução no momento</value>
+  </data>
+  <data name="ScheduledFor" xml:space="preserve">
+    <value>Agendado para {0}</value>
+  </data>
   <data name="ScheduleTimeFormat" xml:space="preserve">
     <value>ddd, MMMM d, yyyy h:mm tt</value>
     <comment>SKIP</comment>
@@ -144,8 +174,14 @@
   <data name="word_Cancel" xml:space="preserve">
     <value>Cancelar</value>
   </data>
+  <data name="word_Exit" xml:space="preserve">
+    <value>Saída</value>
+  </data>
   <data name="word_OK" xml:space="preserve">
     <value>OK</value>
+  </data>
+  <data name="word_Reschedule" xml:space="preserve">
+    <value>Reprogramar</value>
   </data>
   <data name="Logo" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Logo.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>

@@ -57,8 +57,8 @@ namespace OneMoreTray
 			{
 				statusItem,
 				separatorItem,
-				new("Reschedule", DoReschedule),
-				new("Exit", DoExit)
+				new(Resx.word_Reschedule, DoReschedule),
+				new(Resx.word_Exit, DoExit)
 			});
 
 			menu.Popup += (sender, e) =>
@@ -66,18 +66,19 @@ namespace OneMoreTray
 				var menu = sender as ContextMenu;
 				if (scanTime > DateTime.Now)
 				{
-					menu.MenuItems[0].Text = $"Scheduled for {scanTime.ToString(Resx.ScheduleTimeFormat)}";
+					menu.MenuItems[0].Text = string.Format(
+						Resx.ScheduledFor, scanTime.ToString(Resx.ScheduleTimeFormat));
 				}
 				else
 				{
-					menu.MenuItems[0].Text = "Scanning...";
+					menu.MenuItems[0].Text = Resx.phrase_Scanning;
 					menu.MenuItems[2].Enabled = false;
 				}
 			};
 
 			var icon = new NotifyIcon
 			{
-				Icon = Properties.Resources.Logo,
+				Icon = Resx.Logo,
 				ContextMenu = menu,
 				Visible = true,
 			};
@@ -137,6 +138,12 @@ namespace OneMoreTray
 				if (scanTime > DateTime.Now)
 				{
 					logger.WriteLine($"waiting until {scanTime.ToString(Resx.ScheduleTimeFormat)}");
+
+					trayIcon.ShowBalloonTip(0,
+						Resx.ScannerTitle,
+						Resx.ScannerScheduled,
+						ToolTipIcon.Error);
+
 					var delay = scanTime - DateTime.Now;
 					await Task.Delay(delay, source.Token);
 				}
@@ -184,8 +191,8 @@ namespace OneMoreTray
 			}
 
 			trayIcon.ShowBalloonTip(0,
-				"Scan Complete",
-				"OneMore hashtag scanning is complete and ready to use",
+				Resx.ScanCompleteTitle,
+				Resx.ScanComplete,
 				ToolTipIcon.Info);
 
 			Application.Exit();
@@ -197,8 +204,8 @@ namespace OneMoreTray
 			logger.WriteLine("bad arguments, aborting");
 
 			trayIcon.ShowBalloonTip(0,
-				"Bad Arguments",
-				"OneMoreTray was not started correctly and will close now",
+				Resx.BadArgumentsTitle,
+				Resx.BadArguments,
 				ToolTipIcon.Error);
 
 			Task.Run(async () =>
@@ -226,9 +233,9 @@ namespace OneMoreTray
 		private void DoExit(object sender, EventArgs e)
 		{
 			var msg = (File.Exists(cue)
-				? $"A scan is schedule to run on {scanTime.ToString(Resx.ScheduleTimeFormat)}"
-				: "A scan is currently running") +
-				"\nAre you sure you want to close the tray application?";
+				? string.Format(Resx.RescheduleDialog_currentLabel_Text, scanTime.ToString(Resx.ScheduleTimeFormat))
+				: Resx.ScanRunning) +
+				"\n" + Resx.CloseConfirm;
 
 			if (River.OneMoreAddIn.UI.MoreMessageBox.ShowQuestion(null, msg) == DialogResult.Yes)
 			{

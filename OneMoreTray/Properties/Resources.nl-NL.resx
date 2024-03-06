@@ -122,6 +122,18 @@
     <value>OneMoreTray</value>
     <comment>SKIP</comment>
   </data>
+  <data name="BadArguments" xml:space="preserve">
+    <value>OneMoreTray is niet correct gestart en wordt nu gesloten</value>
+  </data>
+  <data name="BadArgumentsTitle" xml:space="preserve">
+    <value>Slechte argumenten</value>
+  </data>
+  <data name="CloseConfirm" xml:space="preserve">
+    <value>Weet u zeker dat u de ladetoepassing wilt sluiten?</value>
+  </data>
+  <data name="phrase_Scanning" xml:space="preserve">
+    <value>Scannen...</value>
+  </data>
   <data name="RescheduleDialog_currentLabel.Text" xml:space="preserve">
     <value>Scan momenteel gepland voor {0}</value>
     <comment>label</comment>
@@ -137,6 +149,24 @@
     <value>Scan opnieuw plannen</value>
     <comment>dialog title</comment>
   </data>
+  <data name="ScanComplete" xml:space="preserve">
+    <value>Het scannen van OneMore Hashtags is voltooid en klaar voor gebruik!</value>
+  </data>
+  <data name="ScanCompleteTitle" xml:space="preserve">
+    <value>Scannen voltooid</value>
+  </data>
+  <data name="ScannerScheduled" xml:space="preserve">
+    <value>Hashtag Scanner staat gepland voor {0}. Dit kan worden aangepast vanuit de OneMore Tray-applicatie.</value>
+  </data>
+  <data name="ScannerTitle" xml:space="preserve">
+    <value>Hashtag-scanner</value>
+  </data>
+  <data name="ScanRunning" xml:space="preserve">
+    <value>Er wordt momenteel een scan uitgevoerd</value>
+  </data>
+  <data name="ScheduledFor" xml:space="preserve">
+    <value>Gepland voor {0}</value>
+  </data>
   <data name="ScheduleTimeFormat" xml:space="preserve">
     <value>ddd, MMMM d, yyyy h:mm tt</value>
     <comment>SKIP</comment>
@@ -144,8 +174,14 @@
   <data name="word_Cancel" xml:space="preserve">
     <value>Annuleren</value>
   </data>
+  <data name="word_Exit" xml:space="preserve">
+    <value>Uitgang</value>
+  </data>
   <data name="word_OK" xml:space="preserve">
     <value>OK</value>
+  </data>
+  <data name="word_Reschedule" xml:space="preserve">
+    <value>Opnieuw plannen</value>
   </data>
   <data name="Logo" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Logo.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>

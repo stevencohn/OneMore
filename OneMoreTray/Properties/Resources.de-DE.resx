@@ -122,6 +122,18 @@
     <value>OneMoreTray</value>
     <comment>SKIP</comment>
   </data>
+  <data name="BadArguments" xml:space="preserve">
+    <value>OneMoreTray wurde nicht korrekt gestartet und wird jetzt geschlossen</value>
+  </data>
+  <data name="BadArgumentsTitle" xml:space="preserve">
+    <value>Schlechte Argumente</value>
+  </data>
+  <data name="CloseConfirm" xml:space="preserve">
+    <value>Sind Sie sicher, dass Sie die Tray-Anwendung schließen möchten?</value>
+  </data>
+  <data name="phrase_Scanning" xml:space="preserve">
+    <value>Scannen...</value>
+  </data>
   <data name="RescheduleDialog_currentLabel.Text" xml:space="preserve">
     <value>Der Scan ist derzeit für {0} geplant.</value>
     <comment>label</comment>
@@ -137,6 +149,24 @@
     <value>Scan neu planen</value>
     <comment>dialog title</comment>
   </data>
+  <data name="ScanComplete" xml:space="preserve">
+    <value>Das OneMore-Hashtag-Scannen ist abgeschlossen und einsatzbereit!</value>
+  </data>
+  <data name="ScanCompleteTitle" xml:space="preserve">
+    <value>Scan abgeschlossen</value>
+  </data>
+  <data name="ScannerScheduled" xml:space="preserve">
+    <value>Der Hashtag-Scanner ist für {0} geplant. Dies kann über die OneMore Tray-Anwendung angepasst werden.</value>
+  </data>
+  <data name="ScannerTitle" xml:space="preserve">
+    <value>Hashtag-Scanner</value>
+  </data>
+  <data name="ScanRunning" xml:space="preserve">
+    <value>Derzeit läuft ein Scan</value>
+  </data>
+  <data name="ScheduledFor" xml:space="preserve">
+    <value>Geplant für {0}</value>
+  </data>
   <data name="ScheduleTimeFormat" xml:space="preserve">
     <value>ddd, MMMM d, yyyy h:mm tt</value>
     <comment>SKIP</comment>
@@ -144,8 +174,14 @@
   <data name="word_Cancel" xml:space="preserve">
     <value>Stornieren</value>
   </data>
+  <data name="word_Exit" xml:space="preserve">
+    <value>Ausfahrt</value>
+  </data>
   <data name="word_OK" xml:space="preserve">
     <value>OK</value>
+  </data>
+  <data name="word_Reschedule" xml:space="preserve">
+    <value>Neu planen</value>
   </data>
   <data name="Logo" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Logo.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>

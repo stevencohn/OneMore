@@ -122,8 +122,20 @@
     <value>OneMoreTray</value>
     <comment>SKIP</comment>
   </data>
+  <data name="BadArguments" xml:space="preserve">
+    <value>OneMoreTray was not started correctly and will close now</value>
+  </data>
+  <data name="BadArgumentsTitle" xml:space="preserve">
+    <value>Bad Arguments</value>
+  </data>
+  <data name="CloseConfirm" xml:space="preserve">
+    <value>Are you sure you want to close the tray application?</value>
+  </data>
+  <data name="phrase_Scanning" xml:space="preserve">
+    <value>Scanning...</value>
+  </data>
   <data name="RescheduleDialog_currentLabel.Text" xml:space="preserve">
-    <value>Scan currently scheduled for {0}</value>
+    <value>A scan is scheduled to run on {0}</value>
     <comment>label</comment>
   </data>
   <data name="RescheduleDialog_hintLabel.Text" xml:space="preserve">
@@ -137,6 +149,24 @@
     <value>Reschedule Scan</value>
     <comment>dialog title</comment>
   </data>
+  <data name="ScanComplete" xml:space="preserve">
+    <value>OneMore Hashtag scanning is complete and ready to use!</value>
+  </data>
+  <data name="ScanCompleteTitle" xml:space="preserve">
+    <value>Scan Complete</value>
+  </data>
+  <data name="ScannerScheduled" xml:space="preserve">
+    <value>Hashtag Scanner is scheduled for {0}. This can be adjusted from the OneMore Tray application.</value>
+  </data>
+  <data name="ScannerTitle" xml:space="preserve">
+    <value>Hashtag Scanner</value>
+  </data>
+  <data name="ScanRunning" xml:space="preserve">
+    <value>A scan is currently running</value>
+  </data>
+  <data name="ScheduledFor" xml:space="preserve">
+    <value>Scheduled for {0}</value>
+  </data>
   <data name="ScheduleTimeFormat" xml:space="preserve">
     <value>ddd, MMMM d, yyyy h:mm tt</value>
     <comment>SKIP</comment>
@@ -144,8 +174,14 @@
   <data name="word_Cancel" xml:space="preserve">
     <value>Cancel</value>
   </data>
+  <data name="word_Exit" xml:space="preserve">
+    <value>Exit</value>
+  </data>
   <data name="word_OK" xml:space="preserve">
     <value>OK</value>
+  </data>
+  <data name="word_Reschedule" xml:space="preserve">
+    <value>Reschedule</value>
   </data>
   <data name="Logo" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Logo.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>

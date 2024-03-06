@@ -122,6 +122,18 @@
     <value>OneMoreTray</value>
     <comment>SKIP</comment>
   </data>
+  <data name="BadArguments" xml:space="preserve">
+    <value>لم يتم تشغيل OneMoreTray بشكل صحيح وسيتم إغلاقه الآن</value>
+  </data>
+  <data name="BadArgumentsTitle" xml:space="preserve">
+    <value>الحجج السيئة</value>
+  </data>
+  <data name="CloseConfirm" xml:space="preserve">
+    <value>هل أنت متأكد أنك تريد إغلاق تطبيق الدرج؟</value>
+  </data>
+  <data name="phrase_Scanning" xml:space="preserve">
+    <value>يتم المسح...</value>
+  </data>
   <data name="RescheduleDialog_currentLabel.Text" xml:space="preserve">
     <value>تمت جدولة الفحص حاليًا لـ {0}</value>
     <comment>label</comment>
@@ -137,6 +149,24 @@
     <value>إعادة جدولة الفحص</value>
     <comment>dialog title</comment>
   </data>
+  <data name="ScanComplete" xml:space="preserve">
+    <value>اكتمل مسح OneMore Hashtag وأصبح جاهزًا للاستخدام!</value>
+  </data>
+  <data name="ScanCompleteTitle" xml:space="preserve">
+    <value>اكتمل المسح</value>
+  </data>
+  <data name="ScannerScheduled" xml:space="preserve">
+    <value>تمت جدولة Hashtag Scanner لـ {0}. يمكن تعديل ذلك من تطبيق OneMore Tray.</value>
+  </data>
+  <data name="ScannerTitle" xml:space="preserve">
+    <value>الماسح الضوئي الهاشتاج</value>
+  </data>
+  <data name="ScanRunning" xml:space="preserve">
+    <value>يتم إجراء الفحص حاليًا</value>
+  </data>
+  <data name="ScheduledFor" xml:space="preserve">
+    <value>تمت جدولته لـ {0}</value>
+  </data>
   <data name="ScheduleTimeFormat" xml:space="preserve">
     <value>ddd, MMMM d, yyyy h:mm tt</value>
     <comment>SKIP</comment>
@@ -144,8 +174,14 @@
   <data name="word_Cancel" xml:space="preserve">
     <value>يلغي</value>
   </data>
+  <data name="word_Exit" xml:space="preserve">
+    <value>مخرج</value>
+  </data>
   <data name="word_OK" xml:space="preserve">
     <value>نعم</value>
+  </data>
+  <data name="word_Reschedule" xml:space="preserve">
+    <value>إعادة جدولة</value>
   </data>
   <data name="Logo" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Logo.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>

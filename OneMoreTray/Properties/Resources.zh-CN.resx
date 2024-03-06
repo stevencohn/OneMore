@@ -122,6 +122,18 @@
     <value>OneMoreTray</value>
     <comment>SKIP</comment>
   </data>
+  <data name="BadArguments" xml:space="preserve">
+    <value>OneMoreTray 未正确启动，现在将关闭</value>
+  </data>
+  <data name="BadArgumentsTitle" xml:space="preserve">
+    <value>糟糕的论据</value>
+  </data>
+  <data name="CloseConfirm" xml:space="preserve">
+    <value>您确定要关闭托盘应用程序吗？</value>
+  </data>
+  <data name="phrase_Scanning" xml:space="preserve">
+    <value>扫描...</value>
+  </data>
   <data name="RescheduleDialog_currentLabel.Text" xml:space="preserve">
     <value>目前安排的扫描时间为 {0}</value>
     <comment>label</comment>
@@ -137,6 +149,24 @@
     <value>重新安排扫描</value>
     <comment>dialog title</comment>
   </data>
+  <data name="ScanComplete" xml:space="preserve">
+    <value>OneMore 标签扫描已完成并可以使用！</value>
+  </data>
+  <data name="ScanCompleteTitle" xml:space="preserve">
+    <value>扫描完成</value>
+  </data>
+  <data name="ScannerScheduled" xml:space="preserve">
+    <value>标签扫描器预定于 {0}进行。这可以通过 OneMore Tray 应用程序进行调整。</value>
+  </data>
+  <data name="ScannerTitle" xml:space="preserve">
+    <value>标签扫描仪</value>
+  </data>
+  <data name="ScanRunning" xml:space="preserve">
+    <value>当前正在运行扫描</value>
+  </data>
+  <data name="ScheduledFor" xml:space="preserve">
+    <value>预定于{0}</value>
+  </data>
   <data name="ScheduleTimeFormat" xml:space="preserve">
     <value>ddd, MMMM d, yyyy h:mm tt</value>
     <comment>SKIP</comment>
@@ -144,8 +174,14 @@
   <data name="word_Cancel" xml:space="preserve">
     <value>取消</value>
   </data>
+  <data name="word_Exit" xml:space="preserve">
+    <value>出口</value>
+  </data>
   <data name="word_OK" xml:space="preserve">
     <value>好的</value>
+  </data>
+  <data name="word_Reschedule" xml:space="preserve">
+    <value>改期</value>
   </data>
   <data name="Logo" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Logo.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>

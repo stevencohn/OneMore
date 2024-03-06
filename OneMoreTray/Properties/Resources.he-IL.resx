@@ -122,6 +122,18 @@
     <value>OneMoreTray</value>
     <comment>SKIP</comment>
   </data>
+  <data name="BadArguments" xml:space="preserve">
+    <value>OneMoreTray לא הופעל כהלכה והוא ייסגר כעת</value>
+  </data>
+  <data name="BadArgumentsTitle" xml:space="preserve">
+    <value>טיעונים רעים</value>
+  </data>
+  <data name="CloseConfirm" xml:space="preserve">
+    <value>האם אתה בטוח שברצונך לסגור את יישום המגש?</value>
+  </data>
+  <data name="phrase_Scanning" xml:space="preserve">
+    <value>סורק...</value>
+  </data>
   <data name="RescheduleDialog_currentLabel.Text" xml:space="preserve">
     <value>סריקה מתוזמנת כעת עבור {0}</value>
     <comment>label</comment>
@@ -137,6 +149,24 @@
     <value>תזמון מחדש של סריקה</value>
     <comment>dialog title</comment>
   </data>
+  <data name="ScanComplete" xml:space="preserve">
+    <value>סריקת OneMore Hashtag הושלמה ומוכנה לשימוש!</value>
+  </data>
+  <data name="ScanCompleteTitle" xml:space="preserve">
+    <value>הסריקה הושלמה</value>
+  </data>
+  <data name="ScannerScheduled" xml:space="preserve">
+    <value>Hashtag Scanner מתוכנן ל-{0}. ניתן להתאים זאת מאפליקציית OneMore Tray.</value>
+  </data>
+  <data name="ScannerTitle" xml:space="preserve">
+    <value>סורק האשטאג</value>
+  </data>
+  <data name="ScanRunning" xml:space="preserve">
+    <value>כרגע פועלת סריקה</value>
+  </data>
+  <data name="ScheduledFor" xml:space="preserve">
+    <value>מתוכנן ל-{0}</value>
+  </data>
   <data name="ScheduleTimeFormat" xml:space="preserve">
     <value>ddd, MMMM d, yyyy h:mm tt</value>
     <comment>SKIP</comment>
@@ -144,8 +174,14 @@
   <data name="word_Cancel" xml:space="preserve">
     <value>לְבַטֵל</value>
   </data>
+  <data name="word_Exit" xml:space="preserve">
+    <value>יְצִיאָה</value>
+  </data>
   <data name="word_OK" xml:space="preserve">
     <value>בסדר</value>
+  </data>
+  <data name="word_Reschedule" xml:space="preserve">
+    <value>תזמון מחדש</value>
   </data>
   <data name="Logo" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Logo.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
