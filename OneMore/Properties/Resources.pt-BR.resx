@@ -4138,6 +4138,10 @@ Os mecanismos de pesquisa aparecerão no menu de contexto da página, clique com
     <value>Escolha o local onde as páginas selecionadas devem ser copiadas</value>
     <comment>QuickFiling description</comment>
   </data>
+  <data name="SearchQF_DescriptionIndex" xml:space="preserve">
+    <value>Escolha o local para criar a página de índice</value>
+    <comment>QuickFiling description</comment>
+  </data>
   <data name="SearchQF_DescriptionMove" xml:space="preserve">
     <value>Escolha o local para onde as páginas selecionadas devem ser movidas</value>
     <comment>QuickFiling description</comment>

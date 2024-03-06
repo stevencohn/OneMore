@@ -4172,6 +4172,10 @@ Search engines will appear in the page context menu, right-click.</value>
     <value>Pick the location where selected pages should be copied</value>
     <comment>QuickFiling description</comment>
   </data>
+  <data name="SearchQF_DescriptionIndex" xml:space="preserve">
+    <value>Pick the location to create the index page</value>
+    <comment>QuickFiling description</comment>
+  </data>
   <data name="SearchQF_DescriptionMove" xml:space="preserve">
     <value>Pick the location where selected pages should be moved</value>
     <comment>QuickFiling description</comment>
