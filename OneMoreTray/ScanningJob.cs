@@ -12,6 +12,7 @@ namespace OneMoreTray
 	using System.Threading;
 	using System.Threading.Tasks;
 	using System.Windows.Forms;
+	using Resx = Properties.Resources;
 
 
 	internal class ScanningJob : ApplicationContext
@@ -20,9 +21,9 @@ namespace OneMoreTray
 
 		private readonly ILogger logger;
 		private readonly NotifyIcon trayIcon;
-		private readonly string cue;
-		private readonly CancellationTokenSource source;
-		private DateTime scheduledScan;
+		private string cue;
+		private CancellationTokenSource source;
+		private DateTime scanTime;
 
 
 		public ScanningJob()
@@ -31,24 +32,13 @@ namespace OneMoreTray
 
 			trayIcon = MakeNotifyIcon();
 
-			scheduledScan = ParseArguments();
-			if (scheduledScan > DateTime.MinValue) // internally, an efficient comparison of ticks
+			scanTime = ParseArguments();
+			if (scanTime > DateTime.MinValue) // internally, an efficient comparison of ticks
 			{
-				cue = GetCuePath(scheduledScan);
+				cue = GetCuePath(scanTime);
 				if (cue is not null)
 				{
-					source = new CancellationTokenSource();
-					Task.Run(async () =>
-					{
-						if (scheduledScan > DateTime.Now)
-						{
-							var delay = scheduledScan - DateTime.Now;
-							await Task.Delay(delay, source.Token);
-						}
-
-						Execute();
-
-					}, source.Token);
+					ScheduleScan();
 				}
 			}
 			else
@@ -67,16 +57,16 @@ namespace OneMoreTray
 			{
 				statusItem,
 				separatorItem,
-				new("Reschedule", DoExit),
+				new("Reschedule", DoReschedule),
 				new("Exit", DoExit)
 			});
 
 			menu.Popup += (sender, e) =>
 			{
 				var menu = sender as ContextMenu;
-				if (scheduledScan > DateTime.Now)
+				if (scanTime > DateTime.Now)
 				{
-					menu.MenuItems[0].Text = $"Scheduled: {scheduledScan.ToFriendlyString()}";
+					menu.MenuItems[0].Text = $"Scheduled for {scanTime.ToString(Resx.ScheduleTimeFormat)}";
 				}
 				else
 				{
@@ -102,14 +92,18 @@ namespace OneMoreTray
 			// commands and use cases...
 
 			var args = Environment.GetCommandLineArgs();
-			if (args.Length > 0)
+
+			// args[0] is executable path so skip to args[1]
+			if (args.Length > 1)
 			{
-				if (DateTime.TryParse(args[0],
+				logger.WriteLine($"parsing arg [{args[1]}]");
+
+				if (DateTime.TryParse(args[1],
 					CultureInfo.CurrentCulture,
 					DateTimeStyles.AssumeUniversal,
-					out var date))
+					out var time))
 				{
-					return date;
+					return time;
 				}
 			}
 
@@ -117,29 +111,48 @@ namespace OneMoreTray
 		}
 
 
-		private string GetCuePath(DateTime date)
+		private string GetCuePath(DateTime time)
 		{
 			var path = Path.Combine(PathHelper.GetAppDataPath(), ScanningCue);
-			if (!File.Exists(path))
+			try
 			{
-				try
-				{
-					File.WriteAllText(path, date.ToZuluString());
-				}
-				catch (Exception exc)
-				{
-					logger.WriteLine("cannot write to cue file", exc);
-					return null;
-				}
+				// create or overwrite, allowing schedule to be updated
+				File.WriteAllText(path, time.ToZuluString());
+			}
+			catch (Exception exc)
+			{
+				logger.WriteLine("cannot write to cue file", exc);
+				path = null;
 			}
 
 			return path;
 		}
 
 
+		private void ScheduleScan()
+		{
+			source = new CancellationTokenSource();
+			Task.Run(async () =>
+			{
+				if (scanTime > DateTime.Now)
+				{
+					logger.WriteLine($"waiting until {scanTime.ToString(Resx.ScheduleTimeFormat)}");
+					var delay = scanTime - DateTime.Now;
+					await Task.Delay(delay, source.Token);
+				}
+
+				Execute();
+
+			}, source.Token);
+		}
+
+
 		private void Execute()
 		{
+			logger.WriteLine("starting HashtagService");
+
 			var forceRebuild = !File.Exists(cue);
+
 			var scanner = new HashtagService(forceRebuild);
 			scanner.OnHashtagScanned += DoScanned;
 			scanner.Startup();
@@ -150,6 +163,14 @@ namespace OneMoreTray
 
 		private void DoScanned(object sender, HashtagScannedEventArgs args)
 		{
+			logger.WriteLine($"scan completed at {DateTime.Now}");
+
+			logger.WriteLine(
+				$"scanned {args.HourCount} times in the last hour, averaging {args.HourAverage}ms");
+
+			logger.WriteLine(
+				$"scanned {args.TotalPages} pages, updating {args.DirtyPages}, in {args.Time}ms");
+
 			if (File.Exists(cue))
 			{
 				try
@@ -188,9 +209,28 @@ namespace OneMoreTray
 		}
 
 
+		private void DoReschedule(object sender, EventArgs e)
+		{
+			using var dialog = new RescheduleDialog(scanTime);
+			var result = dialog.ShowDialog();
+			if (result == DialogResult.OK)
+			{
+				source.Cancel(false);
+				scanTime = dialog.Time;
+				cue = GetCuePath(scanTime);
+				ScheduleScan();
+			}
+		}
+
+
 		private void DoExit(object sender, EventArgs e)
 		{
-			if (River.OneMoreAddIn.UI.MoreMessageBox.ShowQuestion(null, "Shutdown?") == DialogResult.Yes)
+			var msg = (File.Exists(cue)
+				? $"A scan is schedule to run on {scanTime.ToString(Resx.ScheduleTimeFormat)}"
+				: "A scan is currently running") +
+				"\nAre you sure you want to close the tray application?";
+
+			if (River.OneMoreAddIn.UI.MoreMessageBox.ShowQuestion(null, msg) == DialogResult.Yes)
 			{
 				logger.WriteLine("shutting down tray");
 				// hide tray icon, otherwise it will remain shown until user mouses over it
@@ -199,5 +239,4 @@ namespace OneMoreTray
 			}
 		}
 	}
-
 }

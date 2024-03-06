@@ -123,18 +123,18 @@
     <comment>SKIP</comment>
   </data>
   <data name="RescheduleDialog_currentLabel.Text" xml:space="preserve">
-    <value>Scan currently scheduled for {0}</value>
+    <value>目前安排的扫描时间为 {0}</value>
     <comment>label</comment>
   </data>
   <data name="RescheduleDialog_hintLabel.Text" xml:space="preserve">
-    <value>It is best to schedule the scan during off-hours, such as midnight</value>
+    <value>最好将扫描安排在非工作时间，例如午夜</value>
   </data>
   <data name="RescheduleDialog_newLabel.Text" xml:space="preserve">
-    <value>New schedule</value>
+    <value>新时间表</value>
     <comment>label</comment>
   </data>
   <data name="RescheduleDialog_Title" xml:space="preserve">
-    <value>Reschedule Scan</value>
+    <value>重新安排扫描</value>
     <comment>dialog title</comment>
   </data>
   <data name="ScheduleTimeFormat" xml:space="preserve">
@@ -142,10 +142,10 @@
     <comment>SKIP</comment>
   </data>
   <data name="word_Cancel" xml:space="preserve">
-    <value>Cancel</value>
+    <value>取消</value>
   </data>
   <data name="word_OK" xml:space="preserve">
-    <value>OK</value>
+    <value>好的</value>
   </data>
   <data name="Logo" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Logo.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>

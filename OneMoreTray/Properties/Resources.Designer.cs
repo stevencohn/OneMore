@@ -78,5 +78,68 @@ namespace OneMoreTray.Properties {
                 return ((System.Drawing.Icon)(obj));
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Scan currently scheduled for {0}.
+        /// </summary>
+        internal static string RescheduleDialog_currentLabel_Text {
+            get {
+                return ResourceManager.GetString("RescheduleDialog_currentLabel.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to It is best to schedule the scan during off-hours, such as midnight.
+        /// </summary>
+        internal static string RescheduleDialog_hintLabel_Text {
+            get {
+                return ResourceManager.GetString("RescheduleDialog_hintLabel.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to New schedule.
+        /// </summary>
+        internal static string RescheduleDialog_newLabel_Text {
+            get {
+                return ResourceManager.GetString("RescheduleDialog_newLabel.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Reschedule Scan.
+        /// </summary>
+        internal static string RescheduleDialog_Title {
+            get {
+                return ResourceManager.GetString("RescheduleDialog_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ddd, MMMM d, yyyy h:mm tt.
+        /// </summary>
+        internal static string ScheduleTimeFormat {
+            get {
+                return ResourceManager.GetString("ScheduleTimeFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cancel.
+        /// </summary>
+        internal static string word_Cancel {
+            get {
+                return ResourceManager.GetString("word_Cancel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to OK.
+        /// </summary>
+        internal static string word_OK {
+            get {
+                return ResourceManager.GetString("word_OK", resourceCulture);
+            }
+        }
     }
 }

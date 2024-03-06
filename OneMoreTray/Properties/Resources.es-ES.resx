@@ -123,18 +123,18 @@
     <comment>SKIP</comment>
   </data>
   <data name="RescheduleDialog_currentLabel.Text" xml:space="preserve">
-    <value>Scan currently scheduled for {0}</value>
+    <value>Escaneo actualmente programado para {0}</value>
     <comment>label</comment>
   </data>
   <data name="RescheduleDialog_hintLabel.Text" xml:space="preserve">
-    <value>It is best to schedule the scan during off-hours, such as midnight</value>
+    <value>Es mejor programar el escaneo fuera del horario laboral, como la medianoche.</value>
   </data>
   <data name="RescheduleDialog_newLabel.Text" xml:space="preserve">
-    <value>New schedule</value>
+    <value>Nuevo horario</value>
     <comment>label</comment>
   </data>
   <data name="RescheduleDialog_Title" xml:space="preserve">
-    <value>Reschedule Scan</value>
+    <value>Reprogramar escaneo</value>
     <comment>dialog title</comment>
   </data>
   <data name="ScheduleTimeFormat" xml:space="preserve">
@@ -142,10 +142,10 @@
     <comment>SKIP</comment>
   </data>
   <data name="word_Cancel" xml:space="preserve">
-    <value>Cancel</value>
+    <value>Cancelar</value>
   </data>
   <data name="word_OK" xml:space="preserve">
-    <value>OK</value>
+    <value>DE ACUERDO</value>
   </data>
   <data name="Logo" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Logo.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>

@@ -123,18 +123,18 @@
     <comment>SKIP</comment>
   </data>
   <data name="RescheduleDialog_currentLabel.Text" xml:space="preserve">
-    <value>Scan currently scheduled for {0}</value>
+    <value>Der Scan ist derzeit für {0} geplant.</value>
     <comment>label</comment>
   </data>
   <data name="RescheduleDialog_hintLabel.Text" xml:space="preserve">
-    <value>It is best to schedule the scan during off-hours, such as midnight</value>
+    <value>Planen Sie den Scan am besten außerhalb der Geschäftszeiten, beispielsweise um Mitternacht</value>
   </data>
   <data name="RescheduleDialog_newLabel.Text" xml:space="preserve">
-    <value>New schedule</value>
+    <value>Neue Terminplanung</value>
     <comment>label</comment>
   </data>
   <data name="RescheduleDialog_Title" xml:space="preserve">
-    <value>Reschedule Scan</value>
+    <value>Scan neu planen</value>
     <comment>dialog title</comment>
   </data>
   <data name="ScheduleTimeFormat" xml:space="preserve">
@@ -142,7 +142,7 @@
     <comment>SKIP</comment>
   </data>
   <data name="word_Cancel" xml:space="preserve">
-    <value>Cancel</value>
+    <value>Stornieren</value>
   </data>
   <data name="word_OK" xml:space="preserve">
     <value>OK</value>
