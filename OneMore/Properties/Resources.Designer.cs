@@ -10070,6 +10070,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Scanning.cue.
+        /// </summary>
+        internal static string ScanningCueFile {
+            get {
+                return ResourceManager.GetString("ScanningCueFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to All sections in the current notebook.
         /// </summary>
         internal static string ScopeSelector_notebookButton_Text {

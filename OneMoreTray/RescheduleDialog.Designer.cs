@@ -30,13 +30,13 @@
 		{
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(RescheduleDialog));
 			this.topPanel = new System.Windows.Forms.Panel();
-			this.newLabel = new System.Windows.Forms.Label();
+			this.newLabel = new River.OneMoreAddIn.UI.MoreLabel();
 			this.dateTimePicker = new System.Windows.Forms.DateTimePicker();
-			this.currentLabel = new System.Windows.Forms.Label();
+			this.currentLabel = new River.OneMoreAddIn.UI.MoreLabel();
 			this.buttonPanel = new System.Windows.Forms.Panel();
 			this.cancelButton = new River.OneMoreAddIn.UI.MoreButton();
 			this.okButton = new River.OneMoreAddIn.UI.MoreButton();
-			this.hintLabel = new System.Windows.Forms.Label();
+			this.hintLabel = new River.OneMoreAddIn.UI.MoreLabel();
 			this.topPanel.SuspendLayout();
 			this.buttonPanel.SuspendLayout();
 			this.SuspendLayout();
@@ -173,8 +173,8 @@
 		private River.OneMoreAddIn.UI.MoreButton cancelButton;
 		private River.OneMoreAddIn.UI.MoreButton okButton;
 		private System.Windows.Forms.DateTimePicker dateTimePicker;
-		private System.Windows.Forms.Label currentLabel;
-		private System.Windows.Forms.Label newLabel;
-		private System.Windows.Forms.Label hintLabel;
+		private River.OneMoreAddIn.UI.MoreLabel currentLabel;
+		private River.OneMoreAddIn.UI.MoreLabel newLabel;
+		private River.OneMoreAddIn.UI.MoreLabel hintLabel;
 	}
 }

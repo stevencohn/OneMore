@@ -1,15 +1,17 @@
 ﻿//************************************************************************************************
-// Copyright © 2023 Steven M Cohn.  All rights reserved.
+// Copyright © 2023 Steven M Cohn. All rights reserved.
 //************************************************************************************************
 
 namespace River.OneMoreAddIn.Commands
 {
+	using River.OneMoreAddIn.UI;
 	using System;
 	using System.Collections.Generic;
 	using System.Linq;
 	using System.Threading.Tasks;
 	using System.Windows.Forms;
 	using Resx = Properties.Resources;
+
 
 	internal class HashtagCommand : Command
 	{
@@ -27,6 +29,14 @@ namespace River.OneMoreAddIn.Commands
 
 		public override async Task Execute(params object[] args)
 		{
+			//if (new HashtagIdler().IsIdling(out DateTime scanTime))
+			if (new HashtagIdler().WaitingForScan())
+			{
+				//MoreMessageBox.Show(owner, $"idling until {scanTime.ToFriendlyString()}");
+				MoreMessageBox.Show(owner, "idling");
+				return;
+			}
+
 			if (dialog != null)
 			{
 				// single instance
