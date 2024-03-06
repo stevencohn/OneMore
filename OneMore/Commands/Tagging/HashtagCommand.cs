@@ -39,7 +39,7 @@ namespace River.OneMoreAddIn.Commands
 			dialog = new HashtagDialog();
 			dialog.FormClosed += Dialog_FormClosed;
 
-			await dialog.RunModeless((sender, e) =>
+			await dialog.RunModeless(async (sender, e) =>
 			{
 				var d = sender as HashtagDialog;
 				if (d.DialogResult == DialogResult.OK)
@@ -47,12 +47,15 @@ namespace River.OneMoreAddIn.Commands
 					command = d.Command;
 					pageIds = d.SelectedPages.ToList();
 
-					var desc = command == HashtagDialog.Commands.Copy
-						? Resx.SearchQF_DescriptionCopy
-						: Resx.SearchQF_DescriptionMove;
+					var msg = command switch
+					{
+						HashtagDialog.Commands.Copy => Resx.SearchQF_DescriptionCopy,
+						HashtagDialog.Commands.Move => Resx.SearchQF_DescriptionMove,
+						_ => Resx.SearchQF_DescriptionIndex
+					};
 
-					using var one = new OneNote();
-					one.SelectLocation(Resx.SearchQF_Title, desc, OneNote.Scope.Sections, Callback);
+					await using var one = new OneNote();
+					one.SelectLocation(Resx.SearchQF_Title, msg, OneNote.Scope.Sections, Callback);
 				}
 			},
 			20);
@@ -80,7 +83,7 @@ namespace River.OneMoreAddIn.Commands
 
 			try
 			{
-				using var one = new OneNote();
+				await using var one = new OneNote();
 				var service = new SearchServices(one, sectionId);
 
 				switch (command)

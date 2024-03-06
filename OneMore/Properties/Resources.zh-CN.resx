@@ -4131,6 +4131,10 @@ ISO-code then comma then language name</comment>
     <value>选择应该复制所选页面的位置</value>
     <comment>QuickFiling description</comment>
   </data>
+  <data name="SearchQF_DescriptionIndex" xml:space="preserve">
+    <value>选择创建索引页的位置</value>
+    <comment>QuickFiling description</comment>
+  </data>
   <data name="SearchQF_DescriptionMove" xml:space="preserve">
     <value>选择应该移动选定页面的位置</value>
     <comment>QuickFiling description</comment>

@@ -92,7 +92,7 @@ namespace River.OneMoreAddIn.Commands
 
 			thread.SetApartmentState(ApartmentState.STA);
 			thread.IsBackground = true;
-			thread.Priority = ThreadPriority.Lowest;
+			thread.Priority = forcedRebuild ? ThreadPriority.Normal : ThreadPriority.Lowest;
 			thread.Start();
 		}
 

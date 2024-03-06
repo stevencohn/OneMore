@@ -4151,6 +4151,10 @@ Wyszukiwarki pojawią się w menu kontekstowym strony, kliknij prawym przyciskie
     <value>Wybierz lokalizację, w której należy skopiować wybrane strony</value>
     <comment>QuickFiling description</comment>
   </data>
+  <data name="SearchQF_DescriptionIndex" xml:space="preserve">
+    <value>Wybierz lokalizację, aby utworzyć stronę indeksu</value>
+    <comment>QuickFiling description</comment>
+  </data>
   <data name="SearchQF_DescriptionMove" xml:space="preserve">
     <value>Wybierz lokalizację, w której należy przenieść wybrane strony</value>
     <comment>QuickFiling description</comment>

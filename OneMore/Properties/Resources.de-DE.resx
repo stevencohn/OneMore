@@ -4131,6 +4131,10 @@ Suchmaschinen werden im Seit-Kontextmenü mit der rechten Maustaste angezeigt.</
     <value>Wähle den Ort aus, an den ausgewählte Seiten kopiert werden sollen</value>
     <comment>QuickFiling description</comment>
   </data>
+  <data name="SearchQF_DescriptionIndex" xml:space="preserve">
+    <value>Wählen Sie den Ort aus, um die Indexseite zu erstellen</value>
+    <comment>QuickFiling description</comment>
+  </data>
   <data name="SearchQF_DescriptionMove" xml:space="preserve">
     <value>Wähle den Ort aus, an den ausgewählte Seiten verschoben werden sollen</value>
     <comment>QuickFiling description</comment>

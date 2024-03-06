@@ -4138,6 +4138,10 @@ ISO-code then comma then language name</comment>
     <value>اختر الموقع حيث يجب نسخ الصفحات المحددة</value>
     <comment>QuickFiling description</comment>
   </data>
+  <data name="SearchQF_DescriptionIndex" xml:space="preserve">
+    <value>اختر الموقع لإنشاء صفحة الفهرس</value>
+    <comment>QuickFiling description</comment>
+  </data>
   <data name="SearchQF_DescriptionMove" xml:space="preserve">
     <value>اختر الموقع حيث يجب نقل الصفحات المحددة</value>
     <comment>QuickFiling description</comment>

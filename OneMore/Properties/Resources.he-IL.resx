@@ -4149,6 +4149,10 @@ ISO-code then comma then language name</comment>
     <value>בחר את המיקום בו יש להעתיק דפים שנבחרו</value>
     <comment>QuickFiling description</comment>
   </data>
+  <data name="SearchQF_DescriptionIndex" xml:space="preserve">
+    <value>בחר את המיקום כדי ליצור את דף האינדקס</value>
+    <comment>QuickFiling description</comment>
+  </data>
   <data name="SearchQF_DescriptionMove" xml:space="preserve">
     <value>בחר את המיקום בו יש להעביר דפים שנבחרו</value>
     <comment>QuickFiling description</comment>

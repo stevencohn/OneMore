@@ -1,5 +1,5 @@
 ﻿//************************************************************************************************
-// Copyright © 2020 Steven M Cohn.  All rights reserved.
+// Copyright © 2020 Steven M Cohn. All rights reserved.
 //************************************************************************************************
 
 namespace River.OneMoreAddIn.Commands
@@ -8,7 +8,7 @@ namespace River.OneMoreAddIn.Commands
 	using System.Collections.Generic;
 	using System.Threading.Tasks;
 	using System.Windows.Forms;
-	using Resx = River.OneMoreAddIn.Properties.Resources;
+	using Resx = Properties.Resources;
 
 
 	internal class TaggedCommand : Command
@@ -26,7 +26,7 @@ namespace River.OneMoreAddIn.Commands
 		{
 			var dialog = new TaggedDialog();
 
-			await dialog.RunModeless((sender, e) =>
+			await dialog.RunModeless(async (sender, e) =>
 			{
 				var d = sender as TaggedDialog;
 				if (d.DialogResult == DialogResult.OK)
@@ -34,12 +34,15 @@ namespace River.OneMoreAddIn.Commands
 					command = d.Command;
 					pageIds = d.SelectedPages;
 
-					var desc = command == TaggedDialog.Commands.Copy
-						? Resx.SearchQF_DescriptionCopy
-						: Resx.SearchQF_DescriptionMove;
+					var msg = command switch
+					{
+						TaggedDialog.Commands.Copy => Resx.SearchQF_DescriptionCopy,
+						TaggedDialog.Commands.Move => Resx.SearchQF_DescriptionMove,
+						_ => Resx.SearchQF_DescriptionIndex
+					};
 
-					using var one = new OneNote();
-					one.SelectLocation(Resx.SearchQF_Title, desc, OneNote.Scope.Sections, Callback);
+					await using var one = new OneNote();
+					one.SelectLocation(Resx.SearchQF_Title, msg, OneNote.Scope.Sections, Callback);
 				}
 			},
 			20);

@@ -4138,6 +4138,10 @@ Zoekmachines verschijnen in het pagina Pagina contextmenu, klik met de rechtermu
     <value>Kies de locatie waar geselecteerde pagina's moeten worden gekopieerd</value>
     <comment>QuickFiling description</comment>
   </data>
+  <data name="SearchQF_DescriptionIndex" xml:space="preserve">
+    <value>Kies de locatie om de indexpagina te maken</value>
+    <comment>QuickFiling description</comment>
+  </data>
   <data name="SearchQF_DescriptionMove" xml:space="preserve">
     <value>Kies de locatie waar geselecteerde pagina's moeten worden verplaatst</value>
     <comment>QuickFiling description</comment>

@@ -4138,6 +4138,10 @@ Los motores de búsqueda aparecerán en el menú contextual de la página, haga 
     <value>Elija la ubicación donde se deben copiar las páginas seleccionadas</value>
     <comment>QuickFiling description</comment>
   </data>
+  <data name="SearchQF_DescriptionIndex" xml:space="preserve">
+    <value>Elija la ubicación para crear la página de índice</value>
+    <comment>QuickFiling description</comment>
+  </data>
   <data name="SearchQF_DescriptionMove" xml:space="preserve">
     <value>Elija la ubicación donde se deben mover las páginas seleccionadas</value>
     <comment>QuickFiling description</comment>
