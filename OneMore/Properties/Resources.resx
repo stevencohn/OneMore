@@ -5503,7 +5503,36 @@ In this section</value>
     <value>0336.OneNoteApplication_2013.xsd;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
   </data>
   <data name="ScanningCueFile" xml:space="preserve">
-    <value>Scanning.cue</value>
+    <value>HashtagScanner.json</value>
     <comment>SKIP</comment>
+  </data>
+  <data name="HashtagCommand_scanning" xml:space="preserve">
+    <value>OneMore is currently creating your hashtag catalog.
+
+Searching for hashtags is unavailable until this is completed.</value>
+  </data>
+  <data name="HashtagCommand_waiting" xml:space="preserve">
+    <value>Your hashtag catalog is scheduled to be created on {0}. You can change this schedule from the OneMore Tray application.
+
+Searching for hashtags is unavailable until this is completed.</value>
+  </data>
+  <data name="ScheduleScanDialog_hintLabel.Text" xml:space="preserve">
+    <value>It is best to schedule the scan during off-hours, such as midnight</value>
+    <comment>label</comment>
+  </data>
+  <data name="ScheduleScanDialog_laterRadio.Text" xml:space="preserve">
+    <value>Schedule the scan at a later time</value>
+    <comment>radio</comment>
+  </data>
+  <data name="ScheduleScanDialog_nowRadio.Text" xml:space="preserve">
+    <value>Run the scan now</value>
+    <comment>radio</comment>
+  </data>
+  <data name="word_Schedule" xml:space="preserve">
+    <value>Schedule</value>
+  </data>
+  <data name="ScheduleScanDialog_Title" xml:space="preserve">
+    <value>Schedule Hashtag Scanning</value>
+    <comment>dialog title</comment>
   </data>
 </root>

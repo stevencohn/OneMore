@@ -117,7 +117,6 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="AppName" xml:space="preserve">
     <value>OneMoreTray</value>
     <comment>SKIP</comment>
@@ -126,7 +125,8 @@
     <value>OneMoreTray was not started correctly and will close now</value>
   </data>
   <data name="BadArgumentsTitle" xml:space="preserve">
-    <value>Bad Arguments</value>
+    <value>Missing Schedule</value>
+    <comment>EDIT</comment>
   </data>
   <data name="CloseConfirm" xml:space="preserve">
     <value>Are you sure you want to close the tray application?</value>
@@ -149,6 +149,9 @@
     <value>Reschedule Scan</value>
     <comment>dialog title</comment>
   </data>
+  <data name="RunNowMenuItem" xml:space="preserve">
+    <value>Run now</value>
+  </data>
   <data name="ScanComplete" xml:space="preserve">
     <value>OneMore Hashtag scanning is complete and ready to use!</value>
   </data>
@@ -160,6 +163,12 @@
   </data>
   <data name="ScannerTitle" xml:space="preserve">
     <value>Hashtag Scanner</value>
+  </data>
+  <data name="ScanNowConfirmation" xml:space="preserve">
+    <value>Scanning can take quite some time and affect OneNote performance.
+
+Cancel the scheduled time and run the scan now?</value>
+    <comment>message box</comment>
   </data>
   <data name="ScanRunning" xml:space="preserve">
     <value>A scan is currently running</value>
@@ -183,6 +192,7 @@
   <data name="word_Reschedule" xml:space="preserve">
     <value>Reschedule</value>
   </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="Logo" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Logo.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>

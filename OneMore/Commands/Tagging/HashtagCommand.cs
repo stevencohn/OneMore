@@ -29,11 +29,8 @@ namespace River.OneMoreAddIn.Commands
 
 		public override async Task Execute(params object[] args)
 		{
-			//if (new HashtagIdler().IsIdling(out DateTime scanTime))
-			if (new HashtagIdler().WaitingForScan())
+			if (!await ConfirmReady())
 			{
-				//MoreMessageBox.Show(owner, $"idling until {scanTime.ToFriendlyString()}");
-				MoreMessageBox.Show(owner, "idling");
 				return;
 			}
 
@@ -70,6 +67,40 @@ namespace River.OneMoreAddIn.Commands
 			},
 			20);
 		}
+
+
+		private async Task<bool> ConfirmReady()
+		{
+			if (!HashtagProvider.DatabaseExists())
+			{
+				var scheduler = new HashtagScheduler();
+
+				using var scheduleDialog = scheduler.IsWaiting(out var storedSchedule)
+					? new ScheduleScanDialog(storedSchedule.StartTime)
+					: new ScheduleScanDialog();
+
+				var result = scheduleDialog.ShowDialog(owner);
+				if (result  == DialogResult.OK)
+				{
+					await scheduler.ScheduleScan(scheduleDialog.StartTime);
+				}
+
+				return false;
+			}
+
+			if (new HashtagScheduler().IsWaiting(out var schedule))
+			{
+				var msg = schedule.Phase == HashtagScheduler.SchedulePhase.Scanning
+					? Resx.HashtagCommand_scanning
+					: string.Format(Resx.HashtagCommand_waiting, schedule.StartTime.ToFriendlyString());
+
+				MoreMessageBox.Show(owner, msg);
+				return false;
+			}
+
+			return true;
+		}
+
 
 		private void Dialog_FormClosed(object sender, FormClosedEventArgs e)
 		{

@@ -149,6 +149,9 @@
     <value>Reprogramar verificação</value>
     <comment>dialog title</comment>
   </data>
+  <data name="RunNowMenuItem" xml:space="preserve">
+    <value>Corra agora</value>
+  </data>
   <data name="ScanComplete" xml:space="preserve">
     <value>A digitalização do OneMore Hashtag está completa e pronta para uso!</value>
   </data>
@@ -160,6 +163,12 @@
   </data>
   <data name="ScannerTitle" xml:space="preserve">
     <value>Scanner de hashtag</value>
+  </data>
+  <data name="ScanNowConfirmation" xml:space="preserve">
+    <value>A verificação pode levar algum tempo e afetar o desempenho do OneNote.
+
+Cancelar o horário agendado e executar a verificação agora?</value>
+    <comment>message box</comment>
   </data>
   <data name="ScanRunning" xml:space="preserve">
     <value>Uma verificação está em execução no momento</value>

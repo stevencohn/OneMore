@@ -6,9 +6,8 @@ namespace OneMoreTray
 {
 	using River.OneMoreAddIn;
 	using River.OneMoreAddIn.Commands;
+	using River.OneMoreAddIn.UI;
 	using System;
-	using System.Globalization;
-	using System.IO;
 	using System.Threading;
 	using System.Threading.Tasks;
 	using System.Windows.Forms;
@@ -17,13 +16,10 @@ namespace OneMoreTray
 
 	internal class ScanningJob : ApplicationContext
 	{
-		private const string ScanningCue = "Scanning.cue";
-
 		private readonly ILogger logger;
 		private readonly NotifyIcon trayIcon;
-		private string cue;
+		private readonly HashtagScheduler scheduler;
 		private CancellationTokenSource source;
-		private DateTime scanTime;
 
 
 		public ScanningJob()
@@ -32,19 +28,15 @@ namespace OneMoreTray
 
 			trayIcon = MakeNotifyIcon();
 
-			scanTime = ParseArguments();
-			if (scanTime > DateTime.MinValue) // internally, an efficient comparison of ticks
+			scheduler = new HashtagScheduler();
+
+			if (!scheduler.ScheduleExists)
 			{
-				cue = GetCuePath(scanTime);
-				if (cue is not null)
-				{
-					ScheduleScan();
-				}
+				ToastMissingSchedule();
+				return;
 			}
-			else
-			{
-				ToastBadArguments();
-			}
+
+			ScheduleScan();
 		}
 
 
@@ -58,21 +50,23 @@ namespace OneMoreTray
 				statusItem,
 				separatorItem,
 				new(Resx.word_Reschedule, DoReschedule),
+				new(Resx.RunNowMenuItem, DoRunImmediately),
 				new(Resx.word_Exit, DoExit)
 			});
 
 			menu.Popup += (sender, e) =>
 			{
 				var menu = sender as ContextMenu;
-				if (scanTime > DateTime.Now)
+				if (scheduler.StartTime > DateTime.MinValue)
 				{
 					menu.MenuItems[0].Text = string.Format(
-						Resx.ScheduledFor, scanTime.ToString(Resx.ScheduleTimeFormat));
+						Resx.ScheduledFor, scheduler.StartTime.ToString(Resx.ScheduleTimeFormat));
 				}
 				else
 				{
 					menu.MenuItems[0].Text = Resx.phrase_Scanning;
-					menu.MenuItems[2].Enabled = false;
+					menu.MenuItems[2].Enabled = false; // reschedule
+					menu.MenuItems[3].Enabled = false; // run now
 				}
 			};
 
@@ -87,57 +81,14 @@ namespace OneMoreTray
 		}
 
 
-		private DateTime ParseArguments()
-		{
-			// theoretically, this method might expand to parse more arguments for additional
-			// commands and use cases...
-
-			var args = Environment.GetCommandLineArgs();
-
-			// args[0] is executable path so skip to args[1]
-			if (args.Length > 1)
-			{
-				logger.WriteLine($"parsing arg [{args[1]}]");
-
-				if (DateTime.TryParse(args[1],
-					CultureInfo.CurrentCulture,
-					DateTimeStyles.AssumeUniversal,
-					out var time))
-				{
-					return time;
-				}
-			}
-
-			return DateTime.MinValue;
-		}
-
-
-		private string GetCuePath(DateTime time)
-		{
-			var path = Path.Combine(PathHelper.GetAppDataPath(), ScanningCue);
-			try
-			{
-				// create or overwrite, allowing schedule to be updated
-				File.WriteAllText(path, time.ToZuluString());
-			}
-			catch (Exception exc)
-			{
-				logger.WriteLine("cannot write to cue file", exc);
-				path = null;
-			}
-
-			return path;
-		}
-
-
 		private void ScheduleScan()
 		{
 			source = new CancellationTokenSource();
 			Task.Run(async () =>
 			{
-				if (scanTime > DateTime.Now)
+				if (scheduler.StartTime > DateTime.Now)
 				{
-					var time = scanTime.ToString(Resx.ScheduleTimeFormat);
+					var time = scheduler.StartTime.ToString(Resx.ScheduleTimeFormat);
 					logger.WriteLine($"waiting until {time}");
 
 					trayIcon.ShowBalloonTip(0,
@@ -145,7 +96,7 @@ namespace OneMoreTray
 						string.Format(Resx.ScannerScheduled, time),
 						ToolTipIcon.Error);
 
-					var delay = scanTime - DateTime.Now;
+					var delay = scheduler.StartTime - DateTime.Now;
 					await Task.Delay(delay, source.Token);
 				}
 
@@ -159,7 +110,7 @@ namespace OneMoreTray
 		{
 			logger.WriteLine("starting HashtagService");
 
-			var forceRebuild = !File.Exists(cue);
+			var forceRebuild = scheduler.Phase == HashtagScheduler.SchedulePhase.PendingRebuild;
 
 			var scanner = new HashtagService(forceRebuild);
 			scanner.OnHashtagScanned += DoScanned;
@@ -179,17 +130,7 @@ namespace OneMoreTray
 			logger.WriteLine(
 				$"scanned {args.TotalPages} pages, updating {args.DirtyPages}, in {args.Time}ms");
 
-			if (File.Exists(cue))
-			{
-				try
-				{
-					File.Delete(cue);
-				}
-				catch (Exception exc)
-				{
-					logger.WriteLine("error deleting cue file", exc);
-				}
-			}
+			scheduler.ClearSchedule();
 
 			trayIcon.ShowBalloonTip(0,
 				Resx.ScanCompleteTitle,
@@ -200,9 +141,9 @@ namespace OneMoreTray
 		}
 
 
-		private void ToastBadArguments()
+		private void ToastMissingSchedule()
 		{
-			logger.WriteLine("bad arguments, aborting");
+			logger.WriteLine("missing schedule file, aborting");
 
 			trayIcon.ShowBalloonTip(0,
 				Resx.BadArgumentsTitle,
@@ -219,13 +160,27 @@ namespace OneMoreTray
 
 		private void DoReschedule(object sender, EventArgs e)
 		{
-			using var dialog = new RescheduleDialog(scanTime);
+			using var dialog = new ScheduleScanDialog(scheduler.StartTime);
 			var result = dialog.ShowDialog();
 			if (result == DialogResult.OK)
 			{
 				source.Cancel(false);
-				scanTime = dialog.Time;
-				cue = GetCuePath(scanTime);
+				scheduler.StartTime = dialog.StartTime;
+				scheduler.SaveSchedule();
+				ScheduleScan();
+			}
+		}
+
+
+		private void DoRunImmediately(object sender, EventArgs e)
+		{
+			if (MoreMessageBox.ShowQuestion(null, Resx.ScanNowConfirmation) == DialogResult.Yes)
+			{
+				source.Cancel(false);
+				scheduler.ClearSchedule();
+
+				scheduler.StartTime = DateTime.Now.AddSeconds(-1);
+				scheduler.SaveSchedule();
 				ScheduleScan();
 			}
 		}
@@ -233,12 +188,15 @@ namespace OneMoreTray
 
 		private void DoExit(object sender, EventArgs e)
 		{
-			var msg = (File.Exists(cue)
-				? string.Format(Resx.RescheduleDialog_currentLabel_Text, scanTime.ToString(Resx.ScheduleTimeFormat))
-				: Resx.ScanRunning) +
-				"\n" + Resx.CloseConfirm;
+			var msg = scheduler.Phase == HashtagScheduler.SchedulePhase.Scanning
+				? Resx.ScanRunning
+				: string.Format(
+					Resx.RescheduleDialog_currentLabel_Text,
+					scheduler.StartTime.ToString(Resx.ScheduleTimeFormat));
 
-			if (River.OneMoreAddIn.UI.MoreMessageBox.ShowQuestion(null, msg) == DialogResult.Yes)
+			msg += $"\n{Resx.CloseConfirm}";
+
+			if (MoreMessageBox.ShowQuestion(null, msg) == DialogResult.Yes)
 			{
 				logger.WriteLine("shutting down tray");
 				// hide tray icon, otherwise it will remain shown until user mouses over it

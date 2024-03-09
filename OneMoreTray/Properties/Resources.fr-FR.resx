@@ -149,6 +149,9 @@
     <value>Reprogrammer l'analyse</value>
     <comment>dialog title</comment>
   </data>
+  <data name="RunNowMenuItem" xml:space="preserve">
+    <value>Cours maintenant</value>
+  </data>
   <data name="ScanComplete" xml:space="preserve">
     <value>La numérisation OneMore Hashtag est terminée et prête à être utilisée !</value>
   </data>
@@ -160,6 +163,12 @@
   </data>
   <data name="ScannerTitle" xml:space="preserve">
     <value>Scanner de hashtags</value>
+  </data>
+  <data name="ScanNowConfirmation" xml:space="preserve">
+    <value>L'analyse peut prendre un certain temps et affecter les performances de OneNote.
+
+Annuler l'heure programmée et exécuter l'analyse maintenant ?</value>
+    <comment>message box</comment>
   </data>
   <data name="ScanRunning" xml:space="preserve">
     <value>Une analyse est en cours</value>

@@ -149,6 +149,9 @@
     <value>Scan opnieuw plannen</value>
     <comment>dialog title</comment>
   </data>
+  <data name="RunNowMenuItem" xml:space="preserve">
+    <value>Ren nu</value>
+  </data>
   <data name="ScanComplete" xml:space="preserve">
     <value>Het scannen van OneMore Hashtags is voltooid en klaar voor gebruik!</value>
   </data>
@@ -160,6 +163,12 @@
   </data>
   <data name="ScannerTitle" xml:space="preserve">
     <value>Hashtag-scanner</value>
+  </data>
+  <data name="ScanNowConfirmation" xml:space="preserve">
+    <value>Scannen kan enige tijd duren en de prestaties van OneNote beïnvloeden.
+
+De geplande tijd annuleren en de scan nu uitvoeren?</value>
+    <comment>message box</comment>
   </data>
   <data name="ScanRunning" xml:space="preserve">
     <value>Er wordt momenteel een scan uitgevoerd</value>

@@ -149,6 +149,9 @@
     <value>重新安排扫描</value>
     <comment>dialog title</comment>
   </data>
+  <data name="RunNowMenuItem" xml:space="preserve">
+    <value>现在跑步</value>
+  </data>
   <data name="ScanComplete" xml:space="preserve">
     <value>OneMore 标签扫描已完成并可以使用！</value>
   </data>
@@ -160,6 +163,12 @@
   </data>
   <data name="ScannerTitle" xml:space="preserve">
     <value>标签扫描仪</value>
+  </data>
+  <data name="ScanNowConfirmation" xml:space="preserve">
+    <value>扫描可能需要相当长的时间并影响 OneNote 性能。
+
+取消预定时间并立即运行扫描吗？</value>
+    <comment>message box</comment>
   </data>
   <data name="ScanRunning" xml:space="preserve">
     <value>当前正在运行扫描</value>

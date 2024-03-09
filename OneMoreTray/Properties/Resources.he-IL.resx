@@ -149,6 +149,9 @@
     <value>תזמון מחדש של סריקה</value>
     <comment>dialog title</comment>
   </data>
+  <data name="RunNowMenuItem" xml:space="preserve">
+    <value>רוץ עכשיו</value>
+  </data>
   <data name="ScanComplete" xml:space="preserve">
     <value>סריקת OneMore Hashtag הושלמה ומוכנה לשימוש!</value>
   </data>
@@ -160,6 +163,12 @@
   </data>
   <data name="ScannerTitle" xml:space="preserve">
     <value>סורק האשטאג</value>
+  </data>
+  <data name="ScanNowConfirmation" xml:space="preserve">
+    <value>הסריקה יכולה לקחת לא מעט זמן ולהשפיע על ביצועי OneNote.
+
+לבטל את הזמן המתוכנן ולהפעיל את הסריקה עכשיו?</value>
+    <comment>message box</comment>
   </data>
   <data name="ScanRunning" xml:space="preserve">
     <value>כרגע פועלת סריקה</value>

@@ -24,6 +24,7 @@ namespace River.OneMoreAddIn.Commands
 		private readonly bool forcedRebuild;
 		private readonly bool disabled;
 
+		private HashtagScheduler scheduler;
 		private int hour;
 		private int scanCount;
 		private long scanTime;
@@ -70,6 +71,8 @@ namespace River.OneMoreAddIn.Commands
 			}
 
 			logger.WriteLine("starting hashtag service");
+
+			scheduler = new HashtagScheduler();
 
 			hour = DateTime.Now.Hour;
 			scanCount = 0;
@@ -121,6 +124,11 @@ namespace River.OneMoreAddIn.Commands
 
 		private async Task Scan()
 		{
+			if (await scheduler.WaitingForScan())
+			{
+				return;
+			}
+
 			var clock = new Stopwatch();
 			clock.Start();
 

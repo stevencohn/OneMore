@@ -149,6 +149,9 @@
     <value>إعادة جدولة الفحص</value>
     <comment>dialog title</comment>
   </data>
+  <data name="RunNowMenuItem" xml:space="preserve">
+    <value>اركض الآن</value>
+  </data>
   <data name="ScanComplete" xml:space="preserve">
     <value>اكتمل مسح OneMore Hashtag وأصبح جاهزًا للاستخدام!</value>
   </data>
@@ -160,6 +163,12 @@
   </data>
   <data name="ScannerTitle" xml:space="preserve">
     <value>الماسح الضوئي الهاشتاج</value>
+  </data>
+  <data name="ScanNowConfirmation" xml:space="preserve">
+    <value>يمكن أن يستغرق المسح بعض الوقت ويؤثر على أداء OneNote.
+
+هل تريد إلغاء الوقت المحدد وتشغيل الفحص الآن؟</value>
+    <comment>message box</comment>
   </data>
   <data name="ScanRunning" xml:space="preserve">
     <value>يتم إجراء الفحص حاليًا</value>

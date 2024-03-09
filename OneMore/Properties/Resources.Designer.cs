@@ -3359,6 +3359,28 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to OneMore is currently creating your hashtag catalog.
+        ///
+        ///Searching for hashtags is unavailable until this is completed..
+        /// </summary>
+        internal static string HashtagCommand_scanning {
+            get {
+                return ResourceManager.GetString("HashtagCommand_scanning", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Your hashtag catalog is scheduled to be created on {0}. You can change this schedule from the OneMore Tray application.
+        ///
+        ///Searching for hashtags is unavailable until this is completed..
+        /// </summary>
+        internal static string HashtagCommand_waiting {
+            get {
+                return ResourceManager.GetString("HashtagCommand_waiting", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Jump to this paragraph; last updated {0}.
         /// </summary>
         internal static string HashtagContext_jumpParaTip {
@@ -10070,11 +10092,47 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Scanning.cue.
+        ///   Looks up a localized string similar to HashtagScanner.json.
         /// </summary>
         internal static string ScanningCueFile {
             get {
                 return ResourceManager.GetString("ScanningCueFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to It is best to schedule the scan during off-hours, such as midnight.
+        /// </summary>
+        internal static string ScheduleScanDialog_hintLabel_Text {
+            get {
+                return ResourceManager.GetString("ScheduleScanDialog_hintLabel.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Schedule the scan at a later time.
+        /// </summary>
+        internal static string ScheduleScanDialog_laterRadio_Text {
+            get {
+                return ResourceManager.GetString("ScheduleScanDialog_laterRadio.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Run the scan now.
+        /// </summary>
+        internal static string ScheduleScanDialog_nowRadio_Text {
+            get {
+                return ResourceManager.GetString("ScheduleScanDialog_nowRadio.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Schedule Hashtag Scanning.
+        /// </summary>
+        internal static string ScheduleScanDialog_Title {
+            get {
+                return ResourceManager.GetString("ScheduleScanDialog_Title", resourceCulture);
             }
         }
         
@@ -12521,6 +12579,15 @@ namespace River.OneMoreAddIn.Properties {
         internal static string word_Save {
             get {
                 return ResourceManager.GetString("word_Save", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Schedule.
+        /// </summary>
+        internal static string word_Schedule {
+            get {
+                return ResourceManager.GetString("word_Schedule", resourceCulture);
             }
         }
         

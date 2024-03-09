@@ -52,6 +52,13 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
+		public static bool DatabaseExists()
+		{
+			return File.Exists(Path.Combine(
+				PathHelper.GetAppDataPath(), Resources.DatabaseFilename));
+		}
+
+
 		public static void DeleteDatabase()
 		{
 			var path = Path.Combine(

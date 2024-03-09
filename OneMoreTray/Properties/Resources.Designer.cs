@@ -79,7 +79,7 @@ namespace OneMoreTray.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Bad Arguments.
+        ///   Looks up a localized string similar to Missing Schedule.
         /// </summary>
         internal static string BadArgumentsTitle {
             get {
@@ -152,6 +152,15 @@ namespace OneMoreTray.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Run now.
+        /// </summary>
+        internal static string RunNowMenuItem {
+            get {
+                return ResourceManager.GetString("RunNowMenuItem", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to OneMore Hashtag scanning is complete and ready to use!.
         /// </summary>
         internal static string ScanComplete {
@@ -184,6 +193,17 @@ namespace OneMoreTray.Properties {
         internal static string ScannerTitle {
             get {
                 return ResourceManager.GetString("ScannerTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Scanning can take quite some time and affect OneNote performance.
+        ///
+        ///Cancel the scheduled time and run the scan now?.
+        /// </summary>
+        internal static string ScanNowConfirmation {
+            get {
+                return ResourceManager.GetString("ScanNowConfirmation", resourceCulture);
             }
         }
         

@@ -149,6 +149,9 @@
     <value>Reprogramar escaneo</value>
     <comment>dialog title</comment>
   </data>
+  <data name="RunNowMenuItem" xml:space="preserve">
+    <value>Corre ahora</value>
+  </data>
   <data name="ScanComplete" xml:space="preserve">
     <value>¡El escaneo de OneMore Hashtag está completo y listo para usar!</value>
   </data>
@@ -160,6 +163,12 @@
   </data>
   <data name="ScannerTitle" xml:space="preserve">
     <value>Escáner de hashtags</value>
+  </data>
+  <data name="ScanNowConfirmation" xml:space="preserve">
+    <value>El escaneo puede llevar bastante tiempo y afectar el rendimiento de OneNote.
+
+¿Cancelar la hora programada y ejecutar el análisis ahora?</value>
+    <comment>message box</comment>
   </data>
   <data name="ScanRunning" xml:space="preserve">
     <value>Actualmente se está ejecutando un análisis</value>
