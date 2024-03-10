@@ -5535,4 +5535,8 @@ Searching for hashtags is unavailable until this is completed.</value>
     <value>Schedule Hashtag Scanning</value>
     <comment>dialog title</comment>
   </data>
+  <data name="ScheduleScanDialog_introBox.Text" xml:space="preserve">
+    <value>The hashtag catalog has not yet been created. Choose below when OneMore should build the catalog.</value>
+    <comment>multilinelabel</comment>
+  </data>
 </root>

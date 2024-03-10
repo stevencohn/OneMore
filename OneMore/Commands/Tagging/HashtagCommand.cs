@@ -71,28 +71,29 @@ namespace River.OneMoreAddIn.Commands
 
 		private async Task<bool> ConfirmReady()
 		{
+			var scheduler = new HashtagScheduler();
+
 			if (!HashtagProvider.DatabaseExists())
 			{
-				var scheduler = new HashtagScheduler();
-
-				using var scheduleDialog = scheduler.IsWaiting(out var storedSchedule)
-					? new ScheduleScanDialog(storedSchedule.StartTime)
-					: new ScheduleScanDialog();
+				using var scheduleDialog = scheduler.State == ScanningState.None
+					? new ScheduleScanDialog()
+					: new ScheduleScanDialog(scheduler.StartTime);
 
 				var result = scheduleDialog.ShowDialog(owner);
-				if (result  == DialogResult.OK)
+				if (result == DialogResult.OK)
 				{
-					await scheduler.ScheduleScan(scheduleDialog.StartTime);
+					scheduler.State = ScanningState.PendingRebuild;
+					await scheduler.ScheduleScan();
 				}
 
 				return false;
 			}
 
-			if (new HashtagScheduler().IsWaiting(out var schedule))
+			if (scheduler.State != ScanningState.Ready)
 			{
-				var msg = schedule.Phase == HashtagScheduler.SchedulePhase.Scanning
+				var msg = scheduler.State == ScanningState.Scanning
 					? Resx.HashtagCommand_scanning
-					: string.Format(Resx.HashtagCommand_waiting, schedule.StartTime.ToFriendlyString());
+					: string.Format(Resx.HashtagCommand_waiting, scheduler.StartTime.ToFriendlyString());
 
 				MoreMessageBox.Show(owner, msg);
 				return false;

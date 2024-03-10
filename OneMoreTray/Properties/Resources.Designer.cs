@@ -116,6 +116,24 @@ namespace OneMoreTray.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to A catalog rebuild is scheduled for {0}. Choose below when OneMore Tray should build the catalog..
+        /// </summary>
+        internal static string Reschedule_Rebuild {
+            get {
+                return ResourceManager.GetString("Reschedule_Rebuild", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to A scan for new hashtags is scheduled for {0}. Choose below when OneMore Tray should build the catalog..
+        /// </summary>
+        internal static string Reschedule_Scan {
+            get {
+                return ResourceManager.GetString("Reschedule_Scan", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to A scan is scheduled to run on {0}.
         /// </summary>
         internal static string RescheduleDialog_currentLabel_Text {

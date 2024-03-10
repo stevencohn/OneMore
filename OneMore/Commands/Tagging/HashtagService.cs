@@ -21,7 +21,7 @@ namespace River.OneMoreAddIn.Commands
 		private const int Minute = 60000; // ms in 1 minute
 
 		private readonly int pollingInterval;
-		private readonly bool forcedRebuild;
+		private readonly bool rebuild;
 		private readonly bool disabled;
 
 		private HashtagScheduler scheduler;
@@ -33,19 +33,18 @@ namespace River.OneMoreAddIn.Commands
 		public delegate void HashtagScannedHandler(object sender, HashtagScannedEventArgs e);
 
 
-		public HashtagService(bool forcedRebuild = false)
+		public HashtagService(bool rebuild = false)
 		{
-			this.forcedRebuild = forcedRebuild;
-
 			var settings = new SettingsProvider();
 			var collection = settings.GetCollection("HashtagSheet");
 			pollingInterval = collection.Get("interval", DefaultPollingInterval) * Minute;
 
-			disabled = !forcedRebuild && collection.Get<bool>("disabled");
+			disabled = !rebuild && collection.Get<bool>("disabled");
 
-			var rebuild = forcedRebuild || collection.Get<bool>("rebuild");
-			if (rebuild)
+			if (rebuild || collection.Get<bool>("rebuild"))
 			{
+				// at this point, the service is "active" and the rebuild will commence
+				// immediately, so prepare by deleting any old database...
 				HashtagProvider.DeleteDatabase();
 				if (collection.Remove("rebuild"))
 				{
@@ -53,6 +52,8 @@ namespace River.OneMoreAddIn.Commands
 					settings.Save();
 				}
 			}
+
+			this.rebuild = rebuild;
 		}
 
 
@@ -101,7 +102,7 @@ namespace River.OneMoreAddIn.Commands
 						errors++;
 					}
 
-					if (forcedRebuild)
+					if (rebuild)
 					{
 						break;
 					}
@@ -117,7 +118,7 @@ namespace River.OneMoreAddIn.Commands
 
 			thread.SetApartmentState(ApartmentState.STA);
 			thread.IsBackground = true;
-			thread.Priority = forcedRebuild ? ThreadPriority.Normal : ThreadPriority.Lowest;
+			thread.Priority = rebuild ? ThreadPriority.Normal : ThreadPriority.Lowest;
 			thread.Start();
 		}
 

@@ -21,6 +21,7 @@ namespace River.OneMoreAddIn.Commands
 
 				Localize(new string[]
 				{
+					"introBox",
 					"laterRadio",
 					"hintLabel",
 					"scheduleLabel=word_Schedule",
@@ -44,5 +45,10 @@ namespace River.OneMoreAddIn.Commands
 		public DateTime StartTime => nowRadio.Checked
 			? DateTime.Now
 			: dateTimePicker.Value;
+
+		public void SetIntroText(string text)
+		{
+			introBox.Text = text;
+		}
 	}
 }

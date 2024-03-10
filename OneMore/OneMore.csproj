@@ -270,6 +270,7 @@
     <Compile Include="Commands\Tagging\HashtagScannedEventArgs.cs" />
     <Compile Include="Commands\Tagging\HashtagScanner.cs" />
     <Compile Include="Commands\Tagging\HashtagService.cs" />
+    <Compile Include="Commands\Tagging\ScanningState.cs" />
     <Compile Include="Commands\Tagging\ScheduleScanDialog.cs">
       <SubType>Form</SubType>
     </Compile>

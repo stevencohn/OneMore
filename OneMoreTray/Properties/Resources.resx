@@ -196,4 +196,12 @@ Cancel the scheduled time and run the scan now?</value>
   <data name="Logo" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Logo.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="Reschedule_Rebuild" xml:space="preserve">
+    <value>A catalog rebuild is scheduled for {0}. Choose below when OneMore Tray should build the catalog.</value>
+    <comment>message box intro label</comment>
+  </data>
+  <data name="Reschedule_Scan" xml:space="preserve">
+    <value>A scan for new hashtags is scheduled for {0}. Choose below when OneMore Tray should build the catalog.</value>
+    <comment>message box intro label</comment>
+  </data>
 </root>

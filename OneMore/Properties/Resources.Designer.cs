@@ -10110,6 +10110,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The hashtag catalog has not yet been created. Choose below when OneMore should build the catalog..
+        /// </summary>
+        internal static string ScheduleScanDialog_introBox_Text {
+            get {
+                return ResourceManager.GetString("ScheduleScanDialog_introBox.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Schedule the scan at a later time.
         /// </summary>
         internal static string ScheduleScanDialog_laterRadio_Text {

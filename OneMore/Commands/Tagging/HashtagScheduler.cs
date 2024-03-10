@@ -27,15 +27,7 @@ namespace River.OneMoreAddIn.Commands
 
 
 		#region Supporting classes
-		public enum SchedulePhase
-		{
-			Pending,		// user-requested scan to import large data (e.g. notebooks, sections)
-			PendingRebuild,	// rebuild database and scan all notebooks
-			Rebuilding,		// in process of rebuilding database; this should be quick!
-			Scanning		// scanning data
-		}
-
-		public sealed class Schedule
+		private sealed class Schedule
 		{
 			// The scheduled time to build/rebuild the hashtag database.
 			// Could be past or future; if past then run immediately.
@@ -46,8 +38,8 @@ namespace River.OneMoreAddIn.Commands
 			// Indicates whether the operation is in progress; is not reset until after
 			// operation is confirmed to be completed, so can be used to recognize 
 			// interruptions and infer continuation
-			[JsonProperty("phase")]
-			public SchedulePhase Phase { get; set; } = SchedulePhase.Pending;
+			[JsonProperty("state")]
+			public ScanningState State { get; set; } = ScanningState.None;
 
 
 			// Indicates whether to shutdown the tray after operation completes
@@ -61,6 +53,19 @@ namespace River.OneMoreAddIn.Commands
 		{
 			filePath = Path.Combine(PathHelper.GetAppDataPath(), Resx.ScanningCueFile);
 			schedule = ReadSchedule() ?? new Schedule();
+
+			if (File.Exists(filePath))
+			{
+				schedule = ReadSchedule();
+			}
+			else
+			{
+				schedule = new Schedule();
+				if (HashtagProvider.DatabaseExists())
+				{
+					schedule.State = ScanningState.Ready;
+				}
+			}
 		}
 
 
@@ -69,31 +74,15 @@ namespace River.OneMoreAddIn.Commands
 
 		public DateTime StartTime
 		{
-			get { return schedule is null ? DateTime.MinValue : schedule.StartTime; }
+			get { return schedule.StartTime; }
 			set { schedule.StartTime = value; }
 		}
 
 
-		public SchedulePhase Phase => schedule.Phase;
-
-
-		/// <summary>
-		/// Entry point for UI to determine if a scan is pending.
-		/// </summary>
-		/// <param name="time">
-		/// The DateTime of the pending scan or MinValue (0) if no scan is scheduled
-		/// </param>
-		/// <returns>True if a waiting for a pending scan</returns>
-		public bool IsWaiting(out Schedule schedule)
+		public ScanningState State
 		{
-			if (!File.Exists(filePath))
-			{
-				schedule = null;
-				return false;
-			}
-
-			schedule = ReadSchedule();
-			return schedule is not null;
+			get { return schedule.State; }
+			set { schedule.State = value; }
 		}
 
 
@@ -102,7 +91,7 @@ namespace River.OneMoreAddIn.Commands
 		/// </summary>
 		/// <param name="startTime">The time to schedule the scan</param>
 		/// <returns></returns>
-		public async Task ScheduleScan(DateTime startTime)
+		public async Task ScheduleScan()
 		{
 			var process = Process.GetProcessesByName(TrayName).FirstOrDefault();
 			if (process != null)
@@ -123,7 +112,6 @@ namespace River.OneMoreAddIn.Commands
 				}
 			}
 
-			schedule = new Schedule { StartTime = startTime };
 			SaveSchedule();
 
 			var dir = new Uri(
@@ -139,7 +127,7 @@ namespace River.OneMoreAddIn.Commands
 			}
 
 			var exe = Path.Combine(dir, $"{TrayName}.exe");
-			logger.WriteLine($"starting {exe} @{startTime.ToZuluString()}");
+			logger.WriteLine($"starting {exe} @{schedule.StartTime.ToZuluString()}");
 
 			var proc = Process.Start(new ProcessStartInfo
 			{
@@ -173,7 +161,7 @@ namespace River.OneMoreAddIn.Commands
 				return false;
 			}
 
-			if (schedule is not null)
+			if (schedule is not null && Process.GetProcessesByName(TrayName).Any())
 			{
 				// must have already warned the user so continue idling patiently...
 				logger.Verbose($"waiting for hashtag scan on {schedule.StartTime}");
@@ -184,8 +172,8 @@ namespace River.OneMoreAddIn.Commands
 			// is only done the first time incase the user intentionally shut down the tray app...
 			// note that it may have already been started if OneNote was since restarted.
 
-			schedule = new Schedule();
-			await ScheduleScan(schedule.StartTime);
+			schedule ??= new Schedule();
+			await ScheduleScan();
 
 			return true;
 		}
@@ -207,7 +195,7 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		public Schedule ReadSchedule()
+		private Schedule ReadSchedule()
 		{
 			if (!File.Exists(filePath))
 			{

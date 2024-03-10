@@ -25,7 +25,6 @@ namespace OneMoreTray
 		public ScanningJob()
 		{
 			logger = Logger.Current;
-
 			trayIcon = MakeNotifyIcon();
 
 			scheduler = new HashtagScheduler();
@@ -57,7 +56,7 @@ namespace OneMoreTray
 			menu.Popup += (sender, e) =>
 			{
 				var menu = sender as ContextMenu;
-				if (scheduler.StartTime > DateTime.MinValue)
+				if (scheduler.StartTime > DateTime.Now)
 				{
 					menu.MenuItems[0].Text = string.Format(
 						Resx.ScheduledFor, scheduler.StartTime.ToString(Resx.ScheduleTimeFormat));
@@ -110,9 +109,7 @@ namespace OneMoreTray
 		{
 			logger.WriteLine("starting HashtagService");
 
-			var forceRebuild = scheduler.Phase == HashtagScheduler.SchedulePhase.PendingRebuild;
-
-			var scanner = new HashtagService(forceRebuild);
+			var scanner = new HashtagService(scheduler.State == ScanningState.PendingRebuild);
 			scanner.OnHashtagScanned += DoScanned;
 			scanner.Startup();
 
@@ -161,6 +158,15 @@ namespace OneMoreTray
 		private void DoReschedule(object sender, EventArgs e)
 		{
 			using var dialog = new ScheduleScanDialog(scheduler.StartTime);
+
+			var msg = string.Format(
+				scheduler.State == ScanningState.PendingScan
+					? Resx.Reschedule_Scan
+					: Resx.Reschedule_Rebuild,
+				scheduler.StartTime.ToString(Resx.ScheduleTimeFormat));
+
+			dialog.SetIntroText(msg);
+
 			var result = dialog.ShowDialog();
 			if (result == DialogResult.OK)
 			{
@@ -188,7 +194,7 @@ namespace OneMoreTray
 
 		private void DoExit(object sender, EventArgs e)
 		{
-			var msg = scheduler.Phase == HashtagScheduler.SchedulePhase.Scanning
+			var msg = scheduler.State == ScanningState.Scanning
 				? Resx.ScanRunning
 				: string.Format(
 					Resx.RescheduleDialog_currentLabel_Text,

@@ -38,6 +38,7 @@
 			this.buttonPanel = new System.Windows.Forms.Panel();
 			this.cancelButton = new River.OneMoreAddIn.UI.MoreButton();
 			this.okButton = new River.OneMoreAddIn.UI.MoreButton();
+			this.introBox = new River.OneMoreAddIn.UI.MoreMultilineLabel();
 			this.topPanel.SuspendLayout();
 			this.buttonPanel.SuspendLayout();
 			this.SuspendLayout();
@@ -52,11 +53,11 @@
 			this.topPanel.Controls.Add(this.dateTimePicker);
 			this.topPanel.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.topPanel.ForeColor = System.Drawing.SystemColors.ControlText;
-			this.topPanel.Location = new System.Drawing.Point(0, 0);
+			this.topPanel.Location = new System.Drawing.Point(0, 62);
 			this.topPanel.Margin = new System.Windows.Forms.Padding(0);
 			this.topPanel.Name = "topPanel";
 			this.topPanel.Padding = new System.Windows.Forms.Padding(40, 40, 20, 20);
-			this.topPanel.Size = new System.Drawing.Size(698, 260);
+			this.topPanel.Size = new System.Drawing.Size(698, 258);
 			this.topPanel.TabIndex = 4;
 			// 
 			// nowRadio
@@ -121,7 +122,7 @@
 			this.buttonPanel.Controls.Add(this.okButton);
 			this.buttonPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
 			this.buttonPanel.ForeColor = System.Drawing.SystemColors.ControlText;
-			this.buttonPanel.Location = new System.Drawing.Point(0, 260);
+			this.buttonPanel.Location = new System.Drawing.Point(0, 320);
 			this.buttonPanel.Name = "buttonPanel";
 			this.buttonPanel.Size = new System.Drawing.Size(698, 61);
 			this.buttonPanel.TabIndex = 5;
@@ -162,14 +163,28 @@
 			this.okButton.ThemedFore = null;
 			this.okButton.UseVisualStyleBackColor = true;
 			// 
+			// introBox
+			// 
+			this.introBox.Dock = System.Windows.Forms.DockStyle.Top;
+			this.introBox.Location = new System.Drawing.Point(0, 0);
+			this.introBox.Name = "introBox";
+			this.introBox.Padding = new System.Windows.Forms.Padding(30, 12, 20, 12);
+			this.introBox.Size = new System.Drawing.Size(698, 62);
+			this.introBox.TabIndex = 11;
+			this.introBox.Text = "The hashtag catalog has not yet been created. Choose below when OneMore should bu" +
+    "ild the catalog.";
+			this.introBox.ThemedBack = "Control";
+			this.introBox.ThemedFore = "ControlText";
+			// 
 			// ScheduleScanDialog
 			// 
 			this.AcceptButton = this.okButton;
 			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.CancelButton = this.cancelButton;
-			this.ClientSize = new System.Drawing.Size(698, 321);
+			this.ClientSize = new System.Drawing.Size(698, 381);
 			this.Controls.Add(this.topPanel);
+			this.Controls.Add(this.introBox);
 			this.Controls.Add(this.buttonPanel);
 			this.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -196,5 +211,6 @@
 		private River.OneMoreAddIn.UI.MoreLabel hintLabel;
 		private UI.MoreRadioButton laterRadio;
 		private UI.MoreRadioButton nowRadio;
+		private UI.MoreMultilineLabel introBox;
 	}
 }
