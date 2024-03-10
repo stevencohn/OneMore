@@ -23,7 +23,7 @@ namespace River.OneMoreAddIn.Commands
 		private const string TrayName = "OneMoreTray";
 
 		private readonly string filePath;
-		private Schedule schedule;
+		private readonly Schedule schedule;
 
 
 		#region Supporting classes
@@ -60,13 +60,17 @@ namespace River.OneMoreAddIn.Commands
 			}
 			else
 			{
-				schedule = new Schedule();
-				if (HashtagProvider.DatabaseExists())
+				schedule = new Schedule
 				{
-					schedule.State = ScanningState.Ready;
-				}
+					State = HashtagProvider.DatabaseExists()
+						? ScanningState.PendingScan
+						: ScanningState.PendingRebuild
+				};
 			}
 		}
+
+
+		public bool Active => File.Exists(filePath) && Process.GetProcessesByName(TrayName).Any();
 
 
 		public bool ScheduleExists => File.Exists(filePath);
@@ -91,7 +95,7 @@ namespace River.OneMoreAddIn.Commands
 		/// </summary>
 		/// <param name="startTime">The time to schedule the scan</param>
 		/// <returns></returns>
-		public async Task ScheduleScan()
+		public async Task Activate()
 		{
 			var process = Process.GetProcessesByName(TrayName).FirstOrDefault();
 			if (process != null)
@@ -138,44 +142,6 @@ namespace River.OneMoreAddIn.Commands
 			});
 
 			logger.WriteLine($"started {TrayName} process {proc.Id}");
-		}
-
-
-		/// <summary>
-		/// Entry point for the HashtagService to poll for an active scan.
-		/// If a scan has been scheduled, ensures the OneMoreTray app is running.
-		/// </summary>
-		/// <returns>True if a scan is pending or active.</returns>
-		public async Task<bool> WaitingForScan()
-		{
-			if (File.Exists(filePath))
-			{
-				schedule = ReadSchedule();
-			}
-			else if (!HashtagProvider.DatabaseExists())
-			{
-				schedule = null;
-			}
-			else
-			{
-				return false;
-			}
-
-			if (schedule is not null && Process.GetProcessesByName(TrayName).Any())
-			{
-				// must have already warned the user so continue idling patiently...
-				logger.Verbose($"waiting for hashtag scan on {schedule.StartTime}");
-				return true;
-			}
-
-			// at this point, it must be the first time, so start up OneMoreTray if needed which
-			// is only done the first time incase the user intentionally shut down the tray app...
-			// note that it may have already been started if OneNote was since restarted.
-
-			schedule ??= new Schedule();
-			await ScheduleScan();
-
-			return true;
 		}
 
 

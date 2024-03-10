@@ -21,10 +21,10 @@ namespace River.OneMoreAddIn.Commands
 		private const int Minute = 60000; // ms in 1 minute
 
 		private readonly int pollingInterval;
-		private readonly bool rebuild;
 		private readonly bool disabled;
 
 		private HashtagScheduler scheduler;
+		private bool rebuild;
 		private int hour;
 		private int scanCount;
 		private long scanTime;
@@ -35,25 +35,11 @@ namespace River.OneMoreAddIn.Commands
 
 		public HashtagService(bool rebuild = false)
 		{
-			var settings = new SettingsProvider();
-			var collection = settings.GetCollection("HashtagSheet");
-			pollingInterval = collection.Get("interval", DefaultPollingInterval) * Minute;
-
-			disabled = !rebuild && collection.Get<bool>("disabled");
-
-			if (rebuild || collection.Get<bool>("rebuild"))
-			{
-				// at this point, the service is "active" and the rebuild will commence
-				// immediately, so prepare by deleting any old database...
-				HashtagProvider.DeleteDatabase();
-				if (collection.Remove("rebuild"))
-				{
-					settings.SetCollection(collection);
-					settings.Save();
-				}
-			}
-
-			this.rebuild = rebuild;
+			var provider = new SettingsProvider();
+			var settings = provider.GetCollection("HashtagSheet");
+			pollingInterval = settings.Get("interval", DefaultPollingInterval) * Minute;
+			disabled = !rebuild && settings.Get<bool>("disabled");
+			this.rebuild = rebuild || settings.Get<bool>("rebuild");
 		}
 
 
@@ -93,7 +79,19 @@ namespace River.OneMoreAddIn.Commands
 				{
 					try
 					{
-						await Scan();
+						if (rebuild)
+						{
+							PrepareRebuild();
+						}
+						else if (scheduler.State != ScanningState.Ready && !scheduler.Active)
+						{
+							await scheduler.Activate();
+						}
+						else
+						{
+							await Scan();
+						}
+
 						errors = 0;
 					}
 					catch (Exception exc)
@@ -123,13 +121,26 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private async Task Scan()
+		private void PrepareRebuild()
 		{
-			if (await scheduler.WaitingForScan())
+			// at this point, the service is "active" and the rebuild will commence
+			// immediately, so prepare by deleting any old database...
+			HashtagProvider.DeleteDatabase();
+
+			var provider = new SettingsProvider();
+			var settings = provider.GetCollection("HashtagSheet");
+			if (settings.Remove("rebuild"))
 			{
-				return;
+				provider.SetCollection(settings);
+				provider.Save();
 			}
 
+			rebuild = false;
+		}
+
+
+		private async Task Scan()
+		{
 			var clock = new Stopwatch();
 			clock.Start();
 

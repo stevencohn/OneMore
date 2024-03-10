@@ -83,7 +83,7 @@ namespace River.OneMoreAddIn.Commands
 				if (result == DialogResult.OK)
 				{
 					scheduler.State = ScanningState.PendingRebuild;
-					await scheduler.ScheduleScan();
+					await scheduler.Activate();
 				}
 
 				return false;

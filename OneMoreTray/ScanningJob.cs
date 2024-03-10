@@ -113,6 +113,9 @@ namespace OneMoreTray
 			scanner.OnHashtagScanned += DoScanned;
 			scanner.Startup();
 
+			scheduler.State = ScanningState.Scanning;
+			scheduler.SaveSchedule();
+
 			source.Dispose();
 		}
 
