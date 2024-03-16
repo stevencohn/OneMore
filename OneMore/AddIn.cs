@@ -245,7 +245,7 @@ namespace River.OneMoreAddIn
 				// navigation listener
 				new Commands.NavigationService().Startup();
 
-				//// hashtags scanner
+				// hashtags scanner
 				new Commands.HashtagService().Startup();
 
 				// update check

@@ -18,14 +18,15 @@ namespace River.OneMoreAddIn.Commands
 	internal class HashtagService : Loggable
 	{
 		public const int DefaultPollingInterval = 2; // 2 minutes
+		private const int Pause = 3000; // 3s delay before starting
 		private const int Minute = 60000; // ms in 1 minute
 
 		private readonly bool embedded;
+		private readonly bool rebuild;
 		private readonly int interval;
 		private readonly bool disabled;
 
 		private HashtagScheduler scheduler;
-		private bool rebuild;
 		private int hour;
 		private int scanCount;
 		private long scanTime;
@@ -71,18 +72,25 @@ namespace River.OneMoreAddIn.Commands
 			logger.Verbose($"HastagService scheduler.State is {scheduler.State}");
 
 			hour = DateTime.Now.Hour;
-			scanCount = 0;
-			scanTime = 0;
 
 			var thread = new Thread(async () =>
 			{
 				if (embedded)
 				{
-					// let OneMore settle before we start
-					await Task.Delay(3000);
+					// let OneMore settle before we start, and wait for scheduler to be ready
+					do
+					{
+						await Task.Delay(Pause);
+					}
+					while (scheduler.State != ScanningState.Ready);
+				}
+				else
+				{
+					PrepareRebuild();
 				}
 
-				// 'errors' allows repeated consecutive exceptions but limits that to 5 so we
+
+				// errors allows repeated consecutive exceptions but limits that to 5 so we
 				// don't fall into an infinite loop. If it somehow miraculously recovers then
 				// errors is reset back to zero and normal processing continues...
 
@@ -91,26 +99,11 @@ namespace River.OneMoreAddIn.Commands
 				{
 					try
 					{
-						if (embedded)
+						await Scan();
+
+						if (!embedded)
 						{
-							await Scan();
-						}
-						else
-						{
-							if (rebuild)
-							{
-								PrepareRebuild();
-							}
-							else if (scheduler.State != ScanningState.Ready && !scheduler.Active)
-							{
-								await scheduler.Activate();
-							}
-							else if (
-								scheduler.State == ScanningState.Ready ||
-								scheduler.State == ScanningState.Scanning)
-							{
-								await Scan();
-							}
+							break;
 						}
 
 						errors = 0;
@@ -121,18 +114,10 @@ namespace River.OneMoreAddIn.Commands
 						errors++;
 					}
 
-					if (rebuild)
-					{
-						break;
-					}
-
 					await Task.Delay(interval);
 				}
 
-				if (errors > 0)
-				{
-					logger.WriteLine("hashtag service has stopped; check for exceptions above");
-				}
+				logger.WriteLine("hashtag service has stopped; check for exceptions above");
 			});
 
 			thread.SetApartmentState(ApartmentState.STA);
@@ -155,8 +140,6 @@ namespace River.OneMoreAddIn.Commands
 				provider.SetCollection(settings);
 				provider.Save();
 			}
-
-			rebuild = false;
 		}
 
 
