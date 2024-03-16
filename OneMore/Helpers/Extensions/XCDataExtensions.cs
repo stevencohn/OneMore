@@ -11,6 +11,9 @@ namespace River.OneMoreAddIn
 
 	internal static class XCDataExtensions
 	{
+		// https://www.fileformat.info/info/unicode/char/fffd/index.htm
+		private const string UnicodeReplacementChar = "&#65533;";
+
 
 		/// <summary>
 		/// OneMore Extension >> Determines if the node contains multiple words, separated by any
@@ -58,6 +61,10 @@ namespace River.OneMoreAddIn
 
 			// quote unquoted language attribute, e.g., lang=yo to lang="yo" (or two part en-US)
 			value = Regex.Replace(value, @"(\s)lang=([\w\-]+)([\s/>])", "$1lang=\"$2\"$3");
+
+			// replace non-printable characters (0-31) that break XML validation with "�"
+			// this will change ("fix") user data but there's nothing we can do about it
+			value = Regex.Replace(value, @"(&#(?:0?[0-9]|[12][0-9]|3[01]);)", UnicodeReplacementChar);
 
 			try
 			{
