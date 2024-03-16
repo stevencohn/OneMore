@@ -20,7 +20,8 @@ namespace River.OneMoreAddIn.Commands
 		public const int DefaultPollingInterval = 2; // 2 minutes
 		private const int Minute = 60000; // ms in 1 minute
 
-		private readonly int pollingInterval;
+		private readonly bool embedded;
+		private readonly int interval;
 		private readonly bool disabled;
 
 		private HashtagScheduler scheduler;
@@ -33,13 +34,20 @@ namespace River.OneMoreAddIn.Commands
 		public delegate void HashtagScannedHandler(object sender, HashtagScannedEventArgs e);
 
 
-		public HashtagService(bool rebuild = false)
+		public HashtagService()
 		{
-			var provider = new SettingsProvider();
-			var settings = provider.GetCollection("HashtagSheet");
-			pollingInterval = settings.Get("interval", DefaultPollingInterval) * Minute;
-			disabled = !rebuild && settings.Get<bool>("disabled");
-			this.rebuild = rebuild || settings.Get<bool>("rebuild");
+			embedded = true;
+			var settings = new SettingsProvider().GetCollection("HashtagSheet");
+			interval = settings.Get("interval", DefaultPollingInterval) * Minute;
+			disabled = settings.Get<bool>("disabled");
+		}
+
+
+		public HashtagService(bool rebuild)
+			: this()
+		{
+			embedded = false;
+			this.rebuild = rebuild;
 		}
 
 
@@ -60,6 +68,7 @@ namespace River.OneMoreAddIn.Commands
 			logger.WriteLine("starting hashtag service");
 
 			scheduler = new HashtagScheduler();
+			logger.Verbose($"HastagService scheduler.State is {scheduler.State}");
 
 			hour = DateTime.Now.Hour;
 			scanCount = 0;
@@ -67,8 +76,11 @@ namespace River.OneMoreAddIn.Commands
 
 			var thread = new Thread(async () =>
 			{
-				// let OneMore settle before we start
-				await Task.Delay(3000);
+				if (embedded)
+				{
+					// let OneMore settle before we start
+					await Task.Delay(3000);
+				}
 
 				// 'errors' allows repeated consecutive exceptions but limits that to 5 so we
 				// don't fall into an infinite loop. If it somehow miraculously recovers then
@@ -79,17 +91,26 @@ namespace River.OneMoreAddIn.Commands
 				{
 					try
 					{
-						if (rebuild)
+						if (embedded)
 						{
-							PrepareRebuild();
-						}
-						else if (scheduler.State != ScanningState.Ready && !scheduler.Active)
-						{
-							await scheduler.Activate();
+							await Scan();
 						}
 						else
 						{
-							await Scan();
+							if (rebuild)
+							{
+								PrepareRebuild();
+							}
+							else if (scheduler.State != ScanningState.Ready && !scheduler.Active)
+							{
+								await scheduler.Activate();
+							}
+							else if (
+								scheduler.State == ScanningState.Ready ||
+								scheduler.State == ScanningState.Scanning)
+							{
+								await Scan();
+							}
 						}
 
 						errors = 0;
@@ -105,7 +126,7 @@ namespace River.OneMoreAddIn.Commands
 						break;
 					}
 
-					await Task.Delay(pollingInterval);
+					await Task.Delay(interval);
 				}
 
 				if (errors > 0)

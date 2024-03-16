@@ -52,7 +52,6 @@ namespace River.OneMoreAddIn.Commands
 		public HashtagScheduler()
 		{
 			filePath = Path.Combine(PathHelper.GetAppDataPath(), Resx.ScanningCueFile);
-			schedule = ReadSchedule() ?? new Schedule();
 
 			if (File.Exists(filePath))
 			{
@@ -63,7 +62,7 @@ namespace River.OneMoreAddIn.Commands
 				schedule = new Schedule
 				{
 					State = HashtagProvider.DatabaseExists()
-						? ScanningState.PendingScan
+						? ScanningState.Ready
 						: ScanningState.PendingRebuild
 				};
 			}

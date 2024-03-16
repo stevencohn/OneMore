@@ -68,6 +68,7 @@ namespace River.OneMoreAddIn.Commands
 			{
 				try
 				{
+					Logger.Current.WriteLine("deleting hashtag database");
 					File.Delete(path);
 				}
 				catch (Exception exc)
