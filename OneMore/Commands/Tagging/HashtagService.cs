@@ -145,8 +145,8 @@ namespace River.OneMoreAddIn.Commands
 
 		private async Task<bool> WaitForReady()
 		{
-			if ((scheduler.State != ScanningState.None ||
-				scheduler.State != ScanningState.Ready) &&
+			if (scheduler.State != ScanningState.None &&
+				scheduler.State != ScanningState.Ready &&
 				!scheduler.Active)
 			{
 				await scheduler.Activate();
