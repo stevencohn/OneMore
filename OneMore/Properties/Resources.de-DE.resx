@@ -1330,9 +1330,15 @@ Diese Abteilung</value>
     <value>Passen Sie erweiterte Optionen für den Hashtag-Scanner-Dienst an</value>
     <comment>label</comment>
   </data>
-  <data name="HashtagSheet_rebuildBox.Text" xml:space="preserve">
-    <value>Erstellen Sie die Hashtag-Datenbank beim Neustart neu</value>
-    <comment>checkbox</comment>
+  <data name="HashtagSheet_prescheduled" xml:space="preserve">
+    <value>Für {0} ist ein Scan geplant. Verwenden Sie die folgenden Optionen, um dies zu ändern, oder klicken Sie auf „Abbrechen“, um den aktuellen Zeitplan beizubehalten.</value>
+  </data>
+  <data name="HashtagSheet_scanNotebooks" xml:space="preserve">
+    <value>Planen Sie einen inkrementellen Scan Ihrer neu hinzugefügten Notizbücher</value>
+  </data>
+  <data name="HashtagSheet_scheduleLink.Text" xml:space="preserve">
+    <value>Planen Sie einen Wiederaufbau Ihres Hashtag -Katalogs</value>
+    <comment>link label</comment>
   </data>
   <data name="HashtagSheet_styleBox.Text" xml:space="preserve">
     <value>Keiner
@@ -1347,6 +1353,10 @@ Gelber Hintergrund</value>
   <data name="HashtagSheet_Title" xml:space="preserve">
     <value>Hashtags</value>
     <comment>sheet title</comment>
+  </data>
+  <data name="HashtagSheet_warningLabel.Text" xml:space="preserve">
+    <value>Dies sollte verwendet werden, nachdem ein oder mehrere Notizbücher hinzugefügt oder entfernt werden. Es wird empfohlen, den Wiederaufbau von Nachbästen wie Mitternacht zu planen.</value>
+    <comment>multiline label</comment>
   </data>
   <data name="HighlightFormulaCommand_NoFormulas" xml:space="preserve">
     <value>Auf dieser Seite wurden keine Formeln gefunden</value>
@@ -4042,7 +4052,7 @@ Nach der letzten Gruppe</value>
     <comment>dialog title</comment>
   </data>
   <data name="ScheduleScanDialog_warningLabel.Text" xml:space="preserve">
-    <value>OneNote kann beim Scannen träge erscheinen. Wenn OneNote geschlossen ist, kann sie erst geöffnet werden, wenn der Scan abgeschlossen ist.</value>
+    <value>OneNote erscheint beim Scannen möglicherweise träge. Wenn OneNote während des Scans geschlossen ist, kann es erst geöffnet werden, wenn der Scan abgeschlossen ist.</value>
     <comment>multiline label</comment>
   </data>
   <data name="ScopeSelector_notebookButton.Text" xml:space="preserve">

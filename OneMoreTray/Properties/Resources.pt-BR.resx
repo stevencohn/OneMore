@@ -158,10 +158,10 @@
     <value>Scanner de hashtag</value>
   </data>
   <data name="ScanNowConfirmation" xml:space="preserve">
-    <value>A verificação pode levar algum tempo e afetar o desempenho do OneNote. Se o OneNote estiver fechado, ele não poderá ser reaberto até que a verificação seja concluída.
+    <value>A verificação pode levar algum tempo e afetar o desempenho do OneNote. Se o OneNote for fechado durante a verificação, ele não poderá ser reaberto até que a verificação seja concluída.
 
 Cancelar o horário agendado e executar a verificação agora?</value>
-    <comment>message box</comment>
+    <comment> message box</comment>
   </data>
   <data name="ScanRunning" xml:space="preserve">
     <value>Uma verificação está em execução no momento</value>

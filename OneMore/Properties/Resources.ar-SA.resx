@@ -1332,9 +1332,15 @@
     <value>تخصيص الخيارات المتقدمة لخدمة Hashtag Scanner</value>
     <comment>label</comment>
   </data>
-  <data name="HashtagSheet_rebuildBox.Text" xml:space="preserve">
-    <value>إعادة بناء قاعدة بيانات الهاشتاج عند إعادة التشغيل</value>
-    <comment>checkbox</comment>
+  <data name="HashtagSheet_prescheduled" xml:space="preserve">
+    <value>تمت جدولة عملية الفحص لـ {0}. استخدم الخيارات أدناه لتغيير هذا أو اضغط على إلغاء للاحتفاظ بالجدول الحالي.</value>
+  </data>
+  <data name="HashtagSheet_scanNotebooks" xml:space="preserve">
+    <value>قم بجدولة فحص متزايد لدفاتر الملاحظات المضافة حديثًا</value>
+  </data>
+  <data name="HashtagSheet_scheduleLink.Text" xml:space="preserve">
+    <value>جدولة إعادة بناء كتالوج الهاشتاج الخاص بك</value>
+    <comment>link label</comment>
   </data>
   <data name="HashtagSheet_styleBox.Text" xml:space="preserve">
     <value>لا أحد
@@ -1349,6 +1355,10 @@
   <data name="HashtagSheet_Title" xml:space="preserve">
     <value>علامات التصنيف</value>
     <comment>sheet title</comment>
+  </data>
+  <data name="HashtagSheet_warningLabel.Text" xml:space="preserve">
+    <value>يجب استخدام هذا بعد إضافة أو إزالة دفتر واحد أو أكثر من دفاتر الملاحظات. يوصى بجدولة إعادة البناء بعد ساعات ، مثل منتصف الليل.</value>
+    <comment>multiline label</comment>
   </data>
   <data name="HighlightFormulaCommand_NoFormulas" xml:space="preserve">
     <value>لا توجد صيغ في هذه الصفحة</value>
@@ -4049,7 +4059,7 @@ ISO-code then comma then language name</comment>
     <comment>dialog title</comment>
   </data>
   <data name="ScheduleScanDialog_warningLabel.Text" xml:space="preserve">
-    <value>قد تظهر Onenote بطيئة أثناء المسح. إذا تم إغلاق OneNote ، فلا يمكن فتحه حتى يكتمل المسح.</value>
+    <value>قد يبدو OneNote بطيئًا أثناء المسح الضوئي. إذا تم إغلاق OneNote أثناء الفحص، فلا يمكن فتحه حتى يكتمل الفحص.</value>
     <comment>multiline label</comment>
   </data>
   <data name="ScopeSelector_notebookButton.Text" xml:space="preserve">

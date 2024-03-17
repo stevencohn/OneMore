@@ -158,10 +158,10 @@
     <value>Hashtag-Scanner</value>
   </data>
   <data name="ScanNowConfirmation" xml:space="preserve">
-    <value>Das Scannen kann einige Zeit in Anspruch nehmen und die Leistung von OneNote beeinträchtigen. Wenn OneNote geschlossen ist, kann es erst wieder geöffnet werden, wenn der Scan abgeschlossen ist.
+    <value>Das Scannen kann einige Zeit in Anspruch nehmen und die Leistung von OneNote beeinträchtigen. Wenn OneNote während des Scans geschlossen wird, kann es erst wieder geöffnet werden, wenn der Scan abgeschlossen ist.
 
 Den geplanten Zeitpunkt stornieren und den Scan jetzt ausführen?</value>
-    <comment>message box</comment>
+    <comment> message box</comment>
   </data>
   <data name="ScanRunning" xml:space="preserve">
     <value>Derzeit läuft ein Scan</value>

@@ -179,7 +179,7 @@ namespace OneMoreTray.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Scanning can take quite some time and affect OneNote performance. If OneNote is closed, it cannot be reopened until the scan is completed.
+        ///   Looks up a localized string similar to Scanning can take quite some time and affect OneNote performance. If OneNote is closed during the scan, it cannot be reopened until the scan is completed.
         ///
         ///Cancel the scheduled time and run the scan now?.
         /// </summary>

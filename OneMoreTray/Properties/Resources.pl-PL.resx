@@ -158,10 +158,10 @@
     <value>Skaner hashtagów</value>
   </data>
   <data name="ScanNowConfirmation" xml:space="preserve">
-    <value>Skanowanie może zająć trochę czasu i wpłynąć na wydajność programu OneNote. Jeśli program OneNote jest zamknięty, nie można go ponownie otworzyć do czasu zakończenia skanowania.
+    <value>Skanowanie może zająć trochę czasu i wpłynąć na wydajność programu OneNote. Jeśli program OneNote zostanie zamknięty podczas skanowania, nie można go ponownie otworzyć do czasu zakończenia skanowania.
 
 Anulować zaplanowany czas i uruchomić skanowanie teraz?</value>
-    <comment>message box</comment>
+    <comment> message box</comment>
   </data>
   <data name="ScanRunning" xml:space="preserve">
     <value>Aktualnie trwa skanowanie</value>

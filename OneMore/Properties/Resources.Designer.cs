@@ -3547,11 +3547,29 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Rebuild the hashtag database upon restart.
+        ///   Looks up a localized string similar to A scan is scheduled for {0}. Use the options below to change this or press Cancel to keep the current schedule..
         /// </summary>
-        internal static string HashtagSheet_rebuildBox_Text {
+        internal static string HashtagSheet_prescheduled {
             get {
-                return ResourceManager.GetString("HashtagSheet_rebuildBox.Text", resourceCulture);
+                return ResourceManager.GetString("HashtagSheet_prescheduled", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Schedule an incremental scan of your newly added notebooks.
+        /// </summary>
+        internal static string HashtagSheet_scanNotebooks {
+            get {
+                return ResourceManager.GetString("HashtagSheet_scanNotebooks", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Schedule a rebuild of your hashtag catalog.
+        /// </summary>
+        internal static string HashtagSheet_scheduleLink_Text {
+            get {
+                return ResourceManager.GetString("HashtagSheet_scheduleLink.Text", resourceCulture);
             }
         }
         
@@ -3581,6 +3599,15 @@ namespace River.OneMoreAddIn.Properties {
         internal static string HashtagSheet_Title {
             get {
                 return ResourceManager.GetString("HashtagSheet_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This should be used after adding or removing one or more notebooks. It is recommended to schedule rebuilds after-hours, such as midnight..
+        /// </summary>
+        internal static string HashtagSheet_warningLabel_Text {
+            get {
+                return ResourceManager.GetString("HashtagSheet_warningLabel.Text", resourceCulture);
             }
         }
         
@@ -10146,7 +10173,7 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to OneNote may appear sluggish while scanning. If OneNote is closed, it cannot be opened until the scan completes..
+        ///   Looks up a localized string similar to OneNote may appear sluggish while scanning. If OneNote is closed during the scan, it cannot be opened until the scan completes..
         /// </summary>
         internal static string ScheduleScanDialog_warningLabel_Text {
             get {

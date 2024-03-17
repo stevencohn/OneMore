@@ -1333,9 +1333,15 @@ Deze sectie</value>
     <value>Pas geavanceerde opties aan voor de Hashtag Scanner Service</value>
     <comment>label</comment>
   </data>
-  <data name="HashtagSheet_rebuildBox.Text" xml:space="preserve">
-    <value>Herbouw de hashtag-database bij het opnieuw opstarten</value>
-    <comment>checkbox</comment>
+  <data name="HashtagSheet_prescheduled" xml:space="preserve">
+    <value>Er is een scan gepland voor {0}. Gebruik de onderstaande opties om dit te wijzigen of druk op Annuleren om het huidige schema te behouden.</value>
+  </data>
+  <data name="HashtagSheet_scanNotebooks" xml:space="preserve">
+    <value>Plan een incrementele scan van uw nieuw toegevoegde notitieboekjes</value>
+  </data>
+  <data name="HashtagSheet_scheduleLink.Text" xml:space="preserve">
+    <value>Plan een herbouw van uw hashtag -catalogus</value>
+    <comment>link label</comment>
   </data>
   <data name="HashtagSheet_styleBox.Text" xml:space="preserve">
     <value>Geen
@@ -1350,6 +1356,10 @@ Gele achtergrond</value>
   <data name="HashtagSheet_Title" xml:space="preserve">
     <value>Hashtags</value>
     <comment>sheet title</comment>
+  </data>
+  <data name="HashtagSheet_warningLabel.Text" xml:space="preserve">
+    <value>Dit moet worden gebruikt na het toevoegen of verwijderen van een of meer notebooks. Het wordt aanbevolen om wederopbouw na uur te plannen, zoals middernacht.</value>
+    <comment>multiline label</comment>
   </data>
   <data name="HighlightFormulaCommand_NoFormulas" xml:space="preserve">
     <value>Geen formules gevonden op deze pagina</value>
@@ -4049,7 +4059,7 @@ Na de laatste groep</value>
     <comment>dialog title</comment>
   </data>
   <data name="ScheduleScanDialog_warningLabel.Text" xml:space="preserve">
-    <value>OneNote lijkt misschien traag tijdens het scannen. Als OneNote is gesloten, kan deze niet worden geopend totdat de scan is voltooid.</value>
+    <value>OneNote kan traag lijken tijdens het scannen. Als OneNote tijdens de scan wordt gesloten, kan deze pas worden geopend als de scan is voltooid.</value>
     <comment>multiline label</comment>
   </data>
   <data name="ScopeSelector_notebookButton.Text" xml:space="preserve">
