@@ -39,4 +39,18 @@ Process
     {
         Write-Host '... ONENOTE.EXE not found' -Fore DarkGray
     }
+
+    $processId = gcim Win32_Process | select ProcessId, Name | `
+        where { $_.Name -eq 'OneMoreTray.exe' } | `
+        foreach { $_.ProcessId }
+
+    if ($processId)
+    {
+        Write-Host "... stopping OneMoreTray.exe" -Fore DarkYellow
+        taskkill /fi "pid gt 0" /im ONENOTE.exe /t /f
+    }
+    else
+    {
+        Write-Host '... OneMoreTray.exe not found' -Fore DarkGray
+    }
 }
