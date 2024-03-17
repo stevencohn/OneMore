@@ -44,7 +44,8 @@ namespace River.OneMoreAddIn.Commands
 
 		public DateTime StartTime => nowRadio.Checked
 			? DateTime.Now
-			: dateTimePicker.Value;
+			// DateTimePicker returns dates with Unspecified Kind, so force Local
+			: DateTime.SpecifyKind(dateTimePicker.Value, DateTimeKind.Local);
 
 		public void SetIntroText(string text)
 		{

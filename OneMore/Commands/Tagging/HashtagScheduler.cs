@@ -5,6 +5,7 @@
 namespace River.OneMoreAddIn.Commands
 {
 	using Newtonsoft.Json;
+	using Newtonsoft.Json.Converters;
 	using System;
 	using System.Diagnostics;
 	using System.IO;
@@ -39,6 +40,7 @@ namespace River.OneMoreAddIn.Commands
 			// operation is confirmed to be completed, so can be used to recognize 
 			// interruptions and infer continuation
 			[JsonProperty("state")]
+			[JsonConverter(typeof(StringEnumConverter))]
 			public ScanningState State { get; set; } = ScanningState.None;
 
 
@@ -122,7 +124,7 @@ namespace River.OneMoreAddIn.Commands
 
 			if (dir.Contains("Debug"))
 			{
-				// special redirect for dev environment
+				// if dev environment, apps won't be in same directory so add extra hop
 				dir = Path.Combine(
 					Path.GetDirectoryName(Path.GetDirectoryName(
 						Path.GetDirectoryName(Path.GetDirectoryName(dir)))),
@@ -160,11 +162,27 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private Schedule ReadSchedule()
+		public void Refresh()
+		{
+			var update = ReadSchedule(false);
+			if (update is not null)
+			{
+				schedule.State = update.State;
+				schedule.StartTime = update.StartTime;
+				schedule.Shutdown = update.Shutdown;
+			}
+		}
+
+
+		private Schedule ReadSchedule(bool chatty = true)
 		{
 			if (!File.Exists(filePath))
 			{
-				logger.WriteLine($"could not find schedule file {filePath}");
+				if (chatty)
+				{
+					logger.WriteLine($"could not find schedule file {filePath}");
+				}
+
 				return null;
 			}
 

@@ -2,6 +2,8 @@
 // Copyright © 2023 Steven M Cohn. All rights reserved.
 //************************************************************************************************
 
+#pragma warning disable IDE0039 // Use local function
+
 namespace River.OneMoreAddIn.Commands
 {
 	using River.OneMoreAddIn.Settings;
@@ -9,6 +11,7 @@ namespace River.OneMoreAddIn.Commands
 	using System.Diagnostics;
 	using System.Threading;
 	using System.Threading.Tasks;
+	using System.Windows.Forms;
 
 
 	/// <summary>
@@ -22,7 +25,7 @@ namespace River.OneMoreAddIn.Commands
 		private const int Minute = 60000; // ms in 1 minute
 
 		private readonly bool embedded;
-		private readonly bool rebuild;
+		private readonly bool fullRebuild;
 		private readonly int interval;
 		private readonly bool disabled;
 
@@ -35,6 +38,9 @@ namespace River.OneMoreAddIn.Commands
 		public delegate void HashtagScannedHandler(object sender, HashtagScannedEventArgs e);
 
 
+		/// <summary>
+		/// Initialize a new instance for use by the OneMore add-in
+		/// </summary>
 		public HashtagService()
 		{
 			embedded = true;
@@ -44,11 +50,15 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
+		/// <summary>
+		/// Initialize a new instance for use by the OneMoreTray app
+		/// </summary>
+		/// <param name="rebuild"></param>
 		public HashtagService(bool rebuild)
 			: this()
 		{
 			embedded = false;
-			this.rebuild = rebuild;
+			fullRebuild = rebuild;
 		}
 
 
@@ -58,6 +68,9 @@ namespace River.OneMoreAddIn.Commands
 		public event HashtagScannedHandler OnHashtagScanned;
 
 
+		/// <summary>
+		/// Start the service
+		/// </summary>
 		public void Startup()
 		{
 			if (disabled)
@@ -73,72 +86,157 @@ namespace River.OneMoreAddIn.Commands
 
 			hour = DateTime.Now.Hour;
 
+			// new thread to provide a bit of isolation
 			var thread = new Thread(async () =>
 			{
 				if (embedded)
 				{
-					// let OneMore settle before we start, and wait for scheduler to be ready
-					do
-					{
-						await Task.Delay(Pause);
-					}
-					while (scheduler.State != ScanningState.Ready);
+					await StartupLoop();
 				}
 				else
 				{
-					PrepareRebuild();
+					await StartupRebuild();
 				}
-
-
-				// errors allows repeated consecutive exceptions but limits that to 5 so we
-				// don't fall into an infinite loop. If it somehow miraculously recovers then
-				// errors is reset back to zero and normal processing continues...
-
-				var errors = 0;
-				while (errors < 5)
-				{
-					try
-					{
-						await Scan();
-
-						if (!embedded)
-						{
-							break;
-						}
-
-						errors = 0;
-					}
-					catch (Exception exc)
-					{
-						logger.WriteLine($"hashtag service exception {errors}", exc);
-						errors++;
-					}
-
-					await Task.Delay(interval);
-				}
-
-				logger.WriteLine("hashtag service has stopped; check for exceptions above");
 			});
 
 			thread.SetApartmentState(ApartmentState.STA);
 			thread.IsBackground = true;
-			thread.Priority = rebuild ? ThreadPriority.Normal : ThreadPriority.Lowest;
+			thread.Priority = fullRebuild ? ThreadPriority.Normal : ThreadPriority.Lowest;
 			thread.Start();
 		}
 
 
-		private void PrepareRebuild()
-		{
-			// at this point, the service is "active" and the rebuild will commence
-			// immediately, so prepare by deleting any old database...
-			HashtagProvider.DeleteDatabase();
+		// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+		// This method is executed in the context of the OneMore add-in running in OneNote
 
-			var provider = new SettingsProvider();
-			var settings = provider.GetCollection("HashtagSheet");
-			if (settings.Remove("rebuild"))
+		private async Task StartupLoop()
+		{
+			if (!await WaitForReady())
 			{
-				provider.SetCollection(settings);
-				provider.Save();
+				return;
+			}
+
+			// execute forever or until there are 5 consecutive errors...
+
+			var errors = 0;
+			while (errors < 5)
+			{
+				try
+				{
+					await Scan();
+
+					errors = 0;
+				}
+				catch (Exception exc)
+				{
+					logger.WriteLine($"hashtag service exception {errors}", exc);
+					errors++;
+				}
+
+				if (errors < 5)
+				{
+					await Task.Delay(interval);
+				}
+			}
+
+			logger.WriteLine("hashtag service has stopped; check for exceptions above");
+		}
+
+
+		private async Task<bool> WaitForReady()
+		{
+			using var source = new CancellationTokenSource();
+
+			EventHandler handler = (object sender, EventArgs e) => 
+			{
+				logger.WriteLine("cancelling HashtagService on ApplicationExit");
+				source.Cancel();
+			};
+
+			// must cancel Task.Delay upon exit or OneNote will hang until Delay completes
+			Application.ApplicationExit += handler;
+
+			try
+			{
+				// wait at least once to let OneMore settle before we start
+				// then wait for scheduler to be ready...
+
+				var count = 0;
+				do
+				{
+					if (count % (Minute / Pause) == 0) // every minute
+					{
+						logger.WriteLine($"waiting for scheduler Ready, state={scheduler.State}");
+					}
+
+					await Task.Delay(Pause, source.Token);
+					if (!source.IsCancellationRequested)
+					{
+						scheduler.Refresh();
+						count++;
+					}
+				}
+				while (scheduler.State != ScanningState.Ready && !source.IsCancellationRequested);
+			}
+			finally
+			{
+				Application.ApplicationExit -= handler;
+			}
+
+			return !source.IsCancellationRequested;
+		}
+
+
+		// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+		// This method is executed in the context of the OneMoreTray app
+
+		private async Task StartupRebuild()
+		{
+			if (fullRebuild)
+			{
+				// at this point, the service is "active" and the rebuild will commence
+				// immediately, so prepare by deleting any old database...
+				HashtagProvider.DeleteDatabase();
+
+				var provider = new SettingsProvider();
+				var settings = provider.GetCollection("HashtagSheet");
+				if (settings.Remove("rebuild"))
+				{
+					provider.SetCollection(settings);
+					provider.Save();
+				}
+			}
+
+			// we want this to complete exactly once and the exit but allow for up to 5 errors
+			// during execution...
+
+			var errors = 0;
+			var done = false;
+
+			while (errors < 5 && !done)
+			{
+				try
+				{
+					await Scan();
+
+					errors = 0;
+					done = true;
+				}
+				catch (Exception exc)
+				{
+					logger.WriteLine($"hashtag service exception {errors}", exc);
+					errors++;
+				}
+
+				if (!done)
+				{
+					await Task.Delay(interval);
+				}
+			}
+
+			if (errors > 0)
+			{
+				logger.WriteLine("hashtag service has stopped; check for exceptions above");
 			}
 		}
 

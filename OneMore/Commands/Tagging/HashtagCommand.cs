@@ -82,6 +82,10 @@ namespace River.OneMoreAddIn.Commands
 				var result = scheduleDialog.ShowDialog(owner);
 				if (result == DialogResult.OK)
 				{
+
+					System.Diagnostics.Debugger.Launch();
+
+					scheduler.StartTime = scheduleDialog.StartTime;
 					scheduler.State = ScanningState.PendingRebuild;
 					await scheduler.Activate();
 				}
