@@ -120,6 +120,7 @@
     <Error Condition="!Exists('..\packages\Stub.System.Data.SQLite.Core.NetFramework.1.0.118.0\build\net46\Stub.System.Data.SQLite.Core.NetFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Stub.System.Data.SQLite.Core.NetFramework.1.0.118.0\build\net46\Stub.System.Data.SQLite.Core.NetFramework.targets'))" />
   </Target>
   <PropertyGroup>
-    <PreBuildEvent>taskkill /fi "pid gt 0" /im OneMoreTray.exe /t</PreBuildEvent>
+    <PreBuildEvent>taskkill /fi "pid gt 0" /im ONENOTE.exe /t
+taskkill /fi "pid gt 0" /im OneMoreTray.exe /t</PreBuildEvent>
   </PropertyGroup>
 </Project>
