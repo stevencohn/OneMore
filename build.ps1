@@ -186,6 +186,10 @@ Begin
 		BuildComponent 'OneMore' $true
 		Pop-Location
 
+		Push-Location OneMoreTray
+		BuildComponent 'OneMoreTray' $true
+		Pop-Location
+
 		Push-Location OneMoreCalendar
 		BuildComponent 'OneMoreCalendar' $true
 		Pop-Location

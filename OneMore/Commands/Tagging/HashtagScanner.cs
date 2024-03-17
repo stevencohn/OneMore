@@ -337,7 +337,7 @@ namespace River.OneMoreAddIn.Commands
 				provider.WritePageInfo(
 					scanner.MoreID, pageID, titleID, notebookID, sectionID, path, title);
 
-				logger.WriteLine($"updating tags on page {path}/{title}");
+				logger.WriteLine($"updated tags found on page {path}/{title}");
 				return true;
 			}
 

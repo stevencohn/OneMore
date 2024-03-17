@@ -132,6 +132,12 @@ namespace River.OneMoreAddIn.Commands
 			}
 
 			var exe = Path.Combine(dir, $"{TrayName}.exe");
+			if (!File.Exists(exe))
+			{
+				logger.WriteLine($"could not find {exe}");
+				return;
+			}
+
 			logger.WriteLine($"starting {exe} @{schedule.StartTime.ToZuluString()}");
 
 			var proc = Process.Start(new ProcessStartInfo
@@ -165,7 +171,13 @@ namespace River.OneMoreAddIn.Commands
 		public void Refresh()
 		{
 			var update = ReadSchedule(false);
-			if (update is not null)
+			if (update is null)
+			{
+				schedule.State = HashtagProvider.DatabaseExists()
+					? ScanningState.Ready
+					: ScanningState.None;
+			}
+			else
 			{
 				schedule.State = update.State;
 				schedule.StartTime = update.StartTime;

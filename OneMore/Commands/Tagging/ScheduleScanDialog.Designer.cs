@@ -70,8 +70,8 @@
 			this.warningLabel.Name = "warningLabel";
 			this.warningLabel.Size = new System.Drawing.Size(605, 46);
 			this.warningLabel.TabIndex = 6;
-			this.warningLabel.Text = "OneNote may appear sluggish while scanning. If OneNote is closed, it cannot be op" +
-    "ened until the scan completes.";
+			this.warningLabel.Text = "OneNote may appear sluggish while scanning. If OneNote is closed during the scan," +
+    " it cannot be opened until the scan completes.";
 			this.warningLabel.ThemedBack = null;
 			this.warningLabel.ThemedFore = null;
 			// 

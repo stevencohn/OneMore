@@ -1332,9 +1332,15 @@ Esta sección</value>
     <value>Personalice las opciones avanzadas para el servicio Hashtag Scanner</value>
     <comment>label</comment>
   </data>
-  <data name="HashtagSheet_rebuildBox.Text" xml:space="preserve">
-    <value>Reconstruya la base de datos de hashtag al reiniciar</value>
-    <comment>checkbox</comment>
+  <data name="HashtagSheet_prescheduled" xml:space="preserve">
+    <value>Hay un análisis programado para {0}. Utilice las opciones siguientes para cambiar esto o presione Cancelar para mantener el horario actual.</value>
+  </data>
+  <data name="HashtagSheet_scanNotebooks" xml:space="preserve">
+    <value>Programe un análisis incremental de sus cuadernos recién agregados</value>
+  </data>
+  <data name="HashtagSheet_scheduleLink.Text" xml:space="preserve">
+    <value>Programe una reconstrucción de su catálogo de hashtag</value>
+    <comment>link label</comment>
   </data>
   <data name="HashtagSheet_styleBox.Text" xml:space="preserve">
     <value>Ninguno
@@ -1349,6 +1355,10 @@ Fondo amarillo</value>
   <data name="HashtagSheet_Title" xml:space="preserve">
     <value>Etiquetas</value>
     <comment>sheet title</comment>
+  </data>
+  <data name="HashtagSheet_warningLabel.Text" xml:space="preserve">
+    <value>Esto debe usarse después de agregar o eliminar uno o más cuadernos. Se recomienda programar las reconstrucciones fuera del horario de atención, como la medianoche.</value>
+    <comment>multiline label</comment>
   </data>
   <data name="HighlightFormulaCommand_NoFormulas" xml:space="preserve">
     <value>No se encontraron fórmulas en esta página</value>
@@ -4049,7 +4059,7 @@ Después del último grupo</value>
     <comment>dialog title</comment>
   </data>
   <data name="ScheduleScanDialog_warningLabel.Text" xml:space="preserve">
-    <value>OneNote puede parecer lento mientras escanea. Si OneNote está cerrado, no se puede abrir hasta que se complete el escaneo.</value>
+    <value>OneNote puede parecer lento mientras escanea. Si OneNote se cierra durante el análisis, no se podrá abrir hasta que se complete el análisis.</value>
     <comment>multiline label</comment>
   </data>
   <data name="ScopeSelector_notebookButton.Text" xml:space="preserve">

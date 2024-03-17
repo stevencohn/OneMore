@@ -158,10 +158,10 @@
     <value>الماسح الضوئي الهاشتاج</value>
   </data>
   <data name="ScanNowConfirmation" xml:space="preserve">
-    <value>يمكن أن يستغرق المسح بعض الوقت ويؤثر على أداء OneNote. إذا تم إغلاق OneNote، فلا يمكن إعادة فتحه حتى اكتمال الفحص.
+    <value>يمكن أن يستغرق المسح بعض الوقت ويؤثر على أداء OneNote. إذا تم إغلاق OneNote أثناء الفحص، فلا يمكن إعادة فتحه حتى يكتمل الفحص.
 
 هل تريد إلغاء الوقت المحدد وتشغيل الفحص الآن؟</value>
-    <comment>message box</comment>
+    <comment> message box</comment>
   </data>
   <data name="ScanRunning" xml:space="preserve">
     <value>يتم إجراء الفحص حاليًا</value>

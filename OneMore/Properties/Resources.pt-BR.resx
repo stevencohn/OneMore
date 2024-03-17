@@ -1333,9 +1333,15 @@ Esta seção</value>
     <value>Personalize opções avançadas para o serviço Hashtag Scanner</value>
     <comment>label</comment>
   </data>
-  <data name="HashtagSheet_rebuildBox.Text" xml:space="preserve">
-    <value>Reconstrua o banco de dados de hashtag ao reiniciar</value>
-    <comment>checkbox</comment>
+  <data name="HashtagSheet_prescheduled" xml:space="preserve">
+    <value>Uma verificação está agendada para {0}. Use as opções abaixo para alterar isso ou pressione Cancelar para manter a programação atual.</value>
+  </data>
+  <data name="HashtagSheet_scanNotebooks" xml:space="preserve">
+    <value>Agende uma verificação incremental dos seus notebooks recém-adicionados</value>
+  </data>
+  <data name="HashtagSheet_scheduleLink.Text" xml:space="preserve">
+    <value>Programe uma reconstrução do seu catálogo de hashtag</value>
+    <comment>link label</comment>
   </data>
   <data name="HashtagSheet_styleBox.Text" xml:space="preserve">
     <value>Nenhum
@@ -1350,6 +1356,10 @@ Fundo Amarelo</value>
   <data name="HashtagSheet_Title" xml:space="preserve">
     <value>Hashtags</value>
     <comment>sheet title</comment>
+  </data>
+  <data name="HashtagSheet_warningLabel.Text" xml:space="preserve">
+    <value>Isso deve ser usado após adicionar ou remover um ou mais notebooks. Recomenda-se agendar reconstrução após o horário comercial, como a meia-noite.</value>
+    <comment>multiline label</comment>
   </data>
   <data name="HighlightFormulaCommand_NoFormulas" xml:space="preserve">
     <value>Nenhuma fórmula encontrada nesta página</value>
@@ -4049,7 +4059,7 @@ Depois do último grupo</value>
     <comment>dialog title</comment>
   </data>
   <data name="ScheduleScanDialog_warningLabel.Text" xml:space="preserve">
-    <value>Onenote pode parecer lento durante a digitalização. Se o OneNote estiver fechado, ele não poderá ser aberto até que a varredura seja concluída.</value>
+    <value>O OneNote pode parecer lento durante a digitalização. Se o OneNote for fechado durante a verificação, ele não poderá ser aberto até que a verificação seja concluída.</value>
     <comment>multiline label</comment>
   </data>
   <data name="ScopeSelector_notebookButton.Text" xml:space="preserve">

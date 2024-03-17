@@ -1331,9 +1331,15 @@ OneNote 文件 (*.one)</value>
     <value>自定义标签扫描仪服务的高级选项</value>
     <comment>label</comment>
   </data>
-  <data name="HashtagSheet_rebuildBox.Text" xml:space="preserve">
-    <value>重新启动时重建主题标签数据库</value>
-    <comment>checkbox</comment>
+  <data name="HashtagSheet_prescheduled" xml:space="preserve">
+    <value>计划于 {0} 进行扫描。使用以下选项更改此设置或按“取消”保留当前计划。</value>
+  </data>
+  <data name="HashtagSheet_scanNotebooks" xml:space="preserve">
+    <value>安排对新添加的笔记本进行增量扫描</value>
+  </data>
+  <data name="HashtagSheet_scheduleLink.Text" xml:space="preserve">
+    <value>安排您的主题标签目录的重建</value>
+    <comment>link label</comment>
   </data>
   <data name="HashtagSheet_styleBox.Text" xml:space="preserve">
     <value>没有任何
@@ -1348,6 +1354,10 @@ OneNote 文件 (*.one)</value>
   <data name="HashtagSheet_Title" xml:space="preserve">
     <value>标签</value>
     <comment>sheet title</comment>
+  </data>
+  <data name="HashtagSheet_warningLabel.Text" xml:space="preserve">
+    <value>在添加或删除一个或多个笔记本电脑后应使用此功能。 建议在下班后（例如午夜）安排重建。</value>
+    <comment>multiline label</comment>
   </data>
   <data name="HighlightFormulaCommand_NoFormulas" xml:space="preserve">
     <value>在此页面上找不到公式</value>
@@ -4042,7 +4052,7 @@ ISO-code then comma then language name</comment>
     <comment>dialog title</comment>
   </data>
   <data name="ScheduleScanDialog_warningLabel.Text" xml:space="preserve">
-    <value>扫描时OneNote可能看起来很迟钝。 如果关闭OneNote，则不能在扫描完成之前打开它。</value>
+    <value>扫描时 OneNote 可能会显得缓慢。如果在扫描过程中 OneNote 关闭，则在扫描完成之前无法打开它。</value>
     <comment>multiline label</comment>
   </data>
   <data name="ScopeSelector_notebookButton.Text" xml:space="preserve">

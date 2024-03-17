@@ -158,10 +158,10 @@
     <value>Scanner de hashtags</value>
   </data>
   <data name="ScanNowConfirmation" xml:space="preserve">
-    <value>L'analyse peut prendre un certain temps et affecter les performances de OneNote. Si OneNote est fermé, il ne peut pas être rouvert tant que l'analyse n'est pas terminée.
+    <value>L'analyse peut prendre un certain temps et affecter les performances de OneNote. Si OneNote est fermé pendant l’analyse, il ne peut pas être rouvert tant que l’analyse n’est pas terminée.
 
 Annuler l'heure programmée et exécuter l'analyse maintenant ?</value>
-    <comment>message box</comment>
+    <comment> message box</comment>
   </data>
   <data name="ScanRunning" xml:space="preserve">
     <value>Une analyse est en cours</value>

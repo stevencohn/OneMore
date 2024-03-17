@@ -158,10 +158,10 @@
     <value>סורק האשטאג</value>
   </data>
   <data name="ScanNowConfirmation" xml:space="preserve">
-    <value>הסריקה עשויה לקחת לא מעט זמן ולהשפיע על ביצועי OneNote. אם OneNote סגור, לא ניתן לפתוח אותו מחדש עד השלמת הסריקה.
+    <value>הסריקה עשויה לקחת לא מעט זמן ולהשפיע על ביצועי OneNote. אם OneNote סגור במהלך הסריקה, לא ניתן לפתוח אותו מחדש עד השלמת הסריקה.
 
 לבטל את הזמן המתוכנן ולהפעיל את הסריקה עכשיו?</value>
-    <comment>message box</comment>
+    <comment> message box</comment>
   </data>
   <data name="ScanRunning" xml:space="preserve">
     <value>כרגע פועלת סריקה</value>

@@ -1341,9 +1341,15 @@ Total Row Font
     <value>התאם אישית אפשרויות מתקדמות עבור שירות הסורק של Hashtag</value>
     <comment>label</comment>
   </data>
-  <data name="HashtagSheet_rebuildBox.Text" xml:space="preserve">
-    <value>בנה מחדש את מסד הנתונים של ההאשטאג עם הפעלה מחדש</value>
-    <comment>checkbox</comment>
+  <data name="HashtagSheet_prescheduled" xml:space="preserve">
+    <value>סריקה מתוכננת ל-{0}. השתמש באפשרויות למטה כדי לשנות זאת או לחץ על ביטול כדי לשמור על לוח הזמנים הנוכחי.</value>
+  </data>
+  <data name="HashtagSheet_scanNotebooks" xml:space="preserve">
+    <value>תזמן סריקה מצטברת של המחברות החדשות שנוספו</value>
+  </data>
+  <data name="HashtagSheet_scheduleLink.Text" xml:space="preserve">
+    <value>קבעו את הבנייה מחדש של קטלוג ה- hashtag שלכם</value>
+    <comment>link label</comment>
   </data>
   <data name="HashtagSheet_styleBox.Text" xml:space="preserve">
     <value>אף אחד
@@ -1358,6 +1364,10 @@ Total Row Font
   <data name="HashtagSheet_Title" xml:space="preserve">
     <value>Hashtags</value>
     <comment>sheet title</comment>
+  </data>
+  <data name="HashtagSheet_warningLabel.Text" xml:space="preserve">
+    <value>יש להשתמש בזה לאחר הוספת או הסרת מחברת אחת או יותר. מומלץ לתאם מחדש את הבנייה מחדש לאחר שעות העבודה, כמו חצות.</value>
+    <comment>multiline label</comment>
   </data>
   <data name="HighlightFormulaCommand_NoFormulas" xml:space="preserve">
     <value>לא נמצאו נוסחאות בדף זה</value>
@@ -4060,7 +4070,7 @@ ISO-code then comma then language name</comment>
     <comment>dialog title</comment>
   </data>
   <data name="ScheduleScanDialog_warningLabel.Text" xml:space="preserve">
-    <value>OneNote עשוי להיראות איטי בזמן הסריקה. אם OneNote סגור, לא ניתן לפתוח אותו עד לסיום הסריקה.</value>
+    <value>OneNote עשוי להיראות איטי במהלך הסריקה. אם OneNote סגור במהלך הסריקה, לא ניתן לפתוח אותו עד לסיום הסריקה.</value>
     <comment>multiline label</comment>
   </data>
   <data name="ScopeSelector_notebookButton.Text" xml:space="preserve">

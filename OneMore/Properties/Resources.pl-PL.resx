@@ -1341,9 +1341,15 @@ Ta sekcja</value>
     <value>Dostosuj zaawansowane opcje usługi skanera hashtagów</value>
     <comment>label</comment>
   </data>
-  <data name="HashtagSheet_rebuildBox.Text" xml:space="preserve">
-    <value>Odbuduj bazę danych hashtagów po ponownym uruchomieniu</value>
-    <comment>checkbox</comment>
+  <data name="HashtagSheet_prescheduled" xml:space="preserve">
+    <value>Skanowanie zaplanowano na {0}. Skorzystaj z poniższych opcji, aby to zmienić, lub naciśnij przycisk Anuluj, aby zachować bieżący harmonogram.</value>
+  </data>
+  <data name="HashtagSheet_scanNotebooks" xml:space="preserve">
+    <value>Zaplanuj przyrostowe skanowanie nowo dodanych notatników</value>
+  </data>
+  <data name="HashtagSheet_scheduleLink.Text" xml:space="preserve">
+    <value>Zaplanuj odbudowę katalogu hashtagu</value>
+    <comment>link label</comment>
   </data>
   <data name="HashtagSheet_styleBox.Text" xml:space="preserve">
     <value>Nic
@@ -1358,6 +1364,10 @@ Czerwony pierwszy plan
   <data name="HashtagSheet_Title" xml:space="preserve">
     <value>Hashtagi</value>
     <comment>sheet title</comment>
+  </data>
+  <data name="HashtagSheet_warningLabel.Text" xml:space="preserve">
+    <value>Należy to użyć po dodaniu lub usunięciu jednego lub więcej notebooków. Zaleca się zaplanowanie przebudowy po godzinach, takich jak północ.</value>
+    <comment>multiline label</comment>
   </data>
   <data name="HighlightFormulaCommand_NoFormulas" xml:space="preserve">
     <value>Na tej stronie nie znaleziono formuł</value>
@@ -4062,7 +4072,7 @@ Po ostatniej grupie</value>
     <comment>dialog title</comment>
   </data>
   <data name="ScheduleScanDialog_warningLabel.Text" xml:space="preserve">
-    <value>OneNote może wydawać się ospały podczas skanowania. Jeśli OneNote jest zamknięty, nie można go otworzyć, dopóki skanowanie nie zakończy się.</value>
+    <value>Podczas skanowania program OneNote może działać wolno. Jeśli program OneNote zostanie zamknięty podczas skanowania, nie będzie można go otworzyć do czasu zakończenia skanowania.</value>
     <comment>multiline label</comment>
   </data>
   <data name="ScopeSelector_notebookButton.Text" xml:space="preserve">
