@@ -79,10 +79,10 @@ namespace River.OneMoreAddIn.Commands
 				return;
 			}
 
-			logger.WriteLine("starting hashtag service");
-
 			scheduler = new HashtagScheduler();
-			logger.Verbose($"HastagService scheduler.State is {scheduler.State}");
+
+			var state = scheduler.State == ScanningState.None ? "ready" : scheduler.State.ToString();
+			logger.WriteLine($"starting hashtag service, {state}");
 
 			hour = DateTime.Now.Hour;
 
@@ -145,6 +145,13 @@ namespace River.OneMoreAddIn.Commands
 
 		private async Task<bool> WaitForReady()
 		{
+			if ((scheduler.State != ScanningState.None ||
+				scheduler.State != ScanningState.Ready) &&
+				!scheduler.Active)
+			{
+				await scheduler.Activate();
+			}
+
 			using var source = new CancellationTokenSource();
 
 			EventHandler handler = (object sender, EventArgs e) => 
@@ -166,7 +173,7 @@ namespace River.OneMoreAddIn.Commands
 				{
 					if (count % (Minute / Pause) == 0) // every minute
 					{
-						logger.WriteLine($"waiting for scheduler Ready, state={scheduler.State}");
+						logger.WriteLine($"hashtag service waiting, {scheduler.State}");
 					}
 
 					await Task.Delay(Pause, source.Token);
