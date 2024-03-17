@@ -126,28 +126,21 @@
     <value>OneMoreTray לא הופעל כהלכה והוא ייסגר כעת</value>
   </data>
   <data name="BadArgumentsTitle" xml:space="preserve">
-    <value>טיעונים רעים</value>
-  </data>
+    <value>חסר לוח זמנים</value>
+  <comment></comment></data>
   <data name="CloseConfirm" xml:space="preserve">
     <value>האם אתה בטוח שברצונך לסגור את יישום המגש?</value>
   </data>
   <data name="phrase_Scanning" xml:space="preserve">
     <value>סורק...</value>
   </data>
-  <data name="RescheduleDialog_currentLabel.Text" xml:space="preserve">
-    <value>סריקה מתוזמנת כעת עבור {0}</value>
-    <comment>label</comment>
+  <data name="Reschedule_Rebuild" xml:space="preserve">
+    <value>בנייה מחדש של קטלוג מתוכננת עבור {0}. בחר למטה מתי OneMore Tray אמור לבנות את הקטלוג.</value>
+    <comment>message box intro label</comment>
   </data>
-  <data name="RescheduleDialog_hintLabel.Text" xml:space="preserve">
-    <value>עדיף לתזמן את הסריקה בשעות לא שעות, כגון חצות</value>
-  </data>
-  <data name="RescheduleDialog_newLabel.Text" xml:space="preserve">
-    <value>לוח זמנים חדש</value>
-    <comment>label</comment>
-  </data>
-  <data name="RescheduleDialog_Title" xml:space="preserve">
-    <value>תזמון מחדש של סריקה</value>
-    <comment>dialog title</comment>
+  <data name="Reschedule_Scan" xml:space="preserve">
+    <value>סריקה לאיתור hashtags חדשים מתוכננת עבור {0}. בחר למטה מתי OneMore Tray אמור לבנות את הקטלוג.</value>
+    <comment>message box intro label</comment>
   </data>
   <data name="RunNowMenuItem" xml:space="preserve">
     <value>רוץ עכשיו</value>
@@ -165,13 +158,19 @@
     <value>סורק האשטאג</value>
   </data>
   <data name="ScanNowConfirmation" xml:space="preserve">
-    <value>הסריקה יכולה לקחת לא מעט זמן ולהשפיע על ביצועי OneNote.
+    <value>הסריקה עשויה לקחת לא מעט זמן ולהשפיע על ביצועי OneNote. אם OneNote סגור, לא ניתן לפתוח אותו מחדש עד השלמת הסריקה.
 
 לבטל את הזמן המתוכנן ולהפעיל את הסריקה עכשיו?</value>
     <comment>message box</comment>
   </data>
   <data name="ScanRunning" xml:space="preserve">
     <value>כרגע פועלת סריקה</value>
+  </data>
+  <data name="ScanScheduled" xml:space="preserve">
+    <value>סריקה מתוכננת לרוץ על {0}</value>
+  </data>
+  <data name="ScanStarting" xml:space="preserve">
+    <value>מתחילים בסריקה עכשיו...</value>
   </data>
   <data name="ScheduledFor" xml:space="preserve">
     <value>מתוכנן ל-{0}</value>

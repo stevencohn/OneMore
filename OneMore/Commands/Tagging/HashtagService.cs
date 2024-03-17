@@ -116,7 +116,7 @@ namespace River.OneMoreAddIn.Commands
 				return;
 			}
 
-			// execute forever or until there are 5 consecutive errors...
+			// execute forever or until there are five consecutive errors...
 
 			var errors = 0;
 			while (errors < 5)
@@ -178,6 +178,10 @@ namespace River.OneMoreAddIn.Commands
 				}
 				while (scheduler.State != ScanningState.Ready && !source.IsCancellationRequested);
 			}
+			catch (TaskCanceledException)
+			{
+				logger.Verbose("WaitForReady canceled");
+			}
 			finally
 			{
 				Application.ApplicationExit -= handler;
@@ -207,8 +211,8 @@ namespace River.OneMoreAddIn.Commands
 				}
 			}
 
-			// we want this to complete exactly once and the exit but allow for up to 5 errors
-			// during execution...
+			// we want this to complete exactly once and then exit but allow
+			// for up to five consecutive errors during execution...
 
 			var errors = 0;
 			var done = false;

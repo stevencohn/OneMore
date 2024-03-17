@@ -1253,6 +1253,16 @@ Donker</value>
   <data name="HasActiveMedia" xml:space="preserve">
     <value>Kan OneMore-opdrachten niet aanroepen terwijl er een actieve opname is. Stop de opname en probeer het opnieuw.</value>
   </data>
+  <data name="HashtagCommand_scanning" xml:space="preserve">
+    <value>OneMore is momenteel uw hashtagcatalogus aan het maken.
+
+Zoeken naar hashtags is pas beschikbaar als dit is voltooid.</value>
+  </data>
+  <data name="HashtagCommand_waiting" xml:space="preserve">
+    <value>Het is de bedoeling dat uw hashtagcatalogus op {0} wordt gemaakt. U kunt dit schema wijzigen vanuit de OneMore Tray-applicatie.
+
+Zoeken naar hashtags is pas beschikbaar als dit is voltooid.</value>
+  </data>
   <data name="HashtagContext_jumpParaTip" xml:space="preserve">
     <value>Spring naar deze paragraaf; Laatst bijgewerkt {0}</value>
     <comment>tooltip</comment>
@@ -4018,6 +4028,30 @@ Na de laatste groep</value>
     <value>Fragmentnaam:</value>
     <comment>label</comment>
   </data>
+  <data name="ScheduleScanDialog_hintLabel.Text" xml:space="preserve">
+    <value>Het is het beste om de scan buiten kantooruren te plannen, bijvoorbeeld middernacht</value>
+    <comment>label</comment>
+  </data>
+  <data name="ScheduleScanDialog_introBox.Text" xml:space="preserve">
+    <value>De hashtagcatalogus is nog niet gemaakt. Kies hieronder wanneer OneMore de catalogus moet bouwen.</value>
+    <comment>multilinelabel</comment>
+  </data>
+  <data name="ScheduleScanDialog_laterRadio.Text" xml:space="preserve">
+    <value>Plan de scan op een later tijdstip</value>
+    <comment>radio</comment>
+  </data>
+  <data name="ScheduleScanDialog_nowRadio.Text" xml:space="preserve">
+    <value>Voer de scan nu uit</value>
+    <comment>radio</comment>
+  </data>
+  <data name="ScheduleScanDialog_Title" xml:space="preserve">
+    <value>Plan het scannen van hashtags</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="ScheduleScanDialog_warningLabel.Text" xml:space="preserve">
+    <value>OneNote lijkt misschien traag tijdens het scannen. Als OneNote is gesloten, kan deze niet worden geopend totdat de scan is voltooid.</value>
+    <comment>multiline label</comment>
+  </data>
   <data name="ScopeSelector_notebookButton.Text" xml:space="preserve">
     <value>Alle secties in het huidige notitieboekje</value>
     <comment>radio</comment>
@@ -5009,6 +5043,9 @@ In deze sectie</value>
   </data>
   <data name="word_Save" xml:space="preserve">
     <value>Opslaan</value>
+  </data>
+  <data name="word_Schedule" xml:space="preserve">
+    <value>Schema</value>
   </data>
   <data name="word_Scope" xml:space="preserve">
     <value>Domein</value>

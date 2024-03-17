@@ -30,6 +30,7 @@
 		{
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ScheduleScanDialog));
 			this.topPanel = new System.Windows.Forms.Panel();
+			this.warningLabel = new River.OneMoreAddIn.UI.MoreMultilineLabel();
 			this.nowRadio = new River.OneMoreAddIn.UI.MoreRadioButton();
 			this.laterRadio = new River.OneMoreAddIn.UI.MoreRadioButton();
 			this.hintLabel = new River.OneMoreAddIn.UI.MoreLabel();
@@ -46,6 +47,7 @@
 			// topPanel
 			// 
 			this.topPanel.BackColor = System.Drawing.SystemColors.ControlLightLight;
+			this.topPanel.Controls.Add(this.warningLabel);
 			this.topPanel.Controls.Add(this.nowRadio);
 			this.topPanel.Controls.Add(this.laterRadio);
 			this.topPanel.Controls.Add(this.hintLabel);
@@ -57,14 +59,26 @@
 			this.topPanel.Margin = new System.Windows.Forms.Padding(0);
 			this.topPanel.Name = "topPanel";
 			this.topPanel.Padding = new System.Windows.Forms.Padding(40, 40, 20, 20);
-			this.topPanel.Size = new System.Drawing.Size(698, 258);
+			this.topPanel.Size = new System.Drawing.Size(698, 315);
 			this.topPanel.TabIndex = 4;
+			// 
+			// warningLabel
+			// 
+			this.warningLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.warningLabel.Location = new System.Drawing.Point(70, 216);
+			this.warningLabel.Name = "warningLabel";
+			this.warningLabel.Size = new System.Drawing.Size(605, 46);
+			this.warningLabel.TabIndex = 6;
+			this.warningLabel.Text = "OneNote may appear sluggish while scanning. If OneNote is closed, it cannot be op" +
+    "ened until the scan completes.";
+			this.warningLabel.ThemedBack = null;
+			this.warningLabel.ThemedFore = null;
 			// 
 			// nowRadio
 			// 
 			this.nowRadio.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.nowRadio.Location = new System.Drawing.Point(43, 185);
-			this.nowRadio.Margin = new System.Windows.Forms.Padding(3, 3, 3, 12);
 			this.nowRadio.Name = "nowRadio";
 			this.nowRadio.Size = new System.Drawing.Size(370, 25);
 			this.nowRadio.TabIndex = 5;
@@ -86,7 +100,7 @@
 			// hintLabel
 			// 
 			this.hintLabel.AutoSize = true;
-			this.hintLabel.Location = new System.Drawing.Point(72, 71);
+			this.hintLabel.Location = new System.Drawing.Point(71, 71);
 			this.hintLabel.Margin = new System.Windows.Forms.Padding(3, 0, 3, 12);
 			this.hintLabel.Name = "hintLabel";
 			this.hintLabel.Size = new System.Drawing.Size(463, 20);
@@ -98,7 +112,7 @@
 			// scheduleLabel
 			// 
 			this.scheduleLabel.AutoSize = true;
-			this.scheduleLabel.Location = new System.Drawing.Point(72, 120);
+			this.scheduleLabel.Location = new System.Drawing.Point(71, 120);
 			this.scheduleLabel.Name = "scheduleLabel";
 			this.scheduleLabel.Size = new System.Drawing.Size(76, 20);
 			this.scheduleLabel.TabIndex = 2;
@@ -122,7 +136,7 @@
 			this.buttonPanel.Controls.Add(this.okButton);
 			this.buttonPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
 			this.buttonPanel.ForeColor = System.Drawing.SystemColors.ControlText;
-			this.buttonPanel.Location = new System.Drawing.Point(0, 320);
+			this.buttonPanel.Location = new System.Drawing.Point(0, 377);
 			this.buttonPanel.Name = "buttonPanel";
 			this.buttonPanel.Size = new System.Drawing.Size(698, 61);
 			this.buttonPanel.TabIndex = 5;
@@ -182,7 +196,7 @@
 			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.CancelButton = this.cancelButton;
-			this.ClientSize = new System.Drawing.Size(698, 381);
+			this.ClientSize = new System.Drawing.Size(698, 438);
 			this.Controls.Add(this.topPanel);
 			this.Controls.Add(this.introBox);
 			this.Controls.Add(this.buttonPanel);
@@ -212,5 +226,6 @@
 		private UI.MoreRadioButton laterRadio;
 		private UI.MoreRadioButton nowRadio;
 		private UI.MoreMultilineLabel introBox;
+		private UI.MoreMultilineLabel warningLabel;
 	}
 }

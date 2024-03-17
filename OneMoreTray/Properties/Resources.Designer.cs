@@ -134,42 +134,6 @@ namespace OneMoreTray.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to A scan is scheduled to run on {0}.
-        /// </summary>
-        internal static string RescheduleDialog_currentLabel_Text {
-            get {
-                return ResourceManager.GetString("RescheduleDialog_currentLabel.Text", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to It is best to schedule the scan during off-hours, such as midnight.
-        /// </summary>
-        internal static string RescheduleDialog_hintLabel_Text {
-            get {
-                return ResourceManager.GetString("RescheduleDialog_hintLabel.Text", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to New schedule.
-        /// </summary>
-        internal static string RescheduleDialog_newLabel_Text {
-            get {
-                return ResourceManager.GetString("RescheduleDialog_newLabel.Text", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Reschedule Scan.
-        /// </summary>
-        internal static string RescheduleDialog_Title {
-            get {
-                return ResourceManager.GetString("RescheduleDialog_Title", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Run now.
         /// </summary>
         internal static string RunNowMenuItem {
@@ -215,7 +179,7 @@ namespace OneMoreTray.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Scanning can take quite some time and affect OneNote performance.
+        ///   Looks up a localized string similar to Scanning can take quite some time and affect OneNote performance. If OneNote is closed, it cannot be reopened until the scan is completed.
         ///
         ///Cancel the scheduled time and run the scan now?.
         /// </summary>
@@ -231,6 +195,24 @@ namespace OneMoreTray.Properties {
         internal static string ScanRunning {
             get {
                 return ResourceManager.GetString("ScanRunning", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to A scan is scheduled to run on {0}.
+        /// </summary>
+        internal static string ScanScheduled {
+            get {
+                return ResourceManager.GetString("ScanScheduled", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Starting scan now....
+        /// </summary>
+        internal static string ScanStarting {
+            get {
+                return ResourceManager.GetString("ScanStarting", resourceCulture);
             }
         }
         

@@ -126,28 +126,21 @@
     <value>لم يتم تشغيل OneMoreTray بشكل صحيح وسيتم إغلاقه الآن</value>
   </data>
   <data name="BadArgumentsTitle" xml:space="preserve">
-    <value>الحجج السيئة</value>
-  </data>
+    <value>الجدول الزمني مفقود</value>
+  <comment></comment></data>
   <data name="CloseConfirm" xml:space="preserve">
     <value>هل أنت متأكد أنك تريد إغلاق تطبيق الدرج؟</value>
   </data>
   <data name="phrase_Scanning" xml:space="preserve">
     <value>يتم المسح...</value>
   </data>
-  <data name="RescheduleDialog_currentLabel.Text" xml:space="preserve">
-    <value>تمت جدولة الفحص حاليًا لـ {0}</value>
-    <comment>label</comment>
+  <data name="Reschedule_Rebuild" xml:space="preserve">
+    <value>تمت جدولة إعادة بناء الكتالوج لـ {0}. اختر أدناه متى يجب على OneMore Tray إنشاء الكتالوج.</value>
+    <comment>message box intro label</comment>
   </data>
-  <data name="RescheduleDialog_hintLabel.Text" xml:space="preserve">
-    <value>من الأفضل جدولة الفحص خارج ساعات العمل، مثل منتصف الليل</value>
-  </data>
-  <data name="RescheduleDialog_newLabel.Text" xml:space="preserve">
-    <value>جدول جديد</value>
-    <comment>label</comment>
-  </data>
-  <data name="RescheduleDialog_Title" xml:space="preserve">
-    <value>إعادة جدولة الفحص</value>
-    <comment>dialog title</comment>
+  <data name="Reschedule_Scan" xml:space="preserve">
+    <value>تمت جدولة عملية فحص لعلامات التصنيف الجديدة لـ {0}. اختر أدناه متى يجب على OneMore Tray إنشاء الكتالوج.</value>
+    <comment>message box intro label</comment>
   </data>
   <data name="RunNowMenuItem" xml:space="preserve">
     <value>اركض الآن</value>
@@ -165,13 +158,19 @@
     <value>الماسح الضوئي الهاشتاج</value>
   </data>
   <data name="ScanNowConfirmation" xml:space="preserve">
-    <value>يمكن أن يستغرق المسح بعض الوقت ويؤثر على أداء OneNote.
+    <value>يمكن أن يستغرق المسح بعض الوقت ويؤثر على أداء OneNote. إذا تم إغلاق OneNote، فلا يمكن إعادة فتحه حتى اكتمال الفحص.
 
 هل تريد إلغاء الوقت المحدد وتشغيل الفحص الآن؟</value>
     <comment>message box</comment>
   </data>
   <data name="ScanRunning" xml:space="preserve">
     <value>يتم إجراء الفحص حاليًا</value>
+  </data>
+  <data name="ScanScheduled" xml:space="preserve">
+    <value>من المقرر تشغيل الفحص على {0}</value>
+  </data>
+  <data name="ScanStarting" xml:space="preserve">
+    <value>بدء المسح الآن...</value>
   </data>
   <data name="ScheduledFor" xml:space="preserve">
     <value>تمت جدولته لـ {0}</value>

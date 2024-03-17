@@ -90,10 +90,8 @@ namespace OneMoreTray
 					var time = scheduler.StartTime.ToString(Resx.ScheduleTimeFormat);
 					logger.WriteLine($"waiting until {time}");
 
-					trayIcon.ShowBalloonTip(0,
-						Resx.ScannerTitle,
-						string.Format(Resx.ScannerScheduled, time),
-						ToolTipIcon.Error);
+					trayIcon.ShowBalloonTip(0, Resx.ScannerTitle,
+						string.Format(Resx.ScannerScheduled, time), ToolTipIcon.Info);
 
 					var delay = scheduler.StartTime - DateTime.Now;
 					await Task.Delay(delay, source.Token);
@@ -108,6 +106,8 @@ namespace OneMoreTray
 		private void Execute()
 		{
 			logger.WriteLine("starting HashtagService");
+
+			trayIcon.ShowBalloonTip(0, Resx.ScannerTitle, Resx.ScanStarting, ToolTipIcon.Info);
 
 			var scanner = new HashtagService(scheduler.State == ScanningState.PendingRebuild);
 			scanner.OnHashtagScanned += DoScanned;
@@ -132,10 +132,7 @@ namespace OneMoreTray
 
 			scheduler.ClearSchedule();
 
-			trayIcon.ShowBalloonTip(0,
-				Resx.ScanCompleteTitle,
-				Resx.ScanComplete,
-				ToolTipIcon.Info);
+			trayIcon.ShowBalloonTip(0, Resx.ScanCompleteTitle, Resx.ScanComplete, ToolTipIcon.Info);
 
 			Application.Exit();
 		}
@@ -145,10 +142,7 @@ namespace OneMoreTray
 		{
 			logger.WriteLine("missing schedule file, aborting");
 
-			trayIcon.ShowBalloonTip(0,
-				Resx.BadArgumentsTitle,
-				Resx.BadArguments,
-				ToolTipIcon.Error);
+			trayIcon.ShowBalloonTip(0, Resx.BadArgumentsTitle, Resx.BadArguments, ToolTipIcon.Error);
 
 			Task.Run(async () =>
 			{
@@ -200,7 +194,7 @@ namespace OneMoreTray
 			var msg = scheduler.State == ScanningState.Scanning
 				? Resx.ScanRunning
 				: string.Format(
-					Resx.RescheduleDialog_currentLabel_Text,
+					Resx.ScanScheduled,
 					scheduler.StartTime.ToString(Resx.ScheduleTimeFormat));
 
 			msg += $"\n{Resx.CloseConfirm}";

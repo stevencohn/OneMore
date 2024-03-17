@@ -10146,6 +10146,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to OneNote may appear sluggish while scanning. If OneNote is closed, it cannot be opened until the scan completes..
+        /// </summary>
+        internal static string ScheduleScanDialog_warningLabel_Text {
+            get {
+                return ResourceManager.GetString("ScheduleScanDialog_warningLabel.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to All sections in the current notebook.
         /// </summary>
         internal static string ScopeSelector_notebookButton_Text {

@@ -1261,6 +1261,16 @@ Ciemny</value>
   <data name="HasActiveMedia" xml:space="preserve">
     <value>Nie można wywołać poleceń OneMore, gdy aktywne jest nagrywanie. Zatrzymaj nagrywanie i spróbuj ponownie.</value>
   </data>
+  <data name="HashtagCommand_scanning" xml:space="preserve">
+    <value>OneMore tworzy obecnie Twój katalog hashtagów.
+
+Wyszukiwanie hashtagów nie jest możliwe, dopóki nie zostanie zakończone.</value>
+  </data>
+  <data name="HashtagCommand_waiting" xml:space="preserve">
+    <value>Utworzenie Twojego katalogu hashtagów zaplanowano na {0}. Możesz zmienić ten harmonogram w aplikacji OneMore Tray.
+
+Wyszukiwanie hashtagów nie jest możliwe, dopóki nie zostanie zakończone.</value>
+  </data>
   <data name="HashtagContext_jumpParaTip" xml:space="preserve">
     <value>Przeskocz do tego akapitu; Ostatnia aktualizacja {0}</value>
     <comment>tooltip</comment>
@@ -4031,6 +4041,30 @@ Po ostatniej grupie</value>
     <value>Nazwa fragmentu:</value>
     <comment>label</comment>
   </data>
+  <data name="ScheduleScanDialog_hintLabel.Text" xml:space="preserve">
+    <value>Skanowanie najlepiej zaplanować poza godzinami pracy, na przykład o północy</value>
+    <comment>label</comment>
+  </data>
+  <data name="ScheduleScanDialog_introBox.Text" xml:space="preserve">
+    <value>Katalog hashtagów nie został jeszcze utworzony. Wybierz poniżej, kiedy OneMore ma utworzyć katalog.</value>
+    <comment>multilinelabel</comment>
+  </data>
+  <data name="ScheduleScanDialog_laterRadio.Text" xml:space="preserve">
+    <value>Zaplanuj skanowanie w późniejszym czasie</value>
+    <comment>radio</comment>
+  </data>
+  <data name="ScheduleScanDialog_nowRadio.Text" xml:space="preserve">
+    <value>Uruchom skanowanie teraz</value>
+    <comment>radio</comment>
+  </data>
+  <data name="ScheduleScanDialog_Title" xml:space="preserve">
+    <value>Zaplanuj skanowanie hashtagów</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="ScheduleScanDialog_warningLabel.Text" xml:space="preserve">
+    <value>OneNote może wydawać się ospały podczas skanowania. Jeśli OneNote jest zamknięty, nie można go otworzyć, dopóki skanowanie nie zakończy się.</value>
+    <comment>multiline label</comment>
+  </data>
   <data name="ScopeSelector_notebookButton.Text" xml:space="preserve">
     <value>Wszystkie sekcje w bieżącym notatniku</value>
     <comment>radio</comment>
@@ -5026,6 +5060,9 @@ W tej sekcji</value>
   </data>
   <data name="word_Save" xml:space="preserve">
     <value>Ratować</value>
+  </data>
+  <data name="word_Schedule" xml:space="preserve">
+    <value>Harmonogram</value>
   </data>
   <data name="word_Scope" xml:space="preserve">
     <value>Zakres</value>

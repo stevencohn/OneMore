@@ -26,6 +26,7 @@ namespace River.OneMoreAddIn.Commands
 					"hintLabel",
 					"scheduleLabel=word_Schedule",
 					"nowRadio",
+					"warningLabel",
 					"okButton=word_OK",
 					"cancelButton=word_Cancel"
 				});

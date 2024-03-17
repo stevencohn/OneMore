@@ -126,28 +126,21 @@
     <value>OneMoreTray n'a pas démarré correctement et va se fermer maintenant</value>
   </data>
   <data name="BadArgumentsTitle" xml:space="preserve">
-    <value>Mauvais arguments</value>
-  </data>
+    <value>Horaire manquant</value>
+  <comment></comment></data>
   <data name="CloseConfirm" xml:space="preserve">
     <value>Êtes-vous sûr de vouloir fermer l'application de la barre d'état ?</value>
   </data>
   <data name="phrase_Scanning" xml:space="preserve">
     <value>Balayage...</value>
   </data>
-  <data name="RescheduleDialog_currentLabel.Text" xml:space="preserve">
-    <value>Analyse actuellement programmée pour {0}</value>
-    <comment>label</comment>
+  <data name="Reschedule_Rebuild" xml:space="preserve">
+    <value>Une reconstruction du catalogue est prévue pour {0}. Choisissez ci-dessous quand OneMore Tray doit créer le catalogue.</value>
+    <comment>message box intro label</comment>
   </data>
-  <data name="RescheduleDialog_hintLabel.Text" xml:space="preserve">
-    <value>Il est préférable de planifier l'analyse en dehors des heures d'ouverture, par exemple à minuit.</value>
-  </data>
-  <data name="RescheduleDialog_newLabel.Text" xml:space="preserve">
-    <value>Nouveau programme</value>
-    <comment>label</comment>
-  </data>
-  <data name="RescheduleDialog_Title" xml:space="preserve">
-    <value>Reprogrammer l'analyse</value>
-    <comment>dialog title</comment>
+  <data name="Reschedule_Scan" xml:space="preserve">
+    <value>Une recherche de nouveaux hashtags est prévue pour {0}. Choisissez ci-dessous quand OneMore Tray doit créer le catalogue.</value>
+    <comment>message box intro label</comment>
   </data>
   <data name="RunNowMenuItem" xml:space="preserve">
     <value>Cours maintenant</value>
@@ -165,13 +158,19 @@
     <value>Scanner de hashtags</value>
   </data>
   <data name="ScanNowConfirmation" xml:space="preserve">
-    <value>L'analyse peut prendre un certain temps et affecter les performances de OneNote.
+    <value>L'analyse peut prendre un certain temps et affecter les performances de OneNote. Si OneNote est fermé, il ne peut pas être rouvert tant que l'analyse n'est pas terminée.
 
 Annuler l'heure programmée et exécuter l'analyse maintenant ?</value>
     <comment>message box</comment>
   </data>
   <data name="ScanRunning" xml:space="preserve">
     <value>Une analyse est en cours</value>
+  </data>
+  <data name="ScanScheduled" xml:space="preserve">
+    <value>Une analyse est prévue pour s'exécuter sur {0}</value>
+  </data>
+  <data name="ScanStarting" xml:space="preserve">
+    <value>Je lance l'analyse maintenant...</value>
   </data>
   <data name="ScheduledFor" xml:space="preserve">
     <value>Prévu pour {0}</value>

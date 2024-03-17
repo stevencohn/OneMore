@@ -117,6 +117,7 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="AppName" xml:space="preserve">
     <value>OneMoreTray</value>
     <comment>SKIP</comment>
@@ -126,7 +127,6 @@
   </data>
   <data name="BadArgumentsTitle" xml:space="preserve">
     <value>Missing Schedule</value>
-    <comment>EDIT</comment>
   </data>
   <data name="CloseConfirm" xml:space="preserve">
     <value>Are you sure you want to close the tray application?</value>
@@ -134,20 +134,13 @@
   <data name="phrase_Scanning" xml:space="preserve">
     <value>Scanning...</value>
   </data>
-  <data name="RescheduleDialog_currentLabel.Text" xml:space="preserve">
-    <value>A scan is scheduled to run on {0}</value>
-    <comment>label</comment>
+  <data name="Reschedule_Rebuild" xml:space="preserve">
+    <value>A catalog rebuild is scheduled for {0}. Choose below when OneMore Tray should build the catalog.</value>
+    <comment>message box intro label</comment>
   </data>
-  <data name="RescheduleDialog_hintLabel.Text" xml:space="preserve">
-    <value>It is best to schedule the scan during off-hours, such as midnight</value>
-  </data>
-  <data name="RescheduleDialog_newLabel.Text" xml:space="preserve">
-    <value>New schedule</value>
-    <comment>label</comment>
-  </data>
-  <data name="RescheduleDialog_Title" xml:space="preserve">
-    <value>Reschedule Scan</value>
-    <comment>dialog title</comment>
+  <data name="Reschedule_Scan" xml:space="preserve">
+    <value>A scan for new hashtags is scheduled for {0}. Choose below when OneMore Tray should build the catalog.</value>
+    <comment>message box intro label</comment>
   </data>
   <data name="RunNowMenuItem" xml:space="preserve">
     <value>Run now</value>
@@ -165,13 +158,19 @@
     <value>Hashtag Scanner</value>
   </data>
   <data name="ScanNowConfirmation" xml:space="preserve">
-    <value>Scanning can take quite some time and affect OneNote performance.
+    <value>Scanning can take quite some time and affect OneNote performance. If OneNote is closed, it cannot be reopened until the scan is completed.
 
 Cancel the scheduled time and run the scan now?</value>
     <comment>message box</comment>
   </data>
   <data name="ScanRunning" xml:space="preserve">
     <value>A scan is currently running</value>
+  </data>
+  <data name="ScanScheduled" xml:space="preserve">
+    <value>A scan is scheduled to run on {0}</value>
+  </data>
+  <data name="ScanStarting" xml:space="preserve">
+    <value>Starting scan now...</value>
   </data>
   <data name="ScheduledFor" xml:space="preserve">
     <value>Scheduled for {0}</value>
@@ -192,16 +191,7 @@ Cancel the scheduled time and run the scan now?</value>
   <data name="word_Reschedule" xml:space="preserve">
     <value>Reschedule</value>
   </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="Logo" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Logo.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Reschedule_Rebuild" xml:space="preserve">
-    <value>A catalog rebuild is scheduled for {0}. Choose below when OneMore Tray should build the catalog.</value>
-    <comment>message box intro label</comment>
-  </data>
-  <data name="Reschedule_Scan" xml:space="preserve">
-    <value>A scan for new hashtags is scheduled for {0}. Choose below when OneMore Tray should build the catalog.</value>
-    <comment>message box intro label</comment>
   </data>
 </root>

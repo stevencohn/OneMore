@@ -1252,6 +1252,16 @@
   <data name="HasActiveMedia" xml:space="preserve">
     <value>لا يمكن استدعاء أوامر OneMore أثناء وجود تسجيل نشط. الرجاء إيقاف التسجيل وحاول مرة أخرى.</value>
   </data>
+  <data name="HashtagCommand_scanning" xml:space="preserve">
+    <value>يقوم OneMore حاليًا بإنشاء كتالوج الهاشتاج الخاص بك.
+
+البحث عن علامات التصنيف غير متاح حتى اكتمال ذلك.</value>
+  </data>
+  <data name="HashtagCommand_waiting" xml:space="preserve">
+    <value>تمت جدولة إنشاء كتالوج الهاشتاج الخاص بك في {0}. يمكنك تغيير هذا الجدول الزمني من تطبيق OneMore Tray.
+
+البحث عن علامات التصنيف غير متاح حتى اكتمال ذلك.</value>
+  </data>
   <data name="HashtagContext_jumpParaTip" xml:space="preserve">
     <value>القفز إلى هذه الفقرة. آخر تحديث {0}</value>
     <comment>tooltip</comment>
@@ -4018,6 +4028,30 @@ ISO-code then comma then language name</comment>
     <value>اسم المقتطف:</value>
     <comment>label</comment>
   </data>
+  <data name="ScheduleScanDialog_hintLabel.Text" xml:space="preserve">
+    <value>من الأفضل جدولة الفحص خارج ساعات العمل، مثل منتصف الليل</value>
+    <comment>label</comment>
+  </data>
+  <data name="ScheduleScanDialog_introBox.Text" xml:space="preserve">
+    <value>لم يتم إنشاء كتالوج الهاشتاج بعد. اختر أدناه متى يجب على OneMore إنشاء الكتالوج.</value>
+    <comment>multilinelabel</comment>
+  </data>
+  <data name="ScheduleScanDialog_laterRadio.Text" xml:space="preserve">
+    <value>جدولة الفحص في وقت لاحق</value>
+    <comment>radio</comment>
+  </data>
+  <data name="ScheduleScanDialog_nowRadio.Text" xml:space="preserve">
+    <value>قم بإجراء الفحص الآن</value>
+    <comment>radio</comment>
+  </data>
+  <data name="ScheduleScanDialog_Title" xml:space="preserve">
+    <value>جدولة مسح الهاشتاج</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="ScheduleScanDialog_warningLabel.Text" xml:space="preserve">
+    <value>قد تظهر Onenote بطيئة أثناء المسح. إذا تم إغلاق OneNote ، فلا يمكن فتحه حتى يكتمل المسح.</value>
+    <comment>multiline label</comment>
+  </data>
   <data name="ScopeSelector_notebookButton.Text" xml:space="preserve">
     <value>جميع الأقسام في دفتر الملاحظات الحالي</value>
     <comment>radio</comment>
@@ -5009,6 +5043,9 @@ ISO-code then comma then language name</comment>
   </data>
   <data name="word_Save" xml:space="preserve">
     <value>يحفظ</value>
+  </data>
+  <data name="word_Schedule" xml:space="preserve">
+    <value>جدول</value>
   </data>
   <data name="word_Scope" xml:space="preserve">
     <value>نِطَاق</value>

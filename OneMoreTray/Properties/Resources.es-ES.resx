@@ -126,28 +126,21 @@
     <value>OneMoreTray no se inició correctamente y se cerrará ahora</value>
   </data>
   <data name="BadArgumentsTitle" xml:space="preserve">
-    <value>Malos argumentos</value>
-  </data>
+    <value>Horario faltante</value>
+  <comment></comment></data>
   <data name="CloseConfirm" xml:space="preserve">
     <value>¿Está seguro de que desea cerrar la aplicación de la bandeja?</value>
   </data>
   <data name="phrase_Scanning" xml:space="preserve">
     <value>Exploración...</value>
   </data>
-  <data name="RescheduleDialog_currentLabel.Text" xml:space="preserve">
-    <value>Escaneo actualmente programado para {0}</value>
-    <comment>label</comment>
+  <data name="Reschedule_Rebuild" xml:space="preserve">
+    <value>Está programada una reconstrucción del catálogo para {0}. Elija a continuación cuándo OneMore Tray debe crear el catálogo.</value>
+    <comment>message box intro label</comment>
   </data>
-  <data name="RescheduleDialog_hintLabel.Text" xml:space="preserve">
-    <value>Es mejor programar el escaneo fuera del horario laboral, como la medianoche.</value>
-  </data>
-  <data name="RescheduleDialog_newLabel.Text" xml:space="preserve">
-    <value>Nuevo horario</value>
-    <comment>label</comment>
-  </data>
-  <data name="RescheduleDialog_Title" xml:space="preserve">
-    <value>Reprogramar escaneo</value>
-    <comment>dialog title</comment>
+  <data name="Reschedule_Scan" xml:space="preserve">
+    <value>Se ha programado una búsqueda de nuevos hashtags para el {0}. Elija a continuación cuándo OneMore Tray debe crear el catálogo.</value>
+    <comment>message box intro label</comment>
   </data>
   <data name="RunNowMenuItem" xml:space="preserve">
     <value>Corre ahora</value>
@@ -165,13 +158,19 @@
     <value>Escáner de hashtags</value>
   </data>
   <data name="ScanNowConfirmation" xml:space="preserve">
-    <value>El escaneo puede llevar bastante tiempo y afectar el rendimiento de OneNote.
+    <value>El escaneo puede llevar bastante tiempo y afectar el rendimiento de OneNote. Si OneNote está cerrado, no se puede volver a abrir hasta que se complete el escaneo.
 
-¿Cancelar la hora programada y ejecutar el análisis ahora?</value>
+¿Cancelar la hora programada y ejecutar el escaneo ahora?</value>
     <comment>message box</comment>
   </data>
   <data name="ScanRunning" xml:space="preserve">
     <value>Actualmente se está ejecutando un análisis</value>
+  </data>
+  <data name="ScanScheduled" xml:space="preserve">
+    <value>Un escaneo está programado para ejecutarse en {0}</value>
+  </data>
+  <data name="ScanStarting" xml:space="preserve">
+    <value>Iniciando escaneo ahora...</value>
   </data>
   <data name="ScheduledFor" xml:space="preserve">
     <value>Programado para {0}</value>

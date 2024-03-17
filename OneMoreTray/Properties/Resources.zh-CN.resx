@@ -126,28 +126,21 @@
     <value>OneMoreTray 未正确启动，现在将关闭</value>
   </data>
   <data name="BadArgumentsTitle" xml:space="preserve">
-    <value>糟糕的论据</value>
-  </data>
+    <value>缺少时间表</value>
+  <comment></comment></data>
   <data name="CloseConfirm" xml:space="preserve">
     <value>您确定要关闭托盘应用程序吗？</value>
   </data>
   <data name="phrase_Scanning" xml:space="preserve">
     <value>扫描...</value>
   </data>
-  <data name="RescheduleDialog_currentLabel.Text" xml:space="preserve">
-    <value>目前安排的扫描时间为 {0}</value>
-    <comment>label</comment>
+  <data name="Reschedule_Rebuild" xml:space="preserve">
+    <value>目录重建计划于 {0}进行。在 OneMore Tray 应构建目录时选择以下选项。</value>
+    <comment>message box intro label</comment>
   </data>
-  <data name="RescheduleDialog_hintLabel.Text" xml:space="preserve">
-    <value>最好将扫描安排在非工作时间，例如午夜</value>
-  </data>
-  <data name="RescheduleDialog_newLabel.Text" xml:space="preserve">
-    <value>新时间表</value>
-    <comment>label</comment>
-  </data>
-  <data name="RescheduleDialog_Title" xml:space="preserve">
-    <value>重新安排扫描</value>
-    <comment>dialog title</comment>
+  <data name="Reschedule_Scan" xml:space="preserve">
+    <value>计划于 {0} 扫描新主题标签。在 OneMore Tray 应构建目录时选择以下选项。</value>
+    <comment>message box intro label</comment>
   </data>
   <data name="RunNowMenuItem" xml:space="preserve">
     <value>现在跑步</value>
@@ -165,13 +158,19 @@
     <value>标签扫描仪</value>
   </data>
   <data name="ScanNowConfirmation" xml:space="preserve">
-    <value>扫描可能需要相当长的时间并影响 OneNote 性能。
+    <value>扫描可能需要相当长的时间并影响 OneNote 性能。如果 OneNote 已关闭，则在扫描完成之前无法重新打开它。
 
 取消预定时间并立即运行扫描吗？</value>
     <comment>message box</comment>
   </data>
   <data name="ScanRunning" xml:space="preserve">
     <value>当前正在运行扫描</value>
+  </data>
+  <data name="ScanScheduled" xml:space="preserve">
+    <value>扫描计划在{0}上运行</value>
+  </data>
+  <data name="ScanStarting" xml:space="preserve">
+    <value>现在开始扫描...</value>
   </data>
   <data name="ScheduledFor" xml:space="preserve">
     <value>预定于{0}</value>

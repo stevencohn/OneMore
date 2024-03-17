@@ -126,28 +126,21 @@
     <value>OneMoreTray não foi iniciado corretamente e será fechado agora</value>
   </data>
   <data name="BadArgumentsTitle" xml:space="preserve">
-    <value>Argumentos ruins</value>
-  </data>
+    <value>Agenda ausente</value>
+  <comment></comment></data>
   <data name="CloseConfirm" xml:space="preserve">
     <value>Tem certeza de que deseja fechar o aplicativo da bandeja?</value>
   </data>
   <data name="phrase_Scanning" xml:space="preserve">
     <value>Digitalizando...</value>
   </data>
-  <data name="RescheduleDialog_currentLabel.Text" xml:space="preserve">
-    <value>Verificação atualmente agendada para {0}</value>
-    <comment>label</comment>
+  <data name="Reschedule_Rebuild" xml:space="preserve">
+    <value>Uma recriação do catálogo está agendada para {0}. Escolha abaixo quando o OneMore Tray deve construir o catálogo.</value>
+    <comment>message box intro label</comment>
   </data>
-  <data name="RescheduleDialog_hintLabel.Text" xml:space="preserve">
-    <value>É melhor agendar a verificação fora do horário comercial, como meia-noite</value>
-  </data>
-  <data name="RescheduleDialog_newLabel.Text" xml:space="preserve">
-    <value>Novo cronograma</value>
-    <comment>label</comment>
-  </data>
-  <data name="RescheduleDialog_Title" xml:space="preserve">
-    <value>Reprogramar verificação</value>
-    <comment>dialog title</comment>
+  <data name="Reschedule_Scan" xml:space="preserve">
+    <value>Uma verificação de novas hashtags está agendada para {0}. Escolha abaixo quando o OneMore Tray deve construir o catálogo.</value>
+    <comment>message box intro label</comment>
   </data>
   <data name="RunNowMenuItem" xml:space="preserve">
     <value>Corra agora</value>
@@ -165,13 +158,19 @@
     <value>Scanner de hashtag</value>
   </data>
   <data name="ScanNowConfirmation" xml:space="preserve">
-    <value>A verificação pode levar algum tempo e afetar o desempenho do OneNote.
+    <value>A verificação pode levar algum tempo e afetar o desempenho do OneNote. Se o OneNote estiver fechado, ele não poderá ser reaberto até que a verificação seja concluída.
 
 Cancelar o horário agendado e executar a verificação agora?</value>
     <comment>message box</comment>
   </data>
   <data name="ScanRunning" xml:space="preserve">
     <value>Uma verificação está em execução no momento</value>
+  </data>
+  <data name="ScanScheduled" xml:space="preserve">
+    <value>Uma varredura está programada para ser executada em {0}</value>
+  </data>
+  <data name="ScanStarting" xml:space="preserve">
+    <value>Iniciando a verificação agora...</value>
   </data>
   <data name="ScheduledFor" xml:space="preserve">
     <value>Agendado para {0}</value>

@@ -126,28 +126,21 @@
     <value>OneMoreTray is niet correct gestart en wordt nu gesloten</value>
   </data>
   <data name="BadArgumentsTitle" xml:space="preserve">
-    <value>Slechte argumenten</value>
-  </data>
+    <value>Ontbrekend schema</value>
+  <comment></comment></data>
   <data name="CloseConfirm" xml:space="preserve">
     <value>Weet u zeker dat u de ladetoepassing wilt sluiten?</value>
   </data>
   <data name="phrase_Scanning" xml:space="preserve">
     <value>Scannen...</value>
   </data>
-  <data name="RescheduleDialog_currentLabel.Text" xml:space="preserve">
-    <value>Scan momenteel gepland voor {0}</value>
-    <comment>label</comment>
+  <data name="Reschedule_Rebuild" xml:space="preserve">
+    <value>Er is een herbouw van de catalogus gepland voor {0}. Kies hieronder wanneer OneMore Tray de catalogus moet samenstellen.</value>
+    <comment>message box intro label</comment>
   </data>
-  <data name="RescheduleDialog_hintLabel.Text" xml:space="preserve">
-    <value>Het is het beste om de scan buiten kantooruren te plannen, bijvoorbeeld middernacht</value>
-  </data>
-  <data name="RescheduleDialog_newLabel.Text" xml:space="preserve">
-    <value>Nieuw schema</value>
-    <comment>label</comment>
-  </data>
-  <data name="RescheduleDialog_Title" xml:space="preserve">
-    <value>Scan opnieuw plannen</value>
-    <comment>dialog title</comment>
+  <data name="Reschedule_Scan" xml:space="preserve">
+    <value>Een scan voor nieuwe hashtags is gepland voor {0}. Kies hieronder wanneer OneMore Tray de catalogus moet samenstellen.</value>
+    <comment>message box intro label</comment>
   </data>
   <data name="RunNowMenuItem" xml:space="preserve">
     <value>Ren nu</value>
@@ -165,13 +158,19 @@
     <value>Hashtag-scanner</value>
   </data>
   <data name="ScanNowConfirmation" xml:space="preserve">
-    <value>Scannen kan enige tijd duren en de prestaties van OneNote beïnvloeden.
+    <value>Scannen kan enige tijd duren en de prestaties van OneNote beïnvloeden. Als OneNote is gesloten, kan het pas opnieuw worden geopend als de scan is voltooid.
 
 De geplande tijd annuleren en de scan nu uitvoeren?</value>
     <comment>message box</comment>
   </data>
   <data name="ScanRunning" xml:space="preserve">
     <value>Er wordt momenteel een scan uitgevoerd</value>
+  </data>
+  <data name="ScanScheduled" xml:space="preserve">
+    <value>Een scan is gepland om te worden uitgevoerd op {0}</value>
+  </data>
+  <data name="ScanStarting" xml:space="preserve">
+    <value>Scan nu starten...</value>
   </data>
   <data name="ScheduledFor" xml:space="preserve">
     <value>Gepland voor {0}</value>

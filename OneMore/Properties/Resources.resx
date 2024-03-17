@@ -117,6 +117,7 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="AboutDialog.Text" xml:space="preserve">
     <value>OneMore Add-in</value>
     <comment>dialog title bar</comment>
@@ -1263,6 +1264,16 @@ Dark</value>
   </data>
   <data name="HasActiveMedia" xml:space="preserve">
     <value>Cannot invoke OneMore commands while there is an active recording. Please stop the recording and try again.</value>
+  </data>
+  <data name="HashtagCommand_scanning" xml:space="preserve">
+    <value>OneMore is currently creating your hashtag catalog.
+
+Searching for hashtags is unavailable until this is completed.</value>
+  </data>
+  <data name="HashtagCommand_waiting" xml:space="preserve">
+    <value>Your hashtag catalog is scheduled to be created on {0}. You can change this schedule from the OneMore Tray application.
+
+Searching for hashtags is unavailable until this is completed.</value>
   </data>
   <data name="HashtagContext_jumpParaTip" xml:space="preserve">
     <value>Jump to this paragraph; last updated {0}</value>
@@ -4051,6 +4062,34 @@ After last group</value>
     <value>Snippet name:</value>
     <comment>label</comment>
   </data>
+  <data name="ScanningCueFile" xml:space="preserve">
+    <value>HashtagScanner.json</value>
+    <comment>SKIP</comment>
+  </data>
+  <data name="ScheduleScanDialog_hintLabel.Text" xml:space="preserve">
+    <value>It is best to schedule the scan during off-hours, such as midnight</value>
+    <comment>label</comment>
+  </data>
+  <data name="ScheduleScanDialog_introBox.Text" xml:space="preserve">
+    <value>The hashtag catalog has not yet been created. Choose below when OneMore should build the catalog.</value>
+    <comment>multilinelabel</comment>
+  </data>
+  <data name="ScheduleScanDialog_laterRadio.Text" xml:space="preserve">
+    <value>Schedule the scan at a later time</value>
+    <comment>radio</comment>
+  </data>
+  <data name="ScheduleScanDialog_nowRadio.Text" xml:space="preserve">
+    <value>Run the scan now</value>
+    <comment>radio</comment>
+  </data>
+  <data name="ScheduleScanDialog_Title" xml:space="preserve">
+    <value>Schedule Hashtag Scanning</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="ScheduleScanDialog_warningLabel.Text" xml:space="preserve">
+    <value>OneNote may appear sluggish while scanning. If OneNote is closed, it cannot be opened until the scan completes.</value>
+    <comment>multiline label</comment>
+  </data>
   <data name="ScopeSelector_notebookButton.Text" xml:space="preserve">
     <value>All sections in the current notebook</value>
     <comment>radio</comment>
@@ -5047,6 +5086,9 @@ In this section</value>
   <data name="word_Save" xml:space="preserve">
     <value>Save</value>
   </data>
+  <data name="word_Schedule" xml:space="preserve">
+    <value>Schedule</value>
+  </data>
   <data name="word_Scope" xml:space="preserve">
     <value>Scope</value>
   </data>
@@ -5138,7 +5180,6 @@ In this section</value>
     <value>Word Counts</value>
     <comment>page title</comment>
   </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="sponsor_dark" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Commands\Tools\sponsor-dark.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -5501,42 +5542,5 @@ In this section</value>
   </data>
   <data name="_0336_OneNoteApplication_2013" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>0336.OneNoteApplication_2013.xsd;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
-  </data>
-  <data name="ScanningCueFile" xml:space="preserve">
-    <value>HashtagScanner.json</value>
-    <comment>SKIP</comment>
-  </data>
-  <data name="HashtagCommand_scanning" xml:space="preserve">
-    <value>OneMore is currently creating your hashtag catalog.
-
-Searching for hashtags is unavailable until this is completed.</value>
-  </data>
-  <data name="HashtagCommand_waiting" xml:space="preserve">
-    <value>Your hashtag catalog is scheduled to be created on {0}. You can change this schedule from the OneMore Tray application.
-
-Searching for hashtags is unavailable until this is completed.</value>
-  </data>
-  <data name="ScheduleScanDialog_hintLabel.Text" xml:space="preserve">
-    <value>It is best to schedule the scan during off-hours, such as midnight</value>
-    <comment>label</comment>
-  </data>
-  <data name="ScheduleScanDialog_laterRadio.Text" xml:space="preserve">
-    <value>Schedule the scan at a later time</value>
-    <comment>radio</comment>
-  </data>
-  <data name="ScheduleScanDialog_nowRadio.Text" xml:space="preserve">
-    <value>Run the scan now</value>
-    <comment>radio</comment>
-  </data>
-  <data name="word_Schedule" xml:space="preserve">
-    <value>Schedule</value>
-  </data>
-  <data name="ScheduleScanDialog_Title" xml:space="preserve">
-    <value>Schedule Hashtag Scanning</value>
-    <comment>dialog title</comment>
-  </data>
-  <data name="ScheduleScanDialog_introBox.Text" xml:space="preserve">
-    <value>The hashtag catalog has not yet been created. Choose below when OneMore should build the catalog.</value>
-    <comment>multilinelabel</comment>
   </data>
 </root>
