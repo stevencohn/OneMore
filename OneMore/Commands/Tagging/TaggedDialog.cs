@@ -221,7 +221,7 @@ namespace River.OneMoreAddIn.Commands
 			{
 				var pageId = node.Root.Attribute("ID").Value;
 
-				using var one = new OneNote();
+				await using var one = new OneNote();
 				if (!pageId.Equals(one.CurrentPageId))
 				{
 					await one.NavigateTo(pageId);
@@ -255,7 +255,7 @@ namespace River.OneMoreAddIn.Commands
 			XNamespace ns;
 			var scopeId = string.Empty;
 
-			using var one = new OneNote();
+			await using var one = new OneNote();
 			switch (scopeBox.SelectedIndex)
 			{
 				case 1: scopeId = one.CurrentNotebookId; break;

@@ -21,7 +21,7 @@ namespace River.OneMoreAddIn.Commands
 
 		public override async Task Execute(params object[] args)
 		{
-			using var one = new OneNote(out var page, out var ns);
+			await using var one = new OneNote(out var page, out var ns);
 			var hidden = page.Root.Elements(ns + "Outline")
 				.Descendants(ns + "OE")
 				.Where(e => e.Attribute("collapsed")?.Value == "1")

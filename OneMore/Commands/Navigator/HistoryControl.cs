@@ -50,7 +50,7 @@ namespace River.OneMoreAddIn.Commands
 					// TODO: this breaks the space-time continuum
 					NavigatorWindow.SetVisited(info.PageId);
 
-					using var one = new OneNote();
+					await using var one = new OneNote();
 					await one.NavigateTo(info.Link);
 				}
 			});

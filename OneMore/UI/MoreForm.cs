@@ -92,7 +92,7 @@ namespace River.OneMoreAddIn.UI
 
 			var rect = new Native.Rectangle();
 
-			using var one = new OneNote();
+			await using var one = new OneNote();
 			Native.GetWindowRect(one.WindowHandle, ref rect);
 
 			var yoffset = (int)(Height * topDelta / 100.0);
@@ -121,7 +121,7 @@ namespace River.OneMoreAddIn.UI
 		}
 
 
-		protected override void OnLoad(EventArgs e)
+		protected override async void OnLoad(EventArgs e)
 		{
 			base.OnLoad(e);
 
@@ -158,7 +158,7 @@ namespace River.OneMoreAddIn.UI
 				if (!Debugger.IsAttached)
 				{
 					// find the center point of the active OneNote window
-					using var one = new OneNote();
+					await using var one = new OneNote();
 					var bounds = one.GetCurrentMainWindowBounds();
 					var center = new Point(
 						bounds.Left + (bounds.Right - bounds.Left) / 2,

@@ -107,7 +107,7 @@ namespace River.OneMoreAddIn.Commands
 
 			logger.StartClock();
 
-			using var one = new OneNote();
+			await using var one = new OneNote();
 			var section = await one.GetSection();
 			var ns = section.GetNamespaceOfPrefix(OneNote.Prefix);
 
@@ -249,7 +249,7 @@ namespace River.OneMoreAddIn.Commands
 
 			logger.StartClock();
 
-			using var one = new OneNote();
+			await using var one = new OneNote();
 
 			// get the current notebook with its sections
 			var notebook = await one.GetNotebook();
@@ -382,7 +382,7 @@ namespace River.OneMoreAddIn.Commands
 
 			logger.StartClock();
 
-			using var one = new OneNote();
+			await using var one = new OneNote();
 
 			var root = await one.GetNotebooks();
 			var ns = one.GetNamespace(root);

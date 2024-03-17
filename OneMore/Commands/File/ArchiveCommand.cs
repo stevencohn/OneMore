@@ -51,7 +51,7 @@ namespace River.OneMoreAddIn.Commands
 		{
 			var scope = args[0] as string;
 
-			using (one = new OneNote())
+			await using (one = new OneNote())
 			{
 				bookScope = scope == "notebook";
 

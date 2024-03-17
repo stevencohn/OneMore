@@ -53,7 +53,7 @@ namespace River.OneMoreAddIn
 			string hyperlink = null;
 			string text = null;
 
-			using var one = new OneNote(out var page, out var ns);
+			await using var one = new OneNote(out var page, out var ns);
 
 			if (specific)
 			{

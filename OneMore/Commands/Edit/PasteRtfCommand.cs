@@ -39,7 +39,7 @@ namespace River.OneMoreAddIn.Commands
 
 		public override async Task Execute(params object[] args)
 		{
-			using (var one = new OneNote(out var page, out _))
+			await using (var one = new OneNote(out var page, out _))
 			{
 				if (!page.ConfirmBodyContext())
 				{
@@ -58,7 +58,7 @@ namespace River.OneMoreAddIn.Commands
 			// paste what's remaining from clipboard, letting OneNote do the
 			// heavy lifting of converting the HTML into one:xml schema
 
-			using (var one = new OneNote())
+			await using (var one = new OneNote())
 			{
 				// since the Hotkey message loop is watching all input, explicitly setting
 				// focus on the OneNote main window provides a direct path for SendKeys

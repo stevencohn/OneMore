@@ -29,7 +29,7 @@ namespace River.OneMoreAddIn.Commands
 
 			var provider = new SnippetsProvider();
 
-			using var one = new OneNote(out var page, out _);
+			await using var one = new OneNote(out var page, out _);
 
 			if (!page.ConfirmBodyContext())
 			{

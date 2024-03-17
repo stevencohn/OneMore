@@ -44,7 +44,7 @@ namespace River.OneMoreAddIn.Commands
 
 		private async Task RemoveSpacing()
 		{
-			using var one = new OneNote(out var page, out var ns);
+			await using var one = new OneNote(out var page, out var ns);
 			logger.StartClock();
 
 			var elements = page.Root.Descendants(page.Namespace + "OE")

@@ -28,7 +28,7 @@ namespace River.OneMoreAddIn.Commands
 			bool useRegex;
 			XElement withElement;
 
-			using var one = new OneNote(out var page, out _);
+			await using var one = new OneNote(out var page, out _);
 			var text = page.GetSelectedText();
 
 			using (var dialog = new SearchAndReplaceDialog())

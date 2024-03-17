@@ -62,7 +62,7 @@ namespace River.OneMoreAddIn.Commands
 		{
 			var casing = (int)args[0];
 
-			using var one = new OneNote(out var page, out var ns);
+			await using var one = new OneNote(out var page, out var ns);
 			var updated = page.EditSelected((s) =>
 			{
 				if (s is XText text)

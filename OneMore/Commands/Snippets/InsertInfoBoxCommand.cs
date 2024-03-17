@@ -35,7 +35,7 @@ namespace River.OneMoreAddIn.Commands
 			var keyword = (string)args[0];
 			Resx.Culture = AddIn.Culture;
 
-			using var one = new OneNote(out var page, out var ns);
+			await using var one = new OneNote(out var page, out var ns);
 			if (!page.ConfirmBodyContext())
 			{
 				UIHelper.ShowError(Resx.Error_BodyContext);

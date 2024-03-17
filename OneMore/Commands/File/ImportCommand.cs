@@ -184,13 +184,13 @@ namespace River.OneMoreAddIn.Commands
 
 			if (append)
 			{
-				using var one = new OneNote(out var page, out _);
+				await using var one = new OneNote(out var page, out _);
 				page.AddHtmlContent(html);
 				await one.Update(page);
 			}
 			else
 			{
-				using var one = new OneNote();
+				await using var one = new OneNote();
 				one.CreatePage(one.CurrentSectionId, out var pageId);
 				var page = await one.GetPage(pageId);
 
@@ -275,7 +275,7 @@ namespace River.OneMoreAddIn.Commands
 
 			if (split)
 			{
-				using var one = new OneNote();
+				await using var one = new OneNote();
 				var section = await one.CreateSection(Path.GetFileNameWithoutExtension(filepath));
 				var sectionId = section.Attribute("ID").Value;
 				var ns = one.GetNamespace(section);
@@ -301,7 +301,7 @@ namespace River.OneMoreAddIn.Commands
 			}
 			else
 			{
-				using var one = new OneNote();
+				await using var one = new OneNote();
 				Page page;
 				if (append)
 				{
@@ -418,7 +418,7 @@ namespace River.OneMoreAddIn.Commands
 			Page page;
 
 			// keep this using block or the StorageFile/PdfDocument context will corrupt it
-			using (var one = new OneNote())
+			await using (var one = new OneNote())
 			{
 				if (append)
 				{
@@ -487,7 +487,7 @@ namespace River.OneMoreAddIn.Commands
 			}
 
 			// keep this using block or the StorageFile/PdfDocument context will corrupt it
-			using (var one = new OneNote())
+			await using (var one = new OneNote())
 			{
 				await one.Update(page);
 
@@ -581,7 +581,7 @@ namespace River.OneMoreAddIn.Commands
 					string pageId;
 
 					IntPtr handle;
-					using (var one = new OneNote())
+					await using (var one = new OneNote())
 					{
 						handle = one.WindowHandle;
 						one.CreatePage(one.CurrentSectionId, out pageId);
@@ -600,7 +600,7 @@ namespace River.OneMoreAddIn.Commands
 					await clippy.Paste(true);
 					await clippy.RestoreState();
 
-					using (var one = new OneNote())
+					await using (var one = new OneNote())
 					{
 						page = await one.GetPage(pageId, OneNote.PageDetail.Basic);
 						MarkdownConverter.RewriteHeadings(page);
@@ -627,7 +627,7 @@ namespace River.OneMoreAddIn.Commands
 				// load page-from-file
 				var template = new Page(XElement.Load(filepath));
 
-				using var one = new OneNote();
+				await using var one = new OneNote();
 				one.CreatePage(one.CurrentSectionId, out var pageId);
 
 				// remove any objectID values and let OneNote generate new IDs
@@ -660,7 +660,7 @@ namespace River.OneMoreAddIn.Commands
 		{
 			try
 			{
-				using var one = new OneNote();
+				await using var one = new OneNote();
 				var pageId = await one.Import(filepath);
 
 				if (!string.IsNullOrEmpty(pageId))

@@ -15,7 +15,7 @@ namespace River.OneMoreAddIn
 	using Resx = Properties.Resources;
 
 
-	internal sealed class FavoritesProvider : Loggable, IDisposable
+	internal sealed class FavoritesProvider : Loggable, IAsyncDisposable
 	{
 		public enum FavoriteStatus
 		{
@@ -69,15 +69,22 @@ namespace River.OneMoreAddIn
 		}
 
 
-		public void Dispose()
+		public async ValueTask DisposeAsync()
 		{
-			if (!disposed)
+			await DisposeAsyncCore().ConfigureAwait(false);
+			// DO NOT call this otherwise OneNote will not shutdown properly
+			//GC.SuppressFinalize(this);
+		}
+
+
+		async ValueTask DisposeAsyncCore()
+		{
+			if (!disposed && one is not null)
 			{
-				one?.Dispose();
+				await one.DisposeAsync();
 				disposed = true;
 			}
 		}
-
 
 
 		public async Task AddFavorite(bool addSection = false)
@@ -235,7 +242,7 @@ namespace River.OneMoreAddIn
 					root.Add(favorite.Root);
 				}
 
-				using var provider = new FavoritesProvider(ribbon);
+				await using var provider = new FavoritesProvider(ribbon);
 				provider.SaveFavorites(root);
 			}
 			else

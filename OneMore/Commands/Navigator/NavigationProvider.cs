@@ -236,7 +236,7 @@ namespace River.OneMoreAddIn.Commands
 			try
 			{
 				// might be null if the page no longer exits; exception raised in GetPageInfo
-				using var one = new OneNote { FallThrough = true };
+				await using var one = new OneNote { FallThrough = true };
 				return await one.GetPageInfo(pageID);
 			}
 			catch (System.Runtime.InteropServices.COMException exc)
@@ -256,7 +256,7 @@ namespace River.OneMoreAddIn.Commands
 		{
 			try
 			{
-				using var one = new OneNote { FallThrough = true };
+				await using var one = new OneNote { FallThrough = true };
 				var page = await one.GetPage(record.PageId, OneNote.PageDetail.Basic);
 
 				if (page.TitleID != null)

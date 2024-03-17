@@ -60,7 +60,7 @@ namespace River.OneMoreAddIn.Commands
 
 			logger.StartClock();
 
-			using var one = new OneNote(out var page, out var ns);
+			await using var one = new OneNote(out var page, out var ns);
 			if (page == null)
 			{
 				logger.WriteTime("spell check cancelled; no page context");

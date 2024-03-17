@@ -59,21 +59,26 @@ namespace River.OneMoreAddIn.UI
 			ForeColor = Enabled
 				? manager.GetColor("ControlText", ThemedFore)
 				: manager.GetColor("GrayText");
+
+			label.MaximumSize = new Size(Width - Padding.Left - Padding.Right, 0);
 		}
 
 
-		[Category("More"), Description("Text to display")]
+		[Category("More"),
+			Description("Text to display"),
+			EditorBrowsable(EditorBrowsableState.Always), Browsable(true)]
 		public override string Text
 		{
 			get => label.Text;
-			set => label.Text = base.Text = value;
+			set => label.Text = value;
 		}
 
 
 		protected override void OnResize(EventArgs eventargs)
 		{
+			// magic to make the label wrap
 			base.OnResize(eventargs);
-			label.MaximumSize = new Size(Width, 0);
+			label.MaximumSize = new Size(Width - Padding.Left - Padding.Right, 0);
 		}
 	}
 }

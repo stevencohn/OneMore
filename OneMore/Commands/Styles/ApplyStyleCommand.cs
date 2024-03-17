@@ -45,7 +45,7 @@ namespace River.OneMoreAddIn.Commands
 
 			logger.StartClock();
 
-			using var one = new OneNote(out page, out ns);
+			await using var one = new OneNote(out page, out ns);
 			if (page != null)
 			{
 				logger.WriteTime($"loaded page; applying style {style.Name}", true);

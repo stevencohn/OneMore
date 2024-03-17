@@ -21,7 +21,6 @@ namespace River.OneMoreAddIn.Commands
 	{
 		public const int DefaultThrottle = 40;
 
-		private readonly OneNote one;
 		private readonly string lastTime;
 		private readonly HashtagPageSannerFactory factory;
 		private readonly SettingsCollection settings;
@@ -39,7 +38,6 @@ namespace River.OneMoreAddIn.Commands
 			settings = new SettingsProvider().GetCollection("HashtagSheet");
 			throttle = settings.Get("delay", DefaultThrottle);
 
-			one = new OneNote();
 			provider = new HashtagProvider();
 
 			factory = new HashtagPageSannerFactory(
@@ -117,6 +115,8 @@ namespace River.OneMoreAddIn.Commands
 			int dirtyPages = 0;
 			int totalPages = 0;
 
+			await using var one = new OneNote();
+
 			// get all notebooks
 			var root = await one.GetNotebooks();
 			if (root == null)
@@ -138,7 +138,7 @@ namespace River.OneMoreAddIn.Commands
 					if (sections != null)
 					{
 						var (dp, tp) = await Scan(
-							sections, notebookID, $"/{notebook.Attribute("name").Value}");
+							one, sections, notebookID, $"/{notebook.Attribute("name").Value}");
 
 						dirtyPages += dp;
 						totalPages += tp;
@@ -152,7 +152,8 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private async Task<(int, int)> Scan(XElement parent, string notebookID, string path)
+		private async Task<(int, int)> Scan(
+			OneNote one, XElement parent, string notebookID, string path)
 		{
 			//logger.Verbose($"scanning parent {path}");
 
@@ -192,7 +193,7 @@ namespace River.OneMoreAddIn.Commands
 
 								if (page.Attribute("lastModifiedTime").Value.CompareTo(lastTime) > 0)
 								{
-									if (await ScanPage(pid, notebookID, sectionID, sectionPath))
+									if (await ScanPage(one, pid, notebookID, sectionID, sectionPath))
 									{
 										dirtyPages++;
 									}
@@ -222,7 +223,7 @@ namespace River.OneMoreAddIn.Commands
 				foreach (var group in groups)
 				{
 					var (dp, tp) = await Scan(
-						group, notebookID, $"{path}/{group.Attribute("name").Value}");
+						one, group, notebookID, $"{path}/{group.Attribute("name").Value}");
 
 					dirtyPages += dp;
 					totalPages += tp;
@@ -234,7 +235,7 @@ namespace River.OneMoreAddIn.Commands
 
 
 		private async Task<bool> ScanPage(
-			string pageID, string notebookID, string sectionID, string path)
+			OneNote one, string pageID, string notebookID, string sectionID, string path)
 		{
 			Page page;
 

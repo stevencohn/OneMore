@@ -38,7 +38,7 @@ namespace River.OneMoreAddIn.Commands
 
 		public override async Task Execute(params object[] args)
 		{
-			using (one = new OneNote(out parentPage, out var ns, OneNote.PageDetail.Selection))
+			await using (one = new OneNote(out parentPage, out var ns, OneNote.PageDetail.Selection))
 			{
 				var candidates = GetHyperlinks(parentPage);
 				if (!candidates.Any())

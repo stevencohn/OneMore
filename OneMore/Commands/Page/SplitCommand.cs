@@ -53,7 +53,7 @@ namespace River.OneMoreAddIn.Commands
 			using var dialog = new SplitDialog();
 			if (dialog.ShowDialog(owner) == DialogResult.OK)
 			{
-				using (one = new OneNote(out page, out ns, OneNote.PageDetail.All))
+				await using (one = new OneNote(out page, out ns, OneNote.PageDetail.All))
 				{
 					await SplitPage(dialog.SplitByHeading, dialog.Tagged ? dialog.TagSymbol : -1);
 				}

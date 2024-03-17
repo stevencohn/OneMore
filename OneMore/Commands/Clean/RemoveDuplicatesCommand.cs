@@ -119,7 +119,7 @@ namespace River.OneMoreAddIn.Commands
 				Title = "Empty Pages"
 			};
 
-			using (one = new OneNote(out _, out ns))
+			await using (one = new OneNote(out _, out ns))
 			{
 				var hierarchy = await BuildHierarchy(scope, books);
 				dialog.SetMaximum(hierarchy.Elements().Count());

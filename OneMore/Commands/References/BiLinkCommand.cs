@@ -42,7 +42,7 @@ namespace River.OneMoreAddIn.Commands
 			// anchor/link sub-commands cannot be repeated
 			IsCancelled = true;
 
-			using var one = new OneNote();
+			await using var one = new OneNote();
 
 			if ((args[0] is string cmd) && (cmd == "mark"))
 			{

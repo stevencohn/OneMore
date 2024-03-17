@@ -41,9 +41,9 @@ namespace River.OneMoreAddIn.Commands.Favorites
 		}
 
 
-		private void BindOnLoad(object sender, EventArgs e)
+		private async void BindOnLoad(object sender, EventArgs e)
 		{
-			using var provider = new FavoritesProvider(null);
+			await using var provider = new FavoritesProvider(null);
 			var favorites = provider.LoadFavorites();
 
 			gridView.AutoGenerateColumns = false;
@@ -415,7 +415,7 @@ namespace River.OneMoreAddIn.Commands.Favorites
 
 		private async void AddCurrentPage(object sender, EventArgs e)
 		{
-			using var one = new OneNote();
+			await using var one = new OneNote();
 			var info = await one.GetPageInfo();
 			if (info == null)
 			{
@@ -441,7 +441,7 @@ namespace River.OneMoreAddIn.Commands.Favorites
 			{
 				await AddIn.Self.AddFavoritePageCmd(null);
 
-				using var provider = new FavoritesProvider(null);
+				await using var provider = new FavoritesProvider(null);
 				var favorites = provider.LoadFavorites();
 				source.Add(favorites[favorites.Count - 1]);
 				MoveBottom();
@@ -496,7 +496,7 @@ namespace River.OneMoreAddIn.Commands.Favorites
 
 		private async void CheckFavorites(object sender, EventArgs e)
 		{
-			using var provider = new FavoritesProvider(null);
+			await using var provider = new FavoritesProvider(null);
 
 			var list = ((BindingList<Favorite>)gridView.DataSource).ToList();
 			await provider.ValidateFavorites(list);
@@ -512,9 +512,9 @@ namespace River.OneMoreAddIn.Commands.Favorites
 		}
 
 
-		private void SortFavorites(object sender, EventArgs e)
+		private async void SortFavorites(object sender, EventArgs e)
 		{
-			using var provider = new FavoritesProvider(null);
+			await using var provider = new FavoritesProvider(null);
 			var list = provider.SortFavorites();
 			gridView.DataSource = new BindingList<Favorite>(list);
 		}

@@ -28,7 +28,7 @@ namespace River.OneMoreAddIn.Commands
 			copying = false;
 
 			var dialog = new SearchDialog();
-			await dialog.RunModeless((sender, e) =>
+			await dialog.RunModeless(async (sender, e) =>
 			{
 				var d = sender as SearchDialog;
 				if (d.DialogResult == DialogResult.OK)
@@ -40,7 +40,7 @@ namespace River.OneMoreAddIn.Commands
 						? Resx.SearchQF_DescriptionCopy
 						: Resx.SearchQF_DescriptionMove;
 
-					using var one = new OneNote();
+					await using var one = new OneNote();
 					one.SelectLocation(Resx.SearchQF_Title, desc, OneNote.Scope.Sections, Callback);
 				}
 			},
@@ -63,7 +63,7 @@ namespace River.OneMoreAddIn.Commands
 
 			try
 			{
-				using var one = new OneNote();
+				await using var one = new OneNote();
 				var service = new SearchServices(one, sectionId);
 
 				if (copying)

@@ -1251,6 +1251,16 @@ OneNote 文件 (*.one)</value>
   <data name="HasActiveMedia" xml:space="preserve">
     <value>存在活动记录时无法调用 OneMore 命令。请停止录制并重试。</value>
   </data>
+  <data name="HashtagCommand_scanning" xml:space="preserve">
+    <value>OneMore 当前正在创建您的主题标签目录。
+
+在完成此操作之前，无法搜索主题标签。</value>
+  </data>
+  <data name="HashtagCommand_waiting" xml:space="preserve">
+    <value>您的主题标签目录计划于 {0} 创建。您可以从 OneMore Tray 应用程序更改此计划。
+
+在完成此操作之前，无法搜索主题标签。</value>
+  </data>
   <data name="HashtagContext_jumpParaTip" xml:space="preserve">
     <value>跳到本段； 最后更新{0}</value>
     <comment>tooltip</comment>
@@ -4011,6 +4021,30 @@ ISO-code then comma then language name</comment>
     <value>片段名称：</value>
     <comment>label</comment>
   </data>
+  <data name="ScheduleScanDialog_hintLabel.Text" xml:space="preserve">
+    <value>最好将扫描安排在非工作时间，例如午夜</value>
+    <comment>label</comment>
+  </data>
+  <data name="ScheduleScanDialog_introBox.Text" xml:space="preserve">
+    <value>主题标签目录尚未创建。在下面选择 OneMore 何时应构建目录。</value>
+    <comment>multilinelabel</comment>
+  </data>
+  <data name="ScheduleScanDialog_laterRadio.Text" xml:space="preserve">
+    <value>安排稍后扫描</value>
+    <comment>radio</comment>
+  </data>
+  <data name="ScheduleScanDialog_nowRadio.Text" xml:space="preserve">
+    <value>立即运行扫描</value>
+    <comment>radio</comment>
+  </data>
+  <data name="ScheduleScanDialog_Title" xml:space="preserve">
+    <value>安排标签扫描</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="ScheduleScanDialog_warningLabel.Text" xml:space="preserve">
+    <value>扫描时OneNote可能看起来很迟钝。 如果关闭OneNote，则不能在扫描完成之前打开它。</value>
+    <comment>multiline label</comment>
+  </data>
   <data name="ScopeSelector_notebookButton.Text" xml:space="preserve">
     <value>当前笔记本中的所有部分</value>
     <comment>radio</comment>
@@ -5002,6 +5036,9 @@ ISO-code then comma then language name</comment>
   </data>
   <data name="word_Save" xml:space="preserve">
     <value>节省</value>
+  </data>
+  <data name="word_Schedule" xml:space="preserve">
+    <value>日程</value>
   </data>
   <data name="word_Scope" xml:space="preserve">
     <value>范围</value>

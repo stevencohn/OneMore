@@ -73,7 +73,7 @@ namespace River.OneMoreAddIn.Commands
 				return;
 			}
 
-			using var one = new OneNote(out var page, out _);
+			await using var one = new OneNote(out var page, out _);
 			if (result == DialogResult.Yes)
 			{
 				// ensure page contains the definition of the Citation style

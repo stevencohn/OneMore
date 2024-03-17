@@ -30,7 +30,7 @@ namespace River.OneMoreAddIn.Commands
 
 		public override async Task Execute(params object[] args)
 		{
-			using var one = new OneNote(out var page, out var ns);
+			await using var one = new OneNote(out var page, out var ns);
 			using var dialog = new TaggingDialog();
 			var content = page.GetMetaContent(MetaNames.TaggingLabels);
 			if (!string.IsNullOrEmpty(content))

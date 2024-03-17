@@ -39,7 +39,7 @@ namespace River.OneMoreAddIn.Commands
 
 		public override async Task Execute(params object[] args)
 		{
-			using var one = new OneNote(out page, out ns);
+			await using var one = new OneNote(out page, out ns);
 			if (!page.ConfirmBodyContext())
 			{
 				UIHelper.ShowError(Resx.Error_BodyContext);

@@ -34,7 +34,7 @@ namespace River.OneMoreAddIn.Commands
 			location.Y -= SystemInformation.MenuHeight * 4;
 			location.X -= 30;
 
-			using var one = new OneNote();
+			await using var one = new OneNote();
 
 			var section = await one.GetSection();
 			var sectionColor = section.Attribute("color").Value;

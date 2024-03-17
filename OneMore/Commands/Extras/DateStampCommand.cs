@@ -42,7 +42,7 @@ namespace River.OneMoreAddIn.Commands
 				regex = new Regex(@"^\d{4}-\d{2}-\d{2}\s.+", RegexOptions.Compiled);
 			}
 
-			using (one = new OneNote())
+			await using (one = new OneNote())
 			{
 				var section = await one.GetSection();
 				var ns = one.GetNamespace(section);

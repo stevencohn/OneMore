@@ -63,7 +63,7 @@ namespace River.OneMoreAddIn.Commands
 		{
 			var addTitle = args.Length == 0 || (bool)args[0];
 
-			using var one = new OneNote(out var page, out ns);
+			await using var one = new OneNote(out var page, out ns);
 			if (!page.ConfirmBodyContext())
 			{
 				UIHelper.ShowError(Resx.Error_BodyContext);

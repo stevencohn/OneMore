@@ -27,7 +27,7 @@ namespace River.OneMoreAddIn.Commands
 
 		public override async Task Execute(params object[] args)
 		{
-			using var one = new OneNote(out var page, out ns, OneNote.PageDetail.All);
+			await using var one = new OneNote(out var page, out ns, OneNote.PageDetail.All);
 
 			var foreElements = page.Root
 				.Elements(ns + "Outline")

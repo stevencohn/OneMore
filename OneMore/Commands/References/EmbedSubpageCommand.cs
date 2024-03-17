@@ -68,7 +68,7 @@ namespace River.OneMoreAddIn.Commands
 				return;
 			}
 
-			EmbedContent();
+			await EmbedContent();
 		}
 
 
@@ -77,7 +77,7 @@ namespace River.OneMoreAddIn.Commands
 
 		private async Task UpdateContent(string sourceId, string linkId)
 		{
-			using (one = new OneNote(out page, out ns))
+			await using (one = new OneNote(out page, out ns))
 			{
 				// find all embedded sections...
 
@@ -229,9 +229,9 @@ namespace River.OneMoreAddIn.Commands
 		//========================================================================================
 		// Embed...
 
-		private void EmbedContent()
+		private async Task EmbedContent()
 		{
-			using var o = new OneNote();
+			await using var o = new OneNote();
 			o.SelectLocation(
 				Resx.EmbedSubpageCommand_Select,
 				Resx.EmbedSubpageCommand_SelectIntro,
@@ -247,7 +247,7 @@ namespace River.OneMoreAddIn.Commands
 				return;
 			}
 
-			using (one = new OneNote(out page, out ns))
+			await using (one = new OneNote(out page, out ns))
 			{
 				var source = await GetSource(sourceId, null);
 				if (source == null || !source.Snippets.Any())

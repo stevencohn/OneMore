@@ -18,7 +18,7 @@ namespace River.OneMoreAddIn.Commands
 			var uri = (string)args[0];
 			string text;
 
-			using var one = new OneNote(out var page, out _);
+			await using var one = new OneNote(out var page, out _);
 			text = page.GetSelectedText();
 
 			if (text.Length > 0)

@@ -10,6 +10,7 @@ namespace River.OneMoreAddIn.Settings
 	using System;
 	using System.ComponentModel;
 	using System.Linq;
+	using System.Threading.Tasks;
 	using System.Windows.Forms;
 	using Favorite = FavoritesProvider.Favorite;
 	using FavoriteStatus = FavoritesProvider.FavoriteStatus;
@@ -62,7 +63,7 @@ namespace River.OneMoreAddIn.Settings
 			(_, float scaleY) = UIHelper.GetScalingFactors();
 			gridView.RowTemplate.Height = (int)(16 * scaleY);
 
-			using var provider = new FavoritesProvider(null);
+			await using var provider = new FavoritesProvider(null);
 			var list = provider.LoadFavorites();
 			await provider.ValidateFavorites(list);
 			favorites = new BindingList<Favorite>(list);
@@ -224,8 +225,11 @@ namespace River.OneMoreAddIn.Settings
 					root.Add(favorite.Root);
 				}
 
-				using var provider = new FavoritesProvider(ribbon);
-				provider.SaveFavorites(root);
+				Task.Run(async () =>
+				{
+					await using var provider = new FavoritesProvider(ribbon);
+					provider.SaveFavorites(root);
+				});
 			}
 			else if (shortcuts != shortcutsBox.Checked)
 			{

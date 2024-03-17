@@ -127,6 +127,12 @@ namespace River.OneMoreAddIn.UI
 			box.SetMessage(text);
 			box.SetIcon(icon);
 			box.SetButtons(buttons);
+			if (owner is null)
+			{
+				box.StartPosition = FormStartPosition.CenterScreen;
+				return box.ShowDialog();
+			}
+
 			return box.ShowDialog(owner);
 		}
 
@@ -137,6 +143,13 @@ namespace River.OneMoreAddIn.UI
 			box.SetMessage(text);
 			box.SetIcon(MessageBoxIcon.Error);
 			box.SetButtons(MessageBoxButtons.OK);
+
+			if (owner is null)
+			{
+				box.StartPosition = FormStartPosition.CenterScreen;
+				return box.ShowDialog();
+			}
+
 			return box.ShowDialog(owner);
 		}
 
@@ -148,6 +161,13 @@ namespace River.OneMoreAddIn.UI
 			box.ShowLogLink();
 			box.SetIcon(MessageBoxIcon.Error);
 			box.SetButtons(MessageBoxButtons.OK);
+
+			if (owner is null)
+			{
+				box.StartPosition = FormStartPosition.CenterScreen;
+				return box.ShowDialog();
+			}
+
 			return box.ShowDialog(owner);
 		}
 

@@ -57,7 +57,7 @@ namespace River.OneMoreAddIn.Commands
 				return;
 			}
 
-			using var dialog = MakeDialog();
+			using var dialog = await MakeDialog();
 			if (dialog.ShowDialog(owner) == DialogResult.Cancel)
 			{
 				return;
@@ -132,11 +132,19 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private InsertTocDialog MakeDialog()
+		private async Task<InsertTocDialog> MakeDialog()
 		{
+			Page page;
+			XNamespace ns;
+			await using (var one = new OneNote(out page, out ns, OneNote.PageDetail.Basic))
+			{
+				// There is a wierd async issue here where the OneNote instance must be
+				// fully disposed before InsertTocDialog is instantiated and returned.
+				// I don't understand...
+			}
+
 			var dialog = new InsertTocDialog();
 
-			using var one = new OneNote(out var page, out var ns, OneNote.PageDetail.Basic);
 			var meta = page.Root.Elements(ns + "Outline")
 				.Descendants(ns + "Meta")
 				.FirstOrDefault(e => e.Attribute("name") is XAttribute attr && attr.Value == TocMeta);
@@ -182,7 +190,7 @@ namespace River.OneMoreAddIn.Commands
 		private async Task InsertTableOfContents(
 			bool addTopLinks, bool rightAlign, bool insertHere, TitleStyles titleStyle)
 		{
-			using var one = new OneNote();
+			await using var one = new OneNote();
 			var page = await one.GetPage(OneNote.PageDetail.Selection);
 			var ns = page.Namespace;
 
@@ -540,7 +548,7 @@ namespace River.OneMoreAddIn.Commands
 		#region MakePageIndexPage
 		private async Task MakePageIndexPage(bool withPreviews)
 		{
-			using var one = new OneNote();
+			await using var one = new OneNote();
 			var section = await one.GetSection();
 			var sectionId = section.Attribute("ID").Value;
 
@@ -704,7 +712,7 @@ namespace River.OneMoreAddIn.Commands
 		#region MakeSectionIndexPage
 		private async Task MakeSectionIndexPage(bool includePages, bool withPreviews)
 		{
-			using var one = new OneNote();
+			await using var one = new OneNote();
 			var section = await one.GetSection();
 			var sectionId = section.Attribute("ID").Value;
 

@@ -35,7 +35,7 @@ namespace River.OneMoreAddIn.Commands
 
 		public override async Task Execute(params object[] args)
 		{
-			using var one = new OneNote(out var page, out ns);
+			await using var one = new OneNote(out var page, out ns);
 			var cursor = page.GetTextCursor();
 			if (cursor == null)
 			{

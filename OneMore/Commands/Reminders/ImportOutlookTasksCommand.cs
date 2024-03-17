@@ -87,7 +87,7 @@ namespace River.OneMoreAddIn.Commands
 
 			// import...
 
-			using (one = new OneNote(out page, out ns))
+			await using (one = new OneNote(out page, out ns))
 			{
 				if (dialog.ShowDetailedTable)
 				{
@@ -105,7 +105,7 @@ namespace River.OneMoreAddIn.Commands
 
 		private async Task UpdateTableReport(string guid)
 		{
-			using (one = new OneNote(out page, out ns, OneNote.PageDetail.Basic))
+			await using (one = new OneNote(out page, out ns, OneNote.PageDetail.Basic))
 			{
 				var meta = page.Root.Descendants(ns + "Meta")
 					.FirstOrDefault(e =>

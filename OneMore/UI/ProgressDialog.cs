@@ -198,7 +198,7 @@ namespace River.OneMoreAddIn.UI
 		/// Called after Show()
 		/// </summary>
 		/// <param name="e"></param>
-		protected override void OnLoad(EventArgs e)
+		protected override async void OnLoad(EventArgs e)
 		{
 			base.OnLoad(e);
 
@@ -209,7 +209,7 @@ namespace River.OneMoreAddIn.UI
 
 				var rect = new Native.Rectangle();
 
-				using var one = new OneNote();
+				await using var one = new OneNote();
 				Native.GetWindowRect(one.WindowHandle, ref rect);
 
 				var yoffset = (int)(Height * 20 / 100.0);

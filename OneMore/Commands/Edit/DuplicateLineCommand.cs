@@ -23,7 +23,7 @@ namespace River.OneMoreAddIn.Commands
 		{
 			bool above = (bool)args[0];
 
-			using var one = new OneNote(out var page, out var _);
+			await using var one = new OneNote(out var page, out var _);
 
 			var cursor = page.GetTextCursor();
 			if (cursor == null)

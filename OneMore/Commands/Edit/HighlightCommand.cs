@@ -27,7 +27,7 @@ namespace River.OneMoreAddIn.Commands
 		{
 			var increment = (int)args[0];
 
-			using var one = new OneNote(out var page, out var ns);
+			await using var one = new OneNote(out var page, out var ns);
 			var updated = false;
 			var index = 0;
 

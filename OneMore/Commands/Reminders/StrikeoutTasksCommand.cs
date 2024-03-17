@@ -34,7 +34,7 @@ namespace River.OneMoreAddIn.Commands
 				95  // Discuss with manager
 			};
 
-			using var one = new OneNote(out var page, out var ns);
+			await using var one = new OneNote(out var page, out var ns);
 			var indexes =
 				page.Root.Elements(ns + "TagDef")
 				.Where(e => symbols.Contains(int.Parse(e.Attribute("symbol").Value)))

@@ -56,7 +56,7 @@ namespace River.OneMoreAddIn.Commands
 		{
 			delta = (int)args[0]; // +/-1
 
-			using var one = new OneNote(out page, out _);
+			await using var one = new OneNote(out page, out _);
 
 			if (page == null)
 			{

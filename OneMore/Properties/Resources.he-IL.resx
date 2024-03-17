@@ -1261,6 +1261,16 @@ Total Row Font
   <data name="HasActiveMedia" xml:space="preserve">
     <value>לא יכול להפעיל פקודות של OneMore בזמן שיש הקלטה פעילה. אנא הפסק את ההקלטה ונסה שוב.</value>
   </data>
+  <data name="HashtagCommand_scanning" xml:space="preserve">
+    <value>OneMore יוצר כעת את קטלוג ההאשטאג שלך.
+
+חיפוש hashtags אינו זמין עד להשלמת פעולה זו.</value>
+  </data>
+  <data name="HashtagCommand_waiting" xml:space="preserve">
+    <value>קטלוג ההאשטאג שלך מתוכנן להיווצר ב-{0}. אתה יכול לשנות את לוח הזמנים הזה מאפליקציית OneMore Tray.
+
+חיפוש hashtags אינו זמין עד להשלמת פעולה זו.</value>
+  </data>
   <data name="HashtagContext_jumpParaTip" xml:space="preserve">
     <value>לקפוץ לפסקה זו; עודכן אחרון {0}</value>
     <comment>tooltip</comment>
@@ -4029,6 +4039,30 @@ ISO-code then comma then language name</comment>
     <value>שם קטע:</value>
     <comment>label</comment>
   </data>
+  <data name="ScheduleScanDialog_hintLabel.Text" xml:space="preserve">
+    <value>עדיף לתזמן את הסריקה בשעות לא שעות, כגון חצות</value>
+    <comment>label</comment>
+  </data>
+  <data name="ScheduleScanDialog_introBox.Text" xml:space="preserve">
+    <value>קטלוג ההאשטאג עדיין לא נוצר. בחר למטה מתי OneMore אמור לבנות את הקטלוג.</value>
+    <comment>multilinelabel</comment>
+  </data>
+  <data name="ScheduleScanDialog_laterRadio.Text" xml:space="preserve">
+    <value>תזמן את הסריקה במועד מאוחר יותר</value>
+    <comment>radio</comment>
+  </data>
+  <data name="ScheduleScanDialog_nowRadio.Text" xml:space="preserve">
+    <value>הפעל את הסריקה כעת</value>
+    <comment>radio</comment>
+  </data>
+  <data name="ScheduleScanDialog_Title" xml:space="preserve">
+    <value>תזמן סריקת Hashtag</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="ScheduleScanDialog_warningLabel.Text" xml:space="preserve">
+    <value>OneNote עשוי להיראות איטי בזמן הסריקה. אם OneNote סגור, לא ניתן לפתוח אותו עד לסיום הסריקה.</value>
+    <comment>multiline label</comment>
+  </data>
   <data name="ScopeSelector_notebookButton.Text" xml:space="preserve">
     <value>כל הסעיפים במחברת הנוכחית</value>
     <comment>radio</comment>
@@ -5024,6 +5058,9 @@ ISO-code then comma then language name</comment>
   </data>
   <data name="word_Save" xml:space="preserve">
     <value>להציל</value>
+  </data>
+  <data name="word_Schedule" xml:space="preserve">
+    <value>לוח זמנים</value>
   </data>
   <data name="word_Scope" xml:space="preserve">
     <value>תְחוּם</value>

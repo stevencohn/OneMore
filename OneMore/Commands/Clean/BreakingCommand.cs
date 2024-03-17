@@ -52,7 +52,7 @@ namespace River.OneMoreAddIn.Commands
 				replacement = "$1  $2$3$4";
 			}
 
-			using var one = new OneNote(out var page, out var ns);
+			await using var one = new OneNote(out var page, out var ns);
 			logger.StartClock();
 
 			var nodes = page.Root.DescendantNodes().OfType<XCData>()

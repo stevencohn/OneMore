@@ -30,7 +30,7 @@ namespace River.OneMoreAddIn.Commands
 				? new Regex(@"^([\s]|&#160;|&nbsp;)+", RegexOptions.Multiline)
 				: new Regex(@"([\s]|&#160;|&nbsp;)+$", RegexOptions.Multiline);
 
-			using var one = new OneNote(out var page, out _);
+			await using var one = new OneNote(out var page, out _);
 
 			var selections = page.GetSelectedElements();
 			if (selections != null)

@@ -64,7 +64,7 @@ namespace River.OneMoreAddIn.Commands
 
 		public override async Task Execute(params object[] args)
 		{
-			using (one = new OneNote())
+			await using (one = new OneNote())
 			{
 				string pageId;
 				if (args.Length > 0 && args[0] is string refreshArg && refreshArg == "refresh")

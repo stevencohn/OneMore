@@ -61,7 +61,7 @@ namespace River.OneMoreAddIn
 
 			// register hotkey for each discovered command...
 
-			HotkeyManager.Initialize();
+			await HotkeyManager.Initialize();
 			var count = 0;
 
 			methods.ForEach((m) =>

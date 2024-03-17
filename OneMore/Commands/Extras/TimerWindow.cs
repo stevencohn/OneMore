@@ -53,7 +53,7 @@ namespace River.OneMoreAddIn.Commands
 		public int Seconds { get; private set; }
 
 
-		protected override void OnLoad(EventArgs e)
+		protected override async void OnLoad(EventArgs e)
 		{
 			// tell ThemeManager to ignore this window
 			ThemeEnabled = false;
@@ -62,7 +62,7 @@ namespace River.OneMoreAddIn.Commands
 
 			// deal with primary/secondary displays in either duplicate or extended mode...
 			Rectangle area;
-			using var one = new OneNote();
+			await using var one = new OneNote();
 			//for (int i = 0; i < Screen.AllScreens.Length; i++)
 			//{
 			//	var s = Screen.AllScreens[i];

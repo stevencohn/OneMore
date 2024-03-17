@@ -38,7 +38,7 @@ namespace River.OneMoreAddIn.Commands
 				return;
 			}
 
-			var content = plugin.TargetPage ? PreparePageCache() : await PrepareHierarchyCache();
+			var content = plugin.TargetPage ? await PreparePageCache() : await PrepareHierarchyCache();
 			if (content == null)
 			{
 				return;
@@ -57,7 +57,7 @@ namespace River.OneMoreAddIn.Commands
 						}
 						else
 						{
-							SaveHierarchy(root);
+							await SaveHierarchy(root);
 						}
 					}
 				}
@@ -122,9 +122,9 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private string PreparePageCache()
+		private async Task<string> PreparePageCache()
 		{
-			using var one = new OneNote(out page, out _, OneNote.PageDetail.All);
+			await using var one = new OneNote(out page, out _, OneNote.PageDetail.All);
 
 			// derive a temp file name from PageId which is of the form {sectionID}{}{pageId}
 			// so grab just the pageId part which should be a Guid spanning the last 32 digits
@@ -152,7 +152,7 @@ namespace River.OneMoreAddIn.Commands
 
 		private async Task<string> PrepareHierarchyCache()
 		{
-			using var one = new OneNote();
+			await using var one = new OneNote();
 			var notebook = await one.GetNotebook(OneNote.Scope.Sections);
 
 			// look for locked sections and warn user...
@@ -344,7 +344,7 @@ namespace River.OneMoreAddIn.Commands
 		{
 			try
 			{
-				using var one = new OneNote();
+				await using var one = new OneNote();
 
 				if (plugin.CreateNewPage)
 				{
@@ -438,11 +438,11 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private void SaveHierarchy(XElement root)
+		private async Task SaveHierarchy(XElement root)
 		{
 			try
 			{
-				using var one = new OneNote();
+				await using var one = new OneNote();
 				one.UpdateHierarchy(root);
 			}
 			catch (Exception exc)

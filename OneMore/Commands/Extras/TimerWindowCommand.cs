@@ -54,7 +54,7 @@ namespace River.OneMoreAddIn.Commands
 				return;
 			}
 
-			using var one = new OneNote(out var page, out var ns);
+			await using var one = new OneNote(out var page, out var ns);
 			var run = page.Root.Descendants(ns + "T")
 				.FirstOrDefault(e => e.Attribute("selected")?.Value == "all");
 

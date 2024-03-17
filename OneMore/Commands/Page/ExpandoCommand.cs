@@ -40,7 +40,7 @@ namespace River.OneMoreAddIn.Commands
 
 		public override async Task Execute(params object[] args)
 		{
-			using var one = new OneNote(out page, out ns);
+			await using var one = new OneNote(out page, out ns);
 
 			bool updated = false;
 

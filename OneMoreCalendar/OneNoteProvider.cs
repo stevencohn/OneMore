@@ -26,13 +26,13 @@ namespace OneMoreCalendar
 		/// </summary>
 		/// <param name="pageID"></param>
 		/// <returns>The path of the file generated</returns>
-		public string Export(string pageID)
+		public async Task<string> Export(string pageID)
 		{
 			var path = Path.Combine(
 				Path.GetTempPath(),
 				Path.GetFileNameWithoutExtension(Path.GetRandomFileName()) + ".emf");
 
-			using var one = new OneNote();
+			await using var one = new OneNote();
 			one.Export(pageID, path, OneNote.ExportFormat.EMF);
 
 			return path;
@@ -54,7 +54,7 @@ namespace OneMoreCalendar
 			IEnumerable<string> notebookIDs,
 			bool created, bool modified, bool deleted)
 		{
-			using var one = new OneNote();
+			await using var one = new OneNote();
 
 			var notebooks = await GetNotebooks(notebookIDs);
 			var ns = notebooks.GetNamespaceOfPrefix(OneNote.Prefix);
@@ -113,7 +113,7 @@ namespace OneMoreCalendar
 		{
 			// attempt optimal ways to load...
 
-			using var one = new OneNote();
+			await using var one = new OneNote();
 
 			if (!ids.Any())
 			{
@@ -159,7 +159,7 @@ namespace OneMoreCalendar
 		/// <returns></returns>
 		public async Task<IEnumerable<Notebook>> GetNotebooks()
 		{
-			using var one = new OneNote();
+			await using var one = new OneNote();
 			var notebooks = await one.GetNotebooks();
 			var ns = notebooks.GetNamespaceOfPrefix(OneNote.Prefix);
 
@@ -175,7 +175,7 @@ namespace OneMoreCalendar
 		/// <returns></returns>
 		public async Task<IEnumerable<int>> GetYears(IEnumerable<string> notebookIDs)
 		{
-			using var one = new OneNote();
+			await using var one = new OneNote();
 			var notebooks = await GetNotebooks(notebookIDs);
 			var ns = notebooks.GetNamespaceOfPrefix(OneNote.Prefix);
 
@@ -198,7 +198,7 @@ namespace OneMoreCalendar
 		/// <returns></returns>
 		public async Task NavigateTo(string pageID)
 		{
-			using var one = new OneNote();
+			await using var one = new OneNote();
 			var url = one.GetHyperlink(pageID, string.Empty);
 			if (!string.IsNullOrEmpty(url))
 			{

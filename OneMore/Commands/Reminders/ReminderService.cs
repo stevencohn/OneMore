@@ -59,7 +59,7 @@ namespace River.OneMoreAddIn.Commands
 
 		private async Task Scan()
 		{
-			using var one = new OneNote();
+			await using var one = new OneNote();
 			var hierarchy = await one.SearchMeta(string.Empty, MetaNames.Reminder);
 			if (hierarchy == null)
 			{

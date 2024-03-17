@@ -37,7 +37,7 @@ namespace River.OneMoreAddIn.Commands
 				return;
 			}
 
-			using var one = new OneNote(out var page, out ns);
+			await using var one = new OneNote(out var page, out ns);
 			if (!page.IsValid)
 			{
 				return;

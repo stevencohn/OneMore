@@ -63,7 +63,7 @@ namespace River.OneMoreAddIn.Commands
 			{
 				synopses = args.Any(a => a as string == "synopsis");
 				unindexed = args.Any(a => a as string == "unindexed");
-				refreshing = Refresh();
+				refreshing = await Refresh();
 			}
 
 			if (!refreshing)
@@ -84,9 +84,9 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private bool Refresh()
+		private async Task<bool> Refresh()
 		{
-			using (one = new OneNote(out page, out ns))
+			await using (one = new OneNote(out page, out ns))
 			{
 				// find linked references content block...
 
@@ -131,7 +131,7 @@ namespace River.OneMoreAddIn.Commands
 			logger.Start();
 			logger.StartClock();
 
-			using (one = new OneNote())
+			await using (one = new OneNote())
 			{
 				if (page == null)
 				{

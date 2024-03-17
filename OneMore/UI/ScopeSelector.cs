@@ -139,7 +139,7 @@ namespace River.OneMoreAddIn.UI
 		{
 			listBox.Items.Clear();
 
-			using var one = new OneNote();
+			await using var one = new OneNote();
 			var notebooks = await one.GetNotebooks();
 			var ns = one.GetNamespace(notebooks);
 			notebooks.Elements(ns + "Notebook").ForEach(n =>

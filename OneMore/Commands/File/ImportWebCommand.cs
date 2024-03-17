@@ -162,7 +162,7 @@ namespace River.OneMoreAddIn.Commands
 			try
 			{
 				Page page = null;
-				using (var one = new OneNote())
+				await using (var one = new OneNote())
 				{
 					page = target == ImportWebTarget.Append
 						? await one.GetPage()
@@ -211,7 +211,7 @@ namespace River.OneMoreAddIn.Commands
 
 				progress.SetMessage($"Updating page");
 
-				using (var one = new OneNote())
+				await using (var one = new OneNote())
 				{
 					await one.Update(page);
 				}
@@ -336,7 +336,7 @@ namespace River.OneMoreAddIn.Commands
 			//content = PreMailer.MoveCssInline(baseUri, doc.DocumentNode.OuterHtml,
 			//	stripIdAndClassAttributes: true, removeComments: true).Html;
 
-			using (var one = new OneNote())
+			await using (var one = new OneNote())
 			{
 				Page page;
 

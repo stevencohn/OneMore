@@ -31,7 +31,7 @@ namespace River.OneMoreAddIn.Commands
 		{
 			logger.StartClock();
 
-			using var one = new OneNote();
+			await using var one = new OneNote();
 
 			var section = await one.GetSection();
 			if (section != null)

@@ -12,6 +12,7 @@ namespace River.OneMoreAddIn.Commands
 	using System.Drawing;
 	using System.Globalization;
 	using System.Linq;
+	using System.Threading.Tasks;
 	using System.Windows.Forms;
 	using Resx = Properties.Resources;
 
@@ -100,9 +101,15 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private void PopulateTags(object sender, EventArgs e)
+		private void DoPopulateTags(object sender, EventArgs e)
 		{
-			using var one = new OneNote();
+			Task.Run(async () => { await PopulateTags(sender, e); });
+		}
+
+
+		private async Task PopulateTags(object sender, EventArgs e)
+		{
+			await using var one = new OneNote();
 			var provider = new HashtagProvider();
 
 			var names = scopeBox.SelectedIndex switch
@@ -125,7 +132,7 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private void DoKeyDown(object sender, KeyEventArgs e)
+		private async void DoKeyDown(object sender, KeyEventArgs e)
 		{
 			if (e.KeyCode == Keys.Escape && !palette.IsPopupVisible)
 			{
@@ -135,12 +142,18 @@ namespace River.OneMoreAddIn.Commands
 			else if (e.KeyCode == Keys.Enter)
 			{
 				e.Handled = true;
-				SearchTags(sender, e);
+				await SearchTags(sender, e);
 			}
 		}
 
 
-		private void SearchTags(object sender, EventArgs e)
+		private void DoSearchTags(object sender, EventArgs e)
+		{
+			Task.Run(async () => {  await SearchTags(sender, e); });
+		}
+
+
+		private async Task SearchTags(object sender, EventArgs e)
 		{
 			var where = tagBox.Text.Trim();
 			if (where.IsNullOrEmpty())
@@ -148,7 +161,7 @@ namespace River.OneMoreAddIn.Commands
 				return;
 			}
 
-			using var one = new OneNote();
+			await using var one = new OneNote();
 			var provider = new HashtagProvider();
 			string parsed;
 
@@ -344,7 +357,7 @@ namespace River.OneMoreAddIn.Commands
 			var time = clock.ElapsedMilliseconds;
 			logger.WriteLine($"scanned {totalPages} pages, updating {dirtyPages}, in {time}ms");
 
-			PopulateTags(sender, e);
+			await PopulateTags(sender, e);
 		}
 
 

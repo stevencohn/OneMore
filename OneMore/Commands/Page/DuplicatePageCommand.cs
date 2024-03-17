@@ -26,7 +26,7 @@ namespace River.OneMoreAddIn.Commands
 		public override async Task Execute(params object[] args)
 		{
 			// need All detail to copy images and Ink
-			using var one = new OneNote(out var page, out var ns, OneNote.PageDetail.All);
+			await using var one = new OneNote(out var page, out var ns, OneNote.PageDetail.All);
 			var originalId = page.PageId;
 			var sectionId = one.CurrentSectionId;
 
