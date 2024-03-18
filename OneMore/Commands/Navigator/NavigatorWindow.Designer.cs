@@ -43,7 +43,7 @@
 			this.pageBox = new River.OneMoreAddIn.UI.MoreFlowLayoutPanel();
 			this.pageHeadPanel = new River.OneMoreAddIn.UI.MorePanel();
 			this.refreshButton = new River.OneMoreAddIn.UI.MoreButton();
-			this.pageHeadLabel = new System.Windows.Forms.Label();
+			this.pageHeadLabel = new UI.MoreLabel();
 			this.subContainer = new System.Windows.Forms.SplitContainer();
 			this.pinnedBox = new River.OneMoreAddIn.UI.MoreListView();
 			this.pinnedHeadPanel = new River.OneMoreAddIn.UI.MorePanel();
@@ -52,13 +52,13 @@
 			this.upButton = new River.OneMoreAddIn.UI.MoreButton();
 			this.unpinButton = new River.OneMoreAddIn.UI.MoreButton();
 			this.downButton = new River.OneMoreAddIn.UI.MoreButton();
-			this.pinnedHeadLabel = new System.Windows.Forms.Label();
+			this.pinnedHeadLabel = new UI.MoreLabel();
 			this.historyBox = new River.OneMoreAddIn.UI.MoreListView();
 			this.historyHeadPanel = new River.OneMoreAddIn.UI.MorePanel();
 			this.historyToolPanel = new System.Windows.Forms.Panel();
 			this.pinButton = new River.OneMoreAddIn.UI.MoreButton();
 			this.copyHistoryButton = new River.OneMoreAddIn.UI.MoreButton();
-			this.historyHeadLabel = new System.Windows.Forms.Label();
+			this.historyHeadLabel = new UI.MoreLabel();
 			this.tooltip = new System.Windows.Forms.ToolTip(this.components);
 			this.controlPanel.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.mainContainer)).BeginInit();
@@ -538,9 +538,9 @@
 		private System.Windows.Forms.SplitContainer subContainer;
 		private UI.MorePanel pinnedHeadPanel;
 		private UI.MorePanel historyHeadPanel;
-		private System.Windows.Forms.Label pageHeadLabel;
-		private System.Windows.Forms.Label pinnedHeadLabel;
-		private System.Windows.Forms.Label historyHeadLabel;
+		private River.OneMoreAddIn.UI.MoreLabel pageHeadLabel;
+		private River.OneMoreAddIn.UI.MoreLabel pinnedHeadLabel;
+		private River.OneMoreAddIn.UI.MoreLabel historyHeadLabel;
 		private River.OneMoreAddIn.UI.MoreListView pinnedBox;
 		private River.OneMoreAddIn.UI.MoreListView historyBox;
 		private River.OneMoreAddIn.UI.MoreFlowLayoutPanel pageBox;
