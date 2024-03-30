@@ -108,10 +108,6 @@ namespace River.OneMoreAddIn.Commands
 			row = table.AddRow();
 			cell = row.Cells.First();
 
-
-			System.Diagnostics.Debugger.Launch();
-
-
 			if (// cursor is not null if selection range is empty
 				cursor != null &&
 				// selection range is a single line containing a hyperlink
@@ -123,6 +119,8 @@ namespace River.OneMoreAddIn.Commands
 			}
 			else
 			{
+				System.Diagnostics.Debugger.Launch();
+
 				// selection range found so move it into snippet
 				var reader = new PageReader(page);
 				var content = reader.ExtractSelectedContent();
@@ -148,20 +146,16 @@ namespace River.OneMoreAddIn.Commands
 				logger.WriteLine("--- root ---");
 				logger.WriteLine(page.Root);
 
-				if (reader.Anchor.Name.LocalName == "Outline")
+				var localName = reader.Anchor.Name.LocalName;
+				var box = new XElement(ns + "OE", table.Root);
+
+				if (localName == "OE" || localName == "HTMLBlock")
 				{
-					// selected text was a subset of runs under an OE
-					reader.Anchor.AddFirst(new XElement(ns + "OE", table.Root));
+					reader.Anchor.AddAfterSelf(box);
 				}
-				else if (reader.Anchor.Name.LocalName == "OEChildren")
+				else // if (localName == "OEChildren")
 				{
-					// selected text was a subset of runs under an OE
-					reader.Anchor.Add(new XElement(ns + "OE", table.Root));
-				}
-				else
-				{
-					// selected text was all of an OE
-					reader.Anchor.AddAfterSelf(new XElement(ns + "OE", table.Root));
+					reader.Anchor.AddFirst(box);
 				}
 			}
 

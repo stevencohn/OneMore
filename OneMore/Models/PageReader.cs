@@ -55,8 +55,7 @@ namespace River.OneMoreAddIn.Models
 				return content;
 			}
 
-			// first parent is considered the anchor point, to which the
-			// consumer may choose to insert the newly collated content
+			// find best anchor, either previous node (OE/HTMLBlock) or closet parent (OEChildren)
 			Anchor = runs[0].Parent.PreviousNode is XElement prev
 				? prev
 				: runs[0].Parent.Parent;
@@ -75,8 +74,16 @@ namespace River.OneMoreAddIn.Models
 			{
 				if (snippet.Depth > stack.Count)
 				{
+					var child = container.Elements(ns + "OE").FirstOrDefault();
+					if (child is null)
+					{
+						child = new XElement(ns + "OE");
+						container.Add(child);
+					}
+
 					var children = new XElement(ns + "OEChildren");
-					container.Add(new XElement(ns + "OE", children));
+					child.Add(children);
+
 					stack.Push(children);
 					container = children;
 				}
@@ -107,7 +114,7 @@ namespace River.OneMoreAddIn.Models
 			var snippets = new List<Snippet>();
 			foreach (var run in runs)
 			{
-				var depth = IndentLevel(run.Parent);
+				var depth = IndentLevel(run);
 
 				XElement element;
 				if ((run.PreviousNode is XElement prev && 
