@@ -108,6 +108,10 @@ namespace River.OneMoreAddIn.Commands
 			row = table.AddRow();
 			cell = row.Cells.First();
 
+
+			System.Diagnostics.Debugger.Launch();
+
+
 			if (// cursor is not null if selection range is empty
 				cursor != null &&
 				// selection range is a single line containing a hyperlink
@@ -120,7 +124,16 @@ namespace River.OneMoreAddIn.Commands
 			else
 			{
 				// selection range found so move it into snippet
-				var content = page.ExtractSelectedContent(out var firstParent);
+				var reader = new PageReader(page);
+				var content = reader.ExtractSelectedContent();
+
+				if (!content.HasElements)
+				{
+					UIHelper.ShowError(Resx.Error_BodyContext);
+					logger.WriteLine("error reading page content!");
+					return;
+				}
+
 				cell.SetContent(content);
 
 				var shading = DetermineShading(page, content);
@@ -129,17 +142,31 @@ namespace River.OneMoreAddIn.Commands
 					cell.ShadingColor = shading;
 				}
 
-				if (firstParent.HasElements)
+				logger.WriteLine("--- content ---");
+				logger.WriteLine(table.Root);
+
+				logger.WriteLine("--- root ---");
+				logger.WriteLine(page.Root);
+
+				if (reader.Anchor.Name.LocalName == "Outline")
 				{
 					// selected text was a subset of runs under an OE
-					firstParent.AddAfterSelf(new XElement(ns + "OE", table.Root));
+					reader.Anchor.AddFirst(new XElement(ns + "OE", table.Root));
+				}
+				else if (reader.Anchor.Name.LocalName == "OEChildren")
+				{
+					// selected text was a subset of runs under an OE
+					reader.Anchor.Add(new XElement(ns + "OE", table.Root));
 				}
 				else
 				{
 					// selected text was all of an OE
-					firstParent.Add(table.Root);
+					reader.Anchor.AddAfterSelf(new XElement(ns + "OE", table.Root));
 				}
 			}
+
+			logger.WriteLine("--- save ---");
+			logger.WriteLine(page.Root);
 
 			await one.Update(page);
 		}
