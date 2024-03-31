@@ -118,6 +118,11 @@ namespace River.OneMoreAddIn.Models
 				.Where(e => e != Anchor && !e.Elements().Any())
 				.Remove();
 
+			// clean up selected attributes; keep only select snippets
+			page.Root.DescendantNodes().OfType<XAttribute>()
+				.Where(a => a.Name.LocalName == "selected")
+				.Remove();
+
 			if (Anchor.Name.LocalName == "OE")
 			{
 				var list = Anchor.Elements(ns + "List").FirstOrDefault();
@@ -159,8 +164,7 @@ namespace River.OneMoreAddIn.Models
 					run.Remove();
 
 					element = new XElement(ns + parent.Name.LocalName,
-						parent.Attributes().Where(a =>
-							a.Name.LocalName != "objectID" && a.Name.LocalName != "selected"),
+						parent.Attributes().Where(a => !a.Name.LocalName.In("objectID", "selected")),
 						content
 						);
 				}
