@@ -1,5 +1,5 @@
 ﻿//************************************************************************************************
-// Copyright © 2022 Steven M Cohn.  All rights reserved.
+// Copyright © 2022 Steven M Cohn. All rights reserved.
 //************************************************************************************************
 
 namespace River.OneMoreAddIn.Models
@@ -48,8 +48,8 @@ namespace River.OneMoreAddIn.Models
 				.Where(e => e.Attributes().Any(a => a.Name == "selected" && a.Value == "all"))
 				.ToList();
 
-			// no selections in body or only zero-length insertion cursor
-			if (!runs.Any() || (runs.Count == 1 && runs[0].GetCData().Value.Length == 0))
+			// no selections in body
+			if (!runs.Any())
 			{
 				Anchor = null;
 				return content;
@@ -100,10 +100,38 @@ namespace River.OneMoreAddIn.Models
 				container.Add(snippet.Element);
 			}
 
-			// clean up orphaned OEChildren
+			Logger.Current.WriteLine("--- preclean ---");
+			Logger.Current.WriteLine(page.Root);
+
+			// clean up orphaned OE elements
+			page.Root.Descendants(ns + "OE")
+				.Where(e => e != Anchor &&
+					!e.Elements().Any(c =>
+						c.Name.LocalName.In(
+							"T", "Table", "Image", "InkParagraph", "InkWord",
+							"InsertedFile", "MediaFile", "OEChildren", "OutlookTask",
+							"LinkedNote", "FutureObject")))
+				.Remove();
+
+			// clean up orphaned OEChildren elements
 			page.Root.Descendants(ns + "OEChildren")
 				.Where(e => e != Anchor && !e.Elements().Any())
 				.Remove();
+
+			if (Anchor.Name.LocalName == "OE")
+			{
+				var list = Anchor.Elements(ns + "List").FirstOrDefault();
+				if (list is not null)
+				{
+					if (!Anchor.Elements().Any(e => e.Name.LocalName.In("T", "InkWord")))
+					{
+						list.Remove();
+					}
+				}
+			}
+
+			Logger.Current.WriteLine("--- cleaned ---");
+			Logger.Current.WriteLine(page.Root);
 
 			return content;
 		}
@@ -117,8 +145,7 @@ namespace River.OneMoreAddIn.Models
 				var depth = IndentLevel(run);
 
 				XElement element;
-				if ((run.PreviousNode is XElement prev && 
-					(prev.Name.LocalName == "T" || prev.Name.LocalName == "InkWord")) ||
+				if ((run.PreviousNode is XElement prev && prev.Name.LocalName.In("T", "InkWord")) ||
 					run.NextNode is not null)
 				{
 					var content = new List<XElement> { run };
@@ -126,7 +153,7 @@ namespace River.OneMoreAddIn.Models
 
 					if (parent.Elements(ns + "List").FirstOrDefault() is XElement list)
 					{
-						content.Add(XElement.Parse(list.ToString(SaveOptions.DisableFormatting)));
+						content.Insert(0, XElement.Parse(list.ToString(SaveOptions.DisableFormatting)));
 					}
 
 					run.Remove();
@@ -156,22 +183,25 @@ namespace River.OneMoreAddIn.Models
 
 		private int IndentLevel(XElement element)
 		{
-			var count = 0;
-			var node = element;
-
-			if (node is not null)
+			if (element is null)
 			{
-				while (node.Parent != null && node.Parent.Name != "Outline")
+				return 0;
+			}
+
+			var count = 0;
+			var node = element.Parent;
+
+			while (!node.Name.LocalName.In("Outline", "Cell") &&
+				node.Parent is not null && !node.Parent.Name.LocalName.In("Outline", "Cell"))
+			{
+				node = node.Parent;
+				if (node.Name.LocalName == "OEChildren")
 				{
-					node = node.Parent;
-					if (node.Name.LocalName == "OEChildren")
-					{
-						count++;
-					}
+					count++;
 				}
 			}
 
-			return node is null ? -1 : count;
+			return count;
 		}
 	}
 }

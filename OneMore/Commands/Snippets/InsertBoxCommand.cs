@@ -109,7 +109,7 @@ namespace River.OneMoreAddIn.Commands
 			cell = row.Cells.First();
 
 			if (// cursor is not null if selection range is empty
-				cursor != null &&
+				cursor is not null &&
 				// selection range is a single line containing a hyperlink
 				!(page.SelectionSpecial && page.SelectionScope == SelectionScope.Empty))
 			{
@@ -135,7 +135,7 @@ namespace River.OneMoreAddIn.Commands
 				cell.SetContent(content);
 
 				var shading = DetermineShading(page, content);
-				if (shading != null)
+				if (shading is not null)
 				{
 					cell.ShadingColor = shading;
 				}
@@ -169,13 +169,13 @@ namespace River.OneMoreAddIn.Commands
 		private float CalculateWidth(XElement cursor, XElement root)
 		{
 			// if selected range
-			if (cursor == null)
+			if (cursor is null)
 			{
 				cursor = root.Elements(ns + "Outline")
 					.Descendants(ns + "T")
 					.FirstOrDefault(e => e.Attributes().Any(a => a.Name == "selected" && a.Value == "all"));
 
-				if (cursor == null)
+				if (cursor is null)
 				{
 					// shouldn't happen
 					return DefaultWidth;
@@ -185,14 +185,14 @@ namespace River.OneMoreAddIn.Commands
 			// if insertion point is within a table cell then assume the width of that cell
 
 			var cell = cursor.Ancestors(ns + "Cell").FirstOrDefault();
-			if (cell != null)
+			if (cell is not null)
 			{
 				var index = cell.ElementsBeforeSelf(ns + "Cell").Count().ToString();
 				var column = cell.Ancestors(ns + "Table")
 					.Elements(ns + "Columns").Elements(ns + "Column")
 					.FirstOrDefault(e => e.Attribute("index")?.Value == index);
 
-				if (column != null)
+				if (column is not null)
 				{
 					return (float)Math.Floor(double.Parse(
 						column.Attribute("width").Value, CultureInfo.InvariantCulture));
@@ -205,7 +205,7 @@ namespace River.OneMoreAddIn.Commands
 			var size = cursor.Ancestors(ns + "Outline").Elements(ns + "Size")
 				.FirstOrDefault(e => e.Attribute("isSetByUser")?.Value == "true");
 
-			if (size != null)
+			if (size is not null)
 			{
 				return (float)Math.Floor(double.Parse(
 					size.Attribute("width").Value, CultureInfo.InvariantCulture));

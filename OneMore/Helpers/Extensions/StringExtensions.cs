@@ -126,6 +126,22 @@ namespace River.OneMoreAddIn
 
 
 		/// <summary>
+		/// Determines if the current string is one of a given set of values
+		/// </summary>
+		/// <param name="item"></param>
+		/// <param name="items"></param>
+		/// <returns></returns>
+		/// <exception cref="ArgumentNullException"></exception>
+		public static bool In(this string item, params string[] items)
+		{
+			if (items == null)
+				throw new ArgumentNullException("items");
+
+			return items.Contains(item);
+		}
+
+
+		/// <summary>
 		/// Strip all HTML from the given string
 		/// </summary>
 		/// <param name="s"></param>
