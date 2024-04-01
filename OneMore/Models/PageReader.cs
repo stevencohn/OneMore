@@ -48,7 +48,7 @@ namespace River.OneMoreAddIn.Models
 				.Where(e => e.Attributes().Any(a => a.Name == "selected" && a.Value == "all"))
 				.ToList();
 
-			// no selections in body
+			// no selections found in body
 			if (!runs.Any())
 			{
 				Anchor = null;
@@ -63,7 +63,7 @@ namespace River.OneMoreAddIn.Models
 			Logger.Current.WriteLine("Anchor...");
 			Logger.Current.WriteLine(Anchor);
 
-			var snippets = CollectSnippets(runs);
+			var snippets = ExtractSnippets(runs);
 
 			var stack = new Stack<XElement>();
 			stack.Push(content);
@@ -123,6 +123,13 @@ namespace River.OneMoreAddIn.Models
 				.Where(a => a.Name.LocalName == "selected")
 				.Remove();
 
+			// patch any empty cells, cheap but effective!
+            foreach (var item in page.Root.Descendants(ns + "Cell")
+				.Where(e => !e.Elements().Any()))
+            {
+				new TableCell(item).SetContent(string.Empty);
+            }
+ 
 			if (Anchor.Name.LocalName == "OE")
 			{
 				var list = Anchor.Elements(ns + "List").FirstOrDefault();
@@ -142,37 +149,59 @@ namespace River.OneMoreAddIn.Models
 		}
 
 
-		private List<Snippet> CollectSnippets(List<XElement> runs)
+		private List<Snippet> ExtractSnippets(List<XElement> runs)
 		{
 			var snippets = new List<Snippet>();
 			foreach (var run in runs)
 			{
+				var prev = run.PreviousNode as XElement;
+				var next = run.NextNode as XElement;
+				var parent = run.Parent;
+
 				var depth = IndentLevel(run);
-
 				XElement element;
-				if ((run.PreviousNode is XElement prev && prev.Name.LocalName.In("T", "InkWord")) ||
-					run.NextNode is not null)
+
+				var alone =
+					// anything after run means there is more content: not alone
+					next is null &&
+					(prev is not null &&
+					// these are all considered informational and not preserved content
+					// TODO: OneMore Tags and Metas, e.g. scheduled task?
+					!prev.Name.LocalName.In("MediaIndex", "Tag", "OutlookTask", "Meta", "List"));
+
+				if (alone)
 				{
-					var content = new List<XElement> { run };
-					var parent = run.Parent;
+					var grand = parent.Parent;
 
-					if (parent.Elements(ns + "List").FirstOrDefault() is XElement list)
+					element = parent;
+					parent.Remove();
+
+					// don't leave empty cells
+					if (grand.Name.LocalName == "Cell")
 					{
-						content.Insert(0, XElement.Parse(list.ToString(SaveOptions.DisableFormatting)));
+						var cell = new TableCell(grand);
+						cell.SetContent(string.Empty);
 					}
-
-					run.Remove();
-
-					element = new XElement(ns + parent.Name.LocalName,
-						parent.Attributes().Where(a => !a.Name.LocalName.In("objectID", "selected")),
-						content
-						);
 				}
 				else
 				{
-					element = run.Parent;
-					run.Parent.Remove();
+					element = new XElement(ns + parent.Name.LocalName,
+						parent.Attributes()
+							.Where(a => !a.Name.LocalName.In("objectID", "selected"))
+						);
+
+					if (parent.Elements(ns + "List").FirstOrDefault() is XElement list)
+					{
+						element.Add(XElement.Parse(list.ToString(SaveOptions.DisableFormatting)));
+					}
+
+					element.Add(run);
+
+					run.Remove();
 				}
+
+				Logger.Current.WriteLine("snippet");
+				Logger.Current.WriteLine(element);
 
 				snippets.Add(new Snippet
 				{

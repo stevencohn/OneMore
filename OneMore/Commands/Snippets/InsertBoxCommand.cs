@@ -143,7 +143,7 @@ namespace River.OneMoreAddIn.Commands
 				logger.WriteLine("--- content ---");
 				logger.WriteLine(table.Root);
 
-				logger.WriteLine("--- root ---");
+				logger.WriteLine("--- root slim ---");
 				logger.WriteLine(page.Root);
 
 				var localName = reader.Anchor.Name.LocalName;
@@ -159,7 +159,7 @@ namespace River.OneMoreAddIn.Commands
 				}
 			}
 
-			logger.WriteLine("--- save ---");
+			logger.WriteLine("--- root save ---");
 			logger.WriteLine(page.Root);
 
 			await one.Update(page);
