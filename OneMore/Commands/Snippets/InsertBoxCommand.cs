@@ -119,8 +119,6 @@ namespace River.OneMoreAddIn.Commands
 			}
 			else
 			{
-				System.Diagnostics.Debugger.Launch();
-
 				// selection range found so move it into snippet
 				var reader = new PageReader(page);
 				var content = await reader.ExtractSelectedContent();
@@ -140,27 +138,18 @@ namespace River.OneMoreAddIn.Commands
 					cell.ShadingColor = shading;
 				}
 
-				logger.WriteLine("--- content ---");
-				logger.WriteLine(table.Root);
-
-				logger.WriteLine("--- root slim ---");
-				logger.WriteLine(page.Root);
-
 				var localName = reader.Anchor.Name.LocalName;
 				var box = new XElement(ns + "OE", table.Root);
 
-				if (localName == "OE" || localName == "HTMLBlock")
+				if (localName.In("OE", "HTMLBlock"))
 				{
 					reader.Anchor.AddAfterSelf(box);
 				}
-				else // if (localName == "OEChildren")
+				else // if (localName.In("OEChildren", "Outline"))
 				{
 					reader.Anchor.AddFirst(box);
 				}
 			}
-
-			logger.WriteLine("--- root save ---");
-			logger.WriteLine(page.Root);
 
 			await one.Update(page);
 		}
@@ -296,28 +285,3 @@ namespace River.OneMoreAddIn.Commands
 		}
 	}
 }
-/*
-<one:Table bordersVisible="true">
-  <one:Columns>
-    <one:Column index="0" width="550" isLocked="true" />
-  </one:Columns>
-  <one:Row>
-    <one:Cell shadingColor="#F2F2F2">
-      <one:OEChildren>
-        <one:OE style="font-family:'Segoe UI';font-size:11.0pt;color:black">
-          <one:T><![CDATA[<span style='font-weight:bold;background:white'>Code</span>]]></one:T>
-        </one:OE>
-      </one:OEChildren>
-    </one:Cell>
-  </one:Row>
-  <one:Row>
-    <one:Cell>
-      <one:OEChildren selected="partial">
-        <one:OE style="font-family:'Lucida Console';font-size:9.0pt">
-          <one:T><![CDATA[Your code here...]]></one:T>
-        </one:OE>
-      </one:OEChildren>
-    </one:Cell>
-  </one:Row>
-</one:Table>
-*/

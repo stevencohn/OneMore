@@ -2,10 +2,9 @@
 // Copyright © 2022 Steven M Cohn. All rights reserved.
 //************************************************************************************************
 
-#define Verbose
-
 namespace River.OneMoreAddIn.Models
 {
+	using System;
 	using System.Collections.Generic;
 	using System.Linq;
 	using System.Threading.Tasks;
@@ -34,9 +33,19 @@ namespace River.OneMoreAddIn.Models
 		}
 
 
+		/// <summary>
+		/// Gets the anchor point for reintroducing collated content.
+		/// If this is an OE or HTMLBlock then consumers may want to insert after that.
+		/// Otherwise, consumers may want to insert at end of anchor container.
+		/// </summary>
 		public XElement Anchor { get; private set; }
 
 
+		/// <summary>
+		/// Extracts all selected content as a single OEChildren element, preserving relative
+		/// indents, table content, etc. The selected content is removedd from the page.
+		/// </summary>
+		/// <returns>An OEChildren XElement</returns>
 		public async Task<XElement> ExtractSelectedContent()
 		{
 			var content = new XElement(ns + "OEChildren");
@@ -62,43 +71,55 @@ namespace River.OneMoreAddIn.Models
 			}
 
 			// find best anchor, either previous node (OE/HTMLBlock) or closet parent (OEChildren)
-			Anchor = runs[0].Parent.PreviousNode is XElement prev
-				? prev
-				: runs[0].Parent.Parent;
-#if Verbose
-			Logger.Current.WriteLine("Anchor...");
-			Logger.Current.WriteLine(Anchor);
-#endif
+			if (runs[0].Parent.PreviousNode is XElement prev)
+			{
+				Anchor = prev;
+			}
+			else
+			{
+				Anchor = runs[0].Parent.Parent;
+
+				// if a descendent of a Cell then check if the entire table is selected and
+				// adjust the anchor point based on that, otherwise we loose the table
+				if (Anchor.FirstAncestor(ns + "Cell") is XElement cell &&
+					WholeTableSelected(cell) is XElement table)
+				{
+					Anchor = table.Parent.PreviousNode is XElement pprev
+						// previous 
+						? pprev
+						: table.Parent.Parent;
+				}
+			}
+
 			var snippets = await ExtractSnippets(runs);
 
 			// construct a hierarchy of content based on snippet indent levels...
-			var container = content;
+
+			var current = content;
 			var depth = 1;
 			foreach (var snippet in snippets)
 			{
-#if Verbose
-				Logger.Current.WriteLine($"snippet depth={snippet.Depth}");
-				Logger.Current.WriteLine(snippet.Element);
-#endif
 				if (snippet.Depth > depth)
 				{
+					// indent...
 					depth++;
 
-					var child = container.Elements(ns + "OE").LastOrDefault();
+					var child = current.Elements(ns + "OE").LastOrDefault();
 					if (child is null)
 					{
 						child = new XElement(ns + "OE");
-						container.Add(child);
+						current.Add(child);
 					}
 
 					var children = new XElement(ns + "OEChildren");
 					child.Add(children);
 
-					container = children;
+					current = children;
 				}
 				else if (snippet.Depth < depth)
 				{
-					container = container.Parent.Parent;
+					// outdent...
+					current = current.Parent.Parent;
 					depth--;
 				}
 
@@ -107,7 +128,7 @@ namespace River.OneMoreAddIn.Models
 					attribute.Remove();
 				}
 
-				container.Add(snippet.Element);
+				current.Add(snippet.Element);
 			}
 
 			CleanupOrphanedElements();
@@ -116,47 +137,90 @@ namespace River.OneMoreAddIn.Models
 		}
 
 
+		private XElement WholeTableSelected(XElement cell)
+		{
+			var table = cell.FirstAncestor(ns + "Table");
+			if (table.Descendants(ns + "Cell")
+				.All(c => c.Attribute("selected")?.Value == "all"))
+			{
+				return table;
+			}
+
+			return null;
+		}
+
+
 		private async Task<List<Snippet>> ExtractSnippets(List<XElement> runs)
 		{
 			await using var one = new OneNote();
+			var tables = new List<XElement>();
 
 			var snippets = new List<Snippet>();
 			foreach (var run in runs)
 			{
 				var prev = run.PreviousNode as XElement;
 				var next = run.NextNode as XElement;
-				var parent = run.Parent;
+				var parent = run.Parent; // OE
 
 				var depth = IndentLevel(run);
-				XElement element;
+				XElement element = null;
 
 				var alone =
 					// anything after run means there is more content: not alone
 					next is null &&
+					// informational elements don't count towards "content" (all of them?)
 					(prev is null ||
 					!prev.Name.LocalName.In("MediaIndex", "Tag", "OutlookTask", "Meta", "List"));
 
 				if (alone)
 				{
-					var grand = parent.Parent;
+					// alone means that there is exactly one content element in this OE
+					// so we could reclaim the OE if possible...
 
-					element = parent;
-					parent.Remove();
+					var grand = parent.Parent; // OEChildren
+					var inCell = grand.Parent.Name.LocalName == "Cell";
 
-					// don't leave empty cells
-					if (grand.Name.LocalName == "Cell")
+					if (inCell && WholeTableSelected(grand) is XElement table)
 					{
-						var cell = new TableCell(grand);
-						cell.SetContent(string.Empty);
+						// special case to handle entire table selection, where we want to wrap
+						// the table, possibly with other content. So do not count individual
+						// runs within the table
+
+						if (!tables.Contains(table))
+						{
+							element = new XElement(ns + "OE",
+								table.Parent.Attributes()
+									.Where(a => !a.Name.LocalName.In("objectID", "selected"))
+								);
+
+							table.Remove();
+							tables.Add(table);
+
+							element.Add(table);
+						}
+					}
+					else
+					{
+						element = parent;
+						parent.Remove();
+
+						if (inCell)
+						{
+							// don't leave table cells empty; must have default content
+							var cell = new TableCell(grand.Parent);
+							cell.SetContent(string.Empty);
+						}
 					}
 				}
 				else
 				{
+					// copy parent attributes to preserve quickstyles
 					element = new XElement(ns + parent.Name.LocalName,
 						parent.Attributes()
 							.Where(a => !a.Name.LocalName.In("objectID", "selected"))
 						);
 
+					// copy list configuration if any
 					if (parent.Elements(ns + "List").FirstOrDefault() is XElement list)
 					{
 						element.Add(XElement.Parse(list.ToString(SaveOptions.DisableFormatting)));
@@ -167,23 +231,26 @@ namespace River.OneMoreAddIn.Models
 					run.Remove();
 				}
 
-				// when moving an Image from a page loaded with Basic or Selection scope,
-				// it can get unwired internally and loose its data so explicitly replace
-				// the CallbackID with raw Base64 Data
-				if (run.Name.LocalName == "Image" &&
-					run.Elements(ns + "CallbackID").FirstOrDefault() is XElement callback)
+				if (element is not null)
 				{
-					var data = one.GetPageContent(page.PageId,
-						callback.Attribute("callbackID").Value);
+					// when moving an Image from a page loaded with Basic or Selection scope,
+					// it can get unwired internally and loose its data so explicitly replace
+					// the CallbackID with raw Base64 Data
+					if (run.Name.LocalName == "Image" &&
+						run.Elements(ns + "CallbackID").FirstOrDefault() is XElement callback)
+					{
+						var data = one.GetPageContent(page.PageId,
+							callback.Attribute("callbackID").Value);
 
-					callback.ReplaceWith(new XElement(ns + "Data", data));
+						callback.ReplaceWith(new XElement(ns + "Data", data));
+					}
+
+					snippets.Add(new Snippet
+					{
+						Element = element,
+						Depth = depth
+					});
 				}
-
-				snippets.Add(new Snippet
-				{
-					Element = element,
-					Depth = depth
-				});
 			}
 
 			return snippets;
@@ -216,10 +283,6 @@ namespace River.OneMoreAddIn.Models
 
 		private void CleanupOrphanedElements()
 		{
-#if Verbose
-			Logger.Current.WriteLine("--- preclean ---");
-			Logger.Current.WriteLine(page.Root);
-#endif
 			// clean up orphaned OE elements
 			page.Root.Descendants(ns + "OE")
 				.Where(e => e != Anchor &&
@@ -247,6 +310,12 @@ namespace River.OneMoreAddIn.Models
 				new TableCell(item).SetContent(string.Empty);
 			}
 
+			var outline = page.EnsureContentContainer();
+			if (Anchor.Parent is null)
+			{
+				Anchor = outline;
+			}
+
 			if (Anchor.Name.LocalName == "OE")
 			{
 				var list = Anchor.Elements(ns + "List").FirstOrDefault();
@@ -258,10 +327,6 @@ namespace River.OneMoreAddIn.Models
 					}
 				}
 			}
-#if Verbose
-			Logger.Current.WriteLine("--- cleaned ---");
-			Logger.Current.WriteLine(page.Root);
-#endif
 		}
 	}
 }
