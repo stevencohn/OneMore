@@ -585,6 +585,34 @@ namespace River.OneMoreAddIn
 
 
 		/// <summary>
+		/// Gets the raw Base64 value of the specified binary item on the page
+		/// as specified by its callback ID.
+		/// </summary>
+		/// <param name="pageId">The unique ID of the page</param>
+		/// <param name="callbackId">The callback ID of the object to retreive</param>
+		/// <returns>A string specifying the Base64 value of the object</returns>
+		public string GetPageContent(string pageId, string callbackId)
+		{
+			if (string.IsNullOrEmpty(pageId) || string.IsNullOrEmpty(callbackId))
+			{
+				return null;
+			}
+
+			try
+			{
+				onenote.GetBinaryPageContent(pageId, callbackId, out string base64);
+				return base64;
+			}
+			catch (Exception exc)
+			{
+				logger.WriteLine($"error getting content p:{pageId} c:{callbackId}", exc);
+			}
+
+			return null;
+		}
+
+
+		/// <summary>
 		/// Gets the raw XML of the specified page.
 		/// </summary>
 		/// <param name="pageId">The unique ID of the page</param>

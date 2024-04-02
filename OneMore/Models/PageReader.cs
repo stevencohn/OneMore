@@ -2,13 +2,19 @@
 // Copyright © 2022 Steven M Cohn. All rights reserved.
 //************************************************************************************************
 
+#define Verbose
+
 namespace River.OneMoreAddIn.Models
 {
 	using System.Collections.Generic;
 	using System.Linq;
+	using System.Threading.Tasks;
 	using System.Xml.Linq;
 
 
+	/// <summary>
+	/// Reads or extracts content from a Page.
+	/// </summary>
 	internal class PageReader
 	{
 		private sealed class Snippet
@@ -31,7 +37,7 @@ namespace River.OneMoreAddIn.Models
 		public XElement Anchor { get; private set; }
 
 
-		public XElement ExtractSelectedContent()
+		public async Task<XElement> ExtractSelectedContent()
 		{
 			var content = new XElement(ns + "OEChildren");
 			//	new XAttribute(XNamespace.Xmlns + OneNote.Prefix, ns.ToString())
@@ -59,22 +65,26 @@ namespace River.OneMoreAddIn.Models
 			Anchor = runs[0].Parent.PreviousNode is XElement prev
 				? prev
 				: runs[0].Parent.Parent;
-
+#if Verbose
 			Logger.Current.WriteLine("Anchor...");
 			Logger.Current.WriteLine(Anchor);
-
-			var snippets = ExtractSnippets(runs);
-
-			var stack = new Stack<XElement>();
-			stack.Push(content);
+#endif
+			var snippets = await ExtractSnippets(runs);
 
 			// construct a hierarchy of content based on snippet indent levels...
 			var container = content;
+			var depth = 1;
 			foreach (var snippet in snippets)
 			{
-				if (snippet.Depth > stack.Count)
+#if Verbose
+				Logger.Current.WriteLine($"snippet depth={snippet.Depth}");
+				Logger.Current.WriteLine(snippet.Element);
+#endif
+				if (snippet.Depth > depth)
 				{
-					var child = container.Elements(ns + "OE").FirstOrDefault();
+					depth++;
+
+					var child = container.Elements(ns + "OE").LastOrDefault();
 					if (child is null)
 					{
 						child = new XElement(ns + "OE");
@@ -84,12 +94,12 @@ namespace River.OneMoreAddIn.Models
 					var children = new XElement(ns + "OEChildren");
 					child.Add(children);
 
-					stack.Push(children);
 					container = children;
 				}
-				else if (snippet.Depth < stack.Count)
+				else if (snippet.Depth < depth)
 				{
-					container = stack.Pop();
+					container = container.Parent.Parent;
+					depth--;
 				}
 
 				if (snippet.Element.Attribute("objectID") is XAttribute attribute)
@@ -100,57 +110,16 @@ namespace River.OneMoreAddIn.Models
 				container.Add(snippet.Element);
 			}
 
-			Logger.Current.WriteLine("--- preclean ---");
-			Logger.Current.WriteLine(page.Root);
-
-			// clean up orphaned OE elements
-			page.Root.Descendants(ns + "OE")
-				.Where(e => e != Anchor &&
-					!e.Elements().Any(c =>
-						c.Name.LocalName.In(
-							"T", "Table", "Image", "InkParagraph", "InkWord",
-							"InsertedFile", "MediaFile", "OEChildren", "OutlookTask",
-							"LinkedNote", "FutureObject")))
-				.Remove();
-
-			// clean up orphaned OEChildren elements
-			page.Root.Descendants(ns + "OEChildren")
-				.Where(e => e != Anchor && !e.Elements().Any())
-				.Remove();
-
-			// clean up selected attributes; keep only select snippets
-			page.Root.DescendantNodes().OfType<XAttribute>()
-				.Where(a => a.Name.LocalName == "selected")
-				.Remove();
-
-			// patch any empty cells, cheap but effective!
-            foreach (var item in page.Root.Descendants(ns + "Cell")
-				.Where(e => !e.Elements().Any()))
-            {
-				new TableCell(item).SetContent(string.Empty);
-            }
- 
-			if (Anchor.Name.LocalName == "OE")
-			{
-				var list = Anchor.Elements(ns + "List").FirstOrDefault();
-				if (list is not null)
-				{
-					if (!Anchor.Elements().Any(e => e.Name.LocalName.In("T", "InkWord")))
-					{
-						list.Remove();
-					}
-				}
-			}
-
-			Logger.Current.WriteLine("--- cleaned ---");
-			Logger.Current.WriteLine(page.Root);
+			CleanupOrphanedElements();
 
 			return content;
 		}
 
 
-		private List<Snippet> ExtractSnippets(List<XElement> runs)
+		private async Task<List<Snippet>> ExtractSnippets(List<XElement> runs)
 		{
+			await using var one = new OneNote();
+
 			var snippets = new List<Snippet>();
 			foreach (var run in runs)
 			{
@@ -164,9 +133,7 @@ namespace River.OneMoreAddIn.Models
 				var alone =
 					// anything after run means there is more content: not alone
 					next is null &&
-					(prev is not null &&
-					// these are all considered informational and not preserved content
-					// TODO: OneMore Tags and Metas, e.g. scheduled task?
+					(prev is null ||
 					!prev.Name.LocalName.In("MediaIndex", "Tag", "OutlookTask", "Meta", "List"));
 
 				if (alone)
@@ -200,8 +167,17 @@ namespace River.OneMoreAddIn.Models
 					run.Remove();
 				}
 
-				Logger.Current.WriteLine("snippet");
-				Logger.Current.WriteLine(element);
+				// when moving an Image from a page loaded with Basic or Selection scope,
+				// it can get unwired internally and loose its data so explicitly replace
+				// the CallbackID with raw Base64 Data
+				if (run.Name.LocalName == "Image" &&
+					run.Elements(ns + "CallbackID").FirstOrDefault() is XElement callback)
+				{
+					var data = one.GetPageContent(page.PageId,
+						callback.Attribute("callbackID").Value);
+
+					callback.ReplaceWith(new XElement(ns + "Data", data));
+				}
 
 				snippets.Add(new Snippet
 				{
@@ -235,6 +211,57 @@ namespace River.OneMoreAddIn.Models
 			}
 
 			return count;
+		}
+
+
+		private void CleanupOrphanedElements()
+		{
+#if Verbose
+			Logger.Current.WriteLine("--- preclean ---");
+			Logger.Current.WriteLine(page.Root);
+#endif
+			// clean up orphaned OE elements
+			page.Root.Descendants(ns + "OE")
+				.Where(e => e != Anchor &&
+					!e.Elements().Any(c =>
+						c.Name.LocalName.In(
+							"T", "Table", "Image", "InkParagraph", "InkWord",
+							"InsertedFile", "MediaFile", "OEChildren", "OutlookTask",
+							"LinkedNote", "FutureObject")))
+				.Remove();
+
+			// clean up orphaned OEChildren elements
+			page.Root.Descendants(ns + "OEChildren")
+				.Where(e => e != Anchor && !e.Elements().Any())
+				.Remove();
+
+			// clean up selected attributes; keep only select snippets
+			page.Root.DescendantNodes().OfType<XAttribute>()
+				.Where(a => a.Name.LocalName == "selected")
+				.Remove();
+
+			// patch any empty cells, cheap but effective!
+			foreach (var item in page.Root.Descendants(ns + "Cell")
+				.Where(e => !e.Elements().Any()))
+			{
+				new TableCell(item).SetContent(string.Empty);
+			}
+
+			if (Anchor.Name.LocalName == "OE")
+			{
+				var list = Anchor.Elements(ns + "List").FirstOrDefault();
+				if (list is not null)
+				{
+					if (!Anchor.Elements().Any(e => e.Name.LocalName.In("T", "InkWord")))
+					{
+						list.Remove();
+					}
+				}
+			}
+#if Verbose
+			Logger.Current.WriteLine("--- cleaned ---");
+			Logger.Current.WriteLine(page.Root);
+#endif
 		}
 	}
 }

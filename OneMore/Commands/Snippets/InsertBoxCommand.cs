@@ -123,7 +123,7 @@ namespace River.OneMoreAddIn.Commands
 
 				// selection range found so move it into snippet
 				var reader = new PageReader(page);
-				var content = reader.ExtractSelectedContent();
+				var content = await reader.ExtractSelectedContent();
 
 				if (!content.HasElements)
 				{
