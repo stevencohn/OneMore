@@ -4,7 +4,6 @@
 
 namespace River.OneMoreAddIn.Models
 {
-	using System;
 	using System.Collections.Generic;
 	using System.Linq;
 	using System.Threading.Tasks;
@@ -14,7 +13,7 @@ namespace River.OneMoreAddIn.Models
 	/// <summary>
 	/// Reads or extracts content from a Page.
 	/// </summary>
-	internal class PageReader
+	internal class PageReader : Loggable
 	{
 		private sealed class Snippet
 		{
@@ -156,6 +155,17 @@ namespace River.OneMoreAddIn.Models
 			var tables = new List<XElement>();
 
 			var snippets = new List<Snippet>();
+
+
+			System.Diagnostics.Debugger.Launch();
+
+
+			// Runs are captured in document-order. So by reversing this collection, we should
+			// be able discard nested elements as they are emptied; otherwise, doing this in
+			// document-order would make it very difficult to look-ahead to determine if the
+			// element should be discarded.
+			runs.Reverse();
+
 			foreach (var run in runs)
 			{
 				var prev = run.PreviousNode as XElement;
@@ -170,12 +180,12 @@ namespace River.OneMoreAddIn.Models
 					next is null &&
 					// informational elements don't count towards "content" (all of them?)
 					(prev is null ||
-					!prev.Name.LocalName.In("MediaIndex", "Tag", "OutlookTask", "Meta", "List"));
+					prev.Name.LocalName.In("MediaIndex", "Tag", "OutlookTask", "Meta", "List"));
 
 				if (alone)
 				{
 					// alone means that there is exactly one content element in this OE
-					// so we could reclaim the OE if possible...
+					// so we could reclaim the OE, unless its parent depends on it
 
 					var grand = parent.Parent; // OEChildren
 					var inCell = grand.Parent.Name.LocalName == "Cell";
@@ -204,7 +214,7 @@ namespace River.OneMoreAddIn.Models
 						element = parent;
 						parent.Remove();
 
-						if (inCell)
+						if (inCell && !grand.HasElements)
 						{
 							// don't leave table cells empty; must have default content
 							var cell = new TableCell(grand.Parent);
@@ -231,6 +241,16 @@ namespace River.OneMoreAddIn.Models
 					run.Remove();
 				}
 
+				if (parent?.Parent is XElement grandpar && !grandpar.Elements().Any())
+				{
+					if (grandpar.Parent is XElement greatpar &&
+						!greatpar.Name.LocalName.In("Cell", "Outline"))
+					{
+						logger.WriteLine("removing ~~ grandparent");
+						grandpar.Remove();
+					}
+				}
+
 				if (element is not null)
 				{
 					// when moving an Image from a page loaded with Basic or Selection scope,
@@ -245,7 +265,7 @@ namespace River.OneMoreAddIn.Models
 						callback.ReplaceWith(new XElement(ns + "Data", data));
 					}
 
-					snippets.Add(new Snippet
+					snippets.Insert(0, new Snippet
 					{
 						Element = element,
 						Depth = depth
@@ -284,19 +304,25 @@ namespace River.OneMoreAddIn.Models
 		private void CleanupOrphanedElements()
 		{
 			// clean up orphaned OE elements
-			page.Root.Descendants(ns + "OE")
+			IEnumerable<XElement> items;
+
+			items = page.Root.Descendants(ns + "OE")
 				.Where(e => e != Anchor &&
 					!e.Elements().Any(c =>
 						c.Name.LocalName.In(
 							"T", "Table", "Image", "InkParagraph", "InkWord",
 							"InsertedFile", "MediaFile", "OEChildren", "OutlookTask",
-							"LinkedNote", "FutureObject")))
-				.Remove();
+							"LinkedNote", "FutureObject")));
+
+			logger.WriteLine($"cleaning ~~> {(items.Any() ? items.Count() : 0)} OE");
+			items.Remove();
 
 			// clean up orphaned OEChildren elements
-			page.Root.Descendants(ns + "OEChildren")
-				.Where(e => e != Anchor && !e.Elements().Any())
-				.Remove();
+			items = page.Root.Descendants(ns + "OEChildren")
+				.Where(e => e != Anchor && !e.Elements().Any());
+
+			logger.WriteLine($"cleaning ~~> {(items.Any() ? items.Count() : 0)} OEChildren");
+			items.Remove();
 
 			// clean up selected attributes; keep only select snippets
 			page.Root.DescendantNodes().OfType<XAttribute>()
@@ -307,6 +333,7 @@ namespace River.OneMoreAddIn.Models
 			foreach (var item in page.Root.Descendants(ns + "Cell")
 				.Where(e => !e.Elements().Any()))
 			{
+				logger.WriteLine("cleaning ~~> default cell");
 				new TableCell(item).SetContent(string.Empty);
 			}
 
@@ -323,6 +350,7 @@ namespace River.OneMoreAddIn.Models
 				{
 					if (!Anchor.Elements().Any(e => e.Name.LocalName.In("T", "InkWord")))
 					{
+						logger.WriteLine("cleaning ~~> orphaned List");
 						list.Remove();
 					}
 				}
