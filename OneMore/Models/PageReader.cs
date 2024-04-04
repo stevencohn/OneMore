@@ -171,6 +171,7 @@ namespace River.OneMoreAddIn.Models
 				var prev = run.PreviousNode as XElement;
 				var next = run.NextNode as XElement;
 				var parent = run.Parent; // OE
+				var grand = parent.Parent; // OEChildren
 
 				var depth = IndentLevel(run);
 				XElement element = null;
@@ -187,7 +188,6 @@ namespace River.OneMoreAddIn.Models
 					// alone means that there is exactly one content element in this OE
 					// so we could reclaim the OE, unless its parent depends on it
 
-					var grand = parent.Parent; // OEChildren
 					var inCell = grand.Parent.Name.LocalName == "Cell";
 
 					if (inCell && WholeTableSelected(grand) is XElement table)
@@ -241,13 +241,13 @@ namespace River.OneMoreAddIn.Models
 					run.Remove();
 				}
 
-				if (parent?.Parent is XElement grandpar && !grandpar.Elements().Any())
+				if (grand is not null && !grand.Elements().Any())
 				{
-					if (grandpar.Parent is XElement greatpar &&
+					if (grand.Parent is XElement greatpar &&
 						!greatpar.Name.LocalName.In("Cell", "Outline"))
 					{
 						logger.WriteLine("removing ~~ grandparent");
-						grandpar.Remove();
+						grand.Remove();
 					}
 				}
 
