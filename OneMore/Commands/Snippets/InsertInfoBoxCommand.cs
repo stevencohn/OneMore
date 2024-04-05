@@ -69,7 +69,9 @@ namespace River.OneMoreAddIn.Commands
 			}
 			else
 			{
-				content = page.ExtractSelectedContent(out anchor);
+				var editor = new PageEditor(page);
+				content = await editor.ExtractSelectedContent();
+				anchor = editor.Anchor;
 
 				content.Descendants().Attributes()
 					.Where(a => a.Name == "selected")

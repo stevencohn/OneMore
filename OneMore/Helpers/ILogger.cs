@@ -97,6 +97,15 @@ namespace River.OneMoreAddIn
 
 
 		/// <summary>
+		/// Write a text message, followed by a newline, and then dump out the
+		/// given XElement as a serialized string.
+		/// </summary>
+		/// <param name="message"></param>
+		/// <param name="element"></param>
+		void WriteLine(string message, XElement element);
+
+
+		/// <summary>
 		/// Writes the XML of the given XElement
 		/// </summary>
 		/// <param name="element"></param>

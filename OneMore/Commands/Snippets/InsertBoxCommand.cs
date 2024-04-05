@@ -120,8 +120,8 @@ namespace River.OneMoreAddIn.Commands
 			else
 			{
 				// selection range found so move it into snippet
-				var reader = new PageReader(page);
-				var content = await reader.ExtractSelectedContent();
+				var editor = new PageEditor(page);
+				var content = await editor.ExtractSelectedContent();
 
 				if (!content.HasElements)
 				{
@@ -138,16 +138,16 @@ namespace River.OneMoreAddIn.Commands
 					cell.ShadingColor = shading;
 				}
 
-				var localName = reader.Anchor.Name.LocalName;
+				var localName = editor.Anchor.Name.LocalName;
 				var box = new XElement(ns + "OE", table.Root);
 
 				if (localName.In("OE", "HTMLBlock"))
 				{
-					reader.Anchor.AddAfterSelf(box);
+					editor.Anchor.AddAfterSelf(box);
 				}
 				else // if (localName.In("OEChildren", "Outline"))
 				{
-					reader.Anchor.AddFirst(box);
+					editor.Anchor.AddFirst(box);
 				}
 			}
 

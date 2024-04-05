@@ -4,6 +4,7 @@
 
 namespace River.OneMoreAddIn.Commands
 {
+	using River.OneMoreAddIn.Models;
 	using River.OneMoreAddIn.UI;
 	using System.Threading.Tasks; 
 	using Resx = Properties.Resources;
@@ -36,7 +37,9 @@ namespace River.OneMoreAddIn.Commands
 			else
 			{
 				// selection range found so move it into snippet
-				var content = page.ExtractSelectedContent(out var firstParent);
+				var editor = new PageEditor(page);
+				var content = await editor.ExtractSelectedContent();
+
 				await writer.Copy(content);
 			}
 

@@ -649,10 +649,13 @@ namespace River.OneMoreAddIn.Models
 		/// <summary>
 		/// Ensures the page contains at least one OEChildren elements and returns it
 		/// </summary>
-		public XElement EnsureContentContainer()
+		public XElement EnsureContentContainer(bool last = true)
 		{
 			XElement container;
-			var outline = Root.Elements(Namespace + "Outline").LastOrDefault();
+			var outline = last
+				? Root.Elements(Namespace + "Outline").LastOrDefault()
+				: Root.Elements(Namespace + "Outline").FirstOrDefault();
+
 			if (outline == null)
 			{
 				container = new XElement(Namespace + "OEChildren");
@@ -661,7 +664,10 @@ namespace River.OneMoreAddIn.Models
 			}
 			else
 			{
-				container = outline.Elements(Namespace + "OEChildren").LastOrDefault();
+				container = last
+					? outline.Elements(Namespace + "OEChildren").LastOrDefault()
+					: outline.Elements(Namespace + "OEChildren").FirstOrDefault();
+
 				if (container == null)
 				{
 					container = new XElement(Namespace + "OEChildren");
@@ -742,80 +748,6 @@ namespace River.OneMoreAddIn.Models
 
 
 		/// <summary>
-		/// Extract the selected content on the current page, wrapped in its own
-		/// OEChildren container
-		/// </summary>
-		/// <param name="firstParent">
-		/// The cloest element preceding the selected content; use this as a reference
-		/// when inserting replacement content.
-		/// </param>
-		/// <returns>A new OEChildren containing the selected content</returns>
-		public XElement ExtractSelectedContent(out XElement firstParent)
-		{
-			var content = new XElement(Namespace + "OEChildren");
-			firstParent = null;
-
-			var runs = Root.Elements(Namespace + "Outline")
-				.Descendants(Namespace + "T")
-				.Where(e => e.Attributes().Any(a => a.Name == "selected" && a.Value == "all"))
-				.ToList();
-
-			if (!runs.Any())
-			{
-				// not "text" so look for selected image(s)...
-				runs = Root.Elements(Namespace + "Outline")
-					.Descendants(Namespace + "Image")
-					.Where(e => e.Attributes().Any(a => a.Name == "selected" && a.Value == "all"))
-					.ToList();
-			}
-
-			if (runs.Any())
-			{
-				// content will eventually be added after the first parent
-				firstParent = runs[0].Parent;
-
-				// if text is in the middle of a soft-break block then need to split the block
-				// into two so the code box can be inserted, maintaining its relative position
-				if (runs[runs.Count - 1].NextNode != null)
-				{
-					var nextNodes = runs[runs.Count - 1].NodesAfterSelf().ToList();
-					nextNodes.Remove();
-
-					firstParent.AddAfterSelf(new XElement(Namespace + "OE",
-						firstParent.Attributes(),
-						nextNodes
-						));
-				}
-
-				// collect the content
-				foreach (var run in runs)
-				{
-					// new OE for run
-					var oe = new XElement(Namespace + "OE", run.Parent.Attributes());
-
-					// if run is part of a bullet or number list then include the one:List
-					if (run.PreviousNode is XElement list && list.Name.LocalName == "List")
-					{
-						list.Remove();
-						oe.Add(list);
-					}
-
-					// remove run from current parent
-					run.Remove();
-
-					// add run into new OE parent
-					oe.Add(run);
-
-					// add new OE to content
-					content.Add(oe);
-				}
-			}
-
-			return content;
-		}
-
-
-		/// <summary>
 		/// Gets the content value of the named meta entry on the page
 		/// </summary>
 		/// <param name="name"></param>
@@ -826,7 +758,6 @@ namespace River.OneMoreAddIn.Models
 				.FirstOrDefault(e => e.Attribute("name").Value == name)?
 				.Attribute("content").Value;
 		}
-
 
 
 		/// <summary>

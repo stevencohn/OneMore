@@ -326,13 +326,37 @@ namespace River.OneMoreAddIn
 		public void WriteLine(string message, Exception exc)
 		{
 			WriteLine(message);
+
+			var wh = writeHeader;
+			writeHeader = false;
+
 			WriteLine(exc);
+
+			writeHeader = wh;
+		}
+
+
+		public void WriteLine(string message, XElement element)
+		{
+			WriteLine(message);
+
+			var wh = writeHeader;
+			writeHeader = false;
+
+			WriteLine(element);
+
+			writeHeader = wh;
 		}
 
 
 		public void WriteLine(XElement element)
 		{
+			var wh = writeHeader;
+			writeHeader = false;
+
 			WriteLine(element.ToString());
+
+			writeHeader = wh;
 		}
 
 
