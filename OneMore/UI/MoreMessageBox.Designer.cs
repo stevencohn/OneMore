@@ -54,7 +54,7 @@
 			this.topPanel.Margin = new System.Windows.Forms.Padding(0);
 			this.topPanel.Name = "topPanel";
 			this.topPanel.Padding = new System.Windows.Forms.Padding(20);
-			this.topPanel.Size = new System.Drawing.Size(706, 157);
+			this.topPanel.Size = new System.Drawing.Size(753, 158);
 			this.topPanel.TabIndex = 0;
 			// 
 			// logLink
@@ -65,7 +65,7 @@
 			this.logLink.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.logLink.HoverColor = System.Drawing.Color.Orchid;
 			this.logLink.LinkColor = System.Drawing.Color.MediumOrchid;
-			this.logLink.Location = new System.Drawing.Point(90, 117);
+			this.logLink.Location = new System.Drawing.Point(90, 118);
 			this.logLink.Name = "logLink";
 			this.logLink.Size = new System.Drawing.Size(246, 20);
 			this.logLink.StrictColors = false;
@@ -92,7 +92,7 @@
 			this.messageBox.Name = "messageBox";
 			this.messageBox.ReadOnly = true;
 			this.messageBox.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.Vertical;
-			this.messageBox.Size = new System.Drawing.Size(567, 91);
+			this.messageBox.Size = new System.Drawing.Size(614, 92);
 			this.messageBox.TabIndex = 1;
 			this.messageBox.TabStop = false;
 			this.messageBox.Text = "This is the message";
@@ -114,7 +114,7 @@
 			this.okButton.DialogResult = System.Windows.Forms.DialogResult.OK;
 			this.okButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.okButton.ImageOver = null;
-			this.okButton.Location = new System.Drawing.Point(337, 13);
+			this.okButton.Location = new System.Drawing.Point(384, 13);
 			this.okButton.Name = "okButton";
 			this.okButton.ShowBorder = true;
 			this.okButton.Size = new System.Drawing.Size(115, 36);
@@ -133,7 +133,7 @@
 			this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
 			this.cancelButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.cancelButton.ImageOver = null;
-			this.cancelButton.Location = new System.Drawing.Point(579, 13);
+			this.cancelButton.Location = new System.Drawing.Point(626, 13);
 			this.cancelButton.Name = "cancelButton";
 			this.cancelButton.ShowBorder = true;
 			this.cancelButton.Size = new System.Drawing.Size(115, 36);
@@ -153,9 +153,9 @@
 			this.panel1.Controls.Add(this.okButton);
 			this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
 			this.panel1.ForeColor = System.Drawing.SystemColors.ControlText;
-			this.panel1.Location = new System.Drawing.Point(0, 157);
+			this.panel1.Location = new System.Drawing.Point(0, 158);
 			this.panel1.Name = "panel1";
-			this.panel1.Size = new System.Drawing.Size(706, 61);
+			this.panel1.Size = new System.Drawing.Size(753, 61);
 			this.panel1.TabIndex = 3;
 			// 
 			// noButton
@@ -165,7 +165,7 @@
 			this.noButton.DialogResult = System.Windows.Forms.DialogResult.No;
 			this.noButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.noButton.ImageOver = null;
-			this.noButton.Location = new System.Drawing.Point(458, 13);
+			this.noButton.Location = new System.Drawing.Point(505, 13);
 			this.noButton.Name = "noButton";
 			this.noButton.ShowBorder = true;
 			this.noButton.Size = new System.Drawing.Size(115, 36);
@@ -180,7 +180,7 @@
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(706, 218);
+			this.ClientSize = new System.Drawing.Size(753, 219);
 			this.Controls.Add(this.topPanel);
 			this.Controls.Add(this.panel1);
 			this.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));

@@ -191,7 +191,9 @@ namespace OneMoreTray
 
 		private void DoExit(object sender, EventArgs e)
 		{
-			var msg = scheduler.State == ScanningState.Scanning
+			var scanning = scheduler.State == ScanningState.Scanning;
+
+			var msg = scanning
 				? Resx.ScanRunning
 				: string.Format(
 					Resx.ScanScheduled,
@@ -201,6 +203,12 @@ namespace OneMoreTray
 
 			if (MoreMessageBox.ShowQuestion(null, msg) == DialogResult.Yes)
 			{
+				if (!scanning)
+				{
+					logger.WriteLine("deleting scheduled scan");
+					scheduler.ClearSchedule();
+				}
+
 				logger.WriteLine("shutting down tray");
 				// hide tray icon, otherwise it will remain shown until user mouses over it
 				trayIcon.Visible = false;
