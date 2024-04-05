@@ -1,12 +1,12 @@
 ﻿//************************************************************************************************
-// Copyright © 2021 Steven M Cohn.  All rights reserved.
+// Copyright © 2021 Steven M Cohn. All rights reserved.
 //************************************************************************************************
 
 namespace River.OneMoreAddIn.Commands
 {
 	using System.Threading.Tasks;
 	using System.Windows.Forms;
-	using Resx = River.OneMoreAddIn.Properties.Resources;
+	using Resx = Properties.Resources;
 
 
 	internal class SaveSnippetCommand : Command
@@ -47,7 +47,7 @@ namespace River.OneMoreAddIn.Commands
 
 			await new SnippetsProvider().Save(html, dialog.SnippetName);
 
-			ribbon.InvalidateControl("ribFavoritesMenu");
+			ribbon.InvalidateControl("ribCustomSnippetsMenu");
 		}
 	}
 }
