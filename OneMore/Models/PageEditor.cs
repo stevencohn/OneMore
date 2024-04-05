@@ -102,7 +102,10 @@ namespace River.OneMoreAddIn.Models
 			var runs = page.Root.Elements(ns + "Outline")
 				.Descendants(ns + "OE")
 				.Elements()
-				.Where(e => e.Attributes().Any(a => a.Name == "selected" && a.Value == "all"))
+				.Where(e =>
+					// tables are handled via their cell contents
+					e.Name.LocalName != "Table" &&
+					e.Attributes().Any(a => a.Name == "selected" && a.Value == "all"))
 				.ToList();
 
 			// no selections found in body
@@ -114,10 +117,9 @@ namespace River.OneMoreAddIn.Models
 
 			FindBestAnchorPoint(runs[0]);
 
-			var oid = Anchor.Name.LocalName == "OE"
-				? Anchor.Attribute("objectID").Value
-				: Anchor.Elements(ns + "OE").Select(e => e.Attribute("objectID").Value).FirstOrDefault();
-
+			//var oid = Anchor.Name.LocalName == "OE"
+			//	? Anchor.Attribute("objectID").Value
+			//	: Anchor.Elements(ns + "OE").Select(e => e.Attribute("objectID").Value).FirstOrDefault();
 			//logger.WriteLine($"first anchor ({oid})", Anchor);
 
 			var snippets = await ExtractSnippets(runs);
@@ -275,7 +277,7 @@ namespace River.OneMoreAddIn.Models
 
 				if (parent is not null)
 				{
-					CleanupEmptyElements(parent, tables);
+					CleanupEmptyElements(parent);
 				}
 
 				if (snippet.Element is not null)
@@ -300,7 +302,7 @@ namespace River.OneMoreAddIn.Models
 		}
 
 
-		private void CleanupEmptyElements(XElement element, List<XElement> tables)
+		private void CleanupEmptyElements(XElement element)
 		{
 			string[] headerNames;
 			string[] contentNames;
