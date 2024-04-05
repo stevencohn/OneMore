@@ -109,7 +109,7 @@ namespace River.OneMoreAddIn.Commands
 			cell = row.Cells.First();
 
 			if (// cursor is not null if selection range is empty
-				cursor != null &&
+				cursor is not null &&
 				// selection range is a single line containing a hyperlink
 				!(page.SelectionSpecial && page.SelectionScope == SelectionScope.Empty))
 			{
@@ -120,24 +120,34 @@ namespace River.OneMoreAddIn.Commands
 			else
 			{
 				// selection range found so move it into snippet
-				var content = page.ExtractSelectedContent(out var firstParent);
+				var editor = new PageEditor(page);
+				var content = await editor.ExtractSelectedContent();
+
+				if (!content.HasElements)
+				{
+					UIHelper.ShowError(Resx.Error_BodyContext);
+					logger.WriteLine("error reading page content!");
+					return;
+				}
+
 				cell.SetContent(content);
 
 				var shading = DetermineShading(page, content);
-				if (shading != null)
+				if (shading is not null)
 				{
 					cell.ShadingColor = shading;
 				}
 
-				if (firstParent.HasElements)
+				var localName = editor.Anchor.Name.LocalName;
+				var box = new XElement(ns + "OE", table.Root);
+
+				if (localName.In("OE", "HTMLBlock"))
 				{
-					// selected text was a subset of runs under an OE
-					firstParent.AddAfterSelf(new XElement(ns + "OE", table.Root));
+					editor.Anchor.AddAfterSelf(box);
 				}
-				else
+				else // if (localName.In("OEChildren", "Outline"))
 				{
-					// selected text was all of an OE
-					firstParent.Add(table.Root);
+					editor.Anchor.AddFirst(box);
 				}
 			}
 
@@ -148,13 +158,13 @@ namespace River.OneMoreAddIn.Commands
 		private float CalculateWidth(XElement cursor, XElement root)
 		{
 			// if selected range
-			if (cursor == null)
+			if (cursor is null)
 			{
 				cursor = root.Elements(ns + "Outline")
 					.Descendants(ns + "T")
 					.FirstOrDefault(e => e.Attributes().Any(a => a.Name == "selected" && a.Value == "all"));
 
-				if (cursor == null)
+				if (cursor is null)
 				{
 					// shouldn't happen
 					return DefaultWidth;
@@ -164,14 +174,14 @@ namespace River.OneMoreAddIn.Commands
 			// if insertion point is within a table cell then assume the width of that cell
 
 			var cell = cursor.Ancestors(ns + "Cell").FirstOrDefault();
-			if (cell != null)
+			if (cell is not null)
 			{
 				var index = cell.ElementsBeforeSelf(ns + "Cell").Count().ToString();
 				var column = cell.Ancestors(ns + "Table")
 					.Elements(ns + "Columns").Elements(ns + "Column")
 					.FirstOrDefault(e => e.Attribute("index")?.Value == index);
 
-				if (column != null)
+				if (column is not null)
 				{
 					return (float)Math.Floor(double.Parse(
 						column.Attribute("width").Value, CultureInfo.InvariantCulture));
@@ -184,7 +194,7 @@ namespace River.OneMoreAddIn.Commands
 			var size = cursor.Ancestors(ns + "Outline").Elements(ns + "Size")
 				.FirstOrDefault(e => e.Attribute("isSetByUser")?.Value == "true");
 
-			if (size != null)
+			if (size is not null)
 			{
 				return (float)Math.Floor(double.Parse(
 					size.Attribute("width").Value, CultureInfo.InvariantCulture));
@@ -275,28 +285,3 @@ namespace River.OneMoreAddIn.Commands
 		}
 	}
 }
-/*
-<one:Table bordersVisible="true">
-  <one:Columns>
-    <one:Column index="0" width="550" isLocked="true" />
-  </one:Columns>
-  <one:Row>
-    <one:Cell shadingColor="#F2F2F2">
-      <one:OEChildren>
-        <one:OE style="font-family:'Segoe UI';font-size:11.0pt;color:black">
-          <one:T><![CDATA[<span style='font-weight:bold;background:white'>Code</span>]]></one:T>
-        </one:OE>
-      </one:OEChildren>
-    </one:Cell>
-  </one:Row>
-  <one:Row>
-    <one:Cell>
-      <one:OEChildren selected="partial">
-        <one:OE style="font-family:'Lucida Console';font-size:9.0pt">
-          <one:T><![CDATA[Your code here...]]></one:T>
-        </one:OE>
-      </one:OEChildren>
-    </one:Cell>
-  </one:Row>
-</one:Table>
-*/

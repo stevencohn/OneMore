@@ -285,7 +285,7 @@
     <Compile Include="Helpers\Heatmap.cs" />
     <Compile Include="Models\OneImage.cs" />
     <Compile Include="Models\KnownSchemaAttributes.cs" />
-    <Compile Include="Models\PageReader.cs" />
+    <Compile Include="Models\PageEditor.cs" />
     <Compile Include="AddInHotkeys.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
