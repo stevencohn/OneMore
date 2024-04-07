@@ -250,6 +250,7 @@
     <Compile Include="Commands\Tagging\HashtagContextControl.Designer.cs">
       <DependentUpon>HashtagContextControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="Commands\Tagging\LegacyTaggingConverter.cs" />
     <Compile Include="Commands\Tagging\HashtagDialog.cs">
       <SubType>Form</SubType>
     </Compile>
