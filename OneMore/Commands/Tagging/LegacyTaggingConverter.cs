@@ -90,16 +90,27 @@ namespace River.OneMoreAddIn.Commands
 
 					foreach (var datum in cdata)
 					{
+						// build new list to filter out duplicates
+						var hashtags = new List<string>();
+
 						var tags = datum.Value.Split(
 							new string[] { AddIn.Culture.TextInfo.ListSeparator },
 							StringSplitOptions.RemoveEmptyEntries);
 
-						for (var i = 0; i < tags.Length; i++)
+						foreach (var tag in tags)
 						{
-							var tag = tags[i].Trim();
-							if (tag.Length > 0 && tag[0] != '#')
+							var hashtag = tag.Trim();
+							if (hashtag.Length > 0)
 							{
-								tags[i] = $"#{tag}";
+								if (hashtag[0] != '#')
+								{
+									hashtag = $"#{hashtag}";
+								}
+
+								if (!hashtags.Contains(hashtag))
+								{
+									hashtags.Add(hashtag);
+								}
 							}
 						}
 
@@ -107,7 +118,7 @@ namespace River.OneMoreAddIn.Commands
 							? $" {AddIn.Culture.TextInfo.ListSeparator}"
 							: $"{AddIn.Culture.TextInfo.ListSeparator} ";
 
-						datum.Value = string.Join(sep, tags);
+						datum.Value = string.Join(sep, hashtags);
 					}
 
 					// clear the tagging bank meta element value
