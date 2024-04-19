@@ -4783,6 +4783,26 @@ In this section</value>
     <value>Page Tags</value>
     <comment>header label</comment>
   </data>
+  <data name="TagsUpgraded" xml:space="preserve">
+    <value>Legacy page tags have been converted to hashtags.
+
+Tags upgraded: {0}
+Pages updated: {1}
+
+You may now type inline #hashtags to add tags to your content.</value>
+    <comment>message box</comment>
+  </data>
+  <data name="TagsUpgraded2" xml:space="preserve">
+    <value>Legacy page tags have been converted to hastags. You may now type inline #hashtags directly on your page to tag your content.</value>
+  </data>
+  <data name="TagsUpgraded3" xml:space="preserve">
+    <value>Legacy page tags have been converted to hashtags.
+
+Tags upgraded: {0}
+Pages updated: {1}
+
+The Find Hashtags dialog will now open.</value>
+  </data>
   <data name="TextToTable_NoText" xml:space="preserve">
     <value>No text is selected</value>
     <comment>info message</comment>

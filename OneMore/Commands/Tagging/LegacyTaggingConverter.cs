@@ -5,22 +5,115 @@
 namespace River.OneMoreAddIn.Commands
 {
 	using River.OneMoreAddIn.Models;
+	using River.OneMoreAddIn.Settings;
 	using River.OneMoreAddIn.UI;
 	using System;
 	using System.Collections.Generic;
 	using System.Linq;
 	using System.Threading;
 	using System.Threading.Tasks;
+	using System.Windows.Forms;
 	using System.Xml.Linq;
 
 
-	internal class LegacyTaggingConverter
+	/// <summary>
+	/// A temporary solution to upgrade legacy Page tags to modern and more efficient Hastags.
+	/// The Page tags commands will be removed in a future version of OneMore.
+	/// </summary>
+	internal class LegacyTaggingConverter : Loggable
 	{
 		private XElement root;
 		private XNamespace ns;
 
 
-		public async Task<int> GetLegacyTagCount()
+		/// <summary>
+		/// Gets a Boolean value indicating whether Page tags were just or have previously
+		/// been upgraded.
+		/// </summary>
+		public bool Converted { get; private set; } = false;
+
+
+		/// <summary>
+		/// The number of pages containing legacy Page tags that were affected.
+		/// </summary>
+		public int PagesConverted { get; private set; } = 0;
+
+
+		/// <summary>
+		/// The number of legacy Page tags that were upgraded.
+		/// </summary>
+		public int TagsConverted { get; private set; } = 0;
+
+
+		/// <summary>
+		/// If there are legacy Page tags, ask the user if they want to upgrade to Hashtags
+		/// and, if yes, then perform the upgrade.
+		/// </summary>
+		/// <param name="owner">The owning window so we can center dialogs</param>
+		/// <returns>True if tags are or have been upgraded, otherwise false.</returns>
+		public async Task<bool> UpgradeLegacyTags(IWin32Window owner)
+		{
+			var provider = new SettingsProvider();
+			var settings = provider.GetCollection("tagging");
+			if (settings.Get("converted", false))
+			{
+				Converted = true;
+				return false;
+			}
+
+			if (settings.Get("ignore", false))
+			{
+				// previously opted to ignore upgrade
+				return false;
+			}
+
+			var count = await GetLegacyTagCount();
+			if (count == 0)
+			{
+				// no legacy page tags to upgrade
+				return false;
+			}
+
+			using var ltdialog = new LegacyTaggingDialog();
+
+			if (ltdialog.ShowDialog(owner) == DialogResult.OK)
+			{
+				using var progress = new ProgressDialog();
+				progress.ShowDialogWithCancel(
+					async (dialog, token) => await UpgradeLegacyTags(dialog, token));
+
+				settings.Add("converted", true);
+				Converted = true;
+
+				// scan now?
+
+				if (HashtagProvider.DatabaseExists())
+				{
+					var scheduler = new HashtagScheduler();
+					if (!scheduler.ScheduleExists && scheduler.State == ScanningState.Ready)
+					{
+						using var scanner = new HashtagScanner();
+						(_, _) = await scanner.Scan();
+					}
+				}
+			}
+
+			if (ltdialog.HideQuestion)
+			{
+				settings.Add("ignore", true);
+			}
+
+			if (settings.IsModified)
+			{
+				provider.SetCollection(settings);
+				provider.Save();
+			}
+
+			return Converted;
+		}
+
+
+		private async Task<int> GetLegacyTagCount()
 		{
 			await using var one = new OneNote();
 
@@ -59,7 +152,7 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		public async Task<bool> UpgradeLegacyTags(ProgressDialog dialog, CancellationToken token)
+		private async Task<bool> UpgradeLegacyTags(ProgressDialog dialog, CancellationToken token)
 		{
 			await using var one = new OneNote();
 
@@ -76,6 +169,11 @@ namespace River.OneMoreAddIn.Commands
 				dialog.SetMessage(item.Attribute("name").Value);
 				var page = await one.GetPage(item.Attribute("ID").Value, OneNote.PageDetail.Basic);
 
+				if (token.IsCancellationRequested)
+				{
+					break;
+				}
+
 				var bank = page.Root.Descendants(ns + "Meta")
 					.FirstOrDefault(e => e.Attribute("name").Value == MetaNames.TaggingBank);
 
@@ -83,6 +181,8 @@ namespace River.OneMoreAddIn.Commands
 					bank.Attribute("content") is XAttribute flag &&
 					flag.Value == "1")
 				{
+					logger.WriteLine($"converting page tags on {page.PageId} \"{page.Title}\"");
+
 					var cdata = bank.ElementsAfterSelf(ns + "OEChildren")
 						.Elements(ns + "OE")
 						.Elements(ns + "T")
@@ -110,6 +210,7 @@ namespace River.OneMoreAddIn.Commands
 								if (!hashtags.Contains(hashtag))
 								{
 									hashtags.Add(hashtag);
+									TagsConverted++;
 								}
 							}
 						}
@@ -132,6 +233,7 @@ namespace River.OneMoreAddIn.Commands
 					if (!token.IsCancellationRequested)
 					{
 						await one.Update(page);
+						PagesConverted++;
 					}
 				}
 

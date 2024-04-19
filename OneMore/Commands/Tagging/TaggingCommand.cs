@@ -6,12 +6,14 @@ namespace River.OneMoreAddIn.Commands
 {
 	using River.OneMoreAddIn.Models;
 	using River.OneMoreAddIn.Styles;
+	using River.OneMoreAddIn.UI;
 	using System;
 	using System.Collections.Generic;
 	using System.Linq;
 	using System.Threading.Tasks;
 	using System.Windows.Forms;
 	using System.Xml.Linq;
+	using Resx = Properties.Resources;
 
 
 	internal class TaggingCommand : Command
@@ -19,7 +21,6 @@ namespace River.OneMoreAddIn.Commands
 		private const string BankStyleName = "omWordBank";
 
 		private const string RibbonSymbol = "26";	// the award ribbon Tag symbol
-		private const int TitleType = 99;			// custom TagDef type for tagged title		
 		private const int BankType = 23;			// custom TagDef type for word bank outline
 
 
@@ -30,6 +31,25 @@ namespace River.OneMoreAddIn.Commands
 
 		public override async Task Execute(params object[] args)
 		{
+			var converter = new LegacyTaggingConverter();
+			var upgraded = await converter.UpgradeLegacyTags(owner);
+
+			if (upgraded || converter.Converted)
+			{
+				using var box = new MoreMessageBox();
+				box.SetIcon(MessageBoxIcon.Information);
+
+				var msg = upgraded
+					? string.Format(Resx.TagsUpgraded,
+						converter.TagsConverted, converter.PagesConverted)
+					: Resx.TagsUpgraded2;
+
+				box.SetMessage(msg);
+				box.SetButtons(MessageBoxButtons.OK);
+				box.ShowDialog(owner);
+				return;
+			}
+
 			await using var one = new OneNote(out var page, out var ns);
 			using var dialog = new TaggingDialog();
 			var content = page.GetMetaContent(MetaNames.TaggingLabels);

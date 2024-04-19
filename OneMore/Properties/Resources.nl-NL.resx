@@ -4745,6 +4745,26 @@ In deze sectie</value>
     <value>Pagina-tags</value>
     <comment>header label</comment>
   </data>
+  <data name="TagsUpgraded" xml:space="preserve">
+    <value>Verouderde paginatags zijn omgezet in hashtags.
+
+Tags geüpgraded: {0}
+Pagina's bijgewerkt: {1}
+
+U kunt nu inline #hashtags typen om tags aan uw inhoud toe te voegen.</value>
+    <comment>message box</comment>
+  </data>
+  <data name="TagsUpgraded2" xml:space="preserve">
+    <value>Verouderde paginatags zijn omgezet in hastags. U kunt nu inline #hashtags rechtstreeks op uw pagina typen om uw inhoud te taggen.</value>
+  </data>
+  <data name="TagsUpgraded3" xml:space="preserve">
+    <value>Verouderde paginatags zijn omgezet in hashtags.
+
+Tags geüpgraded: {0}
+Pagina's bijgewerkt: {1}
+
+Het dialoogvenster Hashtags zoeken wordt nu geopend.</value>
+  </data>
   <data name="TextToTable_NoText" xml:space="preserve">
     <value>Er is geen tekst geselecteerd</value>
     <comment>info message</comment>

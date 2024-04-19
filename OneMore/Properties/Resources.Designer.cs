@@ -11751,6 +11751,43 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Legacy page tags have been converted to hashtags.
+        ///
+        ///Tags upgraded: {0}
+        ///Pages updated: {1}
+        ///
+        ///You may now type inline #hashtags to add tags to your content..
+        /// </summary>
+        internal static string TagsUpgraded {
+            get {
+                return ResourceManager.GetString("TagsUpgraded", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Legacy page tags have been converted to hastags. You may now type inline #hashtags directly on your page to tag your content..
+        /// </summary>
+        internal static string TagsUpgraded2 {
+            get {
+                return ResourceManager.GetString("TagsUpgraded2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Legacy page tags have been converted to hashtags.
+        ///
+        ///Tags upgraded: {0}
+        ///Pages updated: {1}
+        ///
+        ///The Find Hashtags dialog will now open..
+        /// </summary>
+        internal static string TagsUpgraded3 {
+            get {
+                return ResourceManager.GetString("TagsUpgraded3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap Task {

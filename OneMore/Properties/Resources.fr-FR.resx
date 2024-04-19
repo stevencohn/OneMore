@@ -4742,6 +4742,26 @@ Dans cette section</value>
     <value>Tags de page</value>
     <comment>header label</comment>
   </data>
+  <data name="TagsUpgraded" xml:space="preserve">
+    <value>Les anciennes balises de page ont été converties en hashtags.
+
+Balises mises à jour : {0}
+Pages mises à jour : {1}
+
+Vous pouvez maintenant saisir des #hashtags en ligne pour ajouter des balises à votre contenu.</value>
+    <comment>message box</comment>
+  </data>
+  <data name="TagsUpgraded2" xml:space="preserve">
+    <value>Les anciennes balises de page ont été converties en hastags. Vous pouvez désormais saisir des #hashtags en ligne directement sur votre page pour marquer votre contenu.</value>
+  </data>
+  <data name="TagsUpgraded3" xml:space="preserve">
+    <value>Les anciennes balises de page ont été converties en hashtags.
+
+Balises mises à jour : {0}
+Pages mises à jour : {1}
+
+La boîte de dialogue Rechercher des hashtags va maintenant s'ouvrir.</value>
+  </data>
   <data name="TextToTable_NoText" xml:space="preserve">
     <value>Aucun texte n'est sélectionné</value>
     <comment>info message</comment>

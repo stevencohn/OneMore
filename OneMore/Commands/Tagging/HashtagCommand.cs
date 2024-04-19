@@ -4,7 +4,6 @@
 
 namespace River.OneMoreAddIn.Commands
 {
-	using River.OneMoreAddIn.Settings;
 	using River.OneMoreAddIn.UI;
 	using System;
 	using System.Collections.Generic;
@@ -44,7 +43,8 @@ namespace River.OneMoreAddIn.Commands
 				return;
 			}
 
-			await CheckLegacyTagging();
+			var converter = new LegacyTaggingConverter();
+			await converter.UpgradeLegacyTags(owner);
 
 			dialog = new HashtagDialog();
 			dialog.FormClosed += Dialog_FormClosed;
@@ -104,42 +104,6 @@ namespace River.OneMoreAddIn.Commands
 			}
 
 			return true;
-		}
-
-
-		private async Task CheckLegacyTagging()
-		{
-			var provider = new SettingsProvider();
-			var settings = provider.GetCollection("tagging");
-			if (settings.Get("ignore", false))
-			{
-				return;
-			}
-
-			var converter = new LegacyTaggingConverter();
-			var count = await converter.GetLegacyTagCount();
-
-			if (count == 0)
-			{
-				return;
-			}
-
-			var box = new MoreMessageBox();
-			box.SetMessage("??");
-			box.SetIcon(MessageBoxIcon.Warning);
-			box.SetButtons(MessageBoxButtons.OKCancel);
-
-			if (box.ShowDialog() == DialogResult.OK)
-			{
-				using var progress = new ProgressDialog();
-
-				progress.ShowDialogWithCancel(
-					async (dialog, token) => await converter.UpgradeLegacyTags(dialog, token));
-
-				settings.Add("ignore", true);
-				provider.SetCollection(settings);
-				provider.Save();
-			}
 		}
 
 

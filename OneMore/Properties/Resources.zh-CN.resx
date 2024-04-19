@@ -4738,6 +4738,26 @@ ISO-code then comma then language name</comment>
     <value>页面标签</value>
     <comment>header label</comment>
   </data>
+  <data name="TagsUpgraded" xml:space="preserve">
+    <value>旧版页面标签已转换为主题标签。
+
+已升级标签：{0}
+更新页面：{1}
+
+您现在可以输入内联 #hashtags 来向您的内容添加标签。</value>
+    <comment>message box</comment>
+  </data>
+  <data name="TagsUpgraded2" xml:space="preserve">
+    <value>旧版页面标签已转换为主题标签。您现在可以直接在页面上输入内联 #hashtags 来标记您的内容。</value>
+  </data>
+  <data name="TagsUpgraded3" xml:space="preserve">
+    <value>旧版页面标签已转换为主题标签。
+
+已升级标签：{0}
+更新页面：{1}
+
+现在将打开“查找主题标签”对话框。</value>
+  </data>
   <data name="TextToTable_NoText" xml:space="preserve">
     <value>没有选择文字</value>
     <comment>info message</comment>

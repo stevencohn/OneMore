@@ -271,6 +271,12 @@
     <Compile Include="Commands\Tagging\HashtagScannedEventArgs.cs" />
     <Compile Include="Commands\Tagging\HashtagScanner.cs" />
     <Compile Include="Commands\Tagging\HashtagService.cs" />
+    <Compile Include="Commands\Tagging\LegacyTaggingDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Commands\Tagging\LegacyTaggingDialog.Designer.cs">
+      <DependentUpon>LegacyTaggingDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="Commands\Tagging\ScanningState.cs" />
     <Compile Include="Commands\Tagging\ScheduleScanDialog.cs">
       <SubType>Form</SubType>
@@ -1139,6 +1145,9 @@
     <Content Include="Commands\Tagging\x.png" />
     <EmbeddedResource Include="Commands\Tagging\HashtagScheduler.resx">
       <DependentUpon>HashtagScheduler.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Commands\Tagging\LegacyTaggingDialog.resx">
+      <DependentUpon>LegacyTaggingDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Commands\Tagging\ScheduleScanDialog.resx">
       <DependentUpon>ScheduleScanDialog.cs</DependentUpon>

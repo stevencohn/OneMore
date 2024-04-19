@@ -4745,6 +4745,26 @@ ISO-code then comma then language name</comment>
     <value>علامات الصفحة</value>
     <comment>header label</comment>
   </data>
+  <data name="TagsUpgraded" xml:space="preserve">
+    <value>تم تحويل علامات الصفحة القديمة إلى علامات تصنيف.
+
+العلامات التي تمت ترقيتها: {0}
+الصفحات المحدثة: {1}
+
+يمكنك الآن كتابة #علامات التصنيف المضمنة لإضافة علامات إلى المحتوى الخاص بك.</value>
+    <comment>message box</comment>
+  </data>
+  <data name="TagsUpgraded2" xml:space="preserve">
+    <value>تم تحويل علامات الصفحة القديمة إلى علامات التصنيف. يمكنك الآن كتابة #علامات التصنيف المضمنة مباشرةً على صفحتك لوضع علامة على المحتوى الخاص بك.</value>
+  </data>
+  <data name="TagsUpgraded3" xml:space="preserve">
+    <value>تم تحويل علامات الصفحة القديمة إلى علامات تصنيف.
+
+العلامات التي تمت ترقيتها: {0}
+الصفحات المحدثة: {1}
+
+سيتم الآن فتح مربع حوار البحث عن علامات التصنيف.</value>
+  </data>
   <data name="TextToTable_NoText" xml:space="preserve">
     <value>لم يتم تحديد نص</value>
     <comment>info message</comment>

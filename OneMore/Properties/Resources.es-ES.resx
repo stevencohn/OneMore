@@ -4745,6 +4745,26 @@ En esta sección</value>
     <value>Etiquetas de la página</value>
     <comment>header label</comment>
   </data>
+  <data name="TagsUpgraded" xml:space="preserve">
+    <value>Las etiquetas de páginas heredadas se han convertido en hashtags.
+
+Etiquetas actualizadas: {0}
+Páginas actualizadas: {1}
+
+Ahora puede escribir #hashtags en línea para agregar etiquetas a su contenido.</value>
+    <comment>message box</comment>
+  </data>
+  <data name="TagsUpgraded2" xml:space="preserve">
+    <value>Las etiquetas de páginas heredadas se han convertido en hastags. Ahora puedes escribir #hashtags en línea directamente en tu página para etiquetar tu contenido.</value>
+  </data>
+  <data name="TagsUpgraded3" xml:space="preserve">
+    <value>Las etiquetas de páginas heredadas se han convertido en hashtags.
+
+Etiquetas actualizadas: {0}
+Páginas actualizadas: {1}
+
+Ahora se abrirá el cuadro de diálogo Buscar hashtags.</value>
+  </data>
   <data name="TextToTable_NoText" xml:space="preserve">
     <value>No hay texto seleccionado</value>
     <comment>info message</comment>

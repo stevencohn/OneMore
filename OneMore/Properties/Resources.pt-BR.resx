@@ -4745,6 +4745,26 @@ Nesta secção</value>
     <value>Tags da página.</value>
     <comment>header label</comment>
   </data>
+  <data name="TagsUpgraded" xml:space="preserve">
+    <value>Tags de páginas legadas foram convertidas em hashtags.
+
+Tags atualizadas: {0}
+Páginas atualizadas: {1}
+
+Agora você pode digitar #hashtags in-line para adicionar tags ao seu conteúdo.</value>
+    <comment>message box</comment>
+  </data>
+  <data name="TagsUpgraded2" xml:space="preserve">
+    <value>Tags de página legadas foram convertidas em hastags. Agora você pode digitar #hashtags diretamente em sua página para marcar seu conteúdo.</value>
+  </data>
+  <data name="TagsUpgraded3" xml:space="preserve">
+    <value>Tags de páginas legadas foram convertidas em hashtags.
+
+Tags atualizadas: {0}
+Páginas atualizadas: {1}
+
+A caixa de diálogo Encontrar hashtags será aberta agora.</value>
+  </data>
   <data name="TextToTable_NoText" xml:space="preserve">
     <value>Nenhum texto foi selecionado</value>
     <comment>info message</comment>
