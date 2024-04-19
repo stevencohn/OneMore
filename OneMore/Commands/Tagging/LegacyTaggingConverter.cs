@@ -1,5 +1,5 @@
 ﻿//************************************************************************************************
-// Copyright © 2024 Steven M Cohn. All rights reserved.
+// Copyright © 2024 Steven M Cohn. All rights reserved. 
 //************************************************************************************************
 
 namespace River.OneMoreAddIn.Commands
