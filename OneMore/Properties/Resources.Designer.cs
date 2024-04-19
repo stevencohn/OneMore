@@ -6865,6 +6865,24 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Add Tag Bank.
+        /// </summary>
+        internal static string ribAddTagBankButton_Label {
+            get {
+                return ResourceManager.GetString("ribAddTagBankButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add top-of-page tag outline.
+        /// </summary>
+        internal static string ribAddTagBankButton_Screentip {
+            get {
+                return ResourceManager.GetString("ribAddTagBankButton_Screentip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Resize and Adjust.
         /// </summary>
         internal static string ribAdjustImagesButton_Label {
@@ -9295,6 +9313,24 @@ namespace River.OneMoreAddIn.Properties {
         internal static string ribRemoveSpacingButton_Screentip {
             get {
                 return ResourceManager.GetString("ribRemoveSpacingButton_Screentip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Remove Tag Bank.
+        /// </summary>
+        internal static string ribRemoveTagBankButton_Label {
+            get {
+                return ResourceManager.GetString("ribRemoveTagBankButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Remove top-of-page tag outline.
+        /// </summary>
+        internal static string ribRemoveTagBankButton_Screentip {
+            get {
+                return ResourceManager.GetString("ribRemoveTagBankButton_Screentip", resourceCulture);
             }
         }
         

@@ -2614,6 +2614,14 @@ Seleccione No para mantener una línea vacía entre los párrafos</value>
     <value>Agregar / editar fórmula en celdas de tabla seleccionadas (F5)</value>
     <comment>Ribbon OneMore menu item, Formula...</comment>
   </data>
+  <data name="ribAddTagBankButton_Label" xml:space="preserve">
+    <value>Agregar banco de etiquetas</value>
+    <comment>ribbon search</comment>
+  </data>
+  <data name="ribAddTagBankButton_Screentip" xml:space="preserve">
+    <value>Agregar esquema de etiqueta en la parte superior de la página</value>
+    <comment>ribbon search</comment>
+  </data>
   <data name="ribAdjustImagesButton_Label" xml:space="preserve">
     <value>Cambiar el tamaño y ajustar</value>
     <comment>Ribbon OneMore menu item, Resize selected image(s)</comment>
@@ -3679,6 +3687,14 @@ Después del último grupo</value>
   <data name="ribRemoveSpacingButton_Screentip" xml:space="preserve">
     <value>Eliminar el interlineado, el encabezado y el párrafo</value>
     <comment>Ribbon OneMore menu item, Clean...</comment>
+  </data>
+  <data name="ribRemoveTagBankButton_Label" xml:space="preserve">
+    <value>Eliminar banco de etiquetas</value>
+    <comment>ribbon search</comment>
+  </data>
+  <data name="ribRemoveTagBankButton_Screentip" xml:space="preserve">
+    <value>Eliminar el esquema de la etiqueta de la parte superior de la página</value>
+    <comment>ribbon search</comment>
   </data>
   <data name="ribRemoveTagsButton_Label" xml:space="preserve">
     <value>Quitar etiquetas</value>

@@ -2613,6 +2613,14 @@ ISO-code then comma then language name</comment>
     <value>在选定的表格单元格中添加/编辑公式（F5）</value>
     <comment>Ribbon OneMore menu item, Formula...</comment>
   </data>
+  <data name="ribAddTagBankButton_Label" xml:space="preserve">
+    <value>添加标签库</value>
+    <comment>ribbon search</comment>
+  </data>
+  <data name="ribAddTagBankButton_Screentip" xml:space="preserve">
+    <value>添加页面顶部标签轮廓</value>
+    <comment>ribbon search</comment>
+  </data>
   <data name="ribAdjustImagesButton_Label" xml:space="preserve">
     <value>调整大小和调整</value>
     <comment>Ribbon OneMore menu item, Resize selected image(s)</comment>
@@ -3672,6 +3680,14 @@ ISO-code then comma then language name</comment>
   <data name="ribRemoveSpacingButton_Screentip" xml:space="preserve">
     <value>删除段落，标题和行间距</value>
     <comment>Ribbon OneMore menu item, Clean...</comment>
+  </data>
+  <data name="ribRemoveTagBankButton_Label" xml:space="preserve">
+    <value>删除标签库</value>
+    <comment>ribbon search</comment>
+  </data>
+  <data name="ribRemoveTagBankButton_Screentip" xml:space="preserve">
+    <value>删除页面顶部标签轮廓</value>
+    <comment>ribbon search</comment>
   </data>
   <data name="ribRemoveTagsButton_Label" xml:space="preserve">
     <value>移除标签</value>

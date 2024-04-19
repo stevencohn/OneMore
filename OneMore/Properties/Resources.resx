@@ -2651,6 +2651,14 @@ Select No to keep one empty line between paragraphs</value>
     <value>Add or edit a formula in selected table cells (F5)</value>
     <comment>ribbon table</comment>
   </data>
+  <data name="ribAddTagBankButton_Label" xml:space="preserve">
+    <value>Add Tag Bank</value>
+    <comment>ribbon search</comment>
+  </data>
+  <data name="ribAddTagBankButton_Screentip" xml:space="preserve">
+    <value>Add top-of-page tag outline</value>
+    <comment>ribbon search</comment>
+  </data>
   <data name="ribAdjustImagesButton_Label" xml:space="preserve">
     <value>Resize and Adjust</value>
     <comment>ribbon images</comment>
@@ -3711,6 +3719,14 @@ After last group</value>
   <data name="ribRemoveSpacingButton_Screentip" xml:space="preserve">
     <value>Remove paragraph, heading, and line spacing</value>
     <comment>ribbon clean</comment>
+  </data>
+  <data name="ribRemoveTagBankButton_Label" xml:space="preserve">
+    <value>Remove Tag Bank</value>
+    <comment>ribbon search</comment>
+  </data>
+  <data name="ribRemoveTagBankButton_Screentip" xml:space="preserve">
+    <value>Remove top-of-page tag outline</value>
+    <comment>ribbon search</comment>
   </data>
   <data name="ribRemoveTagsButton_Label" xml:space="preserve">
     <value>Remove Tags</value>

@@ -2627,6 +2627,14 @@ Wybierz Nie, aby zachować jedną pustą linię między akapitami</value>
     <value>Dodaj / edytuj wzór w wybranych komórkach tabeli (F5)</value>
     <comment>Ribbon OneMore menu item, Formula...</comment>
   </data>
+  <data name="ribAddTagBankButton_Label" xml:space="preserve">
+    <value>Dodaj bank tagów</value>
+    <comment>ribbon search</comment>
+  </data>
+  <data name="ribAddTagBankButton_Screentip" xml:space="preserve">
+    <value>Dodaj zarys tagu na górze strony</value>
+    <comment>ribbon search</comment>
+  </data>
   <data name="ribAdjustImagesButton_Label" xml:space="preserve">
     <value>Zmień rozmiar i dostosuj</value>
     <comment>Ribbon OneMore menu item, Resize selected image(s)</comment>
@@ -3692,6 +3700,14 @@ Po ostatniej grupie</value>
   <data name="ribRemoveSpacingButton_Screentip" xml:space="preserve">
     <value>Usuń akapit, nagłówki i odstępy</value>
     <comment>Ribbon OneMore menu item, Clean...</comment>
+  </data>
+  <data name="ribRemoveTagBankButton_Label" xml:space="preserve">
+    <value>Usuń bank tagów</value>
+    <comment>ribbon search</comment>
+  </data>
+  <data name="ribRemoveTagBankButton_Screentip" xml:space="preserve">
+    <value>Usuń kontur tagu z góry strony</value>
+    <comment>ribbon search</comment>
   </data>
   <data name="ribRemoveTagsButton_Label" xml:space="preserve">
     <value>Usuń tagi.</value>

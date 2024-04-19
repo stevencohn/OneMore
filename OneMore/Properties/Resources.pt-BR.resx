@@ -2615,6 +2615,14 @@ Selecione Não para manter uma linha vazia entre os parágrafos</value>
     <value>Adicionar/editar fórmula nas células selecionadas da tabela (F5)</value>
     <comment>Ribbon OneMore menu item, Formula...</comment>
   </data>
+  <data name="ribAddTagBankButton_Label" xml:space="preserve">
+    <value>Adicionar banco de tags</value>
+    <comment>ribbon search</comment>
+  </data>
+  <data name="ribAddTagBankButton_Screentip" xml:space="preserve">
+    <value>Adicionar contorno de tag no topo da página</value>
+    <comment>ribbon search</comment>
+  </data>
   <data name="ribAdjustImagesButton_Label" xml:space="preserve">
     <value>Redimensionar e ajustar</value>
     <comment>Ribbon OneMore menu item, Resize selected image(s)</comment>
@@ -3679,6 +3687,14 @@ Depois do último grupo</value>
   <data name="ribRemoveSpacingButton_Screentip" xml:space="preserve">
     <value>Remover parágrafo, título e espaçamento de linha</value>
     <comment>Ribbon OneMore menu item, Clean...</comment>
+  </data>
+  <data name="ribRemoveTagBankButton_Label" xml:space="preserve">
+    <value>Remover banco de tags</value>
+    <comment>ribbon search</comment>
+  </data>
+  <data name="ribRemoveTagBankButton_Screentip" xml:space="preserve">
+    <value>Remover o contorno da tag do topo da página</value>
+    <comment>ribbon search</comment>
   </data>
   <data name="ribRemoveTagsButton_Label" xml:space="preserve">
     <value>Remover Tags</value>

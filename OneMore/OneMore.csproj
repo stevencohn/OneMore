@@ -284,6 +284,7 @@
     <Compile Include="Commands\Tagging\ScheduleScanDialog.Designer.cs">
       <DependentUpon>ScheduleScanDialog.cs</DependentUpon>
     </Compile>
+    <Compile Include="Commands\Tagging\TagBankCommand.cs" />
     <Compile Include="Helpers\ColorHelper.cs" />
     <Compile Include="Helpers\Extensions\FontFamilyExtensions.cs" />
     <Compile Include="Helpers\Extensions\GraphicsExtensions.cs" />

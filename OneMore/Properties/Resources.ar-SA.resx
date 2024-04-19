@@ -2614,6 +2614,14 @@ ISO-code then comma then language name</comment>
     <value>إضافة / تحرير الصيغة في خلايا الجدول المحددة (F5)</value>
     <comment>Ribbon OneMore menu item, Formula...</comment>
   </data>
+  <data name="ribAddTagBankButton_Label" xml:space="preserve">
+    <value>إضافة علامة البنك</value>
+    <comment>ribbon search</comment>
+  </data>
+  <data name="ribAddTagBankButton_Screentip" xml:space="preserve">
+    <value>إضافة مخطط تفصيلي لعلامة أعلى الصفحة</value>
+    <comment>ribbon search</comment>
+  </data>
   <data name="ribAdjustImagesButton_Label" xml:space="preserve">
     <value>تغيير حجم وتعديل</value>
     <comment>Ribbon OneMore menu item, Resize selected image(s)</comment>
@@ -3679,6 +3687,14 @@ ISO-code then comma then language name</comment>
   <data name="ribRemoveSpacingButton_Screentip" xml:space="preserve">
     <value>قم بإزالة تباعد الفقرات والعناوين والأسطر</value>
     <comment>Ribbon OneMore menu item, Clean...</comment>
+  </data>
+  <data name="ribRemoveTagBankButton_Label" xml:space="preserve">
+    <value>قم بإزالة بنك العلامات</value>
+    <comment>ribbon search</comment>
+  </data>
+  <data name="ribRemoveTagBankButton_Screentip" xml:space="preserve">
+    <value>إزالة المخطط التفصيلي للعلامة في أعلى الصفحة</value>
+    <comment>ribbon search</comment>
   </data>
   <data name="ribRemoveTagsButton_Label" xml:space="preserve">
     <value>إزالة العلامات</value>

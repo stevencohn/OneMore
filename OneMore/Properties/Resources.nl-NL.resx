@@ -2615,6 +2615,14 @@ Selecteer NO om één lege regel tussen paragrafen te behouden</value>
     <value>Formule toevoegen/bewerken in geselecteerde tabelcellen (F5)</value>
     <comment>Ribbon OneMore menu item, Formula...</comment>
   </data>
+  <data name="ribAddTagBankButton_Label" xml:space="preserve">
+    <value>Tagbank toevoegen</value>
+    <comment>ribbon search</comment>
+  </data>
+  <data name="ribAddTagBankButton_Screentip" xml:space="preserve">
+    <value>Voeg een tagoverzicht bovenaan de pagina toe</value>
+    <comment>ribbon search</comment>
+  </data>
   <data name="ribAdjustImagesButton_Label" xml:space="preserve">
     <value>Formaat wijzigen en aanpassen</value>
     <comment>Ribbon OneMore menu item, Resize selected image(s)</comment>
@@ -3679,6 +3687,14 @@ Na de laatste groep</value>
   <data name="ribRemoveSpacingButton_Screentip" xml:space="preserve">
     <value>Verwijder alinea-, kop- en regelafstand</value>
     <comment>Ribbon OneMore menu item, Clean...</comment>
+  </data>
+  <data name="ribRemoveTagBankButton_Label" xml:space="preserve">
+    <value>Tagbank verwijderen</value>
+    <comment>ribbon search</comment>
+  </data>
+  <data name="ribRemoveTagBankButton_Screentip" xml:space="preserve">
+    <value>Verwijder de tagomtrek bovenaan de pagina</value>
+    <comment>ribbon search</comment>
   </data>
   <data name="ribRemoveTagsButton_Label" xml:space="preserve">
     <value>Tags verwijderen</value>

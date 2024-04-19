@@ -2613,6 +2613,14 @@ Sélectionnez Non pour conserver une ligne vide entre les paragraphes</value>
     <value>Ajouter / modifier une formule dans les cellules sélectionnées du tableau (F5)</value>
     <comment>Ribbon OneMore menu item, Formula...</comment>
   </data>
+  <data name="ribAddTagBankButton_Label" xml:space="preserve">
+    <value>Ajouter une banque de balises</value>
+    <comment>ribbon search</comment>
+  </data>
+  <data name="ribAddTagBankButton_Screentip" xml:space="preserve">
+    <value>Ajouter un contour de balise de haut de page</value>
+    <comment>ribbon search</comment>
+  </data>
   <data name="ribAdjustImagesButton_Label" xml:space="preserve">
     <value>Redimensionner et ajuster</value>
     <comment>Ribbon OneMore menu item, Resize selected image(s)</comment>
@@ -3677,6 +3685,14 @@ Après le dernier groupe</value>
   <data name="ribRemoveSpacingButton_Screentip" xml:space="preserve">
     <value>Supprimer les paragraphes, les en-têtes et les interlignes</value>
     <comment>Ribbon OneMore menu item, Clean...</comment>
+  </data>
+  <data name="ribRemoveTagBankButton_Label" xml:space="preserve">
+    <value>Supprimer la banque de balises</value>
+    <comment>ribbon search</comment>
+  </data>
+  <data name="ribRemoveTagBankButton_Screentip" xml:space="preserve">
+    <value>Supprimer le contour de la balise de haut de page</value>
+    <comment>ribbon search</comment>
   </data>
   <data name="ribRemoveTagsButton_Label" xml:space="preserve">
     <value>Supprimer les balises</value>
