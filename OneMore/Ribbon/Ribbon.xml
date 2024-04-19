@@ -754,6 +754,18 @@
                 getScreentip="GetRibbonScreentip"
                 onAction="SearchHashtagsCmd"/>
               <button
+                id="ribAddTagBankButton"
+                imageMso="DataFormAddRecord"
+                getLabel="GetRibbonLabel"
+                getScreentip="GetRibbonScreentip"
+                onAction="AddTagBankCmd"/>
+              <button
+                id="ribRemoveTagBankButton"
+                imageMso="DataFormDeleteRecord"
+                getLabel="GetRibbonLabel"
+                getScreentip="GetRibbonScreentip"
+                onAction="RemoveTagBankCmd"/>
+              <button
                 id="ribTaggingButton"
                 image="Label"
                 getLabel="GetRibbonLabel"

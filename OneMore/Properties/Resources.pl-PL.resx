@@ -2627,6 +2627,14 @@ Wybierz Nie, aby zachować jedną pustą linię między akapitami</value>
     <value>Dodaj / edytuj wzór w wybranych komórkach tabeli (F5)</value>
     <comment>Ribbon OneMore menu item, Formula...</comment>
   </data>
+  <data name="ribAddTagBankButton_Label" xml:space="preserve">
+    <value>Dodaj bank tagów</value>
+    <comment>ribbon search</comment>
+  </data>
+  <data name="ribAddTagBankButton_Screentip" xml:space="preserve">
+    <value>Dodaj zarys tagu na górze strony</value>
+    <comment>ribbon search</comment>
+  </data>
   <data name="ribAdjustImagesButton_Label" xml:space="preserve">
     <value>Zmień rozmiar i dostosuj</value>
     <comment>Ribbon OneMore menu item, Resize selected image(s)</comment>
@@ -3693,6 +3701,14 @@ Po ostatniej grupie</value>
     <value>Usuń akapit, nagłówki i odstępy</value>
     <comment>Ribbon OneMore menu item, Clean...</comment>
   </data>
+  <data name="ribRemoveTagBankButton_Label" xml:space="preserve">
+    <value>Usuń bank tagów</value>
+    <comment>ribbon search</comment>
+  </data>
+  <data name="ribRemoveTagBankButton_Screentip" xml:space="preserve">
+    <value>Usuń kontur tagu z góry strony</value>
+    <comment>ribbon search</comment>
+  </data>
   <data name="ribRemoveTagsButton_Label" xml:space="preserve">
     <value>Usuń tagi.</value>
     <comment>ribbon item</comment>
@@ -4757,6 +4773,26 @@ W tej sekcji</value>
   <data name="TaggingDialog_tagLabel.Text" xml:space="preserve">
     <value>Tagi strony.</value>
     <comment>header label</comment>
+  </data>
+  <data name="TagsUpgraded" xml:space="preserve">
+    <value>Starsze tagi stron zostały przekonwertowane na hashtagi.
+
+Tagi zaktualizowane: {0}
+Strony zaktualizowane: {1}
+
+Możesz teraz wpisać #hashtags, aby dodać tagi do swojej treści.</value>
+    <comment>message box</comment>
+  </data>
+  <data name="TagsUpgraded2" xml:space="preserve">
+    <value>Starsze tagi stron zostały przekonwertowane na hastagi. Możesz teraz wpisać #hashtagi bezpośrednio na swojej stronie, aby oznaczyć swoją treść.</value>
+  </data>
+  <data name="TagsUpgraded3" xml:space="preserve">
+    <value>Starsze tagi stron zostały przekonwertowane na hashtagi.
+
+Tagi zaktualizowane: {0}
+Strony zaktualizowane: {1}
+
+Otworzy się teraz okno dialogowe Znajdź hashtagi.</value>
   </data>
   <data name="TextToTable_NoText" xml:space="preserve">
     <value>Nie jest wybrany tekst</value>

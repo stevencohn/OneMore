@@ -194,11 +194,11 @@
     <Compile Include="Commands\Settings\FileImportSheet.Designer.cs">
       <DependentUpon>FileImportSheet.cs</DependentUpon>
     </Compile>
-    <Compile Include="Commands\Settings\HashtagSheet .cs">
+    <Compile Include="Commands\Settings\HashtagSheet.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Commands\Settings\HashtagSheet .Designer.cs">
-      <DependentUpon>HashtagSheet .cs</DependentUpon>
+    <Compile Include="Commands\Settings\HashtagSheet.Designer.cs">
+      <DependentUpon>HashtagSheet.cs</DependentUpon>
     </Compile>
     <Compile Include="Commands\Settings\NavigatorSheet.cs">
       <SubType>UserControl</SubType>
@@ -250,6 +250,7 @@
     <Compile Include="Commands\Tagging\HashtagContextControl.Designer.cs">
       <DependentUpon>HashtagContextControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="Commands\Tagging\LegacyTaggingConverter.cs" />
     <Compile Include="Commands\Tagging\HashtagDialog.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -270,6 +271,12 @@
     <Compile Include="Commands\Tagging\HashtagScannedEventArgs.cs" />
     <Compile Include="Commands\Tagging\HashtagScanner.cs" />
     <Compile Include="Commands\Tagging\HashtagService.cs" />
+    <Compile Include="Commands\Tagging\LegacyTaggingDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Commands\Tagging\LegacyTaggingDialog.Designer.cs">
+      <DependentUpon>LegacyTaggingDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="Commands\Tagging\ScanningState.cs" />
     <Compile Include="Commands\Tagging\ScheduleScanDialog.cs">
       <SubType>Form</SubType>
@@ -277,6 +284,7 @@
     <Compile Include="Commands\Tagging\ScheduleScanDialog.Designer.cs">
       <DependentUpon>ScheduleScanDialog.cs</DependentUpon>
     </Compile>
+    <Compile Include="Commands\Tagging\TagBankCommand.cs" />
     <Compile Include="Helpers\ColorHelper.cs" />
     <Compile Include="Helpers\Extensions\FontFamilyExtensions.cs" />
     <Compile Include="Helpers\Extensions\GraphicsExtensions.cs" />
@@ -1139,6 +1147,9 @@
     <EmbeddedResource Include="Commands\Tagging\HashtagScheduler.resx">
       <DependentUpon>HashtagScheduler.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Commands\Tagging\LegacyTaggingDialog.resx">
+      <DependentUpon>LegacyTaggingDialog.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Commands\Tagging\ScheduleScanDialog.resx">
       <DependentUpon>ScheduleScanDialog.cs</DependentUpon>
     </EmbeddedResource>
@@ -1425,8 +1436,8 @@
     <EmbeddedResource Include="Commands\Settings\FileImportSheet.resx">
       <DependentUpon>FileImportSheet.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Commands\Settings\HashtagSheet .resx">
-      <DependentUpon>HashtagSheet .cs</DependentUpon>
+    <EmbeddedResource Include="Commands\Settings\HashtagSheet.resx">
+      <DependentUpon>HashtagSheet.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Commands\Settings\NavigatorSheet.resx">
       <DependentUpon>NavigatorSheet.cs</DependentUpon>

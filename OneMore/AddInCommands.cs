@@ -50,6 +50,11 @@ namespace River.OneMoreAddIn
 			=> await factory.Run<AddFormulaCommand>();
 
 
+		[Command("ribAddTagBankButton_Label", Keys.None, "ribSearchMenu")]
+		public async Task AddTagBankCmd(IRibbonControl control)
+			=> await factory.Run<TagBankCommand>(true);
+
+
 		[Command("ribAdjustImagesButton_Label", Keys.None, "ribImagesMenu")]
 		public async Task AdjustImagesCmd(IRibbonControl control)
 			=> await factory.Run<AdjustImagesCommand>();
@@ -694,6 +699,11 @@ namespace River.OneMoreAddIn
 		[Command("ribRemoveSpacingButton_Label", Keys.None, "ribCleanMenu")]
 		public async Task RemoveSpacingCmd(IRibbonControl control)
 			=> await factory.Run<RemoveSpacingCommand>();
+
+
+		[Command("ribRemoveTagBankButton_Label", Keys.None, "ribSearchMenu")]
+		public async Task RemoveTagBankCmd(IRibbonControl control)
+			=> await factory.Run<TagBankCommand>(false);
 
 
 		[Command("ribRemoveTagsButton_Label", Keys.None, "ribCleanMenu")]

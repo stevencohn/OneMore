@@ -45,11 +45,14 @@ namespace River.OneMoreAddIn.UI
 
 		public void SetMessage(string message)
 		{
-			using var g = messageBox.CreateGraphics();
-			var size = g.MeasureString(message, Font).ToSize();
-			if (size.Height + Font.Height > messageBox.Height)
+			var size = TextRenderer.MeasureText(
+				message, messageBox.Font, messageBox.Size, TextFormatFlags.NoClipping);
+
+			// leave a little room (is this good?)
+			var preferred = size.Height + messageBox.Font.Height;
+			if (preferred > messageBox.Height)
 			{
-				Height += Font.Height + (size.Height - messageBox.Height);
+				Height += preferred - messageBox.Height;
 			}
 
 			messageBox.Text = message;

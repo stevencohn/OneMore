@@ -2611,6 +2611,14 @@ Wähle Nein, um eine leere Zeile zwischen den Absätzen zu halten</value>
     <value>Formel in ausgewählten Tabellenzellen hinzufügen / bearbeiten (F5)</value>
     <comment>Ribbon OneMore menu item, Formula...</comment>
   </data>
+  <data name="ribAddTagBankButton_Label" xml:space="preserve">
+    <value>Tag-Bank hinzufügen</value>
+    <comment>ribbon search</comment>
+  </data>
+  <data name="ribAddTagBankButton_Screentip" xml:space="preserve">
+    <value>Fügen Sie die Top-of-Page-Tag-Gliederung hinzu</value>
+    <comment>ribbon search</comment>
+  </data>
   <data name="ribAdjustImagesButton_Label" xml:space="preserve">
     <value>Größe ändern und anpassen</value>
     <comment>Ribbon OneMore menu item, Resize selected image(s)</comment>
@@ -3670,6 +3678,14 @@ Nach der letzten Gruppe</value>
   <data name="ribRemoveSpacingButton_Screentip" xml:space="preserve">
     <value>Entfernt Absatz-, Überschriften- und Zeilenabstand</value>
     <comment>ribbon clean</comment>
+  </data>
+  <data name="ribRemoveTagBankButton_Label" xml:space="preserve">
+    <value>Entfernen Sie die Tag-Bank</value>
+    <comment>ribbon search</comment>
+  </data>
+  <data name="ribRemoveTagBankButton_Screentip" xml:space="preserve">
+    <value>Entfernen Sie den Top-of-Page-Tag-Umriss</value>
+    <comment>ribbon search</comment>
   </data>
   <data name="ribRemoveTagsButton_Label" xml:space="preserve">
     <value>Schlagwörter entfernen</value>
@@ -4736,6 +4752,26 @@ In diesem Abschnitt</value>
   <data name="TaggingDialog_tagLabel.Text" xml:space="preserve">
     <value>Seite Tags</value>
     <comment>header label</comment>
+  </data>
+  <data name="TagsUpgraded" xml:space="preserve">
+    <value>Ältere Seiten-Tags wurden in Hashtags umgewandelt.
+
+Aktualisierte Tags: {0}
+Aktualisierte Seiten: {1}
+
+Sie können jetzt Inline-#Hashtags eingeben, um Ihrem Inhalt Tags hinzuzufügen.</value>
+    <comment>message box</comment>
+  </data>
+  <data name="TagsUpgraded2" xml:space="preserve">
+    <value>Ältere Seiten-Tags wurden in Hashtags umgewandelt. Sie können jetzt direkt auf Ihrer Seite Inline-#Hashtags eingeben, um Ihren Inhalt mit Tags zu versehen.</value>
+  </data>
+  <data name="TagsUpgraded3" xml:space="preserve">
+    <value>Ältere Seiten-Tags wurden in Hashtags umgewandelt.
+
+Aktualisierte Tags: {0}
+Aktualisierte Seiten: {1}
+
+Das Dialogfeld „Hashtags suchen“ wird nun geöffnet.</value>
   </data>
   <data name="TextToTable_NoText" xml:space="preserve">
     <value>Es ist kein Text ausgewählt</value>

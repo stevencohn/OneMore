@@ -4,6 +4,7 @@
 
 namespace River.OneMoreAddIn.Commands
 {
+	using River.OneMoreAddIn.UI;
 	using System;
 	using System.Collections.Generic;
 	using System.Threading.Tasks;
@@ -24,6 +25,34 @@ namespace River.OneMoreAddIn.Commands
 
 		public override async Task Execute(params object[] args)
 		{
+			var converter = new LegacyTaggingConverter();
+			var upgraded = await converter.UpgradeLegacyTags(owner);
+
+			if (upgraded)
+			{
+				using var box = new MoreMessageBox();
+				box.SetIcon(MessageBoxIcon.Information);
+				box.SetMessage(string.Format(Resx.TagsUpgraded,
+					converter.TagsConverted, converter.PagesConverted
+					));
+	
+				box.SetButtons(MessageBoxButtons.OKCancel);
+				if (box.ShowDialog(owner) != DialogResult.OK)
+				{
+					return;
+				}
+			}
+
+			if (converter.Converted)
+			{
+				var cmd = new HashtagCommand();
+				cmd.SetLogger(logger);
+				cmd.SetRibbon(ribbon);
+				cmd.SetTrash(trash);
+				await cmd.Execute();
+				return;
+			}
+
 			var dialog = new TaggedDialog();
 
 			await dialog.RunModeless(async (sender, e) =>

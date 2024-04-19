@@ -94,6 +94,21 @@ namespace River.OneMoreAddIn
 
 			var setprovider = new SettingsProvider();
 
+			// TODO: temporary Page taggign
+			var tagging = setprovider.GetCollection("tagging");
+			if (tagging.Get("converted", false))
+			{
+				if (commands.Find(c => c.Method.Name == "TaggedCmd") is CommandInfo cmd1)
+				{
+					commands.Remove(cmd1);
+				}
+
+				if (commands.Find(c => c.Method.Name == "TaggingCmd") is CommandInfo cmd2)
+				{
+					commands.Remove(cmd2);
+				}
+			}
+
 			// load aliases
 			var settings = setprovider
 				.GetCollection(AliasSheet.CollectionName)?

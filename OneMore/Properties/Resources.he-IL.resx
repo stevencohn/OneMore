@@ -2631,6 +2631,14 @@ ISO-code then comma then language name</comment>
     <value>הוסף/ערוך נוסחה בתאי טבלה שנבחרו (F5)</value>
     <comment>Ribbon OneMore menu item, Formula...</comment>
   </data>
+  <data name="ribAddTagBankButton_Label" xml:space="preserve">
+    <value>הוסף בנק תגים</value>
+    <comment>ribbon search</comment>
+  </data>
+  <data name="ribAddTagBankButton_Screentip" xml:space="preserve">
+    <value>הוסף מתאר תג בראש הדף</value>
+    <comment>ribbon search</comment>
+  </data>
   <data name="ribAdjustImagesButton_Label" xml:space="preserve">
     <value>שנה גודל והתאם</value>
     <comment>Ribbon OneMore menu item, Resize selected image(s)</comment>
@@ -3690,6 +3698,14 @@ ISO-code then comma then language name</comment>
   <data name="ribRemoveSpacingButton_Screentip" xml:space="preserve">
     <value>הסר פסקה, כותרת ומרווח בין שורות</value>
     <comment>Ribbon OneMore menu item, Clean...</comment>
+  </data>
+  <data name="ribRemoveTagBankButton_Label" xml:space="preserve">
+    <value>הסר את בנק התגים</value>
+    <comment>ribbon search</comment>
+  </data>
+  <data name="ribRemoveTagBankButton_Screentip" xml:space="preserve">
+    <value>הסר את קווי המתאר של התג בראש הדף</value>
+    <comment>ribbon search</comment>
   </data>
   <data name="ribRemoveTagsButton_Label" xml:space="preserve">
     <value>הסר תגיות</value>
@@ -4755,6 +4771,26 @@ ISO-code then comma then language name</comment>
   <data name="TaggingDialog_tagLabel.Text" xml:space="preserve">
     <value>תגי עמוד</value>
     <comment>header label</comment>
+  </data>
+  <data name="TagsUpgraded" xml:space="preserve">
+    <value>תגי עמוד מדור קודם הומרו להאשטאג.
+
+תגים משודרגים: {0}
+דפים עודכנו: {1}
+
+כעת תוכל להקליד #hashtags בתוך השורה כדי להוסיף תגים לתוכן שלך.</value>
+    <comment>message box</comment>
+  </data>
+  <data name="TagsUpgraded2" xml:space="preserve">
+    <value>תגי עמוד מדור קודם הומרו ל-hastags. כעת תוכל להקליד #hashtags מוטבעים ישירות בדף שלך כדי לתייג את התוכן שלך.</value>
+  </data>
+  <data name="TagsUpgraded3" xml:space="preserve">
+    <value>תגי עמוד מדור קודם הומרו להאשטאג.
+
+תגים משודרגים: {0}
+דפים עודכנו: {1}
+
+תיפתח כעת תיבת הדו-שיח Find Hashtags.</value>
   </data>
   <data name="TextToTable_NoText" xml:space="preserve">
     <value>לא נבחר טקסט</value>

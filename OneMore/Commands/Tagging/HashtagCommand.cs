@@ -43,6 +43,9 @@ namespace River.OneMoreAddIn.Commands
 				return;
 			}
 
+			var converter = new LegacyTaggingConverter();
+			await converter.UpgradeLegacyTags(owner);
+
 			dialog = new HashtagDialog();
 			dialog.FormClosed += Dialog_FormClosed;
 
@@ -113,6 +116,7 @@ namespace River.OneMoreAddIn.Commands
 				dialog = null;
 			}
 		}
+
 
 		private async Task Callback(string sectionId)
 		{

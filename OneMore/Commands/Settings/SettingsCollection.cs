@@ -31,6 +31,12 @@ namespace River.OneMoreAddIn.Settings
 		public string Name { get; }
 
 
+		/// <summary>
+		/// Indicates whether the collection has been modified and needs to be saved
+		/// </summary>
+		public bool IsModified { get; private set; }
+
+
 		public string this[string name] => properties.ContainsKey(name) ? (string)properties[name] : null;
 
 
@@ -41,6 +47,7 @@ namespace River.OneMoreAddIn.Settings
 				if ((string)properties[name] != value)
 				{
 					properties[name] = value;
+					IsModified = true;
 					return true;
 				}
 
@@ -48,6 +55,7 @@ namespace River.OneMoreAddIn.Settings
 			}
 
 			properties.Add(name, value);
+			IsModified = true;
 			return true;
 		}
 
@@ -86,6 +94,7 @@ namespace River.OneMoreAddIn.Settings
 		public void Clear()
 		{
 			properties.Clear();
+			IsModified = true;
 		}
 
 
@@ -139,6 +148,7 @@ namespace River.OneMoreAddIn.Settings
 			if (properties.ContainsKey(name))
 			{
 				properties.Remove(name);
+				IsModified = true;
 				return true;
 			}
 

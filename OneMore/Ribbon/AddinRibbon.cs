@@ -62,6 +62,17 @@ namespace River.OneMoreAddIn
 				AddColorizerCommands(root, provider.GetCollection(nameof(ColorizerSheet)));
 				AddProofingCommands(root);
 
+				// NOTE: temporary page tagging
+				var tagsettings = provider.GetCollection("tagging");
+				if (tagsettings.Get("converted", false))
+				{
+					root.Descendants(ns + "button")
+						.Where(e =>
+							e.Attribute("id").Value == "ribTaggingButton" ||
+							e.Attribute("id").Value == "ribTaggedButton")
+						.Remove();
+				}
+
 				var contextMenus = root.Element(ns + "contextMenus");
 				if (contextMenus == null)
 				{

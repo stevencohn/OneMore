@@ -2613,6 +2613,14 @@ ISO-code then comma then language name</comment>
     <value>在选定的表格单元格中添加/编辑公式（F5）</value>
     <comment>Ribbon OneMore menu item, Formula...</comment>
   </data>
+  <data name="ribAddTagBankButton_Label" xml:space="preserve">
+    <value>添加标签库</value>
+    <comment>ribbon search</comment>
+  </data>
+  <data name="ribAddTagBankButton_Screentip" xml:space="preserve">
+    <value>添加页面顶部标签轮廓</value>
+    <comment>ribbon search</comment>
+  </data>
   <data name="ribAdjustImagesButton_Label" xml:space="preserve">
     <value>调整大小和调整</value>
     <comment>Ribbon OneMore menu item, Resize selected image(s)</comment>
@@ -3672,6 +3680,14 @@ ISO-code then comma then language name</comment>
   <data name="ribRemoveSpacingButton_Screentip" xml:space="preserve">
     <value>删除段落，标题和行间距</value>
     <comment>Ribbon OneMore menu item, Clean...</comment>
+  </data>
+  <data name="ribRemoveTagBankButton_Label" xml:space="preserve">
+    <value>删除标签库</value>
+    <comment>ribbon search</comment>
+  </data>
+  <data name="ribRemoveTagBankButton_Screentip" xml:space="preserve">
+    <value>删除页面顶部标签轮廓</value>
+    <comment>ribbon search</comment>
   </data>
   <data name="ribRemoveTagsButton_Label" xml:space="preserve">
     <value>移除标签</value>
@@ -4737,6 +4753,26 @@ ISO-code then comma then language name</comment>
   <data name="TaggingDialog_tagLabel.Text" xml:space="preserve">
     <value>页面标签</value>
     <comment>header label</comment>
+  </data>
+  <data name="TagsUpgraded" xml:space="preserve">
+    <value>旧版页面标签已转换为主题标签。
+
+已升级标签：{0}
+更新页面：{1}
+
+您现在可以输入内联 #hashtags 来向您的内容添加标签。</value>
+    <comment>message box</comment>
+  </data>
+  <data name="TagsUpgraded2" xml:space="preserve">
+    <value>旧版页面标签已转换为主题标签。您现在可以直接在页面上输入内联 #hashtags 来标记您的内容。</value>
+  </data>
+  <data name="TagsUpgraded3" xml:space="preserve">
+    <value>旧版页面标签已转换为主题标签。
+
+已升级标签：{0}
+更新页面：{1}
+
+现在将打开“查找主题标签”对话框。</value>
   </data>
   <data name="TextToTable_NoText" xml:space="preserve">
     <value>没有选择文字</value>

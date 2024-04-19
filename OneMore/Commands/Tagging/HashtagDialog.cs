@@ -343,7 +343,7 @@ namespace River.OneMoreAddIn.Commands
 
 		private async void ScanNow(object sender, EventArgs e)
 		{
-			// update label BEFORE manually scan to reflect best quess when service will run
+			// update label BEFORE manually scanning to reflect best quess when service will run
 			ShowScanTimes();
 
 			using var scanner = new HashtagScanner();
