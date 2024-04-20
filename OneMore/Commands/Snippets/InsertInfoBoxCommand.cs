@@ -103,10 +103,6 @@ namespace River.OneMoreAddIn.Commands
 			normalStyle.Color = theme["titleColor"].ToString();
 			normalStyle.IsBold = true;
 
-
-			System.Diagnostics.Debugger.Launch();
-
-
 			row.Cells.ElementAt(1).SetContent(
 				new XElement(ns + "OEChildren",
 					new XElement(ns + "OE",
