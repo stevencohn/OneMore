@@ -128,7 +128,34 @@ namespace River.OneMoreAddIn
 		/// <param name="e"></param>
 		private void CatchUnhandledException(object sender, UnhandledExceptionEventArgs e)
 		{
-			logger.WriteLine("Unhandled appdomain exception", (Exception)e.ExceptionObject);
+			//Debugger.Launch();
+
+			var entry = new EventLog("Application") { Source = "OneMore" };
+
+			var msg = "OneMore UnhandledException";
+			if (e.IsTerminating)
+			{
+				msg += ", Terminating";
+			}
+
+			msg += ": ";
+
+			if (e.ExceptionObject is not null)
+			{
+				msg += Environment.NewLine + (e.ExceptionObject is Exception exc
+					? exc.FormatDetails()
+					: e.ExceptionObject.GetType().FullName);
+			}
+			else
+			{
+				msg += "null ExceptionObject in CatchUnhandledException";
+			}
+
+			entry.WriteEntry(msg, EventLogEntryType.Error, 881);
+			logger.WriteLine($"Unhandled appdomain exception: {msg}");
+
+			Array custom = null;
+			OnBeginShutdown(ref custom);
 		}
 
 
@@ -349,7 +376,7 @@ namespace River.OneMoreAddIn
 		private string DescribeCustom(Array custom)
 		{
 			var description = string.Empty;
-			if (custom != null)
+			if (custom is not null)
 			{
 				// custom is a base-1 array
 				for (var i = custom.GetLowerBound(0); i <= custom.GetUpperBound(0); i++)
