@@ -1356,6 +1356,10 @@
     <value>علامات التصنيف</value>
     <comment>sheet title</comment>
   </data>
+  <data name="HashtagSheet_upgradeLink.Text" xml:space="preserve">
+    <value>ترقية علامات الصفحة إلى علامات التصنيف المضمنة</value>
+    <comment>link</comment>
+  </data>
   <data name="HashtagSheet_warningLabel.Text" xml:space="preserve">
     <value>يجب استخدام هذا بعد إضافة أو إزالة دفتر واحد أو أكثر من دفاتر الملاحظات. يوصى بجدولة إعادة البناء بعد ساعات ، مثل منتصف الليل.</value>
     <comment>multiline label</comment>

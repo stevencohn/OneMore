@@ -44,6 +44,7 @@ namespace River.OneMoreAddIn.Settings
 			this.delayBox = new System.Windows.Forms.NumericUpDown();
 			this.msLabel = new System.Windows.Forms.Label();
 			this.layoutPanel = new System.Windows.Forms.Panel();
+			this.upgradeLink = new River.OneMoreAddIn.UI.MoreLinkLabel();
 			((System.ComponentModel.ISupportInitialize)(this.intervalBox)).BeginInit();
 			this.advancedGroup.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.delayBox)).BeginInit();
@@ -108,13 +109,14 @@ namespace River.OneMoreAddIn.Settings
 			// 
 			this.advancedGroup.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+			this.advancedGroup.Controls.Add(this.upgradeLink);
 			this.advancedGroup.Controls.Add(this.warningLabel);
 			this.advancedGroup.Controls.Add(this.scheduleLink);
 			this.advancedGroup.Controls.Add(this.disabledBox);
-			this.advancedGroup.Location = new System.Drawing.Point(10, 220);
+			this.advancedGroup.Location = new System.Drawing.Point(10, 212);
 			this.advancedGroup.Name = "advancedGroup";
 			this.advancedGroup.Padding = new System.Windows.Forms.Padding(15, 3, 3, 3);
-			this.advancedGroup.Size = new System.Drawing.Size(759, 189);
+			this.advancedGroup.Size = new System.Drawing.Size(759, 253);
 			this.advancedGroup.TabIndex = 6;
 			this.advancedGroup.TabStop = false;
 			this.advancedGroup.Text = "Advanced Options";
@@ -156,7 +158,7 @@ namespace River.OneMoreAddIn.Settings
 			this.disabledBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(231)))), ((int)(((byte)(231)))));
 			this.disabledBox.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.disabledBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-			this.disabledBox.Location = new System.Drawing.Point(18, 127);
+			this.disabledBox.Location = new System.Drawing.Point(18, 203);
 			this.disabledBox.Name = "disabledBox";
 			this.disabledBox.Size = new System.Drawing.Size(540, 25);
 			this.disabledBox.StylizeImage = false;
@@ -169,7 +171,7 @@ namespace River.OneMoreAddIn.Settings
 			// styleLabel
 			// 
 			this.styleLabel.AutoSize = true;
-			this.styleLabel.Location = new System.Drawing.Point(7, 150);
+			this.styleLabel.Location = new System.Drawing.Point(7, 144);
 			this.styleLabel.Name = "styleLabel";
 			this.styleLabel.Size = new System.Drawing.Size(140, 20);
 			this.styleLabel.TabIndex = 7;
@@ -183,7 +185,7 @@ namespace River.OneMoreAddIn.Settings
             "None",
             "Red Foreground",
             "Yellow Background"});
-			this.styleBox.Location = new System.Drawing.Point(304, 147);
+			this.styleBox.Location = new System.Drawing.Point(304, 141);
 			this.styleBox.Name = "styleBox";
 			this.styleBox.Size = new System.Drawing.Size(280, 28);
 			this.styleBox.TabIndex = 8;
@@ -249,8 +251,27 @@ namespace River.OneMoreAddIn.Settings
 			this.layoutPanel.Location = new System.Drawing.Point(13, 74);
 			this.layoutPanel.Margin = new System.Windows.Forms.Padding(0);
 			this.layoutPanel.Name = "layoutPanel";
-			this.layoutPanel.Size = new System.Drawing.Size(772, 412);
+			this.layoutPanel.Size = new System.Drawing.Size(772, 476);
 			this.layoutPanel.TabIndex = 4;
+			// 
+			// upgradeLink
+			// 
+			this.upgradeLink.ActiveLinkColor = System.Drawing.Color.MediumOrchid;
+			this.upgradeLink.AutoSize = true;
+			this.upgradeLink.Cursor = System.Windows.Forms.Cursors.Hand;
+			this.upgradeLink.HoverColor = System.Drawing.Color.Orchid;
+			this.upgradeLink.LinkColor = System.Drawing.Color.MediumOrchid;
+			this.upgradeLink.Location = new System.Drawing.Point(18, 144);
+			this.upgradeLink.Name = "upgradeLink";
+			this.upgradeLink.Size = new System.Drawing.Size(274, 20);
+			this.upgradeLink.StrictColors = false;
+			this.upgradeLink.TabIndex = 3;
+			this.upgradeLink.TabStop = true;
+			this.upgradeLink.Text = "Upgrade page tags to inline hashtags";
+			this.upgradeLink.ThemedBack = null;
+			this.upgradeLink.ThemedFore = null;
+			this.upgradeLink.VisitedLinkColor = System.Drawing.Color.MediumOrchid;
+			this.upgradeLink.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.UpgradeTags);
 			// 
 			// HashtagSheet
 			// 
@@ -262,7 +283,7 @@ namespace River.OneMoreAddIn.Settings
 			this.ForeColor = System.Drawing.SystemColors.ControlText;
 			this.Name = "HashtagSheet";
 			this.Padding = new System.Windows.Forms.Padding(13, 8, 15, 10);
-			this.Size = new System.Drawing.Size(800, 496);
+			this.Size = new System.Drawing.Size(800, 560);
 			((System.ComponentModel.ISupportInitialize)(this.intervalBox)).EndInit();
 			this.advancedGroup.ResumeLayout(false);
 			this.advancedGroup.PerformLayout();
@@ -290,5 +311,6 @@ namespace River.OneMoreAddIn.Settings
 		private System.Windows.Forms.Panel layoutPanel;
 		private UI.MoreMultilineLabel warningLabel;
 		private UI.MoreLinkLabel scheduleLink;
+		private UI.MoreLinkLabel upgradeLink;
 	}
 }

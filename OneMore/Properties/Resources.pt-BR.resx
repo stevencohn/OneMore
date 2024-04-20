@@ -1357,6 +1357,10 @@ Fundo Amarelo</value>
     <value>Hashtags</value>
     <comment>sheet title</comment>
   </data>
+  <data name="HashtagSheet_upgradeLink.Text" xml:space="preserve">
+    <value>Atualizar tags de página para hashtags embutidas</value>
+    <comment>link</comment>
+  </data>
   <data name="HashtagSheet_warningLabel.Text" xml:space="preserve">
     <value>Isso deve ser usado após adicionar ou remover um ou mais notebooks. Recomenda-se agendar reconstrução após o horário comercial, como a meia-noite.</value>
     <comment>multiline label</comment>

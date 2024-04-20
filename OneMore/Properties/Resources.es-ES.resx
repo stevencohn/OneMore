@@ -1356,6 +1356,10 @@ Fondo amarillo</value>
     <value>Etiquetas</value>
     <comment>sheet title</comment>
   </data>
+  <data name="HashtagSheet_upgradeLink.Text" xml:space="preserve">
+    <value>Actualice las etiquetas de la página a hashtags en línea</value>
+    <comment>link</comment>
+  </data>
   <data name="HashtagSheet_warningLabel.Text" xml:space="preserve">
     <value>Esto debe usarse después de agregar o eliminar uno o más cuadernos. Se recomienda programar las reconstrucciones fuera del horario de atención, como la medianoche.</value>
     <comment>multiline label</comment>
