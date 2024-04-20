@@ -636,10 +636,17 @@ namespace River.OneMoreAddIn
 #if LOG_AddInRibbon
 			logger.WriteLine($"GetRibbonImageByID({control.Id})");
 #endif
+
+			var id = control.Id;
+			if (!id.StartsWith("rib"))
+			{
+				id = $"rib{id.Substring(3)}";
+			}
+
 			IStream stream = null;
 			try
 			{
-				if (Resx.ResourceManager.GetObject(control.Id) is Bitmap res)
+				if (Resx.ResourceManager.GetObject(id) is Bitmap res)
 				{
 					stream = res.GetReadOnlyStream();
 					trash.Add((IDisposable)stream);
