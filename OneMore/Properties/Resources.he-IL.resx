@@ -1365,6 +1365,10 @@ Total Row Font
     <value>Hashtags</value>
     <comment>sheet title</comment>
   </data>
+  <data name="HashtagSheet_upgradeLink.Text" xml:space="preserve">
+    <value>שדרג את תגי העמוד להאשטאגים מוטבעים</value>
+    <comment>link</comment>
+  </data>
   <data name="HashtagSheet_warningLabel.Text" xml:space="preserve">
     <value>יש להשתמש בזה לאחר הוספת או הסרת מחברת אחת או יותר. מומלץ לתאם מחדש את הבנייה מחדש לאחר שעות העבודה, כמו חצות.</value>
     <comment>multiline label</comment>

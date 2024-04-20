@@ -3603,6 +3603,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Upgrade page tags to inline hashtags.
+        /// </summary>
+        internal static string HashtagSheet_upgradeLink_Text {
+            get {
+                return ResourceManager.GetString("HashtagSheet_upgradeLink.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to This should be used after adding or removing one or more notebooks. It is recommended to schedule rebuilds after-hours, such as midnight..
         /// </summary>
         internal static string HashtagSheet_warningLabel_Text {

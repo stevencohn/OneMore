@@ -1354,6 +1354,10 @@ Gelber Hintergrund</value>
     <value>Hashtags</value>
     <comment>sheet title</comment>
   </data>
+  <data name="HashtagSheet_upgradeLink.Text" xml:space="preserve">
+    <value>Aktualisieren Sie Seiten-Tags auf Inline-Hashtags</value>
+    <comment>link</comment>
+  </data>
   <data name="HashtagSheet_warningLabel.Text" xml:space="preserve">
     <value>Dies sollte verwendet werden, nachdem ein oder mehrere Notizbücher hinzugefügt oder entfernt werden. Es wird empfohlen, den Wiederaufbau von Nachbästen wie Mitternacht zu planen.</value>
     <comment>multiline label</comment>

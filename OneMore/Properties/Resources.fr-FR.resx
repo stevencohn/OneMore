@@ -1356,6 +1356,10 @@ Fond jaune</value>
     <value>Hashtags</value>
     <comment>sheet title</comment>
   </data>
+  <data name="HashtagSheet_upgradeLink.Text" xml:space="preserve">
+    <value>Mettre à niveau les balises de page vers des hashtags en ligne</value>
+    <comment>link</comment>
+  </data>
   <data name="HashtagSheet_warningLabel.Text" xml:space="preserve">
     <value>Ceci doit être utilisé après avoir ajouté ou supprimé un ou plusieurs cahiers. Il est recommandé de planifier des reconstructions après les heures d'ouverture, comme minuit.</value>
     <comment>multiline label</comment>

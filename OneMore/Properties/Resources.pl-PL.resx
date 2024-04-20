@@ -1365,6 +1365,10 @@ Czerwony pierwszy plan
     <value>Hashtagi</value>
     <comment>sheet title</comment>
   </data>
+  <data name="HashtagSheet_upgradeLink.Text" xml:space="preserve">
+    <value>Uaktualnij tagi strony do hashtagów wbudowanych</value>
+    <comment>link</comment>
+  </data>
   <data name="HashtagSheet_warningLabel.Text" xml:space="preserve">
     <value>Należy to użyć po dodaniu lub usunięciu jednego lub więcej notebooków. Zaleca się zaplanowanie przebudowy po godzinach, takich jak północ.</value>
     <comment>multiline label</comment>

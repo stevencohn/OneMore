@@ -1369,6 +1369,10 @@ Yellow Background</value>
     <value>Hashtags</value>
     <comment>sheet title</comment>
   </data>
+  <data name="HashtagSheet_upgradeLink.Text" xml:space="preserve">
+    <value>Upgrade page tags to inline hashtags</value>
+    <comment>link</comment>
+  </data>
   <data name="HashtagSheet_warningLabel.Text" xml:space="preserve">
     <value>This should be used after adding or removing one or more notebooks. It is recommended to schedule rebuilds after-hours, such as midnight.</value>
     <comment>multiline label</comment>

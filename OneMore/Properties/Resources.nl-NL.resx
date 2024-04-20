@@ -1357,6 +1357,10 @@ Gele achtergrond</value>
     <value>Hashtags</value>
     <comment>sheet title</comment>
   </data>
+  <data name="HashtagSheet_upgradeLink.Text" xml:space="preserve">
+    <value>Upgrade paginatags naar inline hashtags</value>
+    <comment>link</comment>
+  </data>
   <data name="HashtagSheet_warningLabel.Text" xml:space="preserve">
     <value>Dit moet worden gebruikt na het toevoegen of verwijderen van een of meer notebooks. Het wordt aanbevolen om wederopbouw na uur te plannen, zoals middernacht.</value>
     <comment>multiline label</comment>

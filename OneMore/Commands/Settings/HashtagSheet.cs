@@ -36,6 +36,7 @@ namespace River.OneMoreAddIn.Settings
 					"filterBox",
 					"scheduleLink",
 					"warningBox",
+					"upgradeLink",
 					"disabledBox"
 				});
 			}
@@ -75,6 +76,8 @@ namespace River.OneMoreAddIn.Settings
 			}
 
 			filterBox.Checked = settings.Get<bool>("unfiltered");
+
+			upgradeLink.Enabled = !provider.GetCollection("tagging").Get("converted", false);
 
 			if (provider.GetCollection("GeneralSheet").Get("experimental", false))
 			{
@@ -122,6 +125,19 @@ namespace River.OneMoreAddIn.Settings
 				scheduler.StartTime = dialog.StartTime;
 				scheduler.State = ScanningState.PendingScan;
 				await scheduler.Activate();
+			}
+		}
+
+
+		// NOTE: temporary page tags
+		private async void UpgradeTags(object sender, LinkLabelLinkClickedEventArgs e)
+		{
+			var converter = new LegacyTaggingConverter();
+			var upgraded = await converter.UpgradeLegacyTags(ParentForm);
+
+			if (upgraded)
+			{
+				upgradeLink.Enabled = false;
 			}
 		}
 
