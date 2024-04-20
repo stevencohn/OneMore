@@ -4699,6 +4699,10 @@ Inverser</value>
     <value>Thème de table OneMore {0}</value>
     <comment>Screentip for table theme gallery tiles</comment>
   </data>
+  <data name="TagBankCommand_confirm" xml:space="preserve">
+    <value>La banque de balises contient du texte. Êtes-vous sûr de vouloir le supprimer ?</value>
+    <comment>messagebox</comment>
+  </data>
   <data name="TaggedDialog_checkAllLabel.Text" xml:space="preserve">
     <value>Vérifiez toutes les pages</value>
     <comment>check all nodes link label</comment>

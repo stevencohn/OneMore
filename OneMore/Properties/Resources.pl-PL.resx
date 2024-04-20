@@ -4715,6 +4715,10 @@ Odwracać</value>
     <value>Motyw tabeli OneMore {0}</value>
     <comment>Screentip for table theme gallery tiles</comment>
   </data>
+  <data name="TagBankCommand_confirm" xml:space="preserve">
+    <value>Bank znaczników zawiera tekst. Czy na pewno chcesz to usunąć?</value>
+    <comment>messagebox</comment>
+  </data>
   <data name="TaggedDialog_checkAllLabel.Text" xml:space="preserve">
     <value>Sprawdź wszystkie strony.</value>
     <comment>check all nodes link label</comment>

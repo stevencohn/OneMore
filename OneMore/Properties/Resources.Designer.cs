@@ -11658,6 +11658,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The tag bank contains text. Are you sure you want to remove it?.
+        /// </summary>
+        internal static string TagBankCommand_confirm {
+            get {
+                return ResourceManager.GetString("TagBankCommand_confirm", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Check all pages.
         /// </summary>
         internal static string TaggedDialog_checkAllLabel_Text {

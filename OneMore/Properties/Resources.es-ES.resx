@@ -4702,6 +4702,10 @@ Invertir</value>
     <value>Tema de mesa OneMore {0}</value>
     <comment>Screentip for table theme gallery tiles</comment>
   </data>
+  <data name="TagBankCommand_confirm" xml:space="preserve">
+    <value>El banco de etiquetas contiene texto. ¿Estás seguro de que quieres eliminarlo?</value>
+    <comment>messagebox</comment>
+  </data>
   <data name="TaggedDialog_checkAllLabel.Text" xml:space="preserve">
     <value>Ver todas las páginas</value>
     <comment>check all nodes link label</comment>

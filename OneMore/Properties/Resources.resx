@@ -4740,6 +4740,10 @@ Invert</value>
     <value>OneMore Table Theme {0}</value>
     <comment>Screentip for table theme gallery tiles</comment>
   </data>
+  <data name="TagBankCommand_confirm" xml:space="preserve">
+    <value>The tag bank contains text. Are you sure you want to remove it?</value>
+    <comment>messagebox</comment>
+  </data>
   <data name="TaggedDialog_checkAllLabel.Text" xml:space="preserve">
     <value>Check all pages</value>
     <comment>check all nodes link label</comment>

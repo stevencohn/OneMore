@@ -4702,6 +4702,10 @@ Invertido</value>
     <value>Tema de mesa OneMore {0}</value>
     <comment>Screentip for table theme gallery tiles</comment>
   </data>
+  <data name="TagBankCommand_confirm" xml:space="preserve">
+    <value>O banco de tags contém texto. Tem certeza de que deseja removê-lo?</value>
+    <comment>messagebox</comment>
+  </data>
   <data name="TaggedDialog_checkAllLabel.Text" xml:space="preserve">
     <value>Verifique todas as páginas</value>
     <comment>check all nodes link label</comment>
