@@ -4694,6 +4694,10 @@ Umkehren</value>
     <value>OneMore-Tabellendesign {0}</value>
     <comment>Screentip for table theme gallery tiles</comment>
   </data>
+  <data name="TagBankCommand_confirm" xml:space="preserve">
+    <value>Die Tag-Bank enthält Text. Möchten Sie es wirklich entfernen?</value>
+    <comment>messagebox</comment>
+  </data>
   <data name="TaggedDialog_checkAllLabel.Text" xml:space="preserve">
     <value>Alle wählen</value>
     <comment>check all nodes link label</comment>

@@ -4702,6 +4702,10 @@ Omkeren</value>
     <value>OneMore Table-thema {0}</value>
     <comment>Screentip for table theme gallery tiles</comment>
   </data>
+  <data name="TagBankCommand_confirm" xml:space="preserve">
+    <value>De tagbank bevat tekst. Weet je zeker dat je het wilt verwijderen?</value>
+    <comment>messagebox</comment>
+  </data>
   <data name="TaggedDialog_checkAllLabel.Text" xml:space="preserve">
     <value>Controleer alle pagina's</value>
     <comment>check all nodes link label</comment>

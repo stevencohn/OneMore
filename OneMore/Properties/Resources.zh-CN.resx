@@ -4695,6 +4695,10 @@ ISO-code then comma then language name</comment>
     <value>OneMore 表格主题{0}</value>
     <comment>Screentip for table theme gallery tiles</comment>
   </data>
+  <data name="TagBankCommand_confirm" xml:space="preserve">
+    <value>标签库包含文本。您确定要删除它吗？</value>
+    <comment>messagebox</comment>
+  </data>
   <data name="TaggedDialog_checkAllLabel.Text" xml:space="preserve">
     <value>检查所有页面</value>
     <comment>check all nodes link label</comment>

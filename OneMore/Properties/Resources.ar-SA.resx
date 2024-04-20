@@ -4702,6 +4702,10 @@ ISO-code then comma then language name</comment>
     <value>موضوع جدول OneMore {0}</value>
     <comment>Screentip for table theme gallery tiles</comment>
   </data>
+  <data name="TagBankCommand_confirm" xml:space="preserve">
+    <value>يحتوي بنك العلامات على نص. هل أنت متأكد أنك تريد إزالته؟</value>
+    <comment>messagebox</comment>
+  </data>
   <data name="TaggedDialog_checkAllLabel.Text" xml:space="preserve">
     <value>تحقق من كل الصفحات</value>
     <comment>check all nodes link label</comment>

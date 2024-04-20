@@ -6,9 +6,12 @@ namespace River.OneMoreAddIn.Commands
 {
 	using River.OneMoreAddIn.Models;
 	using River.OneMoreAddIn.Styles;
+	using River.OneMoreAddIn.UI;
 	using System.Linq;
 	using System.Threading.Tasks;
+	using System.Windows.Forms;
 	using System.Xml.Linq;
+	using Resx = Properties.Resources;
 
 
 	internal class TagBankCommand : Command
@@ -128,6 +131,15 @@ namespace River.OneMoreAddIn.Commands
 			if (outline is null)
 			{
 				return false;
+			}
+
+			var text = outline.TextValue(true);
+			if (text?.Trim().Length > 0)
+			{
+				if (MoreMessageBox.ShowQuestion(owner, Resx.TagBankCommand_confirm) != DialogResult.Yes)
+				{
+					return false;
+				}
 			}
 
 			if (outline.GetAttributeValue("objectID", out string id))
