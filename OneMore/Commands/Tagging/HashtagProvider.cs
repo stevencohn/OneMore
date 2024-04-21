@@ -421,6 +421,36 @@ namespace River.OneMoreAddIn.Commands
 
 
 		/// <summary>
+		/// Returns a list of known notebook IDs scanned thus far that contain tags
+		/// </summary>
+		/// <returns>A collection of strings</returns>
+		public List<string> ReadNotebookIDs()
+		{
+			var list = new List<string>();
+
+			using var cmd = con.CreateCommand();
+			cmd.CommandText =
+				"SELECT DISTINCT(notebookID), SUBSTR(path, 0, INSTR(SUBSTR(path,2),'/')+1) " +
+				"FROM hashtag_page";
+
+			try
+			{
+				using var reader = cmd.ExecuteReader();
+				while (reader.Read())
+				{
+					list.Add(reader.GetString(0));
+				}
+			}
+			catch (Exception exc)
+			{
+				ReportError("error reading notebook list", cmd, exc);
+			}
+
+			return list;
+		}
+
+
+		/// <summary>
 		/// Returns a collection of tags on the specified page
 		/// </summary>
 		/// <param name="pageID">The ID of the page</param>

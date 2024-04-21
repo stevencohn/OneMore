@@ -30,6 +30,10 @@
 		{
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ScheduleScanDialog));
 			this.topPanel = new System.Windows.Forms.Panel();
+			this.booksPanel = new River.OneMoreAddIn.UI.MorePanel();
+			this.selectNoneLink = new River.OneMoreAddIn.UI.MoreLinkLabel();
+			this.selectAllLink = new River.OneMoreAddIn.UI.MoreLinkLabel();
+			this.notebooksLabel = new River.OneMoreAddIn.UI.MoreLabel();
 			this.warningLabel = new River.OneMoreAddIn.UI.MoreMultilineLabel();
 			this.nowRadio = new River.OneMoreAddIn.UI.MoreRadioButton();
 			this.laterRadio = new River.OneMoreAddIn.UI.MoreRadioButton();
@@ -47,6 +51,10 @@
 			// topPanel
 			// 
 			this.topPanel.BackColor = System.Drawing.SystemColors.ControlLightLight;
+			this.topPanel.Controls.Add(this.booksPanel);
+			this.topPanel.Controls.Add(this.selectNoneLink);
+			this.topPanel.Controls.Add(this.selectAllLink);
+			this.topPanel.Controls.Add(this.notebooksLabel);
 			this.topPanel.Controls.Add(this.warningLabel);
 			this.topPanel.Controls.Add(this.nowRadio);
 			this.topPanel.Controls.Add(this.laterRadio);
@@ -59,8 +67,82 @@
 			this.topPanel.Margin = new System.Windows.Forms.Padding(0);
 			this.topPanel.Name = "topPanel";
 			this.topPanel.Padding = new System.Windows.Forms.Padding(40, 40, 20, 20);
-			this.topPanel.Size = new System.Drawing.Size(698, 315);
+			this.topPanel.Size = new System.Drawing.Size(693, 541);
 			this.topPanel.TabIndex = 4;
+			// 
+			// booksPanel
+			// 
+			this.booksPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.booksPanel.BottomBorderColor = System.Drawing.Color.Transparent;
+			this.booksPanel.BottomBorderSize = 0;
+			this.booksPanel.Location = new System.Drawing.Point(43, 335);
+			this.booksPanel.Name = "booksPanel";
+			this.booksPanel.Size = new System.Drawing.Size(627, 183);
+			this.booksPanel.TabIndex = 21;
+			this.booksPanel.ThemedBack = null;
+			this.booksPanel.ThemedFore = null;
+			this.booksPanel.TopBorderColor = System.Drawing.SystemColors.Control;
+			this.booksPanel.TopBorderSize = 0;
+			// 
+			// selectNoneLink
+			// 
+			this.selectNoneLink.ActiveLinkColor = System.Drawing.Color.DarkOrchid;
+			this.selectNoneLink.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.selectNoneLink.AutoSize = true;
+			this.selectNoneLink.Cursor = System.Windows.Forms.Cursors.Hand;
+			this.selectNoneLink.HoverColor = System.Drawing.Color.MediumOrchid;
+			this.selectNoneLink.LinkColor = System.Drawing.SystemColors.ControlDark;
+			this.selectNoneLink.Location = new System.Drawing.Point(562, 307);
+			this.selectNoneLink.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+			this.selectNoneLink.MaximumSize = new System.Drawing.Size(420, 0);
+			this.selectNoneLink.Name = "selectNoneLink";
+			this.selectNoneLink.Size = new System.Drawing.Size(96, 20);
+			this.selectNoneLink.StrictColors = false;
+			this.selectNoneLink.TabIndex = 20;
+			this.selectNoneLink.TabStop = true;
+			this.selectNoneLink.Text = "Select None";
+			this.selectNoneLink.ThemedBack = null;
+			this.selectNoneLink.ThemedFore = null;
+			this.selectNoneLink.VisitedLinkColor = System.Drawing.Color.MediumOrchid;
+			this.selectNoneLink.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.SelectNoneNotebooks);
+			// 
+			// selectAllLink
+			// 
+			this.selectAllLink.ActiveLinkColor = System.Drawing.Color.DarkOrchid;
+			this.selectAllLink.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.selectAllLink.AutoSize = true;
+			this.selectAllLink.Cursor = System.Windows.Forms.Cursors.Hand;
+			this.selectAllLink.HoverColor = System.Drawing.Color.MediumOrchid;
+			this.selectAllLink.LinkColor = System.Drawing.SystemColors.ControlDark;
+			this.selectAllLink.Location = new System.Drawing.Point(464, 307);
+			this.selectAllLink.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+			this.selectAllLink.MaximumSize = new System.Drawing.Size(420, 0);
+			this.selectAllLink.Name = "selectAllLink";
+			this.selectAllLink.Size = new System.Drawing.Size(75, 20);
+			this.selectAllLink.StrictColors = false;
+			this.selectAllLink.TabIndex = 19;
+			this.selectAllLink.TabStop = true;
+			this.selectAllLink.Text = "Select All";
+			this.selectAllLink.ThemedBack = null;
+			this.selectAllLink.ThemedFore = null;
+			this.selectAllLink.VisitedLinkColor = System.Drawing.Color.MediumOrchid;
+			this.selectAllLink.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.SelectAllNotebooks);
+			// 
+			// notebooksLabel
+			// 
+			this.notebooksLabel.AutoSize = true;
+			this.notebooksLabel.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.notebooksLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(115)))), ((int)(((byte)(53)))), ((int)(((byte)(110)))));
+			this.notebooksLabel.Location = new System.Drawing.Point(37, 295);
+			this.notebooksLabel.Margin = new System.Windows.Forms.Padding(3, 0, 3, 5);
+			this.notebooksLabel.Name = "notebooksLabel";
+			this.notebooksLabel.Size = new System.Drawing.Size(131, 32);
+			this.notebooksLabel.TabIndex = 18;
+			this.notebooksLabel.Text = "Notebooks";
+			this.notebooksLabel.ThemedBack = null;
+			this.notebooksLabel.ThemedFore = null;
 			// 
 			// warningLabel
 			// 
@@ -68,7 +150,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.warningLabel.Location = new System.Drawing.Point(70, 216);
 			this.warningLabel.Name = "warningLabel";
-			this.warningLabel.Size = new System.Drawing.Size(605, 46);
+			this.warningLabel.Size = new System.Drawing.Size(600, 46);
 			this.warningLabel.TabIndex = 6;
 			this.warningLabel.Text = "OneNote may appear sluggish while scanning. If OneNote is closed during the scan," +
     " it cannot be opened until the scan completes.";
@@ -136,9 +218,9 @@
 			this.buttonPanel.Controls.Add(this.okButton);
 			this.buttonPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
 			this.buttonPanel.ForeColor = System.Drawing.SystemColors.ControlText;
-			this.buttonPanel.Location = new System.Drawing.Point(0, 377);
+			this.buttonPanel.Location = new System.Drawing.Point(0, 603);
 			this.buttonPanel.Name = "buttonPanel";
-			this.buttonPanel.Size = new System.Drawing.Size(698, 61);
+			this.buttonPanel.Size = new System.Drawing.Size(693, 61);
 			this.buttonPanel.TabIndex = 5;
 			// 
 			// cancelButton
@@ -148,7 +230,7 @@
 			this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
 			this.cancelButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.cancelButton.ImageOver = null;
-			this.cancelButton.Location = new System.Drawing.Point(571, 13);
+			this.cancelButton.Location = new System.Drawing.Point(566, 13);
 			this.cancelButton.Name = "cancelButton";
 			this.cancelButton.ShowBorder = true;
 			this.cancelButton.Size = new System.Drawing.Size(115, 36);
@@ -166,7 +248,7 @@
 			this.okButton.DialogResult = System.Windows.Forms.DialogResult.OK;
 			this.okButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.okButton.ImageOver = null;
-			this.okButton.Location = new System.Drawing.Point(450, 13);
+			this.okButton.Location = new System.Drawing.Point(445, 13);
 			this.okButton.Name = "okButton";
 			this.okButton.ShowBorder = true;
 			this.okButton.Size = new System.Drawing.Size(115, 36);
@@ -183,7 +265,7 @@
 			this.introBox.Location = new System.Drawing.Point(0, 0);
 			this.introBox.Name = "introBox";
 			this.introBox.Padding = new System.Windows.Forms.Padding(30, 12, 20, 12);
-			this.introBox.Size = new System.Drawing.Size(698, 62);
+			this.introBox.Size = new System.Drawing.Size(693, 62);
 			this.introBox.TabIndex = 11;
 			this.introBox.Text = "The hashtag catalog has not yet been created. Choose below when OneMore should bu" +
     "ild the catalog.";
@@ -196,7 +278,7 @@
 			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.CancelButton = this.cancelButton;
-			this.ClientSize = new System.Drawing.Size(698, 438);
+			this.ClientSize = new System.Drawing.Size(693, 664);
 			this.Controls.Add(this.topPanel);
 			this.Controls.Add(this.introBox);
 			this.Controls.Add(this.buttonPanel);
@@ -204,6 +286,7 @@
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.MaximizeBox = false;
 			this.MinimizeBox = false;
+			this.MinimumSize = new System.Drawing.Size(715, 720);
 			this.Name = "ScheduleScanDialog";
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
 			this.Text = "Schedule Hashtag Scanning";
@@ -227,5 +310,9 @@
 		private UI.MoreRadioButton nowRadio;
 		private UI.MoreMultilineLabel introBox;
 		private UI.MoreMultilineLabel warningLabel;
+		private UI.MoreLinkLabel selectNoneLink;
+		private UI.MoreLinkLabel selectAllLink;
+		private River.OneMoreAddIn.UI.MoreLabel notebooksLabel;
+		private UI.MorePanel booksPanel;
 	}
 }
