@@ -36,6 +36,7 @@ namespace River.OneMoreAddIn.Models
 		public static readonly string TaggingBank = "omTaggingBank";
 
 		// page tag list
+		// TODO: temporary page tagging
 		public static readonly string TaggingLabels = "omTaggingLabels";
 
 		// word count report for section or notebook
