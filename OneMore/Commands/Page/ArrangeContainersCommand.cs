@@ -1,5 +1,5 @@
 ﻿//************************************************************************************************
-// Copyright © 2021 Steven M Cohn.  All rights reserved.
+// Copyright © 2021 Steven M Cohn. All rights reserved.
 //************************************************************************************************
 
 namespace River.OneMoreAddIn.Commands
@@ -78,7 +78,7 @@ namespace River.OneMoreAddIn.Commands
 				.Select(e => e.Parent)
 				.FirstOrDefault();
 
-			if (bank == null)
+			if (bank is null)
 			{
 				topMargin = TopMargin;
 			}
@@ -190,35 +190,66 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		// Collects a list of containers that have content, filtering out those with
-		// empty text runs. OneNote tends to append an empty container after Update regardless
+		// Collects a list of Outlines that have content, removing the last Outline if it
+		// only has a single line of whitespace. OneNote sometimes appends an empty container
+		// after Update for some reason.
 		private IEnumerable<XElement> CollectContainers(Page page, XNamespace ns)
 		{
-			var containers = page.Root.Elements(ns + "Outline")
+			var outlines = page.Root.Elements(ns + "Outline")
 				.Where(e => !e.Elements(ns + "Meta")
 					.Any(m => m.Attribute("name").Value == MetaNames.TaggingBank))
 				.ToList();
 
-			foreach (var container in containers)
+			if (outlines.Count < 2)
 			{
-				var runs = container.Descendants(ns + "T");
-				if (runs.Any())
-				{
-					var text = runs.Nodes().OfType<XCData>()
-						.Select(c => c.Value.Trim())
-						.Aggregate((a, b) => $"{a}{b}");
+				// zero or one Outline; don't leave the page entirely empty
+				return outlines;
+			}
 
-					if (text.Length > 0)
-					{
-						yield return container;
-					}
-				}
-				else
+			// we only care about the last Outline...
+
+			var index = outlines.Count - 1;
+			var last = outlines[index];
+			var blocks = last.Descendants(ns + "HTMLBlock");
+			if (blocks.Any())
+			{
+				// HTMLBlock is content
+				return outlines;
+			}
+
+			var paragraphs = last.Descendants(ns + "OE");
+			if (!paragraphs.Any())
+			{
+				// remove empty Outline
+				outlines.RemoveAt(index);
+				return outlines;
+			}
+
+			// if Outline contains exactly one paragraph
+			if (paragraphs.Count() == 1 &&
+				paragraphs.First() is XElement paragraph)
+			{
+				var descendants = paragraph.Descendants();
+
+				// contains Meta, Image, Table, or other non-text elements
+				if (descendants.Any(e => e.Name.LocalName != "T"))
 				{
-					// likely contains an InsertedFile or image without text runs
-					yield return container;
+					return outlines;
+				}
+
+				var text = descendants
+					.Where(e => e.Name.LocalName == "T")
+					.Nodes().OfType<XCData>()
+					.Select(c => c.Value.Trim())
+					.Aggregate((a, b) => $"{a}{b}");
+
+				if (text?.Length == 0)
+				{
+					outlines.RemoveAt(index);
 				}
 			}
+
+			return outlines;
 		}
 	}
 }
