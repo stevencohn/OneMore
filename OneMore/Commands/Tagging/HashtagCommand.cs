@@ -82,9 +82,12 @@ namespace River.OneMoreAddIn.Commands
 					? new ScheduleScanDialog()
 					: new ScheduleScanDialog(scheduler.StartTime);
 
+				scheduleDialog.PreferredNotebooks = scheduler.Notebooks;
+
 				var result = scheduleDialog.ShowDialog(owner);
 				if (result == DialogResult.OK)
 				{
+					scheduler.Notebooks = scheduleDialog.GetSelectedNotebooks();
 					scheduler.StartTime = scheduleDialog.StartTime;
 					scheduler.State = ScanningState.PendingRebuild;
 					await scheduler.Activate();

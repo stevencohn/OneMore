@@ -115,13 +115,12 @@ namespace River.OneMoreAddIn.Settings
 				dialog.SetIntroText(Resx.HashtagSheet_scanNotebooks);
 			}
 
-			//
-			// FULL?
-			//
+			dialog.PreferredNotebooks = scheduler.Notebooks;
 
 			var result = dialog.ShowDialog(this);
 			if (result == DialogResult.OK)
 			{
+				scheduler.Notebooks = dialog.GetSelectedNotebooks();
 				scheduler.StartTime = dialog.StartTime;
 				scheduler.State = ScanningState.PendingScan;
 				await scheduler.Activate();

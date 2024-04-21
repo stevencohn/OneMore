@@ -7,6 +7,7 @@ namespace River.OneMoreAddIn.Commands
 	using River.OneMoreAddIn.UI;
 	using System;
 	using System.Collections.Generic;
+	using System.Linq;
 	using System.Windows.Forms;
 	using Resx = Properties.Resources;
 
@@ -29,11 +30,10 @@ namespace River.OneMoreAddIn.Commands
 				{
 					Checked = isChecked,
 					Padding = new Padding(4, 2, 10, 2),
+					Tag = notebookID,
 					Text = name,
 					Width = Width - SystemInformation.VerticalScrollBarWidth
 				};
-
-				Tag = notebookID;
 
 				Controls.Add(box);
 			}
@@ -41,7 +41,7 @@ namespace River.OneMoreAddIn.Commands
 		#endregion Private classes
 
 
-		private NotebookList bookList;
+		private readonly NotebookList bookList;
 
 
 		public ScheduleScanDialog()
@@ -84,6 +84,9 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
+		public string[] PreferredNotebooks { get; set; }
+
+
 		protected override async void OnLoad(EventArgs e)
 		{
 			List<string> knownIDs;
@@ -105,8 +108,12 @@ namespace River.OneMoreAddIn.Commands
 			{
 				var id = book.Attribute("ID").Value;
 
+				var isChecked = 
+					(PreferredNotebooks is not null && PreferredNotebooks.Contains(id)) ||
+					!knownIDs.Contains(id);
+
 				bookList.AddNotebook(
-					book.Attribute("name").Value, id, !knownIDs.Contains(id));
+					book.Attribute("name").Value, id, isChecked);
 			}
 
 			base.OnLoad(e);
@@ -117,6 +124,16 @@ namespace River.OneMoreAddIn.Commands
 			? DateTime.Now
 			// DateTimePicker returns dates with Unspecified Kind, so force Local
 			: DateTime.SpecifyKind(dateTimePicker.Value, DateTimeKind.Local);
+
+
+		public string[] GetSelectedNotebooks()
+		{
+			return bookList.Controls.Cast<MoreCheckBox>()
+				.Where(c => c.Checked)
+				.Select(c => c.Tag.ToString())
+				.ToArray();
+		}
+
 
 		public void SetIntroText(string text)
 		{
