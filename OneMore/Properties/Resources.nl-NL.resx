@@ -2098,6 +2098,12 @@ Toepassen op dit notitieboekje</value>
   <data name="phrase_QuickNote" xml:space="preserve">
     <value>Snelle notitie</value>
   </data>
+  <data name="phrase_SelectAll" xml:space="preserve">
+    <value>Selecteer alles</value>
+  </data>
+  <data name="phrase_SelectNone" xml:space="preserve">
+    <value>Selecteer Geen</value>
+  </data>
   <data name="PlantUml_broken" xml:space="preserve">
     <value>PlantUML-tekst is ongeldig of kan geen verband vinden tussen tekst en afbeelding</value>
     <comment>error message</comment>
@@ -5052,6 +5058,9 @@ Het dialoogvenster Hashtags zoeken wordt nu geopend.</value>
   </data>
   <data name="word_Notebook" xml:space="preserve">
     <value>Notitieboekje</value>
+  </data>
+  <data name="word_Notebooks" xml:space="preserve">
+    <value>Notitieboekjes</value>
   </data>
   <data name="word_Notes" xml:space="preserve">
     <value>Notities</value>

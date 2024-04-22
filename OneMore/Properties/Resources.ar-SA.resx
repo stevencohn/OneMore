@@ -2097,6 +2097,12 @@
   <data name="phrase_QuickNote" xml:space="preserve">
     <value>ملاحظة سريعة</value>
   </data>
+  <data name="phrase_SelectAll" xml:space="preserve">
+    <value>اختر الكل</value>
+  </data>
+  <data name="phrase_SelectNone" xml:space="preserve">
+    <value>لا تختر شيء</value>
+  </data>
   <data name="PlantUml_broken" xml:space="preserve">
     <value>نص PlantUML إما غير صالح أو لا يمكنه العثور على اتصال بين النص والصورة</value>
     <comment>error message</comment>
@@ -5052,6 +5058,9 @@ ISO-code then comma then language name</comment>
   </data>
   <data name="word_Notebook" xml:space="preserve">
     <value>دفتر</value>
+  </data>
+  <data name="word_Notebooks" xml:space="preserve">
+    <value>دفاتر الملاحظات</value>
   </data>
   <data name="word_Notes" xml:space="preserve">
     <value>ملحوظات</value>

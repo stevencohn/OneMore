@@ -2097,6 +2097,12 @@ Aplicar a este cuaderno</value>
   <data name="phrase_QuickNote" xml:space="preserve">
     <value>Nota rápida</value>
   </data>
+  <data name="phrase_SelectAll" xml:space="preserve">
+    <value>Seleccionar todo</value>
+  </data>
+  <data name="phrase_SelectNone" xml:space="preserve">
+    <value>Seleccionar Ninguno</value>
+  </data>
   <data name="PlantUml_broken" xml:space="preserve">
     <value>El texto de PlantUML no es válido o no puede encontrar una conexión entre el texto y la imagen</value>
     <comment>error message</comment>
@@ -5052,6 +5058,9 @@ Ahora se abrirá el cuadro de diálogo Buscar hashtags.</value>
   </data>
   <data name="word_Notebook" xml:space="preserve">
     <value>Computadora portátil</value>
+  </data>
+  <data name="word_Notebooks" xml:space="preserve">
+    <value>Cuadernos</value>
   </data>
   <data name="word_Notes" xml:space="preserve">
     <value>notas</value>

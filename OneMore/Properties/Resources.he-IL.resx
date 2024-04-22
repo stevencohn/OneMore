@@ -2106,6 +2106,12 @@ Total Row Font
   <data name="phrase_QuickNote" xml:space="preserve">
     <value>הערה מהירה</value>
   </data>
+  <data name="phrase_SelectAll" xml:space="preserve">
+    <value>בחר הכל</value>
+  </data>
+  <data name="phrase_SelectNone" xml:space="preserve">
+    <value>אל תבחר באף אחת מהאפשרויות</value>
+  </data>
   <data name="PlantUml_broken" xml:space="preserve">
     <value>טקסט PlantUML אינו חוקי או שאינו יכול למצוא קשר בין טקסט לתמונה</value>
     <comment>error message</comment>
@@ -5067,6 +5073,9 @@ ISO-code then comma then language name</comment>
   </data>
   <data name="word_Notebook" xml:space="preserve">
     <value>מחברת</value>
+  </data>
+  <data name="word_Notebooks" xml:space="preserve">
+    <value>מחברות</value>
   </data>
   <data name="word_Notes" xml:space="preserve">
     <value>הערות</value>

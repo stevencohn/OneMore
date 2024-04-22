@@ -96,11 +96,15 @@ namespace River.OneMoreAddIn.Settings
 
 		private async void ScheduleRebuild(object sender, LinkLabelLinkClickedEventArgs e)
 		{
+			var notebookIDs = HashtagProvider.DatabaseExists()
+				? new HashtagProvider().ReadNotebookIDs().ToArray()
+				: new string[0];
+
 			using var dialog =
 				scheduler.State == ScanningState.None ||
 				scheduler.State == ScanningState.Ready
-					? new ScheduleScanDialog()
-					: new ScheduleScanDialog(scheduler.StartTime);
+					? new ScheduleScanDialog(notebookIDs)
+					: new ScheduleScanDialog(notebookIDs, scheduler.StartTime);
 
 			if (scheduler.State != ScanningState.None &&
 				scheduler.State != ScanningState.Ready)

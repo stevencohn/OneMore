@@ -2096,6 +2096,12 @@ OneNote 文件 (*.one)</value>
   <data name="phrase_QuickNote" xml:space="preserve">
     <value>快速注释</value>
   </data>
+  <data name="phrase_SelectAll" xml:space="preserve">
+    <value>全选</value>
+  </data>
+  <data name="phrase_SelectNone" xml:space="preserve">
+    <value>选择无</value>
+  </data>
   <data name="PlantUml_broken" xml:space="preserve">
     <value>PlantUML 文本无效或找不到文本和图像之间的连接</value>
     <comment>error message</comment>
@@ -5045,6 +5051,9 @@ ISO-code then comma then language name</comment>
   </data>
   <data name="word_Notebook" xml:space="preserve">
     <value>笔记本</value>
+  </data>
+  <data name="word_Notebooks" xml:space="preserve">
+    <value>笔记本电脑</value>
   </data>
   <data name="word_Notes" xml:space="preserve">
     <value>笔记</value>

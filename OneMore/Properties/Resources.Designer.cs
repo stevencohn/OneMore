@@ -5719,6 +5719,24 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Select All.
+        /// </summary>
+        internal static string phrase_SelectAll {
+            get {
+                return ResourceManager.GetString("phrase_SelectAll", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select None.
+        /// </summary>
+        internal static string phrase_SelectNone {
+            get {
+                return ResourceManager.GetString("phrase_SelectNone", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to PlantUML text is either invalid or cannot find connection between text and image.
         /// </summary>
         internal static string PlantUml_broken {
@@ -12580,6 +12598,15 @@ namespace River.OneMoreAddIn.Properties {
         internal static string word_Notebook {
             get {
                 return ResourceManager.GetString("word_Notebook", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Notebooks.
+        /// </summary>
+        internal static string word_Notebooks {
+            get {
+                return ResourceManager.GetString("word_Notebooks", resourceCulture);
             }
         }
         

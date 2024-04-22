@@ -78,17 +78,17 @@ namespace River.OneMoreAddIn.Commands
 
 			if (!HashtagProvider.DatabaseExists())
 			{
-				using var scheduleDialog = scheduler.State == ScanningState.None
-					? new ScheduleScanDialog()
-					: new ScheduleScanDialog(scheduler.StartTime);
+				using var sdialog = scheduler.State == ScanningState.None
+					? new ScheduleScanDialog(new string[0])
+					: new ScheduleScanDialog(new string[0], scheduler.StartTime);
 
-				scheduleDialog.PreferredNotebooks = scheduler.Notebooks;
+				sdialog.PreferredNotebooks = scheduler.Notebooks;
 
-				var result = scheduleDialog.ShowDialog(owner);
+				var result = sdialog.ShowDialog(owner);
 				if (result == DialogResult.OK)
 				{
-					scheduler.Notebooks = scheduleDialog.GetSelectedNotebooks();
-					scheduler.StartTime = scheduleDialog.StartTime;
+					scheduler.Notebooks = sdialog.GetSelectedNotebooks();
+					scheduler.StartTime = sdialog.StartTime;
 					scheduler.State = ScanningState.PendingRebuild;
 					await scheduler.Activate();
 				}

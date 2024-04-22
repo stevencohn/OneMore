@@ -2097,6 +2097,12 @@ Postuler à ce carnet</value>
   <data name="phrase_QuickNote" xml:space="preserve">
     <value>Note rapide</value>
   </data>
+  <data name="phrase_SelectAll" xml:space="preserve">
+    <value>Tout sélectionner</value>
+  </data>
+  <data name="phrase_SelectNone" xml:space="preserve">
+    <value>Ne rien sélectionner</value>
+  </data>
   <data name="PlantUml_broken" xml:space="preserve">
     <value>Le texte PlantUML est invalide ou ne peut pas trouver de connexion entre le texte et l'image</value>
     <comment>error message</comment>
@@ -5049,6 +5055,9 @@ La boîte de dialogue Rechercher des hashtags va maintenant s'ouvrir.</value>
   </data>
   <data name="word_Notebook" xml:space="preserve">
     <value>Carnet de notes</value>
+  </data>
+  <data name="word_Notebooks" xml:space="preserve">
+    <value>Des cahiers</value>
   </data>
   <data name="word_Notes" xml:space="preserve">
     <value>Remarques</value>

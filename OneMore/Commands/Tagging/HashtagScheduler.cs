@@ -32,7 +32,7 @@ namespace River.OneMoreAddIn.Commands
 		{
 			// The targeted names of notebooks to scan
 			[JsonProperty("notebooks")]
-			public string[] Notebooks { get; set; }
+			public string[] Notebooks { get; set; } = new string[0];
 
 
 			// The scheduled time to build/rebuild the hashtag database.

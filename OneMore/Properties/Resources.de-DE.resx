@@ -2095,6 +2095,12 @@ Bewerben Sie sich auf dieses Notizbuch</value>
   <data name="phrase_QuickNote" xml:space="preserve">
     <value>Schnelle Notiz</value>
   </data>
+  <data name="phrase_SelectAll" xml:space="preserve">
+    <value>Wählen Sie Alle</value>
+  </data>
+  <data name="phrase_SelectNone" xml:space="preserve">
+    <value>Nichts ausgewählt</value>
+  </data>
   <data name="PlantUml_broken" xml:space="preserve">
     <value>PlantUML-Text ist entweder ungültig oder kann keine Verbindung zwischen Text und Bild finden</value>
     <comment>error message</comment>
@@ -5044,6 +5050,9 @@ Das Dialogfeld „Hashtags suchen“ wird nun geöffnet.</value>
   </data>
   <data name="word_Notebook" xml:space="preserve">
     <value>Notizbuch</value>
+  </data>
+  <data name="word_Notebooks" xml:space="preserve">
+    <value>Notizbücher</value>
   </data>
   <data name="word_Notes" xml:space="preserve">
     <value>Anmerkungen</value>
