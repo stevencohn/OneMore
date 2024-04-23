@@ -227,6 +227,12 @@ namespace River.OneMoreAddIn.UI
 
 		private void RegisterHostedControl(IMoreHostItem subitem, RegistrationEventArgs e)
 		{
+			if (InvokeRequired)
+			{
+				Invoke(new Action(() => { RegisterHostedControl(subitem, e); }));
+				return;
+			}
+
 			hostedControls.Add(new HostedControl(subitem, e.Item, e.Control, e.ColumnIndex));
 			Controls.Add(e.Control);
 		}
