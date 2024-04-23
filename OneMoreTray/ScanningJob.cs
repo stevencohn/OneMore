@@ -110,6 +110,12 @@ namespace OneMoreTray
 			trayIcon.ShowBalloonTip(0, Resx.ScannerTitle, Resx.ScanStarting, ToolTipIcon.Info);
 
 			var scanner = new HashtagService(scheduler.State == ScanningState.PendingRebuild);
+
+			if (scheduler.Notebooks is not null && scheduler.Notebooks.Length > 0)
+			{
+				scanner.SetNotebookFilters(scheduler.Notebooks);
+			}
+
 			scanner.OnHashtagScanned += DoScanned;
 			scanner.Startup();
 

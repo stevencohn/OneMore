@@ -29,6 +29,7 @@ namespace River.OneMoreAddIn.Commands
 		private readonly int interval;
 		private readonly bool disabled;
 
+		private string[] notebookFilters;
 		private HashtagScheduler scheduler;
 		private int hour;
 		private int scanCount;
@@ -66,6 +67,16 @@ namespace River.OneMoreAddIn.Commands
 		/// Fired upon the completion of each full scan
 		/// </summary>
 		public event HashtagScannedHandler OnHashtagScanned;
+
+
+		/// <summary>
+		/// Sets a list of notebookIDs to target during scan/rebuild.
+		/// </summary>
+		/// <param name="filters"></param>
+		public void SetNotebookFilters(string[] filters)
+		{
+			notebookFilters = filters;
+		}
 
 
 		/// <summary>
@@ -258,6 +269,12 @@ namespace River.OneMoreAddIn.Commands
 			clock.Start();
 
 			using var scanner = new HashtagScanner();
+
+			if (notebookFilters is not null && notebookFilters.Length > 0)
+			{
+				scanner.SetNotebookFilters(notebookFilters);
+			}
+
 			var (dirtyPages, totalPages) = await scanner.Scan();
 
 			clock.Stop();

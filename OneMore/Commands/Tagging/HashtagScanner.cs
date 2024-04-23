@@ -27,6 +27,7 @@ namespace River.OneMoreAddIn.Commands
 		private readonly int throttle;
 		private HashtagProvider provider;
 		private XNamespace ns;
+		private string[] notebookFilters;
 		private bool disposed;
 
 
@@ -52,7 +53,10 @@ namespace River.OneMoreAddIn.Commands
 		/// <summary>
 		/// A list of notebook IDs to target, used for rescans and rebuilds
 		/// </summary>
-		public string[] NotebookFilter { get; set; }
+		public void SetNotebookFilters(string[] filters)
+		{
+			notebookFilters = filters;
+		}
 
 
 		private XElement GetStyleTemplate()
@@ -141,8 +145,8 @@ namespace River.OneMoreAddIn.Commands
 					// gets sections for this notebook
 					var notebookID = notebook.Attribute("ID").Value;
 
-					if (NotebookFilter is null ||
-						NotebookFilter.Contains(notebookID))
+					if (notebookFilters is null ||
+						notebookFilters.Contains(notebookID))
 					{
 						var sections = await one.GetNotebook(notebookID);
 						if (sections is not null)
