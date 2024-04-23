@@ -154,7 +154,8 @@ namespace OneMoreTray
 
 		private void DoReschedule(object sender, EventArgs e)
 		{
-			using var dialog = new ScheduleScanDialog(scheduler.Notebooks, scheduler.StartTime);
+			var showBooks = scheduler.Notebooks.Length > 0;
+			using var dialog = new ScheduleScanDialog(showBooks, scheduler.StartTime);
 
 			var msg = string.Format(
 				scheduler.State == ScanningState.PendingScan
@@ -163,6 +164,8 @@ namespace OneMoreTray
 				scheduler.StartTime.ToString(Resx.ScheduleTimeFormat));
 
 			dialog.SetIntroText(msg);
+			dialog.SetPreferredIDs(scheduler.Notebooks);
+			dialog.StartPosition = FormStartPosition.CenterScreen;
 
 			var result = dialog.ShowDialog();
 			if (result == DialogResult.OK)

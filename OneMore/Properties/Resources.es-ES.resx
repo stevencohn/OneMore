@@ -1306,6 +1306,10 @@ La búsqueda de hashtags no estará disponible hasta que se complete.</value>
     <value>Escanear ahora</value>
     <comment>menu button</comment>
   </data>
+  <data name="HashtagDialog_scheduleButton.Text" xml:space="preserve">
+    <value>Programar escaneo</value>
+    <comment>menu item</comment>
+  </data>
   <data name="HashtagDialog_scopeBox.Text" xml:space="preserve">
     <value>Todo
 este cuaderno

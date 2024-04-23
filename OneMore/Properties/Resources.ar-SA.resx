@@ -1306,6 +1306,10 @@
     <value>إفحص الآن</value>
     <comment>menu button</comment>
   </data>
+  <data name="HashtagDialog_scheduleButton.Text" xml:space="preserve">
+    <value>جدولة المسح</value>
+    <comment>menu item</comment>
+  </data>
   <data name="HashtagDialog_scopeBox.Text" xml:space="preserve">
     <value>الجميع
 هذا دفتر

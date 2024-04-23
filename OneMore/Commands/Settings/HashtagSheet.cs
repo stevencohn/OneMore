@@ -96,15 +96,24 @@ namespace River.OneMoreAddIn.Settings
 
 		private async void ScheduleRebuild(object sender, LinkLabelLinkClickedEventArgs e)
 		{
-			var notebookIDs = HashtagProvider.DatabaseExists()
-				? new HashtagProvider().ReadNotebookIDs().ToArray()
-				: new string[0];
+			if (scheduler.State == ScanningState.Rebuilding ||
+				scheduler.State == ScanningState.Scanning)
+			{
+				var msg = scheduler.State == ScanningState.Scanning
+					? Resx.HashtagCommand_scanning
+					: string.Format(Resx.HashtagCommand_waiting, scheduler.StartTime.ToFriendlyString());
+
+				UI.MoreMessageBox.Show(this, msg);
+				return;
+			}
+
+			var showNotebooks = HashtagProvider.DatabaseExists();
 
 			using var dialog =
 				scheduler.State == ScanningState.None ||
 				scheduler.State == ScanningState.Ready
-					? new ScheduleScanDialog(notebookIDs)
-					: new ScheduleScanDialog(notebookIDs, scheduler.StartTime);
+					? new ScheduleScanDialog(showNotebooks)
+					: new ScheduleScanDialog(showNotebooks, scheduler.StartTime);
 
 			if (scheduler.State != ScanningState.None &&
 				scheduler.State != ScanningState.Ready)
@@ -119,7 +128,7 @@ namespace River.OneMoreAddIn.Settings
 				dialog.SetIntroText(Resx.HashtagSheet_scanNotebooks);
 			}
 
-			dialog.PreferredNotebooks = scheduler.Notebooks;
+			dialog.SetPreferredIDs(scheduler.Notebooks);
 
 			var result = dialog.ShowDialog(this);
 			if (result == DialogResult.OK)

@@ -3471,6 +3471,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Schedule Scan.
+        /// </summary>
+        internal static string HashtagDialog_scheduleButton_Text {
+            get {
+                return ResourceManager.GetString("HashtagDialog_scheduleButton.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to All
         ///This notebook
         ///This section.

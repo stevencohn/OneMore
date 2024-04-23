@@ -56,27 +56,23 @@
 			// topPanel
 			// 
 			this.topPanel.BackColor = System.Drawing.SystemColors.ControlLightLight;
-			this.topPanel.Controls.Add(this.notebooksPanel);
 			this.topPanel.Controls.Add(this.warningLabel);
 			this.topPanel.Controls.Add(this.nowRadio);
 			this.topPanel.Controls.Add(this.laterRadio);
 			this.topPanel.Controls.Add(this.hintLabel);
 			this.topPanel.Controls.Add(this.scheduleLabel);
 			this.topPanel.Controls.Add(this.dateTimePicker);
-			this.topPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.topPanel.Dock = System.Windows.Forms.DockStyle.Top;
 			this.topPanel.ForeColor = System.Drawing.SystemColors.ControlText;
 			this.topPanel.Location = new System.Drawing.Point(0, 62);
 			this.topPanel.Margin = new System.Windows.Forms.Padding(0);
 			this.topPanel.Name = "topPanel";
 			this.topPanel.Padding = new System.Windows.Forms.Padding(40, 40, 20, 20);
-			this.topPanel.Size = new System.Drawing.Size(693, 556);
+			this.topPanel.Size = new System.Drawing.Size(693, 305);
 			this.topPanel.TabIndex = 4;
 			// 
 			// notebooksPanel
 			// 
-			this.notebooksPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
 			this.notebooksPanel.BackColor = System.Drawing.SystemColors.ControlLightLight;
 			this.notebooksPanel.BottomBorderColor = System.Drawing.Color.Transparent;
 			this.notebooksPanel.BottomBorderSize = 0;
@@ -87,9 +83,11 @@
 			this.notebooksPanel.Controls.Add(this.selectAllLink);
 			this.notebooksPanel.Controls.Add(this.sep1);
 			this.notebooksPanel.Controls.Add(this.selectNoneLink);
-			this.notebooksPanel.Location = new System.Drawing.Point(12, 281);
+			this.notebooksPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.notebooksPanel.Location = new System.Drawing.Point(0, 367);
 			this.notebooksPanel.Name = "notebooksPanel";
-			this.notebooksPanel.Size = new System.Drawing.Size(669, 252);
+			this.notebooksPanel.Padding = new System.Windows.Forms.Padding(0, 0, 20, 20);
+			this.notebooksPanel.Size = new System.Drawing.Size(693, 281);
 			this.notebooksPanel.TabIndex = 25;
 			this.notebooksPanel.ThemedBack = "ControlLightLight";
 			this.notebooksPanel.ThemedFore = null;
@@ -106,7 +104,7 @@
 			this.booksPanel.BottomBorderSize = 0;
 			this.booksPanel.Location = new System.Drawing.Point(31, 46);
 			this.booksPanel.Name = "booksPanel";
-			this.booksPanel.Size = new System.Drawing.Size(627, 203);
+			this.booksPanel.Size = new System.Drawing.Size(631, 212);
 			this.booksPanel.TabIndex = 21;
 			this.booksPanel.ThemedBack = null;
 			this.booksPanel.ThemedFore = null;
@@ -117,7 +115,7 @@
 			// 
 			this.sep2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.sep2.AutoSize = true;
-			this.sep2.Location = new System.Drawing.Point(585, 16);
+			this.sep2.Location = new System.Drawing.Point(589, 16);
 			this.sep2.Name = "sep2";
 			this.sep2.Size = new System.Drawing.Size(14, 20);
 			this.sep2.TabIndex = 24;
@@ -147,7 +145,7 @@
 			this.resetLink.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.resetLink.HoverColor = System.Drawing.Color.MediumOrchid;
 			this.resetLink.LinkColor = System.Drawing.SystemColors.ControlDark;
-			this.resetLink.Location = new System.Drawing.Point(606, 16);
+			this.resetLink.Location = new System.Drawing.Point(610, 16);
 			this.resetLink.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
 			this.resetLink.MaximumSize = new System.Drawing.Size(420, 0);
 			this.resetLink.Name = "resetLink";
@@ -169,7 +167,7 @@
 			this.selectAllLink.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.selectAllLink.HoverColor = System.Drawing.Color.MediumOrchid;
 			this.selectAllLink.LinkColor = System.Drawing.SystemColors.ControlDark;
-			this.selectAllLink.Location = new System.Drawing.Point(379, 16);
+			this.selectAllLink.Location = new System.Drawing.Point(383, 16);
 			this.selectAllLink.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
 			this.selectAllLink.MaximumSize = new System.Drawing.Size(420, 0);
 			this.selectAllLink.Name = "selectAllLink";
@@ -187,7 +185,7 @@
 			// 
 			this.sep1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.sep1.AutoSize = true;
-			this.sep1.Location = new System.Drawing.Point(461, 16);
+			this.sep1.Location = new System.Drawing.Point(465, 16);
 			this.sep1.Name = "sep1";
 			this.sep1.Size = new System.Drawing.Size(14, 20);
 			this.sep1.TabIndex = 22;
@@ -203,7 +201,7 @@
 			this.selectNoneLink.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.selectNoneLink.HoverColor = System.Drawing.Color.MediumOrchid;
 			this.selectNoneLink.LinkColor = System.Drawing.SystemColors.ControlDark;
-			this.selectNoneLink.Location = new System.Drawing.Point(482, 16);
+			this.selectNoneLink.Location = new System.Drawing.Point(486, 16);
 			this.selectNoneLink.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
 			this.selectNoneLink.MaximumSize = new System.Drawing.Size(420, 0);
 			this.selectNoneLink.Name = "selectNoneLink";
@@ -291,7 +289,7 @@
 			this.buttonPanel.Controls.Add(this.okButton);
 			this.buttonPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
 			this.buttonPanel.ForeColor = System.Drawing.SystemColors.ControlText;
-			this.buttonPanel.Location = new System.Drawing.Point(0, 618);
+			this.buttonPanel.Location = new System.Drawing.Point(0, 648);
 			this.buttonPanel.Name = "buttonPanel";
 			this.buttonPanel.Size = new System.Drawing.Size(693, 61);
 			this.buttonPanel.TabIndex = 5;
@@ -351,7 +349,8 @@
 			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.CancelButton = this.cancelButton;
-			this.ClientSize = new System.Drawing.Size(693, 679);
+			this.ClientSize = new System.Drawing.Size(693, 709);
+			this.Controls.Add(this.notebooksPanel);
 			this.Controls.Add(this.topPanel);
 			this.Controls.Add(this.introBox);
 			this.Controls.Add(this.buttonPanel);

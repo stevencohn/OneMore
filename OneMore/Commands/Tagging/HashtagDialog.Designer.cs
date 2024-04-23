@@ -48,6 +48,7 @@
 			this.moveButton = new River.OneMoreAddIn.UI.MoreButton();
 			this.contextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
 			this.scanButton = new System.Windows.Forms.ToolStripMenuItem();
+			this.scheduleButton = new System.Windows.Forms.ToolStripMenuItem();
 			this.topPanel.SuspendLayout();
 			this.controlPanel.SuspendLayout();
 			this.contextMenu.SuspendLayout();
@@ -330,16 +331,24 @@
 			// 
 			this.contextMenu.ImageScalingSize = new System.Drawing.Size(24, 24);
 			this.contextMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.scanButton});
+            this.scanButton,
+            this.scheduleButton});
 			this.contextMenu.Name = "contextMenu";
-			this.contextMenu.Size = new System.Drawing.Size(164, 36);
+			this.contextMenu.Size = new System.Drawing.Size(241, 101);
 			// 
 			// scanButton
 			// 
 			this.scanButton.Name = "scanButton";
-			this.scanButton.Size = new System.Drawing.Size(163, 32);
+			this.scanButton.Size = new System.Drawing.Size(240, 32);
 			this.scanButton.Text = "Scan Now";
 			this.scanButton.Click += new System.EventHandler(this.ScanNow);
+			// 
+			// scheduleButton
+			// 
+			this.scheduleButton.Name = "scheduleButton";
+			this.scheduleButton.Size = new System.Drawing.Size(240, 32);
+			this.scheduleButton.Text = "Schedule Scan";
+			this.scheduleButton.Click += new System.EventHandler(this.DoScheduleScan);
 			// 
 			// HashtagDialog
 			// 
@@ -386,5 +395,6 @@
 		private System.Windows.Forms.ContextMenuStrip contextMenu;
 		private System.Windows.Forms.ToolStripMenuItem scanButton;
 		private UI.MoreMultilineLabel introBox;
+		private System.Windows.Forms.ToolStripMenuItem scheduleButton;
 	}
 }

@@ -1306,6 +1306,10 @@ La recherche de hashtags n'est pas disponible tant qu'elle n'est pas terminée.<
     <value>Scanne maintenant</value>
     <comment>menu button</comment>
   </data>
+  <data name="HashtagDialog_scheduleButton.Text" xml:space="preserve">
+    <value>Planifier une analyse</value>
+    <comment>menu item</comment>
+  </data>
   <data name="HashtagDialog_scopeBox.Text" xml:space="preserve">
     <value>Tous
 Ce carnet

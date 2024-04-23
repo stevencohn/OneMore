@@ -79,10 +79,8 @@ namespace River.OneMoreAddIn.Commands
 			if (!HashtagProvider.DatabaseExists())
 			{
 				using var sdialog = scheduler.State == ScanningState.None
-					? new ScheduleScanDialog(new string[0])
-					: new ScheduleScanDialog(new string[0], scheduler.StartTime);
-
-				sdialog.PreferredNotebooks = scheduler.Notebooks;
+					? new ScheduleScanDialog(false)
+					: new ScheduleScanDialog(false, scheduler.StartTime);
 
 				var result = sdialog.ShowDialog(owner);
 				if (result == DialogResult.OK)
@@ -96,15 +94,15 @@ namespace River.OneMoreAddIn.Commands
 				return false;
 			}
 
-			if (scheduler.State != ScanningState.Ready)
-			{
-				var msg = scheduler.State == ScanningState.Scanning
-					? Resx.HashtagCommand_scanning
-					: string.Format(Resx.HashtagCommand_waiting, scheduler.StartTime.ToFriendlyString());
+			//if (scheduler.State != ScanningState.Ready)
+			//{
+			//	var msg = scheduler.State == ScanningState.Scanning
+			//		? Resx.HashtagCommand_scanning
+			//		: string.Format(Resx.HashtagCommand_waiting, scheduler.StartTime.ToFriendlyString());
 
-				MoreMessageBox.Show(owner, msg);
-				return false;
-			}
+			//	MoreMessageBox.Show(owner, msg);
+			//	return false;
+			//}
 
 			return true;
 		}

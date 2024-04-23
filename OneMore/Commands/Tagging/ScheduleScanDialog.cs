@@ -12,12 +12,15 @@ namespace River.OneMoreAddIn.Commands
 	using Resx = Properties.Resources;
 
 
+	/// <summary>
+	/// Presents to the user options to schedule a scan of selected notebooks.
+	/// </summary>
 	internal partial class ScheduleScanDialog : MoreForm
 	{
 		#region Private classes
-		private sealed class NotebookList : MoreFlowLayoutPanel
+		private sealed class NotebooksPanel : MoreFlowLayoutPanel
 		{
-			public NotebookList()
+			public NotebooksPanel()
 			{
 				FlowDirection = FlowDirection.LeftToRight;
 				AutoScroll = true;
@@ -51,14 +54,19 @@ namespace River.OneMoreAddIn.Commands
 		#endregion Private classes
 
 
-		private readonly NotebookList bookList;
-		private List<string> knownNotebookIDs;
+		private readonly NotebooksPanel booksFlow;
+		private List<string> scannedIDs;
+		private List<string> preferredIDs;
 
 
 		/// <summary>
-		/// Constructor for visual designer; use the other constructors!
+		/// Create a new schedule, starting midnight tonight, optionally allowing the user
+		/// to select notebooks to scan.
 		/// </summary>
-		public ScheduleScanDialog()
+		/// <param name="showNotebooks">
+		/// True to show the notebooks selection panel; false to hide it.
+		/// </param>
+		public ScheduleScanDialog(bool showNotebooks)
 		{
 			InitializeComponent();
 
@@ -82,27 +90,18 @@ namespace River.OneMoreAddIn.Commands
 					"cancelButton=word_Cancel"
 				});
 			}
-		}
 
-
-		public ScheduleScanDialog(string[] notebookIDs)
-			: this()
-		{
 			dateTimePicker.Value = DateTime.Today.AddDays(1);
-			knownNotebookIDs = notebookIDs.ToList();
 
-			if (notebookIDs.Any())
+			if (showNotebooks)
 			{
-				bookList = new NotebookList
+				booksFlow = new NotebooksPanel
 				{
 					Dock = DockStyle.Fill
 				};
 
-				bookList.SelectionsChanged += DoSelectionsChanged;
-
-				booksPanel.Controls.Add(bookList);
-
-				AlignHyperlinks();
+				booksFlow.SelectionsChanged += DoSelectionsChanged;
+				booksPanel.Controls.Add(booksFlow);
 				okButton.Enabled = false;
 			}
 			else
@@ -116,13 +115,29 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		public ScheduleScanDialog(string[] notebookIDs, DateTime time)
-			: this(notebookIDs)
+		/// <summary>
+		/// Use this constructor when modifying an existing schedule with a preset start time.
+		/// </summary>
+		/// <param name="showNotebooks">
+		/// True to show the notebooks selection panel; false to hide it.
+		/// </param>
+		/// <param name="time">
+		/// The start time of the existing schedule to be modified.
+		/// </param>
+		public ScheduleScanDialog(bool showNotebooks, DateTime time)
+			: this(showNotebooks)
 		{
 			dateTimePicker.Value = time;
 		}
 
 
+		public DateTime StartTime => nowRadio.Checked
+			? DateTime.Now
+			// DateTimePicker returns dates with Unspecified Kind, so force Local
+			: DateTime.SpecifyKind(dateTimePicker.Value, DateTimeKind.Local);
+
+
+		#region Load Helpers
 		private void AlignHyperlinks()
 		{
 			var resetSize = TextRenderer.MeasureText(resetLink.Text, resetLink.Font);
@@ -141,22 +156,14 @@ namespace River.OneMoreAddIn.Commands
 			selectAllLink.Left = sep1.Left - sep1.Margin.Left - allSize.Width - selectAllLink.Margin.Right;
 		}
 
-
-		public string[] PreferredNotebooks { get; set; }
-
-
 		protected override async void OnLoad(EventArgs e)
 		{
-			if (notebooksPanel.Visible)
+			if (booksFlow is not null)
 			{
 				if (HashtagProvider.DatabaseExists())
 				{
 					using var provider = new HashtagProvider();
-					knownNotebookIDs = provider.ReadNotebookIDs();
-				}
-				else
-				{
-					knownNotebookIDs = new List<string>();
+					scannedIDs = provider.ReadNotebookIDs();
 				}
 
 				await using var one = new OneNote();
@@ -168,10 +175,10 @@ namespace River.OneMoreAddIn.Commands
 					var id = book.Attribute("ID").Value;
 
 					var isChecked =
-						(PreferredNotebooks is not null && PreferredNotebooks.Contains(id)) ||
-						!knownNotebookIDs.Contains(id);
+						(preferredIDs is not null && preferredIDs.Contains(id)) ||
+						scannedIDs is null || !scannedIDs.Contains(id);
 
-					bookList.AddNotebook(
+					booksFlow.AddNotebook(
 						book.Attribute("name").Value, id, isChecked);
 				}
 
@@ -182,34 +189,52 @@ namespace River.OneMoreAddIn.Commands
 			}
 
 			base.OnLoad(e);
+
+			AlignHyperlinks();
 		}
+		#endregion Load Helpers
 
 
-		public DateTime StartTime => nowRadio.Checked
-			? DateTime.Now
-			// DateTimePicker returns dates with Unspecified Kind, so force Local
-			: DateTime.SpecifyKind(dateTimePicker.Value, DateTimeKind.Local);
-
-
+		/// <summary>
+		/// Gets the list of selected notebook IDs
+		/// </summary>
+		/// <returns>An array of notebook IDs</returns>
 		public string[] GetSelectedNotebooks()
 		{
-			return bookList?.Controls.Cast<MoreCheckBox>()
-				.Where(c => c.Checked)
-				.Select(c => c.Tag.ToString())
-				.ToArray()
-				?? new string[0];
+			return booksFlow is null
+				? new string[0]
+				: booksFlow.Controls.Cast<MoreCheckBox>()
+					.Where(c => c.Checked).Select(c => c.Tag.ToString()).ToArray();
 		}
 
 
+		/// <summary>
+		/// Override the default intro text with customized text.
+		/// </summary>
+		/// <param name="text"></param>
 		public void SetIntroText(string text)
 		{
 			introBox.Text = text;
 		}
 
 
+		/// <summary>
+		/// Sets the list of preferred (selected) notebook IDs. These are chosen by the user
+		/// as targets for a full [re]scan. They can be either known or new notebooks.
+		/// </summary>
+		/// <param name="preferredIDs"></param>
+		public void SetPreferredIDs(string[] preferredIDs)
+		{
+			this.preferredIDs = preferredIDs.ToList();
+		}
+
+
+		// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+		// Handlers...
+
 		private void DoSelectionsChanged(object sender, EventArgs e)
 		{
-			okButton.Enabled = bookList.Controls.Cast<MoreCheckBox>().Any(b => b.Checked);
+			okButton.Enabled = booksFlow.Controls.Cast<MoreCheckBox>().Any(b => b.Checked);
 
 			if (okButton.Enabled)
 			{
@@ -224,16 +249,16 @@ namespace River.OneMoreAddIn.Commands
 
 		private void ResetSelections(object sender, LinkLabelLinkClickedEventArgs e)
 		{
-			foreach (MoreCheckBox box in bookList.Controls)
+			foreach (MoreCheckBox box in booksFlow.Controls)
 			{
-				box.Checked = !knownNotebookIDs.Contains((string)box.Tag);
+				box.Checked = !scannedIDs.Contains((string)box.Tag);
 			}
 		}
 
 
 		private void SelectAllNotebooks(object sender, LinkLabelLinkClickedEventArgs e)
 		{
-			foreach (MoreCheckBox box in bookList.Controls)
+			foreach (MoreCheckBox box in booksFlow.Controls)
 			{
 				box.Checked = true;
 			}
@@ -242,7 +267,7 @@ namespace River.OneMoreAddIn.Commands
 
 		private void SelectNoneNotebooks(object sender, LinkLabelLinkClickedEventArgs e)
 		{
-			foreach (MoreCheckBox box in bookList.Controls)
+			foreach (MoreCheckBox box in booksFlow.Controls)
 			{
 				box.Checked = false;
 			}

@@ -1305,6 +1305,10 @@ OneNote 文件 (*.one)</value>
     <value>现在扫描</value>
     <comment>menu button</comment>
   </data>
+  <data name="HashtagDialog_scheduleButton.Text" xml:space="preserve">
+    <value>安排扫描</value>
+    <comment>menu item</comment>
+  </data>
   <data name="HashtagDialog_scopeBox.Text" xml:space="preserve">
     <value>全部
 这个笔记本

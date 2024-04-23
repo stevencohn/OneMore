@@ -1319,6 +1319,10 @@ Searching for hashtags is unavailable until this is completed.</value>
     <value>Scan Now</value>
     <comment>menu button</comment>
   </data>
+  <data name="HashtagDialog_scheduleButton.Text" xml:space="preserve">
+    <value>Schedule Scan</value>
+    <comment>menu item</comment>
+  </data>
   <data name="HashtagDialog_scopeBox.Text" xml:space="preserve">
     <value>All
 This notebook
