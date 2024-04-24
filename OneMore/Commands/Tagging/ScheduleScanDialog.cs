@@ -169,6 +169,7 @@ namespace River.OneMoreAddIn.Commands
 				await using var one = new OneNote();
 				var books = await one.GetNotebooks();
 				var ns = one.GetNamespace(books);
+				var anyChecked = false;
 
 				foreach (var book in books.Elements(ns + "Notebook"))
 				{
@@ -180,10 +181,21 @@ namespace River.OneMoreAddIn.Commands
 
 					booksFlow.AddNotebook(
 						book.Attribute("name").Value, id, isChecked);
+
+					if (isChecked)
+					{
+						anyChecked = true;
+					}
 				}
 
-				if (!okButton.Enabled)
+				if (anyChecked)
 				{
+					okButton.Enabled = true;
+					okButton.Focus();
+				}
+				else
+				{
+					okButton.Enabled = false;
 					cancelButton.Focus();
 				}
 			}

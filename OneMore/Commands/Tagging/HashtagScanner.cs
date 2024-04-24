@@ -147,7 +147,6 @@ namespace River.OneMoreAddIn.Commands
 					// gets sections for this notebook
 					var notebookID = notebook.Attribute("ID").Value;
 					var name = notebook.Attribute("name").Value;
-					var scanned = false;
 
 					// Filter on two levels...
 					//
@@ -164,28 +163,24 @@ namespace River.OneMoreAddIn.Commands
 					//
 
 					if (knownNotebooks.Count == 0 ||
-						knownNotebooks.Contains(notebookID))
+						(notebookFilters is null
+							? knownNotebooks.Contains(notebookID)
+							: notebookFilters.Contains(notebookID)))
 					{
-						if (notebookFilters is null ||
-							notebookFilters.Contains(notebookID))
+						//logger.Verbose($"scanning notebook {notebookID} \"{name}\"");
+
+						var sections = await one.GetNotebook(notebookID);
+						if (sections is not null)
 						{
-							//logger.Verbose($"scanning notebook {notebookID} \"{name}\"");
+							var (dp, tp) = await Scan(one, sections, notebookID, $"/{name}");
 
-							var sections = await one.GetNotebook(notebookID);
-							if (sections is not null)
-							{
-								var (dp, tp) = await Scan(one, sections, notebookID, $"/{name}");
-
-								dirtyPages += dp;
-								totalPages += tp;
-							}
-
-							provider.WriteNotebook(notebookID, name);
-							scanned = true;
+							dirtyPages += dp;
+							totalPages += tp;
 						}
-					}
 
-					if (!scanned)
+						provider.WriteNotebook(notebookID, name);
+					}
+					else
 					{
 						logger.Verbose($"skipping notebook {notebookID} \"{name}\"");
 					}
