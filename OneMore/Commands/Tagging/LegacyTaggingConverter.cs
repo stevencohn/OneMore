@@ -113,6 +113,26 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
+		public async Task<bool> NeedsConversion()
+		{
+			var provider = new SettingsProvider();
+			var settings = provider.GetCollection("tagging");
+			if (settings.Get("converted", false))
+			{
+				return false;
+			}
+
+			if (settings.Get("ignore", false))
+			{
+				// previously opted to ignore upgrade
+				return false;
+			}
+
+			var count = await GetLegacyTagCount();
+			return count > 0;
+		}
+
+
 		private async Task<int> GetLegacyTagCount()
 		{
 			await using var one = new OneNote();
@@ -178,8 +198,7 @@ namespace River.OneMoreAddIn.Commands
 					.FirstOrDefault(e => e.Attribute("name").Value == MetaNames.TaggingBank);
 
 				if (bank is not null &&
-					bank.Attribute("content") is XAttribute flag &&
-					flag.Value == "1")
+					bank.Attribute("content") is XAttribute flag)
 				{
 					logger.WriteLine($"converting page tags on {page.PageId} \"{page.Title}\"");
 

@@ -6,6 +6,7 @@ namespace River.OneMoreAddIn.Settings
 {
 	using River.OneMoreAddIn.Commands;
 	using River.OneMoreAddIn.Styles;
+	using System;
 	using System.Linq;
 	using System.Windows.Forms;
 	using Resx = Properties.Resources;
@@ -75,8 +76,6 @@ namespace River.OneMoreAddIn.Settings
 
 			filterBox.Checked = settings.Get<bool>("unfiltered");
 
-			upgradeLink.Enabled = !provider.GetCollection("tagging").Get("converted", false);
-
 			if (provider.GetCollection("GeneralSheet").Get("experimental", false))
 			{
 				delayBox.Value = settings.Get("delay", HashtagScanner.DefaultThrottle);
@@ -87,6 +86,15 @@ namespace River.OneMoreAddIn.Settings
 				delayBox.Visible = false;
 				msLabel.Visible = false;
 			}
+		}
+
+
+		protected override async void OnLoad(EventArgs e)
+		{
+			base.OnLoad(e);
+
+			var converter = new LegacyTaggingConverter();
+			upgradeLink.Enabled = await converter.NeedsConversion();
 		}
 
 
