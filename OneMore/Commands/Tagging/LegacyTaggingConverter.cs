@@ -70,6 +70,7 @@ namespace River.OneMoreAddIn.Commands
 			var count = await GetLegacyTagCount();
 			if (count == 0)
 			{
+				Converted = true;
 				// no legacy page tags to upgrade
 				return false;
 			}
