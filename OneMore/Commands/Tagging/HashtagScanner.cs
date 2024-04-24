@@ -27,6 +27,7 @@ namespace River.OneMoreAddIn.Commands
 		private readonly int throttle;
 		private HashtagProvider provider;
 		private XNamespace ns;
+		private string[] notebookFilters;
 		private bool disposed;
 
 
@@ -46,6 +47,15 @@ namespace River.OneMoreAddIn.Commands
 
 			lastTime = provider.ReadScanTime();
 			//logger.Verbose($"HashtagScanner lastTime {lastTime}");
+		}
+
+
+		/// <summary>
+		/// A list of notebook IDs to target, used for rescans and rebuilds
+		/// </summary>
+		public void SetNotebookFilters(string[] filters)
+		{
+			notebookFilters = filters;
 		}
 
 
@@ -70,7 +80,7 @@ namespace River.OneMoreAddIn.Commands
 				var styleName = settings.Get<string>("styleName");
 				var theme = new ThemeProvider().Theme;
 				var style = theme.GetStyles().Find(s => s.Name == styleName);
-				if (style != null)
+				if (style is not null)
 				{
 					style.ApplyColors = true;
 
@@ -119,7 +129,7 @@ namespace River.OneMoreAddIn.Commands
 
 			// get all notebooks
 			var root = await one.GetNotebooks();
-			if (root == null)
+			if (root is null)
 			{
 				logger.WriteLine("error HashtagScanner one.GetNotebooks()");
 				return (0, 0);
@@ -130,18 +140,49 @@ namespace River.OneMoreAddIn.Commands
 			var notebooks = root.Elements(ns + "Notebook");
 			if (notebooks.Any())
 			{
+				var knownNotebooks = provider.ReadKnownNotebookIDs();
+
 				foreach (var notebook in notebooks)
 				{
 					// gets sections for this notebook
 					var notebookID = notebook.Attribute("ID").Value;
-					var sections = await one.GetNotebook(notebookID);
-					if (sections != null)
-					{
-						var (dp, tp) = await Scan(
-							one, sections, notebookID, $"/{notebook.Attribute("name").Value}");
+					var name = notebook.Attribute("name").Value;
 
-						dirtyPages += dp;
-						totalPages += tp;
+					// Filter on two levels...
+					//
+					// knownNotebooks
+					//   If knownNotebooks is empty, then we assume that this is the first scan
+					//   and will allow all; otherwise we only scan known notebooks to avoid
+					//   pulling in large data from newly added notebooks - user must schedule
+					//   a scan to pull in those new notebooks explicitly.
+					//
+					// notebookFilters
+					//   If notebookFilters is empty then allow any notebook that has passed the
+					//   knownNotebook test; otherwise, the user has explicitly requested a scan
+					//   of notebooks specified in the notebookFilters list.
+					//
+
+					if (knownNotebooks.Count == 0 ||
+						(notebookFilters is null
+							? knownNotebooks.Contains(notebookID)
+							: notebookFilters.Contains(notebookID)))
+					{
+						//logger.Verbose($"scanning notebook {notebookID} \"{name}\"");
+
+						var sections = await one.GetNotebook(notebookID);
+						if (sections is not null)
+						{
+							var (dp, tp) = await Scan(one, sections, notebookID, $"/{name}");
+
+							dirtyPages += dp;
+							totalPages += tp;
+						}
+
+						provider.WriteNotebook(notebookID, name);
+					}
+					else
+					{
+						logger.Verbose($"skipping notebook {notebookID} \"{name}\"");
 					}
 				}
 			}
@@ -162,9 +203,9 @@ namespace River.OneMoreAddIn.Commands
 
 			var sectionRefs = parent.Elements(ns + "Section")
 				.Where(e =>
-					e.Attribute("isRecycleBin") == null &&
-					e.Attribute("isInRecycleBin") == null &&
-					e.Attribute("locked") == null);
+					e.Attribute("isRecycleBin") is null &&
+					e.Attribute("isInRecycleBin") is null &&
+					e.Attribute("locked") is null);
 
 			if (sectionRefs.Any())
 			{
@@ -172,10 +213,10 @@ namespace River.OneMoreAddIn.Commands
 				{
 					// get pages for this section
 					var section = await one.GetSection(sectionRef.Attribute("ID").Value);
-					if (section != null)
+					if (section is not null)
 					{
 						var pages = section.Elements(ns + "Page")
-							.Where(e => e.Attribute("isInRecycleBin") == null);
+							.Where(e => e.Attribute("isInRecycleBin") is null);
 
 						if (pages.Any())
 						{
@@ -214,9 +255,9 @@ namespace River.OneMoreAddIn.Commands
 
 			var groups = parent.Elements(ns + "SectionGroup")
 				.Where(e =>
-					e.Attribute("isRecycleBin") == null &&
-					e.Attribute("isInRecycleBin") == null &&
-					e.Attribute("locked") == null);
+					e.Attribute("isRecycleBin") is null &&
+					e.Attribute("isInRecycleBin") is null &&
+					e.Attribute("locked") is null);
 
 			if (groups.Any())
 			{
@@ -251,7 +292,7 @@ namespace River.OneMoreAddIn.Commands
 
 			// avoid defect https://github.com/stevencohn/OneMore/issues/1268
 			// GetPage throws generic COM exception and returns null...
-			if (page == null)
+			if (page is null)
 			{
 				logger.WriteLine($"skipping null page {pageID} '{path}'");
 				return false;
@@ -278,7 +319,7 @@ namespace River.OneMoreAddIn.Commands
 			foreach (var candidate in candidates)
 			{
 				var found = saved.Find(s => s.Equals(candidate));
-				if (found == null)
+				if (found is null)
 				{
 					discovered.Add(candidate);
 				}

@@ -139,9 +139,8 @@ namespace River.OneMoreAddIn.Settings
 			{
 				name = Resx.ResourceManager.GetString(resID, AddIn.Culture) ?? name;
 
-				using var graphics = Graphics.FromHwnd(IntPtr.Zero);
-				var textSize = graphics.MeasureString(name, Font);
-				Height = (int)(textSize.Height + 6);
+				var textSize = TextRenderer.MeasureText(name, Font);
+				Height = textSize.Height + 6;
 
 				box = new UI.MoreCheckBox
 				{

@@ -222,6 +222,43 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
+		private void DoScheduleScan(object sender, EventArgs e)
+		{
+			var scheduler = new HashtagScheduler();
+
+			using var dialog =
+				scheduler.State == ScanningState.None ||
+				scheduler.State == ScanningState.Ready
+					? new ScheduleScanDialog(true)
+					: new ScheduleScanDialog(true, scheduler.StartTime);
+
+			if (scheduler.State != ScanningState.None &&
+				scheduler.State != ScanningState.Ready)
+			{
+				dialog.SetIntroText(string.Format(
+					Resx.HashtagSheet_prescheduled,
+					scheduler.StartTime.ToString("ddd, MMMM d, yyyy h:mm tt"))
+					);
+			}
+			else
+			{
+				dialog.SetIntroText(Resx.HashtagSheet_scanNotebooks);
+			}
+
+			dialog.SetPreferredIDs(scheduler.Notebooks);
+
+			var result = dialog.ShowDialog(this);
+			if (result == DialogResult.OK)
+			{
+				scheduler.Notebooks = dialog.GetSelectedNotebooks();
+				scheduler.StartTime = dialog.StartTime;
+				scheduler.State = ScanningState.PendingScan;
+
+				Task.Run(async () => { await scheduler.Activate(); });
+			}
+		}
+
+
 		private void Control_Checked(object sender, EventArgs e)
 		{
 			var control = sender as HashtagContextControl;

@@ -1305,6 +1305,10 @@ OneNote 文件 (*.one)</value>
     <value>现在扫描</value>
     <comment>menu button</comment>
   </data>
+  <data name="HashtagDialog_scheduleButton.Text" xml:space="preserve">
+    <value>安排扫描</value>
+    <comment>menu item</comment>
+  </data>
   <data name="HashtagDialog_scopeBox.Text" xml:space="preserve">
     <value>全部
 这个笔记本
@@ -2095,6 +2099,12 @@ OneNote 文件 (*.one)</value>
   </data>
   <data name="phrase_QuickNote" xml:space="preserve">
     <value>快速注释</value>
+  </data>
+  <data name="phrase_SelectAll" xml:space="preserve">
+    <value>全选</value>
+  </data>
+  <data name="phrase_SelectNone" xml:space="preserve">
+    <value>选择无</value>
   </data>
   <data name="PlantUml_broken" xml:space="preserve">
     <value>PlantUML 文本无效或找不到文本和图像之间的连接</value>
@@ -3756,6 +3766,10 @@ ISO-code then comma then language name</comment>
     <value>从所选内容中保存新的自定义片段</value>
     <comment>ribbon snippets</comment>
   </data>
+  <data name="ribScheduleHashtagScanButton_Label" xml:space="preserve">
+    <value>安排标签扫描</value>
+    <comment>palette command</comment>
+  </data>
   <data name="ribSearchAndReplaceButton_Label" xml:space="preserve">
     <value>搜索和替换</value>
     <comment>Ribbon OneMore menu item, search and replace</comment>
@@ -5045,6 +5059,9 @@ ISO-code then comma then language name</comment>
   </data>
   <data name="word_Notebook" xml:space="preserve">
     <value>笔记本</value>
+  </data>
+  <data name="word_Notebooks" xml:space="preserve">
+    <value>笔记本电脑</value>
   </data>
   <data name="word_Notes" xml:space="preserve">
     <value>笔记</value>

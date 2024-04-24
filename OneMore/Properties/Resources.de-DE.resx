@@ -1304,6 +1304,10 @@ Die Suche nach Hashtags ist erst möglich, wenn dies abgeschlossen ist.</value>
     <value>Scanne jetzt</value>
     <comment>menu button</comment>
   </data>
+  <data name="HashtagDialog_scheduleButton.Text" xml:space="preserve">
+    <value>Planen Sie den Scan</value>
+    <comment>menu item</comment>
+  </data>
   <data name="HashtagDialog_scopeBox.Text" xml:space="preserve">
     <value>Alle
 Dieses Notizbuch
@@ -2094,6 +2098,12 @@ Bewerben Sie sich auf dieses Notizbuch</value>
   </data>
   <data name="phrase_QuickNote" xml:space="preserve">
     <value>Schnelle Notiz</value>
+  </data>
+  <data name="phrase_SelectAll" xml:space="preserve">
+    <value>Wählen Sie Alle</value>
+  </data>
+  <data name="phrase_SelectNone" xml:space="preserve">
+    <value>Nichts ausgewählt</value>
   </data>
   <data name="PlantUml_broken" xml:space="preserve">
     <value>PlantUML-Text ist entweder ungültig oder kann keine Verbindung zwischen Text und Bild finden</value>
@@ -3755,6 +3765,10 @@ Nach der letzten Gruppe</value>
     <value>Speichert ein neues benutzerdefiniertes Snippet aus dem ausgewählten Inhalt</value>
     <comment>ribbon snippets</comment>
   </data>
+  <data name="ribScheduleHashtagScanButton_Label" xml:space="preserve">
+    <value>Planen Sie den Hashtag-Scan</value>
+    <comment>palette command</comment>
+  </data>
   <data name="ribSearchAndReplaceButton_Label" xml:space="preserve">
     <value>Suchen und Ersetzen</value>
     <comment>Ribbon OneMore menu item, search and replace</comment>
@@ -5044,6 +5058,9 @@ Das Dialogfeld „Hashtags suchen“ wird nun geöffnet.</value>
   </data>
   <data name="word_Notebook" xml:space="preserve">
     <value>Notizbuch</value>
+  </data>
+  <data name="word_Notebooks" xml:space="preserve">
+    <value>Notizbücher</value>
   </data>
   <data name="word_Notes" xml:space="preserve">
     <value>Anmerkungen</value>

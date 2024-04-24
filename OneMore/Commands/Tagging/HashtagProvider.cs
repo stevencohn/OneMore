@@ -148,10 +148,10 @@ namespace River.OneMoreAddIn.Commands
 				version = Upgrade1to2(con);
 			}
 
-			//if (version == 2)
-			//{
-			//	version = Upgrade2to3(con);
-			//}
+			if (version == 2)
+			{
+				version = Upgrade2to3(con);
+			}
 		}
 
 
@@ -176,23 +176,12 @@ namespace River.OneMoreAddIn.Commands
 			catch (Exception exc)
 			{
 				logger.End();
-				logger.WriteLine("error upgrading hashtag_page v2", exc);
+				logger.WriteLine("error creating view hashtag_hashtags", exc);
 				return 0;
 			}
 
-			try
+			if (!UpgradeSchemaVersion(cmd, transaction, 2))
 			{
-				logger.WriteLine("updating hashtag_scanner version");
-				cmd.CommandText =
-					$"UPDATE hashtag_scanner SET version = 2 WHERE scannerID = {ScannerID}";
-
-				cmd.ExecuteNonQuery();
-			}
-			catch (Exception exc)
-			{
-				logger.End();
-				logger.WriteLine("error upgrading hashtag_page v2", exc);
-				transaction.Rollback();
 				return 0;
 			}
 
@@ -203,7 +192,7 @@ namespace River.OneMoreAddIn.Commands
 			catch (Exception exc)
 			{
 				logger.End();
-				logger.WriteLine("error committing hashtag_page v2", exc);
+				logger.WriteLine("error committing changes for version 2", exc);
 				return 0;
 			}
 
@@ -211,6 +200,75 @@ namespace River.OneMoreAddIn.Commands
 
 			// new version
 			return 2;
+		}
+
+		private int Upgrade2to3(SQLiteConnection con)
+		{
+			logger.WriteLine("upgrading database to version 3");
+			logger.Start();
+
+			using var cmd = con.CreateCommand();
+			using var transaction = con.BeginTransaction();
+
+			try
+			{
+				logger.WriteLine("creating table hashtag_notebook");
+				cmd.CommandType = CommandType.Text;
+				cmd.CommandText =
+					"CREATE TABLE IF NOT EXISTS hashtag_notebook " +
+					"(notebookID TEXT PRIMARY KEY, name TEXT)";
+
+				cmd.ExecuteNonQuery();
+			}
+			catch (Exception exc)
+			{
+				logger.End();
+				logger.WriteLine("error creating table hashtag_notebook", exc);
+				return 0;
+			}
+
+			if (!UpgradeSchemaVersion(cmd, transaction, 3))
+			{
+				return 0;
+			}
+
+			try
+			{
+				transaction.Commit();
+			}
+			catch (Exception exc)
+			{
+				logger.End();
+				logger.WriteLine("error committing changes for version 3", exc);
+				return 0;
+			}
+
+			logger.End();
+
+			// new version
+			return 3;
+		}
+
+		private bool UpgradeSchemaVersion(
+			SQLiteCommand cmd, SQLiteTransaction transaction, int version)
+		{
+			try
+			{
+				logger.WriteLine($"updating hashtag_scanner version v{version}");
+				cmd.CommandText =
+					$"UPDATE hashtag_scanner SET version = {version} WHERE scannerID = {ScannerID}";
+
+				cmd.ExecuteNonQuery();
+			}
+			catch (Exception exc)
+			{
+				logger.End();
+				logger.WriteLine($"error updating hashtag_scanner version v{version}", exc);
+				transaction.Rollback();
+				return false;
+			}
+
+			return true;
 		}
 		#endregion UpgradeDatabase
 
@@ -379,6 +437,34 @@ namespace River.OneMoreAddIn.Commands
 
 
 		/// <summary>
+		/// Returns a list of known notebook IDs scanned thus far that contain tags
+		/// </summary>
+		/// <returns>A collection of strings</returns>
+		public List<string> ReadKnownNotebookIDs()
+		{
+			var list = new List<string>();
+
+			using var cmd = con.CreateCommand();
+			cmd.CommandText = "SELECT notebookID FROM hashtag_notebook";
+
+			try
+			{
+				using var reader = cmd.ExecuteReader();
+				while (reader.Read())
+				{
+					list.Add(reader.GetString(0));
+				}
+			}
+			catch (Exception exc)
+			{
+				ReportError("error reading known notebooks", cmd, exc);
+			}
+
+			return list;
+		}
+
+
+		/// <summary>
 		/// Returns a collection of the latest tag names.
 		/// </summary>
 		/// <returns>A list of strings</returns>
@@ -437,6 +523,36 @@ namespace River.OneMoreAddIn.Commands
 			return ReadTags(sql,
 				new SQLiteParameter[] { new("@p", pageID) }
 				);
+		}
+
+
+		/// <summary>
+		/// Returns a list of known notebook IDs scanned thus far that contain tags
+		/// </summary>
+		/// <returns>A collection of strings</returns>
+		public List<string> ReadTaggedNotebookIDs()
+		{
+			var list = new List<string>();
+
+			using var cmd = con.CreateCommand();
+			cmd.CommandText =
+				"SELECT DISTINCT(notebookID), SUBSTR(path, 0, INSTR(SUBSTR(path,2),'/')+1) " +
+				"FROM hashtag_page";
+
+			try
+			{
+				using var reader = cmd.ExecuteReader();
+				while (reader.Read())
+				{
+					list.Add(reader.GetString(0));
+				}
+			}
+			catch (Exception exc)
+			{
+				ReportError("error reading tagged notebooks", cmd, exc);
+			}
+
+			return list;
 		}
 
 
@@ -671,14 +787,16 @@ namespace River.OneMoreAddIn.Commands
 
 
 		/// <summary>
-		/// Records the timestamp value that was initialized at construction of this class
-		/// instance
+		/// Records a notebook instance; used to capture "known" notebooks
 		/// </summary>
-		public void WriteScanTime()
+		public void WriteNotebook(string notebookID, string name)
 		{
 			using var cmd = con.CreateCommand();
-			cmd.CommandText = "UPDATE hashtag_scanner SET scanTime = @d WHERE scannerID = 0";
-			cmd.Parameters.AddWithValue("@d", timestamp);
+			cmd.CommandText = "REPLACE INTO hashtag_notebook " +
+				"(notebookID, name) VALUES (@nid, @nam)";
+
+			cmd.Parameters.AddWithValue("@nid", notebookID);
+			cmd.Parameters.AddWithValue("@nam", name);
 
 			try
 			{
@@ -686,7 +804,7 @@ namespace River.OneMoreAddIn.Commands
 			}
 			catch (Exception exc)
 			{
-				ReportError("error writing scan time", cmd, exc);
+				ReportError("error writing notebook", cmd, exc);
 			}
 		}
 
@@ -725,6 +843,27 @@ namespace River.OneMoreAddIn.Commands
 			catch (Exception exc)
 			{
 				ReportError("error writing page info", cmd, exc);
+			}
+		}
+
+
+		/// <summary>
+		/// Records the timestamp value that was initialized at construction of this class
+		/// instance
+		/// </summary>
+		public void WriteScanTime()
+		{
+			using var cmd = con.CreateCommand();
+			cmd.CommandText = "UPDATE hashtag_scanner SET scanTime = @d WHERE scannerID = 0";
+			cmd.Parameters.AddWithValue("@d", timestamp);
+
+			try
+			{
+				cmd.ExecuteNonQuery();
+			}
+			catch (Exception exc)
+			{
+				ReportError("error writing scan time", cmd, exc);
 			}
 		}
 

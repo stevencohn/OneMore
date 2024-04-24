@@ -1306,6 +1306,10 @@
     <value>إفحص الآن</value>
     <comment>menu button</comment>
   </data>
+  <data name="HashtagDialog_scheduleButton.Text" xml:space="preserve">
+    <value>جدولة المسح</value>
+    <comment>menu item</comment>
+  </data>
   <data name="HashtagDialog_scopeBox.Text" xml:space="preserve">
     <value>الجميع
 هذا دفتر
@@ -2096,6 +2100,12 @@
   </data>
   <data name="phrase_QuickNote" xml:space="preserve">
     <value>ملاحظة سريعة</value>
+  </data>
+  <data name="phrase_SelectAll" xml:space="preserve">
+    <value>اختر الكل</value>
+  </data>
+  <data name="phrase_SelectNone" xml:space="preserve">
+    <value>لا تختر شيء</value>
   </data>
   <data name="PlantUml_broken" xml:space="preserve">
     <value>نص PlantUML إما غير صالح أو لا يمكنه العثور على اتصال بين النص والصورة</value>
@@ -3763,6 +3773,10 @@ ISO-code then comma then language name</comment>
     <value>احفظ مقتطفًا مخصصًا جديدًا من المحتوى المحدد</value>
     <comment>ribbon snippets</comment>
   </data>
+  <data name="ribScheduleHashtagScanButton_Label" xml:space="preserve">
+    <value>جدولة مسح الهاشتاج</value>
+    <comment>palette command</comment>
+  </data>
   <data name="ribSearchAndReplaceButton_Label" xml:space="preserve">
     <value>البحث والاستبدال</value>
     <comment>Ribbon OneMore menu item, search and replace</comment>
@@ -5052,6 +5066,9 @@ ISO-code then comma then language name</comment>
   </data>
   <data name="word_Notebook" xml:space="preserve">
     <value>دفتر</value>
+  </data>
+  <data name="word_Notebooks" xml:space="preserve">
+    <value>دفاتر الملاحظات</value>
   </data>
   <data name="word_Notes" xml:space="preserve">
     <value>ملحوظات</value>

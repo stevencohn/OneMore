@@ -1307,6 +1307,10 @@ A pesquisa de hashtags não estará disponível até que isso seja concluído.</
     <value>Escaneie agora</value>
     <comment>menu button</comment>
   </data>
+  <data name="HashtagDialog_scheduleButton.Text" xml:space="preserve">
+    <value>Agendar verificação</value>
+    <comment>menu item</comment>
+  </data>
   <data name="HashtagDialog_scopeBox.Text" xml:space="preserve">
     <value>Todos
 Este caderno
@@ -2097,6 +2101,12 @@ Aplicar a este caderno</value>
   </data>
   <data name="phrase_QuickNote" xml:space="preserve">
     <value>Nota rápida</value>
+  </data>
+  <data name="phrase_SelectAll" xml:space="preserve">
+    <value>Selecionar tudo</value>
+  </data>
+  <data name="phrase_SelectNone" xml:space="preserve">
+    <value>Selecione nenhum</value>
   </data>
   <data name="PlantUml_broken" xml:space="preserve">
     <value>O texto PlantUML é inválido ou não consegue encontrar a conexão entre o texto e a imagem</value>
@@ -3763,6 +3773,10 @@ Depois do último grupo</value>
     <value>Salve um novo snippet personalizado do conteúdo selecionado</value>
     <comment>ribbon snippets</comment>
   </data>
+  <data name="ribScheduleHashtagScanButton_Label" xml:space="preserve">
+    <value>Agendar verificação de hashtag</value>
+    <comment>palette command</comment>
+  </data>
   <data name="ribSearchAndReplaceButton_Label" xml:space="preserve">
     <value>Pesquisar e substituir</value>
     <comment>Ribbon OneMore menu item, search and replace</comment>
@@ -5052,6 +5066,9 @@ A caixa de diálogo Encontrar hashtags será aberta agora.</value>
   </data>
   <data name="word_Notebook" xml:space="preserve">
     <value>Caderno</value>
+  </data>
+  <data name="word_Notebooks" xml:space="preserve">
+    <value>Cadernos</value>
   </data>
   <data name="word_Notes" xml:space="preserve">
     <value>Notas</value>

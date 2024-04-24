@@ -1307,6 +1307,10 @@ Zoeken naar hashtags is pas beschikbaar als dit is voltooid.</value>
     <value>Scan nu</value>
     <comment>menu button</comment>
   </data>
+  <data name="HashtagDialog_scheduleButton.Text" xml:space="preserve">
+    <value>Plan scannen</value>
+    <comment>menu item</comment>
+  </data>
   <data name="HashtagDialog_scopeBox.Text" xml:space="preserve">
     <value>Alle
 Dit notitieboekje
@@ -2097,6 +2101,12 @@ Toepassen op dit notitieboekje</value>
   </data>
   <data name="phrase_QuickNote" xml:space="preserve">
     <value>Snelle notitie</value>
+  </data>
+  <data name="phrase_SelectAll" xml:space="preserve">
+    <value>Selecteer alles</value>
+  </data>
+  <data name="phrase_SelectNone" xml:space="preserve">
+    <value>Selecteer Geen</value>
   </data>
   <data name="PlantUml_broken" xml:space="preserve">
     <value>PlantUML-tekst is ongeldig of kan geen verband vinden tussen tekst en afbeelding</value>
@@ -3763,6 +3773,10 @@ Na de laatste groep</value>
     <value>Sla een nieuw aangepast fragment op van de geselecteerde inhoud</value>
     <comment>ribbon snippets</comment>
   </data>
+  <data name="ribScheduleHashtagScanButton_Label" xml:space="preserve">
+    <value>Plan een hashtagscan</value>
+    <comment>palette command</comment>
+  </data>
   <data name="ribSearchAndReplaceButton_Label" xml:space="preserve">
     <value>Zoeken en vervangen</value>
     <comment>Ribbon OneMore menu item, search and replace</comment>
@@ -5052,6 +5066,9 @@ Het dialoogvenster Hashtags zoeken wordt nu geopend.</value>
   </data>
   <data name="word_Notebook" xml:space="preserve">
     <value>Notitieboekje</value>
+  </data>
+  <data name="word_Notebooks" xml:space="preserve">
+    <value>Notitieboekjes</value>
   </data>
   <data name="word_Notes" xml:space="preserve">
     <value>Notities</value>

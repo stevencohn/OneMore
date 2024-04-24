@@ -744,6 +744,11 @@ namespace River.OneMoreAddIn
 			=> await factory.Run<SaveSnippetCommand>();
 
 
+		[Command("ribScheduleHashtagScanButton_Label", Keys.None, "ribSearchMenu")]
+		public async Task ScheduleHashtagScanCmd(IRibbonControl control)
+			=> await factory.Run<HashtagScanCommand>();
+
+
 		[Command("ribSearchButton_Label", Keys.None, "ribSearchMenu")]
 		public async Task SearchCmd(IRibbonControl control)
 			=> await factory.Run<SearchCommand>();

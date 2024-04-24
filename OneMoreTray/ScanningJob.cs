@@ -110,6 +110,12 @@ namespace OneMoreTray
 			trayIcon.ShowBalloonTip(0, Resx.ScannerTitle, Resx.ScanStarting, ToolTipIcon.Info);
 
 			var scanner = new HashtagService(scheduler.State == ScanningState.PendingRebuild);
+
+			if (scheduler.Notebooks is not null && scheduler.Notebooks.Length > 0)
+			{
+				scanner.SetNotebookFilters(scheduler.Notebooks);
+			}
+
 			scanner.OnHashtagScanned += DoScanned;
 			scanner.Startup();
 
@@ -154,7 +160,8 @@ namespace OneMoreTray
 
 		private void DoReschedule(object sender, EventArgs e)
 		{
-			using var dialog = new ScheduleScanDialog(scheduler.StartTime);
+			var showBooks = scheduler.Notebooks.Length > 0;
+			using var dialog = new ScheduleScanDialog(showBooks, scheduler.StartTime);
 
 			var msg = string.Format(
 				scheduler.State == ScanningState.PendingScan
@@ -163,11 +170,15 @@ namespace OneMoreTray
 				scheduler.StartTime.ToString(Resx.ScheduleTimeFormat));
 
 			dialog.SetIntroText(msg);
+			dialog.SetPreferredIDs(scheduler.Notebooks);
+			dialog.StartPosition = FormStartPosition.CenterScreen;
 
 			var result = dialog.ShowDialog();
 			if (result == DialogResult.OK)
 			{
 				source.Cancel(false);
+
+				scheduler.Notebooks = dialog.GetSelectedNotebooks();
 				scheduler.StartTime = dialog.StartTime;
 				scheduler.SaveSchedule();
 				ScheduleScan();

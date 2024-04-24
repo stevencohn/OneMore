@@ -3471,6 +3471,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Schedule Scan.
+        /// </summary>
+        internal static string HashtagDialog_scheduleButton_Text {
+            get {
+                return ResourceManager.GetString("HashtagDialog_scheduleButton.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to All
         ///This notebook
         ///This section.
@@ -5715,6 +5724,24 @@ namespace River.OneMoreAddIn.Properties {
         internal static string phrase_QuickNote {
             get {
                 return ResourceManager.GetString("phrase_QuickNote", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select All.
+        /// </summary>
+        internal static string phrase_SelectAll {
+            get {
+                return ResourceManager.GetString("phrase_SelectAll", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select None.
+        /// </summary>
+        internal static string phrase_SelectNone {
+            get {
+                return ResourceManager.GetString("phrase_SelectNone", resourceCulture);
             }
         }
         
@@ -9488,6 +9515,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Schedule Hashtag Scan.
+        /// </summary>
+        internal static string ribScheduleHashtagScanButton_Label {
+            get {
+                return ResourceManager.GetString("ribScheduleHashtagScanButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Search and Replace.
         /// </summary>
         internal static string ribSearchAndReplaceButton_Label {
@@ -12580,6 +12616,15 @@ namespace River.OneMoreAddIn.Properties {
         internal static string word_Notebook {
             get {
                 return ResourceManager.GetString("word_Notebook", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Notebooks.
+        /// </summary>
+        internal static string word_Notebooks {
+            get {
+                return ResourceManager.GetString("word_Notebooks", resourceCulture);
             }
         }
         

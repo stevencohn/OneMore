@@ -30,6 +30,11 @@ namespace River.OneMoreAddIn.Commands
 		#region Supporting classes
 		private sealed class Schedule
 		{
+			// The targeted names of notebooks to scan
+			[JsonProperty("notebooks")]
+			public string[] Notebooks { get; set; } = new string[0];
+
+
 			// The scheduled time to build/rebuild the hashtag database.
 			// Could be past or future; if past then run immediately.
 			[JsonProperty("startTime")]
@@ -72,6 +77,13 @@ namespace River.OneMoreAddIn.Commands
 
 
 		public bool Active => File.Exists(filePath) && Process.GetProcessesByName(TrayName).Any();
+
+
+		public string[] Notebooks
+		{
+			get { return schedule.Notebooks; }
+			set { schedule.Notebooks = value; }
+		}
 
 
 		public bool ScheduleExists => File.Exists(filePath);
@@ -179,6 +191,7 @@ namespace River.OneMoreAddIn.Commands
 			}
 			else
 			{
+				schedule.Notebooks = update.Notebooks;
 				schedule.State = update.State;
 				schedule.StartTime = update.StartTime;
 				schedule.Shutdown = update.Shutdown;

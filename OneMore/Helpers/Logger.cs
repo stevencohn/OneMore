@@ -426,7 +426,7 @@ namespace River.OneMoreAddIn
 		{
 			if (!stdio)
 			{
-				var bar = isVerbose ? "{" : "|";
+				var bar = isVerbose ? ">" : "|";
 				return $"{Thread.CurrentThread.ManagedThreadId:00}|{DateTime.Now:hh:mm:ss.fff}{bar} {preamble}";
 			}
 

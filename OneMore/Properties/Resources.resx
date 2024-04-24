@@ -1319,6 +1319,10 @@ Searching for hashtags is unavailable until this is completed.</value>
     <value>Scan Now</value>
     <comment>menu button</comment>
   </data>
+  <data name="HashtagDialog_scheduleButton.Text" xml:space="preserve">
+    <value>Schedule Scan</value>
+    <comment>menu item</comment>
+  </data>
   <data name="HashtagDialog_scopeBox.Text" xml:space="preserve">
     <value>All
 This notebook
@@ -2121,6 +2125,12 @@ Apply to this notebook</value>
   </data>
   <data name="phrase_QuickNote" xml:space="preserve">
     <value>Quick Note</value>
+  </data>
+  <data name="phrase_SelectAll" xml:space="preserve">
+    <value>Select All</value>
+  </data>
+  <data name="phrase_SelectNone" xml:space="preserve">
+    <value>Select None</value>
   </data>
   <data name="PlantUml_broken" xml:space="preserve">
     <value>PlantUML text is either invalid or cannot find connection between text and image</value>
@@ -3796,6 +3806,10 @@ After last group</value>
     <value>Save a new snippet from the selected content</value>
     <comment>ribbon snippets</comment>
   </data>
+  <data name="ribScheduleHashtagScanButton_Label" xml:space="preserve">
+    <value>Schedule Hashtag Scan</value>
+    <comment>palette command</comment>
+  </data>
   <data name="ribSearchAndReplaceButton_Label" xml:space="preserve">
     <value>Search and Replace</value>
     <comment>ribbon search NODUP</comment>
@@ -5094,6 +5108,9 @@ The Find Hashtags dialog will now open.</value>
   </data>
   <data name="word_Notebook" xml:space="preserve">
     <value>Notebook</value>
+  </data>
+  <data name="word_Notebooks" xml:space="preserve">
+    <value>Notebooks</value>
   </data>
   <data name="word_Notes" xml:space="preserve">
     <value>Notes</value>

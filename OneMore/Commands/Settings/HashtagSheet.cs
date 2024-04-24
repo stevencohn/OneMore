@@ -6,6 +6,7 @@ namespace River.OneMoreAddIn.Settings
 {
 	using River.OneMoreAddIn.Commands;
 	using River.OneMoreAddIn.Styles;
+	using System;
 	using System.Linq;
 	using System.Windows.Forms;
 	using Resx = Properties.Resources;
@@ -13,8 +14,6 @@ namespace River.OneMoreAddIn.Settings
 
 	internal partial class HashtagSheet : SheetBase
 	{
-		private readonly HashtagScheduler scheduler;
-
 
 		public HashtagSheet(SettingsProvider provider) : base(provider)
 		{
@@ -77,8 +76,6 @@ namespace River.OneMoreAddIn.Settings
 
 			filterBox.Checked = settings.Get<bool>("unfiltered");
 
-			upgradeLink.Enabled = !provider.GetCollection("tagging").Get("converted", false);
-
 			if (provider.GetCollection("GeneralSheet").Get("experimental", false))
 			{
 				delayBox.Value = settings.Get("delay", HashtagScanner.DefaultThrottle);
@@ -89,43 +86,24 @@ namespace River.OneMoreAddIn.Settings
 				delayBox.Visible = false;
 				msLabel.Visible = false;
 			}
+		}
 
-			scheduler = new HashtagScheduler();
+
+		protected override async void OnLoad(EventArgs e)
+		{
+			base.OnLoad(e);
+
+			var converter = new LegacyTaggingConverter();
+			upgradeLink.Enabled = await converter.NeedsConversion();
 		}
 
 
 		private async void ScheduleRebuild(object sender, LinkLabelLinkClickedEventArgs e)
 		{
-			using var dialog =
-				scheduler.State == ScanningState.None ||
-				scheduler.State == ScanningState.Ready
-					? new ScheduleScanDialog()
-					: new ScheduleScanDialog(scheduler.StartTime);
-
-			if (scheduler.State != ScanningState.None &&
-				scheduler.State != ScanningState.Ready)
-			{
-				dialog.SetIntroText(string.Format(
-					Resx.HashtagSheet_prescheduled,
-					scheduler.StartTime.ToString("ddd, MMMM d, yyyy h:mm tt"))
-					);
-			}
-			else
-			{
-				dialog.SetIntroText(Resx.HashtagSheet_scanNotebooks);
-			}
-
-			//
-			// FULL?
-			//
-
-			var result = dialog.ShowDialog(this);
-			if (result == DialogResult.OK)
-			{
-				scheduler.StartTime = dialog.StartTime;
-				scheduler.State = ScanningState.PendingScan;
-				await scheduler.Activate();
-			}
+			var cmd = new HashtagScanCommand();
+			cmd.SetLogger(logger);
+			cmd.SetOwner(this);
+			await cmd.Execute();
 		}
 
 
