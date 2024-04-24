@@ -140,31 +140,54 @@ namespace River.OneMoreAddIn.Commands
 			var notebooks = root.Elements(ns + "Notebook");
 			if (notebooks.Any())
 			{
+				var knownNotebooks = provider.ReadKnownNotebookIDs();
+
 				foreach (var notebook in notebooks)
 				{
 					// gets sections for this notebook
 					var notebookID = notebook.Attribute("ID").Value;
 					var name = notebook.Attribute("name").Value;
+					var scanned = false;
 
-					if (notebookFilters is null ||
-						notebookFilters.Contains(notebookID))
+					// Filter on two levels...
+					//
+					// knownNotebooks
+					//   If knownNotebooks is empty, then we assume that this is the first scan
+					//   and will allow all; otherwise we only scan known notebooks to avoid
+					//   pulling in large data from newly added notebooks - user must schedule
+					//   a scan to pull in those new notebooks explicitly.
+					//
+					// notebookFilters
+					//   If notebookFilters is empty then allow any notebook that has passed the
+					//   knownNotebook test; otherwise, the user has explicitly requested a scan
+					//   of notebooks specified in the notebookFilters list.
+					//
+
+					if (knownNotebooks.Count == 0 ||
+						knownNotebooks.Contains(notebookID))
 					{
-						//logger.Verbose($"scanning notebook {notebookID} \"{name}\"");
-
-						var sections = await one.GetNotebook(notebookID);
-						if (sections is not null)
+						if (notebookFilters is null ||
+							notebookFilters.Contains(notebookID))
 						{
-							var (dp, tp) = await Scan(one, sections, notebookID, $"/{name}");
+							//logger.Verbose($"scanning notebook {notebookID} \"{name}\"");
 
-							dirtyPages += dp;
-							totalPages += tp;
+							var sections = await one.GetNotebook(notebookID);
+							if (sections is not null)
+							{
+								var (dp, tp) = await Scan(one, sections, notebookID, $"/{name}");
+
+								dirtyPages += dp;
+								totalPages += tp;
+							}
+
+							provider.WriteNotebook(notebookID, name);
+							scanned = true;
 						}
-
-						provider.WriteNotebook(notebookID, name);
 					}
-					else
+
+					if (!scanned)
 					{
-						//logger.Verbose($"skipping notebook {notebookID} \"{name}\"");
+						logger.Verbose($"skipping notebook {notebookID} \"{name}\"");
 					}
 				}
 			}
