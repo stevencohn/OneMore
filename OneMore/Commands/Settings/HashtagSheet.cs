@@ -13,8 +13,6 @@ namespace River.OneMoreAddIn.Settings
 
 	internal partial class HashtagSheet : SheetBase
 	{
-		private readonly HashtagScheduler scheduler;
-
 
 		public HashtagSheet(SettingsProvider provider) : base(provider)
 		{
@@ -89,55 +87,15 @@ namespace River.OneMoreAddIn.Settings
 				delayBox.Visible = false;
 				msLabel.Visible = false;
 			}
-
-			scheduler = new HashtagScheduler();
 		}
 
 
 		private async void ScheduleRebuild(object sender, LinkLabelLinkClickedEventArgs e)
 		{
-			if (scheduler.State == ScanningState.Rebuilding ||
-				scheduler.State == ScanningState.Scanning)
-			{
-				var msg = scheduler.State == ScanningState.Scanning
-					? Resx.HashtagCommand_scanning
-					: string.Format(Resx.HashtagCommand_waiting, scheduler.StartTime.ToFriendlyString());
-
-				UI.MoreMessageBox.Show(this, msg);
-				return;
-			}
-
-			var showNotebooks = HashtagProvider.DatabaseExists();
-
-			using var dialog =
-				scheduler.State == ScanningState.None ||
-				scheduler.State == ScanningState.Ready
-					? new ScheduleScanDialog(showNotebooks)
-					: new ScheduleScanDialog(showNotebooks, scheduler.StartTime);
-
-			if (scheduler.State != ScanningState.None &&
-				scheduler.State != ScanningState.Ready)
-			{
-				dialog.SetIntroText(string.Format(
-					Resx.HashtagSheet_prescheduled,
-					scheduler.StartTime.ToString("ddd, MMMM d, yyyy h:mm tt"))
-					);
-			}
-			else
-			{
-				dialog.SetIntroText(Resx.HashtagSheet_scanNotebooks);
-			}
-
-			dialog.SetPreferredIDs(scheduler.Notebooks);
-
-			var result = dialog.ShowDialog(this);
-			if (result == DialogResult.OK)
-			{
-				scheduler.Notebooks = dialog.GetSelectedNotebooks();
-				scheduler.StartTime = dialog.StartTime;
-				scheduler.State = ScanningState.PendingScan;
-				await scheduler.Activate();
-			}
+			var cmd = new HashtagScanCommand();
+			cmd.SetLogger(logger);
+			cmd.SetOwner(this);
+			await cmd.Execute();
 		}
 
 

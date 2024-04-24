@@ -149,7 +149,7 @@ namespace River.OneMoreAddIn.Commands
 					if (notebookFilters is null ||
 						notebookFilters.Contains(notebookID))
 					{
-						logger.Verbose($"scanning notebook {notebookID} \"{name}\"");
+						//logger.Verbose($"scanning notebook {notebookID} \"{name}\"");
 
 						var sections = await one.GetNotebook(notebookID);
 						if (sections is not null)
@@ -164,7 +164,7 @@ namespace River.OneMoreAddIn.Commands
 					}
 					else
 					{
-						logger.Verbose($"skipping notebook {notebookID} \"{name}\"");
+						//logger.Verbose($"skipping notebook {notebookID} \"{name}\"");
 					}
 				}
 			}
