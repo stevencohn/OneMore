@@ -3773,6 +3773,10 @@ Depois do último grupo</value>
     <value>Salve um novo snippet personalizado do conteúdo selecionado</value>
     <comment>ribbon snippets</comment>
   </data>
+  <data name="ribScheduleHashtagScanButton_Label" xml:space="preserve">
+    <value>Agendar verificação de hashtag</value>
+    <comment>palette command</comment>
+  </data>
   <data name="ribSearchAndReplaceButton_Label" xml:space="preserve">
     <value>Pesquisar e substituir</value>
     <comment>Ribbon OneMore menu item, search and replace</comment>

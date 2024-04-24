@@ -163,7 +163,7 @@ namespace River.OneMoreAddIn.Commands
 				if (HashtagProvider.DatabaseExists())
 				{
 					using var provider = new HashtagProvider();
-					scannedIDs = provider.ReadNotebookIDs();
+					scannedIDs = provider.ReadTaggedNotebookIDs();
 				}
 
 				await using var one = new OneNote();

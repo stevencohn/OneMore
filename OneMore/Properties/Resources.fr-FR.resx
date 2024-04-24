@@ -3771,6 +3771,10 @@ Après le dernier groupe</value>
     <value>Enregistrer un nouvel extrait personnalisé à partir du contenu sélectionné</value>
     <comment>ribbon snippets</comment>
   </data>
+  <data name="ribScheduleHashtagScanButton_Label" xml:space="preserve">
+    <value>Planifier une analyse de hashtag</value>
+    <comment>palette command</comment>
+  </data>
   <data name="ribSearchAndReplaceButton_Label" xml:space="preserve">
     <value>Rechercher et remplacer</value>
     <comment>Ribbon OneMore menu item, search and replace</comment>

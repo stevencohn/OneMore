@@ -3765,6 +3765,10 @@ Nach der letzten Gruppe</value>
     <value>Speichert ein neues benutzerdefiniertes Snippet aus dem ausgewählten Inhalt</value>
     <comment>ribbon snippets</comment>
   </data>
+  <data name="ribScheduleHashtagScanButton_Label" xml:space="preserve">
+    <value>Planen Sie den Hashtag-Scan</value>
+    <comment>palette command</comment>
+  </data>
   <data name="ribSearchAndReplaceButton_Label" xml:space="preserve">
     <value>Suchen und Ersetzen</value>
     <comment>Ribbon OneMore menu item, search and replace</comment>

@@ -3806,6 +3806,10 @@ After last group</value>
     <value>Save a new snippet from the selected content</value>
     <comment>ribbon snippets</comment>
   </data>
+  <data name="ribScheduleHashtagScanButton_Label" xml:space="preserve">
+    <value>Schedule Hashtag Scan</value>
+    <comment>palette command</comment>
+  </data>
   <data name="ribSearchAndReplaceButton_Label" xml:space="preserve">
     <value>Search and Replace</value>
     <comment>ribbon search NODUP</comment>

@@ -30,6 +30,12 @@
 		{
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ScheduleScanDialog));
 			this.topPanel = new System.Windows.Forms.Panel();
+			this.warningLabel = new River.OneMoreAddIn.UI.MoreMultilineLabel();
+			this.nowRadio = new River.OneMoreAddIn.UI.MoreRadioButton();
+			this.laterRadio = new River.OneMoreAddIn.UI.MoreRadioButton();
+			this.hintLabel = new River.OneMoreAddIn.UI.MoreLabel();
+			this.scheduleLabel = new River.OneMoreAddIn.UI.MoreLabel();
+			this.dateTimePicker = new System.Windows.Forms.DateTimePicker();
 			this.notebooksPanel = new River.OneMoreAddIn.UI.MorePanel();
 			this.booksPanel = new River.OneMoreAddIn.UI.MorePanel();
 			this.sep2 = new River.OneMoreAddIn.UI.MoreLabel();
@@ -38,12 +44,6 @@
 			this.selectAllLink = new River.OneMoreAddIn.UI.MoreLinkLabel();
 			this.sep1 = new River.OneMoreAddIn.UI.MoreLabel();
 			this.selectNoneLink = new River.OneMoreAddIn.UI.MoreLinkLabel();
-			this.warningLabel = new River.OneMoreAddIn.UI.MoreMultilineLabel();
-			this.nowRadio = new River.OneMoreAddIn.UI.MoreRadioButton();
-			this.laterRadio = new River.OneMoreAddIn.UI.MoreRadioButton();
-			this.hintLabel = new River.OneMoreAddIn.UI.MoreLabel();
-			this.scheduleLabel = new River.OneMoreAddIn.UI.MoreLabel();
-			this.dateTimePicker = new System.Windows.Forms.DateTimePicker();
 			this.buttonPanel = new System.Windows.Forms.Panel();
 			this.cancelButton = new River.OneMoreAddIn.UI.MoreButton();
 			this.okButton = new River.OneMoreAddIn.UI.MoreButton();
@@ -70,6 +70,73 @@
 			this.topPanel.Padding = new System.Windows.Forms.Padding(40, 40, 20, 20);
 			this.topPanel.Size = new System.Drawing.Size(693, 305);
 			this.topPanel.TabIndex = 4;
+			// 
+			// warningLabel
+			// 
+			this.warningLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.warningLabel.Location = new System.Drawing.Point(70, 216);
+			this.warningLabel.Name = "warningLabel";
+			this.warningLabel.Size = new System.Drawing.Size(600, 46);
+			this.warningLabel.TabIndex = 6;
+			this.warningLabel.Text = "OneNote may appear sluggish while scanning. If OneNote is closed during the scan," +
+    " it cannot be opened until the scan completes.";
+			this.warningLabel.ThemedBack = null;
+			this.warningLabel.ThemedFore = null;
+			// 
+			// nowRadio
+			// 
+			this.nowRadio.Cursor = System.Windows.Forms.Cursors.Hand;
+			this.nowRadio.Location = new System.Drawing.Point(43, 185);
+			this.nowRadio.Name = "nowRadio";
+			this.nowRadio.Size = new System.Drawing.Size(370, 25);
+			this.nowRadio.TabIndex = 5;
+			this.nowRadio.Text = "Run the san now";
+			this.nowRadio.UseVisualStyleBackColor = true;
+			// 
+			// laterRadio
+			// 
+			this.laterRadio.Checked = true;
+			this.laterRadio.Cursor = System.Windows.Forms.Cursors.Hand;
+			this.laterRadio.Location = new System.Drawing.Point(43, 43);
+			this.laterRadio.Name = "laterRadio";
+			this.laterRadio.Size = new System.Drawing.Size(492, 25);
+			this.laterRadio.TabIndex = 4;
+			this.laterRadio.TabStop = true;
+			this.laterRadio.Text = "Schedule the scan at a later time";
+			this.laterRadio.UseVisualStyleBackColor = true;
+			// 
+			// hintLabel
+			// 
+			this.hintLabel.AutoSize = true;
+			this.hintLabel.Location = new System.Drawing.Point(71, 71);
+			this.hintLabel.Margin = new System.Windows.Forms.Padding(3, 0, 3, 12);
+			this.hintLabel.Name = "hintLabel";
+			this.hintLabel.Size = new System.Drawing.Size(463, 20);
+			this.hintLabel.TabIndex = 3;
+			this.hintLabel.Text = "It is best to schedule the scan during off-hours, such as midnight\r\n";
+			this.hintLabel.ThemedBack = null;
+			this.hintLabel.ThemedFore = null;
+			// 
+			// scheduleLabel
+			// 
+			this.scheduleLabel.AutoSize = true;
+			this.scheduleLabel.Location = new System.Drawing.Point(71, 120);
+			this.scheduleLabel.Name = "scheduleLabel";
+			this.scheduleLabel.Size = new System.Drawing.Size(76, 20);
+			this.scheduleLabel.TabIndex = 2;
+			this.scheduleLabel.Text = "Schedule";
+			this.scheduleLabel.ThemedBack = null;
+			this.scheduleLabel.ThemedFore = null;
+			// 
+			// dateTimePicker
+			// 
+			this.dateTimePicker.CustomFormat = "ddd, MMMM d, yyyy h:mm tt";
+			this.dateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+			this.dateTimePicker.Location = new System.Drawing.Point(257, 115);
+			this.dateTimePicker.Name = "dateTimePicker";
+			this.dateTimePicker.Size = new System.Drawing.Size(379, 26);
+			this.dateTimePicker.TabIndex = 1;
 			// 
 			// notebooksPanel
 			// 
@@ -215,73 +282,6 @@
 			this.selectNoneLink.VisitedLinkColor = System.Drawing.Color.MediumOrchid;
 			this.selectNoneLink.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.SelectNoneNotebooks);
 			// 
-			// warningLabel
-			// 
-			this.warningLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-			this.warningLabel.Location = new System.Drawing.Point(70, 216);
-			this.warningLabel.Name = "warningLabel";
-			this.warningLabel.Size = new System.Drawing.Size(600, 46);
-			this.warningLabel.TabIndex = 6;
-			this.warningLabel.Text = "OneNote may appear sluggish while scanning. If OneNote is closed during the scan," +
-    " it cannot be opened until the scan completes.";
-			this.warningLabel.ThemedBack = null;
-			this.warningLabel.ThemedFore = null;
-			// 
-			// nowRadio
-			// 
-			this.nowRadio.Cursor = System.Windows.Forms.Cursors.Hand;
-			this.nowRadio.Location = new System.Drawing.Point(43, 185);
-			this.nowRadio.Name = "nowRadio";
-			this.nowRadio.Size = new System.Drawing.Size(370, 25);
-			this.nowRadio.TabIndex = 5;
-			this.nowRadio.Text = "Run the san now";
-			this.nowRadio.UseVisualStyleBackColor = true;
-			// 
-			// laterRadio
-			// 
-			this.laterRadio.Checked = true;
-			this.laterRadio.Cursor = System.Windows.Forms.Cursors.Hand;
-			this.laterRadio.Location = new System.Drawing.Point(43, 43);
-			this.laterRadio.Name = "laterRadio";
-			this.laterRadio.Size = new System.Drawing.Size(492, 25);
-			this.laterRadio.TabIndex = 4;
-			this.laterRadio.TabStop = true;
-			this.laterRadio.Text = "Schedule the scan at a later time";
-			this.laterRadio.UseVisualStyleBackColor = true;
-			// 
-			// hintLabel
-			// 
-			this.hintLabel.AutoSize = true;
-			this.hintLabel.Location = new System.Drawing.Point(71, 71);
-			this.hintLabel.Margin = new System.Windows.Forms.Padding(3, 0, 3, 12);
-			this.hintLabel.Name = "hintLabel";
-			this.hintLabel.Size = new System.Drawing.Size(463, 20);
-			this.hintLabel.TabIndex = 3;
-			this.hintLabel.Text = "It is best to schedule the scan during off-hours, such as midnight\r\n";
-			this.hintLabel.ThemedBack = null;
-			this.hintLabel.ThemedFore = null;
-			// 
-			// scheduleLabel
-			// 
-			this.scheduleLabel.AutoSize = true;
-			this.scheduleLabel.Location = new System.Drawing.Point(71, 120);
-			this.scheduleLabel.Name = "scheduleLabel";
-			this.scheduleLabel.Size = new System.Drawing.Size(76, 20);
-			this.scheduleLabel.TabIndex = 2;
-			this.scheduleLabel.Text = "Schedule";
-			this.scheduleLabel.ThemedBack = null;
-			this.scheduleLabel.ThemedFore = null;
-			// 
-			// dateTimePicker
-			// 
-			this.dateTimePicker.CustomFormat = "ddd, MMMM d, yyyy h:mm tt";
-			this.dateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-			this.dateTimePicker.Location = new System.Drawing.Point(257, 115);
-			this.dateTimePicker.Name = "dateTimePicker";
-			this.dateTimePicker.Size = new System.Drawing.Size(379, 26);
-			this.dateTimePicker.TabIndex = 1;
-			// 
 			// buttonPanel
 			// 
 			this.buttonPanel.BackColor = System.Drawing.SystemColors.Control;
@@ -360,7 +360,7 @@
 			this.MinimizeBox = false;
 			this.MinimumSize = new System.Drawing.Size(715, 720);
 			this.Name = "ScheduleScanDialog";
-			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
 			this.Text = "Schedule Hashtag Scanning";
 			this.topPanel.ResumeLayout(false);
 			this.topPanel.PerformLayout();

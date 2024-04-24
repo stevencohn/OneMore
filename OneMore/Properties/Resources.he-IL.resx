@@ -3784,6 +3784,10 @@ ISO-code then comma then language name</comment>
     <value>שמור קטע מותאם אישית חדש מהתוכן שנבחר</value>
     <comment>ribbon snippets</comment>
   </data>
+  <data name="ribScheduleHashtagScanButton_Label" xml:space="preserve">
+    <value>תזמן סריקת Hashtag</value>
+    <comment>palette command</comment>
+  </data>
   <data name="ribSearchAndReplaceButton_Label" xml:space="preserve">
     <value>חפש והחלף</value>
     <comment>Ribbon OneMore menu item, search and replace NODUP</comment>

@@ -3773,6 +3773,10 @@ ISO-code then comma then language name</comment>
     <value>احفظ مقتطفًا مخصصًا جديدًا من المحتوى المحدد</value>
     <comment>ribbon snippets</comment>
   </data>
+  <data name="ribScheduleHashtagScanButton_Label" xml:space="preserve">
+    <value>جدولة مسح الهاشتاج</value>
+    <comment>palette command</comment>
+  </data>
   <data name="ribSearchAndReplaceButton_Label" xml:space="preserve">
     <value>البحث والاستبدال</value>
     <comment>Ribbon OneMore menu item, search and replace</comment>

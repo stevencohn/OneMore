@@ -144,19 +144,27 @@ namespace River.OneMoreAddIn.Commands
 				{
 					// gets sections for this notebook
 					var notebookID = notebook.Attribute("ID").Value;
+					var name = notebook.Attribute("name").Value;
 
 					if (notebookFilters is null ||
 						notebookFilters.Contains(notebookID))
 					{
+						logger.Verbose($"scanning notebook {notebookID} \"{name}\"");
+
 						var sections = await one.GetNotebook(notebookID);
 						if (sections is not null)
 						{
-							var (dp, tp) = await Scan(
-								one, sections, notebookID, $"/{notebook.Attribute("name").Value}");
+							var (dp, tp) = await Scan(one, sections, notebookID, $"/{name}");
 
 							dirtyPages += dp;
 							totalPages += tp;
 						}
+
+						provider.WriteNotebook(notebookID, name);
+					}
+					else
+					{
+						logger.Verbose($"skipping notebook {notebookID} \"{name}\"");
 					}
 				}
 			}

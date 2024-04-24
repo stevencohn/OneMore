@@ -3786,6 +3786,10 @@ Po ostatniej grupie</value>
     <value>Zapisz nowy niestandardowy fragment z wybranej treści</value>
     <comment>ribbon snippets</comment>
   </data>
+  <data name="ribScheduleHashtagScanButton_Label" xml:space="preserve">
+    <value>Zaplanuj skanowanie hashtagów</value>
+    <comment>palette command</comment>
+  </data>
   <data name="ribSearchAndReplaceButton_Label" xml:space="preserve">
     <value>Wyszukaj i zamień</value>
     <comment>Ribbon OneMore menu item, search and replace</comment>
