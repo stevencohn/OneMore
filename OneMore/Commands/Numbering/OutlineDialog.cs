@@ -32,10 +32,10 @@ namespace River.OneMoreAddIn.Commands
 
 				Localize(new string[]
 				{
-					"numberingGroup",
+					"numberingGroup=word_Numbering",
 					"numberingBox",
-					"alphaRadio",
-					"numRadio",
+					"alphaRadio=word_Alphanumeric",
+					"numRadio=word_Numeric",
 					"cleanBox",
 					"indentationsGroup",
 					"indentBox",

@@ -20,9 +20,9 @@ namespace River.OneMoreAddIn.Commands
 				Localize(new string[]
 				{
 					"groupBox",
-					"notebooksRadio",
-					"notebookRadio",
-					"sectionRadio",
+					"notebooksRadio=phrase_AllNotebooks",
+					"notebookRadio=phrase_AllSectionInTheCurrentNotebook",
+					"sectionRadio=phrase_TheCurrentSection",
 					"okButton=word_OK",
 					"cancelButton=word_Cancel"
 				});

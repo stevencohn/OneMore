@@ -32,7 +32,7 @@ namespace River.OneMoreAddIn.Settings
 			InitializeComponent();
 
 			Name = "FavoritesSheet";
-			Title = Resx.FavoritesSheet_Text;
+			Title = Resx.word_Favorites;
 
 			if (NeedsLocalizing())
 			{

@@ -148,7 +148,7 @@ namespace River.OneMoreAddIn.Commands
 				Localize(new string[]
 				{
 					"nameLabel=word_Name",
-					"newButton",
+					"newButton=phrase_NewStyle",
 					"renameButton=word_Rename",
 					"saveButton=word_Save",
 					"deleteButton=word_Delete",
@@ -158,7 +158,7 @@ namespace River.OneMoreAddIn.Commands
 					"previewGroup=word_Preview",
 					"resetButton",
 					"fontsTab",
-					"fontElementsGroup",
+					"fontElementsGroup=EditTableThemesDialog_elementsGroup",
 					"fontsGroup=word_Font",
 					"applyFontButton=word_Apply",
 					"resetFontButton=word_Reset",
@@ -193,7 +193,7 @@ namespace River.OneMoreAddIn.Commands
 
 			if (themes.Count == 0)
 			{
-				themes.Insert(0, new TableTheme { Name = Resx.EditTableThemesDialog_NewStyle });
+				themes.Insert(0, new TableTheme { Name = Resx.phrase_NewStyle});
 				newButton.Enabled = false;
 			}
 			else
@@ -715,8 +715,8 @@ namespace River.OneMoreAddIn.Commands
 			}
 
 			snapshot = new TableTheme();
-			themes.Add(new TableTheme { Name = Resx.EditTableThemesDialog_NewStyle });
-			combo.Items.Add(Resx.EditTableThemesDialog_NewStyle);
+			themes.Add(new TableTheme { Name = Resx.phrase_NewStyle });
+			combo.Items.Add(Resx.phrase_NewStyle);
 			combo.SelectedIndex = combo.Items.Count - 1;
 
 			newButton.Enabled = false;
@@ -769,7 +769,7 @@ namespace River.OneMoreAddIn.Commands
 
 				if (themes.Count == 0)
 				{
-					themes.Add(new TableTheme { Name = Resx.EditTableThemesDialog_NewStyle });
+					themes.Add(new TableTheme { Name = Resx.phrase_NewStyle });
 					snapshot = new TableTheme();
 					combo.Items.Add(themes[0]);
 					combo.SelectedIndex = 0;

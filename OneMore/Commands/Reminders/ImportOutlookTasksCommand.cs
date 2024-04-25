@@ -198,7 +198,7 @@ namespace River.OneMoreAddIn.Commands
 			row[2].SetContent(new Paragraph(Resx.OutlookTaskReport_DateStarted).SetStyle(HeaderCss));
 			row[3].SetContent(new Paragraph(Resx.OutlookTaskReport_DateDue).SetStyle(HeaderCss));
 			row[4].SetContent(new Paragraph(Resx.OutlookTaskReport_Importance).SetStyle(HeaderCss));
-			row[5].SetContent(new Paragraph(Resx.OutlookTaskReport_Percent).SetStyle(HeaderCss));
+			row[5].SetContent(new Paragraph(Resx.phrase_PctComplete).SetStyle(HeaderCss));
 
 			PrepareTableContext();
 
@@ -239,7 +239,7 @@ namespace River.OneMoreAddIn.Commands
 			// wth only CR instead of NLCR so allow for any possibility
 			var delims = new[] { Environment.NewLine, "\r", "\n" };
 
-			importances = Resx.OutlookTaskReport_importances
+			importances = Resx.phrase_priorityOptions
 				.Split(delims, StringSplitOptions.RemoveEmptyEntries);
 
 			statuses = Resx.OutlookTaskReport_statuses

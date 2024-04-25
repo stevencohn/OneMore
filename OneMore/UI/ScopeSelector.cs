@@ -41,9 +41,9 @@ namespace River.OneMoreAddIn.UI
 				TranslationHelper.Localize(this, new string[]
 				{
 					"pageButton",
-					"sectionButton",
-					"notebookButton",
-					"notebooksButton",
+					"sectionButton=phrase_TheCurrentSection",
+					"notebookButton=phrase_AllSectionInTheCurrentNotebook",
+					"notebooksButton=phrase_AllNotebooks",
 					"selectedButton"
 				});
 			}

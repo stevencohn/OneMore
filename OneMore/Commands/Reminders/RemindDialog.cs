@@ -34,7 +34,7 @@ namespace River.OneMoreAddIn.Commands
 					"statusBox",
 					"priorityLabel",
 					"priorityBox",
-					"percentLabel",
+					"percentLabel=phrase_PctComplete",
 					"optionsBox=word_Options",
 					"silentBox",
 					"snoozeLabel",

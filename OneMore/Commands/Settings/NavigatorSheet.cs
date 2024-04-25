@@ -18,7 +18,7 @@ namespace River.OneMoreAddIn.Settings
 			InitializeComponent();
 
 			Name = nameof(NavigatorSheet);
-			Title = Resx.NavigatorSheet_Title;
+			Title = Resx.word_Navigator;
 
 			if (NeedsLocalizing())
 			{

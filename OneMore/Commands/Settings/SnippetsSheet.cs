@@ -37,7 +37,7 @@ namespace River.OneMoreAddIn.Settings
 			InitializeComponent();
 
 			Name = "SnippetsSheet";
-			Title = Resx.SnippetsSheet_Text;
+			Title = Resx.word_Snippets;
 
 			if (NeedsLocalizing())
 			{

@@ -5,6 +5,7 @@
 namespace River.OneMoreAddIn.Commands
 {
 	using System;
+	using Resx = Properties.Resources;
 
 
 	internal partial class InsertTocDialog : UI.MoreForm
@@ -16,7 +17,7 @@ namespace River.OneMoreAddIn.Commands
 
 			if (NeedsLocalizing())
 			{
-				//Text = Resx.TocDialog_Text;
+				Text = Resx.InsertTocCommand_TOC;
 
 				Localize(new string[]
 				{

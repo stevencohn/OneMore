@@ -37,7 +37,7 @@ namespace River.OneMoreAddIn.Commands
 					{
 						"currentLabel",
 						"versionLabel",
-						"lastpdatedLabel",
+						"lastUpdatedLabel",
 						"releaseNotesLink",
 						"okButton=word_OK"
 					});
@@ -63,9 +63,9 @@ namespace River.OneMoreAddIn.Commands
 						"upVersionLabel",
 						"upDescriptionLabel",
 						"upReleaseDateLabel",
-						"upReleaseNotesLink",
+						"upReleaseNotesLink=UpdateDialog_releaseNotesLink",
 						"upCurrentVersionLabel",
-						"upLastUpdatedLabel",
+						"upLastUpdatedLabel=UpdateDialog_lastUpdatedLabel",
 						"upOKButton",
 						"cancelButton=word_Cancel"
 					});

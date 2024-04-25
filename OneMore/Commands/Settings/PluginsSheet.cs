@@ -33,7 +33,7 @@ namespace River.OneMoreAddIn.Settings
 			InitializeComponent();
 
 			Name = "PluginsSheet";
-			Title = Resx.PluginsSheet_Title;
+			Title = Resx.word_Plugins;
 
 			if (NeedsLocalizing())
 			{

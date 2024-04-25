@@ -24,10 +24,10 @@ namespace River.OneMoreAddIn.Commands
 
 				Localize(new string[]
 				{
-					"numberingGroup",
+					"numberingGroup=word_Numbering",
 					"introLabel",
-					"alphaRadio",
-					"numRadio",
+					"alphaRadio=word_Alphanumeric",
+					"numRadio=word_Numeric",
 					"cleanBox",
 					"okButton=word_OK",
 					"cancelButton=word_Cancel"

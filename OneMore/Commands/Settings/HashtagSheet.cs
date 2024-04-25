@@ -20,7 +20,7 @@ namespace River.OneMoreAddIn.Settings
 			InitializeComponent();
 
 			Name = nameof(HashtagSheet);
-			Title = Resx.HashtagSheet_Title;
+			Title = Resx.word_Hashtags;
 
 			if (NeedsLocalizing())
 			{

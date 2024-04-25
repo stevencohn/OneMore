@@ -35,7 +35,7 @@ namespace River.OneMoreAddIn.Commands.Search
 				});
 
 				scopeBox.Items.Clear();
-				scopeBox.Items.AddRange(Resx.SearchDialog_scopeBox_Items.Split(new char[] { '\n' }));
+				scopeBox.Items.AddRange(Resx.phrase_scopeOptions.Split('\n'));
 			}
 
 			scopeBox.SelectedIndex = 0;

@@ -64,7 +64,7 @@ namespace River.OneMoreAddIn.Commands
 			{
 				content = new XElement(ns + "OE",
 					new XAttribute("style", normalStyle.ToCss()),
-					new XElement(ns + "T", new XCData(Resx.InsertInfoBox_yourContentHere)
+					new XElement(ns + "T", new XCData(Resx.phrase_YourContentHere)
 					));
 			}
 			else

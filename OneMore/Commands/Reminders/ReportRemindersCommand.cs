@@ -138,7 +138,7 @@ namespace River.OneMoreAddIn.Commands
 				// wth only CR instead of NLCR so allow for any possibility
 				var delims = new[] { Environment.NewLine, "\r", "\n" };
 
-				priorities = Resx.RemindDialog_priorityBox_Text
+				priorities = Resx.phrase_priorityOptions
 					.Split(delims, StringSplitOptions.RemoveEmptyEntries);
 
 				statuses = Resx.RemindDialog_statusBox_Text
@@ -331,7 +331,7 @@ namespace River.OneMoreAddIn.Commands
 			row[2].SetContent(new Paragraph(Resx.RemindDialog_startDateLabel_Text).SetStyle(HeaderCss));
 			row[3].SetContent(new Paragraph(Resx.RemindDialog_dueDateLabel_Text).SetStyle(HeaderCss));
 			row[4].SetContent(new Paragraph(Resx.RemindDialog_priorityLabel_Text).SetStyle(HeaderCss));
-			row[5].SetContent(new Paragraph(Resx.RemindDialog_percentLabel_Text).SetStyle(HeaderCss));
+			row[5].SetContent(new Paragraph(Resx.phrase_PctComplete).SetStyle(HeaderCss));
 
 			var now = DateTime.UtcNow;
 

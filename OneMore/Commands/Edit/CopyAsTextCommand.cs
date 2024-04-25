@@ -12,7 +12,7 @@ namespace River.OneMoreAddIn.Commands
 
 
 	/// <summary>
-	/// Copy the page or selected content as plan text onto the system clipboard
+	/// Copy the page or selected content as plain text onto the system clipboard
 	/// </summary>
 	internal class CopyAsTextCommand : Command
 	{

@@ -53,7 +53,7 @@ namespace River.OneMoreAddIn.Commands
 				opBox.Items.AddRange(Resx.TaggedDialog_opBox_Items.Split('\n'));
 
 				scopeBox.Items.Clear();
-				scopeBox.Items.AddRange(Resx.TaggedDialog_scopeBox_Items.Split('\n'));
+				scopeBox.Items.AddRange(Resx.phrase_scopeOptions.Split('\n'));
 			}
 
 			filterBox.PressedEnter += Search;

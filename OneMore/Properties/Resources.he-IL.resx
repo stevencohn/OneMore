@@ -657,10 +657,6 @@
     <value>תמונה זו היא מתוך תדפיס. אם הוא נחתך, הוא לא ישויך עוד לקובץ המקורי הזה. האם אתה רוצה להמשיך לחתוך?</value>
     <comment>message box, question</comment>
   </data>
-  <data name="CropImageDialog_selectButton.Text" xml:space="preserve">
-    <value>בחר הכל</value>
-    <comment>select all button</comment>
-  </data>
   <data name="ctxCleanMenu_Label" xml:space="preserve">
     <value>לְנַקוֹת...</value>
     <comment>Context menu</comment>
@@ -765,20 +761,9 @@ Total Row Font
 גופן בעמודה האחרונה</value>
     <comment>MoreListView</comment>
   </data>
-  <data name="EditTableThemesDialog_fontElementsGroup.Text" xml:space="preserve">
-    <value>רכיבי שולחן</value>
-    <comment>group</comment>
-  </data>
   <data name="EditTableThemesDialog_fontsTab.Text" xml:space="preserve">
     <value>גופנים</value>
     <comment>tab</comment>
-  </data>
-  <data name="EditTableThemesDialog_newButton.Text" xml:space="preserve">
-    <value>סטייל חדש</value>
-    <comment>toolbutton</comment>
-  </data>
-  <data name="EditTableThemesDialog_NewStyle" xml:space="preserve">
-    <value>סטייל חדש</value>
   </data>
   <data name="EditTableThemesDialog_resetButton.Text" xml:space="preserve">
     <value>לאפס הכל</value>
@@ -1104,10 +1089,6 @@ Total Row Font
     <value>כלול הפניה לדף מקשי הקיצור</value>
     <comment>settings</comment>
   </data>
-  <data name="FavoritesSheet_Text" xml:space="preserve">
-    <value>מועדפים</value>
-    <comment>settings</comment>
-  </data>
   <data name="FileImportSheet_introBox.Text" xml:space="preserve">
     <value>התאם אישית אפשרויות ייבוא ​​של PowerPoint ו-PDF</value>
     <comment>label</comment>
@@ -1231,10 +1212,6 @@ Total Row Font
   <data name="GeneralSheet_introBox.Text" xml:space="preserve">
     <value>התאם אישית את ההתנהגות הכוללת של OneMore</value>
     <comment>textbox</comment>
-  </data>
-  <data name="GeneralSheet_langLabel.Text" xml:space="preserve">
-    <value>שפה</value>
-    <comment>label</comment>
   </data>
   <data name="GeneralSheet_themeBox.Text" xml:space="preserve">
     <value>מערכת
@@ -1365,10 +1342,6 @@ Total Row Font
     <value>החל סגנון מותאם אישית</value>
     <comment>label</comment>
   </data>
-  <data name="HashtagSheet_Title" xml:space="preserve">
-    <value>Hashtags</value>
-    <comment>sheet title</comment>
-  </data>
   <data name="HashtagSheet_upgradeLink.Text" xml:space="preserve">
     <value>שדרג את תגי העמוד להאשטאגים מוטבעים</value>
     <comment>link</comment>
@@ -1405,14 +1378,6 @@ Total Row Font
     <value>נושאי מדגיש</value>
     <comment>sheet intro</comment>
   </data>
-  <data name="ImageSheet_plantRemoveBox.Text" xml:space="preserve">
-    <value>הסר טקסט PlantUML והטמיע אותו בתמונה</value>
-    <comment>checkbox</comment>
-  </data>
-  <data name="ImageSheet_plantUriLabel.Text" xml:space="preserve">
-    <value>כתובת שרת PlantUML (השאירו ריק כדי להשתמש בברירת המחדל)</value>
-    <comment>label</comment>
-  </data>
   <data name="ImagesSheet_imageBrowser" xml:space="preserve">
     <value>צופה תמונה</value>
   </data>
@@ -1447,10 +1412,6 @@ Total Row Font
   <data name="ImagesSheet_resizeGroup.Text" xml:space="preserve">
     <value>שינוי גודל אפשרויות</value>
     <comment>groupsbox</comment>
-  </data>
-  <data name="ImagesSheet_Title" xml:space="preserve">
-    <value>תמונות</value>
-    <comment>sheet</comment>
   </data>
   <data name="ImagesSheet_widthLabel.Text" xml:space="preserve">
     <value>שינוי גודל רוחב מועדף</value>
@@ -1556,10 +1517,6 @@ Total Row Font
     <value>הקוד שלך כאן...</value>
     <comment>text</comment>
   </data>
-  <data name="InsertBoxCommand_Text" xml:space="preserve">
-    <value>התוכן שלך כאן...</value>
-    <comment>text</comment>
-  </data>
   <data name="InsertCalendarDialog.Text" xml:space="preserve">
     <value>הוסף לוח שנה</value>
     <comment>dialog title</comment>
@@ -1616,9 +1573,6 @@ Total Row Font
     <value>העבר תאים ימינה</value>
     <comment>radio</comment>
   </data>
-  <data name="InsertInfoBox_yourContentHere" xml:space="preserve">
-    <value>התוכן שלך כאן...</value>
-  </data>
   <data name="InsertQRCommand_MaxLength" xml:space="preserve">
     <value>הטקסט שנבחר אינו יכול לחרוג מ-{0} תווים</value>
     <comment>message</comment>
@@ -1650,10 +1604,6 @@ Total Row Font
   <data name="InsertTocCommand_Top" xml:space="preserve">
     <value>ראש העמוד</value>
     <comment>hyperlink</comment>
-  </data>
-  <data name="InsertTocDialog.Text" xml:space="preserve">
-    <value>תוכן העניינים</value>
-    <comment>dialog title</comment>
   </data>
   <data name="InsertTocDialog_locationBox.Text" xml:space="preserve">
     <value>בראש העמוד
@@ -1755,18 +1705,6 @@ Total Row Font
     <value>צור הפניות מקושרות לכותרת של דף זה</value>
     <comment>label</comment>
   </data>
-  <data name="LinkDialog_notebookRadio.Text" xml:space="preserve">
-    <value>כל הסעיפים במחברת הנוכחית</value>
-    <comment>radio</comment>
-  </data>
-  <data name="LinkDialog_notebooksRadio.Text" xml:space="preserve">
-    <value>כל המחברות</value>
-    <comment>radio</comment>
-  </data>
-  <data name="LinkDialog_sectionRadio.Text" xml:space="preserve">
-    <value>הסעיף הנוכחי</value>
-    <comment>radio</comment>
-  </data>
   <data name="LinkDialog_Text" xml:space="preserve">
     <value>קישורים הפניות</value>
     <comment>dialog title</comment>
@@ -1802,18 +1740,6 @@ Total Row Font
     <value>דפים ב</value>
     <comment>group box</comment>
   </data>
-  <data name="MapDialog_notebookRadio.Text" xml:space="preserve">
-    <value>כל הסעיפים במחברת הנוכחית</value>
-    <comment>radio</comment>
-  </data>
-  <data name="MapDialog_notebooksRadio.Text" xml:space="preserve">
-    <value>כל המחברות</value>
-    <comment>radio</comment>
-  </data>
-  <data name="MapDialog_sectionRadio.Text" xml:space="preserve">
-    <value>הסעיף הנוכחי</value>
-    <comment>radio</comment>
-  </data>
   <data name="MapDialog_synopsisBox.Text" xml:space="preserve">
     <value>כלול תקציר של כל עמוד</value>
     <comment>checkbox</comment>
@@ -1829,10 +1755,6 @@ Total Row Font
   <data name="NameStyleDialog_nameLabel.Text" xml:space="preserve">
     <value>שם סגנון</value>
     <comment>label</comment>
-  </data>
-  <data name="NameStyleDialog_NewStyle" xml:space="preserve">
-    <value>סטייל חדש</value>
-    <comment>dialog title</comment>
   </data>
   <data name="NameStyleDialog_RenameStyle" xml:space="preserve">
     <value>שנה את שם הסגנון</value>
@@ -1865,10 +1787,6 @@ Total Row Font
   <data name="NavigatorSheet_quickBox.Text" xml:space="preserve">
     <value>עקוב אחר הערות מהירות</value>
     <comment>checkbox</comment>
-  </data>
-  <data name="NavigatorSheet_Title" xml:space="preserve">
-    <value>נווט</value>
-    <comment>sheet title</comment>
   </data>
   <data name="NavigatorWindow_copyTooltip" xml:space="preserve">
     <value>העתק פריטים נבחרים ללוח</value>
@@ -1917,10 +1835,6 @@ Total Row Font
     <value>מספור עמודים</value>
     <comment>dialog title</comment>
   </data>
-  <data name="NumberPagesDialog_alphaRadio.Text" xml:space="preserve">
-    <value>אותיות ומספרים</value>
-    <comment>radio button</comment>
-  </data>
   <data name="NumberPagesDialog_cleanBox.Text" xml:space="preserve">
     <value>הסר/ניקוי מספור קיים</value>
     <comment>checkbox</comment>
@@ -1928,14 +1842,6 @@ Total Row Font
   <data name="NumberPagesDialog_introLabel.Text" xml:space="preserve">
     <value>בחר את סגנון המספור</value>
     <comment>label</comment>
-  </data>
-  <data name="NumberPagesDialog_numberingGroup.Text" xml:space="preserve">
-    <value>סִפְרוּר</value>
-    <comment>group</comment>
-  </data>
-  <data name="NumberPagesDialog_numRadio.Text" xml:space="preserve">
-    <value>מספרי</value>
-    <comment>radio button</comment>
   </data>
   <data name="OneMoreNamespace" xml:space="preserve">
     <value>http://schemas.smc.com/onemore/2020/styles</value>
@@ -1954,10 +1860,6 @@ Total Row Font
   <data name="OutlineDialog.Text" xml:space="preserve">
     <value>עיצוב מתאר</value>
     <comment>dialog title</comment>
-  </data>
-  <data name="OutlineDialog_alphaRadio.Text" xml:space="preserve">
-    <value>אותיות ומספרים</value>
-    <comment>radio button</comment>
   </data>
   <data name="OutlineDialog_cleanBox.Text" xml:space="preserve">
     <value>הסר/ניקוי מספור קיים</value>
@@ -1987,14 +1889,6 @@ Total Row Font
     <value>מיושם גם על כותרות סטנדרטיות וגם על כותרות מותאמות אישית</value>
     <comment>tooltip</comment>
   </data>
-  <data name="OutlineDialog_numberingGroup.Text" xml:space="preserve">
-    <value>סִפְרוּר</value>
-    <comment>group box title</comment>
-  </data>
-  <data name="OutlineDialog_numRadio.Text" xml:space="preserve">
-    <value>מספרי</value>
-    <comment>radio button</comment>
-  </data>
   <data name="OutlineDialog_removeTagsBox.Text" xml:space="preserve">
     <value>הסר תגים</value>
     <comment>checkbox</comment>
@@ -2013,16 +1907,6 @@ Total Row Font
   </data>
   <data name="OutlookTaskReport_Importance" xml:space="preserve">
     <value>חֲשִׁיבוּת</value>
-    <comment>report</comment>
-  </data>
-  <data name="OutlookTaskReport_importances" xml:space="preserve">
-    <value>נָמוּך
-בינוני
-גָבוֹהַ</value>
-    <comment>report</comment>
-  </data>
-  <data name="OutlookTaskReport_Percent" xml:space="preserve">
-    <value>% הושלם</value>
     <comment>report</comment>
   </data>
   <data name="OutlookTaskReport_statuses" xml:space="preserve">
@@ -2098,23 +1982,53 @@ Total Row Font
   <data name="phrase_AdvancedOptions" xml:space="preserve">
     <value>אפשרויות מתקדמות</value>
   </data>
+  <data name="phrase_AllNotebooks" xml:space="preserve">
+    <value>כל המחברות</value>
+  </data>
+  <data name="phrase_AllSectionInTheCurrentNotebook" xml:space="preserve">
+    <value>כל הסעיפים במחברת הנוכחית</value>
+  </data>
   <data name="phrase_AppendToThisPage" xml:space="preserve">
     <value>צרף לדף זה</value>
   </data>
   <data name="phrase_CreateANewPage" xml:space="preserve">
     <value>צור דף חדש</value>
   </data>
+  <data name="phrase_NewStyle" xml:space="preserve">
+    <value>סטייל חדש</value>
+  </data>
   <data name="phrase_PathNotFound" xml:space="preserve">
     <value>נתיב לא נמצא</value>
   </data>
+  <data name="phrase_PctComplete" xml:space="preserve">
+    <value>% הושלם</value>
+  </data>
+  <data name="phrase_priorityOptions" xml:space="preserve">
+    <value>נָמוּך
+בינוני
+גָבוֹהַ</value>
+    <comment>report</comment>
+  </data>
   <data name="phrase_QuickNote" xml:space="preserve">
     <value>הערה מהירה</value>
+  </data>
+  <data name="phrase_scopeOptions" xml:space="preserve">
+    <value>בכל המחברות
+במחברת זו
+בחלק הזה</value>
+    <comment>drop down</comment>
   </data>
   <data name="phrase_SelectAll" xml:space="preserve">
     <value>בחר הכל</value>
   </data>
   <data name="phrase_SelectNone" xml:space="preserve">
     <value>אל תבחר באף אחת מהאפשרויות</value>
+  </data>
+  <data name="phrase_TheCurrentSection" xml:space="preserve">
+    <value>החלק הנוכחי</value>
+  </data>
+  <data name="phrase_YourContentHere" xml:space="preserve">
+    <value>התוכן שלך כאן...</value>
   </data>
   <data name="PlantUml_broken" xml:space="preserve">
     <value>טקסט PlantUML אינו חוקי או שאינו יכול למצוא קשר בין טקסט לתמונה</value>
@@ -2192,10 +2106,6 @@ Total Row Font
     <value>לָרוּץ</value>
     <comment>ok button</comment>
   </data>
-  <data name="PluginDialog_pluginsLabel.Text" xml:space="preserve">
-    <value>תוספים</value>
-    <comment>label</comment>
-  </data>
   <data name="PluginDialog_skipLockRadio.Text" xml:space="preserve">
     <value>דלג על קטעים נעולים</value>
     <comment>radio</comment>
@@ -2220,10 +2130,6 @@ Total Row Font
   <data name="PluginsSheet_introBox.Text" xml:space="preserve">
     <value>נהל את התוספים שלי</value>
     <comment>label</comment>
-  </data>
-  <data name="PluginsSheet_Title" xml:space="preserve">
-    <value>תוספים</value>
-    <comment>sheet title EDIT</comment>
   </data>
   <data name="ProgramName" xml:space="preserve">
     <value>OneMore</value>
@@ -2343,18 +2249,6 @@ ISO-code then comma then language name</comment>
     <value>דפים ב</value>
     <comment>group box</comment>
   </data>
-  <data name="RefreshPageLinksDialog_notebookRadio.Text" xml:space="preserve">
-    <value>כל הסעיפים במחברת הנוכחית</value>
-    <comment>radio</comment>
-  </data>
-  <data name="RefreshPageLinksDialog_notebooksRadio.Text" xml:space="preserve">
-    <value>כל המחברות</value>
-    <comment>radio</comment>
-  </data>
-  <data name="RefreshPageLinksDialog_sectionRadio.Text" xml:space="preserve">
-    <value>הסעיף הנוכחי</value>
-    <comment>radio</comment>
-  </data>
   <data name="RefreshPageLinksDialog_Text" xml:space="preserve">
     <value>רענן הפניות לדף</value>
     <comment>dialog title</comment>
@@ -2374,16 +2268,6 @@ ISO-code then comma then language name</comment>
   <data name="RemindDialog_dueDateLabel.Text" xml:space="preserve">
     <value>תאריך להגשה</value>
     <comment>label</comment>
-  </data>
-  <data name="RemindDialog_percentLabel.Text" xml:space="preserve">
-    <value>% הושלם</value>
-    <comment>label</comment>
-  </data>
-  <data name="RemindDialog_priorityBox.Text" xml:space="preserve">
-    <value>נָמוּך
-בינוני
-גָבוֹהַ</value>
-    <comment>combobox</comment>
   </data>
   <data name="RemindDialog_priorityLabel.Text" xml:space="preserve">
     <value>עדיפות</value>
@@ -2572,18 +2456,6 @@ ISO-code then comma then language name</comment>
   <data name="ReportRemindersDialog_introLabel.Text" xml:space="preserve">
     <value>צור דוח לתזכורות בהיקף זה</value>
     <comment>label</comment>
-  </data>
-  <data name="ReportRemindersDialog_notebookRadio.Text" xml:space="preserve">
-    <value>כל הסעיפים במחברת הנוכחית</value>
-    <comment>radio</comment>
-  </data>
-  <data name="ReportRemindersDialog_notebooksRadio.Text" xml:space="preserve">
-    <value>כל המחברות</value>
-    <comment>radio</comment>
-  </data>
-  <data name="ReportRemindersDialog_sectionRadio.Text" xml:space="preserve">
-    <value>הסעיף הנוכחי</value>
-    <comment>radio</comment>
   </data>
   <data name="ReportRemindersReuseDialog_newRadio.Text" xml:space="preserve">
     <value>צור דף דוח חדש</value>
@@ -4107,20 +3979,8 @@ ISO-code then comma then language name</comment>
     <value>OneNote עשוי להיראות איטי במהלך הסריקה. אם OneNote סגור במהלך הסריקה, לא ניתן לפתוח אותו עד לסיום הסריקה.</value>
     <comment>multiline label</comment>
   </data>
-  <data name="ScopeSelector_notebookButton.Text" xml:space="preserve">
-    <value>כל הסעיפים במחברת הנוכחית</value>
-    <comment>radio</comment>
-  </data>
-  <data name="ScopeSelector_notebooksButton.Text" xml:space="preserve">
-    <value>כל המחברות</value>
-    <comment>radio</comment>
-  </data>
   <data name="ScopeSelector_pageButton.Text" xml:space="preserve">
     <value>הדף הזה</value>
-    <comment>radio</comment>
-  </data>
-  <data name="ScopeSelector_sectionButton.Text" xml:space="preserve">
-    <value>החלק הנוכחי</value>
     <comment>radio</comment>
   </data>
   <data name="ScopeSelector_selectedButton.Text" xml:space="preserve">
@@ -4162,12 +4022,6 @@ ISO-code then comma then language name</comment>
   <data name="SearchDialog_introLabel.Text" xml:space="preserve">
     <value>הזן מילת מפתח אחת או יותר, "ביטויים מצוטטים", והשתמשו ב- SuperCace ו- AND</value>
     <comment>intro label</comment>
-  </data>
-  <data name="SearchDialog_scopeBox.Items" xml:space="preserve">
-    <value>בכל המחברות
-במחברת זו
-בחלק הזה</value>
-    <comment>drop down</comment>
   </data>
   <data name="SearchDialog_Title" xml:space="preserve">
     <value>חפש והעבר/העתק</value>
@@ -4259,68 +4113,17 @@ ISO-code then comma then language name</comment>
     <value>כלים</value>
     <comment>Ribbon OneMore menu separator</comment>
   </data>
-  <data name="SettingsDialog_aliasNode.Text" xml:space="preserve">
-    <value>כינויי פקודה</value>
-  </data>
   <data name="SettingsDialog_closeWindows" xml:space="preserve">
     <value>חלונות OneNote מרובים פתוחים. סגור חלונות אלה והפעל מחדש את OneNote כדי להחיל הגדרות חדשות</value>
     <comment>message</comment>
-  </data>
-  <data name="SettingsDialog_contextNode.Text" xml:space="preserve">
-    <value>תפריט הקשר</value>
-    <comment>treenode</comment>
-  </data>
-  <data name="SettingsDialog_generalNode.Text" xml:space="preserve">
-    <value>אפשרויות כלליות</value>
-    <comment>tree node</comment>
-  </data>
-  <data name="SettingsDialog_hashtagsNode_Text" xml:space="preserve">
-    <value>Hashtags</value>
-    <comment>treenode</comment>
-  </data>
-  <data name="SettingsDialog_highlightNode.Text" xml:space="preserve">
-    <value>נושאי סימון</value>
-    <comment>treenode</comment>
-  </data>
-  <data name="SettingsDialog_imagesNode.Text" xml:space="preserve">
-    <value>תמונות</value>
-    <comment>treenode</comment>
   </data>
   <data name="SettingsDialog_keyboardNode.Text" xml:space="preserve">
     <value>קיצורי דרך במקלדת</value>
     <comment>treenode</comment>
   </data>
-  <data name="SettingsDialog_linesNode.Text" xml:space="preserve">
-    <value>קווים אופקיים</value>
-    <comment>settings dialog</comment>
-  </data>
-  <data name="SettingsDialog_navigatorNode.Text" xml:space="preserve">
-    <value>נווט</value>
-    <comment>tree node</comment>
-  </data>
-  <data name="SettingsDialog_pluginsNode.Text" xml:space="preserve">
-    <value>תוספים</value>
-    <comment>tree node</comment>
-  </data>
-  <data name="SettingsDialog_quickNotesNode.Text" xml:space="preserve">
-    <value>הערות מהירות</value>
-    <comment>tree node</comment>
-  </data>
   <data name="SettingsDialog_Restart" xml:space="preserve">
     <value>שינויים אחד או יותר מחייבים להפעיל מחדש את OneNote. האם אתה רוצה להפעיל מחדש את OneNote עכשיו?</value>
     <comment>restart message</comment>
-  </data>
-  <data name="SettingsDialog_ribbonNode.Text" xml:space="preserve">
-    <value>סרגל סרט</value>
-    <comment>treenode</comment>
-  </data>
-  <data name="SettingsDialog_searchNode.Text" xml:space="preserve">
-    <value>מנועי חיפוש</value>
-    <comment>treenode</comment>
-  </data>
-  <data name="SettingsDialog_snippetshNode_Text" xml:space="preserve">
-    <value>קטעים</value>
-    <comment>tree node</comment>
   </data>
   <data name="SettingsDialog_Text" xml:space="preserve">
     <value>הגדרות אונמורות</value>
@@ -4370,10 +4173,6 @@ ISO-code then comma then language name</comment>
     <value>אין היררכיה</value>
     <comment>message</comment>
   </data>
-  <data name="ShowXmlDialog_notebooksTab.Text" xml:space="preserve">
-    <value>מחברות</value>
-    <comment>tab</comment>
-  </data>
   <data name="ShowXmlDialog_okButton.Text" xml:space="preserve">
     <value>עדכון עמוד</value>
     <comment>ok button</comment>
@@ -4398,10 +4197,6 @@ ISO-code then comma then language name</comment>
     <value>שמור את מיקום החלון</value>
     <comment>checkbox</comment>
   </data>
-  <data name="ShowXmlDialog_selectButton.Text" xml:space="preserve">
-    <value>בחר הכל</value>
-    <comment>button</comment>
-  </data>
   <data name="ShowXmlDialog_WARNING" xml:space="preserve">
     <value>זו פעולה מסוכנת!
 
@@ -4421,10 +4216,6 @@ ISO-code then comma then language name</comment>
   <data name="SnippetsSheet_introBox.Text" xml:space="preserve">
     <value>נהל את הקטעים שלי</value>
     <comment>label</comment>
-  </data>
-  <data name="SnippetsSheet_Text" xml:space="preserve">
-    <value>קטעים</value>
-    <comment>SnippetsSheet</comment>
   </data>
   <data name="SortDialog.Text" xml:space="preserve">
     <value>סוג</value>
@@ -4628,14 +4419,6 @@ ISO-code then comma then language name</comment>
     <value>חָדָשׁ</value>
     <comment>button</comment>
   </data>
-  <data name="StyleDialog_NewText" xml:space="preserve">
-    <value>סטייל חדש</value>
-    <comment>dialog title</comment>
-  </data>
-  <data name="StyleDialog_optionsGroup.Text" xml:space="preserve">
-    <value>אפשרויות</value>
-    <comment>groupbox</comment>
-  </data>
   <data name="StyleDialog_pageColorBox.Text" xml:space="preserve">
     <value>שנה את צבע העמוד בעת החלת סגנונות אלה</value>
     <comment>checkbox</comment>
@@ -4756,12 +4539,6 @@ ISO-code then comma then language name</comment>
 כל</value>
     <comment>listbox</comment>
   </data>
-  <data name="TaggedDialog_scopeBox.Items" xml:space="preserve">
-    <value>בכל המחברות
-במחברת זו
-בחלק הזה</value>
-    <comment>drop down</comment>
-  </data>
   <data name="TaggedDialog_tagsLabel.Text" xml:space="preserve">
     <value>תגיות:</value>
     <comment>label</comment>
@@ -4789,10 +4566,6 @@ ISO-code then comma then language name</comment>
   <data name="TaggingDialog_recentGroup.Text" xml:space="preserve">
     <value>שומש לאחרונה</value>
     <comment>groupbox</comment>
-  </data>
-  <data name="TaggingDialog_tagLabel.Text" xml:space="preserve">
-    <value>תגי עמוד</value>
-    <comment>header label</comment>
   </data>
   <data name="TagsUpgraded" xml:space="preserve">
     <value>תגי עמוד מדור קודם הומרו להאשטאג.
@@ -4930,17 +4703,9 @@ ISO-code then comma then language name</comment>
     <value>עדכון OneMore זמין</value>
     <comment>panel title</comment>
   </data>
-  <data name="UpdateDialog_upLastUpdatedLabel.Text" xml:space="preserve">
-    <value>עודכן לאחרונה:</value>
-    <comment>label</comment>
-  </data>
   <data name="UpdateDialog_upOKButton.Text" xml:space="preserve">
     <value>עדכון</value>
     <comment>button</comment>
-  </data>
-  <data name="UpdateDialog_upReleaseNotesLink.Text" xml:space="preserve">
-    <value>מכתבי שחרור</value>
-    <comment>link</comment>
   </data>
   <data name="UpdateDialog_upVersionLabel.Text" xml:space="preserve">
     <value>עדכון גירסא:</value>
@@ -4961,6 +4726,9 @@ ISO-code then comma then language name</comment>
   </data>
   <data name="word_All" xml:space="preserve">
     <value>את כל</value>
+  </data>
+  <data name="word_Alphanumeric" xml:space="preserve">
+    <value>אותיות ומספרים</value>
   </data>
   <data name="word_Apply" xml:space="preserve">
     <value>להגיש מועמדות</value>
@@ -5043,8 +4811,14 @@ ISO-code then comma then language name</comment>
   <data name="word_Grayscale" xml:space="preserve">
     <value>גווני אפור</value>
   </data>
+  <data name="word_Hashtags" xml:space="preserve">
+    <value>Hashtags</value>
+  </data>
   <data name="word_History" xml:space="preserve">
     <value>הִיסטוֹרִיָה</value>
+  </data>
+  <data name="word_Images" xml:space="preserve">
+    <value>תמונות</value>
   </data>
   <data name="word_Indent" xml:space="preserve">
     <value>לְשַׁנֵן</value>
@@ -5073,6 +4847,9 @@ ISO-code then comma then language name</comment>
   <data name="word_Name" xml:space="preserve">
     <value>שֵׁם</value>
   </data>
+  <data name="word_Navigator" xml:space="preserve">
+    <value>נווט</value>
+  </data>
   <data name="word_No" xml:space="preserve">
     <value>לא</value>
   </data>
@@ -5087,6 +4864,12 @@ ISO-code then comma then language name</comment>
   </data>
   <data name="word_Notes" xml:space="preserve">
     <value>הערות</value>
+  </data>
+  <data name="word_Numbering" xml:space="preserve">
+    <value>סִפְרוּר</value>
+  </data>
+  <data name="word_Numeric" xml:space="preserve">
+    <value>מספרי</value>
   </data>
   <data name="word_OK" xml:space="preserve">
     <value>בסדר</value>
@@ -5105,6 +4888,9 @@ ISO-code then comma then language name</comment>
   </data>
   <data name="word_Planned" xml:space="preserve">
     <value>מתוכנן</value>
+  </data>
+  <data name="word_Plugins" xml:space="preserve">
+    <value>תוספים</value>
   </data>
   <data name="word_Preview" xml:space="preserve">
     <value>תצוגה מקדימה</value>
@@ -5147,6 +4933,9 @@ ISO-code then comma then language name</comment>
   </data>
   <data name="word_Silenced" xml:space="preserve">
     <value>מושתק</value>
+  </data>
+  <data name="word_Snippets" xml:space="preserve">
+    <value>קטעים</value>
   </data>
   <data name="word_Start" xml:space="preserve">
     <value>הַתחָלָה</value>

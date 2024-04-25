@@ -649,10 +649,6 @@ Invertido</value>
     <value>Esta imagem é de uma impressão. Se for cortado, não será mais associado a esse arquivo original. Deseja continuar cortando?</value>
     <comment>message box, question</comment>
   </data>
-  <data name="CropImageDialog_selectButton.Text" xml:space="preserve">
-    <value>Selecionar tudo</value>
-    <comment>select all button</comment>
-  </data>
   <data name="ctxCleanMenu_Label" xml:space="preserve">
     <value>Limpar \ limpo...</value>
     <comment>Context menu</comment>
@@ -757,20 +753,9 @@ Fonte da primeira coluna
 Fonte da última coluna</value>
     <comment>MoreListView</comment>
   </data>
-  <data name="EditTableThemesDialog_fontElementsGroup.Text" xml:space="preserve">
-    <value>Elementos da Tabela</value>
-    <comment>group</comment>
-  </data>
   <data name="EditTableThemesDialog_fontsTab.Text" xml:space="preserve">
     <value>Fontes</value>
     <comment>tab</comment>
-  </data>
-  <data name="EditTableThemesDialog_newButton.Text" xml:space="preserve">
-    <value>Novo estilo</value>
-    <comment>toolbutton</comment>
-  </data>
-  <data name="EditTableThemesDialog_NewStyle" xml:space="preserve">
-    <value>Novo estilo</value>
   </data>
   <data name="EditTableThemesDialog_resetButton.Text" xml:space="preserve">
     <value>Reiniciar tudo</value>
@@ -1096,10 +1081,6 @@ Arquivo OneNote (* .one)</value>
     <value>Inclui referência à página de atalhos de teclado</value>
     <comment>settings</comment>
   </data>
-  <data name="FavoritesSheet_Text" xml:space="preserve">
-    <value>Favoritos</value>
-    <comment>settings</comment>
-  </data>
   <data name="FileImportSheet_introBox.Text" xml:space="preserve">
     <value>Personalize as opções de importação de PowerPoint e PDF</value>
     <comment>label</comment>
@@ -1223,10 +1204,6 @@ Símbolos: PI, E</value>
   <data name="GeneralSheet_introBox.Text" xml:space="preserve">
     <value>Personalize o comportamento geral do OneMore</value>
     <comment>textbox</comment>
-  </data>
-  <data name="GeneralSheet_langLabel.Text" xml:space="preserve">
-    <value>Linguagem</value>
-    <comment>label</comment>
   </data>
   <data name="GeneralSheet_themeBox.Text" xml:space="preserve">
     <value>Sistema
@@ -1357,10 +1334,6 @@ Fundo Amarelo</value>
     <value>Aplicar estilo personalizado</value>
     <comment>label</comment>
   </data>
-  <data name="HashtagSheet_Title" xml:space="preserve">
-    <value>Hashtags</value>
-    <comment>sheet title</comment>
-  </data>
   <data name="HashtagSheet_upgradeLink.Text" xml:space="preserve">
     <value>Atualizar tags de página para hashtags embutidas</value>
     <comment>link</comment>
@@ -1397,14 +1370,6 @@ Fundo Amarelo</value>
     <value>Temas de marca-texto</value>
     <comment>sheet intro</comment>
   </data>
-  <data name="ImageSheet_plantRemoveBox.Text" xml:space="preserve">
-    <value>Remova o texto PlantUML e incorpore-o na imagem</value>
-    <comment>checkbox</comment>
-  </data>
-  <data name="ImageSheet_plantUriLabel.Text" xml:space="preserve">
-    <value>Endereço do servidor PlantUML (deixe em branco para usar o padrão)</value>
-    <comment>label</comment>
-  </data>
   <data name="ImagesSheet_imageBrowser" xml:space="preserve">
     <value>Visualizador de imagens</value>
   </data>
@@ -1439,10 +1404,6 @@ Fundo Amarelo</value>
   <data name="ImagesSheet_resizeGroup.Text" xml:space="preserve">
     <value>Opções de redimensionamento</value>
     <comment>groupsbox</comment>
-  </data>
-  <data name="ImagesSheet_Title" xml:space="preserve">
-    <value>Imagens</value>
-    <comment>sheet</comment>
   </data>
   <data name="ImagesSheet_widthLabel.Text" xml:space="preserve">
     <value>Largura de redimensionamento preferida</value>
@@ -1548,10 +1509,6 @@ Fundo Amarelo</value>
     <value>Seu código aqui...</value>
     <comment>text</comment>
   </data>
-  <data name="InsertBoxCommand_Text" xml:space="preserve">
-    <value>Seu conteúdo aqui...</value>
-    <comment>text</comment>
-  </data>
   <data name="InsertCalendarDialog.Text" xml:space="preserve">
     <value>Inserir calendário</value>
     <comment>dialog title</comment>
@@ -1608,9 +1565,6 @@ Fundo Amarelo</value>
     <value>Deslocar células para a direita</value>
     <comment>radio</comment>
   </data>
-  <data name="InsertInfoBox_yourContentHere" xml:space="preserve">
-    <value>Seu conteúdo aqui...</value>
-  </data>
   <data name="InsertQRCommand_MaxLength" xml:space="preserve">
     <value>O texto selecionado não pode ter mais de {0} caracteres</value>
     <comment>message</comment>
@@ -1642,10 +1596,6 @@ Fundo Amarelo</value>
   <data name="InsertTocCommand_Top" xml:space="preserve">
     <value>Topo da página</value>
     <comment>hyperlink</comment>
-  </data>
-  <data name="InsertTocDialog.Text" xml:space="preserve">
-    <value>Índice</value>
-    <comment>dialog title</comment>
   </data>
   <data name="InsertTocDialog_locationBox.Text" xml:space="preserve">
     <value>No topo da página
@@ -1747,18 +1697,6 @@ Título personalizado 3</value>
     <value>Crie referências vinculadas ao título desta página</value>
     <comment>label</comment>
   </data>
-  <data name="LinkDialog_notebookRadio.Text" xml:space="preserve">
-    <value>Todas as seções do bloco de notas atual</value>
-    <comment>radio</comment>
-  </data>
-  <data name="LinkDialog_notebooksRadio.Text" xml:space="preserve">
-    <value>Todos os cadernos</value>
-    <comment>radio</comment>
-  </data>
-  <data name="LinkDialog_sectionRadio.Text" xml:space="preserve">
-    <value>A seção atual</value>
-    <comment>radio</comment>
-  </data>
   <data name="LinkDialog_Text" xml:space="preserve">
     <value>Referências de link</value>
     <comment>dialog title</comment>
@@ -1794,18 +1732,6 @@ Título personalizado 3</value>
     <value>Páginas em</value>
     <comment>group box</comment>
   </data>
-  <data name="MapDialog_notebookRadio.Text" xml:space="preserve">
-    <value>Todas as seções do caderno atual</value>
-    <comment>radio</comment>
-  </data>
-  <data name="MapDialog_notebooksRadio.Text" xml:space="preserve">
-    <value>Todos os notebooks</value>
-    <comment>radio</comment>
-  </data>
-  <data name="MapDialog_sectionRadio.Text" xml:space="preserve">
-    <value>A seção atual</value>
-    <comment>radio</comment>
-  </data>
   <data name="MapDialog_synopsisBox.Text" xml:space="preserve">
     <value>Inclui uma sinopse de cada página</value>
     <comment>checkbox</comment>
@@ -1821,10 +1747,6 @@ Título personalizado 3</value>
   <data name="NameStyleDialog_nameLabel.Text" xml:space="preserve">
     <value>Nome do estilo</value>
     <comment>label</comment>
-  </data>
-  <data name="NameStyleDialog_NewStyle" xml:space="preserve">
-    <value>Novo estilo</value>
-    <comment>dialog title</comment>
   </data>
   <data name="NameStyleDialog_RenameStyle" xml:space="preserve">
     <value>Renomeie o estilo</value>
@@ -1857,10 +1779,6 @@ Título personalizado 3</value>
   <data name="NavigatorSheet_quickBox.Text" xml:space="preserve">
     <value>Acompanhe notas rápidas</value>
     <comment>checkbox</comment>
-  </data>
-  <data name="NavigatorSheet_Title" xml:space="preserve">
-    <value>Navegador</value>
-    <comment>sheet title</comment>
   </data>
   <data name="NavigatorWindow_copyTooltip" xml:space="preserve">
     <value>Copiar itens selecionados para a área de transferência</value>
@@ -1909,10 +1827,6 @@ Título personalizado 3</value>
     <value>Numeração de Página</value>
     <comment>dialog title</comment>
   </data>
-  <data name="NumberPagesDialog_alphaRadio.Text" xml:space="preserve">
-    <value>Alfanumérico</value>
-    <comment>radio button</comment>
-  </data>
   <data name="NumberPagesDialog_cleanBox.Text" xml:space="preserve">
     <value>Remover / limpar numeração existente</value>
     <comment>checkbox</comment>
@@ -1920,14 +1834,6 @@ Título personalizado 3</value>
   <data name="NumberPagesDialog_introLabel.Text" xml:space="preserve">
     <value>Escolha o estilo de numeração</value>
     <comment>label</comment>
-  </data>
-  <data name="NumberPagesDialog_numberingGroup.Text" xml:space="preserve">
-    <value>Numeração</value>
-    <comment>group</comment>
-  </data>
-  <data name="NumberPagesDialog_numRadio.Text" xml:space="preserve">
-    <value>Numérico</value>
-    <comment>radio button</comment>
   </data>
   <data name="OneMoreNamespace" xml:space="preserve">
     <value>http://schemas.smc.com/onemore/2020/styles</value>
@@ -1946,10 +1852,6 @@ Título personalizado 3</value>
   <data name="OutlineDialog.Text" xml:space="preserve">
     <value>Formatação de esboço</value>
     <comment>dialog title</comment>
-  </data>
-  <data name="OutlineDialog_alphaRadio.Text" xml:space="preserve">
-    <value>Alfanumérico</value>
-    <comment>radio button</comment>
   </data>
   <data name="OutlineDialog_cleanBox.Text" xml:space="preserve">
     <value>Remover/limpar numeração existente</value>
@@ -1979,14 +1881,6 @@ Título personalizado 3</value>
     <value>Aplicado a títulos padrão e personalizados</value>
     <comment>tooltip</comment>
   </data>
-  <data name="OutlineDialog_numberingGroup.Text" xml:space="preserve">
-    <value>Numeração</value>
-    <comment>group box title</comment>
-  </data>
-  <data name="OutlineDialog_numRadio.Text" xml:space="preserve">
-    <value>Numérico</value>
-    <comment>radio button</comment>
-  </data>
   <data name="OutlineDialog_removeTagsBox.Text" xml:space="preserve">
     <value>Remover tags</value>
     <comment>checkbox</comment>
@@ -2005,16 +1899,6 @@ Título personalizado 3</value>
   </data>
   <data name="OutlookTaskReport_Importance" xml:space="preserve">
     <value>Importância</value>
-    <comment>report</comment>
-  </data>
-  <data name="OutlookTaskReport_importances" xml:space="preserve">
-    <value>Baixo
-Médio
-Alto</value>
-    <comment>report</comment>
-  </data>
-  <data name="OutlookTaskReport_Percent" xml:space="preserve">
-    <value>% Completo</value>
     <comment>report</comment>
   </data>
   <data name="OutlookTaskReport_statuses" xml:space="preserve">
@@ -2090,23 +1974,53 @@ Aplicar a este caderno</value>
   <data name="phrase_AdvancedOptions" xml:space="preserve">
     <value>Opções avançadas</value>
   </data>
+  <data name="phrase_AllNotebooks" xml:space="preserve">
+    <value>Todos os cadernos</value>
+  </data>
+  <data name="phrase_AllSectionInTheCurrentNotebook" xml:space="preserve">
+    <value>Todas as seções do bloco de notas atual</value>
+  </data>
   <data name="phrase_AppendToThisPage" xml:space="preserve">
     <value>Anexar a esta página</value>
   </data>
   <data name="phrase_CreateANewPage" xml:space="preserve">
     <value>Criar uma nova página</value>
   </data>
+  <data name="phrase_NewStyle" xml:space="preserve">
+    <value>Novo estilo</value>
+  </data>
   <data name="phrase_PathNotFound" xml:space="preserve">
     <value>Caminho não encontrado</value>
   </data>
+  <data name="phrase_PctComplete" xml:space="preserve">
+    <value>% Completo</value>
+  </data>
+  <data name="phrase_priorityOptions" xml:space="preserve">
+    <value>Baixo
+Médio
+Alta</value>
+    <comment>report</comment>
+  </data>
   <data name="phrase_QuickNote" xml:space="preserve">
     <value>Nota rápida</value>
+  </data>
+  <data name="phrase_scopeOptions" xml:space="preserve">
+    <value>Em todos os cadernos
+Neste caderno
+Nesta secção</value>
+    <comment>drop down</comment>
   </data>
   <data name="phrase_SelectAll" xml:space="preserve">
     <value>Selecionar tudo</value>
   </data>
   <data name="phrase_SelectNone" xml:space="preserve">
     <value>Selecione nenhum</value>
+  </data>
+  <data name="phrase_TheCurrentSection" xml:space="preserve">
+    <value>A seção atual</value>
+  </data>
+  <data name="phrase_YourContentHere" xml:space="preserve">
+    <value>Seu conteúdo aqui...</value>
   </data>
   <data name="PlantUml_broken" xml:space="preserve">
     <value>O texto PlantUML é inválido ou não consegue encontrar a conexão entre o texto e a imagem</value>
@@ -2184,10 +2098,6 @@ Aplicar a este caderno</value>
     <value>Corre</value>
     <comment>ok button</comment>
   </data>
-  <data name="PluginDialog_pluginsLabel.Text" xml:space="preserve">
-    <value>Plugins</value>
-    <comment>label</comment>
-  </data>
   <data name="PluginDialog_skipLockRadio.Text" xml:space="preserve">
     <value>Pular seções bloqueadas</value>
     <comment>radio</comment>
@@ -2212,10 +2122,6 @@ Caderno atual</value>
   <data name="PluginsSheet_introBox.Text" xml:space="preserve">
     <value>Gerencie meus plugins</value>
     <comment>label</comment>
-  </data>
-  <data name="PluginsSheet_Title" xml:space="preserve">
-    <value>Plugins</value>
-    <comment>sheet title EDIT</comment>
   </data>
   <data name="Pronunciate_EmptyWord" xml:space="preserve">
     <value>A palavra selecionada não pode estar vazia</value>
@@ -2331,18 +2237,6 @@ Ano (2023)
     <value>Páginas em</value>
     <comment>group box</comment>
   </data>
-  <data name="RefreshPageLinksDialog_notebookRadio.Text" xml:space="preserve">
-    <value>Todas as seções do bloco de notas atual</value>
-    <comment>radio</comment>
-  </data>
-  <data name="RefreshPageLinksDialog_notebooksRadio.Text" xml:space="preserve">
-    <value>Todos os cadernos</value>
-    <comment>radio</comment>
-  </data>
-  <data name="RefreshPageLinksDialog_sectionRadio.Text" xml:space="preserve">
-    <value>A seção atual</value>
-    <comment>radio</comment>
-  </data>
   <data name="RefreshPageLinksDialog_Text" xml:space="preserve">
     <value>Atualizar referências da página</value>
     <comment>dialog title</comment>
@@ -2362,16 +2256,6 @@ Ano (2023)
   <data name="RemindDialog_dueDateLabel.Text" xml:space="preserve">
     <value>Data de Vencimento</value>
     <comment>label</comment>
-  </data>
-  <data name="RemindDialog_percentLabel.Text" xml:space="preserve">
-    <value>% Completo</value>
-    <comment>label</comment>
-  </data>
-  <data name="RemindDialog_priorityBox.Text" xml:space="preserve">
-    <value>Baixo
-Médio
-Alto</value>
-    <comment>combobox</comment>
   </data>
   <data name="RemindDialog_priorityLabel.Text" xml:space="preserve">
     <value>Prioridade</value>
@@ -2556,18 +2440,6 @@ Selecione Não para manter uma linha vazia entre os parágrafos</value>
   <data name="ReportRemindersDialog_introLabel.Text" xml:space="preserve">
     <value>Gerar relatório para lembretes neste escopo</value>
     <comment>label</comment>
-  </data>
-  <data name="ReportRemindersDialog_notebookRadio.Text" xml:space="preserve">
-    <value>Todas as seções no caderno atual</value>
-    <comment>radio</comment>
-  </data>
-  <data name="ReportRemindersDialog_notebooksRadio.Text" xml:space="preserve">
-    <value>Todos os cadernos</value>
-    <comment>radio</comment>
-  </data>
-  <data name="ReportRemindersDialog_sectionRadio.Text" xml:space="preserve">
-    <value>A seção atual</value>
-    <comment>radio</comment>
   </data>
   <data name="ReportRemindersReuseDialog_newRadio.Text" xml:space="preserve">
     <value>Crie uma nova página de relatório</value>
@@ -4096,20 +3968,8 @@ Depois do último grupo</value>
     <value>O OneNote pode parecer lento durante a digitalização. Se o OneNote for fechado durante a verificação, ele não poderá ser aberto até que a verificação seja concluída.</value>
     <comment>multiline label</comment>
   </data>
-  <data name="ScopeSelector_notebookButton.Text" xml:space="preserve">
-    <value>Todas as seções no caderno atual</value>
-    <comment>radio</comment>
-  </data>
-  <data name="ScopeSelector_notebooksButton.Text" xml:space="preserve">
-    <value>Todos os cadernos</value>
-    <comment>radio</comment>
-  </data>
   <data name="ScopeSelector_pageButton.Text" xml:space="preserve">
     <value>Esta página</value>
-    <comment>radio</comment>
-  </data>
-  <data name="ScopeSelector_sectionButton.Text" xml:space="preserve">
-    <value>A seção atual</value>
     <comment>radio</comment>
   </data>
   <data name="ScopeSelector_selectedButton.Text" xml:space="preserve">
@@ -4151,12 +4011,6 @@ Depois do último grupo</value>
   <data name="SearchDialog_introLabel.Text" xml:space="preserve">
     <value>Insira uma ou mais palavras-chave, "frases entre aspas", e use E e OU maiúsculas</value>
     <comment>intro label</comment>
-  </data>
-  <data name="SearchDialog_scopeBox.Items" xml:space="preserve">
-    <value>Em todos os notebooks
-Neste caderno
-Nesta secção</value>
-    <comment>drop down</comment>
   </data>
   <data name="SearchDialog_Title" xml:space="preserve">
     <value>Pesquisar e mover/copiar</value>
@@ -4248,68 +4102,17 @@ Os mecanismos de pesquisa aparecerão no menu de contexto da página, clique com
     <value>Ferramentas</value>
     <comment>Ribbon OneMore menu separator</comment>
   </data>
-  <data name="SettingsDialog_aliasNode.Text" xml:space="preserve">
-    <value>Alias ​​de Comando</value>
-  </data>
   <data name="SettingsDialog_closeWindows" xml:space="preserve">
     <value>Várias janelas do OneNote estão abertas. Feche essas janelas e reinicie o OneNote para aplicar as novas configurações</value>
     <comment>message</comment>
-  </data>
-  <data name="SettingsDialog_contextNode.Text" xml:space="preserve">
-    <value>Menu contextual</value>
-    <comment>treenode</comment>
-  </data>
-  <data name="SettingsDialog_generalNode.Text" xml:space="preserve">
-    <value>Opções gerais</value>
-    <comment>tree node</comment>
-  </data>
-  <data name="SettingsDialog_hashtagsNode_Text" xml:space="preserve">
-    <value>Hashtags</value>
-    <comment>treenode</comment>
-  </data>
-  <data name="SettingsDialog_highlightNode.Text" xml:space="preserve">
-    <value>Temas de realce</value>
-    <comment>treenode</comment>
-  </data>
-  <data name="SettingsDialog_imagesNode.Text" xml:space="preserve">
-    <value>Imagens</value>
-    <comment>treenode</comment>
   </data>
   <data name="SettingsDialog_keyboardNode.Text" xml:space="preserve">
     <value>Atalhos do teclado</value>
     <comment>treenode</comment>
   </data>
-  <data name="SettingsDialog_linesNode.Text" xml:space="preserve">
-    <value>Linhas Horizontais</value>
-    <comment>settings dialog</comment>
-  </data>
-  <data name="SettingsDialog_navigatorNode.Text" xml:space="preserve">
-    <value>Navegador</value>
-    <comment>tree node</comment>
-  </data>
-  <data name="SettingsDialog_pluginsNode.Text" xml:space="preserve">
-    <value>Plugins</value>
-    <comment>tree node</comment>
-  </data>
-  <data name="SettingsDialog_quickNotesNode.Text" xml:space="preserve">
-    <value>Notas rápidas</value>
-    <comment>tree node</comment>
-  </data>
   <data name="SettingsDialog_Restart" xml:space="preserve">
     <value>Uma ou mais alterações exigem que o OneNote seja reiniciado. </value>
     <comment>restart message</comment>
-  </data>
-  <data name="SettingsDialog_ribbonNode.Text" xml:space="preserve">
-    <value>Barra de fita</value>
-    <comment>treenode</comment>
-  </data>
-  <data name="SettingsDialog_searchNode.Text" xml:space="preserve">
-    <value>Motores de busca</value>
-    <comment>treenode</comment>
-  </data>
-  <data name="SettingsDialog_snippetshNode_Text" xml:space="preserve">
-    <value>Trechos</value>
-    <comment>tree node</comment>
   </data>
   <data name="SettingsDialog_Text" xml:space="preserve">
     <value>Configurações OneMore</value>
@@ -4359,10 +4162,6 @@ Os mecanismos de pesquisa aparecerão no menu de contexto da página, clique com
     <value>Sem hierarquia</value>
     <comment>message</comment>
   </data>
-  <data name="ShowXmlDialog_notebooksTab.Text" xml:space="preserve">
-    <value>Notebooks.</value>
-    <comment>tab EDIT</comment>
-  </data>
   <data name="ShowXmlDialog_okButton.Text" xml:space="preserve">
     <value>Página de atualização</value>
     <comment>ok button</comment>
@@ -4387,10 +4186,6 @@ Os mecanismos de pesquisa aparecerão no menu de contexto da página, clique com
     <value>Salvar localização da janela</value>
     <comment>checkbox</comment>
   </data>
-  <data name="ShowXmlDialog_selectButton.Text" xml:space="preserve">
-    <value>Selecionar tudo</value>
-    <comment>button</comment>
-  </data>
   <data name="ShowXmlDialog_WARNING" xml:space="preserve">
     <value>Esta é uma operação perigosa!
 
@@ -4410,10 +4205,6 @@ Você tem certeza que quer continuar?</value>
   <data name="SnippetsSheet_introBox.Text" xml:space="preserve">
     <value>Gerencie meus trechos</value>
     <comment>label</comment>
-  </data>
-  <data name="SnippetsSheet_Text" xml:space="preserve">
-    <value>Trechos</value>
-    <comment>SnippetsSheet</comment>
   </data>
   <data name="SortDialog.Text" xml:space="preserve">
     <value>Ordenar</value>
@@ -4617,14 +4408,6 @@ cadernos</value>
     <value>Novo</value>
     <comment>button</comment>
   </data>
-  <data name="StyleDialog_NewText" xml:space="preserve">
-    <value>Novo estilo</value>
-    <comment>dialog title</comment>
-  </data>
-  <data name="StyleDialog_optionsGroup.Text" xml:space="preserve">
-    <value>Opções</value>
-    <comment>groupbox</comment>
-  </data>
   <data name="StyleDialog_pageColorBox.Text" xml:space="preserve">
     <value>Alterar a cor da página ao aplicar esses estilos</value>
     <comment>checkbox</comment>
@@ -4745,12 +4528,6 @@ Invertido</value>
 Qualquer</value>
     <comment>listbox</comment>
   </data>
-  <data name="TaggedDialog_scopeBox.Items" xml:space="preserve">
-    <value>Em todos os notebooks
-Neste caderno
-Nesta secção</value>
-    <comment>drop down</comment>
-  </data>
   <data name="TaggedDialog_tagsLabel.Text" xml:space="preserve">
     <value>Tag:</value>
     <comment>label</comment>
@@ -4778,10 +4555,6 @@ Nesta secção</value>
   <data name="TaggingDialog_recentGroup.Text" xml:space="preserve">
     <value>Usado recentemente</value>
     <comment>groupbox</comment>
-  </data>
-  <data name="TaggingDialog_tagLabel.Text" xml:space="preserve">
-    <value>Tags da página.</value>
-    <comment>header label</comment>
   </data>
   <data name="TagsUpgraded" xml:space="preserve">
     <value>Tags de páginas legadas foram convertidas em hashtags.
@@ -4915,17 +4688,9 @@ A caixa de diálogo Encontrar hashtags será aberta agora.</value>
     <value>Atualização OneMore disponível</value>
     <comment>panel title</comment>
   </data>
-  <data name="UpdateDialog_upLastUpdatedLabel.Text" xml:space="preserve">
-    <value>Ultima atualização:</value>
-    <comment>label</comment>
-  </data>
   <data name="UpdateDialog_upOKButton.Text" xml:space="preserve">
     <value>Atualizar</value>
     <comment>button</comment>
-  </data>
-  <data name="UpdateDialog_upReleaseNotesLink.Text" xml:space="preserve">
-    <value>Notas de lançamento</value>
-    <comment>link</comment>
   </data>
   <data name="UpdateDialog_upVersionLabel.Text" xml:space="preserve">
     <value>Versão atualizada:</value>
@@ -4946,6 +4711,9 @@ A caixa de diálogo Encontrar hashtags será aberta agora.</value>
   </data>
   <data name="word_All" xml:space="preserve">
     <value>Todos</value>
+  </data>
+  <data name="word_Alphanumeric" xml:space="preserve">
+    <value>Alfanumérico</value>
   </data>
   <data name="word_Apply" xml:space="preserve">
     <value>Aplicar</value>
@@ -5028,8 +4796,14 @@ A caixa de diálogo Encontrar hashtags será aberta agora.</value>
   <data name="word_Grayscale" xml:space="preserve">
     <value>Escala de cinza</value>
   </data>
+  <data name="word_Hashtags" xml:space="preserve">
+    <value>Hashtags</value>
+  </data>
   <data name="word_History" xml:space="preserve">
     <value>História</value>
+  </data>
+  <data name="word_Images" xml:space="preserve">
+    <value>Imagens</value>
   </data>
   <data name="word_Indent" xml:space="preserve">
     <value>Recuar</value>
@@ -5058,6 +4832,9 @@ A caixa de diálogo Encontrar hashtags será aberta agora.</value>
   <data name="word_Name" xml:space="preserve">
     <value>Nome</value>
   </data>
+  <data name="word_Navigator" xml:space="preserve">
+    <value>Navegador</value>
+  </data>
   <data name="word_No" xml:space="preserve">
     <value>Não</value>
   </data>
@@ -5072,6 +4849,12 @@ A caixa de diálogo Encontrar hashtags será aberta agora.</value>
   </data>
   <data name="word_Notes" xml:space="preserve">
     <value>Notas</value>
+  </data>
+  <data name="word_Numbering" xml:space="preserve">
+    <value>Numeração</value>
+  </data>
+  <data name="word_Numeric" xml:space="preserve">
+    <value>Numérico</value>
   </data>
   <data name="word_OK" xml:space="preserve">
     <value>OK</value>
@@ -5090,6 +4873,9 @@ A caixa de diálogo Encontrar hashtags será aberta agora.</value>
   </data>
   <data name="word_Planned" xml:space="preserve">
     <value>Planejado</value>
+  </data>
+  <data name="word_Plugins" xml:space="preserve">
+    <value>Plug-ins</value>
   </data>
   <data name="word_Preview" xml:space="preserve">
     <value>Visualizar</value>
@@ -5132,6 +4918,9 @@ A caixa de diálogo Encontrar hashtags será aberta agora.</value>
   </data>
   <data name="word_Silenced" xml:space="preserve">
     <value>Silenciado</value>
+  </data>
+  <data name="word_Snippets" xml:space="preserve">
+    <value>Trechos</value>
   </data>
   <data name="word_Start" xml:space="preserve">
     <value>Começar</value>

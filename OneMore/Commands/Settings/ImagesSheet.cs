@@ -18,7 +18,7 @@ namespace River.OneMoreAddIn.Settings
 			InitializeComponent();
 
 			Name = nameof(ImagesSheet);
-			Title = Resx.ImagesSheet_Title;
+			Title = Resx.word_Images;
 
 			if (NeedsLocalizing())
 			{

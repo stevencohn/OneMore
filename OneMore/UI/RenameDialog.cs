@@ -21,7 +21,7 @@ namespace River.OneMoreAddIn.UI
 
 			if (NeedsLocalizing())
 			{
-				Text = Resx.NameStyleDialog_NewStyle;
+				Text = Resx.phrase_NewStyle;
 
 				Localize(new string[]
 				{
@@ -50,7 +50,7 @@ namespace River.OneMoreAddIn.UI
 			{
 				Text = value 
 					? Resx.NameStyleDialog_RenameStyle
-					: Resx.NameStyleDialog_NewStyle;
+					: Resx.phrase_NewStyle;
 			}
 		}
 

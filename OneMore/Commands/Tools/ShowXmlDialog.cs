@@ -47,7 +47,7 @@ namespace River.OneMoreAddIn.Commands
 				Localize(new string[]
 				{
 					"wrapBox",
-					"selectButton",
+					"selectButton=phrase_SelectAll",
 					// pagePanel
 					"hideEditedByBox",
 					"multilineBox",
@@ -64,7 +64,7 @@ namespace River.OneMoreAddIn.Commands
 					// tabs
 					"pageTab=word_Page",
 					"sectionTab=word_Section",
-					"notebooksTab",
+					"notebooksTab=word_Notebooks",
 					"nbSectionsTab",
 					"nbPagesTab",
 					"manualTab",

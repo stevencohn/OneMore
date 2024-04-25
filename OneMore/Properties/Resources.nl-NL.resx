@@ -649,10 +649,6 @@ Omkeren</value>
     <value>Deze afbeelding is van een afdruk. Als het wordt bijgesneden, wordt het niet langer gekoppeld aan dat originele bestand. Wil je doorgaan met croppen?</value>
     <comment>message box, question</comment>
   </data>
-  <data name="CropImageDialog_selectButton.Text" xml:space="preserve">
-    <value>Selecteer alles</value>
-    <comment>select all button</comment>
-  </data>
   <data name="ctxCleanMenu_Label" xml:space="preserve">
     <value>Schoon...</value>
     <comment>Context menu</comment>
@@ -757,20 +753,9 @@ Lettertype eerste kolom
 Lettertype laatste kolom</value>
     <comment>MoreListView</comment>
   </data>
-  <data name="EditTableThemesDialog_fontElementsGroup.Text" xml:space="preserve">
-    <value>Tafelelementen</value>
-    <comment>group</comment>
-  </data>
   <data name="EditTableThemesDialog_fontsTab.Text" xml:space="preserve">
     <value>Lettertypen</value>
     <comment>tab</comment>
-  </data>
-  <data name="EditTableThemesDialog_newButton.Text" xml:space="preserve">
-    <value>Nieuwe stijl</value>
-    <comment>toolbutton</comment>
-  </data>
-  <data name="EditTableThemesDialog_NewStyle" xml:space="preserve">
-    <value>Nieuwe stijl</value>
   </data>
   <data name="EditTableThemesDialog_resetButton.Text" xml:space="preserve">
     <value>Alles resetten</value>
@@ -1096,10 +1081,6 @@ OneNote-bestand (*.one)</value>
     <value>Neem een ​​verwijzing op naar de pagina met sneltoetsen</value>
     <comment>settings</comment>
   </data>
-  <data name="FavoritesSheet_Text" xml:space="preserve">
-    <value>Favorieten</value>
-    <comment>settings</comment>
-  </data>
   <data name="FileImportSheet_introBox.Text" xml:space="preserve">
     <value>Pas PowerPoint- en PDF-importopties aan</value>
     <comment>label</comment>
@@ -1223,10 +1204,6 @@ Symbolen: PI, E</value>
   <data name="GeneralSheet_introBox.Text" xml:space="preserve">
     <value>Pas het algemene gedrag van OneMore aan</value>
     <comment>textbox</comment>
-  </data>
-  <data name="GeneralSheet_langLabel.Text" xml:space="preserve">
-    <value>Taal</value>
-    <comment>label</comment>
   </data>
   <data name="GeneralSheet_themeBox.Text" xml:space="preserve">
     <value>Systeem
@@ -1357,10 +1334,6 @@ Gele achtergrond</value>
     <value>Aangepaste stijl toepassen</value>
     <comment>label</comment>
   </data>
-  <data name="HashtagSheet_Title" xml:space="preserve">
-    <value>Hashtags</value>
-    <comment>sheet title</comment>
-  </data>
   <data name="HashtagSheet_upgradeLink.Text" xml:space="preserve">
     <value>Upgrade paginatags naar inline hashtags</value>
     <comment>link</comment>
@@ -1397,14 +1370,6 @@ Gele achtergrond</value>
     <value>Markeerstift Thema's</value>
     <comment>sheet intro</comment>
   </data>
-  <data name="ImageSheet_plantRemoveBox.Text" xml:space="preserve">
-    <value>Verwijder PlantUML-tekst en sluit deze in de afbeelding in</value>
-    <comment>checkbox</comment>
-  </data>
-  <data name="ImageSheet_plantUriLabel.Text" xml:space="preserve">
-    <value>PlantUML-serveradres (leeg laten om standaard te gebruiken)</value>
-    <comment>label</comment>
-  </data>
   <data name="ImagesSheet_imageBrowser" xml:space="preserve">
     <value>Afbeeldingsviewer</value>
   </data>
@@ -1439,10 +1404,6 @@ Gele achtergrond</value>
   <data name="ImagesSheet_resizeGroup.Text" xml:space="preserve">
     <value>Formaat wijzigen</value>
     <comment>groupsbox</comment>
-  </data>
-  <data name="ImagesSheet_Title" xml:space="preserve">
-    <value>Afbeeldingen</value>
-    <comment>sheet</comment>
   </data>
   <data name="ImagesSheet_widthLabel.Text" xml:space="preserve">
     <value>Voorkeur formaat wijzigen breedte</value>
@@ -1548,10 +1509,6 @@ Gele achtergrond</value>
     <value>Uw code hier...</value>
     <comment>text</comment>
   </data>
-  <data name="InsertBoxCommand_Text" xml:space="preserve">
-    <value>Uw inhoud hier...</value>
-    <comment>text</comment>
-  </data>
   <data name="InsertCalendarDialog.Text" xml:space="preserve">
     <value>Agenda invoegen</value>
     <comment>dialog title</comment>
@@ -1608,9 +1565,6 @@ Gele achtergrond</value>
     <value>Schuif cellen naar rechts</value>
     <comment>radio</comment>
   </data>
-  <data name="InsertInfoBox_yourContentHere" xml:space="preserve">
-    <value>Uw inhoud hier...</value>
-  </data>
   <data name="InsertQRCommand_MaxLength" xml:space="preserve">
     <value>De geselecteerde tekst mag niet langer zijn dan {0} tekens</value>
     <comment>message</comment>
@@ -1642,10 +1596,6 @@ Gele achtergrond</value>
   <data name="InsertTocCommand_Top" xml:space="preserve">
     <value>Bovenaan de pagina</value>
     <comment>hyperlink</comment>
-  </data>
-  <data name="InsertTocDialog.Text" xml:space="preserve">
-    <value>Inhoudsopgave</value>
-    <comment>dialog title</comment>
   </data>
   <data name="InsertTocDialog_locationBox.Text" xml:space="preserve">
     <value>Bovenaan de pagina
@@ -1747,18 +1697,6 @@ Aangepaste kop 3</value>
     <value>Maak gelinkte verwijzingen naar de titel van deze pagina</value>
     <comment>label</comment>
   </data>
-  <data name="LinkDialog_notebookRadio.Text" xml:space="preserve">
-    <value>Alle secties in het huidige notitieboek</value>
-    <comment>radio</comment>
-  </data>
-  <data name="LinkDialog_notebooksRadio.Text" xml:space="preserve">
-    <value>Alle notitieboeken</value>
-    <comment>radio</comment>
-  </data>
-  <data name="LinkDialog_sectionRadio.Text" xml:space="preserve">
-    <value>De huidige sectie</value>
-    <comment>radio</comment>
-  </data>
   <data name="LinkDialog_Text" xml:space="preserve">
     <value>Linkreferenties</value>
     <comment>dialog title</comment>
@@ -1794,18 +1732,6 @@ Aangepaste kop 3</value>
     <value>Pagina's in</value>
     <comment>group box</comment>
   </data>
-  <data name="MapDialog_notebookRadio.Text" xml:space="preserve">
-    <value>Alle secties in het huidige notitieblok</value>
-    <comment>radio</comment>
-  </data>
-  <data name="MapDialog_notebooksRadio.Text" xml:space="preserve">
-    <value>Alle notitieboekjes</value>
-    <comment>radio</comment>
-  </data>
-  <data name="MapDialog_sectionRadio.Text" xml:space="preserve">
-    <value>De huidige sectie</value>
-    <comment>radio</comment>
-  </data>
   <data name="MapDialog_synopsisBox.Text" xml:space="preserve">
     <value>Voeg een samenvatting van elke pagina toe</value>
     <comment>checkbox</comment>
@@ -1821,10 +1747,6 @@ Aangepaste kop 3</value>
   <data name="NameStyleDialog_nameLabel.Text" xml:space="preserve">
     <value>Stijl naam</value>
     <comment>label</comment>
-  </data>
-  <data name="NameStyleDialog_NewStyle" xml:space="preserve">
-    <value>Nieuwe stijl</value>
-    <comment>dialog title</comment>
   </data>
   <data name="NameStyleDialog_RenameStyle" xml:space="preserve">
     <value>Hernoemstijl</value>
@@ -1857,10 +1779,6 @@ Aangepaste kop 3</value>
   <data name="NavigatorSheet_quickBox.Text" xml:space="preserve">
     <value>Houd snelle notities bij</value>
     <comment>checkbox</comment>
-  </data>
-  <data name="NavigatorSheet_Title" xml:space="preserve">
-    <value>Navigator</value>
-    <comment>sheet title</comment>
   </data>
   <data name="NavigatorWindow_copyTooltip" xml:space="preserve">
     <value>Kopieer geselecteerde items naar het klembord</value>
@@ -1909,10 +1827,6 @@ Aangepaste kop 3</value>
     <value>Paginanummering</value>
     <comment>dialog title</comment>
   </data>
-  <data name="NumberPagesDialog_alphaRadio.Text" xml:space="preserve">
-    <value>Alfanumeriek</value>
-    <comment>radio button</comment>
-  </data>
   <data name="NumberPagesDialog_cleanBox.Text" xml:space="preserve">
     <value>Bestaande nummering verwijderen / opschonen</value>
     <comment>checkbox</comment>
@@ -1920,14 +1834,6 @@ Aangepaste kop 3</value>
   <data name="NumberPagesDialog_introLabel.Text" xml:space="preserve">
     <value>Kies de nummeringsstijl</value>
     <comment>label</comment>
-  </data>
-  <data name="NumberPagesDialog_numberingGroup.Text" xml:space="preserve">
-    <value>Nummering</value>
-    <comment>group</comment>
-  </data>
-  <data name="NumberPagesDialog_numRadio.Text" xml:space="preserve">
-    <value>Numeriek</value>
-    <comment>radio button</comment>
   </data>
   <data name="OneMoreNamespace" xml:space="preserve">
     <value>http://schemas.smc.com/onemore/2020/styles</value>
@@ -1946,10 +1852,6 @@ Aangepaste kop 3</value>
   <data name="OutlineDialog.Text" xml:space="preserve">
     <value>Overzichtsopmaak</value>
     <comment>dialog title</comment>
-  </data>
-  <data name="OutlineDialog_alphaRadio.Text" xml:space="preserve">
-    <value>Alfanumeriek</value>
-    <comment>radio button</comment>
   </data>
   <data name="OutlineDialog_cleanBox.Text" xml:space="preserve">
     <value>Bestaande nummering verwijderen/opschonen</value>
@@ -1979,14 +1881,6 @@ Aangepaste kop 3</value>
     <value>Toegepast op zowel standaard als aangepaste koppen</value>
     <comment>tooltip</comment>
   </data>
-  <data name="OutlineDialog_numberingGroup.Text" xml:space="preserve">
-    <value>Nummering</value>
-    <comment>group box title</comment>
-  </data>
-  <data name="OutlineDialog_numRadio.Text" xml:space="preserve">
-    <value>Numeriek</value>
-    <comment>radio button</comment>
-  </data>
   <data name="OutlineDialog_removeTagsBox.Text" xml:space="preserve">
     <value>Verwijder tags</value>
     <comment>checkbox</comment>
@@ -2005,16 +1899,6 @@ Aangepaste kop 3</value>
   </data>
   <data name="OutlookTaskReport_Importance" xml:space="preserve">
     <value>Belang</value>
-    <comment>report</comment>
-  </data>
-  <data name="OutlookTaskReport_importances" xml:space="preserve">
-    <value>Laag
-Medium
-Hoog</value>
-    <comment>report</comment>
-  </data>
-  <data name="OutlookTaskReport_Percent" xml:space="preserve">
-    <value>% Compleet</value>
     <comment>report</comment>
   </data>
   <data name="OutlookTaskReport_statuses" xml:space="preserve">
@@ -2090,23 +1974,53 @@ Toepassen op dit notitieboekje</value>
   <data name="phrase_AdvancedOptions" xml:space="preserve">
     <value>Geavanceerde mogelijkheden</value>
   </data>
+  <data name="phrase_AllNotebooks" xml:space="preserve">
+    <value>Alle notitieboekjes</value>
+  </data>
+  <data name="phrase_AllSectionInTheCurrentNotebook" xml:space="preserve">
+    <value>Alle secties in het huidige notitieblok</value>
+  </data>
   <data name="phrase_AppendToThisPage" xml:space="preserve">
     <value>Voeg toe aan deze pagina</value>
   </data>
   <data name="phrase_CreateANewPage" xml:space="preserve">
     <value>Maak een nieuwe pagina aan</value>
   </data>
+  <data name="phrase_NewStyle" xml:space="preserve">
+    <value>Nieuwe stijl</value>
+  </data>
   <data name="phrase_PathNotFound" xml:space="preserve">
     <value>Pad niet gevonden</value>
   </data>
+  <data name="phrase_PctComplete" xml:space="preserve">
+    <value>% Compleet</value>
+  </data>
+  <data name="phrase_priorityOptions" xml:space="preserve">
+    <value>Laag
+Medium
+Hoog</value>
+    <comment>report</comment>
+  </data>
   <data name="phrase_QuickNote" xml:space="preserve">
     <value>Snelle notitie</value>
+  </data>
+  <data name="phrase_scopeOptions" xml:space="preserve">
+    <value>In alle notitieboekjes
+In dit notitieboekje
+In deze sectie</value>
+    <comment>drop down</comment>
   </data>
   <data name="phrase_SelectAll" xml:space="preserve">
     <value>Selecteer alles</value>
   </data>
   <data name="phrase_SelectNone" xml:space="preserve">
     <value>Selecteer Geen</value>
+  </data>
+  <data name="phrase_TheCurrentSection" xml:space="preserve">
+    <value>Het huidige gedeelte</value>
+  </data>
+  <data name="phrase_YourContentHere" xml:space="preserve">
+    <value>Uw inhoud hier...</value>
   </data>
   <data name="PlantUml_broken" xml:space="preserve">
     <value>PlantUML-tekst is ongeldig of kan geen verband vinden tussen tekst en afbeelding</value>
@@ -2184,10 +2098,6 @@ Toepassen op dit notitieboekje</value>
     <value>Rennen</value>
     <comment>ok button</comment>
   </data>
-  <data name="PluginDialog_pluginsLabel.Text" xml:space="preserve">
-    <value>Plug-ins</value>
-    <comment>label</comment>
-  </data>
   <data name="PluginDialog_skipLockRadio.Text" xml:space="preserve">
     <value>Vergrendelde secties overslaan</value>
     <comment>radio</comment>
@@ -2212,10 +2122,6 @@ Huidig ​​notitieboek</value>
   <data name="PluginsSheet_introBox.Text" xml:space="preserve">
     <value>Beheer mijn plug -ins</value>
     <comment>label</comment>
-  </data>
-  <data name="PluginsSheet_Title" xml:space="preserve">
-    <value>Plug-ins</value>
-    <comment>sheet title EDIT</comment>
   </data>
   <data name="Pronunciate_EmptyWord" xml:space="preserve">
     <value>Het geselecteerde woord mag niet leeg zijn</value>
@@ -2331,18 +2237,6 @@ Jaar (2023)
     <value>Pagina's in</value>
     <comment>group box</comment>
   </data>
-  <data name="RefreshPageLinksDialog_notebookRadio.Text" xml:space="preserve">
-    <value>Alle secties in het huidige notitieboek</value>
-    <comment>radio</comment>
-  </data>
-  <data name="RefreshPageLinksDialog_notebooksRadio.Text" xml:space="preserve">
-    <value>Alle notitieboeken</value>
-    <comment>radio</comment>
-  </data>
-  <data name="RefreshPageLinksDialog_sectionRadio.Text" xml:space="preserve">
-    <value>De huidige sectie</value>
-    <comment>radio</comment>
-  </data>
   <data name="RefreshPageLinksDialog_Text" xml:space="preserve">
     <value>Paginaverwijzingen vernieuwen</value>
     <comment>dialog title</comment>
@@ -2362,16 +2256,6 @@ Jaar (2023)
   <data name="RemindDialog_dueDateLabel.Text" xml:space="preserve">
     <value>Opleveringsdatum</value>
     <comment>label</comment>
-  </data>
-  <data name="RemindDialog_percentLabel.Text" xml:space="preserve">
-    <value>% Compleet</value>
-    <comment>label</comment>
-  </data>
-  <data name="RemindDialog_priorityBox.Text" xml:space="preserve">
-    <value>Laag
-Medium
-Hoog</value>
-    <comment>combobox</comment>
   </data>
   <data name="RemindDialog_priorityLabel.Text" xml:space="preserve">
     <value>Prioriteit</value>
@@ -2556,18 +2440,6 @@ Selecteer NO om één lege regel tussen paragrafen te behouden</value>
   <data name="ReportRemindersDialog_introLabel.Text" xml:space="preserve">
     <value>Genereer rapport voor herinneringen in deze scope</value>
     <comment>label</comment>
-  </data>
-  <data name="ReportRemindersDialog_notebookRadio.Text" xml:space="preserve">
-    <value>Alle secties in het huidige notitieboekje</value>
-    <comment>radio</comment>
-  </data>
-  <data name="ReportRemindersDialog_notebooksRadio.Text" xml:space="preserve">
-    <value>Alle notitieboekjes</value>
-    <comment>radio</comment>
-  </data>
-  <data name="ReportRemindersDialog_sectionRadio.Text" xml:space="preserve">
-    <value>Het huidige gedeelte</value>
-    <comment>radio</comment>
   </data>
   <data name="ReportRemindersReuseDialog_newRadio.Text" xml:space="preserve">
     <value>Maak een nieuwe rapportpagina</value>
@@ -4096,20 +3968,8 @@ Na de laatste groep</value>
     <value>OneNote kan traag lijken tijdens het scannen. Als OneNote tijdens de scan wordt gesloten, kan deze pas worden geopend als de scan is voltooid.</value>
     <comment>multiline label</comment>
   </data>
-  <data name="ScopeSelector_notebookButton.Text" xml:space="preserve">
-    <value>Alle secties in het huidige notitieboekje</value>
-    <comment>radio</comment>
-  </data>
-  <data name="ScopeSelector_notebooksButton.Text" xml:space="preserve">
-    <value>Alle notitieboekjes</value>
-    <comment>radio</comment>
-  </data>
   <data name="ScopeSelector_pageButton.Text" xml:space="preserve">
     <value>Deze pagina</value>
-    <comment>radio</comment>
-  </data>
-  <data name="ScopeSelector_sectionButton.Text" xml:space="preserve">
-    <value>Het huidige gedeelte</value>
     <comment>radio</comment>
   </data>
   <data name="ScopeSelector_selectedButton.Text" xml:space="preserve">
@@ -4151,12 +4011,6 @@ Na de laatste groep</value>
   <data name="SearchDialog_introLabel.Text" xml:space="preserve">
     <value>Voer een of meer trefwoorden in, "zinnen tussen aanhalingstekens", en gebruik hoofdletters EN en OF</value>
     <comment>intro label</comment>
-  </data>
-  <data name="SearchDialog_scopeBox.Items" xml:space="preserve">
-    <value>In alle notitieboekjes
-In dit notitieboekje
-In deze sectie</value>
-    <comment>drop down</comment>
   </data>
   <data name="SearchDialog_Title" xml:space="preserve">
     <value>Zoeken en verplaatsen / kopiëren</value>
@@ -4248,68 +4102,17 @@ Zoekmachines verschijnen in het pagina Pagina contextmenu, klik met de rechtermu
     <value>Gereedschap</value>
     <comment>Ribbon OneMore menu separator</comment>
   </data>
-  <data name="SettingsDialog_aliasNode.Text" xml:space="preserve">
-    <value>Opdrachtaliassen</value>
-  </data>
   <data name="SettingsDialog_closeWindows" xml:space="preserve">
     <value>Er zijn meerdere OneNote-vensters geopend. Sluit deze vensters en start OneNote opnieuw om nieuwe instellingen toe te passen</value>
     <comment>message</comment>
-  </data>
-  <data name="SettingsDialog_contextNode.Text" xml:space="preserve">
-    <value>Contextmenu</value>
-    <comment>treenode</comment>
-  </data>
-  <data name="SettingsDialog_generalNode.Text" xml:space="preserve">
-    <value>Algemene opties</value>
-    <comment>tree node</comment>
-  </data>
-  <data name="SettingsDialog_hashtagsNode_Text" xml:space="preserve">
-    <value>Hashtags</value>
-    <comment>treenode</comment>
-  </data>
-  <data name="SettingsDialog_highlightNode.Text" xml:space="preserve">
-    <value>Markeerstiftthema's</value>
-    <comment>treenode</comment>
-  </data>
-  <data name="SettingsDialog_imagesNode.Text" xml:space="preserve">
-    <value>Afbeeldingen</value>
-    <comment>treenode</comment>
   </data>
   <data name="SettingsDialog_keyboardNode.Text" xml:space="preserve">
     <value>Toetsenbord sneltoetsen</value>
     <comment>treenode</comment>
   </data>
-  <data name="SettingsDialog_linesNode.Text" xml:space="preserve">
-    <value>Horizontale lijnen</value>
-    <comment>settings dialog</comment>
-  </data>
-  <data name="SettingsDialog_navigatorNode.Text" xml:space="preserve">
-    <value>Navigator</value>
-    <comment>tree node</comment>
-  </data>
-  <data name="SettingsDialog_pluginsNode.Text" xml:space="preserve">
-    <value>Plug-ins</value>
-    <comment>tree node</comment>
-  </data>
-  <data name="SettingsDialog_quickNotesNode.Text" xml:space="preserve">
-    <value>Snelle notities</value>
-    <comment>tree node</comment>
-  </data>
   <data name="SettingsDialog_Restart" xml:space="preserve">
     <value>Voor een of meer wijzigingen moet OneNote opnieuw worden gestart. </value>
     <comment>restart message</comment>
-  </data>
-  <data name="SettingsDialog_ribbonNode.Text" xml:space="preserve">
-    <value>Lintbalk</value>
-    <comment>treenode</comment>
-  </data>
-  <data name="SettingsDialog_searchNode.Text" xml:space="preserve">
-    <value>Zoekmachines</value>
-    <comment>treenode</comment>
-  </data>
-  <data name="SettingsDialog_snippetshNode_Text" xml:space="preserve">
-    <value>Fragmenten</value>
-    <comment>tree node</comment>
   </data>
   <data name="SettingsDialog_Text" xml:space="preserve">
     <value>OneMore-instellingen</value>
@@ -4359,10 +4162,6 @@ Zoekmachines verschijnen in het pagina Pagina contextmenu, klik met de rechtermu
     <value>Geen hiërarchie</value>
     <comment>message</comment>
   </data>
-  <data name="ShowXmlDialog_notebooksTab.Text" xml:space="preserve">
-    <value>Notebooks</value>
-    <comment>tab EDIT</comment>
-  </data>
   <data name="ShowXmlDialog_okButton.Text" xml:space="preserve">
     <value>Update pagina</value>
     <comment>ok button</comment>
@@ -4387,10 +4186,6 @@ Zoekmachines verschijnen in het pagina Pagina contextmenu, klik met de rechtermu
     <value>Vensterlocatie opslaan</value>
     <comment>checkbox</comment>
   </data>
-  <data name="ShowXmlDialog_selectButton.Text" xml:space="preserve">
-    <value>Selecteer alles</value>
-    <comment>button</comment>
-  </data>
   <data name="ShowXmlDialog_WARNING" xml:space="preserve">
     <value>Dit is een gevaarlijke operatie!
 
@@ -4410,10 +4205,6 @@ Weet je zeker dat je door wilt gaan?</value>
   <data name="SnippetsSheet_introBox.Text" xml:space="preserve">
     <value>Beheer mijn fragmenten</value>
     <comment>label</comment>
-  </data>
-  <data name="SnippetsSheet_Text" xml:space="preserve">
-    <value>Fragmenten</value>
-    <comment>SnippetsSheet</comment>
   </data>
   <data name="SortDialog.Text" xml:space="preserve">
     <value>Soort</value>
@@ -4617,14 +4408,6 @@ Notitieboekjes</value>
     <value>Nieuw</value>
     <comment>button</comment>
   </data>
-  <data name="StyleDialog_NewText" xml:space="preserve">
-    <value>Nieuwe stijl</value>
-    <comment>dialog title</comment>
-  </data>
-  <data name="StyleDialog_optionsGroup.Text" xml:space="preserve">
-    <value>Opties</value>
-    <comment>groupbox</comment>
-  </data>
   <data name="StyleDialog_pageColorBox.Text" xml:space="preserve">
     <value>Wijzig de paginakleur bij het toepassen van deze stijlen</value>
     <comment>checkbox</comment>
@@ -4745,12 +4528,6 @@ Omkeren</value>
 Ieder</value>
     <comment>listbox</comment>
   </data>
-  <data name="TaggedDialog_scopeBox.Items" xml:space="preserve">
-    <value>In alle notitieboekjes
-In dit notitieboekje
-In deze sectie</value>
-    <comment>drop down</comment>
-  </data>
   <data name="TaggedDialog_tagsLabel.Text" xml:space="preserve">
     <value>Trefwoorden:</value>
     <comment>label</comment>
@@ -4778,10 +4555,6 @@ In deze sectie</value>
   <data name="TaggingDialog_recentGroup.Text" xml:space="preserve">
     <value>Laatst gebruikt</value>
     <comment>groupbox</comment>
-  </data>
-  <data name="TaggingDialog_tagLabel.Text" xml:space="preserve">
-    <value>Pagina-tags</value>
-    <comment>header label</comment>
   </data>
   <data name="TagsUpgraded" xml:space="preserve">
     <value>Verouderde paginatags zijn omgezet in hashtags.
@@ -4915,17 +4688,9 @@ Het dialoogvenster Hashtags zoeken wordt nu geopend.</value>
     <value>OneMore-update beschikbaar</value>
     <comment>panel title</comment>
   </data>
-  <data name="UpdateDialog_upLastUpdatedLabel.Text" xml:space="preserve">
-    <value>Laatst bijgewerkt:</value>
-    <comment>label</comment>
-  </data>
   <data name="UpdateDialog_upOKButton.Text" xml:space="preserve">
     <value>Update</value>
     <comment>button</comment>
-  </data>
-  <data name="UpdateDialog_upReleaseNotesLink.Text" xml:space="preserve">
-    <value>Release-opmerkingen</value>
-    <comment>link</comment>
   </data>
   <data name="UpdateDialog_upVersionLabel.Text" xml:space="preserve">
     <value>Versie bijwerken:</value>
@@ -4946,6 +4711,9 @@ Het dialoogvenster Hashtags zoeken wordt nu geopend.</value>
   </data>
   <data name="word_All" xml:space="preserve">
     <value>Alle</value>
+  </data>
+  <data name="word_Alphanumeric" xml:space="preserve">
+    <value>Alfanumeriek</value>
   </data>
   <data name="word_Apply" xml:space="preserve">
     <value>Van toepassing zijn</value>
@@ -5028,8 +4796,14 @@ Het dialoogvenster Hashtags zoeken wordt nu geopend.</value>
   <data name="word_Grayscale" xml:space="preserve">
     <value>grijswaarden</value>
   </data>
+  <data name="word_Hashtags" xml:space="preserve">
+    <value>Hashtags</value>
+  </data>
   <data name="word_History" xml:space="preserve">
     <value>Geschiedenis</value>
+  </data>
+  <data name="word_Images" xml:space="preserve">
+    <value>Afbeeldingen</value>
   </data>
   <data name="word_Indent" xml:space="preserve">
     <value>Inspringen</value>
@@ -5058,6 +4832,9 @@ Het dialoogvenster Hashtags zoeken wordt nu geopend.</value>
   <data name="word_Name" xml:space="preserve">
     <value>Naam</value>
   </data>
+  <data name="word_Navigator" xml:space="preserve">
+    <value>Navigator</value>
+  </data>
   <data name="word_No" xml:space="preserve">
     <value>Nee</value>
   </data>
@@ -5072,6 +4849,12 @@ Het dialoogvenster Hashtags zoeken wordt nu geopend.</value>
   </data>
   <data name="word_Notes" xml:space="preserve">
     <value>Notities</value>
+  </data>
+  <data name="word_Numbering" xml:space="preserve">
+    <value>Nummering</value>
+  </data>
+  <data name="word_Numeric" xml:space="preserve">
+    <value>Numeriek</value>
   </data>
   <data name="word_OK" xml:space="preserve">
     <value>Oke</value>
@@ -5090,6 +4873,9 @@ Het dialoogvenster Hashtags zoeken wordt nu geopend.</value>
   </data>
   <data name="word_Planned" xml:space="preserve">
     <value>Gepland</value>
+  </data>
+  <data name="word_Plugins" xml:space="preserve">
+    <value>Plug-ins</value>
   </data>
   <data name="word_Preview" xml:space="preserve">
     <value>Voorbeeld</value>
@@ -5132,6 +4918,9 @@ Het dialoogvenster Hashtags zoeken wordt nu geopend.</value>
   </data>
   <data name="word_Silenced" xml:space="preserve">
     <value>tot zwijgen gebracht</value>
+  </data>
+  <data name="word_Snippets" xml:space="preserve">
+    <value>Fragmenten</value>
   </data>
   <data name="word_Start" xml:space="preserve">
     <value>Begin</value>

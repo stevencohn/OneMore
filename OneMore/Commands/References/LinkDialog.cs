@@ -21,9 +21,9 @@ namespace River.OneMoreAddIn.Commands
 				{
 					"introLabel",
 					"groupBox",
-					"notebooksRadio",
-					"notebookRadio",
-					"sectionRadio",
+					"notebooksRadio=phrase_AllNotebooks",
+					"notebookRadio=phrase_AllSectionInTheCurrentNotebook",
+					"sectionRadio=phrase_TheCurrentSection",
 					"synopsisBox",
 					"unindexedBox",
 					"okButton=word_OK",

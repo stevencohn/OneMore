@@ -56,23 +56,23 @@ namespace River.OneMoreAddIn.Settings
 					"cancelButton=word_Cancel"
 				});
 
-				navTree.Nodes["generalNode"].Text = Resx.SettingsDialog_generalNode_Text;
+				navTree.Nodes["generalNode"].Text = Resx.GeneralSheet_Title;
 				navTree.Nodes["colorizerNode"].Text = Resx.ColorizerSheet_Title;
-				navTree.Nodes["aliasNode"].Text = Resx.SettingsDialog_aliasNode_Text;
-				navTree.Nodes["contextNode"].Text = Resx.SettingsDialog_contextNode_Text;
+				navTree.Nodes["aliasNode"].Text = Resx.AliasSheet_Title;
+				navTree.Nodes["contextNode"].Text = Resx.ContextMenuSheet_Title;
 				navTree.Nodes["favoritesNode"].Text = Resx.word_Favorites;
 				navTree.Nodes["fileImportNode"].Text = Resx.FileImportSheet_Title;
-				navTree.Nodes["hashtagsNode"].Text = Resx.SettingsDialog_hashtagsNode_Text;
-				navTree.Nodes["highlightNode"].Text = Resx.SettingsDialog_highlightNode_Text;
-				navTree.Nodes["linesNode"].Text = Resx.SettingsDialog_linesNode_Text;
-				navTree.Nodes["imagesNode"].Text = Resx.SettingsDialog_imagesNode_Text;
+				navTree.Nodes["hashtagsNode"].Text = Resx.word_Hashtags;
+				navTree.Nodes["highlightNode"].Text = Resx.HighlightsSheet_Title;
+				navTree.Nodes["linesNode"].Text = Resx.LinesSheet_Title;
+				navTree.Nodes["imagesNode"].Text = Resx.word_Images;
 				navTree.Nodes["keyboardNode"].Text = Resx.SettingsDialog_keyboardNode_Text;
-				navTree.Nodes["navigatorNode"].Text = Resx.SettingsDialog_navigatorNode_Text;
-				navTree.Nodes["pluginsNode"].Text = Resx.SettingsDialog_pluginsNode_Text;
-				navTree.Nodes["quickNotesNode"].Text = Resx.SettingsDialog_quickNotesNode_Text;
-				navTree.Nodes["ribbonNode"].Text = Resx.SettingsDialog_ribbonNode_Text;
-				navTree.Nodes["searchNode"].Text = Resx.SettingsDialog_searchNode_Text;
-				navTree.Nodes["snippetsNode"].Text = Resx.SettingsDialog_snippetshNode_Text;
+				navTree.Nodes["navigatorNode"].Text = Resx.word_Navigator;
+				navTree.Nodes["pluginsNode"].Text = Resx.word_Plugins;
+				navTree.Nodes["quickNotesNode"].Text = Resx.QuickNotesSheet_Title;
+				navTree.Nodes["ribbonNode"].Text = Resx.RibbonBarSheet_Title;
+				navTree.Nodes["searchNode"].Text = Resx.SearchEngineDialog_Text;
+				navTree.Nodes["snippetsNode"].Text = Resx.word_Snippets;
 			}
 
 			this.ribbon = ribbon;

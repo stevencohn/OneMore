@@ -104,7 +104,7 @@ namespace River.OneMoreAddIn.Commands
 				Localize(new string[]
 				{
 					"introText",
-					"selectButton",
+					"selectButton=phrase_SelectAll",
 					"cropButton=word_OK",
 					"cancelButton=word_Cancel"
 				});

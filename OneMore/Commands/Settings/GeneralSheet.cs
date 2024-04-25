@@ -32,7 +32,7 @@ namespace River.OneMoreAddIn.Settings
 					"introBox",
 					"themeLabel",
 					"themeBox",
-					"langLabel",
+					"langLabel=word_Language",
 					"checkUpdatesBox",
 					"advancedGroup=phrase_AdvancedOptions",
 					"verboseBox",

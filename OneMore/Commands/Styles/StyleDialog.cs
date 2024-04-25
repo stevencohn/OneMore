@@ -51,7 +51,7 @@ namespace River.OneMoreAddIn.Commands
 			Logger.SetDesignMode(DesignMode);
 			eventing = false;
 
-			Text = Resx.StyleDialog_NewText;
+			Text = Resx.phrase_NewStyle;
 
 			this.pageColor = originalColor = pageColor;
 			this.darkMode = darkMode;
@@ -142,7 +142,7 @@ namespace River.OneMoreAddIn.Commands
 					"styleTypeLabel",
 					"applyColorsBox",
 					// options
-					"optionsGroup",
+					"optionsGroup=word_Options",
 					"darkBox",
 					"pageColorBox",
 					"pageColorLink",

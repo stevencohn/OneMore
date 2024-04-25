@@ -219,7 +219,7 @@ namespace River.OneMoreAddIn.Commands
 
 			return new XElement(ns + "OEChildren",
 				new Paragraph(string.Empty),
-				new Paragraph(Resx.InsertBoxCommand_Text),
+				new Paragraph(Resx.phrase_YourContentHere),
 				new Paragraph(string.Empty)
 				);
 		}

@@ -389,7 +389,7 @@ namespace River.OneMoreAddIn.Commands
 
 				Localize(new string[]
 				{
-					"tagLabel",
+					"tagLabel=TaggingDialog",
 					"introLabel",
 					"addButton=word_Add",
 					"clearLabel",
