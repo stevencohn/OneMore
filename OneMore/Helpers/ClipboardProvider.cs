@@ -236,7 +236,7 @@ namespace River.OneMoreAddIn
 					{
 						var data = new Win.DataObject();
 						data.SetText(text, Win.TextDataFormat.Html);
-						Clipboard.SetDataObject(data, false, RetryTimes, RetryDelay);
+						Clipboard.SetDataObject(data, true, RetryTimes, RetryDelay);
 						//Win.Clipboard.SetText(text, Win.TextDataFormat.Html);
 					}
 					catch (COMException ex)
@@ -270,7 +270,7 @@ namespace River.OneMoreAddIn
 					{
 						var data = new Win.DataObject();
 						data.SetText(text, Win.TextDataFormat.Text);
-						Clipboard.SetDataObject(data, false, RetryTimes, RetryDelay);
+						Clipboard.SetDataObject(data, true, RetryTimes, RetryDelay);
 						//Win.Clipboard.SetText(text, Win.TextDataFormat.Text);
 					}
 					catch (COMException ex)
