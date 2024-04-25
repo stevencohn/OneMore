@@ -6,8 +6,10 @@ namespace OneMoreTray
 {
 	using River.OneMoreAddIn;
 	using River.OneMoreAddIn.Commands;
+	using River.OneMoreAddIn.Settings;
 	using River.OneMoreAddIn.UI;
 	using System;
+	using System.Globalization;
 	using System.Threading;
 	using System.Threading.Tasks;
 	using System.Windows.Forms;
@@ -25,11 +27,16 @@ namespace OneMoreTray
 		public ScanningJob()
 		{
 			logger = Logger.Current;
+
+			SetLanguage();
+
 			trayIcon = MakeNotifyIcon();
 
 			scheduler = new HashtagScheduler();
 
-			if (!scheduler.ScheduleExists)
+			// for debugging, pass an argument!
+			var args = Environment.GetCommandLineArgs();
+			if (args.Length == 0 && !scheduler.ScheduleExists)
 			{
 				ToastMissingSchedule();
 				return;
@@ -77,6 +84,16 @@ namespace OneMoreTray
 			};
 
 			return icon;
+		}
+
+
+		private void SetLanguage()
+		{
+			var settings = new SettingsProvider().GetCollection(nameof(GeneralSheet));
+			var lang = settings.Get("language", "en");
+			var culture = CultureInfo.GetCultureInfo(lang);
+			Thread.CurrentThread.CurrentCulture = culture;
+			Thread.CurrentThread.CurrentUICulture = culture;
 		}
 
 
