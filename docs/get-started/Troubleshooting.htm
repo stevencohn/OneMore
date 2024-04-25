@@ -132,7 +132,7 @@
 <li><a id="how-to-install-onenote" href="How to Install OneNote.htm">How to Install OneNote</a></li>
 <li><a id="online-services" href="Online Services.htm">Online Services</a></li>
 <li><a id="troubleshooting" href="Troubleshooting.htm">Troubleshooting</a></li>
-<li><a id="6-1-0-release-notes" href="6.1.0 Release Notes.htm">6.1.0 Release Notes</a></li>
+<li><a id="6-2-0-release-notes" href="6.2.0 Release Notes.htm">6.2.0 Release Notes</a></li>
           </ul>
         </div>
       </div>
@@ -195,6 +195,60 @@
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; COLOR: black; MARGIN: 0in">&nbsp;</P>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; COLOR: black; MARGIN: 0in">Thank you for your patience and support.</P>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; COLOR: black; MARGIN: 0in">&nbsp;</P>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; COLOR: black; MARGIN: 0in">&nbsp;</P>
+<P lang=yo style='FONT-SIZE: 10pt; FONT-FAMILY: "Courier New"; COLOR: #43577c; MARGIN: 0in'>────────────────────────────────────────────────────────────────────────────────────────────────────</P>
+<H1 lang=yo style="FONT-SIZE: 16pt; FONT-FAMILY: Calibri; COLOR: #1e4e79; MARGIN: 0in">Check OneNote Configuration</H1>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">The OneMore installer verifies OneNote settings in the Windows System Registry that are critical to the execution of add-ins like OneMore. This verification step can be run manually at any time by entering the following command line:</P>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
+<P><CODE lang=yo style="FONT-SIZE: 10pt; FONT-FAMILY: Consolas; MARGIN: 0in 0in 0in 0.375in"><SPAN style="COLOR: #7f7f7f">PS&gt;</SPAN> .\OneMoreSetupActions.exe --install-checkonenote</CODE></P>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">This will report the configuration similar to the following. If any lines begin with the<SPAN style="mso-spacerun: yes">&nbsp; </SPAN>word "warning", then the OneNote configuration may not be ready to run add-ins. It is highly recommended to rerun the OneNote installer, chosing the "repair" option.</P>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
+<P lang=yo style="FONT-SIZE: 8pt; MARGIN: 0in"><SPAN style='FONT-FAMILY: "Segoe UI Symbol"'>❯ </SPAN><SPAN style='FONT-FAMILY: "Lucida Console"'>.\OneMoreSetupActions.exe --install-checkonenote</SPAN></P>
+<P lang=yo style='FONT-SIZE: 8pt; FONT-FAMILY: "Lucida Console"; MARGIN: 0in'>&nbsp;</P>
+<P lang=yo style='FONT-SIZE: 8pt; FONT-FAMILY: "Lucida Console"; MARGIN: 0in'>--------------------------------------------------</P>
+<P lang=yo style='FONT-SIZE: 8pt; FONT-FAMILY: "Lucida Console"; MARGIN: 0in'>direct action: --install-checkonenote .. 2/19/2024 6:50:04 AM</P>
+<P lang=yo style='FONT-SIZE: 8pt; FONT-FAMILY: "Lucida Console"; MARGIN: 0in'>OneMore installer running as user COHN-SPECTRE\steve (S-1-5-21-253190990-3394033273-2098327962-1003) elevated</P>
+<P lang=yo style='FONT-SIZE: 8pt; FONT-FAMILY: "Lucida Console"; MARGIN: 0in'>on behalf of COHN-SPECTRE\steve</P>
+<P lang=yo style='FONT-SIZE: 8pt; FONT-FAMILY: "Lucida Console"; MARGIN: 0in'>&nbsp;</P>
+<P lang=yo style='FONT-SIZE: 8pt; FONT-FAMILY: "Lucida Console"; MARGIN: 0in'>CheckOneNoteAction.Install ---</P>
+<P lang=yo style='FONT-SIZE: 8pt; FONT-FAMILY: "Lucida Console"; MARGIN: 0in'>VerifyOneNoteApplication()</P>
+<P lang=yo style='FONT-SIZE: 8pt; FONT-FAMILY: "Lucida Console"; MARGIN: 0in'>... checking HKEY_CLASSES_ROOT\OneNote.Application</P>
+<P lang=yo style='FONT-SIZE: 8pt; FONT-FAMILY: "Lucida Console"; MARGIN: 0in'>... found CLSID {DC67E480-C3CB-49F8-8232-60B0C2056C8E}</P>
+<P lang=yo style='FONT-SIZE: 8pt; FONT-FAMILY: "Lucida Console"; MARGIN: 0in'>... found CurVer OneNote.Application.15</P>
+<P lang=yo style='FONT-SIZE: 8pt; FONT-FAMILY: "Lucida Console"; MARGIN: 0in'>... OK</P>
+<P lang=yo style='FONT-SIZE: 8pt; FONT-FAMILY: "Lucida Console"; MARGIN: 0in'>VerifyRootClass(CLSID)</P>
+<P lang=yo style='FONT-SIZE: 8pt; FONT-FAMILY: "Lucida Console"; MARGIN: 0in'>... checking HKEY_CLASSES_ROOT\CLSID\{DC67E480-C3CB-49F8-8232-60B0C2056C8E}</P>
+<P lang=yo style='FONT-SIZE: 8pt; FONT-FAMILY: "Lucida Console"; MARGIN: 0in'>... verified InprocServer32 Microsoft.Office.Interop.OneNote, Version=15.0.0.0, Culture=neutral, PublicKeyToken=...</P>
+<P lang=yo style='FONT-SIZE: 8pt; FONT-FAMILY: "Lucida Console"; MARGIN: 0in'>... verified ProgID as OneNote.Application.15</P>
+<P lang=yo style='FONT-SIZE: 8pt; FONT-FAMILY: "Lucida Console"; MARGIN: 0in'>... found TypeLib as {0EA692EE-BB50-4E3C-AEF0-356D91732725}</P>
+<P lang=yo style='FONT-SIZE: 8pt; FONT-FAMILY: "Lucida Console"; MARGIN: 0in'>... verified VersionIndependentProgID as OneNote.Application.15</P>
+<P lang=yo style='FONT-SIZE: 8pt; FONT-FAMILY: "Lucida Console"; MARGIN: 0in'>... OK</P>
+<P lang=yo style='FONT-SIZE: 8pt; FONT-FAMILY: "Lucida Console"; MARGIN: 0in'>VerifyRootClass(WOW6432Node\CLSID)</P>
+<P lang=yo style='FONT-SIZE: 8pt; FONT-FAMILY: "Lucida Console"; MARGIN: 0in'>... checking HKEY_CLASSES_ROOT\WOW6432Node\CLSID\{DC67E480-C3CB-49F8-8232-60B0C2056C8E}</P>
+<P lang=yo style='FONT-SIZE: 8pt; FONT-FAMILY: "Lucida Console"; MARGIN: 0in'>... verified InprocServer32 Microsoft.Office.Interop.OneNote, Version=15.0.0.0, Culture=neutral, PublicKeyToken=...</P>
+<P lang=yo style='FONT-SIZE: 8pt; FONT-FAMILY: "Lucida Console"; MARGIN: 0in'>... verified ProgID as OneNote.Application.15</P>
+<P lang=yo style='FONT-SIZE: 8pt; FONT-FAMILY: "Lucida Console"; MARGIN: 0in'>... found TypeLib as {0EA692EE-BB50-4E3C-AEF0-356D91732725}</P>
+<P lang=yo style='FONT-SIZE: 8pt; FONT-FAMILY: "Lucida Console"; MARGIN: 0in'>... verified VersionIndependentProgID as OneNote.Application.15</P>
+<P lang=yo style='FONT-SIZE: 8pt; FONT-FAMILY: "Lucida Console"; MARGIN: 0in'>... OK</P>
+<P lang=yo style='FONT-SIZE: 8pt; FONT-FAMILY: "Lucida Console"; MARGIN: 0in'>VerifyRootClass(Software\Classes\CLSID)</P>
+<P lang=yo style='FONT-SIZE: 8pt; FONT-FAMILY: "Lucida Console"; MARGIN: 0in'>... checking HKEY_LOCAL_MACHINE\Software\Classes\CLSID\{DC67E480-C3CB-49F8-8232-60B0C2056C8E}</P>
+<P lang=yo style='FONT-SIZE: 8pt; FONT-FAMILY: "Lucida Console"; MARGIN: 0in'>... verified InprocServer32 Microsoft.Office.Interop.OneNote, Version=15.0.0.0, Culture=neutral, PublicKeyToken=...</P>
+<P lang=yo style='FONT-SIZE: 8pt; FONT-FAMILY: "Lucida Console"; MARGIN: 0in'>... verified ProgID as OneNote.Application.15</P>
+<P lang=yo style='FONT-SIZE: 8pt; FONT-FAMILY: "Lucida Console"; MARGIN: 0in'>... verified TypeLib as {0EA692EE-BB50-4E3C-AEF0-356D91732725}</P>
+<P lang=yo style='FONT-SIZE: 8pt; FONT-FAMILY: "Lucida Console"; MARGIN: 0in'>... verified VersionIndependentProgID as OneNote.Application.15</P>
+<P lang=yo style='FONT-SIZE: 8pt; FONT-FAMILY: "Lucida Console"; MARGIN: 0in'>... OK</P>
+<P lang=yo style='FONT-SIZE: 8pt; FONT-FAMILY: "Lucida Console"; MARGIN: 0in'>VerifyCurVer()</P>
+<P lang=yo style='FONT-SIZE: 8pt; FONT-FAMILY: "Lucida Console"; MARGIN: 0in'>... checking HKEY_CLASSES_ROOT\OneNote.Application.15</P>
+<P lang=yo style='FONT-SIZE: 8pt; FONT-FAMILY: "Lucida Console"; MARGIN: 0in'>... verified CLSID {DC67E480-C3CB-49F8-8232-60B0C2056C8E}</P>
+<P lang=yo style='FONT-SIZE: 8pt; FONT-FAMILY: "Lucida Console"; MARGIN: 0in'>... OK</P>
+<P lang=yo style='FONT-SIZE: 8pt; FONT-FAMILY: "Lucida Console"; MARGIN: 0in'>VerifyTypeLib()</P>
+<P lang=yo style='FONT-SIZE: 8pt; FONT-FAMILY: "Lucida Console"; MARGIN: 0in'>... checking HKEY_CLASSES_ROOT\TypeLib\{0EA692EE-BB50-4E3C-AEF0-356D91732725}</P>
+<P lang=yo style='FONT-SIZE: 8pt; FONT-FAMILY: "Lucida Console"; MARGIN: 0in'>... verified Microsoft.Office.Interop.OneNote, Version=15.0.0.0, Culture=neutral, PublicKeyToken=...</P>
+<P lang=yo style='FONT-SIZE: 8pt; FONT-FAMILY: "Lucida Console"; MARGIN: 0in'>... verified Win32 Object Library C:\Program Files\Microsoft Office\Root\Office16\ONENOTE.EXE\3</P>
+<P lang=yo style='FONT-SIZE: 8pt; FONT-FAMILY: "Lucida Console"; MARGIN: 0in'>... verified win64 Object Library C:\Program Files\Microsoft Office\Root\Office16\ONENOTE.EXE\3</P>
+<P lang=yo style='FONT-SIZE: 8pt; FONT-FAMILY: "Lucida Console"; MARGIN: 0in'>... OK</P>
+<H1 lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; COLOR: #1e4e79; MARGIN: 0in">&nbsp;</H1>
 <H1 lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; COLOR: black; MARGIN: 0in">&nbsp;</H1>
 <P lang=yo style='FONT-SIZE: 10pt; FONT-FAMILY: "Courier New"; COLOR: #43577c; MARGIN: 0in'>────────────────────────────────────────────────────────────────────────────────────────────────────</P>
 <H1 lang=yo style="FONT-SIZE: 16pt; FONT-FAMILY: Calibri; COLOR: #1e4e79; MARGIN: 0in">Enable Advanced Installer Logging</H1>
