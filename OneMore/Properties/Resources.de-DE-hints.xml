@@ -60,10 +60,6 @@
     <source>This image is from a printout. If it is cropped, it will no longer be associated with that original file. Do you want to continue cropping?</source>
     <preferred>Dieses Bild stammt von einem Ausdruck. Wenn es beschnitten wird, ist es nicht mehr mit dieser Originaldatei verknüpft. Mit dem Zuschneiden fortfahren?</preferred>
   </hint>
-  <hint name="CropImageDialog_selectButton.Text">
-    <source>Select All</source>
-    <preferred>Alles auswählen</preferred>
-  </hint>
   <hint name="EmbedSubpageCommand_SelectIntro">
     <source>Select the page to embed on this page</source>
     <preferred>Wähle die Seite aus, die in diese Seite eingebettet werden soll</preferred>
@@ -638,10 +634,6 @@ Suchmaschinen werden im Kontextmenü der Seite angezeigt, klicke mit der rechten
     <source>Move the text cursor to a single position on the page. Selection regions are not allowed.</source>
     <preferred>Bewege den Textcursor in eine einzige Position auf der Seite. Auswahlregionen sind nicht zulässig.</preferred>
   </hint>
-  <hint name="ShowXmlDialog_selectButton.Text">
-    <source>Select all</source>
-    <preferred>Wähle Alle</preferred>
-  </hint>
   <hint name="SortListCommand_BadContext">
     <source>Move the text cursor to an item of a list</source>
     <preferred>Bewege den Textcursor auf ein Element einer Liste</preferred>
@@ -738,16 +730,16 @@ Suchmaschinen werden im Kontextmenü der Seite angezeigt, klicke mit der rechten
     <source>Snippets</source>
     <preferred>Snippets</preferred>
   </hint>
-  <hint name="SnippetsSheet_Text">
-    <source>Snippets</source>
-    <preferred>Snippets</preferred>
-  </hint>
-  <hint name="SettingsDialog_snippetshNode_Text">
-    <source>Snippets</source>
-    <preferred>Snippets</preferred>
-  </hint>
   <hint name="SnippetsSheet_introLabel.Text">
     <source>Manage my snippets</source>
     <preferred>Meine Snippets verwalten</preferred>
+  </hint>
+  <hint name="phrase_SelectAll">
+    <source>Select All</source>
+    <preferred>Alles auswählen</preferred>
+  </hint>
+  <hint name="word_Snippets">
+    <source>Snippets</source>
+    <preferred>Snippets</preferred>
   </hint>
 </hints>

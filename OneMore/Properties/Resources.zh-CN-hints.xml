@@ -16,23 +16,7 @@
       您已准备就绪！
     </preferred>
   </hint>
-  <hint name="NavigatorSheet_Title">
-    <source>
-      Navigator
-    </source>
-    <preferred>
-      导航
-    </preferred>
-  </hint>
   <hint name="ribNavigatorButton_Label">
-    <source>
-      Navigator
-    </source>
-    <preferred>
-      导航
-    </preferred>
-  </hint>
-  <hint name="SettingsDialog_navigatorNode.Text">
     <source>
       Navigator
     </source>
@@ -46,70 +30,6 @@
     </source>
     <preferred>
       标题大小写
-    </preferred>
-  </hint>
-  <hint name="word_Yes">
-    <source>
-      Yes
-    </source>
-    <preferred>
-      是
-    </preferred>
-  </hint>
-  <hint name="word_No">
-    <source>
-      No
-    </source>
-    <preferred>
-      否
-    </preferred>
-  </hint>
-  <hint name="word_None">
-    <source>
-      None
-    </source>
-    <preferred>
-      无
-    </preferred>
-  </hint>
-  <hint name="word_Apply">
-    <source>
-      Apply
-    </source>
-    <preferred>
-      应用
-    </preferred>
-  </hint>
-  <hint name="word_OK">
-    <source>
-      OK
-    </source>
-    <preferred>
-      确定
-    </preferred>
-  </hint>
-  <hint name="word_Close">
-    <source>
-      Close
-    </source>
-    <preferred>
-      关闭
-    </preferred>
-  </hint>
-  <hint name="word_Completed">
-    <source>
-      Completed
-    </source>
-    <preferred>
-      已完成
-    </preferred>
-  </hint>
-  <hint name="word_PercentSymbol">
-    <source>
-      %
-    </source>
-    <preferred>
-      %
     </preferred>
   </hint>
   <hint name="ribInsertBreadcrumbButton_Label">
@@ -374,6 +294,78 @@
     </source>
     <preferred>
       行距：
+    </preferred>
+  </hint>
+  <hint name="word_Apply">
+    <source>
+      Apply
+    </source>
+    <preferred>
+      应用
+    </preferred>
+  </hint>
+  <hint name="word_Close">
+    <source>
+      Close
+    </source>
+    <preferred>
+      关闭
+    </preferred>
+  </hint>
+  <hint name="word_Completed">
+    <source>
+      Completed
+    </source>
+    <preferred>
+      已完成
+    </preferred>
+  </hint>
+  <hint name="word_Navigator">
+    <source>
+      Navigator
+    </source>
+    <preferred>
+      导航
+    </preferred>
+  </hint>
+  <hint name="word_No">
+    <source>
+      No
+    </source>
+    <preferred>
+      否
+    </preferred>
+  </hint>
+  <hint name="word_None">
+    <source>
+      None
+    </source>
+    <preferred>
+      无
+    </preferred>
+  </hint>
+  <hint name="word_OK">
+    <source>
+      OK
+    </source>
+    <preferred>
+      确定
+    </preferred>
+  </hint>
+  <hint name="word_PercentSymbol">
+    <source>
+      %
+    </source>
+    <preferred>
+      %
+    </preferred>
+  </hint>
+  <hint name="word_Yes">
+    <source>
+      Yes
+    </source>
+    <preferred>
+      是
     </preferred>
   </hint>
 </hints>
