@@ -150,6 +150,10 @@
     <value>גרסה {0} עם OneNote {1}</value>
     <comment>the version of the add-in</comment>
   </data>
+  <data name="AddCaptionCommand_cannotCaptionBg" xml:space="preserve">
+    <value>לא ניתן להוסיף כיתוב לתמונת רקע בעמוד. התמונות חייבות להיות במיכל מתאר כדי לקבל כיתוב.</value>
+    <comment>error message</comment>
+  </data>
   <data name="AddCaptionCommand_Captioned" xml:space="preserve">
     <value>לתמונה כבר יש כיתוב</value>
     <comment>info message</comment>

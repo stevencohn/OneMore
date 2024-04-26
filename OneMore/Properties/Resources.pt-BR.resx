@@ -150,6 +150,10 @@
     <value>Versão {0} com OneNote {1}</value>
     <comment>the version of the add-in</comment>
   </data>
+  <data name="AddCaptionCommand_cannotCaptionBg" xml:space="preserve">
+    <value>Não é possível adicionar uma legenda a uma imagem de fundo da página. As imagens devem estar em um contêiner de contorno para serem legendadas.</value>
+    <comment>error message</comment>
+  </data>
   <data name="AddCaptionCommand_Captioned" xml:space="preserve">
     <value>A imagem já tem uma legenda</value>
     <comment>info message</comment>

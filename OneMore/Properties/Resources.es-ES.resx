@@ -150,6 +150,10 @@
     <value>Versión {0} con OneNote {1}</value>
     <comment>the version of the add-in</comment>
   </data>
+  <data name="AddCaptionCommand_cannotCaptionBg" xml:space="preserve">
+    <value>No se puede agregar un título a una imagen de fondo en la página. Las imágenes deben estar en un contenedor de esquema para ser subtituladas.</value>
+    <comment>error message</comment>
+  </data>
   <data name="AddCaptionCommand_Captioned" xml:space="preserve">
     <value>La imagen ya tiene un título</value>
     <comment>info message</comment>

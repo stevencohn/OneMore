@@ -150,6 +150,10 @@
     <value>Wersja {0} z OneNote {1}</value>
     <comment>the version of the add-in</comment>
   </data>
+  <data name="AddCaptionCommand_cannotCaptionBg" xml:space="preserve">
+    <value>Nie można dodać podpisu do obrazu tła na stronie. Aby obrazy mogły zostać opatrzone podpisami, muszą znajdować się w kontenerze konspektu.</value>
+    <comment>error message</comment>
+  </data>
   <data name="AddCaptionCommand_Captioned" xml:space="preserve">
     <value>Obraz ma już podpis</value>
     <comment>info message</comment>

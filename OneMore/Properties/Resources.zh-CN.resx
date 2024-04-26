@@ -149,6 +149,10 @@
     <value>带有 OneNote {1} 的版本 {0}</value>
     <comment>the version of the add-in</comment>
   </data>
+  <data name="AddCaptionCommand_cannotCaptionBg" xml:space="preserve">
+    <value>无法为页面上的背景图像添加标题。图像必须位于轮廓容器中才能添加标题。</value>
+    <comment>error message</comment>
+  </data>
   <data name="AddCaptionCommand_Captioned" xml:space="preserve">
     <value>图片已有说明</value>
     <comment>info message</comment>
@@ -4826,7 +4830,7 @@ ISO-code then comma then language name</comment>
     <value>名称</value>
   </data>
   <data name="word_Navigator" xml:space="preserve">
-    <value>航海家</value>
+    <value>导航</value>
   </data>
   <data name="word_No" xml:space="preserve">
     <value>否</value>
