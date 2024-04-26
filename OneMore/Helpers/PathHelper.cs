@@ -128,6 +128,30 @@ namespace River.OneMoreAddIn
 		}
 
 
+		public static string GetUniqueQualifiedFilename(string filename)
+		{
+			if (!File.Exists(filename))
+			{
+				return filename;
+			}
+
+			var path = Path.GetDirectoryName(filename);
+			var name = Path.GetFileNameWithoutExtension(filename);
+			var ext = Path.GetExtension(filename);
+
+			var counter = 1;
+			var full = Path.Combine(path, $"{name} ({counter}){ext}");
+
+			while (File.Exists(full))
+			{
+				counter++;
+				full = Path.Combine(path, $"{name} ({counter}){ext}");
+			}
+
+			return full;
+		}
+
+
 		#region Get File Parts overrides
 		private static string GetLongDirectoryName(string path)
 		{
