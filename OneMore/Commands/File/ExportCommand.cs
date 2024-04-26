@@ -5,6 +5,7 @@
 namespace River.OneMoreAddIn.Commands
 {
 	using River.OneMoreAddIn.Settings;
+	using System;
 	using System.Collections.Generic;
 	using System.IO;
 	using System.Linq;
@@ -107,7 +108,25 @@ namespace River.OneMoreAddIn.Commands
 						? PathHelper.CleanFileName(page.Title).Replace(' ', '_')
 						: PathHelper.CleanFileName(page.Title);
 
-					var filename = Path.Combine(path, title + ext);
+					string filename;
+					if (title.Trim().Length > 0)
+					{
+						filename = Path.Combine(path, title + ext);
+					}
+					else
+					{
+						var pageinfo = await one.GetPageInfo(pageID);
+						var sectinfo = await one.GetSectionInfo(pageinfo.SectionId);
+						title = $"{PathHelper.CleanFileName(sectinfo.Name)} Untitled Page";
+
+						if (useUnderscores)
+						{
+							title = title.Replace(' ', '_');
+						}
+
+						filename = PathHelper
+							.GetUniqueQualifiedFilename(Path.Combine(path, title + ext));
+					}
 
 					progress.SetMessage(filename);
 					progress.Increment();
