@@ -36,11 +36,11 @@ namespace River.OneMoreAddIn.Commands
 		public FitGridToTextDialog(string fontSize, double spacing)
 			: this()
 		{
-			sizeBox.Value = (decimal)spacing;
-			this.spacing = spacing;
+			this.spacing = Math.Round(spacing, 2);
+			sizeBox.Value = (decimal)this.spacing;
 
 			recommendBox.Text = string.Format(
-				Resx.FitGridToTextDialog_recommendation, fontSize, spacing);
+				Resx.FitGridToTextDialog_recommendation, fontSize, this.spacing);
 		}
 
 

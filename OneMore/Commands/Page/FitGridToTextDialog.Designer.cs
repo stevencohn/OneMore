@@ -51,6 +51,7 @@
 			this.okButton.Name = "okButton";
 			this.okButton.ShowBorder = true;
 			this.okButton.Size = new System.Drawing.Size(112, 35);
+			this.okButton.StylizeImage = false;
 			this.okButton.TabIndex = 4;
 			this.okButton.Text = "OK";
 			this.okButton.ThemedBack = null;
@@ -69,6 +70,7 @@
 			this.cancelButton.Name = "cancelButton";
 			this.cancelButton.ShowBorder = true;
 			this.cancelButton.Size = new System.Drawing.Size(112, 35);
+			this.cancelButton.StylizeImage = false;
 			this.cancelButton.TabIndex = 3;
 			this.cancelButton.Text = "Cancel";
 			this.cancelButton.ThemedBack = null;
@@ -112,9 +114,19 @@
 			// 
 			// sizeBox
 			// 
-			this.sizeBox.DecimalPlaces = 4;
+			this.sizeBox.DecimalPlaces = 2;
 			this.sizeBox.Enabled = false;
+			this.sizeBox.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
 			this.sizeBox.Location = new System.Drawing.Point(156, 100);
+			this.sizeBox.Maximum = new decimal(new int[] {
+            200,
+            0,
+            0,
+            0});
 			this.sizeBox.Minimum = new decimal(new int[] {
             6,
             0,
@@ -137,6 +149,7 @@
 			this.recommendBox.Location = new System.Drawing.Point(62, 138);
 			this.recommendBox.Multiline = true;
 			this.recommendBox.Name = "recommendBox";
+			this.recommendBox.ProcessEnterKey = false;
 			this.recommendBox.ReadOnly = true;
 			this.recommendBox.Size = new System.Drawing.Size(432, 52);
 			this.recommendBox.TabIndex = 10;
