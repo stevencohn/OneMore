@@ -150,6 +150,10 @@
     <value>الإصدار {0} مع OneNote {1}</value>
     <comment>the version of the add-in</comment>
   </data>
+  <data name="AddCaptionCommand_cannotCaptionBg" xml:space="preserve">
+    <value>لا يمكن إضافة تسمية توضيحية إلى صورة الخلفية على الصفحة. يجب أن تكون الصور في حاوية مخطط تفصيلي ليتم تعليقها.</value>
+    <comment>error message</comment>
+  </data>
   <data name="AddCaptionCommand_Captioned" xml:space="preserve">
     <value>الصورة لديها بالفعل تسمية توضيحية</value>
     <comment>info message</comment>

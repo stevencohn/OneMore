@@ -150,6 +150,10 @@
     <value>Version {0} mit OneNote {1}</value>
     <comment>the version of the add-in</comment>
   </data>
+  <data name="AddCaptionCommand_cannotCaptionBg" xml:space="preserve">
+    <value>Einem Hintergrundbild auf der Seite kann keine Beschriftung hinzugefügt werden. Bilder müssen sich in einem Gliederungscontainer befinden, damit sie mit Untertiteln versehen werden können.</value>
+    <comment>error message</comment>
+  </data>
   <data name="AddCaptionCommand_Captioned" xml:space="preserve">
     <value>Das Bild hat bereits eine Beschriftung</value>
     <comment>info message</comment>
@@ -2008,7 +2012,7 @@ In diesem Abschnitt</value>
     <comment>drop down</comment>
   </data>
   <data name="phrase_SelectAll" xml:space="preserve">
-    <value>Wählen Sie Alle</value>
+    <value>Alles auswählen</value>
   </data>
   <data name="phrase_SelectNone" xml:space="preserve">
     <value>Nichts ausgewählt</value>
@@ -4912,7 +4916,7 @@ Das Dialogfeld „Hashtags suchen“ wird nun geöffnet.</value>
     <value>Zum Schweigen gebracht</value>
   </data>
   <data name="word_Snippets" xml:space="preserve">
-    <value>Ausschnitte</value>
+    <value>Snippets</value>
   </data>
   <data name="word_Start" xml:space="preserve">
     <value>Start</value>

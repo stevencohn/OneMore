@@ -150,6 +150,10 @@
     <value>Versie {0} met OneNote {1}</value>
     <comment>the version of the add-in</comment>
   </data>
+  <data name="AddCaptionCommand_cannotCaptionBg" xml:space="preserve">
+    <value>Kan geen bijschrift toevoegen aan een achtergrondafbeelding op de pagina. Afbeeldingen moeten zich in een overzichtscontainer bevinden om van ondertiteling te kunnen voorzien.</value>
+    <comment>error message</comment>
+  </data>
   <data name="AddCaptionCommand_Captioned" xml:space="preserve">
     <value>Afbeelding heeft al een bijschrift</value>
     <comment>info message</comment>

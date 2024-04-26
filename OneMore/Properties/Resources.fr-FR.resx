@@ -150,6 +150,10 @@
     <value>Version {0} avec OneNote {1}</value>
     <comment>the version of the add-in</comment>
   </data>
+  <data name="AddCaptionCommand_cannotCaptionBg" xml:space="preserve">
+    <value>Impossible d'ajouter une légende à une image d'arrière-plan sur la page. Les images doivent être dans un conteneur de contour pour être sous-titrées.</value>
+    <comment>error message</comment>
+  </data>
   <data name="AddCaptionCommand_Captioned" xml:space="preserve">
     <value>L'image a déjà une légende</value>
     <comment>info message</comment>

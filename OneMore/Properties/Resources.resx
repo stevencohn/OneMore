@@ -150,6 +150,10 @@
     <value>Version {0} with OneNote {1}</value>
     <comment>the version of the add-in</comment>
   </data>
+  <data name="AddCaptionCommand_cannotCaptionBg" xml:space="preserve">
+    <value>Cannot add a caption to a background image on the page. Images must be in an outline container to be captioned.</value>
+    <comment>error message</comment>
+  </data>
   <data name="AddCaptionCommand_Captioned" xml:space="preserve">
     <value>Image already has a caption</value>
     <comment>info message</comment>
