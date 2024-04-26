@@ -6,9 +6,11 @@ namespace River.OneMoreAddIn.Commands
 {
 	using River.OneMoreAddIn.Models;
 	using River.OneMoreAddIn.Styles;
+	using River.OneMoreAddIn.UI;
 	using System;
 	using System.Linq;
 	using System.Threading.Tasks;
+	using System.Windows.Forms;
 	using System.Xml.Linq;
 	using Resx = Properties.Resources;
 
@@ -40,7 +42,13 @@ namespace River.OneMoreAddIn.Commands
 
 			if (element == null)
 			{
-				UIHelper.ShowError(Resx.Error_SelectImage);
+				MoreMessageBox.ShowError(owner, Resx.Error_SelectImage);
+				return;
+			}
+
+			if (element.Parent.Name.LocalName == "Page")
+			{
+				MoreMessageBox.ShowError(owner, Resx.AddCaptionCommand_cannotCaptionBg);
 				return;
 			}
 
@@ -192,7 +200,8 @@ namespace River.OneMoreAddIn.Commands
 				.Any(e => e.Attribute("name").Value.Equals("om") &&
 					 e.Attribute("content").Value.Equals(Resx.word_Caption)) == true)
 			{
-				UIHelper.ShowInfo(Resx.AddCaptionCommand_Captioned);
+				MoreMessageBox.Show(owner, Resx.AddCaptionCommand_Captioned,
+					MessageBoxButtons.OK, MessageBoxIcon.Information);
 				return true;
 			}
 

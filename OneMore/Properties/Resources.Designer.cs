@@ -155,6 +155,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Cannot add a caption to a background image on the page. Images must be in an outline container to be captioned..
+        /// </summary>
+        internal static string AddCaptionCommand_cannotCaptionBg {
+            get {
+                return ResourceManager.GetString("AddCaptionCommand_cannotCaptionBg", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Image already has a caption.
         /// </summary>
         internal static string AddCaptionCommand_Captioned {
