@@ -1780,6 +1780,10 @@ Total Row Font
     <value>השבת את שירות הניווט. פעולה זו תהפוך את חלון הניווט לבלתי ניתן להפעלה.</value>
     <comment>checkbox</comment>
   </data>
+  <data name="NavigatorSheet_hidePinnedBox.Text" xml:space="preserve">
+    <value>הסתר את החלונית 'רשימת הקריאה שלי'</value>
+    <comment>checkbox</comment>
+  </data>
   <data name="NavigatorSheet_intervalLabel.Text" xml:space="preserve">
     <value>זמן קריאה מינימלי לפני הוספה להיסטוריה</value>
     <comment>label</comment>

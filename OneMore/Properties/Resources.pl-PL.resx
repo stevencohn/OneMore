@@ -1780,6 +1780,10 @@ Nagłówek niestandardowy 3</value>
     <value>Wyłącz usługę nawigacji. Spowoduje to, że okno Nawigatora przestanie działać.</value>
     <comment>checkbox</comment>
   </data>
+  <data name="NavigatorSheet_hidePinnedBox.Text" xml:space="preserve">
+    <value>Ukryj panel Moja lista czytelnicza</value>
+    <comment>checkbox</comment>
+  </data>
   <data name="NavigatorSheet_intervalLabel.Text" xml:space="preserve">
     <value>Min. czas odczytu przed dodaniem do historii</value>
     <comment>label</comment>

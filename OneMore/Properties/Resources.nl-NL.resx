@@ -1772,6 +1772,10 @@ Aangepaste kop 3</value>
     <value>Schakel de navigatieservice uit. Hierdoor wordt het Navigator-venster onbruikbaar.</value>
     <comment>checkbox</comment>
   </data>
+  <data name="NavigatorSheet_hidePinnedBox.Text" xml:space="preserve">
+    <value>Verberg het paneel Mijn leeslijst</value>
+    <comment>checkbox</comment>
+  </data>
   <data name="NavigatorSheet_intervalLabel.Text" xml:space="preserve">
     <value>Minimale leestijd voordat deze aan de geschiedenis wordt toegevoegd</value>
     <comment>label</comment>

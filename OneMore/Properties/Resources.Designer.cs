@@ -4906,6 +4906,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Hide the My Reading List panel.
+        /// </summary>
+        internal static string NavigatorSheet_hidePinnedBox_Text {
+            get {
+                return ResourceManager.GetString("NavigatorSheet_hidePinnedBox.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Min read time before adding to history.
         /// </summary>
         internal static string NavigatorSheet_intervalLabel_Text {

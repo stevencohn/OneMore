@@ -1769,6 +1769,10 @@ Benutzerdefinierte Überschrift 3</value>
     <value>Deaktivieren Sie den Navigationsdienst. Dadurch wird das Navigator-Fenster funktionsunfähig.</value>
     <comment>checkbox</comment>
   </data>
+  <data name="NavigatorSheet_hidePinnedBox.Text" xml:space="preserve">
+    <value>Blenden Sie den Bereich „Meine Leseliste“ aus</value>
+    <comment>checkbox</comment>
+  </data>
   <data name="NavigatorSheet_intervalLabel.Text" xml:space="preserve">
     <value>Mindestlesezeit vor dem Hinzufügen zum Verlauf</value>
     <comment>label</comment>
