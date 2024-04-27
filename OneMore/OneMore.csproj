@@ -1104,6 +1104,9 @@
     <Content Include="Colorizer\Languages\javascript.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Colorizer\Languages\php.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Colorizer\Languages\plantuml.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -1157,6 +1160,9 @@
     <EmbeddedResource Include="UI\WindowElevator.resx">
       <DependentUpon>WindowElevator.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="Colorizer\Languages\php.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="Colorizer\Languages\plantuml.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

@@ -1,0 +1,64 @@
+{
+  "name": "PHP",
+  "aliases": [
+    "php"
+  ],
+  "rules": [
+    {
+      "pattern": "(/\\*(?:[^*]|[\\r\\n]|(?:\\*+(?:[^*/]|[\\r\\n])))*\\*+/)",
+      "captures": [
+        "Comment"
+      ]
+    },
+    {
+      "pattern": "(/\\*[^\\r\\n]*)$",
+      "scope": "Comment",
+      "captures": [
+        "Comment"
+      ]
+    },
+    {
+      "pattern": "^([^\\r\\n]*\\*/)",
+      "scope": "",
+      "captures": [
+        "Comment"
+      ]
+    },
+    {
+      "pattern": "((?://|#).*?)\\r?$",
+      "captures": [
+        "Comment"
+      ]
+    },
+    {
+      "pattern": "('[^\\n]*?(?<!\\\\)')",
+      "captures": [
+        "String"
+      ]
+    },
+    {
+      "pattern": "(?s)(\"[^\\n]*?(?<!\\\\)\")",
+      "captures": [
+        "String"
+      ]
+    },
+    {
+      "pattern": "\\b\\$([a-aA-Z0-9]{1,})\\b",
+      "captures": [
+        "Variable"
+      ]
+    },
+    {
+      "pattern": "\\b(__halt_compiler|abstract|and|array|as|break|callable|case|catch|class|clone|const|continue|declare|default|die|do|echo|else|elseif|em|ty|enddeclare|endfor|endforeach|endif|endswitch|endwhile|eval|exit|extends|final|finally|fn|for|foreach|function|global|goto|if|imple|ents|include|include_once|instanceof|insteadof|interface|isset|list|match|namespace|new|or|print|private|protected|public|require|req|ire_once|return|static|switch|throw|trait|try|unset|use|var|while|xor|yield)\\b",
+      "captures": [
+        "Keyword"
+      ]
+    },
+    {
+      "pattern": "\\b([0-9]{1,})\\b",
+      "captures": [
+        "Number"
+      ]
+    }
+  ]
+}
