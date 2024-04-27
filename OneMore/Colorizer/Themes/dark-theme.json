@@ -259,6 +259,10 @@
       "italic": true
     },
     {
+      "name": "Variable",
+      "foreground": "Navy"
+    },
+    {
       "name": "XmlAttribute",
       "foreground": "Red"
     },
