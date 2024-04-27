@@ -43,7 +43,7 @@
 			this.pageBox = new River.OneMoreAddIn.UI.MoreFlowLayoutPanel();
 			this.pageHeadPanel = new River.OneMoreAddIn.UI.MorePanel();
 			this.refreshButton = new River.OneMoreAddIn.UI.MoreButton();
-			this.pageHeadLabel = new UI.MoreLabel();
+			this.pageHeadLabel = new River.OneMoreAddIn.UI.MoreLabel();
 			this.subContainer = new System.Windows.Forms.SplitContainer();
 			this.pinnedBox = new River.OneMoreAddIn.UI.MoreListView();
 			this.pinnedHeadPanel = new River.OneMoreAddIn.UI.MorePanel();
@@ -52,13 +52,13 @@
 			this.upButton = new River.OneMoreAddIn.UI.MoreButton();
 			this.unpinButton = new River.OneMoreAddIn.UI.MoreButton();
 			this.downButton = new River.OneMoreAddIn.UI.MoreButton();
-			this.pinnedHeadLabel = new UI.MoreLabel();
+			this.pinnedHeadLabel = new River.OneMoreAddIn.UI.MoreLabel();
 			this.historyBox = new River.OneMoreAddIn.UI.MoreListView();
 			this.historyHeadPanel = new River.OneMoreAddIn.UI.MorePanel();
 			this.historyToolPanel = new System.Windows.Forms.Panel();
 			this.pinButton = new River.OneMoreAddIn.UI.MoreButton();
 			this.copyHistoryButton = new River.OneMoreAddIn.UI.MoreButton();
-			this.historyHeadLabel = new UI.MoreLabel();
+			this.historyHeadLabel = new River.OneMoreAddIn.UI.MoreLabel();
 			this.tooltip = new System.Windows.Forms.ToolTip(this.components);
 			this.controlPanel.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.mainContainer)).BeginInit();
@@ -99,6 +99,7 @@
 			this.closeButton.Name = "closeButton";
 			this.closeButton.ShowBorder = true;
 			this.closeButton.Size = new System.Drawing.Size(108, 38);
+			this.closeButton.StylizeImage = false;
 			this.closeButton.TabIndex = 0;
 			this.closeButton.Text = "Close";
 			this.closeButton.ThemedBack = null;
@@ -175,6 +176,7 @@
 			this.refreshButton.Name = "refreshButton";
 			this.refreshButton.ShowBorder = true;
 			this.refreshButton.Size = new System.Drawing.Size(32, 32);
+			this.refreshButton.StylizeImage = false;
 			this.refreshButton.TabIndex = 0;
 			this.refreshButton.Text = "↻";
 			this.refreshButton.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -193,6 +195,8 @@
 			this.pageHeadLabel.Size = new System.Drawing.Size(216, 22);
 			this.pageHeadLabel.TabIndex = 0;
 			this.pageHeadLabel.Text = "Current page title here";
+			this.pageHeadLabel.ThemedBack = null;
+			this.pageHeadLabel.ThemedFore = null;
 			this.pageHeadLabel.Click += new System.EventHandler(this.PanelFocusOnClick);
 			// 
 			// subContainer
@@ -286,6 +290,7 @@
 			this.copyPinnedButton.Name = "copyPinnedButton";
 			this.copyPinnedButton.ShowBorder = true;
 			this.copyPinnedButton.Size = new System.Drawing.Size(32, 32);
+			this.copyPinnedButton.StylizeImage = false;
 			this.copyPinnedButton.TabIndex = 2;
 			this.copyPinnedButton.Text = "🗍";
 			this.copyPinnedButton.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -309,6 +314,7 @@
 			this.upButton.Name = "upButton";
 			this.upButton.ShowBorder = true;
 			this.upButton.Size = new System.Drawing.Size(32, 32);
+			this.upButton.StylizeImage = false;
 			this.upButton.TabIndex = 0;
 			this.upButton.Text = "▲";
 			this.upButton.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -332,6 +338,7 @@
 			this.unpinButton.Name = "unpinButton";
 			this.unpinButton.ShowBorder = true;
 			this.unpinButton.Size = new System.Drawing.Size(32, 32);
+			this.unpinButton.StylizeImage = false;
 			this.unpinButton.TabIndex = 3;
 			this.unpinButton.Text = "🗑";
 			this.unpinButton.ThemedBack = null;
@@ -354,6 +361,7 @@
 			this.downButton.Name = "downButton";
 			this.downButton.ShowBorder = true;
 			this.downButton.Size = new System.Drawing.Size(32, 32);
+			this.downButton.StylizeImage = false;
 			this.downButton.TabIndex = 1;
 			this.downButton.Text = "▼";
 			this.downButton.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -372,6 +380,8 @@
 			this.pinnedHeadLabel.Size = new System.Drawing.Size(151, 22);
 			this.pinnedHeadLabel.TabIndex = 1;
 			this.pinnedHeadLabel.Text = "My Reading List";
+			this.pinnedHeadLabel.ThemedBack = null;
+			this.pinnedHeadLabel.ThemedFore = null;
 			this.pinnedHeadLabel.Click += new System.EventHandler(this.PanelFocusOnClick);
 			// 
 			// historyBox
@@ -426,7 +436,6 @@
 			// 
 			// pinButton
 			// 
-			this.pinButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.pinButton.BackColor = System.Drawing.SystemColors.ButtonFace;
 			this.pinButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
 			this.pinButton.FlatAppearance.BorderSize = 0;
@@ -438,6 +447,7 @@
 			this.pinButton.Name = "pinButton";
 			this.pinButton.ShowBorder = true;
 			this.pinButton.Size = new System.Drawing.Size(32, 32);
+			this.pinButton.StylizeImage = false;
 			this.pinButton.TabIndex = 1;
 			this.pinButton.Text = "👓";
 			this.pinButton.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -449,7 +459,6 @@
 			// 
 			// copyHistoryButton
 			// 
-			this.copyHistoryButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.copyHistoryButton.BackColor = System.Drawing.SystemColors.ButtonFace;
 			this.copyHistoryButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
 			this.copyHistoryButton.FlatAppearance.BorderSize = 0;
@@ -461,6 +470,7 @@
 			this.copyHistoryButton.Name = "copyHistoryButton";
 			this.copyHistoryButton.ShowBorder = true;
 			this.copyHistoryButton.Size = new System.Drawing.Size(32, 32);
+			this.copyHistoryButton.StylizeImage = false;
 			this.copyHistoryButton.TabIndex = 0;
 			this.copyHistoryButton.Text = "🗍";
 			this.copyHistoryButton.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -479,6 +489,8 @@
 			this.historyHeadLabel.Size = new System.Drawing.Size(74, 22);
 			this.historyHeadLabel.TabIndex = 1;
 			this.historyHeadLabel.Text = "History";
+			this.historyHeadLabel.ThemedBack = null;
+			this.historyHeadLabel.ThemedFore = null;
 			this.historyHeadLabel.Click += new System.EventHandler(this.PanelFocusOnClick);
 			// 
 			// NavigatorWindow

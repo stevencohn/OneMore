@@ -28,6 +28,7 @@ namespace River.OneMoreAddIn.Settings
 					"depthLabel",
 					"intervalLabel",
 					"secLabel=word_Seconds",
+					"hidePinnedBox",
 					"quickBox",
 					"corrallBox",
 					"advancedGroup=phrase_AdvancedOptions",
@@ -42,6 +43,7 @@ namespace River.OneMoreAddIn.Settings
 			var interval = settings.Get("interval", NavigationService.DefaultPollingInterval);
 			intervalBox.Value = interval / Millisecond * 2;
 
+			hidePinnedBox.Checked = settings.Get("hidePinned", false);
 			quickBox.Checked = settings.Get("quickNotes", false);
 
 			//if (Screen.AllScreens.Length == 1)
@@ -68,6 +70,10 @@ namespace River.OneMoreAddIn.Settings
 			var updated = settings.Add("depth", (int)depthBox.Value);
 
 			updated = settings.Add("interval", (int)(intervalBox.Value * Millisecond / 2)) || updated;
+
+			updated = hidePinnedBox.Checked
+				? settings.Add("hidePinned", true) || updated
+				: settings.Remove("hidePinned") || updated;
 
 			updated = quickBox.Checked
 				? settings.Add("quickNotes", true) || updated

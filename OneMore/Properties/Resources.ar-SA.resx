@@ -1771,6 +1771,10 @@
     <value>قم بتعطيل خدمة الملاحة. سيؤدي هذا إلى جعل نافذة المستكشف غير قابلة للتشغيل.</value>
     <comment>checkbox</comment>
   </data>
+  <data name="NavigatorSheet_hidePinnedBox.Text" xml:space="preserve">
+    <value>إخفاء لوحة قائمة القراءة الخاصة بي</value>
+    <comment>checkbox</comment>
+  </data>
   <data name="NavigatorSheet_intervalLabel.Text" xml:space="preserve">
     <value>دقيقة وقت القراءة قبل الإضافة إلى التاريخ</value>
     <comment>label</comment>

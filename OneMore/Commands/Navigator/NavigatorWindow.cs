@@ -34,6 +34,7 @@ namespace River.OneMoreAddIn.Commands
 		private Point location;
 		private bool minimized;
 		private readonly int depth;
+		private readonly bool reading;
 		private readonly bool corralled;
 		private readonly List<IDisposable> trash;
 
@@ -69,24 +70,34 @@ namespace River.OneMoreAddIn.Commands
 
 			ManualLocation = true;
 
+			// User settings
+			var settings = new SettingsProvider().GetCollection(nameof(NavigatorSheet));
+			reading = !settings.Get("hidePinned", false);
+			corralled = settings.Get("corralled", false); //|| Screen.AllScreens.Length == 1;
+			depth = settings.Get("depth", NavigationService.DefaultHistoryDepth);
+
 			provider = new NavigationProvider();
 			provider.Navigated += ShowHistory;
 			trash.Add(provider);
 
 			var rowWidth = Width - SystemInformation.VerticalScrollBarWidth * 2;
 
-			pinnedBox.FullRowSelect = true;
-			pinnedBox.Columns.Add(
-				new MoreColumnHeader(string.Empty, rowWidth) { AutoSizeItems = true });
+			if (reading)
+			{
+				pinnedBox.FullRowSelect = true;
+				pinnedBox.Columns.Add(
+					new MoreColumnHeader(string.Empty, rowWidth) { AutoSizeItems = true });
+			}
+			else
+			{
+				subContainer.Panel1Collapsed = true;
+				copyHistoryButton.Left = pinButton.Left;
+				historyToolPanel.Controls.Remove(pinButton);
+			}
 
 			historyBox.FullRowSelect = true;
 			historyBox.Columns.Add(
 				new MoreColumnHeader(string.Empty, rowWidth) { AutoSizeItems = true });
-
-			// User settings
-			var settings = new SettingsProvider().GetCollection(nameof(NavigatorSheet));
-			corralled = settings.Get("corralled", false); //|| Screen.AllScreens.Length == 1;
-			depth = settings.Get("depth", NavigationService.DefaultHistoryDepth);
 
 			pinButton.Rescale();
 			unpinButton.Rescale();
@@ -107,8 +118,11 @@ namespace River.OneMoreAddIn.Commands
 
 			pageBox.BackColor = viewColor;
 
-			pinnedBox.BackColor = viewColor;
-			pinnedBox.HighlightBackground = manager.GetColor("LinkHighlight");
+			if (reading)
+			{
+				pinnedBox.BackColor = viewColor;
+				pinnedBox.HighlightBackground = manager.GetColor("LinkHighlight");
+			}
 
 			historyBox.BackColor = viewColor;
 			historyBox.HighlightBackground = manager.GetColor("LinkHighlight");
@@ -165,7 +179,11 @@ namespace River.OneMoreAddIn.Commands
 			subContainer.SplitterDistance = settings.Get("splitter2", subContainer.SplitterDistance);
 
 			// load data
-			await LoadPinned();
+			if (reading)
+			{
+				await LoadPinned();
+			}
+
 			ShowHistory(null, await provider.ReadHistory());
 		}
 
@@ -182,7 +200,12 @@ namespace River.OneMoreAddIn.Commands
 			corral = screen.GetBoundedLocation(this);
 
 			var rowWidth = Width - SystemInformation.VerticalScrollBarWidth * 2;
-			pinnedBox.Columns[0].Width = rowWidth;
+
+			if (reading)
+			{
+				pinnedBox.Columns[0].Width = rowWidth;
+			}
+
 			historyBox.Columns[0].Width = rowWidth;
 		}
 

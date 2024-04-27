@@ -1770,6 +1770,10 @@ OneNote 文件 (*.one)</value>
     <value>禁用导航服务。这将使导航器窗口无法操作。</value>
     <comment>checkbox</comment>
   </data>
+  <data name="NavigatorSheet_hidePinnedBox.Text" xml:space="preserve">
+    <value>隐藏“我的阅读列表”面板</value>
+    <comment>checkbox</comment>
+  </data>
   <data name="NavigatorSheet_intervalLabel.Text" xml:space="preserve">
     <value>添加到历史记录之前的最小阅读时间</value>
     <comment>label</comment>

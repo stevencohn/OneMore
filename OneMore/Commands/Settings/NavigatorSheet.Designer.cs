@@ -42,6 +42,7 @@ namespace River.OneMoreAddIn.Settings
 			this.depthLabel = new System.Windows.Forms.Label();
 			this.corrallBox = new River.OneMoreAddIn.UI.MoreCheckBox();
 			this.tooltip = new System.Windows.Forms.ToolTip(this.components);
+			this.hidePinnedBox = new River.OneMoreAddIn.UI.MoreCheckBox();
 			this.layoutPanel.SuspendLayout();
 			this.advancedGroup.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.intervalBox)).BeginInit();
@@ -63,6 +64,7 @@ namespace River.OneMoreAddIn.Settings
 			// 
 			// layoutPanel
 			// 
+			this.layoutPanel.Controls.Add(this.hidePinnedBox);
 			this.layoutPanel.Controls.Add(this.quickBox);
 			this.layoutPanel.Controls.Add(this.advancedGroup);
 			this.layoutPanel.Controls.Add(this.secLabel);
@@ -83,12 +85,15 @@ namespace River.OneMoreAddIn.Settings
 			this.quickBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(231)))), ((int)(((byte)(231)))));
 			this.quickBox.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.quickBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-			this.quickBox.Location = new System.Drawing.Point(7, 137);
+			this.quickBox.Location = new System.Drawing.Point(7, 144);
 			this.quickBox.Margin = new System.Windows.Forms.Padding(0, 0, 0, 5);
 			this.quickBox.Name = "quickBox";
 			this.quickBox.Size = new System.Drawing.Size(171, 25);
+			this.quickBox.StylizeImage = false;
 			this.quickBox.TabIndex = 2;
 			this.quickBox.Text = "Track Quick Notes";
+			this.quickBox.ThemedBack = null;
+			this.quickBox.ThemedFore = null;
 			this.tooltip.SetToolTip(this.quickBox, "Enabled only when multiple screens are available");
 			this.quickBox.UseVisualStyleBackColor = true;
 			// 
@@ -113,9 +118,12 @@ namespace River.OneMoreAddIn.Settings
 			this.disabledBox.Location = new System.Drawing.Point(18, 26);
 			this.disabledBox.Name = "disabledBox";
 			this.disabledBox.Size = new System.Drawing.Size(631, 25);
+			this.disabledBox.StylizeImage = false;
 			this.disabledBox.TabIndex = 0;
 			this.disabledBox.Text = "Disable the navigation service. This will render the Navigator window inoperaable" +
     ".";
+			this.disabledBox.ThemedBack = null;
+			this.disabledBox.ThemedFore = null;
 			this.disabledBox.UseVisualStyleBackColor = true;
 			// 
 			// secLabel
@@ -197,14 +205,33 @@ namespace River.OneMoreAddIn.Settings
 			this.corrallBox.CheckState = System.Windows.Forms.CheckState.Checked;
 			this.corrallBox.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.corrallBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-			this.corrallBox.Location = new System.Drawing.Point(7, 167);
+			this.corrallBox.Location = new System.Drawing.Point(7, 174);
 			this.corrallBox.Margin = new System.Windows.Forms.Padding(0);
 			this.corrallBox.Name = "corrallBox";
 			this.corrallBox.Size = new System.Drawing.Size(400, 25);
+			this.corrallBox.StylizeImage = false;
 			this.corrallBox.TabIndex = 3;
 			this.corrallBox.Text = "Restrict the Navigator window to the active screen";
+			this.corrallBox.ThemedBack = null;
+			this.corrallBox.ThemedFore = null;
 			this.tooltip.SetToolTip(this.corrallBox, "Enabled only when multiple screens are available");
 			this.corrallBox.UseVisualStyleBackColor = true;
+			// 
+			// hidePinnedBox
+			// 
+			this.hidePinnedBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(231)))), ((int)(((byte)(231)))));
+			this.hidePinnedBox.Cursor = System.Windows.Forms.Cursors.Hand;
+			this.hidePinnedBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+			this.hidePinnedBox.Location = new System.Drawing.Point(7, 114);
+			this.hidePinnedBox.Margin = new System.Windows.Forms.Padding(0, 0, 0, 5);
+			this.hidePinnedBox.Name = "hidePinnedBox";
+			this.hidePinnedBox.Size = new System.Drawing.Size(264, 25);
+			this.hidePinnedBox.StylizeImage = false;
+			this.hidePinnedBox.TabIndex = 7;
+			this.hidePinnedBox.Text = "Hide the My Reading List panel";
+			this.hidePinnedBox.ThemedBack = null;
+			this.hidePinnedBox.ThemedFore = null;
+			this.hidePinnedBox.UseVisualStyleBackColor = true;
 			// 
 			// NavigatorSheet
 			// 
@@ -240,5 +267,6 @@ namespace River.OneMoreAddIn.Settings
 		private UI.MoreGroupBox advancedGroup;
 		private UI.MoreCheckBox disabledBox;
 		private UI.MoreCheckBox quickBox;
+		private UI.MoreCheckBox hidePinnedBox;
 	}
 }

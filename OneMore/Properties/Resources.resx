@@ -1784,6 +1784,10 @@ Custom Heading 3</value>
     <value>Disable the navigation service. This will render the Navigator window inoperaable.</value>
     <comment>checkbox</comment>
   </data>
+  <data name="NavigatorSheet_hidePinnedBox.Text" xml:space="preserve">
+    <value>Hide the My Reading List panel</value>
+    <comment>checkbox</comment>
+  </data>
   <data name="NavigatorSheet_intervalLabel.Text" xml:space="preserve">
     <value>Min read time before adding to history</value>
     <comment>label</comment>

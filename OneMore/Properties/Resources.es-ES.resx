@@ -1771,6 +1771,10 @@ Título personalizado 3</value>
     <value>Deshabilitar el servicio de navegación. Esto hará que la ventana del Navegador no funcione.</value>
     <comment>checkbox</comment>
   </data>
+  <data name="NavigatorSheet_hidePinnedBox.Text" xml:space="preserve">
+    <value>Ocultar el panel Mi lista de lectura</value>
+    <comment>checkbox</comment>
+  </data>
   <data name="NavigatorSheet_intervalLabel.Text" xml:space="preserve">
     <value>Tiempo mínimo de lectura antes de agregar al historial</value>
     <comment>label</comment>

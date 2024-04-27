@@ -1771,6 +1771,10 @@ Titre personnalisé 3</value>
     <value>Désactivez le service de navigation. Cela rendra la fenêtre du Navigateur inutilisable.</value>
     <comment>checkbox</comment>
   </data>
+  <data name="NavigatorSheet_hidePinnedBox.Text" xml:space="preserve">
+    <value>Masquer le panneau Ma liste de lecture</value>
+    <comment>checkbox</comment>
+  </data>
   <data name="NavigatorSheet_intervalLabel.Text" xml:space="preserve">
     <value>Temps de lecture minimum avant d'ajouter à l'historique</value>
     <comment>label</comment>
