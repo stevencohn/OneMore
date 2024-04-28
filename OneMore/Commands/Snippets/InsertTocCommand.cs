@@ -1,5 +1,5 @@
 ﻿//************************************************************************************************
-// Copyright © 2016 Steven M Cohn.  All rights reserved.
+// Copyright © 2016 Steven M Cohn. All rights reserved.
 //************************************************************************************************
 
 #pragma warning disable S6605 // Collection-specific "Exists" method should be used
@@ -8,6 +8,7 @@ namespace River.OneMoreAddIn.Commands
 {
 	using River.OneMoreAddIn.Models;
 	using River.OneMoreAddIn.Styles;
+	using River.OneMoreAddIn.UI;
 	using System;
 	using System.Collections.Generic;
 	using System.Linq;
@@ -218,9 +219,15 @@ namespace River.OneMoreAddIn.Commands
 			var watt = container.Ancestors(ns + "Outline")
 				.Elements(ns + "Size").Attributes("width").FirstOrDefault();
 
-			var colwid = watt != null && float.TryParse(watt.Value, out float width)
-				? Math.Max(width, 400) - 40
+			var colwid = watt is not null && float.TryParse(watt.Value, out float width)
+				? (float)Math.Round(Math.Max(width, 400) - 40, 2)
 				: 360;
+
+			if (colwid > Outline.MaxWidth)
+			{
+				// MaxWidth is unreasonably wide, but whatever...
+				colwid = Outline.MaxWidth - 100;
+			}
 
 			table.SetColumnWidth(0, colwid);
 
@@ -262,14 +269,14 @@ namespace River.OneMoreAddIn.Commands
 
 			if (top == null)
 			{
-				UIHelper.ShowError(Resx.InsertTocCommand_NoHeadings);
+				MoreMessageBox.ShowError(owner, Resx.InsertTocCommand_NoHeadings);
 				return false;
 			}
 
 			headings = page.GetHeadings(one);
 			if (!headings.Any())
 			{
-				UIHelper.ShowError(Resx.InsertTocCommand_NoHeadings);
+				MoreMessageBox.ShowError(owner, Resx.InsertTocCommand_NoHeadings);
 				return false;
 			}
 
@@ -282,7 +289,7 @@ namespace River.OneMoreAddIn.Commands
 
 			if (titleID == null)
 			{
-				UIHelper.ShowError(Resx.InsertTocCommand_NoHeadings);
+				MoreMessageBox.ShowError(owner, Resx.InsertTocCommand_NoHeadings);
 				return false;
 			}
 
