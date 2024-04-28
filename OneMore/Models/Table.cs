@@ -24,6 +24,8 @@ namespace River.OneMoreAddIn.Models
 	/// </summary>
 	internal class Table : TableProperties
 	{
+		public const int MaxColumnWidth = 1000000;
+
 		private readonly XElement columns;
 		private readonly List<TableRow> rows;
 		private int numCells;

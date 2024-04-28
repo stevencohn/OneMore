@@ -39,6 +39,7 @@ namespace River.OneMoreAddIn.Commands
 		private const string LongDash = "\u2015";
 		private const string RefreshCmd = "onemore://InsertTocCommand/refresh";
 		private const string RefreshStyle = "font-weigth:normal;font-style:italic;font-size:9.0pt;color:#808080";
+		private const int MinToCWidth = 360;
 		private const int MinProgress = 25;
 
 		private Style cite;
@@ -220,13 +221,12 @@ namespace River.OneMoreAddIn.Commands
 				.Elements(ns + "Size").Attributes("width").FirstOrDefault();
 
 			var colwid = watt is not null && float.TryParse(watt.Value, out float width)
-				? (float)Math.Round(Math.Max(width, 400) - 40, 2)
-				: 360;
+				? (float)Math.Round(Math.Max(width, MinToCWidth + 40) - 40, 2)
+				: MinToCWidth;
 
-			if (colwid > Outline.MaxWidth)
+			if (colwid < MinToCWidth || colwid > Table.MaxColumnWidth)
 			{
-				// MaxWidth is unreasonably wide, but whatever...
-				colwid = Outline.MaxWidth - 100;
+				colwid = MinToCWidth;
 			}
 
 			table.SetColumnWidth(0, colwid);

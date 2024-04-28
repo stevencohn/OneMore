@@ -17,8 +17,6 @@ namespace River.OneMoreAddIn.Models
 	/// </remarks>
 	internal class Outline : XElement
 	{
-		public const int MaxWidth = 1000000;
-
 		private readonly XNamespace ns;
 
 
