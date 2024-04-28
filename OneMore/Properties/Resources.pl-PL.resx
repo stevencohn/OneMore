@@ -1752,6 +1752,10 @@ Nagłówek niestandardowy 3</value>
     <value>Utwórz mapę stron</value>
     <comment>dialog title</comment>
   </data>
+  <data name="MovePageCommand_noPages" xml:space="preserve">
+    <value>Nie wybrano żadnych stron do przeniesienia</value>
+    <comment>error message</comment>
+  </data>
   <data name="NameStyleDialog_errorLabel.Text" xml:space="preserve">
     <value>Nazwa istnieje. Wybierz inną nazwę.</value>
     <comment>label</comment>
@@ -3322,6 +3326,22 @@ Po ostatniej grupie</value>
   </data>
   <data name="ribMergeButton_Screentip" xml:space="preserve">
     <value>Połącz wybrane strony</value>
+    <comment>ribbon page</comment>
+  </data>
+  <data name="ribMovePageBottomButton_Label" xml:space="preserve">
+    <value>Przejdź na dół</value>
+    <comment>ribbon page</comment>
+  </data>
+  <data name="ribMovePageBottomButton_Screentip" xml:space="preserve">
+    <value>Przenieś wybrane strony na dół listy</value>
+    <comment>ribbon page</comment>
+  </data>
+  <data name="ribMovePageTopButton_Label" xml:space="preserve">
+    <value>Przejdź na górę</value>
+    <comment>ribbon page</comment>
+  </data>
+  <data name="ribMovePageTopButton_Screentip" xml:space="preserve">
+    <value>Przenieś wybrane strony na górę listy</value>
     <comment>ribbon page</comment>
   </data>
   <data name="ribNameUrlsButton_Label" xml:space="preserve">

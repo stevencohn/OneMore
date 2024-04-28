@@ -561,6 +561,16 @@ namespace River.OneMoreAddIn
 			=> await factory.Run<MergeCommand>();
 
 
+		[Command("ribMovePageBottomButton_Label", Keys.None, "ribPageMenu")]
+		public async Task MovePageBottomCmd(IRibbonControl control)
+			=> await factory.Run<MovePageCommand>(false);
+
+
+		[Command("ribMovePageTopButton_Label", Keys.None, "ribPageMenu")]
+		public async Task MovePageTopCmd(IRibbonControl control)
+			=> await factory.Run<MovePageCommand>(true);
+
+
 		[Command("ribNameUrlsButton_Label", Keys.None, "ribReferencesMenu")]
 		public async Task NameUrlsCmd(IRibbonControl control)
 			=> await factory.Run<NameUrlsCommand>();

@@ -1752,6 +1752,10 @@ Total Row Font
     <value>צור מפת עמוד</value>
     <comment>dialog title</comment>
   </data>
+  <data name="MovePageCommand_noPages" xml:space="preserve">
+    <value>לא נבחרו דפים להזזה</value>
+    <comment>error message</comment>
+  </data>
   <data name="NameStyleDialog_errorLabel.Text" xml:space="preserve">
     <value>שם קיים. בחר שם אחר.</value>
     <comment>label</comment>
@@ -3328,6 +3332,22 @@ ISO-code then comma then language name</comment>
   </data>
   <data name="ribMergeButton_Screentip" xml:space="preserve">
     <value>למזג דפים נבחרים</value>
+    <comment>ribbon page</comment>
+  </data>
+  <data name="ribMovePageBottomButton_Label" xml:space="preserve">
+    <value>העבר לתחתית</value>
+    <comment>ribbon page</comment>
+  </data>
+  <data name="ribMovePageBottomButton_Screentip" xml:space="preserve">
+    <value>העבר את הדפים שנבחרו לתחתית הרשימה</value>
+    <comment>ribbon page</comment>
+  </data>
+  <data name="ribMovePageTopButton_Label" xml:space="preserve">
+    <value>העבר לראש הדף</value>
+    <comment>ribbon page</comment>
+  </data>
+  <data name="ribMovePageTopButton_Screentip" xml:space="preserve">
+    <value>העבר את הדפים שנבחרו לראש הרשימה</value>
     <comment>ribbon page</comment>
   </data>
   <data name="ribNameUrlsButton_Label" xml:space="preserve">

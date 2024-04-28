@@ -1017,6 +1017,20 @@
         onAction="MergeCmd"
         insertBeforeMso="RenamePageOneNote"/>
       <button
+        id="ctxMovePageBottomButton"
+        imageMso="DownArrow2"
+        getLabel="GetRibbonLabel"
+        getScreentip="GetRibbonScreentip"
+        onAction="MovePageBottomCmd"
+        insertBeforeMso="RenamePageOneNote"/>
+      <button
+        id="ctxMovePageTopButton"
+        imageMso="UpArrow2"
+        getLabel="GetRibbonLabel"
+        getScreentip="GetRibbonScreentip"
+        onAction="MovePageTopCmd"
+        insertBeforeMso="RenamePageOneNote"/>
+      <button
         id="ctxPageColorButton"
         imageMso="ShapeFillColorPicker"
         getLabel="GetRibbonLabel"

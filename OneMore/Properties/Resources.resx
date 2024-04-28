@@ -1756,6 +1756,10 @@ Custom Heading 3</value>
     <value>Create Page Map</value>
     <comment>dialog title</comment>
   </data>
+  <data name="MovePageCommand_noPages" xml:space="preserve">
+    <value>There are no pages selected to move</value>
+    <comment>error message</comment>
+  </data>
   <data name="NameStyleDialog_errorLabel.Text" xml:space="preserve">
     <value>Name exists. Choose a different name.</value>
     <comment>label</comment>
@@ -3348,6 +3352,22 @@ After last group</value>
   </data>
   <data name="ribMergeButton_Screentip" xml:space="preserve">
     <value>Merge selected pages</value>
+    <comment>ribbon page</comment>
+  </data>
+  <data name="ribMovePageBottomButton_Label" xml:space="preserve">
+    <value>Move to Bottom</value>
+    <comment>ribbon page</comment>
+  </data>
+  <data name="ribMovePageBottomButton_Screentip" xml:space="preserve">
+    <value>Move selected pages to bottom of list</value>
+    <comment>ribbon page</comment>
+  </data>
+  <data name="ribMovePageTopButton_Label" xml:space="preserve">
+    <value>Move to Top</value>
+    <comment>ribbon page</comment>
+  </data>
+  <data name="ribMovePageTopButton_Screentip" xml:space="preserve">
+    <value>Move selected pages to top of list</value>
     <comment>ribbon page</comment>
   </data>
   <data name="ribNameUrlsButton_Label" xml:space="preserve">

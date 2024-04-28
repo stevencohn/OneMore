@@ -1742,6 +1742,10 @@ OneNote 文件 (*.one)</value>
     <value>为页面创建链接图谱</value>
     <comment>dialog title</comment>
   </data>
+  <data name="MovePageCommand_noPages" xml:space="preserve">
+    <value>没有选择要移动的页面</value>
+    <comment>error message</comment>
+  </data>
   <data name="NameStyleDialog_errorLabel.Text" xml:space="preserve">
     <value>名称存在。选择不同的名称。</value>
     <comment>label</comment>
@@ -3310,6 +3314,22 @@ ISO-code then comma then language name</comment>
   </data>
   <data name="ribMergeButton_Screentip" xml:space="preserve">
     <value>合并所选页面</value>
+    <comment>ribbon page</comment>
+  </data>
+  <data name="ribMovePageBottomButton_Label" xml:space="preserve">
+    <value>移至底部</value>
+    <comment>ribbon page</comment>
+  </data>
+  <data name="ribMovePageBottomButton_Screentip" xml:space="preserve">
+    <value>将选定的页面移至列表底部</value>
+    <comment>ribbon page</comment>
+  </data>
+  <data name="ribMovePageTopButton_Label" xml:space="preserve">
+    <value>移至顶部</value>
+    <comment>ribbon page</comment>
+  </data>
+  <data name="ribMovePageTopButton_Screentip" xml:space="preserve">
+    <value>将选定的页面移至列表顶部</value>
     <comment>ribbon page</comment>
   </data>
   <data name="ribNameUrlsButton_Label" xml:space="preserve">

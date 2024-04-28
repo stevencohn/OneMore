@@ -1744,6 +1744,10 @@ Título personalizado 3</value>
     <value>Criar mapa de página</value>
     <comment>dialog title</comment>
   </data>
+  <data name="MovePageCommand_noPages" xml:space="preserve">
+    <value>Não há páginas selecionadas para mover</value>
+    <comment>error message</comment>
+  </data>
   <data name="NameStyleDialog_errorLabel.Text" xml:space="preserve">
     <value>Nome existe. Escolha um nome diferente.</value>
     <comment>label</comment>
@@ -3309,6 +3313,22 @@ Depois do último grupo</value>
   </data>
   <data name="ribMergeButton_Screentip" xml:space="preserve">
     <value>Mesclar páginas selecionadas</value>
+    <comment>ribbon page</comment>
+  </data>
+  <data name="ribMovePageBottomButton_Label" xml:space="preserve">
+    <value>Mover para baixo</value>
+    <comment>ribbon page</comment>
+  </data>
+  <data name="ribMovePageBottomButton_Screentip" xml:space="preserve">
+    <value>Mover as páginas selecionadas para o final da lista</value>
+    <comment>ribbon page</comment>
+  </data>
+  <data name="ribMovePageTopButton_Label" xml:space="preserve">
+    <value>Mover para o topo</value>
+    <comment>ribbon page</comment>
+  </data>
+  <data name="ribMovePageTopButton_Screentip" xml:space="preserve">
+    <value>Mover as páginas selecionadas para o topo da lista</value>
     <comment>ribbon page</comment>
   </data>
   <data name="ribNameUrlsButton_Label" xml:space="preserve">

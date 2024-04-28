@@ -1744,6 +1744,10 @@ Aangepaste kop 3</value>
     <value>Maak een paginakaart</value>
     <comment>dialog title</comment>
   </data>
+  <data name="MovePageCommand_noPages" xml:space="preserve">
+    <value>Er zijn geen pagina's geselecteerd om te verplaatsen</value>
+    <comment>error message</comment>
+  </data>
   <data name="NameStyleDialog_errorLabel.Text" xml:space="preserve">
     <value>Naam bestaat. Kies een andere naam.</value>
     <comment>label</comment>
@@ -3309,6 +3313,22 @@ Na de laatste groep</value>
   </data>
   <data name="ribMergeButton_Screentip" xml:space="preserve">
     <value>Voeg geselecteerde pagina's samen</value>
+    <comment>ribbon page</comment>
+  </data>
+  <data name="ribMovePageBottomButton_Label" xml:space="preserve">
+    <value>Verplaats naar beneden</value>
+    <comment>ribbon page</comment>
+  </data>
+  <data name="ribMovePageBottomButton_Screentip" xml:space="preserve">
+    <value>Verplaats geselecteerde pagina's naar de onderkant van de lijst</value>
+    <comment>ribbon page</comment>
+  </data>
+  <data name="ribMovePageTopButton_Label" xml:space="preserve">
+    <value>Verplaats naar boven</value>
+    <comment>ribbon page</comment>
+  </data>
+  <data name="ribMovePageTopButton_Screentip" xml:space="preserve">
+    <value>Verplaats geselecteerde pagina's naar de bovenkant van de lijst</value>
     <comment>ribbon page</comment>
   </data>
   <data name="ribNameUrlsButton_Label" xml:space="preserve">
