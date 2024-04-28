@@ -142,18 +142,7 @@ namespace River.OneMoreAddIn.UI
 
 		public static DialogResult ShowError(IWin32Window owner, string text)
 		{
-			using var box = new MoreMessageBox();
-			box.SetMessage(text);
-			box.SetIcon(MessageBoxIcon.Error);
-			box.SetButtons(MessageBoxButtons.OK);
-
-			if (owner is null)
-			{
-				box.StartPosition = FormStartPosition.CenterScreen;
-				return box.ShowDialog();
-			}
-
-			return box.ShowDialog(owner);
+			return Show(owner, text, MessageBoxButtons.OK, MessageBoxIcon.Error);
 		}
 
 
@@ -183,6 +172,12 @@ namespace River.OneMoreAddIn.UI
 				: MessageBoxButtons.YesNo;
 
 			return Show(owner, text, buttons, MessageBoxIcon.Question);
+		}
+
+
+		public static DialogResult ShowWarning(IWin32Window owner, string text)
+		{
+			return Show(owner, text, MessageBoxButtons.OK, MessageBoxIcon.Warning);
 		}
 
 
