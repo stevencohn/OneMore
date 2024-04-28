@@ -1,10 +1,10 @@
 ﻿//************************************************************************************************
-// Copyright © 2022 Steven M Cohn.  All rights reserved.
+// Copyright © 2022 Steven M Cohn. All rights reserved.
 //************************************************************************************************
 
 namespace River.OneMoreAddIn.Commands
 {
-	using Resx = River.OneMoreAddIn.Properties.Resources;
+	using Resx = Properties.Resources;
 
 
 	internal partial class ReportRemindersDialog : UI.MoreForm
@@ -20,7 +20,6 @@ namespace River.OneMoreAddIn.Commands
 				Localize(new string[]
 				{
 					"introLabel",
-					"groupBox=word_Scope",
 					"notebooksRadio=phrase_AllNotebooks",
 					"notebookRadio=phrase_AllSectionInTheCurrentNotebook",
 					"sectionRadio=phrase_TheCurrentSection",
@@ -29,6 +28,9 @@ namespace River.OneMoreAddIn.Commands
 				});
 			}
 		}
+
+
+		public bool IncludeCompleted => showCompletedBox.Checked;
 
 
 		public OneNote.Scope Scope

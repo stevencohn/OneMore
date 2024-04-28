@@ -2451,6 +2451,10 @@ Sélectionnez Non pour conserver une ligne vide entre les paragraphes</value>
     <value>Générer un rapport pour les rappels dans cette portée</value>
     <comment>label</comment>
   </data>
+  <data name="ReportRemindersDialog_showCompletedBox.Text" xml:space="preserve">
+    <value>Inclure les rappels terminés</value>
+    <comment>checkbox</comment>
+  </data>
   <data name="ReportRemindersReuseDialog_newRadio.Text" xml:space="preserve">
     <value>Créer une nouvelle page de rapport</value>
     <comment>radio</comment>

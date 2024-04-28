@@ -2469,6 +2469,10 @@ ISO-code then comma then language name</comment>
     <value>צור דוח לתזכורות בהיקף זה</value>
     <comment>label</comment>
   </data>
+  <data name="ReportRemindersDialog_showCompletedBox.Text" xml:space="preserve">
+    <value>כלול תזכורות שהושלמו</value>
+    <comment>checkbox</comment>
+  </data>
   <data name="ReportRemindersReuseDialog_newRadio.Text" xml:space="preserve">
     <value>צור דף דוח חדש</value>
     <comment>radio</comment>

@@ -39,6 +39,7 @@ namespace River.OneMoreAddIn.Commands
 		private const string HeaderCss = "font-family:'Segoe UI Light';font-size:10.0pt";
 
 		private OneNote.Scope scope;
+		private bool showCompleted;
 		private OneNote one;
 		private Page page;
 		private XNamespace ns;
@@ -75,6 +76,13 @@ namespace River.OneMoreAddIn.Commands
 						scope = OneNote.Scope.Notebooks;
 					}
 
+					if (args.Length < 2 || args[2] is not string completedArg ||
+						!bool.TryParse(completedArg, out showCompleted))
+					{
+						// opposite of default in dialog, but this is backwards-compatible
+						showCompleted = true;
+					}
+
 					if (!await CollectReminders(scope))
 					{
 						return;
@@ -94,6 +102,7 @@ namespace River.OneMoreAddIn.Commands
 					}
 
 					scope = dialog.Scope;
+					showCompleted = dialog.IncludeCompleted;
 
 					if (!await CollectReminders(scope))
 					{
@@ -130,7 +139,7 @@ namespace River.OneMoreAddIn.Commands
 				var now = DateTime.Now.ToShortFriendlyString();
 				container.Add(
 					new Paragraph($"{Resx.ReminderReport_LastUpdated} {now} " +
-						$"(<a href=\"onemore://ReportRemindersCommand/refresh/{scope}\">{Resx.word_Refresh}</a>)"),
+						$"(<a href=\"onemore://ReportRemindersCommand/refresh/{scope}/{showCompleted}\">{Resx.word_Refresh}</a>)"),
 					new Paragraph(string.Empty)
 					);
 
@@ -212,8 +221,14 @@ namespace River.OneMoreAddIn.Commands
 						WoYear = calendar.GetWeekOfYear(reminder.Due, weekRule, firstDay)
 					};
 
-					if (reminder.Status == ReminderStatus.Completed ||
-						reminder.Status == ReminderStatus.Deferred)
+					if (reminder.Status == ReminderStatus.Completed)
+					{
+						if (showCompleted)
+						{
+							inactive.Add(item);
+						}
+					}
+					else if (reminder.Status == ReminderStatus.Deferred)
 					{
 						inactive.Add(item);
 					}

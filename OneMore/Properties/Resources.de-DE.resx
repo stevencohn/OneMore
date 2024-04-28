@@ -2449,6 +2449,10 @@ Wähle Nein, um eine leere Zeile zwischen den Absätzen zu halten</value>
     <value>Erstelle Bericht für Erinnerungen in diesem Bereich</value>
     <comment>label</comment>
   </data>
+  <data name="ReportRemindersDialog_showCompletedBox.Text" xml:space="preserve">
+    <value>Fügen Sie abgeschlossene Erinnerungen hinzu</value>
+    <comment>checkbox</comment>
+  </data>
   <data name="ReportRemindersReuseDialog_newRadio.Text" xml:space="preserve">
     <value>Erstelle eine neue Berichtsseite</value>
     <comment>radio</comment>
