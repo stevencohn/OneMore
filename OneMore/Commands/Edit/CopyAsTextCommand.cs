@@ -4,6 +4,7 @@
 
 namespace River.OneMoreAddIn.Commands
 {
+	using River.OneMoreAddIn.UI;
 	using System.Linq;
 	using System.Text;
 	using System.Threading.Tasks;
@@ -28,28 +29,31 @@ namespace River.OneMoreAddIn.Commands
 
 			await using var one = new OneNote(out var page, out var ns);
 
-			page.GetTextCursor();
+			page.GetTextCursor(allowPageTitle: true);
 			var all = page.SelectionScope != SelectionScope.Region;
 
 			var builder = new StringBuilder();
 
-			var paragraphs = page.Root
-				.Elements(ns + "Outline")
-				.Elements(ns + "OEChildren")
-				.Elements(ns + "OE");
+			// this allows Title selections as well as body selections
+			var paragraphs = page.Root.Descendants(ns + "OE");
 
 			if (paragraphs.Any())
 			{
 				foreach (var paragraph in paragraphs)
 				{
 					BuildText(all, ns, paragraph, builder);
+
+					if (paragraph.Parent.Name.LocalName == "Title")
+					{
+						builder.AppendLine();
+					}
 				}
 			}
 
 			var success = await new ClipboardProvider().SetText(builder.ToString());
 			if (!success)
 			{
-				UIHelper.ShowInfo(Resx.Clipboard_locked);
+				MoreMessageBox.ShowWarning(owner, Resx.Clipboard_locked);
 				return;
 			}
 
