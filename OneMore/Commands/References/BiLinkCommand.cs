@@ -5,6 +5,7 @@
 namespace River.OneMoreAddIn.Commands
 {
 	using River.OneMoreAddIn.Models;
+	using River.OneMoreAddIn.UI;
 	using System.Linq;
 	using System.Text.RegularExpressions;
 	using System.Threading.Tasks;
@@ -48,24 +49,24 @@ namespace River.OneMoreAddIn.Commands
 			{
 				if (!await MarkAnchor(one))
 				{
-					UIHelper.ShowError(one.Window, Resx.BiLinkCommand_BadAnchor);
+					MoreMessageBox.ShowError(owner, Resx.BiLinkCommand_BadAnchor);
 					return;
 				}
 
 				if (anchorText.Length > 20) { anchorText = $"{anchorText.Substring(0, 20)}..."; }
-				UIHelper.ShowInfo(one.Window, string.Format(Resx.BiLinkCommand_Marked, anchorText));
+				MoreMessageBox.Show(owner, string.Format(Resx.BiLinkCommand_Marked, anchorText));
 			}
 			else
 			{
 				if (string.IsNullOrEmpty(anchorPageId))
 				{
-					UIHelper.ShowError(one.Window, Resx.BiLinkCommand_NoAnchor);
+					MoreMessageBox.ShowError(owner, Resx.BiLinkCommand_NoAnchor);
 					return;
 				}
 
 				if (!await CreateLinks(one))
 				{
-					UIHelper.ShowError(one.Window, string.Format(Resx.BiLinkCommand_BadTarget, error));
+					MoreMessageBox.ShowError(owner, string.Format(Resx.BiLinkCommand_BadTarget, error));
 					return;
 				}
 
@@ -86,7 +87,7 @@ namespace River.OneMoreAddIn.Commands
 
 			// get selected runs but preserve cursor if there is one so we can edit from it later
 			var run = range.GetSelection();
-			if (run == null)
+			if (run is null)
 			{
 				logger.WriteLine("no selected content");
 				return false;
@@ -114,7 +115,7 @@ namespace River.OneMoreAddIn.Commands
 			// - - - - anchor...
 
 			var anchorPage = await one.GetPage(anchorPageId);
-			if (anchorPage == null)
+			if (anchorPage is null)
 			{
 				logger.WriteLine($"lost anchor page {anchorPageId}");
 				error = Resx.BiLinkCommand_LostAnchor;
@@ -124,7 +125,7 @@ namespace River.OneMoreAddIn.Commands
 			var candidate = anchorPage.Root.Descendants()
 				.FirstOrDefault(e => e.Attributes("objectID").Any(a => a.Value == anchorId));
 
-			if (candidate == null)
+			if (candidate is null)
 			{
 				logger.WriteLine($"lost anchor paragraph {anchorId}");
 				error = Resx.BiLinkCommand_LostAnchor;
@@ -151,7 +152,7 @@ namespace River.OneMoreAddIn.Commands
 
 			var range = new SelectionRange(targetPage.Root);
 			var targetRun = range.GetSelection();
-			if (targetRun == null)
+			if (targetRun is null)
 			{
 				logger.WriteLine("no selected target content");
 				error = Resx.BiLinkCommand_NoTarget;

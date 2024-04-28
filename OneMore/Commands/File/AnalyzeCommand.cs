@@ -1,5 +1,5 @@
 ﻿//************************************************************************************************
-// Copyright © 2021 Steven M Cohn.  All rights reserved.
+// Copyright © 2021 Steven M Cohn. All rights reserved.
 //************************************************************************************************
 
 #pragma warning disable S3267 // Loops should be simplified with "LINQ" expressions
@@ -7,12 +7,12 @@
 namespace River.OneMoreAddIn.Commands
 {
 	using OneMoreAddIn.Models;
+	using OneMoreAddIn.UI;
 	using System;
 	using System.Collections.Generic;
 	using System.Drawing;
 	using System.IO;
 	using System.Linq;
-	using System.Runtime.CompilerServices;
 	using System.Threading.Tasks;
 	using System.Windows.Forms;
 	using System.Xml.Linq;
@@ -74,7 +74,7 @@ namespace River.OneMoreAddIn.Commands
 
 				if (!Directory.Exists(backupPath))
 				{
-					UIHelper.ShowError(owner, Resx.AnalyzeCommand_NoBackups);
+					MoreMessageBox.ShowError(owner, Resx.AnalyzeCommand_NoBackups);
 					return;
 				}
 
@@ -358,7 +358,7 @@ namespace River.OneMoreAddIn.Commands
 
 		private void WriteHorizontalLine(Page page, XElement container)
 		{
-			if (divider == null)
+			if (divider is null)
 			{
 				divider = string.Empty.PadRight(80, '═');
 				page.EnsurePageWidth(divider, "Courier new", 11f, one.WindowHandle);
@@ -453,8 +453,8 @@ namespace River.OneMoreAddIn.Commands
 			var folderName = folder.Attribute("name").Value;
 
 			var sections = folder.Elements(ns + "Section")
-				.Where(e => e.Attribute("isInRecycleBin") == null
-					&& e.Attribute("locked") == null);
+				.Where(e => e.Attribute("isInRecycleBin") is null
+					&& e.Attribute("locked") is null);
 
 			foreach (var section in sections)
 			{
@@ -462,8 +462,8 @@ namespace River.OneMoreAddIn.Commands
 				progress.SetMessage($"Section {name}");
 				progress.Increment();
 
-				var title = folderPath == null ? name : Path.Combine(folderPath, name);
-				var subp = folderPath == null ? folderName : Path.Combine(folderPath, folderName);
+				var title = folderPath is null ? name : Path.Combine(folderPath, name);
+				var subp = folderPath is null ? folderName : Path.Combine(folderPath, folderName);
 
 				var path = section.Attribute("path").Value;
 				var remote = path.Contains("https://");
@@ -539,11 +539,11 @@ namespace River.OneMoreAddIn.Commands
 			// section groups...
 
 			var groups = folder.Elements(ns + "SectionGroup")
-				.Where(e => e.Attribute("isRecycleBin") == null);
+				.Where(e => e.Attribute("isRecycleBin") is null);
 
 			foreach (var group in groups)
 			{
-				var path = folderPath == null ? folderName : Path.Combine(folderPath, folderName);
+				var path = folderPath is null ? folderName : Path.Combine(folderPath, folderName);
 				var (p, s) = await ReportSections(table, group, path);
 				totalPages += p;
 				totalSize += s;
@@ -559,8 +559,8 @@ namespace River.OneMoreAddIn.Commands
 			XElement container, XElement folder, string folderPath, string skipId)
 		{
 			var sections = folder.Elements(ns + "Section")
-				.Where(e => e.Attribute("isInRecycleBin") == null
-					&& e.Attribute("locked") == null);
+				.Where(e => e.Attribute("isInRecycleBin") is null
+					&& e.Attribute("locked") is null);
 
 			foreach (var section in sections)
 			{
@@ -569,12 +569,12 @@ namespace River.OneMoreAddIn.Commands
 			}
 
 			var groups = folder.Elements(ns + "SectionGroup")
-				.Where(e => e.Attribute("isRecycleBin") == null);
+				.Where(e => e.Attribute("isRecycleBin") is null);
 
 			foreach (var group in groups)
 			{
 				var name = group.Attribute("name").Value;
-				folderPath = folderPath == null ? name : Path.Combine(folderPath, name);
+				folderPath = folderPath is null ? name : Path.Combine(folderPath, name);
 
 				await ReportAllPages(container, group, folderPath, skipId);
 			}
@@ -585,7 +585,7 @@ namespace River.OneMoreAddIn.Commands
 			XElement container, XElement section, string folderPath, string skipId)
 		{
 			var name = section.Attribute("name").Value;
-			var title = folderPath == null ? name : Path.Combine(folderPath, name);
+			var title = folderPath is null ? name : Path.Combine(folderPath, name);
 
 			progress.SetMessage($"{title} pages...");
 
@@ -646,7 +646,7 @@ namespace River.OneMoreAddIn.Commands
 				$"<a href='{link}'>{page.Title}</a> ({length.ToBytes(1)})").SetStyle(HeaderCss));
 
 			var images = page.Root.Descendants(ns + "Image")
-				.Where(e => e.Attribute("xpsFileIndex") == null && e.Attribute("sourceDocument") == null)
+				.Where(e => e.Attribute("xpsFileIndex") is null && e.Attribute("sourceDocument") is null)
 				.ToList();
 
 			var files = page.Root.Descendants(ns + "InsertedFile")
@@ -694,13 +694,13 @@ namespace River.OneMoreAddIn.Commands
 				var name = file.Attribute("preferredName").Value;
 
 				var path = file.Attribute("pathSource")?.Value;
-				var original = path != null;
+				var original = path is not null;
 				if (!original)
 				{
 					path = file.Attribute("pathCache")?.Value;
 				}
 
-				if (path == null)
+				if (path is null)
 				{
 					row[0].SetContent(name);
 				}
@@ -837,7 +837,7 @@ namespace River.OneMoreAddIn.Commands
 					}
 				}
 
-				if (img != null)
+				if (img is not null)
 				{
 					if (printout)
 					{
