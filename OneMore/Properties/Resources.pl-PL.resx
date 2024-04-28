@@ -2465,6 +2465,10 @@ Wybierz Nie, aby zachować jedną pustą linię między akapitami</value>
     <value>Wygeneruj raport dla przypomnień w tym zakresie</value>
     <comment>label</comment>
   </data>
+  <data name="ReportRemindersDialog_showCompletedBox.Text" xml:space="preserve">
+    <value>Dołącz ukończone przypomnienia</value>
+    <comment>checkbox</comment>
+  </data>
   <data name="ReportRemindersReuseDialog_newRadio.Text" xml:space="preserve">
     <value>Utwórz nową stronę raportu</value>
     <comment>radio</comment>

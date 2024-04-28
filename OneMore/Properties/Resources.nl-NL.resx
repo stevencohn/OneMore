@@ -2453,6 +2453,10 @@ Selecteer NO om één lege regel tussen paragrafen te behouden</value>
     <value>Genereer rapport voor herinneringen in deze scope</value>
     <comment>label</comment>
   </data>
+  <data name="ReportRemindersDialog_showCompletedBox.Text" xml:space="preserve">
+    <value>Voeg voltooide herinneringen toe</value>
+    <comment>checkbox</comment>
+  </data>
   <data name="ReportRemindersReuseDialog_newRadio.Text" xml:space="preserve">
     <value>Maak een nieuwe rapportpagina</value>
     <comment>radio</comment>

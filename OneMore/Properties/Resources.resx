@@ -2489,6 +2489,10 @@ Select No to keep one empty line between paragraphs</value>
     <value>Generate report for reminders in this scope</value>
     <comment>label</comment>
   </data>
+  <data name="ReportRemindersDialog_showCompletedBox.Text" xml:space="preserve">
+    <value>Include completed reminders</value>
+    <comment>checkbox</comment>
+  </data>
   <data name="ReportRemindersReuseDialog_newRadio.Text" xml:space="preserve">
     <value>Create a new report page</value>
     <comment>radio</comment>

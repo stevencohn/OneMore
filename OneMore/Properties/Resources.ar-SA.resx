@@ -2452,6 +2452,10 @@ ISO-code then comma then language name</comment>
     <value>توليد تقرير للتذكير في هذا النطاق</value>
     <comment>label</comment>
   </data>
+  <data name="ReportRemindersDialog_showCompletedBox.Text" xml:space="preserve">
+    <value>تضمين التذكيرات المكتملة</value>
+    <comment>checkbox</comment>
+  </data>
   <data name="ReportRemindersReuseDialog_newRadio.Text" xml:space="preserve">
     <value>إنشاء صفحة تقرير جديدة</value>
     <comment>radio</comment>

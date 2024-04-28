@@ -2453,6 +2453,10 @@ Selecione Não para manter uma linha vazia entre os parágrafos</value>
     <value>Gerar relatório para lembretes neste escopo</value>
     <comment>label</comment>
   </data>
+  <data name="ReportRemindersDialog_showCompletedBox.Text" xml:space="preserve">
+    <value>Incluir lembretes concluídos</value>
+    <comment>checkbox</comment>
+  </data>
   <data name="ReportRemindersReuseDialog_newRadio.Text" xml:space="preserve">
     <value>Crie uma nova página de relatório</value>
     <comment>radio</comment>

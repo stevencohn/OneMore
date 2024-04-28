@@ -6505,6 +6505,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Include completed reminders.
+        /// </summary>
+        internal static string ReportRemindersDialog_showCompletedBox_Text {
+            get {
+                return ResourceManager.GetString("ReportRemindersDialog_showCompletedBox.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Report Scope.
         /// </summary>
         internal static string ReportRemindersDialog_Text {

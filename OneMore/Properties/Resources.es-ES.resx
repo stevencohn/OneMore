@@ -2452,6 +2452,10 @@ Seleccione No para mantener una línea vacía entre los párrafos</value>
     <value>Genere un informe para recordatorios en este alcance</value>
     <comment>label</comment>
   </data>
+  <data name="ReportRemindersDialog_showCompletedBox.Text" xml:space="preserve">
+    <value>Incluir recordatorios completados</value>
+    <comment>checkbox</comment>
+  </data>
   <data name="ReportRemindersReuseDialog_newRadio.Text" xml:space="preserve">
     <value>Crear una nueva página de informe</value>
     <comment>radio</comment>
