@@ -63,6 +63,8 @@ namespace River.OneMoreAddIn.Helpers.Office
 				word.Documents.Open(ref source);
 				var doc = word.ActiveDocument;
 
+				doc.WebOptions.Encoding = Microsoft.Office.Core.MsoEncoding.msoEncodingUTF8;
+
 				// save as HTML
 				doc.SaveAs2(ref target, ref format);
 				doc.Close();
