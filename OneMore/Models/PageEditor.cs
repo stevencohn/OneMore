@@ -497,5 +497,33 @@ namespace River.OneMoreAddIn.Models
 				Anchor = page.EnsureContentContainer(false);
 			}
 		}
+
+
+		public async Task<bool> ReplaceSelectedContent(XElement replacement)
+		{
+			var content = await ExtractSelectedContent();
+
+			if (!content.HasElements)
+			{
+				// no selection region found
+				return false;
+			}
+
+			if (replacement.Name.LocalName != "OE")
+			{
+				replacement = new XElement(ns + "OE", replacement);
+			}
+
+			if (Anchor.Name.LocalName.In("OE", "HTMLBlock"))
+			{
+				Anchor.AddAfterSelf(replacement);
+			}
+			else
+			{
+				Anchor.AddFirst(replacement);
+			}
+
+			return true;
+		}
 	}
 }
