@@ -171,6 +171,18 @@ namespace River.OneMoreAddIn.Commands
 				}
 			}
 
+			// calculate delta for width based on indent of outline
+			var delta = 0;
+			var outline = cursor.Ancestors(ns + "Outline").FirstOrDefault();
+			if (outline is not null)
+			{
+				var x = outline.Elements(ns + "Position").Attributes("x").FirstOrDefault();
+				if (x is not null)
+				{
+					delta = (int)double.Parse(x.Value) - 36;
+				}
+			}
+
 			// if insertion point is within a table cell then assume the width of that cell
 
 			var cell = cursor.Ancestors(ns + "Cell").FirstOrDefault();
@@ -184,23 +196,26 @@ namespace River.OneMoreAddIn.Commands
 				if (column is not null)
 				{
 					return (float)Math.Floor(double.Parse(
-						column.Attribute("width").Value, CultureInfo.InvariantCulture));
+						column.Attribute("width").Value, CultureInfo.InvariantCulture)) - delta;
 				}
 			}
 
 			// if insertion point is within an Outline with a width set by the users
 			// then assume the width of the Outline
 
-			var size = cursor.Ancestors(ns + "Outline").Elements(ns + "Size")
-				.FirstOrDefault(e => e.Attribute("isSetByUser")?.Value == "true");
-
-			if (size is not null)
+			if (outline is not null)
 			{
-				return (float)Math.Floor(double.Parse(
-					size.Attribute("width").Value, CultureInfo.InvariantCulture));
+				var size = outline.Elements(ns + "Size")
+					.FirstOrDefault(e => e.Attribute("isSetByUser")?.Value == "true");
+
+				if (size is not null)
+				{
+					return (float)Math.Floor(double.Parse(
+						size.Attribute("width").Value, CultureInfo.InvariantCulture)) - delta;
+				}
 			}
 
-			return DefaultWidth;
+			return DefaultWidth - delta;
 		}
 
 
