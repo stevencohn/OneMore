@@ -157,6 +157,18 @@ namespace OneMoreSetupActions
 				: username.ToLower();
 
 			logger.WriteLine($"on behalf of {userdom}");
+
+			if (!elevated)
+			{
+				logger.WriteLine($"aborting without elevated privileges");
+
+				MessageBox.Show(
+					"This installer must be run as an administrator using elevated privileges",
+					"Not Elevated",
+					MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+				Environment.Exit(CustomAction.FAILURE);
+			}
 		}
 
 
