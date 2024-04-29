@@ -43,6 +43,8 @@ namespace River.OneMoreAddIn.Commands.Favorites
 
 		private async void BindOnLoad(object sender, EventArgs e)
 		{
+			Native.SwitchToThisWindow(Handle, false);
+
 			await using var provider = new FavoritesProvider(null);
 			var favorites = provider.LoadFavorites();
 
