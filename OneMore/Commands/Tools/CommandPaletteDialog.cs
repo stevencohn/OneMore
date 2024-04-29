@@ -4,7 +4,6 @@
 
 namespace River.OneMoreAddIn.Commands
 {
-	using NStandard;
 	using River.OneMoreAddIn.UI;
 	using System;
 	using System.Text.RegularExpressions;
@@ -50,6 +49,13 @@ namespace River.OneMoreAddIn.Commands
 
 
 		public bool Recent { get; private set; }
+
+
+		protected override void OnLoad(EventArgs e)
+		{
+			base.OnLoad(e);
+			Native.SwitchToThisWindow(Handle, false);
+		}
 
 
 		public void PopulateCommands(string[] commands, string[] recentNames)
