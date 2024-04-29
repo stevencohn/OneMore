@@ -173,8 +173,11 @@ namespace River.OneMoreAddIn.Commands
 		{
 			progress.SetMessage($"Importing {filepath}...");
 
-			using var word = new Word();
-			var html = word.ConvertFileToHtml(filepath);
+			string html;
+			using (var word = new Word())
+			{
+				html = word.ConvertFileToHtml(filepath);
+			}
 
 			if (token.IsCancellationRequested)
 			{
