@@ -300,8 +300,11 @@ namespace OneMoreCalendar
 
 			hotspots.Clear();
 
-			PaintGrid(e);
-			PaintDays(e);
+			if (days is not null && days.Count > 0)
+			{
+				PaintGrid(e);
+				PaintDays(e);
+			}
 
 			ResumeLayout();
 		}
@@ -313,47 +316,64 @@ namespace OneMoreCalendar
 
 			// day of week names...
 
-			using var dowFont = new Font("Segoe UI Light", 10.0f, FontStyle.Regular);
-			var culture = Thread.CurrentThread.CurrentUICulture.DateTimeFormat;
-			dowOffset = dowFont.Height;
-
-			using var dowFormat = new StringFormat
+			var dowFont = new Font("Segoe UI Light", 10.0f, FontStyle.Regular);
+			if (dowFont.Name != "Segoe UI Light")
 			{
-				Alignment = StringAlignment.Center,
-				FormatFlags = StringFormatFlags.NoWrap | StringFormatFlags.LineLimit,
-				Trimming = StringTrimming.EllipsisCharacter
-			};
-
-			var dayWidth = Width / 7;
-
-			// day names and vertical lines...
-
-			using var pen = new Pen(Theme.MonthGrid, 0.1f);
-			var dow = firstDow == DayOfWeek.Sunday ? 0 : 1;
-
-			for (int i = 0; i < 7; i++, dow++)
-			{
-				var name = culture.GetDayName((DayOfWeek)(dow % 7)).ToUpper();
-				var clip = new Rectangle(dayWidth * i, 1, dayWidth, dowFont.Height + 2);
-				using var brush = new SolidBrush(Theme.MonthDayFore);
-				e.Graphics.DrawString(name, dowFont, brush, clip, dowFormat);
-
-				if (i < 6)
-				{
-					var x = (i + 1) * dayWidth;
-					e.Graphics.DrawLine(pen, x, dowOffset, x, e.ClipRectangle.Height);
-				}
+				dowFont.Dispose();
+				dowFont = new Font("Segoe UI", 10.0f, FontStyle.Regular);
 			}
 
-			// horizontal lines...
-
-			weeks = days.Count / 7;
-			var dayHeight = (Height - dowOffset) / weeks;
-			for (int i = 1; i < weeks; i++)
+			try
 			{
-				e.Graphics.DrawLine(pen,
-					0, i * dayHeight + dowOffset,
-					e.ClipRectangle.Width, i * dayHeight + dowOffset);
+				var culture = Thread.CurrentThread.CurrentUICulture.DateTimeFormat;
+				dowOffset = dowFont.Height;
+
+				using var dowFormat = new StringFormat
+				{
+					Alignment = StringAlignment.Center,
+					FormatFlags = StringFormatFlags.NoWrap | StringFormatFlags.LineLimit,
+					Trimming = StringTrimming.EllipsisCharacter
+				};
+
+				var dayWidth = Width / 7;
+
+				// day names and vertical lines...
+
+				using var pen = new Pen(Theme.MonthGrid, 0.1f);
+				var dow = firstDow == DayOfWeek.Sunday ? 0 : 1;
+
+				for (int i = 0; i < 7; i++, dow++)
+				{
+					var name = culture.GetDayName((DayOfWeek)(dow % 7)).ToUpper();
+					var clip = new Rectangle(dayWidth * i, 1, dayWidth, dowFont.Height + 2);
+					using var brush = new SolidBrush(Theme.MonthDayFore);
+					e.Graphics.DrawString(name, dowFont, brush, clip, dowFormat);
+
+					if (i < 6)
+					{
+						var x = (i + 1) * dayWidth;
+						e.Graphics.DrawLine(pen, x, dowOffset, x, e.ClipRectangle.Height);
+					}
+				}
+
+				// horizontal lines...
+
+				weeks = days.Count / 7;
+				var dayHeight = (Height - dowOffset) / weeks;
+				for (int i = 1; i < weeks; i++)
+				{
+					e.Graphics.DrawLine(pen,
+						0, i * dayHeight + dowOffset,
+						e.ClipRectangle.Width, i * dayHeight + dowOffset);
+				}
+			}
+			catch (Exception exc)
+			{
+				Logger.Current.WriteLine(exc);
+			}
+			finally
+			{
+				dowFont.Dispose();
 			}
 		}
 
@@ -471,7 +491,7 @@ namespace OneMoreCalendar
 				var clip = new Rectangle(left, top, width, Font.Height);
 
 				var font = page.IsDeleted ? deletedFont : Font;
-				using var brush = new SolidBrush(page.IsDeleted || day.InMonth 
+				using var brush = new SolidBrush(page.IsDeleted || day.InMonth
 					? Theme.MonthTodayFore
 					: Theme.MonthDayFore);
 
