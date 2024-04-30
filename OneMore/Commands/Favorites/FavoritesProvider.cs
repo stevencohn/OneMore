@@ -294,6 +294,15 @@ namespace River.OneMoreAddIn
 			books ??= await one.GetNotebooks();
 
 			var parts = favorite.Location.Split(new char[] { '/' }, StringSplitOptions.RemoveEmptyEntries);
+			if (parts.Length < 3)
+			{
+				// corrupt screentip attribute in XML? (populates Location)
+				// must be at least: /notebook/section/title
+				logger.WriteLine($"invalid favorite location {favorite.Location} [{favorite.Name}]");
+				favorite.Status = FavoriteStatus.Suspect;
+				return false;
+			}
+
 			var notebook = notebooks.Values.FirstOrDefault(n => n.Attribute("name")?.Value == parts[0]);
 			if (notebook == null)
 			{
