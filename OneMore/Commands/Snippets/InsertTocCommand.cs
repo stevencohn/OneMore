@@ -59,7 +59,51 @@ namespace River.OneMoreAddIn.Commands
 				return;
 			}
 
-			using var dialog = await MakeDialog();
+			Page page;
+			await using (var one = new OneNote())
+			{
+				// There is a wierd async issue here where the OneNote instance must be
+				// fully disposed before InsertTocDialog is instantiated and returned.
+				// I don't understand...
+
+				page = await one.GetPage(OneNote.PageDetail.Basic);
+			}
+
+			var dialog = new InsertTocDialog();
+
+			var ns = page.Namespace;
+			var meta = page.Root.Elements(ns + "Outline")
+				.Descendants(ns + "Meta")
+				.FirstOrDefault(e => e.Attribute("name") is XAttribute attr && attr.Value == TocMeta);
+
+			if (meta != null)
+			{
+				var cdata = meta.Parent.DescendantNodes().OfType<XCData>()
+					.FirstOrDefault(c => c.Value.Contains(RefreshCmd));
+
+				if (cdata != null)
+				{
+					var wrapper = cdata.GetWrapper();
+					var href = wrapper.Elements("a").Attributes("href").FirstOrDefault()?.Value;
+					if (href != null)
+					{
+						href = href.Substring(RefreshCmd.Length);
+						dialog.AddTopLinks = href.Contains("/links");
+						dialog.RightAlign = href.Contains("/align");
+						dialog.InsertHere = href.Contains("/here");
+
+						var match = Regex.Match(href, @"\/style(\d+)");
+						if (match.Success)
+						{
+							if (int.TryParse(match.Groups[1].Value, out var index))
+							{
+								dialog.TitleStyle = (TitleStyles)index;
+							}
+						}
+					}
+				}
+			}
+
 			if (dialog.ShowDialog(owner) == DialogResult.Cancel)
 			{
 				return;
@@ -131,55 +175,6 @@ namespace River.OneMoreAddIn.Commands
 			{
 				logger.WriteLine($"error refreshing table of contents", exc);
 			}
-		}
-
-
-		private async Task<InsertTocDialog> MakeDialog()
-		{
-			Page page;
-			XNamespace ns;
-			await using (var one = new OneNote(out page, out ns, OneNote.PageDetail.Basic))
-			{
-				// There is a wierd async issue here where the OneNote instance must be
-				// fully disposed before InsertTocDialog is instantiated and returned.
-				// I don't understand...
-			}
-
-			var dialog = new InsertTocDialog();
-
-			var meta = page.Root.Elements(ns + "Outline")
-				.Descendants(ns + "Meta")
-				.FirstOrDefault(e => e.Attribute("name") is XAttribute attr && attr.Value == TocMeta);
-
-			if (meta != null)
-			{
-				var cdata = meta.Parent.DescendantNodes().OfType<XCData>()
-					.FirstOrDefault(c => c.Value.Contains(RefreshCmd));
-
-				if (cdata != null)
-				{
-					var wrapper = cdata.GetWrapper();
-					var href = wrapper.Elements("a").Attributes("href").FirstOrDefault()?.Value;
-					if (href != null)
-					{
-						href = href.Substring(RefreshCmd.Length);
-						dialog.AddTopLinks = href.Contains("/links");
-						dialog.RightAlign = href.Contains("/align");
-						dialog.InsertHere = href.Contains("/here");
-
-						var match = Regex.Match(href, @"\/style(\d+)");
-						if (match.Success)
-						{
-							if (int.TryParse(match.Groups[1].Value, out var index))
-							{
-								dialog.TitleStyle = (TitleStyles)index;
-							}
-						}
-					}
-				}
-			}
-
-			return dialog;
 		}
 
 
