@@ -27,18 +27,22 @@ namespace OneMoreCalendar
 		}
 
 
-		private const string HeadBackColor = "#FFF4E8F3";
-		private const string TodayHeadColor = "#FFD6A6D3";
+		//private const string HeadBackColor = "#FFF4E8F3";
+		//private const string TodayHeadColor = "#FFD6A6D3";
 		private const string LessGlyph = "⏶"; // \u23F6
 		private const string MoreGlyph = "⏷"; // \u23F7
+		private const string CopyGlyph = "🗇"; // \ud83d\uddc7
 
 		private readonly IntPtr hand;
 		private readonly Font hotFont;
 		private readonly Font moreFont;
+		private readonly Font copyFont;
 		private readonly Font deletedFont;
 		private readonly Size moreSize;
 		private readonly StringFormat format;
 		private readonly List<Hotspot> hotspots;
+		private readonly MoreButton copyButton;
+		private readonly ToolTip tooltip;
 
 		private DateTime date;
 		private CalendarDays days;
@@ -57,11 +61,27 @@ namespace OneMoreCalendar
 			hotFont = new Font(Font, FontStyle.Regular | FontStyle.Underline);
 			deletedFont = new Font(Font, FontStyle.Regular | FontStyle.Strikeout);
 			moreFont = new Font("Segoe UI", 14.0f, FontStyle.Regular);
-
-			using var g = CreateGraphics();
-			moreSize = g.MeasureString(MoreGlyph, Font).ToSize();
+			moreSize = TextRenderer.MeasureText(MoreGlyph, Font);
 
 			hotspots = new List<Hotspot>();
+
+			copyFont = new Font("Segoe UI Symbol", 9.0f, FontStyle.Regular);
+			var copySize = TextRenderer.MeasureText(CopyGlyph, copyFont);
+			Logger.Current.WriteLine($"copySize {copySize}");
+			copyButton = new MoreButton
+			{
+				Font = copyFont,
+				PreferredBack = Theme.MonthDayBack,
+				PreferredFore = Theme.LinkColor,
+				Text = CopyGlyph,
+				Size = new Size(copySize.Width + 4, copySize.Height + 2),
+				Visible = false
+			};
+
+			copyButton.MouseDown += ClickCopyPageButton;
+
+			tooltip = new ToolTip(components);
+			tooltip.SetToolTip(copyButton, "Copy links to all pages from this day");
 
 			format = new StringFormat
 			{
@@ -91,8 +111,11 @@ namespace OneMoreCalendar
 				if (Controls[i] is MoreButton)
 				{
 					var c = Controls[i];
-					Controls.RemoveAt(i);
-					c.Dispose();
+					if (c != copyButton)
+					{
+						Controls.RemoveAt(i);
+						c.Dispose();
+					}
 				}
 			}
 
@@ -172,7 +195,7 @@ namespace OneMoreCalendar
 
 			if (e.Button == MouseButtons.Right)
 			{
-				spot = hotspots.FirstOrDefault(h => h.Bounds.Contains(e.Location));
+				spot = hotspots.Find(h => h.Bounds.Contains(e.Location));
 				if (spot?.Type == Hottype.Page)
 				{
 					SnappedPage?.Invoke(this,
@@ -182,7 +205,7 @@ namespace OneMoreCalendar
 				return;
 			}
 
-			spot = hotspots.FirstOrDefault(h => h.Bounds.Contains(e.Location));
+			spot = hotspots.Find(h => h.Bounds.Contains(e.Location));
 			switch (spot?.Type)
 			{
 				case Hottype.Page:
@@ -215,12 +238,12 @@ namespace OneMoreCalendar
 		{
 			//base.OnMouseMove(e);
 
-			var spot = hotspots.FirstOrDefault(h => h.Bounds.Contains(e.Location));
+			var spot = hotspots.Find(h => h.Bounds.Contains(e.Location));
 
 			// moving within same spot?
 			if (spot == hotspot)
 			{
-				if (hotspot != null)
+				if (hotspot is not null)
 				{
 					Native.SetCursor(hand);
 				}
@@ -231,9 +254,18 @@ namespace OneMoreCalendar
 
 			// clear previously active...
 
-			if (hotspot != null)
+			if (hotspot is not null)
 			{
-				if (hotspot.Type == Hottype.Page)
+				if (hotspot.Type == Hottype.Day)
+				{
+					if (copyButton.Visible)
+					{
+						Logger.Current.WriteLine($"clearing copyButton {hotspot.Day.Date}");
+						copyButton.Visible = false;
+						Controls.Remove(copyButton);
+					}
+				}
+				else if (hotspot.Type == Hottype.Page)
 				{
 					using (var g = CreateGraphics())
 					{
@@ -267,9 +299,25 @@ namespace OneMoreCalendar
 
 			// highlight hovered...
 
-			if (spot != null)
+			if (spot is not null)
 			{
-				if (spot.Type == Hottype.Page)
+				if (spot.Type == Hottype.Day)
+				{
+					if (spot.Day.Pages.Count > 0)
+					{
+						Controls.Add(copyButton);
+
+						copyButton.Location = new Point(
+							spot.Bounds.X + spot.Bounds.Width - copyButton.Width - 1,
+							spot.Bounds.Y + 1);
+
+						copyButton.Tag = spot.Day;
+						copyButton.Visible = true;
+
+						Logger.Current.WriteLine($"showing copyButton {copyButton.Visible} {spot.Day.Date} @ {copyButton.Location}");
+					}
+				}
+				else if (spot.Type == Hottype.Page)
 				{
 					using (var g = CreateGraphics())
 					{
@@ -511,7 +559,7 @@ namespace OneMoreCalendar
 			// scroll buttons
 			if (maxItems < day.Pages.Count)
 			{
-				if (day.UpButton == null)
+				if (day.UpButton is null)
 				{
 					MakeScrollButton(Hottype.Up, day,
 						new Point(box.Right - moreSize.Width - 1, box.Bottom - (moreSize.Height * 2) - 7));
@@ -522,7 +570,7 @@ namespace OneMoreCalendar
 						new Point(box.Right - moreSize.Width - 1, box.Bottom - (moreSize.Height * 2) - 7);
 				}
 
-				if (day.DownButton == null)
+				if (day.DownButton is null)
 				{
 					MakeScrollButton(Hottype.Down, day,
 						new Point(box.Right - moreSize.Width - 1, box.Bottom - moreSize.Height - 4));
@@ -535,13 +583,13 @@ namespace OneMoreCalendar
 			}
 			else
 			{
-				if (day.UpButton != null)
+				if (day.UpButton is not null)
 				{
 					day.UpButton.Dispose();
 					day.UpButton = null;
 				}
 
-				if (day.DownButton != null)
+				if (day.DownButton is not null)
 				{
 					day.DownButton.Dispose();
 					day.DownButton = null;
@@ -585,6 +633,14 @@ namespace OneMoreCalendar
 			}
 		}
 
+
+		private void ClickCopyPageButton(object sender, EventArgs e)
+		{
+			if (((MoreButton)sender).Tag is CalendarDay day)
+			{
+				Logger.Current.WriteLine($"clicked {day.Date}");
+			}
+		}
 
 		private void ClickScrollButton(object sender, EventArgs e)
 		{

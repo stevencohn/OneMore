@@ -92,7 +92,9 @@ namespace OneMoreCalendar
 					Modified = a.Modified,
 					IsDeleted = a.IsDeleted,
 					HasReminders = a.Page.Elements(ns + "Meta")
-						.Any(e => e.Attribute("name").Value == MetaNames.Reminder)
+						.Any(e =>
+							e.Attribute("name").Value == MetaNames.Reminder &&
+							e.Attribute("content").Value.Length > 0)
 				}));
 
 			pages.ForEach(page =>
