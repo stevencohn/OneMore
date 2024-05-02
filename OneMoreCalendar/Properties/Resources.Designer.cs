@@ -98,6 +98,27 @@ namespace OneMoreCalendar.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 
+        ///&lt;html xmlns:o=&quot;urn:schemas-microsoft-com:office:office&quot;
+        ///xmlns:dt=&quot;uuid:C2F41010-65B3-11d1-A29F-00AA00C14882&quot;
+        ///xmlns=&quot;http://www.w3.org/TR/REC-html40&quot;&gt;
+        ///
+        ///&lt;head&gt;
+        ///&lt;meta http-equiv=Content-Type content=&quot;text/html; charset=utf-8&quot;&gt;
+        ///&lt;meta name=ProgId content=OneNote.File&gt;
+        ///&lt;meta name=Generator content=&quot;Microsoft OneNote 15&quot;&gt;
+        ///&lt;/head&gt;
+        ///
+        ///&lt;body lang=en-US&gt;
+        ///&lt;!--StartFragment--&gt;.
+        /// </summary>
+        internal static string HtmlClipboardPreamble {
+            get {
+                return ResourceManager.GetString("HtmlClipboardPreamble", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to {
         ///  &quot;DarkMode&quot;: false,
         ///  &quot;Colors&quot;: {

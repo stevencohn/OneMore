@@ -124,6 +124,21 @@
   <data name="day_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\assets\day-32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="HtmlClipboardPreamble" xml:space="preserve">
+    <value>
+&lt;html xmlns:o="urn:schemas-microsoft-com:office:office"
+xmlns:dt="uuid:C2F41010-65B3-11d1-A29F-00AA00C14882"
+xmlns="http://www.w3.org/TR/REC-html40"&gt;
+
+&lt;head&gt;
+&lt;meta http-equiv=Content-Type content="text/html; charset=utf-8"&gt;
+&lt;meta name=ProgId content=OneNote.File&gt;
+&lt;meta name=Generator content="Microsoft OneNote 15"&gt;
+&lt;/head&gt;
+
+&lt;body lang=en-US&gt;
+&lt;!--StartFragment--&gt;</value>
+  </data>
   <data name="LightTheme" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\assets\lighttheme.json;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
   </data>

@@ -92,7 +92,9 @@ namespace OneMoreCalendar
 					Modified = a.Modified,
 					IsDeleted = a.IsDeleted,
 					HasReminders = a.Page.Elements(ns + "Meta")
-						.Any(e => e.Attribute("name").Value == MetaNames.Reminder)
+						.Any(e =>
+							e.Attribute("name").Value == MetaNames.Reminder &&
+							e.Attribute("content").Value.Length > 0)
 				}));
 
 			pages.ForEach(page =>
@@ -165,6 +167,30 @@ namespace OneMoreCalendar
 
 			return notebooks.Elements(ns + "Notebook")
 				.Select(e => new Notebook(e));
+		}
+
+
+		/// <summary>
+		/// Gets the onenote:hyperlink and Web hyperlink for each page.
+		/// </summary>
+		/// <param name="pages">A collection of CalendarPages</param>
+		/// <returns></returns>
+		public async Task GetPageLinks(List<CalendarPage> pages)
+		{
+			await using var one = new OneNote();
+			foreach (var page in pages)
+			{
+				try
+				{
+					page.Hyperlink = one.GetHyperlink(page.PageID, string.Empty);
+					page.WebHyperlink = one.GetWebHyperlink(page.PageID, string.Empty);
+				}
+				catch (Exception exc)
+				{
+					Logger.Current.WriteLine("error getting page hyperlinks", exc);
+					page.Hyperlink = null;
+				}
+			}
 		}
 
 
