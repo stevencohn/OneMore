@@ -430,7 +430,7 @@ namespace River.OneMoreAddIn
 
 
 		/// <summary>
-		/// Gets a onenote:hyperline to an object on the specified page
+		/// Gets a onenote:hyperlink to an object on the specified page
 		/// </summary>
 		/// <param name="pageId">The ID of a page</param>
 		/// <param name="objectId">
@@ -457,6 +457,39 @@ namespace River.OneMoreAddIn
 				}
 
 				logger.WriteLine("GetHyperlink error", exc);
+				return null;
+			}
+		}
+
+
+		/// <summary>
+		/// Gets a Web hyperlink to an object on the specified page
+		/// </summary>
+		/// <param name="pageId">The ID of a page</param>
+		/// <param name="objectId">
+		/// The ID of an object on the page or string.Empty to link to the page itself
+		/// </param>
+		/// <returns></returns>
+		public string GetWebHyperlink(string pageId, string objectId)
+		{
+			try
+			{
+				onenote.GetWebHyperlinkToObject(pageId, objectId, out var hyperlink);
+				return hyperlink.SafeUrlEncode();
+			}
+			catch (Exception exc)
+			{
+				if (exc.HResult == ObjectDoesNotExist)
+				{
+					// objectIDs are ephemeral, generated on-the-fly from the current machine
+					// so will not exist when viewing the same page on a different machine;
+					// they are consistent on a single machine, probably using some hardware
+					// based heuristics I presume
+					logger.WriteLine("GetWebHyperlink, object does not exist. Possible cross-machine query");
+					return null;
+				}
+
+				logger.WriteLine("GetWebHyperlink error", exc);
 				return null;
 			}
 		}

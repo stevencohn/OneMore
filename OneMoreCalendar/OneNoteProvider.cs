@@ -171,6 +171,30 @@ namespace OneMoreCalendar
 
 
 		/// <summary>
+		/// Gets the onenote:hyperlink and Web hyperlink for each page.
+		/// </summary>
+		/// <param name="pages">A collection of CalendarPages</param>
+		/// <returns></returns>
+		public async Task GetPageLinks(List<CalendarPage> pages)
+		{
+			await using var one = new OneNote();
+			foreach (var page in pages)
+			{
+				try
+				{
+					page.Hyperlink = one.GetHyperlink(page.PageID, string.Empty);
+					page.WebHyperlink = one.GetWebHyperlink(page.PageID, string.Empty);
+				}
+				catch (Exception exc)
+				{
+					Logger.Current.WriteLine("error getting page hyperlinks", exc);
+					page.Hyperlink = null;
+				}
+			}
+		}
+
+
+		/// <summary>
 		/// Get a collection of all unique years in the given notebooks
 		/// </summary>
 		/// <param name="notebookIDs"></param>

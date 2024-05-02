@@ -42,5 +42,11 @@ namespace OneMoreCalendar
 
 
 		public bool HasReminders { get; set; }
+
+
+		public string Hyperlink { get; set; }
+
+
+		public string WebHyperlink { get; set; }
 	}
 }

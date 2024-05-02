@@ -191,7 +191,7 @@ namespace River.OneMoreAddIn
 			var root = XElement.Load(path, LoadOptions.None);
 
 			var favorites = root.Elements()
-				.Where(e => e.Attribute("notebookID") != null)
+				.Where(e => e.Attribute("notebookID") is not null)
 				.ToList();
 
 			favorites.Remove();
@@ -264,7 +264,10 @@ namespace River.OneMoreAddIn
 				try
 				{
 					notebook = await one.GetNotebook(favorite.NotebookID, OneNote.Scope.Pages);
-					notebooks.Add(favorite.NotebookID, notebook);
+					if (notebook is not null)
+					{
+						notebooks.Add(favorite.NotebookID, notebook);
+					}
 				}
 				catch (COMException exc) when ((uint)exc.ErrorCode == ErrorCodes.hrObjectMissing)
 				{
@@ -276,7 +279,7 @@ namespace River.OneMoreAddIn
 				}
 			}
 
-			if (notebook != null &&
+			if (notebook is not null &&
 				notebook.Descendants().Any(e => e.Attribute("ID")?.Value == favorite.ObjectID))
 			{
 				favorite.Status = FavoriteStatus.Known;
@@ -304,14 +307,14 @@ namespace River.OneMoreAddIn
 			}
 
 			var notebook = notebooks.Values.FirstOrDefault(n => n.Attribute("name")?.Value == parts[0]);
-			if (notebook == null)
+			if (notebook is null)
 			{
 				// first part should be name of notebook
 				var nx = books.GetNamespaceOfPrefix(OneNote.Prefix);
 				var book = books.Elements(nx + "Notebook")
 					.FirstOrDefault(n => n.Attribute("name")?.Value == parts[0]);
 
-				if (book == null)
+				if (book is null)
 				{
 					logger.WriteLine($"broken link to favorite notebook {favorite.Location}");
 					favorite.Status = FavoriteStatus.Suspect;
@@ -335,7 +338,7 @@ namespace River.OneMoreAddIn
 			for (int i = 1; i < parts.Length; i++)
 			{
 				node = node.Elements().FirstOrDefault(n => n.Attribute("name")?.Value == parts[i]);
-				if (node == null)
+				if (node is null)
 				{
 					logger.WriteLine($"broken link to favorite parts[{i}] {favorite.Location}");
 					favorite.Status = FavoriteStatus.Suspect;

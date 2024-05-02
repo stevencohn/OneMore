@@ -23,6 +23,7 @@ namespace OneMoreCalendar
 		static void Main()
 		{
 			Logger.SetApplication("OneMoreCalendar");
+			Logger.Current.WriteLine();
 			Logger.Current.WriteLine("Starting OneMoreCalendar");
 
 			Application.EnableVisualStyles();

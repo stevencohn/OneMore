@@ -4,11 +4,15 @@
 
 namespace OneMoreCalendar
 {
+	using OneMoreCalendar.Properties;
 	using River.OneMoreAddIn;
 	using System;
 	using System.Collections.Generic;
 	using System.Drawing;
 	using System.Linq;
+	using System.Runtime.InteropServices;
+	using System.Text;
+	using System.Text.RegularExpressions;
 	using System.Threading;
 	using System.Windows.Forms;
 
@@ -48,9 +52,15 @@ namespace OneMoreCalendar
 		private CalendarDays days;
 		private DayOfWeek firstDow;
 		private Hotspot hotspot;
+		private int onFormat;
 		private int dowOffset;
 		private int maxItems;
 		private int weeks;
+
+
+		[DllImport("user32.dll")]
+		private static extern int RegisterClipboardFormat(string Format);
+
 
 
 		public MonthView()
@@ -67,7 +77,6 @@ namespace OneMoreCalendar
 
 			copyFont = new Font("Segoe UI Symbol", 9.0f, FontStyle.Regular);
 			var copySize = TextRenderer.MeasureText(CopyGlyph, copyFont);
-			Logger.Current.WriteLine($"copySize {copySize}");
 			copyButton = new MoreButton
 			{
 				Font = copyFont,
@@ -260,7 +269,6 @@ namespace OneMoreCalendar
 				{
 					if (copyButton.Visible)
 					{
-						Logger.Current.WriteLine($"clearing copyButton {hotspot.Day.Date}");
 						copyButton.Visible = false;
 						Controls.Remove(copyButton);
 					}
@@ -313,8 +321,6 @@ namespace OneMoreCalendar
 
 						copyButton.Tag = spot.Day;
 						copyButton.Visible = true;
-
-						Logger.Current.WriteLine($"showing copyButton {copyButton.Visible} {spot.Day.Date} @ {copyButton.Location}");
 					}
 				}
 				else if (spot.Type == Hottype.Page)
@@ -634,13 +640,90 @@ namespace OneMoreCalendar
 		}
 
 
-		private void ClickCopyPageButton(object sender, EventArgs e)
+		private async void ClickCopyPageButton(object sender, EventArgs e)
 		{
 			if (((MoreButton)sender).Tag is CalendarDay day)
 			{
-				Logger.Current.WriteLine($"clicked {day.Date}");
+				// if we have at least one Hyperlink then we've been here before!
+				if (!day.Pages.Exists(p => p.Hyperlink is not null))
+				{
+					var one = new OneNoteProvider();
+					await one.GetPageLinks(day.Pages);
+
+					// hyperlinks are returned from the OneNote API backwards from the expected
+					// format so this matches the two parts that needs to be swapped
+					var regex = new Regex(@"onenote:(#Boxing&.+?&end)&base-path=(https:.+)");
+
+					foreach (var page in day.Pages)
+					{
+						var match = regex.Match(page.Hyperlink);
+						if (match.Success)
+						{
+							page.Hyperlink = $"onenote:{match.Groups[2].Value}{match.Groups[1].Value}";
+						}
+					}
+				}
+
+				var pages = day.Pages.Where(p => p.Hyperlink is not null).ToList();
+				if (pages.Any())
+				{
+					Logger.Current.WriteLine($"copying {pages.Count} hyperlinks from {day.Date}");
+
+					// HTML Format (for pasting in Word and other non-OneNote rich text apps)
+					var html = new StringBuilder();
+					// Text (for pasting into Notepad
+					var text = new StringBuilder();
+					// OneNote Link (special case for pasting into OneNote)
+					var onlink = new StringBuilder();
+
+					var many = pages.Count > 1;
+					foreach (var page in pages)
+					{
+						var web = $"<a href=\"{page.Hyperlink}\">{page.Title}</a>";
+						onlink.AppendLine(many ? $"<p lang=en-US>{web}</p>{Environment.NewLine}" : web);
+
+						var both = $"{web} (<a href=\"{page.WebHyperlink}\">Web view</a>)";
+						html.AppendLine(many ? $"<p lang=en-US>{both}</p>{Environment.NewLine}" : both);
+
+						text.AppendLine(page.WebHyperlink);
+						text.AppendLine(page.Hyperlink);
+					}
+
+					// build out the clipboard...
+
+					// do not use the System.Windows.Clipboard classes here because they
+					// screw up the DPI of the app window!!!
+					var data = new DataObject();
+
+					var wrap = ClipboardProvider.WrapWithHtmlPreamble(
+						Resources.HtmlClipboardPreamble + Environment.NewLine +
+						html.ToString()
+						);
+
+					data.SetText(wrap, TextDataFormat.Html);
+
+					var t = text.ToString().Trim();
+					data.SetText(t, TextDataFormat.Text);
+					data.SetText(t, TextDataFormat.UnicodeText);
+
+					if (onFormat == 0)
+					{
+						onFormat = RegisterClipboardFormat("OneNote Link");
+					}
+
+					wrap = ClipboardProvider.WrapWithHtmlPreamble(
+						Resources.HtmlClipboardPreamble + Environment.NewLine +
+						onlink.ToString()
+						);
+
+					var stream = new System.IO.MemoryStream(Encoding.ASCII.GetBytes(wrap));
+					data.SetData("OneNote Link", stream);
+
+					Clipboard.SetDataObject(data, true, 3, 100);
+				}
 			}
 		}
+
 
 		private void ClickScrollButton(object sender, EventArgs e)
 		{
