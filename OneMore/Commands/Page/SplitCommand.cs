@@ -63,6 +63,9 @@ namespace River.OneMoreAddIn.Commands
 
 		private async Task SplitPage(bool byHeading, int tagSymbol)
 		{
+
+			System.Diagnostics.Debugger.Launch();
+
 			var headings = GetHeadings(byHeading, tagSymbol);
 
 			if (headings.Count == 0)
@@ -270,6 +273,14 @@ namespace River.OneMoreAddIn.Commands
 			if (after.Any())
 			{
 				content.AddRange(after);
+			}
+
+			if (!content.Any())
+			{
+				// provide default content - empty line - if header is not followed by anything
+				content.Add(new XElement(ns + "OE", 
+					new XElement(ns + "T", new XCData(string.Empty))
+					));
 			}
 
 			return content;
