@@ -111,6 +111,12 @@ namespace OneMoreCalendar
 					: date.AddMonths(delta);
 			}
 
+			if (date.StartOfMonth() > DateTime.Now.StartOfMonth())
+			{
+				date = DateTime.Now.StartOfMonth();
+				return;
+			}
+
 			var endDate = date.EndOfMonth();
 			var settings = new SettingsProvider();
 
