@@ -37,7 +37,7 @@ namespace River.OneMoreAddIn
 		 * NOTE - also update the version in the Setup project
 		 * by clicking on the Setup project node in VS and update its properties
 		 */
-		public const string Version = "6.2.1";
+		public const string Version = "6.3.0";
 
 		public const string Product = "OneMore";
 
