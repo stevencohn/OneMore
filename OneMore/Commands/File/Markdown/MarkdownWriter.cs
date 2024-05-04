@@ -93,7 +93,7 @@ namespace River.OneMoreAddIn.Commands
 				using var reader = new StreamReader(stream);
 
 				var clippy = new ClipboardProvider();
-				var success = await clippy.SetText(reader.ReadToEnd());
+				var success = await clippy.SetText(reader.ReadToEnd(), true);
 				if (!success)
 				{
 					UIHelper.ShowInfo(Resx.Clipboard_locked);

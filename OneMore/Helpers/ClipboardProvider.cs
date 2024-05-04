@@ -258,7 +258,7 @@ namespace River.OneMoreAddIn
 		/// </summary>
 		/// <param name="text"></param>
 		/// <returns></returns>
-		public async Task<bool> SetText(string text)
+		public async Task<bool> SetText(string text, bool unicode = false)
 		{
 			var success = true;
 			await SingleThreaded.Invoke(() =>
@@ -270,6 +270,12 @@ namespace River.OneMoreAddIn
 					{
 						var data = new Win.DataObject();
 						data.SetText(text, Win.TextDataFormat.Text);
+
+						if (unicode)
+						{
+							data.SetText(text, Win.TextDataFormat.UnicodeText);
+						}
+
 						Clipboard.SetDataObject(data, true, RetryTimes, RetryDelay);
 						//Win.Clipboard.SetText(text, Win.TextDataFormat.Text);
 					}
