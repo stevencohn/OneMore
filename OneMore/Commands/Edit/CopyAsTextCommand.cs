@@ -50,7 +50,7 @@ namespace River.OneMoreAddIn.Commands
 				}
 			}
 
-			var success = await new ClipboardProvider().SetText(builder.ToString());
+			var success = await new ClipboardProvider().SetText(builder.ToString(), true);
 			if (!success)
 			{
 				MoreMessageBox.ShowWarning(owner, Resx.Clipboard_locked);
