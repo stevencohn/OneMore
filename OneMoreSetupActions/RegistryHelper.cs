@@ -192,10 +192,22 @@ namespace OneMoreSetupActions
 
 			foreach (var sid in Registry.Users.GetSubKeyNames())
 			{
+				// ignore built-in SIDs like .DEFAULT and S-1-5-20
+				// and look for SIDs more like S-1-5-21-3128529791-1469164102-3035925930-1000
+				if (sid.Length < 10 || sid.EndsWith("_Classes"))
+				{
+					logger?.WriteLine($"skipping {sid}");
+					continue;
+				}
+
+				logger?.WriteLine($"checking {sid}");
+
 				// the ephemeral "Volatile Environment" key will only exist for logged-in users
 				var key = Registry.Users.OpenSubKey($@"{sid}\Volatile Environment");
-				if (key != null)
+				if (key is not null)
 				{
+					logger?.WriteLine($"volatile {sid}");
+
 					// "system" will not have a USERNAME env var but the logged in user will
 					var vname = key.GetValue("USERNAME") as string;
 					if (!string.IsNullOrEmpty(vname))
@@ -206,12 +218,15 @@ namespace OneMoreSetupActions
 							? $@"{vdomain.ToUpper()}\{vname.ToLower()}"
 							: vname.ToLower();
 
-						if (candidate == userdom)
-						{
-							logger?.WriteLine($"fallback found user {candidate} with SID {sid}");
-							return sid;
-						}
+						// presuming there is only one logged-in user,
+						// so chose the first volative candiate found!
+						logger?.WriteLine($"fallback assuming identity {candidate} with SID {sid}");
+						return sid;
 					}
+				}
+				else
+				{
+					logger?.WriteLine($"skipping non-volative {sid}");
 				}
 			}
 

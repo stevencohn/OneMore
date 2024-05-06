@@ -65,6 +65,12 @@ namespace OneMoreSetupActions
 
 			var sid = RegistryHelper.GetUserSid("registering trusted protocol");
 
+			if (sid is null)
+			{
+				logger.WriteLine("error registering trusted protocol");
+				return FAILURE;
+			}
+
 			GetPolicyPaths(out var policiesPath, out var policyPath);
 			var path = $@"{policiesPath}\{policyPath}";
 
