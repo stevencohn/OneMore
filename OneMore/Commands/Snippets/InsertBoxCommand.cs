@@ -179,7 +179,7 @@ namespace River.OneMoreAddIn.Commands
 				var x = outline.Elements(ns + "Position").Attributes("x").FirstOrDefault();
 				if (x is not null)
 				{
-					delta = (int)double.Parse(x.Value) - 36;
+					delta = (int)double.Parse(x.Value, CultureInfo.InvariantCulture) - 36;
 				}
 			}
 
