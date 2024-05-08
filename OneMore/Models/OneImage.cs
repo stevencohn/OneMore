@@ -17,8 +17,8 @@ namespace River.OneMoreAddIn.Models
 	internal class OneImage
 	{
 		private readonly XElement root;
-		private readonly XElement size;
 		private readonly XNamespace ns;
+		private XElement size;
 
 
 		/// <summary>
@@ -45,41 +45,77 @@ namespace River.OneMoreAddIn.Models
 		}
 
 
-		public int Height => (int)decimal
-			.Parse(size.Attribute("height").Value, CultureInfo.InvariantCulture);
+		public int Height => size is null ? 0
+			: (int)decimal.Parse(size.Attribute("height").Value, CultureInfo.InvariantCulture);
 
 
 		public bool IsSetByUser
 		{
-			get => size.Attribute("isSetByUser")?.Value == "true";
+			get => size is not null && size.Attribute("isSetByUser")?.Value == "true";
 			set => size.SetAttributeValue("isSetByUser", value.ToString().ToLowerInvariant());
 		}
 
 
-		public int Width => (int)decimal
-			.Parse(size.Attribute("width").Value, CultureInfo.InvariantCulture);
+		public int Width => size is null ? 0
+			: (int)decimal.Parse(size.Attribute("width").Value, CultureInfo.InvariantCulture);
 
 
 		public Image ReadImage()
 		{
 			var data = Convert.FromBase64String(root.Element(ns + "Data").Value);
 			using var stream = new MemoryStream(data, 0, data.Length);
-			return Image.FromStream(stream);
+			var image = Image.FromStream(stream);
+
+			if (size is null)
+			{
+				SetSize(image.Width, image.Height, false);
+			}
+
+			return image;
 		}
 
 
 		public void SetAutoSize()
 		{
-			size.Attribute("isSetByUser")?.Remove();
+			if (size is not null)
+			{
+				size.Attribute("isSetByUser")?.Remove();
+			}
+
 			root.Parent.Attribute("objectID")?.Remove();
 		}
 
 
-		public void SetSize(int width, int height)
+		public void SetSize(int width, int height, bool setByUser)
 		{
-			size.SetAttributeValue("width", width.ToInvariantString());
-			size.SetAttributeValue("height", height.ToInvariantString());
-			size.SetAttributeValue("isSetByUser", "true");
+			if (size is null)
+			{
+				size = new XElement(ns + "Size",
+					new XAttribute("width", ((float)width).ToInvariantString()),
+					new XAttribute("height", ((float)height).ToInvariantString())
+					);
+
+				if (setByUser)
+				{
+					IsSetByUser = setByUser;
+				}
+
+				var position = root.Element(ns + "Position");
+				if (position is null)
+				{
+					root.AddFirst(size);
+				}
+				else
+				{
+					position.AddAfterSelf(size);
+				}
+			}
+			else
+			{
+				size.SetAttributeValue("width", width.ToInvariantString());
+				size.SetAttributeValue("height", height.ToInvariantString());
+				IsSetByUser = setByUser;
+			}
 		}
 
 

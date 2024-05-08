@@ -104,7 +104,7 @@ namespace River.OneMoreAddIn.Commands
 			}
 			else if (Size != Size.Empty)
 			{
-				wrapper.SetSize(Size.Width, Size.Height);
+				wrapper.SetSize(Size.Width, Size.Height, true);
 			}
 
 			return edit;
