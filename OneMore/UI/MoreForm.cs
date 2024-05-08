@@ -7,9 +7,10 @@ namespace River.OneMoreAddIn.UI
 	using System;
 	using System.Diagnostics;
 	using System.Drawing;
+	using System.Threading;
 	using System.Threading.Tasks;
 	using System.Windows.Forms;
-
+	using Windows.ApplicationModel.UserDataTasks.DataProvider;
 
 	internal class MoreForm : Form, IOneMoreWindow
 	{
@@ -86,31 +87,39 @@ namespace River.OneMoreAddIn.UI
 		/// </param>
 		public async Task RunModeless(EventHandler closedAction = null, int topDelta = 0)
 		{
-			StartPosition = FormStartPosition.Manual;
-			TopMost = true;
-			modeless = true;
-
-			var rect = new Native.Rectangle();
-
-			await using var one = new OneNote();
-			Native.GetWindowRect(one.WindowHandle, ref rect);
-
-			var yoffset = (int)(Height * topDelta / 100.0);
-
-			Location = new Point(
-				(rect.Left + ((rect.Right - rect.Left) / 2)) - (Width / 2),
-				(rect.Top + ((rect.Bottom - rect.Top) / 2)) - (Height / 2) - yoffset
-				);
-
-			if (closedAction != null)
+			var thread = new Thread(async () =>
 			{
-				ModelessClosed += (sender, e) => { closedAction(sender, e); };
-			}
+				StartPosition = FormStartPosition.Manual;
+				TopMost = true;
+				modeless = true;
 
-			await Task.Factory.StartNew(() =>
-			{
-				Application.Run(this);
+				var rect = new Native.Rectangle();
+
+				await using (var one = new OneNote())
+				{
+					Native.GetWindowRect(one.WindowHandle, ref rect);
+				}
+
+				var yoffset = (int)(Height * topDelta / 100.0);
+
+				Location = new Point(
+					(rect.Left + ((rect.Right - rect.Left) / 2)) - (Width / 2),
+					(rect.Top + ((rect.Bottom - rect.Top) / 2)) - (Height / 2) - yoffset
+					);
+
+				if (closedAction != null)
+				{
+					ModelessClosed += (sender, e) => { closedAction(sender, e); };
+				}
+
+				Application.Run(new ApplicationContext(this));
+
 			});
+
+			thread.SetApartmentState(ApartmentState.MTA);
+			thread.Start();
+
+			await Task.Yield();
 		}
 
 
