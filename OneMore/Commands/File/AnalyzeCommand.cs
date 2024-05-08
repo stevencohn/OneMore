@@ -110,50 +110,57 @@ namespace River.OneMoreAddIn.Commands
 					progress.SetMaximum(5);
 					progress.Show();
 
-					var container = page.EnsureContentContainer();
-					var notebooks = await one.GetNotebooks();
-
-					var prev = false;
-
-					if (showNotebookSummary)
+					try
 					{
-						ReportNotebooks(container, notebooks);
-						ReportCache(container);
-						prev = true;
-					}
+						var container = page.EnsureContentContainer();
+						var notebooks = await one.GetNotebooks();
 
-					if (showSectionSummary)
-					{
-						if (prev)
+						var prev = false;
+
+						if (showNotebookSummary)
 						{
-							WriteHorizontalLine(page, container);
+							ReportNotebooks(container, notebooks);
+							ReportCache(container);
+							prev = true;
 						}
 
-						await ReportSections(container, notebooks);
-						prev = true;
-					}
-
-					if (pageDetail == AnalysisDetail.Current)
-					{
-						if (prev)
+						if (showSectionSummary)
 						{
-							WriteHorizontalLine(page, container);
+							if (prev)
+							{
+								WriteHorizontalLine(page, container);
+							}
+
+							await ReportSections(container, notebooks);
+							prev = true;
 						}
 
-						await ReportPages(container, await one.GetSection(), null, pageId);
-					}
-					else if (pageDetail == AnalysisDetail.All)
-					{
-						if (prev)
+						if (pageDetail == AnalysisDetail.Current)
 						{
-							WriteHorizontalLine(page, container);
+							if (prev)
+							{
+								WriteHorizontalLine(page, container);
+							}
+
+							await ReportPages(container, await one.GetSection(), null, pageId);
+						}
+						else if (pageDetail == AnalysisDetail.All)
+						{
+							if (prev)
+							{
+								WriteHorizontalLine(page, container);
+							}
+
+							await ReportAllPages(container, await one.GetNotebook(), null, pageId);
 						}
 
-						await ReportAllPages(container, await one.GetNotebook(), null, pageId);
+						progress.SetMessage("Updating report...");
+						await one.Update(page);
 					}
-
-					progress.SetMessage("Updating report...");
-					await one.Update(page);
+					catch (Exception exc)
+					{
+						logger.WriteLine("error analyzing storage", exc);
+					}
 				}
 
 				logger.WriteTime("analysis completed", true);
@@ -292,20 +299,23 @@ namespace River.OneMoreAddIn.Commands
 					if (r[3].Value > 0) values3.Add(r[3].Value);
 				});
 
-				var map1 = new Heatmap(values1);
-				var map2 = new Heatmap(values2);
-				var map3 = new Heatmap(values3);
-				table.Rows.ForEach(r =>
+				if (values1.Any() && values2.Any() && values3.Any())
 				{
-					if (r[1].Value > 0)
-						r[1].ShadingColor = $"#{map1.MapToRGB(r[1].Value):x6}";
+					var map1 = new Heatmap(values1);
+					var map2 = new Heatmap(values2);
+					var map3 = new Heatmap(values3);
+					table.Rows.ForEach(r =>
+					{
+						if (r[1].Value > 0)
+							r[1].ShadingColor = $"#{map1.MapToRGB(r[1].Value):x6}";
 
-					if (r[2].Value > 0)
-						r[2].ShadingColor = $"#{map2.MapToRGB(r[2].Value):x6}";
+						if (r[2].Value > 0)
+							r[2].ShadingColor = $"#{map2.MapToRGB(r[2].Value):x6}";
 
-					if (r[3].Value > 0)
-						r[3].ShadingColor = $"#{map3.MapToRGB(r[3].Value):x6}";
-				});
+						if (r[3].Value > 0)
+							r[3].ShadingColor = $"#{map3.MapToRGB(r[3].Value):x6}";
+					});
+				}
 			}
 
 			container.Add(
@@ -428,16 +438,19 @@ namespace River.OneMoreAddIn.Commands
 					if (r[4].Value > 0) values3.Add(r[2].Value);
 				});
 
-				var map1 = new Heatmap(values1);
-				var map3 = new Heatmap(values3);
-				table.Rows.ForEach(r =>
+				if (values1.Any() && values3.Any())
 				{
-					if (r[2].Value > 0)
-						r[2].ShadingColor = $"#{map1.MapToRGB(r[2].Value):x6}";
+					var map1 = new Heatmap(values1);
+					var map3 = new Heatmap(values3);
+					table.Rows.ForEach(r =>
+					{
+						if (r[2].Value > 0)
+							r[2].ShadingColor = $"#{map1.MapToRGB(r[2].Value):x6}";
 
-					if (r[4].Value > 0)
-						r[4].ShadingColor = $"#{map3.MapToRGB(r[4].Value):x6}";
-				});
+						if (r[4].Value > 0)
+							r[4].ShadingColor = $"#{map3.MapToRGB(r[4].Value):x6}";
+					});
+				}
 
 				container.Add(
 					new Paragraph(table.Root),
