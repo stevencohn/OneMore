@@ -95,12 +95,8 @@ namespace River.OneMoreAddIn.Commands
 
 		private async Task Scan()
 		{
-			string pageId;
-			var one = new OneNote();
-			await using (one.ConfigureAwait(false))
-			{
-				pageId = one.CurrentPageId;
-			}
+			await using var one = new OneNote();
+			var pageId = one.CurrentPageId;
 
 			if (pageId != currentId)
 			{
