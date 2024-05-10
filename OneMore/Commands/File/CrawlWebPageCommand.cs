@@ -67,7 +67,7 @@ namespace River.OneMoreAddIn.Commands
 
 				var progress = new UI.ProgressDialog(DownloadSelectedSubpages);
 				progress.SetMaximum(selections.Count);
-				await progress.RunModeless();
+				progress.RunModeless();
 			}
 		}
 

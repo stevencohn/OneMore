@@ -100,7 +100,7 @@ namespace River.OneMoreAddIn.Commands
 
 			// let user cherrypick duplicate pages to delete...
 			var navigator = new RemoveDuplicatesNavigator(hashes);
-			await navigator.RunModeless((sender, e) =>
+			navigator.RunModeless((sender, e) =>
 			{
 				var d = sender as RemoveDuplicatesNavigator;
 				d.Dispose();

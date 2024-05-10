@@ -43,7 +43,7 @@ namespace River.OneMoreAddIn.Commands
 				{
 					window = new TimerWindow();
 					window.FormClosed += CloseTimerWindow;
-					await window.RunModeless();
+					window.RunModeless();
 				}
 
 				return;

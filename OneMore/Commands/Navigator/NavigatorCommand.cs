@@ -36,7 +36,7 @@ namespace River.OneMoreAddIn.Commands
 			{
 				window = new NavigatorWindow();
 				window.FormClosed += CloseNavigatorWindow;
-				await window.RunModeless();
+				window.RunModeless();
 				return;
 			}
 
@@ -53,6 +53,8 @@ namespace River.OneMoreAddIn.Commands
 			window.ForceTopMost();
 			window.Activate();
 			window.Focus();
+
+			await Task.Yield();
 		}
 
 

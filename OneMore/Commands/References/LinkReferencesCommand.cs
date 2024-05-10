@@ -80,7 +80,7 @@ namespace River.OneMoreAddIn.Commands
 			}
 
 			var progressDialog = new UI.ProgressDialog(Execute);
-			await progressDialog.RunModeless();
+			progressDialog.RunModeless();
 		}
 
 

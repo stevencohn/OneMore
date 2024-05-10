@@ -7,8 +7,6 @@ namespace River.OneMoreAddIn.UI
 	using System;
 	using System.Diagnostics;
 	using System.Drawing;
-	using System.Linq;
-	using System.Threading;
 	using System.Threading.Tasks;
 	using System.Windows.Forms;
 
@@ -86,112 +84,31 @@ namespace River.OneMoreAddIn.UI
 		/// <param name="topDelta">
 		/// Optionally percentage of the dialog height to subtract from the top coordinate, 0-100
 		/// </param>
-		public async Task RunModeless(EventHandler closedAction = null, int topDelta = 0)
+		public void RunModeless(EventHandler closedAction = null, int topDelta = 0)
 		{
-			logger.WriteLine("runmodeless - creating task");
-#if Legacy
-			await Task.Run(() =>
+			StartPosition = FormStartPosition.Manual;
+			TopMost = true;
+			modeless = true;
+
+			var rect = new Native.Rectangle();
+			using (var one = new OneNote())
 			{
-				logger.WriteLine("runmodeless - task... ");
-
-				StartPosition = FormStartPosition.Manual;
-				TopMost = true;
-				modeless = true;
-
-				logger.WriteLine("runmodeless - rect");
-				var rect = new Native.Rectangle();
-				using (var one = new OneNote())
-				{
-					Native.GetWindowRect(one.WindowHandle, ref rect);
-					logger.WriteLine("runmodeless - got rect");
-				}
-
-				logger.WriteLine("runmodeless - rect done");
-				var yoffset = (int)(Height * topDelta / 100.0);
-
-				Location = new Point(
-					(rect.Left + ((rect.Right - rect.Left) / 2)) - (Width / 2),
-					(rect.Top + ((rect.Bottom - rect.Top) / 2)) - (Height / 2) - yoffset
-					);
-
-				if (closedAction != null)
-				{
-					ModelessClosed += (sender, e) => { closedAction(sender, e); };
-				}
-
-				logger.WriteLine("runmodeless - running");
-				Application.Run(this);
+				Native.GetWindowRect(one.WindowHandle, ref rect);
 			}
-			).ContinueWith((task) =>
+
+			var yoffset = (int)(Height * topDelta / 100.0);
+
+			Location = new Point(
+				(rect.Left + ((rect.Right - rect.Left) / 2)) - (Width / 2),
+				(rect.Top + ((rect.Bottom - rect.Top) / 2)) - (Height / 2) - yoffset
+				);
+
+			if (closedAction != null)
 			{
-				if (task.Exception is not null)
-				{
-					if (task.Exception.InnerExceptions.Any())
-					{
-						foreach (var e in task.Exception.InnerExceptions)
-						{
-							if (e is Exception exc)
-							{
-								logger.WriteLine("MoreForm... AggregateException", exc);
-							}
-						}
-					}
-					else
-					{
-						logger.WriteLine("MoreForm... [Aggregate]Exception", task.Exception);
-					}
-				}
-			});
-#else
-			//var thread = new Thread(async () =>
-			//{
-			//	logger.WriteLine("runmodeless - thread...");
+				ModelessClosed += (sender, e) => { closedAction(sender, e); };
+			}
 
-				StartPosition = FormStartPosition.Manual;
-				TopMost = true;
-				modeless = true;
-
-				logger.WriteLine("runmodeless - rect");
-				var rect = new Native.Rectangle();
-				using (var one = new OneNote())
-				{
-					Native.GetWindowRect(one.WindowHandle, ref rect);
-					logger.WriteLine("runmodeless - got rect");
-				}
-
-				logger.WriteLine("runmodeless - rect done");
-				var yoffset = (int)(Height * topDelta / 100.0);
-
-				Location = new Point(
-					(rect.Left + ((rect.Right - rect.Left) / 2)) - (Width / 2),
-					(rect.Top + ((rect.Bottom - rect.Top) / 2)) - (Height / 2) - yoffset
-					);
-
-				if (closedAction != null)
-				{
-					ModelessClosed += (sender, e) => { closedAction(sender, e); };
-				}
-
-				logger.WriteLine("runmodeless - running");
-				//await Task.Run(() =>
-				//{
-					Application.Run(new ApplicationContext(this));
-				//});
-
-			//})
-			//{
-			//	CurrentCulture = AddIn.Culture,
-			//	CurrentUICulture = AddIn.Culture,
-			//	IsBackground = true
-			//};
-
-			//logger.WriteLine("runmodeless - starting thread");
-			//thread.SetApartmentState(ApartmentState.STA);
-			//thread.Start();
-
-			//await Task.Yield();
-#endif
-			logger.WriteLine("runmodeless - done");
+			Application.Run(new ApplicationContext(this));
 		}
 
 

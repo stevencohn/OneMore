@@ -87,12 +87,14 @@ namespace River.OneMoreAddIn.Commands
 
 			if (importImages)
 			{
-				await ImportAsImages();
+				ImportAsImages();
 			}
 			else
 			{
 				ImportAsContent();
 			}
+
+			await Task.Yield();
 		}
 
 
@@ -100,10 +102,10 @@ namespace River.OneMoreAddIn.Commands
 
 		#region ImportAsImages
 
-		private async Task ImportAsImages()
+		private void ImportAsImages()
 		{
 			progress = new ProgressDialog(ImportImages);
-			await progress.RunModeless();
+			progress.RunModeless();
 		}
 
 

@@ -61,7 +61,7 @@ namespace River.OneMoreAddIn.Commands
 			}
 
 			var progressDialog = new UI.ProgressDialog(Execute);
-			await progressDialog.RunModeless((s, a) =>
+			progressDialog.RunModeless((s, a) =>
 			{
 				if (updates > 0)
 				{
