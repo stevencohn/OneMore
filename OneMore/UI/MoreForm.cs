@@ -89,7 +89,7 @@ namespace River.OneMoreAddIn.UI
 		public async Task RunModeless(EventHandler closedAction = null, int topDelta = 0)
 		{
 			logger.WriteLine("runmodeless - creating task");
-#if true
+#if Legacy
 			await Task.Run(() =>
 			{
 				logger.WriteLine("runmodeless - task... ");
@@ -183,7 +183,7 @@ namespace River.OneMoreAddIn.UI
 			};
 
 			logger.WriteLine("runmodeless - starting thread");
-			thread.SetApartmentState(ApartmentState.MTA);
+			thread.SetApartmentState(ApartmentState.STA);
 			thread.Start();
 
 			await Task.Yield();
