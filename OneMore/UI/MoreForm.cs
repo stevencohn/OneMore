@@ -143,9 +143,9 @@ namespace River.OneMoreAddIn.UI
 				}
 			});
 #else
-			var thread = new Thread(async () =>
-			{
-				logger.WriteLine("runmodeless - thread...");
+			//var thread = new Thread(async () =>
+			//{
+			//	logger.WriteLine("runmodeless - thread...");
 
 				StartPosition = FormStartPosition.Manual;
 				TopMost = true;
@@ -173,20 +173,23 @@ namespace River.OneMoreAddIn.UI
 				}
 
 				logger.WriteLine("runmodeless - running");
-				await Task.Run(() => Application.Run(new ApplicationContext(this)));
+				//await Task.Run(() =>
+				//{
+					Application.Run(new ApplicationContext(this));
+				//});
 
-			})
-			{
-				CurrentCulture = AddIn.Culture,
-				CurrentUICulture = AddIn.Culture,
-				IsBackground = true
-			};
+			//})
+			//{
+			//	CurrentCulture = AddIn.Culture,
+			//	CurrentUICulture = AddIn.Culture,
+			//	IsBackground = true
+			//};
 
-			logger.WriteLine("runmodeless - starting thread");
-			thread.SetApartmentState(ApartmentState.STA);
-			thread.Start();
+			//logger.WriteLine("runmodeless - starting thread");
+			//thread.SetApartmentState(ApartmentState.STA);
+			//thread.Start();
 
-			await Task.Yield();
+			//await Task.Yield();
 #endif
 			logger.WriteLine("runmodeless - done");
 		}

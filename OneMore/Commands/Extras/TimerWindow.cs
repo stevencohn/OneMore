@@ -25,6 +25,8 @@ namespace River.OneMoreAddIn.Commands
 
 		public TimerWindow()
 		{
+			logger.Verbose("TimerWindow()");
+
 			InitializeComponent();
 
 			if (NeedsLocalizing())
@@ -48,6 +50,8 @@ namespace River.OneMoreAddIn.Commands
 
 			(scalingX, scalingY) = UIHelper.GetScalingFactors();
 			toolstrip.ImageScalingSize = new Size((int)(16 * scalingX), (int)(16 * scalingY));
+
+			logger.Verbose("TimerWindow() done");
 		}
 
 
@@ -56,10 +60,15 @@ namespace River.OneMoreAddIn.Commands
 
 		protected override void OnLoad(EventArgs e)
 		{
+			logger.Verbose("TimerWindow.OnLoad");
+
 			// tell ThemeManager to ignore this window
 			ThemeEnabled = false;
 			base.OnLoad(e);
+
+			logger.Verbose("TimerWindow.OnLoad done");
 		}
+
 
 		protected override async void OnShown(EventArgs e)
 		{
@@ -68,9 +77,8 @@ namespace River.OneMoreAddIn.Commands
 			base.OnShown(e);
 
 			// deal with primary/secondary displays in either duplicate or extended mode...
-			var one = new OneNote();
 			Screen screen = null;
-			await using (one.ConfigureAwait(false))
+			await using (var one = new OneNote())
 			{
 				screen = Screen.FromHandle(one.WindowHandle);
 				logger.Verbose("TimerWindow.OnShown got screen");
