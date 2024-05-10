@@ -114,7 +114,10 @@ namespace River.OneMoreAddIn.Commands
 					var formats = string.Join(",", Clipboard.GetDataObject().GetFormats(false));
 					logger.WriteLine($"PasteRtf clipboard:({formats})");
 				}
-			});
+			})
+			{
+				Name = $"{nameof(PasteRtfCommand)}Thread"
+			};
 
 			thread.SetApartmentState(ApartmentState.STA);
 			thread.Start();

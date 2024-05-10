@@ -48,7 +48,10 @@ namespace River.OneMoreAddIn.Commands
 				}
 
 				logger.WriteLine("reminder service has stopped; check for exceptions above");
-			});
+			})
+			{
+				Name = $"{nameof(ReminderService)}Thread"
+			};
 
 			thread.SetApartmentState(ApartmentState.STA);
 			thread.IsBackground = true;

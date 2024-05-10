@@ -81,7 +81,10 @@ namespace River.OneMoreAddIn.Commands
 				}
 
 				logger.WriteLine("navigation service has stopped; check for exceptions above");
-			});
+			})
+			{
+				Name = $"{nameof(NavigationService)}Thread"
+			};
 
 			thread.SetApartmentState(ApartmentState.STA);
 			thread.IsBackground = true;

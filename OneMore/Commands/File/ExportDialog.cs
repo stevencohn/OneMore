@@ -146,7 +146,10 @@ namespace River.OneMoreAddIn.Commands
 					{
 						path = dialog.SelectedPath;
 					}
-				});
+				})
+				{
+					Name = $"{nameof(ExportDialog)}Thread"
+				};
 
 				thread.SetApartmentState(ApartmentState.STA);
 				thread.IsBackground = true;
