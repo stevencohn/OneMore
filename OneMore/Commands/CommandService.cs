@@ -111,7 +111,7 @@ namespace River.OneMoreAddIn
 				logger.WriteLine("pipe no longer listening; check for exceptions above");
 			})
 			{
-				Name = $"{nameof(CommandService)}StarterThread"
+				Name = $"{nameof(CommandService)}Thread"
 			};
 
 			thread.SetApartmentState(ApartmentState.STA);
