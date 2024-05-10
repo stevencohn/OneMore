@@ -32,6 +32,7 @@ namespace River.OneMoreAddIn.Settings
 			this.components = new System.ComponentModel.Container();
 			this.introBox = new River.OneMoreAddIn.UI.MoreMultilineLabel();
 			this.layoutPanel = new System.Windows.Forms.Panel();
+			this.hidePinnedBox = new River.OneMoreAddIn.UI.MoreCheckBox();
 			this.quickBox = new River.OneMoreAddIn.UI.MoreCheckBox();
 			this.advancedGroup = new River.OneMoreAddIn.UI.MoreGroupBox();
 			this.disabledBox = new River.OneMoreAddIn.UI.MoreCheckBox();
@@ -42,7 +43,6 @@ namespace River.OneMoreAddIn.Settings
 			this.depthLabel = new System.Windows.Forms.Label();
 			this.corrallBox = new River.OneMoreAddIn.UI.MoreCheckBox();
 			this.tooltip = new System.Windows.Forms.ToolTip(this.components);
-			this.hidePinnedBox = new River.OneMoreAddIn.UI.MoreCheckBox();
 			this.layoutPanel.SuspendLayout();
 			this.advancedGroup.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.intervalBox)).BeginInit();
@@ -79,6 +79,22 @@ namespace River.OneMoreAddIn.Settings
 			this.layoutPanel.Name = "layoutPanel";
 			this.layoutPanel.Size = new System.Drawing.Size(772, 416);
 			this.layoutPanel.TabIndex = 4;
+			// 
+			// hidePinnedBox
+			// 
+			this.hidePinnedBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(231)))), ((int)(((byte)(231)))));
+			this.hidePinnedBox.Cursor = System.Windows.Forms.Cursors.Hand;
+			this.hidePinnedBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+			this.hidePinnedBox.Location = new System.Drawing.Point(7, 114);
+			this.hidePinnedBox.Margin = new System.Windows.Forms.Padding(0, 0, 0, 5);
+			this.hidePinnedBox.Name = "hidePinnedBox";
+			this.hidePinnedBox.Size = new System.Drawing.Size(264, 25);
+			this.hidePinnedBox.StylizeImage = false;
+			this.hidePinnedBox.TabIndex = 7;
+			this.hidePinnedBox.Text = "Hide the My Reading List panel";
+			this.hidePinnedBox.ThemedBack = null;
+			this.hidePinnedBox.ThemedFore = null;
+			this.hidePinnedBox.UseVisualStyleBackColor = true;
 			// 
 			// quickBox
 			// 
@@ -139,10 +155,10 @@ namespace River.OneMoreAddIn.Settings
 			// 
 			this.intervalBox.DecimalPlaces = 2;
 			this.intervalBox.Increment = new decimal(new int[] {
-            5,
+            25,
             0,
             0,
-            65536});
+            131072});
 			this.intervalBox.Location = new System.Drawing.Point(397, 60);
 			this.intervalBox.Maximum = new decimal(new int[] {
             600,
@@ -150,7 +166,7 @@ namespace River.OneMoreAddIn.Settings
             0,
             65536});
 			this.intervalBox.Minimum = new decimal(new int[] {
-            20,
+            10,
             0,
             0,
             65536});
@@ -216,22 +232,6 @@ namespace River.OneMoreAddIn.Settings
 			this.corrallBox.ThemedFore = null;
 			this.tooltip.SetToolTip(this.corrallBox, "Enabled only when multiple screens are available");
 			this.corrallBox.UseVisualStyleBackColor = true;
-			// 
-			// hidePinnedBox
-			// 
-			this.hidePinnedBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(231)))), ((int)(((byte)(231)))));
-			this.hidePinnedBox.Cursor = System.Windows.Forms.Cursors.Hand;
-			this.hidePinnedBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-			this.hidePinnedBox.Location = new System.Drawing.Point(7, 114);
-			this.hidePinnedBox.Margin = new System.Windows.Forms.Padding(0, 0, 0, 5);
-			this.hidePinnedBox.Name = "hidePinnedBox";
-			this.hidePinnedBox.Size = new System.Drawing.Size(264, 25);
-			this.hidePinnedBox.StylizeImage = false;
-			this.hidePinnedBox.TabIndex = 7;
-			this.hidePinnedBox.Text = "Hide the My Reading List panel";
-			this.hidePinnedBox.ThemedBack = null;
-			this.hidePinnedBox.ThemedFore = null;
-			this.hidePinnedBox.UseVisualStyleBackColor = true;
 			// 
 			// NavigatorSheet
 			// 

@@ -57,7 +57,9 @@ namespace River.OneMoreAddIn.Commands
 			fullCatalog = dialog.FullCatalog;
 
 			var progressDialog = new UI.ProgressDialog(Execute);
-			await progressDialog.RunModeless();
+			progressDialog.RunModeless();
+
+			await Task.Yield();
 		}
 
 

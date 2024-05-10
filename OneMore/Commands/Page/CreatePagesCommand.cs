@@ -94,7 +94,7 @@ namespace River.OneMoreAddIn.Commands
 				logger.End();
 			});
 
-			await progress.RunModeless();
+			progress.RunModeless();
 		}
 
 

@@ -53,26 +53,30 @@ namespace River.OneMoreAddIn.Commands
 		public int Seconds { get; private set; }
 
 
-		protected override async void OnLoad(EventArgs e)
+		protected override void OnLoad(EventArgs e)
 		{
 			// tell ThemeManager to ignore this window
 			ThemeEnabled = false;
-
 			base.OnLoad(e);
+		}
+
+
+		protected override async void OnShown(EventArgs e)
+		{
+			base.OnShown(e);
 
 			// deal with primary/secondary displays in either duplicate or extended mode...
-			Rectangle area;
-			await using var one = new OneNote();
-			//for (int i = 0; i < Screen.AllScreens.Length; i++)
-			//{
-			//	var s = Screen.AllScreens[i];
-			//	logger.WriteLine($"Screen[{i}] ({s.DeviceName}), primary={s.Primary}, size={s.Bounds}");
-			//}
+			Screen screen = null;
+			await using (var one = new OneNote())
+			{
+				screen = Screen.FromHandle(one.WindowHandle);
+			}
 
-			var screen = Screen.FromHandle(one.WindowHandle);
+			screen ??= Screen.PrimaryScreen;
+
 			//logger.WriteLine($"using screen ({screen.DeviceName}), primary={screen.Primary}, size={screen.Bounds}");
 			Location = screen.WorkingArea.Location;
-			area = screen.WorkingArea;
+			var area = screen.WorkingArea;
 
 			// must add to area.X here to handle extended mode in which the coord of the secondary
 			// display is an extension of the first, so X would be greater than zero

@@ -89,7 +89,11 @@ namespace River.OneMoreAddIn
 							// isolate work into its own thread so any uncaught exceptions
 							// won't tip over the service thread...
 
-							var worker = new Thread(async (d) => await InvokeCommand(data));
+							var worker = new Thread(async (d) => await InvokeCommand(data))
+							{
+								Name = $"{nameof(CommandService)}WorkerThread"
+							};
+
 							worker.SetApartmentState(ApartmentState.STA);
 							worker.IsBackground = true;
 							worker.Start();
@@ -105,7 +109,10 @@ namespace River.OneMoreAddIn
 				}
 
 				logger.WriteLine("pipe no longer listening; check for exceptions above");
-			});
+			})
+			{
+				Name = $"{nameof(CommandService)}Thread"
+			};
 
 			thread.SetApartmentState(ApartmentState.STA);
 			thread.IsBackground = true;

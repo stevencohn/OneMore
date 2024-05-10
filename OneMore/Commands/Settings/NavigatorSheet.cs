@@ -41,7 +41,7 @@ namespace River.OneMoreAddIn.Settings
 			depthBox.Value = settings.Get("depth", NavigationService.DefaultHistoryDepth);
 
 			var interval = settings.Get("interval", NavigationService.DefaultPollingInterval);
-			intervalBox.Value = interval / Millisecond * 2;
+			intervalBox.Value = interval / Millisecond;
 
 			hidePinnedBox.Checked = settings.Get("hidePinned", false);
 			quickBox.Checked = settings.Get("quickNotes", false);
@@ -69,7 +69,7 @@ namespace River.OneMoreAddIn.Settings
 
 			var updated = settings.Add("depth", (int)depthBox.Value);
 
-			updated = settings.Add("interval", (int)(intervalBox.Value * Millisecond / 2)) || updated;
+			updated = settings.Add("interval", (int)(intervalBox.Value * Millisecond)) || updated;
 
 			updated = hidePinnedBox.Checked
 				? settings.Add("hidePinned", true) || updated

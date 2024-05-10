@@ -83,7 +83,7 @@ namespace River.OneMoreAddIn.Commands
 				var progressDialog = new ProgressDialog(Execute);
 
 				// report result is needed to show UI after Execute is completed on another thread
-				await progressDialog.RunModeless(ReportResult);
+				progressDialog.RunModeless(ReportResult);
 			}
 
 			logger.WriteLine("done");

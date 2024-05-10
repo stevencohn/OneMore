@@ -151,7 +151,10 @@ namespace River.OneMoreAddIn.UI
 					}
 
 					Close();
-				});
+				})
+				{
+					Name = $"{nameof(ProgressDialog)}Thread"
+				};
 
 				thread.SetApartmentState(ApartmentState.STA);
 				thread.IsBackground = true;

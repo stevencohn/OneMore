@@ -7,10 +7,8 @@ namespace River.OneMoreAddIn.UI
 	using System;
 	using System.Diagnostics;
 	using System.Drawing;
-	using System.Threading;
-	using System.Threading.Tasks;
 	using System.Windows.Forms;
-	using Windows.ApplicationModel.UserDataTasks.DataProvider;
+
 
 	internal class MoreForm : Form, IOneMoreWindow
 	{
@@ -85,41 +83,31 @@ namespace River.OneMoreAddIn.UI
 		/// <param name="topDelta">
 		/// Optionally percentage of the dialog height to subtract from the top coordinate, 0-100
 		/// </param>
-		public async Task RunModeless(EventHandler closedAction = null, int topDelta = 0)
+		public void RunModeless(EventHandler closedAction = null, int topDelta = 0)
 		{
-			var thread = new Thread(async () =>
+			StartPosition = FormStartPosition.Manual;
+			TopMost = true;
+			modeless = true;
+
+			var rect = new Native.Rectangle();
+			using (var one = new OneNote())
 			{
-				StartPosition = FormStartPosition.Manual;
-				TopMost = true;
-				modeless = true;
+				Native.GetWindowRect(one.WindowHandle, ref rect);
+			}
 
-				var rect = new Native.Rectangle();
+			var yoffset = (int)(Height * topDelta / 100.0);
 
-				await using (var one = new OneNote())
-				{
-					Native.GetWindowRect(one.WindowHandle, ref rect);
-				}
+			Location = new Point(
+				(rect.Left + ((rect.Right - rect.Left) / 2)) - (Width / 2),
+				(rect.Top + ((rect.Bottom - rect.Top) / 2)) - (Height / 2) - yoffset
+				);
 
-				var yoffset = (int)(Height * topDelta / 100.0);
+			if (closedAction != null)
+			{
+				ModelessClosed += (sender, e) => { closedAction(sender, e); };
+			}
 
-				Location = new Point(
-					(rect.Left + ((rect.Right - rect.Left) / 2)) - (Width / 2),
-					(rect.Top + ((rect.Bottom - rect.Top) / 2)) - (Height / 2) - yoffset
-					);
-
-				if (closedAction != null)
-				{
-					ModelessClosed += (sender, e) => { closedAction(sender, e); };
-				}
-
-				Application.Run(new ApplicationContext(this));
-
-			});
-
-			thread.SetApartmentState(ApartmentState.MTA);
-			thread.Start();
-
-			await Task.Yield();
+			Application.Run(new ApplicationContext(this));
 		}
 
 

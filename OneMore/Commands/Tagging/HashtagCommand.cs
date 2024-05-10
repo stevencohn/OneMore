@@ -48,7 +48,7 @@ namespace River.OneMoreAddIn.Commands
 			dialog = new HashtagDialog();
 			dialog.FormClosed += Dialog_FormClosed;
 
-			await dialog.RunModeless(async (sender, e) =>
+			dialog.RunModeless(async (sender, e) =>
 			{
 				var d = sender as HashtagDialog;
 				if (d.DialogResult == DialogResult.OK)

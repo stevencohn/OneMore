@@ -166,7 +166,7 @@ namespace River.OneMoreAddIn.Commands
 				var success = await new OneNote().NavigateTo(pageID, objectID);
 				if (!success)
 				{
-					UIHelper.ShowInfo(Resx.HashtagDialog_badLink);
+					MoreMessageBox.ShowError(this, Resx.HashtagDialog_badLink);
 				}
 			}
 			catch (Exception exc)

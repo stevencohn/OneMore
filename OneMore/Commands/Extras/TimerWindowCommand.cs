@@ -1,5 +1,5 @@
 ﻿//************************************************************************************************
-// Copyright © 2021 Steven M Cohn.  All rights reserved.
+// Copyright © 2021 Steven M Cohn. All rights reserved.
 //************************************************************************************************
 
 namespace River.OneMoreAddIn.Commands
@@ -43,7 +43,7 @@ namespace River.OneMoreAddIn.Commands
 				{
 					window = new TimerWindow();
 					window.FormClosed += CloseTimerWindow;
-					await window.RunModeless();
+					window.RunModeless();
 				}
 
 				return;

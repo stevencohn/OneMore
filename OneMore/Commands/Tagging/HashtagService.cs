@@ -108,7 +108,10 @@ namespace River.OneMoreAddIn.Commands
 				{
 					await StartupRebuild();
 				}
-			});
+			})
+			{
+				Name = $"{nameof(HashtagService)}Thread"
+			};
 
 			thread.SetApartmentState(ApartmentState.STA);
 			thread.IsBackground = true;
