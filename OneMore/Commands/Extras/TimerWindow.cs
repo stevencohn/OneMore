@@ -9,7 +9,6 @@ namespace River.OneMoreAddIn.Commands
 	using System;
 	using System.Drawing;
 	using System.Globalization;
-	using System.Threading.Tasks;
 	using System.Windows.Forms;
 	using Resx = Properties.Resources;
 
@@ -25,8 +24,6 @@ namespace River.OneMoreAddIn.Commands
 
 		public TimerWindow()
 		{
-			logger.Verbose("TimerWindow()");
-
 			InitializeComponent();
 
 			if (NeedsLocalizing())
@@ -50,8 +47,6 @@ namespace River.OneMoreAddIn.Commands
 
 			(scalingX, scalingY) = UIHelper.GetScalingFactors();
 			toolstrip.ImageScalingSize = new Size((int)(16 * scalingX), (int)(16 * scalingY));
-
-			logger.Verbose("TimerWindow() done");
 		}
 
 
@@ -60,20 +55,14 @@ namespace River.OneMoreAddIn.Commands
 
 		protected override void OnLoad(EventArgs e)
 		{
-			logger.Verbose("TimerWindow.OnLoad");
-
 			// tell ThemeManager to ignore this window
 			ThemeEnabled = false;
 			base.OnLoad(e);
-
-			logger.Verbose("TimerWindow.OnLoad done");
 		}
 
 
 		protected override async void OnShown(EventArgs e)
 		{
-			logger.Verbose("TimerWindow.OnShown");
-
 			base.OnShown(e);
 
 			// deal with primary/secondary displays in either duplicate or extended mode...
@@ -81,10 +70,7 @@ namespace River.OneMoreAddIn.Commands
 			await using (var one = new OneNote())
 			{
 				screen = Screen.FromHandle(one.WindowHandle);
-				logger.Verbose("TimerWindow.OnShown got screen");
 			}
-
-			logger.Verbose("TimerWindow.OnShown passed one");
 
 			screen ??= Screen.PrimaryScreen;
 
@@ -108,8 +94,6 @@ namespace River.OneMoreAddIn.Commands
 			Seconds = 0;
 			timer.Enabled = true;
 			timer.Start();
-
-			logger.Verbose("TimerWindow.OnShown done");
 		}
 
 
