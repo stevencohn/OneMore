@@ -6,7 +6,7 @@
 #pragma warning disable S3881 // IDisposable should be implemented correctly
 #pragma warning disable S2583 // Conditionally executed code should be reachable
 
-#define Verbose
+#define VerboseDispose
 
 namespace River.OneMoreAddIn
 {
@@ -22,7 +22,6 @@ namespace River.OneMoreAddIn
 	using System.Text.RegularExpressions;
 	using System.Threading;
 	using System.Threading.Tasks;
-	using System.Windows.Forms;
 	using System.Xml;
 	using System.Xml.Linq;
 	using System.Xml.Schema;
@@ -153,6 +152,7 @@ namespace River.OneMoreAddIn
 		}
 
 
+		#region Lifecycle
 		public void Dispose()
 		{
 			Dispose(disposing: true);
@@ -177,7 +177,7 @@ namespace River.OneMoreAddIn
 			{
 				if (!disposed)
 				{
-#if Verbose
+#if VerboseDispose
 					var stack = new StackTrace(true);
 					var trace = stack.GetFrames().Skip(1).Aggregate(string.Empty, (a, b) =>
 					{
@@ -204,7 +204,7 @@ namespace River.OneMoreAddIn
 							onenote = null;
 						}
 					}
-#if Verbose
+#if VerboseDispose
 					logger.WriteLine($"OneNote.Dispose{trace}");
 #endif
 					disposed = true;
@@ -217,6 +217,7 @@ namespace River.OneMoreAddIn
 		{
 			await Task.Yield();
 		}
+		#endregion Lifecycle
 
 
 		// = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
