@@ -6,7 +6,7 @@
 #pragma warning disable S3881 // IDisposable should be implemented correctly
 #pragma warning disable S2583 // Conditionally executed code should be reachable
 
-#define VerboseDispose
+#define xVerboseDispose
 
 namespace River.OneMoreAddIn
 {
@@ -14,7 +14,6 @@ namespace River.OneMoreAddIn
 	using River.OneMoreAddIn.Models;
 	using System;
 	using System.Collections.Generic;
-	using System.Diagnostics;
 	using System.IO;
 	using System.Linq;
 	using System.Runtime.InteropServices;
@@ -27,6 +26,9 @@ namespace River.OneMoreAddIn
 	using System.Xml.Schema;
 	using Forms = System.Windows.Forms;
 	using Resx = Properties.Resources;
+#if VerboseDispose
+	using System.Diagnostics;
+#endif
 
 
 	/// <summary>
