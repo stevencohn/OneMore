@@ -7,7 +7,6 @@ namespace River.OneMoreAddIn.UI
 	using System;
 	using System.Diagnostics;
 	using System.Drawing;
-	using System.Threading.Tasks;
 	using System.Windows.Forms;
 
 
@@ -121,7 +120,6 @@ namespace River.OneMoreAddIn.UI
 
 		protected override async void OnLoad(EventArgs e)
 		{
-			logger.WriteLine("MainForm.OnLoad");
 			base.OnLoad(e);
 
 			if (ThemeEnabled)
@@ -136,7 +134,6 @@ namespace River.OneMoreAddIn.UI
 			// this in OnLoad so it doesn't visually "jump" as it would if done in OnShown
 			if (DesignMode || modeless)
 			{
-				logger.WriteLine("MainForm.OnLoad modeless");
 				return;
 			}
 
