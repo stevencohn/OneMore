@@ -7,10 +7,11 @@ namespace River.OneMoreAddIn.UI
 	using System;
 	using System.Diagnostics;
 	using System.Drawing;
+	using System.Linq;
 	using System.Threading;
 	using System.Threading.Tasks;
 	using System.Windows.Forms;
-	using Windows.ApplicationModel.UserDataTasks.DataProvider;
+
 
 	internal class MoreForm : Form, IOneMoreWindow
 	{
@@ -87,19 +88,25 @@ namespace River.OneMoreAddIn.UI
 		/// </param>
 		public async Task RunModeless(EventHandler closedAction = null, int topDelta = 0)
 		{
-			var thread = new Thread(async () =>
+			logger.WriteLine("runmodeless - creating task");
+#if true
+			await Task.Run(() =>
 			{
+				logger.WriteLine("runmodeless - task... ");
+
 				StartPosition = FormStartPosition.Manual;
 				TopMost = true;
 				modeless = true;
 
+				logger.WriteLine("runmodeless - rect");
 				var rect = new Native.Rectangle();
-
-				await using (var one = new OneNote())
+				using (var one = new OneNote())
 				{
 					Native.GetWindowRect(one.WindowHandle, ref rect);
+					logger.WriteLine("runmodeless - got rect");
 				}
 
+				logger.WriteLine("runmodeless - rect done");
 				var yoffset = (int)(Height * topDelta / 100.0);
 
 				Location = new Point(
@@ -112,14 +119,76 @@ namespace River.OneMoreAddIn.UI
 					ModelessClosed += (sender, e) => { closedAction(sender, e); };
 				}
 
-				Application.Run(new ApplicationContext(this));
-
+				logger.WriteLine("runmodeless - running");
+				Application.Run(this);
+			}
+			).ContinueWith((task) =>
+			{
+				if (task.Exception is not null)
+				{
+					if (task.Exception.InnerExceptions.Any())
+					{
+						foreach (var e in task.Exception.InnerExceptions)
+						{
+							if (e is Exception exc)
+							{
+								logger.WriteLine("MoreForm... AggregateException", exc);
+							}
+						}
+					}
+					else
+					{
+						logger.WriteLine("MoreForm... [Aggregate]Exception", task.Exception);
+					}
+				}
 			});
+#else
+			var thread = new Thread(async () =>
+			{
+				logger.WriteLine("runmodeless - thread...");
 
+				StartPosition = FormStartPosition.Manual;
+				TopMost = true;
+				modeless = true;
+
+				logger.WriteLine("runmodeless - rect");
+				var rect = new Native.Rectangle();
+				using (var one = new OneNote())
+				{
+					Native.GetWindowRect(one.WindowHandle, ref rect);
+					logger.WriteLine("runmodeless - got rect");
+				}
+
+				logger.WriteLine("runmodeless - rect done");
+				var yoffset = (int)(Height * topDelta / 100.0);
+
+				Location = new Point(
+					(rect.Left + ((rect.Right - rect.Left) / 2)) - (Width / 2),
+					(rect.Top + ((rect.Bottom - rect.Top) / 2)) - (Height / 2) - yoffset
+					);
+
+				if (closedAction != null)
+				{
+					ModelessClosed += (sender, e) => { closedAction(sender, e); };
+				}
+
+				logger.WriteLine("runmodeless - running");
+				await Task.Run(() => Application.Run(new ApplicationContext(this)));
+
+			})
+			{
+				CurrentCulture = AddIn.Culture,
+				CurrentUICulture = AddIn.Culture,
+				IsBackground = true
+			};
+
+			logger.WriteLine("runmodeless - starting thread");
 			thread.SetApartmentState(ApartmentState.MTA);
 			thread.Start();
 
 			await Task.Yield();
+#endif
+			logger.WriteLine("runmodeless - done");
 		}
 
 
@@ -132,6 +201,7 @@ namespace River.OneMoreAddIn.UI
 
 		protected override async void OnLoad(EventArgs e)
 		{
+			logger.WriteLine("MainForm.OnLoad");
 			base.OnLoad(e);
 
 			if (ThemeEnabled)
@@ -146,6 +216,7 @@ namespace River.OneMoreAddIn.UI
 			// this in OnLoad so it doesn't visually "jump" as it would if done in OnShown
 			if (DesignMode || modeless)
 			{
+				logger.WriteLine("MainForm.OnLoad modeless");
 				return;
 			}
 

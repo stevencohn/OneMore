@@ -6,12 +6,15 @@
 #pragma warning disable S3881 // IDisposable should be implemented correctly
 #pragma warning disable S2583 // Conditionally executed code should be reachable
 
+#define Verbose
+
 namespace River.OneMoreAddIn
 {
 	using Microsoft.Office.Interop.OneNote;
 	using River.OneMoreAddIn.Models;
 	using System;
 	using System.Collections.Generic;
+	using System.Diagnostics;
 	using System.IO;
 	using System.Linq;
 	using System.Runtime.InteropServices;
@@ -19,6 +22,7 @@ namespace River.OneMoreAddIn
 	using System.Text.RegularExpressions;
 	using System.Threading;
 	using System.Threading.Tasks;
+	using System.Windows.Forms;
 	using System.Xml;
 	using System.Xml.Linq;
 	using System.Xml.Schema;
@@ -30,7 +34,7 @@ namespace River.OneMoreAddIn
 	/// Wraps the OneNote interop API
 	/// </summary>
 	/// <see cref="https://docs.microsoft.com/en-us/office/client-developer/onenote/application-interface-onenote"/>
-	internal class OneNote : IAsyncDisposable
+	internal class OneNote : IAsyncDisposable, IDisposable
 	{
 		public enum ExportFormat
 		{
@@ -81,10 +85,10 @@ namespace River.OneMoreAddIn
 		{
 			public string PageId;       // ID of page if this is a page
 			public string TitleId;      // ID of page title OE if not a quick note
-			public string SectionId;	// immediate owner regardless of depth (e.g. SectionGroups)
-			public string NotebookId;	// ID of owning notebook
-			public string Name;			// name of object
-			public string Path;			// full path including name
+			public string SectionId;    // immediate owner regardless of depth (e.g. SectionGroups)
+			public string NotebookId;   // ID of owning notebook
+			public string Name;         // name of object
+			public string Path;         // full path including name
 			public string Link;         // onenote: hyperlink to object
 			public string Color;        // node color
 			public int Size;            // size in bytes of page
@@ -117,6 +121,7 @@ namespace River.OneMoreAddIn
 
 
 		private IApplication onenote;
+		private bool disposed = false;
 		private readonly ILogger logger;
 
 
@@ -148,22 +153,68 @@ namespace River.OneMoreAddIn
 		}
 
 
-		public async ValueTask DisposeAsync()
+		public void Dispose()
 		{
-			await DisposeAsyncCore().ConfigureAwait(false);
+			Dispose(disposing: true);
 			// DO NOT call this otherwise OneNote will not shutdown properly
 			//GC.SuppressFinalize(this);
 		}
 
 
+		public async ValueTask DisposeAsync()
+		{
+			await DisposeAsyncCore().ConfigureAwait(false);
+			Dispose(disposing: false);
+
+			// DO NOT call this otherwise OneNote will not shutdown properly
+			GC.SuppressFinalize(this);
+		}
+
+
+		protected virtual void Dispose(bool disposing)
+		{
+			if (disposing)
+			{
+				if (!disposed)
+				{
+#if Verbose
+					var stack = new StackTrace(true);
+					var trace = stack.GetFrames().Skip(1).Aggregate(string.Empty, (a, b) =>
+					{
+						var filename = b.GetFileName();
+						return string.IsNullOrWhiteSpace(filename) ? a :
+							$"{a} << {Path.GetFileNameWithoutExtension(filename)}:" +
+							$"{b.GetFileLineNumber()}/{b.GetMethod().Name}";
+					});
+
+					logger.WriteLine($"OneNote.Dispose{trace}");
+#endif
+					if (onenote is not null)
+					{
+						try
+						{
+							Marshal.ReleaseComObject(onenote);
+						}
+						catch (Exception exc)
+						{
+							logger.WriteLine("error releasing onenote", exc);
+						}
+						finally
+						{
+							onenote = null;
+						}
+					}
+#if Verbose
+					logger.WriteLine($"OneNote.Dispose{trace}");
+#endif
+					disposed = true;
+				}
+			}
+		}
+
+
 		protected virtual async ValueTask DisposeAsyncCore()
 		{
-			if (onenote is not null)
-			{
-				Marshal.ReleaseComObject(onenote);
-			}
-
-			onenote = null;
 			await Task.Yield();
 		}
 
