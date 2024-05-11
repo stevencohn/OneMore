@@ -1318,7 +1318,7 @@ namespace River.OneMoreAddIn
 
 			await InvokeWithRetry(() =>
 			{
-				onenote.FindMeta(nodeId, name, out xml, false, XMLSchema.xs2013);
+				onenote.FindMeta(nodeId, name, out xml, true, XMLSchema.xs2013);
 			});
 
 #pragma warning disable S2583 // Conditionally executed code should be reachable
