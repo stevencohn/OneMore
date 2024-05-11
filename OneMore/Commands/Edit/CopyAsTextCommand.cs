@@ -43,7 +43,7 @@ namespace River.OneMoreAddIn.Commands
 				{
 					BuildText(all, ns, paragraph, builder);
 
-					if (paragraph.Parent.Name.LocalName == "Title")
+					if (paragraph.Parent.Name.LocalName == "Title" && builder.Length > 0)
 					{
 						builder.AppendLine();
 					}
