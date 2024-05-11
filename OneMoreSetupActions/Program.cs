@@ -54,7 +54,7 @@ namespace OneMoreSetupActions
 				logger.WriteLine($"direct action: {args[0]} .. {DateTime.Now}");
 			}
 
-			ReportContext();
+			ReportContext(args.Any(a => a == "--install" || a == "--uninstall"));
 
 			int status;
 
@@ -134,7 +134,7 @@ namespace OneMoreSetupActions
 		}
 
 
-		static void ReportContext()
+		static void ReportContext(bool requireElevated)
 		{
 			// current user...
 
@@ -158,7 +158,7 @@ namespace OneMoreSetupActions
 
 			logger.WriteLine($"on behalf of {userdom}");
 
-			if (!elevated)
+			if (!elevated && requireElevated)
 			{
 				logger.WriteLine($"aborting without elevated privileges");
 
