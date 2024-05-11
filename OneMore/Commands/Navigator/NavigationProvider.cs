@@ -442,6 +442,9 @@ namespace River.OneMoreAddIn.Commands
 			{
 				var json = JsonConvert.SerializeObject(log, Formatting.Indented);
 
+				var dir = Path.GetDirectoryName(path);
+				PathHelper.EnsurePathExists(dir);
+
 				// ensure we have ReadWrite sharing enabled so we don't block access
 				// between NavigationService and NavigationDialog
 				using var stream = new FileStream(path,
