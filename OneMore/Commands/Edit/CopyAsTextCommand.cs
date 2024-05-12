@@ -2,6 +2,8 @@
 // Copyright © 2023 Steven M Cohn. All rights reserved.
 //************************************************************************************************
 
+#pragma warning disable S2259 // Null pointers should not be dereferenced
+
 namespace River.OneMoreAddIn.Commands
 {
 	using River.OneMoreAddIn.UI;
@@ -34,8 +36,16 @@ namespace River.OneMoreAddIn.Commands
 
 			var builder = new StringBuilder();
 
-			// this allows Title selections as well as body selections
-			var paragraphs = page.Root.Descendants(ns + "OE");
+			// Allow Title selection as well as body selections.
+			// Only grab the top level objects; we'll recurse in BuildText
+			var paragraphs = page.Root
+				.Elements(ns + "Title")
+				.Elements(ns + "OE")
+				.Union(page.Root
+					.Elements(ns + "Outline")
+					.Elements(ns + "OEChildren")
+					.Elements(ns + "OE"))
+				.ToList();
 
 			if (paragraphs.Any())
 			{
@@ -66,26 +76,18 @@ namespace River.OneMoreAddIn.Commands
 			var runs = paragraph.Elements(ns + "T")?
 				.Where(e => all || e.Attribute("selected")?.Value == "all")
 				.DescendantNodes().OfType<XCData>()
-				.Where(c =>
-					c.Value != string.Empty ||
-					c.Parent.Parent.Elements(ns + "T").Count() == 1);
+				.ToList();
 
 			if (runs.Any())
 			{
 				var text = runs
 					.Select(c => c.Value.PlainText())
-					.Aggregate(string.Empty, (x, y) =>
-					{
-						if (string.IsNullOrEmpty(y)) return x;
-						else if (string.IsNullOrEmpty(x)) return y;
-						else return $"{x}{y}";
-					});
+					.Aggregate(string.Empty, (x, y) => y is null ? x : x is null ? y : $"{x}{y}");
 
-
-				var first = paragraph.Elements().First();
-				if (first.Name.LocalName == "List")
+				if (runs[0].Parent.PreviousNode is XElement prev &&
+					prev.Name.LocalName == "List")
 				{
-					var item = first.Elements().First();
+					var item = prev.Elements().First();
 					if (item.Name.LocalName == "Number")
 					{
 						builder.AppendLine($"{item.Attribute("text").Value} {text}");
@@ -97,7 +99,14 @@ namespace River.OneMoreAddIn.Commands
 				}
 				else
 				{
-					builder.AppendLine(text);
+					if (runs[runs.Count - 1].Parent.NextNode is null)
+					{
+						builder.AppendLine(text);
+					}
+					else
+					{
+						builder.Append(text);
+					}
 				}
 			}
 
@@ -132,11 +141,7 @@ namespace River.OneMoreAddIn.Commands
 							var rot = cells
 								.Select(e => e.Value.PlainText())
 								.Aggregate(string.Empty, (x, y) =>
-								{
-									if (string.IsNullOrEmpty(y)) return x;
-									else if (string.IsNullOrEmpty(x)) return y;
-									else return $"{x}\t{y}";
-								});
+									y is null ? x : x is null ? y : $"{x}\t{y}");
 
 							builder.AppendLine(rot);
 							content = true;
