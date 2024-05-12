@@ -99,12 +99,15 @@ namespace River.OneMoreAddIn.Commands
 				}
 				else
 				{
-					if (runs[runs.Count - 1].Parent.NextNode is null)
+					if (runs[0].Parent.PreviousNode is null &&
+						runs[runs.Count - 1].Parent.NextNode is null)
 					{
+						// whole paragraph selected so treat as a paragrah with EOL
 						builder.AppendLine(text);
 					}
 					else
 					{
+						// partial paragraph selected so only grab selected runs
 						builder.Append(text);
 					}
 				}
