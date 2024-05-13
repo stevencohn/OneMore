@@ -7,6 +7,7 @@
 namespace River.OneMoreAddIn.Commands
 {
 	using River.OneMoreAddIn.UI;
+	using System;
 	using System.Linq;
 	using System.Text;
 	using System.Threading.Tasks;
@@ -60,7 +61,28 @@ namespace River.OneMoreAddIn.Commands
 				}
 			}
 
-			var success = await new ClipboardProvider().SetText(builder.ToString(), true);
+			// OneMore can't tell the difference between selecting an entire line and selecting
+			// an entire line plus its EOL character. The selected attribute on the one:T is set
+			// to "all" while that attribute on the parent one:OE is always set to "partial"!
+			// Many use cases may not want an EOL such as when pasting into a shell console to
+			// avoid invoking the text as a command. If the user wants a newline, they must select
+			// the entire line, plus the beginning of the next line. This is better than always
+			// adding a newline if the whole line is selected because it's the lesser of two evils
+			// when pasting into Excel, for example.
+			var match = true;
+			var newline = Environment.NewLine;
+			for (var i = 0; i < newline.Length; i++)
+			{
+				if (builder[builder.Length - (newline.Length - i)] != newline[i])
+				{
+					match = false;
+					break;
+				}
+			}
+
+			var length = match ? builder.Length - newline.Length : builder.Length;
+			var success = await new ClipboardProvider().SetText(builder.ToString(0, length), true);
+
 			if (!success)
 			{
 				MoreMessageBox.ShowWarning(owner, Resx.Clipboard_locked);
