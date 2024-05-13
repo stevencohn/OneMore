@@ -31,7 +31,7 @@ namespace River.OneMoreAddIn.Commands
 		{
 			using var dialog = new CommandPaletteDialog();
 			dialog.RequestData += PopulateCommands;
-			PopulateCommands(dialog, EventArgs.Empty);
+			PopulateCommands(dialog, null);
 
 			if (dialog.ShowDialog(owner) == DialogResult.OK &&
 				dialog.Index >= 0)
@@ -71,6 +71,12 @@ namespace River.OneMoreAddIn.Commands
 			var dialog = sender as CommandPaletteDialog;
 
 			var provider = new CommandProvider();
+
+			if (e is not null)
+			{
+				provider.ClearMRU();
+			}
+
 			commands = provider.LoadPaletteCommands().OrderBy(c => c.Name).ToList();
 			recent = provider.LoadMRU(commands).OrderBy(c => c.Name).ToList();
 			logger.WriteLine($"discovered {commands.Count} commands, {recent.Count} mru");
