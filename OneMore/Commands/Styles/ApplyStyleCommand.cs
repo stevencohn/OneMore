@@ -43,6 +43,12 @@ namespace River.OneMoreAddIn.Commands
 				return;
 			}
 
+			await ExecuteWithStyle(style);
+		}
+
+
+		public async Task ExecuteWithStyle(Style style)
+		{
 			logger.StartClock();
 
 			await using var one = new OneNote(out page, out ns);

@@ -40,6 +40,27 @@ namespace River.OneMoreAddIn
 		}
 
 
+		public async Task<Command> Make<T>() where T : Command, new()
+		{
+			var command = new T();
+
+			// need to rediscover active OneNote window for each command instantiation
+			// otherwise closing the primary or last-used active window will leave owner
+			// set to an invalid window handle
+			await using var one = new OneNote();
+			// convert the ulong to a IWin32Window which will be used by ShowDialog calls
+			var owner = new Win32WindowHandle(new IntPtr((long)one.WindowHandle));
+
+			command.SetFactory(this)
+				.SetLogger(logger)
+				.SetRibbon(ribbon)
+				.SetOwner(owner)
+				.SetTrash(trash);
+
+			return command;
+		}
+
+
 		/// <summary>
 		/// Instantiates and executes the specified command with optional arguments.
 		/// Provides catch-all exception handling - logging and a generic message to the user
