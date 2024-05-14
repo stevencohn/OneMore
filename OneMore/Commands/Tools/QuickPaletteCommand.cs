@@ -40,8 +40,7 @@ namespace River.OneMoreAddIn.Commands
 			PopulateCommands(dialog, null);
 
 			if (dialog.ShowDialog(owner) == DialogResult.OK &&
-				dialog.Index >= 0 &&
-				args[0] is CommandFactory factory)
+				dialog.Index >= 0)
 			{
 				var command = commands[dialog.Index];
 				logger.WriteLine($"applying attribute {dialog.Index}: '{command}'");
