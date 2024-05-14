@@ -636,6 +636,12 @@ namespace River.OneMoreAddIn
 			=> await factory.Run<PasteTextCommand>();
 
 
+		[IgnorePalette]
+		[Command("ribPinPageButton_Label", Keys.Control | Keys.Shift | Keys.B)]
+		public async Task PinpageCmd(IRibbonControl control)
+			=> await factory.Run<PinPageCommand>();
+
+
 		[Command("ribPronunciateButton_Label", Keys.None, "ribEditMenu")]
 		public async Task PronunciateCmd(IRibbonControl control)
 			=> await factory.Run<PronunciateCommand>();
