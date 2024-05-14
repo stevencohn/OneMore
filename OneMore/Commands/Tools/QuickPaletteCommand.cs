@@ -1,5 +1,5 @@
 ﻿//************************************************************************************************
-// Copyright © 2024 Steven M Cohn.  All rights reserved.
+// Copyright © 2024 Steven M Cohn. All rights reserved.
 //************************************************************************************************
 
 namespace River.OneMoreAddIn.Commands
@@ -18,6 +18,9 @@ namespace River.OneMoreAddIn.Commands
 	internal class QuickPaletteCommand : Command
 	{
 		private List<string> commands;
+		private int lastStyle;
+		private int lastBasic;
+		private int lastColor;
 
 
 		public QuickPaletteCommand()
@@ -38,10 +41,21 @@ namespace River.OneMoreAddIn.Commands
 				dialog.Index >= 0)
 			{
 				var command = commands[dialog.Index];
+				logger.WriteLine($"command[{dialog.Index}], name:'{command}'");
 
-				logger.WriteLine($"command[index:{dialog.Index}, 'name:{command}'");
-
-				// ...
+				if (dialog.Index <= lastStyle)
+				{
+					await AddIn.Self.ApplyStyleCmd(null, null, dialog.Index);
+				}
+				else if (dialog.Index <= lastBasic)
+				{
+				}
+				else if (dialog.Index <= lastColor)
+				{
+				}
+				else
+				{
+				}
 			}
 
 			// reset focus to OneNote window
@@ -55,15 +69,31 @@ namespace River.OneMoreAddIn.Commands
 			var dialog = sender as CommandPaletteDialog;
 
 			commands = new List<string>();
-			commands.AddRange(new ThemeProvider().Theme.GetStyles().Select(s => $"styles:{s.Name}"));
+
+			var styleNames = new ThemeProvider().Theme.GetStyles().Select(s => $"styles:{s.Name}");
+			commands.AddRange(styleNames);
+			lastStyle = commands.Count - 1;
+
+			commands.Add("basic text:Bold");
+			commands.Add("basic text:Italic");
+			commands.Add("basic text:Underline");
+			commands.Add("basic text:Strikethrough");
+			commands.Add("basic text:Subscript");
+			commands.Add("basic text:Superscript");
+			lastBasic = commands.Count - 1;
+
 			commands.Add("font colors:Blue");
 			commands.Add("font colors:Green");
 			commands.Add("font colors:Orange");
+			commands.Add("font colors:Purple");
 			commands.Add("font colors:Red");
 			commands.Add("font colors:Yellow");
+			lastColor = commands.Count - 1;
+
 			commands.Add("highlight colors:Blue");
 			commands.Add("highlight colors:Green");
 			commands.Add("highlight colors:Orange");
+			commands.Add("highlight colors:Purple");
 			commands.Add("highlight colors:Red");
 			commands.Add("highlight colors:Yellow");
 

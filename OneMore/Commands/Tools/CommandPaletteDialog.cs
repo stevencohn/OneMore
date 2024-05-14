@@ -105,12 +105,17 @@ namespace River.OneMoreAddIn.Commands
 		private void InvokeCommand(object sender, EventArgs e)
 		{
 			var text = cmdBox.Text.Trim();
-			var regex = new Regex($"^{text}($|\\|.+$)", RegexOptions.IgnoreCase | RegexOptions.Compiled);
 
-			Index = commands.IndexOf(c => regex.IsMatch(c));
+			var pattern = new Regex(
+				@$"(?:(?<cat>[^{palette.CategoryDivider}]+){palette.CategoryDivider})?" +
+				text +
+				$@"(?:\{palette.KeyDivider}(?<seq>.*))?",
+				RegexOptions.IgnoreCase | RegexOptions.Compiled);
+
+			Index = commands.IndexOf(c => pattern.IsMatch(c));
 			if (Index < 0)
 			{
-				Index = recentNames.IndexOf(c => regex.IsMatch(c));
+				Index = recentNames.IndexOf(c => pattern.IsMatch(c));
 				Recent = Index >= 0;
 			}
 

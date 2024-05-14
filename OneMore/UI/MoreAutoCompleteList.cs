@@ -239,7 +239,8 @@ namespace River.OneMoreAddIn.UI
 			var pattern = new Regex(
 				@$"(?:(?<cat>[^{CategoryDivider}]+){CategoryDivider})?" +
 				@$"(?:(?<nam>[^\{KeyDivider}]+))" +
-				$@"(?:\{KeyDivider}(?<seq>.*))?");
+				$@"(?:\{KeyDivider}(?<seq>.*))?",
+				RegexOptions.IgnoreCase | RegexOptions.Compiled);
 
 			foreach (var name in names)
 			{
@@ -397,14 +398,17 @@ namespace River.OneMoreAddIn.UI
 
 			var source = matches.Any() ? matches : commands;
 			var command = source[e.Item.Index];
-			var text = command.Name;
-			var keys = command.Keys;
 
 			var drawn = false;
 			float x;
 
 			if (!string.IsNullOrWhiteSpace(Owner.Text))
 			{
+				// draw name in three parts: unmatched start, matched middle, unmatched end...
+
+				var text = command.Name;
+
+				// Owner is the bound TextBox
 				var index = text.IndexOf(Owner.Text, StringComparison.InvariantCultureIgnoreCase);
 				if (index >= 0)
 				{
@@ -456,10 +460,12 @@ namespace River.OneMoreAddIn.UI
 
 			if (!drawn)
 			{
-				e.Graphics.DrawString(text, e.Item.Font, fore, e.Bounds);
+				// if no matched part then draw entire name normally...
+
+				e.Graphics.DrawString(command.Name, e.Item.Font, fore, e.Bounds);
 			}
 
-			// track where to draw key sequence for command
+			// leave margin from right side to end of key sequence text
 			x = e.Bounds.Width - 5;
 
 			// did we match any Recent items at all?
@@ -498,17 +504,35 @@ namespace River.OneMoreAddIn.UI
 				}
 			}
 
-			// key sequence
-			if (!string.IsNullOrWhiteSpace(keys))
+			// prefer category
+			if (!string.IsNullOrWhiteSpace(command.Category))
 			{
-				var size = e.Graphics.MeasureString(keys, Font);
+				if (e.Item.Index == 0 ||
+					(e.Item.Index > 0 && command.Category != source[e.Item.Index - 1].Category))
+				{
+					if (e.Item.Index > 0)
+					{
+						// divider line
+						e.Graphics.DrawLine(Pens.Silver, // yes, this pen is hard-coded
+							e.Bounds.X, e.Bounds.Y, e.Bounds.Width, e.Bounds.Y);
+					}
+
+					var size = TextRenderer.MeasureText(command.Category, e.Item.Font);
+					x -= size.Width;
+					e.Graphics.DrawString(command.Category, e.Item.Font, high, x, e.Bounds.Y);
+				}
+			}
+			// key sequence
+			else if (!string.IsNullOrWhiteSpace(command.Keys))
+			{
+				var size = e.Graphics.MeasureString(command.Keys, Font);
 				x -= size.Width + 5;
 
 				var cap = e.Item.Selected
 					? new SolidBrush(manager.GetColor("GradientInactiveCaption"))
 					: new SolidBrush(manager.GetColor("ActiveCaption"));
 
-				e.Graphics.DrawString(keys, e.Item.Font, cap, x, e.Bounds.Y);
+				e.Graphics.DrawString(command.Keys, e.Item.Font, cap, x, e.Bounds.Y);
 			}
 		}
 
