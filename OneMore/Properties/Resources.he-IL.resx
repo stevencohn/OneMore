@@ -3547,6 +3547,14 @@ ISO-code then comma then language name</comment>
     <value>שפת הגהה</value>
     <comment>ribbon menu</comment>
   </data>
+  <data name="ribQuickPaletteButton_Label" xml:space="preserve">
+    <value>פלטה מהירה</value>
+    <comment>ribbon menu</comment>
+  </data>
+  <data name="ribQuickPaletteButton_Screentip" xml:space="preserve">
+    <value>פתח את חלון הצבעים המהיר</value>
+    <comment>ribbon menu</comment>
+  </data>
   <data name="ribRecalculateFormulaButton_Label" xml:space="preserve">
     <value>חישוב מחדש של נוסחה</value>
     <comment>Ribbon OneMore menu item, Formula...</comment>

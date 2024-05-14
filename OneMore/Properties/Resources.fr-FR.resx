@@ -3534,6 +3534,14 @@ Après le dernier groupe</value>
     <value>Langue de vérification</value>
     <comment>ribbon menu</comment>
   </data>
+  <data name="ribQuickPaletteButton_Label" xml:space="preserve">
+    <value>Palette rapide</value>
+    <comment>ribbon menu</comment>
+  </data>
+  <data name="ribQuickPaletteButton_Screentip" xml:space="preserve">
+    <value>Ouvrez la fenêtre de palette rapide</value>
+    <comment>ribbon menu</comment>
+  </data>
   <data name="ribRecalculateFormulaButton_Label" xml:space="preserve">
     <value>Recalculer la formule</value>
     <comment>Ribbon OneMore menu item, Formula...</comment>

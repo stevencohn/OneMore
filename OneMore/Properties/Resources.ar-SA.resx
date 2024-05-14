@@ -3536,6 +3536,14 @@ ISO-code then comma then language name</comment>
     <value>لغة التدقيق</value>
     <comment>ribbon menu</comment>
   </data>
+  <data name="ribQuickPaletteButton_Label" xml:space="preserve">
+    <value>لوحة سريعة</value>
+    <comment>ribbon menu</comment>
+  </data>
+  <data name="ribQuickPaletteButton_Screentip" xml:space="preserve">
+    <value>افتح نافذة اللوحة السريعة</value>
+    <comment>ribbon menu</comment>
+  </data>
   <data name="ribRecalculateFormulaButton_Label" xml:space="preserve">
     <value>إعادة حساب الصيغة</value>
     <comment>Ribbon OneMore menu item, Formula...</comment>

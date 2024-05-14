@@ -3527,6 +3527,14 @@ Nach der letzten Gruppe</value>
     <value>Sprache prüfen</value>
     <comment>ribbon menu</comment>
   </data>
+  <data name="ribQuickPaletteButton_Label" xml:space="preserve">
+    <value>Schnelle Palette</value>
+    <comment>ribbon menu</comment>
+  </data>
+  <data name="ribQuickPaletteButton_Screentip" xml:space="preserve">
+    <value>Öffnen Sie das Schnellpalettenfenster</value>
+    <comment>ribbon menu</comment>
+  </data>
   <data name="ribRecalculateFormulaButton_Label" xml:space="preserve">
     <value>Formel neu berechnen</value>
     <comment>Ribbon OneMore menu item, Formula...</comment>

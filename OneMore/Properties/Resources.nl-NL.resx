@@ -3536,6 +3536,14 @@ Na de laatste groep</value>
     <value>Proeftaal</value>
     <comment>ribbon menu</comment>
   </data>
+  <data name="ribQuickPaletteButton_Label" xml:space="preserve">
+    <value>Snel palet</value>
+    <comment>ribbon menu</comment>
+  </data>
+  <data name="ribQuickPaletteButton_Screentip" xml:space="preserve">
+    <value>Open het snelle paletvenster</value>
+    <comment>ribbon menu</comment>
+  </data>
   <data name="ribRecalculateFormulaButton_Label" xml:space="preserve">
     <value>Bereken de formule opnieuw</value>
     <comment>Ribbon OneMore menu item, Formula...</comment>

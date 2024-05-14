@@ -8972,6 +8972,24 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Quick Palette.
+        /// </summary>
+        internal static string ribQuickPaletteButton_Label {
+            get {
+                return ResourceManager.GetString("ribQuickPaletteButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Open the Quick Palette window.
+        /// </summary>
+        internal static string ribQuickPaletteButton_Screentip {
+            get {
+                return ResourceManager.GetString("ribQuickPaletteButton_Screentip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Recalculate Formula.
         /// </summary>
         internal static string ribRecalculateFormulaButton_Label {

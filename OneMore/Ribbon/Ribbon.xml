@@ -904,6 +904,12 @@
               getScreentip="GetRibbonScreentip"
               onAction="CommandPaletteCmd"/>
             <button
+              id="ribQuickPaletteButton"
+              imageMso="StylesDialogClassic"
+              getLabel="GetRibbonLabel"
+              getScreentip="GetRibbonScreentip"
+              onAction="QuickPaletteCmd"/>
+            <button
               id="ribNavigatorButton"
               getImage="GetRibbonImageByID"
               getLabel="GetRibbonLabel"

@@ -3529,6 +3529,14 @@ ISO-code then comma then language name</comment>
     <value>校对语言</value>
     <comment>ribbon menu</comment>
   </data>
+  <data name="ribQuickPaletteButton_Label" xml:space="preserve">
+    <value>快速调色板</value>
+    <comment>ribbon menu</comment>
+  </data>
+  <data name="ribQuickPaletteButton_Screentip" xml:space="preserve">
+    <value>打开快速调色板窗口</value>
+    <comment>ribbon menu</comment>
+  </data>
   <data name="ribRecalculateFormulaButton_Label" xml:space="preserve">
     <value>重新计算公式</value>
     <comment>Ribbon OneMore menu item, Formula...</comment>
