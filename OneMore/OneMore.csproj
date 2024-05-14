@@ -179,6 +179,7 @@
     <Compile Include="Commands\Navigator\NavigatorWindow.Designer.cs">
       <DependentUpon>NavigatorWindow.cs</DependentUpon>
     </Compile>
+    <Compile Include="Commands\Navigator\PinPageCommand.cs" />
     <Compile Include="Commands\Page\DuplicatePageCommand.cs" />
     <Compile Include="Commands\Page\MovePageCommand.cs" />
     <Compile Include="Commands\References\HyperlinkProvider.cs" />

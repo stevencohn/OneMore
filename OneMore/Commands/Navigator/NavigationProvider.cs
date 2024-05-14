@@ -27,7 +27,7 @@ namespace River.OneMoreAddIn.Commands
 		private readonly string path;
 		private readonly bool quickNotes;
 		private FileSystemWatcher watcher;
-		private EventHandler<List<HistoryRecord>> navigated;
+		private EventHandler<HistoryLog> navigated;
 		private DateTime lastWrite;
 		private bool disposedValue;
 
@@ -76,7 +76,7 @@ namespace River.OneMoreAddIn.Commands
 		/// Adds or removes an event handler to signal that the user has navigated to a page
 		/// and stayed long enough to be recorded as "read"
 		/// </summary>
-		public event EventHandler<List<HistoryRecord>> Navigated
+		public event EventHandler<HistoryLog> Navigated
 		{
 			add
 			{
@@ -116,7 +116,7 @@ namespace River.OneMoreAddIn.Commands
 				var time = File.GetLastWriteTime(e.FullPath);
 				if (time.Subtract(lastWrite).TotalMilliseconds > NavigationService.SafeWatchWindow)
 				{
-					navigated?.Invoke(this, await ReadHistory());
+					navigated?.Invoke(this, await ReadHistoryLog());
 					lastWrite = time;
 				}
 			}
@@ -134,14 +134,14 @@ namespace River.OneMoreAddIn.Commands
 		/// Returns the list of history items tracking visited pages.
 		/// </summary>
 		/// <returns></returns>
-		public async Task<List<HistoryRecord>> ReadHistory()
+		public async Task<HistoryLog> ReadHistoryLog()
 		{
 			try
 			{
 				await semalock.WaitAsync();
 
 				var log = await Read();
-				return log.History;
+				return log;
 			}
 			finally
 			{

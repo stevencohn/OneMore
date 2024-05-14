@@ -184,7 +184,7 @@ namespace River.OneMoreAddIn.Commands
 				await LoadPinned();
 			}
 
-			ShowHistory(null, await provider.ReadHistory());
+			ShowHistory(null, await provider.ReadHistoryLog());
 		}
 
 
@@ -624,34 +624,53 @@ namespace River.OneMoreAddIn.Commands
 		// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 		// History list...
 
-		private async void ShowHistory(object sender, List<HistoryRecord> e)
+		private async void ShowHistory(object sender, HistoryLog log)
 		{
 			if (historyBox.InvokeRequired)
 			{
-				historyBox.BeginInvoke(new Action(() => ShowHistory(sender, e)));
+				historyBox.BeginInvoke(new Action(() => ShowHistory(sender, log)));
 				return;
 			}
 
 			try
 			{
-				if (e.Count > 0 && e[0].PageId == visitedID)
+				// update pinned panel...
+
+				var records = new List<HistoryRecord>();
+				foreach (IMoreHostItem host in historyBox.SelectedItems)
+				{
+					if (host.Tag is HistoryRecord record)
+					{
+						records.Add(record);
+					}
+				}
+
+				// new items not currently displayed; user must have pressed Ctrl+Shift+B
+				if (log.Pinned.Except(records).Any())
+				{
+					ShowPins(log.Pinned);
+				}
+
+				// update history panel...
+
+				if (log.History.Count > 0 && log.History[0].PageId == visitedID)
 				{
 					// user clicked ths page in navigator; don't reorder the list or they'll lose
 					// their context and get confused, but refresh the headings pane
-					await LoadPageHeadings(e[0].PageId);
+					await LoadPageHeadings(log.History[0].PageId);
 					visitedID = null;
 					return;
 				}
 
 				visitedID = null;
 
-				await ShowPageOutline(e[0]);
+				await ShowPageOutline(log.History[0]);
 
 				historyBox.BeginUpdate();
 				historyBox.Items.Clear();
 				var viewColor = manager.GetColor("ListView");
 
-				e.ForEach(record =>
+				log.History.ForEach(record =>
 				{
 					var control = new HistoryControl(record)
 					{
