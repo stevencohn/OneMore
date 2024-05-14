@@ -2229,6 +2229,52 @@ Jahr (2023)
     <value>Legen Sie den Seitentitel auf die ersten fünf Wörter der Notiz fest</value>
     <comment>checkbox</comment>
   </data>
+  <data name="QuickPaletteCommand_basic_category" xml:space="preserve">
+    <value>Grundtext</value>
+    <comment>category</comment>
+  </data>
+  <data name="QuickPaletteCommand_basics" xml:space="preserve">
+    <value>Deutlich
+Kursiv
+Unterstreichen
+Durchgestrichen
+Index
+Hochgestellt</value>
+    <comment>basic style attributes</comment>
+  </data>
+  <data name="QuickPaletteCommand_color_category" xml:space="preserve">
+    <value>Schriftfarben</value>
+    <comment>category</comment>
+  </data>
+  <data name="QuickPaletteCommand_colors" xml:space="preserve">
+    <value>Blau
+Grün
+Orange
+Lila
+Rot
+Gelb</value>
+    <comment>font color attributes</comment>
+  </data>
+  <data name="QuickPaletteCommand_highlight_category" xml:space="preserve">
+    <value>Hervorheben von Farben</value>
+    <comment>category</comment>
+  </data>
+  <data name="QuickPaletteCommand_highlights" xml:space="preserve">
+    <value>Blaues Highlight
+Grünes Highlight
+Orange Highlight
+Lila Highlight
+Rotes Highlight
+Gelbe Markierung</value>
+  </data>
+  <data name="QuickPaletteCommand_Intro" xml:space="preserve">
+    <value>Wählen Sie ein Stilattribut aus, das auf den ausgewählten Text angewendet werden soll</value>
+    <comment>label</comment>
+  </data>
+  <data name="QuickPaletteCommand_Title" xml:space="preserve">
+    <value>Schnellpalette</value>
+    <comment>dialog title</comment>
+  </data>
   <data name="RecalculateFormulaCommand_NoFormula" xml:space="preserve">
     <value>In der ausgewählten Tabelle wurde keine Formel gefunden</value>
     <comment>recalculate command message</comment>

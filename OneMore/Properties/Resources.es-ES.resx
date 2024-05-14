@@ -2232,6 +2232,52 @@ Año (2023)
     <value>Establezca el título de la página en las primeras pocas palabras de la nota.</value>
     <comment>checkbox</comment>
   </data>
+  <data name="QuickPaletteCommand_basic_category" xml:space="preserve">
+    <value>texto básico</value>
+    <comment>category</comment>
+  </data>
+  <data name="QuickPaletteCommand_basics" xml:space="preserve">
+    <value>Atrevido
+Itálico
+Subrayar
+Tachado
+Subíndice
+Sobrescrito</value>
+    <comment>basic style attributes</comment>
+  </data>
+  <data name="QuickPaletteCommand_color_category" xml:space="preserve">
+    <value>colores de fuente</value>
+    <comment>category</comment>
+  </data>
+  <data name="QuickPaletteCommand_colors" xml:space="preserve">
+    <value>Azul
+Verde
+Naranja
+Púrpura
+Rojo
+Amarillo</value>
+    <comment>font color attributes</comment>
+  </data>
+  <data name="QuickPaletteCommand_highlight_category" xml:space="preserve">
+    <value>resaltar colores</value>
+    <comment>category</comment>
+  </data>
+  <data name="QuickPaletteCommand_highlights" xml:space="preserve">
+    <value>Resaltado azul
+Resaltado verde
+Resaltado naranja
+Resaltado morado
+Resaltado rojo
+Resaltado amarillo</value>
+  </data>
+  <data name="QuickPaletteCommand_Intro" xml:space="preserve">
+    <value>Elija un atributo de estilo para aplicarlo al texto seleccionado</value>
+    <comment>label</comment>
+  </data>
+  <data name="QuickPaletteCommand_Title" xml:space="preserve">
+    <value>Paleta rápida</value>
+    <comment>dialog title</comment>
+  </data>
   <data name="RecalculateFormulaCommand_NoFormula" xml:space="preserve">
     <value>No se encontró ninguna fórmula en la tabla seleccionada</value>
     <comment>recalculate command message</comment>

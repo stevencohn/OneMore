@@ -40,6 +40,12 @@ namespace River.OneMoreAddIn
 		}
 
 
+		/// <summary>
+		/// Make an instance of the given command type with internal properties set so
+		/// the command is ready for use.
+		/// </summary>
+		/// <typeparam name="T">The Command type to instantiate</typeparam>
+		/// <returns>An instance of T</returns>
 		public async Task<Command> Make<T>() where T : Command, new()
 		{
 			var command = new T();

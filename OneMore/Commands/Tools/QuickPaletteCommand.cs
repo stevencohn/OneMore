@@ -10,6 +10,7 @@ namespace River.OneMoreAddIn.Commands
 	using System.Linq;
 	using System.Threading.Tasks;
 	using System.Windows.Forms;
+	using Resx = Properties.Resources;
 
 
 	/// <summary>
@@ -30,7 +31,10 @@ namespace River.OneMoreAddIn.Commands
 
 		public override async Task Execute(params object[] args)
 		{
-			using var dialog = new CommandPaletteDialog("Quick Palette", "do things...", false);
+			using var dialog = new CommandPaletteDialog(
+				Resx.QuickPaletteCommand_Title,
+				Resx.QuickPaletteCommand_Intro,
+				false);
 
 			dialog.RequestData += PopulateCommands;
 			PopulateCommands(dialog, null);
@@ -40,7 +44,7 @@ namespace River.OneMoreAddIn.Commands
 				args[0] is CommandFactory factory)
 			{
 				var command = commands[dialog.Index];
-				logger.WriteLine($"command[{dialog.Index}], name:'{command}'");
+				logger.WriteLine($"applying attribute {dialog.Index}: '{command}'");
 
 				if (dialog.Index <= lastStyle)
 				{
@@ -83,7 +87,7 @@ namespace River.OneMoreAddIn.Commands
 				case 8: style.Color = "#ED7D31"; break;		// Orange
 				case 9: style.Color = "#8064A2"; break;		// Purple
 				case 10: style.Color = "#E84C22"; break;	// Red
-				case 11: style.Color = "#FFC000"; break;	// Yellow
+				case 11: style.Color = "#FFD965"; break;	// Yellow
 
 				// highlight colors
 				case 12: style.Highlight = "#5B9BD5"; break;	// Blue
@@ -91,7 +95,7 @@ namespace River.OneMoreAddIn.Commands
 				case 14: style.Highlight = "#ED7D31"; break;	// Orange
 				case 15: style.Highlight = "#8064A2"; break;	// Purple
 				case 16: style.Highlight = "#E84C22"; break;	// Red
-				case 17: style.Highlight = "#FFC000"; break;	// Yellow
+				case 17: style.Highlight = "#FFD965"; break;	// Yellow
 			}
 
 			var cmd = (ApplyStyleCommand)await factory.Make<ApplyStyleCommand>();
@@ -101,6 +105,18 @@ namespace River.OneMoreAddIn.Commands
 
 		private void PopulateCommands(object sender, EventArgs e)
 		{
+			void Add(string category, string text)
+			{
+				var names = text.Split(
+					new string[] { Environment.NewLine },
+					StringSplitOptions.RemoveEmptyEntries);
+
+				foreach (var name in names)
+				{
+					commands.Add($"{category}:{name}");
+				}
+			}
+
 			var dialog = sender as CommandPaletteDialog;
 
 			commands = new List<string>();
@@ -109,26 +125,9 @@ namespace River.OneMoreAddIn.Commands
 			commands.AddRange(styleNames);
 			lastStyle = commands.Count - 1;
 
-			commands.Add("basic text:Bold");
-			commands.Add("basic text:Italic");
-			commands.Add("basic text:Underline");
-			commands.Add("basic text:Strikethrough");
-			commands.Add("basic text:Subscript");
-			commands.Add("basic text:Superscript");
-
-			commands.Add("font colors:Blue");
-			commands.Add("font colors:Green");
-			commands.Add("font colors:Orange");
-			commands.Add("font colors:Purple");
-			commands.Add("font colors:Red");
-			commands.Add("font colors:Yellow");
-
-			commands.Add("highlight colors:Blue");
-			commands.Add("highlight colors:Green");
-			commands.Add("highlight colors:Orange");
-			commands.Add("highlight colors:Purple");
-			commands.Add("highlight colors:Red");
-			commands.Add("highlight colors:Yellow");
+			Add(Resx.QuickPaletteCommand_basic_category, Resx.QuickPaletteCommand_basics);
+			Add(Resx.QuickPaletteCommand_color_category, Resx.QuickPaletteCommand_colors);
+			Add(Resx.QuickPaletteCommand_highlight_category, Resx.QuickPaletteCommand_highlights);
 
 			dialog.PopulateCommands(commands.ToArray(), new string[0]);
 		}

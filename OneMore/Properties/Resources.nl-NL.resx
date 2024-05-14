@@ -2233,6 +2233,52 @@ Jaar (2023)
     <value>Stel de paginatitel in op de eerste weergavewoorden van de notitie</value>
     <comment>checkbox</comment>
   </data>
+  <data name="QuickPaletteCommand_basic_category" xml:space="preserve">
+    <value>basis tekst</value>
+    <comment>category</comment>
+  </data>
+  <data name="QuickPaletteCommand_basics" xml:space="preserve">
+    <value>Vetgedrukt
+Cursief
+Onderstrepen
+Doorhalen
+Abonnement
+Superscript</value>
+    <comment>basic style attributes</comment>
+  </data>
+  <data name="QuickPaletteCommand_color_category" xml:space="preserve">
+    <value>lettertype kleuren</value>
+    <comment>category</comment>
+  </data>
+  <data name="QuickPaletteCommand_colors" xml:space="preserve">
+    <value>Blauw
+Groente
+Oranje
+Paars
+Rood
+Geel</value>
+    <comment>font color attributes</comment>
+  </data>
+  <data name="QuickPaletteCommand_highlight_category" xml:space="preserve">
+    <value>markeer kleuren</value>
+    <comment>category</comment>
+  </data>
+  <data name="QuickPaletteCommand_highlights" xml:space="preserve">
+    <value>Blauw hoogtepunt
+Groen hoogtepunt
+Oranje hoogtepunt
+Paars hoogtepunt
+Rood hoogtepunt
+Gele highlight</value>
+  </data>
+  <data name="QuickPaletteCommand_Intro" xml:space="preserve">
+    <value>Kies een stijlkenmerk dat u op de geselecteerde tekst wilt toepassen</value>
+    <comment>label</comment>
+  </data>
+  <data name="QuickPaletteCommand_Title" xml:space="preserve">
+    <value>Snel palet</value>
+    <comment>dialog title</comment>
+  </data>
   <data name="RecalculateFormulaCommand_NoFormula" xml:space="preserve">
     <value>Geen formule gevonden in de geselecteerde tabel</value>
     <comment>recalculate command message</comment>

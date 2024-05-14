@@ -6027,6 +6027,93 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to basic text.
+        /// </summary>
+        internal static string QuickPaletteCommand_basic_category {
+            get {
+                return ResourceManager.GetString("QuickPaletteCommand_basic_category", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bold
+        ///Italic
+        ///Underline
+        ///Strikethrough
+        ///Subscript
+        ///Superscript.
+        /// </summary>
+        internal static string QuickPaletteCommand_basics {
+            get {
+                return ResourceManager.GetString("QuickPaletteCommand_basics", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to font colors.
+        /// </summary>
+        internal static string QuickPaletteCommand_color_category {
+            get {
+                return ResourceManager.GetString("QuickPaletteCommand_color_category", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Blue
+        ///Green
+        ///Orange
+        ///Purple
+        ///Red
+        ///Yellow.
+        /// </summary>
+        internal static string QuickPaletteCommand_colors {
+            get {
+                return ResourceManager.GetString("QuickPaletteCommand_colors", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to highlight colors.
+        /// </summary>
+        internal static string QuickPaletteCommand_highlight_category {
+            get {
+                return ResourceManager.GetString("QuickPaletteCommand_highlight_category", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Blue Highlight
+        ///Green Highlight
+        ///Orange Highlight
+        ///Purple Highlight
+        ///Red Highlight
+        ///Yellow Highlight.
+        /// </summary>
+        internal static string QuickPaletteCommand_highlights {
+            get {
+                return ResourceManager.GetString("QuickPaletteCommand_highlights", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Choose a style attribute to apply to the selected text.
+        /// </summary>
+        internal static string QuickPaletteCommand_Intro {
+            get {
+                return ResourceManager.GetString("QuickPaletteCommand_Intro", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Quick Palette.
+        /// </summary>
+        internal static string QuickPaletteCommand_Title {
+            get {
+                return ResourceManager.GetString("QuickPaletteCommand_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to No formula found in the selected table.
         /// </summary>
         internal static string RecalculateFormulaCommand_NoFormula {

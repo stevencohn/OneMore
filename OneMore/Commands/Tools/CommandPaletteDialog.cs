@@ -42,6 +42,7 @@ namespace River.OneMoreAddIn.Commands
 			if (!showClearOption)
 			{
 				clearLink.Visible = false;
+				cmdBox.Top -= clearLink.Height;
 				Height -= clearLink.Height;
 			}
 			else if (NeedsLocalizing())

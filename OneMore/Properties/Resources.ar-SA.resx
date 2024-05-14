@@ -2232,6 +2232,52 @@ ISO-code then comma then language name</comment>
     <value>اضبط عنوان الصفحة على أول كلمات fiew في الملاحظة</value>
     <comment>checkbox</comment>
   </data>
+  <data name="QuickPaletteCommand_basic_category" xml:space="preserve">
+    <value>النص الأساسي</value>
+    <comment>category</comment>
+  </data>
+  <data name="QuickPaletteCommand_basics" xml:space="preserve">
+    <value>عريض
+مائل
+تسطير
+يتوسطه خط
+مخطوطة
+مرتفع</value>
+    <comment>basic style attributes</comment>
+  </data>
+  <data name="QuickPaletteCommand_color_category" xml:space="preserve">
+    <value>ألوان الخطوط</value>
+    <comment>category</comment>
+  </data>
+  <data name="QuickPaletteCommand_colors" xml:space="preserve">
+    <value>أزرق
+أخضر
+البرتقالي
+أرجواني
+أحمر
+أصفر</value>
+    <comment>font color attributes</comment>
+  </data>
+  <data name="QuickPaletteCommand_highlight_category" xml:space="preserve">
+    <value>تسليط الضوء على الألوان</value>
+    <comment>category</comment>
+  </data>
+  <data name="QuickPaletteCommand_highlights" xml:space="preserve">
+    <value>تسليط الضوء الأزرق
+تسليط الضوء على اللون الأخضر
+تسليط الضوء على البرتقال
+تسليط الضوء الأرجواني
+تسليط الضوء على اللون الأحمر
+تسليط الضوء الأصفر</value>
+  </data>
+  <data name="QuickPaletteCommand_Intro" xml:space="preserve">
+    <value>اختر سمة نمط لتطبيقها على النص المحدد</value>
+    <comment>label</comment>
+  </data>
+  <data name="QuickPaletteCommand_Title" xml:space="preserve">
+    <value>لوحة سريعة</value>
+    <comment>dialog title</comment>
+  </data>
   <data name="RecalculateFormulaCommand_NoFormula" xml:space="preserve">
     <value>لم يتم العثور على صيغة في الجدول المحدد</value>
     <comment>recalculate command message</comment>

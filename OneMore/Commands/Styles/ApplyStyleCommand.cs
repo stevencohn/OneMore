@@ -1,5 +1,5 @@
 ﻿//************************************************************************************************
-// Copyright © 2016 Steven M Cohn.  All rights reserved.
+// Copyright © 2016 Steven M Cohn. All rights reserved.
 //************************************************************************************************
 
 #pragma warning disable S125 // Sections of code should not be commented out
@@ -30,6 +30,12 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
+		/// <summary>
+		/// Applies the specified custom style.
+		/// This is called from the My Styles control.
+		/// </summary>
+		/// <param name="args"></param>
+		/// <returns></returns>
 		public override async Task Execute(params object[] args)
 		{
 			var selectedIndex = (int)args[0];
@@ -43,42 +49,71 @@ namespace River.OneMoreAddIn.Commands
 				return;
 			}
 
-			await ExecuteWithStyle(style);
+			await ExecuteWithStyle(style, false);
 		}
 
 
-		public async Task ExecuteWithStyle(Style style)
+		/// <summary>
+		/// Applies the given style and, optionally, merges it with the existing style
+		/// of the selected content.
+		/// </summary>
+		/// <param name="style">The style to apply.</param>
+		/// <param name="merge">
+		/// True to merge the given style with the existing style of the selected text.
+		/// Otherwise, the style is applied completely as if selected from My Styles.
+		/// </param>
+		/// <returns></returns>
+		public async Task ExecuteWithStyle(Style style, bool merge = true)
 		{
-			logger.StartClock();
-
 			await using var one = new OneNote(out page, out ns);
-			if (page != null)
+			if (page is null)
 			{
-				logger.WriteTime($"loaded page; applying style {style.Name}", true);
+				logger.WriteLine("could not load current page");
+				return;
+			}
 
-				stylizer = new Stylizer(style);
+			var actual = style;
 
-
-				bool success = style.StyleType == StyleType.Character
-					? StylizeWords()
-					: StylizeParagraphs();
-
-				if (success)
+			if (merge)
+			{
+				var analyzer = new StyleAnalyzer(page.Root);
+				actual = analyzer.CollectFromSelection();
+				if (actual is not null)
 				{
-					logger.WriteTime("applied style; saving page", true);
+					if (style.IsBold) actual.IsBold = !actual.IsBold;
+					if (style.IsItalic) actual.IsItalic = !actual.IsItalic;
+					if (style.IsUnderline) actual.IsUnderline = !actual.IsUnderline;
+					if (style.IsStrikethrough) actual.IsStrikethrough = !actual.IsStrikethrough;
+					if (style.IsSubscript) actual.IsSubscript = !actual.IsSubscript;
+					if (style.IsSuperscript) actual.IsSuperscript = !actual.IsSuperscript;
 
-					await one.Update(page);
+					if (!string.IsNullOrWhiteSpace(style.Color) &&
+						!style.Color.Equals(Style.Automatic))
+					{
+						actual.Color = style.Color;
+					}
 
-					logger.WriteTime("saved page");
+					if (!string.IsNullOrWhiteSpace(style.Highlight) &&
+						!style.Highlight.Equals(Style.Automatic))
+					{
+						actual.Highlight = style.Highlight;
+					}
 				}
-				else
-				{
-					logger.WriteTime("styles not applied");
-				}
+			}
+
+			stylizer = new Stylizer(actual);
+
+			bool success = actual.StyleType == StyleType.Character
+				? StylizeWords()
+				: StylizeParagraphs();
+
+			if (success)
+			{
+				await one.Update(page);
 			}
 			else
 			{
-				logger.WriteTime("could not load page");
+				logger.WriteLine("styles not applied");
 			}
 		}
 
