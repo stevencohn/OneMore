@@ -11,6 +11,7 @@ namespace River.OneMoreAddIn.UI
 	using System.ComponentModel;
 	using System.Drawing;
 	using System.Linq;
+	using System.Text.RegularExpressions;
 	using System.Windows.Forms;
 	using Resx = Properties.Resources;
 
@@ -45,7 +46,11 @@ namespace River.OneMoreAddIn.UI
 		// each command name is described by a Cmd entry
 		private sealed class Cmd
 		{
-			public string Name;                 // provided "name|keys" for this command
+			// incoming descriptor is of the form [category:]name[|keys]
+
+			public string Category;				// category part
+			public string Name;                 // name part
+			public string Keys;					// key sequence part
 			public bool Recent;                 // true if in "recently used" category
 		}
 
@@ -91,8 +96,20 @@ namespace River.OneMoreAddIn.UI
 
 
 		/// <summary>
+		/// Gets or sets a character used to delimit a command's category string from its name.
+		/// </summary>
+		/// <remarks>
+		/// command.Name format is [category:]name[|keys]
+		/// </remarks>
+		public char CategoryDivider { get; set; } = ':';
+
+
+		/// <summary>
 		/// Gets or sets a character used to delimit a command's name from its key sequence.
 		/// </summary>
+		/// <remarks>
+		/// command.Name format is [category:]name[|keys]
+		/// </remarks>
 		public char KeyDivider { get; set; } = '|';
 
 
@@ -217,11 +234,31 @@ namespace River.OneMoreAddIn.UI
 			Items.Clear();
 			commands.Clear();
 			matches.Clear();
+
+			// descriptors are of the form [category:]name[|keyseq]
+			var pattern = new Regex(
+				@$"(?:(?<cat>[^{CategoryDivider}]+){CategoryDivider})?" +
+				@$"(?:(?<nam>[^\{KeyDivider}]+))" +
+				$@"(?:\{KeyDivider}(?<seq>.*))?",
+				RegexOptions.IgnoreCase | RegexOptions.Compiled);
+
 			foreach (var name in names)
 			{
-				var cmd = new Cmd { Name = name };
-				Items.Add(name);
-				commands.Add(cmd);
+				var match = pattern.Match(name);
+				if (match.Success)
+				{
+					var groups = match.Groups;
+
+					var cmd = new Cmd
+					{
+						Category = groups["cat"].Success ? groups["cat"].Value : null,
+						Name = groups["nam"].Value,
+						Keys = groups["seq"].Success ? groups["seq"].Value : null
+					};
+
+					Items.Add(name);
+					commands.Add(cmd);
+				}
 			}
 
 			if (recentNames?.Any() == true)
@@ -229,12 +266,22 @@ namespace River.OneMoreAddIn.UI
 				// inject recent names at top of list
 				foreach (var name in recentNames.Reverse())
 				{
-					Items.Insert(0, name);
-					commands.Insert(0, new Cmd
+					var match = pattern.Match(name);
+					if (match.Success)
 					{
-						Name = name,
-						Recent = true
-					});
+						var groups = match.Groups;
+
+						var cmd = new Cmd
+						{
+							Category = groups["cat"].Success ? groups["cat"].Value : null,
+							Name = groups["nam"].Value,
+							Keys = groups["seq"].Success ? groups["seq"].Value : null,
+							Recent = true
+						};
+
+						Items.Insert(0, name);
+						commands.Insert(0, cmd);
+					}
 				}
 			}
 
@@ -349,25 +396,19 @@ namespace River.OneMoreAddIn.UI
 				e.Bounds.X, e.Bounds.Y + 1,
 				e.Bounds.Width, e.Bounds.Height - 2);
 
-			string keys = null;
-
 			var source = matches.Any() ? matches : commands;
 			var command = source[e.Item.Index];
-			var text = command.Name;
-
-			// parse out key sequence if any
-			var bar = text.IndexOf(KeyDivider);
-			if (bar > 0)
-			{
-				keys = text.Substring(bar + 1);
-				text = text.Substring(0, bar);
-			}
 
 			var drawn = false;
 			float x;
 
 			if (!string.IsNullOrWhiteSpace(Owner.Text))
 			{
+				// draw name in three parts: unmatched start, matched middle, unmatched end...
+
+				var text = command.Name;
+
+				// Owner is the bound TextBox
 				var index = text.IndexOf(Owner.Text, StringComparison.InvariantCultureIgnoreCase);
 				if (index >= 0)
 				{
@@ -419,10 +460,12 @@ namespace River.OneMoreAddIn.UI
 
 			if (!drawn)
 			{
-				e.Graphics.DrawString(text, e.Item.Font, fore, e.Bounds);
+				// if no matched part then draw entire name normally...
+
+				e.Graphics.DrawString(command.Name, e.Item.Font, fore, e.Bounds);
 			}
 
-			// track where to draw key sequence for command
+			// leave margin from right side to end of key sequence text
 			x = e.Bounds.Width - 5;
 
 			// did we match any Recent items at all?
@@ -447,7 +490,7 @@ namespace River.OneMoreAddIn.UI
 				// divider line
 				if (common < source.Count && e.ItemIndex == common - 1)
 				{
-					e.Graphics.DrawLine(Pens.Silver,
+					e.Graphics.DrawLine(Pens.Silver, // yes, this pen is hard-coded
 						e.Bounds.X, e.Bounds.Y + e.Bounds.Height - 1,
 						e.Bounds.Width, e.Bounds.Y + e.Bounds.Height - 1);
 				}
@@ -461,17 +504,35 @@ namespace River.OneMoreAddIn.UI
 				}
 			}
 
-			// key sequence
-			if (!string.IsNullOrWhiteSpace(keys))
+			// prefer category
+			if (!string.IsNullOrWhiteSpace(command.Category))
 			{
-				var size = e.Graphics.MeasureString(keys, Font);
+				if (e.Item.Index == 0 ||
+					(e.Item.Index > 0 && command.Category != source[e.Item.Index - 1].Category))
+				{
+					if (e.Item.Index > 0)
+					{
+						// divider line
+						e.Graphics.DrawLine(Pens.Silver, // yes, this pen is hard-coded
+							e.Bounds.X, e.Bounds.Y, e.Bounds.Width, e.Bounds.Y);
+					}
+
+					var size = TextRenderer.MeasureText(command.Category, e.Item.Font);
+					x -= size.Width;
+					e.Graphics.DrawString(command.Category, e.Item.Font, high, x, e.Bounds.Y);
+				}
+			}
+			// key sequence
+			else if (!string.IsNullOrWhiteSpace(command.Keys))
+			{
+				var size = e.Graphics.MeasureString(command.Keys, Font);
 				x -= size.Width + 5;
 
 				var cap = e.Item.Selected
 					? new SolidBrush(manager.GetColor("GradientInactiveCaption"))
 					: new SolidBrush(manager.GetColor("ActiveCaption"));
 
-				e.Graphics.DrawString(keys, e.Item.Font, cap, x, e.Bounds.Y);
+				e.Graphics.DrawString(command.Keys, e.Item.Font, cap, x, e.Bounds.Y);
 			}
 		}
 

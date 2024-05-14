@@ -641,6 +641,12 @@ namespace River.OneMoreAddIn
 			=> await factory.Run<PronunciateCommand>();
 
 
+		[IgnorePalette]
+		[Command("ribQuickPaletteButton_Label", Keys.Control | Keys.Oemcomma)]
+		public async Task QuickPaletteCmd(IRibbonControl control)
+			=> await factory.Run<QuickPaletteCommand>(factory);
+
+
 		[Command("ribRecalculateFormulaButton_Label", Keys.Shift | Keys.F5, "ribTableMenu")]
 		public async Task RecalculateFormulaCmd(IRibbonControl control)
 			=> await factory.Run<RecalculateFormulaCommand>();

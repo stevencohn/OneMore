@@ -1,5 +1,5 @@
 ﻿//************************************************************************************************
-// Copyright © 2022 Steven M Cohn.  All rights reserved.
+// Copyright © 2022 Steven M Cohn. All rights reserved.
 //************************************************************************************************
 
 namespace River.OneMoreAddIn.Commands
@@ -10,7 +10,8 @@ namespace River.OneMoreAddIn.Commands
 	using System.Windows.Forms;
 	using Resx = Properties.Resources;
 
-	internal partial class CommandPaletteDialog : UI.MoreForm
+
+	internal partial class CommandPaletteDialog : MoreForm
 	{
 		private readonly MoreAutoCompleteList palette;
 		private string[] commands;
@@ -19,6 +20,12 @@ namespace River.OneMoreAddIn.Commands
 
 
 		public CommandPaletteDialog()
+			: this(Resx.CommandPalette_Title, Resx.CommandPaletteDialog_introLabel_Text, true)
+		{
+		}
+
+
+		public CommandPaletteDialog(string title, string intro, bool showClearOption)
 		{
 			InitializeComponent();
 
@@ -29,13 +36,19 @@ namespace River.OneMoreAddIn.Commands
 
 			palette.SetAutoCompleteList(cmdBox);
 
-			if (NeedsLocalizing())
-			{
-				Text = Resx.CommandPalette_Title;
+			Text = title;
+			introLabel.Text = intro;
 
+			if (!showClearOption)
+			{
+				clearLink.Visible = false;
+				cmdBox.Top -= clearLink.Height;
+				Height -= clearLink.Height;
+			}
+			else if (NeedsLocalizing())
+			{
 				Localize(new string[]
 				{
-					"introLabel",
 					"clearLink"
 				});
 			}
@@ -74,8 +87,7 @@ namespace River.OneMoreAddIn.Commands
 				Resx.CommandPalette_clear,
 				MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
 			{
-				new CommandProvider().ClearMRU();
-				RequestData?.Invoke(this, EventArgs.Empty);
+				RequestData?.Invoke(this, e);
 			}
 		}
 
@@ -84,9 +96,9 @@ namespace River.OneMoreAddIn.Commands
 		{
 			var text = cmdBox.Text.Trim();
 
-			errorProvider.SetError(cmdBox, 
-				string.IsNullOrWhiteSpace(text) || palette.HasMatches 
-					? String.Empty
+			errorProvider.SetError(cmdBox,
+				string.IsNullOrWhiteSpace(text) || palette.HasMatches
+					? string.Empty
 					: Resx.CommandPalette_unrecognized);
 		}
 
@@ -94,12 +106,17 @@ namespace River.OneMoreAddIn.Commands
 		private void InvokeCommand(object sender, EventArgs e)
 		{
 			var text = cmdBox.Text.Trim();
-			var regex = new Regex($"^{text}($|\\|.+$)", RegexOptions.IgnoreCase | RegexOptions.Compiled);
 
-			Index = commands.IndexOf(c => regex.IsMatch(c));
+			var pattern = new Regex(
+				@$"(?:(?<cat>[^{palette.CategoryDivider}]+){palette.CategoryDivider})?" +
+				text +
+				$@"(?:\{palette.KeyDivider}(?<seq>.*))?",
+				RegexOptions.IgnoreCase | RegexOptions.Compiled);
+
+			Index = commands.IndexOf(c => pattern.IsMatch(c));
 			if (Index < 0)
 			{
-				Index = recentNames.IndexOf(c => regex.IsMatch(c));
+				Index = recentNames.IndexOf(c => pattern.IsMatch(c));
 				Recent = Index >= 0;
 			}
 

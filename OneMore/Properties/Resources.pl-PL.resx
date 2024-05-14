@@ -2245,6 +2245,52 @@ Rok (2023)
     <value>Ustaw tytuł strony na pierwsze pięć słów notatki</value>
     <comment>checkbox</comment>
   </data>
+  <data name="QuickPaletteCommand_basic_category" xml:space="preserve">
+    <value>tekst podstawowy</value>
+    <comment>category</comment>
+  </data>
+  <data name="QuickPaletteCommand_basics" xml:space="preserve">
+    <value>Pogrubiony
+italski
+Podkreślać
+Przekreślenie
+Indeks
+Napisany u góry</value>
+    <comment>basic style attributes</comment>
+  </data>
+  <data name="QuickPaletteCommand_color_category" xml:space="preserve">
+    <value>kolory czcionek</value>
+    <comment>category</comment>
+  </data>
+  <data name="QuickPaletteCommand_colors" xml:space="preserve">
+    <value>Niebieski
+Zielony
+Pomarańczowy
+Fioletowy
+Czerwony
+Żółty</value>
+    <comment>font color attributes</comment>
+  </data>
+  <data name="QuickPaletteCommand_highlight_category" xml:space="preserve">
+    <value>podkreślić kolory</value>
+    <comment>category</comment>
+  </data>
+  <data name="QuickPaletteCommand_highlights" xml:space="preserve">
+    <value>Niebieskie wyróżnienie
+Zielone wyróżnienie
+Pomarańczowy akcent
+Fioletowy akcent
+Czerwone wyróżnienie
+Żółte podświetlenie</value>
+  </data>
+  <data name="QuickPaletteCommand_Intro" xml:space="preserve">
+    <value>Wybierz atrybut stylu, który chcesz zastosować do zaznaczonego tekstu</value>
+    <comment>label</comment>
+  </data>
+  <data name="QuickPaletteCommand_Title" xml:space="preserve">
+    <value>Szybka paleta</value>
+    <comment>dialog title</comment>
+  </data>
   <data name="RecalculateFormulaCommand_NoFormula" xml:space="preserve">
     <value>Nie znaleziono formuły w wybranej tabeli</value>
     <comment>recalculate command message</comment>
@@ -3501,6 +3547,14 @@ Po ostatniej grupie</value>
   </data>
   <data name="ribProofingMenu_Label" xml:space="preserve">
     <value>Język sprawdzający</value>
+    <comment>ribbon menu</comment>
+  </data>
+  <data name="ribQuickPaletteButton_Label" xml:space="preserve">
+    <value>Szybka paleta</value>
+    <comment>ribbon menu</comment>
+  </data>
+  <data name="ribQuickPaletteButton_Screentip" xml:space="preserve">
+    <value>Otwórz szybką paletę</value>
     <comment>ribbon menu</comment>
   </data>
   <data name="ribRecalculateFormulaButton_Label" xml:space="preserve">

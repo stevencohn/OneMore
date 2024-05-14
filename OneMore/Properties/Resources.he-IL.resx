@@ -2245,6 +2245,52 @@ ISO-code then comma then language name</comment>
     <value>הגדר את כותרת העמוד למילים הראשונות של ההערה</value>
     <comment>checkbox</comment>
   </data>
+  <data name="QuickPaletteCommand_basic_category" xml:space="preserve">
+    <value>טקסט בסיסי</value>
+    <comment>category</comment>
+  </data>
+  <data name="QuickPaletteCommand_basics" xml:space="preserve">
+    <value>נוֹעָז
+נטוי
+לָשִׂים דָגֵשׁ
+חוצה
+מנוי
+כתב-על</value>
+    <comment>basic style attributes</comment>
+  </data>
+  <data name="QuickPaletteCommand_color_category" xml:space="preserve">
+    <value>צבעי גופן</value>
+    <comment>category</comment>
+  </data>
+  <data name="QuickPaletteCommand_colors" xml:space="preserve">
+    <value>כְּחוֹל
+ירוק
+תפוז
+סָגוֹל
+אָדוֹם
+צהוב</value>
+    <comment>font color attributes</comment>
+  </data>
+  <data name="QuickPaletteCommand_highlight_category" xml:space="preserve">
+    <value>להדגיש צבעים</value>
+    <comment>category</comment>
+  </data>
+  <data name="QuickPaletteCommand_highlights" xml:space="preserve">
+    <value>הדגשה כחולה
+הדגשה ירוקה
+הדגשה כתומה
+הדגשה סגולה
+סימון אדום
+הדגשה צהובה</value>
+  </data>
+  <data name="QuickPaletteCommand_Intro" xml:space="preserve">
+    <value>בחר תכונת סגנון להחלה על הטקסט שנבחר</value>
+    <comment>label</comment>
+  </data>
+  <data name="QuickPaletteCommand_Title" xml:space="preserve">
+    <value>פלטה מהירה</value>
+    <comment>dialog title</comment>
+  </data>
   <data name="RecalculateFormulaCommand_NoFormula" xml:space="preserve">
     <value>לא נמצאה נוסחה בטבלה שנבחרה</value>
     <comment>recalculate command message</comment>
@@ -3499,6 +3545,14 @@ ISO-code then comma then language name</comment>
   </data>
   <data name="ribProofingMenu_Label" xml:space="preserve">
     <value>שפת הגהה</value>
+    <comment>ribbon menu</comment>
+  </data>
+  <data name="ribQuickPaletteButton_Label" xml:space="preserve">
+    <value>פלטה מהירה</value>
+    <comment>ribbon menu</comment>
+  </data>
+  <data name="ribQuickPaletteButton_Screentip" xml:space="preserve">
+    <value>פתח את חלון הצבעים המהיר</value>
     <comment>ribbon menu</comment>
   </data>
   <data name="ribRecalculateFormulaButton_Label" xml:space="preserve">
