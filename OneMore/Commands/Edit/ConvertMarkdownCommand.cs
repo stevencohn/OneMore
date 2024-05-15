@@ -36,8 +36,6 @@ namespace River.OneMoreAddIn.Commands
 
 			var editor = new PageEditor(page);
 			var content = await editor.ExtractSelectedContent();
-			logger.WriteLine(content);
-
 			var builder = new StringBuilder();
 			var paragraphs = content.Elements(ns + "OE").ToList();
 			foreach (var paragraph in paragraphs)
@@ -45,27 +43,23 @@ namespace River.OneMoreAddIn.Commands
 				BuildText(ns, paragraph, builder);
 			}
 
-			var text = builder.ToString();
-			logger.WriteLine(text);
-
 			var filepath = Path.Combine(Path.GetTempPath(), Path.GetRandomFileName());
+			var body = OneMoreDig.ConvertMarkdownToHtml(filepath, builder.ToString());
+			var html = ClipboardProvider.WrapWithHtmlPreamble(body);
 
-			var body = OneMoreDig.ConvertMarkdownToHtml(filepath, text);
-			logger.WriteLine(body);
+			await one.Update(page);
 
+			// force focus on the OneNote window before pasting
+			Native.SwitchToThisWindow(one.WindowHandle, false);
 
-			var box = new XElement(ns + "HTMLBlock", 
-				new XElement(ns + "Data", new XCData(body)));
+			var clippy = new ClipboardProvider();
+			await clippy.StashState();
+			await clippy.SetHtml(html);
+			await clippy.Paste(true);
+			await clippy.RestoreState();
 
-			if (editor.Anchor.Name.LocalName.In("OE", "HTMLBlock"))
-			{
-				editor.Anchor.AddAfterSelf(box);
-			}
-			else
-			{
-				editor.Anchor.AddFirst(box);
-			}
-
+			page = await one.GetPage(page.PageId, OneNote.PageDetail.Basic);
+			MarkdownConverter.RewriteHeadings(page);
 			await one.Update(page);
 		}
 
