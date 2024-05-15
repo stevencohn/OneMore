@@ -295,6 +295,12 @@
 
             <menu id="ribEditMenu" getLabel="GetRibbonLabel" imageMso="EditComposePage" showImage="true">
               <button
+                id="ribConvertMarkdownButton"
+                imageMso="ReviewShowMarkupMenu"
+                getLabel="GetRibbonLabel"
+                getScreentip="GetRibbonScreentip"
+                onAction="ConvertMarkdownCmd"/>
+              <button
                 id="ribCopyAsMarkdownButton"
                 imageMso="WatermarkGallery"
                 getLabel="GetRibbonLabel"
