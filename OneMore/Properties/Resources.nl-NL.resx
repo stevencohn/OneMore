@@ -2794,6 +2794,10 @@ Na de laatste groep</value>
     <value>Comprimeer afbeeldingen door PNG naar JPG te converteren</value>
     <comment>ribbon images</comment>
   </data>
+  <data name="ribConvertMarkdownButton_Label" xml:space="preserve">
+    <value>Markdown converteren</value>
+    <comment>ribbon edit</comment>
+  </data>
   <data name="ribCopyAcrossButton_Label" xml:space="preserve">
     <value>Kopiëren over</value>
     <comment>ribbon table</comment>
@@ -3503,6 +3507,10 @@ Na de laatste groep</value>
   <data name="ribPasteTextButton_Screentip" xml:space="preserve">
     <value>Plakken en blijf alleen tekst (Ctrl + Shift + V)</value>
     <comment>ribbon item</comment>
+  </data>
+  <data name="ribPinPageButton_Label" xml:space="preserve">
+    <value>Pagina toevoegen aan mijn leeslijst</value>
+    <comment>navigator</comment>
   </data>
   <data name="ribPlantUmlButton_Label" xml:space="preserve">
     <value>Teken PlantUML</value>

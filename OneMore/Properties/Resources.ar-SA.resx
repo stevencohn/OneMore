@@ -2793,6 +2793,10 @@ ISO-code then comma then language name</comment>
     <value>ضغط الصور عن طريق تحويل PNG إلى JPG</value>
     <comment>ribbon images</comment>
   </data>
+  <data name="ribConvertMarkdownButton_Label" xml:space="preserve">
+    <value>تحويل تخفيض السعر</value>
+    <comment>ribbon edit</comment>
+  </data>
   <data name="ribCopyAcrossButton_Label" xml:space="preserve">
     <value>نسخ عبر</value>
     <comment>ribbon table</comment>
@@ -3503,6 +3507,10 @@ ISO-code then comma then language name</comment>
   <data name="ribPasteTextButton_Screentip" xml:space="preserve">
     <value>لصق والحفاظ على النص فقط (CTRL + SHIFT + V)</value>
     <comment>ribbon item</comment>
+  </data>
+  <data name="ribPinPageButton_Label" xml:space="preserve">
+    <value>إضافة صفحة إلى قائمة القراءة الخاصة بي</value>
+    <comment>navigator</comment>
   </data>
   <data name="ribPlantUmlButton_Label" xml:space="preserve">
     <value>رسم النبات</value>
