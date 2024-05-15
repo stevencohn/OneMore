@@ -9,6 +9,7 @@ namespace River.OneMoreAddIn.Commands
 	using System.IO;
 	using System.Linq;
 	using System.Text;
+	using System.Text.RegularExpressions;
 	using System.Threading.Tasks;
 	using System.Xml.Linq;
 
@@ -25,7 +26,7 @@ namespace River.OneMoreAddIn.Commands
 
 		public override async Task Execute(params object[] args)
 		{
-			await using var one = new OneNote(out var page, out var ns);
+			using var one = new OneNote(out var page, out var ns);
 			page.GetTextCursor();
 
 			if (page.SelectionScope != SelectionScope.Region)
@@ -45,21 +46,13 @@ namespace River.OneMoreAddIn.Commands
 
 			var filepath = Path.Combine(Path.GetTempPath(), Path.GetRandomFileName());
 			var body = OneMoreDig.ConvertMarkdownToHtml(filepath, builder.ToString());
-			var html = ClipboardProvider.WrapWithHtmlPreamble(body);
 
-			await one.Update(page);
+			editor.InsertAtAnchor(new XElement(ns + "HTMLBlock",
+				new XElement(ns + "Data",
+					new XCData($"<html><body>{body}</body></html>")
+					)
+				));
 
-			// force focus on the OneNote window before pasting
-			Native.SwitchToThisWindow(one.WindowHandle, false);
-
-			var clippy = new ClipboardProvider();
-			await clippy.StashState();
-			await clippy.SetHtml(html);
-			await clippy.Paste(true);
-			await clippy.RestoreState();
-
-			page = await one.GetPage(page.PageId, OneNote.PageDetail.Basic);
-			MarkdownConverter.RewriteHeadings(page);
 			await one.Update(page);
 		}
 

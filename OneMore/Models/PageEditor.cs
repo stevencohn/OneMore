@@ -82,6 +82,44 @@ namespace River.OneMoreAddIn.Models
 
 
 		/// <summary>
+		/// Inserts the given content immediately after the anchor point. This might be after
+		/// the anchor element if the anchor is an OE or HTMLBlock or as its first element
+		/// if the anchor is an OEChildren or Outline.
+		/// </summary>
+		/// <param name="content">The content to insert.</param>
+		public void InsertAtAnchor(XElement content)
+		{
+			if (Anchor.Name.LocalName.In("OE", "HTMLBlock", "ChildOELayout"))
+			{
+				Anchor.AddAfterSelf(content.Name.LocalName.In("OE", "HTMLBlock")
+					? content
+					: new XElement(ns + "OE", content));
+			}
+			else if (Anchor.Name.LocalName == "OEChildren")
+			{
+				Anchor.AddFirst(content.Name.LocalName.In("OE", "HTMLBlock")
+					? content
+					: new XElement(ns + "OE", content));
+			}
+			else if (Anchor.Name.LocalName == "Outline")
+			{
+				if (content.Name.LocalName == "OEChildren")
+				{
+					Anchor.AddFirst(content);
+				}
+				else if (content.Name.LocalName == "OE")
+				{
+					Anchor.AddFirst(new XElement(ns + "OEChildren", content));
+				}
+				else
+				{
+					Anchor.AddFirst(new XElement(ns + "OEChildren", new XElement(ns + "OE", content)));
+				}
+			}
+		}
+
+
+		/// <summary>
 		/// Extracts all selected content as a single OEChildren element, preserving relative
 		/// indents, table content, etc. The selected content is removedd from the page.
 		/// </summary>

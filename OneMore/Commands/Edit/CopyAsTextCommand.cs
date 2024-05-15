@@ -163,12 +163,20 @@ namespace River.OneMoreAddIn.Commands
 
 						if (cells.Any())
 						{
-							var rot = cells
-								.Select(e => e.Value.PlainText())
-								.Aggregate(string.Empty, (x, y) =>
-									y is null ? x : x is null ? y : $"{x}\t{y}");
+							if (cells.Count() == 1)
+							{
+								BuildText(all, ns, cells.First(), builder);
+							}
+							else
+							{
+								var rowText = cells
+									.Select(e => e.Value.PlainText())
+									.Aggregate(string.Empty, (x, y) =>
+										y is null ? x : x is null ? y : $"{x}\t{y}");
 
-							builder.AppendLine(rot);
+								builder.AppendLine(rowText);
+							}
+
 							content = true;
 						}
 					}
