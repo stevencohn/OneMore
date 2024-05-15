@@ -203,6 +203,11 @@ namespace River.OneMoreAddIn
 			=> await factory.Run<CopyAcrossCommand>();
 
 
+		[Command("ribConvertMarkdownButton_Label", Keys.Shift | Keys.Alt | Keys.M, "ribEditMenu")]
+		public async Task ConvertMarkdownCmd(IRibbonControl control)
+			=> await factory.Run<ConvertMarkdownCommand>();
+
+
 		[Command("ribCopyAsTextButton_Label", Keys.None, "ribEditMenu")]
 		public async Task CopyAsTextCmd(IRibbonControl control)
 			=> await factory.Run<CopyAsTextCommand>();
