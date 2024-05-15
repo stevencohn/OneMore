@@ -2792,6 +2792,10 @@ Nach der letzten Gruppe</value>
     <value>Komprimieren Sie Bilder, indem Sie PNG in JPG konvertieren</value>
     <comment>ribbon images</comment>
   </data>
+  <data name="ribConvertMarkdownButton_Label" xml:space="preserve">
+    <value>Markdown konvertieren</value>
+    <comment>ribbon edit</comment>
+  </data>
   <data name="ribCopyAcrossButton_Label" xml:space="preserve">
     <value>Kopieren</value>
     <comment>ribbon table</comment>
@@ -3494,6 +3498,10 @@ Nach der letzten Gruppe</value>
   <data name="ribPasteTextButton_Screentip" xml:space="preserve">
     <value>Einfügen und den Text nur einfügen (Strg + Shift + V)</value>
     <comment>ribbon item</comment>
+  </data>
+  <data name="ribPinPageButton_Label" xml:space="preserve">
+    <value>Seite zu meiner Leseliste hinzufügen</value>
+    <comment>navigator</comment>
   </data>
   <data name="ribPlantUmlButton_Label" xml:space="preserve">
     <value>Zeichne PlantUML</value>

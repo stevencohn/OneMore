@@ -216,7 +216,7 @@ namespace River.OneMoreAddIn.Models
 		/// <summary>
 		/// Appends HTML content to the current page
 		/// </summary>
-		/// <param name="html"></param>
+		/// <param name="html">Must have the HTML and BODY wrappers</param>
 		public void AddHtmlContent(string html)
 		{
 			var container = EnsureContentContainer();

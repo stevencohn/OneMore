@@ -101,6 +101,7 @@ namespace River.OneMoreAddIn.Settings
 					Resx.ResourceManager.GetString(a.Attr.ResID, AddIn.Culture),
 					new Hotkey(a.Attr.DefaultKeys)
 					))
+				.Where(k => !string.IsNullOrWhiteSpace(k.Description))
 				.OrderBy(k => k.Description)
 				.ToList();
 

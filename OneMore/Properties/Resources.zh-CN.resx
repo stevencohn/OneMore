@@ -2794,6 +2794,10 @@ ISO-code then comma then language name</comment>
     <value>通过将 PNG 转换为 JPG 来压缩图像</value>
     <comment>ribbon images</comment>
   </data>
+  <data name="ribConvertMarkdownButton_Label" xml:space="preserve">
+    <value>转换 Markdown</value>
+    <comment>ribbon edit</comment>
+  </data>
   <data name="ribCopyAcrossButton_Label" xml:space="preserve">
     <value>向右复制</value>
     <comment>ribbon table</comment>
@@ -3496,6 +3500,10 @@ ISO-code then comma then language name</comment>
   <data name="ribPasteTextButton_Screentip" xml:space="preserve">
     <value>粘贴并只保留文本（Ctrl + Shift + V）</value>
     <comment>ribbon item</comment>
+  </data>
+  <data name="ribPinPageButton_Label" xml:space="preserve">
+    <value>将页面添加到我的阅读列表</value>
+    <comment>navigator</comment>
   </data>
   <data name="ribPlantUmlButton_Label" xml:space="preserve">
     <value>画PlantUML</value>

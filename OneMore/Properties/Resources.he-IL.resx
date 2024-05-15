@@ -2812,6 +2812,10 @@ ISO-code then comma then language name</comment>
     <value>דחוס תמונות על ידי המרת PNG ל-JPG</value>
     <comment>ribbon images</comment>
   </data>
+  <data name="ribConvertMarkdownButton_Label" xml:space="preserve">
+    <value>המר Markdown</value>
+    <comment>ribbon edit</comment>
+  </data>
   <data name="ribCopyAcrossButton_Label" xml:space="preserve">
     <value>העתק</value>
     <comment>ribbon table</comment>
@@ -3514,6 +3518,10 @@ ISO-code then comma then language name</comment>
   <data name="ribPasteTextButton_Screentip" xml:space="preserve">
     <value>הדבק ושמור טקסט בלבד (Ctrl + Shift + V)</value>
     <comment>ribbon item</comment>
+  </data>
+  <data name="ribPinPageButton_Label" xml:space="preserve">
+    <value>הוסף עמוד לרשימת הקריאה שלי</value>
+    <comment>navigator</comment>
   </data>
   <data name="ribPlantUmlButton_Label" xml:space="preserve">
     <value>צייר PlantUML</value>

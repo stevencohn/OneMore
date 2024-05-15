@@ -7286,6 +7286,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Convert Markdown.
+        /// </summary>
+        internal static string ribConvertMarkdownButton_Label {
+            get {
+                return ResourceManager.GetString("ribConvertMarkdownButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Copy Across.
         /// </summary>
         internal static string ribCopyAcrossButton_Label {
@@ -8896,6 +8905,15 @@ namespace River.OneMoreAddIn.Properties {
         internal static string ribPasteTextButton_Screentip {
             get {
                 return ResourceManager.GetString("ribPasteTextButton_Screentip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add Page To My Reading List.
+        /// </summary>
+        internal static string ribPinPageButton_Label {
+            get {
+                return ResourceManager.GetString("ribPinPageButton_Label", resourceCulture);
             }
         }
         
