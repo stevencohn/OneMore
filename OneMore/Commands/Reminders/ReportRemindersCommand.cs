@@ -221,20 +221,30 @@ namespace River.OneMoreAddIn.Commands
 						WoYear = calendar.GetWeekOfYear(reminder.Due, weekRule, firstDay)
 					};
 
+					// not sure why duplicates might appear but filter them out
+					// as items are added to the appropriate lists...
+
 					if (reminder.Status == ReminderStatus.Completed)
 					{
-						if (showCompleted)
+						if (showCompleted &&
+							!inactive.Exists(m => m.Reminder.ObjectId == item.Reminder.ObjectId))
 						{
 							inactive.Add(item);
 						}
 					}
 					else if (reminder.Status == ReminderStatus.Deferred)
 					{
-						inactive.Add(item);
+						if (!inactive.Exists(m => m.Reminder.ObjectId == item.Reminder.ObjectId))
+						{
+							inactive.Add(item);
+						}
 					}
 					else
 					{
-						active.Add(item);
+						if (!active.Exists(m => m.Reminder.ObjectId == item.Reminder.ObjectId))
+						{
+							active.Add(item);
+						}
 					}
 				}
 			}
