@@ -22,9 +22,9 @@ namespace River.OneMoreAddIn.Commands
 		{
 			public NotebooksPanel()
 			{
-				FlowDirection = FlowDirection.LeftToRight;
+				FlowDirection = FlowDirection.TopDown;
 				AutoScroll = true;
-				WrapContents = true;
+				WrapContents = false;
 			}
 
 
@@ -38,7 +38,7 @@ namespace River.OneMoreAddIn.Commands
 					Padding = new Padding(4, 2, 10, 2),
 					Tag = notebookID,
 					Text = name,
-					Width = Width - SystemInformation.VerticalScrollBarWidth
+					Width = Width - SystemInformation.VerticalScrollBarWidth * 2
 				};
 
 				box.CheckedChanged += DoChangeSelections;

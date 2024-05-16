@@ -154,7 +154,7 @@
 			this.notebooksPanel.Location = new System.Drawing.Point(0, 388);
 			this.notebooksPanel.Name = "notebooksPanel";
 			this.notebooksPanel.Padding = new System.Windows.Forms.Padding(0, 0, 20, 20);
-			this.notebooksPanel.Size = new System.Drawing.Size(718, 260);
+			this.notebooksPanel.Size = new System.Drawing.Size(718, 279);
 			this.notebooksPanel.TabIndex = 25;
 			this.notebooksPanel.ThemedBack = "ControlLightLight";
 			this.notebooksPanel.ThemedFore = null;
@@ -171,7 +171,7 @@
 			this.booksPanel.BottomBorderSize = 0;
 			this.booksPanel.Location = new System.Drawing.Point(31, 46);
 			this.booksPanel.Name = "booksPanel";
-			this.booksPanel.Size = new System.Drawing.Size(656, 191);
+			this.booksPanel.Size = new System.Drawing.Size(656, 210);
 			this.booksPanel.TabIndex = 21;
 			this.booksPanel.ThemedBack = null;
 			this.booksPanel.ThemedFore = null;
@@ -289,7 +289,7 @@
 			this.buttonPanel.Controls.Add(this.okButton);
 			this.buttonPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
 			this.buttonPanel.ForeColor = System.Drawing.SystemColors.ControlText;
-			this.buttonPanel.Location = new System.Drawing.Point(0, 648);
+			this.buttonPanel.Location = new System.Drawing.Point(0, 667);
 			this.buttonPanel.Name = "buttonPanel";
 			this.buttonPanel.Size = new System.Drawing.Size(718, 61);
 			this.buttonPanel.TabIndex = 5;
@@ -349,7 +349,7 @@
 			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.CancelButton = this.cancelButton;
-			this.ClientSize = new System.Drawing.Size(718, 709);
+			this.ClientSize = new System.Drawing.Size(718, 728);
 			this.Controls.Add(this.notebooksPanel);
 			this.Controls.Add(this.topPanel);
 			this.Controls.Add(this.introBox);
