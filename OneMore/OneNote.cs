@@ -294,6 +294,17 @@ namespace River.OneMoreAddIn
 
 						retries = int.MaxValue;
 					}
+					catch (InvalidComObjectException exc)
+					{
+						retries++;
+						var ms = 250 * retries;
+						logger.WriteLine(
+							$"invalid COM object error, (HResult {exc.HResult:X}), " +
+							$"retrying in {ms}ms with new Application object", exc);
+
+						onenote = ApplicationFactory.CreateApplication();
+						await Task.Delay(ms);
+					}
 					catch (COMException exc)
 					{
 						retries++;
@@ -310,7 +321,9 @@ namespace River.OneMoreAddIn
 						{
 							// this will include hrCOMBusy and hrObjectMissing
 							var desc = $"{exc.ErrorCode:X} {ErrorCodes.GetDescription(exc.ErrorCode)}";
-							logger.WriteLine($"error {desc} (HResult {exc.HResult:X}), retyring in {ms}ms");
+							logger.WriteLine(
+								$"error {desc} (HResult {exc.HResult:X}), " +
+								$"retyring in {ms}ms with new Application object");
 						}
 
 						onenote = ApplicationFactory.CreateApplication();
