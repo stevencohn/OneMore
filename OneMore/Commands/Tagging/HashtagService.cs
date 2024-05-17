@@ -168,7 +168,7 @@ namespace River.OneMoreAddIn.Commands
 
 			using var source = new CancellationTokenSource();
 
-			EventHandler handler = (object sender, EventArgs e) => 
+			EventHandler handler = (object sender, EventArgs e) =>
 			{
 				logger.WriteLine("cancelling HashtagService on ApplicationExit");
 				source.Cancel();
@@ -220,8 +220,12 @@ namespace River.OneMoreAddIn.Commands
 			if (fullRebuild)
 			{
 				// at this point, the service is "active" and the rebuild will commence
-				// immediately, so prepare by deleting any old database...
-				HashtagProvider.DeleteDatabase();
+				// immediately, so prepare by dropping existing hashtag entities...
+				using var db = new HashtagProvider();
+				if (!db.DropDatabase())
+				{
+					return;
+				}
 
 				var provider = new SettingsProvider();
 				var settings = provider.GetCollection("HashtagSheet");

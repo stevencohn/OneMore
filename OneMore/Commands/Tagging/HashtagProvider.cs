@@ -10,6 +10,7 @@ namespace River.OneMoreAddIn.Commands
 	using System.Data;
 	using System.Data.SQLite;
 	using System.IO;
+	using System.Linq;
 	using System.Text;
 	using System.Text.RegularExpressions;
 
@@ -76,6 +77,104 @@ namespace River.OneMoreAddIn.Commands
 					Logger.Current.WriteLine("error deleting hashtag database", exc);
 				}
 			}
+		}
+
+
+		public bool DropDatabase()
+		{
+			int Drop(string type, IEnumerable<string> names)
+			{
+				using var cmd = con.CreateCommand();
+				cmd.CommandText = $"DROP {type} IF EXISTS @n";
+				cmd.CommandType = CommandType.Text;
+				var count = 0;
+
+				foreach (var name in names)
+				{
+					try
+					{
+						logger.WriteLine($"dropping {type} {name}");
+						cmd.Parameters["@n"].Value = name;
+						cmd.ExecuteNonQuery();
+						count++;
+					}
+					catch (Exception exc)
+					{
+						ReportError($"error dropping {type} {name}", cmd, exc);
+					}
+				}
+
+				return count;
+			}
+
+			var path = Path.Combine(
+				PathHelper.GetAppDataPath(), Resources.DatabaseFilename);
+
+			if (!File.Exists(path))
+			{
+				return true;
+			}
+
+			var pattern = new Regex(@"CREATE ([^\s]+) IF NOT EXISTS ([^\s]+)",
+				RegexOptions.Compiled);
+
+			var entities = Regex.Split(Resources.HashtagsDB, @"\r\n|\n\r|\n")
+				.AsEnumerable()
+				.Select(d => pattern.Match(d))
+				.Where(m => m.Success)
+				.Select(m => (m.Groups[1].Value, m.Groups[2].Value));
+
+			if (!entities.Any())
+			{
+				return true;
+			}
+
+			using var transaction = con.BeginTransaction();
+			var count = 0;
+
+			IEnumerable<(string, string)> list;
+			list = entities.Where(e => e.Item1 == "VIEW");
+			if (list.Any())
+			{
+				count += Drop("view", list.Select(e => e.Item2));
+			}
+
+			list = entities.Where(e => e.Item1 == "INDEX");
+			if (list.Any())
+			{
+				count += Drop("index", list.Select(e => e.Item2));
+			}
+
+			list = entities.Where(e => e.Item1 == "TABLE");
+			if (list.Any())
+			{
+				// there is one foreign key but tables will be dropped in the right order
+				count += Drop("table", list.Select(e => e.Item2));
+			}
+
+			if (count != entities.Count())
+			{
+				logger.WriteLine("error dropping hashtag database, see errors above");
+				return false;
+			}
+
+			try
+			{
+				using var cmd = con.CreateCommand();
+				cmd.CommandText = "VACUUM";
+				cmd.ExecuteNonQuery();
+
+				transaction.Commit();
+				logger.WriteLine("hashtag database drop done");
+			}
+			catch (Exception exc)
+			{
+				logger.WriteLine("error dropping db", exc);
+				transaction.Rollback();
+				return false;
+			}
+
+			return true;
 		}
 
 
@@ -416,7 +515,7 @@ namespace River.OneMoreAddIn.Commands
 		public string ReadScanTime()
 		{
 			using var cmd = con.CreateCommand();
-			cmd.CommandText = 
+			cmd.CommandText =
 				$"SELECT version, scanTime FROM hashtag_scanner WHERE scannerID = {ScannerID}";
 
 			try
