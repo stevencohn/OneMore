@@ -28,7 +28,7 @@ namespace River.OneMoreAddIn.Commands
 			if (new SettingsProvider()
 				.GetCollection(nameof(NavigatorSheet)).Get("disabled", false))
 			{
-				UIHelper.ShowInfo(Resx.NavigatorWindow_disabled);
+				UI.MoreMessageBox.Show(owner, Resx.NavigatorWindow_disabled);
 				return;
 			}
 

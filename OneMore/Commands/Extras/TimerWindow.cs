@@ -134,7 +134,8 @@ namespace River.OneMoreAddIn.Commands
 			var success = await new ClipboardProvider().SetText(stamp);
 			if (!success)
 			{
-				UIHelper.ShowInfo(Resx.Clipboard_locked);
+				using var one = new OneNote();
+				MoreMessageBox.ShowError(one.Window, Resx.Clipboard_locked);
 			}
 		}
 

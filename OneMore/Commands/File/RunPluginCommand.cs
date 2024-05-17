@@ -312,7 +312,7 @@ namespace River.OneMoreAddIn.Commands
 				var updated = root.ToString(SaveOptions.DisableFormatting);
 				if (updated == content && !plugin.CreateNewPage)
 				{
-					UIHelper.ShowInfo(Resx.Plugin_NoChanges);
+					MoreMessageBox.Show(owner, Resx.Plugin_NoChanges);
 					return null;
 				}
 
@@ -324,7 +324,7 @@ namespace River.OneMoreAddIn.Commands
 
 					if (!OneNote.ValidateSchema(root))
 					{
-						UIHelper.ShowInfo(Resx.Plugin_InvalidSchema);
+						MoreMessageBox.Show(owner, Resx.Plugin_InvalidSchema);
 						return null;
 					}
 				}

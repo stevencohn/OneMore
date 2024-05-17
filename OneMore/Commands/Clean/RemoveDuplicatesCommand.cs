@@ -94,7 +94,7 @@ namespace River.OneMoreAddIn.Commands
 
 			if (hashes.Count == 0)
 			{
-				UIHelper.ShowInfo("No duplicate pages were found");
+				UI.MoreMessageBox.Show(owner, "No duplicate pages were found");
 				return;
 			}
 

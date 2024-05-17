@@ -52,7 +52,7 @@ namespace River.OneMoreAddIn.Commands
 		{
 			if (!HttpClientFactory.IsNetworkAvailable())
 			{
-				UIHelper.ShowInfo(Resx.NetwordConnectionUnavailable);
+				UI.MoreMessageBox.Show(owner, Resx.NetwordConnectionUnavailable);
 				return;
 			}
 

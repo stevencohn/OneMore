@@ -245,7 +245,7 @@ namespace River.OneMoreAddIn.Commands
 			if (families.Any())
 			{
 				var names = string.Join(", ", families);
-				UIHelper.ShowInfo(string.Format(Resx.StyleDialog_familyWarning, names));
+				MoreMessageBox.Show(this, string.Format(Resx.StyleDialog_familyWarning, names));
 			}
 		}
 

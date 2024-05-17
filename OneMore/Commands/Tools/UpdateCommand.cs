@@ -28,7 +28,7 @@ namespace River.OneMoreAddIn.Commands
 			{
 				if (args.Length > 0 && args[0] is bool report && report)
 				{
-					UIHelper.ShowInfo(Properties.Resources.NetwordConnectionUnavailable);
+					MoreMessageBox.Show(owner, Properties.Resources.NetwordConnectionUnavailable);
 				}
 
 				return;

@@ -32,7 +32,7 @@ namespace River.OneMoreAddIn.Commands
 			var anchor = FindAnchor(page);
 			if (anchor == null)
 			{
-				UIHelper.ShowInfo(Resx.JoinParagraphCommand_Select);
+				UI.MoreMessageBox.Show(owner, Resx.JoinParagraphCommand_Select);
 				return;
 			}
 

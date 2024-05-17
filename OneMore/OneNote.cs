@@ -997,7 +997,7 @@ namespace River.OneMoreAddIn
 		{
 			if (page.HasActiveMedia())
 			{
-				UIHelper.ShowInfo(Resx.HasActiveMedia);
+				UI.MoreMessageBox.Show(Window, Resx.HasActiveMedia);
 				return;
 			}
 

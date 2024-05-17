@@ -58,7 +58,7 @@ namespace River.OneMoreAddIn.Commands
 		{
 			if (!Office.IsInstalled("Outlook"))
 			{
-				UIHelper.ShowInfo("Outlook must be installed to use this command");
+				UI.MoreMessageBox.Show(owner, "Outlook must be installed to use this command");
 				return;
 			}
 
@@ -115,7 +115,7 @@ namespace River.OneMoreAddIn.Commands
 
 				if (meta == null)
 				{
-					UIHelper.ShowInfo("Outlook task table not found. It may have been deleted");
+					UI.MoreMessageBox.Show(owner, "Outlook task table not found. It may have been deleted");
 					return;
 				}
 
@@ -128,7 +128,7 @@ namespace River.OneMoreAddIn.Commands
 
 				if (!taskIDs.Any())
 				{
-					UIHelper.ShowInfo("Table contains no Outlook tasks. Rows may have been deleted");
+					UI.MoreMessageBox.Show(owner, "Table contains no Outlook tasks. Rows may have been deleted");
 					return;
 				}
 

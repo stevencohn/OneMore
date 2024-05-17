@@ -92,7 +92,7 @@ namespace River.OneMoreAddIn.Commands
 
 				if (!metas.Any())
 				{
-					UIHelper.ShowInfo(one.Window, Resx.EmbedSubpageCommand_NoEmbedded);
+					UI.MoreMessageBox.ShowError(one.Window, Resx.EmbedSubpageCommand_NoEmbedded);
 					return;
 				}
 
@@ -109,7 +109,7 @@ namespace River.OneMoreAddIn.Commands
 						if (source == null || !source.Snippets.Any())
 						{
 							// error reading source
-							UIHelper.ShowInfo(one.Window, Resx.EmbedSubpageCommand_NoEmbedded);
+							UI.MoreMessageBox.ShowError(one.Window, Resx.EmbedSubpageCommand_NoEmbedded);
 							return;
 						}
 
@@ -156,7 +156,7 @@ namespace River.OneMoreAddIn.Commands
 
 				if (source == null)
 				{
-					UIHelper.ShowInfo(one.Window, Resx.EmbedSubpageCommand_NoSource);
+					UI.MoreMessageBox.ShowError(one.Window, Resx.EmbedSubpageCommand_NoSource);
 					return null;
 				}
 			}
@@ -167,7 +167,7 @@ namespace River.OneMoreAddIn.Commands
 
 			if (outRoot == null)
 			{
-				UIHelper.ShowInfo(one.Window, Resx.EmbedSubpageCommand_NoContent);
+				UI.MoreMessageBox.ShowError(one.Window, Resx.EmbedSubpageCommand_NoContent);
 				return null;
 			}
 
@@ -180,7 +180,7 @@ namespace River.OneMoreAddIn.Commands
 
 			if (!snippets.Any())
 			{
-				UIHelper.ShowInfo(one.Window, Resx.EmbedSubpageCommand_NoContent);
+				UI.MoreMessageBox.ShowError(one.Window, Resx.EmbedSubpageCommand_NoContent);
 				return null;
 			}
 
@@ -265,7 +265,7 @@ namespace River.OneMoreAddIn.Commands
 
 				if (container == null)
 				{
-					UIHelper.ShowInfo(one.Window, Resx.Error_BodyContext);
+					UI.MoreMessageBox.ShowError(one.Window, Resx.Error_BodyContext);
 					return;
 				}
 

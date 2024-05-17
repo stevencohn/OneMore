@@ -6,6 +6,7 @@ namespace River.OneMoreAddIn.Commands
 {
 	using River.OneMoreAddIn.Models;
 	using River.OneMoreAddIn.Styles;
+	using River.OneMoreAddIn.UI;
 	using System.Collections.Generic;
 	using System.Linq;
 	using System.Threading.Tasks;
@@ -47,7 +48,7 @@ namespace River.OneMoreAddIn.Commands
 
 			if (!ok)
 			{
-				UIHelper.ShowInfo(one.Window, Resx.Error_BodyContext);
+				MoreMessageBox.ShowError(one.Window, Resx.Error_BodyContext);
 				return;
 			}
 

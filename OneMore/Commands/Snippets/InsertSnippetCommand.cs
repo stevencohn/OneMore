@@ -92,13 +92,13 @@ namespace River.OneMoreAddIn.Commands
 			}
 			else
 			{
-				UIHelper.ShowInfo(Resx.Clipboard_locked);
+				UI.MoreMessageBox.Show(owner, Resx.Clipboard_locked);
 			}
 
 			success = await clippy.RestoreState();
 			if (!success)
 			{
-				UIHelper.ShowInfo(Resx.Clipboard_norestore);
+				UI.MoreMessageBox.Show(owner, Resx.Clipboard_norestore);
 			}
 		}
 	}
