@@ -1,6 +1,6 @@
 ﻿namespace River.OneMoreAddIn.UI
 {
-	partial class WebViewWorkerDialog
+	partial class WebViewDialog
 	{
 		/// <summary>
 		/// Required designer variable.

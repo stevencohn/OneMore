@@ -30,7 +30,7 @@ namespace River.OneMoreAddIn.UI
 	/// pump from which to run operations on the hosted WebView2. This dialog has an
 	/// opacity set to 0% so it is hidden from the user and works in the background.
 	/// </summary>
-	internal partial class WebViewWorkerDialog : MoreForm
+	internal partial class WebViewDialog : MoreForm
 	{
 		private readonly WebViewWorker startup;
 		private readonly WebViewWorker work;
@@ -39,13 +39,17 @@ namespace River.OneMoreAddIn.UI
 		/// <summary>
 		/// Not called directly
 		/// </summary>
-		public WebViewWorkerDialog()
+		public WebViewDialog()
 		{
 			InitializeComponent();
 		}
 
 
-		public WebViewWorkerDialog(Uri uri)
+		/// <summary>
+		/// Create a 100% opaque dialog for displaying the given Uri
+		/// </summary>
+		/// <param name="uri"></param>
+		public WebViewDialog(Uri uri)
 			: this()
 		{
 			Opacity = 1.0;
@@ -70,7 +74,7 @@ namespace River.OneMoreAddIn.UI
 		/// </summary>
 		/// <param name="startup">The consumer provided startup operation</param>
 		/// <param name="work">The consumer provided worker operation</param>
-		public WebViewWorkerDialog(WebViewWorker startup, WebViewWorker work)
+		public WebViewDialog(WebViewWorker startup, WebViewWorker work)
 			: this()
 		{
 			this.startup = startup;

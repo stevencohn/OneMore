@@ -60,7 +60,7 @@ namespace River.OneMoreAddIn.Commands
 			await SingleThreaded.Invoke(() =>
 			{
 				// WebView2 needs a message pump so host in its own invisible worker dialog
-				using var form = new WebViewWorkerDialog(new System.Uri(filepath));
+				using var form = new WebViewDialog(new System.Uri(filepath));
 
 				form.Width = bounds.Width / 2 + 100;
 				form.Height = bounds.Height - 200;

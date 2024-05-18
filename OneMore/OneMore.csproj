@@ -1078,11 +1078,11 @@
     <Compile Include="UI\ThemedColorTable.cs" />
     <Compile Include="UI\ThemeManager.cs" />
     <Compile Include="UI\Translator.cs" />
-    <Compile Include="UI\WebViewWorkerDialog.cs">
+    <Compile Include="UI\WebViewDialog.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="UI\WebViewWorkerDialog.Designer.cs">
-      <DependentUpon>WebViewWorkerDialog.cs</DependentUpon>
+    <Compile Include="UI\WebViewDialog.Designer.cs">
+      <DependentUpon>WebViewDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\WindowElevator.cs">
       <SubType>Form</SubType>
@@ -1683,8 +1683,8 @@
     <EmbeddedResource Include="UI\MoreBubbleWindow.resx">
       <DependentUpon>MoreBubbleWindow.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UI\WebViewWorkerDialog.resx">
-      <DependentUpon>WebViewWorkerDialog.cs</DependentUpon>
+    <EmbeddedResource Include="UI\WebViewDialog.resx">
+      <DependentUpon>WebViewDialog.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
