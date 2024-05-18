@@ -94,7 +94,7 @@ namespace River.OneMoreAddIn.Commands
 			(float scalingX, float scalingY) = UI.Scaling.GetScalingFactors();
 			logger.WriteLine($"Scaling factors: horizontal/X:{scalingX} vertical/Y:{scalingY}");
 
-			var magic = new MagicScaling(100f, 100f);
+			var magic = new UI.Scaling(100f, 100f);
 			logger.WriteLine($"Magic scaling..: ScalingX:{magic.ScalingX} ScalingY:{magic.ScalingY}");
 
 			await RemindCommand.ReportDiagnostics(logger);

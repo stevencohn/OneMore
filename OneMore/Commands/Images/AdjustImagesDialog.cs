@@ -16,7 +16,7 @@ namespace River.OneMoreAddIn.Commands
 		private readonly Image image;
 		private readonly int viewWidth;
 		private readonly int viewHeight;
-		private readonly MagicScaling scaling;
+		private readonly UI.Scaling scaling;
 		private readonly int originalWidth;
 		private readonly int originalHeight;
 		private readonly bool singleImage;
@@ -108,7 +108,7 @@ namespace River.OneMoreAddIn.Commands
 			widthBox.Value = viewWidth;
 			heightBox.Value = viewHeight;
 
-			scaling = new MagicScaling(image.HorizontalResolution, image.VerticalResolution);
+			scaling = new UI.Scaling(image.HorizontalResolution, image.VerticalResolution);
 
 			previewGroup.Text = string.Format(
 				Resx.AdjustImagesDialog_previewGroup_Text, image.GetSignature());

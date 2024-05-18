@@ -68,7 +68,7 @@ namespace River.OneMoreAddIn.Commands
 		private readonly Image original;
 		private readonly Region selectionRegion;
 		private readonly GraphicsPath selectionPath;
-		private readonly MagicScaling scaling;
+		private readonly UI.Scaling scaling;
 
 		// the original image
 		private Rectangle imageBounds;
@@ -121,7 +121,7 @@ namespace River.OneMoreAddIn.Commands
 		{
 			Image = original = image;
 
-			scaling = new MagicScaling(image.HorizontalResolution, image.VerticalResolution);
+			scaling = new UI.Scaling(image.HorizontalResolution, image.VerticalResolution);
 
 			SizeWindow();
 
