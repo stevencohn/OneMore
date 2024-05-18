@@ -231,7 +231,11 @@ namespace River.OneMoreAddIn.Commands
 						}
 					}
 
-					position.Attribute("z").Value = z.ToString();
+					if (position is not null)
+					{
+						position.Attribute("z").Value = z.ToString();
+					}
+
 					z++;
 
 					// remove its IDs so the page can apply its own

@@ -486,6 +486,8 @@ namespace River.OneMoreAddIn.Commands
 
 		// = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
 
+		[System.Diagnostics.CodeAnalysis.SuppressMessage("Major Bug",
+			"S2583:Conditionally executed code should be reachable", Justification = "<Pending>")]
 		private async Task<WebPageInfo> DownloadWebContent(Uri uri)
 		{
 			const string GetTitleJS = "document.getElementsByTagName('title')[0].innerText;";

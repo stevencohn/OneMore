@@ -40,6 +40,9 @@ namespace OneMoreSetupActions
 		}
 
 
+		[System.Diagnostics.CodeAnalysis.SuppressMessage("Minor Code Smell",
+			"S6605:Collection-specific \"Exists\" method should be used instead of the \"Any\" extension", 
+			Justification = "<Pending>")]
 		public override int Install()
 		{
 			logger.WriteLine();
