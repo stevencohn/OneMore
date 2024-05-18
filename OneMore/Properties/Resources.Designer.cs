@@ -5125,6 +5125,16 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
+        /// </summary>
+        internal static System.Drawing.Icon OneMore_Icon {
+            get {
+                object obj = ResourceManager.GetObject("OneMore_Icon", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to https://github.com/sponsors/stevencohn.
         /// </summary>
         internal static string OneMore_Sponsor {

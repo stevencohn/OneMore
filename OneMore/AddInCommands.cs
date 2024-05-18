@@ -647,6 +647,11 @@ namespace River.OneMoreAddIn
 			=> await factory.Run<PinPageCommand>();
 
 
+		[Command("ribPreviewMarkdownButton_Label", Keys.Control | Keys.Alt | Keys.Shift | Keys.M, "ribEditMenu")]
+		public async Task PreviewMarkdownCmd(IRibbonControl control)
+			=> await factory.Run<PreviewMarkdownCommand>();
+
+
 		[Command("ribPronunciateButton_Label", Keys.None, "ribEditMenu")]
 		public async Task PronunciateCmd(IRibbonControl control)
 			=> await factory.Run<PronunciateCommand>();

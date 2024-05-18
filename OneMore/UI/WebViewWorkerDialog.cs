@@ -1,5 +1,5 @@
 ﻿//************************************************************************************************
-// Copyright © 2021 Steven M Cohn.  All rights reserved.
+// Copyright © 2021 Steven M Cohn. All rights reserved.
 //************************************************************************************************
 
 #pragma warning disable CS3001 // Argument type is not CLS-compliant
@@ -12,7 +12,7 @@ namespace River.OneMoreAddIn.UI
 	using System.IO;
 	using System.Threading.Tasks;
 	using System.Windows.Forms;
-	using Resx = River.OneMoreAddIn.Properties.Resources;
+	using Resx = Properties.Resources;
 
 
 	/// <summary>
@@ -66,7 +66,11 @@ namespace River.OneMoreAddIn.UI
 					Path.Combine(PathHelper.GetAppDataPath(), Resx.ProgramName));
 
 				await webView.EnsureCoreWebView2Async(env);
-				await startup(webView);
+
+				if (startup is not null)
+				{
+					await startup(webView);
+				}
 			}
 			catch (Exception exc)
 			{
@@ -79,8 +83,20 @@ namespace River.OneMoreAddIn.UI
 		private async void WorkNavComplete(
 			object sender, CoreWebView2NavigationCompletedEventArgs e)
 		{
-			await work(webView);
-			Close();
+			if (e.IsSuccess)
+			{
+				if (work is not null)
+				{
+					await work(webView);
+					Close();
+				}
+			}
+			else
+			{
+				Logger.Current.WriteLine(
+					$"WebNavComplete error HttpStatusCode:{e.HttpStatusCode} " +
+					$"WebErrorStatus:{e.WebErrorStatus}");
+			}
 		}
 	}
 }
