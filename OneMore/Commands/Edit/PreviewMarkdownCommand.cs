@@ -9,7 +9,6 @@ namespace River.OneMoreAddIn.Commands
 	using System.IO;
 	using System.Linq;
 	using System.Threading.Tasks;
-	using System.Windows.Forms;
 
 
 	/// <summary>
@@ -61,27 +60,13 @@ namespace River.OneMoreAddIn.Commands
 			await SingleThreaded.Invoke(() =>
 			{
 				// WebView2 needs a message pump so host in its own invisible worker dialog
-				using var form = new WebViewWorkerDialog(
-					startup:
-					new WebViewWorker(async (webview) =>
-					{
-						//logger.WriteLine($"starting up webview with {uri}");
-						webview.Source = new System.Uri(filepath);
-						await Task.Yield();
-						return true;
-					}),
-					work: null);
+				using var form = new WebViewWorkerDialog(new System.Uri(filepath));
 
-				form.Opacity = 1.0;
-				form.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
 				form.Width = bounds.Width / 2 + 100;
-				form.Height = bounds.Height - 100;
+				form.Height = bounds.Height - 200;
 				form.Left = bounds.Left + (bounds.Width / 2) - 50;
-				form.Top = bounds.Top + 50;
+				form.Top = bounds.Top + 100;
 				form.TopMost = true;
-
-				form.Icon = Properties.Resources.OneMore_Icon;
-				form.Text = "Markdown Preview";
 
 				form.ShowDialog(owner);
 			});

@@ -11,6 +11,7 @@ namespace River.OneMoreAddIn.UI
 	using System;
 	using System.IO;
 	using System.Threading.Tasks;
+	using System.Windows;
 	using System.Windows.Forms;
 	using Resx = Properties.Resources;
 
@@ -29,7 +30,7 @@ namespace River.OneMoreAddIn.UI
 	/// pump from which to run operations on the hosted WebView2. This dialog has an
 	/// opacity set to 0% so it is hidden from the user and works in the background.
 	/// </summary>
-	public partial class WebViewWorkerDialog : Form
+	internal partial class WebViewWorkerDialog : MoreForm
 	{
 		private readonly WebViewWorker startup;
 		private readonly WebViewWorker work;
@@ -41,6 +42,26 @@ namespace River.OneMoreAddIn.UI
 		public WebViewWorkerDialog()
 		{
 			InitializeComponent();
+		}
+
+
+		public WebViewWorkerDialog(Uri uri)
+			: this()
+		{
+			Opacity = 1.0;
+			ManualLocation = true;
+			StartPosition = FormStartPosition.Manual;
+
+			Icon = Resx.OneMore_Icon;
+			Text = "Markdown Preview";
+
+			startup = new WebViewWorker(async (webview) =>
+			{
+				//logger.WriteLine($"starting up webview with {uri}");
+				webview.Source = uri;
+				await Task.Yield();
+				return true;
+			});
 		}
 
 
