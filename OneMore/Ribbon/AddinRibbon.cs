@@ -834,12 +834,15 @@ namespace River.OneMoreAddIn
 				var engine = engines.Elements("engine")
 					.FirstOrDefault(e => e.Element("uri").Value == control.Tag);
 
-				var img = engine.Element("image")?.Value;
-				if (!string.IsNullOrEmpty(img))
+				if (engine is not null)
 				{
-					var bytes = Convert.FromBase64String(img);
-					using var stream = new MemoryStream(bytes, 0, bytes.Length);
-					return ((Bitmap)(Image.FromStream(stream))).GetReadOnlyStream();
+					var img = engine.Element("image")?.Value;
+					if (!string.IsNullOrEmpty(img))
+					{
+						var bytes = Convert.FromBase64String(img);
+						using var stream = new MemoryStream(bytes, 0, bytes.Length);
+						return ((Bitmap)(Image.FromStream(stream))).GetReadOnlyStream();
+					}
 				}
 			}
 

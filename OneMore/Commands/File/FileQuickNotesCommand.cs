@@ -68,6 +68,8 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
+		[System.Diagnostics.CodeAnalysis.SuppressMessage("Major Bug",
+			"S2583:Conditionally executed code should be reachable", Justification = "<Pending>")]
 		private async Task FileIntoNotebook(string notebookID, int grouping)
 		{
 			one = new OneNote();

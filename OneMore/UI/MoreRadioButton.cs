@@ -158,7 +158,7 @@ namespace River.OneMoreAddIn.UI
 				size = g.MeasureString(text, Font).ToSize();
 				var w = boxSize + Spacing + size.Width;
 				var h = Math.Max(size.Height, SystemInformation.MenuCheckSize.Height);
-				if (Width < w | Height < h)
+				if (Width < w || Height < h)
 				{
 					AutoSize = false;
 					Width = w;

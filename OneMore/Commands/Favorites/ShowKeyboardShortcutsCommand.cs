@@ -130,7 +130,7 @@ namespace River.OneMoreAddIn.Commands
 			{
 				using var stream = new FileStream(path, FileMode.Open);
 				using var archive = new ZipArchive(stream);
-				var entry = archive.Entries.First();
+				var entry = archive.Entries[0];
 
 				using var reader = new StreamReader(entry.Open());
 				return new Page(XElement.Parse(reader.ReadToEnd()));
