@@ -2144,12 +2144,11 @@ Caderno atual</value>
     <comment>error message box</comment>
   </data>
   <data name="Pronunciate_NetError" xml:space="preserve">
-    <value>Não foi possível obter a definição da palavra {0}
-Tente mais tarde</value>
+    <value>Não foi possível obter {0} pronúncia de "{1}". A palavra não existe ou houve uma falha temporária na rede.</value>
     <comment>error message box</comment>
   </data>
   <data name="Pronunciate_NoWord" xml:space="preserve">
-    <value>Não foi possível encontrar a palavra {0}</value>
+    <value>Não foi possível obter {0} pronúncia de "{1}"</value>
     <comment>error message box</comment>
   </data>
   <data name="PronunciateDialog.Text" xml:space="preserve">

@@ -2143,12 +2143,11 @@
     <comment>error message box</comment>
   </data>
   <data name="Pronunciate_NetError" xml:space="preserve">
-    <value>تعذر جلب تعريف الكلمة {0}
-حاول مرة أخرى في وقت لاحق</value>
+    <value>تعذر جلب نطق {0} لـ "{1}". إما أن الكلمة غير موجودة أو أنه حدث فشل مؤقت في الشبكة.</value>
     <comment>error message box</comment>
   </data>
   <data name="Pronunciate_NoWord" xml:space="preserve">
-    <value>تعذر العثور على الكلمة {0}</value>
+    <value>تعذر جلب نطق {0} لـ "{1}"</value>
     <comment>error message box</comment>
   </data>
   <data name="PronunciateDialog.Text" xml:space="preserve">

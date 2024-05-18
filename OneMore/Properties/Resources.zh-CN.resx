@@ -2142,12 +2142,11 @@ OneNote 文件 (*.one)</value>
     <comment>error message box</comment>
   </data>
   <data name="Pronunciate_NetError" xml:space="preserve">
-    <value>无法获取单词{0}的定义
-稍后再试</value>
+    <value>无法获取“{1}”的 {0} 发音。要么单词不存在，要么出现临时网络故障。</value>
     <comment>error message box</comment>
   </data>
   <data name="Pronunciate_NoWord" xml:space="preserve">
-    <value>找不到单词{0}</value>
+    <value>无法获取“{1}”的 {0} 发音</value>
     <comment>error message box</comment>
   </data>
   <data name="PronunciateDialog.Text" xml:space="preserve">

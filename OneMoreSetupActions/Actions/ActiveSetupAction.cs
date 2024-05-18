@@ -1,5 +1,5 @@
 ﻿//************************************************************************************************
-// Copyright © 2022 Steven M Cohn.  All rights reserved.
+// Copyright © 2022 Steven M Cohn. All rights reserved.
 //************************************************************************************************
 
 namespace OneMoreSetupActions
@@ -41,29 +41,28 @@ namespace OneMoreSetupActions
 				var p = $@"Software\Microsoft\Active Setup\Installed Components\{RegistryHelper.OneNoteID}";
 				logger.WriteLine($"opening key HKLM:\\{p}");
 
-				using (var key = Registry.LocalMachine.OpenSubKey(p,
+				using var key = Registry.LocalMachine.OpenSubKey(p,
 					RegistryKeyPermissionCheck.ReadWriteSubTree,
-					RegistryHelper.WriteRights))
-				{
-					if (key != null)
-					{
-						var version = (string)key.GetValue("Version");
-						if (!string.IsNullOrWhiteSpace(version))
-						{
-							var commas = version.Replace('.', ',');
+					RegistryHelper.WriteRights);
 
-							logger.WriteLine($"replacing '{version}' with '{commas}'");
-							key.SetValue("Version", commas);
-						}
-						else
-						{
-							logger.WriteLine("active setup version not found");
-						}
+				if (key is not null)
+				{
+					var version = (string)key.GetValue("Version");
+					if (!string.IsNullOrWhiteSpace(version))
+					{
+						var commas = version.Replace('.', ',');
+
+						logger.WriteLine($"replacing '{version}' with '{commas}'");
+						key.SetValue("Version", commas);
 					}
 					else
 					{
-						logger.WriteLine("active setup key not found, skipping version tweak");
+						logger.WriteLine("active setup version not found");
 					}
+				}
+				else
+				{
+					logger.WriteLine("active setup key not found, skipping version tweak");
 				}
 			}
 			catch (Exception exc)

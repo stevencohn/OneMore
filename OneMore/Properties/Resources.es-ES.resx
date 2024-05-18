@@ -2143,12 +2143,11 @@ Cuaderno actual</value>
     <comment>error message box</comment>
   </data>
   <data name="Pronunciate_NetError" xml:space="preserve">
-    <value>No se pudo obtener la definición de la palabra {0}
-Vuelve a intentarlo más tarde</value>
+    <value>No se pudo recuperar la pronunciación {0} de "{1}". O la palabra no existe o hubo una falla temporal en la red.</value>
     <comment>error message box</comment>
   </data>
   <data name="Pronunciate_NoWord" xml:space="preserve">
-    <value>No se pudo encontrar la palabra {0}</value>
+    <value>No se pudo recuperar la pronunciación {0} de "{1}"</value>
     <comment>error message box</comment>
   </data>
   <data name="PronunciateDialog.Text" xml:space="preserve">

@@ -382,8 +382,10 @@ namespace River.OneMoreAddIn.Commands
 				name = string.Empty;
 			}
 
-			if (stamped && DateTime.TryParse(dateTime, out var dttm))
+			if (stamped)
 			{
+				// dateTime comes from hierarchy XML attribute
+				var dttm = DateTime.Parse(dateTime, CultureInfo.InvariantCulture);
 				name = $"{dttm:yyyy-MM-dd} {name}";
 			}
 

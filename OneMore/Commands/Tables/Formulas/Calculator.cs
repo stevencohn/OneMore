@@ -564,6 +564,8 @@ namespace River.OneMoreAddIn.Commands.Tables.Formulas
 		/// <param name="name">Name of symbol</param>
 		/// <param name="pos">Position at start of symbol</param>
 		/// <returns></returns>
+		[System.Diagnostics.CodeAnalysis.SuppressMessage("Style",
+			"IDE0060:Remove unused parameter", Justification = "Future")]
 		private FormulaValue EvaluateSymbol(string name, int pos)
 		{
 			// built-in symbols

@@ -5848,8 +5848,7 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Could not fetch definition of word {0}
-        ///Try again later.
+        ///   Looks up a localized string similar to Could not fetch {0} pronunciation of &quot;{1}&quot;. Either word does not exist or there was a temporary network failure..
         /// </summary>
         internal static string Pronunciate_NetError {
             get {
@@ -5858,7 +5857,7 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Could not find word {0}.
+        ///   Looks up a localized string similar to Could not fetch {0} pronunciation of &quot;{1}&quot;.
         /// </summary>
         internal static string Pronunciate_NoWord {
             get {

@@ -2144,12 +2144,11 @@ Huidig ​​notitieboek</value>
     <comment>error message box</comment>
   </data>
   <data name="Pronunciate_NetError" xml:space="preserve">
-    <value>Kan definitie van woord {0} niet ophalen
-Probeer het later nog eens</value>
+    <value>Kan de uitspraak van {0} van "{1}" niet ophalen. Een van beide woorden bestaat niet of er is een tijdelijke netwerkfout opgetreden.</value>
     <comment>error message box</comment>
   </data>
   <data name="Pronunciate_NoWord" xml:space="preserve">
-    <value>Kan woord {0} niet vinden</value>
+    <value>Kan de uitspraak van {0} van "{1}" niet ophalen</value>
     <comment>error message box</comment>
   </data>
   <data name="PronunciateDialog.Text" xml:space="preserve">

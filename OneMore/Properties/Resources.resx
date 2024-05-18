@@ -2176,12 +2176,11 @@ Current notebook</value>
     <comment>error message box</comment>
   </data>
   <data name="Pronunciate_NetError" xml:space="preserve">
-    <value>Could not fetch definition of word {0}
-Try again later</value>
+    <value>Could not fetch {0} pronunciation of "{1}". Either word does not exist or there was a temporary network failure.</value>
     <comment>error message box</comment>
   </data>
   <data name="Pronunciate_NoWord" xml:space="preserve">
-    <value>Could not find word {0}</value>
+    <value>Could not fetch {0} pronunciation of "{1}"</value>
     <comment>error message box</comment>
   </data>
   <data name="PronunciateDialog.Text" xml:space="preserve">

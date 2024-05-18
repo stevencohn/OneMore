@@ -2141,11 +2141,11 @@ Aktuelles Notizbuch</value>
     <comment>error message box</comment>
   </data>
   <data name="Pronunciate_NetError" xml:space="preserve">
-    <value>Die Definition des Wortes {0} konnte nicht abgerufen werden.\n</value>
+    <value>Die {0} Aussprache von „{1}“ konnte nicht abgerufen werden. Entweder ist das Wort nicht vorhanden oder es ist ein vorübergehender Netzwerkfehler aufgetreten.</value>
     <comment>error message box</comment>
   </data>
   <data name="Pronunciate_NoWord" xml:space="preserve">
-    <value>Wort {0} konnte nicht gefunden werden</value>
+    <value>{0} Aussprache von „{1}“ konnte nicht abgerufen werden</value>
     <comment>error message box</comment>
   </data>
   <data name="PronunciateDialog.Text" xml:space="preserve">
