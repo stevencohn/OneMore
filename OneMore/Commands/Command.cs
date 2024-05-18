@@ -103,5 +103,17 @@ namespace River.OneMoreAddIn
 		{
 			await Task.Yield();
 		}
+
+
+		protected void ShowError(string message)
+		{
+			UI.MoreMessageBox.ShowError(owner, message);
+		}
+
+
+		protected void ShowInfo(string message)
+		{
+			UI.MoreMessageBox.Show(owner, message);
+		}
 	}
 }

@@ -66,7 +66,7 @@ namespace River.OneMoreAddIn.Commands
 			await using var one = new OneNote(out var page, out ns);
 			if (!page.ConfirmBodyContext())
 			{
-				UIHelper.ShowError(Resx.Error_BodyContext);
+				ShowError(Resx.Error_BodyContext);
 				return;
 			}
 
@@ -125,7 +125,7 @@ namespace River.OneMoreAddIn.Commands
 
 				if (!content.HasElements)
 				{
-					UIHelper.ShowError(Resx.Error_BodyContext);
+					ShowError(Resx.Error_BodyContext);
 					logger.WriteLine("error reading page content!");
 					return;
 				}

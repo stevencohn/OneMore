@@ -37,7 +37,7 @@ namespace River.OneMoreAddIn.Commands
 				images = page.Root.Elements(ns + "Image");
 				if ((!images.Any() || images.Count() < 2))
 				{
-					UI.MoreMessageBox.ShowError(owner, Resx.StackBackgroundImagesCommand_noImages);
+					ShowError(Resx.StackBackgroundImagesCommand_noImages);
 					return;
 				}
 

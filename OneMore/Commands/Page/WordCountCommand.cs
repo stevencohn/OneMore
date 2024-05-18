@@ -64,13 +64,11 @@ namespace River.OneMoreAddIn.Commands
 
 					if (wholePage)
 					{
-						MoreMessageBox.Show(owner,
-							string.Format(Resx.WordCountCommand_Count, count));
+						ShowInfo(string.Format(Resx.WordCountCommand_Count, count));
 					}
 					else
 					{
-						MoreMessageBox.Show(owner,
-							string.Format(Resx.WordCountCommand_Selected, count));
+						ShowInfo(string.Format(Resx.WordCountCommand_Selected, count));
 					}
 				}
 				else

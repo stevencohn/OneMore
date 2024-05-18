@@ -130,14 +130,5 @@ namespace River.OneMoreAddIn
 				MessageBoxDefaultButton.Button1,
 				MessageBoxOptions.DefaultDesktopOnly);
 		}
-
-
-		public static void ShowError(string message)
-		{
-			MessageBox.Show(message, Resx.ProgramName,
-				MessageBoxButtons.OK, MessageBoxIcon.Error,
-				MessageBoxDefaultButton.Button1,
-				MessageBoxOptions.DefaultDesktopOnly);
-		}
 	}
 }

@@ -42,7 +42,7 @@ namespace River.OneMoreAddIn.Commands
 
 			if (anchor == null)
 			{
-				UI.MoreMessageBox.Show(owner, Resx.ApplyTableTheme_SelectTable);
+				ShowInfo(Resx.ApplyTableTheme_SelectTable);
 				return;
 			}
 
@@ -58,7 +58,7 @@ namespace River.OneMoreAddIn.Commands
 				var provider = new TableThemeProvider();
 				if (selectedIndex < 0 || selectedIndex >= provider.Count)
 				{
-					UI.MoreMessageBox.Show(owner, "Invalid theme index"); // Resx.ApplyTableTheme_SelectTable);
+					ShowInfo("Invalid theme index"); // Resx.ApplyTableTheme_SelectTable);
 					return;
 				}
 

@@ -42,7 +42,7 @@ namespace River.OneMoreAddIn.Commands
 		{
 			if (!HttpClientFactory.IsNetworkAvailable())
 			{
-				UI.MoreMessageBox.Show(owner, Resx.NetwordConnectionUnavailable);
+				ShowInfo(Resx.NetwordConnectionUnavailable);
 				return;
 			}
 
@@ -75,7 +75,7 @@ namespace River.OneMoreAddIn.Commands
 			var runs = page.GetSelectedElements().ToList();
 			if (!runs.Any() || page.SelectionScope != SelectionScope.Region)
 			{
-				UIHelper.ShowError(Resx.PlantUml_EmptySelection);
+				ShowError(Resx.PlantUml_EmptySelection);
 				return;
 			}
 
@@ -90,7 +90,7 @@ namespace River.OneMoreAddIn.Commands
 			var text = builder.ToString();
 			if (string.IsNullOrWhiteSpace(text))
 			{
-				UIHelper.ShowError(Resx.PlantUml_EmptySelection);
+				ShowError(Resx.PlantUml_EmptySelection);
 				return;
 			}
 
@@ -99,7 +99,7 @@ namespace River.OneMoreAddIn.Commands
 			var bytes = Render(text);
 			if (!string.IsNullOrWhiteSpace(errorMessage))
 			{
-				UIHelper.ShowError(errorMessage);
+				ShowError(errorMessage);
 				return;
 			}
 
@@ -266,7 +266,7 @@ namespace River.OneMoreAddIn.Commands
 
 			if (element == null)
 			{
-				UIHelper.ShowError(Resx.PlantUml_broken);
+				ShowError(Resx.PlantUml_broken);
 				return false;
 			}
 
@@ -279,14 +279,14 @@ namespace River.OneMoreAddIn.Commands
 
 			if (plant == null)
 			{
-				UIHelper.ShowError(Resx.PlantUml_broken);
+				ShowError(Resx.PlantUml_broken);
 				return false;
 			}
 
 			var runs = plant.Descendants(ns + "T");
 			if (!runs.Any())
 			{
-				UIHelper.ShowError(Resx.PlantUml_broken);
+				ShowError(Resx.PlantUml_broken);
 				return false;
 			}
 
@@ -301,7 +301,7 @@ namespace River.OneMoreAddIn.Commands
 			var text = builder.ToString();
 			if (string.IsNullOrWhiteSpace(text))
 			{
-				UIHelper.ShowError(Resx.PlantUml_broken);
+				ShowError(Resx.PlantUml_broken);
 				return false;
 			}
 
@@ -310,7 +310,7 @@ namespace River.OneMoreAddIn.Commands
 			var bytes = Render(text);
 			if (!string.IsNullOrWhiteSpace(errorMessage))
 			{
-				UIHelper.ShowError(errorMessage);
+				ShowError(errorMessage);
 				return false;
 			}
 
@@ -319,7 +319,7 @@ namespace River.OneMoreAddIn.Commands
 			var data = element.Elements(ns + "Data").FirstOrDefault();
 			if (data == null)
 			{
-				UIHelper.ShowError(Resx.PlantUml_broken);
+				ShowError(Resx.PlantUml_broken);
 				return false;
 			}
 
@@ -357,7 +357,7 @@ namespace River.OneMoreAddIn.Commands
 
 			if (element == null)
 			{
-				UIHelper.ShowError(Resx.PlantUml_broken);
+				ShowError(Resx.PlantUml_broken);
 				return;
 			}
 

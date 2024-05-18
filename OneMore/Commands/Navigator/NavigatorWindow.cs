@@ -230,9 +230,7 @@ namespace River.OneMoreAddIn.Commands
 				minimized = false;
 			}
 
-			BringToFront();
-			TopMost = true;
-			Activate();
+			Elevate(false);
 			PanelFocusOnClick(historyHeadPanel, e);
 		}
 

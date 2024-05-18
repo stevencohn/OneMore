@@ -36,9 +36,7 @@ namespace River.OneMoreAddIn.Commands
 			if (dialog != null)
 			{
 				// single instance
-				dialog.ForceTopMost();
-				dialog.Activate();
-				dialog.TopMost = false;
+				dialog.Elevate();
 				return;
 			}
 

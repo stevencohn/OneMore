@@ -42,13 +42,13 @@ namespace River.OneMoreAddIn.Commands
 
 			if (element == null)
 			{
-				MoreMessageBox.ShowError(owner, Resx.Error_SelectImage);
+				ShowError(Resx.Error_SelectImage);
 				return;
 			}
 
 			if (element.Parent.Name.LocalName == "Page")
 			{
-				MoreMessageBox.ShowError(owner, Resx.AddCaptionCommand_cannotCaptionBg);
+				ShowError(Resx.AddCaptionCommand_cannotCaptionBg);
 				return;
 			}
 

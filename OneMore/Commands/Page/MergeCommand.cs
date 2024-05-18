@@ -60,7 +60,7 @@ namespace River.OneMoreAddIn.Commands
 
 				if (active == null)
 				{
-					UI.MoreMessageBox.ShowError(one.Window, "At least two pages must be selected to merge");
+					ShowError("At least two pages must be selected to merge");
 					return;
 				}
 
@@ -70,7 +70,7 @@ namespace River.OneMoreAddIn.Commands
 
 				if (count < 2)
 				{
-					UI.MoreMessageBox.ShowError(one.Window, "At least two pages must be selected to merge");
+					ShowError("At least two pages must be selected to merge");
 					return;
 				}
 

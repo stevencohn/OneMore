@@ -29,7 +29,7 @@ namespace River.OneMoreAddIn.Commands
 
 			if (page.SelectionScope != SelectionScope.Region)
 			{
-				MoreMessageBox.ShowError(owner, "Select markdown text to convert to OneNote format");
+				ShowError("Select markdown text to convert to OneNote format");
 				return;
 			}
 

@@ -264,14 +264,14 @@ namespace River.OneMoreAddIn.Commands
 
 			if (top == null)
 			{
-				MoreMessageBox.ShowError(owner, Resx.InsertTocCommand_NoHeadings);
+				ShowError(Resx.InsertTocCommand_NoHeadings);
 				return false;
 			}
 
 			headings = page.GetHeadings(one);
 			if (!headings.Any())
 			{
-				MoreMessageBox.ShowError(owner, Resx.InsertTocCommand_NoHeadings);
+				ShowError(Resx.InsertTocCommand_NoHeadings);
 				return false;
 			}
 
@@ -284,7 +284,7 @@ namespace River.OneMoreAddIn.Commands
 
 			if (titleID == null)
 			{
-				MoreMessageBox.ShowError(owner, Resx.InsertTocCommand_NoHeadings);
+				ShowError(Resx.InsertTocCommand_NoHeadings);
 				return false;
 			}
 

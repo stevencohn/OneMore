@@ -49,24 +49,24 @@ namespace River.OneMoreAddIn.Commands
 			{
 				if (!await MarkAnchor(one))
 				{
-					MoreMessageBox.ShowError(owner, Resx.BiLinkCommand_BadAnchor);
+					ShowError(Resx.BiLinkCommand_BadAnchor);
 					return;
 				}
 
 				if (anchorText.Length > 20) { anchorText = $"{anchorText.Substring(0, 20)}..."; }
-				MoreMessageBox.Show(owner, string.Format(Resx.BiLinkCommand_Marked, anchorText));
+				ShowInfo(string.Format(Resx.BiLinkCommand_Marked, anchorText));
 			}
 			else
 			{
 				if (string.IsNullOrEmpty(anchorPageId))
 				{
-					MoreMessageBox.ShowError(owner, Resx.BiLinkCommand_NoAnchor);
+					ShowError(Resx.BiLinkCommand_NoAnchor);
 					return;
 				}
 
 				if (!await CreateLinks(one))
 				{
-					MoreMessageBox.ShowError(owner, string.Format(Resx.BiLinkCommand_BadTarget, error));
+					ShowError(string.Format(Resx.BiLinkCommand_BadTarget, error));
 					return;
 				}
 

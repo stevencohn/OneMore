@@ -28,7 +28,7 @@ namespace River.OneMoreAddIn.Commands
 			var cursor = page.GetTextCursor();
 			if (cursor == null)
 			{
-				UI.MoreMessageBox.Show(owner, "Place the cursor on the paragraph to duplicate");
+				ShowInfo("Place the cursor on the paragraph to duplicate");
 				return;
 			}
 

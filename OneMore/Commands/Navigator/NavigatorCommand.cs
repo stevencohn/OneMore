@@ -28,7 +28,7 @@ namespace River.OneMoreAddIn.Commands
 			if (new SettingsProvider()
 				.GetCollection(nameof(NavigatorSheet)).Get("disabled", false))
 			{
-				UI.MoreMessageBox.Show(owner, Resx.NavigatorWindow_disabled);
+				ShowInfo(Resx.NavigatorWindow_disabled);
 				return;
 			}
 
@@ -50,9 +50,7 @@ namespace River.OneMoreAddIn.Commands
 				window.WindowState = FormWindowState.Normal;
 			}
 
-			window.ForceTopMost();
-			window.Activate();
-			window.Focus();
+			window.Elevate(true);
 
 			await Task.Yield();
 		}

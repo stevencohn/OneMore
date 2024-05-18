@@ -37,7 +37,7 @@ namespace River.OneMoreAddIn.Commands
 
 			if (!images.Any())
 			{
-				UI.MoreMessageBox.ShowError(owner, Resx.CropImage_oneImage);
+				ShowError(Resx.CropImage_oneImage);
 				return;
 			}
 

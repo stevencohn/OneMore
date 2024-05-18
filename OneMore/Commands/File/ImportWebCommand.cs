@@ -62,15 +62,14 @@ namespace River.OneMoreAddIn.Commands
 		{
 			if (!HttpClientFactory.IsNetworkAvailable())
 			{
-				MoreMessageBox.Show(owner, Resx.NetwordConnectionUnavailable);
+				ShowInfo(Resx.NetwordConnectionUnavailable);
 				return;
 			}
 
 			var key = Registry.LocalMachine.OpenSubKey($"{ClientKey}\\{RuntimeId}");
 			if (key == null)
 			{
-				MoreMessageBox.ShowError(owner,
-					"Unable to use this command; Edge WebView2 is not installed");
+				ShowError("Unable to use this command; Edge WebView2 is not installed");
 				return;
 			}
 
@@ -397,7 +396,7 @@ namespace River.OneMoreAddIn.Commands
 
 		private void Giveup(string msg)
 		{
-			MoreMessageBox.Show(owner, $"Cannot load web page.\n\n{msg}");
+			ShowInfo($"Cannot load web page.\n\n{msg}");
 		}
 
 

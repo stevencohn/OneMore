@@ -85,7 +85,7 @@ namespace River.OneMoreAddIn
 				}
 				else
 				{
-					UIHelper.ShowError(Resx.Error_BodyContext);
+					ShowError(Resx.Error_BodyContext);
 				}
 			}
 			else

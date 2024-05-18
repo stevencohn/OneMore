@@ -283,7 +283,7 @@ namespace River.OneMoreAddIn
 			catch (Exception exc)
 			{
 				Logger.Current.WriteLine("error starting add-on", exc);
-				UIHelper.ShowError(Properties.Resources.StartupFailureMessage);
+				UI.MoreMessageBox.ShowError(null, Properties.Resources.StartupFailureMessage);
 			}
 
 			logger.End();

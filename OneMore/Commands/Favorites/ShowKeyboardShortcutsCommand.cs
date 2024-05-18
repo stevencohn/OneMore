@@ -34,7 +34,7 @@ namespace River.OneMoreAddIn.Commands
 		{
 			if (!HttpClientFactory.IsNetworkAvailable())
 			{
-				MoreMessageBox.Show(owner, Properties.Resources.NetwordConnectionUnavailable);
+				ShowInfo(Properties.Resources.NetwordConnectionUnavailable);
 				return;
 			}
 
@@ -45,7 +45,7 @@ namespace River.OneMoreAddIn.Commands
 				var results = await one.SearchMeta(string.Empty, "omKeyboardShortcuts");
 				if (results == null)
 				{
-					MoreMessageBox.ShowError(one.Window, "Could not show page at this time. Restart OneNote");
+					ShowError("Could not show page at this time. Restart OneNote");
 					return;
 				}
 

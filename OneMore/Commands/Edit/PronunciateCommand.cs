@@ -52,7 +52,7 @@ namespace River.OneMoreAddIn.Commands
 		{
 			if (!HttpClientFactory.IsNetworkAvailable())
 			{
-				UI.MoreMessageBox.Show(owner, Resx.NetwordConnectionUnavailable);
+				ShowInfo(Resx.NetwordConnectionUnavailable);
 				return;
 			}
 
@@ -65,7 +65,7 @@ namespace River.OneMoreAddIn.Commands
 
 			if (element == null)
 			{
-				UIHelper.ShowError(Resx.Pronunciate_FullWord);
+				ShowError(Resx.Pronunciate_FullWord);
 				return;
 			}
 
@@ -78,7 +78,7 @@ namespace River.OneMoreAddIn.Commands
 
 			if (string.IsNullOrEmpty(word))
 			{
-				UIHelper.ShowError(Resx.Pronunciate_EmptyWord);
+				ShowError(Resx.Pronunciate_EmptyWord);
 				return;
 			}
 
@@ -160,7 +160,7 @@ namespace River.OneMoreAddIn.Commands
 
 			if (string.IsNullOrEmpty(json))
 			{
-				UIHelper.ShowError(string.Format(Resx.Pronunciate_NetError, word));
+				ShowError(string.Format(Resx.Pronunciate_NetError, word));
 				return null;
 			}
 
@@ -176,7 +176,7 @@ namespace River.OneMoreAddIn.Commands
 					return definition[0].phonetics[0].text;
 				}
 
-				UIHelper.ShowError(string.Format(Resx.Pronunciate_NoWord, word));
+				ShowError(string.Format(Resx.Pronunciate_NoWord, word));
 			}
 			catch (Exception exc)
 			{
