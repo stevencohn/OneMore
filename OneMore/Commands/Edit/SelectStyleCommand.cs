@@ -48,7 +48,7 @@ namespace River.OneMoreAddIn.Commands
 
 			if (!ok)
 			{
-				MoreMessageBox.ShowError(one.Window, Resx.Error_BodyContext);
+				ShowError(Resx.Error_BodyContext);
 				return;
 			}
 

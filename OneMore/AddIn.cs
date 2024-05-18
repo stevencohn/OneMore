@@ -54,7 +54,7 @@ namespace River.OneMoreAddIn
 			trash = new List<IDisposable>();
 			process = Process.GetCurrentProcess();
 
-			UIHelper.PrepareUI();
+			UI.Scaling.PrepareUI();
 
 			var thread = System.Threading.Thread.CurrentThread;
 
@@ -283,7 +283,7 @@ namespace River.OneMoreAddIn
 			catch (Exception exc)
 			{
 				Logger.Current.WriteLine("error starting add-on", exc);
-				UIHelper.ShowError(Properties.Resources.StartupFailureMessage);
+				UI.MoreMessageBox.ShowError(null, Properties.Resources.StartupFailureMessage);
 			}
 
 			logger.End();

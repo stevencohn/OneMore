@@ -39,7 +39,7 @@ namespace River.OneMoreAddIn.Commands
 
 			if (!pages.Any())
 			{
-				MoreMessageBox.ShowError(owner, Resx.MovePageCommand_noPages);
+				ShowError(Resx.MovePageCommand_noPages);
 				return;
 			}
 

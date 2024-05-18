@@ -2143,11 +2143,11 @@ Carnet actuel</value>
     <comment>error message box</comment>
   </data>
   <data name="Pronunciate_NetError" xml:space="preserve">
-    <value>Impossible de récupérer la définition du mot {0}\n</value>
+    <value>Impossible de récupérer la prononciation {0} de "{1}". Soit le mot n'existe pas, soit il y a eu une panne temporaire du réseau.</value>
     <comment>error message box</comment>
   </data>
   <data name="Pronunciate_NoWord" xml:space="preserve">
-    <value>Impossible de trouver le mot {0}</value>
+    <value>Impossible de récupérer la prononciation {0} de "{1}"</value>
     <comment>error message box</comment>
   </data>
   <data name="PronunciateDialog.Text" xml:space="preserve">

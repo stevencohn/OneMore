@@ -50,7 +50,7 @@ namespace River.OneMoreAddIn.Commands
 				}
 				else
 				{
-					UI.MoreMessageBox.Show(owner, Resx.FileQuickNotesCommand_noTargetNotebook);
+					ShowInfo(Resx.FileQuickNotesCommand_noTargetNotebook);
 				}
 			}
 			else
@@ -62,12 +62,14 @@ namespace River.OneMoreAddIn.Commands
 				}
 				else
 				{
-					UI.MoreMessageBox.Show(owner, Resx.FileQuickNotesCommand_noTargetSection);
+					ShowInfo(Resx.FileQuickNotesCommand_noTargetSection);
 				}
 			}
 		}
 
 
+		[System.Diagnostics.CodeAnalysis.SuppressMessage("Major Bug",
+			"S2583:Conditionally executed code should be reachable", Justification = "<Pending>")]
 		private async Task FileIntoNotebook(string notebookID, int grouping)
 		{
 			one = new OneNote();
@@ -81,7 +83,7 @@ namespace River.OneMoreAddIn.Commands
 			var notebook = await one.GetNotebook(notebookID, OneNote.Scope.Sections);
 			if (notebook == null)
 			{
-				UI.MoreMessageBox.Show(owner, Resx.FileQuickNotesCommand_noTargetNotebook);
+				ShowInfo(Resx.FileQuickNotesCommand_noTargetNotebook);
 				return;
 			}
 
@@ -206,7 +208,7 @@ namespace River.OneMoreAddIn.Commands
 			var section = await one.GetSection(sectionID);
 			if (section == null)
 			{
-				UI.MoreMessageBox.Show(owner, Resx.FileQuickNotesCommand_noTargetSection);
+				ShowInfo(Resx.FileQuickNotesCommand_noTargetSection);
 				return;
 			}
 
@@ -277,7 +279,7 @@ namespace River.OneMoreAddIn.Commands
 			{
 				// this case occurs when there is no registry setting but also the
 				// default one:UnfiledNotes section is empty
-				UI.MoreMessageBox.Show(owner, Resx.FileQuickNotesCommand_noQuickNotes);
+				ShowInfo(Resx.FileQuickNotesCommand_noQuickNotes);
 				logger.WriteLine($"unfiled notes is empty");
 				return null;
 			}
@@ -286,7 +288,7 @@ namespace River.OneMoreAddIn.Commands
 			var path = (string)key.GetValue(UnfiledNotesKey);
 			if (path.IsNullOrWhiteSpace() || path.Length < 3)
 			{
-				UI.MoreMessageBox.Show(owner, Resx.FileQuickNotesCommand_noQuickNotes);
+				ShowInfo(Resx.FileQuickNotesCommand_noQuickNotes);
 				return null;
 			}
 
@@ -305,7 +307,7 @@ namespace River.OneMoreAddIn.Commands
 
 			if (book == null)
 			{
-				UI.MoreMessageBox.Show(owner, Resx.FileQuickNotesCommand_noQuickNotes);
+				ShowInfo(Resx.FileQuickNotesCommand_noQuickNotes);
 				logger.WriteLine($"could not find UnfiledNotes notebook path {path}");
 				return null;
 			}
@@ -332,7 +334,7 @@ namespace River.OneMoreAddIn.Commands
 
 			if (book == null)
 			{
-				UI.MoreMessageBox.Show(owner, Resx.FileQuickNotesCommand_noQuickNotes);
+				ShowInfo(Resx.FileQuickNotesCommand_noQuickNotes);
 				logger.WriteLine($"could not find subsection {sectionPath}");
 				return null;
 			}
@@ -341,7 +343,7 @@ namespace River.OneMoreAddIn.Commands
 			var unfiledSection = await one.GetNotebook(book.Attribute("ID").Value, OneNote.Scope.Pages);
 			if (unfiledSection == null || !unfiledSection.Elements().Any())
 			{
-				UI.MoreMessageBox.Show(owner, Resx.FileQuickNotesCommand_noQuickNotes);
+				ShowInfo(Resx.FileQuickNotesCommand_noQuickNotes);
 				logger.WriteLine($"could not determine UnfiledNotes location");
 				return null;
 			}
@@ -380,8 +382,10 @@ namespace River.OneMoreAddIn.Commands
 				name = string.Empty;
 			}
 
-			if (stamped && DateTime.TryParse(dateTime, out var dttm))
+			if (stamped)
 			{
+				// dateTime comes from hierarchy XML attribute
+				var dttm = DateTime.Parse(dateTime, CultureInfo.InvariantCulture);
 				name = $"{dttm:yyyy-MM-dd} {name}";
 			}
 

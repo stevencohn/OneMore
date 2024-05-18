@@ -1,5 +1,5 @@
 ﻿//************************************************************************************************
-// Copyright © 2021 Steven M Cohn.  All rights reserved.
+// Copyright © 2021 Steven M Cohn. All rights reserved.
 //************************************************************************************************
 
 #pragma warning disable S1075 // URIs should not be hardcoded
@@ -40,13 +40,16 @@ namespace OneMoreSetupActions
 		}
 
 
+		[System.Diagnostics.CodeAnalysis.SuppressMessage("Minor Code Smell",
+			"S6605:Collection-specific \"Exists\" method should be used instead of the \"Any\" extension", 
+			Justification = "<Pending>")]
 		public override int Install()
 		{
 			logger.WriteLine();
 			logger.WriteLine("EdgeWebViewAction.Install ---");
 
 			var key = Registry.LocalMachine.OpenSubKey($"{ClientKey}\\{RuntimeId}");
-			if (key != null)
+			if (key is not null)
 			{
 				logger.WriteLine("WebView2 Runtime is already installed");
 				return SUCCESS;
@@ -135,24 +138,18 @@ namespace OneMoreSetupActions
 
 		private bool DownloadBootstrap(string bootstrap)
 		{
-			using (var client = new HttpClient())
+			using var client = new HttpClient();
+			using var response = client.GetAsync(new Uri(DownloadUrl, UriKind.Absolute)).Result;
+			if (response.IsSuccessStatusCode)
 			{
-				using (var response = client.GetAsync(new Uri(DownloadUrl, UriKind.Absolute)).Result)
-				{
-					if (response.IsSuccessStatusCode)
-					{
-						using (var stream = new FileStream(bootstrap, FileMode.CreateNew))
-						{
-							response.Content.CopyToAsync(stream).Wait();
-							logger.WriteLine($"downloaded {bootstrap}");
-							return true;
-						}
-					}
-					else
-					{
-						logger.WriteLine($"download status code[{response.StatusCode}]");
-					}
-				}
+				using var stream = new FileStream(bootstrap, FileMode.CreateNew);
+				response.Content.CopyToAsync(stream).Wait();
+				logger.WriteLine($"downloaded {bootstrap}");
+				return true;
+			}
+			else
+			{
+				logger.WriteLine($"download status code[{response.StatusCode}]");
 			}
 
 			return false;
@@ -165,7 +162,7 @@ namespace OneMoreSetupActions
 			logger.WriteLine("EdgeWebViewAction.Uninstall ---");
 
 			var key = Registry.LocalMachine.OpenSubKey($"{ClientKey}\\{RuntimeId}");
-			if (key != null)
+			if (key is not null)
 			{
 				// "C:\Program Files (x86)\Microsoft\EdgeWebView\Application\96.0.1054.34\Installer\setup.exe"
 				//    --force-uninstall --uninstall --msedgewebview --system-level --verbose-logging

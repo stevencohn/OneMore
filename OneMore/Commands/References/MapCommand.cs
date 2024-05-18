@@ -167,7 +167,7 @@ namespace River.OneMoreAddIn.Commands
 
 					if (titles.Count == 0)
 					{
-						UIHelper.ShowMessage("No linked pages were found");
+						ShowError("No linked pages were found");
 						return;
 					}
 

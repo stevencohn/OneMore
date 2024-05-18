@@ -45,7 +45,7 @@ namespace River.OneMoreAddIn.Commands
 			TopMost = true;
 			TopLevel = true;
 
-			(scalingX, scalingY) = UIHelper.GetScalingFactors();
+			(scalingX, scalingY) = UI.Scaling.GetScalingFactors();
 			toolstrip.ImageScalingSize = new Size((int)(16 * scalingX), (int)(16 * scalingY));
 		}
 
@@ -134,8 +134,7 @@ namespace River.OneMoreAddIn.Commands
 			var success = await new ClipboardProvider().SetText(stamp);
 			if (!success)
 			{
-				using var one = new OneNote();
-				MoreMessageBox.ShowError(one.Window, Resx.Clipboard_locked);
+				MoreMessageBox.ShowError(null, Resx.Clipboard_locked);
 			}
 		}
 

@@ -46,7 +46,7 @@ namespace River.OneMoreAddIn.Commands
 
 			if (!files.Any())
 			{
-				UIHelper.ShowError(Resx.Error_NoAttachments);
+				ShowError(Resx.Error_NoAttachments);
 				return;
 			}
 

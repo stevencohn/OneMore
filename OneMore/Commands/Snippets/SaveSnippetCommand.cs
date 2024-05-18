@@ -23,7 +23,7 @@ namespace River.OneMoreAddIn.Commands
 
 			if (page.GetTextCursor() != null)
 			{
-				UIHelper.ShowMessage(Resx.SaveSnippet_NeedSelection);
+				ShowError(Resx.SaveSnippet_NeedSelection);
 				return;
 			}
 

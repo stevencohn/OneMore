@@ -52,7 +52,7 @@ namespace River.OneMoreAddIn.Commands
 
 			if (paragraph == null)
 			{
-				UI.MoreMessageBox.ShowError(one.Window, Resx.RemindCommand_noContext);
+				ShowError(Resx.RemindCommand_noContext);
 				return;
 			}
 

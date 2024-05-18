@@ -49,7 +49,7 @@ namespace River.OneMoreAddIn.Commands.Tables.Formulas
 				catch (Exception exc)
 				{
 					logger.WriteLine($"error calculating {cell.Coordinates} formula '{formula}'", exc);
-					UIHelper.ShowError(exc.Message);
+					UI.MoreMessageBox.ShowError(null, exc.Message);
 				}
 			}
 		}

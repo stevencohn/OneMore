@@ -104,7 +104,10 @@ namespace River.OneMoreAddIn.Commands
 			{
 				var fmt = format.ToString();
 				logger.WriteLine($"error publishig page as {fmt}", exc);
-				UIHelper.ShowError(string.Format(Resx.SaveAs_Error, fmt) + "\n\n" + exc.Message);
+
+				UI.MoreMessageBox.ShowError(null,
+					string.Format(Resx.SaveAs_Error, fmt) + "\n\n" + exc.Message);
+
 				return false;
 			}
 		}
@@ -387,7 +390,8 @@ namespace River.OneMoreAddIn.Commands
 			catch (Exception exc)
 			{
 				logger.WriteLine("error publishig page as Markdown", exc);
-				UIHelper.ShowError(string.Format(Resx.SaveAs_Error, "Markdown") + "\n\n" + exc.Message);
+				UI.MoreMessageBox.ShowError(null, 
+					string.Format(Resx.SaveAs_Error, "Markdown") + "\n\n" + exc.Message);
 			}
 		}
 
@@ -422,7 +426,8 @@ namespace River.OneMoreAddIn.Commands
 			catch (Exception exc)
 			{
 				logger.WriteLine("error publishig page as XML", exc);
-				UIHelper.ShowError(string.Format(Resx.SaveAs_Error, "XML") + "\n\n" + exc.Message);
+				UI.MoreMessageBox.ShowError(null, 
+					string.Format(Resx.SaveAs_Error, "XML") + "\n\n" + exc.Message);
 			}
 		}
 

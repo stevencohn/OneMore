@@ -1,5 +1,5 @@
 ﻿//************************************************************************************************
-// Copyright © 2020 Steven M Cohn.  All rights reserved.
+// Copyright © 2020 Steven M Cohn. All rights reserved.
 //************************************************************************************************
 
 #pragma warning disable CS0649  // never assigned to, will always be null
@@ -10,6 +10,7 @@ namespace River.OneMoreAddIn.Commands
 {
 	using System;
 	using System.Linq;
+	using System.Net.Http;
 	using System.Threading;
 	using System.Threading.Tasks;
 	using System.Web.Script.Serialization;
@@ -52,7 +53,7 @@ namespace River.OneMoreAddIn.Commands
 		{
 			if (!HttpClientFactory.IsNetworkAvailable())
 			{
-				UI.MoreMessageBox.Show(owner, Resx.NetwordConnectionUnavailable);
+				ShowInfo(Resx.NetwordConnectionUnavailable);
 				return;
 			}
 
@@ -65,7 +66,7 @@ namespace River.OneMoreAddIn.Commands
 
 			if (element == null)
 			{
-				UIHelper.ShowError(Resx.Pronunciate_FullWord);
+				ShowError(Resx.Pronunciate_FullWord);
 				return;
 			}
 
@@ -78,18 +79,22 @@ namespace River.OneMoreAddIn.Commands
 
 			if (string.IsNullOrEmpty(word))
 			{
-				UIHelper.ShowError(Resx.Pronunciate_EmptyWord);
+				ShowError(Resx.Pronunciate_EmptyWord);
 				return;
 			}
 
 			// check for replay
-			var isoElement = args?.FirstOrDefault(a => a is XElement e && e.Name.LocalName == "isoCode") as XElement;
-			if (!string.IsNullOrEmpty(isoElement?.Value))
+			if (args is not null)
 			{
-				isoCode = isoElement.Value;
+				var index = args.IndexOf(a => a is XElement e && e.Name.LocalName == "isoCode");
+				if (index >= 0 && args[index] is XElement isoElement &&
+					!string.IsNullOrEmpty(isoElement.Value))
+				{
+					isoCode = isoElement.Value;
+				}
 			}
 
-			if (isoCode == null)
+			if (isoCode is null)
 			{
 				using var dialog = new PronunciateDialog();
 				dialog.Word = word;
@@ -144,15 +149,14 @@ namespace River.OneMoreAddIn.Commands
 
 					//logger.WriteLine(json);
 				}
-				//catch (HttpRequestException exc) // when (..)
-				//{
-				//	logger.WriteLine("error fetching definition", exc);
-				//	logger.WriteLine($"retrying {(200 & retries)}ms");
-				//	await Task.Delay(200 * retries);
-				//}
+				catch (HttpRequestException exc) when (exc.HResult == -2146233088) //0x80131500)
+				{
+					logger.WriteLine($"could not fetch {url}");
+					retries = int.MaxValue;
+				}
 				catch (Exception exc)
 				{
-					logger.WriteLine($"error fetching definition from {url}", exc);
+					logger.WriteLine($"error fetching {url}", exc);
 					logger.WriteLine($"retrying {(200 & retries)}ms");
 					await Task.Delay(200 * retries);
 				}
@@ -160,7 +164,7 @@ namespace River.OneMoreAddIn.Commands
 
 			if (string.IsNullOrEmpty(json))
 			{
-				UIHelper.ShowError(string.Format(Resx.Pronunciate_NetError, word));
+				ShowError(string.Format(Resx.Pronunciate_NetError, isoCode, word));
 				return null;
 			}
 
@@ -176,7 +180,7 @@ namespace River.OneMoreAddIn.Commands
 					return definition[0].phonetics[0].text;
 				}
 
-				UIHelper.ShowError(string.Format(Resx.Pronunciate_NoWord, word));
+				ShowError(string.Format(Resx.Pronunciate_NoWord, word));
 			}
 			catch (Exception exc)
 			{

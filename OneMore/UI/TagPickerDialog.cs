@@ -210,7 +210,7 @@ namespace River.OneMoreAddIn.UI
 				#endregion Zones
 			};
 
-			(xScalingFactor, yScalingFactor) = UIHelper.GetScalingFactors();
+			(xScalingFactor, yScalingFactor) = UI.Scaling.GetScalingFactors();
 
 			Left = x;
 			Top = y + (Height / 2);

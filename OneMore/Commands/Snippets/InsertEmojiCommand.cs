@@ -68,7 +68,7 @@ namespace River.OneMoreAddIn.Commands
 			if (!elements.Any())
 			{
 				// empty page so add new content
-				MoreMessageBox.Show(owner, "dummy");
+				ShowInfo("dummy");
 				return;
 			}
 

@@ -10,6 +10,11 @@ namespace River.OneMoreAddIn.UI
 	using System.Windows.Forms;
 
 
+	public interface IOneMoreWindow : IDisposable
+	{
+	}
+
+
 	internal class MoreForm : Form, IOneMoreWindow
 	{
 		public event EventHandler ModelessClosed;
@@ -55,7 +60,7 @@ namespace River.OneMoreAddIn.UI
 		/// <returns></returns>
 		protected static bool NeedsLocalizing()
 		{
-			return TranslationHelper.NeedsLocalizing();
+			return Translator.NeedsLocalizing();
 		}
 
 
@@ -65,10 +70,10 @@ namespace River.OneMoreAddIn.UI
 		/// <param name="keys">
 		/// A list of control identifiers as described by TranslationHelper
 		/// </param>
-		/// <seealso cref="River.OneMoreAddIn.UI.TranslationHelper"/>
+		/// <seealso cref="River.OneMoreAddIn.UI.Translator"/>
 		protected void Localize(string[] keys)
 		{
-			TranslationHelper.Localize(this, keys);
+			Translator.Localize(this, keys);
 		}
 
 
@@ -196,39 +201,37 @@ namespace River.OneMoreAddIn.UI
 		protected override void OnShown(EventArgs e)
 		{
 			base.OnShown(e);
-
-			// modeless dialogs would appear behind the OneNote window by default
-			// so this forces the dialog to the foreground
-			SetForegroundWindow(this);
+			Elevate();
 		}
 
 
-		private void SetForegroundWindow(Form form)
+		/// <summary>
+		/// Modeless dialogs would appear behind the OneNote window by default
+		/// so this forces the dialog to the foreground
+		/// </summary>
+		/// <param name="keepTop">True to maintain this form as a TopMost form</param>
+		public void Elevate(bool keepTop = true)
 		{
 			// a bunch of hocus-pocus to force the form to the foreground...
 
-			var location = form.Location;
-
-			Native.SetForegroundWindow(form.Handle);
-			form.BringToFront();
-
-			// this is the trick needed to elevate a dialog to TopMost
-			form.TopMost = false;
-			form.TopMost = true;
-
-			form.Activate();
-			form.TopMost = false;
-
-			form.Location = location;
-			form.Focus();
-		}
-
-
-		public void ForceTopMost()
-		{
 			IntPtr HWND_TOPMOST = new(-1);
 			Native.SetWindowPos(Handle, HWND_TOPMOST, 0, 0, 0, 0,
 				Native.SWP_NOMOVE | Native.SWP_NOSIZE);
+
+			var location = Location;
+
+			Native.SetForegroundWindow(Handle);
+			BringToFront();
+
+			// this is the trick needed to elevate a dialog to TopMost
+			TopMost = false;
+			TopMost = true;
+
+			Activate();
+			TopMost = keepTop;
+
+			Location = location;
+			Focus();
 		}
 
 

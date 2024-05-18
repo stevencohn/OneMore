@@ -64,7 +64,7 @@ namespace River.OneMoreAddIn.Commands
 
 			if (!updated)
 			{
-				UI.MoreMessageBox.Show(owner, Resx.RecalculateFormulaCommand_NoFormula);
+				ShowInfo(Resx.RecalculateFormulaCommand_NoFormula);
 			}
 
 			logger.WriteTime("recalcution");

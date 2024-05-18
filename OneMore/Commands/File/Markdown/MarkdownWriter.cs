@@ -97,8 +97,7 @@ namespace River.OneMoreAddIn.Commands
 				var success = await clippy.SetText(reader.ReadToEnd(), true);
 				if (!success)
 				{
-					using var one = new OneNote();
-					MoreMessageBox.ShowError(one.Window, Resx.Clipboard_locked);
+					MoreMessageBox.ShowError(null, Resx.Clipboard_locked);
 				}
 			}
 		}

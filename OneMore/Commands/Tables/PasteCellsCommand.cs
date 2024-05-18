@@ -55,7 +55,7 @@ namespace River.OneMoreAddIn.Commands
 				if (anchor == null)
 				{
 					logger.WriteLine("could not find anchor cell");
-					UI.MoreMessageBox.Show(owner, "could not find anchor cell; this shouldn't happen!");
+					ShowInfo("could not find anchor cell; this shouldn't happen!");
 					IsCancelled = true;
 					return;
 				}
@@ -65,7 +65,7 @@ namespace River.OneMoreAddIn.Commands
 				var spage = await GetSourcePage();
 				if (spage == null)
 				{
-					UI.MoreMessageBox.Show(owner, Resx.PasteCellsCommand_NoContent);
+					ShowInfo(Resx.PasteCellsCommand_NoContent);
 					IsCancelled = true;
 					return;
 				}
@@ -73,7 +73,7 @@ namespace River.OneMoreAddIn.Commands
 				var source = GetSourceTable(spage);
 				if (source == null)
 				{
-					UI.MoreMessageBox.Show(owner, Resx.PasteCellsCommand_NoContent);
+					ShowInfo(Resx.PasteCellsCommand_NoContent);
 					IsCancelled = true;
 					return;
 				}
@@ -120,7 +120,7 @@ namespace River.OneMoreAddIn.Commands
 
 			if (cell == null)
 			{
-				UI.MoreMessageBox.Show(owner, Resx.PasteCellsCommand_SelectCell);
+				ShowInfo(Resx.PasteCellsCommand_SelectCell);
 				return null;
 			}
 
@@ -128,7 +128,7 @@ namespace River.OneMoreAddIn.Commands
 			if (root == null)
 			{
 				logger.WriteLine("error finding <one:Table>");
-				UI.MoreMessageBox.Show(owner, "error finding <one:Table>; this shouldn't happen!");
+				ShowInfo("error finding <one:Table>; this shouldn't happen!");
 				return null;
 			}
 

@@ -843,7 +843,7 @@ namespace River.OneMoreAddIn.Commands
 
 				if (content == null)
 				{
-					UIHelper.ShowMessage("Cannot find object ID");
+					MoreMessageBox.ShowError(null, "Cannot find object ID");
 					return;
 				}
 
@@ -873,7 +873,7 @@ namespace River.OneMoreAddIn.Commands
 				{
 					if ((uint)cex.ErrorCode == 0x80042014)
 					{
-						UIHelper.ShowMessage("Invalid ObjectID");
+						MoreMessageBox.ShowError(null, "Invalid ObjectID");
 						return;
 					}
 				}

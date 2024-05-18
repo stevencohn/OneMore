@@ -60,7 +60,7 @@ namespace River.OneMoreAddIn.Settings
 
 		private async void LoadData(object sender, EventArgs e)
 		{
-			(_, float scaleY) = UIHelper.GetScalingFactors();
+			(_, float scaleY) = UI.Scaling.GetScalingFactors();
 			gridView.RowTemplate.Height = (int)(16 * scaleY);
 
 			await using var provider = new FavoritesProvider(null);

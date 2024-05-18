@@ -58,7 +58,7 @@ namespace River.OneMoreAddIn.Commands
 			}
 			else
 			{
-				UI.MoreMessageBox.Show(owner, Resx.HighlightFormulaCommand_NoFormulas);
+				ShowInfo(Resx.HighlightFormulaCommand_NoFormulas);
 			}
 
 			logger.WriteTime("highlight");

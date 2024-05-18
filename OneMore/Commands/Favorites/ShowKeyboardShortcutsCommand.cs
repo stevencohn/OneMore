@@ -34,7 +34,7 @@ namespace River.OneMoreAddIn.Commands
 		{
 			if (!HttpClientFactory.IsNetworkAvailable())
 			{
-				MoreMessageBox.Show(owner, Properties.Resources.NetwordConnectionUnavailable);
+				ShowInfo(Properties.Resources.NetwordConnectionUnavailable);
 				return;
 			}
 
@@ -45,7 +45,7 @@ namespace River.OneMoreAddIn.Commands
 				var results = await one.SearchMeta(string.Empty, "omKeyboardShortcuts");
 				if (results == null)
 				{
-					MoreMessageBox.ShowError(one.Window, "Could not show page at this time. Restart OneNote");
+					ShowError("Could not show page at this time. Restart OneNote");
 					return;
 				}
 
@@ -130,7 +130,7 @@ namespace River.OneMoreAddIn.Commands
 			{
 				using var stream = new FileStream(path, FileMode.Open);
 				using var archive = new ZipArchive(stream);
-				var entry = archive.Entries.First();
+				var entry = archive.Entries[0];
 
 				using var reader = new StreamReader(entry.Open());
 				return new Page(XElement.Parse(reader.ReadToEnd()));

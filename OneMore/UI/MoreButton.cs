@@ -321,7 +321,7 @@ namespace River.OneMoreAddIn.UI
 		public void Rescale()
 		{
 			// special-case handling for 96 DPI monitors
-			(float dpiX, _) = UIHelper.GetDpiValues();
+			(float dpiX, _) = UI.Scaling.GetDpiValues();
 			if (Math.Floor(dpiX) == 96)
 			{
 				if (BackgroundImage != null)

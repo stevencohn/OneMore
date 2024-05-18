@@ -2156,12 +2156,11 @@ Total Row Font
     <comment>error message box</comment>
   </data>
   <data name="Pronunciate_NetError" xml:space="preserve">
-    <value>לא ניתן היה להביא את ההגדרה של המילה {0}
-נסה שוב מאוחר יותר</value>
+    <value>לא ניתן היה להביא את ההגייה של {0} של "{1}". אחת המילה לא קיימת או שהייתה כשל זמני ברשת.</value>
     <comment>error message box</comment>
   </data>
   <data name="Pronunciate_NoWord" xml:space="preserve">
-    <value>לא ניתן למצוא את המילה {0}</value>
+    <value>לא ניתן היה להביא הגייה של {0} של "{1}"</value>
     <comment>error message box</comment>
   </data>
   <data name="PronunciateDialog.Text" xml:space="preserve">

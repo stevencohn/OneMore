@@ -307,6 +307,9 @@ namespace River.OneMoreAddIn.Commands
 		/// </summary>
 		/// <param name="records">A list of page IDs</param>
 		/// <returns>True if the pinned list is updated; false if no changes needed</returns>
+		[System.Diagnostics.CodeAnalysis.SuppressMessage("Major Bug",
+			"S2583:Conditionally executed code should be reachable",
+			Justification = "Sonar can't see into predicate")]
 		public async Task<bool> AddPinned(List<HistoryRecord> records)
 		{
 			await semalock.WaitAsync();
@@ -369,6 +372,9 @@ namespace River.OneMoreAddIn.Commands
 		/// </summary>
 		/// <param name="records"></param>
 		/// <returns></returns>
+		[System.Diagnostics.CodeAnalysis.SuppressMessage("Major Bug",
+			"S2583:Conditionally executed code should be reachable",
+			Justification = "Sonar can't see into predicate")]
 		public async Task<bool> UnpinPages(List<HistoryRecord> records)
 		{
 			await semalock.WaitAsync();

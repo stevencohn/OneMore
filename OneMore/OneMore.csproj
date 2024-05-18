@@ -694,7 +694,6 @@
     <Compile Include="Helpers\HttpClientFactory.cs" />
     <Compile Include="Helpers\ImageDetector.cs" />
     <Compile Include="Helpers\Loggable.cs" />
-    <Compile Include="Helpers\MagicScaling.cs" />
     <Compile Include="Helpers\Office\Excel.cs" />
     <Compile Include="Helpers\Office\Models\OutlookEnums.cs" />
     <Compile Include="Helpers\Office\Models\OutlookTaskFolders.cs" />
@@ -1058,7 +1057,7 @@
     <Compile Include="Helpers\ReadOnlyStream.cs" />
     <Compile Include="AddIn.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Helpers\UIHelper.cs" />
+    <Compile Include="UI\Scaling.cs" />
     <Compile Include="Helpers\Win32WindowHandle.cs" />
     <Compile Include="Commands\Tools\ShowXmlDialog.cs">
       <SubType>Form</SubType>
@@ -1077,7 +1076,7 @@
     <Compile Include="UI\MouseState.cs" />
     <Compile Include="UI\ThemedColorTable.cs" />
     <Compile Include="UI\ThemeManager.cs" />
-    <Compile Include="UI\TranslationHelper.cs" />
+    <Compile Include="UI\Translator.cs" />
     <Compile Include="UI\WebViewWorkerDialog.cs">
       <SubType>Form</SubType>
     </Compile>

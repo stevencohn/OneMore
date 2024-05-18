@@ -180,7 +180,7 @@ namespace River.OneMoreAddIn.Commands
 			var hierarchy = await one.SearchMeta(nodeID, MetaNames.Reminder);
 			if (hierarchy == null)
 			{
-				UI.MoreMessageBox.ShowError(one.Window, "Could not create report at this time. Restart OneNote");
+				ShowError("Could not create report at this time. Restart OneNote");
 				return false;
 			}
 
@@ -192,7 +192,7 @@ namespace River.OneMoreAddIn.Commands
 
 			if (!metas.Any())
 			{
-				UI.MoreMessageBox.ShowError(one.Window, Resx.ReminderReport_noReminders);
+				ShowError(Resx.ReminderReport_noReminders);
 				return false;
 			}
 

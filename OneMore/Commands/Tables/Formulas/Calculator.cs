@@ -104,6 +104,8 @@ namespace River.OneMoreAddIn.Commands.Tables.Formulas
 		/// </summary>
 		/// <param name="expression">Expression to evaluate</param>
 		/// <returns></returns>
+		[System.Diagnostics.CodeAnalysis.SuppressMessage("Major Bug",
+			"S2583:Conditionally executed code should be reachable", Justification = "<Pending>")]
 		private List<string> TokenizeExpression(string expression)
 		{
 			var tokens = new List<string>();
@@ -564,6 +566,8 @@ namespace River.OneMoreAddIn.Commands.Tables.Formulas
 		/// <param name="name">Name of symbol</param>
 		/// <param name="pos">Position at start of symbol</param>
 		/// <returns></returns>
+		[System.Diagnostics.CodeAnalysis.SuppressMessage("Style",
+			"IDE0060:Remove unused parameter", Justification = "Future")]
 		private FormulaValue EvaluateSymbol(string name, int pos)
 		{
 			// built-in symbols

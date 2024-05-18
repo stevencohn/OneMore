@@ -97,7 +97,7 @@ namespace River.OneMoreAddIn.UI
 		{
 			InitializeComponent();
 
-			(_, float factorY) = UIHelper.GetScalingFactors();
+			(_, float factorY) = UI.Scaling.GetScalingFactors();
 			Height = (int)Math.Round(height * factorY);
 
 			if (NeedsLocalizing())
@@ -121,7 +121,7 @@ namespace River.OneMoreAddIn.UI
 			Func<ProgressDialog, CancellationToken, Task<bool>> action)
 		{
 			cancelButton.Visible = true;
-			(_, float factorY) = UIHelper.GetScalingFactors();
+			(_, float factorY) = UI.Scaling.GetScalingFactors();
 			Height = (int)Math.Round(CancelHeight * factorY);
 
 			source ??= new CancellationTokenSource();

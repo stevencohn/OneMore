@@ -39,14 +39,14 @@ namespace River.OneMoreAddIn.Commands
 			var cursor = GetContextCursor(out var onlySelected);
 			if (cursor == null)
 			{
-				UI.MoreMessageBox.ShowError(owner, Resx.Error_BodyContext);
+				ShowError(Resx.Error_BodyContext);
 				return;
 			}
 
 			ReadNamesFromContext(cursor, onlySelected);
 			if (!names.Any())
 			{
-				UI.MoreMessageBox.ShowError(owner, Resx.CreatePagesCommand_NoNamesFound);
+				ShowError(Resx.CreatePagesCommand_NoNamesFound);
 				return;
 			}
 

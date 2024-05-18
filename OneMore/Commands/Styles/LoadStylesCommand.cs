@@ -69,7 +69,7 @@ namespace River.OneMoreAddIn.Commands
 				}
 			}
 
-			UIHelper.ShowError(Resx.LoadStyleTheme_errorLoading);
+			ShowError(Resx.LoadStyleTheme_errorLoading);
 			return null;
 		}
 	}

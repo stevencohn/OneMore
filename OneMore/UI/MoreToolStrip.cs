@@ -28,7 +28,7 @@ namespace River.OneMoreAddIn.UI
 		{
 			AutoSize = false;
 
-			(float scaleX, float scaleY) = UIHelper.GetScalingFactors();
+			(float scaleX, float scaleY) = UI.Scaling.GetScalingFactors();
 			ImageScalingSize = new Size((int)(16 * scaleX), (int)(16 * scaleY));
 			Height = (int)(24 * scaleY);
 

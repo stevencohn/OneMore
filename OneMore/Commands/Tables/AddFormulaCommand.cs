@@ -48,7 +48,7 @@ namespace River.OneMoreAddIn.Commands
 
 			if (!page.ConfirmBodyContext())
 			{
-				UI.MoreMessageBox.Show(owner, Resx.FormulaCommand_SelectOne);
+				ShowInfo(Resx.FormulaCommand_SelectOne);
 				return;
 			}
 
@@ -67,7 +67,7 @@ namespace River.OneMoreAddIn.Commands
 
 			if (anchor == null)
 			{
-				UI.MoreMessageBox.Show(owner, Resx.FormulaCommand_SelectOne);
+				ShowInfo(Resx.FormulaCommand_SelectOne);
 				return;
 			}
 
@@ -76,7 +76,7 @@ namespace River.OneMoreAddIn.Commands
 
 			if (range == TableSelectionRange.Rectangular)
 			{
-				UI.MoreMessageBox.Show(owner, Resx.FormulaCommand_Linear);
+				ShowInfo(Resx.FormulaCommand_Linear);
 				return;
 			}
 

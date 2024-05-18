@@ -63,6 +63,8 @@ namespace River.OneMoreAddIn.Commands
 		/// Otherwise, the style is applied completely as if selected from My Styles.
 		/// </param>
 		/// <returns></returns>
+		[System.Diagnostics.CodeAnalysis.SuppressMessage("Major Bug",
+			"S2259:Null pointers should not be dereferenced", Justification = "<Pending>")]
 		public async Task ExecuteWithStyle(Style style, bool merge = true)
 		{
 			await using var one = new OneNote(out page, out ns);

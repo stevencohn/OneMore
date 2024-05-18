@@ -54,7 +54,7 @@ namespace River.OneMoreAddIn.Settings
 			gridView.AutoGenerateColumns = false;
 			gridView.Columns[0].DataPropertyName = "Name";
 
-			(_, float scaleY) = UIHelper.GetScalingFactors();
+			(_, float scaleY) = UI.Scaling.GetScalingFactors();
 			gridView.RowTemplate.Height = (int)(16 * scaleY);
 
 			this.ribbon = ribbon;

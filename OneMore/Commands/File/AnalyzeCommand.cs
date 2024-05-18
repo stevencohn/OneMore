@@ -74,7 +74,7 @@ namespace River.OneMoreAddIn.Commands
 
 				if (!Directory.Exists(backupPath))
 				{
-					MoreMessageBox.ShowError(owner, Resx.AnalyzeCommand_NoBackups);
+					ShowError(Resx.AnalyzeCommand_NoBackups);
 					return;
 				}
 

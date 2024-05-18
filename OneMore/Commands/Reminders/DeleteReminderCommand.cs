@@ -36,7 +36,7 @@ namespace River.OneMoreAddIn.Commands
 
 			if (paragraph is null)
 			{
-				MoreMessageBox.Show(owner, Resx.RemindCommand_noContext);
+				ShowInfo(Resx.RemindCommand_noContext);
 				return;
 			}
 
@@ -44,7 +44,7 @@ namespace River.OneMoreAddIn.Commands
 			var reminders = serializer.LoadReminders(page);
 			if (!reminders.Any())
 			{
-				MoreMessageBox.ShowError(owner, Resx.RemindCommand_noReminder);
+				ShowError(Resx.RemindCommand_noReminder);
 				return;
 			}
 
@@ -59,7 +59,7 @@ namespace River.OneMoreAddIn.Commands
 
 			if (reminder is null)
 			{
-				MoreMessageBox.ShowError(owner, Resx.RemindCommand_noReminder);
+				ShowError(Resx.RemindCommand_noReminder);
 				return;
 			}
 
@@ -81,7 +81,7 @@ namespace River.OneMoreAddIn.Commands
 				page.SetMeta(MetaNames.Reminder, serializer.EncodeContent(reminders));
 				await one.Update(page);
 
-				MoreMessageBox.ShowError(owner, Resx.RemindCommand_noReminder);
+				ShowError(Resx.RemindCommand_noReminder);
 				return;
 			}
 

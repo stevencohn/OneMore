@@ -40,7 +40,7 @@ namespace River.OneMoreAddIn.Commands
 
 			if (!foreElements.Any() && !backElements.Any())
 			{
-				UIHelper.ShowMessage(Resx.StylizeImagesCommand_noImages);
+				ShowError(Resx.StylizeImagesCommand_noImages);
 				return;
 			}
 

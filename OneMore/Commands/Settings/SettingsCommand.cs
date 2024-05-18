@@ -35,7 +35,7 @@ namespace River.OneMoreAddIn.Commands
 			var one = new OneNote();
 			if (one.WindowCount > 1)
 			{
-				UI.MoreMessageBox.Show(owner, Resx.SettingsDialog_closeWindows);
+				ShowInfo(Resx.SettingsDialog_closeWindows);
 				return;
 			}
 			else if (UI.MoreMessageBox.ShowQuestion(owner,

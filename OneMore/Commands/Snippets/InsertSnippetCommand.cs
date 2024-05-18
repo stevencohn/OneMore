@@ -33,7 +33,7 @@ namespace River.OneMoreAddIn.Commands
 
 			if (!page.ConfirmBodyContext())
 			{
-				UIHelper.ShowError(Resx.Error_BodyContext);
+				ShowError(Resx.Error_BodyContext);
 				return;
 			}
 
@@ -78,7 +78,7 @@ namespace River.OneMoreAddIn.Commands
 
 			if (string.IsNullOrWhiteSpace(snippet))
 			{
-				UIHelper.ShowMessage(string.Format(Resx.InsertSnippets_CouldNotLoad, path));
+				ShowError(string.Format(Resx.InsertSnippets_CouldNotLoad, path));
 				return;
 			}
 
@@ -92,13 +92,13 @@ namespace River.OneMoreAddIn.Commands
 			}
 			else
 			{
-				UI.MoreMessageBox.Show(owner, Resx.Clipboard_locked);
+				ShowInfo(Resx.Clipboard_locked);
 			}
 
 			success = await clippy.RestoreState();
 			if (!success)
 			{
-				UI.MoreMessageBox.Show(owner, Resx.Clipboard_norestore);
+				ShowInfo(Resx.Clipboard_norestore);
 			}
 		}
 	}

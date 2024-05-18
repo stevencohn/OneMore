@@ -1,5 +1,5 @@
 ﻿//************************************************************************************************
-// Copyright © 2021 Steven M Cohn.  All rights reserved.
+// Copyright © 2021 Steven M Cohn. All rights reserved.
 //************************************************************************************************
 
 namespace OneMoreSetupActions
@@ -32,7 +32,7 @@ namespace OneMoreSetupActions
 		{
 			using (var key = Registry.ClassesRoot.OpenSubKey($@"\{name}.Application\CurVer", false))
 			{
-				if (key != null)
+				if (key is not null)
 				{
 					// get default value string
 					var value = (string)key.GetValue(string.Empty);
@@ -83,56 +83,54 @@ namespace OneMoreSetupActions
 			// HKEY_USERS will only contain the SID keys of logged in users; these are transient
 			// keys that are dynamically loaded and unloaded as users log in and log out.
 
-			using (var hive = Registry.Users.OpenSubKey(sid))
+			using var hive = Registry.Users.OpenSubKey(sid);
+
+			var key = hive.OpenSubKey(path, false);
+			if (key is not null)
 			{
-				var key = hive.OpenSubKey(path, false);
-				if (key != null)
-				{
-					key.Dispose();
-					logger.WriteLine("key already exists");
-					return SUCCESS;
-				}
+				key.Dispose();
+				logger.WriteLine("key already exists");
+				return SUCCESS;
+			}
 
-				logger.WriteLine($@"step {stepper.Step()}: creating HKCU:\{path}");
-				try
-				{
-					using (var polKey = hive.OpenSubKey(policiesPath,
-						RegistryKeyPermissionCheck.ReadWriteSubTree, RegistryHelper.WriteRights))
-					{
-						key = polKey.CreateSubKey(policyPath, false);
-						if (key == null)
-						{
-							logger.WriteLine("key not created, returned null");
-							return FAILURE;
-						}
+			logger.WriteLine($@"step {stepper.Step()}: creating HKCU:\{path}");
+			try
+			{
+				using var polKey = hive.OpenSubKey(policiesPath,
+					RegistryKeyPermissionCheck.ReadWriteSubTree, RegistryHelper.WriteRights);
 
-						key.Dispose();
-					}
-				}
-				catch (Exception exc)
+				key = polKey.CreateSubKey(policyPath, false);
+				if (key is null)
 				{
-					logger.WriteLine("error registering trusted protocol");
-					logger.WriteLine(exc);
+					logger.WriteLine("key not created, returned null");
 					return FAILURE;
 				}
 
-				// confirm
-				var verified = SUCCESS;
-				using (key = hive.OpenSubKey(path, false))
-				{
-					if (key != null)
-					{
-						logger.WriteLine($"key created {key.Name}");
-					}
-					else
-					{
-						logger.WriteLine("key not created");
-						verified = FAILURE;
-					}
-				}
-
-				return verified;
+				key.Dispose();
 			}
+			catch (Exception exc)
+			{
+				logger.WriteLine("error registering trusted protocol");
+				logger.WriteLine(exc);
+				return FAILURE;
+			}
+
+			// confirm
+			var verified = SUCCESS;
+			using (key = hive.OpenSubKey(path, false))
+			{
+				if (key is not null)
+				{
+					logger.WriteLine($"key created {key.Name}");
+				}
+				else
+				{
+					logger.WriteLine("key not created");
+					verified = FAILURE;
+				}
+			}
+
+			return verified;
 		}
 
 
@@ -144,44 +142,43 @@ namespace OneMoreSetupActions
 			logger.WriteLine("TrustedProtocolAction.Uninstall ---");
 
 			var sid = RegistryHelper.GetUserSid("unregistering trusted protocol");
-			using (var hive = Registry.Users.OpenSubKey(sid,
+			using var hive = Registry.Users.OpenSubKey(sid,
 				RegistryKeyPermissionCheck.ReadWriteSubTree,
-				RegistryHelper.DeleteRights))
+				RegistryHelper.DeleteRights);
+
+			var version = GetVersion("Excel", 16);
+			var path = $@"Software\Policies\Microsoft\Office\{version}\Common\Security\" +
+				@"Trusted Protocols\All Applications\onemore:";
+
+			logger.WriteLine($@"step {stepper.Step()}: deleting HKCU:\{path}");
+
+			try
 			{
-				var version = GetVersion("Excel", 16);
-				var path = $@"Software\Policies\Microsoft\Office\{version}\Common\Security\" +
-					@"Trusted Protocols\All Applications\onemore:";
-
-				logger.WriteLine($@"step {stepper.Step()}: deleting HKCU:\{path}");
-
-				try
-				{
-					hive.DeleteSubKey(path, false);
-				}
-				catch (Exception exc)
-				{
-					logger.WriteLine("warning deleting trusted protocol");
-					logger.WriteLine(exc);
-					return FAILURE;
-				}
-
-				// confirm
-				var verified = SUCCESS;
-				using (var key = hive.OpenSubKey(path, false))
-				{
-					if (key == null)
-					{
-						logger.WriteLine("key deleted");
-					}
-					else
-					{
-						logger.WriteLine("key not deleted");
-						verified = FAILURE;
-					}
-				}
-
-				return verified;
+				hive.DeleteSubKey(path, false);
 			}
+			catch (Exception exc)
+			{
+				logger.WriteLine("warning deleting trusted protocol");
+				logger.WriteLine(exc);
+				return FAILURE;
+			}
+
+			// confirm
+			var verified = SUCCESS;
+			using (var key = hive.OpenSubKey(path, false))
+			{
+				if (key is null)
+				{
+					logger.WriteLine("key deleted");
+				}
+				else
+				{
+					logger.WriteLine("key not deleted");
+					verified = FAILURE;
+				}
+			}
+
+			return verified;
 		}
 	}
 }

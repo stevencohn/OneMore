@@ -42,7 +42,7 @@ namespace River.OneMoreAddIn.Commands
 			await using var one = new OneNote(out page, out ns);
 			if (!page.ConfirmBodyContext())
 			{
-				UIHelper.ShowError(Resx.Error_BodyContext);
+				ShowError(Resx.Error_BodyContext);
 				return;
 			}
 

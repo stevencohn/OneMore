@@ -63,7 +63,7 @@ namespace River.OneMoreAddIn.Commands
 				}
 				else
 				{
-					UIHelper.ShowError(Resx.Plugin_Unsuccessful);
+					ShowError(Resx.Plugin_Unsuccessful);
 				}
 			}
 			finally
@@ -141,7 +141,7 @@ namespace River.OneMoreAddIn.Commands
 			}
 			catch (Exception exc)
 			{
-				UIHelper.ShowError(Resx.Plugin_WritingTemp);
+				ShowError(Resx.Plugin_WritingTemp);
 				logger.WriteLine("error writing to temp file", exc);
 				return null;
 			}
@@ -191,7 +191,7 @@ namespace River.OneMoreAddIn.Commands
 			}
 			catch (Exception exc)
 			{
-				UIHelper.ShowError(Resx.Plugin_WritingTemp);
+				ShowError(Resx.Plugin_WritingTemp);
 				logger.WriteLine("error writing to temp file", exc);
 				return null;
 			}
@@ -312,7 +312,7 @@ namespace River.OneMoreAddIn.Commands
 				var updated = root.ToString(SaveOptions.DisableFormatting);
 				if (updated == content && !plugin.CreateNewPage)
 				{
-					MoreMessageBox.Show(owner, Resx.Plugin_NoChanges);
+					ShowInfo(Resx.Plugin_NoChanges);
 					return null;
 				}
 
@@ -324,7 +324,7 @@ namespace River.OneMoreAddIn.Commands
 
 					if (!OneNote.ValidateSchema(root))
 					{
-						MoreMessageBox.Show(owner, Resx.Plugin_InvalidSchema);
+						ShowInfo(Resx.Plugin_InvalidSchema);
 						return null;
 					}
 				}
@@ -334,7 +334,7 @@ namespace River.OneMoreAddIn.Commands
 			catch (Exception exc)
 			{
 				logger.WriteLine("error updating page", exc);
-				UIHelper.ShowError(Resx.Plugin_NoUpdate);
+				ShowError(Resx.Plugin_NoUpdate);
 				return null;
 			}
 		}
@@ -361,7 +361,7 @@ namespace River.OneMoreAddIn.Commands
 			catch (Exception exc)
 			{
 				logger.WriteLine("error updating page", exc);
-				UIHelper.ShowError(Resx.Plugin_NoUpdate);
+				ShowError(Resx.Plugin_NoUpdate);
 			}
 		}
 
@@ -448,7 +448,7 @@ namespace River.OneMoreAddIn.Commands
 			catch (Exception exc)
 			{
 				logger.WriteLine("error updating hierarchy", exc);
-				UIHelper.ShowError(Resx.Plugin_NoUpdate);
+				ShowError(Resx.Plugin_NoUpdate);
 			}
 		}
 

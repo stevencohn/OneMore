@@ -39,14 +39,14 @@ namespace River.OneMoreAddIn.Commands
 			var cursor = page.GetTextCursor();
 			if (cursor == null)
 			{
-				UIHelper.ShowMessage(Resx.SortListCommand_BadContext);
+				ShowError(Resx.SortListCommand_BadContext);
 				return;
 			}
 
 			if (cursor.Parent.FirstNode is not XElement first ||
 				first.Name.LocalName != "List")
 			{
-				UIHelper.ShowMessage(Resx.SortListCommand_BadContext);
+				ShowError(Resx.SortListCommand_BadContext);
 				return;
 			}
 

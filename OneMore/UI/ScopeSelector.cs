@@ -36,9 +36,9 @@ namespace River.OneMoreAddIn.UI
 			Scopes = SelectorScope.Section | SelectorScope.Notebook | SelectorScope.Notebooks;
 			sectionButton.Checked = true;
 
-			if (TranslationHelper.NeedsLocalizing())
+			if (Translator.NeedsLocalizing())
 			{
-				TranslationHelper.Localize(this, new string[]
+				Translator.Localize(this, new string[]
 				{
 					"pageButton",
 					"sectionButton=phrase_TheCurrentSection",

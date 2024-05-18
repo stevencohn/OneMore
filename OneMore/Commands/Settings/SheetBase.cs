@@ -88,7 +88,7 @@ namespace River.OneMoreAddIn.Settings
 		/// <param name="keys">An collection of strings specifying the control names</param>
 		protected void Localize(string[] keys)
 		{
-			TranslationHelper.Localize(this, keys);
+			Translator.Localize(this, keys);
 		}
 
 

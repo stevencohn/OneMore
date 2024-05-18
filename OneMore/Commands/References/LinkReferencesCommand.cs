@@ -166,7 +166,7 @@ namespace River.OneMoreAddIn.Commands
 				var total = referals.Count();
 				if (total == 0)
 				{
-					UI.MoreMessageBox.Show(owner, Resx.LinkReferencesCommand_noref);
+					ShowInfo(Resx.LinkReferencesCommand_noref);
 					return;
 				}
 

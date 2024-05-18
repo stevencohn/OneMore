@@ -2156,12 +2156,11 @@ Bieżący notatnik</value>
     <comment>error message box</comment>
   </data>
   <data name="Pronunciate_NetError" xml:space="preserve">
-    <value>Nie mógł pobrać definicji słowa {0}
-Spróbuj ponownie później</value>
+    <value>Nie można pobrać wymowy {0} słowa „{1}”. Albo słowo nie istnieje, albo wystąpiła tymczasowa awaria sieci.</value>
     <comment>error message box</comment>
   </data>
   <data name="Pronunciate_NoWord" xml:space="preserve">
-    <value>Nie mógł znaleźć słowa {0}</value>
+    <value>Nie można pobrać wymowy {0} słowa „{1}”</value>
     <comment>error message box</comment>
   </data>
   <data name="PronunciateDialog.Text" xml:space="preserve">

@@ -44,14 +44,14 @@ namespace River.OneMoreAddIn.Commands
 
 			if (rule == null)
 			{
-				UIHelper.ShowMessage(Resx.FitGridToTextCommand_noGrid);
+				ShowError(Resx.FitGridToTextCommand_noGrid);
 				return;
 			}
 
 			var quickStyles = page.GetQuickStyles().Where(s => s.Name == "p");
 			if (!quickStyles.Any())
 			{
-				UIHelper.ShowMessage(Resx.FitGridToTextCommand_noText);
+				ShowError(Resx.FitGridToTextCommand_noText);
 				return;
 			}
 

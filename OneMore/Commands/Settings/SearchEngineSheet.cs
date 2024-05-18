@@ -60,7 +60,7 @@ namespace River.OneMoreAddIn.Settings
 			gridView.Columns[1].DataPropertyName = "Name";
 			gridView.Columns[2].DataPropertyName = "Uri";
 
-			(_, float scaleY) = UIHelper.GetScalingFactors();
+			(_, float scaleY) = UI.Scaling.GetScalingFactors();
 			gridView.RowTemplate.Height = (int)(16 * scaleY);
 
 			engines = new BindingList<SearchEngine>(LoadSettings());

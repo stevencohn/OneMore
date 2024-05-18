@@ -43,7 +43,7 @@ namespace River.OneMoreAddIn.Commands
 			{
 				if (!page.ConfirmBodyContext())
 				{
-					UIHelper.ShowError(Resx.Error_BodyContext);
+					ShowError(Resx.Error_BodyContext);
 					return;
 				}
 

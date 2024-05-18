@@ -30,7 +30,7 @@ namespace River.OneMoreAddIn.Commands
 					? Resx.HashtagCommand_scanning
 					: string.Format(Resx.HashtagCommand_waiting, scheduler.StartTime.ToFriendlyString());
 
-				MoreMessageBox.Show(owner, msg);
+				ShowInfo(msg);
 				return;
 			}
 

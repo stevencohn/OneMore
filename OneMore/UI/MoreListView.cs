@@ -100,7 +100,7 @@ namespace River.OneMoreAddIn.UI
 				ControlStyles.OptimizedDoubleBuffer |
 				ControlStyles.AllPaintingInWmPaint, true);
 
-			var (_, yScaling) = UIHelper.GetScalingFactors();
+			var (_, yScaling) = UI.Scaling.GetScalingFactors();
 			RowHeight = (int)(16 * yScaling);
 
 			Click += RouteClick;
