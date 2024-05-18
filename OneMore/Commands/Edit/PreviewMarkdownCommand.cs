@@ -54,8 +54,6 @@ namespace River.OneMoreAddIn.Commands
 				Path.GetFileNameWithoutExtension(filepath)) + ".htm";
 
 			File.WriteAllText(filepath, body);
-			logger.WriteLine($"filepath {new System.Uri(filepath)}");
-			logger.WriteLine(body);
 
 			await SingleThreaded.Invoke(() =>
 			{
