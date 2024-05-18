@@ -88,10 +88,10 @@ namespace River.OneMoreAddIn.Commands
 			logger.WriteLine($"Page bestText..: {page.GetBestTextColor().ToRGBHtml()}");
 			logger.WriteLine($"Page is dark...: {pageColor.IsDark()}");
 
-			(float dpiX, float dpiY) = Scaling.GetDpiValues();
+			(float dpiX, float dpiY) = UI.Scaling.GetDpiValues();
 			logger.WriteLine($"Screen DPI.....: horizontal/X:{dpiX} vertical/Y:{dpiY}");
 
-			(float scalingX, float scalingY) = Scaling.GetScalingFactors();
+			(float scalingX, float scalingY) = UI.Scaling.GetScalingFactors();
 			logger.WriteLine($"Scaling factors: horizontal/X:{scalingX} vertical/Y:{scalingY}");
 
 			var magic = new MagicScaling(100f, 100f);

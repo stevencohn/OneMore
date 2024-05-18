@@ -130,7 +130,7 @@ namespace River.OneMoreAddIn.Commands
 
 		static EditTableThemesDialog()
 		{
-			(xScaling, yScaling) = Scaling.GetScalingFactors();
+			(xScaling, yScaling) = UI.Scaling.GetScalingFactors();
 		}
 
 

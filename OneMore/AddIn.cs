@@ -54,7 +54,7 @@ namespace River.OneMoreAddIn
 			trash = new List<IDisposable>();
 			process = Process.GetCurrentProcess();
 
-			Scaling.PrepareUI();
+			UI.Scaling.PrepareUI();
 
 			var thread = System.Threading.Thread.CurrentThread;
 

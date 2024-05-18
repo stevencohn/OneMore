@@ -20,11 +20,11 @@ namespace River.OneMoreAddIn
 		public MagicScaling(float horizontalResolution, float verticalResolution)
 		{
 			// set scaling factors
-			var (dpiX, dpiY) = Scaling.GetDpiValues();
+			var (dpiX, dpiY) = UI.Scaling.GetDpiValues();
 			ScalingX = dpiX / horizontalResolution;
 			ScalingY = dpiY / verticalResolution;
 
-			(FactorX, FactorY) = Scaling.GetScalingFactors();
+			(FactorX, FactorY) = UI.Scaling.GetScalingFactors();
 
 			//Logger.Current.WriteLine(
 			//	$"dpiX={dpiX} dpiY={dpiY} scalingX={scalingX} scalingY={scalingY} sx={sx} sy={sy}");
