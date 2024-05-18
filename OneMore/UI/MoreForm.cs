@@ -60,7 +60,7 @@ namespace River.OneMoreAddIn.UI
 		/// <returns></returns>
 		protected static bool NeedsLocalizing()
 		{
-			return TranslationHelper.NeedsLocalizing();
+			return Translator.NeedsLocalizing();
 		}
 
 
@@ -70,10 +70,10 @@ namespace River.OneMoreAddIn.UI
 		/// <param name="keys">
 		/// A list of control identifiers as described by TranslationHelper
 		/// </param>
-		/// <seealso cref="River.OneMoreAddIn.UI.TranslationHelper"/>
+		/// <seealso cref="River.OneMoreAddIn.UI.Translator"/>
 		protected void Localize(string[] keys)
 		{
-			TranslationHelper.Localize(this, keys);
+			Translator.Localize(this, keys);
 		}
 
 

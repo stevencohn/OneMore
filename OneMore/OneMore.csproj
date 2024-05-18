@@ -1076,7 +1076,7 @@
     <Compile Include="UI\MouseState.cs" />
     <Compile Include="UI\ThemedColorTable.cs" />
     <Compile Include="UI\ThemeManager.cs" />
-    <Compile Include="UI\TranslationHelper.cs" />
+    <Compile Include="UI\Translator.cs" />
     <Compile Include="UI\WebViewWorkerDialog.cs">
       <SubType>Form</SubType>
     </Compile>

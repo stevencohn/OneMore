@@ -1,5 +1,5 @@
 ﻿//************************************************************************************************
-// Copyright © 2016 Steven M Cohn.  All rights reserved.
+// Copyright © 2016 Steven M Cohn. All rights reserved.
 //************************************************************************************************	
 
 namespace River.OneMoreAddIn.UI
@@ -9,10 +9,10 @@ namespace River.OneMoreAddIn.UI
 	using System.Linq;
 	using System.Reflection;
 	using System.Windows.Forms;
-	using Resx = River.OneMoreAddIn.Properties.Resources;
+	using Resx = Properties.Resources;
 
 
-	internal static class TranslationHelper
+	internal static class Translator
 	{
 		/// <summary>
 		/// Determines if the main OneNote thread culture differs from our default design-time
