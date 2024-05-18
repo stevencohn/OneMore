@@ -420,7 +420,7 @@ namespace River.OneMoreAddIn.Commands
 
 				if (!single)
 				{
-					UIHelper.ShowMessage($"{plugin.Name} has been saved");
+					MoreMessageBox.Show(this, $"{plugin.Name} has been saved");
 				}
 			}
 			catch (Exception exc)

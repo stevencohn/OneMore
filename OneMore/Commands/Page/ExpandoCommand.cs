@@ -189,7 +189,7 @@ namespace River.OneMoreAddIn.Commands
 				}
 			}
 
-			UIHelper.ShowMessage(Resx.ExpandoCommand_Saved);
+			ShowMessage(Resx.ExpandoCommand_Saved);
 
 			return true;
 		}

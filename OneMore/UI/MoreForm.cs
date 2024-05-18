@@ -7,8 +7,12 @@ namespace River.OneMoreAddIn.UI
 	using System;
 	using System.Diagnostics;
 	using System.Drawing;
-	using System.Security.Policy;
 	using System.Windows.Forms;
+
+
+	public interface IOneMoreWindow : IDisposable
+	{
+	}
 
 
 	internal class MoreForm : Form, IOneMoreWindow

@@ -64,7 +64,7 @@ namespace River.OneMoreAddIn.Commands
 				totalCount = hierarchy.Descendants(ns + "Page").Count();
 				if (totalCount == 0)
 				{
-					UIHelper.ShowMessage(Resx.ArchiveCommand_noPages);
+					ShowError(Resx.ArchiveCommand_noPages);
 					return;
 				}
 
@@ -149,7 +149,7 @@ namespace River.OneMoreAddIn.Commands
 
 			if (exception == null)
 			{
-				UIHelper.ShowMessage(string.Format(Resx.ArchiveCommand_archived, pageCount, zipPath));
+				ShowMessage(string.Format(Resx.ArchiveCommand_archived, pageCount, zipPath));
 			}
 			else
 			{
@@ -185,7 +185,7 @@ namespace River.OneMoreAddIn.Commands
 			var dir = Path.GetDirectoryName(path);
 			if (!Directory.Exists(dir))
 			{
-				UIHelper.ShowMessage(Resx.ArchiveCommand_noDirectory);
+				ShowError(Resx.ArchiveCommand_noDirectory);
 				return null;
 			}
 

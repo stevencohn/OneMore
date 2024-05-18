@@ -10,11 +10,6 @@ namespace River.OneMoreAddIn
 	using Resx = Properties.Resources;
 
 
-	public interface IOneMoreWindow : IDisposable
-	{
-	}
-
-
 	/// <summary>
 	/// Some helper functions for dealing with Windows Forms on High DPI systems.
 	/// </summary>
@@ -114,21 +109,6 @@ namespace River.OneMoreAddIn
 				Application.SetCompatibleTextRenderingDefault(false);
 				unprepared = false;
 			}
-		}
-
-
-		/// <summary>
-		/// Shows an informational message box with the given caption and ensures it appears
-		/// on top of the main OneNote window
-		/// </summary>
-		/// <param name="window">The OneNote window, from ApplicationManager.Window</param>
-		/// <param name="message">The caption message to display</param>
-		public static void ShowMessage(string message)
-		{
-			MessageBox.Show(message, Resx.ProgramName,
-				MessageBoxButtons.OK, MessageBoxIcon.None,
-				MessageBoxDefaultButton.Button1,
-				MessageBoxOptions.DefaultDesktopOnly);
 		}
 	}
 }

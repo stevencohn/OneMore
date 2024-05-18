@@ -63,7 +63,7 @@ namespace River.OneMoreAddIn.Commands
 
 			if (!success)
 			{
-				UIHelper.ShowMessage("Could not navigate at this time. Try again in a few seconds");
+				ShowError("Could not navigate at this time. Try again in a few seconds");
 			}
 		}
 	}

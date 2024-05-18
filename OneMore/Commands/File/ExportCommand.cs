@@ -159,7 +159,7 @@ namespace River.OneMoreAddIn.Commands
 
 			SaveDefaultPath(path);
 
-			UIHelper.ShowMessage(string.Format(Resx.SaveAsMany_Success, pageIDs.Count, path));
+			ShowMessage(string.Format(Resx.SaveAsMany_Success, pageIDs.Count, path));
 		}
 
 

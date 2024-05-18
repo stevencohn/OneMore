@@ -78,7 +78,7 @@ namespace River.OneMoreAddIn.Commands
 
 			if (string.IsNullOrWhiteSpace(snippet))
 			{
-				UIHelper.ShowMessage(string.Format(Resx.InsertSnippets_CouldNotLoad, path));
+				ShowError(string.Format(Resx.InsertSnippets_CouldNotLoad, path));
 				return;
 			}
 

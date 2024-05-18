@@ -90,7 +90,7 @@ namespace River.OneMoreAddIn.Commands
 			}
 			else
 			{
-				UIHelper.ShowMessage(Resx.AdjustImagesDialog_noImages);
+				ShowError(Resx.AdjustImagesDialog_noImages);
 			}
 		}
 

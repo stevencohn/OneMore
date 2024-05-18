@@ -125,7 +125,7 @@ namespace River.OneMoreAddIn.Commands
 		{
 			if (!Office.IsInstalled("Word"))
 			{
-				UIHelper.ShowMessage("Word is not installed");
+				ShowError("Word is not installed");
 			}
 
 			string[] files;
@@ -213,7 +213,7 @@ namespace River.OneMoreAddIn.Commands
 		{
 			if (!Office.IsInstalled("Powerpoint"))
 			{
-				UIHelper.ShowMessage("PowerPoint is not installed");
+				ShowError("PowerPoint is not installed");
 			}
 
 			string[] files;

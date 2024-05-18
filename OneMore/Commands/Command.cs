@@ -115,5 +115,15 @@ namespace River.OneMoreAddIn
 		{
 			UI.MoreMessageBox.Show(owner, message);
 		}
+
+
+		protected void ShowMessage(string message)
+		{
+			var box = new UI.MoreMessageBox();
+			box.SetButtons(MessageBoxButtons.OK);
+			box.SetIcon(MessageBoxIcon.None);
+
+			UI.MoreMessageBox.Show(owner, message);
+		}
 	}
 }

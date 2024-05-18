@@ -60,8 +60,7 @@ namespace River.OneMoreAddIn.Commands
 
 				await one.Update(page);
 
-				UIHelper.ShowMessage(
-					string.Format(Resx.DeleteFormulaCommand_Deleted, count));
+				ShowMessage(string.Format(Resx.DeleteFormulaCommand_Deleted, count));
 			}
 			else
 			{

@@ -36,7 +36,7 @@ namespace River.OneMoreAddIn.Commands
 
 			if (elements.IsNullOrEmpty() || (elements.Count() > 1))
 			{
-				UIHelper.ShowMessage(Resx.OpenImageWithCommand_selectOne);
+				ShowMessage(Resx.OpenImageWithCommand_selectOne);
 				return;
 			}
 

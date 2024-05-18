@@ -43,7 +43,7 @@ namespace River.OneMoreAddIn.Commands
 				var candidates = GetHyperlinks(parentPage);
 				if (!candidates.Any())
 				{
-					UIHelper.ShowMessage(Resx.CrawlWebCommand_NoHyperlinks);
+					ShowError(Resx.CrawlWebCommand_NoHyperlinks);
 					return;
 				}
 

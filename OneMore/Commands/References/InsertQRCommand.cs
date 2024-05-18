@@ -42,7 +42,7 @@ namespace River.OneMoreAddIn.Commands
 
 			if (text.Length == 0)
 			{
-				UIHelper.ShowMessage(Resx.InsertQRCommand_NoSelection);
+				ShowError(Resx.InsertQRCommand_NoSelection);
 				return;
 			}
 
@@ -51,7 +51,7 @@ namespace River.OneMoreAddIn.Commands
 			if (url.Length > MaxLength)
 			{
 				var max = MaxLength - GetUri.Length;
-				UIHelper.ShowMessage(string.Format(Resx.InsertQRCommand_MaxLength, max));
+				ShowError(string.Format(Resx.InsertQRCommand_MaxLength, max));
 				return;
 			}
 
