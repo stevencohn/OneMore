@@ -14,7 +14,7 @@ namespace River.OneMoreAddIn
 	/// Some helper functions for dealing with Windows Forms on High DPI systems.
 	/// </summary>
 
-	internal static class UIHelper
+	internal static class Scaling
 	{
 		private static bool unprepared = true;
 		private static float xScalingFactor = 0;

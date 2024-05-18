@@ -45,7 +45,7 @@ namespace River.OneMoreAddIn.Commands
 			TopMost = true;
 			TopLevel = true;
 
-			(scalingX, scalingY) = UIHelper.GetScalingFactors();
+			(scalingX, scalingY) = Scaling.GetScalingFactors();
 			toolstrip.ImageScalingSize = new Size((int)(16 * scalingX), (int)(16 * scalingY));
 		}
 

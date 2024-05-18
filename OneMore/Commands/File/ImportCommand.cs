@@ -458,7 +458,7 @@ namespace River.OneMoreAddIn.Commands
 					.GetCollection(nameof(FileImportSheet))
 					.Get("width", DefaultWidth)
 					*
-					UIHelper.GetScalingFactors().Item1)
+					Scaling.GetScalingFactors().Item1)
 			};
 
 			for (int i = 0; i < doc.PageCount; i++)

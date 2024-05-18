@@ -1058,7 +1058,7 @@
     <Compile Include="Helpers\ReadOnlyStream.cs" />
     <Compile Include="AddIn.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Helpers\UIHelper.cs" />
+    <Compile Include="Helpers\Scaling.cs" />
     <Compile Include="Helpers\Win32WindowHandle.cs" />
     <Compile Include="Commands\Tools\ShowXmlDialog.cs">
       <SubType>Form</SubType>

@@ -60,7 +60,7 @@ namespace River.OneMoreAddIn.Commands
 			var bytes = (byte[])new ImageConverter().ConvertTo(image, typeof(byte[]));
 			var data = Convert.ToBase64String(bytes);
 
-			(float factorX, float factorY) = UIHelper.GetScalingFactors();
+			(float factorX, float factorY) = Scaling.GetScalingFactors();
 			var scaledX = Size / factorX;
 			var scaledY = Size / factorY;
 
