@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Theme name="Confluence 6">
+<Theme name="Confluence 6" isPredefined="True">
   <Style index="0" name="Heading 1" font="Arial" fontSize="18" fontColor="#ff333333" spaceBefore="0" spaceAfter="0" styleType="Heading" />
   <Style index="1" name="Heading 2" font="Arial" fontSize="15" fontColor="#ff333333" spaceBefore="12" spaceAfter="0" styleType="Heading" />
   <Style index="2" name="Heading 3" font="Arial" fontSize="12" bold="true" fontColor="#ff333333" spaceBefore="12" spaceAfter="0" styleType="Heading" />

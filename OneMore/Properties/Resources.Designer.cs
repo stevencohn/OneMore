@@ -1388,15 +1388,6 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to CustomStyles.xml.
-        /// </summary>
-        internal static string CustomStylesFilename {
-            get {
-                return ResourceManager.GetString("CustomStylesFilename", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap DarkCustomStyles {
@@ -1474,10 +1465,10 @@ namespace River.OneMoreAddIn.Properties {
         
         /// <summary>
         ///   Looks up a localized string similar to &lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
-        ///&lt;Theme key=&quot;Orange&quot; name=&quot;Orange&quot; color=&quot;automatic&quot; setColor=&quot;False&quot; dark=&quot;False&quot;&gt;
+        ///&lt;Theme key=&quot;Orange&quot; name=&quot;Orange&quot; color=&quot;automatic&quot; setColor=&quot;False&quot; dark=&quot;False&quot; isPredefined=&quot;True&quot;&gt;
         ///  &lt;Style index=&quot;0&quot; name=&quot;Heading 1&quot; font=&quot;Calibri Light&quot; fontColor=&quot;Black&quot; fontSize=&quot;20.0&quot; spaceBefore=&quot;14.0&quot; spaceAfter=&quot;0.0&quot; applyColors=&quot;true&quot; styleType=&quot;Heading&quot; /&gt;
         ///  &lt;Style index=&quot;1&quot; name=&quot;Heading 2&quot; font=&quot;Calibri Light&quot; fontColor=&quot;#E67832&quot; fontSize=&quot;18.0&quot; spaceBefore=&quot;14.0&quot; spaceAfter=&quot;0.0&quot; applyColors=&quot;true&quot; styleType=&quot;Heading&quot; /&gt;
-        ///  &lt;Style index=&quot;2&quot; name=&quot;Heading 3&quot; font=&quot;Cali [rest of string was truncated]&quot;;.
+        ///  &lt;Style index=&quot;2&quot; name=&quot;H [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string DefaultStyles {
             get {
