@@ -160,9 +160,9 @@ namespace River.OneMoreAddIn.Styles
 					element.Add(new XAttribute("lang", "yo"));
 				}
 			}
-			else if (ignored != null)
+			else
 			{
-				ignored.Remove();
+				ignored?.Remove();
 			}
 		}
 

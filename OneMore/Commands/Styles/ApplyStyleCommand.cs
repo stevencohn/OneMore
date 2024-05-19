@@ -82,6 +82,8 @@ namespace River.OneMoreAddIn.Commands
 				actual = analyzer.CollectFromSelection();
 				if (actual is not null)
 				{
+					actual.StyleType = style.StyleType;
+
 					if (style.IsBold) actual.IsBold = !actual.IsBold;
 					if (style.IsItalic) actual.IsItalic = !actual.IsItalic;
 					if (style.IsUnderline) actual.IsUnderline = !actual.IsUnderline;

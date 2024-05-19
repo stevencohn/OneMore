@@ -7,6 +7,7 @@
 
 namespace River.OneMoreAddIn.Styles
 {
+	using Microsoft.Win32;
 	using System;
 	using System.Drawing;
 	using System.Globalization;
@@ -20,9 +21,9 @@ namespace River.OneMoreAddIn.Styles
 		public static readonly string Automatic = "automatic";
 		public static readonly string Transparent = "Transparent";
 		public static readonly string DefaultCodeFamily = "Lucida Console";
-		public static readonly string DefaultFontFamily = "Calibri";
 		public static readonly double DefaultCodeSize = 10.0;
-		public static readonly double DefaultFontSize = 11.0;
+
+		private const string EditingKey = @"Software\Microsoft\Office\16.0\OneNote\Options\Editing";
 
 		protected string color;
 		protected string highlight;
@@ -32,6 +33,33 @@ namespace River.OneMoreAddIn.Styles
 		protected double spacing;
 
 		protected readonly ILogger logger;
+
+
+		[System.Diagnostics.CodeAnalysis.SuppressMessage("Minor Code Smell",
+			"S3963:\"static\" fields should be initialized inline",
+			Justification = "<Pending>")]
+		static StyleBase()
+		{
+			// fetch default font attributes from Registyr
+			var key = Registry.CurrentUser.OpenSubKey(EditingKey, false);
+			if (key is not null)
+			{
+				if (key.GetValue("DefaultFontFace") is string family)
+				{
+					DefaultFontFamily = family;
+				}
+
+				if (key.GetValue("DefaultFontSize") is string size)
+				{
+					DefaultFontSize = double.Parse(size, CultureInfo.InvariantCulture);
+				}
+			}
+			else
+			{
+				DefaultFontFamily = "Calibri";
+				DefaultFontSize = 11.0;
+			}
+		}
 
 
 		/// <summary>
@@ -59,7 +87,8 @@ namespace River.OneMoreAddIn.Styles
 		/// Inheritors may extend their own constructor to manage additional properties
 		/// as appropriate.
 		/// </param>
-		protected StyleBase(StyleBase other) : this()
+		protected StyleBase(StyleBase other)
+			: this()
 		{
 			Name = other.Name;
 			StyleType = other.StyleType;
@@ -81,6 +110,11 @@ namespace River.OneMoreAddIn.Styles
 
 			ApplyColors = other.ApplyColors;
 		}
+
+
+		public static string DefaultFontFamily { get; private set; }
+
+		public static double DefaultFontSize { get; private set; }
 
 
 		/// <summary>
