@@ -68,8 +68,15 @@ namespace River.OneMoreAddIn.Commands
 
 		private static StandardStyles? MatchHeading(Style style)
 		{
+			//fontSize="20.0" spaceBefore="0.0" spaceAfter="0.0" />
+
 			if (style.FontFamily == "Calibri")
 			{
+				if (style.FontSize == "20.0" && style.Color == Style.Automatic)
+				{
+					return StandardStyles.PageTitle;
+				}
+
 				if (style.FontSize == "16.0" && style.Color == "#1E4E79")
 				{
 					return StandardStyles.Heading1;
@@ -92,6 +99,20 @@ namespace River.OneMoreAddIn.Commands
 			}
 
 			return null;
+		}
+
+
+		public static void SpaceOutParagraphs(Page page, float spaceAfter)
+		{
+			var ns = page.Namespace;
+			var after = $"{spaceAfter:0.0}";
+
+			foreach (var item in page.Root
+				.Descendants(ns + "OE")
+				.Where(e => e.NextNode is not null))
+			{
+				item.SetAttributeValue("spaceAfter", after);
+			}
 		}
 	}
 }

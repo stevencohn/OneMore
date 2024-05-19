@@ -9,6 +9,7 @@ namespace River.OneMoreAddIn.Commands
 	using System.IO;
 	using System.Linq;
 	using System.Threading.Tasks;
+	using Resx = Properties.Resources;
 
 
 	/// <summary>
@@ -26,15 +27,13 @@ namespace River.OneMoreAddIn.Commands
 			using var one = new OneNote(out var page, out var ns);
 			page.GetTextCursor();
 
-			if (page.SelectionScope != SelectionScope.Region)
-			{
-				ShowError("Select markdown text to preview");
-				return;
-			}
-
 			var bounds = one.GetCurrentMainWindowBounds();
 
-			var editor = new PageEditor(page);
+			var editor = new PageEditor(page)
+			{
+				AllContent = (page.SelectionScope != SelectionScope.Region)
+			};
+
 			var content = await editor.ExtractSelectedContent();
 			var paragraphs = content.Elements(ns + "OE").ToList();
 
@@ -44,10 +43,14 @@ namespace River.OneMoreAddIn.Commands
 				TableSides = "|"
 			};
 
+			var filepath = Path.Combine(Path.GetTempPath(), Path.GetRandomFileName());
 			var text = reader.ReadTextFrom(paragraphs, page.SelectionScope != SelectionScope.Region);
 
-			var filepath = Path.Combine(Path.GetTempPath(), Path.GetRandomFileName());
-			var body = OneMoreDig.ConvertMarkdownToHtml(filepath, text);
+			var title = editor.AllContent
+				? $"<p style=\"font-family:Calibri;font-size:20pt\">{page.Title}</p>"
+				: string.Empty;
+
+			var body = title + OneMoreDig.ConvertMarkdownToHtml(filepath, text);
 
 			filepath = Path.Combine(
 				Path.GetDirectoryName(filepath),
@@ -65,6 +68,8 @@ namespace River.OneMoreAddIn.Commands
 				form.Left = bounds.Left + (bounds.Width / 2) - 50;
 				form.Top = bounds.Top + 100;
 				form.TopMost = true;
+
+				form.Text = Resx.PreviewMarkdownCommand_Title;
 
 				form.ShowDialog(owner);
 			});

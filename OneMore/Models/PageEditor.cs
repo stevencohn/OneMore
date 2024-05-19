@@ -74,6 +74,13 @@ namespace River.OneMoreAddIn.Models
 
 
 		/// <summary>
+		/// Gets or sets and indication whether all page content should be chosen.
+		/// The default is to process only the selected content.
+		/// </summary>
+		public bool AllContent { get; set; }
+
+
+		/// <summary>
 		/// Gets the anchor point for reintroducing collated content.
 		/// If this is an OE or HTMLBlock then consumers may want to insert after that.
 		/// Otherwise, consumers may want to insert at end of anchor container.
@@ -143,7 +150,7 @@ namespace River.OneMoreAddIn.Models
 				.Where(e =>
 					// tables are handled via their cell contents
 					e.Name.LocalName != "Table" &&
-					e.Attributes().Any(a => a.Name == "selected" && a.Value == "all"))
+					(AllContent || e.Attributes().Any(a => a.Name == "selected" && a.Value == "all")))
 				.ToList();
 
 			// no selections found in body
@@ -216,8 +223,8 @@ namespace River.OneMoreAddIn.Models
 		private XElement WholeTableSelected(XElement cell)
 		{
 			var table = cell.FirstAncestor(ns + "Table");
-			if (table.Descendants(ns + "Cell")
-				.All(c => c.Attribute("selected")?.Value == "all"))
+			if (AllContent ||
+				table.Descendants(ns + "Cell").All(c => c.Attribute("selected")?.Value == "all"))
 			{
 				return table;
 			}

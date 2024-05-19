@@ -2143,6 +2143,10 @@ Bieżący notatnik</value>
     <value>Zarządzaj moimi wtyczkami</value>
     <comment>label</comment>
   </data>
+  <data name="PreviewMarkdownCommand_Title" xml:space="preserve">
+    <value>Podgląd Markdownu</value>
+    <comment>dialog title</comment>
+  </data>
   <data name="ProgramName" xml:space="preserve">
     <value>OneMore</value>
     <comment>SKIP</comment>
@@ -3543,6 +3547,10 @@ Po ostatniej grupie</value>
   <data name="ribPluginsMenu_Screentip" xml:space="preserve">
     <value>Uruchamiaj i zarządzaj niestandardowymi wtyczkami</value>
     <comment>ribbon file</comment>
+  </data>
+  <data name="ribPreviewMarkdownButton_Label" xml:space="preserve">
+    <value>Podgląd Markdown</value>
+    <comment>ribbon edit</comment>
   </data>
   <data name="ribPronunciateButton_Label" xml:space="preserve">
     <value>Wstaw wymowę</value>

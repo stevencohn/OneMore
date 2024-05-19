@@ -2134,6 +2134,10 @@ Carnet actuel</value>
     <value>Gérer mes plugins</value>
     <comment>label</comment>
   </data>
+  <data name="PreviewMarkdownCommand_Title" xml:space="preserve">
+    <value>Aperçu de la démarque</value>
+    <comment>dialog title</comment>
+  </data>
   <data name="Pronunciate_EmptyWord" xml:space="preserve">
     <value>Le mot sélectionné ne peut pas être vide</value>
     <comment>error message box</comment>
@@ -3529,6 +3533,10 @@ Après le dernier groupe</value>
   <data name="ribPluginsMenu_Screentip" xml:space="preserve">
     <value>Exécuter et gérer des plugins personnalisés</value>
     <comment>ribbon file</comment>
+  </data>
+  <data name="ribPreviewMarkdownButton_Label" xml:space="preserve">
+    <value>Aperçu de la démarque</value>
+    <comment>ribbon edit</comment>
   </data>
   <data name="ribPronunciateButton_Label" xml:space="preserve">
     <value>Insérer la prononciation</value>

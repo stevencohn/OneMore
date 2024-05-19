@@ -11,7 +11,6 @@ namespace River.OneMoreAddIn.UI
 	using System;
 	using System.IO;
 	using System.Threading.Tasks;
-	using System.Windows;
 	using System.Windows.Forms;
 	using Resx = Properties.Resources;
 
@@ -55,9 +54,6 @@ namespace River.OneMoreAddIn.UI
 			Opacity = 1.0;
 			ManualLocation = true;
 			StartPosition = FormStartPosition.Manual;
-
-			Icon = Resx.OneMore_Icon;
-			Text = "Markdown Preview";
 
 			startup = new WebViewWorker(async (webview) =>
 			{

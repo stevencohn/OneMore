@@ -5125,16 +5125,6 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
-        /// </summary>
-        internal static System.Drawing.Icon OneMore_Icon {
-            get {
-                object obj = ResourceManager.GetObject("OneMore_Icon", resourceCulture);
-                return ((System.Drawing.Icon)(obj));
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to https://github.com/sponsors/stevencohn.
         /// </summary>
         internal static string OneMore_Sponsor {
@@ -5827,6 +5817,15 @@ namespace River.OneMoreAddIn.Properties {
         internal static string PluginsSheet_introBox_Text {
             get {
                 return ResourceManager.GetString("PluginsSheet_introBox.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Markdown Preview.
+        /// </summary>
+        internal static string PreviewMarkdownCommand_Title {
+            get {
+                return ResourceManager.GetString("PreviewMarkdownCommand_Title", resourceCulture);
             }
         }
         
@@ -8968,6 +8967,15 @@ namespace River.OneMoreAddIn.Properties {
         internal static string ribPluginsMenu_Screentip {
             get {
                 return ResourceManager.GetString("ribPluginsMenu_Screentip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Preview Markdown.
+        /// </summary>
+        internal static string ribPreviewMarkdownButton_Label {
+            get {
+                return ResourceManager.GetString("ribPreviewMarkdownButton_Label", resourceCulture);
             }
         }
         

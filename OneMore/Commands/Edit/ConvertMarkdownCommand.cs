@@ -26,13 +26,11 @@ namespace River.OneMoreAddIn.Commands
 			using var one = new OneNote(out var page, out var ns);
 			page.GetTextCursor();
 
-			if (page.SelectionScope != SelectionScope.Region)
+			var editor = new PageEditor(page)
 			{
-				ShowError("Select markdown text to convert to OneNote format");
-				return;
-			}
+				AllContent = (page.SelectionScope != SelectionScope.Region)
+			};
 
-			var editor = new PageEditor(page);
 			var content = await editor.ExtractSelectedContent();
 			var paragraphs = content.Elements(ns + "OE").ToList();
 
@@ -42,9 +40,9 @@ namespace River.OneMoreAddIn.Commands
 				TableSides = "|"
 			};
 
-			var text = reader.ReadTextFrom(paragraphs, page.SelectionScope != SelectionScope.Region);
-
 			var filepath = Path.Combine(Path.GetTempPath(), Path.GetRandomFileName());
+
+			var text = reader.ReadTextFrom(paragraphs, page.SelectionScope != SelectionScope.Region);
 			var body = OneMoreDig.ConvertMarkdownToHtml(filepath, text);
 
 			editor.InsertAtAnchor(new XElement(ns + "HTMLBlock",
@@ -53,13 +51,12 @@ namespace River.OneMoreAddIn.Commands
 					)
 				));
 
-			MarkdownConverter.RewriteHeadings(page);
-
 			await one.Update(page);
 
 			// find and convert headers based on styles
 			page = await one.GetPage(page.PageId, OneNote.PageDetail.Basic);
 			MarkdownConverter.RewriteHeadings(page);
+			MarkdownConverter.SpaceOutParagraphs(page, 12);
 			await one.Update(page);
 		}
 	}
