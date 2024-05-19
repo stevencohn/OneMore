@@ -36,17 +36,15 @@ namespace River.OneMoreAddIn.Commands
 			this.deepBox = new River.OneMoreAddIn.UI.MoreCheckBox();
 			this.okButton = new River.OneMoreAddIn.UI.MoreButton();
 			this.cancelButton = new River.OneMoreAddIn.UI.MoreButton();
-			this.optionsBox = new River.OneMoreAddIn.UI.MoreGroupBox();
 			this.duplicatesBox = new River.OneMoreAddIn.UI.MoreCheckBox();
 			this.introLabel = new System.Windows.Forms.Label();
-			this.optionsBox.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// thisListButton
 			// 
 			this.thisListButton.Checked = true;
 			this.thisListButton.Cursor = System.Windows.Forms.Cursors.Hand;
-			this.thisListButton.Location = new System.Drawing.Point(23, 42);
+			this.thisListButton.Location = new System.Drawing.Point(41, 71);
 			this.thisListButton.Name = "thisListButton";
 			this.thisListButton.Size = new System.Drawing.Size(208, 25);
 			this.thisListButton.TabIndex = 0;
@@ -57,7 +55,7 @@ namespace River.OneMoreAddIn.Commands
 			// allListsButton
 			// 
 			this.allListsButton.Cursor = System.Windows.Forms.Cursors.Hand;
-			this.allListsButton.Location = new System.Drawing.Point(23, 72);
+			this.allListsButton.Location = new System.Drawing.Point(41, 101);
 			this.allListsButton.Name = "allListsButton";
 			this.allListsButton.Size = new System.Drawing.Size(278, 25);
 			this.allListsButton.TabIndex = 1;
@@ -69,11 +67,14 @@ namespace River.OneMoreAddIn.Commands
 			this.typeBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(231)))), ((int)(((byte)(231)))));
 			this.typeBox.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.typeBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-			this.typeBox.Location = new System.Drawing.Point(23, 148);
+			this.typeBox.Location = new System.Drawing.Point(41, 177);
 			this.typeBox.Name = "typeBox";
 			this.typeBox.Size = new System.Drawing.Size(290, 25);
+			this.typeBox.StylizeImage = false;
 			this.typeBox.TabIndex = 3;
 			this.typeBox.Text = "Both bullet lists and numbered lists";
+			this.typeBox.ThemedBack = null;
+			this.typeBox.ThemedFore = null;
 			this.typeBox.UseVisualStyleBackColor = true;
 			// 
 			// deepBox
@@ -81,11 +82,14 @@ namespace River.OneMoreAddIn.Commands
 			this.deepBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(231)))), ((int)(((byte)(231)))));
 			this.deepBox.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.deepBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-			this.deepBox.Location = new System.Drawing.Point(23, 118);
+			this.deepBox.Location = new System.Drawing.Point(41, 147);
 			this.deepBox.Name = "deepBox";
 			this.deepBox.Size = new System.Drawing.Size(154, 25);
+			this.deepBox.StylizeImage = false;
 			this.deepBox.TabIndex = 2;
 			this.deepBox.Text = "Include sub-lists";
+			this.deepBox.ThemedBack = null;
+			this.deepBox.ThemedFore = null;
 			this.deepBox.UseVisualStyleBackColor = true;
 			// 
 			// okButton
@@ -95,10 +99,11 @@ namespace River.OneMoreAddIn.Commands
 			this.okButton.DialogResult = System.Windows.Forms.DialogResult.OK;
 			this.okButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.okButton.ImageOver = null;
-			this.okButton.Location = new System.Drawing.Point(391, 312);
+			this.okButton.Location = new System.Drawing.Point(391, 267);
 			this.okButton.Name = "okButton";
 			this.okButton.ShowBorder = true;
 			this.okButton.Size = new System.Drawing.Size(100, 38);
+			this.okButton.StylizeImage = false;
 			this.okButton.TabIndex = 0;
 			this.okButton.Text = "OK";
 			this.okButton.ThemedBack = null;
@@ -112,43 +117,30 @@ namespace River.OneMoreAddIn.Commands
 			this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
 			this.cancelButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.cancelButton.ImageOver = null;
-			this.cancelButton.Location = new System.Drawing.Point(497, 312);
+			this.cancelButton.Location = new System.Drawing.Point(497, 267);
 			this.cancelButton.Name = "cancelButton";
 			this.cancelButton.ShowBorder = true;
 			this.cancelButton.Size = new System.Drawing.Size(100, 38);
+			this.cancelButton.StylizeImage = false;
 			this.cancelButton.TabIndex = 1;
 			this.cancelButton.Text = "Cancel";
 			this.cancelButton.ThemedBack = null;
 			this.cancelButton.ThemedFore = null;
 			this.cancelButton.UseVisualStyleBackColor = true;
 			// 
-			// optionsBox
-			// 
-			this.optionsBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-			this.optionsBox.Controls.Add(this.duplicatesBox);
-			this.optionsBox.Controls.Add(this.thisListButton);
-			this.optionsBox.Controls.Add(this.allListsButton);
-			this.optionsBox.Controls.Add(this.typeBox);
-			this.optionsBox.Controls.Add(this.deepBox);
-			this.optionsBox.Location = new System.Drawing.Point(23, 67);
-			this.optionsBox.Name = "optionsBox";
-			this.optionsBox.Padding = new System.Windows.Forms.Padding(20);
-			this.optionsBox.Size = new System.Drawing.Size(574, 224);
-			this.optionsBox.TabIndex = 8;
-			this.optionsBox.TabStop = false;
-			this.optionsBox.Text = "Options";
-			// 
 			// duplicatesBox
 			// 
 			this.duplicatesBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(231)))), ((int)(((byte)(231)))));
 			this.duplicatesBox.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.duplicatesBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-			this.duplicatesBox.Location = new System.Drawing.Point(23, 178);
+			this.duplicatesBox.Location = new System.Drawing.Point(41, 207);
 			this.duplicatesBox.Name = "duplicatesBox";
 			this.duplicatesBox.Size = new System.Drawing.Size(176, 25);
+			this.duplicatesBox.StylizeImage = false;
 			this.duplicatesBox.TabIndex = 4;
 			this.duplicatesBox.Text = "Remove duplicates";
+			this.duplicatesBox.ThemedBack = null;
+			this.duplicatesBox.ThemedFore = null;
 			this.duplicatesBox.UseVisualStyleBackColor = true;
 			// 
 			// introLabel
@@ -167,10 +159,14 @@ namespace River.OneMoreAddIn.Commands
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.BackColor = System.Drawing.SystemColors.ControlLight;
 			this.CancelButton = this.cancelButton;
-			this.ClientSize = new System.Drawing.Size(620, 373);
+			this.ClientSize = new System.Drawing.Size(620, 328);
+			this.Controls.Add(this.duplicatesBox);
 			this.Controls.Add(this.introLabel);
-			this.Controls.Add(this.optionsBox);
+			this.Controls.Add(this.thisListButton);
+			this.Controls.Add(this.allListsButton);
+			this.Controls.Add(this.typeBox);
 			this.Controls.Add(this.okButton);
+			this.Controls.Add(this.deepBox);
 			this.Controls.Add(this.cancelButton);
 			this.ForeColor = System.Drawing.SystemColors.ControlText;
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
@@ -182,8 +178,8 @@ namespace River.OneMoreAddIn.Commands
 			this.ShowInTaskbar = false;
 			this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
 			this.Text = "Sort Lists";
+			this.TopMost = true;
 			this.Load += new System.EventHandler(this.LoadForm);
-			this.optionsBox.ResumeLayout(false);
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -197,7 +193,6 @@ namespace River.OneMoreAddIn.Commands
 		private UI.MoreCheckBox deepBox;
 		private UI.MoreButton okButton;
 		private UI.MoreButton cancelButton;
-		private UI.MoreGroupBox optionsBox;
 		private System.Windows.Forms.Label introLabel;
 		private UI.MoreCheckBox duplicatesBox;
 	}
