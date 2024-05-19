@@ -68,8 +68,6 @@ namespace River.OneMoreAddIn.Commands
 
 		private static StandardStyles? MatchHeading(Style style)
 		{
-			//fontSize="20.0" spaceBefore="0.0" spaceAfter="0.0" />
-
 			if (style.FontFamily == "Calibri")
 			{
 				if (style.FontSize == "20.0" && style.Color == Style.Automatic)
