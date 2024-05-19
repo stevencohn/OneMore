@@ -5821,6 +5821,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Markdown Preview.
+        /// </summary>
+        internal static string PreviewMarkdownCommand_Title {
+            get {
+                return ResourceManager.GetString("PreviewMarkdownCommand_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to OneMore.
         /// </summary>
         internal static string ProgramName {
@@ -7290,6 +7299,15 @@ namespace River.OneMoreAddIn.Properties {
         internal static string ribConvertMarkdownButton_Label {
             get {
                 return ResourceManager.GetString("ribConvertMarkdownButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Convert page or selected markdown to OneNote format.
+        /// </summary>
+        internal static string ribConvertMarkdownButton_Screentip {
+            get {
+                return ResourceManager.GetString("ribConvertMarkdownButton_Screentip", resourceCulture);
             }
         }
         
@@ -8958,6 +8976,24 @@ namespace River.OneMoreAddIn.Properties {
         internal static string ribPluginsMenu_Screentip {
             get {
                 return ResourceManager.GetString("ribPluginsMenu_Screentip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Preview Markdown.
+        /// </summary>
+        internal static string ribPreviewMarkdownButton_Label {
+            get {
+                return ResourceManager.GetString("ribPreviewMarkdownButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Preview page or selected text as markdown.
+        /// </summary>
+        internal static string ribPreviewMarkdownButton_Screentip {
+            get {
+                return ResourceManager.GetString("ribPreviewMarkdownButton_Screentip", resourceCulture);
             }
         }
         

@@ -1,5 +1,5 @@
 ﻿//************************************************************************************************
-// Copyright © 2021 Steven M Cohn.  All rights reserved.
+// Copyright © 2021 Steven M Cohn. All rights reserved.
 //************************************************************************************************
 
 #pragma warning disable CS3001 // Argument type is not CLS-compliant
@@ -12,7 +12,7 @@ namespace River.OneMoreAddIn.UI
 	using System.IO;
 	using System.Threading.Tasks;
 	using System.Windows.Forms;
-	using Resx = River.OneMoreAddIn.Properties.Resources;
+	using Resx = Properties.Resources;
 
 
 	/// <summary>
@@ -29,7 +29,7 @@ namespace River.OneMoreAddIn.UI
 	/// pump from which to run operations on the hosted WebView2. This dialog has an
 	/// opacity set to 0% so it is hidden from the user and works in the background.
 	/// </summary>
-	public partial class WebViewWorkerDialog : Form
+	internal partial class WebViewDialog : MoreForm
 	{
 		private readonly WebViewWorker startup;
 		private readonly WebViewWorker work;
@@ -38,9 +38,30 @@ namespace River.OneMoreAddIn.UI
 		/// <summary>
 		/// Not called directly
 		/// </summary>
-		public WebViewWorkerDialog()
+		public WebViewDialog()
 		{
 			InitializeComponent();
+		}
+
+
+		/// <summary>
+		/// Create a 100% opaque dialog for displaying the given Uri
+		/// </summary>
+		/// <param name="uri"></param>
+		public WebViewDialog(Uri uri)
+			: this()
+		{
+			Opacity = 1.0;
+			ManualLocation = true;
+			StartPosition = FormStartPosition.Manual;
+
+			startup = new WebViewWorker(async (webview) =>
+			{
+				//logger.WriteLine($"starting up webview with {uri}");
+				webview.Source = uri;
+				await Task.Yield();
+				return true;
+			});
 		}
 
 
@@ -49,7 +70,7 @@ namespace River.OneMoreAddIn.UI
 		/// </summary>
 		/// <param name="startup">The consumer provided startup operation</param>
 		/// <param name="work">The consumer provided worker operation</param>
-		public WebViewWorkerDialog(WebViewWorker startup, WebViewWorker work)
+		public WebViewDialog(WebViewWorker startup, WebViewWorker work)
 			: this()
 		{
 			this.startup = startup;
@@ -66,7 +87,11 @@ namespace River.OneMoreAddIn.UI
 					Path.Combine(PathHelper.GetAppDataPath(), Resx.ProgramName));
 
 				await webView.EnsureCoreWebView2Async(env);
-				await startup(webView);
+
+				if (startup is not null)
+				{
+					await startup(webView);
+				}
 			}
 			catch (Exception exc)
 			{
@@ -79,8 +104,20 @@ namespace River.OneMoreAddIn.UI
 		private async void WorkNavComplete(
 			object sender, CoreWebView2NavigationCompletedEventArgs e)
 		{
-			await work(webView);
-			Close();
+			if (e.IsSuccess)
+			{
+				if (work is not null)
+				{
+					await work(webView);
+					Close();
+				}
+			}
+			else
+			{
+				Logger.Current.WriteLine(
+					$"WebNavComplete error HttpStatusCode:{e.HttpStatusCode} " +
+					$"WebErrorStatus:{e.WebErrorStatus}");
+			}
 		}
 	}
 }

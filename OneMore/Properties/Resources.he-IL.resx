@@ -2143,6 +2143,10 @@ Total Row Font
     <value>נהל את התוספים שלי</value>
     <comment>label</comment>
   </data>
+  <data name="PreviewMarkdownCommand_Title" xml:space="preserve">
+    <value>Markdown תצוגה מקדימה</value>
+    <comment>dialog title</comment>
+  </data>
   <data name="ProgramName" xml:space="preserve">
     <value>OneMore</value>
     <comment>SKIP</comment>
@@ -2813,6 +2817,10 @@ ISO-code then comma then language name</comment>
   </data>
   <data name="ribConvertMarkdownButton_Label" xml:space="preserve">
     <value>המר Markdown</value>
+    <comment>ribbon edit</comment>
+  </data>
+  <data name="ribConvertMarkdownButton_Screentip" xml:space="preserve">
+    <value>המר את העמוד או הסימון שנבחר לפורמט OneNote</value>
     <comment>ribbon edit</comment>
   </data>
   <data name="ribCopyAcrossButton_Label" xml:space="preserve">
@@ -3541,6 +3549,14 @@ ISO-code then comma then language name</comment>
   <data name="ribPluginsMenu_Screentip" xml:space="preserve">
     <value>הפעל ונהל תוספים מותאמים אישית</value>
     <comment>ribbon file</comment>
+  </data>
+  <data name="ribPreviewMarkdownButton_Label" xml:space="preserve">
+    <value>תצוגה מקדימה של Markdown</value>
+    <comment>ribbon edit</comment>
+  </data>
+  <data name="ribPreviewMarkdownButton_Screentip" xml:space="preserve">
+    <value>תצוגה מקדימה של דף או טקסט שנבחר כסימון</value>
+    <comment>ribbon edit</comment>
   </data>
   <data name="ribPronunciateButton_Label" xml:space="preserve">
     <value>הכנס הגייה</value>

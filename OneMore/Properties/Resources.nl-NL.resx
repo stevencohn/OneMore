@@ -2135,6 +2135,10 @@ Huidig ​​notitieboek</value>
     <value>Beheer mijn plug -ins</value>
     <comment>label</comment>
   </data>
+  <data name="PreviewMarkdownCommand_Title" xml:space="preserve">
+    <value>Afwaarderingsvoorbeeld</value>
+    <comment>dialog title</comment>
+  </data>
   <data name="Pronunciate_EmptyWord" xml:space="preserve">
     <value>Het geselecteerde woord mag niet leeg zijn</value>
     <comment>error message box</comment>
@@ -2795,6 +2799,10 @@ Na de laatste groep</value>
   </data>
   <data name="ribConvertMarkdownButton_Label" xml:space="preserve">
     <value>Markdown converteren</value>
+    <comment>ribbon edit</comment>
+  </data>
+  <data name="ribConvertMarkdownButton_Screentip" xml:space="preserve">
+    <value>Converteer pagina of geselecteerde prijsverlaging naar OneNote-indeling</value>
     <comment>ribbon edit</comment>
   </data>
   <data name="ribCopyAcrossButton_Label" xml:space="preserve">
@@ -3530,6 +3538,14 @@ Na de laatste groep</value>
   <data name="ribPluginsMenu_Screentip" xml:space="preserve">
     <value>Aangepaste plug-ins uitvoeren en beheren</value>
     <comment>ribbon file</comment>
+  </data>
+  <data name="ribPreviewMarkdownButton_Label" xml:space="preserve">
+    <value>Bekijk een voorbeeld van de prijsverlaging</value>
+    <comment>ribbon edit</comment>
+  </data>
+  <data name="ribPreviewMarkdownButton_Screentip" xml:space="preserve">
+    <value>Bekijk een voorbeeld van de pagina of geselecteerde tekst als markdown</value>
+    <comment>ribbon edit</comment>
   </data>
   <data name="ribPronunciateButton_Label" xml:space="preserve">
     <value>Uitspraak invoegen</value>

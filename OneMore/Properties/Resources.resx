@@ -2163,6 +2163,10 @@ Current notebook</value>
     <value>Manage my plugins</value>
     <comment>label</comment>
   </data>
+  <data name="PreviewMarkdownCommand_Title" xml:space="preserve">
+    <value>Markdown Preview</value>
+    <comment>dialog title</comment>
+  </data>
   <data name="ProgramName" xml:space="preserve">
     <value>OneMore</value>
     <comment>SKIP</comment>
@@ -2833,6 +2837,10 @@ After last group</value>
   </data>
   <data name="ribConvertMarkdownButton_Label" xml:space="preserve">
     <value>Convert Markdown</value>
+    <comment>ribbon edit</comment>
+  </data>
+  <data name="ribConvertMarkdownButton_Screentip" xml:space="preserve">
+    <value>Convert page or selected markdown to OneNote format</value>
     <comment>ribbon edit</comment>
   </data>
   <data name="ribCopyAcrossButton_Label" xml:space="preserve">
@@ -3562,6 +3570,14 @@ After last group</value>
   <data name="ribPluginsMenu_Screentip" xml:space="preserve">
     <value>Run and manage custom plugins</value>
     <comment>ribbon file</comment>
+  </data>
+  <data name="ribPreviewMarkdownButton_Label" xml:space="preserve">
+    <value>Preview Markdown</value>
+    <comment>ribbon edit</comment>
+  </data>
+  <data name="ribPreviewMarkdownButton_Screentip" xml:space="preserve">
+    <value>Preview page or selected text as markdown</value>
+    <comment>ribbon edit</comment>
   </data>
   <data name="ribPronunciateButton_Label" xml:space="preserve">
     <value>Insert Pronunciation</value>

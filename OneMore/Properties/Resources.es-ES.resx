@@ -2134,6 +2134,10 @@ Cuaderno actual</value>
     <value>Administrar mis complementos</value>
     <comment>label</comment>
   </data>
+  <data name="PreviewMarkdownCommand_Title" xml:space="preserve">
+    <value>Vista previa de rebajas</value>
+    <comment>dialog title</comment>
+  </data>
   <data name="Pronunciate_EmptyWord" xml:space="preserve">
     <value>La palabra seleccionada no puede estar vacía</value>
     <comment>error message box</comment>
@@ -2794,6 +2798,10 @@ Después del último grupo</value>
   </data>
   <data name="ribConvertMarkdownButton_Label" xml:space="preserve">
     <value>Convertir rebajas</value>
+    <comment>ribbon edit</comment>
+  </data>
+  <data name="ribConvertMarkdownButton_Screentip" xml:space="preserve">
+    <value>Convertir página o rebajas seleccionadas al formato OneNote</value>
     <comment>ribbon edit</comment>
   </data>
   <data name="ribCopyAcrossButton_Label" xml:space="preserve">
@@ -3530,6 +3538,14 @@ Después del último grupo</value>
   <data name="ribPluginsMenu_Screentip" xml:space="preserve">
     <value>Ejecute y administre complementos personalizados</value>
     <comment>ribbon file</comment>
+  </data>
+  <data name="ribPreviewMarkdownButton_Label" xml:space="preserve">
+    <value>Vista previa de rebajas</value>
+    <comment>ribbon edit</comment>
+  </data>
+  <data name="ribPreviewMarkdownButton_Screentip" xml:space="preserve">
+    <value>Vista previa de la página o texto seleccionado como rebaja</value>
+    <comment>ribbon edit</comment>
   </data>
   <data name="ribPronunciateButton_Label" xml:space="preserve">
     <value>Insertar pronunciación</value>

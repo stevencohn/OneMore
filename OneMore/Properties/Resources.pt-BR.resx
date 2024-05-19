@@ -2135,6 +2135,10 @@ Caderno atual</value>
     <value>Gerencie meus plugins</value>
     <comment>label</comment>
   </data>
+  <data name="PreviewMarkdownCommand_Title" xml:space="preserve">
+    <value>Visualização de redução</value>
+    <comment>dialog title</comment>
+  </data>
   <data name="Pronunciate_EmptyWord" xml:space="preserve">
     <value>A palavra selecionada não pode estar vazia</value>
     <comment>error message box</comment>
@@ -2795,6 +2799,10 @@ Depois do último grupo</value>
   </data>
   <data name="ribConvertMarkdownButton_Label" xml:space="preserve">
     <value>Converter redução</value>
+    <comment>ribbon edit</comment>
+  </data>
+  <data name="ribConvertMarkdownButton_Screentip" xml:space="preserve">
+    <value>Converter página ou marcação selecionada para o formato OneNote</value>
     <comment>ribbon edit</comment>
   </data>
   <data name="ribCopyAcrossButton_Label" xml:space="preserve">
@@ -3530,6 +3538,14 @@ Depois do último grupo</value>
   <data name="ribPluginsMenu_Screentip" xml:space="preserve">
     <value>Execute e gerencie plug-ins personalizados</value>
     <comment>ribbon file</comment>
+  </data>
+  <data name="ribPreviewMarkdownButton_Label" xml:space="preserve">
+    <value>Pré-visualização da redução</value>
+    <comment>ribbon edit</comment>
+  </data>
+  <data name="ribPreviewMarkdownButton_Screentip" xml:space="preserve">
+    <value>Visualizar página ou texto selecionado como marcação</value>
+    <comment>ribbon edit</comment>
   </data>
   <data name="ribPronunciateButton_Label" xml:space="preserve">
     <value>Inserir pronúncia</value>

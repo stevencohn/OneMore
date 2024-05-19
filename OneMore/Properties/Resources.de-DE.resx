@@ -2132,6 +2132,10 @@ Aktuelles Notizbuch</value>
     <value>Verwalten Sie meine Plugins</value>
     <comment>label</comment>
   </data>
+  <data name="PreviewMarkdownCommand_Title" xml:space="preserve">
+    <value>Markdown-Vorschau</value>
+    <comment>dialog title</comment>
+  </data>
   <data name="Pronunciate_EmptyWord" xml:space="preserve">
     <value>Das ausgewählte Wort darf nicht leer sein</value>
     <comment>error message box</comment>
@@ -2794,6 +2798,10 @@ Nach der letzten Gruppe</value>
   </data>
   <data name="ribConvertMarkdownButton_Label" xml:space="preserve">
     <value>Markdown konvertieren</value>
+    <comment>ribbon edit</comment>
+  </data>
+  <data name="ribConvertMarkdownButton_Screentip" xml:space="preserve">
+    <value>Konvertieren Sie die Seite oder den ausgewählten Markdown in das OneNote-Format</value>
     <comment>ribbon edit</comment>
   </data>
   <data name="ribCopyAcrossButton_Label" xml:space="preserve">
@@ -3522,6 +3530,14 @@ Nach der letzten Gruppe</value>
   <data name="ribPluginsMenu_Screentip" xml:space="preserve">
     <value>Benutzerdefinierte Plugins ausführen und verwalten</value>
     <comment>ribbon file</comment>
+  </data>
+  <data name="ribPreviewMarkdownButton_Label" xml:space="preserve">
+    <value>Vorschau des Markdowns</value>
+    <comment>ribbon edit</comment>
+  </data>
+  <data name="ribPreviewMarkdownButton_Screentip" xml:space="preserve">
+    <value>Vorschau der Seite oder des ausgewählten Texts als Markdown</value>
+    <comment>ribbon edit</comment>
   </data>
   <data name="ribPronunciateButton_Label" xml:space="preserve">
     <value>Aussprache einfügen</value>

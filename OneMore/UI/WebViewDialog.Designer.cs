@@ -1,6 +1,6 @@
 ﻿namespace River.OneMoreAddIn.UI
 {
-	partial class WebViewWorkerDialog
+	partial class WebViewDialog
 	{
 		/// <summary>
 		/// Required designer variable.
@@ -29,12 +29,14 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
+			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(WebViewDialog));
 			this.webView = new Microsoft.Web.WebView2.WinForms.WebView2();
 			((System.ComponentModel.ISupportInitialize)(this.webView)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// webView
 			// 
+			this.webView.AllowExternalDrop = true;
 			this.webView.CreationProperties = null;
 			this.webView.DefaultBackgroundColor = System.Drawing.Color.White;
 			this.webView.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -45,16 +47,19 @@
 			this.webView.ZoomFactor = 1D;
 			this.webView.NavigationCompleted += new System.EventHandler<Microsoft.Web.WebView2.Core.CoreWebView2NavigationCompletedEventArgs>(this.WorkNavComplete);
 			// 
-			// WebViewWorkerDialog
+			// WebViewDialog
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(600, 298);
 			this.Controls.Add(this.webView);
-			this.Name = "WebViewWorkerDialog";
+			this.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+			this.Name = "WebViewDialog";
 			this.Opacity = 0D;
 			this.Padding = new System.Windows.Forms.Padding(10);
-			this.Text = "WebViewWorkerDialog";
+			this.Text = "Web View";
+			this.TopMost = true;
 			this.Load += new System.EventHandler(this.StartWorkLoaded);
 			((System.ComponentModel.ISupportInitialize)(this.webView)).EndInit();
 			this.ResumeLayout(false);
