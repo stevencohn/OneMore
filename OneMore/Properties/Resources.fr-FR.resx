@@ -2800,6 +2800,10 @@ Après le dernier groupe</value>
     <value>Convertir la démarque</value>
     <comment>ribbon edit</comment>
   </data>
+  <data name="ribConvertMarkdownButton_Screentip" xml:space="preserve">
+    <value>Convertir la page ou la démarque sélectionnée au format OneNote</value>
+    <comment>ribbon edit</comment>
+  </data>
   <data name="ribCopyAcrossButton_Label" xml:space="preserve">
     <value>Copier à travers</value>
     <comment>ribbon table</comment>
@@ -3536,6 +3540,10 @@ Après le dernier groupe</value>
   </data>
   <data name="ribPreviewMarkdownButton_Label" xml:space="preserve">
     <value>Aperçu de la démarque</value>
+    <comment>ribbon edit</comment>
+  </data>
+  <data name="ribPreviewMarkdownButton_Screentip" xml:space="preserve">
+    <value>Aperçu de la page ou du texte sélectionné sous forme de démarque</value>
     <comment>ribbon edit</comment>
   </data>
   <data name="ribPronunciateButton_Label" xml:space="preserve">

@@ -2800,6 +2800,10 @@ Después del último grupo</value>
     <value>Convertir rebajas</value>
     <comment>ribbon edit</comment>
   </data>
+  <data name="ribConvertMarkdownButton_Screentip" xml:space="preserve">
+    <value>Convertir página o rebajas seleccionadas al formato OneNote</value>
+    <comment>ribbon edit</comment>
+  </data>
   <data name="ribCopyAcrossButton_Label" xml:space="preserve">
     <value>Copiar</value>
     <comment>ribbon table</comment>
@@ -3537,6 +3541,10 @@ Después del último grupo</value>
   </data>
   <data name="ribPreviewMarkdownButton_Label" xml:space="preserve">
     <value>Vista previa de rebajas</value>
+    <comment>ribbon edit</comment>
+  </data>
+  <data name="ribPreviewMarkdownButton_Screentip" xml:space="preserve">
+    <value>Vista previa de la página o texto seleccionado como rebaja</value>
     <comment>ribbon edit</comment>
   </data>
   <data name="ribPronunciateButton_Label" xml:space="preserve">

@@ -2800,6 +2800,10 @@ Nach der letzten Gruppe</value>
     <value>Markdown konvertieren</value>
     <comment>ribbon edit</comment>
   </data>
+  <data name="ribConvertMarkdownButton_Screentip" xml:space="preserve">
+    <value>Konvertieren Sie die Seite oder den ausgewählten Markdown in das OneNote-Format</value>
+    <comment>ribbon edit</comment>
+  </data>
   <data name="ribCopyAcrossButton_Label" xml:space="preserve">
     <value>Kopieren</value>
     <comment>ribbon table</comment>
@@ -3529,6 +3533,10 @@ Nach der letzten Gruppe</value>
   </data>
   <data name="ribPreviewMarkdownButton_Label" xml:space="preserve">
     <value>Vorschau des Markdowns</value>
+    <comment>ribbon edit</comment>
+  </data>
+  <data name="ribPreviewMarkdownButton_Screentip" xml:space="preserve">
+    <value>Vorschau der Seite oder des ausgewählten Texts als Markdown</value>
     <comment>ribbon edit</comment>
   </data>
   <data name="ribPronunciateButton_Label" xml:space="preserve">

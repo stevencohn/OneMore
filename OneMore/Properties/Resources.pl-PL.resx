@@ -2813,6 +2813,10 @@ Po ostatniej grupie</value>
     <value>Konwertuj Markdown</value>
     <comment>ribbon edit</comment>
   </data>
+  <data name="ribConvertMarkdownButton_Screentip" xml:space="preserve">
+    <value>Konwertuj stronę lub wybraną przecenę do formatu OneNote</value>
+    <comment>ribbon edit</comment>
+  </data>
   <data name="ribCopyAcrossButton_Label" xml:space="preserve">
     <value>Kopiuj</value>
     <comment>ribbon table</comment>
@@ -3550,6 +3554,10 @@ Po ostatniej grupie</value>
   </data>
   <data name="ribPreviewMarkdownButton_Label" xml:space="preserve">
     <value>Podgląd Markdown</value>
+    <comment>ribbon edit</comment>
+  </data>
+  <data name="ribPreviewMarkdownButton_Screentip" xml:space="preserve">
+    <value>Podgląd strony lub zaznaczony tekst jako przecena</value>
     <comment>ribbon edit</comment>
   </data>
   <data name="ribPronunciateButton_Label" xml:space="preserve">

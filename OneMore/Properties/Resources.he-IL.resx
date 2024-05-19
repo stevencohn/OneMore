@@ -2819,6 +2819,10 @@ ISO-code then comma then language name</comment>
     <value>המר Markdown</value>
     <comment>ribbon edit</comment>
   </data>
+  <data name="ribConvertMarkdownButton_Screentip" xml:space="preserve">
+    <value>המר את העמוד או הסימון שנבחר לפורמט OneNote</value>
+    <comment>ribbon edit</comment>
+  </data>
   <data name="ribCopyAcrossButton_Label" xml:space="preserve">
     <value>העתק</value>
     <comment>ribbon table</comment>
@@ -3548,6 +3552,10 @@ ISO-code then comma then language name</comment>
   </data>
   <data name="ribPreviewMarkdownButton_Label" xml:space="preserve">
     <value>תצוגה מקדימה של Markdown</value>
+    <comment>ribbon edit</comment>
+  </data>
+  <data name="ribPreviewMarkdownButton_Screentip" xml:space="preserve">
+    <value>תצוגה מקדימה של דף או טקסט שנבחר כסימון</value>
     <comment>ribbon edit</comment>
   </data>
   <data name="ribPronunciateButton_Label" xml:space="preserve">

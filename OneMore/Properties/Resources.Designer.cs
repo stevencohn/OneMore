@@ -7303,6 +7303,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Convert page or selected markdown to OneNote format.
+        /// </summary>
+        internal static string ribConvertMarkdownButton_Screentip {
+            get {
+                return ResourceManager.GetString("ribConvertMarkdownButton_Screentip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Copy Across.
         /// </summary>
         internal static string ribCopyAcrossButton_Label {
@@ -8976,6 +8985,15 @@ namespace River.OneMoreAddIn.Properties {
         internal static string ribPreviewMarkdownButton_Label {
             get {
                 return ResourceManager.GetString("ribPreviewMarkdownButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Preview page or selected text as markdown.
+        /// </summary>
+        internal static string ribPreviewMarkdownButton_Screentip {
+            get {
+                return ResourceManager.GetString("ribPreviewMarkdownButton_Screentip", resourceCulture);
             }
         }
         

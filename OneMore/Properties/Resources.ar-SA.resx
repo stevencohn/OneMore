@@ -2800,6 +2800,10 @@ ISO-code then comma then language name</comment>
     <value>تحويل تخفيض السعر</value>
     <comment>ribbon edit</comment>
   </data>
+  <data name="ribConvertMarkdownButton_Screentip" xml:space="preserve">
+    <value>تحويل الصفحة أو تخفيض السعر المحدد إلى تنسيق OneNote</value>
+    <comment>ribbon edit</comment>
+  </data>
   <data name="ribCopyAcrossButton_Label" xml:space="preserve">
     <value>نسخ عبر</value>
     <comment>ribbon table</comment>
@@ -3537,6 +3541,10 @@ ISO-code then comma then language name</comment>
   </data>
   <data name="ribPreviewMarkdownButton_Label" xml:space="preserve">
     <value>معاينة تخفيض السعر</value>
+    <comment>ribbon edit</comment>
+  </data>
+  <data name="ribPreviewMarkdownButton_Screentip" xml:space="preserve">
+    <value>معاينة الصفحة أو النص المحدد كتخفيض</value>
     <comment>ribbon edit</comment>
   </data>
   <data name="ribPronunciateButton_Label" xml:space="preserve">

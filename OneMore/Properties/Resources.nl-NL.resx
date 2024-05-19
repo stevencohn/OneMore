@@ -2801,6 +2801,10 @@ Na de laatste groep</value>
     <value>Markdown converteren</value>
     <comment>ribbon edit</comment>
   </data>
+  <data name="ribConvertMarkdownButton_Screentip" xml:space="preserve">
+    <value>Converteer pagina of geselecteerde prijsverlaging naar OneNote-indeling</value>
+    <comment>ribbon edit</comment>
+  </data>
   <data name="ribCopyAcrossButton_Label" xml:space="preserve">
     <value>Kopiëren over</value>
     <comment>ribbon table</comment>
@@ -3537,6 +3541,10 @@ Na de laatste groep</value>
   </data>
   <data name="ribPreviewMarkdownButton_Label" xml:space="preserve">
     <value>Bekijk een voorbeeld van de prijsverlaging</value>
+    <comment>ribbon edit</comment>
+  </data>
+  <data name="ribPreviewMarkdownButton_Screentip" xml:space="preserve">
+    <value>Bekijk een voorbeeld van de pagina of geselecteerde tekst als markdown</value>
     <comment>ribbon edit</comment>
   </data>
   <data name="ribPronunciateButton_Label" xml:space="preserve">
