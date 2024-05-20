@@ -83,12 +83,10 @@ namespace River.OneMoreAddIn.Styles
 			key = Path.GetFileNameWithoutExtension(key);
 
 			// appdata\Roaming\OneMore\Themes\key-edited.xml
-			root = LoadFromFile(Path.Combine(
-				PathHelper.GetAppDataPath(), Resx.ThemesFolder, CustomFolder, $"{key}.xml"));
+			root = LoadFromFile(Path.Combine(GetCustomThemeDirectory(), $"{key}.xml"));
 
 			// appdata\Roaming\OneMore\Themes\key.xml
-			root ??= LoadFromFile(Path.Combine(
-				PathHelper.GetAppDataPath(), Resx.ThemesFolder, $"{key}.xml"));
+			root ??= LoadFromFile(Path.Combine(GetThemeDirectory(), $"{key}.xml"));
 
 			if (root is null)
 			{
@@ -148,6 +146,18 @@ namespace River.OneMoreAddIn.Styles
 		}
 
 
+		public static string GetThemeDirectory()
+		{
+			return Path.Combine(PathHelper.GetAppDataPath(), Resx.ThemesFolder);
+		}
+
+
+		public static string GetCustomThemeDirectory()
+		{
+			return Path.Combine(PathHelper.GetAppDataPath(), Resx.ThemesFolder, CustomFolder);
+		}
+
+
 		public static void RecordTheme(string key)
 		{
 			var setprovider = new SettingsProvider();
@@ -162,7 +172,7 @@ namespace River.OneMoreAddIn.Styles
 
 		public Theme ResetPredefinedTheme(string key)
 		{
-			var prefix = Path.Combine(PathHelper.GetAppDataPath(), Resx.ThemesFolder);
+			var prefix = GetThemeDirectory();
 
 			var source = Path.Combine(prefix, $"{key}.xml");
 			if (File.Exists(source))

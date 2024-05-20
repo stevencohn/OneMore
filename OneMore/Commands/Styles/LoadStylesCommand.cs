@@ -6,6 +6,7 @@ namespace River.OneMoreAddIn.Commands
 {
 	using River.OneMoreAddIn.Styles;
 	using System.IO;
+	using System.Linq;
 	using System.Threading.Tasks;
 	using System.Windows.Forms;
 	using Resx = Properties.Resources;
@@ -40,8 +41,13 @@ namespace River.OneMoreAddIn.Commands
 
 		public Theme LoadTheme()
 		{
-			var path = Path.Combine(PathHelper.GetAppDataPath(), Resx.ThemesFolder);
-			PathHelper.EnsurePathExists(path);
+			var path = ThemeProvider.GetCustomThemeDirectory();
+			if (!Directory.Exists(path) ||
+				!Directory.EnumerateFiles(path, "*.xml").Any())
+			{
+				path = ThemeProvider.GetThemeDirectory();
+				PathHelper.EnsurePathExists(path);
+			}
 
 			using var dialog = new OpenFileDialog
 			{
