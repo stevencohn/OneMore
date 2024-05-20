@@ -892,7 +892,14 @@ namespace River.OneMoreAddIn.Commands
 			dialog.ShowHelp = true; // stupid, but this is needed to avoid hang
 			dialog.AutoUpgradeEnabled = true; // simpler UI, faster
 
-			var path = Path.Combine(PathHelper.GetAppDataPath(), Resx.ThemesFolder);
+			var path = ThemeProvider.GetCustomThemeDirectory();
+			if (!Directory.Exists(path) ||
+				!Directory.EnumerateFiles(path, "*.xml").Any())
+			{
+				path = ThemeProvider.GetThemeDirectory();
+				PathHelper.EnsurePathExists(path);
+			}
+
 			if (Directory.Exists(path))
 			{
 				dialog.InitialDirectory = path;
