@@ -19,7 +19,7 @@ namespace River.OneMoreAddIn.Styles
 	{
 		private const string SettingsKey = "pageTheme";
 		private const string SettingsKeyKey = "key";
-		private const string EditedLabel = "-edited";
+		private const string CustomFolder = "custom";
 
 		private readonly Theme theme;
 
@@ -80,7 +80,7 @@ namespace River.OneMoreAddIn.Styles
 		{
 			// appdata\Roaming\OneMore\Themes\key-edited.xml
 			var root = LoadFromFile(Path.Combine(
-				PathHelper.GetAppDataPath(), Resx.ThemesFolder, $"{key}{EditedLabel}.xml"));
+				PathHelper.GetAppDataPath(), Resx.ThemesFolder, CustomFolder, $"{key}.xml"));
 
 			// appdata\Roaming\OneMore\Themes\key.xml
 			root ??= LoadFromFile(Path.Combine(
@@ -158,14 +158,14 @@ namespace River.OneMoreAddIn.Styles
 
 		public Theme ResetPredefinedTheme(string key)
 		{
-			var prefix = Path.Combine(PathHelper.GetAppDataPath(), Resx.ThemesFolder, key);
+			var prefix = Path.Combine(PathHelper.GetAppDataPath(), Resx.ThemesFolder);
 
-			var source = $"{prefix}.xml";
+			var source = Path.Combine(prefix, $"{key}.xml");
 			if (File.Exists(source))
 			{
 				try
 				{
-					var target = $"{prefix}{EditedLabel}.xml";
+					var target = Path.Combine(prefix, CustomFolder, $"{key}.xml");
 					if (File.Exists(target))
 					{
 						File.Delete(target);
@@ -200,22 +200,12 @@ namespace River.OneMoreAddIn.Styles
 
 				path = Path.Combine(
 					PathHelper.GetAppDataPath(), Resx.ThemesFolder,
-					theme.IsPredefined ? $"{theme.Key}{EditedLabel}" : theme.Key) + ".xml";
+					theme.IsPredefined ? CustomFolder : string.Empty, $"{key}.xml");
 			}
 			else
 			{
-				var dir = Path.GetDirectoryName(path);
-				var ext = Path.GetExtension(path);
-
 				key = Path.GetFileNameWithoutExtension(path);
-				if (key.EndsWith(EditedLabel))
-				{
-					key = key.Substring(0, key.Length - 7);
-				}
-
 				name = key;
-
-				path = Path.Combine(dir, theme.IsPredefined ? $"{key}{EditedLabel}" : key) + ext;
 			}
 
 			PathHelper.EnsurePathExists(Path.GetDirectoryName(path));
