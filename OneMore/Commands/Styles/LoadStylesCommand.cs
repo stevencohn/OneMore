@@ -59,12 +59,14 @@ namespace River.OneMoreAddIn.Commands
 				return null;
 			}
 
-			var theme = new ThemeProvider(dialog.FileName).Theme;
-			if (theme != null)
+			var provider = new ThemeProvider(dialog.FileName);
+			var theme = provider.Theme;
+			if (theme is not null)
 			{
 				var styles = theme.GetStyles();
 				if (styles.Count > 0)
 				{
+					ThemeProvider.RecordTheme(theme.Key);
 					return theme;
 				}
 			}

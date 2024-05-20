@@ -35,19 +35,6 @@ namespace River.OneMoreAddIn.Styles
 			// may be null if from default constructor and no setting
 			if (!string.IsNullOrEmpty(key))
 			{
-				// key actually specifies the path to a theme file
-				if (key.IndexOf(Path.DirectorySeparatorChar) >= 0 ||
-					key.IndexOf(Path.AltDirectorySeparatorChar) >= 0)
-				{
-					var root = LoadFromFile(key);
-					if (root is not null)
-					{
-						theme = new Theme(root, Path.GetFileNameWithoutExtension(key));
-					}
-
-					// explicit path not found, try just key...
-				}
-
 				// load by key in expected appdata paths
 				theme = Load(key);
 				return;
@@ -78,8 +65,25 @@ namespace River.OneMoreAddIn.Styles
 
 		private Theme Load(string key)
 		{
+			XElement root;
+
+			// key actually specifies the path to a theme file
+			if (key.IndexOf(Path.DirectorySeparatorChar) >= 0 ||
+				key.IndexOf(Path.AltDirectorySeparatorChar) >= 0)
+			{
+				root = LoadFromFile(key);
+				if (root is not null)
+				{
+					return new Theme(root, Path.GetFileNameWithoutExtension(key));
+				}
+
+				// explicit path not found, try just key...
+			}
+
+			key = Path.GetFileNameWithoutExtension(key);
+
 			// appdata\Roaming\OneMore\Themes\key-edited.xml
-			var root = LoadFromFile(Path.Combine(
+			root = LoadFromFile(Path.Combine(
 				PathHelper.GetAppDataPath(), Resx.ThemesFolder, CustomFolder, $"{key}.xml"));
 
 			// appdata\Roaming\OneMore\Themes\key.xml
