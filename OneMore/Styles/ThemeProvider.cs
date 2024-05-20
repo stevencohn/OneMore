@@ -1,5 +1,5 @@
 ﻿//************************************************************************************************
-// Copyright © 2021 Steven M Cohn.  All rights reserved.
+// Copyright © 2021 Steven M Cohn. All rights reserved.
 //************************************************************************************************
 
 #pragma warning disable S1117 // Local variables should not shadow class fields
@@ -19,6 +19,7 @@ namespace River.OneMoreAddIn.Styles
 	{
 		private const string SettingsKey = "pageTheme";
 		private const string SettingsKeyKey = "key";
+		private const string CustomFolder = "custom";
 
 		private readonly Theme theme;
 
@@ -35,24 +36,26 @@ namespace River.OneMoreAddIn.Styles
 			if (!string.IsNullOrEmpty(key))
 			{
 				// key actually specifies the path to a theme file
-				if (!string.IsNullOrEmpty(Path.GetDirectoryName(key)))
+				if (key.IndexOf(Path.DirectorySeparatorChar) >= 0 ||
+					key.IndexOf(Path.AltDirectorySeparatorChar) >= 0)
 				{
 					var root = LoadFromFile(key);
-					if (root != null)
+					if (root is not null)
 					{
 						theme = new Theme(root, Path.GetFileNameWithoutExtension(key));
 					}
 
-					// explicit path not found, leave theme null
-					return;
+					// explicit path not found, try just key...
 				}
 
 				// load by key in expected appdata paths
 				theme = Load(key);
+				return;
 			}
-
+			
 			// last ditch, load something!
-			theme ??= new Theme(XElement.Parse(Resx.DefaultStyles), "Default");
+			var defroot = XElement.Parse(Resx.DefaultStyles);
+			theme = new Theme(defroot, defroot.Attribute("name").Value);
 		}
 
 
@@ -62,9 +65,9 @@ namespace River.OneMoreAddIn.Styles
 
 		private static string GetSavedKey()
 		{
-			var sp = new SettingsProvider();
-			var settings = sp.GetCollection(SettingsKey);
-			if (settings != null)
+			var provider = new SettingsProvider();
+			var settings = provider.GetCollection(SettingsKey);
+			if (settings is not null)
 			{
 				return settings.Get<string>(SettingsKeyKey);
 			}
@@ -75,16 +78,26 @@ namespace River.OneMoreAddIn.Styles
 
 		private Theme Load(string key)
 		{
-			// appdata\Roaming\OneMore\Themes\key.xml
+			// appdata\Roaming\OneMore\Themes\key-edited.xml
 			var root = LoadFromFile(Path.Combine(
+				PathHelper.GetAppDataPath(), Resx.ThemesFolder, CustomFolder, $"{key}.xml"));
+
+			// appdata\Roaming\OneMore\Themes\key.xml
+			root ??= LoadFromFile(Path.Combine(
 				PathHelper.GetAppDataPath(), Resx.ThemesFolder, $"{key}.xml"));
 
-			// appdata\Roaming\OneMore\CustomStyles.xml -- backwards compatibility
-			root ??= LoadFromFile(Path.Combine(
-				PathHelper.GetAppDataPath(), Resx.CustomStylesFilename));
+			if (root is null)
+			{
+				// return default style set
+				root = XElement.Parse(Resx.DefaultStyles);
+				key = root.Attribute("name").Value;
+			}
 
-			// key not found, custom not found, so load default theme
-			root ??= XElement.Parse(Resx.DefaultStyles);
+			// backwards-compatible upgrade; eliminate Default.xml
+			if (key == "Default")
+			{
+				key = root.Attribute("name").Value;
+			}
 
 			return new Theme(root, key);
 		}
@@ -108,7 +121,7 @@ namespace River.OneMoreAddIn.Styles
 				if (root.Name.LocalName == "CustomStyles" ||
 					root.Name.LocalName == "Theme")
 				{
-					if (root.Attribute("name") == null)
+					if (root.Attribute("name") is null)
 					{
 						// themes provided by OneMore will have an internal name
 						// but user-defined themes will not so infer from filename
@@ -143,6 +156,31 @@ namespace River.OneMoreAddIn.Styles
 		}
 
 
+		public Theme ResetPredefinedTheme(string key)
+		{
+			var prefix = Path.Combine(PathHelper.GetAppDataPath(), Resx.ThemesFolder);
+
+			var source = Path.Combine(prefix, $"{key}.xml");
+			if (File.Exists(source))
+			{
+				try
+				{
+					var target = Path.Combine(prefix, CustomFolder, $"{key}.xml");
+					if (File.Exists(target))
+					{
+						File.Delete(target);
+					}
+				}
+				catch (Exception exc)
+				{
+					logger.WriteLine($"error resetting theme {key}", exc);
+				}
+			}
+
+			return Load(key);
+		}
+
+
 		public static void Save(Style style)
 		{
 			var theme = new ThemeProvider().Theme;
@@ -157,18 +195,17 @@ namespace River.OneMoreAddIn.Styles
 			string name;
 			if (string.IsNullOrEmpty(path))
 			{
-				path = Path.Combine(PathHelper.GetAppDataPath(), Resx.ThemesFolder, theme.Key);
 				key = theme.Key;
 				name = theme.Name;
+
+				path = Path.Combine(
+					PathHelper.GetAppDataPath(), Resx.ThemesFolder,
+					theme.IsPredefined ? CustomFolder : string.Empty, $"{key}.xml");
 			}
 			else
 			{
-				key = name = Path.GetFileNameWithoutExtension(path);
-			}
-
-			if (string.IsNullOrEmpty(Path.GetExtension(path)))
-			{
-				path = $"{path}.xml";
+				key = Path.GetFileNameWithoutExtension(path);
+				name = key;
 			}
 
 			PathHelper.EnsurePathExists(Path.GetDirectoryName(path));
@@ -177,10 +214,23 @@ namespace River.OneMoreAddIn.Styles
 			var root = new XElement("Theme",
 				new XAttribute("key", key),
 				new XAttribute("name", name),
-				new XAttribute("color", theme.Color),
-				new XAttribute("setColor", theme.SetColor.ToString()),
-				new XAttribute("dark", theme.Dark.ToString())
+				new XAttribute("color", theme.Color)
 				);
+
+			if (theme.SetColor)
+			{
+				root.Add(new XAttribute("setColor", "True"));
+			}
+
+			if (theme.Dark)
+			{
+				root.Add(new XAttribute("dark", "True"));
+			}
+
+			if (theme.IsPredefined)
+			{
+				root.Add(new XAttribute("isPredefined", "True"));
+			}
 
 			foreach (var record in theme.GetRecords())
 			{
@@ -188,7 +238,6 @@ namespace River.OneMoreAddIn.Styles
 			}
 
 			root.Save(path, SaveOptions.None);
-
 		}
 	}
 }

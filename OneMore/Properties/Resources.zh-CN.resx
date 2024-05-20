@@ -687,10 +687,6 @@
     <value>{0} (Ctrl+Alt+Shift + {1})</value>
     <comment>Screentip for custom style gallery tiles</comment>
   </data>
-  <data name="CustomStylesFilename" xml:space="preserve">
-    <value>CustomStyles.xml</value>
-    <comment>FILENAME</comment>
-  </data>
   <data name="DeleteFormulaCommand_Deleted" xml:space="preserve">
     <value>已从{0}个单元格中删除了公式</value>
     <comment>delete command message</comment>

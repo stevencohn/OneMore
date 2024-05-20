@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Theme key="Red" name="Red" color="automatic" setColor="False" dark="False">
+<Theme key="Red" name="Red" color="automatic" setColor="False" dark="False" isPredefined="True">
   <Style index="0" name="Heading 1" font="Calibri" fontColor="#87290E" fontSize="18.0" spaceBefore="0.0" spaceAfter="0.0" spacing="0.0" applyColors="true" styleType="Heading" />
   <Style index="1" name="Heading 2" font="Calibri" fontColor="#B43512" fontSize="18.0" spaceBefore="0.0" spaceAfter="0.0" spacing="0.0" applyColors="true" styleType="Heading" />
   <Style index="2" name="Heading 3" font="Calibri Light" fontColor="#D93F15" fontSize="16.0" spaceBefore="0.0" spaceAfter="0.0" spacing="0.0" applyColors="true" styleType="Heading" />

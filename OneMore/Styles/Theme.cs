@@ -36,6 +36,9 @@ namespace River.OneMoreAddIn.Styles
 				root.Add(new XAttribute("name", name));
 			}
 
+			root.GetAttributeValue("isPredefined", out var isPredefined, false);
+			IsPredefined = isPredefined;
+
 			root.GetAttributeValue("color", out color, string.Empty);
 			root.GetAttributeValue("setColor", out setColor, false);
 			root.GetAttributeValue("dark", out dark, false);
@@ -49,19 +52,22 @@ namespace River.OneMoreAddIn.Styles
 		/// <param name="key">The access key for the theme</param>
 		/// <param name="name">The display name of the theme</param>
 		/// <param name="dark">True if intended for a dark background</param>
-		public Theme(List<Style> styles, string key, string name, string color, bool setColor, bool dark)
+		public Theme(List<Style> styles, string key, string name,
+			string color, bool setColor, bool dark, bool isPredefined)
 		{
 			Key = key;
 			this.name = name;
 			this.color = color;
 			this.setColor = setColor;
 			this.dark = dark;
+			this.IsPredefined = isPredefined;
 
 			root = new XElement("Theme",
 				new XAttribute("name", name),
 				new XAttribute("color", color),
 				new XAttribute("setColor", setColor.ToString()),
-				new XAttribute("dark", dark.ToString())
+				new XAttribute("dark", dark.ToString()),
+				new XAttribute("isPredefined", isPredefined.ToString())
 				);
 
 			ns = root.GetDefaultNamespace();
@@ -84,6 +90,13 @@ namespace River.OneMoreAddIn.Styles
 			get => color;
 			set => color = value;
 		}
+
+
+		/// <summary>
+		/// Gets a value indicating whether this style was predefined by OneMore
+		/// or created by the user
+		/// </summary>
+		public bool IsPredefined { get; set; }
 
 
 		/// <summary>

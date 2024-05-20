@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Theme name="DarkBlue" dark="true">
+<Theme name="DarkBlue" dark="true" isPredefined="True">
   <Style index="0" name="Heading 1" font="Segoe UI" fontColor="#B0CEEA" fontSize="18.0" spaceBefore="12.0" spaceAfter="0.0" applyColors="true" styleType="Heading" />
   <Style index="1" name="Heading 2" font="Segoe UI" fontColor="#69A4D8" fontSize="16.0" spaceBefore="12.0" spaceAfter="0.0" applyColors="true" styleType="Heading" />
   <Style index="2" name="Heading 3" font="Segoe UI Semibold" fontColor="#327DC3" fontSize="14.0" spaceBefore="12.0" spaceAfter="0.0" applyColors="true" styleType="Heading" />

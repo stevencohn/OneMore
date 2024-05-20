@@ -697,10 +697,6 @@ Invert</value>
     <value>{0} (Ctrl+Alt+Shift + {1})</value>
     <comment>Screentip for My Styles gallery tiles</comment>
   </data>
-  <data name="CustomStylesFilename" xml:space="preserve">
-    <value>CustomStyles.xml</value>
-    <comment>SKIP, filename</comment>
-  </data>
   <data name="DatabaseFilename" xml:space="preserve">
     <value>OneMore.db</value>
     <comment>SKIP, Sqlite database file name</comment>

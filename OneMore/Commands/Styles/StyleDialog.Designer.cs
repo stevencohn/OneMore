@@ -73,9 +73,11 @@
 			this.mainTools = new River.OneMoreAddIn.UI.MoreMenuStrip();
 			this.loadButton = new River.OneMoreAddIn.UI.MoreMenuItem();
 			this.saveButton = new River.OneMoreAddIn.UI.MoreMenuItem();
-			this.newStyleButton = new River.OneMoreAddIn.UI.MoreMenuItem();
 			this.mainSep = new System.Windows.Forms.ToolStripSeparator();
+			this.newStyleButton = new River.OneMoreAddIn.UI.MoreMenuItem();
 			this.reorderButton = new River.OneMoreAddIn.UI.MoreMenuItem();
+			this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+			this.resetButton = new River.OneMoreAddIn.UI.MoreMenuItem();
 			this.tooltip = new System.Windows.Forms.ToolTip(this.components);
 			((System.ComponentModel.ISupportInitialize)(this.spaceBeforeSpinner)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.spaceAfterSpinner)).BeginInit();
@@ -154,6 +156,7 @@
 			this.nameBox.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.nameBox.Location = new System.Drawing.Point(169, 31);
 			this.nameBox.Name = "nameBox";
+			this.nameBox.ProcessEnterKey = false;
 			this.nameBox.Size = new System.Drawing.Size(356, 31);
 			this.nameBox.TabIndex = 0;
 			this.nameBox.ThemedBack = null;
@@ -214,6 +217,7 @@
 			this.cancelButton.Name = "cancelButton";
 			this.cancelButton.ShowBorder = true;
 			this.cancelButton.Size = new System.Drawing.Size(116, 38);
+			this.cancelButton.StylizeImage = false;
 			this.cancelButton.TabIndex = 12;
 			this.cancelButton.Text = "Cancel";
 			this.cancelButton.ThemedBack = null;
@@ -231,6 +235,7 @@
 			this.okButton.Name = "okButton";
 			this.okButton.ShowBorder = true;
 			this.okButton.Size = new System.Drawing.Size(116, 38);
+			this.okButton.StylizeImage = false;
 			this.okButton.TabIndex = 11;
 			this.okButton.Text = "OK";
 			this.okButton.ThemedBack = null;
@@ -463,7 +468,7 @@
 			// defaultBlackToolStripMenuItem
 			// 
 			this.defaultBlackToolStripMenuItem.Name = "defaultBlackToolStripMenuItem";
-			this.defaultBlackToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
+			this.defaultBlackToolStripMenuItem.Size = new System.Drawing.Size(226, 34);
 			this.defaultBlackToolStripMenuItem.Text = "Default (Black)";
 			this.defaultBlackToolStripMenuItem.Click += new System.EventHandler(this.ChangeColorToDefault);
 			// 
@@ -475,8 +480,11 @@
 			this.ignoredBox.Location = new System.Drawing.Point(169, 244);
 			this.ignoredBox.Name = "ignoredBox";
 			this.ignoredBox.Size = new System.Drawing.Size(176, 25);
+			this.ignoredBox.StylizeImage = false;
 			this.ignoredBox.TabIndex = 6;
 			this.ignoredBox.Text = "Disable spell check";
+			this.ignoredBox.ThemedBack = null;
+			this.ignoredBox.ThemedFore = null;
 			this.tooltip.SetToolTip(this.ignoredBox, "Disable spell check for selected text");
 			this.ignoredBox.UseVisualStyleBackColor = true;
 			this.ignoredBox.CheckedChanged += new System.EventHandler(this.ChangeIgnored);
@@ -535,8 +543,11 @@
 			this.darkBox.Location = new System.Drawing.Point(22, 33);
 			this.darkBox.Name = "darkBox";
 			this.darkBox.Size = new System.Drawing.Size(350, 25);
+			this.darkBox.StylizeImage = false;
 			this.darkBox.TabIndex = 0;
 			this.darkBox.Text = "Intended for pages with dark bakckgrounds";
+			this.darkBox.ThemedBack = null;
+			this.darkBox.ThemedFore = null;
 			this.tooltip.SetToolTip(this.darkBox, "Used in Page Color dialog to warn about non-readable text");
 			this.darkBox.UseVisualStyleBackColor = true;
 			// 
@@ -548,8 +559,11 @@
 			this.pageColorBox.Location = new System.Drawing.Point(22, 63);
 			this.pageColorBox.Name = "pageColorBox";
 			this.pageColorBox.Size = new System.Drawing.Size(403, 25);
+			this.pageColorBox.StylizeImage = false;
 			this.pageColorBox.TabIndex = 1;
 			this.pageColorBox.Text = "Change the page color when applying these styles";
+			this.pageColorBox.ThemedBack = null;
+			this.pageColorBox.ThemedFore = null;
 			this.pageColorBox.UseVisualStyleBackColor = true;
 			this.pageColorBox.CheckedChanged += new System.EventHandler(this.ChangePageColorOption);
 			// 
@@ -610,8 +624,11 @@
 			this.applyColorsBox.Location = new System.Drawing.Point(169, 213);
 			this.applyColorsBox.Name = "applyColorsBox";
 			this.applyColorsBox.Size = new System.Drawing.Size(125, 25);
+			this.applyColorsBox.StylizeImage = false;
 			this.applyColorsBox.TabIndex = 5;
 			this.applyColorsBox.Text = "Apply colors";
+			this.applyColorsBox.ThemedBack = null;
+			this.applyColorsBox.ThemedFore = null;
 			this.applyColorsBox.UseVisualStyleBackColor = true;
 			this.applyColorsBox.CheckedChanged += new System.EventHandler(this.ChangeApplyColorsOption);
 			// 
@@ -640,9 +657,11 @@
 			this.mainTools.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.loadButton,
             this.saveButton,
-            this.newStyleButton,
             this.mainSep,
-            this.reorderButton});
+            this.newStyleButton,
+            this.reorderButton,
+            this.toolStripSeparator1,
+            this.resetButton});
 			this.mainTools.Location = new System.Drawing.Point(4, 0);
 			this.mainTools.Name = "mainTools";
 			this.mainTools.Padding = new System.Windows.Forms.Padding(0, 0, 4, 0);
@@ -669,6 +688,12 @@
 			this.saveButton.Text = "Save as";
 			this.saveButton.Click += new System.EventHandler(this.SaveTheme);
 			// 
+			// mainSep
+			// 
+			this.mainSep.Margin = new System.Windows.Forms.Padding(0, 0, 6, 0);
+			this.mainSep.Name = "mainSep";
+			this.mainSep.Size = new System.Drawing.Size(6, 32);
+			// 
 			// newStyleButton
 			// 
 			this.newStyleButton.Font = new System.Drawing.Font("Segoe UI", 9F);
@@ -680,11 +705,6 @@
 			this.newStyleButton.Text = "New";
 			this.newStyleButton.Click += new System.EventHandler(this.AddStyle);
 			// 
-			// mainSep
-			// 
-			this.mainSep.Name = "mainSep";
-			this.mainSep.Size = new System.Drawing.Size(6, 32);
-			// 
 			// reorderButton
 			// 
 			this.reorderButton.Font = new System.Drawing.Font("Segoe UI", 9F);
@@ -694,6 +714,23 @@
 			this.reorderButton.Size = new System.Drawing.Size(114, 32);
 			this.reorderButton.Text = "Reorder";
 			this.reorderButton.Click += new System.EventHandler(this.ReorderStyles);
+			// 
+			// toolStripSeparator1
+			// 
+			this.toolStripSeparator1.Margin = new System.Windows.Forms.Padding(0, 0, 6, 0);
+			this.toolStripSeparator1.Name = "toolStripSeparator1";
+			this.toolStripSeparator1.Size = new System.Drawing.Size(6, 32);
+			// 
+			// resetButton
+			// 
+			this.resetButton.Enabled = false;
+			this.resetButton.Font = new System.Drawing.Font("Segoe UI", 9F);
+			this.resetButton.ForeColor = System.Drawing.Color.Black;
+			this.resetButton.Image = global::River.OneMoreAddIn.Properties.Resources.m_Reset;
+			this.resetButton.Name = "resetButton";
+			this.resetButton.Size = new System.Drawing.Size(94, 32);
+			this.resetButton.Text = "Reset";
+			this.resetButton.Click += new System.EventHandler(this.ResetTheme);
 			// 
 			// StyleDialog
 			// 
@@ -714,6 +751,7 @@
 			this.ShowInTaskbar = false;
 			this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
 			this.Text = "Custom Styles";
+			this.TopMost = true;
 			((System.ComponentModel.ISupportInitialize)(this.spaceBeforeSpinner)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.spaceAfterSpinner)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.previewBox)).EndInit();
@@ -780,5 +818,7 @@
 		private UI.MoreMenuItem superButton;
 		private UI.MoreMenuItem subButton;
 		private UI.MoreToolStrip styleTools;
+		private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+		private UI.MoreMenuItem resetButton;
 	}
 }

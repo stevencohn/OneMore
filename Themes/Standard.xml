@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Theme name="Standard">
+<Theme name="Standard" isPredefined="True">
   <Style index="0" name="Heading 1" font="Calibri" fontColor="#1E4E79" fontSize="16.0" spaceBefore="0.0" spaceAfter="0.0" applyColors="true" styleType="Heading" />
   <Style index="1" name="Heading 2" font="Calibri" fontColor="#2E75B5" fontSize="14.0" spaceBefore="0.0" spaceAfter="0.0" applyColors="true" styleType="Heading" />
   <Style index="2" name="Heading 3" font="Calibri" fontColor="#5B9BD5" fontSize="12.0" spaceBefore="0.0" spaceAfter="0.0" applyColors="true" styleType="Heading" />
