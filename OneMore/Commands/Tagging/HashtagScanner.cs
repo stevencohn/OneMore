@@ -26,7 +26,6 @@ namespace River.OneMoreAddIn.Commands
 		private readonly SettingsCollection settings;
 		private readonly int throttle;
 		private HashtagProvider provider;
-		private XNamespace ns;
 		private string[] notebookFilters;
 		private bool disposed;
 
@@ -135,7 +134,7 @@ namespace River.OneMoreAddIn.Commands
 				return (0, 0);
 			}
 
-			ns = one.GetNamespace(root);
+			var ns = one.GetNamespace(root);
 
 			var notebooks = root.Elements(ns + "Notebook");
 			if (notebooks.Any())
@@ -200,6 +199,7 @@ namespace River.OneMoreAddIn.Commands
 
 			int dirtyPages = 0;
 			int totalPages = 0;
+			var ns = one.GetNamespace(parent);
 
 			var sectionRefs = parent.Elements(ns + "Section")
 				.Where(e =>

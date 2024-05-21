@@ -394,8 +394,8 @@ namespace River.OneMoreAddIn.Commands
 
 
 		/// <summary>
-		/// Compares the recorded pages against the list of knownIDs and deletes any
-		/// records no longer in that list.
+		/// Deletes pages that used to have tags but no longer do by comparing the recorded
+		/// pages against the list of knownIDs and deleting any records no longer in that list.
 		/// </summary>
 		/// <param name="knownIDs"></param>
 		public void DeletePhantoms(List<string> knownIDs, string sectionID, string sectionPath)
@@ -405,10 +405,17 @@ namespace River.OneMoreAddIn.Commands
 			cmd.CommandText = "SELECT moreID, pageID FROM hashtag_page WHERE sectionID = @sid";
 			cmd.Parameters.AddWithValue("@sid", sectionID);
 
-			using var delcmd = con.CreateCommand();
-			delcmd.CommandType = CommandType.Text;
-			delcmd.CommandText = "DELETE FROM hashtag_page WHERE pageID = @pid";
-			delcmd.Parameters.Add("@pid", DbType.String);
+			using var tagcmd = con.CreateCommand();
+			tagcmd.CommandType = CommandType.Text;
+			tagcmd.CommandText =
+				"DELETE FROM hashtag WHERE moreID IN " +
+				"(SELECT DISTINCT moreID FROM hashtag_page WHERE pageID = @pid)";
+			tagcmd.Parameters.Add("@pid", DbType.String);
+
+			using var pagcmd = con.CreateCommand();
+			pagcmd.CommandType = CommandType.Text;
+			pagcmd.CommandText = "DELETE FROM hashtag_page WHERE pageID = @pid";
+			pagcmd.Parameters.Add("@pid", DbType.String);
 
 			using var transaction = con.BeginTransaction();
 			var count = 0;
@@ -421,8 +428,11 @@ namespace River.OneMoreAddIn.Commands
 					var pageID = reader.GetString(1);
 					if (!knownIDs.Contains(pageID))
 					{
-						delcmd.Parameters["@pid"].Value = pageID;
-						delcmd.ExecuteNonQuery();
+						tagcmd.Parameters["@pid"].Value = pageID;
+						tagcmd.ExecuteNonQuery();
+
+						pagcmd.Parameters["@pid"].Value = pageID;
+						pagcmd.ExecuteNonQuery();
 						count++;
 					}
 				}
