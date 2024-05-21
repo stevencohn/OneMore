@@ -7,6 +7,7 @@ namespace River.OneMoreAddIn.Commands
 	using River.OneMoreAddIn.UI;
 	using System;
 	using System.Collections.Generic;
+	using System.Data.SqlTypes;
 	using System.Linq;
 	using System.Windows.Forms;
 	using Resx = Properties.Resources;
@@ -243,6 +244,12 @@ namespace River.OneMoreAddIn.Commands
 
 		// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 		// Handlers...
+
+		private void DoCheckedChanged(object sender, EventArgs e)
+		{
+			dateTimePicker.Enabled = laterRadio.Checked;
+		}
+
 
 		private void DoSelectionsChanged(object sender, EventArgs e)
 		{

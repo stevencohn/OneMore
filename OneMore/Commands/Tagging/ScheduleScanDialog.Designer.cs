@@ -93,6 +93,7 @@
 			this.nowRadio.TabIndex = 5;
 			this.nowRadio.Text = "Run the san now";
 			this.nowRadio.UseVisualStyleBackColor = true;
+			this.nowRadio.CheckedChanged += new System.EventHandler(this.DoCheckedChanged);
 			// 
 			// laterRadio
 			// 
@@ -105,6 +106,7 @@
 			this.laterRadio.TabStop = true;
 			this.laterRadio.Text = "Schedule the scan at a later time";
 			this.laterRadio.UseVisualStyleBackColor = true;
+			this.laterRadio.CheckedChanged += new System.EventHandler(this.DoCheckedChanged);
 			// 
 			// hintLabel
 			// 
@@ -154,7 +156,7 @@
 			this.notebooksPanel.Location = new System.Drawing.Point(0, 388);
 			this.notebooksPanel.Name = "notebooksPanel";
 			this.notebooksPanel.Padding = new System.Windows.Forms.Padding(0, 0, 20, 20);
-			this.notebooksPanel.Size = new System.Drawing.Size(718, 279);
+			this.notebooksPanel.Size = new System.Drawing.Size(718, 288);
 			this.notebooksPanel.TabIndex = 25;
 			this.notebooksPanel.ThemedBack = "ControlLightLight";
 			this.notebooksPanel.ThemedFore = null;
@@ -171,7 +173,7 @@
 			this.booksPanel.BottomBorderSize = 0;
 			this.booksPanel.Location = new System.Drawing.Point(31, 46);
 			this.booksPanel.Name = "booksPanel";
-			this.booksPanel.Size = new System.Drawing.Size(656, 210);
+			this.booksPanel.Size = new System.Drawing.Size(656, 219);
 			this.booksPanel.TabIndex = 21;
 			this.booksPanel.ThemedBack = null;
 			this.booksPanel.ThemedFore = null;
@@ -289,7 +291,7 @@
 			this.buttonPanel.Controls.Add(this.okButton);
 			this.buttonPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
 			this.buttonPanel.ForeColor = System.Drawing.SystemColors.ControlText;
-			this.buttonPanel.Location = new System.Drawing.Point(0, 667);
+			this.buttonPanel.Location = new System.Drawing.Point(0, 676);
 			this.buttonPanel.Name = "buttonPanel";
 			this.buttonPanel.Size = new System.Drawing.Size(718, 61);
 			this.buttonPanel.TabIndex = 5;
@@ -349,7 +351,7 @@
 			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.CancelButton = this.cancelButton;
-			this.ClientSize = new System.Drawing.Size(718, 728);
+			this.ClientSize = new System.Drawing.Size(718, 737);
 			this.Controls.Add(this.notebooksPanel);
 			this.Controls.Add(this.topPanel);
 			this.Controls.Add(this.introBox);
@@ -362,6 +364,7 @@
 			this.Name = "ScheduleScanDialog";
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
 			this.Text = "Schedule Hashtag Scanning";
+			this.TopMost = true;
 			this.topPanel.ResumeLayout(false);
 			this.topPanel.PerformLayout();
 			this.notebooksPanel.ResumeLayout(false);
