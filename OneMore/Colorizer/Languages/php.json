@@ -49,13 +49,43 @@
       ]
     },
     {
-      "pattern": "\\b(__halt_compiler|abstract|and|array|as|break|callable|case|catch|class|clone|const|continue|declare|default|die|do|echo|else|elseif|em|ty|enddeclare|endfor|endforeach|endif|endswitch|endwhile|eval|exit|extends|final|finally|fn|for|foreach|function|global|goto|if|imple|ents|include|include_once|instanceof|insteadof|interface|isset|list|match|namespace|new|or|print|private|protected|public|require|req|ire_once|return|static|switch|throw|trait|try|unset|use|var|while|xor|yield)\\b",
+      "pattern": "\\b(__halt_compiler|abstract|and|as|break|callable|case|catch|class|clone|const|continue|declare|default|die|do|echo|else|elseif|em|ty|enddeclare|endfor|endforeach|endif|endswitch|endwhile|eval|exit|extends|final|finally|fn|for|foreach|function|global|goto|if|imple|ents|include|include_once|instanceof|insteadof|interface|isset|list|match|namespace|new|or|print|private|protected|public|require|req|ire_once|return|static|switch|throw|trait|try|unset|use|var|while|xor|yield)\\b",
       "captures": [
         "Keyword"
       ]
     },
     {
-      "pattern": "\\b([0-9]{1,})\\b",
+      "pattern": "\\b(array|bool|double|false|float|int|integer|object|mixed|never|null|numeric|real|string|true|void)\\b",
+      "captures": [
+        "Type"
+      ]
+    },
+    {
+      "pattern": "\\b(__(?>CLASS|DIR|FILE|FUNCTION|LINE|METHOD|NAMESPACE|TRAIT)__)\\b",
+      "captures": [
+        "Predefined"
+      ]
+    },
+    {
+      "pattern": "\\b(0|[1-9][0-9]*(?>_[0-9]+)*)\\b",
+      "captures": [
+        "Number"
+      ]
+    },
+    {
+      "pattern": "\\b(0[xX][0-9a-fA-F]+(?>_[0-9a-fA-F]+)*)\\b",
+      "captures": [
+        "Number"
+      ]
+    },
+    {
+      "pattern": "\\b(0[oO]?[0-7]+(?>_[0-7]+)*)\\b",
+      "captures": [
+        "Number"
+      ]
+    },
+    {
+      "pattern": "\\b(0[bB][01]+(?>_[01]+)*)\\b",
       "captures": [
         "Number"
       ]
