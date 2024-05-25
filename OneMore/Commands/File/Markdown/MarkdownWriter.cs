@@ -284,8 +284,8 @@ namespace River.OneMoreAddIn.Commands
 				case 3:     // to do
 				case 8:     // client request
 				case 12:    // schedule/callback
-				case 28:    // todo prio 1
-				case 71:    // todo prio 2
+				case 28:    // to do prio 1
+				case 71:    // to do prio 2
 				case 94:    // discuss person a/b
 				case 95:    // discuss manager
 					var check = element.Attribute("completed").Value == "true" ? "x" : " ";

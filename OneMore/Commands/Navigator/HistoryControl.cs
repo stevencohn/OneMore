@@ -47,7 +47,8 @@ namespace River.OneMoreAddIn.Commands
 				{
 					var info = (HierarchyInfo)label.Tag;
 
-					// TODO: this breaks the space-time continuum
+					// Update the view immediately; this breaks the space-time continuum,
+					// not having to wait for the next update, but provides a better UX
 					NavigatorWindow.SetVisited(info.PageId);
 
 					await using var one = new OneNote();

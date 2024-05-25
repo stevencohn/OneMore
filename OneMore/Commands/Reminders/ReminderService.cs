@@ -190,9 +190,17 @@ namespace River.OneMoreAddIn.Commands
 				return false;
 			}
 
-			reminders.Remove(orphan);
-			page.SetMeta(MetaNames.Reminder, serializer.EncodeContent(reminders));
-			await one.Update(page);
+			// TODO - reminder might be lost if a page is moved to another section, changing
+			// its pageID and the IDs of its objects, thereby breaking the reminder hyperlink.
+			// But we don't want to just delete the reminder, instead highlight it to the
+			// user as broken. Do we need to capture more path info in the reminder so the
+			// user has a chance of rewiring it???
+
+			logger.WriteLine($"reminder hyperlink broken \"{reminder.Subject}\" ({reminder.ObjectUri})");
+
+			//reminders.Remove(orphan);
+			//page.SetMeta(MetaNames.Reminder, serializer.EncodeContent(reminders));
+			//await one.Update(page);
 
 			return false;
 		}
