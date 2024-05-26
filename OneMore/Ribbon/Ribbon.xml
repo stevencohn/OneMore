@@ -1096,6 +1096,18 @@
         onAction="SortPagesCmd"
         insertBeforeMso="RenamePageOneNote"/>
     </contextMenu>
+    <contextMenu idMso="ContextMenuOutlineHandle">
+      <button
+        id="ctxArrangeContainersButton"
+        imageMso="WindowsArrangeAll"
+        getLabel="GetRibbonLabel"
+        getScreentip="GetRibbonScreentip"
+        onAction="ArrangeContainersCmd"
+        insertBeforeMso="Cut"/>
+      <menuSeparator
+        id="omOutlineContextMenuSeparator"
+        insertBeforeMso="Cut"/>
+    </contextMenu>
     <contextMenu idMso="ContextMenuPicture">
       <button
         id="ctxAddCaptionButton"
