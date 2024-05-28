@@ -486,6 +486,10 @@ Invert</value>
     <value>Wrong number of function parameters</value>
     <comment>error</comment>
   </data>
+  <data name="CleanRemindersCommand_count" xml:space="preserve">
+    <value>Cleaned up {0} orphaned reminders</value>
+    <comment>message box</comment>
+  </data>
   <data name="ClearLog_Message" xml:space="preserve">
     <value>Clear the log file now?</value>
     <comment>message box message</comment>
@@ -2766,6 +2770,14 @@ After last group</value>
   <data name="ribCleanMenu_Label" xml:space="preserve">
     <value>Clean</value>
     <comment>ribbon menu</comment>
+  </data>
+  <data name="ribCleanRemindersButton_Label" xml:space="preserve">
+    <value>Clean Reminders</value>
+    <comment>ribbon reminders</comment>
+  </data>
+  <data name="ribCleanRemindersButton_Screentip" xml:space="preserve">
+    <value>Clean broken reminders on this page</value>
+    <comment>ribbon reminders</comment>
   </data>
   <data name="ribClearBackgroundButton_Label" xml:space="preserve">
     <value>Clear Background Color</value>

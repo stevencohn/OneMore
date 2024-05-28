@@ -716,6 +716,12 @@
                 getScreentip="GetRibbonScreentip"
                 onAction="RemindCmd"/>
               <button
+                id="ribCleanRemindersButton"
+                imageMso="FileWorkflowTasks"
+                getLabel="GetRibbonLabel"
+                getScreentip="GetRibbonScreentip"
+                onAction="CleanRemindersCmd"/>
+              <button
                 id="ribCompleteReminderButton"
                 imageMso="AcceptTask"
                 getLabel="GetRibbonLabel"

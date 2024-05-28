@@ -901,6 +901,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Cleaned up {0} orphaned reminders.
+        /// </summary>
+        internal static string CleanRemindersCommand_count {
+            get {
+                return ResourceManager.GetString("CleanRemindersCommand_count", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Clear the log file now?.
         /// </summary>
         internal static string ClearLog_Message {
@@ -7137,6 +7146,24 @@ namespace River.OneMoreAddIn.Properties {
         internal static string ribCleanMenu_Label {
             get {
                 return ResourceManager.GetString("ribCleanMenu_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Clean Reminders.
+        /// </summary>
+        internal static string ribCleanRemindersButton_Label {
+            get {
+                return ResourceManager.GetString("ribCleanRemindersButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Clean broken reminders on this page.
+        /// </summary>
+        internal static string ribCleanRemindersButton_Screentip {
+            get {
+                return ResourceManager.GetString("ribCleanRemindersButton_Screentip", resourceCulture);
             }
         }
         

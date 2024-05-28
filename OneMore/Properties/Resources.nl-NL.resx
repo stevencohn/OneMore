@@ -478,6 +478,10 @@ Omkeren</value>
     <value>Verkeerd aantal functieparameters</value>
     <comment>error</comment>
   </data>
+  <data name="CleanRemindersCommand_count" xml:space="preserve">
+    <value>{0} zwevende herinneringen opgeschoond</value>
+    <comment>message box</comment>
+  </data>
   <data name="ClearLog_Message" xml:space="preserve">
     <value>Wilt u het logbestand nu wissen?</value>
     <comment>message box message</comment>
@@ -2730,6 +2734,14 @@ Na de laatste groep</value>
   <data name="ribCleanMenu_Label" xml:space="preserve">
     <value>Schoon</value>
     <comment>Ribbon OneMore menu item</comment>
+  </data>
+  <data name="ribCleanRemindersButton_Label" xml:space="preserve">
+    <value>Schone herinneringen</value>
+    <comment>ribbon reminders</comment>
+  </data>
+  <data name="ribCleanRemindersButton_Screentip" xml:space="preserve">
+    <value>Reinig kapotte herinneringen op deze pagina</value>
+    <comment>ribbon reminders</comment>
   </data>
   <data name="ribClearBackgroundButton_Label" xml:space="preserve">
     <value>Heldere achtergrondkleur</value>

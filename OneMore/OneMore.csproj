@@ -185,6 +185,7 @@
     <Compile Include="Commands\Page\DuplicatePageCommand.cs" />
     <Compile Include="Commands\Page\MovePageCommand.cs" />
     <Compile Include="Commands\References\HyperlinkProvider.cs" />
+    <Compile Include="Commands\Reminders\CleanRemindersCommand.cs" />
     <Compile Include="Commands\Snippets\Emoji\Emojis.cs" />
     <Compile Include="Commands\Settings\ColorizerSheet.cs">
       <SubType>UserControl</SubType>

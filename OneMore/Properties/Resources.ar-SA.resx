@@ -477,6 +477,10 @@
     <value>رقم خاطئ لمعلمات الوظيفة</value>
     <comment>error</comment>
   </data>
+  <data name="CleanRemindersCommand_count" xml:space="preserve">
+    <value>تم تنظيف {0} من التذكيرات المعزولة</value>
+    <comment>message box</comment>
+  </data>
   <data name="ClearLog_Message" xml:space="preserve">
     <value>مسح ملف السجل الآن؟</value>
     <comment>message box message</comment>
@@ -2729,6 +2733,14 @@ ISO-code then comma then language name</comment>
   <data name="ribCleanMenu_Label" xml:space="preserve">
     <value>نظيف</value>
     <comment>Ribbon OneMore menu item</comment>
+  </data>
+  <data name="ribCleanRemindersButton_Label" xml:space="preserve">
+    <value>تذكيرات نظيفة</value>
+    <comment>ribbon reminders</comment>
+  </data>
+  <data name="ribCleanRemindersButton_Screentip" xml:space="preserve">
+    <value>تنظيف التذكيرات المعطلة في هذه الصفحة</value>
+    <comment>ribbon reminders</comment>
   </data>
   <data name="ribClearBackgroundButton_Label" xml:space="preserve">
     <value>مسح لون الخلفية</value>

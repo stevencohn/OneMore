@@ -477,6 +477,10 @@ Umkehren</value>
     <value>Falsche Anzahl von Funktionsparametern</value>
     <comment>error</comment>
   </data>
+  <data name="CleanRemindersCommand_count" xml:space="preserve">
+    <value>{0} verwaiste Erinnerungen wurden bereinigt</value>
+    <comment>message box</comment>
+  </data>
   <data name="ClearLog_Message" xml:space="preserve">
     <value>Protokolldatei jetzt löschen?</value>
     <comment>message box message</comment>
@@ -2727,6 +2731,14 @@ Nach der letzten Gruppe</value>
   <data name="ribCleanMenu_Label" xml:space="preserve">
     <value>Säubern</value>
     <comment>Ribbon OneMore menu item</comment>
+  </data>
+  <data name="ribCleanRemindersButton_Label" xml:space="preserve">
+    <value>Saubere Erinnerungen</value>
+    <comment>ribbon reminders</comment>
+  </data>
+  <data name="ribCleanRemindersButton_Screentip" xml:space="preserve">
+    <value>Bereinigen Sie defekte Erinnerungen auf dieser Seite</value>
+    <comment>ribbon reminders</comment>
   </data>
   <data name="ribClearBackgroundButton_Label" xml:space="preserve">
     <value>Klare Hintergrundfarbe</value>

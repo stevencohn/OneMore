@@ -147,6 +147,11 @@ namespace River.OneMoreAddIn
 			=> await factory.Run<GotoFavoriteCommand>(null);
 
 
+		[Command("ribCleanRemindersButton_Label", Keys.None, "ribRemindersMenu")]
+		public async Task CleanRemindersCmd(IRibbonControl control)
+			=> await factory.Run<CleanRemindersCommand>();
+
+
 		[Command("ribClearBackgroundButton_Label", Keys.None, "ribCleanMenu")]
 		public async Task ClearBackgroundCmd(IRibbonControl control)
 			=> await factory.Run<ClearBackgroundCommand>();

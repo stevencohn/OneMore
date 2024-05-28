@@ -476,6 +476,10 @@
     <value>功能参数数量错误</value>
     <comment>error</comment>
   </data>
+  <data name="CleanRemindersCommand_count" xml:space="preserve">
+    <value>清理了 {0} 个孤立的提醒</value>
+    <comment>message box</comment>
+  </data>
   <data name="ClearLog_Message" xml:space="preserve">
     <value>是否现在清除日志文件？</value>
     <comment>message box message</comment>
@@ -2728,6 +2732,14 @@ ISO-code then comma then language name</comment>
   <data name="ribCleanMenu_Label" xml:space="preserve">
     <value>清洁</value>
     <comment>Ribbon OneMore menu item</comment>
+  </data>
+  <data name="ribCleanRemindersButton_Label" xml:space="preserve">
+    <value>清洁提醒</value>
+    <comment>ribbon reminders</comment>
+  </data>
+  <data name="ribCleanRemindersButton_Screentip" xml:space="preserve">
+    <value>清理此页面上损坏的提醒</value>
+    <comment>ribbon reminders</comment>
   </data>
   <data name="ribClearBackgroundButton_Label" xml:space="preserve">
     <value>清除背景颜色</value>

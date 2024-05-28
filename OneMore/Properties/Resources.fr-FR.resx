@@ -477,6 +477,10 @@ Inverser</value>
     <value>Mauvais nombre de paramètres de fonction</value>
     <comment>error</comment>
   </data>
+  <data name="CleanRemindersCommand_count" xml:space="preserve">
+    <value>Nettoyage de {0} rappels orphelins</value>
+    <comment>message box</comment>
+  </data>
   <data name="ClearLog_Message" xml:space="preserve">
     <value>Effacer le fichier journal maintenant?</value>
     <comment>message box message</comment>
@@ -2729,6 +2733,14 @@ Après le dernier groupe</value>
   <data name="ribCleanMenu_Label" xml:space="preserve">
     <value>Nettoyer</value>
     <comment>Ribbon OneMore menu item</comment>
+  </data>
+  <data name="ribCleanRemindersButton_Label" xml:space="preserve">
+    <value>Rappels propres</value>
+    <comment>ribbon reminders</comment>
+  </data>
+  <data name="ribCleanRemindersButton_Screentip" xml:space="preserve">
+    <value>Nettoyer les rappels brisés sur cette page</value>
+    <comment>ribbon reminders</comment>
   </data>
   <data name="ribClearBackgroundButton_Label" xml:space="preserve">
     <value>Couleur d'arrière-plan claire</value>
