@@ -40,24 +40,26 @@ namespace River.OneMoreAddIn.Styles
 			Justification = "<Pending>")]
 		static StyleBase()
 		{
+			DefaultFontFamily = "Calibri";
+			DefaultFontSize = 11.0;
+
 			// fetch default font attributes from Registyr
 			var key = Registry.CurrentUser.OpenSubKey(EditingKey, false);
 			if (key is not null)
 			{
-				if (key.GetValue("DefaultFontFace") is string family)
+				if (key.GetValue("DefaultFontFace") is string family &&
+					!string.IsNullOrWhiteSpace(family))
 				{
 					DefaultFontFamily = family;
 				}
 
-				if (key.GetValue("DefaultFontSize") is string size)
+				if (key.GetValue("DefaultFontSize") is string size &&
+					double.TryParse(size,
+						NumberStyles.AllowDecimalPoint,
+						CultureInfo.InvariantCulture, out var result))
 				{
-					DefaultFontSize = double.Parse(size, CultureInfo.InvariantCulture);
+					DefaultFontSize = result;
 				}
-			}
-			else
-			{
-				DefaultFontFamily = "Calibri";
-				DefaultFontSize = 11.0;
 			}
 		}
 
