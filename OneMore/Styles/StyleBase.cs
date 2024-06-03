@@ -40,6 +40,9 @@ namespace River.OneMoreAddIn.Styles
 			Justification = "<Pending>")]
 		static StyleBase()
 		{
+			DefaultFontFamily = "Calibri";
+			DefaultFontSize = 11.0;
+
 			// fetch default font attributes from Registyr
 			var key = Registry.CurrentUser.OpenSubKey(EditingKey, false);
 			if (key is not null)
@@ -53,11 +56,6 @@ namespace River.OneMoreAddIn.Styles
 				{
 					DefaultFontSize = double.Parse(size, CultureInfo.InvariantCulture);
 				}
-			}
-			else
-			{
-				DefaultFontFamily = "Calibri";
-				DefaultFontSize = 11.0;
 			}
 		}
 
