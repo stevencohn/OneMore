@@ -171,7 +171,6 @@ namespace River.OneMoreAddIn
 						try
 						{
 							Clipboard.SetDataObject(data, true, RetryTimes, RetryDelay);
-							Win.Clipboard.SetDataObject(data, true);
 						}
 						catch (COMException ex)
 							when (ex.ErrorCode == CLIPBRD_E_CANT_OPEN)
