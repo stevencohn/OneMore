@@ -44,6 +44,7 @@ namespace River.OneMoreAddIn.Commands
 
 		private Style cite;
 		private UI.ProgressDialog progress;
+		private bool refreshing;
 
 
 		public InsertTocCommand()
@@ -55,6 +56,7 @@ namespace River.OneMoreAddIn.Commands
 		{
 			if (args.Length > 0 && args[0] is string refresh && refresh == "refresh")
 			{
+				refreshing = true;
 				await RefreshTableOfContents(args);
 				return;
 			}
@@ -297,7 +299,7 @@ namespace River.OneMoreAddIn.Commands
 		{
 			XElement container;
 
-			var meta = top
+			var meta = (refreshing ? page.Root : top)
 				.Descendants(ns + "Meta")
 				.FirstOrDefault(e =>
 					e.Attribute("name") is XAttribute attr && attr.Value == TocMeta);
@@ -324,19 +326,22 @@ namespace River.OneMoreAddIn.Commands
 				container = meta.Parent;
 				container.Elements().Remove();
 
-				// if user wants it at top of page, make sure that's where it is
-				if (!insertHere && container.ElementsBeforeSelf(ns + "OE").Any())
+				if (!refreshing)
 				{
-					container.Remove();
-					top.AddFirst(container);
-				}
-				else if (insertHere)
-				{
-					if (page.GetSelectedElements() != null &&
-						page.SelectionScope != SelectionScope.Unknown)
+					// if user wants it at top of page, make sure that's where it is
+					if (!insertHere && container.ElementsBeforeSelf(ns + "OE").Any())
 					{
 						container.Remove();
-						page.AddNextParagraph(container);
+						top.AddFirst(container);
+					}
+					else if (insertHere)
+					{
+						if (page.GetSelectedElements() != null &&
+							page.SelectionScope != SelectionScope.Unknown)
+						{
+							container.Remove();
+							page.AddNextParagraph(container);
+						}
 					}
 				}
 			}
