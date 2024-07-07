@@ -23,6 +23,7 @@ namespace River.OneMoreAddIn.Settings
 		private readonly IRibbonUI ribbon;
 		private readonly bool shortcuts;
 		private BindingList<Favorite> favorites;
+		private Task validator;
 		private bool updated = false;
 
 
@@ -65,10 +66,27 @@ namespace River.OneMoreAddIn.Settings
 
 			await using var provider = new FavoritesProvider(null);
 			var list = provider.LoadFavorites();
-			await provider.ValidateFavorites(list);
+
+			// capture Task so it can be completed later in RowEnter
+			validator = provider.ValidateFavorites(list);
+
 			favorites = new BindingList<Favorite>(list);
 
 			gridView.DataSource = favorites;
+		}
+
+
+		private async void FinishValidationOnRowEnter(object sender, DataGridViewCellEventArgs e)
+		{
+			// executed once (by unsetting 'validator') to update the data source binding
+			// after validation is completed
+
+			if (validator is not null)
+			{
+				await Task.WhenAll(validator);
+				validator = null;
+				favorites.ResetBindings();
+			}
 		}
 
 
