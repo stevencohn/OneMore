@@ -377,9 +377,6 @@ namespace River.OneMoreAddIn.Commands
 		{
 			try
 			{
-
-				System.Diagnostics.Debugger.Launch();
-
 				if (File.Exists(filename))
 				{
 					File.Delete(filename);
