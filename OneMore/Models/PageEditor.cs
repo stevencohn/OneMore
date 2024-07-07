@@ -286,7 +286,7 @@ namespace River.OneMoreAddIn.Models
 					}
 					else
 					{
-						parent = run.Parent.Parent;
+						parent = run.Parent?.Parent;
 						if (cell is not null)
 							parent = null;
 
@@ -419,7 +419,7 @@ namespace River.OneMoreAddIn.Models
 
 		private int IndentLevel(XElement element)
 		{
-			if (element is null)
+			if (element is null || element.Parent is null)
 			{
 				return 0;
 			}

@@ -375,8 +375,7 @@ namespace River.OneMoreAddIn.Commands
 			using var stream = new MemoryStream(binhex, 0, binhex.Length);
 			using var image = Image.FromStream(stream);
 
-			var prefix = page.Title.Replace(" ", string.Empty);
-			var name = $"{prefix}_{++imageCounter}.png";
+			var name = $"{attachmentFolder}_{++imageCounter}.png";
 			var filename = Path.Combine(attachmentPath, name);
 #if !LOG
 			if (!Directory.Exists(attachmentPath))
