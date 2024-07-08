@@ -35,6 +35,20 @@ namespace River.OneMoreAddIn.Models
 
 
 		/// <summary>
+		/// Gets or sets an string used to indent content. Normally null, can be set to ">"
+		/// for example to indent markdown content.
+		/// </summary>
+		public string Indenter { get; set; }
+
+
+		/// <summary>
+		/// Gets or sets the prefix char used to start indents. Normally null, can be set
+		/// to "\n" for example to prepare markdown as a new line of content.
+		/// </summary>
+		public string IndentPrefix { get; set; }
+
+
+		/// <summary>
 		/// Gets or sets the table left and right borders. Generally, this is either empty
 		/// for normal text or a vertical bar for markdown.
 		/// </summary>
@@ -93,7 +107,7 @@ namespace River.OneMoreAddIn.Models
 
 			foreach (var paragraph in paragraphs)
 			{
-				BuildText(paragraph, builder, allText);
+				BuildText(paragraph, builder, allText, string.Empty);
 
 				if (paragraph.Parent.Name.LocalName == "Title" && builder.Length > 0)
 				{
@@ -125,7 +139,8 @@ namespace River.OneMoreAddIn.Models
 		}
 
 
-		private void BuildText(XElement paragraph, StringBuilder builder, bool allText)
+		private void BuildText(
+			XElement paragraph, StringBuilder builder, bool allText, string indent)
 		{
 			var runs = paragraph.Elements(ns + "T")?
 				.Where(e => allText || e.Attribute("selected")?.Value == "all")
@@ -144,11 +159,11 @@ namespace River.OneMoreAddIn.Models
 					var item = prev.Elements().First();
 					if (item.Name.LocalName == "Number")
 					{
-						builder.AppendLine($"{item.Attribute("text").Value} {text}");
+						builder.AppendLine($"{indent}{item.Attribute("text").Value} {text}");
 					}
 					else
 					{
-						builder.AppendLine($"* {text}");
+						builder.AppendLine($"{indent}* {text}");
 					}
 				}
 				else
@@ -157,12 +172,12 @@ namespace River.OneMoreAddIn.Models
 						runs[runs.Count - 1].Parent.NextNode is null)
 					{
 						// whole paragraph selected so treat as a paragrah with EOL
-						builder.AppendLine(text);
+						builder.AppendLine($"{indent}{text}");
 					}
 					else
 					{
 						// partial paragraph selected so only grab selected runs
-						builder.Append(text);
+						builder.Append($"{indent}{text}");
 					}
 				}
 			}
@@ -173,9 +188,16 @@ namespace River.OneMoreAddIn.Models
 
 			if (children.Any())
 			{
+				if (Indenter is not null)
+				{
+					indent = indent == string.Empty
+						? $"{IndentPrefix}{Indenter}"
+						: $"{indent}{Indenter}";
+				}
+
 				foreach (var child in children)
 				{
-					BuildText(child, builder, allText);
+					BuildText(child, builder, allText, indent);
 				}
 			}
 
@@ -197,7 +219,7 @@ namespace River.OneMoreAddIn.Models
 						{
 							if (cells.Count() == 1)
 							{
-								BuildText(cells.First(), builder, allText);
+								BuildText(cells.First(), builder, allText, indent);
 							}
 							else
 							{

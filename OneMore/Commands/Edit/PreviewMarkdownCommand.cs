@@ -39,6 +39,8 @@ namespace River.OneMoreAddIn.Commands
 
 			var reader = new PageReader(page)
 			{
+				IndentPrefix = "\n",
+				Indenter = ">",
 				ColumnDivider = "|",
 				TableSides = "|"
 			};
@@ -61,15 +63,16 @@ namespace River.OneMoreAddIn.Commands
 			await SingleThreaded.Invoke(() =>
 			{
 				// WebView2 needs a message pump so host in its own invisible worker dialog
-				using var form = new WebViewDialog(new System.Uri(filepath));
+				using var form = new WebViewDialog(new System.Uri(filepath))
+				{
+					Width = bounds.Width / 2 + 100,
+					Height = bounds.Height - 200,
+					Left = bounds.Left + (bounds.Width / 2) - 80,
+					Top = bounds.Top + 100,
+					TopMost = true,
 
-				form.Width = bounds.Width / 2 + 100;
-				form.Height = bounds.Height - 200;
-				form.Left = bounds.Left + (bounds.Width / 2) - 50;
-				form.Top = bounds.Top + 100;
-				form.TopMost = true;
-
-				form.Text = Resx.PreviewMarkdownCommand_Title;
+					Text = Resx.PreviewMarkdownCommand_Title
+				};
 
 				form.ShowDialog(owner);
 			});
