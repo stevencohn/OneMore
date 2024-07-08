@@ -91,7 +91,7 @@
 			this.nowRadio.Name = "nowRadio";
 			this.nowRadio.Size = new System.Drawing.Size(370, 25);
 			this.nowRadio.TabIndex = 5;
-			this.nowRadio.Text = "Run the san now";
+			this.nowRadio.Text = "Run the scan now";
 			this.nowRadio.UseVisualStyleBackColor = true;
 			this.nowRadio.CheckedChanged += new System.EventHandler(this.DoCheckedChanged);
 			// 
