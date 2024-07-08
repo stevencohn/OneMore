@@ -150,6 +150,7 @@ namespace River.OneMoreAddIn.Models
 				.Where(e =>
 					// tables are handled via their cell contents
 					e.Name.LocalName != "Table" &&
+					e.Name.LocalName != "OEChildren" &&
 					(AllContent || e.Attributes().Any(a => a.Name == "selected" && a.Value == "all")))
 				.ToList();
 
