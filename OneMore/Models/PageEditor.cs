@@ -154,6 +154,15 @@ namespace River.OneMoreAddIn.Models
 					(AllContent || e.Attributes().Any(a => a.Name == "selected" && a.Value == "all")))
 				.ToList();
 
+			if (runs.Any() && AllContent)
+			{
+				// filter out the blank cursor to avoid inadvertently inserting a newline
+				runs = runs.Except(runs.Where(e =>
+					e.Attributes().Any(a => a.Name == "selected" && a.Value == "all") &&
+					e.GetCData().Value == string.Empty))
+					.ToList();
+			}
+
 			// no selections found in body
 			if (!runs.Any())
 			{

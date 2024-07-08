@@ -103,6 +103,11 @@ namespace River.OneMoreAddIn.Models
 		/// <returns></returns>
 		public string ReadTextFrom(IEnumerable<XElement> paragraphs, bool allText)
 		{
+			if (!paragraphs.Any())
+			{
+				return string.Empty;
+			}
+
 			var builder = new StringBuilder();
 
 			foreach (var paragraph in paragraphs)
