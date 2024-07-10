@@ -61,6 +61,8 @@ namespace River.OneMoreAddIn.Commands.Tables.Formulas
 		// to signify a unary negative; 0x80 follows DEL/0x7F just out of ASCII range
 		private const string UnaryMinus = "\x80";
 
+		private int indexOffset;
+
 
 		/// <summary>
 		/// Initialize a new instance
@@ -74,9 +76,16 @@ namespace River.OneMoreAddIn.Commands.Tables.Formulas
 		/// Evaluate the given expression and returns the result
 		/// </summary>
 		/// <param name="expression">The expression to evaluate</param>
+		/// <param name="indexOffset">
+		/// The positional index of the expression in table rows. This is a specialized value
+		/// used for OneMore table formulas where the user asked for a row-offset calculation to
+		/// accomodate a dynamically growing table of rows without having to update the formula.
+		/// </param>
 		/// <returns></returns>
-		public double Execute(string expression)
+		public double Execute(string expression, int indexOffset)
 		{
+			this.indexOffset = indexOffset;
+
 			var result = ExecuteInternal(expression);
 			if (result.Type == FormulaValueType.Double)
 			{
@@ -91,7 +100,7 @@ namespace River.OneMoreAddIn.Commands.Tables.Formulas
 		}
 
 
-		public FormulaValue ExecuteInternal(string expression)
+		private FormulaValue ExecuteInternal(string expression)
 		{
 			var tokenized = TokenizeExpression(expression);
 			return ExecuteTokens(tokenized);
@@ -298,11 +307,12 @@ namespace River.OneMoreAddIn.Commands.Tables.Formulas
 		/// </summary>
 		/// <param name="parser">TextParser object</param>
 		/// <returns></returns>
-		private static string ParseSymbolToken(TextParser parser)
+		private string ParseSymbolToken(TextParser parser)
 		{
 			int start = parser.Position;
 			var c = parser.Peek();
-			while (char.IsLetterOrDigit(c) || c == '<' || c == '>' || c == '!' || c == '_')
+			while (char.IsLetterOrDigit(c) || c == '<' || c == '>' || c == '!' || c == '_' ||
+				(c == '-' && indexOffset > 0))
 			{
 				parser.MoveAhead();
 				c = parser.Peek();
@@ -459,21 +469,39 @@ namespace River.OneMoreAddIn.Commands.Tables.Formulas
 
 		private FormulaValues EvaluateCellReferences(string cell1, string cell2, int p1, int p2)
 		{
-			var pattern = @"^([a-zA-Z]{1,3})(\d{1,3})$";
+			// cell1...
 
-			var match = Regex.Match(cell1, pattern);
+			var match = Regex.Match(cell1, Processor.AddressPattern);
 			if (!match.Success)
 				throw new FormulaException(string.Format(ErrUndefinedSymbol, cell1), p1);
 
-			var col1 = match.Groups[1].Value;
-			var row1 = match.Groups[2].Value;
+			if (int.Parse(match.Groups["r"].Value) == 0)
+			{
+				// do not include result cell (or off-table) in calculations
+				throw new FormulaException("row offset cannot be zero");
+			}
 
-			match = Regex.Match(cell2, pattern);
+			var col1 = match.Groups["c"].Value;
+			var row1 = match.Groups["r"].Value;
+
+			// cell2...
+
+			match = Regex.Match(cell2, Processor.OffsetPattern);
 			if (!match.Success)
 				throw new FormulaException(string.Format(ErrUndefinedSymbol, cell2), p2);
 
-			var col2 = match.Groups[1].Value;
-			var row2 = match.Groups[2].Value;
+			if (int.Parse(match.Groups["r"].Value) == 0)
+			{
+				// do not include result cell (or off-table) in calculations
+				throw new FormulaException("row offset cannot be zero");
+			}
+
+			var col2 = match.Groups["c"].Value;
+			var row2 = match.Groups["o"].Success && indexOffset > 0
+				? $"{indexOffset - int.Parse(match.Groups["r"].Value)}"
+				: match.Groups["r"].Value;
+
+			// validate...
 
 			var values = new FormulaValues();
 			if (col1 == col2)

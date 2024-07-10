@@ -1171,14 +1171,15 @@
     <comment>label</comment>
   </data>
   <data name="FormulaDialog_helpBox.Text" xml:space="preserve">
-    <value>يجب أن تنطبق الصيغة التي تم إدخالها على الخلية الأولى المحددة. ستتم زيادة هذه الصيغة تلقائيًا للخلايا الإضافية المحددة.
+    <value>يجب أن تنطبق الصيغة المدخلة على الخلية المحددة الأولى. سيتم زيادة هذه الصيغة تلقائيًا للخلايا المحددة الإضافية.
 
-الوظائف: abs ، acos ، asin ، atan ، atan2 ، المتوسط ​​، السقف ، cos ، cosh ، countif ، exp ، floor ، log10 ، max ، median ، min ، mode ، pow ، range ، round ، sign ، sin ، sinh ، sqrt، stdev، sum، tan، tanh، trunc، variance
+الوظائف: abs، acos، asin، atan، atan2، متوسط، سقف، cos، cosh، countif، exp، Floor، log، log10، max، median، min، mode، pow، range، round،sign، sin، sinh، sqrt، stdev، مجموع، تان، تانه، الجذع، التباين
 
-عوامل التشغيل: + - / * ^
+المشغلين: + - / * ^
+الرموز: PI، E
 مرجع الخلية: A1، A2، ... ZZZ999
-نطاق الخلايا: A1: A22
-الرموز: PI، E</value>
+نطاق الخلايا: A1:A22
+النطاق الديناميكي في عمود: A1:A-1</value>
   <comment></comment></data>
   <data name="FormulaDialog_selectedLabel.Text" xml:space="preserve">
     <value>الخلايا المحددة:</value>

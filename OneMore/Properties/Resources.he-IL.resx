@@ -1185,10 +1185,11 @@ Total Row Font
 פונקציות: abs, acos, asin, atan, atan2, ממוצע, תקרה, cos, cosh, countif, exp, floor, log, log10, max, mediaan, min, mode, pow, range, round, round, sign, sin, sinh, sqrt, stdev, sum, tan, tanh, trunc, variance
 
 אופרטורים: + - / * ^
+סמלים: PI, E
 הפניה לתא: A1, A2, ... ZZZ999
 טווח תאים: A1:A22
-סמלים: PI, E</value>
-  </data>
+טווח דינמי בעמודה: A1:A-1</value>
+  <comment></comment></data>
   <data name="FormulaDialog_selectedLabel.Text" xml:space="preserve">
     <value>תאים שנבחרו:</value>
     <comment>label</comment>

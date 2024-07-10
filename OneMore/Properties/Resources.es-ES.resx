@@ -1173,12 +1173,13 @@ Porcentaje</value>
   <data name="FormulaDialog_helpBox.Text" xml:space="preserve">
     <value>La fórmula ingresada debe aplicarse a la primera celda seleccionada. Esta fórmula se incrementará automáticamente para las celdas seleccionadas adicionales.
 
-Funciones: abs, acos, asin, atan, atan2, Average, Ceiling, Cos, Cosh, Countif, Exp, Floor, Log, Log10, Max, Median, Min, Mode, Pow, Range, Round, Sign, Sin, Sinh, sqrt, stdev, suma, bronceado, tanh, trunc, varianza
+Funciones: abs, acos, asin, atan, atan2, promedio, techo, cos, cosh, countif, exp, piso, log, log10, max, mediana, min, modo, pow, rango, redondo, signo, sin, sinh, sqrt, stdev, suma, bronceado, tanh, trunc, variación
 
 Operadores: + - / * ^
+Símbolos: PI, E
 Referencia de celda: A1, A2, ... ZZZ999
 Rango de celdas: A1:A22
-Símbolos: PI, E</value>
+Rango dinámico en una columna: A1:A-1</value>
   <comment></comment></data>
   <data name="FormulaDialog_selectedLabel.Text" xml:space="preserve">
     <value>Celdas seleccionadas:</value>

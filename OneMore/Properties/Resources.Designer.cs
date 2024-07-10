@@ -3165,9 +3165,10 @@ namespace River.OneMoreAddIn.Properties {
         ///Functions: abs, acos, asin, atan, atan2, average, ceiling, cos, cosh, countif, exp, floor, log, log10, max, median, min, mode, pow, range, round, sign, sin, sinh, sqrt, stdev, sum, tan, tanh, trunc, variance
         ///
         ///Operators: + - / * ^
+        ///Symbols: PI, E
         ///Cell reference: A1, A2, ... ZZZ999
         ///Cell range: A1:A22
-        ///Symbols: PI, E.
+        ///Dynamic range in a column: A1:A-1.
         /// </summary>
         internal static string FormulaDialog_helpBox_Text {
             get {

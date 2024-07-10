@@ -9,9 +9,21 @@ namespace River.OneMoreAddIn.Commands.Tables.Formulas
 	using System.Collections.Generic;
 	using System.Linq;
 
-	internal class Processor
+	internal class Processor : Loggable
 	{
-		private readonly ILogger logger;
+		/// <summary>
+		/// Regex pattern for matching cell addresses of the form [col-letters][row-number] where
+		/// row-number is a positive, non-zero integer. Capture groups are named c)ell and r)row.
+		/// </summary>
+		public const string AddressPattern = @"^(?<c>[a-zA-Z]{1,3})(?<r>\d{1,3})$";
+
+		/// <summary>
+		/// Regex pattern for matching cell addresses of the form [col-letters][row-number]
+		/// where row-num can be a negative integer specifying offset from last row in table.
+		/// Capture groups are named c)ell, o)ffset, and r)row.
+		/// </summary>
+		public const string OffsetPattern = @"^(?<c>[a-zA-Z]{1,3})(?<o>-)?(?<r>\d{1,3})$";
+
 		private readonly Table table;
 		private int maxdec;
 		private List<TagDef> tags;
@@ -21,8 +33,6 @@ namespace River.OneMoreAddIn.Commands.Tables.Formulas
 		{
 			this.table = table;
 			maxdec = 0;
-
-			logger = Logger.Current;
 		}
 
 
@@ -42,7 +52,7 @@ namespace River.OneMoreAddIn.Commands.Tables.Formulas
 
 				try
 				{
-					var result = calculator.Execute(formula.Expression);
+					var result = calculator.Execute(formula.Expression, cell.RowNum);
 
 					Report(cell, formula, result);
 				}
