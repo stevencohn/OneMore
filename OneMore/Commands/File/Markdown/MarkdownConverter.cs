@@ -40,10 +40,10 @@ namespace River.OneMoreAddIn.Commands
 		/// </summary>
 		public void RewriteHeadings()
 		{
-            foreach (var outline in page.Root.Elements("Outline"))
-            {
+			foreach (var outline in page.Root.Elements("Outline"))
+			{
 				RewriteHeadings(outline);
-            }
+			}
 		}
 
 
@@ -52,7 +52,7 @@ namespace River.OneMoreAddIn.Commands
 		/// </summary>
 		public void RewriteHeadings(XElement outline)
 		{
-			outline
+			var headings = outline
 				.Descendants(ns + "OE")
 				// candidate headings imported from markdown should have exactly one text run
 				.Where(e => e.Elements(ns + "T").Count() == 1)
@@ -69,27 +69,28 @@ namespace River.OneMoreAddIn.Commands
 					return c;
 				})
 				// shouldn't happen but...
-				.Where(c => c.Key != null)
-				.ForEach(heading =>
-				{
-					// ensures quick style is declared if not already
-					var quick = page.GetQuickStyle((StandardStyles)heading.Key);
+				.Where(c => c.Key != null);
 
-					// nix inline style we added during phase 1 import
-					heading.Element.Attributes().Where(a => a.Name == "style").Remove();
-					// set heading quick style on OE
-					heading.Element.SetAttributeValue("quickStyleIndex", quick.Index);
+			foreach (var heading in headings)
+			{
+				// ensures quick style is declared if not already
+				var quick = page.GetQuickStyle((StandardStyles)heading.Key);
 
-					var stylizer = new Stylizer(quick);
+				// nix inline style we added during phase 1 import
+				heading.Element.Attributes().Where(a => a.Name == "style").Remove();
+				// set heading quick style on OE
+				heading.Element.SetAttributeValue("quickStyleIndex", quick.Index);
 
-					heading.Element
-						.Elements(ns + "T")
-						.ForEach(e =>
-						{
-							// set any additional css on text run such as italics
-							stylizer.ApplyStyle(e);
-						});
-				});
+				var stylizer = new Stylizer(quick);
+
+				heading.Element
+					.Elements(ns + "T")
+					.ForEach(e =>
+					{
+						// set any additional css on text run such as italics
+						stylizer.ApplyStyle(e);
+					});
+			}
 		}
 
 
@@ -153,9 +154,18 @@ namespace River.OneMoreAddIn.Commands
 		{
 			var after = $"{spaceAfter:0.0}";
 
+			var last = outline.Descendants(ns + "OE").Last();
+
 			foreach (var item in outline
 				.Descendants(ns + "OE")
-				.Where(e => e.NextNode is not null))
+				.Where(e => 
+					// not the last paragraph in the Outline
+					e != last &&
+					// any paragraph that is not a List
+					((e.NextNode is not null && !e.Elements(ns + "List").Any()) ||
+					// any last item in a List
+					(e.NextNode is null && e.Elements(ns + "List").Any())
+					)))
 			{
 				item.SetAttributeValue("spaceAfter", after);
 			}

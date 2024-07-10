@@ -51,9 +51,6 @@ namespace River.OneMoreAddIn.Commands
 					)
 				));
 
-
-			System.Diagnostics.Debugger.Launch();
-
 			// temporarily collect all outlines
 			var outlineIDs = page.Root.Elements(ns + "Outline")
 				.Select(e => e.Attribute("objectID").Value)
