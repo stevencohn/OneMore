@@ -51,13 +51,43 @@ namespace River.OneMoreAddIn.Commands
 					)
 				));
 
+
+			System.Diagnostics.Debugger.Launch();
+
+			// temporarily collect all outlines
+			var outlineIDs = page.Root.Elements(ns + "Outline")
+				.Select(e => e.Attribute("objectID").Value)
+				.ToList();
+
+			// update will remove unmodified omHash outlines
 			await one.Update(page);
 
-			// find and convert headers based on styles
-			page = await one.GetPage(page.PageId, OneNote.PageDetail.Basic);
-			MarkdownConverter.RewriteHeadings(page);
-			MarkdownConverter.SpaceOutParagraphs(page, 12);
-			await one.Update(page);
+			// identify only remaining untouched outlines by exclusion
+			var untouchedIDs = outlineIDs.Except(
+				page.Root.Elements(ns + "Outline").Select(e => e.Attribute("objectID").Value))
+				.ToList();
+
+			if (untouchedIDs.Count < outlineIDs.Count)
+			{
+				// Pass 2, cleanup...
+
+				// find and convert headers based on styles
+				page = await one.GetPage(page.PageId, OneNote.PageDetail.Basic);
+
+				var converter = new MarkdownConverter(page);
+
+				// only clean up new (modified) outlines
+				var touched = page.Root.Elements(ns + "Outline")
+					.Where(e => !untouchedIDs.Contains(e.Attribute("objectID").Value));
+
+				foreach (var outline in touched)
+				{
+					converter.RewriteHeadings(outline);
+					converter.SpaceOutParagraphs(outline, 12);
+				}
+
+				await one.Update(page);
+			}
 		}
 	}
 }

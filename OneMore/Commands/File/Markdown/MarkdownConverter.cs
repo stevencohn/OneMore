@@ -20,12 +20,39 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		public static void RewriteHeadings(Page page)
-		{
-			var analyzer = new StyleAnalyzer(page.Root);
-			var ns = page.Namespace;
+		private readonly Page page;
+		private readonly XNamespace ns;
+		private readonly StyleAnalyzer analyzer;
 
-			page.Root.Elements(ns + "Outline")
+
+		public MarkdownConverter(Page page)
+		{
+			this.page = page;
+			ns = page.Namespace;
+
+			analyzer = new StyleAnalyzer(page.Root);
+		}
+
+
+		/// <summary>
+		/// Applies standard OneNote styling to all recognizable headings in all Outlines
+		/// on the page
+		/// </summary>
+		public void RewriteHeadings()
+		{
+            foreach (var outline in page.Root.Elements("Outline"))
+            {
+				RewriteHeadings(outline);
+            }
+		}
+
+
+		/// <summary>
+		/// Applies standard OneNote styling all recognizable headings in the given Outline
+		/// </summary>
+		public void RewriteHeadings(XElement outline)
+		{
+			outline
 				.Descendants(ns + "OE")
 				// candidate headings imported from markdown should have exactly one text run
 				.Where(e => e.Elements(ns + "T").Count() == 1)
@@ -70,27 +97,32 @@ namespace River.OneMoreAddIn.Commands
 		{
 			if (style.FontFamily == "Calibri")
 			{
-				if (style.FontSize == "20.0" && style.Color == Style.Automatic)
+				var standard = StandardStyles.PageTitle.GetDefaults();
+				if (style.FontSize == standard.FontSize && style.Color == Style.Automatic)
 				{
 					return StandardStyles.PageTitle;
 				}
 
-				if (style.FontSize == "16.0" && style.Color == "#1E4E79")
+				standard = StandardStyles.Heading1.GetDefaults();
+				if (style.FontSize == standard.FontSize && style.Color == standard.Color)
 				{
 					return StandardStyles.Heading1;
 				}
 
-				if (style.FontSize == "14.0" && style.Color == "#2E75B5")
+				standard = StandardStyles.Heading2.GetDefaults();
+				if (style.FontSize == standard.FontSize && style.Color == standard.Color)
 				{
 					return StandardStyles.Heading2;
 				}
 
-				if (style.FontSize == "12.0" && style.Color == "#5B9BD5")
+				standard = StandardStyles.Heading3.GetDefaults();
+				if (style.FontSize == standard.FontSize && style.Color == standard.Color)
 				{
 					return style.IsItalic ? StandardStyles.Heading4 : StandardStyles.Heading3;
 				}
 
-				if (style.FontSize == "11.0" && style.Color == "#2E75B5")
+				standard = StandardStyles.Heading5.GetDefaults();
+				if (style.Color == standard.Color)
 				{
 					return style.IsItalic ? StandardStyles.Heading6 : StandardStyles.Heading5;
 				}
@@ -100,12 +132,28 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		public static void SpaceOutParagraphs(Page page, float spaceAfter)
+		/// <summary>
+		/// Adds OneNote paragraph spacing in all Outlines on the page
+		/// </summary>
+		/// <param name="spaceAfter"></param>
+		public void SpaceOutParagraphs(float spaceAfter)
 		{
-			var ns = page.Namespace;
+			foreach (var outline in page.Root.Elements("Outline"))
+			{
+				SpaceOutParagraphs(outline, spaceAfter);
+			}
+		}
+
+
+		/// <summary>
+		/// Adds OneNote paragraph spacing in the given Outline
+		/// </summary>
+		/// <param name="spaceAfter"></param>
+		public void SpaceOutParagraphs(XElement outline, float spaceAfter)
+		{
 			var after = $"{spaceAfter:0.0}";
 
-			foreach (var item in page.Root
+			foreach (var item in outline
 				.Descendants(ns + "OE")
 				.Where(e => e.NextNode is not null))
 			{

@@ -585,13 +585,19 @@ namespace River.OneMoreAddIn.Commands
 							)
 						));
 
-					MarkdownConverter.RewriteHeadings(page);
+					var converter = new MarkdownConverter(page);
+					converter.RewriteHeadings();
 
 					await one.Update(page);
 
+					// Pass 2, cleanup...
+
 					// find and convert headers based on styles
 					page = await one.GetPage(pageId, OneNote.PageDetail.Basic);
-					MarkdownConverter.RewriteHeadings(page);
+
+					converter = new MarkdownConverter(page);
+					converter.RewriteHeadings();
+
 					await one.Update(page);
 
 					await one.NavigateTo(pageId);
