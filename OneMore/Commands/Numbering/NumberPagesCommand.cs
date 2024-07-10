@@ -135,10 +135,11 @@ namespace River.OneMoreAddIn.Commands
 						return $"({counter})";
 
 					case 1:
-						return $"({counter.ToAlphabetic().ToLower()})";
+						return $"({counter.ToAlphabetic().ToLowerInvariant()})";
 
 					case 2:
-						return $"({counter.ToRoman().ToLower()})";
+						// use Invariant so langs like tr-TR convert "I" to "i" instead of "ı"
+						return $"({counter.ToRoman().ToLowerInvariant()})";
 				}
 			}
 
