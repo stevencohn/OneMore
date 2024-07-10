@@ -258,6 +258,12 @@ namespace River.OneMoreAddIn.Models
 
 			foreach (var run in runs)
 			{
+				if (run.Name.LocalName == "List")
+				{
+					// List elements are collected below along with their siblings
+					continue;
+				}
+
 				var snippet = new Snippet
 				{
 					Depth = IndentLevel(run)
