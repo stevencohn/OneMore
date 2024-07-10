@@ -86,11 +86,17 @@ namespace River.OneMoreAddIn.Commands
 			if (cells.Count == 1)
 			{
 				dialog.SetCellNames(cells[0].Coordinates);
+				dialog.SetResultRow(cells[0].RowNum);
 			}
 			else
 			{
 				dialog.SetCellNames(
 					$"{cells[0].Coordinates} - {cells[cells.Count - 1].Coordinates}");
+
+				if (range == TableSelectionRange.Rows)
+				{
+					dialog.SetResultRow(cells[cells.Count - 1].RowNum);
+				}
 			}
 
 			var cell = cells[0];
@@ -123,7 +129,7 @@ namespace River.OneMoreAddIn.Commands
 				tagIndex = page.AddTagDef(BoltSymbol, Resx.AddFormulaCommand_Calculated);
 			}
 
-			StoreFormula(cells,
+			StoreFormula(table, cells,
 				dialog.Formula, dialog.Format, dialog.DecimalPlaces,
 				range, tagIndex);
 
@@ -135,7 +141,7 @@ namespace River.OneMoreAddIn.Commands
 
 
 		private void StoreFormula(
-			IEnumerable<TableCell> cells,
+			Table table, IEnumerable<TableCell> cells,
 			string expression, FormulaFormat format, int dplaces,
 			TableSelectionRange rangeType, string tagIndex)
 		{
@@ -152,7 +158,7 @@ namespace River.OneMoreAddIn.Commands
 				return;
 			}
 
-			var regex = new Regex(@"([a-zA-Z]{1,3})(\d{1,3})");
+			var regex = new Regex(Processor.OffsetPattern);
 
 			int offset = 0;
 			foreach (var cell in cells)
@@ -169,14 +175,18 @@ namespace River.OneMoreAddIn.Commands
 						if (rangeType == TableSelectionRange.Columns)
 						{
 							col = TableCell.IndexToLetters(
-								TableCell.LettersToIndex(match.Groups[1].Value) + offset);
+								TableCell.LettersToIndex(match.Groups["c"].Value) + offset);
 
-							row = match.Groups[2].Value;
+							row = match.Groups["r"].Value;
 						}
 						else
 						{
-							col = match.Groups[1].Value;
-							row = (int.Parse(match.Groups[2].Value) + offset).ToString();
+							col = match.Groups["c"].Value;
+
+							var r = int.Parse(match.Groups["r"].Value);
+							row = match.Groups["o"].Success
+								? $"-{(table.RowCount - r + offset)}"
+								: (r + offset).ToString();
 						}
 
 						builder.Replace(match.Value, $"{col}{row}", match.Index, match.Length);

@@ -1172,14 +1172,15 @@ Percentagem</value>
     <comment>label</comment>
   </data>
   <data name="FormulaDialog_helpBox.Text" xml:space="preserve">
-    <value>A fórmula inserida deve ser aplicada à primeira célula selecionada. Esta fórmula será incrementada automaticamente para células selecionadas adicionais.
+    <value>A fórmula inserida deve ser aplicada à primeira célula selecionada. Esta fórmula será incrementada automaticamente para células adicionais selecionadas.
 
-Funções: abs, acos, asin, atan, atan2, media, teto, cos, cosh, countif, exp, floor, log, log10, max, median, min, mode, pow, range, round, sign, sin, sinh, sqrt, stdev, soma, tan, tanh, trunc, variância
+Funções: abs, acos, asin, atan, atan2, média, teto, cos, cosh, countif, exp, floor, log, log10, max, mediana, min, mode, pow, range, round, sign, sin, sinh, sqrt, stdev, soma, tan, tanh, trunc, variância
 
 Operadores: + - / * ^
-Referência da célula: A1, A2, ... ZZZ999
-Alcance da célula: A1:A22
-Símbolos: PI, E</value>
+Símbolos: PI, E
+Referência de célula: A1, A2, ... ZZZ999
+Intervalo de células: A1:A22
+Faixa dinâmica em uma coluna: A1:A-1</value>
   <comment></comment></data>
   <data name="FormulaDialog_selectedLabel.Text" xml:space="preserve">
     <value>Células selecionadas:</value>

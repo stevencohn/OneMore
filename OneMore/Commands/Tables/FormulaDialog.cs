@@ -14,6 +14,7 @@ namespace River.OneMoreAddIn.Commands
 	{
 		private readonly int helpHeight;
 		private readonly Calculator calculator;
+		private int resultRow;
 
 
 		public FormulaDialog()
@@ -80,6 +81,12 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
+		public void SetResultRow(int row)
+		{
+			resultRow = row;
+		}
+
+
 		public bool Tagged
 		{
 			get => tagBox.Checked;
@@ -95,7 +102,7 @@ namespace River.OneMoreAddIn.Commands
 			{
 				try
 				{
-					calculator.Execute(formula);
+					calculator.Execute(formula, indexOffset: resultRow);
 					validStatusLabel.ForeColor = manager.GetColor("ControlText");
 					validStatusLabel.Text = Resx.word_OK;
 					okButton.Enabled = true;
@@ -118,7 +125,7 @@ namespace River.OneMoreAddIn.Commands
 
 		private void ResolveSymbol(object sender, SymbolEventArgs e)
 		{
-			if (Regex.Match(e.Name, @"^([a-zA-Z]{1,3})(\d{1,3})$").Success)
+			if (Regex.Match(e.Name, Processor.OffsetPattern).Success)
 			{
 				e.SetResult(1.0);
 				e.Status = SymbolStatus.OK;
