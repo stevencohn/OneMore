@@ -20,6 +20,9 @@ namespace River.OneMoreAddIn.Styles
 	}
 
 
+	/// <summary>
+	/// Defines the standard built-in OneNote styles as of v15
+	/// </summary>
 	internal static class StandardStylesExtensions
 	{
 		public static QuickStyleDef GetDefaults(this StandardStyles key)
@@ -71,6 +74,7 @@ namespace River.OneMoreAddIn.Styles
 					break;
 
 				case StandardStyles.PageTitle:
+					// this FontFamily is a customization
 					style.FontFamily = "Calibri Light";
 					style.FontSize = "20.0";
 					break;
@@ -86,6 +90,7 @@ namespace River.OneMoreAddIn.Styles
 					break;
 
 				case StandardStyles.Code:
+					// this FontFamily is a customization
 					style.FontFamily = "Consolas";
 					style.Ignored = true;
 					break;

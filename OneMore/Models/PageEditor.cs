@@ -130,8 +130,12 @@ namespace River.OneMoreAddIn.Models
 		/// Extracts all selected content as a single OEChildren element, preserving relative
 		/// indents, table content, etc. The selected content is removedd from the page.
 		/// </summary>
+		/// <param name="targetOutline">
+		/// Optional Outline element to process.
+		/// Default is to process all page content.
+		/// </param>
 		/// <returns>An OEChildren XElement</returns>
-		public async Task<XElement> ExtractSelectedContent()
+		public async Task<XElement> ExtractSelectedContent(XElement targetOutline = null)
 		{
 			var content = new XElement(ns + "OEChildren");
 			//	new XAttribute(XNamespace.Xmlns + OneNote.Prefix, ns.ToString())
@@ -144,8 +148,13 @@ namespace River.OneMoreAddIn.Models
 			// IMPORTANT: Within an OE, no more than exactly one OEContent element
 			// can be selected at a time!
 
-			var runs = page.Root.Elements(ns + "Outline")
-				.Descendants(ns + "OE")
+
+
+			var paragraphs = targetOutline is null
+				? page.Root.Elements(ns + "Outline").Descendants(ns + "OE")
+				: targetOutline.Descendants(ns + "OE");
+
+			var runs = paragraphs
 				.Elements()
 				.Where(e =>
 					// tables are handled via their cell contents
@@ -256,7 +265,8 @@ namespace River.OneMoreAddIn.Models
 			// to determine if this element should be discarded.
 			runs.Reverse();
 
-			foreach (var run in runs)
+			// List elements will be handled inline along with their associated content
+			foreach (var run in runs.Where(e => e.Name.LocalName != "List"))
 			{
 				var snippet = new Snippet
 				{
