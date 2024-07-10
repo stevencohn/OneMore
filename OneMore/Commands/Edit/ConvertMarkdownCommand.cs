@@ -50,6 +50,8 @@ namespace River.OneMoreAddIn.Commands
 				};
 			}
 
+			// process each outline in sequence. By scoping to an outline, PageReader/Editor
+			// can maintain positional context and scope updates to the outline
 
 			foreach (var outline in outlines)
 			{
@@ -76,7 +78,6 @@ namespace River.OneMoreAddIn.Commands
 						)
 					));
 			}
-
 
 			// temporarily collect all outline IDs
 			var outlineIDs = page.Root.Elements(ns + "Outline")
