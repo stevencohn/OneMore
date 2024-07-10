@@ -38,14 +38,14 @@ namespace River.OneMoreAddIn.Models
 		/// Gets or sets an string used to indent content. Normally null, can be set to ">"
 		/// for example to indent markdown content.
 		/// </summary>
-		public string Indenter { get; set; }
+		public string Indentation { get; set; }
 
 
 		/// <summary>
 		/// Gets or sets the prefix char used to start indents. Normally null, can be set
 		/// to "\n" for example to prepare markdown as a new line of content.
 		/// </summary>
-		public string IndentPrefix { get; set; }
+		public string IndentationPrefix { get; set; }
 
 
 		/// <summary>
@@ -193,11 +193,11 @@ namespace River.OneMoreAddIn.Models
 
 			if (children.Any())
 			{
-				if (Indenter is not null)
+				if (Indentation is not null)
 				{
 					indent = indent == string.Empty
-						? $"{IndentPrefix}{Indenter}"
-						: $"{indent}{Indenter}";
+						? $"{IndentationPrefix}{Indentation}"
+						: $"{indent}{Indentation}";
 				}
 
 				foreach (var child in children)

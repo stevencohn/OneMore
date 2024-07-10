@@ -39,8 +39,8 @@ namespace River.OneMoreAddIn.Commands
 
 			var reader = new PageReader(page)
 			{
-				IndentPrefix = "\n",
-				Indenter = ">",
+				IndentationPrefix = "\n",
+				Indentation = ">",
 				ColumnDivider = "|",
 				TableSides = "|"
 			};
