@@ -139,7 +139,7 @@ namespace River.OneMoreAddIn.Commands
 			var notebooks = root.Elements(ns + "Notebook");
 			if (notebooks.Any())
 			{
-				var knownNotebooks = provider.ReadKnownNotebookIDs();
+				var knownNotebooks = provider.ReadKnownNotebooks();
 
 				foreach (var notebook in notebooks)
 				{
@@ -163,21 +163,26 @@ namespace River.OneMoreAddIn.Commands
 
 					if (knownNotebooks.Count == 0 ||
 						(notebookFilters is null
-							? knownNotebooks.Contains(notebookID)
+							? knownNotebooks.Exists(n => n.NotebookID == notebookID)
 							: notebookFilters.Contains(notebookID)))
 					{
 						//logger.Verbose($"scanning notebook {notebookID} \"{name}\"");
 
+						var dp = 0;
+
 						var sections = await one.GetNotebook(notebookID);
 						if (sections is not null)
 						{
-							var (dp, tp) = await Scan(one, sections, notebookID, $"/{name}");
+							int tp;
+							(dp, tp) = await Scan(one, sections, notebookID, $"/{name}");
 
 							dirtyPages += dp;
 							totalPages += tp;
 						}
 
-						provider.WriteNotebook(notebookID, name);
+						// record the notebook regardless of whether we find tags; must be done
+						// on initial discovery or user would have to explicitly pull it in
+						provider.WriteNotebook(notebookID, name, dp > 0);
 					}
 					else
 					{
