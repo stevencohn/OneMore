@@ -342,6 +342,14 @@ namespace River.OneMoreAddIn.Commands
 			{
 				try
 				{
+					// this will unset the ReadOnly flag for all files/dirs in and below dir
+					dir.Attributes = FileAttributes.Normal;
+					foreach (var info in dir.GetFileSystemInfos("*", SearchOption.AllDirectories))
+					{
+						info.Attributes = FileAttributes.Normal;
+					}
+
+					// recursively delete del
 					dir.Delete(true);
 				}
 				catch (Exception exc)
