@@ -4,6 +4,9 @@
 
 namespace River.OneMoreAddIn.UI
 {
+	using System;
+	using System.ComponentModel;
+	using System.Linq;
 	using System.Media;
 	using System.Windows.Forms;
 
@@ -78,6 +81,84 @@ namespace River.OneMoreAddIn.UI
 			}
 
 			return base.ProcessDialogKey(keyData);
+		}
+
+
+		/// <summary>
+		/// Moves the first selected row down in the grid, also updating is position in the
+		/// given BindingList.
+		/// </summary>
+		/// <typeparam name="T">Type of the items in the BindingList</typeparam>
+		/// <param name="items">The BindingList of items to modify</param>
+		public void MoveSelectedItemDown<T>(BindingList<T> items)
+		{
+			if (SelectedCells.Count == 0)
+			{
+				return;
+			}
+
+			int rowIndex = SelectedCells[0].RowIndex;
+			if (rowIndex < items.Count - 1)
+			{
+				var lastDisplayed = Math.Max(0, Rows.Cast<DataGridViewRow>()
+					.Last(row => row.Displayed)
+					.Index - 1);
+
+				// clear all selections and must set CurrentCell to null; reset below
+				ClearSelection();
+				CurrentCell = null;
+
+				var item = items[rowIndex];
+				items.RemoveAt(rowIndex);
+				items.Insert(++rowIndex, item);
+
+				if (rowIndex > lastDisplayed)
+				{
+					FirstDisplayedScrollingRowIndex++;
+				}
+
+				Rows[rowIndex].Selected = true;
+				CurrentCell = Rows[rowIndex].Cells[0];
+			}
+		}
+
+
+		/// <summary>
+		/// Moves the first selected row up in the grid, also updating is position in the
+		/// given BindingList.
+		/// </summary>
+		/// <typeparam name="T">Type of the items in the BindingList</typeparam>
+		/// <param name="items">The BindingList of items to modify</param>
+		public void MoveSelectedItemUp<T>(BindingList<T> items)
+		{
+			if (SelectedCells.Count == 0)
+			{
+				return;
+			}
+
+			int rowIndex = SelectedCells[0].RowIndex;
+			if (rowIndex > 0 && rowIndex < items.Count)
+			{
+				var firstDisplayed = Math.Max(0, Rows.Cast<DataGridViewRow>()
+					.First(row => row.Displayed)
+					.Index);
+
+				// clear all selections and must set CurrentCell to null; reset below
+				ClearSelection();
+				CurrentCell = null;
+
+				var item = items[rowIndex];
+				items.RemoveAt(rowIndex);
+				items.Insert(--rowIndex, item);
+
+				if (rowIndex < firstDisplayed)
+				{
+					FirstDisplayedScrollingRowIndex--;
+				}
+
+				Rows[rowIndex].Selected = true;
+				CurrentCell = Rows[rowIndex].Cells[0];
+			}
 		}
 	}
 }
