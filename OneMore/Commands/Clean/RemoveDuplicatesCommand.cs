@@ -39,7 +39,7 @@ namespace River.OneMoreAddIn.Commands
 
 		private OneNote one;
 		private XNamespace ns;
-		private readonly MD5CryptoServiceProvider hasher;
+		private readonly SHA1CryptoServiceProvider hasher;
 		private readonly List<HashNode> hashes;
 		private UI.ProgressDialog progress;
 
@@ -53,7 +53,11 @@ namespace River.OneMoreAddIn.Commands
 		public RemoveDuplicatesCommand()
 		{
 			hashes = new List<HashNode>();
-			hasher = new MD5CryptoServiceProvider();
+
+			// MD5 should be sufficient and performs best but is not FIPS compliant
+			// so use SHA1 instead. Computers are configured to enable/disable FIPS via
+			// HKLM\SYSTEM\CurrentControlSet\Control\Lsa\FipsAlgorithmPolicy\Enabled
+			hasher = new SHA1CryptoServiceProvider();
 		}
 
 

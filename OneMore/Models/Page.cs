@@ -60,7 +60,10 @@ namespace River.OneMoreAddIn.Models
 		/// <param name="root">The root element of the page</param>
 		private void ComputeHashes(XElement root)
 		{
-			using var algo = MD5.Create();
+			// MD5 should be sufficient and performs best but is not FIPS compliant
+			// so use SHA1 instead. Computers are configured to enable/disable FIPS via
+			// HKLM\SYSTEM\CurrentControlSet\Control\Lsa\FipsAlgorithmPolicy\Enabled
+			using var algo = SHA1.Create();
 
 			// 1st generation child elements of the Page
 			foreach (var child in root.Elements())
@@ -89,8 +92,8 @@ namespace River.OneMoreAddIn.Models
 		/// <param name="keep">Keeps all Outlines to force full page update</param>
 		public void OptimizeForSave(bool keep)
 		{
-			// MD5 should be sufficient and performs better than any other algorithm
-			using var algo = MD5.Create();
+			// see note above regarding SHA1 vs MD5
+			using var algo = SHA1.Create();
 
 			// 1st generation child elements of the Page
 			foreach (var child in Root.Elements().ToList())
