@@ -219,6 +219,8 @@ namespace River.OneMoreAddIn.Commands
 
 
 		#region UpgradeDatabase
+		[System.Diagnostics.CodeAnalysis.SuppressMessage("Major Code Smell",
+			"S1854:Unused assignments should be removed", Justification = "<Pending>")]
 		private void UpgradeDatabase()
 		{
 			using var cmd = con.CreateCommand();
@@ -992,7 +994,7 @@ namespace River.OneMoreAddIn.Commands
 				}
 
 				cmd.CommandText = "REPLACE INTO hashtag_notebook " +
-					"(notebookID, name) VALUES (@nid, @nam, @mod)";
+					"(notebookID, name, lastModified) VALUES (@nid, @nam, @mod)";
 
 				cmd.Parameters.Clear();
 				cmd.Parameters.AddWithValue("@nid", notebookID);
