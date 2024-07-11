@@ -223,39 +223,15 @@ namespace River.OneMoreAddIn.Settings
 		}
 
 
-		private void upButton_Click(object sender, EventArgs e)
+		private void downButton_Click(object sender, EventArgs e)
 		{
-			if (gridView.SelectedCells.Count > 0)
-			{
-				int colIndex = gridView.SelectedCells[0].ColumnIndex;
-				int rowIndex = gridView.SelectedCells[0].RowIndex;
-				if (rowIndex > 0 && rowIndex < engines.Count)
-				{
-					var item = engines[rowIndex];
-					engines.RemoveAt(rowIndex);
-					engines.Insert(rowIndex - 1, item);
-
-					gridView.Rows[rowIndex - 1].Cells[colIndex].Selected = true;
-				}
-			}
+			gridView.MoveSelectedItemDown(engines);
 		}
 
 
-		private void downButton_Click(object sender, EventArgs e)
+		private void upButton_Click(object sender, EventArgs e)
 		{
-			if (gridView.SelectedCells.Count > 0)
-			{
-				int colIndex = gridView.SelectedCells[0].ColumnIndex;
-				int rowIndex = gridView.SelectedCells[0].RowIndex;
-				if (rowIndex < engines.Count - 1)
-				{
-					var item = engines[rowIndex];
-					engines.RemoveAt(rowIndex);
-					engines.Insert(rowIndex + 1, item);
-
-					gridView.Rows[rowIndex + 1].Cells[colIndex].Selected = true;
-				}
-			}
+			gridView.MoveSelectedItemUp(engines);
 		}
 
 
