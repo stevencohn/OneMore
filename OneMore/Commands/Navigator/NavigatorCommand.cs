@@ -50,7 +50,7 @@ namespace River.OneMoreAddIn.Commands
 				window.WindowState = FormWindowState.Normal;
 			}
 
-			window.Elevate(true);
+			window.Elevate(false);
 
 			await Task.Yield();
 		}
