@@ -57,6 +57,8 @@ namespace River.OneMoreAddIn.Commands
 
 			}
 
+			DefaultControl = tagBox;
+
 			selections = new List<string>();
 
 			palette = new MoreAutoCompleteList

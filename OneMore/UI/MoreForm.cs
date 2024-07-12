@@ -34,6 +34,12 @@ namespace River.OneMoreAddIn.UI
 
 
 		/// <summary>
+		/// 
+		/// </summary>
+		protected Control DefaultControl { get; set; }
+
+
+		/// <summary>
 		/// Gets or sets whether the location has been set by the caller and should NOT be
 		/// overriden by the OnLoad method below...
 		/// </summary>
@@ -91,7 +97,6 @@ namespace River.OneMoreAddIn.UI
 		public void RunModeless(EventHandler closedAction = null, int topDelta = 0)
 		{
 			StartPosition = FormStartPosition.Manual;
-			TopMost = true;
 			modeless = true;
 
 			var rect = new Native.Rectangle();
@@ -123,8 +128,83 @@ namespace River.OneMoreAddIn.UI
 		}
 
 
+		/*========================================================================================
+		//
+
+		Event Handlers run in this sequence: OnActivated... OnLoad... OnShown
+
+		Through a bit of voodoo and dark incantations, we attempt to handle all cases that
+		need to elevate or surface new or existing dialogs. Dialogs are invoked from and through
+		the OneNote Interop COM API, making ownership and parent/child relationships muddy.
+
+		There are two distinct invocation scenarios:
+
+			- Invoking a command from the OneNote ribbon UI and the OneMore menus. In this case,
+			  there is a disconnect between the OneNote native thread and the OneMore dllhost
+			  managed thread, making it impossible to Activate the dialog and capture input
+
+			- Invoking a command as a hotkey. In this case, OneNote somehow hands input capture
+			  over to the dialog. (Is there a property somewhere that indicates a difference?)
+		
+		Here are a couple of examples:
+
+			- The palette uses System.Window.Forms.Form.ShowDialog() to create a modal dialog
+			- Mardown preview is a wrapper of WebView which needs an STA context
+			- Hashtag uses MoreForm.RunModeless() to create a modeless dialog
+
+		ShowDialog pretty much takes care of itself.
+		RunModeless is isolated into its own ApplicationContext.
+
+		In fact, Microsoft actively does whatever it can to prevent an app from selecting a
+		random window to SetActive or capture keyboard input. Security experts tend to think
+		this is a thread as well.
+
+		- - - - > >
+
+		So the conclusion is that the code below is a careful balance that eliminates the
+		OneNote window from flickering when CommandPalette is opened, but also allows proper
+		elevation for all other windows, with the concession that we don't really allow
+		persistent TopMost for any OneMore dialog.
+
+		//
+		//======================================================================================*/
+
+		protected override void OnActivated(EventArgs e)
+		{
+			//logger.WriteLine($"activating [{Text}]");
+
+			base.OnActivated(e);
+
+			if (modeless)
+			{
+				// will get called twice, but it's needed to ensure RunModeless dialogs like
+				// FindHashtagDialog is elevated properly
+				Elevate(false);
+			}
+		}
+
+
 		protected override async void OnLoad(EventArgs e)
 		{
+			#region LoadControls() for themes
+			static void LoadControls(Control.ControlCollection controls)
+			{
+				foreach (Control child in controls)
+				{
+					if (child is ILoadControl loader)
+					{
+						loader.OnLoad();
+					}
+
+					if (child.Controls.Count > 0)
+					{
+						LoadControls(child.Controls);
+					}
+				}
+			}
+			#endregion
+
+			//logger.WriteLine("onload");
 			base.OnLoad(e);
 
 			if (ThemeEnabled)
@@ -133,6 +213,13 @@ namespace River.OneMoreAddIn.UI
 			}
 
 			LoadControls(Controls);
+
+			if (DefaultControl is not null)
+			{
+				//logger.WriteLine("load focusing on default control");
+				DefaultControl.Select();
+				DefaultControl.Focus();
+			}
 
 			// RunModeless has already set location so don't repeat that here and only set
 			// location if inheritor hasn't declined by setting it to zero. Also, we're doing
@@ -181,27 +268,17 @@ namespace River.OneMoreAddIn.UI
 		}
 
 
-		private void LoadControls(Control.ControlCollection controls)
-		{
-			foreach (Control child in controls)
-			{
-				if (child is ILoadControl loader)
-				{
-					loader.OnLoad();
-				}
-
-				if (child.Controls.Count > 0)
-				{
-					LoadControls(child.Controls);
-				}
-			}
-		}
-
-
 		protected override void OnShown(EventArgs e)
 		{
+			//logger.WriteLine($"showing [{Text}]");
 			base.OnShown(e);
-			Elevate();
+
+			if (DefaultControl is not null)
+			{
+				//logger.WriteLine("focusing on default control");
+				DefaultControl.Select();
+				DefaultControl.Focus();
+			}
 		}
 
 
@@ -212,25 +289,35 @@ namespace River.OneMoreAddIn.UI
 		/// <param name="keepTop">True to maintain this form as a TopMost form</param>
 		public void Elevate(bool keepTop = true)
 		{
+			if (DesignMode)
+			{
+				return;
+			}
+
+			//logger.WriteLine($"elevating [{Text}]");
+
 			// a bunch of hocus-pocus to force the form to the foreground...
 
-			IntPtr HWND_TOPMOST = new(-1);
-			Native.SetWindowPos(Handle, HWND_TOPMOST, 0, 0, 0, 0,
-				Native.SWP_NOMOVE | Native.SWP_NOSIZE);
+			//IntPtr HWND_TOPMOST = new(-1);
+			//Native.SetWindowPos(Handle, HWND_TOPMOST, 0, 0, 0, 0,
+			//	Native.SWP_NOMOVE | Native.SWP_NOSIZE);
 
-			var location = Location;
+			//var location = Location;
 
-			Native.SetForegroundWindow(Handle);
-			BringToFront();
+			//Native.SetForegroundWindow(Handle);
+			if (modeless)
+			{
+				BringToFront();
+			}
+
+			//Location = location;
 
 			// this is the trick needed to elevate a dialog to TopMost
 			TopMost = false;
 			TopMost = true;
-
-			Activate();
 			TopMost = keepTop;
 
-			Location = location;
+			Select();
 			Focus();
 		}
 
