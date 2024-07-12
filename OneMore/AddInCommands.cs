@@ -818,6 +818,11 @@ namespace River.OneMoreAddIn
 			=> await factory.Run<SelectImagesCommand>();
 
 
+		[Command("ribSelectInkButton_Label", Keys.None, "ribEditMenu")]
+		public async Task SelectInkCmd(IRibbonControl control)
+			=> await factory.Run<SelectInkCommand>();
+
+
 		[Command("ribSelectStyleButton_Label", Keys.None, "ribEditMenu")]
 		public async Task SelectStyleCmd(IRibbonControl control)
 			=> await factory.Run<SelectStyleCommand>();

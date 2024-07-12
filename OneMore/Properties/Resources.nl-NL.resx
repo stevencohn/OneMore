@@ -3811,6 +3811,14 @@ Na de laatste groep</value>
     <value>Selecteer alle afbeeldingen op de pagina</value>
     <comment>ribbon edit</comment>
   </data>
+  <data name="ribSelectInkButton_Label" xml:space="preserve">
+    <value>Selecteer Alle inkt</value>
+    <comment>ribbon images</comment>
+  </data>
+  <data name="ribSelectInkButton_Screentip" xml:space="preserve">
+    <value>Selecteer alle inkt op de pagina</value>
+    <comment>ribbon images</comment>
+  </data>
   <data name="ribSelectStyleButton_Label" xml:space="preserve">
     <value>Selecteer Vergelijkbare tekst</value>
     <comment>ribbon edit</comment>

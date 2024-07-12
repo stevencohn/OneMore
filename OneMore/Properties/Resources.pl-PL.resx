@@ -3824,6 +3824,14 @@ Po ostatniej grupie</value>
     <value>Wybierz wszystkie obrazy na stronie</value>
     <comment>ribbon edit</comment>
   </data>
+  <data name="ribSelectInkButton_Label" xml:space="preserve">
+    <value>Wybierz opcję Cały atrament</value>
+    <comment>ribbon images</comment>
+  </data>
+  <data name="ribSelectInkButton_Screentip" xml:space="preserve">
+    <value>Zaznacz cały atrament na stronie</value>
+    <comment>ribbon images</comment>
+  </data>
   <data name="ribSelectStyleButton_Label" xml:space="preserve">
     <value>Wybierz podobny tekst</value>
     <comment>ribbon edit</comment>

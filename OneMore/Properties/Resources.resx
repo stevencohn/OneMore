@@ -1193,7 +1193,6 @@ Symbols: PI, E
 Cell reference: A1, A2, ... ZZZ999
 Cell range: A1:A22
 Dynamic range in a column: A1:A-1</value>
-    <comment></comment>
   </data>
   <data name="FormulaDialog_selectedLabel.Text" xml:space="preserve">
     <value>Selected cells:</value>
@@ -3839,11 +3838,19 @@ After last group</value>
   </data>
   <data name="ribSelectImagesButton_Label" xml:space="preserve">
     <value>Select All Images</value>
-    <comment>ribbon edit</comment>
+    <comment>ribbon images</comment>
   </data>
   <data name="ribSelectImagesButton_Screentip" xml:space="preserve">
     <value>Select all images on the page</value>
-    <comment>ribbon edit</comment>
+    <comment>ribbon images</comment>
+  </data>
+  <data name="ribSelectInkButton_Label" xml:space="preserve">
+    <value>Select All Ink</value>
+    <comment>ribbon images</comment>
+  </data>
+  <data name="ribSelectInkButton_Screentip" xml:space="preserve">
+    <value>Select all ink on the page</value>
+    <comment>ribbon images</comment>
   </data>
   <data name="ribSelectStyleButton_Label" xml:space="preserve">
     <value>Select Similar Text</value>
