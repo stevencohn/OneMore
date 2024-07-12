@@ -556,6 +556,18 @@
                 getScreentip="GetRibbonScreentip"
                 onAction="CaptionAttachmentsCmd"/>
               <button
+                id="ribCopyPageContentButton"
+                imageMso="Copy"
+                getLabel="GetRibbonLabel"
+                getScreentip="GetRibbonScreentip"
+                onAction="CopyPageContentCmd"/>
+              <button
+                id="ribMovePageContentButton"
+                imageMso="PasteDuplicate"
+                getLabel="GetRibbonLabel"
+                getScreentip="GetRibbonScreentip"
+                onAction="MovePageContentCmd"/>
+              <button
                 id="ribCreatePagesButton"
                 imageMso="CreateHandoutsInWord"
                 getLabel="GetRibbonLabel"

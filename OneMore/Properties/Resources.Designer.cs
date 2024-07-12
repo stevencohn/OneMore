@@ -2771,6 +2771,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Select some content before proceeding.
+        /// </summary>
+        internal static string Error_SelectContent {
+            get {
+                return ResourceManager.GetString("Error_SelectContent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Select an image before invoking this command.
         /// </summary>
         internal static string Error_SelectImage {
@@ -7448,6 +7457,24 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Copy Selected Content.
+        /// </summary>
+        internal static string ribCopyPageContentButton_Label {
+            get {
+                return ResourceManager.GetString("ribCopyPageContentButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Copy selected content to a new page.
+        /// </summary>
+        internal static string ribCopyPageContentButton_Screentip {
+            get {
+                return ResourceManager.GetString("ribCopyPageContentButton_Screentip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Import Hyperlinks.
         /// </summary>
         internal static string ribCrawlWebPageButton_Label {
@@ -8652,6 +8679,24 @@ namespace River.OneMoreAddIn.Properties {
         internal static string ribMovePageBottomButton_Screentip {
             get {
                 return ResourceManager.GetString("ribMovePageBottomButton_Screentip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Move Selected Content.
+        /// </summary>
+        internal static string ribMovePageContentButton_Label {
+            get {
+                return ResourceManager.GetString("ribMovePageContentButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Move selected content to a new page.
+        /// </summary>
+        internal static string ribMovePageContentButton_Screentip {
+            get {
+                return ResourceManager.GetString("ribMovePageContentButton_Screentip", resourceCulture);
             }
         }
         

@@ -1016,6 +1016,9 @@ Czcionka ostatniej kolumny</value>
   <data name="Error_NoAttachments" xml:space="preserve">
     <value>Nie znaleziono załączników na stronie</value>
   </data>
+  <data name="Error_SelectContent" xml:space="preserve">
+    <value>Wybierz zawartość przed kontynuowaniem</value>
+  </data>
   <data name="Error_SelectImage" xml:space="preserve">
     <value>Wybierz obraz przed wywołaniem tego polecenia</value>
     <comment>error message box</comment>
@@ -2878,6 +2881,14 @@ Po ostatniej grupie</value>
     <value>Skopiuj hiperłącze do bieżącego akapitu</value>
     <comment>ribbon references</comment>
   </data>
+  <data name="ribCopyPageContentButton_Label" xml:space="preserve">
+    <value>Skopiuj wybraną zawartość</value>
+    <comment>ribbon page</comment>
+  </data>
+  <data name="ribCopyPageContentButton_Screentip" xml:space="preserve">
+    <value>Skopiuj wybraną zawartość na nową stronę</value>
+    <comment>ribbon page</comment>
+  </data>
   <data name="ribCrawlWebPageButton_Label" xml:space="preserve">
     <value>Importuj hiperłącza</value>
     <comment>ribbon item</comment>
@@ -3404,6 +3415,14 @@ Po ostatniej grupie</value>
   </data>
   <data name="ribMovePageBottomButton_Screentip" xml:space="preserve">
     <value>Przenieś wybrane strony na dół listy</value>
+    <comment>ribbon page</comment>
+  </data>
+  <data name="ribMovePageContentButton_Label" xml:space="preserve">
+    <value>Przenieś wybraną zawartość</value>
+    <comment>ribbon page</comment>
+  </data>
+  <data name="ribMovePageContentButton_Screentip" xml:space="preserve">
+    <value>Przenieś wybraną zawartość na nową stronę</value>
     <comment>ribbon page</comment>
   </data>
   <data name="ribMovePageTopButton_Label" xml:space="preserve">

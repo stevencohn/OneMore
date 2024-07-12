@@ -1016,6 +1016,9 @@ Total Row Font
   <data name="Error_NoAttachments" xml:space="preserve">
     <value>לא נמצאו קבצים מצורפים בדף</value>
   </data>
+  <data name="Error_SelectContent" xml:space="preserve">
+    <value>בחר תוכן לפני שתמשיך</value>
+  </data>
   <data name="Error_SelectImage" xml:space="preserve">
     <value>בחר תמונה לפני הפעלת פקודה זו</value>
     <comment>error message box</comment>
@@ -2884,6 +2887,14 @@ ISO-code then comma then language name</comment>
     <value>העתק היפר -קישור לפסקה הנוכחית</value>
     <comment>ribbon references</comment>
   </data>
+  <data name="ribCopyPageContentButton_Label" xml:space="preserve">
+    <value>העתק תוכן נבחר</value>
+    <comment>ribbon page</comment>
+  </data>
+  <data name="ribCopyPageContentButton_Screentip" xml:space="preserve">
+    <value>העתק תוכן נבחר לדף חדש</value>
+    <comment>ribbon page</comment>
+  </data>
   <data name="ribCrawlWebPageButton_Label" xml:space="preserve">
     <value>ייבוא ​​היפר-קישורים</value>
     <comment>ribbon item</comment>
@@ -3410,6 +3421,14 @@ ISO-code then comma then language name</comment>
   </data>
   <data name="ribMovePageBottomButton_Screentip" xml:space="preserve">
     <value>העבר את הדפים שנבחרו לתחתית הרשימה</value>
+    <comment>ribbon page</comment>
+  </data>
+  <data name="ribMovePageContentButton_Label" xml:space="preserve">
+    <value>העבר תוכן נבחר</value>
+    <comment>ribbon page</comment>
+  </data>
+  <data name="ribMovePageContentButton_Screentip" xml:space="preserve">
+    <value>העבר תוכן נבחר לעמוד חדש</value>
     <comment>ribbon page</comment>
   </data>
   <data name="ribMovePageTopButton_Label" xml:space="preserve">

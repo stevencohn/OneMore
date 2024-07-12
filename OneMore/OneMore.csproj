@@ -184,6 +184,7 @@
     </Compile>
     <Compile Include="Commands\Navigator\PinPageCommand.cs" />
     <Compile Include="Commands\Page\DuplicatePageCommand.cs" />
+    <Compile Include="Commands\Page\ExtractContentCommand.cs" />
     <Compile Include="Commands\Page\MovePageCommand.cs" />
     <Compile Include="Commands\References\HyperlinkProvider.cs" />
     <Compile Include="Commands\Reminders\CleanRemindersCommand.cs" />
@@ -306,6 +307,7 @@
     <Compile Include="Models\PageEditor.cs" />
     <Compile Include="AddInHotkeys.cs" />
     <Compile Include="Models\PageReader.cs" />
+    <Compile Include="Models\SectionEditor.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

@@ -410,27 +410,19 @@ namespace River.OneMoreAddIn.Commands
 
 			await one.Update(child);
 
+			section = await one.GetSection();
+			var editor = new SectionEditor(section);
+
 			if (plugin.AsChildPage)
 			{
 				// get current section again after new page is created
-				section = await one.GetSection();
-
-				var parentElement = section.Elements(page.Namespace + "Page")
-					.First(e => e.Attribute("ID").Value == page.PageId);
-
-				var childElement = section.Elements(page.Namespace + "Page")
-					.First(e => e.Attribute("ID").Value == pageId);
-
-				if (childElement != parentElement.NextNode)
+				if (editor.MovePageToParent(pageId, page.PageId))
 				{
-					// move new page immediately after its original in the section
-					childElement.Remove();
-					parentElement.AddAfterSelf(childElement);
+					one.UpdateHierarchy(section);
 				}
-
-				var level = int.Parse(parentElement.Attribute("pageLevel").Value);
-				childElement.Attribute("pageLevel").Value = (level + 1).ToString();
-
+			}
+			else if (editor.MovePageAfterAnchor(pageId, page.PageId))
+			{
 				one.UpdateHierarchy(section);
 			}
 

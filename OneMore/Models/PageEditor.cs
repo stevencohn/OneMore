@@ -148,8 +148,6 @@ namespace River.OneMoreAddIn.Models
 			// IMPORTANT: Within an OE, no more than exactly one OEContent element
 			// can be selected at a time!
 
-
-
 			var paragraphs = targetOutline is null
 				? page.Root.Elements(ns + "Outline").Descendants(ns + "OE")
 				: targetOutline.Descendants(ns + "OE");
