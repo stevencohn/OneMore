@@ -36,6 +36,16 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
+		/// <summary>
+		/// Gets or sets a value indicating that this tag is from a currently loaded and
+		/// available notebook. Cataloged tags from unloaded notebooks will be marked unavailable
+		/// </summary>
+		public bool Available { get; set; }
+
+
+		/// <summary>
+		/// Gets or sets the body-level snippets of text on the page that contain contextual tags
+		/// </summary>
 		public HashtagSnippets Snippets { get; set; }
 
 

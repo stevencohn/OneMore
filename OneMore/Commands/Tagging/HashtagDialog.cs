@@ -14,6 +14,7 @@ namespace River.OneMoreAddIn.Commands
 	using System.Linq;
 	using System.Threading.Tasks;
 	using System.Windows.Forms;
+	using System.Xml.Linq;
 	using Resx = Properties.Resources;
 
 
@@ -164,6 +165,10 @@ namespace River.OneMoreAddIn.Commands
 			}
 
 			await using var one = new OneNote();
+
+			var loadedBookIDs = (await one.GetNotebooks()).Elements()
+				.Select(e => e.Attribute("ID").Value).ToList();
+
 			var provider = new HashtagProvider();
 			string parsed;
 
@@ -183,7 +188,7 @@ namespace River.OneMoreAddIn.Commands
 
 			if (tags.Any())
 			{
-				var items = CollateTags(tags);
+				var items = CollateTags(tags, loadedBookIDs);
 				tags.Clear();
 
 				var controls = new HashtagContextControl[items.Count];
@@ -291,7 +296,7 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private HashtagContexts CollateTags(Hashtags tags)
+		private HashtagContexts CollateTags(Hashtags tags, IEnumerable<string> loadedNotebookIDs)
 		{
 			// transform Hashtags collection to HashtagContexts collection...
 
@@ -303,7 +308,11 @@ namespace River.OneMoreAddIn.Commands
 			{
 				if (context == null || context.MoreID != tag.MoreID)
 				{
-					context = new HashtagContext(tag);
+					context = new HashtagContext(tag)
+					{
+						Available = loadedNotebookIDs.Contains(tag.NotebookID)
+					};
+
 					items.Add(context);
 				}
 				else

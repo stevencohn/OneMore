@@ -34,11 +34,14 @@ namespace River.OneMoreAddIn.Commands
 
 			PageID = item.PageID;
 
+			checkbox.Enabled = item.Available;
+
 			pageLink.Text = $"{item.HierarchyPath}/{item.PageTitle}";
 			var oid = string.IsNullOrWhiteSpace(item.TitleID) ? string.Empty : item.TitleID;
 			pageLink.Links.Add(0, pageLink.Text.Length, (item.PageID, oid));
 			pageLink.HoverColor = hoverColor;
 			tooltip.SetToolTip(pageLink, Resx.HashtagContext_jumpTip);
+			pageLink.Enabled = item.Available;
 
 			// LastModified...
 
@@ -63,6 +66,7 @@ namespace River.OneMoreAddIn.Commands
 					ActiveLinkColor = grayColor,
 					AutoSize = true,
 					Cursor = Cursors.Hand,
+					Enabled = item.Available,
 					ForeColor = fore,
 					HoverColor = hoverColor,
 					LinkColor = fore,
