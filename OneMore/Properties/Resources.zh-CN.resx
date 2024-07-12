@@ -1006,6 +1006,9 @@
   <data name="Error_NoAttachments" xml:space="preserve">
     <value>页面上没有找到附件</value>
   </data>
+  <data name="Error_SelectContent" xml:space="preserve">
+    <value>在继续之前选择一些内容</value>
+  </data>
   <data name="Error_SelectImage" xml:space="preserve">
     <value>在调用此命令之前选择一个图像</value>
     <comment>error message box</comment>
@@ -2866,6 +2869,14 @@ ISO-code then comma then language name</comment>
     <value>将超链接复制到当前段落</value>
     <comment>ribbon references</comment>
   </data>
+  <data name="ribCopyPageContentButton_Label" xml:space="preserve">
+    <value>复制选定的内容</value>
+    <comment>ribbon page</comment>
+  </data>
+  <data name="ribCopyPageContentButton_Screentip" xml:space="preserve">
+    <value>将选定的内容复制到新页面</value>
+    <comment>ribbon page</comment>
+  </data>
   <data name="ribCrawlWebPageButton_Label" xml:space="preserve">
     <value>导入超链接</value>
     <comment>ribbon item</comment>
@@ -3392,6 +3403,14 @@ ISO-code then comma then language name</comment>
   </data>
   <data name="ribMovePageBottomButton_Screentip" xml:space="preserve">
     <value>将选定的页面移至列表底部</value>
+    <comment>ribbon page</comment>
+  </data>
+  <data name="ribMovePageContentButton_Label" xml:space="preserve">
+    <value>移动选定的内容</value>
+    <comment>ribbon page</comment>
+  </data>
+  <data name="ribMovePageContentButton_Screentip" xml:space="preserve">
+    <value>将选定的内容移动到新页面</value>
     <comment>ribbon page</comment>
   </data>
   <data name="ribMovePageTopButton_Label" xml:space="preserve">

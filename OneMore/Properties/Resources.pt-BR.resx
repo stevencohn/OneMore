@@ -1008,6 +1008,9 @@ Fonte da última coluna</value>
   <data name="Error_NoAttachments" xml:space="preserve">
     <value>Nenhum anexos encontrados na página</value>
   </data>
+  <data name="Error_SelectContent" xml:space="preserve">
+    <value>Selecione algum conteúdo antes de continuar</value>
+  </data>
   <data name="Error_SelectImage" xml:space="preserve">
     <value>Selecione uma imagem antes de invocar este comando</value>
     <comment>error message box</comment>
@@ -2866,6 +2869,14 @@ Depois do último grupo</value>
     <value>Copiar um hiperlink para o parágrafo atual</value>
     <comment>ribbon references</comment>
   </data>
+  <data name="ribCopyPageContentButton_Label" xml:space="preserve">
+    <value>Copiar conteúdo selecionado</value>
+    <comment>ribbon page</comment>
+  </data>
+  <data name="ribCopyPageContentButton_Screentip" xml:space="preserve">
+    <value>Copiar o conteúdo selecionado para uma nova página</value>
+    <comment>ribbon page</comment>
+  </data>
   <data name="ribCrawlWebPageButton_Label" xml:space="preserve">
     <value>Importar hiperlinks.</value>
     <comment>ribbon item</comment>
@@ -3391,6 +3402,14 @@ Depois do último grupo</value>
   </data>
   <data name="ribMovePageBottomButton_Screentip" xml:space="preserve">
     <value>Mover as páginas selecionadas para o final da lista</value>
+    <comment>ribbon page</comment>
+  </data>
+  <data name="ribMovePageContentButton_Label" xml:space="preserve">
+    <value>Mover conteúdo selecionado</value>
+    <comment>ribbon page</comment>
+  </data>
+  <data name="ribMovePageContentButton_Screentip" xml:space="preserve">
+    <value>Mover o conteúdo selecionado para uma nova página</value>
     <comment>ribbon page</comment>
   </data>
   <data name="ribMovePageTopButton_Label" xml:space="preserve">

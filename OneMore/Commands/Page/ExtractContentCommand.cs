@@ -6,7 +6,6 @@ namespace River.OneMoreAddIn.Commands
 {
 	using River.OneMoreAddIn.Models;
 	using System.Threading.Tasks;
-	using System.Xml.Linq;
 
 
 	#region Wrappers
@@ -35,11 +34,6 @@ namespace River.OneMoreAddIn.Commands
 	/// </summary>
 	internal class ExtractContentCommand : Command
 	{
-		private OneNote one;
-		private Page page;
-		private XNamespace ns;
-
-
 		public ExtractContentCommand()
 		{
 		}
@@ -49,38 +43,58 @@ namespace River.OneMoreAddIn.Commands
 		{
 			bool move = (bool)args[0];
 
-			await using (one = new OneNote(out page, out ns, OneNote.PageDetail.All))
+			await using var one = new OneNote(out var page, out _, OneNote.PageDetail.All);
+
+			var editor = new PageEditor(page);
+			var content = await editor.ExtractSelectedContent();
+			if (!content.HasElements)
 			{
-				var editor = new PageEditor(page);
-				var content = await editor.ExtractSelectedContent();
-				if (content.HasElements)
-				{
-					var target = await MakeTargetPage(page.Title, content);
-
-					if (move)
-					{
-						await one.Update(page);
-					}
-
-					//await one.NavigateTo(page.PageId);
-				}
+				return;
 			}
-		}
 
+			var sectionEditor = new SectionEditor(await one.GetSection());
 
-		private async Task<Page> MakeTargetPage(string title, XElement content)
-		{
+			// current page is the initial anchor
+			var anchorID = sectionEditor.FindLastIndexedPageIDByTitle(page.Title);
+
+			// make target page...
+
 			// create a page in this section to capture heading content
-			one.CreatePage(one.CurrentSectionId, out var pageId);
-			var target = await one.GetPage(pageId);
+			one.CreatePage(one.CurrentSectionId, out var targetID);
+			var target = await one.GetPage(targetID);
+			target.Title = page.Title; // temp
 
-			target.Title = $"{title}_0";
+			// refresh the editor
+			sectionEditor = new SectionEditor(await one.GetSection());
+			sectionEditor.SetUniquePageTitle(target);
 
 			var container = target.EnsureContentContainer();
 			container.Add(content.Elements());
+
+			var map = target.MergeQuickStyles(page);
+			target.ApplyStyleMapping(map, container);
+
 			await one.Update(target);
 
-			return target;
+			// place the page in index-order after the source page...
+
+			if (anchorID is not null)
+			{
+				// refresh the editor
+				sectionEditor = new SectionEditor(await one.GetSection());
+				if (sectionEditor.MovePageAfterAnchor(target.PageId, anchorID))
+				{
+					one.UpdateHierarchy(sectionEditor.Section);
+				}
+			}
+
+			if (move)
+			{
+				// update the source page, removing the moved content
+				await one.Update(page);
+			}
+
+			//await one.NavigateTo(page.PageId);
 		}
 	}
 }

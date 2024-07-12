@@ -2771,6 +2771,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Select some content before proceeding.
+        /// </summary>
+        internal static string Error_SelectContent {
+            get {
+                return ResourceManager.GetString("Error_SelectContent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Select an image before invoking this command.
         /// </summary>
         internal static string Error_SelectImage {
@@ -7457,7 +7466,7 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to w.
+        ///   Looks up a localized string similar to Copy selected content to a new page.
         /// </summary>
         internal static string ribCopyPageContentButton_Screentip {
             get {

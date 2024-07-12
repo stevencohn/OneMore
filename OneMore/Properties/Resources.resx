@@ -117,6 +117,7 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="AboutDialog.Text" xml:space="preserve">
     <value>OneMore Add-in</value>
     <comment>dialog title bar</comment>
@@ -1018,6 +1019,9 @@ Last Column Font</value>
   </data>
   <data name="Error_NoAttachments" xml:space="preserve">
     <value>No attachments found on page</value>
+  </data>
+  <data name="Error_SelectContent" xml:space="preserve">
+    <value>Select some content before proceeding</value>
   </data>
   <data name="Error_SelectImage" xml:space="preserve">
     <value>Select an image before invoking this command</value>
@@ -2903,6 +2907,14 @@ After last group</value>
     <value>Copy a hyperlink to the current paragraph</value>
     <comment>ribbon references</comment>
   </data>
+  <data name="ribCopyPageContentButton_Label" xml:space="preserve">
+    <value>Copy Selected Content</value>
+    <comment>ribbon page</comment>
+  </data>
+  <data name="ribCopyPageContentButton_Screentip" xml:space="preserve">
+    <value>Copy selected content to a new page</value>
+    <comment>ribbon page</comment>
+  </data>
   <data name="ribCrawlWebPageButton_Label" xml:space="preserve">
     <value>Import Hyperlinks</value>
     <comment>ribbon file</comment>
@@ -3429,6 +3441,14 @@ After last group</value>
   </data>
   <data name="ribMovePageBottomButton_Screentip" xml:space="preserve">
     <value>Move selected pages to bottom of list</value>
+    <comment>ribbon page</comment>
+  </data>
+  <data name="ribMovePageContentButton_Label" xml:space="preserve">
+    <value>Move Selected Content</value>
+    <comment>ribbon page</comment>
+  </data>
+  <data name="ribMovePageContentButton_Screentip" xml:space="preserve">
+    <value>Move selected content to a new page</value>
     <comment>ribbon page</comment>
   </data>
   <data name="ribMovePageTopButton_Label" xml:space="preserve">
@@ -5165,7 +5185,6 @@ The Find Hashtags dialog will now open.</value>
     <value>Word Counts</value>
     <comment>page title</comment>
   </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="sponsor_dark" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Commands\Tools\sponsor-dark.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -5528,21 +5547,5 @@ The Find Hashtags dialog will now open.</value>
   </data>
   <data name="_0336_OneNoteApplication_2013" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>0336.OneNoteApplication_2013.xsd;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
-  </data>
-  <data name="ribCopyPageContentButton_Label" xml:space="preserve">
-    <value>Copy Selected Content</value>
-    <comment>ribbon page</comment>
-  </data>
-  <data name="ribCopyPageContentButton_Screentip" xml:space="preserve">
-    <value>w</value>
-    <comment>ribbon page</comment>
-  </data>
-  <data name="ribMovePageContentButton_Label" xml:space="preserve">
-    <value>Move Selected Content</value>
-    <comment>ribbon page</comment>
-  </data>
-  <data name="ribMovePageContentButton_Screentip" xml:space="preserve">
-    <value>Move selected content to a new page</value>
-    <comment>ribbon page</comment>
   </data>
 </root>
