@@ -184,6 +184,7 @@
     </Compile>
     <Compile Include="Commands\Navigator\PinPageCommand.cs" />
     <Compile Include="Commands\Page\DuplicatePageCommand.cs" />
+    <Compile Include="Commands\Page\ExtractContentCommand.cs" />
     <Compile Include="Commands\Page\MovePageCommand.cs" />
     <Compile Include="Commands\References\HyperlinkProvider.cs" />
     <Compile Include="Commands\Reminders\CleanRemindersCommand.cs" />
