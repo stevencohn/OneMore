@@ -149,15 +149,14 @@ namespace River.OneMoreAddIn.UI
 		Here are a couple of examples:
 
 			- The palette uses System.Window.Forms.Form.ShowDialog() to create a modal dialog
-			- Mardown preview is a wrapper of WebView which needs an STA context
+			- Mardown preview is a wrapper of WebViewDialog which needs an STA context
 			- Hashtag uses MoreForm.RunModeless() to create a modeless dialog
 
 		ShowDialog pretty much takes care of itself.
 		RunModeless is isolated into its own ApplicationContext.
 
-		In fact, Microsoft actively does whatever it can to prevent an app from selecting a
-		random window to SetActive or capture keyboard input. Security experts tend to think
-		this is a thread as well.
+		Microsoft actively does whatever it can to prevent an app from selecting a random window
+		to SetActive or capture keyboard input. Security experts tend to think this is a threat.
 
 		- - - - > >
 
