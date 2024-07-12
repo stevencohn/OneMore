@@ -3811,6 +3811,14 @@ Depois do último grupo</value>
     <value>Selecione todas as imagens na página</value>
     <comment>ribbon edit</comment>
   </data>
+  <data name="ribSelectInkButton_Label" xml:space="preserve">
+    <value>Selecione todas as tintas</value>
+    <comment>ribbon images</comment>
+  </data>
+  <data name="ribSelectInkButton_Screentip" xml:space="preserve">
+    <value>Selecione toda a tinta na página</value>
+    <comment>ribbon images</comment>
+  </data>
   <data name="ribSelectStyleButton_Label" xml:space="preserve">
     <value>Selecione Texto Semelhante</value>
     <comment>ribbon edit</comment>

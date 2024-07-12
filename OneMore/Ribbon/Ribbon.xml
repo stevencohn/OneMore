@@ -486,6 +486,12 @@
                 getScreentip="GetRibbonScreentip"
                 onAction="SelectImagesCmd"/>
               <button
+                id="ribSelectInkButton"
+                imageMso="GroupShapes"
+                getLabel="GetRibbonLabel"
+                getScreentip="GetRibbonScreentip"
+                onAction="SelectInkCmd"/>
+              <button
                 id="ribStylizeImagesButton"
                 imageMso="GroupPictureStyles"
                 getLabel="GetRibbonLabel"

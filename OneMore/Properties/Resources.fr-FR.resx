@@ -3810,6 +3810,14 @@ Après le dernier groupe</value>
     <value>Sélectionnez toutes les images de la page</value>
     <comment>ribbon edit</comment>
   </data>
+  <data name="ribSelectInkButton_Label" xml:space="preserve">
+    <value>Sélectionner toute l'encre</value>
+    <comment>ribbon images</comment>
+  </data>
+  <data name="ribSelectInkButton_Screentip" xml:space="preserve">
+    <value>Sélectionner toute l'encre de la page</value>
+    <comment>ribbon images</comment>
+  </data>
   <data name="ribSelectStyleButton_Label" xml:space="preserve">
     <value>Sélectionner un texte similaire</value>
     <comment>ribbon edit</comment>

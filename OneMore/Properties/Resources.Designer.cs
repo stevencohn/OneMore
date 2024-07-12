@@ -9603,6 +9603,24 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Select All Ink.
+        /// </summary>
+        internal static string ribSelectInkButton_Label {
+            get {
+                return ResourceManager.GetString("ribSelectInkButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select all ink on the page.
+        /// </summary>
+        internal static string ribSelectInkButton_Screentip {
+            get {
+                return ResourceManager.GetString("ribSelectInkButton_Screentip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Select Similar Text.
         /// </summary>
         internal static string ribSelectStyleButton_Label {

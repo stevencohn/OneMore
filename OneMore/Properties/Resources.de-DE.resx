@@ -3804,6 +3804,14 @@ Nach der letzten Gruppe</value>
     <value>Wählt alle Bilder auf der Seite aus</value>
     <comment>ribbon edit</comment>
   </data>
+  <data name="ribSelectInkButton_Label" xml:space="preserve">
+    <value>Wählen Sie „Alle Tinte“.</value>
+    <comment>ribbon images</comment>
+  </data>
+  <data name="ribSelectInkButton_Screentip" xml:space="preserve">
+    <value>Wählen Sie die gesamte Tinte auf der Seite aus</value>
+    <comment>ribbon images</comment>
+  </data>
   <data name="ribSelectStyleButton_Label" xml:space="preserve">
     <value>Wählen Sie „Ähnlicher Text“.</value>
     <comment>ribbon edit</comment>

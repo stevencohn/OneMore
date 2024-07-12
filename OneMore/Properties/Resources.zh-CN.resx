@@ -3804,6 +3804,14 @@ ISO-code then comma then language name</comment>
     <value>选择页面上的所有图像</value>
     <comment>ribbon edit</comment>
   </data>
+  <data name="ribSelectInkButton_Label" xml:space="preserve">
+    <value>选择所有墨水</value>
+    <comment>ribbon images</comment>
+  </data>
+  <data name="ribSelectInkButton_Screentip" xml:space="preserve">
+    <value>选择页面上的所有墨迹</value>
+    <comment>ribbon images</comment>
+  </data>
   <data name="ribSelectStyleButton_Label" xml:space="preserve">
     <value>选择相似文本</value>
     <comment>ribbon edit</comment>

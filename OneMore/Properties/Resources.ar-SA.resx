@@ -3811,6 +3811,14 @@ ISO-code then comma then language name</comment>
     <value>حدد كل الصور على الصفحة</value>
     <comment>ribbon edit</comment>
   </data>
+  <data name="ribSelectInkButton_Label" xml:space="preserve">
+    <value>حدد كل الحبر</value>
+    <comment>ribbon images</comment>
+  </data>
+  <data name="ribSelectInkButton_Screentip" xml:space="preserve">
+    <value>حدد كل الحبر الموجود على الصفحة</value>
+    <comment>ribbon images</comment>
+  </data>
   <data name="ribSelectStyleButton_Label" xml:space="preserve">
     <value>حدد نص مشابه</value>
     <comment>ribbon edit</comment>
