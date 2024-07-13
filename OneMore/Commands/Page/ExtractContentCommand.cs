@@ -8,7 +8,6 @@ namespace River.OneMoreAddIn.Commands
 	using River.OneMoreAddIn.UI;
 	using System.Linq;
 	using System.Threading.Tasks;
-	using System.Xml.Linq;
 	using Resx = Properties.Resources;
 
 
