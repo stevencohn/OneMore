@@ -5,7 +5,11 @@
 namespace River.OneMoreAddIn.Commands
 {
 	using River.OneMoreAddIn.Models;
+	using River.OneMoreAddIn.UI;
+	using System.Linq;
 	using System.Threading.Tasks;
+	using System.Xml.Linq;
+	using Resx = Properties.Resources;
 
 
 	#region Wrappers
@@ -45,12 +49,14 @@ namespace River.OneMoreAddIn.Commands
 
 			await using var one = new OneNote(out var page, out _, OneNote.PageDetail.All);
 
-			var editor = new PageEditor(page);
-			var content = await editor.ExtractSelectedContent();
-			if (!content.HasElements)
+			if (BlankOrEmpty(page))
 			{
+				MoreMessageBox.ShowError(owner, Resx.Error_SelectContent);
 				return;
 			}
+
+			var editor = new PageEditor(page);
+			var content = await editor.ExtractSelectedContent();
 
 			var sectionEditor = new SectionEditor(await one.GetSection());
 
@@ -95,6 +101,36 @@ namespace River.OneMoreAddIn.Commands
 			}
 
 			//await one.NavigateTo(page.PageId);
+		}
+
+
+		private bool BlankOrEmpty(Page page)
+		{
+			var selections = page.Root.Descendants()
+				.Where(e => e.Attribute("selected")?.Value == "all");
+
+			if (!selections.Any())
+			{
+				return true;
+			}
+
+			if (selections.Count() > 1)
+			{
+				return false;
+			}
+
+			if (selections.Any(e => e.Name.LocalName != "T"))
+			{
+				return false;
+			}
+
+			// at this point, there is one select T; check if it's empty
+			if (selections.First().TextValue() == string.Empty)
+			{
+				return true;
+			}
+
+			return false;
 		}
 	}
 }
