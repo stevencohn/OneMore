@@ -26,6 +26,7 @@ namespace River.OneMoreAddIn.Commands
 		private readonly SearchAndReplaceEditor editor;
 		private readonly string pageID;
 		private bool keepTags;
+		private int documentOrder;
 
 
 		/// <summary>
@@ -102,6 +103,8 @@ namespace River.OneMoreAddIn.Commands
 
 			if (paragraphs.Any())
 			{
+				documentOrder = 0;
+
 				foreach (var paragraph in paragraphs)
 				{
 					var count = tags.Count;
@@ -167,6 +170,7 @@ namespace River.OneMoreAddIn.Commands
 									PageID = pageID,
 									ObjectID = objectID,
 									Snippet = context,
+									DocumentOrder = documentOrder++,
 									LastModified = lastModifiedTime
 								});
 							}
