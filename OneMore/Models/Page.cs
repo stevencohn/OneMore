@@ -1366,12 +1366,17 @@ namespace River.OneMoreAddIn.Models
 				block = new XElement(ns + "Title",
 					new Paragraph(title).SetQuickStyle(style.Index));
 
-				var outline = Root.Elements(ns + "Outline")
-					.FirstOrDefault(e => !e.Elements(ns + "Meta")
-						.Any(m => m.Attribute("name").Value.Equals(MetaNames.TaggingBank)));
-
-				outline ??= EnsureContentContainer();
-				outline.AddBeforeSelf(block);
+				var anchor = Root.Elements(ns + "PageSettings").FirstOrDefault();
+				if (anchor is not null)
+				{
+					anchor.AddAfterSelf(block);
+				}
+				else
+				{
+					anchor = Root.Elements(ns + "Outline").FirstOrDefault();
+					anchor ??= EnsureContentContainer();
+					anchor.AddBeforeSelf(block);
+				}
 			}
 			else
 			{

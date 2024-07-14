@@ -33,6 +33,7 @@ namespace River.OneMoreAddIn.Commands
 
 			// set the page ID to the new page's ID
 			page.Root.Attribute("ID").Value = newId;
+
 			// remove all objectID values and let OneNote generate new IDs
 			page.Root.Descendants().Attributes("objectID").Remove();
 			page = new Page(page.Root); // reparse to refresh PageId
@@ -40,9 +41,24 @@ namespace River.OneMoreAddIn.Commands
 			var section = await one.GetSection(sectionId);
 
 			var editor = new SectionEditor(section);
+
+			// restore Title if it's hidden; the Interop API doesn't let us delete Title!
+			if (page.Title is null)
+			{
+				page.SetTitle(page.Root.Attribute("name").Value);
+			}
+
 			editor.SetUniquePageTitle(page);
 
 			await one.Update(page);
+
+			// FOLLOWING DOESN'T WORK; INTEROP API DOESN'T LET US HIDE (DELETE) Title
+			//if (hiddenTitle)
+			//{
+			//	page = await one.GetPage(page.PageId);
+			//	page.Root.Elements(ns + "Title").Remove();
+			//	await one.Update(page);
+			//}
 
 			if (editor.MovePageAfterAnchor(page.PageId, originalId))
 			{

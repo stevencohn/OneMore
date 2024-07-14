@@ -177,6 +177,7 @@ namespace River.OneMoreAddIn.Models
 			{
 				// shouldn't happen?
 				page.Title = $"{page.Title} ({index})";
+				page.Root.SetAttributeValue("name", page.Title);
 				return false;
 			}
 
@@ -222,6 +223,7 @@ namespace River.OneMoreAddIn.Models
 			}
 
 			page.Title = title;
+			page.Root.SetAttributeValue("name", title);
 			return true;
 		}
 	}
