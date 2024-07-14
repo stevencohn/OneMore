@@ -15,6 +15,20 @@ namespace River.OneMoreAddIn.Models
 	/// </summary>
 	internal class SectionEditor
 	{
+		#region Regex Explanations
+		//
+		// Pattern must match a title with any number of "(n)", taking only the last as index.
+		// For example
+		//
+		//   - the index of "foo" is 0 with a root name of "foo"
+		//   - the index of "foo (1)" is 1 with a root name of "foo"
+		//   - the index of "foo (1) (2)" is 2 with a root name of "foo (1)"
+		//
+		// This is to accomodate commands like Duplicate Page and Copy/Move Page to start
+		// with any source page and fabricate a reasonably named target page.
+		//
+		#endregion
+
 		private readonly XNamespace ns;
 	
 		
@@ -35,12 +49,18 @@ namespace River.OneMoreAddIn.Models
 		/// <returns></returns>
 		public string FindLastIndexedPageIDByTitle(string title)
 		{
-			var pattern = new Regex($@"{title}(?:\s*\((\d+)\))?");
+			var pattern = new Regex($@"(?:{Escape(title)}.*?)(?:\s*\((\d+)\))?$");
 
 			var last = Section.Elements(ns + "Page")
 				.LastOrDefault(e => pattern.Match(e.Attribute("name").Value).Success);
 
 			return last?.Attribute("ID").Value;
+		}
+
+
+		private string Escape(string title)
+		{
+			return Regex.Escape(title).Replace("/", @"\/");
 		}
 
 
@@ -124,14 +144,17 @@ namespace River.OneMoreAddIn.Models
 		public bool SetUniquePageTitle(Page page)
 		{
 			// start by extracting just name part without " (index)" suffix
-			// note that page.Title gets plain text
+			// this matches only the last "(n)" as an index, meaning multiples are allowed but
+			// prior "(n)" indexes are considered part of the root name
+			var match = Regex.Match(Escape(page.Title), @"(.+?)(?:\s*\((\d+)\))?$");
 
-			var match = Regex.Match(page.Title, @"([^(]+)(?:\s*\((\d+)\))?");
-			var title = match.Groups[1].Success ? match.Groups[1].Value.Trim() : page.Title;
+			// page.Title gets plain text
+			var title = match.Groups.Count > 1 && match.Groups[2].Success
+				? match.Groups[2].Value.Trim()
+				: page.Title;
 
 			// match all pages in section on "<name> (index)"
-
-			var regex = new Regex($@"{title}(?:\s*\((\d+)\))?");
+			var regex = new Regex($@"({Escape(title)}.*?)(?:\s*\((\d+)\))?$");
 
 			// scan the section for collisions, focusing only on the scope of immediate child
 			// pages, ignoring deeper SectionGroup pages which have their own scoped uniqueness
@@ -140,7 +163,8 @@ namespace River.OneMoreAddIn.Models
 			var index = Section.Elements(ns + "Page")
 				.Select(e => regex.Match(e.Attribute("name").Value))
 				.Where(m => m.Success)
-				.Max(m => m.Groups[1].Success ? int.Parse(m.Groups[1].Value) : 0) + 1;
+				.Max(m => m.Groups.Count > 1 && m.Groups[2].Success 
+					? int.Parse(m.Groups[2].Value) : 0) + 1;
 
 			// get the sytlized content so we can update the index in place
 
@@ -156,6 +180,8 @@ namespace River.OneMoreAddIn.Models
 				return false;
 			}
 
+			// update with new index value... either append or replace
+
 			var wrapper = run.GetCData().GetWrapper();
 			var node = wrapper.Nodes().Last();
 
@@ -163,15 +189,31 @@ namespace River.OneMoreAddIn.Models
 				? (XText)node
 				: ((XElement)node).Nodes().OfType<XText>().Last();
 
-			regex = new Regex(@"\(\d+\)\s*$");
-			if (regex.IsMatch(text.Value))
+			regex = new Regex($@"(?:{Escape(title)}.*?)(?:\s*\((\d+)\))?$");
+			match = regex.Match(text.Value);
+			if (match.Success)
 			{
-				text.Value = regex.Replace(text.Value, $"({index})");
+				if (match.Groups.Count > 1 && match.Groups[1].Success)
+				{
+					// has root name (possibly with static indexes) and a valid index
+					// so replace the valid index value with our new index value
+					text.Value = text.Value
+						.Remove(match.Groups[1].Index, match.Groups[1].Length)
+						.Insert(match.Groups[1].Index, index.ToString());
+				}
+				else
+				{
+					// append root name with a new index
+					text.Value = $"{text.Value} ({index})";
+				}
 			}
 			else
 			{
+				// append root name with a new index
 				text.Value = $"{text.Value} ({index})";
 			}
+
+			// results...
 
 			title = wrapper.GetInnerXml();
 			if (page.Title == title)
