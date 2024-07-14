@@ -54,6 +54,12 @@ namespace River.OneMoreAddIn.Commands
 				return;
 			}
 
+			// restore Title if it's hidden; the Interop API doesn't let us delete Title!
+			if (page.Title is null)
+			{
+				page.SetTitle(page.Root.Attribute("name").Value);
+			}
+
 			var editor = new PageEditor(page);
 			var content = await editor.ExtractSelectedContent();
 
