@@ -324,7 +324,10 @@ namespace River.OneMoreAddIn.Commands
 
 			var candidates = scanner.Scan();
 
+			// saved tags will be in document-order but not have DocumentOrder set,
+			// we can rely on tag + objectID to continue resolving
 			var saved = provider.ReadPageTags(pageID);
+
 			var discovered = new Hashtags();
 			var updated = new Hashtags();
 
@@ -337,7 +340,9 @@ namespace River.OneMoreAddIn.Commands
 				}
 				else
 				{
-					if (forceThru || candidate.LastModified.CompareTo(lastTime) > 0)
+					if (forceThru ||
+						candidate.LastModified.CompareTo(lastTime) > 0 ||
+						candidate.DocumentOrder != found.DocumentOrder)
 					{
 						updated.Add(candidate);
 					}
@@ -348,26 +353,11 @@ namespace River.OneMoreAddIn.Commands
 
 			var dirtyPage = false;
 
-			if (saved.Any())
+			if (saved.Any() || updated.Any() || discovered.Any())
 			{
-				// remaining saved entries were not matched with candidates
-				// on page so should be deleted
-				provider.DeleteTags(saved);
-				dirtyPage = true;
-			}
-
-			if (updated.Any())
-			{
-				// tag context updated since last scan
-				provider.UpdateSnippet(updated);
-				dirtyPage = true;
-			}
-
-			if (discovered.Any())
-			{
-				// discovered entries are new on the page and not found in saved
-
-				provider.WriteTags(discovered);
+				// much simpler to purge old and rewrite new, even if that means recreating a
+				// few copied records. should scale without issue into the many tens-of-tags
+				provider.WriteTags(pageID, candidates);
 				dirtyPage = true;
 			}
 

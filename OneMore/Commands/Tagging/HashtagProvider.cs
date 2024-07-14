@@ -2,6 +2,8 @@
 // Copyright © 2023 Steven M Cohn. All rights reserved.
 //************************************************************************************************
 
+#pragma warning disable S1133 // Deprecated code should be removed
+
 namespace River.OneMoreAddIn.Commands
 {
 	using River.OneMoreAddIn.Properties;
@@ -579,6 +581,7 @@ namespace River.OneMoreAddIn.Commands
 		/// Deletes the specified tags
 		/// </summary>
 		/// <param name="tags">A collection of Hashtags</param>
+		[Obsolete("Was used as part of original tag resolution logic")]
 		public void DeleteTags(Hashtags tags)
 		{
 			using var cmd = con.CreateCommand();
@@ -757,7 +760,8 @@ namespace River.OneMoreAddIn.Commands
 				"p.notebookID, p.sectionID, t.lastModified " +
 				"FROM hashtag t " +
 				"JOIN hashtag_page p ON p.moreID = t.moreID " +
-				"WHERE p.pageID = @p";
+				"WHERE p.pageID = @p " +
+				"ORDER BY t.documentOrder";
 
 			return ReadTags(sql,
 				new SQLiteParameter[] { new("@p", pageID) }
@@ -1132,47 +1136,75 @@ namespace River.OneMoreAddIn.Commands
 		/// Records the given tags.
 		/// </summary>
 		/// <param name="tags">A collection of Hashtags</param>
-		public void WriteTags(Hashtags tags)
+		public void WriteTags(string pageID, Hashtags tags)
 		{
-			using var tagcmd = con.CreateCommand();
-			tagcmd.CommandText = "INSERT INTO hashtag " +
-				"(tag, moreID, objectID, snippet, documentOrder, lastModified) " +
-				"VALUES (@t, @m, @o, @c, @d, @s)";
-
-			tagcmd.CommandType = CommandType.Text;
-			tagcmd.Parameters.Add("@t", DbType.String);
-			tagcmd.Parameters.Add("@m", DbType.String);
-			tagcmd.Parameters.Add("@o", DbType.String);
-			tagcmd.Parameters.Add("@c", DbType.String);
-			tagcmd.Parameters.Add("@d", DbType.Int32);
-			tagcmd.Parameters.Add("@s", DbType.String);
-
 			using var transaction = con.BeginTransaction();
-			foreach (var tag in tags)
+
+			using var cmd = con.CreateCommand();
+			cmd.CommandType = CommandType.Text;
+
+			// first purge all existing tags for page...
+
+			cmd.CommandText = "DELETE FROM HASHTAG WHERE moreID = " +
+				"(SELECT moreID FROM hashtag_page WHERE pageID = @p);";
+
+			cmd.Parameters.AddWithValue("@p", pageID);
+
+			try
 			{
-				logger.Verbose($"writing tag {tag.Tag}");
+				cmd.ExecuteNonQuery();
+			}
+			catch (Exception exc)
+			{
+				transaction.Rollback();
+				logger.WriteLine($"error deleting tags {pageID}", exc);
+				return;
+			}
 
-				tagcmd.Parameters["@t"].Value = tag.Tag;
-				tagcmd.Parameters["@m"].Value = tag.MoreID;
-				tagcmd.Parameters["@o"].Value = tag.ObjectID;
-				tagcmd.Parameters["@c"].Value = tag.Snippet;
-				tagcmd.Parameters["@d"].Value = tag.DocumentOrder;
-				tagcmd.Parameters["@s"].Value = tag.LastModified;
+			// now add (re-add) newly discovered tags for page, reestablishing doc order...
 
-				try
+			if (tags.Any())
+			{
+				cmd.CommandText = "INSERT INTO hashtag " +
+					"(tag, moreID, objectID, snippet, documentOrder, lastModified) " +
+					"VALUES (@t, @m, @o, @c, @d, @s)";
+
+				cmd.Parameters.Clear();
+				cmd.Parameters.Add("@t", DbType.String);
+				cmd.Parameters.Add("@m", DbType.String);
+				cmd.Parameters.Add("@o", DbType.String);
+				cmd.Parameters.Add("@c", DbType.String);
+				cmd.Parameters.Add("@d", DbType.Int32);
+				cmd.Parameters.Add("@s", DbType.String);
+
+				foreach (var tag in tags)
 				{
-					tagcmd.ExecuteNonQuery();
-				}
-				catch (Exception exc)
-				{
-					logger.WriteLine($"error writing tag {tag.Tag} on {tag.PageID}");
-					logger.WriteLine($"error moreID=[{tag.MoreID}]");
-					logger.WriteLine($"error objectID=[{tag.ObjectID}]");
-					logger.WriteLine($"error Snippet=[{tag.Snippet}]");
-					logger.WriteLine($"error lastModified=[{tag.LastModified}]");
-					logger.WriteLine(exc);
+					logger.Verbose($"writing tag {tag.Tag}");
+
+					cmd.Parameters["@t"].Value = tag.Tag;
+					cmd.Parameters["@m"].Value = tag.MoreID;
+					cmd.Parameters["@o"].Value = tag.ObjectID;
+					cmd.Parameters["@c"].Value = tag.Snippet;
+					cmd.Parameters["@d"].Value = tag.DocumentOrder;
+					cmd.Parameters["@s"].Value = tag.LastModified;
+
+					try
+					{
+						cmd.ExecuteNonQuery();
+					}
+					catch (Exception exc)
+					{
+						logger.WriteLine($"error writing tag {tag.Tag} on {tag.PageID}");
+						logger.WriteLine($"error moreID=[{tag.MoreID}]");
+						logger.WriteLine($"error objectID=[{tag.ObjectID}]");
+						logger.WriteLine($"error Snippet=[{tag.Snippet}]");
+						logger.WriteLine($"error lastModified=[{tag.LastModified}]");
+						logger.WriteLine(exc);
+					}
 				}
 			}
+
+			CleanupPages();
 
 			try
 			{
@@ -1180,7 +1212,7 @@ namespace River.OneMoreAddIn.Commands
 			}
 			catch (Exception exc)
 			{
-				ReportError("error writing tags", tagcmd, exc);
+				ReportError("error writing tags", cmd, exc);
 			}
 		}
 
