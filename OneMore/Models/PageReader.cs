@@ -8,6 +8,8 @@ namespace River.OneMoreAddIn.Models
 	using System.Collections.Generic;
 	using System.Linq;
 	using System.Text;
+	using System.Text.RegularExpressions;
+	using System.Web;
 	using System.Xml.Linq;
 
 
@@ -16,6 +18,372 @@ namespace River.OneMoreAddIn.Models
 	/// </summary>
 	internal class PageReader : Loggable
 	{
+		public sealed class CountedWord
+		{
+			public CountedWord(string word, int count)
+			{
+				Word = word;
+				Count = count;
+			}
+			public string Word { get; private set; }
+			public int Count {  get; private set; }
+		}
+
+
+		private static readonly string[] Blacklist = new[]
+		{
+			#region Blacklist
+			"about",
+			"after",
+			"again",
+			"air",
+			"all",
+			"along",
+			"also",
+			"an",
+			"and",
+			"another",
+			"any",
+			"are",
+			"around",
+			"as",
+			"at",
+			"away",
+			"back",
+			"be",
+			"because",
+			"been",
+			"before",
+			"below",
+			"between",
+			"both",
+			"but",
+			"by",
+			"came",
+			"can",
+			"come",
+			"could",
+			"day",
+			"did",
+			"different",
+			"do",
+			"does",
+			"don't",
+			"down",
+			"each",
+			"end",
+			"even",
+			"every",
+			"few",
+			"find",
+			"first",
+			"for",
+			"found",
+			"from",
+			"get",
+			"give",
+			"go",
+			"good",
+			"great",
+			"had",
+			"has",
+			"have",
+			"he",
+			"help",
+			"her",
+			"here",
+			"him",
+			"his",
+			"home",
+			"house",
+			"how",
+			"if",
+			"in",
+			"into",
+			"is",
+			"it",
+			"its",
+			"just",
+			"know",
+			"large",
+			"last",
+			"left",
+			"like",
+			"line",
+			"little",
+			"long",
+			"look",
+			"made",
+			"make",
+			"man",
+			"many",
+			"may",
+			"me",
+			"men",
+			"might",
+			"more",
+			"most",
+			"Mr.",
+			"must",
+			"my",
+			"name",
+			"never",
+			"new",
+			"next",
+			"no",
+			"not",
+			"now",
+			"number",
+			"of",
+			"off",
+			"old",
+			"on",
+			"one",
+			"only",
+			"or",
+			"other",
+			"our",
+			"out",
+			"over",
+			"own",
+			"part",
+			"people",
+			"place",
+			"put",
+			"read",
+			"right",
+			"said",
+			"same",
+			"saw",
+			"say",
+			"see",
+			"she",
+			"should",
+			"show",
+			"small",
+			"so",
+			"some",
+			"something",
+			"sound",
+			"still",
+			"such",
+			"take",
+			"tell",
+			"than",
+			"that",
+			"the",
+			"them",
+			"then",
+			"there",
+			"these",
+			"they",
+			"thing",
+			"think",
+			"this",
+			"those",
+			"thought",
+			"three",
+			"through",
+			"time",
+			"to",
+			"together",
+			"too",
+			"two",
+			"under",
+			"up",
+			"us",
+			"use",
+			"very",
+			"want",
+			"water",
+			"way",
+			"we",
+			"well",
+			"went",
+			"were",
+			"what",
+			"when",
+			"where",
+			"which",
+			"while",
+			"who",
+			"why",
+			"will",
+			"with",
+			"word",
+			"work",
+			"world",
+			"would",
+			"write",
+			"year",
+			"you",
+			"your",
+			"was",
+			"able",
+			"above",
+			"across",
+			"add",
+			"against",
+			"ago",
+			"almost",
+			"among",
+			"animal",
+			"answer",
+			"became",
+			"become",
+			"began",
+			"behind",
+			"being",
+			"better",
+			"black",
+			"best",
+			"body",
+			"book",
+			"boy",
+			"brought",
+			"call",
+			"cannot",
+			"car",
+			"certain",
+			"change",
+			"children",
+			"city",
+			"close",
+			"cold",
+			"country",
+			"course",
+			"cut",
+			"didn't",
+			"dog",
+			"done",
+			"door",
+			"draw",
+			"during",
+			"early",
+			"earth",
+			"eat",
+			"enough",
+			"ever",
+			"example",
+			"eye",
+			"face",
+			"family",
+			"far",
+			"father",
+			"feel",
+			"feet",
+			"fire",
+			"fish",
+			"five",
+			"food",
+			"form",
+			"four",
+			"front",
+			"gave",
+			"given",
+			"got",
+			"green",
+			"ground",
+			"group",
+			"grow",
+			"half",
+			"hand",
+			"hard",
+			"heard",
+			"high",
+			"himself",
+			"however",
+			"I'll",
+			"I'm",
+			"idea",
+			"important",
+			"inside",
+			"John",
+			"keep",
+			"kind",
+			"knew",
+			"known",
+			"land",
+			"later",
+			"learn",
+			"let",
+			"letter",
+			"life",
+			"light",
+			"live",
+			"living",
+			"making",
+			"mean",
+			"means",
+			"money",
+			"morning",
+			"mother",
+			"move",
+			"Mrs.",
+			"near",
+			"night",
+			"nothing",
+			"once",
+			"open",
+			"order",
+			"page",
+			"paper",
+			"parts",
+			"perhaps",
+			"picture",
+			"play",
+			"point",
+			"ready",
+			"red",
+			"remember",
+			"rest",
+			"room",
+			"run",
+			"school",
+			"sea",
+			"second",
+			"seen",
+			"sentence",
+			"several",
+			"short",
+			"shown",
+			"since",
+			"six",
+			"slide",
+			"sometime",
+			"soon",
+			"space",
+			"States",
+			"story",
+			"sun",
+			"sure",
+			"table",
+			"though",
+			"today",
+			"told",
+			"took",
+			"top",
+			"toward",
+			"tree",
+			"try",
+			"turn",
+			"United",
+			"until",
+			"upon",
+			"using",
+			"usually",
+			"white",
+			"whole",
+			"wind",
+			"without",
+			"yes",
+			"yet",
+			"young"
+			#endregion Blacklist
+		};
+
+		private const int PoolSize = 20;
+
 		private readonly Page page;
 		private readonly XNamespace ns;
 
@@ -92,6 +460,75 @@ namespace River.OneMoreAddIn.Models
 			}
 
 			return ReadTextFrom(paragraphs, allText);
+		}
+
+
+		/// <summary>
+		/// Finds the most commonly used words on the page, limited by PoolSize and excluding
+		/// BlackList words. Each word is annotated with the count of that word on the page.
+		/// </summary>
+		/// <returns>A collection of CountedWord</returns>
+		public IEnumerable<CountedWord> ReadCommonWords()
+		{
+			var builder = new StringBuilder();
+
+			// collect all visible text into one StringBuilder
+
+			var runs = page.Root.Elements(ns + "Outline")
+				.Where(e => !e.Elements(ns + "Meta")
+							.Any(m => m.Attribute("name").Value == MetaNames.TaggingBank))
+				.Descendants(ns + "T");
+
+			foreach (var run in runs)
+			{
+				var cdata = run.GetCData();
+				if (cdata.Value.Contains("<"))
+				{
+					var wrapper = cdata.GetWrapper();
+					var text = wrapper.Value.Trim();
+					if (text.Length > 0)
+					{
+						builder.Append(" ");
+						builder.Append(HttpUtility.HtmlDecode(text));
+					}
+				}
+				else
+				{
+					var text = cdata.Value.Trim();
+					if (text.Length > 0)
+					{
+						builder.Append(" ");
+						builder.Append(HttpUtility.HtmlDecode(text));
+					}
+				}
+			}
+
+			// collect OCR text, e.g. <one:OCRText><![CDATA[...
+
+			var data = page.Root.Elements(ns + "Outline").Descendants(ns + "OCRText")
+				.Select(e => e.GetCData());
+
+			foreach (var cdata in data)
+			{
+				builder.Append(" ");
+				builder.Append(cdata.Value);
+			}
+
+			// split text into individual words, discarding all non-word chars and numbers
+
+			var alltext = builder.Replace("\n", string.Empty).ToString();
+
+			var words = Regex.Split(alltext, @"\W")
+				.Select(w => w.Trim().ToLower()).Where(w =>
+					w.Length > 1 &&
+					!Blacklist.Contains(w) &&
+					!Regex.Match(w, @"^\s*\d+\s*$").Success)
+				.GroupBy(w => w)
+				.Select(g => new CountedWord(g.Key, g.Count()))
+				.OrderByDescending(g => g.Count)
+				.Take(PoolSize);
+
+			return words;
 		}
 
 

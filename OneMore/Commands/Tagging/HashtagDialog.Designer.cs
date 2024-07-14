@@ -34,7 +34,7 @@
 			this.contextPanel = new System.Windows.Forms.FlowLayoutPanel();
 			this.topPanel = new River.OneMoreAddIn.UI.MorePanel();
 			this.menuButton = new River.OneMoreAddIn.UI.MoreButton();
-			this.barLabel = new System.Windows.Forms.Label();
+			this.barLabel = new River.OneMoreAddIn.UI.MoreLabel();
 			this.checkAllLink = new River.OneMoreAddIn.UI.MoreLinkLabel();
 			this.uncheckAllLink = new River.OneMoreAddIn.UI.MoreLinkLabel();
 			this.scopeBox = new System.Windows.Forms.ComboBox();
