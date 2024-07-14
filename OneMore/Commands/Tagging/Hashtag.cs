@@ -77,6 +77,12 @@ namespace River.OneMoreAddIn.Commands
 
 
 		/// <summary>
+		/// Gets the document-order index value of the snippet on the page
+		/// </summary>
+		public int DocumentOrder { get; set; }
+
+
+		/// <summary>
 		/// Gets whether this instance was the result of a direct search hit or is
 		/// just another tag on the same page
 		/// </summary>

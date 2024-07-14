@@ -362,20 +362,20 @@ namespace River.OneMoreAddIn.Commands
 			logger.Start();
 
 			using var cmd = con.CreateCommand();
+			cmd.CommandType = CommandType.Text;
+
 			using var transaction = con.BeginTransaction();
 
 			try
 			{
 				logger.WriteLine("updating table hashtag_notebook");
 
-				cmd.CommandType = CommandType.Text;
 				cmd.CommandText =
 					"ALTER TABLE hashtag_notebook " +
 					"ADD COLUMN lastModified TEXT NOT NULL default('')";
 
 				cmd.ExecuteNonQuery();
 
-				cmd.CommandType = CommandType.Text;
 				cmd.CommandText =
 					"UPDATE hashtag_notebook AS nb SET lastModified = COALESCE(" +
 					"(SELECT MAX(t.lastModified) " +
@@ -389,8 +389,65 @@ namespace River.OneMoreAddIn.Commands
 			}
 			catch (Exception exc)
 			{
+				transaction.Rollback();
 				logger.End();
 				logger.WriteLine("error updating table hashtag_notebook", exc);
+				return 0;
+			}
+
+			try
+			{
+				logger.WriteLine("updating table hashtag");
+
+				cmd.CommandText =
+					"CREATE TABLE hashtag_v4 " +
+					"(tag TEXT NOT NULL, moreID TEXT NOT NULL, objectID TEXT NOT NULL, " +
+					"snippet TEXT, documentOrder INTEGER DEFAULT (0), lastModified TEXT NOT NULL, " +
+					"PRIMARY KEY (tag, objectID), " +
+					"CONSTRAINT FK_moreID FOREIGN KEY (moreID) REFERENCES hashtag_page (moreID) " +
+					"ON DELETE CASCADE)";
+
+				cmd.ExecuteNonQuery();
+
+				cmd.CommandText =
+					"INSERT INTO hashtag_v4 (tag, moreID, objectID, snippet, lastModified) " +
+					"SELECT tag, moreID, objectID, snippet, lastModified " +
+					"FROM hashtag";
+
+				cmd.ExecuteNonQuery();
+
+				cmd.CommandText = "DROP INDEX IDX_moreID";
+				cmd.ExecuteNonQuery();
+
+				cmd.CommandText = "DROP INDEX IDX_tag";
+				cmd.ExecuteNonQuery();
+
+				cmd.CommandText = "DROP TABLE hashtag";
+				cmd.ExecuteNonQuery();
+
+				cmd.CommandText = "DROP VIEW page_hashtags";
+				cmd.ExecuteNonQuery();
+
+				cmd.CommandText = "ALTER TABLE hashtag_v4 RENAME TO hashtag";
+				cmd.ExecuteNonQuery();
+
+				cmd.CommandText = "CREATE INDEX IDX_moreID ON hashtag(moreID)";
+				cmd.ExecuteNonQuery();
+
+				cmd.CommandText = "CREATE INDEX IDX_tag ON hashtag(tag)";
+				cmd.ExecuteNonQuery();
+
+				cmd.CommandText = "CREATE VIEW IF NOT EXISTS page_hashtags (moreID, tags) AS " +
+					"SELECT t.moreID, group_concat(DISTINCT(t.tag)) AS tags " + 
+					"FROM hashtag t GROUP BY t.moreID";
+
+				cmd.ExecuteNonQuery();
+			}
+			catch (Exception exc)
+			{
+				transaction.Rollback();
+				logger.End();
+				logger.WriteLine("error updating table hashtag", exc);
 				return 0;
 			}
 
@@ -792,7 +849,8 @@ namespace River.OneMoreAddIn.Commands
 
 			var builder = new StringBuilder();
 			builder.Append("SELECT t.tag, t.moreID, p.pageID, p.titleID, t.objectID, ");
-			builder.Append("p.notebookID, p.sectionID, t.lastModified, t.snippet, p.path, p.name ");
+			builder.Append("p.notebookID, p.sectionID, t.lastModified, t.snippet, ");
+			builder.Append("t.documentOrder, p.path, p.name ");
 			builder.Append("FROM hashtag t ");
 			builder.Append("JOIN hashtag_page p ON t.moreID = p.moreID ");
 
@@ -813,7 +871,7 @@ namespace River.OneMoreAddIn.Commands
 			var where = query.BuildFormattedWhereClause(criteria, out parsed);
 			builder.Append(where);
 
-			builder.Append(" ORDER BY p.path, p.name, t.tag");
+			builder.Append(" ORDER BY p.path, p.name, t.documentOrder");
 			var sql = builder.ToString();
 
 			logger.Verbose(sql);
@@ -866,8 +924,9 @@ namespace River.OneMoreAddIn.Commands
 					if (reader.FieldCount > 7 && sql.Contains("snippet"))
 					{
 						tag.Snippet = reader[8] is DBNull ? null : reader.GetString(8);
-						tag.HierarchyPath = reader[9] is DBNull ? null : reader.GetString(9);
-						tag.PageTitle = reader[10] is DBNull ? null : reader.GetString(10);
+						tag.DocumentOrder = reader[9] is DBNull ? 0 : reader.GetInt32(9);
+						tag.HierarchyPath = reader[10] is DBNull ? null : reader.GetString(10);
+						tag.PageTitle = reader[11] is DBNull ? null : reader.GetString(11);
 					}
 
 					tags.Add(tag);
@@ -1077,13 +1136,15 @@ namespace River.OneMoreAddIn.Commands
 		{
 			using var tagcmd = con.CreateCommand();
 			tagcmd.CommandText = "INSERT INTO hashtag " +
-				"(tag, moreID, objectID, snippet, lastModified) VALUES (@t, @m, @o, @c, @s)";
+				"(tag, moreID, objectID, snippet, documentOrder, lastModified) " +
+				"VALUES (@t, @m, @o, @c, @d, @s)";
 
 			tagcmd.CommandType = CommandType.Text;
 			tagcmd.Parameters.Add("@t", DbType.String);
 			tagcmd.Parameters.Add("@m", DbType.String);
 			tagcmd.Parameters.Add("@o", DbType.String);
 			tagcmd.Parameters.Add("@c", DbType.String);
+			tagcmd.Parameters.Add("@d", DbType.Int32);
 			tagcmd.Parameters.Add("@s", DbType.String);
 
 			using var transaction = con.BeginTransaction();
@@ -1095,6 +1156,7 @@ namespace River.OneMoreAddIn.Commands
 				tagcmd.Parameters["@m"].Value = tag.MoreID;
 				tagcmd.Parameters["@o"].Value = tag.ObjectID;
 				tagcmd.Parameters["@c"].Value = tag.Snippet;
+				tagcmd.Parameters["@d"].Value = tag.DocumentOrder;
 				tagcmd.Parameters["@s"].Value = tag.LastModified;
 
 				try
