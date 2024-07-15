@@ -2,6 +2,8 @@
 // Copyright © 2018 Steven M Cohn. All rights reserved.
 //************************************************************************************************
 
+#pragma warning disable S3267 // Loops should be simplified with "LINQ" expressions
+
 namespace River.OneMoreAddIn.Commands
 {
 	using River.OneMoreAddIn.Models;
@@ -43,7 +45,7 @@ namespace River.OneMoreAddIn.Commands
 		private const double MinFontSize = 6.0;
 		private const double MaxFontSize = 144.0;
 
-		private Page page;
+		private XNamespace ns;
 		private int delta;
 
 
@@ -56,53 +58,90 @@ namespace River.OneMoreAddIn.Commands
 		{
 			delta = (int)args[0]; // +/-1
 
-			await using var one = new OneNote(out page, out _);
+			await using var one = new OneNote(out var page, out ns);
 
-			if (page == null)
+			if (page is null)
 			{
 				return;
 			}
 
-			var count
-				= AlterByName()
-				+ AlterElementsByValue()
-				+ AlterCDataByValue();
+			var count = AlterQuickStyles(page);
 
-			if (count == 0)
+			foreach (var outline in page.Root
+				.Elements(ns + "Outline")
+				.Where(e => !e.Elements(ns + "Meta")
+					.Any(m => m.Attribute("name").Value == MetaNames.TaggingBank)))
 			{
-				return;
+				count +=
+					AlterByName(outline) +
+					AlterElementsByValue(outline) +
+					AlterCDataByValue(outline);
 			}
 
-			await one.Update(page);
+			if (count > 0)
+			{
+				// must force update incase only QuickStyleDefs have changed
+				await one.Update(page, true);
+			}
 		}
 
 
-		private int AlterByName()
+		public int AlterQuickStyles(Page page)
 		{
 			var count = 0;
-
-			// find all elements that have an attribute named fontSize, e.g. QuickStyleDef or Bullet
-			var elements = page.Root.Descendants()
-				.Where(p =>
-					p.Attribute("name")?.Value != "PageTitle" &&
-					p.Attribute("fontSize") != null);
-
-			if (!elements.IsNullOrEmpty())
+			foreach (var element in page.Root.Elements(ns + "QuickStyleDef")
+				.Where(e => e.Attribute("name").Value != "PageTitle"))
 			{
-				foreach (var element in elements)
+				if (element.Attribute("fontSize") is XAttribute attr)
 				{
-					if (element != null)
+					if (double.TryParse(attr.Value,
+						NumberStyles.Any, CultureInfo.InvariantCulture, out var size))
 					{
-						if (element.Attribute("fontSize") is XAttribute attr)
-						{
-							if (double.TryParse(attr.Value,
-								NumberStyles.Any, CultureInfo.InvariantCulture, out var size))
-							{
-								size = delta < 0
-									? Math.Max(size + delta, MinFontSize)
-									: Math.Min(size + delta, MaxFontSize);
+						 var result = delta < 0
+							? Math.Max(size + delta, MinFontSize)
+							: Math.Min(size + delta, MaxFontSize);
 
-								attr.Value = size.ToString("#0") + ".05";
+						if (!result.Equalsish(size))
+						{
+							attr.Value = $"{result:#0}.05";
+							count++;
+						}
+					}
+				}
+			}
+
+			return count;
+		}
+
+
+		private int AlterByName(XElement outline)
+		{
+			// find all elements that have an attribute named fontSize, e.g. QuickStyleDef or Bullet
+			var elements = outline.Descendants()
+				.Where(p => p.Attribute("fontSize") is not null);
+
+			if (elements.IsNullOrEmpty())
+			{
+				return 0;
+			}
+
+			var count = 0;
+			foreach (var element in elements)
+			{
+				if (element is not null)
+				{
+					if (element.Attribute("fontSize") is XAttribute attr)
+					{
+						if (double.TryParse(attr.Value,
+							NumberStyles.Any, CultureInfo.InvariantCulture, out var size))
+						{
+							var result = delta < 0
+								? Math.Max(size + delta, MinFontSize)
+								: Math.Min(size + delta, MaxFontSize);
+
+							if (!result.Equalsish(size))
+							{
+								attr.Value = $"{result:#0}.05";
 								count++;
 							}
 						}
@@ -116,14 +155,12 @@ namespace River.OneMoreAddIn.Commands
 
 		// <one:OE alignment="left" spaceBefore="14.0" quickStyleIndex="1"
 		//   style="font-family:'Segoe UI';font-size:&#xA;20.0pt;color:#151515">
-		private int AlterElementsByValue()
+		private int AlterElementsByValue(XElement outline)
 		{
 			int count = 0;
 
-			var elements = page.Root.Descendants()
-				.Where(p =>
-					p.Parent.Name.LocalName != "Title" &&
-					p.Attribute("style")?.Value.Contains("font-size:") == true);
+			var elements = outline.Descendants()
+				.Where(p => p.Attribute("style")?.Value.Contains("font-size:") == true);
 
 			if (!elements.IsNullOrEmpty())
 			{
@@ -140,11 +177,11 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private int AlterCDataByValue()
+		private int AlterCDataByValue(XElement outline)
 		{
 			int count = 0;
 
-			var nodes = page.Root.DescendantNodes().OfType<XCData>()
+			var nodes = outline.DescendantNodes().OfType<XCData>()
 				.Where(n => n.Value.Contains("font-size:"));
 
 			if (!nodes.IsNullOrEmpty())
@@ -180,7 +217,7 @@ namespace River.OneMoreAddIn.Commands
 			bool updated = false;
 
 			var attr = span.Attribute("style");
-			if (attr != null)
+			if (attr is not null)
 			{
 				// remove encoded LF character (&#xA)
 				var css = attr.Value.Replace("\n", string.Empty);
@@ -210,16 +247,19 @@ namespace River.OneMoreAddIn.Commands
 				{
 					var size = ParseFontSize(properties["font-size"]);
 
-					size = delta < 0
+					var result = delta < 0
 						? Math.Max(size + delta, MinFontSize)
 						: Math.Min(size + delta, MaxFontSize);
 
-					properties["font-size"] = size.ToString("#0") + ".05pt";
+					if (!result.Equalsish(size))
+					{
+						properties["font-size"] = $"{result:#0}.05pt";
 
-					attr.Value =
-						string.Join(";", properties.Select(p => p.Key + ":" + p.Value).ToArray());
+						attr.Value =
+							string.Join(";", properties.Select(p => p.Key + ":" + p.Value).ToArray());
 
-					updated = true;
+						updated = true;
+					}
 				}
 			}
 
