@@ -296,6 +296,7 @@
     <Compile Include="Commands\Tools\QuickPaletteCommand.cs" />
     <Compile Include="Helpers\ColorHelper.cs" />
     <Compile Include="Helpers\Extensions\ArrayExtensions.cs" />
+    <Compile Include="Helpers\Extensions\DoubleExtensions.cs" />
     <Compile Include="Helpers\Extensions\FontFamilyExtensions.cs" />
     <Compile Include="Helpers\Extensions\GraphicsExtensions.cs" />
     <Compile Include="Helpers\Extensions\HashAlgorithmExtensions.cs" />

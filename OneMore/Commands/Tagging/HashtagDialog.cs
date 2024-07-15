@@ -14,7 +14,6 @@ namespace River.OneMoreAddIn.Commands
 	using System.Linq;
 	using System.Threading.Tasks;
 	using System.Windows.Forms;
-	using System.Xml.Linq;
 	using Resx = Properties.Resources;
 
 
