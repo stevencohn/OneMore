@@ -520,12 +520,35 @@ namespace River.OneMoreAddIn
 					// they are consistent on a single machine, probably using some hardware
 					// based heuristics I presume
 					logger.WriteLine("GetHyperlink, object does not exist. Possible cross-machine query");
+				}
+				else
+				{
+					logger.WriteLine("GetHyperlink error", exc);
 					return null;
 				}
-
-				logger.WriteLine("GetHyperlink error", exc);
-				return null;
 			}
+
+			// second try to target just page itself to work around cross-machine confusion
+			if (!string.IsNullOrEmpty(objectId))
+			{
+				try
+				{
+					onenote.GetHyperlinkToObject(pageId, string.Empty, out var hyperlink);
+					return hyperlink.SafeUrlEncode();
+				}
+				catch (Exception exc)
+				{
+					if (exc.HResult == ObjectDoesNotExist)
+					{
+						logger.WriteLine("GetHyperlink, object does not exist. Second try failed");
+						return null;
+					}
+
+					logger.WriteLine("GetHyperlink error", exc);
+				}
+			}
+
+			return null;
 		}
 
 

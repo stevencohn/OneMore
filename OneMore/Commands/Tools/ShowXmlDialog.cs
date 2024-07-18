@@ -18,7 +18,6 @@ namespace River.OneMoreAddIn.Commands
 	using System.Windows.Forms;
 	using System.Xml.Linq;
 	using Resx = Properties.Resources;
-	using System.Globalization;
 
 
 	/// <summary>
@@ -713,7 +712,8 @@ namespace River.OneMoreAddIn.Commands
 					break;
 
 				case 5:
-					enabled = false;
+					enabled = true;
+					RunManual(sender, e);
 					break;
 			}
 
