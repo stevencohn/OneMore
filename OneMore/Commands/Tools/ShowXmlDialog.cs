@@ -18,6 +18,7 @@ namespace River.OneMoreAddIn.Commands
 	using System.Windows.Forms;
 	using System.Xml.Linq;
 	using Resx = Properties.Resources;
+	using System.Globalization;
 
 
 	/// <summary>
@@ -77,7 +78,9 @@ namespace River.OneMoreAddIn.Commands
 				});
 			}
 
+			functionBox.SelectedIndex = 0;
 			manualPanel.Location = pageOptionsPanel.Location;
+
 			((Control)manualTab).Enabled = false;
 		}
 
@@ -813,8 +816,8 @@ namespace River.OneMoreAddIn.Commands
 			// validate the input...
 
 			queryButton.Enabled =
-				objectIdBox.Text.Trim().Length > 0 &&
-				functionBox.SelectedIndex >= 0;
+				functionBox.SelectedIndex < 3 || // allow empty for GetNotebook/GetSection/GetPage
+				(objectIdBox.Text.Trim().Length > 0);
 		}
 
 
@@ -829,15 +832,30 @@ namespace River.OneMoreAddIn.Commands
 				switch (functionBox.SelectedIndex)
 				{
 					case 0:
-						content = await one.GetNotebook(objectIdBox.Text, OneNote.Scope.Pages);
+						content = await one.GetNotebook(
+							string.IsNullOrEmpty(objectIdBox.Text)
+								? one.CurrentNotebookId
+								: objectIdBox.Text,
+							OneNote.Scope.Pages);
 						break;
 
 					case 1:
-						content = await one.GetSection(objectIdBox.Text);
+						content = await one.GetSection(
+							string.IsNullOrEmpty(objectIdBox.Text)
+								? one.CurrentSectionId
+								: objectIdBox.Text);
 						break;
 
 					case 2:
-						content = (await one.GetPage(objectIdBox.Text, OneNote.PageDetail.BinaryData))?.Root;
+						content = (await one.GetPage(
+							string.IsNullOrEmpty(objectIdBox.Text)
+								? one.CurrentPageId
+								: objectIdBox.Text,
+							OneNote.PageDetail.BinaryData))?.Root;
+						break;
+
+					case 3:
+						content = (await one.SearchMeta(string.Empty, objectIdBox.Text, false));
 						break;
 				}
 
