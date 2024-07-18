@@ -159,9 +159,14 @@ namespace River.OneMoreAddIn.Models
 
 		// Merge consecutive runs with equal styling. OneNote does this after navigating away
 		// from a selection range within a T by combining similar Ts back into one
+		[System.Diagnostics.CodeAnalysis.SuppressMessage("Major Code Smell",
+			"S127:\"for\" loop stop conditions should be invariant", Justification = "<Pending>")]
 		private void NormalizeRuns()
 		{
 			var runs = root.Elements(ns + "T").ToList();
+
+			// within a single CDATA,
+			// combine back-to-back SPANS with exactly the same styles into one...
 
 			for (int i = 0; i < runs.Count; i++)
 			{
@@ -169,7 +174,8 @@ namespace River.OneMoreAddIn.Models
 				var wrapper = cdata.GetWrapper();
 				var nodes = wrapper.Nodes().ToList();
 				var updated = false;
-				for (int n = 0, m = 1; m < nodes.Count; m++)
+				int n = 0;
+				for (int m = 1; m < nodes.Count; m++)
 				{
 					if (nodes[n] is XElement noden && nodes[m] is XElement nodem)
 					{
@@ -178,6 +184,7 @@ namespace River.OneMoreAddIn.Models
 
 						if (sn.Equals(sm))
 						{
+							// merge with first and drop second
 							noden.Value = $"{noden.Value}{nodem.Value}";
 							nodes[m].Remove();
 							updated = true;
@@ -198,6 +205,8 @@ namespace River.OneMoreAddIn.Models
 					cdata.Value = wrapper.GetInnerXml();
 				}
 			}
+
+			// compare back-to-back T runs and merge if we can...
 
 			runs = root.Elements(ns + "T").ToList();
 
@@ -236,6 +245,22 @@ namespace River.OneMoreAddIn.Models
 				else
 				{
 					i = j;
+				}
+			}
+
+			// finally pass, concat all remaining T runs...
+
+			runs = root.Elements(ns + "T").ToList();
+			if (runs.Count > 1)
+			{
+				var first = runs[0];
+				var cdata = first.GetCData();
+
+				for (int i = 1; i < runs.Count; i++)
+				{
+					var cd = runs[i].GetCData();
+					cdata.Value = $"{cdata.Value}{cd.Value}";
+					runs[i].Remove();
 				}
 			}
 		}

@@ -5,7 +5,6 @@
 namespace River.OneMoreAddIn.Commands
 {
 	using River.OneMoreAddIn.Models;
-	using River.OneMoreAddIn.UI;
 	using System.Linq;
 	using System.Text.RegularExpressions;
 	using System.Threading.Tasks;
@@ -75,8 +74,6 @@ namespace River.OneMoreAddIn.Commands
 				anchorId = null;
 				anchor = null;
 			}
-
-			await Task.Yield();
 		}
 
 
@@ -106,6 +103,7 @@ namespace River.OneMoreAddIn.Commands
 
 			anchorPageId = one.CurrentPageId;
 			anchorText = page.GetSelectedText();
+
 			return true;
 		}
 
@@ -219,7 +217,6 @@ namespace River.OneMoreAddIn.Commands
 		{
 			// special deep comparison, excluding the selected attributes to handle
 			// case where anchor is on the same page as the target element
-
 
 			var oldcopy = new SelectionRange(anchor.Clone());
 			oldcopy.Deselect();
