@@ -520,12 +520,35 @@ namespace River.OneMoreAddIn
 					// they are consistent on a single machine, probably using some hardware
 					// based heuristics I presume
 					logger.WriteLine("GetHyperlink, object does not exist. Possible cross-machine query");
+				}
+				else
+				{
+					logger.WriteLine("GetHyperlink error", exc);
 					return null;
 				}
-
-				logger.WriteLine("GetHyperlink error", exc);
-				return null;
 			}
+
+			// second try to target just page itself to work around cross-machine confusion
+			if (!string.IsNullOrEmpty(objectId))
+			{
+				try
+				{
+					onenote.GetHyperlinkToObject(pageId, string.Empty, out var hyperlink);
+					return hyperlink.SafeUrlEncode();
+				}
+				catch (Exception exc)
+				{
+					if (exc.HResult == ObjectDoesNotExist)
+					{
+						logger.WriteLine("GetHyperlink, object does not exist. Second try failed");
+						return null;
+					}
+
+					logger.WriteLine("GetHyperlink error", exc);
+				}
+			}
+
+			return null;
 		}
 
 
@@ -621,7 +644,7 @@ namespace River.OneMoreAddIn
 			await InvokeWithRetry(() =>
 			{
 				onenote.GetHierarchy(
-				string.Empty, (HierarchyScope)scope, out var xml, XMLSchema.xs2013);
+					string.Empty, (HierarchyScope)scope, out var xml, XMLSchema.xs2013);
 
 				if (!string.IsNullOrEmpty(xml))
 				{
@@ -1329,18 +1352,26 @@ namespace River.OneMoreAddIn
 		{
 			string xml = null;
 
+			/*
+			 * FindMeta is hardly 100% accurate. It's also not much more efficient than getting
+			 * the hierarchy and then filtering on meta elements. So let's do that instead!
+			 * 
 			await InvokeWithRetry(() =>
 			{
 				onenote.FindMeta(nodeId, name, out xml, true, XMLSchema.xs2013);
 			});
+			 */
 
-#pragma warning disable S2583 // Conditionally executed code should be reachable
+			await InvokeWithRetry(() =>
+			{
+				onenote.GetHierarchy(nodeId, HierarchyScope.hsPages, out xml, XMLSchema.xs2013);
+			});
+
 			if (string.IsNullOrWhiteSpace(xml))
 			{
 				// only case was immediately after an Office upgrade but...
 				return null;
 			}
-#pragma warning restore S2583
 
 			XElement hierarchy;
 			try
@@ -1355,17 +1386,28 @@ namespace River.OneMoreAddIn
 				return null;
 			}
 
-			if (includeRecycleBin)
-			{
-				return hierarchy;
-			}
-
-			// ignore recycle bins
 			var ns = hierarchy.GetNamespaceOfPrefix(Prefix);
+
+			// prune tree, leaving only pages with named meta element
+
+			hierarchy.Descendants(ns + "Page")
+				.Where(e => !e.Elements(ns + "Meta").Attributes("name").Any(a => a.Value == name))
+				.Remove();
+
+			hierarchy.Descendants(ns + "Section")
+				.Where(e => !e.HasElements)
+				.Remove();
+
 			hierarchy.Descendants(ns + "SectionGroup")
-				.Where(e => e.Attribute("isRecycleBin") != null)
-				.ToList()
-				.ForEach(e => e.Remove());
+				.Where(e => !e.Descendants(ns + "Page").Any() ||
+					// ignore recycle bins
+					(!includeRecycleBin && e.Attributes("isRecycleBin").Any())
+					)
+				.Remove();
+
+			hierarchy.Elements(ns + "Notebook")
+				.Where(e => !e.HasElements)
+				.Remove();
 
 			return hierarchy;
 		}

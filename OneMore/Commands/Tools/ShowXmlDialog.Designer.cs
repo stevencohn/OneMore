@@ -324,8 +324,11 @@
 			this.hideEditedByBox2.Location = new System.Drawing.Point(3, 18);
 			this.hideEditedByBox2.Name = "hideEditedByBox2";
 			this.hideEditedByBox2.Size = new System.Drawing.Size(214, 25);
+			this.hideEditedByBox2.StylizeImage = false;
 			this.hideEditedByBox2.TabIndex = 10;
 			this.hideEditedByBox2.Text = "Hide edited-by attributes";
+			this.hideEditedByBox2.ThemedBack = null;
+			this.hideEditedByBox2.ThemedFore = null;
 			this.tooltip.SetToolTip(this.hideEditedByBox2, "Enable to hide ID and timestamp attributes");
 			this.hideEditedByBox2.UseVisualStyleBackColor = true;
 			this.hideEditedByBox2.Click += new System.EventHandler(this.RefreshOnClick);
@@ -340,8 +343,11 @@
 			this.pidBox.Location = new System.Drawing.Point(3, 78);
 			this.pidBox.Name = "pidBox";
 			this.pidBox.Size = new System.Drawing.Size(101, 25);
+			this.pidBox.StylizeImage = false;
 			this.pidBox.TabIndex = 10;
 			this.pidBox.Text = "Hide PID";
+			this.pidBox.ThemedBack = null;
+			this.pidBox.ThemedFore = null;
 			this.tooltip.SetToolTip(this.pidBox, "Enable to hide personal identifying information");
 			this.pidBox.UseVisualStyleBackColor = true;
 			this.pidBox.CheckedChanged += new System.EventHandler(this.TogglePid);
@@ -354,8 +360,11 @@
 			this.multilineBox2.Location = new System.Drawing.Point(3, 48);
 			this.multilineBox2.Name = "multilineBox2";
 			this.multilineBox2.Size = new System.Drawing.Size(201, 25);
+			this.multilineBox2.StylizeImage = false;
 			this.multilineBox2.TabIndex = 8;
 			this.multilineBox2.Text = "Attributes on new lines";
+			this.multilineBox2.ThemedBack = null;
+			this.multilineBox2.ThemedFore = null;
 			this.tooltip.SetToolTip(this.multilineBox2, "Enable to show each attribute on its own line");
 			this.multilineBox2.UseVisualStyleBackColor = true;
 			this.multilineBox2.Click += new System.EventHandler(this.RefreshOnClick);
@@ -398,7 +407,8 @@
 			this.functionBox.Items.AddRange(new object[] {
             "GetNotebook",
             "GetSection",
-            "GetPage"});
+            "GetPage",
+            "SearchMeta"});
 			this.functionBox.Location = new System.Drawing.Point(416, 52);
 			this.functionBox.Margin = new System.Windows.Forms.Padding(3, 5, 3, 3);
 			this.functionBox.Name = "functionBox";
@@ -584,8 +594,11 @@
 			this.editModeBox.Location = new System.Drawing.Point(330, 18);
 			this.editModeBox.Name = "editModeBox";
 			this.editModeBox.Size = new System.Drawing.Size(163, 25);
+			this.editModeBox.StylizeImage = false;
 			this.editModeBox.TabIndex = 9;
 			this.editModeBox.Text = "Enable edit mode";
+			this.editModeBox.ThemedBack = null;
+			this.editModeBox.ThemedFore = null;
 			this.tooltip.SetToolTip(this.editModeBox, "Enable to edit this page");
 			this.editModeBox.UseVisualStyleBackColor = true;
 			this.editModeBox.CheckedChanged += new System.EventHandler(this.ToggleEditMode);
@@ -599,8 +612,11 @@
 			this.saveWindowBox.Location = new System.Drawing.Point(330, 48);
 			this.saveWindowBox.Name = "saveWindowBox";
 			this.saveWindowBox.Size = new System.Drawing.Size(194, 25);
+			this.saveWindowBox.StylizeImage = false;
 			this.saveWindowBox.TabIndex = 7;
 			this.saveWindowBox.Text = "Save window location";
+			this.saveWindowBox.ThemedBack = null;
+			this.saveWindowBox.ThemedFore = null;
 			this.tooltip.SetToolTip(this.saveWindowBox, "Enable to save window position and size on close");
 			this.saveWindowBox.UseVisualStyleBackColor = true;
 			this.saveWindowBox.MouseUp += new System.Windows.Forms.MouseEventHandler(this.FocusFind);
@@ -613,8 +629,11 @@
 			this.multilineBox.Location = new System.Drawing.Point(3, 48);
 			this.multilineBox.Name = "multilineBox";
 			this.multilineBox.Size = new System.Drawing.Size(201, 25);
+			this.multilineBox.StylizeImage = false;
 			this.multilineBox.TabIndex = 8;
 			this.multilineBox.Text = "Attributes on new lines";
+			this.multilineBox.ThemedBack = null;
+			this.multilineBox.ThemedFore = null;
 			this.tooltip.SetToolTip(this.multilineBox, "Enable to show each attribute on its own line");
 			this.multilineBox.UseVisualStyleBackColor = true;
 			this.multilineBox.Click += new System.EventHandler(this.RefreshOnClick);
@@ -643,8 +662,11 @@
 			this.hideEditedByBox.Location = new System.Drawing.Point(3, 18);
 			this.hideEditedByBox.Name = "hideEditedByBox";
 			this.hideEditedByBox.Size = new System.Drawing.Size(214, 25);
+			this.hideEditedByBox.StylizeImage = false;
 			this.hideEditedByBox.TabIndex = 5;
 			this.hideEditedByBox.Text = "Hide edited-by attributes";
+			this.hideEditedByBox.ThemedBack = null;
+			this.hideEditedByBox.ThemedFore = null;
 			this.tooltip.SetToolTip(this.hideEditedByBox, "Enable to hide ID and timestamp attributes");
 			this.hideEditedByBox.UseVisualStyleBackColor = true;
 			this.hideEditedByBox.Click += new System.EventHandler(this.RefreshOnClick);
@@ -660,8 +682,11 @@
 			this.linefeedBox.Location = new System.Drawing.Point(3, 78);
 			this.linefeedBox.Name = "linefeedBox";
 			this.linefeedBox.Size = new System.Drawing.Size(218, 25);
+			this.linefeedBox.StylizeImage = false;
 			this.linefeedBox.TabIndex = 6;
 			this.linefeedBox.Text = "Remove LF from CDATA";
+			this.linefeedBox.ThemedBack = null;
+			this.linefeedBox.ThemedFore = null;
 			this.tooltip.SetToolTip(this.linefeedBox, "Enable to remove LF/CR from CDATA <spans>");
 			this.linefeedBox.UseVisualStyleBackColor = true;
 			this.linefeedBox.Click += new System.EventHandler(this.RefreshPage);
@@ -724,8 +749,11 @@
 			this.wrapBox.Location = new System.Drawing.Point(177, 59);
 			this.wrapBox.Name = "wrapBox";
 			this.wrapBox.Size = new System.Drawing.Size(106, 25);
+			this.wrapBox.StylizeImage = false;
 			this.wrapBox.TabIndex = 2;
 			this.wrapBox.Text = "Wrap text";
+			this.wrapBox.ThemedBack = null;
+			this.wrapBox.ThemedFore = null;
 			this.wrapBox.UseVisualStyleBackColor = true;
 			this.wrapBox.CheckedChanged += new System.EventHandler(this.ToggleWrap);
 			// 
