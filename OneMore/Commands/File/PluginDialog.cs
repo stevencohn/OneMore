@@ -7,6 +7,7 @@
 
 namespace River.OneMoreAddIn.Commands
 {
+	using River.OneMoreAddIn.Settings;
 	using River.OneMoreAddIn.UI;
 	using System;
 	using System.Collections.Generic;
@@ -17,10 +18,11 @@ namespace River.OneMoreAddIn.Commands
 	using Resx = Properties.Resources;
 
 
-	internal partial class PluginDialog : UI.MoreForm
+	internal partial class PluginDialog : MoreForm
 	{
 		private string[] predefinedNames;
 		private Plugin plugin;
+		private bool initializing = true;
 		private readonly bool single = false;
 
 
@@ -50,6 +52,7 @@ namespace River.OneMoreAddIn.Commands
 					"nameLabel=word_Name",
 					"cmdLabel=word_Command",
 					"argsLabel",
+					"userArgsLabel",
 					"timeoutLabel",
 					"targetLabel=word_Target",
 					"targetBox",
@@ -63,12 +66,21 @@ namespace River.OneMoreAddIn.Commands
 					"cancelButton=word_Cancel"
 				});
 			}
+
+			targetBox.SelectedIndex = 0;
+
+			keepCache.Visible = new SettingsProvider()
+				.GetCollection("GeneralSheet").Get<bool>("experimental");
+
+			initializing = false;
 		}
 
 
 		public PluginDialog(Plugin plugin)
 			: this()
 		{
+			initializing = true;
+
 			this.plugin = new Plugin
 			{
 				Version = plugin.Version,
@@ -77,7 +89,8 @@ namespace River.OneMoreAddIn.Commands
 				OriginalName = plugin.OriginalName,
 				Command = plugin.Command,
 				Arguments = plugin.Arguments,
-				TargetPage = plugin.TargetPage,
+				UserArguments = plugin.UserArguments,
+				Target = plugin.Target,
 				CreateNewPage = plugin.CreateNewPage,
 				PageName = plugin.PageName,
 				AsChildPage = plugin.AsChildPage,
@@ -89,7 +102,7 @@ namespace River.OneMoreAddIn.Commands
 
 			Text = Resx.PluginDialog_editText;
 
-			ChangeTarget(null, EventArgs.Empty);
+			ViewPlugin(this.plugin);
 
 			saveButton.Location = okButton.Location;
 			saveButton.DialogResult = DialogResult.OK;
@@ -98,6 +111,10 @@ namespace River.OneMoreAddIn.Commands
 			// disable so it's no longer a tab-stop
 			okButton.Enabled = false;
 			okButton.Visible = false;
+
+			keepCache.Visible = false;
+
+			initializing = false;
 		}
 
 
@@ -107,7 +124,8 @@ namespace River.OneMoreAddIn.Commands
 			OriginalName = nameBox.Text,
 			Command = cmdBox.Text,
 			Arguments = argsBox.Text,
-			TargetPage = (targetBox.SelectedIndex == 0),
+			UserArguments = userArgsBox.Text,
+			Target = (PluginTarget)targetBox.SelectedIndex,
 			CreateNewPage = createRadio.Checked,
 			AsChildPage = childBox.Checked,
 			PageName = pageNameBox.Text,
@@ -116,6 +134,9 @@ namespace River.OneMoreAddIn.Commands
 			// set path for replay functionality
 			Path = plugin.Path
 		};
+
+
+		public bool KeepCache => keepCache.Visible && keepCache.Checked;
 
 
 		public string PageName { set; private get; }
@@ -131,8 +152,8 @@ namespace River.OneMoreAddIn.Commands
 				nameBox.Text = plugin.Name;
 				cmdBox.Text = plugin.Command;
 				argsBox.Text = plugin.Arguments;
-
-				ChangeTarget(null, EventArgs.Empty);
+				userArgsBox.Text = plugin.UserArguments;
+				targetBox.SelectedIndex = (int)plugin.Target;
 
 				timeoutBox.Value = plugin.Timeout;
 				return;
@@ -172,16 +193,19 @@ namespace River.OneMoreAddIn.Commands
 
 		private void ChangeTarget(object sender, EventArgs e)
 		{
-			if (sender == null)
+			if (initializing)
 			{
-				targetBox.SelectedIndex = plugin.TargetPage ? 0 : 1;
-			}
-			else
-			{
-				plugin.TargetPage = targetBox.SelectedIndex == 0;
+				return;
 			}
 
-			if (plugin.TargetPage)
+			//if (sender is null)
+			//{
+			//	targetBox.SelectedIndex = plugin.Target == PluginTarget.Page ? 0 : 1;
+			//}
+
+			plugin.Target = (PluginTarget)targetBox.SelectedIndex;
+
+			if (plugin.Target == PluginTarget.Page)
 			{
 				pageGroup.Visible = true;
 				sectionGroup.Visible = false;
@@ -217,13 +241,18 @@ namespace River.OneMoreAddIn.Commands
 		private void ViewPredefined(object sender, EventArgs e)
 		{
 			plugin = pluginsBox.SelectedItem as Plugin;
+			ViewPlugin(plugin);
+		}
 
+
+		private void ViewPlugin(Plugin plugin)
+		{
 			nameBox.Text = plugin.Name;
 			cmdBox.Text = plugin.Command;
 			argsBox.Text = plugin.Arguments;
+			userArgsBox.Text = plugin.UserArguments;
 			timeoutBox.Value = plugin.Timeout;
-
-			ChangeTarget(null, EventArgs.Empty);
+			targetBox.SelectedIndex = (int)plugin.Target;
 
 			//var read = pluginsBox.SelectedIndex > 0;
 			//nameBox.ReadOnly = read;
@@ -246,6 +275,11 @@ namespace River.OneMoreAddIn.Commands
 
 		private void ChangeText(object sender, EventArgs e)
 		{
+			if (initializing)
+			{
+				return;
+			}
+
 			var valid = true;
 
 			if (sender == nameBox)
@@ -270,6 +304,8 @@ namespace River.OneMoreAddIn.Commands
 				plugin.Arguments = argsBox.Text.Trim();
 			else if (sender == pageNameBox)
 				plugin.PageName = pageNameBox.Text.Trim();
+			else if (sender == userArgsBox)
+				plugin.UserArguments = userArgsBox.Text.Trim();
 
 			saveButton.Enabled =
 				valid &&
@@ -396,11 +432,13 @@ namespace River.OneMoreAddIn.Commands
 
 		private async void SavePlugin(object sender, EventArgs e)
 		{
-			if (!plugin.TargetPage)
+
+			if (plugin.Target != PluginTarget.Page)
 			{
 				plugin.PageName = String.Empty;
 				plugin.CreateNewPage = false;
 				plugin.AsChildPage = false;
+				plugin.SkipLocked = skipLockRadio.Checked;
 			}
 
 			try

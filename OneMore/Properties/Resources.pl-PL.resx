@@ -2128,7 +2128,10 @@ W tej sekcji</value>
   </data>
   <data name="PluginDialog_targetBox.Text" xml:space="preserve">
     <value>Bieżąca strona
-Bieżący notatnik</value>
+Bieżąca sekcja i jej strony
+Aktualny notatnik i jego sekcje
+Aktualny notatnik i jego strony
+Wszystkie zeszyty i ich strony</value>
     <comment>combobox</comment>
   </data>
   <data name="PluginDialog_timeoutLabel.Text" xml:space="preserve">
@@ -2138,6 +2141,10 @@ Bieżący notatnik</value>
   <data name="PluginDialog_updateRadio.Text" xml:space="preserve">
     <value>Zaktualizuj bieżącą stronę</value>
     <comment>radio button</comment>
+  </data>
+  <data name="PluginDialog_userArgsLabel.Text" xml:space="preserve">
+    <value>Argumenty użytkowników</value>
+    <comment>label</comment>
   </data>
   <data name="PluginsSheet_ConfirmDelete" xml:space="preserve">
     <value>Usuń wtyczkę "{0}"</value>

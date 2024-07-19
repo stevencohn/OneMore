@@ -2119,7 +2119,10 @@ Dans cette section</value>
   </data>
   <data name="PluginDialog_targetBox.Text" xml:space="preserve">
     <value>Page actuelle
-Carnet actuel</value>
+Section actuelle et ses pages
+Carnet actuel et ses sections
+Carnet actuel et ses pages
+Tous les cahiers et leurs pages</value>
     <comment>combobox</comment>
   </data>
   <data name="PluginDialog_timeoutLabel.Text" xml:space="preserve">
@@ -2129,6 +2132,10 @@ Carnet actuel</value>
   <data name="PluginDialog_updateRadio.Text" xml:space="preserve">
     <value>Mettre à jour la page actuelle</value>
     <comment>radio button</comment>
+  </data>
+  <data name="PluginDialog_userArgsLabel.Text" xml:space="preserve">
+    <value>Arguments des utilisateurs</value>
+    <comment>label</comment>
   </data>
   <data name="PluginsSheet_ConfirmDelete" xml:space="preserve">
     <value>Supprimer le plug-in "{0}"</value>

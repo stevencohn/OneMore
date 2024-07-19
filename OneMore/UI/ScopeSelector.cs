@@ -27,6 +27,7 @@ namespace River.OneMoreAddIn.UI
 
 
 		private SelectorScope scopes;
+		private readonly int selectionPanelHeight;
 
 
 		public ScopeSelector()
@@ -47,6 +48,8 @@ namespace River.OneMoreAddIn.UI
 					"selectedButton"
 				});
 			}
+
+			selectionPanelHeight = selectionPanel.Height;
 		}
 
 
@@ -73,13 +76,16 @@ namespace River.OneMoreAddIn.UI
 			get { return scopes; }
 			set
 			{
-				scopes = value;
-				EnableScopeButtons();
-				if (scopes.HasFlag(SelectorScope.SelectedNotebooks))
+				if (scopes != value)
 				{
-					if (!DesignMode)
+					scopes = value;
+					EnableScopeButtons();
+					if (scopes.HasFlag(SelectorScope.SelectedNotebooks))
 					{
-						Task.Run(async () => await LoadNotebooks());
+						if (!DesignMode)
+						{
+							Task.Run(async () => await LoadNotebooks());
+						}
 					}
 				}
 			}
@@ -123,6 +129,11 @@ namespace River.OneMoreAddIn.UI
 			{
 				selectedButton.Top = top;
 				top += selectedButton.Height + selectedButton.Margin.Top + selectedButton.Margin.Bottom;
+			}
+			else
+			{
+				selectionPanel.Height = 0;
+				selectionPanel.Visible = false;
 			}
 
 			choiceBox.Height = choiceBox.Padding.Top + choiceBox.Padding.Bottom + top;
@@ -169,10 +180,18 @@ namespace River.OneMoreAddIn.UI
 			else if (notebooksButton.Checked) Scope = SelectorScope.Notebooks;
 			else Scope = SelectorScope.SelectedNotebooks;
 
-			selectionPanel.Visible = selectedButton.Checked;
-			Height = selectionPanel.Visible
-				? choiceBox.Height + selectionPanel.Height
-				: choiceBox.Height;
+			if (selectedButton.Checked)
+			{
+				selectionPanel.Height = selectionPanelHeight;
+				selectionPanel.Visible = true;
+				Height = choiceBox.Height + selectionPanel.Height;
+			}
+			else
+			{
+				selectionPanel.Height = 0;
+				selectionPanel.Visible = false;
+				Height = choiceBox.Height;
+			}
 		}
 	}
 }

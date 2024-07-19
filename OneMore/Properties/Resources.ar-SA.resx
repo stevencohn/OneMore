@@ -2119,7 +2119,10 @@
   </data>
   <data name="PluginDialog_targetBox.Text" xml:space="preserve">
     <value>الصفحه الحاليه
-دفتر الملاحظات الحالي</value>
+القسم الحالي وصفحاته
+المفكرة الحالية وأقسامها
+دفتر الملاحظات الحالي وصفحاته
+جميع الدفاتر وصفحاتها</value>
     <comment>combobox</comment>
   </data>
   <data name="PluginDialog_timeoutLabel.Text" xml:space="preserve">
@@ -2129,6 +2132,10 @@
   <data name="PluginDialog_updateRadio.Text" xml:space="preserve">
     <value>تحديث الصفحة الحالية</value>
     <comment>radio button</comment>
+  </data>
+  <data name="PluginDialog_userArgsLabel.Text" xml:space="preserve">
+    <value>حجج المستخدم</value>
+    <comment>label</comment>
   </data>
   <data name="PluginsSheet_ConfirmDelete" xml:space="preserve">
     <value>حذف المكون الإضافي "{0}"</value>

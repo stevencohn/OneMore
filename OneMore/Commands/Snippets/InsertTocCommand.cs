@@ -633,7 +633,7 @@ namespace River.OneMoreAddIn.Commands
 				if (pageLevel > level)
 				{
 					var children = new XElement(PageNamespace.Value + "OEChildren");
-					index = await BuildSectionToc(one,children, elements, index, pageLevel, withPreviews);
+					index = await BuildSectionToc(one, children, elements, index, pageLevel, withPreviews);
 					container.Elements().Last().Add(children);
 				}
 				else if (pageLevel == level)
@@ -667,7 +667,7 @@ namespace River.OneMoreAddIn.Commands
 
 		private async Task<string> GetPagePreview(OneNote one, string pageID, string css)
 		{
-			var page =	await one.GetPage(pageID, OneNote.PageDetail.Basic);
+			var page = await one.GetPage(pageID, OneNote.PageDetail.Basic);
 			var ns = page.Namespace;
 
 			var outline = page.Root.Elements(ns + "Outline")

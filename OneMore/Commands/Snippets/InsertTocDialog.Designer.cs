@@ -207,8 +207,8 @@
 			this.locationBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this.locationBox.FormattingEnabled = true;
 			this.locationBox.Items.AddRange(new object[] {
-            "At top of page",
-            "At current cursor"});
+			"At top of page",
+			"At current cursor"});
 			this.locationBox.Location = new System.Drawing.Point(227, 124);
 			this.locationBox.Margin = new System.Windows.Forms.Padding(3, 6, 3, 3);
 			this.locationBox.Name = "locationBox";
@@ -238,14 +238,14 @@
 			this.styleBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this.styleBox.FormattingEnabled = true;
 			this.styleBox.Items.AddRange(new object[] {
-            "Standard Page Title",
-            "Standard Heading 1",
-            "Standard Heading 2",
-            "Standard Heading 3",
-            "Custom Page Title",
-            "Custom Heading 1",
-            "Custom Heading 2",
-            "Custom Heading 3"});
+			"Standard Page Title",
+			"Standard Heading 1",
+			"Standard Heading 2",
+			"Standard Heading 3",
+			"Custom Page Title",
+			"Custom Heading 1",
+			"Custom Heading 2",
+			"Custom Heading 3"});
 			this.styleBox.Location = new System.Drawing.Point(227, 161);
 			this.styleBox.Name = "styleBox";
 			this.styleBox.Size = new System.Drawing.Size(217, 28);

@@ -5777,7 +5777,10 @@ namespace River.OneMoreAddIn.Properties {
         
         /// <summary>
         ///   Looks up a localized string similar to Current page
-        ///Current notebook.
+        ///Current section and its pages
+        ///Current notebook and its sections
+        ///Current notebook and its pages
+        ///All notebooks and their pages.
         /// </summary>
         internal static string PluginDialog_targetBox_Text {
             get {
@@ -5809,6 +5812,15 @@ namespace River.OneMoreAddIn.Properties {
         internal static string PluginDialog_updateRadio_Text {
             get {
                 return ResourceManager.GetString("PluginDialog_updateRadio.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to User Arguments.
+        /// </summary>
+        internal static string PluginDialog_userArgsLabel_Text {
+            get {
+                return ResourceManager.GetString("PluginDialog_userArgsLabel.Text", resourceCulture);
             }
         }
         

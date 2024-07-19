@@ -57,6 +57,9 @@
 			this.failLockRadio = new River.OneMoreAddIn.UI.MoreRadioButton();
 			this.pageGroup = new River.OneMoreAddIn.UI.MoreGroupBox();
 			this.sectionGroup = new River.OneMoreAddIn.UI.MoreGroupBox();
+			this.keepCache = new River.OneMoreAddIn.UI.MoreCheckBox();
+			this.userArgsLabel = new System.Windows.Forms.Label();
+			this.userArgsBox = new River.OneMoreAddIn.UI.MoreTextBox();
 			((System.ComponentModel.ISupportInitialize)(this.errorBox)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.timeoutBox)).BeginInit();
 			this.pageGroup.SuspendLayout();
@@ -70,10 +73,11 @@
 			this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
 			this.cancelButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.cancelButton.ImageOver = null;
-			this.cancelButton.Location = new System.Drawing.Point(640, 503);
+			this.cancelButton.Location = new System.Drawing.Point(654, 537);
 			this.cancelButton.Name = "cancelButton";
 			this.cancelButton.ShowBorder = true;
 			this.cancelButton.Size = new System.Drawing.Size(120, 35);
+			this.cancelButton.StylizeImage = false;
 			this.cancelButton.TabIndex = 12;
 			this.cancelButton.Text = "Cancel";
 			this.cancelButton.ThemedBack = null;
@@ -88,10 +92,11 @@
 			this.okButton.Enabled = false;
 			this.okButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.okButton.ImageOver = null;
-			this.okButton.Location = new System.Drawing.Point(514, 503);
+			this.okButton.Location = new System.Drawing.Point(528, 537);
 			this.okButton.Name = "okButton";
 			this.okButton.ShowBorder = true;
 			this.okButton.Size = new System.Drawing.Size(120, 35);
+			this.okButton.StylizeImage = false;
 			this.okButton.TabIndex = 11;
 			this.okButton.Text = "Run";
 			this.okButton.ThemedBack = null;
@@ -103,7 +108,7 @@
 			// 
 			this.cmdLabel.AutoSize = true;
 			this.cmdLabel.ForeColor = System.Drawing.SystemColors.ControlText;
-			this.cmdLabel.Location = new System.Drawing.Point(18, 126);
+			this.cmdLabel.Location = new System.Drawing.Point(18, 127);
 			this.cmdLabel.Name = "cmdLabel";
 			this.cmdLabel.Size = new System.Drawing.Size(82, 20);
 			this.cmdLabel.TabIndex = 2;
@@ -112,8 +117,9 @@
 			// cmdBox
 			// 
 			this.cmdBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-			this.cmdBox.Location = new System.Drawing.Point(140, 123);
+			this.cmdBox.Location = new System.Drawing.Point(149, 122);
 			this.cmdBox.Name = "cmdBox";
+			this.cmdBox.ProcessEnterKey = false;
 			this.cmdBox.Size = new System.Drawing.Size(578, 26);
 			this.cmdBox.TabIndex = 2;
 			this.cmdBox.ThemedBack = null;
@@ -125,10 +131,11 @@
 			this.browseButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(231)))), ((int)(((byte)(231)))));
 			this.browseButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.browseButton.ImageOver = null;
-			this.browseButton.Location = new System.Drawing.Point(724, 122);
+			this.browseButton.Location = new System.Drawing.Point(733, 119);
 			this.browseButton.Name = "browseButton";
 			this.browseButton.ShowBorder = true;
 			this.browseButton.Size = new System.Drawing.Size(36, 31);
+			this.browseButton.StylizeImage = false;
 			this.browseButton.TabIndex = 3;
 			this.browseButton.Text = "...";
 			this.browseButton.ThemedBack = null;
@@ -165,6 +172,7 @@
 			this.pageNameBox.Enabled = false;
 			this.pageNameBox.Location = new System.Drawing.Point(31, 85);
 			this.pageNameBox.Name = "pageNameBox";
+			this.pageNameBox.ProcessEnterKey = false;
 			this.pageNameBox.Size = new System.Drawing.Size(469, 26);
 			this.pageNameBox.TabIndex = 8;
 			this.pageNameBox.ThemedBack = null;
@@ -180,16 +188,20 @@
 			this.childBox.Location = new System.Drawing.Point(31, 117);
 			this.childBox.Name = "childBox";
 			this.childBox.Size = new System.Drawing.Size(206, 25);
+			this.childBox.StylizeImage = false;
 			this.childBox.TabIndex = 9;
 			this.childBox.Text = "as child of current page";
+			this.childBox.ThemedBack = null;
+			this.childBox.ThemedFore = null;
 			this.childBox.UseVisualStyleBackColor = true;
 			this.childBox.CheckedChanged += new System.EventHandler(this.ChangeAsChild);
 			// 
 			// argsBox
 			// 
 			this.argsBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-			this.argsBox.Location = new System.Drawing.Point(140, 169);
+			this.argsBox.Location = new System.Drawing.Point(149, 156);
 			this.argsBox.Name = "argsBox";
+			this.argsBox.ProcessEnterKey = false;
 			this.argsBox.Size = new System.Drawing.Size(578, 26);
 			this.argsBox.TabIndex = 4;
 			this.argsBox.ThemedBack = null;
@@ -200,7 +212,7 @@
 			// 
 			this.argsLabel.AutoSize = true;
 			this.argsLabel.ForeColor = System.Drawing.SystemColors.ControlText;
-			this.argsLabel.Location = new System.Drawing.Point(18, 172);
+			this.argsLabel.Location = new System.Drawing.Point(18, 162);
 			this.argsLabel.Name = "argsLabel";
 			this.argsLabel.Size = new System.Drawing.Size(87, 20);
 			this.argsLabel.TabIndex = 11;
@@ -211,10 +223,11 @@
 			this.browseArgsButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(231)))), ((int)(((byte)(231)))));
 			this.browseArgsButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.browseArgsButton.ImageOver = null;
-			this.browseArgsButton.Location = new System.Drawing.Point(724, 168);
+			this.browseArgsButton.Location = new System.Drawing.Point(733, 165);
 			this.browseArgsButton.Name = "browseArgsButton";
 			this.browseArgsButton.ShowBorder = true;
 			this.browseArgsButton.Size = new System.Drawing.Size(36, 31);
+			this.browseArgsButton.StylizeImage = false;
 			this.browseArgsButton.TabIndex = 5;
 			this.browseArgsButton.Text = "...";
 			this.browseArgsButton.ThemedBack = null;
@@ -229,10 +242,11 @@
 			this.saveButton.Enabled = false;
 			this.saveButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.saveButton.ImageOver = null;
-			this.saveButton.Location = new System.Drawing.Point(388, 503);
+			this.saveButton.Location = new System.Drawing.Point(402, 537);
 			this.saveButton.Name = "saveButton";
 			this.saveButton.ShowBorder = true;
 			this.saveButton.Size = new System.Drawing.Size(120, 35);
+			this.saveButton.StylizeImage = false;
 			this.saveButton.TabIndex = 10;
 			this.saveButton.Text = "Save";
 			this.saveButton.ThemedBack = null;
@@ -254,7 +268,7 @@
 			// 
 			this.pluginsBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this.pluginsBox.FormattingEnabled = true;
-			this.pluginsBox.Location = new System.Drawing.Point(140, 31);
+			this.pluginsBox.Location = new System.Drawing.Point(149, 28);
 			this.pluginsBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.pluginsBox.Name = "pluginsBox";
 			this.pluginsBox.Size = new System.Drawing.Size(578, 28);
@@ -274,9 +288,10 @@
 			// nameBox
 			// 
 			this.nameBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-			this.nameBox.Location = new System.Drawing.Point(140, 78);
+			this.nameBox.Location = new System.Drawing.Point(149, 75);
 			this.nameBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.nameBox.Name = "nameBox";
+			this.nameBox.ProcessEnterKey = false;
 			this.nameBox.Size = new System.Drawing.Size(578, 26);
 			this.nameBox.TabIndex = 1;
 			this.nameBox.ThemedBack = null;
@@ -286,7 +301,7 @@
 			// errorBox
 			// 
 			this.errorBox.Image = ((System.Drawing.Image)(resources.GetObject("errorBox.Image")));
-			this.errorBox.Location = new System.Drawing.Point(724, 78);
+			this.errorBox.Location = new System.Drawing.Point(733, 75);
 			this.errorBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.errorBox.Name = "errorBox";
 			this.errorBox.Size = new System.Drawing.Size(26, 35);
@@ -296,7 +311,7 @@
 			// 
 			// timeoutBox
 			// 
-			this.timeoutBox.Location = new System.Drawing.Point(140, 213);
+			this.timeoutBox.Location = new System.Drawing.Point(149, 250);
 			this.timeoutBox.Maximum = new decimal(new int[] {
             300,
             0,
@@ -316,7 +331,7 @@
 			// 
 			this.timeoutLabel.AutoSize = true;
 			this.timeoutLabel.ForeColor = System.Drawing.SystemColors.ControlText;
-			this.timeoutLabel.Location = new System.Drawing.Point(18, 215);
+			this.timeoutLabel.Location = new System.Drawing.Point(18, 252);
 			this.timeoutLabel.Name = "timeoutLabel";
 			this.timeoutLabel.Size = new System.Drawing.Size(66, 20);
 			this.timeoutLabel.TabIndex = 21;
@@ -328,8 +343,11 @@
 			this.targetBox.FormattingEnabled = true;
 			this.targetBox.Items.AddRange(new object[] {
             "Current page",
-            "Current notebook"});
-			this.targetBox.Location = new System.Drawing.Point(140, 256);
+            "Current section and its pages",
+            "Current notebook and its sections",
+            "Current notebook and its pages",
+            "All notebooks and their pages"});
+			this.targetBox.Location = new System.Drawing.Point(149, 293);
 			this.targetBox.Name = "targetBox";
 			this.targetBox.Size = new System.Drawing.Size(314, 28);
 			this.targetBox.TabIndex = 22;
@@ -339,7 +357,7 @@
 			// 
 			this.targetLabel.AutoSize = true;
 			this.targetLabel.ForeColor = System.Drawing.SystemColors.ControlText;
-			this.targetLabel.Location = new System.Drawing.Point(18, 259);
+			this.targetLabel.Location = new System.Drawing.Point(18, 296);
 			this.targetLabel.Name = "targetLabel";
 			this.targetLabel.Size = new System.Drawing.Size(55, 20);
 			this.targetLabel.TabIndex = 23;
@@ -374,7 +392,7 @@
 			this.pageGroup.Controls.Add(this.pageNameBox);
 			this.pageGroup.Controls.Add(this.childBox);
 			this.pageGroup.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-			this.pageGroup.Location = new System.Drawing.Point(140, 302);
+			this.pageGroup.Location = new System.Drawing.Point(149, 339);
 			this.pageGroup.Name = "pageGroup";
 			this.pageGroup.Size = new System.Drawing.Size(620, 159);
 			this.pageGroup.TabIndex = 26;
@@ -385,12 +403,51 @@
 			this.sectionGroup.Controls.Add(this.skipLockRadio);
 			this.sectionGroup.Controls.Add(this.failLockRadio);
 			this.sectionGroup.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-			this.sectionGroup.Location = new System.Drawing.Point(496, 201);
+			this.sectionGroup.Location = new System.Drawing.Point(505, 238);
 			this.sectionGroup.Name = "sectionGroup";
 			this.sectionGroup.Size = new System.Drawing.Size(264, 98);
 			this.sectionGroup.TabIndex = 27;
 			this.sectionGroup.TabStop = false;
 			this.sectionGroup.Visible = false;
+			// 
+			// keepCache
+			// 
+			this.keepCache.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.keepCache.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(231)))), ((int)(((byte)(231)))));
+			this.keepCache.Cursor = System.Windows.Forms.Cursors.Hand;
+			this.keepCache.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+			this.keepCache.Location = new System.Drawing.Point(22, 543);
+			this.keepCache.Name = "keepCache";
+			this.keepCache.Size = new System.Drawing.Size(206, 25);
+			this.keepCache.StylizeImage = false;
+			this.keepCache.TabIndex = 28;
+			this.keepCache.Text = "Keep cache file";
+			this.keepCache.ThemedBack = null;
+			this.keepCache.ThemedFore = null;
+			this.keepCache.UseVisualStyleBackColor = true;
+			this.keepCache.Visible = false;
+			// 
+			// userArgsLabel
+			// 
+			this.userArgsLabel.AutoSize = true;
+			this.userArgsLabel.ForeColor = System.Drawing.SystemColors.ControlText;
+			this.userArgsLabel.Location = new System.Drawing.Point(18, 208);
+			this.userArgsLabel.Name = "userArgsLabel";
+			this.userArgsLabel.Size = new System.Drawing.Size(125, 20);
+			this.userArgsLabel.TabIndex = 30;
+			this.userArgsLabel.Text = "User Arguments";
+			// 
+			// userArgsBox
+			// 
+			this.userArgsBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.userArgsBox.Location = new System.Drawing.Point(149, 205);
+			this.userArgsBox.Name = "userArgsBox";
+			this.userArgsBox.ProcessEnterKey = false;
+			this.userArgsBox.Size = new System.Drawing.Size(578, 26);
+			this.userArgsBox.TabIndex = 29;
+			this.userArgsBox.ThemedBack = null;
+			this.userArgsBox.ThemedFore = null;
+			this.userArgsBox.TextChanged += new System.EventHandler(this.ChangeText);
 			// 
 			// PluginDialog
 			// 
@@ -399,7 +456,10 @@
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.BackColor = System.Drawing.SystemColors.ControlLight;
 			this.CancelButton = this.cancelButton;
-			this.ClientSize = new System.Drawing.Size(778, 559);
+			this.ClientSize = new System.Drawing.Size(792, 593);
+			this.Controls.Add(this.userArgsLabel);
+			this.Controls.Add(this.userArgsBox);
+			this.Controls.Add(this.keepCache);
 			this.Controls.Add(this.sectionGroup);
 			this.Controls.Add(this.pageGroup);
 			this.Controls.Add(this.targetLabel);
@@ -469,5 +529,8 @@
 		private UI.MoreRadioButton failLockRadio;
 		private UI.MoreGroupBox pageGroup;
 		private UI.MoreGroupBox sectionGroup;
+		private UI.MoreCheckBox keepCache;
+		private System.Windows.Forms.Label userArgsLabel;
+		private UI.MoreTextBox userArgsBox;
 	}
 }

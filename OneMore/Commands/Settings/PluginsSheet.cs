@@ -135,6 +135,7 @@ namespace River.OneMoreAddIn.Settings
 				plugin.CreateNewPage = edited.CreateNewPage;
 				plugin.AsChildPage = edited.AsChildPage;
 				plugin.PageName = edited.PageName;
+				plugin.Target = edited.Target;
 
 				plugins.ResetItem(rowIndex);
 			}
