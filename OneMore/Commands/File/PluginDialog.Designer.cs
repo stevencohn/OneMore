@@ -131,7 +131,7 @@
 			this.browseButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(231)))), ((int)(((byte)(231)))));
 			this.browseButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.browseButton.ImageOver = null;
-			this.browseButton.Location = new System.Drawing.Point(733, 119);
+			this.browseButton.Location = new System.Drawing.Point(733, 122);
 			this.browseButton.Name = "browseButton";
 			this.browseButton.ShowBorder = true;
 			this.browseButton.Size = new System.Drawing.Size(36, 31);
@@ -223,7 +223,7 @@
 			this.browseArgsButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(231)))), ((int)(((byte)(231)))));
 			this.browseArgsButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.browseArgsButton.ImageOver = null;
-			this.browseArgsButton.Location = new System.Drawing.Point(733, 165);
+			this.browseArgsButton.Location = new System.Drawing.Point(733, 153);
 			this.browseArgsButton.Name = "browseArgsButton";
 			this.browseArgsButton.ShowBorder = true;
 			this.browseArgsButton.Size = new System.Drawing.Size(36, 31);
