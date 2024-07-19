@@ -112,18 +112,25 @@ namespace River.OneMoreAddIn.Commands
 
 			try
 			{
-				await (dialog.Scope switch
+				if (dialog.RunExport)
 				{
-					OneNote.Scope.Self =>
-						InsertTableOfContents(
-							dialog.AddTopLinks, dialog.RightAlign,
-							dialog.InsertHere, dialog.TitleStyle),
+					logger.WriteLine($"exporting {dialog.ExportScope} to {dialog.ExportPath}");
+				}
+				else
+				{
+					await (dialog.Scope switch
+					{
+						OneNote.Scope.Self =>
+							InsertTableOfContents(
+								dialog.AddTopLinks, dialog.RightAlign,
+								dialog.InsertHere, dialog.TitleStyle),
 
-					OneNote.Scope.Pages =>
-						MakePageIndexPage(dialog.PreviewPages),
+						OneNote.Scope.Pages =>
+							MakePageIndexPage(dialog.PreviewPages),
 
-					_ => MakeSectionIndexPage(dialog.SectionPages, dialog.PreviewPages)
-				});
+						_ => MakeSectionIndexPage(dialog.SectionPages, dialog.PreviewPages)
+					});
+				}
 			}
 			catch (Exception exc)
 			{
@@ -840,5 +847,11 @@ namespace River.OneMoreAddIn.Commands
 			}
 		}
 		#endregion MakeSectionIndexPage
+
+
+		// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+		#region Export
+		#endregion Export
 	}
 }

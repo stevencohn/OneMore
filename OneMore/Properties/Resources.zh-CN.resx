@@ -2118,7 +2118,10 @@ OneNote 文件 (*.one)</value>
   </data>
   <data name="PluginDialog_targetBox.Text" xml:space="preserve">
     <value>当前页面
-当前笔记本</value>
+当前部分及其页面
+当前笔记本及其部分
+当前笔记本及其页面
+所有笔记本及其页面</value>
     <comment>combobox</comment>
   </data>
   <data name="PluginDialog_timeoutLabel.Text" xml:space="preserve">
@@ -2128,6 +2131,10 @@ OneNote 文件 (*.one)</value>
   <data name="PluginDialog_updateRadio.Text" xml:space="preserve">
     <value>更新当前页面</value>
     <comment>radio button</comment>
+  </data>
+  <data name="PluginDialog_userArgsLabel.Text" xml:space="preserve">
+    <value>用户争论</value>
+    <comment>label</comment>
   </data>
   <data name="PluginsSheet_ConfirmDelete" xml:space="preserve">
     <value>删除插件“ {0}”</value>

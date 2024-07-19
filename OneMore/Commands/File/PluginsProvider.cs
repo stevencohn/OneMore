@@ -1,5 +1,5 @@
 ﻿//************************************************************************************************
-// Copyright © 2021 Steven M Cohn.  All rights reserved.
+// Copyright © 2021 Steven M Cohn. All rights reserved.
 //************************************************************************************************
 
 namespace River.OneMoreAddIn.Commands
@@ -118,7 +118,12 @@ namespace River.OneMoreAddIn.Commands
 				if (plugin.Version < 2)
 				{
 					plugin.Version = Plugin.SchemaVersion;
-					plugin.TargetPage = true;
+					plugin.Target = PluginTarget.Page;
+				}
+				else if (plugin.Version < 3)
+				{
+					plugin.Version = Plugin.SchemaVersion;
+					plugin.Target = plugin.TargetPage ? PluginTarget.Page : PluginTarget.Notebook;
 				}
 
 				return plugin;

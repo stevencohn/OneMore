@@ -1,10 +1,21 @@
 ﻿//************************************************************************************************
-// Copyright © 2020 Steven M Cohn.  All rights reserved.
+// Copyright © 2020 Steven M Cohn. All rights reserved.
 //************************************************************************************************
 
 namespace River.OneMoreAddIn.Commands
 {
+	using System;
 	using System.Web.Script.Serialization;
+
+
+	internal enum PluginTarget
+	{
+		Page,			// Current page
+		Section,		// Current section and its pages
+		Notebook,		// Current notebook and its sections
+		NotebookPages,	// Current notebook and its pages
+		Notebooks		// All notebooks and their pages
+	}
 
 
 	/// <summary>
@@ -12,7 +23,7 @@ namespace River.OneMoreAddIn.Commands
 	/// </summary>
 	internal class Plugin
 	{
-		public const int SchemaVersion = 2;
+		public const int SchemaVersion = 3;
 		public const int DefaultTimeout = 15;
 		public const int MaxTimeout = 3600;
 
@@ -63,8 +74,22 @@ namespace River.OneMoreAddIn.Commands
 
 
 		/// <summary>
+		/// Gest or sets additional user arguments to pass to the Command.
+		/// These are appended after the Arguments value.
+		/// </summary>
+		public string UserArguments { get; set; }
+
+
+		/// <summary>
+		/// Gets or set the scope of the hierarchy information to fetch.
+		/// </summary>
+		public PluginTarget Target { get; set; }
+
+
+		/// <summary>
 		/// Gets or sets whether this plugin target a page or a hierarchy.
 		/// </summary>
+		[Obsolete("Use Plugin.Target instead")]
 		public bool TargetPage { get; set; } = true;
 
 

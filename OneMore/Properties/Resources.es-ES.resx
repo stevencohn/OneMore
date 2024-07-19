@@ -2119,7 +2119,10 @@ En esta sección</value>
   </data>
   <data name="PluginDialog_targetBox.Text" xml:space="preserve">
     <value>Página actual
-Cuaderno actual</value>
+Sección actual y sus páginas.
+Cuaderno actual y sus secciones.
+Cuaderno actual y sus páginas.
+Todos los cuadernos y sus páginas.</value>
     <comment>combobox</comment>
   </data>
   <data name="PluginDialog_timeoutLabel.Text" xml:space="preserve">
@@ -2129,6 +2132,10 @@ Cuaderno actual</value>
   <data name="PluginDialog_updateRadio.Text" xml:space="preserve">
     <value>Actualizar la página actual</value>
     <comment>radio button</comment>
+  </data>
+  <data name="PluginDialog_userArgsLabel.Text" xml:space="preserve">
+    <value>Argumentos del usuario</value>
+    <comment>label</comment>
   </data>
   <data name="PluginsSheet_ConfirmDelete" xml:space="preserve">
     <value>Eliminar el complemento "{0}"</value>

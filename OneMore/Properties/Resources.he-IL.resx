@@ -2128,7 +2128,10 @@ Total Row Font
   </data>
   <data name="PluginDialog_targetBox.Text" xml:space="preserve">
     <value>העמוד הנוכחי
-מחברת נוכחית</value>
+המדור הנוכחי והעמודים שלו
+המחברת הנוכחית וחלקיה
+המחברת הנוכחית ודפיה
+כל המחברות והדפים שלהן</value>
     <comment>combobox</comment>
   </data>
   <data name="PluginDialog_timeoutLabel.Text" xml:space="preserve">
@@ -2138,6 +2141,10 @@ Total Row Font
   <data name="PluginDialog_updateRadio.Text" xml:space="preserve">
     <value>עדכן את הדף הנוכחי</value>
     <comment>radio button</comment>
+  </data>
+  <data name="PluginDialog_userArgsLabel.Text" xml:space="preserve">
+    <value>טיעוני משתמש</value>
+    <comment>label</comment>
   </data>
   <data name="PluginsSheet_ConfirmDelete" xml:space="preserve">
     <value>מחק את הפלאגין "{0}"</value>

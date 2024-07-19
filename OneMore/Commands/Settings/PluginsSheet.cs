@@ -121,6 +121,8 @@ namespace River.OneMoreAddIn.Settings
 
 		private void Edit(int rowIndex)
 		{
+			System.Diagnostics.Debugger.Launch();
+
 			var plugin = plugins[rowIndex];
 
 			using var dialog = new PluginDialog(plugin);
@@ -135,6 +137,7 @@ namespace River.OneMoreAddIn.Settings
 				plugin.CreateNewPage = edited.CreateNewPage;
 				plugin.AsChildPage = edited.AsChildPage;
 				plugin.PageName = edited.PageName;
+				plugin.Target = edited.Target;
 
 				plugins.ResetItem(rowIndex);
 			}

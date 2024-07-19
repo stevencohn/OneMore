@@ -2120,7 +2120,10 @@ Nesta secção</value>
   </data>
   <data name="PluginDialog_targetBox.Text" xml:space="preserve">
     <value>Pagina atual
-Caderno atual</value>
+Seção atual e suas páginas
+Caderno atual e suas seções
+Caderno atual e suas páginas
+Todos os cadernos e suas páginas</value>
     <comment>combobox</comment>
   </data>
   <data name="PluginDialog_timeoutLabel.Text" xml:space="preserve">
@@ -2130,6 +2133,10 @@ Caderno atual</value>
   <data name="PluginDialog_updateRadio.Text" xml:space="preserve">
     <value>Atualizar a página atual</value>
     <comment>radio button</comment>
+  </data>
+  <data name="PluginDialog_userArgsLabel.Text" xml:space="preserve">
+    <value>Argumentos do usuário</value>
+    <comment>label</comment>
   </data>
   <data name="PluginsSheet_ConfirmDelete" xml:space="preserve">
     <value>Excluir plugin "{0}"</value>

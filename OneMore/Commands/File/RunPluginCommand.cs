@@ -1,5 +1,5 @@
 ﻿//************************************************************************************************
-// Copyright © 2020 Steven M Cohn.  All rights reserved.
+// Copyright © 2020 Steven M Cohn. All rights reserved.
 //************************************************************************************************
 
 namespace River.OneMoreAddIn.Commands
@@ -8,7 +8,6 @@ namespace River.OneMoreAddIn.Commands
 	using River.OneMoreAddIn.UI;
 	using System;
 	using System.Diagnostics;
-	using System.Drawing;
 	using System.IO;
 	using System.Linq;
 	using System.Threading;
@@ -24,6 +23,7 @@ namespace River.OneMoreAddIn.Commands
 		private ProgressDialog progress = null;
 		private Page page;
 		private string workpath;
+		private bool keepCache;
 
 
 		public RunPluginCommand()
@@ -38,7 +38,10 @@ namespace River.OneMoreAddIn.Commands
 				return;
 			}
 
-			var content = plugin.TargetPage ? await PreparePageCache() : await PrepareHierarchyCache();
+			var content = plugin.Target == PluginTarget.Page 
+				? await PreparePageCache()
+				: await PrepareHierarchyCache();
+
 			if (content == null)
 			{
 				return;
@@ -51,7 +54,7 @@ namespace River.OneMoreAddIn.Commands
 					var root = LoadUpdates(content);
 					if (root != null)
 					{
-						if (plugin.TargetPage)
+						if (plugin.Target == PluginTarget.Page)
 						{
 							await SavePage(root);
 						}
@@ -118,6 +121,7 @@ namespace River.OneMoreAddIn.Commands
 			}
 
 			plugin = dialog.Plugin;
+			keepCache = dialog.KeepCache;
 			return true;
 		}
 
@@ -153,16 +157,39 @@ namespace River.OneMoreAddIn.Commands
 		private async Task<string> PrepareHierarchyCache()
 		{
 			await using var one = new OneNote();
-			var notebook = await one.GetNotebook(OneNote.Scope.Sections);
+
+			XElement notebook = null;
+			switch (plugin.Target)
+			{
+				case PluginTarget.Section:
+					notebook = await one.GetSection();
+					break;
+
+				case PluginTarget.Notebook:
+					notebook = await one.GetNotebook(OneNote.Scope.Sections);
+					break;
+
+				case PluginTarget.NotebookPages:
+					notebook = await one.GetNotebook(OneNote.Scope.Pages);
+					break;
+
+				default: // case PluginTarget.Notebooks:
+					notebook = await one.GetNotebooks(OneNote.Scope.Pages);
+					break;
+			}
+
+			//var notebook = await one.GetNotebook(OneNote.Scope.Sections);
 
 			// look for locked sections and warn user...
 			var ns = one.GetNamespace(notebook);
-			if (notebook.Descendants(ns + "Section").Any(e => e.Attribute("locked") != null))
+			if (notebook.Attribute("locked") != null /* section */ ||
+				notebook.Descendants(ns + "Section").Any(e => e.Attribute("locked") != null))
 			{
 				using var box = new MoreMessageBox();
 				box.SetIcon(MessageBoxIcon.Warning);
 				box.SetButtons(MessageBoxButtons.YesNo);
-				box.AppendMessage("This notebook contains locked sections.", ThemeManager.Instance.GetColor("ErrorText"));
+				box.AppendMessage("This notebook contains locked sections.", 
+					ThemeManager.Instance.GetColor("ErrorText"));
 
 				box.AppendMessage(plugin.SkipLocked
 					? " These sections may be skipped by the plugin."
@@ -231,13 +258,14 @@ namespace River.OneMoreAddIn.Commands
 			{
 				var abscmd = Environment.ExpandEnvironmentVariables(plugin.Command);
 				var absargs = Environment.ExpandEnvironmentVariables(plugin.Arguments);
+				var userargs = Environment.ExpandEnvironmentVariables(plugin.UserArguments);
 
-				logger.WriteLine($"running {abscmd} {absargs} \"{path}\"");
+				logger.WriteLine($"running {abscmd} {absargs} \"{path}\" {userargs}");
 
 				var info = new ProcessStartInfo
 				{
 					FileName = abscmd,
-					Arguments = $"{absargs} \"{path}\"",
+					Arguments = $"{absargs} \"{path}\" {userargs}",
 					CreateNoWindow = true,
 					UseShellExecute = false,
 					RedirectStandardOutput = true,
@@ -316,7 +344,7 @@ namespace River.OneMoreAddIn.Commands
 					return null;
 				}
 
-				if (plugin.TargetPage)
+				if (plugin.Target == PluginTarget.Page)
 				{
 					var candidate = new Page(root);
 					// must optimize before we can validate schema...
@@ -447,11 +475,11 @@ namespace River.OneMoreAddIn.Commands
 
 		private void Cleanup(string workPath)
 		{
-			if (File.Exists(workPath))
+			if (File.Exists(workPath) && !keepCache)
 			{
 				try
 				{
-					//File.Delete(workPath);
+					File.Delete(workPath);
 				}
 				catch (Exception exc)
 				{

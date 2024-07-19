@@ -5,6 +5,7 @@
 namespace River.OneMoreAddIn.Commands
 {
 	using System;
+	using System.Windows.Forms;
 	using Resx = Properties.Resources;
 
 
@@ -66,6 +67,12 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
+		public string ExportPath => pathBox.Text;
+
+
+		public UI.SelectorScope ExportScope => scopeSelector.Scope;
+
+
 		public bool InsertHere
 		{
 			get => locationBox.SelectedIndex == 1;
@@ -83,6 +90,9 @@ namespace River.OneMoreAddIn.Commands
 			get => rightAlignBox.Enabled && rightAlignBox.Checked;
 			set => rightAlignBox.Checked = value;
 		}
+
+
+		public bool RunExport => tabs.SelectedTab == exportTab;
 
 
 		public bool SectionPages => pagesBox.Enabled && pagesBox.Checked;
@@ -137,6 +147,28 @@ namespace River.OneMoreAddIn.Commands
 				previewBox.Enabled = false;
 				pagesBox.Enabled = true;
 				preview2Box.Enabled = pagesBox.Checked;
+			}
+		}
+
+
+		// = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
+		// Export handlers...
+
+		private void BrowseExportFile(object sender, EventArgs e)
+		{
+			using var dialog = new SaveFileDialog();
+			dialog.DefaultExt = "csv";
+			dialog.Filter = "Excel export (*.csv)|*.csv|All files (*.*)|*.*";
+			dialog.Title = "Save Table of Contents";
+			dialog.ShowHelp = true; // stupid, but this is needed to avoid hang
+
+			dialog.InitialDirectory =
+				Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+
+			var result = dialog.ShowDialog(/* leave empty */);
+			if (result == DialogResult.OK)
+			{
+				pathBox.Text = dialog.FileName;
 			}
 		}
 	}

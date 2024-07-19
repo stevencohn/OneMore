@@ -2148,7 +2148,10 @@ In this section</value>
   </data>
   <data name="PluginDialog_targetBox.Text" xml:space="preserve">
     <value>Current page
-Current notebook</value>
+Current section and its pages
+Current notebook and its sections
+Current notebook and its pages
+All notebooks and their pages</value>
     <comment>combobox</comment>
   </data>
   <data name="PluginDialog_timeoutLabel.Text" xml:space="preserve">
@@ -2158,6 +2161,10 @@ Current notebook</value>
   <data name="PluginDialog_updateRadio.Text" xml:space="preserve">
     <value>Update current page</value>
     <comment>radio button</comment>
+  </data>
+  <data name="PluginDialog_userArgsLabel.Text" xml:space="preserve">
+    <value>User Arguments</value>
+    <comment>label</comment>
   </data>
   <data name="PluginsSheet_ConfirmDelete" xml:space="preserve">
     <value>Delete plugin "{0}"</value>

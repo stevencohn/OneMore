@@ -2117,7 +2117,10 @@ In diesem Abschnitt</value>
   </data>
   <data name="PluginDialog_targetBox.Text" xml:space="preserve">
     <value>Aktuelle Seite
-Aktuelles Notizbuch</value>
+Aktueller Abschnitt und seine Seiten
+Aktuelles Notizbuch und seine Abschnitte
+Aktuelles Notizbuch und seine Seiten
+Alle Notizbücher und ihre Seiten</value>
     <comment>combobox</comment>
   </data>
   <data name="PluginDialog_timeoutLabel.Text" xml:space="preserve">
@@ -2127,6 +2130,10 @@ Aktuelles Notizbuch</value>
   <data name="PluginDialog_updateRadio.Text" xml:space="preserve">
     <value>Aktuelle Seite aktualisieren</value>
     <comment>radio button</comment>
+  </data>
+  <data name="PluginDialog_userArgsLabel.Text" xml:space="preserve">
+    <value>Benutzerargumente</value>
+    <comment>label</comment>
   </data>
   <data name="PluginsSheet_ConfirmDelete" xml:space="preserve">
     <value>Plugin "{0}" löschen</value>
