@@ -121,8 +121,6 @@ namespace River.OneMoreAddIn.Settings
 
 		private void Edit(int rowIndex)
 		{
-			System.Diagnostics.Debugger.Launch();
-
 			var plugin = plugins[rowIndex];
 
 			using var dialog = new PluginDialog(plugin);
