@@ -112,25 +112,18 @@ namespace River.OneMoreAddIn.Commands
 
 			try
 			{
-				if (dialog.RunExport)
+				await (dialog.Scope switch
 				{
-					logger.WriteLine($"exporting {dialog.ExportScope} to {dialog.ExportPath}");
-				}
-				else
-				{
-					await (dialog.Scope switch
-					{
-						OneNote.Scope.Self =>
-							InsertTableOfContents(
-								dialog.AddTopLinks, dialog.RightAlign,
-								dialog.InsertHere, dialog.TitleStyle),
+					OneNote.Scope.Self =>
+						InsertTableOfContents(
+							dialog.AddTopLinks, dialog.RightAlign,
+							dialog.InsertHere, dialog.TitleStyle),
 
-						OneNote.Scope.Pages =>
-							MakePageIndexPage(dialog.PreviewPages),
+					OneNote.Scope.Pages =>
+						MakePageIndexPage(dialog.PreviewPages),
 
-						_ => MakeSectionIndexPage(dialog.SectionPages, dialog.PreviewPages)
-					});
-				}
+					_ => MakeSectionIndexPage(dialog.SectionPages, dialog.PreviewPages)
+				});
 			}
 			catch (Exception exc)
 			{
@@ -640,7 +633,7 @@ namespace River.OneMoreAddIn.Commands
 				if (pageLevel > level)
 				{
 					var children = new XElement(PageNamespace.Value + "OEChildren");
-					index = await BuildSectionToc(one,children, elements, index, pageLevel, withPreviews);
+					index = await BuildSectionToc(one, children, elements, index, pageLevel, withPreviews);
 					container.Elements().Last().Add(children);
 				}
 				else if (pageLevel == level)
@@ -674,7 +667,7 @@ namespace River.OneMoreAddIn.Commands
 
 		private async Task<string> GetPagePreview(OneNote one, string pageID, string css)
 		{
-			var page =	await one.GetPage(pageID, OneNote.PageDetail.Basic);
+			var page = await one.GetPage(pageID, OneNote.PageDetail.Basic);
 			var ns = page.Namespace;
 
 			var outline = page.Root.Elements(ns + "Outline")
@@ -847,11 +840,5 @@ namespace River.OneMoreAddIn.Commands
 			}
 		}
 		#endregion MakeSectionIndexPage
-
-
-		// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-		#region Export
-		#endregion Export
 	}
 }
