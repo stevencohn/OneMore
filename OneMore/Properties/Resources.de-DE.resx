@@ -4907,6 +4907,9 @@ Das Dialogfeld „Hashtags suchen“ wird nun geöffnet.</value>
   <data name="word_Element" xml:space="preserve">
     <value>Element</value>
   </data>
+  <data name="word_Empty" xml:space="preserve">
+    <value>Leer</value>
+  </data>
   <data name="word_Extract" xml:space="preserve">
     <value>Extrakt</value>
   </data>

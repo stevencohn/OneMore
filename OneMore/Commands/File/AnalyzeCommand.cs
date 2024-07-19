@@ -7,7 +7,6 @@
 namespace River.OneMoreAddIn.Commands
 {
 	using OneMoreAddIn.Models;
-	using OneMoreAddIn.UI;
 	using System;
 	using System.Collections.Generic;
 	using System.Drawing;
@@ -623,9 +622,17 @@ namespace River.OneMoreAddIn.Commands
 
 			progress.SetMaximum(pages.Count());
 
-			foreach (var page in pages)
+			if (pages.Any())
 			{
-				await ReportPage(table, page.Attribute("ID").Value);
+				foreach (var page in pages)
+				{
+					await ReportPage(table, page.Attribute("ID").Value);
+				}
+			}
+			else
+			{
+				var row = table.AddRow();
+				row[0].SetContent(new Paragraph("Empty").SetStyle("font-style:italic"));
 			}
 
 			container.Add(

@@ -4914,6 +4914,9 @@ A caixa de diálogo Encontrar hashtags será aberta agora.</value>
   <data name="word_Element" xml:space="preserve">
     <value>Elemento</value>
   </data>
+  <data name="word_Empty" xml:space="preserve">
+    <value>Vazio</value>
+  </data>
   <data name="word_Extract" xml:space="preserve">
     <value>Extrair</value>
   </data>

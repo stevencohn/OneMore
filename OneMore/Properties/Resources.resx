@@ -4956,6 +4956,9 @@ The Find Hashtags dialog will now open.</value>
   <data name="word_Element" xml:space="preserve">
     <value>Element</value>
   </data>
+  <data name="word_Empty" xml:space="preserve">
+    <value>Empty</value>
+  </data>
   <data name="word_Extract" xml:space="preserve">
     <value>Extract</value>
   </data>

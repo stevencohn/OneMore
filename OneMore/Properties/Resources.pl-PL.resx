@@ -4931,6 +4931,9 @@ Otworzy się teraz okno dialogowe Znajdź hashtagi.</value>
   <data name="word_Element" xml:space="preserve">
     <value>Element</value>
   </data>
+  <data name="word_Empty" xml:space="preserve">
+    <value>Pusty</value>
+  </data>
   <data name="word_Extract" xml:space="preserve">
     <value>Wyciąg</value>
   </data>
