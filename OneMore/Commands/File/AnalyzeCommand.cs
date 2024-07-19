@@ -632,7 +632,7 @@ namespace River.OneMoreAddIn.Commands
 			else
 			{
 				var row = table.AddRow();
-				row[0].SetContent(new Paragraph("Empty").SetStyle("font-style:italic"));
+				row[0].SetContent(new Paragraph(Resx.word_Empty).SetStyle("font-style:italic"));
 			}
 
 			container.Add(
