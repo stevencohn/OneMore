@@ -1,3 +1,16 @@
+<#
+.SYNOPSIS
+This is a OneMore plugin that extracts reads the hierarchy and generates an Excel CSV file
+containing information for every page within that scope.
+
+.PARAMETER Path
+The path of a OneNote hierarchy XML file. The root migth be one of Notebooks, Notebook,
+or Section. 
+
+.PARAMETER CsvPath
+The user argument passed to the script, specifies the full path of the output CSV file.
+#>
+
 [CmdletBinding(SupportsShouldProcess = $true)]
 
 param (
@@ -14,9 +27,31 @@ Begin
 	{
 		param([Xml.Linq.XElement]$notebook)
 
-		$name = $notebook.Attribute('name').Value
-		write-host "exporting notebook $name"
-		$notebook.Elements($ns + 'Section') | foreach { ExportSection $_ $name }
+		$notebookName = $notebook.Attribute('name').Value
+		Write-Host "exporting notebook $notebookName"
+		$notebook.Elements($ns + 'Section') | foreach { ExportSection $_ $notebookName }
+
+		ExportSectionGroups $notebook $notebookName
+	}
+
+
+	function ExportSectionGroups
+	{
+		param([Xml.Linq.XElement]$root, [string]$notebookName)
+
+		$root.Elements($ns + 'SectionGroup') | foreach `
+		{
+			if (!$_.Attribute('isRecycleBin'))
+			{
+				$groupName = $_.Attribute('name').Value
+				$_.Elements($ns + 'Section') | foreach `
+				{
+					$sectionName = $_.Attribute('name').Value
+					$_.Attribute('name').Value = "$groupName / $sectionName"
+					ExportSection $_ $notebookName
+				}
+			}
+		}
 	}
 
 
@@ -24,15 +59,11 @@ Begin
 	{
 		param([Xml.Linq.XElement]$section, [string]$notebookName)
 
-		$name = $section.Attribute('name').Value
-		write-host "exporting section $name"
-		$section.Elements($ns + 'Page') | foreach { ExportPage $_ $name $notebookName }
+		$sectionName = $section.Attribute('name').Value
+		Write-Host "exporting section $sectionName"
+		$section.Elements($ns + 'Page') | foreach { ExportPage $_ $sectionName $notebookName }
 
-		$section.Elements($ns + 'SectionGroup') | foreach `
-		{
-			$group = $_.Attribute('name').Value
-			ExportSection $_ "$name / $group" $notebookName
-		}
+		ExportSectionGroups $section $notebookName
 	}
 
 
@@ -46,7 +77,7 @@ Begin
 		$created = (Get-Date $page.Attribute('dateTime').Value).ToString()
 		$modified = (Get-Date $page.Attribute('lastModifiedTime').Value).ToString()
 
-		write-host "exporting page $name"
+		Write-Host "exporting page $name"
 		"`"$notebookName`",`"$sectionName`",`"$name`",$created,$modified" | Out-File -FilePath $CsvPath -Append
 	}
 
@@ -78,7 +109,7 @@ Begin
 		else
 		{
 			# all notebooks
-			$xml.Elements($ns + 'Notebook') | % ExportNotebook $_
+			$xml.Elements($ns + 'Notebook') | foreach { ExportNotebook $_ }
 		}
 	}
 }

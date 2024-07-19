@@ -103,7 +103,6 @@ namespace River.OneMoreAddIn.Commands
 			Text = Resx.PluginDialog_editText;
 
 			ViewPlugin(this.plugin);
-			//ChangeTarget(null, EventArgs.Empty);
 
 			saveButton.Location = okButton.Location;
 			saveButton.DialogResult = DialogResult.OK;
@@ -254,8 +253,6 @@ namespace River.OneMoreAddIn.Commands
 			userArgsBox.Text = plugin.UserArguments;
 			timeoutBox.Value = plugin.Timeout;
 			targetBox.SelectedIndex = (int)plugin.Target;
-
-			//ChangeTarget(null, EventArgs.Empty);
 
 			//var read = pluginsBox.SelectedIndex > 0;
 			//nameBox.ReadOnly = read;
