@@ -7103,7 +7103,25 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Choose which commands to include in the ribbon bar and whether to display icons or icons and lables. Restart OneNote to see changes..
+        ///   Looks up a localized string similar to Show only icons for hashtag commands.
+        /// </summary>
+        internal static string RibbonBarSheet_hashtagsIconBox_Text {
+            get {
+                return ResourceManager.GetString("RibbonBarSheet_hashtagsIconBox.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hashtag Commands.
+        /// </summary>
+        internal static string RibbonBarSheet_hashtagsRibbonBox_Text {
+            get {
+                return ResourceManager.GetString("RibbonBarSheet_hashtagsRibbonBox.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Choose optional preset grouping to add to the ribbon bar.
         /// </summary>
         internal static string RibbonBarSheet_introBox_Text {
             get {

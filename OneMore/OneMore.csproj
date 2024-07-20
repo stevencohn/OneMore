@@ -1314,6 +1314,7 @@
     <Content Include="Properties\Images\FolderClose.png" />
     <Content Include="Properties\Images\FolderOpen.png" />
     <None Include="Properties\Images\Grid40.png" />
+    <Content Include="Properties\Images\HashtagsRibbon.png" />
     <Content Include="Properties\Menu\m_Bold.png" />
     <Content Include="Properties\Menu\m_Copy.png" />
     <Content Include="Properties\Menu\m_Delete.png" />

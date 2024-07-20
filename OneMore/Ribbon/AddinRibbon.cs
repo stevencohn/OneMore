@@ -23,6 +23,7 @@ namespace River.OneMoreAddIn
 	using System.Runtime.InteropServices.ComTypes;
 	using System.Threading.Tasks;
 	using System.Xml.Linq;
+	using Windows.Devices.Input;
 	using Resx = Properties.Resources;
 
 
@@ -240,6 +241,27 @@ namespace River.OneMoreAddIn
 
 		private void AddRibbonBarCommands(SettingsCollection ribbonbar, XElement root)
 		{
+			void AddUsingTemplate(
+				XElement group, string lookupID, bool showLabel)
+			{
+				var template = root.Descendants(ns + "button")
+					.FirstOrDefault(e => e.Attribute("id")?.Value == lookupID);
+
+				if (template is not null)
+				{
+					var button = XElement.Parse(template.ToString());
+					button.Attribute("id").Value = $"bar{lookupID.Substring(3)}";
+
+					if (!showLabel)
+					{
+						button.Add(new XAttribute("showLabel", "false"));
+					}
+
+					group.Add(button);
+				}
+			}
+
+
 			logger.WriteLine("building ribbon groups");
 
 			var group = root.Descendants(ns + "group")
@@ -250,77 +272,37 @@ namespace River.OneMoreAddIn
 				return;
 			}
 
+			var hashtagCommands = ribbonbar.Get<bool>("hashtagCommands");
 			var editCommands = ribbonbar.Get<bool>("editCommands");
 			var formulaCommands = ribbonbar.Get<bool>("formulaCommands");
 
-			if (editCommands || formulaCommands)
+			if (hashtagCommands|| editCommands || formulaCommands)
 			{
 				group.Add(new XElement(ns + "separator", new XAttribute("id", "omRibbonExtensions")));
 
+				if (hashtagCommands)
+				{
+					var showLabel = !ribbonbar.Get<bool>("hashtagIconsOnly");
+					AddUsingTemplate(group, "ribSearchHashtagsButton", showLabel);
+					AddUsingTemplate(group, "ribHashtaggerButton", showLabel);
+				}
+
 				if (editCommands)
 				{
-					var showLabels = !ribbonbar.Get<bool>("editIconsOnly");
-					group.Add(MakeDisableSpellCheckButton(showLabels));
-
-					group.Add(MakeRibbonButton(
-						"barPasteRtfButton", "PasteSpecialDialog", "PasteRtfCmd", showLabels));
-
-					group.Add(MakeRibbonButton(
-						"barSearchAndReplaceButton", "ReplaceDialog", "SearchAndReplaceCmd", showLabels));
+					var showLabel = !ribbonbar.Get<bool>("editIconsOnly");
+					AddUsingTemplate(group, "ribDisableSpellCheckButton", showLabel);
+					AddUsingTemplate(group, "ribPastRtfButton", showLabel);
+					AddUsingTemplate(group, "ribSearchAndReplaceButton", showLabel);
 				}
 
 				if (formulaCommands)
 				{
-					var showLabels = !ribbonbar.Get<bool>("formulaIconsOnly");
-
-					group.Add(MakeRibbonButton(
-						"barAddFormulaButton", "TableFormulaDialog", "AddFormulaCmd", showLabels));
-
-					group.Add(MakeRibbonButton(
-						"barHighlightFormulaButton", "PivotTableListFormulas", "HighlightFormulaCmd", showLabels));
-
-					group.Add(MakeRibbonButton(
-						"barRecalculateFormulaButton", "CalculateSheet", "RecalculateFormulaCmd", showLabels));
+					var showLabel = !ribbonbar.Get<bool>("formulaIconsOnly");
+					AddUsingTemplate(group, "ribAddFormulaButton", showLabel);
+					AddUsingTemplate(group, "ribHighlightFormulaButton", showLabel);
+					AddUsingTemplate(group, "ribRecalculateFormulaButton", showLabel);
 				}
 			}
-		}
-
-
-		private XElement MakeDisableSpellCheckButton(bool showLabel)
-		{
-			var button = new XElement(ns + "button",
-				new XAttribute("id", "barDisableSpellCheckButton"),
-				new XAttribute("image", "NoSpellCheck"),
-				new XAttribute("getLabel", "GetRibbonLabel"),
-				new XAttribute("getScreentip", "GetRibbonScreentip"),
-				new XAttribute("onAction", "DisableSpellCheckCmd")
-				);
-
-			if (!showLabel)
-			{
-				button.Add(new XAttribute("showLabel", "false"));
-			}
-
-			return button;
-		}
-
-
-		private XElement MakeRibbonButton(string id, string imageMso, string action, bool showLabel)
-		{
-			var button = new XElement(ns + "button",
-				new XAttribute("id", id),
-				new XAttribute("imageMso", imageMso),
-				new XAttribute("getLabel", "GetRibbonLabel"),
-				new XAttribute("getScreentip", "GetRibbonScreentip"),
-				new XAttribute("onAction", action)
-				);
-
-			if (!showLabel)
-			{
-				button.Add(new XAttribute("showLabel", "false"));
-			}
-
-			return button;
 		}
 
 

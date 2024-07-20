@@ -58,11 +58,11 @@ namespace River.OneMoreAddIn.Settings
 			this.introBox.Location = new System.Drawing.Point(13, 8);
 			this.introBox.Name = "introBox";
 			this.introBox.Padding = new System.Windows.Forms.Padding(0, 0, 0, 36);
-			this.introBox.ThemedBack = "ControlLightLight";
-			this.introBox.ThemedFore = "ControlText";
 			this.introBox.Size = new System.Drawing.Size(772, 60);
 			this.introBox.TabIndex = 3;
 			this.introBox.Text = "Customize the behavior of the Organize Quick Notes command";
+			this.introBox.ThemedBack = "ControlLightLight";
+			this.introBox.ThemedFore = "ControlText";
 			// 
 			// layoutPanel
 			// 
@@ -85,10 +85,13 @@ namespace River.OneMoreAddIn.Settings
 			this.optionsGroup.Location = new System.Drawing.Point(3, 269);
 			this.optionsGroup.Name = "optionsGroup";
 			this.optionsGroup.Padding = new System.Windows.Forms.Padding(10, 3, 3, 3);
+			this.optionsGroup.ShowOnlyTopEdge = true;
 			this.optionsGroup.Size = new System.Drawing.Size(766, 103);
 			this.optionsGroup.TabIndex = 10;
 			this.optionsGroup.TabStop = false;
 			this.optionsGroup.Text = "Options";
+			this.optionsGroup.ThemedBorder = null;
+			this.optionsGroup.ThemedFore = null;
 			// 
 			// titleBox
 			// 
@@ -100,8 +103,11 @@ namespace River.OneMoreAddIn.Settings
 			this.titleBox.Location = new System.Drawing.Point(13, 27);
 			this.titleBox.Name = "titleBox";
 			this.titleBox.Size = new System.Drawing.Size(399, 25);
+			this.titleBox.StylizeImage = false;
 			this.titleBox.TabIndex = 3;
 			this.titleBox.Text = "Set the page title to the first fiew words of the note";
+			this.titleBox.ThemedBack = null;
+			this.titleBox.ThemedFore = null;
 			this.titleBox.UseVisualStyleBackColor = true;
 			// 
 			// stampBox
@@ -112,8 +118,11 @@ namespace River.OneMoreAddIn.Settings
 			this.stampBox.Location = new System.Drawing.Point(13, 57);
 			this.stampBox.Name = "stampBox";
 			this.stampBox.Size = new System.Drawing.Size(441, 25);
+			this.stampBox.StylizeImage = false;
 			this.stampBox.TabIndex = 2;
 			this.stampBox.Text = "Prepend the title with the date that the note was created";
+			this.stampBox.ThemedBack = null;
+			this.stampBox.ThemedFore = null;
 			this.stampBox.UseVisualStyleBackColor = true;
 			// 
 			// sectionGroup
@@ -125,10 +134,13 @@ namespace River.OneMoreAddIn.Settings
 			this.sectionGroup.Location = new System.Drawing.Point(3, 162);
 			this.sectionGroup.Name = "sectionGroup";
 			this.sectionGroup.Padding = new System.Windows.Forms.Padding(10, 3, 3, 3);
+			this.sectionGroup.ShowOnlyTopEdge = true;
 			this.sectionGroup.Size = new System.Drawing.Size(766, 103);
 			this.sectionGroup.TabIndex = 9;
 			this.sectionGroup.TabStop = false;
 			this.sectionGroup.Text = "Section";
+			this.sectionGroup.ThemedBorder = null;
+			this.sectionGroup.ThemedFore = null;
 			// 
 			// sectionButton
 			// 
@@ -152,9 +164,12 @@ namespace River.OneMoreAddIn.Settings
 			this.sectionLink.Location = new System.Drawing.Point(37, 54);
 			this.sectionLink.Name = "sectionLink";
 			this.sectionLink.Size = new System.Drawing.Size(224, 20);
+			this.sectionLink.StrictColors = false;
 			this.sectionLink.TabIndex = 5;
 			this.sectionLink.TabStop = true;
 			this.sectionLink.Text = "Click here to select the section";
+			this.sectionLink.ThemedBack = null;
+			this.sectionLink.ThemedFore = null;
 			this.sectionLink.VisitedLinkColor = System.Drawing.Color.MediumOrchid;
 			this.sectionLink.Click += new System.EventHandler(this.SelectSection);
 			// 
@@ -169,10 +184,13 @@ namespace River.OneMoreAddIn.Settings
 			this.notebookGroup.Location = new System.Drawing.Point(3, 6);
 			this.notebookGroup.Name = "notebookGroup";
 			this.notebookGroup.Padding = new System.Windows.Forms.Padding(10, 3, 3, 3);
+			this.notebookGroup.ShowOnlyTopEdge = true;
 			this.notebookGroup.Size = new System.Drawing.Size(766, 148);
 			this.notebookGroup.TabIndex = 8;
 			this.notebookGroup.TabStop = false;
 			this.notebookGroup.Text = "Notebook";
+			this.notebookGroup.ThemedBorder = null;
+			this.notebookGroup.ThemedFore = null;
 			// 
 			// groupingBox
 			// 
@@ -223,9 +241,12 @@ namespace River.OneMoreAddIn.Settings
 			this.notebookLink.Location = new System.Drawing.Point(37, 54);
 			this.notebookLink.Name = "notebookLink";
 			this.notebookLink.Size = new System.Drawing.Size(240, 20);
+			this.notebookLink.StrictColors = false;
 			this.notebookLink.TabIndex = 6;
 			this.notebookLink.TabStop = true;
 			this.notebookLink.Text = "Click here to select the notebook";
+			this.notebookLink.ThemedBack = null;
+			this.notebookLink.ThemedFore = null;
 			this.notebookLink.VisitedLinkColor = System.Drawing.Color.MediumOrchid;
 			this.notebookLink.Click += new System.EventHandler(this.SelectNotebook);
 			// 

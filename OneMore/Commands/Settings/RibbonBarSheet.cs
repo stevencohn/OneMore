@@ -26,25 +26,33 @@ namespace River.OneMoreAddIn.Settings
                     "positionBox",
                     "introBox",
                     "quickGroup",
-                    "editRibbonBox",
-                    "editIconBox",
-                    "formulaRibbonBox",
+					"hashtagsRibbonBox",
+					"hashtagsIconBox",
+					"editRibbonBox",
+					"editIconBox",
+					"formulaRibbonBox",
                     "formulaIconBox"
                 });
             }
 			
             var settings = provider.GetCollection(Name);
 			positionBox.SelectedIndex = settings.Get("position", positionBox.Items.Count - 1);
+			hashtagsRibbonBox.Checked = settings.Get<bool>("hashtagCommands");
+			hashtagsIconBox.Checked = settings.Get<bool>("hashtagIconsOnly");
 			editRibbonBox.Checked = settings.Get<bool>("editCommands");
-            editIconBox.Checked = settings.Get<bool>("editIconsOnly");
-            formulaRibbonBox.Checked = settings.Get<bool>("formulaCommands");
+			editIconBox.Checked = settings.Get<bool>("editIconsOnly");
+			formulaRibbonBox.Checked = settings.Get<bool>("formulaCommands");
             formulaIconBox.Checked = settings.Get<bool>("formulaIconsOnly");
         }
 
 
 		private void CheckedChanged(object sender, System.EventArgs e)
 		{
-            if (sender == editRibbonBox)
+            if (sender == hashtagsRibbonBox)
+            {
+                hashtagsIconBox.Enabled = hashtagsRibbonBox.Checked;
+            }
+            else if (sender == editRibbonBox)
 			{
                 editIconBox.Enabled = editRibbonBox.Checked;
 			}
@@ -57,11 +65,15 @@ namespace River.OneMoreAddIn.Settings
 
 		private void ClickPicture(object sender, System.EventArgs e)
 		{
-            if (sender == editPicture)
+            if (sender == hashtagsPicture)
 			{
-                editRibbonBox.Checked = !editRibbonBox.Checked;
+                hashtagsRibbonBox.Checked = !hashtagsRibbonBox.Checked;
 			}
-            else
+			else if (sender == editPicture)
+			{
+				editRibbonBox.Checked = !editRibbonBox.Checked;
+			}
+			else
 			{
                 formulaRibbonBox.Checked = !formulaRibbonBox.Checked;
             }
@@ -70,7 +82,9 @@ namespace River.OneMoreAddIn.Settings
 
         public override bool CollectSettings()
         {
-            if (!editRibbonBox.Checked && !formulaRibbonBox.Checked && 
+            if (!hashtagsRibbonBox.Checked &&
+                !editRibbonBox.Checked &&
+                !formulaRibbonBox.Checked && 
                 positionBox.SelectedIndex == positionBox.Items.Count)
 			{
                 provider.RemoveCollection(Name);
@@ -85,9 +99,11 @@ namespace River.OneMoreAddIn.Settings
 
 			if (settings.Add("position", positionBox.SelectedIndex)) updated = true;
 
+			if (settings.Add("hashtagCommands", hashtagsRibbonBox.Checked)) updated = true;
+			if (settings.Add("hashtagIconsOnly", hashtagsIconBox.Checked)) updated = true;
 			if (settings.Add("editCommands", editRibbonBox.Checked)) updated = true;
 			if (settings.Add("editIconsOnly", editIconBox.Checked)) updated = true;
-            if (settings.Add("formulaCommands", formulaRibbonBox.Checked)) updated = true;
+			if (settings.Add("formulaCommands", formulaRibbonBox.Checked)) updated = true;
             if (settings.Add("formulaIconsOnly", formulaIconBox.Checked)) updated = true;
 
             if (updated)

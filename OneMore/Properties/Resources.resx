@@ -117,7 +117,6 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="AboutDialog.Text" xml:space="preserve">
     <value>OneMore Add-in</value>
     <comment>dialog title bar</comment>
@@ -2750,8 +2749,8 @@ Select No to keep one empty line between paragraphs</value>
     <comment>checkbox</comment>
   </data>
   <data name="RibbonBarSheet_introBox.Text" xml:space="preserve">
-    <value>Choose which commands to include in the ribbon bar and whether to display icons or icons and lables. Restart OneNote to see changes.</value>
-    <comment>settings dialog, ribbon bar options</comment>
+    <value>Choose optional preset grouping to add to the ribbon bar</value>
+    <comment>settings dialog, ribbon bar options EDIT</comment>
   </data>
   <data name="RibbonBarSheet_positionBox.Text" xml:space="preserve">
     <value>Clipboard Group
@@ -5246,6 +5245,7 @@ The Find Hashtags dialog will now open.</value>
     <value>Word Counts</value>
     <comment>page title</comment>
   </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="sponsor_dark" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Commands\Tools\sponsor-dark.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -5608,5 +5608,13 @@ The Find Hashtags dialog will now open.</value>
   </data>
   <data name="_0336_OneNoteApplication_2013" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>0336.OneNoteApplication_2013.xsd;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
+  </data>
+  <data name="RibbonBarSheet_hashtagsIconBox.Text" xml:space="preserve">
+    <value>Show only icons for hashtag commands</value>
+    <comment>settings dialog, ribbon bar options</comment>
+  </data>
+  <data name="RibbonBarSheet_hashtagsRibbonBox.Text" xml:space="preserve">
+    <value>Hashtag Commands</value>
+    <comment>checkbox</comment>
   </data>
 </root>

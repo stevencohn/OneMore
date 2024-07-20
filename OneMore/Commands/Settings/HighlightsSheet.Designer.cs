@@ -51,21 +51,22 @@
 			this.introBox.Location = new System.Drawing.Point(10, 9);
 			this.introBox.Name = "introBox";
 			this.introBox.Padding = new System.Windows.Forms.Padding(0, 0, 0, 36);
-			this.introBox.ThemedBack = "ControlLightLight";
-			this.introBox.ThemedFore = "ControlText";
 			this.introBox.Size = new System.Drawing.Size(780, 66);
 			this.introBox.TabIndex = 2;
 			this.introBox.Text = "The highlighter command will cycle through the colors of the chosen theme. Colors" +
     " shown here are for light background pages. Dark background pages use automatic " +
     "highlight colors";
+			this.introBox.ThemedBack = "ControlLightLight";
+			this.introBox.ThemedFore = "ControlText";
 			// 
 			// normalRadio
 			// 
 			this.normalRadio.Checked = true;
+			this.normalRadio.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.normalRadio.Location = new System.Drawing.Point(18, 46);
 			this.normalRadio.Margin = new System.Windows.Forms.Padding(3, 3, 3, 12);
 			this.normalRadio.Name = "normalRadio";
-			this.normalRadio.Size = new System.Drawing.Size(78, 24);
+			this.normalRadio.Size = new System.Drawing.Size(79, 25);
 			this.normalRadio.TabIndex = 3;
 			this.normalRadio.TabStop = true;
 			this.normalRadio.Text = "Bright";
@@ -73,10 +74,11 @@
 			// 
 			// fadedRadio
 			// 
+			this.fadedRadio.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.fadedRadio.Location = new System.Drawing.Point(18, 104);
 			this.fadedRadio.Margin = new System.Windows.Forms.Padding(3, 3, 3, 12);
 			this.fadedRadio.Name = "fadedRadio";
-			this.fadedRadio.Size = new System.Drawing.Size(81, 24);
+			this.fadedRadio.Size = new System.Drawing.Size(82, 25);
 			this.fadedRadio.TabIndex = 4;
 			this.fadedRadio.Text = "Faded";
 			this.fadedRadio.UseVisualStyleBackColor = true;
@@ -94,10 +96,13 @@
 			this.themesGroup.Location = new System.Drawing.Point(14, 82);
 			this.themesGroup.Name = "themesGroup";
 			this.themesGroup.Padding = new System.Windows.Forms.Padding(15, 15, 3, 3);
+			this.themesGroup.ShowOnlyTopEdge = true;
 			this.themesGroup.Size = new System.Drawing.Size(774, 282);
 			this.themesGroup.TabIndex = 5;
 			this.themesGroup.TabStop = false;
 			this.themesGroup.Text = "Themes";
+			this.themesGroup.ThemedBorder = null;
+			this.themesGroup.ThemedFore = null;
 			// 
 			// deepPicture
 			// 
@@ -137,10 +142,11 @@
 			// 
 			// deepRadio
 			// 
+			this.deepRadio.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.deepRadio.Location = new System.Drawing.Point(18, 161);
 			this.deepRadio.Margin = new System.Windows.Forms.Padding(3, 3, 3, 12);
 			this.deepRadio.Name = "deepRadio";
-			this.deepRadio.Size = new System.Drawing.Size(74, 24);
+			this.deepRadio.Size = new System.Drawing.Size(75, 25);
 			this.deepRadio.TabIndex = 5;
 			this.deepRadio.Text = "Deep";
 			this.deepRadio.UseVisualStyleBackColor = true;
