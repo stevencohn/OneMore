@@ -37,12 +37,15 @@ namespace River.OneMoreAddIn.Settings
 			
             var settings = provider.GetCollection(Name);
 			positionBox.SelectedIndex = settings.Get("position", positionBox.Items.Count - 1);
+
 			hashtagsRibbonBox.Checked = settings.Get<bool>("hashtagCommands");
-			hashtagsIconBox.Checked = settings.Get<bool>("hashtagIconsOnly");
+			hashtagsIconBox.Checked = hashtagsRibbonBox.Checked && settings.Get<bool>("hashtagIconsOnly");
+
 			editRibbonBox.Checked = settings.Get<bool>("editCommands");
-			editIconBox.Checked = settings.Get<bool>("editIconsOnly");
+			editIconBox.Checked = editRibbonBox.Checked && settings.Get<bool>("editIconsOnly");
+
 			formulaRibbonBox.Checked = settings.Get<bool>("formulaCommands");
-            formulaIconBox.Checked = settings.Get<bool>("formulaIconsOnly");
+            formulaIconBox.Checked = formulaRibbonBox.Checked && settings.Get<bool>("formulaIconsOnly");
         }
 
 
