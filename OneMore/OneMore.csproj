@@ -257,6 +257,13 @@
     <Compile Include="Commands\Tagging\HashtagContextControl.Designer.cs">
       <DependentUpon>HashtagContextControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="Commands\Tagging\HashtaggerCommand.cs" />
+    <Compile Include="Commands\Tagging\HashtaggerDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Commands\Tagging\HashtaggerDialog.Designer.cs">
+      <DependentUpon>HashtaggerDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="Commands\Tagging\HashtagScanCommand.cs" />
     <Compile Include="Commands\Tagging\LegacyTaggingConverter.cs" />
     <Compile Include="Commands\Tagging\HashtagDialog.cs">
@@ -1160,6 +1167,9 @@
     <Content Include="Commands\Navigator\Images\Swap-Up-20.png" />
     <Content Include="Commands\Tagging\HashtagsDB.sql" />
     <Content Include="Commands\Tagging\x.png" />
+    <EmbeddedResource Include="Commands\Tagging\HashtaggerDialog.resx">
+      <DependentUpon>HashtaggerDialog.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Commands\Tagging\HashtagScheduler.resx">
       <DependentUpon>HashtagScheduler.cs</DependentUpon>
     </EmbeddedResource>

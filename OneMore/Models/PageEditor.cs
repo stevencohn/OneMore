@@ -127,6 +127,67 @@ namespace River.OneMoreAddIn.Models
 
 
 		/// <summary>
+		/// Given some text, insert it at the current cursor location or replace the selected
+		/// text on the page.
+		/// </summary>
+		/// <param name="text">The text to insert</param>
+		public void InsertOrReplace(string text)
+		{
+			var cursor = page.GetTextCursor(allowPageTitle: true);
+
+			if (page.SelectionScope == SelectionScope.Region || page.SelectionSpecial)
+			{
+				// replace region or hyperlink/MathML
+				var content = new XElement(ns + "T", new XCData(text));
+				page.ReplaceSelectedWithContent(content);
+			}
+			else if (cursor == null) // && page.SelectionScope == SelectionScope.Empty)
+			{
+				// can't find cursor so append to page
+				var content = new XElement(ns + "T", new XCData(text));
+				page.AddNextParagraph(content);
+			}
+			else
+			{
+				var line = page.Root.Descendants(ns + "T")
+					.FirstOrDefault(e =>
+						e.Attributes().Any(a => a.Name == "selected" && a.Value == "all"));
+
+				if (line is null)
+				{
+					// this case should not happen; should be handled above
+					var content = new XElement(ns + "T", new XCData(text));
+					page.AddNextParagraph(content);
+				}
+				else
+				{
+					if (line.FirstAncestor(ns + "Title", ns + "Outline") is XElement title)
+					{
+						// special case to insert before page Title, used by InsertDate;
+						// if cursor is before first char of title, the entire title is "selected"
+						// so rather than replace the title, just insert before it
+						var first = title.Elements(ns + "OE").Elements(ns + "T").First();
+						var cdata = first.GetCData();
+						cdata.Value = $"{text} {cdata.Value}";
+					}
+					else if (line.Value.Length == 0)
+					{
+						// empty cdata, unselected cursor so just insert
+						line.GetCData().Value = text;
+					}
+					else
+					{
+						// this case should not happen; should be handled above
+						// something is selected so replace it
+						var content = new XElement(ns + "T", new XCData(text));
+						page.ReplaceSelectedWithContent(content);
+					}
+				}
+			}
+		}
+
+
+		/// <summary>
 		/// Extracts all selected content as a single OEChildren element, preserving relative
 		/// indents, table content, etc. The selected content is removedd from the page.
 		/// </summary>

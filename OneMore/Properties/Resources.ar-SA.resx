@@ -1305,6 +1305,46 @@
     <value>الغاءالكل</value>
     <comment>link label</comment>
   </data>
+  <data name="HashtaggerDialog.Text" xml:space="preserve">
+    <value>علامات التصنيف</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="HashtaggerDialog_bankBox.Text" xml:space="preserve">
+    <value>أضف إلى بنك العلامات في أعلى الصفحة</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="HashtaggerDialog_cloudGroup.Text" xml:space="preserve">
+    <value>جميع الهاشتاجات</value>
+    <comment>groupbox</comment>
+  </data>
+  <data name="HashtaggerDialog_commonGroup.Text" xml:space="preserve">
+    <value>الكلمات الشائعة في هذه الصفحة</value>
+    <comment>groupbox</comment>
+  </data>
+  <data name="HashtaggerDialog_hideCommonMenuItem" xml:space="preserve">
+    <value>إخفاء الكلمات الشائعة</value>
+    <comment>context menu item text</comment>
+  </data>
+  <data name="HashtaggerDialog_hideRecentMenuItem" xml:space="preserve">
+    <value>إخفاء المستخدمة مؤخرا</value>
+    <comment>context menu item text</comment>
+  </data>
+  <data name="HashtaggerDialog_recentGroup.Text" xml:space="preserve">
+    <value>العلامات المستخدمة مؤخرا</value>
+    <comment>groupbox</comment>
+  </data>
+  <data name="HashtaggerDialog_showCommonMenuItem" xml:space="preserve">
+    <value>عرض الكلمات الشائعة</value>
+    <comment>context menu item text</comment>
+  </data>
+  <data name="HashtaggerDialog_showRecentMenuItem" xml:space="preserve">
+    <value>عرض المستخدمة مؤخرا</value>
+    <comment>context menu item text</comment>
+  </data>
+  <data name="HashtaggerDialog_tagsLabel.Text" xml:space="preserve">
+    <value>العلامات</value>
+    <comment>label</comment>
+  </data>
   <data name="HashtagSheet_disabledBox.Text" xml:space="preserve">
     <value>تعطيل خدمة الهاشتاج. سيؤدي هذا أيضًا إلى تعطيل البحث عن الهاشتاج.</value>
     <comment>checkbox</comment>
@@ -3103,6 +3143,14 @@ ISO-code then comma then language name</comment>
     <value>تنزيل وإدراج الصور المرجعية</value>
     <comment>ribbon references</comment>
   </data>
+  <data name="ribHashtaggerButton_Label" xml:space="preserve">
+    <value>إدراج علامات التصنيف</value>
+    <comment>ribbon search</comment>
+  </data>
+  <data name="ribHashtaggerButton_Screentip" xml:space="preserve">
+    <value>اختر من قائمة ذكية من الكلمات والعلامات لإدراج علامات التصنيف</value>
+    <comment>ribbon search</comment>
+  </data>
   <data name="ribHighlightButton_Label" xml:space="preserve">
     <value>قلم تمييز دوار</value>
     <comment>menu</comment>
@@ -4878,6 +4926,9 @@ ISO-code then comma then language name</comment>
   </data>
   <data name="word_Caption" xml:space="preserve">
     <value>التسمية التوضيحية</value>
+  </data>
+  <data name="word_Clear" xml:space="preserve">
+    <value>واضح</value>
   </data>
   <data name="word_Close" xml:space="preserve">
     <value>قريب</value>

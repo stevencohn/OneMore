@@ -1314,6 +1314,46 @@ Ta sekcja</value>
     <value>Odznacz wszystkie</value>
     <comment>link label</comment>
   </data>
+  <data name="HashtaggerDialog.Text" xml:space="preserve">
+    <value>Hashtagi</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="HashtaggerDialog_bankBox.Text" xml:space="preserve">
+    <value>Dodaj do banku tagów na górze strony</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="HashtaggerDialog_cloudGroup.Text" xml:space="preserve">
+    <value>Wszystkie hashtagi</value>
+    <comment>groupbox</comment>
+  </data>
+  <data name="HashtaggerDialog_commonGroup.Text" xml:space="preserve">
+    <value>Popularne słowa na tej stronie</value>
+    <comment>groupbox</comment>
+  </data>
+  <data name="HashtaggerDialog_hideCommonMenuItem" xml:space="preserve">
+    <value>Ukryj popularne słowa</value>
+    <comment>context menu item text</comment>
+  </data>
+  <data name="HashtaggerDialog_hideRecentMenuItem" xml:space="preserve">
+    <value>Ukryj ostatnio używane</value>
+    <comment>context menu item text</comment>
+  </data>
+  <data name="HashtaggerDialog_recentGroup.Text" xml:space="preserve">
+    <value>Ostatnio używane tagi</value>
+    <comment>groupbox</comment>
+  </data>
+  <data name="HashtaggerDialog_showCommonMenuItem" xml:space="preserve">
+    <value>Pokaż popularne słowa</value>
+    <comment>context menu item text</comment>
+  </data>
+  <data name="HashtaggerDialog_showRecentMenuItem" xml:space="preserve">
+    <value>Pokaż ostatnio używane</value>
+    <comment>context menu item text</comment>
+  </data>
+  <data name="HashtaggerDialog_tagsLabel.Text" xml:space="preserve">
+    <value>Tagi</value>
+    <comment>label</comment>
+  </data>
   <data name="HashtagSheet_disabledBox.Text" xml:space="preserve">
     <value>Wyłącz usługę hashtagów. Spowoduje to również wyłączenie wyszukiwania hashtagów.</value>
     <comment>checkbox</comment>
@@ -3116,6 +3156,14 @@ Po ostatniej grupie</value>
     <value>Pobierz i wstaw obrazy odniesienia</value>
     <comment>ribbon references</comment>
   </data>
+  <data name="ribHashtaggerButton_Label" xml:space="preserve">
+    <value>Wstaw hashtagi</value>
+    <comment>ribbon search</comment>
+  </data>
+  <data name="ribHashtaggerButton_Screentip" xml:space="preserve">
+    <value>Wybierz z inteligentnej listy słów i tagów, aby wstawić hashtagi</value>
+    <comment>ribbon search</comment>
+  </data>
   <data name="ribHighlightButton_Label" xml:space="preserve">
     <value>Obrotowy wyróżnienie</value>
     <comment>menu</comment>
@@ -4895,6 +4943,9 @@ Otworzy się teraz okno dialogowe Znajdź hashtagi.</value>
   </data>
   <data name="word_Caption" xml:space="preserve">
     <value>Podpis</value>
+  </data>
+  <data name="word_Clear" xml:space="preserve">
+    <value>Jasne</value>
   </data>
   <data name="word_Close" xml:space="preserve">
     <value>Blisko</value>

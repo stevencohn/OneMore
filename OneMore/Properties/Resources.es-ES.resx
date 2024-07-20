@@ -1305,6 +1305,46 @@ Esta sección</value>
     <value>Desmarcar todo</value>
     <comment>link label</comment>
   </data>
+  <data name="HashtaggerDialog.Text" xml:space="preserve">
+    <value>Etiquetas</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="HashtaggerDialog_bankBox.Text" xml:space="preserve">
+    <value>Agregar al banco de etiquetas en la parte superior de la página</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="HashtaggerDialog_cloudGroup.Text" xml:space="preserve">
+    <value>Todos los hashtags</value>
+    <comment>groupbox</comment>
+  </data>
+  <data name="HashtaggerDialog_commonGroup.Text" xml:space="preserve">
+    <value>Palabras comunes en esta página</value>
+    <comment>groupbox</comment>
+  </data>
+  <data name="HashtaggerDialog_hideCommonMenuItem" xml:space="preserve">
+    <value>Ocultar palabras comunes</value>
+    <comment>context menu item text</comment>
+  </data>
+  <data name="HashtaggerDialog_hideRecentMenuItem" xml:space="preserve">
+    <value>Ocultar usado recientemente</value>
+    <comment>context menu item text</comment>
+  </data>
+  <data name="HashtaggerDialog_recentGroup.Text" xml:space="preserve">
+    <value>Etiquetas utilizadas recientemente</value>
+    <comment>groupbox</comment>
+  </data>
+  <data name="HashtaggerDialog_showCommonMenuItem" xml:space="preserve">
+    <value>Mostrar palabras comunes</value>
+    <comment>context menu item text</comment>
+  </data>
+  <data name="HashtaggerDialog_showRecentMenuItem" xml:space="preserve">
+    <value>Mostrar usado recientemente</value>
+    <comment>context menu item text</comment>
+  </data>
+  <data name="HashtaggerDialog_tagsLabel.Text" xml:space="preserve">
+    <value>Etiquetas</value>
+    <comment>label</comment>
+  </data>
   <data name="HashtagSheet_disabledBox.Text" xml:space="preserve">
     <value>Deshabilite el servicio de hashtag. Esto también deshabilitará la búsqueda de hashtags.</value>
     <comment>checkbox</comment>
@@ -3103,6 +3143,14 @@ Después del último grupo</value>
     <value>Descargar e insertar imágenes referenciadas</value>
     <comment>ribbon references</comment>
   </data>
+  <data name="ribHashtaggerButton_Label" xml:space="preserve">
+    <value>Insertar hashtags</value>
+    <comment>ribbon search</comment>
+  </data>
+  <data name="ribHashtaggerButton_Screentip" xml:space="preserve">
+    <value>Elija de una lista inteligente de palabras y etiquetas para insertar hashtags</value>
+    <comment>ribbon search</comment>
+  </data>
   <data name="ribHighlightButton_Label" xml:space="preserve">
     <value>Resaltador giratorio</value>
     <comment>menu</comment>
@@ -4878,6 +4926,9 @@ Ahora se abrirá el cuadro de diálogo Buscar hashtags.</value>
   </data>
   <data name="word_Caption" xml:space="preserve">
     <value>Subtítulo</value>
+  </data>
+  <data name="word_Clear" xml:space="preserve">
+    <value>Claro</value>
   </data>
   <data name="word_Close" xml:space="preserve">
     <value>Cerca</value>

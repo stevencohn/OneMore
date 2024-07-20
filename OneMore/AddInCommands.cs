@@ -382,6 +382,12 @@ namespace River.OneMoreAddIn
 			=> await factory.Run<GotoFavoriteCommand>(control.Tag); //tag=pageid
 
 
+		[Command("ribHashtaggerButton_Label", Keys.Alt | Keys.T, "ribSearchMenu")]
+		public async Task HashtaggerCmd(IRibbonControl control)
+			=> await factory.Run<HashtaggerCommand>(1);
+
+
+
 		[Command("ribHighlightButton_Label", Keys.Control | Keys.Shift | Keys.H, "ribEditMenu")]
 		public async Task HighlightCmd(IRibbonControl control)
 			=> await factory.Run<HighlightCommand>(1);
@@ -923,7 +929,7 @@ namespace River.OneMoreAddIn
 			=> await factory.Run<TaggedCommand>();
 
 
-		[Command("ribTaggingButton_Label", Keys.Alt | Keys.T, "ribSearchMenu")]
+		[Command("ribTaggingButton_Label", Keys.None, "ribSearchMenu")]
 		public async Task TaggingCmd(IRibbonControl control)
 			=> await factory.Run<TaggingCommand>();
 

@@ -9,7 +9,7 @@ namespace River.OneMoreAddIn.UI
 	using System.Windows.Forms;
 
 
-	internal class MoreGroupBox : GroupBox
+	internal class MoreGroupBox : GroupBox, ILoadControl
 	{
 		private const int TextOffset = 10;
 		private readonly ThemeManager manager;
@@ -30,6 +30,37 @@ namespace River.OneMoreAddIn.UI
 		public Color Border { get; set; } = SystemColors.ActiveBorder;
 
 
+		/// <summary>
+		/// Gets or sets the thickness of the drawn border.
+		/// </summary>
+		[Category("More"), Description("Thickness of borders"), DefaultValue(2)]
+		public int BorderThickness { get; set; } = 2;
+
+
+		/// <summary>
+		/// Gets or sets a value indicating whether only the top border edge is draw.
+		/// The default is to draw all four edges.
+		/// </summary>
+		[Category("More"), Description("Top Edge Only"), DefaultValue(false)]
+		public bool ShowOnlyTopEdge { get; set; }
+
+
+		public string ThemedBorder { get; set; }
+
+
+		public string ThemedFore { get; set; }
+
+
+		void ILoadControl.OnLoad()
+		{
+			Border = manager.GetColor("ActiveBorder", ThemedBorder);
+
+			ForeColor = Enabled
+				? manager.GetColor("ControlText", ThemedFore)
+				: manager.GetColor("GrayText");
+		}
+
+
 		protected override void OnPaint(PaintEventArgs e)
 		{
 			var backColor = manager.GetColor(BackColor);
@@ -39,9 +70,18 @@ namespace River.OneMoreAddIn.UI
 			var clip = e.Graphics.ClipBounds;
 			var half = size.Height / 2;
 
-			using var pen = new Pen(manager.GetColor(Border), 2);
+			using var pen = new Pen(manager.GetColor(Border), BorderThickness);
 			var bounds = new Rectangle((int)clip.X, half, (int)clip.Width, (int)clip.Height - half);
-			e.Graphics.DrawRoundedRectangle(pen, bounds, 4);
+
+			if (ShowOnlyTopEdge)
+			{
+				e.Graphics.DrawLine(pen, bounds.Left, bounds.Top, bounds.Right, bounds.Top);
+			}
+			else
+			{
+				e.Graphics.DrawRoundedRectangle(pen, bounds, 4);
+			}
+
 
 			if (!string.IsNullOrEmpty(Text))
 			{

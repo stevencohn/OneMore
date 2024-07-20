@@ -440,7 +440,7 @@ namespace River.OneMoreAddIn.Commands
 				cmd.ExecuteNonQuery();
 
 				cmd.CommandText = "CREATE VIEW IF NOT EXISTS page_hashtags (moreID, tags) AS " +
-					"SELECT t.moreID, group_concat(DISTINCT(t.tag)) AS tags " + 
+					"SELECT t.moreID, group_concat(DISTINCT(t.tag)) AS tags " +
 					"FROM hashtag t GROUP BY t.moreID";
 
 				cmd.ExecuteNonQuery();
@@ -837,7 +837,7 @@ namespace River.OneMoreAddIn.Commands
 				ReportError("error reading list of tag names", cmd, exc);
 			}
 
-			return tags;
+			return tags.OrderBy(s => s.Replace("#", "").ToLower());
 		}
 
 
