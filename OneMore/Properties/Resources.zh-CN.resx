@@ -1304,6 +1304,46 @@ OneNote 文件 (*.one)</value>
     <value>取消所有</value>
     <comment>link label</comment>
   </data>
+  <data name="HashtaggerDialog.Text" xml:space="preserve">
+    <value>标签</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="HashtaggerDialog_bankBox.Text" xml:space="preserve">
+    <value>添加到页面顶部的标签库</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="HashtaggerDialog_cloudGroup.Text" xml:space="preserve">
+    <value>所有主题标签</value>
+    <comment>groupbox</comment>
+  </data>
+  <data name="HashtaggerDialog_commonGroup.Text" xml:space="preserve">
+    <value>本页常用词</value>
+    <comment>groupbox</comment>
+  </data>
+  <data name="HashtaggerDialog_hideCommonMenuItem" xml:space="preserve">
+    <value>隐藏常用词</value>
+    <comment>context menu item text</comment>
+  </data>
+  <data name="HashtaggerDialog_hideRecentMenuItem" xml:space="preserve">
+    <value>隐藏最近使用过的</value>
+    <comment>context menu item text</comment>
+  </data>
+  <data name="HashtaggerDialog_recentGroup.Text" xml:space="preserve">
+    <value>最近使用的标签</value>
+    <comment>groupbox</comment>
+  </data>
+  <data name="HashtaggerDialog_showCommonMenuItem" xml:space="preserve">
+    <value>显示常用词</value>
+    <comment>context menu item text</comment>
+  </data>
+  <data name="HashtaggerDialog_showRecentMenuItem" xml:space="preserve">
+    <value>显示最近使用过的</value>
+    <comment>context menu item text</comment>
+  </data>
+  <data name="HashtaggerDialog_tagsLabel.Text" xml:space="preserve">
+    <value>标签</value>
+    <comment>label</comment>
+  </data>
   <data name="HashtagSheet_disabledBox.Text" xml:space="preserve">
     <value>禁用主题标签服务。这也将禁用主题标签搜索。</value>
     <comment>checkbox</comment>
@@ -3104,6 +3144,14 @@ ISO-code then comma then language name</comment>
     <value>下载并插入参考图像</value>
     <comment>ribbon references</comment>
   </data>
+  <data name="ribHashtaggerButton_Label" xml:space="preserve">
+    <value>插入主题标签</value>
+    <comment>ribbon search</comment>
+  </data>
+  <data name="ribHashtaggerButton_Screentip" xml:space="preserve">
+    <value>从智能单词和标签列表中进行选择以插入主题标签</value>
+    <comment>ribbon search</comment>
+  </data>
   <data name="ribHighlightButton_Label" xml:space="preserve">
     <value>旋转荧光笔</value>
     <comment>Ribbon OneMore menu item, Edit...</comment>
@@ -4871,6 +4919,9 @@ ISO-code then comma then language name</comment>
   </data>
   <data name="word_Caption" xml:space="preserve">
     <value>说明</value>
+  </data>
+  <data name="word_Clear" xml:space="preserve">
+    <value>清除</value>
   </data>
   <data name="word_Close" xml:space="preserve">
     <value>关闭</value>

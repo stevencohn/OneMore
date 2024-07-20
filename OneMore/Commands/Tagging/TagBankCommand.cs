@@ -27,6 +27,12 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
+		/// <summary>
+		/// Gets the word bank outlne
+		/// </summary>
+		public XElement BankOutline { get; private set; }
+
+
 		public override async Task Execute(params object[] args)
 		{
 			await using var one = new OneNote(out var page, out var ns);
@@ -42,17 +48,24 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private bool MakeWordBank(Page page, XNamespace ns)
+		/// <summary>
+		/// Exposed publicly so that HashtaggerCommand can add a bank to a page and then
+		/// insert tags into it.
+		/// </summary>
+		/// <param name="page"></param>
+		/// <param name="ns"></param>
+		/// <returns></returns>
+		public bool MakeWordBank(Page page, XNamespace ns)
 		{
 			var quickIndex = MakeQuickStyle(page);
 			var tagIndex = MakeRibbonTagDef(page, BankType);
 
-			var outline = page.Root.Elements(ns + "Outline")
+			BankOutline = page.Root.Elements(ns + "Outline")
 				.FirstOrDefault(e => e.Elements().Any(x =>
 					x.Name.LocalName == "Meta" &&
 					x.Attribute("name").Value == MetaNames.TaggingBank));
 
-			if (outline is not null)
+			if (BankOutline is not null)
 			{
 				return false;
 			}
@@ -66,7 +79,7 @@ namespace River.OneMoreAddIn.Commands
 			var content = $"<span style='font-weight:bold'> </span>";
 			var cdata = new XCData(content);
 
-			outline = new XElement(ns + "Outline",
+			BankOutline = new XElement(ns + "Outline",
 				new XElement(ns + "Position",
 					// 245 accounts for "Wednesday, December 30, 2020 12:12pm"
 					new XAttribute("x", "245"),
@@ -87,7 +100,7 @@ namespace River.OneMoreAddIn.Commands
 					))
 				);
 
-			page.Root.Elements(ns + "Title").First().AddAfterSelf(outline);
+			page.Root.Elements(ns + "Title").First().AddAfterSelf(BankOutline);
 			return true;
 		}
 
@@ -97,7 +110,7 @@ namespace River.OneMoreAddIn.Commands
 			var styles = page.GetQuickStyles();
 			var style = styles.Find(s => s.Name == BankStyleName);
 
-			if (style != null)
+			if (style is not null)
 			{
 				return style.Index;
 			}

@@ -3474,6 +3474,96 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Add to tag bank at top of page.
+        /// </summary>
+        internal static string HashtaggerDialog_bankBox_Text {
+            get {
+                return ResourceManager.GetString("HashtaggerDialog_bankBox.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to All hashtags.
+        /// </summary>
+        internal static string HashtaggerDialog_cloudGroup_Text {
+            get {
+                return ResourceManager.GetString("HashtaggerDialog_cloudGroup.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Common words on this page.
+        /// </summary>
+        internal static string HashtaggerDialog_commonGroup_Text {
+            get {
+                return ResourceManager.GetString("HashtaggerDialog_commonGroup.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hide common words.
+        /// </summary>
+        internal static string HashtaggerDialog_hideCommonMenuItem {
+            get {
+                return ResourceManager.GetString("HashtaggerDialog_hideCommonMenuItem", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hide recently used.
+        /// </summary>
+        internal static string HashtaggerDialog_hideRecentMenuItem {
+            get {
+                return ResourceManager.GetString("HashtaggerDialog_hideRecentMenuItem", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Recently used tags.
+        /// </summary>
+        internal static string HashtaggerDialog_recentGroup_Text {
+            get {
+                return ResourceManager.GetString("HashtaggerDialog_recentGroup.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Show common words.
+        /// </summary>
+        internal static string HashtaggerDialog_showCommonMenuItem {
+            get {
+                return ResourceManager.GetString("HashtaggerDialog_showCommonMenuItem", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Show recently used.
+        /// </summary>
+        internal static string HashtaggerDialog_showRecentMenuItem {
+            get {
+                return ResourceManager.GetString("HashtaggerDialog_showRecentMenuItem", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tags.
+        /// </summary>
+        internal static string HashtaggerDialog_tagsLabel_Text {
+            get {
+                return ResourceManager.GetString("HashtaggerDialog_tagsLabel.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hashtags.
+        /// </summary>
+        internal static string HashtaggerDialog_Text {
+            get {
+                return ResourceManager.GetString("HashtaggerDialog.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to CREATE TABLE IF NOT EXISTS hashtag_scanner (scannerID INTEGER PRIMARY KEY UNIQUE NOT NULL, version NUMERIC (12) UNIQUE NOT NULL, scanTime TEXT NOT NULL);
         ///CREATE TABLE IF NOT EXISTS hashtag (tag TEXT NOT NULL, moreID TEXT NOT NULL, objectID TEXT NOT NULL, snippet TEXT, documentOrder INTEGER DEFAULT (0), lastModified TEXT NOT NULL, PRIMARY KEY (tag, objectID), CONSTRAINT FK_moreID FOREIGN KEY (moreID) REFERENCES hashtag_page (moreID) ON DELETE CASCADE);
         ///CREATE TABLE IF NOT EXISTS hashtag_page (moreID PRIMAR [rest of string was truncated]&quot;;.
@@ -7982,6 +8072,24 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Insert Hashtags.
+        /// </summary>
+        internal static string ribHashtaggerButton_Label {
+            get {
+                return ResourceManager.GetString("ribHashtaggerButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Pick from a smart list of words and tags to insert hashtags.
+        /// </summary>
+        internal static string ribHashtaggerButton_Screentip {
+            get {
+                return ResourceManager.GetString("ribHashtaggerButton_Screentip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Rotating Highlighter.
         /// </summary>
         internal static string ribHighlightButton_Label {
@@ -12108,6 +12216,15 @@ namespace River.OneMoreAddIn.Properties {
         internal static string word_Caption {
             get {
                 return ResourceManager.GetString("word_Caption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Clear.
+        /// </summary>
+        internal static string word_Clear {
+            get {
+                return ResourceManager.GetString("word_Clear", resourceCulture);
             }
         }
         

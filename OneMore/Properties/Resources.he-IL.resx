@@ -1314,6 +1314,46 @@ Total Row Font
     <value>בטל את הסימון של הכל</value>
     <comment>link label</comment>
   </data>
+  <data name="HashtaggerDialog.Text" xml:space="preserve">
+    <value>Hashtags</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="HashtaggerDialog_bankBox.Text" xml:space="preserve">
+    <value>הוסף לבנק התגים בראש הדף</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="HashtaggerDialog_cloudGroup.Text" xml:space="preserve">
+    <value>כל ההאשטאגים</value>
+    <comment>groupbox</comment>
+  </data>
+  <data name="HashtaggerDialog_commonGroup.Text" xml:space="preserve">
+    <value>מילים נפוצות בעמוד זה</value>
+    <comment>groupbox</comment>
+  </data>
+  <data name="HashtaggerDialog_hideCommonMenuItem" xml:space="preserve">
+    <value>הסתר מילים נפוצות</value>
+    <comment>context menu item text</comment>
+  </data>
+  <data name="HashtaggerDialog_hideRecentMenuItem" xml:space="preserve">
+    <value>הסתר בשימוש לאחרונה</value>
+    <comment>context menu item text</comment>
+  </data>
+  <data name="HashtaggerDialog_recentGroup.Text" xml:space="preserve">
+    <value>תגיות בשימוש לאחרונה</value>
+    <comment>groupbox</comment>
+  </data>
+  <data name="HashtaggerDialog_showCommonMenuItem" xml:space="preserve">
+    <value>הצג מילים נפוצות</value>
+    <comment>context menu item text</comment>
+  </data>
+  <data name="HashtaggerDialog_showRecentMenuItem" xml:space="preserve">
+    <value>הצג בשימוש לאחרונה</value>
+    <comment>context menu item text</comment>
+  </data>
+  <data name="HashtaggerDialog_tagsLabel.Text" xml:space="preserve">
+    <value>תגים</value>
+    <comment>label</comment>
+  </data>
   <data name="HashtagSheet_disabledBox.Text" xml:space="preserve">
     <value>השבת את שירות ההאשטאג. זה גם ישבית את חיפוש ההאשטאג.</value>
     <comment>checkbox</comment>
@@ -3122,6 +3162,14 @@ ISO-code then comma then language name</comment>
     <value>הורד והכניס תמונות שהוזכרו</value>
     <comment>ribbon references</comment>
   </data>
+  <data name="ribHashtaggerButton_Label" xml:space="preserve">
+    <value>הכנס Hashtags</value>
+    <comment>ribbon search</comment>
+  </data>
+  <data name="ribHashtaggerButton_Screentip" xml:space="preserve">
+    <value>בחר מתוך רשימה חכמה של מילים ותגיות כדי להוסיף hashtags</value>
+    <comment>ribbon search</comment>
+  </data>
   <data name="ribHighlightButton_Label" xml:space="preserve">
     <value>סימון מסתובב</value>
     <comment>menu</comment>
@@ -4893,6 +4941,9 @@ ISO-code then comma then language name</comment>
   </data>
   <data name="word_Caption" xml:space="preserve">
     <value>כּוֹתֶרֶת</value>
+  </data>
+  <data name="word_Clear" xml:space="preserve">
+    <value>ברור</value>
   </data>
   <data name="word_Close" xml:space="preserve">
     <value>סגור</value>

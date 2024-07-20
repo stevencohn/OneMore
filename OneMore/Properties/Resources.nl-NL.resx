@@ -1306,6 +1306,46 @@ Deze sectie</value>
     <value>Schakel alles uit</value>
     <comment>link label</comment>
   </data>
+  <data name="HashtaggerDialog.Text" xml:space="preserve">
+    <value>Hashtags</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="HashtaggerDialog_bankBox.Text" xml:space="preserve">
+    <value>Voeg toe aan tagbank bovenaan de pagina</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="HashtaggerDialog_cloudGroup.Text" xml:space="preserve">
+    <value>Alle hashtags</value>
+    <comment>groupbox</comment>
+  </data>
+  <data name="HashtaggerDialog_commonGroup.Text" xml:space="preserve">
+    <value>Veel voorkomende woorden op deze pagina</value>
+    <comment>groupbox</comment>
+  </data>
+  <data name="HashtaggerDialog_hideCommonMenuItem" xml:space="preserve">
+    <value>Veelvoorkomende woorden verbergen</value>
+    <comment>context menu item text</comment>
+  </data>
+  <data name="HashtaggerDialog_hideRecentMenuItem" xml:space="preserve">
+    <value>Recent gebruikt verbergen</value>
+    <comment>context menu item text</comment>
+  </data>
+  <data name="HashtaggerDialog_recentGroup.Text" xml:space="preserve">
+    <value>Recent gebruikte tags</value>
+    <comment>groupbox</comment>
+  </data>
+  <data name="HashtaggerDialog_showCommonMenuItem" xml:space="preserve">
+    <value>Toon gewone woorden</value>
+    <comment>context menu item text</comment>
+  </data>
+  <data name="HashtaggerDialog_showRecentMenuItem" xml:space="preserve">
+    <value>Toon recent gebruikt</value>
+    <comment>context menu item text</comment>
+  </data>
+  <data name="HashtaggerDialog_tagsLabel.Text" xml:space="preserve">
+    <value>Labels</value>
+    <comment>label</comment>
+  </data>
   <data name="HashtagSheet_disabledBox.Text" xml:space="preserve">
     <value>Schakel de hashtag-service uit. Hiermee wordt ook het zoeken naar hashtags uitgeschakeld.</value>
     <comment>checkbox</comment>
@@ -3104,6 +3144,14 @@ Na de laatste groep</value>
     <value>Afbeeldingen waarnaar wordt verwezen downloaden en invoegen</value>
     <comment>ribbon references</comment>
   </data>
+  <data name="ribHashtaggerButton_Label" xml:space="preserve">
+    <value>Voeg hashtags in</value>
+    <comment>ribbon search</comment>
+  </data>
+  <data name="ribHashtaggerButton_Screentip" xml:space="preserve">
+    <value>Kies uit een slimme lijst met woorden en tags om hashtags in te voegen</value>
+    <comment>ribbon search</comment>
+  </data>
   <data name="ribHighlightButton_Label" xml:space="preserve">
     <value>Roterende markeerstift</value>
     <comment>menu</comment>
@@ -4878,6 +4926,9 @@ Het dialoogvenster Hashtags zoeken wordt nu geopend.</value>
   </data>
   <data name="word_Caption" xml:space="preserve">
     <value>Ondertiteling</value>
+  </data>
+  <data name="word_Clear" xml:space="preserve">
+    <value>Duidelijk</value>
   </data>
   <data name="word_Close" xml:space="preserve">
     <value>Dichtbij</value>
