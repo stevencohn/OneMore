@@ -277,6 +277,7 @@ namespace River.OneMoreAddIn.Commands
 				if (recentGroup.Visible && !recentLoaded)
 				{
 					LoadRecent(new HashtagProvider());
+					ResizeFlows(sender, e);
 				}
 			}
 			else
@@ -285,6 +286,7 @@ namespace River.OneMoreAddIn.Commands
 				if (commonGroup.Visible && !commonLoaded)
 				{
 					LoadCommon();
+					ResizeFlows(sender, e);
 				}
 			}
 		}
