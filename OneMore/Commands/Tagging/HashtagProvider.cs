@@ -728,7 +728,7 @@ namespace River.OneMoreAddIn.Commands
 				cmd.Parameters.AddWithValue("@nid", notebookID);
 			}
 
-			sql = $"{sql} ORDER BY t.lastModified LIMIT 5";
+			sql = $"{sql} ORDER BY t.lastModified DESC LIMIT 5";
 			cmd.CommandText = sql;
 
 			try
