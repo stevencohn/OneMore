@@ -70,7 +70,7 @@
 			this.editRibbonBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
 			this.editRibbonBox.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.editRibbonBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-			this.editRibbonBox.Location = new System.Drawing.Point(257, 173);
+			this.editRibbonBox.Location = new System.Drawing.Point(257, 165);
 			this.editRibbonBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.editRibbonBox.Name = "editRibbonBox";
 			this.editRibbonBox.Size = new System.Drawing.Size(153, 25);
@@ -88,7 +88,7 @@
 			this.editIconBox.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.editIconBox.Enabled = false;
 			this.editIconBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-			this.editIconBox.Location = new System.Drawing.Point(257, 206);
+			this.editIconBox.Location = new System.Drawing.Point(257, 198);
 			this.editIconBox.Name = "editIconBox";
 			this.editIconBox.Size = new System.Drawing.Size(294, 25);
 			this.editIconBox.StylizeImage = false;
@@ -103,7 +103,7 @@
 			this.formulaRibbonBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
 			this.formulaRibbonBox.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.formulaRibbonBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-			this.formulaRibbonBox.Location = new System.Drawing.Point(257, 284);
+			this.formulaRibbonBox.Location = new System.Drawing.Point(257, 276);
 			this.formulaRibbonBox.Name = "formulaRibbonBox";
 			this.formulaRibbonBox.Size = new System.Drawing.Size(185, 25);
 			this.formulaRibbonBox.StylizeImage = false;
@@ -120,7 +120,7 @@
 			this.formulaIconBox.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.formulaIconBox.Enabled = false;
 			this.formulaIconBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-			this.formulaIconBox.Location = new System.Drawing.Point(257, 315);
+			this.formulaIconBox.Location = new System.Drawing.Point(257, 307);
 			this.formulaIconBox.Name = "formulaIconBox";
 			this.formulaIconBox.Size = new System.Drawing.Size(322, 25);
 			this.formulaIconBox.StylizeImage = false;
@@ -208,7 +208,7 @@
 			this.formulaPicture.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
 			this.formulaPicture.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.formulaPicture.Image = ((System.Drawing.Image)(resources.GetObject("formulaPicture.Image")));
-			this.formulaPicture.Location = new System.Drawing.Point(27, 284);
+			this.formulaPicture.Location = new System.Drawing.Point(27, 276);
 			this.formulaPicture.Margin = new System.Windows.Forms.Padding(4, 5, 4, 10);
 			this.formulaPicture.Name = "formulaPicture";
 			this.formulaPicture.Size = new System.Drawing.Size(212, 95);
@@ -223,7 +223,7 @@
 			this.editPicture.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
 			this.editPicture.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.editPicture.Image = ((System.Drawing.Image)(resources.GetObject("editPicture.Image")));
-			this.editPicture.Location = new System.Drawing.Point(27, 174);
+			this.editPicture.Location = new System.Drawing.Point(27, 166);
 			this.editPicture.Margin = new System.Windows.Forms.Padding(4, 5, 4, 10);
 			this.editPicture.Name = "editPicture";
 			this.editPicture.Size = new System.Drawing.Size(212, 95);
