@@ -320,8 +320,12 @@ namespace River.OneMoreAddIn.Commands
 			var settings = provider.GetCollection(SettingsKey);
 			settings.Add("showRecent", recentGroup.Visible);
 			settings.Add("showCommon", commonGroup.Visible);
-			provider.SetCollection(settings);
-			provider.Save();
+
+			if (settings.IsModified)
+			{
+				provider.SetCollection(settings);
+				provider.Save();
+			}
 		}
 	}
 }

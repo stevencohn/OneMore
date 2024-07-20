@@ -790,6 +790,12 @@
                 getScreentip="GetRibbonScreentip"
                 onAction="SearchHashtagsCmd"/>
               <button
+                id="ribHashtaggerButton"
+                image="Label"
+                getLabel="GetRibbonLabel"
+                getScreentip="GetRibbonScreentip"
+                onAction="HashtaggerCmd"/>
+              <button
                 id="ribAddTagBankButton"
                 imageMso="DataFormAddRecord"
                 getLabel="GetRibbonLabel"

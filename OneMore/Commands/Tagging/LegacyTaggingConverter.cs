@@ -53,27 +53,14 @@ namespace River.OneMoreAddIn.Commands
 		/// <returns>True if tags are or have been upgraded, otherwise false.</returns>
 		public async Task<bool> UpgradeLegacyTags(IWin32Window owner)
 		{
+			if (!await NeedsConversion())
+			{
+				Converted = true;
+				return false;
+			}
+
 			var provider = new SettingsProvider();
 			var settings = provider.GetCollection("tagging");
-			if (settings.Get("converted", false))
-			{
-				Converted = true;
-				return false;
-			}
-
-			if (settings.Get("ignore", false))
-			{
-				// previously opted to ignore upgrade
-				return false;
-			}
-
-			var count = await GetLegacyTagCount();
-			if (count == 0)
-			{
-				Converted = true;
-				// no legacy page tags to upgrade
-				return false;
-			}
 
 			using var ltdialog = new LegacyTaggingDialog();
 
