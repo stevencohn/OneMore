@@ -126,8 +126,6 @@ namespace River.OneMoreAddIn.UI
 
 			source ??= new CancellationTokenSource();
 
-			DialogResult result = DialogResult.Cancel;
-
 			try
 			{
 				// process should run in an STA thread otherwise it will conflict with
@@ -160,22 +158,23 @@ namespace River.OneMoreAddIn.UI
 				thread.IsBackground = true;
 				thread.Start();
 
-				result = ShowDialog();
+				var result = ShowDialog();
 
 				if (result == DialogResult.Cancel)
 				{
 					logger.WriteLine("clicked cancel");
 					source.Cancel();
 					thread.Abort();
-					return result;
 				}
+
+				return result;
 			}
 			catch (Exception exc)
 			{
 				logger.WriteLine("error importing", exc);
 			}
 
-			return result;
+			return DialogResult.Cancel;
 		}
 
 

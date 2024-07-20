@@ -169,7 +169,7 @@ namespace River.OneMoreAddIn.Commands.Tools.Updater
 				using var response = await client.GetAsync(asset.browser_download_url);
 				using var stream = await response.Content.ReadAsStreamAsync();
 				using var file = File.OpenWrite(msi);
-				stream.CopyTo(file);
+				await stream.CopyToAsync(file);
 			}
 			catch (Exception exc)
 			{
@@ -193,12 +193,12 @@ namespace River.OneMoreAddIn.Commands.Tools.Updater
 			var shutdown = $"start /b \"\" \"{action}\" --uninstall-shutdown";
 
 			using var writer = new StreamWriter(path, false);
-			writer.WriteLine(shutdown);
-			writer.WriteLine(msi);
+			await writer.WriteLineAsync(shutdown);
+			await writer.WriteLineAsync(msi);
 #if DebugUpdater
 			writer.WriteLine("set /p \"continue: \""); // for debugging
 #endif
-			writer.Flush();
+			await writer.FlushAsync();
 			writer.Close();
 
 			// run installer script

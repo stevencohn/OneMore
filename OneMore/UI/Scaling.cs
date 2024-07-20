@@ -90,7 +90,7 @@ namespace River.OneMoreAddIn.UI
 		/// <returns>A Tuple with xScalingFactor and yScalingFactor</returns>
 		public static (float, float) GetScalingFactors()
 		{
-			if (xScalingFactor == 0 && yScalingFactor == 0)
+			if (xScalingFactor.EstEquals(0) && yScalingFactor.EstEquals(0))
 			{
 				using var g = Graphics.FromHwnd(IntPtr.Zero);
 				IntPtr desktop = g.GetHdc();

@@ -80,11 +80,11 @@ namespace River.OneMoreAddIn.Commands
 
 
 		public bool IsReady =>
-			Brightness != float.MinValue ||
-			Contrast != float.MinValue ||
-			Opacity != float.MinValue ||
+			!Brightness.EstEquals(float.MinValue) ||
+			!Contrast.EstEquals(float.MinValue) ||
+			!Opacity.EstEquals(float.MinValue) ||
 			Quality != long.MinValue ||
-			Saturation != float.MinValue ||
+			!Saturation.EstEquals(float.MinValue) ||
 			Size != Size.Empty ||
 			Style != Stylization.None;
 

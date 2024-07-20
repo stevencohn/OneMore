@@ -193,7 +193,7 @@ namespace River.OneMoreAddIn.Commands.Tables.Formulas
 		{
 			var variance = Variance(values);
 
-			if (variance == 0.0)
+			if (variance.EstEquals(0.0, double.Epsilon))
 				return 0.0;
 
 			return Math.Sqrt(variance);

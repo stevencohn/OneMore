@@ -201,7 +201,7 @@ namespace River.OneMoreAddIn.Commands
 					//	$"element:{element.Name.LocalName}={ea?.Value} " +
 					//	$"path:{path}");
 
-					var p = string.IsNullOrEmpty(path) ? ea?.Value : $"{path}/{ea?.Value}";
+					var p = string.IsNullOrEmpty(path) ? ea.Value : $"{path}/{ea.Value}";
 
 					await BuildHyperlinkMap(
 						hyperlinks, element,

@@ -101,7 +101,7 @@ namespace River.OneMoreAddIn.Commands
 							? Math.Max(size + delta, MinFontSize)
 							: Math.Min(size + delta, MaxFontSize);
 
-						if (!result.Equalsish(size))
+						if (!result.EstEquals(size))
 						{
 							attr.Value = $"{result:#0}.05";
 							count++;
@@ -139,7 +139,7 @@ namespace River.OneMoreAddIn.Commands
 								? Math.Max(size + delta, MinFontSize)
 								: Math.Min(size + delta, MaxFontSize);
 
-							if (!result.Equalsish(size))
+							if (!result.EstEquals(size))
 							{
 								attr.Value = $"{result:#0}.05";
 								count++;
@@ -251,7 +251,7 @@ namespace River.OneMoreAddIn.Commands
 						? Math.Max(size + delta, MinFontSize)
 						: Math.Min(size + delta, MaxFontSize);
 
-					if (!result.Equalsish(size))
+					if (!result.EstEquals(size))
 					{
 						properties["font-size"] = $"{result:#0}.05pt";
 

@@ -272,8 +272,8 @@ namespace River.OneMoreAddIn.UI
 
 		private void pictureBox_MouseMove(object sender, MouseEventArgs e)
 		{
-			var mouseX = xScalingFactor == 0.0 ? e.X : (int)Math.Round(e.X / xScalingFactor);
-			var mouseY = yScalingFactor == 0.0 ? e.Y : (int)Math.Round(e.Y / yScalingFactor);
+			var mouseX = xScalingFactor.EstEquals(0f) ? e.X : (int)Math.Round(e.X / xScalingFactor);
+			var mouseY = yScalingFactor.EstEquals(0f) ? e.Y : (int)Math.Round(e.Y / yScalingFactor);
 
 			var zone = zones.Find(z =>
 				mouseX >= z.Bounds.Left && mouseX <= z.Bounds.Right &&
@@ -311,8 +311,8 @@ namespace River.OneMoreAddIn.UI
 
 		private void pictureBox_MouseUp(object sender, MouseEventArgs e)
 		{
-			var mouseX = xScalingFactor == 0.0 ? e.X : (int)Math.Round(e.X / xScalingFactor);
-			var mouseY = yScalingFactor == 0.0 ? e.Y : (int)Math.Round(e.Y / yScalingFactor);
+			var mouseX = xScalingFactor.EstEquals(0f) ? e.X : (int)Math.Round(e.X / xScalingFactor);
+			var mouseY = yScalingFactor.EstEquals(0f) ? e.Y : (int)Math.Round(e.Y / yScalingFactor);
 
 			var zone = zones.Find(z =>
 				mouseX >= z.Bounds.Left && mouseX <= z.Bounds.Right &&

@@ -72,7 +72,7 @@ namespace River.OneMoreAddIn.Commands
 			using var stream = new MemoryStream();
 			using (writer = new StreamWriter(stream))
 			{
-				writer.WriteLine($"# {page.Title}");
+				await writer.WriteLineAsync($"# {page.Title}");
 
 				if (content.Name.LocalName == "Page")
 				{
@@ -87,14 +87,14 @@ namespace River.OneMoreAddIn.Commands
 						.ForEach(e => Write(e));
 				}
 
-				writer.WriteLine();
-				writer.Flush();
+				await writer.WriteLineAsync();
+				await writer.FlushAsync();
 
 				stream.Position = 0;
 				using var reader = new StreamReader(stream);
 
 				var clippy = new ClipboardProvider();
-				var success = await clippy.SetText(reader.ReadToEnd(), true);
+				var success = await clippy.SetText(await reader.ReadToEndAsync(), true);
 				if (!success)
 				{
 					MoreMessageBox.ShowError(null, Resx.Clipboard_locked);
@@ -256,8 +256,11 @@ namespace River.OneMoreAddIn.Commands
 			var quick = quickStyles.First(q => q.Index == context.QuickStyleIndex);
 			switch (quick.Name)
 			{
-				case "PageTitle": writer.Write("# "); break;
-				case "h1": writer.Write("# "); break;
+				case "PageTitle":
+				case "h1":
+					writer.Write("# ");
+					break;
+
 				case "h2": writer.Write("## "); break;
 				case "h3": writer.Write("### "); break;
 				case "h4": writer.Write("#### "); break;

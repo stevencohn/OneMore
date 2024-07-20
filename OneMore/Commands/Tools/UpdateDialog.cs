@@ -106,7 +106,8 @@ namespace River.OneMoreAddIn.Commands
 				}
 				else
 				{
-					if (DateTime.TryParse(value, out var date))
+					if (DateTime.TryParse(value, 
+						DateTimeFormatInfo.CurrentInfo, DateTimeStyles.None, out var date))
 					{
 						return date.ToShortDateString();
 					}

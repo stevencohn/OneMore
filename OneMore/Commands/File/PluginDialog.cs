@@ -22,12 +22,14 @@ namespace River.OneMoreAddIn.Commands
 	{
 		private string[] predefinedNames;
 		private Plugin plugin;
-		private bool initializing = true;
+		private bool initializing;
 		private readonly bool single = false;
 
 
 		public PluginDialog()
 		{
+			initializing = true;
+
 			InitializeComponent();
 
 			// sectionGroup is not visible by default but sits in same location as pageGroup

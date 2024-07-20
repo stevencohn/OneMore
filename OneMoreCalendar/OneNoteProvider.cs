@@ -8,6 +8,7 @@ namespace OneMoreCalendar
 	using River.OneMoreAddIn.Models;
 	using System;
 	using System.Collections.Generic;
+	using System.Globalization;
 	using System.IO;
 	using System.Linq;
 	using System.Threading.Tasks;
@@ -69,8 +70,8 @@ namespace OneMoreCalendar
 				.Select(e => new
 				{
 					Page = e,
-					Created = DateTime.Parse(e.Attribute("dateTime").Value),
-					Modified = DateTime.Parse(e.Attribute("lastModifiedTime").Value),
+					Created = DateTime.Parse(e.Attribute("dateTime").Value, DateTimeFormatInfo.CurrentInfo),
+					Modified = DateTime.Parse(e.Attribute("lastModifiedTime").Value, DateTimeFormatInfo.CurrentInfo),
 					IsDeleted = e.Attribute("isInRecycleBin") != null
 				})
 				// filter by one or both filters
@@ -208,8 +209,10 @@ namespace OneMoreCalendar
 			var pages = notebooks.Descendants(ns + "Page");
 
 			var years = pages
-				.Select(p => DateTime.Parse(p.Attribute("dateTime").Value).Year)
-				.Union(pages.Select(p => DateTime.Parse(p.Attribute("lastModifiedTime").Value).Year))
+				.Select(p => DateTime.Parse(
+					p.Attribute("dateTime").Value, DateTimeFormatInfo.CurrentInfo).Year)
+				.Union(pages.Select(p => DateTime.Parse(
+					p.Attribute("lastModifiedTime").Value, DateTimeFormatInfo.CurrentInfo).Year))
 				.Distinct()
 				.OrderByDescending(y => y);
 

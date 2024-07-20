@@ -322,7 +322,7 @@ namespace River.OneMoreAddIn.UI
 		{
 			// special-case handling for 96 DPI monitors
 			(float dpiX, _) = UI.Scaling.GetDpiValues();
-			if (Math.Floor(dpiX) == 96)
+			if (Math.Floor(dpiX).EstEquals(96.0))
 			{
 				if (BackgroundImage != null)
 				{
