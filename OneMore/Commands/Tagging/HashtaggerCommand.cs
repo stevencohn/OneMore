@@ -10,6 +10,11 @@ namespace River.OneMoreAddIn.Commands
 	using System.Windows.Forms;
 	using System.Xml.Linq;
 
+
+	/// <summary>
+	/// Inserts cherry-picked hashtags onto the page, either at the current cursor location
+	/// or into the page tag bank.
+	/// </summary>
 	internal class HashtaggerCommand : Command
 	{
 
