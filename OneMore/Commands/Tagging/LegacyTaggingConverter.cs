@@ -53,14 +53,18 @@ namespace River.OneMoreAddIn.Commands
 		/// <returns>True if tags are or have been upgraded, otherwise false.</returns>
 		public async Task<bool> UpgradeLegacyTags(IWin32Window owner)
 		{
-			if (!await NeedsConversion())
+			var provider = new SettingsProvider();
+			var settings = provider.GetCollection("tagging");
+
+			if (!await NeedsConversion(settings))
 			{
+				settings.Add("converted", true);
+				provider.SetCollection(settings);
+				provider.Save();
+
 				Converted = true;
 				return false;
 			}
-
-			var provider = new SettingsProvider();
-			var settings = provider.GetCollection("tagging");
 
 			using var ltdialog = new LegacyTaggingDialog();
 
@@ -103,8 +107,12 @@ namespace River.OneMoreAddIn.Commands
 
 		public async Task<bool> NeedsConversion()
 		{
-			var provider = new SettingsProvider();
-			var settings = provider.GetCollection("tagging");
+			return await NeedsConversion(new SettingsProvider().GetCollection("tagging"));
+		}
+
+
+		private async Task<bool> NeedsConversion(SettingsCollection settings)
+		{
 			if (settings.Get("converted", false))
 			{
 				return false;
@@ -248,6 +256,14 @@ namespace River.OneMoreAddIn.Commands
 			}
 
 			return !token.IsCancellationRequested;
+		}
+
+
+		public static void ResetUpgradeCheck()
+		{
+			var provider = new SettingsProvider();
+			provider.RemoveCollection("tagging");
+			provider.Save();
 		}
 	}
 }
