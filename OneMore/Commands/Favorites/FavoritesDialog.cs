@@ -38,6 +38,8 @@ namespace River.OneMoreAddIn.Commands.Favorites
 				nameColumn.HeaderText = Resx.word_Name;
 				locationColumn.HeaderText = Resx.FavoritesSheet_locationColumn_HeaderText;
 			}
+
+			DefaultControl = searchBox;
 		}
 
 
