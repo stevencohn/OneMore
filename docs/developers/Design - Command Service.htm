@@ -129,6 +129,7 @@
             <li><a id="setup" href="Setup.htm">Setup</a></li>
 <li><a id="building-the-installer" href="Building The Installer.htm">Building The Installer</a></li>
 <li><a id="debugging-onemore" href="Debugging OneMore.htm">Debugging OneMore</a></li>
+<li><a id="experimental-features" href="Experimental Features.htm">Experimental Features</a></li>
 <li><a id="how-to-add-a-new-command" href="How to Add A New Command.htm">How to Add A New Command</a></li>
 <li><a id="how-to-add-a-settings-sheet" href="How to Add A Settings Sheet.htm">How to Add A Settings Sheet</a></li>
 <li><a id="language-translations" href="Language Translations.htm">Language Translations</a></li>
@@ -210,7 +211,7 @@
 <H1 lang=yo style="FONT-SIZE: 16pt; FONT-FAMILY: Calibri; COLOR: #1e4e79; MARGIN: 0in">Command Service</H1>
 <P lang=yo style="MARGIN: 0in"><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">In our </SPAN><SPAN style='FONT-SIZE: 10pt; FONT-FAMILY: "Lucida Console"; BACKGROUND: #f1f1f1'>OnStartupComplete </SPAN><A href="Design - Command Framework.htm"><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">handler</SPAN></A><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">, OneMore starts a number of services, one of which is implemented by the </SPAN><SPAN style='FONT-SIZE: 10pt; FONT-FAMILY: "Lucida Console"; BACKGROUND: #f1f1f1'>CommandService</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri"> class. This class spins up a worker thread that listens on the secured named pipe.</SPAN></P>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
-<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">When a mesasge is received, the incoming URI is parsed to extract the command name and any necessary parameters. Using the example above, the command name is "PlantUmlCommand" and the parameter is a unique object ID, </P>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">When a message is received, the incoming URI is parsed to extract the command name and any necessary parameters. Using the example above, the command name is "PlantUmlCommand" and the parameter is a unique object ID, </P>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">Examining the code, you'll notice that the constructor of the CommandService class accepts a reference to the command factory:</P>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
