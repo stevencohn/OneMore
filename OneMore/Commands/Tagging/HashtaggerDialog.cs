@@ -294,6 +294,12 @@ namespace River.OneMoreAddIn.Commands
 
 		private void EditTags(string text)
 		{
+			// add # to common word
+			if (text[0] != '#')
+			{
+				text = $"#{text}";
+			}
+
 			if (!tagsBox.Text.Contains(text))
 			{
 				tagsBox.Text = $"{tagsBox.Text} {text}";
