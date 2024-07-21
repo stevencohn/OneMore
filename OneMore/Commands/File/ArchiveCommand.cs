@@ -147,6 +147,12 @@ namespace River.OneMoreAddIn.Commands
 		{
 			// report results back on the main UI thread...
 
+			if (sender is ProgressDialog progress)
+			{
+				// otherwise ShowMessage window will appear behind progress dialog
+				progress.Visible = false;
+			}
+
 			if (exception == null)
 			{
 				ShowMessage(string.Format(Resx.ArchiveCommand_archived, pageCount, zipPath));
