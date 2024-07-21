@@ -607,7 +607,7 @@ namespace River.OneMoreAddIn
 			=> await factory.Run<NavigatorCommand>();
 
 
-		[Command("ribNextUnreadPageButton_Label", Keys.None)]
+		[Command("ribNextUnreadPageButton_Label", Keys.None, "ribSearchMenu")]
 		public async Task NextUnreadPageCmd(IRibbonControl control)
 			=> await factory.Run<NextUnreadPageCommand>();
 
@@ -678,7 +678,7 @@ namespace River.OneMoreAddIn
 			=> await factory.Run<PreviewMarkdownCommand>();
 
 
-		[Command("ribPreviousUnreadPageButton_Label", Keys.None)]
+		[Command("ribPreviousUnreadPageButton_Label", Keys.None, "ribSearchMenu")]
 		public async Task PreviousUnreadPageCmd(IRibbonControl control)
 			=> await factory.Run<PreviousUnreadPageCommand>();
 

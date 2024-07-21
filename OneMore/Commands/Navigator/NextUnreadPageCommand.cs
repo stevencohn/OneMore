@@ -84,7 +84,7 @@ namespace River.OneMoreAddIn.Commands
 				}
 				else
 				{
-					// blindly grab the first found
+					// in other notebook, no current page, so blindly grab the first unread found
 					next = forward
 						? pages.Elements().First()
 						: pages.Elements().Last();
