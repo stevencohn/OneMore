@@ -5150,6 +5150,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to No unread pages found in that direction.
+        /// </summary>
+        internal static string NextUnreadPageCommand_nomore {
+            get {
+                return ResourceManager.GetString("NextUnreadPageCommand_nomore", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap NoSpellCheck {
@@ -8930,6 +8939,24 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Next Unread Page.
+        /// </summary>
+        internal static string ribNextUnreadPageButton_Label {
+            get {
+                return ResourceManager.GetString("ribNextUnreadPageButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Move to the next unread page.
+        /// </summary>
+        internal static string ribNextUnreadPageButton_Screentip {
+            get {
+                return ResourceManager.GetString("ribNextUnreadPageButton_Screentip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Disable spell check for entire page (F4).
         /// </summary>
         internal static string ribNoSpellCheckButton_Screentip {
@@ -9205,6 +9232,24 @@ namespace River.OneMoreAddIn.Properties {
         internal static string ribPreviewMarkdownButton_Screentip {
             get {
                 return ResourceManager.GetString("ribPreviewMarkdownButton_Screentip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Previous Unread Page.
+        /// </summary>
+        internal static string ribPreviousUnreadPageButton_Label {
+            get {
+                return ResourceManager.GetString("ribPreviousUnreadPageButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Move to the previous unread page.
+        /// </summary>
+        internal static string ribPreviousUnreadPageButton_Screentip {
+            get {
+                return ResourceManager.GetString("ribPreviousUnreadPageButton_Screentip", resourceCulture);
             }
         }
         

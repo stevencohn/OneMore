@@ -808,6 +808,18 @@
                 getScreentip="GetRibbonScreentip"
                 onAction="RemoveTagBankCmd"/>
               <button
+                id="ribNextUnreadPageButton"
+                imageMso="PageNext"
+                getLabel="GetRibbonLabel"
+                getScreentip="GetRibbonScreentip"
+                onAction="NextUnreadPageCmd"/>
+              <button
+                id="ribPreviousUnreadPageButton"
+                imageMso="PagePrevious"
+                getLabel="GetRibbonLabel"
+                getScreentip="GetRibbonScreentip"
+                onAction="PreviousUnreadPageCmd"/>
+              <button
                 id="ribTaggingButton"
                 image="Label"
                 getLabel="GetRibbonLabel"

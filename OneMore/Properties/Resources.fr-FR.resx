@@ -1878,6 +1878,10 @@ Titre personnalisé 3</value>
     <value>La connexion réseau n'est pas disponible</value>
     <comment>error</comment>
   </data>
+  <data name="NextUnreadPageCommand_nomore" xml:space="preserve">
+    <value>Aucune page non lue trouvée dans cette direction</value>
+    <comment>message</comment>
+  </data>
   <data name="NumberingPage_Message" xml:space="preserve">
     <value>Page de numérotation {0}</value>
     <comment>progress status dialog</comment>
@@ -3510,6 +3514,14 @@ Après le dernier groupe</value>
     <value>Créer un nouveau style à partir de la sélection actuelle</value>
     <comment>ribbon styles</comment>
   </data>
+  <data name="ribNextUnreadPageButton_Label" xml:space="preserve">
+    <value>Page suivante non lue</value>
+    <comment>ribbon search</comment>
+  </data>
+  <data name="ribNextUnreadPageButton_Screentip" xml:space="preserve">
+    <value>Passer à la page suivante non lue</value>
+    <comment>ribbon search</comment>
+  </data>
   <data name="ribNoSpellCheckButton_Screentip" xml:space="preserve">
     <value>Désactiver la vérification orthographique pour toute la page (F4)</value>
     <comment>Ribbon OneMore menu item, no spell check on this page</comment>
@@ -3640,6 +3652,14 @@ Après le dernier groupe</value>
   <data name="ribPreviewMarkdownButton_Screentip" xml:space="preserve">
     <value>Aperçu de la page ou du texte sélectionné sous forme de démarque</value>
     <comment>ribbon edit</comment>
+  </data>
+  <data name="ribPreviousUnreadPageButton_Label" xml:space="preserve">
+    <value>Page précédente non lue</value>
+    <comment>ribbon search</comment>
+  </data>
+  <data name="ribPreviousUnreadPageButton_Screentip" xml:space="preserve">
+    <value>Passer à la page précédente non lue</value>
+    <comment>ribbon search</comment>
   </data>
   <data name="ribPronunciateButton_Label" xml:space="preserve">
     <value>Insérer la prononciation</value>

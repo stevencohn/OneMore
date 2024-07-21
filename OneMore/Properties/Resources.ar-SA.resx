@@ -1878,6 +1878,10 @@
     <value>اتصال الشبكة غير متوفر</value>
     <comment>error</comment>
   </data>
+  <data name="NextUnreadPageCommand_nomore" xml:space="preserve">
+    <value>لم يتم العثور على صفحات غير مقروءة في هذا الاتجاه</value>
+    <comment>message</comment>
+  </data>
   <data name="NumberingPage_Message" xml:space="preserve">
     <value>صفحة الترقيم {0}</value>
     <comment>progress status dialog</comment>
@@ -3511,6 +3515,14 @@ ISO-code then comma then language name</comment>
     <value>قم بإنشاء نمط جديد من التحديد الحالي</value>
     <comment>ribbon styles</comment>
   </data>
+  <data name="ribNextUnreadPageButton_Label" xml:space="preserve">
+    <value>الصفحة التالية غير المقروءة</value>
+    <comment>ribbon search</comment>
+  </data>
+  <data name="ribNextUnreadPageButton_Screentip" xml:space="preserve">
+    <value>الانتقال إلى الصفحة التالية غير المقروءة</value>
+    <comment>ribbon search</comment>
+  </data>
   <data name="ribNoSpellCheckButton_Screentip" xml:space="preserve">
     <value>تعطيل التدقيق الإملائي للصفحة بأكملها (F4)</value>
     <comment>Ribbon OneMore menu item, no spell check on this page</comment>
@@ -3641,6 +3653,14 @@ ISO-code then comma then language name</comment>
   <data name="ribPreviewMarkdownButton_Screentip" xml:space="preserve">
     <value>معاينة الصفحة أو النص المحدد كتخفيض</value>
     <comment>ribbon edit</comment>
+  </data>
+  <data name="ribPreviousUnreadPageButton_Label" xml:space="preserve">
+    <value>الصفحة السابقة غير المقروءة</value>
+    <comment>ribbon search</comment>
+  </data>
+  <data name="ribPreviousUnreadPageButton_Screentip" xml:space="preserve">
+    <value>الانتقال إلى الصفحة غير المقروءة السابقة</value>
+    <comment>ribbon search</comment>
   </data>
   <data name="ribPronunciateButton_Label" xml:space="preserve">
     <value>أدخل النطق</value>

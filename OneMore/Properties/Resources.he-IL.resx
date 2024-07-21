@@ -1887,6 +1887,10 @@ Total Row Font
     <value>חיבור רשת אינו זמין</value>
     <comment>error</comment>
   </data>
+  <data name="NextUnreadPageCommand_nomore" xml:space="preserve">
+    <value>לא נמצאו דפים שלא נקראו בכיוון זה</value>
+    <comment>message</comment>
+  </data>
   <data name="NumberingPage_Message" xml:space="preserve">
     <value>דף מספור {0}</value>
     <comment>progress status dialog</comment>
@@ -3530,6 +3534,14 @@ ISO-code then comma then language name</comment>
     <value>צור סגנון חדש מהבחירה הנוכחית</value>
     <comment>ribbon styles</comment>
   </data>
+  <data name="ribNextUnreadPageButton_Label" xml:space="preserve">
+    <value>העמוד הבא שלא נקרא</value>
+    <comment>ribbon search</comment>
+  </data>
+  <data name="ribNextUnreadPageButton_Screentip" xml:space="preserve">
+    <value>עבור לדף הבא שלא נקרא</value>
+    <comment>ribbon search</comment>
+  </data>
   <data name="ribNoSpellCheckButton_Screentip" xml:space="preserve">
     <value>השבת את בדיקת האיות עבור כל העמוד (F4)</value>
     <comment>Ribbon OneMore menu item, no spell check on this page</comment>
@@ -3652,6 +3664,14 @@ ISO-code then comma then language name</comment>
   <data name="ribPreviewMarkdownButton_Screentip" xml:space="preserve">
     <value>תצוגה מקדימה של דף או טקסט שנבחר כסימון</value>
     <comment>ribbon edit</comment>
+  </data>
+  <data name="ribPreviousUnreadPageButton_Label" xml:space="preserve">
+    <value>הדף הקודם שלא נקרא</value>
+    <comment>ribbon search</comment>
+  </data>
+  <data name="ribPreviousUnreadPageButton_Screentip" xml:space="preserve">
+    <value>עבור לדף הקודם שלא נקרא</value>
+    <comment>ribbon search</comment>
   </data>
   <data name="ribPronunciateButton_Label" xml:space="preserve">
     <value>הכנס הגייה</value>

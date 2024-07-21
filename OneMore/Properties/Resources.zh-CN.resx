@@ -1877,6 +1877,10 @@ OneNote 文件 (*.one)</value>
     <value>网络连接不可用</value>
     <comment>error</comment>
   </data>
+  <data name="NextUnreadPageCommand_nomore" xml:space="preserve">
+    <value>在该方向没有找到未读页面</value>
+    <comment>message</comment>
+  </data>
   <data name="NumberingPage_Message" xml:space="preserve">
     <value>编号页{0}</value>
     <comment>progress status dialog</comment>
@@ -3512,6 +3516,14 @@ ISO-code then comma then language name</comment>
     <value>从当前选择创建新样式</value>
     <comment>ribbon styles</comment>
   </data>
+  <data name="ribNextUnreadPageButton_Label" xml:space="preserve">
+    <value>下一个未读页</value>
+    <comment>ribbon search</comment>
+  </data>
+  <data name="ribNextUnreadPageButton_Screentip" xml:space="preserve">
+    <value>移至下一个未读页面</value>
+    <comment>ribbon search</comment>
+  </data>
   <data name="ribNoSpellCheckButton_Screentip" xml:space="preserve">
     <value>禁用整个页面的拼写检查 (F4)</value>
     <comment>Ribbon OneMore menu item, no spell check on this page</comment>
@@ -3634,6 +3646,14 @@ ISO-code then comma then language name</comment>
   <data name="ribPreviewMarkdownButton_Screentip" xml:space="preserve">
     <value>以 Markdown 形式预览页面或所选文本</value>
     <comment>ribbon edit</comment>
+  </data>
+  <data name="ribPreviousUnreadPageButton_Label" xml:space="preserve">
+    <value>上一页未读页</value>
+    <comment>ribbon search</comment>
+  </data>
+  <data name="ribPreviousUnreadPageButton_Screentip" xml:space="preserve">
+    <value>移至上一个未读页面</value>
+    <comment>ribbon search</comment>
   </data>
   <data name="ribPronunciateButton_Label" xml:space="preserve">
     <value>插入发音</value>

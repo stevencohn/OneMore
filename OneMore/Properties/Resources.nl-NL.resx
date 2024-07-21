@@ -1879,6 +1879,10 @@ Aangepaste kop 3</value>
     <value>Netwerkverbinding is niet beschikbaar</value>
     <comment>error</comment>
   </data>
+  <data name="NextUnreadPageCommand_nomore" xml:space="preserve">
+    <value>Geen ongelezen pagina's gevonden in die richting</value>
+    <comment>message</comment>
+  </data>
   <data name="NumberingPage_Message" xml:space="preserve">
     <value>Nummeringspagina {0}</value>
     <comment>progress status dialog</comment>
@@ -3511,6 +3515,14 @@ Na de laatste groep</value>
     <value>Maak een nieuwe stijl van de huidige selectie</value>
     <comment>ribbon styles</comment>
   </data>
+  <data name="ribNextUnreadPageButton_Label" xml:space="preserve">
+    <value>Volgende ongelezen pagina</value>
+    <comment>ribbon search</comment>
+  </data>
+  <data name="ribNextUnreadPageButton_Screentip" xml:space="preserve">
+    <value>Ga naar de volgende ongelezen pagina</value>
+    <comment>ribbon search</comment>
+  </data>
   <data name="ribNoSpellCheckButton_Screentip" xml:space="preserve">
     <value>Spellingcontrole voor hele pagina uitschakelen (F4)</value>
     <comment>Ribbon OneMore menu item, no spell check on this page</comment>
@@ -3641,6 +3653,14 @@ Na de laatste groep</value>
   <data name="ribPreviewMarkdownButton_Screentip" xml:space="preserve">
     <value>Bekijk een voorbeeld van de pagina of geselecteerde tekst als markdown</value>
     <comment>ribbon edit</comment>
+  </data>
+  <data name="ribPreviousUnreadPageButton_Label" xml:space="preserve">
+    <value>Vorige ongelezen pagina</value>
+    <comment>ribbon search</comment>
+  </data>
+  <data name="ribPreviousUnreadPageButton_Screentip" xml:space="preserve">
+    <value>Naar de vorige ongelezen pagina gaan</value>
+    <comment>ribbon search</comment>
   </data>
   <data name="ribPronunciateButton_Label" xml:space="preserve">
     <value>Uitspraak invoegen</value>
