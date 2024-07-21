@@ -86,9 +86,9 @@ Begin
 	{
 		$null = [Reflection.Assembly]::LoadWithPartialName("System.Xml.Linq")
 
-	    $script:xml = [Xml.Linq.XElement]::Load($filePath)
-	    Write-Host "Loaded $filepath"
-	    Write-Host "Exporting page info to $CsvPath ..."
+		$script:xml = [Xml.Linq.XElement]::Load($filePath)
+		Write-Host "Loaded $filepath"
+		Write-Host "Exporting page info to $CsvPath ..."
 
 		# force Excel to use comma as CSV delimeter, opening in columnar mode
 		# this will not be part of the spreadsheet; it is discarded after the file is open
@@ -96,7 +96,7 @@ Begin
 
 		'Notebook,Section,Page,Created,Modified' | Out-File -FilePath $CsvPath -Append
 
-	    $script:ns = $xml.GetNamespaceOfPrefix('one')
+		$script:ns = $xml.GetNamespaceOfPrefix('one')
 
 		if ($xml.Name.LocalName -eq 'Section')
 		{
@@ -127,7 +127,7 @@ Process
 		$CsvPath = Join-Path [Environment]::GetFolderPath('MyDocuments') 'OneNote_PageInfo.csv'
 	}
 
-    Export $filepath
+	Export $filepath
 
-    Write-Host 'Done'
+	Write-Host 'Done'
 }
