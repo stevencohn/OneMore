@@ -1876,6 +1876,10 @@ Benutzerdefinierte Überschrift 3</value>
     <value>Netzwerkverbindung ist nicht verfügbar</value>
     <comment>error</comment>
   </data>
+  <data name="NextUnreadPageCommand_nomore" xml:space="preserve">
+    <value>In dieser Richtung wurden keine ungelesenen Seiten gefunden</value>
+    <comment>message</comment>
+  </data>
   <data name="NumberingPage_Message" xml:space="preserve">
     <value>Nummerierungsseite {0}</value>
     <comment>progress status dialog</comment>
@@ -3511,6 +3515,14 @@ Nach der letzten Gruppe</value>
     <value>Erstellt einen neuen Stil aus der aktuellen Auswahl</value>
     <comment>ribbon styles</comment>
   </data>
+  <data name="ribNextUnreadPageButton_Label" xml:space="preserve">
+    <value>Nächste ungelesene Seite</value>
+    <comment>ribbon search</comment>
+  </data>
+  <data name="ribNextUnreadPageButton_Screentip" xml:space="preserve">
+    <value>Gehen Sie zur nächsten ungelesenen Seite</value>
+    <comment>ribbon search</comment>
+  </data>
   <data name="ribNoSpellCheckButton_Screentip" xml:space="preserve">
     <value>Rechtschreibprüfung für ganze Seite deaktivieren (F4)</value>
     <comment>Ribbon OneMore menu item, no spell check on this page</comment>
@@ -3633,6 +3645,14 @@ Nach der letzten Gruppe</value>
   <data name="ribPreviewMarkdownButton_Screentip" xml:space="preserve">
     <value>Vorschau der Seite oder des ausgewählten Texts als Markdown</value>
     <comment>ribbon edit</comment>
+  </data>
+  <data name="ribPreviousUnreadPageButton_Label" xml:space="preserve">
+    <value>Vorherige ungelesene Seite</value>
+    <comment>ribbon search</comment>
+  </data>
+  <data name="ribPreviousUnreadPageButton_Screentip" xml:space="preserve">
+    <value>Zur vorherigen ungelesenen Seite wechseln</value>
+    <comment>ribbon search</comment>
   </data>
   <data name="ribPronunciateButton_Label" xml:space="preserve">
     <value>Aussprache einfügen</value>

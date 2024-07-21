@@ -1887,6 +1887,10 @@ Nagłówek niestandardowy 3</value>
     <value>Połączenie sieciowe nie jest dostępne</value>
     <comment>error</comment>
   </data>
+  <data name="NextUnreadPageCommand_nomore" xml:space="preserve">
+    <value>Nie znaleziono nieprzeczytanych stron w tym kierunku</value>
+    <comment>message</comment>
+  </data>
   <data name="NumberingPage_Message" xml:space="preserve">
     <value>Numeracja strony {0}</value>
     <comment>progress status dialog</comment>
@@ -3524,6 +3528,14 @@ Po ostatniej grupie</value>
     <value>Utwórz nowy styl z bieżącego wyboru</value>
     <comment>ribbon styles</comment>
   </data>
+  <data name="ribNextUnreadPageButton_Label" xml:space="preserve">
+    <value>Następna nieprzeczytana strona</value>
+    <comment>ribbon search</comment>
+  </data>
+  <data name="ribNextUnreadPageButton_Screentip" xml:space="preserve">
+    <value>Przejdź do następnej nieprzeczytanej strony</value>
+    <comment>ribbon search</comment>
+  </data>
   <data name="ribNoSpellCheckButton_Screentip" xml:space="preserve">
     <value>Wyłącz czek czaru dla całej strony (F4)</value>
     <comment>Ribbon OneMore menu item, no spell check on this page</comment>
@@ -3654,6 +3666,14 @@ Po ostatniej grupie</value>
   <data name="ribPreviewMarkdownButton_Screentip" xml:space="preserve">
     <value>Podgląd strony lub zaznaczony tekst jako przecena</value>
     <comment>ribbon edit</comment>
+  </data>
+  <data name="ribPreviousUnreadPageButton_Label" xml:space="preserve">
+    <value>Poprzednia nieprzeczytana strona</value>
+    <comment>ribbon search</comment>
+  </data>
+  <data name="ribPreviousUnreadPageButton_Screentip" xml:space="preserve">
+    <value>Przejdź do poprzedniej nieprzeczytanej strony</value>
+    <comment>ribbon search</comment>
   </data>
   <data name="ribPronunciateButton_Label" xml:space="preserve">
     <value>Wstaw wymowę</value>

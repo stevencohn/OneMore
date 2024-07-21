@@ -1891,6 +1891,10 @@ Custom Heading 3</value>
     <value>Network connection is not available</value>
     <comment>error</comment>
   </data>
+  <data name="NextUnreadPageCommand_nomore" xml:space="preserve">
+    <value>No unread pages found in that direction</value>
+    <comment>message</comment>
+  </data>
   <data name="NumberingPage_Message" xml:space="preserve">
     <value>Numbering page {0}</value>
     <comment>progress status dialog</comment>
@@ -3550,6 +3554,14 @@ After last group</value>
     <value>Create a new style from the current selection</value>
     <comment>ribbon styles</comment>
   </data>
+  <data name="ribNextUnreadPageButton_Label" xml:space="preserve">
+    <value>Next Unread Page</value>
+    <comment>ribbon search</comment>
+  </data>
+  <data name="ribNextUnreadPageButton_Screentip" xml:space="preserve">
+    <value>Move to the next unread page</value>
+    <comment>ribbon search</comment>
+  </data>
   <data name="ribNoSpellCheckButton_Screentip" xml:space="preserve">
     <value>Disable spell check for entire page (F4)</value>
     <comment>OBSOLETE?</comment>
@@ -3673,6 +3685,14 @@ After last group</value>
   <data name="ribPreviewMarkdownButton_Screentip" xml:space="preserve">
     <value>Preview page or selected text as markdown</value>
     <comment>ribbon edit</comment>
+  </data>
+  <data name="ribPreviousUnreadPageButton_Label" xml:space="preserve">
+    <value>Previous Unread Page</value>
+    <comment>ribbon search</comment>
+  </data>
+  <data name="ribPreviousUnreadPageButton_Screentip" xml:space="preserve">
+    <value>Move to the previous unread page</value>
+    <comment>ribbon search</comment>
   </data>
   <data name="ribPronunciateButton_Label" xml:space="preserve">
     <value>Insert Pronunciation</value>
