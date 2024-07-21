@@ -213,12 +213,7 @@ namespace River.OneMoreAddIn.UI
 
 			LoadControls(Controls);
 
-			if (DefaultControl is not null)
-			{
-				//logger.WriteLine("load focusing on default control");
-				DefaultControl.Select();
-				DefaultControl.Focus();
-			}
+			TryFocus();
 
 			// RunModeless has already set location so don't repeat that here and only set
 			// location if inheritor hasn't declined by setting it to zero. Also, we're doing
@@ -271,6 +266,16 @@ namespace River.OneMoreAddIn.UI
 		{
 			//logger.WriteLine($"showing [{Text}]");
 			base.OnShown(e);
+			TryFocus();
+		}
+
+
+		private void TryFocus()
+		{
+			if (DesignMode)
+			{
+				return;
+			}
 
 			if (DefaultControl is not null)
 			{
