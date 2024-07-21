@@ -7,6 +7,7 @@ namespace River.OneMoreAddIn.UI
 	using System;
 	using System.Diagnostics;
 	using System.Drawing;
+	using System.Linq;
 	using System.Windows.Forms;
 
 
@@ -271,12 +272,23 @@ namespace River.OneMoreAddIn.UI
 		{
 			//logger.WriteLine($"showing [{Text}]");
 			base.OnShown(e);
+			TryFocus();
+		}
 
+
+		private void TryFocus()
+		{
 			if (DefaultControl is not null)
 			{
 				//logger.WriteLine("focusing on default control");
 				DefaultControl.Select();
 				DefaultControl.Focus();
+			}
+			else
+			{
+				// try first control in tab order
+				var min = Controls.OfType<Control>().Min(t => t.TabIndex);
+				Controls.OfType<Control>().FirstOrDefault(c => c.TabIndex == min)?.Focus();
 			}
 		}
 
