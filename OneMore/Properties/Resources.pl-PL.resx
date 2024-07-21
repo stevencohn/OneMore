@@ -1373,6 +1373,10 @@ Ta sekcja</value>
   <data name="HashtagSheet_prescheduled" xml:space="preserve">
     <value>Skanowanie zaplanowano na {0}. Skorzystaj z poniższych opcji, aby to zmienić, lub naciśnij przycisk Anuluj, aby zachować bieżący harmonogram.</value>
   </data>
+  <data name="HashtagSheet_resetTooltip" xml:space="preserve">
+    <value>Zaawansowane: Zresetuj flagę aktualizacji</value>
+    <comment>tooltip</comment>
+  </data>
   <data name="HashtagSheet_scanNotebooks" xml:space="preserve">
     <value>Zaplanuj przyrostowe skanowanie nowo dodanych notatników</value>
   </data>
@@ -2725,8 +2729,16 @@ Wybierz Nie, aby zachować jedną pustą linię między akapitami</value>
     <value>Polecenia formuł</value>
     <comment>checkbox</comment>
   </data>
+  <data name="RibbonBarSheet_hashtagsIconBox.Text" xml:space="preserve">
+    <value>Pokaż tylko ikony poleceń hashtagowych</value>
+    <comment>settings dialog, ribbon bar options</comment>
+  </data>
+  <data name="RibbonBarSheet_hashtagsRibbonBox.Text" xml:space="preserve">
+    <value>Polecenia hashtagowe</value>
+    <comment>checkbox</comment>
+  </data>
   <data name="RibbonBarSheet_introBox.Text" xml:space="preserve">
-    <value>Wybierz polecenia, aby uwzględnić w barze wstążki i czy wyświetlić ikony, ikony i labory. Uruchom ponownie OneNote, aby zobaczyć zmiany.</value>
+    <value>Wybierz opcjonalne gotowe grupowanie, które chcesz dodać do paska wstążki</value>
     <comment>settings dialog, ribbon bar options</comment>
   </data>
   <data name="RibbonBarSheet_positionBox.Text" xml:space="preserve">

@@ -1364,6 +1364,10 @@ Cette section</value>
   <data name="HashtagSheet_prescheduled" xml:space="preserve">
     <value>Une analyse est prévue pour {0}. Utilisez les options ci-dessous pour modifier cela ou appuyez sur Annuler pour conserver le programme actuel.</value>
   </data>
+  <data name="HashtagSheet_resetTooltip" xml:space="preserve">
+    <value>Avancé : Réinitialiser l'indicateur de mise à niveau</value>
+    <comment>tooltip</comment>
+  </data>
   <data name="HashtagSheet_scanNotebooks" xml:space="preserve">
     <value>Planifiez une analyse incrémentielle de vos blocs-notes nouvellement ajoutés</value>
   </data>
@@ -2712,8 +2716,16 @@ Sélectionnez Non pour conserver une ligne vide entre les paragraphes</value>
     <value>Commandes de formule</value>
     <comment>checkbox</comment>
   </data>
+  <data name="RibbonBarSheet_hashtagsIconBox.Text" xml:space="preserve">
+    <value>Afficher uniquement les icônes pour les commandes de hashtag</value>
+    <comment>settings dialog, ribbon bar options</comment>
+  </data>
+  <data name="RibbonBarSheet_hashtagsRibbonBox.Text" xml:space="preserve">
+    <value>Commandes de hashtag</value>
+    <comment>checkbox</comment>
+  </data>
   <data name="RibbonBarSheet_introBox.Text" xml:space="preserve">
-    <value>Choisissez les commandes à inclure dans la barre de ruban et si vous souhaitez afficher des icônes ou des icônes et des étiquettes. </value>
+    <value>Choisissez un regroupement prédéfini facultatif à ajouter à la barre de ruban</value>
     <comment>settings dialog, ribbon bar options</comment>
   </data>
   <data name="RibbonBarSheet_positionBox.Text" xml:space="preserve">

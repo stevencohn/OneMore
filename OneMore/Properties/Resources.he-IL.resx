@@ -1373,6 +1373,10 @@ Total Row Font
   <data name="HashtagSheet_prescheduled" xml:space="preserve">
     <value>סריקה מתוכננת ל-{0}. השתמש באפשרויות למטה כדי לשנות זאת או לחץ על ביטול כדי לשמור על לוח הזמנים הנוכחי.</value>
   </data>
+  <data name="HashtagSheet_resetTooltip" xml:space="preserve">
+    <value>מתקדם: אפס את דגל השדרוג</value>
+    <comment>tooltip</comment>
+  </data>
   <data name="HashtagSheet_scanNotebooks" xml:space="preserve">
     <value>תזמן סריקה מצטברת של המחברות החדשות שנוספו</value>
   </data>
@@ -2729,8 +2733,16 @@ ISO-code then comma then language name</comment>
     <value>פקודות נוסחה</value>
     <comment>checkbox</comment>
   </data>
+  <data name="RibbonBarSheet_hashtagsIconBox.Text" xml:space="preserve">
+    <value>הצג רק סמלים עבור פקודות האשטאג</value>
+    <comment>settings dialog, ribbon bar options</comment>
+  </data>
+  <data name="RibbonBarSheet_hashtagsRibbonBox.Text" xml:space="preserve">
+    <value>פקודות האשטאג</value>
+    <comment>checkbox</comment>
+  </data>
   <data name="RibbonBarSheet_introBox.Text" xml:space="preserve">
-    <value>בחר אילו פקודות לכלול בסרגל הסרט והאם להציג סמלים או סמלים ותוויות. הפעל מחדש את OneNote כדי לראות שינויים.</value>
+    <value>בחר קיבוץ מוגדר מראש אופציונלי כדי להוסיף לסרגל רצועת הכלים</value>
     <comment>settings dialog, ribbon bar options</comment>
   </data>
   <data name="RibbonBarSheet_positionBox.Text" xml:space="preserve">

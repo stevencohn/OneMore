@@ -1362,6 +1362,10 @@ Diese Abteilung</value>
   <data name="HashtagSheet_prescheduled" xml:space="preserve">
     <value>Für {0} ist ein Scan geplant. Verwenden Sie die folgenden Optionen, um dies zu ändern, oder klicken Sie auf „Abbrechen“, um den aktuellen Zeitplan beizubehalten.</value>
   </data>
+  <data name="HashtagSheet_resetTooltip" xml:space="preserve">
+    <value>Erweitert: Setzen Sie das Upgrade-Flag zurück</value>
+    <comment>tooltip</comment>
+  </data>
   <data name="HashtagSheet_scanNotebooks" xml:space="preserve">
     <value>Planen Sie einen inkrementellen Scan Ihrer neu hinzugefügten Notizbücher</value>
   </data>
@@ -2708,6 +2712,14 @@ Wähle Nein, um eine leere Zeile zwischen den Absätzen zu halten</value>
   </data>
   <data name="RibbonBarSheet_formulaRibbonBox.Text" xml:space="preserve">
     <value>Formelbefehle</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="RibbonBarSheet_hashtagsIconBox.Text" xml:space="preserve">
+    <value>Nur Symbole für Hashtag-Befehle anzeigen</value>
+    <comment>settings dialog, ribbon bar options</comment>
+  </data>
+  <data name="RibbonBarSheet_hashtagsRibbonBox.Text" xml:space="preserve">
+    <value>Hashtag-Befehle</value>
     <comment>checkbox</comment>
   </data>
   <data name="RibbonBarSheet_introBox.Text" xml:space="preserve">

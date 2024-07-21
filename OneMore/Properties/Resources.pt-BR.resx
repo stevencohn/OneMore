@@ -1365,6 +1365,10 @@ Esta seção</value>
   <data name="HashtagSheet_prescheduled" xml:space="preserve">
     <value>Uma verificação está agendada para {0}. Use as opções abaixo para alterar isso ou pressione Cancelar para manter a programação atual.</value>
   </data>
+  <data name="HashtagSheet_resetTooltip" xml:space="preserve">
+    <value>Avançado: redefinir o sinalizador de atualização</value>
+    <comment>tooltip</comment>
+  </data>
   <data name="HashtagSheet_scanNotebooks" xml:space="preserve">
     <value>Agende uma verificação incremental dos seus notebooks recém-adicionados</value>
   </data>
@@ -2713,8 +2717,16 @@ Selecione Não para manter uma linha vazia entre os parágrafos</value>
     <value>Comandos de Fórmula</value>
     <comment>checkbox</comment>
   </data>
+  <data name="RibbonBarSheet_hashtagsIconBox.Text" xml:space="preserve">
+    <value>Mostrar apenas ícones para comandos de hashtag</value>
+    <comment>settings dialog, ribbon bar options</comment>
+  </data>
+  <data name="RibbonBarSheet_hashtagsRibbonBox.Text" xml:space="preserve">
+    <value>Comandos de hashtag</value>
+    <comment>checkbox</comment>
+  </data>
   <data name="RibbonBarSheet_introBox.Text" xml:space="preserve">
-    <value>Escolha quais comandos incluir na barra de fita e se deseja exibir ícones ou ícones e rótulos. </value>
+    <value>Escolha um agrupamento predefinido opcional para adicionar à barra de opções</value>
     <comment>settings dialog, ribbon bar options</comment>
   </data>
   <data name="RibbonBarSheet_positionBox.Text" xml:space="preserve">

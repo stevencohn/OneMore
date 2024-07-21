@@ -1365,6 +1365,10 @@ Deze sectie</value>
   <data name="HashtagSheet_prescheduled" xml:space="preserve">
     <value>Er is een scan gepland voor {0}. Gebruik de onderstaande opties om dit te wijzigen of druk op Annuleren om het huidige schema te behouden.</value>
   </data>
+  <data name="HashtagSheet_resetTooltip" xml:space="preserve">
+    <value>Geavanceerd: Reset de upgradevlag</value>
+    <comment>tooltip</comment>
+  </data>
   <data name="HashtagSheet_scanNotebooks" xml:space="preserve">
     <value>Plan een incrementele scan van uw nieuw toegevoegde notitieboekjes</value>
   </data>
@@ -2713,8 +2717,16 @@ Selecteer NO om één lege regel tussen paragrafen te behouden</value>
     <value>Formule-opdrachten</value>
     <comment>checkbox</comment>
   </data>
+  <data name="RibbonBarSheet_hashtagsIconBox.Text" xml:space="preserve">
+    <value>Toon alleen pictogrammen voor hashtag-opdrachten</value>
+    <comment>settings dialog, ribbon bar options</comment>
+  </data>
+  <data name="RibbonBarSheet_hashtagsRibbonBox.Text" xml:space="preserve">
+    <value>Hashtag-opdrachten</value>
+    <comment>checkbox</comment>
+  </data>
   <data name="RibbonBarSheet_introBox.Text" xml:space="preserve">
-    <value>Kies welke opdrachten u in de lintbalk wilt opnemen en of u pictogrammen of pictogrammen en labels wilt weergeven. </value>
+    <value>Kies optionele vooraf ingestelde groeperingen om toe te voegen aan de lintbalk</value>
     <comment>settings dialog, ribbon bar options</comment>
   </data>
   <data name="RibbonBarSheet_positionBox.Text" xml:space="preserve">

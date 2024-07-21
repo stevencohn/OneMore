@@ -1364,6 +1364,10 @@
   <data name="HashtagSheet_prescheduled" xml:space="preserve">
     <value>تمت جدولة عملية الفحص لـ {0}. استخدم الخيارات أدناه لتغيير هذا أو اضغط على إلغاء للاحتفاظ بالجدول الحالي.</value>
   </data>
+  <data name="HashtagSheet_resetTooltip" xml:space="preserve">
+    <value>متقدم: إعادة تعيين علامة الترقية</value>
+    <comment>tooltip</comment>
+  </data>
   <data name="HashtagSheet_scanNotebooks" xml:space="preserve">
     <value>قم بجدولة فحص متزايد لدفاتر الملاحظات المضافة حديثًا</value>
   </data>
@@ -2712,8 +2716,16 @@ ISO-code then comma then language name</comment>
     <value>أوامر الصيغة</value>
     <comment>checkbox</comment>
   </data>
+  <data name="RibbonBarSheet_hashtagsIconBox.Text" xml:space="preserve">
+    <value>إظهار أيقونات أوامر الهاشتاج فقط</value>
+    <comment>settings dialog, ribbon bar options</comment>
+  </data>
+  <data name="RibbonBarSheet_hashtagsRibbonBox.Text" xml:space="preserve">
+    <value>أوامر الهاشتاج</value>
+    <comment>checkbox</comment>
+  </data>
   <data name="RibbonBarSheet_introBox.Text" xml:space="preserve">
-    <value>اختر الأوامر المراد تضمينها في شريط الشريط وما إذا كنت تريد عرض الرموز أو الرموز والتسميات. </value>
+    <value>اختر تجميعًا اختياريًا مُعدًا مسبقًا لإضافته إلى شريط الشريط</value>
     <comment>settings dialog, ribbon bar options</comment>
   </data>
   <data name="RibbonBarSheet_positionBox.Text" xml:space="preserve">

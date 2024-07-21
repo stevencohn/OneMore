@@ -39,6 +39,8 @@ namespace River.OneMoreAddIn.Settings
 					"resetLink=word_Reset",
 					"disabledBox"
 				});
+
+				tooltip.SetToolTip(resetLink, Resx.HashtagSheet_resetTooltip);
 			}
 
 			var settings = provider.GetCollection(Name);

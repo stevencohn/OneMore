@@ -3620,6 +3620,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Advanced: Reset the upgrade flag.
+        /// </summary>
+        internal static string HashtagSheet_resetTooltip {
+            get {
+                return ResourceManager.GetString("HashtagSheet_resetTooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Schedule an incremental scan of your newly added notebooks.
         /// </summary>
         internal static string HashtagSheet_scanNotebooks {

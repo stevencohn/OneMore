@@ -1364,6 +1364,10 @@ Esta sección</value>
   <data name="HashtagSheet_prescheduled" xml:space="preserve">
     <value>Hay un análisis programado para {0}. Utilice las opciones siguientes para cambiar esto o presione Cancelar para mantener el horario actual.</value>
   </data>
+  <data name="HashtagSheet_resetTooltip" xml:space="preserve">
+    <value>Avanzado: restablecer el indicador de actualización</value>
+    <comment>tooltip</comment>
+  </data>
   <data name="HashtagSheet_scanNotebooks" xml:space="preserve">
     <value>Programe un análisis incremental de sus cuadernos recién agregados</value>
   </data>
@@ -2712,8 +2716,16 @@ Seleccione No para mantener una línea vacía entre los párrafos</value>
     <value>Comandos de fórmula</value>
     <comment>checkbox</comment>
   </data>
+  <data name="RibbonBarSheet_hashtagsIconBox.Text" xml:space="preserve">
+    <value>Mostrar solo íconos para comandos de hashtag</value>
+    <comment>settings dialog, ribbon bar options</comment>
+  </data>
+  <data name="RibbonBarSheet_hashtagsRibbonBox.Text" xml:space="preserve">
+    <value>Comandos de hashtag</value>
+    <comment>checkbox</comment>
+  </data>
   <data name="RibbonBarSheet_introBox.Text" xml:space="preserve">
-    <value>Elija qué comandos incluir en la barra de la cinta y si mostrar iconos o iconos y etiquetas. </value>
+    <value>Elija una agrupación preestablecida opcional para agregar a la barra de la cinta</value>
     <comment>settings dialog, ribbon bar options</comment>
   </data>
   <data name="RibbonBarSheet_positionBox.Text" xml:space="preserve">

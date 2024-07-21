@@ -1363,6 +1363,10 @@ OneNote 文件 (*.one)</value>
   <data name="HashtagSheet_prescheduled" xml:space="preserve">
     <value>计划于 {0} 进行扫描。使用以下选项更改此设置或按“取消”保留当前计划。</value>
   </data>
+  <data name="HashtagSheet_resetTooltip" xml:space="preserve">
+    <value>高级：重置升级标志</value>
+    <comment>tooltip</comment>
+  </data>
   <data name="HashtagSheet_scanNotebooks" xml:space="preserve">
     <value>安排对新添加的笔记本进行增量扫描</value>
   </data>
@@ -2711,8 +2715,16 @@ ISO-code then comma then language name</comment>
     <value>公式命令</value>
     <comment>checkbox</comment>
   </data>
+  <data name="RibbonBarSheet_hashtagsIconBox.Text" xml:space="preserve">
+    <value>仅显示主题标签命令的图标</value>
+    <comment>settings dialog, ribbon bar options</comment>
+  </data>
+  <data name="RibbonBarSheet_hashtagsRibbonBox.Text" xml:space="preserve">
+    <value>标签命令</value>
+    <comment>checkbox</comment>
+  </data>
   <data name="RibbonBarSheet_introBox.Text" xml:space="preserve">
-    <value>选择要包含在功能区栏中的命令，以及显示图标还是显示图标和标签。 重新启动OneNote以查看更改。</value>
+    <value>选择可选的预设分组以添加到功能区栏</value>
     <comment>settings dialog, ribbon bar options</comment>
   </data>
   <data name="RibbonBarSheet_positionBox.Text" xml:space="preserve">
