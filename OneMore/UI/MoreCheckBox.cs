@@ -74,14 +74,29 @@ namespace River.OneMoreAddIn.UI
 
 			if (StylizeImage)
 			{
-				var editor = new ImageEditor { Size = new Size(16, 16) };
-				if (manager.DarkMode)
+				if (Image is not null)
 				{
-					editor.Style = ImageEditor.Stylization.Invert;
+					var editor = new ImageEditor { Size = new Size(16, 16) };
+					if (manager.DarkMode)
+					{
+						editor.Style = ImageEditor.Stylization.Invert;
+					}
+
+					using var img = Image;
+					Image = editor.Apply(img);
 				}
 
-				using var img = Image;
-				Image = editor.Apply(img);
+				if (BackgroundImage is not null)
+				{
+					var editor = new ImageEditor { Size = new Size(16, 16) };
+					if (manager.DarkMode)
+					{
+						editor.Style = ImageEditor.Stylization.Invert;
+					}
+
+					using var img = BackgroundImage;
+					BackgroundImage = editor.Apply(img);
+				}
 			}
 		}
 
@@ -108,7 +123,7 @@ namespace River.OneMoreAddIn.UI
 			var g = pevent.Graphics;
 
 			var clip = pevent.ClipRectangle;
-			var radius = g.DpiX == 96 ? 2 : 4;
+			var radius = g.DpiX == 96f ? 2 : 4;
 
 			if (Enabled && (MouseState != MouseState.None || Checked))
 			{
@@ -154,13 +169,13 @@ namespace River.OneMoreAddIn.UI
 			{
 				color = manager.ButtonPressBorder;
 			}
-			else if (Focused || IsDefault) // || this == FindForm().AcceptButton)
-			{
-				color = manager.GetColor("HotTrack");
-			}
 			else if (MouseState.HasFlag(MouseState.Hover))
 			{
 				color = manager.ButtonHotBorder;
+			}
+			else if (Checked)
+			{
+				color = manager.GetColor("MenuItemBorder");
 			}
 
 			using var pen = new Pen(color);
@@ -179,6 +194,15 @@ namespace River.OneMoreAddIn.UI
 				var scale = Math.Min(hscale, wscale);
 				var size = new SizeF(image.Width * scale, image.Height * scale).ToSize();
 				return new ImageEditor { Size = size }.Apply(image);
+			}
+
+			if (!Padding.Equals(Padding.Empty))
+			{
+				clip = new Rectangle(
+					clip.X + Padding.Left,
+					clip.Y + Padding.Right,
+					clip.Width - (Padding.Left + Padding.Right),
+					clip.Height - (Padding.Bottom + Padding.Top));
 			}
 
 			if (BackgroundImageLayout == ImageLayout.Stretch &&

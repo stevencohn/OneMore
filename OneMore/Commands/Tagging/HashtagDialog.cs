@@ -84,6 +84,8 @@ namespace River.OneMoreAddIn.Commands
 			ShowOfflineNotebooks = new SettingsProvider()
 				.GetCollection(SettingsKey)
 				.Get("showOffline", true);
+
+			tooltip.SetToolTip(sensitiveBox, Resx.HashtagDialog_sensitiveTip);
 		}
 
 
@@ -93,7 +95,7 @@ namespace River.OneMoreAddIn.Commands
 		public IEnumerable<string> SelectedPages => selections;
 
 
-		public bool ShowOfflineNotebooks { get; private set; } = true;
+		public bool ShowOfflineNotebooks { get; private set; }
 
 
 		private void ShowScanTimes()

@@ -3454,13 +3454,31 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to All
+        ///   Looks up a localized string similar to All notebooks
         ///This notebook
         ///This section.
         /// </summary>
         internal static string HashtagDialog_scopeBox_Text {
             get {
                 return ResourceManager.GetString("HashtagDialog_scopeBox.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Case-sensitive.
+        /// </summary>
+        internal static string HashtagDialog_sensitiveBox_Text {
+            get {
+                return ResourceManager.GetString("HashtagDialog_sensitiveBox.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Case-sensitive search.
+        /// </summary>
+        internal static string HashtagDialog_sensitiveTip {
+            get {
+                return ResourceManager.GetString("HashtagDialog_sensitiveTip", resourceCulture);
             }
         }
         
