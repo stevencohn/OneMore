@@ -19,6 +19,8 @@ namespace River.OneMoreAddIn.Commands
 
 	internal partial class HashtagDialog : MoreForm
 	{
+		private const string SettingsKey = "Hashtags";
+
 		private const string T0 = "0001-01-01T00:00:00.0000Z";
 
 		private readonly MoreAutoCompleteList palette;
@@ -78,6 +80,10 @@ namespace River.OneMoreAddIn.Commands
 				.GetCollection("GeneralSheet").Get<bool>("experimental");
 
 			ShowScanTimes();
+
+			ShowOfflineNotebooks = new SettingsProvider()
+				.GetCollection(SettingsKey)
+				.Get("showOffline", true);
 		}
 
 
@@ -85,6 +91,9 @@ namespace River.OneMoreAddIn.Commands
 
 
 		public IEnumerable<string> SelectedPages => selections;
+
+
+		public bool ShowOfflineNotebooks { get; private set; } = true;
 
 
 		private void ShowScanTimes()
@@ -149,9 +158,10 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private void DoSearchTags(object sender, EventArgs e)
+		private async void DoSearchTags(object sender, EventArgs e)
 		{
-			Task.Run(async () => {  await SearchTags(sender, e); });
+			await SearchTags(sender, e);
+			//Task.Run(async () => { await SearchTags(sender, e); });
 		}
 
 
@@ -177,6 +187,14 @@ namespace River.OneMoreAddIn.Commands
 				2 => provider.SearchTags(where, out parsed, sectionID: one.CurrentSectionId),
 				_ => provider.SearchTags(where, out parsed)
 			};
+
+			if (!ShowOfflineNotebooks)
+			{
+				// must be ToList?!
+				var loaded = tags.Where(t => loadedBookIDs.Contains(t.NotebookID)).ToList();
+				tags.Clear();
+				tags.AddRange(loaded);
+			}
 
 			logger.Verbose($"found {tags.Count} tags using [{parsed}]");
 
@@ -408,10 +426,45 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
+		private void PrepareContextMenu(object sender, System.EventArgs e)
+		{
+			if (ShowOfflineNotebooks)
+			{
+				offlineNotebooksButton.Image = Resx.e_CheckMark;
+				offlineNotebooksButton.Text = Resx.HashtagDialog_showOfflineMenuItem;
+			}
+			else
+			{
+				offlineNotebooksButton.Image = null;
+				offlineNotebooksButton.Text = Resx.HashtagDialog_hideOfflineMenuItem;
+			}
+		}
+
+
+		private void ToggleOfflineNotebooks(object sender, EventArgs e)
+		{
+			ShowOfflineNotebooks = !ShowOfflineNotebooks;
+		}
+
+
 		private void DoCancel(object sender, EventArgs e)
 		{
 			DialogResult = DialogResult.Cancel;
 			Close();
+		}
+
+
+		private void SaveSettings(object sender, FormClosingEventArgs e)
+		{
+			var provider = new SettingsProvider();
+			var settings = provider.GetCollection(SettingsKey);
+			settings.Add("showOffline", ShowOfflineNotebooks);
+
+			if (settings.IsModified)
+			{
+				provider.SetCollection(settings);
+				provider.Save();
+			}
 		}
 	}
 }

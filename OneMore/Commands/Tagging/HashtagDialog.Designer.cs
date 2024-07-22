@@ -49,6 +49,7 @@
 			this.contextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
 			this.scanButton = new System.Windows.Forms.ToolStripMenuItem();
 			this.scheduleButton = new System.Windows.Forms.ToolStripMenuItem();
+			this.offlineNotebooksButton = new System.Windows.Forms.ToolStripMenuItem();
 			this.topPanel.SuspendLayout();
 			this.controlPanel.SuspendLayout();
 			this.contextMenu.SuspendLayout();
@@ -138,6 +139,8 @@
 			this.barLabel.Size = new System.Drawing.Size(14, 20);
 			this.barLabel.TabIndex = 7;
 			this.barLabel.Text = "|";
+			this.barLabel.ThemedBack = null;
+			this.barLabel.ThemedFore = null;
 			// 
 			// checkAllLink
 			// 
@@ -332,23 +335,33 @@
 			this.contextMenu.ImageScalingSize = new System.Drawing.Size(24, 24);
 			this.contextMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.scanButton,
-            this.scheduleButton});
+            this.scheduleButton,
+            this.offlineNotebooksButton});
 			this.contextMenu.Name = "contextMenu";
-			this.contextMenu.Size = new System.Drawing.Size(241, 101);
+			this.contextMenu.Size = new System.Drawing.Size(282, 100);
+			this.contextMenu.Opened += new System.EventHandler(this.PrepareContextMenu);
 			// 
 			// scanButton
 			// 
 			this.scanButton.Name = "scanButton";
-			this.scanButton.Size = new System.Drawing.Size(240, 32);
+			this.scanButton.Size = new System.Drawing.Size(281, 32);
 			this.scanButton.Text = "Scan Now";
 			this.scanButton.Click += new System.EventHandler(this.ScanNow);
 			// 
 			// scheduleButton
 			// 
 			this.scheduleButton.Name = "scheduleButton";
-			this.scheduleButton.Size = new System.Drawing.Size(240, 32);
+			this.scheduleButton.Size = new System.Drawing.Size(281, 32);
 			this.scheduleButton.Text = "Schedule Scan";
 			this.scheduleButton.Click += new System.EventHandler(this.DoScheduleScan);
+			// 
+			// offlineNotebooksButton
+			// 
+			this.offlineNotebooksButton.Image = global::River.OneMoreAddIn.Properties.Resources.e_CheckMark;
+			this.offlineNotebooksButton.Name = "offlineNotebooksButton";
+			this.offlineNotebooksButton.Size = new System.Drawing.Size(281, 32);
+			this.offlineNotebooksButton.Text = "Hide Offline Notebooks";
+			this.offlineNotebooksButton.Click += new System.EventHandler(this.ToggleOfflineNotebooks);
 			// 
 			// HashtagDialog
 			// 
@@ -365,6 +378,7 @@
 			this.MinimumSize = new System.Drawing.Size(900, 400);
 			this.Name = "HashtagDialog";
 			this.Text = "Find Hashtags";
+			this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.SaveSettings);
 			this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.DoKeyDown);
 			this.topPanel.ResumeLayout(false);
 			this.topPanel.PerformLayout();
@@ -384,7 +398,6 @@
 		private UI.MoreTextBox tagBox;
 		private UI.MoreButton searchButton;
 		private System.Windows.Forms.ComboBox scopeBox;
-		private System.Windows.Forms.Label barLabel;
 		private UI.MoreLinkLabel checkAllLink;
 		private UI.MoreLinkLabel uncheckAllLink;
 		private UI.MoreButton indexButton;
@@ -396,5 +409,7 @@
 		private System.Windows.Forms.ToolStripMenuItem scanButton;
 		private UI.MoreMultilineLabel introBox;
 		private System.Windows.Forms.ToolStripMenuItem scheduleButton;
+		private System.Windows.Forms.ToolStripMenuItem offlineNotebooksButton;
+		private UI.MoreLabel barLabel;
 	}
 }

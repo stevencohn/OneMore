@@ -1271,6 +1271,10 @@ La recherche de hashtags n'est pas disponible tant qu'elle n'est pas terminée.<
     <value>Vérifie tout</value>
     <comment>link label</comment>
   </data>
+  <data name="HashtagDialog_hideOfflineMenuItem" xml:space="preserve">
+    <value>Masquer les blocs-notes hors ligne</value>
+    <comment>context menu item</comment>
+  </data>
   <data name="HashtagDialog_introLabel.Text" xml:space="preserve">
     <value>Tapez n’importe quelle partie d’un ou plusieurs hashtags. Les caractères génériques sont implicites, sauf si une balise se termine par un point. Les parenthèses et les opérateurs logiques sont autorisés.</value>
     <comment>label</comment>
@@ -1300,6 +1304,10 @@ La recherche de hashtags n'est pas disponible tant qu'elle n'est pas terminée.<
 Ce carnet
 Cette section</value>
     <comment>combobox</comment>
+  </data>
+  <data name="HashtagDialog_showOfflineMenuItem" xml:space="preserve">
+    <value>Afficher les blocs-notes hors ligne</value>
+    <comment>context menu item</comment>
   </data>
   <data name="HashtagDialog_uncheckAllLink.Text" xml:space="preserve">
     <value>Décocher tout</value>

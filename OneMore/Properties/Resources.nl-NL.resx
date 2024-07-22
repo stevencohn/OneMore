@@ -1272,6 +1272,10 @@ Zoeken naar hashtags is pas beschikbaar als dit is voltooid.</value>
     <value>Controleer alles</value>
     <comment>link label</comment>
   </data>
+  <data name="HashtagDialog_hideOfflineMenuItem" xml:space="preserve">
+    <value>Offline notitieblokken verbergen</value>
+    <comment>context menu item</comment>
+  </data>
   <data name="HashtagDialog_introLabel.Text" xml:space="preserve">
     <value>Typ een deel van een of meer hashtags. Wildcards worden geïmpliceerd, tenzij een tag wordt afgesloten met een punt. Haakjes en logische operatoren zijn toegestaan.</value>
     <comment>label</comment>
@@ -1301,6 +1305,10 @@ Zoeken naar hashtags is pas beschikbaar als dit is voltooid.</value>
 Dit notitieboekje
 Deze sectie</value>
     <comment>combobox</comment>
+  </data>
+  <data name="HashtagDialog_showOfflineMenuItem" xml:space="preserve">
+    <value>Offline notitieboekjes tonen</value>
+    <comment>context menu item</comment>
   </data>
   <data name="HashtagDialog_uncheckAllLink.Text" xml:space="preserve">
     <value>Schakel alles uit</value>

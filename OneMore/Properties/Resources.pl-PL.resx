@@ -1280,6 +1280,10 @@ Wyszukiwanie hashtagów nie jest możliwe, dopóki nie zostanie zakończone.</va
     <value>Zaznacz wszystkie</value>
     <comment>link label</comment>
   </data>
+  <data name="HashtagDialog_hideOfflineMenuItem" xml:space="preserve">
+    <value>Ukryj notesy offline</value>
+    <comment>context menu item</comment>
+  </data>
   <data name="HashtagDialog_introLabel.Text" xml:space="preserve">
     <value>Wpisz dowolną część jednego lub większej liczby hashtagów. Symbole wieloznaczne są dorozumiane, chyba że tag jest zakończony kropką. Dozwolone są nawiasy i operatory logiczne.</value>
     <comment>label</comment>
@@ -1309,6 +1313,10 @@ Wyszukiwanie hashtagów nie jest możliwe, dopóki nie zostanie zakończone.</va
 Ten notatnik
 Ta sekcja</value>
     <comment>combobox</comment>
+  </data>
+  <data name="HashtagDialog_showOfflineMenuItem" xml:space="preserve">
+    <value>Pokaż notesy offline</value>
+    <comment>context menu item</comment>
   </data>
   <data name="HashtagDialog_uncheckAllLink.Text" xml:space="preserve">
     <value>Odznacz wszystkie</value>

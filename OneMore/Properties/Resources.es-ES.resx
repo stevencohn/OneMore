@@ -1271,6 +1271,10 @@ La búsqueda de hashtags no estará disponible hasta que se complete.</value>
     <value>Comprobar todo</value>
     <comment>link label</comment>
   </data>
+  <data name="HashtagDialog_hideOfflineMenuItem" xml:space="preserve">
+    <value>Ocultar cuadernos sin conexión</value>
+    <comment>context menu item</comment>
+  </data>
   <data name="HashtagDialog_introLabel.Text" xml:space="preserve">
     <value>Escribe cualquier parte de uno o más hashtags. Los comodines están implícitos a menos que una etiqueta termine con un punto. Se permiten paréntesis y operadores lógicos.</value>
     <comment>label</comment>
@@ -1300,6 +1304,10 @@ La búsqueda de hashtags no estará disponible hasta que se complete.</value>
 este cuaderno
 Esta sección</value>
     <comment>combobox</comment>
+  </data>
+  <data name="HashtagDialog_showOfflineMenuItem" xml:space="preserve">
+    <value>Mostrar cuadernos sin conexión</value>
+    <comment>context menu item</comment>
   </data>
   <data name="HashtagDialog_uncheckAllLink.Text" xml:space="preserve">
     <value>Desmarcar todo</value>

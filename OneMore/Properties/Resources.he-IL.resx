@@ -1280,6 +1280,10 @@ Total Row Font
     <value>סמן הכל</value>
     <comment>link label</comment>
   </data>
+  <data name="HashtagDialog_hideOfflineMenuItem" xml:space="preserve">
+    <value>הסתר מחברות לא מקוונות</value>
+    <comment>context menu item</comment>
+  </data>
   <data name="HashtagDialog_introLabel.Text" xml:space="preserve">
     <value>הקלד כל חלק מהאשטאג אחד או יותר. תווים כלליים משתמעים אלא אם כן תג מסתיים בנקודה. מותר להשתמש בסוגריים ואופרטורים לוגיים.</value>
     <comment>label</comment>
@@ -1309,6 +1313,10 @@ Total Row Font
 המחברת הזו
 הסעיף הזה</value>
     <comment>combobox</comment>
+  </data>
+  <data name="HashtagDialog_showOfflineMenuItem" xml:space="preserve">
+    <value>הצג מחברות לא מקוונות</value>
+    <comment>context menu item</comment>
   </data>
   <data name="HashtagDialog_uncheckAllLink.Text" xml:space="preserve">
     <value>בטל את הסימון של הכל</value>
