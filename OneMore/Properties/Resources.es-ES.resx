@@ -1300,10 +1300,14 @@ La búsqueda de hashtags no estará disponible hasta que se complete.</value>
     <comment>menu item</comment>
   </data>
   <data name="HashtagDialog_scopeBox.Text" xml:space="preserve">
-    <value>Todo
+    <value>Todos los cuadernos
 este cuaderno
 Esta sección</value>
     <comment>combobox</comment>
+  </data>
+  <data name="HashtagDialog_sensitiveTip" xml:space="preserve">
+    <value>Búsqueda que distingue entre mayúsculas y minúsculas</value>
+    <comment>tooltip</comment>
   </data>
   <data name="HashtagDialog_showOfflineMenuItem" xml:space="preserve">
     <value>Mostrar cuadernos sin conexión</value>

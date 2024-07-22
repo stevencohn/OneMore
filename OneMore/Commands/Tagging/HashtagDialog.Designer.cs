@@ -33,6 +33,7 @@
 			this.cancelButton = new River.OneMoreAddIn.UI.MoreButton();
 			this.contextPanel = new System.Windows.Forms.FlowLayoutPanel();
 			this.topPanel = new River.OneMoreAddIn.UI.MorePanel();
+			this.sensitiveBox = new River.OneMoreAddIn.UI.MoreCheckBox();
 			this.menuButton = new River.OneMoreAddIn.UI.MoreButton();
 			this.barLabel = new River.OneMoreAddIn.UI.MoreLabel();
 			this.checkAllLink = new River.OneMoreAddIn.UI.MoreLinkLabel();
@@ -50,6 +51,7 @@
 			this.scanButton = new System.Windows.Forms.ToolStripMenuItem();
 			this.scheduleButton = new System.Windows.Forms.ToolStripMenuItem();
 			this.offlineNotebooksButton = new System.Windows.Forms.ToolStripMenuItem();
+			this.tooltip = new System.Windows.Forms.ToolTip(this.components);
 			this.topPanel.SuspendLayout();
 			this.controlPanel.SuspendLayout();
 			this.contextMenu.SuspendLayout();
@@ -90,6 +92,7 @@
 			this.topPanel.BackColor = System.Drawing.SystemColors.Control;
 			this.topPanel.BottomBorderColor = System.Drawing.SystemColors.WindowFrame;
 			this.topPanel.BottomBorderSize = 1;
+			this.topPanel.Controls.Add(this.sensitiveBox);
 			this.topPanel.Controls.Add(this.menuButton);
 			this.topPanel.Controls.Add(this.barLabel);
 			this.topPanel.Controls.Add(this.checkAllLink);
@@ -109,9 +112,29 @@
 			this.topPanel.TopBorderColor = System.Drawing.SystemColors.Control;
 			this.topPanel.TopBorderSize = 0;
 			// 
+			// sensitiveBox
+			// 
+			this.sensitiveBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.sensitiveBox.Appearance = System.Windows.Forms.Appearance.Button;
+			this.sensitiveBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(231)))), ((int)(((byte)(231)))));
+			this.sensitiveBox.BackgroundImage = global::River.OneMoreAddIn.Properties.Resources.m_NewStyle;
+			this.sensitiveBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+			this.sensitiveBox.Cursor = System.Windows.Forms.Cursors.Hand;
+			this.sensitiveBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+			this.sensitiveBox.Location = new System.Drawing.Point(615, 12);
+			this.sensitiveBox.Margin = new System.Windows.Forms.Padding(6, 3, 6, 3);
+			this.sensitiveBox.Name = "sensitiveBox";
+			this.sensitiveBox.Padding = new System.Windows.Forms.Padding(2);
+			this.sensitiveBox.Size = new System.Drawing.Size(31, 31);
+			this.sensitiveBox.StylizeImage = true;
+			this.sensitiveBox.TabIndex = 8;
+			this.sensitiveBox.ThemedBack = null;
+			this.sensitiveBox.ThemedFore = null;
+			this.sensitiveBox.UseVisualStyleBackColor = false;
+			// 
 			// menuButton
 			// 
-			this.menuButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+			this.menuButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.menuButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(231)))), ((int)(((byte)(231)))));
 			this.menuButton.FlatAppearance.BorderSize = 0;
 			this.menuButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -132,7 +155,7 @@
 			// 
 			// barLabel
 			// 
-			this.barLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+			this.barLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.barLabel.AutoSize = true;
 			this.barLabel.Location = new System.Drawing.Point(808, 51);
 			this.barLabel.Name = "barLabel";
@@ -145,7 +168,7 @@
 			// checkAllLink
 			// 
 			this.checkAllLink.ActiveLinkColor = System.Drawing.Color.Orchid;
-			this.checkAllLink.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+			this.checkAllLink.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.checkAllLink.AutoSize = true;
 			this.checkAllLink.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.checkAllLink.HoverColor = System.Drawing.Color.MediumOrchid;
@@ -165,7 +188,7 @@
 			// uncheckAllLink
 			// 
 			this.uncheckAllLink.ActiveLinkColor = System.Drawing.Color.Orchid;
-			this.uncheckAllLink.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+			this.uncheckAllLink.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.uncheckAllLink.AutoSize = true;
 			this.uncheckAllLink.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.uncheckAllLink.HoverColor = System.Drawing.Color.MediumOrchid;
@@ -184,11 +207,11 @@
 			// 
 			// scopeBox
 			// 
-			this.scopeBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+			this.scopeBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.scopeBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this.scopeBox.FormattingEnabled = true;
 			this.scopeBox.Items.AddRange(new object[] {
-            "All",
+            "All notebooks",
             "This notebook",
             "This section"});
 			this.scopeBox.Location = new System.Drawing.Point(655, 12);
@@ -199,16 +222,16 @@
 			// 
 			// searchButton
 			// 
-			this.searchButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+			this.searchButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.searchButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(231)))), ((int)(((byte)(231)))));
 			this.searchButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
 			this.searchButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.searchButton.Image = global::River.OneMoreAddIn.Properties.Resources.m_Search;
 			this.searchButton.ImageOver = null;
-			this.searchButton.Location = new System.Drawing.Point(859, 12);
+			this.searchButton.Location = new System.Drawing.Point(869, 12);
 			this.searchButton.Name = "searchButton";
 			this.searchButton.ShowBorder = true;
-			this.searchButton.Size = new System.Drawing.Size(60, 31);
+			this.searchButton.Size = new System.Drawing.Size(50, 31);
 			this.searchButton.StylizeImage = true;
 			this.searchButton.TabIndex = 1;
 			this.searchButton.ThemedBack = null;
@@ -218,14 +241,14 @@
 			// 
 			// tagBox
 			// 
-			this.tagBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+			this.tagBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.tagBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
 			this.tagBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.tagBox.Location = new System.Drawing.Point(41, 12);
 			this.tagBox.Name = "tagBox";
 			this.tagBox.ProcessEnterKey = false;
-			this.tagBox.Size = new System.Drawing.Size(608, 28);
+			this.tagBox.Size = new System.Drawing.Size(565, 28);
 			this.tagBox.TabIndex = 0;
 			this.tagBox.ThemedBack = null;
 			this.tagBox.ThemedFore = null;
@@ -411,5 +434,7 @@
 		private System.Windows.Forms.ToolStripMenuItem scheduleButton;
 		private System.Windows.Forms.ToolStripMenuItem offlineNotebooksButton;
 		private UI.MoreLabel barLabel;
+		private System.Windows.Forms.ToolTip tooltip;
+		private UI.MoreCheckBox sensitiveBox;
 	}
 }

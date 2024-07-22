@@ -1313,10 +1313,14 @@ Searching for hashtags is unavailable until this is completed.</value>
     <comment>menu item</comment>
   </data>
   <data name="HashtagDialog_scopeBox.Text" xml:space="preserve">
-    <value>All
+    <value>All notebooks
 This notebook
 This section</value>
     <comment>combobox</comment>
+  </data>
+  <data name="HashtagDialog_sensitiveTip" xml:space="preserve">
+    <value>Case-sensitive search</value>
+    <comment>tooltip</comment>
   </data>
   <data name="HashtagDialog_showOfflineMenuItem" xml:space="preserve">
     <value>Show Offline Notebooks</value>

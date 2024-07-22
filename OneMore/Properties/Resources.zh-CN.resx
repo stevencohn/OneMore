@@ -1299,10 +1299,14 @@ OneNote 文件 (*.one)</value>
     <comment>menu item</comment>
   </data>
   <data name="HashtagDialog_scopeBox.Text" xml:space="preserve">
-    <value>全部
+    <value>所有笔记本
 这个笔记本
 本节</value>
     <comment>combobox</comment>
+  </data>
+  <data name="HashtagDialog_sensitiveTip" xml:space="preserve">
+    <value>区分大小写的搜索</value>
+    <comment>tooltip</comment>
   </data>
   <data name="HashtagDialog_showOfflineMenuItem" xml:space="preserve">
     <value>显示离线笔记本</value>

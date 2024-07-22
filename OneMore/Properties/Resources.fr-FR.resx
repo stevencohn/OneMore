@@ -1300,10 +1300,14 @@ La recherche de hashtags n'est pas disponible tant qu'elle n'est pas terminée.<
     <comment>menu item</comment>
   </data>
   <data name="HashtagDialog_scopeBox.Text" xml:space="preserve">
-    <value>Tous
+    <value>Tous les cahiers
 Ce carnet
 Cette section</value>
     <comment>combobox</comment>
+  </data>
+  <data name="HashtagDialog_sensitiveTip" xml:space="preserve">
+    <value>Recherche sensible à la casse</value>
+    <comment>tooltip</comment>
   </data>
   <data name="HashtagDialog_showOfflineMenuItem" xml:space="preserve">
     <value>Afficher les blocs-notes hors ligne</value>

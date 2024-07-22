@@ -1300,10 +1300,14 @@
     <comment>menu item</comment>
   </data>
   <data name="HashtagDialog_scopeBox.Text" xml:space="preserve">
-    <value>الجميع
+    <value>جميع الدفاتر
 هذا دفتر
 هذا القسم</value>
     <comment>combobox</comment>
+  </data>
+  <data name="HashtagDialog_sensitiveTip" xml:space="preserve">
+    <value>بحث حساس لحالة الأحرف</value>
+    <comment>tooltip</comment>
   </data>
   <data name="HashtagDialog_showOfflineMenuItem" xml:space="preserve">
     <value>إظهار دفاتر الملاحظات غير المتصلة</value>
