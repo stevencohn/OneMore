@@ -1301,10 +1301,18 @@ Zoeken naar hashtags is pas beschikbaar als dit is voltooid.</value>
     <comment>menu item</comment>
   </data>
   <data name="HashtagDialog_scopeBox.Text" xml:space="preserve">
-    <value>Alle
+    <value>Alle notitieboekjes
 Dit notitieboekje
 Deze sectie</value>
     <comment>combobox</comment>
+  </data>
+  <data name="HashtagDialog_sensitiveBox.Text" xml:space="preserve">
+    <value>Hoofdlettergevoelig</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="HashtagDialog_sensitiveTip" xml:space="preserve">
+    <value>Hoofdlettergevoelig zoeken</value>
+    <comment>tooltip</comment>
   </data>
   <data name="HashtagDialog_showOfflineMenuItem" xml:space="preserve">
     <value>Offline notitieboekjes tonen</value>

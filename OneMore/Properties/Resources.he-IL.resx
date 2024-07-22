@@ -1309,10 +1309,18 @@ Total Row Font
     <comment>menu item</comment>
   </data>
   <data name="HashtagDialog_scopeBox.Text" xml:space="preserve">
-    <value>את כל
+    <value>כל המחברות
 המחברת הזו
 הסעיף הזה</value>
     <comment>combobox</comment>
+  </data>
+  <data name="HashtagDialog_sensitiveBox.Text" xml:space="preserve">
+    <value>תלוי רישיות</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="HashtagDialog_sensitiveTip" xml:space="preserve">
+    <value>חיפוש תלוי רישיות</value>
+    <comment>tooltip</comment>
   </data>
   <data name="HashtagDialog_showOfflineMenuItem" xml:space="preserve">
     <value>הצג מחברות לא מקוונות</value>

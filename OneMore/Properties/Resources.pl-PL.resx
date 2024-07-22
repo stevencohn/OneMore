@@ -1309,10 +1309,18 @@ Wyszukiwanie hashtagów nie jest możliwe, dopóki nie zostanie zakończone.</va
     <comment>menu item</comment>
   </data>
   <data name="HashtagDialog_scopeBox.Text" xml:space="preserve">
-    <value>Wszystko
+    <value>Wszystkie notesy
 Ten notatnik
 Ta sekcja</value>
     <comment>combobox</comment>
+  </data>
+  <data name="HashtagDialog_sensitiveBox.Text" xml:space="preserve">
+    <value>Wielkość liter ma znaczenie</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="HashtagDialog_sensitiveTip" xml:space="preserve">
+    <value>Wyszukiwanie uwzględniające wielkość liter</value>
+    <comment>tooltip</comment>
   </data>
   <data name="HashtagDialog_showOfflineMenuItem" xml:space="preserve">
     <value>Pokaż notesy offline</value>

@@ -51,6 +51,7 @@ namespace River.OneMoreAddIn.Commands
 					"checkAllLink",
 					"uncheckAllLink",
 					"scanButton",
+					"scheduleButton",
 					"indexButton=word_Index",
 					"moveButton=word_Move",
 					"copyButton=word_Copy",
@@ -187,12 +188,13 @@ namespace River.OneMoreAddIn.Commands
 
 			var provider = new HashtagProvider();
 			string parsed;
+			var cs = sensitiveBox.Checked;
 
 			var tags = scopeBox.SelectedIndex switch
 			{
-				1 => provider.SearchTags(where, out parsed, notebookID: one.CurrentNotebookId),
-				2 => provider.SearchTags(where, out parsed, sectionID: one.CurrentSectionId),
-				_ => provider.SearchTags(where, out parsed)
+				1 => provider.SearchTags(where, cs, out parsed, notebookID: one.CurrentNotebookId),
+				2 => provider.SearchTags(where, cs, out parsed, sectionID: one.CurrentSectionId),
+				_ => provider.SearchTags(where, cs, out parsed)
 			};
 
 			if (!ShowOfflineNotebooks)

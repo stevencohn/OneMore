@@ -847,7 +847,8 @@ namespace River.OneMoreAddIn.Commands
 		/// <param name="criteria">The user-entered search criteria, optional wildcards</param>
 		/// <returns>A collection of Hashtags</returns>
 		public Hashtags SearchTags(
-			string criteria, out string parsed, string notebookID = null, string sectionID = null)
+			string criteria, bool caseSensitive, 
+			out string parsed, string notebookID = null, string sectionID = null)
 		{
 			var parameters = new List<SQLiteParameter>();
 
@@ -871,7 +872,7 @@ namespace River.OneMoreAddIn.Commands
 
 			builder.Append("JOIN page_hashtags g ON g.moreID = p.moreID ");
 
-			var query = new HashtagQueryBuilder("g.tags");
+			var query = new HashtagQueryBuilder("g.tags", caseSensitive);
 			var where = query.BuildFormattedWhereClause(criteria, out parsed);
 			builder.Append(where);
 

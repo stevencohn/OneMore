@@ -15,6 +15,7 @@ namespace River.OneMoreAddIn.Commands
 	/// Hacky solution to convert simple user entered query string to proper SQL WHERE clause.
 	/// This lets the user enter something like "a b" and converts it to
 	/// WHERE tag LIKE '%a%' AND tag LIKE '%b%'
+	/// or for case-sensitive queries
 	/// The AND operator is implicit; user must explicitly specify OR operator.
 	/// Parenthesis are allowed.
 	/// </summary>
@@ -25,11 +26,13 @@ namespace River.OneMoreAddIn.Commands
 	internal class HashtagQueryBuilder
 	{
 		private readonly string fieldRef;
+		private readonly bool caseSensitive;
 
 
-		public HashtagQueryBuilder(string fieldRef)
+		public HashtagQueryBuilder(string fieldRef, bool caseSensitive)
 		{
 			this.fieldRef = fieldRef;
+			this.caseSensitive = caseSensitive;
 		}
 
 
@@ -69,7 +72,8 @@ namespace River.OneMoreAddIn.Commands
 				}
 				else
 				{
-					builder.Append(@$"{fieldRef} LIKE '{parts[i]}'");
+					var op = caseSensitive ? "GLOB" : "LIKE";
+					builder.Append(@$"{fieldRef} {op} '{parts[i]}'");
 					if (i < parts.Count - 1)
 					{
 						builder.Append(" ");
@@ -148,23 +152,25 @@ namespace River.OneMoreAddIn.Commands
 
 			// strip out non-tag characters
 			criteria = Regex.Replace(criteria, @"[^\w\d\-_#]", string.Empty);
+			var wildcard = caseSensitive ? "*" : "%";
 
 			if (criteria.Length == 0)
 			{
-				criteria = "%";
+				criteria = wildcard;
 			}
-			else if (criteria[0] != '%')
+			else if (criteria[0] != wildcard[0])
 			{
-				criteria = $"%{criteria}";
+				criteria = $"{wildcard}{criteria}";
 			}
 
 			// allow "abc." to be interpreted as "%abc" but "abc" will be "%abc%"
-			if (!terminated && !criteria.EndsWith("%"))
+			if (!terminated && !criteria.EndsWith(wildcard))
 			{
-				criteria = $"{criteria}%";
+				criteria = $"{criteria}{wildcard}";
 			}
 
-			return $"'{criteria.Replace('*', '%')}'";
+			var joker = wildcard[0] == '*' ? '%' : '*';
+			return $"'{criteria.Replace(joker, wildcard[0])}'";
 		}
 
 
@@ -180,7 +186,8 @@ namespace River.OneMoreAddIn.Commands
 			var matches = Regex.Matches(parsed, @"'([^']+)'");
 			foreach (Match match in matches)
 			{
-				var value = match.Groups[1].Value.Replace("%", string.Empty);
+				var wildcard = caseSensitive ? "*" : "%";
+				var value = match.Groups[1].Value.Replace(wildcard, string.Empty);
 
 				// ignore "%" wildcard, from user input "*"
 				if (value.Length > 0)
