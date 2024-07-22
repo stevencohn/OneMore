@@ -1284,6 +1284,10 @@ Searching for hashtags is unavailable until this is completed.</value>
     <value>Check all</value>
     <comment>link label</comment>
   </data>
+  <data name="HashtagDialog_hideOfflineMenuItem" xml:space="preserve">
+    <value>Hide Offline Notebooks</value>
+    <comment>context menu item</comment>
+  </data>
   <data name="HashtagDialog_introLabel.Text" xml:space="preserve">
     <value>Type any part of one or more hashtags. Wildcards are implied unless a tag is ended with a period. Parenthesis and logical operators are allowed.</value>
     <comment>label</comment>
@@ -1313,6 +1317,10 @@ Searching for hashtags is unavailable until this is completed.</value>
 This notebook
 This section</value>
     <comment>combobox</comment>
+  </data>
+  <data name="HashtagDialog_showOfflineMenuItem" xml:space="preserve">
+    <value>Show Offline Notebooks</value>
+    <comment>context menu item</comment>
   </data>
   <data name="HashtagDialog_uncheckAllLink.Text" xml:space="preserve">
     <value>Uncheck all</value>

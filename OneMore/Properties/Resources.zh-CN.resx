@@ -1270,6 +1270,10 @@ OneNote 文件 (*.one)</value>
     <value>选择所有</value>
     <comment>link label</comment>
   </data>
+  <data name="HashtagDialog_hideOfflineMenuItem" xml:space="preserve">
+    <value>隐藏离线笔记本</value>
+    <comment>context menu item</comment>
+  </data>
   <data name="HashtagDialog_introLabel.Text" xml:space="preserve">
     <value>输入一个或多个主题标签的任意部分。除非标签以句点结束，否则隐含通配符。允许使用括号和逻辑运算符。</value>
     <comment>label</comment>
@@ -1299,6 +1303,10 @@ OneNote 文件 (*.one)</value>
 这个笔记本
 本节</value>
     <comment>combobox</comment>
+  </data>
+  <data name="HashtagDialog_showOfflineMenuItem" xml:space="preserve">
+    <value>显示离线笔记本</value>
+    <comment>context menu item</comment>
   </data>
   <data name="HashtagDialog_uncheckAllLink.Text" xml:space="preserve">
     <value>取消所有</value>

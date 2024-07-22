@@ -1272,6 +1272,10 @@ A pesquisa de hashtags não estará disponível até que isso seja concluído.</
     <value>Verifique tudo</value>
     <comment>link label</comment>
   </data>
+  <data name="HashtagDialog_hideOfflineMenuItem" xml:space="preserve">
+    <value>Ocultar blocos de anotações off-line</value>
+    <comment>context menu item</comment>
+  </data>
   <data name="HashtagDialog_introLabel.Text" xml:space="preserve">
     <value>Digite qualquer parte de uma ou mais hashtags. Os curingas estão implícitos, a menos que uma tag termine com um ponto final. Parênteses e operadores lógicos são permitidos.</value>
     <comment>label</comment>
@@ -1301,6 +1305,10 @@ A pesquisa de hashtags não estará disponível até que isso seja concluído.</
 Este caderno
 Esta seção</value>
     <comment>combobox</comment>
+  </data>
+  <data name="HashtagDialog_showOfflineMenuItem" xml:space="preserve">
+    <value>Mostrar blocos de anotações off-line</value>
+    <comment>context menu item</comment>
   </data>
   <data name="HashtagDialog_uncheckAllLink.Text" xml:space="preserve">
     <value>Desmarcar todos</value>

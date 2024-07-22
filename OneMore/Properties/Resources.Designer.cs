@@ -3391,6 +3391,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Hide Offline Notebooks.
+        /// </summary>
+        internal static string HashtagDialog_hideOfflineMenuItem {
+            get {
+                return ResourceManager.GetString("HashtagDialog_hideOfflineMenuItem", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Type any part of one or more hashtags. Wildcards are implied unless a tag is ended with a period. Parenthesis and logical operators are allowed..
         /// </summary>
         internal static string HashtagDialog_introLabel_Text {
@@ -3452,6 +3461,15 @@ namespace River.OneMoreAddIn.Properties {
         internal static string HashtagDialog_scopeBox_Text {
             get {
                 return ResourceManager.GetString("HashtagDialog_scopeBox.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Show Offline Notebooks.
+        /// </summary>
+        internal static string HashtagDialog_showOfflineMenuItem {
+            get {
+                return ResourceManager.GetString("HashtagDialog_showOfflineMenuItem", resourceCulture);
             }
         }
         

@@ -431,12 +431,12 @@ namespace River.OneMoreAddIn.Commands
 			if (ShowOfflineNotebooks)
 			{
 				offlineNotebooksButton.Image = Resx.e_CheckMark;
-				offlineNotebooksButton.Text = "Show Offline Notebooks"; // Resx.HashtagDialog_showOfflineMenuItem;
+				offlineNotebooksButton.Text = Resx.HashtagDialog_showOfflineMenuItem;
 			}
 			else
 			{
 				offlineNotebooksButton.Image = null;
-				offlineNotebooksButton.Text = "Hide Offline Notebooks"; // Resx.HashtagDialog_hideOfflineMenuItem;
+				offlineNotebooksButton.Text = Resx.HashtagDialog_hideOfflineMenuItem;
 			}
 		}
 
