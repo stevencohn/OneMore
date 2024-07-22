@@ -294,8 +294,8 @@ namespace River.OneMoreAddIn.UI
 		#endregion public SetAutoCompleteList and LoadCommands
 
 
-		#region private HidePopup and ShowPopUp
-		private void HidePopup(object sender, EventArgs e)
+		#region HidePopup and ShowPopUp
+		public void HidePopup(object sender, EventArgs e)
 		{
 			if (popup?.Visible == true) // && !popup.Focused)
 			{

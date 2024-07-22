@@ -167,6 +167,11 @@ namespace River.OneMoreAddIn.Commands
 
 		private async Task SearchTags(object sender, EventArgs e)
 		{
+			if (palette.IsPopupVisible)
+			{
+				palette.HidePopup(sender, e);
+			}
+
 			var where = tagBox.Text.Trim();
 			if (where.IsNullOrEmpty())
 			{
