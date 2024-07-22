@@ -1318,10 +1318,6 @@ This notebook
 This section</value>
     <comment>combobox</comment>
   </data>
-  <data name="HashtagDialog_sensitiveBox.Text" xml:space="preserve">
-    <value>Case-sensitive</value>
-    <comment>checkbox</comment>
-  </data>
   <data name="HashtagDialog_sensitiveTip" xml:space="preserve">
     <value>Case-sensitive search</value>
     <comment>tooltip</comment>

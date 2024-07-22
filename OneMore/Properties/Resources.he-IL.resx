@@ -1314,10 +1314,6 @@ Total Row Font
 הסעיף הזה</value>
     <comment>combobox</comment>
   </data>
-  <data name="HashtagDialog_sensitiveBox.Text" xml:space="preserve">
-    <value>תלוי רישיות</value>
-    <comment>checkbox</comment>
-  </data>
   <data name="HashtagDialog_sensitiveTip" xml:space="preserve">
     <value>חיפוש תלוי רישיות</value>
     <comment>tooltip</comment>

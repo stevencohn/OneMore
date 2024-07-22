@@ -1305,10 +1305,6 @@ Ce carnet
 Cette section</value>
     <comment>combobox</comment>
   </data>
-  <data name="HashtagDialog_sensitiveBox.Text" xml:space="preserve">
-    <value>Sensible aux majuscules et minuscules</value>
-    <comment>checkbox</comment>
-  </data>
   <data name="HashtagDialog_sensitiveTip" xml:space="preserve">
     <value>Recherche sensible à la casse</value>
     <comment>tooltip</comment>

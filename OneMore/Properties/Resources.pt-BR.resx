@@ -1306,10 +1306,6 @@ Este caderno
 Esta seção</value>
     <comment>combobox</comment>
   </data>
-  <data name="HashtagDialog_sensitiveBox.Text" xml:space="preserve">
-    <value>Maiúsculas e minúsculas</value>
-    <comment>checkbox</comment>
-  </data>
   <data name="HashtagDialog_sensitiveTip" xml:space="preserve">
     <value>Pesquisa com distinção entre maiúsculas e minúsculas</value>
     <comment>tooltip</comment>

@@ -1303,10 +1303,6 @@ Dieses Notizbuch
 Diese Abteilung</value>
     <comment>combobox</comment>
   </data>
-  <data name="HashtagDialog_sensitiveBox.Text" xml:space="preserve">
-    <value>Groß- und Kleinschreibung beachten</value>
-    <comment>checkbox</comment>
-  </data>
   <data name="HashtagDialog_sensitiveTip" xml:space="preserve">
     <value>Groß- und Kleinschreibung beachtende Suche</value>
     <comment>tooltip</comment>

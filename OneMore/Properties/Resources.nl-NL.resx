@@ -1306,10 +1306,6 @@ Dit notitieboekje
 Deze sectie</value>
     <comment>combobox</comment>
   </data>
-  <data name="HashtagDialog_sensitiveBox.Text" xml:space="preserve">
-    <value>Hoofdlettergevoelig</value>
-    <comment>checkbox</comment>
-  </data>
   <data name="HashtagDialog_sensitiveTip" xml:space="preserve">
     <value>Hoofdlettergevoelig zoeken</value>
     <comment>tooltip</comment>

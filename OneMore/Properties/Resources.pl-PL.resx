@@ -1314,10 +1314,6 @@ Ten notatnik
 Ta sekcja</value>
     <comment>combobox</comment>
   </data>
-  <data name="HashtagDialog_sensitiveBox.Text" xml:space="preserve">
-    <value>Wielkość liter ma znaczenie</value>
-    <comment>checkbox</comment>
-  </data>
   <data name="HashtagDialog_sensitiveTip" xml:space="preserve">
     <value>Wyszukiwanie uwzględniające wielkość liter</value>
     <comment>tooltip</comment>
