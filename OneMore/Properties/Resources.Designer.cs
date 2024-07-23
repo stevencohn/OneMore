@@ -3177,7 +3177,7 @@ namespace River.OneMoreAddIn.Properties {
         ///Symbols: PI, E
         ///Cell reference: A1, A2, ... ZZZ999
         ///Cell range: A1:A22
-        ///Dynamic range in a column: A1:A-1.
+        ///Relative range in a column: A1:A-1.
         /// </summary>
         internal static string FormulaDialog_helpBox_Text {
             get {

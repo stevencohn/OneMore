@@ -91,8 +91,17 @@ namespace River.OneMoreAddIn.Commands.Tables.Formulas
 			if (p.Count < 2)
 				throw new FormulaException($"countif requires at least two parameters");
 
+			Logger.Current.WriteLine(
+				$"countif of {p.Count} values " +
+				$"({p.ToArray().Aggregate(string.Empty, (a, b) => $"{a}, {b}:{b.Type}")})");
+
 			var array = p.ToArray();
-			var values = array.Take(p.Count - 1).ToArray();
+
+			// values are items 0..last-1, ignore empty cells
+			var values = array.Take(p.Count - 1)
+				.Where(p => p.Type != FormulaValueType.String || ((string)p.Value).Length > 0);
+
+			// the countif testcase is always the last parameter
 			var test = array[array.Length - 1];
 
 			var oper = test.ToString()[0];
@@ -184,6 +193,9 @@ namespace River.OneMoreAddIn.Commands.Tables.Formulas
 		{
 			if (p.Length == 0)
 				return 0.0;
+
+			Logger.Current.WriteLine(
+				$"sum of {p.Length} values ({p.Aggregate(string.Empty, (a, b) => $"{a}, {b}")})");
 
 			return p.AsEnumerable().Sum();
 		}
