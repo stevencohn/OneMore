@@ -280,6 +280,7 @@ namespace River.OneMoreAddIn.UI
 			if (DefaultControl is not null)
 			{
 				//logger.WriteLine("focusing on default control");
+				DefaultControl.FindForm()?.Activate();
 				DefaultControl.Select();
 				DefaultControl.Focus();
 			}
