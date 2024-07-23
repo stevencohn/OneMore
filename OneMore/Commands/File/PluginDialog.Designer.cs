@@ -57,7 +57,7 @@
 			this.failLockRadio = new River.OneMoreAddIn.UI.MoreRadioButton();
 			this.pageGroup = new River.OneMoreAddIn.UI.MoreGroupBox();
 			this.sectionGroup = new River.OneMoreAddIn.UI.MoreGroupBox();
-			this.keepCache = new River.OneMoreAddIn.UI.MoreCheckBox();
+			this.trialBox = new River.OneMoreAddIn.UI.MoreCheckBox();
 			this.userArgsLabel = new System.Windows.Forms.Label();
 			this.userArgsBox = new River.OneMoreAddIn.UI.MoreTextBox();
 			((System.ComponentModel.ISupportInitialize)(this.errorBox)).BeginInit();
@@ -73,7 +73,7 @@
 			this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
 			this.cancelButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.cancelButton.ImageOver = null;
-			this.cancelButton.Location = new System.Drawing.Point(654, 537);
+			this.cancelButton.Location = new System.Drawing.Point(654, 569);
 			this.cancelButton.Name = "cancelButton";
 			this.cancelButton.ShowBorder = true;
 			this.cancelButton.Size = new System.Drawing.Size(120, 35);
@@ -92,7 +92,7 @@
 			this.okButton.Enabled = false;
 			this.okButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.okButton.ImageOver = null;
-			this.okButton.Location = new System.Drawing.Point(528, 537);
+			this.okButton.Location = new System.Drawing.Point(528, 569);
 			this.okButton.Name = "okButton";
 			this.okButton.ShowBorder = true;
 			this.okButton.Size = new System.Drawing.Size(120, 35);
@@ -242,7 +242,7 @@
 			this.saveButton.Enabled = false;
 			this.saveButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.saveButton.ImageOver = null;
-			this.saveButton.Location = new System.Drawing.Point(402, 537);
+			this.saveButton.Location = new System.Drawing.Point(402, 569);
 			this.saveButton.Name = "saveButton";
 			this.saveButton.ShowBorder = true;
 			this.saveButton.Size = new System.Drawing.Size(120, 35);
@@ -397,6 +397,8 @@
 			this.pageGroup.Size = new System.Drawing.Size(620, 159);
 			this.pageGroup.TabIndex = 26;
 			this.pageGroup.TabStop = false;
+			this.pageGroup.ThemedBorder = null;
+			this.pageGroup.ThemedFore = null;
 			// 
 			// sectionGroup
 			// 
@@ -408,24 +410,25 @@
 			this.sectionGroup.Size = new System.Drawing.Size(264, 98);
 			this.sectionGroup.TabIndex = 27;
 			this.sectionGroup.TabStop = false;
+			this.sectionGroup.ThemedBorder = null;
+			this.sectionGroup.ThemedFore = null;
 			this.sectionGroup.Visible = false;
 			// 
-			// keepCache
+			// trialBox
 			// 
-			this.keepCache.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-			this.keepCache.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(231)))), ((int)(((byte)(231)))));
-			this.keepCache.Cursor = System.Windows.Forms.Cursors.Hand;
-			this.keepCache.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-			this.keepCache.Location = new System.Drawing.Point(22, 543);
-			this.keepCache.Name = "keepCache";
-			this.keepCache.Size = new System.Drawing.Size(206, 25);
-			this.keepCache.StylizeImage = false;
-			this.keepCache.TabIndex = 28;
-			this.keepCache.Text = "Keep cache file";
-			this.keepCache.ThemedBack = null;
-			this.keepCache.ThemedFore = null;
-			this.keepCache.UseVisualStyleBackColor = true;
-			this.keepCache.Visible = false;
+			this.trialBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.trialBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(231)))), ((int)(((byte)(231)))));
+			this.trialBox.Cursor = System.Windows.Forms.Cursors.Hand;
+			this.trialBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+			this.trialBox.Location = new System.Drawing.Point(155, 520);
+			this.trialBox.Name = "trialBox";
+			this.trialBox.Size = new System.Drawing.Size(421, 25);
+			this.trialBox.StylizeImage = false;
+			this.trialBox.TabIndex = 28;
+			this.trialBox.Text = "Trial run - keep cache file and do not update OneNote";
+			this.trialBox.ThemedBack = null;
+			this.trialBox.ThemedFore = null;
+			this.trialBox.UseVisualStyleBackColor = true;
 			// 
 			// userArgsLabel
 			// 
@@ -456,10 +459,10 @@
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.BackColor = System.Drawing.SystemColors.ControlLight;
 			this.CancelButton = this.cancelButton;
-			this.ClientSize = new System.Drawing.Size(792, 593);
+			this.ClientSize = new System.Drawing.Size(792, 625);
 			this.Controls.Add(this.userArgsLabel);
 			this.Controls.Add(this.userArgsBox);
-			this.Controls.Add(this.keepCache);
+			this.Controls.Add(this.trialBox);
 			this.Controls.Add(this.sectionGroup);
 			this.Controls.Add(this.pageGroup);
 			this.Controls.Add(this.targetLabel);
@@ -529,7 +532,7 @@
 		private UI.MoreRadioButton failLockRadio;
 		private UI.MoreGroupBox pageGroup;
 		private UI.MoreGroupBox sectionGroup;
-		private UI.MoreCheckBox keepCache;
+		private UI.MoreCheckBox trialBox;
 		private System.Windows.Forms.Label userArgsLabel;
 		private UI.MoreTextBox userArgsBox;
 	}

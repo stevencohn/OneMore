@@ -5803,6 +5803,17 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Trial run completed
+        ///
+        ///Cache: {0}.
+        /// </summary>
+        internal static string Plugin_trialCompleted {
+            get {
+                return ResourceManager.GetString("Plugin_trialCompleted", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Plugin did not complete successfully. See log file..
         /// </summary>
         internal static string Plugin_Unsuccessful {
@@ -5938,6 +5949,15 @@ namespace River.OneMoreAddIn.Properties {
         internal static string PluginDialog_timeoutLabel_Text {
             get {
                 return ResourceManager.GetString("PluginDialog_timeoutLabel.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Trial run - keep cache file and do not update OneNote.
+        /// </summary>
+        internal static string PluginDialog_trialBox_Text {
+            get {
+                return ResourceManager.GetString("PluginDialog_trialBox.Text", resourceCulture);
             }
         }
         

@@ -2124,6 +2124,12 @@ OneNote 文件 (*.one)</value>
     <value>添加在</value>
     <comment>Open File Dialog title</comment>
   </data>
+  <data name="Plugin_trialCompleted" xml:space="preserve">
+    <value>试运行完成
+
+缓存：{0}</value>
+    <comment>message</comment>
+  </data>
   <data name="Plugin_Unsuccessful" xml:space="preserve">
     <value>插件没有成功完成。 请参阅日志文件。</value>
     <comment>error message</comment>
@@ -2187,6 +2193,10 @@ OneNote 文件 (*.one)</value>
   <data name="PluginDialog_timeoutLabel.Text" xml:space="preserve">
     <value>超时</value>
     <comment>label</comment>
+  </data>
+  <data name="PluginDialog_trialBox.Text" xml:space="preserve">
+    <value>试运行-保留缓存文件并且不更新 OneNote</value>
+    <comment>checkbox</comment>
   </data>
   <data name="PluginDialog_updateRadio.Text" xml:space="preserve">
     <value>更新当前页面</value>

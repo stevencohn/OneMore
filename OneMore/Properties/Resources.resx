@@ -2154,6 +2154,12 @@ In this section</value>
     <value>Plugin</value>
     <comment>Open File Dialog title</comment>
   </data>
+  <data name="Plugin_trialCompleted" xml:space="preserve">
+    <value>Trial run completed
+
+Cache: {0}</value>
+    <comment>message</comment>
+  </data>
   <data name="Plugin_Unsuccessful" xml:space="preserve">
     <value>Plugin did not complete successfully. See log file.</value>
     <comment>error message</comment>
@@ -2217,6 +2223,10 @@ All notebooks and their pages</value>
   <data name="PluginDialog_timeoutLabel.Text" xml:space="preserve">
     <value>Tmeout</value>
     <comment>label</comment>
+  </data>
+  <data name="PluginDialog_trialBox.Text" xml:space="preserve">
+    <value>Trial run - keep cache file and do not update OneNote</value>
+    <comment>checkbox</comment>
   </data>
   <data name="PluginDialog_updateRadio.Text" xml:space="preserve">
     <value>Update current page</value>

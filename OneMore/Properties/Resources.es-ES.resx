@@ -2125,6 +2125,12 @@ En esta sección</value>
     <value>Enchufar</value>
     <comment>Open File Dialog title</comment>
   </data>
+  <data name="Plugin_trialCompleted" xml:space="preserve">
+    <value>Prueba completada
+
+Caché: {0}</value>
+    <comment>message</comment>
+  </data>
   <data name="Plugin_Unsuccessful" xml:space="preserve">
     <value>El complemento no se completó correctamente. </value>
     <comment>error message</comment>
@@ -2188,6 +2194,10 @@ Todos los cuadernos y sus páginas.</value>
   <data name="PluginDialog_timeoutLabel.Text" xml:space="preserve">
     <value>Tmeout</value>
     <comment>label</comment>
+  </data>
+  <data name="PluginDialog_trialBox.Text" xml:space="preserve">
+    <value>Ejecución de prueba: mantenga el archivo de caché y no actualice OneNote</value>
+    <comment>checkbox</comment>
   </data>
   <data name="PluginDialog_updateRadio.Text" xml:space="preserve">
     <value>Actualizar la página actual</value>

@@ -63,6 +63,7 @@ namespace River.OneMoreAddIn.Commands
 					"childBox",
 					"skipLockRadio",
 					"failLockRadio",
+					"trialBox",
 					"saveButton",
 					"okButton", // Run
 					"cancelButton=word_Cancel"
@@ -70,9 +71,6 @@ namespace River.OneMoreAddIn.Commands
 			}
 
 			targetBox.SelectedIndex = 0;
-
-			keepCache.Visible = new SettingsProvider()
-				.GetCollection("GeneralSheet").Get<bool>("experimental");
 
 			initializing = false;
 		}
@@ -114,8 +112,6 @@ namespace River.OneMoreAddIn.Commands
 			okButton.Enabled = false;
 			okButton.Visible = false;
 
-			keepCache.Visible = false;
-
 			initializing = false;
 		}
 
@@ -138,7 +134,7 @@ namespace River.OneMoreAddIn.Commands
 		};
 
 
-		public bool KeepCache => keepCache.Visible && keepCache.Checked;
+		public bool TrialRun => trialBox.Checked;
 
 
 		public string PageName { set; private get; }
