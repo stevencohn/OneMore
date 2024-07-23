@@ -91,9 +91,9 @@ namespace River.OneMoreAddIn.Commands.Tables.Formulas
 			if (p.Count < 2)
 				throw new FormulaException($"countif requires at least two parameters");
 
-			Logger.Current.WriteLine(
-				$"countif of {p.Count} values " +
-				$"({p.ToArray().Aggregate(string.Empty, (a, b) => $"{a}, {b}:{b.Type}")})");
+			//Logger.Current.WriteLine(
+			//	$"countif of {p.Count} values " +
+			//	$"({p.ToArray().Aggregate(string.Empty, (a, b) => $"{a}, {b}:{b.Type}")})");
 
 			var array = p.ToArray();
 
@@ -193,9 +193,6 @@ namespace River.OneMoreAddIn.Commands.Tables.Formulas
 		{
 			if (p.Length == 0)
 				return 0.0;
-
-			Logger.Current.WriteLine(
-				$"sum of {p.Length} values ({p.Aggregate(string.Empty, (a, b) => $"{a}, {b}")})");
 
 			return p.AsEnumerable().Sum();
 		}

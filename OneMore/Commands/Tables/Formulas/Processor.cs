@@ -90,7 +90,7 @@ namespace River.OneMoreAddIn.Commands.Tables.Formulas
 				name = $"{col}{row}";
 			}
 
-			logger.WriteLine($"resolve {e.Name} indexOffset={e.IndexOffset} -> {name}");
+			//logger.WriteLine($"resolve {e.Name} indexOffset={e.IndexOffset} -> {name}");
 
 			var cell = table.GetCell(name);
 			if (cell == null)
@@ -103,14 +103,11 @@ namespace River.OneMoreAddIn.Commands.Tables.Formulas
 				.Replace(AddIn.Culture.NumberFormat.CurrencySymbol, string.Empty)
 				.Replace(AddIn.Culture.NumberFormat.PercentSymbol, string.Empty);
 
-			logger.WriteLine($"resolved text=[{text}]");
-
 			// common case is double
 			if (double.TryParse(text, out var dvalue)) // Culture-specific user input?!
 			{
 				maxdec = Math.Max(dvalue.ToString().Length - ((int)dvalue).ToString().Length - 1, maxdec);
 
-				logger.WriteLine($"resolved double=[{dvalue}]");
 				e.SetResult(dvalue);
 				return;
 			}
@@ -140,13 +137,11 @@ namespace River.OneMoreAddIn.Commands.Tables.Formulas
 			// can text be interpereted as a boolean?
 			if (bool.TryParse(text, out var bvalue))
 			{
-				logger.WriteLine($"resolved bool=[{bvalue}]");
 				e.SetResult(bvalue);
 				return;
 			}
 
 			// treat it as a string
-			logger.WriteLine($"resolved text=[{text}]");
 			e.SetResult(text);
 		}
 

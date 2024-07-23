@@ -501,8 +501,6 @@ namespace River.OneMoreAddIn.Commands.Tables.Formulas
 				? $"{indexOffset - int.Parse(match.Groups["r"].Value)}"
 				: match.Groups["r"].Value;
 
-			Logger.Current.WriteLine($"cell2={cell2} indexOffset={indexOffset} row2={row2}");
-
 			// validate...
 
 			var values = new FormulaValues();
