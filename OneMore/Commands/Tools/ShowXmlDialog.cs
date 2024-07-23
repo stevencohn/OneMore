@@ -585,8 +585,23 @@ namespace River.OneMoreAddIn.Commands
 			else
 			{
 				// recycleBin
-				matches = Regex.Matches(box.Text, "(?:isRecycleBin|isInRecycleBin|isDeletedPages)=\"[^\"]*\"");
+				matches = Regex.Matches(box.Text,
+					"(?:isRecycleBin|isInRecycleBin|isDeletedPages)=\"[^\"]*\"");
+
 				foreColor = manager.GetColor("XmlTrash");
+
+				foreach (Match m in matches)
+				{
+					box.SelectionStart = m.Index;
+					box.SelectionLength = m.Length;
+					box.SelectionColor = foreColor;
+				}
+
+				// locked
+				matches = Regex.Matches(box.Text,
+					"(?:encrypted|locked)=\"[^\"]*\"");
+
+				foreColor = manager.GetColor("MenuItemBorder");
 
 				foreach (Match m in matches)
 				{
