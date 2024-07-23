@@ -1191,7 +1191,7 @@ Total Row Font
 סמלים: PI, E
 הפניה לתא: A1, A2, ... ZZZ999
 טווח תאים: A1:A22
-טווח דינמי בעמודה: A1:A-1</value>
+טווח יחסי בעמודה: A1:A-1</value>
   <comment></comment></data>
   <data name="FormulaDialog_selectedLabel.Text" xml:space="preserve">
     <value>תאים שנבחרו:</value>

@@ -1181,7 +1181,7 @@ OneNote 文件 (*.one)</value>
 符号：PI、E
 单元格参考号：A1、A2、...ZZZ999
 单元格范围：A1:A22
-列中的动态范围：A1:A-1</value>
+列中的相对范围：A1:A-1</value>
   <comment></comment></data>
   <data name="FormulaDialog_selectedLabel.Text" xml:space="preserve">
     <value>选定的单元格：</value>

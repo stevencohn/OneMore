@@ -1183,7 +1183,7 @@ Operatoren: + - / * ^
 Symbolen: PI, E
 Celreferentie: A1, A2, ... ZZZ999
 Celbereik: A1:A22
-Dynamisch bereik in een kolom: A1:A-1</value>
+Relatief bereik in een kolom: A1:A-1</value>
   <comment></comment></data>
   <data name="FormulaDialog_selectedLabel.Text" xml:space="preserve">
     <value>Geselecteerde cellen:</value>

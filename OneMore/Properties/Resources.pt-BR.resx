@@ -1183,7 +1183,7 @@ Operadores: + - / * ^
 Símbolos: PI, E
 Referência de célula: A1, A2, ... ZZZ999
 Intervalo de células: A1:A22
-Faixa dinâmica em uma coluna: A1:A-1</value>
+Intervalo relativo em uma coluna: A1:A-1</value>
   <comment></comment></data>
   <data name="FormulaDialog_selectedLabel.Text" xml:space="preserve">
     <value>Células selecionadas:</value>

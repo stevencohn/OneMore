@@ -1180,7 +1180,7 @@ Operatoren: + - / * ^
 Symbole: PI, E
 Zellreferenz: A1, A2, ... ZZZ999
 Zellbereich: A1:A22
-Dynamikbereich in einer Spalte: A1:A-1</value>
+Relativer Bereich in einer Spalte: A1:A-1</value>
   <comment></comment></data>
   <data name="FormulaDialog_selectedLabel.Text" xml:space="preserve">
     <value>Ausgewählte Zellen:</value>
