@@ -117,14 +117,18 @@ namespace River.OneMoreAddIn.Settings
 			// 
 			this.advancedGroup.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+			this.advancedGroup.BorderThickness = 3;
 			this.advancedGroup.Controls.Add(this.disabledBox);
 			this.advancedGroup.Location = new System.Drawing.Point(10, 274);
 			this.advancedGroup.Name = "advancedGroup";
 			this.advancedGroup.Padding = new System.Windows.Forms.Padding(15, 3, 3, 3);
+			this.advancedGroup.ShowOnlyTopEdge = true;
 			this.advancedGroup.Size = new System.Drawing.Size(759, 139);
 			this.advancedGroup.TabIndex = 6;
 			this.advancedGroup.TabStop = false;
 			this.advancedGroup.Text = "Advanced Options";
+			this.advancedGroup.ThemedBorder = null;
+			this.advancedGroup.ThemedFore = null;
 			// 
 			// disabledBox
 			// 
