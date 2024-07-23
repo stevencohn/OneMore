@@ -91,10 +91,6 @@ namespace River.OneMoreAddIn.Commands.Tables.Formulas
 			if (p.Count < 2)
 				throw new FormulaException($"countif requires at least two parameters");
 
-			//Logger.Current.WriteLine(
-			//	$"countif of {p.Count} values " +
-			//	$"({p.ToArray().Aggregate(string.Empty, (a, b) => $"{a}, {b}:{b.Type}")})");
-
 			var array = p.ToArray();
 
 			// values are items 0..last-1, ignore empty cells
