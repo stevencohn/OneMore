@@ -65,11 +65,11 @@
 			this.buttonPanel.Controls.Add(this.okButton);
 			this.buttonPanel.Controls.Add(this.cancelButton);
 			this.buttonPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
-			this.buttonPanel.Location = new System.Drawing.Point(0, 528);
+			this.buttonPanel.Location = new System.Drawing.Point(0, 578);
 			this.buttonPanel.Margin = new System.Windows.Forms.Padding(3, 3, 10, 10);
 			this.buttonPanel.Name = "buttonPanel";
 			this.buttonPanel.Padding = new System.Windows.Forms.Padding(0, 0, 10, 10);
-			this.buttonPanel.Size = new System.Drawing.Size(678, 66);
+			this.buttonPanel.Size = new System.Drawing.Size(778, 66);
 			this.buttonPanel.TabIndex = 4;
 			// 
 			// okButton
@@ -80,7 +80,7 @@
 			this.okButton.Enabled = false;
 			this.okButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.okButton.ImageOver = null;
-			this.okButton.Location = new System.Drawing.Point(459, 17);
+			this.okButton.Location = new System.Drawing.Point(559, 17);
 			this.okButton.Name = "okButton";
 			this.okButton.ShowBorder = true;
 			this.okButton.Size = new System.Drawing.Size(100, 36);
@@ -98,7 +98,7 @@
 			this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
 			this.cancelButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.cancelButton.ImageOver = null;
-			this.cancelButton.Location = new System.Drawing.Point(565, 17);
+			this.cancelButton.Location = new System.Drawing.Point(665, 17);
 			this.cancelButton.Name = "cancelButton";
 			this.cancelButton.ShowBorder = true;
 			this.cancelButton.Size = new System.Drawing.Size(100, 36);
@@ -123,7 +123,7 @@
 			this.mainFlow.MinimumSize = new System.Drawing.Size(400, 170);
 			this.mainFlow.Name = "mainFlow";
 			this.mainFlow.Padding = new System.Windows.Forms.Padding(15, 10, 15, 15);
-			this.mainFlow.Size = new System.Drawing.Size(678, 394);
+			this.mainFlow.Size = new System.Drawing.Size(778, 444);
 			this.mainFlow.TabIndex = 6;
 			this.mainFlow.Resize += new System.EventHandler(this.ResizeFlows);
 			// 
@@ -222,9 +222,9 @@
 			this.spacerPanel.BottomBorderColor = System.Drawing.SystemColors.ActiveBorder;
 			this.spacerPanel.BottomBorderSize = 2;
 			this.spacerPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
-			this.spacerPanel.Location = new System.Drawing.Point(0, 513);
+			this.spacerPanel.Location = new System.Drawing.Point(0, 563);
 			this.spacerPanel.Name = "spacerPanel";
-			this.spacerPanel.Size = new System.Drawing.Size(678, 15);
+			this.spacerPanel.Size = new System.Drawing.Size(778, 15);
 			this.spacerPanel.TabIndex = 9;
 			this.spacerPanel.ThemedBack = null;
 			this.spacerPanel.ThemedFore = null;
@@ -244,7 +244,7 @@
 			this.controlPanel.Location = new System.Drawing.Point(0, 0);
 			this.controlPanel.Name = "controlPanel";
 			this.controlPanel.Padding = new System.Windows.Forms.Padding(15);
-			this.controlPanel.Size = new System.Drawing.Size(678, 119);
+			this.controlPanel.Size = new System.Drawing.Size(778, 119);
 			this.controlPanel.TabIndex = 10;
 			this.controlPanel.ThemedBack = null;
 			this.controlPanel.ThemedFore = null;
@@ -259,7 +259,7 @@
 			this.clearLink.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.clearLink.HoverColor = System.Drawing.Color.Orchid;
 			this.clearLink.LinkColor = System.Drawing.Color.MediumOrchid;
-			this.clearLink.Location = new System.Drawing.Point(558, 77);
+			this.clearLink.Location = new System.Drawing.Point(658, 77);
 			this.clearLink.Name = "clearLink";
 			this.clearLink.Size = new System.Drawing.Size(46, 20);
 			this.clearLink.StrictColors = false;
@@ -295,7 +295,7 @@
 			this.menuButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.menuButton.ForeColor = System.Drawing.SystemColors.GrayText;
 			this.menuButton.ImageOver = null;
-			this.menuButton.Location = new System.Drawing.Point(610, 18);
+			this.menuButton.Location = new System.Drawing.Point(710, 18);
 			this.menuButton.Name = "menuButton";
 			this.menuButton.ShowBorder = true;
 			this.menuButton.Size = new System.Drawing.Size(50, 31);
@@ -314,7 +314,7 @@
 			this.tagsBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
 			this.tagsBox.Location = new System.Drawing.Point(93, 18);
 			this.tagsBox.Name = "tagsBox";
-			this.tagsBox.Size = new System.Drawing.Size(511, 52);
+			this.tagsBox.Size = new System.Drawing.Size(611, 52);
 			this.tagsBox.TabIndex = 1;
 			this.tagsBox.ThemedBack = null;
 			this.tagsBox.ThemedFore = null;
@@ -362,7 +362,7 @@
 			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.CancelButton = this.cancelButton;
-			this.ClientSize = new System.Drawing.Size(678, 594);
+			this.ClientSize = new System.Drawing.Size(778, 644);
 			this.Controls.Add(this.mainFlow);
 			this.Controls.Add(this.controlPanel);
 			this.Controls.Add(this.spacerPanel);
