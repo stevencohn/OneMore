@@ -2134,6 +2134,12 @@ Total Row Font
     <value>חיבור</value>
     <comment>Open File Dialog title</comment>
   </data>
+  <data name="Plugin_trialCompleted" xml:space="preserve">
+    <value>ריצת הניסיון הושלמה
+
+מטמון: {0}</value>
+    <comment>message</comment>
+  </data>
   <data name="Plugin_Unsuccessful" xml:space="preserve">
     <value>הפלאגין לא הושלם בהצלחה. ראה קובץ יומן.</value>
     <comment>error message</comment>
@@ -2197,6 +2203,10 @@ Total Row Font
   <data name="PluginDialog_timeoutLabel.Text" xml:space="preserve">
     <value>Tmeout</value>
     <comment>label</comment>
+  </data>
+  <data name="PluginDialog_trialBox.Text" xml:space="preserve">
+    <value>הפעלת ניסיון - שמור קובץ מטמון ואל תעדכן את OneNote</value>
+    <comment>checkbox</comment>
   </data>
   <data name="PluginDialog_updateRadio.Text" xml:space="preserve">
     <value>עדכן את הדף הנוכחי</value>

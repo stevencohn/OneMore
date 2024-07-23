@@ -2134,6 +2134,12 @@ W tej sekcji</value>
     <value>Podłącz</value>
     <comment>Open File Dialog title</comment>
   </data>
+  <data name="Plugin_trialCompleted" xml:space="preserve">
+    <value>Uruchomienie próbne zakończone
+
+Pamięć podręczna: {0}</value>
+    <comment>message</comment>
+  </data>
   <data name="Plugin_Unsuccessful" xml:space="preserve">
     <value>Wtyczka nie zakończyła się pomyślnie. Zobacz plik dziennika.</value>
     <comment>error message</comment>
@@ -2197,6 +2203,10 @@ Wszystkie zeszyty i ich strony</value>
   <data name="PluginDialog_timeoutLabel.Text" xml:space="preserve">
     <value>TMEOUT.</value>
     <comment>label</comment>
+  </data>
+  <data name="PluginDialog_trialBox.Text" xml:space="preserve">
+    <value>Uruchomienie próbne — zachowaj plik pamięci podręcznej i nie aktualizuj programu OneNote</value>
+    <comment>checkbox</comment>
   </data>
   <data name="PluginDialog_updateRadio.Text" xml:space="preserve">
     <value>Zaktualizuj bieżącą stronę</value>

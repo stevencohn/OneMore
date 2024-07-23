@@ -23,7 +23,7 @@ namespace River.OneMoreAddIn.Commands
 		private ProgressDialog progress = null;
 		private Page page;
 		private string workpath;
-		private bool keepCache;
+		private bool trialRun;
 
 
 		public RunPluginCommand()
@@ -121,7 +121,7 @@ namespace River.OneMoreAddIn.Commands
 			}
 
 			plugin = dialog.Plugin;
-			keepCache = dialog.KeepCache;
+			trialRun = dialog.TrialRun;
 			return true;
 		}
 
@@ -266,7 +266,8 @@ namespace River.OneMoreAddIn.Commands
 				var absargs = Environment.ExpandEnvironmentVariables(plugin.Arguments);
 				var userargs = Environment.ExpandEnvironmentVariables(plugin.UserArguments);
 
-				logger.WriteLine($"running {abscmd} {absargs} \"{path}\" {userargs}");
+				var op = trialRun ? "trialing" : "running";
+				logger.WriteLine($"{op} {abscmd} {absargs} \"{path}\" {userargs}");
 
 				var info = new ProcessStartInfo
 				{
@@ -376,6 +377,18 @@ namespace River.OneMoreAddIn.Commands
 
 		private async Task SavePage(XElement root)
 		{
+			if (!OneNote.ValidateSchema(root))
+			{
+				ShowError($"{Resx.Plugin_InvalidSchema}\n\nCache: {workpath}");
+				return;
+			}
+
+			if (trialRun)
+			{
+				ShowInfo(string.Format(Resx.Plugin_trialCompleted, workpath));
+				return;
+			}
+
 			try
 			{
 				await using var one = new OneNote();
@@ -466,6 +479,12 @@ namespace River.OneMoreAddIn.Commands
 
 		private async Task SaveHierarchy(XElement root)
 		{
+			if (trialRun)
+			{
+				ShowInfo(string.Format(Resx.Plugin_trialCompleted, workpath));
+				return;
+			}
+
 			try
 			{
 				await using var one = new OneNote();
@@ -481,7 +500,7 @@ namespace River.OneMoreAddIn.Commands
 
 		private void Cleanup(string workPath)
 		{
-			if (File.Exists(workPath) && !keepCache)
+			if (File.Exists(workPath) && !trialRun)
 			{
 				try
 				{

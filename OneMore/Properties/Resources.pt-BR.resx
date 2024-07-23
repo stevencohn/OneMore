@@ -2126,6 +2126,12 @@ Nesta secção</value>
     <value>Plugar</value>
     <comment>Open File Dialog title</comment>
   </data>
+  <data name="Plugin_trialCompleted" xml:space="preserve">
+    <value>Execução de teste concluída
+
+Cache: {0}</value>
+    <comment>message</comment>
+  </data>
   <data name="Plugin_Unsuccessful" xml:space="preserve">
     <value>O plug-in não foi concluído com sucesso. </value>
     <comment>error message</comment>
@@ -2189,6 +2195,10 @@ Todos os cadernos e suas páginas</value>
   <data name="PluginDialog_timeoutLabel.Text" xml:space="preserve">
     <value>Tmeout</value>
     <comment>label</comment>
+  </data>
+  <data name="PluginDialog_trialBox.Text" xml:space="preserve">
+    <value>Execução de teste - mantenha o arquivo de cache e não atualize o OneNote</value>
+    <comment>checkbox</comment>
   </data>
   <data name="PluginDialog_updateRadio.Text" xml:space="preserve">
     <value>Atualizar a página atual</value>

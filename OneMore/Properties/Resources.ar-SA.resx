@@ -2125,6 +2125,12 @@
     <value>توصيل في</value>
     <comment>Open File Dialog title</comment>
   </data>
+  <data name="Plugin_trialCompleted" xml:space="preserve">
+    <value>تم الانتهاء من التشغيل التجريبي
+
+ذاكرة التخزين المؤقت: {0}</value>
+    <comment>message</comment>
+  </data>
   <data name="Plugin_Unsuccessful" xml:space="preserve">
     <value>لم يكتمل البرنامج المساعد بنجاح. </value>
     <comment>error message</comment>
@@ -2188,6 +2194,10 @@
   <data name="PluginDialog_timeoutLabel.Text" xml:space="preserve">
     <value>تميوت</value>
     <comment>label</comment>
+  </data>
+  <data name="PluginDialog_trialBox.Text" xml:space="preserve">
+    <value>التشغيل التجريبي - احتفظ بملف ذاكرة التخزين المؤقت ولا تقم بتحديث OneNote</value>
+    <comment>checkbox</comment>
   </data>
   <data name="PluginDialog_updateRadio.Text" xml:space="preserve">
     <value>تحديث الصفحة الحالية</value>

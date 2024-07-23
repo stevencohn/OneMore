@@ -2125,6 +2125,12 @@ Dans cette section</value>
     <value>Brancher</value>
     <comment>Open File Dialog title</comment>
   </data>
+  <data name="Plugin_trialCompleted" xml:space="preserve">
+    <value>Essai terminé
+
+Cache : {0}</value>
+    <comment>message</comment>
+  </data>
   <data name="Plugin_Unsuccessful" xml:space="preserve">
     <value>Le plug-in ne s'est pas terminé correctement. </value>
     <comment>error message</comment>
@@ -2188,6 +2194,10 @@ Tous les cahiers et leurs pages</value>
   <data name="PluginDialog_timeoutLabel.Text" xml:space="preserve">
     <value>Temps d'attente</value>
     <comment>label</comment>
+  </data>
+  <data name="PluginDialog_trialBox.Text" xml:space="preserve">
+    <value>Essai : conservez le fichier cache et ne mettez pas à jour OneNote</value>
+    <comment>checkbox</comment>
   </data>
   <data name="PluginDialog_updateRadio.Text" xml:space="preserve">
     <value>Mettre à jour la page actuelle</value>
