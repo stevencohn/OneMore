@@ -205,7 +205,12 @@ namespace River.OneMoreAddIn.Commands
 
 			// derive a temp file name from the notebook ID which is of the form {ID}{}{}
 			// so grab just the ID part which should be a hyphenated Guid value
-			var name = notebook.Attribute("ID").Value;
+			var name = notebook.Name.LocalName == "Notebooks"
+				? notebook.Elements(ns + "Notebook").FirstOrDefault()?.Attribute("ID").Value
+				: notebook.Attribute("ID").Value;
+
+			name ??= Guid.NewGuid().ToString("N");
+
 			name = name.Substring(1, name.IndexOf('}') - 1).Replace("-", string.Empty);
 			workpath = Path.Combine(Path.GetTempPath(), $"{name}.xml");
 
