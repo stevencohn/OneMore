@@ -10,6 +10,7 @@ namespace River.OneMoreAddIn.Commands
 	using River.OneMoreAddIn.Styles;
 	using System;
 	using System.Collections.Generic;
+	using System.Globalization;
 	using System.Linq;
 	using System.Text.RegularExpressions;
 	using System.Threading.Tasks;
@@ -216,7 +217,9 @@ namespace River.OneMoreAddIn.Commands
 			var watt = container.Ancestors(ns + "Outline")
 				.Elements(ns + "Size").Attributes("width").FirstOrDefault();
 
-			var colwid = watt is not null && float.TryParse(watt.Value, out float width)
+			var colwid = watt is not null && float.TryParse(
+					watt.Value, NumberStyles.AllowDecimalPoint, CultureInfo.InvariantCulture,
+					out float width)
 				? (float)Math.Round(Math.Max(width, MinToCWidth + 40) - 40, 2)
 				: MinToCWidth;
 

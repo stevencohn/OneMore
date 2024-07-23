@@ -110,7 +110,7 @@ namespace River.OneMoreAddIn.Commands.Tables.Formulas
 			}
 
 			FormulaValue expected;
-			if (double.TryParse(s, out var d))
+			if (double.TryParse(s, out var d)) // Culture-specific user input?!
 			{
 				expected = new FormulaValue(d);
 			}

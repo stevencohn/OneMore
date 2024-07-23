@@ -665,7 +665,7 @@ namespace River.OneMoreAddIn.Commands.Tables.Formulas
 			foreach (string token in tokens)
 			{
 				// TryParse is more performance and complete than regex
-				if (double.TryParse(token, out var d))
+				if (double.TryParse(token, out var d)) // Culture-specific user input?!
 				{
 					stack.Push(new FormulaValue(d));
 				}

@@ -6,6 +6,7 @@ namespace River.OneMoreAddIn.Commands
 {
 	using River.OneMoreAddIn.Styles;
 	using System.Drawing;
+	using System.Globalization;
 	using System.Linq;
 	using System.Threading.Tasks;
 	using System.Xml.Linq;
@@ -109,7 +110,7 @@ namespace River.OneMoreAddIn.Commands
 			using var image = new Bitmap(1, 1);
 			using var g = Graphics.FromImage(image);
 
-			var fontSize = float.Parse(style.FontSize);
+			var fontSize = float.Parse(style.FontSize, NumberStyles.Any, CultureInfo.InvariantCulture);
 			using var font = new Font(style.FontFamily, fontSize, FontStyle.Regular);
 
 			// the height of a single line is apparently greater than
