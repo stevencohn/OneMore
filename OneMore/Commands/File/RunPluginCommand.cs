@@ -209,7 +209,8 @@ namespace River.OneMoreAddIn.Commands
 				? notebook.Elements(ns + "Notebook").FirstOrDefault()?.Attribute("ID").Value
 				: notebook.Attribute("ID").Value;
 
-			name ??= Guid.NewGuid().ToString("N");
+			// shouldn't happen, but fall back to generic Guid
+			name ??= Guid.NewGuid().ToString("D");
 
 			name = name.Substring(1, name.IndexOf('}') - 1).Replace("-", string.Empty);
 			workpath = Path.Combine(Path.GetTempPath(), $"{name}.xml");
