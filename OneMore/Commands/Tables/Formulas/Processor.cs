@@ -79,7 +79,7 @@ namespace River.OneMoreAddIn.Commands.Tables.Formulas
 				.Replace(AddIn.Culture.NumberFormat.PercentSymbol, string.Empty);
 
 			// common case is double
-			if (double.TryParse(text, out var dvalue))
+			if (double.TryParse(text, out var dvalue)) // Culture-specific user input?!
 			{
 				maxdec = Math.Max(dvalue.ToString().Length - ((int)dvalue).ToString().Length - 1, maxdec);
 

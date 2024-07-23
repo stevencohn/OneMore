@@ -196,7 +196,7 @@ namespace River.OneMoreAddIn.Commands.Tables.Formulas
 				// empty cells are not included in the array
 				else if (v.Value is string s && !string.IsNullOrWhiteSpace(s))
 				{
-					if (double.TryParse(s, out var ds))
+					if (double.TryParse(s, out var ds)) // Culture-specific user input?!
 					{
 						list.Add(ds);
 					}

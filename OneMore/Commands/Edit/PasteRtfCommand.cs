@@ -583,7 +583,7 @@ namespace River.OneMoreAddIn.Commands
 
 			for (int i = 0; i < parts.Length; i++)
 			{
-				if (double.TryParse(parts[i], out var value))
+				if (double.TryParse(parts[i], NumberStyles.Any, CultureInfo.InvariantCulture, out var value))
 				{
 					parts[i] = Math.Ceiling(value * DeltaSize).ToString(CultureInfo.InvariantCulture);
 				}

@@ -7,6 +7,7 @@ namespace River.OneMoreAddIn.Commands
 	using River.OneMoreAddIn.Models;
 	using River.OneMoreAddIn.Styles;
 	using System.Collections.Generic;
+	using System.Globalization;
 	using System.Linq;
 	using System.Text.RegularExpressions;
 	using System.Threading.Tasks;
@@ -116,7 +117,7 @@ namespace River.OneMoreAddIn.Commands
 			string spacing = null;
 			if (FindStyle(styles, "p") is Style normal)
 			{
-				if (double.TryParse(normal.Spacing, out var spc) && spc > 0.0)
+				if (double.TryParse(normal.Spacing, NumberStyles.Any, CultureInfo.InvariantCulture, out var spc) && spc > 0.0)
 				{
 					spacing = normal.Spacing;
 				}
