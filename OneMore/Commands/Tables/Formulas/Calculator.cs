@@ -20,7 +20,7 @@ namespace River.OneMoreAddIn.Commands.Tables.Formulas
 	using System.Collections.Generic;
 	using System.Linq;
 	using System.Text.RegularExpressions;
-	using Resx = River.OneMoreAddIn.Properties.Resources;
+	using Resx = Properties.Resources;
 
 
 	/// <summary>
@@ -501,6 +501,8 @@ namespace River.OneMoreAddIn.Commands.Tables.Formulas
 				? $"{indexOffset - int.Parse(match.Groups["r"].Value)}"
 				: match.Groups["r"].Value;
 
+			Logger.Current.WriteLine($"cell2={cell2} indexOffset={indexOffset} row2={row2}");
+
 			// validate...
 
 			var values = new FormulaValues();
@@ -612,7 +614,7 @@ namespace River.OneMoreAddIn.Commands.Tables.Formulas
 			// ask consumer to resolve symbol reference
 			if (ProcessSymbol != null)
 			{
-				var args = new SymbolEventArgs(name);
+				var args = new SymbolEventArgs(name, indexOffset);
 
 				ProcessSymbol(this, args);
 				if (args.Status == SymbolStatus.OK)
