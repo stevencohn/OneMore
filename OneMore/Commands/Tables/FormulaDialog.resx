@@ -126,7 +126,7 @@ Operators: + - / * ^
 Symbols: PI, E
 Cell reference: A1, A2, ... ZZZ999
 Cell range: A1:A22
-Dynamic range in a column: A1:A-1</value>
+Relative range in a column: A1:A-1</value>
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">

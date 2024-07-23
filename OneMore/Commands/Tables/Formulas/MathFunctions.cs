@@ -92,7 +92,12 @@ namespace River.OneMoreAddIn.Commands.Tables.Formulas
 				throw new FormulaException($"countif requires at least two parameters");
 
 			var array = p.ToArray();
-			var values = array.Take(p.Count - 1).ToArray();
+
+			// values are items 0..last-1, ignore empty cells
+			var values = array.Take(p.Count - 1)
+				.Where(p => p.Type != FormulaValueType.String || ((string)p.Value).Length > 0);
+
+			// the countif testcase is always the last parameter
 			var test = array[array.Length - 1];
 
 			var oper = test.ToString()[0];

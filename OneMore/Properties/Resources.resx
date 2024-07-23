@@ -1195,7 +1195,8 @@ Operators: + - / * ^
 Symbols: PI, E
 Cell reference: A1, A2, ... ZZZ999
 Cell range: A1:A22
-Dynamic range in a column: A1:A-1</value>
+Relative range in a column: A1:A-1</value>
+    <comment></comment>
   </data>
   <data name="FormulaDialog_selectedLabel.Text" xml:space="preserve">
     <value>Selected cells:</value>

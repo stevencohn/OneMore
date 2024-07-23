@@ -15,17 +15,26 @@ namespace River.OneMoreAddIn.Commands.Tables.Formulas
 	/// </summary>
 	internal class SymbolEventArgs : EventArgs
 	{
-		public SymbolEventArgs(string name)
+		public SymbolEventArgs(string name, int indexOffset)
 		{
 			Name = name;
+			IndexOffset = indexOffset;
 			Status = SymbolStatus.OK;
 		}
 
-	
+
 		/// <summary>
 		/// Specifies the name of the symbol to be resolved by the ProcessSymbol event handler.
 		/// </summary>
 		public string Name { get; set; }
+
+
+		/// <summary>
+		/// The positional index of the expression in table rows. This is a specialized value
+		/// used for OneMore table formulas where the user asked for a row-offset calculation to
+		/// accomodate a dynamically growing table of rows without having to update the formula.
+		/// </summary>
+		public int IndexOffset { get; set; }
 
 
 		/// <summary>

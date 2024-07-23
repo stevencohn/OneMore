@@ -1182,7 +1182,7 @@ Operadores: + - / * ^
 Símbolos: PI, E
 Referencia de celda: A1, A2, ... ZZZ999
 Rango de celdas: A1:A22
-Rango dinámico en una columna: A1:A-1</value>
+Rango relativo en una columna: A1:A-1</value>
   <comment></comment></data>
   <data name="FormulaDialog_selectedLabel.Text" xml:space="preserve">
     <value>Celdas seleccionadas:</value>

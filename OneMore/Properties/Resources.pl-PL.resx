@@ -1191,7 +1191,7 @@ Operatory: + - / * ^
 Symbole: PI, E
 Odniesienie do komórki: A1, A2, ... ZZZ999
 Zakres komórek: A1:A22
-Zakres dynamiczny w kolumnie: A1:A-1</value>
+Względny zakres w kolumnie: A1:A-1</value>
   <comment></comment></data>
   <data name="FormulaDialog_selectedLabel.Text" xml:space="preserve">
     <value>Wybrane komórki:</value>

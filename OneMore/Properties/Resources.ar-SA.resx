@@ -1182,7 +1182,7 @@
 الرموز: PI، E
 مرجع الخلية: A1، A2، ... ZZZ999
 نطاق الخلايا: A1:A22
-النطاق الديناميكي في عمود: A1:A-1</value>
+النطاق النسبي في عمود: A1:A-1</value>
   <comment></comment></data>
   <data name="FormulaDialog_selectedLabel.Text" xml:space="preserve">
     <value>الخلايا المحددة:</value>

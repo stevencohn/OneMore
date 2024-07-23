@@ -20,7 +20,7 @@ namespace River.OneMoreAddIn.Commands.Tables.Formulas
 	using System.Collections.Generic;
 	using System.Linq;
 	using System.Text.RegularExpressions;
-	using Resx = River.OneMoreAddIn.Properties.Resources;
+	using Resx = Properties.Resources;
 
 
 	/// <summary>
@@ -612,7 +612,7 @@ namespace River.OneMoreAddIn.Commands.Tables.Formulas
 			// ask consumer to resolve symbol reference
 			if (ProcessSymbol != null)
 			{
-				var args = new SymbolEventArgs(name);
+				var args = new SymbolEventArgs(name, indexOffset);
 
 				ProcessSymbol(this, args);
 				if (args.Status == SymbolStatus.OK)

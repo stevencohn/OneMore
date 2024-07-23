@@ -117,6 +117,10 @@ namespace River.OneMoreAddIn.Commands
 				{
 					dialog.Tagged = true;
 				}
+				else
+				{
+					tagIndex = null;
+				}
 			}
 
 			if (dialog.ShowDialog(owner) != DialogResult.OK)

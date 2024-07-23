@@ -1176,13 +1176,13 @@ Pourcentage</value>
   <data name="FormulaDialog_helpBox.Text" xml:space="preserve">
     <value>La formule saisie doit s'appliquer à la première cellule sélectionnée. Cette formule sera incrémentée automatiquement pour les cellules supplémentaires sélectionnées.
 
-Fonctions : abs, acos, asin, atan, atan2, moyenne, plafond, cos, cosh, countif, exp, floor, log, log10, max, médian, min, mode, pow, range, round, sign, sin, sinh, sqrt, stdev, somme, tan, tanh, trunc, variance
+Fonctions : abs, acos, asin, atan, atan2, moyenne, plafond, cos, cosh, countif, exp, floor, log, log10, max, median, min, mode, pow, range, round, sign, sin, sinh, sqrt, stdev, somme, tan, tanh, trunc, variance
 
 Opérateurs : + - / * ^
 Symboles : PI, E
 Référence cellule : A1, A2, ... ZZZ999
 Plage de cellules : A1 : A22
-Plage dynamique dans une colonne : A1:A-1</value>
+Plage relative dans une colonne : A1:A-1</value>
   <comment></comment></data>
   <data name="FormulaDialog_selectedLabel.Text" xml:space="preserve">
     <value>Cellules sélectionnées:</value>
