@@ -2,7 +2,7 @@
 // Copyright © 2016 Steven M Cohn. All rights reserved.
 //************************************************************************************************
 
-#pragma warning disable S6605 // Collection-specific "Exists" method should be used
+#pragma warning disable S1075 // URIs should not be hardcoded
 
 namespace River.OneMoreAddIn.Commands
 {
@@ -12,7 +12,6 @@ namespace River.OneMoreAddIn.Commands
 	using System.Collections.Generic;
 	using System.Globalization;
 	using System.Linq;
-	using System.Text.RegularExpressions;
 	using System.Threading.Tasks;
 	using System.Windows.Forms;
 	using System.Xml.Linq;
@@ -54,7 +53,7 @@ namespace River.OneMoreAddIn.Commands
 
 		#region Private classes
 
-		private class TocParameters : List<string> { }
+		public class TocParameters : List<string> { }
 
 
 		private abstract class TocGenerator : Loggable
@@ -67,6 +66,16 @@ namespace River.OneMoreAddIn.Commands
 				Page page, XNamespace ns, XElement top, bool insertHere)
 			{
 				XElement container;
+
+				//
+				//
+				//
+				//
+				var refreshing = false;
+				//
+				//
+				//
+				//
 
 				var meta = (refreshing ? page.Root : top)
 					.Descendants(ns + "Meta")
@@ -177,25 +186,14 @@ namespace River.OneMoreAddIn.Commands
 		{
 			if (args.Length > 0 && args[0] is string refresh && refresh == "refresh")
 			{
-				refreshing = true;
-				await RefreshTableOfContents(args);
+				await Refresh(args.Cast<string>().ToArray());
 				return;
 			}
 
-			var parameters = await CollectParameters();
+			var parameters = await CollectParametersFromPage();
 
-			//
+			// ...
 
-			/*
-			var match = Regex.Match(href, @"\/style(\d+)");
-			if (match.Success)
-			{
-				if (int.TryParse(match.Groups[1].Value, out var index))
-				{
-					dialog.TitleStyle = (TitleStyles)index;
-				}
-			}
-			*/
 
 			var dialog = new InsertTocDialog(parameters);
 			if (dialog.ShowDialog(owner) == DialogResult.Cancel)
@@ -203,29 +201,64 @@ namespace River.OneMoreAddIn.Commands
 				return;
 			}
 
-			try
+			logger.WriteLine(parameters.Aggregate((a, b) => $"{a},{b}"));
+
+			//try
+			//{
+			//	if (parameters.Contains("page"))
+			//	{
+			//		var titleStyle = TitleStyles.StandardPageTitle;
+			//		if (parameters.Find(p => p.StartsWith("style")) is string style)
+			//		{
+			//			titleStyle = (TitleStyles)int.Parse(style.Substring(5));
+
+			//		}
+
+			//		await InsertTableOfContents(
+			//			parameters.Contains("links"),
+			//			parameters.Contains("align"),
+			//			parameters.Contains("here"),
+			//			titleStyle);
+			//	}
+			//	else if (parameters.Contains("section"))
+			//	{
+			//		await MakePageIndexPage(
+			//			parameters.Contains("preview"));
+			//	}
+			//	else
+			//	{
+			//		await MakeSectionIndexPage(
+			//			parameters.Contains("page"),
+			//			parameters.Contains("preview"));
+			//	}
+			//}
+			//catch (Exception exc)
+			//{
+			//	logger.WriteLine($"error executing {nameof(InsertTocCommand)}", exc);
+			//}
+		}
+
+
+		private async Task Refresh(string[] parameters)
+		{
+			refreshing = true;
+
+			if (parameters.Contains(RefreshSectionCmd))
 			{
-				await (dialog.Scope switch
-				{
-					OneNote.Scope.Self =>
-						InsertTableOfContents(
-							dialog.AddTopLinks, dialog.RightAlign,
-							dialog.InsertHere, dialog.TitleStyle),
-
-					OneNote.Scope.Pages =>
-						MakePageIndexPage(dialog.PreviewPages),
-
-					_ => MakeSectionIndexPage(dialog.SectionPages, dialog.PreviewPages)
-				});
+				//await new SectionTocGenerator().Refresh(parameters);
 			}
-			catch (Exception exc)
+			else if (parameters.Contains(RefreshNotebookCmd))
 			{
-				logger.WriteLine($"error executing {nameof(InsertTocCommand)}", exc);
+				//await new NotebookTocGenerator().Refresh(parameters);
+			}
+			else // page is default
+			{
+				await new PageTocGenerator().Refresh(parameters);
 			}
 		}
 
 
-		private async Task<TocParameters> CollectParameters()
+		private async Task<TocParameters> CollectParametersFromPage()
 		{
 			var parameters = new TocParameters();
 
@@ -271,9 +304,10 @@ namespace River.OneMoreAddIn.Commands
 			if (href is not null)
 			{
 				var uri = new Uri(href);
+
 				parameters.AddRange(uri.Segments
-					.Select(s => s.Replace("/", string.Empty))
-					.Where(s => s.Length > 0));
+					.Where(s => s is not null && s.Length > 0 && s != "/")
+					.Select(s => s.Replace("/", string.Empty)));
 			}
 
 			return parameters;
@@ -503,7 +537,7 @@ namespace River.OneMoreAddIn.Commands
 			Page page,
 			bool addTopLinks, bool rightAlign, bool insertHere, TitleStyles titleStyle)
 		{
-			var cmd = RefreshCmd;
+			var cmd = $"{RefreshUri}{RefreshPageCmd}";
 			if (addTopLinks) cmd = $"{cmd}/links";
 			if (rightAlign) cmd = $"{cmd}/align";
 			if (insertHere) cmd = $"{cmd}/here";
