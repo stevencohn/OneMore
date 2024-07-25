@@ -122,6 +122,7 @@
 			this.topBox.ThemedBack = null;
 			this.topBox.ThemedFore = null;
 			this.topBox.UseVisualStyleBackColor = true;
+			this.topBox.CheckedChanged += new System.EventHandler(this.ToggleTopBox);
 			// 
 			// notebookRadio
 			// 
@@ -151,6 +152,7 @@
 			this.pagesBox.ThemedBack = null;
 			this.pagesBox.ThemedFore = null;
 			this.pagesBox.UseVisualStyleBackColor = true;
+			this.pagesBox.CheckedChanged += new System.EventHandler(this.TogglePagesBox);
 			// 
 			// rightAlignBox
 			// 

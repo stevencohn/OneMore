@@ -114,6 +114,32 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
+		private void ToggleTopBox(object sender, EventArgs e)
+		{
+			if (topBox.Checked)
+			{
+				rightAlignBox.Enabled = true;
+			}
+			else
+			{
+				rightAlignBox.Enabled = rightAlignBox.Checked = false;
+			}
+		}
+
+
+		private void TogglePagesBox(object sender, EventArgs e)
+		{
+			if (pagesBox.Checked)
+			{
+				notebookPagePreviewBox.Enabled = false;
+			}
+			else
+			{
+				notebookPagePreviewBox.Enabled = notebookPagePreviewBox.Checked = false;
+			}
+		}
+
+
 		private void CollectParametersOnOK(object sender, EventArgs e)
 		{
 			parameters.Clear();

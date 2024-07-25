@@ -195,47 +195,45 @@ namespace River.OneMoreAddIn.Commands
 			// ...
 
 
-			var dialog = new InsertTocDialog(parameters);
+			using var dialog = new InsertTocDialog(parameters);
 			if (dialog.ShowDialog(owner) == DialogResult.Cancel)
 			{
 				return;
 			}
 
-			logger.WriteLine(parameters.Aggregate((a, b) => $"{a},{b}"));
+			try
+			{
+				if (parameters.Contains("page"))
+				{
+					var titleStyle = TitleStyles.StandardPageTitle;
+					if (parameters.Find(p => p.StartsWith("style")) is string style)
+					{
+						titleStyle = (TitleStyles)int.Parse(style.Substring(5));
 
-			//try
-			//{
-			//	if (parameters.Contains("page"))
-			//	{
-			//		var titleStyle = TitleStyles.StandardPageTitle;
-			//		if (parameters.Find(p => p.StartsWith("style")) is string style)
-			//		{
-			//			titleStyle = (TitleStyles)int.Parse(style.Substring(5));
+					}
 
-			//		}
-
-			//		await InsertTableOfContents(
-			//			parameters.Contains("links"),
-			//			parameters.Contains("align"),
-			//			parameters.Contains("here"),
-			//			titleStyle);
-			//	}
-			//	else if (parameters.Contains("section"))
-			//	{
-			//		await MakePageIndexPage(
-			//			parameters.Contains("preview"));
-			//	}
-			//	else
-			//	{
-			//		await MakeSectionIndexPage(
-			//			parameters.Contains("page"),
-			//			parameters.Contains("preview"));
-			//	}
-			//}
-			//catch (Exception exc)
-			//{
-			//	logger.WriteLine($"error executing {nameof(InsertTocCommand)}", exc);
-			//}
+					await InsertTableOfContents(
+						parameters.Contains("links"),
+						parameters.Contains("align"),
+						parameters.Contains("here"),
+						titleStyle);
+				}
+				else if (parameters.Contains("section"))
+				{
+					await MakePageIndexPage(
+						parameters.Contains("preview"));
+				}
+				else
+				{
+					await MakeSectionIndexPage(
+						parameters.Contains("page"),
+						parameters.Contains("preview"));
+				}
+			}
+			catch (Exception exc)
+			{
+				logger.WriteLine($"error executing {nameof(InsertTocCommand)}", exc);
+			}
 		}
 
 
