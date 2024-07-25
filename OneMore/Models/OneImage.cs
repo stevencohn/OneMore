@@ -70,6 +70,10 @@ namespace River.OneMoreAddIn.Models
 			{
 				SetSize(image.Width, image.Height, false);
 			}
+			else if (size.Attribute("height").Value == "0.0")
+			{
+				size.SetAttributeValue("height", ((float)image.Height).ToInvariantString());
+			}
 
 			return image;
 		}
