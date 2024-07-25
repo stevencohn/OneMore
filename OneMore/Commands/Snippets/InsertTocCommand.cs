@@ -36,8 +36,13 @@ namespace River.OneMoreAddIn.Commands
 
 
 		public const string TocMeta = "omToc";
+
+		private const string RefreshUri = "onemore://InsertTocCommand/";
+		private const string RefreshPageCmd = "refresh";
+		private const string RefreshSectionCmd = "refreshs";
+		private const string RefreshNotebookCmd = "refreshn";
+
 		private const string LongDash = "\u2015";
-		private const string RefreshCmd = "onemore://InsertTocCommand/refresh";
 		private const string RefreshStyle = "font-weigth:normal;font-style:italic;font-size:9.0pt;color:#808080";
 		private const int MinToCWidth = 360;
 		private const int MinProgress = 25;
@@ -45,6 +50,122 @@ namespace River.OneMoreAddIn.Commands
 		private Style cite;
 		private UI.ProgressDialog progress;
 		private bool refreshing;
+
+
+		#region Private classes
+
+		private class TocParameters : List<string> { }
+
+
+		private abstract class TocGenerator : Loggable
+		{
+			public abstract Task Build();
+
+			public abstract Task Refresh(IEnumerable<string> parameters);
+
+			protected XElement LocateInsertionPoint(
+				Page page, XNamespace ns, XElement top, bool insertHere)
+			{
+				XElement container;
+
+				var meta = (refreshing ? page.Root : top)
+					.Descendants(ns + "Meta")
+					.FirstOrDefault(e =>
+						e.Attribute("name") is XAttribute attr && attr.Value == TocMeta);
+
+				if (meta == null)
+				{
+					// make new and add to page...
+
+					container = new XElement(ns + "OE");
+
+					if (insertHere)
+					{
+						page.AddNextParagraph(container);
+					}
+					else
+					{
+						top.AddFirst(container);
+					}
+				}
+				else
+				{
+					// reuse old and clear out to prepare for new table...
+
+					container = meta.Parent;
+					container.Elements().Remove();
+
+					if (!refreshing)
+					{
+						// if user wants it at top of page, make sure that's where it is
+						if (!insertHere && container.ElementsBeforeSelf(ns + "OE").Any())
+						{
+							container.Remove();
+							top.AddFirst(container);
+						}
+						else if (insertHere)
+						{
+							if (page.GetSelectedElements() != null &&
+								page.SelectionScope != SelectionScope.Unknown)
+							{
+								container.Remove();
+								page.AddNextParagraph(container);
+							}
+						}
+					}
+				}
+
+				return container;
+			}
+		}
+
+		private class PageTocGenerator : TocGenerator
+		{
+			public bool AddTopLinks { get; set; }
+
+			public bool RightAlign { get; set; }
+
+			public bool InsertHere { get; set; }
+
+			public TitleStyles TitleStyle { get; set; }
+
+
+			public override async Task Build()
+			{
+			}
+
+
+			public override async Task Refresh(IEnumerable<string> parameters)
+			{
+				// expected arguments: [/links[/align][/top]/[/style`n]
+				// need to interpret URL with backwards compatibility...
+
+				AddTopLinks = parameters.Contains("links");
+				RightAlign = parameters.Contains("align");
+				InsertHere = parameters.Contains("here");
+
+				TitleStyle = TitleStyles.StandardPageTitle;
+				if (parameters.FirstOrDefault(p => p.StartsWith("style")) is string style
+					&& style.Length > 5)
+				{
+					if (Enum.TryParse(style.Substring(5), out TitleStyles titleStyle))
+					{
+						TitleStyle = titleStyle;
+					}
+				}
+
+				try
+				{
+					await Build();
+				}
+				catch (Exception exc)
+				{
+					logger.WriteLine($"error refreshing table of contents", exc);
+				}
+			}
+		}
+
+		#endregion Private classes
 
 
 		public InsertTocCommand()
@@ -61,51 +182,22 @@ namespace River.OneMoreAddIn.Commands
 				return;
 			}
 
-			Page page;
-			await using (var one = new OneNote())
+			var parameters = await CollectParameters();
+
+			//
+
+			/*
+			var match = Regex.Match(href, @"\/style(\d+)");
+			if (match.Success)
 			{
-				// There is a wierd async issue here where the OneNote instance must be
-				// fully disposed before InsertTocDialog is instantiated and returned.
-				// I don't understand...
-
-				page = await one.GetPage(OneNote.PageDetail.Basic);
-			}
-
-			var dialog = new InsertTocDialog();
-
-			var ns = page.Namespace;
-			var meta = page.Root.Elements(ns + "Outline")
-				.Descendants(ns + "Meta")
-				.FirstOrDefault(e => e.Attribute("name") is XAttribute attr && attr.Value == TocMeta);
-
-			if (meta != null)
-			{
-				var cdata = meta.Parent.DescendantNodes().OfType<XCData>()
-					.FirstOrDefault(c => c.Value.Contains(RefreshCmd));
-
-				if (cdata != null)
+				if (int.TryParse(match.Groups[1].Value, out var index))
 				{
-					var wrapper = cdata.GetWrapper();
-					var href = wrapper.Elements("a").Attributes("href").FirstOrDefault()?.Value;
-					if (href != null)
-					{
-						href = href.Substring(RefreshCmd.Length);
-						dialog.AddTopLinks = href.Contains("/links");
-						dialog.RightAlign = href.Contains("/align");
-						dialog.InsertHere = href.Contains("/here");
-
-						var match = Regex.Match(href, @"\/style(\d+)");
-						if (match.Success)
-						{
-							if (int.TryParse(match.Groups[1].Value, out var index))
-							{
-								dialog.TitleStyle = (TitleStyles)index;
-							}
-						}
-					}
+					dialog.TitleStyle = (TitleStyles)index;
 				}
 			}
+			*/
 
+			var dialog = new InsertTocDialog(parameters);
 			if (dialog.ShowDialog(owner) == DialogResult.Cancel)
 			{
 				return;
@@ -130,6 +222,61 @@ namespace River.OneMoreAddIn.Commands
 			{
 				logger.WriteLine($"error executing {nameof(InsertTocCommand)}", exc);
 			}
+		}
+
+
+		private async Task<TocParameters> CollectParameters()
+		{
+			var parameters = new TocParameters();
+
+			await using var one = new OneNote();
+			var page = await one.GetPage(OneNote.PageDetail.Basic);
+			var ns = page.Namespace;
+
+			var meta = page.Root.Elements(ns + "Outline")
+				.Descendants(ns + "Meta")
+				.FirstOrDefault(e => e.Attribute("name") is XAttribute attr && attr.Value == TocMeta);
+
+			if (meta is null)
+			{
+				// no toc found
+				return parameters;
+			}
+
+			// TOC2.0 - check tocMeta value itself first...
+
+			if (meta.Value.Length > 0)
+			{
+				parameters.AddRange(
+					meta.Value.Split(new[] { '/' }, StringSplitOptions.RemoveEmptyEntries));
+
+				return parameters;
+			}
+
+			// TOC1.0 - look for URI and parse its query params...
+
+			// all refresh URI queries start with "/refresh"
+			var refreshCmd = $"{RefreshUri}refresh";
+
+			var cdata = meta.Parent.DescendantNodes().OfType<XCData>()
+				.FirstOrDefault(c => c.Value.Contains(refreshCmd));
+
+			if (cdata is null)
+			{
+				return parameters;
+			}
+
+			var wrapper = cdata.GetWrapper();
+			var href = wrapper.Elements("a").Attributes("href").FirstOrDefault()?.Value;
+			if (href is not null)
+			{
+				var uri = new Uri(href);
+				parameters.AddRange(uri.Segments
+					.Select(s => s.Replace("/", string.Empty))
+					.Where(s => s.Length > 0));
+			}
+
+			return parameters;
 		}
 
 
@@ -585,7 +732,7 @@ namespace River.OneMoreAddIn.Commands
 
 			try
 			{
-				index = await BuildSectionToc(
+				_ = await BuildSectionToc(
 					one, container, elements.ToArray(), index, 1, withPreviews);
 			}
 			finally
