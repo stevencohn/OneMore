@@ -226,6 +226,11 @@
     <Compile Include="Commands\Settings\ImagesSheet.Designer.cs">
       <DependentUpon>ImagesSheet.cs</DependentUpon>
     </Compile>
+    <Compile Include="Commands\Snippets\TocGenerators\PageTocGenerator.cs" />
+    <Compile Include="Commands\Snippets\TocGenerators\TocCommon.cs" />
+    <Compile Include="Commands\Snippets\TocGenerators\TocGenerator.cs" />
+    <Compile Include="Commands\Snippets\TocGenerators\TocParameters.cs" />
+    <Compile Include="Commands\Snippets\TocGenerators\TocTitleStyles.cs" />
     <Compile Include="Commands\Styles\PageColorCommand.cs" />
     <Compile Include="Commands\Styles\PageColorDialog.cs">
       <SubType>Form</SubType>

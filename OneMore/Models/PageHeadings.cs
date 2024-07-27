@@ -4,7 +4,7 @@
 
 namespace River.OneMoreAddIn.Models
 {
-	using River.OneMoreAddIn.Commands;
+	using River.OneMoreAddIn.Commands.Snippets.TocGenerators;
 	using River.OneMoreAddIn.Styles;
 	using System;
 	using System.Collections.Generic;
@@ -47,7 +47,7 @@ namespace River.OneMoreAddIn.Models
 				.Elements(Namespace + "Outline")
 				.Descendants(Namespace + "OE")
 				.Where(e => !e.Ancestors().Elements(Namespace + "Meta")
-					.Any(m => m.Attribute("name").Value.Equals(InsertTocCommand.TocMeta)));
+					.Any(m => m.Attribute("name").Value.Equals(Toc.MetaName)));
 
 			var blocks =
 				from e in candidates

@@ -4,13 +4,14 @@
 
 namespace River.OneMoreAddIn.Commands
 {
+	using Snippets.TocGenerators;
 	using System;
 	using Resx = Properties.Resources;
 
 
 	internal partial class InsertTocDialog : UI.MoreForm
 	{
-		private readonly InsertTocCommand.TocParameters parameters;
+		private readonly TocParameters parameters;
 
 
 		public InsertTocDialog()
@@ -45,7 +46,7 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		public InsertTocDialog(InsertTocCommand.TocParameters parameters)
+		public InsertTocDialog(TocParameters parameters)
 			: this()
 		{
 			this.parameters = parameters;

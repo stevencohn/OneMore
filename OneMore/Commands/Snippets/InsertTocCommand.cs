@@ -2,15 +2,13 @@
 // Copyright © 2016 Steven M Cohn. All rights reserved.
 //************************************************************************************************
 
-#pragma warning disable S1075 // URIs should not be hardcoded
-
 namespace River.OneMoreAddIn.Commands
 {
 	using River.OneMoreAddIn.Models;
 	using River.OneMoreAddIn.Styles;
+	using Snippets.TocGenerators;
 	using System;
 	using System.Collections.Generic;
-	using System.Globalization;
 	using System.Linq;
 	using System.Threading.Tasks;
 	using System.Windows.Forms;
@@ -21,210 +19,15 @@ namespace River.OneMoreAddIn.Commands
 	[CommandService]
 	internal class InsertTocCommand : Command
 	{
-		public enum TitleStyles
-		{
-			StandardPageTitle,
-			StandardHeading1,
-			StandardHeading2,
-			StandardHeading3,
-			CustomPageTitle,
-			CustomHeading1,
-			CustomHeading2,
-			CustomHeading3
-		}
 
-
-		public const string TocMeta = "omToc";
-
-		private const string RefreshUri = "onemore://InsertTocCommand/";
-		private const string RefreshPageCmd = "refresh";
 		private const string RefreshSectionCmd = "refreshs";
 		private const string RefreshNotebookCmd = "refreshn";
 
 		private const string LongDash = "\u2015";
-		private const string RefreshStyle = "font-weigth:normal;font-style:italic;font-size:9.0pt;color:#808080";
-		private const int MinToCWidth = 360;
 		private const int MinProgress = 25;
 
 		private Style cite;
 		private UI.ProgressDialog progress;
-		private bool refreshing;
-
-
-		#region Private classes
-
-		public class TocParameters : List<string>
-		{
-			public TocParameters()
-				: base()
-			{
-			}
-
-			public TocParameters(IEnumerable<string> range)
-				: this()
-			{
-				AddRange(range);
-			}
-		}
-
-
-		private abstract class TocGenerator : Loggable
-		{
-			protected readonly IList<string> parameters;
-			protected readonly bool refreshing;
-
-			protected TocGenerator(TocParameters parameters)
-			{
-				this.parameters = parameters;
-				refreshing = parameters.Exists(p => p.StartsWith("refresh"));
-			}
-
-			public abstract Task Build();
-
-			public abstract Task Refresh();
-
-			protected XElement LocateInsertionPoint(Page page, XNamespace ns, XElement top)
-			{
-				XElement container;
-
-				var meta = (refreshing ? page.Root : top)
-					.Descendants(ns + "Meta")
-					.FirstOrDefault(e =>
-						e.Attribute("name") is XAttribute attr && attr.Value == TocMeta);
-
-				if (meta == null)
-				{
-					// make new and add to page...
-
-					container = new XElement(ns + "OE");
-
-					if (parameters.Contains("here"))
-					{
-						page.AddNextParagraph(container);
-					}
-					else
-					{
-						top.AddFirst(container);
-					}
-				}
-				else
-				{
-					// reuse old and clear out to prepare for new table...
-
-					container = meta.Parent;
-					container.Elements().Remove();
-
-					if (!refreshing)
-					{
-						// if user wants it at top of page, make sure that's where it is
-						if (!insertHere && container.ElementsBeforeSelf(ns + "OE").Any())
-						{
-							container.Remove();
-							top.AddFirst(container);
-						}
-						else if (insertHere)
-						{
-							if (page.GetSelectedElements() != null &&
-								page.SelectionScope != SelectionScope.Unknown)
-							{
-								container.Remove();
-								page.AddNextParagraph(container);
-							}
-						}
-					}
-				}
-
-				return container;
-			}
-
-
-			protected bool ValidatePage(OneNote one, Page page, XNamespace ns,
-				out XElement top, out List<Heading> headings, out string titleID)
-			{
-				headings = null;
-				titleID = null;
-
-				top = page.Root
-					.Elements(ns + "Outline")
-					.FirstOrDefault(e => !e.Elements(ns + "Meta")
-						.Any(m => m.Attribute("name").Value == MetaNames.TaggingBank))?
-					.Element(ns + "OEChildren");
-
-				if (top == null)
-				{
-					ShowError(Resx.InsertTocCommand_NoHeadings);
-					return false;
-				}
-
-				headings = page.GetHeadings(one);
-				if (!headings.Any())
-				{
-					ShowError(Resx.InsertTocCommand_NoHeadings);
-					return false;
-				}
-
-				// need the title OE ID to make a link back to the top of the page
-				titleID = page.Root
-					.Elements(ns + "Title")
-					.Elements(ns + "OE")
-					.Attributes("objectID")
-					.FirstOrDefault()?.Value;
-
-				if (titleID == null)
-				{
-					ShowError(Resx.InsertTocCommand_NoHeadings);
-					return false;
-				}
-
-				return true;
-			}
-		}
-
-		private sealed class PageTocGenerator : TocGenerator
-		{
-			public PageTocGenerator(TocParameters parameters)
-				: base(parameters)
-			{
-			}
-
-			public override async Task Build()
-			{
-			}
-
-
-			public override async Task Refresh()
-			{
-				// expected arguments: [/links[/align][/top]/[/style`n]
-				// need to interpret URL with backwards compatibility...
-
-				/*
-				AddTopLinks = parameters.Contains("links");
-				RightAlign = parameters.Contains("align");
-				InsertHere = parameters.Contains("here");
-
-				TitleStyle = TitleStyles.StandardPageTitle;
-				if (parameters.Find(p => p.StartsWith("style")) is string style
-					&& style.Length > 5)
-				{
-					if (Enum.TryParse(style.Substring(5), out TitleStyles titleStyle))
-					{
-						TitleStyle = titleStyle;
-					}
-				}
-				*/
-
-				try
-				{
-					await Build();
-				}
-				catch (Exception exc)
-				{
-					logger.WriteLine($"error refreshing table of contents", exc);
-				}
-			}
-		}
-
-		#endregion Private classes
 
 
 		public InsertTocCommand()
@@ -240,10 +43,7 @@ namespace River.OneMoreAddIn.Commands
 				return;
 			}
 
-			var parameters = await CollectParametersFromPage();
-
-			// ...
-
+			var parameters = await CollectParameterDefaults();
 
 			using var dialog = new InsertTocDialog(parameters);
 			if (dialog.ShowDialog(owner) == DialogResult.Cancel)
@@ -257,8 +57,6 @@ namespace River.OneMoreAddIn.Commands
 
 		private async Task Refresh(TocParameters parameters)
 		{
-			refreshing = true;
-
 			if (parameters.Contains(RefreshSectionCmd))
 			{
 				//await new SectionTocGenerator().Refresh(parameters);
@@ -274,7 +72,7 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private async Task<TocParameters> CollectParametersFromPage()
+		private async Task<TocParameters> CollectParameterDefaults()
 		{
 			var parameters = new TocParameters();
 
@@ -284,7 +82,8 @@ namespace River.OneMoreAddIn.Commands
 
 			var meta = page.Root.Elements(ns + "Outline")
 				.Descendants(ns + "Meta")
-				.FirstOrDefault(e => e.Attribute("name") is XAttribute attr && attr.Value == TocMeta);
+				.FirstOrDefault(e => 
+					e.Attribute("name") is XAttribute attr && attr.Value == Toc.MetaName);
 
 			if (meta is null)
 			{
@@ -305,7 +104,7 @@ namespace River.OneMoreAddIn.Commands
 			// TOC1.0 - look for URI and parse its query params...
 
 			// all refresh URI queries start with "/refresh"
-			var refreshCmd = $"{RefreshUri}refresh";
+			var refreshCmd = $"{Toc.RefreshUri}refresh";
 
 			var cdata = meta.Parent.DescendantNodes().OfType<XCData>()
 				.FirstOrDefault(c => c.Value.Contains(refreshCmd));
@@ -334,31 +133,20 @@ namespace River.OneMoreAddIn.Commands
 		{
 			try
 			{
-				if (parameters.Contains("page"))
-				{
-					var titleStyle = TitleStyles.StandardPageTitle;
-					if (parameters.Find(p => p.StartsWith("style")) is string style)
-					{
-						titleStyle = (TitleStyles)int.Parse(style.Substring(5));
-
-					}
-
-					await InsertTableOfContents(
-						parameters.Contains("links"),
-						parameters.Contains("align"),
-						parameters.Contains("here"),
-						titleStyle);
-				}
-				else if (parameters.Contains("section"))
+				if (parameters.Contains("section"))
 				{
 					await MakePageIndexPage(
 						parameters.Contains("preview"));
 				}
-				else
+				else if (parameters.Contains("notebook"))
 				{
 					await MakeSectionIndexPage(
 						parameters.Contains("page"),
 						parameters.Contains("preview"));
+				}
+				else //if (parameters.Contains("page"))
+				{
+					await new PageTocGenerator(parameters).Build();
 				}
 			}
 			catch (Exception exc)
@@ -371,6 +159,7 @@ namespace River.OneMoreAddIn.Commands
 		// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 		#region InsertTableOfContents
+		/*
 		private async Task RefreshTableOfContents(object[] args)
 		{
 			// expected arguments: [/links[/align][/top]/[/style`n]
@@ -379,7 +168,7 @@ namespace River.OneMoreAddIn.Commands
 			var addTopLinks = false;
 			var rightAlign = false;
 			var insertHere = false;
-			var titleStyle = TitleStyles.StandardPageTitle;
+			var titleStyle = TocTitleStyles.StandardPageTitle;
 
 			for (var i = 1; i < args.Length; i++)
 			{
@@ -422,7 +211,7 @@ namespace River.OneMoreAddIn.Commands
 		/// <param name="addTopLinks"></param>
 		/// <param name="one"></param>
 		private async Task InsertTableOfContents(
-			bool addTopLinks, bool rightAlign, bool insertHere, TitleStyles titleStyle)
+			bool addTopLinks, bool rightAlign, bool insertHere, TocTitleStyles titleStyle)
 		{
 			await using var one = new OneNote();
 			var page = await one.GetPage(OneNote.PageDetail.Selection);
@@ -470,7 +259,7 @@ namespace River.OneMoreAddIn.Commands
 			table[2][0].SetContent(string.Empty);
 
 			container.Add(
-				new Meta(TocMeta, string.Empty),
+				new Meta(Toc.MetaName, string.Empty),
 				table.Root
 				);
 
@@ -539,7 +328,7 @@ namespace River.OneMoreAddIn.Commands
 			var meta = (refreshing ? page.Root : top)
 				.Descendants(ns + "Meta")
 				.FirstOrDefault(e =>
-					e.Attribute("name") is XAttribute attr && attr.Value == TocMeta);
+					e.Attribute("name") is XAttribute attr && attr.Value == Toc.MetaName);
 
 			if (meta == null)
 			{
@@ -589,9 +378,9 @@ namespace River.OneMoreAddIn.Commands
 
 		private XElement MakeTitle(
 			Page page,
-			bool addTopLinks, bool rightAlign, bool insertHere, TitleStyles titleStyle)
+			bool addTopLinks, bool rightAlign, bool insertHere, TocTitleStyles titleStyle)
 		{
-			var cmd = $"{RefreshUri}{RefreshPageCmd}";
+			var cmd = $"{Toc.RefreshUri}{RefreshPageCmd}";
 			if (addTopLinks) cmd = $"{cmd}/links";
 			if (rightAlign) cmd = $"{cmd}/align";
 			if (insertHere) cmd = $"{cmd}/here";
@@ -603,13 +392,13 @@ namespace River.OneMoreAddIn.Commands
 				$"{Resx.InsertTocCommand_TOC} <span style='{RefreshStyle}'>[{refresh}]</span>"
 				);
 
-			if (titleStyle < TitleStyles.CustomPageTitle)
+			if (titleStyle < TocTitleStyles.CustomPageTitle)
 			{
 				var standard = titleStyle switch
 				{
-					TitleStyles.StandardHeading1 => StandardStyles.Heading1,
-					TitleStyles.StandardHeading2 => StandardStyles.Heading2,
-					TitleStyles.StandardHeading3 => StandardStyles.Heading3,
+					TocTitleStyles.StandardHeading1 => StandardStyles.Heading1,
+					TocTitleStyles.StandardHeading2 => StandardStyles.Heading2,
+					TocTitleStyles.StandardHeading3 => StandardStyles.Heading3,
 					_ => StandardStyles.PageTitle
 				};
 
@@ -621,7 +410,7 @@ namespace River.OneMoreAddIn.Commands
 				var provider = new ThemeProvider();
 				var styles = provider.Theme.GetStyles();
 				Style style = null;
-				if (titleStyle == TitleStyles.CustomPageTitle)
+				if (titleStyle == TocTitleStyles.CustomPageTitle)
 				{
 					style = styles.Find(s => s.Name.EqualsICIC("Page Title"));
 				}
@@ -629,8 +418,8 @@ namespace River.OneMoreAddIn.Commands
 				{
 					var index = titleStyle switch
 					{
-						TitleStyles.CustomHeading2 => 1,
-						TitleStyles.CustomHeading3 => 2,
+						TocTitleStyles.CustomHeading2 => 1,
+						TocTitleStyles.CustomHeading3 => 2,
 						_ => 0
 					};
 
@@ -784,6 +573,7 @@ namespace River.OneMoreAddIn.Commands
 				heading.IsRightAligned = heading.HasTopLink = false;
 			}
 		}
+		*/
 		#endregion InsertTableOfContents
 
 
