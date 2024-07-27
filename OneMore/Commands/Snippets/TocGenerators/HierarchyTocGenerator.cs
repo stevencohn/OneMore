@@ -1,4 +1,7 @@
-﻿
+﻿//************************************************************************************************
+// Copyright © 2016 Steven M Cohn. All rights reserved.
+//************************************************************************************************
+
 namespace River.OneMoreAddIn.Commands.Snippets.TocGenerators
 {
 	using River.OneMoreAddIn.Models;
