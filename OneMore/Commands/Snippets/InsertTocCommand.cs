@@ -53,29 +53,39 @@ namespace River.OneMoreAddIn.Commands
 
 		#region Private classes
 
-		public class TocParameters : List<string> { }
+		public class TocParameters : List<string>
+		{
+			public TocParameters()
+				: base()
+			{
+			}
+
+			public TocParameters(IEnumerable<string> range)
+				: this()
+			{
+				AddRange(range);
+			}
+		}
 
 
 		private abstract class TocGenerator : Loggable
 		{
+			protected readonly IList<string> parameters;
+			protected readonly bool refreshing;
+
+			protected TocGenerator(TocParameters parameters)
+			{
+				this.parameters = parameters;
+				refreshing = parameters.Exists(p => p.StartsWith("refresh"));
+			}
+
 			public abstract Task Build();
 
-			public abstract Task Refresh(IEnumerable<string> parameters);
+			public abstract Task Refresh();
 
-			protected XElement LocateInsertionPoint(
-				Page page, XNamespace ns, XElement top, bool insertHere)
+			protected XElement LocateInsertionPoint(Page page, XNamespace ns, XElement top)
 			{
 				XElement container;
-
-				//
-				//
-				//
-				//
-				var refreshing = false;
-				//
-				//
-				//
-				//
 
 				var meta = (refreshing ? page.Root : top)
 					.Descendants(ns + "Meta")
@@ -88,7 +98,7 @@ namespace River.OneMoreAddIn.Commands
 
 					container = new XElement(ns + "OE");
 
-					if (insertHere)
+					if (parameters.Contains("here"))
 					{
 						page.AddNextParagraph(container);
 					}
@@ -126,35 +136,74 @@ namespace River.OneMoreAddIn.Commands
 
 				return container;
 			}
+
+
+			protected bool ValidatePage(OneNote one, Page page, XNamespace ns,
+				out XElement top, out List<Heading> headings, out string titleID)
+			{
+				headings = null;
+				titleID = null;
+
+				top = page.Root
+					.Elements(ns + "Outline")
+					.FirstOrDefault(e => !e.Elements(ns + "Meta")
+						.Any(m => m.Attribute("name").Value == MetaNames.TaggingBank))?
+					.Element(ns + "OEChildren");
+
+				if (top == null)
+				{
+					ShowError(Resx.InsertTocCommand_NoHeadings);
+					return false;
+				}
+
+				headings = page.GetHeadings(one);
+				if (!headings.Any())
+				{
+					ShowError(Resx.InsertTocCommand_NoHeadings);
+					return false;
+				}
+
+				// need the title OE ID to make a link back to the top of the page
+				titleID = page.Root
+					.Elements(ns + "Title")
+					.Elements(ns + "OE")
+					.Attributes("objectID")
+					.FirstOrDefault()?.Value;
+
+				if (titleID == null)
+				{
+					ShowError(Resx.InsertTocCommand_NoHeadings);
+					return false;
+				}
+
+				return true;
+			}
 		}
 
-		private class PageTocGenerator : TocGenerator
+		private sealed class PageTocGenerator : TocGenerator
 		{
-			public bool AddTopLinks { get; set; }
-
-			public bool RightAlign { get; set; }
-
-			public bool InsertHere { get; set; }
-
-			public TitleStyles TitleStyle { get; set; }
-
+			public PageTocGenerator(TocParameters parameters)
+				: base(parameters)
+			{
+			}
 
 			public override async Task Build()
 			{
 			}
 
 
-			public override async Task Refresh(IEnumerable<string> parameters)
+			public override async Task Refresh()
 			{
 				// expected arguments: [/links[/align][/top]/[/style`n]
 				// need to interpret URL with backwards compatibility...
 
+				/*
 				AddTopLinks = parameters.Contains("links");
 				RightAlign = parameters.Contains("align");
 				InsertHere = parameters.Contains("here");
 
 				TitleStyle = TitleStyles.StandardPageTitle;
-				if (parameters.FirstOrDefault(p => p.StartsWith("style")) is string style
+				if (parameters.Find(p => p.StartsWith("style")) is string style
 					&& style.Length > 5)
 				{
 					if (Enum.TryParse(style.Substring(5), out TitleStyles titleStyle))
@@ -162,6 +211,7 @@ namespace River.OneMoreAddIn.Commands
 						TitleStyle = titleStyle;
 					}
 				}
+				*/
 
 				try
 				{
@@ -186,7 +236,7 @@ namespace River.OneMoreAddIn.Commands
 		{
 			if (args.Length > 0 && args[0] is string refresh && refresh == "refresh")
 			{
-				await Refresh(args.Cast<string>().ToArray());
+				await Refresh(new TocParameters(args.Cast<string>()));
 				return;
 			}
 
@@ -201,43 +251,11 @@ namespace River.OneMoreAddIn.Commands
 				return;
 			}
 
-			try
-			{
-				if (parameters.Contains("page"))
-				{
-					var titleStyle = TitleStyles.StandardPageTitle;
-					if (parameters.Find(p => p.StartsWith("style")) is string style)
-					{
-						titleStyle = (TitleStyles)int.Parse(style.Substring(5));
-
-					}
-
-					await InsertTableOfContents(
-						parameters.Contains("links"),
-						parameters.Contains("align"),
-						parameters.Contains("here"),
-						titleStyle);
-				}
-				else if (parameters.Contains("section"))
-				{
-					await MakePageIndexPage(
-						parameters.Contains("preview"));
-				}
-				else
-				{
-					await MakeSectionIndexPage(
-						parameters.Contains("page"),
-						parameters.Contains("preview"));
-				}
-			}
-			catch (Exception exc)
-			{
-				logger.WriteLine($"error executing {nameof(InsertTocCommand)}", exc);
-			}
+			await Build(parameters);
 		}
 
 
-		private async Task Refresh(string[] parameters)
+		private async Task Refresh(TocParameters parameters)
 		{
 			refreshing = true;
 
@@ -251,7 +269,7 @@ namespace River.OneMoreAddIn.Commands
 			}
 			else // page is default
 			{
-				await new PageTocGenerator().Refresh(parameters);
+				await new PageTocGenerator(parameters).Refresh();
 			}
 		}
 
@@ -309,6 +327,44 @@ namespace River.OneMoreAddIn.Commands
 			}
 
 			return parameters;
+		}
+
+
+		private async Task Build(TocParameters parameters)
+		{
+			try
+			{
+				if (parameters.Contains("page"))
+				{
+					var titleStyle = TitleStyles.StandardPageTitle;
+					if (parameters.Find(p => p.StartsWith("style")) is string style)
+					{
+						titleStyle = (TitleStyles)int.Parse(style.Substring(5));
+
+					}
+
+					await InsertTableOfContents(
+						parameters.Contains("links"),
+						parameters.Contains("align"),
+						parameters.Contains("here"),
+						titleStyle);
+				}
+				else if (parameters.Contains("section"))
+				{
+					await MakePageIndexPage(
+						parameters.Contains("preview"));
+				}
+				else
+				{
+					await MakeSectionIndexPage(
+						parameters.Contains("page"),
+						parameters.Contains("preview"));
+				}
+			}
+			catch (Exception exc)
+			{
+				logger.WriteLine($"error executing {nameof(InsertTocCommand)}", exc);
+			}
 		}
 
 
