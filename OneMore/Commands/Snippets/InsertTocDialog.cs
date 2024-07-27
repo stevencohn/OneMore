@@ -132,7 +132,7 @@ namespace River.OneMoreAddIn.Commands
 		{
 			if (pagesBox.Checked)
 			{
-				notebookPagePreviewBox.Enabled = false;
+				notebookPagePreviewBox.Enabled = true;
 			}
 			else
 			{
