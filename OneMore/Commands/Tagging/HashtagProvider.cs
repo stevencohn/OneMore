@@ -89,6 +89,7 @@ namespace River.OneMoreAddIn.Commands
 				using var cmd = con.CreateCommand();
 				cmd.CommandText = $"DROP {type} IF EXISTS @n";
 				cmd.CommandType = CommandType.Text;
+				cmd.Parameters.Add("@n", DbType.String);
 				var count = 0;
 
 				foreach (var name in names)
