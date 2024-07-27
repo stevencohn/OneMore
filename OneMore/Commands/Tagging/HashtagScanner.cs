@@ -178,7 +178,7 @@ namespace River.OneMoreAddIn.Commands
 							int tp;
 							(dp, tp) = await Scan(
 								one, sections, notebookID, $"/{name}",
-								known.LastModified == string.Empty);
+								known?.LastModified == string.Empty);
 
 							dirtyPages += dp;
 							totalPages += tp;
