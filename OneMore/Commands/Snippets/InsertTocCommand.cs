@@ -43,17 +43,27 @@ namespace River.OneMoreAddIn.Commands
 
 		private async Task Refresh(TocParameters parameters)
 		{
-			if (parameters.Contains(SectionTocGenerator.RefreshSectionCmd))
+			TocGenerator generator;
+			if (parameters.Contains("section"))
 			{
-				//await new SectionTocGenerator().Refresh(parameters);
+				generator = new SectionTocGenerator(parameters);
 			}
-			else if (parameters.Contains(NotebookTocGenerator.RefreshNotebookCmd))
+			else if (parameters.Contains("notebook"))
 			{
-				//await new NotebookTocGenerator().Refresh(parameters);
+				generator = new NotebookTocGenerator(parameters);
 			}
-			else // page is default
+			else
 			{
-				await new PageTocGenerator(parameters).Refresh();
+				generator = new PageTocGenerator(parameters);
+			}
+
+			try
+			{
+				await generator.Refresh();
+			}
+			catch (Exception exc)
+			{
+				logger.WriteLine($"error executing {nameof(InsertTocCommand)}", exc);
 			}
 		}
 
