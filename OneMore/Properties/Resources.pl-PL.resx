@@ -1658,11 +1658,11 @@ Czerwony pierwszy plan
     <comment>page name</comment>
   </data>
   <data name="InsertTocCommand_TOCNotebook" xml:space="preserve">
-    <value>Spis treści - Notebook {0}</value>
+    <value>Spis treści📓 {0}</value>
     <comment>page name</comment>
   </data>
   <data name="InsertTocCommand_TOCSections" xml:space="preserve">
-    <value>Spis treści - sekcja {0}</value>
+    <value>Spis treści § {0}</value>
     <comment>page name</comment>
   </data>
   <data name="InsertTocCommand_Top" xml:space="preserve">

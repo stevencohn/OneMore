@@ -34,6 +34,16 @@ namespace River.OneMoreAddIn.Commands.Snippets.TocGenerators
 		}
 
 
+		/// <summary>
+		/// Gets the main part of the title inserted before the TOC on the page.
+		/// </summary>
+		protected abstract string PrimaryTitle { get; }
+
+
+		/// <summary>
+		/// Gets the URI segment string specifying the inheritors scope
+		/// such as refresh, refreshs, and refreshn
+		/// </summary>
 		protected abstract string RefreshCmd { get; }
 
 
@@ -138,24 +148,25 @@ namespace River.OneMoreAddIn.Commands.Snippets.TocGenerators
 		/// <summary>
 		/// Generate a title line for the on-page TOC. This should be common for all inheritors.
 		/// </summary>
-		/// <param name="page"></param>
+		/// <param name="page">The page from which styles are taken to apply to the title</param>
+		/// <param name="segments">
+		/// An string specifying the inheritor-specific URI segments to append to the refresh
+		/// link; it should NOT start with a forward slash.
+		/// </param>
 		/// <returns></returns>
-		protected XElement MakeTitle(Page page)
+		protected XElement MakeTitle(Page page, string segments)
 		{
 			// note that RefreshCmd is per-inheritor
-			var cmd = $"{Toc.RefreshUri}{RefreshCmd}";
-
-			if (parameters.Contains("links")) cmd = $"{cmd}/links";
-			if (parameters.Contains("align")) cmd = $"{cmd}/align";
-			if (parameters.Contains("here")) cmd = $"{cmd}/here";
+			var cmd = $"{Toc.RefreshUri}{RefreshCmd}{segments}";
 
 			var titleIndex = GetTitleStyleIndex();
 			cmd = $"{cmd}/style{titleIndex}";
 
-			var refresh = $"<a href=\"{cmd}\"><span style='{Toc.RefreshStyle}'>{Resx.word_Refresh}</span></a>";
+			var refresh = $"<a href=\"{cmd}\"><span style='" +
+				$"{Toc.RefreshStyle}'>{Resx.word_Refresh}</span></a>";
 
 			var title = new Paragraph(
-				$"{Resx.InsertTocCommand_TOC} <span style='{Toc.RefreshStyle}'>[{refresh}]</span>"
+				$"{PrimaryTitle} <span style='{Toc.RefreshStyle}'>[{refresh}]</span>"
 				);
 
 			var titleStyle = (TocTitleStyles)titleIndex;
@@ -204,8 +215,9 @@ namespace River.OneMoreAddIn.Commands.Snippets.TocGenerators
 				}
 				else
 				{
-					// be sure to emit this with ToRBGHtml() otherwise OneNote may normalize White/Black
-					// color names, removing them against Dark/Light backgrounds respectively
+					// be sure to emit this with ToRBGHtml() otherwise OneNote may normalize
+					// White/Black color names, removing them against Dark/Light backgrounds
+					// respectively
 					var bestColor = page.GetBestTextColor();
 
 					title.SetStyle($"font-size:16.0pt;color:{bestColor.ToRGBHtml()}");

@@ -42,10 +42,24 @@ namespace River.OneMoreAddIn.Commands.Snippets.TocGenerators
 			var scope = withPages ? OneNote.Scope.Pages : OneNote.Scope.Sections;
 			var notebook = await one.GetNotebook(scope);
 
+			// seeds the PrimaryTitle property
+			primaryTitle = notebook.Attribute("name").Value;
+
 			page.Title = string.Format(Resx.InsertTocCommand_TOCNotebook, notebook.Attribute("name").Value);
 			cite = page.GetQuickStyle(StandardStyles.Citation);
 
 			var container = new XElement(ns + "OEChildren");
+
+			// TOC Title...
+
+			var segments = string.Empty;
+			if (parameters.Contains("pages")) segments = $"{segments}/pages";
+			if (parameters.Contains("preview")) segments = $"{segments}/preview";
+
+			container.Add(MakeTitle(page, segments));
+			container.Add(new Paragraph(string.Empty));
+
+			// TOC contents...
 
 			var pageCount = notebook.Descendants(ns + "Page").Count();
 			if (pageCount > MinProgress)
@@ -57,7 +71,7 @@ namespace River.OneMoreAddIn.Commands.Snippets.TocGenerators
 
 			try
 			{
-				await BuildSectionTable(one, ns, container, notebook.Elements(), 1);
+				await BuildSectionTree(one, ns, container, notebook.Elements(), 1);
 			}
 			finally
 			{
@@ -90,7 +104,7 @@ namespace River.OneMoreAddIn.Commands.Snippets.TocGenerators
 		}
 
 
-		private async Task BuildSectionTable(
+		private async Task BuildSectionTree(
 			OneNote one, XNamespace ns, XElement container,
 			IEnumerable<XElement> elements, int level)
 		{
@@ -113,7 +127,7 @@ namespace River.OneMoreAddIn.Commands.Snippets.TocGenerators
 							new XCData($"<span style='font-weight:bold'>{name}</span>"))
 						));
 
-					await BuildSectionTable(one, ns, indent, element.Elements(), level + 1);
+					await BuildSectionTree(one, ns, indent, element.Elements(), level + 1);
 
 					container.Add(
 						new XElement(ns + "OE", indent)
@@ -132,7 +146,7 @@ namespace River.OneMoreAddIn.Commands.Snippets.TocGenerators
 						var indent = new XElement(ns + "OEChildren");
 						var index = 0;
 
-						_ = await BuildSectionToc(one, indent, pages.ToArray(), index, 1);
+						_ = await BuildSection(one, indent, pages.ToArray(), index, 1);
 
 						container.Add(new XElement(ns + "OE",
 							new XElement(ns + "T", new XCData($"§ <a href=\"{link}\">{name}</a>")),

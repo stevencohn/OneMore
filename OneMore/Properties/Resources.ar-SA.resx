@@ -1649,11 +1649,11 @@
     <comment>page name</comment>
   </data>
   <data name="InsertTocCommand_TOCNotebook" xml:space="preserve">
-    <value>جدول المحتويات - مفكرة {0}</value>
+    <value>جدول المحتويات📓 {0}</value>
     <comment>page name</comment>
   </data>
   <data name="InsertTocCommand_TOCSections" xml:space="preserve">
-    <value>جدول المحتويات - القسم {0}</value>
+    <value>جدول المحتويات § {0}</value>
     <comment>page name</comment>
   </data>
   <data name="InsertTocCommand_Top" xml:space="preserve">

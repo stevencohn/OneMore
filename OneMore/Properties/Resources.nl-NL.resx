@@ -1650,11 +1650,11 @@ Gele achtergrond</value>
     <comment>page name</comment>
   </data>
   <data name="InsertTocCommand_TOCNotebook" xml:space="preserve">
-    <value>Inhoudsopgave - Kladblok {0}</value>
+    <value>Inhoudsopgave📓 {0}</value>
     <comment>page name</comment>
   </data>
   <data name="InsertTocCommand_TOCSections" xml:space="preserve">
-    <value>Inhoudsopgave - sectie {0}</value>
+    <value>Inhoudsopgave § {0}</value>
     <comment>page name</comment>
   </data>
   <data name="InsertTocCommand_Top" xml:space="preserve">

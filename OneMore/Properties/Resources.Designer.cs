@@ -4291,7 +4291,7 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Table of Contents - Notebook {0}.
+        ///   Looks up a localized string similar to Table of Contents📓 {0}.
         /// </summary>
         internal static string InsertTocCommand_TOCNotebook {
             get {
@@ -4300,7 +4300,7 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Table of Contents - Section {0}.
+        ///   Looks up a localized string similar to Table of Contents § {0}.
         /// </summary>
         internal static string InsertTocCommand_TOCSections {
             get {

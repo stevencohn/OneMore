@@ -1649,11 +1649,11 @@ Fondo amarillo</value>
     <comment>page name</comment>
   </data>
   <data name="InsertTocCommand_TOCNotebook" xml:space="preserve">
-    <value>Tabla de contenido: cuaderno {0}</value>
+    <value>Tabla de contenido📓 {0}</value>
     <comment>page name</comment>
   </data>
   <data name="InsertTocCommand_TOCSections" xml:space="preserve">
-    <value>Tabla de contenido: sección {0}</value>
+    <value>Tabla de contenido § {0}</value>
     <comment>page name</comment>
   </data>
   <data name="InsertTocCommand_Top" xml:space="preserve">

@@ -31,6 +31,9 @@ namespace River.OneMoreAddIn.Commands.Snippets.TocGenerators
 		protected override string RefreshCmd => "refresh";
 
 
+		protected override string PrimaryTitle => Resx.InsertTocCommand_TOC;
+
+
 		public override async Task<bool> Build()
 		{
 			await using var one = new OneNote(out page, out ns);
@@ -71,7 +74,12 @@ namespace River.OneMoreAddIn.Commands.Snippets.TocGenerators
 
 			table.SetColumnWidth(0, colwid);
 
-			table[0][0].SetContent(MakeTitle(page));
+			var segments = string.Empty;
+			if (parameters.Contains("links")) segments = $"{segments}/links";
+			if (parameters.Contains("align")) segments = $"{segments}/align";
+			if (parameters.Contains("here")) segments = $"{segments}/here";
+
+			table[0][0].SetContent(MakeTitle(page, segments));
 			table[1][0].SetContent(content);
 			table[2][0].SetContent(string.Empty);
 

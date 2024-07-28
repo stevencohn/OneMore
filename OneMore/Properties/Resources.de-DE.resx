@@ -1647,11 +1647,11 @@ Gelber Hintergrund</value>
     <comment>page name</comment>
   </data>
   <data name="InsertTocCommand_TOCNotebook" xml:space="preserve">
-    <value>Inhaltsverzeichnis - Notizbuch {0}</value>
+    <value>Inhaltsverzeichnis📓 {0}</value>
     <comment>page name</comment>
   </data>
   <data name="InsertTocCommand_TOCSections" xml:space="preserve">
-    <value>Inhaltsverzeichnis - Abschnitt {0}</value>
+    <value>Inhaltsverzeichnis § {0}</value>
     <comment>page name</comment>
   </data>
   <data name="InsertTocCommand_Top" xml:space="preserve">

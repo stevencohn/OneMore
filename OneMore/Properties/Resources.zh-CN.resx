@@ -1648,11 +1648,11 @@ OneNote 文件 (*.one)</value>
     <comment>page name</comment>
   </data>
   <data name="InsertTocCommand_TOCNotebook" xml:space="preserve">
-    <value>目录-笔记本{0}</value>
+    <value>目录📓 {0}</value>
     <comment>page name</comment>
   </data>
   <data name="InsertTocCommand_TOCSections" xml:space="preserve">
-    <value>目录-第{0}节</value>
+    <value>目录§{0}</value>
     <comment>page name</comment>
   </data>
   <data name="InsertTocCommand_Top" xml:space="preserve">

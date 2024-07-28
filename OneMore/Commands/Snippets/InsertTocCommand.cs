@@ -44,11 +44,11 @@ namespace River.OneMoreAddIn.Commands
 		private async Task Refresh(TocParameters parameters)
 		{
 			TocGenerator generator;
-			if (parameters.Contains("section"))
+			if (parameters.Contains("refreshs"))
 			{
 				generator = new SectionTocGenerator(parameters);
 			}
-			else if (parameters.Contains("notebook"))
+			else if (parameters.Contains("refreshn"))
 			{
 				generator = new NotebookTocGenerator(parameters);
 			}

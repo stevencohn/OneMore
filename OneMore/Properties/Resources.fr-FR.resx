@@ -1649,11 +1649,11 @@ Fond jaune</value>
     <comment>page name</comment>
   </data>
   <data name="InsertTocCommand_TOCNotebook" xml:space="preserve">
-    <value>Table des matières - Bloc-notes {0}</value>
+    <value>Table des matières📓 {0}</value>
     <comment>page name</comment>
   </data>
   <data name="InsertTocCommand_TOCSections" xml:space="preserve">
-    <value>Table des matières - Section {0}</value>
+    <value>Table des matières § {0}</value>
     <comment>page name</comment>
   </data>
   <data name="InsertTocCommand_Top" xml:space="preserve">

@@ -19,6 +19,7 @@ namespace River.OneMoreAddIn.Commands.Snippets.TocGenerators
 		protected readonly bool withPages;
 		protected readonly bool withPreviews;
 
+		protected string primaryTitle;
 		protected Style cite;
 		protected UI.ProgressDialog progress;
 
@@ -31,7 +32,10 @@ namespace River.OneMoreAddIn.Commands.Snippets.TocGenerators
 		}
 
 
-		protected async Task<int> BuildSectionToc(
+		protected override string PrimaryTitle => primaryTitle;
+
+
+		protected async Task<int> BuildSection(
 			OneNote one, XElement container, XElement[] elements,
 			int index, int level)
 		{
@@ -51,7 +55,7 @@ namespace River.OneMoreAddIn.Commands.Snippets.TocGenerators
 				if (pageLevel > level)
 				{
 					var children = new XElement(PageNamespace.Value + "OEChildren");
-					index = await BuildSectionToc(one, children, elements, index, pageLevel);
+					index = await BuildSection(one, children, elements, index, pageLevel);
 					container.Elements().Last().Add(children);
 				}
 				else if (pageLevel == level)
@@ -66,7 +70,7 @@ namespace River.OneMoreAddIn.Commands.Snippets.TocGenerators
 					}
 
 					var text = withPreviews
-						? $"<a href=\"{link}\">{name}</a> {await GetPagePreview(one, pageID, css)}"
+						? $"<a href=\"{link}\">{name}</a> {await MakePagePreview(one, pageID, css)}"
 						: $"<a href=\"{link}\">{name}</a>";
 
 					container.Add(new Paragraph(text));
@@ -83,7 +87,7 @@ namespace River.OneMoreAddIn.Commands.Snippets.TocGenerators
 		}
 
 
-		private async Task<string> GetPagePreview(OneNote one, string pageID, string css)
+		private async Task<string> MakePagePreview(OneNote one, string pageID, string css)
 		{
 			var page = await one.GetPage(pageID, OneNote.PageDetail.Basic);
 			var ns = page.Namespace;
