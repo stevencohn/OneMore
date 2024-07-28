@@ -83,8 +83,13 @@ namespace River.OneMoreAddIn.Commands.Snippets.TocGenerators
 			table[1][0].SetContent(content);
 			table[2][0].SetContent(string.Empty);
 
+			// meta...
+
+			if (!parameters.Contains("page")) parameters.Insert(0, "page");
+			var segs = parameters.Aggregate((a, b) => $"{a}/{b}");
+
 			container.Add(
-				new Meta(Toc.MetaName, string.Empty),
+				new Meta(Toc.MetaName, segs),
 				table.Root
 				);
 

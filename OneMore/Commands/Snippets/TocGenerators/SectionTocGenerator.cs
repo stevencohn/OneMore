@@ -40,8 +40,9 @@ namespace River.OneMoreAddIn.Commands.Snippets.TocGenerators
 				one.CreatePage(sectionId, out var pageId);
 
 				var page = await one.GetPage(pageId);
+				var container = page.EnsureContentContainer();
 
-				await BuildContents(page, section);
+				await BuildContents(page, container, section);
 
 				// move TOC page to top of section...
 
@@ -65,7 +66,7 @@ namespace River.OneMoreAddIn.Commands.Snippets.TocGenerators
 		}
 
 
-		private async Task BuildContents(Page page, XElement section)
+		private async Task BuildContents(Page page, XElement container, XElement section)
 		{
 			var ns = page.Namespace;
 			PageNamespace.Set(ns);
@@ -76,17 +77,27 @@ namespace River.OneMoreAddIn.Commands.Snippets.TocGenerators
 			page.Title = string.Format(Resx.InsertTocCommand_TOCSections, section.Attribute("name").Value);
 			cite = page.GetQuickStyle(StandardStyles.Citation);
 
-			var container = new XElement(ns + "OEChildren");
-
 			// TOC Title...
 
 			var segments = parameters.Contains("preview") ? "/preview" : string.Empty;
-			container.Add(MakeTitle(page, segments));
+
+			var titleElement = MakeTitle(page, segments);
+
+			// add meta to title OE
+			if (!parameters.Contains("section")) parameters.Insert(0, "section");
+			var segs = parameters.Aggregate((a, b) => $"{a}/{b}");
+			titleElement.AddFirst(new Meta(Toc.MetaName, segs));
+
+			container.Add(titleElement);
 			container.Add(new Paragraph(string.Empty));
 
 			// TOC contents...
 
-			var elements = section.Elements(ns + "Page");
+			// don't include current page in TOC
+			var elements = section.Elements(ns + "Page")
+				.Where(e => e.Name.LocalName == "Page" && e.Attribute("ID").Value != page.PageId)
+				.ToArray();
+
 			var index = 0;
 
 			var pageCount = elements.Count();
@@ -99,7 +110,7 @@ namespace River.OneMoreAddIn.Commands.Snippets.TocGenerators
 
 			try
 			{
-				_ = await BuildSection(one, container, elements.ToArray(), index, 1);
+				_ = await BuildSection(one, container, elements, index, 1);
 			}
 			finally
 			{
@@ -110,8 +121,6 @@ namespace River.OneMoreAddIn.Commands.Snippets.TocGenerators
 				}
 			}
 
-			var title = page.Root.Elements(ns + "Title").First();
-			title.AddAfterSelf(new XElement(ns + "Outline", container));
 			await one.Update(page);
 		}
 
@@ -127,19 +136,21 @@ namespace River.OneMoreAddIn.Commands.Snippets.TocGenerators
 				var page = await one.GetPage();
 				var ns = page.Namespace;
 
-				//
-				// TODO: this should be replaced with Locate omToc and delete siblings
-				//
+				// remove old contents...
 
-				foreach (var outline in page.Root.Elements(ns + "Outline"))
+				var container = page.Root.Descendants(ns + "Meta")
+					.Where(e => e.Attribute("name").Value == Toc.MetaName)
+					.Select(e => e.Parent.Parent)
+					.FirstOrDefault();
+
+				if (container is not null)
 				{
-					one.DeleteContent(page.PageId, outline.Attribute("objectID").Value);
-					outline.Remove();
+					container.Elements().Remove();
 				}
 
+				// rebuild...
 
-
-				await BuildContents(page, section);
+				await BuildContents(page, container, section);
 			}
 			finally
 			{
