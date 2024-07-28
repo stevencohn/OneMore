@@ -4425,7 +4425,7 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to There is a table of contents page for thi notebook. You can refresh that page or create a new page.
+        ///   Looks up a localized string similar to There is a table of contents page for this notebook. You can refresh that page or create a new page.
         ///
         ///Do you want to refresh the existing page?.
         /// </summary>
@@ -4436,7 +4436,7 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to There is a table of contents page for thi section. You can refresh that page or create a new page.
+        ///   Looks up a localized string similar to There is a table of contents page for this section. You can refresh that page or create a new page.
         ///
         ///Do you want to refresh the existing page?.
         /// </summary>

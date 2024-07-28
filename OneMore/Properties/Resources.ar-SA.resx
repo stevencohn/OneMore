@@ -1713,13 +1713,13 @@
     <comment>checkbox</comment>
   </data>
   <data name="InsertTocForNotebook_RefreshQuestion" xml:space="preserve">
-    <value>يوجد جدول محتويات لصفحة دفتر الملاحظات. يمكنك تحديث تلك الصفحة أو إنشاء صفحة جديدة.
+    <value>هناك صفحة جدول المحتويات لهذا دفتر الملاحظات. يمكنك تحديث تلك الصفحة أو إنشاء صفحة جديدة.
 
 هل تريد تحديث الصفحة الحالية؟</value>
     <comment>message box</comment>
   </data>
   <data name="InsertTocForSection_RefreshQuestion" xml:space="preserve">
-    <value>يوجد جدول محتويات لصفحة هذا القسم. يمكنك تحديث تلك الصفحة أو إنشاء صفحة جديدة.
+    <value>هناك صفحة جدول المحتويات لهذا القسم. يمكنك تحديث تلك الصفحة أو إنشاء صفحة جديدة.
 
 هل تريد تحديث الصفحة الحالية؟</value>
     <comment>message box</comment>

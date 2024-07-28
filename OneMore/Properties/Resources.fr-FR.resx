@@ -1713,13 +1713,13 @@ Titre personnalisé 3</value>
     <comment>checkbox</comment>
   </data>
   <data name="InsertTocForNotebook_RefreshQuestion" xml:space="preserve">
-    <value>Il y a une page de table des matières pour ce bloc-notes. Vous pouvez actualiser cette page ou créer une nouvelle page.
+    <value>Il existe une page de table des matières pour ce bloc-notes. Vous pouvez actualiser cette page ou créer une nouvelle page.
 
 Voulez-vous actualiser la page existante ?</value>
     <comment>message box</comment>
   </data>
   <data name="InsertTocForSection_RefreshQuestion" xml:space="preserve">
-    <value>Il y a une page de table des matières pour cette section. Vous pouvez actualiser cette page ou créer une nouvelle page.
+    <value>Il existe une page de table des matières pour cette section. Vous pouvez actualiser cette page ou créer une nouvelle page.
 
 Voulez-vous actualiser la page existante ?</value>
     <comment>message box</comment>

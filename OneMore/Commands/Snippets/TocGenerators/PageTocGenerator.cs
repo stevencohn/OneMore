@@ -47,9 +47,11 @@ namespace River.OneMoreAddIn.Commands.Snippets.TocGenerators
 				return false;
 			}
 
+			var refreshing = parameters.Contains(RefreshCmd);
+
 			// build new TOC...
 
-			var op = parameters.Contains("refresh") ? "refresh" : "build";
+			var op = refreshing ? "refresh" : "build";
 			logger.WriteLine($"{op} toc for page {page.Title}");
 
 			PageNamespace.Set(ns);
@@ -119,7 +121,7 @@ namespace River.OneMoreAddIn.Commands.Snippets.TocGenerators
 		private bool ValidatePage(OneNote one,
 			out XElement topElement, out List<Heading> headings, out string titleID)
 		{
-			// check taht there are headings on the page...
+			// check that there are headings on the page...
 
 			headings = null;
 			titleID = null;
@@ -130,16 +132,16 @@ namespace River.OneMoreAddIn.Commands.Snippets.TocGenerators
 					.Any(m => m.Attribute("name").Value == MetaNames.TaggingBank))?
 				.Element(ns + "OEChildren");
 
-			if (topElement == null)
+			if (topElement is null)
 			{
-				//ShowError(Resx.InsertTocCommand_NoHeadings);
+				UI.MoreMessageBox.ShowError(one.OnwerWindow, Resx.InsertTocCommand_NoHeadings);
 				return false;
 			}
 
 			headings = page.GetHeadings(one);
 			if (!headings.Any())
 			{
-				//ShowError(Resx.InsertTocCommand_NoHeadings);
+				UI.MoreMessageBox.ShowError(one.OnwerWindow, Resx.InsertTocCommand_NoHeadings);
 				return false;
 			}
 
@@ -150,9 +152,9 @@ namespace River.OneMoreAddIn.Commands.Snippets.TocGenerators
 				.Attributes("objectID")
 				.FirstOrDefault()?.Value;
 
-			if (titleID == null)
+			if (titleID is null)
 			{
-				//ShowError(Resx.InsertTocCommand_NoHeadings);
+				UI.MoreMessageBox.ShowError(one.OnwerWindow, Resx.InsertTocCommand_NoHeadings);
 				return false;
 			}
 
@@ -302,7 +304,7 @@ namespace River.OneMoreAddIn.Commands.Snippets.TocGenerators
 		public override async Task<RefreshOption> RefreshExistingPage()
 		{
 			await Task.Yield();
-			return RefreshOption.Refresh;
+			return RefreshOption.Build;
 		}
 	}
 }

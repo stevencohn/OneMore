@@ -1722,13 +1722,13 @@ Nagłówek niestandardowy 3</value>
     <comment>checkbox</comment>
   </data>
   <data name="InsertTocForNotebook_RefreshQuestion" xml:space="preserve">
-    <value>Dla tego notatnika znajduje się strona ze spisem treści. Możesz odświeżyć tę stronę lub utworzyć nową stronę.
+    <value>Dla tego notesu dostępna jest strona ze spisem treści. Możesz odświeżyć tę stronę lub utworzyć nową stronę.
 
 Czy chcesz odświeżyć istniejącą stronę?</value>
     <comment>message box</comment>
   </data>
   <data name="InsertTocForSection_RefreshQuestion" xml:space="preserve">
-    <value>Dla tej sekcji znajduje się strona ze spisem treści. Możesz odświeżyć tę stronę lub utworzyć nową stronę.
+    <value>W tej sekcji znajduje się spis treści. Możesz odświeżyć tę stronę lub utworzyć nową stronę.
 
 Czy chcesz odświeżyć istniejącą stronę?</value>
     <comment>message box</comment>

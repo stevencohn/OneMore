@@ -1726,13 +1726,13 @@ Custom Heading 3</value>
     <comment>checkbox</comment>
   </data>
   <data name="InsertTocForNotebook_RefreshQuestion" xml:space="preserve">
-    <value>There is a table of contents page for thi notebook. You can refresh that page or create a new page.
+    <value>There is a table of contents page for this notebook. You can refresh that page or create a new page.
 
 Do you want to refresh the existing page?</value>
     <comment>message box</comment>
   </data>
   <data name="InsertTocForSection_RefreshQuestion" xml:space="preserve">
-    <value>There is a table of contents page for thi section. You can refresh that page or create a new page.
+    <value>There is a table of contents page for this section. You can refresh that page or create a new page.
 
 Do you want to refresh the existing page?</value>
     <comment>message box</comment>

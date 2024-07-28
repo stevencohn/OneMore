@@ -1720,7 +1720,7 @@ Wilt u de bestaande pagina vernieuwen?</value>
     <comment>message box</comment>
   </data>
   <data name="InsertTocForSection_RefreshQuestion" xml:space="preserve">
-    <value>Er is een inhoudsopgave voor dit gedeelte. U kunt die pagina vernieuwen of een nieuwe pagina maken.
+    <value>Er is een inhoudsopgave voor dit onderdeel. U kunt die pagina vernieuwen of een nieuwe pagina maken.
 
 Wilt u de bestaande pagina vernieuwen?</value>
     <comment>message box</comment>

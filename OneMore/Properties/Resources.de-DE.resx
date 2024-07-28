@@ -1717,7 +1717,7 @@ Möchten Sie die bestehende Seite aktualisieren?</value>
     <comment>message box</comment>
   </data>
   <data name="InsertTocForSection_RefreshQuestion" xml:space="preserve">
-    <value>Für diesen Abschnitt gibt es eine Seite mit einem Inhaltsverzeichnis. Sie können diese Seite aktualisieren oder eine neue Seite erstellen.
+    <value>Für diesen Abschnitt gibt es eine Inhaltsverzeichnisseite. Sie können diese Seite aktualisieren oder eine neue Seite erstellen.
 
 Möchten Sie die bestehende Seite aktualisieren?</value>
     <comment>message box</comment>

@@ -97,7 +97,7 @@ namespace River.OneMoreAddIn.Commands.Snippets.TocGenerators
 				.FirstOrDefault(e =>
 					e.Attribute("name") is XAttribute attr && attr.Value == Toc.MetaName);
 
-			if (meta == null)
+			if (meta is null)
 			{
 				// make new and add to page...
 
@@ -131,7 +131,7 @@ namespace River.OneMoreAddIn.Commands.Snippets.TocGenerators
 					}
 					else if (insertHere)
 					{
-						if (page.GetSelectedElements() != null &&
+						if (page.GetSelectedElements() is not null &&
 							page.SelectionScope != SelectionScope.Unknown)
 						{
 							container.Remove();
@@ -209,7 +209,7 @@ namespace River.OneMoreAddIn.Commands.Snippets.TocGenerators
 					}
 				}
 
-				if (style != null)
+				if (style is not null)
 				{
 					title.SetStyle(style.ToCss());
 				}

@@ -1722,13 +1722,13 @@ Total Row Font
     <comment>checkbox</comment>
   </data>
   <data name="InsertTocForNotebook_RefreshQuestion" xml:space="preserve">
-    <value>יש דף תוכן עניינים למחברת הזו. אתה יכול לרענן את הדף או ליצור דף חדש.
+    <value>למחברת זו יש דף תוכן עניינים. אתה יכול לרענן את הדף או ליצור דף חדש.
 
 האם ברצונך לרענן את העמוד הקיים?</value>
     <comment>message box</comment>
   </data>
   <data name="InsertTocForSection_RefreshQuestion" xml:space="preserve">
-    <value>יש דף תוכן לחלק הזה. אתה יכול לרענן את הדף או ליצור דף חדש.
+    <value>יש דף תוכן לחלק זה. אתה יכול לרענן את הדף או ליצור דף חדש.
 
 האם ברצונך לרענן את העמוד הקיים?</value>
     <comment>message box</comment>

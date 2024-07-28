@@ -117,7 +117,7 @@ namespace River.OneMoreAddIn.Commands.Snippets.TocGenerators
 			}
 			finally
 			{
-				if (progress != null)
+				if (progress is not null)
 				{
 					progress.Close();
 					progress.Dispose();

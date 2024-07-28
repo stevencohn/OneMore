@@ -111,7 +111,7 @@ namespace River.OneMoreAddIn.Commands.Snippets.TocGenerators
 					var link = one.GetHyperlink(pageID, string.Empty);
 					var name = element.Attribute("name").Value;
 
-					if (progress != null)
+					if (progress is not null)
 					{
 						progress.SetMessage(name);
 						progress.Increment();
@@ -144,7 +144,7 @@ namespace River.OneMoreAddIn.Commands.Snippets.TocGenerators
 				.FirstOrDefault(e => !e.Elements(ns + "Meta")
 					.Any(m => m.Attribute("name").Value == MetaNames.TaggingBank));
 
-			if (outline == null)
+			if (outline is null)
 			{
 				return string.Empty;
 			}
@@ -153,7 +153,7 @@ namespace River.OneMoreAddIn.Commands.Snippets.TocGenerators
 			var preview = outline.Descendants(ns + "T")?.Nodes().OfType<XCData>()
 				.Select(c => c.GetWrapper().Value).Aggregate(string.Empty, (a, b) => $"{a} {b}");
 
-			if (preview == null || preview.Length == 0)
+			if (preview is null || preview.Length == 0)
 			{
 				return string.Empty;
 			}
