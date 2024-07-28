@@ -193,10 +193,7 @@ namespace River.OneMoreAddIn.Commands.Snippets.TocGenerators
 					.Select(e => e.Parent.Parent)
 					.FirstOrDefault();
 
-				if (container is not null)
-				{
-					container.Elements().Remove();
-				}
+				container?.Elements().Remove();
 
 				// rebuild...
 
