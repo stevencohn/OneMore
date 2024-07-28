@@ -144,8 +144,6 @@ namespace River.OneMoreAddIn.Commands.Snippets.TocGenerators
 				return string.Empty;
 			}
 
-			logger.WriteLine($"page {page.Title}");
-
 			// sanitize the content, extracting only raw text and aggregating lines
 			var preview = outline.Descendants(ns + "T")?.Nodes().OfType<XCData>()
 				.Select(c => c.GetWrapper().Value).Aggregate(string.Empty, (a, b) => $"{a} {b}");

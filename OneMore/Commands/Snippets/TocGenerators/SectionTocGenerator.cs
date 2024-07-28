@@ -41,11 +41,8 @@ namespace River.OneMoreAddIn.Commands.Snippets.TocGenerators
 
 			if (pageID is null)
 			{
-				logger.WriteLine("no section toc");
 				return RefreshOption.Build;
 			}
-
-			logger.WriteLine($"found section toc {pageID}");
 
 			var result = UI.MoreMessageBox.ShowQuestion(
 				one.OnwerWindow, Resx.InsertTocForSection_RefreshQuestion, true);
@@ -60,9 +57,7 @@ namespace River.OneMoreAddIn.Commands.Snippets.TocGenerators
 				return RefreshOption.Build;
 			}
 			
-			logger.WriteLine("navigating");
 			await one.NavigateTo(pageID);
-			logger.WriteLine("navigated");
 
 			return RefreshOption.Refresh;
 		}
