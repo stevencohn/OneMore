@@ -13,6 +13,9 @@ namespace River.OneMoreAddIn.Commands.Snippets.TocGenerators
 	using Resx = Properties.Resources;
 
 
+	/// <summary>
+	/// Builds or refreshes a hierarchy TOC for the current notebook
+	/// </summary>
 	internal class NotebookTocGenerator : HierarchyTocGenerator
 	{
 		public const string RefreshNotebookCmd = "refreshn";

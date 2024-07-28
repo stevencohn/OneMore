@@ -14,6 +14,9 @@ namespace River.OneMoreAddIn.Commands.Snippets.TocGenerators
 	using Resx = Properties.Resources;
 
 
+	/// <summary>
+	/// Builds or refreshes a TOC for both custom and standard headings on the current page
+	/// </summary>
 	internal sealed class PageTocGenerator : TocGenerator
 	{
 		public const int MinToCWidth = 400;

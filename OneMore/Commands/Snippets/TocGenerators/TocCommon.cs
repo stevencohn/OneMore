@@ -29,6 +29,9 @@ namespace River.OneMoreAddIn.Commands.Snippets.TocGenerators
 	}
 
 
+	/// <summary>
+	/// User selected option when there is a hierarchy page to refresh
+	/// </summary>
 	internal enum RefreshOption
 	{
 		Cancel,

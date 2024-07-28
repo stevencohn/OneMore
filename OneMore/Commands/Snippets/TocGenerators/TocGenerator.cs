@@ -14,7 +14,7 @@ namespace River.OneMoreAddIn.Commands.Snippets.TocGenerators
 
 
 	/// <summary>
-	/// 
+	/// Base class for TOC generators
 	/// </summary>
 	internal abstract class TocGenerator : Loggable
 	{

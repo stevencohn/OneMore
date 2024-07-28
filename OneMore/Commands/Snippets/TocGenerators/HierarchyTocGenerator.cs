@@ -11,6 +11,9 @@ namespace River.OneMoreAddIn.Commands.Snippets.TocGenerators
 	using System.Xml.Linq;
 
 
+	/// <summary>
+	/// Intermediate base class for hierarchy TOC generators, section and notebook
+	/// </summary>
 	internal abstract class HierarchyTocGenerator : TocGenerator
 	{
 		protected const string LongDash = "\u2015";

@@ -12,6 +12,9 @@ namespace River.OneMoreAddIn.Commands.Snippets.TocGenerators
 	using Resx = Properties.Resources;
 
 
+	/// <summary>
+	/// Builds or refreshes a hierarchy TOC for the current section
+	/// </summary>
 	internal class SectionTocGenerator : HierarchyTocGenerator
 	{
 		public const string RefreshSectionCmd = "refreshs";
