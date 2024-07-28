@@ -40,10 +40,14 @@ namespace River.OneMoreAddIn.Commands.Snippets.TocGenerators
 
 			if (!ValidatePage(one, out var topElement, out var headings, out var titleID))
 			{
+				logger.WriteLine($"{nameof(PageTocGenerator)} found no headings");
 				return false;
 			}
 
 			// build new TOC...
+
+			var op = parameters.Contains("refresh") ? "refresh" : "build";
+			logger.WriteLine($"{op} toc for page {page.Title}");
 
 			PageNamespace.Set(ns);
 			var container = LocateInsertionPoint(page, ns, topElement);

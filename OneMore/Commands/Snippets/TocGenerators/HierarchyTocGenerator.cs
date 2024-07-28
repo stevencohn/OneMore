@@ -45,6 +45,8 @@ namespace River.OneMoreAddIn.Commands.Snippets.TocGenerators
 				var section = await one.GetSection();
 				var sectionId = section.Attribute("ID").Value;
 
+				logger.WriteLine($"build hierarchy toc in section {section.Attribute("name").Value}");
+
 				one.CreatePage(sectionId, out var pageId);
 
 				var page = await one.GetPage(pageId);
@@ -196,6 +198,8 @@ namespace River.OneMoreAddIn.Commands.Snippets.TocGenerators
 				// rebuild...
 
 				var section = await one.GetSection();
+				logger.WriteLine($"refresh hierarchy toc in section {section.Attribute("name").Value}");
+
 				await BuildContents(page, container, section);
 			}
 			finally
