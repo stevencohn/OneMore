@@ -110,9 +110,7 @@ namespace River.OneMoreAddIn.Commands.Snippets.TocGenerators
 
 					await BuildSectionTree(one, ns, indent, element.Elements(), level + 1);
 
-					container.Add(
-						new XElement(ns + "OE", indent)
-						);
+					container.Add(new Paragraph(indent));
 				}
 				else if (element.Name.LocalName == "Section" && notBin)
 				{
@@ -129,16 +127,13 @@ namespace River.OneMoreAddIn.Commands.Snippets.TocGenerators
 
 						_ = await BuildSection(one, indent, pages.ToArray(), index, 1);
 
-						container.Add(new XElement(ns + "OE",
+						container.Add(new Paragraph(
 							new XElement(ns + "T", new XCData($"§ <a href=\"{link}\">{name}</a>")),
-							indent
-							));
+							indent));
 					}
 					else
 					{
-						container.Add(new XElement(ns + "OE",
-							new XElement(ns + "T", new XCData($"§ <a href=\"{link}\">{name}</a>")
-							)));
+						container.Add(new Paragraph($"§ <a href=\"{link}\">{name}</a>"));
 					}
 				}
 			}
