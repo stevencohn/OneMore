@@ -1712,6 +1712,18 @@
     <value>أضف ارتباطًا إلى كل عنوان للانتقال إلى أعلى الصفحة</value>
     <comment>checkbox</comment>
   </data>
+  <data name="InsertTocForNotebook_RefreshQuestion" xml:space="preserve">
+    <value>يوجد جدول محتويات لصفحة دفتر الملاحظات. يمكنك تحديث تلك الصفحة أو إنشاء صفحة جديدة.
+
+هل تريد تحديث الصفحة الحالية؟</value>
+    <comment>message box</comment>
+  </data>
+  <data name="InsertTocForSection_RefreshQuestion" xml:space="preserve">
+    <value>يوجد جدول محتويات لصفحة هذا القسم. يمكنك تحديث تلك الصفحة أو إنشاء صفحة جديدة.
+
+هل تريد تحديث الصفحة الحالية؟</value>
+    <comment>message box</comment>
+  </data>
   <data name="JoinParagraphCommand_Select" xml:space="preserve">
     <value>حدد سطرين أو أكثر للانضمام</value>
     <comment>info message</comment>

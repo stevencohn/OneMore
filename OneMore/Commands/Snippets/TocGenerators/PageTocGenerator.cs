@@ -290,5 +290,12 @@ namespace River.OneMoreAddIn.Commands.Snippets.TocGenerators
 				return false;
 			}
 		}
+
+
+		public override async Task<RefreshOption> RefreshExistingPage()
+		{
+			await Task.Yield();
+			return RefreshOption.Refresh;
+		}
 	}
 }

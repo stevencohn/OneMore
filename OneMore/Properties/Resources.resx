@@ -1725,6 +1725,18 @@ Custom Heading 3</value>
     <value>Add link to each heading to jump to top of page</value>
     <comment>checkbox</comment>
   </data>
+  <data name="InsertTocForNotebook_RefreshQuestion" xml:space="preserve">
+    <value>There is a table of contents page for thi notebook. You can refresh that page or create a new page.
+
+Do you want to refresh the existing page?</value>
+    <comment>message box</comment>
+  </data>
+  <data name="InsertTocForSection_RefreshQuestion" xml:space="preserve">
+    <value>There is a table of contents page for thi section. You can refresh that page or create a new page.
+
+Do you want to refresh the existing page?</value>
+    <comment>message box</comment>
+  </data>
   <data name="JoinParagraphCommand_Select" xml:space="preserve">
     <value>Select two or more lines to join</value>
     <comment>info message</comment>

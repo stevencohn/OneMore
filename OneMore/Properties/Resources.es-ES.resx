@@ -1712,6 +1712,18 @@ Título personalizado 3</value>
     <value>Agregue un enlace a cada encabezado para saltar a la parte superior de la página</value>
     <comment>checkbox</comment>
   </data>
+  <data name="InsertTocForNotebook_RefreshQuestion" xml:space="preserve">
+    <value>Hay una página de índice para este cuaderno. Puede actualizar esa página o crear una nueva.
+
+¿Quieres actualizar la página existente?</value>
+    <comment>message box</comment>
+  </data>
+  <data name="InsertTocForSection_RefreshQuestion" xml:space="preserve">
+    <value>Hay una página de índice para esta sección. Puede actualizar esa página o crear una nueva.
+
+¿Quieres actualizar la página existente?</value>
+    <comment>message box</comment>
+  </data>
   <data name="JoinParagraphCommand_Select" xml:space="preserve">
     <value>Seleccione dos o más líneas para unir</value>
     <comment>info message</comment>

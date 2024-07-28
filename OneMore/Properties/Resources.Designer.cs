@@ -4425,6 +4425,28 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to There is a table of contents page for thi notebook. You can refresh that page or create a new page.
+        ///
+        ///Do you want to refresh the existing page?.
+        /// </summary>
+        internal static string InsertTocForNotebook_RefreshQuestion {
+            get {
+                return ResourceManager.GetString("InsertTocForNotebook_RefreshQuestion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to There is a table of contents page for thi section. You can refresh that page or create a new page.
+        ///
+        ///Do you want to refresh the existing page?.
+        /// </summary>
+        internal static string InsertTocForSection_RefreshQuestion {
+            get {
+                return ResourceManager.GetString("InsertTocForSection_RefreshQuestion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Select two or more lines to join.
         /// </summary>
         internal static string JoinParagraphCommand_Select {

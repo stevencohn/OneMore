@@ -1712,6 +1712,18 @@ Titre personnalisé 3</value>
     <value>Ajoutez un lien à chaque titre pour passer en haut de la page</value>
     <comment>checkbox</comment>
   </data>
+  <data name="InsertTocForNotebook_RefreshQuestion" xml:space="preserve">
+    <value>Il y a une page de table des matières pour ce bloc-notes. Vous pouvez actualiser cette page ou créer une nouvelle page.
+
+Voulez-vous actualiser la page existante ?</value>
+    <comment>message box</comment>
+  </data>
+  <data name="InsertTocForSection_RefreshQuestion" xml:space="preserve">
+    <value>Il y a une page de table des matières pour cette section. Vous pouvez actualiser cette page ou créer une nouvelle page.
+
+Voulez-vous actualiser la page existante ?</value>
+    <comment>message box</comment>
+  </data>
   <data name="JoinParagraphCommand_Select" xml:space="preserve">
     <value>Sélectionnez deux ou plusieurs lignes à joindre</value>
     <comment>info message</comment>

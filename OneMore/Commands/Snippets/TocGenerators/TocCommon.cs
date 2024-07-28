@@ -27,4 +27,12 @@ namespace River.OneMoreAddIn.Commands.Snippets.TocGenerators
 		/// </summary>
 		public const string RefreshUri = "onemore://InsertTocCommand/";
 	}
+
+
+	internal enum RefreshOption
+	{
+		Cancel,
+		Build,
+		Refresh
+	}
 }

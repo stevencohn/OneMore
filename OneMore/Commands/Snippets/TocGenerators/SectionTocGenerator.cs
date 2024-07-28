@@ -26,6 +26,48 @@ namespace River.OneMoreAddIn.Commands.Snippets.TocGenerators
 		protected override string RefreshCmd => RefreshSectionCmd;
 
 
+		public override async Task<RefreshOption> RefreshExistingPage()
+		{
+			await using var one = new OneNote();
+			var section = await one.GetSection();
+			var ns = section.GetNamespaceOfPrefix(OneNote.Prefix);
+
+			var pageID = section.Elements(ns + "Page").Elements(ns + "Meta")
+				.Where(e =>
+					e.Attribute("name").Value == MetaNames.TableOfContents &&
+					e.Attribute("content").Value == "section")
+				.Select(e => e.Parent.Attribute("ID").Value)
+				.FirstOrDefault();
+
+			if (pageID is null)
+			{
+				logger.WriteLine("no section toc");
+				return RefreshOption.Build;
+			}
+
+			logger.WriteLine($"found section toc {pageID}");
+
+			var result = UI.MoreMessageBox.ShowQuestion(
+				one.OnwerWindow, Resx.InsertTocForSection_RefreshQuestion, true);
+
+			if (result == System.Windows.Forms.DialogResult.Cancel)
+			{
+				return RefreshOption.Cancel;
+			}
+
+			if (result == System.Windows.Forms.DialogResult.No)
+			{
+				return RefreshOption.Build;
+			}
+			
+			logger.WriteLine("navigating");
+			await one.NavigateTo(pageID);
+			logger.WriteLine("navigated");
+
+			return RefreshOption.Refresh;
+		}
+
+
 		protected override async Task BuildContents(
 			Page page, XElement container, XElement section)
 		{
@@ -37,6 +79,8 @@ namespace River.OneMoreAddIn.Commands.Snippets.TocGenerators
 
 			page.Title = string.Format(Resx.InsertTocCommand_TOCSections, section.Attribute("name").Value);
 			cite = page.GetQuickStyle(StandardStyles.Citation);
+
+			page.SetMeta(MetaNames.TableOfContents, "section");
 
 			// TOC Title...
 

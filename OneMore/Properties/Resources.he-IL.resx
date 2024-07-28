@@ -1721,6 +1721,18 @@ Total Row Font
     <value>הוסף קישור לכל כותרת כדי לדלג לראש העמוד</value>
     <comment>checkbox</comment>
   </data>
+  <data name="InsertTocForNotebook_RefreshQuestion" xml:space="preserve">
+    <value>יש דף תוכן עניינים למחברת הזו. אתה יכול לרענן את הדף או ליצור דף חדש.
+
+האם ברצונך לרענן את העמוד הקיים?</value>
+    <comment>message box</comment>
+  </data>
+  <data name="InsertTocForSection_RefreshQuestion" xml:space="preserve">
+    <value>יש דף תוכן לחלק הזה. אתה יכול לרענן את הדף או ליצור דף חדש.
+
+האם ברצונך לרענן את העמוד הקיים?</value>
+    <comment>message box</comment>
+  </data>
   <data name="JoinParagraphCommand_Select" xml:space="preserve">
     <value>בחר שתי שורות או יותר להצטרפות</value>
     <comment>info message</comment>

@@ -1711,6 +1711,18 @@ OneNote 文件 (*.one)</value>
     <value>将链接添加到每个标题以跳至页面顶部</value>
     <comment>checkbox</comment>
   </data>
+  <data name="InsertTocForNotebook_RefreshQuestion" xml:space="preserve">
+    <value>该笔记本有一个目录页。您可以刷新该页面或创建新页面。
+
+您想刷新现有页面吗？</value>
+    <comment>message box</comment>
+  </data>
+  <data name="InsertTocForSection_RefreshQuestion" xml:space="preserve">
+    <value>本节有一个目录页。您可以刷新该页面或创建新页面。
+
+您想刷新现有页面吗？</value>
+    <comment>message box</comment>
+  </data>
   <data name="JoinParagraphCommand_Select" xml:space="preserve">
     <value>选择两条或多条线加入</value>
     <comment>info message</comment>

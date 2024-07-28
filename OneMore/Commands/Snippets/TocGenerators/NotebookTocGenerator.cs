@@ -27,6 +27,43 @@ namespace River.OneMoreAddIn.Commands.Snippets.TocGenerators
 		protected override string RefreshCmd => RefreshNotebookCmd;
 
 
+		public override async Task<RefreshOption> RefreshExistingPage()
+		{
+			await using var one = new OneNote();
+			var notebook = await one.GetNotebook(OneNote.Scope.Pages);
+			var ns = notebook.GetNamespaceOfPrefix(OneNote.Prefix);
+
+			var pageID = notebook.Descendants(ns + "Page").Elements(ns + "Meta")
+				.Where(e =>
+					e.Attribute("name").Value == MetaNames.TableOfContents &&
+					e.Attribute("content").Value == "notebook")
+				.Select(e => e.Parent.Attribute("ID").Value)
+				.FirstOrDefault();
+
+			if (pageID is null)
+			{
+				return RefreshOption.Build;
+			}
+
+			var result = UI.MoreMessageBox.ShowQuestion(
+				one.OnwerWindow, Resx.InsertTocForNotebook_RefreshQuestion, true);
+
+			if (result == System.Windows.Forms.DialogResult.Cancel)
+			{
+				return RefreshOption.Cancel;
+			}
+
+			if (result == System.Windows.Forms.DialogResult.No)
+			{
+				return RefreshOption.Build;
+			}
+
+			await one.NavigateTo(pageID);
+
+			return RefreshOption.Refresh;
+		}
+
+
 		protected override async Task BuildContents(
 			Page page, XElement container, XElement section)
 		{
@@ -37,10 +74,12 @@ namespace River.OneMoreAddIn.Commands.Snippets.TocGenerators
 			var notebook = await one.GetNotebook(scope);
 
 			// seeds the PrimaryTitle property
-			primaryTitle = notebook.Attribute("name").Value;
+			primaryTitle = notebook.Attribute("name").Value.Trim();
 
-			page.Title = string.Format(Resx.InsertTocCommand_TOCNotebook, notebook.Attribute("name").Value);
+			page.Title = string.Format(Resx.InsertTocCommand_TOCNotebook, primaryTitle);
 			cite = page.GetQuickStyle(StandardStyles.Citation);
+
+			page.SetMeta(MetaNames.TableOfContents, "notebook");
 
 			// TOC Title...
 

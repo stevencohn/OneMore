@@ -143,7 +143,16 @@ namespace River.OneMoreAddIn.Commands
 
 			try
 			{
-				await generator.Build();
+				var option = await generator.RefreshExistingPage();
+				if (option == RefreshOption.Refresh)
+				{
+					logger.WriteLine("refreshing instead of building");
+					await generator.Refresh();
+				}
+				else if (option == RefreshOption.Build)
+				{
+					await generator.Build();
+				}
 			}
 			catch (Exception exc)
 			{
