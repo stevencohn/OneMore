@@ -33,7 +33,7 @@ namespace River.OneMoreAddIn.Models
 		public static readonly string ReminderReport = "omReminderReport";
 
 		// page is a section or notebook TOC
-		public static readonly string TableOfContents = "onTableOfContents";
+		public static readonly string TableOfContents = "omTableOfContents";
 
 		// Outline meta to mark visible word bank
 		public static readonly string TaggingBank = "omTaggingBank";
