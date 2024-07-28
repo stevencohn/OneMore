@@ -27,15 +27,9 @@ namespace River.OneMoreAddIn.Commands.Snippets.TocGenerators
 		protected override string RefreshCmd => RefreshNotebookCmd;
 
 
-		public override async Task<bool> Build()
+		protected override async Task BuildContents(
+			Page page, XElement container, XElement section)
 		{
-			await using var one = new OneNote();
-			var section = await one.GetSection();
-			var sectionId = section.Attribute("ID").Value;
-
-			one.CreatePage(sectionId, out var pageId);
-
-			var page = await one.GetPage(pageId);
 			var ns = page.Namespace;
 			PageNamespace.Set(ns);
 
@@ -48,15 +42,20 @@ namespace River.OneMoreAddIn.Commands.Snippets.TocGenerators
 			page.Title = string.Format(Resx.InsertTocCommand_TOCNotebook, notebook.Attribute("name").Value);
 			cite = page.GetQuickStyle(StandardStyles.Citation);
 
-			var container = new XElement(ns + "OEChildren");
-
 			// TOC Title...
 
 			var segments = string.Empty;
 			if (parameters.Contains("pages")) segments = $"{segments}/pages";
 			if (parameters.Contains("preview")) segments = $"{segments}/preview";
 
-			container.Add(MakeTitle(page, segments));
+			var titleElement = MakeTitle(page, segments);
+				
+			// add meta to title OE
+			if (!parameters.Contains("notebook")) parameters.Insert(0, "notebook");
+			var segs = parameters.Aggregate((a, b) => $"{a}/{b}");
+			titleElement.AddFirst(new Meta(Toc.MetaName, segs));
+
+			container.Add(titleElement);
 			container.Add(new Paragraph(string.Empty));
 
 			// TOC contents...
@@ -82,31 +81,13 @@ namespace River.OneMoreAddIn.Commands.Snippets.TocGenerators
 				}
 			}
 
-			var title = page.Root.Elements(ns + "Title").First();
-			title.AddAfterSelf(new XElement(ns + "Outline", container));
-
 			await one.Update(page);
-
-			// move TOC page to top of section...
-
-			// get current section again after new page is created
-			section = await one.GetSection();
-
-			var entry = section.Elements(ns + "Page")
-				.First(e => e.Attribute("ID").Value == pageId);
-
-			entry.Remove();
-			section.AddFirst(entry);
-			one.UpdateHierarchy(section);
-
-			await one.NavigateTo(pageId);
-			return true;
 		}
 
 
 		private async Task BuildSectionTree(
-			OneNote one, XNamespace ns, XElement container,
-			IEnumerable<XElement> elements, int level)
+		OneNote one, XNamespace ns, XElement container,
+		IEnumerable<XElement> elements, int level)
 		{
 			foreach (var element in elements)
 			{
@@ -161,12 +142,6 @@ namespace River.OneMoreAddIn.Commands.Snippets.TocGenerators
 					}
 				}
 			}
-		}
-
-
-		public override Task<bool> Refresh()
-		{
-			throw new System.NotImplementedException();
 		}
 	}
 }

@@ -16,8 +16,6 @@ namespace River.OneMoreAddIn.Commands.Snippets.TocGenerators
 	{
 		public const string RefreshSectionCmd = "refreshs";
 
-		private OneNote one;
-
 
 		public SectionTocGenerator(TocParameters parameters)
 			: base(parameters)
@@ -28,45 +26,8 @@ namespace River.OneMoreAddIn.Commands.Snippets.TocGenerators
 		protected override string RefreshCmd => RefreshSectionCmd;
 
 
-		public override async Task<bool> Build()
-		{
-			one = new OneNote();
-
-			try
-			{
-				var section = await one.GetSection();
-				var sectionId = section.Attribute("ID").Value;
-
-				one.CreatePage(sectionId, out var pageId);
-
-				var page = await one.GetPage(pageId);
-				var container = page.EnsureContentContainer();
-
-				await BuildContents(page, container, section);
-
-				// move TOC page to top of section...
-
-				// get current section again after new page is created
-				section = await one.GetSection();
-
-				var entry = section.Elements(page.Namespace + "Page")
-					.First(e => e.Attribute("ID").Value == pageId);
-
-				entry.Remove();
-				section.AddFirst(entry);
-				one.UpdateHierarchy(section);
-
-				await one.NavigateTo(pageId);
-			}
-			finally
-			{
-				await one.DisposeAsync();
-			}
-			return true;
-		}
-
-
-		private async Task BuildContents(Page page, XElement container, XElement section)
+		protected override async Task BuildContents(
+			Page page, XElement container, XElement section)
 		{
 			var ns = page.Namespace;
 			PageNamespace.Set(ns);
@@ -122,42 +83,6 @@ namespace River.OneMoreAddIn.Commands.Snippets.TocGenerators
 			}
 
 			await one.Update(page);
-		}
-
-
-		public override async Task<bool> Refresh()
-		{
-			one = new OneNote();
-
-			try
-			{
-				var section = await one.GetSection();
-
-				var page = await one.GetPage();
-				var ns = page.Namespace;
-
-				// remove old contents...
-
-				var container = page.Root.Descendants(ns + "Meta")
-					.Where(e => e.Attribute("name").Value == Toc.MetaName)
-					.Select(e => e.Parent.Parent)
-					.FirstOrDefault();
-
-				if (container is not null)
-				{
-					container.Elements().Remove();
-				}
-
-				// rebuild...
-
-				await BuildContents(page, container, section);
-			}
-			finally
-			{
-				await one.DisposeAsync();
-			}
-
-			return true;
 		}
 	}
 }
