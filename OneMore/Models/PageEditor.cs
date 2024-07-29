@@ -26,61 +26,57 @@ namespace River.OneMoreAddIn.Models
 		/// <summary>
 		/// Provides an on-demand instantiation of schema arrays.
 		/// </summary>
-		private static class Schema
+		private sealed class Schema
 		{
-			private static string[] oHeaders;   // Outline info elements
-			private static string[] oECHeaders; // OEChildren info elements
-			private static string[] oECContent; // OEChildren content elements
-			private static string[] oEHeaders;  // OE info elements
-			private static string[] oEContent;  // OE content elements
+			private string[] outHeaders;   // Outline info elements
+			private string[] oecHeaders; // OEChildren info elements
+			private string[] oecContent; // OEChildren content elements
+			private string[] oeHeaders;  // OE info elements
+			private string[] oeContent;  // OE content elements
 
 			// Outline Schema...
 
-			public static string[] OHeaders =>
-				oHeaders ??= new string[]
-				{
-					"Postion", "Size", "Meta", "Indents"
-				};
+			public string[] OutHeaders => outHeaders ??= new string[]
+			{
+				"Postion", "Size", "Meta", "Indents"
+			};
 
-			// TBD OContent
+			// public static string[] OutContent => ...
 
 			// OEChildren Schema...
 
-			public static string[] OECHeaders =>
-				oECHeaders ??= new string[]
-				{
-					"ChildOELayout"
-				};
+			public string[] OecHeaders => oecHeaders ??= new string[]
+			{
+				"ChildOELayout"
+			};
 
-			public static string[] OECContent =>
-				oECContent ??= new string[]
-				{
-					"OE", "HTMLBlock"
-				};
+			public string[] OecContent => oecContent ??= new string[]
+			{
+				"OE", "HTMLBlock"
+			};
 
 			// OE Schema...
 
-			public static string[] OEHeaders =>
-				oEHeaders ??= new string[]
-				{
-					"MediaIndex", "Tag", "OutlookTask"/*+Tag?*/, "Meta", "List"
-				};
+			public string[] OeHeaders => oeHeaders ??= new string[]
+			{
+				"MediaIndex", "Tag", "OutlookTask"/*+Tag?*/, "Meta", "List"
+			};
 
-			public static string[] OEContent =>
-				oEContent ??= new string[]
-				{
-					"Image", "Table", "InkDrawing", "InsertedFile",
-					"MediaFile", "InkParagraph", "FutureObject",
-					"T", "InkWord",
-					"OEChildren",
-					"LinkedNote"
-				};
+			public string[] OeContent => oeContent ??= new string[]
+			{
+				"Image", "Table", "InkDrawing", "InsertedFile",
+				"MediaFile", "InkParagraph", "FutureObject",
+				"T", "InkWord",
+				"OEChildren",
+				"LinkedNote"
+			};
 		}
 		#endregion Schema
 
 
 		private readonly Page page;
 		private readonly XNamespace ns;
+		private Schema schema;
 
 
 		public PageEditor(Page page)
@@ -297,6 +293,8 @@ namespace River.OneMoreAddIn.Models
 		/// <returns>An OEChildren XElement</returns>
 		public async Task<XElement> ExtractSelectedContent(XElement targetOutline = null)
 		{
+			schema = new Schema();
+
 			var content = new XElement(ns + "OEChildren");
 			//	new XAttribute(XNamespace.Xmlns + OneNote.Prefix, ns.ToString())
 			//);
@@ -372,7 +370,7 @@ namespace River.OneMoreAddIn.Models
 					? prev
 					: start.Parent;
 
-				if (Anchor.Name.LocalName.In(Schema.OHeaders) &&
+				if (Anchor.Name.LocalName.In(schema.OutHeaders) &&
 					Anchor.Parent.Name.LocalName == "Outline")
 				{
 					Anchor = Anchor.Parent;
@@ -439,7 +437,7 @@ namespace River.OneMoreAddIn.Models
 					// anything after this content run means there is more content so not alone
 					next is null &&
 					// header elements don't count towards "content" (or should they!?)
-					(prev is null || prev.Name.LocalName.In(Schema.OEHeaders));
+					(prev is null || prev.Name.LocalName.In(schema.OeHeaders));
 
 				if (fullParagraph)
 				{
@@ -541,13 +539,13 @@ namespace River.OneMoreAddIn.Models
 			{
 				if (element.Name.LocalName == "OE")
 				{
-					headerNames = Schema.OEHeaders;
-					contentNames = Schema.OEContent;
+					headerNames = schema.OeHeaders;
+					contentNames = schema.OeContent;
 				}
 				else
 				{
-					headerNames = Schema.OECHeaders;
-					contentNames = Schema.OECContent;
+					headerNames = schema.OecHeaders;
+					contentNames = schema.OecContent;
 				}
 
 				empty =
@@ -669,7 +667,7 @@ namespace River.OneMoreAddIn.Models
 
 			items = page.Root.Descendants(ns + "OE")
 				.Where(e => e != Anchor &&
-					!e.Elements().Any(c => c.Name.LocalName.In(Schema.OEContent)));
+					!e.Elements().Any(c => c.Name.LocalName.In(schema.OeContent)));
 
 			//logger.WriteLine($"cleaning ~~> {(items.Any() ? items.Count() : 0)} OE");
 			items.Remove();
@@ -712,7 +710,7 @@ namespace River.OneMoreAddIn.Models
 					}
 				}
 			}
-			else if (Anchor.Name.LocalName.In(Schema.OHeaders))
+			else if (Anchor.Name.LocalName.In(schema.OutHeaders))
 			{
 				// if whole table is boxed at top of page then anchor might be an OHeader
 				// so position after headers on next available OEChildren
