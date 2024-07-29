@@ -54,8 +54,7 @@ namespace River.OneMoreAddIn
 			// otherwise closing the primary or last-used active window will leave owner
 			// set to an invalid window handle
 			await using var one = new OneNote();
-			// convert the ulong to a IWin32Window which will be used by ShowDialog calls
-			var owner = one.OwnerWindow; // new Win32WindowHandle(new IntPtr((long)one.WindowHandle));
+			var owner = one.OwnerWindow;
 
 			command.SetFactory(this)
 				.SetLogger(logger)
