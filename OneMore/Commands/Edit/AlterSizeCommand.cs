@@ -67,10 +67,7 @@ namespace River.OneMoreAddIn.Commands
 
 			var count = AlterQuickStyles(page);
 
-			foreach (var outline in page.Root
-				.Elements(ns + "Outline")
-				.Where(e => !e.Elements(ns + "Meta")
-					.Any(m => m.Attribute("name").Value == MetaNames.TaggingBank)))
+			foreach (var outline in page.BodyOutlines)
 			{
 				count +=
 					AlterByName(outline) +

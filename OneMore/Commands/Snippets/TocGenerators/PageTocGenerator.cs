@@ -223,6 +223,12 @@ namespace River.OneMoreAddIn.Commands.Snippets.TocGenerators
 							page.AddNextParagraph(container);
 						}
 					 * 
+					 * 
+					 * 
+					 * Need another Insert Top of Outline option in dialog???
+					 * 
+					 * 
+					 * 
 					 */
 
 					// add container before selected paragraph for now

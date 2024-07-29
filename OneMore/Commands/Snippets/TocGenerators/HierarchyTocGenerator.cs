@@ -140,9 +140,7 @@ namespace River.OneMoreAddIn.Commands.Snippets.TocGenerators
 			var page = await one.GetPage(pageID, OneNote.PageDetail.Basic);
 			var ns = page.Namespace;
 
-			var outline = page.Root.Elements(ns + "Outline")
-				.FirstOrDefault(e => !e.Elements(ns + "Meta")
-					.Any(m => m.Attribute("name").Value == MetaNames.TaggingBank));
+			var outline = page.BodyOutlines.FirstOrDefault();
 
 			if (outline is null)
 			{

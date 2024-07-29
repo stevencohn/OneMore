@@ -161,10 +161,7 @@ namespace River.OneMoreAddIn.Commands
 				}
 			}
 
-			var outRoot = source.Root.Elements(source.Namespace + "Outline")
-				.FirstOrDefault(e => !e.Elements(ns + "Meta")
-					.Any(m => m.Attribute("name").Value == MetaNames.TaggingBank));
-
+			var outRoot = source.BodyOutlines.FirstOrDefault();
 			if (outRoot is null)
 			{
 				// couldn't find an Outline but page may contain other valid content items
