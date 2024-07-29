@@ -70,6 +70,11 @@ namespace River.OneMoreAddIn.Models
 			{
 				SetSize(image.Width, image.Height, false);
 			}
+			// could have known width but auto-height?!
+			else if (size.Attribute("height").Value == "0.0")
+			{
+				size.SetAttributeValue("height", ((float)image.Height).ToInvariantString());
+			}
 
 			return image;
 		}

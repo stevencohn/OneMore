@@ -319,10 +319,7 @@ namespace River.OneMoreAddIn.Commands
 
 		private void ClearContent()
 		{
-			var chalkOutlines = page.Root.Elements(ns + "Outline")
-				.Where(e => !e.Elements(ns + "Meta")
-					.Any(m => m.Attribute("name").Value == MetaNames.TaggingBank));
-
+			var chalkOutlines = page.BodyOutlines;
 			if (chalkOutlines.Any())
 			{
 				// assume the first outline is the report, reuse it as our container

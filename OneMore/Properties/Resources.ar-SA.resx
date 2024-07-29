@@ -1649,11 +1649,11 @@
     <comment>page name</comment>
   </data>
   <data name="InsertTocCommand_TOCNotebook" xml:space="preserve">
-    <value>جدول المحتويات - مفكرة {0}</value>
+    <value>جدول المحتويات📓 {0}</value>
     <comment>page name</comment>
   </data>
   <data name="InsertTocCommand_TOCSections" xml:space="preserve">
-    <value>جدول المحتويات - القسم {0}</value>
+    <value>جدول المحتويات § {0}</value>
     <comment>page name</comment>
   </data>
   <data name="InsertTocCommand_Top" xml:space="preserve">
@@ -1711,6 +1711,24 @@
   <data name="InsertTocDialog_topBox.Text" xml:space="preserve">
     <value>أضف ارتباطًا إلى كل عنوان للانتقال إلى أعلى الصفحة</value>
     <comment>checkbox</comment>
+  </data>
+  <data name="InsertTocForNotebook_RefreshQuestion" xml:space="preserve">
+    <value>هناك صفحة جدول المحتويات لهذا دفتر الملاحظات. يمكنك تحديث تلك الصفحة أو إنشاء صفحة جديدة.
+
+هل تريد تحديث الصفحة الحالية؟</value>
+    <comment>message box</comment>
+  </data>
+  <data name="InsertTocForPage_ClearToc" xml:space="preserve">
+    <value>لا توجد عناوين في هذه الصفحة. ومع ذلك، هناك جدول المحتويات.
+
+هل ترغب في إزالة جدول المحتويات من هذه الصفحة؟</value>
+    <comment>message box</comment>
+  </data>
+  <data name="InsertTocForSection_RefreshQuestion" xml:space="preserve">
+    <value>هناك صفحة جدول المحتويات لهذا القسم. يمكنك تحديث تلك الصفحة أو إنشاء صفحة جديدة.
+
+هل تريد تحديث الصفحة الحالية؟</value>
+    <comment>message box</comment>
   </data>
   <data name="JoinParagraphCommand_Select" xml:space="preserve">
     <value>حدد سطرين أو أكثر للانضمام</value>

@@ -20,6 +20,8 @@ namespace River.OneMoreAddIn.Commands
 
 		public TaggedCommand()
 		{
+			// prevent replay
+			IsCancelled = true;
 		}
 
 

@@ -1,15 +1,18 @@
 ﻿//************************************************************************************************
-// Copyright © 2020 Steven M Cohn.  All rights reserved.
+// Copyright © 2020 Steven M Cohn. All rights reserved.
 //************************************************************************************************
 
 namespace River.OneMoreAddIn.Commands
 {
+	using Snippets.TocGenerators;
 	using System;
 	using Resx = Properties.Resources;
 
 
 	internal partial class InsertTocDialog : UI.MoreForm
 	{
+		private readonly TocParameters parameters;
+
 
 		public InsertTocDialog()
 		{
@@ -43,71 +46,42 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		/// <summary>
-		/// Gets the scope of contents where Self mean add a table of headings to the 
-		/// current page, Pages means add a page with links to all pages in this section,
-		/// and Sections means add a page with links to sections in this notebook.
-		/// </summary>
-		public OneNote.Scope Scope
+		public InsertTocDialog(TocParameters parameters)
+			: this()
 		{
-			get
+			this.parameters = parameters;
+
+			if (parameters.Contains("section"))
 			{
-				if (pageRadio.Checked) return OneNote.Scope.Self;
-				if (sectionRadio.Checked) return OneNote.Scope.Pages;
-				return OneNote.Scope.Sections;
+				sectionRadio.Checked = true;
+				sectionPagePreviewBox.Checked = parameters.Contains("preview");
+			}
+			else if (parameters.Contains("notebook"))
+			{
+				notebookRadio.Checked = true;
+				pagesBox.Checked = parameters.Contains("pages");
+				notebookPagePreviewBox.Checked = parameters.Contains("preview");
+			}
+			else // page is default
+			{
+				pageRadio.Checked = true;
+				topBox.Checked = parameters.Contains("links");
+				rightAlignBox.Checked = parameters.Contains("align");
+				locationBox.SelectedIndex = parameters.Contains("here") ? 1 : 0;
+
+				if (parameters.Find(p => p.StartsWith("style")) is string style)
+				{
+					if (int.TryParse(style.Substring(5), out var index))
+					{
+						styleBox.SelectedIndex = index;
+					}
+				}
 			}
 		}
 
 
-		public bool AddTopLinks
-		{
-			get => topBox.Enabled && topBox.Checked;
-			set => topBox.Checked = value;
-		}
-
-
-		public bool InsertHere
-		{
-			get => locationBox.SelectedIndex == 1;
-			set => locationBox.SelectedIndex = value ? 1 : 0;
-		}
-
-
-		public bool PreviewPages =>
-			(sectionRadio.Checked && previewBox.Checked) ||
-			(notebookRadio.Checked && preview2Box.Checked);
-
-
-		public bool RightAlign
-		{
-			get => rightAlignBox.Enabled && rightAlignBox.Checked;
-			set => rightAlignBox.Checked = value;
-		}
-
-
-		public bool SectionPages => pagesBox.Enabled && pagesBox.Checked;
-
-
-		public InsertTocCommand.TitleStyles TitleStyle
-		{
-			get => (InsertTocCommand.TitleStyles)styleBox.SelectedIndex;
-			set => styleBox.SelectedIndex = (int)value;
-		}
-
-
-		private void ToggleRightAlignOption(object sender, EventArgs e)
-		{
-			rightAlignBox.Enabled = topBox.Checked;
-		}
-
-
-		private void PagesBoxCheckedChanged(object sender, EventArgs e)
-		{
-			preview2Box.Enabled = pagesBox.Checked;
-		}
-
-
-		private void ChangedRadio(object sender, EventArgs e)
+		// main radio boxes: page, section, notebook
+		private void ChangeScopeRadioSelection(object sender, EventArgs e)
 		{
 			if (sender == pageRadio)
 			{
@@ -115,9 +89,9 @@ namespace River.OneMoreAddIn.Commands
 				rightAlignBox.Enabled = topBox.Checked;
 				locationBox.Enabled = true;
 				styleBox.Enabled = true;
-				previewBox.Enabled = false;
+				sectionPagePreviewBox.Enabled = false;
 				pagesBox.Enabled = false;
-				preview2Box.Enabled = false;
+				notebookPagePreviewBox.Enabled = false;
 			}
 			else if (sender == sectionRadio)
 			{
@@ -125,8 +99,8 @@ namespace River.OneMoreAddIn.Commands
 				rightAlignBox.Enabled = false;
 				locationBox.Enabled = false;
 				styleBox.Enabled = false;
-				previewBox.Enabled = true;
-				preview2Box.Enabled = false;
+				sectionPagePreviewBox.Enabled = true;
+				notebookPagePreviewBox.Enabled = false;
 			}
 			else
 			{
@@ -134,9 +108,63 @@ namespace River.OneMoreAddIn.Commands
 				rightAlignBox.Enabled = false;
 				locationBox.Enabled = false;
 				styleBox.Enabled = false;
-				previewBox.Enabled = false;
+				sectionPagePreviewBox.Enabled = false;
 				pagesBox.Enabled = true;
-				preview2Box.Enabled = pagesBox.Checked;
+				notebookPagePreviewBox.Enabled = pagesBox.Checked;
+			}
+		}
+
+
+		private void ToggleTopBox(object sender, EventArgs e)
+		{
+			if (topBox.Checked)
+			{
+				rightAlignBox.Enabled = true;
+			}
+			else
+			{
+				rightAlignBox.Enabled = rightAlignBox.Checked = false;
+			}
+		}
+
+
+		private void TogglePagesBox(object sender, EventArgs e)
+		{
+			if (pagesBox.Checked)
+			{
+				notebookPagePreviewBox.Enabled = true;
+			}
+			else
+			{
+				notebookPagePreviewBox.Enabled = notebookPagePreviewBox.Checked = false;
+			}
+		}
+
+
+		private void CollectParametersOnOK(object sender, EventArgs e)
+		{
+			parameters.Clear();
+
+			if (pageRadio.Checked)
+			{
+				parameters.Add("page");
+				parameters.Add($"style{styleBox.SelectedIndex}");
+				if (topBox.Checked) parameters.Add("links");
+				if (rightAlignBox.Checked) parameters.Add("align");
+
+				// for backwards compatibilty, we only track 'here' and not 'top'
+				if (locationBox.SelectedIndex == 1) parameters.Add("here");
+			}
+			else if (sectionRadio.Checked)
+			{
+				parameters.Add("section");
+				if (sectionPagePreviewBox.Checked) parameters.Add("preview");
+			}
+			else
+			{
+				parameters.Add("notebook");
+				if (pagesBox.Checked) parameters.Add("pages");
+				if (notebookPagePreviewBox.Checked) parameters.Add("preview");
 			}
 		}
 	}

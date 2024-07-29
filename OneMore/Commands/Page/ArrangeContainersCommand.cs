@@ -195,11 +195,7 @@ namespace River.OneMoreAddIn.Commands
 		// after Update for some reason.
 		private IEnumerable<XElement> CollectContainers(Page page, XNamespace ns)
 		{
-			var outlines = page.Root.Elements(ns + "Outline")
-				.Where(e => !e.Elements(ns + "Meta")
-					.Any(m => m.Attribute("name").Value == MetaNames.TaggingBank))
-				.ToList();
-
+			var outlines = page.BodyOutlines.ToList();
 			if (outlines.Count < 2)
 			{
 				// zero or one Outline; don't leave the page entirely empty

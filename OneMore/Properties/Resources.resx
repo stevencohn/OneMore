@@ -1196,7 +1196,6 @@ Symbols: PI, E
 Cell reference: A1, A2, ... ZZZ999
 Cell range: A1:A22
 Relative range in a column: A1:A-1</value>
-    <comment></comment>
   </data>
   <data name="FormulaDialog_selectedLabel.Text" xml:space="preserve">
     <value>Selected cells:</value>
@@ -1663,11 +1662,11 @@ Yellow Background</value>
     <comment>page name</comment>
   </data>
   <data name="InsertTocCommand_TOCNotebook" xml:space="preserve">
-    <value>Table of Contents - Notebook {0}</value>
+    <value>Table of Contents📓 {0}</value>
     <comment>page name</comment>
   </data>
   <data name="InsertTocCommand_TOCSections" xml:space="preserve">
-    <value>Table of Contents - Section {0}</value>
+    <value>Table of Contents § {0}</value>
     <comment>page name</comment>
   </data>
   <data name="InsertTocCommand_Top" xml:space="preserve">
@@ -1725,6 +1724,24 @@ Custom Heading 3</value>
   <data name="InsertTocDialog_topBox.Text" xml:space="preserve">
     <value>Add link to each heading to jump to top of page</value>
     <comment>checkbox</comment>
+  </data>
+  <data name="InsertTocForNotebook_RefreshQuestion" xml:space="preserve">
+    <value>There is a table of contents page for this notebook. You can refresh that page or create a new page.
+
+Do you want to refresh the existing page?</value>
+    <comment>message box</comment>
+  </data>
+  <data name="InsertTocForPage_ClearToc" xml:space="preserve">
+    <value>There are no headings on this page. However, there is a table of contents.
+
+Would you like to remove the table of contents from this page?</value>
+    <comment>message box</comment>
+  </data>
+  <data name="InsertTocForSection_RefreshQuestion" xml:space="preserve">
+    <value>There is a table of contents page for this section. You can refresh that page or create a new page.
+
+Do you want to refresh the existing page?</value>
+    <comment>message box</comment>
   </data>
   <data name="JoinParagraphCommand_Select" xml:space="preserve">
     <value>Select two or more lines to join</value>

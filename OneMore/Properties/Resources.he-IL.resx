@@ -1658,11 +1658,11 @@ Total Row Font
     <comment>page name</comment>
   </data>
   <data name="InsertTocCommand_TOCNotebook" xml:space="preserve">
-    <value>תוכן עניינים - מחברת {0}</value>
+    <value>תוכן עניינים📓 {0}</value>
     <comment>page name</comment>
   </data>
   <data name="InsertTocCommand_TOCSections" xml:space="preserve">
-    <value>תוכן עניינים - סעיף {0}</value>
+    <value>תוכן העניינים § {0}</value>
     <comment>page name</comment>
   </data>
   <data name="InsertTocCommand_Top" xml:space="preserve">
@@ -1720,6 +1720,24 @@ Total Row Font
   <data name="InsertTocDialog_topBox.Text" xml:space="preserve">
     <value>הוסף קישור לכל כותרת כדי לדלג לראש העמוד</value>
     <comment>checkbox</comment>
+  </data>
+  <data name="InsertTocForNotebook_RefreshQuestion" xml:space="preserve">
+    <value>למחברת זו יש דף תוכן עניינים. אתה יכול לרענן את הדף או ליצור דף חדש.
+
+האם ברצונך לרענן את העמוד הקיים?</value>
+    <comment>message box</comment>
+  </data>
+  <data name="InsertTocForPage_ClearToc" xml:space="preserve">
+    <value>אין כותרות בעמוד זה. עם זאת, יש תוכן עניינים.
+
+האם תרצה להסיר את תוכן העניינים מדף זה?</value>
+    <comment>message box</comment>
+  </data>
+  <data name="InsertTocForSection_RefreshQuestion" xml:space="preserve">
+    <value>יש דף תוכן לחלק זה. אתה יכול לרענן את הדף או ליצור דף חדש.
+
+האם ברצונך לרענן את העמוד הקיים?</value>
+    <comment>message box</comment>
   </data>
   <data name="JoinParagraphCommand_Select" xml:space="preserve">
     <value>בחר שתי שורות או יותר להצטרפות</value>

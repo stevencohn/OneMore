@@ -1647,11 +1647,11 @@ Gelber Hintergrund</value>
     <comment>page name</comment>
   </data>
   <data name="InsertTocCommand_TOCNotebook" xml:space="preserve">
-    <value>Inhaltsverzeichnis - Notizbuch {0}</value>
+    <value>Inhaltsverzeichnis📓 {0}</value>
     <comment>page name</comment>
   </data>
   <data name="InsertTocCommand_TOCSections" xml:space="preserve">
-    <value>Inhaltsverzeichnis - Abschnitt {0}</value>
+    <value>Inhaltsverzeichnis § {0}</value>
     <comment>page name</comment>
   </data>
   <data name="InsertTocCommand_Top" xml:space="preserve">
@@ -1709,6 +1709,24 @@ Benutzerdefinierte Überschrift 3</value>
   <data name="InsertTocDialog_topBox.Text" xml:space="preserve">
     <value>Füge jeder Überschrift einen Link hinzu, um zum Seitenanfang zu springen</value>
     <comment>checkbox</comment>
+  </data>
+  <data name="InsertTocForNotebook_RefreshQuestion" xml:space="preserve">
+    <value>Für dieses Notizbuch gibt es eine Seite mit einem Inhaltsverzeichnis. Sie können diese Seite aktualisieren oder eine neue Seite erstellen.
+
+Möchten Sie die bestehende Seite aktualisieren?</value>
+    <comment>message box</comment>
+  </data>
+  <data name="InsertTocForPage_ClearToc" xml:space="preserve">
+    <value>Auf dieser Seite gibt es keine Überschriften. Es gibt jedoch ein Inhaltsverzeichnis.
+
+Möchten Sie das Inhaltsverzeichnis von dieser Seite entfernen?</value>
+    <comment>message box</comment>
+  </data>
+  <data name="InsertTocForSection_RefreshQuestion" xml:space="preserve">
+    <value>Für diesen Abschnitt gibt es eine Inhaltsverzeichnisseite. Sie können diese Seite aktualisieren oder eine neue Seite erstellen.
+
+Möchten Sie die bestehende Seite aktualisieren?</value>
+    <comment>message box</comment>
   </data>
   <data name="JoinParagraphCommand_Select" xml:space="preserve">
     <value>Wähle zwei oder mehr Linien zum Verbinden aus</value>

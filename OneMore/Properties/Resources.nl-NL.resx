@@ -1650,11 +1650,11 @@ Gele achtergrond</value>
     <comment>page name</comment>
   </data>
   <data name="InsertTocCommand_TOCNotebook" xml:space="preserve">
-    <value>Inhoudsopgave - Kladblok {0}</value>
+    <value>Inhoudsopgave📓 {0}</value>
     <comment>page name</comment>
   </data>
   <data name="InsertTocCommand_TOCSections" xml:space="preserve">
-    <value>Inhoudsopgave - sectie {0}</value>
+    <value>Inhoudsopgave § {0}</value>
     <comment>page name</comment>
   </data>
   <data name="InsertTocCommand_Top" xml:space="preserve">
@@ -1712,6 +1712,24 @@ Aangepaste kop 3</value>
   <data name="InsertTocDialog_topBox.Text" xml:space="preserve">
     <value>Voeg een link toe aan elke kop om naar de bovenkant van de pagina te gaan</value>
     <comment>checkbox</comment>
+  </data>
+  <data name="InsertTocForNotebook_RefreshQuestion" xml:space="preserve">
+    <value>Er is een inhoudsopgave voor dit notitieboekje. U kunt die pagina vernieuwen of een nieuwe pagina maken.
+
+Wilt u de bestaande pagina vernieuwen?</value>
+    <comment>message box</comment>
+  </data>
+  <data name="InsertTocForPage_ClearToc" xml:space="preserve">
+    <value>Er zijn geen kopjes op deze pagina. Er is echter wel een inhoudsopgave.
+
+Wilt u de inhoudsopgave van deze pagina verwijderen?</value>
+    <comment>message box</comment>
+  </data>
+  <data name="InsertTocForSection_RefreshQuestion" xml:space="preserve">
+    <value>Er is een inhoudsopgave voor dit onderdeel. U kunt die pagina vernieuwen of een nieuwe pagina maken.
+
+Wilt u de bestaande pagina vernieuwen?</value>
+    <comment>message box</comment>
   </data>
   <data name="JoinParagraphCommand_Select" xml:space="preserve">
     <value>Selecteer twee of meer lijnen om mee te doen</value>

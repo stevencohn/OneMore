@@ -4291,7 +4291,7 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Table of Contents - Notebook {0}.
+        ///   Looks up a localized string similar to Table of Contents📓 {0}.
         /// </summary>
         internal static string InsertTocCommand_TOCNotebook {
             get {
@@ -4300,7 +4300,7 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Table of Contents - Section {0}.
+        ///   Looks up a localized string similar to Table of Contents § {0}.
         /// </summary>
         internal static string InsertTocCommand_TOCSections {
             get {
@@ -4421,6 +4421,39 @@ namespace River.OneMoreAddIn.Properties {
         internal static string InsertTocDialog_topBox_Text {
             get {
                 return ResourceManager.GetString("InsertTocDialog_topBox.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to There is a table of contents page for this notebook. You can refresh that page or create a new page.
+        ///
+        ///Do you want to refresh the existing page?.
+        /// </summary>
+        internal static string InsertTocForNotebook_RefreshQuestion {
+            get {
+                return ResourceManager.GetString("InsertTocForNotebook_RefreshQuestion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to There are no headings on this page. However, there is a table of contents.
+        ///
+        ///Would you like to remove the table of contents from this page?.
+        /// </summary>
+        internal static string InsertTocForPage_ClearToc {
+            get {
+                return ResourceManager.GetString("InsertTocForPage_ClearToc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to There is a table of contents page for this section. You can refresh that page or create a new page.
+        ///
+        ///Do you want to refresh the existing page?.
+        /// </summary>
+        internal static string InsertTocForSection_RefreshQuestion {
+            get {
+                return ResourceManager.GetString("InsertTocForSection_RefreshQuestion", resourceCulture);
             }
         }
         

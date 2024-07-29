@@ -37,8 +37,8 @@
 			this.notebookRadio = new River.OneMoreAddIn.UI.MoreRadioButton();
 			this.pagesBox = new River.OneMoreAddIn.UI.MoreCheckBox();
 			this.rightAlignBox = new River.OneMoreAddIn.UI.MoreCheckBox();
-			this.previewBox = new River.OneMoreAddIn.UI.MoreCheckBox();
-			this.preview2Box = new River.OneMoreAddIn.UI.MoreCheckBox();
+			this.sectionPagePreviewBox = new River.OneMoreAddIn.UI.MoreCheckBox();
+			this.notebookPagePreviewBox = new River.OneMoreAddIn.UI.MoreCheckBox();
 			this.locationBox = new System.Windows.Forms.ComboBox();
 			this.locationLabel = new System.Windows.Forms.Label();
 			this.styleLabel = new System.Windows.Forms.Label();
@@ -62,6 +62,7 @@
 			this.okButton.ThemedBack = null;
 			this.okButton.ThemedFore = null;
 			this.okButton.UseVisualStyleBackColor = true;
+			this.okButton.Click += new System.EventHandler(this.CollectParametersOnOK);
 			// 
 			// cancelButton
 			// 
@@ -92,7 +93,7 @@
 			this.pageRadio.TabStop = true;
 			this.pageRadio.Text = "Insert table of headings on this page";
 			this.pageRadio.UseVisualStyleBackColor = true;
-			this.pageRadio.CheckedChanged += new System.EventHandler(this.ChangedRadio);
+			this.pageRadio.CheckedChanged += new System.EventHandler(this.ChangeScopeRadioSelection);
 			// 
 			// sectionRadio
 			// 
@@ -104,7 +105,7 @@
 			this.sectionRadio.TabIndex = 7;
 			this.sectionRadio.Text = "New page with index of pages in this section";
 			this.sectionRadio.UseVisualStyleBackColor = true;
-			this.sectionRadio.CheckedChanged += new System.EventHandler(this.ChangedRadio);
+			this.sectionRadio.CheckedChanged += new System.EventHandler(this.ChangeScopeRadioSelection);
 			// 
 			// topBox
 			// 
@@ -121,7 +122,7 @@
 			this.topBox.ThemedBack = null;
 			this.topBox.ThemedFore = null;
 			this.topBox.UseVisualStyleBackColor = true;
-			this.topBox.CheckedChanged += new System.EventHandler(this.ToggleRightAlignOption);
+			this.topBox.CheckedChanged += new System.EventHandler(this.ToggleTopBox);
 			// 
 			// notebookRadio
 			// 
@@ -133,7 +134,7 @@
 			this.notebookRadio.TabIndex = 9;
 			this.notebookRadio.Text = "New page with index of sections in this notebook";
 			this.notebookRadio.UseVisualStyleBackColor = true;
-			this.notebookRadio.CheckedChanged += new System.EventHandler(this.ChangedRadio);
+			this.notebookRadio.CheckedChanged += new System.EventHandler(this.ChangeScopeRadioSelection);
 			// 
 			// pagesBox
 			// 
@@ -151,7 +152,7 @@
 			this.pagesBox.ThemedBack = null;
 			this.pagesBox.ThemedFore = null;
 			this.pagesBox.UseVisualStyleBackColor = true;
-			this.pagesBox.CheckedChanged += new System.EventHandler(this.PagesBoxCheckedChanged);
+			this.pagesBox.CheckedChanged += new System.EventHandler(this.TogglePagesBox);
 			// 
 			// rightAlignBox
 			// 
@@ -169,46 +170,46 @@
 			this.rightAlignBox.ThemedFore = null;
 			this.rightAlignBox.UseVisualStyleBackColor = true;
 			// 
-			// previewBox
+			// sectionPagePreviewBox
 			// 
-			this.previewBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(231)))), ((int)(((byte)(231)))));
-			this.previewBox.Cursor = System.Windows.Forms.Cursors.Hand;
-			this.previewBox.Enabled = false;
-			this.previewBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-			this.previewBox.Location = new System.Drawing.Point(56, 254);
-			this.previewBox.Margin = new System.Windows.Forms.Padding(3, 6, 3, 3);
-			this.previewBox.Name = "previewBox";
-			this.previewBox.Size = new System.Drawing.Size(280, 25);
-			this.previewBox.StylizeImage = false;
-			this.previewBox.TabIndex = 8;
-			this.previewBox.Text = "Include text preview of each page";
-			this.previewBox.ThemedBack = null;
-			this.previewBox.ThemedFore = null;
-			this.previewBox.UseVisualStyleBackColor = true;
+			this.sectionPagePreviewBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(231)))), ((int)(((byte)(231)))));
+			this.sectionPagePreviewBox.Cursor = System.Windows.Forms.Cursors.Hand;
+			this.sectionPagePreviewBox.Enabled = false;
+			this.sectionPagePreviewBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+			this.sectionPagePreviewBox.Location = new System.Drawing.Point(56, 254);
+			this.sectionPagePreviewBox.Margin = new System.Windows.Forms.Padding(3, 6, 3, 3);
+			this.sectionPagePreviewBox.Name = "sectionPagePreviewBox";
+			this.sectionPagePreviewBox.Size = new System.Drawing.Size(280, 25);
+			this.sectionPagePreviewBox.StylizeImage = false;
+			this.sectionPagePreviewBox.TabIndex = 8;
+			this.sectionPagePreviewBox.Text = "Include text preview of each page";
+			this.sectionPagePreviewBox.ThemedBack = null;
+			this.sectionPagePreviewBox.ThemedFore = null;
+			this.sectionPagePreviewBox.UseVisualStyleBackColor = true;
 			// 
-			// preview2Box
+			// notebookPagePreviewBox
 			// 
-			this.preview2Box.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(231)))), ((int)(((byte)(231)))));
-			this.preview2Box.Cursor = System.Windows.Forms.Cursors.Hand;
-			this.preview2Box.Enabled = false;
-			this.preview2Box.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-			this.preview2Box.Location = new System.Drawing.Point(56, 378);
-			this.preview2Box.Name = "preview2Box";
-			this.preview2Box.Size = new System.Drawing.Size(280, 25);
-			this.preview2Box.StylizeImage = false;
-			this.preview2Box.TabIndex = 11;
-			this.preview2Box.Text = "Include text preview of each page";
-			this.preview2Box.ThemedBack = null;
-			this.preview2Box.ThemedFore = null;
-			this.preview2Box.UseVisualStyleBackColor = true;
+			this.notebookPagePreviewBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(231)))), ((int)(((byte)(231)))));
+			this.notebookPagePreviewBox.Cursor = System.Windows.Forms.Cursors.Hand;
+			this.notebookPagePreviewBox.Enabled = false;
+			this.notebookPagePreviewBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+			this.notebookPagePreviewBox.Location = new System.Drawing.Point(56, 378);
+			this.notebookPagePreviewBox.Name = "notebookPagePreviewBox";
+			this.notebookPagePreviewBox.Size = new System.Drawing.Size(280, 25);
+			this.notebookPagePreviewBox.StylizeImage = false;
+			this.notebookPagePreviewBox.TabIndex = 11;
+			this.notebookPagePreviewBox.Text = "Include text preview of each page";
+			this.notebookPagePreviewBox.ThemedBack = null;
+			this.notebookPagePreviewBox.ThemedFore = null;
+			this.notebookPagePreviewBox.UseVisualStyleBackColor = true;
 			// 
 			// locationBox
 			// 
 			this.locationBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this.locationBox.FormattingEnabled = true;
 			this.locationBox.Items.AddRange(new object[] {
-			"At top of page",
-			"At current cursor"});
+            "At top of page",
+            "At current cursor"});
 			this.locationBox.Location = new System.Drawing.Point(227, 124);
 			this.locationBox.Margin = new System.Windows.Forms.Padding(3, 6, 3, 3);
 			this.locationBox.Name = "locationBox";
@@ -238,14 +239,14 @@
 			this.styleBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this.styleBox.FormattingEnabled = true;
 			this.styleBox.Items.AddRange(new object[] {
-			"Standard Page Title",
-			"Standard Heading 1",
-			"Standard Heading 2",
-			"Standard Heading 3",
-			"Custom Page Title",
-			"Custom Heading 1",
-			"Custom Heading 2",
-			"Custom Heading 3"});
+            "Standard Page Title",
+            "Standard Heading 1",
+            "Standard Heading 2",
+            "Standard Heading 3",
+            "Custom Page Title",
+            "Custom Heading 1",
+            "Custom Heading 2",
+            "Custom Heading 3"});
 			this.styleBox.Location = new System.Drawing.Point(227, 161);
 			this.styleBox.Name = "styleBox";
 			this.styleBox.Size = new System.Drawing.Size(217, 28);
@@ -263,8 +264,8 @@
 			this.Controls.Add(this.styleLabel);
 			this.Controls.Add(this.locationLabel);
 			this.Controls.Add(this.locationBox);
-			this.Controls.Add(this.preview2Box);
-			this.Controls.Add(this.previewBox);
+			this.Controls.Add(this.notebookPagePreviewBox);
+			this.Controls.Add(this.sectionPagePreviewBox);
 			this.Controls.Add(this.rightAlignBox);
 			this.Controls.Add(this.pagesBox);
 			this.Controls.Add(this.notebookRadio);
@@ -298,8 +299,8 @@
 		private UI.MoreRadioButton notebookRadio;
 		private UI.MoreCheckBox pagesBox;
 		private UI.MoreCheckBox rightAlignBox;
-		private UI.MoreCheckBox previewBox;
-		private UI.MoreCheckBox preview2Box;
+		private UI.MoreCheckBox sectionPagePreviewBox;
+		private UI.MoreCheckBox notebookPagePreviewBox;
 		private System.Windows.Forms.ComboBox locationBox;
 		private System.Windows.Forms.Label locationLabel;
 		private System.Windows.Forms.Label styleLabel;

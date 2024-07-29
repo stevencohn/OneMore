@@ -1650,11 +1650,11 @@ Fundo Amarelo</value>
     <comment>page name</comment>
   </data>
   <data name="InsertTocCommand_TOCNotebook" xml:space="preserve">
-    <value>Índice - Bloco de notas {0}</value>
+    <value>Índice📓 {0}</value>
     <comment>page name</comment>
   </data>
   <data name="InsertTocCommand_TOCSections" xml:space="preserve">
-    <value>Índice - Seção {0}</value>
+    <value>Índice § {0}</value>
     <comment>page name</comment>
   </data>
   <data name="InsertTocCommand_Top" xml:space="preserve">
@@ -1712,6 +1712,24 @@ Título personalizado 3</value>
   <data name="InsertTocDialog_topBox.Text" xml:space="preserve">
     <value>Adicione um link a cada título para pular para o topo da página</value>
     <comment>checkbox</comment>
+  </data>
+  <data name="InsertTocForNotebook_RefreshQuestion" xml:space="preserve">
+    <value>Há uma página de índice para este caderno. Você pode atualizar essa página ou criar uma nova página.
+
+Deseja atualizar a página existente?</value>
+    <comment>message box</comment>
+  </data>
+  <data name="InsertTocForPage_ClearToc" xml:space="preserve">
+    <value>Não há títulos nesta página. No entanto, existe um índice.
+
+Gostaria de remover o índice desta página?</value>
+    <comment>message box</comment>
+  </data>
+  <data name="InsertTocForSection_RefreshQuestion" xml:space="preserve">
+    <value>Há uma página de índice para esta seção. Você pode atualizar essa página ou criar uma nova página.
+
+Deseja atualizar a página existente?</value>
+    <comment>message box</comment>
   </data>
   <data name="JoinParagraphCommand_Select" xml:space="preserve">
     <value>Selecione duas ou mais linhas para unir</value>

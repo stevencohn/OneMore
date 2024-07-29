@@ -284,11 +284,7 @@ namespace River.OneMoreAddIn.Commands
 
 		private string GetSynopsis(Page page, string title)
 		{
-			var body = page.Root
-				.Elements(ns + "Outline")
-				.FirstOrDefault(e => !e.Parent.Elements(ns + "Meta")
-					.Any(m => m.Attribute("name").Value.Equals(MetaNames.TaggingBank)));
-
+			var body = page.BodyOutlines.FirstOrDefault();
 			if (body == null)
 			{
 				return null;

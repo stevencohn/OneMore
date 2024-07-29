@@ -249,8 +249,7 @@ namespace River.OneMoreAddIn.Commands
 		private bool StylizeParagraphs()
 		{
 			// find all paragraphs - OE elements - that have selections
-			// TODO: filter out MetaNames.TaggingBank?
-			var elements = page.Root.Descendants(ns + "T")
+			var elements = page.BodyOutlines.Descendants(ns + "T")
 				.Where(e => e.Attributes("selected").Any(a => a.Value.Equals("all")))
 				.Select(p => p.Parent);
 

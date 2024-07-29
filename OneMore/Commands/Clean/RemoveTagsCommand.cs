@@ -10,7 +10,8 @@ namespace River.OneMoreAddIn.Commands
 
 
 	/// <summary>
-	/// Removes all tags from the current page, except those that are associated with reminders.
+	/// Removes all tags from the current page, except from the tag bank and those
+	/// associated with reminders.
 	/// </summary>
 	internal class RemoveTagsCommand : Command
 	{
@@ -22,7 +23,7 @@ namespace River.OneMoreAddIn.Commands
 		public override async Task Execute(params object[] args)
 		{
 			await using var one = new OneNote(out var page, out var ns);
-			var tags = page.Root.Elements(ns + "Outline").Descendants(ns + "Tag").ToList();
+			var tags = page.BodyOutlines.Descendants(ns + "Tag").ToList();
 			if (!tags.Any())
 			{
 				return;

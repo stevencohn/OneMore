@@ -1658,11 +1658,11 @@ Czerwony pierwszy plan
     <comment>page name</comment>
   </data>
   <data name="InsertTocCommand_TOCNotebook" xml:space="preserve">
-    <value>Spis treści - Notebook {0}</value>
+    <value>Spis treści📓 {0}</value>
     <comment>page name</comment>
   </data>
   <data name="InsertTocCommand_TOCSections" xml:space="preserve">
-    <value>Spis treści - sekcja {0}</value>
+    <value>Spis treści § {0}</value>
     <comment>page name</comment>
   </data>
   <data name="InsertTocCommand_Top" xml:space="preserve">
@@ -1720,6 +1720,24 @@ Nagłówek niestandardowy 3</value>
   <data name="InsertTocDialog_topBox.Text" xml:space="preserve">
     <value>Dodaj link do każdego nagłówku, aby przejść do góry strony</value>
     <comment>checkbox</comment>
+  </data>
+  <data name="InsertTocForNotebook_RefreshQuestion" xml:space="preserve">
+    <value>Dla tego notesu dostępna jest strona ze spisem treści. Możesz odświeżyć tę stronę lub utworzyć nową stronę.
+
+Czy chcesz odświeżyć istniejącą stronę?</value>
+    <comment>message box</comment>
+  </data>
+  <data name="InsertTocForPage_ClearToc" xml:space="preserve">
+    <value>Na tej stronie nie ma żadnych nagłówków. Istnieje jednak spis treści.
+
+Czy chcesz usunąć spis treści z tej strony?</value>
+    <comment>message box</comment>
+  </data>
+  <data name="InsertTocForSection_RefreshQuestion" xml:space="preserve">
+    <value>W tej sekcji znajduje się spis treści. Możesz odświeżyć tę stronę lub utworzyć nową stronę.
+
+Czy chcesz odświeżyć istniejącą stronę?</value>
+    <comment>message box</comment>
   </data>
   <data name="JoinParagraphCommand_Select" xml:space="preserve">
     <value>Wybierz dwie lub więcej linii, aby dołączyć</value>

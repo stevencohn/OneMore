@@ -57,9 +57,7 @@ namespace River.OneMoreAddIn
 
 			if (specific)
 			{
-				var selected = page.Root.Elements(ns + "Outline")
-					.Where(e => !e.Elements(ns + "Meta")
-						.Any(m => m.Attribute("name").Value.Equals(MetaNames.TaggingBank)))
+				var selected = page.BodyOutlines
 					.Descendants(ns + "OE")
 					.LastOrDefault(e => e.Attributes().Any(a => a.Name == "selected"));
 
@@ -90,7 +88,7 @@ namespace River.OneMoreAddIn
 			}
 			else
 			{
-				hyperlink = one.GetHyperlink(page.PageId, null);
+				hyperlink = one.GetHyperlink(page.PageId, page.TitleID);
 			}
 
 			if (string.IsNullOrEmpty(hyperlink))
