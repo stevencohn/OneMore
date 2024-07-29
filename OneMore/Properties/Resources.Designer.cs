@@ -4436,6 +4436,17 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to There are no headings on this page. However, there is a table of contents.
+        ///
+        ///Would you like to remove the table of contents from this page?.
+        /// </summary>
+        internal static string InsertTocForPage_ClearToc {
+            get {
+                return ResourceManager.GetString("InsertTocForPage_ClearToc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to There is a table of contents page for this section. You can refresh that page or create a new page.
         ///
         ///Do you want to refresh the existing page?.

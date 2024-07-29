@@ -49,7 +49,7 @@ namespace River.OneMoreAddIn.Commands.Snippets.TocGenerators
 			}
 
 			var result = UI.MoreMessageBox.ShowQuestion(
-				one.OnwerWindow, Resx.InsertTocForNotebook_RefreshQuestion, true);
+				one.OwnerWindow, Resx.InsertTocForNotebook_RefreshQuestion, true);
 
 			if (result == System.Windows.Forms.DialogResult.Cancel)
 			{

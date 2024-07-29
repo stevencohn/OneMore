@@ -1731,6 +1731,12 @@ Custom Heading 3</value>
 Do you want to refresh the existing page?</value>
     <comment>message box</comment>
   </data>
+  <data name="InsertTocForPage_ClearToc" xml:space="preserve">
+    <value>There are no headings on this page. However, there is a table of contents.
+
+Would you like to remove the table of contents from this page?</value>
+    <comment>message box</comment>
+  </data>
   <data name="InsertTocForSection_RefreshQuestion" xml:space="preserve">
     <value>There is a table of contents page for this section. You can refresh that page or create a new page.
 

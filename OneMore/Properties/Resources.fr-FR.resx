@@ -1718,6 +1718,12 @@ Titre personnalisé 3</value>
 Voulez-vous actualiser la page existante ?</value>
     <comment>message box</comment>
   </data>
+  <data name="InsertTocForPage_ClearToc" xml:space="preserve">
+    <value>Il n'y a pas de titres sur cette page. Il existe cependant une table des matières.
+
+Souhaitez-vous supprimer la table des matières de cette page ?</value>
+    <comment>message box</comment>
+  </data>
   <data name="InsertTocForSection_RefreshQuestion" xml:space="preserve">
     <value>Il existe une page de table des matières pour cette section. Vous pouvez actualiser cette page ou créer une nouvelle page.
 

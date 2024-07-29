@@ -1717,6 +1717,12 @@ OneNote 文件 (*.one)</value>
 您想刷新现有页面吗？</value>
     <comment>message box</comment>
   </data>
+  <data name="InsertTocForPage_ClearToc" xml:space="preserve">
+    <value>此页面上没有标题。但是，有一个目录。
+
+您想从此页面删除目录吗？</value>
+    <comment>message box</comment>
+  </data>
   <data name="InsertTocForSection_RefreshQuestion" xml:space="preserve">
     <value>本节有一个目录页。您可以刷新该页面或创建新页面。
 

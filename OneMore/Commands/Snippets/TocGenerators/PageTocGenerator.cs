@@ -41,21 +41,37 @@ namespace River.OneMoreAddIn.Commands.Snippets.TocGenerators
 		{
 			await using var one = new OneNote(out page, out ns);
 
-			if (!ValidatePage(one, out var topElement, out var headings, out var titleID))
+			var headings = CollectHeadings(one, out var titleID);
+			if (!headings.Any())
 			{
-				logger.WriteLine($"{nameof(PageTocGenerator)} found no headings");
+				if (FindMetaElement() is XElement meta)
+				{
+					var result = UI.MoreMessageBox.ShowQuestion(
+						one.OwnerWindow, Resx.InsertTocForPage_ClearToc);
+
+					if (result == System.Windows.Forms.DialogResult.Yes)
+					{
+						meta.Parent.Remove();
+						page.EnsureContentContainer();
+						await one.Update(page);
+					}
+				}
+				else
+				{
+					logger.WriteLine($"{nameof(PageTocGenerator)} found no headings");
+					UI.MoreMessageBox.ShowError(one.OwnerWindow, Resx.InsertTocCommand_NoHeadings);
+				}
+
 				return false;
 			}
 
-			var refreshing = parameters.Contains(RefreshCmd);
-
 			// build new TOC...
 
-			var op = refreshing ? "refresh" : "build";
+			var op = parameters.Contains(RefreshCmd) ? "refresh" : "build";
 			logger.WriteLine($"{op} toc for page {page.Title}");
 
 			PageNamespace.Set(ns);
-			var container = LocateInsertionPoint(page, ns, topElement);
+			var container = LocateBestContainerOE();
 
 			var content = new XElement(ns + "OEChildren");
 			var index = 0;
@@ -118,31 +134,23 @@ namespace River.OneMoreAddIn.Commands.Snippets.TocGenerators
 		}
 
 
-		private bool ValidatePage(OneNote one,
-			out XElement topElement, out List<Heading> headings, out string titleID)
+		private List<Heading> CollectHeadings(OneNote one, out string titleID)
 		{
 			// check that there are headings on the page...
 
-			headings = null;
 			titleID = null;
 
-			topElement = page.Root
-				.Elements(ns + "Outline")
-				.FirstOrDefault(e => !e.Elements(ns + "Meta")
-					.Any(m => m.Attribute("name").Value == MetaNames.TaggingBank))?
-				.Element(ns + "OEChildren");
-
-			if (topElement is null)
+			// must have a body outline
+			if (page.BodyOutlines.Elements(ns + "OEChildren").FirstOrDefault() is null)
 			{
-				UI.MoreMessageBox.ShowError(one.OnwerWindow, Resx.InsertTocCommand_NoHeadings);
-				return false;
+				return new();
 			}
 
-			headings = page.GetHeadings(one);
+			// must have headings
+			var headings = page.GetHeadings(one);
 			if (!headings.Any())
 			{
-				UI.MoreMessageBox.ShowError(one.OnwerWindow, Resx.InsertTocCommand_NoHeadings);
-				return false;
+				return headings;
 			}
 
 			// need the title OE ID to make a link back to the top of the page
@@ -154,11 +162,86 @@ namespace River.OneMoreAddIn.Commands.Snippets.TocGenerators
 
 			if (titleID is null)
 			{
-				UI.MoreMessageBox.ShowError(one.OnwerWindow, Resx.InsertTocCommand_NoHeadings);
-				return false;
+				headings.Clear();
+				return headings;
 			}
 
-			return true;
+			return headings;
+		}
+
+
+		private XElement FindMetaElement()
+		{
+			return page.BodyOutlines
+				.Descendants(ns + "Meta")
+				.FirstOrDefault(e =>
+					e.Attribute("name") is XAttribute attr && attr.Value == Toc.MetaName);
+		}
+
+
+		private XElement LocateBestContainerOE()
+		{
+			XElement container;
+
+			// allow exactly one TOC on a page so if found, just replace it...
+
+			var meta = FindMetaElement();
+			if (meta is not null)
+			{
+				container = meta.Parent;
+				container.Elements().Remove();
+				return container;
+			}
+
+			// creating new TOC...
+
+			container = new XElement(ns + "OE");
+
+			// try to find selection; need to find T runs and then OE because OE will be
+			// marked partially if not all of its runs are selected
+			var anchor = page.BodyOutlines
+				.Descendants(ns + "T")
+				.Where(e => e.Attribute("selected") is XAttribute a && a.Value == "all")
+				.Select(e => e.Parent)
+				.FirstOrDefault();
+
+			if (parameters.Contains("here"))
+			{
+				if (anchor is not null)
+				{
+					/*
+					 * 
+					 * 
+					 * TODO: this is tempoary. Need to extend PageEditor to split a paragraph
+					 * 
+					 * this is the old code:
+					 * 
+						if (page.GetSelectedElements() is not null &&
+							page.SelectionScope != SelectionScope.Unknown)
+						{
+							container.Remove();
+							page.AddNextParagraph(container);
+						}
+					 * 
+					 */
+
+					// add container before selected paragraph for now
+					anchor.AddBeforeSelf(container);
+					return container;
+				}
+			}
+
+			// if not here or can't find selection then:
+			anchor = anchor is null
+				// add to top of first container on page
+				? page.EnsureContentContainer()
+				// add to top of current container (!here)
+				: anchor.FirstAncestor(ns + "Outline");
+
+			// NOTE: I don't think this can break?!
+			anchor.Elements(ns + "OEChildren").First().AddFirst(container);
+
+			return container;
 		}
 
 

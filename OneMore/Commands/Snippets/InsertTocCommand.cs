@@ -76,7 +76,7 @@ namespace River.OneMoreAddIn.Commands
 			var page = await one.GetPage(OneNote.PageDetail.Basic);
 			var ns = page.Namespace;
 
-			var meta = page.Root.Elements(ns + "Outline")
+			var meta = page.BodyOutlines
 				.Descendants(ns + "Meta")
 				.FirstOrDefault(e => 
 					e.Attribute("name") is XAttribute attr && attr.Value == Toc.MetaName);

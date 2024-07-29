@@ -1716,6 +1716,12 @@ Benutzerdefinierte Überschrift 3</value>
 Möchten Sie die bestehende Seite aktualisieren?</value>
     <comment>message box</comment>
   </data>
+  <data name="InsertTocForPage_ClearToc" xml:space="preserve">
+    <value>Auf dieser Seite gibt es keine Überschriften. Es gibt jedoch ein Inhaltsverzeichnis.
+
+Möchten Sie das Inhaltsverzeichnis von dieser Seite entfernen?</value>
+    <comment>message box</comment>
+  </data>
   <data name="InsertTocForSection_RefreshQuestion" xml:space="preserve">
     <value>Für diesen Abschnitt gibt es eine Inhaltsverzeichnisseite. Sie können diese Seite aktualisieren oder eine neue Seite erstellen.
 

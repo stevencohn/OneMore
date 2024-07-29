@@ -255,8 +255,8 @@ namespace River.OneMoreAddIn
 		/// Gets the active OneNote window as a Win32WindowHandle that can be passed as
 		/// the owner parameter to MoreMessageBox Show methods.
 		/// </summary>
-		public Win32WindowHandle OnwerWindow => new Win32WindowHandle(
-			new IntPtr((long)(IntPtr)onenote.Windows.CurrentWindow.WindowHandle));
+		public Win32WindowHandle OwnerWindow => 
+			new(new IntPtr((long)(IntPtr)onenote.Windows.CurrentWindow.WindowHandle));
 
 
 		/// <summary>

@@ -1727,6 +1727,12 @@ Total Row Font
 האם ברצונך לרענן את העמוד הקיים?</value>
     <comment>message box</comment>
   </data>
+  <data name="InsertTocForPage_ClearToc" xml:space="preserve">
+    <value>אין כותרות בעמוד זה. עם זאת, יש תוכן עניינים.
+
+האם תרצה להסיר את תוכן העניינים מדף זה?</value>
+    <comment>message box</comment>
+  </data>
   <data name="InsertTocForSection_RefreshQuestion" xml:space="preserve">
     <value>יש דף תוכן לחלק זה. אתה יכול לרענן את הדף או ליצור דף חדש.
 

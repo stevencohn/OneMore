@@ -1718,6 +1718,12 @@ Título personalizado 3</value>
 ¿Quieres actualizar la página existente?</value>
     <comment>message box</comment>
   </data>
+  <data name="InsertTocForPage_ClearToc" xml:space="preserve">
+    <value>No hay títulos en esta página. Sin embargo, hay una tabla de contenidos.
+
+¿Le gustaría eliminar la tabla de contenidos de esta página?</value>
+    <comment>message box</comment>
+  </data>
   <data name="InsertTocForSection_RefreshQuestion" xml:space="preserve">
     <value>Hay una página de índice para esta sección. Puede actualizar esa página o crear una nueva.
 

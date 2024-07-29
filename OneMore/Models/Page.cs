@@ -117,11 +117,20 @@ namespace River.OneMoreAddIn.Models
 		#endregion Hashing
 
 
+		/// <summary>
+		/// Gets all Outlines, skipping the reserved tag bank.
+		/// </summary>
+		public IEnumerable<XElement> BodyOutlines => Root
+			.Elements(Namespace + "Outline")
+			.Where(e => !e.Elements(Namespace + "Meta")
+				.Any(m => m.Attribute("name").Value.Equals(MetaNames.TaggingBank)));
+
+
 		public bool IsValid => Root != null;
 
 
 		/// <summary>
-		/// Gest the namespace used to create new elements for the page
+		/// Gets the namespace used to create new elements for the page
 		/// </summary>
 		public XNamespace Namespace { get; private set; }
 

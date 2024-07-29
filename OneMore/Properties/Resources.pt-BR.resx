@@ -1719,6 +1719,12 @@ Título personalizado 3</value>
 Deseja atualizar a página existente?</value>
     <comment>message box</comment>
   </data>
+  <data name="InsertTocForPage_ClearToc" xml:space="preserve">
+    <value>Não há títulos nesta página. No entanto, existe um índice.
+
+Gostaria de remover o índice desta página?</value>
+    <comment>message box</comment>
+  </data>
   <data name="InsertTocForSection_RefreshQuestion" xml:space="preserve">
     <value>Há uma página de índice para esta seção. Você pode atualizar essa página ou criar uma nova página.
 

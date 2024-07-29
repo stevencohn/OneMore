@@ -1727,6 +1727,12 @@ Nagłówek niestandardowy 3</value>
 Czy chcesz odświeżyć istniejącą stronę?</value>
     <comment>message box</comment>
   </data>
+  <data name="InsertTocForPage_ClearToc" xml:space="preserve">
+    <value>Na tej stronie nie ma żadnych nagłówków. Istnieje jednak spis treści.
+
+Czy chcesz usunąć spis treści z tej strony?</value>
+    <comment>message box</comment>
+  </data>
   <data name="InsertTocForSection_RefreshQuestion" xml:space="preserve">
     <value>W tej sekcji znajduje się spis treści. Możesz odświeżyć tę stronę lub utworzyć nową stronę.
 

@@ -1718,6 +1718,12 @@
 هل تريد تحديث الصفحة الحالية؟</value>
     <comment>message box</comment>
   </data>
+  <data name="InsertTocForPage_ClearToc" xml:space="preserve">
+    <value>لا توجد عناوين في هذه الصفحة. ومع ذلك، هناك جدول المحتويات.
+
+هل ترغب في إزالة جدول المحتويات من هذه الصفحة؟</value>
+    <comment>message box</comment>
+  </data>
   <data name="InsertTocForSection_RefreshQuestion" xml:space="preserve">
     <value>هناك صفحة جدول المحتويات لهذا القسم. يمكنك تحديث تلك الصفحة أو إنشاء صفحة جديدة.
 

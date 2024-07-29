@@ -474,10 +474,7 @@ namespace River.OneMoreAddIn.Models
 
 			// collect all visible text into one StringBuilder
 
-			var runs = page.Root.Elements(ns + "Outline")
-				.Where(e => !e.Elements(ns + "Meta")
-							.Any(m => m.Attribute("name").Value == MetaNames.TaggingBank))
-				.Descendants(ns + "T");
+			var runs = page.BodyOutlines.Descendants(ns + "T");
 
 			foreach (var run in runs)
 			{
