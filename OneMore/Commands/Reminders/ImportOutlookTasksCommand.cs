@@ -215,7 +215,8 @@ namespace River.OneMoreAddIn.Commands
 			var nowf = DateTime.Now.ToShortFriendlyString();
 			var guid = Guid.NewGuid().ToString("b").ToUpper();
 
-			page.AddNextParagraph(
+			var editor = new PageEditor(page);
+			editor.AddNextParagraph(
 				new Paragraph(Resx.OutlookTaskReport_Title).SetQuickStyle(heading2Index),
 				new Paragraph($"{Resx.ReminderReport_LastUpdated} {nowf} " +
 					$"(<a href=\"onemore://ImportOutlookTasksCommand/refresh/{guid}\">{Resx.word_Refresh}</a>)")
@@ -355,10 +356,12 @@ namespace River.OneMoreAddIn.Commands
 		{
 			var ordered = tasks.OrderBy(t => t.FolderPath).ThenBy(t => t.Subject);
 
+			var editor = new PageEditor(page);
+
 			foreach (var task in ordered)
 			{
 				//logger.WriteLine($"importing \"{task.FolderPath}/{task.Subject}\"");
-				page.InsertParagraph(MakeTaskReference(task));
+				editor.InsertParagraph(MakeTaskReference(task));
 			}
 
 			await one.Update(page);

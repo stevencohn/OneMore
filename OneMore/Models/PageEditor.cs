@@ -89,6 +89,29 @@ namespace River.OneMoreAddIn.Models
 
 
 		/// <summary>
+		/// Adds the given content after the selected insertion point; this will not
+		/// replace selected regions.
+		/// </summary>
+		/// <param name="content">The content to add</param>
+		public void AddNextParagraph(XElement content)
+		{
+			InsertParagraph(content, false);
+		}
+
+
+		public void AddNextParagraph(params XElement[] content)
+		{
+			// consumer will build content array in document-order but InsertParagraph inserts
+			// just prior to the insertion point which will reverse the order of content items
+			// so insert them in reverse order intentionally so they show up correctly
+			for (var i = content.Length - 1; i >= 0; i--)
+			{
+				InsertParagraph(content[i], false);
+			}
+		}
+
+
+		/// <summary>
 		/// Inserts the given content immediately after the anchor point. This might be after
 		/// the anchor element if the anchor is an OE or HTMLBlock or as its first element
 		/// if the anchor is an OEChildren or Outline.
@@ -127,6 +150,41 @@ namespace River.OneMoreAddIn.Models
 
 
 		/// <summary>
+		/// Adds the given content immediately before or after the selected insertion point;
+		/// this will not replace selected regions.
+		/// </summary>
+		/// <param name="content">The content to insert</param>
+		/// <param name="before">
+		/// If true then insert before the insertion point; otherwise insert after the insertion point
+		/// </param>
+		public void InsertParagraph(XElement content, bool before = true)
+		{
+			// TODO: 7/29/24 How does this compare to InsertAtAnchor?!
+
+			// TODO: 7/29/24 when called consecutively, e.g. within a loop, this will continually
+			// find the selected anchor. Should it track the last inserted OE so subsequent calls
+			// can reference from there? Would need a correlation-id/context-ticket thing...
+
+			var current = page.Root.Descendants(ns + "OE")
+				.LastOrDefault(e =>
+					e.Elements(ns + "T").Attributes("selected").Any(a => a.Value == "all"));
+
+			if (current != null)
+			{
+				if (content.Name.LocalName != "OE")
+				{
+					content = new XElement(ns + "OE", content);
+				}
+
+				if (before)
+					current.AddBeforeSelf(content);
+				else
+					current.AddAfterSelf(content);
+			}
+		}
+
+
+		/// <summary>
 		/// Given some text, insert it at the current cursor location or replace the selected
 		/// text on the page.
 		/// </summary>
@@ -145,7 +203,7 @@ namespace River.OneMoreAddIn.Models
 			{
 				// can't find cursor so append to page
 				var content = new XElement(ns + "T", new XCData(text));
-				page.AddNextParagraph(content);
+				AddNextParagraph(content);
 			}
 			else
 			{
@@ -157,7 +215,7 @@ namespace River.OneMoreAddIn.Models
 				{
 					// this case should not happen; should be handled above
 					var content = new XElement(ns + "T", new XCData(text));
-					page.AddNextParagraph(content);
+					AddNextParagraph(content);
 				}
 				else
 				{
@@ -186,6 +244,30 @@ namespace River.OneMoreAddIn.Models
 			}
 		}
 
+
+		/// <summary>
+		/// Given content, insert above/below or replace selected content.
+		/// </summary>
+		/// <param name="content">
+		/// The content to insert. This can be any valid child of Outline, relative to the
+		/// current text cursor context.
+		/// </param>
+		/// <param name="above">
+		/// True to insert above, otherwise below. This only applies when there is no
+		/// selection range to replace, otherwise the selected content is replace in-place
+		/// and this parameter is ignored.
+		/// </param>
+		public void InsertOrReplace(XElement content, bool above = true)
+		{
+			// TBD
+		}
+
+
+		// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+		// Extractors
+		// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+		#region Extractors
 
 		/// <summary>
 		/// Extracts all selected content as a single OEChildren element, preserving relative
@@ -649,5 +731,7 @@ namespace River.OneMoreAddIn.Models
 
 			return true;
 		}
+
+		#endregion Extractors
 	}
 }

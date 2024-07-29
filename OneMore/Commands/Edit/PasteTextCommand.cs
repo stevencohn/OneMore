@@ -4,6 +4,7 @@
 
 namespace River.OneMoreAddIn.Commands
 {
+	using River.OneMoreAddIn.Models;
 	using System.Linq;
 	using System.Threading.Tasks;
 	using System.Xml.Linq;
@@ -37,7 +38,8 @@ namespace River.OneMoreAddIn.Commands
 			if (!elements.Any())
 			{
 				// empty page so add new content
-				page.AddNextParagraph(content);
+				var editor = new PageEditor(page);
+				editor.AddNextParagraph(content);
 			}
 			else if (elements.Count() > 1)
 			{

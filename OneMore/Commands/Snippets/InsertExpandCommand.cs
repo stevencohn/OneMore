@@ -64,7 +64,9 @@ namespace River.OneMoreAddIn.Commands
 				}
 			}
 
-			page.AddNextParagraph(expand);
+			var editor = new PageEditor(page);
+			editor.AddNextParagraph(expand);
+
 			await one.Update(page);
 		}
 	}

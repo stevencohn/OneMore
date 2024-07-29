@@ -1,5 +1,5 @@
 ﻿//************************************************************************************************
-// Copyright © 2020 Steven M Cohn.  All rights reserved.
+// Copyright © 2020 Steven M Cohn. All rights reserved.
 //************************************************************************************************
 
 namespace River.OneMoreAddIn.Commands
@@ -132,8 +132,8 @@ namespace River.OneMoreAddIn.Commands
 
 			if (anchor == null)
 			{
-				page.AddNextParagraph(outer.Root);
-				//page.InsertParagraph(outer.Root, true);
+				var editor = new PageEditor(page);
+				editor.AddNextParagraph(outer.Root);
 			}
 			else
 			{
@@ -154,45 +154,4 @@ namespace River.OneMoreAddIn.Commands
 		}
 	}
 }
-/*
-<one:OE>
-  <one:Table bordersVisible="true">
-    <one:Columns>
-      <one:Column index="0" width="500" isLocked="true" />
-    </one:Columns>
-    <one:Row>
-      <one:Cell shadingColor="#FFF8F7">
-        <one:OEChildren>
-          <one:OE>
-            <one:Table bordersVisible="false">
-              <one:Columns>
-                <one:Column index="0" />
-                <one:Column index="1" />
-              </one:Columns>
-              <one:Row>
-                <one:Cell>
-                  <one:OEChildren>
-                    <one:OE style="font-family:'Segoe UI Symbol';font-size:22.0pt;color:#B43512;text-align:center">
-                      <one:T><![CDATA[<span style='font-weight:bold'>⚠</span>]]></one:T>
-                    </one:OE>
-                  </one:OEChildren>
-                </one:Cell>
-                <one:Cell>
-                  <one:OEChildren>
-                    <one:OE style="font-family:'Segoe UI';font-size:11.0pt;color:black">
-                      <one:T><![CDATA[<span style='font-weight:bold;background:white'>Warning</span>]]></one:T>
-                    </one:OE>
-                    <one:OE style="font-family:'Segoe UI';font-size:11.0pt;color:#333333">
-                      <one:T><![CDATA[Warning block]]></one:T>
-                    </one:OE>
-                  </one:OEChildren>
-                </one:Cell>
-              </one:Row>
-            </one:Table>
-          </one:OE>
-        </one:OEChildren>
-      </one:Cell>
-    </one:Row>
-  </one:Table>
-</one:OE>
-*/
+

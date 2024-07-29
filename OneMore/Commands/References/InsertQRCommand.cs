@@ -6,6 +6,7 @@
 
 namespace River.OneMoreAddIn.Commands
 {
+	using River.OneMoreAddIn.Models;
 	using System;
 	using System.Drawing;
 	using System.Threading.Tasks;
@@ -76,7 +77,9 @@ namespace River.OneMoreAddIn.Commands
 					)
 				);
 
-			page.AddNextParagraph(content);
+			var editor = new PageEditor(page);
+			editor.AddNextParagraph(content);
+
 			await one.Update(page);
 		}
 

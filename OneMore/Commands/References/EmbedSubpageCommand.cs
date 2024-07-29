@@ -309,7 +309,8 @@ namespace River.OneMoreAddIn.Commands
 
 				FillCell(table[0][0], source.Snippets, source.Page);
 
-				page.AddNextParagraph(new Paragraph(
+				var editor = new PageEditor(page);
+				editor.AddNextParagraph(new Paragraph(
 					new Meta(EmbeddedMetaName, source.Page.PageId),
 					table.Root
 					));

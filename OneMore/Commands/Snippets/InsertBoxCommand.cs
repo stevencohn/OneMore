@@ -115,7 +115,9 @@ namespace River.OneMoreAddIn.Commands
 			{
 				// empty text cursor found, add default content
 				cell.SetContent(MakeDefaultContent(addTitle));
-				page.AddNextParagraph(table.Root);
+
+				var editor = new PageEditor(page);
+				editor.AddNextParagraph(table.Root);
 			}
 			else
 			{
