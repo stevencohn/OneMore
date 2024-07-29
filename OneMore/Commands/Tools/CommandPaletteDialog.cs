@@ -31,7 +31,8 @@ namespace River.OneMoreAddIn.Commands
 
 			palette = new MoreAutoCompleteList
 			{
-				ShowPopupOnStartup = true
+				// keeping this as false will eliminate flicker on startup
+				ShowPopupOnStartup = false
 			};
 
 			palette.SetAutoCompleteList(cmdBox);
