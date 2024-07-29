@@ -23,7 +23,6 @@ namespace River.OneMoreAddIn
 	using System.Runtime.InteropServices.ComTypes;
 	using System.Threading.Tasks;
 	using System.Xml.Linq;
-	using Windows.Devices.Input;
 	using Resx = Properties.Resources;
 
 
