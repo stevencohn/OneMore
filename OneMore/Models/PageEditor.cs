@@ -310,12 +310,13 @@ namespace River.OneMoreAddIn.Models
 				? page.Root.Elements(ns + "Outline").Descendants(ns + "OE")
 				: targetOutline.Descendants(ns + "OE");
 
+			// we only need first-gen content elements of the OE; will dive into OEChildren
+			// later and tables are handled separately, ~= runs|img|ink|files|tables|children
+			var excludes = schema.OeHeaders.Concat(new[] { "Table", "OEChildren" }).ToArray();
+
 			var runs = paragraphs
 				.Elements()
-				.Where(e =>
-					// tables are handled via their cell contents
-					e.Name.LocalName != "Table" &&
-					e.Name.LocalName != "OEChildren" &&
+				.Where(e => !e.Name.LocalName.In(excludes) &&
 					(AllContent || e.Attributes().Any(a => a.Name == "selected" && a.Value == "all")))
 				.ToList();
 
@@ -331,8 +332,21 @@ namespace River.OneMoreAddIn.Models
 			// no selections found in body
 			if (!runs.Any())
 			{
-				Anchor = null;
-				return content;
+				var selements = page.GetSelectedElements();
+				if (page.SelectionSpecial)
+				{
+					runs = selements.ToList();
+					if (!runs.Any())
+					{
+						Anchor = null;
+						return content;
+					}
+				}
+				else
+				{
+					Anchor = null;
+					return content;
+				}
 			}
 
 			FindBestAnchorPoint(runs[0]);
