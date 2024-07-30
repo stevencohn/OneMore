@@ -119,8 +119,9 @@ namespace River.OneMoreAddIn.Commands
 
 				if (!string.IsNullOrWhiteSpace(title))
 				{
-					logger.WriteLine($"resolved {href} in {watch.ElapsedMilliseconds}ms");
-					anchor.Value = HttpUtility.HtmlDecode(title);
+					var text = HttpUtility.HtmlDecode(title);
+					logger.WriteLine($"resolved {href} to [{text}] in {watch.ElapsedMilliseconds}ms");
+					anchor.Value = text;
 					cdata.ReplaceWith(wrapper.GetInnerXml());
 					return 1;
 				}
@@ -167,7 +168,7 @@ namespace River.OneMoreAddIn.Commands
 					var contents = "";
 					var length = 0;
 
-					while ((title == null) && (length = stream.Read(buffer, 0, chunkSize)) > 0)
+					while ((title == null) && (length = await stream.ReadAsync(buffer, 0, chunkSize)) > 0)
 					{
 						// convert the byte-array to a string and add it to the rest of the
 						// contents that have been downloaded so far
