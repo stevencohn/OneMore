@@ -4,6 +4,7 @@
 
 namespace River.OneMoreAddIn.Commands
 {
+	using River.OneMoreAddIn.Models;
 	using System.Linq;
 	using System.Threading.Tasks;
 	using System.Xml.Linq;
@@ -131,7 +132,8 @@ namespace River.OneMoreAddIn.Commands
 						).ToString(SaveOptions.DisableFormatting) + "&#160;")
 					);
 
-				page.ReplaceSelectedWithContent(content);
+				var editor = new PageEditor(page);
+				editor.ReplaceSelectedWith(content);
 
 				await one.Update(page);
 			}

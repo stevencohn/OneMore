@@ -1218,44 +1218,6 @@ namespace River.OneMoreAddIn.Models
 
 
 		/// <summary>
-		/// Replaces the selected range on the page with the given content, keeping
-		/// the cursor after the newly inserted content.
-		/// <para>
-		/// This attempts to replicate what Word might do when pasting content in a
-		/// document with a selection range.
-		/// </para>
-		/// </summary>
-		/// <param name="page">The page root node</param>
-		/// <param name="content">The content to insert</param>
-		public void ReplaceSelectedWithContent(XElement content)
-		{
-			var elements = Root.Descendants(Namespace + "T")
-				.Where(e => e.Attribute("selected")?.Value == "all");
-
-			if ((elements.Count() == 1) &&
-				(elements.First().GetCData().Value.Length == 0))
-			{
-				// zero-width selection so insert just before cursor
-				elements.First().AddBeforeSelf(content);
-			}
-			else
-			{
-				// replace one or more [one:T @select=all] with status, placing cursor after
-				var element = elements.Last();
-				element.AddAfterSelf(content);
-				elements.Remove();
-
-				content.AddAfterSelf(new XElement(Namespace + "T",
-					new XAttribute("selected", "all"),
-					new XCData(string.Empty)
-					));
-
-				SelectionScope = SelectionScope.Region;
-			}
-		}
-
-
-		/// <summary>
 		/// Adds a Meta element to the page (in the proper schema sequence) with the
 		/// specified name and value.
 		/// </summary>

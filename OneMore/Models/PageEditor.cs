@@ -206,20 +206,27 @@ namespace River.OneMoreAddIn.Models
 		{
 			var cursor = page.GetTextCursor(allowPageTitle: true);
 
-			if (page.SelectionScope == SelectionScope.Region || page.SelectionSpecial)
+			if (page.SelectionScope == SelectionScope.Region)
 			{
 				// replace region or hyperlink/MathML
-				var content = new XElement(ns + "T", new XCData(text));
-				page.ReplaceSelectedWithContent(content);
+				ReplaceSelectedWith(new XElement(ns + "T", new XCData(text)));
 			}
-			else if (cursor == null) // && page.SelectionScope == SelectionScope.Empty)
+			else if (page.SelectionSpecial)
+			{
+				// do not replace hyperlink/MathML!
+				// impossible to determine exact cursor location so add immediately after
+				AddNextParagraph(new XElement(ns + "T", new XCData(text)));
+			}
+			else if (cursor is null) // && page.SelectionScope == SelectionScope.Empty)
 			{
 				// can't find cursor so append to page
-				var content = new XElement(ns + "T", new XCData(text));
-				AddNextParagraph(content);
+				var container = page.EnsureContentContainer();
+				container.Add(new XElement(ns + "T", new XCData(text)));
 			}
 			else
 			{
+				// empty text cursor, simple insert...
+
 				var line = page.Root.Descendants(ns + "T")
 					.FirstOrDefault(e =>
 						e.Attributes().Any(a => a.Name == "selected" && a.Value == "all"));
@@ -250,8 +257,7 @@ namespace River.OneMoreAddIn.Models
 					{
 						// this case should not happen; should be handled above
 						// something is selected so replace it
-						var content = new XElement(ns + "T", new XCData(text));
-						page.ReplaceSelectedWithContent(content);
+						ReplaceSelectedWith(new XElement(ns + "T", new XCData(text)));
 					}
 				}
 			}
@@ -259,7 +265,8 @@ namespace River.OneMoreAddIn.Models
 
 
 		/// <summary>
-		/// Given content, insert above/below or replace selected content.
+		/// Given content, insert above/below or replace selected content, possibly splitting
+		/// the current paragraph to insert one or more new paragraphs.
 		/// </summary>
 		/// <param name="content">
 		/// The content to insert. This can be any valid child of Outline, relative to the
@@ -276,7 +283,44 @@ namespace River.OneMoreAddIn.Models
 		}
 
 
+		/// <summary>
+		/// Replaces the selected range on the page with the given content, keeping
+		/// the cursor after the newly inserted content.
+		/// <para>
+		/// This attempts to replicate what Word might do when pasting content in a
+		/// document with a selection range.
+		/// </para>
+		/// </summary>
+		/// <param name="page">The page root node</param>
+		/// <param name="content">The content to insert</param>
+		public SelectionScope ReplaceSelectedWith(XElement content)
+		{
+			var elements = page.Root.Descendants(ns + "T")
+				.Where(e => e.Attribute("selected")?.Value == "all");
+
+			if ((elements.Count() == 1) &&
+				(elements.First().GetCData().Value.Length == 0))
+			{
+				// zero-width selection so insert just before cursor
+				elements.First().AddBeforeSelf(content);
+				return SelectionScope.Empty;
+			}
+
+			// replace one or more [one:T @select=all] with status, placing cursor after
+			var element = elements.Last();
+			element.AddAfterSelf(content);
+			elements.Remove();
+
+			content.AddAfterSelf(new XElement(ns + "T",
+				new XAttribute("selected", "all"),
+				new XCData(string.Empty)
+				));
+
+			return SelectionScope.Region;
+		}
+
 		// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
 		// Extractors
 		// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
