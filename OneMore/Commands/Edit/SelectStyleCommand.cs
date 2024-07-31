@@ -6,7 +6,6 @@ namespace River.OneMoreAddIn.Commands
 {
 	using River.OneMoreAddIn.Models;
 	using River.OneMoreAddIn.Styles;
-	using River.OneMoreAddIn.UI;
 	using System.Collections.Generic;
 	using System.Linq;
 	using System.Threading.Tasks;
@@ -73,12 +72,12 @@ namespace River.OneMoreAddIn.Commands
 		private bool NormalizeTextCursor(Page page, StyleAnalyzer analyzer)
 		{
 			var cursor = page.GetTextCursor();
-			if (cursor == null || page.SelectionScope != SelectionScope.Empty)
+			if (cursor is null || page.SelectionScope != SelectionScope.TextCursor)
 			{
 				return false;
 			}
 
-			if (page.SelectionSpecial)
+			if (page.SelectionScope == SelectionScope.SpecialCursor)
 			{
 				// positioned over a hyperlink or MathML equation
 				return true;

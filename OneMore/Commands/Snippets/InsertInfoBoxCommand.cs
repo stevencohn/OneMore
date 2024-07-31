@@ -57,10 +57,7 @@ namespace River.OneMoreAddIn.Commands
 			XElement content;
 			XElement anchor = null;
 
-			if (// cursor is not null if selection range is empty
-				cursor != null &&
-				// selection range is a single line containing a hyperlink
-				!(page.SelectionSpecial && page.SelectionScope == SelectionScope.Empty))
+			if (page.SelectionScope == SelectionScope.TextCursor)
 			{
 				content = new XElement(ns + "OE",
 					new XAttribute("style", normalStyle.ToCss()),

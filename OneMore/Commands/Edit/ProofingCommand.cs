@@ -68,7 +68,7 @@ namespace River.OneMoreAddIn.Commands
 			}
 
 			var partial = false;
-			if (page.GetTextCursor() == null && page.SelectionScope == SelectionScope.Region)
+			if (page.GetTextCursor() == null && page.SelectionScope == SelectionScope.Range)
 			{
 				// update only selected text...
 

@@ -6,7 +6,7 @@ namespace River.OneMoreAddIn.Commands
 {
 	using River.OneMoreAddIn.Models;
 	using River.OneMoreAddIn.UI;
-	using System.Threading.Tasks; 
+	using System.Threading.Tasks;
 	using Resx = Properties.Resources;
 
 
@@ -28,9 +28,10 @@ namespace River.OneMoreAddIn.Commands
 			var writer = new MarkdownWriter(page, false);
 
 			if (// cursor is not null if selection range is empty
-				cursor != null &&
+				cursor is not null &&
 				// selection range is a single line containing a hyperlink
-				!(page.SelectionSpecial && page.SelectionScope == SelectionScope.Empty))
+				!(page.SelectionScope == SelectionScope.TextCursor ||
+				 page.SelectionScope == SelectionScope.SpecialCursor))
 			{
 				await writer.Copy(page.Root);
 			}

@@ -277,7 +277,7 @@ namespace River.OneMoreAddIn.Commands
 			var count = 0;
 
 			var selection = range.GetSelection();
-			if (range.SelectionScope == SelectionScope.Empty)
+			if (range.SelectionScope == SelectionScope.TextCursor)
 			{
 				page.EditNode(selection, (s) =>
 				{
@@ -306,7 +306,7 @@ namespace River.OneMoreAddIn.Commands
 			// combine doubled-up <a/><a/>...
 			// WARN: this could loose styling
 
-			if (count > 0 && range.SelectionScope == SelectionScope.Empty)
+			if (count > 0 && range.SelectionScope == SelectionScope.TextCursor)
 			{
 				var cdata = selection.GetCData();
 

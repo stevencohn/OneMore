@@ -108,7 +108,7 @@ namespace River.OneMoreAddIn.Commands
 				cursor = page.GetSelectedElements().FirstOrDefault();
 				if (cursor != null)
 				{
-					onlySelected = page.SelectionScope == SelectionScope.Region;
+					onlySelected = page.SelectionScope == SelectionScope.Range;
 				}
 			}
 

@@ -31,7 +31,7 @@ namespace River.OneMoreAddIn.Commands
 			page.GetTextCursor();
 			var editor = new PageEditor(page)
 			{
-				AllContent = (page.SelectionScope != SelectionScope.Region)
+				AllContent = (page.SelectionScope != SelectionScope.Range)
 			};
 
 			var paragraphs = new List<XElement>();
@@ -64,7 +64,7 @@ namespace River.OneMoreAddIn.Commands
 				TableSides = "|"
 			};
 
-			var text = reader.ReadTextFrom(paragraphs, page.SelectionScope != SelectionScope.Region);
+			var text = reader.ReadTextFrom(paragraphs, page.SelectionScope != SelectionScope.Range);
 			logger.Verbose("preview raw text:");
 			logger.Verbose(text);
 

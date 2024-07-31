@@ -160,7 +160,7 @@ namespace River.OneMoreAddIn.Commands
 		{
 			IEnumerable<XElement> cells;
 
-			if (page.SelectionScope == SelectionScope.Empty)
+			if (page.SelectionScope == SelectionScope.TextCursor)
 			{
 				cells = page.Root.Descendants(ns + "Cell")
 					.Where(e => e.Attribute("shadingColor") != null);

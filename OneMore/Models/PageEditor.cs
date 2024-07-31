@@ -206,16 +206,16 @@ namespace River.OneMoreAddIn.Models
 		{
 			var cursor = page.GetTextCursor(allowPageTitle: true);
 
-			if (page.SelectionScope == SelectionScope.Region)
+			if (page.SelectionScope == SelectionScope.Range)
 			{
-				// replace region or hyperlink/MathML
+				// replace region
 				ReplaceSelectedWith(new XElement(ns + "T", new XCData(text)));
 			}
-			else if (page.SelectionSpecial)
+			else if (page.SelectionScope == SelectionScope.SpecialCursor)
 			{
 				// do not replace hyperlink/MathML!
-				// impossible to determine exact cursor location so add immediately after
-				AddNextParagraph(new XElement(ns + "T", new XCData(text)));
+				// impossible to determine exact cursor location so add immediately before
+				InsertParagraph(new XElement(ns + "T", new XCData(text)), true);
 			}
 			else if (cursor is null) // && page.SelectionScope == SelectionScope.Empty)
 			{
@@ -235,7 +235,7 @@ namespace River.OneMoreAddIn.Models
 				{
 					// this case should not happen; should be handled above
 					var content = new XElement(ns + "T", new XCData(text));
-					AddNextParagraph(content);
+					InsertParagraph(content, false);
 				}
 				else
 				{
@@ -277,9 +277,17 @@ namespace River.OneMoreAddIn.Models
 		/// selection range to replace, otherwise the selected content is replace in-place
 		/// and this parameter is ignored.
 		/// </param>
-		public void InsertOrReplace(XElement content, bool above = true)
+		public bool InsertOrReplace(XElement content, bool above = true)
 		{
-			// TBD
+			var cursor = page.GetTextCursor(allowPageTitle: true);
+			if (cursor is null && page.SelectionScope == SelectionScope.TextCursor)
+			{
+				// cursor focus on neither body nor title
+				return false;
+			}
+
+			//if (cursor)
+			return true;
 		}
 
 
@@ -303,7 +311,7 @@ namespace River.OneMoreAddIn.Models
 			{
 				// zero-width selection so insert just before cursor
 				elements.First().AddBeforeSelf(content);
-				return SelectionScope.Empty;
+				return SelectionScope.TextCursor;
 			}
 
 			// replace one or more [one:T @select=all] with status, placing cursor after
@@ -316,7 +324,7 @@ namespace River.OneMoreAddIn.Models
 				new XCData(string.Empty)
 				));
 
-			return SelectionScope.Region;
+			return SelectionScope.Range;
 		}
 
 		// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -377,7 +385,7 @@ namespace River.OneMoreAddIn.Models
 			if (!runs.Any())
 			{
 				var selements = page.GetSelectedElements();
-				if (page.SelectionSpecial)
+				if (page.SelectionScope == SelectionScope.SpecialCursor)
 				{
 					runs = selements.ToList();
 					if (!runs.Any())

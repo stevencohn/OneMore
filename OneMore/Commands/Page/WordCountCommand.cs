@@ -115,7 +115,7 @@ namespace River.OneMoreAddIn.Commands
 				}
 			}
 
-			var wholePage = page.SelectionScope == SelectionScope.Empty;
+			var wholePage = page.SelectionScope == SelectionScope.TextCursor;
 			return (count, wholePage);
 		}
 

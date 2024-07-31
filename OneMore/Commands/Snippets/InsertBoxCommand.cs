@@ -108,10 +108,7 @@ namespace River.OneMoreAddIn.Commands
 			row = table.AddRow();
 			cell = row.Cells.First();
 
-			if (// cursor is not null if selection range is empty
-				cursor is not null &&
-				// selection range is a single line containing a hyperlink
-				!(page.SelectionSpecial && page.SelectionScope == SelectionScope.Empty))
+			if (page.SelectionScope == SelectionScope.TextCursor)
 			{
 				// empty text cursor found, add default content
 				cell.SetContent(MakeDefaultContent(addTitle));
@@ -284,16 +281,10 @@ namespace River.OneMoreAddIn.Commands
 				var ground = ColorTranslator.FromHtml(mostFrequent);
 				var bright = ground.GetBrightness() >= 0.5;
 
-				if (dark && bright)
+				if ((dark && bright) || (!dark && !bright))
 				{
 					// page is dark and text background is all light then return
 					// light background color
-					background = mostFrequent;
-				}
-				else if (!dark && !bright)
-				{
-					// page is light and text background is all dark then return
-					// dark background color
 					background = mostFrequent;
 				}
 			}

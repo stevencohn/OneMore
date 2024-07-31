@@ -29,11 +29,11 @@ namespace River.OneMoreAddIn.Commands
 
 			var editor = new PageEditor(page)
 			{
-				AllContent = (page.SelectionScope != SelectionScope.Region)
+				AllContent = (page.SelectionScope != SelectionScope.Range)
 			};
 
 			IEnumerable<XElement> outlines;
-			if (page.SelectionScope != SelectionScope.Region)
+			if (page.SelectionScope != SelectionScope.Range)
 			{
 				// process all outlines
 				outlines = page.Root.Elements(ns + "Outline");
@@ -69,7 +69,7 @@ namespace River.OneMoreAddIn.Commands
 
 				var filepath = Path.Combine(Path.GetTempPath(), Path.GetRandomFileName());
 
-				var text = reader.ReadTextFrom(paragraphs, page.SelectionScope != SelectionScope.Region);
+				var text = reader.ReadTextFrom(paragraphs, page.SelectionScope != SelectionScope.Range);
 				var body = OneMoreDig.ConvertMarkdownToHtml(filepath, text);
 
 				editor.InsertAtAnchor(new XElement(ns + "HTMLBlock",

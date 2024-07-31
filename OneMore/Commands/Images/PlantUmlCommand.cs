@@ -73,7 +73,7 @@ namespace River.OneMoreAddIn.Commands
 			// get selected content...
 
 			var runs = page.GetSelectedElements().ToList();
-			if (!runs.Any() || page.SelectionScope != SelectionScope.Region)
+			if (!runs.Any() || page.SelectionScope != SelectionScope.Range)
 			{
 				ShowError(Resx.PlantUml_EmptySelection);
 				return;

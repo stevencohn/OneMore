@@ -80,7 +80,7 @@ namespace River.OneMoreAddIn.Commands
 
 			IEnumerable<XCData> cdatas;
 			// special case when cursor is on a hyperlink and no selection region
-			if (runs.Any() && page.SelectionScope == SelectionScope.Empty)
+			if (runs.Any() && page.SelectionScope == SelectionScope.TextCursor)
 			{
 				cdatas = page.Root.DescendantNodes().OfType<XCData>()
 					.Where(c => Regex.IsMatch(c.Value, $@"<a\s+href=""http[s]?://"));

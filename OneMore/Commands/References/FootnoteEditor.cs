@@ -353,7 +353,7 @@ namespace River.OneMoreAddIn
 				var cdata = element.DescendantNodes().OfType<XCData>().Last();
 				if (cdata is not null)
 				{
-					cdata.Value = 
+					cdata.Value =
 						$"{cdata.Value}{note.ToString(SaveOptions.DisableFormatting)}";
 
 					// set insertion just after footnote ref
@@ -493,7 +493,7 @@ namespace River.OneMoreAddIn
 
 		private List<FootnoteReference> FindSelectedReferences(IEnumerable<XElement> roots, bool super)
 		{
-			var pattern = super 
+			var pattern = super
 				? @"vertical-align:super[;'""][^>]*>\[(\d+)\]</span>"
 				: @"\[(\d+)\]";
 
@@ -573,7 +573,7 @@ namespace River.OneMoreAddIn
 		{
 			var cursor = page.GetTextCursor();
 			if (cursor is null ||
-				page.SelectionScope != SelectionScope.Empty)
+				page.SelectionScope != SelectionScope.TextCursor)
 			{
 				logger.WriteLine("could not delete footnote, cursor not found");
 				SystemSounds.Exclamation.Play();
@@ -593,7 +593,7 @@ namespace River.OneMoreAddIn
 				label = meta.Attribute("content").Value;
 				logger.WriteLine($"found note [{label}]");
 			}
-			else if (page.SelectionSpecial) // URL?
+			else if (page.SelectionScope == SelectionScope.SpecialCursor) // URL?
 			{
 				// cursor is on a hyperlink, check that it matches the [label] syntax
 				var match = Regex.Match(cursor.Value,

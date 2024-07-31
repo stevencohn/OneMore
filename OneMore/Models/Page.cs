@@ -48,7 +48,7 @@ namespace River.OneMoreAddIn.Models
 				Root = root;
 			}
 
-			SelectionScope = SelectionScope.Unknown;
+			SelectionScope = SelectionScope.None;
 		}
 
 
@@ -161,13 +161,6 @@ namespace River.OneMoreAddIn.Models
 		public SelectionScope SelectionScope { get; private set; }
 
 
-		/// <summary>
-		/// Gets an indication that the text cursor is positioned over either a hyperlink
-		/// or a MathML equation, both of which return zero-length selection ranges.
-		/// </summary>
-		public bool SelectionSpecial { get; private set; }
-
-
 		// TODO: this is inconsistent! It gets the plain text but allows setting complex CDATA
 		public string Title
 		{
@@ -209,19 +202,6 @@ namespace River.OneMoreAddIn.Models
 
 				return attribute?.Value;
 			}
-		}
-
-
-		/// <summary>
-		/// Appends content to the current page
-		/// </summary>
-		/// <param name="content"></param>
-		/// <returns></returns>
-		public XElement AddContent(IEnumerable<XElement> content)
-		{
-			var container = EnsureContentContainer();
-			container.Add(content);
-			return container;
 		}
 
 
@@ -769,7 +749,7 @@ namespace River.OneMoreAddIn.Models
 
 			if (!selected.Any())
 			{
-				SelectionScope = SelectionScope.Unknown;
+				SelectionScope = SelectionScope.None;
 
 				return all
 					? Root.Elements(Namespace + "Outline").Descendants(Namespace + "T")
@@ -791,7 +771,7 @@ namespace River.OneMoreAddIn.Models
 						Regex.IsMatch(cdata.Value, @"<a\s+href.+?</a>", RegexOptions.Singleline) ||
 						Regex.IsMatch(cdata.Value, @"<!--.+?-->", RegexOptions.Singleline))
 					{
-						SelectionScope = SelectionScope.Empty;
+						SelectionScope = SelectionScope.TextCursor;
 
 						return all
 							? Root.Elements(Namespace + "Outline").Descendants(Namespace + "T")
@@ -800,7 +780,7 @@ namespace River.OneMoreAddIn.Models
 				}
 			}
 
-			SelectionScope = SelectionScope.Region;
+			SelectionScope = SelectionScope.Range;
 
 			// return zero or more elements
 			return selected;
@@ -867,7 +847,7 @@ namespace River.OneMoreAddIn.Models
 
 			if (!selected.Any())
 			{
-				SelectionScope = SelectionScope.Empty;
+				SelectionScope = SelectionScope.TextCursor;
 				return null;
 			}
 
@@ -884,13 +864,12 @@ namespace River.OneMoreAddIn.Models
 					Regex.IsMatch(cdata.Value, @"^<a\s+href.+?</a>$", RegexOptions.Singleline) ||
 					Regex.IsMatch(cdata.Value, @"^<!--.+?-->$", RegexOptions.Singleline))
 				{
-					SelectionScope = SelectionScope.Empty;
-					SelectionSpecial = cdata.Value.Length > 0;
+					SelectionScope = SelectionScope.SpecialCursor;
 					return cursor;
 				}
 			}
 
-			SelectionScope = SelectionScope.Region;
+			SelectionScope = SelectionScope.Range;
 			return null;
 		}
 

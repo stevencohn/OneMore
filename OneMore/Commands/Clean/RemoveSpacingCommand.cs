@@ -55,7 +55,7 @@ namespace River.OneMoreAddIn.Commands
 				.ToList();
 
 			page.GetTextCursor();
-			if (page.SelectionScope != SelectionScope.Empty)
+			if (page.SelectionScope != SelectionScope.TextCursor)
 			{
 				elements = elements.Where(e => e.Attribute("selected") != null).ToList();
 			}

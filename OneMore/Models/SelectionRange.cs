@@ -65,12 +65,12 @@ namespace River.OneMoreAddIn.Models
 		/// represents the insertion text cursor with no range; content represents a selection
 		/// range of a word or phrase.
 		/// 
-		/// The SelectionScope is set based on the range type: Empty, Run, Special, or Region
+		/// The SelectionScope is set based on the range type: Cursor, Run, Special, or Range
 		/// if there are multiple selections in context, e.g. the Root is higher than an OE.
 		/// </remarks>
 		public XElement Deselect()
 		{
-			SelectionScope = SelectionScope.Unknown;
+			SelectionScope = SelectionScope.None;
 
 			var selections = GetSelections();
 			var count = selections.Count();
@@ -84,7 +84,7 @@ namespace River.OneMoreAddIn.Models
 			{
 				// empty cursor run should be the only selected run;
 				// this can only happen if the given root is not an OE
-				SelectionScope = SelectionScope.Region;
+				SelectionScope = SelectionScope.Range;
 				return null;
 			}
 
@@ -105,12 +105,12 @@ namespace River.OneMoreAddIn.Models
 			{
 				cursor = JoinCursorContext(cursor);
 				NormalizeRuns();
-				SelectionScope = SelectionScope.Empty;
+				SelectionScope = SelectionScope.TextCursor;
 			}
 			else if (Regex.IsMatch(cdata.Value, @"<a\s+href.+?</a>", RegexOptions.Singleline) ||
 				Regex.IsMatch(cdata.Value, @"<!--.+?-->", RegexOptions.Singleline))
 			{
-				SelectionScope = SelectionScope.Special;
+				SelectionScope = SelectionScope.SpecialCursor;
 			}
 			else
 			{
@@ -271,7 +271,7 @@ namespace River.OneMoreAddIn.Models
 		/// </summary>
 		/// <returns>
 		/// The one outline element or null if there are multiple runs selected or the selected
-		/// region is unknonwn. This also sets the SelectionScope property
+		/// range is unknonwn. This method also sets the SelectionScope property
 		/// </returns>
 		/// <remarks>
 		/// If there is exactly one selected text run and its width is zero then this visually
@@ -279,13 +279,13 @@ namespace River.OneMoreAddIn.Models
 		/// word or phrase in context.
 		/// 
 		/// If there is exactly one selected text run and its width is greater than zero then
-		/// this visually appears as a selected region within one paragraph (outline element)
+		/// this visually appears as a selected range within one paragraph (outline element)
 		/// </remarks>
-		public XElement GetSelection()
+		public XElement GetSelection(bool allowPageTitle = false)
 		{
-			SelectionScope = SelectionScope.Unknown;
+			SelectionScope = SelectionScope.None;
 
-			var selections = GetSelections();
+			var selections = GetSelections(allowPageTitle);
 			var count = selections.Count();
 
 			if (count == 0)
@@ -295,14 +295,16 @@ namespace River.OneMoreAddIn.Models
 
 			if (count > 1)
 			{
-				SelectionScope = SelectionScope.Region;
+				SelectionScope = SelectionScope.Range;
 				return null;
 			}
 
-			var cursor = selections.First();
-			if (cursor.FirstNode is not XCData cdata)
+			var run = selections.First();
+			if (run.FirstNode is not XCData cdata)
 			{
-				// shouldn't happen?
+				// shouldn't happen? should fail?
+				Logger.Current.WriteLine("found invalid schema, one:T does not contain CDATA");
+				SelectionScope = SelectionScope.None;
 				return null;
 			}
 
@@ -311,12 +313,12 @@ namespace River.OneMoreAddIn.Models
 			// Note that XML comments are used to wrap mathML equations
 			if (cdata.Value.Length == 0)
 			{
-				SelectionScope = SelectionScope.Empty;
+				SelectionScope = SelectionScope.TextCursor;
 			}
 			else if (Regex.IsMatch(cdata.Value, @"<a\s+href.+?</a>", RegexOptions.Singleline) ||
 				Regex.IsMatch(cdata.Value, @"<!--.+?-->", RegexOptions.Singleline))
 			{
-				SelectionScope = SelectionScope.Special;
+				SelectionScope = SelectionScope.SpecialCursor;
 			}
 			else
 			{
@@ -324,31 +326,39 @@ namespace River.OneMoreAddIn.Models
 				SelectionScope = SelectionScope.Run;
 			}
 
-			return cursor;
+			return run;
 		}
 
 
 		/// <summary>
 		/// Return a collection of all selected text runs
 		/// </summary>
+		/// <param name="allowPageTitle">
+		/// True to include the page title, otherwise just the body of the which would be
+		/// all regular Outlines including the tag bank
+		/// </param>
 		/// <returns>An IEnumerable of XElements</returns>
 		/// <remarks>
 		/// Sets SelectionScope by making a basic assumption that if all selectioned runs are
-		/// under the same parent then it must be a Run, otherwise it must be a Region.
+		/// under the same parent then it must be a Run, otherwise it must be a Range.
 		/// </remarks>
-		public IEnumerable<XElement> GetSelections()
+		public IEnumerable<XElement> GetSelections(bool allowPageTitle = false)
 		{
-			var selections = root.Descendants(ns + "T")
-				.Where(e => e.Attribute("selected")?.Value == "all");
+			var start = allowPageTitle
+				? Root.Elements()
+				: Root.Elements(ns + "Outline");
+
+			var selections = start.Descendants(ns + "T")
+				.Where(e => e.Attribute("selected") is XAttribute a && a.Value == "all");
 
 			if (selections.Any())
 			{
 				var count = selections.GroupBy(e => e.Parent).Count();
-				SelectionScope = count == 1 ? SelectionScope.Run : SelectionScope.Region;
+				SelectionScope = count == 1 ? SelectionScope.Run : SelectionScope.Range;
 			}
 			else
 			{
-				SelectionScope = SelectionScope.Unknown;
+				SelectionScope = SelectionScope.None;
 			}
 
 			return selections;
