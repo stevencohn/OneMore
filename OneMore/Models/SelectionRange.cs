@@ -1,5 +1,5 @@
 ﻿//************************************************************************************************
-// Copyright © 2021 Steven M Cohn.  All rights reserved.
+// Copyright © 2021 Steven M Cohn. All rights reserved.
 //************************************************************************************************
 
 namespace River.OneMoreAddIn.Models
@@ -24,6 +24,13 @@ namespace River.OneMoreAddIn.Models
 		private readonly XNamespace ns;
 
 
+		/// <summary>
+		/// Initialize a new instance for a given scoped context.
+		/// </summary>
+		/// <param name="element">
+		/// The XElement possibly containig a selection range. This could be the page Root
+		/// or any descendant container such as Outline, OE, or even Table.
+		/// </param>
 		public SelectionRange(XElement element)
 		{
 			root = element;
@@ -50,84 +57,42 @@ namespace River.OneMoreAddIn.Models
 		/// <summary>
 		/// Get the selection scope based on the results of GetSelection or MergeFromCursor
 		/// </summary>
-		public SelectionScope SelectionScope { get; private set; }
+		public SelectionScope Scope { get; private set; }
 
 
 		/// <summary>
-		/// Removes the selection run from a sequence of runs, merging content with the previous
-		/// and next sibling runs.
+		/// Gets a Boolean indicating whether the Scope is confined to a single paragraph.
 		/// </summary>
-		/// <returns>
-		/// The merged run containing next, run, and previous content
-		/// </returns>
-		/// <remarks>
-		/// The selection run may be either empty or contain content. An empty selection
-		/// represents the insertion text cursor with no range; content represents a selection
-		/// range of a word or phrase.
-		/// 
-		/// The SelectionScope is set based on the range type: Cursor, Run, Special, or Range
-		/// if there are multiple selections in context, e.g. the Root is higher than an OE.
-		/// </remarks>
-		public XElement Deselect()
+		public bool SingleParagraph { get; private set; }
+
+
+		/// <summary>
+		/// Deselects all selected runs within the root context and merges/optimizes consecutive
+		/// runs where possible, such as removing the empty cursor run and merging its previous
+		/// and next siblings - presuming they have the same styling - to create one run.
+		/// </summary>
+		public void Deselect()
 		{
-			SelectionScope = SelectionScope.None;
-
 			var selections = GetSelections();
-			var count = selections.Count();
-
-			if (count == 0)
+			if (!selections.Any())
 			{
-				return null;
+				return;
 			}
 
-			if (count > 1)
+			if (Scope == SelectionScope.TextCursor)
 			{
-				// empty cursor run should be the only selected run;
-				// this can only happen if the given root is not an OE
-				SelectionScope = SelectionScope.Range;
-				return null;
+				JoinCursorContext(selections.First());
 			}
 
-			var cursor = selections.First();
-			if (cursor.FirstNode is not XCData cdata)
-			{
-				// shouldn't happen?
-				return null;
-			}
-
-			// A zero length insertion cursor (CDATA[]) is easy to recognize. But OneNote doesn't
-			// provide enough information when the cursor is positioned on a partially or fully
-			// selected hyperlink or XML comment so we can't tell the difference between these
-			// three cases without looking at the CDATA value. Note that XML comments are used
-			// to wrap mathML equations.
-
-			if (cdata.Value.Length == 0)
-			{
-				cursor = JoinCursorContext(cursor);
-				NormalizeRuns();
-				SelectionScope = SelectionScope.TextCursor;
-			}
-			else if (Regex.IsMatch(cdata.Value, @"<a\s+href.+?</a>", RegexOptions.Singleline) ||
-				Regex.IsMatch(cdata.Value, @"<!--.+?-->", RegexOptions.Singleline))
-			{
-				SelectionScope = SelectionScope.SpecialCursor;
-			}
-			else
-			{
-				// the entire current non-empty run is selected
-				NormalizeRuns();
-				SelectionScope = SelectionScope.Run;
-			}
+			NormalizeRuns();
 
 			root.DescendantsAndSelf().Attributes("selected").Remove();
-
-			return cursor;
 		}
 
 
 		// Remove an empty CDATA[] cursor or a selected=all T run, combining it with the previous
 		// and next runs into a single run
-		private XElement JoinCursorContext(XElement run)
+		private void JoinCursorContext(XElement run)
 		{
 			var cdata = run.GetCData();
 
@@ -152,8 +117,6 @@ namespace River.OneMoreAddIn.Models
 					next.Remove();
 				}
 			}
-
-			return run;
 		}
 
 
@@ -283,7 +246,7 @@ namespace River.OneMoreAddIn.Models
 		/// </remarks>
 		public XElement GetSelection(bool allowPageTitle = false)
 		{
-			SelectionScope = SelectionScope.None;
+			Scope = SelectionScope.None;
 
 			var selections = GetSelections(allowPageTitle);
 			var count = selections.Count();
@@ -295,7 +258,7 @@ namespace River.OneMoreAddIn.Models
 
 			if (count > 1)
 			{
-				SelectionScope = SelectionScope.Range;
+				Scope = SelectionScope.Range;
 				return null;
 			}
 
@@ -304,7 +267,7 @@ namespace River.OneMoreAddIn.Models
 			{
 				// shouldn't happen? should fail?
 				Logger.Current.WriteLine("found invalid schema, one:T does not contain CDATA");
-				SelectionScope = SelectionScope.None;
+				Scope = SelectionScope.None;
 				return null;
 			}
 
@@ -313,17 +276,17 @@ namespace River.OneMoreAddIn.Models
 			// Note that XML comments are used to wrap mathML equations
 			if (cdata.Value.Length == 0)
 			{
-				SelectionScope = SelectionScope.TextCursor;
+				Scope = SelectionScope.TextCursor;
 			}
 			else if (Regex.IsMatch(cdata.Value, @"<a\s+href.+?</a>", RegexOptions.Singleline) ||
 				Regex.IsMatch(cdata.Value, @"<!--.+?-->", RegexOptions.Singleline))
 			{
-				SelectionScope = SelectionScope.SpecialCursor;
+				Scope = SelectionScope.SpecialCursor;
 			}
 			else
 			{
 				// the entire current non-empty run is selected
-				SelectionScope = SelectionScope.Run;
+				Scope = SelectionScope.Run;
 			}
 
 			return run;
@@ -337,28 +300,78 @@ namespace River.OneMoreAddIn.Models
 		/// True to include the page title, otherwise just the body of the which would be
 		/// all regular Outlines including the tag bank
 		/// </param>
-		/// <returns>An IEnumerable of XElements</returns>
-		/// <remarks>
-		/// Sets SelectionScope by making a basic assumption that if all selectioned runs are
-		/// under the same parent then it must be a Run, otherwise it must be a Range.
-		/// </remarks>
+		/// <returns>An IEnumerable of XElements, which may be empty</returns>
 		public IEnumerable<XElement> GetSelections(bool allowPageTitle = false)
 		{
-			var start = allowPageTitle
-				? Root.Elements()
-				: Root.Elements(ns + "Outline");
+			IEnumerable<XElement> start = new List<XElement>() { root };
 
-			var selections = start.Descendants(ns + "T")
+			// allowPageTitle only makes sense for an entire Page
+			if (root.Name.LocalName == "Page")
+			{
+				start = allowPageTitle
+					? Root.Elements()
+					: Root.Elements(ns + "Outline");
+
+			}
+			return GetSelections(start);
+		}
+
+
+		public IEnumerable<XElement> GetSelections(IEnumerable<XElement> roots)
+		{
+			var selections = roots.Descendants(ns + "T")
 				.Where(e => e.Attribute("selected") is XAttribute a && a.Value == "all");
 
-			if (selections.Any())
+			if (!selections.Any())
 			{
-				var count = selections.GroupBy(e => e.Parent).Count();
-				SelectionScope = count == 1 ? SelectionScope.Run : SelectionScope.Range;
+				Scope = SelectionScope.None;
+				SingleParagraph = false;
+				return Enumerable.Empty<XElement>();
+			}
+
+			if (selections.Count() > 1)
+			{
+				Scope = SelectionScope.Range;
+
+				/// indicate when all selectied runs share the same parent
+				SingleParagraph = selections.GroupBy(e => e.Parent).Count() == 1;
+
+				return selections;
+			}
+
+			// single one:T selected...
+
+			SingleParagraph = true;
+
+			var run = selections.First();
+			if (run.FirstNode is not XCData cdata)
+			{
+				// shouldn't happen?
+				Logger.Current.WriteLine("found invalid schema, one:T does not contain CDATA");
+				// throw? ...
+				Scope = SelectionScope.None;
+				return Enumerable.Empty<XElement>();
+			}
+
+			// empty or link or xml-comment because we can't tell the difference between
+			// a zero-selection zero-selection link and a partial or fully selected link.
+			// Note that XML comments are used to wrap mathML equations
+
+			if (cdata.Value.Length == 0)
+			{
+				// variant of Run, indicates an empty selection, the text cursor 'caret'
+				Scope = SelectionScope.TextCursor;
+			}
+			else if (
+				Regex.IsMatch(cdata.Value, @"<a\s+href.+?</a>", RegexOptions.Singleline) ||
+				Regex.IsMatch(cdata.Value, @"<!--.+?-->", RegexOptions.Singleline))
+			{
+				Scope = SelectionScope.SpecialCursor;
 			}
 			else
 			{
-				SelectionScope = SelectionScope.None;
+				// the entire current non-empty run is selected
+				Scope = SelectionScope.Run;
 			}
 
 			return selections;

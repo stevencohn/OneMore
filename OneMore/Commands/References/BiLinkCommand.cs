@@ -104,6 +104,8 @@ namespace River.OneMoreAddIn.Commands
 			anchorPageId = one.CurrentPageId;
 			anchorText = page.GetSelectedText();
 
+			logger.WriteLine($"anchored to {anchorId}");
+
 			return true;
 		}
 
@@ -218,10 +220,14 @@ namespace River.OneMoreAddIn.Commands
 			// special deep comparison, excluding the selected attributes to handle
 			// case where anchor is on the same page as the target element
 
-			var oldcopy = new SelectionRange(anchor.Clone());
+			var aClone = anchor.Clone();
+			aClone.Attributes("lastModifiedTime").Remove();
+			var oldcopy = new SelectionRange(aClone);
 			oldcopy.Deselect();
 
-			var newcopy = new SelectionRange(candidate.Clone());
+			var cClone = candidate.Clone();
+			cClone.Attributes("lastModifiedTime").Remove();
+			var newcopy = new SelectionRange(cClone);
 			newcopy.Deselect();
 
 			NormalizeCData(oldcopy.Root);
@@ -232,11 +238,11 @@ namespace River.OneMoreAddIn.Commands
 
 			if (oldxml != newxml)
 			{
-				//logger.WriteLine("differences found in anchor/candidate");
-				//logger.WriteLine($"oldxml/anchor {oldxml.Length}");
-				//logger.WriteLine(oldxml);
-				//logger.WriteLine($"newxml/candidate {newxml.Length}");
-				//logger.WriteLine(newxml);
+				logger.WriteLine("differences found in anchor/candidate");
+				logger.WriteLine($"oldxml/anchor {oldxml.Length}");
+				logger.WriteLine(oldxml);
+				logger.WriteLine($"newxml/candidate {newxml.Length}");
+				logger.WriteLine(newxml);
 
 				for (int i = 0; i < oldxml.Length && i < newxml.Length; i++)
 				{
@@ -277,7 +283,7 @@ namespace River.OneMoreAddIn.Commands
 			var count = 0;
 
 			var selection = range.GetSelection();
-			if (range.SelectionScope == SelectionScope.TextCursor)
+			if (range.Scope == SelectionScope.TextCursor)
 			{
 				page.EditNode(selection, (s) =>
 				{
@@ -306,7 +312,7 @@ namespace River.OneMoreAddIn.Commands
 			// combine doubled-up <a/><a/>...
 			// WARN: this could loose styling
 
-			if (count > 0 && range.SelectionScope == SelectionScope.TextCursor)
+			if (count > 0 && range.Scope == SelectionScope.TextCursor)
 			{
 				var cdata = selection.GetCData();
 

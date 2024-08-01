@@ -4,16 +4,13 @@
 
 namespace River.OneMoreAddIn
 {
-	using System;
-
 	/// <summary>
 	/// Describes the selection state on the page or within an outline element
 	/// </summary>
-	[Flags]
 	internal enum SelectionScope
 	{
 		/// <summary>
-		/// Can't decipher scope; focus likely on UI widgets rather than page
+		/// Can't resolve scope; focus likely on UI widgets rather than page
 		/// </summary>
 		None = 0,
 

@@ -57,6 +57,7 @@ namespace River.OneMoreAddIn.Commands
 
 			var reader = new PageReader(page)
 			{
+				// configure to read for markdown
 				IndentationPrefix = "\n",
 				Indentation = ">",
 				ColumnDivider = "|",
