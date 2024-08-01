@@ -38,8 +38,8 @@ namespace River.OneMoreAddIn.Commands
 		}
 	}
 	#endregion Wrappers
-	
-	
+
+
 	/// <summary>
 	/// Converts the selected text to uppercase, lowercase, or titlecase.
 	/// </summary>
@@ -53,7 +53,7 @@ namespace River.OneMoreAddIn.Commands
 			@"(?:[""']|[^:;,./<>?!%\)])\s+(and|an|as|at|but|by|for|if|in|nor|of|off|or|per|so|to|up|via|yet)\W";
 
 
-		public ToCaseCommand ()
+		public ToCaseCommand()
 		{
 		}
 
@@ -63,7 +63,7 @@ namespace River.OneMoreAddIn.Commands
 			var casing = (int)args[0];
 
 			await using var one = new OneNote(out var page, out var ns);
-			var updated = page.EditSelected((s) =>
+			var updated = new Models.PageEditor(page).EditSelected((s) =>
 			{
 				if (s is XText text)
 				{
@@ -107,19 +107,19 @@ namespace River.OneMoreAddIn.Commands
 
 
 		/*
-		In title case, capitalize the following words in a title or heading
-		- the first word of the title or heading, even if it is a minor word [The | A]
-		- the first word of a subtitle
-		- the first word after a colon, em dash, or end punctuation in a heading
-		- major words including the 2nd part of hyphenated major words [Self-Report, not Self-report]
-		- words of four letters or more [With | Between | From]
+		Title case rules:
+		  - the first word of the title or heading, even if it is a minor word [The | A]
+		  - the first word of a subtitle
+		  - the first word after a colon, em dash, or end punctuation in a heading
+		  - major words incl the 2nd part of hyphenated major words [Self-Report, not Self-report]
+		  - words of four letters or more [With | Between | From]
 
-		Lowercase only minor words that are three letters or fewer in a title or heading except
-		the first word in a title or subtitle or the first word after a colon, em dash, or end
-		punctuation in a heading
-		- short conjunctions [and | as | but | for | if | nor | or | so | yet]
-		- articles [a | an | the]
-		- short prepositions [as | at | by | for | in | of | off | on | per | to | up | via]
+		  Lowercase only minor words that are three letters or fewer in a title or heading except
+		  the first word in a title or subtitle or the first word after a colon, em dash, or end
+		  punctuation in a heading
+		  - short conjunctions [and | as | but | for | if | nor | or | so | yet]
+		  - articles [a | an | the]
+		  - short prepositions [as | at | by | for | in | of | off | on | per | to | up | via]
 		 */
 		private string ToProperTitleCase(CultureInfo info, string text)
 		{
@@ -139,6 +139,5 @@ namespace River.OneMoreAddIn.Commands
 
 			return new string(chars);
 		}
-
 	}
 }

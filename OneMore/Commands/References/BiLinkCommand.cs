@@ -2,7 +2,7 @@
 // Copyright © 2021 Steven M Cohn. All rights reserved.
 //************************************************************************************************
 
-#define xLogDetail
+#define xLOG
 
 namespace River.OneMoreAddIn.Commands
 {
@@ -104,7 +104,7 @@ namespace River.OneMoreAddIn.Commands
 			}
 
 			anchorPageId = one.CurrentPageId;
-			anchorText = page.GetSelectedText();
+			anchorText = new PageEditor(page).GetSelectedText();
 
 			logger.WriteLine($"anchored to {anchorId}");
 
@@ -190,7 +190,7 @@ namespace River.OneMoreAddIn.Commands
 				candidate.DescendantsAndSelf().Attributes("selected").Remove();
 			}
 
-#if LogDetail
+#if LOG
 			logger.WriteLine();
 			logger.WriteLine("LINKING");
 			logger.WriteLine($" anchorPageId = {anchorPageId}");
@@ -228,7 +228,7 @@ namespace River.OneMoreAddIn.Commands
 
 			if (oldxml != newxml)
 			{
-#if LogDetail
+#if LOG
 				logger.WriteLine("differences found in anchor/candidate");
 				logger.WriteLine($"oldxml/anchor {oldxml.Length}");
 				logger.WriteLine(oldxml);
@@ -287,10 +287,11 @@ namespace River.OneMoreAddIn.Commands
 		{
 			var count = 0;
 
+			var editor = new PageEditor(page);
 			var selection = range.GetSelection(true);
 			if (range.Scope == SelectionScope.TextCursor)
 			{
-				page.EditNode(selection, (s) =>
+				editor.EditNode(selection, (s) =>
 				{
 					if (s is XText text)
 					{
@@ -307,7 +308,7 @@ namespace River.OneMoreAddIn.Commands
 			}
 			else
 			{
-				page.EditSelected(range.Root, (s) =>
+				editor.EditSelected(range.Root, (s) =>
 				{
 					count++;
 					return new XElement("a", new XAttribute("href", link), s);

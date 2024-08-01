@@ -40,7 +40,7 @@ namespace River.OneMoreAddIn.Commands
 			}
 
 			await using var one = new OneNote(out var page, out var ns);
-			var text = page.GetSelectedText();
+			var text = new PageEditor(page).GetSelectedText();
 
 			if (text.Length == 0)
 			{

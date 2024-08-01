@@ -44,14 +44,14 @@ namespace River.OneMoreAddIn.Commands
 			{
 				// assume Expand command and infer name from current word...
 
-				path = page.GetSelectedText();
+				path = new Models.PageEditor(page).GetSelectedText();
 				if (!string.IsNullOrWhiteSpace(path))
 				{
 					snippet = await provider.LoadByName(path);
 					if (!string.IsNullOrEmpty(snippet))
 					{
 						// remove placeholder
-						var updated = page.EditSelected((s) =>
+						var updated = new Models.PageEditor(page).EditSelected((s) =>
 						{
 							if (s is XText text)
 							{

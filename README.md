@@ -11,6 +11,7 @@ OneMore is an add-in for OneNote with simple and powerful features that make One
 
 # Highlights
 - Quickly access all OneMore commands from the almighty [Command Palette](https://onemoreaddin.com/the-basics/Basics.htm)!
+- Type and search for [inline #hashtags](https://onemoreaddin.com/commands/Search%20and%20Tag%20Commands.htm)
 - Use the [Navigator window](https://onemoreaddin.com/the-basics/Navigator.htm) to keep track of visited pages, a personalized reading list, and navigate the headings of the current page.
 - Integrating with the [ribbon bar](https://onemoreaddin.com/the-basics/Basics.htm), extends <a href="https://onemoreaddin.com/context-menus/Context%20Menu%20Extensions.htm">context menus</a>, and provides customized <a href="https://onemoreaddin.com/the-basics/OneNote%20Keyboard%20Shortcuts.htm">keyboard shortcuts</a>
 - Create [customized font styles](https://onemoreaddin.com/commands/My%20Styles%20Commands.htm) in addition to those provided by OneNote, apply a style to selected text, or apply all styles to the entire page
@@ -20,7 +21,6 @@ OneMore is an add-in for OneNote with simple and powerful features that make One
 - Add [formulas in table cells](https://onemoreaddin.com/commands/Table%20Commands.htm) using Excel-like expressions
 - [Crop, rotate, or adjust images](https://onemoreaddin.com/commands/Image%20Commands.htm) on a page without opening an external photo editor
 - Save and reuse [custom snippets](https://onemoreaddin.com/commands/Snippets%20Commands.htm) of content anywhere on any page
-- Type and search for [inline #hashtags](https://onemoreaddin.com/commands/Search%20and%20Tag%20Commands.htm)
 - - And many, many more… see below
 
 ## Screenshots

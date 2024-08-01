@@ -10,11 +10,11 @@ namespace River.OneMoreAddIn.Commands
 
 	internal enum PluginTarget
 	{
-		Page,			// Current page
-		Section,		// Current section and its pages
-		Notebook,		// Current notebook and its sections
-		NotebookPages,	// Current notebook and its pages
-		Notebooks		// All notebooks and their pages
+		Page,           // Current page
+		Section,        // Current section and its pages
+		Notebook,       // Current notebook and its sections
+		NotebookPages,  // Current notebook and its pages
+		Notebooks       // All notebooks and their pages
 	}
 
 
@@ -89,7 +89,7 @@ namespace River.OneMoreAddIn.Commands
 		/// <summary>
 		/// Gets or sets whether this plugin target a page or a hierarchy.
 		/// </summary>
-		[Obsolete("Use Plugin.Target instead")]
+		[Obsolete("Use Plugin.Target instead. Here just for backwards-compatibility")]
 		public bool TargetPage { get; set; } = true;
 
 

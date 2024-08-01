@@ -1,10 +1,8 @@
 ﻿//************************************************************************************************
-// Copyright © 2016 Steven M Cohn.  All rights reserved.
+// Copyright © 2016 Steven M Cohn. All rights reserved.
 //************************************************************************************************
 
-#pragma warning disable S1155 // "Any()" should be used to test for emptiness
 #pragma warning disable S3267 // Loops should be simplified with "LINQ" expressions
-#pragma warning disable S4136 // Method overloads should be grouped together
 
 namespace River.OneMoreAddIn.Models
 {
@@ -17,9 +15,7 @@ namespace River.OneMoreAddIn.Models
 	using System.Linq;
 	using System.Media;
 	using System.Security.Cryptography;
-	using System.Text;
 	using System.Text.RegularExpressions;
-	using System.Xml;
 	using System.Xml.Linq;
 
 
@@ -47,8 +43,6 @@ namespace River.OneMoreAddIn.Models
 
 				Root = root;
 			}
-
-			SelectionScope = SelectionScope.None;
 		}
 
 
@@ -142,23 +136,9 @@ namespace River.OneMoreAddIn.Models
 
 
 		/// <summary>
-		/// Used as a signal to GetSelectedText that editor scanning is in reverse
-		/// </summary>
-		public bool ReverseScanning { get; set; }
-
-
-		/// <summary>
 		/// Gets the root element of the page
 		/// </summary>
 		public XElement Root { get; private set; }
-
-
-		/// <summary>
-		/// Gets the most recently known selection state where none means unknown, all
-		/// means there is an obvious selection region, and partial means the selection
-		/// region is zero.
-		/// </summary>
-		public SelectionScope SelectionScope { get; private set; }
 
 
 		// TODO: this is inconsistent! It gets the plain text but allows setting complex CDATA
@@ -400,224 +380,6 @@ namespace River.OneMoreAddIn.Models
 
 
 		/// <summary>
-		/// Invokes an edit function on the selected text. The selection may be either infered
-		/// from the current cursor position or explicitly highlighted as a selected region.
-		/// No assumptions are made as to the resultant content or the order in which parts of
-		/// context are edited.
-		/// </summary>
-		/// <param name="edit">
-		/// A Func that accepts an XNode and returns an XNode. The accepted XNode is either an
-		/// XText or a "span" XElement. The returned XNode can be either the original unmodified,
-		/// the original modified, or a new XNode. Regardless, the returned XNode will replace
-		/// the current XNode in the content.
-		/// </param>
-		/// <returns></returns>
-		public bool EditSelected(Func<XNode, XNode> edit)
-		{
-			var range = new SelectionRange(this);
-			var selections = range.GetSelections(allowPageTitle: true);
-
-			if (range.Scope == SelectionScope.TextCursor)
-			{
-				return EditNode(selections.First(), edit);
-			}
-
-			return EditSelected(Root, edit);
-		}
-
-
-		public bool EditNode(XElement cursor, Func<XNode, XNode> edit)
-		{
-			var updated = false;
-
-			// T elements can only be a child of an OE but can also have other T siblings...
-			// Each T will have one CDATA with one or more XText and SPAN XElements.
-			// OneNote handles nested spans by normalizing them into consecutive spans
-
-			// Just FYI, because we use XElement.Parse to build the DOM, XText nodes will be
-			// singular but may be surrounded by SPAN elements; i.e., there shouldn't be two
-			// consecutive XText nodes next to each other
-
-			// indicate to GetSelectedText() that we're scanning in reverse
-			ReverseScanning = true;
-
-			// is there a preceding T?
-			if ((cursor.PreviousNode is XElement prev) && !prev.GetCData().EndsWithWhitespace())
-			{
-				var cdata = prev.GetCData();
-				var wrapper = cdata.GetWrapper();
-				var nodes = wrapper.Nodes().ToList();
-
-				// reverse, extracting text and stopping when matching word delimiter
-				for (var i = nodes.Count - 1; i >= 0; i--)
-				{
-					if (nodes[i] is XText text)
-					{
-						// ends with delimiter so can't be part of current word
-						if (text.Value.EndsWithWhitespace())
-							break;
-
-						// extract last word and pump through the editor
-						var pair = text.Value.SplitAtLastWord();
-						if (pair.Item1 == null)
-						{
-							// entire content of this XText
-							edit(text);
-						}
-						else
-						{
-							// last word of this XText
-							text.Value = pair.Item2;
-							text.AddAfterSelf(edit(new XText(pair.Item1)));
-						}
-
-						// remaining text has a word delimiter
-						if (text.Value.StartsWithWhitespace())
-							break;
-					}
-					else if (nodes[i] is XElement span)
-					{
-						// ends with delimiter so can't be part of current word
-						if (span.Value.EndsWithWhitespace())
-							break;
-
-						// extract last word and pump through editor
-						var word = span.ExtractLastWord();
-						if (word == null)
-						{
-							// edit entire contents of SPAN
-							edit(span);
-						}
-						else
-						{
-							// last word of this SPAN
-							var spawn = new XElement(span.Name, span.Attributes(), word);
-							edit(spawn);
-							span.AddAfterSelf(spawn);
-						}
-
-						// remaining text has a word delimiter
-						if (span.Value.StartsWithWhitespace())
-							break;
-					}
-				}
-
-				// rebuild CDATA with edited content
-				cdata.Value = wrapper.GetInnerXml();
-				updated = true;
-			}
-
-			// indicate to GetSelectedText() that we're scanning forward
-			ReverseScanning = false;
-
-			// is there a following T?
-			if ((cursor.NextNode is XElement next) && !next.GetCData().StartsWithWhitespace())
-			{
-				var cdata = next.GetCData();
-				var wrapper = cdata.GetWrapper();
-				var nodes = wrapper.Nodes().ToList();
-
-				// extract text and stop when matching word delimiter
-				for (var i = 0; i < nodes.Count; i++)
-				{
-					if (nodes[i] is XText text)
-					{
-						// starts with delimiter so can't be part of current word
-						if (text.Value.StartsWithWhitespace())
-							break;
-
-						// extract first word and pump through editor
-						var pair = text.Value.SplitAtFirstWord();
-						if (pair.Item1 == null)
-						{
-							// entire content of this XText
-							edit(text);
-						}
-						else
-						{
-							// first word of this XText
-							text.Value = pair.Item2;
-							text.AddBeforeSelf(edit(new XText(pair.Item1)));
-						}
-
-						// remaining text has a word delimiter
-						if (text.Value.EndsWithWhitespace())
-							break;
-					}
-					else if (nodes[i] is XElement span)
-					{
-						// ends with delimiter so can't be part of current word
-						if (span.Value.StartsWithWhitespace())
-							break;
-
-						// extract first word and pump through editor
-						var word = span.ExtractFirstWord();
-						if (word == null)
-						{
-							// eidt entire contents of SPAN
-							edit(span);
-						}
-						else
-						{
-							// first word of this SPAN
-							var spawn = new XElement(span.Name, span.Attributes(), word);
-							edit(spawn);
-							span.AddBeforeSelf(spawn);
-						}
-
-						// remaining text has a word delimiter
-						if (span.Value.EndsWithWhitespace())
-							break;
-					}
-				}
-
-				// rebuild CDATA with edited content
-				cdata.Value = wrapper.GetInnerXml();
-				updated = true;
-			}
-
-			return updated;
-		}
-
-
-		public bool EditSelected(XElement root, Func<XNode, XNode> edit)
-		{
-			// detect all selected text (cdata within T runs)
-			var cdatas = root.Descendants(Namespace + "T")
-				.Where(e => e.Attributes("selected").Any(a => a.Value == "all")
-					&& e.FirstNode?.NodeType == XmlNodeType.CDATA)
-				.Select(e => e.FirstNode as XCData);
-
-			if (!cdatas.Any())
-			{
-				return false;
-			}
-
-			foreach (var cdata in cdatas)
-			{
-				// edit every XText and SPAN in the T wrapper
-				var wrapper = cdata.GetWrapper();
-
-				// use ToList, otherwise enumeration will stop after first ReplaceWith
-				foreach (var node in wrapper.Nodes().ToList())
-				{
-					node.ReplaceWith(edit(node));
-				}
-
-				var text = wrapper.GetInnerXml();
-
-				// special case for <br> + EOL
-				text = text.Replace("<br>", "<br>\n");
-
-				// build CDATA with editing content
-				cdata.Value = text;
-			}
-
-			return true;
-		}
-
-
-		/// <summary>
 		/// Ensures the page contains at least one OEChildren elements and returns it
 		/// </summary>
 		public XElement EnsureContentContainer(bool last = true)
@@ -728,43 +490,6 @@ namespace River.OneMoreAddIn.Models
 			return Root.Elements(Namespace + "Meta")
 				.FirstOrDefault(e => e.Attribute("name").Value == name)?
 				.Attribute("content").Value;
-		}
-
-
-		/// <summary>
-		/// Gets the currently selected text. If the text cursor is positioned over a word but
-		/// with zero selection length then that word is returned; othewise, text from the selected
-		/// region is returned.
-		/// </summary>
-		/// <returns>A string of the selected text</returns>
-		public string GetSelectedText()
-		{
-			var builder = new StringBuilder();
-
-			// not editing... just using EditSelected to extract the current text,
-			// ignoring inline span styling
-
-			EditSelected((s) =>
-			{
-				if (s is XText text)
-				{
-					if (ReverseScanning)
-						builder.Insert(0, text.Value);
-					else
-						builder.Append(text.Value);
-				}
-				else if (s is not XComment)
-				{
-					if (ReverseScanning)
-						builder.Insert(0, ((XElement)s).Value);
-					else
-						builder.Append(((XElement)s).Value);
-				}
-
-				return s;
-			});
-
-			return builder.ToString();
 		}
 
 
