@@ -1,5 +1,5 @@
 ﻿//************************************************************************************************
-// Copyright © 2020 Steven M Cohn.  All rights reserved.
+// Copyright © 2020 Steven M Cohn. All rights reserved.
 //************************************************************************************************
 
 namespace River.OneMoreAddIn.Commands
@@ -54,8 +54,10 @@ namespace River.OneMoreAddIn.Commands
 					e.Attribute("spaceBetween") != null)
 				.ToList();
 
-			page.GetTextCursor();
-			if (page.SelectionScope != SelectionScope.TextCursor)
+			var range = new Models.SelectionRange(page);
+			range.GetSelection();
+
+			if (range.Scope != SelectionScope.TextCursor)
 			{
 				elements = elements.Where(e => e.Attribute("selected") != null).ToList();
 			}

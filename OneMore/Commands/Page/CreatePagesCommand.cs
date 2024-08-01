@@ -102,17 +102,16 @@ namespace River.OneMoreAddIn.Commands
 		{
 			onlySelected = false;
 
-			var cursor = page.GetTextCursor();
-			if (cursor == null)
+			var range = new Models.SelectionRange(page);
+			var selections = range.GetSelections();
+
+			if (range.Scope == SelectionScope.None)
 			{
-				cursor = page.GetSelectedElements().FirstOrDefault();
-				if (cursor != null)
-				{
-					onlySelected = page.SelectionScope == SelectionScope.Range;
-				}
+				return null;
 			}
 
-			return cursor;
+			onlySelected = range.Scope == SelectionScope.Range;
+			return selections.First();
 		}
 
 

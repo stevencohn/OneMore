@@ -24,7 +24,7 @@ namespace River.OneMoreAddIn.Commands
 		public override async Task Execute(params object[] args)
 		{
 			using var one = new OneNote(out var page, out var ns);
-			var range = new SelectionRange(page.Root);
+			var range = new SelectionRange(page);
 			var selectedRuns = range.GetSelections(true);
 
 			var allContent =

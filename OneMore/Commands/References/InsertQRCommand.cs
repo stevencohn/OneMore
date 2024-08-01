@@ -20,7 +20,8 @@ namespace River.OneMoreAddIn.Commands
 	/// </summary>
 	internal class InsertQRCommand : Command
 	{
-		private const string GetUri = "http://chart.apis.google.com/chart?cht=qr&chs={1}x{1}&chl={0}";
+		// aug-2024: charts.googleapi.com deprecated; switching to qrserver.com
+		private const string GetUri = "https://api.qrserver.com/v1/create-qr-code/?data={0}&size={1}x{1}";
 		private const int Size = 250;
 		private const int MaxLength = 2048;
 
@@ -57,6 +58,11 @@ namespace River.OneMoreAddIn.Commands
 			}
 
 			var image = await GetQRCodeImage(url);
+
+			if (image is null)
+			{
+				return;
+			}
 
 			var bytes = (byte[])new ImageConverter().ConvertTo(image, typeof(byte[]));
 			var data = Convert.ToBase64String(bytes);
@@ -95,6 +101,8 @@ namespace River.OneMoreAddIn.Commands
 				return Image.FromStream(stream);
 			}
 
+			logger.WriteLine($"HttpClient StatusCode=[{response.StatusCode}]");
+			logger.WriteLine($"URL=[{url}]");
 			return null;
 		}
 	}

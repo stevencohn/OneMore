@@ -1,5 +1,5 @@
 ﻿//************************************************************************************************
-// Copyright © 2021 Steven M Cohn.  All rights reserved.
+// Copyright © 2021 Steven M Cohn. All rights reserved.
 //************************************************************************************************
 
 namespace River.OneMoreAddIn.Commands
@@ -9,7 +9,7 @@ namespace River.OneMoreAddIn.Commands
 	using System.Threading.Tasks;
 	using System.Windows.Forms;
 	using System.Xml.Linq;
-	using Resx = River.OneMoreAddIn.Properties.Resources;
+	using Resx = Properties.Resources;
 
 
 	/// <summary>
@@ -36,7 +36,10 @@ namespace River.OneMoreAddIn.Commands
 		public override async Task Execute(params object[] args)
 		{
 			await using var one = new OneNote(out var page, out ns);
-			var cursor = page.GetTextCursor();
+
+			var range = new Models.SelectionRange(page);
+			var cursor = range.GetSelection();
+
 			if (cursor == null)
 			{
 				ShowError(Resx.SortListCommand_BadContext);
@@ -107,8 +110,8 @@ namespace River.OneMoreAddIn.Commands
 
 			// find all non-empty items
 			var items = list.Elements(ns + "OE")
-				.Select(e => new 
-				{ 
+				.Select(e => new
+				{
 					Element = e,
 					Text = e.Elements(ns + "T")?
 

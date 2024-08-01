@@ -38,6 +38,16 @@ namespace River.OneMoreAddIn.Models
 		}
 
 
+		/// <summary>
+		/// Initialize a new instance, scoped to a given page.
+		/// </summary>
+		/// <param name="page"></param>
+		public SelectionRange(Page page)
+			: this(page.Root)
+		{
+		}
+
+
 		public string ObjectId
 		{
 			get
@@ -230,8 +240,12 @@ namespace River.OneMoreAddIn.Models
 
 
 		/// <summary>
-		/// Gets the singly selected text run.
+		/// Finds the singly-selected text run
 		/// </summary>
+		/// <param name="allowNonEmpty">
+		/// True to allow a non-empty text run; default is to prefer the empty text cursor
+		/// element - the caret position.
+		/// </param>
 		/// <returns>
 		/// The one outline element or null if there are multiple runs selected or the selected
 		/// range is unknonwn. This method also sets the SelectionScope property
@@ -244,51 +258,38 @@ namespace River.OneMoreAddIn.Models
 		/// If there is exactly one selected text run and its width is greater than zero then
 		/// this visually appears as a selected range within one paragraph (outline element)
 		/// </remarks>
-		public XElement GetSelection(bool allowPageTitle = false)
+		public XElement GetSelection(bool allowNonEmpty = false)
 		{
-			Scope = SelectionScope.None;
-
-			var selections = GetSelections(allowPageTitle);
-			var count = selections.Count();
-
-			if (count == 0)
+			var selections = GetSelections(true);
+			if (Scope == SelectionScope.None)
 			{
 				return null;
 			}
 
-			if (count > 1)
+			if (Scope == SelectionScope.Range)
 			{
-				Scope = SelectionScope.Range;
 				return null;
 			}
 
 			var run = selections.First();
 			if (run.FirstNode is not XCData cdata)
 			{
-				// shouldn't happen? should fail?
+				// shouldn't happen? should it fail?
 				Logger.Current.WriteLine("found invalid schema, one:T does not contain CDATA");
 				Scope = SelectionScope.None;
 				return null;
 			}
 
-			// empty or link or xml-comment because we can't tell the difference between
-			// a zero-selection zero-selection link and a partial or fully selected link.
-			// Note that XML comments are used to wrap mathML equations
-			if (cdata.Value.Length == 0)
+			// at this point, Scope will be TextCursor, SpecialCursor, or Run...
+
+			// are we forcing empty text cursor or allowing non-empty T selection?
+			if (Scope == SelectionScope.Run && !allowNonEmpty)
 			{
-				Scope = SelectionScope.TextCursor;
-			}
-			else if (Regex.IsMatch(cdata.Value, @"<a\s+href.+?</a>", RegexOptions.Singleline) ||
-				Regex.IsMatch(cdata.Value, @"<!--.+?-->", RegexOptions.Singleline))
-			{
-				Scope = SelectionScope.SpecialCursor;
-			}
-			else
-			{
-				// the entire current non-empty run is selected
-				Scope = SelectionScope.Run;
+				Scope = SelectionScope.None;
+				return null;
 			}
 
+			// must have valid empty text cursor
 			return run;
 		}
 
@@ -317,6 +318,11 @@ namespace River.OneMoreAddIn.Models
 		}
 
 
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="roots"></param>
+		/// <returns></returns>
 		public IEnumerable<XElement> GetSelections(IEnumerable<XElement> roots)
 		{
 			var selections = roots.Descendants(ns + "T")

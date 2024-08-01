@@ -204,20 +204,23 @@ namespace River.OneMoreAddIn.Models
 		/// <param name="text">The text to insert</param>
 		public void InsertOrReplace(string text)
 		{
-			var cursor = page.GetTextCursor(allowPageTitle: true);
+			var range = new SelectionRange(page);
+			range.GetSelections(allowPageTitle: true);
 
-			if (page.SelectionScope == SelectionScope.Range)
+			if (range.Scope == SelectionScope.Range ||
+				range.Scope == SelectionScope.Run)
 			{
 				// replace region
 				ReplaceSelectedWith(new XElement(ns + "T", new XCData(text)));
 			}
-			else if (page.SelectionScope == SelectionScope.SpecialCursor)
+			else if (range.Scope == SelectionScope.SpecialCursor)
 			{
 				// do not replace hyperlink/MathML!
 				// impossible to determine exact cursor location so add immediately before
 				InsertParagraph(new XElement(ns + "T", new XCData(text)), true);
 			}
-			else if (cursor is null) // && page.SelectionScope == SelectionScope.Empty)
+			else if (
+				range.Scope != SelectionScope.TextCursor)
 			{
 				// can't find cursor so append to page
 				var container = page.EnsureContentContainer();
@@ -279,12 +282,14 @@ namespace River.OneMoreAddIn.Models
 		/// </param>
 		public bool InsertOrReplace(XElement content, bool above = true)
 		{
-			var cursor = page.GetTextCursor(allowPageTitle: true);
-			if (cursor is null && page.SelectionScope == SelectionScope.TextCursor)
-			{
-				// cursor focus on neither body nor title
-				return false;
-			}
+			var range = new SelectionRange(page);
+			var selections = range.GetSelections(allowPageTitle: true);
+
+			//if (!selections.Any() && range.Scope == SelectionScope.TextCursor)
+			//{
+			//	// cursor focus on neither body nor title
+			//	return false;
+			//}
 
 			//if (cursor)
 			return true;

@@ -468,7 +468,7 @@ namespace River.OneMoreAddIn
 			=> await factory.Run<InsertDateCommand>(true);
 
 
-		[Command("ribInsertDoubleLineButton_Label", Keys.Alt | Keys.Shift| Keys.F12, "ribSnippetsMenu")]
+		[Command("ribInsertDoubleLineButton_Label", Keys.Alt | Keys.Shift | Keys.F12, "ribSnippetsMenu")]
 		public async Task InsertDoubleLineCmd(IRibbonControl control)
 			=> await factory.Run<InsertDoubleLineCommand>();
 

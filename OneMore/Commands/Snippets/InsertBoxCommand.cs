@@ -78,7 +78,9 @@ namespace River.OneMoreAddIn.Commands
 			};
 
 			// remember selection cursor
-			var cursor = page.GetTextCursor();
+
+			var range = new SelectionRange(page);
+			var cursor = range.GetSelection(true);
 
 			// determine if cursor is inside a table or outline with a user set width
 			table.AddColumn(CalculateWidth(cursor, page.Root), true);
@@ -108,7 +110,7 @@ namespace River.OneMoreAddIn.Commands
 			row = table.AddRow();
 			cell = row.Cells.First();
 
-			if (page.SelectionScope == SelectionScope.TextCursor)
+			if (range.Scope == SelectionScope.TextCursor)
 			{
 				// empty text cursor found, add default content
 				cell.SetContent(MakeDefaultContent(addTitle));

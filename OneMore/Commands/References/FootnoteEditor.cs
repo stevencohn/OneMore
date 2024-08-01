@@ -571,9 +571,11 @@ namespace River.OneMoreAddIn
 		/// </remarks>
 		public async Task RemoveFootnote()
 		{
-			var cursor = page.GetTextCursor();
-			if (cursor is null ||
-				page.SelectionScope != SelectionScope.TextCursor)
+			var range = new SelectionRange(page);
+			var cursor = range.GetSelection();
+
+			if (range.Scope != SelectionScope.TextCursor &&
+				range.Scope != SelectionScope.SpecialCursor)
 			{
 				logger.WriteLine("could not delete footnote, cursor not found");
 				SystemSounds.Exclamation.Play();
@@ -593,7 +595,7 @@ namespace River.OneMoreAddIn
 				label = meta.Attribute("content").Value;
 				logger.WriteLine($"found note [{label}]");
 			}
-			else if (page.SelectionScope == SelectionScope.SpecialCursor) // URL?
+			else if (range.Scope == SelectionScope.SpecialCursor) // URL
 			{
 				// cursor is on a hyperlink, check that it matches the [label] syntax
 				var match = Regex.Match(cursor.Value,

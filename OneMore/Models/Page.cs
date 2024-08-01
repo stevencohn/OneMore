@@ -414,10 +414,12 @@ namespace River.OneMoreAddIn.Models
 		/// <returns></returns>
 		public bool EditSelected(Func<XNode, XNode> edit)
 		{
-			var cursor = GetTextCursor(true);
-			if (cursor != null)
+			var range = new SelectionRange(this);
+			var selections = range.GetSelections(allowPageTitle: true);
+
+			if (range.Scope == SelectionScope.TextCursor)
 			{
-				return EditNode(cursor, edit);
+				return EditNode(selections.First(), edit);
 			}
 
 			return EditSelected(Root, edit);
@@ -821,56 +823,6 @@ namespace River.OneMoreAddIn.Models
 			});
 
 			return builder.ToString();
-		}
-
-
-		/// <summary>
-		/// Gets the T element of a zero-width selection. Visually, this appears as the current
-		/// cursor insertion point and can be used to infer the current word or phrase in text.
-		/// </summary>
-		/// <param name="allowPageTitle">
-		/// True to include the page title, otherwise just the body of the page
-		/// </param>
-		/// <returns>
-		/// Returns the one:T XElement of an empty cursor and Page.SelectionScope
-		/// is set to Empty or Special if the cursor is on a hyperlink or mathML equation
-		/// and sets SelectionSpecial to true if the selection range is not empty.
-		/// Returns null if there is a selected range greater than zero and sets
-		/// the SelectionScope to Region.
-		/// </returns>
-		public XElement GetTextCursor(bool allowPageTitle = false)
-		{
-			var root = allowPageTitle ? Root.Elements() : Root.Elements(Namespace + "Outline");
-
-			var selected = root.Descendants(Namespace + "T")
-				.Where(e => e.Attributes().Any(a => a.Name == "selected" && a.Value == "all"));
-
-			if (!selected.Any())
-			{
-				SelectionScope = SelectionScope.TextCursor;
-				return null;
-			}
-
-			var count = selected.Count();
-			if (count == 1)
-			{
-				var cursor = selected.First();
-				var cdata = cursor.GetCData();
-
-				// empty, link, or xml-comment because we can't tell the difference between
-				// a zero-selection link and a partial or fully selected link. Note that XML
-				// comments are used to wrap mathML equations
-				if (cdata.Value.Length == 0 ||
-					Regex.IsMatch(cdata.Value, @"^<a\s+href.+?</a>$", RegexOptions.Singleline) ||
-					Regex.IsMatch(cdata.Value, @"^<!--.+?-->$", RegexOptions.Singleline))
-				{
-					SelectionScope = SelectionScope.SpecialCursor;
-					return cursor;
-				}
-			}
-
-			SelectionScope = SelectionScope.Range;
-			return null;
 		}
 
 

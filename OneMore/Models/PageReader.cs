@@ -439,8 +439,12 @@ namespace River.OneMoreAddIn.Models
 		/// <returns>A string of raw text content in document-order.</returns>
 		public string GetSelectedText(bool withTitle = true)
 		{
-			page.GetTextCursor(allowPageTitle: withTitle);
-			var allText = page.SelectionScope != SelectionScope.Range;
+			var range = new SelectionRange(page);
+			range.GetSelections(true);
+
+			var allText =
+				range.Scope == SelectionScope.TextCursor ||
+				range.Scope == SelectionScope.SpecialCursor;
 
 			// Allow Title selection as well as body selections.
 			// Only grab the top level objects; we'll recurse in BuildText

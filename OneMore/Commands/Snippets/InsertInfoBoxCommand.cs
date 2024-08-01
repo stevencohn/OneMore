@@ -53,11 +53,13 @@ namespace River.OneMoreAddIn.Commands
 
 			// find anchor and optional selected content...
 
-			var cursor = page.GetTextCursor();
+			var range = new SelectionRange(page);
+			range.GetSelection();
+
 			XElement content;
 			XElement anchor = null;
 
-			if (page.SelectionScope == SelectionScope.TextCursor)
+			if (range.Scope == SelectionScope.TextCursor)
 			{
 				content = new XElement(ns + "OE",
 					new XAttribute("style", normalStyle.ToCss()),

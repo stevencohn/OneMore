@@ -28,10 +28,12 @@ namespace River.OneMoreAddIn.Commands
 			using var one = new OneNote(out var page, out var ns);
 			var bounds = one.GetCurrentMainWindowBounds();
 
-			page.GetTextCursor();
+			var range = new SelectionRange(page);
+			range.GetSelection();
+
 			var editor = new PageEditor(page)
 			{
-				AllContent = (page.SelectionScope != SelectionScope.Range)
+				AllContent = (range.Scope != SelectionScope.Range)
 			};
 
 			var paragraphs = new List<XElement>();
@@ -65,7 +67,7 @@ namespace River.OneMoreAddIn.Commands
 				TableSides = "|"
 			};
 
-			var text = reader.ReadTextFrom(paragraphs, page.SelectionScope != SelectionScope.Range);
+			var text = reader.ReadTextFrom(paragraphs, range.Scope != SelectionScope.Range);
 			logger.Verbose("preview raw text:");
 			logger.Verbose(text);
 

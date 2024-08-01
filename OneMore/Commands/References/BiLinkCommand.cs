@@ -82,10 +82,10 @@ namespace River.OneMoreAddIn.Commands
 		private async Task<bool> MarkAnchor(OneNote one)
 		{
 			var page = await one.GetPage();
-			var range = new SelectionRange(page.Root);
+			var range = new SelectionRange(page);
 
 			// get selected runs but preserve cursor if there is one so we can edit from it later
-			var run = range.GetSelection();
+			var run = range.GetSelection(true);
 			if (run is null)
 			{
 				logger.WriteLine("no selected content");
@@ -152,8 +152,8 @@ namespace River.OneMoreAddIn.Commands
 				targetPageId = targetPage.PageId;
 			}
 
-			var range = new SelectionRange(targetPage.Root);
-			var targetRun = range.GetSelection();
+			var range = new SelectionRange(targetPage);
+			var targetRun = range.GetSelection(true);
 			if (targetRun is null)
 			{
 				logger.WriteLine("no selected target content");
@@ -287,7 +287,7 @@ namespace River.OneMoreAddIn.Commands
 		{
 			var count = 0;
 
-			var selection = range.GetSelection();
+			var selection = range.GetSelection(true);
 			if (range.Scope == SelectionScope.TextCursor)
 			{
 				page.EditNode(selection, (s) =>
