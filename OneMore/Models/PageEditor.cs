@@ -353,8 +353,6 @@ namespace River.OneMoreAddIn.Models
 			schema = new Schema();
 
 			var content = new XElement(ns + "OEChildren");
-			//	new XAttribute(XNamespace.Xmlns + OneNote.Prefix, ns.ToString())
-			//);
 
 			// An OE can contain either a sequence of T elements (or any in OEContent) or
 			// one of Image, Table, InkDrawing, InsertedFile, MediaFile, InkParagraph.
@@ -386,20 +384,14 @@ namespace River.OneMoreAddIn.Models
 					.ToList();
 			}
 
-			// no selections found in body
+			// no selections found in body; could be possible if only caret text cursor
 			if (!runs.Any())
 			{
-				var selements = page.GetSelectedElements();
-				if (page.SelectionScope == SelectionScope.SpecialCursor)
-				{
-					runs = selements.ToList();
-					if (!runs.Any())
-					{
-						Anchor = null;
-						return content;
-					}
-				}
-				else
+				runs = paragraphs.Elements()
+					.Where(e => !e.Name.LocalName.In(excludes))
+					.ToList();
+
+				if (!runs.Any())
 				{
 					Anchor = null;
 					return content;

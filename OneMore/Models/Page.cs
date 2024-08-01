@@ -732,64 +732,6 @@ namespace River.OneMoreAddIn.Models
 
 
 		/// <summary>
-		/// Gets a collection of fully selected text runs
-		/// </summary>
-		/// <param name="all">
-		/// If no selected elements are found and this value is true then return all elements;
-		/// otherwise if no selection and this value is false then return an empty collection.
-		/// Default value is true.
-		/// </param>
-		/// <returns>
-		/// A collection of fully selected text runs. The collection will be empty if the
-		/// selected range is zero characters or one of the known special cases
-		/// </returns>
-		public IEnumerable<XElement> GetSelectedElements(bool all = true)
-		{
-			var selected = BodyOutlines
-				.Descendants(Namespace + "T")
-				.Where(e => e.Attributes().Any(a => a.Name == "selected" && a.Value == "all"));
-
-			if (!selected.Any())
-			{
-				SelectionScope = SelectionScope.None;
-
-				return all
-					? Root.Elements(Namespace + "Outline").Descendants(Namespace + "T")
-					: new List<XElement>();
-			}
-
-			// if exactly one then it could be an empty [] or it could be a special case
-			if (selected.Count() == 1)
-			{
-				var cursor = selected.First();
-				if (cursor.FirstNode.NodeType == XmlNodeType.CDATA)
-				{
-					var cdata = cursor.FirstNode as XCData;
-
-					// empty or link or xml-comment because we can't tell the difference between
-					// a zero-selection zero-selection link and a partial or fully selected link.
-					// Note that XML comments are used to wrap mathML equations
-					if (cdata.Value.Length == 0 ||
-						Regex.IsMatch(cdata.Value, @"<a\s+href.+?</a>", RegexOptions.Singleline) ||
-						Regex.IsMatch(cdata.Value, @"<!--.+?-->", RegexOptions.Singleline))
-					{
-						SelectionScope = SelectionScope.TextCursor;
-
-						return all
-							? Root.Elements(Namespace + "Outline").Descendants(Namespace + "T")
-							: new List<XElement>();
-					}
-				}
-			}
-
-			SelectionScope = SelectionScope.Range;
-
-			// return zero or more elements
-			return selected;
-		}
-
-
-		/// <summary>
 		/// Gets the currently selected text. If the text cursor is positioned over a word but
 		/// with zero selection length then that word is returned; othewise, text from the selected
 		/// region is returned.

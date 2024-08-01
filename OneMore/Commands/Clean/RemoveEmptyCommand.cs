@@ -1,5 +1,5 @@
 ﻿//************************************************************************************************
-// Copyright © 2020 Steven M Cohn.  All rights reserved.
+// Copyright © 2020 Steven M Cohn. All rights reserved.
 //************************************************************************************************
 
 namespace River.OneMoreAddIn.Commands
@@ -9,7 +9,6 @@ namespace River.OneMoreAddIn.Commands
 	using System.Collections.Generic;
 	using System.Globalization;
 	using System.Linq;
-	using System.Text.RegularExpressions;
 	using System.Threading.Tasks;
 	using System.Windows.Forms;
 	using System.Xml.Linq;
@@ -24,7 +23,7 @@ namespace River.OneMoreAddIn.Commands
 	{
 		private Page page;
 		private XNamespace ns;
-		private IEnumerable<XElement> range;
+		private IEnumerable<XElement> runs;
 		private bool all;
 
 
@@ -51,8 +50,9 @@ namespace River.OneMoreAddIn.Commands
 			page = await one.GetPage(OneNote.PageDetail.Selection);
 			ns = page.Namespace;
 
-			range = page.GetSelectedElements();
-			logger.WriteLine($"found {range.Count()} runs, scope={page.SelectionScope}");
+			var range = new Models.SelectionRange(page);
+			runs = range.GetSelections(defaulToAnytIfNoRange: true);
+			logger.WriteLine($"found {runs.Count()} runs, scope={range.Scope}");
 
 			var modified = OutdentEmptyLines();
 			modified = CollapseEmptyLines() || modified;
@@ -78,7 +78,7 @@ namespace River.OneMoreAddIn.Commands
 			 *     <OEChildren> indented OE...
 			 */
 
-			var children = range.Descendants(ns + "OEChildren").ToList();
+			var children = runs.Descendants(ns + "OEChildren").ToList();
 			if (children.Any())
 			{
 				return OutdentEmptyLines(children[0].Parent, children);
@@ -122,7 +122,7 @@ namespace River.OneMoreAddIn.Commands
 		{
 			// find consecutive empty paragraphs that need to be collapsed...
 
-			var elements = range
+			var elements = runs
 				.Select(e => e.Parent)
 				.Distinct()
 				.Where(e => e.TextValue().Trim().Length == 0 && !e.IsMathML())
@@ -226,7 +226,7 @@ namespace River.OneMoreAddIn.Commands
 			 * </OE>
 			 */
 
-			var elements = range
+			var elements = runs
 				.Where(e => e.PreviousNode == null && e.TextValue().Trim().Length == 0)
 				.ToList();
 

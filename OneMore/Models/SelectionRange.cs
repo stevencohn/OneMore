@@ -272,7 +272,7 @@ namespace River.OneMoreAddIn.Models
 			}
 
 			var run = selections.First();
-			if (run.FirstNode is not XCData cdata)
+			if (run.FirstNode is not XCData)
 			{
 				// shouldn't happen? should it fail?
 				Logger.Current.WriteLine("found invalid schema, one:T does not contain CDATA");
@@ -301,8 +301,12 @@ namespace River.OneMoreAddIn.Models
 		/// True to include the page title, otherwise just the body of the which would be
 		/// all regular Outlines including the tag bank
 		/// </param>
+		/// <param name="defaultToAnyIfNoRange">
+		/// True to fallback and return all elements within scope if no range or run found.
+		/// </param>
 		/// <returns>An IEnumerable of XElements, which may be empty</returns>
-		public IEnumerable<XElement> GetSelections(bool allowPageTitle = false)
+		public IEnumerable<XElement> GetSelections(
+			bool allowPageTitle = false, bool defaulToAnytIfNoRange = false)
 		{
 			IEnumerable<XElement> start = new List<XElement>() { root };
 
@@ -314,7 +318,18 @@ namespace River.OneMoreAddIn.Models
 					: Root.Elements(ns + "Outline");
 
 			}
-			return GetSelections(start);
+
+			var selections = GetSelections(start);
+
+			if ((
+				Scope == SelectionScope.TextCursor ||
+				Scope == SelectionScope.SpecialCursor) &&
+				defaulToAnytIfNoRange)
+			{
+				selections = Root.Descendants(ns + "T");
+			}
+
+			return selections;
 		}
 
 
