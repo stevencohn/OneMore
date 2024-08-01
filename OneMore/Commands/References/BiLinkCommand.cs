@@ -2,6 +2,8 @@
 // Copyright © 2021 Steven M Cohn. All rights reserved.
 //************************************************************************************************
 
+#define xLogDetail
+
 namespace River.OneMoreAddIn.Commands
 {
 	using River.OneMoreAddIn.Models;
@@ -188,20 +190,21 @@ namespace River.OneMoreAddIn.Commands
 				candidate.DescendantsAndSelf().Attributes("selected").Remove();
 			}
 
-			//logger.WriteLine();
-			//logger.WriteLine("LINKING");
-			//logger.WriteLine($" anchorPageId = {anchorPageId}");
-			//logger.WriteLine($" anchorId     = {anchorId}");
-			//logger.WriteLine($" anchorLink   = {anchorLink}");
-			//logger.WriteLine($" candidate    = '{candidate}'");
-			//logger.WriteLine($" targetPageId = {targetPageId}");
-			//logger.WriteLine($" targetId     = {targetId}");
-			//logger.WriteLine($" targetLink   = {targetLink}");
-			//logger.WriteLine($" target       = '{target}'");
-			//logger.WriteLine();
-			//logger.WriteLine("---------------------------------------------");
-			//logger.WriteLine(targetPage.Root);
-
+#if LogDetail
+			logger.WriteLine();
+			logger.WriteLine("LINKING");
+			logger.WriteLine($" anchorPageId = {anchorPageId}");
+			logger.WriteLine($" anchorId     = {anchorId}");
+			logger.WriteLine($" anchorLink   = {anchorLink}");
+			logger.WriteLine($" candidate    = '{candidate}'");
+			logger.WriteLine($" targetPageId = {targetPageId}");
+			logger.WriteLine($" targetId     = {targetId}");
+			logger.WriteLine($" targetLink   = {targetLink}");
+			logger.WriteLine($" target       = '{target}'");
+			logger.WriteLine();
+			logger.WriteLine("---------------------------------------------");
+			logger.WriteLine(targetPage.Root);
+#endif
 			await one.Update(targetPage);
 
 			if (targetPageId != anchorPageId)
@@ -220,30 +223,18 @@ namespace River.OneMoreAddIn.Commands
 			// special deep comparison, excluding the selected attributes to handle
 			// case where anchor is on the same page as the target element
 
-			var aClone = anchor.Clone();
-			aClone.Attributes("lastModifiedTime").Remove();
-			var oldcopy = new SelectionRange(aClone);
-			oldcopy.Deselect();
-
-			var cClone = candidate.Clone();
-			cClone.Attributes("lastModifiedTime").Remove();
-			var newcopy = new SelectionRange(cClone);
-			newcopy.Deselect();
-
-			NormalizeCData(oldcopy.Root);
-			NormalizeCData(newcopy.Root);
-
-			var oldxml = Regex.Replace(oldcopy.ToString(), @"[\r\n]+", " ");
-			var newxml = Regex.Replace(newcopy.ToString(), @"[\r\n]+", " ");
+			var oldxml = MakeComparableXml(anchor);
+			var newxml = MakeComparableXml(candidate);
 
 			if (oldxml != newxml)
 			{
+#if LogDetail
 				logger.WriteLine("differences found in anchor/candidate");
 				logger.WriteLine($"oldxml/anchor {oldxml.Length}");
 				logger.WriteLine(oldxml);
 				logger.WriteLine($"newxml/candidate {newxml.Length}");
 				logger.WriteLine(newxml);
-
+#endif
 				for (int i = 0; i < oldxml.Length && i < newxml.Length; i++)
 				{
 					if (oldxml[i] != newxml[i])
@@ -258,23 +249,37 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private void NormalizeCData(XElement element)
+		private string MakeComparableXml(XElement element)
 		{
-			/*
-			 * Solves one specific case where CDATA contains <span lang=code> without quotes
-			 * but is compared to <span lang='code'> with quotes. So this routine normalizes
-			 * those inner CDATA attribute values so they can be compared for equality.
-			 */
-			element.DescendantNodes().OfType<XCData>().ToList().ForEach(c =>
+			var original = element.Clone();
+
+			// ignore last mod timestamp incase it drifts
+			if (original.Attribute("lastModifiedTime") is XAttribute lmt) lmt.Remove();
+
+			// remove selections and optimize continguous runs
+			var range = new SelectionRange(original);
+			range.Deselect();
+
+			// Solves one specific case where CDATA contains <span lang=code> without quotes
+			// but is compared to <span lang='code'> with quotes. So this routine normalizes
+			// those inner CDATA attribute values so they can be compared for equality.
+			range.Root.DescendantNodes().OfType<XCData>().ToList().ForEach(c =>
 			{
 				var doc = new Hap.HtmlDocument
 				{
 					GlobalAttributeValueQuote = Hap.AttributeValueQuote.SingleQuote
 				};
 
+				c.Value = c.Value.Replace("; ", ";");
+
 				doc.LoadHtml(c.Value);
 				c.ReplaceWith(new XCData(doc.DocumentNode.InnerHtml));
 			});
+
+			// collapse linebreaks to single space
+			var xml = Regex.Replace(range.ToString(), @"[\r\n]+", " ");
+			// collapse embedded CSS to normalize no-space between 'properties;properties'
+			return Regex.Replace(xml, @"('[^']+)(;\s)([^']+')", "$1;$3");
 		}
 
 
