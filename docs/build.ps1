@@ -67,11 +67,16 @@ Begin
         $sectionID = $sectionName.ToLower() -replace ' |\.|%20', '-'
         Write-Host "section '$sectionName' ($sectionID)" -ForegroundColor Blue
 
+        $script:skips = @()
+
         $dir = Join-Path $ZipName $sectionName
         $toc, $first = MakeSectionTOC $sectionID $sectionName
 
         Get-ChildItem $dir -File *.htm | foreach {
-            $id = MakePage $sectionID $_.Name $_.FullName $toc
+            if (-not ($skips -contains $_.FullName))
+            {
+                MakePage $sectionID $_.Name $_.FullName $toc
+            }
         }
 
         $indexFile = Join-Path $dir 'index.html'
@@ -89,12 +94,21 @@ Begin
         $file = (Join-Path $ZipName (Join-Path $sectionName $FileOrder)) | Resolve-Path
         if (Test-Path $file)
         {
+            $basepath = $file | Split-Path -Parent
+
             # use FileOrder.txt
             Get-Content $file -Encoding utf8 | foreach {
                 $id = $_.ToLower() -replace ' |\.|%20', '-'
                 $name = "$_`.htm"
-                $toc += "<li><a id=""$id"" href=""$name"">$($_)</a></li>"
-                if (!$first) { $first = "/$sectionID/$name" }
+                if ($name.Contains('#skipwiki'))
+                {
+                    $script:skips += (Join-Path $basepath $name)
+                }
+                else
+                {
+                    $toc += "<li><a id=""$id"" href=""$name"">$($_)</a></li>"
+                    if (!$first) { $first = "/$sectionID/$name" }
+                }
             }
 
             #Write-Host "deleting $file" -ForegroundColor Yellow
@@ -107,8 +121,15 @@ Begin
             Get-ChildItem (Join-Path $ZipName $sectionName) -File *.htm | foreach {
                 $id = $_.BaseName.ToLower() -replace ' |\.|%20', '-'
                 $name = "$($_.BaseName)`.htm"
-                $toc += "<li><a id=""$id"" href=""$name"">$($_)</a></li>"
-                if (!$first) { $first = "/$sectionID/$name" }
+                if ($name.Contains('#skipwiki'))
+                {
+                    $script:skips += (Join-Path $basepath $name)
+                }
+                else
+                {
+                    $toc += "<li><a id=""$id"" href=""$name"">$($_)</a></li>"
+                    if (!$first) { $first = "/$sectionID/$name" }
+                }
             }
         }
 
@@ -155,8 +176,6 @@ Begin
         $template | Out-File $pageFile -Encoding utf8 -Force -Confirm:$false
 
         AddToSiteMap "$RootUrl/$sectionID/$name`.htm" 0.5
-
-        return $pageID
     }
 
     function PatchSectionRefs
@@ -230,13 +249,16 @@ Process
             Remove-Item $name -Recurse -Force -Confirm:$false
         }
 
-        if (Test-Path ./$sectionID)
+        if ($sectionID -and (Test-Path ./$sectionID))
         {
             Remove-Item ./$sectionID -Recurse -Force -Confirm:$false
         }
 
-        # move the new section folder up a level and rename
-        Move-Item $dir ./$sectionID -Force -Confirm:$false
+        if ($dir)
+        {
+            # move the new section folder up a level and rename
+            Move-Item $dir ./$sectionID -Force -Confirm:$false
+        }
     }
 
     Write-Host 'saving sitemap.xml'
