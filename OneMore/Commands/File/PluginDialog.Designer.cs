@@ -31,7 +31,7 @@
 			this.components = new System.ComponentModel.Container();
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PluginDialog));
 			this.cancelButton = new River.OneMoreAddIn.UI.MoreButton();
-			this.okButton = new River.OneMoreAddIn.UI.MoreButton();
+			this.runButton = new River.OneMoreAddIn.UI.MoreButton();
 			this.cmdLabel = new System.Windows.Forms.Label();
 			this.cmdBox = new River.OneMoreAddIn.UI.MoreTextBox();
 			this.browseButton = new River.OneMoreAddIn.UI.MoreButton();
@@ -86,23 +86,23 @@
 			// 
 			// okButton
 			// 
-			this.okButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-			this.okButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(231)))), ((int)(((byte)(231)))));
-			this.okButton.DialogResult = System.Windows.Forms.DialogResult.OK;
-			this.okButton.Enabled = false;
-			this.okButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-			this.okButton.ImageOver = null;
-			this.okButton.Location = new System.Drawing.Point(528, 569);
-			this.okButton.Name = "okButton";
-			this.okButton.ShowBorder = true;
-			this.okButton.Size = new System.Drawing.Size(120, 35);
-			this.okButton.StylizeImage = false;
-			this.okButton.TabIndex = 11;
-			this.okButton.Text = "Run";
-			this.okButton.ThemedBack = null;
-			this.okButton.ThemedFore = null;
-			this.okButton.UseVisualStyleBackColor = true;
-			this.okButton.Click += new System.EventHandler(this.OK);
+			this.runButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+			this.runButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(231)))), ((int)(((byte)(231)))));
+			this.runButton.DialogResult = System.Windows.Forms.DialogResult.OK;
+			this.runButton.Enabled = false;
+			this.runButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+			this.runButton.ImageOver = null;
+			this.runButton.Location = new System.Drawing.Point(528, 569);
+			this.runButton.Name = "okButton";
+			this.runButton.ShowBorder = true;
+			this.runButton.Size = new System.Drawing.Size(120, 35);
+			this.runButton.StylizeImage = false;
+			this.runButton.TabIndex = 11;
+			this.runButton.Text = "Run";
+			this.runButton.ThemedBack = null;
+			this.runButton.ThemedFore = null;
+			this.runButton.UseVisualStyleBackColor = true;
+			this.runButton.Click += new System.EventHandler(this.OK);
 			// 
 			// cmdLabel
 			// 
@@ -150,7 +150,7 @@
 			this.updateRadio.Location = new System.Drawing.Point(6, 25);
 			this.updateRadio.Name = "updateRadio";
 			this.updateRadio.Size = new System.Drawing.Size(185, 25);
-			this.updateRadio.TabIndex = 6;
+			this.updateRadio.TabIndex = 0;
 			this.updateRadio.TabStop = true;
 			this.updateRadio.Text = "Update current page";
 			this.updateRadio.UseVisualStyleBackColor = true;
@@ -162,7 +162,7 @@
 			this.createRadio.Location = new System.Drawing.Point(6, 55);
 			this.createRadio.Name = "createRadio";
 			this.createRadio.Size = new System.Drawing.Size(229, 25);
-			this.createRadio.TabIndex = 7;
+			this.createRadio.TabIndex = 1;
 			this.createRadio.Text = "Create a new page named";
 			this.createRadio.UseVisualStyleBackColor = true;
 			// 
@@ -174,7 +174,7 @@
 			this.pageNameBox.Name = "pageNameBox";
 			this.pageNameBox.ProcessEnterKey = false;
 			this.pageNameBox.Size = new System.Drawing.Size(469, 26);
-			this.pageNameBox.TabIndex = 8;
+			this.pageNameBox.TabIndex = 2;
 			this.pageNameBox.ThemedBack = null;
 			this.pageNameBox.ThemedFore = null;
 			this.pageNameBox.TextChanged += new System.EventHandler(this.ChangeText);
@@ -189,7 +189,7 @@
 			this.childBox.Name = "childBox";
 			this.childBox.Size = new System.Drawing.Size(206, 25);
 			this.childBox.StylizeImage = false;
-			this.childBox.TabIndex = 9;
+			this.childBox.TabIndex = 3;
 			this.childBox.Text = "as child of current page";
 			this.childBox.ThemedBack = null;
 			this.childBox.ThemedFore = null;
@@ -319,7 +319,7 @@
             0});
 			this.timeoutBox.Name = "timeoutBox";
 			this.timeoutBox.Size = new System.Drawing.Size(120, 26);
-			this.timeoutBox.TabIndex = 20;
+			this.timeoutBox.TabIndex = 7;
 			this.timeoutBox.Value = new decimal(new int[] {
             15,
             0,
@@ -350,7 +350,7 @@
 			this.targetBox.Location = new System.Drawing.Point(149, 293);
 			this.targetBox.Name = "targetBox";
 			this.targetBox.Size = new System.Drawing.Size(314, 28);
-			this.targetBox.TabIndex = 22;
+			this.targetBox.TabIndex = 8;
 			this.targetBox.SelectedIndexChanged += new System.EventHandler(this.ChangeTarget);
 			// 
 			// targetLabel
@@ -370,7 +370,7 @@
 			this.skipLockRadio.Location = new System.Drawing.Point(9, 28);
 			this.skipLockRadio.Name = "skipLockRadio";
 			this.skipLockRadio.Size = new System.Drawing.Size(185, 25);
-			this.skipLockRadio.TabIndex = 24;
+			this.skipLockRadio.TabIndex = 0;
 			this.skipLockRadio.TabStop = true;
 			this.skipLockRadio.Text = "Skip locked sections";
 			this.skipLockRadio.UseVisualStyleBackColor = true;
@@ -381,7 +381,7 @@
 			this.failLockRadio.Location = new System.Drawing.Point(9, 58);
 			this.failLockRadio.Name = "failLockRadio";
 			this.failLockRadio.Size = new System.Drawing.Size(231, 25);
-			this.failLockRadio.TabIndex = 25;
+			this.failLockRadio.TabIndex = 1;
 			this.failLockRadio.Text = "Fail if any section is locked";
 			this.failLockRadio.UseVisualStyleBackColor = true;
 			// 
@@ -422,9 +422,9 @@
 			this.trialBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.trialBox.Location = new System.Drawing.Point(155, 520);
 			this.trialBox.Name = "trialBox";
-			this.trialBox.Size = new System.Drawing.Size(421, 25);
+			this.trialBox.Size = new System.Drawing.Size(427, 25);
 			this.trialBox.StylizeImage = false;
-			this.trialBox.TabIndex = 28;
+			this.trialBox.TabIndex = 9;
 			this.trialBox.Text = "Trial run - keep cache file and do not update OneNote";
 			this.trialBox.ThemedBack = null;
 			this.trialBox.ThemedFore = null;
@@ -447,14 +447,14 @@
 			this.userArgsBox.Name = "userArgsBox";
 			this.userArgsBox.ProcessEnterKey = false;
 			this.userArgsBox.Size = new System.Drawing.Size(578, 26);
-			this.userArgsBox.TabIndex = 29;
+			this.userArgsBox.TabIndex = 6;
 			this.userArgsBox.ThemedBack = null;
 			this.userArgsBox.ThemedFore = null;
 			this.userArgsBox.TextChanged += new System.EventHandler(this.ChangeText);
 			// 
 			// PluginDialog
 			// 
-			this.AcceptButton = this.okButton;
+			this.AcceptButton = this.runButton;
 			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.BackColor = System.Drawing.SystemColors.ControlLight;
@@ -481,7 +481,7 @@
 			this.Controls.Add(this.browseButton);
 			this.Controls.Add(this.cmdBox);
 			this.Controls.Add(this.cmdLabel);
-			this.Controls.Add(this.okButton);
+			this.Controls.Add(this.runButton);
 			this.Controls.Add(this.cancelButton);
 			this.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -506,7 +506,7 @@
 		#endregion
 
 		private UI.MoreButton cancelButton;
-		private UI.MoreButton okButton;
+		private UI.MoreButton runButton;
 		private System.Windows.Forms.Label cmdLabel;
 		private UI.MoreTextBox cmdBox;
 		private UI.MoreButton browseButton;
