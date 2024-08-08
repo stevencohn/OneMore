@@ -11,20 +11,27 @@
       ]
     },
     {
+      // TODO: embedded variables
       "pattern": "('[^\\n]*?(?<!\\\\)')",
       "captures": [
         "String"
       ]
     },
     {
+      // TODO: embedded variables
       "pattern": "(?s)(\"[^\\n]*?(?<!\\\\)\")",
       "captures": [
         "String"
       ]
     },
     {
+      // This one was particularlly troublesome, needing to fully specify both captures:
+      // one for the "$$" list, and one for the "$HOME" list, including starting $ token
+      // and different \b boundary specifiers. This made it match left-to-right and stop
+      // here rather than proceeding to the SheelUserVariable pattern below,
       "pattern": "(?:(?:(\\$(?:\\$|\\#|\\@|\\*|\\?)(?<!\\b)))|(\\$(?:HOME|HOSTNAME|NAME|LINENO|PATH|PWD|SHELL|USER|UID|0)(?:\\b)))",
       "captures": [
+        // there are, in fact, two captures in the patter, but only one should match at a time
         "ShellKnownVariable",
         "ShellKnownVariable"
       ]
