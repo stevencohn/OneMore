@@ -1,0 +1,39 @@
+{
+  "name": "bash",
+  "aliases": [
+    "sh"
+  ],
+  "rules": [
+    {
+      "pattern": "(#.*?)\\r?$",
+      "captures": [
+        "Comment"
+      ]
+    },
+    {
+      "pattern": "('[^\\n]*?(?<!\\\\)')",
+      "captures": [
+        "String"
+      ]
+    },
+    {
+      "pattern": "(?s)(\"[^\\n]*?(?<!\\\\)\")",
+      "captures": [
+        "String"
+      ]
+    },
+    {
+
+      "pattern": "\\b(if|then|elif|else|fi|time|for|in|until|while|do|done|case|esac|coproc|select|function)\\b",
+      "captures": [
+        "Keyword"
+      ]
+    },
+    {
+      "pattern": "\\b([0-9]{1,})\\b",
+      "captures": [
+        "Number"
+      ]
+    }
+  ]
+}

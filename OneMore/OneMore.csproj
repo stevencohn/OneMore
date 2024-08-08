@@ -1111,6 +1111,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Colorizer\Languages\bash.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Colorizer\Languages\cpp.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -1191,6 +1194,9 @@
     <EmbeddedResource Include="UI\WindowElevator.resx">
       <DependentUpon>WindowElevator.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="Colorizer\Languages\bash.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="Colorizer\Languages\php.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
