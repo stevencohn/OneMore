@@ -91,7 +91,7 @@ namespace River.OneMoreAddIn.Commands.Snippets.TocGenerators
 			if (parameters.Contains("preview")) segments = $"{segments}/preview";
 
 			var titleElement = MakeTitle(page, segments);
-				
+
 			// add meta to title OE
 			if (!parameters.Contains("notebook")) parameters.Insert(0, "notebook");
 			var segs = parameters.Aggregate((a, b) => $"{a}/{b}");

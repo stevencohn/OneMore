@@ -7,7 +7,6 @@ namespace River.OneMoreAddIn.Commands
 	using River.OneMoreAddIn.UI;
 	using System;
 	using System.Collections.Generic;
-	using System.Data.SqlTypes;
 	using System.Linq;
 	using System.Windows.Forms;
 	using Resx = Properties.Resources;

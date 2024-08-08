@@ -6,8 +6,8 @@
 
 namespace River.OneMoreAddIn.Commands
 {
-	using River.OneMoreAddIn.UI;
 	using River.OneMoreAddIn.Settings;
+	using River.OneMoreAddIn.UI;
 	using System;
 	using System.Collections.Generic;
 	using System.Drawing;

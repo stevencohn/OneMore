@@ -106,9 +106,9 @@ namespace River.OneMoreAddIn
 		{
 			trash = value;
 			return this;
-		}       
-		
-		
+		}
+
+
 		// MessageBox helpers...
 
 		protected void ShowError(string message)

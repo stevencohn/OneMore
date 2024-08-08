@@ -40,7 +40,7 @@ namespace River.OneMoreAddIn.UI
 		private readonly Font highFont;         // font of matched substring
 		private readonly List<Cmd> commands;    // original list of commands
 		private readonly List<Cmd> matches;     // dynamic list of matched commands
-		private readonly ThemeManager manager;	// color manager
+		private readonly ThemeManager manager;  // color manager
 		private string boxtext;                 // the current/previous text in the Owner TextBox
 
 		// each command name is described by a Cmd entry
@@ -48,9 +48,9 @@ namespace River.OneMoreAddIn.UI
 		{
 			// incoming descriptor is of the form [category:]name[|keys]
 
-			public string Category;				// category part
+			public string Category;             // category part
 			public string Name;                 // name part
-			public string Keys;					// key sequence part
+			public string Keys;                 // key sequence part
 			public bool Recent;                 // true if in "recently used" category
 		}
 
@@ -378,7 +378,7 @@ namespace River.OneMoreAddIn.UI
 			Brush back;
 			Brush fore;
 			Brush high;
-			
+
 			if (e.Item.Selected)
 			{
 				back = new SolidBrush(manager.GetColor("Highlight"));

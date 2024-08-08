@@ -275,7 +275,7 @@ namespace River.OneMoreAddIn.Commands
 			if (!content.Any())
 			{
 				// provide default content - empty line - if header is not followed by anything
-				content.Add(new XElement(ns + "OE", 
+				content.Add(new XElement(ns + "OE",
 					new XElement(ns + "T", new XCData(string.Empty))
 					));
 			}

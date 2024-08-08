@@ -112,7 +112,7 @@ namespace OneMoreCalendar
 			if (ShowBorder || (Enabled && MouseState != MouseState.None))
 			{
 				using var pen = new Pen(
-					MouseState.HasFlag(MouseState.Pushed) ? Theme.ButtonPressBorder : 
+					MouseState.HasFlag(MouseState.Pushed) ? Theme.ButtonPressBorder :
 					MouseState.HasFlag(MouseState.Hover) ? Theme.ButtonHotBorder : Theme.ButtonBorder);
 
 				g.DrawRoundedRectangle(pen, pevent.ClipRectangle, Radius);
@@ -129,7 +129,7 @@ namespace OneMoreCalendar
 			if (!string.IsNullOrEmpty(Text))
 			{
 				var size = g.MeasureString(Text, Font);
-				using var brush = new SolidBrush(Enabled 
+				using var brush = new SolidBrush(Enabled
 					? PreferredFore.IsEmpty ? Theme.ButtonFore : PreferredFore
 					: Theme.ButtonDisabled);
 

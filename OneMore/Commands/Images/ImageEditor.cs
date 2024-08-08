@@ -64,7 +64,7 @@ namespace River.OneMoreAddIn.Commands
 
 		public float Opacity { private get; set; }
 
-		public bool PreserveQualityOnResize {  private get; set; }
+		public bool PreserveQualityOnResize { private get; set; }
 
 		public bool PreserveStorageSize { private get; set; }
 

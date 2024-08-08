@@ -6,24 +6,24 @@
 
 namespace River.OneMoreAddIn.Commands.Tools.Updater
 {
-    using System.Collections.Generic;
+	using System.Collections.Generic;
 
 
-    internal class GitRelease
+	internal class GitRelease
 	{
-        public string url { get; set; }
+		public string url { get; set; }
 
-        public string html_url { get; set; }
-        
-        public string id { get; set; }
+		public string html_url { get; set; }
+
+		public string id { get; set; }
 
 		public string tag_name { get; set; }
 
-        public string name { get; set; }
+		public string name { get; set; }
 
-        public string published_at { get; set; }
+		public string published_at { get; set; }
 
-        public List<GitAsset> assets { get; set; }
+		public List<GitAsset> assets { get; set; }
 	}
 }
 /*

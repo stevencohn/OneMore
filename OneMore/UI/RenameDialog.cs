@@ -48,7 +48,7 @@ namespace River.OneMoreAddIn.UI
 
 			set
 			{
-				Text = value 
+				Text = value
 					? Resx.NameStyleDialog_RenameStyle
 					: Resx.phrase_NewStyle;
 			}
@@ -74,7 +74,7 @@ namespace River.OneMoreAddIn.UI
 				return;
 			}
 
-			var duplicate = names.Any(n => 
+			var duplicate = names.Any(n =>
 				n.Equals(text, StringComparison.InvariantCultureIgnoreCase));
 
 			errorLabel.Visible = duplicate;

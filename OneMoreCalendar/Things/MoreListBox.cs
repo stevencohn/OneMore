@@ -8,7 +8,6 @@
 
 namespace OneMoreCalendar
 {
-	using River.OneMoreAddIn;
 	using System;
 	using System.ComponentModel;
 	using System.Runtime.InteropServices;

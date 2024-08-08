@@ -53,8 +53,8 @@ namespace River.OneMoreAddIn.Commands
 
 				if (group == null)
 				{
-					group = new ListViewGroup(node.GroupID, node.PageID == null 
-						? node.Title 
+					group = new ListViewGroup(node.GroupID, node.PageID == null
+						? node.Title
 						: String.Format(Resx.RemoveDuplicatesNavigator_pagesSimilarTo, node.Title)
 						);
 

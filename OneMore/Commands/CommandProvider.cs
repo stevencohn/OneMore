@@ -118,7 +118,7 @@ namespace River.OneMoreAddIn
 			{
 				foreach (var setting in settings.Elements())
 				{
-					var command = commands.Find(c => 
+					var command = commands.Find(c =>
 						c.Method.Name == setting.Attribute("methodName").Value);
 
 					if (command != null)

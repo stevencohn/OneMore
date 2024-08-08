@@ -194,8 +194,8 @@ namespace River.OneMoreAddIn.Commands
 
 		private void SetOK()
 		{
-			okButton.Enabled = 
-				numberingBox.Checked || cleanBox.Checked || 
+			okButton.Enabled =
+				numberingBox.Checked || cleanBox.Checked ||
 				indentBox.Checked || indentTagBox.Checked;
 		}
 

@@ -8,8 +8,8 @@ namespace River.OneMoreAddIn.Commands
 	using System;
 	using System.Drawing;
 	using System.Windows.Forms;
-	using Resx = Properties.Resources;
 	using HierarchyInfo = OneNote.HierarchyInfo;
+	using Resx = Properties.Resources;
 
 
 	/// <summary>

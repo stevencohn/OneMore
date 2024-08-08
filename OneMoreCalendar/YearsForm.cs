@@ -4,7 +4,6 @@
 
 namespace OneMoreCalendar
 {
-	using River.OneMoreAddIn;
 	using System;
 	using System.Drawing;
 	using System.Linq;
@@ -134,7 +133,7 @@ namespace OneMoreCalendar
 				index = listView.Items.IndexOf(oldItem);
 
 				DrawItem(sender, new DrawListViewItemEventArgs(
-					listView.CreateGraphics(), oldItem, 
+					listView.CreateGraphics(), oldItem,
 					listView.GetItemRect(index), index, ListViewItemStates.Default));
 			}
 

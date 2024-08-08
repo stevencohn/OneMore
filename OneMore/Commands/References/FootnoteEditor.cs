@@ -353,7 +353,7 @@ namespace River.OneMoreAddIn
 				var cdata = element.DescendantNodes().OfType<XCData>().Last();
 				if (cdata is not null)
 				{
-					cdata.Value = 
+					cdata.Value =
 						$"{cdata.Value}{note.ToString(SaveOptions.DisableFormatting)}";
 
 					// set insertion just after footnote ref
@@ -493,7 +493,7 @@ namespace River.OneMoreAddIn
 
 		private List<FootnoteReference> FindSelectedReferences(IEnumerable<XElement> roots, bool super)
 		{
-			var pattern = super 
+			var pattern = super
 				? @"vertical-align:super[;'""][^>]*>\[(\d+)\]</span>"
 				: @"\[(\d+)\]";
 

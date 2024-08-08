@@ -187,8 +187,8 @@ namespace River.OneMoreAddIn.Commands
 						}
 					}
 				} while (index >= 0 && index < builder.Length);
-			}           
-			
+			}
+
 			return builder.ToString();
 		}
 	}

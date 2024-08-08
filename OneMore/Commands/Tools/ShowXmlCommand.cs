@@ -12,7 +12,7 @@ namespace River.OneMoreAddIn.Commands
 	/// </summary>
 	internal class ShowXmlCommand : Command
 	{
-		public ShowXmlCommand ()
+		public ShowXmlCommand()
 		{
 			// prevent replay
 			IsCancelled = true;

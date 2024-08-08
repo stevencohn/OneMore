@@ -304,7 +304,7 @@ namespace River.OneMoreAddIn.Commands
 				var due = reminder.Due.ToLocalTime().ToString();
 
 				var status = string.Empty;
-				if (!spage.Root.Descendants(sns + "OE").Any(e => 
+				if (!spage.Root.Descendants(sns + "OE").Any(e =>
 					e.Attribute("objectID").Value == reminder.ObjectId))
 				{
 					if (string.IsNullOrEmpty(reminder.ObjectUri) ||

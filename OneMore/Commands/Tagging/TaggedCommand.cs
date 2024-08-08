@@ -37,7 +37,7 @@ namespace River.OneMoreAddIn.Commands
 				box.SetMessage(string.Format(Resx.TagsUpgraded,
 					converter.TagsConverted, converter.PagesConverted
 					));
-	
+
 				box.SetButtons(MessageBoxButtons.OKCancel);
 				if (box.ShowDialog(owner) != DialogResult.OK)
 				{

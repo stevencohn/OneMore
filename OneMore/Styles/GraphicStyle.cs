@@ -57,7 +57,7 @@ namespace River.OneMoreAddIn.Styles
 
 			try
 			{
-				Foreground = Color.Equals(Automatic) 
+				Foreground = Color.Equals(Automatic)
 					? Drawing.Color.Black
 					: Drawing.ColorTranslator.FromHtml(Color);
 			}

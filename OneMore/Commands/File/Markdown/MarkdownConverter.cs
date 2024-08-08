@@ -158,7 +158,7 @@ namespace River.OneMoreAddIn.Commands
 
 			foreach (var item in outline
 				.Descendants(ns + "OE")
-				.Where(e => 
+				.Where(e =>
 					// not the last paragraph in the Outline
 					e != last &&
 					// any paragraph that is not a List

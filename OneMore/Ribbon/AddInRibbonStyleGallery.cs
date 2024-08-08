@@ -9,7 +9,6 @@
 namespace River.OneMoreAddIn
 {
 	using Microsoft.Office.Core;
-	using NStandard;
 	using River.OneMoreAddIn.Styles;
 	using System.Drawing;
 	using System.Runtime.InteropServices.ComTypes;
@@ -17,8 +16,8 @@ namespace River.OneMoreAddIn
 
 	public partial class AddIn
 	{
-		private static Theme galleryTheme;	// theme of styles that might force back color
-		private static Color galleryBack;	// background color
+		private static Theme galleryTheme;  // theme of styles that might force back color
+		private static Color galleryBack;   // background color
 
 
 		/*
@@ -58,7 +57,8 @@ namespace River.OneMoreAddIn
 					if (section.Attribute("locked") == null)
 					{
 						// ribbon handlers apparently cannot be async so we need to do this
-						var page = Task.Run(async () => {
+						var page = Task.Run(async () =>
+						{
 							return await one.GetPage(OneNote.PageDetail.Basic);
 						}).Result;
 

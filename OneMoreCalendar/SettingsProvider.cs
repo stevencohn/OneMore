@@ -90,7 +90,7 @@ namespace OneMoreCalendar
 		}
 
 
-		public bool Modified => 
+		public bool Modified =>
 			root.Elements("filters").Elements("modified").Any(e => e.Value.Equals("true"));
 
 

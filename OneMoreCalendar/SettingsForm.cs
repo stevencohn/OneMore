@@ -127,7 +127,7 @@ namespace OneMoreCalendar
 
 			validate = false;
 			for (var i = 0; i < notebooksBox.Items.Count; i++)
-            {
+			{
 				notebooksBox.SetItemChecked(i, selected);
 			}
 

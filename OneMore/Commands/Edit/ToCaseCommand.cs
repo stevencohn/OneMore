@@ -38,8 +38,8 @@ namespace River.OneMoreAddIn.Commands
 		}
 	}
 	#endregion Wrappers
-	
-	
+
+
 	/// <summary>
 	/// Converts the selected text to uppercase, lowercase, or titlecase.
 	/// </summary>
@@ -53,7 +53,7 @@ namespace River.OneMoreAddIn.Commands
 			@"(?:[""']|[^:;,./<>?!%\)])\s+(and|an|as|at|but|by|for|if|in|nor|of|off|or|per|so|to|up|via|yet)\W";
 
 
-		public ToCaseCommand ()
+		public ToCaseCommand()
 		{
 		}
 

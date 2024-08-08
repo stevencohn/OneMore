@@ -107,8 +107,8 @@ namespace River.OneMoreAddIn.Commands
 
 			// find all non-empty items
 			var items = list.Elements(ns + "OE")
-				.Select(e => new 
-				{ 
+				.Select(e => new
+				{
 					Element = e,
 					Text = e.Elements(ns + "T")?
 

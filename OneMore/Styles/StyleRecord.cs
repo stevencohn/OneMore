@@ -6,7 +6,7 @@ namespace River.OneMoreAddIn.Styles
 {
 	using System.Xml;
 	using System.Xml.Linq;
-    using System.Xml.Serialization;
+	using System.Xml.Serialization;
 
 
 	/// <summary>

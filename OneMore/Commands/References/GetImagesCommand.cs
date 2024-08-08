@@ -37,7 +37,7 @@ namespace River.OneMoreAddIn.Commands
 		/// <summary>
 		/// Default constructor to examine all anchors on page or in selected region
 		/// </summary>
-		public GetImagesCommand() 
+		public GetImagesCommand()
 			: this(new Regex(@"<a\s+href=", RegexOptions.Compiled))
 		{
 			forceful = false;

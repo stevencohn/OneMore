@@ -51,9 +51,9 @@ namespace River.OneMoreAddIn.Models
 
 			var blocks =
 				from e in candidates
-				// get the first non-empty CDATA
+					// get the first non-empty CDATA
 				let c = e.Elements(Namespace + "T").DescendantNodes()
-					.FirstOrDefault(p => 
+					.FirstOrDefault(p =>
 						p.NodeType == XmlNodeType.CDATA && (((XCData)p).Value.Length > 0)) as XCData
 				where c?.Value.Length > 0 && !Regex.IsMatch(c.Value, @"[\s\b]+<span[\s\b]+style=") &&
 					(e.Attribute("quickStyleIndex") != null || e.Attribute("style") != null)
@@ -168,7 +168,7 @@ namespace River.OneMoreAddIn.Models
 			// test if header has a right-aligned Top of page neighbor cell
 			var cell = heading.Root.Parent.Parent;
 
-			if (cell.Name.LocalName == "Cell" && 
+			if (cell.Name.LocalName == "Cell" &&
 				cell.NextNode is XElement next && next.Name.LocalName == "Cell")
 			{
 				var cdata = next.DescendantNodes().OfType<XCData>().FirstOrDefault();

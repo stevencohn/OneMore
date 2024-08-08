@@ -243,11 +243,11 @@ namespace River.OneMoreAddIn.Commands
 		// most likely SPAN or BR tags. This routine ignores the SPAN XElements themsevles
 		// and focuses only on the inner text of the SPAN.
 		private void Replace(
-			XElement wrapper,				// the wrapped CDATA of the run
-			int searchIndex,				// the starting index of the match in the text
-			int searchLength,				// the length of the match
-			string stringValue = null,		// the replacement string value
-			XElement elementValue = null)	// the replacement XML value
+			XElement wrapper,               // the wrapped CDATA of the run
+			int searchIndex,                // the starting index of the match in the text
+			int searchLength,               // the length of the match
+			string stringValue = null,      // the replacement string value
+			XElement elementValue = null)   // the replacement XML value
 		{
 			// XText and XElement nodes in wrapper
 			var nodes = wrapper.Nodes().ToList();

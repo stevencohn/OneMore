@@ -55,8 +55,8 @@ namespace River.OneMoreAddIn.Commands
 				Filter = Resx.LoadStyleTheme_filter,
 				Multiselect = false,
 				Title = Resx.LoadStyleTheme_Title,
-				ShowHelp = true,			// stupid, but this is needed to avoid hang
-				AutoUpgradeEnabled = true,	// simpler UI, faster
+				ShowHelp = true,            // stupid, but this is needed to avoid hang
+				AutoUpgradeEnabled = true,  // simpler UI, faster
 				InitialDirectory = path
 			};
 

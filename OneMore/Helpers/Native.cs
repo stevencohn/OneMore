@@ -209,9 +209,9 @@ namespace River.OneMoreAddIn
 			public byte tmStruckOut;
 			public byte tmPitchAndFamily;
 			public byte tmCharSet;
-		}       
-		
-		
+		}
+
+
 		/// <summary>
 		/// Specifies the attributes of a node in a TreeView
 		/// </summary>

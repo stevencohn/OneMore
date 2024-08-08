@@ -24,7 +24,7 @@ namespace River.OneMoreAddIn
 			BmpHead = Encoding.ASCII.GetBytes("BM");                // BMP "BM { 0x42, 0x4D }
 			Gif87aHead = Encoding.ASCII.GetBytes("GIF87a");         // GIF87a  { 0x47, 0x49, 0x46, 0x38, 0x37, 0x61 }
 			Gif89aHead = Encoding.ASCII.GetBytes("GIF89a");         // GIF89a  { 0x47, 0x49, 0x46, 0x38, 0x39, 0x61 }
-			JpgHead = new byte[] { 0xFF, 0xD8, 0xFF };				// JPEG JFIF (SOI "\xFF\xD8" and half next marker xFF)
+			JpgHead = new byte[] { 0xFF, 0xD8, 0xFF };              // JPEG JFIF (SOI "\xFF\xD8" and half next marker xFF)
 			JpgTail = new byte[] { 0xFF, 0xD9 };                    // JPEG EOI "\xFF\xD9"
 			PngHead = new byte[] { 0x89, 0x50, 0x4e, 0x47, 0x0D, 0x0A, 0x1A, 0x0A }; // PNG "\x89PNG\x0D\0xA\0x1A\0x0A"
 			TiffIHead = new byte[] { 0x49, 0x49, 0x2A, 0x00 };      // TIFF II "II\x2A\x00"

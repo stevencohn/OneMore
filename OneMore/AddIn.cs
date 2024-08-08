@@ -8,7 +8,7 @@
 #pragma warning disable S3885   // Use Load instead of LoadFrom
 
 namespace River.OneMoreAddIn
-{ 
+{
 	using Extensibility;
 	using Microsoft.Office.Core;
 	using River.OneMoreAddIn.Helpers.Office;
@@ -180,7 +180,7 @@ namespace River.OneMoreAddIn
 			// battery capacity and other factors, whereas MaxClockSpeed is a constant
 
 			uint speed = ReasonableClockSpeed;
-			using (var searcher = 
+			using (var searcher =
 				new ManagementObjectSearcher("select CurrentClockSpeed from Win32_Processor"))
 			{
 				foreach (var item in searcher.Get())

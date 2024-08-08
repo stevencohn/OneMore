@@ -81,20 +81,20 @@ namespace River.OneMoreAddIn.Commands
 				case 5: style.IsSuperscript = true; break;
 
 				// font colors
-				case 6: style.Color = "#5B9BD5"; break;		// Blue
-				case 7: style.Color = "#70AD47"; break;		// Green
-				case 8: style.Color = "#ED7D31"; break;		// Orange
-				case 9: style.Color = "#8064A2"; break;		// Purple
-				case 10: style.Color = "#E84C22"; break;	// Red
-				case 11: style.Color = "#FFD965"; break;	// Yellow
+				case 6: style.Color = "#5B9BD5"; break;     // Blue
+				case 7: style.Color = "#70AD47"; break;     // Green
+				case 8: style.Color = "#ED7D31"; break;     // Orange
+				case 9: style.Color = "#8064A2"; break;     // Purple
+				case 10: style.Color = "#E84C22"; break;    // Red
+				case 11: style.Color = "#FFD965"; break;    // Yellow
 
 				// highlight colors
-				case 12: style.Highlight = "#5B9BD5"; break;	// Blue
-				case 13: style.Highlight = "#70AD47"; break;	// Green
-				case 14: style.Highlight = "#ED7D31"; break;	// Orange
-				case 15: style.Highlight = "#8064A2"; break;	// Purple
-				case 16: style.Highlight = "#E84C22"; break;	// Red
-				case 17: style.Highlight = "#FFD965"; break;	// Yellow
+				case 12: style.Highlight = "#5B9BD5"; break;    // Blue
+				case 13: style.Highlight = "#70AD47"; break;    // Green
+				case 14: style.Highlight = "#ED7D31"; break;    // Orange
+				case 15: style.Highlight = "#8064A2"; break;    // Purple
+				case 16: style.Highlight = "#E84C22"; break;    // Red
+				case 17: style.Highlight = "#FFD965"; break;    // Yellow
 			}
 
 			var cmd = (ApplyStyleCommand)await factory.Make<ApplyStyleCommand>();
