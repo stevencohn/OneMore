@@ -30,7 +30,7 @@
       // and different \b boundary specifiers. The "$$" needs a look-behind so it doesn't
       // falsely treat the second token as a boundary, while the HOME list needs a simple \b
       // specifier. Altogether, this made it match left-to-right and stop here rather than
-      // proceeding to the SheelUserVariable pattern below,
+      // proceeding to the ShellUserVariable pattern below,
       "pattern": "(?:(?:(\\$(?:\\$|\\#|\\@|\\*|\\?)(?<!\\b)))|(\\$(?:HOME|HOSTNAME|NAME|LINENO|PATH|PWD|SHELL|USER|UID|0)(?:\\b)))",
       "captures": [
         // there are, in fact, two captures in the patter, but only one should match at a time
