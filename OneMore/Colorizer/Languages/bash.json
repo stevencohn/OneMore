@@ -1,0 +1,52 @@
+{
+  "name": "bash",
+  "aliases": [
+    "sh"
+  ],
+  "rules": [
+    {
+      "pattern": "(#.*?)\\r?$",
+      "captures": [
+        "Comment"
+      ]
+    },
+    {
+      "pattern": "('[^\\n]*?(?<!\\\\)')",
+      "captures": [
+        "String"
+      ]
+    },
+    {
+      "pattern": "(?s)(\"[^\\n]*?(?<!\\\\)\")",
+      "captures": [
+        "String"
+      ]
+    },
+    {
+      "pattern": "(?:(?:(\\$(?:\\$|\\#|\\@|\\*|\\?)(?<!\\b)))|(\\$(?:HOME|HOSTNAME|NAME|LINENO|PATH|PWD|SHELL|USER|UID|0)(?:\\b)))",
+      "captures": [
+        "ShellKnownVariable",
+        "ShellKnownVariable"
+      ]
+    },
+    {
+      "pattern": "(\\$[\\p{L}_][\\p{L}\\p{N}_]*(?:\\b))",
+      "captures": [
+        "ShellUserVariable"
+      ]
+    },
+    {
+
+      "pattern": "\\b(if|then|elif|else|fi|time|for|in|until|while|do|done|case|esac|coproc|select|function)\\b",
+      "captures": [
+        "Keyword"
+      ]
+    },
+    {
+      "pattern": "\\b([0-9]{1,})\\b",
+      "captures": [
+        "Number"
+      ]
+    }
+  ]
+}

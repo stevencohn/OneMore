@@ -229,6 +229,14 @@
       "foreground": "Gray"
     },
     {
+      "name": "ShellKnownVariable",
+      "foreground": "Firebrick"
+    },
+    {
+      "name": "ShellUserVariable",
+      "foreground": "Orange"
+    },
+    {
       "name": "SpecialCharacter"
     },
     {
