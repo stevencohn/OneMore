@@ -60,9 +60,16 @@ namespace River.OneMoreAddIn.Commands
 		{
 			filePath = Path.Combine(PathHelper.GetAppDataPath(), Resx.ScanningCueFile);
 
-			schedule = HashtagProvider.CatalogExists()
-				? ReadSchedule()
-				: new Schedule { State = ScanningState.PendingRebuild };
+			schedule = ReadSchedule();
+			if (schedule is null)
+			{
+				schedule = new Schedule
+				{
+					State = HashtagProvider.CatalogExists()
+						? ScanningState.Ready
+						: ScanningState.PendingRebuild
+				};
+			}
 		}
 
 
@@ -176,7 +183,7 @@ namespace River.OneMoreAddIn.Commands
 
 		public void Refresh()
 		{
-			var update = ReadSchedule(false);
+			var update = ReadSchedule();
 			if (update is null)
 			{
 				schedule.State = HashtagProvider.CatalogExists()
@@ -193,15 +200,11 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private Schedule ReadSchedule(bool chatty = true)
+		private Schedule ReadSchedule()
 		{
 			if (!File.Exists(filePath))
 			{
-				if (chatty)
-				{
-					logger.WriteLine($"could not find schedule file {filePath}");
-				}
-
+				logger.WriteLine($"schedule file not found [{filePath}]");
 				return null;
 			}
 
@@ -217,7 +220,7 @@ namespace River.OneMoreAddIn.Commands
 			}
 			catch (Exception exc)
 			{
-				logger.WriteLine($"error reading scan schedule from {filePath}", exc);
+				logger.WriteLine($"error reading schedule from [{filePath}]", exc);
 				return null;
 			}
 		}
