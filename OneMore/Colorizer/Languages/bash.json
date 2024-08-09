@@ -33,7 +33,8 @@
       // proceeding to the ShellUserVariable pattern below,
       "pattern": "(?:(?:(\\$(?:\\$|\\#|\\@|\\*|\\?)(?<!\\b)))|(\\$(?:HOME|HOSTNAME|NAME|LINENO|PATH|PWD|SHELL|USER|UID|0)(?:\\b)))",
       "captures": [
-        // there are, in fact, two captures in the patter, but only one should match at a time
+        // there are, in fact, two captures in the pattern, but only one should match at a time
+        // need both to make Verify Compiler.ValidateRule happy
         "ShellKnownVariable",
         "ShellKnownVariable"
       ]
