@@ -319,6 +319,7 @@
     <Compile Include="Helpers\Extensions\ScreenExtensions.cs" />
     <Compile Include="Helpers\Heatmap.cs" />
     <Compile Include="Commands\Tagging\HashtagNotebook.cs" />
+    <Compile Include="Helpers\SessionLogger.cs" />
     <Compile Include="Models\OneImage.cs" />
     <Compile Include="Models\KnownSchemaAttributes.cs" />
     <Compile Include="Models\PageEditor.cs" />

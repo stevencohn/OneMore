@@ -24,8 +24,9 @@ namespace River.OneMoreAddIn.Commands
 	{
 		private const int ScannerID = 0;
 
-		private readonly SQLiteConnection con;
 		private readonly string timestamp;
+
+		private SQLiteConnection con;
 		private bool disposed;
 
 
@@ -37,21 +38,50 @@ namespace River.OneMoreAddIn.Commands
 			var path = Path.Combine(
 				PathHelper.GetAppDataPath(), Resources.DatabaseFilename);
 
-			var refresh = !File.Exists(path);
+			if (HasSchema(path))
+			{
+				UpgradeDatabase();
+			}
+			else
+			{
+				RefreshDatabase();
+			}
+
+			timestamp = DateTime.Now.ToZuluString();
+		}
+
+
+		private bool HasSchema(string path)
+		{
+			if (!File.Exists(path))
+			{
+				return false;
+			}
 
 			con = new SQLiteConnection($"Data source={path}");
 			con.Open();
 
-			if (refresh)
+			using var cmd = con.CreateCommand();
+			cmd.CommandType = CommandType.Text;
+			cmd.CommandText = "SELECT COUNT(1) FROM sqlite_master " +
+				"WHERE type = 'table' AND name = 'hashtag_scanner'";
+
+			var count = 0;
+			try
 			{
-				RefreshDatabase();
+				using var reader = cmd.ExecuteReader();
+				if (reader.Read())
+				{
+					count = reader.GetInt32(0);
+				}
 			}
-			else
+			catch (Exception exc)
 			{
-				UpgradeDatabase();
+				ReportError("error reading scanner version", cmd, exc);
+				return false;
 			}
 
-			timestamp = DateTime.Now.ToZuluString();
+			return count > 0;
 		}
 
 
@@ -87,17 +117,22 @@ namespace River.OneMoreAddIn.Commands
 			int Drop(string type, IEnumerable<string> names)
 			{
 				using var cmd = con.CreateCommand();
-				cmd.CommandText = $"DROP {type} IF EXISTS @n";
 				cmd.CommandType = CommandType.Text;
-				cmd.Parameters.Add("@n", DbType.String);
+
 				var count = 0;
 
 				foreach (var name in names)
 				{
+					logger.WriteLine($"dropping {type} {name}");
+
+					// Cannot use named parameters here because they would be interpreted as
+					// literal quoted strings rather than direct names like @myview. So use
+					// dynamic SQL. The possibility of SQL injection is quite low because
+					// these names come from an embedded resx in this assembly.
+					cmd.CommandText = $"DROP {type} IF EXISTS {name}";
+
 					try
 					{
-						logger.WriteLine($"dropping {type} {name}");
-						cmd.Parameters["@n"].Value = name;
 						cmd.ExecuteNonQuery();
 						count++;
 					}
@@ -139,20 +174,20 @@ namespace River.OneMoreAddIn.Commands
 			list = entities.Where(e => e.Item1 == "VIEW");
 			if (list.Any())
 			{
-				count += Drop("view", list.Select(e => e.Item2));
+				count += Drop("view", list.Select(e => e.Item2).ToList());
 			}
 
 			list = entities.Where(e => e.Item1 == "INDEX");
 			if (list.Any())
 			{
-				count += Drop("index", list.Select(e => e.Item2));
+				count += Drop("index", list.Select(e => e.Item2).ToList());
 			}
 
 			list = entities.Where(e => e.Item1 == "TABLE");
 			if (list.Any())
 			{
 				// there is one foreign key but tables will be dropped in the right order
-				count += Drop("table", list.Select(e => e.Item2));
+				count += Drop("table", list.Select(e => e.Item2).ToList());
 			}
 
 			if (count != entities.Count())
@@ -163,11 +198,13 @@ namespace River.OneMoreAddIn.Commands
 
 			try
 			{
+				transaction.Commit();
+
+				// vacuum must be done outside a transaction
 				using var cmd = con.CreateCommand();
 				cmd.CommandText = "VACUUM";
 				cmd.ExecuteNonQuery();
 
-				transaction.Commit();
 				logger.WriteLine("hashtag database drop done");
 			}
 			catch (Exception exc)
@@ -957,10 +994,10 @@ namespace River.OneMoreAddIn.Commands
 		public bool UniqueMoreID(string pageID, string moreID)
 		{
 			using var cmd = con.CreateCommand();
+			cmd.CommandType = CommandType.Text;
 			cmd.CommandText = "SELECT count(1) " +
 				"FROM hashtag_page WHERE moreID = @mid AND pageID <> @pid";
 
-			cmd.CommandType = CommandType.Text;
 			cmd.Parameters.AddWithValue("@mid", moreID);
 			cmd.Parameters.AddWithValue("@pid", pageID);
 
@@ -991,11 +1028,11 @@ namespace River.OneMoreAddIn.Commands
 		public void UpdateSnippet(Hashtags tags)
 		{
 			using var cmd = con.CreateCommand();
+			cmd.CommandType = CommandType.Text;
 			cmd.CommandText = "UPDATE hashtag " +
 				"SET snippet = @c, lastModified = @s " +
 				"WHERE tag = @t AND moreID = @m";
 
-			cmd.CommandType = CommandType.Text;
 			cmd.Parameters.Add("@c", DbType.String);
 			cmd.Parameters.Add("@s", DbType.String);
 			cmd.Parameters.Add("@t", DbType.String);
@@ -1225,11 +1262,11 @@ namespace River.OneMoreAddIn.Commands
 
 			var sql = Regex.Replace(cmd.CommandText, "@[a-z]+",
 				m => cmd.Parameters.Contains(m.Value)
-					? $"'{cmd.Parameters[m.Value]}'"
+					? $"'{cmd.Parameters[m.Value].Value}'"
 					: m.Value
 			);
 
-			logger.WriteLine("error writing tags");
+			logger.WriteLine(msg);
 			logger.WriteLine(sql);
 			logger.WriteLine(exc);
 		}

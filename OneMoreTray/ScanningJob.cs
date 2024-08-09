@@ -42,7 +42,19 @@ namespace OneMoreTray
 				return;
 			}
 
+			River.OneMoreAddIn.Helpers.SessionLogger.WriteSessionHeader();
+
 			ScheduleScan();
+		}
+
+
+		private void SetLanguage()
+		{
+			var settings = new SettingsProvider().GetCollection(nameof(GeneralSheet));
+			var lang = settings.Get("language", "en");
+			var culture = CultureInfo.GetCultureInfo(lang);
+			Thread.CurrentThread.CurrentCulture = culture;
+			Thread.CurrentThread.CurrentUICulture = culture;
 		}
 
 
@@ -84,16 +96,6 @@ namespace OneMoreTray
 			};
 
 			return icon;
-		}
-
-
-		private void SetLanguage()
-		{
-			var settings = new SettingsProvider().GetCollection(nameof(GeneralSheet));
-			var lang = settings.Get("language", "en");
-			var culture = CultureInfo.GetCultureInfo(lang);
-			Thread.CurrentThread.CurrentCulture = culture;
-			Thread.CurrentThread.CurrentUICulture = culture;
 		}
 
 

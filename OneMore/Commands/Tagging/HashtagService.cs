@@ -185,10 +185,24 @@ namespace River.OneMoreAddIn.Commands
 				var count = 0;
 				do
 				{
-					if (count % (Minute / Pause) == 0) // every minute
+					//if (count % (Minute / Pause) == 0) // every minute
 					{
 						logger.WriteLine($"hashtag service waiting, {scheduler.State}");
 					}
+
+
+					/*
+					 * This will Pause every 3 seconds!!!
+					 * 
+					 * 
+					 * Increase Pause to maybe 10s, and let it pause at least once before
+					 * proceeding.
+					 * 
+					 * 
+					 * Then bump up pause interval to once every minute or so....
+					 * 
+					 * 
+					 */
 
 					await Task.Delay(Pause, source.Token);
 					if (!source.IsCancellationRequested)
