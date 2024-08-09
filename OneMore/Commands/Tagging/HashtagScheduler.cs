@@ -60,23 +60,17 @@ namespace River.OneMoreAddIn.Commands
 		{
 			filePath = Path.Combine(PathHelper.GetAppDataPath(), Resx.ScanningCueFile);
 
-			if (File.Exists(filePath))
-			{
-				schedule = ReadSchedule();
-			}
-			else
-			{
-				schedule = new Schedule
-				{
-					State = HashtagProvider.DatabaseExists()
-						? ScanningState.Ready
-						: ScanningState.PendingRebuild
-				};
-			}
+			schedule = HashtagProvider.CatalogExists()
+				? ReadSchedule()
+				: new Schedule { State = ScanningState.PendingRebuild };
 		}
 
 
-		public bool Active => File.Exists(filePath) && Process.GetProcessesByName(TrayName).Any();
+		public bool Active => (
+			State == ScanningState.Ready ||
+			State == ScanningState.Rebuilding ||
+			State == ScanningState.Scanning
+			) && Process.GetProcessesByName(TrayName).Any();
 
 
 		public string[] Notebooks
@@ -185,7 +179,7 @@ namespace River.OneMoreAddIn.Commands
 			var update = ReadSchedule(false);
 			if (update is null)
 			{
-				schedule.State = HashtagProvider.DatabaseExists()
+				schedule.State = HashtagProvider.CatalogExists()
 					? ScanningState.Ready
 					: ScanningState.None;
 			}

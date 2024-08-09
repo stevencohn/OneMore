@@ -160,7 +160,7 @@ namespace River.OneMoreAddIn.Commands
 		{
 			if (booksFlow is not null)
 			{
-				if (HashtagProvider.DatabaseExists())
+				if (HashtagProvider.CatalogExists())
 				{
 					using var provider = new HashtagProvider();
 					scannedIDs = provider.ReadTaggedNotebookIDs();

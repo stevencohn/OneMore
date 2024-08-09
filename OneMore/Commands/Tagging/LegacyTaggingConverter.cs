@@ -79,7 +79,7 @@ namespace River.OneMoreAddIn.Commands
 
 				// scan now?
 
-				if (HashtagProvider.DatabaseExists())
+				if (HashtagProvider.CatalogExists())
 				{
 					var scheduler = new HashtagScheduler();
 					if (!scheduler.ScheduleExists && scheduler.State == ScanningState.Ready)

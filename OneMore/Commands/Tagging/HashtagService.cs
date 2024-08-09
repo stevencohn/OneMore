@@ -21,19 +21,21 @@ namespace River.OneMoreAddIn.Commands
 	internal class HashtagService : Loggable
 	{
 		public const int DefaultPollingInterval = 2; // 2 minutes
-		private const int Pause = 3000; // 3s delay before starting
-		private const int Minute = 60000; // ms in 1 minute
 
-		private readonly bool embedded;
-		private readonly bool fullRebuild;
-		private readonly int interval;
+		private const int Minute = 60000;            // ms in 1 minute
+		private const int PollingDelay = 10000;      // 10s polling interval waiting to start
+		private const int WaitDelay = 3000;          // 3s optimistic pause before WaitPolling
+
 		private readonly bool disabled;
 
-		private string[] notebookFilters;
-		private HashtagScheduler scheduler;
-		private int hour;
+		protected string[] notebookFilters;
+		protected HashtagScheduler scheduler;
+		protected int scanInterval;
+		protected ThreadPriority threadPriority;
+
 		private int scanCount;
 		private long scanTime;
+		protected int hour;
 
 
 		public delegate void HashtagScannedHandler(object sender, HashtagScannedEventArgs e);
@@ -44,22 +46,11 @@ namespace River.OneMoreAddIn.Commands
 		/// </summary>
 		public HashtagService()
 		{
-			embedded = true;
 			var settings = new SettingsProvider().GetCollection("HashtagSheet");
-			interval = settings.Get("interval", DefaultPollingInterval) * Minute;
+			scanInterval = settings.Get("interval", DefaultPollingInterval) * Minute;
 			disabled = settings.Get<bool>("disabled");
-		}
 
-
-		/// <summary>
-		/// Initialize a new instance for use by the OneMoreTray app
-		/// </summary>
-		/// <param name="rebuild"></param>
-		public HashtagService(bool rebuild)
-			: this()
-		{
-			embedded = false;
-			fullRebuild = rebuild;
+			threadPriority = ThreadPriority.Lowest;
 		}
 
 
@@ -70,12 +61,13 @@ namespace River.OneMoreAddIn.Commands
 
 
 		/// <summary>
-		/// Sets a list of notebookIDs to target during scan/rebuild.
+		/// Raise the OnHashtagScanned even.
+		/// Available for inheritors, who are not allowed to invoke events directly.
 		/// </summary>
-		/// <param name="filters"></param>
-		public void SetNotebookFilters(string[] filters)
+		/// <param name="args"></param>
+		protected void HashtagScanned(HashtagScannedEventArgs args)
 		{
-			notebookFilters = filters;
+			OnHashtagScanned?.Invoke(this, args);
 		}
 
 
@@ -100,14 +92,7 @@ namespace River.OneMoreAddIn.Commands
 			// new thread to provide a bit of isolation
 			var thread = new Thread(async () =>
 			{
-				if (embedded)
-				{
-					await StartupLoop();
-				}
-				else
-				{
-					await StartupRebuild();
-				}
+				await StartupLoop();
 			})
 			{
 				Name = $"{nameof(HashtagService)}Thread"
@@ -115,15 +100,16 @@ namespace River.OneMoreAddIn.Commands
 
 			thread.SetApartmentState(ApartmentState.STA);
 			thread.IsBackground = true;
-			thread.Priority = fullRebuild ? ThreadPriority.Normal : ThreadPriority.Lowest;
+			thread.Priority = threadPriority;
 			thread.Start();
 		}
 
 
 		// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-		// This method is executed in the context of the OneMore add-in running in OneNote
+		// This base method is executed in the context of the OneMore add-in running in OneNote.
+		// Compare against the OneMoreTray override.
 
-		private async Task StartupLoop()
+		protected virtual async Task StartupLoop()
 		{
 			if (!await WaitForReady())
 			{
@@ -149,7 +135,7 @@ namespace River.OneMoreAddIn.Commands
 
 				if (errors < 5)
 				{
-					await Task.Delay(interval);
+					await Task.Delay(scanInterval);
 				}
 			}
 
@@ -180,35 +166,27 @@ namespace River.OneMoreAddIn.Commands
 			try
 			{
 				// wait at least once to let OneMore settle before we start
-				// then wait for scheduler to be ready...
+				// then wait for scheduler to be ready, if necessary...
+
+				// start with 3s interval, optimistically hoping we're in a good state to go!
+				var delay = WaitDelay;
 
 				var count = 0;
 				do
 				{
-					//if (count % (Minute / Pause) == 0) // every minute
+					if (count % (Minute / WaitDelay) == 0) // every minute
 					{
 						logger.WriteLine($"hashtag service waiting, {scheduler.State}");
 					}
 
-
-					/*
-					 * This will Pause every 3 seconds!!!
-					 * 
-					 * 
-					 * Increase Pause to maybe 10s, and let it pause at least once before
-					 * proceeding.
-					 * 
-					 * 
-					 * Then bump up pause interval to once every minute or so....
-					 * 
-					 * 
-					 */
-
-					await Task.Delay(Pause, source.Token);
+					await Task.Delay(delay, source.Token);
 					if (!source.IsCancellationRequested)
 					{
 						scheduler.Refresh();
 						count++;
+
+						// resume normal 10s interval
+						delay = PollingDelay;
 					}
 				}
 				while (scheduler.State != ScanningState.Ready && !source.IsCancellationRequested);
@@ -226,65 +204,7 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-		// This method is executed in the context of the OneMoreTray app
-
-		private async Task StartupRebuild()
-		{
-			if (fullRebuild)
-			{
-				// at this point, the service is "active" and the rebuild will commence
-				// immediately, so prepare by dropping existing hashtag entities...
-				using var db = new HashtagProvider();
-				if (!db.DropDatabase())
-				{
-					return;
-				}
-
-				var provider = new SettingsProvider();
-				var settings = provider.GetCollection("HashtagSheet");
-				if (settings.Remove("rebuild"))
-				{
-					provider.SetCollection(settings);
-					provider.Save();
-				}
-			}
-
-			// we want this to complete exactly once and then exit but allow
-			// for up to five consecutive errors during execution...
-
-			var errors = 0;
-			var done = false;
-
-			while (errors < 5 && !done)
-			{
-				try
-				{
-					await Scan();
-
-					errors = 0;
-					done = true;
-				}
-				catch (Exception exc)
-				{
-					logger.WriteLine($"hashtag service exception {errors}", exc);
-					errors++;
-				}
-
-				if (!done)
-				{
-					await Task.Delay(interval);
-				}
-			}
-
-			if (errors > 0)
-			{
-				logger.WriteLine("hashtag service has stopped; check for exceptions above");
-			}
-		}
-
-
-		private async Task Scan()
+		protected async Task Scan()
 		{
 			var clock = new Stopwatch();
 			clock.Start();
