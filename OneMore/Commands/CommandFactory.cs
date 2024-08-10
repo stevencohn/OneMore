@@ -30,7 +30,6 @@ namespace River.OneMoreAddIn
 		/// <param name="logger">The logger</param>
 		/// <param name="ribbon">The OneNote ribbon</param>
 		/// <param name="trash">A colleciton of IDisposables for cleanup on shutdown</param>
-		/// <param name="owner">The owner window</param>
 		public CommandFactory(
 			ILogger logger, IRibbonUI ribbon, List<IDisposable> trash)
 		{
