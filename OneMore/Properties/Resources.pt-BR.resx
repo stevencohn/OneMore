@@ -4232,6 +4232,12 @@ Depois do último grupo</value>
     <value>Execute a verificação agora</value>
     <comment>radio</comment>
   </data>
+  <data name="ScheduleScanDialog_nowWarning" xml:space="preserve">
+    <value>A verificação de hashtag pode resultar em uma capacidade de resposta mais lenta ao usar o OneNote ou na incapacidade de reiniciar o OneNote até que a verificação seja concluída.
+
+Tem certeza de que deseja executar a verificação agora</value>
+    <comment>message box</comment>
+  </data>
   <data name="ScheduleScanDialog_Title" xml:space="preserve">
     <value>Agendar verificação de hashtag</value>
     <comment>dialog title</comment>

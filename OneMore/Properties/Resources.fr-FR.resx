@@ -4231,6 +4231,12 @@ Après le dernier groupe</value>
     <value>Exécutez l'analyse maintenant</value>
     <comment>radio</comment>
   </data>
+  <data name="ScheduleScanDialog_nowWarning" xml:space="preserve">
+    <value>L'analyse des hashtags peut entraîner une réactivité plus lente lors de l'utilisation de OneNote ou l'impossibilité de redémarrer OneNote jusqu'à la fin de l'analyse.
+
+Êtes-vous sûr de vouloir lancer l'analyse maintenant</value>
+    <comment>message box</comment>
+  </data>
   <data name="ScheduleScanDialog_Title" xml:space="preserve">
     <value>Planifier l'analyse des hashtags</value>
     <comment>dialog title</comment>

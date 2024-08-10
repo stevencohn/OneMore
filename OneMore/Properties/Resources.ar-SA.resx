@@ -4232,6 +4232,12 @@ ISO-code then comma then language name</comment>
     <value>قم بإجراء الفحص الآن</value>
     <comment>radio</comment>
   </data>
+  <data name="ScheduleScanDialog_nowWarning" xml:space="preserve">
+    <value>يمكن أن يؤدي فحص علامة التصنيف إلى استجابة أبطأ أثناء استخدام OneNote أو عدم القدرة على إعادة تشغيل OneNote حتى يكتمل الفحص.
+
+هل أنت متأكد أنك تريد إجراء الفحص الآن؟</value>
+    <comment>message box</comment>
+  </data>
   <data name="ScheduleScanDialog_Title" xml:space="preserve">
     <value>جدولة مسح الهاشتاج</value>
     <comment>dialog title</comment>

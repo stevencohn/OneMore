@@ -4245,6 +4245,12 @@ Po ostatniej grupie</value>
     <value>Uruchom skanowanie teraz</value>
     <comment>radio</comment>
   </data>
+  <data name="ScheduleScanDialog_nowWarning" xml:space="preserve">
+    <value>Skanowanie hashtagów może spowodować wolniejszą reakcję podczas korzystania z programu OneNote lub brak możliwości ponownego uruchomienia programu OneNote do czasu zakończenia skanowania.
+
+Czy na pewno chcesz teraz uruchomić skanowanie?</value>
+    <comment>message box</comment>
+  </data>
   <data name="ScheduleScanDialog_Title" xml:space="preserve">
     <value>Zaplanuj skanowanie hashtagów</value>
     <comment>dialog title</comment>

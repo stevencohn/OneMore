@@ -290,5 +290,23 @@ namespace River.OneMoreAddIn.Commands
 				box.Checked = false;
 			}
 		}
+
+
+		private void CheckOptionsOnFormClosing(object sender, FormClosingEventArgs e)
+		{
+			if (DialogResult == DialogResult.Cancel || !nowRadio.Checked)
+			{
+				return;
+			}
+
+			var result = MoreMessageBox.Show(this,
+				Resx.ScheduleScanDialog_nowWarning,
+				MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
+
+			if (result == DialogResult.Cancel)
+			{
+				e.Cancel = true;
+			}
+		}
 	}
 }
