@@ -42,7 +42,19 @@ namespace OneMoreTray
 				return;
 			}
 
+			River.OneMoreAddIn.Helpers.SessionLogger.WriteSessionHeader();
+
 			ScheduleScan();
+		}
+
+
+		private void SetLanguage()
+		{
+			var settings = new SettingsProvider().GetCollection(nameof(GeneralSheet));
+			var lang = settings.Get("language", "en");
+			var culture = CultureInfo.GetCultureInfo(lang);
+			Thread.CurrentThread.CurrentCulture = culture;
+			Thread.CurrentThread.CurrentUICulture = culture;
 		}
 
 
@@ -87,16 +99,6 @@ namespace OneMoreTray
 		}
 
 
-		private void SetLanguage()
-		{
-			var settings = new SettingsProvider().GetCollection(nameof(GeneralSheet));
-			var lang = settings.Get("language", "en");
-			var culture = CultureInfo.GetCultureInfo(lang);
-			Thread.CurrentThread.CurrentCulture = culture;
-			Thread.CurrentThread.CurrentUICulture = culture;
-		}
-
-
 		private void ScheduleScan()
 		{
 			source = new CancellationTokenSource();
@@ -126,15 +128,15 @@ namespace OneMoreTray
 
 			trayIcon.ShowBalloonTip(0, Resx.ScannerTitle, Resx.ScanStarting, ToolTipIcon.Info);
 
-			var scanner = new HashtagService(scheduler.State == ScanningState.PendingRebuild);
+			var service = new ScheduledHashtagService(scheduler.State == ScanningState.PendingRebuild);
 
 			if (scheduler.Notebooks is not null && scheduler.Notebooks.Length > 0)
 			{
-				scanner.SetNotebookFilters(scheduler.Notebooks);
+				service.SetNotebookFilters(scheduler.Notebooks);
 			}
 
-			scanner.OnHashtagScanned += DoScanned;
-			scanner.Startup();
+			service.OnHashtagScanned += DoScanned;
+			service.Startup();
 
 			scheduler.State = ScanningState.Scanning;
 			scheduler.SaveSchedule();
@@ -145,6 +147,18 @@ namespace OneMoreTray
 
 		private void DoScanned(object sender, HashtagScannedEventArgs args)
 		{
+			if (args.Failed)
+			{
+				if (!string.IsNullOrWhiteSpace(args.ErrorMessage))
+				{
+					logger.WriteLine(args.ErrorMessage);
+					logger.WriteLine("ScanningJob aborted, closing OneMoreTray");
+				}
+
+				Application.Exit();
+				return;
+			}
+
 			logger.WriteLine($"scan completed at {DateTime.Now}");
 
 			logger.WriteLine(
@@ -154,9 +168,9 @@ namespace OneMoreTray
 				$"scanned {args.TotalPages} pages, updating {args.DirtyPages}, in {args.Time}ms");
 
 			scheduler.ClearSchedule();
-
 			trayIcon.ShowBalloonTip(0, Resx.ScanCompleteTitle, Resx.ScanComplete, ToolTipIcon.Info);
 
+			logger.WriteLine("ScanningJob completed, closing OneMoreTray");
 			Application.Exit();
 		}
 

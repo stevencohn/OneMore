@@ -4243,6 +4243,12 @@ ISO-code then comma then language name</comment>
     <value>הפעל את הסריקה כעת</value>
     <comment>radio</comment>
   </data>
+  <data name="ScheduleScanDialog_nowWarning" xml:space="preserve">
+    <value>סריקת Hashtag יכולה לגרום להיענות איטית יותר בזמן השימוש ב-OneNote או לחוסר יכולת להפעיל מחדש את OneNote עד לסיום הסריקה.
+
+האם אתה בטוח שברצונך להפעיל את הסריקה כעת</value>
+    <comment>message box</comment>
+  </data>
   <data name="ScheduleScanDialog_Title" xml:space="preserve">
     <value>תזמן סריקת Hashtag</value>
     <comment>dialog title</comment>

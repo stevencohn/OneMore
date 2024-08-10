@@ -10550,6 +10550,17 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Hashtag scanning can result in slower responsiveness while using OneNote or the inability to restart OneNote until the scan completes.
+        ///
+        ///Are you sure you want to run the scan now.
+        /// </summary>
+        internal static string ScheduleScanDialog_nowWarning {
+            get {
+                return ResourceManager.GetString("ScheduleScanDialog_nowWarning", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Schedule Hashtag Scanning.
         /// </summary>
         internal static string ScheduleScanDialog_Title {

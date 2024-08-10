@@ -365,6 +365,7 @@
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
 			this.Text = "Schedule Hashtag Scanning";
 			this.TopMost = true;
+			this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.CheckOptionsOnFormClosing);
 			this.topPanel.ResumeLayout(false);
 			this.topPanel.PerformLayout();
 			this.notebooksPanel.ResumeLayout(false);

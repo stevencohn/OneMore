@@ -4225,6 +4225,12 @@ ISO-code then comma then language name</comment>
     <value>立即运行扫描</value>
     <comment>radio</comment>
   </data>
+  <data name="ScheduleScanDialog_nowWarning" xml:space="preserve">
+    <value>主题标签扫描可能会导致使用 OneNote 时响应速度变慢，或者在扫描完成之前无法重新启动 OneNote。
+
+您确定要立即运行扫描吗</value>
+    <comment>message box</comment>
+  </data>
   <data name="ScheduleScanDialog_Title" xml:space="preserve">
     <value>安排标签扫描</value>
     <comment>dialog title</comment>

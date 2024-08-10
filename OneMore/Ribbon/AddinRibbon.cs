@@ -63,8 +63,7 @@ namespace River.OneMoreAddIn
 				AddProofingCommands(root);
 
 				// NOTE: temporary page tagging
-				var tagsettings = provider.GetCollection("tagging");
-				if (tagsettings.Get("converted", false))
+				if (new Commands.LegacyTaggingConverter().IsConverted())
 				{
 					root.Descendants(ns + "button")
 						.Where(e =>

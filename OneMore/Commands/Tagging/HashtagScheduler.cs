@@ -60,15 +60,12 @@ namespace River.OneMoreAddIn.Commands
 		{
 			filePath = Path.Combine(PathHelper.GetAppDataPath(), Resx.ScanningCueFile);
 
-			if (File.Exists(filePath))
-			{
-				schedule = ReadSchedule();
-			}
-			else
+			schedule = ReadSchedule();
+			if (schedule is null)
 			{
 				schedule = new Schedule
 				{
-					State = HashtagProvider.DatabaseExists()
+					State = HashtagProvider.CatalogExists()
 						? ScanningState.Ready
 						: ScanningState.PendingRebuild
 				};
@@ -76,7 +73,11 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		public bool Active => File.Exists(filePath) && Process.GetProcessesByName(TrayName).Any();
+		public bool Active => (
+			State == ScanningState.Ready ||
+			State == ScanningState.Rebuilding ||
+			State == ScanningState.Scanning
+			) && Process.GetProcessesByName(TrayName).Any();
 
 
 		public string[] Notebooks
@@ -182,10 +183,10 @@ namespace River.OneMoreAddIn.Commands
 
 		public void Refresh()
 		{
-			var update = ReadSchedule(false);
+			var update = ReadSchedule();
 			if (update is null)
 			{
-				schedule.State = HashtagProvider.DatabaseExists()
+				schedule.State = HashtagProvider.CatalogExists()
 					? ScanningState.Ready
 					: ScanningState.None;
 			}
@@ -199,15 +200,10 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private Schedule ReadSchedule(bool chatty = true)
+		private Schedule ReadSchedule()
 		{
 			if (!File.Exists(filePath))
 			{
-				if (chatty)
-				{
-					logger.WriteLine($"could not find schedule file {filePath}");
-				}
-
 				return null;
 			}
 
@@ -223,7 +219,7 @@ namespace River.OneMoreAddIn.Commands
 			}
 			catch (Exception exc)
 			{
-				logger.WriteLine($"error reading scan schedule from {filePath}", exc);
+				logger.WriteLine($"error reading schedule from [{filePath}]", exc);
 				return null;
 			}
 		}

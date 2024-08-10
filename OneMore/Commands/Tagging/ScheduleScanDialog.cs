@@ -160,7 +160,7 @@ namespace River.OneMoreAddIn.Commands
 		{
 			if (booksFlow is not null)
 			{
-				if (HashtagProvider.DatabaseExists())
+				if (HashtagProvider.CatalogExists())
 				{
 					using var provider = new HashtagProvider();
 					scannedIDs = provider.ReadTaggedNotebookIDs();
@@ -288,6 +288,24 @@ namespace River.OneMoreAddIn.Commands
 			foreach (MoreCheckBox box in booksFlow.Controls)
 			{
 				box.Checked = false;
+			}
+		}
+
+
+		private void CheckOptionsOnFormClosing(object sender, FormClosingEventArgs e)
+		{
+			if (DialogResult == DialogResult.Cancel || !nowRadio.Checked)
+			{
+				return;
+			}
+
+			var result = MoreMessageBox.Show(this,
+				Resx.ScheduleScanDialog_nowWarning,
+				MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
+
+			if (result == DialogResult.Cancel)
+			{
+				e.Cancel = true;
 			}
 		}
 	}

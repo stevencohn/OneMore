@@ -34,7 +34,7 @@ namespace River.OneMoreAddIn.Commands
 
 			// by now, there should at least be an automated scheduled scan if no db
 			// but keep this here just incase
-			var showNotebooks = HashtagProvider.DatabaseExists();
+			var showNotebooks = HashtagProvider.CatalogExists();
 
 			using var dialog =
 				scheduler.State == ScanningState.None ||

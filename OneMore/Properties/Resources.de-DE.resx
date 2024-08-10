@@ -4226,6 +4226,12 @@ Nach der letzten Gruppe</value>
     <value>Führen Sie den Scan jetzt durch</value>
     <comment>radio</comment>
   </data>
+  <data name="ScheduleScanDialog_nowWarning" xml:space="preserve">
+    <value>Das Scannen von Hashtags kann zu einer langsameren Reaktionsfähigkeit bei der Verwendung von OneNote führen oder dazu führen, dass OneNote nicht neu gestartet werden kann, bis der Scan abgeschlossen ist.
+
+Sind Sie sicher, dass Sie den Scan jetzt ausführen möchten?</value>
+    <comment>message box</comment>
+  </data>
   <data name="ScheduleScanDialog_Title" xml:space="preserve">
     <value>Planen Sie das Hashtag-Scannen</value>
     <comment>dialog title</comment>
