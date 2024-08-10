@@ -204,7 +204,6 @@ namespace River.OneMoreAddIn.Commands
 		{
 			if (!File.Exists(filePath))
 			{
-				logger.WriteLine($"schedule file not found [{filePath}]");
 				return null;
 			}
 

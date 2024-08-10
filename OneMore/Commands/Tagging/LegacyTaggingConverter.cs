@@ -22,6 +22,8 @@ namespace River.OneMoreAddIn.Commands
 	/// </summary>
 	internal class LegacyTaggingConverter : Loggable
 	{
+		public const string SettingsName = "tagging";
+
 		private XElement root;
 		private XNamespace ns;
 
@@ -45,6 +47,63 @@ namespace River.OneMoreAddIn.Commands
 		public int TagsConverted { get; private set; } = 0;
 
 
+		public bool IsConverted()
+		{
+			var provider = new SettingsProvider();
+			var settings = provider.GetCollection(SettingsName);
+			return settings.Get("converted", false);
+		}
+
+
+		public async Task<bool> NeedsConversion()
+		{
+			return await NeedsConversion(new SettingsProvider().GetCollection(SettingsName));
+		}
+
+
+		private async Task<bool> NeedsConversion(SettingsCollection settings)
+		{
+			if (settings.Get("converted", false))
+			{
+				return false;
+			}
+
+			if (settings.Get("ignore", false))
+			{
+				// previously opted to ignore upgrade
+				return false;
+			}
+
+			return await HasLegacyTags();
+		}
+
+
+		private async Task<bool> HasLegacyTags()
+		{
+			await using var one = new OneNote();
+
+			root = await one.SearchMeta(string.Empty, MetaNames.TaggingLabels);
+			if (root == null)
+			{
+				// error parsing hierarchy XML but OK
+				return false;
+			}
+
+			// page level tags are only deleted if their content attribute is empty, but
+			// page tags never considered that so may exist AND have empty content.
+			// So need to check if any have content values...
+
+			ns = root.GetNamespaceOfPrefix(OneNote.Prefix);
+
+			var found = root.Descendants(ns + "Meta").Any(e =>
+				e.Attribute("name").Value == MetaNames.TaggingLabels &&
+				e.Attribute("content") != null &&
+				!string.IsNullOrWhiteSpace(e.Attribute("content").Value));
+
+			return found;
+		}
+
+
 		/// <summary>
 		/// If there are legacy Page tags, ask the user if they want to upgrade to Hashtags
 		/// and, if yes, then perform the upgrade.
@@ -54,7 +113,7 @@ namespace River.OneMoreAddIn.Commands
 		public async Task<bool> UpgradeLegacyTags(IWin32Window owner)
 		{
 			var provider = new SettingsProvider();
-			var settings = provider.GetCollection("tagging");
+			var settings = provider.GetCollection(SettingsName);
 
 			if (!await NeedsConversion(settings))
 			{
@@ -66,13 +125,13 @@ namespace River.OneMoreAddIn.Commands
 				return false;
 			}
 
-			using var ltdialog = new LegacyTaggingDialog();
+			using var dialog = new LegacyTaggingDialog();
 
-			if (ltdialog.ShowDialog(owner) == DialogResult.OK)
+			if (dialog.ShowDialog(owner) == DialogResult.OK)
 			{
 				using var progress = new ProgressDialog();
 				progress.ShowDialogWithCancel(
-					async (dialog, token) => await UpgradeLegacyTags(dialog, token));
+					async (pdialog, token) => await UpgradeLegacyTags(pdialog, token));
 
 				settings.Add("converted", true);
 				Converted = true;
@@ -90,7 +149,7 @@ namespace River.OneMoreAddIn.Commands
 				}
 			}
 
-			if (ltdialog.HideQuestion)
+			if (dialog.HideQuestion)
 			{
 				settings.Add("ignore", true);
 			}
@@ -102,69 +161,6 @@ namespace River.OneMoreAddIn.Commands
 			}
 
 			return Converted;
-		}
-
-
-		public async Task<bool> NeedsConversion()
-		{
-			return await NeedsConversion(new SettingsProvider().GetCollection("tagging"));
-		}
-
-
-		private async Task<bool> NeedsConversion(SettingsCollection settings)
-		{
-			if (settings.Get("converted", false))
-			{
-				return false;
-			}
-
-			if (settings.Get("ignore", false))
-			{
-				// previously opted to ignore upgrade
-				return false;
-			}
-
-			var count = await GetLegacyTagCount();
-			return count > 0;
-		}
-
-
-		private async Task<int> GetLegacyTagCount()
-		{
-			await using var one = new OneNote();
-
-			root = await one.SearchMeta(string.Empty, MetaNames.TaggingLabels);
-			if (root == null)
-			{
-				// may need to restart OneNote?
-				return 0;
-			}
-
-			ns = root.GetNamespaceOfPrefix(OneNote.Prefix);
-
-			var metas = root.Descendants(ns + "Meta")
-				.Where(e => e.Attribute("name").Value == MetaNames.TaggingLabels)
-				.Select(e => e.Attribute("content").Value);
-
-			var tags = new List<string>();
-			foreach (var meta in metas)
-			{
-				var items = meta
-					.Split(
-						new string[] { AddIn.Culture.TextInfo.ListSeparator },
-						StringSplitOptions.RemoveEmptyEntries)
-					.Select(s => s.Trim().ToLower());
-
-				foreach (var item in items)
-				{
-					if (!tags.Contains(item))
-					{
-						tags.Add(item);
-					}
-				}
-			}
-
-			return tags.Count;
 		}
 
 
@@ -240,10 +236,12 @@ namespace River.OneMoreAddIn.Commands
 					// clear the tagging bank meta element value
 					flag.Value = string.Empty;
 
-					// clear out the tagging label meta element value
+					// delete the omTaggingLabels Meta element by removing its content attribute
 					page.Root.Elements(ns + "Meta")
-						.Where(e => e.Attribute("name").Value == MetaNames.TaggingLabels)
-						.ForEach(e => e.Attribute("content").Value = string.Empty);
+						.Where(e => e.Attribute("name").Value == MetaNames.TaggingLabels &&
+							e.Attribute("content") != null)
+						.Select(e => e.Attribute("content"))
+						.Remove();
 
 					if (!token.IsCancellationRequested)
 					{
@@ -262,7 +260,7 @@ namespace River.OneMoreAddIn.Commands
 		public static void ResetUpgradeCheck()
 		{
 			var provider = new SettingsProvider();
-			provider.RemoveCollection("tagging");
+			provider.RemoveCollection(SettingsName);
 			provider.Save();
 		}
 	}
