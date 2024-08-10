@@ -186,6 +186,10 @@ namespace River.OneMoreAddIn.Commands
 					break;
 				}
 
+				var updated = false;
+
+				// update legacy tags in the tagging bank by prefixing them with a hashtag...
+
 				var bank = page.Root.Descendants(ns + "Meta")
 					.FirstOrDefault(e => e.Attribute("name").Value == MetaNames.TaggingBank);
 
@@ -235,19 +239,35 @@ namespace River.OneMoreAddIn.Commands
 
 					// clear the tagging bank meta element value
 					flag.Value = string.Empty;
+					updated = true;
+				}
 
-					// delete the omTaggingLabels Meta element by removing its content attribute
-					page.Root.Elements(ns + "Meta")
-						.Where(e => e.Attribute("name").Value == MetaNames.TaggingLabels &&
-							e.Attribute("content") != null)
-						.Select(e => e.Attribute("content"))
-						.Remove();
+				// remove the omTaggingLabels Meta element from the page...
 
-					if (!token.IsCancellationRequested)
+				if (!token.IsCancellationRequested)
+				{
+					// delete the omTaggingLabels Meta element by removing its content attribute,
+					// should only be one
+					var rogue = page.Root.Elements(ns + "Meta")
+						.FirstOrDefault(e => e.Attribute("name").Value == MetaNames.TaggingLabels &&
+							e.Attribute("content") != null);
+
+					if (rogue is not null &&
+						rogue.Attribute("content") is XAttribute content)
 					{
-						await one.Update(page);
-						PagesConverted++;
+						logger.Verbose($"removing meta on {page.PageId} \"{page.Title}\"");
+						content.Remove();
+						updated = true;
 					}
+				}
+
+				// save page if any updates...
+
+				if (!token.IsCancellationRequested && updated)
+				{
+					logger.Verbose($"saving page {page.PageId} \"{page.Title}\"");
+					await one.Update(page);
+					PagesConverted++;
 				}
 
 				dialog.Increment();
