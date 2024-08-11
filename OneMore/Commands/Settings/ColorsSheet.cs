@@ -47,7 +47,6 @@ namespace River.OneMoreAddIn.Settings
 
 			// reader-makes-right, converting from LinesSheet to ColorsSheet element...
 
-			// set these after ThemeManager does its thing
 			var defaultColor = ThemeManager.Instance.GetColor("ControlText");
 
 			var settings = provider.GetCollection(LegacyName);
@@ -64,6 +63,18 @@ namespace River.OneMoreAddIn.Settings
 				strikeBox.Checked = settings.Get("strikeApply", false); ;
 				strikeColorBox.BackColor = settings.Get("strikeColor", defaultColor);
 			}
+		}
+
+
+		public static string GetStrikethroughForeColor()
+		{
+			// must be called after ThemeManager does its thing
+			var provider = new SettingsProvider();
+			var settings = provider.GetCollection("ColorsSheet");
+
+			return settings.Get<bool>("strikeApply")
+				? settings.Get<string>("strikeColor")
+				: null;
 		}
 
 

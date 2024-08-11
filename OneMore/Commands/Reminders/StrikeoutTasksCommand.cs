@@ -1,5 +1,5 @@
 ﻿//************************************************************************************************
-// Copyright © 2020 Steven M Cohn.  All rights reserved.
+// Copyright © 2020 Steven M Cohn. All rights reserved.
 //************************************************************************************************
 
 namespace River.OneMoreAddIn.Commands
@@ -16,6 +16,9 @@ namespace River.OneMoreAddIn.Commands
 	/// </summary>
 	internal class StrikeoutTasksCommand : Command
 	{
+		private string strikeColor;
+
+
 		public StrikeoutTasksCommand()
 		{
 		}
@@ -53,6 +56,8 @@ namespace River.OneMoreAddIn.Commands
 			{
 				return;
 			}
+
+			strikeColor = Settings.ColorsSheet.GetStrikethroughForeColor() ?? Style.Automatic;
 
 			var modified = false;
 
@@ -92,7 +97,8 @@ namespace River.OneMoreAddIn.Commands
 			}
 		}
 
-		private static bool RestyleText(XCData cdata, bool completed)
+
+		private bool RestyleText(XCData cdata, bool completed)
 		{
 			var modified = false;
 			var wrapper = cdata.GetWrapper();
@@ -100,22 +106,34 @@ namespace River.OneMoreAddIn.Commands
 
 			if (completed)
 			{
+				// complete, so apply strikethrough...
+
 				if (span == null)
 				{
-					wrapper.FirstNode.ReplaceWith(
-						new XElement("span",
-							new XAttribute("style", "text-decoration:line-through"),
-							cdata.Value
-						));
+					// no inline styling, so rewrap text with new span...
+
+					var style = new Style
+					{
+						Color = strikeColor,
+						IsStrikethrough = true
+					};
+
+					span = new XElement("span", cdata.Value);
+					span.SetAttributeValue("style", style.ToCss(false));
+					wrapper.FirstNode.ReplaceWith(span);
 
 					modified = true;
 				}
 				else
 				{
+					// modify existing inline styling...
+
 					var style = new Style(span.Attribute("style").Value);
 					if (!style.IsStrikethrough)
 					{
 						style.IsStrikethrough = true;
+						style.Color = strikeColor;
+
 						var css = style.ToCss(false);
 						if (string.IsNullOrEmpty(css))
 						{
@@ -125,18 +143,26 @@ namespace River.OneMoreAddIn.Commands
 						{
 							span.SetAttributeValue("style", style.ToCss(false));
 						}
+
 						modified = true;
 					}
 				}
 			}
 			else
 			{
+				// not complete, so remove strikethrough...
+
 				if (span != null)
 				{
 					var style = new Style(span.Attribute("style").Value);
 					if (style.IsStrikethrough)
 					{
 						style.IsStrikethrough = false;
+						if (style.Color == strikeColor)
+						{
+							style.Color = Style.Automatic;
+						}
+
 						var css = style.ToCss(false);
 						if (string.IsNullOrEmpty(css))
 						{
