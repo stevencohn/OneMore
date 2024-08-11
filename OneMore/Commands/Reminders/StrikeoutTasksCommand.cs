@@ -118,9 +118,9 @@ namespace River.OneMoreAddIn.Commands
 						IsStrikethrough = true
 					};
 
-					span = new XElement("span", cdata.Value);
-					span.SetAttributeValue("style", style.ToCss(false));
-					wrapper.FirstNode.ReplaceWith(span);
+					wrapper.FirstNode.ReplaceWith(new XElement("span",
+						new XAttribute("style", style.ToCss(false)),
+						cdata.Value));
 
 					modified = true;
 				}
