@@ -30,13 +30,13 @@
 		{
 			System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("General Options");
 			System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("Colorizer");
-			System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("Command Aliases");
-			System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("Context Menu");
-			System.Windows.Forms.TreeNode treeNode5 = new System.Windows.Forms.TreeNode("Favorites");
-			System.Windows.Forms.TreeNode treeNode6 = new System.Windows.Forms.TreeNode("File Import");
-			System.Windows.Forms.TreeNode treeNode7 = new System.Windows.Forms.TreeNode("Hashtags");
-			System.Windows.Forms.TreeNode treeNode8 = new System.Windows.Forms.TreeNode("Highlighter Themes");
-			System.Windows.Forms.TreeNode treeNode9 = new System.Windows.Forms.TreeNode("Horizontal Lines");
+			System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("Colors");
+			System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("Command Aliases");
+			System.Windows.Forms.TreeNode treeNode5 = new System.Windows.Forms.TreeNode("Context Menu");
+			System.Windows.Forms.TreeNode treeNode6 = new System.Windows.Forms.TreeNode("Favorites");
+			System.Windows.Forms.TreeNode treeNode7 = new System.Windows.Forms.TreeNode("File Import");
+			System.Windows.Forms.TreeNode treeNode8 = new System.Windows.Forms.TreeNode("Hashtags");
+			System.Windows.Forms.TreeNode treeNode9 = new System.Windows.Forms.TreeNode("Highlighter Themes");
 			System.Windows.Forms.TreeNode treeNode10 = new System.Windows.Forms.TreeNode("Images");
 			System.Windows.Forms.TreeNode treeNode11 = new System.Windows.Forms.TreeNode("Keyboard Shortcuts");
 			System.Windows.Forms.TreeNode treeNode12 = new System.Windows.Forms.TreeNode("Navigator");
@@ -77,12 +77,13 @@
 			this.okButton.ImageOver = null;
 			this.okButton.Location = new System.Drawing.Point(874, 13);
 			this.okButton.Name = "okButton";
-			this.okButton.ThemedBack = null;
-			this.okButton.ThemedFore = null;
 			this.okButton.ShowBorder = true;
 			this.okButton.Size = new System.Drawing.Size(120, 38);
+			this.okButton.StylizeImage = false;
 			this.okButton.TabIndex = 1;
 			this.okButton.Text = "OK";
+			this.okButton.ThemedBack = null;
+			this.okButton.ThemedFore = null;
 			this.okButton.UseVisualStyleBackColor = true;
 			this.okButton.Click += new System.EventHandler(this.OK);
 			// 
@@ -95,12 +96,13 @@
 			this.cancelButton.ImageOver = null;
 			this.cancelButton.Location = new System.Drawing.Point(1000, 13);
 			this.cancelButton.Name = "cancelButton";
-			this.cancelButton.ThemedBack = null;
-			this.cancelButton.ThemedFore = null;
 			this.cancelButton.ShowBorder = true;
 			this.cancelButton.Size = new System.Drawing.Size(120, 38);
+			this.cancelButton.StylizeImage = false;
 			this.cancelButton.TabIndex = 0;
 			this.cancelButton.Text = "Cancel";
+			this.cancelButton.ThemedBack = null;
+			this.cancelButton.ThemedFore = null;
 			this.cancelButton.UseVisualStyleBackColor = true;
 			// 
 			// editorPanel
@@ -154,20 +156,20 @@
 			treeNode1.Text = "General Options";
 			treeNode2.Name = "colorizerNode";
 			treeNode2.Text = "Colorizer";
-			treeNode3.Name = "aliasNode";
-			treeNode3.Text = "Command Aliases";
-			treeNode4.Name = "contextNode";
-			treeNode4.Text = "Context Menu";
-			treeNode5.Name = "favoritesNode";
-			treeNode5.Text = "Favorites";
-			treeNode6.Name = "fileImportNode";
-			treeNode6.Text = "File Import";
-			treeNode7.Name = "hashtagsNode";
-			treeNode7.Text = "Hashtags";
-			treeNode8.Name = "highlightNode";
-			treeNode8.Text = "Highlighter Themes";
-			treeNode9.Name = "linesNode";
-			treeNode9.Text = "Horizontal Lines";
+			treeNode3.Name = "colorsNode";
+			treeNode3.Text = "Colors";
+			treeNode4.Name = "aliasNode";
+			treeNode4.Text = "Command Aliases";
+			treeNode5.Name = "contextNode";
+			treeNode5.Text = "Context Menu";
+			treeNode6.Name = "favoritesNode";
+			treeNode6.Text = "Favorites";
+			treeNode7.Name = "fileImportNode";
+			treeNode7.Text = "File Import";
+			treeNode8.Name = "hashtagsNode";
+			treeNode8.Text = "Hashtags";
+			treeNode9.Name = "highlightNode";
+			treeNode9.Text = "Highlighter Themes";
 			treeNode10.Name = "imagesNode";
 			treeNode10.Text = "Images";
 			treeNode11.Name = "keyboardNode";

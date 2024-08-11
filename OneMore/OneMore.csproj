@@ -489,11 +489,11 @@
     <Compile Include="Commands\Settings\AliasSheet.Designer.cs">
       <DependentUpon>AliasSheet.cs</DependentUpon>
     </Compile>
-    <Compile Include="Commands\Settings\LinesSheet.cs">
+    <Compile Include="Commands\Settings\ColorsSheet.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Commands\Settings\LinesSheet.Designer.cs">
-      <DependentUpon>LinesSheet.cs</DependentUpon>
+    <Compile Include="Commands\Settings\ColorsSheet.Designer.cs">
+      <DependentUpon>ColorsSheet.cs</DependentUpon>
     </Compile>
     <Compile Include="Commands\Settings\GeneralSheet.cs">
       <SubType>UserControl</SubType>
@@ -1494,8 +1494,8 @@
     <EmbeddedResource Include="Commands\Settings\ImagesSheet.resx">
       <DependentUpon>ImagesSheet.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Commands\Settings\LinesSheet.resx">
-      <DependentUpon>LinesSheet.cs</DependentUpon>
+    <EmbeddedResource Include="Commands\Settings\ColorsSheet.resx">
+      <DependentUpon>ColorsSheet.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Commands\Settings\GeneralSheet.resx">
       <DependentUpon>GeneralSheet.cs</DependentUpon>

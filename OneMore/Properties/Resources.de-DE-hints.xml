@@ -160,10 +160,6 @@
     <source>Manage my custom keyboard shortcuts. Select a command and press a key sequence.</source>
     <preferred>Verwaltee meine benutzerdefinierten Tastenkombinationen. Wähle einen Befehl aus und drücke eine Tastenfolge.</preferred>
   </hint>
-  <hint name="LinesSheet_introBox.Text">
-    <source>Customize the default style for horiztonal line snippets</source>
-    <preferred>Passe den Standardstil für horizontale Zeilenausschnitte an</preferred>
-  </hint>
   <hint name="LinkDialog_introLabel.Text">
     <source>Create linked references to the title of this page</source>
     <preferred>Erstelle verlinkte Verweise auf den Titel dieser Seite</preferred>

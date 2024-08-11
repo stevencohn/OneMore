@@ -532,6 +532,30 @@ Inverser</value>
   <data name="ColorizerSheet_Title" xml:space="preserve">
     <value>Coloriser</value>
   </data>
+  <data name="ColorsSheet_clickLabel.Text" xml:space="preserve">
+    <value>(cliquez pour changer)</value>
+    <comment>settings sheet</comment>
+  </data>
+  <data name="ColorsSheet_introBox.Text" xml:space="preserve">
+    <value>Personnalisez le style par défaut pour les extraits de lignes horizontales et les tâches marquées par la commande Tâches terminées barrées</value>
+    <comment>settings sheet</comment>
+  </data>
+  <data name="ColorsSheet_linesGroupBox.Text" xml:space="preserve">
+    <value>Lignes horizontales</value>
+    <comment>settings sheet group box</comment>
+  </data>
+  <data name="ColorsSheet_strikeBox.Text" xml:space="preserve">
+    <value>Appliquer cette couleur lors de l'utilisation de la commande Barrer la tâche terminée</value>
+    <comment>settings sheet checkbox</comment>
+  </data>
+  <data name="ColorsSheet_strikeGroupBox.Text" xml:space="preserve">
+    <value>Tâches barrées</value>
+    <comment>settings sheet group box</comment>
+  </data>
+  <data name="ColorsSheet_Title" xml:space="preserve">
+    <value>Couleurs</value>
+    <comment>settings sheet</comment>
+  </data>
   <data name="Command_Error" xml:space="preserve">
     <value>Erreur lors de l'exécution de la commande {0}</value>
     <comment>logged and displayed in messagebox</comment>
@@ -1749,26 +1773,6 @@ Voulez-vous actualiser la page existante ?</value>
   <data name="KeyboardSheet_resetAllButton.Text" xml:space="preserve">
     <value>Effacer tout</value>
     <comment>toolstrip button</comment>
-  </data>
-  <data name="LinesSheet_clickLabel.Text" xml:space="preserve">
-    <value>(cliquez pour changer)</value>
-    <comment>settings sheet</comment>
-  </data>
-  <data name="LinesSheet_colorLabel.Text" xml:space="preserve">
-    <value>Couleur de la ligne:</value>
-    <comment>settings sheet</comment>
-  </data>
-  <data name="LinesSheet_introBox.Text" xml:space="preserve">
-    <value>Personnaliser le style par défaut pour les extraits de ligne horizontaux</value>
-    <comment>settings sheet</comment>
-  </data>
-  <data name="LinesSheet_lengthLabel.Text" xml:space="preserve">
-    <value>Longueur:</value>
-    <comment>settings sheet</comment>
-  </data>
-  <data name="LinesSheet_Title" xml:space="preserve">
-    <value>Lignes horizontales</value>
-    <comment>settings sheet</comment>
   </data>
   <data name="LinkDialog_groupBox.Text" xml:space="preserve">
     <value>Pages dans</value>
@@ -5101,6 +5105,9 @@ La boîte de dialogue Rechercher des hashtags va maintenant s'ouvrir.</value>
   </data>
   <data name="word_Language" xml:space="preserve">
     <value>Langue</value>
+  </data>
+  <data name="word_Length" xml:space="preserve">
+    <value>Longueur</value>
   </data>
   <data name="word_Limit" xml:space="preserve">
     <value>Limite</value>

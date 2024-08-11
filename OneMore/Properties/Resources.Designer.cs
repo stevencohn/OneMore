@@ -1027,6 +1027,60 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to (click to change).
+        /// </summary>
+        internal static string ColorsSheet_clickLabel_Text {
+            get {
+                return ResourceManager.GetString("ColorsSheet_clickLabel.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Customize the default style for horizontal line snippets and task marked by the Strike-Through Completed Tasks command.
+        /// </summary>
+        internal static string ColorsSheet_introBox_Text {
+            get {
+                return ResourceManager.GetString("ColorsSheet_introBox.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Horizontal Lines.
+        /// </summary>
+        internal static string ColorsSheet_linesGroupBox_Text {
+            get {
+                return ResourceManager.GetString("ColorsSheet_linesGroupBox.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Apply this color when using the Strike-Through Completed Task command.
+        /// </summary>
+        internal static string ColorsSheet_strikeBox_Text {
+            get {
+                return ResourceManager.GetString("ColorsSheet_strikeBox.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Strike-Through Tasks.
+        /// </summary>
+        internal static string ColorsSheet_strikeGroupBox_Text {
+            get {
+                return ResourceManager.GetString("ColorsSheet_strikeGroupBox.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Colors.
+        /// </summary>
+        internal static string ColorsSheet_Title {
+            get {
+                return ResourceManager.GetString("ColorsSheet_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Error running command {0}.
         /// </summary>
         internal static string Command_Error {
@@ -4546,51 +4600,6 @@ namespace River.OneMoreAddIn.Properties {
         internal static string LightTheme {
             get {
                 return ResourceManager.GetString("LightTheme", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to (click to change).
-        /// </summary>
-        internal static string LinesSheet_clickLabel_Text {
-            get {
-                return ResourceManager.GetString("LinesSheet_clickLabel.Text", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Line color:.
-        /// </summary>
-        internal static string LinesSheet_colorLabel_Text {
-            get {
-                return ResourceManager.GetString("LinesSheet_colorLabel.Text", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Customize the default style for horiztonal line snippets.
-        /// </summary>
-        internal static string LinesSheet_introBox_Text {
-            get {
-                return ResourceManager.GetString("LinesSheet_introBox.Text", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Length:.
-        /// </summary>
-        internal static string LinesSheet_lengthLabel_Text {
-            get {
-                return ResourceManager.GetString("LinesSheet_lengthLabel.Text", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Horizontal Lines.
-        /// </summary>
-        internal static string LinesSheet_Title {
-            get {
-                return ResourceManager.GetString("LinesSheet_Title", resourceCulture);
             }
         }
         
@@ -12676,6 +12685,15 @@ namespace River.OneMoreAddIn.Properties {
         internal static string word_Language {
             get {
                 return ResourceManager.GetString("word_Language", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Length.
+        /// </summary>
+        internal static string word_Length {
+            get {
+                return ResourceManager.GetString("word_Length", resourceCulture);
             }
         }
         
