@@ -4,6 +4,7 @@
 
 namespace River.OneMoreAddIn.Commands
 {
+	using NStandard;
 	using River.OneMoreAddIn.UI;
 	using System;
 	using System.Collections.Generic;
@@ -158,6 +159,10 @@ namespace River.OneMoreAddIn.Commands
 
 		protected override async void OnLoad(EventArgs e)
 		{
+			base.OnLoad(e);
+
+			AlignHyperlinks();
+
 			if (booksFlow is not null)
 			{
 				if (HashtagProvider.CatalogExists())
@@ -188,21 +193,10 @@ namespace River.OneMoreAddIn.Commands
 					}
 				}
 
-				if (anyChecked)
-				{
-					okButton.Enabled = true;
-					okButton.Focus();
-				}
-				else
-				{
-					okButton.Enabled = false;
-					cancelButton.Focus();
-				}
+				okButton.Enabled = anyChecked;
 			}
 
-			base.OnLoad(e);
-
-			AlignHyperlinks();
+			FocusButtons();
 		}
 		#endregion Load Helpers
 
@@ -247,19 +241,27 @@ namespace River.OneMoreAddIn.Commands
 		private void DoCheckedChanged(object sender, EventArgs e)
 		{
 			dateTimePicker.Enabled = laterRadio.Checked;
+			FocusButtons();
 		}
 
 
 		private void DoSelectionsChanged(object sender, EventArgs e)
 		{
 			okButton.Enabled = booksFlow.Controls.Cast<MoreCheckBox>().Any(b => b.Checked);
+			FocusButtons();
+		}
 
+
+		private void FocusButtons()
+		{
 			if (okButton.Enabled)
 			{
+				AcceptButton = okButton;
 				okButton.Focus();
 			}
 			else
 			{
+				AcceptButton = cancelButton;
 				cancelButton.Focus();
 			}
 		}
