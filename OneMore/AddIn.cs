@@ -61,7 +61,7 @@ namespace River.OneMoreAddIn
 			thread.CurrentCulture = Culture;
 			thread.CurrentUICulture = Culture;
 
-			River.OneMoreAddIn.Helpers.SessionLogger.WriteSessionHeader();
+			Helpers.SessionLogger.WriteSessionHeader();
 
 			Self = this;
 
