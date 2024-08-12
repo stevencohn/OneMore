@@ -66,6 +66,9 @@ namespace River.OneMoreAddIn.Commands
 			{
 				tag.GetAttributeValue<bool>("completed", out var completed);
 
+				// each OE can only have 0..1 cdata but there can be more than one run after
+				// the tag if the text caret is position on the paragraph so must enumerate
+
 				var cdatas = tag.NodesAfterSelf().OfType<XElement>()
 					.Where(e => e.Name.LocalName == "T")
 					.Nodes().OfType<XCData>()
