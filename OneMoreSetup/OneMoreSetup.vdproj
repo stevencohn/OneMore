@@ -1203,6 +1203,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_520B2A1274BC4021A734D0D6A8BD9678"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_542A68E25B543410A93586188E3B795F"
         "OwnerKey" = "8:_048CCD43549245BBA572EF0A0F83BCCB"
         "MsmSig" = "8:_UNDEFINED"
@@ -2465,6 +2471,12 @@
         {
         "MsmKey" = "8:_C32CAFE3CE1768EF1810D0CEB14A659A"
         "OwnerKey" = "8:_13B8CBA1751ADD66FD7A9E086EDFD9D8"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_C36E4CA1B4CF4351949FF1C65B2F2CE5"
+        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -6765,6 +6777,26 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_520B2A1274BC4021A734D0D6A8BD9678"
+            {
+            "SourcePath" = "8:..\\OneMore\\Colorizer\\Languages\\bash.png"
+            "TargetName" = "8:bash.png"
+            "Tag" = "8:"
+            "Folder" = "8:_ACA6848561DD4B89996D952DA9D332E9"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_542A68E25B543410A93586188E3B795F"
             {
             "AssemblyRegister" = "3:1"
@@ -9023,6 +9055,26 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_C36E4CA1B4CF4351949FF1C65B2F2CE5"
+            {
+            "SourcePath" = "8:..\\OneMore\\Colorizer\\Languages\\bash.json"
+            "TargetName" = "8:bash.json"
+            "Tag" = "8:"
+            "Folder" = "8:_ACA6848561DD4B89996D952DA9D332E9"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_C3DAA50A05E4D62849FEC6DF5F932FC0"

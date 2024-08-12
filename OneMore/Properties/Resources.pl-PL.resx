@@ -541,6 +541,30 @@ Odwracać</value>
   <data name="ColorizerSheet_Title" xml:space="preserve">
     <value>Kolorator</value>
   </data>
+  <data name="ColorsSheet_clickLabel.Text" xml:space="preserve">
+    <value>(Kliknij, aby zmienić)</value>
+    <comment>settings sheet</comment>
+  </data>
+  <data name="ColorsSheet_introBox.Text" xml:space="preserve">
+    <value>Dostosuj domyślny styl fragmentów linii poziomych i zadań oznaczonych poleceniem Przekreśl zakończone zadania</value>
+    <comment>settings sheet</comment>
+  </data>
+  <data name="ColorsSheet_linesGroupBox.Text" xml:space="preserve">
+    <value>Linie poziome</value>
+    <comment>settings sheet group box</comment>
+  </data>
+  <data name="ColorsSheet_strikeBox.Text" xml:space="preserve">
+    <value>Zastosuj ten kolor, gdy używasz polecenia Przekreśl ukończone zadanie</value>
+    <comment>settings sheet checkbox</comment>
+  </data>
+  <data name="ColorsSheet_strikeGroupBox.Text" xml:space="preserve">
+    <value>Zadania przekreślone</value>
+    <comment>settings sheet group box</comment>
+  </data>
+  <data name="ColorsSheet_Title" xml:space="preserve">
+    <value>Zabarwienie</value>
+    <comment>settings sheet</comment>
+  </data>
   <data name="Command_Error" xml:space="preserve">
     <value>Błąd uruchomiony polecenie {0}</value>
     <comment>logged and displayed in messagebox</comment>
@@ -1758,26 +1782,6 @@ Czy chcesz odświeżyć istniejącą stronę?</value>
   <data name="KeyboardSheet_resetAllButton.Text" xml:space="preserve">
     <value>Zresetować wszystko</value>
     <comment>toolstrip button</comment>
-  </data>
-  <data name="LinesSheet_clickLabel.Text" xml:space="preserve">
-    <value>(Kliknij, aby zmienić)</value>
-    <comment>settings sheet</comment>
-  </data>
-  <data name="LinesSheet_colorLabel.Text" xml:space="preserve">
-    <value>Kolor linii:</value>
-    <comment>settings sheet</comment>
-  </data>
-  <data name="LinesSheet_introBox.Text" xml:space="preserve">
-    <value>Dostosuj domyślny styl dla fragmentów linii horizonia</value>
-    <comment>settings sheet</comment>
-  </data>
-  <data name="LinesSheet_lengthLabel.Text" xml:space="preserve">
-    <value>Długość:</value>
-    <comment>settings sheet</comment>
-  </data>
-  <data name="LinesSheet_Title" xml:space="preserve">
-    <value>Linie poziome</value>
-    <comment>settings sheet</comment>
   </data>
   <data name="LinkDialog_groupBox.Text" xml:space="preserve">
     <value>Strony in.</value>
@@ -5120,6 +5124,9 @@ Otworzy się teraz okno dialogowe Znajdź hashtagi.</value>
   </data>
   <data name="word_Language" xml:space="preserve">
     <value>Język</value>
+  </data>
+  <data name="word_Length" xml:space="preserve">
+    <value>Długość</value>
   </data>
   <data name="word_Limit" xml:space="preserve">
     <value>Limit</value>

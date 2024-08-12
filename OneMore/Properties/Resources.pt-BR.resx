@@ -533,6 +533,30 @@ Invertido</value>
   <data name="ColorizerSheet_Title" xml:space="preserve">
     <value>Colorizer</value>
   </data>
+  <data name="ColorsSheet_clickLabel.Text" xml:space="preserve">
+    <value>(clique para mudar)</value>
+    <comment>settings sheet</comment>
+  </data>
+  <data name="ColorsSheet_introBox.Text" xml:space="preserve">
+    <value>Personalize o estilo padrão para trechos de linha horizontal e tarefas marcadas pelo comando Tachado Tarefas Concluídas</value>
+    <comment>settings sheet</comment>
+  </data>
+  <data name="ColorsSheet_linesGroupBox.Text" xml:space="preserve">
+    <value>Linhas horizontais</value>
+    <comment>settings sheet group box</comment>
+  </data>
+  <data name="ColorsSheet_strikeBox.Text" xml:space="preserve">
+    <value>Aplique esta cor ao usar o comando Tachado Tarefa Concluída</value>
+    <comment>settings sheet checkbox</comment>
+  </data>
+  <data name="ColorsSheet_strikeGroupBox.Text" xml:space="preserve">
+    <value>Tarefas tachadas</value>
+    <comment>settings sheet group box</comment>
+  </data>
+  <data name="ColorsSheet_Title" xml:space="preserve">
+    <value>Cores</value>
+    <comment>settings sheet</comment>
+  </data>
   <data name="Command_Error" xml:space="preserve">
     <value>Erro ao executar o comando {0}</value>
     <comment>logged and displayed in messagebox</comment>
@@ -1750,26 +1774,6 @@ Deseja atualizar a página existente?</value>
   <data name="KeyboardSheet_resetAllButton.Text" xml:space="preserve">
     <value>Reiniciar tudo</value>
     <comment>toolstrip button</comment>
-  </data>
-  <data name="LinesSheet_clickLabel.Text" xml:space="preserve">
-    <value>(clique para mudar)</value>
-    <comment>settings sheet</comment>
-  </data>
-  <data name="LinesSheet_colorLabel.Text" xml:space="preserve">
-    <value>Cor da linha:</value>
-    <comment>settings sheet</comment>
-  </data>
-  <data name="LinesSheet_introBox.Text" xml:space="preserve">
-    <value>Personalize o estilo padrão para trechos de linhas horizontais</value>
-    <comment>settings sheet</comment>
-  </data>
-  <data name="LinesSheet_lengthLabel.Text" xml:space="preserve">
-    <value>Comprimento:</value>
-    <comment>settings sheet</comment>
-  </data>
-  <data name="LinesSheet_Title" xml:space="preserve">
-    <value>Linhas horizontais</value>
-    <comment>settings sheet</comment>
   </data>
   <data name="LinkDialog_groupBox.Text" xml:space="preserve">
     <value>Páginas em</value>
@@ -5103,6 +5107,9 @@ A caixa de diálogo Encontrar hashtags será aberta agora.</value>
   </data>
   <data name="word_Language" xml:space="preserve">
     <value>Linguagem</value>
+  </data>
+  <data name="word_Length" xml:space="preserve">
+    <value>Comprimento</value>
   </data>
   <data name="word_Limit" xml:space="preserve">
     <value>Limite</value>

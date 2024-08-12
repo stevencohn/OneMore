@@ -541,6 +541,30 @@ Invert</value>
   <data name="ColorizerSheet_Title" xml:space="preserve">
     <value>Colorizer</value>
   </data>
+  <data name="ColorsSheet_clickLabel.Text" xml:space="preserve">
+    <value>(click to change)</value>
+    <comment>settings sheet</comment>
+  </data>
+  <data name="ColorsSheet_introBox.Text" xml:space="preserve">
+    <value>Customize the default style for horizontal line snippets and task marked by the Strike-Through Completed Tasks command</value>
+    <comment>settings sheet</comment>
+  </data>
+  <data name="ColorsSheet_linesGroupBox.Text" xml:space="preserve">
+    <value>Horizontal Lines</value>
+    <comment>settings sheet group box</comment>
+  </data>
+  <data name="ColorsSheet_strikeBox.Text" xml:space="preserve">
+    <value>Apply this color when using the Strike-Through Completed Task command</value>
+    <comment>settings sheet checkbox</comment>
+  </data>
+  <data name="ColorsSheet_strikeGroupBox.Text" xml:space="preserve">
+    <value>Strike-Through Tasks</value>
+    <comment>settings sheet group box</comment>
+  </data>
+  <data name="ColorsSheet_Title" xml:space="preserve">
+    <value>Colors</value>
+    <comment>settings sheet</comment>
+  </data>
   <data name="Command_Error" xml:space="preserve">
     <value>Error running command {0}</value>
     <comment>logged and displayed in messagebox</comment>
@@ -1762,26 +1786,6 @@ Do you want to refresh the existing page?</value>
   <data name="KeyboardSheet_resetAllButton.Text" xml:space="preserve">
     <value>Reset all</value>
     <comment>toolstrip button</comment>
-  </data>
-  <data name="LinesSheet_clickLabel.Text" xml:space="preserve">
-    <value>(click to change)</value>
-    <comment>settings sheet</comment>
-  </data>
-  <data name="LinesSheet_colorLabel.Text" xml:space="preserve">
-    <value>Line color:</value>
-    <comment>settings sheet</comment>
-  </data>
-  <data name="LinesSheet_introBox.Text" xml:space="preserve">
-    <value>Customize the default style for horiztonal line snippets</value>
-    <comment>settings sheet</comment>
-  </data>
-  <data name="LinesSheet_lengthLabel.Text" xml:space="preserve">
-    <value>Length:</value>
-    <comment>settings sheet</comment>
-  </data>
-  <data name="LinesSheet_Title" xml:space="preserve">
-    <value>Horizontal Lines</value>
-    <comment>settings sheet</comment>
   </data>
   <data name="LinkDialog_groupBox.Text" xml:space="preserve">
     <value>Pages in</value>
@@ -5145,6 +5149,9 @@ The Find Hashtags dialog will now open.</value>
   </data>
   <data name="word_Language" xml:space="preserve">
     <value>Language</value>
+  </data>
+  <data name="word_Length" xml:space="preserve">
+    <value>Length</value>
   </data>
   <data name="word_Limit" xml:space="preserve">
     <value>Limit</value>
