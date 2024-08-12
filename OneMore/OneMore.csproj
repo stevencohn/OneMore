@@ -1192,6 +1192,7 @@
     <EmbeddedResource Include="Commands\Tagging\ScheduleScanDialog.resx">
       <DependentUpon>ScheduleScanDialog.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.ja-JP.resx" />
     <EmbeddedResource Include="UI\WindowElevator.resx">
       <DependentUpon>WindowElevator.cs</DependentUpon>
     </EmbeddedResource>

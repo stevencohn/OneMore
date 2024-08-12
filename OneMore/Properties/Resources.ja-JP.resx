@@ -541,6 +541,30 @@
   <data name="ColorizerSheet_Title" xml:space="preserve">
     <value>コードハイライト</value>
   </data>
+  <data name="ColorsSheet_clickLabel.Text" xml:space="preserve">
+    <value>(クリックして変更します)</value>
+    <comment>settings sheet</comment>
+  </data>
+  <data name="ColorsSheet_introBox.Text" xml:space="preserve">
+    <value>完了済み To Do タグの取り消し線コマンドでマークされた水平線スニペットとタスクのデフォルト スタイルをカスタマイズします。</value>
+    <comment>settings sheet</comment>
+  </data>
+  <data name="ColorsSheet_linesGroupBox.Text" xml:space="preserve">
+    <value>水平線</value>
+    <comment>settings sheet group box</comment>
+  </data>
+  <data name="ColorsSheet_strikeBox.Text" xml:space="preserve">
+    <value>[完了した To Do タグの取り消し線] コマンドを使用するときにこの色を適用します。</value>
+    <comment>settings sheet checkbox</comment>
+  </data>
+  <data name="ColorsSheet_strikeGroupBox.Text" xml:space="preserve">
+    <value>To Do の取り消し線タグ</value>
+    <comment>settings sheet group box</comment>
+  </data>
+  <data name="ColorsSheet_Title" xml:space="preserve">
+    <value>色</value>
+    <comment>settings sheet</comment>
+  </data>
   <data name="Command_Error" xml:space="preserve">
     <value>コマンド「{0}」の実行中にエラーが発生しました。</value>
     <comment>logged and displayed in messagebox</comment>
@@ -1764,26 +1788,6 @@ OneNoteファイル (*.one)</value>
   <data name="KeyboardSheet_resetAllButton.Text" xml:space="preserve">
     <value>すべてリセット</value>
     <comment>toolstrip button</comment>
-  </data>
-  <data name="LinesSheet_clickLabel.Text" xml:space="preserve">
-    <value>（クリックして変更）</value>
-    <comment>settings sheet</comment>
-  </data>
-  <data name="LinesSheet_colorLabel.Text" xml:space="preserve">
-    <value>線の色:</value>
-    <comment>settings sheet</comment>
-  </data>
-  <data name="LinesSheet_introBox.Text" xml:space="preserve">
-    <value>水平線スニペットのデフォルトスタイルをカスタマイズ</value>
-    <comment>settings sheet</comment>
-  </data>
-  <data name="LinesSheet_lengthLabel.Text" xml:space="preserve">
-    <value>長さ:</value>
-    <comment>settings sheet</comment>
-  </data>
-  <data name="LinesSheet_Title" xml:space="preserve">
-    <value>水平線</value>
-    <comment>settings sheet</comment>
   </data>
   <data name="LinkDialog_groupBox.Text" xml:space="preserve">
     <value>ページ内</value>
@@ -4272,6 +4276,12 @@ ISO-code then comma then language name</comment>
     <value>今すぐスキャンを実行</value>
     <comment>radio</comment>
   </data>
+  <data name="ScheduleScanDialog_nowWarning" xml:space="preserve">
+    <value>ハッシュタグ スキャンにより、OneNote の使用中に応答が遅くなったり、スキャンが完了するまで OneNote を再起動できなくなったりする可能性があります。
+
+今すぐスキャンを実行してもよろしいですか</value>
+    <comment>message box</comment>
+  </data>
   <data name="ScheduleScanDialog_Title" xml:space="preserve">
     <value>ハッシュタグスキャンのスケジュール設定</value>
     <comment>dialog title</comment>
@@ -5141,6 +5151,9 @@ ISO-code then comma then language name</comment>
   </data>
   <data name="word_Language" xml:space="preserve">
     <value>言語</value>
+  </data>
+  <data name="word_Length" xml:space="preserve">
+    <value>長さ</value>
   </data>
   <data name="word_Limit" xml:space="preserve">
     <value>制限</value>
