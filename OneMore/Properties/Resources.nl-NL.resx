@@ -538,7 +538,7 @@ Omkeren</value>
     <comment>settings sheet</comment>
   </data>
   <data name="ColorsSheet_introBox.Text" xml:space="preserve">
-    <value>Pas de standaardstijl aan voor horizontale lijnfragmenten en taken die zijn gemarkeerd door de opdracht Doorhalen van voltooide taken</value>
+    <value>Pas de standaardstijl aan voor horizontale lijnfragmenten en taken die zijn gemarkeerd door de opdracht Doorhalen van voltooide takentags</value>
     <comment>settings sheet</comment>
   </data>
   <data name="ColorsSheet_linesGroupBox.Text" xml:space="preserve">
@@ -546,11 +546,11 @@ Omkeren</value>
     <comment>settings sheet group box</comment>
   </data>
   <data name="ColorsSheet_strikeBox.Text" xml:space="preserve">
-    <value>Pas deze kleur toe wanneer u de opdracht Doorhalen voltooide taak gebruikt</value>
+    <value>Pas deze kleur toe wanneer u de opdracht Doorhalen van voltooide takentags gebruikt</value>
     <comment>settings sheet checkbox</comment>
   </data>
   <data name="ColorsSheet_strikeGroupBox.Text" xml:space="preserve">
-    <value>Doorhaaltaken</value>
+    <value>Doorhalen om tags te doen</value>
     <comment>settings sheet group box</comment>
   </data>
   <data name="ColorsSheet_Title" xml:space="preserve">

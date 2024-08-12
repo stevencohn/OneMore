@@ -546,7 +546,7 @@ Invert</value>
     <comment>settings sheet</comment>
   </data>
   <data name="ColorsSheet_introBox.Text" xml:space="preserve">
-    <value>Customize the default style for horizontal line snippets and task marked by the Strike-Through Completed Tasks command</value>
+    <value>Customize the default style for horizontal line snippets and task marked by the Strike-Through Completed To Do Tags command</value>
     <comment>settings sheet</comment>
   </data>
   <data name="ColorsSheet_linesGroupBox.Text" xml:space="preserve">
@@ -554,11 +554,11 @@ Invert</value>
     <comment>settings sheet group box</comment>
   </data>
   <data name="ColorsSheet_strikeBox.Text" xml:space="preserve">
-    <value>Apply this color when using the Strike-Through Completed Task command</value>
+    <value>Apply this color when using the Strikethrough Completed To Do Tags command</value>
     <comment>settings sheet checkbox</comment>
   </data>
   <data name="ColorsSheet_strikeGroupBox.Text" xml:space="preserve">
-    <value>Strike-Through Tasks</value>
+    <value>Strikethrough To Do Tags</value>
     <comment>settings sheet group box</comment>
   </data>
   <data name="ColorsSheet_Title" xml:space="preserve">

@@ -538,7 +538,7 @@ Invertido</value>
     <comment>settings sheet</comment>
   </data>
   <data name="ColorsSheet_introBox.Text" xml:space="preserve">
-    <value>Personalize o estilo padrão para trechos de linha horizontal e tarefas marcadas pelo comando Tachado Tarefas Concluídas</value>
+    <value>Personalize o estilo padrão para trechos de linha horizontal e tarefas marcadas pelo comando Tags de tarefas concluídas tachadas</value>
     <comment>settings sheet</comment>
   </data>
   <data name="ColorsSheet_linesGroupBox.Text" xml:space="preserve">
@@ -546,11 +546,11 @@ Invertido</value>
     <comment>settings sheet group box</comment>
   </data>
   <data name="ColorsSheet_strikeBox.Text" xml:space="preserve">
-    <value>Aplique esta cor ao usar o comando Tachado Tarefa Concluída</value>
+    <value>Aplique esta cor ao usar o comando Tachado Concluído Tags de Tarefas</value>
     <comment>settings sheet checkbox</comment>
   </data>
   <data name="ColorsSheet_strikeGroupBox.Text" xml:space="preserve">
-    <value>Tarefas tachadas</value>
+    <value>Tachado para fazer Tags</value>
     <comment>settings sheet group box</comment>
   </data>
   <data name="ColorsSheet_Title" xml:space="preserve">

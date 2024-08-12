@@ -537,7 +537,7 @@ Inverser</value>
     <comment>settings sheet</comment>
   </data>
   <data name="ColorsSheet_introBox.Text" xml:space="preserve">
-    <value>Personnalisez le style par défaut pour les extraits de lignes horizontales et les tâches marquées par la commande Tâches terminées barrées</value>
+    <value>Personnalisez le style par défaut pour les extraits de lignes horizontales et les tâches marquées par la commande Balises de tâche terminées barrées</value>
     <comment>settings sheet</comment>
   </data>
   <data name="ColorsSheet_linesGroupBox.Text" xml:space="preserve">
@@ -545,11 +545,11 @@ Inverser</value>
     <comment>settings sheet group box</comment>
   </data>
   <data name="ColorsSheet_strikeBox.Text" xml:space="preserve">
-    <value>Appliquer cette couleur lors de l'utilisation de la commande Barrer la tâche terminée</value>
+    <value>Appliquez cette couleur lorsque vous utilisez la commande Balises à faire terminées barrées</value>
     <comment>settings sheet checkbox</comment>
   </data>
   <data name="ColorsSheet_strikeGroupBox.Text" xml:space="preserve">
-    <value>Tâches barrées</value>
+    <value>Barré à faire Tags</value>
     <comment>settings sheet group box</comment>
   </data>
   <data name="ColorsSheet_Title" xml:space="preserve">

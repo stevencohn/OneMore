@@ -537,7 +537,7 @@ Umkehren</value>
     <comment>settings sheet</comment>
   </data>
   <data name="ColorsSheet_introBox.Text" xml:space="preserve">
-    <value>Passen Sie den Standardstil für horizontale Linienausschnitte und Aufgaben an, die mit dem Befehl „Durchgestrichene abgeschlossene Aufgaben“ markiert sind</value>
+    <value>Passen Sie den Standardstil für horizontale Linienausschnitte und Aufgaben an, die mit dem Befehl „Durchgestrichene Tags für erledigte Aufgaben“ markiert sind</value>
     <comment>settings sheet</comment>
   </data>
   <data name="ColorsSheet_linesGroupBox.Text" xml:space="preserve">
@@ -545,11 +545,11 @@ Umkehren</value>
     <comment>settings sheet group box</comment>
   </data>
   <data name="ColorsSheet_strikeBox.Text" xml:space="preserve">
-    <value>Wenden Sie diese Farbe an, wenn Sie den Befehl „Durchgestrichene abgeschlossene Aufgabe“ verwenden</value>
+    <value>Wenden Sie diese Farbe an, wenn Sie den Befehl „Tags für erledigte Aufgaben durchstreichen“ verwenden</value>
     <comment>settings sheet checkbox</comment>
   </data>
   <data name="ColorsSheet_strikeGroupBox.Text" xml:space="preserve">
-    <value>Strike-Through-Aufgaben</value>
+    <value>Durchgestrichene To-do-Tags</value>
     <comment>settings sheet group box</comment>
   </data>
   <data name="ColorsSheet_Title" xml:space="preserve">

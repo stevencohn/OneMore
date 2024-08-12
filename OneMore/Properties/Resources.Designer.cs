@@ -1036,7 +1036,7 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Customize the default style for horizontal line snippets and task marked by the Strike-Through Completed Tasks command.
+        ///   Looks up a localized string similar to Customize the default style for horizontal line snippets and task marked by the Strike-Through Completed To Do Tags command.
         /// </summary>
         internal static string ColorsSheet_introBox_Text {
             get {
@@ -1054,7 +1054,7 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Apply this color when using the Strike-Through Completed Task command.
+        ///   Looks up a localized string similar to Apply this color when using the Strikethrough Completed To Do Tags command.
         /// </summary>
         internal static string ColorsSheet_strikeBox_Text {
             get {
@@ -1063,7 +1063,7 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Strike-Through Tasks.
+        ///   Looks up a localized string similar to Strikethrough To Do Tags.
         /// </summary>
         internal static string ColorsSheet_strikeGroupBox_Text {
             get {

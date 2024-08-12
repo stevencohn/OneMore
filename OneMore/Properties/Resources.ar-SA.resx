@@ -537,7 +537,7 @@
     <comment>settings sheet</comment>
   </data>
   <data name="ColorsSheet_introBox.Text" xml:space="preserve">
-    <value>قم بتخصيص النمط الافتراضي لمقتطفات الخطوط الأفقية والمهمة التي تم وضع علامة عليها بواسطة أمر Strike-Through Completed Tasks</value>
+    <value>قم بتخصيص النمط الافتراضي لمقتطفات الخطوط الأفقية والمهمة التي تم وضع علامة عليها بواسطة أمر Strike-Through Completed To Do العلامات</value>
     <comment>settings sheet</comment>
   </data>
   <data name="ColorsSheet_linesGroupBox.Text" xml:space="preserve">
@@ -545,11 +545,11 @@
     <comment>settings sheet group box</comment>
   </data>
   <data name="ColorsSheet_strikeBox.Text" xml:space="preserve">
-    <value>قم بتطبيق هذا اللون عند استخدام أمر Strike-Through Completed Task</value>
+    <value>قم بتطبيق هذا اللون عند استخدام أمر Strikethrough Completed To Do العلامات</value>
     <comment>settings sheet checkbox</comment>
   </data>
   <data name="ColorsSheet_strikeGroupBox.Text" xml:space="preserve">
-    <value>المهام الشاملة</value>
+    <value>يتوسطه خط للقيام العلامات</value>
     <comment>settings sheet group box</comment>
   </data>
   <data name="ColorsSheet_Title" xml:space="preserve">

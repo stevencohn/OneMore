@@ -537,7 +537,7 @@ Invertir</value>
     <comment>settings sheet</comment>
   </data>
   <data name="ColorsSheet_introBox.Text" xml:space="preserve">
-    <value>Personalice el estilo predeterminado para fragmentos de líneas horizontales y tareas marcadas con el comando Tachar tareas completadas</value>
+    <value>Personalice el estilo predeterminado para fragmentos de líneas horizontales y tareas marcadas con el comando Tachar etiquetas de tareas pendientes completadas</value>
     <comment>settings sheet</comment>
   </data>
   <data name="ColorsSheet_linesGroupBox.Text" xml:space="preserve">
@@ -545,11 +545,11 @@ Invertir</value>
     <comment>settings sheet group box</comment>
   </data>
   <data name="ColorsSheet_strikeBox.Text" xml:space="preserve">
-    <value>Aplique este color cuando utilice el comando Tachar tarea completada</value>
+    <value>Aplique este color cuando utilice el comando Tachar etiquetas de tareas pendientes completadas</value>
     <comment>settings sheet checkbox</comment>
   </data>
   <data name="ColorsSheet_strikeGroupBox.Text" xml:space="preserve">
-    <value>Tareas tachadas</value>
+    <value>Tachar tareas pendientes Tags</value>
     <comment>settings sheet group box</comment>
   </data>
   <data name="ColorsSheet_Title" xml:space="preserve">

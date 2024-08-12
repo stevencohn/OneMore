@@ -536,7 +536,7 @@
     <comment>settings sheet</comment>
   </data>
   <data name="ColorsSheet_introBox.Text" xml:space="preserve">
-    <value>自定义由删除线已完成任务命令标记的水平线片段和任务的默认样式</value>
+    <value>自定义由删除线已完成待办事项标签命令标记的水平线片段和任务的默认样式</value>
     <comment>settings sheet</comment>
   </data>
   <data name="ColorsSheet_linesGroupBox.Text" xml:space="preserve">
@@ -544,11 +544,11 @@
     <comment>settings sheet group box</comment>
   </data>
   <data name="ColorsSheet_strikeBox.Text" xml:space="preserve">
-    <value>使用删除线已完成任务命令时应用此颜色</value>
+    <value>使用删除线已完成的待办事项标签命令时应用此颜色</value>
     <comment>settings sheet checkbox</comment>
   </data>
   <data name="ColorsSheet_strikeGroupBox.Text" xml:space="preserve">
-    <value>删除线任务</value>
+    <value>删除线待办事项标签</value>
     <comment>settings sheet group box</comment>
   </data>
   <data name="ColorsSheet_Title" xml:space="preserve">

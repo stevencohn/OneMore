@@ -61,7 +61,7 @@ namespace River.OneMoreAddIn.Settings
 			this.introBox.Size = new System.Drawing.Size(772, 66);
 			this.introBox.TabIndex = 3;
 			this.introBox.Text = "Customize the default style for horizontal line snippets and task marked by the S" +
-    "trike-Through Completed Tasks command";
+    "trike-Through Completed To Do Tags command";
 			this.introBox.ThemedBack = "ControlLightLight";
 			this.introBox.ThemedFore = "ControlText";
 			// 
@@ -94,7 +94,7 @@ namespace River.OneMoreAddIn.Settings
 			this.strikeGroupBox.Size = new System.Drawing.Size(756, 161);
 			this.strikeGroupBox.TabIndex = 6;
 			this.strikeGroupBox.TabStop = false;
-			this.strikeGroupBox.Text = "Strike-Through Tasks";
+			this.strikeGroupBox.Text = "Strikethrough To Do Tags";
 			this.strikeGroupBox.ThemedBorder = null;
 			this.strikeGroupBox.ThemedFore = null;
 			// 
@@ -106,10 +106,10 @@ namespace River.OneMoreAddIn.Settings
 			this.strikeBox.Location = new System.Drawing.Point(27, 55);
 			this.strikeBox.Margin = new System.Windows.Forms.Padding(3, 3, 3, 15);
 			this.strikeBox.Name = "strikeBox";
-			this.strikeBox.Size = new System.Drawing.Size(576, 25);
+			this.strikeBox.Size = new System.Drawing.Size(626, 25);
 			this.strikeBox.StylizeImage = false;
 			this.strikeBox.TabIndex = 5;
-			this.strikeBox.Text = "Apply this color when using the Strike-Through Completed Task command";
+			this.strikeBox.Text = "Apply this color when using the Strike-Through Completed To Do Tags command";
 			this.strikeBox.ThemedBack = null;
 			this.strikeBox.ThemedFore = null;
 			this.strikeBox.UseVisualStyleBackColor = false;

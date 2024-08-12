@@ -546,7 +546,7 @@
     <comment>settings sheet</comment>
   </data>
   <data name="ColorsSheet_introBox.Text" xml:space="preserve">
-    <value>התאם אישית את סגנון ברירת המחדל עבור קטעי קו אופקיים ומשימות המסומנות על ידי הפקודה 'מחצה שהושלמו'</value>
+    <value>התאם אישית את סגנון ברירת המחדל עבור קטעי קווים אופקיים ומשימה המסומנים על ידי הפקודה Streek-Through Completed To Do Tags</value>
     <comment>settings sheet</comment>
   </data>
   <data name="ColorsSheet_linesGroupBox.Text" xml:space="preserve">
@@ -554,11 +554,11 @@
     <comment>settings sheet group box</comment>
   </data>
   <data name="ColorsSheet_strikeBox.Text" xml:space="preserve">
-    <value>החל צבע זה בעת שימוש בפקודה 'מחיקה שהושלמה'</value>
+    <value>החל צבע זה בעת שימוש בפקודה Strikethrough Completed To Do Tags</value>
     <comment>settings sheet checkbox</comment>
   </data>
   <data name="ColorsSheet_strikeGroupBox.Text" xml:space="preserve">
-    <value>משימות מחיקה</value>
+    <value>תגיות משימות מחוקות</value>
     <comment>settings sheet group box</comment>
   </data>
   <data name="ColorsSheet_Title" xml:space="preserve">

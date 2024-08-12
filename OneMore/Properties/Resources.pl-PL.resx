@@ -546,7 +546,7 @@ Odwracać</value>
     <comment>settings sheet</comment>
   </data>
   <data name="ColorsSheet_introBox.Text" xml:space="preserve">
-    <value>Dostosuj domyślny styl fragmentów linii poziomych i zadań oznaczonych poleceniem Przekreśl zakończone zadania</value>
+    <value>Dostosuj domyślny styl fragmentów linii poziomych i zadań oznaczonych poleceniem Przekreślenie znaczników wykonanych zadań do wykonania</value>
     <comment>settings sheet</comment>
   </data>
   <data name="ColorsSheet_linesGroupBox.Text" xml:space="preserve">
@@ -554,11 +554,11 @@ Odwracać</value>
     <comment>settings sheet group box</comment>
   </data>
   <data name="ColorsSheet_strikeBox.Text" xml:space="preserve">
-    <value>Zastosuj ten kolor, gdy używasz polecenia Przekreśl ukończone zadanie</value>
+    <value>Zastosuj ten kolor, jeśli używasz polecenia Przekreśl znaczniki wykonanych zadań do wykonania</value>
     <comment>settings sheet checkbox</comment>
   </data>
   <data name="ColorsSheet_strikeGroupBox.Text" xml:space="preserve">
-    <value>Zadania przekreślone</value>
+    <value>Przekreślenie znaczników zadań do wykonania</value>
     <comment>settings sheet group box</comment>
   </data>
   <data name="ColorsSheet_Title" xml:space="preserve">
